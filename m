@@ -1,88 +1,48 @@
-Return-Path: <devicetree+bounces-230678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70908C04FF7
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:14:07 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9801C05009
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:14:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52F9C19A8653
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:14:31 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5D2EC4EBCE5
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:14:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85937302158;
-	Fri, 24 Oct 2025 08:14:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEE15302170;
+	Fri, 24 Oct 2025 08:14:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="N+9kQP6K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EGJDGUUc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE9462F5A1F
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 08:14:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DC2C30215F;
+	Fri, 24 Oct 2025 08:14:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761293643; cv=none; b=jKixz72BL5mJPIuHSLlbaBrnK0tvvRoUfqXVj9K8XP7O571qXIHvZM3uPIwNCziVx4Wlat1vZN736wMfk/ZnWvP/mI78WHsCBbC69zZ3jNoWvjlNd4PWLFAZm8mNarrF6GSmeQ2y2+J7KZruX6hO7VRv5nu7oT5B4Rm9CYe1zaM=
+	t=1761293665; cv=none; b=R2ZmSYm5TE1fyqer43GarLdVReLHDoUq6BAZ2DmTl3lMDxfbKzfJyjGNM8NWV2AvnQGMHiio0qBagWlcTy3zLjaUCLYZDqG+CnXPOdWDdg+rnFkPL8BIU7Xt6+FbD/CqPZIwg/8A2SLYusFva+dI/xzaNLTj+JW5jY29ul77bwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761293643; c=relaxed/simple;
-	bh=4LQY3pdZ96rnqQXgBIRUHW9rIPYIt55eL9zhEIQ1qs0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CjBs//grU8vhHCcxLyR4xrkffuOzvh5cRljp9KqxObMVFhVXqDWseq5JkSgPotfltHkLu28J6t0+EO79KMfqGgY+AA0uFtMGOlcBa9qva/AqTeaE6HsQ2Y5Tul//FiNtyDnDCagTUsuIA/kgD8Jt0OPfzslJWVnrwnZpXcuOoR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=N+9kQP6K; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59O3Fkh4021725
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 08:14:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	EzKZx0KdaXQPdMY8n8YdZTFhqr+6LBjxgD7f+bSFhX4=; b=N+9kQP6K3q05ylN0
-	1rj4qkXLo/nbcCi5iNDpsxHs0aJDWzafnV9TR8HUdGIiZzSeVFnpX61zQG7IaHUT
-	lgLYgCT+6kYqlDuiIRckPEpMyCn7a12cFprp9xdtroCp+raUfRQ0KRDsL1auHQB6
-	I4XeysUiaXwzs7ffctWnvmJzBPhhCqHwRLVEivh5sOkSDgflaTQuHPp2AAmMvlic
-	0EYamGSrvt8dneXsHlB3HqbW9OCLSBtEARN+i5USPMJiFqyPaG6r/DudQOVvdSje
-	GMML/ErnCvRY6jZEBJAPgaY/mEEjJkqYDdDNddiDdyVwa+jdj2BBo2xJmCZcS6ga
-	/A740w==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v1w8b9cv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 08:14:00 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-87c1c70f1faso6677446d6.3
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 01:14:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761293640; x=1761898440;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EzKZx0KdaXQPdMY8n8YdZTFhqr+6LBjxgD7f+bSFhX4=;
-        b=Waku1abyhRYk5UG8QIYli+XCb9NN1XNU3XLzV5daljXxamNtnHTRRrechS0+3+G/BD
-         kYa8jxRGQ3wcezr+LX1m6dbcbs0ukE+fjtiXqNG4C3Rwyvxd5myF/jN64Xw136XdlfOC
-         USY2i5OMUT8fVG35U61ZZc0wP8XBBQfK9h65ONaLP/G/v1LJ1XqKheT4egLrLfLeUuqy
-         VkS4CrkaLPYZxpuuHHYnI2YAYJN23NYjEFlZSLwTJAdmMaN3EzeQ7zuAdl+qWXOQc6pw
-         1aet4hf0FUBFLouDXkqLJWkRe2rhK3uPipF0MWWeOdXvtKGj0pW3wuGnimg68YWL0x1n
-         PdkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUP5ONxAA020y7oUpTU12Vqrq79yfCToTYj8db7lYhPhWRgO2eBk/tKzTZuCNAdNzoe53j1kqAaxevU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw79t2MUsYKgUwtHjQQHVrLozVw68iMWVjesL3FkLcjcXqcJrno
-	sUWpk6oa6uiBmHy0qX9Oyq9U7BqaGXZx7VHTLyqATl2sFfEZ8aWIJDY1AiOA8muKBHo7PguAmyG
-	4J8ml7+uqd9f6EFAlYiPITlW8rU/oaQDFXObI81COXIfTvKtysAouYfA/M9AsV1Wt
-X-Gm-Gg: ASbGncvFIVmeI+Xt1vDqqsizP27gOjxZGVIhOsIw5OCmH9GlOK/ldVZX8oSuYF4dvxg
-	MZn2r2eGwuTDds+u0u1D+OT03SpCBiEjfLy4gGmRFIwDpTjCUjN4ifjvdxHOcy52huUGdgtuxxF
-	ohFoRDUF+mwbQgQ2sXpQw6lVw7fBSwMENBibgPvf+7+8vgY7lyf8DNeG900kG/tjC8HY3wBgBHF
-	7l69ecWDO9Zy411jASw32ZtwlRizRnJSlmSKirpDHDlI2hf1t8EUGEFZpLU4BWIS3kW3tFBR7Vc
-	b71wwBL8iBQx+rIgR7eVXKt0wWx1TfRM4iUua2XDqB7Nw/WZu+T47H/cKBJxQr1DjU2NvsRQbBK
-	xwwI87aM8bPtamGJuNV1Qj0yDHeZfGqLWhphk2u/Gn/bJmBSllKV13hkT
-X-Received: by 2002:a05:6214:1ccd:b0:87d:c7db:7897 with SMTP id 6a1803df08f44-87de70be59fmr111017206d6.2.1761293639834;
-        Fri, 24 Oct 2025 01:13:59 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFkuQteOXxBMGqxcPQtHgaZ3r3sh4noI2NNA0gmaTaiHoQCDysA26yJKDtBnRE/gNxqBULdog==
-X-Received: by 2002:a05:6214:1ccd:b0:87d:c7db:7897 with SMTP id 6a1803df08f44-87de70be59fmr111017056d6.2.1761293639396;
-        Fri, 24 Oct 2025 01:13:59 -0700 (PDT)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63e3f316cccsm3683716a12.24.2025.10.24.01.13.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Oct 2025 01:13:58 -0700 (PDT)
-Message-ID: <cc7399ed-db57-42cf-a944-6213a8df8491@oss.qualcomm.com>
-Date: Fri, 24 Oct 2025 10:13:56 +0200
+	s=arc-20240116; t=1761293665; c=relaxed/simple;
+	bh=K66RAMkDTLgivI2eqyzcKzKIclrQDUQ6cSrJ0fMWNew=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=cfL2xvpaZqi2kTK7EyEvWa4TMFKUb6iQh9XE5ktpIOHbCZiDChFdDlw6lg6xT/vIEg4HWW2a6gfQSGeDK+2OwEcJP4O39GzuWh8EiBONEKX9rX5NdG/xE36gdvSQqa7tIN9fxm1PboxprejVz6lAltuh3eHUPFjNg5eTq7mJAVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EGJDGUUc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52F6FC4CEFB;
+	Fri, 24 Oct 2025 08:14:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761293665;
+	bh=K66RAMkDTLgivI2eqyzcKzKIclrQDUQ6cSrJ0fMWNew=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=EGJDGUUc4qrfSuggmjx1v1IQGvQxH+AMh0mKWpZExQE619eKv1lb9bDwVm6bCLm0s
+	 AJ1yy1lFCMjhWZht1wbHJuujsz/VCfsVlm4gDk27x8OtO6zpTwqtvvdKUNPql2PJpF
+	 5VKJR2ONDax/8AbvBf6zGNlE2fYF5CgJ+8E2DQNG3gzoxYYrrF3HJHu6RRKYxX9u6j
+	 ZA4jcgkDrEPijs24pwtPxMBGNj5EDpLeXMgeYMgq43QNgjIxrWhTEhQYG3u3UgBPQf
+	 62Bu7UOtM9KTZvcVnztz2Ci61yYjQptyfK0bobT4r8JEpAIIBaV3G25IeN6Wyek4Wj
+	 IOa4VnGn6nPtA==
+Message-ID: <0b76f196-f642-4991-ad5c-717c23938421@kernel.org>
+Date: Fri, 24 Oct 2025 10:14:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,121 +50,180 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] arm64: dts: qcom: sm6150: Add gpr node
-To: Le Qi <le.qi@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@oss.qualcomm.com
-References: <20251024023720.3928547-1-le.qi@oss.qualcomm.com>
- <20251024023720.3928547-2-le.qi@oss.qualcomm.com>
+Subject: Re: [PATCH v20 1/4] dt-bindings: i2c: Split AST2600 binding into a
+ new YAML
+To: Ryan Chen <ryan_chen@aspeedtech.com>, benh@kernel.crashing.org,
+ joel@jms.id.au, andi.shyti@kernel.org, jk@codeconstruct.com.au,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andrew@codeconstruct.com.au, p.zabel@pengutronix.de,
+ andriy.shevchenko@linux.intel.com, naresh.solanki@9elements.com,
+ linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20251021013548.2375190-1-ryan_chen@aspeedtech.com>
+ <20251021013548.2375190-2-ryan_chen@aspeedtech.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251024023720.3928547-2-le.qi@oss.qualcomm.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251021013548.2375190-2-ryan_chen@aspeedtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAxNSBTYWx0ZWRfX1D18LUKWA+nw
- ToOl8teqSFEbHADnwhRQ1FMXgFGFw7uPbHBM/SuwKLuqM3FEtFJHWaiYz9oLpJwSKld5c2NZR9r
- 4TOQFiveqpNxokqzOHplG+7Rrv72RX8Iv7m1VYDNk5yfSI0sHTPOkG+iwKC3mYdU4L8+h8AhEnv
- 36EBDywQWgvATCltN+puzRu1NTXUc78aSRYXSIx51oxQm8XwPw6Kd7drgPY5xFy1qUOEOW1/73S
- 2sbckCthJYX6yE2/SkI5zH1XtZrbMgJA4SPhiw7KcI1gSzNzTV8xrCtHObdfCWRwBwo+1cnlxov
- wYAXcNl4LIWxj1mn1N8el1O0Ik6q4QUwfIOxfKVmWdE68+0NtuxYFMq5QOt9A+33SdqXgtrhD9/
- IacGA1sIQD6TSJXaWnY3a0kwUFmj7Q==
-X-Authority-Analysis: v=2.4 cv=bNUb4f+Z c=1 sm=1 tr=0 ts=68fb3548 cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=GhKeX4-ZSDom7ex7ThkA:9 a=QEXdDO2ut3YA:10
- a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-GUID: 4FgxlFKD7YABlebpWCO7CoEG3Ov071k8
-X-Proofpoint-ORIG-GUID: 4FgxlFKD7YABlebpWCO7CoEG3Ov071k8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-23_03,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 phishscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015
- priorityscore=1501 suspectscore=0 adultscore=0 spamscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180015
 
-On 10/24/25 4:37 AM, Le Qi wrote:
-> Add GPR(Generic Pack router) node along with
-> APM(Audio Process Manager) and PRM(Proxy resource
-> Manager) audio services.
-
-This is a really weird
-way of breaking your message that makes
-it difficult to read
-
-(stick to something more like 72 characters, please)
-
+On 21/10/2025 03:35, Ryan Chen wrote:
+> The AST2600 I2C controller is a new hardware design compared to the
+> I2C controllers in previous ASPEED SoCs (e.g., AST2400, AST2500).
 > 
-> Signed-off-by: Le Qi <le.qi@oss.qualcomm.com>
+> It introduces new features such as:
+>  - A redesigned register layout
+>  - Separation between controller and target mode registers
+>  - Transfer mode selection (byte, buffer, DMA)
+>  - Support for a shared global register block for configuration
+> 
+> Due to these fundamental differences, maintaining a separate
+> devicetree binding file for AST2600 helps to clearly distinguish
+> the hardware capabilities and configuration options from the older
+> controllers.
+> 
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
 > ---
->  arch/arm64/boot/dts/qcom/sm6150.dtsi | 36 ++++++++++++++++++++++++++++
->  1 file changed, 36 insertions(+)
+>  .../devicetree/bindings/i2c/aspeed,i2c.yaml   |  3 +-
+>  .../devicetree/bindings/i2c/ast2600-i2c.yaml  | 66 +++++++++++++++++++
+>  2 files changed, 67 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/ast2600-i2c.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6150.dtsi b/arch/arm64/boot/dts/qcom/sm6150.dtsi
-> index 3d2a1cb02b62..ec244c47983e 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6150.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6150.dtsi
-> @@ -16,6 +16,7 @@
->  #include <dt-bindings/power/qcom-rpmpd.h>
->  #include <dt-bindings/power/qcom,rpmhpd.h>
->  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-> +#include <dt-bindings/soc/qcom,gpr.h>
+> diff --git a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
+> index 5b9bd2feda3b..d4e4f412feba 100644
+> --- a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
+> @@ -4,7 +4,7 @@
+>  $id: http://devicetree.org/schemas/i2c/aspeed,i2c.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
 >  
->  / {
->  	interrupt-parent = <&intc>;
-> @@ -4246,6 +4247,41 @@ compute-cb@6 {
->  						dma-coherent;
->  					};
->  				};
+> -title: ASPEED I2C on the AST24XX, AST25XX, and AST26XX SoCs
+> +title: ASPEED I2C on the AST24XX, AST25XX SoCs
+>  
+>  maintainers:
+>    - Rayn Chen <rayn_chen@aspeedtech.com>
+> @@ -17,7 +17,6 @@ properties:
+>      enum:
+>        - aspeed,ast2400-i2c-bus
+>        - aspeed,ast2500-i2c-bus
+> -      - aspeed,ast2600-i2c-bus
+>  
+>    reg:
+>      minItems: 1
+> diff --git a/Documentation/devicetree/bindings/i2c/ast2600-i2c.yaml b/Documentation/devicetree/bindings/i2c/ast2600-i2c.yaml
+
+Why completely breaking naming? Please follow writing bindings carefully.
+
+> new file mode 100644
+> index 000000000000..6ddcec5decdc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/ast2600-i2c.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i2c/ast2600-i2c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +				gpr: gpr {
-> +					compatible = "qcom,gpr";
-> +					qcom,glink-channels = "adsp_apps";
-> +					qcom,domain = <GPR_DOMAIN_ID_ADSP>;
-> +					qcom,intents = <512 20>;
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
+> +title: ASPEED I2C on the AST26XX SoCs
 > +
-> +					q6apm: service@1 {
-> +						compatible = "qcom,q6apm";
-> +						reg = <GPR_APM_MODULE_IID>;
-> +						#sound-dai-cells = <0>;
+> +maintainers:
+> +  - Ryan Chen <ryan_chen@aspeedtech.com>
 > +
-> +						q6apmbedai: bedais {
-> +							compatible = "qcom,q6apm-lpass-dais";
-> +							#sound-dai-cells = <1>;
-> +						};
+> +allOf:
+> +  - $ref: /schemas/i2c/i2c-controller.yaml#
 > +
-> +						q6apmdai: dais {
-> +							compatible = "qcom,q6apm-dais";
-> +							iommus = <&apps_smmu 0x1721 0x0>;
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - aspeed,ast2600-i2c-bus
+> +
+> +  reg:
+> +    minItems: 1
 
-I see that the documentation mentions a mask of 0x0 (like you did
-here), but downstream does something funny here:
+Why?
 
-iommus = <&apps_smmu 0x1721 0x0>;
-qcom,smmu-sid-mask = /bits/ 64 <0xf>;
+> +    items:
+> +      - description: address offset and range of bus
+> +      - description: address offset and range of bus buffer
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description:
+> +      root clock of bus, should reference the APB
+> +      clock in the second cell
 
-with the latter value being consumed by the driver manually and when
-it binds some sort of DMA_BUFs, the effective SID (ID & mask -- notice
-there's no bitflipping of the mask part here unlike in the SMMU driver)
-is prepended to the address:
+That's not even correct.Either root clock or APB clock, you cannot have
+both. Unless "root clock" is not "clock" but then it is just confusing.
+Drop description and fix the constraints.
 
-smmu->pa |= ((sid & mask) << 32);
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  bus-frequency:
+> +    minimum: 500
+> +    maximum: 4000000
+> +    default: 100000
+> +    description: frequency of the bus clock in Hz defaults to 100 kHz when not
+> +      specified
 
-We can then check that the SMMU driver reads the SMR mask as a 16b field,
-meaning the result is (sid & 0xffff) and not (sid & 0xf).. 
+Don't repeat constraints in free form text.
 
-If we take the hardcoded-downstream mask and compare it with the HSR,
-we can notice that all the streams in the 0x172X range correspond to
-LPASS_ADSP, so perhaps it's a design choice that the DSP end only cares
-about the least significant digit
+> +
+> +required:
+> +  - reg
+> +  - compatible
 
-TLDR this seems to be all OK
 
-Konrad
+
+Best regards,
+Krzysztof
 
