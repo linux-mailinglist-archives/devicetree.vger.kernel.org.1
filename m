@@ -1,260 +1,155 @@
-Return-Path: <devicetree+bounces-230713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C8C3C051BB
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:42:27 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA02BC051FE
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:44:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 577F9563E8B
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:38:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7D8605640D4
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:38:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 935C3305E3B;
-	Fri, 24 Oct 2025 08:35:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 238BD30649D;
+	Fri, 24 Oct 2025 08:35:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="g8OYVLkf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DogRfu03"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B081305E32
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 08:35:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFA34306490;
+	Fri, 24 Oct 2025 08:35:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761294904; cv=none; b=Q49BkUnFjdEt4DvqaZBMwlt5T/A0RvQ9bGiGsxY5XuqD0gpxgf26vSO0JJ8paYxNZ6EC0uLamvAInL+QNVRkFntNBNtIdlb23OF7ulnMYT6lpfgIA5ioB+HX7OwhlIKcqGEQD0paPDX4/xIMi7gmnUG9z8S/rJOLC27PAsFK8W4=
+	t=1761294945; cv=none; b=NEgWtqlyF28r7vF6t0+TzC5oFRL+GAu4faNpswz02Ga7De0xWlLDa/HlkX2OUM8gX/N49krnz/yOT2bp0pSXcFy7QhTuytipmDolCWZuWgng18RDvWIe6KDNvg1Lav4kRHnIPfnQE6hMEaamSfJyb/JEclexNGXfuCxqlflE7+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761294904; c=relaxed/simple;
-	bh=M2SzRXTzZ912bnvsnzX8KTcPiQoMOXHFj449bF5Uwl0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=W3sZbCOR8h9BLLqrU3RVPt2k9E08Jo6TlKOV0kp233E17uMZ9nsHN0aT8JhxAJ/aWISvJk3TKu5AjfS/CFidtxNwH+pRlHpUgCWGI832kto4zGTc4M4kfz/iKMFGdukWg6/JoCCtu8Wqs2CY9Vhl5x+AEXJV6HJH9U1OsSpXnIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=g8OYVLkf; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1761294901;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wMiM7iwLyLoXC8XMxApEUes6hHrQXoxnQoRnHPw1Y6A=;
-	b=g8OYVLkfwqEWybw/+Q4CUDSishLDBQ02IggVLYxf97il+TgPus1QF/903KkcDyBU+KqBkn
-	K9sBZ4HLM26OHDPc2hVJOCHM9HVSbLvzanUMIvV6r8b8fNYTrRLMjRbT6U+azL8yWW3TAl
-	mcEamtf3GSj5CHGWgTNgvDucW2KUYSo=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-244-DGrPolURNDatqLowXD4_mA-1; Fri, 24 Oct 2025 04:34:59 -0400
-X-MC-Unique: DGrPolURNDatqLowXD4_mA-1
-X-Mimecast-MFC-AGG-ID: DGrPolURNDatqLowXD4_mA_1761294898
-Received: by mail-wr1-f70.google.com with SMTP id ffacd0b85a97d-426d4f59cbcso1979303f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 01:34:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761294898; x=1761899698;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wMiM7iwLyLoXC8XMxApEUes6hHrQXoxnQoRnHPw1Y6A=;
-        b=NLThZ4EPtA7MV1+UjLVpUA42mNg4Y04fV2nyhEkFtl+Dm/STZ5d4Fyla7v0540oh60
-         WFO2Eg+B5uo0fjOarsjsRcAuw9aLoeEy5qCWd0+k9CBfDpWwfrVawEIeCEKKcDnPm8Jr
-         5T/MQ5Jr/STmHrJHCzTWahBMEh/yGc63UVOGyI/bTgbd9Hp/xc1Uxojahb6IvyOxnhfZ
-         AJnu0MxtLn/8kPug9QW5DAmp5uMizXLbfIcFkY49/stWUrfQmEJ1SIjr7yBVGTEt0Ekv
-         U18DIMtm+rGTisPwZ6XMuAlvoLtD1iBmgZMoOg1/EWQLII+He/y0wklsHLA/MetlyH62
-         sCNA==
-X-Forwarded-Encrypted: i=1; AJvYcCU/gYTJw1DlXOHNt9zXig/zdCtNYZ5XKIhs3Fsd6tJqcyO09HiUvNdEB33IJ6eL4fiDWLDWyGILGbFc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyqkj3UgEJnYnRZCuxysULQACDY00DjkdjyLuyKMhaTYq0W+0Sm
-	gM/v8B1ajYTwCINOxNzFkS/8Jz959f7nh1cBDdD0cAN9RxzF14vT9VofewBOS/RZIshXK+iDzTc
-	aVDLmeH5htYjyjCHO6UJnbjJzWcFgaWXJ97ZV33cVYeEj7F44qPGsiU3z2rhpVfGpjV59nXVBU5
-	RggA7c2BSQRbyfQIzHJhRQNmp4SBlZJGhZD2fYNQ==
-X-Gm-Gg: ASbGncvsleKefGo45n4Rpy6l3AJI0wiKZPWSvb7hO2Gm0BBEtxh3o6VpBTq7owgIKVA
-	cN7RuqhYMpWVq1bwOA9B3praENgyywLD2TXCw/hsij/eHObYc4qIB5QTs0IYr08Htna0vcI6bM6
-	TypSs0gjDX3Kxr8EsaT+LboFjirOQyFAMHKbo2slJ+uctxg2BTRMnojKY=
-X-Received: by 2002:a05:6000:2283:b0:3e7:6424:1b47 with SMTP id ffacd0b85a97d-4298f51e6c7mr1615343f8f.6.1761294898399;
-        Fri, 24 Oct 2025 01:34:58 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHneq26JtjC7v0qH5eo9W4vFieyRgtLB+lIw8JjnfPG0eDTw3SOftuEUINlVQTBND/drYvIkk+yrtxFaM/VtJ4=
-X-Received: by 2002:a05:6000:2283:b0:3e7:6424:1b47 with SMTP id
- ffacd0b85a97d-4298f51e6c7mr1615312f8f.6.1761294897890; Fri, 24 Oct 2025
- 01:34:57 -0700 (PDT)
+	s=arc-20240116; t=1761294945; c=relaxed/simple;
+	bh=9c2iRB5neiNVOA3946Sm/qhXa8txadLCyBjjks59Ijc=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=mkpsoNPdeyJsDRBRDWTLQy1CVsf08gtH0tCYPVkesrbZqPyLJKVezYDa8Z3SKlp39xNiT68Hd2uwfIH+k9BCKW73IYlBUNJieBBsSrs3WVRkEWfh1+8LBhjR/Sf2kfRj44Xr1Dpg4jxuJVhH7iz1Udfuyi8r1VzGFBf6yTBeVMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DogRfu03; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AA94C4CEF1;
+	Fri, 24 Oct 2025 08:35:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761294944;
+	bh=9c2iRB5neiNVOA3946Sm/qhXa8txadLCyBjjks59Ijc=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=DogRfu03hCRd5Qkw3C7tdCB0tWuK2TpzQHz2KU1PHJbzPqtjDK3HVNHkhFJMwY5XU
+	 WjrRvzslo/IDNPJXfx71ILowf7e5YWczKqA8H9LmfmlWfbP0meUo4CA68z1zEihAwl
+	 22t5Ex86O8NFvLIp2BMz8c12RR0dZpinXKT6aoUrC3GcfI8Xnx3MBBIhbpnjyfgILw
+	 Ni8NUl1kxmFqYXrZh8++ZcV/RHV/31P3h16qyorEKQvUepCPu7tDFQXvauuyOcigGk
+	 7O6rBS10D9ZLIChw6hpgaErUKxbbupXQV0JZl82Kqr5PjJj8f4mzBTBMc/hqMkB+Cl
+	 tU7bZT8MtT15Q==
+Message-ID: <c20e0b8a-ec59-4359-ba5e-1a616fde9894@kernel.org>
+Date: Fri, 24 Oct 2025 10:35:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87zf9hwh5j.ffs@tglx> <20251023201721.549563-1-cmirabil@redhat.com>
-In-Reply-To: <20251023201721.549563-1-cmirabil@redhat.com>
-From: Lucas Zampieri <lzampier@redhat.com>
-Date: Fri, 24 Oct 2025 09:34:47 +0100
-X-Gm-Features: AWmQ_bkjLCK7rYokvdeJT5wSgmJ0C1bDhIh6rvdCrhkYGtz_4gZYQEXFLd46qyU
-Message-ID: <CAOOg__AcRVPRXsDdPPe3QkJybiTYSRCLLHR59qVnH2burfRaNw@mail.gmail.com>
-Subject: Re: [PATCH v6 0/4] Add UltraRISC DP1000 PLIC support
-To: Charles Mirabile <cmirabil@redhat.com>
-Cc: tglx@linutronix.de, alex@ghiti.fr, aou@eecs.berkeley.edu, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, dramforever@live.com, 
-	krzk+dt@kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, palmer@dabbelt.com, paul.walmsley@sifive.com, 
-	robh@kernel.org, samuel.holland@sifive.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v20 1/4] dt-bindings: i2c: Split AST2600 binding into a
+ new YAML
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jeremy Kerr <jk@codeconstruct.com.au>,
+ Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: benh@kernel.crashing.org, joel@jms.id.au, andi.shyti@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andrew@codeconstruct.com.au, p.zabel@pengutronix.de,
+ andriy.shevchenko@linux.intel.com, naresh.solanki@9elements.com,
+ linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20251021013548.2375190-1-ryan_chen@aspeedtech.com>
+ <20251021013548.2375190-2-ryan_chen@aspeedtech.com>
+ <20251024-dark-ringtail-of-defiance-1daabd@kuoka>
+ <2939cae6-2e8a-4528-8e27-8c932e2f82de@kernel.org>
+ <bf3d6690b9124ecf74df6c0f9f1c0f72ae1db9f7.camel@codeconstruct.com.au>
+ <8341a903-639b-471a-8425-a98c473f5ab0@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <8341a903-639b-471a-8425-a98c473f5ab0@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Thomas and Charles,
+On 24/10/2025 10:06, Krzysztof Kozlowski wrote:
+> On 24/10/2025 09:56, Jeremy Kerr wrote:
+>> Hi Krzysztof,
+>>
+>>> Although now I saw next patch, so clearly this commit is incomplete.
+>>
+>> The split that Ryan has done here - by shifting to an identical separate
+>> binding, then making the changes explicit - allows us to review the
+>> actual changes without losing them in the move. Sounds like a benefit to
+>> me?
+> 
+> Not related. I commented that rationale is incomplete. We do not move
+> parts of bindings because new device is someway different. There are
+> hundreds of bindings which cover different devices. We move them because
+> the binding is different.
+> 
+>>
+>>> You just need allOf:if:then: section to narrow the
+>>> constraints/presence of properties.
+>>
+>> That seems like a more complex approach. This is separate IP from the
+>> 2500 controllers, wouldn't that warrant a new binding spec?
+>>
+> 
+> Not much different than every other soc. All of them are separate IPs.
+> Look at any Samsung, NXP or Qualcomm binding. Separate IPs.
 
-Yes, missed the cc list to on that one, sending the v6 series again
-with the correct headers.
-Sorry about that.
 
-Lucas Zampieri
-Platform Enablement Team
+So let the move happen, but please explain in the commit msg that
+devices are completely different - nothing in common - and thus the
+binding will be different. We indeed do not keep completely different
+devices in one binding, but based on commit msg I had impression this
+was just major block upgrade.
 
-On Thu, Oct 23, 2025 at 9:17=E2=80=AFPM Charles Mirabile <cmirabil@redhat.c=
-om> wrote:
->
-> Hi Thomas=E2=80=94
->
-> On Thu, Oct 23, 2025 at 09:29:44PM +0200, Thomas Gleixner wrote:
-> > On Thu, Oct 23 2025 at 15:00, Lucas Zampieri wrote:
-> > > This series adds support for the PLIC implementation in the UltraRISC
-> > > DP1000 SoC. The UR-CP100 cores used in the DP1000 have a hardware bug=
- in
-> > > their PLIC claim register where reading it while multiple interrupts =
-are
-> > > pending can return the wrong interrupt ID. The workaround temporarily
-> > > disables all interrupts except the first pending one before reading t=
-he
-> > > claim register, then restores the previous state.
-> > >
-> > > The driver matches on "ultrarisc,cp100-plic" (CPU core compatible), a=
-llowing
-> > > the quirk to apply to all SoCs using UR-CP100 cores (currently DP1000=
-,
-> > > potentially future SoCs).
-> > >
-> > > Charles Mirabile (3):
-> > >   dt-bindings: interrupt-controller: add UltraRISC DP1000 PLIC
-> > >   irqchip/plic: enable optimization of interrupt enable state
-> >
-> >     That one never showed up. Neither in my inbox nor on lore
->
-> Looks like the CC list was missing somehow from that patch=E2=80=94I didn=
-'t notice because I got it in my inbox because of my Signed-off-by.
->
-> The indexing on the patches was slightly wrong anyways, so we will resend=
- tomorrow. Sorry for the noise.
->
-> I have attached it here in case you want to take a look.
->
-> >
-> -- >8 --
-> From: Charles Mirabile <cmirabil@redhat.com>
-> Subject: [PATCH v6 3/4] irqchip/plic: enable optimization of interrupt en=
-able state
->
-> Optimize the PLIC driver by maintaining the interrupt enable state in
-> the handler's enable_save array during normal operation rather than only
-> during suspend/resume. This eliminates the need to read enable registers
-> during suspend and makes the enable state immediately available for
-> other optimizations.
->
-> Modify __plic_toggle() to take a handler pointer instead of enable_base,
-> allowing it to update both the hardware registers and the cached
-> enable_save state atomically within the existing enable_lock protection.
->
-> Remove the suspend-time enable register reading since enable_save now
-> always reflects the current state.
->
-> Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
->
-> ---
->  drivers/irqchip/irq-sifive-plic.c | 36 +++++++++++--------------------
->  1 file changed, 13 insertions(+), 23 deletions(-)
->
-> diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifi=
-ve-plic.c
-> index cbd7697bc1481..d518a8b468742 100644
-> --- a/drivers/irqchip/irq-sifive-plic.c
-> +++ b/drivers/irqchip/irq-sifive-plic.c
-> @@ -94,15 +94,22 @@ static DEFINE_PER_CPU(struct plic_handler, plic_handl=
-ers);
->
->  static int plic_irq_set_type(struct irq_data *d, unsigned int type);
->
-> -static void __plic_toggle(void __iomem *enable_base, int hwirq, int enab=
-le)
-> +static void __plic_toggle(struct plic_handler *handler, int hwirq, int e=
-nable)
->  {
-> -       u32 __iomem *reg =3D enable_base + (hwirq / 32) * sizeof(u32);
-> +       u32 __iomem *base =3D handler->enable_base;
->         u32 hwirq_mask =3D 1 << (hwirq % 32);
-> +       int group =3D hwirq / 32;
-> +       u32 value;
-> +
-> +       value =3D readl(base + group);
->
->         if (enable)
-> -               writel(readl(reg) | hwirq_mask, reg);
-> +               value |=3D hwirq_mask;
->         else
-> -               writel(readl(reg) & ~hwirq_mask, reg);
-> +               value &=3D ~hwirq_mask;
-> +
-> +       handler->enable_save[group] =3D value;
-> +       writel(value, base + group);
->  }
->
->  static void plic_toggle(struct plic_handler *handler, int hwirq, int ena=
-ble)
-> @@ -110,7 +117,7 @@ static void plic_toggle(struct plic_handler *handler,=
- int hwirq, int enable)
->         unsigned long flags;
->
->         raw_spin_lock_irqsave(&handler->enable_lock, flags);
-> -       __plic_toggle(handler->enable_base, hwirq, enable);
-> +       __plic_toggle(handler, hwirq, enable);
->         raw_spin_unlock_irqrestore(&handler->enable_lock, flags);
->  }
->
-> @@ -247,33 +254,16 @@ static int plic_irq_set_type(struct irq_data *d, un=
-signed int type)
->
->  static int plic_irq_suspend(void)
->  {
-> -       unsigned int i, cpu;
-> -       unsigned long flags;
-> -       u32 __iomem *reg;
->         struct plic_priv *priv;
->
->         priv =3D per_cpu_ptr(&plic_handlers, smp_processor_id())->priv;
->
->         /* irq ID 0 is reserved */
-> -       for (i =3D 1; i < priv->nr_irqs; i++) {
-> +       for (unsigned int i =3D 1; i < priv->nr_irqs; i++) {
->                 __assign_bit(i, priv->prio_save,
->                              readl(priv->regs + PRIORITY_BASE + i * PRIOR=
-ITY_PER_ID));
->         }
->
-> -       for_each_present_cpu(cpu) {
-> -               struct plic_handler *handler =3D per_cpu_ptr(&plic_handle=
-rs, cpu);
-> -
-> -               if (!handler->present)
-> -                       continue;
-> -
-> -               raw_spin_lock_irqsave(&handler->enable_lock, flags);
-> -               for (i =3D 0; i < DIV_ROUND_UP(priv->nr_irqs, 32); i++) {
-> -                       reg =3D handler->enable_base + i * sizeof(u32);
-> -                       handler->enable_save[i] =3D readl(reg);
-> -               }
-> -               raw_spin_unlock_irqrestore(&handler->enable_lock, flags);
-> -       }
-> -
->         return 0;
->  }
->
-> --
-> 2.51.0
->
->
-
+Best regards,
+Krzysztof
 
