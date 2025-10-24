@@ -1,212 +1,221 @@
-Return-Path: <devicetree+bounces-230863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0881DC06A13
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 16:11:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CF01C06A2B
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 16:12:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C943D565156
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 14:10:00 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 53E0D4E7ABE
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 14:10:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4F153203B0;
-	Fri, 24 Oct 2025 14:09:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EC5331DDA0;
+	Fri, 24 Oct 2025 14:10:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OdB13bXm"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hf4JTpxp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9519631DDA9;
-	Fri, 24 Oct 2025 14:09:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88C79255F31
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 14:10:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761314993; cv=none; b=ebCa17a2qSPmAzeejPtY0Ex2rUI14NZQwJudhapxIglmAwdQIYAp4ZXC6dQ7+NVjAYt9FIHQSn9rc3u5yZARQwHXsRcsd0pGHjKThtQJFwq9+DIQQ9/xIQelpRCZ9SScALebJ8J5PSK19FsuwuK73kBKIdxgLuA/G4W7riTKkvg=
+	t=1761315047; cv=none; b=nEtIXmFfHSuQ8rIwVUaMqLQvPpqJsElSOlbPPl9kw3iF9LJ2FFj0B5pZdXQOb0yBvaXCeCQF/m6St3//ncOhkqG/+FiyAjcORat88Ic4xeMd9V/xShkMLEwTSXcSFN0wRUNt/JriDGmLAV/yyB2Q8T/K2HvzgWrqEt86w8rlDDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761314993; c=relaxed/simple;
-	bh=qEnNl4yAb28piqxRvBDsROmZ5MOV09FzzL0cqQOOLgU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=etJDPElxSAN6Nik7PLov29vNmAsUEpVf5faOsmlvmIjIkinotG0ezExAWL/VU+9S4uWALXWtLanJE6LV3mF4hWTBCkJbD6z5s/q69ID+gSGZtbythD1u3EyfJmlaqBOFrWwEuihvelV0tHaEVc4Tr8MPwB7vJMkru0GnMsyEtEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OdB13bXm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9255EC4CEF1;
-	Fri, 24 Oct 2025 14:09:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761314993;
-	bh=qEnNl4yAb28piqxRvBDsROmZ5MOV09FzzL0cqQOOLgU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OdB13bXm15bW8P4kG+yyeBVSDJMp30yf5dz0qvSutbcf+82PO6jgm69hKRwpcOweG
-	 XDllLkMdF44QQH9QAoIh6/ZB7wGDBP/TFZ73itifaGkr+T/Rpvqg3fL98RnHv4xgmX
-	 kFoPJWBcr3QfBq1eY1ZJO53o+OYWdWEuNTIkP4N9vms89VxF1vaQZWaSVLX2yAUBH8
-	 MtdWWlC9gXNSHeF5vEs8KRGyce2aB/qvk/INGHwKeNE4TC8Diec89ExuLIbVYxOvSm
-	 ATapuCnGUWVpXB18xcpeeIIKXjVlUQ9YLINfJoHltzohyjhBTRTpg1h3HFZ1sD70S4
-	 wLc1/qYBgVQBg==
-Date: Fri, 24 Oct 2025 16:09:50 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
-	Danilo Krummrich <dakr@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Benno Lossin <lossin@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Drew Fustini <fustini@kernel.org>, Daniel Almeida <daniel.almeida@collabora.com>, 
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	Elle Rhumsaa <elle@weathered-steel.dev>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v16 0/7] Rust Abstractions for PWM subsystem with TH1520
- PWM driver
-Message-ID: <p5addblaeofj6xdbgmvrknoozrxh75lsle6uqh4g2qku745ayw@uls3uoftpmuw>
-References: <CGME20251016133814eucas1p199cb62658c016e84e34d525e7c87f16e@eucas1p1.samsung.com>
- <20251016-rust-next-pwm-working-fan-for-sending-v16-0-a5df2405d2bd@samsung.com>
- <3f9ab01c-470e-48b5-a309-71325ecc4906@samsung.com>
+	s=arc-20240116; t=1761315047; c=relaxed/simple;
+	bh=6EhyPMORGQ8dQ66Pg/Ba395+tsOWWreONj562IkAF44=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LnBpQGeAsYS9ppnxnUtaNUEP49Hn0otOiBmgoKtsIfx2sbM37k0nqcrAnFEZGMkvMK+1uGh+7zqNRIxsLcAZD8vb4DtAxVONITXQEhO47Daz5hSHQ6vu1L5vpLaHCH3c316PGygDRop229ucCdgTrqzCtRcbBXfP87nJgcvEj4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hf4JTpxp; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59OBuIFa010323
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 14:10:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	2EwzhNU0hLrCYQoy/rgZGyJrIlbbka4ufJYL4tWLm4g=; b=hf4JTpxp6ZTNoAXi
+	KJP8KxE23HU7Aw7/yQWj6QU0lRdhrQ+QV1hgrZ5bIuHt//DhIHGJkztLNevie8sQ
+	Alugi6oMfJhQCJCN38YNrEKZYdf7zvbsAP33Tz9Z7MqocwpWncq2c/8qkf0XBbYP
+	kx01T4wZhfV1pYsywBtyfbuQOChFuEyIery3QgrAfWXXNchXCSmqSHOz++gQDWIP
+	hwEkiZSFM8oJbk7Z8XAkJip2LZs2H69effn9DdKtgytwf73cK7X0OAAD/VpLDV/y
+	SJcVpFbJXmKn1Z8x0nt6xhcRTHLXffW8kkol+Mnas4QjB6T2aV7dXqAr1ibn7iLM
+	tI1Vag==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49y524ef36-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 14:10:44 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2930e6e2c03so22766835ad.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:10:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761315044; x=1761919844;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2EwzhNU0hLrCYQoy/rgZGyJrIlbbka4ufJYL4tWLm4g=;
+        b=f6/OrAuuZuHv16tYBbpLx5WUD1pZNfZVFWzqqCtqHPJsN9Qh+S3l3poexUu0gf57s6
+         dLxVozD9r9TRbFMi5dSQwUlDHSZdGmtZ0koPfzZrzwF4+RayxQxf/QHCNo+Qp3cG6btb
+         BOrlxExnMtOkpReKnTP1C7v4od5rdqKiRibtaqP5zsJR9kX7JAxcZKbImc3RYfGTinU4
+         AjO7u9/OZe82VOUcFjoxB+N5ZKjtM3bVxAJsUooYUQmnARdXGmYldXp2xabqpLd25JJO
+         DyPqhO031wCiV0SJHXtmTrc4CNU3+tmiHEd2sFDxlxU6wj4W8VarEThh+g4LQtpaIZpm
+         zUwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW1bpP7CiBmMAPfdEw95q2LQkyBcjxUM/ZlrgI+ZGtsx4EDgM4V2BwgOdYWZT4Hs126BBNaLQmpuxmN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2avCX0XTCy/seYukCXo8lzMUBauP97Wl2vhqlUixR7YJjtIBr
+	QW/0Lz+inHhUeWMRzdD74BhOOpceVfVDITJQewLNmhbyZ+duwS6dC1xUFRPGR7VBz6fkXLJTPUt
+	LA30LIITktczFM51uTFJDSzcEaCbM0Lh05L4ouj25vgHe9Qdj37JndJwObc3gNJSX
+X-Gm-Gg: ASbGncuMfNbCBKOVCXynyJP9QFrXC5Y2+OjS4/HFjc/E4hLF3k4vhk8Mkye3VSi2tqA
+	TiKxb4Jv5D24qSniTC7Rt1HxKej4orYuPictU/QMyiRz9AzqrbwuqlmpLH3r8CJmBD+Uz75uln8
+	vy7H2O2xYR1KiH9czDwA8fG4ycKvYDlW5Zu59oGWVcT7oMIqkIq7fpACrkHB4J67OTmd/oz+3cN
+	FVVXSN2ZB5x3sH2zv3CI8Ok6CDNiBD55fiFqeRs8ggtay6Pu07DFPj5ZHXr8v/n9H/peVzpMPZf
+	Y2OzS61H2lq8RVcfVp2tm85j95V/vjfPKKiLUIJ4QV24mvu8gWlbIXP0H/85h7WWxkNC9KLy6Cc
+	6v+GHikKP4LHZX25or/CB0A==
+X-Received: by 2002:a17:902:dac3:b0:273:7d52:e510 with SMTP id d9443c01a7336-290cba42370mr374643135ad.58.1761315043556;
+        Fri, 24 Oct 2025 07:10:43 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGCxbxbl89eRys7AEmR9vsf2AEBuj924PXVSollg/7tpRp2GR8BpHCrwzGDrKdCguLCpt+ZYA==
+X-Received: by 2002:a17:902:dac3:b0:273:7d52:e510 with SMTP id d9443c01a7336-290cba42370mr374642585ad.58.1761315042915;
+        Fri, 24 Oct 2025 07:10:42 -0700 (PDT)
+Received: from [10.204.104.20] ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6cf4e0a43asm5250189a12.27.2025.10.24.07.10.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Oct 2025 07:10:42 -0700 (PDT)
+Message-ID: <c7334b38-3d6e-4fbf-a385-40551fbb7c93@oss.qualcomm.com>
+Date: Fri, 24 Oct 2025 19:40:35 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="s5lrbho5664iqhra"
-Content-Disposition: inline
-In-Reply-To: <3f9ab01c-470e-48b5-a309-71325ecc4906@samsung.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/6] dt-bindings: display/msm/gmu: Document A612 RGMU
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Clark <robin.clark@oss.qualcomm.com>,
+        Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar
+ <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+References: <20251017-qcs615-spin-2-v1-0-0baa44f80905@oss.qualcomm.com>
+ <20251017-qcs615-spin-2-v1-3-0baa44f80905@oss.qualcomm.com>
+ <8f3f4874-2e82-473e-87bd-e3bd58089b90@kernel.org>
+ <181af756-09a1-4694-98c4-53cea556e172@oss.qualcomm.com>
+ <ff37b635-b3dc-4180-8eae-e798ef6ce55a@kernel.org>
+ <f677f8ee-d635-4131-8ee2-8ca6ead43095@oss.qualcomm.com>
+ <qcs6y22hozfmb2ipmahfw25m2xti2gr5kjn43c2woiueqe4xmd@ovnrhwibhhe2>
+Content-Language: en-US
+From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+In-Reply-To: <qcs6y22hozfmb2ipmahfw25m2xti2gr5kjn43c2woiueqe4xmd@ovnrhwibhhe2>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDIyMDE1NSBTYWx0ZWRfX8/CCSYXFt09p
+ IwMPOJTE01mK7L8vM+stKbgKBzEtyWCVou8aDa7/9RMDcn86sLx5B0jiYMcrSs0lEb3BuI+aGRv
+ p+/TCqLGrF3fPAGw3Gjsz+9Cd5VyKOv20Z8TVO0DKQqhEUDqkwrflIHvPJ+E/vT33H4TrrBN3It
+ excoXtXuYWNtmbLV7LdUftDfhQp5fVtbUlOFghN9vCfpbLv8wLHMExQTyMg6VhSnYn1tDv99KRF
+ 2eAlQuKO28li90pniRBvSaoFcjRJCO5E9TsvZDqMym2ARuoxUp9HXh6FybfWxZQWWb04kFu/kYC
+ C2HxB4HZZVixBa2MjI4QznGznwHOSsWw0PUOemprUENenqluKcrefznLzV5hJWJGhhWVWbd0yxO
+ 2ZxganiLAKaTn8kdq/do+4UyAa0GTA==
+X-Authority-Analysis: v=2.4 cv=Uotu9uwB c=1 sm=1 tr=0 ts=68fb88e4 cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=V0jSdCJ6aHfz9AKaKsYA:9 a=QEXdDO2ut3YA:10
+ a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-GUID: 47NQr26YhIt0sjyn2AQIfBBpQFHibOe5
+X-Proofpoint-ORIG-GUID: 47NQr26YhIt0sjyn2AQIfBBpQFHibOe5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-24_02,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 impostorscore=0 priorityscore=1501 clxscore=1015 spamscore=0
+ adultscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510220155
 
+On 10/24/2025 2:58 PM, Dmitry Baryshkov wrote:
+> On Fri, Oct 24, 2025 at 04:33:28AM +0530, Akhil P Oommen wrote:
+>> On 10/22/2025 12:49 AM, Krzysztof Kozlowski wrote:
+>>> On 21/10/2025 17:51, Akhil P Oommen wrote:
+>>>> On 10/19/2025 2:43 PM, Krzysztof Kozlowski wrote:
+>>>>> On 17/10/2025 19:08, Akhil P Oommen wrote:
+>>>>>> RGMU a.k.a Reduced Graphics Management Unit is a small state machine
+>>>>>> with the sole purpose of providing IFPC (Inter Frame Power Collapse)
+>>>>>> support. Compared to GMU, it doesn't manage GPU clock, voltage
+>>>>>> scaling, bw voting or any other functionalities. All it does is detect
+>>>>>> an idle GPU and toggle the GDSC switch. As it doesn't access DDR space,
+>>>>>> it doesn't require iommu.
+>>>>>>
+>>>>>> So far, only Adreno 612 GPU has an RGMU core. Document RGMU in the GMU's
+>>>>>> schema.
+>>>>>>
+>>>>>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+>>>>>> ---
+>>>>>>  .../devicetree/bindings/display/msm/gmu.yaml       | 98 +++++++++++++++++-----
+>>>>>>  1 file changed, 79 insertions(+), 19 deletions(-)
+>>>>>>
+>>>>>> @@ -313,13 +360,26 @@ allOf:
+>>>>>>            items:
+>>>>>>              - const: gmu
+>>>>>>      else:
+>>>>>> -      required:
+>>>>>> -        - clocks
+>>>>>> -        - clock-names
+>>>>>> -        - interrupts
+>>>>>> -        - interrupt-names
+>>>>>> -        - iommus
+>>>>>> -        - operating-points-v2
+>>>>>> +      if:
+>>>>>> +        properties:
+>>>>>> +          compatible:
+>>>>>> +            contains:
+>>>>>> +              const: qcom,adreno-rgmu
+>>>>>> +      then:
+>>>>>> +        required:
+>>>>>> +          - clocks
+>>>>>> +          - clock-names
+>>>>>> +          - interrupts
+>>>>>> +          - interrupt-names
+>>>>>> +          - operating-points-v2
+>>>>>> +      else:
+>>>>>
+>>>>> No. Don't nest multiple ifs.
+>>>>
+>>>> I guess we should split this. I will add a 'required' constraint to the
+>>>> rgmu constraints above. And apply the below 'required' constraint
+>>>> specifically to 'qcom,adreno-gmu' instead of the 'else' fallback case.
+>>>>
+>>>> Please let me know if you have any suggestion.
+>>>
+>>> Maybe the binding is getting to complicated and RGMU should have its own.
+>>
+>> There is just a single chipset with RGMU and we haven't seen another one
+>> in the last 8 yrs. So it is very unlikely we will see another one again.
+>> So I feel it is not worth splitting this file just for RGMU.
+> 
+> I'd second the suggestion to split the RGMU schema. It's not about the
+> number of platforms supported by the file. It's about the clarity. I
+> think it would make the file easier to read.
 
---s5lrbho5664iqhra
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v16 0/7] Rust Abstractions for PWM subsystem with TH1520
- PWM driver
-MIME-Version: 1.0
+Alright. If there is a general consensus, we can split out RGMU schema
+to a new file.
 
-Hello Michael,
+-Akhil
 
-On Wed, Oct 22, 2025 at 10:34:42AM +0200, Michal Wilczynski wrote:
-> Since you mentioned last time that you were happy with the code, would
-> you please consider picking up this series for linux-next? It would be
-> great to get it in for wider testing to ensure everything is solid.
+> 
+>>
+>> Let me send another revision and let's take a call after that.
+> 
 
-I took another look, and just being able to compile and understanding
-very little Rust, I came up with:
-
-diff --git a/rust/kernel/pwm.rs b/rust/kernel/pwm.rs
-index 79fbb13cd47f..c8f9f5b61bfa 100644
---- a/rust/kernel/pwm.rs
-+++ b/rust/kernel/pwm.rs
-@@ -15,38 +15,7 @@
-     prelude::*,
-     types::{ARef, AlwaysRefCounted, Opaque},
- };
--use core::{convert::TryFrom, marker::PhantomData, ptr::NonNull};
-+use core::{marker::PhantomData, ptr::NonNull};
--
--/// PWM polarity. Mirrors [`enum pwm_polarity`](srctree/include/linux/pwm.=
-h).
--#[derive(Copy, Clone, Debug, PartialEq, Eq)]
--pub enum Polarity {
--    /// Normal polarity (duty cycle defines the high period of the signal).
--    Normal,
--
--    /// Inversed polarity (duty cycle defines the low period of the signal=
-).
--    Inversed,
--}
--
--impl TryFrom<bindings::pwm_polarity> for Polarity {
--    type Error =3D Error;
--
--    fn try_from(polarity: bindings::pwm_polarity) -> Result<Self, Error> {
--        match polarity {
--            bindings::pwm_polarity_PWM_POLARITY_NORMAL =3D> Ok(Polarity::N=
-ormal),
--            bindings::pwm_polarity_PWM_POLARITY_INVERSED =3D> Ok(Polarity:=
-:Inversed),
--            _ =3D> Err(EINVAL),
--        }
--    }
--}
--
--impl From<Polarity> for bindings::pwm_polarity {
--    fn from(polarity: Polarity) -> Self {
--        match polarity {
--            Polarity::Normal =3D> bindings::pwm_polarity_PWM_POLARITY_NORM=
-AL,
--            Polarity::Inversed =3D> bindings::pwm_polarity_PWM_POLARITY_IN=
-VERSED,
--        }
--    }
--}
-=20
- /// Represents a PWM waveform configuration.
- /// Mirrors struct [`struct pwm_waveform`](srctree/include/linux/pwm.h).
-@@ -89,22 +58,6 @@ fn from(wf: Waveform) -> Self {
-     }
- }
-=20
--/// Wrapper for PWM state [`struct pwm_state`](srctree/include/linux/pwm.h=
-).
--#[repr(transparent)]
--pub struct State(bindings::pwm_state);
--
--impl State {
--    /// Creates a `State` wrapper by taking ownership of a C `pwm_state` v=
-alue.
--    pub(crate) fn from_c(c_state: bindings::pwm_state) -> Self {
--        State(c_state)
--    }
--
--    /// Returns `true` if the PWM signal is enabled.
--    pub fn enabled(&self) -> bool {
--        self.0.enabled
--    }
--}
--
- /// Describes the outcome of a `round_waveform` operation.
- #[derive(Debug, Clone, Copy, PartialEq, Eq)]
- pub enum RoundingOutcome {
-@@ -164,13 +117,6 @@ pub fn label(&self) -> Option<&CStr> {
-         Some(unsafe { CStr::from_char_ptr(label_ptr) })
-     }
-=20
--    /// Gets a copy of the current state of this PWM device.
--    pub fn state(&self) -> State {
--        // SAFETY: `self.as_raw()` gives a valid pointer. `(*self.as_raw()=
-).state`
--        // is a valid `pwm_state` struct. `State::from_c` copies this data.
--        State::from_c(unsafe { (*self.as_raw()).state })
--    }
--
-     /// Sets the PWM waveform configuration and enables the PWM signal.
-     pub fn set_waveform(&self, wf: &Waveform, exact: bool) -> Result {
-         let c_wf =3D bindings::pwm_waveform::from(*wf);
-
-Does that make sense?
-
-I consider applying your series and put the above space on top, to
-create my first Rust patch :-)
-
-Best regards
-Uwe
-
---s5lrbho5664iqhra
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmj7iJ8ACgkQj4D7WH0S
-/k6hYQgAhlp1k8GnQOshRf5MFOCWXtHvmPFyzN7GPGmVJw3NHwuKc4Gzrp7Y+B7Q
-ZMh/RD1laNttxYcKljd1THglHWTj49XvkzVVLw1sZ6V+iMYJefsYGQuWl60Y/pJV
-AW3tZtwOl0ea7cS1kyif7QvpobCTQVlIfs/mE2z5BxGvNPJIHFR/bW3a1m0hzjyM
-Nz3s4s5LKStwW1EZVpFVaW9YBTvlsbuPdOK+KbeoITs3FQW4+wpRGk5Cm8qNFbAe
-LaK06/87BrDvVpkHCuBNRwOGDucMxjf1CaQ4Ap/QZ/Pc0yh6ha46yv4YLxPDJwuu
-q+rdvj7mq0Y3w4nlQi9Ui0FUKQadkg==
-=trqv
------END PGP SIGNATURE-----
-
---s5lrbho5664iqhra--
 
