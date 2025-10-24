@@ -1,232 +1,199 @@
-Return-Path: <devicetree+bounces-230671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3976CC04E9F
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:01:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF3F6C04EA5
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:01:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 733A634EEF2
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:01:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98558188578B
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:01:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E4CB2F99B8;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEC2C2FC893;
 	Fri, 24 Oct 2025 08:01:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MziDbpXC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A7qP6rLC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C12A212572;
-	Fri, 24 Oct 2025 08:01:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4A1F2FC00C;
+	Fri, 24 Oct 2025 08:01:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761292875; cv=none; b=LopNaDWG/Lk0GxPTOX9ckvOjzrIMmzKviZx2ojhQYoavCE5gqxfjLjeUbkAI8mMB7PPyXttOIlmWa7H+o8jhoIrB5UIx340sIz3nFOLS15brRLyEx5BERXxPeU89zLsmczIRqRpkGQ0kOvZqAsMUoJ1jPIqPm6az7HHEO/LTAaM=
+	t=1761292875; cv=none; b=dEYrixpNiCtzEaOyedJ7sY5bpcZReymiri2514/V5zVWJKEyR3cDi5e4Lz2ZG6535UKI3qPDRNmwHyYYaJu1lTfDfVC0YbOJoT8GKHqqNmsYauDUYTn4hJJKpsl7bFXUlhZ4W6CHjdwP+4PQIDEkxXlQbwafa+FjBAQ9iAx4imY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1761292875; c=relaxed/simple;
-	bh=CGY+HamhDTKURHEEexwE/uBroX7btVboVSsi2Zp/HY8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Vovx/kX6F9TBl9JFPfnIbmrDJzZGGzUIWXhuUxCvYcwZzD3gEI91vmFVcAwx8BpELDJF5G9Q53kDDu8x2cpoAHWfZt3L2iPA+8HdBboRmF2b0puAfNwe2HlYi3bY5hPnnqr6iofGUSG61CniwN+SD0i7iLGB2u6NHvlsQmcyH9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MziDbpXC; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761292874; x=1792828874;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=CGY+HamhDTKURHEEexwE/uBroX7btVboVSsi2Zp/HY8=;
-  b=MziDbpXC8d/1bFd8+3ki2LDh6nJtbyG7b0kDkxIinLRNZ3sliUt1BHx7
-   1nah+GLTNW2iAK/jtdBCzNRzfB9saQ3Prqxv8Ubqaedfg3MAmwhymuvNA
-   E5ukrJ2HhnhwKBe5QxaRad9AYzxHdUrZdiSG62fgTXK7V9uQKWlLpo6Na
-   fZETPvQlia61EpT2TamzWkhWzAqK+rbueZejr7lq+POzlhX2resJW1bvd
-   O/Kg7hOFKZRSZTMcJeSN3HQIYwxWjT8HzQ5g3q3HLODDq1WJWFvHKOptx
-   3ZVFzvbQTIMUmr5DsE2aZHZM59W2lg2pA/fLAzQix2jzsu1fryeAguVRU
-   A==;
-X-CSE-ConnectionGUID: Whyzi5+8R5KKA/8yydUnfA==
-X-CSE-MsgGUID: Ix4fn+T6TgiAKOFOWiY8dg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="80906746"
-X-IronPort-AV: E=Sophos;i="6.19,251,1754982000"; 
-   d="diff'?scan'208";a="80906746"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2025 01:01:13 -0700
-X-CSE-ConnectionGUID: IeQ4sBMtS2S+NYvMhImcIQ==
-X-CSE-MsgGUID: bredYxHwRhWB5tb5izbjLw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,251,1754982000"; 
-   d="diff'?scan'208";a="184292516"
-Received: from mjruhl-desk.amr.corp.intel.com (HELO kuha.fi.intel.com) ([10.124.221.255])
-  by fmviesa006.fm.intel.com with SMTP; 24 Oct 2025 01:01:02 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 24 Oct 2025 11:01:01 +0300
-Date: Fri, 24 Oct 2025 11:01:01 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Chaoyi Chen <kernel@airkyi.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Yubing Zhang <yubing.zhang@rock-chips.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Amit Sunil Dhamne <amitsd@google.com>,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v7 2/9] drm/bridge: Implement generic USB Type-C DP HPD
- bridge
-Message-ID: <aPsyPTTq3bD2mo87@kuha.fi.intel.com>
-References: <20251023033009.90-1-kernel@airkyi.com>
- <20251023033009.90-3-kernel@airkyi.com>
+	bh=imYWE30EwvooA7wZhBK5yJ/SI6g+oo31jrrGEHQc6uY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=G5reZBlEoZB/jzG9kJp9ZxQXQ9fn/l8BaFIn7xdJs87uht7cySbHiMaMWCFUqHbJpWrmQBEatXCpbZpo61dhvbap4qDkiAzPSvuaRXOEBGNPIXUz3OiU5WpJA7MlQILT43k4ARYLAJOBF1KqKzMiNgISa4scmIctRHeQOvybRng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A7qP6rLC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DAD6C4CEF1;
+	Fri, 24 Oct 2025 08:01:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761292875;
+	bh=imYWE30EwvooA7wZhBK5yJ/SI6g+oo31jrrGEHQc6uY=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=A7qP6rLC06+sM+pj9RtHJYfG79POQU9lqcMbG4FlD666C7AwvBF3VQueMQzHlCZDT
+	 sA5t+zRe9G5WsWIyCmDu3SPAhX1GCeSScYGko+AxFpdDGeNlCQC90T95k5dEhdEmb7
+	 SCQkCBq9hSt3DYAYWZf7PBiSJAWzMB7Pvq0ZqzOHoVgMBoEXgsfc48RhcxAUPvz3f5
+	 IIAIvZ0hb6sEBzSQIq3eXSVO7UkDXt84TjSDa9bmo+qrC616P9s20XZjL9tit6YFrb
+	 e+ovGwzAeN8MCuTmK+gOcZJYyu0oIFQ2fpKPoH7l9FkLbJ+grmXDCGNy0gbtANTciD
+	 lcwhxM35dFBbA==
+Message-ID: <110548d0-8c2c-48d6-bb28-c075bf0e8799@kernel.org>
+Date: Fri, 24 Oct 2025 10:01:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="smIXmptATQs5fCq1"
-Content-Disposition: inline
-In-Reply-To: <20251023033009.90-3-kernel@airkyi.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] dt-bindings: mailbox: Add Renesas MFIS Mailbox
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Jassi Brar <jassisinghbrar@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <87frb8n7kl.wl-kuninori.morimoto.gx@renesas.com>
+ <87bjlwn7j9.wl-kuninori.morimoto.gx@renesas.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <87bjlwn7j9.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 24/10/2025 08:22, Kuninori Morimoto wrote:
+> Add device tree bindings for the Renesas Multifunctional Interface
+> (MFIS) a mailbox controller.
+> 
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  .../mailbox/renesas,mfis-mailbox.yaml         | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/renesas,mfis-mailbox.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/renesas,mfis-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/renesas,mfis-mailbox.yaml
+> new file mode 100644
+> index 0000000000000..b9b6e6d440d79
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mailbox/renesas,mfis-mailbox.yaml
 
---smIXmptATQs5fCq1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Filename must match compatible. See writing bindings.
 
-On Thu, Oct 23, 2025 at 11:30:02AM +0800, Chaoyi Chen wrote:
-> +static int drm_typec_bus_event(struct notifier_block *nb,
-> +			       unsigned long action, void *data)
-> +{
-> +	struct typec_altmode *alt = (struct typec_altmode *)data;
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mailbox/renesas,mfis-mailbox.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	if (action != TYPEC_ALTMODE_REGISTERED)
-> +		goto done;
+> +title: Renesas MFIS (Multifunctional Interface) Mailbox Driver
+
+Driver as Linux driver? No, please describe hardware.
+
 > +
-> +	if (alt->svid != USB_TYPEC_DP_SID)
-> +		goto done;
+> +maintainers:
+> +  - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 > +
-> +	/*
-> +	 * alt->dev.parent->parent : USB-C controller device
-> +	 * alt->dev.parent         : USB-C connector device
-> +	 */
-> +	drm_dp_hpd_bridge_register(alt->dev.parent->parent,
-> +				   to_of_node(alt->dev.parent->fwnode));
+> +description: |
 
-Okay, this explains it. So you do need the port altmode.
+Drop |
 
-So you'll need to export the device types and check that the parent of
-the altmode is the port instead of partner.
+> +    The R-Car multifunctional interface (MFIS) provides an interface between
+> +    the different CPU Cores, such as AP System Core domain and the Realtime
+> +    Core domain, SCP Core domain and AP System Core domain or Realtime Core
+> +    domain and AP System Core domain or Realtime Core domain.
+> +    The MFIS supports the issuing of interrupts for each CPU core domain.
+> +
+> +properties:
+> +  compatible:
+> +    const: renesas,mfis-mbox
 
-        if (!is_typec_port(alt->dev.parent) || alt->svid != USB_TYPEC_DP_SID)
-                return NOTIFY_DONE;
+You need SoC specific compatibles, unless this is not SoC...
 
-I think we might as well export all the types while at it. Check the
-attachment.
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: the irq line
 
-thanks,
+Drop, redundant. Can it be not a irq line?
 
--- 
-heikki
+> +    maxItems: 1
+> +
+> +  "#mbox-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - "#mbox-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    mailbox: mfis_mbox@18842000  {
 
---smIXmptATQs5fCq1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: attachment; filename=export_typec_dev_types.diff
 
-diff --git a/drivers/usb/typec/class.c b/drivers/usb/typec/class.c
-index 9b2647cb199b..f0704d605595 100644
---- a/drivers/usb/typec/class.c
-+++ b/drivers/usb/typec/class.c
-@@ -790,6 +790,7 @@ const struct device_type typec_partner_dev_type = {
- 	.groups = typec_partner_groups,
- 	.release = typec_partner_release,
- };
-+EXPORT_SYMBOL_GPL(typec_partner_dev_type);
- 
- static void typec_partner_link_device(struct typec_partner *partner, struct device *dev)
- {
-@@ -1144,6 +1145,7 @@ const struct device_type typec_plug_dev_type = {
- 	.groups = typec_plug_groups,
- 	.release = typec_plug_release,
- };
-+EXPORT_SYMBOL_GPL(typec_plug_dev_type);
- 
- /**
-  * typec_plug_set_num_altmodes - Set the number of available plug altmodes
-@@ -1292,6 +1294,7 @@ const struct device_type typec_cable_dev_type = {
- 	.groups = typec_cable_groups,
- 	.release = typec_cable_release,
- };
-+EXPORT_SYMBOL_GPL(typec_cable_dev_type);
- 
- /**
-  * typec_cable_get - Get a reference to the USB Type-C cable
-@@ -2031,6 +2034,7 @@ const struct device_type typec_port_dev_type = {
- 	.uevent = typec_uevent,
- 	.release = typec_release,
- };
-+EXPORT_SYMBOL_GPL(typec_port_dev_type);
- 
- /* --------------------------------------- */
- /* Driver callbacks to report role updates */
-diff --git a/drivers/usb/typec/class.h b/drivers/usb/typec/class.h
-index db2fe96c48ff..f04f6987bed8 100644
---- a/drivers/usb/typec/class.h
-+++ b/drivers/usb/typec/class.h
-@@ -87,16 +87,6 @@ struct typec_port {
- #define to_typec_cable(_dev_) container_of(_dev_, struct typec_cable, dev)
- #define to_typec_partner(_dev_) container_of(_dev_, struct typec_partner, dev)
- 
--extern const struct device_type typec_partner_dev_type;
--extern const struct device_type typec_cable_dev_type;
--extern const struct device_type typec_plug_dev_type;
--extern const struct device_type typec_port_dev_type;
--
--#define is_typec_partner(dev) ((dev)->type == &typec_partner_dev_type)
--#define is_typec_cable(dev) ((dev)->type == &typec_cable_dev_type)
--#define is_typec_plug(dev) ((dev)->type == &typec_plug_dev_type)
--#define is_typec_port(dev) ((dev)->type == &typec_port_dev_type)
--
- extern const struct class typec_mux_class;
- extern const struct class retimer_class;
- extern const struct class typec_class;
-diff --git a/include/linux/usb/typec.h b/include/linux/usb/typec.h
-index 309251572e2e..02fed8293415 100644
---- a/include/linux/usb/typec.h
-+++ b/include/linux/usb/typec.h
-@@ -56,6 +56,16 @@ enum typec_role {
- 	TYPEC_SOURCE,
- };
- 
-+extern const struct device_type typec_partner_dev_type;
-+extern const struct device_type typec_cable_dev_type;
-+extern const struct device_type typec_plug_dev_type;
-+extern const struct device_type typec_port_dev_type;
-+
-+#define is_typec_partner(dev) ((dev)->type == &typec_partner_dev_type)
-+#define is_typec_cable(dev) ((dev)->type == &typec_cable_dev_type)
-+#define is_typec_plug(dev) ((dev)->type == &typec_plug_dev_type)
-+#define is_typec_port(dev) ((dev)->type == &typec_port_dev_type)
-+
- static inline int is_sink(enum typec_role role)
- {
- 	return role == TYPEC_SINK;
+Please follow carefully DTS coding style. Also drop unnecessary label.
 
---smIXmptATQs5fCq1--
+> +        compatible = "renesas,mfis-mbox";
+> +        reg = <0x18842000 0x8>;
+> +        interrupts = <GIC_SPI 4362 IRQ_TYPE_LEVEL_HIGH>;
+> +        #mbox-cells = <1>;
+> +    };
+
+
+Best regards,
+Krzysztof
 
