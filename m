@@ -1,149 +1,173 @@
-Return-Path: <devicetree+bounces-230932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id A55FDC0792F
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 19:46:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA69CC07953
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 19:50:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 24479358FB2
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 17:46:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7410B407044
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 17:50:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C24430DEA0;
-	Fri, 24 Oct 2025 17:46:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCFE63446B6;
+	Fri, 24 Oct 2025 17:50:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A2PSQDOp"
+	dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b="kspQttvv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp1.iitb.ac.in (smtpd9.iitb.ac.in [103.21.126.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77D18221555
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 17:46:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67D2C34027B
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 17:50:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.21.126.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761328010; cv=none; b=SWwTn9sLoUyVsGZ3e3Dcz3qL8BP5iK4RZYgIW0lVydJgdeOhRtH+iaG5zpZGQtDwTKIIMg7sQyR3C+e+3B94Z/yBGuqEU3rxiAU/UbqUCY9wlcmLhZ0rORw4G4F6C1OxMyowWTCojCCv2MOc64A5L+gRq8P6jQzDdNbTKQEPQSU=
+	t=1761328234; cv=none; b=aBBPZMDzfsYlpA5w1LP9wgElDp8a6EizNnflHj4vonWBf/UQ+0bApAGkjyQ6pIZmFOPIEe2i8Nzu+MXraAan2SUoX7upTofEUZFtL7btvHgZQKTnW0IlTx/IJIte9PGGjcV/IxTxEGT382SxDnQKsGj4pNMCP0x5KxILLtujT+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761328010; c=relaxed/simple;
-	bh=K6zD0dyxA5X3dz6tOjR3SyTpnMhYisRl3NWIn5tca+s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=h01ZxXYEaWF9GCzpWrmVLFbRRatRefmjcQWPeuDPUIgswO0YIwhOD0+d23sa3JXjkQb/9D5gGjyM/CoRnB4QjjTHIv9Vi9ciwoUGJIfuExn4Vyml/mdGvrHN5viMymXQtKqrW3wdUXEapfXOLAjeqd2eNMnY+78ownHucqXdmMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A2PSQDOp; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-592ee9a16adso3833154e87.0
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 10:46:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761328007; x=1761932807; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K6zD0dyxA5X3dz6tOjR3SyTpnMhYisRl3NWIn5tca+s=;
-        b=A2PSQDOpNJJx+gPryK0V8miuxc1723Fpmx3o+U/zSdlIcTwWUtXDwgH7ZWmhmUq5I+
-         DlpVST5ir0ElBFlCd67Uuw1KeeHSQqDO7wtG2cHY/tonBJXAERUmUrGmgIxzuyrX6mFI
-         2xGgLdDsez5UBtAA6Vvpha2JLhHbZXfiSA+hRpVs5na1g5pJg5R9T1T/omVF3IIsb1A4
-         oCfHVqFwS/pDDC4QNEbV73yBSwBkD9ctbTSsgGMZtyl/BBe/mB5KTR2irML1atFuvFcs
-         ilaWNzm+StFZ7b+BevAqZcIV3pebu5SCenPbQ2wtE7tn4D9wtMkRV+zVDFQ8FkEo61Wf
-         4bUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761328007; x=1761932807;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=K6zD0dyxA5X3dz6tOjR3SyTpnMhYisRl3NWIn5tca+s=;
-        b=cWMAXhh1HE3YJB6o/V+B0nLqoyVky59kz+Jq5n504U7n1deIAAGNZgL7RxEahahZVR
-         eNYDQqeEZWEDX9Hc1z6j2XRD8AgBDXJJNifcORcs0f5YvyvBOUs9uLIjt9KbhS0rI1cz
-         canKn0srFODbx3hmLcUsCZR6/oL5stMVD+fZ2ljYXzYcZZOrECHM+MejVOMWo8Iq9fdG
-         o7Gi4mk/O1rnMfvbuF/FKC7h8jreancZPLeYU3Y0IAyWp2/VoUa4p+5wgDGEKbUI4RGr
-         DNYLADxmX84MNu9zgd5PlKlX3ZbIQJUKNy/E11PGRGyEVH3Ypw8FGbf5Dtkh/s+Rm0ve
-         tfkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVYw2VIUlvS5Ohp3PQVkfaPyahVZ27fr5Ia9USMiNvMi5O312jkjc6g+A7+yfLm3eRPWRBFQctieBXI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxd7HZSJVE0B8wZYFmtPIig9YfbZXqfxoEeU+O1EjN+yjkQtNru
-	Afs01d4rxVQumEplqwjWwGYjsuRk2EQMgPKsobol/INUNn/7PXmMwiXY/SloIV6OwUDonUc7cnH
-	1nvUYpP6RSvxp05A8oFomZ7Ws2iMpf3g=
-X-Gm-Gg: ASbGncsJWxdmX6JlIB4d5wBByhoWupA0f7Jl9CKIdzcD0peIhAv42IbvCc4GcMILNa6
-	luXLz2HGDhpUNslxHKVTFpGyfsMxZPC4Y9/wvcyp+hZ89i+qQzLa3zEtjAtZzOEglfXKwYEsZBm
-	7u/2F4z6TRGJftSpTD+OYiOlE/w/4uFoJPU8qU2G9QwAWVwCgGWdRSotgt/SBF+XXTKEcT3pfLb
-	D3KFBQnvp+TtHOXEPEAcawFsO8wSpWket5YGHiHekGVDwWqzyQFwAN3wkNl
-X-Google-Smtp-Source: AGHT+IEKMTxbFcAqJJs3pqOOQTiDsnpDKsflXjiTlx5yaR9ZYhjteOY9GsHf3z7fyVR7qJSJg+QljfP1XDamHWUqjvs=
-X-Received: by 2002:a05:6512:b84:b0:592:f9e6:a617 with SMTP id
- 2adb3069b0e04-592f9e6a809mr1988690e87.31.1761328006209; Fri, 24 Oct 2025
- 10:46:46 -0700 (PDT)
+	s=arc-20240116; t=1761328234; c=relaxed/simple;
+	bh=8qAR75JaH4mfH/My4QWqcxLHgY+ysFJl6KwuNGwLdMM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AwaemUT4e4KuYPkxirSCi8EVRPrmWO21LH9zyTqu1Bl6LI8p5Uolzf+D8Bo16F0BJk2RzylQpmhO59QhCCIYnZAL7VhY/kDJK5jjKh3siBlGSsJRE6QyXpyc/1k0qrdSpCT/+AYG//ctSx7ftTZdv62pXHpmEFcX7SNUlbKq404=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in; spf=pass smtp.mailfrom=ee.iitb.ac.in; dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b=kspQttvv; arc=none smtp.client-ip=103.21.126.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ee.iitb.ac.in
+Received: from ldns2.iitb.ac.in (ldns2.iitb.ac.in [10.200.12.2])
+	by smtp1.iitb.ac.in (Postfix) with SMTP id 19855104CBA7
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 23:20:20 +0530 (IST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.iitb.ac.in 19855104CBA7
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=iitb.ac.in; s=mail;
+	t=1761328220; bh=8qAR75JaH4mfH/My4QWqcxLHgY+ysFJl6KwuNGwLdMM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kspQttvvSziCmmRXrxP7mW6eNaCxwso9OF7lTCOO/hBQ+tVBK+MDq3w7cOCPOIzBu
+	 y84LXezttbplIUEDIzoVG/+QzCMNVjG67OT4pHLaX9ocgD6VK6jsmBzP1/+cYxOHRg
+	 zfNm9CEUXwOJ9reEX/4mgGKSa4+u3olUMpoOcJ50=
+Received: (qmail 28386 invoked by uid 510); 24 Oct 2025 23:20:20 +0530
+X-Qmail-Scanner-Diagnostics: from 10.200.1.25 by ldns2 (envelope-from <akhilesh@ee.iitb.ac.in>, uid 501) with qmail-scanner-2.11
+ spamassassin: 3.4.1. mhr: 1.0. {clamdscan: 0.100.0/26337} 
+ Clear:RC:1(10.200.1.25):SA:0(0.0/7.0):. Processed in 3.480435 secs; 24 Oct 2025 23:20:20 +0530
+X-Spam-Level: 
+X-Spam-Pyzor: Reported 0 times.
+X-Envelope-From: akhilesh@ee.iitb.ac.in
+X-Qmail-Scanner-Mime-Attachments: |
+X-Qmail-Scanner-Zip-Files: |
+Received: from unknown (HELO ldns2.iitb.ac.in) (10.200.1.25)
+  by ldns2.iitb.ac.in with SMTP; 24 Oct 2025 23:20:16 +0530
+Received: from bhairav.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
+	by ldns2.iitb.ac.in (Postfix) with ESMTP id A1A2E34150E;
+	Fri, 24 Oct 2025 23:20:15 +0530 (IST)
+Received: from bhairav-test.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
+	(Authenticated sender: akhilesh)
+	by bhairav.ee.iitb.ac.in (Postfix) with ESMTPSA id 644D11E815D7;
+	Fri, 24 Oct 2025 23:20:15 +0530 (IST)
+Date: Fri, 24 Oct 2025 23:20:10 +0530
+From: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>, jic23@kernel.org,
+	dlechner@baylibre.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, nuno.sa@analog.com, andy@kernel.org,
+	marcelo.schmitt1@gmail.com, vassilisamir@gmail.com,
+	salah.triki@gmail.com, skhan@linuxfoundation.org,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, akhileshpatilvnit@gmail.com
+Subject: Re: [PATCH 2/2] iio: pressure: adp810: Add driver for adp810 sensor
+Message-ID: <20251024-175010-876729@bhairav-test.ee.iitb.ac.in>
+References: <cover.1760184859.git.akhilesh@ee.iitb.ac.in>
+ <8c202e7ccd332b26217d529a7a73b7a3ef0726ea.1760184859.git.akhilesh@ee.iitb.ac.in>
+ <CAHp75VdGJfMALGOFvkOW=JZ0yHE2QbRSzNs2Xd42-Weec1GmQw@mail.gmail.com>
+ <95c1ba99-510b-4efb-9b6d-4c1103fc43a5@kernel.org>
+ <aPp5OYcPxNNIOgB6@smile.fi.intel.com>
+ <c45309cf-bd2c-41fe-b893-7e0a91de84a8@kernel.org>
+ <aPs6HAJabFMRzX9Y@smile.fi.intel.com>
+ <aPs6raLIcM3QbQXJ@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250803-p3450-mts-bug-v2-0-6307125408c3@gmail.com>
- <20250803-p3450-mts-bug-v2-1-6307125408c3@gmail.com> <8ed69b4c-f656-47fa-a247-1c8d94dcc35d@nvidia.com>
-In-Reply-To: <8ed69b4c-f656-47fa-a247-1c8d94dcc35d@nvidia.com>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Fri, 24 Oct 2025 12:46:33 -0500
-X-Gm-Features: AS18NWB0X2kanA5C8YSvXzeNGUy0EwS1NgCtJrnfR3pQ1y9nZ6F33BdAn_oIim8
-Message-ID: <CALHNRZ86NjcNJhRJd+jtD_7fRTFJ2szPFAAN3HSad_xwnVrHWQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] arm64: tegra: Add reserved-memory node for P3450
-To: Jon Hunter <jonathanh@nvidia.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aPs6raLIcM3QbQXJ@smile.fi.intel.com>
 
-On Fri, Oct 24, 2025 at 11:16=E2=80=AFAM Jon Hunter <jonathanh@nvidia.com> =
-wrote:
->
->
-> On 04/08/2025 04:14, Aaron Kling via B4 Relay wrote:
-> > From: Aaron Kling <webgeek1234@gmail.com>
-> >
-> > The Tegra210 L4T bootloader ram training will corrupt the in-ram kernel
-> > dt if no reserved-memory node exists. This prevents said bootloader fro=
-m
-> > being able to boot a kernel without this node, unless a chainloaded
-> > bootloader loads the dt. Add the node to eliminate the requirement for
-> > extra boot stages.
->
-> I test this platform and don't see any problems. I assume that this
-> would prevent the board from booting.
->
-> What bootloader are you using? Is this from a particular L4T release?
+On Fri, Oct 24, 2025 at 11:37:01AM +0300, Andy Shevchenko wrote:
+> On Fri, Oct 24, 2025 at 11:34:37AM +0300, Andy Shevchenko wrote:
+> > On Fri, Oct 24, 2025 at 08:18:21AM +0200, Krzysztof Kozlowski wrote:
+> > > On 23/10/2025 20:51, Andy Shevchenko wrote:
+> > > > On Sun, Oct 12, 2025 at 05:12:26AM +0200, Krzysztof Kozlowski wrote:
+> > > >> On 11/10/2025 16:10, Andy Shevchenko wrote:
+> > > >>> On Sat, Oct 11, 2025 at 3:25 PM Akhilesh Patil <akhilesh@ee.iitb.ac.in> wrote:
+> 
+> ...
+> 
+> > > >>>> +F:     Documentation/devicetree/bindings/iio/pressure/aosong,adp810.yaml
+> > > >>>> +F:     drivers/iio/pressure/adp810.c
+> > > >>>
+> > > >>> Some tools will report an orphaned yaml file if you apply patch 1
+> > > >>> without patch 2.
+> > > >>
+> > > >> You mean checkpatch? That warning is not really relevant. Adding
+> > > >> maintainers entry here for both files is perfectly fine and correct.
+> > > > 
+> > > > It's relevant as long as I see (false positive) warnings from it. Can somebody
+> > > 
+> > > No, it is not relevant. Just because tool is inefficient does not allow
+> > > you to point such nitpicks. You as reviewer are supposed to find
+> > > difference which checkpatch warnings are important and which are not and
+> > > DO NOT bother contributors with useless points that there is some
+> > > orphaned file according to checkpatch.
+> > > 
+> > > > shut the checkpatch up about missing DT files in the MAINTAINERS?
+> > > 
+> > > That would be great but, if no one does it your comments on "orphaned
+> > > file" are counter productive.
+> > 
+> > Something like this?
+> > 
+> > diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+> > index 6729f18e5654..818b49d314ce 100755
+> > --- a/scripts/checkpatch.pl
+> > +++ b/scripts/checkpatch.pl
+> > @@ -3441,11 +3441,17 @@ sub process {
+> >  		     ($line =~ /\{\s*([\w\/\.\-]*)\s*\=\>\s*([\w\/\.\-]*)\s*\}/ &&
+> >  		      (defined($1) || defined($2))))) {
+> >  			$is_patch = 1;
+> > -			$reported_maintainer_file = 1;
+> > -			WARN("FILE_PATH_CHANGES",
+> > -			     "added, moved or deleted file(s), does MAINTAINERS need updating?\n" . $herecurr);
+> > +			# DT bindings are incorporate maintainer information, no need to report
+> > +			if ($realfile !~ m@^Documentation/devicetree/bindings/@)) {
+> > +				$reported_maintainer_file = 1;
+> > +				WARN("FILE_PATH_CHANGES",
+> > +				     "added, moved or deleted file(s), does MAINTAINERS need updating?\n" . $herecurr);
+> > +			}
+> >  		}
+> 
+> > +		    ($realfile =~ m@^Documentation/devicetree/bindings/.*\.txt$@)) {
+> > +			if ($realfile =~ m@^include/asm/@) {
+> 
+> These two lines are leftovers that needs to be removed, of course.
+> 
+> Akhilesh, can you give a try of this change and see if the original DT schema
+> binding patch is not reported anymore?
 
-Please see the longer description of my setup on the revision v1 patch
-here [0]. I am specifically using the cboot prebuilt from L4T r32.6.1
-as it is the last version to support usb input in the fastboot menu
-[1]. The rest of the boot stack is from L4T r32.7.6. The partition
-layout xml is here [2], which requires setting odmdata bit 11 to allow
-reading bootloader partitions off the sdcard. There is no u-boot
-involved, only cboot.
+Hi Andy. I tested checkpatch.pl patch you suggested here. checkpatch
+does NOT show the warning now on my dt-bindings patch. Thanks for
+initiating this script improvement.
+I believe this is kernel wide script improvement and best to take
+independently if I understood correctly.
 
-I've had another report of the same issue, on a pure L4T r32.7.6 boot
-stack as well. The Nvidia downstream u-boot won't copy
-external-memory-controller nodes, namely the memory-region ones, from
-the cboot dtb to the kernel dtb unless the phandles match. Nv-tegra
-gitles isn't working right now, so I can't link directly, but on
-branch l4t/l4t-r32.7.6-v2020.04, file arch/arm/mach-tegra/dt-edit.c,
-see line 31. Which means that such only works if u-boot destination
-FDT is the downstream dtb. Using a mainline dtb causes the
-memory-region dt tables to not be available, thus the emc kernel
-driver fails to probe and emc clock stays stuck at 204MHz on
-p3450/p3541. Hence the user from the report trying to cut u-boot out
-of the mix in order to get emc scaling. And then hit this issue.
+Regards,
+Akhilesh
 
-You were able to boot with a mainline dtb on the DTB partition and a
-kernel on LNX, without u-boot and without this change? I have not been
-able to do this. The boot flow will get past nvtboot_cpu, but falls
-apart inside cboot due to the corrupted in-ram dtb, never getting to
-kernel logs.
-
-Aaron
-
-[0] https://lore.kernel.org/all/CALHNRZ_7wChDsvpUnQHnOTT9VzT1Lgg8JYgg13AFV8=
-Jg_3itwQ@mail.gmail.com/
-[1] https://forums.developer.nvidia.com/t/cboot-xusb-support-broken-since-r=
-32-7-1/243534
-[2] https://github.com/LineageOS/android_device_nvidia_porg/blob/f52038d326=
-ef67002185dbe04e9ff1070db2be4c/flash_package/flash_android_t210_max-spi_sd_=
-p3448.xml
+> 
+> >  # Check for adding new DT bindings not in schema format
+> >  		if (!$in_commit_log &&
+> >  		    ($line =~ /^new file mode\s*\d+\s*$/) &&
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
 
