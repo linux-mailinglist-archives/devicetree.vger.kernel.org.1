@@ -1,352 +1,222 @@
-Return-Path: <devicetree+bounces-230667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6E7FC04E68
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:59:40 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6B3BC04E4D
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:58:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 01E611AE31EB
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:59:07 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 30932348AAC
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:58:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3670C2FBDE9;
-	Fri, 24 Oct 2025 07:57:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC75B2F8BD1;
+	Fri, 24 Oct 2025 07:58:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VWkj5yLS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UKCBUcnz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28A272FB61B
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:57:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A31721F03C5;
+	Fri, 24 Oct 2025 07:58:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761292655; cv=none; b=XHOw+Qx0v+YjI08I1gt6NRXN7q0oC4SpkV52xG6aTk4k90bwtMMKBizQ5w9gyeFVcN975jIagP/UNlYSsWgwaTZJuLWO6JwRXzrrzK1t3zAcPPuLsNZKZLjrOF9H8DlRy+3JepJRnTDqrlUcQeINzReCx7dY02ZyCnByAZrXKpM=
+	t=1761292730; cv=none; b=fkcmfFOuFb09PEVIInamdFlSgMpZ7eyWEPkhWlbNSfDX3T95S6ncJAvF6O3f77tvoLJ9qOTp7KYBEgop4rWGl1PsabFF23UFzMYXKN8cHjEgcD952U7d27Azw+4bb7fY+h0+G+yRhctpZyIUSCcYPTP163hM73q6T111e7OdV9M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761292655; c=relaxed/simple;
-	bh=tW2cZj4A2kild+iwNlrsp24JcLX1QbExyS5VOwDy9+o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ceyky2GEKIacvj5r7tIiUFHORfhgztlKonn6OypVEIU2iiVEgUITLe2nza5R/xjv0fGWjr9xLsvG/yixTDdJIqAimx7GjyNGg//Yvj3IyE6q7nAG7BEQi//ZlKkKLkPoBzk/R5e5LC5l0aRrF/yTKU7EfH8vaUipSDRjwit33vI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VWkj5yLS; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-290aaff555eso17455305ad.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 00:57:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761292652; x=1761897452; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5TBvY2oyqcr2gNkpD6og3lmY61su8Z4ovOoReTCIYGo=;
-        b=VWkj5yLSIGc7Ipfh0w7NOws190udmoReo6YlmUf5utnEefAFaPj7PbjLdN6kql58Ez
-         JrlAedP60RnM1/blt3kVAmr51g7KaEqlO4K4X4NlK5DxKMXHyYGFSXagamQYdos83voG
-         tjKL7CrlPgEXykeqhbE8BPoY85d6jvBsQpTImIsrhpxeBrlj4iP/tjKj7Yl9lUEALxqL
-         jxRKrqVk5ylU02vyEk3aLs6XlVKrkxGOhpNsHwagYl3EMEXGzgjz5OZLOZbHOhFK1+Sm
-         yplehQFhzRxcNFM9LPUNSl9knsev1a05hoK2CnSxECHSXA51Zj5CcuRBwE3BTc60iur5
-         GRWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761292652; x=1761897452;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5TBvY2oyqcr2gNkpD6og3lmY61su8Z4ovOoReTCIYGo=;
-        b=RIyYsibZNH+izsqTs7TkYX6RrVg8VCkIDHoOsOs7RmEdY8cNJoGeFH++9Y3OjnnWbT
-         IdIZpe0nPK5jdG9+hube0aXKbB/qCSvtxmN+ws1i9m/nlKq4rj0iiIbabMXGAOhs+KJK
-         8dODtGdrEiNKtKAoXXx7sdQcZFameBUbNwKQgo8j/RuZPfNc4goqGIb4yV1adl+ofNVg
-         FCIhtn3IrNLjOf8k/KFNxCZGRmIvB0i9xYN+kZqU44G2yWQ5UtypbsrlHE129jySe1hU
-         5/bVr53U4LQOLI6Ge/mpZ5ZgRw3Lvg8VzqhVhAr43nOYKKC0oh2GIObe41hz/HThqgi+
-         O8OQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUk1glmy07ENRKBULTLo+1rMbqdZHov6rw4X34ul9MTZ4vHQFgZCct5QgHBlH1QFoe8OGo83gYpjJWX@vger.kernel.org
-X-Gm-Message-State: AOJu0YzcNvGIykvdNZKzSumSYgT0yJDkZqe2FQj9H/9bGb1VkGEN0N+L
-	BwIDn/eWOg8OZ5Z/awGjnOU8sCSBogkb0ezEvjGi27xo70s5Iu0q9WMd
-X-Gm-Gg: ASbGnctGZjl1W1ilYmVXF3sYqwXFSOitGPxTurHWiZHtOnHI7izEmaNXTFPD/AAi1gv
-	P4nx6/juAjyPnckuVhnwRIfcPqEid1AvQ3f/99AeXPFi+2H8NAAGo/HXVUZvj+9Ci+QUwRte5Q6
-	yDS3sex+gQU6pP58d+fUBf1Z7JhVkOrR+6GQRDrykiOGV3R+yfjUp0m97Lz0PJc3OeSf/5cqlAK
-	hzxnqcpidQhBnMpf8bliwRdO9wQwP1FfKp0jMIHmgtbowix3cpW3uSVIC774lcsvbr4+F4RTy2F
-	enK6DvsorT1YaKUw9gLN3EQxoM3uU1Y4VxEjpVrjrv6Dsl9km0Rq+hqfRsdy6V1CsspoYcR4uYG
-	TEuhhcWczq8RY4gkk37gNad798yKgiGfUIcOAGKd39F7Tzzp/Psf9vtKA15jn42UkSXskdEGyqe
-	xM8HqrnlM+ihuTFBZupxEZ
-X-Google-Smtp-Source: AGHT+IHZEWd+WfHYJKNtSpssWxDvxeK3oK6rSiNGaRDKTZSQMyFDu/hsiCkgZP90gC/bvz+hzi0gsw==
-X-Received: by 2002:a17:902:d4c8:b0:27e:e96a:4c3 with SMTP id d9443c01a7336-290d14e83b6mr355043595ad.14.1761292652244;
-        Fri, 24 Oct 2025 00:57:32 -0700 (PDT)
-Received: from Black-Pearl.localdomain ([27.7.191.116])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2946dfd045esm46608205ad.64.2025.10.24.00.57.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Oct 2025 00:57:31 -0700 (PDT)
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-Date: Fri, 24 Oct 2025 07:57:10 +0000
-Subject: [PATCH v5 3/3] dt-bindings: mmc: ti,omap2430-sdhci: convert to DT
- schema
+	s=arc-20240116; t=1761292730; c=relaxed/simple;
+	bh=ujRgliuJ9opWyA1dA8HvH6KZTXat+2uy7+UPCFas1j0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Xl762dTzDHsaJJkVb6zDfnYESbZN7UYwE5Zlp2G5UHbztRquPvu+CEETBdqF9PUjH1QL6tX6NMY1C1WW/sQHJo6GZEOwjdz/kJsaOL0W0k/MixmBaFtp+gmUbHe0Uuvez2sdisij6oMcHBuzhKrXk03xc6a/olP5+CvVIJmPS1E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UKCBUcnz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26EF2C4CEF1;
+	Fri, 24 Oct 2025 07:58:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761292730;
+	bh=ujRgliuJ9opWyA1dA8HvH6KZTXat+2uy7+UPCFas1j0=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=UKCBUcnzJQr76xTGhoIzETFC5ITuiydigeyH8N/rw4KB4W6JdbSQnUERuSlthla5Z
+	 f8QW/EYHzNyY2+by/N2dXpA/TyML6BT95DdHTwTjER+6WV+NeEjvdTT/u7IOIrpDWt
+	 RnDcvWNZ7H7A5ov4EG1rjXH6+AUqeGVMQGwCBwsfoze/E53KunnICvGtjC27tY4uKk
+	 qTCjv9Spb7y+DNGhpa/bMZ+f98K9ICt3i1L3dNwtdsvz/5wuYPJvJmqaiN/MZKRRA5
+	 aKlmZirHKa5leHEzSb/oaw5GMrEMUGcx/nUFLyXSbOQIhj9zS/4lYWEzmhTcMNlHeH
+	 4inoakiXP0KyA==
+Message-ID: <17ebfe0f-ec3b-4f93-9146-f191d9c6a7fc@kernel.org>
+Date: Fri, 24 Oct 2025 09:58:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] mailbox: renesas: Support MFIS mailbox driver
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Jassi Brar <jassisinghbrar@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <87frb8n7kl.wl-kuninori.morimoto.gx@renesas.com>
+ <87cy6cn7jg.wl-kuninori.morimoto.gx@renesas.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <87cy6cn7jg.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251024-ti-sdhci-omap-v5-3-df5f6f033a38@gmail.com>
-References: <20251024-ti-sdhci-omap-v5-0-df5f6f033a38@gmail.com>
-In-Reply-To: <20251024-ti-sdhci-omap-v5-0-df5f6f033a38@gmail.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Paul Barker <paul.barker@sancloud.com>, 
- Marc Murphy <marc.murphy@sancloud.com>, Tony Lindgren <tony@atomide.com>, 
- Kishon Vijay Abraham I <kishon@kernel.org>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org, 
- Charan Pedumuru <charan.pedumuru@gmail.com>
-X-Mailer: b4 0.14.3
 
-Convert TI OMAP SDHCI Controller binding to YAML format.
-Changes during Conversion:
-- Define new properties like "clocks", "clock-names",
-  "pbias-supply" and "power-domains" to resolve dtb_check errors.
-- Remove "pinctrl-names" and "pinctrl-<n>"
-  from required as they are not necessary for all DTS files.
-- Remove "ti,hwmods" property entirely from the YAML as the
-  DTS doesn't contain this property for the given compatibles and the
-  text binding is misleading.
-- Add "clocks", "clock-names" and "max-frequency" to the required
-  properties based on the compatible and the text binding doesn't mention
-  these properties as required.
-- Add missing strings like "default-rev11", "sdr12-rev11", "sdr25-rev11",
-  "hs-rev11", "sdr25-rev11" and "sleep" to pinctrl-names string array
-  to resolve errors detected by dtb_check.
+On 24/10/2025 08:22, Kuninori Morimoto wrote:
+> From: Masashi Ozaki <masashi.ozaki.te@renesas.com>
+> 
+> Add Renesas MFIS mailbox driver for R8A78000 (X5H)
+> 
+> Signed-off-by: Masashi Ozaki <masashi.ozaki.te@renesas.com>
+> Signed-off-by: Vinh Nguyen <vinh.nguyen.xz@renesas.com>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  drivers/mailbox/Kconfig             |  10 +-
+>  drivers/mailbox/Makefile            |   2 +
+>  drivers/mailbox/rcar-mfis-mailbox.c | 137 ++++++++++++++++++++++++++++
+>  3 files changed, 148 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/mailbox/rcar-mfis-mailbox.c
+> 
+> diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
+> index e47cb68989267..07e6bf06effe3 100644
+> --- a/drivers/mailbox/Kconfig
+> +++ b/drivers/mailbox/Kconfig
+> @@ -379,6 +379,15 @@ config BCM74110_MAILBOX
+>  	  processor and coprocessor that handles various power management task
+>  	  and more.
+>  
+> +config RCAR_MFIS_MBOX
+> +	bool "Renesas R-Car Multifunctional Interface Mailbox Support"
+> +	depends on ARM_SCMI_PROTOCOL && ARCH_RENESAS
 
-Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
----
- .../devicetree/bindings/mmc/sdhci-omap.txt         |  43 ------
- .../devicetree/bindings/mmc/ti,omap2430-sdhci.yaml | 169 +++++++++++++++++++++
- 2 files changed, 169 insertions(+), 43 deletions(-)
+I don't see any build restrictions, why no compile test?
 
-diff --git a/Documentation/devicetree/bindings/mmc/sdhci-omap.txt b/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
-deleted file mode 100644
-index f91e341e6b36..000000000000
---- a/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
-+++ /dev/null
-@@ -1,43 +0,0 @@
--* TI OMAP SDHCI Controller
--
--Refer to mmc.txt for standard MMC bindings.
--
--For UHS devices which require tuning, the device tree should have a "cpu_thermal" node which maps to the appropriate thermal zone. This is used to get the temperature of the zone during tuning.
--
--Required properties:
--- compatible: Should be "ti,omap2430-sdhci" for omap2430 controllers
--	      Should be "ti,omap3-sdhci" for omap3 controllers
--	      Should be "ti,omap4-sdhci" for omap4 and ti81 controllers
--	      Should be "ti,omap5-sdhci" for omap5 controllers
--	      Should be "ti,dra7-sdhci" for DRA7 and DRA72 controllers
--	      Should be "ti,k2g-sdhci" for K2G
--	      Should be "ti,am335-sdhci" for am335x controllers
--	      Should be "ti,am437-sdhci" for am437x controllers
--- ti,hwmods: Must be "mmc<n>", <n> is controller instance starting 1
--	     (Not required for K2G).
--- pinctrl-names: Should be subset of "default", "hs", "sdr12", "sdr25", "sdr50",
--		 "ddr50-rev11", "sdr104-rev11", "ddr50", "sdr104",
--		 "ddr_1_8v-rev11", "ddr_1_8v" or "ddr_3_3v", "hs200_1_8v-rev11",
--		 "hs200_1_8v",
--- pinctrl-<n> : Pinctrl states as described in bindings/pinctrl/pinctrl-bindings.txt
--
--Optional properties:
--- dmas:		List of DMA specifiers with the controller specific format as described
--		in the generic DMA client binding. A tx and rx specifier is required.
--- dma-names:	List of DMA request names. These strings correspond 1:1 with the
--		DMA specifiers listed in dmas. The string naming is to be "tx"
--		and "rx" for TX and RX DMA requests, respectively.
--
--Deprecated properties:
--- ti,non-removable: Compatible with the generic non-removable property
--
--Example:
--	mmc1: mmc@4809c000 {
--		compatible = "ti,dra7-sdhci";
--		reg = <0x4809c000 0x400>;
--		ti,hwmods = "mmc1";
--		bus-width = <4>;
--		vmmc-supply = <&vmmc>; /* phandle to regulator node */
--		dmas = <&sdma 61 &sdma 62>;
--		dma-names = "tx", "rx";
--	};
-diff --git a/Documentation/devicetree/bindings/mmc/ti,omap2430-sdhci.yaml b/Documentation/devicetree/bindings/mmc/ti,omap2430-sdhci.yaml
-new file mode 100644
-index 000000000000..34e288f3ef13
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/ti,omap2430-sdhci.yaml
-@@ -0,0 +1,169 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/ti,omap2430-sdhci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI OMAP SDHCI Controller
-+
-+maintainers:
-+  - Kishon Vijay Abraham I <kishon@ti.com>
-+
-+description:
-+  For UHS devices which require tuning, the device tree should have a
-+  cpu_thermal node which maps to the appropriate thermal zone. This
-+  is used to get the temperature of the zone during tuning.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,omap2430-sdhci
-+      - ti,omap3-sdhci
-+      - ti,omap4-sdhci
-+      - ti,omap5-sdhci
-+      - ti,dra7-sdhci
-+      - ti,k2g-sdhci
-+      - ti,am335-sdhci
-+      - ti,am437-sdhci
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: fck
-+      - const: mmchsdb_fck
-+
-+  dmas:
-+    maxItems: 2
-+
-+  dma-names:
-+    items:
-+      - const: tx
-+      - const: rx
-+
-+  pinctrl-names:
-+    minItems: 1
-+    maxItems: 14
-+    items:
-+      enum:
-+        - default
-+        - default-rev11
-+        - hs
-+        - sdr12
-+        - sdr12-rev11
-+        - sdr25
-+        - sdr25-rev11
-+        - sdr50
-+        - ddr50-rev11
-+        - sdr104-rev11
-+        - ddr50
-+        - sdr104
-+        - ddr_1_8v-rev11
-+        - ddr_1_8v
-+        - ddr_3_3v
-+        - hs-rev11
-+        - hs200_1_8v-rev11
-+        - hs200_1_8v
-+        - sleep
-+
-+  pinctrl-0:
-+    maxItems: 1
-+
-+  pinctrl-1:
-+    maxItems: 1
-+
-+  pinctrl-2:
-+    maxItems: 1
-+
-+  pinctrl-3:
-+    maxItems: 1
-+
-+  pinctrl-4:
-+    maxItems: 1
-+
-+  pinctrl-5:
-+    maxItems: 1
-+
-+  pinctrl-6:
-+    maxItems: 1
-+
-+  pinctrl-7:
-+    maxItems: 1
-+
-+  pinctrl-8:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  pbias-supply:
-+    description:
-+      It is used to specify the voltage regulator that provides the bias
-+      voltage for certain analog or I/O pads.
-+
-+  ti,non-removable:
-+    description:
-+      It indicates that a component is not meant to be easily removed or
-+      replaced by the user, such as an embedded battery or a non-removable
-+      storage slot like eMMC.
-+    type: boolean
-+    deprecated: true
-+
-+  clock-frequency:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      It represents the speed at which a clock signal associated with a device
-+      or bus operates, measured in Hertz (Hz). This value is crucial for configuring
-+      hardware components that require a specific clock speed.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+allOf:
-+  - $ref: sdhci-common.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,dra7-sdhci
-+              - ti,k2g-sdhci
-+    then:
-+      required:
-+        - max-frequency
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: ti,k2g-sdhci
-+    then:
-+      required:
-+        - clocks
-+        - clock-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    mmc@4809c000 {
-+        compatible = "ti,dra7-sdhci";
-+        reg = <0x4809c000 0x400>;
-+        interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
-+        max-frequency = <192000000>;
-+        sdhci-caps-mask = <0x0 0x400000>;
-+        bus-width = <4>;
-+        vmmc-supply = <&vmmc>; /* phandle to regulator node */
-+        dmas = <&sdma 61>, <&sdma 62>;
-+        dma-names = "tx", "rx";
-+    };
-+...
+> +	help
+> +	  This driver provides support for SCMI interface transport with
+> +	  MFIS(Multifunctional Interface).
+> +	  It is used to send short message between CPU cores and
+> +	  SCP(System Control Processor).
+> +
+>  config RISCV_SBI_MPXY_MBOX
+>  	tristate "RISC-V SBI Message Proxy (MPXY) Mailbox"
+>  	depends on RISCV_SBI
+> @@ -389,5 +398,4 @@ config RISCV_SBI_MPXY_MBOX
+>  	  remote processor through the SBI implementation (M-mode firmware
+>  	  or HS-mode hypervisor). Say Y here if you want to have this support.
+>  	  If unsure say N.
+> -
 
--- 
-2.51.1
 
+Does not look as intended change.
+
+...
+
+> +
+> +static int mfis_startup(struct mbox_chan *link)
+> +{
+> +	struct mbox_controller *mbox = link->mbox;
+> +	struct device *dev = mbox->dev;
+> +	int irq;
+> +	int ret;
+> +
+> +	irq = of_irq_get(dev->of_node, 0);
+> +
+> +	ret = request_irq(irq, mfis_rx_interrupt,
+> +			  IRQF_SHARED, "mfis-mbox", link);
+> +	if (ret) {
+> +		dev_err(dev,
+> +			"Unable to acquire IRQ %d\n", irq);
+
+Please don't wrap lines when not necessary. This only hurts readability.
+
+
+> +		return ret;
+> +	}
+
+
+
+> +
+> +	ret = mbox_controller_register(mbox);
+> +	if (ret)
+> +		return ret;
+> +
+> +	platform_set_drvdata(pdev, mbox);
+> +	dev_info(dev, "MFIS mailbox is probed\n");
+
+
+This does not look like useful printk message. Drivers should be silent
+on success:
+https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/coding-style.rst#L913
+https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/debugging/driver_development_debugging_guide.rst#L79
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id mfis_mbox_of_match[] = {
+> +	{ .compatible = "renesas,mfis-mbox", },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, mfis_mbox_of_match);
+> +
+> +static struct platform_driver mfis_mbox_driver = {
+> +	.driver = {
+> +		.name = "renesas-mfis-mbox",
+> +		.of_match_table = mfis_mbox_of_match,
+> +	},
+> +	.probe	= mfis_mbox_probe,
+> +};
+> +module_platform_driver(mfis_mbox_driver);
+> +MODULE_DESCRIPTION("Renesas MFIS mailbox driver");
+> +MODULE_LICENSE("GPL v2");
+
+
+Best regards,
+Krzysztof
 
