@@ -1,165 +1,114 @@
-Return-Path: <devicetree+bounces-230641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7DAFC04B3C
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:24:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C76DEC04B60
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:27:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DDEC1B8276F
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:24:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A0CA400431
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:24:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5FAB2E6CAE;
-	Fri, 24 Oct 2025 07:21:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7C4A2C21FF;
+	Fri, 24 Oct 2025 07:24:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="puPpxBP2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ht+RB1WQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B228F2C0285
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:21:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5BFA2C17B2;
+	Fri, 24 Oct 2025 07:24:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761290484; cv=none; b=FgqRUdriCLwuwDUXuo67oYMomk2NfbtOM7aioFy5NhXPHhcHs8tNU2WfSpvM5RG6UPaFrfrF1d/XFL3lNv/69Wo2YA/cEKIKU9uMhGvPyQhzUgOImF3rOrDMT53s2hX0lCC3CHSrOTuVZHeD8DomJYSqyeZqbOK3D/GTR52TxNU=
+	t=1761290666; cv=none; b=e8ANyOWLnnzoB+oxLcv6ggDu+GKAJADiSFijxDopxgR8Sua1UBmJtGoIzmt+xW5xVAcw1lZ3iY16eZfz0BRZKxXxeo8PE3fXYfqeMlJA6Sz6mdPCwU0AoMSrenbfkxcy3SXAzMU6RyFW92IgiEQRVv13h7M3glNFGRVLG2Gckv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761290484; c=relaxed/simple;
-	bh=lcb3dVn0iym9zJMs4diWzppG9w2vAuX9XMaRZbiaA4I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZduII09R0yI26+f7OAhBUJCJwOCIMBTUerjicIP9GvJwDlFv5U7d0Ex0viwV4JHXZ0XRa3kfbtZE7w0b5GIc8CuqqudmseXOOWmN3QlQicY9f/iPs0XtqwVE6qo03G6qYPR/9+eihczYUtff3bchuaJDAazSuZeKCQaZqlkrf/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=puPpxBP2; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 026101A1638;
-	Fri, 24 Oct 2025 07:21:20 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C4F6760703;
-	Fri, 24 Oct 2025 07:21:19 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2EB30102F244A;
-	Fri, 24 Oct 2025 09:21:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761290478; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=n2SfjqX6lNSkj1H/YLHGctb/htiBAD/kfjrbeKtoNe8=;
-	b=puPpxBP2v/7GBLcTgiHZwflmwE+c7IIPgQnODmI+9FPa5WOXR1bQd1A8CnbxM3Q5gmoVsN
-	W11z0YLDO+Hyl0+f1X0L3BRgUfkWUSA0Nk5meqcbJoQjvbpBVFLrkmhPMY5WtbbqkVsEBb
-	g3D1EP4iu7g1a4P90Fi3n8fG/OTWe3/qunL0k9zXx3auk86Ki2ksYKvUxD6D1OCs3N/B+G
-	kOfBP/AWnWTknh6ErkZfBhvn30fLexAoFDqVkvGnVnzcW1Ope7DSeuv1ahBltn9ngXH36U
-	agAthTSviB78yes0nszNAjig8JoB75pyIOsYrn9m+byEn2fvIXgiWILHHQCr2A==
-Message-ID: <f076f6a6-372a-41ff-a78a-48d1af4ec33d@bootlin.com>
-Date: Fri, 24 Oct 2025 09:20:58 +0200
+	s=arc-20240116; t=1761290666; c=relaxed/simple;
+	bh=/+iVZvQGKLCjJzivsf6ZdBYrYGaAvtC11M0ZNDgvHXQ=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=B992H3DxI7wtraG/3HwHOX4BWLQENpHrjKIHX86HLmTLNKur/vk3XkuP9p3TEWLlvd3TpYDrxPlTuqX1BKhPc46UxIXiAC//SMG6Za28i0NPdJeXB0Sg6IB5k8tyj9Gc4gM/L1WdeX3iZJyuHPsll3lmK8bPVknKPBaRzy5A5b4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ht+RB1WQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04638C4CEF1;
+	Fri, 24 Oct 2025 07:24:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761290666;
+	bh=/+iVZvQGKLCjJzivsf6ZdBYrYGaAvtC11M0ZNDgvHXQ=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=ht+RB1WQjzl3r2LGJtTfZbUi5x6phiIAVfhL8vc2JaHuPCt2BaoW1RAZjXR7PFUdB
+	 KCPhiYJTfO3UJTAYoDP05ubFeJMEIhQvHrd34Qcsgd0T2MpHT/WDk+RwGPPTepv4Nv
+	 V7JIExd6xyvizCKN8hVBzEvLkTVjdJ3yttkutceJLm8EX6GSHd3jAr7Cv/vhYx+odI
+	 hZCMHqAkbMbeIVtBTctA15YBSkhfutZi6wT23A1pW9qAF/oKt8JXT+clohmMJPE5Q8
+	 HQy85DlX7cM+IdRhx0rGmdz0gbnfOEzRNm4gMnskkpNJkEYTQd/uenzX8OSUQCnTVs
+	 4eZEHJWhft3Wg==
+Date: Fri, 24 Oct 2025 02:24:24 -0500
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 04/15] mtd: rawnand: sunxi: introduce reg_user_data in
- sunxi_nfc_caps
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
- <vigneshr@ti.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Wentao Liang <vulab@iscas.ac.cn>, Johan Hovold <johan@kernel.org>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20251020101311.256819-1-richard.genoud@bootlin.com>
- <20251020101311.256819-5-richard.genoud@bootlin.com>
- <87y0p3tiz9.fsf@bootlin.com>
-From: Richard GENOUD <richard.genoud@bootlin.com>
-Content-Language: en-US, fr
-Organization: Bootlin
-In-Reply-To: <87y0p3tiz9.fsf@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-
-Hi,
-Le 22/10/2025 à 10:54, Miquel Raynal a écrit :
-> Hi Richard,
-> 
-> On 20/10/2025 at 12:13:00 +02, Richard Genoud <richard.genoud@bootlin.com> wrote:
-> 
->> The H6/H616 USER_DATA register is not at the same offset as the
->> A10/A23 one, so move its offset into sunxi_nfc_caps
->>
->> No functional change.
->>
->> Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
->> ---
->>   drivers/mtd/nand/raw/sunxi_nand.c | 13 +++++++++----
->>   1 file changed, 9 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/mtd/nand/raw/sunxi_nand.c b/drivers/mtd/nand/raw/sunxi_nand.c
->> index 0285e4d0ca7f..8f5d8df19e33 100644
->> --- a/drivers/mtd/nand/raw/sunxi_nand.c
->> +++ b/drivers/mtd/nand/raw/sunxi_nand.c
->> @@ -48,7 +48,8 @@
->>   #define NFC_REG_DEBUG		0x003C
->>   #define NFC_REG_A10_ECC_ERR_CNT	0x0040
->>   #define NFC_REG_ECC_ERR_CNT(nfc, x)	((nfc->caps->reg_ecc_err_cnt + (x)) & ~0x3)
->> -#define NFC_REG_USER_DATA(x)	(0x0050 + ((x) * 4))
->> +#define NFC_REG_A10_USER_DATA	0x0050
->> +#define NFC_REG_USER_DATA(nfc, x)	(nfc->caps->reg_user_data + ((x) * 4))
->>   #define NFC_REG_SPARE_AREA	0x00A0
->>   #define NFC_REG_PAT_ID		0x00A4
->>   #define NFC_REG_MDMA_ADDR	0x00C0
->> @@ -214,6 +215,7 @@ static inline struct sunxi_nand_chip *to_sunxi_nand(struct nand_chip *nand)
->>    *			through MBUS on A23/A33 needs extra configuration.
->>    * @reg_io_data:	I/O data register
->>    * @reg_ecc_err_cnt:	ECC error counter register
->> + * @reg_user_data:	User data register
->>    * @dma_maxburst:	DMA maxburst
->>    * @ecc_strengths:	Available ECC strengths array
->>    * @nstrengths:		Size of @ecc_strengths
->> @@ -222,6 +224,7 @@ struct sunxi_nfc_caps {
->>   	bool has_mdma;
->>   	unsigned int reg_io_data;
->>   	unsigned int reg_ecc_err_cnt;
->> +	unsigned int reg_user_data;
->>   	unsigned int dma_maxburst;
->>   	const u8 *ecc_strengths;
->>   	unsigned int nstrengths;
->> @@ -723,8 +726,8 @@ static void sunxi_nfc_hw_ecc_get_prot_oob_bytes(struct nand_chip *nand, u8 *oob,
->>   {
->>   	struct sunxi_nfc *nfc = to_sunxi_nfc(nand->controller);
->>   
->> -	sunxi_nfc_user_data_to_buf(readl(nfc->regs + NFC_REG_USER_DATA(step)),
->> -				   oob);
->> +	sunxi_nfc_user_data_to_buf(readl(nfc->regs +
->> +					 NFC_REG_USER_DATA(nfc, step)),
->> oob);
-> 
-> Minor nit, column limit is 100 now, so typically for this kind of
-> situation everything would fit on a single line.
-Indeed, the 80 column limit has been loosened (but braille displays are 
-still 80 cells max AFAIK).
-Anyway, you're right, the 80-rule could be bent here for readability.
-
-> 
-> Don't respin just for that if there is nothing else later, but if a v4
-> is needed you can change it.
-> 
-> Looks neat otherwise so far.
-> 
-> Thanks,
-> Miquèl
-
-Thanks!
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Jassi Brar <jassisinghbrar@gmail.com>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, devicetree@vger.kernel.org, 
+ linux-renesas-soc@vger.kernel.org
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87bjlwn7j9.wl-kuninori.morimoto.gx@renesas.com>
+References: <87frb8n7kl.wl-kuninori.morimoto.gx@renesas.com>
+ <87bjlwn7j9.wl-kuninori.morimoto.gx@renesas.com>
+Message-Id: <176129066419.661728.14767654389778601283.robh@kernel.org>
+Subject: Re: [PATCH 3/3] dt-bindings: mailbox: Add Renesas MFIS Mailbox
 
 
--- 
-Richard Genoud, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+On Fri, 24 Oct 2025 06:22:18 +0000, Kuninori Morimoto wrote:
+> Add device tree bindings for the Renesas Multifunctional Interface
+> (MFIS) a mailbox controller.
+> 
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  .../mailbox/renesas,mfis-mailbox.yaml         | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/renesas,mfis-mailbox.yaml
+> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mailbox/renesas,mfis-mailbox.example.dtb: mfis_mbox@18842000 (renesas,mfis-mbox): compatible:0: 'anyOf' conditional failed, one must be fixed:
+	'renesas,mfis-mbox' does not match '^renesas,(emev2|r(7s|8a|9a)[a-z0-9]+|rcar|rmobile|rz[a-z0-9]*|sh(7[a-z0-9]+)?|mobile)-[a-z0-9-]+$'
+	'renesas,mfis-mbox' does not match '^renesas,(condor|falcon|gr-peach|gray-hawk|salvator|sk-rz|smar(c(2)?)?|spider|white-hawk)(.*)?$'
+	'renesas,mfis-mbox' does not match '^renesas,(can|cpg|dmac|du|(g)?ether(avb)?|gpio|hscif|(r)?i[i2]c|imr|intc|ipmmu|irqc|jpu|mmcif|msiof|mtu2|pci(e)?|pfc|pwm|[rq]spi|rcar_sound|sata|scif[ab]*|sdhi|thermal|tmu|tpu|usb(2|hs)?|vin|xhci)-[a-z0-9-]+$'
+	'renesas,mfis-mbox' does not match '^renesas,(d|s)?bsc(3)?-(r8a73a4|r8a7740|sh73a0)$'
+	'renesas,mfis-mbox' does not match '^renesas,em-(gio|sti|uart)$'
+	'renesas,mfis-mbox' does not match '^renesas,fsi2-(r8a7740|sh73a0)$'
+	'renesas,mfis-mbox' does not match '^renesas,hspi-r8a777[89]$'
+	'renesas,mfis-mbox' does not match '^renesas,sysc-(r8a73a4|r8a7740|rmobile|sh73a0)$'
+	'renesas,mfis-mbox' is not one of ['renesas,imr-lx4', 'renesas,mtu2-r7s72100']
+	'renesas,mfis-mbox' is not one of ['renesas,smp-sram']
+	'renesas,mfis-mbox' does not match '^(?!renesas,.+-.+).+$'
+	from schema $id: http://devicetree.org/schemas/soc/renesas/renesas-soc.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/87bjlwn7j9.wl-kuninori.morimoto.gx@renesas.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
