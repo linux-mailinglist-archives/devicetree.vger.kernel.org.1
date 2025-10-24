@@ -1,692 +1,1673 @@
-Return-Path: <devicetree+bounces-230633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 660D4C04945
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:54:19 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D573BC0495D
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:56:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1C98188D77A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 06:54:42 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 62D5F4E01A5
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 06:56:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB4AC277CA4;
-	Fri, 24 Oct 2025 06:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37109276049;
+	Fri, 24 Oct 2025 06:56:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M+v/2KzM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QcMBRtUT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24C2526ED49
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 06:54:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3B65238C03
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 06:56:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761288854; cv=none; b=Jzsf6aHhcHmlSogo2iDdrSR8LvfxvWTAYVhUw8AsPqBPee+CpWRpNW3ynTLZg02URCTxc5Tm2n7b6n42q2VT3Fv9gSm6aUJk9jQUs1mjlgha5IziImHGLj7Z1p70xWwyGnI8luQGIbJNtVM42vAuyuSxrzmXkMLkkaYiQc97wvU=
+	t=1761288976; cv=none; b=TNZrZj+JIRyqmF3jx5pKI6xpV5aafD+n4MB4g80KfmrJ+NU98DJRpsw8+tEpNgJuXtF2Cc9DZCniiTqUSexyz8G1rKh4YCaX6/3XZwV3raK+lePrp+j63eaWLaUwDfhlXzC5UUFBwGDdYbnWrMuNK7+YpUhM3Zz8HhX2JduRZGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761288854; c=relaxed/simple;
-	bh=18mu6BJnai8PZ9E46EO36WymgIM4tkMZTzlEXA3EhnE=;
+	s=arc-20240116; t=1761288976; c=relaxed/simple;
+	bh=TrRZNmNWl1/ASZI1Bcieum4zsQ/5zQqr7OhSYOOzEBQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EqTzsmHLF/5T3pQeE/skyTXEf+XUtmQ1ckg0fjNC3j6RUwd0FM/Yn4QBhciNNzZEljvX7vCgCRiFDy8Po/NWSoY9CaeCRffl+Gt2tJB4pOnynhte6207TuRBiO8NVIInuihMbyHiUQI3djZimePanh0o0MxAP1l08N+48DEAPAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M+v/2KzM; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-63c3d913b3bso2931601a12.2
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 23:54:11 -0700 (PDT)
+	 To:Cc:Content-Type; b=aAbig5galyoK5Ip7juFpGHRww6z/d8SmHG5r1xrqzatlD86flc9NmILA25Xv7ELgnDnXm7UzIJ7Pv2hpsNkO5XdSgyCUYGk9frkEF5+pfaMNbXR40CEDOvfOfsETvmu8yfdbyFeguCdzIm9+ZJMI9H+cg3pjqJ/TSqn64VKDogU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QcMBRtUT; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-421851bca51so1489967f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 23:56:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761288850; x=1761893650; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=WMjeoGIMKtEWNnXB/CjmVbk4HJSTNx2NuB6HTj+1Gts=;
-        b=M+v/2KzMql/8Nh2PDAYKq0LlY8CvcmCcerjCNUi4202SKvM72owy2lQL1rAj/107nL
-         7Qk2eAK94W9to7dSybb/i57X+BWyJChESLig13Y9FN09Z4+gZUPcCz/w9n0LyGtkOxWS
-         thhLb6FNlFGpjt1NhIixu+YWZDRUqbYcYjKQ7oHv5BAFUZAvKpoQlNRRC2GXII8LfDCU
-         UDddDbgbNHb4sZxbkJOvOz7Qg1UmPf13N9KmnwU3+JHU+my/GVLDol7ySAh57lWCTy02
-         em4N9NuwJTe0y3cRDptCdNf7quxWAIrLz9lLV19d7m1NoumL+Kulj1G4nG7xUf805UZl
-         88Kg==
+        d=gmail.com; s=20230601; t=1761288971; x=1761893771; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+Tvg8VRYGkQDAdt67CJqhfAEM+TZOEbvl2MnO2qKjII=;
+        b=QcMBRtUTINQ14MM6TFiXrAOi1zPNMokc7tROGtztCHnCFyyIBetIi/SKseXImsFZyH
+         ImfzhA+0saBZmYAxpZnLuk3rxrgp+jPYg4K4TVK9b/l0i4n1l2vP09TyEKg9w4HFx6li
+         7a7yrlmqTT3ocR9WAho+yt7Y18RuwIMXfsx19qIZWoTK1HOtLno1eaNLqt97X0uKM76H
+         a0Q7ux968vLqcL6XDiZ+PKgCwcpirdI/NJJ5Stli/rMbR8p3rC5cF1IUgkIbmj3cwyQQ
+         AvXv/5KTlcBmpphQxiPVYTW24x2Df4EY09/sNPOwJukIExK9m1iqnH0halA/NkmOh5w5
+         jnGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761288850; x=1761893650;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WMjeoGIMKtEWNnXB/CjmVbk4HJSTNx2NuB6HTj+1Gts=;
-        b=wmNy31aT4FVbAS5rW/sl4Mi+BAv2xQQCtiRVuMK+9KfDHB+gA2ETYixzB14fQ8gQ20
-         8C9j/6NxSUZ6c44S40hP0rl8V8LV+No16CKojsQuqHDE7kcfSU6vOMK10H+GVNNWTG1P
-         g8YfT+hfiz1BBMfR2hBYoJ4Fn/UOOQFRId/ObThxb3Jz8I+g1gxlCtWXpoW2sx5kkcQD
-         oveZqBGfNdIUbxzNZWbmlTgGmXev2X5D+BqXa2zVuF+qBHXy8hJjfBGtHR8zQlgiEUjo
-         U63ABjVv7XRednBL6ePDMYM5cBJ31hEwDxGn0K/UzDpSrI7Qi+wR9Ka8642wbI3fkh0D
-         RiYA==
-X-Forwarded-Encrypted: i=1; AJvYcCUaMw1+3FOBUVFeCXNJG1hqsVQgUW8NkVuh5rQjTESRmg4W19cypxpH+GdapR0QVa5qfBT4LzTy7nKz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+k+KM2smuV5aBa5RrIzPeL8zl91vLuBUHc1rcLXewn9tmQxqc
-	O3c8flgTiKClD/Q1+o1kS10Q2ya2ac5mjrQWQg9lR1DKCcFTBnTsNaZ8+f0DE667vX7Ai+qybGi
-	eKaamiOLyY3mOehbcPkDno5DN0PQ9HPiwVVIyw7OS6Q==
-X-Gm-Gg: ASbGnctqHJP1GSsNjkFemcodF6i8O1bka3S8HeO7xDrFXKatusMwf4v0F5MD3KB/722
-	Fnau1qwcw1kWU2MOlHZXVCRLnD+VLrUDUAko3+ceC45F9guguvy5VlC0rQAYZOkFPo4K3RNzatg
-	wt9JwS0yRv5ghTu5hPs2iqLgMocOnEpyVkzkHFwDBufxAn7v/1iVr0PRG17MjNjse8qrl2Oa/BX
-	mrCm/t0GYOBvsRk4NW1mxYup764kiyYRH21xUYtGy7Blef3QiRp0gaIOxRraldoGGEyuNY28KUb
-	MDdFzQxGX2Qoug==
-X-Google-Smtp-Source: AGHT+IEYLEAvh2AW/Wkqzr4Q7W6XcS9w8mCGRfwopLY9yVKV4Q1YZw5mR9m4A7lrv3S6nFH6IjA+1NPOrAgWcGlEyeQ=
-X-Received: by 2002:a05:6402:350e:b0:63b:f4b4:a005 with SMTP id
- 4fb4d7f45d1cf-63e3e10b947mr4857679a12.10.1761288850199; Thu, 23 Oct 2025
- 23:54:10 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761288971; x=1761893771;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+Tvg8VRYGkQDAdt67CJqhfAEM+TZOEbvl2MnO2qKjII=;
+        b=t+LL56+iN6v2Cw5ZZk+o/t1xWqwEd9QVc3DQCH2FfYkshu5CA7jR6YfKcsqYP9+AP0
+         fekvNHYmWlehza0XcQPYeBSTGlL5BBWvTqXfdYkpDe68vziryPSeMYzvzOkkzJJJ7wST
+         VllIG7Hccr2shWRCIlkkhFI8buotxbv3ejLF884ZSAk5JrXVI5YWAU00a8bDNuhJj3he
+         qNeEYRr4rXa5JkQU9RyVo99yKSRP+IczFYknmgmbOyDBeOmIX08KrIM3MAeiiLK46H/p
+         UtVOX143yAt1M82SaXvQglbZsgTgxpWRktHmA8ga51xqczu8L2z811fJh4X1HHNY910L
+         3uJA==
+X-Forwarded-Encrypted: i=1; AJvYcCUkcN437b55Ryxn6S/n7pv+j+CiDKLca9DuECw8JODqcxCoGUETQJv6cCBpByniP2OFcdNpLKTRUAmY@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPYn/DzjCEaJctjgAVSKPnUiplJCW8R6jdPZUWvlFf2Ho65QKS
+	xLFcFcCiJlef0zRQHYfRRjENOTXuo+LZzPIR/QUxEiFdAkSERclFF6o3i56SZINcXyitqS9lNZ0
+	bV/JdQcZBirkR4mKWUE7ePjsks3ShDVM=
+X-Gm-Gg: ASbGnctUy0vVYkOue7x4l2+35tL5x2TDlRzebqZtpeeSH5l0OhNHt8cdEHydqYInf0U
+	nA5LjSzgm2UzULuy0Z81OBk/plEoaBKkyj5am9GfzDhNPFDN9tSlaIrg8GD8hg/+231DKyXHcDS
+	c05Ie532nVfk508cLupCOMWnP6SL7bFQ57CLU0XqohajJQY2PjqCpa/rs36AEr/q2Pq8zBYN42a
+	E9QQolhn5ysuHzIR5S39NdMTHzR6tAzjyKChtagHWLhf24T0pfWVX0zBI2DJuIA9FJsp1PBsvRY
+	jVUDtVSD
+X-Google-Smtp-Source: AGHT+IEoh4q4B1PatYd6MvL2E4jTUwyTr1dKK+ddikwIY1KHabZ9/0Sejise+0ZU58qoAl1o0uggeklLcGPJmq6Q7ys=
+X-Received: by 2002:a05:6000:4008:b0:429:8a19:96c9 with SMTP id
+ ffacd0b85a97d-42990717e98mr888745f8f.19.1761288970559; Thu, 23 Oct 2025
+ 23:56:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251022174309.1180931-1-vincent.guittot@linaro.org>
- <20251022174309.1180931-4-vincent.guittot@linaro.org> <aPk0ANXxF4cU9nfm@lizhi-Precision-Tower-5810>
-In-Reply-To: <aPk0ANXxF4cU9nfm@lizhi-Precision-Tower-5810>
-From: Vincent Guittot <vincent.guittot@linaro.org>
-Date: Fri, 24 Oct 2025 08:53:58 +0200
-X-Gm-Features: AS18NWDq4TPEy3JuweIb-xkFMieOKaDde0U8PWP2Rf4HNWuKsCmHx3rhIw-2CoE
-Message-ID: <CAKfTPtBYXZi59WRm-8r4OtB1a-CQjEFFLTkuWuCXJYGxAHYqiQ@mail.gmail.com>
-Subject: Re: [PATCH 3/4 v3] PCI: s32g: Add initial PCIe support (RC)
-To: Frank Li <Frank.li@nxp.com>
-Cc: chester62515@gmail.com, mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com, 
-	s32@nxp.com, bhelgaas@google.com, jingoohan1@gmail.com, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com, 
-	Ghennadi.Procopciuc@nxp.com, ciprianmarian.costea@nxp.com, 
-	bogdan.hamciuc@nxp.com, linux-arm-kernel@lists.infradead.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev, cassel@kernel.org
+References: <20251002-ivc-v5-0-192c663fa70b@ideasonboard.com> <20251002-ivc-v5-2-192c663fa70b@ideasonboard.com>
+In-Reply-To: <20251002-ivc-v5-2-192c663fa70b@ideasonboard.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Fri, 24 Oct 2025 07:55:42 +0100
+X-Gm-Features: AWmQ_bn_qJfiB14WFQMoaJ5U-NRcLDDYCKy82k6qam7NKjhFfpeWb4K9ASVV3CA
+Message-ID: <CA+V-a8ukCKP3LocazbGHOVXkoBVH1art+=J6aD30xi_S63iY6Q@mail.gmail.com>
+Subject: Re: [PATCH v5 2/3] media: platform: Add Renesas Input Video Control
+ block driver
+To: Daniel Scally <dan.scally@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, jacopo.mondi@ideasonboard.com, 
+	biju.das.jz@bp.renesas.com, laurent.pinchart@ideasonboard.com, 
+	Jacopo Mondi <jacopo.mondi+renesas@ideasonboard.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 22 Oct 2025 at 21:44, Frank Li <Frank.li@nxp.com> wrote:
->
-> On Wed, Oct 22, 2025 at 07:43:08PM +0200, Vincent Guittot wrote:
-> > Add initial support of the PCIe controller for S32G Soc family. Only
-> > host mode is supported.
-> >
-> > Co-developed-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
-> > Signed-off-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
-> > Co-developed-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
-> > Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
-> > Co-developed-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-> > Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-> > Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
-> > Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> > Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
-> > ---
-> >  drivers/pci/controller/dwc/Kconfig            |  10 +
-> >  drivers/pci/controller/dwc/Makefile           |   1 +
-> >  .../pci/controller/dwc/pcie-nxp-s32g-regs.h   |  37 ++
-> >  drivers/pci/controller/dwc/pcie-nxp-s32g.c    | 439 ++++++++++++++++++
-> >  4 files changed, 487 insertions(+)
-> >  create mode 100644 drivers/pci/controller/dwc/pcie-nxp-s32g-regs.h
-> >  create mode 100644 drivers/pci/controller/dwc/pcie-nxp-s32g.c
-> >
-> > diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> > index 349d4657393c..3f3172a0cd95 100644
-> > --- a/drivers/pci/controller/dwc/Kconfig
-> > +++ b/drivers/pci/controller/dwc/Kconfig
-> > @@ -406,6 +406,16 @@ config PCIE_UNIPHIER_EP
-> >         Say Y here if you want PCIe endpoint controller support on
-> >         UniPhier SoCs. This driver supports Pro5 SoC.
-> >
-> > +config PCIE_NXP_S32G
-> > +     tristate "NXP S32G PCIe controller (host mode)"
-> > +     depends on ARCH_S32 || COMPILE_TEST
-> > +     select PCIE_DW_HOST
-> > +     help
-> > +       Enable support for the PCIe controller in NXP S32G based boards to
-> > +       work in Host mode. The controller is based on DesignWare IP and
-> > +       can work either as RC or EP. In order to enable host-specific
-> > +       features PCIE_S32G must be selected.
-> > +
-> >  config PCIE_SOPHGO_DW
-> >       bool "Sophgo DesignWare PCIe controller (host mode)"
-> >       depends on ARCH_SOPHGO || COMPILE_TEST
-> > diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-> > index 7ae28f3b0fb3..3301bbbad78c 100644
-> > --- a/drivers/pci/controller/dwc/Makefile
-> > +++ b/drivers/pci/controller/dwc/Makefile
-> > @@ -10,6 +10,7 @@ obj-$(CONFIG_PCI_DRA7XX) += pci-dra7xx.o
-> >  obj-$(CONFIG_PCI_EXYNOS) += pci-exynos.o
-> >  obj-$(CONFIG_PCIE_FU740) += pcie-fu740.o
-> >  obj-$(CONFIG_PCI_IMX6) += pci-imx6.o
-> > +obj-$(CONFIG_PCIE_NXP_S32G) += pcie-nxp-s32g.o
-> >  obj-$(CONFIG_PCIE_SPEAR13XX) += pcie-spear13xx.o
-> >  obj-$(CONFIG_PCI_KEYSTONE) += pci-keystone.o
-> >  obj-$(CONFIG_PCI_LAYERSCAPE) += pci-layerscape.o
-> > diff --git a/drivers/pci/controller/dwc/pcie-nxp-s32g-regs.h b/drivers/pci/controller/dwc/pcie-nxp-s32g-regs.h
-> > new file mode 100644
-> > index 000000000000..6f04204054dd
-> > --- /dev/null
-> > +++ b/drivers/pci/controller/dwc/pcie-nxp-s32g-regs.h
-> > @@ -0,0 +1,37 @@
-> > +/* SPDX-License-Identifier: GPL-2.0+ */
-> > +/*
-> > + * Copyright 2015-2016 Freescale Semiconductor, Inc.
-> > + * Copyright 2016-2023, 2025 NXP
-> > + */
-> > +
-> > +#ifndef PCIE_S32G_REGS_H
-> > +#define PCIE_S32G_REGS_H
-> > +
-> > +/* PCIe controller Sub-System */
-> > +
-> > +/* Link Interrupt Control And Status */
-> > +#define PCIE_S32G_LINK_INT_CTRL_STS          0x40
-> > +#define LINK_REQ_RST_NOT_INT_EN                      BIT(1)
-> > +#define LINK_REQ_RST_NOT_CLR                 BIT(2)
-> > +
-> > +/* PCIe controller 0 General Control 1 */
-> > +#define PCIE_S32G_PE0_GEN_CTRL_1             0x50
-> > +#define DEVICE_TYPE_MASK                     GENMASK(3, 0)
-> > +#define DEVICE_TYPE(x)                               FIELD_PREP(DEVICE_TYPE_MASK, x)
-> > +#define SRIS_MODE                            BIT(8)
-> > +
-> > +/* PCIe controller 0 General Control 3 */
-> > +#define PCIE_S32G_PE0_GEN_CTRL_3             0x58
-> > +#define LTSSM_EN                             BIT(0)
->
-> Need S32G prefix for register field to avoid name collision.
+Hi Daniel,
 
-I have followed what others were also doing for define ltssm_en
+Thank you for the patch.
 
+On Thu, Oct 2, 2025 at 11:38=E2=80=AFAM Daniel Scally
+<dan.scally@ideasonboard.com> wrote:
 >
-> > +
-> > +/* PCIe Controller 0 Transmit Message Request */
-> > +#define PCIE_S32G_PE0_TX_MSG_REQ             0x80
-> > +#define PME_TURN_OFF_REQ                     BIT(19)
+> Add a driver for the Input Video Control block in an RZ/V2H(P) SoC
+> which feeds data into the Arm Mali-C55 ISP.
 >
-> I think needn't use customized pme_turn_off. You can use common
-> dw_pcie_pme_turn_off(), which use iatu map a windows to send out pcie msg.
-> That's fit all new version dwc controller. I think s32 should be new enough.
+> [ivc: Remove check on buffers list in start_streaming]
+> [ivc: put_autosuspend() implies mark_last_busy()]
+> [media: rzv2h-ivc: Do not delay frame completion]
+> Signed-off-by: Jacopo Mondi <jacopo.mondi+renesas@ideasonboard.com>
+> Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> ---
+> Changes in v7:
+>
+>         - Returned buffers to userspace as soon as the first
+>           interrupt is received instead of waiting until the
+>           second
+>         - Fixes to the pm runtime invocations
+>         - Some minor formatting changes
+>
+> Changes in v6:
+>
+>         - Minor formatting changes
+>         - Dropped CONFIG_ prefix from Kconfig symbols
+>         - Collected tags
+>         - Replaced "RZ/V2H" with "RZ/V2H(P)"
+>         - Reformatted probe function
+>         - Removed leftover reference to media job scheduler
+>         - Drop the .pipeline_started() and .pipeline_stopped()
+>           media entity operations to remove a dependency for the
+>           set.
+>
+> Changes in v5:
+>
+>         - Fixed .enum_frame_sizes() to properly check that the
+>           given mbus_code matches the source pads format.
+>         - Tidy up extra space in Kconfig
+>         - Revise Kconfig option message
+>         - Don't mark functions inline
+>         - Fixup misleading comment
+>         - select CONFIG_PM
+>         - Use the new pm_sleep_ptr() functionality
+>         - Minor formatting
+>
+> Changes in v4:
+>
+>         - Update the compatible to renesas,r9a09g057-ivc
+>         - Dropped the media jobs / scheduler functionality, and re
+>           worked the driver to have its own workqueue pushing frames
+>         - Fix .enum_mbus_code() to return 20-bit output for source
+>           pad.
+>         - Fix some alignment issues
+>         - Make the forwarding of sink to source pad format a more
+>           explicit operation.
+>         - Rename rzv2h_initialise_video_device_and_queue()
+>         - Reversed order of v4l2_subdev_init_finalize() and
+>           v4l2_async_register_subdev() to make sure everything is
+>           finished initialising before registering the subdev.
+>         - Change function to MEDIA_ENT_F_PROC_VIDEO_PIXEL_FORMATTER
+>         - Use a parametised macro for min vblank
+>         - Minor formatting
+>         - Use the DEFAULT macros for quantization / ycbcr_enc values
+>         - Switch to using the mplane API
+>         - Dropped select RESET_CONTROLLER
+>         - Used the new helpers for starting a media pipeline
+>         - Switch from threaded irq to normal with driver workqueue
+>           and revised startup routine
+>
+> Changes in v3:
+>
+>         - Account for the renamed CRU pixel formats
+>
+> Changes in v2:
+>
+>         - Added selects and depends statements to Kconfig entry
+>         - Fixed copyright year
+>         - Stopped including in .c files headers already included in .h
+>         - Fixed uninitialized variable in iterator
+>         - Only check vvalid member in interrupt function and wait
+>           unconditionally elsewhere
+>         - __maybe_unused for the PM ops
+>         - Initialise the subdevice after setting up PM
+>         - Fixed the remove function for the driver to actually do
+>           something.
+>         - Some minor formatting changes
+>         - Fixed the quantization member for the format
+>         - Changes accounting for the v2 of the media jobs framework
+>         - Change min_queued_buffers to 0
+> ---
+>  drivers/media/platform/renesas/Kconfig             |   1 +
+>  drivers/media/platform/renesas/Makefile            |   1 +
+>  drivers/media/platform/renesas/rzv2h-ivc/Kconfig   |  18 +
+>  drivers/media/platform/renesas/rzv2h-ivc/Makefile  |   5 +
+>  .../platform/renesas/rzv2h-ivc/rzv2h-ivc-dev.c     | 238 +++++++++
+>  .../platform/renesas/rzv2h-ivc/rzv2h-ivc-subdev.c  | 375 +++++++++++++++
+>  .../platform/renesas/rzv2h-ivc/rzv2h-ivc-video.c   | 533 +++++++++++++++=
+++++++
+>  .../media/platform/renesas/rzv2h-ivc/rzv2h-ivc.h   | 130 +++++
+>  8 files changed, 1301 insertions(+)
+>
+> diff --git a/drivers/media/platform/renesas/Kconfig b/drivers/media/platf=
+orm/renesas/Kconfig
+> index 27a54fa7908384f2e8200f0f7283a82b0ae8435c..bd8247c0b8aa734d2b412438e=
+694f3908d910b25 100644
+> --- a/drivers/media/platform/renesas/Kconfig
+> +++ b/drivers/media/platform/renesas/Kconfig
+> @@ -42,6 +42,7 @@ config VIDEO_SH_VOU
+>  source "drivers/media/platform/renesas/rcar-isp/Kconfig"
+>  source "drivers/media/platform/renesas/rcar-vin/Kconfig"
+>  source "drivers/media/platform/renesas/rzg2l-cru/Kconfig"
+> +source "drivers/media/platform/renesas/rzv2h-ivc/Kconfig"
+>
+>  # Mem2mem drivers
+>
+> diff --git a/drivers/media/platform/renesas/Makefile b/drivers/media/plat=
+form/renesas/Makefile
+> index 1127259c09d6a51b70803e76c495918e06777f67..b6b4abf01db246aaf8269b802=
+7efee9b0b32083a 100644
+> --- a/drivers/media/platform/renesas/Makefile
+> +++ b/drivers/media/platform/renesas/Makefile
+> @@ -6,6 +6,7 @@
+>  obj-y +=3D rcar-isp/
+>  obj-y +=3D rcar-vin/
+>  obj-y +=3D rzg2l-cru/
+> +obj-y +=3D rzv2h-ivc/
+>  obj-y +=3D vsp1/
+>
+>  obj-$(CONFIG_VIDEO_RCAR_CSI2) +=3D rcar-csi2.o
+> diff --git a/drivers/media/platform/renesas/rzv2h-ivc/Kconfig b/drivers/m=
+edia/platform/renesas/rzv2h-ivc/Kconfig
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..b30702489d380902bfdcff57f=
+0d70498c85e1d24
+> --- /dev/null
+> +++ b/drivers/media/platform/renesas/rzv2h-ivc/Kconfig
+> @@ -0,0 +1,18 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +
+> +config VIDEO_RZV2H_IVC
+> +       tristate "Renesas RZ/V2H(P) Input Video Control block driver"
+> +       depends on V4L_PLATFORM_DRIVERS
+> +       depends on VIDEO_DEV
+> +       depends on ARCH_RENESAS || COMPILE_TEST
+> +       depends on OF
+> +       select PM
+> +       select VIDEOBUF2_DMA_CONTIG
+> +       select MEDIA_CONTROLLER
+> +       select VIDEO_V4L2_SUBDEV_API
+> +       help
+> +          Support for the Renesas RZ/V2H(P) Input Video Control Block
+> +          (IVC).
+> +
+> +          To compile this driver as a module, choose M here: the
+> +          module will be called rzv2h-ivc.
+> diff --git a/drivers/media/platform/renesas/rzv2h-ivc/Makefile b/drivers/=
+media/platform/renesas/rzv2h-ivc/Makefile
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..080ee3570f09c236d87abeaea=
+5d8dd578fefb6d3
+> --- /dev/null
+> +++ b/drivers/media/platform/renesas/rzv2h-ivc/Makefile
+> @@ -0,0 +1,5 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +rzv2h-ivc-y :=3D rzv2h-ivc-dev.o rzv2h-ivc-subdev.o rzv2h-ivc-video.o
+> +
+> +obj-$(CONFIG_VIDEO_RZV2H_IVC) +=3D rzv2h-ivc.o
+> diff --git a/drivers/media/platform/renesas/rzv2h-ivc/rzv2h-ivc-dev.c b/d=
+rivers/media/platform/renesas/rzv2h-ivc/rzv2h-ivc-dev.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..aa0bee68deb37166fc07b77a7=
+167dc8e2877fbf5
+> --- /dev/null
+> +++ b/drivers/media/platform/renesas/rzv2h-ivc/rzv2h-ivc-dev.c
+> @@ -0,0 +1,238 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Renesas RZ/V2H(P) Input Video Control Block driver
+> + *
+> + * Copyright (C) 2025 Ideas on Board Oy
+> + */
+> +
+> +#include "rzv2h-ivc.h"
+> +
+> +#include <linux/device.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/reset.h>
+> +
+> +void rzv2h_ivc_write(struct rzv2h_ivc *ivc, u32 addr, u32 val)
+> +{
+> +       writel(val, ivc->base + addr);
+> +}
+> +
+> +void rzv2h_ivc_update_bits(struct rzv2h_ivc *ivc, unsigned int addr,
+> +                          u32 mask, u32 val)
+> +{
+> +       u32 orig, new;
+> +
+> +       orig =3D readl(ivc->base + addr);
+> +
+> +       new =3D orig & ~mask;
+> +       new |=3D val & mask;
+> +
+> +       if (new !=3D orig)
+> +               writel(new, ivc->base + addr);
+> +}
+> +
+> +static int rzv2h_ivc_get_hardware_resources(struct rzv2h_ivc *ivc,
+> +                                           struct platform_device *pdev)
+> +{
+> +       static const char * const resource_names[RZV2H_IVC_NUM_HW_RESOURC=
+ES] =3D {
+> +               "reg",
+> +               "axi",
+> +               "isp",
+> +       };
+> +       struct resource *res;
+> +       int ret;
+> +
+> +       ivc->base =3D devm_platform_get_and_ioremap_resource(pdev, 0, &re=
+s);
+> +       if (IS_ERR(ivc->base))
+> +               return dev_err_probe(ivc->dev, PTR_ERR(ivc->base),
+> +                                    "failed to map IO memory\n");
+> +
+> +       for (unsigned int i =3D 0; i < ARRAY_SIZE(resource_names); i++)
+> +               ivc->clks[i].id =3D resource_names[i];
+> +
+> +       ret =3D devm_clk_bulk_get(ivc->dev, ARRAY_SIZE(resource_names), i=
+vc->clks);
+> +       if (ret)
+> +               return dev_err_probe(ivc->dev, ret, "failed to acquire cl=
+ks\n");
+> +
+> +       for (unsigned int i =3D 0; i < ARRAY_SIZE(resource_names); i++)
+> +               ivc->resets[i].id =3D resource_names[i];
+> +
+> +       ret =3D devm_reset_control_bulk_get_optional_shared(
+> +               ivc->dev, ARRAY_SIZE(resource_names), ivc->resets);
+> +       if (ret)
+> +               return dev_err_probe(ivc->dev, ret, "failed to acquire re=
+sets\n");
+> +
+> +       return 0;
+> +}
+> +
+> +static void rzv2h_ivc_global_config(struct rzv2h_ivc *ivc)
+> +{
+> +       /* Currently we only support single-exposure input */
+> +       rzv2h_ivc_write(ivc, RZV2H_IVC_REG_AXIRX_PLNUM, RZV2H_IVC_ONE_EXP=
+OSURE);
+> +
+> +       /*
+> +        * Datasheet says we should disable the interrupts before changin=
+g mode
+> +        * to avoid spurious IFP interrupt.
+> +        */
+> +       rzv2h_ivc_write(ivc, RZV2H_IVC_REG_FM_INT_EN, 0x0);
+> +
+> +       /*
+> +        * RZ/V2H(P) documentation says software controlled single contex=
+t mode
+> +        * is not supported, and currently the driver does not support th=
+e
+> +        * multi-context mode. That being so we just set single context s=
+w-hw
+> +        * mode.
+> +        */
+> +       rzv2h_ivc_write(ivc, RZV2H_IVC_REG_FM_CONTEXT,
+> +                       RZV2H_IVC_SINGLE_CONTEXT_SW_HW_CFG);
+> +
+> +       /*
+> +        * We enable the frame end interrupt so that we know when we shou=
+ld send
+> +        * follow-up frames.
+> +        */
+> +       rzv2h_ivc_write(ivc, RZV2H_IVC_REG_FM_INT_EN, RZV2H_IVC_VVAL_IFPE=
+);
+> +}
+> +
+> +static irqreturn_t rzv2h_ivc_isr(int irq, void *context)
+> +{
+> +       struct device *dev =3D context;
+> +       struct rzv2h_ivc *ivc =3D dev_get_drvdata(dev);
+> +
+> +       guard(spinlock)(&ivc->spinlock);
+> +
+> +       /* IRQ should never be triggered before vvalid_ifp has been reset=
+ to 2 */
+> +       if (WARN_ON(!ivc->vvalid_ifp))
+> +               return IRQ_HANDLED;
+> +
+> +       /*
+> +        * The first interrupt indicates that the buffer transfer has bee=
+n
+> +        * completed.
+> +        */
+> +       if (--ivc->vvalid_ifp) {
+> +               rzv2h_ivc_buffer_done(ivc);
+> +               return IRQ_HANDLED;
+> +       }
+> +
+> +       /*
+> +        * The second interrupt indicates that the post-frame transfer VB=
+LANK
+> +        * has completed, we can now schedule a new frame transfer, if an=
+y.
+> +        */
+> +       queue_work(ivc->buffers.async_wq, &ivc->buffers.work);
+> +
+> +       return IRQ_HANDLED;
+> +}
+> +
+> +static int rzv2h_ivc_runtime_resume(struct device *dev)
+> +{
+> +       struct rzv2h_ivc *ivc =3D dev_get_drvdata(dev);
+> +       int ret;
+> +
+> +       ret =3D request_irq(ivc->irqnum, rzv2h_ivc_isr, 0, dev_driver_str=
+ing(dev),
+> +                         dev);
+> +       if (ret) {
+> +               dev_err(dev, "failed to request irq\n");
+> +               return ret;
+> +       }
+I think we could move the request_irq after the below initialization.
 
-RM said to use this and last time that I test it failed but I will
-test with the latest changes and after enabling use_atu_msg which I
-didn't do last time
+> +
+> +       ret =3D clk_bulk_prepare_enable(ARRAY_SIZE(ivc->clks), ivc->clks)=
+;
+> +       if (ret) {
+> +               dev_err(ivc->dev, "failed to enable clocks\n");
+> +               goto err_free_irqnum;
+> +       }
+> +
+> +       ret =3D reset_control_bulk_deassert(ARRAY_SIZE(ivc->resets), ivc-=
+>resets);
+> +       if (ret) {
+> +               dev_err(ivc->dev, "failed to deassert resets\n");
+> +               goto err_disable_clks;
+> +       }
+> +
+> +       rzv2h_ivc_global_config(ivc);
+> +
+> +       return 0;
+> +
+> +err_disable_clks:
+> +       clk_bulk_disable_unprepare(ARRAY_SIZE(ivc->clks), ivc->clks);
+> +err_free_irqnum:
+> +       free_irq(ivc->irqnum, dev);
+> +
+> +       return ret;
+> +}
+> +
+> +static int rzv2h_ivc_runtime_suspend(struct device *dev)
+> +{
+> +       struct rzv2h_ivc *ivc =3D dev_get_drvdata(dev);
+> +
+> +       reset_control_bulk_assert(ARRAY_SIZE(ivc->resets), ivc->resets);
+> +       clk_bulk_disable_unprepare(ARRAY_SIZE(ivc->clks), ivc->clks);
+> +       free_irq(ivc->irqnum, dev);
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct dev_pm_ops rzv2h_ivc_pm_ops =3D {
+> +       SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend, pm_runtime_force_re=
+sume)
+> +       RUNTIME_PM_OPS(rzv2h_ivc_runtime_suspend, rzv2h_ivc_runtime_resum=
+e,
+> +                      NULL)
+> +};
+> +
+> +static int rzv2h_ivc_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev =3D &pdev->dev;
+> +       struct rzv2h_ivc *ivc;
+> +       int ret;
+> +
+> +       ivc =3D devm_kzalloc(dev, sizeof(*ivc), GFP_KERNEL);
+> +       if (!ivc)
+> +               return -ENOMEM;
+> +
+> +       ivc->dev =3D dev;
+> +       platform_set_drvdata(pdev, ivc);
+> +       mutex_init(&ivc->lock);
+we could switch to devm_mutex_init().
 
->
-> > +
-> > +/* PCIe Controller 0 Link Debug 2 */
-> > +#define PCIE_S32G_PE0_LINK_DBG_2             0xB4
-> > +#define SMLH_LTSSM_STATE_MASK                        GENMASK(5, 0)
-> > +#define SMLH_LINK_UP                         BIT(6)
-> > +#define RDLH_LINK_UP                         BIT(7)
-> > +
-> > +#endif  /* PCI_S32G_REGS_H */
-> > diff --git a/drivers/pci/controller/dwc/pcie-nxp-s32g.c b/drivers/pci/controller/dwc/pcie-nxp-s32g.c
-> > new file mode 100644
-> > index 000000000000..53529f63c555
-> > --- /dev/null
-> > +++ b/drivers/pci/controller/dwc/pcie-nxp-s32g.c
-> > @@ -0,0 +1,439 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * PCIe host controller driver for NXP S32G SoCs
-> > + *
-> > + * Copyright 2019-2025 NXP
-> > + */
-> > +
-> > +#include <linux/interrupt.h>
-> > +#include <linux/io.h>
-> > +#include <linux/memblock.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/of_address.h>
-> > +#include <linux/pci.h>
-> > +#include <linux/phy/phy.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/pm_runtime.h>
-> > +#include <linux/sizes.h>
-> > +#include <linux/types.h>
-> > +
-> > +#include "pcie-designware.h"
-> > +#include "pcie-nxp-s32g-regs.h"
-> > +
-> > +struct s32g_pcie {
-> > +     struct dw_pcie  pci;
-> > +     void __iomem *ctrl_base;
-> > +     struct phy *phy;
-> > +};
-> > +
-> > +#define to_s32g_from_dw_pcie(x) \
-> > +     container_of(x, struct s32g_pcie, pci)
-> > +
-> > +static void s32g_pcie_writel_ctrl(struct s32g_pcie *s32g_pp, u32 reg, u32 val)
-> > +{
-> > +     writel(val, s32g_pp->ctrl_base + reg);
-> > +}
-> > +
-> > +static u32 s32g_pcie_readl_ctrl(struct s32g_pcie *s32g_pp, u32 reg)
-> > +{
-> > +     return readl(s32g_pp->ctrl_base + reg);
-> > +}
-> > +
-> > +static void s32g_pcie_enable_ltssm(struct s32g_pcie *s32g_pp)
-> > +{
-> > +     u32 reg;
-> > +
-> > +     reg = s32g_pcie_readl_ctrl(s32g_pp, PCIE_S32G_PE0_GEN_CTRL_3);
-> > +     reg |= LTSSM_EN;
-> > +     s32g_pcie_writel_ctrl(s32g_pp, PCIE_S32G_PE0_GEN_CTRL_3, reg);
-> > +}
-> > +
-> > +static void s32g_pcie_disable_ltssm(struct s32g_pcie *s32g_pp)
-> > +{
-> > +     u32 reg;
-> > +
-> > +     reg = s32g_pcie_readl_ctrl(s32g_pp, PCIE_S32G_PE0_GEN_CTRL_3);
-> > +     reg &= ~LTSSM_EN;
-> > +     s32g_pcie_writel_ctrl(s32g_pp, PCIE_S32G_PE0_GEN_CTRL_3, reg);
-> > +}
-> > +
-> > +static bool is_s32g_pcie_ltssm_enabled(struct s32g_pcie *s32g_pp)
-> > +{
-> > +     return (s32g_pcie_readl_ctrl(s32g_pp, PCIE_S32G_PE0_GEN_CTRL_3) & LTSSM_EN);
-> > +}
-> > +
-> > +static enum dw_pcie_ltssm s32g_pcie_get_ltssm(struct dw_pcie *pci)
-> > +{
-> > +     struct s32g_pcie *s32g_pp = to_s32g_from_dw_pcie(pci);
-> > +     u32 reg = s32g_pcie_readl_ctrl(s32g_pp, PCIE_S32G_PE0_LINK_DBG_2);
-> > +
-> > +     return (enum dw_pcie_ltssm)FIELD_GET(SMLH_LTSSM_STATE_MASK, reg);
-> > +}
->
-> Does dw_pcie_readl_dbi(pci, PCIE_PORT_DEBUG0); work for s32?
+> +       spin_lock_init(&ivc->spinlock);
+> +
+> +       ret =3D rzv2h_ivc_get_hardware_resources(ivc, pdev);
+> +       if (ret)
+> +               return ret;
+> +
+> +       pm_runtime_set_autosuspend_delay(dev, 2000);
+> +       pm_runtime_use_autosuspend(dev);
+> +       pm_runtime_enable(dev);
+> +
+> +       ivc->irqnum =3D platform_get_irq(pdev, 0);
+> +       if (ivc->irqnum < 0)
+> +               return ivc->irqnum;
+we need to disable pm_runtime in the error path.
 
- I reused what has been used internally. I will check but RM only
-mentioned an opaque cxpl_debug_info[31:0].
+> +
+> +       return rzv2h_ivc_initialise_subdevice(ivc);
+> +}
+> +
+> +static void rzv2h_ivc_remove(struct platform_device *pdev)
+> +{
+> +       struct rzv2h_ivc *ivc =3D platform_get_drvdata(pdev);
+> +
+> +       rzv2h_deinit_video_dev_and_queue(ivc);
+> +       rzv2h_ivc_deinit_subdevice(ivc);
+> +       mutex_destroy(&ivc->lock);
+> +}
+> +
+> +static const struct of_device_id rzv2h_ivc_of_match[] =3D {
+> +       { .compatible =3D "renesas,r9a09g057-ivc", },
+> +       { /* Sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, rzv2h_ivc_of_match);
+> +
+> +static struct platform_driver rzv2h_ivc_driver =3D {
+> +       .driver =3D {
+> +               .name =3D "rzv2h-ivc",
+> +               .of_match_table =3D rzv2h_ivc_of_match,
+> +               .pm =3D &rzv2h_ivc_pm_ops,
+> +       },
+> +       .probe =3D rzv2h_ivc_probe,
+> +       .remove =3D rzv2h_ivc_remove,
+> +};
+> +
+> +module_platform_driver(rzv2h_ivc_driver);
+> +
+> +MODULE_AUTHOR("Daniel Scally <dan.scally@ideasonboard.com>");
+> +MODULE_DESCRIPTION("Renesas RZ/V2H(P) Input Video Control Block driver")=
+;
+> +MODULE_LICENSE("GPL");
+> diff --git a/drivers/media/platform/renesas/rzv2h-ivc/rzv2h-ivc-subdev.c =
+b/drivers/media/platform/renesas/rzv2h-ivc/rzv2h-ivc-subdev.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..5b7bebc0f7e72bc1aee4247d7=
+d15820705bb6b15
+> --- /dev/null
+> +++ b/drivers/media/platform/renesas/rzv2h-ivc/rzv2h-ivc-subdev.c
+> @@ -0,0 +1,375 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Renesas RZ/V2H(P) Input Video Control Block driver
+> + *
+> + * Copyright (C) 2025 Ideas on Board Oy
+> + */
+> +
+> +#include "rzv2h-ivc.h"
+> +
+> +#include <linux/media.h>
+> +#include <linux/media-bus-format.h>
+> +#include <linux/v4l2-mediabus.h>
+> +
+> +#include <media/v4l2-async.h>
+> +#include <media/v4l2-ctrls.h>
+> +#include <media/v4l2-dev.h>
+> +#include <media/v4l2-event.h>
+> +
+> +#define RZV2H_IVC_N_INPUTS_PER_OUTPUT          6
+> +
+> +/*
+> + * We support 8/10/12/14/16/20 bit input in any bayer order, but the out=
+put
+> + * format is fixed at 20-bits with the same order as the input.
+> + */
+> +static const struct {
+> +       u32 inputs[RZV2H_IVC_N_INPUTS_PER_OUTPUT];
+> +       u32 output;
+> +} rzv2h_ivc_formats[] =3D {
+> +       {
+> +               .inputs =3D {
+> +                       MEDIA_BUS_FMT_SBGGR8_1X8,
+> +                       MEDIA_BUS_FMT_SBGGR10_1X10,
+> +                       MEDIA_BUS_FMT_SBGGR12_1X12,
+> +                       MEDIA_BUS_FMT_SBGGR14_1X14,
+> +                       MEDIA_BUS_FMT_SBGGR16_1X16,
+> +                       MEDIA_BUS_FMT_SBGGR20_1X20,
+> +               },
+> +               .output =3D MEDIA_BUS_FMT_SBGGR20_1X20
+> +       },
+> +       {
+> +               .inputs =3D {
+> +                       MEDIA_BUS_FMT_SGBRG8_1X8,
+> +                       MEDIA_BUS_FMT_SGBRG10_1X10,
+> +                       MEDIA_BUS_FMT_SGBRG12_1X12,
+> +                       MEDIA_BUS_FMT_SGBRG14_1X14,
+> +                       MEDIA_BUS_FMT_SGBRG16_1X16,
+> +                       MEDIA_BUS_FMT_SGBRG20_1X20,
+> +               },
+> +               .output =3D MEDIA_BUS_FMT_SGBRG20_1X20
+> +       },
+> +       {
+> +               .inputs =3D {
+> +                       MEDIA_BUS_FMT_SGRBG8_1X8,
+> +                       MEDIA_BUS_FMT_SGRBG10_1X10,
+> +                       MEDIA_BUS_FMT_SGRBG12_1X12,
+> +                       MEDIA_BUS_FMT_SGRBG14_1X14,
+> +                       MEDIA_BUS_FMT_SGRBG16_1X16,
+> +                       MEDIA_BUS_FMT_SGRBG20_1X20,
+> +               },
+> +               .output =3D MEDIA_BUS_FMT_SGRBG20_1X20
+> +       },
+> +       {
+> +               .inputs =3D {
+> +                       MEDIA_BUS_FMT_SRGGB8_1X8,
+> +                       MEDIA_BUS_FMT_SRGGB10_1X10,
+> +                       MEDIA_BUS_FMT_SRGGB12_1X12,
+> +                       MEDIA_BUS_FMT_SRGGB14_1X14,
+> +                       MEDIA_BUS_FMT_SRGGB16_1X16,
+> +                       MEDIA_BUS_FMT_SRGGB20_1X20,
+> +               },
+> +               .output =3D MEDIA_BUS_FMT_SRGGB20_1X20
+> +       },
+> +};
+> +
+> +static u32 rzv2h_ivc_get_mbus_output_from_input(u32 mbus_code)
+> +{
+> +       unsigned int i, j;
+> +
+> +       for (i =3D 0; i < ARRAY_SIZE(rzv2h_ivc_formats); i++) {
+> +               for (j =3D 0; j < RZV2H_IVC_N_INPUTS_PER_OUTPUT; j++) {
+> +                       if (rzv2h_ivc_formats[i].inputs[j] =3D=3D mbus_co=
+de)
+> +                               return rzv2h_ivc_formats[i].output;
+> +               }
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static int rzv2h_ivc_enum_mbus_code(struct v4l2_subdev *sd,
+> +                                   struct v4l2_subdev_state *state,
+> +                                   struct v4l2_subdev_mbus_code_enum *co=
+de)
+> +{
+> +       const struct v4l2_mbus_framefmt *fmt;
+> +       unsigned int order_index;
+> +       unsigned int index;
+> +
+> +       /*
+> +        * On the source pad, only the 20-bit format corresponding to the=
+ sink
+> +        * pad format's bayer order is supported.
+> +        */
+> +       if (code->pad =3D=3D RZV2H_IVC_SUBDEV_SOURCE_PAD) {
+> +               if (code->index)
+> +                       return -EINVAL;
+> +
+> +               fmt =3D v4l2_subdev_state_get_format(state,
+> +                                                  RZV2H_IVC_SUBDEV_SINK_=
+PAD);
+> +               code->code =3D rzv2h_ivc_get_mbus_output_from_input(fmt->=
+code);
+> +
+> +               return 0;
+> +       }
+> +
+> +       if (code->index >=3D ARRAY_SIZE(rzv2h_ivc_formats) *
+> +                                     RZV2H_IVC_N_INPUTS_PER_OUTPUT)
+> +               return -EINVAL;
+> +
+> +       order_index =3D code->index / RZV2H_IVC_N_INPUTS_PER_OUTPUT;
+> +       index =3D code->index % RZV2H_IVC_N_INPUTS_PER_OUTPUT;
+> +
+> +       code->code =3D rzv2h_ivc_formats[order_index].inputs[index];
+> +
+> +       return 0;
+> +}
+> +
+> +static int rzv2h_ivc_enum_frame_size(struct v4l2_subdev *sd,
+> +                                    struct v4l2_subdev_state *state,
+> +                                    struct v4l2_subdev_frame_size_enum *=
+fse)
+> +{
+> +       const struct v4l2_mbus_framefmt *fmt;
+> +
+> +       if (fse->index > 0)
+> +               return -EINVAL;
+> +
+> +       if (fse->pad =3D=3D RZV2H_IVC_SUBDEV_SOURCE_PAD) {
+> +               fmt =3D v4l2_subdev_state_get_format(state,
+> +                                                  RZV2H_IVC_SUBDEV_SINK_=
+PAD);
+> +
+> +               if (fse->code !=3D rzv2h_ivc_get_mbus_output_from_input(f=
+mt->code))
+> +                       return -EINVAL;
+> +
+> +               fse->min_width =3D fmt->width;
+> +               fse->max_width =3D fmt->width;
+> +               fse->min_height =3D fmt->height;
+> +               fse->max_height =3D fmt->height;
+> +
+> +               return 0;
+> +       }
+> +
+> +       if (!rzv2h_ivc_get_mbus_output_from_input(fse->code))
+> +               return -EINVAL;
+> +
+> +       fse->min_width =3D RZV2H_IVC_MIN_WIDTH;
+> +       fse->max_width =3D RZV2H_IVC_MAX_WIDTH;
+> +       fse->min_height =3D RZV2H_IVC_MIN_HEIGHT;
+> +       fse->max_height =3D RZV2H_IVC_MAX_HEIGHT;
+> +
+> +       return 0;
+> +}
+> +
+> +static int rzv2h_ivc_set_fmt(struct v4l2_subdev *sd,
+> +                            struct v4l2_subdev_state *state,
+> +                            struct v4l2_subdev_format *format)
+> +{
+> +       struct v4l2_mbus_framefmt *fmt =3D &format->format;
+> +       struct v4l2_mbus_framefmt *src_fmt, *sink_fmt;
+> +
+> +       if (format->pad =3D=3D RZV2H_IVC_SUBDEV_SOURCE_PAD)
+> +               return v4l2_subdev_get_fmt(sd, state, format);
+> +
+> +       sink_fmt =3D v4l2_subdev_state_get_format(state,
+> +                                               RZV2H_IVC_SUBDEV_SINK_PAD=
+);
+> +
+> +       sink_fmt->code =3D rzv2h_ivc_get_mbus_output_from_input(fmt->code=
+) ?
+> +                        fmt->code : rzv2h_ivc_formats[0].inputs[0];
+> +
+> +       sink_fmt->width =3D clamp(fmt->width, RZV2H_IVC_MIN_WIDTH,
+> +                               RZV2H_IVC_MAX_WIDTH);
+> +       sink_fmt->height =3D clamp(fmt->height, RZV2H_IVC_MIN_HEIGHT,
+> +                                RZV2H_IVC_MAX_HEIGHT);
+> +
+> +       *fmt =3D *sink_fmt;
+> +
+> +       src_fmt =3D v4l2_subdev_state_get_format(state,
+> +                                              RZV2H_IVC_SUBDEV_SOURCE_PA=
+D);
+> +       *src_fmt =3D *sink_fmt;
+> +       src_fmt->code =3D rzv2h_ivc_get_mbus_output_from_input(sink_fmt->=
+code);
+> +
+> +       return 0;
+> +}
+> +
+> +static int rzv2h_ivc_enable_streams(struct v4l2_subdev *sd,
+> +                                   struct v4l2_subdev_state *state, u32 =
+pad,
+> +                                   u64 streams_mask)
+> +{
+> +       /*
+> +        * We have a single source pad, which has a single stream. V4L2 c=
+ore has
+> +        * already validated those things. The actual power-on and progra=
+mming
+> +        * of registers will be done through the video device's .vidioc_s=
+treamon
+> +        * so there's nothing to actually do here...
+> +        */
+> +
+> +       return 0;
+> +}
+> +
+> +static int rzv2h_ivc_disable_streams(struct v4l2_subdev *sd,
+> +                                    struct v4l2_subdev_state *state, u32=
+ pad,
+> +                                    u64 streams_mask)
+> +{
+> +       return 0;
+> +}
+> +
+> +static const struct v4l2_subdev_pad_ops rzv2h_ivc_pad_ops =3D {
+> +       .enum_mbus_code         =3D rzv2h_ivc_enum_mbus_code,
+> +       .enum_frame_size        =3D rzv2h_ivc_enum_frame_size,
+> +       .get_fmt                =3D v4l2_subdev_get_fmt,
+> +       .set_fmt                =3D rzv2h_ivc_set_fmt,
+> +       .enable_streams         =3D rzv2h_ivc_enable_streams,
+> +       .disable_streams        =3D rzv2h_ivc_disable_streams,
+> +};
+> +
+> +static const struct v4l2_subdev_core_ops rzv2h_ivc_core_ops =3D {
+> +       .subscribe_event =3D v4l2_ctrl_subdev_subscribe_event,
+> +       .unsubscribe_event =3D v4l2_event_subdev_unsubscribe,
+> +};
+> +
+> +static const struct v4l2_subdev_ops rzv2h_ivc_subdev_ops =3D {
+> +       .core   =3D &rzv2h_ivc_core_ops,
+> +       .pad    =3D &rzv2h_ivc_pad_ops,
+> +};
+> +
+> +static int rzv2h_ivc_init_state(struct v4l2_subdev *sd,
+> +                               struct v4l2_subdev_state *state)
+> +{
+> +       struct v4l2_mbus_framefmt *sink_fmt, *src_fmt;
+> +
+> +       sink_fmt =3D v4l2_subdev_state_get_format(state,
+> +                                               RZV2H_IVC_SUBDEV_SINK_PAD=
+);
+> +       sink_fmt->width =3D RZV2H_IVC_DEFAULT_WIDTH;
+> +       sink_fmt->height =3D RZV2H_IVC_DEFAULT_HEIGHT;
+> +       sink_fmt->field =3D V4L2_FIELD_NONE;
+> +       sink_fmt->code =3D MEDIA_BUS_FMT_SRGGB16_1X16;
+> +       sink_fmt->colorspace =3D V4L2_COLORSPACE_RAW;
+> +       sink_fmt->xfer_func =3D V4L2_MAP_XFER_FUNC_DEFAULT(sink_fmt->colo=
+rspace);
+> +       sink_fmt->ycbcr_enc =3D V4L2_MAP_YCBCR_ENC_DEFAULT(sink_fmt->colo=
+rspace);
+> +       sink_fmt->quantization =3D V4L2_MAP_QUANTIZATION_DEFAULT(
+> +               true, sink_fmt->colorspace, sink_fmt->ycbcr_enc);
+> +
+> +       src_fmt =3D v4l2_subdev_state_get_format(state,
+> +                                              RZV2H_IVC_SUBDEV_SOURCE_PA=
+D);
+> +
+> +       *src_fmt =3D *sink_fmt;
+> +       src_fmt->code =3D MEDIA_BUS_FMT_SRGGB20_1X20;
+> +
+> +       return 0;
+> +}
+> +
+> +static int rzv2h_ivc_registered(struct v4l2_subdev *sd)
+> +{
+> +       struct rzv2h_ivc *ivc =3D container_of(sd, struct rzv2h_ivc, subd=
+ev.sd);
+> +
+> +       return rzv2h_ivc_init_vdev(ivc, sd->v4l2_dev);
+> +}
+> +
+> +static const struct v4l2_subdev_internal_ops rzv2h_ivc_subdev_internal_o=
+ps =3D {
+> +       .init_state =3D rzv2h_ivc_init_state,
+> +       .registered =3D rzv2h_ivc_registered,
+> +};
+> +
+> +static int rzv2h_ivc_link_validate(struct media_link *link)
+> +{
+> +       struct video_device *vdev =3D
+> +               media_entity_to_video_device(link->source->entity);
+> +       struct rzv2h_ivc *ivc =3D video_get_drvdata(vdev);
+> +       struct v4l2_subdev *sd =3D
+> +               media_entity_to_v4l2_subdev(link->sink->entity);
+> +       const struct rzv2h_ivc_format *fmt;
+> +       const struct v4l2_pix_format_mplane *pix;
+> +       struct v4l2_subdev_state *state;
+> +       struct v4l2_mbus_framefmt *mf;
+> +       unsigned int i;
+> +       int ret =3D 0;
+> +
+> +       state =3D v4l2_subdev_lock_and_get_active_state(sd);
+> +       mf =3D v4l2_subdev_state_get_format(state, link->sink->index);
+> +
+> +       pix =3D &ivc->format.pix;
+> +       fmt =3D ivc->format.fmt;
+> +
+> +       if (mf->width !=3D pix->width || mf->height !=3D pix->height) {
+> +               dev_dbg(ivc->dev,
+> +                       "link '%s':%u -> '%s':%u not valid: %ux%u !=3D %u=
+x%u\n",
+> +                       link->source->entity->name, link->source->index,
+> +                       link->sink->entity->name, link->sink->index,
+> +                       mf->width, mf->height, pix->width, pix->height);
+> +               ret =3D -EPIPE;
+Do we want to continue further in case of error?
 
->
-> > +
-> > +#define PCIE_LINKUP  (SMLH_LINK_UP | RDLH_LINK_UP)
-> > +
-> > +static bool s32g_has_data_phy_link(struct s32g_pcie *s32g_pp)
-> > +{
-> > +     u32 reg = s32g_pcie_readl_ctrl(s32g_pp, PCIE_S32G_PE0_LINK_DBG_2);
-> > +
-> > +     if ((reg & PCIE_LINKUP) == PCIE_LINKUP) {
-> > +             switch (FIELD_GET(SMLH_LTSSM_STATE_MASK, reg)) {
-> > +             case DW_PCIE_LTSSM_L0:
-> > +             case DW_PCIE_LTSSM_L0S:
-> > +             case DW_PCIE_LTSSM_L1_IDLE:
-> > +                     return true;
-> > +             default:
-> > +                     return false;
-> > +             }
-> > +     }
-> > +
-> > +     return false;
-> > +}
-> > +
-> > +static bool s32g_pcie_link_up(struct dw_pcie *pci)
-> > +{
-> > +     struct s32g_pcie *s32g_pp = to_s32g_from_dw_pcie(pci);
-> > +
-> > +     if (!is_s32g_pcie_ltssm_enabled(s32g_pp))
-> > +             return false;
-> > +
-> > +     return s32g_has_data_phy_link(s32g_pp);
-> > +}
-> > +
-> > +static int s32g_pcie_start_link(struct dw_pcie *pci)
-> > +{
-> > +     struct s32g_pcie *s32g_pp = to_s32g_from_dw_pcie(pci);
-> > +
-> > +     s32g_pcie_enable_ltssm(s32g_pp);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static void s32g_pcie_stop_link(struct dw_pcie *pci)
-> > +{
-> > +     struct s32g_pcie *s32g_pp = to_s32g_from_dw_pcie(pci);
-> > +
-> > +     s32g_pcie_disable_ltssm(s32g_pp);
-> > +}
-> > +
-> > +static struct dw_pcie_ops s32g_pcie_ops = {
-> > +     .get_ltssm = s32g_pcie_get_ltssm,
-> > +     .link_up = s32g_pcie_link_up,
-> > +     .start_link = s32g_pcie_start_link,
-> > +     .stop_link = s32g_pcie_stop_link,
-> > +};
-> > +
-> > +static void s32g_pcie_pme_turn_off(struct dw_pcie_rp *pp)
-> > +{
-> > +     struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > +     struct s32g_pcie *s32g_pp = to_s32g_from_dw_pcie(pci);
-> > +     u32 reg;
-> > +
-> > +     reg = s32g_pcie_readl_ctrl(s32g_pp, PCIE_S32G_PE0_TX_MSG_REQ);
-> > +     reg |= PME_TURN_OFF_REQ;
-> > +     s32g_pcie_writel_ctrl(s32g_pp, PCIE_S32G_PE0_TX_MSG_REQ, reg);
-> > +}
-> > +
-> > +static const struct dw_pcie_host_ops s32g_pcie_host_ops = {
-> > +     .pme_turn_off = s32g_pcie_pme_turn_off,
-> > +};
->
-> See above comments, I think common dwc pme_turn_off() should work for s32g.
->
-> > +
-> > +static void s32g_pcie_disable_equalization(struct dw_pcie *pci)
-> > +{
-> > +     u32 reg;
-> > +
-> > +     reg = dw_pcie_readl_dbi(pci, GEN3_EQ_CONTROL_OFF);
-> > +     reg &= ~(GEN3_EQ_CONTROL_OFF_FB_MODE |
-> > +              GEN3_EQ_CONTROL_OFF_PSET_REQ_VEC);
-> > +     reg |= FIELD_PREP(GEN3_EQ_CONTROL_OFF_FB_MODE, 1) |
-> > +            FIELD_PREP(GEN3_EQ_CONTROL_OFF_PSET_REQ_VEC, 0x84);
-> > +
-> > +     dw_pcie_dbi_ro_wr_en(pci);
-> > +     dw_pcie_writel_dbi(pci, GEN3_EQ_CONTROL_OFF, reg);
-> > +     dw_pcie_dbi_ro_wr_dis(pci);
-> > +}
-> > +
-> > +/* Configure the AMBA AXI Coherency Extensions (ACE) interface */
-> > +static void s32g_pcie_reset_mstr_ace(struct dw_pcie *pci, u64 ddr_base_addr)
-> > +{
-> > +     u32 ddr_base_low = lower_32_bits(ddr_base_addr);
-> > +     u32 ddr_base_high = upper_32_bits(ddr_base_addr);
-> > +
-> > +     dw_pcie_dbi_ro_wr_en(pci);
-> > +     dw_pcie_writel_dbi(pci, COHERENCY_CONTROL_3_OFF, 0x0);
-> > +
-> > +     /*
-> > +      * Ncore is a cache-coherent interconnect module that enables the
-> > +      * integration of heterogeneous coherent and non-coherent agents in
-> > +      * the chip. Ncore Transactions to peripheral should be non-coherent
-> > +      * or it might drop them.
-> > +      * One example where this is needed are PCIe MSIs, which use NoSnoop=0
-> > +      * and might end up routed to Ncore.
-> > +      * Define the start of DDR as seen by Linux as the boundary between
-> > +      * "memory" and "peripherals", with peripherals being below.
-> > +      */
-> > +     dw_pcie_writel_dbi(pci, COHERENCY_CONTROL_1_OFF,
-> > +                        (ddr_base_low & CFG_MEMTYPE_BOUNDARY_LOW_ADDR_MASK));
-> > +     dw_pcie_writel_dbi(pci, COHERENCY_CONTROL_2_OFF, ddr_base_high);
-> > +     dw_pcie_dbi_ro_wr_dis(pci);
-> > +}
-> > +
-> > +static void s32g_init_pcie_controller(struct s32g_pcie *s32g_pp)
-> > +{
-> > +     struct dw_pcie *pci = &s32g_pp->pci;
-> > +     u8 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-> > +     u32 val;
-> > +
-> > +     /* Set RP mode */
-> > +     val = s32g_pcie_readl_ctrl(s32g_pp, PCIE_S32G_PE0_GEN_CTRL_1);
-> > +     val &= ~DEVICE_TYPE_MASK;
-> > +     val |= DEVICE_TYPE(PCI_EXP_TYPE_ROOT_PORT);
-> > +
-> > +     /* Use default CRNS */
-> > +     val &= ~SRIS_MODE;
-> > +
-> > +     s32g_pcie_writel_ctrl(s32g_pp, PCIE_S32G_PE0_GEN_CTRL_1, val);
-> > +
-> > +     /* Disable phase 2,3 equalization */
-> > +     s32g_pcie_disable_equalization(pci);
-> > +
-> > +     /*
-> > +      * Make sure we use the coherency defaults (just in case the settings
-> > +      * have been changed from their reset values)
-> > +      */
-> > +     s32g_pcie_reset_mstr_ace(pci, memblock_start_of_DRAM());
-> > +
-> > +     dw_pcie_dbi_ro_wr_en(pci);
-> > +
-> > +     val = dw_pcie_readl_dbi(pci, PCIE_PORT_FORCE);
-> > +     val |= PORT_FORCE_DO_DESKEW_FOR_SRIS;
-> > +     dw_pcie_writel_dbi(pci, PCIE_PORT_FORCE, val);
-> > +
-> > +     /*
-> > +      * Set max payload supported, 256 bytes and
-> > +      * relaxed ordering.
-> > +      */
-> > +     val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
-> > +     val &= ~(PCI_EXP_DEVCTL_RELAX_EN |
-> > +              PCI_EXP_DEVCTL_PAYLOAD |
-> > +              PCI_EXP_DEVCTL_READRQ);
-> > +     val |= PCI_EXP_DEVCTL_RELAX_EN |
-> > +            PCI_EXP_DEVCTL_PAYLOAD_256B |
-> > +            PCI_EXP_DEVCTL_READRQ_256B;
-> > +     dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
-> > +
-> > +     /* Enable errors */
-> > +     val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
-> > +     val |= PCI_EXP_DEVCTL_CERE |
-> > +            PCI_EXP_DEVCTL_NFERE |
-> > +            PCI_EXP_DEVCTL_FERE |
-> > +            PCI_EXP_DEVCTL_URRE;
-> > +     dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
-> > +
-> > +     val = dw_pcie_readl_dbi(pci, GEN3_RELATED_OFF);
-> > +     val |= GEN3_RELATED_OFF_EQ_PHASE_2_3;
-> > +     dw_pcie_writel_dbi(pci, GEN3_RELATED_OFF, val);
-> > +
-> > +     dw_pcie_dbi_ro_wr_dis(pci);
-> > +}
-> > +
-> > +static int s32g_init_pcie_phy(struct s32g_pcie *s32g_pp)
-> > +{
-> > +     struct dw_pcie *pci = &s32g_pp->pci;
-> > +     struct device *dev = pci->dev;
-> > +     int ret;
-> > +
-> > +     ret = phy_init(s32g_pp->phy);
-> > +     if (ret) {
-> > +             dev_err(dev, "Failed to init serdes PHY\n");
-> > +             return ret;
-> > +     }
-> > +
-> > +     ret = phy_set_mode_ext(s32g_pp->phy, PHY_MODE_PCIE, 0);
->
-> 0 use PHY_MODE_PCIE_RC
+Cheers,
+Prabhakar
 
-This is not PHY_MODE_PCIE_EP vs PHY_MODE_PCIE_RC which is set by this
-driver but clock mode which is the default crns for now until we get a
-generic wait to define the different
-
+> +       }
+> +
+> +       for (i =3D 0; i < ARRAY_SIZE(fmt->mbus_codes); i++)
+> +               if (mf->code =3D=3D fmt->mbus_codes[i])
+> +                       break;
+> +
+> +       if (i =3D=3D ARRAY_SIZE(fmt->mbus_codes)) {
+> +               dev_dbg(ivc->dev,
+> +                       "link '%s':%u -> '%s':%u not valid: pixel format =
+%p4cc cannot produce mbus_code 0x%04x\n",
+> +                       link->source->entity->name, link->source->index,
+> +                       link->sink->entity->name, link->sink->index,
+> +                       &pix->pixelformat, mf->code);
+> +               ret =3D -EPIPE;
+> +       }
+> +
+> +       v4l2_subdev_unlock_state(state);
+> +
+> +       return ret;
+> +}
+> +
+> +static const struct media_entity_operations rzv2h_ivc_media_ops =3D {
+> +       .link_validate =3D rzv2h_ivc_link_validate,
+> +};
+> +
+> +int rzv2h_ivc_initialise_subdevice(struct rzv2h_ivc *ivc)
+> +{
+> +       struct v4l2_subdev *sd;
+> +       int ret;
+> +
+> +       /* Initialise subdevice */
+> +       sd =3D &ivc->subdev.sd;
+> +       sd->dev =3D ivc->dev;
+> +       v4l2_subdev_init(sd, &rzv2h_ivc_subdev_ops);
+> +       sd->flags |=3D V4L2_SUBDEV_FL_HAS_DEVNODE | V4L2_SUBDEV_FL_HAS_EV=
+ENTS;
+> +       sd->entity.function =3D MEDIA_ENT_F_PROC_VIDEO_PIXEL_FORMATTER;
+> +       sd->internal_ops =3D &rzv2h_ivc_subdev_internal_ops;
+> +       sd->entity.ops =3D &rzv2h_ivc_media_ops;
+> +
+> +       ivc->subdev.pads[RZV2H_IVC_SUBDEV_SINK_PAD].flags =3D MEDIA_PAD_F=
+L_SINK;
+> +       ivc->subdev.pads[RZV2H_IVC_SUBDEV_SOURCE_PAD].flags =3D MEDIA_PAD=
+_FL_SOURCE;
+> +
+> +       snprintf(sd->name, sizeof(sd->name), "rzv2h ivc block");
+> +
+> +       ret =3D media_entity_pads_init(&sd->entity, RZV2H_IVC_NUM_SUBDEV_=
+PADS,
+> +                                    ivc->subdev.pads);
+> +       if (ret) {
+> +               dev_err(ivc->dev, "failed to initialise media entity\n");
+> +               return ret;
+> +       }
+> +
+> +       ret =3D v4l2_subdev_init_finalize(sd);
+> +       if (ret) {
+> +               dev_err(ivc->dev, "failed to finalize subdev init\n");
+> +               goto err_cleanup_subdev_entity;
+> +       }
+> +
+> +       ret =3D v4l2_async_register_subdev(sd);
+> +       if (ret) {
+> +               dev_err(ivc->dev, "failed to register subdevice\n");
+> +               goto err_cleanup_subdev;
+> +       }
+> +
+> +       return 0;
+> +
+> +err_cleanup_subdev:
+> +       v4l2_subdev_cleanup(sd);
+> +err_cleanup_subdev_entity:
+> +       media_entity_cleanup(&sd->entity);
+> +
+> +       return ret;
+> +}
+> +
+> +void rzv2h_ivc_deinit_subdevice(struct rzv2h_ivc *ivc)
+> +{
+> +       struct v4l2_subdev *sd =3D &ivc->subdev.sd;
+> +
+> +       v4l2_subdev_cleanup(sd);
+> +       media_entity_remove_links(&sd->entity);
+> +       v4l2_async_unregister_subdev(sd);
+> +       media_entity_cleanup(&sd->entity);
+> +}
+> diff --git a/drivers/media/platform/renesas/rzv2h-ivc/rzv2h-ivc-video.c b=
+/drivers/media/platform/renesas/rzv2h-ivc/rzv2h-ivc-video.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..b7fb2ef1964f882d49dce6cf7=
+aa5c6d99ff450b0
+> --- /dev/null
+> +++ b/drivers/media/platform/renesas/rzv2h-ivc/rzv2h-ivc-video.c
+> @@ -0,0 +1,533 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Renesas RZ/V2H(P) Input Video Control Block driver
+> + *
+> + * Copyright (C) 2025 Ideas on Board Oy
+> + */
+> +
+> +#include "rzv2h-ivc.h"
+> +
+> +#include <linux/cleanup.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/lockdep.h>
+> +#include <linux/media-bus-format.h>
+> +#include <linux/minmax.h>
+> +#include <linux/mutex.h>
+> +#include <linux/pm_runtime.h>
+> +
+> +#include <media/mipi-csi2.h>
+> +#include <media/v4l2-ctrls.h>
+> +#include <media/v4l2-dev.h>
+> +#include <media/v4l2-event.h>
+> +#include <media/v4l2-fh.h>
+> +#include <media/v4l2-ioctl.h>
+> +#include <media/videobuf2-dma-contig.h>
+> +
+> +#define RZV2H_IVC_FIXED_HBLANK                 0x20
+> +#define RZV2H_IVC_MIN_VBLANK(hts)              max(0x1b, 15 + (120501 / =
+(hts)))
+> +
+> +struct rzv2h_ivc_buf {
+> +       struct vb2_v4l2_buffer vb;
+> +       struct list_head queue;
+> +       dma_addr_t addr;
+> +};
+> +
+> +#define to_rzv2h_ivc_buf(vbuf) \
+> +       container_of(vbuf, struct rzv2h_ivc_buf, vb)
+> +
+> +static const struct rzv2h_ivc_format rzv2h_ivc_formats[] =3D {
+> +       {
+> +               .fourcc =3D V4L2_PIX_FMT_SBGGR8,
+> +               .mbus_codes =3D {
+> +                       MEDIA_BUS_FMT_SBGGR8_1X8,
+> +               },
+> +               .dtype =3D MIPI_CSI2_DT_RAW8,
+> +       },
+> +       {
+> +               .fourcc =3D V4L2_PIX_FMT_SGBRG8,
+> +               .mbus_codes =3D {
+> +                       MEDIA_BUS_FMT_SGBRG8_1X8,
+> +               },
+> +               .dtype =3D MIPI_CSI2_DT_RAW8,
+> +       },
+> +       {
+> +               .fourcc =3D V4L2_PIX_FMT_SGRBG8,
+> +               .mbus_codes =3D {
+> +                       MEDIA_BUS_FMT_SGRBG8_1X8,
+> +               },
+> +               .dtype =3D MIPI_CSI2_DT_RAW8,
+> +       },
+> +       {
+> +               .fourcc =3D V4L2_PIX_FMT_SRGGB8,
+> +               .mbus_codes =3D {
+> +                       MEDIA_BUS_FMT_SRGGB8_1X8,
+> +               },
+> +               .dtype =3D MIPI_CSI2_DT_RAW8,
+> +       },
+> +       {
+> +               .fourcc =3D V4L2_PIX_FMT_RAW_CRU10,
+> +               .mbus_codes =3D {
+> +                       MEDIA_BUS_FMT_SBGGR10_1X10,
+> +                       MEDIA_BUS_FMT_SGBRG10_1X10,
+> +                       MEDIA_BUS_FMT_SGRBG10_1X10,
+> +                       MEDIA_BUS_FMT_SRGGB10_1X10
+> +               },
+> +               .dtype =3D MIPI_CSI2_DT_RAW10,
+> +       },
+> +       {
+> +               .fourcc =3D V4L2_PIX_FMT_RAW_CRU12,
+> +               .mbus_codes =3D {
+> +                       MEDIA_BUS_FMT_SBGGR12_1X12,
+> +                       MEDIA_BUS_FMT_SGBRG12_1X12,
+> +                       MEDIA_BUS_FMT_SGRBG12_1X12,
+> +                       MEDIA_BUS_FMT_SRGGB12_1X12
+> +               },
+> +               .dtype =3D MIPI_CSI2_DT_RAW12,
+> +       },
+> +       {
+> +               .fourcc =3D V4L2_PIX_FMT_RAW_CRU14,
+> +               .mbus_codes =3D {
+> +                       MEDIA_BUS_FMT_SBGGR14_1X14,
+> +                       MEDIA_BUS_FMT_SGBRG14_1X14,
+> +                       MEDIA_BUS_FMT_SGRBG14_1X14,
+> +                       MEDIA_BUS_FMT_SRGGB14_1X14
+> +               },
+> +               .dtype =3D MIPI_CSI2_DT_RAW14,
+> +       },
+> +       {
+> +               .fourcc =3D V4L2_PIX_FMT_SBGGR16,
+> +               .mbus_codes =3D {
+> +                       MEDIA_BUS_FMT_SBGGR16_1X16,
+> +               },
+> +               .dtype =3D MIPI_CSI2_DT_RAW16,
+> +       },
+> +       {
+> +               .fourcc =3D V4L2_PIX_FMT_SGBRG16,
+> +               .mbus_codes =3D {
+> +                       MEDIA_BUS_FMT_SGBRG16_1X16,
+> +               },
+> +               .dtype =3D MIPI_CSI2_DT_RAW16,
+> +       },
+> +       {
+> +               .fourcc =3D V4L2_PIX_FMT_SGRBG16,
+> +               .mbus_codes =3D {
+> +                       MEDIA_BUS_FMT_SGRBG16_1X16,
+> +               },
+> +               .dtype =3D MIPI_CSI2_DT_RAW16,
+> +       },
+> +       {
+> +               .fourcc =3D V4L2_PIX_FMT_SRGGB16,
+> +               .mbus_codes =3D {
+> +                       MEDIA_BUS_FMT_SRGGB16_1X16,
+> +               },
+> +               .dtype =3D MIPI_CSI2_DT_RAW16,
+> +       },
+> +};
+> +
+> +void rzv2h_ivc_buffer_done(struct rzv2h_ivc *ivc)
+> +{
+> +       struct rzv2h_ivc_buf *buf;
+> +
+> +       lockdep_assert_in_irq();
+> +
+> +       scoped_guard(spinlock, &ivc->buffers.lock) {
+> +               if (!ivc->buffers.curr)
+> +                       return;
+> +
+> +               buf =3D ivc->buffers.curr;
+> +               ivc->buffers.curr =3D NULL;
+> +       }
+> +
+> +       buf->vb.sequence =3D ivc->buffers.sequence++;
+> +       vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_DONE);
+> +}
+> +
+> +static void rzv2h_ivc_transfer_buffer(struct work_struct *work)
+> +{
+> +       struct rzv2h_ivc *ivc =3D container_of(work, struct rzv2h_ivc,
+> +                                            buffers.work);
+> +       struct rzv2h_ivc_buf *buf;
+> +
+> +       /* Setup buffers */
+> +       scoped_guard(spinlock_irqsave, &ivc->buffers.lock) {
+> +               buf =3D list_first_entry_or_null(&ivc->buffers.queue,
+> +                                              struct rzv2h_ivc_buf, queu=
+e);
+> +       }
+> +
+> +       if (!buf)
+> +               return;
+> +
+> +       list_del(&buf->queue);
+> +
+> +       ivc->buffers.curr =3D buf;
+> +       buf->addr =3D vb2_dma_contig_plane_dma_addr(&buf->vb.vb2_buf, 0);
+> +       rzv2h_ivc_write(ivc, RZV2H_IVC_REG_AXIRX_SADDL_P0, buf->addr);
+> +
+> +       scoped_guard(spinlock_irqsave, &ivc->spinlock) {
+> +               ivc->vvalid_ifp =3D 2;
+> +       }
+> +       rzv2h_ivc_write(ivc, RZV2H_IVC_REG_FM_FRCON, 0x1);
+> +}
+> +
+> +static int rzv2h_ivc_queue_setup(struct vb2_queue *q, unsigned int *num_=
+buffers,
+> +                                unsigned int *num_planes, unsigned int s=
+izes[],
+> +                                struct device *alloc_devs[])
+> +{
+> +       struct rzv2h_ivc *ivc =3D vb2_get_drv_priv(q);
+> +
+> +       if (*num_planes && *num_planes > 1)
+> +               return -EINVAL;
+> +
+> +       if (sizes[0] && sizes[0] < ivc->format.pix.plane_fmt[0].sizeimage=
+)
+> +               return -EINVAL;
+> +
+> +       *num_planes =3D 1;
+> +
+> +       if (!sizes[0])
+> +               sizes[0] =3D ivc->format.pix.plane_fmt[0].sizeimage;
+> +
+> +       return 0;
+> +}
+> +
+> +static void rzv2h_ivc_buf_queue(struct vb2_buffer *vb)
+> +{
+> +       struct rzv2h_ivc *ivc =3D vb2_get_drv_priv(vb->vb2_queue);
+> +       struct vb2_v4l2_buffer *vbuf =3D to_vb2_v4l2_buffer(vb);
+> +       struct rzv2h_ivc_buf *buf =3D to_rzv2h_ivc_buf(vbuf);
+> +
+> +       scoped_guard(spinlock_irq, &ivc->buffers.lock) {
+> +               list_add_tail(&buf->queue, &ivc->buffers.queue);
+> +       }
+> +
+> +       scoped_guard(spinlock_irq, &ivc->spinlock) {
+> +               if (vb2_is_streaming(vb->vb2_queue) && !ivc->vvalid_ifp)
+> +                       queue_work(ivc->buffers.async_wq, &ivc->buffers.w=
+ork);
+> +       }
+> +}
+> +
+> +static void rzv2h_ivc_format_configure(struct rzv2h_ivc *ivc)
+> +{
+> +       const struct rzv2h_ivc_format *fmt =3D ivc->format.fmt;
+> +       struct v4l2_pix_format_mplane *pix =3D &ivc->format.pix;
+> +       unsigned int vblank;
+> +       unsigned int hts;
+> +
+> +       /* Currently only CRU packed pixel formats are supported */
+> +       rzv2h_ivc_write(ivc, RZV2H_IVC_REG_AXIRX_PXFMT,
+> +                       RZV2H_IVC_INPUT_FMT_CRU_PACKED);
+> +
+> +       rzv2h_ivc_update_bits(ivc, RZV2H_IVC_REG_AXIRX_PXFMT,
+> +                             RZV2H_IVC_PXFMT_DTYPE, fmt->dtype);
+> +
+> +       rzv2h_ivc_write(ivc, RZV2H_IVC_REG_AXIRX_HSIZE, pix->width);
+> +       rzv2h_ivc_write(ivc, RZV2H_IVC_REG_AXIRX_VSIZE, pix->height);
+> +       rzv2h_ivc_write(ivc, RZV2H_IVC_REG_AXIRX_STRD,
+> +                       pix->plane_fmt[0].bytesperline);
+> +
+> +       /*
+> +        * The ISP has minimum vertical blanking requirements that must b=
+e
+> +        * adhered to by the IVC. The minimum is a function of the Iridix=
+ blocks
+> +        * clocking requirements and the width of the image and horizonta=
+l
+> +        * blanking, but if we assume the worst case then it boils down t=
+o the
+> +        * below (plus one to the numerator to ensure the answer is round=
+ed up)
+> +        */
+> +
+> +       hts =3D pix->width + RZV2H_IVC_FIXED_HBLANK;
+> +       vblank =3D RZV2H_IVC_MIN_VBLANK(hts);
+> +
+> +       rzv2h_ivc_write(ivc, RZV2H_IVC_REG_AXIRX_BLANK,
+> +                       RZV2H_IVC_VBLANK(vblank));
+> +}
+> +
+> +static void rzv2h_ivc_return_buffers(struct rzv2h_ivc *ivc,
+> +                                    enum vb2_buffer_state state)
+> +{
+> +       struct rzv2h_ivc_buf *buf, *tmp;
+> +
+> +       guard(spinlock_irqsave)(&ivc->buffers.lock);
+> +
+> +       if (ivc->buffers.curr) {
+> +               vb2_buffer_done(&ivc->buffers.curr->vb.vb2_buf, state);
+> +               ivc->buffers.curr =3D NULL;
+> +       }
+> +
+> +       list_for_each_entry_safe(buf, tmp, &ivc->buffers.queue, queue) {
+> +               list_del(&buf->queue);
+> +               vb2_buffer_done(&buf->vb.vb2_buf, state);
+> +       }
+> +}
+> +
+> +static int rzv2h_ivc_start_streaming(struct vb2_queue *q, unsigned int c=
+ount)
+> +{
+> +       struct rzv2h_ivc *ivc =3D vb2_get_drv_priv(q);
+> +       int ret;
+> +
+> +       ivc->buffers.sequence =3D 0;
+> +       ivc->vvalid_ifp =3D 0;
+> +
+> +       ret =3D pm_runtime_resume_and_get(ivc->dev);
+> +       if (ret)
+> +               goto err_return_buffers;
+> +
+> +       ret =3D video_device_pipeline_alloc_start(&ivc->vdev.dev);
+> +       if (ret) {
+> +               dev_err(ivc->dev, "failed to start media pipeline\n");
+> +               goto err_pm_runtime_put;
+> +       }
+> +
+> +       rzv2h_ivc_format_configure(ivc);
+> +
+> +       queue_work(ivc->buffers.async_wq, &ivc->buffers.work);
+> +
+> +       return 0;
+> +
+> +err_pm_runtime_put:
+> +       pm_runtime_put(ivc->dev);
+> +err_return_buffers:
+> +       rzv2h_ivc_return_buffers(ivc, VB2_BUF_STATE_QUEUED);
+> +
+> +       return ret;
+> +}
+> +
+> +static void rzv2h_ivc_stop_streaming(struct vb2_queue *q)
+> +{
+> +       struct rzv2h_ivc *ivc =3D vb2_get_drv_priv(q);
+> +       u32 val =3D 0;
+> +
+> +       rzv2h_ivc_write(ivc, RZV2H_IVC_REG_FM_STOP, 0x1);
+> +       readl_poll_timeout(ivc->base + RZV2H_IVC_REG_FM_STOP,
+> +                          val, !val, 10 * USEC_PER_MSEC, 250 * USEC_PER_=
+MSEC);
+> +
+> +       rzv2h_ivc_return_buffers(ivc, VB2_BUF_STATE_ERROR);
+> +       video_device_pipeline_stop(&ivc->vdev.dev);
+> +       pm_runtime_put_autosuspend(ivc->dev);
+> +}
+> +
+> +static const struct vb2_ops rzv2h_ivc_vb2_ops =3D {
+> +       .queue_setup            =3D &rzv2h_ivc_queue_setup,
+> +       .buf_queue              =3D &rzv2h_ivc_buf_queue,
+> +       .wait_prepare           =3D vb2_ops_wait_prepare,
+> +       .wait_finish            =3D vb2_ops_wait_finish,
+> +       .start_streaming        =3D &rzv2h_ivc_start_streaming,
+> +       .stop_streaming         =3D &rzv2h_ivc_stop_streaming,
+> +};
+> +
+> +static const struct rzv2h_ivc_format *
+> +rzv2h_ivc_format_from_pixelformat(u32 fourcc)
+> +{
+> +       for (unsigned int i =3D 0; i < ARRAY_SIZE(rzv2h_ivc_formats); i++=
+)
+> +               if (fourcc =3D=3D rzv2h_ivc_formats[i].fourcc)
+> +                       return &rzv2h_ivc_formats[i];
+> +
+> +       return &rzv2h_ivc_formats[0];
+> +}
+> +
+> +static int rzv2h_ivc_enum_fmt_vid_out(struct file *file, void *fh,
+> +                                     struct v4l2_fmtdesc *f)
+> +{
+> +       if (f->index >=3D ARRAY_SIZE(rzv2h_ivc_formats))
+> +               return -EINVAL;
+> +
+> +       f->pixelformat =3D rzv2h_ivc_formats[f->index].fourcc;
+> +       return 0;
+> +}
+> +
+> +static int rzv2h_ivc_g_fmt_vid_out(struct file *file, void *fh,
+> +                                  struct v4l2_format *f)
+> +{
+> +       struct rzv2h_ivc *ivc =3D video_drvdata(file);
+> +
+> +       f->fmt.pix_mp =3D ivc->format.pix;
+> +
+> +       return 0;
+> +}
+> +
+> +static void rzv2h_ivc_try_fmt(struct v4l2_pix_format_mplane *pix,
+> +                             const struct rzv2h_ivc_format *fmt)
+> +{
+> +       pix->pixelformat =3D fmt->fourcc;
+> +
+> +       pix->width =3D clamp(pix->width, RZV2H_IVC_MIN_WIDTH,
+> +                          RZV2H_IVC_MAX_WIDTH);
+> +       pix->height =3D clamp(pix->height, RZV2H_IVC_MIN_HEIGHT,
+> +                           RZV2H_IVC_MAX_HEIGHT);
+> +
+> +       pix->field =3D V4L2_FIELD_NONE;
+> +       pix->colorspace =3D V4L2_COLORSPACE_RAW;
+> +       pix->ycbcr_enc =3D V4L2_MAP_YCBCR_ENC_DEFAULT(pix->colorspace);
+> +       pix->quantization =3D V4L2_MAP_QUANTIZATION_DEFAULT(true,
+> +                                                         pix->colorspace=
+,
+> +                                                         pix->ycbcr_enc)=
+;
+> +
+> +       v4l2_fill_pixfmt_mp(pix, pix->pixelformat, pix->width, pix->heigh=
+t);
+> +}
+> +
+> +static void rzv2h_ivc_set_format(struct rzv2h_ivc *ivc,
+> +                                struct v4l2_pix_format_mplane *pix)
+> +{
+> +       const struct rzv2h_ivc_format *fmt;
+> +
+> +       fmt =3D rzv2h_ivc_format_from_pixelformat(pix->pixelformat);
+> +
+> +       rzv2h_ivc_try_fmt(pix, fmt);
+> +       ivc->format.pix =3D *pix;
+> +       ivc->format.fmt =3D fmt;
+> +}
+> +
+> +static int rzv2h_ivc_s_fmt_vid_out(struct file *file, void *fh,
+> +                                  struct v4l2_format *f)
+> +{
+> +       struct rzv2h_ivc *ivc =3D video_drvdata(file);
+> +       struct v4l2_pix_format_mplane *pix =3D &f->fmt.pix_mp;
+> +
+> +       if (vb2_is_busy(&ivc->vdev.vb2q))
+> +               return -EBUSY;
+> +
+> +       rzv2h_ivc_set_format(ivc, pix);
+> +
+> +       return 0;
+> +}
+> +
+> +static int rzv2h_ivc_try_fmt_vid_out(struct file *file, void *fh,
+> +                                    struct v4l2_format *f)
+> +{
+> +       const struct rzv2h_ivc_format *fmt;
+> +
+> +       fmt =3D rzv2h_ivc_format_from_pixelformat(f->fmt.pix.pixelformat)=
+;
+> +       rzv2h_ivc_try_fmt(&f->fmt.pix_mp, fmt);
+> +
+> +       return 0;
+> +}
+> +
+> +static int rzv2h_ivc_querycap(struct file *file, void *fh,
+> +                             struct v4l2_capability *cap)
+> +{
+> +       strscpy(cap->driver, "rzv2h-ivc", sizeof(cap->driver));
+> +       strscpy(cap->card, "Renesas Input Video Control", sizeof(cap->car=
+d));
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct v4l2_ioctl_ops rzv2h_ivc_v4l2_ioctl_ops =3D {
+> +       .vidioc_reqbufs =3D vb2_ioctl_reqbufs,
+> +       .vidioc_querybuf =3D vb2_ioctl_querybuf,
+> +       .vidioc_create_bufs =3D vb2_ioctl_create_bufs,
+> +       .vidioc_qbuf =3D vb2_ioctl_qbuf,
+> +       .vidioc_expbuf =3D vb2_ioctl_expbuf,
+> +       .vidioc_dqbuf =3D vb2_ioctl_dqbuf,
+> +       .vidioc_prepare_buf =3D vb2_ioctl_prepare_buf,
+> +       .vidioc_streamon =3D vb2_ioctl_streamon,
+> +       .vidioc_streamoff =3D vb2_ioctl_streamoff,
+> +       .vidioc_enum_fmt_vid_out =3D rzv2h_ivc_enum_fmt_vid_out,
+> +       .vidioc_g_fmt_vid_out_mplane =3D rzv2h_ivc_g_fmt_vid_out,
+> +       .vidioc_s_fmt_vid_out_mplane =3D rzv2h_ivc_s_fmt_vid_out,
+> +       .vidioc_try_fmt_vid_out_mplane =3D rzv2h_ivc_try_fmt_vid_out,
+> +       .vidioc_querycap =3D rzv2h_ivc_querycap,
+> +       .vidioc_subscribe_event =3D v4l2_ctrl_subscribe_event,
+> +       .vidioc_unsubscribe_event =3D v4l2_event_unsubscribe,
+> +};
+> +
+> +static const struct v4l2_file_operations rzv2h_ivc_v4l2_fops =3D {
+> +       .owner =3D THIS_MODULE,
+> +       .unlocked_ioctl =3D video_ioctl2,
+> +       .open =3D v4l2_fh_open,
+> +       .release =3D vb2_fop_release,
+> +       .poll =3D vb2_fop_poll,
+> +       .mmap =3D vb2_fop_mmap,
+> +};
+> +
+> +int rzv2h_ivc_init_vdev(struct rzv2h_ivc *ivc, struct v4l2_device *v4l2_=
+dev)
+> +{
+> +       struct v4l2_pix_format_mplane pix =3D { };
+> +       struct video_device *vdev;
+> +       struct vb2_queue *vb2q;
+> +       int ret;
+> +
+> +       spin_lock_init(&ivc->buffers.lock);
+> +       INIT_LIST_HEAD(&ivc->buffers.queue);
+> +       INIT_WORK(&ivc->buffers.work, rzv2h_ivc_transfer_buffer);
+> +
+> +       ivc->buffers.async_wq =3D alloc_workqueue("rzv2h-ivc", 0, 0);
+> +       if (!ivc->buffers.async_wq)
+> +               return -EINVAL;
+> +
+> +       /* Initialise vb2 queue */
+> +       vb2q =3D &ivc->vdev.vb2q;
+> +       vb2q->type =3D V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE;
+> +       vb2q->io_modes =3D VB2_MMAP | VB2_DMABUF;
+> +       vb2q->drv_priv =3D ivc;
+> +       vb2q->mem_ops =3D &vb2_dma_contig_memops;
+> +       vb2q->ops =3D &rzv2h_ivc_vb2_ops;
+> +       vb2q->buf_struct_size =3D sizeof(struct rzv2h_ivc_buf);
+> +       vb2q->min_queued_buffers =3D 0;
+> +       vb2q->timestamp_flags =3D V4L2_BUF_FLAG_TIMESTAMP_MONOTONIC;
+> +       vb2q->lock =3D &ivc->lock;
+> +       vb2q->dev =3D ivc->dev;
+> +
+> +       ret =3D vb2_queue_init(vb2q);
+> +       if (ret) {
+> +               dev_err(ivc->dev, "vb2 queue init failed\n");
+> +               goto err_destroy_workqueue;
+> +       }
+> +
+> +       /* Initialise Video Device */
+> +       vdev =3D &ivc->vdev.dev;
+> +       strscpy(vdev->name, "rzv2h-ivc", sizeof(vdev->name));
+> +       vdev->release =3D video_device_release_empty;
+> +       vdev->fops =3D &rzv2h_ivc_v4l2_fops;
+> +       vdev->ioctl_ops =3D &rzv2h_ivc_v4l2_ioctl_ops;
+> +       vdev->lock =3D &ivc->lock;
+> +       vdev->v4l2_dev =3D v4l2_dev;
+> +       vdev->queue =3D vb2q;
+> +       vdev->device_caps =3D V4L2_CAP_VIDEO_OUTPUT_MPLANE | V4L2_CAP_STR=
+EAMING;
+> +       vdev->vfl_dir =3D VFL_DIR_TX;
+> +       video_set_drvdata(vdev, ivc);
+> +
+> +       pix.pixelformat =3D V4L2_PIX_FMT_SRGGB16;
+> +       pix.width =3D RZV2H_IVC_DEFAULT_WIDTH;
+> +       pix.height =3D RZV2H_IVC_DEFAULT_HEIGHT;
+> +       rzv2h_ivc_set_format(ivc, &pix);
+> +
+> +       ivc->vdev.pad.flags =3D MEDIA_PAD_FL_SOURCE;
+> +       ret =3D media_entity_pads_init(&ivc->vdev.dev.entity, 1, &ivc->vd=
+ev.pad);
+> +       if (ret)
+> +               goto err_release_vb2q;
+> +
+> +       ret =3D video_register_device(vdev, VFL_TYPE_VIDEO, -1);
+> +       if (ret) {
+> +               dev_err(ivc->dev, "failed to register IVC video device\n"=
+);
+> +               goto err_cleanup_vdev_entity;
+> +       }
+> +
+> +       ret =3D media_create_pad_link(&vdev->entity, 0, &ivc->subdev.sd.e=
+ntity,
+> +                                   RZV2H_IVC_SUBDEV_SINK_PAD,
+> +                                   MEDIA_LNK_FL_ENABLED |
+> +                                   MEDIA_LNK_FL_IMMUTABLE);
+> +       if (ret) {
+> +               dev_err(ivc->dev, "failed to create media link\n");
+> +               goto err_unregister_vdev;
+> +       }
+> +
+> +       return 0;
+> +
+> +err_unregister_vdev:
+> +       video_unregister_device(vdev);
+> +err_cleanup_vdev_entity:
+> +       media_entity_cleanup(&vdev->entity);
+> +err_release_vb2q:
+> +       vb2_queue_release(vb2q);
+> +err_destroy_workqueue:
+> +       destroy_workqueue(ivc->buffers.async_wq);
+> +
+> +       return ret;
+> +}
+> +
+> +void rzv2h_deinit_video_dev_and_queue(struct rzv2h_ivc *ivc)
+> +{
+> +       struct video_device *vdev =3D &ivc->vdev.dev;
+> +       struct vb2_queue *vb2q =3D &ivc->vdev.vb2q;
+> +
+> +       vb2_video_unregister_device(vdev);
+> +       media_entity_cleanup(&vdev->entity);
+> +       vb2_queue_release(vb2q);
+> +}
+> diff --git a/drivers/media/platform/renesas/rzv2h-ivc/rzv2h-ivc.h b/drive=
+rs/media/platform/renesas/rzv2h-ivc/rzv2h-ivc.h
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..64e4993209030df4dab187157=
+dcf55996cbaf69b
+> --- /dev/null
+> +++ b/drivers/media/platform/renesas/rzv2h-ivc/rzv2h-ivc.h
+> @@ -0,0 +1,130 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Renesas RZ/V2H(P) Input Video Control Block driver
+> + *
+> + * Copyright (C) 2025 Ideas on Board Oy
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/list.h>
+> +#include <linux/mutex.h>
+> +#include <linux/reset.h>
+> +#include <linux/spinlock.h>
+> +#include <linux/types.h>
+> +#include <linux/videodev2.h>
+> +#include <linux/workqueue.h>
+> +
+> +#include <media/media-entity.h>
+> +#include <media/v4l2-device.h>
+> +#include <media/v4l2-subdev.h>
+> +#include <media/videobuf2-core.h>
+> +#include <media/videobuf2-v4l2.h>
+> +
+> +#define RZV2H_IVC_REG_AXIRX_PLNUM                      0x0000
+> +#define RZV2H_IVC_ONE_EXPOSURE                         0x00
+> +#define RZV2H_IVC_TWO_EXPOSURE                         0x01
+> +#define RZV2H_IVC_REG_AXIRX_PXFMT                      0x0004
+> +#define RZV2H_IVC_INPUT_FMT_MIPI                       (0 << 16)
+> +#define RZV2H_IVC_INPUT_FMT_CRU_PACKED                 (1 << 16)
+> +#define RZV2H_IVC_PXFMT_DTYPE                          GENMASK(7, 0)
+> +#define RZV2H_IVC_REG_AXIRX_SADDL_P0                   0x0010
+> +#define RZV2H_IVC_REG_AXIRX_SADDH_P0                   0x0014
+> +#define RZV2H_IVC_REG_AXIRX_SADDL_P1                   0x0018
+> +#define RZV2H_IVC_REG_AXIRX_SADDH_P1                   0x001c
+> +#define RZV2H_IVC_REG_AXIRX_HSIZE                      0x0020
+> +#define RZV2H_IVC_REG_AXIRX_VSIZE                      0x0024
+> +#define RZV2H_IVC_REG_AXIRX_BLANK                      0x0028
+> +#define RZV2H_IVC_VBLANK(x)                            ((x) << 16)
+> +#define RZV2H_IVC_REG_AXIRX_STRD                       0x0030
+> +#define RZV2H_IVC_REG_AXIRX_ISSU                       0x0040
+> +#define RZV2H_IVC_REG_AXIRX_ERACT                      0x0048
+> +#define RZV2H_IVC_REG_FM_CONTEXT                       0x0100
+> +#define RZV2H_IVC_SOFTWARE_CFG                         0x00
+> +#define RZV2H_IVC_SINGLE_CONTEXT_SW_HW_CFG             BIT(0)
+> +#define RZV2H_IVC_MULTI_CONTEXT_SW_HW_CFG              BIT(1)
+> +#define RZV2H_IVC_REG_FM_MCON                          0x0104
+> +#define RZV2H_IVC_REG_FM_FRCON                         0x0108
+> +#define RZV2H_IVC_REG_FM_STOP                          0x010c
+> +#define RZV2H_IVC_REG_FM_INT_EN                                0x0120
+> +#define RZV2H_IVC_VVAL_IFPE                            BIT(0)
+> +#define RZV2H_IVC_REG_FM_INT_STA                       0x0124
+> +#define RZV2H_IVC_REG_AXIRX_FIFOCAP0                   0x0208
+> +#define RZV2H_IVC_REG_CORE_CAPCON                      0x020c
+> +#define RZV2H_IVC_REG_CORE_FIFOCAP0                    0x0228
+> +#define RZV2H_IVC_REG_CORE_FIFOCAP1                    0x022c
+> +
+> +#define RZV2H_IVC_MIN_WIDTH                            640
+> +#define RZV2H_IVC_MAX_WIDTH                            4096
+> +#define RZV2H_IVC_MIN_HEIGHT                           480
+> +#define RZV2H_IVC_MAX_HEIGHT                           4096
+> +#define RZV2H_IVC_DEFAULT_WIDTH                                1920
+> +#define RZV2H_IVC_DEFAULT_HEIGHT                       1080
+> +
+> +#define RZV2H_IVC_NUM_HW_RESOURCES                     3
+> +
+> +struct device;
+> +
+> +enum rzv2h_ivc_subdev_pads {
+> +       RZV2H_IVC_SUBDEV_SINK_PAD,
+> +       RZV2H_IVC_SUBDEV_SOURCE_PAD,
+> +       RZV2H_IVC_NUM_SUBDEV_PADS
+> +};
+> +
+> +struct rzv2h_ivc_format {
+> +       u32 fourcc;
+> +       /*
+> +        * The CRU packed pixel formats are bayer-order agnostic, so each=
+ could
+> +        * support any one of the 4 possible media bus formats.
+> +        */
+> +       u32 mbus_codes[4];
+> +       u8 dtype;
+> +};
+> +
+> +struct rzv2h_ivc {
+> +       struct device *dev;
+> +       void __iomem *base;
+> +       struct clk_bulk_data clks[RZV2H_IVC_NUM_HW_RESOURCES];
+> +       struct reset_control_bulk_data resets[RZV2H_IVC_NUM_HW_RESOURCES]=
+;
+> +       int irqnum;
+> +       u8 vvalid_ifp;
+> +
+> +       struct {
+> +               struct video_device dev;
+> +               struct vb2_queue vb2q;
+> +               struct media_pad pad;
+> +       } vdev;
+> +
+> +       struct {
+> +               struct v4l2_subdev sd;
+> +               struct media_pad pads[RZV2H_IVC_NUM_SUBDEV_PADS];
+> +       } subdev;
+> +
+> +       struct {
+> +               /* Spinlock to guard buffer queue */
+> +               spinlock_t lock;
+> +               struct workqueue_struct *async_wq;
+> +               struct work_struct work;
+> +               struct list_head queue;
+> +               struct rzv2h_ivc_buf *curr;
+> +               unsigned int sequence;
+> +       } buffers;
+> +
+> +       struct {
+> +               struct v4l2_pix_format_mplane pix;
+> +               const struct rzv2h_ivc_format *fmt;
+> +       } format;
+> +
+> +       /* Mutex to provide to vb2 */
+> +       struct mutex lock;
+> +       /* Lock to protect the interrupt counter */
+> +       spinlock_t spinlock;
+> +};
+> +
+> +int rzv2h_ivc_init_vdev(struct rzv2h_ivc *ivc, struct v4l2_device *v4l2_=
+dev);
+> +void rzv2h_deinit_video_dev_and_queue(struct rzv2h_ivc *ivc);
+> +void rzv2h_ivc_buffer_done(struct rzv2h_ivc *ivc);
+> +int rzv2h_ivc_initialise_subdevice(struct rzv2h_ivc *ivc);
+> +void rzv2h_ivc_deinit_subdevice(struct rzv2h_ivc *ivc);
+> +void rzv2h_ivc_write(struct rzv2h_ivc *ivc, u32 addr, u32 val);
+> +void rzv2h_ivc_update_bits(struct rzv2h_ivc *ivc, unsigned int addr,
+> +                          u32 mask, u32 val);
 >
-> > +     if (ret) {
-> > +             dev_err(dev, "Failed to set mode on serdes PHY\n");
-> > +             goto err_phy_exit;
-> > +     }
-> > +
-> > +     ret = phy_power_on(s32g_pp->phy);
-> > +     if (ret) {
-> > +             dev_err(dev, "Failed to power on serdes PHY\n");
-> > +             goto err_phy_exit;
-> > +     }
-> > +
-> > +     return 0;
-> > +
-> > +err_phy_exit:
-> > +     phy_exit(s32g_pp->phy);
-> > +     return ret;
-> > +}
-> > +
-> > +static int s32g_deinit_pcie_phy(struct s32g_pcie *s32g_pp)
-> > +{
-> > +     struct dw_pcie *pci = &s32g_pp->pci;
-> > +     struct device *dev = pci->dev;
-> > +     int ret;
-> > +
-> > +     ret = phy_power_off(s32g_pp->phy);
-> > +     if (ret) {
-> > +             dev_err(dev, "Failed to power off serdes PHY\n");
-> > +             return ret;
-> > +     }
-> > +
-> > +     ret = phy_exit(s32g_pp->phy);
-> > +     if (ret) {
-> > +             dev_err(dev, "Failed to exit serdes PHY\n");
-> > +             return ret;
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int s32g_pcie_init(struct device *dev,
-> > +                       struct s32g_pcie *s32g_pp)
-> > +{
-> > +     int ret;
-> > +
-> > +     s32g_pcie_disable_ltssm(s32g_pp);
-> > +
-> > +     ret = s32g_init_pcie_phy(s32g_pp);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     s32g_init_pcie_controller(s32g_pp);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static void s32g_pcie_deinit(struct s32g_pcie *s32g_pp)
-> > +{
-> > +     s32g_pcie_disable_ltssm(s32g_pp);
-> > +     s32g_deinit_pcie_phy(s32g_pp);
-> > +}
-> > +
-> > +static int s32g_pcie_host_init(struct s32g_pcie *s32g_pp)
-> > +{
-> > +     struct dw_pcie *pci = &s32g_pp->pci;
-> > +     struct dw_pcie_rp *pp = &pci->pp;
-> > +     int ret;
-> > +
-> > +     pp->ops = &s32g_pcie_host_ops;
-> > +
-> > +     ret = dw_pcie_host_init(pp);
-> > +
-> > +     return ret;
-> > +}
-> > +
-> > +static int s32g_pcie_get_resources(struct platform_device *pdev,
-> > +                                struct s32g_pcie *s32g_pp)
-> > +{
-> > +     struct device *dev = &pdev->dev;
-> > +     struct dw_pcie *pci = &s32g_pp->pci;
-> > +
-> > +     s32g_pp->phy = devm_phy_get(dev, NULL);
-> > +     if (IS_ERR(s32g_pp->phy))
-> > +             return dev_err_probe(dev, PTR_ERR(s32g_pp->phy),
-> > +                             "Failed to get serdes PHY\n");
-> > +     s32g_pp->ctrl_base = devm_platform_ioremap_resource_byname(pdev, "ctrl");
-> > +     if (IS_ERR(s32g_pp->ctrl_base))
-> > +             return PTR_ERR(s32g_pp->ctrl_base);
-> > +
-> > +     pci->dbi_base = devm_platform_ioremap_resource_byname(pdev, "dbi");
-> > +     if (IS_ERR(pci->dbi_base))
-> > +             return PTR_ERR(pci->dbi_base);
+> --
+> 2.43.0
 >
-> suppose dw_pcie_get_resources() already fetch dbi resource for you.
-
-it will be the case now with ops->init()
-
-
-
 >
-> > +
-> > +     pci->dev = dev;
-> > +     pci->ops = &s32g_pcie_ops;
-> > +
-> > +     platform_set_drvdata(pdev, s32g_pp);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int s32g_pcie_probe(struct platform_device *pdev)
-> > +{
-> > +     struct device *dev = &pdev->dev;
-> > +     struct s32g_pcie *s32g_pp;
-> > +     int ret;
-> > +
-> > +     s32g_pp = devm_kzalloc(dev, sizeof(*s32g_pp), GFP_KERNEL);
-> > +     if (!s32g_pp)
-> > +             return -ENOMEM;
-> > +
-> > +     ret = s32g_pcie_get_resources(pdev, s32g_pp);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     pm_runtime_no_callbacks(dev);
-> > +     devm_pm_runtime_enable(dev);
-> > +     ret = pm_runtime_get_sync(dev);
-> > +     if (ret < 0)
-> > +             goto err_pm_runtime_put;
-> > +
-> > +     ret = s32g_pcie_init(dev, s32g_pp);
-> > +     if (ret)
-> > +             goto err_pm_runtime_put;
-> > +
-> > +     ret = s32g_pcie_host_init(s32g_pp);
-> > +     if (ret)
-> > +             goto err_pcie_deinit;
-> > +
-> > +     return 0;
-> > +
-> > +err_pcie_deinit:
-> > +     s32g_pcie_deinit(s32g_pp);
-> > +err_pm_runtime_put:
-> > +     pm_runtime_put(dev);
-> > +
-> > +     return ret;
-> > +}
-> > +
-> > +static int s32g_pcie_suspend_noirq(struct device *dev)
-> > +{
-> > +     struct s32g_pcie *s32g_pp = dev_get_drvdata(dev);
-> > +     struct dw_pcie *pci = &s32g_pp->pci;
-> > +
-> > +     if (!dw_pcie_link_up(pci))
-> > +             return 0;
-> > +
-> > +     return dw_pcie_suspend_noirq(pci);
-> > +}
-> > +
-> > +static int s32g_pcie_resume_noirq(struct device *dev)
-> > +{
-> > +     struct s32g_pcie *s32g_pp = dev_get_drvdata(dev);
-> > +     struct dw_pcie *pci = &s32g_pp->pci;
-> > +
-> > +     s32g_init_pcie_controller(s32g_pp);
->
-> I think it should belong to host_init();
->
-> Frank
->
-> > +
-> > +     return dw_pcie_resume_noirq(pci);
-> > +}
-> > +
-> > +static const struct dev_pm_ops s32g_pcie_pm_ops = {
-> > +     NOIRQ_SYSTEM_SLEEP_PM_OPS(s32g_pcie_suspend_noirq,
-> > +                               s32g_pcie_resume_noirq)
-> > +};
-> > +
-> > +static const struct of_device_id s32g_pcie_of_match[] = {
-> > +     { .compatible = "nxp,s32g2-pcie"},
-> > +     { /* sentinel */ },
-> > +};
-> > +MODULE_DEVICE_TABLE(of, s32g_pcie_of_match);
-> > +
-> > +static struct platform_driver s32g_pcie_driver = {
-> > +     .driver = {
-> > +             .name   = "s32g-pcie",
-> > +             .of_match_table = s32g_pcie_of_match,
-> > +             .suppress_bind_attrs = true,
-> > +             .pm = pm_sleep_ptr(&s32g_pcie_pm_ops),
-> > +             .probe_type = PROBE_PREFER_ASYNCHRONOUS,
-> > +     },
-> > +     .probe = s32g_pcie_probe,
-> > +};
-> > +
-> > +module_platform_driver(s32g_pcie_driver);
-> > +
-> > +MODULE_AUTHOR("Ionut Vicovan <Ionut.Vicovan@nxp.com>");
-> > +MODULE_DESCRIPTION("NXP S32G PCIe Host controller driver");
-> > +MODULE_LICENSE("GPL");
-> > --
-> > 2.43.0
-> >
 
