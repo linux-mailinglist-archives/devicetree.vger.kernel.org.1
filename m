@@ -1,155 +1,178 @@
-Return-Path: <devicetree+bounces-230714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA02BC051FE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:44:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3AEAC05292
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:48:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7D8605640D4
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:38:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11047426095
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:39:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 238BD30649D;
-	Fri, 24 Oct 2025 08:35:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0520306B12;
+	Fri, 24 Oct 2025 08:37:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DogRfu03"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="dmdrSkcA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFA34306490;
-	Fri, 24 Oct 2025 08:35:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D43D306B00
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 08:36:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761294945; cv=none; b=NEgWtqlyF28r7vF6t0+TzC5oFRL+GAu4faNpswz02Ga7De0xWlLDa/HlkX2OUM8gX/N49krnz/yOT2bp0pSXcFy7QhTuytipmDolCWZuWgng18RDvWIe6KDNvg1Lav4kRHnIPfnQE6hMEaamSfJyb/JEclexNGXfuCxqlflE7+c=
+	t=1761295021; cv=none; b=JpZWr72td6Bu73Prp2VW7zgHKwag+kQQ7+jHeHCIqxjYM5pxScPxp/ueP2fkizbjqyHkfSALKYSA2LSJYtYun+fxPcwXyrQFDhlc0xQMTSb9S1pRkiZs2sO7kDH/X8XvIhHx6bYTmpb3IYfEY1NqsFWN0qNxEFQcU349BW3jb+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761294945; c=relaxed/simple;
-	bh=9c2iRB5neiNVOA3946Sm/qhXa8txadLCyBjjks59Ijc=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=mkpsoNPdeyJsDRBRDWTLQy1CVsf08gtH0tCYPVkesrbZqPyLJKVezYDa8Z3SKlp39xNiT68Hd2uwfIH+k9BCKW73IYlBUNJieBBsSrs3WVRkEWfh1+8LBhjR/Sf2kfRj44Xr1Dpg4jxuJVhH7iz1Udfuyi8r1VzGFBf6yTBeVMc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DogRfu03; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AA94C4CEF1;
-	Fri, 24 Oct 2025 08:35:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761294944;
-	bh=9c2iRB5neiNVOA3946Sm/qhXa8txadLCyBjjks59Ijc=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=DogRfu03hCRd5Qkw3C7tdCB0tWuK2TpzQHz2KU1PHJbzPqtjDK3HVNHkhFJMwY5XU
-	 WjrRvzslo/IDNPJXfx71ILowf7e5YWczKqA8H9LmfmlWfbP0meUo4CA68z1zEihAwl
-	 22t5Ex86O8NFvLIp2BMz8c12RR0dZpinXKT6aoUrC3GcfI8Xnx3MBBIhbpnjyfgILw
-	 Ni8NUl1kxmFqYXrZh8++ZcV/RHV/31P3h16qyorEKQvUepCPu7tDFQXvauuyOcigGk
-	 7O6rBS10D9ZLIChw6hpgaErUKxbbupXQV0JZl82Kqr5PjJj8f4mzBTBMc/hqMkB+Cl
-	 tU7bZT8MtT15Q==
-Message-ID: <c20e0b8a-ec59-4359-ba5e-1a616fde9894@kernel.org>
-Date: Fri, 24 Oct 2025 10:35:38 +0200
+	s=arc-20240116; t=1761295021; c=relaxed/simple;
+	bh=2Chy+VwbCxMqclySUz0ufs6zXs5jzdETPAGPGMs0Wf8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=tX2S/nGjzmCnGs53Y++gR7XnYE6etwxNj8VRSP33oWvpi0NFyGmHCSyH+r2j6TFj5T2LVWkMuRu3zegIo9qBqaNdhs4IxAXCqRJHio7REkSvqjW0U+wjH5BgyGM3DjHvUQxPlewhE6zwcnS3pjZz/Y4GNGxAQPicjpfhrRPPpG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=dmdrSkcA; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1761295018;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=6IP4CrvhUC+N+aJ86duEZEGJ5HwVmI6olhQdQ4mkTgo=;
+	b=dmdrSkcAezicadREPwgM+bFDi/ScMp/Brkuiv3usyXIBK0NIQZT9kjH3gF1kPzDaNWXsAD
+	bQHgjYb88Qck76K/eibTn2tl1ES1wxDQB2ENPJ05QPmPMSKwGaRYvBoGx9CudWm5T/O5qC
+	+5A8IsZan6aTg0Oi1aiHvzdrRMQEv2E=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-472-jvenFu7kNT6TN1O6oyMpwg-1; Fri, 24 Oct 2025 04:36:56 -0400
+X-MC-Unique: jvenFu7kNT6TN1O6oyMpwg-1
+X-Mimecast-MFC-AGG-ID: jvenFu7kNT6TN1O6oyMpwg_1761295016
+Received: by mail-wr1-f70.google.com with SMTP id ffacd0b85a97d-426d4f59cbcso1984967f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 01:36:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761295015; x=1761899815;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6IP4CrvhUC+N+aJ86duEZEGJ5HwVmI6olhQdQ4mkTgo=;
+        b=jD5jutvXMnxkwQ49Q5TRtpC5cN1j/obZn6pCqou0i12TEXSav1/mmblvbGkhAz3Ila
+         61QBq+AgMkO9mb8sX3keU/XpbRYXxcUYs0khV5NZ+GrtQPTZRILPshJn1SPJ0fj+krdL
+         A7pSt5IqrR+8klhj0iphwU82fgzSuk3bfuuf0lmnW3C+566ECRN+PCafrmLvYzFkcwP2
+         f1iYeT4bYVF69BRbYC5/mjopvf8nX0cKsiMJDxtkD7dyP3YSNBk1xtZSBwPjz0o+08mr
+         q6xxwm+MPM5FLYvfERudIGZIlD32DZL2oRT6wL81B3+W4jcnvtc4lqiJR/GEQb57EX+E
+         k8dw==
+X-Forwarded-Encrypted: i=1; AJvYcCXJ6KpRwb7zAgAFua/r+ymbNOaWzv/Zxbt5Koy8lTEfs5YMsAOxwVskCz3yDwsa5exAFdMIpURshgxM@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFyioT2MIQTzCH9LaYHTv6ILplsZb4HlJfO4zB+IYVIKTqh8Ef
+	AtMXzFNZmeM0ASqhlyW4fJwAsDV/Ab56Ys9NTWL7JqieF4I5CXpgW6S+v2R+KWRymkdrI+a2ia+
+	+PG/iUy8NRAFhKqOq1HzK7+qYZh5qi/b9UGoyVkfNCd0Jh30vUv/JN/3r0MCN6XU=
+X-Gm-Gg: ASbGnctKHJT/PcTahuMZCd0Hf6W5WbS/fp4Ud91YD1aIwVJ1HEQFDcWy5kIhSVgPA9i
+	IGKDtuzDaImIRV5fjBqqO0E9do90bLnOJuvJm0+HSjGZpKai9n+Q+xg74l/4djMZpOH1PVfyFUK
+	2H6luGW8uqLFHnY1jjuJmZtevludutNWQYYy/uZcqE/5FLKDugKUUiEyEwjPJ04uALs6VtcjNm6
+	vlkG8f58U3NNF0iChCeWF1015QvIaEFyGF8w+yx3wCniZCclrplwXYaaxddqWP9oBdkcp+SfaUF
+	eMlFwKuO+6ybM7wE6BVV/HsDZ8o3plAquYAE4wdkuDexm9dbNXyIwtQ5Z4Ba4JVG4oy1Gz6uQWY
+	4MD9wmNQI
+X-Received: by 2002:a05:6000:2486:b0:429:8b4a:c3b4 with SMTP id ffacd0b85a97d-4298f50eb44mr1420049f8f.5.1761295015439;
+        Fri, 24 Oct 2025 01:36:55 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEA0nB2sR3hVRzBJN7DXMuBj2PcK0Ip1C+Sl00x3e48btGKdsyMquC1DjN94eGd/K76AwujjA==
+X-Received: by 2002:a05:6000:2486:b0:429:8b4a:c3b4 with SMTP id ffacd0b85a97d-4298f50eb44mr1420017f8f.5.1761295015023;
+        Fri, 24 Oct 2025 01:36:55 -0700 (PDT)
+Received: from holism.lzampier.com ([148.252.9.235])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429897e77dasm8111636f8f.2.2025.10.24.01.36.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Oct 2025 01:36:54 -0700 (PDT)
+From: Lucas Zampieri <lzampier@redhat.com>
+To: linux-kernel@vger.kernel.org
+Cc: Lucas Zampieri <lzampier@redhat.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Vivian Wang <dramforever@live.com>,
+	Charles Mirabile <cmirabil@redhat.com>,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v6 0/4] Add UltraRISC DP1000 PLIC support
+Date: Fri, 24 Oct 2025 09:36:39 +0100
+Message-ID: <20251024083647.475239-1-lzampier@redhat.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v20 1/4] dt-bindings: i2c: Split AST2600 binding into a
- new YAML
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jeremy Kerr <jk@codeconstruct.com.au>,
- Ryan Chen <ryan_chen@aspeedtech.com>
-Cc: benh@kernel.crashing.org, joel@jms.id.au, andi.shyti@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andrew@codeconstruct.com.au, p.zabel@pengutronix.de,
- andriy.shevchenko@linux.intel.com, naresh.solanki@9elements.com,
- linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20251021013548.2375190-1-ryan_chen@aspeedtech.com>
- <20251021013548.2375190-2-ryan_chen@aspeedtech.com>
- <20251024-dark-ringtail-of-defiance-1daabd@kuoka>
- <2939cae6-2e8a-4528-8e27-8c932e2f82de@kernel.org>
- <bf3d6690b9124ecf74df6c0f9f1c0f72ae1db9f7.camel@codeconstruct.com.au>
- <8341a903-639b-471a-8425-a98c473f5ab0@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <8341a903-639b-471a-8425-a98c473f5ab0@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 24/10/2025 10:06, Krzysztof Kozlowski wrote:
-> On 24/10/2025 09:56, Jeremy Kerr wrote:
->> Hi Krzysztof,
->>
->>> Although now I saw next patch, so clearly this commit is incomplete.
->>
->> The split that Ryan has done here - by shifting to an identical separate
->> binding, then making the changes explicit - allows us to review the
->> actual changes without losing them in the move. Sounds like a benefit to
->> me?
-> 
-> Not related. I commented that rationale is incomplete. We do not move
-> parts of bindings because new device is someway different. There are
-> hundreds of bindings which cover different devices. We move them because
-> the binding is different.
-> 
->>
->>> You just need allOf:if:then: section to narrow the
->>> constraints/presence of properties.
->>
->> That seems like a more complex approach. This is separate IP from the
->> 2500 controllers, wouldn't that warrant a new binding spec?
->>
-> 
-> Not much different than every other soc. All of them are separate IPs.
-> Look at any Samsung, NXP or Qualcomm binding. Separate IPs.
+This series adds support for the PLIC implementation in the UltraRISC
+DP1000 SoC. The UR-CP100 cores used in the DP1000 have a hardware bug in
+their PLIC claim register where reading it while multiple interrupts are
+pending can return the wrong interrupt ID. The workaround temporarily
+disables all interrupts except the first pending one before reading the
+claim register, then restores the previous state.
 
+The driver matches on "ultrarisc,cp100-plic" (CPU core compatible), allowing
+the quirk to apply to all SoCs using UR-CP100 cores (currently DP1000,
+potentially future SoCs).
 
-So let the move happen, but please explain in the commit msg that
-devices are completely different - nothing in common - and thus the
-binding will be different. We indeed do not keep completely different
-devices in one binding, but based on commit msg I had impression this
-was just major block upgrade.
+Charles Mirabile (3):
+  dt-bindings: interrupt-controller: add UltraRISC DP1000 PLIC
+  irqchip/plic: enable optimization of interrupt enable state
+  irqchip/plic: add support for UltraRISC DP1000 PLIC
 
-Best regards,
-Krzysztof
+Lucas Zampieri (1):
+  dt-bindings: vendor-prefixes: add UltraRISC
+
+Changes in v6:
+- Split enable_save optimization into separate patch 0003
+- 0003: New patch - Optimize interrupt enable state tracking by maintaining enable_save
+  during normal operation instead of only during suspend/resume
+- 0004: Use existing enable_save[] instead of reading enable registers before workaround
+- 0004: Return iso_mask from cp100_isolate_pending_irq to use in restore logic
+- 0004: Skip writing enable masks that haven't changed during isolation
+- 0004: Skip restoring enable masks that haven't changed after claim
+- 0004: Skip checking groups with no enabled interrupts in cp100_isolate_pending_irq
+- 0004: Updated commit message to clarify dependency on enable_save optimization
+
+Changes in v5:
+- 0004: Added brackets around conditional in cp100_isolate_pending_irq (feedback from Thomas Gleixner)
+- 0004: Reordered variables in reverse fir tree order in cp100_get_hwirq (feedback from Thomas Gleixner)
+- 0004: Replaced raw_spin_lock/unlock with guard(raw_spinlock) (feedback from Thomas Gleixner)
+- 0004: Added newline between variable declaration and code in plic_probe (feedback from Thomas Gleixner)
+- 0004: Extended generic_handle_domain_irq call to single line (feedback from Thomas Gleixner)
+
+Changes in v4:
+- 0002: Simplified commit message to focus on hardware bug (feedback from Conor Dooley)
+- 0002: Added Conor's Acked-by
+- 0004: Renamed PLIC_QUIRK_CLAIM_REGISTER to PLIC_QUIRK_CP100_CLAIM_REGISTER_ERRATUM
+  to be more specific (feedback from Samuel Holland)
+- 0004: Added Samuel's Acked-by
+
+Changes in v3:
+- 0002: Updated commit message to clarify that DP1000 is an SoC and CP100
+  is a core (feedback from Conor Dooley)
+- 0004: Renamed dp1000_* functions to cp100_* and updated commit message to
+  clarify the hardware bug is in the UR-CP100 core implementation, not
+  specific to the DP1000 SoC
+- 0004: Moved quirk check out of hot interrupt path by creating separate
+  plic_handle_irq_cp100() function and selecting handler at probe time
+- 0004: Use existing handler->enable_save[] array instead of stack allocation
+- 0004: Use readl_relaxed()/writel_relaxed() for better performance
+
+Changes in v2:
+- 0002: Changed compatible string pattern to SoC+core: ultrarisc,dp1000-plic
+  with ultrarisc,cp100-plic fallback (suggested by Krzysztof and Vivian)
+- 0004: Driver now matches on ultrarisc,cp100-plic (core) instead of dp1000 (SoC)
+- All patches: Added submitter Signed-off-by to complete DCO chain
+
+ .../sifive,plic-1.0.0.yaml                    |   3 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/irqchip/irq-sifive-plic.c             | 126 +++++++++++++++++--
+ 3 files changed, 118 insertions(+), 10 deletions(-)
+
+--
+2.51.0
+
 
