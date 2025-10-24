@@ -1,108 +1,146 @@
-Return-Path: <devicetree+bounces-230673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17F0AC04EAE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:01:54 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DF9BC04F59
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:07:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2545188E9BF
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:02:14 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8AD0735B014
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:07:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 642E62F99A8;
-	Fri, 24 Oct 2025 08:01:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49DAE3019BA;
+	Fri, 24 Oct 2025 08:06:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gSZpJEHl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE7B52FABE6
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 08:01:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 144C42FDC37;
+	Fri, 24 Oct 2025 08:06:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761292906; cv=none; b=mK2T9V6a6+UIrxTZdpUeJUsCRRAe+8nxjjHdOZ0gHqz/a/WdZKnlRHX1/JufRYgbMRaoX1n2kWZo+a/gcy6gBaawXR9yehelPqT8cZS5MEH89eJ0HKlAURDHoAe/m4NUfYuuRClksMMkcAxiWURzsSuVYx8I9xiKBYlvviOZQzA=
+	t=1761293171; cv=none; b=Fkvm32RxxpNntklQmpCotiuvhNgGcgaxPU3vgTGyYEKLQWYQ0tTqTHfGfOZBy2b9PfzQqU7frNiA1GWonjjiBzEW9jNMSoVBYWIvkJQumIdPZXFH23VY8So7ZEMFJgX3QYmxKRLtHjrItqb2LDGTron34Y3+O3Jxxr7f8y1DPAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761292906; c=relaxed/simple;
-	bh=haXerQcA3HaYtUIl4/PZ1i9/1Px3bakR91vnPlzpbZI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LvJwnXeXO2ExNaIOfBEEAn/9DTa2Ym9mNE5JCbdeFarg7eOedyqzRky9gfd8piTATza7qyojIhBtpfetHdFYuI0GJP96PrfciSPVzuEvTfQnwpzW7ynoUfvF1CH5V7Lk3X0xwJYzBagl5d5g5ZjXaXnODryAiRGW0qY1yN7XzuM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-5d967b66fedso1142692137.1
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 01:01:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761292904; x=1761897704;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mbuokl4czKvaoy+RAtT8vLd0ny6Fv6b+IGMo/jRBfrQ=;
-        b=Uqh1X1Gt7cHY7Y2yq5dhA0SNGTjMJfwVfYNePOYmgssjQSXAA4ENsJ+XiqI/h0pR3l
-         DO9FH7M7bYjbjfTBPRA1nrxAkmemD+Vox+OVB3hKKJXHEvAg8sYpHtcew09sGFtpdGnI
-         hFbFbPnKmS6H5rJiaAaNj42wPVfsGd33TFNSsCL2/QE7YrYCqvORypFRb4vynw7Y6e52
-         bQrp2LOAu241kJ9JvM6R1Leey21U7R8R+wWFo/hDKs5oWr6415jQtwl2lVK4Pe1tBcVI
-         OwhqOtThG1U+leFDwFGOyBSi1Vpy4NzBvvB8nwKjchn+IFtp56EaumFpsltzal2RAJxS
-         2l/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWB966AG6LCiO6/7J6VtqJ8I5YVIw9E9dNWg82MJfoJzN56fuUSDK0R/KtFUPTamzYNBusIzc5FrM5g@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTppNOvxAk19/k2p+yP/HjJTKGkOqohkQT432sI/cyraWn7zi/
-	TurqLEoDcTDYsEWml8Rn8FXbnyxR/gpV16pWZ0c9tYRNu3t1nxVsND+4XaIZvaBQ
-X-Gm-Gg: ASbGncuNerpw6CV0+CGgs/kZ7jRZ49a7Q9hIwYyiB2nI4BJUFhIu8aeikGTwGHdjBRm
-	74BJwlKXK/D6SlzSdu8AqV3P8A7rhI6aNvdXmXNNgF6axe+T7eKy9q/BBveYa/IwsE5sHkf2VJG
-	CbIQw7OGHK+CDSVMMzxws+WMC+6YwpwC4EZbPKcQ8V2JGZmO8npY3HX0Q/0fhIOMBXyqDQKcuH6
-	n30XZ5EMfMZIC/w2X/AtuyvVUiswATtNI+AHFlQWzD151qAsAC0oTDI39E7Qtqu2ddnh4lGiWr2
-	9iP2/yGQ9QE6yo4lrLyS6D8f3k3HGDjRNsfYqazx+lh4cvV+c73MA+esmk/HU0AgJOCOGiDZPTM
-	EAMvSwZVnlxjmT36Prl9e0a8mhlaKvm3HAS3wy30oHanRzBiDSmfc5tNH9hiuvqqrZqjGf3gpyf
-	alF0Yd14c3Fvj8dINBJk8JzZYh2CrZHG0tRjqrNQ==
-X-Google-Smtp-Source: AGHT+IED8GTYU+b6fou9RKK5ggxQjVAB859p+Je5GaT22BWoXZMng3d2aHhesWZcESWkGmI2oPj6jg==
-X-Received: by 2002:a05:6102:3582:b0:5d6:155c:33aa with SMTP id ada2fe7eead31-5db2e479ac9mr1853517137.16.1761292903654;
-        Fri, 24 Oct 2025 01:01:43 -0700 (PDT)
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5db2cca25a9sm1804698137.14.2025.10.24.01.01.43
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Oct 2025 01:01:43 -0700 (PDT)
-Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-9231a251c01so874883241.1
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 01:01:43 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVr8iyWzV7YKoCV/z89vApXQY+iXdgMkDVM5fBbShNGcBugZuRK6dRyDgsHzldy14Nbc5MoyIGqfWFl@vger.kernel.org
-X-Received: by 2002:a05:6102:c49:b0:5d6:5f0:3f88 with SMTP id
- ada2fe7eead31-5db2e58e682mr1680224137.35.1761292903035; Fri, 24 Oct 2025
- 01:01:43 -0700 (PDT)
+	s=arc-20240116; t=1761293171; c=relaxed/simple;
+	bh=LXA8EKHQrQTivIKrM29ysPVd8yGf5vfMeH3fOvz9+Lk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZvGuC3h5VAjZuHNj9uDBk7XNbVOQkmGQKpju+zlYQi2Xt6imZb5N/YMBRklKHtp4YuHtMrOMYa7umEPQ6p8RBkuu4v4bZsN04D4wXu52iQ+fukiEobFQr4CBWeNy6dZig7RTb2KKXeTRVeAQ6ylsIMEelBmC0UhR7wIdLedlCUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gSZpJEHl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84318C4CEF1;
+	Fri, 24 Oct 2025 08:06:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761293170;
+	bh=LXA8EKHQrQTivIKrM29ysPVd8yGf5vfMeH3fOvz9+Lk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=gSZpJEHl7kYbY78lE4zMvC3YuoIKL/mE0hbP6cX+EkMD9RyBAjrMIh/R8b1XNy/EZ
+	 jrFak4fSaUsZeL6zsJOdy1iG9TC5qtzSXBdqqE3CU6L/kO4FLvepysKHCGFztYKM1f
+	 SHVqA3FyRTcmIcpd9a6b0t8AZt4AIsgDPvEbpNswNB2iEduJ9fsSOiwsJ29tZWNdRf
+	 gLpZi6pNXwWo/eqa6IdPk3A9DRHebLc+iozWSu2dK9UXaKToIT6h+2KZlHGS3R1yTy
+	 u4ugsqgavYV0qUP1VEY9ISdARqsrBFObTgD/nYA9CC1h257CMVzewrQRoK7Jdw/uXw
+	 d1aFzmIBA9N2w==
+Message-ID: <8341a903-639b-471a-8425-a98c473f5ab0@kernel.org>
+Date: Fri, 24 Oct 2025 10:06:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87frb8n7kl.wl-kuninori.morimoto.gx@renesas.com> <87ecqsn7jo.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87ecqsn7jo.wl-kuninori.morimoto.gx@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 24 Oct 2025 10:01:32 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUCz6OZYbKR8izDRe3=dz_yVTj9AhFmHG98WETaeknmZg@mail.gmail.com>
-X-Gm-Features: AWmQ_blRNb9opWlPAtdUuV4F0M67z94Nk8rxY_eqKk-OMWvzPSxvxuGJgirtXu8
-Message-ID: <CAMuHMdUCz6OZYbKR8izDRe3=dz_yVTj9AhFmHG98WETaeknmZg@mail.gmail.com>
-Subject: Re: [PATCH 1/3] mailbox: remove unneeded double quotation
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v20 1/4] dt-bindings: i2c: Split AST2600 binding into a
+ new YAML
+To: Jeremy Kerr <jk@codeconstruct.com.au>,
+ Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: benh@kernel.crashing.org, joel@jms.id.au, andi.shyti@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andrew@codeconstruct.com.au, p.zabel@pengutronix.de,
+ andriy.shevchenko@linux.intel.com, naresh.solanki@9elements.com,
+ linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20251021013548.2375190-1-ryan_chen@aspeedtech.com>
+ <20251021013548.2375190-2-ryan_chen@aspeedtech.com>
+ <20251024-dark-ringtail-of-defiance-1daabd@kuoka>
+ <2939cae6-2e8a-4528-8e27-8c932e2f82de@kernel.org>
+ <bf3d6690b9124ecf74df6c0f9f1c0f72ae1db9f7.camel@codeconstruct.com.au>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <bf3d6690b9124ecf74df6c0f9f1c0f72ae1db9f7.camel@codeconstruct.com.au>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, 24 Oct 2025 at 08:22, Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> It makes Kconfig strange. fix it.
+On 24/10/2025 09:56, Jeremy Kerr wrote:
+> Hi Krzysztof,
+> 
+>> Although now I saw next patch, so clearly this commit is incomplete.
+> 
+> The split that Ryan has done here - by shifting to an identical separate
+> binding, then making the changes explicit - allows us to review the
+> actual changes without losing them in the move. Sounds like a benefit to
+> me?
+
+Not related. I commented that rationale is incomplete. We do not move
+parts of bindings because new device is someway different. There are
+hundreds of bindings which cover different devices. We move them because
+the binding is different.
+
+> 
+>> You just need allOf:if:then: section to narrow the
+>> constraints/presence of properties.
+> 
+> That seems like a more complex approach. This is separate IP from the
+> 2500 controllers, wouldn't that warrant a new binding spec?
 >
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Not much different than every other soc. All of them are separate IPs.
+Look at any Samsung, NXP or Qualcomm binding. Separate IPs.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
 
