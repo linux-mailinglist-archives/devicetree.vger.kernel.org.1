@@ -1,159 +1,98 @@
-Return-Path: <devicetree+bounces-230929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4B69C0787B
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 19:25:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5C30C078BA
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 19:30:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 347FB1C46F0F
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 17:25:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E2673AC334
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 17:30:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCA56338906;
-	Fri, 24 Oct 2025 17:25:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19B37344038;
+	Fri, 24 Oct 2025 17:30:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Szb7hdPf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="duBXUyKi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F8621990A7;
-	Fri, 24 Oct 2025 17:25:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFC4C76026;
+	Fri, 24 Oct 2025 17:30:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761326721; cv=none; b=H1IRZfFX9KFAav9cGpkaYzNoYHvsQZ1oC0n0Ad5a8vaSsSwY2Sv60cUWFozD8Pmgfoh6k2xA0t8+6uoIGAWLphBzFFUfTLAElTSCWx7vCpCF8zU6as8nOttxNKTS1Iial5ukTwtWYWMoFMOLoG+r1RjAiRYU5bNp8oWUNFi5/jM=
+	t=1761327028; cv=none; b=WNoqj75RsKgOw2NUooxKm1PcaZodm0pIPAQgH185meIPS8rUP9TclPWKV+YFty/ZMU3MDGkxK4k5hgPQ6KQiD96YybTY1N0lFytrvSIR+0txAIhe2JN7WgsMJeiHll0O9DvVTLeTR9VgU+yA6mz4SSPExYCJAqOCpzZUR06dKo4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761326721; c=relaxed/simple;
-	bh=STF0BVLwmmf2zdCzGMSd1qWpVlVaamPq3/R/Tnll1sQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tjGdwRezbpLG6KZXUkGdZ/mvI7EzhLpaaLsYNlSEnBgDLg83D3tngKxUwAesq6EyWvZq9NMZsI+xYCXQCYfjWryUX7St8O5ZA4+j/Tde3Suc7LnTNFYPFFGxqimM3zXvIgbOcMs9G2B/erCl5wA5GBMOIiTYckZU6AZriF5Oe+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Szb7hdPf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B243C4CEF1;
-	Fri, 24 Oct 2025 17:25:16 +0000 (UTC)
+	s=arc-20240116; t=1761327028; c=relaxed/simple;
+	bh=srsHMANt5Lk/UaQ7m5DJ4Z4en71AEbC71W6CSZjih38=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=Gr7g5g6K+1b3P8fb4Q6SbR8Hsf+OG8aJwTAngx32SrPfuBgNHEaf5NRyxuQWLdm0JhCnRqLh8ju+gvpmss0M7EDtOnSUMqlv+/zsznu6rkpMNeGdteODfwIWUD1XaogJZPsHw54DU+5OJ+igk2sx4PKGDQbypipLolKxam3O968=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=duBXUyKi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65C20C4CEF1;
+	Fri, 24 Oct 2025 17:30:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761326721;
-	bh=STF0BVLwmmf2zdCzGMSd1qWpVlVaamPq3/R/Tnll1sQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Szb7hdPf01uCg3+8lRVJjUaLS94amyMOEba4c6fbtsuZ+Lswn4FxBwm3IPNgOPnxh
-	 Sw0uAuH0hcFCwSglKvLZEu6h37x64j209uSByxGjLrNalULmeoVVrraTI0WOfeF3li
-	 ldKSQ53t5hEcDwLl7lvSnXAV5uF111Yk4n4cbaqplJ/vIKecMW+G9Ck8yBxPdA1WTz
-	 vK+vFPESLgp7O4C6fQD7Poo3x/g2jxiI5580vQxrW4BUHh+Blpm3e6H8Qjac9qOWV1
-	 Vqc7lE7BM1rDwwwHFt2e+McnG6opy7mLntTuqQ8VHDVtXuZjiKfwQNOCC/c0SROlWX
-	 KhjE1ESUF77Dw==
-Date: Fri, 24 Oct 2025 18:25:14 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>,
-	Avri Altman <avri.altman@wdc.com>,
-	Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Chunfeng Yun <chunfeng.yun@mediatek.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Peter Wang <peter.wang@mediatek.com>,
-	Stanley Jhu <chu.stanley@gmail.com>,
-	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
-	"Martin K. Petersen" <martin.petersen@oracle.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
-	kernel@collabora.com, linux-scsi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH v3 02/24] dt-bindings: ufs: mediatek,ufs: Complete the
- binding
-Message-ID: <20251024-excavate-reprint-a9eb3cbb061f@spud>
-References: <20251023-mt8196-ufs-v3-0-0f04b4a795ff@collabora.com>
- <20251023-mt8196-ufs-v3-2-0f04b4a795ff@collabora.com>
+	s=k20201202; t=1761327026;
+	bh=srsHMANt5Lk/UaQ7m5DJ4Z4en71AEbC71W6CSZjih38=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=duBXUyKiWqIYFbG9OikTq2XGFolLTL1gvY3rGyNfr/yFroYIrSgY33+1eKUBq3JIb
+	 Y2cJqqoVEuRrvCfzTo0fsNeQf/yWkrKsIggljYxOpkseixlpQ5gN/vKJEMKbRfWlJt
+	 /OChc+XrxyXpaOCrQYp717hPtHRcYpOhjFMcpLaTx4Q5vBXjTD+IZ5c1/2dpubh348
+	 iFdD2p+qKJMllZUg5Bllq7UL+kKDZA355GFsA8p3c0Rbpvroto3zwHGmUMFA7Sxgm5
+	 H6dv7G3qP1WFRn5Yx3VRUeQ4ndhDYtdOBMgvtmDzCf/0b/44mijvaBzbW1aqa5JrAC
+	 9KflvqB5OeHmA==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 70FC5380AA4A;
+	Fri, 24 Oct 2025 17:30:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="V451Z6sNr8QduRRg"
-Content-Disposition: inline
-In-Reply-To: <20251023-mt8196-ufs-v3-2-0f04b4a795ff@collabora.com>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v3] dt-bindings: net: Convert Marvell 8897/8997 bindings
+ to DT
+ schema
+From: patchwork-bot+bluetooth@kernel.org
+Message-Id: 
+ <176132700625.4002741.4029402760245569227.git-patchwork-notify@kernel.org>
+Date: Fri, 24 Oct 2025 17:30:06 +0000
+References: <20251001183320.83221-1-ariel.dalessandro@collabora.com>
+In-Reply-To: <20251001183320.83221-1-ariel.dalessandro@collabora.com>
+To: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+Cc: andrew+netdev@lunn.ch, angelogioacchino.delregno@collabora.com,
+ conor+dt@kernel.org, davem@davemloft.net, edumazet@google.com,
+ krzk+dt@kernel.org, kuba@kernel.org, luiz.dentz@gmail.com, pabeni@redhat.com,
+ robh@kernel.org, devicetree@vger.kernel.org, kernel@collabora.com,
+ linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org
+
+Hello:
+
+This patch was applied to bluetooth/bluetooth-next.git (master)
+by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
+
+On Wed,  1 Oct 2025 15:33:20 -0300 you wrote:
+> Convert the existing text-based DT bindings for Marvell 8897/8997
+> (sd8897/sd8997) bluetooth devices controller to a DT schema.
+> 
+> While here, bindings for "usb1286,204e" (USB interface) are dropped from
+> the DT   schema definition as these are currently documented in file [0].
+> 
+> [0] Documentation/devicetree/bindings/net/btusb.txt
+> 
+> [...]
+
+Here is the summary with links:
+  - [v3] dt-bindings: net: Convert Marvell 8897/8997 bindings to DT schema
+    https://git.kernel.org/bluetooth/bluetooth-next/c/f63037a3f252
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
---V451Z6sNr8QduRRg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Oct 23, 2025 at 09:49:20PM +0200, Nicolas Frattaroli wrote:
-> As it stands, the mediatek,ufs.yaml binding is startlingly incomplete.
-> Its one example, which is the only real "user" of this binding in
-> mainline, uses the deprecated freq-table-hz property.
->=20
-> The resets, of which there are three optional ones, are completely
-> absent.
->=20
-> The clock description for MT8195 is incomplete, as is the one for
-> MT8192. It's not known if the one clock binding for MT8183 is even
-> correct, but I do not have access to the necessary code and
-> documentation to find this out myself.
->=20
-> The power supply situation is not much better; the binding describes one
-> required power supply, but uses a supply property from ufs-common.yaml
-> that can be either 1.8V or 3.3V.
->=20
-> No second example is present in the binding, making verification
-> difficult.
->=20
-> Disallow freq-table-hz and move to operating-points-v2. It's fine to
-> break compatibility here, as the binding is currently unused and would
-> be impossible to correctly use in its current state.
->=20
-> Add the three resets and the corresponding reset-names property. These
-> resets appear to be optional, i.e. not required for the functioning of
-> the device.
->=20
-> Move the list of clock names out of the if condition, and expand it for
-> the confirmed clocks I could find by cross-referencing several clock
-> drivers. For MT8195, increase the minimum number of clocks to include
-> the crypt and rx_symbol ones, as they're internal to the SoC and should
-> always be present, and should therefore not be omitted.
->=20
-> MT8192 gets to have at least 3 clocks, as these were the ones I could
-> quickly confirm from a glance at various trees. I can't say this was an
-> exhaustive search though, but it's better than the current situation.
->=20
-> Properly document all supplies, with which pin name on the SoCs they
-> supply, and what voltage we understand them as. Mandate vcc-supply-1p8,
-> as vcc-supply appears to always be describing a 1.8V supply. The
-> ufs-common.yaml vccq/vccq2 supplies are used for this purpose, so that
-> common UFS implementations which do power management for these don't
-> have to treat MediaTek's 1.2V supplies in a special way.
->=20
-> Add the missing avdd09-supply, which so far only mt8183 uses.
->=20
-> Also add a MT8195 example to the binding, using supply labels that I am
-> pretty sure would be the right ones for e.g. the Radxa NIO 12L.
->=20
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-
-Thanks for doing this.
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
-
---V451Z6sNr8QduRRg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPu2egAKCRB4tDGHoIJi
-0lNNAP0VC19k2rBRz7i8IHf9X3g1JTxqMMzVR3u32lMao5ckHwEAhMXWoRLsRBM+
-T4cDM7d9lAcfhdyafCjXMKxMlrhkNws=
-=fNHc
------END PGP SIGNATURE-----
-
---V451Z6sNr8QduRRg--
 
