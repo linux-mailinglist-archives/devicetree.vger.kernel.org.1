@@ -1,42 +1,42 @@
-Return-Path: <devicetree+bounces-230794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40A69C061D9
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 13:55:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCBF4C06227
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 13:59:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 87E9B503DDC
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 11:53:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98F003AAAF0
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 11:53:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AFAB316187;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA4482D5928;
 	Fri, 24 Oct 2025 11:50:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88A38314B9A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4A732D47FE
 	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 11:50:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761306629; cv=none; b=lp6+DiQz3Ldhlu3Js/nV9y47wKisK8IABHP3zRV8Hyu/Q/9atYNL6rIPJGcR79/FfclOH9PIuefTI7KwDcTSuAc0Bt0FNKL71nIHYwC5u/uI9ZT/pGw70LmdWuvsuR8Vs38liYrw//+aTd++hMMxwMWQd8Ug76jIAJLYvFgKe4g=
+	t=1761306629; cv=none; b=MLRHaYvesBnzHisZ+CzblLkiw2R2vrsWSiwK4MWyjE64xb2XYiXTZ61bWPP4KERS2uCwg76lambU7B3vGUP589DA5U2xKsUSefjLFnwgOVVW37OXo0j+GRGbOkfkcP7otrIbKegoCjVJGqhR13G5eVXfgmbsCp2QJeVuBqSrRKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1761306629; c=relaxed/simple;
-	bh=dOuVtmpqMtteXHbOXlQOCS36sdrfzeJ5kxO7Ib+amjI=;
+	bh=bvjxnCpbgRWS5dB0A4fk7xC8f8vcVUPm7QTjunvl35c=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=gQ8Ly6X3j3pqmbl+dhk42Bv3h06Qa2cUXjAT34fukZ6+PCaA4+q6QAmsk7CTOtrj2LrDIoaa5jZzq6cZrN5MqGOyfyQSUBonMpNmEOWAmnLcYuet19XqFE8KOVYHtiGDCc1OACdS8qIA7xA3ijp1PlusrTWbOyIqn9gKHJwSOxM=
+	 In-Reply-To:To:Cc; b=si1IlZaqEDmqTYM6AGZsm0/am/Rc0KKj1eepOYYjtbgkOk3nUjo1r1olYH9auVNGb42C9b6c5jJ0WIk6Z8RgOOH3DjsW0M0YtEohVSJAQnYnjY37ltCV2TbLkTQoSrBEa0hCfUhEwG9uV4K/0HKpS7YkyhdCnZ8deIRDZb4Zetg=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=ratatoskr.trumtrar.info)
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <s.trumtrar@pengutronix.de>)
-	id 1vCGJ7-0002FG-20; Fri, 24 Oct 2025 13:50:09 +0200
+	id 1vCGJ7-0002FG-Id; Fri, 24 Oct 2025 13:50:09 +0200
 From: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Date: Fri, 24 Oct 2025 13:49:57 +0200
-Subject: [PATCH v5 05/10] dt-bindings: net: altr,socfpga-stmmac: add
- generic dwxgmac compatible
+Date: Fri, 24 Oct 2025 13:49:58 +0200
+Subject: [PATCH v5 06/10] arm64: dts: socfpga: agilex5: add dwxgmac
+ compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -45,7 +45,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251024-v6-12-topic-socfpga-agilex5-v5-5-4c4a51159eeb@pengutronix.de>
+Message-Id: <20251024-v6-12-topic-socfpga-agilex5-v5-6-4c4a51159eeb@pengutronix.de>
 References: <20251024-v6-12-topic-socfpga-agilex5-v5-0-4c4a51159eeb@pengutronix.de>
 In-Reply-To: <20251024-v6-12-topic-socfpga-agilex5-v5-0-4c4a51159eeb@pengutronix.de>
 To: Andrew Lunn <andrew+netdev@lunn.ch>, 
@@ -68,31 +68,49 @@ X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add the more generic "snps,dwxgmac" compatible to the list of
-compatibles for the agilex5.
-
-The snps,dwmac binding explicitly uses the "snps,dwxgmac-2.10",
-"snps,dwxgmac" combination as example; the stmmac driver only checks on
-dwmac and dwxgmac compatibles to decide what kind of gmac it is working
-with.
+The gmac0/1/2 are also compatible to the more generic "snps,dwxgmac"
+compatible. The platform code checks this to decide if it is a GMAC or
+GMAC4 compatible IP core.
 
 Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
 ---
- Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-index fc445ad5a1f1a..b53847a2d9536 100644
---- a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-+++ b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-@@ -46,6 +46,7 @@ properties:
-       - items:
-           - const: altr,socfpga-stmmac-agilex5
-           - const: snps,dwxgmac-2.10
-+          - const: snps,dwxgmac
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+index 4ccfebfd9d322..d0c139f03541e 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+@@ -536,7 +536,8 @@ qspi: spi@108d2000 {
  
-   clocks:
-     minItems: 1
+ 		gmac0: ethernet@10810000 {
+ 			compatible = "altr,socfpga-stmmac-agilex5",
+-				     "snps,dwxgmac-2.10";
++				     "snps,dwxgmac-2.10",
++				     "snps,dwxgmac";
+ 			reg = <0x10810000 0x3500>;
+ 			interrupts = <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "macirq";
+@@ -649,7 +650,8 @@ queue7 {
+ 
+ 		gmac1: ethernet@10820000 {
+ 			compatible = "altr,socfpga-stmmac-agilex5",
+-				     "snps,dwxgmac-2.10";
++				     "snps,dwxgmac-2.10",
++				     "snps,dwxgmac";
+ 			reg = <0x10820000 0x3500>;
+ 			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "macirq";
+@@ -762,7 +764,8 @@ queue7 {
+ 
+ 		gmac2: ethernet@10830000 {
+ 			compatible = "altr,socfpga-stmmac-agilex5",
+-				     "snps,dwxgmac-2.10";
++				     "snps,dwxgmac-2.10",
++				     "snps,dwxgmac";
+ 			reg = <0x10830000 0x3500>;
+ 			interrupts = <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "macirq";
 
 -- 
 2.51.0
