@@ -1,128 +1,218 @@
-Return-Path: <devicetree+bounces-230784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABAAAC060AF
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 13:41:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5303BC0604C
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 13:39:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3EFBD5873B6
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 11:27:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 512813B790B
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 11:28:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C956E311C01;
-	Fri, 24 Oct 2025 11:05:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB5FE31D364;
+	Fri, 24 Oct 2025 11:08:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s00cKF6/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fvKY3vqR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f52.google.com (mail-yx1-f52.google.com [74.125.224.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED8431076A;
-	Fri, 24 Oct 2025 11:05:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AD48314A6C
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 11:08:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761303903; cv=none; b=YR3wzlNh/wlP5VP4zIkgqNYpEjgTJuKbaJJEqmLDV1I5zzwOSm9sBuQk4QhayIsPMPwO8yzcxNBM/MJSyqyXe/f0etbfUxgngLY4fkD0+yi8qekm7+MeZ0UsKOaBCMA1unP/ESEuMrhwIRWa7PJvskFl+QqyB4YTZKm/uijG+Ck=
+	t=1761304101; cv=none; b=XTTXk5EJ4lTd3pqXBSDAJU/xT2EwlNqG9h/lARELX/rN3l8oCbQAASb0XwXgxF1HFKrjr6Uz1vAr/ENt3VxLiPxxvmk2DJ2s8Vtiu1vIGzkYLUHzh1fjolp+zEat+hXd7HiUZRdlfnLsnt3iNXkqzA+wsdb2ccsVajpeCrgJBB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761303903; c=relaxed/simple;
-	bh=BXDZzEsmDtJ5qTyvhREBgZJTmqfehHSA8zAtWClKrHM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=efHX4DKVtCa/ZOw9uIXXXU09Kup37W4JgI+ccLMMlJwJH6HVWBszmoeNVjQU30bcbBcOFGy6dggFXrWjHcD+WYcAjdTAjtAENiFT3xRLozasvDKR+eH4tLzZLM4fL764N2cgS8rnWTgBQyurEMXyXK8lBhhv6NZ8H3hVjm+vvyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s00cKF6/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E54CFC4CEF1;
-	Fri, 24 Oct 2025 11:05:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761303903;
-	bh=BXDZzEsmDtJ5qTyvhREBgZJTmqfehHSA8zAtWClKrHM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=s00cKF6/xs83KcywZRPOgdT4aoPRhjLwHATJdc00VFTBa8X1rXo9jHqsJqzE7q4F3
-	 /h3/OZofAbLS0hWvv16p0r34A/GKUtev+QS8sogwsAi4Lc8UzFr3Y1Gnsfhhxp3174
-	 xk3JWOAs7lqoXQZ2zkKlVaSR3xuUwsK6lqpsDOdJalkjSjEAU8p6sSOs0cGQ2pqep9
-	 mDKCh6Bp62y+lPtCUImH4bMa6ZDIoLn0icZkcM3JxIhKlpdWUVeli+iSwp085DRmrz
-	 E2O6cwjB4BCnvJbnhU61NjAkOkZLbiie4a1aipQOiSBDbKD3FxvZNW5gWEn+lds/jZ
-	 3yiT89Icq8QeA==
-Date: Fri, 24 Oct 2025 12:04:58 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jonathan Cameron <jonathan.cameron@huawei.com>
-Cc: Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: iio: dac: Document AD5446 and
- similar devices
-Message-ID: <20251024-scope-uncle-93183d40ef11@spud>
-References: <20251023-ad5446-bindings-v2-0-27fab9891e86@analog.com>
- <20251023-ad5446-bindings-v2-1-27fab9891e86@analog.com>
- <20251023-food-say-5e396be087af@spud>
- <20251024111207.00007427@huawei.com>
+	s=arc-20240116; t=1761304101; c=relaxed/simple;
+	bh=Qr8VI2WDLpClCnobZqQ04jtUbm8hJFOmR+11wkVoEH0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jfzeATU5W1snnBfo/WSSTPq8e4Oc4FxAYSfNy/g5oHQczjBVEcTLYdeAg7cGHy5kjX+ydbG+PMnv3GZyN6EntXKZ7tclIJuEsA6xwInycgXeI8JVq6aPQW/YqLjPiaoTcKHdUTil7wtozQFT5J6b1zZNOkvOiCsRZCwqxiGZRPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fvKY3vqR; arc=none smtp.client-ip=74.125.224.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yx1-f52.google.com with SMTP id 956f58d0204a3-63e393c49f1so2213729d50.0
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 04:08:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761304099; x=1761908899; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Qr8VI2WDLpClCnobZqQ04jtUbm8hJFOmR+11wkVoEH0=;
+        b=fvKY3vqRXJ4BlMy5YlT2X3pgnH0X8TCfebpEQmTBrVultn9dvT4bRv15fLjbWl+JDf
+         GBuQLfKNL3x7MQIVZs3DnMGRKNHsDIs/SNuH8TQqJBFYcYuuj5y1zTcGDmR6N1EkSb0a
+         EeaVqnYfYAp79CTp1wW6HPlqQb3lVycwm1XVTdhhbsJLiEwckbz5C2iS2hXVYMBK3aJd
+         JEIZeUF7tRzxeDDZAdri+uvi2Rcf28zHRgepS9FBe1WdvlFlonscl6DBDAqyYCl3X+LW
+         Vsiz4s+4YyebagfM0LC4QTbzQFMecYLWzy1LQkjnrJJ+JM+PbJ+nLf4sHJ1Qe2RH1sZJ
+         F/rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761304099; x=1761908899;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Qr8VI2WDLpClCnobZqQ04jtUbm8hJFOmR+11wkVoEH0=;
+        b=V6zBtqrXqeP6mA7Go1T/ZcLsmFPac42PNMw4Q0iTESLhLI2F5i4dHkgCHtB3KA52oX
+         vwyoTFnr+1a1jRh8s5w6sH2iryNpcJysKUrD5/VcXYCRp2BQ3kREp11XVhzusS8E2XwY
+         LSoWe1fTu4nQ57JsPb8o5g193w2TSD/32v1U9Yv65HVG2W9E/19rzIx6lXOGvkH904cD
+         3eYM427pBHvqSLCjjlPo+/XMwdxhnIMSZZQGC8HF+RvRxlIR30OKF6rCE5Z/ItSFfkRo
+         qlTWPtcQXfaXKtKIqArfpaLCBJgzVY4sTrcee01PtCKhRx4wF6a85xXMjYN0LRiJE3Z/
+         diqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWPEfjx5oQxDWYQitH8I1NmS38nDTsry+hVTdjtSANAU0TTw7o3yz6fnDrkuVemtOFljM1qXUkK6pEo@vger.kernel.org
+X-Gm-Message-State: AOJu0YybwxsHIaU6U2gNRW3RYdAKjz11Jtc1XC1SJDXu3aSNYMI3miDQ
+	xV3tdvfwBokkPgvdLitZf2tRetDTp0YtNqOkbqNQcRht1WsLLCx38xDsytYZNEgp0hgoh7x8VRe
+	Jmld6JuSAo7UDNNeN7j+SJk1dNAe85XYsr6eFOgMV2Q==
+X-Gm-Gg: ASbGnctx67LiSjIJYX7lh2pBZMlZmjWyiGO/JMSDCKrcPzGzTAy69HIG3JZM5V1dzXp
+	UCE8ftLQ0MlKa06Kbr7EuAx/8J1lO++rUzklIFxnhqI5pYfNCb8lq3CqAGWdgG14k0Uc2MTwgDe
+	Br6hRdKwZwOpvIgN3h+KU6iN17RTRSe1DEwndfpnTPEjbrYyxab9j0xQad784SAZ6QWC6iRe5Xv
+	UDctbjvaRBzfAVdcw6ZSroFdPEOk+uZP35HqThMm6wWLPFsJJ+GbQ/nUUcNPEup/06sygXZD60b
+	zl7G3YauTBCMbLWcigwkb2EAjMuqX3+UVjJ8H36q
+X-Google-Smtp-Source: AGHT+IFOV3V8o2HZhqqETlepYcrBmej0YD+DE4piL9lAUn6eKlq7J5U55V3yx6LRy0lafFZakyuR4ta00/fEgft/O94=
+X-Received: by 2002:a05:690e:4188:b0:63c:f5a6:f2fd with SMTP id
+ 956f58d0204a3-63f435a7561mr1131720d50.63.1761304099000; Fri, 24 Oct 2025
+ 04:08:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="/M3fZ5hx6PMPNKnm"
-Content-Disposition: inline
-In-Reply-To: <20251024111207.00007427@huawei.com>
-
-
---/M3fZ5hx6PMPNKnm
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+References: <0f006338-e69b-4b3f-b91f-0cc683544011@kernel.org>
+ <20251022114527.618908-1-adriana@arista.com> <20251022201953.GA206947-robh@kernel.org>
+ <CAERbo5z6BzHqQxXdxPxmxE_eDR7GGGbt3A8kB0gQiWFBE-28Ug@mail.gmail.com>
+ <CAMj1kXGYinTKiyYhNYWJvoJeUJScCGnyq=ozLgjKAm7_wzG8QA@mail.gmail.com>
+ <CAERbo5waY-=6BLZ2SiJSFAXzvU57mJdM9q05vAZw8zR2yExQ5w@mail.gmail.com>
+ <CAMj1kXHin5YacS98ttzHqFqy6HMukXKoLZtr-+bLwVRsWZUugQ@mail.gmail.com>
+ <CAERbo5zgS8XoGcFB3wejqDpx14-SBr5oWn7pu3=PE0djRiKZqg@mail.gmail.com> <CAMj1kXEnSKF4VcMdOvUUuM-pOEWB38qPhWvUm13rnkQiZXp6SA@mail.gmail.com>
+In-Reply-To: <CAMj1kXEnSKF4VcMdOvUUuM-pOEWB38qPhWvUm13rnkQiZXp6SA@mail.gmail.com>
+From: Ilias Apalodimas <ilias.apalodimas@linaro.org>
+Date: Fri, 24 Oct 2025 14:07:43 +0300
+X-Gm-Features: AS18NWCWgWLVov8ueny0nkngqHk4IxEbg4f6wBusDI4Ru3Cin08S3Jv6tCbD0eM
+Message-ID: <CAC_iWjKQ5Smx5hOM9Lgyq_KD6D7OXyDsfJ4mcEnfw4JuRtxy-g@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] DMI: Scan for DMI table from DTS info
+To: Ard Biesheuvel <ardb@kernel.org>, Adriana Nicolae <adriana@arista.com>
+Cc: Rob Herring <robh@kernel.org>, krzk@kernel.org, jdelvare@suse.com, 
+	frowand.list@gmail.com, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, vasilykh@arista.com, arm.ebbr-discuss@arm.com, 
+	boot-architecture@lists.linaro.org, linux-efi@vger.kernel.org, 
+	uefi-discuss@lists.uefi.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 24, 2025 at 11:12:07AM +0100, Jonathan Cameron wrote:
-> On Thu, 23 Oct 2025 19:24:17 +0100
-> Conor Dooley <conor@kernel.org> wrote:
->=20
-> > On Thu, Oct 23, 2025 at 02:01:37PM +0300, Nuno S=E1 wrote:
-> > > Add device tree binding documentation for the Analog Devices AD5446
-> > > family of Digital-to-Analog Converters and compatible devices from
-> > > Texas Instruments. There's both SPI and I2C interfaces and feature
-> > > resolutions ranging from 8-bit to 16-bit.
-> > >=20
-> > > The binding covers 29 compatible devices including the AD5446 series,=
- =20
-> >=20
-> > If they're compatible, how come there's no fallback use? Just to keep
-> > things consistent with how they've always been while probing as spi
-> > child devices?
-> Hi Conor,
->=20
-> They aren't compatible. The 2nd patch is misleading because it doesn't
-> associate data with the of_device_id.  The driver is getting that from
-> matching the compatible property with manufacturer stripped off.
->=20
-> I've requested Nuno sort that out in v3. It's a bit more than just
-> adding the data as would also involve moving away from using an enum
-> to using pointers to the structures that the enum indexes (currently in
-> an array).
->=20
-> https://elixir.bootlin.com/linux/v6.17.4/source/drivers/iio/dac/ad5446.c#=
-L315
->=20
+Hi Ard, Adriana
 
-Right, I think the wording about "compatible" should be removed from the
-commit message here then. Maybe something like "derivative devices"
-would be a better fit?
+Thanks for cc'ing me.
 
-pw-bot: changes-requested
+On Fri, 24 Oct 2025 at 12:49, Ard Biesheuvel <ardb@kernel.org> wrote:
+>
+> On Thu, 23 Oct 2025 at 16:48, Adriana Nicolae <adriana@arista.com> wrote:
+> >
+> > On Thu, Oct 23, 2025 at 4:54=E2=80=AFPM Ard Biesheuvel <ardb@kernel.org=
+> wrote:
+> > >
+> > > (cc Ilias)
+> > >
+> > > On Thu, 23 Oct 2025 at 15:34, Adriana Nicolae <adriana@arista.com> wr=
+ote:
+> > > >
+> > > > On Thu, Oct 23, 2025 at 11:21=E2=80=AFAM Ard Biesheuvel <ardb@kerne=
+l.org> wrote:
+> > > > >
+> > > > > On Thu, 23 Oct 2025 at 04:21, Adriana Nicolae <adriana@arista.com=
+> wrote:
+> > > > > >
+> > > > > > On Wed, Oct 22, 2025 at 11:19=E2=80=AFPM Rob Herring <robh@kern=
+el.org> wrote:
+> > > > > > >
+> > > > > > > On Wed, Oct 22, 2025 at 04:45:25AM -0700, adriana wrote:
+> > > > > > > > Some bootloaders like U-boot, particularly for the ARM arch=
+itecture,
+> > > > > > > > provide SMBIOS/DMI tables at a specific memory address. How=
+ever, these
+> > > > > > > > systems often do not boot using a full UEFI environment, wh=
+ich means the
+> > > > > > > > kernel's standard EFI DMI scanner cannot find these tables.
+> > > > > > >
+> > > > > > > I thought u-boot is a pretty complete UEFI implementation now=
+. If
+> > > > > > > there's standard way for UEFI to provide this, then that's wh=
+at we
+> > > > > > > should be using. I know supporting this has been discussed in=
+ context of
+> > > > > > > EBBR spec, but no one involved in that has been CC'ed here.
+> > > > > >
+> > > > > > Regarding the use of UEFI, the non UEFI boot is used on Broadco=
+m iProc which
+> > > > > > boots initially into a Hardware Security Module which validates=
+ U-boot and then
+> > > > > > loads it. This specific path does not utilize U-Boot's UEFI
+> > > > > > implementation or the
+> > > > > > standard UEFI boot services to pass tables like SMBIOS.
+> > > > > >
+> > > > >
+> > > > > What prevents this HSM validated copy of u-boot from loading the =
+kernel via EFI?
+> > > > The vendor's U-Boot configuration for this specific secure boot pat=
+h
+> > > > (involving the
+> > > > HSM) explicitly disables the CMD_BOOTEFI option due to security
+> > > > mitigations, only
+> > > > a subset of U-boot commands are whitelisted. We could patch the U-b=
+oot
+> > > > to include
+> > > > that but it is preferable to follow the vendor's recommandations an=
+d
+> > > > just patch U-boot
+> > > > to fill that memory location with SMBIOS address or directly with t=
+he
+> > > > entry point.
+> > >
+> > > And what security mitigations are deemed needed for the EFI code? You
+> > > are aware that avoiding EFI boot means that the booting kernel keeps
+> > > all memory protections disabled for longer than it would otherwise. I=
+s
+> > > this allowlisting based on simply minimizing the code footprint?
+> > >
+> > From the information I have, it might be just minimizing the footprint
+> > but the vendor's U-Boot configuration for this specific path
+> > explicitly disables the CMD_BOOTEFI option. While the vendor cites
+> > security mitigations for this configuration, the specific details
+> > could be a set of mitigation removing different boot methods and some
+> > memory access commands.
+> >
+> > The core issue is that this non-EFI boot path is the vendor-validated
+> > configuration. Enabling EFI would deviate from this setup, require
+> > significant revalidation, and could impact vendor support. Modifying
+> > U-Boot to populate the DT is a contained change without modifying the
+> > U-boot vendor configuration.
+> >
+>
+> I'm not sure I follow why changing U-Boot's code would not require
+> revalidation if simply changing its build configuration without
+> modifying the source code would require that.
+>
+> > Beyond our specific vendor constraints, this DT method might be used
+> > by any other non-UEFI arm system needing to expose SMBIOS tables to
+> > the kernel.
+> >
+>
+> Fair point. So let's do this properly: get buy-in from the U-Boot
+> folks and contribute your u-boot changes as well. And ideally, we'd
+> get this into the DMTF spec but if you are not set up for that (I
+> think you might need to be a member to be able to contribute), we can
+> find some ARM folks who are.
 
---/M3fZ5hx6PMPNKnm
-Content-Type: application/pgp-signature; name="signature.asc"
++1
+U-Boot does offer an EFI implementation indeed, but we can't magically
+force people to use it.
+The problem with SMBIOS is that afaict is still widely used by various
+debugging tools, so we might as well support it.
+I agree with Ard here. I think the best thing we can do is
+- Make the node standard in the DT spec, so everyone gets a reference
+- Gatekeep any alternative implementations for the kernel until
+someone gets this into the DMTF spec as well
+- Send a patch to U-Boot that adds that mode dynamically if booting is
+!EFI and SMIOS support is enabled
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPtdWgAKCRB4tDGHoIJi
-0lglAP4jQBOF2sAGXw664t5Pyzfi13Clz417NDGxCuZ6LGqhfgD/fQoTSwsQSsmn
-W54gFdLJViK9B4R9K/EhOwfxpQrmgAI=
-=awPw
------END PGP SIGNATURE-----
-
---/M3fZ5hx6PMPNKnm--
+Cheers
+/Ilias
 
