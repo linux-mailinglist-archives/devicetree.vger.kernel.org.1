@@ -1,295 +1,201 @@
-Return-Path: <devicetree+bounces-230779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 475B1C05A00
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 12:39:25 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EA28C05AAF
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 12:50:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 739B24FB3D2
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:39:11 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9413635C085
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:50:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA4C93101B5;
-	Fri, 24 Oct 2025 10:39:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="o8mXKmRT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8AC53126CE;
+	Fri, 24 Oct 2025 10:50:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95D2928F935
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 10:39:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD08F31065B
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 10:50:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761302347; cv=none; b=hPZM+vsGvHrlKcGSSRk3p/iw4FfMr+ZFnk823yQnUYZv3RJmokRRDEu9dRC8xn09a1IYPs/Oq5+YazeR0p6ITPBq1bUn5tPg7oXOJJmyGnBX8eUkPHQ+OJyqvN59UA7W8+r0XgEXXv5QEOVwhZGePcWKbHd86j2m7qSws8mQ16Q=
+	t=1761303018; cv=none; b=U6CFhHp6WM1PdFFndw9B4aZITXMq8obZ22WI6/AR/15HUnKssZiDLnm8lhicBelX0Z8DCOFKnpJePGezZ2iyaHyS5dQqMlnVm1iPr44gBmihQWon22S2qNp+NdlrmpRoVQQ/M+Ru+6jzhG+cE/+tHaVmjNw5+BfbXttDdxCqtjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761302347; c=relaxed/simple;
-	bh=ffnzHTbM2tnQfXrbkSdSzIXQ/9kj/ptECGfxoD9sqUM=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=Juwc1ixGyQkYCNroWzXvlk8U3WZ/dQZdLYslO5DX//0QWMG8G3Nh7DBh6mPUckFPk2+7LPa5GsiSr77iaBhhRxzY87oIaUkVP0/e5BxNXyjwjzWJTndn8j/JhlRxhBaBK6YwTnWR63wHGkvZ3KI4YGF3/G3z1bWdMUOpnQ3DKvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=o8mXKmRT; arc=none smtp.client-ip=203.254.224.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20251024103902epoutp02bc10847634581ab6b01bd8b2455092ed~xZyYT77fD2596725967epoutp02_
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 10:39:02 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20251024103902epoutp02bc10847634581ab6b01bd8b2455092ed~xZyYT77fD2596725967epoutp02_
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1761302342;
-	bh=dl+b+dAk76gbfMu7WsZhTUofWjMUuUVuug8qmGt/SgQ=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=o8mXKmRTF4GpGc+Y7y/mMG2e4F1PCJgR0h7n8wKARyOFtPYc2dRTkSOgZfCO6Dh25
-	 xhqPdurCb3a0/f+CUB0FdL0e2T+LNvRxAXKArp18lCHuPiT8Mcle1QJ0aDuxhTwooI
-	 TNUNQmfpgWf5PTcN1Zc02sWX+PU4ZXwXSu/7YAR0=
-Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
-	20251024103901epcas5p2a433be2f9b5a01c5d29e22cc1f251194~xZyXic9CG0277602776epcas5p2i;
-	Fri, 24 Oct 2025 10:39:01 +0000 (GMT)
-Received: from epcas5p3.samsung.com (unknown [182.195.38.88]) by
-	epsnrtp01.localdomain (Postfix) with ESMTP id 4ctKBr53G0z6B9m6; Fri, 24 Oct
-	2025 10:39:00 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-	20251024103859epcas5p49b77262f51a3ffad8c3f4fc2032d156c~xZyVe6IAy1394013940epcas5p4i;
-	Fri, 24 Oct 2025 10:38:59 +0000 (GMT)
-Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20251024103855epsmtip1f303eee714eb0c38a99ca9281c48225a~xZyR-qtpQ3110431104epsmtip1I;
-	Fri, 24 Oct 2025 10:38:55 +0000 (GMT)
-From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
-To: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
-	<andre.draszik@linaro.org>, <peter.griffin@linaro.org>,
-	<kauschluss@disroot.org>, <johan@kernel.org>,
-	<ivo.ivanov.ivanov1@gmail.com>, <m.szyprowski@samsung.com>,
-	<s.nawrocki@samsung.com>
-Cc: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, <rosa.pila@samsung.com>,
-	<dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
-	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
-In-Reply-To: <20251010070912.3758334-1-pritam.sutar@samsung.com>
-Subject: RE: [PATCH v9 0/6] initial usbdrd phy support for Exynosautov920
- soc
-Date: Fri, 24 Oct 2025 16:08:51 +0530
-Message-ID: <000701dc44d2$67f0d690$37d283b0$@samsung.com>
+	s=arc-20240116; t=1761303018; c=relaxed/simple;
+	bh=F+nCjJssW4CR8kA9MUHSPRtTAf96FpG587l8Oyq7/aU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cYyH/1PlOHlYdcaVYxVlETFhJYvAmKWjnIkmwMBGpBnyLnnYylMN33bTicwi4Wo7SPtTLNLaBBwlL6y3U/nwQfZ5Oi1waIhMs7EqWHLesyBwX7gCMMs5kN+i8HhhsgvA2YcODPY+jD4J5XYXUPLFxl64SxY9ckxEfJiyLDCElOE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vCFMu-0008RJ-AJ; Fri, 24 Oct 2025 12:50:00 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vCFMs-005D9G-1s;
+	Fri, 24 Oct 2025 12:49:58 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vCFMs-00F8sL-1V;
+	Fri, 24 Oct 2025 12:49:58 +0200
+Date: Fri, 24 Oct 2025 12:49:58 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Thomas Wismer <thomas@wismer.xyz>
+Cc: Kory Maincent <kory.maincent@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Wismer <thomas.wismer@scs.ch>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v2 1/2] net: pse-pd: tps23881: Add support for
+ TPS23881B
+Message-ID: <aPtZ1jE7D7JI2wic@pengutronix.de>
+References: <20251022220519.11252-2-thomas@wismer.xyz>
+ <20251022220519.11252-4-thomas@wismer.xyz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQF7oV+n5BMArQ7/Kr7NJhFkLim/CAId6djPtYFw0bA=
-Content-Language: en-in
-X-CMS-MailID: 20251024103859epcas5p49b77262f51a3ffad8c3f4fc2032d156c
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20251010070037epcas5p312b0463a6a757e9b0c03aed6adc48595
-References: <CGME20251010070037epcas5p312b0463a6a757e9b0c03aed6adc48595@epcas5p3.samsung.com>
-	<20251010070912.3758334-1-pritam.sutar@samsung.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251022220519.11252-4-thomas@wismer.xyz>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Vinod,=20
+Hi Thomas,
 
-Gentle reminder. Can you please take this to your tree=20
-and let me know if any comments?=20
+Thank you for your work.
 
-> -----Original Message-----
-> From: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
-> Sent: 10 October 2025 12:39 PM
-> To: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
-> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com;
-> andre.draszik=40linaro.org; peter.griffin=40linaro.org; kauschluss=40disr=
-oot.org;
-> johan=40kernel.org; ivo.ivanov.ivanov1=40gmail.com;
-> m.szyprowski=40samsung.com; s.nawrocki=40samsung.com;
-> pritam.sutar=40samsung.com
-> Cc: linux-phy=40lists.infradead.org; devicetree=40vger.kernel.org; linux-
-> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; linux-s=
-amsung-
-> soc=40vger.kernel.org; rosa.pila=40samsung.com; dev.tailor=40samsung.com;
-> faraz.ata=40samsung.com; muhammed.ali=40samsung.com;
-> selvarasu.g=40samsung.com
-> Subject: =5BPATCH v9 0/6=5D initial usbdrd phy support for Exynosautov920=
- soc
->=20
-> This SoC has a single USB 3.1 DRD combo phy and three USB2.0 only DRD phy
-> controllers as mentined below
->=20
->   * Combo phy supports USB3.1 SSP+(10Gbps) protocol and is backwards
->     compatible to the USB3.0 SS(5Gbps). 'Add-on USB2.0' phy is added
->     to support USB2.0 HS(480Mbps), FS(12Mbps) and LS(1.5Mbps) data rates.
->     These two phys are combined to form a combo phy as mentioned below.
->=20
->=20
->    USB30DRD_0 port
->=20
->  +------------------------------------------------------------+
->  =7C                                                            =7C
->  =7C                (combo) USB phy controller                  =7C
->  =7C      +----------------------------------------------+      =7C
->  =7C      =7C                  USB HSPHY                   =7C      =7C
->  =7C      =7C  (samsung,exynosautov920-usbdrd-combo-hsphy) =7C      =7C
->  =7C      +----------------------------------------------+      =7C
->  =7C                                                            =7C
->  =7C    +--------------------------------------------------+    =7C
->  =7C    =7C                   USB SSPHY                      =7C    =7C
->  =7C    =7C   (samsung,exynosautov920-usb31drd-combo-ssphy)  =7C    =7C
->  =7C    +--------------------------------------------------+-   =7C
->  =7C                                                            =7C
->  +------------------------------------------------------------+
->  =7C                                                            =7C
->  =7C                     USBDRD30 Link                          =7C
->  =7C                       Controller                           =7C
->  +------------------------------------------------------------+
->=20
->   * USB2.0 phy supports only UTMI+ interface. USB2.0DRD phy
->     is very similar to the existing Exynos850 support in this driver.
->=20
->     USB20DRD_0/1/2 ports
->=20
->       +---------------------------------------------------+
->       =7C                                                   =7C
->       =7C                USB PHY controller                 =7C
->       =7C    +-----------------------------------------+    =7C
->       =7C    =7C              USB HSPHY                  =7C    =7C
->       =7C    =7C  (samsung,exynosautov920-usbdrd-phy)    =7C    =7C
->       =7C    +-----------------------------------------+    =7C
->       =7C                                                   =7C
->       +---------------------------------------------------+
->       =7C                                                   =7C
->       =7C             USBDRD20_* Link                       =7C
->       =7C                Controller                         =7C
->       =7C                                                   =7C
->       +---------------------------------------------------+
->=20
-> The =22USB20 phy output isolation=22 is shared across the USB20 phys.
-> We have to bypass isolation when any one of the USBs is configured and en=
-able
-> it when all are turned off. The =22USB31 phy isolation=22
-> is seperate for USB31 phy.
->=20
-> This patchset only supports device mode and same is verified with as NCM
-> device
->=20
-> changelog
-> ----------
-> Changes in v9:
-> - added RB tags those were given in v7 =5B1=5D and v8.
-> - updated commit message in patch no.1 by adding supplies'
->   names those are taken from phy User Manual =5B2=5D
->   link for v8: https://lore.kernel.org/linux-phy/20250903073827.3015662-1=
--
-> pritam.sutar=40samsung.com/
-> =5B1=5D: https://lore.kernel.org/linux-phy/20250824-mustang-of-glorious-
-> sufficiency-b55bf4=40kuoka/
-> =5B2=5D: https://lore.kernel.org/linux-phy/02ef5180-ad56-45f0-a56f-
-> 87f442bf6793=40kernel.org/
->=20
-> Changes in v8:
-> - modified supplies' names in schema and driver.
-> - Since supplies' names are changed, modified patch no 5. to
->   fix warnings in dtbs_check dt_binding_check.
-> - updated commit message for patch no. 1, 3 and 5 to describe
->   hardware details.
->   link for v7: https://lore.kernel.org/linux-phy/20250822093845.1179395-1=
--
-> pritam.sutar=40samsung.com/
->=20
-> Changes in v7:
-> - added fixes for driver build warnings
->   link for v6: https://lore.kernel.org/linux-phy/20250821073703.2498302-1=
--
-> pritam.sutar=40samsung.com/
->=20
-> Changes in v6:
-> - added else part for new supplies in schemas those are only
->   supported for exynosautov920.
-> - addressed comments for driver given in v5.
->   link for v5: https://lore.kernel.org/linux-phy/20250805115216.3798121-1=
--
-> pritam.sutar=40samsung.com/
->=20
-> Changes in v5:
->=20
-> - addressed comments from v4 patchset.
->   - patch (1/6)
->     - DTS style is corrected and added required supplies in code/schema.
->     - schema block added to resolve below failure during 'dtbs_check'.
->       Unevaluated properties are not allowed ('dvdd075-usb-supply', 'vdd1=
-8-
-> usb20-supply', 'vdd33-usb20-supply' were unexpected.
->   - patch (2/6)
->     - removed usage_counter(take this later in subsequent patch-sets)
->   - patch (3/6)
->     - There are 3 types of the phys in this SoC.
->       - one is simmilar with exynos850 as mentioned in patch no.1.
->       - second supports only USB3.1 SSP+ and denoted in patch no 5
->       - third supports only USB2.0 HS as in patch3.
->     - hs phy in combo phy is =22NOT=22 same as phy. (in patch no. 1)
->     - These three phys(usbdrd-phy, combo-hsphy, combo-ssphy) are totally
->       deferent, =22NOT=22 same, hence added three compatible for three ph=
-ys.
->   - patch (5/6)
->     - Since there are two phys in combo phy, explaination is given
->       in each patch.
->   link for v4: https://lore.kernel.org/linux-phy/20250701120706.2219355-1=
--
-> pritam.sutar=40samsung.com/
->=20
-> Changes in v4:
-> - addressed comments from v3 patchset
->   - removed dts related patches, to be posted in new patchset.
->   - added regulator, pmu and power sequences.
->   - phy isol is shared across USBs, added usage counter to bypass or
->     enable phy isolation.
->   - modified schemas with hs and combo phy compatible names
->     (used =22combo=22 to denote combo phy) and regulators
-> - modified code to work with binding and unbinding devices/drivers
-> - added =22Reviewed-by=22 tag.
->   link for v3: https://lore.kernel.org/linux-phy/20250613055613.866909-1-
-> pritam.sutar=40samsung.com/
->=20
-> Changes in v3:
-> - Updated dt-bindings for USB2.0 only.
-> - Added dt-bindings for combo phy.
-> - Added implementation for combo phy (SS and HS phy).
-> - Added added DTS nodes for all the phys
->   link for v2: https://lore.kernel.org/linux-phy/20250516102650.2144487-1=
--
-> pritam.sutar=40samsung.com/
->=20
-> Changes in v2:
-> - Used standard GENMASK() and FIELD_GET() to get the major version
->   from controller version register.
->   link for v1: https://lore.kernel.org/linux-phy/20250514134813.380807-1-
-> pritam.sutar=40samsung.com/
->=20
-> Pritam Manohar Sutar (6):
->   dt-bindings: phy: samsung,usb3-drd-phy: add ExynosAutov920 HS phy
->     compatible
->   phy: exynos5-usbdrd: support HS phy for ExynosAutov920
->   dt-bindings: phy: samsung,usb3-drd-phy: add ExynosAutov920 combo hsphy
->   phy: exynos5-usbdrd: support HS combo phy for ExynosAutov920
->   dt-bindings: phy: samsung,usb3-drd-phy: add ExynosAutov920 combo ssphy
->   phy: exynos5-usbdrd: support SS combo phy for ExynosAutov920
->=20
->  .../bindings/phy/samsung,usb3-drd-phy.yaml    =7C  48 ++
->  drivers/phy/samsung/phy-exynos5-usbdrd.c      =7C 651 ++++++++++++++++++
->  include/linux/soc/samsung/exynos-regs-pmu.h   =7C   3 +
->  3 files changed, 702 insertions(+)
->=20
-> --
-> 2.34.1
+Looks good, here are some nits:
 
-Thank you,
+On Thu, Oct 23, 2025 at 12:05:18AM +0200, Thomas Wismer wrote:
+> From: Thomas Wismer <thomas.wismer@scs.ch>
+> 
+> The TPS23881B uses different firmware than the TPS23881. Trying to load the
+> TPS23881 firmware on a TPS23881B device fails and must be omitted.
+> 
+> The TPS23881B ships with a more recent ROM firmware. Moreover, no updated
+> firmware has been released yet and so the firmware loading step must be
+> skipped. As of today, the TPS23881B is intended to use its ROM firmware.
+> 
+> Signed-off-by: Thomas Wismer <thomas.wismer@scs.ch>
+> ---
+>  drivers/net/pse-pd/tps23881.c | 65 +++++++++++++++++++++++++++--------
+>  1 file changed, 51 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/net/pse-pd/tps23881.c b/drivers/net/pse-pd/tps23881.c
+> index b724b222ab44..f45c08759082 100644
+> --- a/drivers/net/pse-pd/tps23881.c
+> +++ b/drivers/net/pse-pd/tps23881.c
+> @@ -55,8 +55,6 @@
+>  #define TPS23881_REG_TPON	BIT(0)
+>  #define TPS23881_REG_FWREV	0x41
+>  #define TPS23881_REG_DEVID	0x43
+> -#define TPS23881_REG_DEVID_MASK	0xF0
+> -#define TPS23881_DEVICE_ID	0x02
+>  #define TPS23881_REG_CHAN1_CLASS	0x4c
+>  #define TPS23881_REG_SRAM_CTRL	0x60
+>  #define TPS23881_REG_SRAM_DATA	0x61
+> @@ -1012,8 +1010,28 @@ static const struct pse_controller_ops tps23881_ops = {
+>  	.pi_get_pw_req = tps23881_pi_get_pw_req,
+>  };
+>  
+> -static const char fw_parity_name[] = "ti/tps23881/tps23881-parity-14.bin";
+> -static const char fw_sram_name[] = "ti/tps23881/tps23881-sram-14.bin";
+> +struct tps23881_info {
+> +	u8 dev_id;	/* device ID and silicon revision */
+> +	const char *fw_parity_name;	/* parity code firmware file name */
+> +	const char *fw_sram_name;	/* SRAM code firmware file name */
+> +};
+> +
+> +enum tps23881_model {
+> +	TPS23881,
+> +	TPS23881B,
+> +};
+> +
+> +static const struct tps23881_info tps23881_info[] = {
+> +	[TPS23881] = {
+> +		.dev_id = 0x22,
+> +		.fw_parity_name = "ti/tps23881/tps23881-parity-14.bin",
+> +		.fw_sram_name = "ti/tps23881/tps23881-sram-14.bin",
+> +	},
+> +	[TPS23881B] = {
+> +		.dev_id = 0x24,
+> +		/* skip SRAM load, ROM firmware already IEEE802.3bt compliant */
 
-Regards,
-Pritam
+TL;DR:
 
+A more accurate comment would be:
+/* skip SRAM load, ROM provides Clause 145 hardware-level support */
+
+Longer version:
+
+Please reference IEEE 802.3-2022 (Clause 145) instead of the "IEEE
+802.3bt" amendment:
+- The IEEE 802.3-2022 standard is free for everyone with the IEEE Xplore
+  program.
+- The "bt" amendment costs money.
+- Using the free standard helps all community members review this driver.
+
+The chip (hardware) alone cannot be "compliant." Full compliance for
+Type 3 or Type 4 needs the whole system to work correctly:
+- The Linux system must handle the DLL (LLDP) classification in software.
+  The chip's ROM does not do this.
+- The board must supply the correct voltage (e.g., 52V to 57V for Type
+  4). This chip's minimum 44V is not compliant with Clause 145.
+- The final power supply and board must be designed to handle the high
+  power (like 90W).
+
+[...]
+> @@ -1422,6 +1442,10 @@ static int tps23881_i2c_probe(struct i2c_client *client)
+[...]
+>  
+> -	dev_info(&client->dev, "Firmware revision 0x%x\n", ret);
+> +	if (ret == 0xFF)
+> +		dev_warn(&client->dev, "Device entered safe mode\n");
+
+                return -ENODEV; /* Or another appropriate error */
+
+The datasheet states this happens on an "un-recoverable firmware fault."
+According to the datasheet, when in "Safe Mode," all ports are shut
+down. The device is not in a functional state to act as a PSE
+controller.
+
+
+> +	else
+> +		dev_info(&client->dev, "Firmware revision 0x%x%s\n", ret,
+> +			 ret == 0x00 ? " (ROM firmware)" : "");
+>  
+>  	/* Set configuration B, 16 bit access on a single device address */
+>  	ret = i2c_smbus_read_byte_data(client, TPS23881_REG_GEN_MASK);
+> @@ -1504,7 +1534,14 @@ static const struct i2c_device_id tps23881_id[] = {
+>  MODULE_DEVICE_TABLE(i2c, tps23881_id);
+
+I guess tps23881_id should be updated too.
+
+Best Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
