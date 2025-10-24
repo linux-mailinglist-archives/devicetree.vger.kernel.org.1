@@ -1,41 +1,88 @@
-Return-Path: <devicetree+bounces-230670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0755BC04E81
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:00:24 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91F9FC04E75
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:00:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD55A1AA4190
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:00:44 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 95D0B4E121F
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:00:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9F3F2FBE15;
-	Fri, 24 Oct 2025 08:00:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7952D2F8BE6;
+	Fri, 24 Oct 2025 07:59:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="QaYS+xGW"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fHs5qyfc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m15573.qiye.163.com (mail-m15573.qiye.163.com [101.71.155.73])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DED992FB091;
-	Fri, 24 Oct 2025 08:00:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0C462F7AD7
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:59:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761292805; cv=none; b=N6B1SpAiLDc07RHk/uICQPi/m1hX0RQsWcpy8ZjaTDt2eqCCHMUgeAYv3q3Imd9oQSYRcv1aaK5u9p0FhB+TTc5CJAtfPwz+zeoh+Vai2wo8XOgp5M1HvXUX8XJofs7vNWmw6UhZFiOOCFsofIzisE06XqCrYbwB9ORzpXsAFWI=
+	t=1761292798; cv=none; b=WsU9zCaLCom9nwCsbcEvU041rnDNUyx24jCIlo5dhdKHfI32BgiW05IskFk+FTlBisj3+4MzcZUo3ROEl+GogbrJzUWnY5f/l0bJJNbSHNsm3KMUfLacrjDXBQtQo21wA3kEUythb8am22iunk4qdNcjIeQjMPdkwy9hLWqjKfQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761292805; c=relaxed/simple;
-	bh=8/c2zO3wjjVEVKC7w7sGL42qX58Qw4g6k9YQBSWM3h8=;
+	s=arc-20240116; t=1761292798; c=relaxed/simple;
+	bh=9qdzKkUxNwidtGg5qokIRznrRuUeGNDdt4Ipztm1jJE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pyLzj+SQ5IXZGxEokVoNhMgu7xpXQ4d1iJZwgmCeLJ+EEJTEXi5T8aK1u0RgmAOk09lUgfbgorQysM6iKsSZsO5rt3OcuU3jI8EkbOYfYelVaCTN+dvgccxPjBch+MhaRoDKMOpmD5LyzR3tXq6ZnwvslrbXe07LQJevk9ykLi8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=QaYS+xGW; arc=none smtp.client-ip=101.71.155.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.149] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 270e97439;
-	Fri, 24 Oct 2025 15:59:51 +0800 (GMT+08:00)
-Message-ID: <4fddba9a-b073-4bca-bd13-64a415f4bc47@rock-chips.com>
-Date: Fri, 24 Oct 2025 15:59:50 +0800
+	 In-Reply-To:Content-Type; b=KvbgvErYyM5foV6aqu4fSz7P+ysDFnyMea5bL41xn8u0KbUYsFUUGK2uovWBhlgP7lJQPnGyHys3JM8/8PZOC8FF68UuJHadv+I1FUsTolbEyTeVzLsTd1d6ghmlrT88kwmN3D8Ii6ij2lRB2Dc+T3jpkd7PYXkmzcYiUyzlT7k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fHs5qyfc; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59O3FpRI003822
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:59:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	fuIyGKnq00sfHTyE/opfe7bmLAvpc40709+4IDJlYKQ=; b=fHs5qyfcJixJ/hon
+	pAeUe+dzu+VSHymPluV0BQnzsGcUrtfYCzT+3IbnK4a/S3H7bT3fRffpMxHO7oCO
+	JT1dkGsy98MDLYtwLovkSNQXmUYQFRoeowWgtr/y6qbL+SV5Drs+G5sBJV1Hi8kX
+	VVq2gryAGNEgdLc67HkO5i19PBqm/STA2vhmsFu+DKyd9JMq9BbYA0xj+UMWNyUG
+	QvwgR8CVdRV0rwuawxrYGxoH216QK1qaXXfh6ubeaQet7QqG0H0omSPuAnjLRH1O
+	kLsTta464MPdT5irmdI0VjnqS8eWoR6n8vevrHYVCluMJq/MesAZW801+7rZnUV6
+	rFfQfA==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v27jb626-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:59:55 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4e886630291so5206941cf.0
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 00:59:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761292795; x=1761897595;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fuIyGKnq00sfHTyE/opfe7bmLAvpc40709+4IDJlYKQ=;
+        b=Z0ig00G+UDeL7NXlo9GncsVQmiQkNE24QKuwBel+sjafsBj6Wa8qsW2cCXz7ENUTf0
+         cY//hf/XGEUtk8c5N/HJC1O8srl7DHXXrsJCd6dK0kN+f9vw1jtDCv4wqPAEbs9qrznM
+         sA9Adb1tQTHJ9AWYjh3SsO/DVieYCzPKD8pfuR4pYOIUMmBlmrL8MlWnIFlPV5pGCJDp
+         boMnfCp5wosJc9tHrywZbUafYeaONfitRm9uX1bQLQdXjU/+RsYsPy7bP9yJemm/M8KU
+         EhITvf4BivJyawvOFwdqFaHhZzzMFeVxg6hMgsRtxuW9RYNne7iLX+fOgf7UdyLE+nvr
+         +V7w==
+X-Forwarded-Encrypted: i=1; AJvYcCVi/RvvfCyP9teAIYo+8H7MLQIeVxVznZA+2CvwWMm+a5Hpul8Pbf7rFpZBRrUnDXzeNAA+odn6o/Y0@vger.kernel.org
+X-Gm-Message-State: AOJu0YxgmDf/ENuJXocnVn04f/M+SlEIL/wwKoD07FmJrstO9EYvCTlc
+	00yg+P6DxUPRnFvcjjACl9QGWucZ1PaDQyGaBRSUSABXFjcdtFNmdQvJMHkrFLecvDNxt6Mj8vW
+	CFSl/jHCZ9t7WKvjGcnKihYZ2VgJYaW1kFq7OD3mYbx78UA+hssJe1azRKCfCu57d
+X-Gm-Gg: ASbGncuUGBUttOo8z5WBQL6GV7LJL/68v7bhIiHgiQFH81SfkBN2bhSsTftAQZXufAD
+	r/IUYVTYQ3JVJa9kTrleYaz4DAAXulNUgsWFUlWVGQoYeFiMwjX8GZVBorDzsxfpnNn4F58pJvX
+	CHm34VCXwbWbA9ZvWiFfTiabqk+MEbyJ0lvX2bIj1x8SO8SkQd565lu61tFy6aOWNSZ6mgR+ioT
+	BKqaetg++5IuK4CaWNtojlOetxyYVIbTm7W4dM7R802jeSCABk+dsr5XG5ET0o1LWkqcyx/xEHz
+	l4iNg2z4UFzDhIb+99FEU1BMt17SrKtOlNuzhoqcoPh+nKri22hUz1DfrTPJ7u1jCBArGn29ggW
+	txLAq3O0Hz0cfL68V9BmICyOvT08jgXXK5OpKo40eeUma9wkJ9yTh8PaO
+X-Received: by 2002:a05:622a:1a0c:b0:4b5:e9b6:c96 with SMTP id d75a77b69052e-4ea116e2fb8mr114380571cf.7.1761292794865;
+        Fri, 24 Oct 2025 00:59:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFrPmBQGWI5ofRE81ElAyZ58hzjoOsMkKuLVYPW5g1VjELKe0SfysdfObTDgxtmAz9Kjx5wLw==
+X-Received: by 2002:a05:622a:1a0c:b0:4b5:e9b6:c96 with SMTP id d75a77b69052e-4ea116e2fb8mr114380371cf.7.1761292794282;
+        Fri, 24 Oct 2025 00:59:54 -0700 (PDT)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d5144efbcsm472338466b.66.2025.10.24.00.59.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Oct 2025 00:59:53 -0700 (PDT)
+Message-ID: <150836aa-b69b-4dfa-8118-4c32f181e03a@oss.qualcomm.com>
+Date: Fri, 24 Oct 2025 09:59:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -43,82 +90,106 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/9] usb: typec: Add notifier functions
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Chaoyi Chen <kernel@airkyi.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Yubing Zhang <yubing.zhang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>,
- Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
- Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-References: <20251023033009.90-1-kernel@airkyi.com>
- <20251023033009.90-2-kernel@airkyi.com> <aPni4AeDaem_rfZH@kuha.fi.intel.com>
- <aPnvoSRJefwDlpNO@kuha.fi.intel.com> <aPn4-S7upPOOtenr@kuha.fi.intel.com>
- <3a24bd7f-c247-4541-8cf5-c1e66e2af5a0@rock-chips.com>
- <aPsuLREPS_FEV3DS@kuha.fi.intel.com>
+Subject: Re: [PATCH v1 2/2] arm64: dts: qcom: talos-evk: Add sound card
+ support with DA7212 codec
+To: Le Qi <le.qi@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@oss.qualcomm.com
+References: <20251024023720.3928547-1-le.qi@oss.qualcomm.com>
+ <20251024023720.3928547-3-le.qi@oss.qualcomm.com>
 Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <aPsuLREPS_FEV3DS@kuha.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9a153b2e3e03abkunm42a5cff32ee4f7
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQksYGlZCGUJPHU1DSEpNThhWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpPSE
-	xVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=QaYS+xGWbmlxS3kZEJm0a+NYYxT+z5Us5JjdoYYrwKfwWRwLPdNdoBqojU08LMSVNkW2NIt3ivjahLd1DVJdesdRGPkSC4FCyheMfrC+mvLZrgdXQB4BixWM4KY9vnwKKHrM7/OMtoXWLyQqUwV1fQRklY7nO+ZKaFuWNKD3re8=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=A1oUD+BICHOTQ/+ohzJOid/WRrQzOP6u0erXNB3l774=;
-	h=date:mime-version:subject:message-id:from;
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251024023720.3928547-3-le.qi@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAxOCBTYWx0ZWRfXyTKQ4Xk/wonQ
+ 4+lbT6hBd9vwBrT9GruWv2Mr2KBYo09TgZzQ1EkyScTtaI6DP4mae6P6pZ7qZ0PucN9TyS6UeIv
+ AnQXua1gs2iVBcrWBGcEtUpZoGe4gWgo37sDR/GeZ8KSYhXOO2zAzsLkMKnxwA6+8CCCtXksSYL
+ IjtDli3ORqAKEbXDEAoz9zs8nN+YH6QWkRYmPHs8AZkIetSQnLiITcBe11da6gBmbnVCxZP5Y1o
+ qc/05lEXyeyhcChv2SzHcDrl3RdbQy/6NjVGsU9G8nLAkpA/irdPeKIN4niW301TW4nxC+3FSym
+ 9cri+ojXIapS1mA9F61MpGOmEJ9KM1JVVIcY2rsjsAjKcvMXy+yvsJbff7dKB+MHqwgsNyVk2vp
+ e5Fjr3+ORsV0NFz16QrJSU5AKfR0Lw==
+X-Authority-Analysis: v=2.4 cv=G4UR0tk5 c=1 sm=1 tr=0 ts=68fb31fb cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=Q3T1G7DDasfguL93IWYA:9 a=QEXdDO2ut3YA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-GUID: iHvNnwtHKYIUFRZkEoD7tjXHHFZNcl3D
+X-Proofpoint-ORIG-GUID: iHvNnwtHKYIUFRZkEoD7tjXHHFZNcl3D
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-23_03,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
+ priorityscore=1501 spamscore=0 suspectscore=0 adultscore=0 clxscore=1015
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
+ definitions=main-2510180018
 
-Hi Heikki,
+On 10/24/25 4:37 AM, Le Qi wrote:
+> Add the sound card node for QCS615 Talos EVK with DA7212 codec
+> connected over the Primary MI2S interface. The configuration enables
+> headphone playback and headset microphone capture, both of which have
+> been tested to work.
+> 
+> The sound card integrates:
+>  - DA7212 codec on I2C5
+>  - Primary MI2S playback and capture DAI links
+>  - Pin control for MI2S1 signals
+> 
+> Signed-off-by: Le Qi <le.qi@oss.qualcomm.com>
+> ---
 
-On 10/24/2025 3:43 PM, Heikki Krogerus wrote:
->> I noticed the following statement in typec_register_altmode():
->>
->> ```
->>
->>      /* The partners are bind to drivers */
->>      if (is_typec_partner(parent))
->>          alt->adev.dev.bus = &typec_bus;
->>
->> ```
->>
->> If the condition is not met, the bus will not be set, which means bus_notify()
->> won't be able to take effect. Did I miss something?
-> Right, that would be the condition that I was talking about. Only
-> partner altmodes are used in the bus.
->
-> Hold on! Do you need the port altmode instead of the partner altmode?
-> If that's the case, then we can't use the bus notifier. So we'll need
-> the separate notifier chain after all.
+[...]
 
-Yes, we need port altmode.  The partner altmode device appears too late for DRM device, as it only shows up after the corresponding DP device is inserted.
+> +	sound {
+> +		compatible = "qcom,qcs615-sndcard";
+> +		model = "qcs615-snd-card";
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&mi2s1_data0>, <&mi2s1_data1>, <&mi2s1_sck>, <&mi2s1_ws>;
 
+property-n
+property-names
 
->
-> Let me take a closer look at patch 2/9. Sorry about the hassle.
->
--- 
-Best,
-Chaoyi
+in this order, please
 
+[...]
+
+>  &tlmm {
+> +	mi2s1_data0: mi2s1-data0-state {
+> +		pins = "gpio110";
+> +		function = "mi2s_1";
+> +		drive-strength = <8>;
+> +		bias-disable;
+> +	};
+> +
+> +	mi2s1_data1: mi2s1-data1-state {
+> +		pins = "gpio111";
+> +		function = "mi2s_1";
+> +		drive-strength = <8>;
+> +		bias-disable;
+> +	};
+> +
+> +	mi2s1_sck: mi2s1-sck-state {
+> +		pins = "gpio108";
+> +		function = "mi2s_1";
+> +		drive-strength = <8>;
+> +		bias-disable;
+> +	};
+> +
+> +	mi2s1_ws: mi2s1-ws-state {
+> +		pins = "gpio109";
+> +		function = "mi2s_1";
+> +		drive-strength = <8>;
+> +		bias-disable;
+> +	};
+
+You can group these together (i.e. create a single entry with
+pins = "gpio108", "gpio109"...)  and move them to the SoC DTSI
+
+Konrad
 
