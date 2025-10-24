@@ -1,95 +1,137 @@
-Return-Path: <devicetree+bounces-230661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAB3DC04E90
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:00:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6232C04E1A
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:57:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 609AE3BF2A1
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:56:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8A081894FC3
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:57:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E37B2F8BD1;
-	Fri, 24 Oct 2025 07:56:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB90F2F6194;
+	Fri, 24 Oct 2025 07:56:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="eTgClpl/"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="v3iF3RAP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25D2A2F3630;
-	Fri, 24 Oct 2025 07:56:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF05D2F9DA2
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:56:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761292577; cv=none; b=FfnxwjyYvgF/L3nhgWPO39biYHyKvEzWAeVv8OIkU1HkcwHvN4QtwKNYYgxxZLntQRAhVM8AoIMSBWQiGl9xb/9y1iTCfLeeAdDVp0ht7TY5uS+iOk4dPoG4ErwRuMRufHuhTOXwknAPqassLcV+3h1hoS9ORwzyFXcc5f70Kbs=
+	t=1761292583; cv=none; b=ncc6XenHXzjfOa+bPEp/M1zw+D0/wvZvxdKCg+WyA18gZXezztv5hMfrl2OweKq5eGuFGJnP7cbW7tnS/XiV8JLa0yQ9HjTRhyj6u2sTOfPGHnAW1W3xkwaYwIzTkLzc1dyyCkZNkWXTYbDY0oE8DAhBXOASfAmfmycxvaMI3zI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761292577; c=relaxed/simple;
-	bh=HvOaKA7yATNHviA11gu4zFrMYg2AOIM8mTYHs1HrhIQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=nob/kcIsJNv4WEUJNW5JWdesImhY6wLk4XBdr639pxHEgGwWRA9+RLXobIlRX1qy+rcSMtwEa2ms7v6vQnxaD64wYQHOCoTBGKQahKzmPZdScnhZnU4VGrBk9g0TCTMzPMoJHQgFZAzqgg7K/rOSAUHAjD0+f7BoWI8TSNG2zko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=eTgClpl/; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+	s=arc-20240116; t=1761292583; c=relaxed/simple;
+	bh=nxy0zWX1h247nPbsMpYtj4rqvQKsZpsdIsqOdaa3i18=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NtipVm3X1HdUhS8FWlrTanSxvKDPDnjjcdKzzXH9RyQavRU3/7yx1UGtPIi0rchI9bIynQlfNARzpPTjzCGpOnwqJQ44viFlgvTTtUn3A+YgzQUrEcVGAepmQZNx6nSIZaKk4enUBHDJKCCUZlSBMzkrGVQBg7//aQjRHjK8LWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=v3iF3RAP; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-57bd482dfd2so1887514e87.2
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 00:56:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1761292565;
-	bh=HvOaKA7yATNHviA11gu4zFrMYg2AOIM8mTYHs1HrhIQ=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=eTgClpl//Z89Gd3mJ26u/c4wtzTyfWBNQOqpjPZtVQzGYTvZMQdVv1/Wpm/Rr2afn
-	 ixqp5Glry95DeQ2s9NOePqNV048rEplCbVMt2Ul1jOE/rEOgl1Dg/zfWxmeQR5yNML
-	 XNCBrPiNacSqWAd+MngipGJyTrP5Osv2FMm4YfJEGOPidCmGebP0fiXHOS6ZipyiFq
-	 wbATJ/kvggqZTwHSbM7FPjb6+CADOaSZkY51KEnzJaLr4g3rrlSF/At0W9aPaOZU1M
-	 w+v6N7CGvrjRFtZxssmUwbCS8reLoFtOy35NSpeH8uE/Jgx9uk/TT+312sYqmAeAzL
-	 hAR2vW9ZYV+og==
-Received: from pecola.lan (unknown [159.196.93.152])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 1412F72F33;
-	Fri, 24 Oct 2025 15:56:04 +0800 (AWST)
-Message-ID: <bf3d6690b9124ecf74df6c0f9f1c0f72ae1db9f7.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v20 1/4] dt-bindings: i2c: Split AST2600 binding into a
- new YAML
-From: Jeremy Kerr <jk@codeconstruct.com.au>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Ryan Chen
- <ryan_chen@aspeedtech.com>
-Cc: benh@kernel.crashing.org, joel@jms.id.au, andi.shyti@kernel.org, 
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- andrew@codeconstruct.com.au, p.zabel@pengutronix.de, 
- andriy.shevchenko@linux.intel.com, naresh.solanki@9elements.com, 
- linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
- devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org,  linux-kernel@vger.kernel.org
-Date: Fri, 24 Oct 2025 15:56:03 +0800
-In-Reply-To: <2939cae6-2e8a-4528-8e27-8c932e2f82de@kernel.org>
-References: <20251021013548.2375190-1-ryan_chen@aspeedtech.com>
-	 <20251021013548.2375190-2-ryan_chen@aspeedtech.com>
-	 <20251024-dark-ringtail-of-defiance-1daabd@kuoka>
-	 <2939cae6-2e8a-4528-8e27-8c932e2f82de@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1761292579; x=1761897379; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nxy0zWX1h247nPbsMpYtj4rqvQKsZpsdIsqOdaa3i18=;
+        b=v3iF3RAPDCb1elFqO0VtoWQu+fW6ymU7UCcKEvvmYKNYTD2ooJnLd6jMbuJoUoN+Dn
+         48jC0TXcnzK7hHI8l7XLLufqE40irxcJ4vQUvDf4zdOy47noMAAYnUg6+rKFE7kuW8KB
+         USll7/Aewk1bIvHRDatF6iZ+ivUhLjYhiJEJEaA/t1MN12k63JvJ8Z2BqetAPfCPpfzc
+         bXyJLqDmaG/v2uSkzQNDFkhtLwjQdE/QsFWa4lokn+PvuaNQ6Zeenb8G29xaiiFXP0S7
+         FDqWxQyTvlalR9tZ8BC9oRxHctw1PO5qfa50RYj0lq81NdRESC/gWmdIjcg72jvCS2fV
+         wJ4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761292579; x=1761897379;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nxy0zWX1h247nPbsMpYtj4rqvQKsZpsdIsqOdaa3i18=;
+        b=jaXX1VJ4hGcbibinhKmAyvTkx4HUY9WwWOICLmFUFdS0dZtMyIVnfzhVnqu/6x/8zT
+         0KHpuskjKCsps/ZgLh/PLMgMMT8peagOnG6tk9bGzj7zi2hDFKkyPnEVPePhfuYPmbSz
+         VuwA+1Te8/7GAhhFKu7Qi00s6T3drZWzyqZAfaBsmEVR9odiUBTXppfrr1DD1di14s31
+         CdmtnN5/DyB5KBxgTqW7FGQeQMvjgLZrOrw3nCE9lsIuOwWFDoWf1TsnnRvwjqRuooy4
+         dbKH4OUcPJB75K72wTaekFggoo4hcyF8SCMN5EgCJ9G0C9F7XKHX3rXF+01EOdUXqM8R
+         3JoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUYm3yokBI8x95QVF2HGt/M/pnE4Vxb3kM/R64lhDoR5B2eUUzWhsYBwFzabyIhTtzX0oyAOKKpmV75@vger.kernel.org
+X-Gm-Message-State: AOJu0YxhtgWHtCqneotREuuyYBzN6Y0mY5eRZOn0jM0jZQwBjLPV5Rnd
+	JQhe8d0vigcHvG92zT3l2zLozN/v0EoRXQRpcCxg/V1ssIzzowjWL56o3viuCDGwGG4MA3+xDu0
+	1jJSrzkOPHoPbxGHuvaSd0DlvvWgEqj0VmsB+OlflaA==
+X-Gm-Gg: ASbGncufsIP3PVAiGSciRKzufgPHJktadFDgLRcTbiIs8Oem5d7TDdNKBPTAZOWkwi4
+	cey2hF28k3H6/arm9sn57SKR0RGtYuFUeJd+SJ08WL35i9ta/Tv3B76KR7+2J3yKRiSL1hYa1l8
+	N/SDzXCqxPp9hgoq+YMu4bEtuyP8uww6dcO/KBDVV5WvWCrhEhMiLS/BVDHSRIDnNOXi+oYPEZ1
+	l02qdEzLTK75R9nB7sbmwfJLAOsYNYsS2KBHyrql2w6ByM7CkhD0kVai80dnG9qasijGUlqi82x
+	7hlvYWl1BB+xzz8=
+X-Google-Smtp-Source: AGHT+IHSnXZ/gyOux7cXwXN4jLtleYFyXBIE1/V6t/jovl+yJ4b+HMb04wimJ5i7xVzENgmv7b2GUJ2i/5ONH7mEpKM=
+X-Received: by 2002:a05:6512:130c:b0:586:83e2:2295 with SMTP id
+ 2adb3069b0e04-591d85525f5mr9376212e87.45.1761292578695; Fri, 24 Oct 2025
+ 00:56:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20251023143957.2899600-1-robh@kernel.org>
+In-Reply-To: <20251023143957.2899600-1-robh@kernel.org>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Fri, 24 Oct 2025 09:56:07 +0200
+X-Gm-Features: AS18NWBwXS6t25LKJEi_UKqvj6YhljrcGI4AFOhItyKPndeRwhvu3EmnTJe9vDc
+Message-ID: <CAMRc=MdE=1cPDPQwPQA6mdBkbXF2pG=oQ_oR_YuasGzaPDsKtg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Remove extra blank lines
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Stephen Boyd <sboyd@kernel.org>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>, 
+	Guenter Roeck <linux@roeck-us.net>, Andi Shyti <andi.shyti@kernel.org>, 
+	Jonathan Cameron <jic23@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Georgi Djakov <djakov@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Joerg Roedel <joro@8bytes.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Lee Jones <lee@kernel.org>, Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Johannes Berg <johannes@sipsolutions.net>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Mark Brown <broonie@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Olivia Mackall <olivia@selenic.com>, 
+	Herbert Xu <herbert@gondor.apana.org.au>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org, 
+	dmaengine@vger.kernel.org, linux-fpga@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org, 
+	linux-input@vger.kernel.org, linux-pm@vger.kernel.org, iommu@lists.linux.dev, 
+	linux-media@vger.kernel.org, linux-mtd@lists.infradead.org, 
+	netdev@vger.kernel.org, linux-wireless@vger.kernel.org, 
+	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org, 
+	linux-pwm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
+	linux-crypto@vger.kernel.org, linux-sound@vger.kernel.org, 
+	linux-usb@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
+On Thu, Oct 23, 2025 at 4:40=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org>=
+ wrote:
+>
+> Generally at most 1 blank line is the standard style for DT schema
+> files. Remove the few cases with more than 1 so that the yamllint check
+> for this can be enabled.
+>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
 
-> Although now I saw next patch, so clearly this commit is incomplete.
+For GPIO:
 
-The split that Ryan has done here - by shifting to an identical separate
-binding, then making the changes explicit - allows us to review the
-actual changes without losing them in the move. Sounds like a benefit to
-me?
-
-> You just need allOf:if:then: section to narrow the
-> constraints/presence of properties.
-
-That seems like a more complex approach. This is separate IP from the
-2500 controllers, wouldn't that warrant a new binding spec?
-
-Cheers,
-
-
-Jeremy
+Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
