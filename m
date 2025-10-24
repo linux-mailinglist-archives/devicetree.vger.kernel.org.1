@@ -1,65 +1,61 @@
-Return-Path: <devicetree+bounces-230903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 961EEC07628
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 18:47:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D99ACC07664
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 18:52:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C4643A7BD7
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 16:47:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B279E1C4389E
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 16:52:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37BBC32A3D9;
-	Fri, 24 Oct 2025 16:47:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90D60330D36;
+	Fri, 24 Oct 2025 16:52:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eWycwC4E"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qVBBqno+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C68A27FD52;
-	Fri, 24 Oct 2025 16:47:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B75386342;
+	Fri, 24 Oct 2025 16:52:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761324474; cv=none; b=ksGKd2FsIef/QEPxqAmf0DwbBV6BCeCZC1tp9OmJr+JgKHw9y1UdU5AeW/gpHAInUrJvLm9ywmunw3V33xmLm+zdjpGC/T+wcABjFXoCAZVRoi5kWhAa50L1yoEn+go2Ak0oc4YNHxJPJQ2o7rhrnImeJqvQelCEc8Dfi3db9zY=
+	t=1761324725; cv=none; b=ocUGOgogTk+/YiWu+NGZTYG7z8xPXKWocpSizc/HuCwZRPyA14tUI2O68ktt05mpHAGmlGC3gTnUwG5YppvNEEj1bvTDRiNhRaWdDKK3Bb8sxw0LaVL65LXW2y5VZaaZ8/jDHOsuDYGDAHEJdOdvqg63HKWhLo/1EMUheIYBrpI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761324474; c=relaxed/simple;
-	bh=2J2a852hu4Ko8dTkG+XS6Wfc56X851XsTvUBBXYgN7A=;
+	s=arc-20240116; t=1761324725; c=relaxed/simple;
+	bh=lgoCh5NfGUWOtbjiChw+bb2GcRy5VqS7KaWQ/o8KLXI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a0X/vrXFr2ereGqhn5XFM9PM/0pibyimVs0LITDikPy4wMrnoptG4sOHtqJZLkCL6PxeimhVY8HsECuqBTYsMZYGm1GqOmGLCnaxWjb2MD2Pmmrwjpm9ymu+yoorN+E8XJCqCFVyshTpS58Cc1CIl6gsCHPgmR/vHWqSRx7Dh0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eWycwC4E; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6063AC4CEF1;
-	Fri, 24 Oct 2025 16:47:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cYBG4whmYtDJ0vEFoMfk4+FUw1vzkFIRG2alAfiQ/SBeG7MT3F8meGhspOlBD18MIYyEiymeJ+MVg1FQmmSsamhYj3nuNdfCzRWc3+ZzKezClcogeD2emSBT3zJ5blp7vKP/SQwEfWXbQF16SdXMLBnrh7bpVzvMCyMokUzPR5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qVBBqno+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56878C4CEF1;
+	Fri, 24 Oct 2025 16:52:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761324473;
-	bh=2J2a852hu4Ko8dTkG+XS6Wfc56X851XsTvUBBXYgN7A=;
+	s=k20201202; t=1761324723;
+	bh=lgoCh5NfGUWOtbjiChw+bb2GcRy5VqS7KaWQ/o8KLXI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eWycwC4EqIWFTE4zd9Wg/dQr53+HnDPp91iV+iCNqD+M+ZSe4hj/Vjx2Sy7Qnqjm6
-	 0xZyD0YZ/bpvqaHZlKRmvMdXIzvt2gnGWfuZmxojGeFeUZ0nsbcjLOLXinzDwaVlV5
-	 LpGJ5Eb/J1Bd5l9O6ltZgabZllZqjEogcnf4CiPR34XxDiB8dPaOjOGphouhZDKPoX
-	 9QF+h80JrtBfL12HAuOMS2RNds5PmKlOzSGqLbwThVOI0HeddO4mEmqlV4zNgVJlp5
-	 e/XrdRg06U9A4YQbTVxTVWE2itMKVIDc6LUbN/I6UEKCh9veLNEmwpjS8hvUxQvkQ4
-	 X74gsbROMZR0A==
-Date: Fri, 24 Oct 2025 17:47:48 +0100
+	b=qVBBqno+lUi6yslcWHVf4Vr0KEp50KgDLtx6xiZARKFaq5Pm8J1KyMZfJ7Zn1Q9wb
+	 e2hZbvYoclgsVmq/VPppgS/8n6wIUtOeRD51/wGoPvf2SCRqJTADRtr9e17gq2kkbf
+	 F3fJ6KnkJBplQT5JW5aK+GjXYmurNcPExJPZ0o5iilCJsAA/JySIDah0V/BOY2LDzC
+	 U2ugWTZ+ZBZ+d7QQ9jZUjtN5Ab4ydi6Si5OTCE/tzdfvLH3IWroDSHKZ92Wj6jaK+9
+	 EDFFuj8B/eb9K4fvprVOVAm1mm7qfTEQyNd2nt9wVbbeN+HyHs1FzuYYDKhD1ksJ+e
+	 GXMcgJwCe/Kaw==
+Date: Fri, 24 Oct 2025 17:51:58 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Longbin Li <looong.bin@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Yu Yuan <yu.yuan@sjtu.edu.cn>, Ze Huang <huangze@whut.edu.cn>,
-	devicetree@vger.kernel.org, sophgo@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: soc: sophgo: add TOP syscon for
- CV18XX/SG200X series SoC
-Message-ID: <20251024-universe-undertake-8ff51d27d2cb@spud>
-References: <20251024030528.25511-1-looong.bin@gmail.com>
- <20251024030528.25511-2-looong.bin@gmail.com>
- <20251024-hangout-designing-33e96c0d35fc@spud>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	bhelgaas@google.com, frank.li@nxp.com, l.stach@pengutronix.de,
+	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 1/3] dt-bindings: PCI: dwc: Add external reference
+ clock input
+Message-ID: <20251024-mandolin-starlet-f7cfd8ba4210@spud>
+References: <20251024024013.775836-1-hongxing.zhu@nxp.com>
+ <20251024024013.775836-2-hongxing.zhu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,157 +63,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Jmi8IxbuvN49Htrp"
+	protocol="application/pgp-signature"; boundary="wn545wI6sdJnFSMd"
 Content-Disposition: inline
-In-Reply-To: <20251024-hangout-designing-33e96c0d35fc@spud>
+In-Reply-To: <20251024024013.775836-2-hongxing.zhu@nxp.com>
 
 
---Jmi8IxbuvN49Htrp
+--wn545wI6sdJnFSMd
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 24, 2025 at 05:46:03PM +0100, Conor Dooley wrote:
-> On Fri, Oct 24, 2025 at 11:05:14AM +0800, Longbin Li wrote:
-> > The Sophgo CV1800/SG2000 SoC top misc system controller provides regist=
-er
+On Fri, Oct 24, 2025 at 10:40:11AM +0800, Richard Zhu wrote:
+> Add external reference clock input "extref" for a reference clock that
+> comes from external crystal oscillator.
 >=20
-> Please remind me how it works, sg2000 is just a rebadge and really this
-> just refers to one device?
->=20
-> > access to configure related modules. It includes a usb2 phy and a dma
-> > multiplexer.
-> >=20
-> > Co-developed-by: Inochi Amaoto <inochiama@gmail.com>
-> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > Signed-off-by: Longbin Li <looong.bin@gmail.com>
-> > ---
-> >  .../soc/sophgo/sophgo,cv1800b-top-syscon.yaml | 81 +++++++++++++++++++
-> >  1 file changed, 81 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo=
-,cv1800b-top-syscon.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800=
-b-top-syscon.yaml b/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1=
-800b-top-syscon.yaml
-> > new file mode 100644
-> > index 000000000000..d044ca661fa2
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-top-s=
-yscon.yaml
-> > @@ -0,0 +1,81 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/soc/sophgo/sophgo,cv1800b-top-sysco=
-n.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Sophgo CV18XX/SG200X SoC top system controller
-> > +
-> > +maintainers:
-> > +  - Inochi Amaoto <inochiama@outlook.com>
-> > +
-> > +description:
-> > +  The Sophgo CV18XX/SG200X SoC top misc system controller provides
-> > +  register access to configure related modules.
->=20
-> Here and in the title you have Xs, are those placeholder or is this
-> going into cv180x.dtsi and going to be used on multiple devices?
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-nvm, I read the next patch. It's going into cv180x.dtsi.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - const: sophgo,cv1800b-top-syscon
-> > +          - const: syscon
-> > +          - const: simple-mfd
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 1
-> > +
-> > +  ranges: true
+> ---
+>  .../devicetree/bindings/pci/snps,dw-pcie-common.yaml        | 6 ++++++
+>  1 file changed, 6 insertions(+)
 >=20
-> Do you actually use ranges?
+> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.ya=
+ml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> index 34594972d8dbe..0134a759185ec 100644
+> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> @@ -105,6 +105,12 @@ properties:
+>              define it with this name (for instance pipe, core and aux can
+>              be connected to a single source of the periodic signal).
+>            const: ref
+> +        - description:
+> +            Some dwc wrappers (like i.MX95 PCIes) have two reference clo=
+ck
+> +            inputs, one from an internal PLL, the other from an off-chip=
+ crystal
+> +            oscillator. If present, 'extref' refers to a reference clock=
+ from
+> +            an external oscillator.
+> +          const: extref
+>          - description:
+>              Clock for the PHY registers interface. Originally this is
+>              a PHY-viewport-based interface, but some platform may have
+> --=20
+> 2.37.1
 >=20
-> > +patternProperties:
-> > +  "dma-router@[0-9a-f]+$":
->=20
-> Do these actually appear at variable addresses, or is it always 48 for
-> the phy and 53 for the dma router?
->=20
-> > +    $ref: /schemas/dma/sophgo,cv1800b-dmamux.yaml#
-> > +    unevaluatedProperties: false
-> > +
-> > +  "phy@[0-9a-f]+$":
-> > +    $ref: /schemas/phy/sophgo,cv1800b-usb2-phy.yaml#
-> > +    unevaluatedProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - "#address-cells"
-> > +  - "#size-cells"
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/sophgo,cv1800.h>
-> > +
-> > +    syscon@3000000 {
-> > +      compatible =3D "sophgo,cv1800b-top-syscon", "syscon", "simple-mf=
-d";
-> > +      reg =3D <0x03000000 0x1000>;
-> > +      #address-cells =3D <1>;
-> > +      #size-cells =3D <1>;
-> > +
-> > +      usbphy: phy@48 {
->=20
-> Drop the labels off of these two, since they're unused in the example.
->=20
-> > +        compatible =3D "sophgo,cv1800b-usb2-phy";
-> > +        reg =3D <0x48 0x4>;
-> > +        #phy-cells =3D <0>;
-> > +        clocks =3D <&clk CLK_USB_125M>,
-> > +                 <&clk CLK_USB_33K>,
-> > +                 <&clk CLK_USB_12M>;
-> > +        clock-names =3D "app", "stb", "lpm";
-> > +        resets =3D <&rst 58>;
-> > +      };
-> > +
-> > +      dmamux: dma-router@154 {
-> > +        compatible =3D "sophgo,cv1800b-dmamux";
-> > +        reg =3D <0x154 0x8>, <0x298 0x4>;
-> > +        #dma-cells =3D <2>;
-> > +        dma-masters =3D <&dmac>;
-> > +      };
-> > +    };
-> > +
-> > +...
-> > --
-> > 2.51.0
 
-
-
---Jmi8IxbuvN49Htrp
+--wn545wI6sdJnFSMd
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPutswAKCRB4tDGHoIJi
-0lGwAP47xVvM618ptskQQ8AFSpS1Gnoy0H4wGzkhpMsfmwbe9AEA9WivaOXdnATU
-TX4YAn8naPW6b0nriANROCXT+i0kcQA=
-=ffVH
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPuurgAKCRB4tDGHoIJi
+0qtfAP9syKT1Z8zD9ng04ytzgsxPxEic8yXDd2w7tDb/8OUUKgEA7ZWAfIKWjjfL
+CozvH+SLFOAb9sAqsRNoc8HC8+RRngI=
+=S1Ab
 -----END PGP SIGNATURE-----
 
---Jmi8IxbuvN49Htrp--
+--wn545wI6sdJnFSMd--
 
