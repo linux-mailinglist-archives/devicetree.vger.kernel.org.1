@@ -1,140 +1,159 @@
-Return-Path: <devicetree+bounces-230682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EC99C050A1
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:27:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B882FC050AA
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:28:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75E513B7AC5
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:25:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59E153AE9FC
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:26:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55401304BCB;
-	Fri, 24 Oct 2025 08:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43FB0303CAC;
+	Fri, 24 Oct 2025 08:26:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TbX5OGka"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ihw2QGcN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82B24304968;
-	Fri, 24 Oct 2025 08:25:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF6432C3278
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 08:26:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761294318; cv=none; b=P4jqpuBTYYffsB4y60wsgBL5e2mWoK2CPkE9yJgh8iy4r2oAETxTXrAt5t6JYV1SW+u+wsAgH0iM82hsuBavCG5XhdKQbqPSkam5SqJg3hcnW3mygOgvKShcFxvcHNFj/jWg99DTAoHo0ng2NXncF5m6u5nlHKcdUBfOQ3vu0lQ=
+	t=1761294384; cv=none; b=ZIKolrTP9JQOYm5arr3olED7OSRZcg9hXOSJYmonDSVEcOQFb24QgAnepjUzq5JKDKtK7oaGYCr+7MemP2tmbrDQ3Qjg2sXOWuvr/AxUHcef1TnCO+wqbPEOUntfjeAPSSYlEikg8s7G9YGNEXKPZjpCF3TtHhrXrMvL1kI8Bjc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761294318; c=relaxed/simple;
-	bh=Su77VAXqOYKI/uPo+vnRq2iX0IBZ8Qp0155copD2Rp0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jlaFXo3bpSRLhdeRbsBQVvtVUS7ZWfDdBS7S59IkzDw4Nb3nUlIvwRFLrb2bUJmc8fkUeYfl3zbSnwXlP80MJ+kPfDtf7TF0KZZDQWKS310zl/hn9Uc02cT1gh96V4pMUJ3rczvnhs92MNl/BZdWTpIshgDu/cjQNZfMf6sJ+/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TbX5OGka; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761294317; x=1792830317;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=Su77VAXqOYKI/uPo+vnRq2iX0IBZ8Qp0155copD2Rp0=;
-  b=TbX5OGkapoyLFrWpaSD5BOwfhK7Ysq0PW0alQcx6E/VpsurS0fFAud3D
-   TP2Jrijkt/5f8q/d1xKkrqJS0hodbJuwY/ep8EpFOqvobzuTUxRSrq8mp
-   v7lGPJOkC7DypgEcNkue8bbc3NlYZ+M8iVPI/Hv/aKXnct4b0re3XFLnh
-   ZboqGo/wS3MeWy8N8Bt1eUM89RP+yk1hRaFT+uKn/E6TxlSoQPa6udqS9
-   avE/NDJrsCISJqKq4wLV5+RBpl7XgoFxGRfdryRPm/sSBa01eQX1AzFd6
-   PBVRxLKF1imR47lrDTZjP+UL030jyyiVclD67dZaPE6dt1rvwsRzkgcW7
-   Q==;
-X-CSE-ConnectionGUID: jBndhUaKQOS/in/+fqpRfQ==
-X-CSE-MsgGUID: u3zBr7+wSjKS7va9UeEXWA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="88941818"
-X-IronPort-AV: E=Sophos;i="6.19,251,1754982000"; 
-   d="scan'208";a="88941818"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2025 01:25:16 -0700
-X-CSE-ConnectionGUID: zSEWs0AsRK2pZW8DgxM5Gg==
-X-CSE-MsgGUID: 7AQ1HnpnQ3CYhcbzXYq0kw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,251,1754982000"; 
-   d="scan'208";a="188669001"
-Received: from mjruhl-desk.amr.corp.intel.com (HELO kuha.fi.intel.com) ([10.124.221.255])
-  by orviesa004.jf.intel.com with SMTP; 24 Oct 2025 01:25:05 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 24 Oct 2025 11:25:04 +0300
-Date: Fri, 24 Oct 2025 11:25:04 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Yubing Zhang <yubing.zhang@rock-chips.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Amit Sunil Dhamne <amitsd@google.com>,
-	Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v7 2/9] drm/bridge: Implement generic USB Type-C DP HPD
- bridge
-Message-ID: <aPs34Co-8UoQWuim@kuha.fi.intel.com>
-References: <20251023033009.90-1-kernel@airkyi.com>
- <20251023033009.90-3-kernel@airkyi.com>
- <aPnrKFWTvpuRTyhI@kuha.fi.intel.com>
- <14b8ac71-489b-4192-92d6-5f228ff3881d@rock-chips.com>
- <aPoZhBdc1M6Qgfae@kuha.fi.intel.com>
- <6f769567-b383-4c79-b441-3dd84f21cdae@rock-chips.com>
- <aPsse5qVL84XOj8w@kuha.fi.intel.com>
- <9ec2189e-ec36-4cd8-9713-beb490b8297c@rock-chips.com>
+	s=arc-20240116; t=1761294384; c=relaxed/simple;
+	bh=3wnHXXUbxvNC7AueLagvjDdvYpIN3luXco1Nv9HWe1c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=p1mMuIcVsfqHbFVUosSsBohyw5B6c7QT+UzRj/kmXyyV4IGMzUHmVID6ZzxzHUCpZOb0Y7LNwI4FyNIiRHMBevQ9O0on+FmckfyfkZbV1aTj7H9HbyPqM3w9NBrGqXFnSSFmn8EKb/xfdKAOqnbA/+qpQsq8Q7in7+hqxWiJKS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ihw2QGcN; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59O3FLJm014876
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 08:26:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	376XFuF7lnjqNU0g0kqMrsqRp3dXMifm6+om7j0VY3E=; b=Ihw2QGcNGcc69+eG
+	Isj4MqXGrpud8K9PQ3Hs0n9nMPbXFjUX43m/dTOq2VvSvGA1unEfwd5MXOCqe8Ii
+	7KBCcKF1TLXNIlh2egiGZrgSAcLicrz0i4//t4IZL7pa748VrWijUGe+695/9yPT
+	Rn82t9JQBxEE81Idn0GG7xjYYIxhhdRm0TZwwOT5/vLsRHLVM04eKHOPmKnVhFCt
+	V7tbTITyXp59YTV7WlZu7dtdvrDjRJfxEcxbqhaQQyRpUrTsxYr2b3MoDKiWPZlA
+	t/8gD/mm2W267tc9KMkQ6FKC4RDBYY04zjATvCnB0o6QnC3SpvW38XT71GL1kl2A
+	YU7lYw==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v08pujuh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 08:26:21 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-826b30ed087so4956376d6.2
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 01:26:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761294380; x=1761899180;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=376XFuF7lnjqNU0g0kqMrsqRp3dXMifm6+om7j0VY3E=;
+        b=Jj8C+nd+jVbNkOcHFPjejIgRqbqTZxCFqLiD5BpoVqSNzlKGtgt5Qmg1dX2DTTyJz8
+         Q3A9vy0V/yg+CyRUjKyoE2uIaziURJ6Ebjb6chrKmSd7gG3E0GlSj5kFqH3Agcu/Ez6j
+         fEqCZkWwt4TXj0HM5+mN1FtByQsrIRmt3pG7HEb8EzVR1zVcMtXBrdR8DjwWRU0GpGRR
+         Q3NN0/GElbpapHyRHslhR+TANfqNVyn3jSATjukN6zvXXSo9m0lHuXQ2kNTmuggS3IdE
+         MNTm2Sj0uqfAN7d7BnBhuZ3yLcmA29mn7EHDrVo6KP7KnPCFupv95PCloLUBXczMONZT
+         X5FA==
+X-Forwarded-Encrypted: i=1; AJvYcCXfRBYy2TXEacoE7b3DdVm3MLQKelrnT6f3lmmKP0ROHpq7hyXbUHALJVf+RczQAyGE8FzG5M/ixnZt@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZHlwDQvV6+dY6eg4v6Xa+poIes5fPlHeioAphL0PH+CpFaa+N
+	cY5izZjvyrYHsTxvYkxkRshc9TCOGNoZm8UIAkI7X46xrs/GnO2EShIDF5lzOgWid0YfKKw/+Si
+	HKRNMXbuO5vXniMcSNM2VmucGtcmhhb6bB1f7VV4kEnbuU1G9/XlRUqbC1LnMICYf
+X-Gm-Gg: ASbGnctyB/bftht0Pso6Og49gBCFDaP1RSU3f3sGaKQ6ILId34rpZpf7hz1UQf5WCgY
+	0UT5FFaulitmczhLbUB0oLMW9AdiyppfPoBIp6ZQImOIstap5/Bti4YpNShWcTAV04Gwkg65BoW
+	si0AmdY/f+o4dOh6k1TCMaiHtji9Ot4SzoaX1KmhlilA7kqCJRTfq125OTt36aTd0iA88+10DFg
+	ikVxMSf7oIZ2QlyqUACo7L5LrWLIcmjqloY4tE5hl44JjTrtNwR1QsCZyYQiYTuyChn/6Rrl1RC
+	tj6LuEPlAIAuyWKfI1j29OrL/qAolMsl6TZWlm1V7eu46ciSxkRw1AnTBkCvtNaabA0m7C27ntJ
+	0aUMNnZGvxfk5hwXIbqdpJoJfem6vV9Us9S+25sOdJqEK1RRuei/v6xaw
+X-Received: by 2002:ac8:58d1:0:b0:4b5:e4dc:1ee5 with SMTP id d75a77b69052e-4ea116a3a18mr118992411cf.3.1761294380469;
+        Fri, 24 Oct 2025 01:26:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH+kaZi0Hbg5k3D9owRXyS9MsGI1IZ5n8ScVBwkhSrJAmMxzXcl7R5offEga6X9VsoIJFEXhQ==
+X-Received: by 2002:ac8:58d1:0:b0:4b5:e4dc:1ee5 with SMTP id d75a77b69052e-4ea116a3a18mr118992281cf.3.1761294380006;
+        Fri, 24 Oct 2025 01:26:20 -0700 (PDT)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d7971c8b2sm16029266b.45.2025.10.24.01.26.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Oct 2025 01:26:19 -0700 (PDT)
+Message-ID: <229c1807-e534-4f9c-b459-350be0a12888@oss.qualcomm.com>
+Date: Fri, 24 Oct 2025 10:26:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9ec2189e-ec36-4cd8-9713-beb490b8297c@rock-chips.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sdm630: Add FastRPC nodes to
+ ADSP
+To: Nickolay Goppen <setotau@mainlining.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        linux@mainlining.org
+References: <20251023-qcom-sdm660-cdsp-adsp-dts-v2-0-895ffe50ab5f@mainlining.org>
+ <20251023-qcom-sdm660-cdsp-adsp-dts-v2-3-895ffe50ab5f@mainlining.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251023-qcom-sdm660-cdsp-adsp-dts-v2-3-895ffe50ab5f@mainlining.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAwMCBTYWx0ZWRfX3IhelAlr67yQ
+ QpmrtaQh9lYc2m/l2tnLxULOIOT5v2dUgIQjgfDG7LC4b7LN4js8fKK2V207zIwsBDKlQ1MQr4N
+ Ry02OsRc8n70sk59pRp/vGu/S3JLQzNY9EKsYDt5s32s9gfeoYmcfqEDCR3tnU2VlDOnhGRMlXU
+ GFumD+gs9WNo+rP/sMxbPU+i//qSgsT2L8qhuwlgeM5cTqOsbiAFoyeI3urOMGGfPOBWLIx78M9
+ ZegK5jzbchk5pnFDNgECw1UeelsD4rDIC6mMjVa6oKOyWQZXzmcJexoWKGIlJvIC/lrnGllKMcy
+ S6Ee8PN6uuJ6V3535gIrqYfD3fwnEqdirj7DKujocJJ6MjtpxP7o4iQsi5YAaTg8pZsx/n8D36A
+ vXh2zu0rlJZ+1jL1Rlro4M9lVa7rig==
+X-Proofpoint-GUID: fCdQU_s5QcqneDzjmZKI3xJPL2HW3gTH
+X-Authority-Analysis: v=2.4 cv=Up1u9uwB c=1 sm=1 tr=0 ts=68fb382d cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=OuZLqq7tAAAA:8 a=2ipkEsje13vFSbuXtY0A:9 a=0bXxn9q0MV6snEgNplNhOjQmxlI=:19
+ a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22 a=AKGiAy9iJ-JzxKVHQNES:22
+X-Proofpoint-ORIG-GUID: fCdQU_s5QcqneDzjmZKI3xJPL2HW3gTH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-23_03,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 adultscore=0 suspectscore=0 malwarescore=0 clxscore=1015
+ impostorscore=0 bulkscore=0 priorityscore=1501 spamscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180000
 
-On Fri, Oct 24, 2025 at 04:12:47PM +0800, Chaoyi Chen wrote:
-> On 10/24/2025 3:36 PM, Heikki Krogerus wrote:
+On 10/23/25 9:52 PM, Nickolay Goppen wrote:
+> Add FastRPC subnode with compute-cb subnodes to ADSP node.
 > 
-> > > Another thing is that CONFIG_DRM_AUX_HPD_BRIDGE originally needed to be
-> > > selected by other modules. With this change, we also need to expose it in
-> > > Kconfig.
-> > Sorry, I don't understand the problem here? What do you need to expose
-> > in Kconfig?
+> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm630.dtsi | 33 +++++++++++++++++++++++++++++++++
+>  1 file changed, 33 insertions(+)
 > 
-> config DRM_AUX_HPD_BRIDGE
->     tristate
->     depends on DRM_BRIDGE && OF
->     select AUXILIARY_BUS
->     help
->       Simple bridge that terminates the bridge chain and provides HPD
->       support.
-> 
-> The tristate here is empty, so now it can only be selected by some TypeC
-> controller drivers. I think it's not a big deal, just expose this item.
+> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> index f4906ee3f0c3..2764666714e6 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> @@ -2342,6 +2342,39 @@ q6routing: routing {
+>  						};
+>  					};
+>  				};
+> +
+> +				fastrpc {
+> +					compatible = "qcom,fastrpc";
+> +					qcom,glink-channels = "fastrpcglink-apps-dsp";
+> +					label = "adsp";
+> +					qcom,non-secure-domain;
 
-Ah, got it.
+I'm not sure this property is valid
 
-thanks,
-
--- 
-heikki
+Konrad
 
