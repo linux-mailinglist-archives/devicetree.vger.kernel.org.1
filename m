@@ -1,249 +1,237 @@
-Return-Path: <devicetree+bounces-230942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF638C07A78
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 20:11:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99EEFC07B6B
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 20:21:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFFE23B5F40
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 18:07:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72BF9421DAC
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 18:17:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1498B337BA2;
-	Fri, 24 Oct 2025 18:07:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C777261591;
+	Fri, 24 Oct 2025 18:17:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=konsulko.com header.i=@konsulko.com header.b="LXqCrfAS"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="ZwC/kJRk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013016.outbound.protection.outlook.com [40.107.162.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F40E335BCD
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 18:07:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761329273; cv=none; b=oAkXXi7Q60DKMZ5nCIQQF/7CdaT3vNRAY0KIKn2cJTw/21UQGsW20WaWe5E2bF/PiGqOXMUSw1V8pYJmB3cH16+v25Rqfk6QBnGWQzg/5JZIJwAITcwzqGv6fNlRQ4/GrRZv2a8SWJFCJhID8KQTGZ9SRLZjzIFSNWozdT4M49g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761329273; c=relaxed/simple;
-	bh=OKklzTl7XZxkfVb3PCGSM8TNNNKDFlBKHCbNE13T0aE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pd97xdeAYeJrTQRAiKRjjDPKpwDH6vC38o2NBtKY028y05d3sHKCsKcpVAUG9jzYeXSG6dCfEggWjVVWmtIRgMZXVC3vn0+Jc/4bL8FmVZebNmh23PtiTkOKLJL3QqxKif6zMzLQEfbn+dZKbepbtnqPYA06ZOJGGb1URu7nEn8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=konsulko.com; spf=pass smtp.mailfrom=konsulko.com; dkim=pass (1024-bit key) header.d=konsulko.com header.i=@konsulko.com header.b=LXqCrfAS; arc=none smtp.client-ip=209.85.210.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=konsulko.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=konsulko.com
-Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-7c51c7ad0b6so738824a34.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 11:07:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google; t=1761329270; x=1761934070; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=OKklzTl7XZxkfVb3PCGSM8TNNNKDFlBKHCbNE13T0aE=;
-        b=LXqCrfASIsbLO+SA2DYuAaUx0AS4DEQj7/VPR9LPN8CebJ3sDF6+sSA/+IIcekXInL
-         5BAPo/qgAxpgpBl0lncn5Ku+lU5TfZJp5IegkvENVvG8/YkteTm/u33ESKRrB8UqDsy/
-         T4mQDa5VN3uQ5FVAoonDQTrvqerH5pEXW83GQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761329270; x=1761934070;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OKklzTl7XZxkfVb3PCGSM8TNNNKDFlBKHCbNE13T0aE=;
-        b=gAyaYYrkPWfZKUS9JUrm4499fqzZGfb1ivYlKD0PAT0FN+UGuuD+/uz00sXfteXjAw
-         gs5Gt8yxKk8MeCjBGtXKzhZVoISyHL20TWOCIorWvJ8ursH9G8/sTfYmCv719HcDHHmY
-         AW9q9JWS6jpW1EfbspxRVf0h8WFqnBcUJJuxX5cJbyVNIWmopqcm4CFLt+wccR3fwqME
-         FghaYgLUHHhWPlw+QTgqufIonlWRBpbphhut7yhU46rsHKqcQYxbMlhatFdsa/JswbNF
-         SMVs3OPbUWXd3NHbQDostB2Sc0VJ3l+o865Wl1L6omKJ53/52VCaD+L14Ai14gNcvblT
-         mnuw==
-X-Forwarded-Encrypted: i=1; AJvYcCXYaNEvQUh9ZiqI3U34pgDwaVQU4mk6OLwOLCzsHGTY4bBm8EkRJRajeb5xwW822CkKQlmRfXTMPclr@vger.kernel.org
-X-Gm-Message-State: AOJu0YySkv81lyaLl+D6H6o896AkrpMlcnzXBMSfxJcZcLkLg0D0OY8G
-	5VJedI3SuQKDMu8cIFRcdpi7mSSEhgKwl4uj5AEUViCxpUwvKbS7Cd9+aIbY/KyU5dE=
-X-Gm-Gg: ASbGncuZWhIhG3qWygmKiicGjoovLYUwRN7BMjgJWNNH7v1UOzU+XskXzmBRvSipnqq
-	ww8WTfcVk12sKZmucsa6tbM2O8n1JqgJ6PEogHTZC4oTxE5NhH4B1owafPONMxGPU50ZMGhcFAv
-	XtX/CGX8AfgrxWaZnBR9frmYiXriDOGZpy1/UK0XlywcOFxJdm2pvTE6+Pr16/8rnAD4kVbLb6B
-	/mJKaZTo3efvvlK+jU6BCtBNjFeTIHwKHUUReCZynX6X5N2gjtQrX2dvScUPJNeMmDOf3XRnSu4
-	017r11VpvKcCevAUPm7DjhwiJemX7oEdk0WfVeOgwOZWtLLAwiwsHWtTx8gZ1t0wU/ALz1a6eML
-	csI2uRD4S1/L+ZRo0gGAEnwegDHzVq9gOalLxfj08FyGl0+iaqEPWzSsqC2TdCAd1QbELXrvwSQ
-	WguPiTT1IfiKBlrWtkrwQgahhGsml8hYZfic+jXk8Lns1Ie4QSKA==
-X-Google-Smtp-Source: AGHT+IFRDulQPC2WfvWC6MHNbG8ZjN3lKhCb3bn+Uo7GV5yUHZ45PDvygNs6SdpFx/7sNDoXiJFqQw==
-X-Received: by 2002:a05:6830:f8f:b0:78b:8caf:4906 with SMTP id 46e09a7af769-7c5240679bcmr2004161a34.13.1761329270173;
-        Fri, 24 Oct 2025 11:07:50 -0700 (PDT)
-Received: from bill-the-cat (fixed-187-190-202-235.totalplay.net. [187.190.202.235])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c51b059913sm1751074a34.32.2025.10.24.11.07.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Oct 2025 11:07:49 -0700 (PDT)
-Date: Fri, 24 Oct 2025 12:07:46 -0600
-From: Tom Rini <trini@konsulko.com>
-To: Ilias Apalodimas <ilias.apalodimas@linaro.org>
-Cc: Ard Biesheuvel <ardb@kernel.org>, Adriana Nicolae <adriana@arista.com>,
-	Rob Herring <robh@kernel.org>, krzk@kernel.org, jdelvare@suse.com,
-	frowand.list@gmail.com, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, vasilykh@arista.com,
-	arm.ebbr-discuss@arm.com, boot-architecture@lists.linaro.org,
-	linux-efi@vger.kernel.org, uefi-discuss@lists.uefi.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 0/2] DMI: Scan for DMI table from DTS info
-Message-ID: <20251024180746.GT6688@bill-the-cat>
-References: <0f006338-e69b-4b3f-b91f-0cc683544011@kernel.org>
- <20251022114527.618908-1-adriana@arista.com>
- <20251022201953.GA206947-robh@kernel.org>
- <CAERbo5z6BzHqQxXdxPxmxE_eDR7GGGbt3A8kB0gQiWFBE-28Ug@mail.gmail.com>
- <CAMj1kXGYinTKiyYhNYWJvoJeUJScCGnyq=ozLgjKAm7_wzG8QA@mail.gmail.com>
- <CAERbo5waY-=6BLZ2SiJSFAXzvU57mJdM9q05vAZw8zR2yExQ5w@mail.gmail.com>
- <CAMj1kXHin5YacS98ttzHqFqy6HMukXKoLZtr-+bLwVRsWZUugQ@mail.gmail.com>
- <CAERbo5zgS8XoGcFB3wejqDpx14-SBr5oWn7pu3=PE0djRiKZqg@mail.gmail.com>
- <CAMj1kXEnSKF4VcMdOvUUuM-pOEWB38qPhWvUm13rnkQiZXp6SA@mail.gmail.com>
- <CAC_iWjKQ5Smx5hOM9Lgyq_KD6D7OXyDsfJ4mcEnfw4JuRtxy-g@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9B3C242D67;
+	Fri, 24 Oct 2025 18:17:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.16
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761329856; cv=fail; b=YxIZlDs4NfuUccROlBe54Omc6fvP04Odyvw8JB+bkQSs22n1WB8ZEhseFNqQyW9JdSac4z27JL3g+4YoAOKKMVkWpo26+F2MKfEKuWm1UGNftS5yBFiuc/JmJSBsp6QaMb/q6e5uDTP7iGP78ZeQAC5DVtxoSkChUv/719AEeIQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761329856; c=relaxed/simple;
+	bh=DzMA3UaZE7MMc9k9ziaEASK4a4CARKa9pEIiDzS+1ho=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=kA4llKDBlBpLmegK0sgHQ4bS3rpdGF6zJkFA1X4Q3fdxqguI5QHZjhl6kFFbDKGeiVh/ar00WN1+mxL/kXGjVxf6ZwmUvgV3czgwcdRpxXX6vt+Xpt2O7BBEZWRO47/45zKIlKnizRIXbvsOoXX4SBrLcpcQvhLYy2WBMNTKutw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=ZwC/kJRk; arc=fail smtp.client-ip=40.107.162.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=veNCrI3PIGcikw5w12LtGeSNXGooIPdwF1oqQ6nFquW76HnplTwObnWxZodXvSwqrgJN52ru1ujyqqr5gr25G+33hfvr+Nq/4XI6cNGY5tnAo9Kr/Ret4hdEW08RsZqM6PzUJ42VDJI6cDhHWvnOzrj939mWChT8a9AnQv/ThC3GehMdmKHGjuc3D59+vdUQAtWA5Gp1SXVm4lETAk3lrXmj5dzWdksFmrMN4RBJURSq1PvqhYTmcPJueBiQDrinz+eeiglgGAYPYoszlQfpeWdJJf9XQUn3uuRW2QU4I4F5iR/iX+Ecjuab5anrWMLuCZhja0YEO2Waw7y+BTKcYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uQC2WI9RIFvGyP53VpPEUVjZkap68ACowkD3tQvLGKs=;
+ b=V5X3UZI5g8My0IIQ70dWjZxB9wkUS2ax2KJ2uVtlU92WenPtJOWW8RI7qiCEhCfBDVcJS1ok/NYD/zioG1V6fMBNFse+x2iSjU1mC19jif8QFgffROrWpjPQgp+rhgRWHkyoNZWeA2ZY3qOcbUd5bd7OMZo1JkaLO5i/G85HxW9bEbic0qtvMFbIrvF9qqU1+5+Yjml0/0Ug2DswSinAFC/6NDPveP2Mz26mnKUQKPh8b3ww6iYdYKRwat1lqn5TC3hSJEf2HzXyOld1iB4ImofyrZ2DrbHdflLqAld/kQaYH46nPAQiOsurLsc7BiDCGcLdXs/29WJkQWCv18e/mA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uQC2WI9RIFvGyP53VpPEUVjZkap68ACowkD3tQvLGKs=;
+ b=ZwC/kJRkU5M/bgSna5B/wmVdj4twfRrQhAnALEx/p0lknCSiMeTCpFQnQKjNSdGcpPAxpJ5NnUxwoIpJX0tm6kzTjji0iz/I+JPWp7hbqlE+00FS4SWUhZOIZJVDyWjuIBOmzBHUqxqhSPo8WALsMDWh+B0dZbyfA9wpvfaPYn3emKoC2s3ju3BuCRafwspQ7lwB4hJ17eSei+6I/rpWTVOSjBAY5fFekLa8FX0+9x5fVMC87kx2CA3fXHEFq8GcWQI4QDtN3CQLUv1jWHr7cZXyb894lkKCXhXZS1FnVbXp2iwW0eHaI22sW2Jv9r/87Iwed0PAvuzw6HXMVGnoHg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
+ by DU2PR04MB8936.eurprd04.prod.outlook.com (2603:10a6:10:2e3::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.13; Fri, 24 Oct
+ 2025 18:17:29 +0000
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd]) by DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd%4]) with mapi id 15.20.9253.011; Fri, 24 Oct 2025
+ 18:17:29 +0000
+From: Frank Li <Frank.Li@nxp.com>
+Subject: [PATCH v2 0/6] perf/imx_ddr: Add i.MX8QM and pmu in DB (system
+ interconnects)
+Date: Fri, 24 Oct 2025 14:17:10 -0400
+Message-Id: <20251024-qm_dts-v2-0-7a7e07022ed6@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKbC+2gC/zXMSwqDMBSF4a3IHTclD2NNR91HkSImrXdgookEi
+ 2TvvRUc/ofDt0NyEV2Ce7VDdBkTBk8hLxUMY+8/jqGlBsmlFlxKtkwvuybWcFHrlkZ1s0DnObo
+ 3bgf07KhHTGuI38PN4r+ehDqJLBhnplXcNn2tjTIPv83XIUzQlVJ+md32i5oAAAA=
+X-Change-ID: 20251022-qm_dts-60145802537d
+To: Frank Li <Frank.li@nxp.com>, Xu Yang <xu.yang_2@nxp.com>, 
+ Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: Frank Li <frank.li@nxp.com>, linux-arm-kernel@lists.infradead.org, 
+ linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, 
+ imx@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Frank Li <Frank.Li@nxp.com>, Joakim Zhang <qiangqing.zhang@nxp.com>, 
+ Jacky Bai <ping.bai@nxp.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761329844; l=1667;
+ i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
+ bh=DzMA3UaZE7MMc9k9ziaEASK4a4CARKa9pEIiDzS+1ho=;
+ b=HVyoNIruzyD7BEDFhsphDSa5EB3V+lKkiuE42Os162AAQle9QYJwuO3z0e89JqAn3zFy1Tv5m
+ top5BYwdHyOBrfBNTasypt1nXPADfSgfpX9UIVBJScpeMlrI6p7IiwK
+X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
+ pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
+X-ClientProxiedBy: BYAPR11CA0047.namprd11.prod.outlook.com
+ (2603:10b6:a03:80::24) To DB9PR04MB9626.eurprd04.prod.outlook.com
+ (2603:10a6:10:309::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="9oR5kehjwfSOVgAj"
-Content-Disposition: inline
-In-Reply-To: <CAC_iWjKQ5Smx5hOM9Lgyq_KD6D7OXyDsfJ4mcEnfw4JuRtxy-g@mail.gmail.com>
-X-Clacks-Overhead: GNU Terry Pratchett
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|DU2PR04MB8936:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8298b370-4cd2-40b5-653b-08de132997c7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|7416014|52116014|19092799006|366016|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?RUdLTkJYN04rcm80R3ZNU0tuQThNVjFJeVVzZWtkUUZjYlJnNVVFN2JsUldC?=
+ =?utf-8?B?VWxoSytKNllaYXFDQWEvKy9mdElyZlRTMUw3Ui9SWlRSU1B2eUFoSk90d29v?=
+ =?utf-8?B?Rm1GT21WaTFoSUFTdTJQUXRWTDMvOGd3Tms3b0JtV21QenpoMWREOUNpQVNS?=
+ =?utf-8?B?eDdDNWVxeEZic095V0ROVUNUVFEyczZxdWFxN2o5NnAyV3pmeFI2TUdjeG1D?=
+ =?utf-8?B?Tk1EVlpaN1FoMlNnLzVlMVI5ajUyakQ2YnhLZWorbVJWQVZDNWFvVyszQko5?=
+ =?utf-8?B?eFdPWWwrV01aQmJGaVVYUVJlV0F4elhlb0s4T3o4cFVJUlFUQS9USkVvaEI5?=
+ =?utf-8?B?UnNoeFhvdkx3bmJHNDBqSkxFQzNObUZYT29RbTZsYlYzRjRHRHkyeWx2V0JD?=
+ =?utf-8?B?RzBEMDhxUUpkczVlSks5L2JOYVV1THVpZFJKWEJQdm1Cd21BckhPSmJwbVR3?=
+ =?utf-8?B?aW1TWGJRTzV2QTZFSHEwa0Q1QWk2Y21QMThNTHIrekk5KzhDSjJlYk03RURW?=
+ =?utf-8?B?dXRJWkJOMTlFNXRuS2JvTmRvRlVPTXRRNTk2WjB4dE5BamlNdUdBdFlZTjdh?=
+ =?utf-8?B?cUhLNkJLQktDclpvei9KZkoyRjNWbGhLZ0kvMzMrRjg4TE9ybVBaS21MQjBk?=
+ =?utf-8?B?TWJBb3MxNFhvb29XL2pkeFNOczMrMFlLakV0bkpWMVc3d2oyUnRDanl4RWV0?=
+ =?utf-8?B?QlBqM210c3Vqam1JbkxsMGZ1bnAvNkhmNHIyQUlxeHp6bVNrRS84Y2cwQkVl?=
+ =?utf-8?B?Yk5uaGdJZUs5WWJXS05XZnBxRFFOLzkxQUN0NzFLZ2xBNjJKZW02cUwxM0N3?=
+ =?utf-8?B?ckhaNFhoQUxvMXZuTnJpemxOZTI5akp3M1g4K2NheHVOanFKUU8vcG5GS081?=
+ =?utf-8?B?M2RVMFBSZVFVNXBKOW9Gb3pwWnRhayt2bHV0R2ZqN1dBTjk2eXI2WmpOUHFj?=
+ =?utf-8?B?WnBJWmhXMFphRitGTVh2cTBVSzlQOUFHdnlaazNQRWd4TDdERVdadWtEMnZG?=
+ =?utf-8?B?dlNyOHgzS1F4UUx1WklxRHN1UUZkU0VHWWJ3QW13b1NXTk8ralFHdGI5Q1FX?=
+ =?utf-8?B?R1FzSnJaajlOM2xPb0lzSk9NWS9NR2VOQ25jTW5PeXZoSzdVb3daOG5SVDVD?=
+ =?utf-8?B?MzFQUFRjL1NQUkU4enc3b2NCcGpPUHF4ZFJWRnN5T0FvcTgzYm5tOENGY3dv?=
+ =?utf-8?B?c3l3aFJjSFNpdWMwQjlEK0daVXJrRmpIK093Rmk4UDhManJFMS9lbkRSV3F0?=
+ =?utf-8?B?ZGE2Yjd1blh0NWdJRjUyNno2QmpvamQrSU92T3ZjRlFONXVxTjQycTVmVUtv?=
+ =?utf-8?B?Qm9FWmQyUmRrQllqMFlPK0JRWUEzUWUydXNQcWNCamJERmV1YVBIUHMzaUJP?=
+ =?utf-8?B?QmcrYUtBNFVLbWJ0anAwQlpMdUpSOXFTUHQyVlZXZUNKRWFtM05lclVjQ1d0?=
+ =?utf-8?B?eDNscnRZT0wxZG1yd3lBTmJYd3l2WVFzSzdmTHZPZWN5OE9CbWhQb0lTMEY5?=
+ =?utf-8?B?c0FUSkZEWitLT1ZBeGxhdzF6dzNOZTZoYXliN0ViSFhDU3d0TFFTcDdzNU1r?=
+ =?utf-8?B?NWRLdklRaEVSQTdQY1czRkY0OXZ6YjJqZnZib2J2c3Zhdkh5eU1NdGpudzR3?=
+ =?utf-8?B?NkRGaVpoaGFrOTZUOUIvcVlwNHExZWpVdEJ5bkVSTU9xRDEyRVdjQ2thcC9U?=
+ =?utf-8?B?TzdOMHBKNjE3emluOVA1SC9ZY1grRnJmSGpETHN0LzZ4dmlkL0VwcWFWM2lC?=
+ =?utf-8?B?TlhuQlJWWWhrcWRrVHRxVnhTMytiRTVMQ2xIdExJQ2EwS1pZeHBDQmxuYTJ5?=
+ =?utf-8?B?a3FvbXNRK2xPTkxjbmdISWNGRmFVSmphbm11SENnOGUzREpodEtSTUFQMjNE?=
+ =?utf-8?B?Q2RSOWFYL1hNSDAxRjBxa1BsSFo2Y09UV2tJRDRzK1p3ck9Oams2K2l2THph?=
+ =?utf-8?B?RThwMGkwL1V0VDlVbXZHNFoyNTcwRENYQkZTeE9OTHFOaE9Ka3BTOG0xU2pR?=
+ =?utf-8?B?ZGtNOThyaTk1cWJlRkZPRHVPcEFjSDN6cnYwU2x0bVRwZE81MEcyd3o2eVcz?=
+ =?utf-8?B?Y0sxd2NUMlFxWkFhT3RmM1FGMHZDOW9ybGhpZz09?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(52116014)(19092799006)(366016)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Rlc2SWZka1JBTTgxaHd1dVpCUWVPZTFWUm9xWTNjR01CeHZxUDZSU1NudC9j?=
+ =?utf-8?B?TkZ1TjZqUGZTQnY3aFhpOFdPNnF0cHVNWUl3bEpsN0hNVTBsaDRwZ3plakpY?=
+ =?utf-8?B?dVB5WjNZMjJnMlFPUThsZW5UMkcwaGRueHZYcklJY0F1bU9ZdlN6YU1aeGgr?=
+ =?utf-8?B?K0hUWDhFclpXYWpYTEY0blYxRnY3VFp6RVpiWU1pZjUyZTFwYkpGbzd3WDcz?=
+ =?utf-8?B?TU0xaC9rZUYwRXlsMXFsUWM3aUg5VllyTnJoeFZ6UnkrRDNBclFLYVZpY1dv?=
+ =?utf-8?B?VnQzdldNY1pXb0VxYjRpS3JkeEUwZXhwWGdRN2Z2ZGxpWC94MXBSdWJkQ3JQ?=
+ =?utf-8?B?Vk81U2lPenQzRE14K1hjWjhzSGxlOHFCNjhCanM0ZWlLVW50eFlRT0w0MDRw?=
+ =?utf-8?B?cithZ2xVSDVmNkdNUzRqR0dYYy9RZXdOYjFwZ09mMnNRbTlSNDJZVGswR1dS?=
+ =?utf-8?B?OUVMR0JNNC9VaGtaeHd6dkNidVkreko3NFpvWVV1VzhXdWwxS29PSTNBZWFF?=
+ =?utf-8?B?a3V0czhqYnArK0JrL2NmdmQ5aWpkYlJ1SkpETkZHc3ZqTWYwaU5RNEFNcXY1?=
+ =?utf-8?B?ZGZXbXVOYXVFVXNKRVpQUE1tcUc4TnVsdG0vbVR6UDhGQldNOXFRK01JamtB?=
+ =?utf-8?B?Tyt5U2QwMVRlUVlxTnRFcm52ZnU1NFNMR1RsdXhtWUc5Tk1hV3VhVG91NnRz?=
+ =?utf-8?B?S2VQeHpFRGdoMnNJS1ZvU2xlK0luR1dlazkyN210WlNQWXJLUnI4V3dGZ3RB?=
+ =?utf-8?B?MW1JbHFqWldYcGJKUzJ4TXg4RW5nd01mbmU2N3ZCZkp1VkF3UC9FQTJydGNM?=
+ =?utf-8?B?TU9uTkVhSE9lMlBUekV6S01UMzFvTjFzbHZRWDBBazFHaC9hNmNYWW9wWERw?=
+ =?utf-8?B?Ym9ORmtSdHpVTGNMSXU0VmZGTGtOOXJUV0dudnliRkQySEFmS0w2YjhLR08z?=
+ =?utf-8?B?d2ZVTlJIazlySHhUV08rS0Z3dExhQW51QTdrL2dEMFBuVUd3bmlCcUI3aUx1?=
+ =?utf-8?B?ZTFtQ3ZiWkNYZmI3ZFRHdnhsdHFUb0VVUGlWYk5ML1gzamM1dXBRRmgxTE1z?=
+ =?utf-8?B?MkVNaXQ1K1krUzJLYzdNUE81bmtocFQ4SFJENHY1TzAzcmp4eTlWbGxNaEtT?=
+ =?utf-8?B?K2V2V2U2VStnRlBlUFhXL0FlTVdPU1dYZjNJbENCbm54U2k4YXlqbGI2c3NW?=
+ =?utf-8?B?OThFUVRob2pMWkhyVGZiSTAybGcyMEt5d2hrZkNWRWdDNkswdUFVT1hKQXda?=
+ =?utf-8?B?WkdWUVJ5NzBlUmNPWHJNbkxoRUhpZXB0NndGejBKNms2cEtweGFDREQ3eDdX?=
+ =?utf-8?B?SktmUDZRb3VpN2lrc295RllMQUhPWk84Ri9jdncwU09OWGlRNjZSTXNnMUVa?=
+ =?utf-8?B?RmlnM1k0T1d4OVBWK2lEMlI3cFE0RE53TlA2KzRZOG5ZUVJGclFkbllaYnpT?=
+ =?utf-8?B?Z0NJQktwc0MrYnJyZVdPTzVEVVA4UzF6OUZpT25nSDJwRXlkQVRJMVZWekZx?=
+ =?utf-8?B?NVVHTU5RZGJjd01iSkhVWUpIZytPRFk4NkJDMUE5M0NYclFoQjVnYnBHUWla?=
+ =?utf-8?B?UEJUMWVkZERORk1NUHJkc2hiT3hoT1U2MWg5dE45cEZPcS85TDNybFM0SElk?=
+ =?utf-8?B?N1VFS3hJQTFDMDcvR25TdGNBeHdURUIvZDMzN3Q4OWR1aWcweGYveWxaL3pV?=
+ =?utf-8?B?Sk50a3hSckNLSVBWYXlkemNDbjl4Qk12aTgwOTJzZURaNVVMK0pqczFKNUpO?=
+ =?utf-8?B?aEZGdTNMd3FVdnNWSFJLK0NBRlEzOU05dHRVT3RNSk1STlZwUkFDWi9FWjl4?=
+ =?utf-8?B?WHE0MlVLOGlnTVNXNGQ3Nk5vRXZYbU53KzhKcWsweExjMlQwWDltZ05ycXI4?=
+ =?utf-8?B?d0Nzc1Vhc1l2WGt4TG9iYUE5RXFMUnRuaVVKYSs0ci9tVlZodkdVK2N3V0h4?=
+ =?utf-8?B?ODdxK2RMWTJRbDFSejhkZm1sd0dKeUdOazI0YUdlNTh1cmU3WEhjcXFHVG5W?=
+ =?utf-8?B?VU5DTWo2eUo5aHVJUjVMaUhXY0c2TlR0TXI0aVJzbkxJZlRxSVdZNVAvOTVF?=
+ =?utf-8?B?MEc1d3pzOEtQOU9IZmMwYiszWDZCUjNIRnZlT0ROQmtBOVZqTUdlR0JNZ05p?=
+ =?utf-8?Q?JP/jWR5rh+CNOgfFYnce6ml4Z?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8298b370-4cd2-40b5-653b-08de132997c7
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2025 18:17:29.6962
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: BCgl7PxO+MUN5b4GCJXBp86NiWXbb063KC/gpCQwJh7ofUW0Ha3xTnT5mZFyrLDGY0fI7f345Fp4xt9qYSiDZg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8936
 
+dts: add soc specific compatible string for imx8qm, imx8qxp, imx8dxl in db.
+driver:
+ - did some cleanup
+ - add support for pmu in imx8dxl DB
+binding:
+ - add compatible string for imx8qm, imx8qxp, imx8dxl in db
 
---9oR5kehjwfSOVgAj
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Changes in v2:
+- fix binding file by move imx8qm/qxp/dxl under enum
+- move clock-db-ipg clock into imx8dxl.dtsi
+- Fix CHECK_DTBS warning caused in v1
+- Link to v1: https://lore.kernel.org/r/20251023-qm_dts-v1-0-9830d6a45939@nxp.com
 
-On Fri, Oct 24, 2025 at 02:07:43PM +0300, Ilias Apalodimas wrote:
-> Hi Ard, Adriana
->=20
-> Thanks for cc'ing me.
->=20
-> On Fri, 24 Oct 2025 at 12:49, Ard Biesheuvel <ardb@kernel.org> wrote:
-> >
-> > On Thu, 23 Oct 2025 at 16:48, Adriana Nicolae <adriana@arista.com> wrot=
-e:
-> > >
-> > > On Thu, Oct 23, 2025 at 4:54=E2=80=AFPM Ard Biesheuvel <ardb@kernel.o=
-rg> wrote:
-> > > >
-> > > > (cc Ilias)
-> > > >
-> > > > On Thu, 23 Oct 2025 at 15:34, Adriana Nicolae <adriana@arista.com> =
-wrote:
-> > > > >
-> > > > > On Thu, Oct 23, 2025 at 11:21=E2=80=AFAM Ard Biesheuvel <ardb@ker=
-nel.org> wrote:
-> > > > > >
-> > > > > > On Thu, 23 Oct 2025 at 04:21, Adriana Nicolae <adriana@arista.c=
-om> wrote:
-> > > > > > >
-> > > > > > > On Wed, Oct 22, 2025 at 11:19=E2=80=AFPM Rob Herring <robh@ke=
-rnel.org> wrote:
-> > > > > > > >
-> > > > > > > > On Wed, Oct 22, 2025 at 04:45:25AM -0700, adriana wrote:
-> > > > > > > > > Some bootloaders like U-boot, particularly for the ARM ar=
-chitecture,
-> > > > > > > > > provide SMBIOS/DMI tables at a specific memory address. H=
-owever, these
-> > > > > > > > > systems often do not boot using a full UEFI environment, =
-which means the
-> > > > > > > > > kernel's standard EFI DMI scanner cannot find these table=
-s.
-> > > > > > > >
-> > > > > > > > I thought u-boot is a pretty complete UEFI implementation n=
-ow. If
-> > > > > > > > there's standard way for UEFI to provide this, then that's =
-what we
-> > > > > > > > should be using. I know supporting this has been discussed =
-in context of
-> > > > > > > > EBBR spec, but no one involved in that has been CC'ed here.
-> > > > > > >
-> > > > > > > Regarding the use of UEFI, the non UEFI boot is used on Broad=
-com iProc which
-> > > > > > > boots initially into a Hardware Security Module which validat=
-es U-boot and then
-> > > > > > > loads it. This specific path does not utilize U-Boot's UEFI
-> > > > > > > implementation or the
-> > > > > > > standard UEFI boot services to pass tables like SMBIOS.
-> > > > > > >
-> > > > > >
-> > > > > > What prevents this HSM validated copy of u-boot from loading th=
-e kernel via EFI?
-> > > > > The vendor's U-Boot configuration for this specific secure boot p=
-ath
-> > > > > (involving the
-> > > > > HSM) explicitly disables the CMD_BOOTEFI option due to security
-> > > > > mitigations, only
-> > > > > a subset of U-boot commands are whitelisted. We could patch the U=
--boot
-> > > > > to include
-> > > > > that but it is preferable to follow the vendor's recommandations =
-and
-> > > > > just patch U-boot
-> > > > > to fill that memory location with SMBIOS address or directly with=
- the
-> > > > > entry point.
-> > > >
-> > > > And what security mitigations are deemed needed for the EFI code? Y=
-ou
-> > > > are aware that avoiding EFI boot means that the booting kernel keeps
-> > > > all memory protections disabled for longer than it would otherwise.=
- Is
-> > > > this allowlisting based on simply minimizing the code footprint?
-> > > >
-> > > From the information I have, it might be just minimizing the footprint
-> > > but the vendor's U-Boot configuration for this specific path
-> > > explicitly disables the CMD_BOOTEFI option. While the vendor cites
-> > > security mitigations for this configuration, the specific details
-> > > could be a set of mitigation removing different boot methods and some
-> > > memory access commands.
-> > >
-> > > The core issue is that this non-EFI boot path is the vendor-validated
-> > > configuration. Enabling EFI would deviate from this setup, require
-> > > significant revalidation, and could impact vendor support. Modifying
-> > > U-Boot to populate the DT is a contained change without modifying the
-> > > U-boot vendor configuration.
-> > >
-> >
-> > I'm not sure I follow why changing U-Boot's code would not require
-> > revalidation if simply changing its build configuration without
-> > modifying the source code would require that.
-> >
-> > > Beyond our specific vendor constraints, this DT method might be used
-> > > by any other non-UEFI arm system needing to expose SMBIOS tables to
-> > > the kernel.
-> > >
-> >
-> > Fair point. So let's do this properly: get buy-in from the U-Boot
-> > folks and contribute your u-boot changes as well. And ideally, we'd
-> > get this into the DMTF spec but if you are not set up for that (I
-> > think you might need to be a member to be able to contribute), we can
-> > find some ARM folks who are.
->=20
-> +1
-> U-Boot does offer an EFI implementation indeed, but we can't magically
-> force people to use it.
-> The problem with SMBIOS is that afaict is still widely used by various
-> debugging tools, so we might as well support it.
-> I agree with Ard here. I think the best thing we can do is
-> - Make the node standard in the DT spec, so everyone gets a reference
-> - Gatekeep any alternative implementations for the kernel until
-> someone gets this into the DMTF spec as well
-> - Send a patch to U-Boot that adds that mode dynamically if booting is
-> !EFI and SMIOS support is enabled
+---
+Frank Li (4):
+      dt-bindings: perf: fsl-imx-ddr: Add compatible string for i.MX8QM, i.MX8QXP and i.MX8DXL
+      perf/imx_ddr: Move ida_alloc() from ddr_perf_init() to ddr_perf_probe()
+      perf/imx_ddr: Get and enable optional clks
+      arm64: dts: imx8qm: add ddr perf device node
 
-This sounds like a good plan to me, from the U-Boot side of things.
+Jacky Bai (1):
+      arm64: dts: imx8dxl-ss-ddr: Add DB (system interconnects) pmu support for i.MX8DXL
 
---=20
-Tom
+Joakim Zhang (1):
+      perf/imx_ddr: Add support for PMU in DB (system interconnects)
 
---9oR5kehjwfSOVgAj
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../devicetree/bindings/perf/fsl-imx-ddr.yaml      | 29 ++++++-
+ arch/arm64/boot/dts/freescale/imx8-ss-ddr.dtsi     |  2 +-
+ arch/arm64/boot/dts/freescale/imx8dxl-ss-ddr.dtsi  | 22 ++++++
+ arch/arm64/boot/dts/freescale/imx8dxl.dtsi         |  7 ++
+ arch/arm64/boot/dts/freescale/imx8qm-ss-ddr.dtsi   | 19 +++++
+ arch/arm64/boot/dts/freescale/imx8qm.dtsi          |  2 +
+ drivers/perf/fsl_imx8_ddr_perf.c                   | 91 ++++++++++++++++++----
+ 7 files changed, 153 insertions(+), 19 deletions(-)
+---
+base-commit: c31b21db1c04ba719c3889a57873f0f7eff54670
+change-id: 20251022-qm_dts-60145802537d
 
------BEGIN PGP SIGNATURE-----
+Best regards,
+--
+Frank Li <Frank.Li@nxp.com>
 
-iHUEABYKAB0WIQTzzqh0PWDgGS+bTHor4qD1Cr/kCgUCaPvAcgAKCRAr4qD1Cr/k
-Cl0JAQCUcCV+kUm96vHRiAbLB20hAwcJt3oIn8U3QBbLUjGHMAEA+21ItWi4sJ9d
-t7aKVsKPX8WICEe/+i8LMaUG1P0v5AQ=
-=ytOr
------END PGP SIGNATURE-----
-
---9oR5kehjwfSOVgAj--
 
