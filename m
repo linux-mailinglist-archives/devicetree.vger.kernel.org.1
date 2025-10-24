@@ -1,99 +1,159 @@
-Return-Path: <devicetree+bounces-230928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D25D4C0786C
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 19:23:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4B69C0787B
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 19:25:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D25F1C47492
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 17:23:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 347FB1C46F0F
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 17:25:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D3C93431F6;
-	Fri, 24 Oct 2025 17:22:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCA56338906;
+	Fri, 24 Oct 2025 17:25:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WHtYB4I7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Szb7hdPf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 352E231B806;
-	Fri, 24 Oct 2025 17:22:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F8621990A7;
+	Fri, 24 Oct 2025 17:25:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761326553; cv=none; b=ICjVGEH2vTCe0ApjvnYBMxXUtIT+OpgzZJdXPnZeKqzQZ67mYRFya3gr5vJxWRF41x+ftvF1HjxSOWYBvekmMPGNUG3ldXO68rlI6A9A3dSzNjXAyLPoRTRhcB7uWhEy5ECfEuDycOacvGGDnLvUMnJ9WuLCCaYIgVEeJK3COEU=
+	t=1761326721; cv=none; b=H1IRZfFX9KFAav9cGpkaYzNoYHvsQZ1oC0n0Ad5a8vaSsSwY2Sv60cUWFozD8Pmgfoh6k2xA0t8+6uoIGAWLphBzFFUfTLAElTSCWx7vCpCF8zU6as8nOttxNKTS1Iial5ukTwtWYWMoFMOLoG+r1RjAiRYU5bNp8oWUNFi5/jM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761326553; c=relaxed/simple;
-	bh=Vh52TZEVUBZCxdmc3LVnwmhW9v+l2db+3dQn43dH5EM=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=KrzaXhlzABFhFc6sd3rzIwVVkcCxZb3pdu5x0oR5S3PzvQuBrV6zdHssQAlyFuMLytGbooR97iZWOOZFJNZUrIb8JrTgV5lM5vKqAXo44kFUtprHU7Eu8ulFDaNfVorPtfKkyV04umauwCQvRTaxt6mvhpauZRYhLzTntdamuEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WHtYB4I7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E18AC4CEF7;
-	Fri, 24 Oct 2025 17:22:31 +0000 (UTC)
+	s=arc-20240116; t=1761326721; c=relaxed/simple;
+	bh=STF0BVLwmmf2zdCzGMSd1qWpVlVaamPq3/R/Tnll1sQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tjGdwRezbpLG6KZXUkGdZ/mvI7EzhLpaaLsYNlSEnBgDLg83D3tngKxUwAesq6EyWvZq9NMZsI+xYCXQCYfjWryUX7St8O5ZA4+j/Tde3Suc7LnTNFYPFFGxqimM3zXvIgbOcMs9G2B/erCl5wA5GBMOIiTYckZU6AZriF5Oe+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Szb7hdPf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B243C4CEF1;
+	Fri, 24 Oct 2025 17:25:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761326551;
-	bh=Vh52TZEVUBZCxdmc3LVnwmhW9v+l2db+3dQn43dH5EM=;
-	h=Date:From:To:Cc:Subject:From;
-	b=WHtYB4I7Oo+EG4UgcU6KxrihbksDEonFGWm9HomHPGSuO48qN2EFZ/lu4pbyzrkWM
-	 UFizHlXhHAa0J3ASmrEMDGkIROHs/NBRMOEg+hTYDUzH3nUe1fanz7f5kDaZ5YsEOW
-	 +N9bFZvpNYR/SPPWH9TWZz7JyUBhV4HFBmAk5LU6hEpRTPsOYWy69G+v8njRHFnPx9
-	 gX3LijJsuMpr5izB3fa9ODN1I9SBIKMYirSkRHVi40ZnuAJdLJ6UADcdMudeVJV02A
-	 q3uajvNSpgqBUAtYr4vBiMoQCF0Vv0Fq7z9Ju2dfJbcd+kTJSgleGEpXvaXu5gdlbw
-	 JW0t83461HMIQ==
-Date: Fri, 24 Oct 2025 12:22:29 -0500
-From: Rob Herring <robh@kernel.org>
-To: Linus Torvalds <torvalds@linux-foundation.org>,
-	Thomas Gleixner <tglx@linutronix.de>
-Cc: Saravana Kannan <saravanak@google.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [GIT PULL] Devicetree fixes for v6.18, part 2
-Message-ID: <20251024172229.GA2130411-robh@kernel.org>
+	s=k20201202; t=1761326721;
+	bh=STF0BVLwmmf2zdCzGMSd1qWpVlVaamPq3/R/Tnll1sQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Szb7hdPf01uCg3+8lRVJjUaLS94amyMOEba4c6fbtsuZ+Lswn4FxBwm3IPNgOPnxh
+	 Sw0uAuH0hcFCwSglKvLZEu6h37x64j209uSByxGjLrNalULmeoVVrraTI0WOfeF3li
+	 ldKSQ53t5hEcDwLl7lvSnXAV5uF111Yk4n4cbaqplJ/vIKecMW+G9Ck8yBxPdA1WTz
+	 vK+vFPESLgp7O4C6fQD7Poo3x/g2jxiI5580vQxrW4BUHh+Blpm3e6H8Qjac9qOWV1
+	 Vqc7lE7BM1rDwwwHFt2e+McnG6opy7mLntTuqQ8VHDVtXuZjiKfwQNOCC/c0SROlWX
+	 KhjE1ESUF77Dw==
+Date: Fri, 24 Oct 2025 18:25:14 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Peter Wang <peter.wang@mediatek.com>,
+	Stanley Jhu <chu.stanley@gmail.com>,
+	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+	"Martin K. Petersen" <martin.petersen@oracle.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+	kernel@collabora.com, linux-scsi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v3 02/24] dt-bindings: ufs: mediatek,ufs: Complete the
+ binding
+Message-ID: <20251024-excavate-reprint-a9eb3cbb061f@spud>
+References: <20251023-mt8196-ufs-v3-0-0f04b4a795ff@collabora.com>
+ <20251023-mt8196-ufs-v3-2-0f04b4a795ff@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="V451Z6sNr8QduRRg"
+Content-Disposition: inline
+In-Reply-To: <20251023-mt8196-ufs-v3-2-0f04b4a795ff@collabora.com>
+
+
+--V451Z6sNr8QduRRg
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Linus,
+On Thu, Oct 23, 2025 at 09:49:20PM +0200, Nicolas Frattaroli wrote:
+> As it stands, the mediatek,ufs.yaml binding is startlingly incomplete.
+> Its one example, which is the only real "user" of this binding in
+> mainline, uses the deprecated freq-table-hz property.
+>=20
+> The resets, of which there are three optional ones, are completely
+> absent.
+>=20
+> The clock description for MT8195 is incomplete, as is the one for
+> MT8192. It's not known if the one clock binding for MT8183 is even
+> correct, but I do not have access to the necessary code and
+> documentation to find this out myself.
+>=20
+> The power supply situation is not much better; the binding describes one
+> required power supply, but uses a supply property from ufs-common.yaml
+> that can be either 1.8V or 3.3V.
+>=20
+> No second example is present in the binding, making verification
+> difficult.
+>=20
+> Disallow freq-table-hz and move to operating-points-v2. It's fine to
+> break compatibility here, as the binding is currently unused and would
+> be impossible to correctly use in its current state.
+>=20
+> Add the three resets and the corresponding reset-names property. These
+> resets appear to be optional, i.e. not required for the functioning of
+> the device.
+>=20
+> Move the list of clock names out of the if condition, and expand it for
+> the confirmed clocks I could find by cross-referencing several clock
+> drivers. For MT8195, increase the minimum number of clocks to include
+> the crypt and rx_symbol ones, as they're internal to the SoC and should
+> always be present, and should therefore not be omitted.
+>=20
+> MT8192 gets to have at least 3 clocks, as these were the ones I could
+> quickly confirm from a glance at various trees. I can't say this was an
+> exhaustive search though, but it's better than the current situation.
+>=20
+> Properly document all supplies, with which pin name on the SoCs they
+> supply, and what voltage we understand them as. Mandate vcc-supply-1p8,
+> as vcc-supply appears to always be describing a 1.8V supply. The
+> ufs-common.yaml vccq/vccq2 supplies are used for this purpose, so that
+> common UFS implementations which do power management for these don't
+> have to treat MediaTek's 1.2V supplies in a special way.
+>=20
+> Add the missing avdd09-supply, which so far only mt8183 uses.
+>=20
+> Also add a MT8195 example to the binding, using supply labels that I am
+> pretty sure would be the right ones for e.g. the Radxa NIO 12L.
+>=20
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-Please pull another set of DT fixes for 6.18. These are also 
-dependencies Thomas is pulling in for the further refactoring in 6.19.
+Thanks for doing this.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-Rob
+--V451Z6sNr8QduRRg
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-The following changes since commit 3a8660878839faadb4f1a6dd72c3179c1df56787:
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPu2egAKCRB4tDGHoIJi
+0lNNAP0VC19k2rBRz7i8IHf9X3g1JTxqMMzVR3u32lMao5ckHwEAhMXWoRLsRBM+
+T4cDM7d9lAcfhdyafCjXMKxMlrhkNws=
+=fNHc
+-----END PGP SIGNATURE-----
 
-  Linux 6.18-rc1 (2025-10-12 13:42:36 -0700)
-
-are available in the Git repository at:
-
-  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.18-2
-
-for you to fetch changes up to 7209ff310083315386570bf8d001a0845fe7ab8c:
-
-  of/irq: Export of_msi_xlate() for module usage (2025-10-24 07:44:09 -0500)
-
-----------------------------------------------------------------
-Devicetree fixes for v6.18, part 2:
-
-- Fix handling of GICv5 ITS MSI properties on platforms with
-  'msi-parent' as well as a of_node refcounting fix. This is also
-  preparation for further refactoring in 6.19 to use common DT parsing
-  of MSI properties.
-
-----------------------------------------------------------------
-Lorenzo Pieralisi (3):
-      of/irq: Add msi-parent check to of_msi_xlate()
-      of/irq: Fix OF node refcount in of_msi_get_domain()
-      of/irq: Export of_msi_xlate() for module usage
-
- drivers/of/irq.c | 44 ++++++++++++++++++++++++++++++++++++++++----
- 1 file changed, 40 insertions(+), 4 deletions(-)
+--V451Z6sNr8QduRRg--
 
