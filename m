@@ -1,237 +1,187 @@
-Return-Path: <devicetree+bounces-230894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FA00C0745A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 18:22:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA44AC074BA
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 18:26:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 52310583F0E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 16:18:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E2AA7565024
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 16:22:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59471336ED9;
-	Fri, 24 Oct 2025 16:17:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE1DE27A92D;
+	Fri, 24 Oct 2025 16:22:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="k/jSHwlo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C14ROYCB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C00BE246BA4
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 16:17:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFC58219A79;
+	Fri, 24 Oct 2025 16:22:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761322674; cv=none; b=CNo41xZVkLdTrOl7d+fF0DrZh3hQF2OZDiPfqpq1UvYzdoFzn0pIn1jBU3q/dt3OHERA8cJQ1mWX1+QDSlGrai6T7pJ3Dd4GxLKCKniO3xfbCv6MJwkeoZytN2cjOupdYwAMf1eESUPr+iQTEsb8HXu7As9P5yuC4njzPLm10tU=
+	t=1761322942; cv=none; b=fedm80+Rg9w+XMjQhZ9LThwctSSCOgDSjHN0275BwucguIc0dxmfW03TDseb0nHIKez7W5sh7JdTJVrASUCYy1OgjUsFfapSZy+iRlwKwi+lTcdbf+CY7yUhNXUQZQjonA6ConAVPTLTP6Cd9+VEPlWvI83+1pbBma/BU/peZkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761322674; c=relaxed/simple;
-	bh=tOkgTJRdKnwh7l0mFsUVoENRh2qDXisSIfppjwcwMGg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=R040vm3b87Ac2YTf9cXWcPB98LJr8owzYGYlU2gvC8IEKmhvTCzg2WXaRvkUFkAH2KeK0sraWRyyYMdocGX77gESstgCcN4vDkeAyXDACJdqQYJvTU0tiQWHdE9F1bvBpVKGfMNFKYSuWVbO/EyA6FeJ2Zt0Vfdu+BO49T3ku7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=k/jSHwlo; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20251024161749euoutp01e76421f96dc119e522e17d7ea28c2ced~xeaK9zfRW0851508515euoutp019
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 16:17:49 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20251024161749euoutp01e76421f96dc119e522e17d7ea28c2ced~xeaK9zfRW0851508515euoutp019
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1761322669;
-	bh=4PztA7zevOPqcZ45Mj+9kAi61mRD2l7rMSjHCR1zJjo=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=k/jSHwloFZU2MSW6MgfbmET5vpqUP7ha0eqP9bHTJN2HQ7qMS1yqo9m16uMb4jdEv
-	 BIohBBFP6C/+ovZhd8v6YlUWY5+Ctx9MWcaOESEnFG4zhqb8VorGNly3KoG5Lz9kmF
-	 /7hqPxwMdGvhX/+6mQObh4cUxQp4s/xW7zH4zfQo=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20251024161747eucas1p232c73d8cbf4cda89571193714279df1e~xeaJ2q_gt2872228722eucas1p2a;
-	Fri, 24 Oct 2025 16:17:47 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20251024161746eusmtip181c8b0d66d145b6fc0382af657d5c8de~xeaItjh0p0255002550eusmtip1G;
-	Fri, 24 Oct 2025 16:17:46 +0000 (GMT)
-Message-ID: <9f38bb32-9160-4acd-83d7-902d3e1cad72@samsung.com>
-Date: Fri, 24 Oct 2025 18:17:46 +0200
+	s=arc-20240116; t=1761322942; c=relaxed/simple;
+	bh=Zpj0S9WlD9iwACSCKzt192WwYeTxAcEXiUm4xIx1l8Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Rj7KpN6EohGsUKuWyVX1KwFsWYOj2rgu0C0JoIVZbPZwknGdCDkjqQzfpukXV2Ye+y93RaaUQo/KG3E/gCimx/KWO7ezhzh1I1d598LPInSrJyaLECVdwoNBLifQkqR7uizURsyW/noe2Cc8lpnFOBuY/4i2sx6r1Z0exg5lKMo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C14ROYCB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D756FC4CEF1;
+	Fri, 24 Oct 2025 16:22:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761322942;
+	bh=Zpj0S9WlD9iwACSCKzt192WwYeTxAcEXiUm4xIx1l8Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=C14ROYCB3rxkIuXWxj9KaihCI0S3Q55HPeCbwzCfG2TdN6dGGimLB6rOm8D88UAFA
+	 SliCh4L9PU1qhcI8+jPetpES5sp6adRnE24YiqCvQF6nnJGau7q99puV4HjyXSQYDS
+	 LHKTufDVyxL+uVg+VbaS/enRUfWA1PdNNTsQoASyxj5RLQoIO73gu+TOi8OMViRTTy
+	 a/jkDBYYpHj+MsqqTYbZzlHiXdkuGGfNexb+L9ZUszN1YEKKBctX2EKE8FE5MkfPLK
+	 js66eEoCoBHXoU41/ff0j5VIqBSsJIYGWsFS2lRHzFj8gNX6P4vZEf9Lw//udPyhwL
+	 kTmTJPo4NjBuQ==
+Date: Fri, 24 Oct 2025 17:22:17 +0100
+From: Conor Dooley <conor@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, matthias.bgg@gmail.com,
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v1 1/2] dt-bindings: rtc: Add MediaTek MT6685 PM/Clock IC
+ Real Time Clock
+Message-ID: <20251024-unleash-slouchy-ef6903088ffe@spud>
+References: <20251024083318.25890-1-angelogioacchino.delregno@collabora.com>
+ <20251024083318.25890-2-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v16 0/7] Rust Abstractions for PWM subsystem with TH1520
- PWM driver
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
-	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Guo Ren
-	<guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
-	Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
-	Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, Benno
-	Lossin <lossin@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
-	Drew Fustini <fustini@kernel.org>, Daniel Almeida
-	<daniel.almeida@collabora.com>, linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, Elle Rhumsaa
-	<elle@weathered-steel.dev>, Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <p5addblaeofj6xdbgmvrknoozrxh75lsle6uqh4g2qku745ayw@uls3uoftpmuw>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20251024161747eucas1p232c73d8cbf4cda89571193714279df1e
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20251016133814eucas1p199cb62658c016e84e34d525e7c87f16e
-X-EPHeader: CA
-X-CMS-RootMailID: 20251016133814eucas1p199cb62658c016e84e34d525e7c87f16e
-References: <CGME20251016133814eucas1p199cb62658c016e84e34d525e7c87f16e@eucas1p1.samsung.com>
-	<20251016-rust-next-pwm-working-fan-for-sending-v16-0-a5df2405d2bd@samsung.com>
-	<3f9ab01c-470e-48b5-a309-71325ecc4906@samsung.com>
-	<p5addblaeofj6xdbgmvrknoozrxh75lsle6uqh4g2qku745ayw@uls3uoftpmuw>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="xCs6VJHSU/yRmWkV"
+Content-Disposition: inline
+In-Reply-To: <20251024083318.25890-2-angelogioacchino.delregno@collabora.com>
 
 
+--xCs6VJHSU/yRmWkV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 10/24/25 16:09, Uwe Kleine-König wrote:
-> Hello Michael,
-> 
-> On Wed, Oct 22, 2025 at 10:34:42AM +0200, Michal Wilczynski wrote:
->> Since you mentioned last time that you were happy with the code, would
->> you please consider picking up this series for linux-next? It would be
->> great to get it in for wider testing to ensure everything is solid.
-> 
-> I took another look, and just being able to compile and understanding
-> very little Rust, I came up with:
-> 
-> diff --git a/rust/kernel/pwm.rs b/rust/kernel/pwm.rs
-> index 79fbb13cd47f..c8f9f5b61bfa 100644
-> --- a/rust/kernel/pwm.rs
-> +++ b/rust/kernel/pwm.rs
-> @@ -15,38 +15,7 @@
->      prelude::*,
->      types::{ARef, AlwaysRefCounted, Opaque},
->  };
-> -use core::{convert::TryFrom, marker::PhantomData, ptr::NonNull};
-> +use core::{marker::PhantomData, ptr::NonNull};
-> -
-> -/// PWM polarity. Mirrors [`enum pwm_polarity`](srctree/include/linux/pwm.h).
-> -#[derive(Copy, Clone, Debug, PartialEq, Eq)]
-> -pub enum Polarity {
-> -    /// Normal polarity (duty cycle defines the high period of the signal).
-> -    Normal,
-> -
-> -    /// Inversed polarity (duty cycle defines the low period of the signal).
-> -    Inversed,
-> -}
-> -
-> -impl TryFrom<bindings::pwm_polarity> for Polarity {
-> -    type Error = Error;
-> -
-> -    fn try_from(polarity: bindings::pwm_polarity) -> Result<Self, Error> {
-> -        match polarity {
-> -            bindings::pwm_polarity_PWM_POLARITY_NORMAL => Ok(Polarity::Normal),
-> -            bindings::pwm_polarity_PWM_POLARITY_INVERSED => Ok(Polarity::Inversed),
-> -            _ => Err(EINVAL),
-> -        }
-> -    }
-> -}
-> -
-> -impl From<Polarity> for bindings::pwm_polarity {
-> -    fn from(polarity: Polarity) -> Self {
-> -        match polarity {
-> -            Polarity::Normal => bindings::pwm_polarity_PWM_POLARITY_NORMAL,
-> -            Polarity::Inversed => bindings::pwm_polarity_PWM_POLARITY_INVERSED,
-> -        }
-> -    }
-> -}
->  
->  /// Represents a PWM waveform configuration.
->  /// Mirrors struct [`struct pwm_waveform`](srctree/include/linux/pwm.h).
-> @@ -89,22 +58,6 @@ fn from(wf: Waveform) -> Self {
->      }
->  }
->  
-> -/// Wrapper for PWM state [`struct pwm_state`](srctree/include/linux/pwm.h).
-> -#[repr(transparent)]
-> -pub struct State(bindings::pwm_state);
-> -
-> -impl State {
-> -    /// Creates a `State` wrapper by taking ownership of a C `pwm_state` value.
-> -    pub(crate) fn from_c(c_state: bindings::pwm_state) -> Self {
-> -        State(c_state)
-> -    }
-> -
-> -    /// Returns `true` if the PWM signal is enabled.
-> -    pub fn enabled(&self) -> bool {
-> -        self.0.enabled
-> -    }
-> -}
-> -
->  /// Describes the outcome of a `round_waveform` operation.
->  #[derive(Debug, Clone, Copy, PartialEq, Eq)]
->  pub enum RoundingOutcome {
-> @@ -164,13 +117,6 @@ pub fn label(&self) -> Option<&CStr> {
->          Some(unsafe { CStr::from_char_ptr(label_ptr) })
->      }
->  
-> -    /// Gets a copy of the current state of this PWM device.
-> -    pub fn state(&self) -> State {
-> -        // SAFETY: `self.as_raw()` gives a valid pointer. `(*self.as_raw()).state`
-> -        // is a valid `pwm_state` struct. `State::from_c` copies this data.
-> -        State::from_c(unsafe { (*self.as_raw()).state })
-> -    }
-> -
->      /// Sets the PWM waveform configuration and enables the PWM signal.
->      pub fn set_waveform(&self, wf: &Waveform, exact: bool) -> Result {
->          let c_wf = bindings::pwm_waveform::from(*wf);
-> 
-> Does that make sense?
+On Fri, Oct 24, 2025 at 10:33:17AM +0200, AngeloGioacchino Del Regno wrote:
+> The MediaTek MT6685 PM / Clock IC contains various SPMI sub
+> devices, of which two are Real Time Clock IPs, one usually
+> reserved for the secure world and one for the unsecured one,
+> reachable at different SPMI addresses.
+>=20
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> ---
+>=20
+> NOTE: This does not contain any example because the MT6685 RTC
+>       will be added to the mfd binding for MediaTek SPMI PMICs
+>       and examples will be there.
 
-Hi Uwe,
+Were it not for this mfd stuff, could easily go in trivial-rtc.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-Yes, that makes perfect sense.
+>=20
+> ** For reviewing purposes, this is how the example will look like: **
+>=20
+>   - |
+>     #include <dt-bindings/interrupt-controller/irq.h>
+>     #include <dt-bindings/spmi/spmi.h>
+>=20
+>     spmi {
+>       #address-cells =3D <2>;
+>       #size-cells =3D <0>;
+>=20
+>       pmic@9 {
+>         compatible =3D "mediatek,mt6363";
+>         reg =3D <0x9 SPMI_USID>;
+>         interrupts =3D <9 1 IRQ_TYPE_LEVEL_HIGH>;
+>         interrupt-controller;
+>         #address-cells =3D <1>;
+>         #interrupt-cells =3D <3>;
+>         #size-cells =3D <0>;
+>=20
+>         clock-controller@514 {
+>           compatible =3D "mediatek,mt6685-sck-top";
+>           reg =3D <0x514>;
+>           #clock-cells =3D <1>;
+>         };
+>=20
+>         rtc@580 {
+>           compatible =3D "mediatek,mt6685-rtc";
+>           reg =3D <0x580>;
+>           interrupts =3D <9 0 IRQ_TYPE_LEVEL_HIGH>;
+>         };
+>       };
+>     };
+>=20
+>  .../bindings/rtc/mediatek,mt6685-rtc.yaml     | 33 +++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/mediatek,mt6685=
+-rtc.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/rtc/mediatek,mt6685-rtc.ya=
+ml b/Documentation/devicetree/bindings/rtc/mediatek,mt6685-rtc.yaml
+> new file mode 100644
+> index 000000000000..1aec163b251a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/mediatek,mt6685-rtc.yaml
+> @@ -0,0 +1,33 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/mediatek,mt6685-rtc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek MT6685 PM/Clock IC Real Time Clock
+> +
+> +allOf:
+> +  - $ref: rtc.yaml#
+> +
+> +maintainers:
+> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt6685-rtc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> --=20
+> 2.51.1
+>=20
 
-I agree with your patch. I initially thought the State wrapper might be
-necessary for the TH1520 driver, but I was able to refactor it to work
-without it.
+--xCs6VJHSU/yRmWkV
+Content-Type: application/pgp-signature; name="signature.asc"
 
-On reflection, both Polarity and State are really remnants of the older,
-legacy API. Removing them is a good cleanup; it ensures future Rust
-drivers will use the modern waveform API and avoids potential confusion.
+-----BEGIN PGP SIGNATURE-----
 
-> 
-> I consider applying your series and put the above space on top, to
-> create my first Rust patch :-)
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPunuQAKCRB4tDGHoIJi
+0gAfAP4t8xpDdCTwJAnCsCY9dXmNmwwjQsHDr5SYXcCYPhhh6QD+Lc/9iY5UTGdo
+YORX4SKxcq2wTSy8P4o9MdVtRdYbkQI=
+=Bt/B
+-----END PGP SIGNATURE-----
 
-Great ! Congratulations on your first Rust patch :-)
-
-On a related note there is this diff necessary to make CLIPPY happy:
-diff --git a/drivers/pwm/pwm_th1520.rs b/drivers/pwm/pwm_th1520.rs
-index 0ad38b78be85..a6c3b6025152 100644
---- a/drivers/pwm/pwm_th1520.rs
-+++ b/drivers/pwm/pwm_th1520.rs
-@@ -185,7 +185,7 @@ fn round_waveform_tohw(
-         );
- 
-         Ok(pwm::RoundedWaveform {
--            status: status,
-+            status,
-             hardware_waveform: wfhw,
-         })
-     }
-
-I could re-send the patchset, but since you're making a patch anyway
-maybe you would also like to pick this ?
-
-> 
-> Best regards
-> Uwe
-
-Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+--xCs6VJHSU/yRmWkV--
 
