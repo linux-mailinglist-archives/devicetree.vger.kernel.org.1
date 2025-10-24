@@ -1,120 +1,124 @@
-Return-Path: <devicetree+bounces-230700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 746CEC05143
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:37:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1FF2C05120
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:35:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4117356351A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:34:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB54A1AA0D90
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:36:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2A98309EEA;
-	Fri, 24 Oct 2025 08:33:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EB7C30AD1D;
+	Fri, 24 Oct 2025 08:33:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Bpp8Y9Ma"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="MQtolijM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2CFC3093AA;
-	Fri, 24 Oct 2025 08:32:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FED6306B00;
+	Fri, 24 Oct 2025 08:33:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761294780; cv=none; b=et5vPQpNvARMqn6+kGroDc0Ul2KmfPhyVXfEqBEX6ygJ87bGBxgiUBBsk3oasy4ONW9wmG2IQv4yWrSR53sUqksYyOkk1LPaO7PF6hikCiM2dQ2mFxjfNjbcddZpwWwMiVrMG9ZzA3IYA2yutF1xyo7NMl/Z5tvizxOZtKOpeyM=
+	t=1761294794; cv=none; b=gwISDru9JYTdGzmZjHMnjBACnJAAsKIny11ndpi17IAbgRZVSJ3K9rXCB0ZbjNfQdObHMkYpV4Z32nsq+h1MHpWVceTCJYfZN7VW4uHPQupeEb28JH8AkXEDuX0Md/esB3hzVuZT5gbOenuOs6XxIdUMnl4ZHWgRiSyU2WCIACE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761294780; c=relaxed/simple;
-	bh=NKvVUBFkNEANOOTfhNbpbm5y+dFQpEZ6/wJhyx2/mdM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MPj6uJWvMkY8xnUp6CRI4jSpUFRKT0SQqmLpt+xoyNSHSLyPJB9pHXcDv9f5/AmbWJMNlNyaKfPePytryt9L5P34pGLHvrToTayBo1xwYrjUkmwGNfkZFYiwKk6QS/jwtfjTGkPCOgE9c3LSgsuUXbkxAZky3Jt0A49p3ZHmMbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Bpp8Y9Ma; arc=none smtp.client-ip=148.251.105.195
+	s=arc-20240116; t=1761294794; c=relaxed/simple;
+	bh=vOWEWKdi3bjK7LjRlKsISvl3DrortAGk12XkW77HR2I=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LKQOuK+4bxAR+c5DYieTOmJZ0/Ws83BkDIwu9VizBpJ/VZn3UdW6eq54euq6RonJmCJw9eljM29xX74Ia5I/R82A4gZiY7Z+6H0tmTIhKZX53/6foTSYkGacK+U5+I5PDqYgHS/WYywnfXZHBnc1cg6lLUQ1bahXjeWkNUV66hg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=MQtolijM; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1761294777;
-	bh=NKvVUBFkNEANOOTfhNbpbm5y+dFQpEZ6/wJhyx2/mdM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Bpp8Y9MaGhdVEmNNZQZTJiYjlieKRFO4FYzXxzIeZhHfq680XQGcTqRfrkl8wjlto
-	 SzjEwHRDVDTK5z10rCt6YDvuOVvqbZwiGL/arz98uhXQBTo46sotfZy6TMokCobokq
-	 ipgIlcfTqvW4xBzIIn+SrkBWASiU2rxfbEuPU3sNhvmOyDedNFqd8k4ovxeG4xejQv
-	 D9UleGYB0SunmLVj1aXk5o539NTBqvLdzsgjiPb+Oc5X3D/LtqTaTyUFvvSW8T63c4
-	 kEBUZyoe/v7JOywAFwhsSA9Ss0OVofrtaumR2Ydf+Wuohr5c1uEPZxCpfzfO8dU84X
-	 CIfgC/DT3Cm4g==
+	s=mail; t=1761294790;
+	bh=vOWEWKdi3bjK7LjRlKsISvl3DrortAGk12XkW77HR2I=;
+	h=From:To:Cc:Subject:Date:From;
+	b=MQtolijM30FxuWvoBD+kf27lrR8xCebGpeYNnqaFJo4qyFxQYikFsp4DUCGVCR7UX
+	 YTBmSS74ztjJSgIiYpCR86uiVd5UZSGS1bZcrCeCUYa435yvipynsOIOrI+pdJmD+2
+	 +8gFfEcqNFGkJaoySPOGrwYaNONUXZ1ucMA9uP6/LTbP6Kof1JJHShaPWLZ49rXOOy
+	 aiueRpvKrPs0u84C0zy+Pmz0juqAXKFhi1OnOURxSHuhzMYUL9E4LNVG92I7bSEsjt
+	 bw703QbAh+uscn1yy+U2ZZyZeRyq3o32sQAsVis98wt4FmSnYDD+mNoeBFizG/Q7jE
+	 eyNcOqmhpKQFg==
 Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9E5D517E1416;
-	Fri, 24 Oct 2025 10:32:56 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7DE4917E00A6;
+	Fri, 24 Oct 2025 10:33:09 +0200 (CEST)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: sboyd@kernel.org
-Cc: robh@kernel.org,
+Cc: mturquette@baylibre.com,
+	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
 	matthias.bgg@gmail.com,
 	angelogioacchino.delregno@collabora.com,
-	hsin-hsiung.wang@mediatek.com,
-	linux-kernel@vger.kernel.org,
+	laura.nao@collabora.com,
+	nfraprado@collabora.com,
+	wenst@chromium.org,
+	y.oudjana@protonmail.com,
+	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org,
-	kernel@collabora.com,
-	=?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>
-Subject: [PATCH v4 5/5] spmi: mtk-pmif: Add support for MT8196 SPMI Controller
-Date: Fri, 24 Oct 2025 10:32:47 +0200
-Message-ID: <20251024083247.25814-6-angelogioacchino.delregno@collabora.com>
+	kernel@collabora.com
+Subject: [PATCH v1 0/7] clk: mediatek: Add support for SPMI Clock Controllers
+Date: Fri, 24 Oct 2025 10:32:54 +0200
+Message-ID: <20251024083301.25845-1-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.51.1
-In-Reply-To: <20251024083247.25814-1-angelogioacchino.delregno@collabora.com>
-References: <20251024083247.25814-1-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Add support for the SPMI controller found in the MT8196 SoC:
-this supports SPMI 2.0 and features two SPMI buses.
+Some new PMICs, Clock IC and combos are complex SPMI 2.0 devices that
+contain multiple IPs, including clock controllers.
 
-Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/spmi/spmi-mtk-pmif.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+This series expands the MediaTek clock helpers to allow registering
+clock controllers over SPMI, and adds a clock driver for the MT6685
+SCK_TOP clock controller.
 
-diff --git a/drivers/spmi/spmi-mtk-pmif.c b/drivers/spmi/spmi-mtk-pmif.c
-index 624611dd4849..1048420b5afb 100644
---- a/drivers/spmi/spmi-mtk-pmif.c
-+++ b/drivers/spmi/spmi-mtk-pmif.c
-@@ -636,6 +636,14 @@ static const struct pmif_data mt8195_pmif_arb = {
- 	.soc_chan = 2,
- };
- 
-+static const struct pmif_data mt8196_pmif_arb = {
-+	.regs = mt8195_regs,
-+	.spmimst_regs = mt8195_spmi_regs,
-+	.soc_chan = 2,
-+	.spmi_ver = 2,
-+	.num_spmi_buses = 2,
-+};
-+
- static int mtk_spmi_irq_init(struct device_node *node,
- 			     const struct pmif_data *pdata,
- 			     struct pmif_bus *pbus)
-@@ -833,6 +841,9 @@ static const struct of_device_id mtk_spmi_match_table[] = {
- 	}, {
- 		.compatible = "mediatek,mt8195-spmi",
- 		.data = &mt8195_pmif_arb,
-+	}, {
-+		.compatible = "mediatek,mt8196-spmi",
-+		.data = &mt8196_pmif_arb,
- 	}, {
- 		/* sentinel */
- 	},
+For now, only gate clocks are supported to reduce the complexity of
+this change.
+
+NOTE: This series depends on series [1] "SPMI: Implement sub-devices
+and migrate drivers"
+
+[1]: https://lore.kernel.org/all/20251021083219.17382-1-angelogioacchino.delregno@collabora.com
+
+AngeloGioacchino Del Regno (7):
+  clk: mediatek: Split out registration from mtk_clk_register_gates()
+  clk: mediatek: clk-gate: Simplify and optimize registration iter
+  clk: mediatek: clk-mtk: Split and rename __mtk_clk_simple_probe()
+  clk: mediatek: Add and wire up mtk_spmi_clk_register_gates()
+  clk: mediatek: Add support to register SPMI Clock Controllers
+  dt-bindings: clock: Describe MT6685 PM/Clock IC Clock Controller
+  clk: mediatek: Add support for MT6685 PM/Clock IC Clock Controller
+
+ .../bindings/clock/mediatek,mt6685-clock.yaml | 37 ++++++++++
+ drivers/clk/mediatek/Kconfig                  | 15 ++++
+ drivers/clk/mediatek/Makefile                 |  7 +-
+ drivers/clk/mediatek/clk-gate.c               | 70 ++++++++++++-------
+ drivers/clk/mediatek/clk-gate.h               |  6 ++
+ drivers/clk/mediatek/clk-mt6685.c             | 70 +++++++++++++++++++
+ drivers/clk/mediatek/clk-mtk-spmi.c           | 62 ++++++++++++++++
+ drivers/clk/mediatek/clk-mtk-spmi.h           | 31 ++++++++
+ drivers/clk/mediatek/clk-mtk.c                | 66 ++++++++++++-----
+ drivers/clk/mediatek/clk-mtk.h                |  5 ++
+ .../dt-bindings/clock/mediatek,mt6685-clock.h | 17 +++++
+ 11 files changed, 339 insertions(+), 47 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6685-clock.yaml
+ create mode 100644 drivers/clk/mediatek/clk-mt6685.c
+ create mode 100644 drivers/clk/mediatek/clk-mtk-spmi.c
+ create mode 100644 drivers/clk/mediatek/clk-mtk-spmi.h
+ create mode 100644 include/dt-bindings/clock/mediatek,mt6685-clock.h
+
 -- 
 2.51.1
 
