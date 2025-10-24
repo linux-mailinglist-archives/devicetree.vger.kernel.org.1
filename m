@@ -1,120 +1,197 @@
-Return-Path: <devicetree+bounces-230772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDC4AC0589E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 12:16:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BB64C058B0
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 12:18:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3A86189F91F
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:17:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3567C1A05CC2
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:19:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F3AE30F7ED;
-	Fri, 24 Oct 2025 10:16:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F68930F814;
+	Fri, 24 Oct 2025 10:18:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OzXSt/G7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com [209.85.217.45])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5631307ACF
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 10:16:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CF932F7AD3
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 10:18:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761301014; cv=none; b=TpYAO1q+7JWybQYnygeTj/gaKyppg1l40MkPhgnTu/G+MHdP25wl8mG05kKX7OIQAUbxy6Oc9ZF0Wxz46a/I3TGTr2lNwND3v0iUEK92b73njoE1hmmIC/C2HVyv2Ii170D/PhakywhbJDVgR2UWoYZhGvvGce0W6QBWwfsu/9Q=
+	t=1761301124; cv=none; b=kt5Myv9lVzrgBhKSP2y82xggkAQhzvS4XJBP6B0CuG9fVtYqD3phlHszALzXUkPIFWXgr8+gRz1gphtdTOBZ47zsRzl/dEgzxfVaDpzFeQ/tOB8mHjp6J8p2tQc+4HQfMSTuG6BfU1NIRy1Db+NkYPjzPIkDqcmhuam6YJ6O7lg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761301014; c=relaxed/simple;
-	bh=AqiWd9FcEXBjGqvYmjKezWFbcC8LX/8ccSI0CzYf7rc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Iv4CT+qJgr/jkQIH0/opmGFdHBsmbnxjxOTjEUho3AQR3bfx9OWRa+m1lhtQ/sf1FZLVM4vmA/wI42egWrkpX1JzIPWMnOnpzJDR5douQRl9k6XRK0J2i7ULdDlh2jqY3bKcNCe9xRqhCJVRDTYEayD9JeF10QHZj/2ebb+hxMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-5d5f8e95d5eso1184561137.1
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 03:16:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761301011; x=1761905811;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+	s=arc-20240116; t=1761301124; c=relaxed/simple;
+	bh=rWQGCMzvzjTn6AJwK/FlgG0dNZ5UDWVZEtrKZxT8988=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NVHGoh0bMWW3Z416IdTsFeYk0syS5QokjN4OJgQi+DifiGT9HXb3gDvyU7OVhtY5HUTNI9FeVANsHKaHKtKaakBFpCqqa9CK6SXiJ9vBEATiVzWjGdRVBRccw9pBMGUSjjbp0iK4OacJcD+PiHKzYnRejRTrA/acP9yqCVzyG70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OzXSt/G7; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-47100eae3e5so18560935e9.1
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 03:18:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761301120; x=1761905920; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:from:references:cc:to:subject:reply-to:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=bSTLk7b49rZYTSOotXXLR+fnDfbehF6NQgF/VSyM9XA=;
-        b=gSQzCSHSpL1Tuv9ZgkNDTbZWx300Q7h7NOLteMx2W8PzWlupTh/GUsIxX5JUfik1u6
-         +taO0MTpdfBzLqHDvUq+9yixYzadZZIntByD8Xv54+D0DtYDpd3X2nt585QR4hFm2VXU
-         0Emr8q/T4XzfFKNgJREiBsk8cfU+FyGd2Ed86TbkacvonRp0EW89Q4BFNNucxfIIVdFE
-         jWhGL1/BEB9j7brAC3Sbcm7/nj9fs3rs2Y2o8MPZY80UnCqv0wQQOcXbYtUXlcLKB/iG
-         Uu6WqNNx6xOnKzVTDf4zwd16nJWdS449gQ96Gj+VYtoX+IS/+9mPo86qgknKe84j9fbd
-         NxEA==
-X-Forwarded-Encrypted: i=1; AJvYcCX359hajoaqxULvzmeiC6dbJANPaq/bQjPf+iiepnZBP7hEuR3mTzjXjgg7kLEsw67dyT8/1/tm1N9y@vger.kernel.org
-X-Gm-Message-State: AOJu0YzEgny80iObO02YNEcy2MiqRUj2XqG7YLjc5H0Emc9lS0OCPYur
-	cG4EN3n+Xe353vHLTua9YV8PQW+US9ulmgFwQjFCr/9K8zTatgvTOgVxleQswsmY
-X-Gm-Gg: ASbGnct4mgMfNFgDLDaEqK339JnH0XUwP6u10r+lWQ2+hygGurJAyNLeY7Ur9RytZcb
-	XMEi3o/kOMY/cLVftebuZa5DR1tt0FRDNTNN+Hiz/Y/9K2F1luFh6Zr4D445tFhFIHKUj6mkz1g
-	cF7nrPTR05746aqRWSNHqKf1CPMWQasuGTYI/EL7DUYTBKSCr7XK7kc53aWSb9G60qVSjY60obh
-	vsu/eeFURdRbO37j2r6TFLz17xYkNwYmp2AxDk068u1E/zPBsM+ohTt+76WZcb9G0gSA6AZHNpB
-	DCIFJ3lU8zxH5q6ahLR4ipRImDhJ4DxhkqrGVg30g429euO9NGk5qIOmNGxH/mH6OnMDWScob+c
-	RGgSJOmCQBJXLTh0Wzl0vUyAPuaSrjBXPF2HwUVKOmAe2QBL4joH3N052keA59aNm+A1Qx9qxta
-	YTWgiWLyQF+3Tq+RYqBDB29oV5HeL5OqTIthXPhgLLtxQ8ACFL
-X-Google-Smtp-Source: AGHT+IFvCRLvq/pF0NN/OlKFSJneZrAsXYsNG/rl0RsLd1wyrRVH2lPqdaXzcsQrGwNFNGrDHGCviw==
-X-Received: by 2002:a05:6102:5108:b0:5db:23ed:3840 with SMTP id ada2fe7eead31-5db23ed3c6bmr3044753137.37.1761301011180;
-        Fri, 24 Oct 2025 03:16:51 -0700 (PDT)
-Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com. [209.85.217.54])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-934abbd2740sm1882351241.16.2025.10.24.03.16.50
-        for <devicetree@vger.kernel.org>
+        bh=JwB3t6H0X4AgP7j1wsFO2pehPyw3gdrsIRR1+liHUJU=;
+        b=OzXSt/G7s1Pd8XR/XZwH4UrD2r9AqOTs+fLRdcBCXCw0ew/eGAeA6oFCcLjDlxb8tr
+         Idzn7kTQJmfK97isIX7hwplbTxD3n7O62yzGCBh7B6jK5XkBf7D2ivEvEjJED5cN5dnQ
+         3dyRT8ow/ofeL+NZ7HisPBOOIo6j5MwQK1tYX2GPtLLve8XcEc5bML1WCNTD2gMFU1tY
+         xgIka3la4808RMk4SpO6aQZfyizDPNUPkM1xK8AgpnCEt+rJmfyLqhPqehddeGuKG0dH
+         xg5PcAC0oHHBbcexDFK8zvR6oxGJwdBZpavpBnKeoBLoLgDAdoi4Hms/6POdxHzp1TeF
+         23kA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761301120; x=1761905920;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:from:references:cc:to:subject:reply-to:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=JwB3t6H0X4AgP7j1wsFO2pehPyw3gdrsIRR1+liHUJU=;
+        b=coE8Kew5pryqSzVG60CovSERDhGBK0svevSxlQMGhuG5Y4zme3/WpDjNOWGNKdutqb
+         O3kZoD71XTEL67TvKT6qigOmEbuHnEY6nCSgykldXY1iF8duZxaiUmXmeq/32HEkZpbc
+         0gir62mMzGrMv52GH2I8DqjJyFP7vNM+wO+5RkezgXR1KzxE3ZzsMgM0odMu/4Z7oNTR
+         BeQ/J2x5debvWpQgLTyGlL15rIHCPusJLOCchcpT3tyZmlISDyFXOkruWWg2fwa5C0iP
+         xz11lcJXAOOvMHYjOF/JWfuADh/lK7BG8yRWkY7T4Vyz6t7V6imCxMSk4DGUWVem8NPA
+         EMoA==
+X-Forwarded-Encrypted: i=1; AJvYcCUztJxT47rn3cRTBsItQFi/Dszwmcm1AG0lTaRNlVrJyRc5eRd0HCj3hjgc8h1NpXQKAP14BI3NsNkW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwizFsCVEYkzj0hlurPi/FBy4ZXkRlHTJx4MgoAZISPEY4xDStO
+	qiBXQGzBKmUAm9kKyjzEjEWkikkHRgyTa+vVYVe3KK5J3TY6Fr1WEQ+ebH4pNg/eAzw=
+X-Gm-Gg: ASbGncsfQ99n6GZH579v1Zu4P2MKuLTux/KDg7Z1U4YZiWBufFHcCNYCSTDgnykJyX6
+	tZKAzUPCffz//1SQz6xr0gVvRBkrezubJPKcRElPzdO5/cYSwDN1fQ2Jgp+bm4QxZJC82+0fndx
+	h8KY+w1tE8UnIBoez42bM6srxmy3mYPunLy4TpL4nGRoEaYxI/ozUST78RxBZrqR/gMXg28qh32
+	ziM40uUhck3c2u1lBi3subUhkFWJn5tn0XAYYS89NE7ffQiXy66K4sGf6fnNR95LItLuWMHC8Hp
+	/cD8bH8dxmEWBBCKNjb5sMRESDP6I/ysOviFHQhYgq874jQ9o9zKzSM3jMmnuPQFTjdLUDtT/96
+	eVhC4VXnCPMuP7XBaIj7UnZK4xjOywuwvdiScV0T0uU9/HT00DpBCyW8g/2vkvCcWSxRUXjxQmn
+	yohSrO1ZdjWFVwXYpfkHnykdewUqK0IQ3lFVZ7BZwyvxEjEu4psU5TM8CZHclUgAc=
+X-Google-Smtp-Source: AGHT+IHXeppyLMbbfZFM901/QbMMs5mlNKjTRPDgUNBA3WzjQcRIE5pgrN+y8XRnEocb/XETZ6hZpQ==
+X-Received: by 2002:a05:600c:6085:b0:471:133c:4b9a with SMTP id 5b1f17b1804b1-4711786c79emr234558875e9.6.1761301119804;
+        Fri, 24 Oct 2025 03:18:39 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:b4ee:479d:354c:6970? ([2a01:e0a:3d9:2080:b4ee:479d:354c:6970])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4298d4a49ffsm4623186f8f.13.2025.10.24.03.18.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Oct 2025 03:16:51 -0700 (PDT)
-Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-5d758dba570so1359511137.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 03:16:50 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWzjzPwPFYjXndeMkruuwdRlY7JyPiH3oWqDThw2MYL7v5uPcQSUetxBQumop4+0NPk/XVnr/av2Svz@vger.kernel.org
-X-Received: by 2002:a05:6102:5111:b0:4f7:d553:3cfa with SMTP id
- ada2fe7eead31-5d7dd53dda7mr7539658137.12.1761301010775; Fri, 24 Oct 2025
- 03:16:50 -0700 (PDT)
+        Fri, 24 Oct 2025 03:18:39 -0700 (PDT)
+Message-ID: <0cd8f4d4-d418-4634-abaf-f66b350c81eb@linaro.org>
+Date: Fri, 24 Oct 2025 12:18:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251023081925.2412325-1-cosmin-gabriel.tanislav.xa@renesas.com> <20251023081925.2412325-2-cosmin-gabriel.tanislav.xa@renesas.com>
-In-Reply-To: <20251023081925.2412325-2-cosmin-gabriel.tanislav.xa@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 24 Oct 2025 12:16:39 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU9jkZ16rw90qY-y1JwReVuh9GcoU9590Qj+fnAOBKcEA@mail.gmail.com>
-X-Gm-Features: AS18NWAl-mnooV2yE2ZHT2YePMkrfHPFCcWPI_7IIu3f_WOQ-qTqZQdZwGQjyhs
-Message-ID: <CAMuHMdU9jkZ16rw90qY-y1JwReVuh9GcoU9590Qj+fnAOBKcEA@mail.gmail.com>
-Subject: Re: [PATCH 01/10] clk: renesas: r9a09g077: add TSU module clock
-To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Cc: John Madieu <john.madieu.xa@bp.renesas.com>, "Rafael J . Wysocki" <rafael@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v3 3/3] spmi: spmi-pmic-arb: add support for PMIC arbiter
+ v8
+To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, David Collins <david.collins@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
+ kamal.wadhwa@oss.qualcomm.com, jingyi.wang@oss.qualcomm.com
+References: <20251024-pmic_arb_v8-v3-0-cad8d6a2cbc0@oss.qualcomm.com>
+ <20251024-pmic_arb_v8-v3-3-cad8d6a2cbc0@oss.qualcomm.com>
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20251024-pmic_arb_v8-v3-3-cad8d6a2cbc0@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, 23 Oct 2025 at 10:20, Cosmin Tanislav
-<cosmin-gabriel.tanislav.xa@renesas.com> wrote:
-> The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs have a TSU
-> peripheral with controlled by a module clock.
->
-> The TSU module clock is enabled in register MSTPCRG (0x30c), at bit 7,
-> resulting in a (0x30c - 0x300) / 4 * 100 + 7 = 307 index.
->
-> Add it to the list of module clocks.
->
-> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Hi,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-clk for v6.19.
+On 10/24/25 11:33, Jishnu Prakash wrote:
+> From: David Collins <david.collins@oss.qualcomm.com>
+> 
+> PMIC arbiter v8 supports up to 4 SPMI buses and up to 8192 PMIC
+> peripherals.  Its register map differs from v7 as several fields
+> increased in size. Add support for PMIC arbiter version 8.
+> 
+> Signed-off-by: David Collins <david.collins@oss.qualcomm.com>
+> Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+> ---
+>   drivers/spmi/spmi-pmic-arb.c | 324 +++++++++++++++++++++++++++++++++++++++----
+>   1 file changed, 294 insertions(+), 30 deletions(-)
+> 
+> diff --git a/drivers/spmi/spmi-pmic-arb.c b/drivers/spmi/spmi-pmic-arb.c
+> index 91581974ef84..612736973e4b 100644
+> --- a/drivers/spmi/spmi-pmic-arb.c
+> +++ b/drivers/spmi/spmi-pmic-arb.c
+> @@ -3,6 +3,7 @@
+>    * Copyright (c) 2012-2015, 2017, 2021, The Linux Foundation. All rights reserved.
+>    */
+>   #include <linux/bitmap.h>
+> +#include <linux/bitfield.h>
+>   #include <linux/delay.h>
+>   #include <linux/err.h>
+>   #include <linux/interrupt.h>
+> @@ -25,10 +26,12 @@
+>   #define PMIC_ARB_VERSION_V3_MIN		0x30000000
+>   #define PMIC_ARB_VERSION_V5_MIN		0x50000000
+>   #define PMIC_ARB_VERSION_V7_MIN		0x70000000
+> +#define PMIC_ARB_VERSION_V8_MIN		0x80000000
+>   #define PMIC_ARB_INT_EN			0x0004
+>   
+>   #define PMIC_ARB_FEATURES		0x0004
+>   #define PMIC_ARB_FEATURES_PERIPH_MASK	GENMASK(10, 0)
+> +#define PMIC_ARB_FEATURES_V8_PERIPH_MASK	GENMASK(12, 0)
+>   
+>   #define PMIC_ARB_FEATURES1		0x0008
+>   
+> @@ -50,9 +53,10 @@
+>   #define SPMI_MAPPING_BIT_IS_1_RESULT(X)	(((X) >> 0) & 0xFF)
+>   
+>   #define SPMI_MAPPING_TABLE_TREE_DEPTH	16	/* Maximum of 16-bits */
+> -#define PMIC_ARB_MAX_PPID		BIT(12) /* PPID is 12bit */
+> +#define PMIC_ARB_MAX_PPID		BIT(13)
+>   #define PMIC_ARB_APID_VALID		BIT(15)
+>   #define PMIC_ARB_CHAN_IS_IRQ_OWNER(reg)	((reg) & BIT(24))
+> +#define PMIC_ARB_V8_CHAN_IS_IRQ_OWNER(reg)	((reg) & BIT(31))
+>   #define INVALID_EE				0xFF
+>   
+>   /* Ownership Table */
+> @@ -96,30 +100,33 @@ enum pmic_arb_channel {
+>   	PMIC_ARB_CHANNEL_OBS,
+>   };
+>   
+> -#define PMIC_ARB_MAX_BUSES		2
+> +#define PMIC_ARB_MAX_BUSES		4
 
-Gr{oetje,eeting}s,
+Why PMIC_ARB_MAX_BUSES is changed to 4 ?
 
-                        Geert
+Neil
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+<snip>
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
