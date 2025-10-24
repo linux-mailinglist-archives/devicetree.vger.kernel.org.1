@@ -1,123 +1,101 @@
-Return-Path: <devicetree+bounces-230746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6D90C055F0
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 11:35:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24A0BC056A5
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 11:48:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 266A9355E99
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:35:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 655533A6A7E
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:44:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEA7230AD0E;
-	Fri, 24 Oct 2025 09:35:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A52C30BF55;
+	Fri, 24 Oct 2025 09:44:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VlHyK+em"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="aZDqJm3d";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="tNyuMNzr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA38330ACF7
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 09:35:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B21A42D322E;
+	Fri, 24 Oct 2025 09:44:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761298547; cv=none; b=L2BVp0jpoSKGCW7+JxgshG3UwpbVacWsHog8QhhgBQ6XCGBcDSEJQE59PqWRZ1CWWj3OqkLIWJ4MVd559aqik4kvkhm1QkOMVvRPxRErBb/G4imrbyMXCBGJfP0qlT5xm2pYGIz4qVsz5sa5Viogxbsl9jihW65Y3RitrqaceEE=
+	t=1761299080; cv=none; b=HzH5VLxAbWA0bDAvxdTX23T2yW6uSe8sbTrJWRS3fCysLNgWmDa8Y+Lm19slYvktAD0DU/29QqtE5mX72t8kMYDeVwh78ArmfkW3XQlcmlIsL8A3LM4oeKW3JtR8B0+hf0tU5Sz+MvM4/UODDoDmLCae3ztyqMDizoUeDVck97E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761298547; c=relaxed/simple;
-	bh=YF/Tuce1/PBDE/RLif9qoc3I7KnbC+rz2XO3hZz7PWA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YarPqyLSWjjO9iFbASD7m0y6YotJyVbXqU6vITAkxbt2CLypVF+ilE6lRjBvehAwYQ4ppNykzNYWzoipzOSzxQhLwgPTPU8JP2EkYsMqfnzUT62UlqiQqs4KVOC/HbzxYBjXEMIKZJzE6E52gDQvPJ+jO4g6+bvtpY/nQQMiACo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VlHyK+em; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-46fcf9f63b6so10663405e9.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 02:35:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761298544; x=1761903344; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=AB/k9qen5oHRYzxzAm46DDJjbnbfjworTJj23CLgdeo=;
-        b=VlHyK+emmwMfvapuuSYMFXJVIs6lLgnzXet7DP0pcMYXKhEY1qILsP9XEQ+BWjy984
-         nCDHPqF/vAaJxuMCAvuyRKKy829PTN71Hwuz5JKjz6zaLMqk5Cdshxb4rrUTbQ/1RGu4
-         bZFCa5gNhHGW5iGvkd88lXsJbwkhnIDii9cE10hBk/DEb3CapDvWYFug4jQdWZbpCa2C
-         t0GZnSc3LFhPFI+sesvjPXpUkjh8cr8inHd0bHt7UphV/IqOjBK6Qa0TGgoZOaI9mpYU
-         Ng4BZ6kxfdTo1c+TDOidZsBol6XWXvF5JN6qaG616NrTK8b+d1cflFmG9NWeFztV28io
-         nxEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761298544; x=1761903344;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AB/k9qen5oHRYzxzAm46DDJjbnbfjworTJj23CLgdeo=;
-        b=VU/ZsAl9Xd3QpmfgtTPOrOWX751tZtqAUvUVuvdN+nU1NqYRTs5si0hNzqdYF1OHAq
-         g4SWcvlzeLTDR2hXC31WWSGeQq8euGf6QdhHU8KcX5gJ0ilQSpFyF9j9ILyOnYKz/y+A
-         fCDCXIsT03UwuNXgWzvKa9Arn0lo81sXqJAlXTVxvQTZNPHmDC747t/SGYKT+7LhlvLi
-         yQzXaHXu4eyGxwSXn3T8xpLIN0QJ+erdRHS/uDQcNydPkNJoCH0jRlZtXmVzYWHKC9z3
-         JnTUN+4sUJFMWDDcPRT96NyTTtO1+pTHUyuCXGWFqXjDgARrjPLG7jam5LuMyn00p7gP
-         pdLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWZx8N4P2KM9iDYzP2Uu7ZZMxNlKzhyw6jPeba4FtOiJz1TH5lpd4xSv3LC+eYLo8tM38dUMYHDN209@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywk3ADF1BLVZzLcCtPeLayBej1IRIab4JcXy9V9QafvORL3JSmV
-	Xp0ZHTa5OzeUL7oX5OL7xu7GTVvV9a41tzL4E4mPTndm5wMVCNe6iEuuPC5sXT2KX5Y=
-X-Gm-Gg: ASbGncsxtBKdsYUmcbq1UkeFqHmA4ZDn9YdXqdQKv2vZ0nTMiq1/B5pd2zwf+otEZWx
-	owE5DLDUbLiqGuYoT2VWDJVZDYiPS6OgOwwUy/mRJW1AeUwn4NCyIWC1EkTdPRvsBtobZeup5jx
-	r88sNUfOqlEd8Nh4mxs9q2yjkFHYCEYUyeH8/01Pwm1nPBTkJhGT7UkpN7Bu61tzmN2Q4eTA4XS
-	B6wTYb7ttgGp6OmXhrFivGvnV6ZvnkGpOSbE12eh5mZvYltoBidNS0ysHlK1UozzFLEIiL4z0Nd
-	++EmICVdjEjHta8a/wmTulF9xBeLvEPCXOtmYmhcz4mlkApwrKVYqrU9Uv6z5V5hPbhciQjSUCd
-	kiX1w5foYyRri579UdwtllbGCrXch1474q5Q58W2EzENJGw2U0DXSTd2k0cD9roy0d+3iigXtup
-	BLmgZ+IiE=
-X-Google-Smtp-Source: AGHT+IHRT52qQLwpA4jCp3MR4MfEo1yVX3RPrxX/jF6DxckTinvzFxcrMGMBTx8wXfnTIC9O4HZnjA==
-X-Received: by 2002:a05:600c:820f:b0:46f:b42e:e365 with SMTP id 5b1f17b1804b1-4711791dce8mr207186725e9.39.1761298544170;
-        Fri, 24 Oct 2025 02:35:44 -0700 (PDT)
-Received: from linaro.org ([86.121.7.169])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47496afd459sm84581855e9.1.2025.10.24.02.35.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Oct 2025 02:35:42 -0700 (PDT)
-Date: Fri, 24 Oct 2025 12:35:40 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Xilin Wu <sophon@radxa.com>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH v6 2/3] phy: qcom: qmp-combo: get the USB3 & DisplayPort
- lanes mapping from DT
-Message-ID: <urc62zk2xlr2rka2nyyjsovql734kuzzphyh3hjnssivgswgbh@sjt4u7wumwlo>
-References: <20251013-topic-x1e80100-hdmi-v6-0-3a9c8f7506d6@linaro.org>
- <20251013-topic-x1e80100-hdmi-v6-2-3a9c8f7506d6@linaro.org>
+	s=arc-20240116; t=1761299080; c=relaxed/simple;
+	bh=NZAVSPwU4IZGJBRGWBN1MHI+1BtA5xwO6KheQoUtZUg=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=SGXD3IpidmFIaG+IowGFeUMmP7akduXUdsfo9z197AXnnOfK4C0MEwdDlVZOAhFFk1JfOXTmlVG4gFvhlNluYkTZJRkjWIpQGyHPmg59TtitrdEDE+9ZKIz7Po8rGjwOzAheJbSAWI9VreBzlcIZiGkHD61veMcpy+c1QQp0tQ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=aZDqJm3d; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=tNyuMNzr; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1761299076;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=qXavAEt2AdeKA50kbQrTDAxk8ooenTF+Pk8EvuBhte8=;
+	b=aZDqJm3defnmzAAYbej0YfrhJcyo1IHIK3yfLYpDulBXRr+I//iKnbcW7RPrMio0WW33wc
+	pq31aoDVsMIB5kzf4j31hfJGEu4Gl89tvpy7NPygc7H+mdeBpZ+mudvk7mVaKU1h0Wq24q
+	SzwCOGX0oGCYnoL7jqBtjNS0PpgTPd1v7/i+tEJpTs5RjpyDaE8aeQ2k29KQAA5FKDsjHg
+	wpMFxj7l9Xt16t8ffsT5KIGUHI2GkmISiRELARU72SznhYT75xpPash+YuOiaqsMiIhKyA
+	VJduM/jQlI5QyGVdd5YAVObGrO9mObBJ5uxfklJg1oAUiuYAFWvOz0ZztNkySw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1761299076;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=qXavAEt2AdeKA50kbQrTDAxk8ooenTF+Pk8EvuBhte8=;
+	b=tNyuMNzrbE99rMYg5ySoCVmAPUBdyZ1Ry8ejR9FvszFxAg8QhaYLAdZdkBqYFQfZtwc3mK
+	4dfYFirrzA/2bsAw==
+To: Rob Herring <robh@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-pci@vger.kernel.org, Sascha Bischoff
+ <sascha.bischoff@arm.com>, Scott Branden <sbranden@broadcom.com>, Bjorn
+ Helgaas <bhelgaas@google.com>, Ray Jui <rjui@broadcom.com>, Frank Li
+ <Frank.Li@nxp.com>, Manivannan Sadhasivam <mani@kernel.org>, Krzysztof
+ =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Marc Zyngier
+ <maz@kernel.org>
+Subject: Re: [PATCH v4 0/5] of/irq: Misc msi-parent handling fixes/clean-ups
+In-Reply-To: <20251022140545.GB3390144-robh@kernel.org>
+References: <20251021124103.198419-1-lpieralisi@kernel.org>
+ <20251022140545.GB3390144-robh@kernel.org>
+Date: Fri, 24 Oct 2025 11:44:35 +0200
+Message-ID: <87v7k4ws58.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251013-topic-x1e80100-hdmi-v6-2-3a9c8f7506d6@linaro.org>
+Content-Type: text/plain
 
-On 25-10-13 10:55:45, Neil Armstrong wrote:
-> The QMP USB3/DP Combo PHY hosts an USB3 phy and a DP PHY on top
-> of a combo glue to route either lanes to the 4 shared physical lanes.
-> 
-> The routing of the lanes can be:
-> - 2 DP + 2 USB3
-> - 4 DP
-> - 2 USB3
-> 
-> Get the lanes mapping from DT and stop registering the USB-C
-> muxes in favor of a static mode and orientation detemined
-> by the lanes mapping.
-> 
-> This allows supporting boards with direct connection of USB3 and
-> DisplayPort lanes to the QMP Combo PHY lanes, not using the
-> USB-C Altmode feature.
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> Tested-by: Xilin Wu <sophon@radxa.com> # qcs6490-radxa-dragon-q6a
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Rob!
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+On Wed, Oct 22 2025 at 09:05, Rob Herring wrote:
+> On Tue, Oct 21, 2025 at 02:40:58PM +0200, Lorenzo Pieralisi wrote:
+>> Lorenzo Pieralisi (5):
+>>   of/irq: Add msi-parent check to of_msi_xlate()
+>>   of/irq: Fix OF node refcount in of_msi_get_domain()
+>
+> I've applied these 2 for 6.18.
+
+The rest of this depends on those two.
+
+>>   of/irq: Export of_msi_xlate() for module usage
+
+Can you pick the three of/irq ones up and put them into a seperate
+branch based on rc1 so that I can pull that and apply the rest:
+
+>>   PCI: iproc: Implement MSI controller node detection with
+>>     of_msi_xlate()
+>>   irqchip/gic-its: Rework platform MSI deviceID detection
+
+Thanks,
+
+        tglx
 
