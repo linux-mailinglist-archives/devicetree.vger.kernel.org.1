@@ -1,387 +1,178 @@
-Return-Path: <devicetree+bounces-230597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBBFFC044A6
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 05:55:08 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21F63C04534
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 06:24:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DA853B614F
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 03:55:07 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B7F7F4EB564
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 04:24:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E9392749F1;
-	Fri, 24 Oct 2025 03:55:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 646B226ED2E;
+	Fri, 24 Oct 2025 04:24:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="cj5fyM6e"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="O6Qu7Oev"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazon11022123.outbound.protection.outlook.com [40.107.75.123])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BD83202960;
-	Fri, 24 Oct 2025 03:54:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.75.123
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761278104; cv=fail; b=BjW9P436Y/f6Si4tQ+R558wIsbQvr98KCaJkrSzn4tFu1S4qKnPpP8qGUioo5W6oH2FnWlbqMmrD0J0kg+fkJm4Tc+q22ZdB8p5ll81MtkZ5aLT2arfAP//6wsL6tcx32H3+o/AvjF7P7bT7sSDfnzgwKY4B9BPyKL3f5+W9SKU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761278104; c=relaxed/simple;
-	bh=kaImZjjjtbwU8c+a1Kor8fnfS325e9sEH8YrkIIBC14=;
-	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=EFYQse872RSoCGMD1B5zDbIJc4LWvm+bdypozp4IICGZzpIOuXb75HT9/z/UUSfemch7mXe36ugaAIARdhbcaGI3qyOhXGaLJUP+9lPOo0aUr0Zt/iMD2FuNx141aRycaouNbctS0Y9Rl3WArkNaIsyhArkp3tt8qCDDBI+bN1g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=cj5fyM6e; arc=fail smtp.client-ip=40.107.75.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=J64LXWuhS12HAgwlVmzMCOOTXOkDL3vdqQw4TUy7vYuEzSn4B67yCZR9U8XqFF3+aEghTE/vdwitsY26Z7utLQtTe4edEjrOI41H1rG4s7UrnUQwRbuuYsT7qQo6O/Mt2PIlcA+2KDWVY7cLMtznwh4gFeLxXuL9GFdLJqGeDr17dSW0HNQQsnvxxNehr36quvEwE2FtJQQNQXJl2+SWBzeSzFs8ek5rUvW5506UbmCfcZfDjsLfPRQh+7UXk2Zy70LULbis0jujpSaXU8iy9Eiv/oUSkqEHbVYnNk7y+mDyitldksYQj4mOXvzHqh2mhL9aurMT2cFi25xorBIAyQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=U30u3fnqAkWRz7sM/tFWQXrcvsFbHIwUMNYsgDz34to=;
- b=wRDH7nShAgKrY2h7SEym/HskIqF344lEKl0jOqdJsrNMSyeYFefVq3jjVw8PsTSmaL1/IcgBfHB4K0++NYc0n5+B6bFAg/rLjlxNTH2+KIHztEJe/kVZ1TD47WXG96VSkIlr685PtIIAgANjxMY9227YZoyAtHBlk2HWqhEZmyPNFX42XYjbNuZ/8v6UrpQtjnJncd2P9OkA2/jd5Cr2v6XarVETxQiIzK349pL43Skz3c8mDCM3dWZbDSDH0cLGBucwAG8s7P9z1UnEPms5D6t6orGtetPPYsKi6wYwNgNKOYVxJxikStofKcGdNlAzr9l0BBvuTmzhNEfOuD9qqg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U30u3fnqAkWRz7sM/tFWQXrcvsFbHIwUMNYsgDz34to=;
- b=cj5fyM6e6oNWdMwSjkfVMToJutzf2AkK9xZcoXNGzpxanPM5+Y6ZuwmqgfB2sWc5GTFRiTo6iypxiJaAGwId3hZxCeXRDwBGLAv/Jw0Nahj0P1j34gPI9w7WBMk2pgXsIOuLpc/OsfIhdchSyDF4l4J4/sT3JfO2vXZExMDh/ZboB1oTC6gBgzcIeSDpeyTPkd8iXKvrJOT9QVm5cGM7C8tRBL/9V3y4S0ugWJCsWDdkaGc8ah9JDSS4ErL7A5pmE17moQCuebl4BhyUTbhDSc5a8AYj/yDD5NFIiydm8OadxQXspvzK+z9mYgh4Am2X8PhM30zFGq9Qgz14v/go5w==
-Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com (2603:1096:408::791)
- by TYZPR06MB6463.apcprd06.prod.outlook.com (2603:1096:400:464::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.13; Fri, 24 Oct
- 2025 03:54:56 +0000
-Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
- ([fe80::df4f:b1a1:1825:4a80]) by TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
- ([fe80::df4f:b1a1:1825:4a80%7]) with mapi id 15.20.9253.011; Fri, 24 Oct 2025
- 03:54:56 +0000
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-To: Arnd Bergmann <arnd@arndb.de>, BMC-SW <BMC-SW@aspeedtech.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
-	<andrew@codeconstruct.com.au>, Jeremy Kerr <jk@codeconstruct.com.au>, Lee
- Jones <lee@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, Will
- Deacon <will@kernel.org>, Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
-	Geert Uytterhoeven <geert@linux-m68k.org>, Nishanth Menon <nm@ti.com>,
-	=?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>,
-	Taniya Das <quic_tdas@quicinc.com>, "Lad, Prabhakar"
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>, Kuninori Morimoto
-	<kuninori.morimoto.gx@renesas.com>, Eric Biggers <ebiggers@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC device
- tree
-Thread-Topic: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC
- device tree
-Thread-Index: AQHcQyJQr8Cg3wF4TE29hMu8e6S4P7TOr5mAgACf3YCAANyZAIAAeR6A
-Date: Fri, 24 Oct 2025 03:54:55 +0000
-Message-ID:
- <TY2PPF5CB9A1BE6CF8336D211641A18E2DEF2F1A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
-References: <20251022070543.1169173-1-ryan_chen@aspeedtech.com>
- <20251022070543.1169173-5-ryan_chen@aspeedtech.com>
- <b5441728-06a7-44ea-8876-3a9fc3cf55be@app.fastmail.com>
- <TY2PPF5CB9A1BE626A2F0F6307461D8F64BF2F0A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
- <6a97fbb4-19c2-4ffa-9c73-26aea02c27e4@app.fastmail.com>
-In-Reply-To: <6a97fbb4-19c2-4ffa-9c73-26aea02c27e4@app.fastmail.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY2PPF5CB9A1BE6:EE_|TYZPR06MB6463:EE_
-x-ms-office365-filtering-correlation-id: 2c07fdd1-48b4-463f-3b0c-08de12b11857
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|376014|7416014|1800799024|921020|38070700021;
-x-microsoft-antispam-message-info:
- =?iso-8859-1?Q?xmYGqASTRKsk7VXyA62NVMWcXdLQdWAY4CbPGyZ9SNJIgs3iFfTlfORwHx?=
- =?iso-8859-1?Q?6QAh7zYtOODYOaGLgC+B3Tv5Q8v+P7OSZaFD+2QpJZJY84fpYCuPB1npAh?=
- =?iso-8859-1?Q?pN+AGXSBIYEAHLrJb2jDqE7Ewi0um/hdYe+/p6RBDafMpuodmOFEF/ylKh?=
- =?iso-8859-1?Q?9uEECYshhMyhLJUzHTKR4b7MzyJJ4zz4F14GILNtuaH9EwXrAjpzZ6FwlB?=
- =?iso-8859-1?Q?M2Yt80OOsGmV8hy7xqOEjFCDVBqpoO7oA/i0xltfg4VAdg9HSV0LmExnyA?=
- =?iso-8859-1?Q?5jeAQ4QMcDIgxF14On0ZATIuqsDY6JiOyKBhoRyhXyOOmy9DHA4TKill7z?=
- =?iso-8859-1?Q?HRmSKDZWvyCv+KuqM2rS+hL7FxInEbJRthFaVtNLdDm8bs1Eps3KNrdUXZ?=
- =?iso-8859-1?Q?THHFyKgwMUm4+0WNDntMdZf3eULw996U91gg4hfCcifzvQntwJZoe3ryui?=
- =?iso-8859-1?Q?KLSwin8lxGD0qMCzUjo7+0jTB8qfjaOfBim/6jCuwCi2+iohRE7swLU0iT?=
- =?iso-8859-1?Q?QQID458mFEBdY1789WMaw3im+LKeemK89r9HdVYfXlbU5ruLnWsUXQbLbG?=
- =?iso-8859-1?Q?TcKCHbjDfX4Ml6xP+zkTGmVpS8z5v9LzX2mcpdXaVBQ9EAbWUrREvT1bYr?=
- =?iso-8859-1?Q?WhkrERqT67ldiRg5PJfyQImcoY1qKMU7BxpPYQX4AhmGz5/G28+hoAGt4s?=
- =?iso-8859-1?Q?c0nJ850piwzt+VPHDPMxw3k6THXAwor8gq9ChVlsje5/ysIobnGdx0L+Oh?=
- =?iso-8859-1?Q?vE5Zc/PpezHRbaPasxNYIshsyC+PPVY5pQoQa8Pgpp2oOzVKZFoDbo2PLV?=
- =?iso-8859-1?Q?TYSfKNA4O+cJDG1BV1f9O9six19TIeDDpwo893+WDvN20RnuxnA5gUQ0JH?=
- =?iso-8859-1?Q?G9HCS0itZnbsPRs1ks2olExFGMWCCaFBR8m1MsTzM8b10iSADNgJd4BCMx?=
- =?iso-8859-1?Q?xwvs1MdyaKuYs0TKnLvbTsh7gt0u7OsG9PMpbHDlgmAZ2a6Av4MXJAdroM?=
- =?iso-8859-1?Q?EOCJ3BwpeoPZkSeIBP9SAG5nmOOnGSkACeCaAOaJnwgNXYs9ZSzMH8gN1W?=
- =?iso-8859-1?Q?mmaxaIy0WAENH52xHRQlT+1f59GdzkR2kq62x535vwJJeS/wohA3+8lkAw?=
- =?iso-8859-1?Q?fbvuCNVDKkcyDduMCZE6cPDWHZVqb9shcJf5MEtuUhV3pKEJrltAEC23VB?=
- =?iso-8859-1?Q?k+T6JWaDXjYSRYfdjaYA0o4LNK4twnMYE/7H0kaW4TFYsMleRpZA9ycQ/t?=
- =?iso-8859-1?Q?3xj2MxcTHaH6XDuvuUifK2W0ZC95HiBvSDzzyLqRshUZP/uHTkPSkx1Hap?=
- =?iso-8859-1?Q?JtnjS7K4YRx7NKhi+yRz5OB3SNm5M18/4NoHpNRkaYCI3aMlFT4XEB57wd?=
- =?iso-8859-1?Q?xVM4PqGaaiOMWjyR21d2pkwBbvwViqd8tPrynhv48klI3FBTgtNiJvvYYT?=
- =?iso-8859-1?Q?ukgBXSs04BrYL6G045FqRrhd6VJY6s1Xd1vTSiKqZmA/5t0gwfe2rPqMbH?=
- =?iso-8859-1?Q?wUzZGPKsDJZentGtf9KjXXKngy5jdnl5y0MjpigUOwn2mwe2u1BoeCM6ES?=
- =?iso-8859-1?Q?ZfloCJlXc2zT7wCGeqIBw1gsz5EBjzxnP+0KJNtN9KjKS9pklA=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(921020)(38070700021);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?YJZsilyEH9uNxB70TPvLpHENUktQQ4WpGl42k2QI+FNKq1pUowTSDIitHM?=
- =?iso-8859-1?Q?b66SqFGiywZsgwHnXvFe7VbAjiXKR3+qM2h02GTU+uq6eJYwpgoCOV+gKT?=
- =?iso-8859-1?Q?18IIZoOaCzZ+be2Y2Go/agwTWgPcU70vR/OwRcEb1AtQkvbRruIiUGvCSw?=
- =?iso-8859-1?Q?oMRbtCJ5y5q578wurrM84Oo+qH0u6ZFaEHS/INiQaVhKpazkxlyH9S46ij?=
- =?iso-8859-1?Q?IpWh4eL7qkZTZ8h+M70ZaC2NKZ4502uxaEBCe1nDlivA+38pcejlXzYI0Q?=
- =?iso-8859-1?Q?NJyiT7w1H+QXjLQpWrQWHDdOasRGg7rfJDHrMyWVbuXspU1eR8vQxuds7D?=
- =?iso-8859-1?Q?VvstHiYZfVt+OwTIJGAcTW1ZPeMKg9mYi1PleusFcrTJQOv7IaoA8/2cmX?=
- =?iso-8859-1?Q?Ak8UoyLf0eRlcmtNqbsX32jMvo/kLcdSRq5XDRTTkCEbWoR0X2UxWTzOVg?=
- =?iso-8859-1?Q?YPKaHRXZs1FXj3C1oXd16bf09o9rrFQTQzjPtm5CLorCkZaCRGv//pMJqW?=
- =?iso-8859-1?Q?ilSnm097BBgVk4wmyTxhaGsfuUJhG6+47TvjXCDtqdMAKGk/R/7TEY0O8w?=
- =?iso-8859-1?Q?La3SoOwNEpjHkDd/hpLLTvLY4JBU64Gnzwry36XSJVDy+n1RYzrYKXVYZW?=
- =?iso-8859-1?Q?Ap/yuh10pFwG0Yd3dy25iwSPKl75E5khSXgsfIYHlXYt5SA7RMWTaifyOq?=
- =?iso-8859-1?Q?LJS1naWwWWSOdiV+BCv4PQ7EE/kPP4r7rqLsKQeDArFwonY/WaqqF77/xv?=
- =?iso-8859-1?Q?Nt9tW3wQm/INMJcC8n8Q37xYt+5hwHsYZXAk8mXNi5uZFp+Wv6Obl4T2NX?=
- =?iso-8859-1?Q?m5RX+OiPc0JBB1ElO3+0w1sH+wq2F2XrR1AE+EHRvYNxLMgHeBCx327UFx?=
- =?iso-8859-1?Q?KWMF5X5eBWph7FDsHx0OIlE6OkBtbUWujowCO8J/6SEU/iGDt47dlzBnxO?=
- =?iso-8859-1?Q?lW1BZDkMYNoqEQg6MjTOXv8UMuyF85EjOH7qhGryQQk9awUtq1VRXD3YMZ?=
- =?iso-8859-1?Q?C0TSeyi5IlHh1L9ASn5DIih8fRYPIbLLptUvkrVTkO4YsSDgMCeiprUMHe?=
- =?iso-8859-1?Q?qmjKzOP0ICH6bTfMfkDithg83Et73yn6zXlvrCwITWxENIfX/1toQPPtdG?=
- =?iso-8859-1?Q?4dM+MePs6XMmswvSF2im1BxCJ2vPYoJc7r6LYA7ennaqZp+FMJHJXai+dX?=
- =?iso-8859-1?Q?UomodTPHnNGUnX27YFqdRMF8TUFDKRicbtT0SuOrFdw3TUCO5YVaFWuFWs?=
- =?iso-8859-1?Q?n8eKgdouHYgCqRbHUh2dBofR/YI076Lk+QTgNMs5kSkMZ5XhkFDaJ947Kt?=
- =?iso-8859-1?Q?GC4eGeneJ8t2SXhAppa56ViQSDtL7iHPD67VlKCA1yhUxMopX6vpRYV/oE?=
- =?iso-8859-1?Q?/2Y5WxjoL9OVsHAgb3by4fx6LtkzDtvaTLE8Q2ZrQZpj7eMBls8pAMQDdr?=
- =?iso-8859-1?Q?VeFanOYi3b27uYQE1b1O87XIkOI0d7mSrkFdBXCNB+kNufVrLydEA6FMkR?=
- =?iso-8859-1?Q?14r6wbNyMh2rm0r59/Iw5cDB68MLY8lE8OB/4MP9ZbG8sa7acfRRPUH8Vo?=
- =?iso-8859-1?Q?6sjbiYE6OAzEi+6yAg3phYhnPCMZqlwVk8BgOzm+ykm5G/LpjLKEKCX0Bq?=
- =?iso-8859-1?Q?7Z2r0608Y4ymG+s+c4BOa2296AHEE4oNc+?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F34321FC3
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 04:24:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761279877; cv=none; b=LBlKla/3n4pI8pNdoirD8f9Gzhq8j1XKCZn3wW/8mzdnEKMdDDyCDsd1JCW8rDvzxK0HjTFaC/7sQgdJJmCt+VNWwk7Xjcm+Hy5BwFWOGkmt1RIb0mkyehvgrSCMPndz/8V57hMwL8qtB7pkpNk5dH+JMByWPI4FuAoV5J51oBI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761279877; c=relaxed/simple;
+	bh=tGAnsxVqZ1qFVesJkjyC9fOf0J+rr570DONtErHUzuQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=G08dHT2bdtzMsj9JMQQqyspnQBk98uiK4Q0gUo21urtY5n6Ah9aQM5y4YBg69OroUM1UElc2X9zfB1WDLAQ5uSPV8US/Lk8F/34OaShe16BqKahypcMS+/AVKc9WzqwJ1Duc8t9GJksI6z3IU7/LkUa5zxCk4qz1goX4t0TPq/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=O6Qu7Oev; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59O3MFnY010330
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 04:24:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=kz1Ixhzrfamiim6k99Hz3J
+	JL+7qgj8J0kxsqetjMV1A=; b=O6Qu7OevskHW2JkdvLynQZdMVSR4goEvJQiqsU
+	6yN2OXgCcdaPHp6Xxs+JMIdiKtYZY+OudUgWaDxuCG8iV3BaCeQqTydEDrnMR+ea
+	FU0pTK0NkyiFeQG8Nd7eX66kVZmv8SI5xP5Daz6yi8TMKlAbkx9oyHk0z3RD8oli
+	LlW8m6IT8+TpOAoxYBQkiFjK0/YaIMFwgov8U6oZDiFT/ghAYo+Hj05HAxKmnbAY
+	DhKxtP8IKv9ZMq+wLAKw10QpUNakpEGJ04uKfJvM4xQsdPQVIp8gDJCKIrtNK6ij
+	ztFzF6jAC5k7nxao2K3Bnh8c8j9DRJFcbpm2C7oInTeh6KYQ==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49y524cxy1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 04:24:34 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-290c9724deeso14788795ad.2
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 21:24:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761279873; x=1761884673;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kz1Ixhzrfamiim6k99Hz3JJL+7qgj8J0kxsqetjMV1A=;
+        b=U3l4JQmf6FLUAUOKSa9ZiEavpnj/EztPvizMsKx5jvsokA6s+JhfprDCOEWS0KWl5U
+         qyc82Bnzriz8xf42888lAOzwIFRsfrA1pQ/E8z2hE+TPpJ0U8O/BpqBejYdnsvmKZvo1
+         bKo8LPVWJEhAz3rEtyUomcqlWXLGZGJevP5ytbxwV9ImQCAMrpYEATB5qT01DivzO2+S
+         ViFrX12XjxnhqEu4z9gPGlzbXaVFymX94hKR+oNMZDQaY+UTInFI+nOwsY1fHdllKH/E
+         Rd6BFoZhzf3ZCeHh5FPTO29g3cggvJ1LLvUG9bUz4pvAmWS7J9ivXcptQBUKxgMcgAz8
+         bpow==
+X-Forwarded-Encrypted: i=1; AJvYcCWoJv49VA2VdWCV4niH9OQZAD325kUw6jB+8Lg3/XsVa38PjITsiCnBfWohByhBB+BRwitgy1tWC22U@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGQ6ZyJfzf/JTpj3OmlM00H5KMz+uLUTh4EuIZ6guo07Ims3T0
+	8PewZ9y93x/3HfUbjs6YIAvZCl3xy6Nm0We/GtTDicDhgjBdf7Lqbl71qWR/PzvvYjIJyE7wDlR
+	gwe4zNXZ2HeecN4iZSI+H7WdcyMC4AuNKisQoATW7Czu1i4EnTxa52+fQJHp6pCRH
+X-Gm-Gg: ASbGncvbgnrVsNct7v1+gK4f3kHwHE7eMbPsabW1jGbuWY2ZA7xJwcZEHzLYsb5xf/p
+	UJ8/JBunsd2xF0K1o/KtwSRCXBssGbTQIRfiQnjUOPODt5L7vf1jj+nTOSBm2wu278yQcy66RPh
+	89JiSUEHy8RlrI4CWfde5gzzs7Lm1zQEKyheao8NVaRrto30PKbN4YuO3lKG9a3P+hlhOhsHgvj
+	kVlgALLBXeCWd+kGV/2i4En9J1dbWnxKBAtmech4pljnhXbv/MecmsMTEN23xKxA2F2sa2oGpTH
+	6roCx/wPIf5WNuUOu2MxAb97EH5IhSmA4JoWQXVuCfp0DednsZ6pruO5ywB+YQlJAyFZH3sRoOa
+	yjqwwKfMlu+42wwq4902MJBI=
+X-Received: by 2002:a17:903:2b06:b0:272:f9c3:31fb with SMTP id d9443c01a7336-290cba4dbb5mr344374435ad.58.1761279873245;
+        Thu, 23 Oct 2025 21:24:33 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEw6FT4ACDLV4j5sAg4XbeH0ScrROVimqV0RjPACCbizARSrEerK8lT2E4YB5UHI9gIweZj7A==
+X-Received: by 2002:a17:903:2b06:b0:272:f9c3:31fb with SMTP id d9443c01a7336-290cba4dbb5mr344374085ad.58.1761279872753;
+        Thu, 23 Oct 2025 21:24:32 -0700 (PDT)
+Received: from hu-tdas-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2946dfd0576sm40259805ad.67.2025.10.23.21.24.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Oct 2025 21:24:32 -0700 (PDT)
+From: Taniya Das <taniya.das@oss.qualcomm.com>
+Subject: [PATCH v3 0/4] Add the support for SM8750 Video clock controller
+Date: Fri, 24 Oct 2025 09:54:21 +0530
+Message-Id: <20251024-sm8750-videocc-v2-v3-0-6286bbda3c8e@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c07fdd1-48b4-463f-3b0c-08de12b11857
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Oct 2025 03:54:56.0013
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: uCsGyAhuQSvlQZLWRUQ4Tdr/Ksqwbdb8ob3Hsz1wUebxtud0lj9m2memr1b9VQ51xYtR4KrLiTvMNydeo2/hs1XD60QewP2YeAtD3vo7jcg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB6463
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHX/+mgC/32NXQ6CMBCEr0L22ZL+UAGfvIfhoZZFNhGKXW00h
+ LtbOYDJZJJvkplZgTESMpyKFSImYgpzBnMowI9uvqGgPjNoqa1sdCt4amorRaIeg/ciaXE0Sl2
+ NqYbatZB7S8SB3vvmpcs8Ej9D/OwXSf/Sf2tZUlRW1c4aKbFS58BcPl7u7sM0ldmg27btC5eLV
+ Zm5AAAA
+X-Change-ID: 20250829-sm8750-videocc-v2-6311b334f7a9
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+        Imran Shaik <imran.shaik@oss.qualcomm.com>,
+        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
+        Taniya Das <taniya.das@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-aa3f6
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDIyMDE1NSBTYWx0ZWRfX0Q+88VbOD5Gz
+ cM6sYJisHwaa+MUdeuzNxO2eNWXJ4URM/ukPqDp0577HiFMjZrXdKhEReFYFhp3Ks2F/C5aYNoA
+ wu5KkxJrvIgtQJi9eIwRXDE+ohi4nYY82TzSuFKUieggV5lnm3rzwGusIUUpT9gR9BN7S02BgSl
+ 7N9nLMeMPIUGk56smfG/wU2JQP/ALd8Cymb5ih6H3s1Mce2+fVX2Yau+40RfqwZ/7IKaymNsKYm
+ hnTO2YPIE3llFxFKtKduImvlGE6pRHRqfVn+QyEffTR2kbXNViKNG9rs79Jyy8o74+TCKLRZno4
+ 46xJngnnpBZ+3jfoQj45qX47DopRQcPZkgXZ39XWM2dGHDPGsKUMDs3BsXwl36RPcRpc7VOfLAM
+ iPntZudqyLrKJGqfgJzytswYCbktAg==
+X-Authority-Analysis: v=2.4 cv=Uotu9uwB c=1 sm=1 tr=0 ts=68faff82 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=1P1wqcGgztCMLUttUvsA:9
+ a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: sDhlbP4YKc-Hd_vDFylfvR4793kvKkRQ
+X-Proofpoint-ORIG-GUID: sDhlbP4YKc-Hd_vDFylfvR4793kvKkRQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-23_03,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 impostorscore=0 priorityscore=1501 clxscore=1015 spamscore=0
+ adultscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510220155
 
-> Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC d=
-evice
-> tree
->=20
-> On Thu, Oct 23, 2025, at 09:37, Ryan Chen wrote:
-> >
-> >> > +	aliases {
-> >> > +		serial0 =3D &uart0;
-> >> > +		serial1 =3D &uart1;
-> >> > +		serial2 =3D &uart2;
-> >> > +		serial3 =3D &uart3;
-> >> > +		serial4 =3D &uart4;
-> >> > +		serial5 =3D &uart5;
-> >> > +		serial6 =3D &uart6;
-> >> > +		serial7 =3D &uart7;
-> >> > +		serial8 =3D &uart8;
-> >> > +		serial9 =3D &uart9;
-> >> > +		serial10 =3D &uart10;
-> >> > +		serial11 =3D &uart11;
-> >> > +		serial12 =3D &uart12;
-> >> > +		serial13 =3D &uart13;
-> >> > +		serial14 =3D &uart14;
-> >> > +	};
-> >>
-> >> This looks like you just list all the uarts that are present on the
-> >> chip, which is not how the aliases are meant to be used. Move this
-> >> block into the board specific file and only list the ones that are
-> >> actually enabled on that particular board.
-> >>
-> >> In particular, the alias names are meant to be local to the board and
-> >> don't usually correspond to the numbering inside of the chip. In the
-> >> defconfig, we currently set CONFIG_SERIAL_8250_NR_UARTS=3D8, which is
-> >> enough for any board we support so far, but that means only the first
-> >> 8 aliases in the list will actually work.
-> >
-> > Understood. I'll move the aliases block from the SoC dtsi into the EVB
-> > board dts. For the EVB, UART12 is used as the default console, and the
-> > board labels match the SoC numbering, so I plan to keep:
-> >
-> > Does that look acceptable?
-> > ast2700-evb.dts
-> > 	aliases {
-> > 		serial0 =3D &uart0;
-> > 		serial1 =3D &uart1;
-> > 		serial2 =3D &uart2;
-> > 		serial3 =3D &uart3;
-> > 		serial4 =3D &uart4;
-> > 		serial5 =3D &uart5;
-> > 		serial6 =3D &uart6;
-> > 		serial7 =3D &uart7;
-> > 		serial8 =3D &uart8;
-> > 		serial9 =3D &uart9;
-> > 		serial10 =3D &uart10;
-> > 		serial11 =3D &uart11;
-> > 		serial12 =3D &uart12;
-> > 		serial13 =3D &uart13;
-> > 		serial14 =3D &uart14;
-> > }
->=20
-> I think this would be broken for the defconfig if the consol is on serial=
-12. I
-> would recommend using serial0 as the console, like
->=20
-> aliases {
->        serial0 =3D &uart12;
-> }
->=20
-> in this case. If additional uarts are enabled, add those as further alias=
-es.
+Support the Video clock controller for SM8750 Qualcomm SoC. It includes
+the extended logic for branch clocks with mem_ops which requires the
+inverted logic.
 
-Understood, I will update.
+Changes in v3:
+  - simplify the logic for handling branch mem ops for non-invert
+    and invert logic [Dmitry]
+  - Due to the changes in the branch mem ops the ECPRICC which also
+    requires branch mem ops are updated to align to the new code.
+  - Update to use new _desc infra and use 'regmap_update_bits' to align for
+    better readability [Konrad]
+  - Link to v2: https://lore.kernel.org/r/20250829-sm8750-videocc-v2-v2-0-4517a5300e41@oss.qualcomm.com
 
->=20
-> >>
-> >> > +	soc1: soc@14000000 {
-> >> > +		compatible =3D "simple-bus";
-> >> > +		#address-cells =3D <2>;
-> >> > +		#size-cells =3D <2>;
-> >> > +		ranges =3D <0x0 0x0 0x0 0x14000000 0x0 0x10000000>;
-> >>
-> >> This probably needs some explanation: why are there two 'soc@...'
-> >> devices? Is this literally two chips in the system, or are you
-> >> describing two buses inside of the same SoC?
-> >
-> > The AST2700 is two soc connection with a property bus.
-> > Sharing some decode registers. Each have it own ahb bus.
->=20
-> I don't understand your explanation,
+Changes in v2:
+ - Update the commit message for the invert branch mem ops [Dmitry]
+ - Update the email to 'oss' and also update copyright.
+ - update the RB-by tag from Rob.
+ - Link to v1: https://lore.kernel.org/all/20241206-sm8750_videocc-v1-0-5da6e7eea2bd@quicinc.com/
 
-Let me clarify more clearly:
-The AST2700 is a dual-SoC architecture, consisting of two interconnected So=
-Cs,
-referred to as SoC0 and SoC1. Each SoC has its own clock/reset domains.=20
-They are connected through an internal "property bus",=20
-which is Aspeed's internal interconnect providing shared
-address decoding and communication between the two SoCs.
+Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+---
+Taniya Das (4):
+      clk: qcom: branch: Extend invert logic for branch2 mem clocks
+      clk: qcom: ecpricc-qdu100: Add mem_enable_mask to the clock memory branch
+      dt-bindings: clock: qcom: Add SM8750 video clock controller
+      clk: qcom: videocc-sm8750: Add video clock controller driver for SM8750
 
+ .../bindings/clock/qcom,sm8450-videocc.yaml        |   5 +-
+ drivers/clk/qcom/Kconfig                           |  11 +
+ drivers/clk/qcom/Makefile                          |   1 +
+ drivers/clk/qcom/clk-branch.c                      |  10 +-
+ drivers/clk/qcom/clk-branch.h                      |   4 +
+ drivers/clk/qcom/ecpricc-qdu1000.c                 |  30 ++
+ drivers/clk/qcom/videocc-sm8750.c                  | 463 +++++++++++++++++++++
+ include/dt-bindings/clock/qcom,sm8750-videocc.h    |  40 ++
+ 8 files changed, 559 insertions(+), 5 deletions(-)
+---
+base-commit: 3cace99d63192a7250461b058279a42d91075d0c
+change-id: 20250829-sm8750-videocc-v2-6311b334f7a9
 
->=20
-> >>
-> >> > +
-> >> > +		mdio0: mdio@14040000 {
-> >> > +			compatible =3D "aspeed,ast2600-mdio";
-> >> > +			reg =3D <0 0x14040000 0 0x8>;
-> >> > +			resets =3D <&syscon1 SCU1_RESET_MII>;
-> >> > +			status =3D "disabled";
-> >> > +		};
-> >>
-> >> I see that you use the old compatible=3D"aspeed,ast2600-mdio" string
-> >> exclusively here. While this works, I would suggest you list both a
-> >> more specific "aspeed,ast2700-mdio" string to refer to the version in
-> >> this chip as well as the fallback "aspeed,ast2600-mdio" string as the =
-generic
-> identifier.
-> >>
-> >> The binding obviously has to describe both in that case, but the
-> >> driver does not need to be modified as long as both behave the same wa=
-y.
-> >
-> > Thanks, will submit ast2700-mdio.
-> > Question, should I add in here patch series?
-> > Or go for another patch thread?
->=20
-> Since there is no corresponding driver change, I would keep the binding c=
-hange
-> as a patch in this series.
+Best regards,
+-- 
+Taniya Das <taniya.das@oss.qualcomm.com>
 
-Sorry, I am wondering, I will follow Andrew advice.=20
-Submit ast2700-mdio to net-next go out another thread.
-And put submit link in cover-letter in next version.
-Is it ok?
-
->=20
-> >> > +
-> >> > +		syscon1: syscon@14c02000 {
-> >> > +			compatible =3D "aspeed,ast2700-scu1", "syscon",
-> "simple-mfd";
-> >> > +			reg =3D <0x0 0x14c02000 0x0 0x1000>;
-> >> > +			ranges =3D <0x0 0x0 0x14c02000 0x1000>;
-> >> > +			#address-cells =3D <1>;
-> >> > +			#size-cells =3D <1>;
-> >> > +			#clock-cells =3D <1>;
-> >> > +			#reset-cells =3D <1>;
-> >> > +
-> >> > +			scu_ic2: interrupt-controller@100 {
-> >> > +				compatible =3D "aspeed,ast2700-scu-ic2";
-> >> > +				reg =3D <0x100 0x8>;
-> >> > +				#interrupt-cells =3D <1>;
-> >> > +				interrupts-extended =3D <&intc1_5 0>;
-> >> > +				interrupt-controller;
-> >> > +			};
-> >> > +
-> >> > +			scu_ic3: interrupt-controller@108 {
-> >> > +				compatible =3D "aspeed,ast2700-scu-ic3";
-> >> > +				reg =3D <0x108 0x8>;
-> >> > +				#interrupt-cells =3D <1>;
-> >> > +				interrupts-extended =3D <&intc1_5 26>;
-> >> > +				interrupt-controller;
-> >> > +			};
-> >>
-> >> This looks a bit silly to be honest: you have two separate devices
-> >> that each have a single register and a different compatible string?
-> >
-> > Yes, it have difference register define in each scu-ic#. That is
-> > compatible with design.
-> > https://github.com/torvalds/linux/blob/master/drivers/irqchip/irq-aspe
-> > ed-scu-ic.c#L45-L48
->=20
-> Right, if the driver already has this design, it does make sense to not c=
-hange it
-> for the new generation. For a newly added driver I would probably do it
-> differently.
-
-Thanks
->=20
-> >> Also you claim to be compatible with "syscon" but nothing actually
-> >> refers to the syscon node in that form?
-> >
-> > There is another submit ongoing in pinctrl which will use syscon.
-> > https://lwn.net/ml/all/20250829073030.2749482-2-billy_tsai@aspeedtech.
-> > com/
-> >
-> > Could I keep it? or I should remove it?
->=20
-> The version of the driver you are linking does not appear to use syscon, =
-maybe
-> this is an artifact from a previous version?
->=20
-> If so, you can drop it. On the other hand, this does seem to be a classic=
- syscon
-> device and keeping it marked that way is not harmful, just redundant if y=
-ou
-> actually use the more specific compatible string.
-
-Sorry, I may not point right link
-https://patchwork.ozlabs.org/project/linux-aspeed/patch/20250829073030.2749=
-482-4-billy_tsai@aspeedtech.com/
-aspeed_g7_soc0_pinctrl_probe -> aspeed_pinctrl_probe
-https://github.com/torvalds/linux/blob/master/drivers/pinctrl/aspeed/pinctr=
-l-aspeed.c#L456
-
-That will use syscon to regmap.
->=20
->=20
->      Arnd
 
