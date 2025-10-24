@@ -1,121 +1,167 @@
-Return-Path: <devicetree+bounces-230566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49A16C03FC1
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 03:00:24 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51887C03FFE
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 03:11:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 681703B700D
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 01:00:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2E4E24E5FC5
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 01:11:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E7221632C8;
-	Fri, 24 Oct 2025 01:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D750189BB0;
+	Fri, 24 Oct 2025 01:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M0PZT/z+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aDOL5Of3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECB6815539A
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 01:00:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 130AC8405C;
+	Fri, 24 Oct 2025 01:11:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761267619; cv=none; b=tbATDhrhCljU8/PAo+Nh/n8TNvOyWFu/gvwCRT+PQlfDZnXVsaK+oHtfq/5lLzhQNXltE7OBt1DQNdwqVXHE54PXstrpVIG/+CdWaPDF0FpIgyDgUOtzd++D5OJhTXxyOM/t6JqFcbRadxPdPl1s3R7Ee5t1BqpnfvsQ1vz+vho=
+	t=1761268297; cv=none; b=ScBgC/KdE8s+lvHzZn1EpP84CYbg7Mke8kWMuOpeILQlgxYQ2iB4N8Up2KFJzQbzgzkaFkH31AUQPZHRJrmDwUpmqBk8Xvz3XbmwcHwjh9p5cEHTOmDby5Q3HI4mAKJdhy/XX1wzRurBkCr+bW27qGGq7J/e6kxDfiB20jdICnQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761267619; c=relaxed/simple;
-	bh=ehk5gqYro75ea+kxBOikbp2b/GK50O48GMIz57SlOmE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=W/M1WX9ZtX+UqLdqodmBpn5NgkZI+ZZVFX/oyHERrBAXrZvDa2JWsY1B4jSpRNd9BieASrN3FhZZDM/EBBAJIoZ4FBoDijdT2gMNT439OYc4gWfpXGJKxYIjI/y6idXNIZqzD/RtAbiHmAZWgvf5YOLcgzSmxo+s5X/gjDTjlw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M0PZT/z+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79278C116C6
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 01:00:18 +0000 (UTC)
+	s=arc-20240116; t=1761268297; c=relaxed/simple;
+	bh=sYVXJNowzbBXxfqAUDkJRSvbLsY6hEvJ0xreENX8QjA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GrKVCivLiLx7YM6LYtfMumucNgK++VUutIFv+pPlJgle8Z9tUYn0Ey1F/s5KTKM4HddleSUf2xbPH8pKcQRjN7CZbYG6mpcmy6TTSEt4SbHzP1kwwQzcO7wtRu/exiXfiaHtrfRugcI0vgUYVtKzHz1iXilNIQMlEzQlj8pO/3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aDOL5Of3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C692C4CEE7;
+	Fri, 24 Oct 2025 01:11:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761267618;
-	bh=ehk5gqYro75ea+kxBOikbp2b/GK50O48GMIz57SlOmE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=M0PZT/z+0uPfmF3EYkTG0YEenwe3enJsw5n0gPlHeJutghzQs8qu1GtLjm8A4Houc
-	 IpiuSSBwwz20WqjSVHFd12KQz2blUFJXtRcMoSXBvNSNutEl2KiHMXEPpflVKck525
-	 6a0URvMkwseirX/twN3DGWIiHaMXxWe+Gsdqv8NMhF+11LvSgp61ck1o0e1ojs5r7+
-	 wmn7KAVmE6wUNRxV7fMNuC2hLwMqEcJrtGIMJ/TVa/ivQomNzKUu+EfNDpbPHNKZ7f
-	 QnY3rO/uqMIPnKqXrgkTUbrfQNulGYPB7epHL04iiJgD2oPA8/ZF4krvyE7YpixXdW
-	 +p8KXLzPRWIVg==
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-63c3d913b3bso2543212a12.2
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 18:00:18 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCX/dJaDTRI9gCTBaBB6E2zBEK52lcM12+osogkQumOeq39iXG/rpzhQQmfR9tLqjKXHiZZzpcKeV81N@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJrt/UHkYTbKmsYr0RVjoP8vKwebabSflL3hGLANnqMFh1XOpE
-	iwS4pzE3gcZtb8o2vqVhPbQsb2lAvShHWkE/chFiKZv8S+YVUKJ6r175XANF/9Okq1xK6hyWFIs
-	TDNRJC8b1pFaLdKGbLCfT73C002KI2A==
-X-Google-Smtp-Source: AGHT+IEjEgQeRaKS1MRniIDNB0DeeoIYpOrEvhgQgtjv9aD4ZD7zdo/az8WJFJUar6TfO+DVKuofLO/h/4vazXCE9ws=
-X-Received: by 2002:a05:6402:26c4:b0:634:b7a2:3eaf with SMTP id
- 4fb4d7f45d1cf-63e3e477b5bmr4280000a12.18.1761267616822; Thu, 23 Oct 2025
- 18:00:16 -0700 (PDT)
+	s=k20201202; t=1761268296;
+	bh=sYVXJNowzbBXxfqAUDkJRSvbLsY6hEvJ0xreENX8QjA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=aDOL5Of3SFEs05ZeCCWzGdwaQgK1mGDYDzetpmy0klLs8uy6LjtI/xQRTvtNN7/78
+	 H0QKxn5mSWURrg8GWUbWR38DaYZAGco/RdqbSJ06v1fEVaHIOkZi1b6Rou3wVphYcg
+	 YdzV3mebZe1L3yF7x2RCHE5X5AGlbj0gvZK3/d/MU20dN5jnAYvMokKrq516zOaCx0
+	 qQqCZCUeT9fR0l2hElbXxiXjs6EDkkAhcPzEHXYkIPMleyP3KWPH2faorCi/BCRFYF
+	 PzU2dUjfrFI7VjV+rD4xgCTb4RFw5qGIOOfRcyaJKF7CJgLhS8X3EA5Q6T9Z40I6QM
+	 43FMNhnV/A21A==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Gustavo Pimentel <gustavo.pimentel@synopsys.com>
+Cc: linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: PCI: amlogic,axg-pcie: Fix select schema
+Date: Thu, 23 Oct 2025 20:11:21 -0500
+Message-ID: <20251024011122.26001-1-robh@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251023160415.705294-1-linux@roeck-us.net> <2bef32d0-2c35-c93d-08a8-71966c1212f2@kernel.org>
-In-Reply-To: <2bef32d0-2c35-c93d-08a8-71966c1212f2@kernel.org>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 23 Oct 2025 20:00:05 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJjiB3h+hzstXSbnyFy+U39GgtT=rcb4r+QDv=uL54H8g@mail.gmail.com>
-X-Gm-Features: AWmQ_bkV_0VhcZcZAaOK1XDUuJnahwO7hnusuR-jKXe-TZpuwe9eoSVZYP6h4CU
-Message-ID: <CAL_JsqJjiB3h+hzstXSbnyFy+U39GgtT=rcb4r+QDv=uL54H8g@mail.gmail.com>
-Subject: Re: [PATCH] of: Skip devicetree kunit tests when RISCV+ACPI doesn't
- populate root node
-To: Paul Walmsley <pjw@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>, Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	Han Gao <rabenda.cn@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Thu, Oct 23, 2025 at 11:48=E2=80=AFAM Paul Walmsley <pjw@kernel.org> wro=
-te:
->
-> On Thu, 23 Oct 2025, Guenter Roeck wrote:
->
-> > Starting with commit 69a8b62a7aa1 ("riscv: acpi: avoid errors caused by
-> > probing DT devices when ACPI is used"), riscv images no longer populate
-> > devicetree if ACPI is enabled. This causes unit tests to fail which req=
-uire
-> > the root node to be set.
-> >
-> >   # Subtest: of_dtb
-> >   # module: of_test
-> >   1..2
-> >   # of_dtb_root_node_found_by_path: EXPECTATION FAILED at drivers/of/of=
-_test.c:21
-> >   Expected np is not null, but is
-> >   # of_dtb_root_node_found_by_path: pass:0 fail:1 skip:0 total:1
-> >   not ok 1 of_dtb_root_node_found_by_path
-> >   # of_dtb_root_node_populates_of_root: EXPECTATION FAILED at drivers/o=
-f/of_test.c:31
-> >   Expected of_root is not null, but is
-> >   # of_dtb_root_node_populates_of_root: pass:0 fail:1 skip:0 total:1
-> >   not ok 2 of_dtb_root_node_populates_of_root
-> >
-> > Skip those tests for RISCV if the root node is not populated.
-> >
-> > Fixes: 69a8b62a7aa1 ("riscv: acpi: avoid errors caused by probing DT de=
-vices when ACPI is used")
-> > Cc: Han Gao <rabenda.cn@gmail.com>
-> > Cc: Paul Walmsley <pjw@kernel.org>
-> > Signed-off-by: Guenter Roeck <linux@roeck-us.net>
->
-> Reviewed-by: Paul Walmsley <pjw@kernel.org>  # arch/riscv
+The amlogic,axg-pcie binding was never enabled as the 'select' schema
+expects a single compatible value, but the binding has a fallback
+compatible. Fix the 'select' by adding a 'contains'. With this, several
+errors in the clock and reset properties are exposed. Some of the names
+aren't defined in the common DWC schema and the order of clocks entries
+doesn't match .dts files.
 
-FWIW, the fixed commit will also prevent enabling features like this
-series[1] enables. Arm64 is still disabled ATM because of disagreement
-with the arm64 maintainers, so that can was kicked down the road. It
-would be better to not disable this and address the issues as they
-happen rather than breaking people down the road.
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../bindings/pci/amlogic,axg-pcie.yaml          | 17 +++++++++--------
+ .../bindings/pci/snps,dw-pcie-common.yaml       |  6 +++---
+ 2 files changed, 12 insertions(+), 11 deletions(-)
 
-Rob
+diff --git a/Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml b/Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml
+index 79a21ba0f9fd..bee694ff45f3 100644
+--- a/Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml
+@@ -20,9 +20,10 @@ allOf:
+ select:
+   properties:
+     compatible:
+-      enum:
+-        - amlogic,axg-pcie
+-        - amlogic,g12a-pcie
++      contains:
++        enum:
++          - amlogic,axg-pcie
++          - amlogic,g12a-pcie
+   required:
+     - compatible
+ 
+@@ -51,15 +52,15 @@ properties:
+ 
+   clocks:
+     items:
++      - description: PCIe PHY clock
+       - description: PCIe GEN 100M PLL clock
+       - description: PCIe RC clock gate
+-      - description: PCIe PHY clock
+ 
+   clock-names:
+     items:
++      - const: general
+       - const: pclk
+       - const: port
+-      - const: general
+ 
+   phys:
+     maxItems: 1
+@@ -88,7 +89,7 @@ required:
+   - reg
+   - reg-names
+   - interrupts
+-  - clock
++  - clocks
+   - clock-names
+   - "#address-cells"
+   - "#size-cells"
+@@ -115,8 +116,8 @@ examples:
+         reg = <0xf9800000 0x400000>, <0xff646000 0x2000>, <0xf9f00000 0x100000>;
+         reg-names = "elbi", "cfg", "config";
+         interrupts = <GIC_SPI 177 IRQ_TYPE_EDGE_RISING>;
+-        clocks = <&pclk>, <&clk_port>, <&clk_phy>;
+-        clock-names = "pclk", "port", "general";
++        clocks = <&clk_phy>, <&pclk>, <&clk_port>;
++        clock-names = "general", "pclk", "port";
+         resets = <&reset_pcie_port>, <&reset_pcie_apb>;
+         reset-names = "port", "apb";
+         phys = <&pcie_phy>;
+diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+index 34594972d8db..6339a76499b2 100644
+--- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
++++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+@@ -115,11 +115,11 @@ properties:
+             above for new bindings.
+           oneOf:
+             - description: See native 'dbi' clock for details
+-              enum: [ pcie, pcie_apb_sys, aclk_dbi, reg ]
++              enum: [ pcie, pcie_apb_sys, aclk_dbi, reg, port ]
+             - description: See native 'mstr/slv' clock for details
+               enum: [ pcie_bus, pcie_inbound_axi, pcie_aclk, aclk_mst, aclk_slv ]
+             - description: See native 'pipe' clock for details
+-              enum: [ pcie_phy, pcie_phy_ref, link ]
++              enum: [ pcie_phy, pcie_phy_ref, link, general ]
+             - description: See native 'aux' clock for details
+               enum: [ pcie_aux ]
+             - description: See native 'ref' clock for details.
+@@ -176,7 +176,7 @@ properties:
+             - description: See native 'phy' reset for details
+               enum: [ pciephy, link ]
+             - description: See native 'pwr' reset for details
+-              enum: [ turnoff ]
++              enum: [ turnoff, port ]
+ 
+   phys:
+     description:
+-- 
+2.51.0
 
-[1] https://lore.kernel.org/all/20251015071420.1173068-1-herve.codina@bootl=
-in.com/
 
