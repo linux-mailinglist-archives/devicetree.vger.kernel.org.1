@@ -1,223 +1,103 @@
-Return-Path: <devicetree+bounces-230896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BC79C074E1
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 18:28:37 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20BBDC0751A
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 18:31:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5213F5839C1
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 16:25:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 32A114F94EA
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 16:29:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B185E31A044;
-	Fri, 24 Oct 2025 16:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28B3A32E73D;
+	Fri, 24 Oct 2025 16:29:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bTy1hkKY"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="M3290crd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86FD61EEA5F;
-	Fri, 24 Oct 2025 16:25:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B88F326D53;
+	Fri, 24 Oct 2025 16:29:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761323118; cv=none; b=k4dXmGy4lrK+DxPbXyvJmJC/o6sLpRe0RBO/wnJPblAspkBnDkfaHY87BmIGjHAkLAoBnQRn61uYCaY9CxX3qSzDPlNjSagcuY+WEiMxcOvl142p39CQEgaltSd2XLxVqKTPkgyOvr/TmP1x+ul8LWm/l1dpJrM8hk5dX4G7axo=
+	t=1761323349; cv=none; b=N4JHjMd8+XSIf3wZTD2ohlcRwmM+FgvuBOUVwbASNJvIhw1iUX49Uv3T5HUXKDpMFjwoTlvUgqFmsonLrnwI6Ahp8izuUMeFT16NPTW4J3WG/vfsf0R2SwJsEle5TPc9O+GhBpEtlzY1aiuqK+EUvClzdoEPSP5NDQQgZbI+0mw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761323118; c=relaxed/simple;
-	bh=zIhatHOop5VHM1hZdEuI5gEL89I036E+FwCPc6EAmEY=;
+	s=arc-20240116; t=1761323349; c=relaxed/simple;
+	bh=uT+YrAtnUKFxPpK6nxQRK2qpk2y5ugD7UPA8lAvrjeQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n6GSX78C7bQQ09Hc6Wxum/REkE8G54tJQva/2XZq0n4jOQwMRENMKnyNDk8vuaXOFQjEzkKtDx1wdJNajL/0lY5LhqEUsJO3SA7McptnFzxs6dN9LycRaZ55lOmz8aS+oNDKlUuu9AIBn6P32wNHKoenN3B2xstLvr212prupms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bTy1hkKY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8554C4CEF1;
-	Fri, 24 Oct 2025 16:25:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761323118;
-	bh=zIhatHOop5VHM1hZdEuI5gEL89I036E+FwCPc6EAmEY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bTy1hkKYjvbOgv2kLRk2TvNW80C9TCuxq2mtd0FmSy/AorkHB5ZQ8pOdw3yU1mQDf
-	 6bw2EDpQy4QZtUYEvQww1yExApzVIyfq3Q4+W5hSYmqd6SZhIiTE2ZJ0dDHac4iR+B
-	 fKHt5wIrBIuUEOxm3bojACr42eIVtpARcCcrqsO7B3z3skSfK4uTJ8hmdCE0RNkx0+
-	 LqVszcL9x/W9POT7XnyRf2LeM1Tu4wDEuAe3LfPDN4vQ71D926C6r46/D5CWPraz9l
-	 5PKBbbZNaK5xOmeDKQ5IR5y+rnprD1vVS7Fjfo3IrHPK0PlPJFEsDR01rCrE8PnCj3
-	 99jTCVFVepF8Q==
-Date: Fri, 24 Oct 2025 17:25:12 +0100
-From: Conor Dooley <conor@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: sboyd@kernel.org, mturquette@baylibre.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
-	laura.nao@collabora.com, nfraprado@collabora.com,
-	wenst@chromium.org, y.oudjana@protonmail.com,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v1 6/7] dt-bindings: clock: Describe MT6685 PM/Clock IC
- Clock Controller
-Message-ID: <20251024-trophy-clause-7db540d073fa@spud>
-References: <20251024083301.25845-1-angelogioacchino.delregno@collabora.com>
- <20251024083301.25845-7-angelogioacchino.delregno@collabora.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=YXiWSS/+FRgB6EYz/0VEGAqArW08rmqerwLGmZnpMWdmgB8fzz2mMRwsVu7NyU2eg0UyR6lTEMpFw5XrqWamjG1jWkQ+H5RNPlbqkwe89p7dPB65CSN/Tec7WPxnvpO4z4K6qlH3bxvj7jqJXD44vaH28l6cg/4GmW1Bnd9PYAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=M3290crd; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761323348; x=1792859348;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=uT+YrAtnUKFxPpK6nxQRK2qpk2y5ugD7UPA8lAvrjeQ=;
+  b=M3290crd0rus0eNOK3wxtk0l44LE6dwcqHvHmuuOnIi00ITvgbPH6ncD
+   x6OuN/amt7BqbpWN3UGzXMomFr+V1JlttNWNZWnu97vYoRSge3cxg6nNT
+   7b7krG1HEumjKC+nXClu0QW7L+HilB0yVBIvROQB6IVtEAbHr2gnJE25U
+   GKzvt2yG5ywIIR2E/VwBYS1RZc+Q6zXqBs9BiDrSfo000OXZDDmmYa+oY
+   VyOb23HL973YSzmiTofg0WJotTgdD8csPgQO9mw2kr7JUlmmgHAaoSzDU
+   dsyeLH9n5d8BKvB9dHVg8k3jLNMX3O9n/2nvtOfta3SdcnEal3xRxE3x0
+   Q==;
+X-CSE-ConnectionGUID: 8qZIow+iQ4+xrXJVcVv2ZA==
+X-CSE-MsgGUID: qnqCecJlRCinKzu20GIcGQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63210536"
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; 
+   d="scan'208";a="63210536"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2025 09:29:06 -0700
+X-CSE-ConnectionGUID: /yydXxvoQKakefwUifKqZA==
+X-CSE-MsgGUID: 6BHnQKAxQR2jk2PIf162GA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; 
+   d="scan'208";a="184384565"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.245.147])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2025 09:29:03 -0700
+Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1vCKez-00000002D7O-0OIk;
+	Fri, 24 Oct 2025 19:29:01 +0300
+Date: Fri, 24 Oct 2025 19:29:00 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] iio: dac: ad5456: Add missing DT compatibles
+Message-ID: <aPupTHhbvvMq4c7I@smile.fi.intel.com>
+References: <20251023-ad5446-bindings-v2-0-27fab9891e86@analog.com>
+ <20251023-ad5446-bindings-v2-2-27fab9891e86@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hwCfY64Se0JycgpW"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20251024083301.25845-7-angelogioacchino.delregno@collabora.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251023-ad5446-bindings-v2-2-27fab9891e86@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+
+On Thu, Oct 23, 2025 at 02:01:38PM +0300, Nuno Sá wrote:
+> Add missing of_device_id compatibles for the i2c and spi drivers.
+
+How does it work at all? Is there an ugly ifdeferry? No module should have two
+module_*_driver() and other stuff.
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
---hwCfY64Se0JycgpW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Oct 24, 2025 at 10:33:00AM +0200, AngeloGioacchino Del Regno wrote:
-> Add bindings to describe the SCK_TOP clock controller embedded
-> in the MT6685 IC, reachable over the SPMI bus.
->=20
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> ---
->=20
-> NOTE: This does not contain any example because the MT6685 RTC
->       will be added to the mfd binding for MediaTek SPMI PMICs
->       and examples will be there.
->=20
-> ** For reviewing purposes, this is how the example will look like: **
->=20
->   - |
->     #include <dt-bindings/interrupt-controller/irq.h>
->     #include <dt-bindings/spmi/spmi.h>
->=20
->     spmi {
->       #address-cells =3D <2>;
->       #size-cells =3D <0>;
->=20
->       pmic@9 {
->         compatible =3D "mediatek,mt6363";
->         reg =3D <0x9 SPMI_USID>;
->         interrupts =3D <9 1 IRQ_TYPE_LEVEL_HIGH>;
->         interrupt-controller;
->         #address-cells =3D <1>;
->         #interrupt-cells =3D <3>;
->         #size-cells =3D <0>;
->=20
->         clock-controller@514 {
->           compatible =3D "mediatek,mt6685-sck-top";
->           reg =3D <0x514>;
->           #clock-cells =3D <1>;
->         };
->=20
->         rtc@580 {
->           compatible =3D "mediatek,mt6685-rtc";
->           reg =3D <0x580>;
->           interrupts =3D <9 0 IRQ_TYPE_LEVEL_HIGH>;
->         };
->       };
->     };
->=20
->  .../bindings/clock/mediatek,mt6685-clock.yaml | 37 +++++++++++++++++++
->  .../dt-bindings/clock/mediatek,mt6685-clock.h | 17 +++++++++
->  2 files changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt66=
-85-clock.yaml
->  create mode 100644 include/dt-bindings/clock/mediatek,mt6685-clock.h
->=20
-> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt6685-cloc=
-k.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt6685-clock.yaml
-> new file mode 100644
-> index 000000000000..5407ebf2f3b5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/mediatek,mt6685-clock.yaml
-> @@ -0,0 +1,37 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/mediatek,mt6685-clock.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek Clock Controller for MT6685 SPMI PM/Clock IC
-> +
-> +maintainers:
-> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> +
-> +description: |
-> +  The clock architecture in MediaTek PMICs+Clock ICs is structured like =
-below:
-> +  Crystal(XO) or Internal ClockGen -->
-> +          dividers -->
-> +                      muxes
-> +                           -->
-> +                              clock gate
-
-Is this the intended formatting? Looks weird with "dividers" being
-unaligned with the --> above it, but maybe you were just going for x
-number of spaces?
-
-> +
-> +  The device nodes provide clock gate control in different IP blocks.
-
-I think this is more understandable as "This device provides clock gate
-control", if this sck-top is only doing gating. Otherwise, not clear if
-the dividers and muxes are here or elsewhere.
-
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt6685-sck-top
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#clock-cells'
-> +
-> +additionalProperties: false
-> diff --git a/include/dt-bindings/clock/mediatek,mt6685-clock.h b/include/=
-dt-bindings/clock/mediatek,mt6685-clock.h
-> new file mode 100644
-> index 000000000000..acc5e2e15ce1
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/mediatek,mt6685-clock.h
-> @@ -0,0 +1,17 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> +/*
-> + * Copyright (c) 2025 Collabora Ltd.
-> + *                    AngeloGioacchino Del Regno <angelogioacchino.delre=
-gno@collabora.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_CLK_MT6685_H
-> +#define _DT_BINDINGS_CLK_MT6685_H
-> +
-> +/* SCK_TOP_CKPDN */
-> +#define CLK_RTC_SEC_MCLK		0
-> +#define CLK_RTC_EOSC32			1
-> +#define CLK_RTC_SEC_32K			2
-> +#define CLK_RTC_MCLK			3
-> +#define CLK_RTC_32K			4
-> +
-> +#endif /* _DT_BINDINGS_CLK_MT6685_H */
-> --=20
-> 2.51.1
->=20
-
---hwCfY64Se0JycgpW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPuoaAAKCRB4tDGHoIJi
-0ly3AP4pc/Q42FkFxA6oNLhl+wg3/cb/OYk9KtGv66YEAQp1IQEA9ffWiNgLR8Zb
-ZwOZZtAY+ZI7j3t7lTe+lRh7yR13Eww=
-=8AKD
------END PGP SIGNATURE-----
-
---hwCfY64Se0JycgpW--
 
