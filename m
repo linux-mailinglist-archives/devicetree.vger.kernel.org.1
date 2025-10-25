@@ -1,385 +1,366 @@
-Return-Path: <devicetree+bounces-231029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7797C08C14
-	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 08:21:18 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id C28A4C08C61
+	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 08:49:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5D775350456
-	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 06:21:18 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0CADE4E8E29
+	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 06:49:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CA2E2D373F;
-	Sat, 25 Oct 2025 06:21:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F44327E056;
+	Sat, 25 Oct 2025 06:49:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b="xLOMhwv4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iQxycQ4c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.iitb.ac.in (smtpd9.iitb.ac.in [103.21.126.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D01F3221F34
-	for <devicetree@vger.kernel.org>; Sat, 25 Oct 2025 06:21:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.21.126.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2440635B149
+	for <devicetree@vger.kernel.org>; Sat, 25 Oct 2025 06:49:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761373269; cv=none; b=H7zglFxUeUlijpgi7TUAxdyh9MAqU4fJ6vb8qBIFndWMTqIxKPe8nnE00GOIJ4qv5TDyKDrqU8KzAmF2h7K5Ra1ikfrRZaQH/9tDK2ZdXya5ac+t9K2ZaFwPCRLw25nEsL1FnBpe5eJy0HljdGLKOrAAHXkNcPKRIjz+RgSqNUg=
+	t=1761374948; cv=none; b=CLcuHRbP32dgrzS67y2aOhciEJzqhJu5YiLJ+Ee1zpILpSa+N7odFclLo2/DjpZY6XkFkFYfzIrJBROQqjvY8kRHV+oaUjh7OzdqgStMinrX/MVDhPr4KyLpcbKeCNLHPilkfoqwj+wiuW+rVHNA3sC7LoRtQYvaFWr7Jwn9IN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761373269; c=relaxed/simple;
-	bh=CMQNbwSvv0mkh8tdFQY5j4Ky9jFEh8z398OLpHmgvKI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Uqga6Uvn52gHO3ADIkJN/Bc6veWLkbIZgnVZWHm5nqZlaH+0148sJDkDnPTgXeeqCTvfGVT4sT5/kVSJQkD8Z2epTFUzivBQRQ8RWbylkCf61X32zGnYP7+4G9I3zYDXnltvTJIyFP+g/6/yLoFAlPhB8ap89fS0gvMDjRAYS+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in; spf=pass smtp.mailfrom=ee.iitb.ac.in; dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b=xLOMhwv4; arc=none smtp.client-ip=103.21.126.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ee.iitb.ac.in
-Received: from ldns1.iitb.ac.in (ldns1.iitb.ac.in [10.200.12.1])
-	by smtp1.iitb.ac.in (Postfix) with SMTP id 63F29104CBAB
-	for <devicetree@vger.kernel.org>; Sat, 25 Oct 2025 11:51:04 +0530 (IST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.iitb.ac.in 63F29104CBAB
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=iitb.ac.in; s=mail;
-	t=1761373264; bh=CMQNbwSvv0mkh8tdFQY5j4Ky9jFEh8z398OLpHmgvKI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=xLOMhwv4xQU3nbkmYcvOPD5nFe5tDH+6EvMnE4OW+dHq2WSnZu8kLjmiqGAUPVHMQ
-	 u1xX3XDbf4qJ/arMwguELk08ukaIQBhhwe016oXUtPCMtGhDAZXe741IK2VrqeR1fN
-	 nr450a+owd3QTtNG4Vr5duUaWeu8gaTe+4VX6n7Q=
-Received: (qmail 18696 invoked by uid 510); 25 Oct 2025 11:51:04 +0530
-X-Qmail-Scanner-Diagnostics: from 10.200.1.25 by ldns1 (envelope-from <akhilesh@ee.iitb.ac.in>, uid 501) with qmail-scanner-2.11
- spamassassin: 3.4.1. mhr: 1.0. {clamdscan: 0.101.4/26439} 
- Clear:RC:1(10.200.1.25):SA:0(0.0/7.0):. Processed in 2.513312 secs; 25 Oct 2025 11:51:04 +0530
-X-Spam-Level: 
-X-Spam-Pyzor: Reported 0 times.
-X-Envelope-From: akhilesh@ee.iitb.ac.in
-X-Qmail-Scanner-Mime-Attachments: |
-X-Qmail-Scanner-Zip-Files: |
-Received: from unknown (HELO ldns1.iitb.ac.in) (10.200.1.25)
-  by ldns1.iitb.ac.in with SMTP; 25 Oct 2025 11:51:01 +0530
-Received: from bhairav.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
-	by ldns1.iitb.ac.in (Postfix) with ESMTP id F381B360035;
-	Sat, 25 Oct 2025 11:51:00 +0530 (IST)
-Received: from bhairav-test.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
-	(Authenticated sender: akhilesh)
-	by bhairav.ee.iitb.ac.in (Postfix) with ESMTPSA id BA6951E8160F;
-	Sat, 25 Oct 2025 11:51:00 +0530 (IST)
-Date: Sat, 25 Oct 2025 11:50:55 +0530
-From: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-To: jic23@kernel.org, dlechner@baylibre.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, nuno.sa@analog.com,
-	andy@kernel.org, marcelo.schmitt1@gmail.com, vassilisamir@gmail.com,
-	salah.triki@gmail.com
-Cc: skhan@linuxfoundation.org, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	akhileshpatilvnit@gmail.com
-Subject: [PATCH v4 2/2] iio: pressure: adp810: Add driver for adp810 sensor
-Message-ID: <cb51289f0f1c38a7ea24ee5ba3566c787f203ce7.1761372227.git.akhilesh@ee.iitb.ac.in>
-References: <cover.1761372227.git.akhilesh@ee.iitb.ac.in>
+	s=arc-20240116; t=1761374948; c=relaxed/simple;
+	bh=pVTlcY1X+kIhO3r0God2rsT/x3/ox7cpLS4Nu9m5TXo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IiKJyKG+vnIp4QLERCSibXOBYLTphncVFkF6gZ5fAM2exiZDwO/TiGN2C1Di9c+uEcM/woA5PPd0oda88MV80QfNs6aXYUsR8uHA5sEGyO/endulzJY7fnLWIKmVGGgN5NsK99TfcE3u6YI5oQUo2hKaZIwBQcq85QdDGWevj/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iQxycQ4c; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7a26b04bfc8so3161904b3a.2
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 23:49:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761374944; x=1761979744; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QgMCq/BY+uw753rejJGDNmeTuTUhlxJMjMZ33QupS54=;
+        b=iQxycQ4cNnpDD5x2RfsUUo7OVXQ2JpqvFL4CYGAGN2hDr/NHqfsmDJ63CXPQNFTfjL
+         ZiRbRvx3mUoaPkdHNvalsJzWtUhh309hU5C+53NfnvsvlzjD8CZEZNxOPCjL2h0KZjnm
+         Cen9qOEKSYEAewzXFHOOIBI1oSyZ1DK3J3W3xICfRkivY8LPKzemOfe6rqdSMjYiWwri
+         Ha7Ajpnf6VybSDrCeMZzrs97ZC0SF0jofpFACViEQbUQEtBPMvZ4Rt7zorXj0ZGaiDmT
+         VqjtgQJIjZKF/hLfvxToYJwi7j5q5gjPL4U3J+Q9aZMe2+ReVWK+pAH/mCKz2zubYE0M
+         4IAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761374944; x=1761979744;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QgMCq/BY+uw753rejJGDNmeTuTUhlxJMjMZ33QupS54=;
+        b=wetWu+gm+aDC38bxTh5D79rgOIIvIDWzSCg0gbKSAYFZ13gf4tL6PssmrpeN3iRcDg
+         v998jbnM6+vH//YbY0vp/eVAs787SzJ6esJVwn7Aivu9waOviIOo6LIrDQrIvRlM2qnA
+         xW4Ofcc+50yuyASr+GWapUghLu3CYfdVnpVliVnV20bZH+zIvOWS3SLamHPfEViRSikf
+         A/prpiKn+U+K+kSlXadhwWpR9PKZPr00rBeIhrD7QmN5QdXg15spQPjNSBlwebzwPNbR
+         WgLeDUu9MpuWLDjnVg2jj6U+offr5p0KNbciAk1B2Iduv+dl98ZQcFktKd4KgWTnFRCS
+         N/tg==
+X-Forwarded-Encrypted: i=1; AJvYcCUOKYjnyJdreeAVnrcJi+rCcE4Ud0u1pqIdFxE3ZLAtK2NnUq/VnE3EkKpY3Cf15gKLQ2f9pBxBzm0u@vger.kernel.org
+X-Gm-Message-State: AOJu0YyusjwdbiEZ00uzLRJF6l2dF7vN8CjFpoQsmZBpz50c255d1Pf6
+	ExrbcPprh/WcZrHj8rj8ixh26sgqsTCU1YlsRW2SWMnLgrtMZt0G9/yz
+X-Gm-Gg: ASbGnctU6gltJeShE3im+e7FTmof6+GGdg00pLW5ddwW4ZQN4LhCcgCekU+52wFtwFr
+	tdlZprcqix0/zMQI7q6LAN28/RLOF6zHcL3+uiFuI+4y4E5OMT9yN/VjeN9p58qOy2yLUkvH+wu
+	6kaIrKUw3aQaQozhpsyS85eHc/JxoJWG9VxxaW8hkbxHlJD70m49EHBXf6QKOuG4eL46Q9RVEsK
+	3mqjME8jqEJgs+BwvkfdBlVqVHa/UvXJY7HJ2SqlaWdOcxbwXJ5qmHrwlr2eyiT1WPAx12d6Icn
+	LRGVfkqR/1z0xXYlHQAzG7VqD/AQLxGkfAmsw8+pNyU2b3bqSPzB9Pig5kh4+kFYMISrdXP76/U
+	MVsseii0wh6yYZ3+wPYztkUOFSqd/D0vlrkmdLF+nCRVe0o86FAaNixIUl7egXgotKiejMH+6O8
+	jlRdUrNeTH8h7X1KzwU91fn99Dq7zhAgE=
+X-Google-Smtp-Source: AGHT+IHwaj0UZRsnj8dcvgC/D/fSCnQYIZ0bRmj1nAwG07azhqtDDwbJkmRQ+8lLnIHl9U3aFl4gJQ==
+X-Received: by 2002:a05:6a00:3d13:b0:7a2:7bdd:cbf4 with SMTP id d2e1a72fcca58-7a27bddcd09mr9126120b3a.27.1761374944226;
+        Fri, 24 Oct 2025 23:49:04 -0700 (PDT)
+Received: from iku.. ([2401:4900:1c06:77f0:564:1203:6acd:bae8])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a414034661sm1281886b3a.26.2025.10.24.23.48.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Oct 2025 23:49:03 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org
+Cc: netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH net-next v2] dt-bindings: net: phy: vsc8531: Convert to DT schema
+Date: Sat, 25 Oct 2025 07:48:50 +0100
+Message-ID: <20251025064850.393797-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1761372227.git.akhilesh@ee.iitb.ac.in>
+Content-Transfer-Encoding: 8bit
 
-Add driver for Aosong adp810 differential pressure and temperature sensor.
-This sensor provides an I2C interface for reading data.
-Calculate CRC of the data received using standard crc8 library to verify
-data integrity.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Tested on TI am62x sk board with sensor connected at i2c-2.
+Convert VSC8531 Gigabit ethernet phy binding to DT schema format. While
+at it add compatible string for VSC8541 PHY which is very much similar
+to the VSC8531 PHY and is already supported in the kernel. VSC8541 PHY
+is present on the Renesas RZ/T2H EVK.
 
-Signed-off-by: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 ---
- MAINTAINERS                   |   7 ++
- drivers/iio/pressure/Kconfig  |  12 ++
- drivers/iio/pressure/Makefile |   1 +
- drivers/iio/pressure/adp810.c | 225 ++++++++++++++++++++++++++++++++++
- 4 files changed, 245 insertions(+)
- create mode 100644 drivers/iio/pressure/adp810.c
+Inspired from the DT warnings seen while running dtbs check [0],
+took an opportunity to convert this binding to DT schema format.
+As there was no entry in the maintainers file Ive added myself
+as the maintainer for this binding.
+[0] https://lore.kernel.org/all/176073765433.419659.2490051913988670515.robh@kernel.org/
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3da2c26a796b..3f10755661e6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3749,6 +3749,13 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/iio/chemical/aosong,ags02ma.yaml
- F:	drivers/iio/chemical/ags02ma.c
- 
-+AOSONG ADP810 DIFFERENTIAL PRESSURE SENSOR DRIVER
-+M:	Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/pressure/aosong,adp810.yaml
-+F:	drivers/iio/pressure/adp810.c
-+
- ASC7621 HARDWARE MONITOR DRIVER
- M:	George Joseph <george.joseph@fairview5.com>
- L:	linux-hwmon@vger.kernel.org
-diff --git a/drivers/iio/pressure/Kconfig b/drivers/iio/pressure/Kconfig
-index d2cb8c871f6a..2fe9dc90cceb 100644
---- a/drivers/iio/pressure/Kconfig
-+++ b/drivers/iio/pressure/Kconfig
-@@ -339,4 +339,16 @@ config ZPA2326_SPI
- 	tristate
- 	select REGMAP_SPI
- 
-+config ADP810
-+	tristate "Aosong adp810 differential pressure and temperature sensor"
-+	depends on I2C
-+	select CRC8
-+	help
-+	  Say yes here to build adp810 differential pressure and temperature
-+	  sensor driver. ADP810 can measure pressure range up to 500Pa.
-+	  It supports an I2C interface for data communication.
-+
-+	  To compile this driver as a module, choose M here: the module will
-+	  be called adp810
-+
- endmenu
-diff --git a/drivers/iio/pressure/Makefile b/drivers/iio/pressure/Makefile
-index 6482288e07ee..47bf7656f975 100644
---- a/drivers/iio/pressure/Makefile
-+++ b/drivers/iio/pressure/Makefile
-@@ -5,6 +5,7 @@
- 
- # When adding new entries keep the list in alphabetical order
- obj-$(CONFIG_ABP060MG) += abp060mg.o
-+obj-$(CONFIG_ADP810) += adp810.o
- obj-$(CONFIG_ROHM_BM1390) += rohm-bm1390.o
- obj-$(CONFIG_BMP280) += bmp280.o
- bmp280-objs := bmp280-core.o bmp280-regmap.o
-diff --git a/drivers/iio/pressure/adp810.c b/drivers/iio/pressure/adp810.c
+Note,
+1] As there is no entry in maintainers file for this binding, Ive added myself
+as the maintainer for this binding.
+
+v1->v2:
+- Updated dependencies format as per review comments.
+- Updated vsc8531,edge-slowdown description to use formatting.
+---
+ .../bindings/net/mscc-phy-vsc8531.txt         |  73 ----------
+ .../bindings/net/mscc-phy-vsc8531.yaml        | 131 ++++++++++++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +-
+ 3 files changed, 132 insertions(+), 74 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
+ create mode 100644 Documentation/devicetree/bindings/net/mscc-phy-vsc8531.yaml
+
+diff --git a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
+deleted file mode 100644
+index 0a3647fe331b..000000000000
+--- a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
++++ /dev/null
+@@ -1,73 +0,0 @@
+-* Microsemi - vsc8531 Giga bit ethernet phy
+-
+-Optional properties:
+-- vsc8531,vddmac	: The vddmac in mV. Allowed values is listed
+-			  in the first row of Table 1 (below).
+-			  This property is only used in combination
+-			  with the 'edge-slowdown' property.
+-			  Default value is 3300.
+-- vsc8531,edge-slowdown	: % the edge should be slowed down relative to
+-			  the fastest possible edge time.
+-			  Edge rate sets the drive strength of the MAC
+-			  interface output signals.  Changing the
+-			  drive strength will affect the edge rate of
+-			  the output signal.  The goal of this setting
+-			  is to help reduce electrical emission (EMI)
+-			  by being able to reprogram drive strength
+-			  and in effect slow down the edge rate if
+-			  desired.
+-			  To adjust the edge-slowdown, the 'vddmac'
+-			  must be specified. Table 1 lists the
+-			  supported edge-slowdown values for a given
+-			  'vddmac'.
+-			  Default value is 0%.
+-			  Ref: Table:1 - Edge rate change (below).
+-- vsc8531,led-[N]-mode	: LED mode. Specify how the LED[N] should behave.
+-			  N depends on the number of LEDs supported by a
+-			  PHY.
+-			  Allowed values are defined in
+-			  "include/dt-bindings/net/mscc-phy-vsc8531.h".
+-			  Default values are VSC8531_LINK_1000_ACTIVITY (1),
+-			  VSC8531_LINK_100_ACTIVITY (2),
+-			  VSC8531_LINK_ACTIVITY (0) and
+-			  VSC8531_DUPLEX_COLLISION (8).
+-- load-save-gpios	: GPIO used for the load/save operation of the PTP
+-			  hardware clock (PHC).
+-
+-
+-Table: 1 - Edge rate change
+-----------------------------------------------------------------|
+-| 		Edge Rate Change (VDDMAC)			|
+-|								|
+-| 3300 mV	2500 mV		1800 mV		1500 mV		|
+-|---------------------------------------------------------------|
+-| 0%		0%		0%		0%		|
+-| (Fastest)			(recommended)	(recommended)	|
+-|---------------------------------------------------------------|
+-| 2%		3%		5%		6%		|
+-|---------------------------------------------------------------|
+-| 4%		6%		9%		14%		|
+-|---------------------------------------------------------------|
+-| 7%		10%		16%		21%		|
+-|(recommended)	(recommended)					|
+-|---------------------------------------------------------------|
+-| 10%		14%		23%		29%		|
+-|---------------------------------------------------------------|
+-| 17%		23%		35%		42%		|
+-|---------------------------------------------------------------|
+-| 29%		37%		52%		58%		|
+-|---------------------------------------------------------------|
+-| 53%		63%		76%		77%		|
+-| (slowest)							|
+-|---------------------------------------------------------------|
+-
+-Example:
+-
+-        vsc8531_0: ethernet-phy@0 {
+-                compatible = "ethernet-phy-id0007.0570";
+-                vsc8531,vddmac		= <3300>;
+-                vsc8531,edge-slowdown	= <7>;
+-                vsc8531,led-0-mode	= <VSC8531_LINK_1000_ACTIVITY>;
+-                vsc8531,led-1-mode	= <VSC8531_LINK_100_ACTIVITY>;
+-		load-save-gpios		= <&gpio 10 GPIO_ACTIVE_HIGH>;
+-        };
+diff --git a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.yaml b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.yaml
 new file mode 100644
-index 000000000000..5282612d1309
+index 000000000000..0afbd0ff126f
 --- /dev/null
-+++ b/drivers/iio/pressure/adp810.c
-@@ -0,0 +1,225 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2025 Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-+ *
-+ * Driver for adp810 pressure and temperature sensor
-+ * Datasheet:
-+ *   https://aosong.com/userfiles/files/media/Datasheet%20ADP810-Digital.pdf
-+ */
++++ b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.yaml
+@@ -0,0 +1,131 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/mscc-phy-vsc8531.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#include <linux/array_size.h>
-+#include <linux/cleanup.h>
-+#include <linux/crc8.h>
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/dev_printk.h>
-+#include <linux/errno.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/mutex.h>
-+#include <linux/types.h>
-+#include <linux/unaligned.h>
++title: Microsemi VSC8531 Gigabit Ethernet PHY
 +
-+#include <linux/iio/iio.h>
-+#include <linux/iio/types.h>
++maintainers:
++  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 +
-+/*
-+ * Refer section 5.4 checksum calculation from datasheet.
-+ * This sensor uses CRC polynomial x^8 + x^5 + x^4 + 1 (0x31)
-+ */
-+#define ADP810_CRC8_POLYNOMIAL		0x31
++description:
++  The VSC8531 is a Gigabit Ethernet PHY with configurable MAC interface
++  drive strength and LED modes.
 +
-+DECLARE_CRC8_TABLE(crc_table);
++allOf:
++  - $ref: ethernet-phy.yaml#
 +
-+/*
-+ * Buffer declaration which holds 9 bytes of measurement data read
-+ * from the sensor. Use __packed to avoid any paddings, as data sent
-+ * from the sensor is strictly contiguous 9 bytes.
-+ */
-+struct adp810_read_buf {
-+	__be16 dp;
-+	u8 dp_crc;
-+	__be16 tmp;
-+	u8 tmp_crc;
-+	__be16 sf;
-+	u8 sf_crc;
-+} __packed;
++select:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - ethernet-phy-id0007.0570 # VSC8531
++          - ethernet-phy-id0007.0772 # VSC8541
++  required:
++    - compatible
 +
-+struct adp810_data {
-+	struct i2c_client *client;
-+	/* Use lock to synchronize access to device during read sequence */
-+	struct mutex lock;
-+};
++properties:
++  compatible:
++    items:
++      - enum:
++          - ethernet-phy-id0007.0570 # VSC8531
++          - ethernet-phy-id0007.0772 # VSC8541
++      - const: ethernet-phy-ieee802.3-c22
 +
-+static int adp810_measure(struct adp810_data *data, struct adp810_read_buf *buf)
-+{
-+	struct i2c_client *client = data->client;
-+	struct device *dev = &client->dev;
-+	int ret;
-+	u8 trig_cmd[2] = {0x37, 0x2d};
++  vsc8531,vddmac:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      The VDDMAC voltage in millivolts. This property is used in combination
++      with the edge-slowdown property to control the drive strength of the
++      MAC interface output signals.
++    enum: [3300, 2500, 1800, 1500]
++    default: 3300
 +
-+	/* Send trigger command to the sensor for measurement */
-+	ret = i2c_master_send(client, trig_cmd, sizeof(trig_cmd));
-+	if (ret < 0) {
-+		dev_err(dev, "Error sending trigger command\n");
-+		return ret;
-+	}
-+	if (ret != sizeof(trig_cmd))
-+		return -EIO;
++  vsc8531,edge-slowdown:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: >
++      Percentage by which the edge rate should be slowed down relative to
++      the fastest possible edge time. This setting helps reduce electromagnetic
++      interference (EMI) by adjusting the drive strength of the MAC interface
++      output signals. Valid values depend on the vddmac voltage setting
++      according to the edge rate change table in the datasheet.
 +
-+	/*
-+	 * Wait for the sensor to acquire data. As per datasheet section 5.3.1,
-+	 * at least 10ms delay before reading from the sensor is recommended.
-+	 * Here, we wait for 20ms to have some safe margin on the top
-+	 * of recommendation and to compensate for any possible variations.
-+	 */
-+	msleep(20);
++      - When vsc8531,vddmac = 3300 mV: allowed values are 0, 2, 4, 7, 10, 17, 29, and 53.
++        (Recommended: 7)
++      - When vsc8531,vddmac = 2500 mV: allowed values are 0, 3, 6, 10, 14, 23, 37, and 63.
++        (Recommended: 10)
++      - When vsc8531,vddmac = 1800 mV: allowed values are 0, 5, 9, 16, 23, 35, 52, and 76.
++        (Recommended: 0)
++      - When vsc8531,vddmac = 1500 mV: allowed values are 0, 6, 14, 21, 29, 42, 58, and 77.
++        (Recommended: 0)
++    enum: [0, 2, 3, 4, 5, 6, 7, 9, 10, 14, 16, 17, 21, 23, 29, 35, 37, 42, 52, 53, 58, 63, 76, 77]
++    default: 0
 +
-+	/* Read sensor values */
-+	ret = i2c_master_recv(client, (char *)buf, sizeof(*buf));
-+	if (ret < 0) {
-+		dev_err(dev, "Error reading from sensor\n");
-+		return ret;
-+	}
-+	if (ret != sizeof(*buf))
-+		return -EIO;
++  vsc8531,led-0-mode:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: LED[0] behavior mode. See include/dt-bindings/net/mscc-phy-vsc8531.h
++      for available modes.
++    minimum: 0
++    maximum: 15
++    default: 1
 +
-+	/* CRC checks */
-+	crc8_populate_msb(crc_table, ADP810_CRC8_POLYNOMIAL);
-+	if (buf->dp_crc != crc8(crc_table, (u8 *)&buf->dp, 0x2, CRC8_INIT_VALUE)) {
-+		dev_err(dev, "CRC error for pressure\n");
-+		return -EIO;
-+	}
++  vsc8531,led-1-mode:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: LED[1] behavior mode. See include/dt-bindings/net/mscc-phy-vsc8531.h
++      for available modes.
++    minimum: 0
++    maximum: 15
++    default: 2
 +
-+	if (buf->tmp_crc != crc8(crc_table, (u8 *)&buf->tmp, 0x2, CRC8_INIT_VALUE)) {
-+		dev_err(dev, "CRC error for temperature\n");
-+		return -EIO;
-+	}
++  vsc8531,led-2-mode:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: LED[2] behavior mode. See include/dt-bindings/net/mscc-phy-vsc8531.h
++      for available modes.
++    minimum: 0
++    maximum: 15
++    default: 0
 +
-+	if (buf->sf_crc != crc8(crc_table, (u8 *)&buf->sf, 0x2, CRC8_INIT_VALUE)) {
-+		dev_err(dev, "CRC error for scale\n");
-+		return -EIO;
-+	}
++  vsc8531,led-3-mode:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: LED[3] behavior mode. See include/dt-bindings/net/mscc-phy-vsc8531.h
++      for available modes.
++    minimum: 0
++    maximum: 15
++    default: 8
 +
-+	return 0;
-+}
++  load-save-gpios:
++    description: GPIO phandle used for the load/save operation of the PTP hardware
++      clock (PHC).
++    maxItems: 1
 +
-+static int adp810_read_raw(struct iio_dev *indio_dev,
-+			   struct iio_chan_spec const *chan,
-+			   int *val, int *val2, long mask)
-+{
-+	struct adp810_data *data = iio_priv(indio_dev);
-+	struct device *dev = &data->client->dev;
-+	struct adp810_read_buf buf = { };
-+	int ret;
++dependencies:
++  vsc8531,edge-slowdown:
++    - vsc8531,vddmac
 +
-+	scoped_guard(mutex, &data->lock) {
-+		ret = adp810_measure(data, &buf);
-+		if (ret) {
-+			dev_err(dev, "Failed to read from device\n");
-+			return ret;
-+		}
-+	}
++required:
++  - compatible
++  - reg
 +
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		switch (chan->type) {
-+		case IIO_PRESSURE:
-+			*val = get_unaligned_be16(&buf.dp);
-+			return IIO_VAL_INT;
-+		case IIO_TEMP:
-+			*val = get_unaligned_be16(&buf.tmp);
-+			return IIO_VAL_INT;
-+		default:
-+			return -EINVAL;
-+		}
-+	case IIO_CHAN_INFO_SCALE:
-+		switch (chan->type) {
-+		case IIO_PRESSURE:
-+			*val = get_unaligned_be16(&buf.sf);
-+			return IIO_VAL_INT;
-+		case IIO_TEMP:
-+			*val = 200;
-+			return IIO_VAL_INT;
-+		default:
-+			return -EINVAL;
-+		}
-+	default:
-+		return -EINVAL;
-+	}
-+}
++unevaluatedProperties: false
 +
-+static const struct iio_info adp810_info = {
-+	.read_raw = adp810_read_raw,
-+};
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/net/mscc-phy-vsc8531.h>
 +
-+static const struct iio_chan_spec adp810_channels[] = {
-+	{
-+		.type = IIO_PRESSURE,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-+		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),
-+	},
-+	{
-+		.type = IIO_TEMP,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-+		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),
-+	},
-+};
++    mdio {
++        #address-cells = <1>;
++        #size-cells = <0>;
 +
-+static int adp810_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct iio_dev *indio_dev;
-+	struct adp810_data *data;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	data = iio_priv(indio_dev);
-+	data->client = client;
-+
-+	ret = devm_mutex_init(dev, &data->lock);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->name = "adp810";
-+	indio_dev->channels = adp810_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(adp810_channels);
-+	indio_dev->info = &adp810_info;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+
-+	ret = devm_iio_device_register(dev, indio_dev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to register IIO device\n");
-+
-+	return 0;
-+}
-+
-+static const struct i2c_device_id adp810_id_table[] = {
-+	{ "adp810" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, adp810_id_table);
-+
-+static const struct of_device_id adp810_of_table[] = {
-+	{ .compatible = "aosong,adp810" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, adp810_of_table);
-+
-+static struct i2c_driver adp810_driver = {
-+	.driver = {
-+		.name = "adp810",
-+		.of_match_table = adp810_of_table,
-+	},
-+	.probe	= adp810_probe,
-+	.id_table = adp810_id_table,
-+};
-+module_i2c_driver(adp810_driver);
-+
-+MODULE_AUTHOR("Akhilesh Patil <akhilesh@ee.iitb.ac.in>");
-+MODULE_DESCRIPTION("Driver for Aosong ADP810 sensor");
-+MODULE_LICENSE("GPL");
++        ethernet-phy@0 {
++            compatible = "ethernet-phy-id0007.0772", "ethernet-phy-ieee802.3-c22";
++            reg = <0>;
++            vsc8531,vddmac = <3300>;
++            vsc8531,edge-slowdown = <7>;
++            vsc8531,led-0-mode = <VSC8531_LINK_1000_ACTIVITY>;
++            vsc8531,led-1-mode = <VSC8531_LINK_100_ACTIVITY>;
++            load-save-gpios = <&gpio 10 GPIO_ACTIVE_HIGH>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 54ba517d7e79..1af57177a747 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -20,7 +20,7 @@ patternProperties:
+   "^(keypad|m25p|max8952|max8997|max8998|mpmc),.*": true
+   "^(pciclass|pinctrl-single|#pinctrl-single|PowerPC),.*": true
+   "^(pl022|pxa-mmc|rcar_sound|rotary-encoder|s5m8767|sdhci),.*": true
+-  "^(simple-audio-card|st-plgpio|st-spics|ts),.*": true
++  "^(simple-audio-card|st-plgpio|st-spics|ts|vsc8531),.*": true
+   "^pool[0-3],.*": true
+ 
+   # Keep list in alphabetical order.
 -- 
-2.34.1
+2.43.0
 
 
