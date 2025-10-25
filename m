@@ -1,366 +1,351 @@
-Return-Path: <devicetree+bounces-231030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id C28A4C08C61
-	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 08:49:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED830C08C87
+	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 09:01:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0CADE4E8E29
-	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 06:49:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AD8840229F
+	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 07:01:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F44327E056;
-	Sat, 25 Oct 2025 06:49:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7983D2C11F0;
+	Sat, 25 Oct 2025 07:01:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iQxycQ4c"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="BmHxK6ZW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010049.outbound.protection.outlook.com [52.101.228.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2440635B149
-	for <devicetree@vger.kernel.org>; Sat, 25 Oct 2025 06:49:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761374948; cv=none; b=CLcuHRbP32dgrzS67y2aOhciEJzqhJu5YiLJ+Ee1zpILpSa+N7odFclLo2/DjpZY6XkFkFYfzIrJBROQqjvY8kRHV+oaUjh7OzdqgStMinrX/MVDhPr4KyLpcbKeCNLHPilkfoqwj+wiuW+rVHNA3sC7LoRtQYvaFWr7Jwn9IN4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761374948; c=relaxed/simple;
-	bh=pVTlcY1X+kIhO3r0God2rsT/x3/ox7cpLS4Nu9m5TXo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IiKJyKG+vnIp4QLERCSibXOBYLTphncVFkF6gZ5fAM2exiZDwO/TiGN2C1Di9c+uEcM/woA5PPd0oda88MV80QfNs6aXYUsR8uHA5sEGyO/endulzJY7fnLWIKmVGGgN5NsK99TfcE3u6YI5oQUo2hKaZIwBQcq85QdDGWevj/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iQxycQ4c; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7a26b04bfc8so3161904b3a.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 23:49:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761374944; x=1761979744; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=QgMCq/BY+uw753rejJGDNmeTuTUhlxJMjMZ33QupS54=;
-        b=iQxycQ4cNnpDD5x2RfsUUo7OVXQ2JpqvFL4CYGAGN2hDr/NHqfsmDJ63CXPQNFTfjL
-         ZiRbRvx3mUoaPkdHNvalsJzWtUhh309hU5C+53NfnvsvlzjD8CZEZNxOPCjL2h0KZjnm
-         Cen9qOEKSYEAewzXFHOOIBI1oSyZ1DK3J3W3xICfRkivY8LPKzemOfe6rqdSMjYiWwri
-         Ha7Ajpnf6VybSDrCeMZzrs97ZC0SF0jofpFACViEQbUQEtBPMvZ4Rt7zorXj0ZGaiDmT
-         VqjtgQJIjZKF/hLfvxToYJwi7j5q5gjPL4U3J+Q9aZMe2+ReVWK+pAH/mCKz2zubYE0M
-         4IAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761374944; x=1761979744;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QgMCq/BY+uw753rejJGDNmeTuTUhlxJMjMZ33QupS54=;
-        b=wetWu+gm+aDC38bxTh5D79rgOIIvIDWzSCg0gbKSAYFZ13gf4tL6PssmrpeN3iRcDg
-         v998jbnM6+vH//YbY0vp/eVAs787SzJ6esJVwn7Aivu9waOviIOo6LIrDQrIvRlM2qnA
-         xW4Ofcc+50yuyASr+GWapUghLu3CYfdVnpVliVnV20bZH+zIvOWS3SLamHPfEViRSikf
-         A/prpiKn+U+K+kSlXadhwWpR9PKZPr00rBeIhrD7QmN5QdXg15spQPjNSBlwebzwPNbR
-         WgLeDUu9MpuWLDjnVg2jj6U+offr5p0KNbciAk1B2Iduv+dl98ZQcFktKd4KgWTnFRCS
-         N/tg==
-X-Forwarded-Encrypted: i=1; AJvYcCUOKYjnyJdreeAVnrcJi+rCcE4Ud0u1pqIdFxE3ZLAtK2NnUq/VnE3EkKpY3Cf15gKLQ2f9pBxBzm0u@vger.kernel.org
-X-Gm-Message-State: AOJu0YyusjwdbiEZ00uzLRJF6l2dF7vN8CjFpoQsmZBpz50c255d1Pf6
-	ExrbcPprh/WcZrHj8rj8ixh26sgqsTCU1YlsRW2SWMnLgrtMZt0G9/yz
-X-Gm-Gg: ASbGnctU6gltJeShE3im+e7FTmof6+GGdg00pLW5ddwW4ZQN4LhCcgCekU+52wFtwFr
-	tdlZprcqix0/zMQI7q6LAN28/RLOF6zHcL3+uiFuI+4y4E5OMT9yN/VjeN9p58qOy2yLUkvH+wu
-	6kaIrKUw3aQaQozhpsyS85eHc/JxoJWG9VxxaW8hkbxHlJD70m49EHBXf6QKOuG4eL46Q9RVEsK
-	3mqjME8jqEJgs+BwvkfdBlVqVHa/UvXJY7HJ2SqlaWdOcxbwXJ5qmHrwlr2eyiT1WPAx12d6Icn
-	LRGVfkqR/1z0xXYlHQAzG7VqD/AQLxGkfAmsw8+pNyU2b3bqSPzB9Pig5kh4+kFYMISrdXP76/U
-	MVsseii0wh6yYZ3+wPYztkUOFSqd/D0vlrkmdLF+nCRVe0o86FAaNixIUl7egXgotKiejMH+6O8
-	jlRdUrNeTH8h7X1KzwU91fn99Dq7zhAgE=
-X-Google-Smtp-Source: AGHT+IHwaj0UZRsnj8dcvgC/D/fSCnQYIZ0bRmj1nAwG07azhqtDDwbJkmRQ+8lLnIHl9U3aFl4gJQ==
-X-Received: by 2002:a05:6a00:3d13:b0:7a2:7bdd:cbf4 with SMTP id d2e1a72fcca58-7a27bddcd09mr9126120b3a.27.1761374944226;
-        Fri, 24 Oct 2025 23:49:04 -0700 (PDT)
-Received: from iku.. ([2401:4900:1c06:77f0:564:1203:6acd:bae8])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a414034661sm1281886b3a.26.2025.10.24.23.48.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Oct 2025 23:49:03 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org
-Cc: netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH net-next v2] dt-bindings: net: phy: vsc8531: Convert to DT schema
-Date: Sat, 25 Oct 2025 07:48:50 +0100
-Message-ID: <20251025064850.393797-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F425747F;
+	Sat, 25 Oct 2025 07:01:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.49
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761375706; cv=fail; b=nzIuEL+VmL1KbzNFXBga8m9CfGblFESSqapvNbMTw4oKefnv+dgG9oqhs1xscOAOgf5Jos1IrVOrx29gx0FA6SuIKuYzU5WjVxqyj8VLylU786aARhkSEFngm8+BiZGIZ9JYIbbbSYkq4+C+VMbCUhdYPAWyeB1Jv4a9ywlPoyg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761375706; c=relaxed/simple;
+	bh=7aLf/t80+XY8NGG9bQFwYXOy0BfKiXDvqSFuCxuV9DQ=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=HmBy+jwUvp4dAhAvoKTrZqfWMBAMOx9Ng/jn5T57lHcMT502XDZ/rRkdMBRbF3v8Z3qAFH5/btt6a3lRj+bab8OYhQqWtVv6rMUyvKVQAjmoMN3y4dBZ3CHIyy8dq0yxRwZcN2AYbhtsRoc9k69tey3IatcYR6OgS3y85b6rxt8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=BmHxK6ZW; arc=fail smtp.client-ip=52.101.228.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nWtCv4slyG/qu1KGwpmBzVpPtih4WG2O89wT3Cb8S60cZPVtV0FWMxqgLiUbhRh56+Fw9Xwo3WHLdwhzgmA/h3bJ7prsiTsSAZLxxfeXS/cy7iW3ocoBtwYkur6jhb5zzyNvPVIka29BkjWROF1xTlQSYUMQsQ59nSFPlpPCPb/VzNpqMCZgl90SIOV3xqZkIhh4ZxLe1Ft6wXb1TD2pnXeNudG0cYw//4ISTZC7wIvjnUkss8XUUDG5OYPHzII2HGzSRMYjml3pHUTtIRgRFcCDmrqO1Cddr24h/pirI3w2KZcGwJfhzr6ZazE07WIM/fTGR0sDO4LkhdlJDytf1g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=n3B/2HYmI1c7E1MRSKB9rHdxw7YsGhSR8BaNvpzH75A=;
+ b=jQoPOzCo7tZvAdcakh29LyqlyU9EgnhxsRgsQJBJGs2OSnn5ohuBNS2wVDKBMDKSgD6wwF0t9FyajkzQdDFMpcgIVjqNvlEK6K9fcnnCQRlTnadSKb49DocB9UvYSnCbQdytfaQFc8bgj/HQXEz/Ah+ijUu7EfOk0cNRQMVuD/Epdx0ZXECn6/tr8DProEr+FNKO1wvBxcXg5KfwstYwbwWuEC9F8d/7KGNUCbj+5d5Sq4qwZZ/tpT/7HiGvR2eT09tzsJPJs7WyK6vj43PM3x+26ldP8bdu9SMqxO5Iyr5P81nTg/tmXRgNILccbKUXQ1T3IdwoA+EkRXbqIJGqrg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=n3B/2HYmI1c7E1MRSKB9rHdxw7YsGhSR8BaNvpzH75A=;
+ b=BmHxK6ZWejB73VTf9/SueGCxF9TW6MlAxZT+ALdcdPy80s4UydKlHIy5iMa2DYWKbu0+tqED/t4CaP3F7yNJtSMa8uM1pmJTSiAK4sYGanCAlPlBU1THt0a0hFcrKGS4qUfh9qSne73f+M4+SJNfRQpY5Q26lu3Izy4lLESJIiQ=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by TYCPR01MB11227.jpnprd01.prod.outlook.com (2603:1096:400:3c4::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.9; Sat, 25 Oct
+ 2025 07:01:39 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1%4]) with mapi id 15.20.9275.009; Sat, 25 Oct 2025
+ 07:01:32 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heikki
+ Krogerus <heikki.krogerus@linux.intel.com>, Dmitry Baryshkov
+	<dmitry.baryshkov@oss.qualcomm.com>
+CC: "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v3 2/2] usb: typec: hd3ss3220: Enable VBUS based on ID pin
+ state
+Thread-Topic: [PATCH v3 2/2] usb: typec: hd3ss3220: Enable VBUS based on ID
+ pin state
+Thread-Index: AQHcRRKvhP4wQTQytEactMmaKsxS6rTSb8LQ
+Date: Sat, 25 Oct 2025 07:01:32 +0000
+Message-ID:
+ <TY3PR01MB113464EA259DDA069E7453DF986FEA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20251024181832.2744502-1-krishna.kurapati@oss.qualcomm.com>
+ <20251024181832.2744502-3-krishna.kurapati@oss.qualcomm.com>
+In-Reply-To: <20251024181832.2744502-3-krishna.kurapati@oss.qualcomm.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYCPR01MB11227:EE_
+x-ms-office365-filtering-correlation-id: 835c42bf-e170-4479-030d-08de13945469
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|1800799024|7416014|376014|38070700021;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?EgvgBQR6iPWcfPBXODSsuz3ZSxIwwz4Too+lrNomXYwstpHrLJexfO12+lJE?=
+ =?us-ascii?Q?N2NWirFcUVhOR6c6LbjFoOksnOmPvJrrAHB8gVd8O5D6Pk1O28Ahwymh1FN8?=
+ =?us-ascii?Q?NDe9AoqNuJhqmLvTLkhfoJMYihLwdrwBDKhGLMx4Vu9qMtL1nq3LKo2nuxmZ?=
+ =?us-ascii?Q?WqIBufKWv+7YRah/aqaQDE5H8vyfcqzw7xFXXY4KeZ9RhHQUJGUS+5mwV6o0?=
+ =?us-ascii?Q?jQSHW+3LRgIV+kZ6W8bKFhN7CHvrLSacbof/bmhLVbopTnrAYeq+o6apLyLw?=
+ =?us-ascii?Q?rf/Jm4LrK2qbHXZCC2GElgGxnDdUUxlZhFdPfShsZSHvQvj4rnXRnfKMTm7i?=
+ =?us-ascii?Q?wYbwPUh4pVESUqYi6NAP6L5f4tcB2V16LZMYX9FkbNqdo9qY6WFpJly16sTP?=
+ =?us-ascii?Q?53AGrdQAd8XLcrrSM5XiwMYxExTTgTDDP0R2U7pBKCmEOQiIjk8pkBcDpiMB?=
+ =?us-ascii?Q?2Pdh6OrO8ISeh1wSM3cEhp72whHaAHPM9A6GSQanO5yGM03GKZfUYJjMKi0d?=
+ =?us-ascii?Q?PLT06ba462XxGp0dOshPQ+HkHQNhnXDZJ2jQeJyKweFni8C1vO2UPQeLovqL?=
+ =?us-ascii?Q?5VERLAIwrjRPlk5iqLZp+U/rcj5ybNc52IUPabQIJ4gKm85f5bnQrPzVFLhq?=
+ =?us-ascii?Q?0PxE7mUQB0yp8ahn1orDhS2+gKrPosqGrZ60M27pQ1eqPcu1+j9o6KRvLs9K?=
+ =?us-ascii?Q?nJ+/y9vhR6xlOqbi5fs6HHIiNcNKIKqD6ATxc+PtFC3bIMHvgWHhVELD7frf?=
+ =?us-ascii?Q?t9SFZS6mIp0C5qm1QrQmXVXwV9J/GiECNBN9UeUmKaKJWUzcgsoqnDiP6o+a?=
+ =?us-ascii?Q?Zfl9q9qvQoiX7BGgwVqkd0FBmqfMDe0CQ7N8RIVo70cd8FK2w+NCJ0AjBgBm?=
+ =?us-ascii?Q?Wj0xrIvMb54k83y9Y/8mp6v2KHEWv+YiBP3KLM+Th98on4ZvMrzlnUUY+0if?=
+ =?us-ascii?Q?HS+h08n3PnWK7vH/EN3qlTv809UZFgpOGQe5OfgTSJM/oCf9udZ+SeZAt3HS?=
+ =?us-ascii?Q?0YgZVc+3gPBE2KwoS8OkzuRLAGlUetj3pxKTdYVxQjnqLJMD+tUAkI8R6Iqo?=
+ =?us-ascii?Q?xpTV8LdfA+bGpvcE0eM2A73HQ6ugB2c60wJ/dnkRYtZu2PqPI631MWLjSAAJ?=
+ =?us-ascii?Q?mzyRbxZ68zLr+aETxx1H38CswDafUWrOshQXp9pAfT079rlxpJFqpwIpHWSS?=
+ =?us-ascii?Q?4Is78LmtXjNOo3COZAQcMTnu5T/vU2qyd0Y5UdQzy+nbWxyvW4MvjOap7ved?=
+ =?us-ascii?Q?E+jD7jSrvLA20TTlJKCm+TKktzDBAD9iRpvxxwzhkhhXS44pkygcYokp2NUD?=
+ =?us-ascii?Q?0bLLprsCC4Ife5Ed9wmRw0j036+By4tM1bNLe873S34YnL0hAvkaI7rP5ktI?=
+ =?us-ascii?Q?S86QYsgqJDIZU3Sb3GnsJWbXkpM7YTfbyi7KVX/0iTrvsiKIYzlRr7iaOhOU?=
+ =?us-ascii?Q?GWT9mHadDn8wbzQ3+Z9sQvKtkTrLlNTQTBFXs6unufbamAyxJ3Q/jg=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?sKhYOyTsKv4VeVEIeyVRm4rPKs5TClYKowKZk4MtOXz3V8LaBTaqgv+6noLi?=
+ =?us-ascii?Q?xU6VTXdZBNKO42gxaPOX67f0Cs0fmf1i0Dm7RJzMEJidmv5DTh9jx3LDc638?=
+ =?us-ascii?Q?1cN9Vx4ZfPls2CVDeTTv0UsUvG1wTxOkmC8kGamKFt1aTqqs1Dm63RZp4g9v?=
+ =?us-ascii?Q?yw4daxhe5hvtYiQCSVgi89C3UvO5RJhlldzaJMTOfw5lJhaYyNaBpdArtimk?=
+ =?us-ascii?Q?HxhGMu4Y0ne0zwSYXkAKpV+ONW7VwBhUDlN8XJDJq900maaNd/LyNQc1oIR4?=
+ =?us-ascii?Q?ljx0chzLcVK+DM2bmgI2efkX0b8sIC3ukNPe7sfvz/47jERoKxOv1xelvAs+?=
+ =?us-ascii?Q?aU/XveS05DpoifAAX7zz7XCr+AefuQe0f0iGPGkJGpppyOgCYte1l9ukaAH2?=
+ =?us-ascii?Q?BvFqDPXkEC8Evg2JCTHxkRruuy8bNwcN4wCJuvZtb+ybinOWmdv0N5ji04Fy?=
+ =?us-ascii?Q?vwg5g/dJXXZGXckfdGjMytT/Ds/AfO53NqIagqbJvGRnnMP76/4CfcUCOLoI?=
+ =?us-ascii?Q?8GMeHsPKuTliA8SBFpY1y9dCnWCZ6JfSlEzXoKi/wOybFPcsHzA2NnHetREe?=
+ =?us-ascii?Q?hyVJ0adY5TRcGmkKTH3gheS64sLCMx4sMNW5yDty1QJe6hn8JNscGI2WxSQE?=
+ =?us-ascii?Q?KU+e5dF1e1OLqchmPnYDCYemcfatqGF9+H7LZUcL5xv5fCSTeNTnZgIWyjem?=
+ =?us-ascii?Q?pyf3t7XpeqGQz3Y0VWsuWFRvTGFZRK/aRnobhO3ZNc5wheeO0asjVbs5zyus?=
+ =?us-ascii?Q?TXNTIUpHCbzYw/RRr4duagI0TqZwtjgVlrSDqBlUQ6yQliMJ92rxy9m0kSu0?=
+ =?us-ascii?Q?ucBkMpmivF/vJ9T0d5n0zDaLGcqMUj/PLUkeabQAhf2OAMGO9treWaZUT9ui?=
+ =?us-ascii?Q?wv+bOGp32YXiRAqA0HGnm8JeS3uodPzQRplhwudN7kNtovtDQQz+h/48QJ6C?=
+ =?us-ascii?Q?w/0vkTKvO/fpsU7njVAPP/ujwfYedi1545DQ7yN4DwzNnUAMayUasRinOGfH?=
+ =?us-ascii?Q?lTVVKkd81hs8n7FdndjJkbjsPw1SRG67fy1Z9dvEJmSgVPAR8p2t2JWfOrUl?=
+ =?us-ascii?Q?jM682BTq2lpoE9Rl5ylJvWtS2rCL6SAK4rBrOoRsbMlHKO2o9hYPu78cPjZA?=
+ =?us-ascii?Q?cNLYeWILqD/TffGA8CR/xHCBzYfq28FsZ6ypeZmYjZjZEf2xvtMtymwhtuzk?=
+ =?us-ascii?Q?aPL9bey0BWZegv8XU+vdqWaXUHKEXz9EVKjKpiuW7XnnuFSSEns8ViNWmvfq?=
+ =?us-ascii?Q?fGYjFJg1F8o/lu6S/krkKoAwqJxL6JnnlkrnqxC7PDduTz5IrVGyVIZ6lhhY?=
+ =?us-ascii?Q?Rw64bl9N4VPzs0OjzYYBtozRfVdWmzRY/jQuPNW5tE1xHVsR7oHezLybb2xO?=
+ =?us-ascii?Q?kWcz+Hl+jQIkdbU9HhTYRKWpbiRomjt0awq6P+TAIKqf9kMgwcmfa7F+p+QF?=
+ =?us-ascii?Q?UtjglaNceRUnX9q2TIjfeDk46n1SmqzzRzSrHvjQXZ16e7QEixACZzOhkQQJ?=
+ =?us-ascii?Q?IOiS2dSypM5PQ90N4c+9JcdgF0v1pnp3CNGtbTAUgY0eOsxM9i2dc0Auzen4?=
+ =?us-ascii?Q?ak7wV9HEAGap9N8vsygIgY4xVY1cn+J8sbOEU+ZJQOiSQRRoMln374sh7zpB?=
+ =?us-ascii?Q?ZA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 835c42bf-e170-4479-030d-08de13945469
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Oct 2025 07:01:32.5245
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: FNQyedwztDrLymzjzF8iXd+C2s1SmpHHlRecBEVI0/pwExDBf8X1rVY/kRaKEsagPDoUmWBRjgAVq6/vKFu4+PRv4QaZFHkcTt3rth/fPXA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB11227
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Convert VSC8531 Gigabit ethernet phy binding to DT schema format. While
-at it add compatible string for VSC8541 PHY which is very much similar
-to the VSC8531 PHY and is already supported in the kernel. VSC8541 PHY
-is present on the Renesas RZ/T2H EVK.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-Inspired from the DT warnings seen while running dtbs check [0],
-took an opportunity to convert this binding to DT schema format.
-As there was no entry in the maintainers file Ive added myself
-as the maintainer for this binding.
-[0] https://lore.kernel.org/all/176073765433.419659.2490051913988670515.robh@kernel.org/
+> -----Original Message-----
+> From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+> Sent: 24 October 2025 19:19
+> To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>; Rob Herring <robh@ke=
+rnel.org>; Krzysztof
+> Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Heikk=
+i Krogerus
+> <heikki.krogerus@linux.intel.com>; Biju Das <biju.das.jz@bp.renesas.com>;=
+ Dmitry Baryshkov
+> <dmitry.baryshkov@oss.qualcomm.com>
+> Cc: linux-usb@vger.kernel.org; devicetree@vger.kernel.org; linux-kernel@v=
+ger.kernel.org; Krishna
+> Kurapati <krishna.kurapati@oss.qualcomm.com>
+> Subject: [PATCH v3 2/2] usb: typec: hd3ss3220: Enable VBUS based on ID pi=
+n state
+>=20
+> There is a ID pin present on HD3SS3220 controller that can be routed to S=
+oC. As per the datasheet:
+>=20
+> "Upon detecting a UFP device, HD3SS3220 will keep ID pin high if VBUS is =
+not at VSafe0V. Once VBUS is
+> at VSafe0V, the HD3SS3220 will assert ID pin low. This is done to enforce=
+ Type-C requirement that VBUS
+> must be at VSafe0V before re-enabling VBUS"
+>=20
+> Add support to read the ID pin state and enable VBUS accordingly.
+>=20
+> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+> ---
+>  drivers/usb/typec/hd3ss3220.c | 101 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 101 insertions(+)
+>=20
+> diff --git a/drivers/usb/typec/hd3ss3220.c b/drivers/usb/typec/hd3ss3220.=
+c index
+> 3ecc688dda82..089c4168c7b5 100644
+> --- a/drivers/usb/typec/hd3ss3220.c
+> +++ b/drivers/usb/typec/hd3ss3220.c
+> @@ -15,6 +15,9 @@
+>  #include <linux/usb/typec.h>
+>  #include <linux/delay.h>
+>  #include <linux/workqueue.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/of_graph.h>
+>=20
+>  #define HD3SS3220_REG_CN_STAT		0x08
+>  #define HD3SS3220_REG_CN_STAT_CTRL	0x09
+> @@ -54,6 +57,11 @@ struct hd3ss3220 {
+>  	struct delayed_work output_poll_work;
+>  	enum usb_role role_state;
+>  	bool poll;
+> +
+> +	struct gpio_desc *id_gpiod;
+> +	int id_irq;
+> +
+> +	struct regulator *vbus;
+>  };
+>=20
+>  static int hd3ss3220_set_power_opmode(struct hd3ss3220 *hd3ss3220, int p=
+ower_opmode) @@ -319,6
+> +327,71 @@ static const struct regmap_config config =3D {
+>  	.max_register =3D 0x0A,
+>  };
+>=20
+> +static irqreturn_t hd3ss3220_id_isr(int irq, void *dev_id) {
+> +	struct hd3ss3220 *hd3ss3220 =3D dev_id;
+> +	int ret;
+> +	int id;
+> +
+> +	if (IS_ERR_OR_NULL(hd3ss3220->vbus))
+> +		return IRQ_HANDLED;
+> +
+> +	id =3D hd3ss3220->id_gpiod ?
+> +gpiod_get_value_cansleep(hd3ss3220->id_gpiod) : 1;
+> +
+> +	if (!id) {
+> +		ret =3D regulator_enable(hd3ss3220->vbus);
+> +		if (ret)
+> +			dev_err(hd3ss3220->dev, "enable vbus regulator failed\n");
+> +	} else {
+> +		regulator_disable(hd3ss3220->vbus);
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int hd3ss3220_get_vbus_supply(struct hd3ss3220 *hd3ss3220) {
+> +	struct device_node *hd3ss3220_node =3D hd3ss3220->dev->of_node;
+> +	const char *compat_string;
+> +	struct device_node *np;
+> +	int num_ports =3D 0;
+> +	int ret =3D 0;
+> +	int i =3D 0;
+> +
+> +	num_ports =3D of_graph_get_port_count(hd3ss3220_node);
+> +
+> +	for (i =3D 0; i < num_ports; i++) {
+> +		np =3D of_graph_get_remote_node(hd3ss3220_node, i, 0);
+> +		if (!np) {
+> +			dev_err(hd3ss3220->dev, "failed to get device node");
+> +			ret =3D -ENODEV;
+> +			goto done;
+> +		}
+> +
+> +		ret =3D of_property_read_string(np, "compatible", &compat_string);
+> +		if (ret) {
+> +			of_node_put(np);
+> +			dev_err(hd3ss3220->dev, "failed to get compatible string");
+> +			ret =3D -ENODEV;
+> +			goto done;
+> +		}
+> +
+> +		if (strcmp(compat_string, "usb-c-connector") =3D=3D 0) {
+> +			hd3ss3220->vbus =3D of_regulator_get(hd3ss3220->dev, np, "vbus");
+> +			if (PTR_ERR(hd3ss3220->vbus) =3D=3D -ENODEV)
+> +				hd3ss3220->vbus =3D NULL;
+> +
+> +			if (IS_ERR(hd3ss3220->vbus))
+> +				ret =3D -ENODEV;
+> +		}
+> +
+> +		of_node_put(np);
+> +	}
+> +
+> +done:
+> +	return ret;
+> +}
+> +
+>  static int hd3ss3220_probe(struct i2c_client *client)  {
+>  	struct typec_capability typec_cap =3D { }; @@ -354,6 +427,34 @@ static =
+int hd3ss3220_probe(struct
+> i2c_client *client)
+>  		hd3ss3220->role_sw =3D usb_role_switch_get(hd3ss3220->dev);
+>  	}
+>=20
+> +	hd3ss3220->id_gpiod =3D devm_gpiod_get_optional(hd3ss3220->dev, "id", G=
+PIOD_IN);
+> +	if (IS_ERR(hd3ss3220->id_gpiod))
+> +		return PTR_ERR(hd3ss3220->id_gpiod);
+> +
+> +	if (hd3ss3220->id_gpiod) {
+> +		hd3ss3220->id_irq =3D gpiod_to_irq(hd3ss3220->id_gpiod);
+> +		if (hd3ss3220->id_irq < 0) {
+> +			dev_err(hd3ss3220->dev, "failed to get ID IRQ\n");
+> +			return hd3ss3220->id_irq;
+> +		}
+> +
+> +		ret =3D devm_request_threaded_irq(hd3ss3220->dev,
+> +						hd3ss3220->id_irq, NULL,
+> +						hd3ss3220_id_isr,
+> +						IRQF_TRIGGER_RISING |
+> +						IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
+> +						dev_name(hd3ss3220->dev), hd3ss3220);
+> +		if (ret < 0) {
+> +			dev_err(hd3ss3220->dev, "failed to get id irq\n");
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	ret =3D hd3ss3220_get_vbus_supply(hd3ss3220);
+> +	if (ret)
+> +		return dev_err_probe(hd3ss3220->dev,
+> +				     PTR_ERR(hd3ss3220->vbus), "failed to get vbus\n");
 
-Note,
-1] As there is no entry in maintainers file for this binding, Ive added myself
-as the maintainer for this binding.
+Does this code backward compatible? There is no vbus definition here [1]
 
-v1->v2:
-- Updated dependencies format as per review comments.
-- Updated vsc8531,edge-slowdown description to use formatting.
----
- .../bindings/net/mscc-phy-vsc8531.txt         |  73 ----------
- .../bindings/net/mscc-phy-vsc8531.yaml        | 131 ++++++++++++++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +-
- 3 files changed, 132 insertions(+), 74 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
- create mode 100644 Documentation/devicetree/bindings/net/mscc-phy-vsc8531.yaml
+[1]
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/ar=
+ch/arm64/boot/dts/renesas/r8a774c0-cat874.dts?h=3Dnext-20251024#n208
 
-diff --git a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-deleted file mode 100644
-index 0a3647fe331b..000000000000
---- a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-+++ /dev/null
-@@ -1,73 +0,0 @@
--* Microsemi - vsc8531 Giga bit ethernet phy
--
--Optional properties:
--- vsc8531,vddmac	: The vddmac in mV. Allowed values is listed
--			  in the first row of Table 1 (below).
--			  This property is only used in combination
--			  with the 'edge-slowdown' property.
--			  Default value is 3300.
--- vsc8531,edge-slowdown	: % the edge should be slowed down relative to
--			  the fastest possible edge time.
--			  Edge rate sets the drive strength of the MAC
--			  interface output signals.  Changing the
--			  drive strength will affect the edge rate of
--			  the output signal.  The goal of this setting
--			  is to help reduce electrical emission (EMI)
--			  by being able to reprogram drive strength
--			  and in effect slow down the edge rate if
--			  desired.
--			  To adjust the edge-slowdown, the 'vddmac'
--			  must be specified. Table 1 lists the
--			  supported edge-slowdown values for a given
--			  'vddmac'.
--			  Default value is 0%.
--			  Ref: Table:1 - Edge rate change (below).
--- vsc8531,led-[N]-mode	: LED mode. Specify how the LED[N] should behave.
--			  N depends on the number of LEDs supported by a
--			  PHY.
--			  Allowed values are defined in
--			  "include/dt-bindings/net/mscc-phy-vsc8531.h".
--			  Default values are VSC8531_LINK_1000_ACTIVITY (1),
--			  VSC8531_LINK_100_ACTIVITY (2),
--			  VSC8531_LINK_ACTIVITY (0) and
--			  VSC8531_DUPLEX_COLLISION (8).
--- load-save-gpios	: GPIO used for the load/save operation of the PTP
--			  hardware clock (PHC).
--
--
--Table: 1 - Edge rate change
------------------------------------------------------------------|
--| 		Edge Rate Change (VDDMAC)			|
--|								|
--| 3300 mV	2500 mV		1800 mV		1500 mV		|
--|---------------------------------------------------------------|
--| 0%		0%		0%		0%		|
--| (Fastest)			(recommended)	(recommended)	|
--|---------------------------------------------------------------|
--| 2%		3%		5%		6%		|
--|---------------------------------------------------------------|
--| 4%		6%		9%		14%		|
--|---------------------------------------------------------------|
--| 7%		10%		16%		21%		|
--|(recommended)	(recommended)					|
--|---------------------------------------------------------------|
--| 10%		14%		23%		29%		|
--|---------------------------------------------------------------|
--| 17%		23%		35%		42%		|
--|---------------------------------------------------------------|
--| 29%		37%		52%		58%		|
--|---------------------------------------------------------------|
--| 53%		63%		76%		77%		|
--| (slowest)							|
--|---------------------------------------------------------------|
--
--Example:
--
--        vsc8531_0: ethernet-phy@0 {
--                compatible = "ethernet-phy-id0007.0570";
--                vsc8531,vddmac		= <3300>;
--                vsc8531,edge-slowdown	= <7>;
--                vsc8531,led-0-mode	= <VSC8531_LINK_1000_ACTIVITY>;
--                vsc8531,led-1-mode	= <VSC8531_LINK_100_ACTIVITY>;
--		load-save-gpios		= <&gpio 10 GPIO_ACTIVE_HIGH>;
--        };
-diff --git a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.yaml b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.yaml
-new file mode 100644
-index 000000000000..0afbd0ff126f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.yaml
-@@ -0,0 +1,131 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/mscc-phy-vsc8531.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microsemi VSC8531 Gigabit Ethernet PHY
-+
-+maintainers:
-+  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-+
-+description:
-+  The VSC8531 is a Gigabit Ethernet PHY with configurable MAC interface
-+  drive strength and LED modes.
-+
-+allOf:
-+  - $ref: ethernet-phy.yaml#
-+
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - ethernet-phy-id0007.0570 # VSC8531
-+          - ethernet-phy-id0007.0772 # VSC8541
-+  required:
-+    - compatible
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - ethernet-phy-id0007.0570 # VSC8531
-+          - ethernet-phy-id0007.0772 # VSC8541
-+      - const: ethernet-phy-ieee802.3-c22
-+
-+  vsc8531,vddmac:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      The VDDMAC voltage in millivolts. This property is used in combination
-+      with the edge-slowdown property to control the drive strength of the
-+      MAC interface output signals.
-+    enum: [3300, 2500, 1800, 1500]
-+    default: 3300
-+
-+  vsc8531,edge-slowdown:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: >
-+      Percentage by which the edge rate should be slowed down relative to
-+      the fastest possible edge time. This setting helps reduce electromagnetic
-+      interference (EMI) by adjusting the drive strength of the MAC interface
-+      output signals. Valid values depend on the vddmac voltage setting
-+      according to the edge rate change table in the datasheet.
-+
-+      - When vsc8531,vddmac = 3300 mV: allowed values are 0, 2, 4, 7, 10, 17, 29, and 53.
-+        (Recommended: 7)
-+      - When vsc8531,vddmac = 2500 mV: allowed values are 0, 3, 6, 10, 14, 23, 37, and 63.
-+        (Recommended: 10)
-+      - When vsc8531,vddmac = 1800 mV: allowed values are 0, 5, 9, 16, 23, 35, 52, and 76.
-+        (Recommended: 0)
-+      - When vsc8531,vddmac = 1500 mV: allowed values are 0, 6, 14, 21, 29, 42, 58, and 77.
-+        (Recommended: 0)
-+    enum: [0, 2, 3, 4, 5, 6, 7, 9, 10, 14, 16, 17, 21, 23, 29, 35, 37, 42, 52, 53, 58, 63, 76, 77]
-+    default: 0
-+
-+  vsc8531,led-0-mode:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: LED[0] behavior mode. See include/dt-bindings/net/mscc-phy-vsc8531.h
-+      for available modes.
-+    minimum: 0
-+    maximum: 15
-+    default: 1
-+
-+  vsc8531,led-1-mode:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: LED[1] behavior mode. See include/dt-bindings/net/mscc-phy-vsc8531.h
-+      for available modes.
-+    minimum: 0
-+    maximum: 15
-+    default: 2
-+
-+  vsc8531,led-2-mode:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: LED[2] behavior mode. See include/dt-bindings/net/mscc-phy-vsc8531.h
-+      for available modes.
-+    minimum: 0
-+    maximum: 15
-+    default: 0
-+
-+  vsc8531,led-3-mode:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: LED[3] behavior mode. See include/dt-bindings/net/mscc-phy-vsc8531.h
-+      for available modes.
-+    minimum: 0
-+    maximum: 15
-+    default: 8
-+
-+  load-save-gpios:
-+    description: GPIO phandle used for the load/save operation of the PTP hardware
-+      clock (PHC).
-+    maxItems: 1
-+
-+dependencies:
-+  vsc8531,edge-slowdown:
-+    - vsc8531,vddmac
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/net/mscc-phy-vsc8531.h>
-+
-+    mdio {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ethernet-phy@0 {
-+            compatible = "ethernet-phy-id0007.0772", "ethernet-phy-ieee802.3-c22";
-+            reg = <0>;
-+            vsc8531,vddmac = <3300>;
-+            vsc8531,edge-slowdown = <7>;
-+            vsc8531,led-0-mode = <VSC8531_LINK_1000_ACTIVITY>;
-+            vsc8531,led-1-mode = <VSC8531_LINK_100_ACTIVITY>;
-+            load-save-gpios = <&gpio 10 GPIO_ACTIVE_HIGH>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 54ba517d7e79..1af57177a747 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -20,7 +20,7 @@ patternProperties:
-   "^(keypad|m25p|max8952|max8997|max8998|mpmc),.*": true
-   "^(pciclass|pinctrl-single|#pinctrl-single|PowerPC),.*": true
-   "^(pl022|pxa-mmc|rcar_sound|rotary-encoder|s5m8767|sdhci),.*": true
--  "^(simple-audio-card|st-plgpio|st-spics|ts),.*": true
-+  "^(simple-audio-card|st-plgpio|st-spics|ts|vsc8531),.*": true
-   "^pool[0-3],.*": true
- 
-   # Keep list in alphabetical order.
--- 
-2.43.0
+Cheers,
+Biju
+
+> +
+>  	if (IS_ERR(hd3ss3220->role_sw)) {
+>  		ret =3D PTR_ERR(hd3ss3220->role_sw);
+>  		goto err_put_fwnode;
+> --
+> 2.34.1
 
 
