@@ -1,293 +1,230 @@
-Return-Path: <devicetree+bounces-230980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63143C0853C
-	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 01:37:14 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D037C085DB
+	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 02:02:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C1CDF4E4DBE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 23:37:10 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 99FC7354D25
+	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 00:02:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61D3030DEA1;
-	Fri, 24 Oct 2025 23:37:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46475CA4E;
+	Sat, 25 Oct 2025 00:02:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Iy9nBdiW"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XGM/74FO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 956F622FE0A
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 23:37:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B0F5290F
+	for <devicetree@vger.kernel.org>; Sat, 25 Oct 2025 00:02:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761349029; cv=none; b=Zek2RjHtLs91lmJFrCvaUf24nYTCtKQzhJKwUUei5WpssmjV+Xjc//z3WhXJIlgdf75/AWneE7u1LsNw6RLwR6A+tHhvSigmVXSdgDn6XH04r72WCvYmhsyX3MFMrFolGWfzZeLQGBP9jiZvZBSzyVlfQwWPAhMPo6unwZrXb7E=
+	t=1761350543; cv=none; b=Ny9Xp9Et2kRJctCou2Q7bmH/6FSH8UEFTEiqcx69cd+/ubnx6Kp5MHMlSF+t1tUsTZFulJeTZj61Klx0wHFNHtNifa6538DLIzQND0X5+Q9zFYSRBqawbQ5kFu4ahMk2zD/zLq8lMZayG+VFwwtqsakWahp+AuZpVefHanEv3Zc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761349029; c=relaxed/simple;
-	bh=ejv28ey2tIsFthuSJL2U+UTwWlXVb/k3pPfpgY5U+7k=;
+	s=arc-20240116; t=1761350543; c=relaxed/simple;
+	bh=BqREg4gsxpMPNLe6ibuhRTqn6ygL+R0bbCz/kW1VxKM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ozi9mrVTqzZMu4TeCrVjSyvt8qDVPspMQQepwtoz6i6QYLm6zuwjlcBFLrYkPW8IptzplVO+mHHKsssUvPGX+t/0UrO3bn2TdZP6RoBQozP0mlUr2TI9LpPYclcv4nTYIzW1ty7ao8lS3JVxXdUQHcVLzxTF4cdT5IYBs0Ng7js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Iy9nBdiW; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:Content-Type; b=CNdtFxBaSJrp87MzZBkID+hwb7oQwZlXQiQj5auwPPI8zdXFVRLKZ+0ZhvWgwSVcf+P3oLC2bDX9ttgBd8iZUaRzxy3j6RXoWEE00UWbhKCtSIJUguSobd5cuVlOl1OsW1qvNqd1Efn6uV9gHsRYgeBMxkXOTnOYnCI/uy3f5xM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XGM/74FO; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59OI9IZM028334
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 23:37:07 GMT
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59OIA6FW030107
+	for <devicetree@vger.kernel.org>; Sat, 25 Oct 2025 00:02:20 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	EZFysYVyYBWltYrC0SedwHBc4KXxbxS34afltiLtTwQ=; b=Iy9nBdiW8XRRmxcg
-	lbXk52zwASTTi/7LnATf1ZS7YVdB16SC6qjLoCXxzoH1FkEnn7IOtrtOaiKd6FQY
-	XDd3QPYTChX05Rm37Kd01q5M9BQFJrqmUGkd63xyy1qGHPgrkx1JiFsXK7XlGBGq
-	pOODHc1rp3JRsibrjMdKVR1bHIsVug6MZGSvoRrwAbhcUyKSgfVDIAqItDohTHEE
-	aJfopVF1AdYXqgoH+TMsFl+gLf8ERPuDyG7j+F53H0jReldUycnr6UbkiQSKTMVQ
-	DLg0sncKh9a3yU0LkwwakuTTqTC3AaK5EqTSInDIE4FjNUYEr1ZPvd8NRH+hnRuf
-	ACfewQ==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49y67qqgqg-1
+	fc56pL8berOUmLto0AR19Euk08KtluvdaeNgGMdpvTE=; b=XGM/74FOGdNx4bPt
+	V2fYvREFPHifpId8zU2Ui2yQVcAFg4vl3fBm1nXlYcoeDfHYVXKzMnCXVKFwH9NV
+	ziNbdw9OozywFuMK9R+KP8Mmy9KWf+6igzG7Di5mhjv/NgAHH2XnP8ljF+k4x+HQ
+	TLX3TVACSX4kY/NvUVAJkHPpGvmT8RXfArjyAXrezz3uCta5/LfvRMuwfiMwYAHI
+	YCo3G4yPBh4AJE/eqLXCWLepxGpXYLzhT4JBWnr0xLI0TKfGPsMWgG/KLx8r9/dK
+	AalJYizIUkOpmENTDJ/1dYL2T6hOT+ni8NXATzK1GBwWSYJOs3Stqe3Mja39E0q0
+	xWn5Zw==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v1w8dg8s-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 23:37:06 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4e8a73256easo130612221cf.0
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 16:37:06 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Sat, 25 Oct 2025 00:02:20 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-7a285bb5376so982104b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 17:02:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761349022; x=1761953822;
+        d=1e100.net; s=20230601; t=1761350539; x=1761955339;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EZFysYVyYBWltYrC0SedwHBc4KXxbxS34afltiLtTwQ=;
-        b=J5uDItp1SoZaV7wv+vgQTu1LFBp1scTQL0YZ0o/5n5WSTSWSGxSLEHWYclpxp8MHgi
-         aZaG9I5PUCoMcEcbQFk0GMdDVvTi/aNyyXgUJ/mByQkyF3o6x0kvJyYAMY3qb+si0Ugm
-         6gvN+7WXuDgyqAk+L2TMVQ/HRHpLM3Tw23eAB9I1EBp/P8DFE6TRYfw+VL22NXRm1lrW
-         /uHAWVtBbZcvTDLMz2yRobWw2NcsQofMY0f1tQ+uEQcn85WnhnAVwh1uSzuVfnBXUbuX
-         29W5SzPksXskMNLr9Dkuu89qkyoAaEV5+qc+MeKQkRFgF0waxmJxQNI6BaZleNMUQefS
-         +hGw==
-X-Forwarded-Encrypted: i=1; AJvYcCVGhmC8VVtENBk9fXA+p/vHkq1yQ7ZUbr4opGb1uR9gbEzGz89kMo+xJF4FCpwe61z9t+nLmT9WZL/G@vger.kernel.org
-X-Gm-Message-State: AOJu0YwhN5j5N0C3h033Dm/5lcMiejco/4BvfmC5oydZM833hQkfs3wF
-	mgm6jJ1qeLlmNDYETr/DOaVLIA9skLK1FERHn7cUJsKcFyiTAmBr46ggQFEVCpjcJp2Ecm90ZEg
-	Y+gABoBKuJvaoPJeLNC6KDggBdFTgMi65JOTwyM7i6gVfCcjbX1yXCz+Ql9v2PX2LHiaAKkxf
-X-Gm-Gg: ASbGncuzqsZH7YHxeuR6nQPUy0nkHf6K+aTKJ1mdSLvHweHitdJjDVlEitZTxIeKZX+
-	ZujSVAa4yXZSXBWxgCOxRKEt/kyVWAgpzendKxApg1RbzpM0Z+Jc1WtmgKNF3VWttapys8ew1hF
-	jCgpxmZGQdAh3cKd0wNbqOXNp+3649qCoqR2TtAMr+vLE6+8RzZXHoIDKlBRmHqEha46LtjC5/X
-	c7a/22N6dq69Sj3DBOGDoeiMcCPrkIzzfosgmIsE6THWK1OxisD4+Duw48xeUOvff80Xqud4unT
-	yuA4kssjedjeaOFo8BWa0t97mBKPXZrTC9uTiJDVtXEgxZrK2D41YLNqxw/x1UUT73ZQE7njgkZ
-	ixwMMdw25HmmwRU3lAE6MNIjG3qcgdT2ogSBazDcZxxQvOI5ukinsd4XuW1ZHIiLY33DBu6Q2Z8
-	pQDHTZKtP+rbBlmq75Hb3JZQIa8lY3ZoLQ
-X-Received: by 2002:a05:622a:1a09:b0:4e8:a9f6:352 with SMTP id d75a77b69052e-4eb92c1a9a3mr55799161cf.20.1761349021813;
-        Fri, 24 Oct 2025 16:37:01 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHYkPMH/1amLDMteKXiUxzbbwspSGbdq6LXiAVzk+48gbt7k63sGZ7x/Epi+FyyMrfa33UFxQ==
-X-Received: by 2002:a05:622a:1a09:b0:4e8:a9f6:352 with SMTP id d75a77b69052e-4eb92c1a9a3mr55798821cf.20.1761349021214;
-        Fri, 24 Oct 2025 16:37:01 -0700 (PDT)
-Received: from ?IPV6:2001:999:78a:6bdb:4a04:8470:a7e2:a09b? (n858d08qopcovr0eljv-1.v6.elisa-mobile.fi. [2001:999:78a:6bdb:4a04:8470:a7e2:a09b])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-378ee09d2e5sm1610011fa.17.2025.10.24.16.36.59
+        bh=fc56pL8berOUmLto0AR19Euk08KtluvdaeNgGMdpvTE=;
+        b=N1m8yJ6Nm1Ey36Lz58NaD1DuVsxUTIed1JQu0TUA2krRa2VjSxuJOYo605tOQd1csR
+         4sBN1J+cBtqxKmrsjmicR4Rj/PrC4uMDjRNN4p7VGJ0358JfitcehfyZQ7ZSwWGLyzO+
+         b6jqZiGScKCA7rq5BXcOwSBFgy9bQ4cKbgqzmeUkLE0wg79pv1ZTyMmqL8BEOd64is5m
+         kNyHgdWtRn07FtHpvgf8fCXSBVSlqJ4Q+EOfThGMsHldp8DFfG8eJEJ5lw4mVQMLPjtS
+         ZQYUe+s7s59JmPWwBkjP1aLhlu30vAUWv3c2hQShXPbCaI6VDzeFJ3r71AyZNglApbcG
+         dnqw==
+X-Forwarded-Encrypted: i=1; AJvYcCU3xsyjEag0G+6F4fEVamt/ayuyd4z+8bm0fLuU7YQ2BZm96aaU85wfrKiBvsqrsGzPQbrSYxus3a7E@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxm97avI6S8U93dSC/nLihJb5tQGaQSBHpOQSq0A0aqrrL4ONVq
+	mQZ5ZksASUlAOFF9Ml/DLj+9kxXdTS6ozKbLFmItP3B/fxqox1jzb1DWSLH48kOyivgVmmudx9i
+	uuYczKQs2+COE+bH7ZrcMqu2vDzFyy2czO3N3UZeK/CK4aq3ckSXeB5wURczkuBFh
+X-Gm-Gg: ASbGncthdXCx7dzwBB30m07MRX2G6cw+EhJNtK4qebQrxRJs0QKBQ+lWOTIEpssOx1r
+	TaCkWGeFYRDPN580kI0LduDrZgxM6QQnxZKfTGNWclvGZYGB0uyLHcH+UaTf0Qo13XlCRZQydG9
+	R1V999hFvXgPArRvLJzQcZDrrC4nxNtWVakyRXUoJbor3fWwSY64gh7uDxlCYDk5bFHLY0WypPj
+	Lz0cBRqJiWy9VKjC5N3sor7qO6/V1n+Am3JvyB6zquDD4cmdrSNwPDrtveIkFf10l8tNtde8k9i
+	CCyHTKCFlAJWKFRKAK0NWq+5YJ1pGR5JuWDF8TPCaDpGr5mSQ1bzOj8I5mZ1o3X11TWNsR5FlSH
+	9yf/vUSNDErP3+qXX+hoR7HHQUeExtJUIv077riHc
+X-Received: by 2002:a05:6a20:e291:b0:341:3b91:69d1 with SMTP id adf61e73a8af0-3413b916bfemr325144637.5.1761350539005;
+        Fri, 24 Oct 2025 17:02:19 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHx6iqMO7Mnjaq8k2ZFocktbexyApACGzLDJtVcDcWlYMjTJ7zTgXxvx6wLi2N8LqDG0LX5kw==
+X-Received: by 2002:a05:6a20:e291:b0:341:3b91:69d1 with SMTP id adf61e73a8af0-3413b916bfemr325102637.5.1761350538483;
+        Fri, 24 Oct 2025 17:02:18 -0700 (PDT)
+Received: from [10.73.53.19] (pat_11.qualcomm.com. [192.35.156.11])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b712d024aaasm382952a12.26.2025.10.24.17.02.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Oct 2025 16:37:00 -0700 (PDT)
-Message-ID: <417075cb-73e8-47fa-9685-a0441dab7250@oss.qualcomm.com>
-Date: Sat, 25 Oct 2025 02:37:00 +0300
+        Fri, 24 Oct 2025 17:02:17 -0700 (PDT)
+Message-ID: <9d3dd1cf-4969-3dcb-18dc-59cfb68033f7@oss.qualcomm.com>
+Date: Fri, 24 Oct 2025 17:02:15 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] usb: typec: hd3ss3220: Enable VBUS based on ID pin
- state
-To: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v5 07/10] phy: qualcomm: qmp-combo: Update QMP PHY with
+ Glymur settings
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, konrad.dybcio@oss.qualcomm.com,
+        dmitry.baryshkov@oss.qualcomm.com, kishon@kernel.org, vkoul@kernel.org,
+        gregkh@linuxfoundation.org, robh@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20251024181832.2744502-1-krishna.kurapati@oss.qualcomm.com>
- <20251024181832.2744502-3-krishna.kurapati@oss.qualcomm.com>
+References: <20251006222002.2182777-1-wesley.cheng@oss.qualcomm.com>
+ <20251006222002.2182777-8-wesley.cheng@oss.qualcomm.com>
+ <zaotrz6upmpwv2w65633rlflubmykzn5dqiydl66y7rdalld4l@bo4oto5iynor>
 Content-Language: en-US
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <20251024181832.2744502-3-krishna.kurapati@oss.qualcomm.com>
+From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+In-Reply-To: <zaotrz6upmpwv2w65633rlflubmykzn5dqiydl66y7rdalld4l@bo4oto5iynor>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDIyMDE2OCBTYWx0ZWRfX0crIz2VOUNZH
- D7ypYvTxQVHw7wkKO6G+HayjdVtB8YA+WfRgfRWVrkVDul25Nml/hzv9VoQ+45GjS7wTUOwhmP5
- CJMicmIlt7NNzUzZY8Qt5ztdRqSFWrHmOMj4gxJQuBrF0jfpJI0Ff6FwLh9m2hcqJAIP8NxOKP9
- FXyPH3USPSO4oPvPmqND6suuOR0wkr2zT5iHpH7SqJT2gfc5wX4qrf6Q/dFAVOPfmB8OyglVWNB
- e3T3Ibbqgrb+BqDoHx1NDd5i2wwfpPRMFTiUHOIEBY8kq0yS2cBAq+HIBgLQNAshyrAF1R6GUXV
- 06u5X4/NdB4Jmab6uAY63plI0P6LFybpDOhPT1pI1sCxSyZ1Q6Gk/qg8pGlU04s9W8tOLlFkZ5j
- QNx90fuBkPCjLCLtacWSwLIsDZl1Og==
-X-Authority-Analysis: v=2.4 cv=LMRrgZW9 c=1 sm=1 tr=0 ts=68fc0da2 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
- a=HzzVZquQTjcG95wWTlcA:9 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-GUID: KZMxX8Qte0mBy4I8wG6UYXdknXiUr79h
-X-Proofpoint-ORIG-GUID: KZMxX8Qte0mBy4I8wG6UYXdknXiUr79h
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAxNSBTYWx0ZWRfX4Vw+b1rGX8RV
+ maBHVp7zxGrxZX3QhRLUWhvFIChZrqcGCtEbUUJlpjB4/VFYRhXbMzucgDm5M59MOzGcxsS1Q1Y
+ KN2HGzn+htF/vkNS7fPbCsDLAMxWZvbZbZKsph4ZQ3WfmDqnSTJWHaMFKw1ldjyif3uPE6VWyqE
+ x81I7iEWeFTph4+3lbn2N+AKko0tZWeCyF8n2xrKKq1hCN7MSKzheaFHiMcvCIr3LlQP9WC0Lwf
+ /boBu5fKu0T43zFWtqLBDNmJzk3SE6thTe+iJXIz4h2dwWkLHY4UUj1s8ffBUl1VwHjGJWr1976
+ f/p7tmjKKPE4pFHSJ4rHEZP3pipBjVO+85OOFc85E4PHvH44viw+QigQt2K/Zwn2zgKF1vh5aTV
+ RxITx/LhEBsiJyhxs4Q5bp1c2yTk4g==
+X-Authority-Analysis: v=2.4 cv=bNUb4f+Z c=1 sm=1 tr=0 ts=68fc138c cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=ZdW6uxA9NKXbfdqeeS2OGA==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=iT4AbuSYlod7UvTVlOgA:9 a=QEXdDO2ut3YA:10
+ a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-GUID: hRxG3rL54riE4lwGWTbE9Y-wHGGcmI0_
+X-Proofpoint-ORIG-GUID: hRxG3rL54riE4lwGWTbE9Y-wHGGcmI0_
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-10-24_05,2025-10-22_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 clxscore=1015 priorityscore=1501 impostorscore=0 phishscore=0
- bulkscore=0 malwarescore=0 adultscore=0 lowpriorityscore=0 spamscore=0
+ bulkscore=0 phishscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015
+ priorityscore=1501 suspectscore=0 adultscore=0 spamscore=0 impostorscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510220168
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180015
 
-On 24/10/2025 21:18, Krishna Kurapati wrote:
-> There is a ID pin present on HD3SS3220 controller that can be routed
-> to SoC. As per the datasheet:
+
+
+On 10/24/2025 3:04 AM, Abel Vesa wrote:
+> On 25-10-06 15:19:59, Wesley Cheng wrote:
+>> For SuperSpeed USB to work properly, there is a set of HW settings that
+>> need to be programmed into the USB blocks within the QMP PHY.  Ensure that
+>> these settings follow the latest settings mentioned in the HW programming
+>> guide.  The QMP USB PHY on Glymur is a USB43 based PHY that will have some
+>> new ways to define certain registers, such as the replacement of TXA/RXA
+>> and TXB/RXB register sets.  This was replaced with the LALB register set.
+>>
+>> There are also some PHY init updates to modify the PCS MISC register space.
+>> Without these, the QMP PHY PLL locking fails.
+>>
+>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+>> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+>> ---
+>>   drivers/phy/qualcomm/phy-qcom-qmp-combo.c     | 314 ++++++++-
+>>   .../phy/qualcomm/phy-qcom-qmp-pcs-aon-v8.h    |  17 +
+>>   .../phy/qualcomm/phy-qcom-qmp-pcs-misc-v8.h   |  12 +
+>>   .../qualcomm/phy-qcom-qmp-qserdes-lalb-v8.h   | 639 ++++++++++++++++++
+>>   .../phy/qualcomm/phy-qcom-qmp-usb43-pcs-v8.h  |  33 +
+>>   .../phy-qcom-qmp-usb43-qserdes-com-v8.h       | 224 ++++++
+>>   drivers/phy/qualcomm/phy-qcom-qmp.h           |   2 +
+>>   7 files changed, 1240 insertions(+), 1 deletion(-)
+>>   create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-aon-v8.h
+>>   create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-misc-v8.h
+>>   create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-qserdes-lalb-v8.h
+>>   create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-usb43-pcs-v8.h
+>>   create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-usb43-qserdes-com-v8.h
+>>
+>> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+>> index 1caa1fb6a8c7..8216820e388f 100644
+>> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+>> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
 > 
-> "Upon detecting a UFP device, HD3SS3220 will keep ID pin high if VBUS is
-> not at VSafe0V. Once VBUS is at VSafe0V, the HD3SS3220 will assert ID pin
-> low. This is done to enforce Type-C requirement that VBUS must be at
-> VSafe0V before re-enabling VBUS"
+> [...]
 > 
-> Add support to read the ID pin state and enable VBUS accordingly.
+>> +static const struct qmp_phy_cfg glymur_usb3dpphy_cfg = {
+>> +	.offsets		= &qmp_combo_usb43dp_offsets_v8,
+>> +
+>> +	.serdes_tbl		= glymur_usb43dp_serdes_tbl,
+>> +	.serdes_tbl_num		= ARRAY_SIZE(glymur_usb43dp_serdes_tbl),
+>> +	.tx_tbl			= glymur_usb43dp_lalb_tbl,
+>> +	.tx_tbl_num		= ARRAY_SIZE(glymur_usb43dp_lalb_tbl),
+>> +	.pcs_tbl		= glymur_usb43dp_pcs_tbl,
+>> +	.pcs_tbl_num		= ARRAY_SIZE(glymur_usb43dp_pcs_tbl),
+>> +	.pcs_usb_tbl		= glymur_usb43dp_pcs_usb_tbl,
+>> +	.pcs_usb_tbl_num	= ARRAY_SIZE(glymur_usb43dp_pcs_usb_tbl),
+>> +	.pcs_misc_tbl		= glymur_usb43dp_pcs_misc_tbl,
+>> +	.pcs_misc_tbl_num	= ARRAY_SIZE(glymur_usb43dp_pcs_misc_tbl),
+>> +
+>> +	.dp_serdes_tbl		= qmp_v6_n4_dp_serdes_tbl,
+>> +	.dp_serdes_tbl_num	= ARRAY_SIZE(qmp_v6_n4_dp_serdes_tbl),
+>> +	.dp_tx_tbl		= qmp_v6_n4_dp_tx_tbl,
+>> +	.dp_tx_tbl_num		= ARRAY_SIZE(qmp_v6_n4_dp_tx_tbl),
+>> +
+>> +	.serdes_tbl_rbr		= qmp_v6_n4_dp_serdes_tbl_rbr,
+>> +	.serdes_tbl_rbr_num	= ARRAY_SIZE(qmp_v6_n4_dp_serdes_tbl_rbr),
+>> +	.serdes_tbl_hbr		= qmp_v6_n4_dp_serdes_tbl_hbr,
+>> +	.serdes_tbl_hbr_num	= ARRAY_SIZE(qmp_v6_n4_dp_serdes_tbl_hbr),
+>> +	.serdes_tbl_hbr2	= qmp_v6_n4_dp_serdes_tbl_hbr2,
+>> +	.serdes_tbl_hbr2_num	= ARRAY_SIZE(qmp_v6_n4_dp_serdes_tbl_hbr2),
+>> +	.serdes_tbl_hbr3	= qmp_v6_n4_dp_serdes_tbl_hbr3,
+>> +	.serdes_tbl_hbr3_num	= ARRAY_SIZE(qmp_v6_n4_dp_serdes_tbl_hbr3),
+>> +
+>> +	.swing_hbr_rbr		= &qmp_dp_v6_voltage_swing_hbr_rbr,
+>> +	.pre_emphasis_hbr_rbr	= &qmp_dp_v6_pre_emphasis_hbr_rbr,
+>> +	.swing_hbr3_hbr2	= &qmp_dp_v5_voltage_swing_hbr3_hbr2,
+>> +	.pre_emphasis_hbr3_hbr2	= &qmp_dp_v5_pre_emphasis_hbr3_hbr2,
+>> +
+>> +	.dp_aux_init		= qmp_v4_dp_aux_init,
+>> +	.configure_dp_tx	= qmp_v4_configure_dp_tx,
+>> +	.configure_dp_phy	= qmp_v4_configure_dp_phy,
+>> +	.calibrate_dp_phy	= qmp_v4_calibrate_dp_phy,
 > 
-> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-> ---
->   drivers/usb/typec/hd3ss3220.c | 101 ++++++++++++++++++++++++++++++++++
->   1 file changed, 101 insertions(+)
+> So I see you are adding the DP related config here as well, but it is
+> definitely not compatible with v6 N4. I'm assyuming you picked v6 N4 as a default
+> just to allow the USB part work for now, right ?
 > 
-> diff --git a/drivers/usb/typec/hd3ss3220.c b/drivers/usb/typec/hd3ss3220.c
-> index 3ecc688dda82..089c4168c7b5 100644
-> --- a/drivers/usb/typec/hd3ss3220.c
-> +++ b/drivers/usb/typec/hd3ss3220.c
-> @@ -15,6 +15,9 @@
->   #include <linux/usb/typec.h>
->   #include <linux/delay.h>
->   #include <linux/workqueue.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/of_graph.h>
->   
->   #define HD3SS3220_REG_CN_STAT		0x08
->   #define HD3SS3220_REG_CN_STAT_CTRL	0x09
-> @@ -54,6 +57,11 @@ struct hd3ss3220 {
->   	struct delayed_work output_poll_work;
->   	enum usb_role role_state;
->   	bool poll;
-> +
-> +	struct gpio_desc *id_gpiod;
-> +	int id_irq;
-> +
-> +	struct regulator *vbus;
->   };
->   
->   static int hd3ss3220_set_power_opmode(struct hd3ss3220 *hd3ss3220, int power_opmode)
-> @@ -319,6 +327,71 @@ static const struct regmap_config config = {
->   	.max_register = 0x0A,
->   };
->   
-> +static irqreturn_t hd3ss3220_id_isr(int irq, void *dev_id)
-> +{
-> +	struct hd3ss3220 *hd3ss3220 = dev_id;
-> +	int ret;
-> +	int id;
-> +
-> +	if (IS_ERR_OR_NULL(hd3ss3220->vbus))
-> +		return IRQ_HANDLED;
-> +
-> +	id = hd3ss3220->id_gpiod ? gpiod_get_value_cansleep(hd3ss3220->id_gpiod) : 1;
-> +
-> +	if (!id) {
-> +		ret = regulator_enable(hd3ss3220->vbus);
-> +		if (ret)
-> +			dev_err(hd3ss3220->dev, "enable vbus regulator failed\n");
-> +	} else {
-> +		regulator_disable(hd3ss3220->vbus);
-> +	}
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int hd3ss3220_get_vbus_supply(struct hd3ss3220 *hd3ss3220)
-> +{
-> +	struct device_node *hd3ss3220_node = hd3ss3220->dev->of_node;
-> +	const char *compat_string;
-> +	struct device_node *np;
-> +	int num_ports = 0;
-> +	int ret = 0;
-> +	int i = 0;
-> +
-> +	num_ports = of_graph_get_port_count(hd3ss3220_node);
-> +
-> +	for (i = 0; i < num_ports; i++) {
-> +		np = of_graph_get_remote_node(hd3ss3220_node, i, 0);
-> +		if (!np) {
-> +			dev_err(hd3ss3220->dev, "failed to get device node");
-> +			ret = -ENODEV;
-> +			goto done;
-> +		}
-> +
-> +		ret = of_property_read_string(np, "compatible", &compat_string);
-> +		if (ret) {
-> +			of_node_put(np);
-> +			dev_err(hd3ss3220->dev, "failed to get compatible string");
-> +			ret = -ENODEV;
-> +			goto done;
-> +		}
-> +
-> +		if (strcmp(compat_string, "usb-c-connector") == 0) {
-> +			hd3ss3220->vbus = of_regulator_get(hd3ss3220->dev, np, "vbus");
-> +			if (PTR_ERR(hd3ss3220->vbus) == -ENODEV)
-> +				hd3ss3220->vbus = NULL;
-> +
-> +			if (IS_ERR(hd3ss3220->vbus))
-> +				ret = -ENODEV;
-> +		}
+> I don't suppose we can drop the DP related config from this patch and
+> still have the USB part working, right?
+> 
+> Otherwise, we need to mention the fact that even though the DP part
+> is also being added, it is broken.
 
-This whole loop is an overkill. You know that only port@0 can be 
-connected to the usb-c-connector. There is no need to check other ports. 
-there is no need to check for the compatible, etc.
+Hi Abel,
 
-> +
-> +		of_node_put(np);
-> +	}
-> +
-> +done:
-> +	return ret;
-> +}
-> +
->   static int hd3ss3220_probe(struct i2c_client *client)
->   {
->   	struct typec_capability typec_cap = { };
-> @@ -354,6 +427,34 @@ static int hd3ss3220_probe(struct i2c_client *client)
->   		hd3ss3220->role_sw = usb_role_switch_get(hd3ss3220->dev);
->   	}
->   
-> +	hd3ss3220->id_gpiod = devm_gpiod_get_optional(hd3ss3220->dev, "id", GPIOD_IN);
-> +	if (IS_ERR(hd3ss3220->id_gpiod))
-> +		return PTR_ERR(hd3ss3220->id_gpiod);
-> +
-> +	if (hd3ss3220->id_gpiod) {
-> +		hd3ss3220->id_irq = gpiod_to_irq(hd3ss3220->id_gpiod);
-> +		if (hd3ss3220->id_irq < 0) {
-> +			dev_err(hd3ss3220->dev, "failed to get ID IRQ\n");
-> +			return hd3ss3220->id_irq;
-> +		}
-> +
-> +		ret = devm_request_threaded_irq(hd3ss3220->dev,
-> +						hd3ss3220->id_irq, NULL,
-> +						hd3ss3220_id_isr,
-> +						IRQF_TRIGGER_RISING |
-> +						IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-> +						dev_name(hd3ss3220->dev), hd3ss3220);
-> +		if (ret < 0) {
-> +			dev_err(hd3ss3220->dev, "failed to get id irq\n");
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	ret = hd3ss3220_get_vbus_supply(hd3ss3220);
-> +	if (ret)
-> +		return dev_err_probe(hd3ss3220->dev,
-> +				     PTR_ERR(hd3ss3220->vbus), "failed to get vbus\n");
-> +
->   	if (IS_ERR(hd3ss3220->role_sw)) {
->   		ret = PTR_ERR(hd3ss3220->role_sw);
->   		goto err_put_fwnode;
+That is correct.  Without these defined, the USB path won't work, and 
+we'll need to supplement this if we wanted to add DP support.  Hence, 
+why I didn't add any mention of DP altmode in the commit text.  I can 
+clarify that we added DP placeholders if that makes it more clear in the 
+commit text.
 
-
--- 
-With best wishes
-Dmitry
+Thanks
+Wesley CHeng
 
