@@ -1,173 +1,231 @@
-Return-Path: <devicetree+bounces-231042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5985DC0907B
-	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 14:44:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AF26C09183
+	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 16:14:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C97623B6732
-	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 12:44:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4124C1B239CF
+	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 14:15:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3668F2FBE03;
-	Sat, 25 Oct 2025 12:44:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCA6E2FD7DD;
+	Sat, 25 Oct 2025 14:14:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m0oqDjVD"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="BkHLfcxk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.smtpout.orange.fr (smtp-75.smtpout.orange.fr [80.12.242.75])
+	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0831B242D7F;
-	Sat, 25 Oct 2025 12:44:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82C0926290;
+	Sat, 25 Oct 2025 14:14:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.75
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761396246; cv=none; b=DAzs811LytlswBFDrwB0KJIEvUPPE9xVmhGDzHQEnCvQBFb8BLcWDHpqrbK/7sYQEBRarSlB+ifiMx4wP6Ok/xB2OBE/sV4dQJwZAYHyftq0ZcmLNrQIZA8O+WtYg5DDHv3Ygu3vCfP8O7FiMGf7FNXh481Ze/aq7G8nFXuvDkI=
+	t=1761401687; cv=none; b=CsPTLY8l7UigfZOqn/yeY4g6goYz9IYb3jvA8mrpr6qZJkywGylmJ/hvBdlxjk++cTITBZH2zIYYnOPPsE0w1LTfKlPZpYj6ZLgUuQnwAr5kzsErx5sGw7YMhb1SRAx7yyq74Ne7W+CK2+xRz8eZcQmWg3ucMAwBGH79vKte7a0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761396246; c=relaxed/simple;
-	bh=b5QpYMZmMe9U2UEWN9ko4/SOjOQwMOaP9+o4qUFvVF8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TUf0dBVvlvVTu6MVjZewEn3TukZmToq+Fve7yEJHoh6sXXa7Ao3/2dfAZ6RRa2QsoPYpYEpPNy0RhDRtwiz3OcvIVrsdedSy35zKuI9AtN8cwIOms6BWUAlQb2ne1yVx8wtJLh+opwxzehQXYdCbGqSrRqBbs1mz8SxVL4zUpFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m0oqDjVD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79F2EC4CEF5;
-	Sat, 25 Oct 2025 12:44:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761396245;
-	bh=b5QpYMZmMe9U2UEWN9ko4/SOjOQwMOaP9+o4qUFvVF8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=m0oqDjVDFfQ9fTKk4ScPbIJezjt4zWQx7Y4LueSWL7XLlQtXTsKp5EEg5EY+SOdTU
-	 Z9243Me9Stozh4c3HL6aMqpqqo9NyhSYLavRmj0E5ZkuE90XkXhLL8EiNDMjN+QaqI
-	 NcuOaZqWGJvQ8D22AGN8cnqxIuR6LGo5vd7dPHFXYJHCGTAfXob/I1JPK2jxR92GFB
-	 wN5++uQ/4SJjxX4zc/u/eXvzFnITz9y1M9XqnAaolvyC2fJSdiaYaYa/dYgT5jxEoB
-	 TRtcdej4/bEnyIMQaMSe2d525pjYuaidWNAW8iH01QCp+tEUOr8KqMe+q8s4O8pNK7
-	 JvHNt+DTi5RlA==
-Date: Sat, 25 Oct 2025 13:44:00 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Longbin Li <looong.bin@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Yu Yuan <yu.yuan@sjtu.edu.cn>, Ze Huang <huangze@whut.edu.cn>,
-	devicetree@vger.kernel.org, sophgo@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: soc: sophgo: add TOP syscon for
- CV18XX/SG200X series SoC
-Message-ID: <20251025-shakable-jujitsu-3a5e9c8895a5@spud>
-References: <20251024030528.25511-1-looong.bin@gmail.com>
- <20251024030528.25511-2-looong.bin@gmail.com>
- <20251024-hangout-designing-33e96c0d35fc@spud>
- <oymxspgopaqja63nipufgzn6kpobkdopemfaw3azhom3ikvk5f@e7cg4lq64j2o>
+	s=arc-20240116; t=1761401687; c=relaxed/simple;
+	bh=ggXg7tpSRfPSWwgDDEc0Mi4dgvu2t7qPfbblFCUWpjc=;
+	h=Message-ID:Date:MIME-Version:Subject:References:From:To:Cc:
+	 In-Reply-To:Content-Type; b=Atd79vJo0BYfQWjOV0vrGtKQHYd6X6aZhp+lO0A8bML7qIyGSYGzw+BHfmUPTcaOc/9HbjIxvO7NdfOxdv3bFICMho0pyiQvUSDNi5TnYlgKLwvKcCPWpdjNM3NFmMoiqHIv3oWChDzrdUrlOwJZTwqbPHonr0WLVQBznGWvskg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=BkHLfcxk; arc=none smtp.client-ip=80.12.242.75
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+ ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
+	by smtp.orange.fr with ESMTPA
+	id Cf2UvEzW5B8skCf2VvuYL3; Sat, 25 Oct 2025 16:14:41 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1761401681;
+	bh=hNXgE5EPV7K9LPWtHEU6p5h+Ujg/qjo4e+CAbzOghM8=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To;
+	b=BkHLfcxkxkyKAyDzQCjwZ6q+4U0UK/ufwXpHiUGFp5q7j8xhnzrw+N2pGpHHUKopE
+	 NGoGbRHxxuUbi9bqYILTWgEuq0H0dnNED16eFhJl1l7icPHWT+4OBrbykN8RwiOFTm
+	 6NZQYdGSocDTWHBiW/38B1yAOX2suAiwXeR1xWM5kD1Yh5/PB23KwHGdjm9dMBYm4d
+	 P0ig2i6ZnUAACVWt8Guxym4AesqejMLM9OI3Md8ZBdKqvNipF0hrP8KehgmnlGjJ1V
+	 puIL6Nijnbi3coM2eDAQBqJhhCydlD2htJ1ZwaPn2NwJAlaXrN88G7cCVD77gnYWtb
+	 SAF/DOPDjPjWA==
+X-ME-Helo: [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Sat, 25 Oct 2025 16:14:41 +0200
+X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
+Message-ID: <9b059848-1512-457c-8437-8172e3726992@wanadoo.fr>
+Date: Sat, 25 Oct 2025 16:14:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="BNmCECBWFm1Puo0R"
-Content-Disposition: inline
-In-Reply-To: <oymxspgopaqja63nipufgzn6kpobkdopemfaw3azhom3ikvk5f@e7cg4lq64j2o>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] usb: typec: hd3ss3220: Enable VBUS based on ID pin
+ state
+References: <20251025122854.1163275-1-krishna.kurapati@oss.qualcomm.com>
+ <20251025122854.1163275-3-krishna.kurapati@oss.qualcomm.com>
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Content-Language: en-US, fr-FR
+To: krishna.kurapati@oss.qualcomm.com
+Cc: biju.das.jz@bp.renesas.com, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, dmitry.baryshkov@oss.qualcomm.com,
+ gregkh@linuxfoundation.org, heikki.krogerus@linux.intel.com,
+ krzk+dt@kernel.org, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+ robh@kernel.org
+In-Reply-To: <20251025122854.1163275-3-krishna.kurapati@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+Le 25/10/2025 à 14:28, Krishna Kurapati a écrit :
+> There is a ID pin present on HD3SS3220 controller that can be routed
+> to SoC. As per the datasheet:
+> 
+> "Upon detecting a UFP device, HD3SS3220 will keep ID pin high if VBUS is
+> not at VSafe0V. Once VBUS is at VSafe0V, the HD3SS3220 will assert ID pin
+> low. This is done to enforce Type-C requirement that VBUS must be at
+> VSafe0V before re-enabling VBUS"
+> 
+> Add support to read the ID pin state and enable VBUS accordingly.
+> 
+> Signed-off-by: Krishna Kurapati <krishna.kurapati-5oFBVzJwu8Ry9aJCnZT0Uw@public.gmane.org>
+> ---
+>   drivers/usb/typec/hd3ss3220.c | 79 +++++++++++++++++++++++++++++++++++
+>   1 file changed, 79 insertions(+)
+> 
+> diff --git a/drivers/usb/typec/hd3ss3220.c b/drivers/usb/typec/hd3ss3220.c
+> index 3ecc688dda82..970c0ca8f8d4 100644
+> --- a/drivers/usb/typec/hd3ss3220.c
+> +++ b/drivers/usb/typec/hd3ss3220.c
+> @@ -15,6 +15,9 @@
+>   #include <linux/usb/typec.h>
+>   #include <linux/delay.h>
+>   #include <linux/workqueue.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/of_graph.h>
+>   
+>   #define HD3SS3220_REG_CN_STAT		0x08
+>   #define HD3SS3220_REG_CN_STAT_CTRL	0x09
+> @@ -54,6 +57,11 @@ struct hd3ss3220 {
+>   	struct delayed_work output_poll_work;
+>   	enum usb_role role_state;
+>   	bool poll;
+> +
+> +	struct gpio_desc *id_gpiod;
+> +	int id_irq;
+> +
+> +	struct regulator *vbus;
+>   };
+>   
+>   static int hd3ss3220_set_power_opmode(struct hd3ss3220 *hd3ss3220, int power_opmode)
+> @@ -319,6 +327,49 @@ static const struct regmap_config config = {
+>   	.max_register = 0x0A,
+>   };
+>   
+> +static irqreturn_t hd3ss3220_id_isr(int irq, void *dev_id)
+> +{
+> +	struct hd3ss3220 *hd3ss3220 = dev_id;
+> +	int ret;
+> +	int id;
+> +
+> +	if (IS_ERR_OR_NULL(hd3ss3220->vbus))
 
---BNmCECBWFm1Puo0R
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I don't think it can be ERR. hd3ss3220_get_vbus_supply() forces it to 
+NULL in such a case.
 
-On Sat, Oct 25, 2025 at 10:27:13AM +0800, Longbin Li wrote:
-> On Fri, Oct 24, 2025 at 05:46:03PM +0100, Conor Dooley wrote:
->=20
-> > > ...
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - const: sophgo,cv1800b-top-syscon
-> > > +          - const: syscon
-> > > +          - const: simple-mfd
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  "#address-cells":
-> > > +    const: 1
-> > > +
-> > > +  "#size-cells":
-> > > +    const: 1
-> > > +
-> > > +  ranges: true
-> >=20
-> > Do you actually use ranges?
-> >=20
-> > > +patternProperties:
-> > > +  "dma-router@[0-9a-f]+$":
-> >=20
-> > Do these actually appear at variable addresses, or is it always 48 for
-> > the phy and 53 for the dma router?
-> >=20
-> > > +    $ref: /schemas/dma/sophgo,cv1800b-dmamux.yaml#
-> > > +    unevaluatedProperties: false
-> > > +
-> > > +  "phy@[0-9a-f]+$":
-> > > +    $ref: /schemas/phy/sophgo,cv1800b-usb2-phy.yaml#
-> > > +    unevaluatedProperties: false
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - "#address-cells"
-> > > +  - "#size-cells"
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/clock/sophgo,cv1800.h>
-> > > +
-> > > +    syscon@3000000 {
-> > > +      compatible =3D "sophgo,cv1800b-top-syscon", "syscon", "simple-=
-mfd";
-> > > +      reg =3D <0x03000000 0x1000>;
-> > > +      #address-cells =3D <1>;
-> > > +      #size-cells =3D <1>;
-> > > +
-> > > +      usbphy: phy@48 {
-> >=20
-> > Drop the labels off of these two, since they're unused in the example.
-> >=20
->=20
-> Hi,
->=20
-> Thanks for the review.
->=20
-> There are a couple of different opinions here.
-> Could you please help confirm which approach is preferred here?
->=20
-> This is Rob's reply:
-> https://lore.kernel.org/all/20251015134144.GA3265377-robh@kernel.org/
+> +		return IRQ_HANDLED;
+> +
+> +	id = hd3ss3220->id_gpiod ? gpiod_get_value_cansleep(hd3ss3220->id_gpiod) : 1;
+> +
+> +	if (!id) {
+> +		ret = regulator_enable(hd3ss3220->vbus);
+> +		if (ret)
+> +			dev_err(hd3ss3220->dev, "enable vbus regulator failed\n");
+> +	} else {
+> +		regulator_disable(hd3ss3220->vbus);
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int hd3ss3220_get_vbus_supply(struct hd3ss3220 *hd3ss3220)
+> +{
+> +	struct device_node *hd3ss3220_node = hd3ss3220->dev->of_node;
+> +	struct device_node *np;
+> +	int ret = 0;
+> +
+> +	np = of_graph_get_remote_node(hd3ss3220_node, 0, 0);
+> +	if (!np) {
+> +		dev_err(hd3ss3220->dev, "failed to get device node");
+> +		return -ENODEV;
+> +	}
+> +
+> +	hd3ss3220->vbus = of_regulator_get_optional(hd3ss3220->dev, np, "vbus");
+> +	if (IS_ERR(hd3ss3220->vbus))
+> +		hd3ss3220->vbus = NULL;
+> +
+> +	of_node_put(np);
+> +
+> +	return ret;
 
-I don't think that Rob and I disgree about the example, having child
-nodes is good, having the label on them is what I don't want.
+return 0 and avoid 'ret'?
 
-Re: the child node patterns, I was not looking for a return to what Rob
-didn't like, but rather a move to just making them normal properties
-rather than a pattern, if there's only one possible address.
+> +}
+> +
+>   static int hd3ss3220_probe(struct i2c_client *client)
+>   {
+>   	struct typec_capability typec_cap = { };
+> @@ -354,6 +405,34 @@ static int hd3ss3220_probe(struct i2c_client *client)
+>   		hd3ss3220->role_sw = usb_role_switch_get(hd3ss3220->dev);
+>   	}
+>   
+> +	hd3ss3220->id_gpiod = devm_gpiod_get_optional(hd3ss3220->dev, "id", GPIOD_IN);
+> +	if (IS_ERR(hd3ss3220->id_gpiod))
+> +		return PTR_ERR(hd3ss3220->id_gpiod);
+> +
+> +	if (hd3ss3220->id_gpiod) {
+> +		hd3ss3220->id_irq = gpiod_to_irq(hd3ss3220->id_gpiod);
+> +		if (hd3ss3220->id_irq < 0) {
+> +			dev_err(hd3ss3220->dev, "failed to get ID IRQ\n");
 
---BNmCECBWFm1Puo0R
-Content-Type: application/pgp-signature; name="signature.asc"
+Maybe return dev_err_probe() to log the error and simplify code?
 
------BEGIN PGP SIGNATURE-----
+> +			return hd3ss3220->id_irq;
+> +		}
+> +
+> +		ret = devm_request_threaded_irq(hd3ss3220->dev,
+> +						hd3ss3220->id_irq, NULL,
+> +						hd3ss3220_id_isr,
+> +						IRQF_TRIGGER_RISING |
+> +						IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
+> +						dev_name(hd3ss3220->dev), hd3ss3220);
+> +		if (ret < 0) {
+> +			dev_err(hd3ss3220->dev, "failed to get id irq\n");
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPzGCgAKCRB4tDGHoIJi
-0hKmAP9wppNOTqUcMNHIzevx1pK2MIBbfFM0ow0FlUnLwre+jAEA+1Y1ihrGIpfc
-64g6hgbEVSbSRUo+VAr3/aMAaFlHdQo=
-=AyBe
------END PGP SIGNATURE-----
+Maybe return dev_err_probe() to log the error and simplify code?
 
---BNmCECBWFm1Puo0R--
+Above, you use "ID IRQ" and here "id irq". Maybe keep the case case? Or 
+change the 2nd message that looks a copy'n'paste error to me.
+
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	ret = hd3ss3220_get_vbus_supply(hd3ss3220);
+> +	if (ret)
+> +		return dev_err_probe(hd3ss3220->dev,
+> +				     PTR_ERR(hd3ss3220->vbus), "failed to get vbus\n");
+
+Why PTR_ERR(hd3ss3220->vbus)? Should this be 'ret'?
+
+If hd3ss3220_get_vbus_supply() fails, vbus will be NULL in all cases.
+
+In hd3ss3220_get_vbus_supply(), if -ENODEV is returned, it is not 
+initialized yet, and if of_regulator_get_optional() fails, it is set to 
+NULL.
+
+> +
+>   	if (IS_ERR(hd3ss3220->role_sw)) {
+>   		ret = PTR_ERR(hd3ss3220->role_sw);
+>   		goto err_put_fwnode;
+
+CJ
 
