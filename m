@@ -1,58 +1,66 @@
-Return-Path: <devicetree+bounces-231208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34B64C0B5EC
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 23:30:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 475C0C0B602
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 23:34:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 233CC4EA92D
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 22:30:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A4BC189B866
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 22:34:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8EA72FE597;
-	Sun, 26 Oct 2025 22:30:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BA882765DC;
+	Sun, 26 Oct 2025 22:34:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BoLWbW05"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KuQiCFa2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFA2425A2A5;
-	Sun, 26 Oct 2025 22:30:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DB42248F59;
+	Sun, 26 Oct 2025 22:34:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761517806; cv=none; b=KDM2efJcLB2Rv7OwDev1JM1Yslqg4WJ40Ki/XWI+ZXKQ0C1IwZGczpC2VM88NzEMGTEu/zDovzOPQ2WsMSRwKe5uovV/AsMb40ofzCz9mxlV8h++s7+178OaaR89wcdTqjnmoDemIu7fgkGdNwbZ53GsVHzJw7rD+8RlcYRQI48=
+	t=1761518052; cv=none; b=p2wbsc7T9jBUjv3HVXQ33XPLy+h3i6Qn9XsmOicJCFg7NXSgvuPZzGgs4f5mFr1DgyqOJCo2jDLRPWE00uvuYZ4wEbwDy3j/wgWlMGBNuCGs90D0JLgh7HAuY3cXCbuFnridCHV9OcraaJf1Sjzd+tja7BQETyuva9fhZZWt2VI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761517806; c=relaxed/simple;
-	bh=eUaUCjQL2k6wS3OJDAZjVm1LxinVF4MQDIbMPIkZImo=;
+	s=arc-20240116; t=1761518052; c=relaxed/simple;
+	bh=LBZTOeQzkwEAtB+OTRZAwa0RyutEcg+dNryHY4Ipwrg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=anxAG8jKrJSu9OuIBYClrQsP8E2dVngtbMIgL7aklgQmbtagZTW2EyFui1/tRGjCqdwre4AanF9AiMa4odwqp/gNZIZ6z1d5MOihDiSyUH6yJKZg79hTiBgR3RunhNXeVQ3ThU/syaInlxL9/+ZYh1ticZ+KaMleI/00yntAp9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BoLWbW05; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCA4CC4CEE7;
-	Sun, 26 Oct 2025 22:30:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MI7djF0VWBMRZzTl63CdmtwnS5WM33x6qHo7gNhqpn3Uv+OYjtK1suuQonYbNYxHftHhYBY8/kDkMZ5/cD9mdyy2f8lyofOFyxsgrJ/8JgAYfBGZDkHDkipLu5xutT9uATCx1o/HysLvYPDo2+GEv05D+6m+nz2pj3OytLSfK8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KuQiCFa2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A91A3C4CEE7;
+	Sun, 26 Oct 2025 22:34:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761517803;
-	bh=eUaUCjQL2k6wS3OJDAZjVm1LxinVF4MQDIbMPIkZImo=;
+	s=k20201202; t=1761518051;
+	bh=LBZTOeQzkwEAtB+OTRZAwa0RyutEcg+dNryHY4Ipwrg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BoLWbW05zU4pIUwztfJ+tTgW645Adsd1hDY2/nXoeTqEix25ASz63Imd3WS5Lnymn
-	 EzNwnXxnQk9S2vPGYfw80AewxsdqJl1O4nPpdH84AqH5WoJt3LCUGP5eDRysUyBhfk
-	 MD18a53LC0LIlCiXfQhvYjgfywOdUCFsjAWfvv6m1hM3nTMxY3kVb1HVBwFM6DL2vH
-	 q/wELZgw152e1ywIGcL8YEC7YkDhD4Xmr7B0KKERJWYEtTMJmGEXNyf9ZSmtzxLNKx
-	 JKGrYXQg+kE75mSSACHPkw1ockaAWz30fws7JkLAri775EBhrc/xaPlnYPSYKfMKFt
-	 vYUp0sM3IWcgQ==
-Date: Sun, 26 Oct 2025 17:30:00 -0500
+	b=KuQiCFa2Uh2PcSTOLJ1L5PL7m+mmvkGcjhcRwlEoojfKCnshek1AmFwxaVoHqv6tC
+	 ru4L8as1G665sHXfJGfaKIwfEPC0RiUjENx6zLqcNisrKngEy38XkLA0TzgyE7GkQR
+	 W1qr3Z/vdHJlYgulKiAIztztW2Rp/Tig/sEbfqof03g+Qy7H8UmOjOdOWRiM8J7mtA
+	 noe1PzrjhwSCi32T+qPgtr/3+Q8E1yG+pppjv8clBq0lQRILKZ2i47M305MBEnjiXQ
+	 r6j72mgW+Ev5hZwNmcY7WaXh6705A0UMhD+Ake4Cq/XFAip5aiVVnE7lVl/vUerK9p
+	 8VHzzg9DWXm4A==
+Date: Sun, 26 Oct 2025 17:34:09 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jascha Sundaresan <flizarthanon@gmail.com>
-Cc: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v2] nvmem: layouts: u-boot-env: add optional "env-size"
- property
-Message-ID: <176151779689.3048651.370574318472729306.robh@kernel.org>
-References: <20251022230740.200742-1-flizarthanon@gmail.com>
+To: yuanjie yang <yuanjie.yang@oss.qualcomm.com>
+Cc: conor+dt@kernel.org, simona@ffwll.ch, airlied@gmail.com,
+	quic_khsieh@quicinc.com, lumag@kernel.org,
+	marijn.suijten@somainline.org, aiqun.yu@oss.qualcomm.com,
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	tzimmermann@suse.de, quic_mkrishn@quicinc.com,
+	neil.armstrong@linaro.org, jonathan@marek.ca,
+	robin.clark@oss.qualcomm.com, maarten.lankhorst@linux.intel.com,
+	abhinav.kumar@linux.dev, freedreno@lists.freedesktop.org,
+	yongxing.mou@oss.qualcomm.com, krzk+dt@kernel.org,
+	devicetree@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
+	mripard@kernel.org, sean@poorly.run, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 09/12] dt-bindings: display/msm: qcom,kaanapali-dpu: Add
+ Kaanapali
+Message-ID: <176151804747.3053476.10366376472665121341.robh@kernel.org>
+References: <20251023075401.1148-1-yuanjie.yang@oss.qualcomm.com>
+ <20251023080609.1212-1-yuanjie.yang@oss.qualcomm.com>
+ <20251023080609.1212-4-yuanjie.yang@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,31 +69,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251022230740.200742-1-flizarthanon@gmail.com>
+In-Reply-To: <20251023080609.1212-4-yuanjie.yang@oss.qualcomm.com>
 
 
-On Thu, 23 Oct 2025 03:07:41 +0400, Jascha Sundaresan wrote:
-> Some devices reserve a larger NVMEM region for the U-Boot environment
-> than the actual environment data length used by U-Boot itself. The CRC32
-> in the U-Boot header is calculated over the smaller data length, causing
-> CRC validation to fail when Linux reads the full partition.
+On Thu, 23 Oct 2025 16:06:06 +0800, yuanjie yang wrote:
+> From: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
 > 
-> Allow an optional device tree property "env-size" to specify the
-> environment data size to use for CRC computation.
+> Add DPU version 13.0 for Qualcomm Kaanapali Soc. The Kaanapali
+> DPU and SM8750 have significant differences, including additions
+> and removals of registers, as well as changes in register addresses.
 > 
-> v2: add missing $ref line to DT binding
-> 
-> Signed-off-by: Jascha Sundaresan <flizarthanon@gmail.com>
+> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+> Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
 > ---
-> Changes in v2:
->  - Added missing "$ref" line to schema for env-size
->  - Confirmed dt_binding_check passes
-> 
->  .../devicetree/bindings/nvmem/layouts/u-boot,env.yaml      | 7 +++++++
->  drivers/nvmem/layouts/u-boot-env.c                         | 4 +++-
->  2 files changed, 10 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/display/msm/qcom,sm8650-dpu.yaml         | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
