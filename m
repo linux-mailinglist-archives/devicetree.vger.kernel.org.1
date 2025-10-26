@@ -1,107 +1,132 @@
-Return-Path: <devicetree+bounces-231087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE565C0A4C4
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 09:39:56 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72CD5C0A4DA
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 09:50:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50EDB3ADB66
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 08:39:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3996F4E1B3A
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 08:50:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3637E2773E4;
-	Sun, 26 Oct 2025 08:39:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D028286D53;
+	Sun, 26 Oct 2025 08:50:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="IFAl4Bhd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kejM9QgW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12479275AE4;
-	Sun, 26 Oct 2025 08:39:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0973611E;
+	Sun, 26 Oct 2025 08:50:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761467992; cv=none; b=RhxdL5YJw82hxR2nH/G7A1ZqyhCRNqH/2yoUZdPm8QDt8NDNH+NWqfWpkYc5evo+COpD4J12LL4eDEvIKuz7fcDkEU0CW1fcIqlTfwuJFf5wY9xGgZzjr4cPT/zoMWT+20ehvUF7sW8p1ZINjLpgU7MYmE97AIE+juCqk5d2G38=
+	t=1761468643; cv=none; b=JTQ2zC1pleYY7VzBMye2mkVn6trYfVzOIL6kXRNBJbvKxAjMjCugMuNoHyN+pf12ziY4d64+NeX4IkknYA5RHnad53cSzkuyH+9tw/BJEta+sSiFZKfqj0Ddqk8XtT2wmBdcsCSgDHvd7pD+qoVww4QlxlX2sZJQQcb3iOiqpWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761467992; c=relaxed/simple;
-	bh=NBCxex7CHO/U3Dfv5WZKY0SwvhgZfQABXo3pkRN6HTI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=SiEERLsF0ANs6WmjdTy5XLew9yjflybl4OWYRPpORlPdY4Hh+mub8of7/K7AS7T2F1mZVimcEXm0p5ppmDi1iCg4tHtJ0vXdPOMxTxQVjjRytJoB7EyErYvqr0pIowPF99JZnm9wwNKLb07bj0ugKYKLxi87VBEnLNdqOP4IVqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=IFAl4Bhd reason="signature verification failed"; arc=none smtp.client-ip=220.197.31.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=G0/fPh3/khSdVcZGrkcOAMGTDLBOWAUPFQxA3kxrAMI=; b=I
-	FAl4Bhd+lOzRrVp+AxYyDzPYbG+LOe8xAHB5Ad7B6qjY8bUz5HfQo4SzfQmpcLSW
-	efNg2NqV531MztOEeYs/FdYTpsTgcAQEn/AehVUsEL1d/nK7w172CjsAI8lOAIqH
-	0K1MSjU6NSwdDJVQdzh+pvdydQp5YIG+b4JauYPWIw=
-Received: from andyshrk$163.com ( [58.22.7.114] ) by
- ajax-webmail-wmsvr-40-143 (Coremail) ; Sun, 26 Oct 2025 16:38:35 +0800
- (CST)
-Date: Sun, 26 Oct 2025 16:38:35 +0800 (CST)
-From: "Andy Yan" <andyshrk@163.com>
-To: "Heiko Stuebner" <heiko@sntech.de>
-Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, quentin.schulz@cherry.de,
-	andy.yan@rock-chips.com, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	cn.liweihao@gmail.com, "Heiko Stuebner" <heiko.stuebner@cherry.de>
-Subject: Re:[PATCH v2 2/9] drm/rockchip: hdmi: add RK3368 controller variant
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2023.4-cmXT build
- 20250723(a044bf12) Copyright (c) 2002-2025 www.mailtech.cn 163com
-In-Reply-To: <20251021074254.87065-3-heiko@sntech.de>
-References: <20251021074254.87065-1-heiko@sntech.de>
- <20251021074254.87065-3-heiko@sntech.de>
-X-NTES-SC: AL_Qu2dA/iduEEq4ySZYOkfmUgWjuw/WsG1v/Ul1YBSP556jC/r9AQFYUF9G1/47+GNFiCiuyqKVwhE0uhmb5F8ZYQUZUyGOIUxNEyoJHiUMsrAYw==
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1761468643; c=relaxed/simple;
+	bh=oP9r+izdqj4wtIPWIKwEKuljhS1FCmk4lSnwOX0lRis=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SBDLAk5qUNckJnbHerJRi4yyVfsGFAlHr6p1mnKLaF+1b7EWYu3eYVdnECOOh7uXklI+kDuXoz5n2/w8q2UlCyDSshdR+N5quqytP6sykWVn6IsX+FlehRtD1sf22JE5Kj+LBwB0docUZKaPIF/+EyXymBBd+zqxQgTIK6Eb4dI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kejM9QgW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FF7FC4CEE7;
+	Sun, 26 Oct 2025 08:50:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761468642;
+	bh=oP9r+izdqj4wtIPWIKwEKuljhS1FCmk4lSnwOX0lRis=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kejM9QgWHbt2ooSE+OPtoWwWdzmMWHUSzaS2VuKkTxU+ayEbs7nYinD4Vu8gDCo1s
+	 Ql/fy/wmBhfjcL6K2C0/r9QzBSVECa9NwsAaQnaOl0fvRm0CxHQ28DBDSHs7qs9x1e
+	 dae0/LjIErAdajUH55c8SwnpD0K0bUwoOU/7UDz6ADU/RpTdsECjV//1i8A6md2yCK
+	 rrHH17ql6QdAidwdvcRCG+AYw7ndI2VI7sMIwab5Cr/xfhvnlOnG+gjTEWjW5lvAnL
+	 FaE+SckBqcNl1N3b+eY8ba2qvRklGv/Vjctd8vWzLfBv5fiugJgFUe00w9yLSeJ483
+	 /MsjZvvoivJMA==
+Message-ID: <749bdc31-e34d-449b-9ab8-ba542276ee8d@kernel.org>
+Date: Sun, 26 Oct 2025 09:50:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <1a7115bc.1597.19a1fab5ca2.Coremail.andyshrk@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:jygvCgDn2FYL3v1o4ZoTAA--.1233W
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0gbyXmj911N+rQABs7
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 07/10] dt-bindings: net: altr,socfpga-stmmac: allow
+ dma-coherent property
+To: Steffen Trumtrar <s.trumtrar@pengutronix.de>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Dinh Nguyen <dinguyen@kernel.org>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Matthew Gerlach <matthew.gerlach@altera.com>
+Cc: kernel@pengutronix.de, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20251024-v6-12-topic-socfpga-agilex5-v5-0-4c4a51159eeb@pengutronix.de>
+ <20251024-v6-12-topic-socfpga-agilex5-v5-7-4c4a51159eeb@pengutronix.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251024-v6-12-topic-socfpga-agilex5-v5-7-4c4a51159eeb@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-CkhlbGxvIEhlaWtvLAoKQXQgMjAyNS0xMC0yMSAxNTo0Mjo0NywgIkhlaWtvIFN0dWVibmVyIiA8
-aGVpa29Ac250ZWNoLmRlPiB3cm90ZToKPkZyb206IEhlaWtvIFN0dWVibmVyIDxoZWlrby5zdHVl
-Ym5lckBjaGVycnkuZGU+Cj4KPlRoZSBSSzMzNjggaGFzIG9ubHkgb25lIFZPUCwgc28gdGhlcmUg
-aXMgbm8gc291cmNlIHNlbGVjdGlvbiBoYXBwZW5pbmcKPmFuZCB0aGUgY29udHJvbGxlciB1c2Vz
-IGFuIGludGVybmFsIFBIWSBmb3IgdGhlIEhETUkgb3V0cHV0Lgo+Cj5TaWduZWQtb2ZmLWJ5OiBI
-ZWlrbyBTdHVlYm5lciA8aGVpa28uc3R1ZWJuZXJAY2hlcnJ5LmRlPgoKUmV2aWV3ZWQtYnk6IEFu
-ZHkgWWFuIDxhbmR5c2hya0AxNjMuY29tPgoKVGhhbmtzCgoKPi0tLQo+IGRyaXZlcnMvZ3B1L2Ry
-bS9yb2NrY2hpcC9kd19oZG1pLXJvY2tjaGlwLmMgfCAxNiArKysrKysrKysrKysrKysrCj4gMSBm
-aWxlIGNoYW5nZWQsIDE2IGluc2VydGlvbnMoKykKPgo+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9yb2NrY2hpcC9kd19oZG1pLXJvY2tjaGlwLmMgYi9kcml2ZXJzL2dwdS9kcm0vcm9ja2No
-aXAvZHdfaGRtaS1yb2NrY2hpcC5jCj5pbmRleCA3YjYxMzk5N2JiNTAuLjk1ZmYzZmNlOTdhMyAx
-MDA2NDQKPi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9kd19oZG1pLXJvY2tjaGlwLmMK
-PisrKyBiL2RyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9kd19oZG1pLXJvY2tjaGlwLmMKPkBAIC00
-NjcsNiArNDY3LDE5IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZHdfaGRtaV9wbGF0X2RhdGEgcmsz
-MzI4X2hkbWlfZHJ2X2RhdGEgPSB7Cj4gCS51c2VfZHJtX2luZm9mcmFtZSA9IHRydWUsCj4gfTsK
-PiAKPitzdGF0aWMgc3RydWN0IHJvY2tjaGlwX2hkbWlfY2hpcF9kYXRhIHJrMzM2OF9jaGlwX2Rh
-dGEgPSB7Cj4rCS5sY2RzZWxfZ3JmX3JlZyA9IC0xLAo+K307Cj4rCj4rc3RhdGljIGNvbnN0IHN0
-cnVjdCBkd19oZG1pX3BsYXRfZGF0YSByazMzNjhfaGRtaV9kcnZfZGF0YSA9IHsKPisJLm1vZGVf
-dmFsaWQgPSBkd19oZG1pX3JvY2tjaGlwX21vZGVfdmFsaWQsCj4rCS5tcGxsX2NmZyAgID0gcm9j
-a2NoaXBfbXBsbF9jZmcsCj4rCS5jdXJfY3RyICAgID0gcm9ja2NoaXBfY3VyX2N0ciwKPisJLnBo
-eV9jb25maWcgPSByb2NrY2hpcF9waHlfY29uZmlnLAo+KwkucGh5X2RhdGEgPSAmcmszMzY4X2No
-aXBfZGF0YSwKPisJLnVzZV9kcm1faW5mb2ZyYW1lID0gdHJ1ZSwKPit9Owo+Kwo+IHN0YXRpYyBz
-dHJ1Y3Qgcm9ja2NoaXBfaGRtaV9jaGlwX2RhdGEgcmszMzk5X2NoaXBfZGF0YSA9IHsKPiAJLmxj
-ZHNlbF9ncmZfcmVnID0gUkszMzk5X0dSRl9TT0NfQ09OMjAsCj4gCS5sY2RzZWxfYmlnID0gRklF
-TERfUFJFUF9XTTE2X0NPTlNUKFJLMzM5OV9IRE1JX0xDRENfU0VMLCAwKSwKPkBAIC01MDcsNiAr
-NTIwLDkgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBvZl9kZXZpY2VfaWQgZHdfaGRtaV9yb2NrY2hp
-cF9kdF9pZHNbXSA9IHsKPiAJeyAuY29tcGF0aWJsZSA9ICJyb2NrY2hpcCxyazMzMjgtZHctaGRt
-aSIsCj4gCSAgLmRhdGEgPSAmcmszMzI4X2hkbWlfZHJ2X2RhdGEKPiAJfSwKPisJeyAuY29tcGF0
-aWJsZSA9ICJyb2NrY2hpcCxyazMzNjgtZHctaGRtaSIsCj4rCSAuZGF0YSA9ICZyazMzNjhfaGRt
-aV9kcnZfZGF0YQo+Kwl9LAo+IAl7IC5jb21wYXRpYmxlID0gInJvY2tjaGlwLHJrMzM5OS1kdy1o
-ZG1pIiwKPiAJICAuZGF0YSA9ICZyazMzOTlfaGRtaV9kcnZfZGF0YQo+IAl9LAo+LS0gCj4yLjQ3
-LjIK
+On 24/10/2025 13:49, Steffen Trumtrar wrote:
+> The DMA operations on the SoCFPGA stmmac can be dma-coherent. Add as
+> optional property.
+> 
+> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+
+There is little point in mixing two subsystems in one patchset.
+Especially without marking this net-next how maintainers are supposed to
+take it?
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
