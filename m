@@ -1,484 +1,1097 @@
-Return-Path: <devicetree+bounces-231149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E5C6C0AE43
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 17:56:13 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 907D1C0AE6C
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 18:08:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FCEE3B0FA9
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 16:56:11 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 70FD34E5648
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 17:08:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE71923EA8C;
-	Sun, 26 Oct 2025 16:56:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CADD721FF49;
+	Sun, 26 Oct 2025 17:08:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WwH4wHGD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D84BdFED"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 784DC1A9FB7;
-	Sun, 26 Oct 2025 16:56:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41E9324E4C4
+	for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 17:08:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761497769; cv=none; b=Rt2O5cnZIKIZsQJbdK18gTC4LMsh5B0/CpF13/Mzkm9xW8WLW1MZkY76UiGickkAYvdEMgjO1Ktrgbuksx0ar/gC9fXdvWCg83p4ROv04SKECEoJ8pAeMi7BQ92tqf+Vobadu1Qdq1rVMEAJMMRwMG1xS/1ZRZ/YQ0xnYEH8QZw=
+	t=1761498490; cv=none; b=Oooh1YxJxWbpNthbpE+KLESD63VwRk6OV7ulKx15Avin88HdErD19LclriOpDE2dI/NXhF3xKzLROXNxIb8MIwpk520BnOFYoXvtni4Fy9a/0ABmh/6PeJeFM6wAbt1UgYSDOwPYQIRBE4dxJ9Mj5VEpsan5jxbGX0UmNMf/Xm0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761497769; c=relaxed/simple;
-	bh=w6YJFRA0BC0UCOE9W6kmdzSO4ko9TLlxDqq7pQLKxNI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HZVfMrhIbq01GrlcOuhkoeAm+96/ZRhPu1hHYspuzsdSavXNsMz0IhJXdcgPDALKV262GH/LM9G4JwYc1qcgyhMNgWsxVYkDFcZoobN0nKxcWMkNF8uzPAIoWK7T25ltDpSPfZya7ms72CgTh/QRhBLaTSg2IQyINHlP43ZEoxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WwH4wHGD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E83BDC4CEE7;
-	Sun, 26 Oct 2025 16:56:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761497768;
-	bh=w6YJFRA0BC0UCOE9W6kmdzSO4ko9TLlxDqq7pQLKxNI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WwH4wHGDwu0UpKOcrK3RwvOM7E3f0Hd9RJ/GVIiMafBKhBxSbZYvdrYImur6AAj6B
-	 Rok2oK1U1zA/VGpm3KueWAAmfZE6vAmtoaKQcIGIoxon8N2ayu+PbPStVOwmlOp+e9
-	 Dp0SPCOkixvUYUmTeePEGt1u6qq95Q2+e8l5UUQmHV2H1Z2bGUhhnPq6LYnDUCmcWo
-	 QTyEczMC0bfZ2zFXTsX8N4fGtznerThfAkwQCRgqxfdwd/YGJE45iNmAweDmq7KBtg
-	 92FeRUdnjL9kSVEldOkato2S71z5aCKf+rM6R2VXVsXHuWnQmmUEPBTNGtcFSKW2nn
-	 sD1ntXZJrAYdw==
-Date: Sun, 26 Oct 2025 22:25:54 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Alex Elder <elder@riscstar.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, vkoul@kernel.org, 
-	kishon@kernel.org, dlan@gentoo.org, guodong@riscstar.com, pjw@kernel.org, 
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de, 
-	christian.bruel@foss.st.com, shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, 
-	qiang.yu@oss.qualcomm.com, namcao@linutronix.de, thippeswamy.havalige@amd.com, 
-	inochiama@gmail.com, devicetree@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-phy@lists.infradead.org, spacemit@lists.linux.dev, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/7] PCI: spacemit: introduce SpacemiT PCIe host driver
-Message-ID: <274772thveml3xq2yc7477b7lywzzwelbjtq3hiy4louc6cqom@o5zq66mqa27h>
-References: <20251013153526.2276556-1-elder@riscstar.com>
- <20251013153526.2276556-6-elder@riscstar.com>
+	s=arc-20240116; t=1761498490; c=relaxed/simple;
+	bh=JA0cr1WtMe66c0M16uNSBsyO/Qwn9wH3wOhl4kzL0lk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jseSp0yPRoSMtHOJP4lTqYuhOr7k0T8Hi/owTqfSECAkJ3Dxp8gBtOUVOrrmj/xFYPCMEPCARI9NSVs+ZRd5gQzbWvxa63YBFK8azUC9i0b7S8i9iCD8q2GbI2e4M/XKTNHrpFqGbqwmDm6ziweguVHahBU5/IMDudadE2ivAos=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D84BdFED; arc=none smtp.client-ip=209.85.216.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-33e27cda4d7so5139810a91.0
+        for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 10:08:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761498486; x=1762103286; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=hB4lxzQaqQNs+IFIZTwj7uIEMnSmUmHwrwgY6tz9iZk=;
+        b=D84BdFEDplnGpvzWtsQP+jgDooAgVfIs8S1MWRvGSxVIpX6vzH8XgAPkqqLf0HP4+Z
+         6BEO9iTk+97Y8jufj5qXiKV3UIGY935d71Hjy9r01OpbTL8DOG2taZ4PkHiNlRuzBPdC
+         Pihuz9ZlHRUTUBcZDg8bXreAJPVjaV4rBw+Lp/odhfmgZJ1hT9I8Vguosta8bEy6keZI
+         8NYe82SFjzIQrH3tY92zF/fkOMLVYlCiNp6nbMSQ/Dql9DsvzvJdn+ugg3f56uEbmn4f
+         QHoY4BE7MYXnBXPG1/GQ/JZ74HjxFe9rBCYzxz8wm5F2nhggT9LTTtQgnRGMZWKBtSk3
+         FkeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761498486; x=1762103286;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hB4lxzQaqQNs+IFIZTwj7uIEMnSmUmHwrwgY6tz9iZk=;
+        b=Nb4+125XLLklOVZV27LLWTu4lnsVjvsb9l/itkBepnRq4jbeqyp8hg3H2fqXOklBYG
+         ueO/v8q1BYxsz/Jfh2rfgEIBMQoKj8u2uXg8HL+6sHCCnHDQyBlLQVw9h0JS7j7nyHDA
+         kxL7eMrGMnykmjsmQQx4obn9A/pvZjb7FrwDsJtOL5OXpJVM2ZJ+O5XD1IvVlszrR+DB
+         WhyR4h9L9nYNAL5WF4DWC50wg6jArIMflSRP2iF5qC7KDCB8bmE4uriFXyuN374hOWCT
+         4RPoLiF/HvD5WzaY7G7QYt+Pat5p6ZuIftyBo5tQHU7jxYZiz0ipPTgoajxqga7HK3F6
+         VGmA==
+X-Forwarded-Encrypted: i=1; AJvYcCWq3Dwl9/wg5FEo+JxfgnM4mWcdplEHVI79U9x3w4zVHqNxWYgi/Gv2e1VCKZQlnGhUhO1AlnEjAclg@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXddTOUIajbY180rL4JpzQJpUHg2dKlcDWACisCOn1E0ac8ybe
+	LK9mGc43JfsvcjceBCV94juG4abUYRNHZEYIDKtHHgFn5TaHsuUVtN7psahlEA==
+X-Gm-Gg: ASbGncuyTmKFu8s36x3ccgkSemFOLajBfyhaV0YTD+75nBgMqP1FcpGcSd064z2afW4
+	Q4FHh7hdJefzqoF7oWKdsIXvIDhDMAnKYH9FIfkfMEyMUBAz/PwbxKJ87tYTj44syf/Xx6JBv8b
+	sWyEk9DjWULsRD7KezrTzfyFtatMpmdb2txHSmTTGB+TgUh/9MfycoRVeWgZJfAKi3z3aD1vbkc
+	ewJl3OAzgidfSxBtskKNm14ii0gQOeCG4v6rkYJi2qCnoA+mmaENh5XX4ZRD1+nR71afcmGi75M
+	t5F2+u1X2sS2chh1+y5r6AdUafafTFsXIJ/0PjmRs5Cqux0ziHDYaMwr3dWMF2+lnkBUvlqxYCT
+	0Jcgy7H+tduJokSqEdPSnmqz6ftDccAim/otMv6jM70D8NlM0IYZIPjIcjz69Zc+e15KA36sZWr
+	ptM26Zv6K1tB+sEqVrWCzHbkRMI1DaHxp6vZUQj6bSoBLx71jZ
+X-Google-Smtp-Source: AGHT+IEjshJAWFlsLLahMVKqu5YCGhE93nY3QNNTTlWqTvFuBD+ZaCdK+sPHgpgal6EclL4tm3qs/w==
+X-Received: by 2002:a17:90a:dfd0:b0:32b:7d35:a7e6 with SMTP id 98e67ed59e1d1-33fd3cecdbamr12080734a91.18.1761498486115;
+        Sun, 26 Oct 2025 10:08:06 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b7127a09a8csm5073947a12.11.2025.10.26.10.08.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 26 Oct 2025 10:08:05 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <d3365f32-dc92-4a55-91a1-c4a446558c5a@roeck-us.net>
+Date: Sun, 26 Oct 2025 10:08:03 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251013153526.2276556-6-elder@riscstar.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] hwmon: Add TSC1641 I2C power monitor driver
+To: Igor Reznichenko <igor@reznichenko.net>, linux-hwmon@vger.kernel.org
+Cc: conor+dt@kernel.org, corbet@lwn.net, david.hunter.linux@gmail.com,
+ devicetree@vger.kernel.org, krzk+dt@kernel.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, robh@kernel.org, skhan@linuxfoundation.org
+References: <20251022044708.314287-1-igor@reznichenko.net>
+ <20251026065057.627276-1-igor@reznichenko.net>
+ <20251026065057.627276-3-igor@reznichenko.net>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20251026065057.627276-3-igor@reznichenko.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Oct 13, 2025 at 10:35:22AM -0500, Alex Elder wrote:
-> Introduce a driver for the PCIe host controller found in the SpacemiT
-> K1 SoC.  The hardware is derived from the Synopsys DesignWare PCIe IP.
-> The driver supports three PCIe ports that operate at PCIe gen2 transfer
-> rates (5 GT/sec).  The first port uses a combo PHY, which may be
-> configured for use for USB 3 instead.
+On 10/25/25 23:50, Igor Reznichenko wrote:
+> Add a driver for the ST Microelectronics TSC1641 16-bit high-precision
+> power monitor. The driver supports reading bus voltage, current, power,
+> and temperature. Sysfs attributes are exposed for shunt resistor and
+> update interval. The driver integrates with the hwmon subsystem and
+> supports optional ALERT pin polarity configuration.
 > 
-> Signed-off-by: Alex Elder <elder@riscstar.com>
+> Signed-off-by: Igor Reznichenko <igor@reznichenko.net>
 > ---
-> v2: - Renamed the PCIe driver source file "pcie-spacemit-k1.c"
->     - Renamed the PCIe driver Kconfig option PCIE_SPACEMIT_K1; it
->       is now tristate rather than Boolean
->     - The PCIe host compatible string is now "spacemit,k1-pcie"
->     - Renamed the PMU syscon property to be "spacemit,apmu"
->     - Renamed the symbols representing the PCI vendor and device IDs
->       to align with <linux/pci_ids.h>
->     - Use PCIE_T_PVPERL_MS rather than 100 to represent a standard
->       delay period.
->     - Use platform (not dev) driver-data access functions; assignment
->       is done only after the private structure is initialized
->     - Deleted some unneeded includes in the PCIe driver.
->     - Dropped error checking when operating on MMIO-backed regmaps
->     - Added a regmap_read() call in two places, to ensure a specified
->       delay occurs *after* the a MMIO write has reached its target.
->     - Used ARRAY_SIZE() (not a local variable value) in a few spots
->     - Now use readl_relaxed()/writel_relaxed() when operating on
->       the "link" I/O memory space in the PCIe driver
->     - Updated a few error messages for consistency
->     - No longer specify suppress_bind_attrs in the PCIe driver
->     - Now specify PCIe driver probe type as PROBE_PREFER_ASYNCHRONOUS
->     - No longer use (void) cast to indicate ignored return values
+>   Documentation/hwmon/index.rst   |   1 +
+>   Documentation/hwmon/tsc1641.rst |  84 ++++
+>   drivers/hwmon/Kconfig           |  12 +
+>   drivers/hwmon/Makefile          |   1 +
+>   drivers/hwmon/tsc1641.c         | 703 ++++++++++++++++++++++++++++++++
+>   5 files changed, 801 insertions(+)
+>   create mode 100644 Documentation/hwmon/tsc1641.rst
+>   create mode 100644 drivers/hwmon/tsc1641.c
 > 
->  drivers/pci/controller/dwc/Kconfig            |  10 +
->  drivers/pci/controller/dwc/Makefile           |   1 +
->  drivers/pci/controller/dwc/pcie-spacemit-k1.c | 319 ++++++++++++++++++
->  3 files changed, 330 insertions(+)
->  create mode 100644 drivers/pci/controller/dwc/pcie-spacemit-k1.c
-> 
-> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> index 349d4657393c9..ede59b34c99ba 100644
-> --- a/drivers/pci/controller/dwc/Kconfig
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -509,6 +509,16 @@ config PCI_KEYSTONE_EP
->  	  on DesignWare hardware and therefore the driver re-uses the
->  	  DesignWare core functions to implement the driver.
->  
-> +config PCIE_SPACEMIT_K1
-> +	tristate "SpacemiT K1 PCIe controller (host mode)"
-> +	depends on ARCH_SPACEMIT || COMPILE_TEST
-> +	depends on PCI && OF && HAS_IOMEM
-> +	select PCIE_DW_HOST
-> +	default ARCH_SPACEMIT
-> +	help
-> +	  Enables support for the PCIe controller in the K1 SoC operating
-> +	  in host mode.
-> +
->  config PCIE_VISCONTI_HOST
->  	bool "Toshiba Visconti PCIe controller"
->  	depends on ARCH_VISCONTI || COMPILE_TEST
-> diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-> index 7ae28f3b0fb39..662b0a219ddc4 100644
-> --- a/drivers/pci/controller/dwc/Makefile
-> +++ b/drivers/pci/controller/dwc/Makefile
-> @@ -31,6 +31,7 @@ obj-$(CONFIG_PCIE_UNIPHIER) += pcie-uniphier.o
->  obj-$(CONFIG_PCIE_UNIPHIER_EP) += pcie-uniphier-ep.o
->  obj-$(CONFIG_PCIE_VISCONTI_HOST) += pcie-visconti.o
->  obj-$(CONFIG_PCIE_RCAR_GEN4) += pcie-rcar-gen4.o
-> +obj-$(CONFIG_PCIE_SPACEMIT_K1) += pcie-spacemit-k1.o
->  obj-$(CONFIG_PCIE_STM32_HOST) += pcie-stm32.o
->  obj-$(CONFIG_PCIE_STM32_EP) += pcie-stm32-ep.o
->  
-> diff --git a/drivers/pci/controller/dwc/pcie-spacemit-k1.c b/drivers/pci/controller/dwc/pcie-spacemit-k1.c
+> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+> index 51a5bdf75b08..4fb9f91f83b3 100644
+> --- a/Documentation/hwmon/index.rst
+> +++ b/Documentation/hwmon/index.rst
+> @@ -253,6 +253,7 @@ Hardware Monitoring Kernel Drivers
+>      tps40422
+>      tps53679
+>      tps546d24
+> +   tsc1641
+>      twl4030-madc-hwmon
+>      ucd9000
+>      ucd9200
+> diff --git a/Documentation/hwmon/tsc1641.rst b/Documentation/hwmon/tsc1641.rst
 > new file mode 100644
-> index 0000000000000..d58232cbb8a02
+> index 000000000000..f692a8ccbffc
 > --- /dev/null
-> +++ b/drivers/pci/controller/dwc/pcie-spacemit-k1.c
-> @@ -0,0 +1,319 @@
+> +++ b/Documentation/hwmon/tsc1641.rst
+> @@ -0,0 +1,84 @@
+> +Kernel driver tsc1641
+
+checkpatch:
+
+WARNING: Missing or malformed SPDX-License-Identifier tag in line 1
+#146: FILE: Documentation/hwmon/tsc1641.rst:1:
++Kernel driver tsc1641
+
+> +=====================
+> +
+> +Supported chips:
+> +
+> +  * ST TSC1641
+> +
+> +    Prefix: 'tsc1641'
+> +
+> +    Addresses scanned: -
+> +
+> +    Datasheet:
+> +	https://www.st.com/resource/en/datasheet/tsc1641.pdf
+> +
+> +Author:
+> +	- Igor Reznichenko <igor@reznichenko.net>
+> +
+> +
+> +Description
+> +-----------
+> +
+> +The TSC1641 is a high-precision current, voltage, power, and temperature
+> +monitoring analog front-end (AFE). It monitors current into a shunt resistor and
+> +load voltage up to 60 V in a synchronized way. Digital bus interface is
+> +I2C/SMbus. The TSC1641 allows the assertion of several alerts regarding the
+> +voltage, current, power and temperature.
+> +
+> +Usage Notes
+> +-----------
+> +
+> +The TSC1641 driver requires the value of the external shunt resistor to
+> +correctly compute current and power measurements. The resistor value, in
+> +micro-ohms, should be provided either through the device tree property
+> +"shunt-resistor-micro-ohms" or via writable sysfs attribute "shunt_resistor".
+> +Please refer to the Documentation/devicetree/bindings/hwmon/st,tsc1641.yaml
+> +for bindings if the device tree is used.
+> +
+> +Supported range of shunt resistor values is from 100 uOhm to 655.35 mOhm.
+> +When selecting the value keep in mind device maximum DC power measurement is
+> +1600W. See datasheet p.22 for ST recommendations on selecting shunt value.
+> +
+> +If the shunt resistor value is not specified in the device tree, the driver
+> +initializes it to 1000 uOhm by default. Users may configure the correct shunt
+> +resistor value at runtime by writing to the "shunt_resistor" sysfs attribute.
+> +
+> +The driver only supports continuous operating mode.
+> +Measurement ranges:
+> +
+> +================ ===============================================================
+> +Current          Dependent on shunt
+> +Bus voltage      0-60V
+> +Maximum DC power 1600W
+> +Temperature      -40C to +125C
+> +================ ===============================================================
+> +
+> +Sysfs entries
+> +-------------
+> +
+> +==================== ===========================================================
+> +in0_input            bus voltage (mV)
+> +in0_crit             bus voltage crit alarm limit (mV)
+> +in0_crit_alarm       bus voltage crit alarm limit exceeded
+> +in0_lcrit            bus voltage low-crit alarm limit (mV)
+> +in0_lcrit_alarm      bus voltage low-crit alarm limit exceeded
+> +
+> +curr1_input          current measurement (mA)
+> +curr1_crit           current crit alarm limit (mA)
+> +curr1_crit_alarm     current crit alarm limit exceeded
+> +curr1_lcrit          current low-crit alarm limit (mA)
+> +curr1_lcrit_alarm    current low-crit alarm limit exceeded
+> +
+> +power1_input         power measurement (uW)
+> +power1_crit          power crit alarm limit (uW)
+> +power1_crit_alarm    power crit alarm limit exceeded
+> +
+> +shunt_resistor       shunt resistor value (uOhms)
+> +
+> +temp1_input          temperature measurement (mdegC)
+> +temp1_crit           temperature crit alarm limit (mdegC)
+> +temp1_crit_alarm     temperature crit alarm limit exceeded
+> +
+> +update_interval      data conversion time (1 - 33ms), longer conversion time
+> +                     corresponds to higher effective resolution in bits
+> +==================== ===========================================================
+> \ No newline at end of file
+> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+> index 2760feb9f83b..b9d7b02932a6 100644
+> --- a/drivers/hwmon/Kconfig
+> +++ b/drivers/hwmon/Kconfig
+> @@ -2434,6 +2434,18 @@ config SENSORS_TMP513
+>   	  This driver can also be built as a module. If so, the module
+>   	  will be called tmp513.
+>   
+> +config SENSORS_TSC1641
+> +	tristate "ST Microelectronics TSC1641 Power Monitor"
+> +	depends on I2C
+> +	select REGMAP_I2C
+> +	help
+> +	  If you say yes here you get support for TSC1641 power  monitor chip.
+> +	  The TSC1641 driver is configured for the default configuration of
+> +	  the part except temperature is enabled by default.
+> +
+> +	  This driver can also be built as a module. If so, the module
+> +	  will be called tsc1641.
+> +
+>   config SENSORS_VEXPRESS
+>   	tristate "Versatile Express"
+>   	depends on VEXPRESS_CONFIG
+> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
+> index 73b2abdcc6dd..a8de5bc69f2a 100644
+> --- a/drivers/hwmon/Makefile
+> +++ b/drivers/hwmon/Makefile
+> @@ -233,6 +233,7 @@ obj-$(CONFIG_SENSORS_TMP401)	+= tmp401.o
+>   obj-$(CONFIG_SENSORS_TMP421)	+= tmp421.o
+>   obj-$(CONFIG_SENSORS_TMP464)	+= tmp464.o
+>   obj-$(CONFIG_SENSORS_TMP513)	+= tmp513.o
+> +obj-$(CONFIG_SENSORS_TSC1641)	+= tsc1641.o
+>   obj-$(CONFIG_SENSORS_VEXPRESS)	+= vexpress-hwmon.o
+>   obj-$(CONFIG_SENSORS_VIA_CPUTEMP)+= via-cputemp.o
+>   obj-$(CONFIG_SENSORS_VIA686A)	+= via686a.o
+> diff --git a/drivers/hwmon/tsc1641.c b/drivers/hwmon/tsc1641.c
+> new file mode 100644
+> index 000000000000..56f6d0ba2b49
+> --- /dev/null
+> +++ b/drivers/hwmon/tsc1641.c
+> @@ -0,0 +1,703 @@
 > +// SPDX-License-Identifier: GPL-2.0
 > +/*
-> + * SpacemiT K1 PCIe host driver
+> + * Driver for ST Microelectronics TSC1641 I2C power monitor
 > + *
-> + * Copyright (C) 2025 by RISCstar Solutions Corporation.  All rights reserved.
-> + * Copyright (c) 2023, spacemit Corporation.
+> + * 60 V, 16-bit high-precision power monitor with I2C and MIPI I3C interface
+> + * Datasheet: https://www.st.com/resource/en/datasheet/tsc1641.pdf
+> + *
+> + * Copyright (C) 2025 Igor Reznichenko <igor@reznichenko.net>
 > + */
 > +
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
 > +#include <linux/device.h>
 > +#include <linux/err.h>
-> +#include <linux/gfp.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/platform_device.h>
+> +#include <linux/hwmon.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
 > +#include <linux/regmap.h>
-> +#include <linux/reset.h>
-> +#include <linux/types.h>
-> +
-> +#include "pcie-designware.h"
-> +
-> +#define PCI_VENDOR_ID_SPACEMIT		0x201f
-> +#define PCI_DEVICE_ID_SPACEMIT_K1	0x0001
-> +
-> +/* Offsets and field definitions for link management registers */
-> +
+> +#include <linux/sysfs.h>
 
-nit: drop the extra newline
+Using find_closest() requires including linux/util_macros.h.
 
-> +#define K1_PHY_AHB_IRQ_EN			0x0000
-> +#define PCIE_INTERRUPT_EN		BIT(0)
 > +
-> +#define K1_PHY_AHB_LINK_STS			0x0004
-> +#define SMLH_LINK_UP			BIT(1)
-> +#define RDLH_LINK_UP			BIT(12)
+> +/* I2C registers */
+> +#define TSC1641_CONFIG		0x00
+> +#define TSC1641_SHUNT_VOLTAGE	0x01
+> +#define TSC1641_LOAD_VOLTAGE	0x02
+> +#define TSC1641_POWER		0x03
+> +#define TSC1641_CURRENT		0x04
+> +#define TSC1641_TEMP		0x05
+> +#define TSC1641_MASK		0x06
+> +#define TSC1641_FLAG		0x07
+> +#define TSC1641_RSHUNT		0x08 /* Shunt resistance */
+> +#define TSC1641_SOL		0x09
+> +#define TSC1641_SUL		0x0A
+> +#define TSC1641_LOL		0x0B
+> +#define TSC1641_LUL		0x0C
+> +#define TSC1641_POL		0x0D
+> +#define TSC1641_TOL		0x0E
+> +#define TSC1641_MANUF_ID	0xFE /* 0x0006 */
+> +#define TSC1641_DIE_ID		0xFF /* 0x1000 */
+> +#define TSC1641_MAX_REG		0xFF
 > +
-> +#define INTR_ENABLE				0x0014
-> +#define MSI_CTRL_INT			BIT(11)
+> +#define TSC1641_RSHUNT_DEFAULT	1000   /* 1mOhm */
+> +#define TSC1641_CONFIG_DEFAULT	0x003F /* Enable temperature sensor */
+> +#define TSC1641_MASK_DEFAULT	0xFC00 /* Unmask all alerts */
 > +
-> +/* Some controls require APMU regmap access */
-> +#define SYSCON_APMU			"spacemit,apmu"
+> +/* Bit mask for conversion time in the configuration register */
+> +#define TSC1641_CONV_TIME_MASK	GENMASK(7, 4)
 > +
-> +/* Offsets and field definitions for APMU registers */
+> +#define TSC1641_CONV_TIME_DEFAULT	1024
+> +#define TSC1641_MIN_UPDATE_INTERVAL	1024
 > +
+> +/* LSB value of different registers */
+> +#define TSC1641_VLOAD_LSB_MVOLT		2
+> +#define TSC1641_POWER_LSB_UWATT		25000
+> +#define TSC1641_VSHUNT_LSB_NVOLT	2500 /* Use nanovolts to make it integer */
+> +#define TSC1641_RSHUNT_LSB_UOHM		10
+> +#define TSC1641_TEMP_LSB_MDEGC		500
+> +
+> +/* Limits based on datasheet */
+> +#define TSC1641_RSHUNT_MIN_UOHM		100
+> +#define TSC1641_RSHUNT_MAX_UOHM		655350
+> +#define TSC1641_VLOAD_MAX_MVOLT		60000
+> +#define TSC1641_CURRENT_MIN_MAMP	(-819175)
+> +#define TSC1641_CURRENT_MAX_MAMP	819175
+> +#define TSC1641_TEMP_MIN_MDEGC		(-20000)
 
-here also
+Why -20000 ? The chip limit is -40 degrees C.
 
-> +#define PCIE_CLK_RESET_CONTROL			0x0000
-> +#define LTSSM_EN			BIT(6)
-> +#define PCIE_AUX_PWR_DET		BIT(9)
-> +#define PCIE_RC_PERST			BIT(12)	/* 1: assert PERST# */
-> +#define APP_HOLD_PHY_RST		BIT(30)
-> +#define DEVICE_TYPE_RC			BIT(31)	/* 0: endpoint; 1: RC */
+> +#define TSC1641_TEMP_MAX_MDEGC		145000
+> +#define TSC1641_POWER_MAX_UWATT		1600000000
 > +
-> +#define PCIE_CONTROL_LOGIC			0x0004
-> +#define PCIE_SOFT_RESET			BIT(0)
+> +#define TSC1641_ALERT_POL_MASK		BIT(1)
+> +#define TSC1641_ALERT_LATCH_EN_MASK	BIT(0)
 > +
-> +struct k1_pcie {
-> +	struct dw_pcie pci;
-> +	struct phy *phy;
-> +	void __iomem *link;
-> +	struct regmap *pmu;	/* Errors ignored; MMIO-backed regmap */
-> +	u32 pmu_off;
+> +/* Flags indicating alerts in TSC1641_FLAG register*/
+> +#define TSC1641_SHUNT_OV_FLAG		BIT(6)
+> +#define TSC1641_SHUNT_UV_FLAG		BIT(5)
+> +#define TSC1641_LOAD_OV_FLAG		BIT(4)
+> +#define TSC1641_LOAD_UV_FLAG		BIT(3)
+> +#define TSC1641_POWER_OVER_FLAG		BIT(2)
+> +#define TSC1641_TEMP_OVER_FLAG		BIT(1)
+> +
+> +static bool tsc1641_writeable_reg(struct device *dev, unsigned int reg)
+> +{
+> +	switch (reg) {
+> +	case TSC1641_CONFIG:
+> +	case TSC1641_MASK:
+> +	case TSC1641_RSHUNT:
+> +	case TSC1641_SOL:
+> +	case TSC1641_SUL:
+> +	case TSC1641_LOL:
+> +	case TSC1641_LUL:
+> +	case TSC1641_POL:
+> +	case TSC1641_TOL:
+> +		return true;
+> +	default:
+> +		return false;
+> +	}
+> +}
+> +
+> +static bool tsc1641_volatile_reg(struct device *dev, unsigned int reg)
+> +{
+> +	switch (reg) {
+> +	case TSC1641_SHUNT_VOLTAGE:
+> +	case TSC1641_LOAD_VOLTAGE:
+> +	case TSC1641_POWER:
+> +	case TSC1641_CURRENT:
+> +	case TSC1641_TEMP:
+> +	case TSC1641_FLAG:
+> +	case TSC1641_MANUF_ID:
+> +	case TSC1641_DIE_ID:
+> +		return true;
+> +	default:
+> +		return false;
+> +	}
+> +}
+> +
+> +static const struct regmap_config tsc1641_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 16,
+> +	.use_single_write = true,
+> +	.use_single_read = true,
+> +	.max_register = TSC1641_MAX_REG,
+> +	.cache_type = REGCACHE_MAPLE,
+> +	.volatile_reg = tsc1641_volatile_reg,
+> +	.writeable_reg = tsc1641_writeable_reg,
 > +};
 > +
-> +#define to_k1_pcie(dw_pcie) \
-> +		platform_get_drvdata(to_platform_device((dw_pcie)->dev))
-> +
-> +static void k1_pcie_toggle_soft_reset(struct k1_pcie *k1)
-> +{
-> +	u32 offset;
-> +	u32 val;
-> +
-> +	/*
-> +	 * Write, then read back to guarantee it has reached the device
-> +	 * before we start the delay.
-> +	 */
-> +	offset = k1->pmu_off + PCIE_CONTROL_LOGIC;
-> +	regmap_set_bits(k1->pmu, offset, PCIE_SOFT_RESET);
-> +	regmap_read(k1->pmu, offset, &val);
-> +
-> +	mdelay(2);
-> +
-> +	regmap_clear_bits(k1->pmu, offset, PCIE_SOFT_RESET);
-> +}
-> +
-> +/* Enable app clocks, deassert resets */
-> +static int k1_pcie_activate(struct k1_pcie *k1)
+> +struct tsc1641_data {
+> +	long rshunt_uohm;
+> +	long current_lsb_ua;
+> +	struct regmap *regmap;
+> +	struct i2c_client *client;
 
-k1_pcie_enable_resources()?
+client is not used anywhere and can be dropped.
 
+> +};
+> +
+> +/*
+> + * Upper limit due to chip 16-bit shunt register, lower limit to
+> + * prevent current and power registers overflow
+> + */
+> +static inline int tsc1641_validate_shunt(u32 val)
 > +{
-> +	struct dw_pcie *pci = &k1->pci;
-> +	int ret;
-> +
-> +	ret = clk_bulk_prepare_enable(ARRAY_SIZE(pci->app_clks), pci->app_clks);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = reset_control_bulk_deassert(ARRAY_SIZE(pci->app_rsts),
-> +					  pci->app_rsts);
-> +	if (ret)
-> +		goto err_disable_clks;
-> +
-> +	ret = reset_control_bulk_deassert(ARRAY_SIZE(pci->core_rsts),
-> +					  pci->core_rsts);
-> +	if (ret)
-> +		goto err_assert_resets;
-> +
+> +	if (val < TSC1641_RSHUNT_MIN_UOHM || val > TSC1641_RSHUNT_MAX_UOHM)
+> +		return -EINVAL;
+
+In some way this is inconsistent: It accepts a shunt resistor value of, say, 105
+even though the chip can only accept multiples of 10 uOhm. In situations like this
+I suggest to expect devicetree values to be accurate and to clamp values entered
+through sysfs. More on that below.
+
 > +	return 0;
-> +
-> +err_assert_resets:
-> +	reset_control_bulk_assert(ARRAY_SIZE(pci->app_rsts), pci->app_rsts);
-> +err_disable_clks:
-> +	clk_bulk_disable_unprepare(ARRAY_SIZE(pci->app_clks), pci->app_clks);
-> +
-> +	return ret;
 > +}
 > +
-> +/* Assert resets, disable app clocks */
-> +static void k1_pcie_deactivate(struct k1_pcie *k1)
-
-k1_pcie_disable_resources()?
-
+> +static int tsc1641_set_shunt(struct tsc1641_data *data, u32 val)
 > +{
-> +	struct dw_pcie *pci = &k1->pci;
+> +	struct regmap *regmap = data->regmap;
+> +	long rshunt_reg;
 > +
-> +	reset_control_bulk_assert(ARRAY_SIZE(pci->core_rsts), pci->core_rsts);
-> +	reset_control_bulk_assert(ARRAY_SIZE(pci->app_rsts), pci->app_rsts);
-> +	clk_bulk_disable_unprepare(ARRAY_SIZE(pci->app_clks), pci->app_clks);
+> +	if (tsc1641_validate_shunt(val) < 0)
+> +		return -EINVAL;
+> +
+> +	data->rshunt_uohm = val;
+> +	data->current_lsb_ua = DIV_ROUND_CLOSEST(TSC1641_VSHUNT_LSB_NVOLT * 1000,
+> +						 data->rshunt_uohm);
+> +	/* RSHUNT register LSB is 10uOhm so need to divide further*/
+> +	rshunt_reg = DIV_ROUND_CLOSEST(data->rshunt_uohm, TSC1641_RSHUNT_LSB_UOHM);
+
+This means that all calculations do not use the actual shunt resistor values used
+by the chip, but an approximation. I would suggest to store and use the actual shunt
+resistor value instead, not the one entered by the user.
+
+> +	return regmap_write(regmap, TSC1641_RSHUNT, clamp_val(rshunt_reg, 0, USHRT_MAX));
+
+The shunt resistor value is already validated, so the additional clamp here is
+unnecessary.
+
 > +}
 > +
-> +static int k1_pcie_init(struct dw_pcie_rp *pp)
+> +/*
+> + * Conversion times in uS, value in CONFIG[CT3:CT0] corresponds to index in this array
+> + * See "Table 14. CT3 to CT0: conversion time" in:
+> + * https://www.st.com/resource/en/datasheet/tsc1641.pdf
+> + */
+> +static const int tsc1641_conv_times[] = { 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768 };
+> +
+> +static int tsc1641_reg_to_upd_interval(u16 config)
 > +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct k1_pcie *k1 = to_k1_pcie(pci);
-> +	u32 offset;
-> +	u32 mask;
-> +	u32 val;
+> +	int idx = FIELD_GET(TSC1641_CONV_TIME_MASK, config);
+> +
+> +	idx = clamp_val(idx, 0, ARRAY_SIZE(tsc1641_conv_times) - 1);
+> +	int conv_time = tsc1641_conv_times[idx];
+> +
+> +	/* Don't support sub-millisecond update interval as it's not supported in hwmon */
+> +	conv_time = max(conv_time, TSC1641_MIN_UPDATE_INTERVAL);
+> +	/* Return nearest value in milliseconds */
+> +	return DIV_ROUND_CLOSEST(conv_time, 1000);
+> +}
+> +
+> +static u16 tsc1641_upd_interval_to_reg(long interval)
+> +{
+> +	/* Supported interval is 1ms - 33ms */
+> +	interval = clamp_val(interval, 1, 33);
+> +
+> +	int conv = interval * 1000;
+> +	int conv_bits = find_closest(conv, tsc1641_conv_times,
+> +				     ARRAY_SIZE(tsc1641_conv_times));
+> +
+> +	return FIELD_PREP(TSC1641_CONV_TIME_MASK, conv_bits);
+> +}
+> +
+> +static int tsc1641_chip_write(struct device *dev, u32 attr, long val)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +
+> +	switch (attr) {
+> +	case hwmon_chip_update_interval:
+> +		return regmap_update_bits(data->regmap, TSC1641_CONFIG,
+> +					  TSC1641_CONV_TIME_MASK,
+> +					  tsc1641_upd_interval_to_reg(val));
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static int tsc1641_chip_read(struct device *dev, u32 attr, long *val)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	u32 regval;
 > +	int ret;
 > +
-> +	k1_pcie_toggle_soft_reset(k1);
+> +	switch (attr) {
+> +	case hwmon_chip_update_interval:
+> +		ret = regmap_read(data->regmap, TSC1641_CONFIG, &regval);
+> +		if (ret)
+> +			return ret;
 > +
-> +	ret = k1_pcie_activate(k1);
+> +		*val = tsc1641_reg_to_upd_interval(regval);
+> +		return 0;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static int tsc1641_alert_read(struct regmap *regmap, u32 flag, long *val)
+> +{
+> +	unsigned int regval;
+> +	int ret;
+> +
+> +	ret = regmap_read_bypassed(regmap, TSC1641_FLAG, &regval);
 > +	if (ret)
 > +		return ret;
 > +
-> +	ret = phy_init(k1->phy);
-> +	if (ret) {
-> +		k1_pcie_deactivate(k1);
+> +	*val = !!(regval & flag);
+> +	return 0;
+> +}
 > +
-> +		return ret;
+> +static int tsc1641_in_read(struct device *dev, u32 attr, long *val)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	struct regmap *regmap = data->regmap;
+> +	unsigned int regval;
+> +	int ret, reg;
+> +
+> +	switch (attr) {
+> +	case hwmon_in_input:
+> +		reg = TSC1641_LOAD_VOLTAGE;
+> +		break;
+> +	case hwmon_in_lcrit:
+> +		reg = TSC1641_LUL;
+> +		break;
+> +	case hwmon_in_crit:
+> +		reg = TSC1641_LOL;
+> +		break;
+> +	case hwmon_in_lcrit_alarm:
+> +		return tsc1641_alert_read(regmap, TSC1641_LOAD_UV_FLAG, val);
+> +	case hwmon_in_crit_alarm:
+> +		return tsc1641_alert_read(regmap, TSC1641_LOAD_OV_FLAG, val);
+> +	default:
+> +		return -EOPNOTSUPP;
 > +	}
 > +
-> +	/* Set the PCI vendor and device ID */
-> +	dw_pcie_dbi_ro_wr_en(pci);
-> +	dw_pcie_writew_dbi(pci, PCI_VENDOR_ID, PCI_VENDOR_ID_SPACEMIT);
-> +	dw_pcie_writew_dbi(pci, PCI_DEVICE_ID, PCI_DEVICE_ID_SPACEMIT_K1);
-> +	dw_pcie_dbi_ro_wr_dis(pci);
+> +	ret = regmap_read(regmap, reg, &regval);
+> +	if (ret)
+> +		return ret;
 > +
-> +	/*
-> +	 * Assert fundamental reset (drive PERST# low).  Put the port in
+> +	*val = regval * TSC1641_VLOAD_LSB_MVOLT;
 
-s/port/controller
+This applies to many of the registers:
 
-> +	 * root complex mode, and indicate that Vaux (3.3v) is present.
-> +	 */
-> +	mask = PCIE_RC_PERST;
-> +	mask |= DEVICE_TYPE_RC | PCIE_AUX_PWR_DET;
-> +
-> +	/*
-> +	 * Write, then read back to guarantee it has reached the device
-> +	 * before we start the delay.
-> +	 */
-> +	offset = k1->pmu_off + PCIE_CLK_RESET_CONTROL;
-> +	regmap_set_bits(k1->pmu, offset, mask);
-> +	regmap_read(k1->pmu, offset, &val);
-> +
-> +	mdelay(PCIE_T_PVPERL_MS);
-> +
-> +	/* Deassert fundamental reset (drive PERST# high) */
-> +	regmap_clear_bits(k1->pmu, offset, PCIE_RC_PERST);
-> +
+if regval == 0x0000 or 0x7fff, and the SATF bit is set in the status register,
+the voltage is out of range. This should be checked and -ENODATA should be
+returned if it happens. Also, apparently, the register is only 15 bit wide and
+should never have bit 15 set.
+
 > +	return 0;
 > +}
 > +
-> +static void k1_pcie_deinit(struct dw_pcie_rp *pp)
+> +static int tsc1641_curr_read(struct device *dev, u32 attr, long *val)
 > +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct k1_pcie *k1 = to_k1_pcie(pci);
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	struct regmap *regmap = data->regmap;
+> +	int regval;
+> +	int ret, reg;
 > +
-> +	/* Assert fundamental reset (drive PERST# low) */
-> +	regmap_set_bits(k1->pmu, k1->pmu_off + PCIE_CLK_RESET_CONTROL,
-> +			PCIE_RC_PERST);
-
-You need assert PERST# here.
-
+> +	/* Current limits are the shunt under/over voltage limits */
+> +	switch (attr) {
+> +	case hwmon_curr_input:
+> +		reg = TSC1641_CURRENT;
+> +		break;
+> +	case hwmon_curr_lcrit:
+> +		reg = TSC1641_SUL;
+> +		break;
+> +	case hwmon_curr_crit:
+> +		reg = TSC1641_SOL;
+> +		break;
+> +	case hwmon_curr_lcrit_alarm:
+> +		return tsc1641_alert_read(regmap, TSC1641_SHUNT_UV_FLAG, val);
+> +	case hwmon_curr_crit_alarm:
+> +		return tsc1641_alert_read(regmap, TSC1641_SHUNT_OV_FLAG, val);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
 > +
-> +	phy_exit(k1->phy);
+> +	ret = regmap_read(regmap, reg, &regval);
+> +	if (ret)
+> +		return ret;
 > +
-> +	k1_pcie_deactivate(k1);
-> +}
-> +
-> +static const struct dw_pcie_host_ops k1_pcie_host_ops = {
-> +	.init		= k1_pcie_init,
-> +	.deinit		= k1_pcie_deinit,
-> +};
-> +
-> +static bool k1_pcie_link_up(struct dw_pcie *pci)
-> +{
-> +	struct k1_pcie *k1 = to_k1_pcie(pci);
-> +	u32 val;
-> +
-> +	val = readl_relaxed(k1->link + K1_PHY_AHB_LINK_STS);
-> +
-> +	return (val & RDLH_LINK_UP) && (val & SMLH_LINK_UP);
-> +}
-> +
-> +static int k1_pcie_start_link(struct dw_pcie *pci)
-> +{
-> +	struct k1_pcie *k1 = to_k1_pcie(pci);
-> +	u32 val;
-> +
-> +	/* Stop holding the PHY in reset, and enable link training */
-> +	regmap_update_bits(k1->pmu, k1->pmu_off + PCIE_CLK_RESET_CONTROL,
-> +			   APP_HOLD_PHY_RST | LTSSM_EN, LTSSM_EN);
-> +
-> +	/* Enable the MSI interrupt */
-> +	writel_relaxed(MSI_CTRL_INT, k1->link + INTR_ENABLE);
-> +
-> +	/* Top-level interrupt enable */
-> +	val = readl_relaxed(k1->link + K1_PHY_AHB_IRQ_EN);
-> +	val |= PCIE_INTERRUPT_EN;
-> +	writel_relaxed(val, k1->link + K1_PHY_AHB_IRQ_EN);
-> +
+> +	/* Current in milliamps */
+> +	*val = DIV_ROUND_CLOSEST((s16)regval * data->current_lsb_ua, 1000);
 > +	return 0;
 > +}
 > +
-> +static void k1_pcie_stop_link(struct dw_pcie *pci)
+> +static int tsc1641_power_read(struct device *dev, u32 attr, long *val)
 > +{
-> +	struct k1_pcie *k1 = to_k1_pcie(pci);
-> +	u32 val;
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	struct regmap *regmap = data->regmap;
+> +	unsigned int regval;
+> +	int ret, reg;
 > +
-> +	/* Disable interrupts */
-> +	val = readl_relaxed(k1->link + K1_PHY_AHB_IRQ_EN);
-> +	val &= ~PCIE_INTERRUPT_EN;
-> +	writel_relaxed(val, k1->link + K1_PHY_AHB_IRQ_EN);
+> +	switch (attr) {
+> +	case hwmon_power_input:
+> +		reg = TSC1641_POWER;
+> +		break;
+> +	case hwmon_power_crit:
+> +		reg = TSC1641_POL;
+> +		break;
+> +	case hwmon_power_crit_alarm:
+> +		return tsc1641_alert_read(regmap, TSC1641_POWER_OVER_FLAG, val);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
 > +
-> +	writel_relaxed(0, k1->link + INTR_ENABLE);
+> +	ret = regmap_read(regmap, reg, &regval);
+> +	if (ret)
+> +		return ret;
 > +
-> +	/* Disable the link and hold the PHY in reset */
-> +	regmap_update_bits(k1->pmu, k1->pmu_off + PCIE_CLK_RESET_CONTROL,
-> +			   APP_HOLD_PHY_RST | LTSSM_EN, APP_HOLD_PHY_RST);
+> +	*val = regval * TSC1641_POWER_LSB_UWATT;
+> +	return 0;
 > +}
 > +
-> +static const struct dw_pcie_ops k1_pcie_ops = {
-> +	.link_up	= k1_pcie_link_up,
-> +	.start_link	= k1_pcie_start_link,
-> +	.stop_link	= k1_pcie_stop_link,
+> +static int tsc1641_temp_read(struct device *dev, u32 attr, long *val)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	struct regmap *regmap = data->regmap;
+> +	unsigned int regval;
+> +	int ret, reg;
+> +
+> +	switch (attr) {
+> +	case hwmon_temp_input:
+> +		reg = TSC1641_TEMP;
+> +		break;
+> +	case hwmon_temp_crit:
+> +		reg = TSC1641_TOL;
+> +		break;
+> +	case hwmon_temp_crit_alarm:
+> +		return tsc1641_alert_read(regmap, TSC1641_TEMP_OVER_FLAG, val);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	ret = regmap_read(regmap, reg, &regval);
+> +	if (ret)
+> +		return ret;
+> +
+> +	*val = (s16)regval * TSC1641_TEMP_LSB_MDEGC;
+> +	return 0;
+> +}
+> +
+> +static int tsc1641_in_write(struct device *dev, u32 attr, long val)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	struct regmap *regmap = data->regmap;
+> +	unsigned int regval;
+> +	int reg;
+> +
+> +	switch (attr) {
+> +	case hwmon_in_lcrit:
+> +		reg = TSC1641_LUL;
+> +		break;
+> +	case hwmon_in_crit:
+> +		reg = TSC1641_LOL;
+> +		break;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	val = clamp_val(val, 0, TSC1641_VLOAD_MAX_MVOLT);
+> +	regval = DIV_ROUND_CLOSEST(val, TSC1641_VLOAD_LSB_MVOLT);
+> +
+> +	return regmap_write(regmap, reg, clamp_val(regval, 0, USHRT_MAX));
+
+Another unnecessary clamp. Please only clamp when necessary.
+
+Also, I notice that the above limits the value range to [0, 60000],
+and the register value to [0, 30000].
+
+According to the datasheet, the chip should accept the complete register
+range from 0 to 0xffff, or 131,070 mV, as limit values. That means it is
+possible for someone to write 0xffff into a register which would then be
+reported as limit when reading it, but writing that limit back would
+actually change it. I recommend against doing that.
+
+[ Yes, I know, a voltage above 60V might damage the chip, but that
+   doesn't mean that accepting higher limit values should be rejected.
+   Some BIOS / ROMMON vendor could decide to write a limit value of 0xffff
+   to indicate no limit. It is not our business to reject that.
+]
+
+The same applies to all other limit registers as far as I can see.
+
+> +}
+> +
+> +static int tsc1641_curr_write(struct device *dev, u32 attr, long val)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	struct regmap *regmap = data->regmap;
+> +	int reg, regval;
+> +
+> +	switch (attr) {
+> +	case hwmon_curr_lcrit:
+> +		reg = TSC1641_SUL;
+> +		break;
+> +	case hwmon_curr_crit:
+> +		reg = TSC1641_SOL;
+> +		break;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	/* Clamp to max 16-bit represantable current at min Rshunt */
+> +	val = clamp_val(val, TSC1641_CURRENT_MIN_MAMP, TSC1641_CURRENT_MAX_MAMP);
+> +	/* Convert val in milliamps to voltage */
+> +	regval = DIV_ROUND_CLOSEST(val * data->rshunt_uohm, TSC1641_VSHUNT_LSB_NVOLT);
+> +
+> +	return regmap_write(regmap, reg, clamp_val(regval, SHRT_MIN, SHRT_MAX));
+
+See below - clamping is insufficient for negative values, and it is not clear to me if
+the limit register is signed or unsigned.
+
+> +}
+> +
+> +static int tsc1641_power_write(struct device *dev, u32 attr, long val)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	struct regmap *regmap = data->regmap;
+> +	unsigned int regval;
+> +
+> +	switch (attr) {
+> +	case hwmon_power_crit:
+> +		val = clamp_val(val, 0, TSC1641_POWER_MAX_UWATT);
+> +		regval = DIV_ROUND_CLOSEST(val, TSC1641_POWER_LSB_UWATT);
+> +		return regmap_write(regmap, TSC1641_POL, clamp_val(regval, 0, USHRT_MAX));
+
+regval is already guaranteed to be <= 64000, so the additional clamp here is unencessary.
+
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static int tsc1641_temp_write(struct device *dev, u32 attr, long val)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	struct regmap *regmap = data->regmap;
+> +	int regval;
+> +
+> +	switch (attr) {
+> +	case hwmon_temp_crit:
+> +		val = clamp_val(val, TSC1641_TEMP_MIN_MDEGC, TSC1641_TEMP_MAX_MDEGC);
+> +		regval = DIV_ROUND_CLOSEST(val, TSC1641_TEMP_LSB_MDEGC);
+> +		return regmap_write(regmap, TSC1641_TOL, clamp_val(regval, SHRT_MIN, SHRT_MAX));
+
+This doesn't work as intended for negative values. regmap doesn't expect to see
+negative register values and returns an error if trying to write one, so clamping
+against SHRT_MIN and SHRT_MAX is insufficient. You also need to mask the result
+against 0xffff.
+
+Also, the datasheet doesn't say that the limit value would be signed. Did you verify
+that negative temperature limit values are actually treated as negative values ?
+
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static umode_t tsc1641_is_visible(const void *data, enum hwmon_sensor_types type,
+> +				  u32 attr, int channel)
+> +{
+> +	switch (type) {
+> +	case hwmon_chip:
+> +		switch (attr) {
+> +		case hwmon_chip_update_interval:
+> +			return 0644;
+> +		default:
+> +			break;
+> +		}
+> +		break;
+> +	case hwmon_in:
+> +		switch (attr) {
+> +		case hwmon_in_input:
+> +			return 0444;
+> +		case hwmon_in_lcrit:
+> +		case hwmon_in_crit:
+> +			return 0644;
+> +		case hwmon_in_lcrit_alarm:
+> +		case hwmon_in_crit_alarm:
+> +			return 0444;
+> +		default:
+> +			break;
+> +		}
+> +		break;
+> +	case hwmon_curr:
+> +		switch (attr) {
+> +		case hwmon_curr_input:
+> +			return 0444;
+> +		case hwmon_curr_lcrit:
+> +		case hwmon_curr_crit:
+> +			return 0644;
+> +		case hwmon_curr_lcrit_alarm:
+> +		case hwmon_curr_crit_alarm:
+> +			return 0444;
+> +		default:
+> +			break;
+> +		}
+> +		break;
+> +	case hwmon_power:
+> +		switch (attr) {
+> +		case hwmon_power_input:
+> +			return 0444;
+> +		case hwmon_power_crit:
+> +			return 0644;
+> +		case hwmon_power_crit_alarm:
+> +			return 0444;
+> +		default:
+> +			break;
+> +		}
+> +		break;
+> +	case hwmon_temp:
+> +		switch (attr) {
+> +		case hwmon_temp_input:
+> +			return 0444;
+> +		case hwmon_temp_crit:
+> +			return 0644;
+> +		case hwmon_temp_crit_alarm:
+> +			return 0444;
+> +		default:
+> +			break;
+> +		}
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +	return 0;
+> +}
+> +
+> +static int tsc1641_read(struct device *dev, enum hwmon_sensor_types type,
+> +			u32 attr, int channel, long *val)
+> +{
+> +	switch (type) {
+> +	case hwmon_chip:
+> +		return tsc1641_chip_read(dev, attr, val);
+> +	case hwmon_in:
+> +		return tsc1641_in_read(dev, attr, val);
+> +	case hwmon_curr:
+> +		return tsc1641_curr_read(dev, attr, val);
+> +	case hwmon_power:
+> +		return tsc1641_power_read(dev, attr, val);
+> +	case hwmon_temp:
+> +		return tsc1641_temp_read(dev, attr, val);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static int tsc1641_write(struct device *dev, enum hwmon_sensor_types type,
+> +			 u32 attr, int channel, long val)
+> +{
+> +	switch (type) {
+> +	case hwmon_chip:
+> +		return tsc1641_chip_write(dev, attr, val);
+> +	case hwmon_in:
+> +		return tsc1641_in_write(dev, attr, val);
+> +	case hwmon_curr:
+> +		return tsc1641_curr_write(dev, attr, val);
+> +	case hwmon_power:
+> +		return tsc1641_power_write(dev, attr, val);
+> +	case hwmon_temp:
+> +		return tsc1641_temp_write(dev, attr, val);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static const struct hwmon_channel_info * const tsc1641_info[] = {
+> +	HWMON_CHANNEL_INFO(chip,
+> +			   HWMON_C_UPDATE_INTERVAL),
+> +	HWMON_CHANNEL_INFO(in,
+> +			   HWMON_I_INPUT | HWMON_I_CRIT | HWMON_I_CRIT_ALARM |
+> +			   HWMON_I_LCRIT | HWMON_I_LCRIT_ALARM),
+
+Why did you choose lcrit/crit attributes instead of min/max ? If there is only
+one alert limit, that usually means the first level of alert, not a critical level.
+Raising an alert does not mean it is a critical alert. Please reconsider.
+
+> +	HWMON_CHANNEL_INFO(curr,
+> +			   HWMON_C_INPUT | HWMON_C_CRIT | HWMON_C_CRIT_ALARM |
+> +			   HWMON_C_LCRIT | HWMON_C_LCRIT_ALARM),
+> +	HWMON_CHANNEL_INFO(power,
+> +			   HWMON_P_INPUT | HWMON_P_CRIT | HWMON_P_CRIT_ALARM),
+> +	HWMON_CHANNEL_INFO(temp,
+> +			   HWMON_T_INPUT | HWMON_T_CRIT | HWMON_T_CRIT_ALARM),
+> +	NULL
 > +};
 > +
-> +static int k1_pcie_probe(struct platform_device *pdev)
+> +static ssize_t shunt_resistor_show(struct device *dev,
+> +				   struct device_attribute *da, char *buf)
 > +{
-> +	struct device *dev = &pdev->dev;
-> +	struct k1_pcie *k1;
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +
+> +	return sysfs_emit(buf, "%li\n", data->rshunt_uohm);
+> +}
+> +
+> +static ssize_t shunt_resistor_store(struct device *dev,
+> +				    struct device_attribute *da,
+> +				    const char *buf, size_t count)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	unsigned long val;
 > +	int ret;
 > +
-> +	k1 = devm_kzalloc(dev, sizeof(*k1), GFP_KERNEL);
-> +	if (!k1)
+> +	ret = kstrtoul(buf, 10, &val);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (val > U32_MAX)
+> +		return -EINVAL;
+> +
+
+Use kstrtouint() instead.
+
+> +	ret = tsc1641_set_shunt(data, (u32)val);
+> +	if (ret < 0)
+> +		return ret;
+> +	return count;
+> +}
+> +
+> +static const struct hwmon_ops tsc1641_hwmon_ops = {
+> +	.is_visible = tsc1641_is_visible,
+> +	.read = tsc1641_read,
+> +	.write = tsc1641_write,
+> +};
+> +
+> +static const struct hwmon_chip_info tsc1641_chip_info = {
+> +	.ops = &tsc1641_hwmon_ops,
+> +	.info = tsc1641_info,
+> +};
+> +
+> +static DEVICE_ATTR_RW(shunt_resistor);
+> +
+> +/* Shunt resistor value is exposed via sysfs attribute */
+> +static struct attribute *tsc1641_attrs[] = {
+> +	&dev_attr_shunt_resistor.attr,
+> +	NULL,
+> +};
+> +ATTRIBUTE_GROUPS(tsc1641);
+> +
+> +static int tsc1641_init(struct device *dev, struct tsc1641_data *data)
+> +{
+> +	struct regmap *regmap = data->regmap;
+> +	bool active_high;
+> +	u32 shunt;
+> +	int ret;
+> +
+> +	if (device_property_read_u32(dev, "shunt-resistor-micro-ohms", &shunt) < 0)
+> +		shunt = TSC1641_RSHUNT_DEFAULT;
+> +
+> +	if (tsc1641_validate_shunt(shunt) < 0) {
+> +		dev_err(dev, "invalid shunt resistor value %u\n", shunt);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = tsc1641_set_shunt(data, shunt);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = regmap_write(regmap, TSC1641_CONFIG, TSC1641_CONFIG_DEFAULT);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	active_high = device_property_read_bool(dev, "st,alert-polarity-active-high");
+> +
+> +	return regmap_write(regmap, TSC1641_MASK, TSC1641_MASK_DEFAULT |
+> +			    FIELD_PREP(TSC1641_ALERT_POL_MASK, active_high));
+> +}
+> +
+> +static int tsc1641_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct tsc1641_data *data;
+> +	struct device *hwmon_dev;
+> +	int ret;
+> +
+> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
 > +		return -ENOMEM;
 > +
-> +	k1->pmu = syscon_regmap_lookup_by_phandle_args(dev_of_node(dev),
-> +						       SYSCON_APMU, 1,
-> +						       &k1->pmu_off);
-> +	if (IS_ERR(k1->pmu))
-> +		return dev_err_probe(dev, PTR_ERR(k1->pmu),
-> +				     "failed to lookup PMU registers\n");
+> +	data->client = client;
 > +
-> +	k1->link = devm_platform_ioremap_resource_byname(pdev, "link");
-> +	if (!k1->link)
-> +		return dev_err_probe(dev, -ENOMEM,
-> +				     "failed to map \"link\" registers\n");
+> +	data->regmap = devm_regmap_init_i2c(client, &tsc1641_regmap_config);
+> +	if (IS_ERR(data->regmap)) {
+> +		dev_err(dev, "failed to allocate register map\n");
+> +		return PTR_ERR(data->regmap);
+
+Use dev_err_probe() here as well.
+
+> +	}
 > +
-> +	ret = devm_regulator_get_enable(dev, "vpcie3v3-supply");
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "failed to get \"vpcie3v3\" supply\n");
-
-As mentioned in the bindings patch, you should rely on the PWRCTRL_SLOT driver
-to handle the power supplies. It is not yet handling the PERST#, but I have a
-series floating for that:
-https://lore.kernel.org/linux-pci/20250912-pci-pwrctrl-perst-v3-0-3c0ac62b032c@oss.qualcomm.com/
-
+> +	ret = tsc1641_init(dev, data);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to configure device\n");
 > +
-> +	/* Hold the PHY in reset until we start the link */
-> +	regmap_set_bits(k1->pmu, k1->pmu_off + PCIE_CLK_RESET_CONTROL,
-> +			APP_HOLD_PHY_RST);
+> +	hwmon_dev = devm_hwmon_device_register_with_info(dev, client->name,
+> +							 data, &tsc1641_chip_info, tsc1641_groups);
+> +	if (IS_ERR(hwmon_dev))
+> +		return PTR_ERR(hwmon_dev);
 > +
-> +	k1->phy = devm_phy_get(dev, NULL);
-> +	if (IS_ERR(k1->phy))
-> +		return dev_err_probe(dev, PTR_ERR(k1->phy),
-> +				     "failed to get PHY\n");
-
-Once you move these properties to Root Port binding, you need to have per-Root
-Port parser. Again, you can refer the STM32 driver.
-
+> +	dev_info(dev, "power monitor %s (Rshunt = %li uOhm)\n",
+> +		 client->name, data->rshunt_uohm);
 > +
-> +	k1->pci.dev = dev;
-> +	k1->pci.ops = &k1_pcie_ops;
-> +	dw_pcie_cap_set(&k1->pci, REQ_RES);
+> +	return 0;
+> +}
 > +
-> +	k1->pci.pp.ops = &k1_pcie_host_ops;
-> +	k1->pci.pp.num_vectors = MAX_MSI_IRQS;
-
-This driver is just using a single 'msi' vector, which can only support 32 MSIs.
-But MAX_MSI_IRQS is 256. So this looks wrong.
-
+> +static const struct i2c_device_id tsc1641_id[] = {
+> +	{ "tsc1641", 0 },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, tsc1641_id);
 > +
-> +	platform_set_drvdata(pdev, k1);
+> +static const struct of_device_id __maybe_unused tsc1641_of_match[] = {
+> +	{ .compatible = "st,tsc1641" },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, tsc1641_of_match);
 > +
+> +static struct i2c_driver tsc1641_driver = {
+> +	.driver = {
+> +		.name = "tsc1641",
+> +		.of_match_table = of_match_ptr(tsc1641_of_match),
+> +	},
+> +	.probe = tsc1641_probe,
+> +	.id_table = tsc1641_id,
+> +};
+> +
+> +module_i2c_driver(tsc1641_driver);
+> +
+> +MODULE_AUTHOR("Igor Reznichenko <igor@reznichenko.net>");
+> +MODULE_DESCRIPTION("tsc1641 driver");
+> +MODULE_LICENSE("GPL");
 
-For setting the correct runtime PM state of the controller, you should do:
-
-pm_runtime_set_active()
-pm_runtime_no_callbacks()
-devm_pm_runtime_enable()
-
-This will fix the runtime PM hierarchy of PCIe chain (from host controller to
-client drivers). Otherwise, it will be broken.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
 
