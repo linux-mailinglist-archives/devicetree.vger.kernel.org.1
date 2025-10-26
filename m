@@ -1,67 +1,58 @@
-Return-Path: <devicetree+bounces-231178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41EB6C0B3E5
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 22:09:11 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D062DC0B410
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 22:17:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D67A189711C
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 21:09:35 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BA4694E35BA
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 21:17:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9B3C28312F;
-	Sun, 26 Oct 2025 21:09:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E216924EAB1;
+	Sun, 26 Oct 2025 21:17:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lUR1M4l/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EfvI2uaW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFEC972633;
-	Sun, 26 Oct 2025 21:09:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B30AB221FBD;
+	Sun, 26 Oct 2025 21:17:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761512947; cv=none; b=m5rYzDYAkIP/0VpoRwDVJde95OaAmNV3kyQeCO1UgB9HhB+FmSFoYZ/K6StsMj9ZJ6pYfCSZL4POA+nP1zPNisqxyOhoHy640rt0yP2jQDYYC5uzUAuKK9BBXxtpgiOroe6D+4aFUUcyB768EMLqU1u8YNQzCOKR7IqE5Wdt/Og=
+	t=1761513439; cv=none; b=arMqx3V8ATE+BDkpcqdBidFi+jI25GKRjjXZcg3mQNAAkHF4gr2SWzQzuuuUL0kmWbHzRxIZ/CtavZ0fe+23+QIQWeVKtfLmAX7u2zkxCsdVNnGdDkDa3YbNtDSNv6rl2ezIuACQJ3pmRLZTxGMA0kKSWbPLwGx5FD+TtIvK8Hg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761512947; c=relaxed/simple;
-	bh=PgGZkxx9eVXClCW73EbY+KTGYweRYJk4TsXoUCP0ekU=;
+	s=arc-20240116; t=1761513439; c=relaxed/simple;
+	bh=nVTMFH3So27LyHQuXMPPHtrd7ND7ymeCK1tF644Emr0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S8bH4Ahtv/DplOi7oWo/kFnHRmFjGTAqidTbsIQ9ikV++cM0jC0i20tqLrAxi17a/hl9voxG6C7ts+9CQfsMUPUG+B9ifUNwZ3Ci1QAPkss1OKAjUNI5aJ13G/md+VECHuaPQ7/uPXb5p/KGY9aDVfFFtnDFmIJcJcWfumyqgAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lUR1M4l/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0288BC4CEE7;
-	Sun, 26 Oct 2025 21:09:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=KvQsU8DC1OmEXsts9K2U9s6f6OEVxKyd/VahxOdEC3l9H0UyFklQgd20w1RhSW+1tmj5dpVHYSouDcTPYPZv/LFa2pz+Gfi4W6kltn7LHveOJ74bPHz3nin90aaVQr2u76SJXeZB0iI7EkIGtEFXtwwHBLqwvQjL1NbKVMqQf4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EfvI2uaW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F542C4CEE7;
+	Sun, 26 Oct 2025 21:17:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761512947;
-	bh=PgGZkxx9eVXClCW73EbY+KTGYweRYJk4TsXoUCP0ekU=;
+	s=k20201202; t=1761513439;
+	bh=nVTMFH3So27LyHQuXMPPHtrd7ND7ymeCK1tF644Emr0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lUR1M4l/hP8HpiVUCzrPwKHQLA71phjUp7BimzWp+4GClN0UQGwSfzsd8fVfX8wRV
-	 0KoytM0amuJJnfRidVHRhWF4gVgqbUjaYBkx0UgwbwhUxE7brFWpTs3cfPKaXZM/I8
-	 n6dJKg1SqGyGQ0zzhY5F6uCksj42hmsX7iazM8feVgjyg6S9EWHkRQHbXDLxKUzJbJ
-	 c3RU3rCDY8rckM0EqsfDfWfpuz1NJQluvNWhvQ0sPexN6jKfSq5Uibhp/z7R5ims10
-	 /y4N93U9eb/LS2ZoU9sCmehKWKB0ja+59U53OG8NS5eVEGuiB3tGhyqAPKBeWVZ09p
-	 VJDTdJX0SgnXw==
-Date: Sun, 26 Oct 2025 16:09:05 -0500
-From: Rob Herring <robh@kernel.org>
-To: iuncuim <iuncuim@gmail.com>
-Cc: Vasily Khoruzhick <anarsoul@gmail.com>,
-	Yangtao Li <tiny.windzz@gmail.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	b=EfvI2uaWg0oFtOyOp9EHzv19qKi5Bdo4XPoLVZcsEMcNvyV+gnReiAbGIOWTIFgQZ
+	 zz8Wc75t0gIVEAe0slC5iTe59xyJFdEIcsd3HzCwvOdnkknVF/elduigL6VBWxkwuD
+	 wpiHMFe+8CuelQkJDjdutxAo5LYqa/SIw4imxsC9adg0MsoW8qqJZqmaaw9EgXGh/k
+	 cXSV5leN3urw27mGAhHgptJjvR7+vHLW6rP+Ckdxt44r+0MKf6LY2aQgvRYJt9HZ9X
+	 iGINGrAEL7WO9a00ihuUtkI6NTTjah3rSHHUHAnEemv736TgSYV+vLk+198LM89Fi/
+	 wwlOHB5L208EA==
+Date: Sun, 26 Oct 2025 16:17:17 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Andre Przywara <andre.przywara@arm.com>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/6] dt-bindings: thermal: sun8i: Add A523 THS0/1
- controllers
-Message-ID: <20251026210905.GA2941518-robh@kernel.org>
-References: <20251025043129.160454-1-iuncuim@gmail.com>
- <20251025043129.160454-2-iuncuim@gmail.com>
+	Vinod Koul <vkoul@kernel.org>
+Subject: Re: [PATCH] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Restrict
+ resets per each device
+Message-ID: <176151343423.2959050.2808385809411398103.robh@kernel.org>
+References: <20251017045919.34599-2-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,55 +61,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251025043129.160454-2-iuncuim@gmail.com>
+In-Reply-To: <20251017045919.34599-2-krzysztof.kozlowski@linaro.org>
 
-On Sat, Oct 25, 2025 at 12:31:24PM +0800, iuncuim wrote:
-> From: Mikhail Kalashnikov <iuncuim@gmail.com>
+
+On Fri, 17 Oct 2025 06:59:20 +0200, Krzysztof Kozlowski wrote:
+> Bindings should be complete, thus complete the constraints for the
+> resets by adding missing compatibles for devices with two resets and
+> "else:" clause narrowing them for all other devices.
 > 
-> Add a binding for D1/T113s thermal sensor controller. Add dt-bindings
-> description of the thermal sensors in the A523 processor.
-> The controllers require activation of the additional frequency of the
-> associated gpadc controller, so a new clock property has been added.
-> 
-> The calibration data is split into two cells that are in different areas
-> of nvmem. Both controllers require access to both memory cell, so a new
-> property nvmem-cells has been added. To maintain backward compatibility,
-> the name of the old cell remains the same and the new nvmem-cell-names is
-> called calibration-second-part
-> 
-> Signed-off-by: Mikhail Kalashnikov <iuncuim@gmail.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  .../thermal/allwinner,sun8i-a83t-ths.yaml     | 56 ++++++++++++++++++-
->  1 file changed, 53 insertions(+), 3 deletions(-)
+>  .../bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml          | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml b/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml
-> index 3e61689f6..b2f750ef2 100644
-> --- a/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml
-> @@ -24,18 +24,23 @@ properties:
->        - allwinner,sun50i-h5-ths
->        - allwinner,sun50i-h6-ths
->        - allwinner,sun50i-h616-ths
-> +      - allwinner,sun55i-a523-ths0
-> +      - allwinner,sun55i-a523-ths1
->  
->    clocks:
->      minItems: 1
->      items:
->        - description: Bus Clock
->        - description: Module Clock
-> +      - description: GPADC Clock
->  
->    clock-names:
->      minItems: 1
-> +    maxItems: 2
 
-How can the max be both 2 and...
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
->      items:
->        - const: bus
->        - const: mod
-> +      - const: gpadc
-
-...3 entries?
 
