@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-231089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A94D2C0A4ED
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 09:53:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15DA3C0A4F9
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 09:58:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D5693AC1D8
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 08:53:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 390C43ADBEB
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 08:58:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01E432853E9;
-	Sun, 26 Oct 2025 08:53:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AE072874F0;
+	Sun, 26 Oct 2025 08:58:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eebruFlf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MddvoryI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C98D81D5154;
-	Sun, 26 Oct 2025 08:53:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D00A23D7E4;
+	Sun, 26 Oct 2025 08:58:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761468798; cv=none; b=Z235p4EL0zbvsiagHF9sFNEPUsetZk/rrjDhzU66K/kppSNsNceat1+IW1wgpVvymE1fm+zqc8FU+/+bY5wY6qwawEqkZsQj4fq5VurgXNqVkgDaxP0hTHy+0rrvF1VDZqUWDYVvkgh+fYCZHiyLIsFVxRqDMiVcIiZaaZsOVbo=
+	t=1761469081; cv=none; b=KEjiklG11UOGnR1EhRS+73+JSSLycAnMdgIjcT/cXvs6IEoOKSGjBvA2hV+XOlaZL03BC/pj9APh6bgDEud9VcV1ht/O6gb/+7Z01VPT6/WlTCCmYhn5mRBPrXiqFXhq4oqG+o6G+prpLi5yWdieJoOFQqkJ4cwlWHHYXoGGg3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761468798; c=relaxed/simple;
-	bh=ETFWaSzahPsIU/f0IDtZ2cbGfc13FYOQRJh3Ot+xAbI=;
+	s=arc-20240116; t=1761469081; c=relaxed/simple;
+	bh=3iawiwdyl6YkqwgoT3jaWO1ZcL+rxdAJv50E5bPZZps=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rDMbEZ/f1wZ7/JevBdJB9XCR2MUIWs4Nq82uEJnKtFqemj35vjzHJ6N4G9aP9k72IDIhq0xLGnOT8twcpF6OYTW0VFPzdZpgY8hYSSPLJsoYwJXhds9eoDgk7zlhkjJLwuGQ3ER32e1st+Ll1mynA83rRBGQKMCKlOyt5gImGM4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eebruFlf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD7C9C4CEE7;
-	Sun, 26 Oct 2025 08:53:13 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=JOx17gM+dV5r6mx9axJwiKPlD+IQt1sUxuPvvWLwfnhWtC8scJ4ZR2Oq6Qnl3zXRmp13N6jvguHgq/JTCnA8rLHm292kR3vCvvyCRILV6ZkyHagf0F8g73UshGZcf3raYVcM90vnEajDWaRWUdovLyba6CIWGFP7CCDiHt4sPzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MddvoryI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2F47C4CEE7;
+	Sun, 26 Oct 2025 08:57:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761468798;
-	bh=ETFWaSzahPsIU/f0IDtZ2cbGfc13FYOQRJh3Ot+xAbI=;
+	s=k20201202; t=1761469080;
+	bh=3iawiwdyl6YkqwgoT3jaWO1ZcL+rxdAJv50E5bPZZps=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eebruFlfGd6ZRt+naeqmWT15LN4otiyVnoS1OMafAA7mHskCk9n3mdoicK7qGeQx5
-	 013eA5386qeA06t7K9pJXNTKikbEhQ9BxlKG1KE4WKIwG/eYFgtsOKUWxCOTN2BUMG
-	 0aGtVi9fm8qWYYS3VtBthAIhIXg1ZvQgJTiQpS9YQTg+WZgnD56H2Hbj2pjhU34s5o
-	 6UpbNZ6vke378jW8lLB8xwjizSHCy4OthPKCCap3LKz9JioIDpzzDKEcIaVq4GtoXv
-	 uQPRm3T8vx7a2Pqg9qPB8DOBVwL40JH8mep38iV+Qj0VtRrCidUqbbdgt5aPLNonGR
-	 7l1pThwn3e2ig==
-Message-ID: <e6a34c11-4ec8-4b96-ad61-642a4be3eef6@kernel.org>
-Date: Sun, 26 Oct 2025 09:53:11 +0100
+	b=MddvoryIKXSC+00ow4/Mj5ZMva5KkF5PPTRsIODKM1+8ev+HGWdBm+lYq0QxPDOWZ
+	 a2/rXK3Z0PFLJtPhQ2KrTssD+sCMGtwmeR7x0qhfEv1lo55R2STCx8u2rNPYSt6pVx
+	 iVPJ/aMH0YoeZKXlnjCg7u438TCis9cOavXLgh9ddUNYmyGB5Gq5bzC9HOcJMbztxd
+	 2XCm/4PQyA/M8OTYgHGHxJkATGo8564oyrr/ZVYf8vkTFE3Qbo6uay7d12x/ImcpA/
+	 cRhZ9VDe7rzTBSFAsbUVIw0r2cTclxXpXar1x801xNaDMChj0S5t03a75O/kRA8AsV
+	 l7t6n/UTzRR9g==
+Message-ID: <68033c02-7860-420d-9fa7-29b844631bce@kernel.org>
+Date: Sun, 26 Oct 2025 09:57:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 05/10] dt-bindings: net: altr,socfpga-stmmac: add
- generic dwxgmac compatible
-To: Steffen Trumtrar <s.trumtrar@pengutronix.de>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+Subject: Re: [PATCH v6 1/8] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy:
+ Add Glymur compatible
+To: Wesley Cheng <wesley.cheng@oss.qualcomm.com>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Dinh Nguyen <dinguyen@kernel.org>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Matthew Gerlach <matthew.gerlach@altera.com>
-Cc: kernel@pengutronix.de, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20251024-v6-12-topic-socfpga-agilex5-v5-0-4c4a51159eeb@pengutronix.de>
- <20251024-v6-12-topic-socfpga-agilex5-v5-5-4c4a51159eeb@pengutronix.de>
+ Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
+ Abel Vesa <abel.vesa@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251024-glymur_usb-v6-0-471fa39ff857@oss.qualcomm.com>
+ <20251024-glymur_usb-v6-1-471fa39ff857@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,28 +106,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251024-v6-12-topic-socfpga-agilex5-v5-5-4c4a51159eeb@pengutronix.de>
+In-Reply-To: <20251024-glymur_usb-v6-1-471fa39ff857@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/10/2025 13:49, Steffen Trumtrar wrote:
-> Add the more generic "snps,dwxgmac" compatible to the list of
-> compatibles for the agilex5.
-> 
-> The snps,dwmac binding explicitly uses the "snps,dwxgmac-2.10",
+On 25/10/2025 02:47, Wesley Cheng wrote:
+> Define a Glymur compatible string for the QMP PHY combo driver, along with
 
-Hm? No, binding says only dwxgmac-2.10, DTS only dwxgmac-2.10.
+Bindings are for hardware, not driver.
 
-> "snps,dwxgmac" combination as example; the stmmac driver only checks on
+> resource requirements.  Add a different identifier for the primary QMP PHY
 
-Example does not matter.
+What is an "identifier"?
 
-> dwmac and dwxgmac compatibles to decide what kind of gmac it is working
+> instance as it does not require a clkref entry.
 
-Huh? I clearly see snps,dwxgmac-2.10 in dwmac-generic.c
-
-> with.
-This change really lacks proper rationale.
+I do not see how this is related or relevant. You add some identifier
+because clkref is not needed? And if clkref was needed you would not add
+that identifier?
 
 Best regards,
 Krzysztof
