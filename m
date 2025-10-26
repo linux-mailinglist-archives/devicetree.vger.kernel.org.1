@@ -1,259 +1,120 @@
-Return-Path: <devicetree+bounces-231093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10C49C0A57C
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 10:34:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69C39C0A594
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 10:44:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9B0224E1B1A
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 09:34:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 520CE3A983B
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 09:44:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B796722A4EE;
-	Sun, 26 Oct 2025 09:34:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CF572877D4;
+	Sun, 26 Oct 2025 09:44:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WSmOR86j"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ovp5fpfj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9A431DA0E1
-	for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 09:34:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FE0E17BA6;
+	Sun, 26 Oct 2025 09:44:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761471243; cv=none; b=pSY5JYDXt+tPewi9wJTfIY4xU8wu1hFBVpGNlgmu600alIA9STqswOyaQ28mxhy4aoxfuFmS4rm5TbjnDCX/i+OtcMFi28kPxlBHsI2ononA104VXWbfHQ7+5WF8CLYZ/Mh2DPdkp29j/M3LXLszmTQELLRkiT2rUA2K/XjmHZE=
+	t=1761471847; cv=none; b=d1FO2hNYHTu0wV89Fsn6THtb1UnsMMFuGTT8vHBEXG9jZZE/VkBc4AEUtIzu9tzYnolzqOafVesfYXuiClsYpo70pLWQtkaI7mp1XeiyQQ7AuadFHVyWgD6BRmovwY9lDz+078+SZgoFWssXPdzLUviZHB0VczA+bl2JhNZaSX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761471243; c=relaxed/simple;
-	bh=Mh6NpoOEODASCpA92pc1qeYToNd8lzNHa+S4ChO1X40=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GcZw8btEbEs2cv3l6Xn6krT9w26QRqxogeyD6pBrrH55XUV1YnM289UaScK1oar0zKXcGCVnXcmJraeE4uu13h/hpQe8hOiKChWqijzS7ODfa9j0EMCb2UW9VL6uFmoHhgwFsyxfe93jzw3eS1lMixDtBqmYCbrxI+xHr5q7N+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WSmOR86j; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59Q9KAkr3575893
-	for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 09:34:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	56dn96aHf3hXKKzsHWNkw3ffdRMIjdiQ0e3RFj+hds4=; b=WSmOR86j5uftPdxW
-	3UzSKr0k4OppNZN2fibBusBMXBB4Oke+ZM3IQj9RVQCH08YrViqE3tnpC1QsQfU6
-	E8pPYX6oe+CADvPwTN5jZFcUvELuMqL2cJD7mAL9nDUFbMH5u6+p3/cp0/5iD3EK
-	NuNxCVaSWvk26osFNXGu2vqQRk7SQQ1gTpqBqHGZUef/C8CCTPOtMjdjoXbvZZ3F
-	U4UvNWIMRHf0KzpqIXUy/JEPIcbYGbWwB296VpqQmPdGrIA0qj76dj3/Aqi70IlI
-	uF6+HB8pissZAAllccPZX2t9GpOkCZKFux6wzq3br7ITbWsN90hzqbp99LmAeEov
-	cD8LGA==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a0p4w9v03-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 09:34:00 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2813879844cso8034475ad.2
-        for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 02:34:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761471239; x=1762076039;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=56dn96aHf3hXKKzsHWNkw3ffdRMIjdiQ0e3RFj+hds4=;
-        b=Abt1Pc+qrg3i0LHZzwuA9TrZ39CY8x0aUl5KI++Uf4x5KdYbJGUBX0wDycDDkijjjp
-         G+xBkfbaelSkQyB6qLLk+Bv7R19hT1DLzCuxEB9mRM8EEwsfSOqUYtYkGR/dSDNg076j
-         j1O/sXoKPnw7D7kYI+rHFGJBoJkqx+JXW7MZ1Q9LVHBvYM9gTRVfLk/Jq83kQqiIIUUd
-         ibSMwX7fBhKGeqKPpO0etR1n9sIhDHsbFw1Z3zGMkOq1MPeHIbU5i4Csiuga/HPvihJj
-         azCESvNbIN/RDuvqxPXuWhIz77QETF0Dv6zTbuNsaWWQ1dH/XTOSRXZTlAFr4liE9dfr
-         K4dg==
-X-Forwarded-Encrypted: i=1; AJvYcCU3QazO0hP2UJlEO3QtQglUuv0kGIsueDBdsEk6Xe6Z8eItOt9UZ1hM6kRim9YeTWccEyEAWBzlxLJ3@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywii0uS9bS2Yn9iJHkxC0bozQzA2WtVSO8FG1AqA6cKHUMmSdDR
-	5mkVJMI1DpLSdqBu71M0nA8Wak/5joLZbKkxBOE0b+ncGgNb+vi6GSmHa7jMSqTh/29gJJYdOde
-	zJ3XkYPOTkXrB3b52z/VoDe/fucvzuDs6TfK7x9yHhbcjbqjtevYQ2EYRWWpeeT8=
-X-Gm-Gg: ASbGnct4NWf3R8WsLruOv5GGJrKtDkCRBmBm1lkPwpbDoV6iA6VDBhKDC0yoMBZ6iAn
-	7ezaGqJkosg6vTWrujfbOvb2EyLqtu9NI1cj4He4HYeRGVDrGd8p2xdpqvenSwpbouwaNTVbjVe
-	jqPeX8443seftPzyXTDKZylf0/7dkTISTtl6HU/7t/QDw6QRv4u/gpInHUCEY+kCLpUhmkS904d
-	x4DfJVW5GVDI2ZeljnCuKo6ZSjfeECNBBRMbJ6g8OiqSGkTDHTpuYk9Bfbtpuhclm8CmQ03BMJ+
-	h7frIYSkiLikz3x/qMB65Q5MG2NnK5zujugkJa1K6poOASw5105zdAuF8GDHARnZabP+iJaYI4S
-	r+ga9LY9BHQ5747mrPVnVZQHlUA==
-X-Received: by 2002:a17:903:2a8d:b0:27e:eee6:6df2 with SMTP id d9443c01a7336-292d3fb7f47mr128134455ad.7.1761471239587;
-        Sun, 26 Oct 2025 02:33:59 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFQBERQ6dlt5UHcYOlT6Y1tPbrDH52NPHs0vo71kb86ovM01aE0uB9o33e/ODR94nDiuD9/HA==
-X-Received: by 2002:a17:903:2a8d:b0:27e:eee6:6df2 with SMTP id d9443c01a7336-292d3fb7f47mr128134215ad.7.1761471239159;
-        Sun, 26 Oct 2025 02:33:59 -0700 (PDT)
-Received: from [192.168.0.3] ([49.205.244.82])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29498cf3f4asm45343295ad.11.2025.10.26.02.33.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Oct 2025 02:33:58 -0700 (PDT)
-Message-ID: <6292dd07-0a74-4773-ad5f-b737b2f848dd@oss.qualcomm.com>
-Date: Sun, 26 Oct 2025 15:03:51 +0530
+	s=arc-20240116; t=1761471847; c=relaxed/simple;
+	bh=MyRDkkeM1WniRrNwIECJAWX6rR/HsGtbFOS5K7hsaLo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IyUTwQgb9ZM7c5nXnk8B8epmnlGi54Sum6Q6thMSduA7TqhC7UzmPVkcLzVyuMn7vN0iw2r5yJHYVmwVgm0EMEfWnmqWuFUOaT5Pfiyi4nQcibL/b4Kg6ccJErE2tehm60zBb9mevI7jHxZwQWzPg4PUX1yaAlY6kuGeQdXuLdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ovp5fpfj; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761471846; x=1793007846;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=MyRDkkeM1WniRrNwIECJAWX6rR/HsGtbFOS5K7hsaLo=;
+  b=Ovp5fpfjKoj+Go/AhTv9LrRreDjFLLLAKWKxcFGrEonSqX4Y82zz4+Ol
+   syh1m0Wkzmi14i5+R6twZ8uIpUZI5Dm63aM2f8lMJHgfCNEu+wuELgXZL
+   y+4dVWyS/nvVK6V2LR08M6S6gke/3pdBWaN5ndvS4pEfoUFKmisQww65q
+   XBpgAKybvLDu3zyBvkx3ZEvtJACf8feb6f8HP2LO3WHSZNwl7koDTakFs
+   W8Us4FnV6mMOSFijmoki6UOmdArevFpeGa25S7GhbZ4I1+wh99LslNbA0
+   HyFq717/VzwnQiJBNhqn0BwYXp4+PFam8v9lzlqNPLPDfVIx0/Z/xpXzr
+   Q==;
+X-CSE-ConnectionGUID: rU81IqelQ6OQupZgFBx7uA==
+X-CSE-MsgGUID: xt7tB2iTQn2Ftk3k8LX/ZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63730916"
+X-IronPort-AV: E=Sophos;i="6.19,256,1754982000"; 
+   d="scan'208";a="63730916"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Oct 2025 02:43:52 -0700
+X-CSE-ConnectionGUID: RJXJrLBXRruANBTCQE/mPQ==
+X-CSE-MsgGUID: sgB1CLxGQzyoEeuxq8N8/Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,256,1754982000"; 
+   d="scan'208";a="184877434"
+Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
+  by orviesa008.jf.intel.com with ESMTP; 26 Oct 2025 02:43:46 -0700
+Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vCxHr-000G1x-2v;
+	Sun, 26 Oct 2025 09:43:43 +0000
+Date: Sun, 26 Oct 2025 17:43:09 +0800
+From: kernel test robot <lkp@intel.com>
+To: Coia Prant <coiaprant@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, Dragan Simic <dsimic@manjaro.org>,
+	Jonas Karlman <jonas@kwiboo.se>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org, Coia Prant <coiaprant@gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Add devicetree for the X3568 v4
+Message-ID: <202510261750.glZ5VRca-lkp@intel.com>
+References: <20251025203711.3859240-1-coiaprant@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 2/4] arm64: dts: qcom: sm8750: Add SDC2 nodes for
- sm8750 soc
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, quic_nguyenb@quicinc.com,
-        quic_rampraka@quicinc.com, quic_pragalla@quicinc.com,
-        quic_sayalil@quicinc.com, quic_nitirawa@quicinc.com,
-        quic_bhaskarv@quicinc.com, kernel@oss.qualcomm.com
-References: <20251023112924.1073811-1-sarthak.garg@oss.qualcomm.com>
- <20251023112924.1073811-3-sarthak.garg@oss.qualcomm.com>
- <kbbebw2kr3hu6q3sb4z3i7yy7vv432rjx2ylp254cbifpcxe33@bhyldim36fff>
-Content-Language: en-US
-From: Sarthak Garg <sarthak.garg@oss.qualcomm.com>
-In-Reply-To: <kbbebw2kr3hu6q3sb4z3i7yy7vv432rjx2ylp254cbifpcxe33@bhyldim36fff>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: lMBvualwCnGJyjh7vvICQQbAxOSYrLVi
-X-Proofpoint-GUID: lMBvualwCnGJyjh7vvICQQbAxOSYrLVi
-X-Authority-Analysis: v=2.4 cv=NobcssdJ c=1 sm=1 tr=0 ts=68fdeb08 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=bVPtsstaAh+Xhvtfxu+pEg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=sFmbwog37gvI7kGm1A4A:9 a=KKStjhyEKkBOW3-R:21
- a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI2MDA4OCBTYWx0ZWRfX318/r6YwntZ6
- TdE+tswRtQOMH/x3HYgadJ7ruskgFUIeRfr8BQAX5bSVgwO8w5ax3+AP5m4ecu2chT6uZxjWnVB
- J1spODa0my7Qtotpc/T+OWO0hPMcwEUoY5JGmJGO2tdeLu1oF9p4ErYkgdsSEjSfGwHV5cv9Xsl
- l2zef5xxd39IZFYQgXIkvXbFPwif/vK9dCmGgfhSjNoijvGSfJf0bAPsC8ifHfCPzo+Wkw3JxBP
- Ig9v3S4dMK2l7dTnBOpu9ZtFSoqfwMMQwruMb76HJm+0x0/vdrRFvp0JQULXLrZeB8WV2CB3Cip
- /cCeecemEQVjejMRbri1iMKSCXv9yXuWthKupapfzgiJMpCpYvHB187FM1VKOQ06AEdemQoVKPK
- 0/gaPtEnaCLZ2Ho6tHHiqeJFef0Ndw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-26_04,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 priorityscore=1501 phishscore=0 suspectscore=0 malwarescore=0
- lowpriorityscore=0 spamscore=0 impostorscore=0 bulkscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510020000 definitions=main-2510260088
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251025203711.3859240-1-coiaprant@gmail.com>
 
+Hi Coia,
 
-On 10/23/2025 5:44 PM, Abel Vesa wrote:
-> On 25-10-23 16:59:22, Sarthak Garg wrote:
->> Add SD Card host controller for sm8750 soc.
->>
->> Signed-off-by: Sarthak Garg <sarthak.garg@oss.qualcomm.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sm8750.dtsi | 68 ++++++++++++++++++++++++++++
->>   1 file changed, 68 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
->> index a82d9867c7cb..1070dc5ea196 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
->> @@ -2060,6 +2060,60 @@ ice: crypto@1d88000 {
->>   			clocks = <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
->>   		};
->>   
->> +		sdhc_2: mmc@8804000 {
->> +			compatible = "qcom,sm8750-sdhci", "qcom,sdhci-msm-v5";
->> +			reg = <0 0x08804000 0 0x1000>;
->> +
->> +			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
->> +			interrupt-names = "hc_irq",
->> +					  "pwr_irq";
->> +
->> +			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
->> +				 <&gcc GCC_SDCC2_APPS_CLK>,
->> +				 <&rpmhcc RPMH_CXO_CLK>;
->> +			clock-names = "iface",
->> +				      "core",
->> +				      "xo";
->> +
->> +			interconnects = <&aggre2_noc MASTER_SDCC_2 QCOM_ICC_TAG_ALWAYS
->> +					&mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
->> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
->> +					&config_noc SLAVE_SDCC_2 QCOM_ICC_TAG_ACTIVE_ONLY>;
->> +			interconnect-names = "sdhc-ddr",
->> +					     "cpu-sdhc";
->> +
->> +			power-domains = <&rpmhpd RPMHPD_CX>;
->> +			operating-points-v2 = <&sdhc2_opp_table>;
->> +
->> +			qcom,dll-config = <0x0007442c>;
->> +			qcom,ddr-config = <0x80040868>;
->> +
->> +			iommus = <&apps_smmu 0x540 0x0>;
->> +			dma-coherent;
->> +
->> +			bus-width = <4>;
->> +			max-sd-hs-hz = <37500000>;
->> +
->> +			resets = <&gcc GCC_SDCC2_BCR>;
->> +
->> +			status = "disabled";
->> +
->> +			sdhc2_opp_table: opp-table {
->> +				compatible = "operating-points-v2";
->> +
->> +				opp-100000000 {
->> +					opp-hz = /bits/ 64 <100000000>;
->> +					required-opps = <&rpmhpd_opp_low_svs>;
->> +				};
->> +
->> +				opp-202000000 {
->> +					opp-hz = /bits/ 64 <202000000>;
->> +					required-opps = <&rpmhpd_opp_svs_l1>;
->> +				};
->> +			};
->> +		};
->> +
->>   		cryptobam: dma-controller@1dc4000 {
->>   			compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
->>   			reg = <0x0 0x01dc4000 0x0 0x28000>;
->> @@ -3121,6 +3175,13 @@ data-pins {
->>   					drive-strength = <2>;
->>   					bias-pull-up;
->>   				};
->> +
->> +				card-detect-pins {
->> +					pins = "gpio55";
->> +					function = "gpio";
->> +					drive-strength = <2>;
->> +					bias-pull-up;
->> +				};
-> These are board specific, so move them to the board dts.
+kernel test robot noticed the following build errors:
 
+[auto build test ERROR on krzk/for-next]
+[also build test ERROR on krzk-dt/for-next linus/master v6.18-rc2]
+[cannot apply to rockchip/for-next next-20251024]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Sure will update in V3.
+url:    https://github.com/intel-lab-lkp/linux/commits/Coia-Prant/arm64-dts-rockchip-Add-devicetree-for-the-X3568-v4/20251026-043855
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git for-next
+patch link:    https://lore.kernel.org/r/20251025203711.3859240-1-coiaprant%40gmail.com
+patch subject: [PATCH] arm64: dts: rockchip: Add devicetree for the X3568 v4
+config: arm64-randconfig-002-20251026 (https://download.01.org/0day-ci/archive/20251026/202510261750.glZ5VRca-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project e1ae12640102fd2b05bc567243580f90acb1135f)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251026/202510261750.glZ5VRca-lkp@intel.com/reproduce)
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202510261750.glZ5VRca-lkp@intel.com/
 
->>   			};
->>   
->>   			sdc2_default: sdc2-default-state {
->> @@ -3141,6 +3202,13 @@ data-pins {
->>   					drive-strength = <10>;
->>   					bias-pull-up;
->>   				};
->> +
->> +				card-detect-pins {
->> +					pins = "gpio55";
->> +					function = "gpio";
->> +					drive-strength = <2>;
->> +					bias-pull-up;
->> +				};
-> Ditto.
+All errors (new ones prefixed by >>):
 
+>> Error: missing overlay file(s)
 
-Sure will update in V3.
-
-Regards,
-Sarthak
-
-
->>   			};
->>   		};
->>   
->> -- 
->> 2.34.1
->>
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
