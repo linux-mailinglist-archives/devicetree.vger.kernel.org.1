@@ -1,78 +1,63 @@
-Return-Path: <devicetree+bounces-231109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F41FC0A6EB
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 13:22:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2BE2C0A70A
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 13:29:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A0A474E7063
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 12:22:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 688CD3AC8C8
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 12:29:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0B01223DF6;
-	Sun, 26 Oct 2025 12:22:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D9F525524C;
+	Sun, 26 Oct 2025 12:29:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="S9ZPujlB"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="GW/HxhpZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout2.routing.net (mxout2.routing.net [134.0.28.12])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 749BA18EB0;
-	Sun, 26 Oct 2025 12:22:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C256212572
+	for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 12:29:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761481336; cv=none; b=HJEAgrQSplmQLy/2wxploOdpCKPdIZc2Mf51QELd1xT+9Ft5QBDyg1W78exHBZjIJqtwSmqSkx20gHhZPJLy17isAbklnvC57M3xdnYVIHOsD4QXULhZ8tdRM3UimvjLMp0JR76mj7jOdmOJsW5vC+AjMCd+eaAfHNY4B+bKdrE=
+	t=1761481763; cv=none; b=VsV4VGqkkVy34PsQ50dPEVjVclhenuf5g3W740rRbiLp3pzLnSHkO4EXjbnw64bU8ocuhaO2hHQcviaIlzEOmbA6i/EPOc9bQRWTsMEh5s1QSAL3UR629AIm6yatLx8C3mnQtOh9e23KAxN+IlNrIxvh2AvJUzJTKol/VpNsMAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761481336; c=relaxed/simple;
-	bh=QPZqpmMM53oDlw5RkClpzSB/9haDur+byq04ET34B+4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=C9GfjVdaaqJ3o+0qSUwo6zEaSXa6g1/+sxX9BGUIe3ZKzxKTvdZwdyAh9kvmNRrtngMqPVVpTlUlwbd5z7AYhB96xv4HZhur2h9t0jZMkju23hXjsdzO5ruYelE2r25peVRxdlPF77il8lbmIgUj0rukR0UJFyPGWfflytTqh6M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=S9ZPujlB; arc=none smtp.client-ip=134.0.28.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbulk.masterlogin.de (unknown [192.168.10.85])
-	by mxout2.routing.net (Postfix) with ESMTP id EB48A5FF3F;
-	Sun, 26 Oct 2025 12:22:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=routing; t=1761481326;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=0dY9esegxlxvfveosoEyFChzlWucqwdO0YH5Tj3yiok=;
-	b=S9ZPujlBTnCdbMJvrxVvkukT6o+Scd2mNqnGuwjJLvLfi9wnHM9rp6GrqgsyjCpPJh45Nc
-	p+OPvrCITAZjf0eqLrD2wAfH2ivXL0E/gBXRRJN1W1lLQ+/csTp3TsaSg9DHF67cLTQCSq
-	fjNADBDeAX6F7RcwObO6DONXNNKTmWU=
-Received: from frank-u24.. (fttx-pool-217.61.154.70.bambit.de [217.61.154.70])
-	by mxbulk.masterlogin.de (Postfix) with ESMTPSA id AFA1A1226BC;
-	Sun, 26 Oct 2025 12:22:05 +0000 (UTC)
-From: Frank Wunderlich <linux@fw-web.de>
-To: "Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>,
-	Lukasz Luba <lukasz.luba@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1761481763; c=relaxed/simple;
+	bh=pzVG8b6JUQj2Bt9sXSZDDeW26gA2PpIPU+wUY7d6Xsk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=KCkH5EcjXL8gRYkPupljuE21liUR/4l4Wf7+BXW6eaE7epozPnGb+pesBYde+874BrjVjXXlL7i3AI9JGdqX0n5k6rC7NoHvsQDL9p26kFsI81BupjDIHiB1PDCMXv8qw0v8GWW3Peb/ykepL9DqhIMSeZT+QXJRMsWxwY48Rac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=GW/HxhpZ; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (82-203-161-16.bb.dnainternet.fi [82.203.161.16])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 276F1AB4;
+	Sun, 26 Oct 2025 13:27:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1761481652;
+	bh=pzVG8b6JUQj2Bt9sXSZDDeW26gA2PpIPU+wUY7d6Xsk=;
+	h=From:To:Cc:Subject:Date:From;
+	b=GW/HxhpZ225i9Tvtsc4U23VNmiAhwLYsTJ3RjLrnvkhZbEUkjAmNKDNwXOWW5j3ef
+	 KheSpcpvBNMuK25qlcmu/lCiZqRQRba0bz3fp70o+uCfdU86P1GS+vnASzsLoR6ysW
+	 wps6oAsvkagbrnHgvcNoLJgc4wHI0nsxcEknZUIY=
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Cc: Daniel Scally <dan.scally@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Stefan Klug <stefan.klug@ideasonboard.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
-	=?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>,
-	Mason Chang <mason-cw.chang@mediatek.com>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
-	Balsam CHIHI <bchihi@baylibre.com>,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH v1 5/5] thermal/drivers/mediatek/lvts_thermal: Add mt7987 support
-Date: Sun, 26 Oct 2025 13:21:34 +0100
-Message-ID: <20251026122143.71100-6-linux@fw-web.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251026122143.71100-1-linux@fw-web.de>
-References: <20251026122143.71100-1-linux@fw-web.de>
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Subject: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
+Date: Sun, 26 Oct 2025 14:29:04 +0200
+Message-ID: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,93 +66,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Frank Wunderlich <frank-w@public-files.de>
+Energy Efficient Ethernet (EEE) is broken at least for 1000T on the EQOS
+(DWMAC) interface. When connected to an EEE-enabled peer, the ethernet
+devices produces an interrupts storm. Disable EEE support to fix it.
 
-Add support for MT7987.
-
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 ---
- drivers/thermal/mediatek/lvts_thermal.c | 38 +++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+The exact reason for the interrupt storm is unknown, and my attempts to
+diagnose it was hindered by my lack of expertise with DWMAC. As far as I
+understand, the DWMAC implements EEE support, and so does the RTL8211E
+PHY according to its datasheet. What each side does exactly is unknown
+to me. One theory I've heard to explain the issue is that the two
+implementations conflict. There is no register in the RTL8211E PHY to
+disable EEE on the PHY side while still advertising its support to the
+peer and relying on the implementation in the DWMAC (if this even makes
+sense), so disabling EEE is the only viable option.
 
-diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/mediatek/lvts_thermal.c
-index 544941e8219a..1d800bdf4a24 100644
---- a/drivers/thermal/mediatek/lvts_thermal.c
-+++ b/drivers/thermal/mediatek/lvts_thermal.c
-@@ -87,6 +87,8 @@
- #define LVTS_COEFF_B_MT8195			250460
- #define LVTS_COEFF_A_MT7988			-204650
- #define LVTS_COEFF_B_MT7988			204650
-+#define LVTS_COEFF_A_MT7987			-204650
-+#define LVTS_COEFF_B_MT7987			204650
- 
- #define LVTS_MSR_IMMEDIATE_MODE		0
- #define LVTS_MSR_FILTERED_MODE		1
-@@ -1400,6 +1402,20 @@ static void lvts_remove(struct platform_device *pdev)
- 		lvts_ctrl_set_enable(&lvts_td->lvts_ctrl[i], false);
- }
- 
-+static const struct lvts_ctrl_data mt7987_lvts_ap_data_ctrl[] = {
-+	{
-+		.lvts_sensor = {
-+			{ .dt_id = MT7987_CPU,
-+			  .cal_offsets = { 0x04, 0x05, 0x06 } },
-+			{ .dt_id = MT7987_ETH2P5G,
-+			  .cal_offsets = { 0x08, 0x09, 0x0a } },
-+		},
-+		VALID_SENSOR_MAP(1, 1, 0, 0),
-+		.offset = 0x0,
-+		.mode = LVTS_MSR_FILTERED_MODE,
-+	},
-+};
-+
- static const struct lvts_ctrl_data mt7988_lvts_ap_data_ctrl[] = {
- 	{
- 		.lvts_sensor = {
-@@ -1482,6 +1498,12 @@ static const u32 default_init_cmds[] = {
- 	0xC10300FC, 0xC103009D, 0xC10300F1, 0xC10300E1
+This patch is likely a workaround, but it fixes ethernet usage on the
+board, so it's in my opinion worth being merged. If someone with better
+knowledge of EEE and DWMAC, as well as an interest in getting it working
+properly on the Debix board, wants to submit additional patches to drop
+eee-broken-1000t, I will be happy to test them.
+---
+ arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+index 9422beee30b2..4aa47f71425b 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+@@ -102,6 +102,7 @@ ethphy0: ethernet-phy@1 { /* RTL8211E */
+ 			reset-gpios = <&gpio4 18 GPIO_ACTIVE_LOW>;
+ 			reset-assert-us = <20>;
+ 			reset-deassert-us = <200000>;
++			eee-broken-1000t;
+ 		};
+ 	};
  };
- 
-+static const u32 mt7987_init_cmds[] = {
-+	0xC1030300, 0xC1030420, 0xC1030500, 0xC10307A6, 0xC10308C7,
-+	0xC103098D, 0xC1030C7C, 0xC1030AA8, 0xC10308CE, 0xC10308C7,
-+	0xC1030B04, 0xC1030E01, 0xC10306B8
-+};
-+
- static const u32 mt7988_init_cmds[] = {
- 	0xC1030300, 0xC1030420, 0xC1030500, 0xC10307A6, 0xC1030CFC,
- 	0xC1030A8C, 0xC103098D, 0xC10308F1, 0xC1030B04, 0xC1030E01,
-@@ -1780,6 +1802,21 @@ static const struct lvts_ctrl_data mt8195_lvts_ap_data_ctrl[] = {
- 	}
- };
- 
-+static const struct lvts_data mt7987_lvts_ap_data = {
-+	.lvts_ctrl	= mt7987_lvts_ap_data_ctrl,
-+	.num_lvts_ctrl	= ARRAY_SIZE(mt7987_lvts_ap_data_ctrl),
-+	.conn_cmd	= mt7988_conn_cmds,
-+	.init_cmd	= mt7987_init_cmds,
-+	.num_conn_cmd	= ARRAY_SIZE(mt7988_conn_cmds),
-+	.num_init_cmd	= ARRAY_SIZE(mt7987_init_cmds),
-+	.temp_factor	= LVTS_COEFF_A_MT7987,
-+	.temp_offset	= LVTS_COEFF_B_MT7987,
-+	.golden_temp	= 60,
-+	.gt_calib_bit_offset = 32,
-+	.def_calibration = 19380,
-+	.irq_enable	= false,
-+};
-+
- static const struct lvts_data mt7988_lvts_ap_data = {
- 	.lvts_ctrl	= mt7988_lvts_ap_data_ctrl,
- 	.conn_cmd	= mt7988_conn_cmds,
-@@ -1899,6 +1936,7 @@ static const struct lvts_data mt8195_lvts_ap_data = {
- };
- 
- static const struct of_device_id lvts_of_match[] = {
-+	{ .compatible = "mediatek,mt7987-lvts-ap", .data = &mt7987_lvts_ap_data },
- 	{ .compatible = "mediatek,mt7988-lvts-ap", .data = &mt7988_lvts_ap_data },
- 	{ .compatible = "mediatek,mt8186-lvts", .data = &mt8186_lvts_data },
- 	{ .compatible = "mediatek,mt8188-lvts-mcu", .data = &mt8188_lvts_mcu_data },
 -- 
-2.43.0
+Regards,
+
+Laurent Pinchart
 
 
