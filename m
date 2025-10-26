@@ -1,180 +1,212 @@
-Return-Path: <devicetree+bounces-231071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A2FCC0A18F
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 02:07:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B8B5C0A1BA
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 02:38:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19FEE3A607C
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 01:07:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A96DA3ADFEA
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 01:38:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE2B286359;
-	Sun, 26 Oct 2025 01:07:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4764C2571B0;
+	Sun, 26 Oct 2025 01:38:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b="u/exQROQ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eEhxZDy3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA47D72605
-	for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 01:07:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7556B2550D7;
+	Sun, 26 Oct 2025 01:38:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761440825; cv=none; b=sPZ5oNNcG8HEbIEuOl4AGVJRHCQwevhQhk9N+VYgd93KaN2gBkCL2iYszb6oDrh90WdPd17mknsSfKemlhXPE7suXTabXluev2xcDo0rpGjR3Y3MElkoCyVejMipCOljBXFdeg/TczJxCRMlt/FzLuj8KJoIpQ4fvbMA3J15eqM=
+	t=1761442682; cv=none; b=EDRR+L1juhRDXnod1TyUTokwhdFXXn9JpeOLAh4AZxC2RTW7JpCnh3Emc43X7gIrCScJBGzyF2c75NenMMLh2IAqccU12e6ef6s2xlBTXPE3Yqmce9hlWBqIJq1g83SRZLVQWtnWYWhrZ7aQ4KZLyI8iC+RSLIvU/FzB4tY8df0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761440825; c=relaxed/simple;
-	bh=h1BWNVuiQqVThhPkqmgYTLIaAh0PxR2NeIciEEycIA0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TgGj53uTIaPiK8bjQA90mI0Z7QfKmQ0kkBR1Y5V//x+DqUH/oA6vGBC+WEDrPCLMGWfVb2/P6+/r/CItffxP7Ho+KR1xrTZaAdFGt8nZ63AlPrE+X1fW5YWyYyOGOvbu2PmnVb9F6iaOQi6YNSfdhF1gzTFjw4exc8WX7r2W/xU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org; spf=none smtp.mailfrom=nigauri.org; dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b=u/exQROQ; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nigauri.org
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-63c4c346bd9so6675671a12.0
-        for <devicetree@vger.kernel.org>; Sat, 25 Oct 2025 18:07:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nigauri-org.20230601.gappssmtp.com; s=20230601; t=1761440822; x=1762045622; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HJ61RpudmfZrh/HJbvgg8/1ZTRvQLwFHMelmv5U31PQ=;
-        b=u/exQROQohikUYw1lGsuL3/C2DIsgF62hp/haB20D3gLhr7fbZoTr6fl5HiZUdQAm/
-         yEtwF3uFraCzGWQ5AYxUEPUk79Kdd6xZ7Eah+jXx7uYseYVIEvIY1Q3AsRqyCA4T3aIf
-         ++x8G4ir4yrkCPaccRDvpmTNhBItNgNulWbjfGCxb1xlvxkwfiJvHD7RGZYu9r79S5uG
-         BFwl2SIEbI43nBLo3Hb+6zlXQjUnUgDG0nWxCL/hJaKoe/KXFlFGvo7tnHilXwXK5K/M
-         RJ/6PoFyYvqMrR6Td0IeJDI2+xtTC8NUI5eb95EgX3W1nAjJCjDpV8nLi33CdC6azwn8
-         qq1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761440822; x=1762045622;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HJ61RpudmfZrh/HJbvgg8/1ZTRvQLwFHMelmv5U31PQ=;
-        b=AsNbEZIZvkf8XXAZY54g8g8sQyfJHfwQLgi0xJa1DfJ2yLGluMiIoaHw0TRgVztvv/
-         1oyHPH3QteVWarKQN1iaH2DKeKPU+5u7Tljn0XGaIqwzFwVOr2WSfYPhzUuU3iOH35dG
-         SOY4/fQHB5pdtMQ6PWwJEVsLOJViUTFuPYnKjhgMqeYNnRqgbZImF1lPgxTbumdIGhda
-         VLzV3r5Gms0gdsYDA73EdJ1JqKvMqd4qk8YK7xvkvivLcvMzMr3gHCHeoHr3pWDNkIPk
-         9yJHhKt91aqfMh/I7o3YE5M/np7UeklmwoomgAEKzT5Y5iTUD8pcM908xDvdmuSihR0e
-         T3Vg==
-X-Forwarded-Encrypted: i=1; AJvYcCUp6W1666fH3wd1C6jUMgtDYyPGdL91lBfiExZ4t0/f7Ier1v7IrI0Z/78XbjI+tPp+w89nK2rrJt3q@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJ+1XhbtNLQeQYAGpC7vvF5a06IpyJ/kjdjQJkb3sB5/UHW12S
-	281nT3tlUQGgDPwtu3NhG4WD9MPH5+zaphJyeNQSPfuFP1qR4jkbv5q6jmlCWCWbAMbkfmDLQ6A
-	T90RHzhKDm9KupT3PXYtkvWPF9/o2eSg8QLCsEI8=
-X-Gm-Gg: ASbGncv+3SgGBF/H6+LLIYPolf994vOHaHAhE72M0lUEe181aTZzOq/eI1m7Wz8HWTl
-	LqsW9ZZG+qSd9kOWWxI6asSqHqYxVlbAm6njlTIavr/pXhpk9k2j5t7gTEA1rcriQ723AB4yIfi
-	vOUU7klcGMN/+jW2YWWidQko2xZPF4vWPtI54a1VJD5uT/Vexjsu5K8YOce6ym5qlrphh1HmrGY
-	lGjIn2KQvzV508bC9GWOJMiZ7wDVmeYthLQ0RI14OkH0ZiAbJklCrWgMGdGJotX
-X-Google-Smtp-Source: AGHT+IENhmql/pNlk0Cy8pruLhuU9WbGD4F06YxuTssPEuvz4gMG6F2ON9DfPG/aPIMA/9whw/Uc2noxL2TdxgjPjag=
-X-Received: by 2002:a05:6402:2787:b0:63b:efa7:b0a9 with SMTP id
- 4fb4d7f45d1cf-63c1f633e3dmr31828969a12.9.1761440821097; Sat, 25 Oct 2025
- 18:07:01 -0700 (PDT)
+	s=arc-20240116; t=1761442682; c=relaxed/simple;
+	bh=Ez41wax9HYmCuWnUibnabZZuxt0TJYpcUgaTyfvwj8k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RXLZT49tBOMs0E4ucocLGT7nWU0Je9zkuJIexVvOHj4KTDgL07xcRBCUjHAXk2Le/wIy2K0WY44iZ1J4lK0pn0jRM6t7At5zH9OOfepRZurLptCqYDq3df7pRr3LeyEHzetqdI2V8+a8Bwi5ZXqyE0CYMcxvpaQQsx902Px18Lo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eEhxZDy3; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761442681; x=1792978681;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Ez41wax9HYmCuWnUibnabZZuxt0TJYpcUgaTyfvwj8k=;
+  b=eEhxZDy33OCfbp3sm+leZpwcym5jQZ1ejr20MRSnGFVZCIh++ewt3NXS
+   a6VFoqkV5wfwAy5B+r+VNT4AUJMGjQ7VEC5W8PTskDjxhK8CQL2BKrzcY
+   jOR7Atky4+dD/yruXBNgq+c5T40vFO+1W9rQWE71S2lNyyIE3UgcHECtv
+   7T8wnLt9xPZ5+WZlvjUTle7Wc5D+4eruuAvgb/nSgmqoBk3Em0/ToHA23
+   92GyNw7JlKMX/4PL4R8XpMyNpClLHFIUjaGcP+o5/WVpkhISQbu0t96n8
+   /Amc4lSVl2zRS2OBeZovFlklDlly+ZZVi8jDtU7MZwU0USzMDPAY8saqr
+   g==;
+X-CSE-ConnectionGUID: CIzip7BNQvONJa3GgI6JDQ==
+X-CSE-MsgGUID: caBkBfvHRhyVLzWvhLfR4g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67214171"
+X-IronPort-AV: E=Sophos;i="6.19,255,1754982000"; 
+   d="scan'208";a="67214171"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2025 18:38:00 -0700
+X-CSE-ConnectionGUID: L5rahDNoSTCQ4TUtOmP3sg==
+X-CSE-MsgGUID: /ppvIZG/SfysX3rtKCTe+g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,255,1754982000"; 
+   d="scan'208";a="189858445"
+Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
+  by orviesa005.jf.intel.com with ESMTP; 25 Oct 2025 18:37:57 -0700
+Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vCphi-000Fmj-2m;
+	Sun, 26 Oct 2025 01:37:54 +0000
+Date: Sun, 26 Oct 2025 09:37:53 +0800
+From: kernel test robot <lkp@intel.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	alexandre.belloni@bootlin.com
+Cc: oe-kbuild-all@lists.linux.dev, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v1 2/2] rtc: Add support for MT6685 Clock IC's RTC over
+ SPMI
+Message-ID: <202510260921.IcI6vsTN-lkp@intel.com>
+References: <20251024083318.25890-3-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251010-kakip_eth0-v1-1-0d8fdcbceb9a@ideasonboard.com>
- <CAMuHMdWZD1m6t8MnYTA83RV=h9G9o6M3KSZjO32rRjOpz6px+w@mail.gmail.com>
- <bcdc9a86-bda1-4646-9ccc-1dc00a710b44@ideasonboard.com> <CAMuHMdUDuuXncX4sbd6oa+8KcS8x+1Sp-ahmvyh8fRdQt1GqKA@mail.gmail.com>
- <8b984f13-0498-4cc6-a64e-e2b6b147c346@ideasonboard.com>
-In-Reply-To: <8b984f13-0498-4cc6-a64e-e2b6b147c346@ideasonboard.com>
-From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Date: Sun, 26 Oct 2025 10:06:35 +0900
-X-Gm-Features: AWmQ_bkvr4ujmOFdrAKUAnfTnu6JFNfmGrsL4ZHx1rZI0CaBJutKAJ8Pr6Jq1lw
-Message-ID: <CABMQnV+z=8-ORRGTjxM=6iP+6+qbJa-N_C0csi8K53wpFwLp_A@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r9a09g057h48-kakip: Enable eth0
-To: Dan Scally <dan.scally@ideasonboard.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251024083318.25890-3-angelogioacchino.delregno@collabora.com>
 
-Hi all,
+Hi AngeloGioacchino,
 
-I was late in noticing this and the Kakip patch.
-And Dan, thank for your patch!
+kernel test robot noticed the following build errors:
 
-2025=E5=B9=B410=E6=9C=8816=E6=97=A5(=E6=9C=A8) 19:51 Dan Scally <dan.scally=
-@ideasonboard.com>:
->
-> Hi Geert
->
-> On 16/10/2025 11:40, Geert Uytterhoeven wrote:
-> > Hi Dan,
-> >
-> > On Thu, 16 Oct 2025 at 12:23, Dan Scally <dan.scally@ideasonboard.com> =
-wrote:
-> >> On 15/10/2025 13:32, Geert Uytterhoeven wrote:
-> >>> On Fri, 10 Oct 2025 at 13:11, Daniel Scally <dan.scally@ideasonboard.=
-com> wrote:
-> >>>> Enable the eth0 node and define its phy.
-> >>>>
-> >>>> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
-> >>>
-> >>>> --- a/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
-> >>>> +++ b/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
-> >>>> @@ -50,6 +51,33 @@ vqmmc_sdhi0: regulator-vccq-sdhi0 {
-> >>>>           };
-> >>>>    };
-> >>>>
-> >>>> +&eth0 {
-> >>>> +       pinctrl-0 =3D <&eth0_pins>;
-> >>>> +       pinctrl-names =3D "default";
-> >>>> +       phy-handle =3D <&phy3>;
-> >>>> +       phy-mode =3D "rgmii-id";
-> >>>> +       status =3D "okay";
-> >>>> +};
-> >>>> +
-> >>>> +&mdio0 {
-> >>>> +       phy3: ethernet-phy@3 {
-> >>>> +               compatible =3D "ethernet-phy-id0022.1640", "ethernet=
--phy-ieee802.3-c22";
-> >>>
-> >>> The first compatible value corresponds to a Micrel KSZ9031 Ethernet
-> >>> PHY, but according to the block diagram and the picture in the Kakip
-> >>> H/W Quick Reference, the board has a Microchip LAN8830 instead?
-> >>
-> >> Ah, my bad...I thought it was the same as the EVK so I copied from the=
-re. I think then that this
-> >> should be "ethernet-phy-id0022.1652" (based on reading PHY registers 2=
- and 3 with phytool) and the
-> >> other properties look to be KSZ9031 specific so I'll drop them and re-=
-send
-> >
-> > Hmm, include/linux/micrel_phy.h has:
-> >
-> >      #define PHY_ID_LAN8841          0x00221650
-> >
-> > drivers/net/phy/microchip.c has:
-> >
-> >      .phy_id         =3D 0x0007c132,
-> >      [...]
-> >      .name           =3D "Microchip LAN88xx",
-> >
-> > I haven't found the ID in the LAN8830 datasheet yet, it seems to be
-> > buried deep...
->
-> Indeed, I couldn't find it anywhere either so resorted to phytool.
->
-> >
-> > Which PHY is actually mounted on the board you have?
-> > Can you inspect it visually?
->
-> It says LAN8830, plus a couple of other strings.
->
+[auto build test ERROR on abelloni/rtc-next]
+[also build test ERROR on robh/for-next linus/master v6.18-rc2 next-20251024]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Yes, this board has a LAN9930 chip.
-Since this chip's PHY_ID is 0x22165X, I believe the PHY driver needs
-to be modified.
+url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/dt-bindings-rtc-Add-MediaTek-MT6685-PM-Clock-IC-Real-Time-Clock/20251024-164423
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
+patch link:    https://lore.kernel.org/r/20251024083318.25890-3-angelogioacchino.delregno%40collabora.com
+patch subject: [PATCH v1 2/2] rtc: Add support for MT6685 Clock IC's RTC over SPMI
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20251026/202510260921.IcI6vsTN-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251026/202510260921.IcI6vsTN-lkp@intel.com/reproduce)
 
-Best regards,
-  Nobuhiro
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202510260921.IcI6vsTN-lkp@intel.com/
 
---=20
-Nobuhiro Iwamatsu
-   iwamatsu at {nigauri.org / debian.org / kernel.org}
-   GPG ID: 32247FBB40AD1FA6
+All errors (new ones prefixed by >>):
+
+   drivers/rtc/rtc-mt6685.c: In function 'rtc_mt6685_probe':
+>> drivers/rtc/rtc-mt6685.c:380:20: error: implicit declaration of function 'devm_spmi_subdevice_alloc_and_add' [-Wimplicit-function-declaration]
+     380 |         sub_sdev = devm_spmi_subdevice_alloc_and_add(dev, sparent);
+         |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/rtc/rtc-mt6685.c:380:18: error: assignment to 'struct spmi_subdevice *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+     380 |         sub_sdev = devm_spmi_subdevice_alloc_and_add(dev, sparent);
+         |                  ^
+   In file included from drivers/rtc/rtc-mt6685.c:20:
+>> drivers/rtc/rtc-mt6685.c:397:58: error: invalid use of undefined type 'struct spmi_subdevice'
+     397 |         rtc->regmap = devm_regmap_init_spmi_ext(&sub_sdev->sdev, &mt6685_rtc_regmap_config);
+         |                                                          ^~
+   include/linux/regmap.h:782:52: note: in definition of macro '__regmap_lockdep_wrapper'
+     782 | #define __regmap_lockdep_wrapper(fn, name, ...) fn(__VA_ARGS__, NULL, NULL)
+         |                                                    ^~~~~~~~~~~
+   drivers/rtc/rtc-mt6685.c:397:23: note: in expansion of macro 'devm_regmap_init_spmi_ext'
+     397 |         rtc->regmap = devm_regmap_init_spmi_ext(&sub_sdev->sdev, &mt6685_rtc_regmap_config);
+         |                       ^~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +/devm_spmi_subdevice_alloc_and_add +380 drivers/rtc/rtc-mt6685.c
+
+   358	
+   359	static int rtc_mt6685_probe(struct platform_device *pdev)
+   360	{
+   361		struct regmap_config mt6685_rtc_regmap_config = {
+   362			.reg_bits = 16,
+   363			.val_bits = 8,
+   364			.max_register = 0x60,
+   365			.fast_io = true,
+   366			.use_single_read = true,
+   367			.use_single_write = true,
+   368		};
+   369		struct device *dev = &pdev->dev;
+   370		struct spmi_subdevice *sub_sdev;
+   371		struct spmi_device *sparent;
+   372		struct mt6685_rtc *rtc;
+   373		int ret;
+   374	
+   375		rtc = devm_kzalloc(dev, sizeof(struct mt6685_rtc), GFP_KERNEL);
+   376		if (!rtc)
+   377			return -ENOMEM;
+   378	
+   379		sparent = to_spmi_device(dev->parent);
+ > 380		sub_sdev = devm_spmi_subdevice_alloc_and_add(dev, sparent);
+   381		if (IS_ERR(sub_sdev))
+   382			return PTR_ERR(sub_sdev);
+   383	
+   384		ret = of_property_read_u32(pdev->dev.of_node, "reg",
+   385					   &mt6685_rtc_regmap_config.reg_base);
+   386		if (ret)
+   387			return ret;
+   388	
+   389		rtc->irq = platform_get_irq(pdev, 0);
+   390		if (rtc->irq < 0)
+   391			return rtc->irq;
+   392	
+   393		rtc->mclk = devm_clk_get(dev, 0);
+   394		if (IS_ERR(rtc->mclk))
+   395			return PTR_ERR(rtc->mclk);
+   396	
+ > 397		rtc->regmap = devm_regmap_init_spmi_ext(&sub_sdev->sdev, &mt6685_rtc_regmap_config);
+   398		if (IS_ERR(rtc->regmap))
+   399			return PTR_ERR(rtc->regmap);
+   400	
+   401		rtc->rdev = devm_rtc_allocate_device(dev);
+   402		if (IS_ERR(rtc->rdev))
+   403			return PTR_ERR(rtc->rdev);
+   404	
+   405		platform_set_drvdata(pdev, rtc);
+   406	
+   407		/* Clock is required to auto-synchronize IRQ enable to RTC */
+   408		ret = clk_prepare_enable(rtc->mclk);
+   409		if (ret)
+   410			return ret;
+   411	
+   412		ret = devm_request_threaded_irq(&pdev->dev, rtc->irq, NULL,
+   413						rtc_mt6685_irq_handler_thread,
+   414						IRQF_ONESHOT | IRQF_TRIGGER_HIGH,
+   415						"mt6685-rtc", rtc);
+   416		clk_disable_unprepare(rtc->mclk);
+   417		if (ret)
+   418			return dev_err_probe(&pdev->dev, ret, "Cannot request alarm IRQ");
+   419	
+   420		device_init_wakeup(&pdev->dev, true);
+   421	
+   422		rtc->rdev->ops = &rtc_mt6685_ops;
+   423		rtc->rdev->range_min = RTC_TIMESTAMP_BEGIN_1900;
+   424		rtc->rdev->range_max = mktime64(2027, 12, 31, 23, 59, 59);
+   425		rtc->rdev->start_secs = mktime64(1968, 1, 1, 0, 0, 0);
+   426		rtc->rdev->set_start_time = true;
+   427	
+   428		return devm_rtc_register_device(rtc->rdev);
+   429	}
+   430	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
