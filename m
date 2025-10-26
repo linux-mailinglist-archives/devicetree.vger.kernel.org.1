@@ -1,227 +1,190 @@
-Return-Path: <devicetree+bounces-231171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06862C0B16C
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 20:49:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E53AC0B178
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 20:58:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DBDC3189ACF2
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 19:49:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDAB33B481C
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 19:58:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5555624E4BD;
-	Sun, 26 Oct 2025 19:49:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82998279DCC;
+	Sun, 26 Oct 2025 19:58:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Sf5CXgJA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SB1s9PDB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DA5A1F5834
-	for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 19:49:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6EAA2417C6
+	for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 19:58:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761508147; cv=none; b=Usw2VNspvL5T4BRTn52a6FxpEpXc2fdbXkIFjkCVj8iBdzShuUU72w8DkQ2AqSOxhlVJKWKwEZUhd84Ld0eWqEavLSAIR4ahDZ2+9FocfpWKTSrzFMBd2iaVUkMBpRKH8eY9IEuWd1HUQ47N35POZHPlPdpc6LX72Q6yhF2DDAY=
+	t=1761508693; cv=none; b=JU6M+4OpxywFAMK46+wy6E1s/iKjHLPNMak9bYn+XSN/FmJyr283gRbaepcOK9B9Nv8mzsy2rznzk7IlO5qqxMNRsqSzzjrmAdxsq2bUpQSwTcM6AFM74XTH2UD8pQHojBcPSgOntqVIvDw0iouJumIrtFaA/oIIbWAHY62JcHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761508147; c=relaxed/simple;
-	bh=yEDM5djfStEQKMjG1jKwNq677sq7Oympi+OJl1BgcBw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LOg9c/c8Hlm5EaBBrBBjLYOyXXqAOeducyLVGD37HOQUcowrEIy7OwE37veEV6294V0vOEoqdpEFcm2SBFt0VEhqlal8YMlB9z6szxqy2sNKjrdoHbRcNZCDqQJQkfm8yAoJv8THMLE56oL2wOpjX8xcLlGJRSwQTQxsgFjmax8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Sf5CXgJA; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1761508693; c=relaxed/simple;
+	bh=yOE0P7FWFoGaMhy1Bhi1naXUs1jG5gQoZnDqGoQWcSM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QAvoKOt6iYs608teV87ENN+XHraADrNxii5dg3sIKmSnSyu6NEtU2X8CsmY2zXxnleQn2gpHEhYHgGhHpmqKmQwuumg40HpZskmGBzlSOR/eG2QwT9v8JzUTz/PmwEs7fxtEYZ0o7VVsdFlui5TsPhRusJp3TTfG7zHlD3omHPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SB1s9PDB; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-475ca9237c2so21263535e9.3
-        for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 12:49:05 -0700 (PDT)
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-7a28c7e3577so1558013b3a.1
+        for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 12:58:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761508144; x=1762112944; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=dGAlA6xEEpg5Sg3NpocSMWJ7GFQOTpi3dlaTTRDDDLM=;
-        b=Sf5CXgJAJVBgfbmWIB/1/N4dB37FvGhGcfSF5L1dBSKgdNzKGEsoIMMnPWKv+NPGmW
-         CfcwXKZATG1bC3lelxCnACSWyV7k071fCGhQ57YbwP8caDtvVRlqswKO3OjqkNRathag
-         nDo3hVy0SFnWwuFirpuirnsmu5KL9XW8fhx1QtVhtoAI1GOge4ytm1vHWwVO1vuGu8AL
-         rgzhuZO+EwB4j42ZdRt+/brYhq4+d2IOskfYeUY4B+TPMDN0OE8sm0wiwBr18ExXCpgT
-         uem1kr7o/Br1J/G3hjkdr5WdNQSvcyzqujh8j6LAIXIhwDgdwpvG2YOFTaCR4wzul9e0
-         blfA==
+        d=gmail.com; s=20230601; t=1761508691; x=1762113491; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=rz+iPjrso650B0W3/FsE0e28IvCi/qUg0X/JHlyUrwk=;
+        b=SB1s9PDBgJsQNM0MCxExgvljtAOM4F5hVfe7POB/MscBlVJDV2an679nt0/Mcn4yTx
+         VEX0LLdOPzyNyj3lBCANxOHywE+Xw+1rcxSc90gzXE6mo2Cdx39BjAv+UEQwKwcz78z6
+         Ag6XSeY0wIytk0JaN08QdLQbrCHZDajAWTtnAZIE3AF+H2IQlffoLftR6AqkNbO9mJ4W
+         rT3UDWO9C2Wsf8ASmfxuoaxRikcGitB8ATsKSzytLJbm7XmkUpziSpFW9DlBeN+AUQsZ
+         jqOvCvCDJtBmPW4c7O/VUS7bJjlkBZowEGX0KZgIZI39KtL4oyuTGD2dajLo79XE5JkI
+         9UJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761508144; x=1762112944;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dGAlA6xEEpg5Sg3NpocSMWJ7GFQOTpi3dlaTTRDDDLM=;
-        b=FfLif+gX+yAvW+SFftNrxkl8IDWUIJ18uaLYA6oWrX0niKAMw1DaBqTJaxvw0/2P9H
-         q+DC7XDd7wTMj/mSbAZComejyaKt6TWgWu5Fnr24ktn+5/X/7qcHseL30ZMjOeXm2JoU
-         43QKJ2Dt1BqlO7m/sLecvpz2UBUNi8r88Pp22c80TM0taHAZJMj/fEVXpXiFDI6aFUat
-         aDSQbjq1FADGLBW4EVs3Tj/V90x47E1+g3Zz6lmoQyUeIgx2hnxAt6l2tfuEGNLPrr5P
-         1es6Uux1Wc8BTJno7/9NyI/R9kIasZvwwik0vvMzi1kVi2axH5MkCyFC08w8TdL18Sd/
-         LEbw==
-X-Forwarded-Encrypted: i=1; AJvYcCWlIZ9/Gw9KnuaaJSlkjaKB3jjtfH3Kp/GxykapdXByGRA11gJhm0Rr7Cn7H/c6XbCuVI0quSmLQVpm@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJdONI6bmAoyUKxUV5t/ILFpd8QNS1p3sTE1lJ/Y5324UPp+g1
-	Vf1FprDducR0WG3Gq8A5xMANfo7Q5oQo0yZWbII3YXQTRnUdId5kRbpO
-X-Gm-Gg: ASbGncuBJGwNpOHzVCXTt0Xfooe+f57W83jAOJe40XegG5JmJAbVGOR3c07zOL0xzKR
-	mcRYuMaUUqceJhr+9+sbNvNgnhx38n6AddUepEfqxmhcXLu948pNCWNeiXmV08dj5p+omm4G/r+
-	/jBBHhKcLLd/1CpsJaJTwr5f3mJc9kIx7HX2MMGxYMYsKYuP37KXOzy1BlQX9aJC4CH77LUqhrR
-	YCUSDZmc0BzG6Zj0mDHe/mhDqxcU6buqqo+aHTMH8nLV8HlnRLS8R40Mwx92U/rYUBulpeXaBwQ
-	v+5PpHJhEz0hudOCMCZ6Ozt799iotkfEMwKmX6087MTn84zBA3tldGekY7+EXbEAgQxPAR1JgrD
-	SbvzN7iDdOn2Naw8Y3Mwb3VZX55BWksGS+HgYa6ifB4RQGqVER9ILAuQ7ikWKmuUUyLgDNkXJRN
-	W+N8zpwJgcRlc+uw==
-X-Google-Smtp-Source: AGHT+IHxjRQnRW5DZRFV2Qwhcw+akufX9vynEkSIauiFSd7fK9owVylMsihE4r48/PVg7PHb0yVz6Q==
-X-Received: by 2002:a05:600c:468d:b0:471:95a:60b1 with SMTP id 5b1f17b1804b1-475d2ed6e11mr100007385e9.32.1761508143555;
-        Sun, 26 Oct 2025 12:49:03 -0700 (PDT)
-Received: from orange.info ([2a02:8010:6606:0:8fa:2ba2:6886:7fe4])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-475dd05098dsm45244265e9.5.2025.10.26.12.49.02
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Sun, 26 Oct 2025 12:49:02 -0700 (PDT)
-From: Hugh Cole-Baker <sigmaris@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: Hugh Cole-Baker <sigmaris@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: pwm-fan overlay for NanoPC-T6
-Date: Sun, 26 Oct 2025 19:48:40 +0000
-Message-ID: <20251026194858.92461-1-sigmaris@gmail.com>
-X-Mailer: git-send-email 2.50.1
+        d=1e100.net; s=20230601; t=1761508691; x=1762113491;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rz+iPjrso650B0W3/FsE0e28IvCi/qUg0X/JHlyUrwk=;
+        b=itwD9ai1HLeoSHfVMPoMyaKd9+SYnMGMmRNpbT9cuwXxrhD/ZF5THnlSw9XuSk05mw
+         njyGSE+9h0u0YVDhtcQo7eJMeuWUmdkVM+4cNKf4Y2DzBEc92T6eiMyql3N6wqTO95Sl
+         2Gf6pRD6FFOh0uWsu2fRejbygaHCDDnoUGEeLBhrHVJER7q/eiLbSZ1E4R2mJ4TK+Mvu
+         pUoLIDbJ9Nhss5xTumhrD0VnfQaBrVZHCCvhchfNpeLa9JQ3EEWCrfOipRFVcMVruQuz
+         eH3nxkHShK++Za1DvdckqG8LUwlErUEgZ2tSzCw3fu1bGPgSOcLnCKDKNJwDoP9btyb5
+         VtnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWSap9UKVG7Fduo1NLLcBnHKmZhBxV+Sgzojnbra3wSqeX+2Oqx4YTEOMs1Q7XExNDC49CYfdJJH+hW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwhTWJqZRz5xvQeFTraXGe7+hGBB3IkOddt4ePLaMJQrkhbMXVV
+	B2UPlQbO6ywfM43TjS9IelnkCNs+fmijKhEqstCovRMhIKnOeewepsFx
+X-Gm-Gg: ASbGnctMFI8sSrp5ohI2DzV1ThAS2OG3tX7uUf1d9M9Hwgg1rGDAtcWDsnyiDhGse4V
+	Xkd2Fsdfzyp1jiXyv0NBYGcHXxZgRRm5CYCJhvKrFnzNv51nohZbyLKRD6ozGW5rDEHOX4Di9Vm
+	PaHkFc3QWAAXueHf+zsUj73Jzg6vExgyEBuzChx5czydd8hCAIPnwg4SCGM/HIFZmGt1ParUW8u
+	8+xwDbd/zPXPfqry6NiNQ6VnEUuWLc92pJjQ7zQ9aTDXwTItXigUTz7b2VIEZ81B+mIB2C/gtmf
+	g3+auyD6L5WyRj5TqDZOjw9Mka+R6Zh10cGXJ96DJ2xqT/2RRrKBXo9UDdeIIjclTnD1KM78TvF
+	DXi/zrzPGfB2GXQs9DzvIOZk1RFfPGGyUsHuIKRlA+yTthWbd4zbxvUzu69aGtnUh48NxpJB/31
+	ExAIhNPw66iXajR95vYIKfweogxDsx9Q9vRSDfb3C8379t6oBs
+X-Google-Smtp-Source: AGHT+IFoB+ruOh+nGUiptuYoaCYIh4e90e4xNspCvcjO4DwFEFbyG34XpfKFjr+dDPN56lOiGboX8w==
+X-Received: by 2002:a05:6a00:813:b0:7a4:2294:92ff with SMTP id d2e1a72fcca58-7a4229495a8mr3384862b3a.27.1761508691177;
+        Sun, 26 Oct 2025 12:58:11 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a414082e10sm5525818b3a.55.2025.10.26.12.58.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 26 Oct 2025 12:58:10 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <e51c3dfa-406b-4dfa-bbb5-c31d1a2e0007@roeck-us.net>
+Date: Sun, 26 Oct 2025 12:58:08 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add support for ST TSC1641
+ power monitor
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Igor Reznichenko <igor@reznichenko.net>
+Cc: conor+dt@kernel.org, corbet@lwn.net, david.hunter.linux@gmail.com,
+ devicetree@vger.kernel.org, krzk+dt@kernel.org, linux-doc@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org,
+ skhan@linuxfoundation.org
+References: <408c1698-a8ad-4e16-8def-352c2c265f5a@kernel.org>
+ <20251026184641.631641-1-igor@reznichenko.net>
+ <a45ad6b8-b4d5-4e0c-8f1a-3641dddb240d@kernel.org>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <a45ad6b8-b4d5-4e0c-8f1a-3641dddb240d@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-FriendlyELEC offers an optional heatsink and fan addon for the NanoPC-T6
-and T6 LTS. Add an overlay which can be applied if the fan is fitted and
-configures the fan as an active cooling device for the SoC package.
+On 10/26/25 12:41, Krzysztof Kozlowski wrote:
+> On 26/10/2025 19:46, Igor Reznichenko wrote:
+>>> Subject: I asked to drop "binding" and not add "support for". "Support
+>>> for" makes little sense in terms of binding. How binding can support
+>>> anything? This is the "ST TSC1641 power monitor" not support.
+>>
+>> Krzysztof,
+>>
+>> Thanks for feedback, will fix this and will create following patch versions
+>> in new threads.
+>>
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  shunt-resistor-micro-ohms:
+>>>> +    description: Shunt resistor value in micro-ohms. Since device has internal
+>>>> +      16-bit RSHUNT register with 10 uOhm LSB, the maximum value is capped at
+>>>> +      655.35 mOhm.
+>>>> +    minimum: 100
+>>>> +    default: 1000
+>>>> +    maximum: 655350
+>>>> +
+>>>> +  st,alert-polarity-active-high:
+>>>
+>>> Isn't this just interrupt? You need proper interrupts property and then
+>>> its flag define the type of interrupt.
+>>
+>> This controls a bit written into device register.
+>> I omitted interrupt property after looking at existing power monitor bindings,
+>> especially hwmon/ti,ina2xx.yaml. INA226 has very similar bit controlling alert
+>> pin polarity and binding doesn't define alert pin as interrupt. Overall, I didn't
+>> find many power monitor bindings defining alert pins as interrupts.
+> 
+> 
+> On INA2xx that's SMBUS Alert. Is this the case here as well?
+> 
 
-Signed-off-by: Hugh Cole-Baker <sigmaris@gmail.com>
----
-FriendlyELEC heatsink with fan addon:
-https://www.friendlyelec.com/index.php?route=product/product&product_id=305
-Vendor DT with trip points and PWM duty cycle values:
-https://github.com/friendlyarm/kernel-rockchip/blob/4944602540b62f5aad139fe602a76cf7c3176128/arch/arm64/boot/dts/rockchip/rk3588-nanopi6-rev01.dts#L75-L90
+It could be wired to SMBus alert, or it could be wired to a CPU interrupt pin.
 
- arch/arm64/boot/dts/rockchip/Makefile         |  9 +++
- .../dts/rockchip/rk3588-nanopc-t6-fan.dtso    | 78 +++++++++++++++++++
- 2 files changed, 87 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6-fan.dtso
-
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 4cd8ef607f55c..7a67b68a6bb03 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -178,6 +178,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-ethernet-switch.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-pre-ict-tester.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-mnt-reform2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-nanopc-t6.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-nanopc-t6-fan.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-nanopc-t6-lts.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-ok3588-c.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-orangepi-5-max.dtb
-@@ -271,6 +272,14 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-pre-ict-tester.dtb
- rk3588-jaguar-pre-ict-tester-dtbs := rk3588-jaguar.dtb \
- 	rk3588-jaguar-pre-ict-tester.dtbo
- 
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-nanopc-t6-with-fan.dtb
-+rk3588-nanopc-t6-with-fan-dtbs := rk3588-nanopc-t6.dtb \
-+	rk3588-nanopc-t6-fan.dtbo
-+
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-nanopc-t6-lts-with-fan.dtb
-+rk3588-nanopc-t6-lts-with-fan-dtbs := rk3588-nanopc-t6-lts.dtb \
-+	rk3588-nanopc-t6-fan.dtbo
-+
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtb
- rk3588-rock-5b-pcie-ep-dtbs := rk3588-rock-5b.dtb \
- 	rk3588-rock-5b-pcie-ep.dtbo
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6-fan.dtso b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6-fan.dtso
-new file mode 100644
-index 0000000000000..08c4782fb4148
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6-fan.dtso
-@@ -0,0 +1,78 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/thermal/thermal.h>
-+
-+&{/} {
-+	fan: pwm-fan {
-+		compatible = "pwm-fan";
-+		cooling-levels = <0 35 64 100 150 255>;
-+		fan-supply = <&vcc5v0_sys>;
-+		pwms = <&pwm1 0 50000 0>;
-+		#cooling-cells = <2>;
-+	};
-+};
-+
-+&package_thermal {
-+	polling-delay = <1000>;
-+
-+	trips {
-+		package_fan0: package-fan0 {
-+			temperature = <50000>;
-+			hysteresis = <2000>;
-+			type = "active";
-+		};
-+
-+		package_fan1: package-fan1 {
-+			temperature = <55000>;
-+			hysteresis = <2000>;
-+			type = "active";
-+		};
-+
-+		package_fan2: package-fan2 {
-+			temperature = <60000>;
-+			hysteresis = <2000>;
-+			type = "active";
-+		};
-+
-+		package_fan3: package-fan3 {
-+			temperature = <65000>;
-+			hysteresis = <2000>;
-+			type = "active";
-+		};
-+
-+		package_fan4: package-fan4 {
-+			temperature = <70000>;
-+			hysteresis = <2000>;
-+			type = "active";
-+		};
-+	};
-+
-+	cooling-maps {
-+		map0 {
-+			trip = <&package_fan0>;
-+			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
-+		};
-+
-+		map1 {
-+			trip = <&package_fan1>;
-+			cooling-device = <&fan 2 3>;
-+		};
-+
-+		map2 {
-+			trip = <&package_fan2>;
-+			cooling-device = <&fan 3 4>;
-+		};
-+
-+		map3 {
-+			trip = <&package_fan3>;
-+			cooling-device = <&fan 4 5>;
-+		};
-+
-+		map4 {
-+			trip = <&package_fan4>;
-+			cooling-device = <&fan 5 THERMAL_NO_LIMIT>;
-+		};
-+	};
-+};
--- 
-2.50.1 (Apple Git-155)
+Guenter
 
 
