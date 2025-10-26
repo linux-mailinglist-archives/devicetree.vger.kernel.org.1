@@ -1,131 +1,185 @@
-Return-Path: <devicetree+bounces-231151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 456F2C0AE74
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 18:15:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BE0EC0AE8D
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 18:22:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 176C418A0E35
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 17:15:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3CFB3B2AAC
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 17:22:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31FE3244679;
-	Sun, 26 Oct 2025 17:15:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 819B4258CED;
+	Sun, 26 Oct 2025 17:22:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VcSlnFjb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EgtI2AHA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f67.google.com (mail-ej1-f67.google.com [209.85.218.67])
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 768091C4A13
-	for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 17:15:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBBF3238178
+	for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 17:22:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761498913; cv=none; b=dCZeR9jVcpl4bnSNPrbuGoyMp7PrWHTf147iNZIeFp4jbkP8cpuJdjLADI5DUQ9mjdnPa8pfo/cGbHLf0bBjXS410Ga4IGsLK4GmXGo90qGZD9T93iWPJxqoEwWtU+XovJfQOYTwBMx+NZ1EBD2d+eVovVETxR23Qut5kyCycuE=
+	t=1761499347; cv=none; b=PhOz7Wr+JQaB4IjB/ToA4GxHj1PpfUXnGfIhukmknStIfcVNokn3ZlTqlKOMM9IWlrn7Vnp9aHbQmAeESyVB6W4xTVNZJjNgFUPz9dRteRkEZAXNL42eV28QoBUL3TMDBMiAwRdqYAD4cRm0ycilxs8+PA4b5RrmLT/m2/DVjeM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761498913; c=relaxed/simple;
-	bh=D3iyFU74SZm9l3VCT029e6L9I6zHS3Tfx/bSbezzfeU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Content-Type; b=UGN3m23xS0hDkJubCHo3iAwkG+xNpymQRbiEZWC8AQUywaC5Ep8RD3uAigtRQvN7wIy/oyNRvwKAM5dBY+KHGx28iVahbIYFEFaty/K+6uK2X88vIZeGI40aDo98W6QMp5k3hX8fO7awnESp+9Et1yq3WbIGFasBPG+UEEW1Rkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VcSlnFjb; arc=none smtp.client-ip=209.85.218.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1761499347; c=relaxed/simple;
+	bh=4vmKXbMbi3uS/+iimrAV+j4b9FQ1EGNT2VjwMdwyTn4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SWxbDTf1ihzi3UscdSL9ULLZKkKplS4ztq1IMTQrL+ZriN4j6CroTeBlj2J1MAZFA72xliEIKPbSe1BdBIpFW/8RCcKszK2cGViZsCTJqhzyjZ3EHdcAMc5pBNIhOS5WVRgnQ+303D70DGDnupEdWTj9z2VfC3UIa4+0j91T82g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EgtI2AHA; arc=none smtp.client-ip=209.85.215.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f67.google.com with SMTP id a640c23a62f3a-b6d2f5c0e8eso786915766b.3
-        for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 10:15:11 -0700 (PDT)
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-b6cf1a9527fso1967377a12.1
+        for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 10:22:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761498909; x=1762103709; darn=vger.kernel.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Da7n/lRyiS06YbMDRGJe/PhIKNbj4s3MR8oTEu6nwl4=;
-        b=VcSlnFjbcjr9MyduI7RJQePIMKmZQiQ2CUSR5S2Vlc83sZcJlZgZ/muc+wY5xsKaIX
-         yn85UuOYQVbRLi3g2w7mQgVohEbX6bozarjzZi4WGshs+HPNQ7nyaE5Ot2ObkvBjhYlW
-         26OQsHGqZcAPyw2XiHf8xWSDDzWfM7CtC6+L0GscmmBrc19SZgdMbzSUo53F6m79haw2
-         Fxl/ytfEjMJarcVik2vsfEToIneLVNNfFlXCAGfB5FfxD6aqu6F7gFhhHr3TTGsiBkro
-         BkWOmW4OnyymAgU0iCi+qVCYqA1TjMhl/WG8JKB37Z9E8VBOHudYq4gyQycD8mkdMTcp
-         3qhg==
+        d=gmail.com; s=20230601; t=1761499345; x=1762104145; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=x4Pos4CGzqmt5WmekPT/W8etclQHpUj/UrvrixUMDVI=;
+        b=EgtI2AHAr3QBbI/iBYbxu3Dn+DxUm5XA9WXaPdMTlM4WE1DLB30fFr3aW0EzHN4z7o
+         i4pONdqzxA8XV8CWcQlxwByxsLzireLrT6VtqyQTTFM4h8d8FCToU8+aoNcp27pTBwPq
+         b2MemfEsP52lxRSVqgNlVxT2LTopNz5/xJ6MOk0DHGOiwpF1RzFaou19iOPWD70e3PZC
+         OMbqURAbjPWZYaVecwcx2BTrGg2SWskT+TCV7eypmDuMbUHZlcPc7jJzAu/NC8mJ5Yzp
+         ld/SeKzkNuKCJG9ouvhrfmcO3Pvz2QzelS3BgaQEWIadzqwZhaUTZ4ZwmWnGYL+tgpN5
+         AClw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761498909; x=1762103709;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Da7n/lRyiS06YbMDRGJe/PhIKNbj4s3MR8oTEu6nwl4=;
-        b=pPJyZq9JfBYS3uavOPui8mchza7PMYIB8g3AfxKZK/Q/0uZAKauC3S/KGVIVbS6hxn
-         jKhiKpYtQCsnFGhYNUV929At13ZU3LtBQ7vou05ryDl9ZBTDHfm59QonokTcXlC0wPyw
-         O1QdSh9MdvW2GQ61ZS2SnzzoS0iQrCTav3xKisrieFRp0X2IRzKR3h+1sLRlrN2O2S1i
-         Y3jLma4T7gsjKI+6J4cD+aZoo5AdiY3o0VE9DgU2grM/0J52RN1vHIhB1Sv7Z3jezlyt
-         s1Y8V0qgj6ZGbMWUuEWF2Clzt6a2k1BADhhf6IRXQekwMgqoXTID7oYpoCcNJTwgvr35
-         aZhA==
-X-Gm-Message-State: AOJu0Yyyf8sE0b1XJidHPhOZQCY2dYJ3Nlio9ft74R7iJ38TgDD0avEb
-	TkYQuLOH0WXeIPUFS+G4GdbuhYVeIB7A/13H6Gp/Xe4/lU4k+DTwZpx6jEvBPLkO5Qqzpd3oAm1
-	xFfVWZB5LZmfDFy4VszbvRxqtchjdr2EzgdY/mZgbkg==
-X-Gm-Gg: ASbGnctYPRGhwPPKC5AzgMxKhtnBOLkE21Ik4/AbbDT19Rki3uyKIb3sGDfvCEmFvYE
-	OUbZIxHWX/nSGqUcwHlvUcKIaRGl1V7ZVVt4uli4ga08QFOmMGqf6v+kQUm1VJiw4zV/w3R6sKK
-	+KsbX4BMQc3VxDjZtyQ1lQ0v2slVulnXDuNL87HYGVMoi/oR26PesO7KqTE2HeIwyJXUBq2OkEx
-	g8kOpt/xIA5242qVsdH/AERnz6i6LrUXZviTApCCq4AyyyR1hnH6WX/P1BBt3k0sbbfeSUX3g==
-X-Google-Smtp-Source: AGHT+IFzqU3QsaPE1MW2duZ8/dKVM5Mj7D0icnFlvp/4DYRo9NMCY1YBcoIDI7zlJrtuI8cbSwsY9j7dHSYnlbDke2o=
-X-Received: by 2002:a17:907:1c81:b0:b6c:8e24:21f with SMTP id
- a640c23a62f3a-b6d51c325c6mr1741819066b.55.1761498908937; Sun, 26 Oct 2025
- 10:15:08 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761499345; x=1762104145;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=x4Pos4CGzqmt5WmekPT/W8etclQHpUj/UrvrixUMDVI=;
+        b=n31RcIlScNEV1v+9VmLxVbAr8cB/93HTTHF937pyS+3Ip+f3FUmARRKDBesIQRdY+M
+         I+DkBEiP5nZCv14I5WC5apk6g7voKG88TIMjIkYRYMmEW5Ot0H8/+OUr1LslQFbvXHo1
+         o37N5OAzi35p9Ekxo3qfwG2KHXn45TAPlxJnE4jrPWFcttKw5HxaGfVQLrKGT5QWQo6/
+         SBnKZNw+/3HxwsYFNfJFfcfNlOHodLz7qTYI7CnJ6KTrllgjwrdkXY31lnN6D7NA+Mb9
+         9kuYAc6OtHViF9CtahFnHIAlTDaJR/puIHEq3k2wzCveJGnabHMHEgSDSc8VLua2S3yq
+         wSQA==
+X-Forwarded-Encrypted: i=1; AJvYcCXd0bWBocI1bYDNcKXBwcVdOERfR1PJScRASa+KXArIOfZP9s2OfkGNTvS/6LRH6crvFCkLfgckjqK3@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywmljh1SsxQQjkv0ivqvvVUr6/X83zIxZ8B13NVHq1A33Wjg5AU
+	/9wJUDrmNlOMDjsq4lNhiFXK/mY+n+Ujr7DNPy0mtIJ6ni3ewz6zcKil
+X-Gm-Gg: ASbGncsmhNWtiagjOmM2T7Ofm340L2WVddCROr7gmC2o8NlgMnJj5eKdsK/+E2wtTMn
+	QnzkR1F4vmOYUigUS/3lqbvT7Sx4sF6z24oBFK+jexdEP/subZbMUctq1+YW/bfhYXuGzSEke6Y
+	JvQGEvOMx2WEiUZAEbEcoqRILagGuEElwtppDmORTI30PKvonuZMSFIjWJ4AFfocgSCmbqI91o3
+	sNS7ckKfRKt4Vf07DJPl91bUvQrBcF+VpnO5ICQOKyx2ActrNL8ghT0gr9q2i/OCqFWHH2GUO9t
+	bhuOCcm/JQa41JeL1qnc2VPSgg07brmaIWawARVIePmwPTsZnM4DZzirjql6TUCsY1ygdlpqKbN
+	HoswGGaTM145siCKfER7ofOfV8lUciigAkdQAe8jVaZTJezMZJQJStYkkL+mrm4tlplAbYm0i14
+	ASEgr3Na5n5YXpn00DJ19tWHXOMI6Q5DKkkESYkcg4+8UUlR+d
+X-Google-Smtp-Source: AGHT+IGTYv6tWrPIGkNkmo81p5BgtVsYqslTvhA7eHcXu58XjVEPnZbVQvHL2n5FT7hOuyScz8OMNA==
+X-Received: by 2002:a17:903:1b07:b0:278:f46b:d49c with SMTP id d9443c01a7336-29489d8f73cmr95223545ad.9.1761499344967;
+        Sun, 26 Oct 2025 10:22:24 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33fed81b40fsm5681091a91.16.2025.10.26.10.22.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 26 Oct 2025 10:22:24 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <635af2ab-969b-4390-b661-44bf171eda7c@roeck-us.net>
+Date: Sun, 26 Oct 2025 10:22:23 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251026150358.1078453-1-coiaprant@gmail.com>
-In-Reply-To: <20251026150358.1078453-1-coiaprant@gmail.com>
-From: Coia Prant <coiaprant@gmail.com>
-Date: Mon, 27 Oct 2025 01:14:56 +0800
-X-Gm-Features: AWmQ_bnvhjvqwSYSkZyszEhUHRG058LD6n9gayksgoabyqflquBOY2fvBCiBW_0
-Message-ID: <CALj3r0jVPGtVtHUwxmxjePkj4T3jZD5JUHfJL6xa6h8CAKHRzw@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: vendor-prefixes: Add NineTripod
-To: devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add support for ST TSC1641
+ power monitor
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Igor Reznichenko <igor@reznichenko.net>, linux-hwmon@vger.kernel.org
+Cc: conor+dt@kernel.org, corbet@lwn.net, david.hunter.linux@gmail.com,
+ devicetree@vger.kernel.org, krzk+dt@kernel.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, robh@kernel.org, skhan@linuxfoundation.org
+References: <20251022044708.314287-1-igor@reznichenko.net>
+ <20251026065057.627276-1-igor@reznichenko.net>
+ <20251026065057.627276-2-igor@reznichenko.net>
+ <408c1698-a8ad-4e16-8def-352c2c265f5a@kernel.org>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <408c1698-a8ad-4e16-8def-352c2c265f5a@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Sorry, v2/v3 causes compilation errors, which armbian's build system
-automatically ignores.
+On 10/26/25 09:32, Krzysztof Kozlowski wrote:
+> On 26/10/2025 07:50, Igor Reznichenko wrote:
+>> +properties:
+>> +  compatible:
+>> +    const: st,tsc1641
+> 
+> Subject: I asked to drop "binding" and not add "support for". "Support
+> for" makes little sense in terms of binding. How binding can support
+> anything? This is the "ST TSC1641 power monitor" not support.
+> 
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  shunt-resistor-micro-ohms:
+>> +    description: Shunt resistor value in micro-ohms. Since device has internal
+>> +      16-bit RSHUNT register with 10 uOhm LSB, the maximum value is capped at
+>> +      655.35 mOhm.
+>> +    minimum: 100
+>> +    default: 1000
+>> +    maximum: 655350
+>> +
+>> +  st,alert-polarity-active-high:
+> 
+> Isn't this just interrupt? You need proper interrupts property and then
+> its flag define the type of interrupt.
+> 
 
-v4 has fixed the build failure issue.
+This is a value to write into the chip. It is orthogonal to how the interrupt
+is reported to the interrupt controller. It may be active low by the chip and
+inverted, or it may be active high by the chip and inverted. How does one express
+an additional inverter in the interrupt signal path in a devicetree property ?
+Can you give an example ?
 
-:(
+Thanks,
+Guenter
 
----
-
-I'm new here
-
-OMG, Gmail Android cannot send as plaintext mode :(
-
-(Resending with corrected Cc list and plaintext mode, sorry for the noise.)
-
-Coia Prant <coiaprant@gmail.com> =E4=BA=8E2025=E5=B9=B410=E6=9C=8826=E6=97=
-=A5=E5=91=A8=E6=97=A5 23:04=E5=86=99=E9=81=93=EF=BC=9A
->
-> Add NineTripod to the vendor prefixes.
->
-> Signed-off-by: Coia Prant <coiaprant@gmail.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
-umentation/devicetree/bindings/vendor-prefixes.yaml
-> index f1d188200..37687737e 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -1124,6 +1124,8 @@ patternProperties:
->      description: National Instruments
->    "^nicera,.*":
->      description: Nippon Ceramic Co., Ltd.
-> +  "^ninetripod,.*":
-> +    description: Shenzhen 9Tripod Innovation and Development CO., LTD.
->    "^nintendo,.*":
->      description: Nintendo
->    "^nlt,.*":
-> --
-> 2.47.3
->
 
