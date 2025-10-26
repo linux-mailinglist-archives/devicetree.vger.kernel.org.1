@@ -1,96 +1,61 @@
-Return-Path: <devicetree+bounces-231186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A4B6C0B491
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 22:35:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 737F6C0B494
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 22:37:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22D383B6D85
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 21:35:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D87918A10B7
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 21:37:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C98225F984;
-	Sun, 26 Oct 2025 21:35:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FDED27BF7D;
+	Sun, 26 Oct 2025 21:37:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KWAOCwFJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IsZb2bpD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0779B1DFE22
-	for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 21:35:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74E5C19539F;
+	Sun, 26 Oct 2025 21:37:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761514535; cv=none; b=fMQKazOq5+BQ7ON4QCK/ajuNwFHM7BQozFbPJWKCqEM6Z8JF6j6y626kjsPxfPHgDvtD7w7VkgVYhfARtUGShZCjkXfJOoqFr0xpSDdpO6heCYNxAX8tFeVR5+YScqGY6YLrt3tFjTcYSedhBBjiSvMuu5BoFC0TIOJutMwnN20=
+	t=1761514635; cv=none; b=kJWP3KYaLH0L5iUL0Gv3rDH0vm5W57i1BhgBNcYa4ATycfEoof16nWRbXpxu9Ya58RWsYm7uDGFjt7cCVJrDe8CNvUOSO9wfwXWRQmpNcPd89Ob8Lt1gaQqDrCUYwMaWa8Ok0Jh0psLiI4Y0UhG3InIGxLVaJHtMaphPy/cFREE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761514535; c=relaxed/simple;
-	bh=NYDZOsinQgPFYXjckA1jriCx2zkd+8vOIx52Ygv9OCQ=;
+	s=arc-20240116; t=1761514635; c=relaxed/simple;
+	bh=wEjYWbi+BTe/TjLsdMw5NwAzQqbfXXpeD4BVOSaJePs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RtNOhrTSAYEHV6saxvqNPuRnLXF2URG90+Q+wi+G1BTP6HwqbdCjwTKjDOKOI36cpZEITvO6YRrpD7nJIv+cUBYq2dRmMVDhR1gxhqNIM+YzbqevJ/a8W1GZxDUY1gzIvN4SMLaBHa1N5s6+Lcd5SG1hLQS/Sl9T6p2lWx5DETo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KWAOCwFJ; arc=none smtp.client-ip=209.85.222.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-89ed2ee35bbso332927585a.3
-        for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 14:35:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761514533; x=1762119333; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=NYDZOsinQgPFYXjckA1jriCx2zkd+8vOIx52Ygv9OCQ=;
-        b=KWAOCwFJrt6etTxu5dk28fQBprM9mzFBd+6tXN4qm3ZAH9WfyYt4d3tqaSqArD02js
-         1ACEBVn1DCngcKhNghOkvJmjGLkfYjJbmETo6H3vD7pE6DKd3BT51TfawfzNrRnPX/+J
-         tDATuxj5G+hpwWSJxzbCayJtns6HVGAMaB1t7mlSh6atNFLlGuGYUg7f4h3lt97DdnG3
-         zlofeEfFPkLMGL71tiCDsl1fMvhk37sqFGe/VxAIZqmDd5ufNjPafsMQk1YdCF0vtHC/
-         75rODQYC6TeUuWHJm9HEX/TJlgz0avNtYx5yYWDqqFsok/48yx2V5TQxuyyeoWIGVvnw
-         V9rA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761514533; x=1762119333;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NYDZOsinQgPFYXjckA1jriCx2zkd+8vOIx52Ygv9OCQ=;
-        b=RFy4oFWoNhw0hjn8Wnv9dO2Mf+zPIxVU6oOfABuNZzhVdn7LNLUHD75imNKDs2jyMt
-         A5QUsTFbgSU+V1flIAtZJNNe33cVA8S/+BPAyBNg6zhqMQ0fpqYOPjGXz5+HR93koH2k
-         g9nJoyCkQGYTA8oJM+B+HyThxn4ZOqmaAlO8y5er4MPBsKkc9o/+wLfQKo3EZH1zU+0e
-         S0IsI8gVzGZ/Yt90cuqKkfKLuSyGsblN8cQwIE4mvjWapgw454JoYsNyxfwNRzNhUp1M
-         onTRAOb1tZXwWAH+L8X5/npeAFwu/9sob+jaN6iW/sQluaKDwfWivT+fqcVuc9bHGjwY
-         lOPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWVcs60QPEYyDgl5dMRd9m34XkDtgrQCAnQxzti14XMM7a41jqD1bDKkiu92PG9MYA2s68ksazCfMO9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx70DyTwbdQbrovl1fgAWCN0ShccFjodukjH/QxHpaIwsUzdG2m
-	+8GgMdI9I5p5lva8QyWjP26fxa8QrwK0mjAN0mEMNBnGCHILk2DwZ1O4
-X-Gm-Gg: ASbGnctpwzLxqFdDkPoacG7o3iZOMe28dHSFsd0aPqCi01VqWcCpWL7hoKGpraCih1q
-	m1jPmdsZCh27ytZUGtyCAYYwnbiHfXOkvxEVoUKcfkXjCCxompe3mkdWPy6OZABKRLZqP4lniif
-	dHJNcv1Ccc/9xm2jwOs0lWccn4sc4x3IVOv12GTTV7qNrwFn7Z7u2yEok0A5dJnWM+z61+3TaDT
-	07h3rF5iOPJd36UGxbSunJsSxGTM+4BBLYfsEpcDso28jW9anc7mfZbjoPP6fkIlkv6Vy8wa8DC
-	bpev/+XOyqfxL3kD00sT+7XVLVeh3/x5kl7V1BLTM/GPJ8MJFWrNIjFlyqD1XpLvSeuDin2iXYw
-	1AqhAzBi/tsk8pS5bCKtcC43bH7pGyfqw1KD2LdMiWMiNQeetY9l8W2TYVH+WGwlSNtP3km1DF4
-	t/fvaugdfxQDu3rMuo0TKhnQ840ZowOLI8Y6zHeNuRdX0h
-X-Google-Smtp-Source: AGHT+IHt/luqZvANRgRcr2vtzwDE+8CzdHe1TEyhm26Gx0eGps4kw0K7r0eBfcuENU03yCMR5zjOaA==
-X-Received: by 2002:a05:620a:a1d3:20b0:8a3:52f5:3533 with SMTP id af79cd13be357-8a352f5383amr171252385a.58.1761514532909;
-        Sun, 26 Oct 2025 14:35:32 -0700 (PDT)
-Received: from sleek (d-23-244-200-70.nh.cpe.atlanticbb.net. [23.244.200.70])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-89f2607f05csm414685685a.53.2025.10.26.14.35.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Oct 2025 14:35:32 -0700 (PDT)
-Date: Sun, 26 Oct 2025 17:35:32 -0400
-From: Joshua Milas <josh.milas@gmail.com>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	unicorn_wang@outlook.com, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-	alexander.sverdlin@gmail.com, rabenda.cn@gmail.com,
-	thomas.bonnefille@bootlin.com, chao.wei@sophgo.com,
-	liujingqi@lanxincomputing.com, devicetree@vger.kernel.org,
-	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 2/3] arm64: dts: sophgo: add initial Milk-V Duo S board
- support
-Message-ID: <aP6UJFPP-ReYPzmq@sleek>
-References: <20251011014811.28521-1-josh.milas@gmail.com>
- <20251011014811.28521-3-josh.milas@gmail.com>
- <hkdnjyldwr4watvizsju4qcvpvkb3mtt5rathaooembpceyufx@ega5xrqj6v3y>
- <aOqtt7BDXxItrs7W@sleek>
- <bsol3uim4brrrsdmvuk6f3uzampbki2pyhziap6x4rw7txl435@rwoxrnctkf3y>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q3FaOjYngplD2TSO1Ow5+eqDttE8nj7S8DC4kCZx6LIFXfp4LkljKxVKr9JuAGzPYfSEF8jH8C4dpwwPa/UHZ5u6CYwDeA4k04gyozU1UYX+SHloloULylOgfxBNWo3O5elvccanHr4z+QY3oslwmXybriYuqa0pPhQ+5KYqtv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IsZb2bpD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEA69C4CEE7;
+	Sun, 26 Oct 2025 21:37:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761514635;
+	bh=wEjYWbi+BTe/TjLsdMw5NwAzQqbfXXpeD4BVOSaJePs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IsZb2bpD0NLW49ReodzCzV5NbSkMc0egaLgw25kCCSHwHkOr5sDp3ki1hmBuQ8LvW
+	 rkulQlefC8LevGXbCix+jnDjxG746n7c5IsgGqEI+hWrVmCO4RnVWb5tHdpo6XOuQK
+	 zkdI5nz/iACHmKdMbJXv9bSpAPnndxEC7kzMUAUM7VBMyH7Y/UFUNUqcWUrUJkAf0i
+	 IDB38onjJk8FXaUzeewsh7MyTSLeeODdgvtVEXFuUCDeFBXBUG7bTw1U1oAVrempCG
+	 MUubjUiOW4jxkkGClmvHZzQ+uf4lAyO/EkXhPsPP4xapPJ+PG+UEaOiP9NfBeXeHTL
+	 w/mXUlVtTzCiA==
+Date: Sun, 26 Oct 2025 16:37:12 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Timothy Pearson <tpearson@raptorengineering.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+	devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
+	Wim Van Sebroeck <wim@linux-watchdog.org>
+Subject: Re: [PATCH 3/3] dt-bindings: mfd: rohm,bd96801-pmic: Correct
+ timeout-sec length and reference watchdog schema
+Message-ID: <176151460838.2981264.5357787312563158842.robh@kernel.org>
+References: <20251020-dt-bindings-watchdog-timeout-v1-0-d0f3235eb327@linaro.org>
+ <20251020-dt-bindings-watchdog-timeout-v1-3-d0f3235eb327@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,19 +64,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <bsol3uim4brrrsdmvuk6f3uzampbki2pyhziap6x4rw7txl435@rwoxrnctkf3y>
+In-Reply-To: <20251020-dt-bindings-watchdog-timeout-v1-3-d0f3235eb327@linaro.org>
 
-Inochi,
 
-Thanks for pointing me twards duo-pinmux. I was able to use it to get
-the default config which is uart0, spi3, and i2c4. I can change the
-dts to match, but...
+On Mon, 20 Oct 2025 18:52:22 +0200, Krzysztof Kozlowski wrote:
+> The parent node of ROHM BD96801 PMIC is also holding properties for the
+> watchdog, thus it should reference watchdog.yaml schema.  OTOH, the
+> timeout-sec property is used only as one number.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> This depends on previous watchdog patch.  I propose to take entire set
+> via watchdog tree, with Lee's acks.
+> ---
+>  Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic.yaml | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
+> 
 
-> I suggest enabling devices that are accessed by default
-
-Would we rather enable anything that can be accessed by the pinmux?
-
-Thanks,
-- Joshua Milas
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
