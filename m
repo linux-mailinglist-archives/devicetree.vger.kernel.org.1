@@ -1,133 +1,93 @@
-Return-Path: <devicetree+bounces-231191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D22E6C0B4BE
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 22:44:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0588C0B4CD
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 22:45:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70BB83B6C9D
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 21:44:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FE233B82FD
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 21:45:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE49A2DA760;
-	Sun, 26 Oct 2025 21:44:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A88625F7B9;
+	Sun, 26 Oct 2025 21:45:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n4I8beub"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A+SY37Nd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B50B41AAE28;
-	Sun, 26 Oct 2025 21:44:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D25911D7E31;
+	Sun, 26 Oct 2025 21:45:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761515058; cv=none; b=lOn8r4zYvgtRNNVtHfNbyYujAB6qjRbfbXl6TQxAGAtIPtxZvdgtQoDH5mgm7gkU7pgDvWlWHBo8Po/tkX5LCRPEW4BrNoH09H3Qg00+lDT57VhJ12klMa2VITD5iGKqkZkZALDsBA/X/caJ4C0RORcXiWIC1ZpjvBYFZsdd8SI=
+	t=1761515121; cv=none; b=WKX1JiOI0TkOZaYfa+o6UEmgnDNf5SVUZXJ5vrAyrNHd+GiV1zoFKBK747cDnGgHqM2p1iOr56jDuvdbp2/xZxmposfOTVYp/VipHfAVnJpo7Iyf56V+JR0u03KSshHbUqsD8DX6k4awpQ4S18bGt2TIKPDsJiY7HGkWJnsjTck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761515058; c=relaxed/simple;
-	bh=R0wcc8nBYPNtNsZgoclsUuWvcDYQ/fWNcQurv3oEFFM=;
+	s=arc-20240116; t=1761515121; c=relaxed/simple;
+	bh=2oCXk8yWmT0Rh4DSL89Lqqbb+y930NQMDgM+wHt8Qt8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xqp35sPd5YQoIQgmK3oxnBpw2hdpGc2nDLowu+DedtFjM3tr2Wqr3ZLO/9DI3Ur8VEvulF+uR+Mo7zw8+RC2OHJWJsZHiZKTphjZkY5dmOMNKpTiQMRV/8nBqDQm1qzHVuEZ4BruEWW7an+BLMx6bbMKHLxpYxsydLylf+uRqkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n4I8beub; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0191CC4CEE7;
-	Sun, 26 Oct 2025 21:44:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=to3Nlux13hL1NEvNZMbBrCbFO3Z+w53jtItB1QOQqCLGP1bunOoGacRC+BB6+Pcr5qf2EL8M/q8IgQQsQkjBljVp0wQu428Q1VgiD6pgecp/YBp7XXGOXUnQGBIvt+2p31nFl3TGH+35053z9efroTingiNS4sDAa03wDmIY7FQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A+SY37Nd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07E73C4CEE7;
+	Sun, 26 Oct 2025 21:45:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761515058;
-	bh=R0wcc8nBYPNtNsZgoclsUuWvcDYQ/fWNcQurv3oEFFM=;
+	s=k20201202; t=1761515121;
+	bh=2oCXk8yWmT0Rh4DSL89Lqqbb+y930NQMDgM+wHt8Qt8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=n4I8beub56lCXDtQIIagRhZqCf1bllEDpY3pxIA5Dcbx7FonZGyEcgla/0yTWVv8N
-	 8BqIY+tucyymuIdV2DPISSxzeeXVFrwQ6QjiXiUE35LcDNXWn8Lw9XowOdA17NVbdr
-	 6Wtmkd9zZs4MCmQr3U1b+o6KLW2N1769htiwx+YuEc25ish0S2nx/yBUw4239n4WRO
-	 7V+B6Gnr8vlewOifX/Rhi5YKOcnQxTe14oHdnJW7CZtzPX/PUgo6Rz/ugjqrRSs+N1
-	 89S1fmoI2Rb37fl4yUG/7OaCCSyoSYn5jv01asHXGeUW54TmI797JQ20loFvabHJQN
-	 PJ1h/DoOtDzsA==
-Date: Sun, 26 Oct 2025 21:44:12 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Longbin Li <looong.bin@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	b=A+SY37NdmY8yTOMg3t4DSAkQIi+CpDzeYrHeqdy3xgeMwmbFeyUiuSOFv3g86huVn
+	 1TA4nX/YEE2mxAY9PclfciiHdRhVZavCqP16DAplI0CVJsQK4Var5GayqVJgaUN6W9
+	 lKhCxOnQsUNFNX4jShVt1yHaQTIYFlcX/Iyn9+2dciWCMx/oh+fro3SytPwPScesnn
+	 q1dYbSsZtmukHxchoPjapKoJ7EQiPUAhKlQ6T5Sw2wq0RwCwGaKXs/DJfnf2C5eS+O
+	 HZBuIwU5+1FGydsT9eRWB2ki9PKs4d0JxQ8jvKRI51Nen1JnQ7pxbvmZU2UK4uXUfk
+	 lcTSHBnvWrAgg==
+Date: Sun, 26 Oct 2025 16:45:19 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	Abhinav Kumar <abhinav.kumar@linux.dev>,
+	Maxime Ripard <mripard@kernel.org>, Sean Paul <sean@poorly.run>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	linux-kernel@vger.kernel.org, David Airlie <airlied@gmail.com>,
+	Rob Clark <robin.clark@oss.qualcomm.com>,
+	linux-arm-msm@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Kuogee Hsieh <quic_khsieh@quicinc.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, freedreno@lists.freedesktop.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Yu Yuan <yu.yuan@sjtu.edu.cn>, Ze Huang <huangze@whut.edu.cn>,
-	devicetree@vger.kernel.org, sophgo@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: soc: sophgo: add TOP syscon for
- CV18XX/SG200X series SoC
-Message-ID: <20251026-registrar-impart-0f714e11e410@spud>
-References: <20251024030528.25511-1-looong.bin@gmail.com>
- <20251024030528.25511-2-looong.bin@gmail.com>
- <20251024-hangout-designing-33e96c0d35fc@spud>
- <oymxspgopaqja63nipufgzn6kpobkdopemfaw3azhom3ikvk5f@e7cg4lq64j2o>
- <20251025-shakable-jujitsu-3a5e9c8895a5@spud>
- <ugmphokne6ssc7ou7apvbldxg7xxk24wp5jrzdasjiplnu6gfy@ebbuxnjqlsw4>
+	Dmitry Baryshkov <lumag@kernel.org>,
+	dri-devel@lists.freedesktop.org,
+	Konrad Dybcio <konradybcio@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: display/msm: Reference DAI schema for
+ DAI properties
+Message-ID: <176151511679.2990875.10147448365246102323.robh@kernel.org>
+References: <20251021111050.28554-3-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="rdoDAXfg92n9Nn02"
-Content-Disposition: inline
-In-Reply-To: <ugmphokne6ssc7ou7apvbldxg7xxk24wp5jrzdasjiplnu6gfy@ebbuxnjqlsw4>
-
-
---rdoDAXfg92n9Nn02
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251021111050.28554-3-krzysztof.kozlowski@linaro.org>
 
-Rob, Longbin,
 
-On Sun, Oct 26, 2025 at 05:47:32PM +0800, Longbin Li wrote:
-> On Sat, Oct 25, 2025 at 01:44:00PM +0100, Conor Dooley wrote:
-> > On Sat, Oct 25, 2025 at 10:27:13AM +0800, Longbin Li wrote:
-> > > On Fri, Oct 24, 2025 at 05:46:03PM +0100, Conor Dooley wrote:
-> > >=20
-> > > > > ...
-> > > > > +
-> > > > > +properties:
-> > > > > +  compatible:
-> > > > > +    oneOf:
-> > > > > +      - items:
-> > > > > +          - const: sophgo,cv1800b-top-syscon
-> > > > > +          - const: syscon
-> > > > > +          - const: simple-mfd
-> > > > > +
-> > > > > +  reg:
-> > > > > +    maxItems: 1
-> > > > > +
-> > > > > +  "#address-cells":
-> > > > > +    const: 1
-> > > > > +
-> > > > > +  "#size-cells":
-> > > > > +    const: 1
-> > > > > +
-> > > > > +  ranges: true
-> > > >=20
-> > > > Do you actually use ranges?
-> > > >=20
->=20
-> Actually, I do not use it.
-> I added it following Rob's suggestion in
-> https://lore.kernel.org/all/20251015134144.GA3265377-robh@kernel.org/.
-> Should I drop it or not?
+On Tue, 21 Oct 2025 13:10:51 +0200, Krzysztof Kozlowski wrote:
+> DisplayPort nodes are DAIs (Digital Audio Interfaces): they have already
+> 'sound-dai-cells'.  Reference the common DAI schema to bring common
+> properties for them, which allows also customizing DAI name prefix.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/display/msm/dp-controller.yaml         | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
 
-I don't know why he suggested it, if it is not being used. Rob?
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
---rdoDAXfg92n9Nn02
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaP6WKQAKCRB4tDGHoIJi
-0ineAQCnx3f0EpPMqkkkFJY8iwI9lwZHPviAEyjHA0s0o85JLgEA7KvXDig05rNH
-efVLx5OW3aA366PJ2D35x3+QPI785go=
-=H40P
------END PGP SIGNATURE-----
-
---rdoDAXfg92n9Nn02--
 
