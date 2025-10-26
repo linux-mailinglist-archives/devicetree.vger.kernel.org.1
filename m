@@ -1,138 +1,131 @@
-Return-Path: <devicetree+bounces-231164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3537CC0B084
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 19:46:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 961DBC0B090
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 19:49:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D5104348E3E
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 18:46:50 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3ADCA346219
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 18:49:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B5B323C4F4;
-	Sun, 26 Oct 2025 18:46:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B89A2D0626;
+	Sun, 26 Oct 2025 18:49:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=reznichenko.net header.i=@reznichenko.net header.b="nfuU5nc0"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="KAEKu/pz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF7C21F1505
-	for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 18:46:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B39F3248F69;
+	Sun, 26 Oct 2025 18:49:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761504407; cv=none; b=QSJ+JN7t9f5ZfQ8IYPBfmzZ/MUSNvihDI3vQCrsxz1UegGGo2FcwZCSQ1FipgoUBMgyNmTnVlnthzZEhhjCRfOHJcd1fUY7buWTbFQ/c0uzePwwjkGAzxdhJijQxk4L8TQC9QAUVp/7xNaqkwC6K4GGgFCwKOGnx55UDk4jO3oM=
+	t=1761504593; cv=none; b=hYT5YRWOBqONQunFd0TNh+Ag+BOwQJ3uMgvEd0yqc3QdJJiRgUAs1UMcXQT2wWwNsPzXPLOBmoLPL8KZV6LWXvWU7Ebytr52lnyhOfWZsZjLAqm1z6pFPAsuTmGjJQM2KHxFgYYvde0RcLHih+sfPGOw5hf7Ak8RjBmSm4dNZls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761504407; c=relaxed/simple;
-	bh=9JElRUYcelJHNX0v60zr/J8lWtgoWXeCAYKccVAcB3o=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=t/s154ArfsP/7P1YOZ8JD/4CdYeTsNAj4gBEQoJ7cPS8yqgiZeJsji8o46IMTPwvYUOnyivMbV4NNenChz4sZohP5rVmKSVqdEdORquLt1Hk62QEgPSbjnzIXPRuuC8QGHun51PWpo9DMnlhOkRuoJ+ql2DRvOcuM5cvVBXZtJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reznichenko.net; spf=none smtp.mailfrom=dpplabs.com; dkim=pass (2048-bit key) header.d=reznichenko.net header.i=@reznichenko.net header.b=nfuU5nc0; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reznichenko.net
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=dpplabs.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-26a0a694ea8so27503925ad.3
-        for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 11:46:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=reznichenko.net; s=google; t=1761504405; x=1762109205; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kr+uTiTscqC5xNsxJVLhouOq96vCtcj/UADaRDhqzhs=;
-        b=nfuU5nc0POpV4P3j/DGLhWJQXNqr0k1HE9XSR9yoHSEwcBdUbWJrDZYIJNC/Zigl6F
-         vHDtRKR7oa6eXm8LNFt350e4RLDLiyPUquzPNz6Aw1x35N6To1Q8ve58ATIPNEeiBo11
-         ur7nEaXMjxSGzSoYn4diJtavEwxzJPcZVVmszzlpx690+BugfkfxFVkZgxNNGpnNZlZP
-         Mm5mcMN+BY8C0xEeM+VI47tSDq5MCuJIZWbXA01kn/aNtazHm6o4pnG9RfYsx/ARUmMh
-         ysw1c0ZBFcNMlGfNTBSpKL19nfZYqEPPjLcU+HpQ0hrU3LPAQzmZmrFNLRF1ld4A2q4w
-         VUaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761504405; x=1762109205;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kr+uTiTscqC5xNsxJVLhouOq96vCtcj/UADaRDhqzhs=;
-        b=EDU6xe9TMM1jMAXzU7R8WW+9oBXrXIGw9pzDrWNScdMnhD/kCVjIKxbpLN7qr5Ocpn
-         uOFxM3wUgCsddSvKKFdvTa4tl61V6ikGJLA3CWksKk0aWYfNdDotXhhndYLdBeI4ziOY
-         75c0K2McTMLBz11fNfgqyXpDAWikiEvCoMblnPCtov2B+Ynr2HzfTHDfDefe0m6ec1iz
-         xlhsaEZEjPWya+b+j+0cK3slfYs2Pi+NT0TJsm0W2xacSXWKJtDCfpg74jOlJAaLkSqz
-         BF91XYBsXuZZcbx17i3PmyGmd2Vv0e6+YJrKqRmAA3FlQ6S0c2X0RrP76T4eEnn1+6br
-         ffcg==
-X-Forwarded-Encrypted: i=1; AJvYcCWQqibgAUgrpZSUbp4qQnv2+Zkb2d9K+eIA3Tc/AKvOM2IswRZOvx9pP23B+kevLI5azR1w+NoD5Qh6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyiqcqZJzhuLX72jqRRgoshYBVVbp3i9WJGP547vaz2GxnFCVLP
-	lYQXpA3t2QmaFemT3dApBU1Z/XiU0hpRt3bH32XtT/M3b6WyzjxCcNMvfoagQBjJc88=
-X-Gm-Gg: ASbGncv4wiiD3uxOJHbr/3RcJeQEMB4hD9SXh2Ex0UAFiW/E2r2fbFIJlFAqeCIlan0
-	XRflbFsRUCGatdtqmkMwUdH9RQ7yghkP5iBRWXSga+Tog1vZCMJUuTMadRQmUNL0Hhyvmkoyl1Q
-	+5QgSzZn1dx35rNiI++phd1pD9xJkhcIHbtWs17WgOVRpuPXJfoa2Y7v3TcqAVs8O+dowZT2FSM
-	SREsZs4brrcbyXpV9Ut9oeWm2XWw86hjAXORMT2EcoEITB340P0vgGgVQvoqIMRM4G1OH+Gj6uG
-	8C74/7sWur1yBf0KhjaUGUc0TSms06oyGjdBl4AqiZT3zPliRYrREg0uefUbkMhhUcAvHjMpHQj
-	+SToyC76hjjSWYjWNLeJCfB1W66QLvqt7pwteXAkgGZsBjreotLnzv3iw2YmvZ6G+VzKTsPAk57
-	rKMp8cVPBGsRwVKuxv
-X-Google-Smtp-Source: AGHT+IHyb18kbZzmWwrapG89GEeH9zIO5kUERUgBm/20I/UDyDk2AQLJZ+iiUs1VcHb79+gHNkmW7A==
-X-Received: by 2002:a17:902:db05:b0:24e:3cf2:2450 with SMTP id d9443c01a7336-290c9c8a5e6mr441023785ad.2.1761504404962;
-        Sun, 26 Oct 2025 11:46:44 -0700 (PDT)
-Received: from z440.. ([2601:1c0:4502:2d00:a43b:396a:591:2ee9])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33fed7e2851sm2432460a91.6.2025.10.26.11.46.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Oct 2025 11:46:44 -0700 (PDT)
-From: Igor Reznichenko <igor@reznichenko.net>
-To: krzk@kernel.org
-Cc: conor+dt@kernel.org,
-	corbet@lwn.net,
-	david.hunter.linux@gmail.com,
-	devicetree@vger.kernel.org,
-	igor@reznichenko.net,
-	krzk+dt@kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux@roeck-us.net,
-	robh@kernel.org,
-	skhan@linuxfoundation.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add support for ST TSC1641 power monitor
-Date: Sun, 26 Oct 2025 11:46:41 -0700
-Message-ID: <20251026184641.631641-1-igor@reznichenko.net>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <408c1698-a8ad-4e16-8def-352c2c265f5a@kernel.org>
-References: <408c1698-a8ad-4e16-8def-352c2c265f5a@kernel.org>
+	s=arc-20240116; t=1761504593; c=relaxed/simple;
+	bh=SBAlHQr01XhpEUC4KPUxRR+yFK/fqz9GLMF8BAiidW0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ix7WyKRr1hEWtIbdEGO7pMhBMfHYbhEsg8O0W7lczPjlTt0qv06vzeibqRaFrMsim3O/v+7/bP22tY5eFI2LD54ThaZNHYI1qOgyP1YT4paHGZ/OD8QGZuHGALUzgdVwgXVNVt+FpDjjRm+7m7hTLM4j+jPq6xekrFCelE7Xtl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=KAEKu/pz; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (82-203-161-16.bb.dnainternet.fi [82.203.161.16])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 9F9C51BA0;
+	Sun, 26 Oct 2025 19:48:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1761504480;
+	bh=SBAlHQr01XhpEUC4KPUxRR+yFK/fqz9GLMF8BAiidW0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KAEKu/pzrR2WdA3jwWhEjVL5n1ck+bdI13daW2T+hf2IXSz4lp7mK6bjk87D95lTY
+	 ojJ51hPyK2y5agMIOYGPVh3hZZYDdsKJZXbwSbvFUSECqEWIJpbHKYKhM8SQHlzmEP
+	 mTa3Ie507Yen15YtA1S2ELcEXk7ASSQn0EhXFrZM=
+Date: Sun, 26 Oct 2025 20:49:33 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	"open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)" <linux-media@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/1] media: dt-bindings: video-interfaces: add
+ video-interfaces.h information
+Message-ID: <20251026184933.GB1025@pendragon.ideasonboard.com>
+References: <20251021154922.2874390-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251021154922.2874390-1-Frank.Li@nxp.com>
 
-> Subject: I asked to drop "binding" and not add "support for". "Support
-> for" makes little sense in terms of binding. How binding can support
-> anything? This is the "ST TSC1641 power monitor" not support.
+Hi Frank,
 
-Krzysztof,
+Thank you for the patch.
 
-Thanks for feedback, will fix this and will create following patch versions
-in new threads.
+On Tue, Oct 21, 2025 at 11:49:22AM -0400, Frank Li wrote:
+> Mention include/dt-bindings/media/video-interfaces.h in descriptions to
+> help avoid use hardcode in dts.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> changes in v2
+> - update commit message "mention ..."
+> - use full path include/dt-bindings/media/video-interfaces.h
+> ---
+>  Documentation/devicetree/bindings/media/video-interfaces.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/video-interfaces.yaml b/Documentation/devicetree/bindings/media/video-interfaces.yaml
+> index 038e85b45befa..6ed4695cacf7e 100644
+> --- a/Documentation/devicetree/bindings/media/video-interfaces.yaml
+> +++ b/Documentation/devicetree/bindings/media/video-interfaces.yaml
+> @@ -95,7 +95,7 @@ properties:
+>        - 6 # BT.656
+>        - 7 # DPI
 
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  shunt-resistor-micro-ohms:
->> +    description: Shunt resistor value in micro-ohms. Since device has internal
->> +      16-bit RSHUNT register with 10 uOhm LSB, the maximum value is capped at
->> +      655.35 mOhm.
->> +    minimum: 100
->> +    default: 1000
->> +    maximum: 655350
->> +
->> +  st,alert-polarity-active-high:
->
->Isn't this just interrupt? You need proper interrupts property and then
->its flag define the type of interrupt.
+I wondered if we should reference the macros here as well:
 
-This controls a bit written into device register.
-I omitted interrupt property after looking at existing power monitor bindings,
-especially hwmon/ti,ina2xx.yaml. INA226 has very similar bit controlling alert 
-pin polarity and binding doesn't define alert pin as interrupt. Overall, I didn't
-find many power monitor bindings defining alert pins as interrupts.
+    enum:
+      - 1 # MEDIA_BUS_TYPE_CSI2_CPHY
+      - 2 # MEDIA_BUS_TYPE_CSI1
+      - 3 # MEDIA_BUS_TYPE_CCP2
+      - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
+      - 5 # MEDIA_BUS_TYPE_PARALLEL
+      - 6 # MEDIA_BUS_TYPE_BT656
+      - 7 # DPI
 
-Thanks, Igor
+(Annoyingly we don't have a macro for DPI.)
+
+This can be done separately if desired, so
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+>      description:
+> -      Data bus type.
+> +      Data bus type. See include/dt-bindings/media/video-interfaces.h.
+>  
+>    bus-width:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> @@ -229,7 +229,7 @@ properties:
+>        Imaging. The length of the array must be the same length as the
+>        data-lanes property. If the line-orders property is omitted, the value
+>        shall be interpreted as 0 (ABC). This property is valid for CSI-2 C-PHY
+> -      busses only.
+> +      busses only. See include/dt-bindings/media/video-interfaces.h.
+>  
+>    strobe:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+
+-- 
+Regards,
+
+Laurent Pinchart
 
