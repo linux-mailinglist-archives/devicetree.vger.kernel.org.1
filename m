@@ -1,391 +1,894 @@
-Return-Path: <devicetree+bounces-231214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E1B6C0B714
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 00:18:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9597BC0B744
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 00:36:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 02CEE4EDB04
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 23:18:32 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 658954E4EC4
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 23:36:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69170301021;
-	Sun, 26 Oct 2025 23:18:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EEE53009FC;
+	Sun, 26 Oct 2025 23:36:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QYBs0RWD"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="XanT6QPY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BFEA3009F4
-	for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 23:18:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE072FFDEB;
+	Sun, 26 Oct 2025 23:36:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761520704; cv=none; b=d5erVwQ2RfoxvqfTygjGsFIPYnsQw+W16/7V1YSpKZgOxekWPbRZOJl+xMA8XAb/by2UTr2lA68A6z1N2mwj/M/dQr2TxepBkJLCET7WHMizaALosDjZ+MA6tizsXlTJGcLRUANDjjyy9Rma4mAI4hzYIMz6hr/pj4uItuuo8ZU=
+	t=1761521802; cv=none; b=mflDSdJGfIThdPX9bgYy6nA1Btq3tyPr2J8SEpAM0hJXyJQIN4cdM39ICVZ35ZyBYZsFsegiR6BT2XbLT8njQCNFkh8s1kdFLTPBL/HuTH7H0n7nyGFSWUQcFFmQTmlqd9LWkCDlvpDCFohgBfPuUAoA62M1dxDgXRAhFK8Zk74=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761520704; c=relaxed/simple;
-	bh=7yeFvsm7y+OcP+6YYa2T6lB+IhTPTeupClFiL+f5Hoo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rhOXM+hict5emWmHN3vSGPmL9JL3YdojtgWgiGAZnUg7kLao+Ei38A+y0AoRU7W53hnk0yLgaKp9GNtnLxvTSNb0pBGthxh9P+amBrj4MUNGQKF/oOvLPxmjeka1J7ms/Qgb3m9eNQHfrK22ZVq2XtcmU2SowWQ91cF/xEQ1UpQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QYBs0RWD; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-63b9da57cecso6184478a12.0
-        for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 16:18:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761520700; x=1762125500; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CiCHn54lzDQaN7TwQ+Eqf6Al/yn9V8tvKFsvfsxpy+0=;
-        b=QYBs0RWD6rJVQnDUVOEt8SYz1sErz6Ec+/oBZrRLbDuqj74wJHUW7VKsHpVcDx2+Iu
-         WJmQ3/mNiE7dXef0l5G4Aiy89JTaUrAX12+aQYW0ODqOe7m2zxRNJAQMlCQTToOFKgQk
-         no8qnQZLpnnr9NqVGO9d2d0LN+d5g/Amj4mb6a47uLHbl7O9pCDFT7gut+SLE5CENXAN
-         biC2Mitd3HFefn6Hb92H1SgcmwRwE1L8D1fUSgZjJBzI58d3jQTOLj8iHyNyYbIvL42N
-         0UXDEYTzZhP/naOoLgwlSg1bHTImj/UeqIUDK8cmk4VQd0RCORnfh1M/U8QdjI5kZICG
-         gbAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761520700; x=1762125500;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CiCHn54lzDQaN7TwQ+Eqf6Al/yn9V8tvKFsvfsxpy+0=;
-        b=euWqdSRe/fYgEnZrd/4X2/+1QmRG83XPvZHpoEqDZj5r0b91b1NISbn4bByz93yPfX
-         /hXHPpxJIiVhkRgUsJgN2AS6L2PMgI9YItQ5FfRvYye0acXFPdDP5tspeAHqluzomafG
-         fSkq6Sek13EPtM76Oo0HEtYGqzDbRpMYKaonQEk1iTN6Vz7ZdIeZBe6dCsahykSVxpn9
-         o/W5X7GjbBYo42GZCc7jI+k6CVPlXwf3v3+o+pZqcRaDL3L83DhFgLQC6i4xN1KkqsJL
-         BJf/hiwJNr+yrLY1Kz0FvnJgiY2Xz1cQ/61JVIpaTKtw2jkhWddYTeLEelQZbVtc9lOa
-         5rvA==
-X-Forwarded-Encrypted: i=1; AJvYcCW31IQK5n6PvINiJM2N+Y0CHMGXRgUselrvqFsDrjF80VWHaX9QJSedtz0dnOmbDSoiS2X8YbnR05kZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBUpWlwPIUINisIFE7xX5O85t9PbYprIqrn/cJkAH6qdmt78M9
-	OZ7bl5vIIfSzlUKJeADM91N63Q9umAmjsd7T8mLfAyEi9B2el6td0P+Bo/h7sw==
-X-Gm-Gg: ASbGnctXVVUwRL8kkQ5Ltgu1tfUr+NWc2khEyAzad4rjYtNLyn3/aOT/4FL7SWW7Pew
-	RzXRJuVjZfz0ka0NUCA6KhaqeN6+z9aBaX+zr6Oe4Cak1GTnOwzmoCioV4ci6EKmBLHSerhDndT
-	puwLH6vWqlRISVkTwoRydRhDXFgFCHnZQwJO67Lk0ZePJpdo1IhmuX78OypXixpFKNGZ+brplDU
-	O28qLc1jmI4QhgVkS/+C4uY4WDD7Jg2qRJGvpKaYf6LxLVcmsKkOiaHTF823fbEMXTRw/WQX7kG
-	b2KqEUi+TQX98hD1OF7qQM4cM2hxIcLqdaA7uBjRoOpUjaI0oC+URcogy4rAtg+D1Yr/rb4Vvm5
-	1SNDAYCMXRmaFnAnhSr+cOjGmOSlGY2wRQpIk7QWeGxkEryU5k1vSqkI+Vcf/tqI4U6wjgvLafQ
-	sf0TLhxi895XlHOQ==
-X-Google-Smtp-Source: AGHT+IGfSBAx7rKJ9rbLheLMuPNvx1uHbgzNIQmoW7B3qNuSzrLIBkDJXf+4XG6YFt6PUK/mSLJtnw==
-X-Received: by 2002:a05:6402:2791:b0:63e:23c0:c33e with SMTP id 4fb4d7f45d1cf-63e23c0c43amr15741859a12.27.1761520700268;
-        Sun, 26 Oct 2025 16:18:20 -0700 (PDT)
-Received: from builder.. ([2001:9e8:f109:5716:be24:11ff:fe30:5d85])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63e7ef82865sm4847379a12.9.2025.10.26.16.18.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Oct 2025 16:18:19 -0700 (PDT)
-From: Jonas Jelonek <jelonek.jonas@gmail.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Peter Rosin <peda@axentia.se>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Jonas Jelonek <jelonek.jonas@gmail.com>
-Subject: [PATCH v2 2/2] gpio: add gpio-line-mux driver
-Date: Sun, 26 Oct 2025 23:17:54 +0000
-Message-ID: <20251026231754.2368904-3-jelonek.jonas@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20251026231754.2368904-1-jelonek.jonas@gmail.com>
-References: <20251026231754.2368904-1-jelonek.jonas@gmail.com>
+	s=arc-20240116; t=1761521802; c=relaxed/simple;
+	bh=FnKLxK1KVzU7+wNVeUji2xStNz79zXnGckXLY+iTTKs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Zo2tdIS8Q+Zl+7SM2QSXKmHaOwIQzLT7QSqZxHOTAemNnP3/PyV1ibTlJ6PjSOLSeVdbNMr/sisq3THWOBcnltGcLreVXDkA9GXRwDAUhjvZaDu6zibiGrAqyOKCnDvhUKuf5bSd+bEJ2+0O7dADezQ2Z/TCmYTOA1jRHHwdJjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=XanT6QPY; arc=none smtp.client-ip=94.112.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.240] (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 567255340F8E;
+	Mon, 27 Oct 2025 00:36:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1761521793;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=C4lIOF4K1BcAMSt+BS6okAwCF7PhAgKaKRkT9oLy3V8=;
+	b=XanT6QPYguyJYnsnQmrFXjkgY1uSquzCDCaiBHuOOFaTQBZ2KQN0VMiLlDJgyHW+U1W5yK
+	D1ei7q690NrLIXsOX3H/oLLk+dCFzGsBlBU9M3wIHOE2doVopMWCNR5Opjz5X+mJIEEXad
+	l6+Sp8C9rKK7qsbWf67BdIQG8ukjtc0=
+Message-ID: <f672a830-06dd-4184-9761-d5a38944b9ba@ixit.cz>
+Date: Mon, 27 Oct 2025 00:36:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8150: Add support for Xiaomi
+ Redmi K20 Pro
+To: Piyush Raj Chouhan <pc1598@mainlining.org>, linux-arm-msm@vger.kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, tony.luck@intel.com, gpiccoli@igalia.com
+References: <20251022054026.22816-1-pc1598@mainlining.org>
+ <20251022054026.22816-2-pc1598@mainlining.org>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <20251022054026.22816-2-pc1598@mainlining.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Add a new driver which provides a 1-to-many mapping for a single real
-GPIO using a multiplexer. Each virtual GPIO corresponds to a multiplexer
-state which, if set for the multiplexer, connects the real GPIO to the
-corresponding virtual GPIO.
+Hello Piyush,
 
-For now, this doesn't support advanced features like IRQs, just normal
-IN and OUT functionality of GPIOs.
+few things to improve:
 
-This can help in various usecases. One practical case is the special
-hardware design of the Realtek-based XS1930-10 switch from Zyxel. It
-features two SFP+ ports/cages whose signals are wired to directly to the
-switch SoC. Although Realtek SoCs are short on GPIOs, there are usually
-enough the fit the SFP signals without any hacks.
+On 22/10/2025 07:40, Piyush Raj Chouhan wrote:
+> Add initial device tree support for the Xiaomi Redmi K20 Pro/ Xiaomi Mi 9T Pro
+> (codename raphael), based on the Qualcomm SM8150 (Snapdragon 855)
+> platform.
+> 
+> The supported features include:
+> - Display (Samsung AMS639RQ08 AMOLED panel)
+> - UFS storage
+> - USB Type-C (with role switching, High-Speed only)
+> - PMIC regulators (PM8150, PM8150L, PM8150B)
+> - GPIO keys (volume up, volume down, power)
+> - Remoteprocs (ADSP, CDSP, MPSS)
+> - Adreno 640 GPU with GMU
+> - WCN3990 WiFi
+> - Camera flash LEDs
+> 
+> Signed-off-by: Piyush Raj Chouhan <pc1598@mainlining.org>
+> ---
+>   arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>   .../boot/dts/qcom/sm8150-xiaomi-raphael.dts   | 995 ++++++++++++++++++
+>   2 files changed, 996 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/qcom/sm8150-xiaomi-raphael.dts
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 296688f7cb26..d2b673d2625c 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -279,6 +279,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-microsoft-surface-duo.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-mtp.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-sony-xperia-kumano-bahamut.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-sony-xperia-kumano-griffin.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-xiaomi-raphael.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-hdk.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-mtp.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-samsung-r8q.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/sm8150-xiaomi-raphael.dts b/arch/arm64/boot/dts/qcom/sm8150-xiaomi-raphael.dts
+> new file mode 100644
+> index 000000000000..9ff938b61a31
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sm8150-xiaomi-raphael.dts
+> @@ -0,0 +1,995 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +
+> +/*
+> + * Copyright (c) 2025, Piyush Raj Chouhan <pc1598@mainlining.org>.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/arm/qcom,ids.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> +#include <dt-bindings/usb/pd.h>
+> +#include "sm8150.dtsi"
+> +#include "pm8150.dtsi"
+> +#include "pm8150b.dtsi"
+> +#include "pm8150l.dtsi"
+> +
+> +/*
+> + * Rewrite reserved memory maps inherited from sm8150.dtsi to match the ones
+> + * used on xiaomi-raphael.
+> + * Note: this list is ordered by its memory address in sm8150.dtsi.
+> + */
+> +/delete-node/ &tz_mem;      /* same address but larger, no place for rmtfs_mem! */
+> +/delete-node/ &rmtfs_mem;   /* moved to completely different address */
+> +/delete-node/ &adsp_mem;    /* same start address, but larger size */
+> +/delete-node/ &mpss_mem;    /* same size, shifted higher, due to larger adsp_mem */
+> +/delete-node/ &venus_mem;   /* same size, shifted higher */
+> +/delete-node/ &slpi_mem;    /* same size, shifted higher */
+> +/delete-node/ &ipa_fw_mem;  /* same size, shifted higher */
+> +/delete-node/ &ipa_gsi_mem; /* same size, shifted higher */
+> +/delete-node/ &gpu_mem;     /* same size, shifted higher */
+> +/delete-node/ &spss_mem;    /* same size, shifted higher */
+> +/delete-node/ &cdsp_mem;    /* same size, shifted higher */
+> +
+> +/ {
+> +	model = "Xiaomi Redmi K20 Pro";
+> +	compatible = "xiaomi,raphael", "qcom,sm8150";
+> +	qcom,msm-id = <QCOM_ID_SM8150 0x20000>; /* SM8150 v2 */
+> +	qcom,board-id = <0x28008 0>;
+> +	chassis-type = "handset";
+> +
+> +	aliases {
+> +		serial0 = &uart2;
+> +		wifi0 = &wifi;
+> +	};
+> +
+> +	chosen {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		stdout-path = "serial0:115200n8";
+> +
+> +		framebuffer: framebuffer@9c000000 {
+> +			compatible = "simple-framebuffer";
+> +			reg = <0 0x9c000000 0 (1080 * 2340 * 4)>;
+> +			width = <1080>;
+> +			height = <2340>;
+> +			stride = <(1080 * 4)>;
+> +			format = "a8r8g8b8";
+> +			display = <&panel>;
+> +			clocks = <&gcc GCC_DISP_HF_AXI_CLK>;
+> +		};
+> +	};
+> +
+> +	disp_vci_vreg: disp-vci-vreg {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "disp_vci_vreg";
+> +		regulator-boot-on;
+> +		enable-active-high;
+> +		gpio = <&tlmm 99 GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+> +	vreg_ibb: regulator-ibb {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "ibb";
+> +		regulator-min-microvolt = <6000000>;
+> +		regulator-max-microvolt = <6000000>;
+> +	};
+> +
+> +	vreg_lab: regulator-lab {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "lab";
+> +		regulator-min-microvolt = <6000000>;
+> +		regulator-max-microvolt = <6000000>;
+> +	};
+> +
+> +	reserved-memory {
+> +		tz_mem: memory@86200000 {
+> +			reg = <0x0 0x86200000 0x0 0x5500000>;
+> +			no-map;
+> +		};
+> +
+> +		adsp_mem: memory@8be00000 {
+> +			reg = <0x0 0x8be00000 0x0 0x2200000>;
+> +			no-map;
+> +		};
+> +
+> +		mpss_mem: memory@8e000000 {
+> +			reg = <0x0 0x8e000000 0x0 0x9600000>;
+> +			no-map;
+> +		};
+> +
+> +		venus_mem: memory@97600000 {
+> +			reg = <0x0 0x97600000 0x0 0x500000>;
+> +			no-map;
+> +		};
+> +
+> +		slpi_mem: memory@97b00000 {
+> +			reg = <0x0 0x97b00000 0x0 0x1400000>;
+> +			no-map;
+> +		};
+> +
+> +		ipa_fw_mem: memory@98f00000 {
+> +			reg = <0x0 0x98f00000 0x0 0x10000>;
+> +			no-map;
+> +		};
+> +
+> +		ipa_gsi_mem: memory@98f10000 {
+> +			reg = <0x0 0x98f10000 0x0 0x5000>;
+> +			no-map;
+> +		};
+> +
+> +		gpu_mem: memory@98f15000 {
+> +			reg = <0x0 0x98f15000 0x0 0x2000>;
+> +			no-map;
+> +		};
+> +
+> +		spss_mem: memory@99000000 {
+> +			reg = <0x0 0x99000000 0x0 0x100000>;
+> +			no-map;
+> +		};
+> +
+> +		cdsp_mem: memory@99100000 {
+> +			reg = <0x0 0x99100000 0x0 0x1400000>;
+> +			no-map;
+> +		};
+> +
+> +		cont_splash_mem: memory@9c000000 {
+> +			reg = <0x0 0x9c000000 0x0 0x2400000>;
+> +			no-map;
+> +		};
+> +
+> +		cdsp_sec_mem: memory@a4c00000 {
+> +			reg = <0x0 0xa4c00000 0x0 0x3c00000>;
+> +			no-map;
+> +		};
+> +
+> +		ramoops@a1600000 {
+> +			compatible = "ramoops";
+> +			reg = <0x0 0xa1600000 0x0 0x800000>;
+> +			console-size = <0x400000>;
+> +			pmsg-size = <0x200000>;
+> +			record-size = <0>;
+> +			ftrace-size = <0>;
+> +			ecc-size = <0>;
+> +			no-map;
+> +		};
+> +
+> +		rmtfs_mem: memory@fe101000 {
+> +			compatible = "qcom,rmtfs-mem";
+> +			reg = <0 0xfe101000 0 0x300000>;
+> +			qcom,client-id = <1>;
+> +			qcom,vmid = <15>;
 
-However, Zyxel did some weird design and connected RX_LOS, MOD_ABS and
-TX_FAULT of one SFP cage onto a single GPIO line controlled by a
-multiplexer (the same for the other SFP cage). The single multiplexer
-controls the lines for both SFP and depending on the state, the
-designated 'signal GPIO lines' are connected to one of the three SFP
-signals.
+s/15/QCOM_SCM_VMID_MSS_MSA/
 
-Because the SFP core/driver doesn't support multiplexer but needs single
-GPIOs for each of the signals, this driver fills the gap between both.
-It registers a gpio_chip, provides multiple virtual GPIOs and sets the
-backing multiplexer accordingly.
+> +			no-map;
+> +		};
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&vol_up_n>;
+> +
+> +		key-vol-up {
+> +			label = "Volume Up";
+> +			linux,code = <KEY_VOLUMEUP>;
+> +			gpios = <&pm8150_gpios 6 GPIO_ACTIVE_LOW>;
+> +		};
+> +	};
+> +
+> +	vph_pwr: vph-pwr-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vph_pwr";
+> +		regulator-min-microvolt = <3700000>;
+> +		regulator-max-microvolt = <3700000>;
+> +	};
+> +
+> +	/*
+> +	 * Apparently RPMh does not provide support for PM8150 S4 because it
+> +	 * is always-on; model it as a fixed regulator.
+> +	 */
+> +	vreg_s4a_1p8: pm8150-s4 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vreg_s4a_1p8";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		vin-supply = <&vph_pwr>;
+> +	};
+> +};
+> +
+> +&apps_rsc {
+> +	regulators-0 {
+> +		compatible = "qcom,pm8150-rpmh-regulators";
+> +		qcom,pmic-id = "a";
+> +
+> +		vdd-s1-supply = <&vph_pwr>;
+> +		vdd-s2-supply = <&vph_pwr>;
+> +		vdd-s3-supply = <&vph_pwr>;
+> +		vdd-s4-supply = <&vph_pwr>;
+> +		vdd-s5-supply = <&vph_pwr>;
+> +		vdd-s6-supply = <&vph_pwr>;
+> +		vdd-s7-supply = <&vph_pwr>;
+> +		vdd-s8-supply = <&vph_pwr>;
+> +		vdd-s9-supply = <&vph_pwr>;
+> +		vdd-s10-supply = <&vph_pwr>;
+> +
+> +		vdd-l1-l8-l11-supply = <&vreg_s6a_0p9>;
+> +		vdd-l2-l10-supply = <&vreg_bob>;
+> +		vdd-l3-l4-l5-l18-supply = <&vreg_s6a_0p9>;
+> +		vdd-l6-l9-supply = <&vreg_s8c_1p3>;
+> +		vdd-l7-l12-l14-l15-supply = <&vreg_s5a_2p0>;
+> +		vdd-l13-l16-l17-supply = <&vreg_bob>;
+> +
+> +		vreg_s5a_2p0: smps5 {
+> +			regulator-min-microvolt = <1904000>;
+> +			regulator-max-microvolt = <2000000>;
+> +		};
+> +
+> +		vreg_s6a_0p9: smps6 {
+> +			regulator-min-microvolt = <920000>;
+> +			regulator-max-microvolt = <1128000>;
+> +		};
+> +
+> +		vdda_wcss_pll:
+> +		vreg_l1a_0p75: ldo1 {
+> +			regulator-min-microvolt = <752000>;
+> +			regulator-max-microvolt = <752000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vdd_pdphy:
+> +		vdda_usb_hs_3p1:
+> +		vreg_l2a_3p1: ldo2 {
+> +			regulator-min-microvolt = <3072000>;
+> +			regulator-max-microvolt = <3072000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l3a_0p8: ldo3 {
+> +			regulator-min-microvolt = <480000>;
+> +			regulator-max-microvolt = <932000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		/*
+> +		 * L4A supplies VDD_LPI_MX_* (VDD_LPI_MX_A_1). Board label: vreg_l4a_0p75.
+> +		 * PM8150 device spec: L4A nominal = 0.816 V, active min = 0.752 V, active max = 0.904 V,
+> +		 * IRATED = 300 mA. If the board programs L4A to ~0.752 V, keep min=752000 and max=816000.
+> +		 */
+> +		vreg_l4a_0p75: ldo4 {
+> +			regulator-min-microvolt = <752000>;
+> +			regulator-max-microvolt = <816000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vdd_usb_hs_core:
+> +		vdda_mipi_csi_0_0p9:
+> +		vdda_mipi_csi_1_0p9:
+> +		vdda_mipi_csi_2_0p9:
+> +		vdda_mipi_csi_3_0p9:
+> +		vdda_mipi_dsi_0_0p9:
+> +		vdda_mipi_dsi_1_0p9:
+> +		vdda_mipi_dsi_0_pll_0p9:
+> +		vdda_mipi_dsi_1_pll_0p9:
+> +		vdda_pcie_1ln_core:
+> +		vdda_pcie_2ln_core:
+> +		vdda_pll_hv_cc_ebi01:
+> +		vdda_pll_hv_cc_ebi23:
+> +		vdda_qrefs_0p875_5:
+> +		vdda_sp_sensor:
+> +		vdda_ufs_2ln_core_1:
+> +		vdda_ufs_2ln_core_2:
+> +		vdda_qlink_lv:
+> +		vdda_qlink_lv_ck:
+> +		vreg_l5a_0p875: ldo5 {
+> +			regulator-min-microvolt = <880000>;
+> +			regulator-max-microvolt = <880000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l6a_1p2: ldo6 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l7a_1p8: ldo7 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		/*
+> +		 * PM8150 LDO8 (L8A) — supplies vreg_l8a_0p75
+> +		 * Device spec: nominal 0.752 V, active min 0.752 V, active max 0.904 V, IRATED = 300 mA
+> +		 */
+> +		vreg_l8a_0p75: ldo8 {
+> +			regulator-min-microvolt = <752000>;
+> +			regulator-max-microvolt = <816000>;
+> +		};
+> +
+> +		vddpx_10:
+> +		vreg_l9a_1p2: ldo9 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l10a_2p95: ldo10 {
+> +			regulator-min-microvolt = <2950000>;
+> +			regulator-max-microvolt = <2960000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l11a_0p8: ldo11 {
+> +			regulator-min-microvolt = <800000>;
+> +			regulator-max-microvolt = <800000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vdd_qfprom:
+> +		vdd_qfprom_sp:
+> +		vdda_apc_cs_1p8:
+> +		vdda_gfx_cs_1p8:
+> +		vdda_usb_hs_1p8:
+> +		vdda_qrefs_vref_1p8:
+> +		vddpx_10_a:
+> +		vreg_l12a_1p8: ldo12 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l13a_2p7: ldo13 {
+> +			regulator-min-microvolt = <2704000>;
+> +			regulator-max-microvolt = <2704000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l14a_1p8: ldo14 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1880000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l15a_1p7: ldo15 {
+> +			regulator-min-microvolt = <1704000>;
+> +			regulator-max-microvolt = <1704000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l16a_2p7: ldo16 {
+> +			regulator-min-microvolt = <2704000>;
+> +			regulator-max-microvolt = <2960000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l17a_3p0: ldo17 {
+> +			regulator-min-microvolt = <2856000>;
+> +			regulator-max-microvolt = <3008000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l18a_1p05: ldo18 {
+> +			regulator-min-microvolt = <800000>;
+> +			regulator-max-microvolt = <800000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +	};
+> +
+> +	regulators-1 {
+> +		compatible = "qcom,pm8150l-rpmh-regulators";
+> +		qcom,pmic-id = "c";
+> +
+> +		vdd-s1-supply = <&vph_pwr>;
+> +		vdd-s2-supply = <&vph_pwr>;
+> +		vdd-s3-supply = <&vph_pwr>;
+> +		vdd-s4-supply = <&vph_pwr>;
+> +		vdd-s5-supply = <&vph_pwr>;
+> +		vdd-s6-supply = <&vph_pwr>;
+> +		vdd-s7-supply = <&vph_pwr>;
+> +		vdd-s8-supply = <&vph_pwr>;
+> +
+> +		vdd-l1-l8-supply = <&vreg_s4a_1p8>;
+> +		vdd-l2-l3-supply = <&vreg_s8c_1p3>;
+> +		vdd-l4-l5-l6-supply = <&vreg_bob>;
+> +		vdd-l7-l11-supply = <&vreg_bob>;
+> +		vdd-l9-l10-supply = <&vreg_bob>;
+> +
+> +		vdd-bob-supply = <&vph_pwr>;
+> +		vdd-flash-supply = <&vreg_bob>;
+> +		vdd-rgb-supply = <&vreg_bob>;
+> +
+> +		vreg_bob: bob {
+> +			regulator-min-microvolt = <3008000>;
+> +			regulator-max-microvolt = <4000000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
+> +			regulator-allow-bypass;
+> +		};
+> +
+> +		vreg_s8c_1p3: smps8 {
+> +			regulator-min-microvolt = <1352000>;
+> +			regulator-max-microvolt = <1352000>;
+> +		};
+> +
+> +		vreg_l1c_1p8: ldo1 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vdda_wcss_adcdac_1:
+> +		vdda_wcss_adcdac_22:
+> +		vreg_l2c_1p3: ldo2 {
+> +			regulator-min-microvolt = <1304000>;
+> +			regulator-max-microvolt = <1304000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vdda_hv_ebi0:
+> +		vdda_hv_ebi1:
+> +		vdda_hv_ebi2:
+> +		vdda_hv_ebi3:
+> +		vdda_hv_refgen0:
+> +		vdda_mipi_dsi0_1p2:
+> +		vdda_qlink_hv_ck:
+> +		vreg_l3c_1p2: ldo3 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vddpx_5:
+> +		vreg_l4c_1p8: ldo4 {
+> +			regulator-min-microvolt = <1704000>;
+> +			regulator-max-microvolt = <2928000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vddpx_6:
+> +		vreg_l5c_1p8: ldo5 {
+> +			regulator-min-microvolt = <1704000>;
+> +			regulator-max-microvolt = <2928000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vddpx_2:
+> +		vreg_l6c_2p9: ldo6 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <2960000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l7c_3p0: ldo7 {
+> +			regulator-min-microvolt = <2856000>;
+> +			regulator-max-microvolt = <3104000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l8c_1p8: ldo8 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l9c_2p9: ldo9 {
+> +			regulator-min-microvolt = <2704000>;
+> +			regulator-max-microvolt = <2960000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l10c_3p3: ldo10 {
+> +			regulator-min-microvolt = <3000000>;
+> +			regulator-max-microvolt = <3312000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+> +		vreg_l11c_3p3: ldo11 {
+> +			regulator-min-microvolt = <3000000>;
+> +			regulator-max-microvolt = <3312000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +	};
+> +};
+> +
+> +&gmu {
+> +	status = "okay";
+> +};
+> +
+> +&gpi_dma2 {
+> +	status = "okay";
+> +};
+> +
+> +&gpu {
+> +	zap-shader {
+> +		memory-region = <&gpu_mem>;
+> +		firmware-name = "qcom/sm8150/xiaomi/raphael/a640_zap.mbn";
 
-Signed-off-by: Jonas Jelonek <jelonek.jonas@gmail.com>
----
- MAINTAINERS                  |   6 ++
- drivers/gpio/Kconfig         |  10 ++
- drivers/gpio/Makefile        |   1 +
- drivers/gpio/gpio-line-mux.c | 194 +++++++++++++++++++++++++++++++++++
- 4 files changed, 211 insertions(+)
- create mode 100644 drivers/gpio/gpio-line-mux.c
+The vendor should start with upper case, so Xiaomi here (and everywhere 
+else)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 46126ce2f968..4d75253fe451 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10647,6 +10647,12 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/leds/irled/gpio-ir-tx.yaml
- F:	drivers/media/rc/gpio-ir-tx.c
- 
-+GPIO LINE MUX
-+M:	Jonas Jelonek <jelonek.jonas@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/gpio/gpio-line-mux.yaml
-+F:	drivers/gpio/gpio-line-mux.c
-+
- GPIO MOCKUP DRIVER
- M:	Bamvor Jian Zhang <bamv2005@gmail.com>
- L:	linux-gpio@vger.kernel.org
-diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-index ce237398fa00..93695b86a955 100644
---- a/drivers/gpio/Kconfig
-+++ b/drivers/gpio/Kconfig
-@@ -1986,6 +1986,16 @@ config GPIO_LATCH
- 	  Say yes here to enable a driver for GPIO multiplexers based on latches
- 	  connected to other GPIOs.
- 
-+config GPIO_LINE_MUX
-+	tristate "GPIO line mux driver"
-+	depends on OF_GPIO
-+	select GPIO_AGGREGATOR
-+	select MULTIPLEXER
-+	help
-+	  Say Y here to support the GPIO line mux, which can provide virtual
-+	  GPIOs backed by a shared real GPIO and a multiplexer in a 1-to-many
-+	  fashion.
-+
- config GPIO_MOCKUP
- 	tristate "GPIO Testing Driver (DEPRECATED)"
- 	select IRQ_SIM
-diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-index ee260a0809d3..6caee52b0356 100644
---- a/drivers/gpio/Makefile
-+++ b/drivers/gpio/Makefile
-@@ -89,6 +89,7 @@ obj-$(CONFIG_GPIO_IXP4XX)		+= gpio-ixp4xx.o
- obj-$(CONFIG_GPIO_JANZ_TTL)		+= gpio-janz-ttl.o
- obj-$(CONFIG_GPIO_KEMPLD)		+= gpio-kempld.o
- obj-$(CONFIG_GPIO_LATCH)		+= gpio-latch.o
-+obj-$(CONFIG_GPIO_LINE_MUX)		+= gpio-line-mux.o
- obj-$(CONFIG_GPIO_LJCA) 		+= gpio-ljca.o
- obj-$(CONFIG_GPIO_LOGICVC)		+= gpio-logicvc.o
- obj-$(CONFIG_GPIO_LOONGSON1)		+= gpio-loongson1.o
-diff --git a/drivers/gpio/gpio-line-mux.c b/drivers/gpio/gpio-line-mux.c
-new file mode 100644
-index 000000000000..a367e8f585c6
---- /dev/null
-+++ b/drivers/gpio/gpio-line-mux.c
-@@ -0,0 +1,194 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * GPIO line mux which acts as virtual gpiochip and provides a 1-to-many
-+ * mapping between virtual GPIOs and a real GPIO + multiplexer. 
-+ *
-+ * Copyright (c) 2025 Jonas Jelonek <jelonek.jonas@gmail.com>
-+ */
-+
-+#include <linux/gpio/consumer.h>
-+#include <linux/gpio/driver.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/mutex.h>
-+#include <linux/mux/consumer.h>
-+#include <linux/mux/driver.h>
-+#include <linux/platform_device.h>
-+
-+struct gpio_lmux {
-+	struct gpio_chip gc;
-+	struct mux_control *mux;
-+	struct device *dev;
-+
-+	struct mutex lock;
-+
-+	struct gpio_desc *shared_gpio;
-+	/* dynamically sized, must be last */
-+	unsigned int gpio_mux_states[];
-+};
-+
-+DEFINE_GUARD(gpio_lmux, struct gpio_lmux *, mutex_lock(&_T->lock), mutex_unlock(&_T->lock))
-+
-+static int gpio_lmux_gpio_get(struct gpio_chip *gc, unsigned int offset)
-+{
-+	struct gpio_lmux *glm = (struct gpio_lmux *)gpiochip_get_data(gc);
-+	int ret;
-+
-+	if (offset > gc->ngpio)
-+		return -EINVAL;
-+
-+	guard(gpio_lmux)(glm);
-+
-+	ret = mux_control_select(glm->mux, glm->gpio_mux_states[offset]);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = gpiod_get_raw_value_cansleep(glm->shared_gpio);
-+	mux_control_deselect(glm->mux);
-+	return ret;
-+}
-+
-+static int gpio_lmux_gpio_set(struct gpio_chip *gc, unsigned int offset,
-+			      int value)
-+{
-+	struct gpio_lmux *glm = (struct gpio_lmux *)gpiochip_get_data(gc);
-+	int ret;
-+
-+	if (offset > gc->ngpio)
-+		return -EINVAL;
-+
-+	guard(gpio_lmux)(glm);
-+
-+	ret = mux_control_select(glm->mux, glm->gpio_mux_states[offset]);
-+	if (ret < 0)
-+		return ret;
-+
-+	gpiod_set_raw_value_cansleep(glm->shared_gpio, value);
-+	mux_control_deselect(glm->mux);
-+	return 0;
-+}
-+
-+static int gpio_lmux_gpio_get_direction(struct gpio_chip *gc,
-+					unsigned int offset)
-+{
-+	struct gpio_lmux *glm = (struct gpio_lmux *)gpiochip_get_data(gc);
-+
-+	if (offset > gc->ngpio)
-+		return -EINVAL;
-+
-+	guard(gpio_lmux)(glm);
-+
-+	return gpiod_get_direction(glm->shared_gpio);
-+}
-+
-+static int gpio_lmux_gpio_direction_input(struct gpio_chip *gc,
-+					  unsigned int offset)
-+{
-+	struct gpio_lmux *glm = (struct gpio_lmux *)gpiochip_get_data(gc);
-+
-+	if (offset > gc->ngpio)
-+		return -EINVAL;
-+
-+	guard(gpio_lmux)(glm);
-+
-+	return gpiod_direction_input(glm->shared_gpio);
-+}
-+
-+static int gpio_lmux_gpio_direction_output(struct gpio_chip *gc,
-+					   unsigned int offset, int value)
-+{
-+	struct gpio_lmux *glm = (struct gpio_lmux *)gpiochip_get_data(gc);
-+
-+	if (offset > gc->ngpio)
-+		return -EINVAL;
-+
-+	guard(gpio_lmux)(glm);
-+
-+	return gpiod_direction_output_raw(glm->shared_gpio, value);
-+}
-+
-+static int gpio_lmux_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct gpio_lmux *glm;
-+	unsigned int ngpio, size;
-+	int ret;
-+
-+	ngpio = device_property_count_u32(dev, "gpio-line-mux-states");
-+	if (!ngpio)
-+		return -EINVAL;
-+
-+	size = sizeof(*glm) + (sizeof(unsigned int) * ngpio);
-+	glm = devm_kzalloc(dev, size, GFP_KERNEL);
-+	if (!glm)
-+		return -ENOMEM;
-+
-+	mutex_init(&glm->lock);
-+
-+	glm->dev = dev;
-+	glm->gc.base = -1;
-+	glm->gc.can_sleep = true;
-+	glm->gc.fwnode = dev_fwnode(dev);
-+	glm->gc.label = "gpio-line-mux";
-+	glm->gc.ngpio = ngpio;
-+	glm->gc.owner = THIS_MODULE;
-+	glm->gc.parent = dev;
-+
-+	glm->gc.get = gpio_lmux_gpio_get;
-+	glm->gc.set = gpio_lmux_gpio_set;
-+	glm->gc.get_direction = gpio_lmux_gpio_get_direction;
-+	glm->gc.direction_input = gpio_lmux_gpio_direction_input;
-+	glm->gc.direction_output = gpio_lmux_gpio_direction_output;
-+
-+	glm->mux = devm_mux_control_get(dev, NULL);
-+	if (IS_ERR(glm->mux)) {
-+		if (PTR_ERR(glm->mux) == -EPROBE_DEFER) {
-+			dev_err(dev, "mux-controller not ready, deferring probe\n");
-+			return -EPROBE_DEFER;
-+		}
-+
-+		dev_err(dev, "could not get mux-controller\n");
-+		return PTR_ERR(glm->mux);
-+	}
-+
-+	glm->shared_gpio = devm_gpiod_get(dev, "shared", GPIOD_ASIS);
-+	if (IS_ERR(glm->shared_gpio)) {
-+		dev_err(dev, "could not get shared-gpio\n");
-+		return PTR_ERR(glm->shared_gpio);
-+	}
-+
-+	ret = device_property_read_u32_array(dev, "gpio-line-mux-states",
-+					     &glm->gpio_mux_states[0], ngpio);
-+	if (ret) {
-+		dev_err(dev, "could not get mux states\n");
-+		return ret;
-+	}
-+		
-+	ret = devm_gpiochip_add_data(dev, &glm->gc, glm);
-+	if (ret) {
-+		dev_err(dev, "failed to add gpiochip: %d\n", ret);
-+		return ret;
-+	}
-+
-+	dev_info(dev, "providing %u virtual GPIOs for real GPIO %u\n", ngpio,
-+		 desc_to_gpio(glm->shared_gpio));
-+	return 0;
-+}
-+
-+static const struct of_device_id gpio_lmux_of_match[] = {
-+	{ .compatible = "gpio-line-mux" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, gpio_lmux_of_match);
-+
-+static struct platform_driver gpio_lmux_driver = {
-+	.driver = {
-+		.name = "gpio-line-mux",
-+		.of_match_table = gpio_lmux_of_match,
-+	},
-+	.probe = gpio_lmux_probe,
-+};
-+module_platform_driver(gpio_lmux_driver);
-+
-+MODULE_AUTHOR("Jonas Jelonek <jelonek.jonas@gmail.com>");
-+MODULE_DESCRIPTION("GPIO line mux driver");
-+MODULE_LICENSE("GPL");
--- 
-2.48.1
+> +	};
+> +
+> +	status = "okay";
+> +};
+> +
+> +&i2c19 {
+> +	/* goodix,gt9886 @5d  */
+> +};
+> +
+> +&mdss {
+> +	status = "okay";
+> +};
+> +
+> +&mdss_dsi0 {
+> +	vdda-supply = <&vdda_mipi_dsi0_1p2>;
+> +
+> +	status = "okay";
+> +	panel: panel@0 {
+> +		compatible = "samsung,ams639rq08";
+> +		reg = <0>;
+> +
+> +		vddio-supply = <&vreg_l14a_1p8>;
+> +		vdd3p3-supply = <&disp_vci_vreg>;
+> +		vsn-supply = <&vreg_ibb>;
+> +		vsp-supply = <&vreg_lab>;
+> +
+> +		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
+> +
+> +		pinctrl-names = "default", "sleep";
 
+pinctrl-names should come after pinctrl-N
+
+> +		pinctrl-0 = <&panel_reset_pin &panel_te_pin>;
+
+you're missing the pinctrl-1 for the "sleep"
+
+> +
+> +		status = "okay";
+
+missing newline
+
+> +		port {
+> +			panel_in: endpoint {
+> +				remote-endpoint = <&mdss_dsi0_out>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&mdss_dsi0_out {
+> +	data-lanes = <0 1 2 3>;
+> +	remote-endpoint = <&panel_in>;
+> +};
+> +
+> +&mdss_dsi0_phy {
+> +	vdds-supply = <&vreg_l5a_0p875>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&pm8150_gpios {
+> +	vol_up_n: vol-up-n-state {
+> +		pins = "gpio6";
+> +		function = PMIC_GPIO_FUNC_NORMAL;
+> +		input-enable;
+> +		bias-pull-up;
+> +	};
+> +};
+> +
+> +&pm8150b_typec {
+> +	vdd-vbus-supply = <&pm8150b_vbus>;
+> +	vdd-pdphy-supply = <&vdda_usb_hs_3p1>;
+> +
+> +	status = "okay";
+
+newline
+
+> +	connector {
+> +		compatible = "usb-c-connector";
+> +		power-role = "source";
+> +		data-role = "dual";
+> +		self-powered;
+> +
+> +		source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_DUAL_ROLE |
+> +					 PDO_FIXED_USB_COMM | PDO_FIXED_DATA_SWAP)>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				pm8150b_hs_in: endpoint {
+> +					remote-endpoint = <&usb_1_dwc3_hs>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&pm8150b_vbus {
+> +	regulator-min-microamp = <500000>;
+> +	regulator-max-microamp = <3000000>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&pm8150l_flash {
+> +
+> +	status = "okay";
+
+newline
+
+> +	led-1 {
+> +		function = LED_FUNCTION_FLASH;
+> +		color = <LED_COLOR_ID_WHITE>;
+> +		led-sources = <1>;
+> +		led-max-microamp = <150000>;
+> +		flash-max-microamp = <1000000>;
+> +		flash-max-timeout-us = <1280000>;
+> +	};
+> +
+> +	led-2 {
+> +		function = LED_FUNCTION_FLASH;
+> +		color = <LED_COLOR_ID_YELLOW>;
+> +		led-sources = <2>;
+> +		led-max-microamp = <150000>;
+> +		flash-max-microamp = <1000000>;
+> +		flash-max-timeout-us = <1280000>;
+> +	};
+> +};
+> +
+> +&pm8150l_lpg {
+> +
+> +	status = "okay";
+
+newline
+
+> +	led@1 {
+> +		reg = <1>;
+> +		color = <LED_COLOR_ID_WHITE>;
+> +		function = LED_FUNCTION_STATUS;
+> +
+> +		status = "disabled";
+> +	};
+> +
+> +	led@2 {
+> +		reg = <2>;
+> +		color = <LED_COLOR_ID_RED>;
+> +		function = LED_FUNCTION_STATUS;
+> +		function-enumerator = <0>;
+> +	};
+> +
+> +	led@3 {
+> +		reg = <3>;
+> +		color = <LED_COLOR_ID_RED>;
+> +		function = LED_FUNCTION_STATUS;
+> +		function-enumerator = <1>;
+> +	};
+> +};
+> +
+> +&pm8150l_wled {
+> +	qcom,num-strings = <3>;
+> +	qcom,cabc;
+> +	qcom,cabc-sel = <1>;
+> +};
+> +
+> +&pon {
+> +	mode-bootloader = <0x2>;
+> +	mode-recovery = <0x1>;
+> +};
+> +
+> +&pon_pwrkey {
+> +	status = "okay";
+> +};
+> +
+> +&pon_resin {
+> +	linux,code = <KEY_VOLUMEDOWN>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&qupv3_id_1 {
+> +	status = "okay";
+> +};
+> +
+> +&qupv3_id_2 {
+> +	status = "okay";
+> +};
+> +
+> +&remoteproc_adsp {
+> +	firmware-name = "qcom/sm8150/xiaomi/raphael/adsp.mbn";
+> +
+> +	status = "okay";
+> +};
+> +
+> +&remoteproc_cdsp {
+> +	firmware-name = "qcom/sm8150/xiaomi/raphael/cdsp.mbn";
+> +
+> +	status = "okay";
+> +};
+> +
+> +&remoteproc_mpss {
+> +	firmware-name = "qcom/sm8150/xiaomi/raphael/modem.mbn";
+> +
+> +	status = "okay";
+> +};
+> +
+> +&remoteproc_slpi {
+> +	firmware-name = "qcom/sm8150/xiaomi/raphael/slpi.mbn";
+> +
+> +	status = "disabled";
+> +};
 
