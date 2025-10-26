@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-231137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6F4EC0ACA6
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 16:38:16 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44EDBC0AD09
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 16:57:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E4F644E7865
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 15:37:34 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2705C4E3B6E
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 15:57:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E28A025A2DD;
-	Sun, 26 Oct 2025 15:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0139520E023;
+	Sun, 26 Oct 2025 15:57:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J4HzZeJP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jUPb8KxQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8F8E22172C;
-	Sun, 26 Oct 2025 15:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6BB71F4169;
+	Sun, 26 Oct 2025 15:57:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761493051; cv=none; b=g54azzDcMsvah+Mb3xbmA4BF8vBTK47asoHCya1aUi9p+xyUAzTubVk5Z8O1/s+58UZe5S6D0jE8oxDzoS9tEYEh7mecKLCKHWX1JYAaNbOARs7YwivZetLWelEmNKMKhFKnIa6aVwH8Lo87MVHdzbX67obpQOu1s+/JMP6wJB8=
+	t=1761494240; cv=none; b=PHCvMbn+dUmC4+THW7Rqgbm+Cyi8NI6JN/+uT5ZmXKhOPuyWqFg9KAY5PuYFVN3JRLCQEH1i8Uf85OkokIG3LvcrZgsL/jI1YtuXm2AsCMryQ/DHFsm954979iJ6VefKJASeACPP078Esyfq9gVTmMZirpLoCG5E5DpzqfGAxZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761493051; c=relaxed/simple;
-	bh=FAVjGfD5iURxjFRW5lrdmhLUB13r0BoxN6mWb3t0/xk=;
+	s=arc-20240116; t=1761494240; c=relaxed/simple;
+	bh=7Ou0fEZ/jwKerVmUa4t96b/hLUjjbHEGSc/S4mOnZyk=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=D0prWLSbqHDEYjGgfQWZh8LUkFIxbNYDuCqCbPAu9s0Wbr9vsbhQREp1Zy+UQGIf9NiQQv32v7uYw+HZxbgg9Hua5FR/62BQBIT7foz+ojMa/FYSwmZyKr9CxXpctZP5E15Rey41Ao8HlKFEku3zu/HtoohFNW1kMkuEEKD8B2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J4HzZeJP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3263C4CEE7;
-	Sun, 26 Oct 2025 15:37:27 +0000 (UTC)
+	 MIME-Version:Content-Type; b=h8TBxAyhxNtZxEGB2/IyO31dXMoSM1viz7vjsWeZtZgDfFTvbsQtCf4g8cbP2b0PJwRHWFMPh+g7zC4nSJahFuPnpCnfYDJewEEsPdxj2PB9Ybr4HSjNAwonOPHa8WTLbdyKWwi7WFKU5YfMYXJsB30bZNgD3EVbV6Da2JC0xwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jUPb8KxQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0F6FC4CEE7;
+	Sun, 26 Oct 2025 15:57:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761493051;
-	bh=FAVjGfD5iURxjFRW5lrdmhLUB13r0BoxN6mWb3t0/xk=;
+	s=k20201202; t=1761494240;
+	bh=7Ou0fEZ/jwKerVmUa4t96b/hLUjjbHEGSc/S4mOnZyk=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=J4HzZeJPQpyjpjHs5BetJodW89YXoquuALgjCtc5jWbwY1BoToyqS9kRSZZFO2FpR
-	 jq6wO0xkP0ZqwOPdElKLkQ99oOiAbdM7XiH733TejtoyNDThkRXd1ARvBNM+ntGY8k
-	 KVjDIENQehaaKuUCAlJ8oeaOv9zUqjqbRoqNUq5HxfQ2yoQd//QcLVjdoP19olUbfI
-	 RAfUS6svpTuRvyThLcB6+ise03q/qUNUfQVCL53gBaK3HBP/oySZdzqAx9L/1eKkuJ
-	 ppy2FBR3b5TiSVwgFOMFpgiOav5KI3PXcUiSviPPcPPeOixRY+ZkhnKX9QFnPKtIZq
-	 21k931UdAZUkA==
+	b=jUPb8KxQm2jI/qhICb70KWnhukiMfL3HCZ9JVXUq/H2f6i1aWGv3awPaDfmZ0/FLZ
+	 e8R1wXwYd+i8bvq+JA1X0GIUaaCtwsghv9qElkORQrhy0dZ4ijVWDSzIxTPRcMYs8m
+	 2qyOIYpQ4/ypz0KNAb+NFFAl+h3O2ZSqw/77QFN0ZDJIcGcpPfX0X0x26W5xwjkb3W
+	 ++MxEwLww8sV0ZS+hxamrRYJS1u5aF5j23yR/N7WO7KChbCRwgcPcuUQCDuDFmW1Z3
+	 5f49Qecq5v6fxefs0FGmKHus61hCAj2usE6bUSId1GNGc2uFBegfEIEOtYJCQofCH2
+	 8wKtbXRMecWvw==
 From: Manivannan Sadhasivam <mani@kernel.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+To: Bjorn Helgaas <bhelgaas@google.com>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
  =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Jingoo Han <jingoohan1@gmail.com>, 
- Gustavo Pimentel <gustavo.pimentel@synopsys.com>, 
- "Rob Herring (Arm)" <robh@kernel.org>
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Abraham I <kishon@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20251024011122.26001-1-robh@kernel.org>
-References: <20251024011122.26001-1-robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: PCI: amlogic,axg-pcie: Fix select schema
-Message-Id: <176149304726.5459.7196722337090746268.b4-ty@kernel.org>
-Date: Sun, 26 Oct 2025 21:07:27 +0530
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251010-pci-binding-v1-0-947c004b5699@oss.qualcomm.com>
+References: <20251010-pci-binding-v1-0-947c004b5699@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH 0/3] PCI: qcom: Binding fix
+Message-Id: <176149423539.9818.11398999036385649843.b4-ty@kernel.org>
+Date: Sun, 26 Oct 2025 21:27:15 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,20 +70,20 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
 
-On Thu, 23 Oct 2025 20:11:21 -0500, Rob Herring (Arm) wrote:
-> The amlogic,axg-pcie binding was never enabled as the 'select' schema
-> expects a single compatible value, but the binding has a fallback
-> compatible. Fix the 'select' by adding a 'contains'. With this, several
-> errors in the clock and reset properties are exposed. Some of the names
-> aren't defined in the common DWC schema and the order of clocks entries
-> doesn't match .dts files.
+On Fri, 10 Oct 2025 11:25:46 -0700, Manivannan Sadhasivam wrote:
+> This series fixes the binding issue around the PERST# and PHY properties.
+> The binding issue was reported in [1], while discussing a DTS fix [2].
+> 
+> The binding fix provided in this series is not sufficient enough to spot all the
+> shenanigans, especially keeping one property in Controller node and another in
+> Root Port node. But this series does catch the DTS issue fixed by [2]:
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] dt-bindings: PCI: amlogic,axg-pcie: Fix select schema
-      commit: 7411850df8e460d5e8319f3c020d03a88fa2dbc7
+[1/3] dt-bindings: PCI: Update the email address for Manivannan Sadhasivam
+      commit: e3d7fda088c3c75d210b849c3823008f32cd00ce
 
 Best regards,
 -- 
