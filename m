@@ -1,213 +1,123 @@
-Return-Path: <devicetree+bounces-231076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED9BBC0A2F7
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 06:14:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DBC3C0A3C3
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 07:30:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2D3794E05F2
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 05:14:50 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2E0434E311C
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 06:30:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A263A26B098;
-	Sun, 26 Oct 2025 05:14:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 443FC272E43;
+	Sun, 26 Oct 2025 06:30:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O8qsAmp5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XRMTOAyV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com [209.85.214.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C42E423A58E;
-	Sun, 26 Oct 2025 05:14:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90839194137
+	for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 06:30:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761455687; cv=none; b=lXmZ4a7CEurfGQO5Gd+HN/2uSIwCOJa+h7JzGsS0dPmQL24TCyl6IYQl7zO0tl/kxvf6li6LeIe/RhBk/e32UlA1/rLrXdv6TaBOzjHWe+obzM2BKzm8eo1YP3AtZVo4jMcI2Q0ryLkKbrILF7t5qWAqwg+l6JTKoTOK5icPrvw=
+	t=1761460218; cv=none; b=ofikPWbFpL4G1d8DKRgMplbdnKCX0x5odBzCm1b1A/qs8gTixtr84As1hWq+jO2uxw0iLJ8nJHwZYxm5eDm5gl4LNGjKWs/a3SLDQ9Kjfb9U6+FSfF9foN1DsHmdvxHkFlQeglOTyu1PiFDCon/h/oB8SXF7C3wNYoNNvFId/SI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761455687; c=relaxed/simple;
-	bh=gKJE14w1KDbJqmE7/dHsKdynDf2xulvE3IRzaIW6bj4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZUpsPP47SytO41m6krLNn2z9/KLGLAMDF6ww/QLMYSPxabu8z7b6PueTqMwbPA3hYWzPgnbsioRpy/9uracKx+dyuF6y+5DhkiodEeK2GXpYSK32cGhMthLUvV4P7LQoDZelKDECzictHcHd/H0ES5uWTlsbB0lwveynDaVH7OQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O8qsAmp5; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761455686; x=1792991686;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=gKJE14w1KDbJqmE7/dHsKdynDf2xulvE3IRzaIW6bj4=;
-  b=O8qsAmp5Xb1Vp8UtM3qikDGuIaM9tuveqLPWl80LDT/hHVF5a7mLoZXw
-   YanvayHuKbIdoYFZJ6RS9kD70PYBszj+4UkyU7mQYIgL/Fk5nt99zw0GG
-   N4pFZEuHcd04EG0zLtRjqsLpqQ6SvnbkmGjdlq+udTwwmCr5IXmzaYY8X
-   RrqizPJsP1adMNqjsSyUP51RQPGwGxUuL0b2vgqIE6P25J/Ot0SCGdF+p
-   ybQ799tCXL0qpBggm9+yE18OIrjoBSG1tCXfM3tZlJ3Rkufu3D0PYHj3C
-   iCExywP8x36IgJSp8f1uH1bCMdp5J+Tgux7/0i4I2fIjqomTh3bNA6sYA
-   A==;
-X-CSE-ConnectionGUID: /3cmkCkdQw+hHTulJVx9sw==
-X-CSE-MsgGUID: QfU1L3V2TL6oUtk7gidY+A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="51150163"
-X-IronPort-AV: E=Sophos;i="6.19,256,1754982000"; 
-   d="scan'208";a="51150163"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2025 22:14:45 -0700
-X-CSE-ConnectionGUID: 3IfibMsMR/SdoNhlTH/RrA==
-X-CSE-MsgGUID: x7CYNeabSyG2So3RbmdNKA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,256,1754982000"; 
-   d="scan'208";a="184839789"
-Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
-  by orviesa008.jf.intel.com with ESMTP; 25 Oct 2025 22:14:42 -0700
-Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vCt5F-000Fty-0a;
-	Sun, 26 Oct 2025 05:14:34 +0000
-Date: Sun, 26 Oct 2025 13:13:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	alexandre.belloni@bootlin.com
-Cc: oe-kbuild-all@lists.linux.dev, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	s=arc-20240116; t=1761460218; c=relaxed/simple;
+	bh=l0UrZPDuQ1VP+DFF+jGn52ZaZbAfAyacMnA05GnYi00=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oViBFLJL7oHJiQaK0WqNGkETREpIBZ2f2Eks8B79C33XVOHPIltpY8WUtn4msRKT16akuhmCzZJFlKGScz9I5E06PLUUTYFHQ2uBl5tOGWaLx1NKb5eGvPX82EJjp4usNcikwV8d++DxzYEX+2l2aezr45QabuoMZdE1E98JMmQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XRMTOAyV; arc=none smtp.client-ip=209.85.214.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f196.google.com with SMTP id d9443c01a7336-269af38418aso42069995ad.1
+        for <devicetree@vger.kernel.org>; Sat, 25 Oct 2025 23:30:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761460215; x=1762065015; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IRxFuvKApk33BC3d8xXXeSMvlG/sWU//suNyfzB/QNw=;
+        b=XRMTOAyVMp2ygdpEI9R9Okv0/+F6ELqOPmSDg20bwwDUAklPItxI4edr19Ic6ykqTg
+         Efl3kAW2KTL63ICsFU321J1I6yqcH4reUUnUZFEX5A52oTvm5l9ccdcr28sBC//AWnf/
+         G/x0GUFZt7wOxxBdpIBVJO74XGPMAcHe0FFwkQVko+Zu1bn5xiln+Iv83oCQjz6wkWbw
+         099mLJSe8IkyGuQksiwub1XhbtE9CzHNSK1GBIixbfCDy+r3+xzU1zfIDawGw2TkkVTB
+         CNbDgMAU5PT5zec86juiJNx3K+T1Lidtn4Wyj9aWOyvpRtzKS7IKDCEqkryVfebCsk8M
+         wwrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761460215; x=1762065015;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IRxFuvKApk33BC3d8xXXeSMvlG/sWU//suNyfzB/QNw=;
+        b=UtCddMVUI4gPDSfG876O8ArK0rYgP0oLz12N4f+tlhGngVKum/HqogYOqrM6fRx2et
+         3l33E0QyAkj0XupsZW67NaCTL3C1HJ3RlFZ3UCFhENgelbZy2r1mnSK+auqPrtIVc/d9
+         hn6x9KM6chQ3h3T5yDfd0AE1atHLpQxzGHYhbEV7/Yq5lnIokKDTvg/Wstt7VfNTyR0y
+         h47BE+L1rXGmYikzOBbOTbe1qt1zJYmHr0whQQ/KlfDKQhy2nRQ9Nkjir8vXYTSJCRcc
+         dXqQzhfH7r3d8L18GyE8jjNltIZZFc6R8c0DUvhaBch9dt1UMwWeg9hHhsPk8/YrE7sI
+         xxPA==
+X-Gm-Message-State: AOJu0Yw1Yrttc4n2dPOvxhOVbxgzn59T13SC14ooayfdkE74c9fMyt+3
+	37cm49WnQVXz/rSFrqEGYssQ9s07M75jNGf91YzxgM0qLTHF3F6vs9AZKso73ZqOtjA5Fg==
+X-Gm-Gg: ASbGncs8dSdd//KbTTrNOBhERHinvMbqlbn3LaGh6N6s1l3H9RZFRte0N8wq9S2OYIa
+	CqXbKBIESWRvyyej1Zt9AbNt/+uikxlslCgfRRxZw2O8nZAk6eBjPtEcc4aml8mbsJ8KF6aZq/4
+	cp1IFH24eGCWCY4rDSPNaWwYNMZo5If387lKUU1SqXws10e8qwmiSB/Ku4tXf6tmAVdn1cuweoB
+	m0Dj5xHRNhdfLiSr9UA86RCsKhIG/o0b+TsuuzjLsSx+Cajjqn8UaJ+WxPzFtG98mLSSTWC+WOv
+	9pawEVoHk5I5e2SYN6Y7dTYrDQqfWNWfZ7JUSX3uecOdBLmiQLYDxGptyK2skuaLydercUCah7B
+	OEz/LhR6D22co8hT+0tFBfUC1sXm0tHiOXJ1zzWCZlH0FlJiNXIwvZqwG34Cz+MCpMjjMUg9rYp
+	0=
+X-Google-Smtp-Source: AGHT+IH7PDnopz1QlhAta2BSK/2CCRB91dAXRXofbVcqthVpmjY2bJvJp6m9EQhBul9G/8U3I0lZNQ==
+X-Received: by 2002:a17:902:cecb:b0:290:c94b:8381 with SMTP id d9443c01a7336-290c9c89dbbmr456083105ad.7.1761460214815;
+        Sat, 25 Oct 2025 23:30:14 -0700 (PDT)
+Received: from server.lan ([150.230.217.250])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29498d0a60fsm41583865ad.39.2025.10.25.23.30.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 25 Oct 2025 23:30:14 -0700 (PDT)
+From: Coia Prant <coiaprant@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Jonas Karlman <jonas@kwiboo.se>
+Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v1 2/2] rtc: Add support for MT6685 Clock IC's RTC over
- SPMI
-Message-ID: <202510261223.NRLximA4-lkp@intel.com>
-References: <20251024083318.25890-3-angelogioacchino.delregno@collabora.com>
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Coia Prant <coiaprant@gmail.com>,
+	stable@vger.kernel.org
+Subject: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add NineTripod
+Date: Sun, 26 Oct 2025 14:28:31 +0800
+Message-ID: <20251026062831.4045083-3-coiaprant@gmail.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251024083318.25890-3-angelogioacchino.delregno@collabora.com>
+Content-Transfer-Encoding: 8bit
 
-Hi AngeloGioacchino,
+Add NineTripod to the vendor prefixes.
 
-kernel test robot noticed the following build errors:
+Signed-off-by: Coia Prant <coiaprant@gmail.com>
+Cc: stable@vger.kernel.org
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-[auto build test ERROR on abelloni/rtc-next]
-[also build test ERROR on robh/for-next linus/master v6.18-rc2 next-20251024]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/dt-bindings-rtc-Add-MediaTek-MT6685-PM-Clock-IC-Real-Time-Clock/20251024-164423
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
-patch link:    https://lore.kernel.org/r/20251024083318.25890-3-angelogioacchino.delregno%40collabora.com
-patch subject: [PATCH v1 2/2] rtc: Add support for MT6685 Clock IC's RTC over SPMI
-config: sparc64-randconfig-r062-20251026 (https://download.01.org/0day-ci/archive/20251026/202510261223.NRLximA4-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 9.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251026/202510261223.NRLximA4-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202510261223.NRLximA4-lkp@intel.com/
-
-All error/warnings (new ones prefixed by >>):
-
-   drivers/rtc/rtc-mt6685.c: In function 'rtc_mt6685_probe':
-   drivers/rtc/rtc-mt6685.c:380:13: error: implicit declaration of function 'devm_spmi_subdevice_alloc_and_add' [-Werror=implicit-function-declaration]
-     380 |  sub_sdev = devm_spmi_subdevice_alloc_and_add(dev, sparent);
-         |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/rtc/rtc-mt6685.c:380:11: warning: assignment to 'struct spmi_subdevice *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-     380 |  sub_sdev = devm_spmi_subdevice_alloc_and_add(dev, sparent);
-         |           ^
-   In file included from drivers/rtc/rtc-mt6685.c:20:
->> drivers/rtc/rtc-mt6685.c:397:51: error: dereferencing pointer to incomplete type 'struct spmi_subdevice'
-     397 |  rtc->regmap = devm_regmap_init_spmi_ext(&sub_sdev->sdev, &mt6685_rtc_regmap_config);
-         |                                                   ^~
-   include/linux/regmap.h:775:6: note: in definition of macro '__regmap_lockdep_wrapper'
-     775 |   fn(__VA_ARGS__, &_key,     \
-         |      ^~~~~~~~~~~
-   drivers/rtc/rtc-mt6685.c:397:16: note: in expansion of macro 'devm_regmap_init_spmi_ext'
-     397 |  rtc->regmap = devm_regmap_init_spmi_ext(&sub_sdev->sdev, &mt6685_rtc_regmap_config);
-         |                ^~~~~~~~~~~~~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +397 drivers/rtc/rtc-mt6685.c
-
-   358	
-   359	static int rtc_mt6685_probe(struct platform_device *pdev)
-   360	{
-   361		struct regmap_config mt6685_rtc_regmap_config = {
-   362			.reg_bits = 16,
-   363			.val_bits = 8,
-   364			.max_register = 0x60,
-   365			.fast_io = true,
-   366			.use_single_read = true,
-   367			.use_single_write = true,
-   368		};
-   369		struct device *dev = &pdev->dev;
-   370		struct spmi_subdevice *sub_sdev;
-   371		struct spmi_device *sparent;
-   372		struct mt6685_rtc *rtc;
-   373		int ret;
-   374	
-   375		rtc = devm_kzalloc(dev, sizeof(struct mt6685_rtc), GFP_KERNEL);
-   376		if (!rtc)
-   377			return -ENOMEM;
-   378	
-   379		sparent = to_spmi_device(dev->parent);
- > 380		sub_sdev = devm_spmi_subdevice_alloc_and_add(dev, sparent);
-   381		if (IS_ERR(sub_sdev))
-   382			return PTR_ERR(sub_sdev);
-   383	
-   384		ret = of_property_read_u32(pdev->dev.of_node, "reg",
-   385					   &mt6685_rtc_regmap_config.reg_base);
-   386		if (ret)
-   387			return ret;
-   388	
-   389		rtc->irq = platform_get_irq(pdev, 0);
-   390		if (rtc->irq < 0)
-   391			return rtc->irq;
-   392	
-   393		rtc->mclk = devm_clk_get(dev, 0);
-   394		if (IS_ERR(rtc->mclk))
-   395			return PTR_ERR(rtc->mclk);
-   396	
- > 397		rtc->regmap = devm_regmap_init_spmi_ext(&sub_sdev->sdev, &mt6685_rtc_regmap_config);
-   398		if (IS_ERR(rtc->regmap))
-   399			return PTR_ERR(rtc->regmap);
-   400	
-   401		rtc->rdev = devm_rtc_allocate_device(dev);
-   402		if (IS_ERR(rtc->rdev))
-   403			return PTR_ERR(rtc->rdev);
-   404	
-   405		platform_set_drvdata(pdev, rtc);
-   406	
-   407		/* Clock is required to auto-synchronize IRQ enable to RTC */
-   408		ret = clk_prepare_enable(rtc->mclk);
-   409		if (ret)
-   410			return ret;
-   411	
-   412		ret = devm_request_threaded_irq(&pdev->dev, rtc->irq, NULL,
-   413						rtc_mt6685_irq_handler_thread,
-   414						IRQF_ONESHOT | IRQF_TRIGGER_HIGH,
-   415						"mt6685-rtc", rtc);
-   416		clk_disable_unprepare(rtc->mclk);
-   417		if (ret)
-   418			return dev_err_probe(&pdev->dev, ret, "Cannot request alarm IRQ");
-   419	
-   420		device_init_wakeup(&pdev->dev, true);
-   421	
-   422		rtc->rdev->ops = &rtc_mt6685_ops;
-   423		rtc->rdev->range_min = RTC_TIMESTAMP_BEGIN_1900;
-   424		rtc->rdev->range_max = mktime64(2027, 12, 31, 23, 59, 59);
-   425		rtc->rdev->start_secs = mktime64(1968, 1, 1, 0, 0, 0);
-   426		rtc->rdev->set_start_time = true;
-   427	
-   428		return devm_rtc_register_device(rtc->rdev);
-   429	}
-   430	
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index f1d188200..37687737e 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1124,6 +1124,8 @@ patternProperties:
+     description: National Instruments
+   "^nicera,.*":
+     description: Nippon Ceramic Co., Ltd.
++  "^ninetripod,.*":
++    description: Shenzhen 9Tripod Innovation and Development CO., LTD.
+   "^nintendo,.*":
+     description: Nintendo
+   "^nlt,.*":
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.47.3
+
 
