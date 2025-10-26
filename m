@@ -1,106 +1,107 @@
-Return-Path: <devicetree+bounces-231155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5630C0AF17
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 18:36:34 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id B090CC0AF65
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 18:45:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 887484E1FBE
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 17:36:33 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2205E4EAE3C
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 17:45:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2BCA23AE62;
-	Sun, 26 Oct 2025 17:36:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 845E718A921;
+	Sun, 26 Oct 2025 17:45:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="YtCaKF0s"
+	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="WGObrId+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+Received: from out-189.mta0.migadu.com (out-189.mta0.migadu.com [91.218.175.189])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12E6B1E570D;
-	Sun, 26 Oct 2025 17:36:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBEF2262FCB
+	for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 17:45:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.189
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761500189; cv=none; b=NsaLyPk+t9iKicnjUawtdmDlI9/GDv7CW6WXoOqbO2MpwdqgkcbHYb6D0xiW6sY0em+p5rcKKtqLLCBVC7kP20N8P186gNPB5ZSnwNjjJ3yj/8M2KmVXIvS1oRYbvT/uGRyTj3IukvtRm6M6C1WdKnUHeERPbws6f7XYyToAfhU=
+	t=1761500711; cv=none; b=Q5eNJ2wJjvJysHwUdCh2lJbRnAZcs+HIu2z7IH5kyAa9ihQiYISCI2yWcL7lzzk7Or9T6O9Pegz15guYGhW0c7kiYI77j6mUqlEsyy07eGniNIp5RjHxK9MatMKRevtZciOaE4xcjdPt81DoZ9zzPFIaZzIfpxAVFCIadJBd4Qs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761500189; c=relaxed/simple;
-	bh=8hSqaZyyrUqAAlmbbLe3Y0H/3L6PJrJSV8xMkVxZ3vs=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=FdIickIUGbZlwmpSkcGeoZBBDsz/vfMq3jHZ/kiRtqzM7rEKetThPKMNbMr+4Mx22p/sEe5UI5xN66cs598XHkLixVPskTT0Acolsp6ocu9R3qFD8nduCZv0OHzkjCqARNJOx3DP9N0cQlPHsKa6Kspmv7iBkwuCX9hDkew0jTQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=YtCaKF0s; arc=none smtp.client-ip=142.132.176.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 31B2940D20;
-	Sun, 26 Oct 2025 18:36:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
-	t=1761500178; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=VE3zWNd8hyEKKt0aCbf0h+Pe6DuWRN17pEEkLFG58ko=;
-	b=YtCaKF0sba269jXpys5kvrSjKhG607xG769thtCRBdZvKbQdg0oJpjALMKO426aPKh5idW
-	9uQvEPSV2ppc49hQx6komclTXMKHoRtS09OsrSDpj4YJbzurP6/YLrYwDFpmKVAJgXezpl
-	XgJjdakMca22HMHH8sJWPhhxmKVKQQwfC2Ctq9Q/pxCdMWEJzK3IPvjqB3uo+PM/rJ0PH5
-	6VTppTB3ggk2xCvwo+pCOAbojoufQ5XwMEkhSHrSszjgVDzSbd3tUeGvGIP+9qxHKwFs8e
-	DZ4AsMSKs1gbHmWH1Rnylg0g37CZCII2h5fRd//joHzmbJkTjRBXwPEx8tSRwQ==
-From: "Dragan Simic" <dsimic@manjaro.org>
-In-Reply-To: <20251026172608.108956-1-diederik@cknow-tech.com>
-Content-Type: text/plain; charset="utf-8"
-References: <20251026172608.108956-1-diederik@cknow-tech.com>
-Date: Sun, 26 Oct 2025 18:36:15 +0100
-Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, "Johan Jonker" <jbx6244@gmail.com>
-To: "Diederik de Haas" <diederik@cknow-tech.com>
+	s=arc-20240116; t=1761500711; c=relaxed/simple;
+	bh=kLkjHkJJvgLN+ybPYz8/nAzkPH88F3EbaRt9O0fyHXs=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=jzGPqwfI1M/3KWacCKGiSXd5U8lu7tKd3j6n2DvXpiO8zSBoLN/1lnCRC3qwuCenwpGQ1273+FYyxuNrjhFzWQzuPz+h0cTl9no9IwwARedN0HkuX7UKftYxX1r8B56qF9s7W2v/7/JZE6LmkzPUQTsn+ryQ4378Tt0OYsCuGbo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=WGObrId+; arc=none smtp.client-ip=91.218.175.189
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow-tech.com
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Message-ID: <e2caefd1-9668-0404-598f-98b26375525c@manjaro.org>
-Subject: =?utf-8?q?Re=3A?= [PATCH] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
- =?utf-8?q?_rockchip=3A?= Fix vccio4-supply on rk3566-pinetab2
-User-Agent: SOGoMail 5.12.3
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
+	s=key1; t=1761500695;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Os2gdwgFgiG/vQXZuUM1r/XXyjqP6W0/g6mR5BtctSk=;
+	b=WGObrId+lc+EJHIlJzN+dD7JmH64mJaxToM+He6Bg64ipj7P9PoZ51oO3eVEBKpVmNiPS8
+	cKCqohngr3qvrAUcsONF/aT1AmNRoMPz6pmHrX0iTa8h17dzdC507UN3WqA6YW1YuLIYYR
+	I0ZgGkQYUtAUvTeWUUO3rCuBqMOhJTOOCcvfq1alots9bWpGPB3ScyVLioV2j+vC3is/cP
+	cXHRAem2rR/iS/mFCgVeXHQWCFFl0teHusYHPHYU76GZftHFY+EKoAmwzZ4M3C+Iqt2VVE
+	n1Mk4v8P0S8vv50X6ix3myq3bU4MJUwtr0VN3UCIGwIHMGmeauBn9noYt0ASKA==
 Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: None
+Content-Type: text/plain; charset=UTF-8
+Date: Sun, 26 Oct 2025 18:44:42 +0100
+Message-Id: <DDSFVM1TXN8C.3JNX2M8XX04IF@cknow-tech.com>
+Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ "Dragan Simic" <dsimic@manjaro.org>, "Johan Jonker" <jbx6244@gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Harmonize regulator formatting
+ for Pine64 rk3566 devices
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <diederik@cknow-tech.com>
+To: "Diederik de Haas" <diederik@cknow-tech.com>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>
+References: <20251026153805.107774-1-diederik@cknow-tech.com>
+In-Reply-To: <20251026153805.107774-1-diederik@cknow-tech.com>
+X-Migadu-Flow: FLOW_OUT
 
-Hello Diederik,
+On Sun Oct 26, 2025 at 4:37 PM CET, Diederik de Haas wrote:
+> The regulator node properties in Pine64 rk3566 devices were formatted
+> rather inconsistently. To name a few:
+> - 'name' was sometimes put at the top of the list, while at other times
+>   it was (mostly) sorted in alphabetical order
+> - 'always-on' and 'boot-on' were sometimes at the top of the list,
+>   sometimes not
+> - 'state-mem' nodes sometimes had a preceding blank line, as they
+>   should, but sometimes not
+> - other properties seem to have been added to the end of the list, not
+>   in their alphabetical/natural order
+>
+> So harmonize the formatting by making all properties sorted
+> alphabetically/naturally. And harmonize the formatting of the
+> 'state-mem' nodes so they all have a preceding blank line. While at it,
+> also fix 2 incorrectly indented nodes.
+>
+> No functional changes.
 
-On Sunday, October 26, 2025 18:25 CET, Diederik de Haas <diederik@cknow=
--tech.com> wrote:
-> Page 13 of the PineTab2 v2 schematic dd 20230417 shows VCCIO4's power
-> source is VCCIO=5FWL. Page 19 shows that VCCIO=5FWL is connected to
-> VCCA1V8=5FPMU, so fix the PineTab2 dtsi to reflect that.
->=20
+I just found some additional ones.
+If these changes are considered OK (in principle), then I'll send a v2
+at some point.
+
+Cheers,
+  Diederik
+
 > Signed-off-by: Diederik de Haas <diederik@cknow-tech.com>
-
-Thanks for this patch.  As already discussed in private, this is
-correct and safe to do, because both supplies are designated as
-always-on, so please feel free to include:
-
-Reviewed-by: Dragan Simic <dsimic@manjaro.org>
-
-Though, I think this cleanup should also be propagated into the
-stable kernels.  Right now this patch doesn't actually introduce
-any functional changes, but maybe in the future there will be
-some related driver or DT changes or improvements that may end up
-relying on DT correction such as this one.
-
 > ---
->  arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi b/arch=
-/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi
-> index d0e38412d56a..08bf40de17ea 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi
-> @@ -789,7 +789,7 @@ &pmu=5Fio=5Fdomains {
->  	vccio1-supply =3D <&vccio=5Facodec>;
->  	vccio2-supply =3D <&vcc=5F1v8>;
->  	vccio3-supply =3D <&vccio=5Fsd>;
-> -	vccio4-supply =3D <&vcc=5F1v8>;
-> +	vccio4-supply =3D <&vcca1v8=5Fpmu>;
->  	vccio5-supply =3D <&vcc=5F1v8>;
->  	vccio6-supply =3D <&vcc1v8=5Fdvp>;
->  	vccio7-supply =3D <&vcc=5F3v3>;
-
+>  .../boot/dts/rockchip/rk3566-pinenote.dtsi    | 52 +++++++++----------
+>  .../boot/dts/rockchip/rk3566-pinetab2.dtsi    | 29 ++++++++---
+>  .../boot/dts/rockchip/rk3566-quartz64-a.dts   | 51 +++++++++++-------
+>  .../boot/dts/rockchip/rk3566-quartz64-b.dts   | 52 ++++++++++---------
+>  .../dts/rockchip/rk3566-soquartz-blade.dts    |  6 +--
+>  .../boot/dts/rockchip/rk3566-soquartz-cm4.dts |  6 +--
+>  .../dts/rockchip/rk3566-soquartz-model-a.dts  | 10 ++--
+>  .../boot/dts/rockchip/rk3566-soquartz.dtsi    | 43 ++++++++++-----
+>  8 files changed, 148 insertions(+), 101 deletions(-)
 
