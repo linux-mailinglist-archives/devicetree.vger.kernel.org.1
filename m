@@ -1,322 +1,182 @@
-Return-Path: <devicetree+bounces-231210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11ADAC0B642
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 23:47:55 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 578A3C0B657
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 23:49:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFD943AD587
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 22:47:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C21D04E8874
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 22:49:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E649F20E03F;
-	Sun, 26 Oct 2025 22:47:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46E6B262FF6;
+	Sun, 26 Oct 2025 22:49:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="H3Tq3ZE4"
+	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="jenUQCRo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from silver.cherry.relay.mailchannels.net (silver.cherry.relay.mailchannels.net [23.83.223.166])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF8E71BC5C
-	for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 22:47:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761518872; cv=none; b=lFAQHu80jFT+O93GomqCYOqX8TfwJEZLF4Yll0XAsnpE7Z4JQ5w/PP5BDeGKFCf8cH5N188VyJCLHeGFXO4kxDziigl8YjEXuxaZMARSnrMhYyJj+CYRVBMyg7bLSJIawPy8BU0zwPhaKEnW+U1ONFXpqPD8cbuavi8+Lnb1YeU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761518872; c=relaxed/simple;
-	bh=LqaT8t7f9y3yVmMeZA4qSd6VoGnYWESnAsgtdzVRrHg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iSbdtA03Jtrf35gCnTXzgpEt89M9hszP0XTMEExmogrqKDWMfhEWwbvdHGi9dLjQy2+r73rjV0+/qKvv51VI9fh1dT73Ms4gikWbhlUHlAibJRTCdWtUBK6pdCGFq1pvKYTXixFTP62EtyuAuF/Ze/EMwkaoCJEbJ4SXjbxFATA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=H3Tq3ZE4; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=TvwQ
-	l8d2jlX3Ak0jPbn1ibLAZ4HqwcHrLO0wfm00CYk=; b=H3Tq3ZE4/0VxkoEnM9U3
-	+TFH9n8g3EjdjsMv2+IX44AKqVknWg2JkEHGvIGNfZpMbAvDmSa8KT4/HohmgPfc
-	uGwt4UCSUcPDdQjewnrkMbbeL/+HVtwArSJblJ/UsptY1onfozNoMnNo3lJdX5u9
-	DAsBt942C2lrecJwt8YaZ/r0ANWAOcP1eTDwifiL8b3sEtniaK2zPUk5KigVdMFX
-	WiZctBQTdQsTgkbEdFNnFq+U7BYJpP8aYFq2QmY4f8NapV8vztE9FtOR55NmoFM6
-	fANRaBrqQVVMckRpU+tSj4CDKkzAzynECUA4gFzhVXILFGJB7Nv44DhRThmszVB9
-	WA==
-Received: (qmail 3383049 invoked from network); 26 Oct 2025 23:47:45 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 26 Oct 2025 23:47:45 +0100
-X-UD-Smtp-Session: l3s3148p1@VCMykhdCUNkujntU
-Date: Sun, 26 Oct 2025 23:47:44 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 2/3] mailbox: renesas: Support MFIS mailbox driver
-Message-ID: <aP6lEJwg-65m8DsL@shikoro>
-References: <87frb8n7kl.wl-kuninori.morimoto.gx@renesas.com>
- <87cy6cn7jg.wl-kuninori.morimoto.gx@renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB9271BC5C
+	for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 22:49:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.223.166
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761518947; cv=pass; b=SQsx9Zc6tajbjctzec6spdG0SoyDfQUWuOkALVzQGIv+lJFkCoNRk0j657a0opRmmFgH0Eqvgp/FUDGJ6jnPAn4WmH9cDhMQyuPtZtxIx9+je+W956kk4GA+f1c/AbJrzrX/7Wz1kxsX5VdoXmf9ENuiS0rWeqIYmRJy+RMY0O4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761518947; c=relaxed/simple;
+	bh=uXGjAviC4A67JkRFMXocA/GJgHc8rgRxWiWhrtZeVx8=;
+	h=Message-ID:MIME-Version:Cc:Subject:To:References:From:In-Reply-To:
+	 Content-Type:Date; b=obq8+2y6dwdFvtsxDeEwkoeLCTDysKlnNbVHRfddI/9b+bIwHYUcPPPLbRcScvW2TTo3MeGexJtFbNzubNkYG9cMRTSpBbaxSZt6jKI22/aP8TcMOOwQSm3+IUpnIjofZkMM0B50IZ57PeVgQMizEze4ZfewYErv+A4+LqKqdoE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=jenUQCRo; arc=pass smtp.client-ip=23.83.223.166
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id E05ED36160F;
+	Sun, 26 Oct 2025 22:48:57 +0000 (UTC)
+Received: from fr-int-smtpout16.hostinger.io (100-119-151-11.trex-nlb.outbound.svc.cluster.local [100.119.151.11])
+	(Authenticated sender: hostingeremail)
+	by relay.mailchannels.net (Postfix) with ESMTPA id 5647D36142C;
+	Sun, 26 Oct 2025 22:48:54 +0000 (UTC)
+ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1761518937; a=rsa-sha256;
+	cv=none;
+	b=AyKXTiJdD/Z/lO8dC4edljNQ+VNou7Bjk5ebwAQQLWVvX3/SGwqgB0NIyTrsW8Do8tFXyz
+	Tzy5yx18uX6OdKCt4AqhG5Q4H1nb9JF1MjLhkOa96yhtZ/hMJgJ9j/mhcPhJ4Uv+oW0HKA
+	ABkSYr+1NmxDnwT/N150itKH0zz58WIpHXirKq4MSW6PJE52OtqQZExhbQ2alWnJ3gJMbH
+	KO1nKhbmqIPSADHUGNsscFHeHte9KNJsx8jhtC3L9akB5iKDfM4Ufq5JAH04/ZZHe77dL0
+	fwKxWgXoIodyYi2eYRO+t5EhlbivFG2oMjb1w4LMPIwIPExtivtGFUcTkE43Xg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mailchannels.net;
+	s=arc-2022; t=1761518937;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=uFsO6MOvX/5QN9XiCW8717+gVZ3oyi7YrYXpJc6qfWo=;
+	b=GMKoZHeOXm/XU3rl55b/WDHS3fTAm7uSZHGn3Rpl/niDzyYT4tym2yvM6uYGu+sLn7WDzc
+	chjpbRqB3rJ3adDRftlN5vIrXlb4QQ0NvuCj0QMeVkKWpFFpXb8mv8mAJxNJFPRIpBGcSh
+	1eLzQ+Qyyf+veJdiw3+4iVHmyvawnANCDXugYf3c0UEqlb4xE6BaXyQAXmHV7og43iuDaV
+	LZmjnjVtQVMA+TfZoZA23Cs1K+8slVjI1DAN5Qg3yrOWNyq7suVphH0gzihcyQKzWtupo2
+	jzVFBpKsFAN6PR1KvdpBg8fMlGHYZrtreq6jkbVRXi2Ue/+vZbqDuPO58wTatQ==
+ARC-Authentication-Results: i=1;
+	rspamd-674f557ffc-8hdz9;
+	auth=pass smtp.auth=hostingeremail
+ smtp.mailfrom=michael.opdenacker@rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MC-Relay: Neutral
+X-MailChannels-SenderId:
+ hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MailChannels-Auth-Id: hostingeremail
+X-Glossy-Bored: 6f0a4d1c3bd11df6_1761518937746_4155451395
+X-MC-Loop-Signature: 1761518937746:3498211039
+X-MC-Ingress-Time: 1761518937746
+Received: from fr-int-smtpout16.hostinger.io (fr-int-smtpout16.hostinger.io
+ [148.222.54.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
+	by 100.119.151.11 (trex/7.1.3);
+	Sun, 26 Oct 2025 22:48:57 +0000
+Received: from [IPV6:2001:861:4450:d360:bf0e:83cc:ac75:8cdc] (unknown [IPv6:2001:861:4450:d360:bf0e:83cc:ac75:8cdc])
+	(Authenticated sender: michael.opdenacker@rootcommit.com)
+	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4cvsJ264nCz1xnw;
+	Sun, 26 Oct 2025 22:48:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
+	s=hostingermail-a; t=1761518932;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=uFsO6MOvX/5QN9XiCW8717+gVZ3oyi7YrYXpJc6qfWo=;
+	b=jenUQCRo/Am12+0noROadVkvTh0uDbTiGgY5PW4GBhmXmSaweUQKOWiqC8gaa4JoV2Hrxp
+	4VbTgPWu61Tk1DvjY+2IpygBCE2UP01UTkG3AQulIqUUjqE4LBrC/G8aJB+wqPJ8AEsoKs
+	qGOq/3qi62DOGVdrZcDFlfXTW/nB4EbiEDJtpaSCjUoXfItt8ZXxSX4lSjagPgdn7O0wzv
+	SC/oDFSwVohEEX9imI6yRPg38l24DubnNoKg6C40g7Qtl3bmVYmssFTEcv3Ir9/eEETvBT
+	evLH3aD9wSdZqyUKp7ZQSM8eywYe/8y5lnMgeHDy+mBvdvPVyuCUu0wGpA0krg==
+Message-ID: <4bdad288-250b-4e94-abea-eb231fba5beb@rootcommit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sUliLxCTxVvcQyTq"
-Content-Disposition: inline
-In-Reply-To: <87cy6cn7jg.wl-kuninori.morimoto.gx@renesas.com>
+User-Agent: Mozilla Thunderbird
+Cc: michael.opdenacker@rootcommit.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, unicorn_wang@outlook.com, paul.walmsley@sifive.com,
+ palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+ alexander.sverdlin@gmail.com, rabenda.cn@gmail.com,
+ thomas.bonnefille@bootlin.com, chao.wei@sophgo.com,
+ liujingqi@lanxincomputing.com, devicetree@vger.kernel.org,
+ sophgo@lists.linux.dev, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 2/3] arm64: dts: sophgo: add initial Milk-V Duo S board
+ support
+To: Joshua Milas <josh.milas@gmail.com>, Inochi Amaoto <inochiama@gmail.com>
+References: <20251011014811.28521-1-josh.milas@gmail.com>
+ <20251011014811.28521-3-josh.milas@gmail.com>
+ <hkdnjyldwr4watvizsju4qcvpvkb3mtt5rathaooembpceyufx@ega5xrqj6v3y>
+ <aOqtt7BDXxItrs7W@sleek>
+ <bsol3uim4brrrsdmvuk6f3uzampbki2pyhziap6x4rw7txl435@rwoxrnctkf3y>
+ <aP6UJFPP-ReYPzmq@sleek>
+Content-Language: en-US, fr
+From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+Organization: Root Commit
+In-Reply-To: <aP6UJFPP-ReYPzmq@sleek>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Date: Sun, 26 Oct 2025 22:48:50 +0000 (UTC)
+X-CM-Envelope: MS4xfCvqkUVMbgTTDbHBA0d4cZBu8FEN3OWccx7Z3P1XKUivUx4Y68YFJpjG2DHVo3P5lB3Ny+/8w0V3ajRhGWzoYRUuaCkXdvFvHcWTnCnbhFz/PrdrWC+x COM5aFHJVvKFr/TS8TzixCnKhPhzdj9F1cfiwoyCXMPAS7pXgasqCyvGi//OA5t4SeP7b2FDSbjXfXy1AVcC2dv6FZnC70B6jl2TXyls2IVUEAz66hPQhnNX W5HaqF3f6vdnVH0zTYj7Rw3WokajdiUoQcaes/olNhpXTR3Ld6XT88k0RRYbZ3G+sbO+g/wQYIHbUV26cukqWAaAZJ39l7/NFaKC+Ax/8H35WFixldDWhNmH Gkxj9HAOcLxINWk6EQIwQk7YXHH/3GAhirc1dTXOrRLXY21Qibf0mRZb2+xOOR9gplI1hoPpropN94wkvlE2eyNylLcA8xtjPptBAHoWDzyiJE/R0FzA7lcW u94QFzgavtxqJW144Djci+uYdLHMp4kObiBWY1v9sSgFQezyQkdQJB5sJ6XMjBXyxMbP3REFSeOhjR9qszHNlvfU2Un6AhM7ePi1Q79UQ27lMP/3wvv4Yd/n +P+f/QkuVcGpT0T23r7ISE8NKEBSuxST3WHxTuVy1SqP0zX8RelYByh9/a5grzuJ1rZ8zqcgZslAWZ0Cl/l+wZ55doQVqWtDLOr/ThG1mzAxHgbyl+YMCQcP s3N2FHaIdEcL7qj8T370YNQQSlY4jap/8379yoznKiZS5VKvbBmL/IbdD5hdSucMQlHxQGn07kmNMkSCXOxJbn2AtwVwu+O/cIutf3kP58xOMdpzcPrv1Yzt VTI0v9w8oSv+E+QDDiQmQpLzs+SV2IO9maYa13KvUW4p1EyLKcvsWRhzMnPXMJlnSXezO3/QWaBpF/HHB/f3IMuH8ewAQ2PWBoxQSlffglVzhZLZcO0tz6Ki mZTfsQ==
+X-CM-Analysis: v=2.4 cv=GbNFnhXL c=1 sm=1 tr=0 ts=68fea554 a=zy7iCUYNTH43UiyTonfErQ==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=YzZgpwwcAAAA:8 a=d70CFdQeAAAA:8 a=SDwY5gupPOl0iZWIF84A:9 a=QEXdDO2ut3YA:10 a=diELbSsDbaqdzccPbx55:22 a=NcxpMcIZDGm-g932nG_k:22
+X-AuthUser: michael.opdenacker@rootcommit.com
 
+Hi Joshua
 
---sUliLxCTxVvcQyTq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks a lot for working on support for Milk-V Duo S. I'll be happy to 
+test your V3 :)
 
-Hi Morimoto-san,
+On 10/26/25 22:35, Joshua Milas wrote:
+> Inochi,
+>
+> Thanks for pointing me twards duo-pinmux. I was able to use it to get
+> the default config which is uart0, spi3, and i2c4. I can change the
+> dts to match, but...
+>
+>> I suggest enabling devices that are accessed by default
+> Would we rather enable anything that can be accessed by the pinmux?
 
-in addition to what the others already mentioned...
+If I understand correctly, you can't do that because there will be 
+conflicts.
+ From the Duo S pinout diagram 
+(https://milkv.io/duo-s/duos-pinout.webp), on headers 41 and 39, you 
+have to choose between MIPI, I2C2, PWM12/13 or SD1. If at least 2 of 
+these are selected at the same time, there will be a conflict, and I 
+assume that the pinctrl controller driver will flag it.
 
-> +	help
-> +	  This driver provides support for SCMI interface transport with
-> +	  MFIS(Multifunctional Interface).
-> +	  It is used to send short message between CPU cores and
-> +	  SCP(System Control Processor).
+Then it sounds complicated to define a default combination for the whole 
+board, because it's like a default use model. Who gets to choose? What 
+Inochi suggests is to follow the vendor kernel choice, which would 
+correspond to the way the vendor intended the board to be used. However 
+the community could choose another default way to use the board, so the 
+choice may be up to the first contributor to the mainline kernel for 
+this board, possibly revised through later discussions.
 
-Spaces after MFIS and SCP. But I would reword it because it can send
-messages to the RT domain, too. Suggestion:
+I guess there are cases when the choice is easy:
 
-+	  This driver provides support for mailboxes of the MFIS
-+	  (Multifunctional Interface) via the SCMI interface.
-+	  It is used to send short message between different domains
-+	  like AP, RT, and SCP.
+- When only one configuration is available for a set of pins
+- When there are important devices on I2C or SPI buses on the board. 
+Then, you want to find a way to prioritize such buses. Fortunately, I 
+guess the board design also guides you to the right choice.
 
+I was facing the the same question today on another board, and that's 
+why I'm happy it's raised here. As thousands of DTS files have been 
+written before, I'd love to hear from people with experience on this 
+topic. Are guidelines written anywhere for board DTS creators?
 
-> +
->  config RISCV_SBI_MPXY_MBOX
->  	tristate "RISC-V SBI Message Proxy (MPXY) Mailbox"
->  	depends on RISCV_SBI
-> @@ -389,5 +398,4 @@ config RISCV_SBI_MPXY_MBOX
->  	  remote processor through the SBI implementation (M-mode firmware
->  	  or HS-mode hypervisor). Say Y here if you want to have this support.
->  	  If unsure say N.
-> -
->  endif
-> diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
-> index 81820a4f55285..060a9c7f6727b 100644
-> --- a/drivers/mailbox/Makefile
-> +++ b/drivers/mailbox/Makefile
-> @@ -27,6 +27,8 @@ obj-$(CONFIG_PL320_MBOX)	+=3D pl320-ipc.o
-> =20
->  obj-$(CONFIG_OMAP2PLUS_MBOX)	+=3D omap-mailbox.o
-> =20
-> +obj-$(CONFIG_RCAR_MFIS_MBOX)	+=3D rcar-mfis-mailbox.o
-> +
->  obj-$(CONFIG_ROCKCHIP_MBOX)	+=3D rockchip-mailbox.o
-> =20
->  obj-$(CONFIG_PCC)		+=3D pcc.o
-> diff --git a/drivers/mailbox/rcar-mfis-mailbox.c b/drivers/mailbox/rcar-m=
-fis-mailbox.c
-> new file mode 100644
-> index 0000000000000..54cabfa305eb4
-> --- /dev/null
-> +++ b/drivers/mailbox/rcar-mfis-mailbox.c
-> @@ -0,0 +1,137 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Renesas MFIS (Multifunctional Interface) Mailbox Driver
-> + *
-> + * Copyright (c) 2025, Renesas Electronics Corporation. All rights reser=
-ved.
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_irq.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/mailbox_controller.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +
-> +static int mfis_send_data(struct mbox_chan *link, void *data)
-> +{
-> +	void __iomem *reg =3D link->con_priv;
-> +
-> +	/*Trigger interrupt request to firmware(SCP)*/
+Cheers
+Michael.
 
-Spaces before and after "*"
+-- 
+Michael Opdenacker
+Root Commit
+Yocto Project and OpenEmbedded Training course - Learn by doing:
+https://rootcommit.com/training/yocto/
 
-> +	iowrite32(0x1, reg);
-
-#define instead of hardcoded value?
-
-But I guess the real question here is: do we know already that the SCP
-firmware will just react on the interrupt? We really do not need the 15
-bits of data that goes with this register? Or the message register?
-
-> +
-> +	return 0;
-> +}
-> +
-> +static irqreturn_t mfis_rx_interrupt(int irq, void *data)
-> +{
-> +	struct mbox_chan *link =3D data;
-> +	void __iomem *reg =3D link->con_priv;
-> +
-> +	mbox_chan_received_data(link, 0);
-> +
-> +	/* Clear interrupt register */
-
-I would drop this comment, but maybe others won't.
-
-> +	iowrite32(0x0, reg);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int mfis_startup(struct mbox_chan *link)
-> +{
-> +	struct mbox_controller *mbox =3D link->mbox;
-> +	struct device *dev =3D mbox->dev;
-> +	int irq;
-> +	int ret;
-> +
-> +	irq =3D of_irq_get(dev->of_node, 0);
-> +
-> +	ret =3D request_irq(irq, mfis_rx_interrupt,
-> +			  IRQF_SHARED, "mfis-mbox", link);
-> +	if (ret) {
-> +		dev_err(dev,
-> +			"Unable to acquire IRQ %d\n", irq);
-> +		return ret;
-> +	}
-> +	return 0;
-> +}
-> +
-> +static void mfis_shutdown(struct mbox_chan *link)
-> +{
-> +	struct mbox_controller *mbox =3D link->mbox;
-> +	struct device *dev =3D mbox->dev;
-> +	int irq;
-> +
-> +	irq =3D of_irq_get(dev->of_node, 0);
-> +
-> +	free_irq(irq, link);
-
-Is it really necessary to free the irq here? We could simply disable it?
-
-> +}
-> +
-> +static bool mfis_last_tx_done(struct mbox_chan *link)
-> +{
-> +	return true;
-> +}
-> +
-> +static const struct mbox_chan_ops mfis_chan_ops =3D {
-> +	.send_data	=3D mfis_send_data,
-> +	.startup	=3D mfis_startup,
-> +	.shutdown	=3D mfis_shutdown,
-> +	.last_tx_done	=3D mfis_last_tx_done
-> +};
-> +
-> +static int mfis_mbox_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev =3D &pdev->dev;
-> +	struct mbox_controller *mbox;
-> +	void __iomem *reg;
-> +	int ret, count =3D 2, i;
-
-Why is count =3D 2? Doesn't X5H support 64 of them?
-
-> +
-> +	mbox =3D devm_kzalloc(dev, sizeof(*mbox), GFP_KERNEL);
-> +	if (!mbox)
-> +		return -ENOMEM;
-> +
-> +	mbox->chans =3D devm_kcalloc(dev, count, sizeof(*mbox->chans), GFP_KERN=
-EL);
-> +	if (!mbox->chans)
-> +		return -ENOMEM;
-> +
-> +	reg =3D devm_platform_ioremap_resource(pdev, i);
-> +	if (IS_ERR(reg))
-> +		return PTR_ERR(reg);
-> +
-> +	for (i =3D 0; i < count; i++) {
-> +		mbox->chans[i].mbox	=3D mbox;
-> +		mbox->chans[i].con_priv	=3D reg + ((1 - i) * 4);
-
-Why backwards ("1 - i")?
-
-> +	}
-> +
-> +	mbox->txdone_poll	=3D true;
-> +	mbox->txdone_irq	=3D false;
-> +	mbox->txpoll_period	=3D 1;
-> +	mbox->num_chans		=3D count;
-> +	mbox->ops		=3D &mfis_chan_ops;
-> +	mbox->dev		=3D dev;
-
-Only one space before '=3D'.
-
-> +
-> +	ret =3D mbox_controller_register(mbox);
-> +	if (ret)
-> +		return ret;
-> +
-> +	platform_set_drvdata(pdev, mbox);
-> +	dev_info(dev, "MFIS mailbox is probed\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id mfis_mbox_of_match[] =3D {
-> +	{ .compatible =3D "renesas,mfis-mbox", },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, mfis_mbox_of_match);
-> +
-> +static struct platform_driver mfis_mbox_driver =3D {
-> +	.driver =3D {
-> +		.name =3D "renesas-mfis-mbox",
-> +		.of_match_table =3D mfis_mbox_of_match,
-> +	},
-> +	.probe	=3D mfis_mbox_probe,
-> +};
-> +module_platform_driver(mfis_mbox_driver);
-> +MODULE_DESCRIPTION("Renesas MFIS mailbox driver");
-> +MODULE_LICENSE("GPL v2");
-
-"GPL" only.
-
-But I guess we need a bit more information about the bigger picture of
-this driver. Like, with which firmware was this used?
-
-Happy hacking,
-
-   Wolfram
-
-
---sUliLxCTxVvcQyTq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmj+pQwACgkQFA3kzBSg
-KbaV0w//Q9lRuOQkDMtfMf9PM4NY8F4q9Z9v3P6LRm/EsIWLVdaCbZud8270Ekjt
-TQCIFJ10rrooaNF0bg8d/I1ePNOPvgTpbZi5uQL4wfZt0LQPQP0JBt+Ts1IzVmRo
-TH9t7QPdLEuoaclvbUJvGlfIvkidOyf+GpilqRY6iV6LBsoHMQ48WM+7Kcoj+AER
-5E9K00tSYqnPbwP92o0UlaUFPK8nuu1+ygs7Crdm5xyN7jogYXzqpnC95Iqy0aee
-DBgc++75dBqihgeelahXudp4FnMnzEqycV9hIwz6gW085p7zriI8VP7T82Yue7cg
-k12+YuX5RXr7KWzT6rCFhDwP9vC3UCpMdvJO20432n5hcZsUWnZv09/3lizBX5ZN
-TZe1B7d+ViYmV1g5R4K+hqATR9PjXNV0M592Oy9vLKjQpuxCEw8VxrgFCCqB+e0O
-ZFXVv6Yir3jea84YQOfNAhjR/zZb+01U9h1EVDWWMvLBMNTx9A9CgSilZ9C9xfag
-dAeE3M2RnjlcD2FOmp+QYxmrFt6g+a58AAMqCg/xkcZgCmhCQb+ck+IcqHGQyTTO
-PoMo0YGcdWd7CwWytoy3OwMpjwG/q3BDz1rnlkEKwKSwiuQKznhpoKxeHjX9v3xn
-roIIbgqybhIwWlorkS7XJAsTWcokc/Z0UZ8aXJQ7hsPAZAGahlo=
-=NtR+
------END PGP SIGNATURE-----
-
---sUliLxCTxVvcQyTq--
 
