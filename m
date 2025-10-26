@@ -1,117 +1,121 @@
-Return-Path: <devicetree+bounces-231129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEE2FC0A923
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 15:11:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D0AEC0AA62
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 15:37:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8793B18A1297
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 14:11:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAF0E3A8165
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 14:37:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7678256C9F;
-	Sun, 26 Oct 2025 14:10:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F80721C167;
+	Sun, 26 Oct 2025 14:37:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="WYv4sFCg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FBSrYqI5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f193.google.com (mail-pg1-f193.google.com [209.85.215.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E702255F22;
-	Sun, 26 Oct 2025 14:10:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761487839; cv=pass; b=QtNBRfKriIYhap28ua7DAu7IlGDAcqRAx483+8teJJ97WRmC3gh13/0tYShGMENtcPQHEVF07+VIDsnE/oqFFr8zJk5W2u9sUf20NuiFIW2tUndIVKwHpOuYYtPAdD0W3vFxQE63d45vzLQJvoOa1x3qmZ5iIR3RSO+CUfA5PRQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761487839; c=relaxed/simple;
-	bh=1yhYT2z87P1zTkyAheEnTR4QxDASI6qps88CMucuwTU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WWBk2ZlDF3EIU65MQKIDnFEulj39gGCh2JaIMMxXSI/j5RfgezIznOA/3/46ROrs+O9XOfoCqaJLTQy3GvYDBF89jq+spffGiwQi68N9Qq02xUEOo9oQlOqtXu6nEa96yYUFJPq1YgE4M8m5/2V/iZwjPbyTOaePvJ3qv9U1J1c=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=WYv4sFCg; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1761487825; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=SNSTG/WL0hxfvh6+JbR3ZAuSkdWt+cio9bA65lobkpa/qGjFEHCkDUAdILs79iFR9VfDweWvT9W5S4by4ov+WgVYqOsfqsFUJJ3aNXAb8grbvahSASnAubXLhnX2H3VTIyS+sgT4UCkRUJlW1IOHl2WKb6zGP7Da2IoR7IRoHhc=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1761487825; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=PCZLoT7Yms1wkMm2rkwrm4xGwAENwGA6Phuef9shGWE=; 
-	b=JRcQjj6Ur20sQw9hANHc0N2uf7qcN2mEu+WV62EehqCK3OSbLl61/IVD0SrurJIOFrpo0N2mi4MrdapWIkpm1uyf/nO9i4+mfJh0jA4JGGtYSytljt9KXP2KNP5FtuvTV0bkIwXyrJwdTsPh6ec92L8GlKJS9SZNwd0hX6IG4A4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1761487825;
-	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
-	bh=PCZLoT7Yms1wkMm2rkwrm4xGwAENwGA6Phuef9shGWE=;
-	b=WYv4sFCg6aMqKvNY73a3qSEGWprPERCNyttoQq1tsjlOF+R2FOcLDRAlrYHKbmP4
-	SHOwJfvdI3YVXUii+p0GYRNlA2ZT2/qonyRUQxHSRHlQyAPNweQKd0OuQmQ0jyX5nKx
-	1vQVWhgivK4vk8h7NiWw4NqlxnGWPb+r3OCEkHhw=
-Received: by mx.zohomail.com with SMTPS id 1761487822637611.4557356961272;
-	Sun, 26 Oct 2025 07:10:22 -0700 (PDT)
-From: Junhui Liu <junhui.liu@pigmoral.tech>
-Date: Sun, 26 Oct 2025 22:00:46 +0800
-Subject: [PATCH v2 6/6] MAINTAINERS: Add entry for Anlogic DR1V90 SoC
- drivers
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9D921EBFE0
+	for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 14:37:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.193
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761489439; cv=none; b=gqo2lDksVebFlcFmL5ibStZKizwnjUTW3VSTnhM2xJKyKSIdyZhoWQAD2nD9Www3u8EqmfVlq5AcM9vOpgPwJZtwuE466m04jhlBpUpg1pbOuDEjwDXyD8le1DJsrNo6nbGDSBieGUForu36NDESWSDlk/9/TxiIdq1YtH+6kdM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761489439; c=relaxed/simple;
+	bh=A3bSV3u8AarAyp31lzoLWMXHtLeH04d3zGSkueTEkDM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ER4ngcufXRJ6qzedPPvggKgONBwvsDg0//a8QNRY0dcDLV3TmzXRWNyLfQTmZCd1glXMIBhubIwyao/12TW/Zvl+uvZPxqjCVuF+kp097rhm1vpkykErqwoU+9NfCEc6KyuZH9BvbJyxb1U4FnYg5f42T0MtscdF0uY4xsTibl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FBSrYqI5; arc=none smtp.client-ip=209.85.215.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f193.google.com with SMTP id 41be03b00d2f7-b62e7221351so3319319a12.1
+        for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 07:37:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761489437; x=1762094237; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Px4DGTedr0t+HqBVc78Zx84UzxWlcHUehvdoHcOj/G4=;
+        b=FBSrYqI5hEZuRWt6RLAH/G8MPdRZRWukxu+uSwJ4CT/VWhg8IwNNltXnHxNcZt27t3
+         qzBeUPV//viQMK2ZpkysJhiY2q5nquXdNbx6k4/lkibvMCBqjyODrNNJ+56Z9cXv8WJK
+         PzCW0iuXIAvI1DBSis0BNnGPqMP+8MG8jgcHCuCWm3ZgkdXxKxSxXtpD7RbLSqAs35/Y
+         tSOWBy+YEWE/2U/nz36o9SXb0r2v//nWhHddb4j0wSN8+xEufIQA+MgBvUx8apx6Beqg
+         yvQdIAghqwXpoAkhZ/nYVm+ggVZ61jJiJN9dcKGygI539RbuZuUJS/wowgRH5/OTlQYx
+         3/4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761489437; x=1762094237;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Px4DGTedr0t+HqBVc78Zx84UzxWlcHUehvdoHcOj/G4=;
+        b=oxabkHDLTp2l1JOw1vKp0y9BflueYYxPzDicGpX4i8wYz64qdiWkRmXhakkq9+NCGu
+         qqzR6t9UHoRbnmJyg+HNKa1ZBfhoRqhuViQUtUW+IQLDZoqr9SptAqf+yFBgavot18OH
+         BFKyvGxrLGzX7X48z4DaNd0cK5LD+xOAPeQFTYhNfcNzBdCvegYKXj13i7fLm9x0rmcl
+         WRr6UCM3nyuJZkMIZBnc7a5aXAgu6qGIRIdYfGvlzSCigEY6iX8j/bVNZgZUHXCJbynd
+         xhM03JBoE1sP3sDIHfpYF86hZcPHcO5I4l6IVrzoHQt7hiZYgcTmYiM4MdqQ8BLHVXqa
+         H7fQ==
+X-Gm-Message-State: AOJu0Yz+BXjmTXib6Ne+j2ukp/D05FShdZTWtp7ry2CjEYw84W/X/0Hj
+	azjljaP2Pmh37eaGP5kygJwTRasUoy82eF9OmXkvdTxiPEqTOX63+Q0x
+X-Gm-Gg: ASbGncu32EDNqgG2FDDn1VSAMScXUO80ZYiiQ5cv1QSvuWP75k1ahkyEP6poCY0ey/k
+	iwh58bykii7plsfPfBtWwGjRloEpEzzg61kxqmZdxginln7/J8iopr+OULuhA4oYtRiWgIHIkWC
+	gB2h4IT3VKz6SZG1KAmWc2Z+tDrd44Cu1GdOda13cvEVXwrvVyNXVehjQu7yNBlFB8ro/TgFhrL
+	rAGWgNAEAKOeezMFMBwnRZHgGgeNomqqqed/ciLMy6lwobRsaDVCoQssgVrnO5tW3GZwGPmOBfA
+	khkeudA4v+hNiZ93jB8GiGjFw2ELwCfJiJN+1X3YTmmSsPkczzel6d2hjXZOiprhIo00lgz3FZ7
+	/8XsBAtNVKgt/cOx9ElI0kW9FHo+JhYcELk/mjnHzyffTnJrwgh+NOmzgfiw2fB8ml3EBBFRAgp
+	M=
+X-Google-Smtp-Source: AGHT+IEfx0AH+HyiwJ68//xsscWnnszjfjuh908GaFcgwt1A/M2fn3D2pU1eaom3Q9nzHLoe+m5ueQ==
+X-Received: by 2002:a17:902:ecc8:b0:290:c516:8c53 with SMTP id d9443c01a7336-290caf831d8mr427173395ad.40.1761489437072;
+        Sun, 26 Oct 2025 07:37:17 -0700 (PDT)
+Received: from server.lan ([150.230.217.250])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b7128d4d44esm4652691a12.21.2025.10.26.07.37.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 26 Oct 2025 07:37:16 -0700 (PDT)
+From: Coia Prant <coiaprant@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Jonas Karlman <jonas@kwiboo.se>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Coia Prant <coiaprant@gmail.com>
+Subject: [PATCH v3 1/3] dt-bindings: vendor-prefixes: Add NineTripod
+Date: Sun, 26 Oct 2025 22:36:44 +0800
+Message-ID: <20251026143645.917588-2-coiaprant@gmail.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251026-dr1v90-cru-v2-6-43b67acd6ddd@pigmoral.tech>
-References: <20251026-dr1v90-cru-v2-0-43b67acd6ddd@pigmoral.tech>
-In-Reply-To: <20251026-dr1v90-cru-v2-0-43b67acd6ddd@pigmoral.tech>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Junhui Liu <junhui.liu@pigmoral.tech>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761487753; l=759;
- i=junhui.liu@pigmoral.tech; s=20250910; h=from:subject:message-id;
- bh=1yhYT2z87P1zTkyAheEnTR4QxDASI6qps88CMucuwTU=;
- b=TdS7HWegtR9pY8oWt0g25hAlBrXuEHWXMGyRZIbKzINBytUo1whGzqPbQgt4Ai8XjJDTY2qqS
- 1cI3I+6lA5jB7+96U8vbJS7xxVm84Ij6zpbQSwclTnVNF/nFQeWR9qD
-X-Developer-Key: i=junhui.liu@pigmoral.tech; a=ed25519;
- pk=cgATWSU1KfGWmdwNmkPyHGnWgofhqqhE8Vts58wyxe4=
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
 
-Add myself as maintainer of Anlogic DR1V90 SoC drivers.
+Add NineTripod to the vendor prefixes.
 
-Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
+Signed-off-by: Coia Prant <coiaprant@gmail.com>
 ---
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 46126ce2f968e4f9260263f1574ee29f5ff0de1c..f20d6e91cbbaf711532fd752ee39d156408f21fd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1829,6 +1829,13 @@ M:	Jiaxun Yang <jiaxun.yang@flygoat.com>
- S:	Supported
- F:	drivers/rtc/rtc-goldfish.c
- 
-+ANLOGIC DR1V90 SOC DRIVERS
-+M:	Junhui Liu <junhui.liu@pigmoral.tech>
-+L:	linux-riscv@lists.infradead.org
-+S:	Maintained
-+N:	dr1v90
-+K:	dr1v90
-+
- AOA (Apple Onboard Audio) ALSA DRIVER
- M:	Johannes Berg <johannes@sipsolutions.net>
- L:	linuxppc-dev@lists.ozlabs.org
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index f1d188200..37687737e 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1124,6 +1124,8 @@ patternProperties:
+     description: National Instruments
+   "^nicera,.*":
+     description: Nippon Ceramic Co., Ltd.
++  "^ninetripod,.*":
++    description: Shenzhen 9Tripod Innovation and Development CO., LTD.
+   "^nintendo,.*":
+     description: Nintendo
+   "^nlt,.*":
 -- 
-2.51.1
+2.47.3
 
 
