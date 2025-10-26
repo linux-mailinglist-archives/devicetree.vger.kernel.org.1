@@ -1,61 +1,74 @@
-Return-Path: <devicetree+bounces-231108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AE6AC0A6E2
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 13:17:58 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69072C0A706
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 13:29:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DAA83A5DF8
-	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 12:17:57 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0384B34273B
+	for <lists+devicetree@lfdr.de>; Sun, 26 Oct 2025 12:29:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBD357483;
-	Sun, 26 Oct 2025 12:17:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B765243946;
+	Sun, 26 Oct 2025 12:29:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="sspobyoC"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="Id9AfSYA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81D642110
-	for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 12:17:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAE8B215075;
+	Sun, 26 Oct 2025 12:29:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761481075; cv=none; b=GPVyeUpg5A4qMxG9OF21YOAHWDoNrVzbuVC42lJaCP/QkwHUIRF63YEY4ixpQR7lts7c+O4XdVuHJk8jVknOHw1GtbVRk++H5oHn+pHIJYj/hnbKUub/2K4/iwPF+5b+Bb99GyYbtK/eO3eB6Bm6i8YmQ6JdA5tAfKdPJrZlipQ=
+	t=1761481763; cv=none; b=sxYp5RvLwnrJQUeQ7hpYU6zekKS6Z63AQ9HLBPJUNdymk7ddLdoD8UYaRWqbgQE2Nf7rjiQCrSUoN8HgnNitulUnMqsnEyw6SJz8pnVa7vezP9/ewx3ng2knPrO5DjmIUrf8Abmyjdx7PiTPmgxudgSjImAXSCN3qZKgpVKqQmU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761481075; c=relaxed/simple;
-	bh=pHvVW51hUAo2aNW/gQRr/0MjdLTqCw0S3nlYseOuy+s=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YHB33HMkSvrTMTMYv0cmGUsiun5OhQqLhdfSoq0+Vl0q0GI7uG0toqCK3lVYkrgJGWz1HYYAoQY67lm7bzbCMmcwSRts6KkC94t6wQOvu+gF7Kd4ws+BUxXB1Bofz6V7d9QfhDg5hiIbvRIcZ/W2Ll9YqwFgbrukQWR0ie90l0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=sspobyoC; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (82-203-161-16.bb.dnainternet.fi [82.203.161.16])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 89E40AB4;
-	Sun, 26 Oct 2025 13:15:57 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1761480957;
-	bh=pHvVW51hUAo2aNW/gQRr/0MjdLTqCw0S3nlYseOuy+s=;
-	h=From:To:Cc:Subject:Date:From;
-	b=sspobyoCwiECwCsLChzGMnceyt/ZBkjgTq795NxsuiqU436Q32dlAoRnsDk3lXGup
-	 3TwotcpVaEDAwPO5+dDkp0uHAk02WQPCg1Pb5moBX5nJpV8JA9BZkqm8NyZDT0QdOR
-	 sXOw+5zgrGzzDipOaxfxzGGgNvyY6r7i6NMeRdl8=
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Cc: Daniel Scally <dan.scally@ideasonboard.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	s=arc-20240116; t=1761481763; c=relaxed/simple;
+	bh=1CueByyOn2jYWsMAY9FseSTU9JmKPZICHFQbNAZRxW4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pqyn+xZfxmV8+kzfEqZ8FtVATbEpUY/ViZOmwFRnmF7EByVk9ml+oAWvYZsk9w72QYkurpkk9oniUWkb9N4lFjCIwBE/njigCUdx2FtmAMgKiQbbN3xIG207sfRSVafHGQR5T4cVDsBM7QHGxyw4rRFvuoXL45mPm3aocwXJBRM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=Id9AfSYA; arc=none smtp.client-ip=134.0.28.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbulk.masterlogin.de (unknown [192.168.10.85])
+	by mxout4.routing.net (Postfix) with ESMTP id AF8551009AF;
+	Sun, 26 Oct 2025 12:22:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=routing; t=1761481324;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=J+oIT4ZSlvcfRBxWrhMbinuOO7yYO/gbdfjRoPL1coY=;
+	b=Id9AfSYAhE7BUezRgygKn+cTdeMOS9iccD0ng4R2WApmSTYJzCCbI8sBEueLCgAiyhfc/u
+	dYrXxb+B+75Ubd5pw4LPbgDBLXKAasM6sWSf8sJ48OLHS1xU5gBUxbuuhuY+S8rOE3To8t
+	GqlEZnhmeVB57YcfTr0Vj+DtPs1pZOA=
+Received: from frank-u24.. (fttx-pool-217.61.154.70.bambit.de [217.61.154.70])
+	by mxbulk.masterlogin.de (Postfix) with ESMTPSA id 60B4D1226BC;
+	Sun, 26 Oct 2025 12:22:04 +0000 (UTC)
+From: Frank Wunderlich <linux@fw-web.de>
+To: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
 	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>
-Subject: [PATCH] arm64: dts: imx8mp-debix-model-a: Fix ethernet PHY address
-Date: Sun, 26 Oct 2025 14:17:29 +0200
-Message-ID: <20251026121730.13197-1-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.51.0
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+	=?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>,
+	Mason Chang <mason-cw.chang@mediatek.com>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+	Balsam CHIHI <bchihi@baylibre.com>,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v1 0/5] Add MT7987 Thermal support
+Date: Sun, 26 Oct 2025 13:21:29 +0100
+Message-ID: <20251026122143.71100-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,36 +77,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The RTL8211E ethernet PHY on the Debix Model A board it located at
-address 1. Replace the broadcast address with the correct unicast
-address.
+From: Frank Wunderlich <frank-w@public-files.de>
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+This series adds Thermal support for MT7987.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-index af02af9e5334..9422beee30b2 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-@@ -96,9 +96,9 @@ mdio {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
--		ethphy0: ethernet-phy@0 { /* RTL8211E */
-+		ethphy0: ethernet-phy@1 { /* RTL8211E */
- 			compatible = "ethernet-phy-ieee802.3-c22";
--			reg = <0>;
-+			reg = <1>;
- 			reset-gpios = <&gpio4 18 GPIO_ACTIVE_LOW>;
- 			reset-assert-us = <20>;
- 			reset-deassert-us = <200000>;
+Frank Wunderlich (5):
+  dt-bindings: thermal: mediatek: make interrupt only required for
+    current SoCs
+  dt-bindings: thermal: mediatek: Add LVTS thermal controller definition
+    for MT7987
+  thermal/drivers/mediatek/lvts_thermal: Add no-irq-mode for mt7987
+  thermal/drivers/mediatek/lvts_thermal: Add SoC based golden Temp
+  thermal/drivers/mediatek/lvts_thermal: Add mt7987 support
 
-base-commit: 211ddde0823f1442e4ad052a2f30f050145ccada
+ .../thermal/mediatek,lvts-thermal.yaml        |  18 +++-
+ drivers/thermal/mediatek/lvts_thermal.c       | 102 ++++++++++++++++--
+ .../thermal/mediatek,lvts-thermal.h           |   3 +
+ 3 files changed, 111 insertions(+), 12 deletions(-)
+
 -- 
-Regards,
-
-Laurent Pinchart
+2.43.0
 
 
