@@ -1,108 +1,138 @@
-Return-Path: <devicetree+bounces-231746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88CB6C1147B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 20:56:08 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A651C114F8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 21:08:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C343464EAB
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:54:30 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E667B4E55BF
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 20:02:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A77C2DF142;
-	Mon, 27 Oct 2025 19:54:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E26D31D75C;
+	Mon, 27 Oct 2025 20:02:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="C0xNo0EF"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="s+Er8bD0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-182.mta1.migadu.com (out-182.mta1.migadu.com [95.215.58.182])
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 095904A00;
-	Mon, 27 Oct 2025 19:54:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01CFB2D63F6;
+	Mon, 27 Oct 2025 20:02:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761594868; cv=none; b=Ph4U0ghei7TUK9K76ey/qrMKpjIhFY+XJP6zK4dIc+3+rP50tz8mhrq1epTI439iI3gYNBZlIBpb6XD+glLYpUm55YvZO1O8l6PRe1IEejwWghPSqsq1rLDXQ+Al+XAWyOFbAOKjYY6WprUKIHMSsZTwsDqE2eC09f2Br/04YuY=
+	t=1761595356; cv=none; b=QnQuCcqWTty5amxx81FF8a0VQA5TzppVFCV1Km470VUKSeLq9tTxpGOKUeztMhYgfHOje+6at9hgqh9LNR1ZYTvljCQ8hqi1LbMt2n3B+tO8931Lc05z6peMwTwnsd9F0oMbYPAl45DERKMHh31zjcH+GREOLb73HkKCppENOBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761594868; c=relaxed/simple;
-	bh=aANp8IgX/V1m/qB1pC709/vz2urAZp9zw10ocMsy0/I=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=VMnpxtiH+bohkb0+YWtIfIWCOE8jSEq7q/SRBgaMI3eqc5MQb3k2cHbbpcjfGJ0Kev4itIx3Nlh3E0CKheadbd4PwcAfh7unEbXeDQtzjeYgGzsmooRkJwwd2Z/+2D6uqZnBJZ8FB34hXP6/HY7Q9JUmhII11cdt6HhPfAxMyg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=C0xNo0EF; arc=none smtp.client-ip=95.215.58.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow-tech.com
+	s=arc-20240116; t=1761595356; c=relaxed/simple;
+	bh=uZM06T+w1ikMeWwyZNy/+H/hwOfViLTy9qKNMRqlBMI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nKRxSmIg7znB4noSmv3O1c85oVgy05xKCokzgLQFQLUjLxvxXNJ85mJT05NfLrtYo4Ijb/tHo4jlweAJvWnu7ox0aXUZfhfmb1YLncCfOLGlufK1rNDgdm5q6OAozDaDpvXaoIibORUtVlobzPgjCH43I2161d5HQRGDZZgo514=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=s+Er8bD0; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1B47740467;
+	Mon, 27 Oct 2025 21:02:28 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1761595351; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=Wlz4c6idBHgoakGdogx07IHOxQ08Zrz28QTnBsOB96g=;
+	b=s+Er8bD00Vh0zoFn1jyeFeDozj4hRXhzbJySMH1fBS4fpcF+R/hRSjBYDDQ8A418n6f5d7
+	UAbllmRWq1YZfRBjDizPOfTxF0c2uzyacC/4PRUSFDWoEoiDPmOxE9ygOBGyxPobAx4EPS
+	M0vaQFwmPcvidS6cWLk6Q4oejdCPxbepVGNkEVfgJfLDbFeejOP6lnPVV/w9B/M7xxFqfV
+	Tbq1Qt0++TTEniW4WEj5A8ZtFnVJvdhhYO8yLaqLQZ8X8MztfasawpW6h8a9bGp4tCrvoe
+	EMdi9kYJZVQ7CMhGn8LuGGANIr1yaiokCBht15DHYQRrkaaRRd8aV0xxNXCM3w==
+From: Dragan Simic <dsimic@manjaro.org>
+To: sigmaris@gmail.com
+Cc: alchark@gmail.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	robh@kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: pwm-fan overlay for NanoPC-T6
+Date: Mon, 27 Oct 2025 21:02:13 +0100
+Message-Id: <20251027200213.1821809-1-dsimic@manjaro.org>
+X-Mailer: git-send-email 2.33.1
+In-Reply-To: <d583ee43-38c4-40fb-b33b-ce3153c9723b@gmail.com>
+References: <d583ee43-38c4-40fb-b33b-ce3153c9723b@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
-	s=key1; t=1761594862;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=mJGBCui9T7s9JULkvZa2s1Wi4QfFt1yczMpraKYJAME=;
-	b=C0xNo0EFD6UEQdlWe0ijdWjenik7ULzrIRTSe20MEiLs+pXDBzYjh2kgjj67gd8uIBZUXj
-	Z0bFrzY7O7rChk/7aI2P3bdi1GmBIVG+36rn78DBrnu3Wp5R0NAJWGLoVEQuJDlUHhAK0k
-	3FJu7W02FH2rDhWcwdKYAaSo+PQSW/7kJGYySM3mDexxDPxKhDWfVHXjHYy5zy5xHVlFN0
-	EulFcXVM23+s800M7vtbRCg/y6WZMaoVXYJE4JNO/F3/95QrcPLT2BbBmvL8YF+3YOo7fM
-	CjxYhkgu7N7BoxtEk7JN+QUpBw2ei2u1FUp1Ncx3Ijprz/3Kjo9xh3DyuhR6WQ==
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Date: Mon, 27 Oct 2025 20:54:17 +0100
-Message-Id: <DDTD9DGY2LEK.1XF49J28I22SZ@cknow-tech.com>
-Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- "Dragan Simic" <dsimic@manjaro.org>, "Johan Jonker" <jbx6244@gmail.com>,
- "Jonas Karlman" <jonas@kwiboo.se>
-Subject: Re: [PATCH] arm64: dts: rockchip: Harmonize regulator formatting
- for Pine64 rk3566 devices
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <diederik@cknow-tech.com>
-To: "Heiko Stuebner" <heiko@sntech.de>, "Diederik de Haas"
- <diederik@cknow-tech.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>
-References: <20251026153805.107774-1-diederik@cknow-tech.com>
- <DDSFVM1TXN8C.3JNX2M8XX04IF@cknow-tech.com> <5054965.31r3eYUQgx@phil>
-In-Reply-To: <5054965.31r3eYUQgx@phil>
-X-Migadu-Flow: FLOW_OUT
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Heiko (and Dragan and Jonas),
+Hello Hugh and Alexey,
 
-On Mon Oct 27, 2025 at 5:46 PM CET, Heiko Stuebner wrote:
-> Am Sonntag, 26. Oktober 2025, 18:44:42 Mitteleurop=C3=A4ische Normalzeit =
-schrieb Diederik de Haas:
->> On Sun Oct 26, 2025 at 4:37 PM CET, Diederik de Haas wrote:
->> > The regulator node properties in Pine64 rk3566 devices were formatted
->> > rather inconsistently. To name a few:
->> >
->> > So harmonize the formatting by making all properties sorted
->> > alphabetically/naturally. And harmonize the formatting of the
->> > 'state-mem' nodes so they all have a preceding blank line. While at it=
-,
->> > also fix 2 incorrectly indented nodes.
+On Mon, Oct 27, 2025 at 7:08 PM Hugh Cole-Baker <sigmaris@gmail.com> wrote:
+> On 27/10/2025 09:14, Alexey Charkov wrote:
 >
-> Originally, I always liked regulator-name to be on top, identifying
-> the regulator, similar to how compatible works.
+>> Is there any downside to enabling this unconditionally in the board
+>> .dts?
+>
+> Only that it goes against the principle that the DT should describe the
+> hardware; the board .dts would describe a cooling device that doesn't
+> actually exist on the base board.
 
-That makes a lot of sense to me and I had actually thought about doing
-that. But I didn't have a justification for it, while referring to the
-DTS style guide is a justification. My annoyance was with the
-inconsistency, so consistently putting 'name' on top would be fine too.
+Having a separate DT overlay is perfectly fine if we want to
+describe a board absolutely correctly: if the fan actually isn't
+present, the operating system shouldn't be made to think it is
+there, especially if there's no fan RPM feedback, which is the
+case on almost all Rockchip boards that support a fan.
 
-> The other issue with moving stuff around is, that it makes it harder
-> to follow git history, because git blame then reports the sort-commit.
+Preventing the kernel from managing a non-existent fan might even
+save some CPU cycles, ending up producing a bit less heat, which
+can only help in passively cooled setups.
 
-Then it's not worth it ...
+However, the practice so far has been to describe the fans in the
+main board dts files, if the board provides fan support, regardless
+of the fan being present in a particular board setup or not.
 
-> I guess it is ok for individual files, someone does take care of,
-> like Diederik for the Pinetab, but please don't start resorting all the
-> existing devicetrees :-) .
+> I guess then in theory, an OS might allow the SoC to reach undesirably high
+> temperatures if it's relying on the nonexistent fan to cool it down. But I
+> don't think this would be an issue on Linux, at least, in practice.
 
-... and I'll file it under PEBKAC.
+We're safe, a thermal runaway isn't going to happen when the fan is
+defined in a board DT but actually isn't present.  Thermal CPU and
+GPU throttling will prevent the overheating from happening.
 
-Cheers,
-  Diederik
+>> Overlays require more user configuration, and not all
+>> bootloaders support them directly (e.g. systemd-boot users would
+>> struggle). Compiling with overlays enabled also makes .dtb's a lot
+>> larger due to added symbols information.
+>
+> Nowadays (on Debian at least) using overlays is pretty easy, I'm using the
+> u-boot-menu package in Debian, I just copy the overlay(s) to /boot/dtbo/ and
+> it detects them automatically and adds them to extlinux.conf for u-boot to
+> apply.
+>
+> Couldn't systemd-boot users just use rk3588-nanopc-t6-(lts-)with-fan.dtb as
+> their single DT to load, if it doesn't support applying overlays and they
+> want to use the fan addon?
+
+Yes, that's an option.  However, that in general doesn't resolve
+the issues arising from systemd-boot users wanting to apply more
+than a single DT overlay.
+
+> FWIW, I haven't noticed any problems with having a larger .dtb (using mainline
+> U-Boot to load it) and several other RK3588 boards are also compiled with
+> symbols enabled already, and I haven't seen any issues reported with them.
+
+After thinking a bit about it, I'd support the extraction of fan
+definitions into separate DT overlays.  As I wrote above already,
+not managing the non-existent fan might actually help a bit with
+passively cooled board setups, which is a good enough reason for
+me to support separate DT overlays.
+
+If we end up agreeing to accept this DT overlay, I'll have some
+comments on the way cooling maps are defined.  I think there's
+quite a bit of redundancy there.
+
 
