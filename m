@@ -1,89 +1,96 @@
-Return-Path: <devicetree+bounces-231552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADBD8C0E2D6
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:53:07 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E586C0E2FC
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:55:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2579E46015E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:45:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 536064F4D54
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:49:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F8931D63F7;
-	Mon, 27 Oct 2025 13:45:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D86D3009CB;
+	Mon, 27 Oct 2025 13:48:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cJThxuyr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gbT/n8VM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B5C1C3F0C;
-	Mon, 27 Oct 2025 13:45:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 192352F6912;
+	Mon, 27 Oct 2025 13:48:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761572717; cv=none; b=XehqhsFtRW6FgoAfndxYaNgM2Luqowly0FVXxw5R27/A3Y0eWre3EIyHEi8Vap/MRjvKYXnKIUTObkaMyn2a5bDk0tNW669DJ0z7Bd5lF6LVRe74cQpFgGGgQKQWTtbW/PbqmazaXxOaPxMytrIqWt9ioblI2nOB2/ta4DG5UUw=
+	t=1761572926; cv=none; b=PpeCOUcvtHTo79LIDNixambwAQFVw3riJxney17jKzpFnr7r7tuWLNzJ7alnrm19UgsYmaqTOCU371dVcI2DppLZ5MRNVyS9pgUuxBHOOarv92AasPgSZZV1R+MMwY+l9shDU5gKK/sEZAqqjz4d3fC9GzvDkmvcSBinw7PIWrk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761572717; c=relaxed/simple;
-	bh=ZefZPxlvHHfA6SOviuZmeM9TORsIaavGiKKEyD0zNuI=;
+	s=arc-20240116; t=1761572926; c=relaxed/simple;
+	bh=bKodtt7Hjm2rW+pJ5rAyiEVO0GiiJmbH9W91QtsBm4E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rnjQFFxIVhK2Y0lT6EltjGpQViBrVKOm3HQso8spDRac44YvYacFY7/lNo4fK0fmgrE8piUs4QQqrdCOXTXf7q42S2M3ZvIl+tqBsi+QVVbPdIwkSKLIP3x4ZYIS0gugGNDlDeWrreeaKDUjQH/17KSE7yekEhFAa42NjDNCkpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cJThxuyr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B522FC4CEF1;
-	Mon, 27 Oct 2025 13:45:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=s1rWZWDiPsWrYP9NFyNE7ufiPhQ5iDQbELylgc1LtXldV/P5/kSdv7DIx8e3r+/09laXPK2JpEEwJEdMtKtRNxTYIMQ5F21lCQ4KMyjw6pusRf0whpBHnkS5Wa+jUJINbB1hxvZeRgwr4e6oMRlukU2ht++fsY1mpIw6hUpOP48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gbT/n8VM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E155C4CEF1;
+	Mon, 27 Oct 2025 13:48:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761572717;
-	bh=ZefZPxlvHHfA6SOviuZmeM9TORsIaavGiKKEyD0zNuI=;
+	s=k20201202; t=1761572925;
+	bh=bKodtt7Hjm2rW+pJ5rAyiEVO0GiiJmbH9W91QtsBm4E=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cJThxuyrAA6NnVbZ04OMCGBpbWHSlbyxpJqw9Sa8rkJYd1AYcw6/QWzpOc0JjArbO
-	 s5GfSW284I8/uE5fiJ723z4w9WGvBFb+bfBNlCh9jajzNKEKVTmn1FlUEV5ibcHH6X
-	 y77aSNyM+6UktDaB8bXpml1X+KvpIfM5/we7+jJnCWhR60V54ngwY3bM5fz1mmrq64
-	 wIQJaJ8x7OhN/pMTnL+r8bQdEYAvOhT5r9CccpMcwqp8TfV4w8klptH0LEryijwVrh
-	 0TSVdCq0bsZ05Uf5nLUD21kUOEtDUlfPCW2qrgaqL2wZx3JzNrT9d8m0a/Stx+RDWi
-	 YZ9b/NonygKnQ==
-Date: Mon, 27 Oct 2025 08:45:14 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Charan Pedumuru <charan.pedumuru@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Abraham I <kishon@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: mmc: ti,da830-mmc: convert to DT schema
-Message-ID: <176157271074.266503.15503173472867753188.robh@kernel.org>
-References: <20251023-davinci-mmc-v3-1-5b27b9c9ecc4@gmail.com>
+	b=gbT/n8VMkqnhuDh1CLKL9D+ZHrpTxzqwzmWJ13v3b1eR2RO2IiIHGWfFHTgZQ8L5g
+	 5uMlwPZ3DLwHhWjQenNgDxlNo3ETU8FJ7VaWoodRpWHQfXXyM8WqtMkGUz+Rf6tiVq
+	 YRL6x0XveiGat6QFArCntzoZnNWrWyPxcPhUtjwfhdOGYrqlq4emBJFzFgDwkW2Ls2
+	 AM1JCwmZMDYaTMBaOjMr03IZD6fd4EACQoYamaGoavlDPlbYwk0f1iZU+U7MJyOTvf
+	 KzmExsMlLuyzkXYfvJcYqFiMTZsLhF+/NoXx8ivdQNF5RwoaP2uRhDns0Rs7Eavnuz
+	 b0TXbOTKYf4eg==
+Date: Mon, 27 Oct 2025 08:48:42 -0500
+From: Rob Herring <robh@kernel.org>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>,
+	Eric Chanudet <echanude@redhat.com>,
+	Radu Rendec <rrendec@redhat.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] of: Make the number of reserved memory regions
+ configurable
+Message-ID: <20251027134842.GA274032-robh@kernel.org>
+References: <20251023-of-max-reserved-mem-v1-1-cfecc7a2150f@kernel.org>
+ <CAL_JsqKtGMk8JQJR37i73CMnqtdoZddNpnoVhmyE4w1qUXnRhg@mail.gmail.com>
+ <6moxms5mnvjgvfxie4zoewdvq4bbmg56hmtpohdxwujdqydxqg@r2x2rvrpjh6g>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251023-davinci-mmc-v3-1-5b27b9c9ecc4@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6moxms5mnvjgvfxie4zoewdvq4bbmg56hmtpohdxwujdqydxqg@r2x2rvrpjh6g>
 
-
-On Thu, 23 Oct 2025 13:19:43 +0000, Charan Pedumuru wrote:
-> Convert TI Highspeed MMC host controller binding to YAML format. Define
-> 'clocks' and 'interrupts' properties to resolve errors identified by
-> 'dt_check' and 'dtb_check'.
+On Mon, Oct 27, 2025 at 11:02:39AM +0100, Maxime Ripard wrote:
+> Hi Rob,
 > 
-> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
-> ---
-> Changes in v3:
-> - Change the maintainer for the binding to "Kishon Vijay Abraham I".
-> - Link to v2: https://lore.kernel.org/r/20251011-davinci-mmc-v2-1-355da3e25123@gmail.com
+> Thanks for your answer!
 > 
-> Changes in v2:
-> - Modified the commit message.
-> - Removed 'interrupts' from required properties following the old binding.
-> - Changed the maintainer for the binding to "Conor Dooley".
-> - Link to v1: https://lore.kernel.org/r/20250523-davinci-mmc-v1-1-ceebd8352d9c@gmail.com
-> ---
->  .../devicetree/bindings/mmc/davinci_mmc.txt        | 32 ------------
->  .../devicetree/bindings/mmc/ti,da830-mmc.yaml      | 61 ++++++++++++++++++++++
->  2 files changed, 61 insertions(+), 32 deletions(-)
+> On Fri, Oct 24, 2025 at 07:57:06AM -0500, Rob Herring wrote:
+> > On Thu, Oct 23, 2025 at 10:35 AM Maxime Ripard <mripard@kernel.org> wrote:
+> > >
+> > > Some platforms register more reserved memory regions than the current
+> > > hardcoded limit of 64.
+> > 
+> > I've already NAKed a kconfig option for this before.
+> > 
+> > The limit is now 64 dynamic regions, not total. The static regions are
+> > unlimited. What platform needs so many regions and to abuse
+> > /reserved-memory like this?
 > 
+> I'm sorry, I totally missed both that you nacked it and that it got
+> fixed recently. We're still seeing the issue with 6.12, but it looks like
+> 
+> https://lore.kernel.org/all/20241008220624.551309-1-quic_obabatun@quicinc.com/
+> 
+> Is the series you were talking about?
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Yes. Plus some fixes on top of that. Every time this code is touched, we 
+break someone...
 
+Rob
 
