@@ -1,40 +1,81 @@
-Return-Path: <devicetree+bounces-231360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F177AC0CA0E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:23:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAB03C0CA35
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:25:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AB5E3A7409
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 09:18:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DEE64020E0
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 09:19:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 704A62ED164;
-	Mon, 27 Oct 2025 09:17:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8E362E92D6;
+	Mon, 27 Oct 2025 09:18:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lKBtpHeS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 212D42E5B08;
-	Mon, 27 Oct 2025 09:17:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDCC72E0925
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 09:18:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761556671; cv=none; b=b4zkIuf/SWyR6Y2Hy8bnvAERbn87uJe5YPTvUwTg39st8mWaFZkvWOil2ptkt12wEckbdMLlz2fBOIyz5mN5pFFuzIooWYYpYYvJOnulx/FvlV9PmZGIRNFvKamh5z52RtbJS4P4vPAhg/Nt3yuUfx0+KsW7G7bqBueyG26+rzQ=
+	t=1761556726; cv=none; b=chVqxGBibgH5m3BZ8RTwApJb8Fvx8xV5JUmbiSrrHJS4P2RIt8sA3OYzAKbSNxc3NUkt2kvOAvJ20PnCMjeFXJwlOp/bElogs3w5JqrvSwr0n9113IV8UK5KoL8pfn496wdVhu968YHYW/IRiNMpoO86iX9WM9Mn3YqLwQmMAK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761556671; c=relaxed/simple;
-	bh=Ji4Uwjn20gTBKi5wEvNP5QqkXuIJtkJ0QnbDWWDd1mk=;
+	s=arc-20240116; t=1761556726; c=relaxed/simple;
+	bh=972xpLQZ1Idvecugjld0H2BGGw0dX/CAAm84925bfh8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rVKfFqNmi5iHi3RbogtyHFtHAUfXfBrCymfsFWwLDIDdMjb4nPeoZeDCPsn7kqkXQIOZfziCx7SZv4+xZ0Sgn/02AK5Qed2/vO92Fp0q6b8AggiAd9aTC7kKZXXEQKRK5yHkDIicdbTlLjYkt8jXcpx0v7wOJITbbARdWiIs+H0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 75B5D1764;
-	Mon, 27 Oct 2025 02:17:40 -0700 (PDT)
-Received: from [10.57.67.85] (unknown [10.57.67.85])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 669873F673;
-	Mon, 27 Oct 2025 02:17:45 -0700 (PDT)
-Message-ID: <7386e009-2d53-4a0b-8c83-a84f51b4b79a@arm.com>
-Date: Mon, 27 Oct 2025 09:17:43 +0000
+	 In-Reply-To:Content-Type; b=nFXrm02cAdb9rKg4AFUJfrnkoksjGZ92lz5vrzJjOXzxIbxyBJB+jbVelwVVmhYpwFiqVFOq4RwxXOsNOxF291vwFNdcWI0BcQEPzTqXsCVxzP2YgdDAwsSTrdpzwfBwoADd7ivkqaHdNaUgXOgeGLiW3WsJEsH8AdJLiOwkBP4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lKBtpHeS; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-63c4b5a1b70so8358277a12.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 02:18:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761556722; x=1762161522; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ehs8czoQPjVKOHqW4ZFLgwuoXf6oH7SJucxSNVSnhpo=;
+        b=lKBtpHeSd4afG0+2ZVWJoXWqMzG90jMpjLmDlAhy+T5m897si62S2zDEtjk/zFqiIW
+         kHV4xL8RUT2nomLx4OQu3RofiQQM2Jc7Hby8tUbC5el4jTxlP4Quh/jm8RPv4kuWgiTc
+         pk/U7f9t52gxRBLu2WouM3yyU0cO3qjVKrbw236akXyRsUGFAM5Ec/Vp/Bckh0lBDPpL
+         JRH/+ZaPS6smYDO3iq5TvwBLTmClE2OVyBj8hfQj7k/Z8wa3cu6y9jQCXLXcfZo2pgZD
+         L4FvUQP80yhfOOF36KiBE/6TOP5cS+fres7LTMw8FnM74+03YlcwMnNVQO38smQ+SBKA
+         D9uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761556722; x=1762161522;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ehs8czoQPjVKOHqW4ZFLgwuoXf6oH7SJucxSNVSnhpo=;
+        b=GV1qquoJwPXikIV+tgb67JLByP6eLgp2onJV3BZIS7BwxaJlP6xtysrfCzbI0Gg6NA
+         JWNhXpiEp+J5UWUo1FjkiZ6xGy+NN2FeGJXTVJjuAkROPq2ClaDQ8c5KfXCdBdfqmR9b
+         oiUaHXpmXthvGgd7gGZNUPsbWC6u8/1qi1f0r0cZkXwhdQoLSwEo+jyZ0miqcS9a4w+D
+         83hWyiHA2ZGcunBjmfjRUlgDk+EUB1HSSWB6cepkiX/pg1J710d5FfE2yYJdGaJ+8Vzv
+         /sU7Uz2Fxv6X4pLQNtN4XdjwJtMf30CxGR3C2FsuAhXzkP2Nagfe2eB8z7NuwAHNe1af
+         cu6A==
+X-Forwarded-Encrypted: i=1; AJvYcCWiUKWubXXYW2xfeN4P6nRkOBUkQqXpZYVVSdgo0/MX3bACpcZfarB/LRW7lVsB00CTDtdGEDKBP6Zr@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHMtH6TaPV38wan9sUlS3RUJFxZCkHOgFKfWMPXp+9Xx3D+8Z0
+	Kpemg17Sbl/AN1I9CGbDfTOJ86YqIAAY4StFz51TcQ6UF4nBreH0Qpd6
+X-Gm-Gg: ASbGncs6FFuO9OIqWUMMXORh6c5bixRbziYryc2S1hTJRBja0YUgow0LFI7dRJ95j2a
+	8RYO8bXdvHKfdbf5yUFNW36898fKhBAedRPB+qBBqQTYmXIeaTiW/+TsB1SpJuk86XiJcmdOulh
+	0L829US3F7SjmfdihXwqxRTimnz0kLT4abSUF04GcNOp2Jt2liw1vMwPty/6lHCClk/KnVZeJpL
+	iqQTIIkcVyd5lIHKRcumUPCoOLmjc9/JcFrOsTEVchjnThALiWRjiyAkuCoXosEG23hbV3lMlg7
+	Sfsm5SZsQnHuE4PciYj4x/098HvYlPCkpKyBh6/oOLhEtRnhwCuMKSlE2QMri2pvUfD8zCMnlRY
+	23qiwf5oAnTbs0ONegg9PqAbFkvpyxvPxgwfLdeNuKZ4GKgdDfoOkw8jq5D/Myhw0xWMyOABZBQ
+	ZPjAssDlulU57SCEAWpylA0sIxD9H7gX9JJu5KeHLiChtu32y1vtASs8CiHbR7FOxS7Ld5
+X-Google-Smtp-Source: AGHT+IESiBzo8z/tHlQ7I5VEkOfigXvoHYj6wHPdrwNr6qgyel91D2wbArQpcNK3kTl+H1frH3DoZA==
+X-Received: by 2002:a05:6402:34c5:b0:63c:1e15:b9fb with SMTP id 4fb4d7f45d1cf-63c1f6b4d28mr36374925a12.22.1761556721921;
+        Mon, 27 Oct 2025 02:18:41 -0700 (PDT)
+Received: from [10.0.1.60] (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63e7ef95e81sm5781449a12.21.2025.10.27.02.18.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Oct 2025 02:18:41 -0700 (PDT)
+Message-ID: <e60ec752-df05-4ad8-bc18-2ad68a6d745e@gmail.com>
+Date: Mon, 27 Oct 2025 10:18:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,334 +83,146 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] coresight: tpdm: add static tpdm support
-Content-Language: en-GB
-To: Jie Gan <jie.gan@oss.qualcomm.com>, Mike Leach <mike.leach@linaro.org>,
- James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
- Mao Jinlong <jinlong.mao@oss.qualcomm.com>,
- Tao Zhang <tao.zhang@oss.qualcomm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251013-add-static-tpdm-support-v3-0-a720b73e83db@oss.qualcomm.com>
- <20251013-add-static-tpdm-support-v3-2-a720b73e83db@oss.qualcomm.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20251013-add-static-tpdm-support-v3-2-a720b73e83db@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ Daniel Scally <dan.scally@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Stefan Klug <stefan.klug@ideasonboard.com>,
+ Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>,
+ Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
+ <e87ff7f2-d16f-41f2-b781-b175cfb84b21@lunn.ch>
+ <20251027072749.GA7811@pendragon.ideasonboard.com>
+ <341f56de-9dde-4c44-9542-b523e1917dcb@gmail.com>
+ <aP80y6hQmCnxDoeC@shell.armlinux.org.uk>
+Content-Language: en-US
+From: Emanuele Ghidoli <ghidoliemanuele@gmail.com>
+In-Reply-To: <aP80y6hQmCnxDoeC@shell.armlinux.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 13/10/2025 07:11, Jie Gan wrote:
-> The static TPDM function as a dummy source, however, it is essential
-> to enable the port connected to the TPDA and configure the element size.
-> Without this, the TPDA cannot correctly receive trace data from the
-> static TPDM. Since the static TPDM does not require MMIO mapping to
-> access its registers, a clock controller is not mandatory for its
-> operation.
+
+
+On 27/10/2025 10:00, Russell King (Oracle) wrote:
+> On Mon, Oct 27, 2025 at 09:47:53AM +0100, Emanuele Ghidoli wrote:
+>> On 27/10/2025 08:27, Laurent Pinchart wrote:
+>>> Hi Andrew,
+>>>
+>>> Thank you for your quick reply.
+>>>
+>>> On Mon, Oct 27, 2025 at 04:08:42AM +0100, Andrew Lunn wrote:
+>>>> Adding Russell King
+>>>>
+>>>> On Sun, Oct 26, 2025 at 02:29:04PM +0200, Laurent Pinchart wrote:
+>>>>> Energy Efficient Ethernet (EEE) is broken at least for 1000T on the EQOS
+>>>>> (DWMAC) interface. When connected to an EEE-enabled peer, the ethernet
+>>>>> devices produces an interrupts storm. Disable EEE support to fix it.
+>>>>>
+>>>>> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>>>>> ---
+>>>>> The exact reason for the interrupt storm is unknown, and my attempts to
+>>>>> diagnose it was hindered by my lack of expertise with DWMAC. As far as I
+>>>>> understand, the DWMAC implements EEE support, and so does the RTL8211E
+>>>>> PHY according to its datasheet.
+>>>>
+>>>> I believe for DWMAC it is a synthesis option. However, there is a bit
+>>>> indicating if the hardware supports it.
+>>>>
+>>>> The PHY should not be able to trigger an interrupt storm in the
+>>>> MAC. So this is likely to be an DWMAC issue.
+>>>>
+>>>> Which interrupt bit is causing the storm?
+>>>
+>>> That's where I hit my first wall :-)
+>>>
+>>> I've tried to diagnose the issue by adding interrupt counters to
+>>> dwmac4_irq_status(), counting interrupts for each bit of GMAC_INT_STATUS
+>>> (0x00b0). Bit RGSMIIIS (0) is the only one that seems linked to the
+>>> interrupts storm, increasing at around 10k per second. However, the
+>>> corresponding bit in GMAC_INT_EN (0x00b4) is *not* set.
+>>>
+>>> The ENET_EQOS interrupt on the i.MX8MP is an OR'ed signal that combines
+>>> four interrupt sources:
+>>>
+>>> - ENET QOS TSN LPI RX exit Interrupt
+>>> - ENET QOS TSN Host System Interrupt
+>>> - ENET QOS TSN Host System RX Channel Interrupts
+>>> - ENET QOS TSN Host System TX Channel Interrupts
+>>>
+>>> The last two interrupt sources are themselves local OR of channels[4:0].
+>>>
+>>> I ould suspect that the LPI RX exit interrupt is the one that fires
+>>> constantly given its name, but I'm not sure how to test that.
+>>>
+>>>>> What each side does exactly is unknown
+>>>>> to me. One theory I've heard to explain the issue is that the two
+>>>>> implementations conflict. There is no register in the RTL8211E PHY to
+>>>>> disable EEE on the PHY side while still advertising its support to the
+>>>>> peer and relying on the implementation in the DWMAC (if this even makes
+>>>>> sense)
+>>>>
+>>>> It does not make sense. EEE is split into two major parts. The two
+>>>> PHYs communicate with each other to negotiate the feature, if both
+>>>> ends support it and both ends want to use it. The result of this
+>>>> negotiation is then passed to the MACs.
+>>>>
+>>>> It is then the MAC who decides when to send a Low Power Indication to
+>>>> the PHY to tell the PHY to enter low power mode. The MAC also wakes
+>>>> the PHY when it has packets to send.
+>>>>
+>>>> A quick look at the data sheet for the RTL8211E suggests this is what
+>>>> is supports.
+>>>>
+>>>> There are a few PHYs which implement SmartEEE, or some other similar
+>>>> name. They operate differently, the PHY does it all, and the MAC is
+>>>> not even aware EEE is happening. Such PHYs should really only be
+>>>> paired with MACs which do not support EEE. An EEE capable MAC paired
+>>>> with a SmartEEE PHY could have problems, but hopefully the EEE
+>>>> abilities and negotiation registers in the PHY would be sufficient to
+>>>> dissuade the MAC from doing EEE. But i would not expect a setup like
+>>>> this to trigger an interrupt storm.
+>>>
+>>> Thanks for the explanation, I read documents to try and figure out how
+>>> it worked and didn't find such a clear and concise high-level summary.
+>>>
+>>> I'm not very experienced with ethernet, but I can easily test patches or
+>>> even rough ideas on hardware.
+>>>
+>>
+>> Hi Laurent,
+>> I had the same problem, interrupt storm plus link instability with dwmac.
 > 
-> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
-> ---
->   drivers/hwtracing/coresight/coresight-tpda.c |   9 ++
->   drivers/hwtracing/coresight/coresight-tpdm.c | 148 +++++++++++++++++++++------
->   drivers/hwtracing/coresight/coresight-tpdm.h |   8 ++
->   3 files changed, 131 insertions(+), 34 deletions(-)
+> You never said that in your patch description. You said "it causes
+> link instability and communication failures." Have you investigated
+> what the cause of the interrupt storm is?
 > 
-> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c b/drivers/hwtracing/coresight/coresight-tpda.c
-> index 333b3cb23685..4e93fa5bace4 100644
-> --- a/drivers/hwtracing/coresight/coresight-tpda.c
-> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
-> @@ -68,6 +68,15 @@ static int tpdm_read_element_size(struct tpda_drvdata *drvdata,
->   	int rc = -EINVAL;
->   	struct tpdm_drvdata *tpdm_data = dev_get_drvdata(csdev->dev.parent);
->   
-> +	if (coresight_is_static_tpdm(csdev)) {
-> +		rc = fwnode_property_read_u32(dev_fwnode(csdev->dev.parent),
-> +					      "qcom,dsb-element-bits", &drvdata->dsb_esize);
-> +		rc &= fwnode_property_read_u32(dev_fwnode(csdev->dev.parent),
-> +					       "qcom,cmb-element-bits", &drvdata->cmb_esize);
-> +
+>> I found out that 2c81f3357136 ("net: stmmac: convert to phylink PCS support")
+>> commit is the one causing the problem to me.
+The correct commit is 4218647d4556 (“net: stmmac: convert to phylink managed
+EEE support”).>
+> You claim this commit enables EEE by default. It does. However, stmmac
+> _before_ this commit enables EEE by default as I've already explained,
+> quoting the old code which effects this. I've asked you to test
+> further. So far, I've heard nothing back.
+> 
+> What has changed is that we no longer do anything with the RGSMIIS
+> status, and in theory keep the mask/enable for this disabled. Howeer,
+> that is a subsequent commit.
+> 
+Hi Russell,
 
-This doesn't match the "dynamic" tpdm case ? We mandate that static
-TPDMs have DSB and CMB. I would rather set the appropriate flags in
-
-tpdm_drvdata->dsb/cmb in the TPDM driver for static tpdms and not
-let the "static" vs "dynamic" creep into the TPDA and other users.
-
-e.g., in TPDM driver:
-
-if (static_tpdm()) {
-   tpdm_data->dsb = has_dsb_element_bits_property;
-   tpdm_data->cmb = has_cmb_element_bits_property;
-}
+Sorry, I made a copy-and-paste mistake earlier.
 
 
-> +		goto out;
-> +	}
-> +
->   	if (tpdm_data->dsb) {
->   		rc = fwnode_property_read_u32(dev_fwnode(csdev->dev.parent),
->   				"qcom,dsb-element-bits", &drvdata->dsb_esize);
-> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
-> index 7214e65097ec..1766b0182819 100644
-> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
-> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
-> @@ -495,7 +495,9 @@ static int tpdm_enable(struct coresight_device *csdev, struct perf_event *event,
->   		return -EBUSY;
->   	}
->   
-> -	__tpdm_enable(drvdata);
-> +	if (!coresight_is_static_tpdm(csdev))
-> +		__tpdm_enable(drvdata);
-> +
->   	drvdata->enable = true;
->   	spin_unlock(&drvdata->spinlock);
->   
-> @@ -551,7 +553,9 @@ static void tpdm_disable(struct coresight_device *csdev,
->   		return;
->   	}
->   
-> -	__tpdm_disable(drvdata);
-> +	if (!coresight_is_static_tpdm(csdev))
-> +		__tpdm_disable(drvdata);
+I identified it through a bisect, and reverting this commit (or disabling EEE)
+resolves the issue I’m seeing.
 
-minor nit: It is much safer to do this check in __tpdm_xxable() and
-return early.
-
-> +
->   	coresight_set_mode(csdev, CS_MODE_DISABLED);
->   	drvdata->enable = false;
->   	spin_unlock(&drvdata->spinlock);
-> @@ -1342,10 +1346,9 @@ static const struct attribute_group *tpdm_attr_grps[] = {
->   	NULL,
->   };
->   
-> -static int tpdm_probe(struct amba_device *adev, const struct amba_id *id)
-> +static int tpdm_probe(struct device *dev, struct resource *res)
->   {
->   	void __iomem *base;
-> -	struct device *dev = &adev->dev;
->   	struct coresight_platform_data *pdata;
->   	struct tpdm_drvdata *drvdata;
->   	struct coresight_desc desc = { 0 };
-> @@ -1354,32 +1357,33 @@ static int tpdm_probe(struct amba_device *adev, const struct amba_id *id)
->   	pdata = coresight_get_platform_data(dev);
->   	if (IS_ERR(pdata))
->   		return PTR_ERR(pdata);
-> -	adev->dev.platform_data = pdata;
-> +	dev->platform_data = pdata;
->   
->   	/* driver data*/
->   	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
->   	if (!drvdata)
->   		return -ENOMEM;
-> -	drvdata->dev = &adev->dev;
-> +	drvdata->dev = dev;
->   	dev_set_drvdata(dev, drvdata);
->   
-> -	base = devm_ioremap_resource(dev, &adev->res);
-> -	if (IS_ERR(base))
-> -		return PTR_ERR(base);
-> +	if (res) {
-> +		base = devm_ioremap_resource(dev, res);
-> +		if (IS_ERR(base))
-> +			return PTR_ERR(base);
->   
-> -	drvdata->base = base;
-> +		drvdata->base = base;
-> +		ret = tpdm_datasets_setup(drvdata);
-> +		if (ret)
-> +			return ret;
->   
-> -	ret = tpdm_datasets_setup(drvdata);
-> -	if (ret)
-> -		return ret;
-> +		if (drvdata && tpdm_has_dsb_dataset(drvdata))
-> +			of_property_read_u32(drvdata->dev->of_node,
-> +					     "qcom,dsb-msrs-num", &drvdata->dsb_msr_num);
->   
-> -	if (drvdata && tpdm_has_dsb_dataset(drvdata))
-> -		of_property_read_u32(drvdata->dev->of_node,
-> -			   "qcom,dsb-msrs-num", &drvdata->dsb_msr_num);
-> -
-> -	if (drvdata && tpdm_has_cmb_dataset(drvdata))
-> -		of_property_read_u32(drvdata->dev->of_node,
-> -			   "qcom,cmb-msrs-num", &drvdata->cmb_msr_num);
-> +		if (drvdata && tpdm_has_cmb_dataset(drvdata))
-> +			of_property_read_u32(drvdata->dev->of_node,
-> +					     "qcom,cmb-msrs-num", &drvdata->cmb_msr_num);
-> +	}
->   
->   	/* Set up coresight component description */
->   	desc.name = coresight_alloc_device_name(&tpdm_devs, dev);
-> @@ -1388,34 +1392,51 @@ static int tpdm_probe(struct amba_device *adev, const struct amba_id *id)
->   	desc.type = CORESIGHT_DEV_TYPE_SOURCE;
->   	desc.subtype.source_subtype = CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM;
->   	desc.ops = &tpdm_cs_ops;
-> -	desc.pdata = adev->dev.platform_data;
-> -	desc.dev = &adev->dev;
-> +	desc.pdata = dev->platform_data;
-> +	desc.dev = dev;
->   	desc.access = CSDEV_ACCESS_IOMEM(base);
-> -	desc.groups = tpdm_attr_grps;
-> +	if (res)
-> +		desc.groups = tpdm_attr_grps;
->   	drvdata->csdev = coresight_register(&desc);
->   	if (IS_ERR(drvdata->csdev))
->   		return PTR_ERR(drvdata->csdev);
->   
->   	spin_lock_init(&drvdata->spinlock);
->   
-> -	/* Decrease pm refcount when probe is done.*/
-> -	pm_runtime_put(&adev->dev);
-> -
->   	return 0;
->   }
->   
-> -static void tpdm_remove(struct amba_device *adev)
-> +static int tpdm_remove(struct device *dev)
->   {
-> -	struct tpdm_drvdata *drvdata = dev_get_drvdata(&adev->dev);
-> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev);
->   
->   	coresight_unregister(drvdata->csdev);
-> +
-> +	return 0;
-> +}
-> +
-> +static int dynamic_tpdm_probe(struct amba_device *adev,
-> +			      const struct amba_id *id)
-> +{
-> +	int ret;
-> +
-> +	ret = tpdm_probe(&adev->dev, &adev->res);
-> +	if (!ret)
-> +		pm_runtime_put(&adev->dev);
-> +
-> +	return ret;
-> +}
-> +
-> +static void dynamic_tpdm_remove(struct amba_device *adev)
-> +{
-> +	tpdm_remove(&adev->dev);
->   }
->   
->   /*
->    * Different TPDM has different periph id.
->    * The difference is 0-7 bits' value. So ignore 0-7 bits.
->    */
-> -static const struct amba_id tpdm_ids[] = {
-> +static const struct amba_id dynamic_tpdm_ids[] = {
->   	{
->   		.id	= 0x001f0e00,
->   		.mask	= 0x00ffff00,
-> @@ -1423,17 +1444,76 @@ static const struct amba_id tpdm_ids[] = {
->   	{ 0, 0, NULL },
->   };
->   
-> -static struct amba_driver tpdm_driver = {
-> +MODULE_DEVICE_TABLE(amba, dynamic_tpdm_ids);
-> +
-> +static struct amba_driver dynamic_tpdm_driver = {
->   	.drv = {
->   		.name   = "coresight-tpdm",
->   		.suppress_bind_attrs = true,
->   	},
-> -	.probe          = tpdm_probe,
-> -	.id_table	= tpdm_ids,
-> -	.remove		= tpdm_remove,
-> +	.probe          = dynamic_tpdm_probe,
-> +	.id_table	= dynamic_tpdm_ids,
-> +	.remove		= dynamic_tpdm_remove,
->   };
->   
-> -module_amba_driver(tpdm_driver);
-> +static int tpdm_platform_probe(struct platform_device *pdev)
-> +{
-> +	struct resource *res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	int ret;
-> +
-> +	pm_runtime_get_noresume(&pdev->dev);
-> +	pm_runtime_set_active(&pdev->dev);
-> +	pm_runtime_enable(&pdev->dev);
-> +
-> +	ret = tpdm_probe(&pdev->dev, res);
-> +	pm_runtime_put(&pdev->dev);
-> +	if (ret)
-> +		pm_runtime_disable(&pdev->dev);
-> +
-> +	return ret;
-> +}
-> +
-> +static void tpdm_platform_remove(struct platform_device *pdev)
-> +{
-> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(&pdev->dev);
-> +
-> +	if (WARN_ON(!drvdata))
-> +		return;
-> +
-> +	tpdm_remove(&pdev->dev);
-> +	pm_runtime_disable(&pdev->dev);
-> +}
-> +
-> +static const struct of_device_id static_tpdm_match[] = {
-> +	{.compatible = "qcom,coresight-static-tpdm"},
-> +	{}
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, static_tpdm_match);
-> +
-> +static struct platform_driver static_tpdm_driver = {
-> +	.probe		= tpdm_platform_probe,
-> +	.remove		= tpdm_platform_remove,
-> +	.driver		= {
-> +		.name	= "coresight-static-tpdm",
-> +		.of_match_table = static_tpdm_match,
-> +		.suppress_bind_attrs = true,
-> +	},
-> +};
-> +
-> +static int __init tpdm_init(void)
-> +{
-> +	return coresight_init_driver("tpdm", &dynamic_tpdm_driver, &static_tpdm_driver,
-> +				     THIS_MODULE);
-> +}
-> +
-> +static void __exit tpdm_exit(void)
-> +{
-> +	coresight_remove_driver(&dynamic_tpdm_driver, &static_tpdm_driver);
-> +}
-> +
-> +module_init(tpdm_init);
-> +module_exit(tpdm_exit);
->   
->   MODULE_LICENSE("GPL");
->   MODULE_DESCRIPTION("Trace, Profiling & Diagnostic Monitor driver");
-> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h b/drivers/hwtracing/coresight/coresight-tpdm.h
-> index b11754389734..9f52c88ce5c1 100644
-> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
-> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
-> @@ -343,4 +343,12 @@ struct tpdm_dataset_attribute {
->   	enum dataset_mem mem;
->   	u32 idx;
->   };
-> +
-> +static inline bool coresight_is_static_tpdm(struct coresight_device *csdev)
-> +{
-> +	struct device_node *node = csdev->dev.parent->of_node;
-> +
-> +	return (csdev &&
-> +		of_device_is_compatible(node, "qcom,coresight-static-tpdm"));
-
-Why do we have to go check the firmware table all the time ? Could we 
-not cache this in drvdata ? Or even better, we can use the csdev->access
-
-by using :  coresight_device_is_tpdm()
-
-return (coresight_device_is_tpdm(csdev) && !csdev->access->base);
-
-Suzuki
+I’m continuing to investigate further to understand the root cause.
 
