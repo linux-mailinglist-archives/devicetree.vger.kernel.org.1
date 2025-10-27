@@ -1,492 +1,213 @@
-Return-Path: <devicetree+bounces-231592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AA7FC0EC64
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 16:02:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94DF1C0EA37
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 15:56:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 750A13BE632
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:56:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 154E61893E29
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:55:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA65F308F27;
-	Mon, 27 Oct 2025 14:55:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BD222C0269;
+	Mon, 27 Oct 2025 14:54:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ft9s/nSk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UihYwL3k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E38E2D0C73;
-	Mon, 27 Oct 2025 14:55:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EA7419EEC2
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 14:54:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761576957; cv=none; b=nLhb4IVX3fJk+/LSalIeOMki/QFVNXh5Zkb3UWOF+UgTLzAlOenRePaI27ZzDQa/p5yjYwf4OieLwii4OB99Ez4ylALPcn2J/WusPS4VO2/FWfJm6WXtJMiwbEUzhwKmMZ9E4+j5yD0zfRfT1E7Zgrl6GtFEbtWtETLDmi8M9Rw=
+	t=1761576892; cv=none; b=FPvcQp9B58shQgsb/E3h8nMzqniDObkhbB07j6o7DXfNOOkkpvA2waTeJHCGMJf+NzurFdG3DHFNngEZAbpfu4eFy3Wr5k75Uun0U9U2uR9KFoUR+sIUDxl+QdROheKiTfwWp0HnOTDI299ryl87bhAObdVK/v3eSKeVokrVZeU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761576957; c=relaxed/simple;
-	bh=l1N3w7PvYuOermOAC1sh32p7X7YqDIlrtE47Spr7XsQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Gix87hsSiGVO7GI2w+uoRLaxky+9t2cUbGel10kx6bqeuFrVIz0713bpLjNOvM2NJLNdOuq5bFAZnmwmo/sf88ox3hDgvdtZURLSonEaz+z7b+ncqMQwD2WMuyl76u+2gqK4DgvlXRIHMjjg4na8ZN+2s7VlJ3YcbFpLHpkqr+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ft9s/nSk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 5781EC116B1;
-	Mon, 27 Oct 2025 14:55:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761576957;
-	bh=l1N3w7PvYuOermOAC1sh32p7X7YqDIlrtE47Spr7XsQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=ft9s/nSkO8vJxHu40l/crncvgT+CktpafGKHQqnKPpZpKSs9waQ1L8OoP/V1FT4b4
-	 vy4JO4r+JVx8xuXlUy3lTLLMMOstkuI8ZBHjEqBUiWJlh37Ez6Tbx8pMVWSE6eJ32d
-	 QxGhGjZJvgBhagi4iarxZbwVDkvHvErjlBtYrX2v89MIpunm5FlVUi8mCLXX/EMLtt
-	 ipdv1lqI8VQ97nnJug6MV5Vnsbs3lmFUX6drZVdMz+UpzGtcMpChbvAwCzWseiHQlT
-	 PPgPzO7X+xxwWjgfadAMlrrUAYNFRFVFXbIk0+FK6cM012p/RjEp0u1opdVph3xEtQ
-	 Y7+NP/1Ji4Xug==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 49FA9CCF9E0;
-	Mon, 27 Oct 2025 14:55:57 +0000 (UTC)
-From: Mahesh Rao via B4 Relay <devnull+mahesh.rao.altera.com@kernel.org>
-Date: Mon, 27 Oct 2025 22:54:43 +0800
-Subject: [PATCH v7 4/4] firmware: stratix10-rsu: Migrate RSU driver to use
- stratix10 asynchronous framework.
+	s=arc-20240116; t=1761576892; c=relaxed/simple;
+	bh=3FWHWFetZy4UIuonaqOW5S7qbAY00gfm4vdAgIDwra8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=BImVNTHo2HrQx1gefOYoCisZN1FeOezDNKwRoJP432LGeWN0LZK8YKw/QAwNnrFecq6LkjRASjvIns10f64afLVsmnX+stkpLBe/0vEbEI22dPfRM9XlUC7NeY1yWcm0bx99vT5S4RKW8WPNUMUZyrNyB94QXm8LLb/Zl9uxW7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UihYwL3k; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-47118259fd8so35810455e9.3
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 07:54:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761576889; x=1762181689; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=+a7Kw6HwvdHWgVIAMQBV9GIUz+DeV6/r2H9pvIEbTsc=;
+        b=UihYwL3kIHMdgBeuxm6HFz+RVLsOJjFiRZ8S5BZMIT/IFFTk4xugrfpBnhhHJkFQB8
+         NcBj3OqvqYLp+xXuZxbiWCxlriFFahau9v1ZZFJoV/LV7BZiAi37fBUYo9MI52XU1VA/
+         6n+Um1Gn6ekM04ysXajxbuLxpwmMsMFjzeSpsYobzQcSeT89UDS9XkvEeGHuReP9FQUK
+         Phb2EF0rDFObrxYIZeHxWtuX3+MiMs1qNXxolKT2kHOo5THYDsOc5z/+FZC39pX6FbkP
+         P2LPqaTuarK2zviqWnC29i9P+f3itwh/vGwdNDvrXv8ygmfpmcgui9i5ePHfmKTf43D8
+         i4cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761576889; x=1762181689;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+a7Kw6HwvdHWgVIAMQBV9GIUz+DeV6/r2H9pvIEbTsc=;
+        b=cdS5VGBmCJttRQpLSRcne6/YxpGn4Qwcojdx4+aWv1FzPuZpkE1v3gUGOt+YwhL6r7
+         IB4xNN8+PTiY3HGj1MSmx9QeX3rvHbvxCeYJO1V1lCUWw6+KlAW5SprICGLPBZTcvZS4
+         mLgRvP3PBfmlgXLO3KKIdKz9fK3SPHtXpeTr1STLEa4CklXhLShhQ7J9VSZIbxIV9g2q
+         eaMzrAnP3KjiEgsXpeXVAy2GxNg3v7tnLNacrnFjS0eRHd9w12VMbE1AkpDUG+l7u4Tf
+         YmSVerV/YXhF4sawcd3pXWxlu1mfsz9P1JKxi0Vi9KUv/yfAlpk+MQ7AtCOAVbsixQXV
+         +o0w==
+X-Forwarded-Encrypted: i=1; AJvYcCWAgDR9ZYNvsc5qBDFu4zyJ500vxuqlZ/isAyNhAP2kMGfPrbojFnle21Mk8BXLg5R8tC8tb78Tavt+@vger.kernel.org
+X-Gm-Message-State: AOJu0YxIYFHSIzLj5JM99MCJk4ORGvugNJGFSNOyqdB/U6rO2BdejJwd
+	KJf1Yp+19YH0JuovM+k1hdSwo3Fv35HooxTdrktxwKYAVS/N3wvdQhw8As19cA==
+X-Gm-Gg: ASbGncvwOHsws/yArjbGDtGTuRgL4bRGBhraR0veVnxO7CdfUuLeIRRtG46fxtU9bDT
+	/pGHxvZPtNYoG9hRCtVVz8HI/GIYtcHHIWQaxLFbh0BR4V4B4aIPWyDlQ5iZ0K/Nfg3/8GPvvi/
+	/YPcxf0gitk2L65Df0lVHwwAOUdcLVXxPnjDNmdg+yeGAL01lUPNZY6qQ/LIV5WQ0HLJ06ytcnt
+	u9iVaqw2B9f/dJSoFlJbB5ei8T2p5WBaIxgSKUPUZAqbVJby79wUpIUblyhg89u1E6eb8OIqnx2
+	XiUwbRXNk0PIskdyJYibZoxtB5Ip5E0ouO2K90uYDvrntoTnyh79icAxckedi/xAXs5lZKQG1YT
+	dU3DpZ/ItKEVCehbi/fQ0a5WdpzmINJysBpJ+0IPazFTj5PbO9qDC7zN3Lvrqq1YPUrzSdf29/H
+	gBo0GVMjIRu6rA1PJgy7U=
+X-Google-Smtp-Source: AGHT+IHIkp8fJ+ChBTVARCx5KpqVLzlnAhiTNDeEGgm3dSo10rCw74/XEJnL2Wbcoa+EtdJjRWt0rA==
+X-Received: by 2002:a05:600c:450a:b0:46e:442c:f5e1 with SMTP id 5b1f17b1804b1-4711791cb1fmr287778345e9.35.1761576888865;
+        Mon, 27 Oct 2025 07:54:48 -0700 (PDT)
+Received: from [192.168.1.187] ([161.230.67.253])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-475dd05098dsm67472255e9.5.2025.10.27.07.54.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Oct 2025 07:54:48 -0700 (PDT)
+Message-ID: <457d739b237bfdcf26361b3e4d5a39398468afd1.camel@gmail.com>
+Subject: Re: [PATCH v2 2/3] iio: dac: ad5456: Add missing DT compatibles
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Jonathan Cameron <jonathan.cameron@huawei.com>, Nuno
+ =?ISO-8859-1?Q?S=E1?=
+	 <nuno.sa@analog.com>
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron
+	 <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, Andy Shevchenko
+	 <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Date: Mon, 27 Oct 2025 14:55:22 +0000
+In-Reply-To: <20251023181321.00001511@huawei.com>
+References: <20251023-ad5446-bindings-v2-0-27fab9891e86@analog.com>
+		<20251023-ad5446-bindings-v2-2-27fab9891e86@analog.com>
+	 <20251023181321.00001511@huawei.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251027-sip_svc_upstream-v7-4-6e9ab26d7480@altera.com>
-References: <20251027-sip_svc_upstream-v7-0-6e9ab26d7480@altera.com>
-In-Reply-To: <20251027-sip_svc_upstream-v7-0-6e9ab26d7480@altera.com>
-To: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Mahesh Rao <mahesh.rao@altera.com>, 
- Richard Gong <richard.gong@intel.com>, Alan Tull <atull@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Matthew Gerlach <matthew.gerlach@altera.com>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761576953; l=13384;
- i=mahesh.rao@altera.com; s=20250107; h=from:subject:message-id;
- bh=EasTpB3pb/7uVYkP5RQQljasDKgKBokFEn3X5P3uAvE=;
- b=sy9RkTxHaVvJlvz3uSmEV/Nu+utQDNcw7TBK4ne6Ek4VQEePhXv3aQCSj9mFSkRpp691xbMwj
- KwD5QBwhfARCT6o/osob94mSydhxZmeZ0fdgFeOsyef2UgxFto9nXET
-X-Developer-Key: i=mahesh.rao@altera.com; a=ed25519;
- pk=tQiFUzoKxHrQLDtWeEeaeTeJTl/UfclUHWZy1fjSiyg=
-X-Endpoint-Received: by B4 Relay for mahesh.rao@altera.com/20250107 with
- auth_id=337
-X-Original-From: Mahesh Rao <mahesh.rao@altera.com>
-Reply-To: mahesh.rao@altera.com
 
-From: Mahesh Rao <mahesh.rao@altera.com>
+On Thu, 2025-10-23 at 18:13 +0100, Jonathan Cameron wrote:
+> On Thu, 23 Oct 2025 14:01:38 +0300
+> Nuno S=C3=A1 <nuno.sa@analog.com> wrote:
+>=20
+> I'd retitle this to say it's adding explicit DT compatibles
+>=20
+> Missing made me thing one or two were missing rather than it relying
+> on the fallback path to use the i2c_device_id / spi_device_id paths.
+>=20
+> I'm not particularly keen on only get the drvdata from those other
+> tables as that's fragile to the two remaining precisely in sync. Until
+> we fix that better to not add these tables at all.
+>=20
+> The cleanup will need to switch to pointers rather than enum entries
+> and then use generic fetchers to get those pointers which ever type
+> of firmware we have.
+>=20
+> Not trivial but also fairly mechanical change to make so I don't
+> feel too mean asking that you do that as part of this patch series.
+> If nothing else looking at just this series, someone might think a fallba=
+ck
+> compatible would be fine given the differences between parts aren't
+> visible.
+>=20
 
-* Add support for asynchronous communication to the RSU client channel.
-* Migrate functions that communicate with the SDM to use the asynchronous
-  framework.
+For such an old part I was trying to get away without having to refactor th=
+at
+much eheh :). But fair enough, I'll do the above and look for some more obv=
+ious
+improvements (like i2c and spi dedicated files). Should also note that I do=
+n't
+really have HW with me so I'll really stick to obvious stuff.
 
-Signed-off-by: Mahesh Rao <mahesh.rao@altera.com>
-Reviewed-by: Matthew Gerlach <matthew.gerlach@altera.com>
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
- drivers/firmware/stratix10-rsu.c | 272 ++++++++++++++++++++-------------------
- 1 file changed, 142 insertions(+), 130 deletions(-)
+- Nuno S=C3=A1
 
-diff --git a/drivers/firmware/stratix10-rsu.c b/drivers/firmware/stratix10-rsu.c
-index 1ea39a0a76c787c6396300734b636b4b3a0ae04d..53b67b242cf0afa4102340aa099cef66b642effa 100644
---- a/drivers/firmware/stratix10-rsu.c
-+++ b/drivers/firmware/stratix10-rsu.c
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-  * Copyright (C) 2018-2019, Intel Corporation
-+ * Copyright (C) 2025, Altera Corporation
-  */
- 
- #include <linux/arm-smccc.h>
-@@ -14,11 +15,9 @@
- #include <linux/firmware/intel/stratix10-svc-client.h>
- #include <linux/string.h>
- #include <linux/sysfs.h>
-+#include <linux/delay.h>
- 
--#define RSU_STATE_MASK			GENMASK_ULL(31, 0)
--#define RSU_VERSION_MASK		GENMASK_ULL(63, 32)
--#define RSU_ERROR_LOCATION_MASK		GENMASK_ULL(31, 0)
--#define RSU_ERROR_DETAIL_MASK		GENMASK_ULL(63, 32)
-+#define RSU_ERASE_SIZE_MASK		GENMASK_ULL(63, 32)
- #define RSU_DCMF0_MASK			GENMASK_ULL(31, 0)
- #define RSU_DCMF1_MASK			GENMASK_ULL(63, 32)
- #define RSU_DCMF2_MASK			GENMASK_ULL(31, 0)
-@@ -35,7 +34,8 @@
- #define INVALID_DCMF_STATUS		0xFFFFFFFF
- #define INVALID_SPT_ADDRESS		0x0
- 
--#define RSU_GET_SPT_CMD			0x5A
-+#define RSU_RETRY_SLEEP_MS		(1U)
-+#define RSU_ASYNC_MSG_RETRY		(3U)
- #define RSU_GET_SPT_RESP_LEN		(4 * sizeof(unsigned int))
- 
- typedef void (*rsu_callback)(struct stratix10_svc_client *client,
-@@ -64,7 +64,6 @@ typedef void (*rsu_callback)(struct stratix10_svc_client *client,
-  * @max_retry: the preset max retry value
-  * @spt0_address: address of spt0
-  * @spt1_address: address of spt1
-- * @get_spt_response_buf: response from sdm for get_spt command
-  */
- struct stratix10_rsu_priv {
- 	struct stratix10_svc_chan *chan;
-@@ -99,47 +98,32 @@ struct stratix10_rsu_priv {
- 
- 	unsigned long spt0_address;
- 	unsigned long spt1_address;
--
--	unsigned int *get_spt_response_buf;
- };
- 
-+typedef void (*rsu_async_callback)(struct device *dev,
-+	struct stratix10_rsu_priv *priv, struct stratix10_svc_cb_data *data);
-+
- /**
-- * rsu_status_callback() - Status callback from Intel Service Layer
-- * @client: pointer to service client
-+ * rsu_async_status_callback() - Status callback from rsu_async_send()
-+ * @dev: pointer to device object
-+ * @priv: pointer to priv object
-  * @data: pointer to callback data structure
-  *
-- * Callback from Intel service layer for RSU status request. Status is
-- * only updated after a system reboot, so a get updated status call is
-- * made during driver probe.
-+ * Callback from rsu_async_send() to get the system rsu error status.
-  */
--static void rsu_status_callback(struct stratix10_svc_client *client,
--				struct stratix10_svc_cb_data *data)
-+static void rsu_async_status_callback(struct device *dev,
-+				      struct stratix10_rsu_priv *priv,
-+				      struct stratix10_svc_cb_data *data)
- {
--	struct stratix10_rsu_priv *priv = client->priv;
--	struct arm_smccc_res *res = (struct arm_smccc_res *)data->kaddr1;
--
--	if (data->status == BIT(SVC_STATUS_OK)) {
--		priv->status.version = FIELD_GET(RSU_VERSION_MASK,
--						 res->a2);
--		priv->status.state = FIELD_GET(RSU_STATE_MASK, res->a2);
--		priv->status.fail_image = res->a1;
--		priv->status.current_image = res->a0;
--		priv->status.error_location =
--			FIELD_GET(RSU_ERROR_LOCATION_MASK, res->a3);
--		priv->status.error_details =
--			FIELD_GET(RSU_ERROR_DETAIL_MASK, res->a3);
--	} else {
--		dev_err(client->dev, "COMMAND_RSU_STATUS returned 0x%lX\n",
--			res->a0);
--		priv->status.version = 0;
--		priv->status.state = 0;
--		priv->status.fail_image = 0;
--		priv->status.current_image = 0;
--		priv->status.error_location = 0;
--		priv->status.error_details = 0;
--	}
--
--	complete(&priv->completion);
-+	struct arm_smccc_1_2_regs *res = (struct arm_smccc_1_2_regs *)data->kaddr1;
-+
-+	priv->status.current_image = res->a2;
-+	priv->status.fail_image = res->a3;
-+	priv->status.state = res->a4;
-+	priv->status.version = res->a5;
-+	priv->status.error_location = res->a7;
-+	priv->status.error_details = res->a8;
-+	priv->retry_counter = res->a9;
- }
- 
- /**
-@@ -163,32 +147,6 @@ static void rsu_command_callback(struct stratix10_svc_client *client,
- 	complete(&priv->completion);
- }
- 
--/**
-- * rsu_retry_callback() - Callback from Intel service layer for getting
-- * the current image's retry counter from the firmware
-- * @client: pointer to client
-- * @data: pointer to callback data structure
-- *
-- * Callback from Intel service layer for retry counter, which is used by
-- * user to know how many times the images is still allowed to reload
-- * itself before giving up and starting RSU fail-over flow.
-- */
--static void rsu_retry_callback(struct stratix10_svc_client *client,
--			       struct stratix10_svc_cb_data *data)
--{
--	struct stratix10_rsu_priv *priv = client->priv;
--	unsigned int *counter = (unsigned int *)data->kaddr1;
--
--	if (data->status == BIT(SVC_STATUS_OK))
--		priv->retry_counter = *counter;
--	else if (data->status == BIT(SVC_STATUS_NO_SUPPORT))
--		dev_warn(client->dev, "Secure FW doesn't support retry\n");
--	else
--		dev_err(client->dev, "Failed to get retry counter %lu\n",
--			BIT(data->status));
--
--	complete(&priv->completion);
--}
- 
- /**
-  * rsu_max_retry_callback() - Callback from Intel service layer for getting
-@@ -270,34 +228,19 @@ static void rsu_dcmf_status_callback(struct stratix10_svc_client *client,
- 	complete(&priv->completion);
- }
- 
--static void rsu_get_spt_callback(struct stratix10_svc_client *client,
--				 struct stratix10_svc_cb_data *data)
-+/**
-+ * rsu_async_get_spt_table_callback() - Callback to be used by the rsu_async_send()
-+ * to retrieve the SPT table information.
-+ * @dev: pointer to device object
-+ * @priv: pointer to priv object
-+ * @data: pointer to callback data structure
-+ */
-+static void rsu_async_get_spt_table_callback(struct device *dev,
-+					     struct stratix10_rsu_priv *priv,
-+					     struct stratix10_svc_cb_data *data)
- {
--	struct stratix10_rsu_priv *priv = client->priv;
--	unsigned long *mbox_err = (unsigned long *)data->kaddr1;
--	unsigned long *resp_len = (unsigned long *)data->kaddr2;
--
--	if (data->status != BIT(SVC_STATUS_OK) || (*mbox_err) ||
--	    (*resp_len != RSU_GET_SPT_RESP_LEN))
--		goto error;
--
--	priv->spt0_address = priv->get_spt_response_buf[0];
--	priv->spt0_address <<= 32;
--	priv->spt0_address |= priv->get_spt_response_buf[1];
--
--	priv->spt1_address = priv->get_spt_response_buf[2];
--	priv->spt1_address <<= 32;
--	priv->spt1_address |= priv->get_spt_response_buf[3];
--
--	goto complete;
--
--error:
--	dev_err(client->dev, "failed to get SPTs\n");
--
--complete:
--	stratix10_svc_free_memory(priv->chan, priv->get_spt_response_buf);
--	priv->get_spt_response_buf = NULL;
--	complete(&priv->completion);
-+	priv->spt0_address = *((unsigned long *)data->kaddr1);
-+	priv->spt1_address = *((unsigned long *)data->kaddr2);
- }
- 
- /**
-@@ -329,14 +272,6 @@ static int rsu_send_msg(struct stratix10_rsu_priv *priv,
- 	if (arg)
- 		msg.arg[0] = arg;
- 
--	if (command == COMMAND_MBOX_SEND_CMD) {
--		msg.arg[1] = 0;
--		msg.payload = NULL;
--		msg.payload_length = 0;
--		msg.payload_output = priv->get_spt_response_buf;
--		msg.payload_length_output = RSU_GET_SPT_RESP_LEN;
--	}
--
- 	ret = stratix10_svc_send(priv->chan, &msg);
- 	if (ret < 0)
- 		goto status_done;
-@@ -362,6 +297,95 @@ static int rsu_send_msg(struct stratix10_rsu_priv *priv,
- 	return ret;
- }
- 
-+/**
-+ * soc64_async_callback() - Callback from Intel service layer for async requests
-+ * @ptr: pointer to the completion object
-+ */
-+static void soc64_async_callback(void *ptr)
-+{
-+	if (ptr)
-+		complete(ptr);
-+}
-+
-+/**
-+ * rsu_send_async_msg() - send an async message to Intel service layer
-+ * @dev: pointer to device object
-+ * @priv: pointer to rsu private data
-+ * @command: RSU status or update command
-+ * @arg: the request argument, notify status
-+ * @callback: function pointer for the callback (status or update)
-+ */
-+static int rsu_send_async_msg(struct device *dev, struct stratix10_rsu_priv *priv,
-+			      enum stratix10_svc_command_code command,
-+			      unsigned long arg,
-+			      rsu_async_callback callback)
-+{
-+	struct stratix10_svc_client_msg msg = {0};
-+	struct stratix10_svc_cb_data data = {0};
-+	struct completion completion;
-+	int status, index, ret;
-+	void *handle = NULL;
-+
-+	msg.command = command;
-+	msg.arg[0] = arg;
-+
-+	init_completion(&completion);
-+
-+	for (index = 0; index < RSU_ASYNC_MSG_RETRY; index++) {
-+		status = stratix10_svc_async_send(priv->chan, &msg,
-+						  &handle, soc64_async_callback,
-+						  &completion);
-+		if (status == 0)
-+			break;
-+		dev_warn(dev, "Failed to send async message\n");
-+		msleep(RSU_RETRY_SLEEP_MS);
-+	}
-+
-+	if (status && !handle) {
-+		dev_err(dev, "Failed to send async message\n");
-+		return -ETIMEDOUT;
-+	}
-+
-+	ret = wait_for_completion_io_timeout(&completion, RSU_TIMEOUT);
-+	if (ret > 0)
-+		dev_dbg(dev, "Received async interrupt\n");
-+	else if (ret == 0)
-+		dev_dbg(dev, "Timeout occurred. Trying to poll the response\n");
-+
-+	for (index = 0; index < RSU_ASYNC_MSG_RETRY; index++) {
-+		status = stratix10_svc_async_poll(priv->chan, handle, &data);
-+		if (status == -EAGAIN) {
-+			dev_dbg(dev, "Async message is still in progress\n");
-+		} else if (status < 0) {
-+			dev_alert(dev, "Failed to poll async message\n");
-+			ret = -ETIMEDOUT;
-+		} else if (status == 0) {
-+			ret = 0;
-+			break;
-+		}
-+		msleep(RSU_RETRY_SLEEP_MS);
-+	}
-+
-+	if (ret) {
-+		dev_err(dev, "Failed to get async response\n");
-+		goto status_done;
-+	}
-+
-+	if (data.status == 0) {
-+		ret = 0;
-+		if (callback)
-+			callback(dev, priv, &data);
-+	} else {
-+		dev_err(dev, "%s returned 0x%x from SDM\n", __func__,
-+			data.status);
-+		ret = -EFAULT;
-+	}
-+
-+status_done:
-+	stratix10_svc_async_done(priv->chan, handle);
-+	return ret;
-+}
-+
- /*
-  * This driver exposes some optional features of the Intel Stratix 10 SoC FPGA.
-  * The sysfs interfaces exposed here are FPGA Remote System Update (RSU)
-@@ -597,27 +621,20 @@ static ssize_t notify_store(struct device *dev,
- 	if (ret)
- 		return ret;
- 
--	ret = rsu_send_msg(priv, COMMAND_RSU_NOTIFY,
--			   status, rsu_command_callback);
-+	ret = rsu_send_async_msg(dev, priv, COMMAND_RSU_NOTIFY, status, NULL);
- 	if (ret) {
- 		dev_err(dev, "Error, RSU notify returned %i\n", ret);
- 		return ret;
- 	}
- 
- 	/* to get the updated state */
--	ret = rsu_send_msg(priv, COMMAND_RSU_STATUS,
--			   0, rsu_status_callback);
-+	ret = rsu_send_async_msg(dev, priv, COMMAND_RSU_STATUS, 0,
-+				 rsu_async_status_callback);
- 	if (ret) {
- 		dev_err(dev, "Error, getting RSU status %i\n", ret);
- 		return ret;
- 	}
- 
--	ret = rsu_send_msg(priv, COMMAND_RSU_RETRY, 0, rsu_retry_callback);
--	if (ret) {
--		dev_err(dev, "Error, getting RSU retry %i\n", ret);
--		return ret;
--	}
--
- 	return count;
- }
- 
-@@ -737,12 +754,19 @@ static int stratix10_rsu_probe(struct platform_device *pdev)
- 		return PTR_ERR(priv->chan);
- 	}
- 
-+	ret = stratix10_svc_add_async_client(priv->chan, false);
-+	if (ret) {
-+		dev_err(dev, "failed to add async client\n");
-+		stratix10_svc_free_channel(priv->chan);
-+		return ret;
-+	}
-+
- 	init_completion(&priv->completion);
- 	platform_set_drvdata(pdev, priv);
- 
- 	/* get the initial state from firmware */
--	ret = rsu_send_msg(priv, COMMAND_RSU_STATUS,
--			   0, rsu_status_callback);
-+	ret = rsu_send_async_msg(dev, priv, COMMAND_RSU_STATUS, 0,
-+				 rsu_async_status_callback);
- 	if (ret) {
- 		dev_err(dev, "Error, getting RSU status %i\n", ret);
- 		stratix10_svc_free_channel(priv->chan);
-@@ -763,12 +787,6 @@ static int stratix10_rsu_probe(struct platform_device *pdev)
- 		stratix10_svc_free_channel(priv->chan);
- 	}
- 
--	ret = rsu_send_msg(priv, COMMAND_RSU_RETRY, 0, rsu_retry_callback);
--	if (ret) {
--		dev_err(dev, "Error, getting RSU retry %i\n", ret);
--		stratix10_svc_free_channel(priv->chan);
--	}
--
- 	ret = rsu_send_msg(priv, COMMAND_RSU_MAX_RETRY, 0,
- 			   rsu_max_retry_callback);
- 	if (ret) {
-@@ -776,18 +794,12 @@ static int stratix10_rsu_probe(struct platform_device *pdev)
- 		stratix10_svc_free_channel(priv->chan);
- 	}
- 
--	priv->get_spt_response_buf =
--		stratix10_svc_allocate_memory(priv->chan, RSU_GET_SPT_RESP_LEN);
- 
--	if (IS_ERR(priv->get_spt_response_buf)) {
--		dev_err(dev, "failed to allocate get spt buffer\n");
--	} else {
--		ret = rsu_send_msg(priv, COMMAND_MBOX_SEND_CMD,
--				   RSU_GET_SPT_CMD, rsu_get_spt_callback);
--		if (ret) {
--			dev_err(dev, "Error, getting SPT table %i\n", ret);
--			stratix10_svc_free_channel(priv->chan);
--		}
-+	ret = rsu_send_async_msg(dev, priv, COMMAND_RSU_GET_SPT_TABLE, 0,
-+				 rsu_async_get_spt_table_callback);
-+	if (ret) {
-+		dev_err(dev, "Error, getting SPT table %i\n", ret);
-+		stratix10_svc_free_channel(priv->chan);
- 	}
- 
- 	return ret;
-
--- 
-2.43.7
-
-
+>=20
+>=20
+> > Add missing of_device_id compatibles for the i2c and spi drivers.
+> >=20
+> > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+> > ---
+> > =C2=A0drivers/iio/dac/ad5446.c | 41 +++++++++++++++++++++++++++++++++++=
+++++++
+> > =C2=A01 file changed, 41 insertions(+)
+> >=20
+> > diff --git a/drivers/iio/dac/ad5446.c b/drivers/iio/dac/ad5446.c
+> > index ad304b0fec08..b6967f3b9386 100644
+> > --- a/drivers/iio/dac/ad5446.c
+> > +++ b/drivers/iio/dac/ad5446.c
+> > @@ -445,6 +445,35 @@ static const struct spi_device_id ad5446_spi_ids[]=
+ =3D {
+> > =C2=A0MODULE_DEVICE_TABLE(spi, ad5446_spi_ids);
+> > =C2=A0
+> > =C2=A0static const struct of_device_id ad5446_of_ids[] =3D {
+> > +	{ .compatible =3D "adi,ad5300" },
+> > +	{ .compatible =3D "adi,ad5310" },
+> > +	{ .compatible =3D "adi,ad5320" },
+> > +	{ .compatible =3D "adi,ad5444" },
+> > +	{ .compatible =3D "adi,ad5446" },
+> > +	{ .compatible =3D "adi,ad5450" },
+> > +	{ .compatible =3D "adi,ad5451" },
+> > +	{ .compatible =3D "adi,ad5452" },
+> > +	{ .compatible =3D "adi,ad5453" },
+> > +	{ .compatible =3D "adi,ad5512a" },
+> > +	{ .compatible =3D "adi,ad5541a" },
+> > +	{ .compatible =3D "adi,ad5542a" },
+> > +	{ .compatible =3D "adi,ad5543" },
+> > +	{ .compatible =3D "adi,ad5553" },
+> > +	{ .compatible =3D "adi,ad5600" },
+> > +	{ .compatible =3D "adi,ad5601" },
+> > +	{ .compatible =3D "adi,ad5611" },
+> > +	{ .compatible =3D "adi,ad5621" },
+> > +	{ .compatible =3D "adi,ad5641" },
+> > +	{ .compatible =3D "adi,ad5620-2500" },
+> > +	{ .compatible =3D "adi,ad5620-1250" },
+> > +	{ .compatible =3D "adi,ad5640-2500" },
+> > +	{ .compatible =3D "adi,ad5640-1250" },
+> > +	{ .compatible =3D "adi,ad5660-2500" },
+> > +	{ .compatible =3D "adi,ad5660-1250" },
+> > +	{ .compatible =3D "adi,ad5662" },
+> > +	{ .compatible =3D "ti,dac081s101" },
+> > +	{ .compatible =3D "ti,dac101s101" },
+> > +	{ .compatible =3D "ti,dac121s101" },
+> > =C2=A0	{ .compatible =3D "ti,dac7512" },
+> > =C2=A0	{ }
+> > =C2=A0};
+> > @@ -547,9 +576,21 @@ static const struct i2c_device_id ad5446_i2c_ids[]=
+ =3D {
+> > =C2=A0};
+> > =C2=A0MODULE_DEVICE_TABLE(i2c, ad5446_i2c_ids);
+> > =C2=A0
+> > +static const struct of_device_id ad5446_i2c_of_ids[] =3D {
+> > +	{ .compatible =3D "adi,ad5301" },
+> > +	{ .compatible =3D "adi,ad5311" },
+> > +	{ .compatible =3D "adi,ad5321" },
+> > +	{ .compatible =3D "adi,ad5602" },
+> > +	{ .compatible =3D "adi,ad5612" },
+> > +	{ .compatible =3D "adi,ad5622" },
+> > +	{ }
+> > +};
+> > +MODULE_DEVICE_TABLE(OF, ad5446_i2c_of_ids);
+> > +
+> > =C2=A0static struct i2c_driver ad5446_i2c_driver =3D {
+> > =C2=A0	.driver =3D {
+> > =C2=A0		=C2=A0=C2=A0 .name =3D "ad5446",
+> > +		=C2=A0=C2=A0 .of_match_table =3D ad5446_i2c_of_ids,
+> > =C2=A0	},
+> > =C2=A0	.probe =3D ad5446_i2c_probe,
+> > =C2=A0	.id_table =3D ad5446_i2c_ids,
+> >=20
 
