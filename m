@@ -1,119 +1,110 @@
-Return-Path: <devicetree+bounces-231713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7C12C10581
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:58:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CA67C106A8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 20:03:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D29FB188A067
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:55:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDFAC1892BE3
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:00:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1727B320CC2;
-	Mon, 27 Oct 2025 18:51:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9959335075;
+	Mon, 27 Oct 2025 18:55:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CPAJT9g/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ubVARB1N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF61121C160;
-	Mon, 27 Oct 2025 18:51:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B998C2D5412;
+	Mon, 27 Oct 2025 18:55:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761591111; cv=none; b=CPjigFnGKsgi4KIfnx0VAK9ZcetWK6RWKC6bnty7BrNi0SiaYOIi4Z7u01MIvK578Rzb56TUu/PEimUjZuaE1kvBf1Xxx8B3FtvyLtrlulr6ruK/J3PL11CvWgFXEEuIB/E+E74lNQGCezo1wppWbLVoY5pNzJJ7SaG/x5uYlvE=
+	t=1761591316; cv=none; b=RcpQVzqE0A908vNDcOZ8n0/P2EaarpDU8GoT4SlxjXi2V3el6LIV1SQA9XzOKPZsp8KHuEyR1+Y/W3MoIMaZtEjdcKsSEmuD0MBbkyDK6BQkUfsgSvnQdpmIldK72v2XhxORiEOJHM0p4bt8pBv4XiYYEG6MUYTrezGbljkmHWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761591111; c=relaxed/simple;
-	bh=9cXrx2C0wiBPVnpRJnsgqJdhF/scUoAfis75okK/eD8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K01rB9biseJXlhMG7h6seUQO968bsIS4Bh2mW2JNbkmJo9dJ+EI0XD3F6FOZilA8aNUiCs/dWJXaGKi9h6mIzXpTARMhyJKfIO92CUFsmSvZ0c+07tOMVZHF5kPEN6FMbjyuKf89u6ZwnTRSaDmC5iTn0J3nxfclpFL9gc1ib3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CPAJT9g/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25FA8C4CEF1;
-	Mon, 27 Oct 2025 18:51:49 +0000 (UTC)
+	s=arc-20240116; t=1761591316; c=relaxed/simple;
+	bh=/JgzL9VdvfstUomPfZ32E6t/L8VPBz9Fmo+sGuWeS+8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=h9gRFL+hb6OGGf2ylBuSAjxAANkLIStIi1NnTrfuS8HA+MAAn6fVeqNpJ6XJSM4D3SOCDIh8nOsYoyECgbGjln8nNYkp3Qsi9CcrInMfhkNBRWmMpc9IzSt1muIqipMvUJfk6bjf0MKM543TfUBux/k6Anev7V2SdIgXNk2OnqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ubVARB1N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 8E7E4C116C6;
+	Mon, 27 Oct 2025 18:55:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761591110;
-	bh=9cXrx2C0wiBPVnpRJnsgqJdhF/scUoAfis75okK/eD8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CPAJT9g/3RK7KJ6fmq6ttMPk0n1PDOLiiZmlQ35lvKWG151nsGTCrl2X1xd42Dx+T
-	 JbcXJ3WFeUvZDbGLDUxyR+Kzo5RuB2fWgjs6NaHpdZLbGFl3HhSIM2Z2mzZA/6Ox6K
-	 qX3PqB9FN5nlxdBYRa8bj7WKCrcNE4Al+4UjVoFvvn2QIxH9uvT7eDEK/lIp6180+f
-	 F8Pff0mGzGf36gjQvSYDrsCY7ukZeoBY3R/jk5AjvBJadKrQgrLj6jD16w8WtJRQ61
-	 1vJ4vcH1Nvl/DMTs1UikheyU+vfUBNzCHkPZBp8PLW9CGDUPq6KUxsUl3k0VHc3rDX
-	 tkqkZ2shWJ36A==
-Date: Mon, 27 Oct 2025 13:54:43 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: xiangxu.yin@oss.qualcomm.com
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>, 
-	Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>, 
-	Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com, li.liu@oss.qualcomm.com
-Subject: Re: [PATCH v6 1/4] dt-bindings: display: msm: Add SM6150 DisplayPort
- controller
-Message-ID: <m6j3sdc4jb2jonzbpez7g3xb6cfputdz34wtydfrx736nqvrv6@o5ntg7csl7dr>
-References: <20251024-add-displayport-support-to-qcs615-devicetree-v6-0-c4316975dd0e@oss.qualcomm.com>
- <20251024-add-displayport-support-to-qcs615-devicetree-v6-1-c4316975dd0e@oss.qualcomm.com>
+	s=k20201202; t=1761591316;
+	bh=/JgzL9VdvfstUomPfZ32E6t/L8VPBz9Fmo+sGuWeS+8=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=ubVARB1N1cC5DCPMes3iFI6FUhFu48KtuLTjdhD+8kC7wRUNqciEECyp+S+f69rtv
+	 8pj9uqO9r9LGQ6yxtfD5Y/mSpUJ0gjPlFdSGTuwj3XAU3KcOby9ZpgX5r+53BVX0nz
+	 LpGQNbUAQ+exzXikFFONkrO7aBStVDbhu1e6BaJB0TpEY0aIb1nYj1+hMMXVMOZlIx
+	 ez5XZv/mAhxPxgW/TSrXS3wpRDdMUb3cimk0azCWoD80yC7gbiHDyLZv8VUesElSBW
+	 mdgZPqB5y0DQOVPqKzbU4KgGPIH7Z1JbWdkUjTRjLHKfkkQ+GyJyPSe0QuCL3QjwPY
+	 tDYJzaNkd0XNQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7FDD1CCF9EE;
+	Mon, 27 Oct 2025 18:55:16 +0000 (UTC)
+From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
+Date: Mon, 27 Oct 2025 13:55:16 -0500
+Subject: [PATCH v4 2/5] dt-bindings: memory: tegra194-mc: Add dummy client
+ IDs for Tegra194
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251024-add-displayport-support-to-qcs615-devicetree-v6-1-c4316975dd0e@oss.qualcomm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251027-tegra186-icc-p2-v4-2-e4e4f57e2103@gmail.com>
+References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
+In-Reply-To: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-tegra@vger.kernel.org, Aaron Kling <webgeek1234@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761591315; l=911;
+ i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
+ bh=7znC8jN7FMo0ABLPSWxCMceZ2XZ3qZ4hFMoMP46i7rM=;
+ b=oryh/jK+ksBPgI6VSObtoe4KCUaO7ft7IuD8IPULagCDjjkYuvzb7vyOCDkex8WU5EyIc41mj
+ iFg9Ln6T2s4DScGt58Ju30dSVzFEQtLLIy6zko5QOIkMMMj5S48JXpP
+X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
+ pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
+X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
+ auth_id=342
+X-Original-From: Aaron Kling <webgeek1234@gmail.com>
+Reply-To: webgeek1234@gmail.com
 
-On Fri, Oct 24, 2025 at 01:21:01PM +0800, Xiangxu Yin via B4 Relay wrote:
-> From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-> 
-> SM6150 uses the same DisplayPort controller as SM8150, which is already
-> compatible with SM8350. Add the SM6150-specific compatible string and
-> update the binding example accordingly.
-> 
-> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml      | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml
-> index 9ac24f99d3ada1c197c9654dc9babebccae972ed..ba0dea2edea98cee0826cf38b3f33361666e004a 100644
-> --- a/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml
-> @@ -51,6 +51,16 @@ patternProperties:
->        compatible:
->          const: qcom,sm6150-dpu
->  
-> +  "^displayport-controller@[0-9a-f]+$":
-> +    type: object
-> +    additionalProperties: true
-> +    properties:
-> +      compatible:
-> +        items:
-> +          - const: qcom,sm6150-dp
-> +          - const: qcom,sm8150-dp
+From: Aaron Kling <webgeek1234@gmail.com>
 
-Perhaps I'm missing something, but if sm6150-dp is the same controller
-as sm8150-dp, which is the same controller as sm8350-dp...doesn't that
-imply that sm6150-dp is the same as sm8350-dp and we could not mention
-the sm8150-dp here?
+Add ICC IDs for dummy software clients representing CCPLEX clusters.
 
-Regards,
-Bjorn
+Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+---
+ include/dt-bindings/memory/tegra194-mc.h | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-> +          - const: qcom,sm8350-dp
-> +
->    "^dsi@[0-9a-f]+$":
->      type: object
->      additionalProperties: true
-> 
-> -- 
-> 2.34.1
-> 
-> 
+diff --git a/include/dt-bindings/memory/tegra194-mc.h b/include/dt-bindings/memory/tegra194-mc.h
+index eed48b746bc94072a6bd0af7f344dbb6f6618859..a7d97a1a470cd3cfb18c7ef45c421426ea3c7abf 100644
+--- a/include/dt-bindings/memory/tegra194-mc.h
++++ b/include/dt-bindings/memory/tegra194-mc.h
+@@ -407,4 +407,10 @@
+ /* MSS internal memqual MIU6 write clients */
+ #define TEGRA194_MEMORY_CLIENT_MIU6W 0xff
+ 
++/* ICC ID's for dummy MC clients used to represent CPU Clusters */
++#define TEGRA_ICC_MC_CPU_CLUSTER0       1003
++#define TEGRA_ICC_MC_CPU_CLUSTER1       1004
++#define TEGRA_ICC_MC_CPU_CLUSTER2       1005
++#define TEGRA_ICC_MC_CPU_CLUSTER3       1006
++
+ #endif
+
+-- 
+2.51.0
+
+
 
