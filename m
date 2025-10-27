@@ -1,183 +1,125 @@
-Return-Path: <devicetree+bounces-231497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93AD8C0DA9E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:47:45 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53794C0DAA4
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:48:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3AF0A423234
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:39:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 46BA1500B3C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:40:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDA6330F816;
-	Mon, 27 Oct 2025 12:38:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A697213E9F;
+	Mon, 27 Oct 2025 12:39:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="kXq9dojZ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="N6vRJVha"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB66F3019C3;
-	Mon, 27 Oct 2025 12:38:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFC9231076A;
+	Mon, 27 Oct 2025 12:39:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761568715; cv=none; b=pYuULA56dokv3isBdv9BBVcvUP4LV9Tl+yRyEpCvmI3IILoSbqAGIP7WSUjj85nRhv7+RecHehUqfr7hx9P+txd/dxhGTQ7dh8smyDh0PDZ6oh3sWtyfV9ZTYqljDx8ChEGTW+ehJqvx5/UJ/9+9pv/jG1yfVvpDEX10Jx0HuzM=
+	t=1761568747; cv=none; b=ZqCAyKm+/sIwDHMZj0arAo394fOCv0yElsiHX4pGXFDpi6/Xfr0TOxOAwAMwKhxIdLuLsEV88ZN+osQS2SSsoDDLF5ocL649Mv06D7M7ZOYzXvM6T/VGbzOdg8fOj5AlToyqXlmLlFqrb0OyMkqO5ASKH9OXwUugCg7vT/72xek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761568715; c=relaxed/simple;
-	bh=t9hkT+4zAAhz5+o+QG2fo27oXgveTo7i7m6LBWKxhfs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jrna2hW5QJ4pUN0ePixO6rbux1+jCdbpVSq4EHvnyOBjeYHhwzggc4MomA7YfsLQgmByZxBpgI4gYPwPzJ9pAmCeGBEQhwS6uDu64Dwm4DGBd6cpgpQsA2sFgAoLpYOQ7SZhwrp9jnGJASZ1JNsiSDiG96FdNA+jvBqJ1Clq824=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=kXq9dojZ; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 2DB6C4E41365;
-	Mon, 27 Oct 2025 12:38:32 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id F2B756062C;
-	Mon, 27 Oct 2025 12:38:31 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 49FD9102F24FC;
-	Mon, 27 Oct 2025 13:38:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761568710; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=LIcovSWKnBA+L7voLcFHvTGbDw/RTZnlp4fA0bZ/QEc=;
-	b=kXq9dojZmGm6Ef0a7GVd/BQliyMkvrAcJiCiXAw9LT8hdLsHlV5tISKRqILw5M8Rzfmm1b
-	c1C536eyX14TLOfkOG+71IXH8VlV4qjgrpmoU8J1GbXUDjk+LN5PDq47kWgLfOZfj3shPw
-	Uu/iiMcrr4GsRAIbG7C/VEiFAwxi5URrh/XciNr1PEYjufdGC+gBqrRVPPCPDYKW0UUE+Y
-	sRf8GjhF7ceb/UsmPTgY1lKovKdb3qutucuN0MSxBcyBG5/JYXaGo/pglf2QW1+mliuzJq
-	OtDAUk/qiv+3XpIKnXAQ0DVrZWEMG7VAwFCaw3hMY+0pbsarUiCIQGyS9xVxwA==
-Date: Mon, 27 Oct 2025 13:38:19 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Andreas Kemnade <andreas@kemnade.info>, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org
-Subject: Re: [PATCH v2 12/15] rtc: bd70528: Support BD72720 rtc
-Message-ID: <202510271238195ef3bdfb@mail.local>
-References: <cover.1761564043.git.mazziesaccount@gmail.com>
- <380ea1fdbb94a796418e8f463c6a9436001d572d.1761564043.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1761568747; c=relaxed/simple;
+	bh=ic23nmo9lgfOG3Z3HGilbKWoY/RcEgbzf3VPutvzob4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EWg/hdN/zgodKcwqrtZohpXzD9bZGxoS4DYpMGYlqC04W4pDimyhaZC/g0ovBvlF6OdnFDOsQAc0Mr5gUIgb+0yqQTRFL2p8f61yvXllx4NgMlkUQj33xW81nZMkZ3T7JeKPmySCMbo67cwrlmHfKI/Ooh3qlb6e6QZOuv0PV6Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=N6vRJVha; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1761568743;
+	bh=ic23nmo9lgfOG3Z3HGilbKWoY/RcEgbzf3VPutvzob4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=N6vRJVhaiEkHsez1pDm7qCVveefUoUXgEwiGf0Hxl/Jf0HRoQKn9Iz+MbCPsaNHi+
+	 T5w/5RNIA0FQL4WRZ+dafcRIwodzJtXuHu1V1EWkoea7alkWmyfDnPF/00R6D4AuFo
+	 qkZlGaWVPQOQVfrq85FPJtr4ARCt5g7hMvVo8vJ5aG+vokYy47F4V+SVwWQiwGBQOX
+	 8LyTUKxSk9RxiOXVfCjlJaHDVz8cU/2Yx5PO0dQmI0xcKalAaieCzpcfdSWJcKIOgo
+	 2l8VGGa6BttkTBLzoa4bOgekD2KXUpRrSikDo5xQrJ6MEDinPsIgiVu5DJ0KNlrP8v
+	 ggOd7pxr9D1hg==
+Received: from [10.40.0.100] (185-67-175-126.lampert.tv [185.67.175.126])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: mriesch)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6B23017E0927;
+	Mon, 27 Oct 2025 13:39:03 +0100 (CET)
+Message-ID: <1499f50e-aa4f-454a-b8b5-c9a21bef7f72@collabora.com>
+Date: Mon, 27 Oct 2025 13:39:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <380ea1fdbb94a796418e8f463c6a9436001d572d.1761564043.git.mazziesaccount@gmail.com>
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: rockchip: orangepi-5: fix PCIe 3.3V regulator
+ voltage
+To: Mykola Kvach <xakep.amatop@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Cenk Uluisik <cenk.uluisik@googlemail.com>, Johan Jonker <jbx6244@gmail.com>
+Cc: Jimmy Hon <honyuenkwun@gmail.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Muhammed Efe Cetin <efectn@6tel.net>
+References: <20251024173830.49211-1-xakep.amatop@gmail.com>
+Content-Language: en-US
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <20251024173830.49211-1-xakep.amatop@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 27/10/2025 13:47:51+0200, Matti Vaittinen wrote:
-> The BD72720 has similar RTC block as a few other ROHM PMICs.
-> 
-> Add support for BD72720 RTC.
-> 
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+Hi Mykola,
+
+Thanks for your patch.
+
+Cc: Muhammed who is the author of commit b6bc755d806e
+
+On 10/24/25 19:38, Mykola Kvach wrote:
+> The vcc3v3_pcie20 fixed regulator powers the PCIe device-side 3.3V
+> rail for pcie2x1l2 via vpcie3v3-supply. The DTS mistakenly set its
+> regulator-min/max-microvolt to 1800000. Correct both to 3300000
+> to match the rail name, the PCIe/M.2 power requirement, and the
+> actual hardware wiring on Orange Pi 5.
 > 
 
-Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+I guess a "Fixes" tag is in order here:
 
-Note that we didn't get 07/15 that adds linux/mfd/rohm-bd72720.h which
-this patch depends on.
+Fixes: b6bc755d806e ("arm64: dts: rockchip: Add Orange Pi 5")
+
+And make sure to Cc: <stable@vger.kernel.org>
+
+> Signed-off-by: Mykola Kvach <xakep.amatop@gmail.com>
+
+The change itself makes sense to me.
+
+Reviewed-by: Michael Riesch <michael.riesch@collabora.com>
+
+Best regards,
+Michael
 
 > ---
-> Revision history:
->  RFCv1 =>:
->  - No changes
-> ---
->  drivers/rtc/Kconfig       |  3 ++-
->  drivers/rtc/rtc-bd70528.c | 21 ++++++++++++++-------
->  2 files changed, 16 insertions(+), 8 deletions(-)
+>  arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-> index 2933c41c77c8..418f6c28847a 100644
-> --- a/drivers/rtc/Kconfig
-> +++ b/drivers/rtc/Kconfig
-> @@ -561,7 +561,8 @@ config RTC_DRV_BD70528
->  	depends on MFD_ROHM_BD71828
->  	help
->  	  If you say Y here you will get support for the RTC
-> -	  block on ROHM BD71815 and BD71828 Power Management IC.
-> +	  block on ROHM BD71815, BD71828 and BD72720 Power
-> +	  Management ICs.
->  
->  	  This driver can also be built as a module. If so, the module
->  	  will be called rtc-bd70528.
-> diff --git a/drivers/rtc/rtc-bd70528.c b/drivers/rtc/rtc-bd70528.c
-> index 954ac4ef53e8..4c8599761b2e 100644
-> --- a/drivers/rtc/rtc-bd70528.c
-> +++ b/drivers/rtc/rtc-bd70528.c
-> @@ -7,6 +7,7 @@
->  #include <linux/bcd.h>
->  #include <linux/mfd/rohm-bd71815.h>
->  #include <linux/mfd/rohm-bd71828.h>
-> +#include <linux/mfd/rohm-bd72720.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/platform_device.h>
-> @@ -262,13 +263,13 @@ static int bd70528_probe(struct platform_device *pdev)
->  
->  		/*
->  		 * See also BD718XX_ALM_EN_OFFSET:
-> -		 * This works for BD71828 and BD71815 as they have same offset
-> -		 * between ALM0 start and ALM0_MASK. If new ICs are to be
-> -		 * added this requires proper check as ALM0_MASK is not located
-> -		 * at the end of ALM0 block - but after all ALM blocks so if
-> -		 * amount of ALMs differ the offset to enable/disable is likely
-> -		 * to be incorrect and enable/disable must be given as own
-> -		 * reg address here.
-> +		 * This works for BD71828, BD71815, and BD72720 as they all
-> +		 * have same offset between the ALM0 start and the ALM0_MASK.
-> +		 * If new ICs are to be added this requires proper check as
-> +		 * the  ALM0_MASK is not located at the end of ALM0 block -
-> +		 * but after all ALM blocks. If amount of ALMs differ, the
-> +		 * offset to enable/disable is likely to be incorrect and
-> +		 * enable/disable must be given as own reg address here.
->  		 */
->  		bd_rtc->bd718xx_alm_block_start = BD71815_REG_RTC_ALM_START;
->  		hour_reg = BD71815_REG_HOUR;
-> @@ -278,6 +279,11 @@ static int bd70528_probe(struct platform_device *pdev)
->  		bd_rtc->bd718xx_alm_block_start = BD71828_REG_RTC_ALM_START;
->  		hour_reg = BD71828_REG_RTC_HOUR;
->  		break;
-> +	case ROHM_CHIP_TYPE_BD72720:
-> +		bd_rtc->reg_time_start = BD72720_REG_RTC_START;
-> +		bd_rtc->bd718xx_alm_block_start = BD72720_REG_RTC_ALM_START;
-> +		hour_reg = BD72720_REG_RTC_HOUR;
-> +		break;
->  	default:
->  		dev_err(&pdev->dev, "Unknown chip\n");
->  		return -ENOENT;
-> @@ -337,6 +343,7 @@ static int bd70528_probe(struct platform_device *pdev)
->  static const struct platform_device_id bd718x7_rtc_id[] = {
->  	{ "bd71828-rtc", ROHM_CHIP_TYPE_BD71828 },
->  	{ "bd71815-rtc", ROHM_CHIP_TYPE_BD71815 },
-> +	{ "bd72720-rtc", ROHM_CHIP_TYPE_BD72720 },
->  	{ },
->  };
->  MODULE_DEVICE_TABLE(platform, bd718x7_rtc_id);
-> -- 
-> 2.51.0
-> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
+> index ad6d04793b0a..83b9b6645a1e 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
+> @@ -14,8 +14,8 @@ vcc3v3_pcie20: regulator-vcc3v3-pcie20 {
+>  		gpios = <&gpio0 RK_PC5 GPIO_ACTIVE_HIGH>;
+>  		regulator-name = "vcc3v3_pcie20";
+>  		regulator-boot-on;
+> -		regulator-min-microvolt = <1800000>;
+> -		regulator-max-microvolt = <1800000>;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+>  		startup-delay-us = <50000>;
+>  		vin-supply = <&vcc5v0_sys>;
+>  	};
 
-
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
