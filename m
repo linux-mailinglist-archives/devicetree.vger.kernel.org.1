@@ -1,98 +1,152 @@
-Return-Path: <devicetree+bounces-231507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BBFEC0DB9F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:57:54 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 870F7C0DC5D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:02:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 582BE4FC0B6
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:50:34 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 019DE34CF04
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:02:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A99A241691;
-	Mon, 27 Oct 2025 12:50:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="YMVoSKxV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1437A26FDA6;
+	Mon, 27 Oct 2025 13:00:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28D5C23BCFD;
-	Mon, 27 Oct 2025 12:50:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8613D263F32
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 13:00:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761569427; cv=none; b=I0ukZ+xOK6tFVFC3ZgqjIvnswjfzo6vAZd110AROtUA25q2QxLesXzCbbZpmbZsdAZ6VapA4TkG54UO1RXUw0bjrQwVqQdL1+UWBClSXycc7QWPAui/ipvnP8tbXpGv9uO/BkoBUEtC0S2yV4FeeQ48j+10PhRdY7Jtd2TYoy/g=
+	t=1761570009; cv=none; b=Cd3CGCVdWsLF5oXx9OOWLp9Bs0VFIO0H5HTRmC0Yi+JbbCkJ6LAu4+D0O+befOxhnL4ppBI+GVAzeO4jR960u62wExBYigIqrrN0LnavozfwQGcncHNEQrzhCUoCMa7v+ORjwdTNGjUu5LqMzA4rDYwFqWN5ZEo+1smT0WI8F5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761569427; c=relaxed/simple;
-	bh=m0IptN6d8/xSAvrYqsLrY528kDwnFNnoYBY5GhEv4lU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PCGUzU2nbf2js8QkSvjB+4XqspOikUBPUPbFR84WQWNynK8bmJyExRe/sXicPcJtsOSIwRXh5UGDO7+3mBFfra5h6a+dRg398B+sBXho65C4dY245iN/8y3jHmPun1b9aGMS7DGMbqCRgcW0rajUSNcZEXBPhNCNVMNIl7XcV+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=YMVoSKxV; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=hKaaHV2NST1VuzXBfc6VQU/jhNrAzykCq1FQtjK/evA=; b=YMVoSKxVmOBII8dLdRmBG6fWwB
-	AsarXFDeYQj4nAHcnPas0cq9acQUKIhXjC+Ln4PI8dOFWtDhahRYh9SJMrPaY0nypYfD1IQCuvz0U
-	/ZZmbN26xi0kZWSbFyRrS3YepU4hTKr4HhwNSOA3qbkSz6QWVDiclQnAxK3fJdS8vGyk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vDMg1-00CBuN-58; Mon, 27 Oct 2025 13:50:21 +0100
-Date: Mon, 27 Oct 2025 13:50:21 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	imx@lists.linux.dev, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Daniel Scally <dan.scally@ideasonboard.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Stefan Klug <stefan.klug@ideasonboard.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
-Message-ID: <f66d181d-7dd9-4955-bad5-478db2876e47@lunn.ch>
-References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
- <e87ff7f2-d16f-41f2-b781-b175cfb84b21@lunn.ch>
- <aP83bMDWCre7-Sjw@pengutronix.de>
- <20251027100227.GE1544@pendragon.ideasonboard.com>
- <aP9IB4y5_gyfJGMW@pengutronix.de>
- <20251027103107.GF1544@pendragon.ideasonboard.com>
- <aP9Kuyndws_dYFna@shell.armlinux.org.uk>
- <aP9NJHtbAEmsd89r@pengutronix.de>
- <aP9N9tCdlAbBgovC@shell.armlinux.org.uk>
+	s=arc-20240116; t=1761570009; c=relaxed/simple;
+	bh=bwESskb9ZqdlwJb+BKR+lDbeJG3koqiFva6ys/hs5kU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=roLz0sZoetHEfBlEpASTBNzn1BxIicvuyUmYi8hBHSG2VTvnLYG2D1emIoSKchqxDtr5BW0OBhqvbswFjsqakCQv2IsnNlfLtUG4MtB28J01mxu7+3nKcYp+oonnqIi0A9/zSV6wiRLSjk0/kQQJlWk5dDsrhVc+GyQB5nD6zUM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.161.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-654ed784e42so1240469eaf.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 06:00:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761570006; x=1762174806;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yOYdLIvACytBpVHjrdATGnV0/c7ZzUCpXjvbRDnZ37c=;
+        b=OewVYuBKX+8dJnJ3pF7A6PUc7i0FiELUbklppSemFHfdJJIUpKDR7V7FKTe2Px+IIK
+         r2+KVFW8BgmwveXEPZCt9TSSS3Uo28sNrXCDy1T4g8fTgdrPXNdtJsC6n2et1BxkYqqC
+         PEEoodVBNxzIPdoTb3q0qXUX3+cA5UQrjNvAWKQ/9jiIOvAKjs6JEw7PDUGJryb5ZnAL
+         zz55ErTeaHp/ONmH1D37umF31Eq96bn5bNfWqEVr7cjy/hlHa3p+0e9fkeJ0osavfsaq
+         KVSTa0pKGGy5g25hq/K1G8afFIDLsgDvyjpHX1N2WQ6kEgP3Cub6naAlXb2+GulWWsdP
+         v8lQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUlIcaKz4dSrFXR/nrf+n3pbh269q/E+6TNCK7AoNYhoyyQF1NXOHLivN4PEYIPEWjNkaLpw5Bir962@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnahF4bOkiPeA7lVZn+F9Pr38Ef48yXajdJSW+rPXj9u9VGEFa
+	lJLpl/dDfGVyTwn3P2ZS82COOWe0g41WQleUXzkNB7l5nlzn/qHH0jCJj9mTXpgd
+X-Gm-Gg: ASbGncut4ombWro2FnEdB0BgCaMyxq1pKdNYn3f3zOjW3dK2VBR0Imxa/Ia0Ypy+wgE
+	GXK0UY3oq65uIatwo44xAt2Xwqe9KPhI79A5MPCIf5vAwO+HxXWsmM3XgRYentsRosy7HyjXkt2
+	8w8Ch2OeqTrjP8EhDBVdqM+k0ilquPXQYXoQFhF/DMWCPYPmWgcpfbINxpyRg79Rs6l79RGNEyU
+	/LJnyHIn51WESVt0jIXX/FqKp8ofPeXmCr76JnAP0SUsa0aovdNldxv/mRZQwmC/bB+efwiBqEU
+	6LIUp94oI3UwcFLPbqykhMjfnuI199hdudqvzqW15WiuBeWDwF2fyIeZxbaqHrybpbQUQ5sU4VT
+	ACKljHVkpFHUVWaHA57Uf1GgTOLtohJ+GIBKIxBxL375lPKTnJb3UqwCv8gpeisQX04cmor6rf2
+	c0Z0vX4RXrID13OfW89sx1/AawEKCGa9Nzi7f8RYLt4vDoDSRT
+X-Google-Smtp-Source: AGHT+IENtF6lnfOAQM5DxMIC8QzM4+UNjhkWK0Z13BT3fR4qqNy+517Je9W2sW3CmkJoe95RouiiTw==
+X-Received: by 2002:a05:6870:2106:b0:3d3:ce01:1779 with SMTP id 586e51a60fabf-3d3ce011e36mr1574679fac.38.1761570006208;
+        Mon, 27 Oct 2025 06:00:06 -0700 (PDT)
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com. [209.85.210.48])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3d1e2d24eb1sm2413590fac.12.2025.10.27.06.00.05
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Oct 2025 06:00:05 -0700 (PDT)
+Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-7c2816c0495so3322925a34.3
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 06:00:05 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWjOOOKUaKM/tmi6FPbkvSxJmvAz1dVEnKjj8YVUneowF2S8kcViwlWLE2sM5YiNQ7pFJd9UOeAaAkP@vger.kernel.org
+X-Received: by 2002:a05:6102:26d4:b0:522:86ea:42c with SMTP id
+ ada2fe7eead31-5d7dd5a64c5mr10674902137.11.1761569636629; Mon, 27 Oct 2025
+ 05:53:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aP9N9tCdlAbBgovC@shell.armlinux.org.uk>
+References: <20251022070543.1169173-1-ryan_chen@aspeedtech.com>
+ <20251022070543.1169173-5-ryan_chen@aspeedtech.com> <b5441728-06a7-44ea-8876-3a9fc3cf55be@app.fastmail.com>
+ <TY2PPF5CB9A1BE626A2F0F6307461D8F64BF2F0A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+ <6a97fbb4-19c2-4ffa-9c73-26aea02c27e4@app.fastmail.com> <TY2PPF5CB9A1BE6CF8336D211641A18E2DEF2F1A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+ <71df9bdf-53b2-45e2-a9e3-5b00a556f957@lunn.ch> <TY2PPF5CB9A1BE6F3E95C7FD61CF4F90ECAF2FEA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+ <fdbc471f-514e-4521-b7a1-dcf6127d64ff@lunn.ch> <TY2PPF5CB9A1BE6DD93D0F397C961D5CB5AF2FCA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+ <01573262-69a8-44cf-ae02-2e9842c59dde@lunn.ch>
+In-Reply-To: <01573262-69a8-44cf-ae02-2e9842c59dde@lunn.ch>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 27 Oct 2025 13:53:45 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXAOPemhTjdJqminXhi+1+Dsc5rN1GLqAUcfF3ZyphRoQ@mail.gmail.com>
+X-Gm-Features: AWmQ_bnc0FKdJRTj1IhXsyeFKk3WmW431oeoaAfsizI36RwwOH6YiF14-6GD61A
+Message-ID: <CAMuHMdXAOPemhTjdJqminXhi+1+Dsc5rN1GLqAUcfF3ZyphRoQ@mail.gmail.com>
+Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC device tree
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Ryan Chen <ryan_chen@aspeedtech.com>, Arnd Bergmann <arnd@arndb.de>, 
+	BMC-SW <BMC-SW@aspeedtech.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+	Andrew Jeffery <andrew@codeconstruct.com.au>, Jeremy Kerr <jk@codeconstruct.com.au>, 
+	Lee Jones <lee@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, Nishanth Menon <nm@ti.com>, 
+	=?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>, 
+	Taniya Das <quic_tdas@quicinc.com>, 
+	"Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Eric Biggers <ebiggers@kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-> > Ack. With comment in the code, why we prefer this way, in case some one
-> > wont to spend time on making it work. Probably SmartEEE or some other
-> > word should be used.
-> 
-> So we have options.
-> 
-> However, we need to get to the bottom of what caused the change of
-> behaviour before we start throwing solutions at this.
+Hi Andrew,
 
-It also seems like the PHY is FUBAR. If the standard 802.3 EEE
-registers are being used, a management plane is using them to
-negotiate EEE with the link partner, the PHY firmware should disable
-SmartEEE and only provide 802.3 EEE.
+On Mon, 27 Oct 2025 at 13:01, Andrew Lunn <andrew@lunn.ch> wrote:
+> On Mon, Oct 27, 2025 at 02:42:01AM +0000, Ryan Chen wrote:
+> > > Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC device
+> > > tree
+> > >
+> > > > SoC0, referred to as the CPU die, contains a dual-core Cortex-A35
+> > > > cluster and two Cortex-M4 cores, along with its own clock/reset
+> > > > domains and high-speed peripheral set.
+> > >
+> > > > SoC1, referred to as the I/O die, contains the Boot MCU and its own
+> > > > clock/reset domains and low-speed peripheral set, and is responsible
+> > > > for system boot and control functions.
+> > >
+> > > So is the same .dtsi file shared by both systems?
+> >
+> > This .dtsi represents the Cortex-A35 view only and is not shared
+> > with the Cortex-M4 or the Boot MCU side, since they are separate
+> > 32-bit and 64-bit systems running independent firmware.
+>
+> DT describes the hardware. The .dtsi file could be shared, you just
+> need different status = <>; lines in the dtb blob.
+>
+> > > How do you partition devices
+> > > so each CPU cluster knows it has exclusive access to which peripherals?
+> >
+> > Before the system is fully brought up, Boot MCU configure hardware
+> > controllers handle the resource partitioning to ensure exclusive access.
+>
+> Are you saying it modifies the .dtb blob and changes some status =
+> "okay"; to "disabled";?
 
-It sounds like this PHY is not 802.3 compatible.
+"reserved" is the appropriate status value for that.
 
-	Andrew
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
