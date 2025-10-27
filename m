@@ -1,162 +1,216 @@
-Return-Path: <devicetree+bounces-231262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2CA9C0BB13
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 03:39:26 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64260C0BB19
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 03:42:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CCC18189F9E0
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 02:39:50 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BA21734957C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 02:42:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 454632D24B7;
-	Mon, 27 Oct 2025 02:39:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97B242D29CF;
+	Mon, 27 Oct 2025 02:42:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="aLirn0An"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022095.outbound.protection.outlook.com [52.101.126.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E8E915C158
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 02:39:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761532763; cv=none; b=cmGvKQUXJWPHQQKnmVfMCft0OTSVo+9WO/Drz6wEVdCzekEVrcJPqcwE9qsx/8ALCkm6fOrAGkgKEGmoWpBP+KyLvoAmR2nY6Y5iUmjCrP7AZ4O+sWDQ1JP+39ZRu9JDsnoi5expsfSWLI7mlpvMqlo37xR6TvpMoljwdH/zyhU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761532763; c=relaxed/simple;
-	bh=evQekrEcmyRdqKp1jJZClGlbzLxhN98LFdFpjeGdBkg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ezE/E7h1+ewSh18oPw7CgdaqtmQBj7xRQO/jKhJqaeW4708oVxQTLvcSlpdj7sK05N8176sLKgZUsVku0fhCDNI6/VCvopObAImfuXoD62rVg+jmgmboF+OzDpcgPEbqc6pXKTEGpYWfTh+pQ7TmqSPaZh3D24jvRV5E4as4Tnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-592f29e273bso3983402e87.0
-        for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 19:39:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761532757; x=1762137557;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=V0xO3eccx9J1JFeRrYmbh54SIcFbkNO2ChisP5DHSmA=;
-        b=OcNHkFc6JscWGoHtJvzTzwCqdBpSg35Pi7KmMpkqPKMhA60fmLFuI+Umv/n/vdJ+K/
-         NYP2MQ4Ebz7c5mcIndw/UUQuQTcl8R+C6YvQKGxDVeAC+WmfX8Fcm/xhavwIjFl/kbcm
-         Flap51K3Qx/6Y0XxDhHv+5iotSLvV0v2yOMYi8W+rlpqhptdHCi/OlWVBmV151m9cQeC
-         8+2z7Y2afjaWku7NH5IYX1iqy5r37BJZdChUBecYabUpVX33CZHAyKi64YNEP6BakUqM
-         Yed4hWgdj9k/lPLUXWYE6LCIiohXK5QfI4+1P0GoYWBnSUJaDlb/BlsfEbPzSgua1JsZ
-         5KYw==
-X-Forwarded-Encrypted: i=1; AJvYcCXDwfFvs3/sVCXDt+SlzC1rCdIP4z4LWxspFe3C3TdFLJxQLX8fsUaj4CY2GntvAtBs8MXWMSyGBXAU@vger.kernel.org
-X-Gm-Message-State: AOJu0YynRvi+FqrF/6QkOYqM3YEBNy60/MzQFLuOSTu+KSTtA/Opjhyx
-	LWmOoyggOPtYBK90Ign0pLV4aVFRyBaPE1GZxClRN0S1AlMb/nCrVjVuJsMToJaDOF8=
-X-Gm-Gg: ASbGncs1lq6BzYNgRkf3i3nHCtkdcgvsUbqmTevj7DLhpXBD6jFxeRH2nFjvkFykYl2
-	gu1GAV/HFsP9Inzgp2jzDY/dA1Ak3WZDJ/K2TSVaFtoBfD2M5Pju6EXLfFsgi3azEXYve+P/Z3A
-	6HY771gMecsJgCc58RxPQP75n8Catb8LxE++TcFkXbtwTthP6pd6zvFtpwh/prFlbShL1c4MPhd
-	eEB6SDQe7sgrK8+aBcAHGUH1AhJIn/sDY9Ir1pDDU6fzbpEkxa6skJsYoPOS00ULR4E5Nyix45b
-	N44Qu5+YHnUF6nH+xzap4qGDj0zMPkgJNYCGi4WMpZNRo8jx9nqkfknq8mGoRuqOCaykvnb1km1
-	jx0tnrlNp8TlZPRZCQbiSCkPQQbBd+QzTHknOl2r8xoM9dHjmwzfufK7Ea/vY7QcD+2rxHj/1AE
-	/IWJ46zKOuKJUUh3iWfSyQPLS8/rIkMTdO
-X-Google-Smtp-Source: AGHT+IGvM2aRmnu7GA8G2gvNXGw3j4+iftCtbFKEOGU8W7oPyxOpBUXfFKCj9nBNvSVCCR3PzytO7w==
-X-Received: by 2002:a05:6512:3b07:b0:584:2746:c6d8 with SMTP id 2adb3069b0e04-592f5a598b3mr3818460e87.29.1761532756961;
-        Sun, 26 Oct 2025 19:39:16 -0700 (PDT)
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com. [209.85.208.176])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59301f50a63sm1975534e87.42.2025.10.26.19.39.14
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Oct 2025 19:39:16 -0700 (PDT)
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-376466f1280so62868721fa.0
-        for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 19:39:14 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU3c/2PZXS4h3ShODPhrymlCgeWpCBNJVsj/YONhC8RieGPjD3FZjCbNU2IKFsfllMJ4VEtW/4bEI6v@vger.kernel.org
-X-Received: by 2002:a05:651c:1509:b0:376:2802:84a8 with SMTP id
- 38308e7fff4ca-378d6f87cf1mr39477651fa.46.1761532753914; Sun, 26 Oct 2025
- 19:39:13 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E706D2D24BC;
+	Mon, 27 Oct 2025 02:42:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.95
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761532931; cv=fail; b=lq/U574cJG6ia7RZU+sbugLb8AZVtavxKRwJ44i22nD5SnI2UuMhSJlvvyH2UTxoj/Wwn05RytWWWdGMClrIkWc6qsHAqeAhQvAXHWNQiDMDc3QahvXyvfpenCwWfE5D0AZw/HtsoOQfQ9hji658MsvkmEeXNT4mRzUjglVL3eM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761532931; c=relaxed/simple;
+	bh=EnITEGSudbzAtd98mJZIemrpHI6iuhdJmTuzizRMeYw=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=taUFefRiL2QID5+LxY477K7Gq65w82SyqAVakjQYvxUDz5WO0Ae/gc2jzd5VaJRHShlsRiBmUXtd0QfLJG9pkUJwvm7D5P/Jk7hpEhDnKTEQ+A5Ha3pY5W9wN5QnpLn5FlcZO9URQZ2MoZXgrso2vPr650vm3muYlMIDm7BcP6Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=aLirn0An; arc=fail smtp.client-ip=52.101.126.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kR4SGxq4BoCbIN3QR8maDdluuxd2RsgfvfrH4gROBXydFSNURhCdusXV3Jg5jsLlJM0d18GMuNvept6AEEXWe9aP7KeAFgGappvtgS/nLmuqfbtK7P6PWFBndtEi2qV5OOP0it2odrO9bS6ZYrRvMBruHKUgsl3X3pP6wADXh3Wt0HoH7L2MSEW0r0dPk1cFPVyparvK73dmnSdDp3aC/WDReyUK0zY955sTcr6WfAnrcRu8+6KQwHVcT/efaFbJQ37ZfXrWPBbWCWlTJW6GB8ScT6hB1yYpNqLls+uvXfxVSfYc6w4sKIG7ONLJI3r/xkaWNuGGibdlJTqh1f18/w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=y8RgaXGdrWb3i5yVy1EbV3V726G4vTwIPPqIqMKmyGw=;
+ b=ELtZiMJnICVp9tO5CqlYxKNjSHUdvp3nVVe5qlIXmY+x//yyxVOiT42vz92rl+QMa4BX1NGst27vMYFUp9L75NFylnt9P1xEY4DWLkgVGzhRyt/trfZrMrKUM8ZXrUj88mwr5eGqusaVXIkwXD9B1Q1C6XZVChSZ8/bdpuf26bXCRLzNoONE2EHu7AMkQKy29Xv7h1+NNQ2QGQdruJdsReYkZ62bnCjHAJmyjv6+rIotMcdKAcTfvpN5V2n5dcl2iBGTmHEAyW2piNBtFaQAXzoDnJ8LfEsalnE6jjG5CDKf5+BlMq6d/fTmkOcVo3eT2m8ROk5sTM7Bh7Z6JXpr2Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=y8RgaXGdrWb3i5yVy1EbV3V726G4vTwIPPqIqMKmyGw=;
+ b=aLirn0AnBBzFFE9+iEkVwEQwq3plua89WadCTIpgiz8QB+42wlUp7DFT25RPomsIAbvfjDuaQmydqcCMTa/YTLqEVrUYUCciN7qVuN+dw46PGJ74NqgPFEvdDC3eB1RlsNSCYYHGiIoRXwtiuielm1ykSS4tM4oA3xwtxcq7yldw+tMHkosrNkpfUuKGoO0wYTr5FulU3uDnu1/ZPesjjACvmHYQhC3rnDSx1b6V61UdLCBz1hzvZYxHX1oGrEzfMCBOdEJLdBe/yNM+b2h+7j+QWp7P3+iPynmJfLL6vkwFgMfkfN9kv+I4W+1mFUq3VlPhtevpEyeKyKFElydWOQ==
+Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com (2603:1096:408::791)
+ by TYZPR06MB6935.apcprd06.prod.outlook.com (2603:1096:405:3c::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.18; Mon, 27 Oct
+ 2025 02:42:01 +0000
+Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
+ ([fe80::df4f:b1a1:1825:4a80]) by TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
+ ([fe80::df4f:b1a1:1825:4a80%7]) with mapi id 15.20.9253.011; Mon, 27 Oct 2025
+ 02:42:01 +0000
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Arnd Bergmann <arnd@arndb.de>, BMC-SW <BMC-SW@aspeedtech.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
+	<andrew@codeconstruct.com.au>, Jeremy Kerr <jk@codeconstruct.com.au>, Lee
+ Jones <lee@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, Will
+ Deacon <will@kernel.org>, Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>, Nishanth Menon <nm@ti.com>,
+	=?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>,
+	Taniya Das <quic_tdas@quicinc.com>, "Lad, Prabhakar"
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>, Kuninori Morimoto
+	<kuninori.morimoto.gx@renesas.com>, Eric Biggers <ebiggers@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC device
+ tree
+Thread-Topic: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC
+ device tree
+Thread-Index:
+ AQHcQyJQr8Cg3wF4TE29hMu8e6S4P7TOr5mAgACf3YCAANyZAIAAeR6AgACX8gCAAPRVAIADDnEAgAAO3MA=
+Date: Mon, 27 Oct 2025 02:42:01 +0000
+Message-ID:
+ <TY2PPF5CB9A1BE6DD93D0F397C961D5CB5AF2FCA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+References: <20251022070543.1169173-1-ryan_chen@aspeedtech.com>
+ <20251022070543.1169173-5-ryan_chen@aspeedtech.com>
+ <b5441728-06a7-44ea-8876-3a9fc3cf55be@app.fastmail.com>
+ <TY2PPF5CB9A1BE626A2F0F6307461D8F64BF2F0A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+ <6a97fbb4-19c2-4ffa-9c73-26aea02c27e4@app.fastmail.com>
+ <TY2PPF5CB9A1BE6CF8336D211641A18E2DEF2F1A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+ <71df9bdf-53b2-45e2-a9e3-5b00a556f957@lunn.ch>
+ <TY2PPF5CB9A1BE6F3E95C7FD61CF4F90ECAF2FEA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+ <fdbc471f-514e-4521-b7a1-dcf6127d64ff@lunn.ch>
+In-Reply-To: <fdbc471f-514e-4521-b7a1-dcf6127d64ff@lunn.ch>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY2PPF5CB9A1BE6:EE_|TYZPR06MB6935:EE_
+x-ms-office365-filtering-correlation-id: 0fddbe53-4761-4d7c-39fe-08de15026821
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|376014|366016|1800799024|38070700021;
+x-microsoft-antispam-message-info:
+ =?iso-8859-1?Q?bsxe2v947W3PrfMVwNshkA9HIMZPLvxCYBBgU0J1BAJ9p0a0Ai+srxGByx?=
+ =?iso-8859-1?Q?2OeVUfEfAjBoW+zxAMCPODnCfr5ILwLzcJG2JOy4igWA5TLxW9oEVHytUh?=
+ =?iso-8859-1?Q?90EMbU625HpwRwC94Vk6zpjyURqbPbOrrXvVHIqufHHG0dtSp6VZhu/ikU?=
+ =?iso-8859-1?Q?nF+Tn0tG6NDT7cz9KkU79vBDPK9VkU9/j4pAmn/iVZF6OOYpiW/WQTzIfI?=
+ =?iso-8859-1?Q?FR1ihuKHRpH9BzRLaPbLlwgUY7p4+y9+FVqzwx0sQJPOXex8WSQhTLBagX?=
+ =?iso-8859-1?Q?J8mtjO4vxOe7XN4qjhOh6HohlGNDclp/KKww0WjYbNZk70rQNIs9HeZbLE?=
+ =?iso-8859-1?Q?adRijK8AUscJggg1EgpUz/paX8zfXnV+X247SO7vBBiEydgkjeJxYWexs8?=
+ =?iso-8859-1?Q?I6Nwfms2gZT+3ndkgxkWaflqYYROsydPqfYME4Gbd4KNNrnNwA/yWtJwbh?=
+ =?iso-8859-1?Q?ZWinLARFj+F7A8RsIvLl9SGGCMQtIRWowMZb8FOVarGUWFXbh+/9jFiHaB?=
+ =?iso-8859-1?Q?qmOw/mNl3+OBOTzDrs7lGD4JhB5uLX2e6wyxBbfv3qs6XaBGn89bW+Ho3m?=
+ =?iso-8859-1?Q?yZBeB0CW2eXRA/SdTVMtJQbNlEvkezdoNRnYXV+smJndRdatg9TRSC569T?=
+ =?iso-8859-1?Q?tgpusmQOkc6/1CtTft2UmfrReAI91mlRUGJt0raq4XTCDnDi4pchL7NBTw?=
+ =?iso-8859-1?Q?6ZJxrZtsnLwMxWRiTaaJV3d+yEg6CKseOdKW5juaG3OEcMw7BaL3plpz0C?=
+ =?iso-8859-1?Q?i7NXgzOjuXyElZeAKErnH4aJEcuuKLWFHpZsQbQPklZlzKEmRkpG75m1Rz?=
+ =?iso-8859-1?Q?wYtvWjei101KXC0P5bcEsgZEqr1sn3nYYo6REvB1TfG1AlZeMSYHBlx9YJ?=
+ =?iso-8859-1?Q?1t1yJ2nJJFIZb6WqbiahZc6HBnLH6F813g1wVGN40Ba391zLcWViHJ1Saf?=
+ =?iso-8859-1?Q?Nh85nPVl9Sby6NHLdHTeHGJ3azMP9r7OLGkiRLR/tzCgoL9cEyn5qKvLSg?=
+ =?iso-8859-1?Q?qhyMhFSgV/UjADGKFgc4GkCdHe95F9wBdwv1L6lkST/bNJMGsW2htssnRf?=
+ =?iso-8859-1?Q?oJrwxBS+92QFQxFd7dhxomz9UHVzihgLhkejpJyfXDHSDh9NWQXGSPaiVJ?=
+ =?iso-8859-1?Q?01QA9iWhmq2bfbm5rC4NxvN2WCvL58FlqKeFQp0fsSEasKc8mB97VY5wln?=
+ =?iso-8859-1?Q?ZxIz2NKLCBXvi0LOcHBwEjdyTAOODX/elJZEL6TcsGR8txvROpMKGM+JSR?=
+ =?iso-8859-1?Q?wm4ynMbIMz7PhdwdeMVRmLliOYT1M171uHKYDY/Yi0CC5Mj2CgZ3hyHHK2?=
+ =?iso-8859-1?Q?IjQW1iCht+0ieHFCMTP+BMrugkE42bjM8OEaxU+Djd/77AA7hSRiDME/CB?=
+ =?iso-8859-1?Q?k2pYkh7LXQxRzOIwqDl48YYjCYsxRzP4TY4epKZ6SFTrUkqZLFG14W1A2z?=
+ =?iso-8859-1?Q?nMuwyH46jUMjgn3xcWR5IoqznMgWjSDKaT4bVAKffkyz6Ys30REPgyn7aO?=
+ =?iso-8859-1?Q?bHiILQXt9pYCaX56XC0o9HP7CKq48cyyTw2rmG66z2hlWR0opY30saBVuK?=
+ =?iso-8859-1?Q?SJ7UlOWntPfSbtyikyi4vQPaqMyO?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024)(38070700021);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?znt69szmm8RHPpp0AwuQ7m/16vJJ60zxTQTY1/zEPpqwnpoKcj3jGqFeVF?=
+ =?iso-8859-1?Q?o6em3WGtdkWhgid87KxmMqoC+sy9JLGK6Oba+zzRQl+XZVZvUMhUi/4C2R?=
+ =?iso-8859-1?Q?UY7AY8CjCTGj6kJw2Ql5UZbjVktX4M9DbaE0z91pzM4oEy4edjqHO691r7?=
+ =?iso-8859-1?Q?bYXtmIEztGgHaaLV1xD9ODT8zMQhLcqMMW0pE1AyGV6LhrvIp5QNBDb3nA?=
+ =?iso-8859-1?Q?ov4iBVDtwOOGlN7+6/04Kf845spE23oWSk+vN26kzQ2CcnVmURRW1UyAtx?=
+ =?iso-8859-1?Q?tM2+CUeJeq/ZzbHq1wXPcmTnXjxoB52PPw+wemztuVTBgYMdKVhym0UoC/?=
+ =?iso-8859-1?Q?2Sd+mySla6luEvuKegO8XfrFVGs2fibEFjRh/SOLpomLpahrG/ZYTmG116?=
+ =?iso-8859-1?Q?apM7YdN6FFU25eg27HUUjtBAvlxUBCF7wiuSupYTNdmb8NBNqIlzabQCYy?=
+ =?iso-8859-1?Q?nia6ysRCV7sjpb1PLaV53RqmGyhzGxfxF+u/Nis2qGt8bIUHbBPZHXviJb?=
+ =?iso-8859-1?Q?FANHEFG03gkyX2z84YhSOZ7ZZkPPsty8+TxAfcKhItJaPlAuho6FYaRV09?=
+ =?iso-8859-1?Q?yzr97znmlVUePEg3NI9+F07SIKneQozh8gyai9RH/7pcHMf8FKYPPeCCKp?=
+ =?iso-8859-1?Q?3u9Ul41YmWWU1LZE8/DJQ9CfsexwjKLvy1k3nw6a31v0hTXOdYcOnl6FgF?=
+ =?iso-8859-1?Q?zM1XiOeCw1a6UH0fPLzbTegKSIdmNnJWtNJl/eBlr0JnM+LDTCn6liPlJH?=
+ =?iso-8859-1?Q?czxeB+6FliU4WIbJOilkv7/xz2331Cx8Um5zs0Ac9URAh2PcQFscqJisiV?=
+ =?iso-8859-1?Q?Z4C1oqTcKoyrNyMfa3ZuCefz7UPCIW4SJQLRQcegyOYcqC9ufGl0JszbYk?=
+ =?iso-8859-1?Q?+asg/P3bRbAkSVADTlwFkMqTOoQ2jKdA+6rjC0tdo9UdaAf2q+HsoaVjnx?=
+ =?iso-8859-1?Q?hb+GzcuvG+YPyFqUv1e63BDtvNWw7tvJQfQ2H3RPv84C8ZU9VmKAa9/n/t?=
+ =?iso-8859-1?Q?ZNK+LFu/UqZmFMwZUPa53kHIsRI0iP5my68pSG5M1LsiyQawhjc+0/uOfl?=
+ =?iso-8859-1?Q?EopbHjQecT3uXhQaVBi2XB+HjWJU+sWbWIoRUt9kOmy4kjIpKnLSFU9NDr?=
+ =?iso-8859-1?Q?bD8L4U43f2DMjtMt4NhKv5CfUHzTte15HKqYAKMIjDcg/YOJ6AX7VBIVkK?=
+ =?iso-8859-1?Q?74fri5QJw7hhqq0/OdWCCoHbKS3cqCFBttdfJOC5amWJDHOrHJh0l1qxmU?=
+ =?iso-8859-1?Q?5DYyjRyM1MpYh3nCcid5CiW5aIwRD7yuSi05D3SUj29l0qeqG/MbomfQjp?=
+ =?iso-8859-1?Q?VuNPJ8/3dY0bAXljmUnrLMwbTw8Grx3y6gap5wOKOi2rwLwwNrKNN6NyM7?=
+ =?iso-8859-1?Q?KVq5dQQjlmsorpl3PkElSpDPw5PtDwT7bRqEklP2MObSxt86gKFbldx/YP?=
+ =?iso-8859-1?Q?bmEiqxCM8M5W1KDVCecac4VB5bn+sL6GZQ2Qi8b6I6fpV1q7AxnNGUEfxq?=
+ =?iso-8859-1?Q?PppIHbOCfIqyF/D+e+UnQ2wwQ0X/snvZo2RXPPnAxD5b4kEhgOs80XRY6K?=
+ =?iso-8859-1?Q?sb3idSlh6Ke96anYsnsJ8BHa/wEqZUCfdNd89+Zxf6eB4kipUa9RbQQRDH?=
+ =?iso-8859-1?Q?iw9HaB5maoPmhqhPHp7HCWovaVjCvQyVAc?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251025043129.160454-1-iuncuim@gmail.com> <20251025043129.160454-3-iuncuim@gmail.com>
-In-Reply-To: <20251025043129.160454-3-iuncuim@gmail.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Mon, 27 Oct 2025 10:39:00 +0800
-X-Gmail-Original-Message-ID: <CAGb2v656qzX3YrcuTt++=-r5JCyDKgGB8NYTAM3TpyRtAwdibw@mail.gmail.com>
-X-Gm-Features: AWmQ_bltF2M2RvHvljsl22XgW5kEnSwcYVFG9c-kdXV1SwRk_st0sy4RKS89u_w
-Message-ID: <CAGb2v656qzX3YrcuTt++=-r5JCyDKgGB8NYTAM3TpyRtAwdibw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/6] thermal/drivers/sun8i: add gpadc clock
-To: iuncuim <iuncuim@gmail.com>
-Cc: Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li <tiny.windzz@gmail.com>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Andre Przywara <andre.przywara@arm.com>, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0fddbe53-4761-4d7c-39fe-08de15026821
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Oct 2025 02:42:01.3751
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 5OsCS7zsmfJgLEffcJZBkbTkYUKJiEchrcb/EBgQRN8X/hk+ROAMz74KqBJB7YmIj44VEv1nzCCNj8ZKFHe5JJNC5LuMJ4tVr5ncP4p60eA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB6935
 
-On Sat, Oct 25, 2025 at 12:32=E2=80=AFPM iuncuim <iuncuim@gmail.com> wrote:
->
-> From: Mikhail Kalashnikov <iuncuim@gmail.com>
->
-> Some processors (e.g. Allwinner A523) require GPADC clocking activation f=
-or
-> temperature sensors to work. So let's add support for enabling it.
->
-> Signed-off-by: Mikhail Kalashnikov <iuncuim@gmail.com>
+> Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC d=
+evice
+> tree
+>=20
+> > SoC0, referred to as the CPU die, contains a dual-core Cortex-A35
+> > cluster and two Cortex-M4 cores, along with its own clock/reset
+> > domains and high-speed peripheral set.
+>=20
+> > SoC1, referred to as the I/O die, contains the Boot MCU and its own
+> > clock/reset domains and low-speed peripheral set, and is responsible
+> > for system boot and control functions.
+>=20
+> So is the same .dtsi file shared by both systems?=20
 
-Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
+This .dtsi represents the Cortex-A35 view only and is not shared
+with the Cortex-M4 or the Boot MCU side, since they are separate
+32-bit and 64-bit systems running independent firmware.
 
-> ---
->  drivers/thermal/sun8i_thermal.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/drivers/thermal/sun8i_thermal.c b/drivers/thermal/sun8i_ther=
-mal.c
-> index 226747906..c02c398b0 100644
-> --- a/drivers/thermal/sun8i_thermal.c
-> +++ b/drivers/thermal/sun8i_thermal.c
-> @@ -66,6 +66,7 @@ struct tsensor {
->  };
->
->  struct ths_thermal_chip {
-> +       bool            has_gpadc_clk;
->         bool            has_mod_clk;
->         bool            has_bus_clk_reset;
->         bool            needs_sram;
+> How do you partition devices
+> so each CPU cluster knows it has exclusive access to which peripherals?
 
-We could optimize this using bit fields instead. This can be done in a late=
-r
-patch if you want to do it.
+Before the system is fully brought up, Boot MCU configure hardware=20
+controllers handle the resource partitioning to ensure exclusive access.
 
-
-ChenYu
-
-> @@ -89,6 +90,7 @@ struct ths_device {
->         struct regmap_field                     *sram_regmap_field;
->         struct reset_control                    *reset;
->         struct clk                              *bus_clk;
-> +       struct clk                              *gpadc_clk;
->         struct clk                              *mod_clk;
->         struct tsensor                          sensor[MAX_SENSOR_NUM];
->  };
-> @@ -417,6 +419,12 @@ static int sun8i_ths_resource_init(struct ths_device=
- *tmdev)
->         if (ret)
->                 return ret;
->
-> +       if (tmdev->chip->has_gpadc_clk) {
-> +               tmdev->gpadc_clk =3D devm_clk_get_enabled(&pdev->dev, "gp=
-adc");
-> +               if (IS_ERR(tmdev->gpadc_clk))
-> +                       return PTR_ERR(tmdev->gpadc_clk);
-> +       }
-> +
->         if (tmdev->chip->needs_sram) {
->                 struct regmap *regmap;
->
-> --
-> 2.51.0
->
->
+>=20
+> Seems like a fun system to play core wars on.
+>=20
+> 	Andrew
 
