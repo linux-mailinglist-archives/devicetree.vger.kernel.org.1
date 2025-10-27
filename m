@@ -1,142 +1,167 @@
-Return-Path: <devicetree+bounces-231356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85D91C0C99F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:17:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99C60C0C9BD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:20:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C3BC1884734
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 09:12:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B30203A1926
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 09:14:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93BAB254B1F;
-	Mon, 27 Oct 2025 09:12:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20F32224B0D;
+	Mon, 27 Oct 2025 09:14:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GOib/KLc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65BC91D31B9
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 09:12:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 437872586E8
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 09:14:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761556345; cv=none; b=QfEoingNnXncfUb/5HRzvZTwjV7xNZ0Mnq6hHBrL/SjnSqNUxyc20qeFw3LtCwhNQPBM1TROlYYJkGaiMGTZDhxLqzIJZ5GLB4+355TVXt7ouJnPzI6HTG3hpCfG3Ydurmn2WYkZXUo6eK8VRhDwjDlTuYQMESTNaOHQyoQrxYk=
+	t=1761556460; cv=none; b=csP/q4XHn0Jjitv+vNFEPxOYNAU2aPEId2m1XdJh4XxHXIrtYkmLLNr4rshzJtYx2D20SWvDik8KU3krJ/SdE2GbULybZ6YsX3D7aH/dcaWuroCSth2f0s90KmZN2yWIxFqYXHkH1AoiUjonyg39Cf+z/ghGdA90t2MoToEbNhI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761556345; c=relaxed/simple;
-	bh=7++QsH5bawr7XCDAbjJoXgzd3HDYqk6XSr6YwDduhrQ=;
+	s=arc-20240116; t=1761556460; c=relaxed/simple;
+	bh=tsNHMFZY3PU7iLhgVuc7tAbmByrrRvjQKhA8uFowZpo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=narjE1fxsUluEPdlL/IpK4XV97YytxGQ3hIYxWrI0pDfUIOV9EHIpMs8GR5VllNaohZaNKZbdvjG9UNX3LHK4ELhNM76AfMNDmUQ8ZwdsQJZ8rIcUmk7caVn4M4l9/ZKuooy9uNoi/z2K/Ac9aW+t20/RwV0uhN78SYVl2GrAyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vDJGu-0002bL-Sy; Mon, 27 Oct 2025 10:12:12 +0100
-Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vDJGu-005gDs-1z;
-	Mon, 27 Oct 2025 10:12:12 +0100
-Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.98.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vDJGu-00000003Szh-2FNl;
-	Mon, 27 Oct 2025 10:12:12 +0100
-Date: Mon, 27 Oct 2025 10:12:12 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Russell King <rmk+kernel@armlinux.org.uk>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Daniel Scally <dan.scally@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Stefan Klug <stefan.klug@ideasonboard.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
-Message-ID: <aP83bMDWCre7-Sjw@pengutronix.de>
-References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
- <e87ff7f2-d16f-41f2-b781-b175cfb84b21@lunn.ch>
+	 Content-Type:Content-Disposition:In-Reply-To; b=laa9hc3nebiDGZw1mTwGBf4H0CfLwNZay4nF9SuQ5cE3PBGklkwbzzlYoZGd34Oc27s65KkdjiUd94/hv4uNh3G/WZHcpG0VQQWxoYERVjLcgc75T8hWSWM7JAsdfc48xkRhLYO8Dl19hHuyiipPZMdcp4KsrzTnyIBY9D8R4os=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GOib/KLc; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-475dbc3c9efso13305855e9.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 02:14:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761556456; x=1762161256; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=zMfASScf5ZTOmAyQbAWxr3O4HT4xPAALH5kjKVs+B5Y=;
+        b=GOib/KLcdbEj1bJ1u204LXrW1IN5r6MHIqfbReDiaFS9xkSBCFbECLX0GO4XBgzlQ7
+         kljD4c2d1XyuXxayFL4Czh2rRhbTKJnW+SxHjsMBxLLjIJPkEqon0hDcVsnnyA1ow3wv
+         cviqeE12v7m2jRO/5DQcQ1u51bk4d7wOZSja3tYMQQS7U0P+8U+VHphMnWm56EMTtKTs
+         hvdMxmiUrUBQIPk3cNQVMY3K4PXW3OaIsJfvkYHjd5euMwy42aPPipP4+PCgSmAtY8vU
+         k2FD46XGX/6s/VYwMWmSz/D2XSsKcwBKfzxDi+Z83salnnqn1BTa5pGTE2MlGqmjh7Z/
+         GLOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761556456; x=1762161256;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zMfASScf5ZTOmAyQbAWxr3O4HT4xPAALH5kjKVs+B5Y=;
+        b=kyaIQfL3IHVfFvazywC5n2XXQDa6FmiZrj/xdrE6Kq8yjAz2aFw7DovBFGxkkZz9vV
+         smXQ2L2pLAas0CLZeXxwPNCsp0IMs5kiooh9JOToq5xV71ifJMO51QqqI8v90SrNaVQU
+         m12aGYpZHBpIBFEAlfIcUy/JVmU84v86ghGFnb7VT/QMpjMoAITLMdZr4uOe0wqdS6Tm
+         9S3YfOa/nsS6HiLIRJTLTBtWzvoGS3oralZpRIBehfBBISLmi5XI3XvgwXcD6X8ahMJj
+         csFMZIbAxhDcYaeA/gQYILQ0rYUNP766jr3r73KaYwyYDFgfSlqvJgLJhL1oNc4w2wHA
+         1HeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX87TRrNQ7cW9tGis7mbW2mtrRItI2NLw1pY4WZz5hm2XxIBqaC/yMIWcLCe9csIwSNmg0wheZdEx/v@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyco9QK5R0eCba/rmEQjsSZMOJf+1uQ1S0wLPNDg9SSZlOKEKDq
+	mUIyE8r+l9P2EWyo/raccls71280Ts082x/wn0y3z00K1yuXDEQRTx9OhNBNvv9Sxu8=
+X-Gm-Gg: ASbGnctXbgbnuKcHX9UfPwdeugieYunkdngkGm82Ln/fS5cgh3aFo2fYifs+t8f1qSE
+	P+35XscGK+edDG9ecekZsSiNutuII8TthXs4Tg86HvfovFpNZTIueqAC2HLZxgBmMAGg+6XDBbh
+	Pus/OFOyOEnS7uVKSRHLCnW2nPlCAmsaPSVFplL/0p5OGNMJGdcm6ncyhNlV13/pOvn7aiQr9mF
+	Pe7Y/vAdyk56og1RQnVvVXvWTxB2DoioZ9seDwqH9ptvQBtx2FB14L9KQMVDLqjwJROln8noeJE
+	xoOj7Zv+v5dIRzlI93B7g0mn9kSURhxod9hnsx1zK1FIJ3EBXymOWcsAaxQYzhYmuxlET0mnNxS
+	LvWMDkzFtKC6K70WxOQ/tBbgmXHpvuQzItsJ1g76UWx1m32zGSrIu9fpkQJRHE/n24erlikpvNw
+	NCBPt6FNU=
+X-Google-Smtp-Source: AGHT+IF01498un0tSWAnn1Di9SQ50IOxjN2AyB2jrpc+3JXFxPl0fMSWvNz6Z5oCVFiz8j55+fzQuw==
+X-Received: by 2002:a05:600d:438f:b0:476:84e9:b55d with SMTP id 5b1f17b1804b1-47684e9bedbmr28893255e9.3.1761556456359;
+        Mon, 27 Oct 2025 02:14:16 -0700 (PDT)
+Received: from linaro.org ([86.121.7.169])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-475ddae2309sm60319575e9.12.2025.10.27.02.14.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Oct 2025 02:14:15 -0700 (PDT)
+Date: Mon, 27 Oct 2025 11:14:14 +0200
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Wesley Cheng <quic_wcheng@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 6/8] phy: qualcomm: qmp-combo: Update QMP PHY with
+ Glymur settings
+Message-ID: <j4it7mdacjnx3gocmak5nxx7bqmtxmikum7kn7qr5dh7jac7ok@oiqkbnil6lfd>
+References: <20251024-glymur_usb-v6-0-471fa39ff857@oss.qualcomm.com>
+ <20251024-glymur_usb-v6-6-471fa39ff857@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <e87ff7f2-d16f-41f2-b781-b175cfb84b21@lunn.ch>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20251024-glymur_usb-v6-6-471fa39ff857@oss.qualcomm.com>
 
-On Mon, Oct 27, 2025 at 04:08:42AM +0100, Andrew Lunn wrote:
-> Adding Russell King
->
-> On Sun, Oct 26, 2025 at 02:29:04PM +0200, Laurent Pinchart wrote:
-> > Energy Efficient Ethernet (EEE) is broken at least for 1000T on the EQOS
-> > (DWMAC) interface. When connected to an EEE-enabled peer, the ethernet
-> > devices produces an interrupts storm. Disable EEE support to fix it.
-> >
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> > The exact reason for the interrupt storm is unknown, and my attempts to
-> > diagnose it was hindered by my lack of expertise with DWMAC. As far as I
-> > understand, the DWMAC implements EEE support, and so does the RTL8211E
-> > PHY according to its datasheet.
->
-> I believe for DWMAC it is a synthesis option. However, there is a bit
-> indicating if the hardware supports it.
->
-> The PHY should not be able to trigger an interrupt storm in the
-> MAC. So this is likely to be an DWMAC issue.
->
-> Which interrupt bit is causing the storm?
->
-> > What each side does exactly is unknown
-> > to me. One theory I've heard to explain the issue is that the two
-> > implementations conflict. There is no register in the RTL8211E PHY to
-> > disable EEE on the PHY side while still advertising its support to the
-> > peer and relying on the implementation in the DWMAC (if this even makes
-> > sense)
->
-> It does not make sense. EEE is split into two major parts. The two
-> PHYs communicate with each other to negotiate the feature, if both
-> ends support it and both ends want to use it. The result of this
-> negotiation is then passed to the MACs.
->
-> It is then the MAC who decides when to send a Low Power Indication to
-> the PHY to tell the PHY to enter low power mode. The MAC also wakes
-> the PHY when it has packets to send.
->
-> A quick look at the data sheet for the RTL8211E suggests this is what
-> is supports.
->
-> There are a few PHYs which implement SmartEEE, or some other similar
-> name. They operate differently, the PHY does it all, and the MAC is
-> not even aware EEE is happening. Such PHYs should really only be
-> paired with MACs which do not support EEE. An EEE capable MAC paired
-> with a SmartEEE PHY could have problems, but hopefully the EEE
-> abilities and negotiation registers in the PHY would be sufficient to
-> dissuade the MAC from doing EEE. But i would not expect a setup like
-> this to trigger an interrupt storm.
+On 25-10-24 17:47:44, Wesley Cheng wrote:
+> For SuperSpeed USB to work properly, there is a set of HW settings that
+> need to be programmed into the USB blocks within the QMP PHY.  Ensure that
+> these settings follow the latest settings mentioned in the HW programming
+> guide.  The QMP USB PHY on Glymur is a USB43 based PHY that will have some
+> new ways to define certain registers, such as the replacement of TXA/RXA
+> and TXB/RXB register sets.  This was replaced with the LALB register set.
+> 
+> There are also some PHY init updates to modify the PCS MISC register space.
+> Without these, the QMP PHY PLL locking fails.
+> 
+> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-combo.c          | 288 ++++++++++
+>  drivers/phy/qualcomm/phy-qcom-qmp-pcs-aon-v8.h     |  17 +
+>  drivers/phy/qualcomm/phy-qcom-qmp-pcs-misc-v8.h    |  12 +
+>  .../phy/qualcomm/phy-qcom-qmp-qserdes-lalb-v8.h    | 639 +++++++++++++++++++++
+>  drivers/phy/qualcomm/phy-qcom-qmp-usb43-pcs-v8.h   |  33 ++
+>  .../qualcomm/phy-qcom-qmp-usb43-qserdes-com-v8.h   | 224 ++++++++
+>  drivers/phy/qualcomm/phy-qcom-qmp.h                |   2 +
+>  7 files changed, 1215 insertions(+)
+> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> index 1caa1fb6a8c7..d1534ed7200b 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
 
-Please note, RTL8211E PHY do use undocumented SmartEEE mode by default.
-It ignores RGMII LPI opcodes and doing own thing. It can be confirmed by
-monitoring RGMII TX and MDI lines with oscilloscope and changing
-tx-timer configurations. I also confirmed this information from other
-source. To disable SmartEEE and use plain MAC based mode, NDA documentation
-is needed.
+[...]
 
-Best Regards,
-Oleksij
+>  
+> +static const unsigned int qmp_v8_n3_usb43dpphy_regs_layout[QPHY_LAYOUT_SIZE] = {
+> +	[QPHY_SW_RESET]			= QPHY_V6_N4_PCS_SW_RESET,
+> +	[QPHY_START_CTRL]			= QPHY_V6_N4_PCS_START_CONTROL,
+> +	[QPHY_PCS_STATUS]			= QPHY_V6_N4_PCS_PCS_STATUS1,
+> +	[QPHY_PCS_POWER_DOWN_CONTROL]	= QPHY_V6_N4_PCS_POWER_DOWN_CONTROL,
+
+The patches I have for DP fixes these by adding the V8_N3E and using those instead.
+
+The reason this hasn't created any issues is because, at least for these 4, the offsets
+are the same.
+
+You can use my patch so you don't have to add those reg offsets yourself, if you want.
+
+> +
+> +	/* In PCS_USB */
+> +	[QPHY_PCS_AUTONOMOUS_MODE_CTRL]	= QPHY_V6_PCS_USB3_AUTONOMOUS_MODE_CTRL,
+> +	[QPHY_PCS_LFPS_RXTERM_IRQ_CLEAR]	= QPHY_V6_PCS_USB3_LFPS_RXTERM_IRQ_CLEAR,
+> +
+> +	[QPHY_AON_TOGGLE_ENABLE]		= QPHY_V8_PCS_AON_USB3_AON_TOGGLE_ENABLE,
+> +
+> +	[QPHY_COM_RESETSM_CNTRL]		= QSERDES_V6_COM_RESETSM_CNTRL,
+> +	[QPHY_COM_C_READY_STATUS]		= QSERDES_V6_COM_C_READY_STATUS,
+> +	[QPHY_COM_CMN_STATUS]		= QSERDES_V6_COM_CMN_STATUS,
+> +	[QPHY_COM_BIAS_EN_CLKBUFLR_EN]	= QSERDES_V6_COM_PLL_BIAS_EN_CLK_BUFLR_EN,
+> +
+> +	[QPHY_DP_PHY_STATUS]		= QSERDES_V6_DP_PHY_STATUS,
+> +	[QPHY_DP_PHY_VCO_DIV]		= QSERDES_V6_DP_PHY_VCO_DIV,
+> +
+> +	[QPHY_TX_TX_POL_INV]		= QSERDES_V6_N4_TX_TX_POL_INV,
+> +	[QPHY_TX_TX_DRV_LVL]		= QSERDES_V6_N4_TX_TX_DRV_LVL,
+> +	[QPHY_TX_TX_EMP_POST1_LVL]		= QSERDES_V6_N4_TX_TX_EMP_POST1_LVL,
+> +	[QPHY_TX_HIGHZ_DRVR_EN]		= QSERDES_V6_N4_TX_HIGHZ_DRVR_EN,
+> +	[QPHY_TX_TRANSCEIVER_BIAS_EN]	= QSERDES_V6_N4_TX_TRANSCEIVER_BIAS_EN,
+> +};
+
+I'm pretty sure this is wrong. You are using the V8_LALB offsets below, which
+is correct, but here you are using V6_N4. At first glance, these are quite
+different.
 
