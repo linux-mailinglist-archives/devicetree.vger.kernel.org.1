@@ -1,98 +1,121 @@
-Return-Path: <devicetree+bounces-231705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1BE2C0FE57
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:21:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A5EDC0FEA5
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:25:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D11C019A7A94
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:21:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1253340253F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:23:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFE1A2D7D47;
-	Mon, 27 Oct 2025 18:21:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 308292D876B;
+	Mon, 27 Oct 2025 18:22:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="pdqDhQOU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TU/PrIb2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40E0B2BE7B4;
-	Mon, 27 Oct 2025 18:21:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0860A2D7DF4;
+	Mon, 27 Oct 2025 18:22:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761589279; cv=none; b=o6+81Bl2GCCdjZkZfkGds9LgnmhsYJS1xtpuS1+37t1POYXZm7C57/r0xXH2Oz1odzYOKg9PB3gXcbN10syjVQRWjSlH117L9AybNbP/0HILlHAEIBY1m2/NTtzfPC8FffDwumDYpeZmFg5XSeH7Dex+4h5QEsTSCBEb+foQadI=
+	t=1761589370; cv=none; b=Qh1ZhxTqeIb220Ted83BgAxaQIyHJtgZgam4TG/JM5OODj1S/Jw3kll4E+p3tr2iB3EMVuigViI0EbkCCNsd3zLYhC7FBuIMEA1LSTQgtzF0KiS2lRGQ2GfPfsMa4Hv98K5pp0lAKkgfIh0KSTUuwmEEBuNSoIYMRv2mTIPfV+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761589279; c=relaxed/simple;
-	bh=Z39cdubHOff8+JKx6/w34BrjsQRivvYjjTuRm9whb8U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ugxdtWnPFGjroPEsF1MJkEXI9JIi7Ugh4Jh43r51uLltd/xRWy5xYj8vGMd8afkAq+yXUkMZtzkoqYJZJlYq5if7p/0s204RoX3FYnU4KH5CWbIgk9yFT8cqgk0d7NkVrsQGByfhGXIef2gD+lCzIK1jWOdaE9bMgYmxB3z+gFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=pdqDhQOU; arc=none smtp.client-ip=80.241.56.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4cwMJp49cdz9v9m;
-	Mon, 27 Oct 2025 19:21:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1761589274;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=MGXgCo6JU4IvXIGzJengbpq5Z6UZltKHNPMXOi7+mRU=;
-	b=pdqDhQOUEkjZLDNyermMWMT4yNRlqfdwDnuDIabxWNYODbtZipil/WEcpHvLddc0Kr7oKQ
-	vskG4Ej5NWbt9EXUGcX3I6JNur/OnuMsbG+Ld9gqe4BNTYI+exZj5m2KqvrglsLW6JTR6O
-	hW1QBJfHWhQOMuTids1dyzRUmKCdalMXsTZz02mMnpVFY2qbnnl+sm7QD+akfOWQxQMb9i
-	c5EhO555tgYqhu4fsWhN/+AGbBBzioOVzVvGWmGiwRJjuZ2FZZFx1bG3J1Sb4SkiB7zH+v
-	5v5Ym3Vy+S8CbgekG5VMbioRfqIor0IQOh0fAnxGk4p3gaxVzvVKc5Wv5t835w==
-Message-ID: <29497db1-9a85-4c27-a0cb-eeee839c3797@mailbox.org>
-Date: Mon, 27 Oct 2025 19:21:11 +0100
+	s=arc-20240116; t=1761589370; c=relaxed/simple;
+	bh=h0Akxevv1FwFzTjlo4aljOnkFihbhJJn9CePtpMBHU4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gdFcO4jdf8aWLEUQbdtwxJNy72l2GQJIZq2qzVmgMRhgr+QNuBnZprYAtfjRKXbQJdW95g008VylFHzXCEr5Xi8RzrY5MW0ROufP4Vhk9Ns1hWb8hZiRAItlMOuMK1R7ZM5Y2ve50vHsWHn8IkLGCqI7aeD6a1Epr+Iod275zlM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TU/PrIb2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43D48C4CEF1;
+	Mon, 27 Oct 2025 18:22:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761589369;
+	bh=h0Akxevv1FwFzTjlo4aljOnkFihbhJJn9CePtpMBHU4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TU/PrIb2xo7EWam6dX1GZpobXpr8na62zyME1zrIQgmyzyS4dA+yPG9MQuLWIQdlM
+	 73XzFcnx7gpqtLv06j29NUuec09shTXfnLrFy3WMXn5lsGbncv4iCqcukSqzFKcgRy
+	 7zUtaHF5oIUk+TKenVBMO+StwH4UVbjoQTpmR34kZSOfrBn4WQwlHlQIpofgMqthJx
+	 M/KXYj3W2cn/lvRn2aD2nUMfueeWZ/kJQnprH6uAcMC6dwo0xzZfls4eOkK7kzMQWF
+	 o+yVeur7X3wGZHlH231jjtG7znLkhx2eaatY1reYrTDmgW/k+FDL9Ah4SE/hSFbRG8
+	 UoaBdqpOJB6pg==
+Date: Mon, 27 Oct 2025 13:22:48 -0500
+From: Rob Herring <robh@kernel.org>
+To: Robert Marko <robert.marko@sartura.hr>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, srini@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	horatiu.vultur@microchip.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, daniel.machon@microchip.com,
+	luka.perkov@sartura.hr
+Subject: Re: [PATCH 1/2] dt-bindings: nvmem: lan9662-otpc: Add LAN969x series
+Message-ID: <20251027182248.GA1281416-robh@kernel.org>
+References: <20251024192532.637563-1-robert.marko@sartura.hr>
+ <f3bd99c8-eb70-40d3-9b43-fba56546f591@kernel.org>
+ <CA+HBbNGZ3FwrGCtHX=mc8LQR9DCU84jqfhjFRGVDCJWtt+gdkA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH] arm64: dts: renesas: sparrow-hawk: don't reserve SWDT
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20251017115123.3438-2-wsa+renesas@sang-engineering.com>
- <CAMuHMdUCSRKAbD=DfJxfFGpfKTRkt=a2BO+HnwTqALBeeECOkA@mail.gmail.com>
- <aPaSF2lokJ748cTx@shikoro>
- <CAMuHMdXv_R6POTQe=MEcEOraKhjhzwrW5skkWnzgvijF2qAykw@mail.gmail.com>
- <fba13116-2495-49a3-a1b5-2eecb33bb448@mailbox.org>
- <CAMuHMdUP_bH5WW3=3J1H=6SocKzQXPdP7PFfYDrgaj4EhYTaYQ@mail.gmail.com>
- <0e81437f-a13f-4605-b7f7-6e6640411f30@mailbox.org>
- <CAMuHMdXs+FoL5g4ZgFVQ4WwXRt9Y-8BcX27d7=wFFROa939CwQ@mail.gmail.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <CAMuHMdXs+FoL5g4ZgFVQ4WwXRt9Y-8BcX27d7=wFFROa939CwQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: 766e2b49623b309415f
-X-MBO-RS-META: d39bt3hz13uzkuekaq6cugatc5zwtu6h
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CA+HBbNGZ3FwrGCtHX=mc8LQR9DCU84jqfhjFRGVDCJWtt+gdkA@mail.gmail.com>
 
-On 10/27/25 11:09 AM, Geert Uytterhoeven wrote:
+On Mon, Oct 27, 2025 at 01:23:20PM +0100, Robert Marko wrote:
+> On Sun, Oct 26, 2025 at 11:10 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >
+> > On 24/10/2025 21:24, Robert Marko wrote:
+> > > LAN969x series also has the same HW block, its just 16KB instead of 8KB
+> > > like on LAN966x series.
+> > >
+> > > So, document compatibles for the LAN969x series.
+> > >
+> > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> > > ---
+> > >  .../devicetree/bindings/nvmem/microchip,lan9662-otpc.yaml  | 7 +++++++
+> > >  1 file changed, 7 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/nvmem/microchip,lan9662-otpc.yaml b/Documentation/devicetree/bindings/nvmem/microchip,lan9662-otpc.yaml
+> > > index f97c6beb4766..f8c68cf22c1c 100644
+> > > --- a/Documentation/devicetree/bindings/nvmem/microchip,lan9662-otpc.yaml
+> > > +++ b/Documentation/devicetree/bindings/nvmem/microchip,lan9662-otpc.yaml
+> > > @@ -23,8 +23,15 @@ properties:
+> > >        - items:
+> > >            - const: microchip,lan9668-otpc
+> > >            - const: microchip,lan9662-otpc
+> > > +          - const: microchip,lan9691-otpc
+> > > +          - const: microchip,lan9692-otpc
+> > > +          - const: microchip,lan9693-otpc
+> > > +          - const: microchip,lan9694-otpc
+> > > +          - const: microchip,lan9696-otpc
+> > > +          - const: microchip,lan9698-otpc
+> >
+> > Why are you changing lan9668? Nothing on this is explained in commit
+> > msg. Also, list of more than 3 items is not really useful.
+> 
+> I am not chaning lan9668 but rather lan9698.
+> I agree that a list of all possible SoC models is not ideal but I was
+> just following the current
+> style in the binding.
+> 
+> As far as I know, the whole LAN969x series has identical OTP so just
+> using a single
+> microchip,lan9691-otpc compatible is enough.
 
-Hello Geert,
+The above is a *list* of what a "compatible" entry must contain.
 
-> My Gray Hawk Single still has downstream firmware, and I can modify the
-> SWDT registers from U-Boot (unlike on Salvator-XS with R-Car H3 ES2),
-> so access is not blocked.
-> Hence I plan to drop the SWDT patches for all R-Car Gen4 boards.
+> 
+> >
+> > >        - enum:
+> > >            - microchip,lan9662-otpc
+> > > +          - microchip,lan9691-otpc
 
-Thank you for testing. You can also flip the DIP switches on WhiteHawk 
-to boot the original firmware on it, it is left unmodified . Then we 
-would know whether even the WH is unaffected, but I suspect it likely is.
+"enum" on the other hand is a list of possible values for 1 entry in 
+"compatible".
 
--- 
-Best regards,
-Marek Vasut
+Rob
 
