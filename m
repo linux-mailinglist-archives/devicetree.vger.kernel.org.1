@@ -1,142 +1,115 @@
-Return-Path: <devicetree+bounces-231694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE248C0FCCA
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:54:45 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9A5EC0FCC4
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:54:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 62C2334FE41
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:54:45 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 74E5834FE38
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:54:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5076A29BD96;
-	Mon, 27 Oct 2025 17:54:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B499531690D;
+	Mon, 27 Oct 2025 17:54:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DfT9TLL1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dW7Ys6fu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f51.google.com (mail-yx1-f51.google.com [74.125.224.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0856316911;
-	Mon, 27 Oct 2025 17:54:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BCCA3164A4
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 17:54:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761587682; cv=none; b=SbMdZ1lSSCNqwgHxIKS4OTm5nqIt+BbPdPxumDzVcpeGLQ8USx4cn08FaJHN5GQkKMoNQIt7lpW4m6lj/tTKW2oGwy/YOMqf0x1fNzTO7o9cnn1dOKxXvFeDdcALONm6erp+4iLkjuVGrGv14HJ3IvG2nA5rIJksNJwsJ1yL9PM=
+	t=1761587671; cv=none; b=WVs2IQnlWfPL342FD7es01TaiqEn15qtZoiconm5dBr/sHUqujzxNgttoIAuTQt5ozpDf6XO082cNWFLuraOK+GUOWYA/OROipUjdxVgo+Tpod4AbBtZpVHFYADywSA5Ozg3+FC0ge7NH1tMZv2i4QWt9RFGB6+32kj6E0ydgrk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761587682; c=relaxed/simple;
-	bh=KJjCjEUAXMGf93l+7ab3kNT6BgnFhiKNhk4r970RuRc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=JItwuhY+q1NbPiQg7Z0y0Q3zTAbPCHGr7psfulQHGTCARzNIc9w2Zhfzlipo0fY/tgaE5pfkQJboA+lqzIC3eIqy4RJy2ghc8Az8dGeZGig6AtrsyIM9WgydFoNnfKpdIBMGgEyIUi9T/a8BN1JvvZD0hZVj1C4pC57brP0xxho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=DfT9TLL1; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59RHrssW2479401;
-	Mon, 27 Oct 2025 12:53:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1761587634;
-	bh=gFyTNoE2X2hQrZXZgQ1MBu5TC8MY83aQCzpJALZfkd4=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=DfT9TLL1J4E5CSALY/kZQMoepMNVcrZdFJ8G15x4Q9Um4UiFHL4anwgTSzoDcKX1P
-	 2AOpvzY1e81vSYXz2PEnEreCy/rByPtzdWqPFQattLfXetkj1E4vOmFbyZxBqFzc6A
-	 HnYhVaehSyU5gmGxes8Pgh7UejjHh3LcA0DPOZgY=
-Received: from DLEE212.ent.ti.com (dlee212.ent.ti.com [157.170.170.114])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59RHrrD81816199
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 27 Oct 2025 12:53:53 -0500
-Received: from DLEE214.ent.ti.com (157.170.170.117) by DLEE212.ent.ti.com
- (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 27 Oct
- 2025 12:53:53 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE214.ent.ti.com
- (157.170.170.117) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 27 Oct 2025 12:53:53 -0500
-Received: from [10.249.128.221] ([10.249.128.221])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59RHriYB1061461;
-	Mon, 27 Oct 2025 12:53:45 -0500
-Message-ID: <dcf71d6b-f453-425f-a49e-2408d0caad20@ti.com>
-Date: Mon, 27 Oct 2025 23:23:44 +0530
+	s=arc-20240116; t=1761587671; c=relaxed/simple;
+	bh=NzZdOY46K/cXCbuZL5mOuRF4mEX+BvP5cuWOMDVMv1E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Zq+Xrc3efenm1JR/2H30A6eeZZsG+BGRYKY4FZRQiZ06vCHmB9fBpubYmk7tsK6csRm+m9wKNN7kmbz7OWfOfwkU5BHiytNIUAp0/bx5/QTQPR2LCBlntWybe/VFkFbOWXOLbveaudAyKr2IZPT0OL0t9HrIviRzCJqswAxyIbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dW7Ys6fu; arc=none smtp.client-ip=74.125.224.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yx1-f51.google.com with SMTP id 956f58d0204a3-63e18577613so4943189d50.3
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 10:54:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761587669; x=1762192469; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NzZdOY46K/cXCbuZL5mOuRF4mEX+BvP5cuWOMDVMv1E=;
+        b=dW7Ys6fuQJ/OfgxrAhGCzTzWb4JnoT/k27bXZtdYc5ORqZrBRH7HQl5vfKxr1U8SIf
+         hjL+9BzWEumy9jCScHpXPpGhxWea4+NUvSBB1RwIp8Qaf5sX42DYDgA15xxn3WCYSP3D
+         d3UT2OrHEd4OmYJ6RoI/7ThvvEK4DSUDxV3Olmbrtw7lJs3OZPKiHQivyZtGwfuVyomj
+         Y/Gs5qNj4Jk/IK2skQXJDOhj0E+VnfYKjEaSKWRkOjLKOQHGXORqIy5nH92j1iDGKQVp
+         2ARhW1rHDbAR1voBuv2csYh4qLL1j7cXNCOLOcTcQTHCVdMpFYorzEcR3CLdwb8WKUTy
+         TBKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761587669; x=1762192469;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NzZdOY46K/cXCbuZL5mOuRF4mEX+BvP5cuWOMDVMv1E=;
+        b=LNXmWQDlUEFOAPM13vfXU16UiSE/n5pOLUPaeHNOvMkVJVnJAKu837fNajj7YPT7ZF
+         7hqIWGTiZCD/xIZ77oezkf5o4rqdkCi3TchO2+R64nPbY/luezNJk5vHP6RlUA5mUaaM
+         X6Av1YN67Bl7yQyZjhqSTgzPDIUqL4Gh7BXPOHehWJNBh/UcsOkEoH4tpt6DocRvRlw4
+         IAHg1xSIMtnrl+GBiPkti0UZzyFXcKpTAIyI/LNA2tA+zKZ5cJymkRmaghxHsWRd+SnO
+         0bbbhbp0Uftk4+TP0njt554CUO4PVYWopBKbdPtpq9C8Ruk7LfNskU5Oy6lDFI4HctS9
+         SgtA==
+X-Forwarded-Encrypted: i=1; AJvYcCXegbYakARz0uykJ9ZJhx/DAlMs65t687t5kPjG5L/MatYT/Qh/IZUfhR3B4To19lJFUWBPIUGglFFv@vger.kernel.org
+X-Gm-Message-State: AOJu0YywsZO//2ry5rFlppetcIGUfIpOlhUh+fRfGa6Jnzic7AiwcBCc
+	WUObCAKpvxv+5tL0NjPPUcCBCcOeko80mnO8glHy7qRDz2G97gDIUkSmsRSWRqBY+ReSEOcdExB
+	07UlE/N/hilz3QhLD+5n6HwRHoCXMv9U=
+X-Gm-Gg: ASbGnct0xDq902oBGAwevnA/Y9Qlp/bOQ4SUMDl/wcHA9ebuo+qPGeAK2PVGS4+Ffdg
+	gRSXAq0roI5PBiTtpbZ0XemXpm00HJqTBrEdKNZrmkGHbwLwKo7BuwsCQ3+wcsv7J4cS9QO02NO
+	HfOjPq1z6haxAO716CwM8mEfQqpFIjuiIvyUc0kUeAmK8e4YmXynkj5qtKY/FydVgoKw7nN/SpX
+	Zj6OqPI0q1Vup/EBvmXEzbU58MLLUX6y74ASgQcrew0fvsWWc/ItMKAI5+v
+X-Google-Smtp-Source: AGHT+IE2jhHjqCkGDdKGqsiX9am1QsRUA/JalOQk0LiJJJ2IdryQKnnXMaj865zQeSCHfV+PSlsAcghri//T5UAHYaA=
+X-Received: by 2002:a53:bf0d:0:b0:63e:2605:ebba with SMTP id
+ 956f58d0204a3-63f6b95cdcfmr540955d50.24.1761587669045; Mon, 27 Oct 2025
+ 10:54:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] drm/tidss: Fixes data edge sampling
-To: Louis Chauvet <louis.chauvet@bootlin.com>, Jyri Sarha <jyri.sarha@iki.fi>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, "Sam
- Ravnborg" <sam@ravnborg.org>,
-        Benoit Parrot <bparrot@ti.com>, Lee Jones
-	<lee@kernel.org>,
-        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, "Thakkar, Devarsh"
-	<devarsht@ti.com>
-CC: <thomas.petazzoni@bootlin.com>, Jyri Sarha <jsarha@ti.com>,
-        Tomi Valkeinen
-	<tomi.valkeinen@ti.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <stable@vger.kernel.org>
-References: <20250730-fix-edge-handling-v1-0-1bdfb3fe7922@bootlin.com>
-Content-Language: en-US
-From: Swamil Jain <s-jain1@ti.com>
-In-Reply-To: <20250730-fix-edge-handling-v1-0-1bdfb3fe7922@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20251021-tegra186-icc-p2-v3-0-1a50b526dd40@gmail.com> <c6eb8ad7-acb4-4218-9293-7ee532be56e9@kernel.org>
+In-Reply-To: <c6eb8ad7-acb4-4218-9293-7ee532be56e9@kernel.org>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Mon, 27 Oct 2025 12:54:15 -0500
+X-Gm-Features: AWmQ_bllUkrPIxLdGkz4quqxBqkw0vRHPN7XriNb1cvYmJGSw_0yDSZvh-TXVqI
+Message-ID: <CALHNRZ-6Wp1k9zWg=B5xSt7n_9Fj9XchBq7qniKZtKHkHVouZg@mail.gmail.com>
+Subject: Re: [PATCH v3 0/5] memory: tegra: Support EMC dfs on Tegra186/Tegra194
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Louis,
+On Mon, Oct 27, 2025 at 5:49=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 22/10/2025 03:09, Aaron Kling via B4 Relay wrote:
+> > This series borrows the concept used on Tegra234 to scale EMC based on
+> > CPU frequency and applies it to Tegra186 and Tegra194. Except that the
+> > bpmp on those archs does not support bandwidth manager, so the scaling
+> > iteself is handled similar to how Tegra124 currently works.
+> >
+> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+>
+>
+> Does not apply, please check, rebase and resend.
+>
+> Patch failed at 0003 memory: tegra186-emc: Support non-bpmp icc scaling
+> error: patch failed: drivers/memory/tegra/tegra186-emc.c:217
+> error: drivers/memory/tegra/tegra186-emc.c: patch does not apply
 
-On 30-07-2025 22:32, Louis Chauvet wrote:
-> Currently the driver only configure the data edge sampling partially. The
-> AM62 require it to be configured in two distincts registers: one in tidss
-> and one in the general device registers.
-> 
-> Introduce a new dt property to link the proper syscon node from the main
-> device registers into the tidss driver.
-> 
-> Fixes: 32a1795f57ee ("drm/tidss: New driver for TI Keystone platform Display SubSystem")
-> ---
+It applies on v6.18-rc3, but not next. Your cleanup series caused the
+conflict. I'll rebase on next-20251027 and resend.
 
-We are planning to re-spin the series with a v2.
-If you have any concerns please inform.
-
-Regards,
-Swamil
-
-> Cc: stable@vger.kernel.org
-> 
-> Signed-off-by: Louis Chauvet <louis.chauvet@bootlin.com>
-> 
-> ---
-> Louis Chauvet (4):
->        dt-bindings: display: ti,am65x-dss: Add clk property for data edge synchronization
->        dt-bindings: mfd: syscon: Add ti,am625-dss-clk-ctrl
->        arm64: dts: ti: k3-am62-main: Add tidss clk-ctrl property
->        drm/tidss: Fix sampling edge configuration
-> 
->   .../devicetree/bindings/display/ti/ti,am65x-dss.yaml       |  6 ++++++
->   Documentation/devicetree/bindings/mfd/syscon.yaml          |  3 ++-
->   arch/arm64/boot/dts/ti/k3-am62-main.dtsi                   |  6 ++++++
->   drivers/gpu/drm/tidss/tidss_dispc.c                        | 14 ++++++++++++++
->   4 files changed, 28 insertions(+), 1 deletion(-)
-> ---
-> base-commit: 85c23f28905cf20a86ceec3cfd7a0a5572c9eb13
-> change-id: 20250730-fix-edge-handling-9123f7438910
-> 
-> Best regards,
-
+Aaron
 
