@@ -1,102 +1,110 @@
-Return-Path: <devicetree+bounces-231656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D13C0F6B9
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:46:19 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90D6BC0F6AA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:45:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A6F8F4FB61A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 16:43:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E12D44F9AE9
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 16:43:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20354312819;
-	Mon, 27 Oct 2025 16:43:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7E2B3148BF;
+	Mon, 27 Oct 2025 16:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LGqLiySm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ec5NEWwt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBA70311C27;
-	Mon, 27 Oct 2025 16:43:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7917FEAE7;
+	Mon, 27 Oct 2025 16:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761583421; cv=none; b=fCgBoOqWzEG2oL4xQx2FsE3q852BAplqZhAI6aWNdKywRYDHEVnnuhd56U5+SSbF41FfdL7W3zzNOG2srTtlZoW7IAbUJbZEhDri2lpajN8Ihovfmzj0nPz1LUnEh1exOs3YgIE8OzgKzmguofcMHzhzsl5RL/877FN0GzJx9AY=
+	t=1761583375; cv=none; b=BoVuvVqs2QDIdOSKVayLbQXpjiMp6kx92CqScnD7KyqBDrQwEk/Vr7mfI+OqbnOuc+NIDrJgCIwgXJNv9GBidRx1N3+6SFRSYo65lGvDJzdg3SNFOzubIo58g7IKlqzX1nimGKCNlT0wSx0CWm+hqnX5KSFg5l1zQRkvej5J1c8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761583421; c=relaxed/simple;
-	bh=qFhFn8+YqOP959WuEQxNYNWaORbGiOqWcenVkBVo0cw=;
+	s=arc-20240116; t=1761583375; c=relaxed/simple;
+	bh=xi3p1plspiMb+oEZCo7OhEMYcKsZn5qpqNZLgN6rP+o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A4k95XLx1cAHbftbXEi0kvZfpE8gggN71mixqr+Px8i0YolK39I2147MdSBXlXU5B29jhjlIr7mW51SKXNgjHUBi7gWdvh5NeEPTHmttG2wnoZfmh+FcnioWsaX+xAML8pF7JbcR2YIlunZqOKEtQ6uWLthj4Qslqs8rot7VRCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LGqLiySm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECE11C4CEF1;
-	Mon, 27 Oct 2025 16:43:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FjTmJEueUtPK+7EsTsq48iNXS/YUx/qqbjtGr8CIiCs012ZUQw3I8RooqmjNYH07khnmpZxTzESIjl6XbaW5cYAPpGtwkjcY3bTO9FrJLJIvd8tbZnCI09g23McOTUzIncrdQ9XtsNVRwiAd/RUKdRT1pLNxZA1YmNbHg3R44ak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ec5NEWwt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D5A6C4CEF1;
+	Mon, 27 Oct 2025 16:42:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761583420;
-	bh=qFhFn8+YqOP959WuEQxNYNWaORbGiOqWcenVkBVo0cw=;
+	s=k20201202; t=1761583375;
+	bh=xi3p1plspiMb+oEZCo7OhEMYcKsZn5qpqNZLgN6rP+o=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LGqLiySmE7AZKyT5XiEEksJdfc4/P6ZrYQinCiweFORc06kwdBZufqa4Vgkhnl/jZ
-	 koHzPI1P3GTvj4kf9xJKoHnNadezmUUlWjsNaAlS8xemfP9D1VvlOjEs1j+3QrSX/1
-	 E4X6MmUeA/MWumAPuPzrLzw1jdsKOx1fNux0gQWaofh6ekFi9xrGsGqx1Wa4pq+0zb
-	 3o1OLq1jSkbrb+Qqcmk7crK3mpvXZsXeSEp/2HpwPAtCOZ9Ay228NUfK+zupVtobey
-	 F6wTRRafdJTfCMie9oCSH4+4l6snL5seSW/rZRAmtc0H5riHF0JzehWvDWF6MLiIKG
-	 h8rhantcxWRSg==
-Date: Mon, 27 Oct 2025 16:43:35 +0000
-From: Conor Dooley <conor@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, lee@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
-	lgirdwood@gmail.com, broonie@kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com, wenst@chromium.org,
-	igor.belwon@mentallysanemainliners.org
-Subject: Re: [PATCH v11 1/9] dt-bindings: regulator: Document MediaTek MT6316
- PMIC Regulators
-Message-ID: <20251027-swirl-backtalk-7a4c456c6b55@spud>
-References: <20251027110527.21002-1-angelogioacchino.delregno@collabora.com>
- <20251027110527.21002-2-angelogioacchino.delregno@collabora.com>
+	b=ec5NEWwtwvUCT6XBtM30FRyNeTIbKbBWMFgtw9LzwDx6ZWi9+5AyNzOBc9X4f3Z+V
+	 FusgcgRRSvXTxBGeqihCsRuqODvJmiE+oLrCxAAeewIh2Q1v/WAYIBWga/f3BxqKdy
+	 xrzezf2wCOQHlSrtEMj7cB4IuL2TQOXaKRFDFPj8yttzu5m8WY2ZHlZZf6wlNqigIT
+	 tXpRdMBVlZJhqpjbwSIQoYy3vecXuCBik9BeYYGYKvMkB2gNjLa0VP8Te1muHXG636
+	 yR8w7cbtkqQScQd0OzqEWxve8Q26aJ3J4cP2ytwzw2oikUj6WWRsWXwtA0uZIZAYAN
+	 XDpq4uZ6/lLrg==
+Date: Mon, 27 Oct 2025 11:45:48 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Casey Connolly <casey.connolly@linaro.org>, Alexander Martinz <amartinz@shiftphones.com>, 
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v2 3/6] arm64: dts: qcom: qcm6490-shift-otter: Add
+ missing reserved-memory
+Message-ID: <3ryhntdf52cukvcbfad5prlggqsee54nsf7us6hdd5h5f73pog@yrgo6o6j22gw>
+References: <20251009-otter-further-bringup-v2-0-5bb2f4a02cea@fairphone.com>
+ <20251009-otter-further-bringup-v2-3-5bb2f4a02cea@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="YUnqGUl9BxDmKz8j"
-Content-Disposition: inline
-In-Reply-To: <20251027110527.21002-2-angelogioacchino.delregno@collabora.com>
-
-
---YUnqGUl9BxDmKz8j
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251009-otter-further-bringup-v2-3-5bb2f4a02cea@fairphone.com>
 
-On Mon, Oct 27, 2025 at 12:05:19PM +0100, AngeloGioacchino Del Regno wrote:
-> Add bindings for the regulators found in the MediaTek MT6316 PMIC,
-> usually found in board designs using the MT6991 Dimensity 9400 and
-> on MT8196 Kompanio SoC for Chromebooks.
->=20
-> This chip is fully controlled by SPMI and has multiple variants
-> providing different phase configurations.
->=20
-> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
+On Thu, Oct 09, 2025 at 11:06:33AM +0200, Luca Weiss wrote:
+> From: Alexander Martinz <amartinz@shiftphones.com>
+> 
+> It seems we also need to reserve a region of 81 MiB called "removed_mem"
+> otherwise we can easily hit memory errors with higher RAM usage.
+> 
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+If you make sure CONFIG_MEMTEST is enabled, you can boot with memtest=1
+on the command line to catch such issues, without relying on "higher RAM
+usage" (or randomness).
 
---YUnqGUl9BxDmKz8j
-Content-Type: application/pgp-signature; name="signature.asc"
+Regards,
+Bjorn
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaP+hNwAKCRB4tDGHoIJi
-0lUDAP0WtLoUfhkx8dU7bCtSgXO7e8/K3Fa3iB9P0XeKf11FMAEApZ7sIqQkFKPk
-0QLNEhetIA5+lVhTly2bu1Ut1PSRTwo=
-=r/Dw
------END PGP SIGNATURE-----
-
---YUnqGUl9BxDmKz8j--
+> Fixes: 249666e34c24 ("arm64: dts: qcom: add QCM6490 SHIFTphone 8")
+> Signed-off-by: Alexander Martinz <amartinz@shiftphones.com>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts b/arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts
+> index 0d331bda4a82..31650c29b1ca 100644
+> --- a/arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts
+> @@ -118,6 +118,11 @@ cdsp_mem: cdsp@88f00000 {
+>  			no-map;
+>  		};
+>  
+> +		removed_mem: removed@c0000000 {
+> +			reg = <0x0 0xc0000000 0x0 0x5100000>;
+> +			no-map;
+> +		};
+> +
+>  		rmtfs_mem: rmtfs@f8500000 {
+>  			compatible = "qcom,rmtfs-mem";
+>  			reg = <0x0 0xf8500000 0x0 0x600000>;
+> 
+> -- 
+> 2.51.0
+> 
 
