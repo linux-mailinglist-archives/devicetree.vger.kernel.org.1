@@ -1,132 +1,151 @@
-Return-Path: <devicetree+bounces-231587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BCF7C0EA14
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 15:55:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FADFC0E99B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 15:50:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 378A94FED50
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:51:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA1A119C1B23
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:50:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DF8C29346F;
-	Mon, 27 Oct 2025 14:50:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D3F62D239B;
+	Mon, 27 Oct 2025 14:49:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PbBxtZHl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B501239567
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 14:50:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 657CF296BB6;
+	Mon, 27 Oct 2025 14:49:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761576659; cv=none; b=jnoR2FT/CFD3PYKb1TC003xvAjsN+hxpvIhjmc74CcGvpFZxPoMJcMmbKRmi6zNfv/BSIe7tbEMOTYNS2TtQj4muOjQMr3Mxuu8LQbxOod0JGterlpvLsaL9Ki2rZG5/P/7eKhmfr66HeFRQr5tEiSRlclS5jXUB24DKAaZ5BDg=
+	t=1761576554; cv=none; b=C/ns/iT4f9/YtTMWKflcnihNondq9D4WxBtVQ7HSevJL/0Glo7bqQ0ECANDRQFi8dAm5rhqBu7Q4yYKE2asXTWX2I5sUGlNeo6XCw//ImakflGLtbwwQgTN5zzgx+U+w47Y0LqZZFQx2LFY0Q51Y+eggN0O3GoGV8zZHJyw0j4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761576659; c=relaxed/simple;
-	bh=YnYr+2uN9p8Wy5e6baDAXbycSnvRdc+rm4lMHQd2wCQ=;
+	s=arc-20240116; t=1761576554; c=relaxed/simple;
+	bh=LKPXVhbMLyJFUAhnFO5LZpjuc3Rzz6MeJrFVEJFp7mA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fm2T1OFQjuAE7orbmBxZJn5040QxVMZSFzlT/RML1CmOMQU8lDVwd2b0GX9Gt34KxOkXOoB1++tiH20zqfSvqu8LQ889zPKePec8Zp6kiQa3E+zHcU015NaFi8Gmh+0iPjkraR04K7bLVUEdvDyOe98EpM8c6DQmvuYJSn6eBiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vDOYg-0003Tf-0O; Mon, 27 Oct 2025 15:50:54 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vDOYf-005j1D-1r;
-	Mon, 27 Oct 2025 15:50:53 +0100
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vDOYf-003DTB-1K;
-	Mon, 27 Oct 2025 15:50:53 +0100
-Date: Mon, 27 Oct 2025 15:50:53 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	imx@lists.linux.dev, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Daniel Scally <dan.scally@ideasonboard.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Stefan Klug <stefan.klug@ideasonboard.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
-Message-ID: <aP-GzR_pVvXvCIn-@pengutronix.de>
-References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
- <e87ff7f2-d16f-41f2-b781-b175cfb84b21@lunn.ch>
- <aP83bMDWCre7-Sjw@pengutronix.de>
- <20251027100227.GE1544@pendragon.ideasonboard.com>
- <aP9IB4y5_gyfJGMW@pengutronix.de>
- <20251027103107.GF1544@pendragon.ideasonboard.com>
- <aP9Kuyndws_dYFna@shell.armlinux.org.uk>
- <aP9NJHtbAEmsd89r@pengutronix.de>
- <aP9N9tCdlAbBgovC@shell.armlinux.org.uk>
- <f66d181d-7dd9-4955-bad5-478db2876e47@lunn.ch>
+	 Content-Type:Content-Disposition:In-Reply-To; b=XbXmIkaG/6vWqgCg4rrgjeTPRZoQZv3/3Zdtew7yB8gEU92MXQVDTALKCbAJEs+A38km2cJhrl1kIOPzZR0oxOVAAorc0q5K+f1G15GIs6p9G304F1Wb0oMpUNZdW7XuLuY7tgEccgv0khb7wNcsswbwLxHQFtKYUhLCJE6PUJA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PbBxtZHl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3858C4CEFF;
+	Mon, 27 Oct 2025 14:49:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761576553;
+	bh=LKPXVhbMLyJFUAhnFO5LZpjuc3Rzz6MeJrFVEJFp7mA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PbBxtZHlvX/bylN0gO7RmgmI1dJ6TVW/yV6mzrZWNpynfqPhTZR7w1rQHJeKICXh/
+	 UGBdvZI6obJHTrEqqiFRO3IgxxPU9bt2jPQBVWLxaQGxMgJY1OFkigiE94tqhx2sqp
+	 rmDp8Y1v3g6y2x6ajwN2A76WojDYI/ck1l3t12c+yJrKa65Jg4SARDjvtviAVCy5tA
+	 9MJp4a3/SXseyXzwUS860jqERdID2eSU2zt6OjEuCuhXZqYlqMfA5cUez7k+3SX5GF
+	 opGzvvC4/hkZMWW0PEeCwVTzrXX3aMiZomZlqivHX54FGqm5HIUbAuFay5h4+vfcYp
+	 90cLX1ygDjgrA==
+Date: Mon, 27 Oct 2025 09:52:06 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: david@ixit.cz
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Jonathan Corbet <corbet@lwn.net>, Jiri Kosina <jikos@kernel.org>, 
+	Benjamin Tissoires <bentiss@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	Gergo Koteles <soyer@irl.hu>
+Subject: Re: [PATCH v6 1/2] Input: add ABS_SND_PROFILE
+Message-ID: <rdryhql5vrjckh2yvcgbdcnlu2f4aiq6hbokgfzvrtdu33lp5u@fctqxdftabsy>
+References: <20250731-op6-tri-state-v6-0-569c25cbc8c2@ixit.cz>
+ <20250731-op6-tri-state-v6-1-569c25cbc8c2@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f66d181d-7dd9-4955-bad5-478db2876e47@lunn.ch>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20250731-op6-tri-state-v6-1-569c25cbc8c2@ixit.cz>
 
-On Mon, Oct 27, 2025 at 01:50:21PM +0100, Andrew Lunn wrote:
-> > > Ack. With comment in the code, why we prefer this way, in case some one
-> > > wont to spend time on making it work. Probably SmartEEE or some other
-> > > word should be used.
-> > 
-> > So we have options.
-> > 
-> > However, we need to get to the bottom of what caused the change of
-> > behaviour before we start throwing solutions at this.
+On Thu, Jul 31, 2025 at 11:17:01PM +0200, David Heidelberg via B4 Relay wrote:
+> From: Gergo Koteles <soyer@irl.hu>
 > 
-> It also seems like the PHY is FUBAR. If the standard 802.3 EEE
-> registers are being used, a management plane is using them to
-> negotiate EEE with the link partner, the PHY firmware should disable
-> SmartEEE and only provide 802.3 EEE.
+> ABS_SND_PROFILE used to describe the state of a multi-value sound profile
+> switch. This will be used for the alert-slider on OnePlus phones or other
+> phones.
 > 
-> It sounds like this PHY is not 802.3 compatible.
+> Profile values added as SND_PROFLE_(SILENT|VIBRATE|RING) identifiers
+> to input-event-codes.h so they can be used from DTS.
+> 
 
-I do not know better place to post it, so I add it here for archive.
-At least, it explains a reason why EEE fails. Something like this is not
-possible to handle on the MAC side. At same time it is hard to
-diagnose:
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
 
-In 100BASE-TX EEE mode, the link partner may drop link or loss packet
-when the local MAC/PHY (device) starts to transmit the “Wake” signal
-immediately following the “Sleep”/“Refresh” signal to exit Low-Power
-Idle mode and return to Active mode.
+Regards,
+Bjorn
 
-Many EEE PHY link partners require a short “Quiet” (Tq) duration after
-receiving the “Sleep”/“Refresh” signal. Without this short Tq wait time,
-that is not specified in the IEEE 802.3az Standard, link drop or packet
-loss can occur.
-
-https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/Errata/80000708B.pdf
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> Signed-off-by: Gergo Koteles <soyer@irl.hu>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+>  Documentation/input/event-codes.rst    | 6 ++++++
+>  drivers/hid/hid-debug.c                | 1 +
+>  include/uapi/linux/input-event-codes.h | 9 +++++++++
+>  3 files changed, 16 insertions(+)
+> 
+> diff --git a/Documentation/input/event-codes.rst b/Documentation/input/event-codes.rst
+> index b4557462edd7b3fef9e9cd6c2c3cb2d05bb531ab..d43336e64d6aa4fe8a41b7e9947f4f214df6e1ab 100644
+> --- a/Documentation/input/event-codes.rst
+> +++ b/Documentation/input/event-codes.rst
+> @@ -241,6 +241,12 @@ A few EV_ABS codes have special meanings:
+>      emitted only when the selected profile changes, indicating the newly
+>      selected profile value.
+>  
+> +* ABS_SND_PROFILE:
+> +
+> +  - Used to describe the state of a multi-value sound profile switch.
+> +    An event is emitted only when the selected profile changes,
+> +    indicating the newly selected profile value.
+> +
+>  * ABS_MT_<name>:
+>  
+>    - Used to describe multitouch input events. Please see
+> diff --git a/drivers/hid/hid-debug.c b/drivers/hid/hid-debug.c
+> index 7107071c7c516af48c0c5fc1206c1e01bae3889f..c58500d8b94b581e41ae098d6ce99db7783986b7 100644
+> --- a/drivers/hid/hid-debug.c
+> +++ b/drivers/hid/hid-debug.c
+> @@ -3513,6 +3513,7 @@ static const char *absolutes[ABS_CNT] = {
+>  	[ABS_DISTANCE] = "Distance",	[ABS_TILT_X] = "XTilt",
+>  	[ABS_TILT_Y] = "YTilt",		[ABS_TOOL_WIDTH] = "ToolWidth",
+>  	[ABS_VOLUME] = "Volume",	[ABS_PROFILE] = "Profile",
+> +	[ABS_SND_PROFILE] = "SoundProfile",
+>  	[ABS_MISC] = "Misc",
+>  	[ABS_MT_SLOT] = "MTSlot",
+>  	[ABS_MT_TOUCH_MAJOR] = "MTMajor",
+> diff --git a/include/uapi/linux/input-event-codes.h b/include/uapi/linux/input-event-codes.h
+> index 08cb157ab59364a41ac425fc9a4ea8eb2fae0e86..f443f61f9bb8e3c212da522d9b99a386a13c4475 100644
+> --- a/include/uapi/linux/input-event-codes.h
+> +++ b/include/uapi/linux/input-event-codes.h
+> @@ -875,6 +875,7 @@
+>  
+>  #define ABS_VOLUME		0x20
+>  #define ABS_PROFILE		0x21
+> +#define ABS_SND_PROFILE		0x22
+>  
+>  #define ABS_MISC		0x28
+>  
+> @@ -984,4 +985,12 @@
+>  #define SND_MAX			0x07
+>  #define SND_CNT			(SND_MAX+1)
+>  
+> +/*
+> + * ABS_SND_PROFILE values
+> + */
+> +
+> +#define SND_PROFILE_SILENT	0x00
+> +#define SND_PROFILE_VIBRATE	0x01
+> +#define SND_PROFILE_RING	0x02
+> +
+>  #endif
+> 
+> -- 
+> 2.50.1
+> 
+> 
 
