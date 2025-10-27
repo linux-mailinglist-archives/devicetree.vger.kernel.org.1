@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-231732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54F96C10BCE
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 20:18:05 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id EED16C10CB2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 20:20:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4742950703B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:11:48 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0E0D1508F20
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:13:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04C9D32D7F1;
-	Mon, 27 Oct 2025 19:09:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65A7232C305;
+	Mon, 27 Oct 2025 19:11:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WuS9Wy38"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SFJRd0DD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A7031CA72
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 19:09:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3750435965;
+	Mon, 27 Oct 2025 19:11:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761592146; cv=none; b=gnKYrU8PAdWLzB9bVPo4VUkLv1Tz0Y82kOh/yliAZVal+8/oKvoyIt4uAwiJ8Qzp9ar5vMZeExgCxg82l7z8WsxjoErmnjKKX7+bn5+TzGkF32glm9dsA6/G+wicrFLPN3Hz/xQGKPFsNbv2rukwMkUyiISppC1TDa7Wb2JDt/8=
+	t=1761592299; cv=none; b=kkFWzvKd1XyMXqxpiENRoDPA/HMbKxKvCJFgtcaalCrtNyXftkkPccdILSkatW2Knvkd+y1TZD9OcUTuzfyG/xzUxp78TLtU9Fyb+OcvdA4phzd32z51CToP+7p3FeCWPXqGBQ+x+31q72OCA/V3XAbhB/Q83apIgM7IbvAbBI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761592146; c=relaxed/simple;
-	bh=xxVv05mh76vKRpSNw9vTXm4UqySelEi/ilclGmRgXac=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jC01s2yrt211H/Jfms8EtgyZRT89cvhsdD+MLgtI7zP7KQmzJ+xak+WwpyDgn+b24zecgfBki4oH29Q9t8byoQX860xXBTcesbusb7PTPZ/H1eMN1BRFU+fK0HcQu/1XLuDzJtoByOWr90Oubneb54RU8fPn75q+fJ6oLl8u9bc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WuS9Wy38; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0331DC4CEF1;
-	Mon, 27 Oct 2025 19:09:03 +0000 (UTC)
+	s=arc-20240116; t=1761592299; c=relaxed/simple;
+	bh=I0r/PGOkA9CBXYGDV2/cKM9eHtz2/52iVSKA15Hn4Ps=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=FVKxfX8GgvmaL9Mn39qzVc3r8boWm9Ypshlf7yqzMorSqo+5rTvATTxO2TbaJ6zSYFVL+8ANu1cp1kSjZxcVnZHpH13keG6csDet6xB7KnTQn/KP2Y1uC/TY/AP/wVmkITDn80DIMN1erHSwU7LV/FPigXixY3nuwU5POI5Ot4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SFJRd0DD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F05B4C4CEF1;
+	Mon, 27 Oct 2025 19:11:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761592146;
-	bh=xxVv05mh76vKRpSNw9vTXm4UqySelEi/ilclGmRgXac=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WuS9Wy38yLpDt2mN+yjqQp1AJQqntiCdUxGeBMh6gWKGMVLqacpXOZb91zgoEHkYJ
-	 TruocayX7m3RyXc8NkmpG5rTksXbE/qxnNmyfGIW1p/6X8ecAHSlPNcThKq5x5RRKa
-	 xbE26rWToHEl9HHi27Jw1LrfOLC7RN+mZz6UKPNmKtLB0uI7w8GLDkDp2utfRyUfFw
-	 DN/icybS2T5gCMa1zgbTtpyg+tlsWopTHuoiby9mobvf7igwvXqZaD7A1Tm2eQve+J
-	 xE3vFyykX61x64B5LnqU5j/qLmOx1JanV0Qiy8YU8L/gcNjqkxZkHgpLmDzaXgt1Ev
-	 OXWPXfAfu/mIw==
-Message-ID: <5cdd3d92-eaed-4710-b56b-c9ce46bf7edc@kernel.org>
-Date: Mon, 27 Oct 2025 20:09:02 +0100
+	s=k20201202; t=1761592299;
+	bh=I0r/PGOkA9CBXYGDV2/cKM9eHtz2/52iVSKA15Hn4Ps=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=SFJRd0DDLcEbtS2itBpe0BNk/SAQeO+2O/DMEyB5WnY+ZPzG8/juW69hiR0GvxzI+
+	 kdUd3CMhWtI5WvjpjM/jDK4rOzLt4lTSoA1tt1rze0w8sitO+mnxq+hE0zD+BZb/lr
+	 qYBfs+4VAbiUheLT1TL9vzKgOtIwV8E6HfQ59fhtBBrTJmjWJMxegqZUfsfg1LJw18
+	 0lQ3NlClr3yzpave756k3LWr58c3k56a0hnBgI2zs4lHuJOvf0cBJKfhCRJGscg0bX
+	 bVASkSKaKbobd/PKR5S8P7SCGaiHd853MTxMmOhUGHVEvFPfPmxWxrrAo4uMPzqA4H
+	 FCT2/udFWmPlQ==
+Message-ID: <59d4d107-4f35-4906-8524-f45b9b85f0ff@kernel.org>
+Date: Mon, 27 Oct 2025 20:11:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] dt-bindings: arm: rockchip: Add Radxa ROCK 5 ITX+
-To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- jonas@kwiboo.se, dsimic@manjaro.org, amadeus@jmu.edu.cn,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20251027122641.39396-1-naoki@radxa.com>
- <20251027122641.39396-6-naoki@radxa.com>
+Subject: Re: [PATCH v21 1/4] dt-bindings: i2c: Split AST2600 binding into a
+ new YAML
+To: Ryan Chen <ryan_chen@aspeedtech.com>, bmc-sw@aspeedtech.com,
+ benh@kernel.crashing.org, joel@jms.id.au, andi.shyti@kernel.org,
+ jk@codeconstruct.com.au, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrew@codeconstruct.com.au, p.zabel@pengutronix.de,
+ andriy.shevchenko@linux.intel.com, naresh.solanki@9elements.com,
+ linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20251027061240.3427875-1-ryan_chen@aspeedtech.com>
+ <20251027061240.3427875-2-ryan_chen@aspeedtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,18 +107,111 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251027122641.39396-6-naoki@radxa.com>
+In-Reply-To: <20251027061240.3427875-2-ryan_chen@aspeedtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/10/2025 13:26, FUKAUMI Naoki wrote:
-> The Radxa ROCK 5 ITX+ is equivalent to the Radxa ROCK 5 ITX at the DTS
+On 27/10/2025 07:12, Ryan Chen wrote:
+> The AST2600 I2C controller introduces a completely new register
+> map and Separate control/target register sets, unlike the mixed
+> layout used in AST2400/AST2500.
+> 
+> In addition, at new AST2600 configuration registers and transfer
+> modes require new DT properties, which are incompatible with
+> existing bindings. Therefore, this patch creates a dedicated
+> binding file for AST2600 to properly describe these new
+> hardware capabilities.
+> 
+> A subsequent change will modify this new binding to properly
+> describe the AST2600 hardware.
+> 
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> ---
+>  .../devicetree/bindings/i2c/aspeed,i2c.yaml   |  3 +-
+>  .../devicetree/bindings/i2c/ast2600-i2c.yaml  | 66 +++++++++++++++++++
+>  2 files changed, 67 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/ast2600-i2c.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
+> index 5b9bd2feda3b..d4e4f412feba 100644
+> --- a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
+> @@ -4,7 +4,7 @@
+>  $id: http://devicetree.org/schemas/i2c/aspeed,i2c.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: ASPEED I2C on the AST24XX, AST25XX, and AST26XX SoCs
+> +title: ASPEED I2C on the AST24XX, AST25XX SoCs
+>  
+>  maintainers:
+>    - Rayn Chen <rayn_chen@aspeedtech.com>
+> @@ -17,7 +17,6 @@ properties:
+>      enum:
+>        - aspeed,ast2400-i2c-bus
+>        - aspeed,ast2500-i2c-bus
+> -      - aspeed,ast2600-i2c-bus
+>  
+>    reg:
+>      minItems: 1
+> diff --git a/Documentation/devicetree/bindings/i2c/ast2600-i2c.yaml b/Documentation/devicetree/bindings/i2c/ast2600-i2c.yaml
+> new file mode 100644
+> index 000000000000..6ddcec5decdc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/ast2600-i2c.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i2c/ast2600-i2c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ASPEED I2C on the AST26XX SoCs
+> +
+> +maintainers:
+> +  - Ryan Chen <ryan_chen@aspeedtech.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/i2c/i2c-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - aspeed,ast2600-i2c-bus
+> +
+> +  reg:
+> +    minItems: 1
 
-No clue what you want to say here. Same board? Different board but
-compatible (then patch is wrong)?
+<form letter>
+This is a friendly reminder during the review process.
 
-> level. Therefore, we'll simply append the "ITX+" to the existing entry
-> for the Radxa ROCK 5 ITX.
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
+
+Thank you.
+</form letter>
+
+> +    items:
+> +      - description: address offset and range of bus
+> +      - description: address offset and range of bus buffer
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+
+Nothing improved
+
+> +    description:
+> +      root clock of bus, should reference the APB
+> +      clock in the second cell
+
+Really, you just ignored all the comments.
+
+No wonder this is v21 and there will be more. Please re-think what is
+going wrong in this process that you need 22 or more revisions.
 
 Best regards,
 Krzysztof
