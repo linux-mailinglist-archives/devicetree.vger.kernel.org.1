@@ -1,69 +1,61 @@
-Return-Path: <devicetree+bounces-231243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D304C0B97A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 02:23:09 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEE7BC0B983
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 02:23:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8D293BA39A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 01:23:07 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7F1E0347BE3
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 01:23:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EFEE25D1F7;
-	Mon, 27 Oct 2025 01:23:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA9C226D4F7;
+	Mon, 27 Oct 2025 01:23:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="Zn2iSZVO"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="G7COedZr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg150.qq.com (smtpbg150.qq.com [18.132.163.193])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED63122129B;
-	Mon, 27 Oct 2025 01:22:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.132.163.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C28B1D5178
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 01:23:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761528185; cv=none; b=NhZ7I2FnOPnmeOoTaTvsBLGKXcKs/6NUKExN2Vvrd0vHAITRLu4ZHSYLMtlMTrBOTw78FmOLoX8p7yjZmXEAYGylSB+mO+oz7xyYzZmli7oq0mZjXgpe5Akb/fso9lud89ZMwMu2p8gVHOA61/NpowcCUp6T7WSqjQY3ABy3CJ4=
+	t=1761528204; cv=none; b=UMKmtCM6znc/Hpo9VFZKfFVSf3JAdR/j5270rV6rlKd+Jn5Uncly1QsI30jucvnkbK5+Jc8H3kVTB2yXCM4QTidmq+LBdsIYiPV7kAcjqJswlDSFeaGwhjDor6ztzaP0u+FQXFWQHGrpcHVILUyZZUZnSNep54PPac7j/tx5a7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761528185; c=relaxed/simple;
-	bh=2NVjVK98UhB3Y21CFxnmh/3oR38w9ufdRbfalTn5BRg=;
+	s=arc-20240116; t=1761528204; c=relaxed/simple;
+	bh=c5uqf4jLI4DPolJKk0dAPKHPcxhega9hFIMZQZVh03Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZQItbB250PRXqsiaX0MNNddpgnF/ykeRv6NVyXeX2kcg9Genku25rnfOeUokXU+DxtS0IvuSSk+k0u3c/PFUG+EyEz33ulQW+I8FYsRfrUHriq2Up8Z04zfYagZXlga5q4m8rJFaU0q/37O5GmBs3vQ96i4zsoZiaZPbvQtED7U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=Zn2iSZVO; arc=none smtp.client-ip=18.132.163.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1761528144;
-	bh=YFqnaQXbGn6xdpcNOP814zAlTHleVU+KgUL5SVGaMpQ=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=Zn2iSZVOMGKCMCIrlqbX47mDEBSdSWKQDLrpXpijLy8IV/gXgDFHrTgCadW6m42gU
-	 /Joi1frrfTu5Bi2dEMGPf/gULXGb8PTRgJFsoYuXRgIo1iG3mk6Z07ql+EMzhzse0I
-	 PueuHILhxM13QOUR68VCJNqeFxXvjhudFK4AqlKQ=
-X-QQ-mid: zesmtpsz5t1761528136ta7becb60
-X-QQ-Originating-IP: Qzn6Gh3dF5mQyqK/6O3ihXXcFnqBQdYjHjd+FkTWnwk=
-Received: from = ( [183.48.247.177])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 27 Oct 2025 09:22:14 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 13636534776712087437
-EX-QQ-RecipientCnt: 17
-Date: Mon, 27 Oct 2025 09:22:14 +0800
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-To: Junhui Liu <junhui.liu@pigmoral.tech>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v2 0/6] clk/reset: anlogic: add support for DR1V90 SoC
-Message-ID: <0E60AA15166FED21+aP7JRmPzDIq2WhWw@kernel.org>
-References: <20251026-dr1v90-cru-v2-0-43b67acd6ddd@pigmoral.tech>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DX8Cdo6DpI3Ys+Icab1zlm7nTSt0Ee5kSCZKbigtYsLcd43K7EBv0ObbnKC+fPyurw8TE9MNzfexA4wCrovm+pEZOnRrKXOvMnvhjetIifzIxyr/FABRK5MdDULnrSBuAvPufaRkCG/Trw5rRHAsorsB0wihvl+Htsr1d2ycl/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=G7COedZr; arc=none smtp.client-ip=220.197.32.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=M2AKbo8uyYqUT6bGKiZiU3Turz5hoR6ig9s0/Vo9OEQ=;
+	b=G7COedZrvj867AVRkJA20R6AjStpvGME0URsmRlMX6oBpQLVGDc8vLtFPIhzix
+	noLUn96M9NDO0jmS9j6vpxt1mDRW9Ns51DT2+J4lVfZo8kbdUgE/35lEQGyvbC3l
+	NvHL/qoElzjjxNj9mZOBgeFheGyqrFZ9jIP6BdvQebkPU=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgB3zxVayf5oWZO6AA--.21714S3;
+	Mon, 27 Oct 2025 09:22:36 +0800 (CST)
+Date: Mon, 27 Oct 2025 09:22:34 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Teresa Remmet <t.remmet@phytec.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Yannic Moog <y.moog@phytec.de>,
+	Benjamin Hahn <b.hahn@phytec.de>,
+	Yashwanth Varakala <y.varakala@phytec.de>,
+	Jan Remmet <j.remmet@phytec.de>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 0/2] dts: arm64: freescale: Update USB oc settings for
+ PHYTEC i.MX8MM boards
+Message-ID: <aP7JWuEwL0loYzkN@dragon>
+References: <20251001-wip-t-remmet-phytec-de-upstream-v1-0-845d71bb1e1e@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,51 +64,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251026-dr1v90-cru-v2-0-43b67acd6ddd@pigmoral.tech>
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpsz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: N+/GyfuFbcLi0yesWPY/w8SSsQTT4ZUmo8kWT9abRFNYSwRm+J+l2MRV
-	q+AxTMB0a/xvOWKW49aFyy2U7RcHsbJEjeDkYCAyKwneTlcOOF4muRpVuIiijuiGLnPw5KR
-	uX5Fp0CaX/l2cowEzpze9nPRco8R6i3j5+/Zd8xhkz3/ZPNHhIUVj6WKbyJRW5DJR4gVJrD
-	zqoR88dc1kLKULG6mp9R/qcQ8spmmipOoJLZCuB0+cow/NsfHXUxeMyJPB3AxDvi2jNs0px
-	npY+ORtW39JJsMkJrnbpPu9vpNAAQnw3twPHCTH9Kn4f6OTC6t6m7jnAXyqoLezMUbgwIeZ
-	O48sbZKK04wsBJdLLJk3FXh+bPhyN4jfdKgptrhHWODTu0kdSPPjlCyFQo1mkDdvhqoU2fv
-	/yslAgxrZtsLA5VXLzqmXyyW9MlCW+w4M+bb4+fpgKNVd7roN4PRkyrT9tX2a5ehYmAkZkW
-	WlsMW6rLUeDr17+lqf2ZFE1y3e/EFmc/d11YujXkX1WAnpV8uBFG3KhxOWHcHfkEyVmifGi
-	wJa+2hpiCbQXPzqWDdAluilnmR+pQFJ3BmBJA3F1X9TTXkKfhdRxbFQmKh4Z71GHv3fdSGh
-	GCzfZDCVHkWb7nbOxq03QIKkQoEw0aCpKKo/MJWZ/AQ7WzpIBCrcvfJvl1E60/cWmbqcXkh
-	TDcLoLjOmnKZMWP5O29aoNhszk/2CdzWB9l1cObGr/WsCJPGVdqHWC4bmmN+amocB1VMwNW
-	8gDzE+6UQI2bTRcVQTLbgEZTsLUnzIFNsx+ffA/jghL/5E/P4q36MASazckLFCh+JMsE2MO
-	YGOaMTE/ncKRadQJArj2FvqK46nG6P9G7559kQD6ZcUfZwpN8b2kr3GE6X0Xv/dsj0eftYh
-	UDrSGkIgKV+hOPf/jabZVs2eNU++US9clQ725Hgr5BCy1W2bzEBFhGkOsV/XUbKElC35D0F
-	CqLEdSa3WXWMkXWedbY0US0LjpCB5M/z6XWKYBC+G6z/ebIHGXzr+0x+NQ4foIzyb+tvx1E
-	dEUikEzlomI9hG3oKUD6FAAR/54BGkd16lDew9nB1VEDFKGoXvEgROHarYn+w=
-X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
-X-QQ-RECHKSPAM: 0
+In-Reply-To: <20251001-wip-t-remmet-phytec-de-upstream-v1-0-845d71bb1e1e@phytec.de>
+X-CM-TRANSID:Ms8vCgB3zxVayf5oWZO6AA--.21714S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUYJPEUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNRxjyGj+yVxsEAAA39
 
-On Sun, Oct 26, 2025 at 10:00:40PM +0800, Junhui Liu wrote:
-> This adds Clock and Reset Unit (CRU) support for the Anlogic DR1V90 SoC,
-> as well as corresponding dts bindings and dts integration.
-> 
-> The CRU driver framework is built around the clock controller as the
-> primary device, with the reset controller implemented as an auxiliary
-> device. The clock part refers to the vendor's code [1] to determine the
-> structure of the clock tree.
-> 
-> The Anlogic DR1 series includes not only the DR1V90 (based on the Nuclei
-> UX900 RISC-V core), but also the DR1M90 (based on the Cortex-A35 ARM64
-> core). Most of the clock tree and CRU design can be shared between them.
-> This series only adds CRU support for DR1V90. Nevertheless, the driver
-> is structured to make future extension to other DR1 variants like
-> DR1M90.
-> 
-> This depends on the basic dt series for DR1V90 SoC [2].
-> 
-> Link: https://gitee.com/anlogic/linux/blob/anlogic-6.1.54/drivers/clk/anlogic/anl_dr1x90_crp.c [1]
-> Link: https://lore.kernel.org/all/20251021-dr1v90-basic-dt-v3-0-5478db4f664a@pigmoral.tech/ [2]
-> ---
-Do we really need a cover-letter? Since you only have one patch, Is it
-better to put the above information below the --- line in the actual patch?
+On Wed, Oct 01, 2025 at 02:43:26PM +0200, Teresa Remmet wrote:
+> Teresa Remmet (2):
+>       arm64: dts: imx8mm-phyboard-polis-rdk: Add USB1 OC pin configuration
+>       arm64: dts: imx8mm-phygate-tauri-l: Update pad ctl for USB OC pin
 
-                                      - Troy
+Applied both, thanks!
+
 
