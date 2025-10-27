@@ -1,64 +1,66 @@
-Return-Path: <devicetree+bounces-231562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8839C0E543
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 15:15:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9874DC0E41C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 15:08:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3667E460770
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:08:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 936A019A25F1
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:09:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F27CF30BF6E;
-	Mon, 27 Oct 2025 14:06:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9981C30DD31;
+	Mon, 27 Oct 2025 14:06:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z2Ce4FQ+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SZAIdGAs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C734F30597B;
-	Mon, 27 Oct 2025 14:06:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6640630CDA1;
+	Mon, 27 Oct 2025 14:06:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761573995; cv=none; b=rhXiiNFN8IUL6CyHFk7Mld7Scr8opWd2HU78xNHM3khL9/R90H4poZTHOUnx6V5GrryQO0yfCY/AeXAlAuhG0HS4bzGfWFHGiSfnM1qEniJPNntjaTI2EyLQC6okuow1N+PCOMjWJSKbGJ+h+1JrqByNSLFVWz7bkIKXZyxfGSw=
+	t=1761573999; cv=none; b=jZ8Lqc/l3l27Hq0PavIGkZmMmnzjXtkrejN2YP8zKOJJ4j0s/Jl4VDhVkbIxc9wNUQzjH8xo3gw8CUZN2wHBYFdQIHLmHNA0/l7YtBypzy6HdYIoTEj8mt8rBl2k0xvndC4QG1sMXnUy2GXEATqRf8Wvq/YbfLFif9oRgrAda18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761573995; c=relaxed/simple;
-	bh=98wbWZyDui1F5hGBDzta88pUK1UigSw7SOXWD8VHwWE=;
+	s=arc-20240116; t=1761573999; c=relaxed/simple;
+	bh=ajdSt/VN7DwxOuvIAMdaxC/1GZpCtf2LDYR86Bbwwlo=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AL/G1+Rpp+o70vofF0yrDGFuHhyZK+mgCwUjKKSu2Z4ymzKsF1rG2WlZSG8eJsl+RJ+y6CxNTjNOsN6gXOv+XFgZmTHJvYPgTYFm+yqYFnRuPRJM42eQSv745uW5QOlnUrC00OC2fF8c6W0+XZvhZhAJyE7R1gEizCBeTGwp9tE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z2Ce4FQ+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBAF4C16AAE;
-	Mon, 27 Oct 2025 14:06:34 +0000 (UTC)
+	 MIME-Version:Content-Type; b=K7QN+D0UP7flGp43zzGjsQ9gaH8P0a26UC3a01jSSsed9Xc0hGaNruIor15rqRtYR4ozo8mhDFkumc4jCe+y+ImAQ5DAYKJ4JzWx4Q4kLf8t0HGgXZPjBtc+ObkY+A09YRq8rnhRIzquMCUCPcNab3x0X5CwvofVo5FVEBVdZQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SZAIdGAs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 214E0C116B1;
+	Mon, 27 Oct 2025 14:06:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761573995;
-	bh=98wbWZyDui1F5hGBDzta88pUK1UigSw7SOXWD8VHwWE=;
+	s=k20201202; t=1761573998;
+	bh=ajdSt/VN7DwxOuvIAMdaxC/1GZpCtf2LDYR86Bbwwlo=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Z2Ce4FQ+wLSz+ANRvW24KCMLfoBs71fymktuHoZUIHFp4C4O2w7U1N7ZyN3sp3npv
-	 DdWG+V3oHllD1D/+Z4+WOQtzwgNRUD86T63h5p/wcjpkCgKqIMT6E9oaGLBimyS1g4
-	 pPr8iOkoyN+FYSLYpUkIxvx2dPTqCLcTHrQinhBv18bhUx4E1SfgM80dy5AhXRPRep
-	 +SShPIE1csDHKmxZO7+0QP63ZxVGKTBUxMmyyxdYOb8P3lxU7tP8mnccbm3ppqJbCb
-	 KbB3aXrY2ien+Ym7tGPnDHv35oLW+WxxhBP93QYPcceU5W8OUcpH3+GKX+0RL+YZ40
-	 oOG0p1Q/GIpig==
+	b=SZAIdGAsgTu49ocgW+ky7MKsgNXoeHQN/bYDMuB2IfxF8PA/0OmjpGuUltn0xc2FQ
+	 NOHyodqDsRZpMSRtb3GvjP9oRDrXotnRMm8iaoY4K+VoRO4kmYNwUax5uBJYmeUUfR
+	 AERFD09t8NrOyuKw/IVY9CMAI2cUjoDyaOZa0Aj6m61tB+bRzDi4PsRijocnxAdjir
+	 pAaA9NVk7GvF91c9MRzVLoXwxmBedm50+OEcU1JEjHmtnTc5hsdEiP55wOvxtXkbK7
+	 Ziy7d0Xjpk+kx+GR7304maFTQXk0gSaAs3wmbuemPqfyFA1kFmIl1qKxHRbYGURoFb
+	 MPHVX6mfjn6hg==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-	Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Luca Weiss <luca.weiss@fairphone.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100: Fix compile warnings for USB HS controller
-Date: Mon, 27 Oct 2025 09:09:10 -0500
-Message-ID: <176157405471.8818.10866788040746807490.b4-ty@kernel.org>
+Subject: Re: (subset) [PATCH 0/3] Add MDSS_CORE reset for SM6350 MDSS
+Date: Mon, 27 Oct 2025 09:09:12 -0500
+Message-ID: <176157405444.8818.14943292514319691118.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251019115630.2222720-1-krishna.kurapati@oss.qualcomm.com>
-References: <20251019115630.2222720-1-krishna.kurapati@oss.qualcomm.com>
+In-Reply-To: <20250919-sm6350-mdss-reset-v1-0-48dcac917c73@fairphone.com>
+References: <20250919-sm6350-mdss-reset-v1-0-48dcac917c73@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,20 +71,18 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Sun, 19 Oct 2025 17:26:30 +0530, Krishna Kurapati wrote:
-> With W=1, the following error comes up:
+On Fri, 19 Sep 2025 11:57:22 +0200, Luca Weiss wrote:
+> With v6.17-rc kernel, the display stack needs reference to the
+> MDSS_CORE, otherwise display init becomes quite broken.
 > 
-> Warning (graph_child_address): /soc@0/usb@a2f8800/usb@a200000/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
+> Add the resets into the dispcc driver and add a reference to the dts.
 > 
-> This could be since the controller is only HS capable and only one port
-> node is added.
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: x1e80100: Fix compile warnings for USB HS controller
-      commit: 0dab10c38282e6ef87ef88efb99d4106cce7ed33
+[2/3] clk: qcom: dispcc-sm6350: Add MDSS_CORE & MDSS_RSCC resets
+      commit: 502099e9c832c95b485835ff58a5f735d9d956a1
 
 Best regards,
 -- 
