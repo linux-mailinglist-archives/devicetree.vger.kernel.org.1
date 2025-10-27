@@ -1,188 +1,135 @@
-Return-Path: <devicetree+bounces-231708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8751FC0FFC4
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:42:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D83CC103F5
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:53:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 837904FA2C9
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:41:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53518469000
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:51:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD62131B107;
-	Mon, 27 Oct 2025 18:41:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D95B13314D3;
+	Mon, 27 Oct 2025 18:46:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dkmMJuKP"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Mxon/2Nq";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="vsVHmfg8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0D04319611;
-	Mon, 27 Oct 2025 18:41:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F3BA328634;
+	Mon, 27 Oct 2025 18:46:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761590477; cv=none; b=GepTFZqkvhdNsM6K7HzrZLOMOvBX0MgWL59eDq1Q9nMaaahciwW6CxWOYrMK5S0DSb3oOlR+mQcsSYgDl9yfxQfNxRTGrPaZgF7q9fTPmacX6u6IfMjsEHObUR5iMb8wkmGEirXX88xfyPBMnTYTvI500ZkrP12FvRlfzc/vMHI=
+	t=1761590779; cv=none; b=u+JiY0zN8nlLzzzLxGdLnrb8uWrC9z18TVBmCjNNVZEmyo4mS8N9Rimss8WKqlDwwrN5YVRkkK83Z32aEphaMfzW2KSV0NcxkJkQGIhEzd6FLh54sQP53V1szX90UE/i6htUWklvi36Q8OOiN5TOu7dVuoMbaoxXNqLt+tldH2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761590477; c=relaxed/simple;
-	bh=1lLY6d0MKyfiGfV93rULKwdDF9mSEE/eTixRy0YpQoA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mQ8iRm9UAarNV3GSVv602o8yL2QvuFs9PCMi3YeNnA/JkJRdoDNL4WZ6cssGAMU6hsERYuh3nTxX0HAvMh27g19IciZJ3n6qZ28vUWKcD7CBSeZid/NWw/Oh9r1qeCkXyUfvx7yJJRHcLnO9yu3iCvq5EBrtKMpHKSRnheXpacQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dkmMJuKP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B1B6C4CEF1;
-	Mon, 27 Oct 2025 18:41:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761590477;
-	bh=1lLY6d0MKyfiGfV93rULKwdDF9mSEE/eTixRy0YpQoA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dkmMJuKPCMl5JjhaOrVEVK8FOQzmB9B0rf6/QB6MRxxLglrVyannxhcJDgKm+DhFm
-	 0JPMiKviTckp7wdL8vB+2X+Rh4iIbypOZFjSfwRezuL5wNzow5zae+2ZQXOB/5Fc0j
-	 lIPF5AgS5zOigi/Yfgnh1+LHgGZfUpYrBsxS/0RF0gQ0LWxEKu6P7mr4Adtuku1VZm
-	 5HiOy9XudA2PY/fll8mkBNqePwDNJxxdETW3Rod/YAGwrccvpzZ08EFGCWbxlM0EfK
-	 QcDYHEBr7dH4CeAb7k1ZztOM3GP4Z02iL6Mm25HzOfFTZmd8UUycYaKJKT36/AhunN
-	 G/3pDXKL8lY5g==
-Date: Mon, 27 Oct 2025 13:44:10 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Robert Marko <robimarko@gmail.com>, Das Srinagesh <quic_gurus@quicinc.com>, 
-	aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, 
-	yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Eugen Hristev <eugen.hristev@linaro.org>
-Subject: Re: [PATCH v2 1/4] dt-bindings: soc: qcom: Add qcom,kaanapali-imem
- compatible
-Message-ID: <ygqgzflpavwgd43e5zedgcijm3lz27nqlzprttalgcroedz45u@ztqkppajpyry>
-References: <20251022-knp-soc-binding-v2-0-3cd3f390f3e2@oss.qualcomm.com>
- <20251022-knp-soc-binding-v2-1-3cd3f390f3e2@oss.qualcomm.com>
- <g2iviaqetgxf5ycz2otzkpmmc4goo7xuyjmttuu254bfzqqvkf@4vybjh4eghpm>
- <4eebcb7d-1eca-4914-915a-d42232233f9f@oss.qualcomm.com>
- <dwfvko3hszsoh4ihnz3qdpsugmocbkrbhosijdw5q3bxh64kuo@o74as2li74px>
- <lz4sbvzfiij3qsa4d7jeblmi2vfubc4ltf435sh6tcs53l6fbq@7f3tfm7yiyjc>
- <mwin3lfvpcwxxhsub2whcpibuayk36f4ljrodvithfygqad5w4@cg4h6peh4v4a>
+	s=arc-20240116; t=1761590779; c=relaxed/simple;
+	bh=vznUNVKhDqJTLoyUatzrE3BXzXq4iimkK72KfDB4488=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=uSztMgFg4da6T3UbSE9fwcaH6k5KrNX41dQm7QwE6ehQMnsbojrKz+Jo1CRFl3RbhxS7qEqUEd1GHmaXrpdkUwXYgwVfOMy7hEovJrGImoebWrip0/+MsTa1m0p05s29PrmtN6VtZqWCs92S6JG9rj5wZU347Y0jJcRsxduFBu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Mxon/2Nq; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=vsVHmfg8; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4cwMsg0bsvz9sQJ;
+	Mon, 27 Oct 2025 19:46:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1761590775;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=SSdcMt8QLFSkKLYqTrSr4WGRCehiRklAAWxzKvWYKCM=;
+	b=Mxon/2Nq1YWy+zSVRs/eVW89dD2gFeQWBy+dHfi5G9jYwymoxm5vDKnJJWQsy1VCoMYcEv
+	P7t1sCf+Nt56yD1/CeBznN6hwhGBEKFsmltIeMsnSMOSn2H1LuUFmncXjarrZbq8ysj+6W
+	/wgLqVv0HERXmOcqbbPnLQIEwmxRDlytYdUin2dzPGDHxsvPrX1s/sGMhj7tFHHMJvUO0J
+	qkTX2Gmuly0U2Jd89pO0IerdQ+PD/Uw/SRrhWS0E9mirkInw0GAQ/3aXeHqFS73qyhL4MH
+	k4y9hWcSJi3AWB/AF5pZgXlnsBTSGsS2pCJAgbxaDU7btV89VSIiQvyK6AsECg==
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1761590773;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=SSdcMt8QLFSkKLYqTrSr4WGRCehiRklAAWxzKvWYKCM=;
+	b=vsVHmfg8KX/1tyPf86mHAubkNuBhaA6ePfVT6amTgHEKTBXNPXhY+CnspJ1x2J959Eos1P
+	YFC/ITDmHCQsRkLoFYSCY8X2RdqDSKo87i4tNbW+RNmyukE4UE9ME8yl5kLiMn/tIN0uMP
+	7pzzOIKca5Akhc2VJIOKl6I1h24n/6Otxi1NUr9hEKNyY8z/OuQBM7HKotw0KKoj0KhR+6
+	8A09tkfdfXUxslKSO9itiRIcRc2nIQAFDkxmLi1uF43w9+Eqt72M2uDGhkPJ+1EK0PWfE8
+	vIQ0g40e5WN0ylw7tWwqPQ5XA31WNYe1SdQ7eh3HZJtAQjQ9rnfZhLhWanTV+A==
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH] arm64: dts: renesas: sparrow-hawk: Fix full-size DP connector node name and labels
+Date: Mon, 27 Oct 2025 19:45:53 +0100
+Message-ID: <20251027184604.34550-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <mwin3lfvpcwxxhsub2whcpibuayk36f4ljrodvithfygqad5w4@cg4h6peh4v4a>
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: x4q7fii5z44mhgk4fkog53ugrzf6ugap
+X-MBO-RS-ID: a54833429e75fd65622
 
-On Thu, Oct 23, 2025 at 03:06:00AM +0300, Dmitry Baryshkov wrote:
-> On Wed, Oct 22, 2025 at 05:42:58PM -0500, Bjorn Andersson wrote:
-> > On Wed, Oct 22, 2025 at 12:34:58PM +0300, Dmitry Baryshkov wrote:
-> > > On Wed, Oct 22, 2025 at 05:05:30PM +0800, Jingyi Wang wrote:
-> > > > 
-> > > > 
-> > > > On 10/22/2025 4:49 PM, Dmitry Baryshkov wrote:
-> > > > > On Wed, Oct 22, 2025 at 12:28:41AM -0700, Jingyi Wang wrote:
-> > > > >> Document qcom,kaanapali-imem compatible.
-> > > > >>
-> > > > >> Reviewed-by: Eugen Hristev <eugen.hristev@linaro.org>
-> > > > >> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> > > > >> ---
-> > > > >>  Documentation/devicetree/bindings/sram/qcom,imem.yaml | 1 +
-> > > > >>  1 file changed, 1 insertion(+)
-> > > > >>
-> > > > >> diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
-> > > > >> index 6a627c57ae2f..1e29a8ff287f 100644
-> > > > >> --- a/Documentation/devicetree/bindings/sram/qcom,imem.yaml
-> > > > >> +++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
-> > > > >> @@ -19,6 +19,7 @@ properties:
-> > > > >>        - enum:
-> > > > >>            - qcom,apq8064-imem
-> > > > >>            - qcom,ipq5424-imem
-> > > > >> +          - qcom,kaanapali-imem
-> > > > > 
-> > > > > Can you use mmio-sram instead?
-> > > > > 
-> > > > 
-> > > > Here is the node: 
-> > > > 
-> > > > 		sram@14680000 {
-> > > > 			compatible = "qcom,kaanapali-imem", "syscon", "simple-mfd";
-> > > > 			reg = <0x0 0x14680000 0x0 0x1000>;
-> > > > 			ranges = <0 0 0x14680000 0x1000>;
-> > > > 
-> > > > 			#address-cells = <1>;
-> > > > 			#size-cells = <1>;
-> > > > 
-> > > > 			pil-reloc@94c {
-> > > > 				compatible = "qcom,pil-reloc-info";
-> > > > 				reg = <0x94c 0xc8>;
-> > > > 			};
-> > > > 		};
-> > > > 
-> > > > other qualcomm are also using imem, could you please give more details on why
-> > > > we should use mmio-sram here?
-> > > 
-> > > https://lore.kernel.org/linux-arm-msm/e4c5ecc3-fd97-4b13-a057-bb1a3b7f9207@kernel.org/
-> > > 
-> > 
-> > I considered exactly this when I wrote the binding back then...
-> > 
-> > But the binding defines mmio-sram as "Simple IO memory regions to be
-> > managed by the genalloc API." and the Linux sram driver follows that and
-> > registers a gen_pool across the sram memory region.
-> > 
-> > I believe IMEM is SRAM (it's at least not registers), but its memory
-> > layout is fixed, so it's not a pool in any form.
-> > 
-> > 
-> > What Krzysztof says makes sense, but rather than just throwing a yak at
-> > Jingyi, it would be nice if you provided some guidance on how you would
-> > like to see this turn out.
-> 
-> I tested, pretty same approach seems to work:
-> 
+The DisplayPort connector on Retronix R-Car V4H Sparrow Hawk board
+is a full-size DisplayPort connector. Fix the copy-paste error and
+update the DT node name and labels accordingly. No functional change.
 
-Now you're shaving at random ;)
+Fixes: a719915e76f2 ("arm64: dts: renesas: r8a779g3: Add Retronix R-Car V4H Sparrow Hawk board support")
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+ arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-> 	sram@14680000 {
-> 		compatible = "mmio-sram";
+diff --git a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
+index 0e36a1b96b83a..f4181f6020203 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
++++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
+@@ -119,13 +119,13 @@ memory@600000000 {
+ 	};
+ 
+ 	/* Page 27 / DSI to Display */
+-	mini-dp-con {
++	dp-con {
+ 		compatible = "dp-connector";
+ 		label = "CN6";
+ 		type = "full-size";
+ 
+ 		port {
+-			mini_dp_con_in: endpoint {
++			dp_con_in: endpoint {
+ 				remote-endpoint = <&sn65dsi86_out>;
+ 			};
+ 		};
+@@ -412,7 +412,7 @@ sn65dsi86_in: endpoint {
+ 					port@1 {
+ 						reg = <1>;
+ 						sn65dsi86_out: endpoint {
+-							remote-endpoint = <&mini_dp_con_in>;
++							remote-endpoint = <&dp_con_in>;
+ 						};
+ 					};
+ 				};
+-- 
+2.51.0
 
-You can put "pil-reloc-sram" wherever, because it will perform a
-of_find_compatible_node() to dig up some node with the compatible
-"qcom,pil-reloc-info" .
-
-In other words, this line created a genpool for something that really
-isn't a genpool, but luckily that didn't have any side effects.
-
-
-There are however other users of IMEM, such as the "reboot-mode", which
-relies on the "sram" device probing child devices, and is implemented by
-"syscon-reboot-mode".
-
-Perhaps the solution is to not support any new users of that?
-
-
-But no matter what, the definition "Simple IO memory regions to be
-managed by the genalloc API" will never be true for IMEM.
-
-And as this isn't a syscon, simple-mfd, or mmio-sram...how about making
-the fallback "qcom,imem" (in this same binding) and omitting any
-implementation until we need one)?
-
-Regards,
-Bjorn
-
-> 		reg = <0x0 0x14680000 0x0 0x1000>;
-> 		ranges = <0 0 0x14680000 0x1000>;
-> 
-> 		#address-cells = <1>;
-> 		#size-cells = <1>;
-> 
-> 		pil-reloc-sram@94c {
-> 			compatible = "qcom,pil-reloc-info";
-> 			reg = <0x94c 0xc8>;
-> 		};
-> 	};
-> 
-> 
-> -- 
-> With best wishes
-> Dmitry
 
