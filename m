@@ -1,165 +1,132 @@
-Return-Path: <devicetree+bounces-231718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FCD1C10732
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 20:05:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E95CC1075F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 20:06:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF3343A60EF
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:59:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C1C261A6001B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:02:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09ED7335087;
-	Mon, 27 Oct 2025 18:55:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 093D932C93B;
+	Mon, 27 Oct 2025 18:57:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BxHyn3OR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BjNllmRq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9975332900;
-	Mon, 27 Oct 2025 18:55:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D15FB31D75B;
+	Mon, 27 Oct 2025 18:57:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761591316; cv=none; b=srbadbKbaurzWCyUW4SMDrB2cXrtuncFeILXLK5sPLTrJuX/sVWtF1WRw+ruQ45awPZhix5uCsDiIO+ZK0uqKxqxlWIFHy7P1d4LgIul3uJM18YtP9Adamp95AV0vnISSellcpRD7Chg/MGBXbWM6h6KjYnQYHN2Zoo5zXwIvsk=
+	t=1761591457; cv=none; b=A9Ago0MKrfA1zsYbcNOgqq57HvCVO9QO6f22fObdiPXVXkTQ94SLr0ef9QMjYekU9onjHHZgHSrWQPTbK4zhrD/2PNuGqfiZbcbNBSLTDau5Ox1Azhne4COyePFy7wvhIl6bgaNZ6kQNomBBjxmJ/8llHHOiofSSHJJVqLoj5jw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761591316; c=relaxed/simple;
-	bh=g2mmajcxbCrl4r+56yYrwyyJINURxPSPFab71xwisCM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uB2TR3e2bOPuWvbNr3w/GwXoo0YruHsKu9ST8ZiZnnb+nAPANSmWcmZKuS/LlNkFK19fLeJBtPXCD6sDDKGhzDOMT47I9iD/CH4Cekea5tBaGcGmiSXMrdn0+oasB0tNM1HExOdaQ+pKgus2tVTBNzoJwRY3EElMnwXZhl2FuAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BxHyn3OR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A7A79C4AF0E;
-	Mon, 27 Oct 2025 18:55:16 +0000 (UTC)
+	s=arc-20240116; t=1761591457; c=relaxed/simple;
+	bh=FBh02DAJ7nUjsN3Y/wn69pqWdFqyYXyPMjwO6WMVnKU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=p77jVctUCpWu89eSfntDoSVBRfnU5FILObesBgA2vbCQahW5s4tsnyNI60rbw6CUBBGryXcANPuqzueFg5qRrJYEOKYJorslW/SB0lEd6lJLu3fEc2ZzH7fYvKp3BxGvaQMdp1eH4AOcZvYzPm66Me4vwinNaBeHXJKi2WOnZ0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BjNllmRq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49FFFC4CEFD;
+	Mon, 27 Oct 2025 18:57:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761591316;
-	bh=g2mmajcxbCrl4r+56yYrwyyJINURxPSPFab71xwisCM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=BxHyn3OR+qtZyHbFPG2LPFJW9DYFlteEyAvD33ZrPuyJKJqgHPgfdpqjBiNWj1mq9
-	 CiKEqqxHKSU/Vd09PapNkGCVf5Jl97GfSJjGeBgBwQO3Ingblm4KN6cVopQyYRgO4W
-	 JESBpQnkNMqwB66EF0Hei1M2XLBcQz6j4T+r3xbc4jaXlbjsX+y2BaZ+/VXwhTyTvJ
-	 BwzhvfHjVi+5HhLvJVaKKcecVM3Xqm6l+yLTZq1ZL4lkGiRR/FmM6kcHgXU5o2iZ6h
-	 7oQ+XJfF5D01Ta+qvXmxBHc4n3uZYv0x/R7nYjmfUWzubdgYb1X1Z8ZnU3WIJL6FI/
-	 mN0Xbm9x7WR7g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9C6F3CCF9EF;
-	Mon, 27 Oct 2025 18:55:16 +0000 (UTC)
-From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Date: Mon, 27 Oct 2025 13:55:18 -0500
-Subject: [PATCH v4 4/5] memory: tegra186: Support icc scaling
+	s=k20201202; t=1761591457;
+	bh=FBh02DAJ7nUjsN3Y/wn69pqWdFqyYXyPMjwO6WMVnKU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BjNllmRq+yfdJLO0cbkU7zTbCjRCyzJTlkdV6C3VsadXIFRCOhdwHqfg9aIXq65IH
+	 g4c6h4LTfpjh9el1Wvrb1Chj5xml3obGS8biIZrMa51d4QvoXIOl5Oo80FyQBMyn9D
+	 HNVEinj8wpAE/pGmCYsT/Clr86pdENNXltkQu10cmbITjQeZxzf4/4HNEy/ghjg7iq
+	 Lwo9lnjl1MsFZmTsaIsmD3Zy1d+Scw/nJJ1m/05YYn2H+9loF8WxNpA2MW++m7R1k4
+	 e0XprMCeChty8N//kNqOMtxCiecXlgGCFmbV7GJQtaF5n2ZF0HFfNpNXnR4u/eiPrK
+	 p7KnOy2H0cYUQ==
+Message-ID: <defbd8f9-15ea-4d3e-91fc-02e5ff79be82@kernel.org>
+Date: Mon, 27 Oct 2025 19:57:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/6] dt-bindings: pinctrl: mt7988: allow gpio-hogs
+To: Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+ Sean Wang <sean.wang@mediatek.com>, Daniel Golle <daniel@makrotopia.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20251027132817.212534-1-linux@fw-web.de>
+ <20251027132817.212534-2-linux@fw-web.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251027132817.212534-2-linux@fw-web.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251027-tegra186-icc-p2-v4-4-e4e4f57e2103@gmail.com>
-References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
-In-Reply-To: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-tegra@vger.kernel.org, Aaron Kling <webgeek1234@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761591315; l=2383;
- i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=a/aaiaGuHyMc5nlB9Xe5+rxhKDOKwn8mtxYy/DM7ELQ=;
- b=sTiZwi1CKAAV0SWUPFee8cPPc6/4LR4iIF4TCTBWzREoSjQSVh+iuY/5/P5da1ERPlGnM+Olh
- Gi6l1d3fHY0BANgm5dmTyL1R19RlZTrjC2pCDMtEzMTIOJP0WO3mSg0
-X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
- pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
-X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
- auth_id=342
-X-Original-From: Aaron Kling <webgeek1234@gmail.com>
-Reply-To: webgeek1234@gmail.com
 
-From: Aaron Kling <webgeek1234@gmail.com>
-
-Add Interconnect framework support to dynamically set the DRAM
-bandwidth from different clients. The MC driver is added as an ICC
-provider and the EMC driver is already a provider.
-
-Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
----
- drivers/memory/tegra/tegra186.c | 48 +++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
-
-diff --git a/drivers/memory/tegra/tegra186.c b/drivers/memory/tegra/tegra186.c
-index aee11457bf8e032637d1772affb87da0cac68494..1384164f624af5d4aaccedc84443d203ba3db2c6 100644
---- a/drivers/memory/tegra/tegra186.c
-+++ b/drivers/memory/tegra/tegra186.c
-@@ -899,9 +899,56 @@ static const struct tegra_mc_client tegra186_mc_clients[] = {
- 				.security = 0x51c,
- 			},
- 		},
-+	}, {
-+		.id = TEGRA_ICC_MC_CPU_CLUSTER0,
-+		.name = "sw_cluster0",
-+		.type = TEGRA_ICC_NISO,
-+	}, {
-+		.id = TEGRA_ICC_MC_CPU_CLUSTER1,
-+		.name = "sw_cluster1",
-+		.type = TEGRA_ICC_NISO,
- 	},
- };
- 
-+static int tegra186_mc_icc_set(struct icc_node *src, struct icc_node *dst)
-+{
-+	/* TODO: program PTSA */
-+	return 0;
-+}
-+
-+static int tegra186_mc_icc_aggregate(struct icc_node *node, u32 tag, u32 avg_bw,
-+				     u32 peak_bw, u32 *agg_avg, u32 *agg_peak)
-+{
-+	struct icc_provider *p = node->provider;
-+	struct tegra_mc *mc = icc_provider_to_tegra_mc(p);
-+
-+	if (node->id == TEGRA_ICC_MC_CPU_CLUSTER0 ||
-+	    node->id == TEGRA_ICC_MC_CPU_CLUSTER1) {
-+		if (mc)
-+			peak_bw = peak_bw * mc->num_channels;
-+	}
-+
-+	*agg_avg += avg_bw;
-+	*agg_peak = max(*agg_peak, peak_bw);
-+
-+	return 0;
-+}
-+
-+static int tegra186_mc_icc_get_init_bw(struct icc_node *node, u32 *avg, u32 *peak)
-+{
-+	*avg = 0;
-+	*peak = 0;
-+
-+	return 0;
-+}
-+
-+static const struct tegra_mc_icc_ops tegra186_mc_icc_ops = {
-+	.xlate = tegra_mc_icc_xlate,
-+	.aggregate = tegra186_mc_icc_aggregate,
-+	.get_bw = tegra186_mc_icc_get_init_bw,
-+	.set = tegra186_mc_icc_set,
-+};
-+
- const struct tegra_mc_soc tegra186_mc_soc = {
- 	.num_clients = ARRAY_SIZE(tegra186_mc_clients),
- 	.clients = tegra186_mc_clients,
-@@ -912,6 +959,7 @@ const struct tegra_mc_soc tegra186_mc_soc = {
- 		   MC_INT_SECERR_SEC | MC_INT_DECERR_VPR |
- 		   MC_INT_SECURITY_VIOLATION | MC_INT_DECERR_EMEM,
- 	.ops = &tegra186_mc_ops,
-+	.icc_ops = &tegra186_mc_icc_ops,
- 	.ch_intmask = 0x0000000f,
- 	.global_intstatus_channel_shift = 0,
- };
-
--- 
-2.51.0
+On 27/10/2025 14:28, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
+> 
+> Allow gpio-hogs in pinctrl node for switching pcie on Bananapi R4 Pro.
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> ---
+>  .../devicetree/bindings/pinctrl/mediatek,mt7988-pinctrl.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
 
 
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
