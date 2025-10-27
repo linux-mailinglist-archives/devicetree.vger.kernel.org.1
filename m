@@ -1,215 +1,152 @@
-Return-Path: <devicetree+bounces-231669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6C90C0F863
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:06:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99D5AC0F893
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:09:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8F8454E3E66
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:06:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7258A3AE39D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:05:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CC9A311C2D;
-	Mon, 27 Oct 2025 17:06:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B65D130F929;
+	Mon, 27 Oct 2025 17:05:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hte+cO7N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="etsx/zfb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C3A12D23B9;
-	Mon, 27 Oct 2025 17:06:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C72130BBA2;
+	Mon, 27 Oct 2025 17:05:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761584778; cv=none; b=uEYeWcS8OcbcH78vZEG+lD0jyVSYqflfiLWOkQXtFSSVnsTTWoG0T/pROtnltjTI4O7iQv+iWRAdaoNqdhv/EDWHDW5fzFTf+0MShQWEe3qfOxIDfUv8bpomUPY2jUv9X9q6aRG2mdaVlXRg6mmHZWc44V6pOAO4kc8nTLxblgY=
+	t=1761584727; cv=none; b=tNFfNN7ubcQi2KLl0KRwLo3G80aHU3OYsswNr/ub3qZR+Rmty4pbo4aTODD5+jx26vZr9rxZazfYNItSu27fppL7u3y7JMrybSbK42fdIEARKZdcHwrF4ooByt6cT2Q4Mt8krYz+1cPJNx5JTSCm5L9tET7oeVVrHqIY6Bop1gA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761584778; c=relaxed/simple;
-	bh=s/IT6TeCl+sjf5XvyVpD9Mw0igDSnNsMN5YXPmOt6ZA=;
+	s=arc-20240116; t=1761584727; c=relaxed/simple;
+	bh=AO2mJ/+tjiSaEhQl/oIQeLy2Ernp7A4F4bsWfQ7Hwug=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cSqenoTcnSS9Q9hs4EI0SLuR5FjTdj37iFumKwyFWzoQ+WKf919hgqXJj2RAUi6EuEhCz/1k9XNM2Zs1p4Cdh8WX1Ro+KVI8qjFpvAlFIWrQpT+LhZ/+1tXMeQeAuWFrxNmzueMSuL7KjzK91HR3iDmI3qNTMvWlbr7LiTKa3u0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hte+cO7N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C9FDC113D0;
-	Mon, 27 Oct 2025 17:06:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ujh9jCuQuHudbPFHYxj9zhRkCYZxv3fRkHKiFPjxX3G4RFXwk0v4A8jbT1f5vh5Gn3bjirndUeM6tnga3jIlT1CjMEgIrrwFmxJqSIzkFkOorBePFfGUtPdF4Nohsaov4mkhtbmIvnXRboOS42NalfymDXniArzxuqTTzqaTK6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=etsx/zfb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E012C4CEF1;
+	Mon, 27 Oct 2025 17:05:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761584777;
-	bh=s/IT6TeCl+sjf5XvyVpD9Mw0igDSnNsMN5YXPmOt6ZA=;
+	s=k20201202; t=1761584726;
+	bh=AO2mJ/+tjiSaEhQl/oIQeLy2Ernp7A4F4bsWfQ7Hwug=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hte+cO7NPhaVJDDIfAVKI1hV2qvWp/BZOrVn4nCx8EITZsHbJfvwFspfHqo9MUAjL
-	 ytrWPOsN3g7xsVML/nD92R9CWhzUz8wwNy5UeBt9BbcFAtYlYyY1UBVN1hGoU2YzS5
-	 FXPIPG0iuPbf9Lg5l6i2TPd2IICLwxtQ4K33iiMfIyb3QYCZ0IMTfnhI1eQuV+JFSA
-	 X261Gjluf2siziuhSfJhIaHZr0JQinCWu7N7yTXW9R3F9jUlnZ/ofVIDrhHflH/q83
-	 iSTC6EyUvWK3SThUgxgKsa+wpjqxi16zzTaWqeTrp/m+GUXXQiQHhzXiCnyG7rNznG
-	 sjuEa2T47zbYg==
-Date: Mon, 27 Oct 2025 17:06:11 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Hongxing Zhu <hongxing.zhu@nxp.com>
-Cc: "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"bhelgaas@google.com" <bhelgaas@google.com>,
-	Frank Li <frank.li@nxp.com>,
-	"l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-	"kwilczynski@kernel.org" <kwilczynski@kernel.org>,
-	"mani@kernel.org" <mani@kernel.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>,
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>,
-	"festevam@gmail.com" <festevam@gmail.com>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v8 2/3] dt-bindings: PCI: pci-imx6: Add external
- reference clock input
-Message-ID: <20251027-marbles-tarot-92533cb36e1b@spud>
-References: <20251024024013.775836-1-hongxing.zhu@nxp.com>
- <20251024024013.775836-3-hongxing.zhu@nxp.com>
- <20251024-unburned-lip-6f142d83ed76@spud>
- <AS8PR04MB8833DEEA9CB4CE4968B2B5F18CFCA@AS8PR04MB8833.eurprd04.prod.outlook.com>
+	b=etsx/zfb1G5MuzgmsCQ8tvw7iX0SmmEOYLlF5Q1Cj8tSVGUaTUCsLWcH+la8PVO3j
+	 Vd/vLwiZYi1+aILtGPrPzk9DHQNfDX5I0NCs2266vJVJZvtqBWnll6jbeVM/R2ZO9K
+	 3717tNds0/vcV2stdN8tIptnmjPWjZdB6xvOe47VHn8wUrl7WG/dI1d64a/HLfnpQ9
+	 pvTtyQcy5vJiuNU+lRXXVypm4AqI02JPGES/Jnmw1oNFk7BQTpOeXDLRSv+jZSWQPF
+	 Atmwk7NCG09biz3B6AzBL0IufBpHDAEbzlJItvy9/GO5SGxI10bxSRnlC97pjYPeAi
+	 9rXkdPyEdIaKg==
+Date: Mon, 27 Oct 2025 12:08:19 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: david@ixit.cz
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Jonathan Corbet <corbet@lwn.net>, Jiri Kosina <jikos@kernel.org>, 
+	Benjamin Tissoires <bentiss@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Casey Connolly <casey.connolly@linaro.org>, 
+	Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>, linux-input@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	phone-devel@vger.kernel.org, Gergo Koteles <soyer@irl.hu>
+Subject: Re: [PATCH v7 1/3] Input: add ABS_SND_PROFILE
+Message-ID: <vdnfmgtfclntb2xnvv7gdj65235aa2nufcsnssrkrsbdwr5wfc@ppkldnwzrtjy>
+References: <20251014-op6-tri-state-v7-0-938a6367197b@ixit.cz>
+ <20251014-op6-tri-state-v7-1-938a6367197b@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="EsVnFdp8eh5fFMn5"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <AS8PR04MB8833DEEA9CB4CE4968B2B5F18CFCA@AS8PR04MB8833.eurprd04.prod.outlook.com>
+In-Reply-To: <20251014-op6-tri-state-v7-1-938a6367197b@ixit.cz>
 
+On Tue, Oct 14, 2025 at 11:20:33AM +0200, David Heidelberg via B4 Relay wrote:
+> From: Gergo Koteles <soyer@irl.hu>
+> 
+> ABS_SND_PROFILE used to describe the state of a multi-value sound profile
+> switch. This will be used for the alert-slider on OnePlus phones or other
+> phones.
+> 
+> Profile values added as SND_PROFLE_(SILENT|VIBRATE|RING) identifiers
+> to input-event-codes.h so they can be used from DTS.
+> 
+> Signed-off-by: Gergo Koteles <soyer@irl.hu>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 
---EsVnFdp8eh5fFMn5
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
 
-On Mon, Oct 27, 2025 at 06:36:32AM +0000, Hongxing Zhu wrote:
-> > -----Original Message-----
-> > From: Conor Dooley <conor@kernel.org>
-> > Sent: 2025=E5=B9=B410=E6=9C=8825=E6=97=A5 1:07
-> > To: Hongxing Zhu <hongxing.zhu@nxp.com>
-> > Cc: robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
-> > bhelgaas@google.com; Frank Li <frank.li@nxp.com>; l.stach@pengutronix.d=
-e;
-> > lpieralisi@kernel.org; kwilczynski@kernel.org; mani@kernel.org;
-> > shawnguo@kernel.org; s.hauer@pengutronix.de; kernel@pengutronix.de;
-> > festevam@gmail.com; linux-pci@vger.kernel.org;
-> > linux-arm-kernel@lists.infradead.org; devicetree@vger.kernel.org;
-> > imx@lists.linux.dev; linux-kernel@vger.kernel.org
-> > Subject: Re: [PATCH v8 2/3] dt-bindings: PCI: pci-imx6: Add external re=
-ference
-> > clock input
-> >=20
-> > On Fri, Oct 24, 2025 at 10:40:12AM +0800, Richard Zhu wrote:
-> > > i.MX95 PCIes have two reference clock inputs: one from internal PLL,
-> > > the other from off chip crystal oscillator. The "extref" clock refers
-> > > to a reference clock from an external crystal oscillator.
-> > >
-> > > Add external reference clock input for i.MX95 PCIes.
-> > >
-> > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml | 3 +++
-> > >  1 file changed, 3 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> > > b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> > > index ca5f2970f217c..b4c40d0573dce 100644
-> > > --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> > > +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> > > @@ -212,14 +212,17 @@ allOf:
-> > >      then:
-> > >        properties:
-> > >          clocks:
-> > > +          minItems: 4
-> > >            maxItems: 5
-> > >          clock-names:
-> > > +          minItems: 4
-> > >            items:
-> > >              - const: pcie
-> >=20
-> > 1
-> >=20
-> > >              - const: pcie_bus
-> >=20
-> > 2
-> >=20
-> > >              - const: pcie_phy
-> >=20
-> > 3
-> >=20
-> > >              - const: pcie_aux
-> >=20
-> > 4
-> >=20
-> > >              - const: ref
-> >=20
-> > 5
-> >=20
-> > > +            - const: extref  # Optional
-> >=20
-> > 6
-> >=20
-> > There are 6 clocks here, but clocks and clock-names in this binding do =
-not
-> > permit 6:
-> > |  clocks:
-> > |    minItems: 3
-> > |    items:
-> > |      - description: PCIe bridge clock.
-> > |      - description: PCIe bus clock.
-> > |      - description: PCIe PHY clock.
-> > |      - description: Additional required clock entry for imx6sx-pcie,
-> > |           imx6sx-pcie-ep, imx8mq-pcie, imx8mq-pcie-ep.
-> > |      - description: PCIe reference clock.
-> > |
-> > |  clock-names:
-> > |    minItems: 3
-> > |    maxItems: 5
-> >=20
-> > AFAICT, what this patch actually did is make "ref" an optional clock, b=
-ut the
-> > claim in the patch is that extref is optional. With this patch applied,=
- you can
-> > have a) no reference clocks or b) only "ref". "extref"
-> > is never allowed.=20
-> Hi Conor:
-> Thanks for your review comments.
-> Just same to "extref", the "ref" should be marked as optional clock too.
+Regards,
+Bjorn
 
-Right, your commit message should then mention that.
-
-> > Is it supposed to be possible to have "ref" and "extref"?
-> > Or "extref" without "ref"?
-> > Neither "ref" or "extref"?
-> "ref" and "extref" have an exclusive relationship of choosing one of the =
-two,
->  and they cannot all exist simultaneously.
-
-Right, please go test what you've produced, because extref is never
-permitted by this binding.
-
-> > I don't know the answer to that question because you're doing things th=
-at
-> > are contradictory in your patch and the commit message isn't clear.
-> >=20
-> Sorry for causing you confusion.
-
-
---EsVnFdp8eh5fFMn5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaP+mgwAKCRB4tDGHoIJi
-0vsPAP4/9G1yr5mqtW4MMNEsBBmPhvBRbfc5pGtMSd6csOWCmQD+NIs3jfUzO2eC
-odBrXrqWr/VCwksII7RTlqmdC42I+QM=
-=+M2s
------END PGP SIGNATURE-----
-
---EsVnFdp8eh5fFMn5--
+> ---
+>  Documentation/input/event-codes.rst    | 6 ++++++
+>  drivers/hid/hid-debug.c                | 1 +
+>  include/uapi/linux/input-event-codes.h | 9 +++++++++
+>  3 files changed, 16 insertions(+)
+> 
+> diff --git a/Documentation/input/event-codes.rst b/Documentation/input/event-codes.rst
+> index 1ead9bb8d9c64..e4f065dd5a1da 100644
+> --- a/Documentation/input/event-codes.rst
+> +++ b/Documentation/input/event-codes.rst
+> @@ -241,6 +241,12 @@ A few EV_ABS codes have special meanings:
+>      emitted only when the selected profile changes, indicating the newly
+>      selected profile value.
+>  
+> +* ABS_SND_PROFILE:
+> +
+> +  - Used to describe the state of a multi-value sound profile switch.
+> +    An event is emitted only when the selected profile changes,
+> +    indicating the newly selected profile value.
+> +
+>  * ABS_MT_<name>:
+>  
+>    - Used to describe multitouch input events. Please see
+> diff --git a/drivers/hid/hid-debug.c b/drivers/hid/hid-debug.c
+> index 7107071c7c516..c58500d8b94b5 100644
+> --- a/drivers/hid/hid-debug.c
+> +++ b/drivers/hid/hid-debug.c
+> @@ -3513,6 +3513,7 @@ static const char *absolutes[ABS_CNT] = {
+>  	[ABS_DISTANCE] = "Distance",	[ABS_TILT_X] = "XTilt",
+>  	[ABS_TILT_Y] = "YTilt",		[ABS_TOOL_WIDTH] = "ToolWidth",
+>  	[ABS_VOLUME] = "Volume",	[ABS_PROFILE] = "Profile",
+> +	[ABS_SND_PROFILE] = "SoundProfile",
+>  	[ABS_MISC] = "Misc",
+>  	[ABS_MT_SLOT] = "MTSlot",
+>  	[ABS_MT_TOUCH_MAJOR] = "MTMajor",
+> diff --git a/include/uapi/linux/input-event-codes.h b/include/uapi/linux/input-event-codes.h
+> index 4a9fbf42aa9fa..962168c661ccd 100644
+> --- a/include/uapi/linux/input-event-codes.h
+> +++ b/include/uapi/linux/input-event-codes.h
+> @@ -879,6 +879,7 @@
+>  
+>  #define ABS_VOLUME		0x20
+>  #define ABS_PROFILE		0x21
+> +#define ABS_SND_PROFILE		0x22
+>  
+>  #define ABS_MISC		0x28
+>  
+> @@ -988,4 +989,12 @@
+>  #define SND_MAX			0x07
+>  #define SND_CNT			(SND_MAX+1)
+>  
+> +/*
+> + * ABS_SND_PROFILE values
+> + */
+> +
+> +#define SND_PROFILE_SILENT	0x00
+> +#define SND_PROFILE_VIBRATE	0x01
+> +#define SND_PROFILE_RING	0x02
+> +
+>  #endif
+> 
+> -- 
+> 2.51.0
+> 
+> 
 
