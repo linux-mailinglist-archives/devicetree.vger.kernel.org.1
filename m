@@ -1,111 +1,215 @@
-Return-Path: <devicetree+bounces-231667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A292C0F82C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:02:17 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6C90C0F863
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:06:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4175B34FA1E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:02:17 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8F8454E3E66
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:06:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E4A530FC16;
-	Mon, 27 Oct 2025 17:02:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CC9A311C2D;
+	Mon, 27 Oct 2025 17:06:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sROLKMoC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hte+cO7N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3F143054E4;
-	Mon, 27 Oct 2025 17:02:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C3A12D23B9;
+	Mon, 27 Oct 2025 17:06:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761584532; cv=none; b=FoEZN+G0ZcharC2g/zawbf9eh0gfyxDPDxWbJyLcY6kvum+h8ii/zUHd2rDU2JVQLDdLeygZtqIwNcHoiM9Jsqth39gjaq5fLLafdBD2rEdx9ZfTLh+iTlPG6ZODjKxrrJFQ/ihqZZ0lQiRG+oQgzoSxNU+RwigSMGPvlctgNG0=
+	t=1761584778; cv=none; b=uEYeWcS8OcbcH78vZEG+lD0jyVSYqflfiLWOkQXtFSSVnsTTWoG0T/pROtnltjTI4O7iQv+iWRAdaoNqdhv/EDWHDW5fzFTf+0MShQWEe3qfOxIDfUv8bpomUPY2jUv9X9q6aRG2mdaVlXRg6mmHZWc44V6pOAO4kc8nTLxblgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761584532; c=relaxed/simple;
-	bh=aH66x+qi6wkGS5vlWmcbx+X2SNlXqg5IctaXAlPdLV0=;
+	s=arc-20240116; t=1761584778; c=relaxed/simple;
+	bh=s/IT6TeCl+sjf5XvyVpD9Mw0igDSnNsMN5YXPmOt6ZA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mTvrnpqmzvMXaATyhhScfZjkLVyYWUg77vfCTE99JqKqQEKgKqg9qpAZfraf3Ra3dnk0Y5uGAn5GC0KNyy0EcYVn56W1kG46RYQxbTmguRDYwAsJz6NBjIrtYDdn3+0SLtiZqtSCSE6MQU5g8w9DGuGVsl1ia44JzzGjIJ540Bg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sROLKMoC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F54EC4CEF1;
-	Mon, 27 Oct 2025 17:02:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cSqenoTcnSS9Q9hs4EI0SLuR5FjTdj37iFumKwyFWzoQ+WKf919hgqXJj2RAUi6EuEhCz/1k9XNM2Zs1p4Cdh8WX1Ro+KVI8qjFpvAlFIWrQpT+LhZ/+1tXMeQeAuWFrxNmzueMSuL7KjzK91HR3iDmI3qNTMvWlbr7LiTKa3u0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hte+cO7N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C9FDC113D0;
+	Mon, 27 Oct 2025 17:06:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761584530;
-	bh=aH66x+qi6wkGS5vlWmcbx+X2SNlXqg5IctaXAlPdLV0=;
+	s=k20201202; t=1761584777;
+	bh=s/IT6TeCl+sjf5XvyVpD9Mw0igDSnNsMN5YXPmOt6ZA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sROLKMoC+Cbth9uUgf8fowYWiC9iEhAnTvvWbcCBA35ZofYUNrFH/umMZ+XEsL74i
-	 yz2dSHQ7rHFb7P8HwAvMpdwmq0AuJHLdmddOyC2cQy3TRJ8BNgtYHs+vMXFFUnPiul
-	 UMJkDjOjmuMtTKIvNKAR82PKp2z6mzKeL/p5brB61B3+qI5Z+punIJQIoKIRm1QHms
-	 6K21l7qbO2zwDmwKhLHh3DKCwRqzauqUH6sfOWTDxMiaZ7D+U/tuu8uUFv73i9I7LB
-	 JFmK2fvPdGrA7Azj5MMKTqRhU4vOEIbCMd52eRd+BX687XqITCvDPxuMpNNjChv8pp
-	 f9tbifVHBK9lw==
-Date: Mon, 27 Oct 2025 12:05:02 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Ritesh Kumar <quic_riteshk@quicinc.com>
-Cc: robin.clark@oss.qualcomm.com, lumag@kernel.org, 
-	abhinav.kumar@linux.dev, jessica.zhang@oss.qualcomm.com, sean@poorly.run, 
-	marijn.suijten@somainline.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, quic_mahap@quicinc.com, 
-	konradybcio@kernel.org, mani@kernel.org, James.Bottomley@hansenpartnership.com, 
-	martin.petersen@oracle.com, vkoul@kernel.org, kishon@kernel.org, 
-	cros-qcom-dts-watchers@chromium.org, linux-phy@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org, quic_vproddut@quicinc.com
-Subject: Re: [PATCH v2 1/3] dt-bindings: phy: qcom-edp: Add edp ref clk for
- sa8775p
-Message-ID: <wai7uqe6bn6kcfp3gmgqvc7sfrs37vmpqh6cucc7mopwf5x76j@vkxbwvqiqlyz>
-References: <20251013104806.6599-1-quic_riteshk@quicinc.com>
- <20251013104806.6599-2-quic_riteshk@quicinc.com>
+	b=hte+cO7NPhaVJDDIfAVKI1hV2qvWp/BZOrVn4nCx8EITZsHbJfvwFspfHqo9MUAjL
+	 ytrWPOsN3g7xsVML/nD92R9CWhzUz8wwNy5UeBt9BbcFAtYlYyY1UBVN1hGoU2YzS5
+	 FXPIPG0iuPbf9Lg5l6i2TPd2IICLwxtQ4K33iiMfIyb3QYCZ0IMTfnhI1eQuV+JFSA
+	 X261Gjluf2siziuhSfJhIaHZr0JQinCWu7N7yTXW9R3F9jUlnZ/ofVIDrhHflH/q83
+	 iSTC6EyUvWK3SThUgxgKsa+wpjqxi16zzTaWqeTrp/m+GUXXQiQHhzXiCnyG7rNznG
+	 sjuEa2T47zbYg==
+Date: Mon, 27 Oct 2025 17:06:11 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Hongxing Zhu <hongxing.zhu@nxp.com>
+Cc: "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"bhelgaas@google.com" <bhelgaas@google.com>,
+	Frank Li <frank.li@nxp.com>,
+	"l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kwilczynski@kernel.org" <kwilczynski@kernel.org>,
+	"mani@kernel.org" <mani@kernel.org>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v8 2/3] dt-bindings: PCI: pci-imx6: Add external
+ reference clock input
+Message-ID: <20251027-marbles-tarot-92533cb36e1b@spud>
+References: <20251024024013.775836-1-hongxing.zhu@nxp.com>
+ <20251024024013.775836-3-hongxing.zhu@nxp.com>
+ <20251024-unburned-lip-6f142d83ed76@spud>
+ <AS8PR04MB8833DEEA9CB4CE4968B2B5F18CFCA@AS8PR04MB8833.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="EsVnFdp8eh5fFMn5"
 Content-Disposition: inline
-In-Reply-To: <20251013104806.6599-2-quic_riteshk@quicinc.com>
+In-Reply-To: <AS8PR04MB8833DEEA9CB4CE4968B2B5F18CFCA@AS8PR04MB8833.eurprd04.prod.outlook.com>
 
-On Mon, Oct 13, 2025 at 04:18:04PM +0530, Ritesh Kumar wrote:
-> Add edp reference clock for sa8775p edp phy.
 
-Perhaps the eDP ref clock was missed in the initial contribution,
-perhaps it wasn't supposed to be described at the time, perhaps the
-hardware changed...we can only speculate on the purpose of this patch...
+--EsVnFdp8eh5fFMn5
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-You could change this however, by following
-https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
-and start your commit message with an explanation of the problem you're
-trying to solve...
+On Mon, Oct 27, 2025 at 06:36:32AM +0000, Hongxing Zhu wrote:
+> > -----Original Message-----
+> > From: Conor Dooley <conor@kernel.org>
+> > Sent: 2025=E5=B9=B410=E6=9C=8825=E6=97=A5 1:07
+> > To: Hongxing Zhu <hongxing.zhu@nxp.com>
+> > Cc: robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
+> > bhelgaas@google.com; Frank Li <frank.li@nxp.com>; l.stach@pengutronix.d=
+e;
+> > lpieralisi@kernel.org; kwilczynski@kernel.org; mani@kernel.org;
+> > shawnguo@kernel.org; s.hauer@pengutronix.de; kernel@pengutronix.de;
+> > festevam@gmail.com; linux-pci@vger.kernel.org;
+> > linux-arm-kernel@lists.infradead.org; devicetree@vger.kernel.org;
+> > imx@lists.linux.dev; linux-kernel@vger.kernel.org
+> > Subject: Re: [PATCH v8 2/3] dt-bindings: PCI: pci-imx6: Add external re=
+ference
+> > clock input
+> >=20
+> > On Fri, Oct 24, 2025 at 10:40:12AM +0800, Richard Zhu wrote:
+> > > i.MX95 PCIes have two reference clock inputs: one from internal PLL,
+> > > the other from off chip crystal oscillator. The "extref" clock refers
+> > > to a reference clock from an external crystal oscillator.
+> > >
+> > > Add external reference clock input for i.MX95 PCIes.
+> > >
+> > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml | 3 +++
+> > >  1 file changed, 3 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> > > b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> > > index ca5f2970f217c..b4c40d0573dce 100644
+> > > --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> > > +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> > > @@ -212,14 +212,17 @@ allOf:
+> > >      then:
+> > >        properties:
+> > >          clocks:
+> > > +          minItems: 4
+> > >            maxItems: 5
+> > >          clock-names:
+> > > +          minItems: 4
+> > >            items:
+> > >              - const: pcie
+> >=20
+> > 1
+> >=20
+> > >              - const: pcie_bus
+> >=20
+> > 2
+> >=20
+> > >              - const: pcie_phy
+> >=20
+> > 3
+> >=20
+> > >              - const: pcie_aux
+> >=20
+> > 4
+> >=20
+> > >              - const: ref
+> >=20
+> > 5
+> >=20
+> > > +            - const: extref  # Optional
+> >=20
+> > 6
+> >=20
+> > There are 6 clocks here, but clocks and clock-names in this binding do =
+not
+> > permit 6:
+> > |  clocks:
+> > |    minItems: 3
+> > |    items:
+> > |      - description: PCIe bridge clock.
+> > |      - description: PCIe bus clock.
+> > |      - description: PCIe PHY clock.
+> > |      - description: Additional required clock entry for imx6sx-pcie,
+> > |           imx6sx-pcie-ep, imx8mq-pcie, imx8mq-pcie-ep.
+> > |      - description: PCIe reference clock.
+> > |
+> > |  clock-names:
+> > |    minItems: 3
+> > |    maxItems: 5
+> >=20
+> > AFAICT, what this patch actually did is make "ref" an optional clock, b=
+ut the
+> > claim in the patch is that extref is optional. With this patch applied,=
+ you can
+> > have a) no reference clocks or b) only "ref". "extref"
+> > is never allowed.=20
+> Hi Conor:
+> Thanks for your review comments.
+> Just same to "extref", the "ref" should be marked as optional clock too.
 
-> 
-> Signed-off-by: Ritesh Kumar <quic_riteshk@quicinc.com>
+Right, your commit message should then mention that.
 
-Please start using your oss.qualcomm.com 
+> > Is it supposed to be possible to have "ref" and "extref"?
+> > Or "extref" without "ref"?
+> > Neither "ref" or "extref"?
+> "ref" and "extref" have an exclusive relationship of choosing one of the =
+two,
+>  and they cannot all exist simultaneously.
 
-Regards,
-Bjorn
+Right, please go test what you've produced, because extref is never
+permitted by this binding.
 
-> ---
->  Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-> index bfc4d75f50ff..b0e4015596de 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-> @@ -73,6 +73,7 @@ allOf:
->          compatible:
->            enum:
->              - qcom,x1e80100-dp-phy
-> +            - qcom,sa8775p-edp-phy
->      then:
->        properties:
->          clocks:
-> -- 
-> 2.17.1
-> 
+> > I don't know the answer to that question because you're doing things th=
+at
+> > are contradictory in your patch and the commit message isn't clear.
+> >=20
+> Sorry for causing you confusion.
+
+
+--EsVnFdp8eh5fFMn5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaP+mgwAKCRB4tDGHoIJi
+0vsPAP4/9G1yr5mqtW4MMNEsBBmPhvBRbfc5pGtMSd6csOWCmQD+NIs3jfUzO2eC
+odBrXrqWr/VCwksII7RTlqmdC42I+QM=
+=+M2s
+-----END PGP SIGNATURE-----
+
+--EsVnFdp8eh5fFMn5--
 
