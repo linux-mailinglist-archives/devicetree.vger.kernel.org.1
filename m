@@ -1,186 +1,296 @@
-Return-Path: <devicetree+bounces-231327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7ECBC0C748
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 09:53:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB96BC0C7E6
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:00:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6B9DD34841E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 08:53:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 707C14069A1
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 08:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1268B2F7AB8;
-	Mon, 27 Oct 2025 08:45:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 039742F5462;
+	Mon, 27 Oct 2025 08:46:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b="C9rP9vCN"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="RD6zQOIH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.iitb.ac.in (smtpd9.iitb.ac.in [103.21.126.64])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013000.outbound.protection.outlook.com [40.107.159.0])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84CCB2F49F8
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 08:45:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.21.126.64
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761554758; cv=none; b=bpRzYJiut6v6JTLmC/gA9p2NEzWTScpf6Yng2S4QKqOga4o6e+9JCVwTpsECWjePUTlzh/U8jRC+ym+7yHqrVaV8X4fYYvwexvLi6Sae2o3o7wpfeiLsBaBUqw5NkBGG1PEZW+gFW7I1gyZKFxQ1zppjXfNn9Wl2J+vE6QYFTd8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761554758; c=relaxed/simple;
-	bh=yblexPAF1yXmhpUYnJ7sU72VNu9PiHvfkeydduKfwwI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NWQAXT6UFLMTMnw5h9cvJRxl1ul2zEzeT5RGyMLmv+NedAzU7lF7727SXGOK6LzsgGohjkBOGEAWibip+UMMbNLhX5ihpGayKASGR4UQXj0FxjlKorwl27hRLwQ9VnTdIp1qvMwrIDpfhhzLsI5zAFXaEYqmW9NIkhWvBrLQdJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in; spf=pass smtp.mailfrom=ee.iitb.ac.in; dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b=C9rP9vCN; arc=none smtp.client-ip=103.21.126.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ee.iitb.ac.in
-Received: from ldns1.iitb.ac.in (ldns1.iitb.ac.in [10.200.12.1])
-	by smtp1.iitb.ac.in (Postfix) with SMTP id 2F6341014862
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 14:15:43 +0530 (IST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.iitb.ac.in 2F6341014862
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=iitb.ac.in; s=mail;
-	t=1761554743; bh=yblexPAF1yXmhpUYnJ7sU72VNu9PiHvfkeydduKfwwI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=C9rP9vCNYcVnpzORl+MACWkj3IGTHR+OrS8K1jh4y3G0XHnSoRca6Up8chQ6OKDKB
-	 6S7ijcYlng7G89oL2ALAzhT3YzqlBgOeEHuB4jDhhveRc59reMIBOVVGpHt05hQ6oQ
-	 gY2hiD+NvAtEunxUszalXT0+qMr4nB81E2n0QPms=
-Received: (qmail 24705 invoked by uid 510); 27 Oct 2025 14:15:43 +0530
-X-Qmail-Scanner-Diagnostics: from 10.200.1.25 by ldns1 (envelope-from <akhilesh@ee.iitb.ac.in>, uid 501) with qmail-scanner-2.11
- spamassassin: 3.4.1. mhr: 1.0. {clamdscan: 0.101.4/26439} 
- Clear:RC:1(10.200.1.25):SA:0(0.0/7.0):. Processed in 2.344548 secs; 27 Oct 2025 14:15:43 +0530
-X-Spam-Level: 
-X-Spam-Pyzor: Reported 0 times.
-X-Envelope-From: akhilesh@ee.iitb.ac.in
-X-Qmail-Scanner-Mime-Attachments: |
-X-Qmail-Scanner-Zip-Files: |
-Received: from unknown (HELO ldns1.iitb.ac.in) (10.200.1.25)
-  by ldns1.iitb.ac.in with SMTP; 27 Oct 2025 14:15:40 +0530
-Received: from bhairav.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
-	by ldns1.iitb.ac.in (Postfix) with ESMTP id CD1AD360035;
-	Mon, 27 Oct 2025 14:15:39 +0530 (IST)
-Received: from bhairav-test.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
-	(Authenticated sender: akhilesh)
-	by bhairav.ee.iitb.ac.in (Postfix) with ESMTPSA id 9D5161E813F2;
-	Mon, 27 Oct 2025 14:15:39 +0530 (IST)
-Date: Mon, 27 Oct 2025 14:15:31 +0530
-From: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>, jic23@kernel.org,
-	dlechner@baylibre.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, nuno.sa@analog.com, andy@kernel.org,
-	marcelo.schmitt1@gmail.com, vassilisamir@gmail.com,
-	salah.triki@gmail.com, skhan@linuxfoundation.org,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, akhileshpatilvnit@gmail.com
-Subject: Re: [PATCH 2/2] iio: pressure: adp810: Add driver for adp810 sensor
-Message-ID: <20251027-84531-1235547@bhairav-test.ee.iitb.ac.in>
-References: <cover.1760184859.git.akhilesh@ee.iitb.ac.in>
- <8c202e7ccd332b26217d529a7a73b7a3ef0726ea.1760184859.git.akhilesh@ee.iitb.ac.in>
- <CAHp75VdGJfMALGOFvkOW=JZ0yHE2QbRSzNs2Xd42-Weec1GmQw@mail.gmail.com>
- <95c1ba99-510b-4efb-9b6d-4c1103fc43a5@kernel.org>
- <aPp5OYcPxNNIOgB6@smile.fi.intel.com>
- <c45309cf-bd2c-41fe-b893-7e0a91de84a8@kernel.org>
- <aPs6HAJabFMRzX9Y@smile.fi.intel.com>
- <aPs6raLIcM3QbQXJ@smile.fi.intel.com>
- <20251024-175010-876729@bhairav-test.ee.iitb.ac.in>
- <aP8sLeR7eTBntozI@smile.fi.intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 801B72F3632;
+	Mon, 27 Oct 2025 08:46:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.0
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761554814; cv=fail; b=Rz10TL9DZQPf9HMNA0eogipKLh/+eab3f8ih1NAuwuuhalljynIWVPR0XqBIvvlDeRac1+fMacET5fm67Chv1v4zRoYcZcMsQO9zDzxSTDILoVLg/6yUF3ypDFc0JqL1/1/vN2OJCGl2PA6+lBoL0HsmsT+iXOOJcqGcsu6NmPM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761554814; c=relaxed/simple;
+	bh=lOBYeQb+adgeA4vVZMuz5BLagrYDTQ6PHE/wqQrt5sE=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=dNq3tOxBcXZ4BUIOk5bacI+z/KarjsxtxfkxeAqY4ad9vSgd1qRQl+4l9pYpzIoKjxBuRiZalPAOLAFU31tPlCzdThvVMP2chxTTd+u457lP6SJ8g9DhmiJvzo75uEYJnJ8o0Q/bU7HkjJsYh++NfI0f9MzxfwVykTCm3ud7xkY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=RD6zQOIH; arc=fail smtp.client-ip=40.107.159.0
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jek7aN42bpX2DwvSDLgw527mc87S98gRb7/FLM0azENxQDG/uEm1V6s4ftTOU+6EYei+gpKcTw190qOC4LIAe/milslhePoN4LwLTGmB74U6KHUcqjSCyL9IvCTjj427OinCVgzdO/g/PTc/6unhH3u3KMCV56auqCjk8L1uvQ95CaZvFGoWTNXkiuLoUu8Cknb2pxG0gzKJKg1gvDScEhlqYGarwp8B71OHXCGKG5o36gk7u0kodb/yVM0MM5l+XecUcMMJHX+L3SGGV8nlpGpPm7JELRRD+crajqEhatFriSw3Rk3rXjn9ltvd7iIsXt5TosbJkf64CL5biOVd1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WKViD7boMA+PcfgbiE4vV1FbVkCB1EwOH7mJNr4frc4=;
+ b=T88XlYCFEL53Yyjh1jdbaY2En9Q1saPaZuoA1ImdxACehcwM+ISM4E1ocqUNZKLFX7G6li/PpsC9fnfvXnajuDaBj63yjoaWA2prEU+ebmjG16cyP6F8fbqesbC7mfbso3UnF9kDJgAvmk4ftlg4vl0r8+gBnOP5HTB8Vh6Tu4AF2H6bQD8bBOM+Je5i6rzCRGz1MzjUhZg0IOH+GO3FyxnOhoKbugr8hP+/RkLPzkI+qmaWz/yoeTJhYFyJHfyiu35GVWiZ03g6oHPzQdQdVXA7Muh/ZttP7oJULT+rxLPnhbj9GozkCHetwntYbE5J7ewhCUkGTYe2Pdm0YChwrA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WKViD7boMA+PcfgbiE4vV1FbVkCB1EwOH7mJNr4frc4=;
+ b=RD6zQOIHZvtiy7C/VDwUKkY8qOrnR+Q2+V4X0kjnUfb1P9kodvRs06GF0AP3QWol4FC1BbfCluq6f0ZjtVqjlnCFfFNyspU75jNqK5okTLqVjMW5zoOfceEm16jA6ACXaFwp4HARuliksanBvDZt5dzi8QUjQTjKNJZziK1/wZ7ZUbmjSM32hx7iRCtUtudJxpIPF3L0/xdHSk90GXc3s12avNpgVK9QkiV09bE40a56fo12KIMY0FbmuEUHJf9i01TQ2wjC0J8jvQ9eicqFyTBylpKAU2QigX253BDeyoUbKW9P479AVVhbA8KyBfKEXwmG5HLfpeMz1wFo9c+Lwg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by AS8PR04MB8739.eurprd04.prod.outlook.com (2603:10a6:20b:42c::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.18; Mon, 27 Oct
+ 2025 08:46:49 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::4609:64af:8a4b:fd64]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::4609:64af:8a4b:fd64%6]) with mapi id 15.20.9253.017; Mon, 27 Oct 2025
+ 08:46:49 +0000
+From: Liu Ying <victor.liu@nxp.com>
+Subject: [PATCH v5 00/13] drm/imx: dc: Use prefetch engine
+Date: Mon, 27 Oct 2025 16:46:50 +0800
+Message-Id: <20251027-imx8-dc-prefetch-v5-0-4ecb6c6d4941@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHox/2gC/23OTQ6CMBAF4KuYrq2Z/tK68h7GBc4U6UIwYBqM4
+ e4WEhUjyzeT7808WR+6GHq23zxZF1LsY9vkYLYbhnXZXAKPlDOTIA0UoHi8Do4T8lsXqnDHmoN
+ 0QYE1XqBlmU2LOMyVx1POdezvbfeYLyQxTd9l+r8sCQ68cBpBVWS1qQ7NcNthe2VTVZJf7uXKL
+ 0lmbsh6Ql+iO5tfrpbcr3CVOYIgsOBKIvnL9YcLEHaF68ypolLpAs8KF9fHcXwBdAefw2sBAAA
+ =
+X-Change-ID: 20250703-imx8-dc-prefetch-028e306591c6
+To: Philipp Zabel <p.zabel@pengutronix.de>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Dmitry Baryshkov <lumag@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Marek Vasut <marek.vasut@mailbox.org>, 
+ Liu Ying <victor.liu@nxp.com>, 
+ Alexander Stein <alexander.stein@ew.tq-group.com>, 
+ Frank Li <Frank.Li@nxp.com>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: SI2PR02CA0041.apcprd02.prod.outlook.com
+ (2603:1096:4:196::20) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aP8sLeR7eTBntozI@smile.fi.intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AS8PR04MB8739:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5c5b0838-2713-45f4-1a34-08de15355e0f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|1800799024|52116014|7416014|376014|366016|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?SWFWWnNhaU4xMFJDck9yckFvQVcwYzBGSnJCcFRDOFpGT2IrRktEL0tCTVky?=
+ =?utf-8?B?V0R4UnRnd3lrZ1ZUZitVYTdiUWFpNG92bXczRFVGcytGZWEySWxKdkQ3cDk2?=
+ =?utf-8?B?ek9pYlpHZk9RTjBmRU9SRnRBVVFYck5KSVk1ZHlpb1owSnA2U2JZMlJrd1VH?=
+ =?utf-8?B?eU9DNC9ZRXBMZUQ0UXVUeWsxS3MwcmcyZWJ5UEJiNEVSc3JMZCtRajh4U0M3?=
+ =?utf-8?B?RkNYYTZMQ2tWVENIa1YzOFZPNGdtWENXZEVYamNGOVk5U3oyRHN0NkJaSllN?=
+ =?utf-8?B?VXIyZzBLZVN5aVF2dmwyYmFEMnJGMncrNHpPbjRVZ3Q3VTBHZmtiWUk3U1kr?=
+ =?utf-8?B?TkRGc1JQT1lrbVhOYzNTUTc3Q09pRlNYUk5kTk5KTGJsVVczQzN4OTZHbERE?=
+ =?utf-8?B?bXhMc2V1cTJ0Z0RvWHVaK0dVOENTUUoyTFlscVloOFU3ZjVRUnhnMUJKc2M0?=
+ =?utf-8?B?UkxXZDRLRnQyQ1JtMVNiYW91d1dCcEEybVovdVZmL05iNGxwTVl5QzR0dmNM?=
+ =?utf-8?B?aVZoSUp6cW41STBYclF2bmJFWDBkRGF5UGlyVGV6SGsvVkFXdElIcVlKcHRS?=
+ =?utf-8?B?b0hHYi84UXU1eUpPR2JOcjJKZmRYZy9jTlk5M1YrZUNsN3hNdk9sOG5vM1ZP?=
+ =?utf-8?B?RnY2RFZxRGRSNmRycGNFTTV2M3lGZkFGZG9obVdGUFRsUG9YK0NFSHZRWkR2?=
+ =?utf-8?B?V1dqQVpIUDlXaExWb3o1Vk42Rm00WllqSy9nSFI1YndOblZ4dkM0bWdNZUFG?=
+ =?utf-8?B?ZzNhelVkYkwreGVrVTg1eDl0ajhYTjZzUjE5N2lybmkyYlZBRERrY3dSVU1Z?=
+ =?utf-8?B?TzBRMG0yaGJ4aFZVenkxbEZaRmZYbmxSVDZUc3BUK0dVeTc0VGdOdHU1N0xD?=
+ =?utf-8?B?bXJtbm4xRDh0Mnd3WGY0eHRjVkFHVmdyUHR2QzBCb2xJdlljTFpPMWpFbUl0?=
+ =?utf-8?B?am9XZm95RzQwdUNXa2dmRDBSM3l0Z1V2akFQTmRNdTRZd2hFZ0FpNGdDVnFM?=
+ =?utf-8?B?cEJ0TDRNSnYzRjRLOXh1SGVPRkpkdzY2WUJIa0ZXYThBSkw3N0tjbG9TSUdT?=
+ =?utf-8?B?aDVVM1Z1b1lCUzhuZC9XOWY1UmFPcUYxMHdXeWl1RFBwc05EQlYvWEVPU3hG?=
+ =?utf-8?B?VmRwN3kwS01qMU1yRjl0dGFMYUNQQ3hidWFzNWJzQ01RcFZabzBPSnFSdTlZ?=
+ =?utf-8?B?QmFwR2wrYmlSY3B4UzRpdlhEU25EeDJUUDlzTkdNR3h5ZDhtTzFCMEh6TWZH?=
+ =?utf-8?B?Vlc4OC9iS0JSenp5ajd4NFE2bStFRnhaaEpxM1dXZ0JJRWsvczFYYjQwSkVU?=
+ =?utf-8?B?eVlhMmJiTHdLeFJhaGlKY3BPTmRFMUlSWm1GM2ZFQVF6d0NPQ3Qxakc4RGNP?=
+ =?utf-8?B?VFpiZWUraEJITmlKMHRZYUFTNEtRbG9heFJIR1lRaEJaM0cwQndpbU9oOTBv?=
+ =?utf-8?B?R0s0ZXYvMWdLUzltcGx4T3F5SEhRRjlJN2xtTklNaEVZRWRMUnZMa0dtV2p2?=
+ =?utf-8?B?L3BHUmVla0hpdTcreXVzcWZxSEtuWklCTk5kdGNUaFdVYlh3ckNRZVpTR3BQ?=
+ =?utf-8?B?N2gwMGFpdFNjRVcvamtrcFlsRXh5TGlicmdBU3BLWUs2U2VoYXg1WHg5Zith?=
+ =?utf-8?B?RElMbFpzT0p3MEdEcUUxbHRkSHZldlVUVG02SkNZblpUbUR1UDdDOWR6ditm?=
+ =?utf-8?B?bHBXTm96SDZhMnpmOUVlTXAvV3dQSkZnS3VLNks5dnU0UlFCSm0yeVdxdEg2?=
+ =?utf-8?B?Q2FaMm00b3JsWkRzVmZ3akFGWElueUxXQkN3eFc3NWhPVmMrcHdBNitCcVlL?=
+ =?utf-8?B?SUtjcTZlOStXcXU5SHVEa3ArdVVLUXB4akdkVk40SVowZVZFbXJmSUtwc0pW?=
+ =?utf-8?B?Qm1oK2taWThHNjIzMjVDRVVKcVlwUldZTGJtcEpLR2VPcjBDM3BqVFpCeldz?=
+ =?utf-8?B?K2N6TEtiZEVUbytiYW04NFVUWUVPT2tHVWhEeEVJS2NMTWYyUHlBSU5ESDJR?=
+ =?utf-8?B?R0hSeWxuRGdaU1o3dVZvL0ZQcG0vMjhqb2laMVJJMzNYc1NENzJUbFpUclVS?=
+ =?utf-8?B?Yjc4QkwwWjliN29yQW9QNVVsdE1HQ1kvcHdVdz09?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(52116014)(7416014)(376014)(366016)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?TS8yT0lZczV4TGlmWGtXVWk3ejZVcWlKK2Q4OHR0Zmswbll2Mk9ySHo2WWFu?=
+ =?utf-8?B?SFBQeWN3TFJPMjFMYVBlOVFvQWl2RklmaEVjd3FWVmxicG5OUFhuODQzdytL?=
+ =?utf-8?B?UU5aNHpRc29OYUkwbDNYM0VBOXdxTkRkRGc5L0h3NmFzYmpiSVlBbGxWajMw?=
+ =?utf-8?B?QkF4TWYyZlB0S1A2b3JmZG53S2Jjd1JLUFZxempVbmNvY29qalJQN0U2ZjVF?=
+ =?utf-8?B?MHplZTd2QWorTUFoNytQZGFQak9FeHdXM2dHcEY3MDVSOGxZbjZQMlBqNjZj?=
+ =?utf-8?B?a1VkQjFGeDFySTJaK3d1ZU1JQnZEdFVJdmVpTzl2SEo2KzJPR2phQ05CMDRU?=
+ =?utf-8?B?STZQZE9Sd2RjS2IzNkVUZUJsZE9UOENjeWt1OWl0dk9ISFd3SkxwOWtpV0RQ?=
+ =?utf-8?B?cHM4bk1kVDhFeHdPYjRyMGVKSXlsMGExa1BweFphdnBhN3JpejhRNEpycC84?=
+ =?utf-8?B?VmJ3Q1d2QW9NMGsyaXJyQUpVRUUzQVhmeG1RRGttMmk2RjRmMzdJTjR0dXNL?=
+ =?utf-8?B?QTEzWWZ1OStBOEIrMTR5Y1dmWnRzZnFXNldCZEd0d0JYKzRlbnZJdDhXUnRC?=
+ =?utf-8?B?YkY5R2hOeXZwaDlHN1N4SzUzSXBiRTdWb3UrNUVkeHBhRDVsaEJzRTFKeDlw?=
+ =?utf-8?B?OTQxb2VPdXp2clpwOXVyM2cxMVNpSXd1bGFPa2FzZFFsVG1iUnlwcnJCNks5?=
+ =?utf-8?B?SmxrNWZrWWt2ZC9UVVo1RENQUVF5MzA4MFFVTVFjQmN5OW9uY3ZQRnVyVnFk?=
+ =?utf-8?B?bFlVZ0NtWmdaYzhjQ21oM0hsbmQ0RzlPQmJVdVFaZmdMbkRjK3ZoQ2t6cldk?=
+ =?utf-8?B?TE1ra1RFRWRRRWVwUFFVM3hsQlZjMFFqOVBMMXRJSnlFV0ZlbGtxb1J6cTNB?=
+ =?utf-8?B?eXlub2pUaC9MYUJCV2hHYWMzdHU2eHVpTXV3VTJ6THUyUFZHM0Zibkszc2Q2?=
+ =?utf-8?B?ZGc5Qll6Qi9NeUNCd0h2eHdHNHBJcFpaMElTOVB1Ly9sSVh6cG1oYmRmVVEv?=
+ =?utf-8?B?NlFkbGQ2cmpuQWJIRW5GLzcvZXQ4MjVWZmFCUVZLTFFFQ21DeUwvWThsaSt0?=
+ =?utf-8?B?S2ZyUmxPakw0YXFTUUIvQXJJRm5mOVhMc3g4MTlJYUExVFdPYmg3R3dCNnVU?=
+ =?utf-8?B?d0c5NWNGNEZaZDlMY0x0dGNLNUEzUGNraWQweHpWMGlSVW5ydExSeHBYeWQv?=
+ =?utf-8?B?Q1E1dllNSG1BNElMVXEzenJLMnhZUFBOYXdlTk9NM2RxNFBMQ0MzZnpmR0dE?=
+ =?utf-8?B?bS9MelNidzN6K0xqMXdIZmkydjluZmttNGQwRFNGd0lDbDhHT0lUOEhCYXdx?=
+ =?utf-8?B?dXViOS9Tb0pqUXlWN3BSOHFGQ2x0Ny94TStoMnA0TXU1QnlnNS9oVWpqUlpX?=
+ =?utf-8?B?SzdPSFRBQ3FBS3oxTkZCbFZzYjZuQmhBR2JtbDZRYmtuOGRBd0FnR3RhYzJQ?=
+ =?utf-8?B?RXFxbDFGd0lkeDZRUDlKdGdVbllFUTdtSWs4NnZPcXphMEJ3Ukw3MTE0VExC?=
+ =?utf-8?B?TnpYdDVCR29pSnptckJZTC8zUEM5Q3k5NnRyYUN6eDlCL2YrTHFKcStmY1BN?=
+ =?utf-8?B?TjN4cFZLYlMyS1hQSWF0eFZWQmRueXZMdVAzTlM1M3g3Vkd6MHBpa09oK2p4?=
+ =?utf-8?B?VU4zbTlMd0dtRklHQW9WR3NNelRNVVZwMERwNktDNlllVDRPREVBQlVNZHJ5?=
+ =?utf-8?B?cVdNQ3lqcWc4RjZnTTZzbTRHVm9lWFJnRmoremhLWWc1VjZWM25aWWZwZnJW?=
+ =?utf-8?B?RWY0N3ZKZXF5bFM3S3UxaTdaYmdwK0VOSGtlRkRIaWFyZThFdGxxWm11Ynow?=
+ =?utf-8?B?U3pKM1Fqc3FJb3ZDTFcrdXp5SUpCc0hYekRWeEZzVzNtUWM5c2I1dkFhbVhU?=
+ =?utf-8?B?OVlWVEtpTkFqTDEzZ0tFVEx2WnB6Y1RPcVVxN2F0OVVVcmFsN1VVU0gySFdX?=
+ =?utf-8?B?L011QTFTKzB0dktsNFdRQzZnOFNDWElwd2w5RzRZalJkQVk2bFFUTnlPK3hQ?=
+ =?utf-8?B?K0szampLYnA0Q21VcTVIcm1hRktOdERzY2NscEdCQ0NJeDYzenlIZkI3SVZN?=
+ =?utf-8?B?OTJiZDBHaDl2VFRPL2cxSkNadDhmeW1PR0pZclRqWW5KT1JZajRHZTJacjcy?=
+ =?utf-8?Q?nW0COXKZ7hBFQymyBl/WV9nSO?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c5b0838-2713-45f4-1a34-08de15355e0f
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2025 08:46:49.0430
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: exLLw6sPt5P1w9l9hc+o//AN1npYPq+sfzMgk9nQ3MK8oO5oct6c1H6lf7yNR+8Q295vOHH88MLGw2XJqbhnLQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8739
 
-On Mon, Oct 27, 2025 at 10:24:13AM +0200, Andy Shevchenko wrote:
-> On Fri, Oct 24, 2025 at 11:20:10PM +0530, Akhilesh Patil wrote:
-> > On Fri, Oct 24, 2025 at 11:37:01AM +0300, Andy Shevchenko wrote:
-> > > On Fri, Oct 24, 2025 at 11:34:37AM +0300, Andy Shevchenko wrote:
-> > > > On Fri, Oct 24, 2025 at 08:18:21AM +0200, Krzysztof Kozlowski wrote:
-> > > > > On 23/10/2025 20:51, Andy Shevchenko wrote:
-> > > > > > On Sun, Oct 12, 2025 at 05:12:26AM +0200, Krzysztof Kozlowski wrote:
-> > > > > >> On 11/10/2025 16:10, Andy Shevchenko wrote:
-> > > > > >>> On Sat, Oct 11, 2025 at 3:25 PM Akhilesh Patil <akhilesh@ee.iitb.ac.in> wrote:
-> 
-> ...
-> 
-> > > > > >>>> +F:     Documentation/devicetree/bindings/iio/pressure/aosong,adp810.yaml
-> > > > > >>>> +F:     drivers/iio/pressure/adp810.c
-> > > > > >>>
-> > > > > >>> Some tools will report an orphaned yaml file if you apply patch 1
-> > > > > >>> without patch 2.
-> > > > > >>
-> > > > > >> You mean checkpatch? That warning is not really relevant. Adding
-> > > > > >> maintainers entry here for both files is perfectly fine and correct.
-> > > > > > 
-> > > > > > It's relevant as long as I see (false positive) warnings from it. Can somebody
-> > > > > 
-> > > > > No, it is not relevant. Just because tool is inefficient does not allow
-> > > > > you to point such nitpicks. You as reviewer are supposed to find
-> > > > > difference which checkpatch warnings are important and which are not and
-> > > > > DO NOT bother contributors with useless points that there is some
-> > > > > orphaned file according to checkpatch.
-> > > > > 
-> > > > > > shut the checkpatch up about missing DT files in the MAINTAINERS?
-> > > > > 
-> > > > > That would be great but, if no one does it your comments on "orphaned
-> > > > > file" are counter productive.
-> > > > 
-> > > > Something like this?
-> > > > 
-> > > > diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
-> > > > index 6729f18e5654..818b49d314ce 100755
-> > > > --- a/scripts/checkpatch.pl
-> > > > +++ b/scripts/checkpatch.pl
-> > > > @@ -3441,11 +3441,17 @@ sub process {
-> > > >  		     ($line =~ /\{\s*([\w\/\.\-]*)\s*\=\>\s*([\w\/\.\-]*)\s*\}/ &&
-> > > >  		      (defined($1) || defined($2))))) {
-> > > >  			$is_patch = 1;
-> > > > -			$reported_maintainer_file = 1;
-> > > > -			WARN("FILE_PATH_CHANGES",
-> > > > -			     "added, moved or deleted file(s), does MAINTAINERS need updating?\n" . $herecurr);
-> > > > +			# DT bindings are incorporate maintainer information, no need to report
-> > > > +			if ($realfile !~ m@^Documentation/devicetree/bindings/@)) {
-> > > > +				$reported_maintainer_file = 1;
-> > > > +				WARN("FILE_PATH_CHANGES",
-> > > > +				     "added, moved or deleted file(s), does MAINTAINERS need updating?\n" . $herecurr);
-> > > > +			}
-> > > >  		}
-> > > 
-> > > > +		    ($realfile =~ m@^Documentation/devicetree/bindings/.*\.txt$@)) {
-> > > > +			if ($realfile =~ m@^include/asm/@) {
-> > > 
-> > > These two lines are leftovers that needs to be removed, of course.
-> > > 
-> > > Akhilesh, can you give a try of this change and see if the original DT schema
-> > > binding patch is not reported anymore?
-> > 
-> > Hi Andy. I tested checkpatch.pl patch you suggested here. checkpatch
-> > does NOT show the warning now on my dt-bindings patch. Thanks for
-> > initiating this script improvement.
-> > I believe this is kernel wide script improvement and best to take
-> > independently if I understood correctly.
-> 
-> Definitely. May I use your Tested-by tag?
+Hi,
 
-Yes. Sure. 
+This patch series aims to use prefetch engine in imx8-dc KMS driver.
 
-Tested-by: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
+One prefetch engine consists of one DPR Channel(DPRC) and one or two
+Display Prefetch Resolve Gaskets(PRGs).  It prefetches data from
+DDR, resolves data in tile formats if needed and outputs the result
+data to FetchUnit(s).  When one PRG is used, a prefetch engine supports
+processing pixel formats with one planar, e.g., RGB formats.  When two
+are used, pixel formats with two planars are supported, e.g., NV12.
 
-anyways, I can ack on your patch with this, once you create it.
+For now, this patch series only supports prefetch engines with one PRG
+because it is enough for XRGB8888 which is the only pixel format
+supported by imx8-dc plane driver.  Two PRGs would be supported by
+future patches.
 
-Regards,
-Akhilesh
+Patch 1 and 2 add dt-bindings for DPRC and PRG.  They were reviewed
+by Rob[1][2].  I slightly modified the patches' commit message to use
+imperative mood.
 
-> 
-> > > >  # Check for adding new DT bindings not in schema format
-> > > >  		if (!$in_commit_log &&
-> > > >  		    ($line =~ /^new file mode\s*\d+\s*$/) &&
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
+Patch 3 fixes FetchUnit dimensions as related to prefetch engine function.
+
+Patch 4 disables CRTC at boot if needed to support prefetch engine better.
+
+Patch 5 and 6 add PRG and DPRC drivers.
+
+Patch 7 to 12 do preparations before using prefetch engine in imx8-dc KMS
+driver.
+
+Patch 13 uses prefetch engine in imx8-dc KMS driver.
+
+[1] https://lore.kernel.org/lkml/20201207165945.GA430214@robh.at.kernel.org/
+[2] https://lore.kernel.org/lkml/20201207170206.GA434964@robh.at.kernel.org/
+
+Signed-off-by: Liu Ying <victor.liu@nxp.com>
+---
+Changes in v5:
+- Squash MAINTAINERS file update into patch 1&2.  (Krzysztof)
+- Link to v4: https://lore.kernel.org/r/20251016-imx8-dc-prefetch-v4-0-dfda347cb3c5@nxp.com
+
+Changes in v4:
+- Rebase onto the latest drm-misc-next and resolve conflicts in patch 4&10.
+- Sort bits and bitfields in descending order for register PRG_CTRL in patch 6.
+- Cc Marek as stakeholder of the driver due to recent i.MX95 DC patches posted.
+- Link to v3: https://lore.kernel.org/r/20250929-imx8-dc-prefetch-v3-0-c01d0608add2@nxp.com
+
+Changes in v3:
+- Call dc_dprc_enable() only when start == true in patch 7.  (Frank)
+- Collect Frank's R-b tags.
+- Link to v2: https://lore.kernel.org/r/20250923-imx8-dc-prefetch-v2-0-5d69dc9ac8b5@nxp.com
+
+Changes in v2:
+- Rebase the patch series onto next-20250922.
+- Collect Alexander's and Frank's R-b tags.
+- Manage PRG's and DPRC's clocks with bulk interfaces in patch 6&7.  (Frank)
+- Sort variables in probe function in reverse Christmas tree fashion in patch 7.  (Frank)
+- Link to v1: https://lore.kernel.org/r/20250704-imx8-dc-prefetch-v1-0-784c03fd645f@nxp.com
+
+---
+Liu Ying (13):
+      dt-bindings: display: imx: Add i.MX8qxp/qm PRG binding
+      dt-bindings: display: imx: Add i.MX8qxp/qm DPR channel binding
+      drm/imx: dc-fu: Fix dimensions
+      drm/imx: dc-crtc: Disable at boot
+      drm/imx: dc: Add PRG support
+      drm/imx: dc: Add DPR channel support
+      drm/imx: dc: Use TCON operation mode
+      drm/imx: dc-ed: Support getting source selection
+      drm/imx: dc-lb: Support getting secondary input selection
+      drm/imx: dc-ed: Drop initial source selection
+      drm/imx: dc-lb: Drop initial primary and secondary input selections
+      drm/imx: dc-fu: Get DPR channel
+      drm/imx: dc: Use prefetch engine
+
+ .../bindings/display/imx/fsl,imx8qxp-dprc.yaml     | 100 +++++
+ .../bindings/display/imx/fsl,imx8qxp-prg.yaml      |  60 +++
+ MAINTAINERS                                        |   2 +
+ drivers/gpu/drm/imx/dc/Kconfig                     |   1 +
+ drivers/gpu/drm/imx/dc/Makefile                    |   6 +-
+ drivers/gpu/drm/imx/dc/dc-crtc.c                   | 191 ++++++++-
+ drivers/gpu/drm/imx/dc/dc-de.h                     |   2 +
+ drivers/gpu/drm/imx/dc/dc-dprc.c                   | 466 +++++++++++++++++++++
+ drivers/gpu/drm/imx/dc/dc-dprc.h                   |  35 ++
+ drivers/gpu/drm/imx/dc/dc-drv.c                    |   7 +
+ drivers/gpu/drm/imx/dc/dc-drv.h                    |   5 +
+ drivers/gpu/drm/imx/dc/dc-ed.c                     |  27 +-
+ drivers/gpu/drm/imx/dc/dc-fl.c                     |   7 +-
+ drivers/gpu/drm/imx/dc/dc-fu.c                     |  49 ++-
+ drivers/gpu/drm/imx/dc/dc-fu.h                     |  11 +-
+ drivers/gpu/drm/imx/dc/dc-fw.c                     |   7 +-
+ drivers/gpu/drm/imx/dc/dc-kms.h                    |   7 +
+ drivers/gpu/drm/imx/dc/dc-lb.c                     |  23 +-
+ drivers/gpu/drm/imx/dc/dc-pe.h                     |   2 +
+ drivers/gpu/drm/imx/dc/dc-plane.c                  |  46 +-
+ drivers/gpu/drm/imx/dc/dc-prg.c                    | 320 ++++++++++++++
+ drivers/gpu/drm/imx/dc/dc-prg.h                    |  39 ++
+ drivers/gpu/drm/imx/dc/dc-tc.c                     | 114 ++++-
+ 23 files changed, 1497 insertions(+), 30 deletions(-)
+---
+base-commit: 6674f54b21a6b20f8157426bd0ace3e249b3e4ba
+change-id: 20250703-imx8-dc-prefetch-028e306591c6
+
+Best regards,
+-- 
+Liu Ying <victor.liu@nxp.com>
+
 
