@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-231727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD501C10A6B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 20:14:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42FE3C10AD4
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 20:15:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D9671A6182A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:09:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD87C188AFDA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:10:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA6CE31A811;
-	Mon, 27 Oct 2025 19:06:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD25F32ABCC;
+	Mon, 27 Oct 2025 19:06:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oyqV/OAk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tVQWg+PZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B546930147E
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 19:06:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7BE3202963
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 19:06:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761591978; cv=none; b=Q5ZdWi73upI5pY/nrsab6N7XBtvhLDLhlOkg/U9YxA74mp87DIqlg1XtfMTC8sL0fCaKxWnUAV/ZBX94Q77n7XjalVyn0jbxyQVI/PBP7ZRDxYChPYEIj8l+KL7iVde60tQmtsSqfRbKSDBmrDLrxFRSgYdoYyo/2IGc4pD23Gk=
+	t=1761592008; cv=none; b=PJur/+pzR/yn2aG7o4ymr77B/FYmyXNKTH8np/Y+xWYsc+EiD9ld3tw1p7ueqi1i+nwpBwP7VmcTLAXHJ2VUcseD0zBHwToHj1khh7bEoj1h7WAvkeKAMU0impGrntWzVRwpfnVoBbZ0WVKMkqgX5s5Lfd66WSr0J8vAO4DtTRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761591978; c=relaxed/simple;
-	bh=T0TZOZXurnZmiF5A/Q7ITCjVE1XDGmBbQLQILtEnUjA=;
+	s=arc-20240116; t=1761592008; c=relaxed/simple;
+	bh=D/9XsIBeoxIFr9UfD2EQDPVl6fjaF7KeJMBNnNBxbvQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D7cDkwb+MyyyKX/7PYjSOwZtuYvF6v67MN1rUkqQ4Uur2nbGqnGuwsyjVAd2gp7QahdxyFcCGt5qsRIgsK4K4zTCSts1Ii6MrXen3h434LJ5G7qUEQsyaOCMmeQoV9h8UtSBStqERIG6IDJoHxSsm0RHxWOggmxBzCo1gWtYNik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oyqV/OAk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86BB3C4CEF1;
-	Mon, 27 Oct 2025 19:06:15 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=d4YqF/nGKd/xe5aRgJb4i21BmsVpSIN19THpFHQmLmG9tni9tLfGhLddBIkyCI7C5tGZ12+IY8zjhmTFbEWw+iM0L4l1E3nhm6xt2cNwtQXP5ZZ+lBEloajUewEjCx5/1gdytcmlvpvHntZIMUdP2Up4+7J28T0L0CPWzOJt4JU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tVQWg+PZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31CC9C113D0;
+	Mon, 27 Oct 2025 19:06:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761591978;
-	bh=T0TZOZXurnZmiF5A/Q7ITCjVE1XDGmBbQLQILtEnUjA=;
+	s=k20201202; t=1761592007;
+	bh=D/9XsIBeoxIFr9UfD2EQDPVl6fjaF7KeJMBNnNBxbvQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oyqV/OAkfGt2pkS0nZG89b/DEnnWKDLWTz3q8zPl//5O+MMG/VAzs06uuyx8yw9/4
-	 Kmv6OxRD2iSD0ncm4UeigrFmwCcLmRqPQcub1X+6qFoR2gEfOPT/MePrSa1k7nG6a1
-	 ZjNk8Lkh1L40tAIUGAFikfJ3ECplgDkee8qJl96771RomtMvhc8PPUeD2BO9lxKfly
-	 nISF7a+M2EROmqM6MRSQB7rWExnYd/eT6sZ6EJP/bPvRRnNlqg5hFZuKd2Nwd7aO+X
-	 x8l7K2n62EYcD+K29ovlz1EbGmTU9tG/kK7tM/1byisZJf9vlUi4qfm/yOgAfHWD0y
-	 iLXK5d8Sge4/w==
-Message-ID: <f70128c0-55ed-49bb-b3dc-92efa680c0e9@kernel.org>
-Date: Mon, 27 Oct 2025 20:06:13 +0100
+	b=tVQWg+PZ03sF+xXzus5yL3dyp4XolTqktg0ZN3cgHq/l+8Y3N6b2byVNFSjj31kMO
+	 nWs7+vIAdF579bAMYXUfoRSgqBV8SWSnH2xYbiuEwUR2X01fv4BPD67saLkJlvUO/o
+	 mWX39Gwj79CxUDw+c+nYUuLpUR/kwbrMbU1BVQl8oxlZOQhYFZkwOcCcvFXKNqPt67
+	 GKCXIEPD7JrE8Itd7Fe1ucOaCfjHfVLQ8+/WtzhxI7sTsN//xRsqaxpjsdNNA7/1Ek
+	 4mDb5d1DxAforSN41gxawtN5pFnbrZpNcEdG+Y1kN9O6UT9Czm0zSgScPfYrFBdvKt
+	 WqF3FTg0hzssw==
+Message-ID: <94d7d8aa-1481-4c50-9c4e-33f2a4e2d9a8@kernel.org>
+Date: Mon, 27 Oct 2025 20:06:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: arm: rockchip: Fix description for Radxa
- Rock2 Square
+Subject: Re: [PATCH 2/5] dt-bindings: arm: rockchip: Fix description for Radxa
+ ZERO 3E/3W
 To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  jonas@kwiboo.se, dsimic@manjaro.org, amadeus@jmu.edu.cn,
  devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
 References: <20251027122641.39396-1-naoki@radxa.com>
- <20251027122641.39396-2-naoki@radxa.com>
+ <20251027122641.39396-3-naoki@radxa.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,18 +103,17 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251027122641.39396-2-naoki@radxa.com>
+In-Reply-To: <20251027122641.39396-3-naoki@radxa.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 27/10/2025 13:26, FUKAUMI Naoki wrote:
-> The name 'Rock 2' is incorrect; 'Rock2' is correct. Fix this.
+> "3E" precedes "3W" in alphanumeric order. Fix this.
 > 
-> Fixes: d78084cdb5a95 ("dt-bindings: arm: rockchip: Correct the descriptions for Radxa boards")
+> Fixes: ad986e45ada99 ("dt-bindings: arm: rockchip: Add Radxa ZERO 3W/3E")
 
-That's not a bug, really. Please squash all the patches. These are
-unimportant trivialities.
-
+Nothing to fix. Please invent some sort of bugs according to
+non-existing rules.
 
 Best regards,
 Krzysztof
