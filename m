@@ -1,118 +1,108 @@
-Return-Path: <devicetree+bounces-231381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43EC5C0CCBA
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:58:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 456FFC0CCB7
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:57:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8967F4E72EF
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 09:55:38 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A1E7A4F58AF
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 09:54:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF7442F39CE;
-	Mon, 27 Oct 2025 09:55:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 997372F3C26;
+	Mon, 27 Oct 2025 09:53:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="PDLKMdYt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HlpY9PJK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59DF12F12DA
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 09:55:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEC302F3C23
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 09:53:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761558935; cv=none; b=F6MSgAh1FD28zwMS/HTbVtDKFEqqRJRWTcQx/CjzWIIzoeK5JZHFW1JFBoj3+lOBjJ9XIvLuxmmzzbv/W2lI1oNgDJIsSoA+IK4Lbmx0vcIDL3hisnXyOOa7EnTvxEbiSvYBlicTkk3W49GEwLeBmAITCRUF5QTLJCLvRmdOhNk=
+	t=1761558815; cv=none; b=YBQL7Fcf/gwLj7kIklFrBdFwnlWSY0YfgbEroA6XvWZSsw8lKEv6LmTYsMhoB8VpUPNOs5FzoKNQJ9KmKB+2MFDkzahWFQ5moZM5kRACMDCJhecRE+Xv2e1WaXE+qXpNfULYxi8tjnADaf0zL7goXCKdmii4hvH73jXipJYTfA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761558935; c=relaxed/simple;
-	bh=8RzIiPz9xOCm407auoA7e2dNUBBDbF25UtoP0pWX+Dk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=csQCn/W3BF2K1lkCRSvBdwwYDScKpUbdpTtS6Sx1UmLPrzGI1ExPk9Ki5zb/o1OL8Uzcu+4ETd6t0TJlN6KhgOB1q/+nc8xUJ7GlbMyrMZ7rcQFzpNCUaYO4+7681sKQbvkIV7L8LeNpDsxfFnZFtbOqxs6ITXugJRLPLfUi6+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=PDLKMdYt; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (unknown [193.209.96.36])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 57AE31661;
-	Mon, 27 Oct 2025 10:53:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1761558824;
-	bh=8RzIiPz9xOCm407auoA7e2dNUBBDbF25UtoP0pWX+Dk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PDLKMdYt1C/3C4fcJR8kOHsTcT3x9RdIFNrLPubQoDvb5jspOjsaXCyXDMkl9oYiF
-	 Apy10haJGbrecedgzqXqZH2QCk+6E1oerm4n4vHSxUBkPnj0xobXjGOD5MOFa5NQVt
-	 pQnS6YsUD9wfpyJWtR4/O4dQE9mODOUWaJwQSoQ4=
-Date: Mon, 27 Oct 2025 11:55:18 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Daniel Scally <dan.scally@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Stefan Klug <stefan.klug@ideasonboard.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Emanuele Ghidoli <ghidoliemanuele@gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
-Message-ID: <20251027095518.GD1544@pendragon.ideasonboard.com>
-References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
- <aP82VEjNDgrNAZzy@shell.armlinux.org.uk>
- <20251027093346.GB1544@pendragon.ideasonboard.com>
- <aP8_UjqvCHbrP3lH@shell.armlinux.org.uk>
+	s=arc-20240116; t=1761558815; c=relaxed/simple;
+	bh=uHZIvBo2w1MTfQAp1MbdkxhqheGGsSeb06hs1bU0eWo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=E1G/Ul07PmQpumfnk8mFEcydzEWT52V7eiQQBBdNVDr1CKB4v4fT0/DtxEeAC+sSLOmmELC7f/o1whDaeavsEzIzsJi1s7VRAjDLj8bOAz9W4boklX3l3GdMijv9fYa3qmCrCht2oRejm7GjwGlPnIWCySkZj2mTj9nIE+TSElM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HlpY9PJK; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-26d0fbe238bso31646605ad.3
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 02:53:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761558813; x=1762163613; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uHZIvBo2w1MTfQAp1MbdkxhqheGGsSeb06hs1bU0eWo=;
+        b=HlpY9PJKpXoOw9bpQk/Jn2/oQXTaHngwg1iB8FfrSBzs56KS2scu7zIbEtIP0X+N2T
+         LoP84Kf2ucYUT9vWrd7iWmm7YbVy6FHam5D3XTq6TUAejwR31yW+tZ6MpG7kNV1vwp/L
+         4AwUuV51ozl0qusm4LXIgdHzHGM0V2FpH8mmRblcjFeLNCk5NvLWaigJN/uddS2NpxXs
+         0e4X0bFnw5lx9Rvm5xD6WeGPRIoeV39KR2Isidorw8oXMI0L/BgFbGT77Fg14Awu/oH8
+         5rdOj/9M3ca434CGgsM4jkd7gIQTGP1T+YnVokilN2RCeoeZefbbva0OVPzsRNIon5VP
+         OxoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761558813; x=1762163613;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uHZIvBo2w1MTfQAp1MbdkxhqheGGsSeb06hs1bU0eWo=;
+        b=OXI0qK1AML81E/p7XgcVM4HrCqB+zc5AhfSIXuy/wRjhLvPaAIqRrSG+ZN1GGMeN9j
+         6UfiHs4EEUnD6W/a+wvvf56G9VJGmsYfOEju0Al9ameTcHPgfk3LDhl1CdupZoxu68pL
+         5CLCowJeX6rV/OYaYYI0GVsG7pzaMJfLnQhTEFOVnicmHT3MdGML9a7qT+S4vEA2wcHg
+         hbd3tKWdjWKb5AL75Vguan4UBIvfLioolzrQzvkHJKHllAtvNK0/nv4HJWD06jt3Y09D
+         Y6NkKG76r4Wgl2vhdp51q6C8RN7kwSYVv9lAzhMPZIFXM7/4Yyo3Oz2tFJB1VKg5r1sO
+         qoag==
+X-Forwarded-Encrypted: i=1; AJvYcCXdaYieZlO6Ewn1a0zARDh+vdeSu6kPdM7drTzr6G7zjYQBoCS/l8gAUXH7+xXXK91lezD6JxLiEmG/@vger.kernel.org
+X-Gm-Message-State: AOJu0YyF0IvNgHWixxbElp2J9fEFSOiwBATchLj0ihMJqUMV8om2Xgfx
+	secA7ys7nJKS1Rs+eCRdlbEEYqSGpXBCxxPKT0ntWpWMcFcgbaTdc43xPHCBQmbMws5i9cUAnMz
+	etZmcm2rOfRc+n6LnTCThiX6+BvQpiGk=
+X-Gm-Gg: ASbGncu0+iT57AgyvBjocOQ5YnvDDNlXtrUGvnRXBthE9MQK+YsgbrkGwfHAcO461zI
+	hEkySf3cIxZlZa/FbENca7NQqBKHNZo03vuIraY3iDzmKM+nRosYtIQCfDcO8aAcs1cfq6tqQsA
+	vLSmyf7SYGal+JEBqbS3KUof9wwF5TSU8EGNRzc8SQv2GiyRmZh/7p/H7tMJ5EAEeM/mSksKkIY
+	9uqDbikNB2fafhY+eathFvjuuqxzS+LdQeKZ1h6h2LaQpN3TQMl8X7EPMusaWn3jTQAwH3aAiAF
+	lUqTdbTkhTyJ3G2+AIbXDY1S61IF1dPiBeo=
+X-Google-Smtp-Source: AGHT+IHtoK9BtAWkuBlb8wHMY81e3C7F/tuuKHdZ9dReVXpNyDrBKViu/Dmg9ERnj0atAtepiwCmQJhoe6CLgiAV9x0=
+X-Received: by 2002:a17:903:38c8:b0:26e:d0aa:7690 with SMTP id
+ d9443c01a7336-2948ba3e147mr140058725ad.41.1761558813104; Mon, 27 Oct 2025
+ 02:53:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <aP8_UjqvCHbrP3lH@shell.armlinux.org.uk>
+References: <20251017112025.11997-1-laurentiumihalcea111@gmail.com> <20251017112025.11997-3-laurentiumihalcea111@gmail.com>
+In-Reply-To: <20251017112025.11997-3-laurentiumihalcea111@gmail.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Mon, 27 Oct 2025 11:55:58 +0200
+X-Gm-Features: AWmQ_bn8djVWD9T3hbxz5BaFzJdgRNmgPK4MMnk5oMPTdlZh7IbRd6rHqy4Tk8c
+Message-ID: <CAEnQRZDXhb=ssjbL-SOWXN74pjqzKgwXQ3SUUaQYMJapRPgKFA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/8] dt-bindings: clock: document 8ULP's SIM LPAV
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Daniel Baluta <daniel.baluta@nxp.com>, 
+	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-clk@vger.kernel.org, imx@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Pengutronix Kernel Team <kernel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 27, 2025 at 09:45:54AM +0000, Russell King (Oracle) wrote:
-> On Mon, Oct 27, 2025 at 11:33:46AM +0200, Laurent Pinchart wrote:
-> > On Mon, Oct 27, 2025 at 09:07:32AM +0000, Russell King (Oracle) wrote:
-> > > On Sun, Oct 26, 2025 at 02:29:04PM +0200, Laurent Pinchart wrote:
-> > > > Energy Efficient Ethernet (EEE) is broken at least for 1000T on the EQOS
-> > > > (DWMAC) interface. When connected to an EEE-enabled peer, the ethernet
-> > > > devices produces an interrupts storm. Disable EEE support to fix it.
-> > > 
-> > > As this is the second problem that has been reported recently, please
-> > > bisect the conversion of stmmac to phylink managed EEE support and see
-> > > whether there is anything in that which is causing this.
-> > 
-> > Emanuele Ghidoli has bisected this to commit 2c81f3357136 ("net: stmmac:
-> > convert to phylink PCS support"), as reported in [1]. I can test that
-> > commit and the commit just before tonight.
-> > 
-> > [1] https://lore.kernel.org/all/341f56de-9dde-4c44-9542-b523e1917dcb@gmail.com/
-> 
-> As you will notice in that thread, I have responded to it last week, so
-> I am well aware of it. I am also well aware of the claims Emanuele made
-> in his commit description are demonstrably false.
-> 
-> That's not to say the commit isn't a problem, but the explanation of
-> why it's a problem doesn't make sense right now, and thus what needs to
-> be done to fix it is unknown.
-> 
-> I don't think going around disabling EEE on individual platforms is the
-> right approach.
+On Fri, Oct 17, 2025 at 2:22=E2=80=AFPM Laurentiu Mihalcea
+<laurentiumihalcea111@gmail.com> wrote:
+>
+> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>
+> Add documentation for i.MX8ULP's SIM LPAV module.
+>
+> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
-I fully agree with you, seeing how eee-broken-1000t spread on many
-i.MX8MP DT sources raised a red cargo-cult flag. I didn't have the
-knowledge to properly diagnose and fix this myself, hence this patch,
-hoping someone more knowledgeable than me could help. Based on the
-replies received so far, it seems I was right to be hopeful :-)
-
-I'll perform more tests tonight, printing the interrupt status values as
-you requested in a separate e-mail.
-
--- 
-Regards,
-
-Laurent Pinchart
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 
