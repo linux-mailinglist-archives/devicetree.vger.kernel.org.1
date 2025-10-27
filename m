@@ -1,57 +1,54 @@
-Return-Path: <devicetree+bounces-231632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9908FC0F1BC
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 16:58:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E7F2C0F24F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:04:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24895424896
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 15:51:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5AA84674DE
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 15:55:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 591A4311C07;
-	Mon, 27 Oct 2025 15:46:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93370322DB7;
+	Mon, 27 Oct 2025 15:47:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9AA23112B3;
-	Mon, 27 Oct 2025 15:46:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02D2D322A22;
+	Mon, 27 Oct 2025 15:47:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761579997; cv=none; b=SGVMsF+WQ51bSTZvsso6RvaNZKfKVV2XcBQcRigQ4iL5mik/2vg0eNPQ5cu8Ag6V5IDhO2WKHSHWVp5WPuQ32DN/iftgPZ64WGVcQVOF3KkJ4re6i0se8acOGFW4Pdf4nBrfl8dj53Qytl1uWIdQ/CwCGzBYm8IF9Gj5yYXclcs=
+	t=1761580053; cv=none; b=R/YFh87vtihfrhcTPpxko2KwFfZlYZpnlerjAZ/lOeLEigGsWwnrHAAIhByviPvpC3LCxdbmRWPy466B59QYgkNHqe8qcwD0H9v6G/JqiWP6/3MYjmisAvl2Vq+FW97KqwVHEYxUTj/64qAyORUyyBFk8j7rC5fd7Wc3+0AgAsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761579997; c=relaxed/simple;
-	bh=amBXXbuQRPa5vJPSCdoctWh7t37L2CWiZDvrfP8m03U=;
+	s=arc-20240116; t=1761580053; c=relaxed/simple;
+	bh=gwadikHIMEu/a9eACG5kf4SybqzEBXdYt/5+ePp3MKU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PcrID7ee9g2VVesPfuQwRjk6MVxEuvM0ekwWyc6M07HSjbPGXaN1Y4ZGqXlmaE0WTrX7nRqGmXlBPFPEkMLm2mjnXOa0/KvIKblAzSYEarIi1hbKH+2eokfZpU0n8ivg5Idtas/UQ/TQmupQ+CQjLVvDiPtoGxVZrjqlJSgjrxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+	 MIME-Version; b=a2+B4QQuP6XWssb6lzZ81spq+dV8q7ZbJ351IEeVax+DKrx8Ok17LMOdU52AadxoOLrp4eCuvIaGHtAC9vyk2mE70SKPF0QHsYIXIaMR85I5YIpenJqxPl0C+K+dBH0FgzViVXsct5q9dZYQTSS0MG1R5B71yjzOLGb2jsBiRNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: vh86v0YKSLi8j5jVcmJPeQ==
-X-CSE-MsgGUID: +M7X+0dfQQCNeLVfdSlaAQ==
+X-CSE-ConnectionGUID: 9cWyhdx2QSKlSfxkwVjJww==
+X-CSE-MsgGUID: wjEZ2Go9Q6CKlcioPPDXBw==
 Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 28 Oct 2025 00:46:34 +0900
+  by relmlie5.idc.renesas.com with ESMTP; 28 Oct 2025 00:47:30 +0900
 Received: from localhost.localdomain (unknown [10.226.93.103])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id ABFD9400A67C;
-	Tue, 28 Oct 2025 00:46:30 +0900 (JST)
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 489A94003EA1;
+	Tue, 28 Oct 2025 00:47:27 +0900 (JST)
 From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>
 Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
 	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH 03/19] dt-bindings: serial: renesas,rsci: Document RZ/G3E support
-Date: Mon, 27 Oct 2025 15:45:50 +0000
-Message-ID: <20251027154615.115759-4-biju.das.jz@bp.renesas.com>
+Subject: [PATCH 17/19] arm64: dts: renesas: r9a09g047: Add RSCI nodes
+Date: Mon, 27 Oct 2025 15:46:04 +0000
+Message-ID: <20251027154615.115759-18-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251027154615.115759-1-biju.das.jz@bp.renesas.com>
 References: <20251027154615.115759-1-biju.das.jz@bp.renesas.com>
@@ -63,132 +60,214 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add documentation for the serial communication interface (RSCI) found on
-the Renesas RZ/G3E (R9A09G047) SoC. The RSCI IP on this SoC is identical
-to that on the RZ/T2H (R9A09G077) SoC, but it has a 32-stage FIFO compared
-to 16 on RZ/T2H. It supports both FIFO and non-FIFO mode operation. RZ/G3E
-has 6 clocks compared to 3 on RZ/T2H, and it has multiple resets.
+Add RSCI nodes to RZ/G3E ("R9A09G047") SoC DTSI.
 
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
- .../bindings/serial/renesas,rsci.yaml         | 82 ++++++++++++++++---
- 1 file changed, 71 insertions(+), 11 deletions(-)
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi | 190 +++++++++++++++++++++
+ 1 file changed, 190 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/serial/renesas,rsci.yaml b/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-index 6b1f827a335b..7cf6348e2b5b 100644
---- a/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-+++ b/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-@@ -10,17 +10,16 @@ maintainers:
-   - Geert Uytterhoeven <geert+renesas@glider.be>
-   - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+index 7a469de3bb62..2cc950d99bd3 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+@@ -823,6 +823,196 @@ i2c8: i2c@11c01000 {
+ 			status = "disabled";
+ 		};
  
--allOf:
--  - $ref: serial.yaml#
--
- properties:
-   compatible:
-     oneOf:
--      - items:
--          - const: renesas,r9a09g087-rsci # RZ/N2H
--          - const: renesas,r9a09g077-rsci # RZ/T2H
-+      - enum:
-+          - renesas,r9a09g047-rsci # RZ/G3E non FIFO mode
-+          - renesas,r9a09g047-rscif # RZ/G3E FIFO mode
-+          - renesas,r9a09g077-rsci # RZ/T2H
- 
-       - items:
-+          - const: renesas,r9a09g087-rsci # RZ/N2H
-           - const: renesas,r9a09g077-rsci # RZ/T2H
- 
-   reg:
-@@ -42,14 +41,40 @@ properties:
- 
-   clocks:
-     minItems: 2
--    maxItems: 3
-+    maxItems: 6
- 
-   clock-names:
--    minItems: 2
-+    oneOf:
-+      - items:
-+          - const: operation
-+          - const: bus
-+      - items:
-+          - const: operation
-+          - const: bus
-+          - const: sck # optional external clock input
-+      - items:
-+          - const: bus
-+          - const: tclk
-+          - const: tclk_div64
-+          - const: tclk_div16
-+          - const: tclk_div4
-+      - items:
-+          - const: bus
-+          - const: tclk
-+          - const: tclk_div64
-+          - const: tclk_div16
-+          - const: tclk_div4
-+          - const: sck # optional external clock input
++		rsci0: serial@12800c00 {
++			compatible = "renesas,r9a09g047-rscif";
++			reg = <0 0x12800c00 0 0x400>;
++			interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 115 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 116 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "eri", "rxi", "txi", "tei";
++			clocks = <&cpg CPG_MOD 93>, <&cpg CPG_MOD 94>,
++				 <&cpg CPG_MOD 95>, <&cpg CPG_MOD 96>,
++				 <&cpg CPG_MOD 97>;
++			clock-names = "bus", "tclk", "tclk_div64",
++				      "tclk_div16", "tclk_div4";
++			power-domains = <&cpg>;
++			resets = <&cpg 129>, <&cpg 130>;
++			reset-names = "presetn", "tresetn";
++			status = "disabled";
++		};
 +
-+  resets:
-+    items:
-+      - description: Input for resetting the APB clock
-+      - description: Input for resetting TCLK
++		rsci1: serial@12801000 {
++			compatible = "renesas,r9a09g047-rscif";
++			reg = <0 0x12801000 0 0x400>;
++			interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 121 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 122 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "eri", "rxi", "txi", "tei";
++			clocks = <&cpg CPG_MOD 98>, <&cpg CPG_MOD 99>,
++				 <&cpg CPG_MOD 100>, <&cpg CPG_MOD 101>,
++				 <&cpg CPG_MOD 102>;
++			clock-names = "bus", "tclk", "tclk_div64",
++				      "tclk_div16", "tclk_div4";
++			power-domains = <&cpg>;
++			resets = <&cpg 131>, <&cpg 132>;
++			reset-names = "presetn", "tresetn";
++			status = "disabled";
++		};
 +
-+  reset-names:
-     items:
--      - const: operation
--      - const: bus
--      - const: sck # optional external clock input
-+      - const: presetn
-+      - const: tresetn
- 
-   power-domains:
-     maxItems: 1
-@@ -62,6 +87,41 @@ required:
-   - clock-names
-   - power-domains
- 
-+allOf:
-+  - $ref: serial.yaml#
++		rsci2: serial@12801400 {
++			compatible = "renesas,r9a09g047-rscif";
++			reg = <0 0x12801400 0 0x400>;
++			interrupts = <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 127 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 128 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "eri", "rxi", "txi", "tei";
++			clocks = <&cpg CPG_MOD 103>, <&cpg CPG_MOD 104>,
++				 <&cpg CPG_MOD 105>, <&cpg CPG_MOD 106>,
++				 <&cpg CPG_MOD 107>;
++			clock-names = "bus", "tclk", "tclk_div64",
++				      "tclk_div16", "tclk_div4";
++			power-domains = <&cpg>;
++			resets = <&cpg 133>, <&cpg 134>;
++			reset-names = "presetn", "tresetn";
++			status = "disabled";
++		};
 +
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a09g077-rsci
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 3
++		rsci3: serial@12801800 {
++			compatible = "renesas,r9a09g047-rscif";
++			reg = <0 0x12801800 0 0x400>;
++			interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 133 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 134 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "eri", "rxi", "txi", "tei";
++			clocks = <&cpg CPG_MOD 108>, <&cpg CPG_MOD 109>,
++				 <&cpg CPG_MOD 110>, <&cpg CPG_MOD 111>,
++				 <&cpg CPG_MOD 112>;
++			clock-names = "bus", "tclk", "tclk_div64",
++				      "tclk_div16", "tclk_div4";
++			power-domains = <&cpg>;
++			resets = <&cpg 135>, <&cpg 136>;
++			reset-names = "presetn", "tresetn";
++			status = "disabled";
++		};
 +
-+        clock-names:
-+          maxItems: 3
++		rsci4: serial@12801c00 {
++			compatible = "renesas,r9a09g047-rscif";
++			reg = <0 0x12801c00 0 0x400>;
++			interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 139 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 140 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "eri", "rxi", "txi", "tei";
++			clocks = <&cpg CPG_MOD 113>, <&cpg CPG_MOD 114>,
++				 <&cpg CPG_MOD 115>, <&cpg CPG_MOD 116>,
++				 <&cpg CPG_MOD 117>;
++			clock-names = "bus", "tclk", "tclk_div64",
++				      "tclk_div16", "tclk_div4";
++			power-domains = <&cpg>;
++			resets = <&cpg 137>, <&cpg 138>;
++			reset-names = "presetn", "tresetn";
++			status = "disabled";
++		};
 +
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,r9a09g047-rsci
-+              - renesas,r9a09g047-rscif
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 5
++		rsci5: serial@12802000 {
++			compatible = "renesas,r9a09g047-rscif";
++			reg = <0 0x12802000 0 0x400>;
++			interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 145 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 146 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "eri", "rxi", "txi", "tei";
++			clocks = <&cpg CPG_MOD 118>, <&cpg CPG_MOD 119>,
++				 <&cpg CPG_MOD 120>, <&cpg CPG_MOD 121>,
++				 <&cpg CPG_MOD 122>;
++			clock-names = "bus", "tclk", "tclk_div64",
++				      "tclk_div16", "tclk_div4";
++			power-domains = <&cpg>;
++			resets = <&cpg 139>, <&cpg 140>;
++			reset-names = "presetn", "tresetn";
++			status = "disabled";
++		};
 +
-+        clock-names:
-+          minItems: 5
++		rsci6: serial@12802400 {
++			compatible = "renesas,r9a09g047-rscif";
++			reg = <0 0x12802400 0 0x400>;
++			interrupts = <GIC_SPI 150 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 151 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 152 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "eri", "rxi", "txi", "tei";
++			clocks = <&cpg CPG_MOD 123>, <&cpg CPG_MOD 124>,
++				 <&cpg CPG_MOD 125>, <&cpg CPG_MOD 126>,
++				 <&cpg CPG_MOD 127>;
++			clock-names = "bus", "tclk", "tclk_div64",
++				      "tclk_div16", "tclk_div4";
++			power-domains = <&cpg>;
++			resets = <&cpg 141>, <&cpg 142>;
++			reset-names = "presetn", "tresetn";
++			status = "disabled";
++		};
 +
-+      required:
-+        - resets
-+        - reset-names
++		rsci7: serial@12802800 {
++			compatible = "renesas,r9a09g047-rscif";
++			reg = <0 0x12802800 0 0x400>;
++			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 157 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 158 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "eri", "rxi", "txi", "tei";
++			clocks = <&cpg CPG_MOD 128>, <&cpg CPG_MOD 129>,
++				 <&cpg CPG_MOD 130>, <&cpg CPG_MOD 131>,
++				 <&cpg CPG_MOD 132>;
++			clock-names = "bus", "tclk", "tclk_div64",
++				      "tclk_div16", "tclk_div4";
++			power-domains = <&cpg>;
++			resets = <&cpg 143>, <&cpg 144>;
++			reset-names = "presetn", "tresetn";
++			status = "disabled";
++		};
 +
- unevaluatedProperties: false
- 
- examples:
++		rsci8: serial@12802c00 {
++			compatible = "renesas,r9a09g047-rscif";
++			reg = <0 0x12802c00 0 0x400>;
++			interrupts = <GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 163 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 164 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "eri", "rxi", "txi", "tei";
++			clocks = <&cpg CPG_MOD 133>, <&cpg CPG_MOD 134>,
++				 <&cpg CPG_MOD 135>, <&cpg CPG_MOD 136>,
++				 <&cpg CPG_MOD 137>;
++			clock-names = "bus", "tclk", "tclk_div64",
++				      "tclk_div16", "tclk_div4";
++			power-domains = <&cpg>;
++			resets = <&cpg 145>, <&cpg 146>;
++			reset-names = "presetn", "tresetn";
++			status = "disabled";
++		};
++
++		rsci9: serial@12803000 {
++			compatible = "renesas,r9a09g047-rscif";
++			reg = <0 0x12803000 0 0x400>;
++			interrupts = <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 170 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 171 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "eri", "rxi", "txi", "tei";
++			clocks = <&cpg CPG_MOD 138>, <&cpg CPG_MOD 139>,
++				 <&cpg CPG_MOD 140>, <&cpg CPG_MOD 141>,
++				 <&cpg CPG_MOD 142>;
++			clock-names = "bus", "tclk", "tclk_div64",
++				      "tclk_div16", "tclk_div4";
++			power-domains = <&cpg>;
++			resets = <&cpg 147>, <&cpg 148>;
++			reset-names = "presetn", "tresetn";
++			status = "disabled";
++		};
++
+ 		gpu: gpu@14850000 {
+ 			compatible = "renesas,r9a09g047-mali",
+ 				     "arm,mali-bifrost";
 -- 
 2.43.0
 
