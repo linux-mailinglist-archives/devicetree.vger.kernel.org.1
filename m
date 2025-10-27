@@ -1,140 +1,188 @@
-Return-Path: <devicetree+bounces-231709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29786C0FFEA
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:42:51 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8751FC0FFC4
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:42:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C94F734FF52
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:42:50 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 837904FA2C9
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:41:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1438A31B82E;
-	Mon, 27 Oct 2025 18:42:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD62131B107;
+	Mon, 27 Oct 2025 18:41:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jtvh99Cz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dkmMJuKP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCF7D2BD033;
-	Mon, 27 Oct 2025 18:42:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0D04319611;
+	Mon, 27 Oct 2025 18:41:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761590549; cv=none; b=CdImJiz7+fbgvX3FI1w8KLyAHYhdUnHOClvx89mkyHPNpHDo/QIse9qYOnHIJIN6J8jaR2a8tkIi1EsBuCS057s5ypWZr5jGymdZGrgcn/WJTJeHuM1RBxYDrYRL4je3aQOdZSIu0WlX/o6GicR3Y2zRFR3KMdur6wSX/R87sQ0=
+	t=1761590477; cv=none; b=GepTFZqkvhdNsM6K7HzrZLOMOvBX0MgWL59eDq1Q9nMaaahciwW6CxWOYrMK5S0DSb3oOlR+mQcsSYgDl9yfxQfNxRTGrPaZgF7q9fTPmacX6u6IfMjsEHObUR5iMb8wkmGEirXX88xfyPBMnTYTvI500ZkrP12FvRlfzc/vMHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761590549; c=relaxed/simple;
-	bh=QUtn0jfTmDQP1zTGGhM6A0feu35k7FOz8/KTsJYGFxY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ER/m5bxj2WD3OJ1dxAj/jJgHA3I9XeW188A8Arq6/+OdRtSlQEyu0kK5vyKkM6NE5M0vUsxGuKiUFiEE5xPg+xO3FIGuw/TeuyTEH3CrqW7WL88pRn1nx9WILyTKA9QsMeF5b0hPc/ewXhOHR30/50PoAP76TdfYgKxkUPYnaBg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jtvh99Cz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4540C116B1;
-	Mon, 27 Oct 2025 18:42:26 +0000 (UTC)
+	s=arc-20240116; t=1761590477; c=relaxed/simple;
+	bh=1lLY6d0MKyfiGfV93rULKwdDF9mSEE/eTixRy0YpQoA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mQ8iRm9UAarNV3GSVv602o8yL2QvuFs9PCMi3YeNnA/JkJRdoDNL4WZ6cssGAMU6hsERYuh3nTxX0HAvMh27g19IciZJ3n6qZ28vUWKcD7CBSeZid/NWw/Oh9r1qeCkXyUfvx7yJJRHcLnO9yu3iCvq5EBrtKMpHKSRnheXpacQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dkmMJuKP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B1B6C4CEF1;
+	Mon, 27 Oct 2025 18:41:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761590548;
-	bh=QUtn0jfTmDQP1zTGGhM6A0feu35k7FOz8/KTsJYGFxY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Jtvh99Czx1+ZtV00xlNxsKnjvKSrllZ6fLn1mJbK1xgZyRiJWziEsI4YSYUhF41uT
-	 XhCUme/tDG3uyqc1LZO9SNkHzhW5OXwwBQqBNvmSzJV+xWnaf9I4aibj74YIVhhQQ7
-	 mpbzYz5BQVr03AET++hegLUWe1o8SWqqlQOq2bJiDCyaWk8iBdrzXkWLNOLC9jRTNo
-	 mzqu7SPBZShMXSiUov2w04lDXcZiTUF3sleRSKSzBAgi3X3GSj6Hdi31OmEui2L89G
-	 LnGm5LOvh3IOCzkviLf1GPw1g9bCPsS7moR/bh9y60p39H0qYCCTy5Q8O9BPk7TM8s
-	 738RMTpmhI8Gg==
-Message-ID: <2491c23e-430d-4f1b-827e-1298996fce59@kernel.org>
-Date: Mon, 27 Oct 2025 19:42:24 +0100
+	s=k20201202; t=1761590477;
+	bh=1lLY6d0MKyfiGfV93rULKwdDF9mSEE/eTixRy0YpQoA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dkmMJuKPCMl5JjhaOrVEVK8FOQzmB9B0rf6/QB6MRxxLglrVyannxhcJDgKm+DhFm
+	 0JPMiKviTckp7wdL8vB+2X+Rh4iIbypOZFjSfwRezuL5wNzow5zae+2ZQXOB/5Fc0j
+	 lIPF5AgS5zOigi/Yfgnh1+LHgGZfUpYrBsxS/0RF0gQ0LWxEKu6P7mr4Adtuku1VZm
+	 5HiOy9XudA2PY/fll8mkBNqePwDNJxxdETW3Rod/YAGwrccvpzZ08EFGCWbxlM0EfK
+	 QcDYHEBr7dH4CeAb7k1ZztOM3GP4Z02iL6Mm25HzOfFTZmd8UUycYaKJKT36/AhunN
+	 G/3pDXKL8lY5g==
+Date: Mon, 27 Oct 2025 13:44:10 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Robert Marko <robimarko@gmail.com>, Das Srinagesh <quic_gurus@quicinc.com>, 
+	aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, 
+	yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Eugen Hristev <eugen.hristev@linaro.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: soc: qcom: Add qcom,kaanapali-imem
+ compatible
+Message-ID: <ygqgzflpavwgd43e5zedgcijm3lz27nqlzprttalgcroedz45u@ztqkppajpyry>
+References: <20251022-knp-soc-binding-v2-0-3cd3f390f3e2@oss.qualcomm.com>
+ <20251022-knp-soc-binding-v2-1-3cd3f390f3e2@oss.qualcomm.com>
+ <g2iviaqetgxf5ycz2otzkpmmc4goo7xuyjmttuu254bfzqqvkf@4vybjh4eghpm>
+ <4eebcb7d-1eca-4914-915a-d42232233f9f@oss.qualcomm.com>
+ <dwfvko3hszsoh4ihnz3qdpsugmocbkrbhosijdw5q3bxh64kuo@o74as2li74px>
+ <lz4sbvzfiij3qsa4d7jeblmi2vfubc4ltf435sh6tcs53l6fbq@7f3tfm7yiyjc>
+ <mwin3lfvpcwxxhsub2whcpibuayk36f4ljrodvithfygqad5w4@cg4h6peh4v4a>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/5] memory: tegra: Support EMC dfs on
- Tegra186/Tegra194
-To: Aaron Kling <webgeek1234@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20251021-tegra186-icc-p2-v3-0-1a50b526dd40@gmail.com>
- <c6eb8ad7-acb4-4218-9293-7ee532be56e9@kernel.org>
- <CALHNRZ-6Wp1k9zWg=B5xSt7n_9Fj9XchBq7qniKZtKHkHVouZg@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CALHNRZ-6Wp1k9zWg=B5xSt7n_9Fj9XchBq7qniKZtKHkHVouZg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <mwin3lfvpcwxxhsub2whcpibuayk36f4ljrodvithfygqad5w4@cg4h6peh4v4a>
 
-On 27/10/2025 18:54, Aaron Kling wrote:
-> On Mon, Oct 27, 2025 at 5:49 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 22/10/2025 03:09, Aaron Kling via B4 Relay wrote:
->>> This series borrows the concept used on Tegra234 to scale EMC based on
->>> CPU frequency and applies it to Tegra186 and Tegra194. Except that the
->>> bpmp on those archs does not support bandwidth manager, so the scaling
->>> iteself is handled similar to how Tegra124 currently works.
->>>
->>> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
->>
->>
->> Does not apply, please check, rebase and resend.
->>
->> Patch failed at 0003 memory: tegra186-emc: Support non-bpmp icc scaling
->> error: patch failed: drivers/memory/tegra/tegra186-emc.c:217
->> error: drivers/memory/tegra/tegra186-emc.c: patch does not apply
+On Thu, Oct 23, 2025 at 03:06:00AM +0300, Dmitry Baryshkov wrote:
+> On Wed, Oct 22, 2025 at 05:42:58PM -0500, Bjorn Andersson wrote:
+> > On Wed, Oct 22, 2025 at 12:34:58PM +0300, Dmitry Baryshkov wrote:
+> > > On Wed, Oct 22, 2025 at 05:05:30PM +0800, Jingyi Wang wrote:
+> > > > 
+> > > > 
+> > > > On 10/22/2025 4:49 PM, Dmitry Baryshkov wrote:
+> > > > > On Wed, Oct 22, 2025 at 12:28:41AM -0700, Jingyi Wang wrote:
+> > > > >> Document qcom,kaanapali-imem compatible.
+> > > > >>
+> > > > >> Reviewed-by: Eugen Hristev <eugen.hristev@linaro.org>
+> > > > >> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> > > > >> ---
+> > > > >>  Documentation/devicetree/bindings/sram/qcom,imem.yaml | 1 +
+> > > > >>  1 file changed, 1 insertion(+)
+> > > > >>
+> > > > >> diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+> > > > >> index 6a627c57ae2f..1e29a8ff287f 100644
+> > > > >> --- a/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+> > > > >> +++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+> > > > >> @@ -19,6 +19,7 @@ properties:
+> > > > >>        - enum:
+> > > > >>            - qcom,apq8064-imem
+> > > > >>            - qcom,ipq5424-imem
+> > > > >> +          - qcom,kaanapali-imem
+> > > > > 
+> > > > > Can you use mmio-sram instead?
+> > > > > 
+> > > > 
+> > > > Here is the node: 
+> > > > 
+> > > > 		sram@14680000 {
+> > > > 			compatible = "qcom,kaanapali-imem", "syscon", "simple-mfd";
+> > > > 			reg = <0x0 0x14680000 0x0 0x1000>;
+> > > > 			ranges = <0 0 0x14680000 0x1000>;
+> > > > 
+> > > > 			#address-cells = <1>;
+> > > > 			#size-cells = <1>;
+> > > > 
+> > > > 			pil-reloc@94c {
+> > > > 				compatible = "qcom,pil-reloc-info";
+> > > > 				reg = <0x94c 0xc8>;
+> > > > 			};
+> > > > 		};
+> > > > 
+> > > > other qualcomm are also using imem, could you please give more details on why
+> > > > we should use mmio-sram here?
+> > > 
+> > > https://lore.kernel.org/linux-arm-msm/e4c5ecc3-fd97-4b13-a057-bb1a3b7f9207@kernel.org/
+> > > 
+> > 
+> > I considered exactly this when I wrote the binding back then...
+> > 
+> > But the binding defines mmio-sram as "Simple IO memory regions to be
+> > managed by the genalloc API." and the Linux sram driver follows that and
+> > registers a gen_pool across the sram memory region.
+> > 
+> > I believe IMEM is SRAM (it's at least not registers), but its memory
+> > layout is fixed, so it's not a pool in any form.
+> > 
+> > 
+> > What Krzysztof says makes sense, but rather than just throwing a yak at
+> > Jingyi, it would be nice if you provided some guidance on how you would
+> > like to see this turn out.
 > 
-> It applies on v6.18-rc3, but not next. Your cleanup series caused the
-> conflict. I'll rebase on next-20251027 and resend.
+> I tested, pretty same approach seems to work:
+> 
+
+Now you're shaving at random ;)
+
+> 	sram@14680000 {
+> 		compatible = "mmio-sram";
+
+You can put "pil-reloc-sram" wherever, because it will perform a
+of_find_compatible_node() to dig up some node with the compatible
+"qcom,pil-reloc-info" .
+
+In other words, this line created a genpool for something that really
+isn't a genpool, but luckily that didn't have any side effects.
 
 
-Patches should apply on maintainer's for-next branches, not mainline.
-My cleanup series were applied two weeks ago, so week or more before you
-sent it.
+There are however other users of IMEM, such as the "reboot-mode", which
+relies on the "sram" device probing child devices, and is implemented by
+"syscon-reboot-mode".
 
-Best regards,
-Krzysztof
+Perhaps the solution is to not support any new users of that?
+
+
+But no matter what, the definition "Simple IO memory regions to be
+managed by the genalloc API" will never be true for IMEM.
+
+And as this isn't a syscon, simple-mfd, or mmio-sram...how about making
+the fallback "qcom,imem" (in this same binding) and omitting any
+implementation until we need one)?
+
+Regards,
+Bjorn
+
+> 		reg = <0x0 0x14680000 0x0 0x1000>;
+> 		ranges = <0 0 0x14680000 0x1000>;
+> 
+> 		#address-cells = <1>;
+> 		#size-cells = <1>;
+> 
+> 		pil-reloc-sram@94c {
+> 			compatible = "qcom,pil-reloc-info";
+> 			reg = <0x94c 0xc8>;
+> 		};
+> 	};
+> 
+> 
+> -- 
+> With best wishes
+> Dmitry
 
