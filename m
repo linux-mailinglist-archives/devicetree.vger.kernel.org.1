@@ -1,205 +1,137 @@
-Return-Path: <devicetree+bounces-231866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1AC2C11EDA
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 00:04:51 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3C70C11EF8
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 00:08:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9F7E19A2575
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:05:15 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 935F74E9B5B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:08:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79321316912;
-	Mon, 27 Oct 2025 23:04:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E99A30AAA9;
+	Mon, 27 Oct 2025 23:08:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L8RsLztn"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="bTKw6iE4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 961E1194137
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 23:04:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC9E61DED64
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 23:08:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761606287; cv=none; b=QcrTniQ0JMGdxxwcMUEyj7C//I2aknaymuMDjadUyXV9Gn9XOQF9TqvYiSEMRRMOQbZ91AbuzF70R9q0hYZRk8a8e+0ZbwNwenTX/6BCuuDtckhBpYyIQ4x2GG8snxjqyZPdSAykIeYfas3PceTK8znvSQ8QOBySq6l0Zk42RY4=
+	t=1761606520; cv=none; b=cTbUsoTV0KeY0qiXStHBYZXm8qWptWfTLE5KkLCLyKQ3N7Q9O/Wip0iAcLSHl+LubOnEHGfYq7zpa8os2VFKPB/PHZa9H7ZVrsuYlaMt+XOupd+4avY4b7WM0MeX95U5Ch8oTfqPWona84l5dhvndrdzMUQGAR02HsQpMzhyRBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761606287; c=relaxed/simple;
-	bh=qN5DIDtUbYFdcO8Yk11fGrXNo+5jkI7lDW2qRFTRa2A=;
+	s=arc-20240116; t=1761606520; c=relaxed/simple;
+	bh=ELYpA/QT7AVDHwBCO8Rf3+oLxXv3ePZYdYKb8rWchmQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CX/BDyQInCgILr7GqlKQU8L4jqlxmyr2AWI1YztKDaFPtGDVj4TvnAIvrjI9N36ndv3K3J2ifFQ8L71Qv6giQf450HTOt9OI/F7DG5r+49nkwP2Ok2P5aSPVPd1q8X91F1agoqn349HKuXfWdzp5wzH1wf6IB1LaEGHnFJgNBcc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L8RsLztn; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b6d676a512eso90149966b.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 16:04:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761606284; x=1762211084; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=vAAQrvgUUkIWSk6BjIqi7cF8427EB0fHMH0Z6+LmVTg=;
-        b=L8RsLztnf73q84Uiq000gr9HVVNIOol8ML1rdW5GoIwvUcqoIhXMDun3d+HgLexXCe
-         yTCUao3FptjSS7SlFdKuftfr2Y4AzxIAzMxGQ04cPt5zAleYBK6/jaJxi6E7tlCx4CoC
-         E/yxaHNEcGshHK+jsgKvFNPCvUZhjSnN+rOOvzdMa15gN2S5WARp+4EY4W3ESMHf6Sa1
-         6Z6UHllrXQ7jLa5ud6vh3R6m/A/8UaS1EQE1u4jed0dngmFCB8J7mhJeHHsz5DiMVf7v
-         sOtdzBUr0JNxet67SzLtmeFgvzuTa6jEUmxUEork5wl5vF6ceS9W49E125NjvlGw9MeD
-         3B+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761606284; x=1762211084;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vAAQrvgUUkIWSk6BjIqi7cF8427EB0fHMH0Z6+LmVTg=;
-        b=ct053qJw1nb4/vE5puIipiWfZNolIHrQoDIrDDZYFU9wNA+ghBYBCfZ7FYS4hAR+jm
-         QS64cdrhgueqhxGgV/iyO6u5EHtz90a5d5sVR+5Gsga3bbp5A/wmVclqEu+Uty0PC1Qg
-         vA2CvFA5jNSBv2dmEHA3wDyRSWPn70q39yVXUNzSABlRh1Q67FWHYb/4vjdnmSpq24le
-         zygGxpDHCm/fyuLvEuYjrhzajGH+PLP0uQq4OxGmeofX33pNHQyo/shN2RU5btiyO/u/
-         lAOWb1Hk5iOGKut00jXIU/bLgTOL6v+5N0IbtXAC7P7+KWYFKQnHvne6ChH9Ptdiu8Zj
-         fK4w==
-X-Forwarded-Encrypted: i=1; AJvYcCVGZ3BYv6/Br0xExz3vCAw/YSGCLUwd8yLdDNQ+HLruKGm6PVmv89WBzWeNHcrhhcZSLfFYn0Wfuba/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyeQSroUNnxOsn9GadEMIkjwWDxfqurb4Y42VziWGrCUPsmQ+Xi
-	gucUcXHsHQVjYFnQRQtorbKKoPHlZtoYd76kvHXJoNn1K7MqTMBLZH8z
-X-Gm-Gg: ASbGncvHM0ovM5VHD11CKd2gEsFZKIyf6ODs1Efy0xrD6odRShzSBRE3Z4owN3Nf+BB
-	4wknie4Nw6JyDGPTuMRZTzLObRDjtu4pi1kxLpnAczX+U4jl8xUgJJpaarUOGh1wGkpD3Ao34Ci
-	Be6AxSOVD2RFjiSfh5LucCbXVIYIPF1CHX9vtirSkh0HcgtYcsMB6Wt6LNxWnuMuRfxmO+IHPgc
-	m9qW73Ed7uG4IPxyxByKqsz69ya4ptdj3HaEXZ57aXesKHhTHW+Fs8fMT5eAT4Uhd6GcNKezSsg
-	pYkxV2quTkRmc62bfdd9GkSa+/xXQ/LENxNKwAViDDwK6+LJw4S9UkrKC3BHwhsd7o5b4cRhEgY
-	jvA0d2IgAPZCs9gX++3w95XQhYCVLBH4glWR8JR5vjEBuerTqSbn73KRNdtfIIKlhcClooUJhFu
-	O0vBs=
-X-Google-Smtp-Source: AGHT+IGucY7gsurHx82Q1yOr7E/bkizarFTj/IDrhH6Jq39r5tG48aF9wDEkzLwyLpWD70pcdp6ORA==
-X-Received: by 2002:a17:907:3d88:b0:b4e:e4c4:4245 with SMTP id a640c23a62f3a-b6dba47ea3amr92863966b.3.1761606283832;
-        Mon, 27 Oct 2025 16:04:43 -0700 (PDT)
-Received: from skbuf ([2a02:2f04:d406:ee00:3eb9:f316:6516:8b90])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d8992aa28sm851014966b.41.2025.10.27.16.04.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Oct 2025 16:04:43 -0700 (PDT)
-Date: Tue, 28 Oct 2025 01:04:39 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=cYTPfk+fyBROU6TvmBcdUShkv8yMnA0iOmtcPJ/27h12kH6GO/XCpc4+B+T+Zi7SJSIg54DNMbWwW7fWlnt/qfyVkYUBFf3cs1+tX4SaU3arKBW8DrdUCaY+wHygJ3i650y+G97Tbw9Tc5O2ZezMdsLeUITusY39yFQcowrCD0k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=bTKw6iE4; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (82-203-161-16.bb.dnainternet.fi [82.203.161.16])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id EF60C735;
+	Tue, 28 Oct 2025 00:06:46 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1761606407;
+	bh=ELYpA/QT7AVDHwBCO8Rf3+oLxXv3ePZYdYKb8rWchmQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bTKw6iE4ZpIJ68K2EMtJD4eOa0FMqjsAyfW3kDqU4MENQEZLXtIc4cAZD+Tb9KyH6
+	 lbtGVjA6Xfupo32TB0uADmRVMbavdO5MmiiBBNzj+3D9Ex5w4VI6om/u+YUTz5hNaV
+	 B5ooezfihbuElzN8wzvPgTEy5XsFGbai2Y28OopU=
+Date: Tue, 28 Oct 2025 01:08:21 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Daniel Scally <dan.scally@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Stefan Klug <stefan.klug@ideasonboard.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Andreas Schirm <andreas.schirm@siemens.com>,
-	Lukas Stockmann <lukas.stockmann@siemens.com>,
-	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
-	Peter Christen <peter.christen@siemens.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH net-next v3 06/12] dt-bindings: net: dsa: lantiq,gswip:
- add support for MII delay properties
-Message-ID: <20251027230439.7zsi3k6da3rohrfo@skbuf>
-References: <cover.1761521845.git.daniel@makrotopia.org>
- <cover.1761521845.git.daniel@makrotopia.org>
- <e7a4dadf49c506ff71124166b7ca3009e30d64d8.1761521845.git.daniel@makrotopia.org>
- <e7a4dadf49c506ff71124166b7ca3009e30d64d8.1761521845.git.daniel@makrotopia.org>
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
+Message-ID: <20251027230821.GA24987@pendragon.ideasonboard.com>
+References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
+ <e87ff7f2-d16f-41f2-b781-b175cfb84b21@lunn.ch>
+ <20251027072749.GA7811@pendragon.ideasonboard.com>
+ <aP88KO8uVrEQlmMm@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <e7a4dadf49c506ff71124166b7ca3009e30d64d8.1761521845.git.daniel@makrotopia.org>
- <e7a4dadf49c506ff71124166b7ca3009e30d64d8.1761521845.git.daniel@makrotopia.org>
+In-Reply-To: <aP88KO8uVrEQlmMm@shell.armlinux.org.uk>
 
-On Sun, Oct 26, 2025 at 11:45:19PM +0000, Daniel Golle wrote:
-> Add support for standard tx-internal-delay-ps and rx-internal-delay-ps
-> properties on port nodes to allow fine-tuning of RGMII clock delays.
+On Mon, Oct 27, 2025 at 09:32:24AM +0000, Russell King (Oracle) wrote:
+> On Mon, Oct 27, 2025 at 09:27:49AM +0200, Laurent Pinchart wrote:
+> > I've tried to diagnose the issue by adding interrupt counters to
+> > dwmac4_irq_status(), counting interrupts for each bit of GMAC_INT_STATUS
+> > (0x00b0). Bit RGSMIIIS (0) is the only one that seems linked to the
+> > interrupts storm, increasing at around 10k per second. However, the
+> > corresponding bit in GMAC_INT_EN (0x00b4) is *not* set.
 > 
-> The GSWIP switch hardware supports delay values in 500 picosecond
-> increments from 0 to 3500 picoseconds, with a default of 2000
-> picoseconds for both TX and RX delays.
+> This is a change in the PCS series rather than the EEE series. It would
+> be good to narrow down whehn this problem appeared for you.
 > 
-> This corresponds to the driver changes that allow adjusting MII delays
-> using Device Tree properties instead of relying solely on the PHY
-> interface mode.
+> The RGSMIIIS bit set without RGSMIIIM (0x00b4 bit 0) shouldn't result
+> in an interrupt storm since the status will be masked. That doens't
+> mean that RGSMIIIS won't be set. So, at this point I'm not worried
+> about that.
 > 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
-> v3:
->  * redefine ports node so properties are defined actually apply
->  * RGMII port with 2ps delay is 'rgmii-id' mode
+> Can you print the intr_status and intr_values in dwmac4_irq_status(),
+> maybe something like this:
 > 
->  .../bindings/net/dsa/lantiq,gswip.yaml        | 29 +++++++++++++++++--
->  1 file changed, 26 insertions(+), 3 deletions(-)
+> 	static int ctr = 0;
 > 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> index f3154b19af78..b0227b80716c 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> @@ -6,8 +6,29 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
->  title: Lantiq GSWIP Ethernet switches
->  
-> -allOf:
-> -  - $ref: dsa.yaml#/$defs/ethernet-ports
-> +$ref: dsa.yaml#
-> +
-> +patternProperties:
-> +  "^(ethernet-)?ports$":
-> +    type: object
-> +    patternProperties:
-> +      "^(ethernet-)?port@[0-6]$":
-> +        $ref: dsa-port.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          tx-internal-delay-ps:
-> +            enum: [0, 500, 1000, 1500, 2000, 2500, 3000, 3500]
-> +            default: 2000
+> 	if (ctr++ >= 9996) {
+> 		printk("stmmac: INTS=%08x INTE=%08x\n", intr_status,
+> 			intr_enable);
+> 
+> 		if (ctr >= 10000)
+> 			ctr = 0;
+> 	}
+> 
+>         /* Discard disabled bits */
+>         intr_status &= intr_enable;
+> 
+> which should avoid too much noise during "normal" operation. It'll
+> print six consecutive interrupts every 10000.
 
-No. This is confusing and wrong. I looked at the driver implementation
-code, wanting to note that it has the potential of being a breaking
-change for device trees without the "tx-internal-delay-ps" and
-"rx-internal-delay-ps" properties.
+I'm always getting the same values:
 
-But then I saw that the driver implementation is subtly different.
-"tx-internal-delay-ps" defaults to 2000 only if "rx-internal-delay-ps" is set, and
-"rx-internal-delay-ps" defaults to 2000 only if "tx-internal-delay-ps" is set.
+[   62.638187] stmmac: INTS=00000001 INTE=00001030
 
-So when implemented in this way, it won't cause the regressions I was
-concerned about, but it is misrepresented in the schema.
+Now the funny part. I get about 20 of those messages printed to the
+serial console every time I press enter, and rarely otherwise. Typing
+other characters in the console do not trigger the messages.
 
-Why overcomplicate this and just not set a default? Modify the RX clock
-skew if set, and the TX clock skew if set.
+> > I ould suspect that the LPI RX exit interrupt is the one that fires
+> > constantly given its name, but I'm not sure how to test that.
+> 
+> You can check this because the LPI interrupts have statistic counter
+> associated with them. ethtool -S should give these, look for
+> lpi_mode_n.
 
-> +            description:
-> +              RGMII TX Clock Delay defined in pico seconds.
-> +              The delay lines adjust the MII clock vs. data timing.
-> +          rx-internal-delay-ps:
-> +            enum: [0, 500, 1000, 1500, 2000, 2500, 3000, 3500]
-> +            default: 2000
-> +            description:
-> +              RGMII RX Clock Delay defined in pico seconds.
-> +              The delay lines adjust the MII clock vs. data timing.
->  
->  maintainers:
->    - Hauke Mehrtens <hauke@hauke-m.de>
-> @@ -113,8 +134,10 @@ examples:
->                      port@0 {
->                              reg = <0>;
->                              label = "lan3";
-> -                            phy-mode = "rgmii";
-> +                            phy-mode = "rgmii-id";
->                              phy-handle = <&phy0>;
-> +                            tx-internal-delay-ps = <2000>;
-> +                            rx-internal-delay-ps = <2000>;
->                      };
->  
->                      port@1 {
-> -- 
-> 2.51.1
+# ethtool -S eth0 | grep lpi
+     irq_tx_path_in_lpi_mode_n: 32
+     irq_tx_path_exit_lpi_mode_n: 32
+     irq_rx_path_in_lpi_mode_n: 2512
+     irq_rx_path_exit_lpi_mode_n: 2508
 
+That seems reasonable.
+
+-- 
+Regards,
+
+Laurent Pinchart
 
