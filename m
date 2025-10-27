@@ -1,117 +1,171 @@
-Return-Path: <devicetree+bounces-231679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B049FC0F9FA
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:26:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ACACC0FB0B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:36:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE5A219C424A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:26:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4881E429698
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D17D0314D1B;
-	Mon, 27 Oct 2025 17:26:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A005319611;
+	Mon, 27 Oct 2025 17:34:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e0aIeD7H"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VYw70aUB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3BFC2D23B9;
-	Mon, 27 Oct 2025 17:26:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D669C3195EB
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 17:34:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761585961; cv=none; b=nnH5sh0WpqSO1+6ccli+TudvCUWWrMWMVkRA2Me/mlEfcruuSe7yqiPiTyTHIvZ6QQa/nEWvxJAcLK2qApmebfa6W0x7ypwr+Q6bgr6SSqUTgf3Qf9Fl3Bk/0GFAF1f1rJbc96Auz87gqo+yhS01U5+V1egsDBNqR9hc2CXVwms=
+	t=1761586474; cv=none; b=ovq5oMikSwDndKkj90Ec1FjIJ939LH96ucKK48YifvdGYVmRSK9d/5zJGza/SfsATE+g5A84wUtMpbp4bv5KSRm3HI348I15Q3VojMUEcTOgIJPRwV3339o0LUXJx2rhGU0Kj+iVMeRkPSVPHEUOeNNNmyqDZgko6QotCvk9gVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761585961; c=relaxed/simple;
-	bh=wD7HUE/w+36qJT00srkAtWlKdKG6Y3KVTganlRqWHwc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PYzPza1Zj5cym0NhVc6qkasy6fbGJpQglHwR7AaM7UgWNZgUBs+SkHYcAQNM8966gg1OCa56Hgxp1Zt86oB+rcwyYof/vc6uuR/7NTd1zBQSO4dr4iNoGvG/7uCmfpVFmrYpqDkWxdn7tQAlKA3lhm8UbtoZfVFedqTvrN63a3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e0aIeD7H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98522C4CEF1;
-	Mon, 27 Oct 2025 17:26:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761585961;
-	bh=wD7HUE/w+36qJT00srkAtWlKdKG6Y3KVTganlRqWHwc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=e0aIeD7HZV6GlKrdjGzuciKufd2xox77a9PQWeCniGvRRwQtqPq7DE1jOBBxngqfc
-	 YpCvqjVEmWpqMj/qB81tdD4Ex09qipQSmB5OQy411on9DRbOfezF7SpZ9zSopsBIbj
-	 Fg0+S72d/AzvDU3JzmF9lygn+72iAkOjhqqCgWRXz1+4KTdj7aJ08KwtNPe0cAYq7M
-	 fMTDGEnWLBGanFvp4IS15JIjkz+LjZPt9RTSPE/eGcGWvYbcNMXTHe6RgMAbM1wQTB
-	 AR6/Bgx8RBl0ACoRlgqTiTW0Tl1aqLtYu/pO14iyeQ7KKF1modUF24brxsItTxa1k7
-	 OaI+UtPmTEq+g==
-Date: Mon, 27 Oct 2025 12:28:54 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: lemans-evk: Add RTC node for PMM8654AU
-Message-ID: <kdufgqkfpe6sw2bpcxe3yjihj5hpsyilk7sid6ndyyukq5ozwc@sj7zphcrgjc4>
-References: <20251015-add_rtc_node-v1-1-601c9663422b@oss.qualcomm.com>
+	s=arc-20240116; t=1761586474; c=relaxed/simple;
+	bh=JSsEa2sILCUrGBa+/eAE/HWgRWWieuXbaUfhsDV6jNc=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=JekLagyl+Kkiw7p6w8oCf9Bdi7YQXEWoY//A9bOQjduvB6irctnX0ZZyJEESSYd3xCEptUjiyY2Qkq1w0x2cg+k+//oN3TTUCY0H3H7DZOAeUR2KmBDUgvWUiui+qex8Rhg/8IB6H48snRcEgkQa27VLQHjNRRUKOIgWTwjeG5Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VYw70aUB; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-79af647cef2so4225831b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 10:34:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761586472; x=1762191272; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kEjlvHcQp4lpZ1m36wlxzDAnqifTiWNPk+NjQID7RjI=;
+        b=VYw70aUBDjvNozfwZUJU7Z6/RudPWS1nALHegSSAl36GAVnbrxtD9IZhHcIKNGg0oF
+         Q0igwqpgkDVyG6NnPWzc8Ng1VdSBLRHZ8nOZJUoR5VLzm9fzY9kldTyF4ptVVrkD7sZ8
+         8h7LA6wMG00exAnNkYY/NEOuQS68Xd0bay/ccv1tuv9L/mZVKqFa6+gKrl4JnzJy3mCN
+         12ZpgxiTHyEtmSfjAUoZrs9jcgCbufyBT2v2KoqczLGrutzAaIqAk9M7h3+loXcPzltE
+         w0J/OAS4Pkgu2GAIHJqXrJY7GLqNAYFjG6Gj53idVFoBSgnP8f++385yixAJk71KynoX
+         5uSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761586472; x=1762191272;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=kEjlvHcQp4lpZ1m36wlxzDAnqifTiWNPk+NjQID7RjI=;
+        b=FIRY60cDWvHqbjP25hVSfVNsXSH2izMcsiHCCjgTHDvMAaUFVwF71sKoaFfdbWBfJw
+         sQGVnEZN7eN9v1VZeTZdvlPODALWoonU+YjV7fF57FGIzRS3pzm64aXPEYjOrL1Cfvea
+         RQTTKArwOToV0abYJdAY2IzBUUKUk7sokVNPzlU4HS+NYfXaQ4qu6H9g9rsCnjtkLn6D
+         RatK39tjjMygncIL+CtoTgIehljLH1AGaljesTcZf2fk5oOy+jF6znCJmstvnQwFaALQ
+         4PhCSpr08ITVranX3P9wTm0V4k9rxeUZxCOWjfOkEFzdOJN7I9EYOXP2NSUJlHCXR0fe
+         2Cbg==
+X-Gm-Message-State: AOJu0YwXv+Ny7+0DetzPAVdavIHi/cXNdtZwESG1hwUziTbAnoi20A6I
+	ruLxt8n670pU32A4x25jJQDBlTxjqL3f5EYp7/5/HxSjb1EgE7rNCaC0
+X-Gm-Gg: ASbGncsJ2aFHqEUSIpTxfm5sFjbFJJGeDSCkvHh9mfUCLebEDFED6k9j5880Uw7OPrM
+	QUaWVlJDNynTZ7IKgOsaygvenFhaz36HAdC2SipSbke1UNlbzvUFKf9qMKKpRnGeNaTYaebPQH2
+	bFUZ2grqJrncoB6i1i7cPdTTZyZi97ohgEvBE0sVy4/n6e5NBgCrKEij6bBgyXXRAgq1TErQ9WC
+	EqK51wdzG+0Ve2zSHYdh9gmVqosklPSxpeU70J4wKPObufqqbgOPSm1KL00IY3B28beHTbfq31f
+	vgYonHEEawSHQqCPHE/5gK2uN9G8dastLof6fb2hYk3/L+5KfBcbvnI/GR+58dfDgG2Rho9au04
+	hIYbxh+b+fKnLo4aAutPfv3+T7WGKNLg0sleMRKp6Cb+Css/YSrbts5culbaIUIQq34s2zMi4yD
+	g3tQ==
+X-Google-Smtp-Source: AGHT+IHAljstHcaoMHk/lLRlsppwJy/V1KHAMxtXlEIjZrVw2dfhWs2pVvM+g1XbMmpxHBsC5hDZxg==
+X-Received: by 2002:a05:6a00:13a0:b0:7a2:8853:28f6 with SMTP id d2e1a72fcca58-7a441c476f3mr801487b3a.22.1761586471576;
+        Mon, 27 Oct 2025 10:34:31 -0700 (PDT)
+Received: from CNSZTL-PC.lan ([2001:df0:a640:1::15])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a4140a0d47sm8684282b3a.73.2025.10.27.10.34.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Oct 2025 10:34:31 -0700 (PDT)
+Message-ID: <5af928c4-4b6e-489c-ad39-26cef3dd7473@gmail.com>
+Date: Tue, 28 Oct 2025 01:34:25 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251015-add_rtc_node-v1-1-601c9663422b@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: rockchip: fix eMMC corruption on NanoPC-T6
+ with A3A444 chips
+From: Tianling Shen <cnsztl@gmail.com>
+To: Shawn Lin <shawn.lin@rock-chips.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Grzegorz Sterniczuk <grzegorz@sternicz.uk>, Dragan Simic
+ <dsimic@manjaro.org>, Heiko Stuebner <heiko@sntech.de>,
+ Jonas Karlman <jonas@kwiboo.se>, Jianfeng Liu <liujianfeng1994@gmail.com>
+References: <20251017073954.130710-1-cnsztl@gmail.com>
+ <d70c0eb5-9aa2-47b1-8205-81b724180319@rock-chips.com>
+ <08911ae2-fef3-432d-a236-d820c9cb67ac@gmail.com>
+In-Reply-To: <08911ae2-fef3-432d-a236-d820c9cb67ac@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, Oct 15, 2025 at 07:12:34PM +0530, Rakesh Kota wrote:
-> Add the RTC peripheral node for the PMM8654AU PMIC,
-> which is controlled via the SPMI bus.
++ Jianfeng
+
+On 2025/10/20 12:44, Tianling Shen wrote:
+> Hi Shawn,
 > 
-> Signed-off-by: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
-
-Subject says this is for the EVK, but patch changes the generic Lemans
-PMIC definitions.
-
-> ---
->  arch/arm64/boot/dts/qcom/lemans-pmics.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
+> On 2025/10/20 9:53, Shawn Lin wrote:
+>> Hi Tianling
+>>
+>> On 2025/10/17 Friday 15:39, Tianling Shen wrote:
+>>> From: Grzegorz Sterniczuk <grzegorz@sternicz.uk>
+>>>
+>>> Some NanoPC-T6 boards with A3A444 eMMC chips experience I/O errors and
+>>> corruption when using HS400 mode. Downgrade to HS200 mode to ensure
+>>> stable operation.
+>>
+>> May I ask you to test another patch I just posted to see if it fixes
+>> your issue?
+>>
+>> https://patchwork.kernel.org/project/linux-mmc/ 
+>> patch/1760924981-52339-1- git-send-email-shawn.lin@rock-chips.com/
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/lemans-pmics.dtsi b/arch/arm64/boot/dts/qcom/lemans-pmics.dtsi
-> index 1369c3d43f866de9d8cd5cd4985241b99c0a0454..4eda7043b851f363d0bf053587fb1f5edae0c4cd 100644
-> --- a/arch/arm64/boot/dts/qcom/lemans-pmics.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/lemans-pmics.dtsi
-> @@ -142,6 +142,13 @@ pmm8654au_0_gpios: gpio@8800 {
->  			#interrupt-cells = <2>;
->  		};
->  
-> +		pmm8654au_0_rtc: rtc@6100 {
+> Thank you for the patch! I will ask my friend to test it but he uses 
+> this board as a home router, so it may take a few days or weeks to 
+> report the result.
 
-6100 < 8800 so this should be one step up.
+Hi all, sorry for the late. My friend has tested this patch and it works 
+fine after 50 times dd operation. A big thanks to Shawn!
 
+And hi Jianfeng, I found you made a similiar patch[1] for the ROCK 5 ITX 
+board to lower down the mmc speed, could you please check if this patch 
+also fixes your issue?
 
-But, then it won't merge, because
-https://lore.kernel.org/all/20251017-add-rtc-for-lemans-v2-1-0aaf174b25b9@oss.qualcomm.com/
-already added the RTC node there.
+Thanks,
+Tianling.
 
-In other words, please search lore.kernel.org before posting patches, to
-avoid sending the same patch multiple times.
+1. 
+https://lore.kernel.org/linux-rockchip/20250228143341.70244-1-liujianfeng1994@gmail.com/
 
-Thank you,
-Bjorn
-
-> +			compatible = "qcom,pmk8350-rtc";
-> +			reg = <0x6100>, <0x6200>;
-> +			reg-names = "rtc", "alarm";
-> +			interrupts = <0x0 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
-> +		};
-> +
->  		pmm8654au_0_sdam_0: nvram@7100 {
->  			compatible = "qcom,spmi-sdam";
->  			reg = <0x7100>;
 > 
-> ---
-> base-commit: 13863a59e410cab46d26751941980dc8f088b9b3
-> change-id: 20251015-add_rtc_node-13490b702486
+> Thanks,
+> Tianling.
 > 
-> Best regards,
-> -- 
-> Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+>>
+>>
+>>>
+>>> Signed-off-by: Grzegorz Sterniczuk <grzegorz@sternicz.uk>
+>>> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+>>> ---
+>>>   arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 3 +--
+>>>   1 file changed, 1 insertion(+), 2 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/ 
+>>> arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+>>> index fafeabe9adf9..5f63f38f7326 100644
+>>> --- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+>>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+>>> @@ -717,8 +717,7 @@ &sdhci {
+>>>       no-sd;
+>>>       non-removable;
+>>>       max-frequency = <200000000>;
+>>> -    mmc-hs400-1_8v;
+>>> -    mmc-hs400-enhanced-strobe;
+>>> +    mmc-hs200-1_8v;
+>>>       status = "okay";
+>>>   };
+>>
 > 
+
 
