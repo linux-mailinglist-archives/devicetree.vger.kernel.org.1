@@ -1,182 +1,117 @@
-Return-Path: <devicetree+bounces-231661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 429EFC0F758
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:52:24 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F744C0F788
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:55:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BDA564ECE94
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 16:50:21 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ACD4A4F811C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 16:51:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71E593148B3;
-	Mon, 27 Oct 2025 16:50:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 589F43148C1;
+	Mon, 27 Oct 2025 16:51:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ff/jTan1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qSos1m45"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A466825FA29
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 16:50:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26516313552
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 16:51:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761583812; cv=none; b=E7Z0cO+8Q3/dppigXTI/WzTujr5M/UdQi1OQ7XOrL3jPu46uACfLV8UmpMx8TfEe/yo+KPmHseAQ+6A9J6fWQDjCWq2bmPXG/mnH4+Lh49GXI0TPCAtGTi9yMppmkybQmrDp67vT14LfUoTcGZKLt/dveRiGcx0AOhld03a2DKU=
+	t=1761583873; cv=none; b=hb7a1w9FKubgZ0lmjCSe8D7sNN83hshf2FsUudOoUOXyXqEsbuUYZ5lrdLQ692V1fRttc1U4iQl7osAWvnoi/ucCwyXz+Xgmqxn/nl6W7+LR45radxo0vbHnvLAyj7vZbLC0NwTIwu/Olpk/QIlE9pKtXS+7OeaI74MOx+SXlfo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761583812; c=relaxed/simple;
-	bh=f9gyr+50VXCzFRqzh5h2Eocs+kwwPbsfidV5wgRt5Ys=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=thOVdm6Dyjtfs2QrdmSim3E8lEzN5Za2o0UTD55ZOjckO8+FKrFGip40ROevgYwN4QOWb7TzqjxFjaAipeo+fW6G8kHl5nOlsOj+dS3muJU2V9ekdp8hL9u3+nAQKK5C51cLDcEvr9dkZspdKGTermCgVBal8jcrmQHjqFzg3gI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ff/jTan1; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3ee12807d97so4262904f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 09:50:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761583809; x=1762188609; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=llXiWHJLf2syx3blZo0CXJGIyiry1LJYTByzcLi8/h0=;
-        b=ff/jTan1lkgWUNpwMGoLzGON5a2N4mfXOajPZajkFvH4cHFDFH+FASZNEuimReQO6t
-         h0XaH+V4MjEnkv28OfQ38Tvg38vlkJkkq4RD92MGqt/zQzWhEXU9Bnvg1i80vEXdEdfA
-         cPku+D2MAL+xeB9+xGkOr3NIEkdA9WjcUHW/zNNC01W5n8bMhqxRohJO2bTq8sDwdKg/
-         TP51AnWBRMZtN4dZo+3KFvGCIG8D3ae6YO8rH91kqj9XOGkFJFFhWjSakU6jYCOY5FpC
-         zC7XbRmD/bv7A9azMVoI1YHeqMiVCcNUVfG5RDf6ZRtAqWq+FH1HTRInCvxfxnB2DpZy
-         38FA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761583809; x=1762188609;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=llXiWHJLf2syx3blZo0CXJGIyiry1LJYTByzcLi8/h0=;
-        b=NmBZU6fAF8RuEoSOsfg3IedUTGbeaEP998zx+k0ECkdNQYsEKJf2MFOvrWYpk0HDRR
-         Apn6r9dABz3ArsyFteSk1HgCzNVVwC1U2EUT0sit+Cw7pbPCrATMjnhPT4qGsqGIeXtL
-         XueCqDbJQ77ZkTx3YOZNs3pngUodMJ/jtTuzMDzmyLUXl5QPSvqG0TJpaK7K2SMpnTsi
-         OXWOK+tEJYn20730nQYp+sreef2AyXuzao9rYhkbAbrCl4psObtF3heXkl/KNi2xv/cc
-         K4/hHKg80sEQ9uPZYS/7P4syqcbSSHBbfRp0MfEmYxeu2SpzG3nUTy8C/v2lDUeCFC1j
-         HQDw==
-X-Forwarded-Encrypted: i=1; AJvYcCXoZ2tqaGK0AwMuoaolHP1RjBbX5q6WdSo9SmPSO4Yuxm+fFfcIMNVTh2oMIPAsFiCVrDHV6lKJRbog@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAkxpulu9uOPpzvtxXkFkpUh2y0AlR/5QSUGT2QDg+l9gN65W3
-	k757w3TWjNC/olwdSubdISQ/DZHssWxFL+SYSDjMc5QLC4sv/XXyBppCNv7Ht8DuCRhguIjzTLo
-	jRNDyaRhgyYPNSUmxA6xbDXGGUthEBnU=
-X-Gm-Gg: ASbGnctO8yBeN/NSO+d4JSpb9ZSph/FaHcPcQuqKHQstK/cR0SX7l782T4MbO8xgtPy
-	/MI3Jnw4UAfU4RtmrNM5jHVVGTQY7wUDoK4qQTWa3Hfjf3lEvANH7zzo8othLc2GwtBVT4yKzYp
-	icnpYv3usWVC93zGiEKXAUQwOY4yvW7TUdlchsn7Lxa/PItrQufW/qPGbxuk6MSWCftSJCKni+8
-	E7JNYPLbv3jZAVTYtlNf5FWzlvi9wiRNEX3CJk9IPFkHyRR6GVm52UDrAW9Rg==
-X-Google-Smtp-Source: AGHT+IH4XlaBzxcnNj5YFZ0kloDrzQaT1eJpLjTjeIpDU2XpK4VeABDkTozkzcR3WZnwD6TgVQ+f15BePNjDYvfetA4=
-X-Received: by 2002:a05:6000:186e:b0:428:476e:e0ab with SMTP id
- ffacd0b85a97d-429a7e97661mr333005f8f.60.1761583808872; Mon, 27 Oct 2025
- 09:50:08 -0700 (PDT)
+	s=arc-20240116; t=1761583873; c=relaxed/simple;
+	bh=+Ikopio+4rlJHw3bTm9z1zPFxyYc7R5jz3S5E7zWu1s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BFVRSEs7ZrXktG4u4hYTvauhB/5N2nmWNcN+XlipPiOvI3lr0+umrOz7Tj1gW1Rg+7YHuwLeIevh2CZqnlXjps/HWa+opLHgcaB0bVjLbt0jlbXdNVqodEEHxiBRAOQU/h1odAJ8D07kEIXmSi/+kO1zCk1yc/m3+3NleH20CVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qSos1m45; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 442F4C4CEFD;
+	Mon, 27 Oct 2025 16:51:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761583872;
+	bh=+Ikopio+4rlJHw3bTm9z1zPFxyYc7R5jz3S5E7zWu1s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qSos1m45Q4MNAIOh/Vvw6zjJEh1YeBOtFms245ejWuHce0vaO/R8D0qeD+vnyQl+m
+	 1S55l59YT91+h6PaTYdHlAqgbhZXXqavRmrKI3WUx4OXj47/MnFgUl8AFO692g7b3C
+	 /Tz5hFSnOU/uLcYVC04UQCrsIcfdK3Us6RuYmwAlOXQTxiFbwAjIewiLFdrKW/X6MU
+	 7HSxa+5QrUBm6/9kvCtuYJHTb6vZaU87nvNDF1Cs6e5n+vniSzFxjnaHaE5DyboR2h
+	 Tav4+syDQepGb0xAzewPvwbAngfsGXRtDL+T+TfkkMHPhyWgM4PW9xrlRWqC4/IMRL
+	 /uqFj/Ne2CXtA==
+Date: Mon, 27 Oct 2025 16:51:04 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	bcm-kernel-feedback-list@broadcom.com, Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Melissa Wen <mwen@igalia.com>,
+	=?iso-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Stephen Boyd <sboyd@kernel.org>, kernel-dev@igalia.com,
+	kernel-list@raspberrypi.com, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: broadcom: rpi: Switch to V3D firmware clock
+Message-ID: <10a4ef77-0e70-4ef2-b1df-535b476d256d@sirena.org.uk>
+References: <20251005113816.6721-1-wahrenst@gmx.net>
+ <9ebda74e-e700-4fbe-bca5-382f92417a9c@sirena.org.uk>
+ <a5e1e279-7e20-458d-a75f-787e0adbc9fe@gmx.net>
+ <ad07546f-0c2d-4bc2-b794-755b892c7328@sirena.org.uk>
+ <a016e7e1-09f7-4056-a855-6cfaa8d51962@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251022142051.70400-1-clamor95@gmail.com> <20251022142051.70400-7-clamor95@gmail.com>
- <bd6262c6-a31c-43a6-8ec5-2735fb2fe0d2@kernel.org>
-In-Reply-To: <bd6262c6-a31c-43a6-8ec5-2735fb2fe0d2@kernel.org>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Mon, 27 Oct 2025 18:49:57 +0200
-X-Gm-Features: AWmQ_blgGtMyE7YToN26_Q2JZoB8VDufuUc2Jv2Dui7Z-P7sPMVoiu7__HneWyw
-Message-ID: <CAPVz0n277DZ8S5wX5n0gCaOpng64uEfx3VVue4Zp0n5bsDevqQ@mail.gmail.com>
-Subject: Re: [PATCH v5 06/23] staging: media: tegra-video: vi: adjust
- get_selection op check
-To: Hans Verkuil <hverkuil+cisco@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Sowjanya Komatineni <skomatineni@nvidia.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Prashant Gaikwad <pgaikwad@nvidia.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Mikko Perttunen <mperttunen@nvidia.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	=?UTF-8?Q?Jonas_Schw=C3=B6bel?= <jonasschwoebel@yahoo.de>, 
-	Dmitry Osipenko <digetx@gmail.com>, Charan Pedumuru <charan.pedumuru@gmail.com>, 
-	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>, Aaron Kling <webgeek1234@gmail.com>, 
-	Arnd Bergmann <arnd@arndb.de>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-media@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-staging@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="SEkriafkm8cMGXAM"
+Content-Disposition: inline
+In-Reply-To: <a016e7e1-09f7-4056-a855-6cfaa8d51962@gmx.net>
+X-Cookie: How do I get HOME?
 
-=D0=BF=D0=BD, 27 =D0=B6=D0=BE=D0=B2=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 17:4=
-4 Hans Verkuil <hverkuil+cisco@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> Hi Svyatoslav,
->
-> On 22/10/2025 16:20, Svyatoslav Ryhel wrote:
-> > Get_selection operation may be implemented only for sink pad and may
-> > return error code. Set try_crop to 0 instead of returning error.
->
-> Can you mention why try_crop is set to 0 instead of returning an error?
->
-> That would be good to have in the commit log. And in fact, it's not
-> clear to me either why you want this.
->
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  drivers/staging/media/tegra-video/vi.c | 8 ++------
-> >  1 file changed, 2 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/staging/media/tegra-video/vi.c b/drivers/staging/m=
-edia/tegra-video/vi.c
-> > index 7c44a3448588..856b7c18b551 100644
-> > --- a/drivers/staging/media/tegra-video/vi.c
-> > +++ b/drivers/staging/media/tegra-video/vi.c
-> > @@ -476,15 +476,11 @@ static int __tegra_channel_try_format(struct tegr=
-a_vi_channel *chan,
-> >       fse.code =3D fmtinfo->code;
-> >       ret =3D v4l2_subdev_call(subdev, pad, enum_frame_size, sd_state, =
-&fse);
-> >       if (ret) {
-> > -             if (!v4l2_subdev_has_op(subdev, pad, get_selection)) {
-> > +             if (!v4l2_subdev_has_op(subdev, pad, get_selection) ||
-> > +                 v4l2_subdev_call(subdev, pad, get_selection, NULL, &s=
-dsel)) {
-> >                       try_crop->width =3D 0;
-> >                       try_crop->height =3D 0;
->
-> This looks all a bit magical. Which subdev is queried here? I.e. what is =
-the corresponding
-> subdev driver that implements get_selection?
->
 
-Camera sensor subdev, Tegra VI driver directly interacts with camera sensor=
-.
+--SEkriafkm8cMGXAM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> >               } else {
-> > -                     ret =3D v4l2_subdev_call(subdev, pad, get_selecti=
-on,
-> > -                                            NULL, &sdsel);
-> > -                     if (ret)
-> > -                             return -EINVAL;
-> > -
-> >                       try_crop->width =3D sdsel.r.width;
-> >                       try_crop->height =3D sdsel.r.height;
-> >               }
->
-> It looks odd (esp. setting try_crop to 0), and I wonder if this code path=
- has been tested.
->
+On Mon, Oct 27, 2025 at 05:43:21PM +0100, Stefan Wahren wrote:
+> Am 27.10.25 um 13:07 schrieb Mark Brown:
 
-Yes it was tested.
+> > No.  This is happening in mainline (was originally reported against
+> > pending-fixes) so wasn't affected by all the module breakage, that was
+> > separate.
 
-Original code checked if the camera sensor has get_selection
-implemented and if such operation is supported then it applies width
-and height from get_selection, else zeroes. This works just fine with
-most cameras and v4l2 compliance tests pass fine, with most but not
-with mt9m114 which implements get_selection only for its ifp source
-pad while sink pad always returns -EINVAL, hence VI driver fails with
--EINVAL too. To address drivers like mt9m114 instead of just fail with
--EINVAL if get_selection returns error try_crop width and height will
-be set the same as get_selection is not implemented.
+> I think, i got confused because I was only able to reproduce this issue with
+> the broken linux-next. So I was going for the wrong cause :-(
 
-> Regards,
->
->         Hans
+> Do you use arm64/defconfig as kernel config?
+
+Yes, it's just plain defconfig.
+
+> Is there a HDMI cable connected?
+
+No, the boards only have ethernet, serial and power connected.
+
+--SEkriafkm8cMGXAM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmj/ovgACgkQJNaLcl1U
+h9Bi8Af9HJF4gLivbPe/q4aY+lhdEokB01CfSAy4tyT8TEF7Y9/1p+4e4ziTcaps
+scwoPjV2rcsUG6TeHSkrXMUzHcmIM8ISIettfZcAeDJpiEZCeMWtHVT3HCXyTUQI
+wYL7sMkS23SZ8cLIU0HsQnKu1SkJen64bWHQy377buPjoty8vxjLwKn3u9d7+Db9
+iRyCIu88KQktSP/KalViloulz+pN0bWPmcOBVAKZesGqtq18EdEFj8n8XQQ6U/SM
+VqoV842V6MLwZzSm5ZJwizev4sbsF/1wkcGVpXDvTJQb8LZq2N9fQthlzFOFer+D
+EWzz0pkWqYyS6cHmOoG8vTznqHJLuA==
+=kK0M
+-----END PGP SIGNATURE-----
+
+--SEkriafkm8cMGXAM--
 
