@@ -1,108 +1,310 @@
-Return-Path: <devicetree+bounces-231475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CF7AC0D73A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:16:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44C95C0D7C2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:22:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3986E34D484
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:16:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22E793A90A7
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:17:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7647D19066D;
-	Mon, 27 Oct 2025 12:15:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6E002F7ADE;
+	Mon, 27 Oct 2025 12:17:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="goJwogGi"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="U4x+Ee6H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34E1234CDD;
-	Mon, 27 Oct 2025 12:15:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C937685C4A
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 12:17:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761567350; cv=none; b=BzY0pB5tu7rYIWl3gwegr20amwB5idy1cOjzmYXfWfNQMwEZQdgpBQXpCLuScH8DgiJosLaJ9iFPPjApdbgBKZKlj09NpkDppFrzuef2fLDo7p10m6OuzzCH+wuCGnQZUr3WFmAlYcxo02wsXiQMOl9WmClkK/qkJ6JOvJqSwco=
+	t=1761567448; cv=none; b=aMbifOnXKZwmu83jXKnFRlU9OkIF1T+phXKFFq4zIIfaEcCK07X6hyPnX53J2qTeBgCdF7Ykzz1NZOOEsUAdGak9RwqC/iY5yiGGazFTNNw9/c8kcMiLYyfaDUU+3y29omF9wxNxSPga8OXIVsCvAAq6sd/MLS8duyZvdHU05fI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761567350; c=relaxed/simple;
-	bh=tXiVqGv2VriRVuycYbx30w53ZLM4GSUJn3DkQxYaGUQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aSk7B+2GZg4j1fsyj1mwmuJpCsty+m78bktyqggOPwbNliejCtIHYROu4mhdAsBrVOQ+dxqin98Zu1gtWDVi3hb8n+PM9tU7Ivl5na1T9tnXv7MoNSYhnC5MDbGeQqseruxBL4vL9ILiBsWEEY5Au18fDLi+XKocUh/KpPIaCrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=goJwogGi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DE44C4CEF1;
-	Mon, 27 Oct 2025 12:15:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761567347;
-	bh=tXiVqGv2VriRVuycYbx30w53ZLM4GSUJn3DkQxYaGUQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=goJwogGi1VkxLLiMt8s6kdmYmRaFSAe1PqnPeXpUSbMNlbiXaDUwt6zl/EdysDaYj
-	 sDeIVAvM7r8FHEXh7709edushUMiu/+QExY2ivd6DB3o35JBHOjfSB4FCeEwdM6iYS
-	 puOoo1U6tr+G0qoUyl/OjZgLpkQ23M/Rm/JXzoIY1lYA+iquVbM0tTvj2oDFHwOm7h
-	 jDHeARI9Y4JNWXklQE/75tezRB5wjw75ho5m3dZgY7hxdDqmqdg8BjdmCdw5k28GIY
-	 SFM+Z96eIHI0KNZKym7El9yro4bBhi+lY0OusIyhjUaADTYPYz+PMIMQEnxMCRBZOU
-	 lKUpCSDcyWICw==
-Date: Mon, 27 Oct 2025 12:15:37 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-rtc@vger.kernel.org
-Subject: Re: [PATCH v2 09/15] regulator: bd71828: Support ROHM BD72720
-Message-ID: <ad7357b6-8f9a-42c1-b287-201059e86e33@sirena.org.uk>
-References: <cover.1761564043.git.mazziesaccount@gmail.com>
- <28f888c9784058b2d727a4b6185ac49874552847.1761564043.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1761567448; c=relaxed/simple;
+	bh=7vlnI0TZ5Bag1tUeBU15VJaSZYQAFkM9+UW4jGEHfj4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JmxTXRO3ong9cKeHR442Q1GxnoIsZ9TbCw/+0IDG0fO7w/2dOJLLTf9MP1eeB8wUElSwcwl7u/tcvlAKsKTWKd+/APGKZouotD8fUdAPtthwL0TamyctFQcTwpHr62w9GW1ELSrPlglnE5DH4PD+ZQxzLkY6jz6gMH4pdZhwVJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=U4x+Ee6H; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59R8kne2917192
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 12:17:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	PJvMEwqlichb9fnTMHjp29i2LRX7Vih/4tQCp22heU8=; b=U4x+Ee6HZZ/Mcfe9
+	wyeE1KG7IGu+HYQSWlt2rfioW9Ubzn0/30tmVjKllCNTMGR4YfsZnktSLxT+lF0e
+	RUtLVCkoNhvxA/J7Aai7k/2StMGw9ZI586ve8XFp3hzRKjwH6Q0r1am8dVAZEEay
+	XcoSrDjuCikB8S2/zHLn7gMw1VVCM8l+v8gz+NksmD0RaBq7QI0LogtKRvATYEWV
+	5uVVtgMzmuS5THvQAJGgbOqjqAvVUQcfuOKQUPjOEgXgyJNuKl3Tj2NMuLpvc9in
+	hYW3I3LwdWw8dpPgIn0iSGmnVLfE6vH9kitN03D7idoHV4OCUQPruSBCFdF3wh+3
+	aKM87Q==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a0px6me4x-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 12:17:25 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-826b30ed087so13933846d6.2
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 05:17:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761567445; x=1762172245;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PJvMEwqlichb9fnTMHjp29i2LRX7Vih/4tQCp22heU8=;
+        b=nxfJ+LxKT7WhYmXVNdpDxpMU8EIBKm2IXk/jz/Pt9VtYonIKc8cv7XbdlBX2ryGD4f
+         CoAIa4T8irEyJau/9KbBtppIvhWyzrjD+01jLBfLfxiQ9mRxaU+rS7P/1nmJNXJm8f8M
+         x0I4lSh4UlaUz9Z2l5UUWIW/uhcHEi98+rLEFh3HLctnHwIbNfZptCgBEQN53jb3+J5K
+         oIONUVazoYHTBe3IMrrTqdCQGzxd/sjh1uD4gzOoXlMkn7kSOlgR45jF2/OgVeAC1OUd
+         FyhtLMrx7+XQ8EBP/RZmGFxjs3XTf9JpWQ54aKWi+ml77EY9hxDZAfmxqibSs8GABJrL
+         2MoA==
+X-Forwarded-Encrypted: i=1; AJvYcCVFWgNIOCDoAI53yX/GEqt/hqTi3x76qECseEjF+TXXShqQpGghwyk1q7IiStS615ZjOVhz0N7wZxzP@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQkg/ExfOI9cTcpoauDn+2ZLSUDexQFs2YCitBrTGA+HI+zueY
+	jeZkylMWcYBMR7PNbiSF7WS3ifYdgqQa4qcJq7I0xQD72uSv713WZzdxI0XrgqRjyt7SXbjMBkw
+	EdD15+MiT6U1JH3dNkPbj3V7q1NQw8GkcA6gyDSlW6lj/iJTSM0LjD3sPkypgPosT
+X-Gm-Gg: ASbGncu+tJ7akJ68/rF8Ka5CTh6VJyoZKh9HjBxkITMg7BVNULlRXX4P9V7UJF4MhYz
+	UsY7lA8L6/R0GAQVX633mnUEGu1BjBqlDjYkQ3TqeG6rie/niZaooXI+fIzib+SIuYjLfSl5nuK
+	+plsbTjqWDQIdDK2mC/Bx+u8CqqH44BYBnRO6F24gBQz1VsTYrb6V/K2u+IypTohawaiJ5rN5Ap
+	cMdQnyddGxaEAoQciO9uM/C/Bf4ewp2LmtDf+oDVU3eM457JCwhxmb2rdRTnPVsoYEqELsHwGKK
+	qawzfQQrf3GdfXWQZ750INj31u+cGddelY7ueGiPzgnNkSwdcJNCOZ4Mbp4JdGkq3pWglYN59Gm
+	by45ORLkmaU+wQzJFAB/ihBYFycRhS0WyiyuJayimemoltbd7ue7Jzxfi
+X-Received: by 2002:a05:622a:148b:b0:4b3:4590:ab6d with SMTP id d75a77b69052e-4ea11710be3mr199776291cf.7.1761567444568;
+        Mon, 27 Oct 2025 05:17:24 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE/9nzepqcV3rOG2J5du1tIjffmHU4HFXiE9u0kz+PomNxTiOJlIcR4pib/NCaufzkxJVJVOg==
+X-Received: by 2002:a05:622a:148b:b0:4b3:4590:ab6d with SMTP id d75a77b69052e-4ea11710be3mr199775901cf.7.1761567444041;
+        Mon, 27 Oct 2025 05:17:24 -0700 (PDT)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d8536968csm756291566b.29.2025.10.27.05.17.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Oct 2025 05:17:23 -0700 (PDT)
+Message-ID: <35ae8415-9308-4cbc-b14e-c3cdc0a2318a@oss.qualcomm.com>
+Date: Mon, 27 Oct 2025 13:17:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="RalfM7p0fJtqcro2"
-Content-Disposition: inline
-In-Reply-To: <28f888c9784058b2d727a4b6185ac49874552847.1761564043.git.mazziesaccount@gmail.com>
-X-Cookie: How do I get HOME?
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/3] spmi: spmi-pmic-arb: add support for PMIC arbiter
+ v8
+To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        David Collins <david.collins@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
+        kamal.wadhwa@oss.qualcomm.com, jingyi.wang@oss.qualcomm.com
+References: <20251024-pmic_arb_v8-v3-0-cad8d6a2cbc0@oss.qualcomm.com>
+ <20251024-pmic_arb_v8-v3-3-cad8d6a2cbc0@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251024-pmic_arb_v8-v3-3-cad8d6a2cbc0@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI3MDExNCBTYWx0ZWRfX9Z3nu8ikeGAq
+ 5XNx53O6m2gmGp1LredlAcAt5ELo7XTIAbnlobuGrn3oJ5VPa5pwE5m8pjYEoEqTHuPWCSi2TEi
+ 7EU2OD6LJmSi+qEnfc1DPUMW3QaC0QVSeE2IkhSfV2Ozmt35ENaaApIBubU6P9py06o6xKPPHFT
+ DdbxY0V3U7mdCA2sdEJIWeizaR89jG4jFw1gyvUNJakHszAGFO+c/cnaFzsV4WaIsjS9x01nzBc
+ iDnW6Id0GdU09XIjj63qLzQoP+INaL4crALpPboIDVtAd6jLWxFRE9sQVJhBXz/8vUU0sgPY50C
+ 9iNGmt/R/lcEfByMr+8uBsmmj7bEN865XSGnLbZ+Lm9wQ851ZGwTAPdyiZmTolHR29VvB70V3kq
+ rRgdfph5U1I/gw4wlK+suQvDF1XXtQ==
+X-Proofpoint-ORIG-GUID: JJaIRWLDJ7BCgk0xzvwNdaHpXsU4g_cT
+X-Proofpoint-GUID: JJaIRWLDJ7BCgk0xzvwNdaHpXsU4g_cT
+X-Authority-Analysis: v=2.4 cv=WqMm8Nfv c=1 sm=1 tr=0 ts=68ff62d5 cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=09qoSp1JXfaB3g97fQAA:9 a=QEXdDO2ut3YA:10
+ a=OIgjcC2v60KrkQgK7BGD:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-27_05,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 priorityscore=1501 impostorscore=0 spamscore=0 phishscore=0
+ suspectscore=0 lowpriorityscore=0 malwarescore=0 adultscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510020000 definitions=main-2510270114
+
+On 10/24/25 11:33 AM, Jishnu Prakash wrote:
+> From: David Collins <david.collins@oss.qualcomm.com>
+> 
+> PMIC arbiter v8 supports up to 4 SPMI buses and up to 8192 PMIC
+> peripherals.  Its register map differs from v7 as several fields
+> increased in size. Add support for PMIC arbiter version 8.
+> 
+> Signed-off-by: David Collins <david.collins@oss.qualcomm.com>
+> Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+> ---
+>  drivers/spmi/spmi-pmic-arb.c | 324 +++++++++++++++++++++++++++++++++++++++----
+>  1 file changed, 294 insertions(+), 30 deletions(-)
+> 
+> diff --git a/drivers/spmi/spmi-pmic-arb.c b/drivers/spmi/spmi-pmic-arb.c
+> index 91581974ef84..612736973e4b 100644
+> --- a/drivers/spmi/spmi-pmic-arb.c
+> +++ b/drivers/spmi/spmi-pmic-arb.c
+> @@ -3,6 +3,7 @@
+>   * Copyright (c) 2012-2015, 2017, 2021, The Linux Foundation. All rights reserved.
+>   */
+>  #include <linux/bitmap.h>
+> +#include <linux/bitfield.h>
+
+bit'f'ield < bit'm'ap
+
+[...]
+
+>  #define spec_to_hwirq(slave_id, periph_id, irq_id, apid) \
+> -	((((slave_id) & 0xF)   << 28) | \
+> -	(((periph_id) & 0xFF)  << 20) | \
+> -	(((irq_id)    & 0x7)   << 16) | \
+> -	(((apid)      & 0x3FF) << 0))
+> +	(FIELD_PREP(GENMASK(28, 24), (slave_id))  | \
+> +	FIELD_PREP(GENMASK(23, 16), (periph_id)) | \
+> +	FIELD_PREP(GENMASK(15, 13), (irq_id))    | \
+> +	FIELD_PREP(GENMASK(12, 0),  (apid)))
+
+I think this could be further improved by:
+
+#define SOMETHING_SLAVE_ID_SOMETHING	GENMASK(28, 24)
+
+and then below:
+
+[...]
+
+> -	if (intspec[0] > 0xF || intspec[1] > 0xFF || intspec[2] > 0x7)
+> +	if (intspec[0] > 0x1F || intspec[1] > 0xFF || intspec[2] > 0x7)
+>  		return -EINVAL;
+
+we can use FIELD_MAX(SOMETHING...)
+
+[...]
+
+> +static int pmic_arb_get_core_resources_v8(struct platform_device *pdev,
+> +					  void __iomem *core)
+> +{
+> +	struct spmi_pmic_arb *pmic_arb = platform_get_drvdata(pdev);
+> +
+> +	pmic_arb->apid_map = devm_platform_ioremap_resource_byname(pdev,
+> +								   "chnl_map");
+
+Feel free to unwrap this line
+
+> +	if (IS_ERR(pmic_arb->apid_map))
+> +		return PTR_ERR(pmic_arb->apid_map);
+> +
+> +	pmic_arb->core = core;
+> +
+> +	pmic_arb->max_periphs = PMIC_ARB_MAX_PERIPHS_V8;
+> +
+> +	return pmic_arb_get_obsrvr_chnls_v2(pdev);
+> +}
+> +
+> +static int pmic_arb_get_bus_resources_v8(struct platform_device *pdev,
+> +					 struct device_node *node,
+> +					 struct spmi_pmic_arb_bus *bus)
+> +{
+> +	int index;
+> +
+> +	index = of_property_match_string(node, "reg-names", "chnl_owner");
+> +	if (index < 0) {
+> +		dev_err(&pdev->dev, "chnl_owner reg region missing\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	bus->apid_owner = devm_of_iomap(&pdev->dev, node, index, NULL);
+> +
+> +	return PTR_ERR_OR_ZERO(bus->apid_owner);
+
+Is this any different chan using devm_platform_ioremap_resource_byname()
+like you did above?
 
 
---RalfM7p0fJtqcro2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> +}
+> +
+> +static int pmic_arb_read_apid_map_v8(struct spmi_pmic_arb_bus *bus)
+> +{
+> +	struct spmi_pmic_arb *pmic_arb = bus->pmic_arb;
+> +	struct apid_data *apidd;
+> +	struct apid_data *prev_apidd;
+> +	u16 i, apid, ppid, apid_max;
+> +	bool valid, is_irq_ee;
+> +	u32 regval, offset;
+> +
+> +	/*
+> +	 * In order to allow multiple EEs to write to a single PPID in arbiter
+> +	 * version 8, there can be more than one APID mapped to each PPID.  The
+> +	 * owner field for each of these mappings specifies the EE which is
+> +	 * allowed to write to the APID.  The owner of the last (highest) APID
+> +	 * which has the IRQ owner bit set for a given PPID will receive
+> +	 * interrupts from the PPID.
+> +	 *
+> +	 * In arbiter version 8, the APID numbering space is divided between
+> +	 * the SPMI buses according to this mapping:
+> +	 * APID = 0     to N-1       --> bus 0
+> +	 * APID = N     to N+M-1     --> bus 1
+> +	 * APID = N+M   to N+M+P-1   --> bus 2
+> +	 * APID = N+M+P to N+M+P+Q-1 --> bus 3
+> +	 * where N = number of APIDs supported by bus 0
+> +	 *       M = number of APIDs supported by bus 1
+> +	 *       P = number of APIDs supported by bus 2
+> +	 *       Q = number of APIDs supported by bus 3
+> +	 */
+> +	apidd = &bus->apid_data[bus->base_apid];
+> +	apid_max = bus->base_apid + bus->apid_count;
+> +	for (i = bus->base_apid; i < apid_max; i++, apidd++) {
+> +		offset = pmic_arb->ver_ops->apid_map_offset(i);
+> +		regval = readl_relaxed(pmic_arb->apid_map + offset);
+> +		if (!regval)
+> +			continue;
+> +		ppid = regval & PMIC_ARB_V8_PPID_MASK;
+> +		is_irq_ee = PMIC_ARB_V8_CHAN_IS_IRQ_OWNER(regval);
 
-On Mon, Oct 27, 2025 at 01:47:10PM +0200, Matti Vaittinen wrote:
-> ROHM BD72720 is a power management IC which integrates 10 buck and 11 LDO
-> regulators. This PMIC has plenty of commonalities with the BD71828 and
-> BD71879.
+[...]
 
-Reviewed-by: Mark Brown <broonie@kernel.org>
 
---RalfM7p0fJtqcro2
-Content-Type: application/pgp-signature; name="signature.asc"
+If you parametrize the masks, the diff against pmic_arb_read_apid_map_v5
+is 3 lines of code instead
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmj/YmgACgkQJNaLcl1U
-h9B5dAf/cu/765SnwjfbjyK4dMHR/rt+cksNZQ9fRPOg08y6Xlu3+MASYltjYY7J
-yuZesa4qBrBafg4I9uRwOuEKJYY8AqDsCLQRZDAnEtCNeuxwgMG7dKumgzfFL/zJ
-kPXRf+2b70A4hFCgfFzXH4Y9yfEARoTlD4saNAKu9PIv+AzEhcBZly5clyS0sKDZ
-D/3c5woMxUiBGFJn3wWrWidDWMJ0D4gfxE5A2NBJ/LFLjqU8oWBd/+zKk4JOLmGA
-lJYxz9LP1Qvl5wVZNX+xodzZ5fkWkgDoZJwik64DSaZq7X3AEKw2LzpmDPouSD0k
-e9TQpuiElAnRZoU+EqqQ9A9QBRTceQ==
-=IHgl
------END PGP SIGNATURE-----
+> +
+> +	return 0;
+> +}
+> +
+> +static int pmic_arb_init_apid_v8(struct spmi_pmic_arb_bus *bus, int index)
+> +{
+> +	struct spmi_pmic_arb *pmic_arb = bus->pmic_arb;
+> +	int ret, i;
+> +
+> +	if (index < 0 || index >= PMIC_ARB_MAX_BUSES_V8) {
+> +		dev_err(&bus->spmic->dev, "Unsupported bus index %d detected\n",
+> +			index);
+> +		return -EINVAL;
+> +	}
+> +
+> +	bus->base_apid = 0;
+> +	bus->apid_count = 0;
+> +	for (i = 0; i <= index; i++) {
+> +		bus->base_apid += bus->apid_count;
+> +		bus->apid_count = readl_relaxed(pmic_arb->core + PMIC_ARB_FEATURES + i * 4) &
+> +						PMIC_ARB_FEATURES_V8_PERIPH_MASK;
 
---RalfM7p0fJtqcro2--
+You can almost replace pmic_arb_init_apid_v7 with this impl
+
+[...]
+
+> +static void __iomem *
+> +pmic_arb_apid_owner_v8(struct spmi_pmic_arb_bus *bus, u16 n)
+> +{
+> +	return bus->apid_owner + 0x4 * (n - bus->base_apid);
+> +}
+
+This is identical to pmic_arb_apid_owner_v7
+
+Konrad
 
