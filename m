@@ -1,87 +1,87 @@
-Return-Path: <devicetree+bounces-231789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C6E4C11A03
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:11:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 227D9C11A0C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:11:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9EC364E6B71
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 22:11:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF89F460494
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 22:11:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0706131BCBC;
-	Mon, 27 Oct 2025 22:11:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C365324B30;
+	Mon, 27 Oct 2025 22:11:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xSoM4J4R"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JtgerWjf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59A412D94A3
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 22:11:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6546F2D94A3
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 22:11:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761603064; cv=none; b=LhMvLr4zjnUDlvXv4BouR4iEY8gUAn4ViuIJHhhpbh1aZG1+EQEwOWF+bB/PrIeFAcjvP9cspNOVDj9Z9a3Fpr/310fjbI3c3Ojbb4/6IcsaLMbMbTr/KnlV4L30ZCIRQVmRVU2CnMZiGY2nogmxvmG8TIK+ogWdBKAXYucs0kc=
+	t=1761603105; cv=none; b=aDNVRFLGBUKvkg5GYkaDhkCyQgDObSuPyYrOy7trpjTLctvOLkzyabJRWIqFpm2d01AMQvcRdVKsqwbAGIfgvHKp+3gzhHSNN90xl4FDnJb2C2vcyPg3siElve3RPr0bSZhyhaNhFZnnRnUAxQTcD4AzR+tvKw43Cko9fGt4fms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761603064; c=relaxed/simple;
-	bh=v9H38XxmVOscTdAXBIMgyb10vFFsNxVOxLuwwMxDzMg=;
+	s=arc-20240116; t=1761603105; c=relaxed/simple;
+	bh=/tdW9Tc35Kw3/0Y5blWohgMonE+9zr16T+U6ZKHumPk=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qOthykNJiPgyVmdIfI7cD9iHMNB5e0McdbY7cpANTerHjS2VT5KvWdzgBWsgblflIXzpaGqeBmApjUzLBtqnmrzQ/cYCgEksTxGgQoELtMavL3obS2QK3axBSX+BdzlHb/g2uCTeHhdTr3SelR8CS2AmknWtPeMb2DlCVTxRn+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xSoM4J4R; arc=none smtp.client-ip=209.85.208.173
+	 To:Cc:Content-Type; b=q3aUS0nr5lIhZZfEHc8VXUfOm9cnXFD6yuqqWNVp+/pmz6yy6PCqsnXaHjt53DGwy4TfpfjG1Cmyh8V97Yirc2G0MXOqxQER377cF+e67HNTVmcgkcPwVJqlkFseyvS4RUGZ9sGeKAEkSTcCnCy0HiNI3bjF4k8cmGa5tRzpQ2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JtgerWjf; arc=none smtp.client-ip=209.85.208.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-378d65d8184so83421461fa.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 15:11:03 -0700 (PDT)
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-3696f1d5102so46015571fa.3
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 15:11:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761603061; x=1762207861; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1761603102; x=1762207902; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=v9H38XxmVOscTdAXBIMgyb10vFFsNxVOxLuwwMxDzMg=;
-        b=xSoM4J4RpfdRV/WtHwRQcV2fC0k4PmVf2cXIk9Lnd6oGbNYeBoCxBIFYiuXwUrhKrJ
-         iMspsjtzu4jFF2tLOGjB4zKmL+MfgKL7HUifLb3Z+tdl6CeXeCIZDbI4HL36mwB1L8rp
-         cKDqcTXan3XGTpVADqw7+MqNXxaYR9kwsUwp/n06zRZtBWszcUzVuGDVuMpmm5Gxcg9b
-         rV5j5AFJWPOeTFGhLGNxJx2E2wg91ALFCsc+KmY47LfwWOIyhJpsKIJHlmq2X6STRbwP
-         ZMPl16OPrm1StX4rupCtU8GM7r6zK7YfpcgDtFxZDpAkhrtO2hZoHidSbUtabtm2sfmG
-         FLlg==
+        bh=/tdW9Tc35Kw3/0Y5blWohgMonE+9zr16T+U6ZKHumPk=;
+        b=JtgerWjfnNGJGdZJeAneaLeKfq3MYQX1xXHFMiLMj5HLGBgHDbWAgQ4R1Ohs4D1+T1
+         CBUT4Ym+w/kAIk/kN4c4UmoN+AXvHSF7FbTRszTrHf00LuS6vWKL716sjcSR6W2IJSVr
+         OtF9p2ndJtjkK5ofDnyCxLqt9jY6XRMiWYG9dpFH3MvlZrHwQIkOuDZuWRclU8EnCkjb
+         wosn5OsvLXe3S+d8G2rIi6UXYxqTkvb+R/bDCOuC3jRj0Shq0jIMVN0AH6zupNCjhA9b
+         BJQQlZ2OKtxwQz4VoVKujIVD4U7z/4lGEFtHIrj4uQcP2ryUEsAC5LAvnR3K+qFBKxzn
+         ffCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761603061; x=1762207861;
+        d=1e100.net; s=20230601; t=1761603102; x=1762207902;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=v9H38XxmVOscTdAXBIMgyb10vFFsNxVOxLuwwMxDzMg=;
-        b=qiZG9Heb3Cm/nHUvNri9cr6ZX11LHIyBJ7OW4yz/iogrCJkTnE9n9wcrEDzA0GgOUS
-         SrBBQ2si6PqTCbffRrGFvmUR4zHGnA6Z/mgWiOGGtVKzxskWREU12lRtFgRwO4uzrqdN
-         /RjuJEXmINH+OR5KOKzh2UirdntzXxvxB/pMKkNC5fScUtyhGGMpfQnAp5E9jotaiKFd
-         sVhOLyXZpGDJbDpB2+E5EuI9mgv9cQPVMtnWXrJEO7bqT4E0Uc2aS0hTIso2yBY14fVR
-         eNFbO1+w+kqyQRHMLpRJLUwsyU3GbOKMgMIKnxSHt00Ekp3eJ/8JKcOdIGaagEyOvz23
-         asPw==
-X-Forwarded-Encrypted: i=1; AJvYcCXFfOfiIduR3P2hUmvwzKHYBZOPixzit1RsxLSiDn6WUWhAkD5pVMIjVHmeY94K5s88U8bak3SP/A22@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzgVaP1cDyM1EeICKAL4Oj0M4Wk5zflf8nbVhbibZFfbbtSOpu
-	ExB3Aq+la4IMylIjRjt+5NyEIsQyrymErryTy2LXf+DZ0E1VRbS23tejasrvPABuVYq60o2+urg
-	vKca0lBSyWl3FhBv3JBLfXecT6FpeD6Ip59UEZTkbXw==
-X-Gm-Gg: ASbGnctMy5VzDTx7Rv1u0jOP2F10c7YS9AseuQsou3nCctWgPZsRn+QhstJO8Sz6J4X
-	i+f5hG6HjcM0Mvz3qGhiSIzrvfB4E9eyjYbcfafHFwSeZpTIuKlHGIorXck2hIndbJxsdUqANgf
-	0dGE5eQuqlOAzAiVE4F5benpvzrVIVa+5aPY2sJNSWt5so75KTDqqsXUt3VwifLRyhKP056H+he
-	EpoObVop80EgE8lC7BlLRyBAuX5d/rsngQ35NQnMkuFXvLfFssY+leD2xKm
-X-Google-Smtp-Source: AGHT+IE3B73ELbUQavOS3+9V8O99ObkxGs1XUoqNSIUdKZBsD2NXFZZaX5rjgwqiz7ABPv8TjN+usn9RpujxaCi3agw=
-X-Received: by 2002:a2e:bd89:0:b0:378:e097:e195 with SMTP id
- 38308e7fff4ca-3790775a094mr3319331fa.33.1761603061549; Mon, 27 Oct 2025
- 15:11:01 -0700 (PDT)
+        bh=/tdW9Tc35Kw3/0Y5blWohgMonE+9zr16T+U6ZKHumPk=;
+        b=LT4pyviFp+WpYO4kILIBg7Z0mHakJ/SLOqdvMYLltpB5cnw4K+Y89Jd8I990Gbuf/t
+         1cVB+VuDn7AjSCc+FAw3wIaC5c3zr2GF+Vjq5XUbdvaorq4wXCFvvyHMIHagxSfaauOQ
+         +z1BKbwJmFCVdFb4BZtL4CDMZ0ZmmoCcMRcB6+TPgwmW2E/klfRqDn+d6k45Z0VL9JMB
+         qTHAyYrU2nhcEY7fhkhWPZK4L9imeYvf42+ExxE7oG6ZaTHK+oE59QjHbv7RJwdjFaOE
+         wHjF17R0UiblS1fGpJTEiowTsOxVtLscsf2B4+YCm4KyDwXT/c4+Nkrb+EyOLDJphakP
+         thoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXM/QO5nGtAsW9TIXeTfGJTFUafFUsWITPelPKsBGa27UTsybGeylG4jWkt2mFpO/uxJSLjDNLWz+tp@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWUbds+AJG77cgR3X4XSArpIW+cZPzCZ9ceiEI7/cGGRaNusmj
+	fxwbeQ4NkJG8kjhiX69hmDTQYSW3KLCd9kokUbyf2O9azIIwJ6qY8gQr+0BZqwceWGrNj9Q7BXk
+	ZWq9jad92WzydiflIqYyO6QXP0JCMHHoH2ysWg/LCfg==
+X-Gm-Gg: ASbGncu9dWEESXQ2Mtf3U2gg47L7LCnUZ2cSsyPQOFQSjXwzSwq6koVTdCwY4o+lD0E
+	x0/AxKIleHWBxiVU4GRtMrCazy4hycWve4x2Dao+hI2o8URZJcBepi85Zm9ItBNmM57bnlyrKLw
+	q9dldsMYfKlTDtjh4jbn9lPC9P3Ut9sUYBTJrlISNyTgi1YCpCYrv6g8bj/Run7/3Txdd1pRXfl
+	EeLtxAG73C8yu3ozsSuwkCSrBliZgkB3mIvwOpNTdrnkmr52Flpr37AjUls
+X-Google-Smtp-Source: AGHT+IFLT1ZdWr/hhEMnm9sTGNuOU2VvPh+C7lrdPQU4P+9e/YVXxLQp3pBZJvB8TttzAJ2Uq4NY4gf67nRQdQ5ZGG8=
+X-Received: by 2002:a05:651c:885:b0:372:9505:7256 with SMTP id
+ 38308e7fff4ca-37907711530mr3518411fa.30.1761603101693; Mon, 27 Oct 2025
+ 15:11:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251023132700.1199871-1-antonio.borneo@foss.st.com> <20251023132700.1199871-4-antonio.borneo@foss.st.com>
-In-Reply-To: <20251023132700.1199871-4-antonio.borneo@foss.st.com>
+References: <20251023132700.1199871-1-antonio.borneo@foss.st.com> <20251023132700.1199871-5-antonio.borneo@foss.st.com>
+In-Reply-To: <20251023132700.1199871-5-antonio.borneo@foss.st.com>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 27 Oct 2025 23:10:50 +0100
-X-Gm-Features: AWmQ_bln6fs42YRtiqP8ik_NX7rcLNvMO96ITfFJr8FlYTKtoHQT9TbJlFukMl8
-Message-ID: <CACRpkdZETuUGn47foo49xhj5krfE42sJ09vYf7EuKzm7J7kfUg@mail.gmail.com>
-Subject: Re: [PATCH v4 03/12] pinctrl: pinconf-generic: Add properties 'skew-delay-{in,out}put-ps'
+Date: Mon, 27 Oct 2025 23:11:29 +0100
+X-Gm-Features: AWmQ_bma_Zx4YiWdv5O86TAgEFt04A-92MDE252FFHP4HKRhB_QpFTlP5ImwzJk
+Message-ID: <CACRpkdZHYWMezkPq55Xmfj9U+0pALg-DJaR2bKXA95s_ptk8-Q@mail.gmail.com>
+Subject: Re: [PATCH v4 04/12] dt-bindings: pincfg-node: Add properties 'skew-delay-{in,out}put-ps'
 To: Antonio Borneo <antonio.borneo@foss.st.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
 	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
@@ -98,10 +98,9 @@ On Thu, Oct 23, 2025 at 3:27=E2=80=AFPM Antonio Borneo
 <antonio.borneo@foss.st.com> wrote:
 
 > Add the properties 'skew-delay-input-ps' and 'skew-delay-output-ps'
-> to the generic parameters used for parsing DT files. This allows to
-> specify the independent skew delay value for the two directions.
-> This enables drivers that use the generic pin configuration to get
-> the value passed through these new properties.
+> to specify independent skew delay value for the two pin's directions.
+> Make the new properties unavailable when the existing property
+> 'skew-delay' is selected.
 >
 > Signed-off-by: Antonio Borneo <antonio.borneo@foss.st.com>
 
