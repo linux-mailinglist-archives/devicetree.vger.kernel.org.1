@@ -1,81 +1,90 @@
-Return-Path: <devicetree+bounces-231279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1C30C0BE19
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 06:56:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EF83C0BE1F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 06:59:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D09A24EE094
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 05:56:10 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F3B0F4E84E4
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 05:59:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3CB02D8365;
-	Mon, 27 Oct 2025 05:56:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 567BE2D7DD9;
+	Mon, 27 Oct 2025 05:59:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="UGln7ZOV"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="KuNZD907"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7012D77F1;
-	Mon, 27 Oct 2025 05:56:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BD702C027A;
+	Mon, 27 Oct 2025 05:59:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761544564; cv=none; b=qzFEQV/F0zoA9oPN1Rpjvv5Wg1Dh6/9TovIkJbqwSGLzHE+UvXdaP9MvQIKXEpbSzi/Q9cwqApKtZwpqKBvdMxreBlDUFf1JsofR2g2MveCxUqaLXXU9hxslNfdsMI6zY3lPQuK5Ywux7wzTm0bRobD1y4+eyeNBXWRKi3m8aDQ=
+	t=1761544777; cv=none; b=TGZFiqagbwzo+5aRVGPBDPcdwA58oD4flr/tGGrPv+t2+MCbrH3227aXzZpHOyyXVwGaMSb9N0bIB1KfMNJvBIlySVhnO0aJlNkYNg6i7yoLxGzNw+Va6axi4QI5m26Dko5x3fu2Igkb27JkSD1agHtGsLRyZQJJtmupZrreTN8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761544564; c=relaxed/simple;
-	bh=EfIQEjHO0SC7Aqmqkbs2O93BEaGxsZvcg/d6WWIvSz4=;
+	s=arc-20240116; t=1761544777; c=relaxed/simple;
+	bh=93Zp0d73yElyssTl11o4xqnsQNybTnAya+0hGW33ZC4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QqoVZxjVpxbX+UKgGJnfddR+0ekv3eNwEB0pwEUOx9BD4xc/fc+cNIDN1MRq2O13x6QGZaEQhtBqehUFSIVFkAQdYHC6q1Ql4BQJzRZsRUfzkNZI3R2lHmR35Eu2r9k5YLeCPi21r5G9sVuqsVz6JkkbCJznlQWfzpbZgp+GxPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=UGln7ZOV; arc=none smtp.client-ip=220.197.32.17
+	 Content-Type:Content-Disposition:In-Reply-To; b=ooC/Nv64nqSyD7mJx9JqYGMvaTyfRgNEu39svvx5kXHdGWahFqz9ihcRZIhC4s1uk1CNuZ9RkVUnTiwdy9LWgWwmq7K0VLosiacrWpFYnE4SDC7FD53xHbX454nzGG4vL6Vxrx7sZyEXp7VxIIVpcPODYuYcPtKaQjlT5me9yS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=KuNZD907; arc=none smtp.client-ip=220.197.32.18
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=Ljd/GfWV/LpuXLPWohOtAse3dPFW/ARWxabMfHqOTJA=;
-	b=UGln7ZOVacTnbhninps24IXqlFlyB0RG1OMwWhYRwl2Q66TfPUDvmZ5zqU+Ilg
-	lNSBDdkaX1WkqhLbbZh8cgtFdvdjG4N5XkL+WgoMa3UABxpAZEPfBkBM+F+FvST4
-	Yut2bKfEvDVSHfm5iBPGs3QSKtbfZBAAJYc6aGGunIoGU=
+	Content-Type; bh=06tZjU29VwqByqyIrPkQHEnCjRdvf/czRzQRFH3f6Es=;
+	b=KuNZD90719RC4PCN7bHia9QNSl/2bCZTq17vXE0WAnM8BXAykaYGV7Qu4Fl3cg
+	SqmO9LabkeKZXrHWfntfe6ejdjxNi91Y3WKOhAKzBGdu964e3XXVPDe3F4wPpxDL
+	bc19wccwDo5ARVg55yIj854uaCR+zboGPrpCc/BgaOz98=
 Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with UTF8SMTPSA id Mc8vCgD3371JCf9o49s+AA--.49824S3;
-	Mon, 27 Oct 2025 13:55:23 +0800 (CST)
-Date: Mon, 27 Oct 2025 13:55:21 +0800
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgD3_1YeCv9oMlm+AA--.27868S3;
+	Mon, 27 Oct 2025 13:58:56 +0800 (CST)
+Date: Mon, 27 Oct 2025 13:58:54 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Martin =?utf-8?Q?Kepplinger-Novakovi=C4=87?= <martink@posteo.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+To: =?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <jpaulo.silvagoncalves@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
 	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] arm64: dts: imx8mp: add idle cooling devices to
- cpu core
-Message-ID: <aP8JScVXZo9nj4MY@dragon>
-References: <20251013065903.35216-1-martink@posteo.de>
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>
+Subject: Re: [PATCH v1] arm64: dts: imx8-ss-img: Avoid gpio0_mipi_csi GPIOs
+ being deferred
+Message-ID: <aP8KHmFbGFRmgtQz@dragon>
+References: <20251014-imx8-gpio-csi-deferred-probe-v1-1-62dd1b949731@toradex.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251013065903.35216-1-martink@posteo.de>
-X-CM-TRANSID:Mc8vCgD3371JCf9o49s+AA--.49824S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUz8nYUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIQtu02j-CUtMEwAA3d
+In-Reply-To: <20251014-imx8-gpio-csi-deferred-probe-v1-1-62dd1b949731@toradex.com>
+X-CM-TRANSID:Ms8vCgD3_1YeCv9oMlm+AA--.27868S3
+X-Coremail-Antispam: 1Uf129KBjvdXoWruFWDKFy5Wr4rWr4kKFW3KFg_yoWxtrg_AF
+	yvgr4kCw4DGrn7Jr4YvF42gFWFkF9xW34UKws3Jr43AFySqw4rAF47tr4rAry3Wrs0qry7
+	JFZIyw43Jw1Y9jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUjOVy7UUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNQCkCmj-CiBa0AAA3s
 
-On Mon, Oct 13, 2025 at 06:59:19AM +0000, Martin Kepplinger-NovakoviÄ‡ wrote:
-> The thermal framework can use the cpu-idle-states as
-> described for imx8mp as an alternative or in parallel to
-> cpufreq.
+On Tue, Oct 14, 2025 at 09:56:43AM -0300, João Paulo Gonçalves wrote:
+> From: João Paulo Gonçalves <joao.goncalves@toradex.com>
 > 
-> Add the DT node to the cpu so the cooling devices will be present
-> and the thermal zone descriptions can use them.
+> The gpio0_mipi_csi DT nodes are enabled by default, but they are
+> dependent on the irqsteer_csi nodes, which are not enabled. This causes
+> the gpio0_mipi_csi GPIOs to be probe deferred. Since these GPIOs can be
+> used independently of the CSI controller, enable irqsteer_csi by default
+> too to prevent them from being deferred and to ensure they work out of
+> the box.
 > 
-> Signed-off-by: Martin Kepplinger-NovakoviÄ‡ <martink@posteo.de>
+> Fixes: 2217f8243714 ("arm64: dts: imx8: add capture controller for i.MX8's img subsystem")
+> Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
 
-Applied both, thanks!
+Applied, thanks!
 
 
