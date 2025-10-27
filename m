@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-231367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4B2EC0CA9E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:32:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1C34C0CB1A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:37:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7102C189AE63
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 09:33:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 166D03B7128
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 09:32:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E9202F39CE;
-	Mon, 27 Oct 2025 09:32:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79D602F531A;
+	Mon, 27 Oct 2025 09:32:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MEfWoQFg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A3t9x0HY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BD732F1FE7
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 09:32:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74AEC284663
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 09:32:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761557550; cv=none; b=EmUrWAOzBe7S6UnoPChWhRR6kXidscvqQN5tBP2Yv8gZ3pF+/BypT4GYXeu6ZpR7LY058z0mNouIAUy6z6svefD+lLOgVflehaQvjAtZ+WGIU6gO23gQrrgoVouAz9P9w2Yj5WEU28vLKAjxJUCJXqbjLJNsBEfIEMod5KHiwq0=
+	t=1761557551; cv=none; b=QoxM4Hj8VZvj4HgKxarn23SsmYPWEoPUxfO8Q3LO6c3cvOhRNYe/bC3rvBatyRd2zr7YZHPKShgB3N1nXFDnEVxHkLvx3X90IvngqvT8ZEJoRQKsXFJvQQEuaUG0zftB2heaEGt7taym0DQxTMfAhh3dwF1znLP3hRHu1o3MnAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761557550; c=relaxed/simple;
-	bh=72/KDI0ED0WOuGQa9wsAl7If0x4o4qq3O0o6SEkbMDk=;
+	s=arc-20240116; t=1761557551; c=relaxed/simple;
+	bh=I+vPrkGtVY1KgrH1yltmYPBQNdvYIVKIbmnLGF2Vio4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=LW6WNu2tnbLIkfUIfM5d/R+fvRD4P2akAEDSASjAkPAYxd/O0Fn0zgseQAWnaArlEg9VkGdZ/eeaIi1D2PZve7AhIG1pkzUsF1JxW17iuY0GauZtkceAs45q+qCCl/HfLnxGXLMEArzBe87eQN2m3f/8OXAahKZbjcqjJs24A7A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MEfWoQFg; arc=none smtp.client-ip=209.85.218.52
+	 MIME-Version; b=oLyhtUKbmYNUuCGlszqbTts7c73QXHHelRsYxH9+49s3TI2t+M2e06Wyud8zX5t0VsttmZNPwQqVJcrctXl3SyrBexbZnZInhqfAsXC9B7WGnz+6Jy0vNyj+PBH8s2RfKW7+BLzLO7/4MNu1t2a3mKdDlvQB6qZ7XdUSNoccu3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A3t9x0HY; arc=none smtp.client-ip=209.85.208.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b403bb7843eso964660366b.3
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 02:32:27 -0700 (PDT)
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-63c1a0d6315so8431691a12.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 02:32:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761557546; x=1762162346; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1761557547; x=1762162347; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=TCQDnPWqowHG59QXmb0jLVkKI2rjRu35406X3JQiDVY=;
-        b=MEfWoQFgX4dqQWoaBIY3Ty8zpZMxOTF2QyNzGnBERQV+ZbMRA83qL/ACG8TRMCBwKH
-         k/N/O4LHT51b/b0sGOi6e4eSRGx26+haznX0h64EPArqRdfl/34gKoJthfn1hOUDJ9z7
-         L2jOWw2SkJHDZBvmFIXZBv7L7C/bPHsb7QhNZ+t8w0kziYxqFuWEc8ujrrC+oGyOOdGv
-         RMzq3nXuCy851TPe9mxZQlm2BDkccj1go05B4aoiahzrCE3Hqg5my0DsRMwAWZTgXW7R
-         7fIVEYY/HPkAMxEPK+kzZO7koItgo3hj9//P/tgD9dPFVr7PMhmuJS1ZUFMvuhxkzxcD
-         wr+A==
+        bh=c6jnR1l/knmmCE7j64ceFOiYUTsDgn50GkewewG1O2A=;
+        b=A3t9x0HY9kK9ARaUbuq5ZiwW1g9VAKbkj/XPkliNOm4F7JHj91X89u193tV6IJ3MVR
+         govgEi1gcS5hZ35o2M2D3eE61c8el8S/mNQ50qCI4FwARP0oTpEyTp6/H6P9Qwn+kVrz
+         1yl+n7KfonlQxh7s1hqE2eVSXkTo1uBLoYb+utA251eyLt0IEOkZVVsbYFf/kBfPeNIo
+         rKPSB+TIZkV+VzFKevXt3gYk4nxP7vVuXqReveMnMyC7F+SeqAEyJEw0LY7uHYtOmv7y
+         rLZRxgvdetHCRarjxyPxQcTTTxW6/fRKP+6oz7xeNPxYZx63igdWYguOKcY9j41sPbZB
+         44GQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761557546; x=1762162346;
+        d=1e100.net; s=20230601; t=1761557547; x=1762162347;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=TCQDnPWqowHG59QXmb0jLVkKI2rjRu35406X3JQiDVY=;
-        b=uynSkIImAGUVpwS5+o0f5xM+zKmc1XcN8qQxhoyPH7WaZFIs9DRxwWUpSY050zO8cU
-         Y+lxEZbk6rg+IFA844nyLf1NBIMGHvG0tGnhPuoeSb4NszCEUNyilkiaL5F1xzkIk6J2
-         74Y4QnGMxUpoq9Zz/Fx3G86bd6dGDI5/nW7owIKbdpPNpolff9lHkm2ehA/t4n0EjGix
-         opfsan5NXbJtirS4NnvuV1ciumcQhghX1IH6fcoQRlJlEL5W98ZnCakoWdEmCHLqQDsl
-         weRus9fomS+Tb6od3TfZj3sic8Kbo9jOT6jYhplUQ8wUM9lCYUCTV1Cd+TrKeqnKFu0n
-         Vd7w==
-X-Forwarded-Encrypted: i=1; AJvYcCXiLcKdqdo2Kns22bOd7b5iL94D14sIIbyYrdZSUw1rY9Oi9hTWxT6WtsdZTHDtjxarOZmfLkALlWGc@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBRUxta275/HF2wa3TJ/nAMIDb7KsDMr9A2BAIIgmzaum7GXGA
-	ss/PanhGQ55Blqq0SMrqi5xk3z0LUUTBURfjKOuhyJrMCnaZPtZ2NR8/
-X-Gm-Gg: ASbGncvMv5zcd+TMOqREAw4DbWZm7AwD2tuDTb5idBfRiq3E1zq4NTjRAC4ErozK/0m
-	bLq0owwlQE3te2AYUsaTWnAaIt0YUs3aEUWCU87UOBJKIvDyHT4bmGb10sXICNdRo7LUHCM9HrA
-	KvLSxN1AS5qRPfHuuDv6nk/fqn/1EI2v9V7XfmFdhuLpSuejEU3MsWjMELuvzcLoPFXyQszIryL
-	FnAsX07bpIgE/nAVQloP5/CPNgDbP7SIo5EiGsKHCF+rNtcoAZox8A7xJHme1J3Zjz95V7A8yvQ
-	luakJ+7YeedyKp6Akk474/X0Jody72Gus0eeHBBnfReWlDnA5tOVTxmrogvG1VvdramVRGQZHrC
-	u53CpU7vJgMLYiiVTzJrRS7UMYnYjJRiEMBqsXES7fZSPefshqcRdWf0YUN9Y0L95/eYu0pu/Kw
-	VSibAw4aqKODtNrJ6ZkMorUCGdfO8fSfszWxHpMBxIVnHff2uV8YmNkM5B0ys/KHBBxLvk4tH9D
-	8lgGg==
-X-Google-Smtp-Source: AGHT+IGjcZLCWHusJQ+RRTOnS62EVI4AzVgjShANu+qiEsSh8iA493hRxBFjM7nRHQfw9gIc6kKZYg==
-X-Received: by 2002:a17:906:4fc4:b0:b3a:b22e:dd35 with SMTP id a640c23a62f3a-b6471d45a69mr4222583766b.2.1761557545758;
-        Mon, 27 Oct 2025 02:32:25 -0700 (PDT)
+        bh=c6jnR1l/knmmCE7j64ceFOiYUTsDgn50GkewewG1O2A=;
+        b=AA+IM5lqUxlxONNYgXwcAJerZvq/QJX7otK81bVImSouWhXMsQBApg466GlSGVMSkW
+         A/e1MfwStkKCxH+RZrQ5nJqeuSeErUchtlXDLp0l5hzvYpFhDVKvwbpB53AcgZwwoIWl
+         18CovPH0rq8PK7H7HFtoC91Y7vPJ+nDMGTT1RKh/sV3GRtr9WplIasW/eQumtTbr+eBx
+         kVplQIzGYe/WpAj3quc0S/CTTBut+97mcwFpRpcGQqC02YvtUW3ExbxGIqf4NBC06eV3
+         W2gfXHDZBfu8sgwEgb92l3+0+9NfkuHJFSd12qy803MbdyQCgbxNEXXwiRyqINr4O9PV
+         jONA==
+X-Forwarded-Encrypted: i=1; AJvYcCWohxzgwjWMU73YQLasD452sAxBwBjXPONndkcQ4xfq7YpUhjPddiGlRegl+Z4/u+6ohY2siZKXPOma@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywtamwb2aF28eOgtvTR1LbDpb0Nez+tHS9Zf5S3FuE2cDHpw29p
+	pZXb0agq/7yQVizuGhVUpNIUQgf+9lHnl+Lh9USwlISHOuflbAjOSJrnlPDW9A==
+X-Gm-Gg: ASbGncu41QryK46emoFjtpcDByu/lgz/luib4QwAOeISvveBo2ULbD338FaEosdR1CU
+	ZlhREtMkLJTYGqNVxPzI80ze5sGDh0TWlP139ehNnltRAu0IfeYVtwFFtZ/wveSXYyspAJooWFj
+	9xrpR4ZAy3ldZVaFLh1Fg3xbN4TFk+8W97a51pZB9fUNDzbFLQgP5XWU20wCHvld0BUeIvgjgCq
+	FyvkUaEtlU7dur8pQJJfu+lFY98VGFezZVtCJcxdmuCoMhDPzB/2Jyr8B54nz1U1+lk0+lBirI9
+	LgwCjH5ZJVQpmdp2GcWk5xnLsLTbboa33SNT9MLwjvpkFCIaqnOK2nNyzNPud9ZlV2wzOuH+zai
+	ekdCuFtKhk29p2JvCBg224Uh78F8bxlSfcaSrv5wlcU82XNEYAd2ief3rCncOBqZj8HgCJxaCrx
+	YaE2NGRZVXPnNVedtDf+B5/ovA7qTN7q3KzqnknbvsdEPe6xFY4XpiDFpolP+T80sF0Ck5YQhM5
+	syFIPPAfq8SWq4K
+X-Google-Smtp-Source: AGHT+IGo4pfv6hPnOdMTXONgc4qw1GUfLg7rVGlLeAbdxBQfM+FdGB1kbkQsXhoL+4Azs4JdFAml5Q==
+X-Received: by 2002:a05:6402:1443:b0:63c:84e:614f with SMTP id 4fb4d7f45d1cf-63c1f6b0b87mr34969695a12.18.1761557546755;
+        Mon, 27 Oct 2025 02:32:26 -0700 (PDT)
 Received: from toolbox.int.toradex.com (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63e7ef6be28sm5681014a12.2.2025.10.27.02.32.24
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63e7ef6be28sm5681014a12.2.2025.10.27.02.32.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Oct 2025 02:32:25 -0700 (PDT)
+        Mon, 27 Oct 2025 02:32:26 -0700 (PDT)
 From: max.oss.09@gmail.com
 To: Max Krummenacher <max.krummenacher@toradex.com>,
 	Stefan Eichenberger <stefan.eichenberger@toradex.com>
@@ -89,9 +89,9 @@ Cc: Conor Dooley <conor+dt@kernel.org>,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/5] arm64: dts: imx8-apalis: add thermal nodes
-Date: Mon, 27 Oct 2025 10:30:08 +0100
-Message-ID: <20251027093133.2344267-3-max.oss.09@gmail.com>
+Subject: [PATCH v1 3/5] arm64: dts: imx8-apalis: specify adc reference voltage regulator
+Date: Mon, 27 Oct 2025 10:30:09 +0100
+Message-ID: <20251027093133.2344267-4-max.oss.09@gmail.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20251027093133.2344267-1-max.oss.09@gmail.com>
 References: <20251027093133.2344267-1-max.oss.09@gmail.com>
@@ -105,81 +105,33 @@ Content-Transfer-Encoding: 8bit
 
 From: Max Krummenacher <max.krummenacher@toradex.com>
 
-Add the thermal-zones and cooling-maps nodes for the PMIC device.
+This sets in_voltage_scale to calculate the measured voltage from the
+raw digital value of the ADC.
 
 Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
 ---
 
- .../boot/dts/freescale/imx8-apalis-v1.1.dtsi  | 30 +++++++++++++++++--
- .../dts/freescale/imx8qm-apalis-v1.1.dtsi     | 10 ++++++-
- 2 files changed, 37 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-index 6ebeade2ce72..686fce7443bb 100644
+index 686fce7443bb..abf6d543380c 100644
 --- a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-@@ -226,6 +226,34 @@ sound-spdif {
- 		spdif-out;
- 	};
- 
-+	thermal-zones {
-+		pmic-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <2000>;
-+			thermal-sensors = <&tsens IMX_SC_R_PMIC_0>;
-+
-+			cooling-maps {
-+				cooling_maps_map0: map0 {
-+					trip = <&pmic_alert0>;
-+				};
-+			};
-+
-+			trips {
-+				pmic_alert0: trip0 {
-+					hysteresis = <2000>;
-+					temperature = <110000>;
-+					type = "passive";
-+				};
-+
-+				pmic_crit0: trip1 {
-+					hysteresis = <2000>;
-+					temperature = <125000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
-+
- 	touchscreen: touchscreen {
- 		compatible = "toradex,vf50-touchscreen";
- 		interrupt-parent = <&lsio_gpio3>;
-@@ -833,8 +861,6 @@ &spdif0 {
- 	status = "okay";
+@@ -284,11 +284,13 @@ &asrc0 {
+ &adc0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_adc0>;
++	vref-supply = <&reg_vref_1v8>;
  };
  
--/* TODO: Thermal Zones */
--
- /* TODO: Apalis USBH2, Apalis USBH3 and on-module Wi-Fi via on-module HSIC Hub */
- 
- /* Apalis USBH4 */
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1.dtsi
-index b1c3f331c4ed..8a37cbe922ac 100644
---- a/arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1.dtsi
-@@ -11,4 +11,12 @@ / {
- 	model = "Toradex Apalis iMX8QM V1.1";
+ &adc1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_adc1>;
++	vref-supply = <&reg_vref_1v8>;
  };
  
--/* TODO: Cooling Maps */
-+&cooling_maps_map0 {
-+	cooling-device =
-+		<&A53_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+		<&A53_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+		<&A53_2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+		<&A53_3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+		<&A72_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+		<&A72_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+};
+ &cpu_alert0 {
 -- 
 2.42.0
 
