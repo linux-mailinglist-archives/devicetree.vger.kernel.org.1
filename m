@@ -1,212 +1,127 @@
-Return-Path: <devicetree+bounces-231364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAEFBC0CA4D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:27:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 794CFC0CA92
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:32:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9CCA84EF456
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 09:24:59 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3A39D4E0547
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 09:32:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 109AC2EDD78;
-	Mon, 27 Oct 2025 09:24:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D7F62E8DF5;
+	Mon, 27 Oct 2025 09:32:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aCV6x9oH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZR8i7B2f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 974D42E8DF3
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 09:24:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 542EB245012
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 09:32:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761557095; cv=none; b=iZBOWS8/SiAiXRdfXS2JSnF9NgJdklQ21HhvlbIQf7Qr2gWNiBU/brhJ6sGAavOGQHAaEwoPLUAJlvq40fvijzUlz5gQtzPTyabAz7X0qP6CTvErcp5243X3dZ6i4ZkvI3H1JkV8q+IRGKzrPKTpAmMH/hX7tHC2fTBunexOQkU=
+	t=1761557546; cv=none; b=snnuwp8GB45+boDxtFw0NUQquUY98FxDGqGmtm20QHu+/HJ6scCyvqAsRci/IkjLV5aW5rO5HH9KnGAgsMtNFIBDds3HPeO1xV5JtoZLigSgwCxvADLuc78Bd7qDP6LTLwiE2OKskX3LdJmPOjcSoGJdPeZyKwGxx9drQXWuhdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761557095; c=relaxed/simple;
-	bh=hgq9c1yD2yEo9HG1HdxUXdZbXXExb9ucX0lGtUfV0DA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BIT0VRtFmy3On9GBmo2Uo6sXDhkX9s6xjX74tFHspYCDgKWnTteYdGlxIhDoj+1AJvPVBWXNYAYjJJ6v64Vw3TIJnlKf9dTtYa3rW0gXviTjpFiuDdn9dTWAnz1BaEtBMapcjNaqThtbz/ooW5B2kXpx3NCUdcbGKeim1VBSIek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aCV6x9oH; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59R8gU461052123
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 09:24:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ykKfkihjFSpy5A7Zw6nBytLo5ZdUJJy6OlfC28a04XY=; b=aCV6x9oH2nRvJ00R
-	zYQD4TKWRATdIKcDtCd4gpu2C5vs7Xxr+r38/Wb9yP0++UMrSmJu+HqUTCPXXq3k
-	QLhYbSjcnrRlKZgZIXohIlDMNYNq/KRJCOXxibfvBc9Xp9Nd5NDm6+H8+k1R66fO
-	Jtb+zaRXEzYTU+4kp7MB0rfFxsHyc7OTZB6cBXsic7KuSqgyL0ro7JFzJkXv//qi
-	1faZXo11lW/AEZFF+5CiB77UQ9RsKhuA/KTc8qHvcK5kXKthum46e3AxpfHMAFx7
-	4vKGeOPrCn1RkMej1SNIQr6YwlF9ANaZrhGJ2PM/ppGR4escNb8spo7b7hYHtdt7
-	MoGJ4g==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a1ud1se03-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 09:24:53 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-26985173d8eso115340565ad.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 02:24:53 -0700 (PDT)
+	s=arc-20240116; t=1761557546; c=relaxed/simple;
+	bh=PwYvVZbDfnjUt+9q3Vs352SJkjyRc6eTPU+alUw/55k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VUIN75ee3lL9w7B8B61W0Sz7PByLGZLHnx4yXHTS9vmXFSlk4snxkBUfsWsMjA2Niew//SmTvMq8Nb40lxo36/R9ft3vcKpZmcdFVqcBcPA2VBKM9lt3CzR0QLCz/Sscp65fObgkIUpZHW5kwUzrTKtfyfhCQW2VsAfJ2Xj3UhE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZR8i7B2f; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-63c3d913b3bso7479773a12.2
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 02:32:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761557544; x=1762162344; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HFXNnIoPUffpq5LRnYNe5XZlozI/CQ/SXlZWm3Cx7lg=;
+        b=ZR8i7B2fz72zXk7BGPY6Se5KUQGXiBPZ+UFCkqGj+02HV8HI9MvPn335Y3PjAbHC5d
+         9DuO12LGk09owUr0Fx96x1R4dciqDEI+LVLy1plQWvexb1N08RWC/G8hkeKhXmUnHmvW
+         EdjYrjX2UlFvVYDXT/uJgpEUhbGDEgmjJjHrDsNCdm8sjp8guZga/9fN2lA1MylXT1G2
+         aIJYL58v2vicBaAQ0GooeU5zg5JEhq5wMMnNnux74SjNEPzDfp217UZ0T3JNcaELW9JY
+         y0kx/HQ8ehe+y2qKwEwKuWFZz3gT6qD6tFjE/kpJ/mqYM6F15Bsg7f3dDT+5tlWRLPYl
+         lgrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761557093; x=1762161893;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ykKfkihjFSpy5A7Zw6nBytLo5ZdUJJy6OlfC28a04XY=;
-        b=YETB6TUm9m9BR8AgrMjzSpSK9eFyT5nE77wvIAzSAkzgDsLzqCOWRwCylDB5WHdtTt
-         tyvF3lyi9uXiS6y/dDMuE8tuIx340sTm3f6A+SPWca4D7cE1EItHag1vjgKzFBot/s3J
-         rWTvNHXWLkWOgfX2vEns/if/EqWi49YW00yMmKKOm/FfUnjhE5N0ZRSu/dtNzYCpRM3U
-         9iiy+Zncj+OEPQdYiaQ0VWKjPsIqFgmVbsAoEZXqNlrm8kLqZfRoIwxnCg4tlApIeTV0
-         1KleoEW+BoRMAkzAsLbmRt8e/V7Dl8edbiZEeV8Cq2jtDfnI3oKo5gwui7MFxxkQ/jO5
-         cbYQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWxthGR4MdWxVuOkKSL8V2i0DPLTKRwZwumPeUbNCFn7mtFTK/8/gprtZyUJ91hpP37rCrewzUE5ZXl@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHYgLvBjsrAEHfkLaoHVS82+hnq2UEmuTdR5/vtsiGjws5SS8H
-	yfoAAxkrYeAd7nwQvzvUSV/RVvZ4gzLR5ybIDPg5++WFk4RDpby7rITcmz3PfHZVL85A+BGFviz
-	B0gCmr1vzgvkWG1KsGQlGEX5TCkszfzgXhXD3feKxRn57CfD+h9EnpIGYKaNP+jL4mXjx0yYd
-X-Gm-Gg: ASbGncsGN0aV99PeFGUw4dcTp3kIYLQzM4HZLuXe7xV1/6yHp0uRJgLzCd4kaO3mqjv
-	BGLOpZdZbYDEs8M81VqUS7xPSQwWv9Vk7FNsW0UO1sWr15V0k7PnLGcRAcE9HU2n+EeGUveN5z5
-	IYMuWqmse6rbcS+GElur/eD42eDsnilKvhkSYkb6OZhOvGTWnKO2ar3IO2vQjkleXpJ89BTKhNM
-	ruzywmkWOYJse8fzZ8XhIHf2tDc6BqZG0H7W5ctjg3r9H/qNQVYYAIZ6ZEB5nC6o/HKMjS70YHP
-	ySTwn0AA+Nuh3ec/fFcWxSks6B0ozQruGLj8Eq3aaTOqX2rmKCtGq+BjmmqEIeQ6j1iJM8Z6c5P
-	//VHGBKQIchbViUUNQkBHHJ2e1tYp
-X-Received: by 2002:a17:902:d510:b0:267:776b:a31a with SMTP id d9443c01a7336-290ca121a37mr489283195ad.29.1761557092847;
-        Mon, 27 Oct 2025 02:24:52 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGoqnglA0UI51Wei68+VK5do5gYXJuNgaPESEhOmXS2bmE6WOPNQO+FVMycseqQCXytLkXHXQ==
-X-Received: by 2002:a17:902:d510:b0:267:776b:a31a with SMTP id d9443c01a7336-290ca121a37mr489282905ad.29.1761557092343;
-        Mon, 27 Oct 2025 02:24:52 -0700 (PDT)
-Received: from [10.218.7.34] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33fed6c4e78sm3943968a91.2.2025.10.27.02.24.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Oct 2025 02:24:52 -0700 (PDT)
-Message-ID: <784de75a-2821-46f2-a6d0-a4c4a6a13dfe@oss.qualcomm.com>
-Date: Mon, 27 Oct 2025 14:54:45 +0530
+        d=1e100.net; s=20230601; t=1761557544; x=1762162344;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HFXNnIoPUffpq5LRnYNe5XZlozI/CQ/SXlZWm3Cx7lg=;
+        b=vhJ2/mVpEd6XC2+FYLsKSJz3ceO9znc9T5oe1zBBczzllPHSvkbuOqvZTDUAbojIqF
+         Lh94MPOqfNAtyarRJjU2KA+SrmCLEX2IOmdG00KCIEkgbLa0IEykLERcNWT0NDMraThb
+         iAXAPsKLAkl+xo9glcsVeFo44PwnMqJWm1K8cQRqM3rKeB7DMnIOb6KViKpKELjQ87hf
+         qT/H1yHSxgLZqZzgfxzCJKcbgvnXRHkfK0nM8ZO+hWLBXQTuMCH7UqZ61WcOXri7DwOs
+         haF7WvFkO3wF1PyQQLYgRMAe514AiI+WtzJ2FhQYGZwCXlHD53XTiIeRSz603gP9OQIP
+         1sCw==
+X-Forwarded-Encrypted: i=1; AJvYcCWaw0bLJJXbf5yLYifnVUDX3nXLqoHe6DSzQEqvMrgb8WeNAMdWkXYdkesGqa55SEVdeVeqdohDnXa0@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYjFWeOtJFMbtFhI/PTxbj/DiqMWyYCdlpo2ded0t22m3eGzOn
+	q7TRF4bDl/qb/sbI+aRpyW6ccLl7yyS+vCaLcV45dWnCr+0UYyZ3PwtH
+X-Gm-Gg: ASbGncsEQNbU8CnnhkVdi6ZNOvs0C/0cWSVfgQHyeW0EkSlTEZ0PZCVVkuL5+N0BIb3
+	1MU2dPBoQmCbBYhuPqLzmWCx6xByFjA11YqcEix9CLiYny9BbNK763KhfddSmkY3QTnwDjvQ0qX
+	H1RATSe48zmu7Z8Q4TXC9GNMbVocrZ6B/+maHpj6VIQPRkLho0ovZbE8z3xpgCy+dpVrFwP12R7
+	HDaWkjg1nbg/CGBaGV6Mw0j/xSzSF1yrWTFad15g/H/0pd00s96ryLsInMQN+A/GoJ2Rqa7rU0h
+	bkc5146Otx+foUvbrc3MGJDV3jkCP/osBFXgXK3qa942DRENyy3HQekQ1XTZwDS2tXGN1HuwDLK
+	mTumxT1+JXpghibK/sSqehmj3WR0yViH+gN4WwYYdiYMLEHd4nwo0BsYvoI3ZG63LC8W/f0cIo8
+	qTD8avS4tqfXAceQkadsTRE+fU8WLKfc5GGmmfoCfq+diUv5BI2HWMD99j3CwYToghVPlBANGRW
+	dFLW1IB+uPwwZJx
+X-Google-Smtp-Source: AGHT+IGfPIauWeOpslI13bmvAnHqIt73uiqSk5b04/1UOaUS+qZFr7MvAFxL/2NZS2hRKHY7Dz10qQ==
+X-Received: by 2002:a05:6402:5206:b0:63c:1f3e:6462 with SMTP id 4fb4d7f45d1cf-63e3e479149mr13612800a12.23.1761557543459;
+        Mon, 27 Oct 2025 02:32:23 -0700 (PDT)
+Received: from toolbox.int.toradex.com (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63e7ef6be28sm5681014a12.2.2025.10.27.02.32.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Oct 2025 02:32:23 -0700 (PDT)
+From: max.oss.09@gmail.com
+To: Max Krummenacher <max.krummenacher@toradex.com>,
+	Stefan Eichenberger <stefan.eichenberger@toradex.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/5] arm64: dts: imx8-apalis: add additional functionality
+Date: Mon, 27 Oct 2025 10:30:06 +0100
+Message-ID: <20251027093133.2344267-1-max.oss.09@gmail.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] spmi: spmi-pmic-arb: add support for PMIC arbiter
- v8
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        David Collins <david.collins@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
-        kamal.wadhwa@oss.qualcomm.com, jingyi.wang@oss.qualcomm.com
-References: <20251024-pmic_arb_v8-v3-0-cad8d6a2cbc0@oss.qualcomm.com>
- <20251024-pmic_arb_v8-v3-3-cad8d6a2cbc0@oss.qualcomm.com>
- <0cd8f4d4-d418-4634-abaf-f66b350c81eb@linaro.org>
-Content-Language: en-US
-From: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-In-Reply-To: <0cd8f4d4-d418-4634-abaf-f66b350c81eb@linaro.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI3MDA4NyBTYWx0ZWRfX9zp6ul6QnP1E
- SwEwpIgXjedT5eFXeQUlVUWxoyyTohxUjJQTWTMcrnYBLjNLrfLREFUxZSGBiOCv5HZRGWvICdL
- Z47CqcHBhhrwr0sAYueFCiIRleAYbiDW63O1aFVjQhgcUArixZO6O5s9J64a5rhxZVcqzCnWsNj
- hyBIsxoBsJpjBv2BOo0ZumI+tsrqudisFB3ffWNCLeknTCGXksdgADC9fqUdxZ+uRKNo5CM+Svc
- Za/TmoxwZN2I1RvP/i3GsAyRszFbe1P2mvdC58F8g5xjeRvBREZD9NdL52RIsO/5+bU39ho1Q8H
- bp4F2SFpk3pvj2pwgt7rKDCBtGCt+yjG2QawJzvvtqnBbNfqjiDkdAHXSszMIup15gmzUyOMHom
- 8dOBYyb1F2H6/8G6fbkUSZXo09pKMQ==
-X-Proofpoint-GUID: tLW7lC2paVcMgDTnmKn9TOu6b8aCL6va
-X-Proofpoint-ORIG-GUID: tLW7lC2paVcMgDTnmKn9TOu6b8aCL6va
-X-Authority-Analysis: v=2.4 cv=UqNu9uwB c=1 sm=1 tr=0 ts=68ff3a65 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=3PRCy_2JfRc9Wa6eopEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=GvdueXVYPmCkWapjIL-Q:22 a=HhbK4dLum7pmb74im6QT:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-27_04,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 clxscore=1015 spamscore=0 bulkscore=0 adultscore=0
- priorityscore=1501 lowpriorityscore=0 malwarescore=0 impostorscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510020000
- definitions=main-2510270087
 
-Hi Neil,
+From: Max Krummenacher <max.krummenacher@toradex.com>
 
-On 10/24/2025 3:48 PM, Neil Armstrong wrote:
-> Hi,
-> 
-> On 10/24/25 11:33, Jishnu Prakash wrote:
->> From: David Collins <david.collins@oss.qualcomm.com>
->>
->> PMIC arbiter v8 supports up to 4 SPMI buses and up to 8192 PMIC
->> peripherals.  Its register map differs from v7 as several fields
->> increased in size. Add support for PMIC arbiter version 8.
->>
->> Signed-off-by: David Collins <david.collins@oss.qualcomm.com>
->> Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
->> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
->> ---
->>   drivers/spmi/spmi-pmic-arb.c | 324 +++++++++++++++++++++++++++++++++++++++----
->>   1 file changed, 294 insertions(+), 30 deletions(-)
->>
->> diff --git a/drivers/spmi/spmi-pmic-arb.c b/drivers/spmi/spmi-pmic-arb.c
->> index 91581974ef84..612736973e4b 100644
->> --- a/drivers/spmi/spmi-pmic-arb.c
->> +++ b/drivers/spmi/spmi-pmic-arb.c
->> @@ -3,6 +3,7 @@
->>    * Copyright (c) 2012-2015, 2017, 2021, The Linux Foundation. All rights reserved.
->>    */
->>   #include <linux/bitmap.h>
->> +#include <linux/bitfield.h>
->>   #include <linux/delay.h>
->>   #include <linux/err.h>
->>   #include <linux/interrupt.h>
->> @@ -25,10 +26,12 @@
->>   #define PMIC_ARB_VERSION_V3_MIN        0x30000000
->>   #define PMIC_ARB_VERSION_V5_MIN        0x50000000
->>   #define PMIC_ARB_VERSION_V7_MIN        0x70000000
->> +#define PMIC_ARB_VERSION_V8_MIN        0x80000000
->>   #define PMIC_ARB_INT_EN            0x0004
->>     #define PMIC_ARB_FEATURES        0x0004
->>   #define PMIC_ARB_FEATURES_PERIPH_MASK    GENMASK(10, 0)
->> +#define PMIC_ARB_FEATURES_V8_PERIPH_MASK    GENMASK(12, 0)
->>     #define PMIC_ARB_FEATURES1        0x0008
->>   @@ -50,9 +53,10 @@
->>   #define SPMI_MAPPING_BIT_IS_1_RESULT(X)    (((X) >> 0) & 0xFF)
->>     #define SPMI_MAPPING_TABLE_TREE_DEPTH    16    /* Maximum of 16-bits */
->> -#define PMIC_ARB_MAX_PPID        BIT(12) /* PPID is 12bit */
->> +#define PMIC_ARB_MAX_PPID        BIT(13)
->>   #define PMIC_ARB_APID_VALID        BIT(15)
->>   #define PMIC_ARB_CHAN_IS_IRQ_OWNER(reg)    ((reg) & BIT(24))
->> +#define PMIC_ARB_V8_CHAN_IS_IRQ_OWNER(reg)    ((reg) & BIT(31))
->>   #define INVALID_EE                0xFF
->>     /* Ownership Table */
->> @@ -96,30 +100,33 @@ enum pmic_arb_channel {
->>       PMIC_ARB_CHANNEL_OBS,
->>   };
->>   -#define PMIC_ARB_MAX_BUSES        2
->> +#define PMIC_ARB_MAX_BUSES        4
-> 
-> Why PMIC_ARB_MAX_BUSES is changed to 4 ?
+Cleanup the regulator used for the Wi-Fi module.
+Improve ADC node by specifing the used reference volatage.
+Add thermal nodes and cooling devices for the PMIC.
+Cleanup TODOs no longer applicable.
 
-PMIC_ARB_MAX_BUSES is used only in the definition of
-struct spmi_pmic_arb, for this member:
 
-	struct spmi_pmic_arb_bus *buses[PMIC_ARB_MAX_BUSES];
+Max Krummenacher (3):
+  arm64: dts: imx8-apalis: cleanup todo
+  arm64: dts: imx8-apalis: add thermal nodes
+  arm64: dts: imx8-apalis: specify adc reference voltage regulator
 
-The PMIC Arbiter v8 is capable of supporting up to 4
-SPMI buses, so this change is needed to support it.
+Stefan Eichenberger (2):
+  arm64: dts: imx8-apalis: rename wifi regulator
+  arm64: dts: imx8-apalis: use startup-delay-us for wifi regulator
 
-Thanks,
-Jishnu
+ .../boot/dts/freescale/imx8-apalis-v1.1.dtsi  | 44 ++++++++++++++-----
+ .../dts/freescale/imx8qm-apalis-v1.1.dtsi     | 10 ++++-
+ .../boot/dts/freescale/imx8qm-apalis.dtsi     |  2 -
+ 3 files changed, 41 insertions(+), 15 deletions(-)
 
-> 
-> Neil
-> 
-> <snip>
-> 
+-- 
+2.42.0
 
 
