@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-231516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F3D2C0DE2B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:11:59 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41EB7C0DD6F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:07:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3630A4FF69F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:59:29 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 67997501FD1
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:59:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44A9E2C15A5;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CE142D77F5;
 	Mon, 27 Oct 2025 12:57:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HYW1H6mW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qg0MZF86"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 145E029A9CD;
-	Mon, 27 Oct 2025 12:57:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DDB22C375E;
+	Mon, 27 Oct 2025 12:57:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761569822; cv=none; b=hWqIvryLqMaXcqKuI3KYeizJ0HhbLTOskGdNPpZ9w6XN4bKGO6+r83/gD/mJEYpx9JRqsTWcbjBXc7Vhh8dXF+oOZp4xaPPhl5Asx0GORTl7W7lJXa+qpl9i77VlkEtP8t/GUlyOgh+ZkNdnue57qF9vEO22sAqYht4Uwh1/J2k=
+	t=1761569822; cv=none; b=uCvZ2cVffR1dHr3xTGrQo7XFHV9dssYK6bDc3ou8nQHj0WG0i3DyohZx4yiV4JLBsKUXuGYJA67xZZDkjbzZcw8y18oElJytlmIQIMWWGKJXxtLtLiZp0mC3xT70TzSDqH51mzAz1Q/k258PyYlkdV3BUL1uSrEi0oh9xjV3E7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1761569822; c=relaxed/simple;
-	bh=cH78ltGLFEwaRc+5sKH7tOpj/oTnWSF/SJD99Q8jJBg=;
+	bh=ojezu/Uo+J/jAdJIMpppL/LYPdk+yEgDql0KTa8tpLY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qRLsQFKCH1P5uKb1wLrTQ4q3eZbEj7t3FO/TwBzjgstlMYVUek/x5+yIM0f0kq5rPUkqJuzuQQFEsf6D+c6xRl+2xtZ4/14oyic5JwT5aH6Kyl979ylYoBbLyGE3ESekicXaWhnjJ0IhmzX2Zvih5APFxmaeqJKW/ncQFZbwlYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HYW1H6mW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 882A6C116C6;
+	 MIME-Version; b=gcoPBIm/908P2SI5lA+AYcAhmEdfvf9LxoTaJPeEH9FgFnb9o+SBAHCNx3LJnosSE96sbLGDt5f4P9Nr3cDU30Bd+4GRfOFBe2hZOqrq5CUYUOwZ6UTdDCcopn5jAMew3vh7X9+jn3TSUlGS66oY3Djxy6bglM67FjDCBofM+Ro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qg0MZF86; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE238C2BCAF;
 	Mon, 27 Oct 2025 12:57:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761569821;
-	bh=cH78ltGLFEwaRc+5sKH7tOpj/oTnWSF/SJD99Q8jJBg=;
+	s=k20201202; t=1761569822;
+	bh=ojezu/Uo+J/jAdJIMpppL/LYPdk+yEgDql0KTa8tpLY=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=HYW1H6mW7jSbquUJYM2sqUZm38jlpvEbmqNe+my2P3ZAWIGYTjTFCpgEHS9+DemLl
-	 eiO701QwLGQZgcMjyENFmnzaX2DuPiLvU5f5S/jqK5yBncWj4TKpenGg8zLXyON90Y
-	 j6WeTmxg2pTIY5KKnWtWeu1rAR4H55dta7wG/l5kE40i6Xb04Dh+GKUL4az1eKLoKh
-	 iSEB1tkqrY/0I68cXpJeU3s2Gjcu7+Es7P8ZDN8ZffBEzYAw5bxNuFlyXZeevVrDfm
-	 DTUW0B2pCZjZ+0njaESUw78t9iIW5e9nfbHIiMJdYb2oZqLnQNfBzU91eQYD1YFgfC
-	 wVoUJoR+eJlIg==
+	b=qg0MZF86i4vHoRckQjlkDFV5bPrs3QDJSL2A9/3OY1IGg5jIiM9/gdlkeXeNcL3Rl
+	 mQOl8sNE44ENaSnQYXf7Z2OLHb21+6XH7Y3Gnb73lPdKC5Ls18135AKkstxdUh2wjZ
+	 FBX9vwtDrO5bCWnFOqhoekD4k2PIgQjENgtiSpFlnUQHqJ78L8sOeoZwryi2jiAbLX
+	 iwCaLAPPKT7jTzkv/Xa0cygTc3lAQ8FHPMCcwD4R3k0NXJxw7igG9OVoJ3MS3Pqs0h
+	 fk6EBlAhndWAy0Ug3f11LupepS9nQFX9S0tsq9PrObIKXrjVq8idNusltjb4xnwrUN
+	 xtgNDCwMI/FKw==
 Received: by wens.tw (Postfix, from userid 1000)
-	id A9CF25FF8E; Mon, 27 Oct 2025 20:56:57 +0800 (CST)
+	id BBDE85FFCF; Mon, 27 Oct 2025 20:56:57 +0800 (CST)
 From: Chen-Yu Tsai <wens@kernel.org>
 To: Chen-Yu Tsai <wens@kernel.org>,
 	Jernej Skrabec <jernej@kernel.org>,
@@ -57,11 +57,10 @@ Cc: Rob Herring <robh@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	dmaengine@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: [PATCH v2 08/10] arm64: dts: allwinner: a523: Add I2S2 pins on PI pin group
-Date: Mon, 27 Oct 2025 20:56:49 +0800
-Message-ID: <20251027125655.793277-9-wens@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 09/10] arm64: dts: allwinner: a523: Add SPDIF TX pin on PB and PI pins
+Date: Mon, 27 Oct 2025 20:56:50 +0800
+Message-ID: <20251027125655.793277-10-wens@kernel.org>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20251027125655.793277-1-wens@kernel.org>
 References: <20251027125655.793277-1-wens@kernel.org>
@@ -73,36 +72,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The Radxa Cubie A5E exposes I2S2 through the PI pin group on the 40-pin
-GPIO header.
+The SPDIF TX (called OWA OUT in the datasheet) is available on three
+pins. Of those, the PH pin is unlikely to be used since it conflicts
+with the first Ethernet controller.
 
-Add a pinmux setting for it so potential users can directly reference
-it.
+The Radxa Cubie A5E exposes SPDIF TX through the PI pin group on the
+40-pin GPIO header.
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+The Orange Pi 4A exposes SPDIF TX through both the PB and PI pin
+groups on the 40-pin GPIO header. The PB pin alternatively would be
+used for I2S0 though.
+
+Add pinmux settings for both options so potential users can directly
+reference either one.
+
 Signed-off-by: Chen-Yu Tsai <wens@kernel.org>
 ---
- arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Changes since v1:
+- New patch; missing from v1 causing dts to not compile
+---
+ arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-index eea9ce83783c..cebd8e16e845 100644
+index cebd8e16e845..42dab01e3f56 100644
 --- a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
 +++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-@@ -145,6 +145,14 @@ pio: pinctrl@2000000 {
- 			interrupt-controller;
- 			#interrupt-cells = <3>;
+@@ -200,6 +200,20 @@ rgmii1_pins: rgmii1-pins {
+ 				bias-disable;
+ 			};
  
 +			/omit-if-no-ref/
-+			i2s2_pi_pins: i2s2-pi-pins {
-+				pins = "PI2", "PI3", "PI4", "PI5";
-+				allwinner,pinmux = <5>;
-+				function = "i2s2";
-+				bias-disable;
++			spdif_out_pb_pin: spdif-pb-pin {
++				pins = "PB8";
++				function = "spdif";
++				allwinner,pinmux = <2>;
 +			};
 +
- 			mmc0_pins: mmc0-pins {
- 				pins = "PF0" ,"PF1", "PF2", "PF3", "PF4", "PF5";
++			/omit-if-no-ref/
++			spdif_out_pi_pin: spdif-pi-pin {
++				pins = "PI10";
++				function = "spdif";
++				allwinner,pinmux = <2>;
++			};
++
+ 			uart0_pb_pins: uart0-pb-pins {
+ 				pins = "PB9", "PB10";
  				allwinner,pinmux = <2>;
 -- 
 2.47.3
