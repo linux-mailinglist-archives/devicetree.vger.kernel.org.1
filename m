@@ -1,190 +1,194 @@
-Return-Path: <devicetree+bounces-231542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8C9AC0E1F4
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:42:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC109C0E0D1
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:32:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5816818922CD
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:38:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6671406AAA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:30:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E75B2FE053;
-	Mon, 27 Oct 2025 13:29:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F3041F4188;
+	Mon, 27 Oct 2025 13:30:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oZGbVqtd"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="UXOa9zl7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f68.google.com (mail-io1-f68.google.com [209.85.166.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8C202F549F
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 13:29:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47F911C3BF7
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 13:30:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761571789; cv=none; b=CZ55Ua4A8kC3z3LbyazxYQBfamC83EfuA2w79LRyYYNDtNQbwj3u/jJoA7mhUbb9Fq4HpDm5E62wBhcu56Quq06jVgoR+rD/zWlrzmF4B4B/4MYRKdFYs6QgSIUWrNvEHES4quFnS4X9gEJJa4qnEQ/iTeIljUHcalmMrU65qGw=
+	t=1761571817; cv=none; b=M2fDxHOYMcEOF6xZxEymfEK6dYc23oJI2GAM8V/p9Qivj2ncrbf77cohB2lRbEql2ZvBl/r5hHyhNeEN5af1e3b+8F4YKN2ynR79k+sPKntPyQyg4l5CQphIV8YyFCJ9QcOtkgHN31RVG5GPlaAwAnOGkNzTL3OkMQCQwqPuVRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761571789; c=relaxed/simple;
-	bh=XMXKLVhIn79Z5YXtwYwp+2otGd+sjWyy/gmO/sPn9P8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qEzpPBaezddT0k4z0v+M948Y8wAO2ow1eKa4bMGU1OISpmoV3tryeYCRMJeP7OAYMFnOjnQVbJ3QnlIKD39wLBxkpZyo5/BjuqGC5OI80EOnlbeNhFcswrdk9F7bckUJhDkSOq9TnORmBztybbhX3QGj2kjs1A+DD0B0PpRPJag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oZGbVqtd; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59RBJhuM2546712
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 13:29:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=VV74qFJFxgTw/EeIwCONHKOh
-	1+oiVvn9rVjApUsNyoA=; b=oZGbVqtdCtjLIsgOy8MmyvH+myvMqL/Ou0HfCbxZ
-	z4zhPDUqsto6nrU3BGjpphoTxrCI18x0pnvm36fBy1YS4ikSb0ow/gKB5xZVxjLn
-	dj8i1Nd1GwZUHESoTfzqFtZumXtALQNddY8ZR9QRAlrTPNl4EztPfJV+iqv+GNVk
-	exvhoMz3laqurEH0MIsIEtgKOoZZ0DuDMbzd+FSEen7gBWNsU/lUolio1pxZPCaC
-	9Q29kZpqoIVYp9ZBjcqXdbpSPRLj1UfQhqORAM+MBejOusZ97n6CrJWqihT74x2h
-	RWd5xuazULbzz3I3J8690qWzQz5HaX3NeuBNOD+/lRI5rg==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a27s2gb43-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 13:29:45 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4ecf1b7686cso41877391cf.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 06:29:45 -0700 (PDT)
+	s=arc-20240116; t=1761571817; c=relaxed/simple;
+	bh=owwF/c1ZnVCPR3jIiSSB/1idNxMdC9jtjVdIBYaeNLA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WQ7rD73HmxgdCd0Fy+aC8pOdsAGLiyl/cNtmDov+No8K5NKEx3JLvP4adzclSOX3uzLgDbaohUEDRtwSGvxzdQvbu+spNIxgB47lZ7OoOk1CzpxhwVCntJ1HGklLSh8c0LX7/jiyLfjr/UaUE2vt7+LcYTLQ64p5YTb8DsbMZI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=UXOa9zl7; arc=none smtp.client-ip=209.85.166.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f68.google.com with SMTP id ca18e2360f4ac-93e9b5bafa5so170536739f.3
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 06:30:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1761571813; x=1762176613; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qJjnQ8pdDtk39CSCRJz3s2YRDUVOeo1DO713ElfxvCI=;
+        b=UXOa9zl7kmPLTQRHsyGrXNDHB6TN1EFakWy7s2sYohzNmhqJBSedda82G5wJ0KsX76
+         RQdx6yqG/TvLmvHt9G1MpdmNN8qTWLh84tyEtfz1eGmb3LovFo1qRfhHbCb37lKbEK9k
+         SntjcXa+tZqzHkmU8P/7wPMFF6ekShq8IoGJl3UDKD5i7+hp7bVOJZv0bsgPQWHL2710
+         ueodzFrgh2rKFfXLOwPDDvC1tK6jRqShpi5jphA+qmRx8xMGqrpS9YNGTSBhgogKj36G
+         0mvKlWLZdrqdff306iOGo1Jg5qnstlcta1Dx2GeOZ93s4k/N0v90UNIyRW3Kc3o1EzsI
+         ew8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761571785; x=1762176585;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VV74qFJFxgTw/EeIwCONHKOh1+oiVvn9rVjApUsNyoA=;
-        b=FVUQX94BiIxGXrNy+Rd14VE3f61FZ9yZHZ3X9zToRm6rfFt1hG2XK/dR2fNgztiqbp
-         JLeXStXYBfhvsURJPRPoFFL5uNoqDy6y8bUFlcXuEK2jdIk7vnXJdKS6mM9bzUqCX1Xz
-         cNZmyOAThL5GJMsXocSM6CDvxm8uYAigKMKVg4V8UC3pmBtsMML9I/H0vWb6s53+zziL
-         ZGMgdbOlAdXqABwLZKQOoXe0MgyqwzUvH0VSZ37783/gy7PZkt7ZoDCWjQ60eIXZyerv
-         liruHpfkjocuAGJWZ1yCZFCzAO1YIgitweqk6ygEyq49voEAQUgtd/J2pxHwp4bP/p1s
-         RY+g==
-X-Forwarded-Encrypted: i=1; AJvYcCUC6/SKi/aFDRwgC6tFEKoJTI7HOyngarQAN/apnkw2UbshJUvE7YhoQv4B5WGX5hUD9gxbiJjm6TkZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxdb4p0swXo3C6AC0w/FaTgQZ++SG9w6aw9f1GvZ57vDZIMmi16
-	2cb8GQ4Oyz4cWiKmWhq8WrMPgxj8KZC7MJfAxqAi3hQ8OP4JifKYz3Tz1EWhORohsjkLHSJxXMK
-	j7laL1ZBM75giCUeCpfO9WIQdWTfZncEgAvXyXo4gYBviVJwR6Re2cC/tUROhoN4k
-X-Gm-Gg: ASbGncv511ocO13zFBPgOqUcKu61Xt6Ry+YPlWfLmluiCLB7yrRHXvAilAzdCr2b3MN
-	3XBpf++PaSZ3O+mkqwF8P8vPAKSOsLmu++yGrkQ9J5l9s4PY397zJuckLSn335QUlhTMb8ErbSi
-	Z0uzMT1LHqqSb/rtqn1v1EcZGk0jJcTLNPOFp5vJdflgHxzbOaTIHdIem5I/1T2TN/Smu1Vrtki
-	pt9MnHcf0Xj//efxGZ3NFBmOImQHkosbBW6pgjY+XrMIPUIB4u4hlXyBYx8Dg74BUZi2vEksH+2
-	DFnEy/vYTwQL+DjN7M3hMZ9ZRiLs1gQ1EVLR7tt8HqkDOxEQeYMK0bA6A2rj27Hkr8u2nogs1ar
-	8uTG2ArZuq03KAwqmvlSjjc0LjzKRoQLtoXXNv7WMdbeKwjoS6jJjVWgfWo7P9VfFDPf1+gPHV1
-	G3qXz23LvYc5Bb
-X-Received: by 2002:a05:622a:1190:b0:4ec:ef49:1b19 with SMTP id d75a77b69052e-4ecef492b41mr65596211cf.5.1761571784934;
-        Mon, 27 Oct 2025 06:29:44 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG2ciuf1XZlemNcLVcB4yTtYI2v5x4NM+7pH7d4hnFEsjbYGGggzRsDo1URSo4Ky4GlyXwgvw==
-X-Received: by 2002:a05:622a:1190:b0:4ec:ef49:1b19 with SMTP id d75a77b69052e-4ecef492b41mr65594691cf.5.1761571782964;
-        Mon, 27 Oct 2025 06:29:42 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59301f74ba6sm2304297e87.90.2025.10.27.06.29.41
+        d=1e100.net; s=20230601; t=1761571813; x=1762176613;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qJjnQ8pdDtk39CSCRJz3s2YRDUVOeo1DO713ElfxvCI=;
+        b=IHQiYOI9m4dOuW974r4i/YVmRf08PPTK8cwfVUuwwnhlql5py4sOMQ0T4kjRD73+MC
+         zyDzDTTZnxZR7Q8Xtq7D7zeipmiEHfEzapWpgKM9BfzjnUfYwKXtptL+HteLAk7BHQZa
+         JsnoPno0/WHwkInNog5bqRW/44TgG/uQOlE6j8YlCAOWAxq0eoooNpvYCxwbey4tH5KJ
+         K38IdC6cqiQ71IXqJbFxE2em4qJQITop2WFuCttdUtuMlMgSiUfuFlwRXtKml8tDKEmt
+         lEur7yinCKOgrX14DkpIJcZCHNkYqetlJC4xY4PPv1Phzv57Kv+5aDB462lK9TdPpNl0
+         nC0A==
+X-Forwarded-Encrypted: i=1; AJvYcCWiWeU7afx+FByjqjzE83gpBauPb83v9eCsX3/rU32+XkR/E1aJ7I8NHMqomb+Enum31IqSboEEFHpW@vger.kernel.org
+X-Gm-Message-State: AOJu0YzWLlPa33H543Jx4Y3mZPQc7SMAdSIqTIv8ncqdzkIC/E1Gy7tI
+	6DED8SbBwqsx+54F3ac6gd3ybaim7bNVl7ilRzy+2NHk+Glyie+TFCf+TpiPx8b4HjM=
+X-Gm-Gg: ASbGncv1RkxIeBglbCK+/SMMZqMfoxuyPAABIowe9pjv6+R5kzpGOG5HxidPj6Rpeq2
+	LF1LXkEg4pQCw0gTZ3aAmEQrQqWZeS0pUdSYsmcOg9/QLNqWqoMwo6LlY0/YDbPhv+B/udjBQkH
+	mzM4yCvOlRzXmfiPaFfaq2n9YLc66DdkOJFv9dupSlKg21A8LLEEXH41CA3fU1mJ96qzkGs4Pyi
+	2e+O/0Q3ClETrgtEx6EWJGQ1YSAi8fJP0Ge4oCnLsw0mrd4410gQodb/g278J+mIZ5pAnjBX4Hf
+	+xANjoiecS57h68IHix8D8LCUg3ROHTVlf5Fp6zQ8KlFXCllXl+1w0DTwav9owrNeBc+hVFC7+6
+	otm70lxqVKmRdIUy2oioYcFYMa0Yj73e9BhNwotQgbd2nVeFabdy/E5vFihrjWBKtsWqU66CmZJ
+	4C1+jEHBKIJDHsiPTiuX4BNCt4HrW5b0CQG8KJT6Kf4b8=
+X-Google-Smtp-Source: AGHT+IFP3NJHkfNDLkwaf4zEjacSbOyB2CKC3rVjLUaScafS/uUg5QntItE3fUUUdGBa9LYYuVS1mQ==
+X-Received: by 2002:a92:cd8c:0:b0:431:d951:ab97 with SMTP id e9e14a558f8ab-4320f77104dmr1324625ab.15.1761571813243;
+        Mon, 27 Oct 2025 06:30:13 -0700 (PDT)
+Received: from zippy.localdomain (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-5aea78e2fd4sm3093057173.26.2025.10.27.06.30.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Oct 2025 06:29:42 -0700 (PDT)
-Date: Mon, 27 Oct 2025 15:29:40 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: yuanjiey <yuanjie.yang@oss.qualcomm.com>, robin.clark@oss.qualcomm.com,
-        lumag@kernel.org, abhinav.kumar@linux.dev, sean@poorly.run,
-        marijn.suijten@somainline.org, airlied@gmail.com, simona@ffwll.ch,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, quic_mkrishn@quicinc.com, jonathan@marek.ca,
-        quic_khsieh@quicinc.com, neil.armstrong@linaro.org,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
-        aiqun.yu@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com
-Subject: Re: [PATCH 01/12] drm/msm/dsi/phy: Add support for Kaanapali
-Message-ID: <ehgdx7av3jewowkvtsqrbnsphgxm5hryl6n5otnapi4xneldze@gcwvpssisv2x>
-References: <20251023075401.1148-1-yuanjie.yang@oss.qualcomm.com>
- <20251023075401.1148-2-yuanjie.yang@oss.qualcomm.com>
- <omlhiywjr46ik6bj2aiutgcf4aifen4vsvtlut7b44ayu4g4vl@zn4u3zkf6cqx>
- <ad906eb5-c08f-4b66-9e37-aaba99889ad4@oss.qualcomm.com>
- <aPryORKIuSwtXpon@yuanjiey.ap.qualcomm.com>
- <einog245dsbqtx3by2cojyzmyctk2fffpwndwoe24puwqq4fta@cu6iiidxqgr4>
- <0291d0f2-483f-48d8-8c75-f1bbcd1ab18f@oss.qualcomm.com>
+        Mon, 27 Oct 2025 06:30:12 -0700 (PDT)
+From: Alex Elder <elder@riscstar.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	han.xu@nxp.com,
+	broonie@kernel.org,
+	dlan@gentoo.org,
+	pjw@kernel.org
+Cc: Frank.li@nxp.com,
+	p.zabel@pengutronix.de,
+	guodong@riscstar.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	apatel@ventanamicro.com,
+	joel@jms.id.au,
+	geert+renesas@glider.be,
+	cyy@cyyself.name,
+	heylenay@4d2.org,
+	conor.dooley@microchip.com,
+	fustini@kernel.org,
+	linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/9] spi: enable the SpacemiT K1 SoC QSPI
+Date: Mon, 27 Oct 2025 08:29:58 -0500
+Message-ID: <20251027133008.360237-1-elder@riscstar.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0291d0f2-483f-48d8-8c75-f1bbcd1ab18f@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: P7ui2d-1ryroP8p9nfzRvFDIRVkvfjrn
-X-Proofpoint-GUID: P7ui2d-1ryroP8p9nfzRvFDIRVkvfjrn
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI3MDEyNSBTYWx0ZWRfX9YaSufK/8nq/
- cBzSZ10iZLnql6c7zgYTwT547kxKvkrFW84u9+SsAR5Rmrwk3fnZIimmumJw8a3BRteg3GbCN5H
- nldhkTe/HSa2PhJxzxZRYTZ4QlW3nJMz4wIcVdKb+lt4pYqTjiv1uiwt2QfpDjaEzXBtWGq1van
- AyKYHz/qllCLcBLPel54htd4RZ/4/8KBHyEP70ROr66SfcbFBPihWmW8eheXY0MOqJy9cu/GvZO
- X/EjGaPh9LcS+jbfCgsCOl1qcwZIVSBksZZfnhJNYS76wDxcyKCM8WmGzNNAKtue+mp/G3emOHx
- 9zJten15jWjqhwaxvOqaj6nv8kIli1pENbzCentzdtEHSVJkvxwUfQU9Q/zqc5H4o+6qaiL1duE
- S6iWpOYK/ZmAv8J5hriAQ532clNBsQ==
-X-Authority-Analysis: v=2.4 cv=R60O2NRX c=1 sm=1 tr=0 ts=68ff73c9 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
- a=r5vzRnyTyaal3BpozBMA:9 a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-27_05,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 lowpriorityscore=0 phishscore=0 bulkscore=0
- impostorscore=0 clxscore=1015 spamscore=0 adultscore=0 malwarescore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510020000
- definitions=main-2510270125
+Content-Transfer-Encoding: 8bit
 
-On Mon, Oct 27, 2025 at 02:20:26PM +0100, Konrad Dybcio wrote:
-> On 10/27/25 2:14 PM, Dmitry Baryshkov wrote:
-> > On Fri, Oct 24, 2025 at 11:27:53AM +0800, yuanjiey wrote:
-> >> On Thu, Oct 23, 2025 at 02:02:45PM +0200, Konrad Dybcio wrote:
-> >>> On 10/23/25 1:48 PM, Dmitry Baryshkov wrote:
-> >>>> On Thu, Oct 23, 2025 at 03:53:50PM +0800, yuanjie yang wrote:
-> >>>>> From: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
-> >>>>>
-> >>>>> Add DSI PHY support for the Kaanapali platform.
-> >>>>>
-> >>>>> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-> >>>>> Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
-> >>>>> ---
-> >>>
-> >>> [...]
-> >>>
-> >>>>> +	.io_start = { 0x9ac1000, 0xae97000 },
-> >>>>
-> >>>> These two addresses are very strange. Would you care to explain? Other
-> >>>> than that there is no difference from SM8750 entry.
-> >>>
-> >>> They're correct.
-> >>> Although they correspond to DSI_0 and DSI_2..
-> >>>
-> >>> Yuanjie, none of the DSI patches mention that v2.10.0 is packed with
-> >>> new features. Please provide some more context and how that impacts
-> >>> the hw description.
-> >>
-> >> Thanks for your reminder.
-> >>
-> >> Correct here:
-> >> io_start = { 0x9ac1000, 0x9ac4000 }  DSI_Phy0 DSI_phy1
-> >>
-> >> And v2.10.0 no clearly meaningful changes compared to v2.9.0.
-> >> just some register address change.
-> > 
-> > Addition of DSI2 is a meaningful change, which needs to be handled both
-> > in the core and in the DSI / DSI PHY drivers.
-> 
-> DSI2 was introduced in 8750 already, but it was done without any
-> fanfare..
-> 
-> I see a diagram that shows an XBAR with inputs from DSI0 and DSI2,
-> and an output to DSI0_PHY (same thing on kaanapali - meaning this
-> patch is potentially wrong and should ref DSI1_PHY instead?)
+This series adds support for the SpacemiT K1 SoC QSPI.  This IP is
+generally compatible with the Freescale QSPI driver, requiring three
+minor changes to enable it to be supported.  The changes are:
+  - Adding support for optional resets
+  - Having the clock *not* be disabled when changing its rate
+  - Allowing the size of storage blocks written to flash chips
+    to be set to something different from the AHB buffer size
 
-Most likely.
+This version of the series mainly adds sign-offs provided for v3.
 
+					-Alex
+
+This series is available here:
+  https://github.com/riscstar/linux/tree/outgoing/qspi-v4
+  
+Version 4 incorporates comments recieved during review of v3:
+  - Moved the allOf block below the required section in patch 2
+  - Added Frank Li's Reviewed-by on patch 2, 4, and 5
+  - Added Paul Walmsley's Acked-by on patch 9
+
+Here is version 3:
+  https://lore.kernel.org/lkml/20251024191550.194946-1-elder@riscstar.com/
+
+Version 3 addresses comments recieved during review of v2:
+  - This version fully tested and confirmed to work on BPI-F3
+  - Added Acked-by from Conor on patches 1 and 2
+  - Added Reviewed-by from Frank on patches 1 and 6
+  - Moved the reset property conditional under allOf in the binding
+  - In patch 5, needs_clk_disable() is no longer inline
+  - Tweaked the description in patch 5
+  - Renamed a local variable to be "sfa_size" in patch 6
+  - Changed the subject line in patch 6
+  - The sfa_size field was not being assigned in spacemit_k1_data;
+    now it is set to SZ_1K
+
+Here is version 2:
+  https://lore.kernel.org/lkml/20251023175922.528868-1-elder@riscstar.com/
+
+Version 2 addresses comments recieved during review of v1:
+  - The "reset" property now only applies to spacemit,k1-qspi compatible.
+  - Patch 1 (previously patch 2) now points out that this is the first
+    non-Freescale device using the binding.
+  - Added Frank Li's Reviewed-by on patch 3.
+  - A quirk flag has been renamed to be QUADSPI_QUIRK_SKIP_CLK_DISABLE.
+  - The predicate for that quirk now returns bool type.
+  - All other similar predicates now return bool type; this is done in a
+    new patch (patch 4).
+  - If non-zero, new field fsl_qspi_devtype_data->sfa_size defines the
+    size of the serial flash regions, rather than ahb_buf_size.
+  - A continued line in the Kconfig is now aligned.
+  - Patch descriptions are wrapped at 75 columns.
+
+Here is version 1:
+  https://lore.kernel.org/lkml/20251020165152.666221-1-elder@riscstar.com/
+
+Alex Elder (9):
+  dt-bindings: spi: fsl-qspi: support SpacemiT K1
+  dt-bindings: spi: fsl-qspi: add optional resets
+  spi: fsl-qspi: add optional reset support
+  spi: fsl-qspi: switch predicates to bool
+  spi: fsl-qspi: add a clock disable quirk
+  spi: fsl-qspi: introduce sfa_size devtype data
+  spi: fsl-qspi: support the SpacemiT K1 SoC
+  riscv: dts: spacemit: enable K1 SoC QSPI on BPI-F3
+  riscv: defconfig: enable SPI_FSL_QUADSPI as a module
+
+ .../bindings/spi/fsl,spi-fsl-qspi.yaml        | 21 ++++-
+ .../boot/dts/spacemit/k1-bananapi-f3.dts      |  6 ++
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  | 21 +++++
+ arch/riscv/boot/dts/spacemit/k1.dtsi          | 16 ++++
+ arch/riscv/configs/defconfig                  |  1 +
+ drivers/spi/Kconfig                           |  3 +-
+ drivers/spi/spi-fsl-qspi.c                    | 88 +++++++++++++------
+ 7 files changed, 127 insertions(+), 29 deletions(-)
+
+
+base-commit: 8fec172c82c2b5f6f8e47ab837c1dc91ee3d1b87
 -- 
-With best wishes
-Dmitry
+2.48.1
+
 
