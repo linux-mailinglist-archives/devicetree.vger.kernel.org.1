@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-231714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ED61C106C0
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 20:03:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7C12C10581
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:58:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C32F562289
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:57:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D29FB188A067
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:55:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3252332B9B0;
-	Mon, 27 Oct 2025 18:54:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1727B320CC2;
+	Mon, 27 Oct 2025 18:51:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DV2r+MXV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CPAJT9g/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0543F246BB7;
-	Mon, 27 Oct 2025 18:54:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF61121C160;
+	Mon, 27 Oct 2025 18:51:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761591261; cv=none; b=X2+ZOgxSCTBMvnAo2/3USXzC9WXQV8FRCVt3YoOvwW0u2vndifxJDzIad4uqtQvfg4lJzwQw+z7AUc/irsO4BKMVVheewZblfF+Ff7vmM2QOq1UgDxwp+A9qkyCLd1l+UM/h7tTBvwvEHaO9gjRtIMEZOJzaPAQSmQuaJQnZV58=
+	t=1761591111; cv=none; b=CPjigFnGKsgi4KIfnx0VAK9ZcetWK6RWKC6bnty7BrNi0SiaYOIi4Z7u01MIvK578Rzb56TUu/PEimUjZuaE1kvBf1Xxx8B3FtvyLtrlulr6ruK/J3PL11CvWgFXEEuIB/E+E74lNQGCezo1wppWbLVoY5pNzJJ7SaG/x5uYlvE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761591261; c=relaxed/simple;
-	bh=GFYVrpsOhV/IDMS7pxMo1goftmWnsj824iiTB3K/kLA=;
+	s=arc-20240116; t=1761591111; c=relaxed/simple;
+	bh=9cXrx2C0wiBPVnpRJnsgqJdhF/scUoAfis75okK/eD8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YoV6FP2ZxE7pbg/qlYK3spt29Y5XgJxn+ojj4qvS/TggzSEllC7MyhY+DumR51Z9Y67ofh3AbJCuQyEJgBj4VJe4vnzdxQX3lmpAOZdFc0gy1rwRCFcxTZENm7msnxaH6ADW5nU+qlF6ARys35S4r9oOLtmiuu3yKW56q47IUno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DV2r+MXV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7675BC116B1;
-	Mon, 27 Oct 2025 18:54:20 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=K01rB9biseJXlhMG7h6seUQO968bsIS4Bh2mW2JNbkmJo9dJ+EI0XD3F6FOZilA8aNUiCs/dWJXaGKi9h6mIzXpTARMhyJKfIO92CUFsmSvZ0c+07tOMVZHF5kPEN6FMbjyuKf89u6ZwnTRSaDmC5iTn0J3nxfclpFL9gc1ib3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CPAJT9g/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25FA8C4CEF1;
+	Mon, 27 Oct 2025 18:51:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761591260;
-	bh=GFYVrpsOhV/IDMS7pxMo1goftmWnsj824iiTB3K/kLA=;
+	s=k20201202; t=1761591110;
+	bh=9cXrx2C0wiBPVnpRJnsgqJdhF/scUoAfis75okK/eD8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DV2r+MXVqDP7hNaS7Zfg/b6Aw/fUNBkTRGbrdVNn4fqcY6VZs/0ivvzBd8JNL4MBX
-	 Nu5glfecNS5S03aV/cxn23Qz3MtmQuXzL75RpQkGcyVM7r5w6aZS97ZOtKeqVFDtdu
-	 zXvq9WCB81uIFqaQvrPQNNuTvvU3VV3D7odoCgzKvg/8TZSuNVrQikF3ja0+Ag3trM
-	 3Pt2kBuekfha8mQ5IfXbERZPkSl2jdKG7UoypxDSVl1b0FVL8I6v1K9t6FzViixUW0
-	 qJC/IpM78qbW1c/MpUowiADH+2myLwbDV5Ts8hrodnCsgOW7aHPIgupCU4sd4Uh3IN
-	 kuWVKmFnKCqzA==
-Date: Mon, 27 Oct 2025 13:54:19 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-	devicetree@vger.kernel.org,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	netdev@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>
-Subject: Re: [PATCH net-next v2] dt-bindings: net: phy: vsc8531: Convert to
- DT schema
-Message-ID: <176159122491.1402525.10322213596595945549.robh@kernel.org>
-References: <20251025064850.393797-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	b=CPAJT9g/3RK7KJ6fmq6ttMPk0n1PDOLiiZmlQ35lvKWG151nsGTCrl2X1xd42Dx+T
+	 JbcXJ3WFeUvZDbGLDUxyR+Kzo5RuB2fWgjs6NaHpdZLbGFl3HhSIM2Z2mzZA/6Ox6K
+	 qX3PqB9FN5nlxdBYRa8bj7WKCrcNE4Al+4UjVoFvvn2QIxH9uvT7eDEK/lIp6180+f
+	 F8Pff0mGzGf36gjQvSYDrsCY7ukZeoBY3R/jk5AjvBJadKrQgrLj6jD16w8WtJRQ61
+	 1vJ4vcH1Nvl/DMTs1UikheyU+vfUBNzCHkPZBp8PLW9CGDUPq6KUxsUl3k0VHc3rDX
+	 tkqkZ2shWJ36A==
+Date: Mon, 27 Oct 2025 13:54:43 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: xiangxu.yin@oss.qualcomm.com
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>, 
+	Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>, 
+	Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com, li.liu@oss.qualcomm.com
+Subject: Re: [PATCH v6 1/4] dt-bindings: display: msm: Add SM6150 DisplayPort
+ controller
+Message-ID: <m6j3sdc4jb2jonzbpez7g3xb6cfputdz34wtydfrx736nqvrv6@o5ntg7csl7dr>
+References: <20251024-add-displayport-support-to-qcs615-devicetree-v6-0-c4316975dd0e@oss.qualcomm.com>
+ <20251024-add-displayport-support-to-qcs615-devicetree-v6-1-c4316975dd0e@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,41 +67,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251025064850.393797-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251024-add-displayport-support-to-qcs615-devicetree-v6-1-c4316975dd0e@oss.qualcomm.com>
 
-
-On Sat, 25 Oct 2025 07:48:50 +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Fri, Oct 24, 2025 at 01:21:01PM +0800, Xiangxu Yin via B4 Relay wrote:
+> From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
 > 
-> Convert VSC8531 Gigabit ethernet phy binding to DT schema format. While
-> at it add compatible string for VSC8541 PHY which is very much similar
-> to the VSC8531 PHY and is already supported in the kernel. VSC8541 PHY
-> is present on the Renesas RZ/T2H EVK.
+> SM6150 uses the same DisplayPort controller as SM8150, which is already
+> compatible with SM8350. Add the SM6150-specific compatible string and
+> update the binding example accordingly.
 > 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
 > ---
-> Inspired from the DT warnings seen while running dtbs check [0],
-> took an opportunity to convert this binding to DT schema format.
-> As there was no entry in the maintainers file Ive added myself
-> as the maintainer for this binding.
-> [0] https://lore.kernel.org/all/176073765433.419659.2490051913988670515.robh@kernel.org/
+>  .../devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml      | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 > 
-> Note,
-> 1] As there is no entry in maintainers file for this binding, Ive added myself
-> as the maintainer for this binding.
-> 
-> v1->v2:
-> - Updated dependencies format as per review comments.
-> - Updated vsc8531,edge-slowdown description to use formatting.
-> ---
->  .../bindings/net/mscc-phy-vsc8531.txt         |  73 ----------
->  .../bindings/net/mscc-phy-vsc8531.yaml        | 131 ++++++++++++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +-
->  3 files changed, 132 insertions(+), 74 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
->  create mode 100644 Documentation/devicetree/bindings/net/mscc-phy-vsc8531.yaml
-> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml
+> index 9ac24f99d3ada1c197c9654dc9babebccae972ed..ba0dea2edea98cee0826cf38b3f33361666e004a 100644
+> --- a/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml
+> @@ -51,6 +51,16 @@ patternProperties:
+>        compatible:
+>          const: qcom,sm6150-dpu
+>  
+> +  "^displayport-controller@[0-9a-f]+$":
+> +    type: object
+> +    additionalProperties: true
+> +    properties:
+> +      compatible:
+> +        items:
+> +          - const: qcom,sm6150-dp
+> +          - const: qcom,sm8150-dp
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Perhaps I'm missing something, but if sm6150-dp is the same controller
+as sm8150-dp, which is the same controller as sm8350-dp...doesn't that
+imply that sm6150-dp is the same as sm8350-dp and we could not mention
+the sm8150-dp here?
 
+Regards,
+Bjorn
+
+> +          - const: qcom,sm8350-dp
+> +
+>    "^dsi@[0-9a-f]+$":
+>      type: object
+>      additionalProperties: true
+> 
+> -- 
+> 2.34.1
+> 
+> 
 
