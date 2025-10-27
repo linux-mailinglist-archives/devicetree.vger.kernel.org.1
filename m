@@ -1,151 +1,181 @@
-Return-Path: <devicetree+bounces-231585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FADFC0E99B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 15:50:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A519FC0EA6B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 15:56:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA1A119C1B23
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:50:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A231419C248D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:56:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D3F62D239B;
-	Mon, 27 Oct 2025 14:49:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93D012D12EA;
+	Mon, 27 Oct 2025 14:55:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PbBxtZHl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TFJAbpKc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 657CF296BB6;
-	Mon, 27 Oct 2025 14:49:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AEAA2D0298;
+	Mon, 27 Oct 2025 14:55:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761576554; cv=none; b=C/ns/iT4f9/YtTMWKflcnihNondq9D4WxBtVQ7HSevJL/0Glo7bqQ0ECANDRQFi8dAm5rhqBu7Q4yYKE2asXTWX2I5sUGlNeo6XCw//ImakflGLtbwwQgTN5zzgx+U+w47Y0LqZZFQx2LFY0Q51Y+eggN0O3GoGV8zZHJyw0j4s=
+	t=1761576957; cv=none; b=UCb0LQYjcCSbgZMIcJCE8KUk7UqtMKJgAIxkwd3pLIYJIuXs/j/pnGKv35lWFfjvinw4qJqHH4J33yV3HTMQPIcKTJcJT5KC1Q/W/JnsP82JUtndSMbDeDglc2p4Kc0uMlVMW6KI53cNiTTOsQMMnUWrF4spzwiJ57Hby0iGOWM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761576554; c=relaxed/simple;
-	bh=LKPXVhbMLyJFUAhnFO5LZpjuc3Rzz6MeJrFVEJFp7mA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XbXmIkaG/6vWqgCg4rrgjeTPRZoQZv3/3Zdtew7yB8gEU92MXQVDTALKCbAJEs+A38km2cJhrl1kIOPzZR0oxOVAAorc0q5K+f1G15GIs6p9G304F1Wb0oMpUNZdW7XuLuY7tgEccgv0khb7wNcsswbwLxHQFtKYUhLCJE6PUJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PbBxtZHl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3858C4CEFF;
-	Mon, 27 Oct 2025 14:49:12 +0000 (UTC)
+	s=arc-20240116; t=1761576957; c=relaxed/simple;
+	bh=zclksEatGwHyt87eluat+bMHeuNGX8hMCEVl2HYQYRw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=V+aHk2i7/qUlPsVN1Bmev0zgDQozQoDJcMQmFsXvryp4/fvVNyT7S/qdFJVEAa98ijUqueWgKM2msDowOPJZtEvmedf//IXWHMapsWghnDTYcwri6pedRaPifZoJDUXD0vCgWZELe4YoCt1AZP5AYpVEJQTkCjOUSCzGVqoOaBg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TFJAbpKc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 050B2C4CEF1;
+	Mon, 27 Oct 2025 14:55:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761576553;
-	bh=LKPXVhbMLyJFUAhnFO5LZpjuc3Rzz6MeJrFVEJFp7mA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PbBxtZHlvX/bylN0gO7RmgmI1dJ6TVW/yV6mzrZWNpynfqPhTZR7w1rQHJeKICXh/
-	 UGBdvZI6obJHTrEqqiFRO3IgxxPU9bt2jPQBVWLxaQGxMgJY1OFkigiE94tqhx2sqp
-	 rmDp8Y1v3g6y2x6ajwN2A76WojDYI/ck1l3t12c+yJrKa65Jg4SARDjvtviAVCy5tA
-	 9MJp4a3/SXseyXzwUS860jqERdID2eSU2zt6OjEuCuhXZqYlqMfA5cUez7k+3SX5GF
-	 opGzvvC4/hkZMWW0PEeCwVTzrXX3aMiZomZlqivHX54FGqm5HIUbAuFay5h4+vfcYp
-	 90cLX1ygDjgrA==
-Date: Mon, 27 Oct 2025 09:52:06 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: david@ixit.cz
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Jonathan Corbet <corbet@lwn.net>, Jiri Kosina <jikos@kernel.org>, 
-	Benjamin Tissoires <bentiss@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	Gergo Koteles <soyer@irl.hu>
-Subject: Re: [PATCH v6 1/2] Input: add ABS_SND_PROFILE
-Message-ID: <rdryhql5vrjckh2yvcgbdcnlu2f4aiq6hbokgfzvrtdu33lp5u@fctqxdftabsy>
-References: <20250731-op6-tri-state-v6-0-569c25cbc8c2@ixit.cz>
- <20250731-op6-tri-state-v6-1-569c25cbc8c2@ixit.cz>
+	s=k20201202; t=1761576957;
+	bh=zclksEatGwHyt87eluat+bMHeuNGX8hMCEVl2HYQYRw=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=TFJAbpKcPXez0kQyayz2t0tuXZN7B5LCg2THz44bR/CwdlWDkqZ3wf0TVun/pomPA
+	 i4KK51pSyHlUFNKzz33hhZq3vNNTALOqPJ6r2vwC4V+iH44WOY5NiHysdliWqZ9mbg
+	 K6evXxa/2TaOA+e3CfH0104y+m3bw45P8QnaaJLmiewfvOidHQ0FDM59lOj74N1I/O
+	 /1kIoJLMjcqRnpgmuhqlXr9+mVK+3LC+YyyytaH+ALCcF7fpzGl7ySHTH0VvQmD15k
+	 ygX5RXhei9y8ZOKB3Z5zIhSzDLGhVx+GH1yyS8KJKb79uoCX0bcBzKo1Pz/QaryUhA
+	 VauXZ3TuignQw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E7CDECCF9E0;
+	Mon, 27 Oct 2025 14:55:56 +0000 (UTC)
+From: Mahesh Rao via B4 Relay <devnull+mahesh.rao.altera.com@kernel.org>
+Subject: [PATCH v7 0/4] stratix10: Add framework for asynchronous
+ communication with SDM
+Date: Mon, 27 Oct 2025 22:54:39 +0800
+Message-Id: <20251027-sip_svc_upstream-v7-0-6e9ab26d7480@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250731-op6-tri-state-v6-1-569c25cbc8c2@ixit.cz>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALCH/2gC/3XR227CMAwG4FdBuaaT45y52ntME0oTd0QalCWl2
+ oR49wWYVKaWS1vy99vymRXKiQrbrM4s05hK6g+1MOsVCzt/+KAmxVozBFTABW9KOm7LGLanYxk
+ y+X1DxkYbXCuFUKyOHTN16ftGvr3f60xfpyoPU3OXytDnn1vsyK/de4JEnCeMvIEGrAXluINO8
+ Ff/OVD2L6Hfs6s24iQoviRgFTpPKkgVKhNngngQUC8Iograg/VSAUYSM0FOguawIMgqtCG6qME
+ 6MPMr1IOAS4KqghEYpQ91EYGPwvrvRwbsk0kXJFqHSkclZ9l6ynaw8OVRX7eXsTUdmNC2i9kO5
+ ZPJYC112rYdSvqXfblcfgGkIewShAIAAA==
+X-Change-ID: 20250131-sip_svc_upstream-e78d8c9b4335
+To: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Mahesh Rao <mahesh.rao@altera.com>, 
+ Richard Gong <richard.gong@intel.com>, Alan Tull <atull@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Matthew Gerlach <matthew.gerlach@altera.com>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761576953; l=3856;
+ i=mahesh.rao@altera.com; s=20250107; h=from:subject:message-id;
+ bh=zclksEatGwHyt87eluat+bMHeuNGX8hMCEVl2HYQYRw=;
+ b=smEYJJCDj0JQALbvMbfpZU/6JQ0n0YV3AwHD9MrUifn60n55IJFzKqAmCIIiVCO/IXrxHcpCX
+ kJiqLcD8086DfLB1Gx0Veze10+h3QYLpYb9iuRNMeFcM5TZqkKsxf/X
+X-Developer-Key: i=mahesh.rao@altera.com; a=ed25519;
+ pk=tQiFUzoKxHrQLDtWeEeaeTeJTl/UfclUHWZy1fjSiyg=
+X-Endpoint-Received: by B4 Relay for mahesh.rao@altera.com/20250107 with
+ auth_id=337
+X-Original-From: Mahesh Rao <mahesh.rao@altera.com>
+Reply-To: mahesh.rao@altera.com
 
-On Thu, Jul 31, 2025 at 11:17:01PM +0200, David Heidelberg via B4 Relay wrote:
-> From: Gergo Koteles <soyer@irl.hu>
-> 
-> ABS_SND_PROFILE used to describe the state of a multi-value sound profile
-> switch. This will be used for the alert-slider on OnePlus phones or other
-> phones.
-> 
-> Profile values added as SND_PROFLE_(SILENT|VIBRATE|RING) identifiers
-> to input-event-codes.h so they can be used from DTS.
-> 
+The patch set includes the following changes:
 
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+- Add protection for querying memory objects in multi-threaded flow.
+- Add support to generate and maintain message id and client id for
+  asynchronous communication with SDM.
+- Add framework to communicate with Secure Device Manager (SDM)
+  asynchronously by sending a request and polling for response.
+- Add commands for performing Remote System Update (RSU) operations
+  asynchronously.
+- Migrate RSU driver to use the asynchronous communication framework.
 
-Regards,
-Bjorn
+---
+Changes in v7:
+- Rebased to maintainers branch (svc_driver_for_v6.19).
+- Fixed a minor logical check.
+- Link to v6: https://lore.kernel.org/r/20250924-sip_svc_upstream-v6-0-c88ef68bf24e@altera.com
 
-> Signed-off-by: Gergo Koteles <soyer@irl.hu>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  Documentation/input/event-codes.rst    | 6 ++++++
->  drivers/hid/hid-debug.c                | 1 +
->  include/uapi/linux/input-event-codes.h | 9 +++++++++
->  3 files changed, 16 insertions(+)
-> 
-> diff --git a/Documentation/input/event-codes.rst b/Documentation/input/event-codes.rst
-> index b4557462edd7b3fef9e9cd6c2c3cb2d05bb531ab..d43336e64d6aa4fe8a41b7e9947f4f214df6e1ab 100644
-> --- a/Documentation/input/event-codes.rst
-> +++ b/Documentation/input/event-codes.rst
-> @@ -241,6 +241,12 @@ A few EV_ABS codes have special meanings:
->      emitted only when the selected profile changes, indicating the newly
->      selected profile value.
->  
-> +* ABS_SND_PROFILE:
-> +
-> +  - Used to describe the state of a multi-value sound profile switch.
-> +    An event is emitted only when the selected profile changes,
-> +    indicating the newly selected profile value.
-> +
->  * ABS_MT_<name>:
->  
->    - Used to describe multitouch input events. Please see
-> diff --git a/drivers/hid/hid-debug.c b/drivers/hid/hid-debug.c
-> index 7107071c7c516af48c0c5fc1206c1e01bae3889f..c58500d8b94b581e41ae098d6ce99db7783986b7 100644
-> --- a/drivers/hid/hid-debug.c
-> +++ b/drivers/hid/hid-debug.c
-> @@ -3513,6 +3513,7 @@ static const char *absolutes[ABS_CNT] = {
->  	[ABS_DISTANCE] = "Distance",	[ABS_TILT_X] = "XTilt",
->  	[ABS_TILT_Y] = "YTilt",		[ABS_TOOL_WIDTH] = "ToolWidth",
->  	[ABS_VOLUME] = "Volume",	[ABS_PROFILE] = "Profile",
-> +	[ABS_SND_PROFILE] = "SoundProfile",
->  	[ABS_MISC] = "Misc",
->  	[ABS_MT_SLOT] = "MTSlot",
->  	[ABS_MT_TOUCH_MAJOR] = "MTMajor",
-> diff --git a/include/uapi/linux/input-event-codes.h b/include/uapi/linux/input-event-codes.h
-> index 08cb157ab59364a41ac425fc9a4ea8eb2fae0e86..f443f61f9bb8e3c212da522d9b99a386a13c4475 100644
-> --- a/include/uapi/linux/input-event-codes.h
-> +++ b/include/uapi/linux/input-event-codes.h
-> @@ -875,6 +875,7 @@
->  
->  #define ABS_VOLUME		0x20
->  #define ABS_PROFILE		0x21
-> +#define ABS_SND_PROFILE		0x22
->  
->  #define ABS_MISC		0x28
->  
-> @@ -984,4 +985,12 @@
->  #define SND_MAX			0x07
->  #define SND_CNT			(SND_MAX+1)
->  
-> +/*
-> + * ABS_SND_PROFILE values
-> + */
-> +
-> +#define SND_PROFILE_SILENT	0x00
-> +#define SND_PROFILE_VIBRATE	0x01
-> +#define SND_PROFILE_RING	0x02
-> +
->  #endif
-> 
-> -- 
-> 2.50.1
-> 
-> 
+- Link to v6: https://lore.kernel.org/r/20250901-sip_svc_upstream-v6-0-b4db7f07cbb2@altera.com
+
+Changes in v6:
+- Use guard() helper function for svc_mem_lock.
+- Fixed comment message style according to kernel coding style.
+- Added fixes tag to commit message.
+- Removed id generation patch and use in house ida allocator.
+- Changed lock of hashmap db lock from rcu to spinlock for better latency.
+
+- Link to v5: https://lore.kernel.org/r/20250708-sip_svc_upstream-v5-0-9c4289256d54@altera.com
+
+- Link to v5: https://lore.kernel.org/r/20250620-sip_svc_upstream-v5-0-732d4ac08a32@altera.com
+
+Changes in v5:
+- Use FIELD_PREP, FIELD_GET() and GENMASK() for bit
+  manipulation for ids.
+- Bring down probing when stratix10_svc_async_init()
+  fails.
+- Other minor fixes.
+
+- Link to v4: https://lore.kernel.org/r/20250610-sip_svc_upstream-v4-0-bcd9d6089071@altera.com
+
+Changes in v4:
+- Added description for svc_mem_lock mutex.
+- Wrapped commit message and comments in source
+  code to kernel coding style as per coding style.
+- Added minor code fixes.
+- Moved variables to the top of the function
+- Removed HWMON support from in the patch-set, this
+  will be sent in a separate patch-set.
+- Added support for RSU commands to asynchronously
+  communicate with SDM.
+- Migrated RSU driver to use the supported 
+  asynchronous commands.
+
+- Link to v3: https://lore.kernel.org/r/20250526-sip_svc_upstream-v3-0-6a08a4502de3@altera.com
+
+Changes in v3:
+- Changed "Stratix 10" to "Stratix10" in the commit
+  message and in source code.
+- Simplified stratix10_svc_add_async_client() by removing
+  redundant code for async common channel initialization.
+- Fixed resource cleanup on negative path in
+  stratix10_svc_remove_async_client() and stratix10_svc_async_init().
+- Removed optional interrupt handler support, will send the patches
+  in a separate patch-set.
+
+- Link to v2: https://lore.kernel.org/r/20250512-sip_svc_upstream-v2-0-fae5c45c059d@altera.com
+
+Changes in v2:
+- Added Reviewed by tag from Rob Herring for dt-binding
+  patch.
+- Resending the patch-set as there is no response from
+  the maintainers for the previous patch submission.
+
+- Link to v1: https://lore.kernel.org/r/20250422-sip_svc_upstream-v1-0-088059190f31@altera.com
+
+---
+Mahesh Rao (4):
+      firmware: stratix10-svc: Add mutex in stratix10 memory management
+      firmware: stratix10-svc: Add support for async communication
+      firmware: stratix10-svc: Add support for RSU commands in asynchronous framework
+      firmware: stratix10-rsu: Migrate RSU driver to use stratix10 asynchronous framework.
+
+ drivers/firmware/stratix10-rsu.c                   | 272 ++++----
+ drivers/firmware/stratix10-svc.c                   | 739 ++++++++++++++++++++-
+ include/linux/firmware/intel/stratix10-smc.h       |  77 +++
+ .../linux/firmware/intel/stratix10-svc-client.h    |  92 +++
+ 4 files changed, 1046 insertions(+), 134 deletions(-)
+---
+base-commit: 6a6263c0ef0ffba7ac7fcf65556cc93d37ececae
+change-id: 20250131-sip_svc_upstream-e78d8c9b4335
+
+Best regards,
+-- 
+Mahesh Rao <mahesh.rao@altera.com>
+
+
 
