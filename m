@@ -1,68 +1,65 @@
-Return-Path: <devicetree+bounces-231558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48E09C0E50A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 15:15:05 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B573C0E522
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 15:15:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CF58F4F3412
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:06:32 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1491B4FC32C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:06:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59F612BE7B4;
-	Mon, 27 Oct 2025 14:06:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8597307AF7;
+	Mon, 27 Oct 2025 14:06:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NXOG54m2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nr6/h5rZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 275711F4161;
-	Mon, 27 Oct 2025 14:06:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD3C2307AC4;
+	Mon, 27 Oct 2025 14:06:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761573989; cv=none; b=WqJRkRZ1dfH1xGJZ1dEC//j8Vc7RNz17k/klUm33/6qGeVf0OjfHsetkz2YVj6KcmbflybWjlBaagaXa+WNej/sG53WUrazLetkuDYq+0YNI5qaM9KP9pR/Tn1nYCAHeHqcdiV8ASRbtvG9iTSYtFfBLdcPsorc932AOzmg758I=
+	t=1761573990; cv=none; b=FzPQWDGrAd2txMpV7fJ343VwL00r+KAinNaFx9pk/LEoK8YbYkT67jmnkE+vwSQUnPTv3xaZAjrj3wpmq8kdZWFIFTN7lh6/9UhkYmAzTfw0t6PsJTCIQONZHUcXjx2tu5xDX2LAy9XlUdH307zXmP5mZLWZ3CXDTxR5oXazEMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761573989; c=relaxed/simple;
-	bh=WfPSZu7LSHG4fLrBFHtsbqrLYPx6fVlrmAr8kHkI/Oo=;
+	s=arc-20240116; t=1761573990; c=relaxed/simple;
+	bh=mydn0gj6QS5mxTfOU4C8MwsgU0NOzyhR/5mNbySSuqM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dXKaFecJMJUkk7EiPoicGewCZQ+/qNzwxdqEfWVD44GPP4EjWe7+6lL13WOJlqrDZmTbSkPGlcMMFmpsGwTAC92QERu34LdRw/nJvO9oOmnACpQAGsOUcwos255CfMeg32A+9xLB43NADTZ4wcyo7LvVNt0lDhPDz6AdUr9qKOo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NXOG54m2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F54EC113D0;
-	Mon, 27 Oct 2025 14:06:27 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Q0fNywLfHdQkCE7ppsprbHUQyqHODTHoh7y2+0JpeB5dv3L7QOVwBbSsDh16TUdSai46FclfAAgzeXtefOw317wCRoH4iHiyTRpygWqoXiap3cja7xp7WLTdrBBA/f9IwHhnJRozYgUXuFSfbzVq+zD+dZXqLgY4875ais8y/WU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nr6/h5rZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5426BC116D0;
+	Mon, 27 Oct 2025 14:06:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761573988;
-	bh=WfPSZu7LSHG4fLrBFHtsbqrLYPx6fVlrmAr8kHkI/Oo=;
+	s=k20201202; t=1761573990;
+	bh=mydn0gj6QS5mxTfOU4C8MwsgU0NOzyhR/5mNbySSuqM=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=NXOG54m2L61PkB2ZoNhNafdgbTAV4c+1x2i8FnfOHtAaPErMALEYp+Wnv3lSJjwWS
-	 77DVS+pIc0WNv1jL8aiMZbtAKoj5qP/MFPqwstn/wFVW7aV+2OsMeVFItIBdaFpnnn
-	 4IRD1Y0bjQzkRwusdZdvCv2WUQwhuyaHaoaAiPIm38mTgQnNr/6k4acll0/9rBOlmK
-	 Yuap6URJimT737azuhwc7AIbJoAD+tK+o9Xc9Q+EQq2tmPLQ9QP6d5Sp2vjDmgFUMC
-	 T6dRtGAxieAHxXmXr01gHtEcmQVLcWbYktZw0dlWqy2QaKaVEG3x+IQJqV3UCo/YWU
-	 rQchvoaUIPC/g==
+	b=nr6/h5rZcA5o0R30J1/CxxPSctvY9NKrhth5cpprr31rXRRw83ynwADH5v5RSM6J1
+	 oILGFy3NMoC1l+baew30zqpp0XIhSJJYv2NDNkBEHm6suehPhDk4ylXRrt14L4PyMi
+	 0LsTpBi3kfBTCyKLH6mm6yJrBLPgb119iu+1jvrpSdwvhMd9Weo+lUc9Q3BQOODFvy
+	 rjGE2sdFpHiTB3BPglbSY0O9rBroOsgSFussHoQvjISyXhChJqJ6kVllI70/xLMIjJ
+	 u3mb3xF6BJMUvRxzmOvk7kzaBVKuUpg/S9+9DYt+Mm/jwbdi1v1+m9Pm+vwiMd3nG7
+	 MvzW9V39hwuRQ==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Conor Dooley <conor@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Danila Tikhonov <danila@jiaxyga.com>,
-	David Wronek <david@mainlining.org>,
-	Jens Reidel <adrian@mainlining.org>
+	Jingyi Wang <jingyi.wang@oss.qualcomm.com>
 Cc: linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	phone-devel@vger.kernel.org,
-	linux@mainlining.org,
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: (subset) [PATCH 0/3] Fixes for SM7150 dispcc driver
-Date: Mon, 27 Oct 2025 09:09:02 -0500
-Message-ID: <176157405447.8818.12328266826871564632.b4-ty@kernel.org>
+	aiqun.yu@oss.qualcomm.com,
+	tingwei.zhang@oss.qualcomm.com,
+	trilok.soni@oss.qualcomm.com,
+	yijie.yang@oss.qualcomm.com
+Subject: Re: [PATCH 0/2] soc: qcom: llcc: Add LLCC support for the Kaanapali platform
+Date: Mon, 27 Oct 2025 09:09:04 -0500
+Message-ID: <176157405467.8818.9613829432844744989.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20250919-sm7150-dispcc-fixes-v1-0-308ad47c5fce@mainlining.org>
-References: <20250919-sm7150-dispcc-fixes-v1-0-308ad47c5fce@mainlining.org>
+In-Reply-To: <20250924-knp-llcc-v1-0-ae6a016e5138@oss.qualcomm.com>
+References: <20250924-knp-llcc-v1-0-ae6a016e5138@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,22 +70,18 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Fri, 19 Sep 2025 14:34:29 +0200, Jens Reidel wrote:
-> The MDSS needs a reference to the MDSS_CORE reset since 6.17-rc,
-> otherwise video mode panel initialization appears to be broken.
+On Wed, 24 Sep 2025 16:24:53 -0700, Jingyi Wang wrote:
+> The Kaanapali platform has LLCC(Last Level Cache Controller) as the system
+> cache controller. Add binding and configuration to support this.
 > 
-> Also ensure that the parent of dispcc_mdss_pclk0_clk_src gets prepared
-> and enabled to fix an "rcg didn't update its configuration" warning that
-> started occurring recently.
 > 
-> [...]
 
 Applied, thanks!
 
-[2/3] clk: qcom: dispcc-sm7150: Add MDSS_CORE reset
-      commit: 176465fd8c4e2cbb4410b5a66f6ba74ed491d2a5
-[3/3] clk: qcom: dispcc-sm7150: Fix dispcc_mdss_pclk0_clk_src
-      commit: e3c13e0caa8ceb7dec1a7c4fcfd9dbef56a69fbe
+[1/2] dt-bindings: cache: qcom,llcc: Document the Kaanapali LLCC
+      commit: f5f1e5abb649d0a532ebc72f4196b4818585d20b
+[2/2] soc: qcom: llcc-qcom: Add support for Kaanapali
+      commit: c88b6ee3ba3c7bf6386ea0e6de8111acc3d832bc
 
 Best regards,
 -- 
