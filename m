@@ -1,60 +1,78 @@
-Return-Path: <devicetree+bounces-231548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3080C0E0E9
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:33:17 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 713AFC0E179
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:38:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 67D933446AC
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:33:17 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 407034ED985
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:33:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73EAF218AD1;
-	Mon, 27 Oct 2025 13:33:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C582423A98E;
+	Mon, 27 Oct 2025 13:33:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pBSv5mTm"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="DHPcyJSk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49BC91DDC1B;
-	Mon, 27 Oct 2025 13:33:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDBAD21C160
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 13:33:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761571981; cv=none; b=RtIo0TJxUz9JxJ4wqEZeIohgHcSK5kf/Z+E+ZRVFVVz7xyunNeUG4sEnVZnabamIXcTwBU/Frshp3ul17ZDSsU90SYtf8Vfxj58xYQbDj4tFeTKeb5KgxFNOrkZAqIQCcAIYsMCpxbsVXfDuUeXLWrSAeYI7T0vm8u0eSD/f3mI=
+	t=1761572024; cv=none; b=JuSgkDw5lsaSaEtYC6gLnJA1d2rY7eOmEOm0LGGYA6Zcd9cpeo5VjH4kD6LPrdMe1NGzbs5PDjuyECL2BeS+DOnGAvg5ZgBy8nCOoux10NW1A8jfRhjiBoEDMUWqeqHPKfqI0BpjFxc4Zkzm7FusuMNE28h7BBoQa7FnK6gMXXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761571981; c=relaxed/simple;
-	bh=P4DbulHAwkzTyBkjJrEUk1RWxytjAEbeIn35F+Fbh8s=;
+	s=arc-20240116; t=1761572024; c=relaxed/simple;
+	bh=wZV9rHqjFmCKE6342LhgpDNYUqatE29bXLix3KtUghU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lazbQGb57YMG5IcJYqckmxRH+z8Ngza5QxgOuz7u1lTaPhkCvhZwT95lQ/wD5zYuFm0373J2R/uvS+12+nYVjlSEAkjggfKQfz8qKI/IIGJ9Q9fikpoLI+890aczS0bfDA1Pq4FUgSMK0XV6bhlQ/9TRPpd2QU4qML0IDu19lY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pBSv5mTm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CEF8C4CEF1;
-	Mon, 27 Oct 2025 13:33:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761571980;
-	bh=P4DbulHAwkzTyBkjJrEUk1RWxytjAEbeIn35F+Fbh8s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pBSv5mTmA07fr8PMlqRQYefyLcuv7Ws/eHkezh4VGS3bIvOprYg1JpVqlCkrhsU2J
-	 5Sf85zdO/WtyfbudC37SNP/sbeJJrBXpRUxCuN9yvhoCnUBr08DIF6AhpNrlo1BHMR
-	 jSm+FfbzAv1vWD0h1e37XCXgzMFdhJFsx4iBerQOn4iAIPMdHTVGrCaN5247cD12V4
-	 q+pgpofGNxd3EK4BpkvaTWoNas4L+kO9zx/wXLBGfeHOi70XeI4xs0PKkDVbdesxoT
-	 cS7RoAqlZt1PQ3xxHLdGmKlR+WVXBVX1f7qn+kwooTt9pJhhiHXFbFaFOwOhdKWmxV
-	 Nihf2o0vZftjw==
-Date: Mon, 27 Oct 2025 08:32:58 -0500
-From: Rob Herring <robh@kernel.org>
-To: Jonas Jelonek <jelonek.jonas@gmail.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=IdNB3nL7WGWBdrY71yFwxqd7a5X9z1XpSJ0ekI8OzIUPkGLPZiWCWSjLfPe3bvpkc/5r2W/FQPC5riO4qW8h2cIIgH5hJIkzoH6Yjphdvxxaw2fXKmYcNpudZ/fHnmpwO482d04EZ4+6ZF0b3qBMvIMhtr94YIWqbc/pEb1SckA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=DHPcyJSk; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=jdru/g1UDfmEH8Ssu1G/uWYFsLY+kwVhWPET9PZ9Xs0=; b=DHPcyJSk6sjzs7WSFEoWbKk0kY
+	q0u6hTxBXjylBWdZ4mUpAPChK/JLqlU1lRbRDru6tToO6DUyrYQOxEOmhGBLw0/T/+dTamGDbnU/x
+	S/9odHu07HjB6uoprKTHP/MT12z0HLcgKENeOGmHD+FhoTIhWNpCgemdCyT9aLkoXkI4k9h/Q5eRE
+	1YQgwyaVCco8ZcrhF58yMEFzHzSMUyJzpJtCuo0WaNaNJJ5WeuzFG5u0YBYA1sp3xv6VHwTskP2PE
+	/UluW7RwKMBMgCh8A7zhwi44CzoTkW/jpj8JA5Mqq/QrEajf9qHKA6jT5SUoUMTNCXvMZeJpXkyXJ
+	Vk4k0USA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:48776)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vDNLv-000000001uq-0oOg;
+	Mon, 27 Oct 2025 13:33:39 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vDNLt-000000005cR-1q37;
+	Mon, 27 Oct 2025 13:33:37 +0000
+Date: Mon, 27 Oct 2025 13:33:37 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Emanuele Ghidoli <ghidoliemanuele@gmail.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Daniel Scally <dan.scally@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Stefan Klug <stefan.klug@ideasonboard.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Peter Rosin <peda@axentia.se>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add gpio-line-mux controller
-Message-ID: <20251027133258.GA112219-robh@kernel.org>
-References: <20251026231754.2368904-1-jelonek.jonas@gmail.com>
- <20251026231754.2368904-2-jelonek.jonas@gmail.com>
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
+Message-ID: <aP90sT5c-_xajH8S@shell.armlinux.org.uk>
+References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
+ <aP82VEjNDgrNAZzy@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,183 +81,74 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251026231754.2368904-2-jelonek.jonas@gmail.com>
+In-Reply-To: <aP82VEjNDgrNAZzy@shell.armlinux.org.uk>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Sun, Oct 26, 2025 at 11:17:53PM +0000, Jonas Jelonek wrote:
-> Add dt-schema for a gpio-line-mux controller which exposes virtual
-> GPIOs for a shared GPIO controlled by a multiplexer, e.g. a gpio-mux.
+On Mon, Oct 27, 2025 at 09:07:32AM +0000, Russell King (Oracle) wrote:
+> The changes to stmmac have been tested on nVidia Jetson Xavier NX,
+> which uses RGMII with dwmac4 and a RTL8211F PHY, connected to a Netgear
+> GS108 switch. It seems to be the same that your board is using similar.
 > 
-> The gpio-line-mux controller is a gpio-controller, thus has mostly the
-> same semantics. However, it requires a mux-control to be specified upon
-> which it will operate.
-> 
-> Signed-off-by: Jonas Jelonek <jelonek.jonas@gmail.com>
-> ---
->  .../bindings/gpio/gpio-line-mux.yaml          | 108 ++++++++++++++++++
->  .../devicetree/bindings/mux/gpio-mux.yaml     |  30 +++++
->  2 files changed, 138 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-line-mux.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-line-mux.yaml b/Documentation/devicetree/bindings/gpio/gpio-line-mux.yaml
-> new file mode 100644
-> index 000000000000..4c907a35eb4d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-line-mux.yaml
-> @@ -0,0 +1,108 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/gpio-line-mux.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: GPIO line mux
-> +
-> +maintainers:
-> +  - Jonas Jelonek <jelonek.jonas@gmail.com>
-> +
-> +description:
+> I will re-test today.
 
-You need '>' or '|' to preserve formatting here.
+I just booted net-next on this platform.
 
-> +  A GPIO controller to provide virtual GPIOs for a 1-to-many mapping backed by
-> +  a single shared GPIO and a multiplexer. A simple illustrated example is
-> +
-> +            +----- A
-> +    IN/OUT /
-> +    <-----o------- B
-> +        / |\
-> +        | | +----- C
-> +        | |  \
-> +        | |   +--- D
-> +        | |
-> +       M1 M0
-> +
-> +    MUX CONTROL
-> +
-> +     M1 M0   IN/OUT
-> +      0  0   A
-> +      0  1   B
-> +      1  0   C
-> +      1  1   D
-> +
-> +  This can be used in case a real GPIO is connected to multiple inputs/outputs
-> +  and controlled by a multiplexer, and another subsystem/driver does not work
-> +  directly with the multiplexer subsystem.
-> +
-> +properties:
-> +  compatible:
-> +    const: gpio-line-mux
-> +
-> +  gpio-controller: true
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  gpio-line-mux-states:
-> +    description: Mux states corresponding to the virtual GPIOs.
-> +    minItems: 1
-> +    items:
-> +      type: string
-> +
-> +  gpio-line-names: true
-> +
-> +  mux-controls:
-> +    maxItems: 1
-> +    $ref: /schemas/mux/mux-controller.yaml#
-> +    description:
-> +      Phandle to the multiplexer to control access to the GPIOs.
-> +
-> +  ngpios: false
-> +
-> +  shared-gpio:
+# ethtool -S eth0 | grep lpi_mode_n
+     irq_tx_path_in_lpi_mode_n: 24
+     irq_tx_path_exit_lpi_mode_n: 23
+     irq_rx_path_in_lpi_mode_n: 201
+     irq_rx_path_exit_lpi_mode_n: 200
+# ethtool --show-eee eth0
+EEE Settings for eth0:
+        EEE status: enabled - active
+        Tx LPI: 1000000 (us)
+        Supported EEE link modes:  100baseT/Full
+                                   1000baseT/Full
+        Advertised EEE link modes:  100baseT/Full
+                                    1000baseT/Full
+        Link partner advertised EEE link modes:  100baseT/Full
+                                                 1000baseT/Full
 
-'-gpio' is deprecated. Use '-gpios'.
+So it looks like everything is working as it should here.
 
-> +    description:
-> +      GPIO which is the '1' in 1-to-many and is shared by the virtual GPIOs
-> +      and controlled via the mux.
-> +
-> +required:
-> +  - compatible
-> +  - gpio-controller
-> +  - gpio-line-mux-states
-> +  - mux-controls
-> +  - shared-gpio
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/mux/mux.h>
-> +
-> +    sfp_gpio_mux: gpio-mux {
-> +        compatible = "gpio-mux";
-> +        mux-gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>,
-> +                    <&gpio0 1 GPIO_ACTIVE_HIGH>;
-> +        #mux-control-cells = <0>;
-> +        idle-state = <MUX_IDLE_AS_IS>;
-> +    };
-> +
-> +    sfp1_gpio: sfp-gpio-1 {
-> +        compatible = "gpio-line-mux";
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +
-> +        mux-controls = <&sfp_gpio_mux>;
-> +        shared-gpio = <&gpio0 2 GPIO_ACTIVE_HIGH>;
-> +
-> +        gpio-line-names = "SFP1_LOS", "SFP1_MOD_ABS", "SFP1_TX_FAULT";
-> +        gpio-line-mux-states = <0>, <1>, <3>;
-> +    };
-> +
-> +    sfp1: sfp-p1 {
-> +        compatible = "sff,sfp";
-> +
-> +        los-gpios = <&sfp1_gpio 0 GPIO_ACTIVE_HIGH>;
-> +        mod-def0-gpios = <&sfp1_gpio 1 GPIO_ACTIVE_LOW>;
-> +        tx-fault-gpios = <&sfp1_gpio 2 GPIO_ACTIVE_HIGH>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/mux/gpio-mux.yaml b/Documentation/devicetree/bindings/mux/gpio-mux.yaml
-> index ef7e33ec85d4..57eb1e9ef4cf 100644
-> --- a/Documentation/devicetree/bindings/mux/gpio-mux.yaml
-> +++ b/Documentation/devicetree/bindings/mux/gpio-mux.yaml
-> @@ -100,4 +100,34 @@ examples:
->              };
->          };
->      };
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    sfp_mux: mux-controller {
-> +        compatible = "gpio-mux";
-> +        #mux-control-cells = <0>;
-> +
-> +        mux-gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>,
-> +                    <&gpio0 1 GPIO_ACTIVE_HIGH>;
-> +    };
-> +
-> +    sfp_gpio: sfp-gpio-1 {
-> +        compatible = "gpio-line-mux";
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +
-> +        mux-controls = <&sfp_mux>;
-> +        shared-gpio = <&gpio0 2 GPIO_ACTIVE_HIGH>;
-> +
-> +        gpio-line-names = "SFP_LOS", "SFP_MOD_ABS", "SFP_TX_F";
-> +        gpio-line-mux-states = <0>, <1>, <2>;
-> +    };
-> +
-> +    sfp0: sfp-p0 {
-> +        compatible = "sff,sfp";
-> +
-> +        los-gpios = <&sfp_gpio 0 GPIO_ACTIVE_HIGH>;
-> +        mod-def0-gpios = <&sfp_gpio 1 GPIO_ACTIVE_LOW>;
-> +        tx-fault-gpios = <&sfp_gpio 2 GPIO_ACTIVE_HIGH>;
+stmmac was converted to phylink managed EEE in v6.14-rc1. I've built
+v6.13 to check that my assertions w.r.t. EEE defaulting to being
+enabled are correct, and:
 
-Drop. We don't need the same example twice.
+# # ethtool -S eth0 | grep lpi
+     irq_tx_path_in_lpi_mode_n: 15
+     irq_tx_path_exit_lpi_mode_n: 14
+     irq_rx_path_in_lpi_mode_n: 0
+     irq_rx_path_exit_lpi_mode_n: 0
+# ethtool --show-eee eth0
+EEE Settings for eth0:
+        EEE status: enabled - active
+        Tx LPI: disabled
+        Supported EEE link modes:  100baseT/Full
+                                   1000baseT/Full
+        Advertised EEE link modes:  100baseT/Full
+                                    1000baseT/Full
+        Link partner advertised EEE link modes:  100baseT/Full
+                                                 1000baseT/Full
 
-Rob
+So, as I have asserted in response to Emanuele, the conversion of
+stmmac to phylink-managed EEE hasn't changed whether EEE is enabled
+by default. It was enabled by default before phylink-managed EEE, and
+as I always try to do, I try to avoid introducing different behaviours
+when converting drivers to a new implementation. That point holds up
+here w.r.t. whether EEE is enabled by default. Hence, blaming these
+problems on the phylink conversion enabling EEE by default is
+incorrect - and I wish people would *stop* jumping to false conclusions
+without evidence. As phylink maintainer, it is extremely disheartening
+to keep having problems falsely levelled at phylink.
 
+Note that the difference here is the receive path at the MAC doesn't
+enter LPI mode. This is because PHY-mode EEE is enabled, which prevents
+the LPI state on the receive side being forwarded to the MAC. I fixed
+via commit bfc17c165835 ("net: phy: realtek: disable PHY-mode EEE") for
+RTL8211F PHYs merged in v6.15-rc1.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
