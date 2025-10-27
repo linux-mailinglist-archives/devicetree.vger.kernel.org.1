@@ -1,172 +1,140 @@
-Return-Path: <devicetree+bounces-231707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2236BC0FEDE
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:33:34 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29786C0FFEA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:42:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4B9C54EE38F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:33:11 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C94F734FF52
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:42:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C32D5319611;
-	Mon, 27 Oct 2025 18:33:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1438A31B82E;
+	Mon, 27 Oct 2025 18:42:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FV2IWENh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jtvh99Cz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 503DB3164B6
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 18:33:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCF7D2BD033;
+	Mon, 27 Oct 2025 18:42:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761589987; cv=none; b=Pi0F23pO7kESoLD/BAs5BeWVFe68AbGa8lqQGQJMCc2sC6MUlcJZbASzLsN4Z5qL1pPmxhrvXw0cIRanyg3D1HY8qKkY9VgDWIcE5rLpI8aOKaeMhmIMiY/EjzBGJyuD0/JRs1mzyiGnkECIRmX7+arcrlh66PTHSOlmqQWtSeo=
+	t=1761590549; cv=none; b=CdImJiz7+fbgvX3FI1w8KLyAHYhdUnHOClvx89mkyHPNpHDo/QIse9qYOnHIJIN6J8jaR2a8tkIi1EsBuCS057s5ypWZr5jGymdZGrgcn/WJTJeHuM1RBxYDrYRL4je3aQOdZSIu0WlX/o6GicR3Y2zRFR3KMdur6wSX/R87sQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761589987; c=relaxed/simple;
-	bh=5yC8PpIcUio4Ku4s4/CtCeIXIZihYpSkqy+RgQT0emA=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=GEiJMzyljo+mz1cvawHiIdbMJW1gw2k5A38FPox5ey4bWMYJlS8lsvA0aO0J0IflkD+vxNLjJ2yxnKu14CZ76NgTZ7ZQ6phfG+unrIVjKSHGPjpd+MvZXSvUZRlsfyAGVs4wSt8VrN9kzLp1NS5ZvPCyJwf3+Jqwpkr9Wim5S0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FV2IWENh; arc=none smtp.client-ip=209.85.210.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-781997d195aso3580236b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 11:33:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761589984; x=1762194784; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=5yC8PpIcUio4Ku4s4/CtCeIXIZihYpSkqy+RgQT0emA=;
-        b=FV2IWENhh2JKYwqRHGajj7AYTBkfqP9U5SiC+g8cc08ULcrFbpwxGEZKE64pQxHfP+
-         4+mVvI8QaXssyHl//t5pdCkmmd/z6WAvjniAvCCkwvfgL6V8PYOqQ3Sf01od15o4szKa
-         8ke0Pw86686RR5p9aOARjyLySD1ka9/e97PgjZyksmVbx88trbMu4ckMVy+G/bhPjhmw
-         NHdcfU0qN4DyNxJT1Btw6SNRnWRX3EMa7P/v8m1WK9rO9TlCgMRgvXE2cH/rmmD9As5Q
-         +ppoDi3wKroHUG9omR7j4Nu6c8cwUjamf/P9MsqcR/lj9f4yAS30ooIyEjgPMp5UGXAv
-         ErSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761589984; x=1762194784;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5yC8PpIcUio4Ku4s4/CtCeIXIZihYpSkqy+RgQT0emA=;
-        b=xBeowBikZAIfitOTQZu4R3LoVpN9qa+OKWODmvvIXKsKrXJ9j05On3euaonFYFpHt4
-         /avIQq0vJ9CpveftoRIGlXfFisXcqrpuUrSwhwvbOsSKAADv8e/JX1CrCKkhb7MVRUWj
-         hwyirDTTO2mdiLz4YJ5okZFC/QvZfEdPSasLvuhBEDep6tShT4JSbwGDuDEB1FvS83G5
-         2lu8r4xEIDjHZoALkYzJ/xCb5N2MXFBIBgyiQudNewVMG08aI0PV+GUdejA2qr+F22PA
-         EPYW1y5KDl0VTGVKKXClw9qDNXa3sP4vpqx5eebr3Bkh9ncHwPfXnhm1gDkTtwOzXdSg
-         /1Lg==
-X-Forwarded-Encrypted: i=1; AJvYcCVNe9q150EDr1odEeUTtXU3uMTnfskeHebPBuecr441zcQSAX2S9gNT2nd0+6GC4ga2NkKOVtD9K9L/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYGgHPJe8fQmPoBR8IfpmX1QrnF8wAE+xZ49ukbpmahaGLmmU5
-	5FGdTdiGFumXMm8PASXJ5TPSFlsIQCQn5N0D9PFBUMqriM4OA5i9tRAe
-X-Gm-Gg: ASbGncuk2M0A3dmF2oW5HCqrH1DiUtCujVdRzB3R3xbn0xjzA4aAYrzbGmTf1aJVgut
-	QIxmkcsg3memwBgJxWQvM4Dg9dZUhZrMQzmQJZkmCEkQjW5AUSv4jEQv2CRF+hEgOor8sjfF4qn
-	LVcyBrjLM4yuKngGuHFUBx/S2NIIlSUCd9Ml3Gls9H2RgTMj2+dSfCNXPSLzUhcCFVVPaaKTSBq
-	LEX6VwtN0qWRKEZ4yUSVeIUdG4C2Q/Qi6MgA6vuf0WTWlLDNN05aaMunYWtONtXAcPOESpdMobE
-	mqMHxE8cWCe41Pz1aThE8rh3vybW+Y3/gJmyVAzIWSBvVlZcE6uodsVpaDBVCN5LO3XXfCeyAL9
-	AKwt1qCrdBn0x0fyKHoJQsA+Lzeop2vyeXXRtrPj8Yv7fZ/t6zWPIIeVwI1+xfPFy/ti0SWHSmc
-	eAV90nzzkcyeqNh+Zm6wJ0Jg==
-X-Google-Smtp-Source: AGHT+IHt4DJWNAM9MZTCzUyEfgg2vReTKwp653liwyZeiZgWrRZxP3BqzH/B64W+Bg8rAo6d5fksJw==
-X-Received: by 2002:a05:6a00:995:b0:7a2:7237:79ff with SMTP id d2e1a72fcca58-7a441ba53a6mr1041339b3a.7.1761589983518;
-        Mon, 27 Oct 2025 11:33:03 -0700 (PDT)
-Received: from ehlo.thunderbird.net ([2804:18:939:e8ae:c91b:7909:492a:aaa7])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a414069164sm9038019b3a.45.2025.10.27.11.33.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Oct 2025 11:33:03 -0700 (PDT)
-Date: Mon, 27 Oct 2025 15:32:58 -0300
-From: =?ISO-8859-1?Q?Eric_Gon=E7alves?= <ghatto404@gmail.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-CC: Krzysztof Kozlowski <krzk@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/6] arm64: dts: qcom: r0q: add touchscreen support
-User-Agent: Thunderbird for Android
-In-Reply-To: <7e5f753d-a26d-40fb-9cde-ec17eff85c27@oss.qualcomm.com>
-References: <20251014044135.177210-1-ghatto404@gmail.com> <20251014044135.177210-4-ghatto404@gmail.com> <e114504e-4bdd-46b9-b708-8eebc3075163@oss.qualcomm.com> <CAMQHOhfjsi1L+3j3TrcjEjPp3xkn94KOdsrVZvJCyUDFBBSeqg@mail.gmail.com> <d06a254f-bf54-4bdf-bd09-3ee5e5b31bad@oss.qualcomm.com> <CAMQHOhe=WYhtsjHMcRnJOi8UhnNNBfveTWRGSZ_bg24gFysAEw@mail.gmail.com> <8bd5486f-38a9-4104-8d09-234f642b45fe@oss.qualcomm.com> <CAMQHOheTkKC8NcRrPxKZdB_h0SJGNJVMd4NUD7TE4becPouWyQ@mail.gmail.com> <73d30994-3ec3-41bc-9b07-638d4173dfe6@oss.qualcomm.com> <7C2DF8E1-D84C-428C-B064-3D8CA16FEA29@gmail.com> <7e5f753d-a26d-40fb-9cde-ec17eff85c27@oss.qualcomm.com>
-Message-ID: <E9C95D16-18DB-4AE9-8C50-BE3481A25FB3@gmail.com>
+	s=arc-20240116; t=1761590549; c=relaxed/simple;
+	bh=QUtn0jfTmDQP1zTGGhM6A0feu35k7FOz8/KTsJYGFxY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ER/m5bxj2WD3OJ1dxAj/jJgHA3I9XeW188A8Arq6/+OdRtSlQEyu0kK5vyKkM6NE5M0vUsxGuKiUFiEE5xPg+xO3FIGuw/TeuyTEH3CrqW7WL88pRn1nx9WILyTKA9QsMeF5b0hPc/ewXhOHR30/50PoAP76TdfYgKxkUPYnaBg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jtvh99Cz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4540C116B1;
+	Mon, 27 Oct 2025 18:42:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761590548;
+	bh=QUtn0jfTmDQP1zTGGhM6A0feu35k7FOz8/KTsJYGFxY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Jtvh99Czx1+ZtV00xlNxsKnjvKSrllZ6fLn1mJbK1xgZyRiJWziEsI4YSYUhF41uT
+	 XhCUme/tDG3uyqc1LZO9SNkHzhW5OXwwBQqBNvmSzJV+xWnaf9I4aibj74YIVhhQQ7
+	 mpbzYz5BQVr03AET++hegLUWe1o8SWqqlQOq2bJiDCyaWk8iBdrzXkWLNOLC9jRTNo
+	 mzqu7SPBZShMXSiUov2w04lDXcZiTUF3sleRSKSzBAgi3X3GSj6Hdi31OmEui2L89G
+	 LnGm5LOvh3IOCzkviLf1GPw1g9bCPsS7moR/bh9y60p39H0qYCCTy5Q8O9BPk7TM8s
+	 738RMTpmhI8Gg==
+Message-ID: <2491c23e-430d-4f1b-827e-1298996fce59@kernel.org>
+Date: Mon, 27 Oct 2025 19:42:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/5] memory: tegra: Support EMC dfs on
+ Tegra186/Tegra194
+To: Aaron Kling <webgeek1234@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20251021-tegra186-icc-p2-v3-0-1a50b526dd40@gmail.com>
+ <c6eb8ad7-acb4-4218-9293-7ee532be56e9@kernel.org>
+ <CALHNRZ-6Wp1k9zWg=B5xSt7n_9Fj9XchBq7qniKZtKHkHVouZg@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <CALHNRZ-6Wp1k9zWg=B5xSt7n_9Fj9XchBq7qniKZtKHkHVouZg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-
-
-On October 20, 2025 9:18:18 AM GMT-03:00, Konrad Dybcio <konrad=2Edybcio@o=
-ss=2Equalcomm=2Ecom> wrote:
->On 10/17/25 8:22 PM, Eric Gon=C3=A7alves wrote:
->>=20
->>=20
->> On October 17, 2025 5:20:43 AM GMT-03:00, Konrad Dybcio <konrad=2Edybci=
-o@oss=2Equalcomm=2Ecom> wrote:
->>> On 10/16/25 10:08 PM, Ghatto wrote:
->>>> On Thu, Oct 16, 2025 at 6:06=E2=80=AFAM Konrad Dybcio
->>>> <konrad=2Edybcio@oss=2Equalcomm=2Ecom> wrote:
->>>>>
->>>>>
->>>>>
->>>>> On 10/14/25 9:04 PM, Ghatto wrote:
->>>>>> On Tue, Oct 14, 2025 at 11:18=E2=80=AFAM Konrad Dybcio
->>>>>> <konrad=2Edybcio@oss=2Equalcomm=2Ecom> wrote:
->>>>>>>
->>>>>>> On 10/14/25 5:10 PM, Ghatto wrote:
->>>>>>>> On Tue, Oct 14, 2025 at 7:01=E2=80=AFAM Konrad Dybcio
->>>>>>>> <konrad=2Edybcio@oss=2Equalcomm=2Ecom> wrote:
->>>>>>>>>
->>>>>>>>> On 10/14/25 6:41 AM, Eric Gon=C3=A7alves wrote:
->>>>>>>>>> Enable the ST-Microelectronics FTS2BA61Y touchscreen=2E This pa=
-tch
->>>>>>>>>> depends on "Input: add support for the STM FTS2BA61Y touchscree=
-n"=2E
->>>>>>>>>
->>>>>>>>> The second sentence doesn't really make sense to be included in
->>>>>>>>> the git log
->>>>>>>> I'll keep it to the cover letter then
->>>>>>>>>
->>>>>>>>>> The device has an issue where SPI 8 (the bus which the touchscr=
-een is
->>>>>>>>>> connected to) is not working properly right now, so
->>>>>>>>>> spi-gpio is used instead=2E
->>>>>>>>>
->>>>>>>>> Some Samsung devices used to use spi/i2c-gpio intentionally, als=
-o
->>>>>>>>> on downstream=2E I'm assuming this isn't the case for r0q=2E
->>>>>>>> It isn't, the device uses fts2ba61y on the spi8 bus - I hosted th=
-e
->>>>>>>> DT at https://github=2Ecom/ghatt-o/ss_experiments/blob/main/r0q=
-=2Edts if you
->>>>>>>> want to take a look=2E
->>>>>>>>>
->>>>>>>>> Did you enable gpi_dma1, qupv3_id_1 before spi8, when testing
->>>>>>>> The driver probes, but it fails to recognize the touchscreen devi=
-ce
->>>>>>>
->>>>>>> Could you post a complete dmesg and the precise DT diff you used?
->>>>>> https://pastebin=2Ecom/QkYa8nMp (android dmesg) mainline dmesg does=
-n't have
->>>>>
->>>>> The link has expired =F0=9F=99=81
->>>> https://pastebin=2Ecom/s4abJS9M shouldn't expire now!
+On 27/10/2025 18:54, Aaron Kling wrote:
+> On Mon, Oct 27, 2025 at 5:49 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 22/10/2025 03:09, Aaron Kling via B4 Relay wrote:
+>>> This series borrows the concept used on Tegra234 to scale EMC based on
+>>> CPU frequency and applies it to Tegra186 and Tegra194. Except that the
+>>> bpmp on those archs does not support bandwidth manager, so the scaling
+>>> iteself is handled similar to how Tegra124 currently works.
 >>>
->>> And yet it did!
->>>
->>> Feel free to just attach it to your message=2E=2E the list may bounce
->>> it, but it will still reach the To/Cc recipients
->> Attached the dmesg=2Etxt file=2E
->
->I'm interested in what happens early when the SPI hosts are programmed,
->whether there's any additional debug messages=2E
->
->If your log buffer is overrunning, you can add log_buf_len=3D8M to your
->cmdline (which will make the buffer 8MiB long)
-Is it that big of a deal though? spi-gpio
-works just fine for touchscreen=2E
->
->Konrad
+>>> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+>>
+>>
+>> Does not apply, please check, rebase and resend.
+>>
+>> Patch failed at 0003 memory: tegra186-emc: Support non-bpmp icc scaling
+>> error: patch failed: drivers/memory/tegra/tegra186-emc.c:217
+>> error: drivers/memory/tegra/tegra186-emc.c: patch does not apply
+> 
+> It applies on v6.18-rc3, but not next. Your cleanup series caused the
+> conflict. I'll rebase on next-20251027 and resend.
+
+
+Patches should apply on maintainer's for-next branches, not mainline.
+My cleanup series were applied two weeks ago, so week or more before you
+sent it.
+
+Best regards,
+Krzysztof
 
