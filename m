@@ -1,104 +1,100 @@
-Return-Path: <devicetree+bounces-231404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC6EDC0CF7D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 11:32:40 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80C30C0CF83
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 11:32:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CD5E18822F5
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:31:55 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2C23C34C8E2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:32:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 909A926B777;
-	Mon, 27 Oct 2025 10:31:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FC0D2BD5A7;
+	Mon, 27 Oct 2025 10:32:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="sbnFY7w1"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="cUlf6EhE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA18B1BC41
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 10:31:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0159B28468D;
+	Mon, 27 Oct 2025 10:32:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761561085; cv=none; b=lzUcrjszFMdksDnx3c3B9hJjPbB1M485oPJCGJs9c4+RWFPz1vrO5hvnt1T7WFXmOM/5+SUF/1C7mkO7GJ3Zplqg4+izH53VPHLHwXwVZKzcRnX+Tb6MpNer0GPafh4Q2/eMHgRVkklmyWfSYfKprVjBAOZghBKxHhPDXP24To8=
+	t=1761561167; cv=none; b=kCU/csHgTZyD52xT+mXK9J7X+7szhCBRKiVWmmmV5hqxuDAl4M7H58B3LeM2GED0UsfeSXIp+tnP94Lc3fIc5fUsgFOPBhwpivg3Xavysd9xRrfaLm1b4H+jErjrsCQmOHveg3YGWAUMRQPqjQjGCT8iVb6AoGgIv0WC+oU1x4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761561085; c=relaxed/simple;
-	bh=woR0YkWOLoOVnkusOQvb+uOUj+GPQRpu6GLsFacG4SU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YXdSQhuZMB1JIc9/8wabRQovSNW2nwDfrKUztkBhHkH6ov+GhuWy+GNURtPou91tKzhOM/DblEI+zhEIf7hkFkCuXR6embTfovRmV/Qu7mtrKLJTP/4byKD5UDJYgXbKRPrwvP8vlpofgy0LPMRm9/sxYwgrYFOoi3aT3VP45UI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=sbnFY7w1; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (unknown [193.209.96.36])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 05415E1F;
-	Mon, 27 Oct 2025 11:29:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1761560973;
-	bh=woR0YkWOLoOVnkusOQvb+uOUj+GPQRpu6GLsFacG4SU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sbnFY7w1nY83x7Yfrg65qDDjoOFXFj29h8KBE/qIKqEQ2DR3hTiOM4IIhnH8GQB8f
-	 LXqClKaF1LarrQ6Mpd7Ekda+u/bgkFr7pkBrFVM1rxJTD1wL7Z8IYxLG9LcIBlMnsM
-	 FaNVPYUv0Mj0/7F9HRMlQYSQnRaetAbKQpjllrnQ=
-Date: Mon, 27 Oct 2025 12:31:07 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Andrew Lunn <andrew@lunn.ch>, Russell King <rmk+kernel@armlinux.org.uk>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Daniel Scally <dan.scally@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Stefan Klug <stefan.klug@ideasonboard.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
-Message-ID: <20251027103107.GF1544@pendragon.ideasonboard.com>
-References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
- <e87ff7f2-d16f-41f2-b781-b175cfb84b21@lunn.ch>
- <aP83bMDWCre7-Sjw@pengutronix.de>
- <20251027100227.GE1544@pendragon.ideasonboard.com>
- <aP9IB4y5_gyfJGMW@pengutronix.de>
+	s=arc-20240116; t=1761561167; c=relaxed/simple;
+	bh=gdPtlidxvZyz9Nniqj8cOl/Lyejm3Rd2LqnFZSPG48s=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=mqYpD+1rz47mBfotot32qOQTNwggDMEVs+B2zX+qEawi+qKYWt/Uguoe92S8RCWKTsDOdGfj1jfEgcoQEW6LjColotYE0VkFxWVgZsqtwWCra8ehh2+8zxKosqFK/xW4oo2vgK0amTExQ236nw5ALTDlUh6BDaPq6hjCHYKxpX8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=cUlf6EhE; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1761561163;
+	bh=gdPtlidxvZyz9Nniqj8cOl/Lyejm3Rd2LqnFZSPG48s=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=cUlf6EhEat9DXL6eCcIQBXLfnTrbkhtVPUlrEbdKDS3mX2uMhnTvNvuCBBNuC9rlq
+	 5GwWRJpB8swlbSLHkGXo2e3HqO3BhKOcpBCih/LI+7s3oiKOPSKQyHUujySB4M77Lg
+	 bY5esmAt6vT0gJrViChJ2NsafwzIgsFhmlw2B3AQVjvhOflqhspcP0RyDPxKda3Teb
+	 dJCnoZsNtn1Nkb1YN3DAHhcwn484OOVE8NwSSNN8E3bKHPbljmIo+iCG2pS/Co2MGB
+	 Ea3PYrsuN3P8S3OlWy4SKFRVZU1CquMnQ+ARZbXbhdLMk1saig+n5DAISDR0vX4OLD
+	 SlrkzlyepE36g==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8B58817E1276;
+	Mon, 27 Oct 2025 11:32:42 +0100 (CET)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Conor Dooley <conor.dooley@microchip.com>
+In-Reply-To: <20251021-mt8365-enable-gpu-v2-0-17e05cff2c86@collabora.com>
+References: <20251021-mt8365-enable-gpu-v2-0-17e05cff2c86@collabora.com>
+Subject: Re: (subset) [PATCH v2 0/3] Add Mali GPU support for Mediatek
+ MT8365 SoC
+Message-Id: <176156116250.18248.16538083521320273627.b4-ty@collabora.com>
+Date: Mon, 27 Oct 2025 11:32:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <aP9IB4y5_gyfJGMW@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
 
-On Mon, Oct 27, 2025 at 11:23:03AM +0100, Oleksij Rempel wrote:
-> On Mon, Oct 27, 2025 at 12:02:27PM +0200, Laurent Pinchart wrote:
-> > Hi Oleksij,
-> > > Please note, RTL8211E PHY do use undocumented SmartEEE mode by default.
-> > > It ignores RGMII LPI opcodes and doing own thing. It can be confirmed by
-> > > monitoring RGMII TX and MDI lines with oscilloscope and changing
-> > > tx-timer configurations. I also confirmed this information from other
-> > > source. To disable SmartEEE and use plain MAC based mode, NDA documentation
-> > > is needed.
-> > 
-> > That's useful information, thank you. Would you by any chance to know if
-> > such NDA would allow contributing the feature upstream ?
+On Tue, 21 Oct 2025 09:30:50 +0200, Louis-Alexis Eyraud wrote:
+> This patchset adds the support of the ARM Mali G52 MC1 GPU (Bifrost),
+> integrated to the Mediatek MT8365 SoC, and its enablement to the
+> Mediatek Genio 350-EVK board.
 > 
-> Good question, but the NDA process was actually aborted. We didn't move
-> forward due to a lack of time and ultimately, a lack of commercial
-> interest from any projects or customers for this PHY.
+> I've tested this patchset on a Mediatek Genio 350-EVK board,
+> with a kernel based on linux-next (tag: next-20251021).
+> 
+> [...]
 
-Fair enough. I've tried :-)
+Applied to v6.18-next/dts64, thanks!
 
-If we can't disable SmartEEE in the PHY, does it mean we need to somehow
-disable EEE in the MAC, but still program the PHY to advertise EEE to
-the link partner ?
+[2/3] arm64: dts: mediatek: mt8365: Add GPU support
+      commit: 499af66b8f421a1f1612ff84c81a47ca569654b8
+[3/3] arm64: dts: mediatek: mt8365-evk: Enable GPU support
+      commit: c8dd72788f52d3fde091c0d6249c45b9467b69f6
 
--- 
-Regards,
+Cheers,
+Angelo
 
-Laurent Pinchart
+
 
