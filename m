@@ -1,110 +1,218 @@
-Return-Path: <devicetree+bounces-231399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA3E3C0CEFE
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 11:23:15 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6C46C0CF07
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 11:24:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFEEF188B7CB
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:23:39 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 236624E3FD8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:24:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A67AD2F3C26;
-	Mon, 27 Oct 2025 10:23:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A2D72EC08F;
+	Mon, 27 Oct 2025 10:24:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Rd/JJOKk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D8A52E6100
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 10:23:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED6331DF252;
+	Mon, 27 Oct 2025 10:23:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761560590; cv=none; b=nEtq9OexQe2P4yZ71nVMzyOwftwWbmHKdAP6nsfXWT3F5H6OulHolgHMBu8PyJkLUflCfIUQZB2reHbks2VwqWgKtxgiYc0l20/RZhAWbcZeccF3HzJDkdBvokqIVy8Hj9YFMC6/90fLk8wRjirHb1Lx15pXPv9TdQRYhRd32M0=
+	t=1761560640; cv=none; b=sJhJunNS2sSb9vqWMmi86161zj4pbD1gbtWGsmwyjidIoyl6HuFJs0WgLYYQAvV7/xbre5vPlKNzVXy9YPmLDM3BN6mCfKnbpu1EJwdV9XUgXQvMkOHZ2oDcr24zQCgUTEK3ShisZkIAkA2eKYJGpVA568KSFjS/SUxr6yFZzsw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761560590; c=relaxed/simple;
-	bh=LPluyef4kypBSKGZCsUxRCFOggWHW4MJxhkKdQ37kTM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L2r2EjXTr7mwAhQyss6L8OLK3QCzEx7eZlYwsKtcWCvYpXS2K2B7pdPAVkL1GLkrYWMD82EDgZh1m1DrnYVVqlnJHxHs+nMmPn4k+4VFhddOx0iTKX4767jZE1MMJT8B4niu0vQHm8KTjcPCkg2UU7CNMaRdkDfQYPl8Bk/keX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vDKNU-00047j-JW; Mon, 27 Oct 2025 11:23:04 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vDKNU-005gi3-0X;
-	Mon, 27 Oct 2025 11:23:04 +0100
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vDKNU-00394G-07;
-	Mon, 27 Oct 2025 11:23:04 +0100
-Date: Mon, 27 Oct 2025 11:23:03 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Russell King <rmk+kernel@armlinux.org.uk>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Daniel Scally <dan.scally@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Stefan Klug <stefan.klug@ideasonboard.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
-Message-ID: <aP9IB4y5_gyfJGMW@pengutronix.de>
-References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
- <e87ff7f2-d16f-41f2-b781-b175cfb84b21@lunn.ch>
- <aP83bMDWCre7-Sjw@pengutronix.de>
- <20251027100227.GE1544@pendragon.ideasonboard.com>
+	s=arc-20240116; t=1761560640; c=relaxed/simple;
+	bh=aFMORePwcPTydUz6VlH0qFjjkLxDJNo9Sxr1SvlX4OI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WeK7h5MzzPFTc0pgofrvwF+qlRJrasz3Cs7XSWwE9dYVbXeKLQk1Dxvv+rLvUu0Kjly25o2T0pIho6gnSY83Ef4NTWs6WS/KMY+so+XEpRxi+pWUM7ivNGIwqcNmKRGyb/S4TBNbwOaKTbwEI+TCiny2fhrpXezI4eFsKbe8Kto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Rd/JJOKk; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1761560633;
+	bh=aFMORePwcPTydUz6VlH0qFjjkLxDJNo9Sxr1SvlX4OI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Rd/JJOKkBJ6qfsuqB4Cgu8aRpKGVbvpGEx/Ba7CyBGBbgO/fIWdmBBkbySU5EtwKE
+	 JB1+ywk2KG9+72spaR2LMlhL2l7fd2pGl0ExFMZtlMs6Rm9HSFqdQY3wpAAIH92QII
+	 P5VqiphDEpMntKyHokuD4Qf9Wpblleqo2yNEhYJx1L42Z/4Z5NNP8S1nhOfEoC79Jr
+	 YCIFr7qGrTUi2a6rcqUIclqQGQUk0Y/AM7XUsIj1oMHXABwIybSOWhYWw1eTikrc2+
+	 6z0NZIp+EecFE2ZEuggIiVzqF/X+KkkGrYt6HgW05CMEZDfKT091+h2LpBzZxqAXbM
+	 DSxMDfhXG5I8Q==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id AC55017E0DC0;
+	Mon, 27 Oct 2025 11:23:52 +0100 (CET)
+Message-ID: <305a2d9c-92c3-4608-b5f6-57f6db51c08e@collabora.com>
+Date: Mon, 27 Oct 2025 11:23:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251027100227.GE1544@pendragon.ideasonboard.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 1/9] dt-bindings: regulator: Document MediaTek MT6316
+ PMIC Regulators
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-mediatek@lists.infradead.org, lee@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+ lgirdwood@gmail.com, broonie@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ kernel@collabora.com, wenst@chromium.org,
+ igor.belwon@mentallysanemainliners.org
+References: <20251024083221.25758-1-angelogioacchino.delregno@collabora.com>
+ <20251024083221.25758-2-angelogioacchino.delregno@collabora.com>
+ <20251024-think-handwoven-504634ca620d@spud>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20251024-think-handwoven-504634ca620d@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Laurent,
-
-On Mon, Oct 27, 2025 at 12:02:27PM +0200, Laurent Pinchart wrote:
-> Hi Oleksij,
-> > Please note, RTL8211E PHY do use undocumented SmartEEE mode by default.
-> > It ignores RGMII LPI opcodes and doing own thing. It can be confirmed by
-> > monitoring RGMII TX and MDI lines with oscilloscope and changing
-> > tx-timer configurations. I also confirmed this information from other
-> > source. To disable SmartEEE and use plain MAC based mode, NDA documentation
-> > is needed.
+Il 24/10/25 18:29, Conor Dooley ha scritto:
+> On Fri, Oct 24, 2025 at 10:32:13AM +0200, AngeloGioacchino Del Regno wrote:
+>> Add bindings for the regulators found in the MediaTek MT6316 PMIC,
+>> usually found in board designs using the MT6991 Dimensity 9400 and
+>> on MT8196 Kompanio SoC for Chromebooks.
+>>
+>> This chip is fully controlled by SPMI and has multiple variants
+>> providing different phase configurations.
+>>
+>> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   .../regulator/mediatek,mt6316b-regulator.yaml | 78 +++++++++++++++++++
+>>   .../regulator/mediatek,mt6316c-regulator.yaml | 78 +++++++++++++++++++
+>>   .../regulator/mediatek,mt6316d-regulator.yaml | 77 ++++++++++++++++++
+>>   3 files changed, 233 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.yaml
+>>   create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316c-regulator.yaml
+>>   create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316d-regulator.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.yaml
+>> new file mode 100644
+>> index 000000000000..65b70dd90728
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.yaml
+>> @@ -0,0 +1,78 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/regulator/mediatek,mt6316b-regulator.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: MediaTek MT6316 BP/VP SPMI PMIC Regulators
+>> +
+>> +maintainers:
+>> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> +
+>> +description:
+>> +  The MediaTek MT6316BP/VP PMICs are fully controlled by SPMI interface, both
+>> +  feature four step-down DC/DC (buck) converters, and provides 2+2 Phases,
+>> +  joining Buck 1+2 for the first phase, and Buck 3+4 for the second phase.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: mediatek,mt6316b-regulator
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +patternProperties:
+>> +  "^vbuck(12|34)$":
+>> +    type: object
+>> +    $ref: regulator.yaml#
+>> +    unevaluatedProperties: false
+>> +    properties:
+>> +      regulator-allowed-modes:
+>> +        description: |
+>> +          Allowed Buck regulator operating modes allowed. Valid values below.
+>> +            0 - Normal mode with automatic power saving, reducing the switching
+>> +                frequency when light load conditions are detected
+>> +            1 - Forced Continuous Conduction mode (FCCM) for improved voltage
+>> +                regulation accuracy with constant switching frequency but lower
+>> +                regulator efficiency
+>> +            2 - Forced Low Power mode for improved regulator efficiency, used
+>> +                when no heavy load is expected, will shut down unnecessary IP
+>> +                blocks and secondary phases to reduce quiescent current.
+>> +                This mode does not limit the maximum output current but unless
+>> +                only a light load is applied, there will be regulation accuracy
+>> +                and efficiency losses.
+>> +        minItems: 1
+>> +        maxItems: 3
+>> +        items:
+>> +          enum: [ 0, 1, 2 ]
 > 
-> That's useful information, thank you. Would you by any chance to know if
-> such NDA would allow contributing the feature upstream ?
+> This property has no default, and the property is not required. Is one
+> of these modes the default, or is there another mode beyond what's here
+> that is used if the property is absent? Or are all modes allowed with no
+> property?
+> 
 
-Good question, but the NDA process was actually aborted. We didn't move
-forward due to a lack of time and ultimately, a lack of commercial
-interest from any projects or customers for this PHY.
+The default is what the bootloader sets before jumping to the kernel... this may
+vary from one to the other.
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Even though "in theory" the default should be 0, I can't guarantee that this will
+really be the default for when Linux boots.... and "resetting" is not possible
+(either as a real reset or forcing a default) because those are CPU regulators
+and if anything goes wrong the CPUs may freeze execution.
+
+It should be kinda safe to force the default to 0 at boot, but I'm not sure that
+I should really take that assumption for granted - I prefer leaving this untouched
+and without any "forced" default unless DT specifies some.
+
+So, well, that's why there's no default, and that's why this is not a required
+property at the end of the day.
+
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - '#address-cells'
+> 
+> Why is address-cells required here? Your bucks don't have addresses.
+
+Ugh. I forgot it there. No, that's not intentional.
+
+The #address-cells makes no sense here.
+
+> If it is actually required, Rob's bot has pointed out that the property
+> isn't defined for the device anyway.
+> 
+> pw-bot: changes-requested
+> 
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/spmi/spmi.h>
+>> +
+>> +    spmi {
+>> +      #address-cells = <2>;
+>> +      #size-cells = <0>;
+>> +
+>> +      pmic@8 {
+>> +        compatible = "mediatek,mt6316b-regulator";
+>> +        reg = <0x8 SPMI_USID>;
+>> +        #address-cells = <0>;
+>> +
+>> +        vbuck12 {
+>> +          regulator-name = "dvdd_core";
+>> +          regulator-min-microvolt = <450000>;
+>> +          regulator-max-microvolt = <965000>;
+>> +          regulator-allowed-modes = <0 1 2>;
+>> +          regulator-enable-ramp-delay = <256>;
+>> +        };
+>> +      };
+>> +    };
+>> +...
+
+
 
