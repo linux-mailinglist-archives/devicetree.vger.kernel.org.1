@@ -1,163 +1,89 @@
-Return-Path: <devicetree+bounces-231295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B336C0BF94
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 07:41:38 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA1D9C0BFAC
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 07:44:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 410653B5A37
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 06:41:37 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 88B753489D8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 06:44:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 109022D3739;
-	Mon, 27 Oct 2025 06:41:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC96A2D5924;
+	Mon, 27 Oct 2025 06:44:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=reznichenko.net header.i=@reznichenko.net header.b="ad57ETgB"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="J8HYMHYK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A66F125A353
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 06:41:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8608A23EAA5;
+	Mon, 27 Oct 2025 06:43:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761547293; cv=none; b=aJhuuyW++aLhFnaO2wdcYK/k7xZNFROrHcyRuN6wJN6MpuXjI8RYKn2VDDTpIIDr9xrDTf9AWnPln0xkkiKJoJOLUSbpgsnKhFM/3RMbfdbn1y5qURpE79YG3AqkYsVn/05nR9dFKh7+f0X/UcRTgk+lJD0/ePaN9zWxZmY30cc=
+	t=1761547442; cv=none; b=Px9y3MU7oFJXwGByyyhI2bbD9qfy/eH7hhci60Zr4JAZN6rFdNmS09XQdCWJvVmILgVkP1Z+gVh7LSnlT7OyzynDJY2LuWjJE0nbBl0BCDfJlDFZdckXBTlJKWmyz8kD/pusdlmM6IV304tRA9I+zl1gKViT1k8W/Ases7MEk7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761547293; c=relaxed/simple;
-	bh=NPMQeSnux1WgQoNx4rxVtVlmNiImFDKpyKy8ElUhOgc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=G7D8agkVjYbO6RrudLfd16clhzxwssY81RhQaMMLk6HWkPh+Jv7U4wt/mWjzDJN0Nrj/Zdaf5gE9lxMkvJlRQC8ixLLqPA9IQCPWTWgN2pHsJBWQA9odB4xqw9iNKB0Sk3YjwG+UnMllGZibLuLen3+ciN0ceDQVqnxQ0JQMD68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reznichenko.net; spf=none smtp.mailfrom=dpplabs.com; dkim=pass (2048-bit key) header.d=reznichenko.net header.i=@reznichenko.net header.b=ad57ETgB; arc=none smtp.client-ip=209.85.216.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reznichenko.net
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=dpplabs.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-33d28dbced5so5346302a91.2
-        for <devicetree@vger.kernel.org>; Sun, 26 Oct 2025 23:41:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=reznichenko.net; s=google; t=1761547291; x=1762152091; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BNYKZ3q1Auj7hMkOKDK6a1DLo0lCG1SQUrXtOHXGU90=;
-        b=ad57ETgBYBam3lMPV2kfwPCdckEBTejF9rB1d800BMCNlzO6inDfKMLuLA+eze7v5Q
-         NJko8MP6zTZ865XM4J7h5F5bg3JLln8mx2/Sduau2Fqcv5aiG4bAXfYrTpca3+p3u0CO
-         HjdCoYohJykQsJ2LVrT6spYk39HApfj4+CWn/O0uOeL+FRl2FJ8jWBI8i5CZ/cdgd+uS
-         MTF38HsZFslgBfMDEeHP4ThrPqL0zgZC1z3WBwOsuM97VzuJPGmQ0bTT+OJRHZ1XGPo8
-         l7yeVBgQTUV72V71MeKesPnB9EItaxHEdmsKnL4AyQo9JADbLQrealTy/Abln87M6SJg
-         MNdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761547291; x=1762152091;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BNYKZ3q1Auj7hMkOKDK6a1DLo0lCG1SQUrXtOHXGU90=;
-        b=GShmntl6ZLiRd90629UhaH8b2iRb2LGLhpVrkMc2fe5urluUHyVgkWsSZSJN2jrDuw
-         XlPm4pfRzVmeHXSUzDZxypNJ6+L+qTuLDnKlH4nKxB7GspdVQBr09HxRRC58MjiXWJLk
-         NEg62kftw5/jB5fij4BSErSAkVl5PmsKPlykvThJnAdNq51tNcZV7j5w2cnYavfDI6le
-         ZPfMztilCEaXjRu5fRRUboRar0QjC8o9+mijvkYEO70YfI6BnoX0tJ0936nz3jQR+Mwu
-         U3GF69qi8VkvxiEjL5xQ6r6itVJ4h/VvTwkzU6PR6sNR9gu6a6crhzwQpmg2zOIkJ6py
-         n2Bg==
-X-Forwarded-Encrypted: i=1; AJvYcCVn0XUkwxRgD9hf1egGl86zo2l4DZEENFXN33/CJ1s9bgnK0TiiwEzTRw3kwSSfJ48KPTOwwcyfrc7c@vger.kernel.org
-X-Gm-Message-State: AOJu0Yylj11stkd7ibnNAW8AAl2hYGgiut4zQdeqXrTZ0AX7SeP8DkQv
-	/yzsvL1+tht8B51WE5hp8ZLbx8dXWDbGjmaPuzJK9HQsFpTXAY7zq/mOI3p5r+O9igg=
-X-Gm-Gg: ASbGncutHyCmEPmpNdUDL1A/STFk/x1HcxvcJMPcSzvDLHoE8phlA+Ln0UicjC3G0yj
-	I6ldiTkkRMsADo5OVAA9l+tPOtXIU4ZfoMk+dndpd0nmY2WnF3zlKQFCgSO7ysilly6DPhMamay
-	reiotqAkcaGqxmPHBRz/ZJg0ShXxVZw1sxur39DlJD5XnjDHH6bPEAgXxajl2y7KbFRYxZgfrQF
-	KB5sHR4mIrNT6GDrFVxkJekhxpDXVtnuU7mQTfn61Ilt/mXQuFcgWBsykzMdK6tjoeLEWpyrHox
-	Q0iL5kevcKYfTl5fWgtyVxd718nyJ4OQy3roh18BK4nImlyqmSOTg60EeAG7JUji4hnFFndzTjd
-	FclPicIyi+zsAnjphQgmXKM6MEwFhasf8l2dcqrttM3soZUNEevNL+tlNjZIFW4oYgBv4zqvq/P
-	W8egraNQyYB/iCjcgaTV0afmu4TiY=
-X-Google-Smtp-Source: AGHT+IE8qvj8HBsTwz5HGw5OIU28tMFtEpb+ccgQfqfh/iRW6PjNGYH658OE70RjYaYmTrjBpzvyzA==
-X-Received: by 2002:a17:90b:2690:b0:33b:b453:c900 with SMTP id 98e67ed59e1d1-33bcf8e3d67mr49587249a91.19.1761547290681;
-        Sun, 26 Oct 2025 23:41:30 -0700 (PDT)
-Received: from z440.. ([2601:1c0:4502:2d00:599c:824:af74:2513])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33fed81c9e5sm7276917a91.17.2025.10.26.23.41.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Oct 2025 23:41:30 -0700 (PDT)
-From: Igor Reznichenko <igor@reznichenko.net>
-To: linux@roeck-us.net
-Cc: conor+dt@kernel.org,
-	corbet@lwn.net,
-	david.hunter.linux@gmail.com,
-	devicetree@vger.kernel.org,
-	krzk+dt@kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org,
-	skhan@linuxfoundation.org
-Subject: Re: [PATCH v2 2/2] hwmon: Add TSC1641 I2C power monitor driver
-Date: Sun, 26 Oct 2025 23:41:27 -0700
-Message-ID: <20251027064127.648712-1-igor@reznichenko.net>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <d3365f32-dc92-4a55-91a1-c4a446558c5a@roeck-us.net>
-References: <d3365f32-dc92-4a55-91a1-c4a446558c5a@roeck-us.net>
+	s=arc-20240116; t=1761547442; c=relaxed/simple;
+	bh=8Ts8bnoJYVaGd8hjxKsPXct/uWQ+Rb7O8dFUbxzpBlw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QoCIKfgFaJNn1foM2KefRweiTSV3HflG4+h1uwiI0eMRIIaT+yYGbFgT5LQdp0PNDrIZoJ4o/kY1Of3d8H8UxRlzw6EosYQEIdk+vgWV9X1cNIp8VzGf+3Qjv/QE4HS1aI7KiY+13+OHs94jsQIdvUmklqdQTJM1cFRvPTY2/Tc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=J8HYMHYK; arc=none smtp.client-ip=220.197.32.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=N0Po5eBoI+p6ziuP9nX8EocpWpS0/rxUwsi2jvun0Ws=;
+	b=J8HYMHYKnxAF8/KS1yT8gIJlapMKsJQzlzIlACEEd7stvhhdjyCSnsddwto0eR
+	nHV2qPY8YVH9F9WvmCd7I2/dWkWWZXwsr1vsIuih3hqXyekwfEnb8sQ/HoNd0k7P
+	pATGgKZvPnBREkQnOk0P08WC26vJpzT+R7/w0afLX2Nd0=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgD3n1aKFP9oQve+AA--.28929S3;
+	Mon, 27 Oct 2025 14:43:24 +0800 (CST)
+Date: Mon, 27 Oct 2025 14:43:22 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 00/11] ARM: dts: imx6: trivial change to clean up some
+ DTB warnings.
+Message-ID: <aP8UiqYFJVm81bGf@dragon>
+References: <20251016-imx6_dts_cleanup-v3-0-baf2814f8a15@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251016-imx6_dts_cleanup-v3-0-baf2814f8a15@nxp.com>
+X-CM-TRANSID:Ms8vCgD3n1aKFP9oQve+AA--.28929S3
+X-Coremail-Antispam: 1Uf129KBjvdXoWrZryDWw4kXw1xCry8Xw4UXFb_yoW3GFg_W3
+	W3C3W7Aw47Cw42kw4aqrnF9FyDKF1Utr4UXrWrWr4Yq3W3AFnxWa4rta4DWFy7Cr4fXw1q
+	gr1Uuw17XryxCjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUb3l1DUUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIQ1Cp2j-FI19oAAA3a
 
->In some way this is inconsistent: It accepts a shunt resistor value of, say, 105
->even though the chip can only accept multiples of 10 uOhm. In situations like this
->I suggest to expect devicetree values to be accurate and to clamp values entered
->through sysfs. More on that below.
->
->> +	return 0;
->> +}
->> +
->> +static int tsc1641_set_shunt(struct tsc1641_data *data, u32 val)
->> +{
->> +	struct regmap *regmap = data->regmap;
->> +	long rshunt_reg;
->> +
->> +	if (tsc1641_validate_shunt(val) < 0)
->> +		return -EINVAL;
->> +
->> +	data->rshunt_uohm = val;
->> +	data->current_lsb_ua = DIV_ROUND_CLOSEST(TSC1641_VSHUNT_LSB_NVOLT * 1000,
->> +						 data->rshunt_uohm);
->> +	/* RSHUNT register LSB is 10uOhm so need to divide further*/
->> +	rshunt_reg = DIV_ROUND_CLOSEST(data->rshunt_uohm, TSC1641_RSHUNT_LSB_UOHM);
->
->This means that all calculations do not use the actual shunt resistor values used
->by the chip, but an approximation. I would suggest to store and use the actual shunt
->resistor value instead, not the one entered by the user.
+On Thu, Oct 16, 2025 at 12:00:04PM -0400, Frank Li wrote:
+> Frank Li (11):
+>       ARM: dts: imx6: rename stmpgpio to gpio
+>       ARM: dts: imx6: rename touch-thermal0 to touch-0-thermal
+>       ARM: dts: imx6: rename m95m02 to eeprom
+>       ARM: dts: imx6qdl-ts4900: rename ngpio to ngpios
+>       ARM: dts: imx6: remove gpio suffix for regulator
+>       ARM: dts: imx6: change voltage-divider's io-channel-cells to 1
+>       ARM: dts: imx6: remove pinctrl-name if pinctrl-0 doesn't exist
+>       ARM: dts: imx6-tbs2910: rename ir_recv to ir-receiver
+>       ARM: dts: imx6q-utilite-pro: add missing required property for pci
+>       ARM: dts: imx6ull-phytec-tauri: remove extra space before jedec,spi-nor
+>       ARM: dts: imx6qdl-nitrogen6_max: rename i2c<n>mux to i2c
 
-By "actual shunt" you mean defined in devicetree? Then does it mean disabling 
-writing value by user via sysfs and making "shunt_resistor" read-only or leaving it
-writable and clamping to devicetree value, thus discarding the user provided value?
+Applied all, thanks!
 
->See below - clamping is insufficient for negative values, and it is not clear to me if
->the limit register is signed or unsigned.
-
->Also, the datasheet doesn't say that the limit value would be signed. Did you verify
->that negative temperature limit values are actually treated as negative values ?
-
-SUL, SOL, TOL are signed, I verified. The negative limits for current and temperature
-work well based on my testing.
-
->This doesn't work as intended for negative values. regmap doesn't expect to see
->negative register values and returns an error if trying to write one, so clamping
->against SHRT_MIN and SHRT_MAX is insufficient. You also need to mask the result
->against 0xffff.
-
-I was under impression regmap would handle this masking correctly when defining
-.val_bits = 16. E.g. in regmap.c:973 it selects formatting function for 16bit values.
-I can mask explicitly if it's required.
-It certainly doesn't throw error since negative alerts work as mentioned.
-
->Why did you choose lcrit/crit attributes instead of min/max ? If there is only
->one alert limit, that usually means the first level of alert, not a critical level.
->Raising an alert does not mean it is a critical alert. Please reconsider.
-
-I used hwmon/ina2xx.c as a reference. It covers many similar power monitors which
-have single threshold alerts and defines only lcrit/crit. If this is a wrong approach
-I'll change to min/max.
-
-The rest of the things are clear, I'll fix those.
-
-Thanks, Igor
 
