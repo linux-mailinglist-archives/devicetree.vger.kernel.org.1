@@ -1,61 +1,58 @@
-Return-Path: <devicetree+bounces-231300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4D54C0C015
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 07:55:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1025C0C055
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 08:00:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21DBE3A5D9D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 06:54:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4888F3BB536
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 06:59:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E6E729E110;
-	Mon, 27 Oct 2025 06:54:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07A172D47F5;
+	Mon, 27 Oct 2025 06:59:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="FYn1Hudf"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="IaT5bG8/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C9A01991C9;
-	Mon, 27 Oct 2025 06:54:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A05F2D8376;
+	Mon, 27 Oct 2025 06:59:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761548061; cv=none; b=N60WFz3+Sh3A7lrQuildcYH4L/Bebaxn8Air2Zm9Dz9FGWKM3oMnDhjB5oRY1b2FyXVgizNgl7eLPjzs5uCiZL7ZF/hVyWNIdT3YAxGx9P4ly3H5xucuCVYTi0OjzZ03jTPVxIXTJXUzzn5GYwfcS+bUJi8bW69+ZeZKN5P0fqU=
+	t=1761548356; cv=none; b=PzE7LZMaZqWk+tM+2yA9IMwBYrkdHcLHLybPJbVdmREnjKkC99OOtbge75VJEx6vQc22s5p5TeB3ZmZhspx2+DjWKLhpM8fSXnyGLceFJ20WL4U5yYv43UxUYr6fwnKOdy05XigSCYsNDxnDDWmGj8+G7knVqHns1E307r1O/D4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761548061; c=relaxed/simple;
-	bh=6jUWtN8aVXsZhcQMBNUEm7MHtJYAISSEkk0g0vkKLA0=;
+	s=arc-20240116; t=1761548356; c=relaxed/simple;
+	bh=OB1Cik7udfraEKjwtubanodFIkXelNdkrRiK/NPvAOA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SkdTkKRK7ArQLUoabOOvchBSlMIhqUYAFzKHuJnON6AGf8ny4EUQKHyA36wGeQlmQUgiY5bcJ94V2uET9dIdmmzaGaI9JYLI8AOIpGKpxJW9UBS++HSNUUJ+NIsY5r1KnzECK1eH664LDFi72e3Y4o0UUo7SLcTNueHJPKsMT0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=FYn1Hudf; arc=none smtp.client-ip=220.197.32.17
+	 Content-Type:Content-Disposition:In-Reply-To; b=r9I9ZIlBo0T6XE/Mr19Nsmoc+0apAwcgCrSfk2CaiswUE1tj6AXUOuwvHb5CGEK6q8AOQY56l0ohRajL83kjklejw9Plimi4JdF5CXqUNgzcU59dqve5bWzGU6nmKWH57hoY6jLYJ/MAATwwgHSpLJFhW7b0TLuoIFJWwkuHMEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=IaT5bG8/; arc=none smtp.client-ip=1.95.21.15
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=1Ig3mNz2cheWdXRa0cEaI1NEjXM1NYmX/2zCvx3pS2c=;
-	b=FYn1Hudf6ZDELCRyVnzshezFUNPcDA/bBhg5NDYmrezNvvtySQhpMVX67lmbOh
-	sTznv8a2r4/p1P1F6SU2VVMw4QSB2QWu0c5TGskGdi7C6KID9eyVR6iMNyxJeewR
-	kv0SKy3jz1IMK3Ds0HUq0aI5TFSXiDAbft2moKNVg85xM=
+	Content-Type; bh=izvswgULjVKnMNc8RRs/u+xF9sef1u7J/UdDKN2xSwA=;
+	b=IaT5bG8/Npswm9/cwt+6r5pTKpEdnOb/4ZzS398oWoPIqr8N1ljh55/QnVLNpd
+	pq+47fW2DbALWK59ineCZBUfjecluVRrZ921mmhVO4QH4MCsyqEsjDZbwLHnxyl0
+	Pf+s/j0hJSuiSPxEMrPMwe0gD830HgAT3KbNZByG9fKjI=
 Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDn76jtFv9o8hu_AA--.25236S3;
-	Mon, 27 Oct 2025 14:53:34 +0800 (CST)
-Date: Mon, 27 Oct 2025 14:53:32 +0800
+	by gzsmtp1 (Coremail) with UTF8SMTPSA id Mc8vCgD3N58gGP9o0rg_AA--.50610S3;
+	Mon, 27 Oct 2025 14:58:42 +0800 (CST)
+Date: Mon, 27 Oct 2025 14:58:40 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Frieder Schrempf <frieder@fris.de>
-Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Frieder Schrempf <frieder.schrempf@kontron.de>, imx@lists.linux.dev,
+To: Frank Li <Frank.li@nxp.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Annette Kobou <annette.kobou@kontron.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [PATCH] arm64: dts: imx8mp-kontron: Fix USB OTG role switching
-Message-ID: <aP8W7CE2rpLIbcDx@dragon>
-References: <20251020132155.630512-1-frieder@fris.de>
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] arm64: dts: fsl-ls1028a: fix USB node compatible
+Message-ID: <aP8YIIQG6uT7bLEA@dragon>
+References: <20251020133754.304387-1-alexander.stein@ew.tq-group.com>
+ <aPaXaFigEh50sdZC@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,28 +61,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251020132155.630512-1-frieder@fris.de>
-X-CM-TRANSID:Ms8vCgDn76jtFv9o8hu_AA--.25236S3
-X-Coremail-Antispam: 1Uf129KBjvdXoW7JFWxAw4DXFWfKF17Ww1kGrg_yoWxCwc_ua
-	yrWa1DC34xZFWkKFn3KF18KrWvqa1jk34DKw4a9w45JF95AayrGFW8Kry5Zw15u3yDC34D
-	WasrXa1qka1UujkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUbo7K7UUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNg-aQGj-Fu9eXwAA3M
+In-Reply-To: <aPaXaFigEh50sdZC@lizhi-Precision-Tower-5810>
+X-CM-TRANSID:Mc8vCgD3N58gGP9o0rg_AA--.50610S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU2b18DUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNwIojWj-GCKfngAA38
 
-On Mon, Oct 20, 2025 at 03:21:51PM +0200, Frieder Schrempf wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+On Mon, Oct 20, 2025 at 04:11:20PM -0400, Frank Li wrote:
+> On Mon, Oct 20, 2025 at 03:37:53PM +0200, Alexander Stein wrote:
+> > usb/fsl,ls1028a.yaml says the compatible is just a simple
+> > 'fsl,ls1028a-dwc3'
+> >
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 > 
-> The VBUS supply regulator is currently assigned to the PHY node.
-> This causes the VBUS to be always on, even when the controller
-> needs to be switched to peripheral mode.
+> Thanks, but it is similar with last patches of
 > 
-> Fix the OTG role switching by adding a connector node and moving
-> the VBUS supply regulator to that node. This way the VBUS gets
-> correctly switched according to the current role.
+> https://lore.kernel.org/imx/20250929-ls_dma_coherence-v5-4-2ebee578eb7e@nxp.com/
 > 
-> Fixes: 827c007db5f2 ("arm64: dts: Add support for Kontron OSM-S i.MX8MP SoM and BL carrier board")
-> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+> Waiting for shanw pick dts part.
 
-Applied, thanks!
+I'm waiting for the usb binding change in the series to be applied first.
+
+Shawn
 
 
