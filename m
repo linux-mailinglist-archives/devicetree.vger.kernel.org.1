@@ -1,97 +1,97 @@
-Return-Path: <devicetree+bounces-231508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC770C0DC33
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:02:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5971C0DBBA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:59:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FDDF3A0593
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:56:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F240B1884AA1
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:56:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 736F0263C7F;
-	Mon, 27 Oct 2025 12:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20CA4265281;
+	Mon, 27 Oct 2025 12:55:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="ZvqER0x0"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="exODC324"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f68.google.com (mail-io1-f68.google.com [209.85.166.68])
+Received: from mail-io1-f67.google.com (mail-io1-f67.google.com [209.85.166.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E18F25D528
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 12:55:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA6FC25F998
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 12:55:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761569713; cv=none; b=uitrwho8N9IYiKikXbhUpknqQNwN3wnV+JlDv/sqycoQwPGFf2PqPGby1oFuzO2Y0Czva8WjlDAXjeJ/VqYhE5+yukQn9t085ZOLPNpMycYdo9pfYvUy68HJ/6a6IEUKYhInThkoRP9ZeMiDVWyYfAywiHIK9uAVNbcBXNOp2v4=
+	t=1761569714; cv=none; b=RHhqtq15LNLSvl0U61Lfh90Ntc2p81cfs0Y5FOCjjo08Y6XKDiqGgW6zosyRALsIN1evjFp8DlnG6gBlJWU6uoXoPqJExq10XrVUHZeIYq76uOi2iqD9Jj1o3j4dQJPUt8vENUN63WohfDu0jy4F1MmCqfpyMgtT0h64+NpepcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761569713; c=relaxed/simple;
-	bh=Y1P+Ko6EypVqbiO04L0KXvr1REByV8AEUux9zAD3i0s=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SbL3KR6lEymgM+CWkP11pjPoRwP6pYwZQQIGvQDvzkncLo/9gaol52/DG46t4ujvZpyE7bP1sYfS0V9PRP85RMAu9HsziLHRlYVxPoISOfF78p1xvt18rqK0OTRlctSSVwQXDMu4h5BXeLHOo+i9ypdrMWkYkSjT8fuTEaXyJZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=ZvqER0x0; arc=none smtp.client-ip=209.85.166.68
+	s=arc-20240116; t=1761569714; c=relaxed/simple;
+	bh=Kb8uM3f8qILwL0GDllY38o85KB9kJ69KatRC0T8EZTs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=Rh4/gavD5iF8CNtQ/aHqcEJHzLb66ppMtS0+hHvZt4WkpLakTRQJRgszl1/bcVD/SMXYtxRBwovxu3QMKQ+R8+kSYMZUAeYvDUTW83uuK0ts6NEBarrLv3TUjBvsUAzf2bIN3g16VvYLE6W/FdnQmbO/W3pKFH0/FGhDP13gVz4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=exODC324; arc=none smtp.client-ip=209.85.166.67
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f68.google.com with SMTP id ca18e2360f4ac-938bf212b72so193984139f.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 05:55:10 -0700 (PDT)
+Received: by mail-io1-f67.google.com with SMTP id ca18e2360f4ac-945a5731dd3so51657039f.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 05:55:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1761569709; x=1762174509; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4nAF82uQdqoZ+b3y8tjZiPVkCVKQg6rD1LcHeZvN9hk=;
-        b=ZvqER0x097OGPM9gQejW4oG4u0baRK2jM+AZOW6u7qGKku4U63SMkcVKZ+Q9y/946m
-         GpPCrvhw96mASkQpftNQYTsrmxpF7Agbez83rZhEJOU6qwEHQiLkfRQf++mG0EeNaq1M
-         vdaX5daqywna3CU+4W3n3bWha7WVp51oGWJCjsilQ3dhQD1PxcoAsp5kelW7/XjIcqJ3
-         3PJFgHrRv8m59H1Vt/Ay4KGLT5hYuZ7txhqnf7x90S0ce992X6cscrJPbTkAElvAh2gb
-         fvgt+sqxqu3aMVViXfSnY3IZ4KsJtaraon57gx/mr3560lUZaSrrA/uSWaX4oHkd0AEn
-         p5HA==
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1761569711; x=1762174511; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GhpKl/nn+BHTlTr14XOcXWGwJsMuOmqiPlR2ItDHNmo=;
+        b=exODC3241u8WAzsD21msZI35CFcZKgWnLu50wEWERIdbCFC7h74xHfmx+uKH9ocuWF
+         BTn1om1WijRmWF3diGHOp2TLBrKk0iaGE5L2swD9V9XAItH2JwRdAOg4bhx2cDkuvYYp
+         +yluNoDEFYhuY3mHtt79nvrW5sFviBwFKvr9sX5C8dryAcpiR/VZ9PY76twPiHBtpoI9
+         QGLSeRwmTjaUDGgIdmvNXxW8klmDry8DjdyhmWJ0UyqTQ8B3hZKG4+M5oCkDbBnhOfh6
+         Gce/qZV1KBuhj5tICzRbP4cUHPOg4u8m3Usk1IULkgiUUnzJfqKg0Phkd24ID9729LiP
+         fR5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761569709; x=1762174509;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4nAF82uQdqoZ+b3y8tjZiPVkCVKQg6rD1LcHeZvN9hk=;
-        b=cqN0I82O9fabxjbn2PyCafmLHi5G6mw2VYoyPnYYkK92lLP4F8R31/yOu4iesYK652
-         ugOHdCpmrxvCoG9y2p0HIJyW12fDD4D3rY/ZRb6xEFUljeoy4EYvix40zvTgWqr7zByv
-         ZEdeogydthgyVIK/79RSNfhQ0AL1ZJCAK2e25SjgOt2Oued05LZsx5+ZhdQzxfzbIW4a
-         lF8XJG/lcc0YvwurVZqLi/xllE0kBYrorfVVpmAZEFVMYH5xU4hy54pnzFYljZfc5Eof
-         VfmMtIq/Le5Xpdeoqj+IBvwRmDQVleRArCxzFYOyIgeye832M2LwU9oW0ztLPZUzUsKL
-         PB6A==
-X-Forwarded-Encrypted: i=1; AJvYcCXo2x1GZK1nZLUlbVYZSYuLbipdXw4c6aPuqW4E6E0V4QAAYoTlJgTblidpMyttnvHzV+pOt9dAqBVE@vger.kernel.org
-X-Gm-Message-State: AOJu0YxtHoIlPy2i7ieArC20taACg5KPdr/E+pZb+P4Da9Is1lj/VKl/
-	1iv8CpO5CohBIFTAByC0LlpVi+Tsvia7Oc26VS7LtE9zSgCWuq0Cr27YkCoXeLino28=
-X-Gm-Gg: ASbGncveGmm3RMOdXXkhsD2ecvknPV4+w0TRJqIG5n8TIT80VglD0qofuPeZeALc1fZ
-	UqzjPxKyxI5sBn5G0Eg5e4CREHfjz3MIzOx1ScY0j95KWp14JipReumDFI0wZLSG9ho/iKOtpuv
-	AaTjmHLICkv9rQe7pk8DxTcx3E54XnMhA6SwOqJ6VWivRwtQcLCAM9V3lPkPGc62323iDtYXVg9
-	veW+HDmVXBzzd8Ja8xHvdA9uq0uVF7xbqdQgs5N8RDRmazh9/v3w3+RBCQ6focJbIxXLW0qVOhG
-	t8sPSN9RWvP34Llxzzz4Pnq6gr4DlHF8MAlghsCoaTNXPwJwxA9omj+nwLKxfOOvkoVAMtSmWQP
-	GIRzJeEfGXn00rZjhzi1Qi21GQinZ1C6Pl0Am7YzDcEuK9WnKuFKqqsKD4TVtGKxi3ImOjTra/u
-	j6RRAG7wVut0cqWnDHtvfukHU7jisEGspBZdVj4A9lOKtf4MD3UpIDVA==
-X-Google-Smtp-Source: AGHT+IF9dogLPfu3KKBrg4aJADxwDW+rw89Jp80NmbsD4vytQNTH3nxBh7Ne+iAACQ+ZbrAmLBB0QQ==
-X-Received: by 2002:a05:6602:29d2:b0:93e:871f:b060 with SMTP id ca18e2360f4ac-93e871fb6b2mr5001344339f.15.1761569709430;
-        Mon, 27 Oct 2025 05:55:09 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761569711; x=1762174511;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GhpKl/nn+BHTlTr14XOcXWGwJsMuOmqiPlR2ItDHNmo=;
+        b=DS/oyFqqdMCaUgsNYLKXl0H9n8Zl5WDGtP/fpC2vxuo7X4uyHAo2t0648YEp8ANyfW
+         PeOQpS7ej/fei+oi2P7W4LmzaZEy508ySn0b8bVC9TWIcYJ8F3uKDTogGwFTqF0dHU1n
+         QJMNPWX2F3Uod7XfPx5MEj56z/blYu9GyQKQpasxT6opfRCQjw/kgDoJiN+wFV+qWYLf
+         eKx/vt9dv/NCEeLoKF3+bZrQTgiKjn2FzR87uzdsa0+jFGUFGRdHsQxDBMXXWoMGPsto
+         GAsAHipL9qTNo/xC7gPmIRgrKqE7r1G/vN9Y/2onlFJ6MzpW96sO3MnjRTHil53Q17Hl
+         oYNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXgtM5Ahb6IRQS7WOMAhIElGHlZXHknMc3yjnRM4iPaUtv32Ry0CO8ZdOe9QM3XffEcHAmvSXAV/WD1@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqQUmokzyhJpBWt72aJTa+mIvr1CUC2am2wPS/di1Rb1EhEw4D
+	vYo+Ss1F213wLiAHT97T+ZDcAoZ1dJ1p2xnQabhRMRrK6khTu2l2vSreQy+NKGdTQ1U=
+X-Gm-Gg: ASbGnctji2Fq+IVpPmcOkvMJA0ULNtydmOiAdfZHFHNPBH+2VJAqMgPYTA74npC3i9x
+	J3JRIFBGBNKEL5d/f/q85FJ4GF0uejIbmMnC+PXjSRmDj6rn2J7hNQwGR97T4JfhFhuo1ijIN7h
+	pCqRtQAkrwhSDDc3y3tIWdxQzbDwY/DwgvGFfYXN/a/GxVdtUAKAm3HEf9RTzcKKx/G15zF9F4j
+	QcDR1cnoHRsa8pOvCNSglifo4L+WCeT6lIfnk1ThYr/K08Uw1GTDzJ5yMQptFSVDgwmA5kntr8Z
+	/qmIDc4BaWKf5bGFWJmaRRlRs6Rufu1R6hYjp9el2szQR1fNvAducjw/4MDgDTyukx1Mz88hUij
+	itFTO9Lks2T+UtAdOjAv4V0KYOw2D2TfVY+G40/Zp227OWqgP8aN8fs0WJp4FsH69yUEJ9H1FtS
+	61Vr/xboj038kPoyuLXJWDF0Xy4GuK+rvgwU2i9C1CjpUdHBTX2wXfNg==
+X-Google-Smtp-Source: AGHT+IEZEkJbHyJsLtQ9RwbUNNRM89do/GpofJnj3gjkHzKLnBs02AOz2LkYBC9YjYewuyvy3xtdnw==
+X-Received: by 2002:a05:6602:c85:b0:945:a198:7726 with SMTP id ca18e2360f4ac-945a1988c63mr751875839f.5.1761569710940;
+        Mon, 27 Oct 2025 05:55:10 -0700 (PDT)
 Received: from zippy.localdomain (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-94359e742efsm249121639f.7.2025.10.27.05.55.07
+        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-94359e742efsm249121639f.7.2025.10.27.05.55.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Oct 2025 05:55:08 -0700 (PDT)
+        Mon, 27 Oct 2025 05:55:10 -0700 (PDT)
 From: Alex Elder <elder@riscstar.com>
 To: broonie@kernel.org,
 	dlan@gentoo.org
 Cc: robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
-	pjw@kernel.org,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	p.zabel@pengutronix.de,
 	devicetree@vger.kernel.org,
 	linux-spi@vger.kernel.org,
 	spacemit@lists.linux.dev,
 	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v6 0/3] spi: support the SpacemiT K1 SPI controller
-Date: Mon, 27 Oct 2025 07:55:00 -0500
-Message-ID: <20251027125504.297033-1-elder@riscstar.com>
+	linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v6 1/3] dt-bindings: spi: add SpacemiT K1 SPI support
+Date: Mon, 27 Oct 2025 07:55:01 -0500
+Message-ID: <20251027125504.297033-2-elder@riscstar.com>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20251027125504.297033-1-elder@riscstar.com>
+References: <20251027125504.297033-1-elder@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,96 +100,106 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This series adds support for the SPI controller found in the SpacemiT
-K1 SoC.  The driver currently supports only master mode.  The controller
-has two 32-entry FIFOs and supports PIO and DMA for transfers.
+Add support for the SPI controller implemented by the SpacemiT K1 SoC.
 
-Version 6 is identical to version 5, other than being rebased onto
-a current linux-next/master.
-
-                                        -Alex
-
-This series is available here:
-  https://github.com/riscstar/linux/tree/outgoing/spi-v6
-
-Between version 5 and version 6:
-  - Rebase only
-
-Here is version 5 of this series:
-  https://lore.kernel.org/lkml/20251013123309.2252042-1-elder@riscstar.com/
-
-Between version 4 and version 5:
-  - Added Yixun's Reviewed-by tag on patch 3
-
-Here is version 4 of this series:
-  https://lore.kernel.org/lkml/20250925121714.2514932-1-elder@riscstar.com/
-
-Between version 3 and version 4 (all suggested by Yixun):
-  - Fixed an underrun/overrun comment error
-  - Renamed a pinctrl node
-  - Formatted dmas and dma-names properties on one line
-
-Here is version 3 of this series:
-  https://lore.kernel.org/lkml/20250922161717.1590690-1-elder@riscstar.com/
-
-Between version 2 and version 3:
-  - Add Conor's Acked-by to patch 1
-  - Add Rob's Reviewed-by to patch 1
-  - Added imply_PDMA to the SPI_SPACEMIT_K1 Kconfig option
-  - Fixed a bug pointed out by Vivian (and Troy) in word-sized reads
-  - Added a comment stating we use 1, 2, or 4 bytes per word
-  - Cleaned up DMA channels properly in case of failure setting up
-  - No longer use devm_*() for allocating DMA channels or buffer
-  - Moved the SPI controller into the dma-bus memory region
-
-Here is version 2 of this series:
-  https://lore.kernel.org/lkml/20250919155914.935608-1-elder@riscstar.com/
-
-Between version 1 and version 2:
-  - Use enum rather than const for the binding compatible string
-  - Omit the label and status property in the binding example
-  - The spi-spacemit-k1.o make target is now added in sorted order
-  - The SPI_SPACEMIT_K1 config option is added in sorted order
-  - The SPI_SPACEMIT_K1 config does *not* depend on MMP_PDMA,
-    however MMP_PDMA is checked at runtime, and if not enabled,
-    DMA will not be used
-  - Read/modify/writes of registers no longer use an additional
-    "virt" variable to hold the address accessed
-  - The k1_spi_driver_data->ioaddr field has been renamed base
-  - The DMA address for the base address is maintained, rather than
-    saving the DMA address of the data register
-  - The spi-max-frequency property value is now bounds checked
-  - A local variable is now initialized to 0 in k1_spi_write_word()
-  - The driver name is now "k1-spi"
-  - DT aliases are used rather than spacemit,k1-ssp-id for bus number
-  - The order of two pin control properties was changed as requested
-  - Clock names and DMA names are now on one line in the "k1.dtsi"
-  - The interrupts property is used rather than interrupts-extended
-  - The order of two pin control properties was changed as requested
-  - Clock names and DMA names are now on one line in the "k1.dtsi"
-  - The interrupts property is used rather than interrupts-extended
-
-Here is version 1 of this series:
-  https://lore.kernel.org/lkml/20250917220724.288127-1-elder@riscstar.com/
-
-Alex Elder (3):
-  dt-bindings: spi: add SpacemiT K1 SPI support
-  spi: spacemit: introduce SpacemiT K1 SPI controller driver
-  riscv: dts: spacemit: define a SPI controller node
-
- .../bindings/spi/spacemit,k1-spi.yaml         |  84 ++
- .../boot/dts/spacemit/k1-bananapi-f3.dts      |  15 +-
- arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  |  20 +
- arch/riscv/boot/dts/spacemit/k1.dtsi          |  15 +
- drivers/spi/Kconfig                           |   9 +
- drivers/spi/Makefile                          |   1 +
- drivers/spi/spi-spacemit-k1.c                 | 965 ++++++++++++++++++
- 7 files changed, 1105 insertions(+), 4 deletions(-)
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Alex Elder <elder@riscstar.com>
+---
+ .../bindings/spi/spacemit,k1-spi.yaml         | 84 +++++++++++++++++++
+ 1 file changed, 84 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
- create mode 100644 drivers/spi/spi-spacemit-k1.c
 
-
-base-commit: 8fec172c82c2b5f6f8e47ab837c1dc91ee3d1b87
+diff --git a/Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml b/Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
+new file mode 100644
+index 0000000000000..e82c7f8d0b981
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
+@@ -0,0 +1,84 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/spacemit,k1-spi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: SpacemiT K1 SoC Serial Peripheral Interface (SPI)
++
++maintainers:
++  - Alex Elder <elder@kernel.org>
++
++description:
++  The SpacemiT K1 SoC implements a SPI controller that has two 32-entry
++  FIFOs, for transmit and receive.  Details are currently available in
++  section 18.2.1 of the K1 User Manual, found in the SpacemiT Keystone
++  K1 Documentation[1].  The controller transfers words using PIO.  DMA
++  transfers are supported as well, if both TX and RX DMA channels are
++  specified,
++
++  [1] https://developer.spacemit.com/documentation
++
++allOf:
++  - $ref: /schemas/spi/spi-controller.yaml#
++
++properties:
++  compatible:
++    const: spacemit,k1-spi
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Core clock
++      - description: Bus clock
++
++  clock-names:
++    items:
++      - const: core
++      - const: bus
++
++  resets:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  dmas:
++    items:
++      - description: RX DMA channel
++      - description: TX DMA channel
++
++  dma-names:
++    items:
++      - const: rx
++      - const: tx
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - resets
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++
++    #include <dt-bindings/clock/spacemit,k1-syscon.h>
++    spi@d401c000 {
++        compatible = "spacemit,k1-spi";
++        reg = <0xd401c000 0x30>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++        clocks = <&syscon_apbc CLK_SSP3>,
++                 <&syscon_apbc CLK_SSP3_BUS>;
++        clock-names = "core", "bus";
++        resets = <&syscon_apbc RESET_SSP3>;
++        interrupts = <55>;
++        dmas = <&pdma 20>, <&pdma 19>;
++        dma-names = "rx", "tx";
++    };
 -- 
 2.48.1
 
