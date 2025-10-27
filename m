@@ -1,101 +1,146 @@
-Return-Path: <devicetree+bounces-231868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A863C11F2E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 00:15:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56501C11FF6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 00:24:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C052188979D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:16:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A3D53A44AD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:22:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDD6D2DE6F9;
-	Mon, 27 Oct 2025 23:15:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC76832D0FA;
+	Mon, 27 Oct 2025 23:22:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="QMAQtSzh"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Ux06wiQM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AD5E26CE3A
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 23:15:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6628F32779A
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 23:22:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761606932; cv=none; b=L5aX7o2W0p5cU/Q20RjIhfS/+gpfPOjqbj1ezbLfjQkM4KeZbKKI0O7xtEmZ0FpJsrMtK6H8Au6wwFKrat11BkriRIDDpPB63otl2r9q+Sdf5dlVugG/IrzXoCoK+JmV2Dt3v02Yn/THUf98bSZm3maHMofwCda3BNfTBA5uuAg=
+	t=1761607331; cv=none; b=Bn8lrG/axA+Lg4n2Es1+yJaj4CP7+FGDppQE2+06GQOZoonRMDA9eAFyt4XgbVDWHyGpkVFcHn6nxQLIdtg9lWgBmdB9GQgHRcYNsuEJV+E10txyIuXqbqY9SAaF9zR3C1woyRNP7vjK+Kb5jyiu5hXIVTg4oPG2wCs6uQy8XmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761606932; c=relaxed/simple;
-	bh=nt74lwe+3Mv9bENcEg2mAYvzZjiiGcAI05M14szMS90=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EfRGVsnKkY3QEdk6ex4Fla3S/xX/KMjK6icOrpx7U4irn0F+DXklyJ8U1kFlP738wLf7eX4dzhMRpQdWM4Pcx/8wawUqgJt9OzpMvs/Yv7mo69HYjk32FKTYmIx0T7qqBBctafMJcvQpIEzuNVdkjyGtLLjrf2zco6sBmD9S/qI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=QMAQtSzh; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (85-76-17-108-nat.elisa-mobile.fi [85.76.17.108])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id B3E17AB4;
-	Tue, 28 Oct 2025 00:13:40 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1761606821;
-	bh=nt74lwe+3Mv9bENcEg2mAYvzZjiiGcAI05M14szMS90=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QMAQtSzhJqi1GityQRMFbCuLdSPNOIqwnMahLMnM+q2zx4fDiQMCBGCm3WRtIP6qy
-	 Qx5Wx0gJ7YaOfR6yMiwePVwCBLdX19lg9MQ172RcfDF97QsC1IV8R062Nbsl0PgsFi
-	 kJ0mMfmusAmdQlbL4YRk6jmdaHdimuZP7E/NhuI4=
-Date: Tue, 28 Oct 2025 01:15:14 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Daniel Scally <dan.scally@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Stefan Klug <stefan.klug@ideasonboard.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
-Message-ID: <20251027231514.GB24987@pendragon.ideasonboard.com>
-References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
- <e87ff7f2-d16f-41f2-b781-b175cfb84b21@lunn.ch>
- <20251027072749.GA7811@pendragon.ideasonboard.com>
- <aP9V-zosjg7rY5vZ@shell.armlinux.org.uk>
+	s=arc-20240116; t=1761607331; c=relaxed/simple;
+	bh=P7ysm4/FJD4mR6EucRcT1c5Y9QYG15DBwqirU3YA+CU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GYQYGOWTQxySk/GHHkQvDH5UdLI8AZAwWYRL6B8/6Hgzhnr0D9LQi5NjnaNv9OnRgd1+rzEw6UJXX77GBrtnBJyVjsD5m90yxM8Gx1aav8879kYv1hyHAaqZrz/LLzbeNJkykFtfxbp5K1w1gApo5oJwyWKf4gSckX386wVvrYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=Ux06wiQM; arc=none smtp.client-ip=209.85.215.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-b6ce806af3eso4836544a12.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 16:22:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1761607330; x=1762212130; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iiPQWeIHeevsOV0YNnrSX+B9LNP43U3Api7ejFSH8cQ=;
+        b=Ux06wiQMhR90R7GZzc6ZESmOZG04sDLPUxaS4AUbGNgHfP9FNgWI4K/Cgnfer83yL+
+         3u/rWp29WSs2Y21ZTsf5yYMurgrBul22soGUjPAFI5+XmWStkD+OOAxFZzHNErfvWQh4
+         CYhq/C+ubgGBoiSOa2x3OJ0o4e6Ls7l5UgwwqWSGWiIrV5Zu/27aUQjUtP8BJFW9GZ4E
+         XLQlOFE7sTqCmMf+kIduyAXUw5oZElhYKTrSTtxiNNstk836PDxZ+pp8myWSQ1u9dbla
+         kQkEnlLgp2ScHBXssg/IwoPGprMe6nFvbamzG1bz4tzSdz0nKPHKKqVLMdwGrWr7quBL
+         UvXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761607330; x=1762212130;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iiPQWeIHeevsOV0YNnrSX+B9LNP43U3Api7ejFSH8cQ=;
+        b=PNi5v4owwySknkGJQ3nlUP3ZXBB/VhW24ZIoXID0zbyA1baPJGMZZ9dIEGNnoGV8aW
+         s3sDpm4VPT9KNlHxQcKBoC1rBIUIhTxpQC09yCT0pawxKbh5qpQoScF39DE5EazQMHHJ
+         NLLo03YH9ZuTOygPCdCHsHATz+4geTFFFwk9/gHGE1ozoyrhEBMq1sRqJ2H5okznIzK7
+         4o3Y9MYwaH9ZWFmPyGQx/dLi/2qmMmN+oqAHcxvZXY3J0Z7WOlpOvDirsMP4uLS2/3hM
+         Nxn410R47RnDZojM+qLNN9ON180wntcruWu+tF11+ecCA0unvrlPsoFQEi+durwO+gqA
+         gntw==
+X-Forwarded-Encrypted: i=1; AJvYcCUMsHF7bx7IqYw2BtEvveXiiMqo7THIa6rdtFL14oVahggviYNlV3CINH7rBA8NqY8Hdao6yzxAd6YC@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSOViCfS9AQ7zpCKoySagBByqX8IUQpVJkHHOAEfbQqegRLrYX
+	IdLXuU35QhP9HoDey88b6f/9Y1+YnJq6vXkmV3pUTDMJqA8dRMzESF5ip8scf3libwtdJ1bbF24
+	yGKpSSOwnFHpQZULXC0L2BTWcFjSul4A2TwP67C+V
+X-Gm-Gg: ASbGncugCLU+e+jtMG0qSNLQD6VNqe9gxX7bqIMmBoAI5q5n2Gv+Z7AA5bFpXOK34jm
+	pwXTMg2U2xokJtWbDG+nnD2+ylHCrIEfHSRIDIbWvmtrG/hZcYxKReBPFvU1OJIROj3LR9Enl3N
+	Hc8UgSA1ln7b2iujr8ssKtFx5PXLvAVRcyAr0Q1htiOnppbemiEtPv1xoc5rrDhajujZ9Pf24Wn
+	hRi++PUUo/t4UneLW75iRGhEj2POsRhYNsDVH/UpEXmbxOB7QSlGx3ws0ZtoeyKimeU6u/d+ogD
+	1zvGwVLNE8mHj6iktA==
+X-Google-Smtp-Source: AGHT+IFw/jdLBZAkI7aI48cv68geMt8046dhZdRqyhbPorbEN5vUOHFP9Zbu6h+jTvEqQPeotPAALO6GhBMyaapG0Vg=
+X-Received: by 2002:a17:902:f609:b0:290:ad27:c1fc with SMTP id
+ d9443c01a7336-294cb6893fcmr16828025ad.55.1761607329339; Mon, 27 Oct 2025
+ 16:22:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <aP9V-zosjg7rY5vZ@shell.armlinux.org.uk>
+References: <20251017235159.2417576-1-royluo@google.com> <20251017235159.2417576-2-royluo@google.com>
+ <20251023-collie-of-impossible-plenty-fc9382@kuoka> <CA+zupgwQTLEs8_7i-VsGbGV7O2Y3XFA1C3aV7iuv2HLOwKns3w@mail.gmail.com>
+ <8e4c8875-10bc-4f4c-a675-a7cefc68c863@kernel.org>
+In-Reply-To: <8e4c8875-10bc-4f4c-a675-a7cefc68c863@kernel.org>
+From: Roy Luo <royluo@google.com>
+Date: Mon, 27 Oct 2025 16:21:32 -0700
+X-Gm-Features: AWmQ_bnZfP-h63jIJfnjGht1z_4tHKDRepUQGmMIkJ_dLhOGQfclonH0qtun2RU
+Message-ID: <CA+zupgzzkX2CEicrLaW7oGB08qNVqF=5Jpfgcw5HWS1kDW72qg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: phy: google: Add Google Tensor G5 USB PHY
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Peter Griffin <peter.griffin@linaro.org>, 
+	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Joy Chakraborty <joychakr@google.com>, 
+	Naveen Kumar <mnkumar@google.com>, Badhri Jagan Sridharan <badhri@google.com>, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 27, 2025 at 11:22:35AM +0000, Russell King (Oracle) wrote:
-> On Mon, Oct 27, 2025 at 09:27:49AM +0200, Laurent Pinchart wrote:
-> > I've tried to diagnose the issue by adding interrupt counters to
-> > dwmac4_irq_status(), counting interrupts for each bit of GMAC_INT_STATUS
-> > (0x00b0). Bit RGSMIIIS (0) is the only one that seems linked to the
-> > interrupts storm, increasing at around 10k per second. However, the
-> > corresponding bit in GMAC_INT_EN (0x00b4) is *not* set.
-> 
-> I'll add to my comments earlier, because it may help you work out
-> what's going on.
-> 
-> RGSMIIS will be set when the LNKSTS bit (bit 19) of 0xf8 changes
-> state. RGSMIIS is only cleared by reading this register. So, something
-> else to test would be to do a dummy read of this register and see
-> whether the interrupt storm still has the RGSMIIS bit set.
+On Mon, Oct 27, 2025 at 7:02=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 24/10/2025 00:22, Roy Luo wrote:
+> >>> +
+> >>> +  clocks:
+> >>> +    items:
+> >>> +      - description: USB2 PHY clock.
+> >>> +      - description: USB2 PHY APB clock.
+> >>> +
+> >>> +  clock-names:
+> >>> +    items:
+> >>> +      - const: usb2_phy
+> >>
+> >> core
+> >>
+> >>> +      - const: u2phy_apb
+> >>
+> >> apb
+> >>
+> >
+> > Just to provide the full context, these two clocks/resets
+> > (usb2_phy and u2phy_apb) are specifically for eUSB2 PHY.
+> > USB3/DP combo PHY has its own clock/reset that hasn't
+> > been added yet, we would have to differentiate them once
+>
+> That's confusing a bit. You must add all clocks, all resets, all power
+> domains, all pins etc. Bindings are supposed to be complete, see writing
+> bindings doc.
+>
+>
+> Best regards,
+> Krzysztof
 
-It does. I then get
+Ok found this in the writing binding doc:
+"DO attempt to make bindings complete even if a driver doesn=E2=80=99t
+support some features. For example, if a device has an interrupt,
+then include the =E2=80=98interrupts=E2=80=99 property even if the driver i=
+s only
+polled mode."
 
-[   22.880935] stmmac: INTS=00000000 INTE=00001030
+I will add all the clocks and resets inclusive of usb3 in the
+next version.
 
-with the same interrupt storm. This is getting weirder and weirder.
-
--- 
-Regards,
-
-Laurent Pinchart
+Thanks,
+Roy Luo
 
