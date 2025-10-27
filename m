@@ -1,228 +1,249 @@
-Return-Path: <devicetree+bounces-231413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A12AC0D061
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 11:54:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF007C0D0AD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:05:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBC073AB98F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:54:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EFEB189FB77
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 11:06:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94E72F60C9;
-	Mon, 27 Oct 2025 10:54:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AAB52F7AC7;
+	Mon, 27 Oct 2025 11:05:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="FeEFgxUq"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BcW4d8eh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010064.outbound.protection.outlook.com [52.101.229.64])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 657E3366;
-	Mon, 27 Oct 2025 10:54:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.64
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761562452; cv=fail; b=Ka2TKf0sgNNnuAhWPF273euvZ/ixbI097bmvFyrCMSyjaAv14/udNgWiSfdefZPTOksBI9umgmILrslXg8+gi6XAdkPlouCqC4CaenmgvMsWgH8TgCCD8cXaf0ub8VG03Mw+0S9FFepzgaSMJYqxgI3x0SlqLLxsRclDoYqF1Gg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761562452; c=relaxed/simple;
-	bh=vsnAHUtTABppND2lE75m3gFJTzrCgrLIjr9y4gUt6h0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=o8lxDsmFLWnYeBEF9GR0HWpet63k+jZl0nkXFu9IBUONoCGCg6ygtbOmkXHuv0Z85sGP9GjnevW2wrA32qFmnWtr6Ut4faJjXANf0IZ/BcJLkk84dvrsfzhG5aFDpVrutC59w/qIOY6qZYsSwYp+EkuHEr4GfwAsLeZR78R6rLg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=FeEFgxUq; arc=fail smtp.client-ip=52.101.229.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=B1W8AG7QoLyMbIuAq7U10sRHdRRLEz1/cQakE0qgEgJ6riwYS3kPGK97W+jsf2Ix+5xfs83bdqD3VaSQFLSbBc8VREQkHBO4N/c4KNTVBeF7b8Y1sDkShpPfv7I5wml/vFLqWXrQ9gM2WeUny3lEbFp0bCKd3uADtL27gaWmQqfhlD0kDPzgx6Moqo9eQf0+5tUyV5d9G1IfPf+sXKZNeFCYW1AsLZO+Ank40g3hmrhb84xRmCK8n3VrnXeOOKEc/kUCKeyDBXgvvbMZl61ByR5Aen5zN+0FY2evRCwCBvM0qjsbnookc22YnxkqeFBn6Ai6i31OfMjM/Rulv+bhyg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vsnAHUtTABppND2lE75m3gFJTzrCgrLIjr9y4gUt6h0=;
- b=liYA5C6pz5wI1BRBZjxRGlpwAEoqM7chCPgM+g5R+JW18P4YhbX7713MyXrBL6ctDGsAkO0K6FW21wE/zMVWBHGbrF+gOaqCOn+E+M8tiWc2PiXP51PEx+Fq0Zz6/ola7AoaKu1w1zqI84u7hYVRmLu3+Xr6J96PwQ+nNviSgKnJUszPAa4j0qzrDQzta4s6RC6fu/VwWKy5lsdJv/v6ksj2ydziUwbxdRYb92ev7bouyXylCZm1TX0IuM3L4hEkSZ16xZD+caP7rI824OvoD2yp2tepRMoINgw5gASu8wMwwFlZ5VetydWYaLPtExpojABQaN8UFl+e86pZ6wx/Cw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vsnAHUtTABppND2lE75m3gFJTzrCgrLIjr9y4gUt6h0=;
- b=FeEFgxUq8ydt1VAW4Gdokevk9mgDtupNWvUXD7YGpbgFemXzz9XgcdQIAEu1MyobZBuDX56zeQv5yPu4iZfiARk5P5O/KXVC1nOJCLvCUlvaDagmycTNIefQcggcPy4g1AC28sjtby+Is+wKgdghe6cvMV3/gV+Lmd9d6bIZGKY=
-Received: from TYYPR01MB10512.jpnprd01.prod.outlook.com
- (2603:1096:400:2f6::13) by TYCPR01MB9290.jpnprd01.prod.outlook.com
- (2603:1096:400:196::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.12; Mon, 27 Oct
- 2025 10:54:06 +0000
-Received: from TYYPR01MB10512.jpnprd01.prod.outlook.com
- ([fe80::ab64:c8fe:d19e:1686]) by TYYPR01MB10512.jpnprd01.prod.outlook.com
- ([fe80::ab64:c8fe:d19e:1686%5]) with mapi id 15.20.9275.011; Mon, 27 Oct 2025
- 10:54:06 +0000
-From: Cosmin-Gabriel Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-To: geert <geert@linux-m68k.org>
-CC: John Madieu <john.madieu.xa@bp.renesas.com>, "Rafael J . Wysocki"
-	<rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui
-	<rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
-	magnus.damm <magnus.damm@gmail.com>, Michael Turquette
-	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, "linux-pm@vger.kernel.org"
-	<linux-pm@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
-	<linux-renesas-soc@vger.kernel.org>, "linux-clk@vger.kernel.org"
-	<linux-clk@vger.kernel.org>
-Subject: RE: [PATCH 01/10] clk: renesas: r9a09g077: add TSU module clock
-Thread-Topic: [PATCH 01/10] clk: renesas: r9a09g077: add TSU module clock
-Thread-Index: AQHcQ/XYFN0xTXFAq0G+MQlq5PRA0rTV1aCAgAACMAA=
-Date: Mon, 27 Oct 2025 10:54:06 +0000
-Message-ID:
- <TYYPR01MB105128801D5B38F5D016E589485FCA@TYYPR01MB10512.jpnprd01.prod.outlook.com>
-References: <20251023081925.2412325-1-cosmin-gabriel.tanislav.xa@renesas.com>
- <20251023081925.2412325-2-cosmin-gabriel.tanislav.xa@renesas.com>
- <CAMuHMdUnom39_Rj+6Jc2g69i+Z4V7UkfXT791buK3h9cpOFpsQ@mail.gmail.com>
-In-Reply-To:
- <CAMuHMdUnom39_Rj+6Jc2g69i+Z4V7UkfXT791buK3h9cpOFpsQ@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYYPR01MB10512:EE_|TYCPR01MB9290:EE_
-x-ms-office365-filtering-correlation-id: 94e8e671-994d-4f0b-61d0-08de1547266e
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|7416014|376014|38070700021|7053199007;
-x-microsoft-antispam-message-info:
- =?utf-8?B?aTBIRlRldmJHOXNkU3gzcmVIaEJGQXEyeGxKck1jaUcvLzVDajNybGdHOVZs?=
- =?utf-8?B?R3ltQ0dZVEZnQTFaZTJBczZ5NE11bGFaTSthd1E0dWZ6ZVV2cEs2dWlmQzNB?=
- =?utf-8?B?OU12MzlBUUwwd2Izd1pYbU5QdDVhMzV4ZXNLNU1Xenh2MkJHcXE0YXRvaE5q?=
- =?utf-8?B?dk5CNEVEdW81UjB3S3gyYWZSc3VCbVN0U0pwTmhYbU91c0dlY0I2eWljUm02?=
- =?utf-8?B?VUtsdENYR055a1YxNzczVFE5a0pHMEV0RnBTdEpDSW80NzFtU0Mva3NmdEVz?=
- =?utf-8?B?V0ZLYWE4Y2liYVhXUFdPSkQ5NStTYmxVQ3IyYm10KzZXVGJKTCtaY3c0U0FM?=
- =?utf-8?B?WWFjME0vdWdUK29rb3BualBtMGl0R1Qxa3BXMnRwalR1VTVHSUx3bHFMeldz?=
- =?utf-8?B?cFlNN2R4VjI0cHgvaWNrbDI3Sk5WeGloUnFiZGNUNG1EYnh3T1pMdWszMlVY?=
- =?utf-8?B?eFVRZDJrSjBwV0RWLzVPMk84R1FWU3p0K0xVVmkxSXg0cUNVbWpBL0pzMHUr?=
- =?utf-8?B?Mm42ZzdoalJ3SzlGOG9FUStmV3lGbWlTRkYxeTVDbXRzVzlzWWhGNnNDTzFF?=
- =?utf-8?B?NFlVOEYzcnFpSTcrWWVGbkx4bmFlM3NhTGJOMVlSU3I1OHVGc3ZLcUZwVmsr?=
- =?utf-8?B?SmVWdm5Pc1gxS1ptKy9kUUUvc2pDTmJpc25QaTNMZXpiMU5wOERaeGRML0VF?=
- =?utf-8?B?QzBGbm95TlFNemhocm1vSFUwajIrdGVER1ZjaUNiOFZOcmwrRFZiMStKWXJE?=
- =?utf-8?B?WEowK3hEMzViSUtpdVdTbnJWSzlOaGdwN2JDKzNKZnBBOHA1eTVXczdidXhK?=
- =?utf-8?B?d3ZuZXFTdXNzLzZ1ckowMTJuV0xvTjAxZzJLVHlHQ2M3WWhZaXhGZVovZVhD?=
- =?utf-8?B?UGszVVprd3N1Skoza1U2d0tyVmZZazFxQjdvNlVGL3h1aS9HOFVTcjV2ZVFC?=
- =?utf-8?B?SUtVc0dWWHR4TU5NcmpkZzdkNzFBS0w5RUZVRmgxWmFzeHFhTGlWSzFZZ3RN?=
- =?utf-8?B?QSs0dzlUMW9Hd1VubEpSV3QvUE1meEloYk5JQy91Ym93VU5NVkJWMFhSaVUr?=
- =?utf-8?B?TnFseElSOGhHR1lKLy9BUkcxOTlGSTduR1M1My9xY01paHFuYXpBWGROdGNJ?=
- =?utf-8?B?YjBmaFAyRk4rbmxxY24wa05FRkpKenpNRWk4OWd4M0hzOXRSYjkrODJkQUw4?=
- =?utf-8?B?SDhyV3Z6MW42b0Jzd0xldyt4UWg2K2xoWVNVek5xY2hDbGIzalNJL0pldVNr?=
- =?utf-8?B?dEZNVWJwNDdDQTFraVdlTnEzcXBxUlVtcTBaZmtFZW05b1FhTjI3RVlQWDlo?=
- =?utf-8?B?c0c3RTBLelNSQzVad1Z0M29uYzlKWHdBaFc4Tk1XdFRVWlJFR3NrNGsrNkxi?=
- =?utf-8?B?M2cwWUVyRlRvM3UzR2hhczB3bjhacHJXZ1hURnFqdnpBWlI0M2xLby9kbHJF?=
- =?utf-8?B?ZSsvc2UxN2NCZkFiNkYxQ1o4ZmZXV2lYcjFuQzhUcFdVa0MvaTZ4MmZPQWJx?=
- =?utf-8?B?bmJpazkrWTRYeW1Oem9XNjhPZFBuQURxYTdEdmwvZitJZVR2SWdqTjNEcUpN?=
- =?utf-8?B?czNzMUY3c1Aya1h3V2FVVk5LOXI5aU9LbnpGbEZMYk53K2lyNy9PM2NpMkNY?=
- =?utf-8?B?NFJ5NzNpM3B1SW81SEl0T21UaFJTMEVvd01nQklyT2ppbnpFN2tldUIwK2J3?=
- =?utf-8?B?bUkzNFN5R0Y1MXlCZTdWTHJLK2hIRW4xUkhudm96ZmtxR0hrT3NWZEtmb0E4?=
- =?utf-8?B?NUJLZDFPSzZOcGppTW5ZZGFkdXlFYjZtaVJPUlE5T1lKb0lJZis3eThEbnVh?=
- =?utf-8?B?TW5yUXNDdUFORHVJS2trOUJiN1IybFlqWHgxbFRsYUVsNmFPNUJDbnE4a3NF?=
- =?utf-8?B?aDBwdGhKZnRzSmppcFhkVDV4YWN3dW1QcDlleWc3Znc0Q0prVnZ6ZWc4YlN3?=
- =?utf-8?B?cW1EZGhmd3Zmd0NHaXV4aHBLbGt2ZTVqRVg3ZHhmam1jUzExU294VTV0Wndh?=
- =?utf-8?B?TmxuNkZWZlNMeWxsRGgxUVZpenM0dVVnd0RXZHpEalAza1p4U3l5Yk1jMzAr?=
- =?utf-8?Q?+QPQwr?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYYPR01MB10512.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(38070700021)(7053199007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?U1M0bXZPclRNdE01RkNvWitCd2NnRmsrZVh1OWZlOHB1TjdUUzVGU0ZUNTky?=
- =?utf-8?B?Vk9kNWdWUlVueWdoTkpvd2ZWQVVRNy9iV2pIYS9XUkpCY09NWWpaOStUL0h6?=
- =?utf-8?B?ZU8wRGtSMVBnS3FoWXRzMXJJeGcwaENNa3JReFI5MFlnMSt0d1h1UnJObVp5?=
- =?utf-8?B?b1ZYL0Y1MkszczNKdzNnTDBIR1QwSVFIdHZPWHdCSDVJZGRDcjZESW9kOVpo?=
- =?utf-8?B?cEREdVZBT2RBNVFSSTRON1ZsekZrUmJGOFprYjkwemhvWFNZS2c0anlHREk2?=
- =?utf-8?B?Z29JWW5IdXhYMGRnTUp3d0g1ZW5MYXVNdnc3eUlFWE04V1VKdFNGS05TcEpa?=
- =?utf-8?B?S1dFVXRZbUtQbEU2SFNzSXRsODBha2tNZGZ4NlZrNEVrTFBjUFVDQkxqNVhM?=
- =?utf-8?B?L05EbkF5azFLRDQ2VlpvdUpSMEZKR0JQZWdFK2tQbGNuVXQrMFFJdFRtbEEx?=
- =?utf-8?B?cml3NGU0cXExekhCMUczNnErdGh3YTB4OFlPaDJiaFZSeEo3b2liaVByb0Fn?=
- =?utf-8?B?R1NtRisvSi84emp2eEJBckJUeFc2QWt5c1hBYmR0NWJ6UW9wZVVtVFhoWG1G?=
- =?utf-8?B?SnlHQWhyRzVidUx3UWV2QjVjMzJoTWFXZDRPOGQ0cnc5MDh5dWdkRi9ORDRm?=
- =?utf-8?B?cEM5eWFpVTluelZtcGVvdmRNdTh4TGtXSVRyK3FRRWtQN1ByVWJpS2JIZEYv?=
- =?utf-8?B?N3FmUDg2YjY3WUtzOUVSV0lsZUlwc1F3T2x6b29Hb3ltVHhIRnAzQWtoYXhP?=
- =?utf-8?B?YkYwUm1KeTJLNVlpSGZiS0FUNXp5U2FTY1RXTmNWRVJYMXBvQU0vSGk4elhw?=
- =?utf-8?B?dXBwUmtBQjZGMXVudWc1ZHpNNENiUDBwUkduSVAydGg3aHJkZ3JBV2YvNzZN?=
- =?utf-8?B?QU45dHk4VmFlMFphWkQzMFZsYklwNGdMc1FZbDR4T3B4LzZhQkpEOWtMc3BN?=
- =?utf-8?B?TDdUcEZ6ekxSYjNYdDU3SWxvbmRMOGhHcVR2ZHg2b3F5T3doNmdkU2lUV0wz?=
- =?utf-8?B?Q2dEWFlMdmlqNm9aYUdhQ0N4MVZOcWtmM3dxWHlNK1ZpUVUweFNob3hadFd5?=
- =?utf-8?B?WEZGdFVPdEpqL1dhdGl1aGFoKzFNRmNpZlQ0SXBrbnZua2kyOVpDUkIza243?=
- =?utf-8?B?WlgzUDMxVEJXZmwwemRkd1EwdURjQkRhd21ZUzY0TWhRU2ZCTTVWWFdYaWRG?=
- =?utf-8?B?Rk1VNkNmb1ZRdkNMVTNuWG1UMldDUUlvRkE3OElSN2thYUhEN0xPa1dkVWdL?=
- =?utf-8?B?dUd1YVREa3htUVFnMkYrYkpFWktaRWR1YUxyK3JEYno1ZFlXbWN2bnZCaDFH?=
- =?utf-8?B?QnB5UTU3bXpJYUxhM2REY1NVTEc2NnN0bVUyK2lRYXB2S09QTVZGRzZXd1VM?=
- =?utf-8?B?YXJ5d1NmbHB1ZUN6YW52VzRvY0Rqb0RPcTJMMXNTaXJCSG82YlpaNUFkdmxh?=
- =?utf-8?B?T1ZXWUVNZ0VIV0R4cTV1QkF4Ukg5UFdoMGZwM1k3Q1J2VVBtR0ZJVjFwVW5E?=
- =?utf-8?B?d1VURFByc3BzbWZpcUtDVFFmVmFwR3R3L3pRVEpmeGlEQ2tIakM4Qy95VnVa?=
- =?utf-8?B?Mk1la3diYUpuZkg1T2p6Rkk4UVdJVkNsT3NhNTU0cnBKSE8zQjBDREZBNHlm?=
- =?utf-8?B?SzlPTGZMdHlUNjJkN2YrOXRtOWRKTFFvdG5YSkh3dXQzS1VPOEtLZ0VlYkRk?=
- =?utf-8?B?M1A5Qm5HUDdybU5ybnRRcU0zY3RwZFZxOFBMV3ZlMyt3K2RtcG9VZW1xcnc3?=
- =?utf-8?B?Q2ZGWDVvdTVvZFp6ZjU4WFRjcFJkS2tpWWczWWhvbGJCUk05UVpPQWMxL0hS?=
- =?utf-8?B?UE9mL3Y3bVJXUEJqNVFiWmNrUHdJZmF1TVUwUFgwbzdwbG9FM0oyUzhLNy9k?=
- =?utf-8?B?REk5N1hYeDJET2RqNlFWZmUxbHZMZUdZV0FvSEs0WEl6d1Q1SDJYRWNqN3R4?=
- =?utf-8?B?eFRiKzBEVDdSUVZhbHRObTJZVVhkYjZsZWJyc1o2SlQ5bWtFS1QvM1JtR3Zk?=
- =?utf-8?B?UmN6cFZqd0FnTmV2aFlCRitSbFpjT3lFUFdFdGFjU3JLNTA5NVNHRW9GU1F5?=
- =?utf-8?B?QTAzVlo3cFN6V0dTWVl3T09INzNaYVM1N0VIcmFEd1FycFZCMCtLWk90SHgw?=
- =?utf-8?B?Vld6bmV3M2dHOW8vNFg3TmIzZUZBS3JlV3RhK1VjdHcxOVptM3BvMlk2UE42?=
- =?utf-8?Q?Q9OadT7HGIUobix2FUr1tik=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 438252DE6F5;
+	Mon, 27 Oct 2025 11:05:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761563137; cv=none; b=CLixQ3BP8QaeATLCvKst9KA9MS+KZzvTWxhskKC+04UbOs2oWhwNI453rFnLA7jCF/wxRiWY0FUnqCtmr+cRskD4xozfqh32GfmSjPOCCumdYA+neWS+WtomPMNgIlxW68poa/VD3imKg1m2J3vC8EDCh2pRPZkqk8ZFcjIf1lE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761563137; c=relaxed/simple;
+	bh=IWto035l40+fJaTY2m3Tpy98wIXGiNE2cvLuilb0WyM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=aNcxYfmxUQIdG+Sy4XfkDBO5DH2qDOLOqeNVTEkry64WQ6rYE9P0BlKUrj+2HvJhxeg4xQY1NN11uLiSZWOQ+Wk49SpgSZfKhYT/0Ef2uJ8br5XerUIOk9AjF2xwPitX7IDvXKBzJ5QXjxXZP9tGH2IpsXZlJ6ts1dHpJ+I50S4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BcW4d8eh; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1761563133;
+	bh=IWto035l40+fJaTY2m3Tpy98wIXGiNE2cvLuilb0WyM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=BcW4d8ehuXlhmjGDAvjhvlFbZkhIpJQLjnkf7/l2mRMdAbtFeAdAd+OHhsazYBu+J
+	 Kvq3cU8wxpcoh+3NZh6jMgyzSiST8ZxYglJJWAHsBqqjO4LNaKs+tmeXw23WYlGbSO
+	 fJB2hhfOZGAi759dpa+n7EfclPLuZoUhLxB9EmqUHHOyC7cEbx3jTbeKE7+fE/6Y/a
+	 BM3mVX7TTW4lbiARpqXtI/AlnkAgH7qdLJjkQyRfB2Ay+BLbl5r0LP46x1e9sYbd6+
+	 bYcBSXFplpEEWrJqZmOMqlW6IvR9Tqt2wxCg9td2um9HRPBJJgBb3coMJSxgMPFO9z
+	 lB+aR5u6h6kOQ==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B167E17E1276;
+	Mon, 27 Oct 2025 12:05:32 +0100 (CET)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: linux-mediatek@lists.infradead.org
+Cc: lee@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com,
+	wenst@chromium.org,
+	igor.belwon@mentallysanemainliners.org
+Subject: [PATCH v11 0/9] Add support MT6316/6363/MT6373 PMICs regulators and MFD
+Date: Mon, 27 Oct 2025 12:05:18 +0100
+Message-ID: <20251027110527.21002-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.51.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYYPR01MB10512.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94e8e671-994d-4f0b-61d0-08de1547266e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Oct 2025 10:54:06.4381
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ET6XmcWvAa2qLLj/e+tgiT45n2AsvPlWsAIFLz9uRgcXvwaI6JdgslaAaFGxHN0Mz5SCk7hgBG+obEwbI6FuWWRAXgDUfribfQYVf2imNkuv6NcgKGwyd8cjevH7Wv4m
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB9290
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogR2VlcnQgVXl0dGVyaG9l
-dmVuIDxnZWVydEBsaW51eC1tNjhrLm9yZz4NCj4gU2VudDogTW9uZGF5LCBPY3RvYmVyIDI3LCAy
-MDI1IDEyOjQ1IFBNDQo+IFRvOiBDb3NtaW4tR2FicmllbCBUYW5pc2xhdiA8Y29zbWluLWdhYnJp
-ZWwudGFuaXNsYXYueGFAcmVuZXNhcy5jb20+DQo+IENjOiBKb2huIE1hZGlldSA8am9obi5tYWRp
-ZXUueGFAYnAucmVuZXNhcy5jb20+OyBSYWZhZWwgSiAuIFd5c29ja2kgPHJhZmFlbEBrZXJuZWwu
-b3JnPjsgRGFuaWVsIExlemNhbm8NCj4gPGRhbmllbC5sZXpjYW5vQGxpbmFyby5vcmc+OyBaaGFu
-ZyBSdWkgPHJ1aS56aGFuZ0BpbnRlbC5jb20+OyBMdWthc3ogTHViYSA8bHVrYXN6Lmx1YmFAYXJt
-LmNvbT47IFJvYg0KPiBIZXJyaW5nIDxyb2JoQGtlcm5lbC5vcmc+OyBLcnp5c3p0b2YgS296bG93
-c2tpIDxrcnprK2R0QGtlcm5lbC5vcmc+OyBDb25vciBEb29sZXkNCj4gPGNvbm9yK2R0QGtlcm5l
-bC5vcmc+OyBHZWVydCBVeXR0ZXJob2V2ZW4gPGdlZXJ0K3JlbmVzYXNAZ2xpZGVyLmJlPjsgbWFn
-bnVzLmRhbW0NCj4gPG1hZ251cy5kYW1tQGdtYWlsLmNvbT47IE1pY2hhZWwgVHVycXVldHRlIDxt
-dHVycXVldHRlQGJheWxpYnJlLmNvbT47IFN0ZXBoZW4gQm95ZCA8c2JveWRAa2VybmVsLm9yZz47
-DQo+IFBoaWxpcHAgWmFiZWwgPHAuemFiZWxAcGVuZ3V0cm9uaXguZGU+OyBsaW51eC1wbUB2Z2Vy
-Lmtlcm5lbC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC0NCj4ga2VybmVs
-QHZnZXIua2VybmVsLm9yZzsgbGludXgtcmVuZXNhcy1zb2NAdmdlci5rZXJuZWwub3JnOyBsaW51
-eC1jbGtAdmdlci5rZXJuZWwub3JnDQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggMDEvMTBdIGNsazog
-cmVuZXNhczogcjlhMDlnMDc3OiBhZGQgVFNVIG1vZHVsZSBjbG9jaw0KPiANCj4gT24gVGh1LCAy
-MyBPY3QgMjAyNSBhdCAxMDoyMCwgQ29zbWluIFRhbmlzbGF2DQo+IDxjb3NtaW4tZ2FicmllbC50
-YW5pc2xhdi54YUByZW5lc2FzLmNvbT4gd3JvdGU6DQo+ID4gVGhlIFJlbmVzYXMgUlovVDJIIChS
-OUEwOUcwNzcpIGFuZCBSWi9OMkggKFI5QTA5RzA4NykgU29DcyBoYXZlIGEgVFNVDQo+ID4gcGVy
-aXBoZXJhbCB3aXRoIGNvbnRyb2xsZWQgYnkgYSBtb2R1bGUgY2xvY2suDQo+ID4NCj4gPiBUaGUg
-VFNVIG1vZHVsZSBjbG9jayBpcyBlbmFibGVkIGluIHJlZ2lzdGVyIE1TVFBDUkcgKDB4MzBjKSwg
-YXQgYml0IDcsDQo+IA0KPiBNU1RQQ1JEDQo+IA0KPiBJIHdpbGwgZml4IHRoYXQgd2hpbGUgYXBw
-bHlpbmcuDQo+IA0KDQpUaGFuayB5b3UgZm9yIHNwb3R0aW5nIHRoaXMsIEkgZG91YmxlIGNoZWNr
-ZWQgYW5kIGluZGVlZCBpdCdzDQpNU1RQQ1JEIG5vdCBNU1RQQ1JHLg0KDQo+ID4gcmVzdWx0aW5n
-IGluIGEgKDB4MzBjIC0gMHgzMDApIC8gNCAqIDEwMCArIDcgPSAzMDcgaW5kZXguDQo+IA0KPiBH
-cntvZXRqZSxlZXRpbmd9cywNCj4gDQo+ICAgICAgICAgICAgICAgICAgICAgICAgIEdlZXJ0DQo+
-IA0KPiAtLQ0KPiBHZWVydCBVeXR0ZXJob2V2ZW4gLS0gVGhlcmUncyBsb3RzIG9mIExpbnV4IGJl
-eW9uZCBpYTMyIC0tIGdlZXJ0QGxpbnV4LW02OGsub3JnDQo+IA0KPiBJbiBwZXJzb25hbCBjb252
-ZXJzYXRpb25zIHdpdGggdGVjaG5pY2FsIHBlb3BsZSwgSSBjYWxsIG15c2VsZiBhIGhhY2tlci4g
-QnV0DQo+IHdoZW4gSSdtIHRhbGtpbmcgdG8gam91cm5hbGlzdHMgSSBqdXN0IHNheSAicHJvZ3Jh
-bW1lciIgb3Igc29tZXRoaW5nIGxpa2UgdGhhdC4NCj4gICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAtLSBMaW51cyBUb3J2YWxkcw0K
+Changes in v11:
+ - Removed unnecessary #address-cells in all mt6316 bindings
+
+Changes in v10:
+ - Added "struct" prefix to structs kerneldoc
+ - Renamed struct mtk_spmi_pmic_pdata to mtk_spmi_pmic_variant
+ - Added "REG_" to MT6363/73 mfd register definitions to disambiguate
+ - Expanded MTK_SPMI_PMIC_IRQ_GROUP macro parameter names as suggested
+ - Some rewording of comments as suggested, addition of more comments
+ - Refactored IRQ domain handling due to deprecation of function
+   irq_domain_add_tree() to use the new irq_domain_create_tree()
+ - Fixed to use generic_handle_domain_irq_safe() to avoid races
+ - Added support for two interrupt cells in translation
+ - Removed .irq_lock() and .irq_unlock() in favor of lockdep classes
+ - Added support for handling PMICs without IRQ Group register for
+   upcoming MT6685 implementation
+
+Changes in v9:
+ - Applied more bindings fixes as pointed out by Rob
+ - Changed irq fwspec to have 3 cells as the mfd driver handles 3
+ - Using intsize instead of fwspec.param_count in xlate (thanks Nicolas!)
+
+Changes in v8:
+ - Added REGMAP_SPMI selection in Kconfig for all of MT6316/6363/6373
+   to satisfy __devm_regmap_init_spmi_ext() dependency in case they
+   are built with COMPILE_TEST (+randconfig) configuration
+ - Fixed indentation in Kconfig on help lines (some were using spaces
+   instead of tab + 2 spaces, don't know how that happened)
+ - Removed forgotten final blank line on mt63{6,7}3-regulator.h header
+ - Fixed error checks in mt6363-regulator, mt6373-regulator for call
+   to mt63{6,7}e_spmi_register_regmap()
+ - Tested again on MT8196 Chromebook.
+
+Changes in v7:
+ - Removed unintentionally added, useless Link tags from all patches
+ - #size-cells is now required in mfd mt6363 binding
+ - Further fixes in mt6363/73 regulator bindings
+ - Mentioned weird 9-bits BE format and usage of undocumented set/clr
+   registers in commit description for the MT6316 regulator driver
+ - Refactored bindings for MT6316 PMIC (regulators):
+   - Added reg, #address-cells as required properties
+   - Added regulator-allowed-modes and its description
+   - Changed mt6316b/mt6316c to use patternProperties instead, as it
+     now makes sense to avoid duplication while keeping documentation
+     for the regulator-allowed-modes property in all vbuck entries
+   - Added decent examples that correctly describes the MT6316 PMICs
+
+Changes in v6:
+ - Added missing bitfield.h header inclusion in mt6363-regulator.c
+ - Added commit "dt-bindings: iio: adc: mt6359: Allow reg for SPMI PMICs AuxADC"
+   to fix warnings on specifying reg property in adc node
+ - Added $ref in mt6363/73 regulator bindings to reduce duplication on LDOs
+ - Moved MT6363 regulators example to MFD binding
+ - Rebased on next-20250929
+
+Changes in v5:
+ - This time the dt-bindings commits are the right ones... sorry again :-)
+ - Removed accidentally added Link: tags in all patches.
+
+Changes in v4:
+ - Rewritten all register definitions for both MT6363 and MT6373
+   regulators to be register offsets instead
+ - Added the appropriate supply_name to all vregs in 6363 and 6373
+ - Simplified the macro parameters for all vregs in 6363 and 6373
+   - Added common definitions pattern in macros to avoid plain writing
+     register definitions in every macro call
+ - Added registration of SPMI sub-device in MT6363/73 and setup of
+   regmap reg_base based on `reg` parsed from devicetree
+ - Removed interrupts parsing from devicetree
+   - Moved (pmic-internal) IRQs to macros
+ - mtk-spmi-pmic: Added parsing if irqspec with param_count=2 for
+   easier irqs registration from regulator drivers
+
+Changes in v3:
+ - Added buck and ldo supplies to mt6363 and mt6373 drivers and bindings;
+ - Removed interrupts from mt6363 and mt6373 bindings;
+ - Added registering interrupts in mt6363/73 drivers instead:
+   this avoids big arrays in the mfd driver, which will grow
+   uncontrollably (as it already happened in multiple MediaTek
+   drivers) and with each new(future) supported PMIC;
+ - Removed "ldo-" and "buck-" prefixes from mt6363 regulators
+   - Renamed "vbX" to "vbuckX", reflecting datasheet name
+ - Changed all LDOs in MT6363 and MT6373 to add VOCAL usage, both
+   increasing the number of voltage steps (2.5 or 10mV increments
+   depending on the LDO) and the accuracy of the reported voltages
+ - Tested again on MT8196 board
+
+Changes in v2:
+ - Merged MFD and regulator in one series
+ - Split mediatek,mt6316-regulator.yaml in three files as
+   suggested by krzk
+ - Added interrupt-names list in MT6363/MT6373 bindings as
+   suggested by krzk
+ - Documented regulator modes in MT6363/73 as suggested by krzk
+ - Fixed interrupt and interrupt-names maxItems in both 6363/73
+   because, well... I miscounted them in v1 :-)
+ - Removed keys from mt6363 binding: the compatible was not yet
+   added to the keys binding and doing that will take quite a
+   while, as I have to find a way to test the code before that
+   as unfortunately my HW does not provide any way to test the
+   PMIC keys (thought it did, but then turns out it doesn't...)
+ - Completed the mt6363 MFD example with ADC as suggested by Rob
+ - Avoided applying regulator schemas multiple times as pointed
+   out by Rob (in mfd binding)
+ - Fixed MT6363/73 issues pointed out by lkp (eh, sorry, that
+   happened during a last minute cleanup... ugh!).
+ - Brewed some more coffee :-)
+
+
+This series adds support for three new MediaTek PMICs: MT6316, MT6363
+and MT6373 and their variants - used in board designs featuring the
+MediaTek MT8196 Chromebook SoC, or the MT6991 Dimensity 9400 Smartphone
+SoC.
+
+In particular, MT6316 is a regulator, but the MT6363 and MT6373 PMICs
+are multi-function devices, as they have and expose multiple sub-devices;
+moreover, some of those also contain an interrupt controller, managing
+internal IPs interrupts: for those, a chained interrupt handler is
+registered, which parent is the SPMI controller itself.
+
+This series adds support for all of the MT6316 regulator variants and
+for MT6363, MT6373 SPMI PMICs and their interrupt controller.
+
+AngeloGioacchino Del Regno (9):
+  dt-bindings: regulator: Document MediaTek MT6316 PMIC Regulators
+  regulator: Add support for MediaTek MT6316 SPMI PMIC Regulators
+  dt-bindings: regulator: Document MediaTek MT6363 PMIC Regulators
+  regulator: Add support for MediaTek MT6363 SPMI PMIC Regulators
+  dt-bindings: regulator: Document MediaTek MT6373 PMIC Regulators
+  regulator: Add support for MediaTek MT6373 SPMI PMIC Regulators
+  dt-bindings: iio: adc: mt6359: Allow reg for SPMI PMICs AuxADC
+  dt-bindings: mfd: Add binding for MediaTek MT6363 series SPMI PMIC
+  mfd: Add support for MediaTek SPMI PMICs and MT6363/73
+
+ .../iio/adc/mediatek,mt6359-auxadc.yaml       |  17 +
+ .../bindings/mfd/mediatek,mt6363.yaml         | 109 ++
+ .../regulator/mediatek,mt6316b-regulator.yaml |  76 ++
+ .../regulator/mediatek,mt6316c-regulator.yaml |  76 ++
+ .../regulator/mediatek,mt6316d-regulator.yaml |  75 ++
+ .../regulator/mediatek,mt6363-regulator.yaml  | 146 +++
+ .../regulator/mediatek,mt6373-regulator.yaml  | 137 +++
+ drivers/mfd/Kconfig                           |  16 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/mtk-spmi-pmic.c                   | 427 ++++++++
+ drivers/regulator/Kconfig                     |  30 +
+ drivers/regulator/Makefile                    |   3 +
+ drivers/regulator/mt6316-regulator.c          | 345 +++++++
+ drivers/regulator/mt6363-regulator.c          | 938 ++++++++++++++++++
+ drivers/regulator/mt6373-regulator.c          | 772 ++++++++++++++
+ include/linux/mfd/mt63x3_spmi/registers.h     |  34 +
+ include/linux/regulator/mt6363-regulator.h    | 330 ++++++
+ include/linux/regulator/mt6373-regulator.h    | 161 +++
+ 18 files changed, 3693 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt6363.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316c-regulator.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316d-regulator.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6373-regulator.yaml
+ create mode 100644 drivers/mfd/mtk-spmi-pmic.c
+ create mode 100644 drivers/regulator/mt6316-regulator.c
+ create mode 100644 drivers/regulator/mt6363-regulator.c
+ create mode 100644 drivers/regulator/mt6373-regulator.c
+ create mode 100644 include/linux/mfd/mt63x3_spmi/registers.h
+ create mode 100644 include/linux/regulator/mt6363-regulator.h
+ create mode 100644 include/linux/regulator/mt6373-regulator.h
+
+-- 
+2.51.1
+
 
