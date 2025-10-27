@@ -1,92 +1,127 @@
-Return-Path: <devicetree+bounces-231701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A98C3C0FD7E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:04:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AA59C0FD93
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:07:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 54D063420A2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:04:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF73D3BEA16
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:06:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A024C314B90;
-	Mon, 27 Oct 2025 18:04:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A42531960D;
+	Mon, 27 Oct 2025 18:06:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e7SlGX81"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="HUTQt7fl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D3EF230D35;
-	Mon, 27 Oct 2025 18:04:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 510243081AE
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 18:06:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761588293; cv=none; b=GnNk56wvyZL9ZI+MfJCx1QB+lOBEpOblYDLtp452mrTj1D/zmU0xWaPArXmbFDUI91mQImDSRfA6RBouAjk0fvxlV7Ib56gkrGqPl0X7IRWbc1vBMJ+MrCzgq/4IhSVZnPwBc7bRkm++NGI5kQ78sAsBCmTOHuBg3S+mZxneNds=
+	t=1761588393; cv=none; b=H6LCGHaa0nIkvtCh2jg925GIaOBDsXrZftoakCPgQu3PHl9wv1+lfpxF85/iRkTQ7KPuywCbje9J4AwO3AtlhwEVez6Fi5iNJYBRIKom0PaY1ZKWAuk23hOWZIKHku4GCdzccxDOp1RujclSIZniqpg/U2eZBFqCoV5L/M7UvQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761588293; c=relaxed/simple;
-	bh=wC3dF4Z/2TLP6nYVtiNgty+OuO6sR3fKRJSKrIGVSQI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PJnGdNMLY1sGloi0A4419PNkTgWKGbSFmzaa/Sxov3evNW0EygaTsBtxcsmg/atCGLfIoS/ES6RCjurykVZkgGbLn0G85+/nMeUOGHRY3mD46pDfuOHS2KDKqHrwII1F+jwd5mioWyo1TbzgtLxh4S1eit6rjb2WP/YDGGAD6t8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e7SlGX81; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BB18C4CEF1;
-	Mon, 27 Oct 2025 18:04:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761588290;
-	bh=wC3dF4Z/2TLP6nYVtiNgty+OuO6sR3fKRJSKrIGVSQI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=e7SlGX81jMR6yj1IeJWwwVYQ3+3tPTmCK831vU1PnUIt/iyPj3GDmL9XiYKXpNDQ2
-	 Z/LRHnTrpEIFm63gcu23hvDSaBvb82i2geNIvK4sey3zIvfbtoBKF2HX15Mb64mP1H
-	 81WWYU6T9B1ikykq2fnt3FSFoX+2h0A+ih/98aLlfjn6aGOO2h1g7gGYFT/6Q7aTAw
-	 oILKlawFztGueWsy1Fqu1lVYO9XvG15dNOuHf4Hm5aGkdfStrLGi39FfRz6paFKUvk
-	 sjbjjOs/5XEoKmxLLxO7nuYcFWMhILxQe6vS5CFaSHHqsyg8dqQL681CX7/X9jaXPs
-	 Aikt7gxqowQ4A==
-Date: Mon, 27 Oct 2025 13:04:49 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>, Will Deacon <will@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.li@nxp.com>,
-	Frank Li <frank.li@nxp.com>, imx@lists.linux.dev,
-	Xu Yang <xu.yang_2@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	linux-perf-users@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] dt-bindings: perf: fsl-imx-ddr: Add compatible
- string for i.MX8QM, i.MX8QXP and i.MX8DXL
-Message-ID: <176158828675.1280181.1101688513107475187.robh@kernel.org>
-References: <20251024-qm_dts-v2-0-7a7e07022ed6@nxp.com>
- <20251024-qm_dts-v2-1-7a7e07022ed6@nxp.com>
+	s=arc-20240116; t=1761588393; c=relaxed/simple;
+	bh=AA5GCYZEMbP5Ax3pEn1tSHgHevbczi1rQeQ8fcw0kZY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Nr1Za8RMSJ2pd9Gfz5TCHMtWEN4Ujj8nXkS7tWSwklqvEQH3NNKUDOFOSr4iICnnxbpmZBZ8FMKCN8AfsR+grp3mElobt5UtdInqXeACbLv+c7hi0XBRCAM2kHAnv14DUScSYWXEyiRk2yG0ORLQ1GWGdaqgBKhrLcDSe6fs/cY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=HUTQt7fl; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1761588384;
+ bh=rNoZEKs9Jg0ddWQ/rYT/Dj9yW6JSQLSPRrnwijVeGws=;
+ b=HUTQt7flup4EuJ+ysPhxPwjlOECrhf0OxdtIh4hF0y7q5FW3OyCNmSPgd6VrRKkAs91D0nCmd
+ RZiRRmXDNyiSR/jHdP7zZJRo6+i5X6946RWqakhgxB8rMAM3QbiEUjJf6Qa4CSX1H+r9mcmccdK
+ ffqV4FvvkwXUubJIGPBmI81wDTPoIRVsOfl0PZw0IoHf65g5FGmhBQYqTKSzyKjRA4YhnmEmwZ6
+ eNirGkI8gxUsWwxveEYQ3Dblp4kVCbu4qc86g4YgyS0kZuxC8dmRPGZ59eom+7Wz3skeoOxd7Gq
+ 7pJ/u25EdMFrpVN6Hr9gjSNzKxvVTrUAunOjnintwB1A==
+X-Forward-Email-ID: 68ffb499e1d8d448afcc7519
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 1.4.0
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <60a1046c-437e-400a-8e2c-391cd471c358@kwiboo.se>
+Date: Mon, 27 Oct 2025 19:06:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251024-qm_dts-v2-1-7a7e07022ed6@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Harmonize regulator formatting
+ for Pine64 rk3566 devices
+To: Diederik de Haas <diederik@cknow-tech.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>
+References: <20251027154517.136976-1-diederik@cknow-tech.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20251027154517.136976-1-diederik@cknow-tech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+Hi Diederik,
 
-On Fri, 24 Oct 2025 14:17:11 -0400, Frank Li wrote:
-> Add compatible string fsl,imx8qm-ddr-pmu, fsl,imx8qxp-ddr-pmu, which
-> fallback to fsl,imx8-ddr-pmu and fsl,imx8dxl-db-pmu (for data bus fabric).
+On 10/27/2025 4:39 PM, Diederik de Haas wrote:
+> The regulator node properties in Pine64 rk3566 devices were formatted
+> rather inconsistently. To name a few:
+> - 'name' was sometimes put at the top of the list, while at other times
+>   it was (mostly) sorted in alphabetical order
+
+Personally I prefer to list the regulator-name as the first property, I
+think it makes it visually easier/quicker to identify a regulator with
+the name prop at top.
+
+I typically try to use the following prop ordering for regulators on
+board DTs I submit (and review):
+
+- regulator-name as the first prop (to quickly identify the regulator)
+- regulator-min-* before regulator-max-* (natural order)
+- regulator-* in alphabetical/natural order
+
+Maybe this preference just comes from a long history of always putting
+id/primary key/unique identifiers at top or beginning of data tables,
+classes, structs etc ;-)
+
+Regards,
+Jonas
+
+> - 'always-on' and 'boot-on' were sometimes at the top of the list,
+>   sometimes not
+> - 'state-mem' nodes sometimes had a preceding blank line, as they
+>   should, but sometimes not
+> - other properties seem to have been added to the end of the list, not
+>   in their alphabetical/natural order
 > 
-> Add clocks, clock-names for fsl,imx8dxl-db-pmu and keep the same
-> restriction for existing compatible strings.
+> So harmonize the formatting by making all properties sorted
+> alphabetically/naturally. And harmonize the formatting of the
+> 'state-mem' nodes so they all have a preceding blank line. While at it,
+> also fix 2 incorrectly indented nodes.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> No functional changes.
+> 
+> Signed-off-by: Diederik de Haas <diederik@cknow-tech.com>
 > ---
-> changes in v2
-> - move fsl,imx8qm-ddr-pmu, fsl,imx8qxp-ddr-pmu under enum
-> ---
->  .../devicetree/bindings/perf/fsl-imx-ddr.yaml      | 29 +++++++++++++++++++++-
->  1 file changed, 28 insertions(+), 1 deletion(-)
+> No outright NACKs and one positive response (thanks!), so here's v2.
 > 
+> Changes in v2:
+> - Found more regulators at the beginning of the pinetab2 dtsi file
+> - Missed a 'regulator-always-on' on regulator-vcc3v3-sys in q64b dts
+> Link to v1:
+> https://lore.kernel.org/all/20251026153805.107774-1-diederik@cknow-tech.com/
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
+[snip]
 
