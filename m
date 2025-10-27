@@ -1,154 +1,114 @@
-Return-Path: <devicetree+bounces-231875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD4CFC12172
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 00:47:39 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3308C121B1
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 00:50:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E1B534E2942
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:47:10 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 38EF34E8ECD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:50:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 152D82C08BA;
-	Mon, 27 Oct 2025 23:47:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="V1fDhPjX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F71B31B82C;
+	Mon, 27 Oct 2025 23:48:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76CDE283C8E
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 23:47:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AABA32E7F29;
+	Mon, 27 Oct 2025 23:48:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761608828; cv=none; b=W3nZ0SBW/X4jpEdoCHGtu4z3cqyBO7ViJxzEFSjFP7U9UDLyyn8txXYiG20eTC1A3I720Ylz88dvPQxZv032j3TX5M6Q95ch/ABvBP9fH/VuoFKHaDmKhm1AZrbeipTb27c+knSL3Is8xVBUUDNB4I/sbtAciDMG818VPI/auno=
+	t=1761608926; cv=none; b=Q75BdSbTsqtYw8EUCZatHQvwceF587DlLBHPKgNzGSBOXUOpGeGdE3ueAAAex+9rzuvXCjt/7Jfrr6Vbgk/UIpo7bfVw98+xek7tOS9B1RV2/7qvGuZojZcK9nirckmzf3aOx9R0w2JKw//Vy3a+ApnAQVqYHukNPBTDL0wwnHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761608828; c=relaxed/simple;
-	bh=YYHUzAcEn48hxpCkP434f80Wc8cJl1AevXLmPQTIRD4=;
+	s=arc-20240116; t=1761608926; c=relaxed/simple;
+	bh=RyuheOr7KUHRCZ0DHpD522l5GBSjeCB0/rIpoJcMwbA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m7DQbXWinriL1fqGTXUNpyrhBTctFiMd12ucaTdm9ImjG+SEU2/JtY1RdA61Vi3FRM3Zy+F5ZeeMBltj3iiJ2SjoTTJhdOIjbAKgeSuk75YxbssU11IJHGi+fUrm7gPPsR7KuIZn1G/FnbZLRAXB5+9bBensRaJkzxkOcEPCzcg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=V1fDhPjX; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (85-76-17-108-nat.elisa-mobile.fi [85.76.17.108])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 4250211DD;
-	Tue, 28 Oct 2025 00:45:15 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1761608715;
-	bh=YYHUzAcEn48hxpCkP434f80Wc8cJl1AevXLmPQTIRD4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V1fDhPjXRoI6Z2EtHsqCOXN3Ss2/tf/XCQwabUASDvat+W0b/6C/kQSDIe4Ac/LtX
-	 sEpsbxgtzteiPSSdw8Vfp63aBPrJv5/KH7kGw0TyCwUTGmwEnOmesZtTVX/6UTmqci
-	 03IqR5ayiEfeCPFtkTSWLsfkDkwWiJ6bZdKhlEKU=
-Date: Tue, 28 Oct 2025 01:46:48 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Emanuele Ghidoli <ghidoliemanuele@gmail.com>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Daniel Scally <dan.scally@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Stefan Klug <stefan.klug@ideasonboard.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=M85OgCfYY8iK839J/HOR4iq6ZJVxBPbMWIDPSYgXgRBicWiA7Wq1T65CSRjwN7zttKYhFyKQzKC33s+VdITfNF/kdx2CVpFrFZltFYUHOfU5jEipb6rHaHraG/zcJCdPWYwvrfdY3HU8tolmpZVALjMD2fbNdkNpf5wabOGgYjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.98.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vDWwv-000000005i7-2paV;
+	Mon, 27 Oct 2025 23:48:29 +0000
+Date: Mon, 27 Oct 2025 23:48:26 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Vladimir Oltean <olteanv@gmail.com>
+Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
-Message-ID: <20251027234648.GC24987@pendragon.ideasonboard.com>
-References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
- <aP-ML-A_h13pXY2d@shell.armlinux.org.uk>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Andreas Schirm <andreas.schirm@siemens.com>,
+	Lukas Stockmann <lukas.stockmann@siemens.com>,
+	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
+	Peter Christen <peter.christen@siemens.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH net-next v3 09/12] net: dsa: lantiq_gswip: add vendor
+ property to setup MII refclk output
+Message-ID: <aQAEyn08Q3DCedUU@makrotopia.org>
+References: <cover.1761521845.git.daniel@makrotopia.org>
+ <869f4ea37de1c54b35eb92f1b8c55a022d125bd3.1761521845.git.daniel@makrotopia.org>
+ <20251027233626.d6vzb45gwcfvvorh@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aP-ML-A_h13pXY2d@shell.armlinux.org.uk>
+In-Reply-To: <20251027233626.d6vzb45gwcfvvorh@skbuf>
 
-On Mon, Oct 27, 2025 at 03:13:51PM +0000, Russell King (Oracle) wrote:
-> On Sun, Oct 26, 2025 at 02:29:04PM +0200, Laurent Pinchart wrote:
-> > Energy Efficient Ethernet (EEE) is broken at least for 1000T on the EQOS
-> > (DWMAC) interface. When connected to an EEE-enabled peer, the ethernet
-> > devices produces an interrupts storm. Disable EEE support to fix it.
+On Tue, Oct 28, 2025 at 01:36:26AM +0200, Vladimir Oltean wrote:
+> On Sun, Oct 26, 2025 at 11:47:21PM +0000, Daniel Golle wrote:
+> > Read boolean Device Tree property "maxlinear,rmii-refclk-out" and switch
+> > the RMII reference clock to be a clock output rather than an input if it
+> > is set.
+> > 
+> > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> > ---
+> >  drivers/net/dsa/lantiq/lantiq_gswip_common.c | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/drivers/net/dsa/lantiq/lantiq_gswip_common.c b/drivers/net/dsa/lantiq/lantiq_gswip_common.c
+> > index 60a83093cd10..bf38ecc13f76 100644
+> > --- a/drivers/net/dsa/lantiq/lantiq_gswip_common.c
+> > +++ b/drivers/net/dsa/lantiq/lantiq_gswip_common.c
+> > @@ -1442,6 +1442,10 @@ static void gswip_phylink_mac_config(struct phylink_config *config,
+> >  		return;
+> >  	}
+> >  
+> > +	if (of_property_read_bool(dp->dn, "maxlinear,rmii-refclk-out") &&
+> > +	    !(miicfg & GSWIP_MII_CFG_MODE_RGMII))
+> > +		miicfg |= GSWIP_MII_CFG_RMII_CLK;
+> > +
 > 
-> We've finally got to the bottom of what's going on here. Please try
-> this patch (it's building locally, but will take some time because
-> I'd wound the tree back to 6.13 and 6.14, so it's going to be a full
-> rebuild.) Thus, there may be compile bugs remaining.
+> What did you mean with the !(miicfg & GSWIP_MII_CFG_MODE_RGMII) test?
+> If the schema says "Only applicable for RMII mode.", what's the purpose
+> of this extra condition? For example, GSWIP_MII_CFG_MODE_GMII also has
+> the "GSWIP_MII_CFG_MODE_RGMII" bit (0x4) unset. Does this have any significance?
 
-I've applied it on top of 
+You are right, probably the best would be to test (if at all) that
+(miicfg == GSWIP_MII_CFG_MODE_RMIIM || miicfg ==
+GSWIP_MII_CFG_MODE_RMIIP) and only in this case allow setting the
+GSWIP_MII_CFG_RMII_CLK bit.
 
-I've started with a branch based on v6.18-rc3 plus "[PATCH net-next 0/5]
-net: stmmac: more cleanups" ([1]) and "[PATCH net-next v2 0/6] net: add
-phylink managed WoL and convert stmmac" ([2]) to make the patch apply
-cleanly.
-
-[1] https://lore.kernel.org/all/aO_HIwT_YvxkDS8D@shell.armlinux.org.uk/
-[2] https://lore.kernel.org/all/aPnyW54J80h9DmhB@shell.armlinux.org.uk/
-
-The base branch exhibits the interrupt storm issue. The patch
-unfortunately doesn't fix it.
-
-> This uncovered a latent bug in Emanuele's case - the TI PHY drivers
-> report EEE capabilities despite not being capable which also needs
-> fixing. The patch below will stop stmmac enabling EEE by default on
-> PHYs described in firmware, which is the behaviour the driver used
-> to have.
-> 
-> If we decide that EEE should be enabled by default, then we'll need
-> to revert this change. However, given Oleksij's recent input, I'm
-> wondering whether EEE should default to disabled given the issues
-> with Tq. The suggestion there is that many PHYs get it wrong and thus
-> are incompatible with each other when EEE is enabled.
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> index fd5106880192..c18690a6804f 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> @@ -1208,6 +1208,24 @@ static int stmmac_init_phy(struct net_device *dev)
->  	return 0;
->  }
->  
-> +static bool stmmac_has_fw_phy(struct stmmac_priv *priv)
-> +{
-> +	struct fwnode_handle *fwnode;
-> +
-> +	fwnode = priv->plat->port_node;
-> +	if (!fwnode)
-> +		fwnode = dev_fwnode(priv->device);
-> +
-> +	if (!fwnode)
-> +		return false;
-> +
-> +	fwnode = fwnode_get_phy_node(fwnode);
-> +	if (fwnode)
-> +		fwnode_handle_put(fwnode);
-> +
-> +	return !!fwnode;
-> +}
-> +
->  static int stmmac_phylink_setup(struct stmmac_priv *priv)
->  {
->  	struct stmmac_mdio_bus_data *mdio_bus_data;
-> @@ -1270,7 +1288,7 @@ static int stmmac_phylink_setup(struct stmmac_priv *priv)
->  		/* All full duplex speeds above 100Mbps are supported */
->  		config->lpi_capabilities = ~(MAC_1000FD - 1) | MAC_100FD;
->  		config->lpi_timer_default = eee_timer * 1000;
-> -		config->eee_enabled_default = true;
-> +		config->eee_enabled_default = !stmmac_has_fw_phy(priv);
->  	}
->  
->  	config->wol_phy_speed_ctrl = true;
-
--- 
-Regards,
-
-Laurent Pinchart
+I forgot that there is older hardware which supports "full" MII, and MII
+MAC as well as MII PHY modes also shouldn't allow to set the
+GSWIP_MII_CFG_RMII_CLK bit to not end up with undefined behavior.
 
