@@ -1,117 +1,297 @@
-Return-Path: <devicetree+bounces-231486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E69DC0DA29
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:43:38 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDA51C0D921
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:36:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC486425951
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:36:01 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5100234DBBF
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:36:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE38302CD1;
-	Mon, 27 Oct 2025 12:35:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4831A21FF3B;
+	Mon, 27 Oct 2025 12:36:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="xOHj51J/"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="zbD9JNIn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BAB02FE58E;
-	Mon, 27 Oct 2025 12:35:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1418246B5;
+	Mon, 27 Oct 2025 12:36:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761568504; cv=none; b=ZMzTXcLIi0iwSP/YTGtO44woSbTE3rAfEq8oO3v0eYy692vHvZ++lTS8kxIQT/0lNvE8K+Xnr9cMsPExVDNzLa0I8JYSLd142cQ0cqmLu5N3Bgn+QmxVbulLBtNrXyxfceCgj2TMWh2Xr4y3sMEiXg0CRNc8U55WD3s06Hpg588=
+	t=1761568599; cv=none; b=Z3Rwy6wRruU5KjrFQ4wd22ICN4W46cZLOAO1SFKjpXXVcupICNxWHm0UYJWoMokdFPLr6zw/WspvzpGTgrQo5Bsq/p47KDuXEiypybwpJNl8PxX+Bgl/2RjfsOZDnbdQB38AWFJJZwDCOvBzGLngfQ3zInFdiY8lTubgtPZWYK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761568504; c=relaxed/simple;
-	bh=P+3UXldEAR7K0LP2DEUeWZ6b1BjyHAZunBfUNmacYL8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V9L2TU0PCXbRYxwfpBGfR7DNxCk1ZqVonziCycDvggLlu3AXZYbuDJZmdUJLDaMjgmdx02Q/Rog9gryTGXlZvzaCZKMPbtEZLABw32Zzpsq52h7wzazpUt0f0ZP/I5g5h3qLVTbWt68YCNQshQaMLUV2m76rcEBgKMSpOzYz6DU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=xOHj51J/; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=iA7t2Iu5WmijCKzI4GOFbP1+sQVyXkrlu3SiinRY5fE=; b=xOHj51J/BGH7TW8B1tue9x+1cZ
-	ciRjmO0LOkcfCgqKGjCBlhej8qpS2adZBtz83L4kTWr2SWApaY5YfMZ2y2Ezd/LwY8+ytZgOHpVEC
-	5g2JJQlARRG/mEHbQFcddVjttfvRkuIDkru5t5BQhF1yh4cYwCY8enA2+QPSZI+5AZyY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vDMQs-00CBov-Nc; Mon, 27 Oct 2025 13:34:42 +0100
-Date: Mon, 27 Oct 2025 13:34:42 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: BMC-SW <BMC-SW@aspeedtech.com>, Arnd Bergmann <arnd@arndb.de>,
-	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"joel@jms.id.au" <joel@jms.id.au>,
-	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
-	"hkallweit1@gmail.com" <hkallweit1@gmail.com>,
-	"linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: =?utf-8?B?5Zue6KaG?= =?utf-8?Q?=3A?= [net-next 0/3] Add Aspeed
- G7 MDIO support
-Message-ID: <ad12992b-2ddf-406f-a024-dd402f8a3f0c@lunn.ch>
-References: <20241118104735.3741749-1-jacky_chou@aspeedtech.com>
- <7368c77e-08fe-4130-9b62-f1008cb5a0dc@lunn.ch>
- <SEYPR06MB513478C462915513DE7BE1AE9DFCA@SEYPR06MB5134.apcprd06.prod.outlook.com>
+	s=arc-20240116; t=1761568599; c=relaxed/simple;
+	bh=DjSjySGl8gtkYz/83bByKwAq/ciahRTGHXSBHJPVRc0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Nc/gXqZBj52W7/BKDNCly2CXgewt6P8O/aTOj3pOHOwfve61dnffx/V7R/n3afo3og5NOOD/1auewdMJR+Lw+AhzGuNavaj1c12vUw0pN39Oq6wvP7Dvt0kCG6mAJvQnJGuAhfGMtyvzEVTW2GTa1NmgPI80Q3RrjSImQWPk+D8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=zbD9JNIn; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id CD4F91A16B1;
+	Mon, 27 Oct 2025 12:36:27 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 99FB06062C;
+	Mon, 27 Oct 2025 12:36:27 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 467A3102F24FE;
+	Mon, 27 Oct 2025 13:36:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1761568586; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=5ElA93l32upTadDYDoioEAUEE5MykclXhIDHopfVyBU=;
+	b=zbD9JNIn4/0lwa5XMcuxRrK89JLk3FAp8n8+uCcKDw4mbNGdZ3MfSqaqe8FddyfKh2E3+W
+	88yMkXwGGbF4mIcvzmqhgrCGfmSeyzgtMdpyYmccrrrDYYNKaJo2ee+PjiIg7M4SF90RQj
+	yoxl0KBxQ2pA3aqy1DCDMbpliLa6Rh00eeag0CveL+rMXfJyrMUWOqVYNZZjGnBlJFs6Js
+	jdQ2JvYyeQvdUOqd1kXrlJNWMkx+wyDM87X2ZnPYzycsOIHS/QafbfosnB4YvAph2lEwmb
+	Icz9fQ+VBdc9Lu2h2QDG2CjLpyhsCK48mtVCd4GIMgKi3iGq10njQTS6O43s8Q==
+From: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
+To: Thomas Gleixner <tglx@linutronix.de>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Hoan Tran <hoan@os.amperecomputing.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Herve Codina <herve.codina@bootlin.com>
+Cc: Phil Edworthy <phil.edworthy@renesas.com>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Pascal Eberhard <pascal.eberhard@se.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v6 0/8] gpio: renesas: Add support for GPIO and related interrupts in RZ/N1 SoC
+Date: Mon, 27 Oct 2025 13:35:52 +0100
+Message-ID: <20251027123601.77216-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SEYPR06MB513478C462915513DE7BE1AE9DFCA@SEYPR06MB5134.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, Oct 27, 2025 at 02:44:23AM +0000, Jacky Chou wrote:
-> Hi Andrew,
-> 
-> This is Jacky from ASPEED.
-> Last year, I submitted a series of patches to add a new compatible string
-> "aspeed,ast2700-mdio". At that time, the feedback I received was that if there
-> were no functional changes, a new compatible string would not be necessary.
-> Recently, we are submitting the AST2700 platform support to the Linux kernel.
-> In the following discussion thread, it appears that the MDIO driver might need
-> a new compatible string for the AST2700 platform:
-> https://lore.kernel.org/all/b048afc1-a143-4fd0-94c9-3677339d7f56@lunn.ch/
-> I would like to confirm whether this case should be submitted separately to
-> net-next, and in general, if there are no hardware or design changes, is it
-> still required to introduce a new compatible string?
+Hi,
 
-Are you sure it is identical? And are you sure there are no bugs in
-the driver which would require breaking backwards compatibility, like
-you are going to be doing for the MAC driver?
+This series adds support for GPIO and GPIO IRQ mux available in the
+RZ/N1 SoCs.
 
-Take the reset handling for example. It looks like it was added after
-basic support for the 2600 has added, so it had to be optional, to not
-break backwards compatibility with older DT blobs. But since there is
-no support for the 2700 yet, you could make the reset mandatory,
-without breaking anything.
+The first patches in this series are related to a new helper introduced
+to parse an interrupt-map property.
+  - patch 1: Introduce the helper (for_each_of_imap_item)
+  - patch 2: Add a unittest for the new helper
+  - patch 3 and 4: convert existing drivers to use this new helper
 
-How is the clock handled on this hardware? The MDC is currently
-ticking at 2.5MHz. However many PHYs and MDIO based Ethernet switches
-will happy run at a faster speed. So you could implemented
-'clock-frequency'. But for that, do you need a clock listed? Should
-that clock be listed now, as a mandatory property for the 2700?
+Patch 5 adds support for GPIO (device-tree description)
 
-Having a specific compatible and a fallback costs nothing, so i would
-do it. 
+The last patches (6, 7 and 8) of the series are related to GPIO
+interrupts and GPIO IRQ multiplexer.
 
-	Andrew
+In the RZ/N1 SoCs, GPIO interrupts are wired to a GPIO IRQ multiplexer.
+
+This multiplexer does nothing but select 8 GPIO IRQ lines out of the 96
+available to wire them to the GIC input lines.
+
+One upstreaming attempt have been done previously by Phil Edworthy [1]
+but the series has never been applied.
+
+Based on my understanding, I have fully reworked the driver proposed by
+Phil and removed the IRQ domain. Indeed, the device doesn't handle
+interrupts. It just routes signals.
+
+Also, as an interrupt-map property is used, the driver cannot be
+involved as an interrupt controller itself. It is a nexus node.
+
+With that in mind,
+  - Patch 6 is related to the irq-mux binding.
+
+  - Patch 7 introduces the irq-mux driver.
+    This driver uses the 'for_each_of_imap_item' helper introduced
+    previously. Indeed, the lines routing is defined by the
+    interrupt-map property and the driver needs to set registers to
+    apply this routing.
+
+  - Patch 8 is the RZ/N1 device-tree description update to have the
+    support for the GPIO interrupts.
+
+[1] https://lore.kernel.org/all/20190219155511.28507-1-phil.edworthy@renesas.com/
+
+Best regards,
+Hervé
+
+Changes v5 -> v6
+  v5: https://lore.kernel.org/lkml/20251020080648.13452-1-herve.codina@bootlin.com/
+
+  Patches 1 and 2:
+    Add 'Reviewed-by: Rob Herring'
+
+  Patches 3, and 5:
+    No changes
+
+  Patch 6:
+    Add 'Reviewed-by: Rob Herring'
+
+  Patch 7:
+    Remove an unneeded TAB in Makefile.
+    Use RZN1_IRQMUX_GIC_SPI_BASE and RZN1_IRQMUX_NUM_OUTPUTS to replace
+    the irq/output mapping table.
+    Use DECLARE_BITMAP().
+
+  Patch 8:
+    No changes
+
+Changes v4 -> v5
+  v4: https://lore.kernel.org/lkml/20250922152640.154092-1-herve.codina@bootlin.com/
+
+  Rebase on top of v6.18-rc1
+
+  Patches 1 to 3:
+    No changes
+
+  Patch 4:
+    Fix conflict.
+    Add 'Tested-by: Wolfram Sang'.
+
+  Patch 5:
+    Add 'Reviewed-by: Bartosz Golaszewski'.
+
+  Patch 6:
+    Add 'Reviewed-by: Wolfram Sang'.
+
+  Patch 7:
+    Add a missing 'const' qualifier.
+    Remove an unneeded dev_err_probe() call.
+    Add a check to avoid setting the same output line multiple times.
+
+  Patch 8:
+    Update comment
+    Add 'Reviewed-by: Bartosz Golaszewski'
+
+Changes v3 -> v4
+  v3: https://lore.kernel.org/lkml/20250918104009.94754-1-herve.codina@bootlin.com/
+
+  Patch 1:
+    - Add 'Tested-by: Wolfram Sang'
+
+  Patch 2..5:
+    - No changes
+
+  Patch 6:
+    - Add minItems and maxItems
+    - Update the 'interrup-map' description
+
+  Patch 7:
+    - Use rzn1_irqmux prefix instead of irqmux.
+    - Introduce rzn1_irqmux_output_lines[] to give the mapping between
+      the interrupt output line index and the GIC controller interrupt
+      number.
+    - Remove of_irq_count() call and related checks
+
+  Patch 8:
+    - Describe the irq mux node using a reduced (one item) interrupt-map
+      property.
+
+Changes v2 -> v3
+  v2: https://lore.kernel.org/lkml/20250909120041.154459-1-herve.codina@bootlin.com/
+
+  Reordered patches as suggested by Thomas Gleixner.
+
+  Patch 1: (3 in v2)
+    - Replace a wrong 'extern' by 'static inline' in of_irq.h  (detected
+      by test robots)
+
+  Patch 2: (4 in v2)
+  Patch 3: (5 in v2)
+  Patch 4: (6 in v2)
+    - No changes
+
+  Patch 5: (1 in v2)
+    - Add 'Reviewed-by: Wolfram Sang'
+    - Add 'Tested-by: Wolfram Sang'
+
+  Patch 6: (2 in v2)
+    - Add '#address-cells = <0>;' in the interrupt-controller node
+      present in the example.
+
+  Patch 7:
+  Patch 8:
+    - No changes
+
+Changes v1 -> v2
+  v1: https://lore.kernel.org/lkml/20250725152618.32886-1-herve.codina@bootlin.com/
+
+  Rebase on top of v6.17-rc5
+
+  Patch 1 in v1
+    - Removed in v2 (no need for RZ/N1 compatible strings).
+
+  Patch 1 (2 in v1)
+    - Fix node names (issue reported by Rob's bot)
+    - Fix compatible RZ/N1 compatible strings
+    - Removed undocumented and unused 'bank-name' properties
+
+  Patch 2 (3 in v1)
+   - Remove 'interrupts' property
+   - Update 'interrupt-map' description
+
+  Patch 3 (4 in v1)
+   - Rework of_irq_foreach_imap() to provide the for_each_of_imap_item
+     iterator (similar to for_each_of_range)
+
+  Patch 4 (new in v2)
+   - Add a unittest for for_each_of_imap_item
+
+  Patch 5 (new in v2)
+   - Convert irqchip/ls-extirq to use for_each_of_imap_item
+
+  Patch 6 (new in v2)
+   - Convert irqchip/renesas-rza1 to use for_each_of_imap_item
+
+  Patch 7 (5 in v1)
+   - Use for_each_of_imap_item
+   - Remove 'interrupts' property usage
+
+  Patch 8 (6 in v1)
+   - Remove 'interrupts' property
+
+Herve Codina (Schneider Electric) (8):
+  of/irq: Introduce for_each_of_imap_item
+  of: unittest: Add a test case for for_each_of_imap_item iterator
+  irqchip/ls-extirq: Use for_each_of_imap_item iterator
+  irqchip/renesas-rza1: Use for_each_of_imap_item iterator
+  ARM: dts: r9a06g032: Add GPIO controllers
+  dt-bindings: soc: renesas: Add the Renesas RZ/N1 GPIO Interrupt
+    Multiplexer
+  soc: renesas: Add support for Renesas RZ/N1 GPIO Interrupt Multiplexer
+  ARM: dts: r9a06g032: Add support for GPIO interrupts
+
+ .../soc/renesas/renesas,rzn1-gpioirqmux.yaml  |  87 ++++++++++
+ arch/arm/boot/dts/renesas/r9a06g032.dtsi      | 162 ++++++++++++++++++
+ drivers/irqchip/irq-ls-extirq.c               |  47 ++---
+ drivers/irqchip/irq-renesas-rza1.c            |  43 ++---
+ drivers/of/irq.c                              |  70 ++++++++
+ .../of/unittest-data/tests-interrupts.dtsi    |   9 +
+ drivers/of/unittest.c                         | 116 +++++++++++++
+ drivers/soc/renesas/Kconfig                   |   4 +
+ drivers/soc/renesas/Makefile                  |   1 +
+ drivers/soc/renesas/rzn1_irqmux.c             | 133 ++++++++++++++
+ include/linux/of_irq.h                        |  41 ++++-
+ 11 files changed, 655 insertions(+), 58 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/renesas/renesas,rzn1-gpioirqmux.yaml
+ create mode 100644 drivers/soc/renesas/rzn1_irqmux.c
+
+-- 
+2.51.0
+
 
