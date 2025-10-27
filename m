@@ -1,125 +1,119 @@
-Return-Path: <devicetree+bounces-231408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7109C0D013
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 11:46:03 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 842A6C0D001
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 11:45:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 613B93BEEB2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:44:57 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 78A2534C8D1
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:45:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B6F12F546D;
-	Mon, 27 Oct 2025 10:44:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADF912F3C3E;
+	Mon, 27 Oct 2025 10:45:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C6512F5462
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 10:44:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31CAA221703
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 10:45:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761561895; cv=none; b=tPE8Iv79SgeUdOJXnD6GnB7hX3xIC7eOgR3eNA943A/rEnPar95Phmkc/tQ/itfq7tyOyhNTy5oa9O12jgL+DKhSr+x7y9UZo+QXfIiR7EK0qqLLbBpdoVQG2dXp3r3SjAuKkBahj5ST5W7+U0x1tZ/ADJab8dW8kuQoS0R8eak=
+	t=1761561929; cv=none; b=pR8Tx3np8Nxp05fMRZjsbU4/MRV6IE7zCKgjVXY+XMzkOsdB0evN03Knu3FN1mUKkxFtcKLUgFUdTfY7JTRWJXjVdwAWA/apjlDCVK9XPAZOpZQaQXlTsvvqXLS9VMoudLQ+ATJcDESu9mgcpu9Eifx+NMQndxxtxQ5lEIJHcno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761561895; c=relaxed/simple;
-	bh=Ubcj3waXWImVhuNpCT/SGdfySsuwAGjNz/1ztlKhhZ0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hB5Yku8PE1MdsbrfbdCmbsIKaqvafLtG7BXD2zM8W6xupvIdE0FAxbM7zr50Ba2ybfmX6U0QzdHhPK2wO3Qu42MVDtv/GIryiqZQ02L9KTwI5+HkRclfsjSEL2umxLd/ryrUdVP6qSjNFKOwg8Pz6Y3jW3aFEq+d5/ivnZ3Dps4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vDKia-0006rM-Tt; Mon, 27 Oct 2025 11:44:52 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vDKia-005gp8-28;
-	Mon, 27 Oct 2025 11:44:52 +0100
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vDKia-0039Jo-1h;
-	Mon, 27 Oct 2025 11:44:52 +0100
-Date: Mon, 27 Oct 2025 11:44:52 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	imx@lists.linux.dev, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Daniel Scally <dan.scally@ideasonboard.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Stefan Klug <stefan.klug@ideasonboard.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
-Message-ID: <aP9NJHtbAEmsd89r@pengutronix.de>
-References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
- <e87ff7f2-d16f-41f2-b781-b175cfb84b21@lunn.ch>
- <aP83bMDWCre7-Sjw@pengutronix.de>
- <20251027100227.GE1544@pendragon.ideasonboard.com>
- <aP9IB4y5_gyfJGMW@pengutronix.de>
- <20251027103107.GF1544@pendragon.ideasonboard.com>
- <aP9Kuyndws_dYFna@shell.armlinux.org.uk>
+	s=arc-20240116; t=1761561929; c=relaxed/simple;
+	bh=WASv8vPf9FPyquyQDbPoOdROvffB+ReSLfQNpiWjqIc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IegrY/rMauPcAYtwvEwd7OQnvEmTMp+18mOqp13TnarNOM2iIJZi69g0M/8er5j3m3ft9XOgTGOqgcjfk0LGmEv0aZ7o3vwwkLBAxsszvfPHFSwrO+WPQQyVPPWk0Tr4VJgDsODYH4DFtBUnnBRQD/ZF3XdvvC4AR7zURW3zQ+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-5db2dc4e42dso4669913137.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 03:45:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761561927; x=1762166727;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xFi78x1MtIeYqpVCKC1DBSPNonZlJu7dJLYb6jM72vk=;
+        b=LTrGaO0ZNmV3kM7RXtICKfhZFmGI78vS8kM+jCgmasPIvzFEAzL4rv3fcbwHT5GCGF
+         4mZ3JjVzX2Jay64A1nuzDAaTS1xQ/G+zELANS7Nle31ZdLaSYMu24EiNLoV6f/6yvZC1
+         Dg1f6JLEnbCAGVTeV3+bHDXpnN24MShQiP2c/AenPRy768D/XJX2idMKLopW18PCMPXw
+         hlRlxu1C544jgjzfVqUGKE12HNZY+46jWx9Fw4Iqe9uAYmLUWJ8xmSY+gT+AbM5QONJP
+         nKUrB0r3Y3Tb0t4j8xJz14C4wg1QJgb1oOpAQMGCQda8KMhK6L4EniJ4QCzeYlHA2YWL
+         FXmg==
+X-Forwarded-Encrypted: i=1; AJvYcCWFcd6Gar+O+jeTbK+yqVtWpMEiyBaIKb6rEfHHJyXfdcydQkREkG9SDc55q/9Cavo/+cEqMsgUu2Hv@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXn7IpV3guAj9ewkFBLYInT7sqJ3DViJoyzficuMJGsvPLWY0Y
+	nUWdvcOu+1e5NcMBl2fi2qPJ1LohBbJ1mkTXt68z/3io+Ho9I41aBy4loaSSI6/V
+X-Gm-Gg: ASbGnctDSvxYH+RXYcIbZIO4FcIFLasqkoeg/6dy/Jp7tzt9DxkFWQBpoedtlG/6Q39
+	ar9s37AsaWLuFybviWvMlokLf/Hp1iWP90G4yGz3YUq9Xwuds5ch5aAEJSNcmhiikVKWwKm07ie
+	gyX70dgq1uZLMAsErc2TYsYOvmebJUWoZhonSqgLEQsI/BORMl7tJf5yhBA5Y9B62bSoXpN8FHe
+	2EPwT/s1piDaiIrViiqS7D4NKULtPVJjQe8skTwU4ydw5gwjDyMYK3cBVSzPXBfzWNnJYG+tMIw
+	cRZNNBI7M1YIZ+WBIS9zfBenX9FUnyA0IgBsWnt1GS3b4teuvs/guadhq6KjqqLJNy/R09dtoXh
+	dQsScDr8mafNzYazFl2Vjam8nv8i5zhv5BUc7XoJVXAqsgkhPneZpyh0JwLNhAfbMHPSB/VM6NU
+	ia0fC649WT7hOtix0hF5k1dVLAjAfJjtftGqHPFA==
+X-Google-Smtp-Source: AGHT+IEP1JcgTVFFQBTSvywwdgUofPzQD0oTfnFasPBFqo0tynjtxeZpB+hUuxPmrC3aVLAdkkuVCA==
+X-Received: by 2002:a05:6102:40ca:20b0:59c:d78:dca with SMTP id ada2fe7eead31-5db3e17ec6fmr2760627137.15.1761561925303;
+        Mon, 27 Oct 2025 03:45:25 -0700 (PDT)
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5db4e52198bsm2577660137.7.2025.10.27.03.45.25
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Oct 2025 03:45:25 -0700 (PDT)
+Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-8eafd5a7a23so3428197241.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 03:45:25 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXBzcxWAEfQ89uEuVZewZi/MyO4xJHmgyJD94t1VvG9WtVNWrb1WelpV0eF5tFlz9iokzP1W3ZztoPs@vger.kernel.org
+X-Received: by 2002:a05:6102:30d2:20b0:5d5:f6ae:3905 with SMTP id
+ ada2fe7eead31-5db3e25962bmr2803354137.22.1761561924836; Mon, 27 Oct 2025
+ 03:45:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <aP9Kuyndws_dYFna@shell.armlinux.org.uk>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20251023081925.2412325-1-cosmin-gabriel.tanislav.xa@renesas.com> <20251023081925.2412325-2-cosmin-gabriel.tanislav.xa@renesas.com>
+In-Reply-To: <20251023081925.2412325-2-cosmin-gabriel.tanislav.xa@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 27 Oct 2025 11:45:13 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUnom39_Rj+6Jc2g69i+Z4V7UkfXT791buK3h9cpOFpsQ@mail.gmail.com>
+X-Gm-Features: AWmQ_bnn-hFWk4Ur68Qi3gdEa85bXZjpybdjIi4iorAZW0HIZJSSUE0PNnuk68o
+Message-ID: <CAMuHMdUnom39_Rj+6Jc2g69i+Z4V7UkfXT791buK3h9cpOFpsQ@mail.gmail.com>
+Subject: Re: [PATCH 01/10] clk: renesas: r9a09g077: add TSU module clock
+To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Cc: John Madieu <john.madieu.xa@bp.renesas.com>, "Rafael J . Wysocki" <rafael@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Oct 27, 2025 at 10:34:35AM +0000, Russell King (Oracle) wrote:
-> On Mon, Oct 27, 2025 at 12:31:07PM +0200, Laurent Pinchart wrote:
-> > On Mon, Oct 27, 2025 at 11:23:03AM +0100, Oleksij Rempel wrote:
-> > > On Mon, Oct 27, 2025 at 12:02:27PM +0200, Laurent Pinchart wrote:
-> > > > Hi Oleksij,
-> > > > > Please note, RTL8211E PHY do use undocumented SmartEEE mode by default.
-> > > > > It ignores RGMII LPI opcodes and doing own thing. It can be confirmed by
-> > > > > monitoring RGMII TX and MDI lines with oscilloscope and changing
-> > > > > tx-timer configurations. I also confirmed this information from other
-> > > > > source. To disable SmartEEE and use plain MAC based mode, NDA documentation
-> > > > > is needed.
-> > > > 
-> > > > That's useful information, thank you. Would you by any chance to know if
-> > > > such NDA would allow contributing the feature upstream ?
-> > > 
-> > > Good question, but the NDA process was actually aborted. We didn't move
-> > > forward due to a lack of time and ultimately, a lack of commercial
-> > > interest from any projects or customers for this PHY.
-> > 
-> > Fair enough. I've tried :-)
-> > 
-> > If we can't disable SmartEEE in the PHY, does it mean we need to somehow
-> > disable EEE in the MAC, but still program the PHY to advertise EEE to
-> > the link partner ?
-> 
-> Or maybe the PHY needs to have EEE capability disabled?
+On Thu, 23 Oct 2025 at 10:20, Cosmin Tanislav
+<cosmin-gabriel.tanislav.xa@renesas.com> wrote:
+> The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs have a TSU
+> peripheral with controlled by a module clock.
+>
+> The TSU module clock is enabled in register MSTPCRG (0x30c), at bit 7,
 
-Ack. With comment in the code, why we prefer this way, in case some one
-wont to spend time on making it work. Probably SmartEEE or some other
-word should be used.
+MSTPCRD
+
+I will fix that while applying.
+
+> resulting in a (0x30c - 0x300) / 4 * 100 + 7 = 307 index.
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
