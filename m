@@ -1,107 +1,126 @@
-Return-Path: <devicetree+bounces-231807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2842C11B7B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:32:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55180C11B8D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:34:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2E171A25D69
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 22:32:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 728F41A28532
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 22:34:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1A872DEA7D;
-	Mon, 27 Oct 2025 22:32:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B28D72F5479;
+	Mon, 27 Oct 2025 22:34:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b5q5hdt1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgsg1.qq.com (smtpbgsg1.qq.com [54.254.200.92])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D359327E1D5
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 22:32:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.92
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C90532E092D
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 22:34:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761604329; cv=none; b=hkj2k+urs+gKajH2oosmSdVVzhGn3FG7yQVl9+CcApHwg3Z4Gl4LFwOSECi4NftlDxInA46mUnoZkg90QqDF+3MXtzAAZYESsaAkfU4cp9xScUwSGo6yIMrr4oU08qTTrkh/cHLQGyKkGUtT78SZkYn1Eayuzb5gwybOujBq73Q=
+	t=1761604462; cv=none; b=hIYoz2jJgzS8Lhkosmc5zsSG2ZNCG/y/EXf5qvfl6/5R/o72e4fOH4Zi3ijp0yUoNarPsWngxbecCaIjyXJwz0S2pGzW+XCVjGrzROVIE/O/HYIptyWKJCyz8Wt8xAkmTcKJT+6qVZI9NptBRDSRdm0WYrEcbl3BDjdP/Jgd3p8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761604329; c=relaxed/simple;
-	bh=ZRfoIvt9Gezlr6LUpV6jairCgU7xWN5/bVIDMjXrz2I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mC/KILfJJ+lzr7LDfSdrXmf4UyjjKHOVImCyXVhg3HEnd2wGGeYaXyZyorBZHHEX6VaOUte2A1QctakkWaBEpRnVtxB+yX62yBwnnLCdtf9yez2yhJ/WxCM1kE0a+11PTD+P08InJzxfJeV9GhJiIvJe/GTvdU6i8VBgcsI0uBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.254.200.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip3t1761604254ta1cf0039
-X-QQ-Originating-IP: qeEvK7am4rcn+2zKvIw6l7pKdUIEQtur2S5YS1iAGmo=
-Received: from [IPV6:240f:10b:7440:1:27fe:5767 ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 28 Oct 2025 06:30:50 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 4733601881892471049
-Message-ID: <6B986FE9E161F74F+f2826946-a3e9-4618-b5c8-6e29f9f6b83c@radxa.com>
-Date: Tue, 28 Oct 2025 07:30:49 +0900
+	s=arc-20240116; t=1761604462; c=relaxed/simple;
+	bh=6FK4Cywp2kPqN6IZB7Pn8a9qrx5ElGyAJ2bbf8tmYpc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Lsl9VgrOjGuebvBAYTQIfV1SBjuhdREVYW9uXG0QlBlM9KexwVdMuJaVKxIuM/9Qe77srro/f7+pOMsI55EDTeuGrgCZ7KeE7pq2VOXR9N/gXEW4n4ZT6jeEszCOBf1bWkyjVYu0Tn1pRdGPo3NHoVWI11CxaEL3Ide9fjojCDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b5q5hdt1; arc=none smtp.client-ip=209.85.128.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-78488cdc20aso68275267b3.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 15:34:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761604460; x=1762209260; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6FK4Cywp2kPqN6IZB7Pn8a9qrx5ElGyAJ2bbf8tmYpc=;
+        b=b5q5hdt1cL9wVjYbAkH1AYKzJIgDa5TsWEjX8dyjivJOfapORAREYYvKyA/iPWm2tj
+         jdLTg/5lfN55rkoJPgsEVGdUUKXpnBalcjBCv9TtrNcFVVjF7GtDNvgnSNmVkkIaYPXX
+         hpudTMw0ZlFb0tm9eSu2JnJQUikJ6zvK8L86g2qIJIf79h3o34sKAoMSgGLTUlqpgwX3
+         1TlTTn4jYV6lUjIyYNmvhByncI+JbC3ej7P1WNKFYhjzWg0Nrp8AEllBjroEKywayMr6
+         C7hDksahGiwpPgmSCsPbroAyx8bvOirouB7KbQG7gjXbTgpmTH4QdM/Hwct/DAefQ9No
+         nbvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761604460; x=1762209260;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6FK4Cywp2kPqN6IZB7Pn8a9qrx5ElGyAJ2bbf8tmYpc=;
+        b=lM7nmWJbYn1L4/GDRw0c+M7lb5qc9pRqC+FLFAWy1HGcCiaVyJj6ZJnfmLdYWJGgZv
+         /2zEXnShoOXcZ94DcmotVK//Ffnkj0kO3M3LIITx/xaQtYD3UV/cIxHzWEkOAO/0bEPt
+         SNqRXwdbkAxIvLHiHcY0wtspIVxq2p9OQZfoWQn2SxXxEulNFjsFkAvNhPlaWgd9fc1B
+         +gkFKS6FyJ99i+OMh6I71uSA5aShtA7mxAr0ibuXbZLQFgPZLlmeaXf58jq8rxXoj7C8
+         OzDxH8JZk12LqACb1nyuX1Fm5JXG9haMTcRUqaHvJsZQxzUB92hNv/VYW37Cjy51Rqgo
+         +cjw==
+X-Forwarded-Encrypted: i=1; AJvYcCXK6yjx5z+UFtzGDmFixN5sLuNMerHtBseX7Z8Yzo+ziCIOytvFnYyPuKazkX4AkMxty1rEQdGtLHJb@vger.kernel.org
+X-Gm-Message-State: AOJu0YydoPzM8qUMv4VFKcy04Z5DGuvk/wEzrGn2sFqQyNhiqekrgo+H
+	1vS5L2r9BVzTbQNkjo9a20CM9iEKfJmJ5rTSH0a8Rzlbn57N662S4gsGCSQlRkXiFxBueZr03IT
+	aDveuqG5Jg1zFXuQZL5ygomcE04jbg7mXBIrNwjoMrw==
+X-Gm-Gg: ASbGncvfx62s7PlIMl+fOq6RsR/mGM0QpzZm+rEES880a2NBKlyJAE/6BA/BJbZzvhc
+	LUNMujCB4c03KbZsm1FQtPDCq7oawPXAojHrjn0PIkaQR9vcXxmSQkdVZMfucA1WhxlYcCPrPHK
+	F3rg4rAers7ST45j+G8PMHOEf6N2rToqZUsBNHPOAxbqyygCkFdeyGGhYeuDCPdCt4hh4AEU2on
+	Y2/HWl8dapvSz5NsQ3yhGJ2Lo2XaxXA+Myk9f9TPNVMd5UfA/0TWRzs/EPV
+X-Google-Smtp-Source: AGHT+IHFxrQwcIAfHl/EDjyJgU4+jEXTaSyjinBJCcTfFFs/TuXmdRuhxaYs6OB/9vERDl+26CgqDxFOu0ooMCeyJi8=
+X-Received: by 2002:a05:690c:a00e:b0:781:1c1a:98f0 with SMTP id
+ 00721157ae682-78617e5fb66mr12794187b3.18.1761604459817; Mon, 27 Oct 2025
+ 15:34:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] dt-bindings: arm: rockchip: Reorder the Radxa board
- entries
-To: Krzysztof Kozlowski <krzk@kernel.org>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- jonas@kwiboo.se, dsimic@manjaro.org, amadeus@jmu.edu.cn,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20251027122641.39396-1-naoki@radxa.com>
- <20251027122641.39396-5-naoki@radxa.com>
- <67e7badd-4b38-4f93-872b-e51a43281d3b@kernel.org>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <67e7badd-4b38-4f93-872b-e51a43281d3b@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4a-0
-X-QQ-XMAILINFO: NkLA2q2LD229CtcVGeMGeTD4zCx6cEhayrlDIZ+nfug4CAMaHq2VzH7+
-	8vbzXOgrHUHyQC1kAtSH+St5RYN2ogh5HaNbjBtMPXfJu8zcpRpVqNgiskaw6WZxoQOkMvf
-	tki0dktt5xvYTFcCB25k5Is/y2mCwXaskcmLq3N7E01rWXw5n1PEvmioWSZoAv+d2eelPtu
-	QFD7CdJTfEdcZE/pzvdunrz+u/mzEmynVIfRzdOvARfyXVlgxob3GvUa/Z0krMhZNczlYzZ
-	TlmrcYMiLEjB/Xs1ylpK3C4KAKCMvIPTKSIu/oMUmJ60lSYHOLrTkN5mV1mle0+aQoRJ9U/
-	VTc5YVBIbANyMMvOrMwxmdDrG0xXyQ2MStHvllMYs0LymJKs2YrkpyUPlO4xo+EYv2PvS+F
-	hjPGSPpnqkXdaKQvBcts6s7ilRtcwOrmud+JLT5eH5zWBQaRHreKM+owV3+k/ElUe+oJKWb
-	YlE77+M3qhe+CZF12qEROJAgsBySqFWZtewZFhMatUItVqWRdeeJT5cbIVj4bR815qAH7VM
-	DbcYdIhWcKPSxH/RrNfp953iROdc+Jxl1KiMUbU1+XBYyXkZsfEhAW0uVUY5s9kHdD3Kt8k
-	4AtYz1+5vVFdCSQXWRHqjJPZAIz2C57KhSmDcWzR9SAeVKD+gJNAIg10UK8Wp9meC+z9m6O
-	PFp4MotkfDpa42P9uA/7z1IEQtGrHvKydoldkhtsjrKea3mXcLn1vcBjHUYqyMBpXr929nS
-	tEj3wmSU5Rror03HJ/Geha4siCh6GD3PImYj6XvCHbyZl5YdpTn3IU5UFf1U4xHj4j+X73t
-	Nx7+pjwP+UQ+dqQFxQA1RcTanopBAtBE+EePBu4OaVdn6OGfa3DstyRo3r7pjd2qCVoMGhz
-	EvYsRAvKWE16XcVgc47WKEmt/DKoo2LZYDndpJkP5CJjTJWcZR2vs7rltJEE2aTbIbw3v4o
-	qfwgWDVRvX/Bv0HlLnIhZYTNkWSIHh2p+Ew4=
-X-QQ-XMRINFO: MPJ6Tf5t3I/ycC2BItcBVIA=
-X-QQ-RECHKSPAM: 0
+References: <cover.1761564043.git.mazziesaccount@gmail.com> <e8d0273bcf0ac67382e17c40be87d345e28ac06c.1761564043.git.mazziesaccount@gmail.com>
+In-Reply-To: <e8d0273bcf0ac67382e17c40be87d345e28ac06c.1761564043.git.mazziesaccount@gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 27 Oct 2025 23:34:05 +0100
+X-Gm-Features: AWmQ_bmCeM1hCEpCcloBtHCP-z98b1djEaHpBG8dS_Pa6X6P_LL8sPGseuESUz4
+Message-ID: <CACRpkdbfjqbmy5EbLApee3p9TEsEzBKOcGMrbspeWxqUc_niiw@mail.gmail.com>
+Subject: Re: [PATCH v2 03/15] dt-bindings: power: supply: BD72720 managed battery
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lee Jones <lee@kernel.org>, 
+	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sebastian Reichel <sre@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Andreas Kemnade <andreas@kemnade.info>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
+On Mon, Oct 27, 2025 at 12:45=E2=80=AFPM Matti Vaittinen
+<mazziesaccount@gmail.com> wrote:
 
-On 10/28/25 04:08, Krzysztof Kozlowski wrote:
-> On 27/10/2025 13:26, FUKAUMI Naoki wrote:
->> Reorder the Radxa board entries alphanumerically, with the following
->> exceptions:
-> 
-> 
-> Why? You must explain that in the commit. What sorting is being used by
-> this file? Why do you think your re-order matches that sorting rule?
+> The BD72720 PMIC has a battery charger + coulomb counter block. These
+> can be used to manage charging of a lithium-ion battery and to do fuel
+> gauging.
+>
+> ROHM has developed a so called "zero-correction" -algorithm to improve
+> the fuel-gauging accuracy close to the point where battery is depleted.
+> This relies on battery specific "VDR" tables, which are measured from
+> the battery, and which describe the voltage drop rate. More thorough
+> explanation about the "zero correction" and "VDR" parameters is here:
+> https://lore.kernel.org/all/676253b9-ff69-7891-1f26-a8b5bb5a421b@fi.rohme=
+urope.com/
+>
+> Document the VDR zero-correction specific battery properties used by the
+> BD72720 and some other ROHM chargers.
+>
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
-I understand there is no rule, only your preference. Thanks.
+From my PoV this looks good, and makes it easy for engineers
+to read the DTS file and understand what is going on, so after
+addressing Rob's final comments you can add:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-> Best regards,
-> Krzysztof
-> 
-
-
+Yours,
+Linus Walleij
 
