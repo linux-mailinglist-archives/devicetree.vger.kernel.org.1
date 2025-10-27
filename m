@@ -1,131 +1,219 @@
-Return-Path: <devicetree+bounces-231663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51943C0F749
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:51:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C50AC0F7DA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:59:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F177C34FAE0
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 16:51:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1A8B3A3712
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 16:53:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D3253128DA;
-	Mon, 27 Oct 2025 16:51:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B9BA3148A5;
+	Mon, 27 Oct 2025 16:53:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e0N7dVIx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jVi8eGW5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40D633126B3;
-	Mon, 27 Oct 2025 16:51:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E067313547
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 16:52:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761583906; cv=none; b=KKqnAufJE9RiXdPt1E1EO0YXW+OOEI/5BjdSwDwr7cFh9aEXoOvLQ4SftZGcuNnKnDF0YOsqBKYg+E+Yw3iWfFHqHX9R29E2qywByVVqHimhc3bhkmwwfn7KODHNr1EYLLpyA4y2SmGO8kLDm6dPQ3Fr7PFWZqWctXtqWGPYVb0=
+	t=1761583980; cv=none; b=jFlA9sFh1GVU0r+iCDQ6KYTvc4fC1WSaoThfOEggZyM1Wb6U67pQ+hZzZqP/kZUDdgUJQnkM0FYGOctt0e7hMBVqVNYjelhbSrdnsFvRXRjego31RAPeu4hNa1xTbTBKxl4fXk0BjNIaDkozpVI9+mxT1+U6/KOrAZ2zK87/bxU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761583906; c=relaxed/simple;
-	bh=bu/lKpmMPWH4T4b2scw9A8ku2NQlDdZsGjrmXtEeFCI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M1Kuj2T9gq/HXvIfePVG87b5uL74QfFBcPciVMkN4fKTNdDEi4xCZgSr0gQNEHhC6/RjarO6xv4EjkkHvfKTtPcQSWQe15QvDGHFvCL0Txj8QSaGsegMS/sKezFlI4nw5DZZVYR5PDytaBoQ9K8+83H72e6/EkF9kkjQgYt2l7U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e0N7dVIx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 566DEC116B1;
-	Mon, 27 Oct 2025 16:51:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761583905;
-	bh=bu/lKpmMPWH4T4b2scw9A8ku2NQlDdZsGjrmXtEeFCI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=e0N7dVIxW3H5gN2pyjSsDsfNPiXgjx766SAXrI8ledXe2VJ2lMPjUqpgcy0z5cRGS
-	 kgIHo6F7APQLaYfucRkbBvvJLgAeWGhXoiYIVQLLLWanw7xjwioYvtYL43YusmRm1h
-	 z99ObIGGqefScff7FnhiMfa+OPm5N/VUaOqjeL9npaJryV/h4LrV6PaArOi222Jmxp
-	 PfEv12M4KiHnEBB+iGTKTDyDQ3zP+S8wyN72sxPggZ9WE7it1dANyVI36xAc8AVThQ
-	 NDL2CdmvMXAZw8tOhaD30rhkmeFXUgnXPg00pdEm3sKrmIbv9FNuI+KOxVN562mvW/
-	 Latd97tc90Sgg==
-Date: Mon, 27 Oct 2025 16:51:41 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Jun Guo <jun.guo@cixtech.com>
-Cc: peter.chen@cixtech.com, fugang.duan@cixtech.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, broonie@kernel.org,
-	linux-spi@vger.kernel.org, michal.simek@amd.com,
-	cix-kernel-upstream@cixtech.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: spi: spi-cadence: update DT binding
- docs to support cix sky1 SoC
-Message-ID: <20251027-strangely-reverence-6f47d87efca5@spud>
-References: <20251027084239.2610141-1-jun.guo@cixtech.com>
- <20251027084239.2610141-3-jun.guo@cixtech.com>
+	s=arc-20240116; t=1761583980; c=relaxed/simple;
+	bh=ez/mIQCI0gAsepx7KDmrGjw1VRoEx13dA304T/Eyp0g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=a1ruiNJSzyrobr8oS9dFzj5yPxG/Os4W7vkykmg461WBccjSD9u96unx1JVtTwALiiOw7vtZYqDkcCNZxJKTZHTr/oEM1tCkFR+I0Z6rSTUjFCLsX2Bmu07ZdugLL1aie5YInJGYVc2lTNdYsDfJBMQgWV9johfa627NQK+fJeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jVi8eGW5; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-76e2ea933b7so4742524b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 09:52:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761583977; x=1762188777; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=1UjUmi5Ka+7gfU5ZG8hAL+hkQbUFpTtINYP7f5ILrSk=;
+        b=jVi8eGW55EGjyrRsXjvBSfyxC/oQYt7Yj6/g+YsyXkn3KA32KIQlrFnNVarbEqBI3s
+         Yx4qQf/bkbAXK1z4QPBiwV8UDOPdwPfsjbIsJZh9egQXn2X5XjhK5foAUzLDDKEtJ5p8
+         IJrLrRQSfJTHWIJPhsWxyFj4A3/EiX0qhpiQBSb+qVO+X/63EumKBAWNheMKLiPULTIt
+         Z9ADbTY4erHT9TGVeiCK4AU+JEK4dRfILsZclYxw7qVDAR6SYcH2s3lK+DjY1MsLmGYC
+         neojcLp6c8ZFgJGOBZmoSsBTevZNq1b7YZ9uEDiW+/zN0VRFK++ccqShGPeAbSWkshYk
+         WqMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761583977; x=1762188777;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1UjUmi5Ka+7gfU5ZG8hAL+hkQbUFpTtINYP7f5ILrSk=;
+        b=HVtqZPF+iCyhO0XQ3e4yF1LNEYywm0McMCaDMQ1hWouteLV/6SbyyU5yUDvFVhBsMg
+         DNHoK2IAhsdiwzo1wecOvJQGhbmGuSHBolyd/CcUhBeuO3M+EqlPTLa/KXL2CdkFa+fR
+         PXuBrgPKv7WkTYa32wjzkQExxPt9stdtM/hIqWqyZaq9axedAPtkquitBP2K0RkBGpAv
+         +KXOqSOibJ/5tB9tcX90cvbM4A9nkR3ALew6JiEvr3rpt+YZjunn/OFM/H1bJtrRXsyg
+         ulB86r49iSbLQeRL/FwRZbnovEPKR6BIc23z0mb4HeeplT1t8dWR9JgcblEnhrWAn3Ja
+         SVCg==
+X-Forwarded-Encrypted: i=1; AJvYcCVtNwAhwDf71/aF4n4iUYyA71cQ6ELgHZgcOyk1IDe/FJfP5hS7XbabdK8r7qwyBuxr859LlW/oiv1b@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdO/77MDwPqgR/CnVQRQsVVzm5k5zkl+KzRgvyqug4XLKNt+nr
+	XgbF8yFBexyzoM0F9TokE5l99mDhkUzJklC4DNmfvUpWdn0B+uVG/Xw7
+X-Gm-Gg: ASbGnctYEg51owvidCFK/FZegYTNicQ620cCoNTJBrUlD3aN/JwXVyUcTUqR0bwuqfa
+	WUYsFrRfXOU9f0p/UxTH8DGqdfCdzqtPUST+ETiDmcDjnDq1xKjZFG3dmZsRZyCGGuYtft90LDB
+	hf9If38SiZ0n8+paEzR6Y04U24uy1L5dUfVq2rGLRtCu5BQgFGDH6MyOgVWDhaXGH5Rg2xUHqFk
+	F1w4JjbhudEWrhPiMi7ZcdWVJ52u8a9IKMjDaxmACmBHgKRYc+ud2qnYCyHIrnAaX7HzzDWFQnf
+	6srrTJIC0Uqxg6NnfRXoH1VE3rGxcTCZB/gUC20kJditXjkqR/9dWfRdzQOvTA0d/RIr4qWH8k6
+	ZTUmsOjXa76EKZwwSbZaVgufVHchtons9zR50B1lK5z9pNqgAlx94xfoW+V9uR7UXlc8w4uB6mx
+	+bbsryvjny7t4nKNU1/lwQfJVVG60abbzsar+jzjWvT/l/ot7jhUCb1/sddsQ=
+X-Google-Smtp-Source: AGHT+IFq+QgzAYa0Pzepb131iFTCn1+g6011G4/2bAwqtv01tirsdxRlxBcZ2qwcf9EHIL7uZdLTBg==
+X-Received: by 2002:a05:6a20:430b:b0:246:3a6:3e47 with SMTP id adf61e73a8af0-344de5ddc8cmr202153637.12.1761583977229;
+        Mon, 27 Oct 2025 09:52:57 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a414012bcesm8972989b3a.8.2025.10.27.09.52.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Oct 2025 09:52:56 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <afe3f2e6-703b-4d9f-ae88-99da1321d1fc@roeck-us.net>
+Date: Mon, 27 Oct 2025 09:52:53 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="qZ7N/F0wEws9F2Jt"
-Content-Disposition: inline
-In-Reply-To: <20251027084239.2610141-3-jun.guo@cixtech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] hwmon: Add TSC1641 I2C power monitor driver
+To: Igor Reznichenko <igor@reznichenko.net>
+Cc: conor+dt@kernel.org, corbet@lwn.net, david.hunter.linux@gmail.com,
+ devicetree@vger.kernel.org, krzk+dt@kernel.org, linux-doc@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org,
+ skhan@linuxfoundation.org
+References: <d3365f32-dc92-4a55-91a1-c4a446558c5a@roeck-us.net>
+ <20251027064127.648712-1-igor@reznichenko.net>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20251027064127.648712-1-igor@reznichenko.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 10/26/25 23:41, Igor Reznichenko wrote:
+>> In some way this is inconsistent: It accepts a shunt resistor value of, say, 105
+>> even though the chip can only accept multiples of 10 uOhm. In situations like this
+>> I suggest to expect devicetree values to be accurate and to clamp values entered
+>> through sysfs. More on that below.
+>>
+>>> +	return 0;
+>>> +}
+>>> +
+>>> +static int tsc1641_set_shunt(struct tsc1641_data *data, u32 val)
+>>> +{
+>>> +	struct regmap *regmap = data->regmap;
+>>> +	long rshunt_reg;
+>>> +
+>>> +	if (tsc1641_validate_shunt(val) < 0)
+>>> +		return -EINVAL;
+>>> +
+>>> +	data->rshunt_uohm = val;
+>>> +	data->current_lsb_ua = DIV_ROUND_CLOSEST(TSC1641_VSHUNT_LSB_NVOLT * 1000,
+>>> +						 data->rshunt_uohm);
+>>> +	/* RSHUNT register LSB is 10uOhm so need to divide further*/
+>>> +	rshunt_reg = DIV_ROUND_CLOSEST(data->rshunt_uohm, TSC1641_RSHUNT_LSB_UOHM);
+>>
+>> This means that all calculations do not use the actual shunt resistor values used
+>> by the chip, but an approximation. I would suggest to store and use the actual shunt
+>> resistor value instead, not the one entered by the user.
+> 
+> By "actual shunt" you mean defined in devicetree? Then does it mean disabling
+> writing value by user via sysfs and making "shunt_resistor" read-only or leaving it
+> writable and clamping to devicetree value, thus discarding the user provided value?
+> 
 
---qZ7N/F0wEws9F2Jt
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I said "used by the chip", and referred to the value written into TSC1641_RSHUNT_LSB_UOHM.
 
-On Mon, Oct 27, 2025 at 04:42:38PM +0800, Jun Guo wrote:
-> - Add new compatible strings to the DT binding documents to support
->  cix sky1 SoC;
-> - Adjust the configuration of the compatible property to support both
->  single-item and two-items cases.=E2=80=8B=E2=80=8B
->=20
-> Signed-off-by: Jun Guo <jun.guo@cixtech.com>
-> ---
->  .../devicetree/bindings/spi/spi-cadence.yaml          | 11 ++++++++---
->  1 file changed, 8 insertions(+), 3 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/spi/spi-cadence.yaml b/Doc=
-umentation/devicetree/bindings/spi/spi-cadence.yaml
-> index 8de96abe9da1..e75b142a1368 100644
-> --- a/Documentation/devicetree/bindings/spi/spi-cadence.yaml
-> +++ b/Documentation/devicetree/bindings/spi/spi-cadence.yaml
-> @@ -14,9 +14,14 @@ allOf:
-> =20
->  properties:
->    compatible:
-> -    enum:
-> -      - cdns,spi-r1p6
-> -      - xlnx,zynq-spi-r1p6
-> +    oneOf:
-> +      - enum:
-> +          - cdns,spi-r1p6
-> +          - xlnx,zynq-spi-r1p6
-> +      - items:
-> +          - enum:
-> +              - cix,sky1-spi-r1p6
-> +          - const: cdns,spi-r1p6
+>> See below - clamping is insufficient for negative values, and it is not clear to me if
+>> the limit register is signed or unsigned.
+> 
+>> Also, the datasheet doesn't say that the limit value would be signed. Did you verify
+>> that negative temperature limit values are actually treated as negative values ?
+> 
+> SUL, SOL, TOL are signed, I verified. The negative limits for current and temperature
+> work well based on my testing.
+> 
 
-This doesn't apply, probably needs a rebase on spi/for-next?
-Approach is correct though, but it'll be a more minimal patch when
-rebased.
-pw-bot: changes-requested
+Please add a respective comment into the code.
 
-> =20
->    reg:
->      maxItems: 1
-> --=20
-> 2.34.1
->=20
+>> This doesn't work as intended for negative values. regmap doesn't expect to see
+>> negative register values and returns an error if trying to write one, so clamping
+>> against SHRT_MIN and SHRT_MAX is insufficient. You also need to mask the result
+>> against 0xffff.
+> 
+> I was under impression regmap would handle this masking correctly when defining
+> .val_bits = 16. E.g. in regmap.c:973 it selects formatting function for 16bit values.
+> I can mask explicitly if it's required.
+> It certainly doesn't throw error since negative alerts work as mentioned.
+> 
 
---qZ7N/F0wEws9F2Jt
-Content-Type: application/pgp-signature; name="signature.asc"
+My unit test code bails out on negative values, returning an error from regmap when
+trying to write negative values. I had seen that before. Masking the value passed
+to regmap with 0xffff solved the problem.
 
------BEGIN PGP SIGNATURE-----
+>> Why did you choose lcrit/crit attributes instead of min/max ? If there is only
+>> one alert limit, that usually means the first level of alert, not a critical level.
+>> Raising an alert does not mean it is a critical alert. Please reconsider.
+> 
+> I used hwmon/ina2xx.c as a reference. It covers many similar power monitors which
+> have single threshold alerts and defines only lcrit/crit. If this is a wrong approach
+> I'll change to min/max.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaP+jHAAKCRB4tDGHoIJi
-0lwvAP9dIvvZKdNHcniRy6tvBX0PUWhJlaEexqHWrbXPKt0FTAEAkY8vPORYUHc7
-VeoJdBGzXyTRjF7Wkm5YpF+RkT5zZwY=
-=HLOL
------END PGP SIGNATURE-----
+Isn't that great ? You can always find an example for everything in the Linux kernel
+if you are looking for it.
 
---qZ7N/F0wEws9F2Jt--
+Guenter
+
 
