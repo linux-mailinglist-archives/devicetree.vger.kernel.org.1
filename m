@@ -1,168 +1,108 @@
-Return-Path: <devicetree+bounces-231864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4483C11E07
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:49:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CFA6C11E6C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:52:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 689E035415B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 22:49:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 942B719C2B18
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 22:53:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93ED421576E;
-	Mon, 27 Oct 2025 22:47:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5D302F1FD5;
+	Mon, 27 Oct 2025 22:52:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SGAz02J7"
+	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="hs81Q2Fa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A386B2BF013
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 22:47:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89FEF2DA767;
+	Mon, 27 Oct 2025 22:52:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761605249; cv=none; b=ex3hlgyyhLkX6svLhbpk1N2x86wqVe+M9OkmKCXAfBoX75Ci3VkAOx/SlrVXsQCpTPN34zDFySFI7Qf+AobFdS/EhLjOG1NkDgrjmTt0cBjBrhnxW7kHBso5Lc0blfiXVaT0BXFBxOmD4selx7MqSPqv/uzJ2HnV5Cn40Sf3EPM=
+	t=1761605554; cv=none; b=uaIpQlb2xIh5oWcz4MOnJVCpdWXAmRdi0Wg7BFFsh4mNBA3t6o8Ovhxexpg5ab+I9MKIJ8His87/23JNR+u29hkxIhm7RWyX9PwOl/+J/ELiOmjVPgC8Rtv2xrWhcCyta7/ggBRBudy/BnxqKrcaSBPeiRsivJDjlaNAkFzSa9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761605249; c=relaxed/simple;
-	bh=m88xe+CFu7eQlOKAj62e4b+NZw6EJaqpxFhk3oJIzNQ=;
+	s=arc-20240116; t=1761605554; c=relaxed/simple;
+	bh=yrCHsA4FE0DQZIKmxjTVqcgChi8qj2604NHLFRRakwc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bp4fqSZEKQjg/n9G/xu+mziP9Xvk7ppPcg8pEHi8bcLK8rh3nx8JR2B+I1mj+q1lvV4G2pxXVxcTFkoRNFA2EIZQNrp1mZJ0L4/s6xJqmOHrQJ434qXxEHN4m9m3tl0Dbb8BPDOR/EYqVkuzYvnuWq/OrYUiw97ieTjAQmLqPJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SGAz02J7; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b3f5a6e114dso106039766b.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 15:47:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761605246; x=1762210046; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=xICsdCX2OPVmE7J35So75daqsj8TFidqC709lELfyCQ=;
-        b=SGAz02J7aTOTspclcWYv2+ALIRXQh7s2rFsxFAw7jlEi5Sz8KJj6Y0lmeqDVmy6Yyj
-         Hdq9dcakoaQDmakSZAuR7M0vxZr8vvo/FtzTJ0m6U74m5piDxv+BmU0Eb2TXo+pXuhp1
-         SO/Z0EjBEOM8s/Cx40SUGS944XqM5dA+pf5iEyw2tHmWYYetH1qEaTs+IfwSGnIfccxL
-         NKDlnq3aapj2cMG5eyemSJmnGvFJ9sOQDqdsFq8rzGV7ByrpUh8B3fzIm3stk0NiBtzS
-         F6YiH+T9/r1LaB+/CksMNev1mBERFSTu9mkURw3qc8BCpsFEVCUe06ettl4WYn//tvkn
-         7pLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761605246; x=1762210046;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xICsdCX2OPVmE7J35So75daqsj8TFidqC709lELfyCQ=;
-        b=g2Sk3MQTBuCDEM/LQapdCKpqH57fmQhHtNqRuI0lI1wTLDSPaPwj4cuNQYIPh7xei1
-         Am7LsHtGdLbizE47v4EdYq7H3WfAp+YFxmZ3BDR4pf/QNIKGLkd5gzEHOsB53QoyywI7
-         WxKZe+vb2iXfDw8gBV4Bw80D4T8Tjhk4Xv8AXEQsbBUJ65W3RlxlU9hOPeYKhhOSs0yh
-         6lAt0kEcPHKNn2iKTIp+naW8uG/xC0IMAFxgZrr6AFgCU00EalFJNRz5wHtfjLppkRFI
-         R19gbR/H3i4HMWCLTMaCkpS+RNKsd5M4dlmj2JwCPUnlVuDJZNt7deRUWc2TD8PF+VEe
-         1Z1A==
-X-Forwarded-Encrypted: i=1; AJvYcCWXF9cPvw6OW7S0Dh3Y4PJ6syYRvBMxuRTeZSFI8ZWseRcOOKMmpkAy4O5GFY2vC9fz/wU98vhVL11B@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4/vwJgHvDY1QrwRs3+vyEjoVZSM/0iwaljyJeIrJiH4koMgyO
-	v3ZlFQy8SILgpMOhrJnrXSOG5rPTrD0KOxJqGOyMpfVKpqCE/676saxH
-X-Gm-Gg: ASbGncv5jK7+X2cYyzu58Widz0nK88DwEEFHOUqE1WSCj37mM4orPO0cnrRDcoDO4fX
-	j2M5f+n1hIuPSszQMZ3//0gVTa/96Rvojb2zZCfQkAdXW5Q367QnZZVQrzdJXExTlWh2O0HQ+Pr
-	/EdK5HrZO2DhMcvixJggZ0Xhb7UHyJO4cI0l4f8Q3aGSJZTA5Z2R19gofHB4SyKsNYdSBxG+5HP
-	Wj5lYLCkEY9r9y3wLtsKq86ZHYBHJXYEEoaJDt7+UdweR5EVY9r9xEiOAdZhrgtpb3NvXmJX+oz
-	FnMtT3TT94gCEkbGwV25+nWQT12RRjRmdlPjC1H5eu5OOTbux1aU8il5+L+D4wCmMsAoXfoy0WA
-	TuGGcWi8M+/FRSOSEPhkTjxrN60JKrTnKAOANarJ6UsvTRbp9h/mVM+vgZlXw6hv1XJ7UczTc25
-	zf9NQ+vHQu/YRzQw==
-X-Google-Smtp-Source: AGHT+IHsT6znAJ/IU5WiN+lCitGKC0rENZLS+TtfXHEris+/Fh6vEEJWdxGjs849S6TJtLzLEjWn5w==
-X-Received: by 2002:a17:907:3f24:b0:b57:1fd6:5528 with SMTP id a640c23a62f3a-b6dba5d558amr90605566b.10.1761605245829;
-        Mon, 27 Oct 2025 15:47:25 -0700 (PDT)
-Received: from skbuf ([2a02:2f04:d406:ee00:3eb9:f316:6516:8b90])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d85359687sm891347566b.23.2025.10.27.15.47.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Oct 2025 15:47:25 -0700 (PDT)
-Date: Tue, 28 Oct 2025 00:47:22 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Andreas Schirm <andreas.schirm@siemens.com>,
-	Lukas Stockmann <lukas.stockmann@siemens.com>,
-	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
-	Peter Christen <peter.christen@siemens.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH net-next v3 05/12] net: dsa: lantiq_gswip: define and use
- GSWIP_TABLE_MAC_BRIDGE_VAL1_VALID
-Message-ID: <20251027224722.akxniuim6yvfuq6d@skbuf>
-References: <cover.1761521845.git.daniel@makrotopia.org>
- <cover.1761521845.git.daniel@makrotopia.org>
- <78a2743dc2b903b650cc0ff16de8d93cf334b391.1761521845.git.daniel@makrotopia.org>
- <78a2743dc2b903b650cc0ff16de8d93cf334b391.1761521845.git.daniel@makrotopia.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=IPlENOGV8H9vId4EP8D9/s5UCa2oMwfNjW3nEZBIL80hjoi1W4+eM+bqlTQ7Z3LDVgfkBGvLs22DKfOrHUNlgL20mRalBQ/g3Ds0M7jyqa9u8C7R5VP+j1mMyitMZntXATF4nEegpSlO1Kc4Ah3mbeC4SpJhTzc0OSJf1HAx6HQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=hs81Q2Fa; arc=none smtp.client-ip=65.109.113.108
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id C261640E019D;
+	Mon, 27 Oct 2025 22:52:28 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+	header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id wxK6XUZyRoym; Mon, 27 Oct 2025 22:52:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+	t=1761605545; bh=7v/WPSjOch5oe5tgxg1RBNsrwNHRci6/At81V+V11Wo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hs81Q2Fas0n2vUs1TVVjyyupw+LiKeWwyK+fzb8MPgZMVG2yl7vRLlTbXUJz+noVg
+	 MUpddT3gyY534UKpCr5yvjme+iIFcpsyA1PXP2DbAg/s4G3BrBHJrTDlq3oT/LAYf7
+	 1G2LMrUqrw/wkhamIsq4Xh6baOwcvrkTcW3oaR6PpA28O3nGvmLrJlPC6KqTprw5zP
+	 xdQYZzJj4x1e+PJXO43kpKyWgVAEKu/Q0f9HwiRb+tEjkLbB8OL8kpzRZxo8zDt4To
+	 LlaIuULxhvN8bKC+uPGTwSzOmpl3Q4FBkPh2JwLd1I5NjmXOr6d4S+qkelEQ/J7ONX
+	 Z4KJ6r+48i30rllGNMGA1Q057+KX0TEXM7x+G0sR4ckWhPvqnojCKw7E9/b8SJlV9+
+	 uCy3jiKbapkjZnwf0LAnAipZsxmeEXABHDBiCXpUGJPp3pk6298fe6ZNoKpiztdxS0
+	 lN3/MQSJHLKVEVukXwHIkiRVCJbbZs9BYC0Dapm0BD/idLZzrGgFnbYBXZrdmEaXJx
+	 idIN5o3a5mRsdT3fCF4MfZHhQ4iwc/L46Pz2R8NsJ4jga4WkQHbnEWwzHnceBqy63k
+	 rmEQQtmgJRDF8KbDCBqZHPzpThDmpYtB4jM77UdPi3wjBHNcvpWR7EDf92iogTP0JP
+	 SwsXVt1PziPHyFzyoYvGS5RI=
+Received: from zn.tnic (pd9530da1.dip0.t-ipconnect.de [217.83.13.161])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
+	(No client certificate requested)
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id 104B940E01A5;
+	Mon, 27 Oct 2025 22:52:04 +0000 (UTC)
+Date: Mon, 27 Oct 2025 23:51:57 +0100
+From: Borislav Petkov <bp@alien8.de>
+To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	"K. Y. Srinivasan" <kys@microsoft.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>,
+	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
+	Michael Kelley <mhklinux@outlook.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Saurabh Sengar <ssengar@linux.microsoft.com>,
+	Chris Oo <cho@microsoft.com>, "Kirill A. Shutemov" <kas@kernel.org>,
+	linux-hyperv@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Ricardo Neri <ricardo.neri@intel.com>,
+	"Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+	Yunhong Jiang <yunhong.jiang@linux.intel.com>
+Subject: Re: [PATCH v6 03/10] dt-bindings: reserved-memory: Wakeup Mailbox
+ for Intel processors
+Message-ID: <20251027225157.GEaP_3jeX5SgNwshus@fat_crate.local>
+References: <20251016-rneri-wakeup-mailbox-v6-0-40435fb9305e@linux.intel.com>
+ <20251016-rneri-wakeup-mailbox-v6-3-40435fb9305e@linux.intel.com>
+ <20251027142244.GZaP-ANLSidOxk0R_W@fat_crate.local>
+ <20251027204538.GA14161@ranerica-svr.sc.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <78a2743dc2b903b650cc0ff16de8d93cf334b391.1761521845.git.daniel@makrotopia.org>
- <78a2743dc2b903b650cc0ff16de8d93cf334b391.1761521845.git.daniel@makrotopia.org>
+In-Reply-To: <20251027204538.GA14161@ranerica-svr.sc.intel.com>
 
-On Sun, Oct 26, 2025 at 11:44:50PM +0000, Daniel Golle wrote:
-> When adding FDB entries to the MAC bridge table it is needed to set an
-> (undocumented) bit to mark the entry as valid. If this bit isn't set for
-> entries in the MAC bridge table, then those entries won't be considered as
-> valid MAC addresses.
+On Mon, Oct 27, 2025 at 01:45:38PM -0700, Ricardo Neri wrote:
+> Agreed. They are in the "To:" field of my submission. Rob has reviewed the
+> patchset.
 
-Irrespective of GSWIP version? Does this issue have a user visible
-impact that would justify targeting stable kernels? My reading of the
-commit description is that the driver can never program static FDB entries?
+Oh, sorry, I missed that one - must be blind. :-\
 
-> 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
->  drivers/net/dsa/lantiq/lantiq_gswip.h        | 1 +
->  drivers/net/dsa/lantiq/lantiq_gswip_common.c | 3 ++-
->  2 files changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/dsa/lantiq/lantiq_gswip.h b/drivers/net/dsa/lantiq/lantiq_gswip.h
-> index 56de869fc472..42000954d842 100644
-> --- a/drivers/net/dsa/lantiq/lantiq_gswip.h
-> +++ b/drivers/net/dsa/lantiq/lantiq_gswip.h
-> @@ -224,6 +224,7 @@
->  #define  GSWIP_TABLE_MAC_BRIDGE_KEY3_FID	GENMASK(5, 0)	/* Filtering identifier */
->  #define  GSWIP_TABLE_MAC_BRIDGE_VAL0_PORT	GENMASK(7, 4)	/* Port on learned entries */
->  #define  GSWIP_TABLE_MAC_BRIDGE_VAL1_STATIC	BIT(0)		/* Static, non-aging entry */
-> +#define  GSWIP_TABLE_MAC_BRIDGE_VAL1_VALID	BIT(1)		/* Valid bit */
->  
->  #define XRX200_GPHY_FW_ALIGN	(16 * 1024)
->  
-> diff --git a/drivers/net/dsa/lantiq/lantiq_gswip_common.c b/drivers/net/dsa/lantiq/lantiq_gswip_common.c
-> index 0ac87eb23bb5..94b187899db6 100644
-> --- a/drivers/net/dsa/lantiq/lantiq_gswip_common.c
-> +++ b/drivers/net/dsa/lantiq/lantiq_gswip_common.c
-> @@ -1149,7 +1149,8 @@ static int gswip_port_fdb(struct dsa_switch *ds, int port,
->  	mac_bridge.key[2] = addr[1] | (addr[0] << 8);
->  	mac_bridge.key[3] = FIELD_PREP(GSWIP_TABLE_MAC_BRIDGE_KEY3_FID, fid);
->  	mac_bridge.val[0] = add ? BIT(port) : 0; /* port map */
-> -	mac_bridge.val[1] = GSWIP_TABLE_MAC_BRIDGE_VAL1_STATIC;
-> +	mac_bridge.val[1] = add ? (GSWIP_TABLE_MAC_BRIDGE_VAL1_STATIC |
-> +				   GSWIP_TABLE_MAC_BRIDGE_VAL1_VALID) : 0;
->  	mac_bridge.valid = add;
->  
->  	err = gswip_pce_table_entry_write(priv, &mac_bridge);
-> -- 
-> 2.51.1
+-- 
+Regards/Gruss,
+    Boris.
 
-There is a second change, which is that GSWIP_TABLE_MAC_BRIDGE_VAL1_STATIC
-no longer gets set when "add=false". If it was deliberate according to
-the commit message (for example if it appears to not matter, the FDB
-entry is deleted anyway), it would have been fine, but nothing is said
-about it, so I have to wonder.
+https://people.kernel.org/tglx/notes-about-netiquette
 
