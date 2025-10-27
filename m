@@ -1,157 +1,155 @@
-Return-Path: <devicetree+bounces-231382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CA9CC0CD11
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:59:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D130C0CD50
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 11:01:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DE36188E649
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 09:59:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 035EF19A1A02
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:00:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7D6E2FD67C;
-	Mon, 27 Oct 2025 09:57:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b="LSSge2FT";
-	dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b="RdN1USwS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3BC82F6913;
+	Mon, 27 Oct 2025 09:58:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from honk.sigxcpu.org (honk.sigxcpu.org [24.134.29.49])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43E9E2FCBF3;
-	Mon, 27 Oct 2025 09:57:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=24.134.29.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46F3C2F6912;
+	Mon, 27 Oct 2025 09:58:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761559042; cv=none; b=DpI7ZVsMDpeOLDPld9i4CtEVuWQtQ5BvNTAbN7OcKr+d4ySG87pWl1G2dR/YGck8S7MX8HPR0YiIikRohPB6BoHfhUzV4wRV1Cp82b8zp9XW0WQZuPYcunpyvH1O+inPM1k5KDOktvxqlY+el14aYyaWFfz+q7fIcejohCtfKDI=
+	t=1761559109; cv=none; b=ODJ2FzDKKsOP7ALFuG56h42MH7egOfWWCBJ0kUGxHd9H4bWuBAsNw3IJDQBopAZcSrHNLoBlzpk8CCQa16mjyUVE1tvrSjIJ8iZ/gV+ix8hTCU6CQxxObEJSPNsWuu+78xT57f0gUaUf8iqQpZBG354vLkpZzYNWtfQuGQpTqB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761559042; c=relaxed/simple;
-	bh=thirantOH4kH3f0r2QU+U/UTNUm7Zfvr0Y+urH7YorI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bf2qw02qAin8FpbS6hFFbqbPTrvva6ohaEl9PBB0QtQzGKSceZxwq13Lon9i27IN2VJgiaXb3CGelP7vE+vrk1+kVBAEpDskGAPyTnehVqKj0voCimOnyb10GqfT7uvwMgAqVQJN8M8aiR/T1SBMLUDOT3QxhU5kbn9WhQUJ6og=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sigxcpu.org; spf=pass smtp.mailfrom=sigxcpu.org; dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b=LSSge2FT; dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b=RdN1USwS; arc=none smtp.client-ip=24.134.29.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sigxcpu.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sigxcpu.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=sigxcpu.org; s=2024;
-	t=1761559028; bh=thirantOH4kH3f0r2QU+U/UTNUm7Zfvr0Y+urH7YorI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LSSge2FTR6D3qKRjJ42E13VxBPQKSOpHvoA6MooKqxpc9rN2bpRis+EqbJsuKkkIv
-	 9zFH+yK4V3WFUphrnp/VTs9J9sdyGd3LKWAH6dhwVR3WB/yyG05vsCupYVUNK+ryrR
-	 vJsq25+RrpYP1YB2YjffZscbOox7bmmhkjHpa5/hfXYp4VkkQn1e1NnGaEnlGJoeDQ
-	 4CpCX4YhV0k4LnUWtGHZCOWXtiy9hVvhALxvlaLa9AhKSkhXJExQvXUjfGpAY7xMJk
-	 UGA67PKFTzk/LmRowxyivmVpO2xjcRFQWY+n/ngdOq5VjOZosnbqv+B1Gu8we4o8eo
-	 7wCz1Q9juQkDQ==
-Received: from localhost (localhost [127.0.0.1])
-	by honk.sigxcpu.org (Postfix) with ESMTP id 9D9D9FB03;
-	Mon, 27 Oct 2025 10:57:08 +0100 (CET)
-Received: from honk.sigxcpu.org ([127.0.0.1])
-	by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id xOcFvBNfwfNH; Mon, 27 Oct 2025 10:57:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=sigxcpu.org; s=2024;
-	t=1761559027; bh=thirantOH4kH3f0r2QU+U/UTNUm7Zfvr0Y+urH7YorI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RdN1USwSr30UpaEyXrknx1J/RlMsNcJW1D+1SgQDqvblndSztBpFLTKWwqGDVYfP+
-	 6gGRNsWD0+asBilsu/M4X7I4BAAcWHPDKebpmcn00ZniJ5AQQq5MfSeikbMe5wSfTP
-	 bxulgTShhIRWA/7A50RBUnXU68pmRzaJbwHsKhw6ZUfkburhzwd2M5zzOBPfYOdg0f
-	 e2fQMnpqgzaKyYO7VABXRkKEbGc3H8W0fs5rPdLeLsNH13oatacn6bh/UIfOrOJjHy
-	 DlAofM7w6pCwgcFaKCONz4UHRxVKqbiRRN+R1Xum1hR6MwNtY2YeipAMUQMPG2dwAk
-	 UY2IbbSFcXSkQ==
-Date: Mon, 27 Oct 2025 10:57:05 +0100
-From: Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-To: david@ixit.cz
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Jonathan Corbet <corbet@lwn.net>, Jiri Kosina <jikos@kernel.org>,
-	Benjamin Tissoires <bentiss@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Casey Connolly <casey.connolly@linaro.org>,
-	linux-input@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
-	Gergo Koteles <soyer@irl.hu>, Casey Connolly <casey@connolly.tech>
-Subject: Re: [PATCH v7 0/3] Add support for sound profile switching and
- leverage for OnePlus slider
-Message-ID: <aP9B8fPs7y2-dGJi@quark2.heme.sigxcpu.org>
-References: <20251014-op6-tri-state-v7-0-938a6367197b@ixit.cz>
+	s=arc-20240116; t=1761559109; c=relaxed/simple;
+	bh=ZZvIoXDvB0DM5S6wMoQa8dODqnh/re+vlbtNAybD1GY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=U+a0vl/8cl9lUKszCzVPYdvt81RAF2L94IS691E1cf7okNaUJOjRtyJCK4aD/Cum7mAJdKxIwS0ZVVV86nC1g2rceop7ZUwD7P6PentA2b48WB3B+frheujzYxsLc55zvPwVog3GbD/6gPAxiOZtA6XJz9qkGhOs7zsP4ZTBl4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 27 Oct
+ 2025 17:58:25 +0800
+Received: from mail.aspeedtech.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Mon, 27 Oct 2025 17:58:25 +0800
+From: Jacky Chou <jacky_chou@aspeedtech.com>
+To: <lpieralisi@kernel.org>, <kwilczynski@kernel.org>, <mani@kernel.org>,
+	<robh@kernel.org>, <bhelgaas@google.com>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <joel@jms.id.au>, <andrew@codeconstruct.com.au>,
+	<vkoul@kernel.org>, <kishon@kernel.org>, <linus.walleij@linaro.org>,
+	<p.zabel@pengutronix.de>, <linux-aspeed@lists.ozlabs.org>,
+	<linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<linux-phy@lists.infradead.org>, <openbmc@lists.ozlabs.org>,
+	<linux-gpio@vger.kernel.org>
+CC: <jacky_chou@aspeedtech.com>
+Subject: [PATCH v4 0/9] Add ASPEED PCIe Root Complex support
+Date: Mon, 27 Oct 2025 17:58:16 +0800
+Message-ID: <20251027095825.181161-1-jacky_chou@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251014-op6-tri-state-v7-0-938a6367197b@ixit.cz>
+Content-Type: text/plain
 
-Hi,
-On Tue, Oct 14, 2025 at 11:20:32AM +0200, David Heidelberg via B4 Relay wrote:
-> This series add initial support for OnePlus 6 and 6T, but other OnePlus
-> phones contains same mechanism to switch sound profiles.
-> 
-> This code was tested for two years within the downstream Snapdragon 845 tree.
-> It is now perfectly integrated with feedbackd in the Phosh environment.
-> 
-> The series is also available (until merged) at
->   git@gitlab.com:dhxx/linux.git b4/op6-tri-state
-> 
-> Changes in v7:
-> - Separated GPIO number fix from the original commit
->   "arm64: dts: qcom: sdm845-oneplus: Add alert-slider"
-> - Rebased again next-20251008
-> - Link to v6: https://lore.kernel.org/r/20250731-op6-tri-state-v6-0-569c25cbc8c2@ixit.cz
-> 
-> Changes in v6:
-> - Rebased again next-20250731, otherwise just a resent.
-> - Link to v5: https://lore.kernel.org/r/20250419-op6-tri-state-v5-0-443127078517@ixit.cz
-> 
-> Changes in v5:
-> - Dropped merged
->   "Input: gpio-keys - add support for linux,input-value DTS property"
-> - Link to v4: https://lore.kernel.org/all/cover.1677022414.git.soyer@irl.hu/
-> 
-> Changes in v4:
-> - DTS: use default debounce-interval, order alphabetically
-> - Link to v3: https://lore.kernel.org/lkml/cover.1676850819.git.soyer@irl.hu/
-> 
-> Changes in v3:
-> - rename tri-state-key to alert-slider, fix DTS warnings,
-> 
-> Changes in v2:
-> - rebase to qcom/for-next
-> add SND_PROFILE_* identifiers to input-event-codes.h
-> 
-> ---
-> Gergo Koteles (3):
->       Input: add ABS_SND_PROFILE
->       arm64: dts: qcom: sdm845-oneplus: Correct gpio used for slider
->       arm64: dts: qcom: sdm845-oneplus: Add alert-slider
+This patch series adds support for the ASPEED PCIe Root Complex,
+including device tree bindings, pinctrl support, and the PCIe host controller
+driver. The patches introduce the necessary device tree nodes, pinmux groups,
+and driver implementation to enable PCIe functionality on ASPEED platforms.
+Currently, the ASPEED PCIe Root Complex only supports a single port.
 
-feedbackd has support for this since 0.5.0 so it would be nice to see
-that mainlined.
+Summary of changes:
+- Add device tree binding documents for ASPEED PCIe PHY, PCIe Config, and PCIe RC
+- Update MAINTAINERS for new bindings and driver
+- Add PCIe RC node and PERST control pin to aspeed-g6 device tree
+- Implement ASPEED PCIe PHY driver
+- Implement ASPEED PCIe Root Complex host controller driver
 
-Tested-by: Guido Günther <agx@sigxcpu.org> # oneplus,fajita & oneplus,enchilada
-Reviewed-by: Guido Günther <agx@sigxcpu.org> 
+This series has been tested on AST2600/AST2700 platforms and enables PCIe device
+enumeration and operation.
 
-Cheers,
- -- Guido
+Jacky Chou (9):
+  dt-bindings: phy: aspeed: Add ASPEED PCIe PHY
+  dt-bindings: PCI: Add ASPEED PCIe RC support
+  dt-bindings: pinctrl: aspeed,ast2600-pinctrl: Add PCIe RC PERST# group
+  ARM: dts: aspeed-g6: Add AST2600 PCIe RC PERST#
+  ARM: dts: aspeed-g6: Add PCIe RC and PCIe PHY node
+  PHY: aspeed: Add ASPEED PCIe PHY driver
+  PCI: Add FMT, TYPE and CPL status definition for TLP header
+  PCI: aspeed: Add ASPEED PCIe RC driver
+  MAINTAINERS: Add ASPEED PCIe RC driver
 
-> 
->  Documentation/input/event-codes.rst                |  6 ++++
->  .../arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 39 ++++++++++++++++++++--
->  drivers/hid/hid-debug.c                            |  1 +
->  include/uapi/linux/input-event-codes.h             |  9 +++++
->  4 files changed, 53 insertions(+), 2 deletions(-)
-> ---
-> base-commit: 52ba76324a9d7c39830c850999210a36ef023cde
-> change-id: 20250419-op6-tri-state-ed1a05a11125
-> 
-> Best regards,
-> -- 
-> David Heidelberg <david@ixit.cz>
-> 
-> 
+ .../bindings/pci/aspeed,ast2600-pcie.yaml     |  168 +++
+ .../bindings/phy/aspeed,ast2600-pcie-phy.yaml |   42 +
+ .../pinctrl/aspeed,ast2600-pinctrl.yaml       |    2 +
+ MAINTAINERS                                   |   11 +
+ .../boot/dts/aspeed/aspeed-g6-pinctrl.dtsi    |    5 +
+ arch/arm/boot/dts/aspeed/aspeed-g6.dtsi       |   54 +
+ drivers/pci/controller/Kconfig                |   16 +
+ drivers/pci/controller/Makefile               |    1 +
+ drivers/pci/controller/pcie-aspeed.c          | 1122 +++++++++++++++++
+ drivers/pci/pci.h                             |   15 +
+ drivers/phy/Kconfig                           |    1 +
+ drivers/phy/Makefile                          |    1 +
+ drivers/phy/aspeed/Kconfig                    |   15 +
+ drivers/phy/aspeed/Makefile                   |    2 +
+ drivers/phy/aspeed/phy-aspeed-pcie.c          |  209 +++
+ 15 files changed, 1664 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/aspeed,ast2600-pcie.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/aspeed,ast2600-pcie-phy.yaml
+ create mode 100644 drivers/pci/controller/pcie-aspeed.c
+ create mode 100644 drivers/phy/aspeed/Kconfig
+ create mode 100644 drivers/phy/aspeed/Makefile
+ create mode 100644 drivers/phy/aspeed/phy-aspeed-pcie.c
+
+---
+v4:
+ - Remove aspeed,ast2700-pcie-cfg.yaml
+ - Add more descriptions for AST2600 PCIe RC in aspeed,ast2600-pcie.yaml
+ - Change interrupt-controller to legacy-interrupt-controller in yaml
+   and dtsi
+ - Remove msi-parent property in yaml and dtsi
+ - Modify the bus range to starting from 0x00 in aspeed-g6.dtsi
+ - Fixed the typo on MODULE_DEVICE_TABLE() in phy-aspeed-pcie.c
+ - Add PCIE_CPL_STS_SUCCESS definition in pci/pci.h
+ - Add prefix ASPEED_ for register definition in RC driver
+ - Add a flag to indicate clear msi status twice for AST2700 workaround
+ - Remove getting domain number
+ - Remove scanning AST2600 HOST bridge on device number 0
+ - Remove all codes about CONFIG_PCI_MSI
+ - Get root but number from resouce list by IORESOURCE_BUS
+ - Change module_platform_driver to builtin_platform_driver
+v3:
+ - Add ASPEED PCIe PHY driver
+ - Remove the aspeed,pciecfg property from AST2600 RC node, merged into RC node
+ - Update the binding doc for aspeed,ast2700-pcie-cfg to reflect the changes
+ - Update the binding doc for aspeed,ast2600-pcie to reflect the changes
+ - Update the binding doc for aspeed,ast2600-pinctrl to reflect the changes
+ - Update the device tree source to reflect the changes
+ - Adjusted the use of mutex in RC drivers to use GRAND
+ - Updated from reviewer comments
+
+v2:
+ - Moved ASPEED PCIe PHY yaml binding to `soc/aspeed` directory and
+   changed it as syscon
+ - Added `MAINTAINERS` entry for the new PCIe RC driver
+ - Updated device tree bindings to reflect the new structure
+ - Refactored configuration read and write functions to main bus and
+   child bus ops
+ - Refactored initialization to implement multiple ports support
+ - Added PCIe FMT and TYPE definitions for TLP header in
+   `include/uapi/linux/pci_regs.h`
+ - Updated from reviewer comments
+---
+
+-- 
+2.34.1
+
 
