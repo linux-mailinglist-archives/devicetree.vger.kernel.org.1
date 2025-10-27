@@ -1,121 +1,172 @@
-Return-Path: <devicetree+bounces-231706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A5EDC0FEA5
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:25:37 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2236BC0FEDE
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:33:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1253340253F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:23:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4B9C54EE38F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:33:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 308292D876B;
-	Mon, 27 Oct 2025 18:22:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C32D5319611;
+	Mon, 27 Oct 2025 18:33:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TU/PrIb2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FV2IWENh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0860A2D7DF4;
-	Mon, 27 Oct 2025 18:22:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 503DB3164B6
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 18:33:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761589370; cv=none; b=Qh1ZhxTqeIb220Ted83BgAxaQIyHJtgZgam4TG/JM5OODj1S/Jw3kll4E+p3tr2iB3EMVuigViI0EbkCCNsd3zLYhC7FBuIMEA1LSTQgtzF0KiS2lRGQ2GfPfsMa4Hv98K5pp0lAKkgfIh0KSTUuwmEEBuNSoIYMRv2mTIPfV+M=
+	t=1761589987; cv=none; b=Pi0F23pO7kESoLD/BAs5BeWVFe68AbGa8lqQGQJMCc2sC6MUlcJZbASzLsN4Z5qL1pPmxhrvXw0cIRanyg3D1HY8qKkY9VgDWIcE5rLpI8aOKaeMhmIMiY/EjzBGJyuD0/JRs1mzyiGnkECIRmX7+arcrlh66PTHSOlmqQWtSeo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761589370; c=relaxed/simple;
-	bh=h0Akxevv1FwFzTjlo4aljOnkFihbhJJn9CePtpMBHU4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gdFcO4jdf8aWLEUQbdtwxJNy72l2GQJIZq2qzVmgMRhgr+QNuBnZprYAtfjRKXbQJdW95g008VylFHzXCEr5Xi8RzrY5MW0ROufP4Vhk9Ns1hWb8hZiRAItlMOuMK1R7ZM5Y2ve50vHsWHn8IkLGCqI7aeD6a1Epr+Iod275zlM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TU/PrIb2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43D48C4CEF1;
-	Mon, 27 Oct 2025 18:22:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761589369;
-	bh=h0Akxevv1FwFzTjlo4aljOnkFihbhJJn9CePtpMBHU4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TU/PrIb2xo7EWam6dX1GZpobXpr8na62zyME1zrIQgmyzyS4dA+yPG9MQuLWIQdlM
-	 73XzFcnx7gpqtLv06j29NUuec09shTXfnLrFy3WMXn5lsGbncv4iCqcukSqzFKcgRy
-	 7zUtaHF5oIUk+TKenVBMO+StwH4UVbjoQTpmR34kZSOfrBn4WQwlHlQIpofgMqthJx
-	 M/KXYj3W2cn/lvRn2aD2nUMfueeWZ/kJQnprH6uAcMC6dwo0xzZfls4eOkK7kzMQWF
-	 o+yVeur7X3wGZHlH231jjtG7znLkhx2eaatY1reYrTDmgW/k+FDL9Ah4SE/hSFbRG8
-	 UoaBdqpOJB6pg==
-Date: Mon, 27 Oct 2025 13:22:48 -0500
-From: Rob Herring <robh@kernel.org>
-To: Robert Marko <robert.marko@sartura.hr>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, srini@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	horatiu.vultur@microchip.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, daniel.machon@microchip.com,
-	luka.perkov@sartura.hr
-Subject: Re: [PATCH 1/2] dt-bindings: nvmem: lan9662-otpc: Add LAN969x series
-Message-ID: <20251027182248.GA1281416-robh@kernel.org>
-References: <20251024192532.637563-1-robert.marko@sartura.hr>
- <f3bd99c8-eb70-40d3-9b43-fba56546f591@kernel.org>
- <CA+HBbNGZ3FwrGCtHX=mc8LQR9DCU84jqfhjFRGVDCJWtt+gdkA@mail.gmail.com>
+	s=arc-20240116; t=1761589987; c=relaxed/simple;
+	bh=5yC8PpIcUio4Ku4s4/CtCeIXIZihYpSkqy+RgQT0emA=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=GEiJMzyljo+mz1cvawHiIdbMJW1gw2k5A38FPox5ey4bWMYJlS8lsvA0aO0J0IflkD+vxNLjJ2yxnKu14CZ76NgTZ7ZQ6phfG+unrIVjKSHGPjpd+MvZXSvUZRlsfyAGVs4wSt8VrN9kzLp1NS5ZvPCyJwf3+Jqwpkr9Wim5S0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FV2IWENh; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-781997d195aso3580236b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 11:33:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761589984; x=1762194784; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=5yC8PpIcUio4Ku4s4/CtCeIXIZihYpSkqy+RgQT0emA=;
+        b=FV2IWENhh2JKYwqRHGajj7AYTBkfqP9U5SiC+g8cc08ULcrFbpwxGEZKE64pQxHfP+
+         4+mVvI8QaXssyHl//t5pdCkmmd/z6WAvjniAvCCkwvfgL6V8PYOqQ3Sf01od15o4szKa
+         8ke0Pw86686RR5p9aOARjyLySD1ka9/e97PgjZyksmVbx88trbMu4ckMVy+G/bhPjhmw
+         NHdcfU0qN4DyNxJT1Btw6SNRnWRX3EMa7P/v8m1WK9rO9TlCgMRgvXE2cH/rmmD9As5Q
+         +ppoDi3wKroHUG9omR7j4Nu6c8cwUjamf/P9MsqcR/lj9f4yAS30ooIyEjgPMp5UGXAv
+         ErSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761589984; x=1762194784;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5yC8PpIcUio4Ku4s4/CtCeIXIZihYpSkqy+RgQT0emA=;
+        b=xBeowBikZAIfitOTQZu4R3LoVpN9qa+OKWODmvvIXKsKrXJ9j05On3euaonFYFpHt4
+         /avIQq0vJ9CpveftoRIGlXfFisXcqrpuUrSwhwvbOsSKAADv8e/JX1CrCKkhb7MVRUWj
+         hwyirDTTO2mdiLz4YJ5okZFC/QvZfEdPSasLvuhBEDep6tShT4JSbwGDuDEB1FvS83G5
+         2lu8r4xEIDjHZoALkYzJ/xCb5N2MXFBIBgyiQudNewVMG08aI0PV+GUdejA2qr+F22PA
+         EPYW1y5KDl0VTGVKKXClw9qDNXa3sP4vpqx5eebr3Bkh9ncHwPfXnhm1gDkTtwOzXdSg
+         /1Lg==
+X-Forwarded-Encrypted: i=1; AJvYcCVNe9q150EDr1odEeUTtXU3uMTnfskeHebPBuecr441zcQSAX2S9gNT2nd0+6GC4ga2NkKOVtD9K9L/@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYGgHPJe8fQmPoBR8IfpmX1QrnF8wAE+xZ49ukbpmahaGLmmU5
+	5FGdTdiGFumXMm8PASXJ5TPSFlsIQCQn5N0D9PFBUMqriM4OA5i9tRAe
+X-Gm-Gg: ASbGncuk2M0A3dmF2oW5HCqrH1DiUtCujVdRzB3R3xbn0xjzA4aAYrzbGmTf1aJVgut
+	QIxmkcsg3memwBgJxWQvM4Dg9dZUhZrMQzmQJZkmCEkQjW5AUSv4jEQv2CRF+hEgOor8sjfF4qn
+	LVcyBrjLM4yuKngGuHFUBx/S2NIIlSUCd9Ml3Gls9H2RgTMj2+dSfCNXPSLzUhcCFVVPaaKTSBq
+	LEX6VwtN0qWRKEZ4yUSVeIUdG4C2Q/Qi6MgA6vuf0WTWlLDNN05aaMunYWtONtXAcPOESpdMobE
+	mqMHxE8cWCe41Pz1aThE8rh3vybW+Y3/gJmyVAzIWSBvVlZcE6uodsVpaDBVCN5LO3XXfCeyAL9
+	AKwt1qCrdBn0x0fyKHoJQsA+Lzeop2vyeXXRtrPj8Yv7fZ/t6zWPIIeVwI1+xfPFy/ti0SWHSmc
+	eAV90nzzkcyeqNh+Zm6wJ0Jg==
+X-Google-Smtp-Source: AGHT+IHt4DJWNAM9MZTCzUyEfgg2vReTKwp653liwyZeiZgWrRZxP3BqzH/B64W+Bg8rAo6d5fksJw==
+X-Received: by 2002:a05:6a00:995:b0:7a2:7237:79ff with SMTP id d2e1a72fcca58-7a441ba53a6mr1041339b3a.7.1761589983518;
+        Mon, 27 Oct 2025 11:33:03 -0700 (PDT)
+Received: from ehlo.thunderbird.net ([2804:18:939:e8ae:c91b:7909:492a:aaa7])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a414069164sm9038019b3a.45.2025.10.27.11.33.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Oct 2025 11:33:03 -0700 (PDT)
+Date: Mon, 27 Oct 2025 15:32:58 -0300
+From: =?ISO-8859-1?Q?Eric_Gon=E7alves?= <ghatto404@gmail.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+CC: Krzysztof Kozlowski <krzk@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/6] arm64: dts: qcom: r0q: add touchscreen support
+User-Agent: Thunderbird for Android
+In-Reply-To: <7e5f753d-a26d-40fb-9cde-ec17eff85c27@oss.qualcomm.com>
+References: <20251014044135.177210-1-ghatto404@gmail.com> <20251014044135.177210-4-ghatto404@gmail.com> <e114504e-4bdd-46b9-b708-8eebc3075163@oss.qualcomm.com> <CAMQHOhfjsi1L+3j3TrcjEjPp3xkn94KOdsrVZvJCyUDFBBSeqg@mail.gmail.com> <d06a254f-bf54-4bdf-bd09-3ee5e5b31bad@oss.qualcomm.com> <CAMQHOhe=WYhtsjHMcRnJOi8UhnNNBfveTWRGSZ_bg24gFysAEw@mail.gmail.com> <8bd5486f-38a9-4104-8d09-234f642b45fe@oss.qualcomm.com> <CAMQHOheTkKC8NcRrPxKZdB_h0SJGNJVMd4NUD7TE4becPouWyQ@mail.gmail.com> <73d30994-3ec3-41bc-9b07-638d4173dfe6@oss.qualcomm.com> <7C2DF8E1-D84C-428C-B064-3D8CA16FEA29@gmail.com> <7e5f753d-a26d-40fb-9cde-ec17eff85c27@oss.qualcomm.com>
+Message-ID: <E9C95D16-18DB-4AE9-8C50-BE3481A25FB3@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+HBbNGZ3FwrGCtHX=mc8LQR9DCU84jqfhjFRGVDCJWtt+gdkA@mail.gmail.com>
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 27, 2025 at 01:23:20PM +0100, Robert Marko wrote:
-> On Sun, Oct 26, 2025 at 11:10 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >
-> > On 24/10/2025 21:24, Robert Marko wrote:
-> > > LAN969x series also has the same HW block, its just 16KB instead of 8KB
-> > > like on LAN966x series.
-> > >
-> > > So, document compatibles for the LAN969x series.
-> > >
-> > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > > ---
-> > >  .../devicetree/bindings/nvmem/microchip,lan9662-otpc.yaml  | 7 +++++++
-> > >  1 file changed, 7 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/nvmem/microchip,lan9662-otpc.yaml b/Documentation/devicetree/bindings/nvmem/microchip,lan9662-otpc.yaml
-> > > index f97c6beb4766..f8c68cf22c1c 100644
-> > > --- a/Documentation/devicetree/bindings/nvmem/microchip,lan9662-otpc.yaml
-> > > +++ b/Documentation/devicetree/bindings/nvmem/microchip,lan9662-otpc.yaml
-> > > @@ -23,8 +23,15 @@ properties:
-> > >        - items:
-> > >            - const: microchip,lan9668-otpc
-> > >            - const: microchip,lan9662-otpc
-> > > +          - const: microchip,lan9691-otpc
-> > > +          - const: microchip,lan9692-otpc
-> > > +          - const: microchip,lan9693-otpc
-> > > +          - const: microchip,lan9694-otpc
-> > > +          - const: microchip,lan9696-otpc
-> > > +          - const: microchip,lan9698-otpc
-> >
-> > Why are you changing lan9668? Nothing on this is explained in commit
-> > msg. Also, list of more than 3 items is not really useful.
-> 
-> I am not chaning lan9668 but rather lan9698.
-> I agree that a list of all possible SoC models is not ideal but I was
-> just following the current
-> style in the binding.
-> 
-> As far as I know, the whole LAN969x series has identical OTP so just
-> using a single
-> microchip,lan9691-otpc compatible is enough.
 
-The above is a *list* of what a "compatible" entry must contain.
 
-> 
-> >
-> > >        - enum:
-> > >            - microchip,lan9662-otpc
-> > > +          - microchip,lan9691-otpc
-
-"enum" on the other hand is a list of possible values for 1 entry in 
-"compatible".
-
-Rob
+On October 20, 2025 9:18:18 AM GMT-03:00, Konrad Dybcio <konrad=2Edybcio@o=
+ss=2Equalcomm=2Ecom> wrote:
+>On 10/17/25 8:22 PM, Eric Gon=C3=A7alves wrote:
+>>=20
+>>=20
+>> On October 17, 2025 5:20:43 AM GMT-03:00, Konrad Dybcio <konrad=2Edybci=
+o@oss=2Equalcomm=2Ecom> wrote:
+>>> On 10/16/25 10:08 PM, Ghatto wrote:
+>>>> On Thu, Oct 16, 2025 at 6:06=E2=80=AFAM Konrad Dybcio
+>>>> <konrad=2Edybcio@oss=2Equalcomm=2Ecom> wrote:
+>>>>>
+>>>>>
+>>>>>
+>>>>> On 10/14/25 9:04 PM, Ghatto wrote:
+>>>>>> On Tue, Oct 14, 2025 at 11:18=E2=80=AFAM Konrad Dybcio
+>>>>>> <konrad=2Edybcio@oss=2Equalcomm=2Ecom> wrote:
+>>>>>>>
+>>>>>>> On 10/14/25 5:10 PM, Ghatto wrote:
+>>>>>>>> On Tue, Oct 14, 2025 at 7:01=E2=80=AFAM Konrad Dybcio
+>>>>>>>> <konrad=2Edybcio@oss=2Equalcomm=2Ecom> wrote:
+>>>>>>>>>
+>>>>>>>>> On 10/14/25 6:41 AM, Eric Gon=C3=A7alves wrote:
+>>>>>>>>>> Enable the ST-Microelectronics FTS2BA61Y touchscreen=2E This pa=
+tch
+>>>>>>>>>> depends on "Input: add support for the STM FTS2BA61Y touchscree=
+n"=2E
+>>>>>>>>>
+>>>>>>>>> The second sentence doesn't really make sense to be included in
+>>>>>>>>> the git log
+>>>>>>>> I'll keep it to the cover letter then
+>>>>>>>>>
+>>>>>>>>>> The device has an issue where SPI 8 (the bus which the touchscr=
+een is
+>>>>>>>>>> connected to) is not working properly right now, so
+>>>>>>>>>> spi-gpio is used instead=2E
+>>>>>>>>>
+>>>>>>>>> Some Samsung devices used to use spi/i2c-gpio intentionally, als=
+o
+>>>>>>>>> on downstream=2E I'm assuming this isn't the case for r0q=2E
+>>>>>>>> It isn't, the device uses fts2ba61y on the spi8 bus - I hosted th=
+e
+>>>>>>>> DT at https://github=2Ecom/ghatt-o/ss_experiments/blob/main/r0q=
+=2Edts if you
+>>>>>>>> want to take a look=2E
+>>>>>>>>>
+>>>>>>>>> Did you enable gpi_dma1, qupv3_id_1 before spi8, when testing
+>>>>>>>> The driver probes, but it fails to recognize the touchscreen devi=
+ce
+>>>>>>>
+>>>>>>> Could you post a complete dmesg and the precise DT diff you used?
+>>>>>> https://pastebin=2Ecom/QkYa8nMp (android dmesg) mainline dmesg does=
+n't have
+>>>>>
+>>>>> The link has expired =F0=9F=99=81
+>>>> https://pastebin=2Ecom/s4abJS9M shouldn't expire now!
+>>>
+>>> And yet it did!
+>>>
+>>> Feel free to just attach it to your message=2E=2E the list may bounce
+>>> it, but it will still reach the To/Cc recipients
+>> Attached the dmesg=2Etxt file=2E
+>
+>I'm interested in what happens early when the SPI hosts are programmed,
+>whether there's any additional debug messages=2E
+>
+>If your log buffer is overrunning, you can add log_buf_len=3D8M to your
+>cmdline (which will make the buffer 8MiB long)
+Is it that big of a deal though? spi-gpio
+works just fine for touchscreen=2E
+>
+>Konrad
 
