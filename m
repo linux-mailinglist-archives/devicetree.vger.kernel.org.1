@@ -1,116 +1,168 @@
-Return-Path: <devicetree+bounces-231863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC1AAC11E45
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:50:56 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4483C11E07
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:49:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D8E6450040B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 22:49:17 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 689E035415B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 22:49:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5174332D0DF;
-	Mon, 27 Oct 2025 22:46:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93ED421576E;
+	Mon, 27 Oct 2025 22:47:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SGAz02J7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbguseast2.qq.com (smtpbguseast2.qq.com [54.204.34.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E1D42F6173
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 22:46:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A386B2BF013
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 22:47:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761605208; cv=none; b=OR4jMkYZVCT2bGdgffTTU/80jWJ97sgW+TREMJSqq3TVacYy6bv6W1pfRjbm9k+4EIzXfNDzwD3d7qVxLzl8dY2NZqMZGBCZ4vVDIbLF/hyon8hxkJk+bx8AkBH3e6v+P/7nU/MgG5nUHOq0ieBYWjE4xLAwV41NjRjsWthkGKY=
+	t=1761605249; cv=none; b=ex3hlgyyhLkX6svLhbpk1N2x86wqVe+M9OkmKCXAfBoX75Ci3VkAOx/SlrVXsQCpTPN34zDFySFI7Qf+AobFdS/EhLjOG1NkDgrjmTt0cBjBrhnxW7kHBso5Lc0blfiXVaT0BXFBxOmD4selx7MqSPqv/uzJ2HnV5Cn40Sf3EPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761605208; c=relaxed/simple;
-	bh=Nu+/qCddjQN6XAQ5+kUwFuKX3LjaNGOENg3OPkZZAws=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d8i0hs1wT22T2C7mQDJLE2IUZCvb7IJ1qjaJXYTe8wPF+a/4NTzmLJzWASy/ID/JCiK8cRmM1JjwfQLZHuj9h02jAe6HwzpQgsP+DeDCFtZThiEjRxeUvX1zZCT/vmmw1Hzg3hma9hotGaTGcjwSQnh2dwnYJ5lOKxLunaLlv8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.204.34.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip3t1761605111t4701265c
-X-QQ-Originating-IP: Oyz5d5PWUPpnQKAXY0lT+7I1lZkCl8u+dLu11YNR+6c=
-Received: from [IPV6:240f:10b:7440:1:27fe:5767 ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 28 Oct 2025 06:45:07 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 12312699638803652681
-Message-ID: <39A1753DD4465571+84702d80-a0cc-46e0-8c83-1edf835c31be@radxa.com>
-Date: Tue, 28 Oct 2025 07:45:06 +0900
+	s=arc-20240116; t=1761605249; c=relaxed/simple;
+	bh=m88xe+CFu7eQlOKAj62e4b+NZw6EJaqpxFhk3oJIzNQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bp4fqSZEKQjg/n9G/xu+mziP9Xvk7ppPcg8pEHi8bcLK8rh3nx8JR2B+I1mj+q1lvV4G2pxXVxcTFkoRNFA2EIZQNrp1mZJ0L4/s6xJqmOHrQJ434qXxEHN4m9m3tl0Dbb8BPDOR/EYqVkuzYvnuWq/OrYUiw97ieTjAQmLqPJA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SGAz02J7; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b3f5a6e114dso106039766b.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 15:47:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761605246; x=1762210046; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=xICsdCX2OPVmE7J35So75daqsj8TFidqC709lELfyCQ=;
+        b=SGAz02J7aTOTspclcWYv2+ALIRXQh7s2rFsxFAw7jlEi5Sz8KJj6Y0lmeqDVmy6Yyj
+         Hdq9dcakoaQDmakSZAuR7M0vxZr8vvo/FtzTJ0m6U74m5piDxv+BmU0Eb2TXo+pXuhp1
+         SO/Z0EjBEOM8s/Cx40SUGS944XqM5dA+pf5iEyw2tHmWYYetH1qEaTs+IfwSGnIfccxL
+         NKDlnq3aapj2cMG5eyemSJmnGvFJ9sOQDqdsFq8rzGV7ByrpUh8B3fzIm3stk0NiBtzS
+         F6YiH+T9/r1LaB+/CksMNev1mBERFSTu9mkURw3qc8BCpsFEVCUe06ettl4WYn//tvkn
+         7pLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761605246; x=1762210046;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xICsdCX2OPVmE7J35So75daqsj8TFidqC709lELfyCQ=;
+        b=g2Sk3MQTBuCDEM/LQapdCKpqH57fmQhHtNqRuI0lI1wTLDSPaPwj4cuNQYIPh7xei1
+         Am7LsHtGdLbizE47v4EdYq7H3WfAp+YFxmZ3BDR4pf/QNIKGLkd5gzEHOsB53QoyywI7
+         WxKZe+vb2iXfDw8gBV4Bw80D4T8Tjhk4Xv8AXEQsbBUJ65W3RlxlU9hOPeYKhhOSs0yh
+         6lAt0kEcPHKNn2iKTIp+naW8uG/xC0IMAFxgZrr6AFgCU00EalFJNRz5wHtfjLppkRFI
+         R19gbR/H3i4HMWCLTMaCkpS+RNKsd5M4dlmj2JwCPUnlVuDJZNt7deRUWc2TD8PF+VEe
+         1Z1A==
+X-Forwarded-Encrypted: i=1; AJvYcCWXF9cPvw6OW7S0Dh3Y4PJ6syYRvBMxuRTeZSFI8ZWseRcOOKMmpkAy4O5GFY2vC9fz/wU98vhVL11B@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4/vwJgHvDY1QrwRs3+vyEjoVZSM/0iwaljyJeIrJiH4koMgyO
+	v3ZlFQy8SILgpMOhrJnrXSOG5rPTrD0KOxJqGOyMpfVKpqCE/676saxH
+X-Gm-Gg: ASbGncv5jK7+X2cYyzu58Widz0nK88DwEEFHOUqE1WSCj37mM4orPO0cnrRDcoDO4fX
+	j2M5f+n1hIuPSszQMZ3//0gVTa/96Rvojb2zZCfQkAdXW5Q367QnZZVQrzdJXExTlWh2O0HQ+Pr
+	/EdK5HrZO2DhMcvixJggZ0Xhb7UHyJO4cI0l4f8Q3aGSJZTA5Z2R19gofHB4SyKsNYdSBxG+5HP
+	Wj5lYLCkEY9r9y3wLtsKq86ZHYBHJXYEEoaJDt7+UdweR5EVY9r9xEiOAdZhrgtpb3NvXmJX+oz
+	FnMtT3TT94gCEkbGwV25+nWQT12RRjRmdlPjC1H5eu5OOTbux1aU8il5+L+D4wCmMsAoXfoy0WA
+	TuGGcWi8M+/FRSOSEPhkTjxrN60JKrTnKAOANarJ6UsvTRbp9h/mVM+vgZlXw6hv1XJ7UczTc25
+	zf9NQ+vHQu/YRzQw==
+X-Google-Smtp-Source: AGHT+IHsT6znAJ/IU5WiN+lCitGKC0rENZLS+TtfXHEris+/Fh6vEEJWdxGjs849S6TJtLzLEjWn5w==
+X-Received: by 2002:a17:907:3f24:b0:b57:1fd6:5528 with SMTP id a640c23a62f3a-b6dba5d558amr90605566b.10.1761605245829;
+        Mon, 27 Oct 2025 15:47:25 -0700 (PDT)
+Received: from skbuf ([2a02:2f04:d406:ee00:3eb9:f316:6516:8b90])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d85359687sm891347566b.23.2025.10.27.15.47.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Oct 2025 15:47:25 -0700 (PDT)
+Date: Tue, 28 Oct 2025 00:47:22 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Andreas Schirm <andreas.schirm@siemens.com>,
+	Lukas Stockmann <lukas.stockmann@siemens.com>,
+	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
+	Peter Christen <peter.christen@siemens.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH net-next v3 05/12] net: dsa: lantiq_gswip: define and use
+ GSWIP_TABLE_MAC_BRIDGE_VAL1_VALID
+Message-ID: <20251027224722.akxniuim6yvfuq6d@skbuf>
+References: <cover.1761521845.git.daniel@makrotopia.org>
+ <cover.1761521845.git.daniel@makrotopia.org>
+ <78a2743dc2b903b650cc0ff16de8d93cf334b391.1761521845.git.daniel@makrotopia.org>
+ <78a2743dc2b903b650cc0ff16de8d93cf334b391.1761521845.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] dt-bindings: arm: rockchip: Add Radxa ROCK 5 ITX+
-To: Krzysztof Kozlowski <krzk@kernel.org>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- jonas@kwiboo.se, dsimic@manjaro.org, amadeus@jmu.edu.cn,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20251027122641.39396-1-naoki@radxa.com>
- <20251027122641.39396-6-naoki@radxa.com>
- <5cdd3d92-eaed-4710-b56b-c9ce46bf7edc@kernel.org>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <5cdd3d92-eaed-4710-b56b-c9ce46bf7edc@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4a-0
-X-QQ-XMAILINFO: NWLpwLZrMWrIOmQbxR6wNI8YzakCoe8FvjyQQ1OEbkOMzhIZjTGxM1BJ
-	6Ps/6Dp+KeyYwrXHjKMTiWCORd3NiR0r6TbyBAYPNVwX/H2Lvx8AZlTlcnyQZjnmuvaq6RQ
-	s5+wAfV6jDIBpO38autUvDxdEzdCh4hRxuLq+ffpMzVt2ouMF0OLuKvfgrzoM0qhGQSr6Jz
-	cPl5Rbs44rAV6teIUnXy/BQfoRxCicrn6150qqLdJ6abUYdrx+9tRYcppkV/2IWzI6M0Xfx
-	ldR5sIgaS84zIuZMbNKkJ3dZuQVyhy0qf5dqY3Fak+aqp43f8NgDYLACeDPCJKyRpJ7S5fy
-	INjv3P/wZxm3km6X/n3p4r1vuUm2R12fBLFsRlbAwyyXzXFGF4co6OgetqVoB59ClprbTuF
-	cWEEkTb4luZa4WwkRt/Oumvd/h3e6u/aHud0Gp30Rq4mPsQh2t/fKXQ4YA9Zcc7ow+dH4pD
-	hRMFgsN4kEdILjQYDxe7fYjNS2BoB6GYjitl1p2dWC1+91qHxuLgnzE586BY3gTrPbZ+p/n
-	WQ8EotapiBLqW+r6hq2iV2cmlir5Iyx3sSRaxoztQJK7XTwFrTzgu6I0NJc9otpiYEsptbc
-	zTfW6xkGVDycXh25tCAUTciV3Zs+HevHGXdAffIz3PVJEu5cyWKd9mxD/SKCdoMi4lDr68a
-	QMqlXBKRVcEKxz+suc8Gw0QndzTG3Ch6XeuriLWStv1Z3xq9uGShqIqCywQkTfMUh+iSL5g
-	+aUeWdT0kbbb8Wz9bma/qp3cCwOP7LCEu0prhJz/tBaeFDgtlkxP6EHEHgqv43eKcwkrho6
-	hMaeJGyub9Cs702KDCpcUTfWNYKwROD9dX+1GsjLlFFJNqQIZVTi4R132BcErn5ZTFioirW
-	0YBV7g3m2koCXDZduQL4FQ2QxBW89P0OJ0Nt0pE1OQfUTC//2zbx49TvbQgk+achQJSNSd1
-	pMlTNu7H16XIWLQnkNlNiTGIxgXr4BDSuIU9yWeugkzB00w==
-X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <78a2743dc2b903b650cc0ff16de8d93cf334b391.1761521845.git.daniel@makrotopia.org>
+ <78a2743dc2b903b650cc0ff16de8d93cf334b391.1761521845.git.daniel@makrotopia.org>
 
-Hi Krzysztof,
+On Sun, Oct 26, 2025 at 11:44:50PM +0000, Daniel Golle wrote:
+> When adding FDB entries to the MAC bridge table it is needed to set an
+> (undocumented) bit to mark the entry as valid. If this bit isn't set for
+> entries in the MAC bridge table, then those entries won't be considered as
+> valid MAC addresses.
 
-Thank you very much for your review.
+Irrespective of GSWIP version? Does this issue have a user visible
+impact that would justify targeting stable kernels? My reading of the
+commit description is that the driver can never program static FDB entries?
 
-On 10/28/25 04:09, Krzysztof Kozlowski wrote:
-> On 27/10/2025 13:26, FUKAUMI Naoki wrote:
->> The Radxa ROCK 5 ITX+ is equivalent to the Radxa ROCK 5 ITX at the DTS
 > 
-> No clue what you want to say here. Same board? Different board but
-> compatible (then patch is wrong)?
-
-The ROCK 5 ITX+ is the ROCK 5 ITX rev.1.2. However, I noticed missing 
-documentation regarding the ROCK 5 ITX+. Since I don't have evidence, 
-I'm dropping this patch. (It's not an issue as it works without this patch.)
-
-I found issues with this entire patch series, so I'm dropping the whole 
-patch series.
-
-Thanks.
-
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
->> level. Therefore, we'll simply append the "ITX+" to the existing entry
->> for the Radxa ROCK 5 ITX.
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+>  drivers/net/dsa/lantiq/lantiq_gswip.h        | 1 +
+>  drivers/net/dsa/lantiq/lantiq_gswip_common.c | 3 ++-
+>  2 files changed, 3 insertions(+), 1 deletion(-)
 > 
-> Best regards,
-> Krzysztof
-> 
+> diff --git a/drivers/net/dsa/lantiq/lantiq_gswip.h b/drivers/net/dsa/lantiq/lantiq_gswip.h
+> index 56de869fc472..42000954d842 100644
+> --- a/drivers/net/dsa/lantiq/lantiq_gswip.h
+> +++ b/drivers/net/dsa/lantiq/lantiq_gswip.h
+> @@ -224,6 +224,7 @@
+>  #define  GSWIP_TABLE_MAC_BRIDGE_KEY3_FID	GENMASK(5, 0)	/* Filtering identifier */
+>  #define  GSWIP_TABLE_MAC_BRIDGE_VAL0_PORT	GENMASK(7, 4)	/* Port on learned entries */
+>  #define  GSWIP_TABLE_MAC_BRIDGE_VAL1_STATIC	BIT(0)		/* Static, non-aging entry */
+> +#define  GSWIP_TABLE_MAC_BRIDGE_VAL1_VALID	BIT(1)		/* Valid bit */
+>  
+>  #define XRX200_GPHY_FW_ALIGN	(16 * 1024)
+>  
+> diff --git a/drivers/net/dsa/lantiq/lantiq_gswip_common.c b/drivers/net/dsa/lantiq/lantiq_gswip_common.c
+> index 0ac87eb23bb5..94b187899db6 100644
+> --- a/drivers/net/dsa/lantiq/lantiq_gswip_common.c
+> +++ b/drivers/net/dsa/lantiq/lantiq_gswip_common.c
+> @@ -1149,7 +1149,8 @@ static int gswip_port_fdb(struct dsa_switch *ds, int port,
+>  	mac_bridge.key[2] = addr[1] | (addr[0] << 8);
+>  	mac_bridge.key[3] = FIELD_PREP(GSWIP_TABLE_MAC_BRIDGE_KEY3_FID, fid);
+>  	mac_bridge.val[0] = add ? BIT(port) : 0; /* port map */
+> -	mac_bridge.val[1] = GSWIP_TABLE_MAC_BRIDGE_VAL1_STATIC;
+> +	mac_bridge.val[1] = add ? (GSWIP_TABLE_MAC_BRIDGE_VAL1_STATIC |
+> +				   GSWIP_TABLE_MAC_BRIDGE_VAL1_VALID) : 0;
+>  	mac_bridge.valid = add;
+>  
+>  	err = gswip_pce_table_entry_write(priv, &mac_bridge);
+> -- 
+> 2.51.1
 
-
+There is a second change, which is that GSWIP_TABLE_MAC_BRIDGE_VAL1_STATIC
+no longer gets set when "add=false". If it was deliberate according to
+the commit message (for example if it appears to not matter, the FDB
+entry is deleted anyway), it would have been fine, but nothing is said
+about it, so I have to wonder.
 
