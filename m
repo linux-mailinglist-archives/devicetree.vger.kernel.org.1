@@ -1,231 +1,206 @@
-Return-Path: <devicetree+bounces-231638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B844C0F38F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:19:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E79EC0F2F1
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:11:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD8E5466247
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 16:08:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA78C188F212
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 16:11:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64E0130FC38;
-	Mon, 27 Oct 2025 16:08:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B9AD30FC25;
+	Mon, 27 Oct 2025 16:10:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bg1mmsGy"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="rHXjaTS6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E8BA30C60C;
-	Mon, 27 Oct 2025 16:08:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DA2630F92F
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 16:10:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761581320; cv=none; b=X4NoJUruUn2xtnDSALVBtSs2yBgH4dLo6w0QWXYEA2Oa+UMJeqMw29EgVXfexLfm+IDuAx1vtE1x5uD5bPnawT0D4dTMHdQbqhxWQG9nePRuUZUZeNFqDY5Hgw5omtr1A6UVB8x4TNedaV06shJrcvNT9663+eit9C5IJ9R+gQA=
+	t=1761581452; cv=none; b=ZJ5EzYgyNyoex99wPsXvrgWOWiGlcDWeFpnKCxqpJXBjTVIOKsoCeDbY1cMLNgf9xRD1P/BcAfJ5q4ZdqBqUg/zy3TMWCHyTy00cD4xp9TWI0tILfRh47S4o806mZ9YDrHZAnFUwug8jNMgyEL6fr1cPBQQyTpbZNDE8IHCIQtw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761581320; c=relaxed/simple;
-	bh=0qurQEcCeZYwnzmNk0lbdUhOqCeujh+OZZ7pr7d4vWA=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=YLyDRQMNWTeM6dO25cRGNlHZsqx/zW+ntLdrwp46ZicULLMc93GCxxnGAiYvFQehaqvxzCbt3yf3I/dtptFoF2CLOJiO49QxRSaCBxH4frLxDvoYsQIPsmahFOx/AE4s9zttkG0Qiy6WTo9ZBLP8XwANHTaTiJhcaZ2p1hyZk4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bg1mmsGy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73763C4CEF1;
-	Mon, 27 Oct 2025 16:08:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761581319;
-	bh=0qurQEcCeZYwnzmNk0lbdUhOqCeujh+OZZ7pr7d4vWA=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
-	b=bg1mmsGyeYPsovM1F0Tq4nEw20gfWYynK3MHZ7jxJuJY17d7vtN6CIx7db4Q3pvu5
-	 puDkrsmy7UcPEk9/YB9PY1gbwXT9eHUKLt4fqTnuARzUokgMvBXp2IvGAA4vzj5Sjn
-	 ggpK0qqihbpjmlAHkS/EKn6i9xM7FjMcUh8ZH9w6ID6+7zhXwRu/w4riSqFJIp5FRJ
-	 4c7MNB+jl1JZX2epbGuIhYgMCi/XcJC60t7eXSh355R7OW0zbj/JHyr8tZ8eEKvTfn
-	 XI+W5Dl/UOIJ8BCWaWyuRpmuNy65UCSNiIDMfZNNOkm3rPwdCSkAxCcrGp9djd/z++
-	 66WZ+4huDCMXw==
-Message-ID: <7c5a1a6e-cad2-46c3-b5cd-3e92ca6d99a7@kernel.org>
-Date: Mon, 27 Oct 2025 17:08:31 +0100
+	s=arc-20240116; t=1761581452; c=relaxed/simple;
+	bh=q0KsMgAElv0vgdV5eooiTkRZl79F0ej2oBY71GeUUCI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bx0kibdUdkO/deaH13ebrEI67/bi4JXJ4NTW684piNb807pendmq8i5U+TKwb7bk1eugy0F3WCHJoHizUhtUNTaOtQiwic18XEIJE9MxRNus6C3xqzO4hkVbnqPxLmeU1pTasBvrg322z0bRiHuOZFA9hlA+Qbz1wCLintMm3CM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=rHXjaTS6; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b4f323cf89bso1157778466b.2
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 09:10:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1761581449; x=1762186249; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Veu3Rsq4FjpOJipbhAFeCCYDWDFK0CBkfMfLFx9DhXQ=;
+        b=rHXjaTS6zBnOuruVi35Mn64k5VsG+F8CFgdToVCwCpzU4gcRfvG5h8yrxIA0kjlU9u
+         bxyJd4SsusfOPO4Z+/du4tWDBGAemSyPp1zsOTPHf6teTCReg1vQV0wOsLYn46M+GQdF
+         5NWw7+sMg/TLv7RHD1O6ooRJNoIPCCu+3c0o8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761581449; x=1762186249;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Veu3Rsq4FjpOJipbhAFeCCYDWDFK0CBkfMfLFx9DhXQ=;
+        b=DTjMnROdfqeJ32ccGr6SamLm4dkVkWJM6eCWWtFyA0T1DPwT5MvCY9SK3atTAtDqiD
+         3CnKLsvxXAo2GWoWFoJDoffGTClT5MbIMRDdfeXHDQ1Y5SW/ywcNc10vd2x+3820ldGP
+         4eA+Q3ncSULKWlKzYYdlvSv/zwSvLLW88XW+9TtNvxBVMDPMJzCYRBBBql1aw7nZoFkP
+         XSL+A5x7WdLoNmDESreKwl0bX1KW7/uv1q/aGMIUji5v/h8I+n2ZEkV47mt6/aitx9jm
+         ozPhe32V3g7dXR65oqJST4DTrRB5T5LdCYIafW0KQQZhatRQxDiEP5EkZWpdEtT8l8Mk
+         jVUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWPmr8CgoWulpXA8ozlVI2jc1SzUWdxbl+1IU1bUSu2JOJ2gt6pq8IyLCNZk5we4P/v1UDaus6/00yg@vger.kernel.org
+X-Gm-Message-State: AOJu0YwATqy3EwVshfE/lUf4J6dA8eztMF8M+Bf2UTP8WKkCcWjekvl7
+	+XbJLyTRfzB+6IDHyxUPn0pNyz2U5H2cnTHn5nCgIq2Sn9FB80gCQhI5ogg8tEIpoPI=
+X-Gm-Gg: ASbGncskJtD+WxM3/XySsrhYMV6fWf7psafwEikqt+wJh9ZJ7tqXZWMJ3JqPWtXh76Y
+	ogyI7dR0PDLXxPDuOE4PsZNnTyT2v2bRvemLTVSFrMcgfgef2zruxFgWqHBN0dwKutlAePDot5S
+	rIV6zKuRukghQXCLocaKaM7IF1dSqV+5Xlm/3ik7kpEn5DgDFAkcWrtdM0F6LEwmaUuwZsVifJe
+	u0V7AuUbAQVdea4Npx3TnNMtKXA/dIDGW7FBqT/M3J9Rdf3sQxXKCQRYIy/HfLJumJhObAcim9J
+	BIbzz725/j2rMcSv1ZiNb+YcTqib9mm5aSwDHYpiwcaFs19hEHrtpGTSYofKMmVNQ7wzsea+xQU
+	W0YIchb3+nJYmUd1brq6FdZdqS0KNDccuOb5hoQAKPjMG4fNEy/KQq9HwLIvFE0bPchpCGTFleE
+	mOTIzI4Uhk1bwex1UDfSAmJOoPp3QNagA8lNn8vIn1Q5Ys1QSMopjjQeDGaHBClED/6O4rRGtfn
+	IujlmSRKpvgVVa6b3aZ/dmBmRdeKD4LZKn7Nc3Ut+rdlphRDiI3Jl8=
+X-Google-Smtp-Source: AGHT+IHNVBcPF4r1uhIP+zj56hLjLDUq4AexzJeI5WwqZEYSfzmRjyop2h3ZCez24VELoNyVU95XiQ==
+X-Received: by 2002:a17:907:86a0:b0:b0b:f228:25a with SMTP id a640c23a62f3a-b6dba5f0b7cmr39405266b.64.1761581448554;
+        Mon, 27 Oct 2025 09:10:48 -0700 (PDT)
+Received: from dario-ThinkPad-P14s-Gen-5.homenet.telecomitalia.it (host-82-50-34-170.retail.telecomitalia.it. [82.50.34.170])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d8ceeaffasm742437466b.45.2025.10.27.09.10.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Oct 2025 09:10:48 -0700 (PDT)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: Shawn Guo <shawnguo@kernel.org>,
+	linux-amarula@amarulasolutions.com,
+	Mark Brown <broonie@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Michael Trimarchi <michael@amarulasolutions.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 1/2] ARM: dts: imx28-amarula-rmm: add I2S audio
+Date: Mon, 27 Oct 2025 17:10:23 +0100
+Message-ID: <20251027161040.2020623-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Hans Verkuil <hverkuil+cisco@kernel.org>
-Subject: Re: [PATCH v5 00/23] tegra-video: add CSI support for Tegra20 and
- Tegra30
-To: Svyatoslav Ryhel <clamor95@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>,
- Sowjanya Komatineni <skomatineni@nvidia.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Prashant Gaikwad <pgaikwad@nvidia.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Mikko Perttunen <mperttunen@nvidia.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- =?UTF-8?Q?Jonas_Schw=C3=B6bel?= <jonasschwoebel@yahoo.de>,
- Dmitry Osipenko <digetx@gmail.com>,
- Charan Pedumuru <charan.pedumuru@gmail.com>,
- Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>, Aaron Kling
- <webgeek1234@gmail.com>, Arnd Bergmann <arnd@arndb.de>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-staging@lists.linux.dev
-References: <20251022142051.70400-1-clamor95@gmail.com>
-Content-Language: en-US, nl
-In-Reply-To: <20251022142051.70400-1-clamor95@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Hi Svyatoslav,
+Add support for I2S audio on Amarula rmm board. Audio codec
+TLV320AIC3X is connected as slave to SAIF0, which provides
+bitclock, frame and MCLK.
 
-On 22/10/2025 16:20, Svyatoslav Ryhel wrote:
-> Add support for MIPI CSI device found in Tegra20 and Tegra30 SoC along
-> with a set of changes required for that.
+Co-developed-by: Michael Trimarchi <michael@amarulasolutions.com>
+Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
+Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 
-Other than patch 06/23 that looked iffy (although the original code was iffy as
-already), for which I posted a review, this series looks almost ready.
+---
 
-Should the clk patches be merged together with the media patches? Or can those
-go in via the clk subsystem? If it is the latter, then I'll need an Acked-by from the
-clk subsystem maintainer.
+Changes in v2:
+- Rename the codec node to audio-codec@18
+- Drop an unnecessary newline
 
-Regarding the bindings: all except 21/23 are Acked.
+ .../boot/dts/nxp/mxs/imx28-amarula-rmm.dts    | 50 +++++++++++++++++++
+ 1 file changed, 50 insertions(+)
 
-I have one question regarding testing: in the past I tested this driver with a
-Jetson TX1 devkit and a camera sensor. One of the main reasons this driver is still
-in staging is that I never got that to work reliably: after 10-30 minutes it would
-lose sync and streaming would stop.
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-amarula-rmm.dts b/arch/arm/boot/dts/nxp/mxs/imx28-amarula-rmm.dts
+index af59211842fb..ddb64f3d0471 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx28-amarula-rmm.dts
++++ b/arch/arm/boot/dts/nxp/mxs/imx28-amarula-rmm.dts
+@@ -112,6 +112,29 @@ reg_usb1_vbus: regulator-usb1-vbus {
+ 		enable-active-high;
+ 		regulator-always-on;
+ 	};
++
++	sound {
++		compatible = "simple-audio-card";
++		simple-audio-card,name = "imx28-mrmmi-tlv320aic3x-audio";
++		simple-audio-card,format = "i2s";
++		simple-audio-card,bitclock-master = <&cpu_dai>;
++		simple-audio-card,frame-master = <&cpu_dai>;
++		simple-audio-card,widgets =
++			"Headphone", "Headphone Jack";
++		simple-audio-card,routing =
++			"Headphone Jack", "HPROUT",
++			"Headphone Jack", "HPRCOM";
++		simple-audio-card,mclk-fs = <512>;
++
++		cpu_dai: simple-audio-card,cpu {
++			sound-dai = <&saif0>;
++			clocks = <&saif0>;
++		};
++
++		codec_dai: simple-audio-card,codec {
++			sound-dai = <&tlv320aic3x>;
++		};
++	};
+ };
+ 
+ &auart0 {
+@@ -154,6 +177,19 @@ &i2c0 {
+ 	pinctrl-0 = <&i2c0_pins_a>;
+ 	status = "okay";
+ 
++	tlv320aic3x: audio-codec@18 {
++		compatible = "ti,tlv320aic3x";
++		pinctrl-names = "default";
++		pinctrl-0 = <&tlv320aic3x_pins>;
++		reg = <0x18>;
++		reset-gpios = <&gpio2 4 GPIO_ACTIVE_LOW>;
++		#sound-dai-cells = <0>;
++		DVDD-supply = <&reg_1v8>;
++		IOVDD-supply = <&reg_3v3>;
++		AVDD-supply = <&reg_3v3>;
++		DRVDD-supply = <&reg_3v3>;
++	};
++
+ 	touchscreen: touchscreen@38 {
+ 		compatible = "edt,edt-ft5306";
+ 		reg = <0x38>;
+@@ -246,6 +282,14 @@ MX28_PAD_PWM1__GPIO_3_17
+ 		fsl,voltage = <MXS_VOLTAGE_HIGH>;
+ 	};
+ 
++	tlv320aic3x_pins: tlv320aic3x-pins@0 {
++		reg = <0>;
++		fsl,pinmux-ids = <MX28_PAD_SSP0_DATA4__GPIO_2_4>;
++		fsl,drive-strength = <MXS_DRIVE_4mA>;
++		fsl,pull-up = <MXS_PULL_ENABLE>;
++		fsl,voltage = <MXS_VOLTAGE_HIGH>;
++	};
++
+ 	usb0_vbus_enable_pin: usb0-vbus-enable@0 {
+ 		reg = <0>;
+ 		fsl,pinmux-ids = <MX28_PAD_SSP0_DATA5__GPIO_2_5>;
+@@ -269,6 +313,12 @@ &pwm {
+ 	status = "okay";
+ };
+ 
++&saif0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&saif0_pins_a>;
++	status = "okay";
++};
++
+ /* microSD */
+ &ssp0 {
+ 	compatible = "fsl,imx28-mmc";
+-- 
+2.43.0
 
-Unfortunately I never had the time to dig deeper into that.
-
-So have you tested this with a camera sensor? And if so, does it stream reliably?
-I.e. just let it stream for 24 hours and see if that works.
-
-If it is reliable for you, then I think this driver should be moved to drivers/media.
-
-Regards,
-
-	Hans
-
-> 
-> ---
-> Changes in v2:
-> - vi_sensor gated through csus
-> - TEGRA30_CLK_CLK_MAX moved to clk-tegra30
-> - adjusted commit titles and messages
-> - clk_register_clkdev dropped from pad clock registration
-> - removed tegra30-vi/vip and used tegra20 fallback
-> - added separate csi schema for tegra20-csi and tegra30-csi
-> - fixet number of VI channels
-> - adjusted tegra_vi_out naming
-> - fixed yuv_input_format to main_input_format
-> - MIPI calibration refsctored for Tegra114+ and added support for
->   pre-Tegra114 to use CSI as a MIPI calibration device
-> - switched ENOMEM to EBUSY
-> - added check into tegra_channel_get_remote_csi_subdev
-> - moved avdd-dsi-csi-supply into CSI
-> - next_fs_sp_idx > next_fs_sp_value
-> - removed host1x_syncpt_incr from framecounted syncpoint
-> - csi subdev request moved before frame cycle
-> 
-> Changes in v3:
-> - tegra20 and tegra30 csi schema merged
-> - removed unneeded properties and requirements from schema
-> - improved vendor specific properties description
-> - added tegra20 csus parent mux
-> - improved commit descriptions
-> - redesigned MIPI-calibration to expose less SoC related data into header
-> - commit "staging: media: tegra-video: csi: add support for SoCs with integrated
->   MIPI calibration" dropped as unneeded
-> - improved tegra_channel_get_remote_device_subdev logic
-> - avdd-dsi-csi-supply moved from vi to csi for p2597 and p3450-0000
-> - software syncpoint counters switched to direct reading
-> - adjusted planar formats offset calculation
-> 
-> Changes in v4:
-> - removed ifdefs from tegra_mipi_driver
-> - document Tegra132 MIPI calibration device
-> - switched to use BIT macro in tegra114-mipi
-> - pinctrl changes moved to a separate patch
-> - ERESTARTSYS workaround preserved for now
-> - tegra_mipi_add_provider replaced with devm_tegra_mipi_add_provider
-> - reworked bytesperline and sizeimage calculaion
-> 
-> Changes in v5:
-> - dropped patch 1/24 of v4 since it was picked to pinctrl tree
-> - added reasoning for tegra132 comaptible into commit desctiption
-> - moved clocks into common section in tegra20-csi schema
-> - added note regarding ERESTARTSYS
-> ---
-> 
-> Svyatoslav Ryhel (23):
->   clk: tegra: set CSUS as vi_sensor's gate for Tegra20, Tegra30 and
->     Tegra114
->   dt-bindings: clock: tegra30: Add IDs for CSI pad clocks
->   clk: tegra30: add CSI pad clock gates
->   dt-bindings: display: tegra: document Tegra30 VI and VIP
->   staging: media: tegra-video: expand VI and VIP support to Tegra30
->   staging: media: tegra-video: vi: adjust get_selection op check
->   staging: media: tegra-video: vi: add flip controls only if no source
->     controls are provided
->   staging: media: tegra-video: csi: move CSI helpers to header
->   gpu: host1x: convert MIPI to use operation function pointers
->   dt-bindings: display: tegra: document Tegra132 MIPI calibration device
->   staging: media: tegra-video: vi: improve logic of source requesting
->   staging: media: tegra-video: csi: move avdd-dsi-csi-supply from VI to
->     CSI
->   arm64: tegra: move avdd-dsi-csi-supply into CSI node
->   staging: media: tegra-video: tegra20: set correct maximum width and
->     height
->   staging: media: tegra-video: tegra20: add support for second output of
->     VI
->   staging: media: tegra-video: tegra20: adjust format align calculations
->   staging: media: tegra-video: tegra20: set VI HW revision
->   staging: media: tegra-video: tegra20: increase maximum VI clock
->     frequency
->   staging: media: tegra-video: tegra20: expand format support with
->     RAW8/10 and YUV422/YUV420p 1X16
->   staging: media: tegra-video: tegra20: adjust luma buffer stride
->   dt-bindings: display: tegra: document Tegra20 and Tegra30 CSI
->   ARM: tegra: add CSI nodes for Tegra20 and Tegra30
->   staging: media: tegra-video: add CSI support for Tegra20 and Tegra30
-> 
->  .../display/tegra/nvidia,tegra114-mipi.yaml   |   1 +
->  .../display/tegra/nvidia,tegra20-csi.yaml     | 138 +++
->  .../display/tegra/nvidia,tegra20-vi.yaml      |  19 +-
->  .../display/tegra/nvidia,tegra20-vip.yaml     |   9 +-
->  arch/arm/boot/dts/nvidia/tegra20.dtsi         |  19 +-
->  arch/arm/boot/dts/nvidia/tegra30.dtsi         |  24 +-
->  .../arm64/boot/dts/nvidia/tegra210-p2597.dtsi |   4 +-
->  .../boot/dts/nvidia/tegra210-p3450-0000.dts   |   4 +-
->  drivers/clk/tegra/clk-tegra114.c              |   7 +-
->  drivers/clk/tegra/clk-tegra20.c               |  20 +-
->  drivers/clk/tegra/clk-tegra30.c               |  21 +-
->  drivers/gpu/drm/tegra/dsi.c                   |   1 +
->  drivers/gpu/host1x/Makefile                   |   1 +
->  drivers/gpu/host1x/mipi.c                     | 525 ++---------
->  drivers/gpu/host1x/tegra114-mipi.c            | 483 +++++++++++
->  drivers/staging/media/tegra-video/Makefile    |   1 +
->  drivers/staging/media/tegra-video/csi.c       |  70 +-
->  drivers/staging/media/tegra-video/csi.h       |  16 +
->  drivers/staging/media/tegra-video/tegra20.c   | 820 +++++++++++++++---
->  drivers/staging/media/tegra-video/vi.c        |  56 +-
->  drivers/staging/media/tegra-video/vi.h        |   6 +-
->  drivers/staging/media/tegra-video/video.c     |   8 +-
->  drivers/staging/media/tegra-video/vip.c       |   4 +-
->  include/dt-bindings/clock/tegra30-car.h       |   3 +-
->  include/linux/host1x.h                        |  10 -
->  include/linux/tegra-mipi-cal.h                |  57 ++
->  26 files changed, 1657 insertions(+), 670 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-csi.yaml
->  create mode 100644 drivers/gpu/host1x/tegra114-mipi.c
->  create mode 100644 include/linux/tegra-mipi-cal.h
-> 
-
+base-commit: dcb6fa37fd7bc9c3d2b066329b0d27dedf8becaa
+branch: imx28-amarula-rmm-audio
 
