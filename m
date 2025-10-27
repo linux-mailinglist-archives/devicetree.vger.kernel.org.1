@@ -1,177 +1,289 @@
-Return-Path: <devicetree+bounces-231451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BCE2C0D404
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:50:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF155C0D4A6
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:52:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46E641892950
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 11:47:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F86B3A7945
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 11:47:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 871312FF14A;
-	Mon, 27 Oct 2025 11:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A2AB2FDC5F;
+	Mon, 27 Oct 2025 11:47:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pDTsJKTw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gN1iBm/a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A68962FDC5F
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 11:46:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 868612FABE5
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 11:47:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761565612; cv=none; b=QJmE3K54J2k60KErvg9ua/FCwSfC++TAOZ+/dgxIY853fYD0dlY0Syo6LfnQMGFs5IP0xUlkA6f6fXWS6fYyuPAgjmrWxpG1aO4dbOu0yFUuf0BwuBvqQXN6FB8FASzvANEDgfWMUydMJa7CSu34rI9qXJBhXA88oi5qv2pICv4=
+	t=1761565627; cv=none; b=ZpKCkMKNG5du5DuQrWaN8oMEBjYAkc2t8N6HTsb50M7J2CkOKxeXTXU+vbS9YZBD1uRqNEFfEwB7wRDAHBxUXcJR0VKUXARi1U/GzcRCHsip9jL7TjW2g2v0tJHLquuVts36jB8jjXNaZPNaIjWMaMlQKZ9WtKb9wCXoaAtzWNg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761565612; c=relaxed/simple;
-	bh=sLSDLFIycjwi5DUJiwWXROI9mVj8Cx9y+PjBFCqILz0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Pvf3LtBxyBimP2VQ34vcuMAYeM5COLybZ8JFmX/0uxjknI/0PFIVfcrjOI/3wiUYz5hMCeEsZWBe7u9Ox0kutVIuOHZp/cUHgIBmPAqZyJlYoIWmTdkLwNKo+0+Nl3SRjUSJRCKFVTYVep9xNdvrtdIgDDIKTy0Bqr6wIw76Bgo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pDTsJKTw; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59R7JvVX2059268
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 11:46:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Y7FbXOdWgkLEaT/XePs73VoA0pwHdHNIszOesKkyl1U=; b=pDTsJKTw80qZEM4p
-	msAQKifurwKK/WOXlgyv38815ZJUFoANG8Cc8zqw/J+YarWrJfnTp3vA/wlE+A0p
-	vxFIIzrevW1+Q3N8+INrtIbl3oGmhjApl7fnxMqiLXtignZxraQMijGnn1xBmgRd
-	K+5HiITBbY/e91hsmmExAvMDyRJ0GoFjf9oi95UO4YthG2NkFYr5DK44uAe9QiEo
-	bjjXeAdbSqWXc6KFaeY0eCPSGTa9JfgX++5gWB7GDZWKbAgpbPAQ3Bb45YiqPhMC
-	kIw2mhqLE5ilRvWgLO15oscsRYYkcYCFyRForsqBfTwpGtws0tUVM0TA4J5nESaj
-	DaP4Dw==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a248p8qj7-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 11:46:49 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-87ff7511178so407136d6.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 04:46:49 -0700 (PDT)
+	s=arc-20240116; t=1761565627; c=relaxed/simple;
+	bh=KbZYIBikwWSI+GVCWKg5+OPGcA2UgrEFkQgweLtQ6xk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uqWZI9Kb0jZW4ySG3aUVxx40fB/u/JCF0J1GUl37eEwoknBj26wdc0zBh2oBv5Hiv3hm1u8uqiLVXajwiNY+GzzkqMOCF+DWlmcr6yokvNq4sXT7PeRd5y+FV6CzI44UEGEmsD6eskR0/EPH+W1i9dK3q4JbxKab8f8U7Gko0E4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gN1iBm/a; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-3761e5287c9so54035511fa.2
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 04:47:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761565623; x=1762170423; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=yPhjrYnraGxNN/VaL/O/6qvA4/L6CwleXg/ScEIiVlQ=;
+        b=gN1iBm/aT27avoIk/DrZG8G1WrMT7FSaFrGJsRmY3xXQJT/zDpvPTVBzfxjqF+J6En
+         pkykq5+eBwgsQR5ujS48JaFusMQrESuHebjrPDO+JfwJ7yBSZFBs0M7v9HbadRgyZtyr
+         tvjGzNgcSQcIPURCK7YcjQ1vkbtu5y5XHqiOxqJ4ZRbZj4Pe3TeimAI1uwwWHy8O6uYl
+         uQWSizZNparIpxig4ziJ/WAV24OnbnRVRe7MvhUAJ/g4X9uZtZE2pFdagi1G1QLXKxwy
+         lFLvFi9PTchxpXLlGuPgwBA4EC0ZUezbxAdVmV7DBl8FjNaLAjEOk+3asKKYAgznwowM
+         Tekg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761565609; x=1762170409;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y7FbXOdWgkLEaT/XePs73VoA0pwHdHNIszOesKkyl1U=;
-        b=VXXospNYX5NKlRjtIrCqZftxg8vrFiWPwlM88sBODa44e0fkM1KC5uhnH4vSr9m67V
-         5Cvxs0u0PnjOdN6VoAF64ELvqHtGQ14v/MZvbwyQWHP/KmGcDwrGV23DV3m3XFPa5FIH
-         MJeBfacwp/l2HkHXTajlgM6MtkjJyVEknoEanVNU5uSdocwmd+JF7iQurAjWCmRQnBec
-         twaKEUl2lww47iRaT6ngkETY4Evt4pHeX3WbyiRpsYt/1Kehv3sM7rtA+Kw6Xq/ZN8+i
-         D0pNsEZP0/fuzG2KZ/t26lqMslt8yF0ub1LVuKD+CE4k3379Yf4OSgL3nylDlriMUzGq
-         U6Wg==
-X-Forwarded-Encrypted: i=1; AJvYcCX3oO3XqvW3PiD7D8er2gi5cXnJT1w2D6Ypf8xkt7klKE69lcU2Ga0mqIH5cXmxh129CndASk8OqWgd@vger.kernel.org
-X-Gm-Message-State: AOJu0YzoJO1B4sj7R/653989kSKowThbJXH3gPLTfUocr/r2GM/zu0Gi
-	AtG8Ya4+0IZ+UUg+0w7xVCmbrEPx1W3lyrHgzKgiTYDlliaqnSW/nSOkc1Xo0uov2qED5lPxi7N
-	DrEBAjV7pPUeK4qCuRhmxGEmg7hMdc330m6pUJswzSv6ojVLLfJ9PkdWyNFlkTUqg
-X-Gm-Gg: ASbGncuQyppekgTA0ujcGnmOY/zs7/S3JEc3C9fpXMZgyQMn5OPzaHJAmhEJzsKPl1K
-	qImfh4j3VcbfKGfUc5TorWzHM9Y9FUlvuxKWjLfO8g+LYhHcoXTpB13ukxEfiK4Z+pdsKpUAOX5
-	oQgMA1ZuSXaG+ECEg/1WIg+boH7HeAmS2Ff6RKYlhG5birTBvnaKrsuj7qCNKPSoY2dQqYbUpCn
-	ixVyCrKX3K9C0bDytwvEdFt/cf1f8HcT97UgxKlchTAkBtkyR8IaDUrYXFwLHjOYTnawW+karjj
-	w/cQbG3xpr2+M9ZO2g8vjODriJM+SdWf64AVcZYPn6nrE+dOlc4oTwU/e8tPrLQvv7KsDsy6lDP
-	JBrM/vS8kJoz9iyJILuVEruhmm/0V8vN0BwHcA8c7RujquRprrwCWQgoc
-X-Received: by 2002:ad4:5b87:0:b0:801:2595:d05d with SMTP id 6a1803df08f44-87de7138a5dmr193035476d6.3.1761565608830;
-        Mon, 27 Oct 2025 04:46:48 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFcow6r/0jMtGxR59KvnFS4Y/c0woofpjI9qJZXXjOHBNMXUDWc9LAIdY1pVDEfhj9Vve0PMw==
-X-Received: by 2002:ad4:5b87:0:b0:801:2595:d05d with SMTP id 6a1803df08f44-87de7138a5dmr193035246d6.3.1761565608298;
-        Mon, 27 Oct 2025 04:46:48 -0700 (PDT)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d8ceeaffasm671391966b.45.2025.10.27.04.46.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Oct 2025 04:46:47 -0700 (PDT)
-Message-ID: <22ad48ac-e054-4f2f-a5a5-8047266ff4cc@oss.qualcomm.com>
-Date: Mon, 27 Oct 2025 12:46:46 +0100
+        d=1e100.net; s=20230601; t=1761565623; x=1762170423;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yPhjrYnraGxNN/VaL/O/6qvA4/L6CwleXg/ScEIiVlQ=;
+        b=Wd83511i+ctk67lh0Lot0tTUTZQ6ZmiEKnZdcLg74fGVaKaNHcZlAt5/st14cf7k2B
+         Lwpu5gSUw6eYml1HeJm33mFUaLzqAof2WsS7orquQhsSfyM6x/Vy2+cWd76wy9/vAqi0
+         Hf/r/WGfGzVHKmJE98cZ6cRI9I1wK9+or68QLZoU2KlugRrLOiQEGXR4/1hdf8nKemp2
+         WFEJKakCgSq3SGwsakEbxm0XKyJMhFEn/2Rk8T+HSzZ04fuZ5ymewBsPd5tuKaIbyJNl
+         NmILRIi6H67gZaFbMtQ8jB4dIFQKqG2badAzYbcNW5r5bkrqRHzcDImFvNuowlLBylhp
+         zfng==
+X-Forwarded-Encrypted: i=1; AJvYcCWe2xOrNJ3+Aslz2ctVvZiiSkabSIbBmXIOP+4vUDpRXSz4zwBwphef8kQWq502IKqjA2ktopP5Ayhv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyzy1mWMroPJ2gbFTg+pfxJ4C6z26Hic68XkKdO9w0sVOALiY+f
+	T8Uo1Ph6iEHZosdCZPcu6ZSx7BiHcEnpDXlS3Fen1yQuD5wrnhsA7o2e
+X-Gm-Gg: ASbGncvIUu9NXtdtjF7XFKSOy6niR3cOC67t1Mt7+ToxIY9NC1SE3NaNiYCovyiqhmG
+	/ZCo9j/xvPHmdd7pD1hH0DF00tSO1J6z1Hh9xIM2eqPE8uOvW+bG/CxoRmH9fo4dHzwrhrdt1y+
+	trswJsJzfTHDnFBgNi+7yjq9Z5CCamccz7If207dsLTtI68bonFsSbufnzcvZoiyoMr232G1oAX
+	9mBZ+X5yamGCuE41ZJIdYzScz4WlGU3Bxi9wcKuSMhsSVbV0peoLCKOOkvKuiV7bdeaUZYQkl4y
+	65jvEy3i8OQ0w2kLDIdIHhbWI8pAHiEDrwdr117pU6kfG++ElV9RCYR5kEIblhrmGs7fZ1igjf/
+	2q4V+uSW3Eb7dtzkRnfcf2AplKW9mldIyZOIHfrVqZec/C6K0DdvTVuX7a8/Gz2WWutkd849M7g
+	51EyNDQEpChh2gVqWtRQ==
+X-Google-Smtp-Source: AGHT+IFGTBYWCW3ld91Gaf4BxcDyit2xahwuUUbRDChRLg+8atXmQtWwSm/UbdG2xVg1KoE+9y6aEg==
+X-Received: by 2002:a05:651c:221f:b0:337:e151:9ec with SMTP id 38308e7fff4ca-377978aeff0mr114706621fa.16.1761565622062;
+        Mon, 27 Oct 2025 04:47:02 -0700 (PDT)
+Received: from mva-rohm ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-378ee0d3712sm20091881fa.36.2025.10.27.04.47.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Oct 2025 04:47:01 -0700 (PDT)
+Date: Mon, 27 Oct 2025 13:46:57 +0200
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-rtc@vger.kernel.org
+Subject: [PATCH v2 08/15] regulator: bd71828: rename IC specific entities
+Message-ID: <aa2b31267e6cc93bad4c823ef1ba07ba43efd572.1761564043.git.mazziesaccount@gmail.com>
+References: <cover.1761564043.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] Modify USB controller nodes for USB on X1E80100
-To: Krishna Kurapati PSSNV <krishna.kurapati@oss.qualcomm.com>,
-        Val Packett <val@packett.cool>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-References: <20251014022121.1850871-1-krishna.kurapati@oss.qualcomm.com>
- <d0c18094-7234-450d-bd9c-e9f545de31e2@packett.cool>
- <81367b57-f60c-48a6-8a59-7e160c312686@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <81367b57-f60c-48a6-8a59-7e160c312686@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=Zvzg6t7G c=1 sm=1 tr=0 ts=68ff5ba9 cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=pqnWh8UqMPAkMZ0kC3QA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=OIgjcC2v60KrkQgK7BGD:22 a=HhbK4dLum7pmb74im6QT:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI3MDExMCBTYWx0ZWRfX7X5dqSBP+kGG
- cUl1Cjc0yIiiMJK+uTvJd4Bl8qDpfUw6R9WYSySq8Q9hduAV0HmjUxxj4o+2CAg1IxaxFIppCOx
- bIpv+KQEnsGWEQEiFdD1FBTq5/EgEwhjzPz7szco5+Mjdsrn+rPfeodClGSoHzHwUkiDYJDQtM2
- U89MUgavwXjYiAC5bxwivaOomWJp9dbQ/bm3qc08OLpI0af+XVUubnQ9nS5Kg3rHOH/3J/J6H2z
- VqPZJPTkphCJ7JQA8O9sTfiJOjP/z+cwO6/EJEx6aafeAHKh+6e05qBPnhrsLp0xLzMeHFZTGab
- iywDZbBzJet6KKoRsczYy95l4gY0iFlQR0diGQMijVMnquztuFteXdSnfq+Yq+k4TQ6Z/rySh7d
- iy8ZYfxLjmVVb87Dw4uEHxJL9CA88w==
-X-Proofpoint-ORIG-GUID: l4oY44DHLyQt1kcNlgbo7ThALMq90C9C
-X-Proofpoint-GUID: l4oY44DHLyQt1kcNlgbo7ThALMq90C9C
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-27_05,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 malwarescore=0 adultscore=0 clxscore=1015 priorityscore=1501
- impostorscore=0 lowpriorityscore=0 bulkscore=0 suspectscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510020000 definitions=main-2510270110
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hHlLATUC+NJoLwSU"
+Content-Disposition: inline
+In-Reply-To: <cover.1761564043.git.mazziesaccount@gmail.com>
 
-On 10/19/25 1:35 PM, Krishna Kurapati PSSNV wrote:
-> 
-> 
-> On 10/14/2025 2:30 PM, Val Packett wrote:
->> Hi,
->>
->> On 10/13/25 11:21 PM, Krishna Kurapati wrote:
->>> This series aims to flatten usb dt nodes and use latest bindings.
->>> While at it, fix a compile time warning on the HS only controller node.
->>>
->>> Tests done:
->>> 1. On CRD, verified host mode operation of the 3 exposed Type-C ports
->>> and enumeration of the Goodix fingerprint sensor on the multiport
->>> usb controller.
->>>
->>> 2. Modified the dr_mode to otg for the first 3 controllers and
->>> verified role switching and device mode operation on the 3 exposed
->>> Type-C ports.
->>>
->>> HS only controller was not tested on any platform.
->>
->> have you tested suspend-resume?
->>
->> The flattened dwc driver seems to break it for me on Latitude 7455, upon trying to resume the screen never comes back up and the system just reboots from zero in a couple seconds instead.
->>
->> I've looked at the code and I couldn't find the cause so far, but it is fine with the legacy driver and not fine with this one :(
->>
-> 
-> Hi Val,
-> 
->  Thanks for reporting this. I did test runtime suspend resume on all 3 typec ports as mentioned. But I didn't check system suspend case.
-> 
->  I will try to reproduce the issue, fix it and then resend the patches.
 
-I can repro on the CRD..
+--hHlLATUC+NJoLwSU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-It's the USB3_0 host that causes the issue
+The new ROHM BD72720 PMIC has similarities with the BD71828. It makes
+sense to support the regulator control for both PMICs using the same
+driver. It is often more clear to have the IC specific functions and
+globals named starting with the chip-name. So, as a preparatory step,
+prefix the BD71828 specific functions and globals with the bd71828.
 
-Removing the clk_bulk_disable_unprepare() call in dwc3_qcom_suspend()
-helps..
+It would be tempting to try also removing the chip ID from those
+functions which will be common for both PMICs. I have bad experiences on
+this as it tends to lead to problems when yet another IC is being
+supported with the same driver, and we will have some functions used for
+all, some for two of the three, and some for just one. At this point
+I used to start inventing wildcards like BD718XX or BD7272X. This
+approach is pretty much always failing as we tend to eventually have
+something like BD73900 - where all the wildcard stuff will break down.
 
-Konrad
+So, my approach these days is to:
+ - keep the original chip-id prefix for anything that had it already
+   (and avoid the churn).
+ - use same prefix for all things that are used by multiple ICs -
+   typically the chip-ID of the first chip. This typically matches also
+   the driver and file names.
+ - use specific chip-ID as a prefix for anything which is specific to
+   just one chip.
+
+As a preparatory step to adding the BD72720, add bd71828 prefix to all
+commonly usable functions and globals.
+
+Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+
+---
+Revision history:
+ RFCv1 =3D>:
+ - No changes
+No functional changes intended.
+---
+ drivers/regulator/bd71828-regulator.c | 32 +++++++++++++--------------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
+
+diff --git a/drivers/regulator/bd71828-regulator.c b/drivers/regulator/bd71=
+828-regulator.c
+index dd871ffe979c..3d18dbfdb84e 100644
+--- a/drivers/regulator/bd71828-regulator.c
++++ b/drivers/regulator/bd71828-regulator.c
+@@ -28,7 +28,7 @@ struct bd71828_regulator_data {
+ 	int reg_init_amnt;
+ };
+=20
+-static const struct reg_init buck1_inits[] =3D {
++static const struct reg_init bd71828_buck1_inits[] =3D {
+ 	/*
+ 	 * DVS Buck voltages can be changed by register values or via GPIO.
+ 	 * Use register accesses by default.
+@@ -40,7 +40,7 @@ static const struct reg_init buck1_inits[] =3D {
+ 	},
+ };
+=20
+-static const struct reg_init buck2_inits[] =3D {
++static const struct reg_init bd71828_buck2_inits[] =3D {
+ 	{
+ 		.reg =3D BD71828_REG_PS_CTRL_1,
+ 		.mask =3D BD71828_MASK_DVS_BUCK2_CTRL,
+@@ -48,7 +48,7 @@ static const struct reg_init buck2_inits[] =3D {
+ 	},
+ };
+=20
+-static const struct reg_init buck6_inits[] =3D {
++static const struct reg_init bd71828_buck6_inits[] =3D {
+ 	{
+ 		.reg =3D BD71828_REG_PS_CTRL_1,
+ 		.mask =3D BD71828_MASK_DVS_BUCK6_CTRL,
+@@ -56,7 +56,7 @@ static const struct reg_init buck6_inits[] =3D {
+ 	},
+ };
+=20
+-static const struct reg_init buck7_inits[] =3D {
++static const struct reg_init bd71828_buck7_inits[] =3D {
+ 	{
+ 		.reg =3D BD71828_REG_PS_CTRL_1,
+ 		.mask =3D BD71828_MASK_DVS_BUCK7_CTRL,
+@@ -102,9 +102,9 @@ static int buck_set_hw_dvs_levels(struct device_node *n=
+p,
+ 	return rohm_regulator_set_dvs_levels(&data->dvs, np, desc, cfg->regmap);
+ }
+=20
+-static int ldo6_parse_dt(struct device_node *np,
+-			 const struct regulator_desc *desc,
+-			 struct regulator_config *cfg)
++static int bd71828_ldo6_parse_dt(struct device_node *np,
++				 const struct regulator_desc *desc,
++				 struct regulator_config *cfg)
+ {
+ 	int ret, i;
+ 	uint32_t uv =3D 0;
+@@ -212,8 +212,8 @@ static const struct bd71828_regulator_data bd71828_rdat=
+a[] =3D {
+ 			 */
+ 			.lpsr_on_mask =3D BD71828_MASK_LPSR_EN,
+ 		},
+-		.reg_inits =3D buck1_inits,
+-		.reg_init_amnt =3D ARRAY_SIZE(buck1_inits),
++		.reg_inits =3D bd71828_buck1_inits,
++		.reg_init_amnt =3D ARRAY_SIZE(bd71828_buck1_inits),
+ 	},
+ 	{
+ 		.desc =3D {
+@@ -253,8 +253,8 @@ static const struct bd71828_regulator_data bd71828_rdat=
+a[] =3D {
+ 			.lpsr_reg =3D BD71828_REG_BUCK2_SUSP_VOLT,
+ 			.lpsr_mask =3D BD71828_MASK_BUCK1267_VOLT,
+ 		},
+-		.reg_inits =3D buck2_inits,
+-		.reg_init_amnt =3D ARRAY_SIZE(buck2_inits),
++		.reg_inits =3D bd71828_buck2_inits,
++		.reg_init_amnt =3D ARRAY_SIZE(bd71828_buck2_inits),
+ 	},
+ 	{
+ 		.desc =3D {
+@@ -399,8 +399,8 @@ static const struct bd71828_regulator_data bd71828_rdat=
+a[] =3D {
+ 			.lpsr_reg =3D BD71828_REG_BUCK6_SUSP_VOLT,
+ 			.lpsr_mask =3D BD71828_MASK_BUCK1267_VOLT,
+ 		},
+-		.reg_inits =3D buck6_inits,
+-		.reg_init_amnt =3D ARRAY_SIZE(buck6_inits),
++		.reg_inits =3D bd71828_buck6_inits,
++		.reg_init_amnt =3D ARRAY_SIZE(bd71828_buck6_inits),
+ 	},
+ 	{
+ 		.desc =3D {
+@@ -440,8 +440,8 @@ static const struct bd71828_regulator_data bd71828_rdat=
+a[] =3D {
+ 			.lpsr_reg =3D BD71828_REG_BUCK7_SUSP_VOLT,
+ 			.lpsr_mask =3D BD71828_MASK_BUCK1267_VOLT,
+ 		},
+-		.reg_inits =3D buck7_inits,
+-		.reg_init_amnt =3D ARRAY_SIZE(buck7_inits),
++		.reg_inits =3D bd71828_buck7_inits,
++		.reg_init_amnt =3D ARRAY_SIZE(bd71828_buck7_inits),
+ 	},
+ 	{
+ 		.desc =3D {
+@@ -633,7 +633,7 @@ static const struct bd71828_regulator_data bd71828_rdat=
+a[] =3D {
+ 			 * LDO6 only supports enable/disable for all states.
+ 			 * Voltage for LDO6 is fixed.
+ 			 */
+-			.of_parse_cb =3D ldo6_parse_dt,
++			.of_parse_cb =3D bd71828_ldo6_parse_dt,
+ 		},
+ 	}, {
+ 		.desc =3D {
+--=20
+2.51.0
+
+
+--hHlLATUC+NJoLwSU
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmj/W7EACgkQeFA3/03a
+ocXFRAf/X2TvPapTD+az8EHYbCCnjJcIvHuUfnEQlERv5ijnP0Gl1KSmtaVPlpvl
+VEVmc5eK8QfVVA8akUmsAFtEQ17BUXteFoPdjVb37GJGuyW+tH+R4GpNKRXbpsPT
+kxqHs/o5fxk7ESJZhWCSErb1jZyKhuluMo8331A00dHZW9zGIielOf/2Cs8eoxMf
+tF4+VUmvy/nfAGhfOyfvPy7WLouZFhQdgUI/u7KhsibBAlIBjVrWz2pcXsCAx2qu
+dtxESaLBV3H3wleVqN84Hxhiok+cPhW8tz85MtBhBxHT7tNbM+QjUe/jHxk2GnOM
+5t6EpGBTVdq0zs4EwAkPzUE5uFCr2Q==
+=9ybE
+-----END PGP SIGNATURE-----
+
+--hHlLATUC+NJoLwSU--
 
