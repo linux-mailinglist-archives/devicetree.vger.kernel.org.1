@@ -1,53 +1,52 @@
-Return-Path: <devicetree+bounces-231716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CA67C106A8
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 20:03:20 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 709E2C10672
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 20:02:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDFAC1892BE3
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:00:05 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7CDC24FCBFD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:59:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9959335075;
-	Mon, 27 Oct 2025 18:55:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AD0233508C;
+	Mon, 27 Oct 2025 18:55:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ubVARB1N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="crH8EmHu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B998C2D5412;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D08893346BB;
 	Mon, 27 Oct 2025 18:55:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761591316; cv=none; b=RcpQVzqE0A908vNDcOZ8n0/P2EaarpDU8GoT4SlxjXi2V3el6LIV1SQA9XzOKPZsp8KHuEyR1+Y/W3MoIMaZtEjdcKsSEmuD0MBbkyDK6BQkUfsgSvnQdpmIldK72v2XhxORiEOJHM0p4bt8pBv4XiYYEG6MUYTrezGbljkmHWs=
+	t=1761591316; cv=none; b=bfwcQ+BOpFl8zBlD3q1vUzv31uT0GEah04TcGrK5QQKeiq+r85qkUtXm98lTnJoKwbZAHrygDjeDowesMH+C6JHZwCxjk5v926HjRI8P0XuC20H5HdwV9KDIvEBh74aVL/WO6qOlt0mhsQloLCqjPbt7swri9anx3dAymMqgIwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1761591316; c=relaxed/simple;
-	bh=/JgzL9VdvfstUomPfZ32E6t/L8VPBz9Fmo+sGuWeS+8=;
+	bh=GGEvEZvRaoIuFDYNvZvkDj01Ws1uqA3sPZnOQu42VM4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=h9gRFL+hb6OGGf2ylBuSAjxAANkLIStIi1NnTrfuS8HA+MAAn6fVeqNpJ6XJSM4D3SOCDIh8nOsYoyECgbGjln8nNYkp3Qsi9CcrInMfhkNBRWmMpc9IzSt1muIqipMvUJfk6bjf0MKM543TfUBux/k6Anev7V2SdIgXNk2OnqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ubVARB1N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 8E7E4C116C6;
+	 In-Reply-To:To:Cc; b=emaDGZw5QIDDtkSAQhQKIHRInJFvNciuhiYP7sIW2L/4Su4fvQN0S13h80CMQSeqYDs69qVJeOA95EMUyIpo/Xg7rcWNShpty9MPgoVB+7FyihCdFqSWjkW4L4Z9ltFwnxGIxYwuzF6QLVfAUttl5/BH1X9lEo0b/21uDqO0mmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=crH8EmHu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 9B49AC16AAE;
 	Mon, 27 Oct 2025 18:55:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1761591316;
-	bh=/JgzL9VdvfstUomPfZ32E6t/L8VPBz9Fmo+sGuWeS+8=;
+	bh=GGEvEZvRaoIuFDYNvZvkDj01Ws1uqA3sPZnOQu42VM4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=ubVARB1N1cC5DCPMes3iFI6FUhFu48KtuLTjdhD+8kC7wRUNqciEECyp+S+f69rtv
-	 8pj9uqO9r9LGQ6yxtfD5Y/mSpUJ0gjPlFdSGTuwj3XAU3KcOby9ZpgX5r+53BVX0nz
-	 LpGQNbUAQ+exzXikFFONkrO7aBStVDbhu1e6BaJB0TpEY0aIb1nYj1+hMMXVMOZlIx
-	 ez5XZv/mAhxPxgW/TSrXS3wpRDdMUb3cimk0azCWoD80yC7gbiHDyLZv8VUesElSBW
-	 mdgZPqB5y0DQOVPqKzbU4KgGPIH7Z1JbWdkUjTRjLHKfkkQ+GyJyPSe0QuCL3QjwPY
-	 tDYJzaNkd0XNQ==
+	b=crH8EmHudGPM8e37FU+7DRJ2Dzqog99qvcRmRxP3T5MSA6YbpCD4GyfEh9yWtis2p
+	 e0BQ3yC1AqeMAn3yU3Jitw01qRsyU4ieeVue4qx1SsRtidmVL50gqleD9LC3aVvBLr
+	 KOck+oFHq/10Bfvfm84Vy7LbOxI+VXfq5yPO1Za4H7CWQeCnY86bD8+XzFAy+epXo/
+	 1juAgtdSinJkNnjqnr40rQW7SieDo73bbRsJOXynRyECZzr2JD7GgpxTqdfo7EXW/q
+	 3Mbcfh5S8qpcPrrV66pBV8NAohs8v4J8AndwV8SVy7biPjd4U084eJzhi0LJ8ofMpE
+	 bWGIBVgYEl15A==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7FDD1CCF9EE;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8E06BCCF9E5;
 	Mon, 27 Oct 2025 18:55:16 +0000 (UTC)
 From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Date: Mon, 27 Oct 2025 13:55:16 -0500
-Subject: [PATCH v4 2/5] dt-bindings: memory: tegra194-mc: Add dummy client
- IDs for Tegra194
+Date: Mon, 27 Oct 2025 13:55:17 -0500
+Subject: [PATCH v4 3/5] memory: tegra186-emc: Support non-bpmp icc scaling
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,7 +55,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251027-tegra186-icc-p2-v4-2-e4e4f57e2103@gmail.com>
+Message-Id: <20251027-tegra186-icc-p2-v4-3-e4e4f57e2103@gmail.com>
 References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
 In-Reply-To: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
 To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -66,11 +65,11 @@ To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
 Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-tegra@vger.kernel.org, Aaron Kling <webgeek1234@gmail.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761591315; l=911;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761591315; l=5761;
  i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=7znC8jN7FMo0ABLPSWxCMceZ2XZ3qZ4hFMoMP46i7rM=;
- b=oryh/jK+ksBPgI6VSObtoe4KCUaO7ft7IuD8IPULagCDjjkYuvzb7vyOCDkex8WU5EyIc41mj
- iFg9Ln6T2s4DScGt58Ju30dSVzFEQtLLIy6zko5QOIkMMMj5S48JXpP
+ bh=222sswwfBJV+dPNMrl15U4Icho4DcSw0wOpJlVxJSao=;
+ b=rjad1WYlJMXjlqBfbvXz79t0Y09Vy5oD0DVu+z9g0hetg9tLLViNkUFiqPoPh1cOQ/qFfC902
+ M0hEEf1B1FYCLedIam3WsB6d+xmjMG9v+P9RoZRLFJwMQXyKbK9ZCUz
 X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
  pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
 X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
@@ -80,28 +79,201 @@ Reply-To: webgeek1234@gmail.com
 
 From: Aaron Kling <webgeek1234@gmail.com>
 
-Add ICC IDs for dummy software clients representing CCPLEX clusters.
+This adds support for dynamic frequency scaling of external memory on
+devices with bpmp firmware that does not support bwmgr.
 
 Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
 ---
- include/dt-bindings/memory/tegra194-mc.h | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/memory/tegra/tegra186-emc.c | 132 +++++++++++++++++++++++++++++++++++-
+ 1 file changed, 130 insertions(+), 2 deletions(-)
 
-diff --git a/include/dt-bindings/memory/tegra194-mc.h b/include/dt-bindings/memory/tegra194-mc.h
-index eed48b746bc94072a6bd0af7f344dbb6f6618859..a7d97a1a470cd3cfb18c7ef45c421426ea3c7abf 100644
---- a/include/dt-bindings/memory/tegra194-mc.h
-+++ b/include/dt-bindings/memory/tegra194-mc.h
-@@ -407,4 +407,10 @@
- /* MSS internal memqual MIU6 write clients */
- #define TEGRA194_MEMORY_CLIENT_MIU6W 0xff
+diff --git a/drivers/memory/tegra/tegra186-emc.c b/drivers/memory/tegra/tegra186-emc.c
+index 9959ad5804b444b269456d1fbae87b4bc111661b..74be09968baa7a0fbdce4359f470ce56b18acb10 100644
+--- a/drivers/memory/tegra/tegra186-emc.c
++++ b/drivers/memory/tegra/tegra186-emc.c
+@@ -18,6 +18,17 @@ struct tegra186_emc_dvfs {
+ 	unsigned long rate;
+ };
  
-+/* ICC ID's for dummy MC clients used to represent CPU Clusters */
-+#define TEGRA_ICC_MC_CPU_CLUSTER0       1003
-+#define TEGRA_ICC_MC_CPU_CLUSTER1       1004
-+#define TEGRA_ICC_MC_CPU_CLUSTER2       1005
-+#define TEGRA_ICC_MC_CPU_CLUSTER3       1006
++enum emc_rate_request_type {
++	EMC_RATE_DEBUG,
++	EMC_RATE_ICC,
++	EMC_RATE_TYPE_MAX,
++};
 +
- #endif
++struct emc_rate_request {
++	unsigned long min_rate;
++	unsigned long max_rate;
++};
++
+ struct tegra186_emc {
+ 	struct tegra_bpmp *bpmp;
+ 	struct device *dev;
+@@ -33,8 +44,90 @@ struct tegra186_emc {
+ 	} debugfs;
+ 
+ 	struct icc_provider provider;
++
++	/*
++	 * There are multiple sources in the EMC driver which could request
++	 * a min/max clock rate, these rates are contained in this array.
++	 */
++	struct emc_rate_request requested_rate[EMC_RATE_TYPE_MAX];
++
++	/* protect shared rate-change code path */
++	struct mutex rate_lock;
+ };
+ 
++static void tegra186_emc_rate_requests_init(struct tegra186_emc *emc)
++{
++	unsigned int i;
++
++	for (i = 0; i < EMC_RATE_TYPE_MAX; i++) {
++		emc->requested_rate[i].min_rate = 0;
++		emc->requested_rate[i].max_rate = ULONG_MAX;
++	}
++}
++
++static int emc_request_rate(struct tegra186_emc *emc,
++			    unsigned long new_min_rate,
++			    unsigned long new_max_rate,
++			    enum emc_rate_request_type type)
++{
++	struct emc_rate_request *req = emc->requested_rate;
++	unsigned long min_rate = 0, max_rate = ULONG_MAX;
++	unsigned int i;
++	int err;
++
++	/* select minimum and maximum rates among the requested rates */
++	for (i = 0; i < EMC_RATE_TYPE_MAX; i++, req++) {
++		if (i == type) {
++			min_rate = max(new_min_rate, min_rate);
++			max_rate = min(new_max_rate, max_rate);
++		} else {
++			min_rate = max(req->min_rate, min_rate);
++			max_rate = min(req->max_rate, max_rate);
++		}
++	}
++
++	if (min_rate > max_rate) {
++		dev_err_ratelimited(emc->dev, "%s: type %u: out of range: %lu %lu\n",
++				    __func__, type, min_rate, max_rate);
++		return -ERANGE;
++	}
++
++	err = clk_set_rate(emc->clk, min_rate);
++	if (err)
++		return err;
++
++	emc->requested_rate[type].min_rate = new_min_rate;
++	emc->requested_rate[type].max_rate = new_max_rate;
++
++	return 0;
++}
++
++static int emc_set_min_rate(struct tegra186_emc *emc, unsigned long rate,
++			    enum emc_rate_request_type type)
++{
++	struct emc_rate_request *req = &emc->requested_rate[type];
++	int ret;
++
++	mutex_lock(&emc->rate_lock);
++	ret = emc_request_rate(emc, rate, req->max_rate, type);
++	mutex_unlock(&emc->rate_lock);
++
++	return ret;
++}
++
++static int emc_set_max_rate(struct tegra186_emc *emc, unsigned long rate,
++			    enum emc_rate_request_type type)
++{
++	struct emc_rate_request *req = &emc->requested_rate[type];
++	int ret;
++
++	mutex_lock(&emc->rate_lock);
++	ret = emc_request_rate(emc, req->min_rate, rate, type);
++	mutex_unlock(&emc->rate_lock);
++
++	return ret;
++}
++
+ /*
+  * debugfs interface
+  *
+@@ -107,7 +200,7 @@ static int tegra186_emc_debug_min_rate_set(void *data, u64 rate)
+ 	if (!tegra186_emc_validate_rate(emc, rate))
+ 		return -EINVAL;
+ 
+-	err = clk_set_min_rate(emc->clk, rate);
++	err = emc_set_min_rate(emc, rate, EMC_RATE_DEBUG);
+ 	if (err < 0)
+ 		return err;
+ 
+@@ -137,7 +230,7 @@ static int tegra186_emc_debug_max_rate_set(void *data, u64 rate)
+ 	if (!tegra186_emc_validate_rate(emc, rate))
+ 		return -EINVAL;
+ 
+-	err = clk_set_max_rate(emc->clk, rate);
++	err = emc_set_max_rate(emc, rate, EMC_RATE_DEBUG);
+ 	if (err < 0)
+ 		return err;
+ 
+@@ -217,6 +310,12 @@ static int tegra186_emc_get_emc_dvfs_latency(struct tegra186_emc *emc)
+ 	return 0;
+ }
+ 
++static inline struct tegra186_emc *
++to_tegra186_emc_provider(struct icc_provider *provider)
++{
++	return container_of(provider, struct tegra186_emc, provider);
++}
++
+ /*
+  * tegra186_emc_icc_set_bw() - Set BW api for EMC provider
+  * @src: ICC node for External Memory Controller (EMC)
+@@ -227,6 +326,33 @@ static int tegra186_emc_get_emc_dvfs_latency(struct tegra186_emc *emc)
+  */
+ static int tegra186_emc_icc_set_bw(struct icc_node *src, struct icc_node *dst)
+ {
++	struct tegra186_emc *emc = to_tegra186_emc_provider(dst->provider);
++	struct tegra_mc *mc = dev_get_drvdata(emc->dev->parent);
++	unsigned long long peak_bw = icc_units_to_bps(dst->peak_bw);
++	unsigned long long avg_bw = icc_units_to_bps(dst->avg_bw);
++	unsigned long long rate = max(avg_bw, peak_bw);
++	const unsigned int ddr = 2;
++	int err;
++
++	/*
++	 * Do nothing here if bwmgr is supported in BPMP-FW. BPMP-FW sets the final
++	 * Freq based on the passed values.
++	 */
++	if (mc->bwmgr_mrq_supported)
++		return 0;
++
++	/*
++	 * Tegra186 EMC runs on a clock rate of SDRAM bus. This means that
++	 * EMC clock rate is twice smaller than the peak data rate because
++	 * data is sampled on both EMC clock edges.
++	 */
++	do_div(rate, ddr);
++	rate = min_t(u64, rate, U32_MAX);
++
++	err = emc_set_min_rate(emc, rate, EMC_RATE_ICC);
++	if (err)
++		return err;
++
+ 	return 0;
+ }
+ 
+@@ -329,6 +455,8 @@ static int tegra186_emc_probe(struct platform_device *pdev)
+ 	platform_set_drvdata(pdev, emc);
+ 	emc->dev = &pdev->dev;
+ 
++	tegra186_emc_rate_requests_init(emc);
++
+ 	if (tegra_bpmp_mrq_is_supported(emc->bpmp, MRQ_EMC_DVFS_LATENCY)) {
+ 		err = tegra186_emc_get_emc_dvfs_latency(emc);
+ 		if (err)
 
 -- 
 2.51.0
