@@ -1,108 +1,157 @@
-Return-Path: <devicetree+bounces-231380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 456FFC0CCB7
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:57:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CA9CC0CD11
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:59:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A1E7A4F58AF
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 09:54:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DE36188E649
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 09:59:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 997372F3C26;
-	Mon, 27 Oct 2025 09:53:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7D6E2FD67C;
+	Mon, 27 Oct 2025 09:57:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HlpY9PJK"
+	dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b="LSSge2FT";
+	dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b="RdN1USwS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from honk.sigxcpu.org (honk.sigxcpu.org [24.134.29.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEC302F3C23
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 09:53:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43E9E2FCBF3;
+	Mon, 27 Oct 2025 09:57:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=24.134.29.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761558815; cv=none; b=YBQL7Fcf/gwLj7kIklFrBdFwnlWSY0YfgbEroA6XvWZSsw8lKEv6LmTYsMhoB8VpUPNOs5FzoKNQJ9KmKB+2MFDkzahWFQ5moZM5kRACMDCJhecRE+Xv2e1WaXE+qXpNfULYxi8tjnADaf0zL7goXCKdmii4hvH73jXipJYTfA0=
+	t=1761559042; cv=none; b=DpI7ZVsMDpeOLDPld9i4CtEVuWQtQ5BvNTAbN7OcKr+d4ySG87pWl1G2dR/YGck8S7MX8HPR0YiIikRohPB6BoHfhUzV4wRV1Cp82b8zp9XW0WQZuPYcunpyvH1O+inPM1k5KDOktvxqlY+el14aYyaWFfz+q7fIcejohCtfKDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761558815; c=relaxed/simple;
-	bh=uHZIvBo2w1MTfQAp1MbdkxhqheGGsSeb06hs1bU0eWo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=E1G/Ul07PmQpumfnk8mFEcydzEWT52V7eiQQBBdNVDr1CKB4v4fT0/DtxEeAC+sSLOmmELC7f/o1whDaeavsEzIzsJi1s7VRAjDLj8bOAz9W4boklX3l3GdMijv9fYa3qmCrCht2oRejm7GjwGlPnIWCySkZj2mTj9nIE+TSElM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HlpY9PJK; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-26d0fbe238bso31646605ad.3
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 02:53:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761558813; x=1762163613; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uHZIvBo2w1MTfQAp1MbdkxhqheGGsSeb06hs1bU0eWo=;
-        b=HlpY9PJKpXoOw9bpQk/Jn2/oQXTaHngwg1iB8FfrSBzs56KS2scu7zIbEtIP0X+N2T
-         LoP84Kf2ucYUT9vWrd7iWmm7YbVy6FHam5D3XTq6TUAejwR31yW+tZ6MpG7kNV1vwp/L
-         4AwUuV51ozl0qusm4LXIgdHzHGM0V2FpH8mmRblcjFeLNCk5NvLWaigJN/uddS2NpxXs
-         0e4X0bFnw5lx9Rvm5xD6WeGPRIoeV39KR2Isidorw8oXMI0L/BgFbGT77Fg14Awu/oH8
-         5rdOj/9M3ca434CGgsM4jkd7gIQTGP1T+YnVokilN2RCeoeZefbbva0OVPzsRNIon5VP
-         OxoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761558813; x=1762163613;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uHZIvBo2w1MTfQAp1MbdkxhqheGGsSeb06hs1bU0eWo=;
-        b=OXI0qK1AML81E/p7XgcVM4HrCqB+zc5AhfSIXuy/wRjhLvPaAIqRrSG+ZN1GGMeN9j
-         6UfiHs4EEUnD6W/a+wvvf56G9VJGmsYfOEju0Al9ameTcHPgfk3LDhl1CdupZoxu68pL
-         5CLCowJeX6rV/OYaYYI0GVsG7pzaMJfLnQhTEFOVnicmHT3MdGML9a7qT+S4vEA2wcHg
-         hbd3tKWdjWKb5AL75Vguan4UBIvfLioolzrQzvkHJKHllAtvNK0/nv4HJWD06jt3Y09D
-         Y6NkKG76r4Wgl2vhdp51q6C8RN7kwSYVv9lAzhMPZIFXM7/4Yyo3Oz2tFJB1VKg5r1sO
-         qoag==
-X-Forwarded-Encrypted: i=1; AJvYcCXdaYieZlO6Ewn1a0zARDh+vdeSu6kPdM7drTzr6G7zjYQBoCS/l8gAUXH7+xXXK91lezD6JxLiEmG/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyF0IvNgHWixxbElp2J9fEFSOiwBATchLj0ihMJqUMV8om2Xgfx
-	secA7ys7nJKS1Rs+eCRdlbEEYqSGpXBCxxPKT0ntWpWMcFcgbaTdc43xPHCBQmbMws5i9cUAnMz
-	etZmcm2rOfRc+n6LnTCThiX6+BvQpiGk=
-X-Gm-Gg: ASbGncu0+iT57AgyvBjocOQ5YnvDDNlXtrUGvnRXBthE9MQK+YsgbrkGwfHAcO461zI
-	hEkySf3cIxZlZa/FbENca7NQqBKHNZo03vuIraY3iDzmKM+nRosYtIQCfDcO8aAcs1cfq6tqQsA
-	vLSmyf7SYGal+JEBqbS3KUof9wwF5TSU8EGNRzc8SQv2GiyRmZh/7p/H7tMJ5EAEeM/mSksKkIY
-	9uqDbikNB2fafhY+eathFvjuuqxzS+LdQeKZ1h6h2LaQpN3TQMl8X7EPMusaWn3jTQAwH3aAiAF
-	lUqTdbTkhTyJ3G2+AIbXDY1S61IF1dPiBeo=
-X-Google-Smtp-Source: AGHT+IHtoK9BtAWkuBlb8wHMY81e3C7F/tuuKHdZ9dReVXpNyDrBKViu/Dmg9ERnj0atAtepiwCmQJhoe6CLgiAV9x0=
-X-Received: by 2002:a17:903:38c8:b0:26e:d0aa:7690 with SMTP id
- d9443c01a7336-2948ba3e147mr140058725ad.41.1761558813104; Mon, 27 Oct 2025
- 02:53:33 -0700 (PDT)
+	s=arc-20240116; t=1761559042; c=relaxed/simple;
+	bh=thirantOH4kH3f0r2QU+U/UTNUm7Zfvr0Y+urH7YorI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bf2qw02qAin8FpbS6hFFbqbPTrvva6ohaEl9PBB0QtQzGKSceZxwq13Lon9i27IN2VJgiaXb3CGelP7vE+vrk1+kVBAEpDskGAPyTnehVqKj0voCimOnyb10GqfT7uvwMgAqVQJN8M8aiR/T1SBMLUDOT3QxhU5kbn9WhQUJ6og=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sigxcpu.org; spf=pass smtp.mailfrom=sigxcpu.org; dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b=LSSge2FT; dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b=RdN1USwS; arc=none smtp.client-ip=24.134.29.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sigxcpu.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sigxcpu.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=sigxcpu.org; s=2024;
+	t=1761559028; bh=thirantOH4kH3f0r2QU+U/UTNUm7Zfvr0Y+urH7YorI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LSSge2FTR6D3qKRjJ42E13VxBPQKSOpHvoA6MooKqxpc9rN2bpRis+EqbJsuKkkIv
+	 9zFH+yK4V3WFUphrnp/VTs9J9sdyGd3LKWAH6dhwVR3WB/yyG05vsCupYVUNK+ryrR
+	 vJsq25+RrpYP1YB2YjffZscbOox7bmmhkjHpa5/hfXYp4VkkQn1e1NnGaEnlGJoeDQ
+	 4CpCX4YhV0k4LnUWtGHZCOWXtiy9hVvhALxvlaLa9AhKSkhXJExQvXUjfGpAY7xMJk
+	 UGA67PKFTzk/LmRowxyivmVpO2xjcRFQWY+n/ngdOq5VjOZosnbqv+B1Gu8we4o8eo
+	 7wCz1Q9juQkDQ==
+Received: from localhost (localhost [127.0.0.1])
+	by honk.sigxcpu.org (Postfix) with ESMTP id 9D9D9FB03;
+	Mon, 27 Oct 2025 10:57:08 +0100 (CET)
+Received: from honk.sigxcpu.org ([127.0.0.1])
+	by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id xOcFvBNfwfNH; Mon, 27 Oct 2025 10:57:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=sigxcpu.org; s=2024;
+	t=1761559027; bh=thirantOH4kH3f0r2QU+U/UTNUm7Zfvr0Y+urH7YorI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RdN1USwSr30UpaEyXrknx1J/RlMsNcJW1D+1SgQDqvblndSztBpFLTKWwqGDVYfP+
+	 6gGRNsWD0+asBilsu/M4X7I4BAAcWHPDKebpmcn00ZniJ5AQQq5MfSeikbMe5wSfTP
+	 bxulgTShhIRWA/7A50RBUnXU68pmRzaJbwHsKhw6ZUfkburhzwd2M5zzOBPfYOdg0f
+	 e2fQMnpqgzaKyYO7VABXRkKEbGc3H8W0fs5rPdLeLsNH13oatacn6bh/UIfOrOJjHy
+	 DlAofM7w6pCwgcFaKCONz4UHRxVKqbiRRN+R1Xum1hR6MwNtY2YeipAMUQMPG2dwAk
+	 UY2IbbSFcXSkQ==
+Date: Mon, 27 Oct 2025 10:57:05 +0100
+From: Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
+To: david@ixit.cz
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Jonathan Corbet <corbet@lwn.net>, Jiri Kosina <jikos@kernel.org>,
+	Benjamin Tissoires <bentiss@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Casey Connolly <casey.connolly@linaro.org>,
+	linux-input@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+	Gergo Koteles <soyer@irl.hu>, Casey Connolly <casey@connolly.tech>
+Subject: Re: [PATCH v7 0/3] Add support for sound profile switching and
+ leverage for OnePlus slider
+Message-ID: <aP9B8fPs7y2-dGJi@quark2.heme.sigxcpu.org>
+References: <20251014-op6-tri-state-v7-0-938a6367197b@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251017112025.11997-1-laurentiumihalcea111@gmail.com> <20251017112025.11997-3-laurentiumihalcea111@gmail.com>
-In-Reply-To: <20251017112025.11997-3-laurentiumihalcea111@gmail.com>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Mon, 27 Oct 2025 11:55:58 +0200
-X-Gm-Features: AWmQ_bn8djVWD9T3hbxz5BaFzJdgRNmgPK4MMnk5oMPTdlZh7IbRd6rHqy4Tk8c
-Message-ID: <CAEnQRZDXhb=ssjbL-SOWXN74pjqzKgwXQ3SUUaQYMJapRPgKFA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/8] dt-bindings: clock: document 8ULP's SIM LPAV
-To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Daniel Baluta <daniel.baluta@nxp.com>, 
-	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-clk@vger.kernel.org, imx@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Pengutronix Kernel Team <kernel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251014-op6-tri-state-v7-0-938a6367197b@ixit.cz>
 
-On Fri, Oct 17, 2025 at 2:22=E2=80=AFPM Laurentiu Mihalcea
-<laurentiumihalcea111@gmail.com> wrote:
->
-> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->
-> Add documentation for i.MX8ULP's SIM LPAV module.
->
-> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+Hi,
+On Tue, Oct 14, 2025 at 11:20:32AM +0200, David Heidelberg via B4 Relay wrote:
+> This series add initial support for OnePlus 6 and 6T, but other OnePlus
+> phones contains same mechanism to switch sound profiles.
+> 
+> This code was tested for two years within the downstream Snapdragon 845 tree.
+> It is now perfectly integrated with feedbackd in the Phosh environment.
+> 
+> The series is also available (until merged) at
+>   git@gitlab.com:dhxx/linux.git b4/op6-tri-state
+> 
+> Changes in v7:
+> - Separated GPIO number fix from the original commit
+>   "arm64: dts: qcom: sdm845-oneplus: Add alert-slider"
+> - Rebased again next-20251008
+> - Link to v6: https://lore.kernel.org/r/20250731-op6-tri-state-v6-0-569c25cbc8c2@ixit.cz
+> 
+> Changes in v6:
+> - Rebased again next-20250731, otherwise just a resent.
+> - Link to v5: https://lore.kernel.org/r/20250419-op6-tri-state-v5-0-443127078517@ixit.cz
+> 
+> Changes in v5:
+> - Dropped merged
+>   "Input: gpio-keys - add support for linux,input-value DTS property"
+> - Link to v4: https://lore.kernel.org/all/cover.1677022414.git.soyer@irl.hu/
+> 
+> Changes in v4:
+> - DTS: use default debounce-interval, order alphabetically
+> - Link to v3: https://lore.kernel.org/lkml/cover.1676850819.git.soyer@irl.hu/
+> 
+> Changes in v3:
+> - rename tri-state-key to alert-slider, fix DTS warnings,
+> 
+> Changes in v2:
+> - rebase to qcom/for-next
+> add SND_PROFILE_* identifiers to input-event-codes.h
+> 
+> ---
+> Gergo Koteles (3):
+>       Input: add ABS_SND_PROFILE
+>       arm64: dts: qcom: sdm845-oneplus: Correct gpio used for slider
+>       arm64: dts: qcom: sdm845-oneplus: Add alert-slider
 
-Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+feedbackd has support for this since 0.5.0 so it would be nice to see
+that mainlined.
+
+Tested-by: Guido Günther <agx@sigxcpu.org> # oneplus,fajita & oneplus,enchilada
+Reviewed-by: Guido Günther <agx@sigxcpu.org> 
+
+Cheers,
+ -- Guido
+
+> 
+>  Documentation/input/event-codes.rst                |  6 ++++
+>  .../arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 39 ++++++++++++++++++++--
+>  drivers/hid/hid-debug.c                            |  1 +
+>  include/uapi/linux/input-event-codes.h             |  9 +++++
+>  4 files changed, 53 insertions(+), 2 deletions(-)
+> ---
+> base-commit: 52ba76324a9d7c39830c850999210a36ef023cde
+> change-id: 20250419-op6-tri-state-ed1a05a11125
+> 
+> Best regards,
+> -- 
+> David Heidelberg <david@ixit.cz>
+> 
+> 
 
