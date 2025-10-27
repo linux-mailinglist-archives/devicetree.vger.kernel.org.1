@@ -1,315 +1,183 @@
-Return-Path: <devicetree+bounces-231527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5C3AC0DEF6
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:14:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D60B4C0DF29
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:15:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 050C33A3184
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:10:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F8CE1886A74
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:15:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F00C3258ECA;
-	Mon, 27 Oct 2025 13:10:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B012B26E710;
+	Mon, 27 Oct 2025 13:14:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X13+xhpl"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pjh+2Rii"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAB5B245022;
-	Mon, 27 Oct 2025 13:10:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0A0B1E260C
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 13:14:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761570623; cv=none; b=KzVC6l6mnIh/rXKGE7MFrXiaP9PkjF64cpuRPhymRIQC6MiKL5vgz9E4jWLVJ+YcZ7cmqLAfJJwgjDNpSVnBi6JZkH3yCzR30CW+OJyTM+SY3iDD3q8kpzGcRt+BtJuAKbBw/xtlGld7sAunAG0dYDSk9afVAzvE4k2FUWoLGp0=
+	t=1761570888; cv=none; b=jrqTl/NW1/Yx6mjw7Ro6qbVe9jC5pncCfhRrYCsIh6oaHJ3oacIAL/IrJBDDGdiFcrdMhlt+YInPGuiZdUS8WxyTVCs6eaCzKXh8yAUgI03fmNmLCzeX0nT4RD3+nz0Y+y/SYcOpK8KjD/Kg6zTHmTPxVkBrsfIKTnt3AP65olY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761570623; c=relaxed/simple;
-	bh=oQmm+wvIDMShfnALqPD7wwl33FnC85XhswN//H+pbp8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TTpdYVKC0wgI1wpLG6d0UVYg26wyqW4FqJ7Iz6ihFbHjnLcKqdt6qfmImthwMgRyUz+cqnORZrK1al6GYc/kxgVq3V9ovIm1P5oj1JC7x4gYzuEc/shhXveDjg0A/jidi9GJ8Q4VP8vwFpFzKnB3t3jZMxkgIfj3RUcx0pEtg1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X13+xhpl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0529EC4CEFF;
-	Mon, 27 Oct 2025 13:10:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761570623;
-	bh=oQmm+wvIDMShfnALqPD7wwl33FnC85XhswN//H+pbp8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=X13+xhplCXsjWqBnlnhDbz7hYz8xE65UGoHPkd9Cw9FeJrxoQXWliigGkMgKlyWCr
-	 QgJ9yT27/M0MyZXxKsNQXu5kPaNUsRsR8VSj9aDK6MojBBdsMTIM11CYPOfyc2276z
-	 QDCE++RfBO3YmJdfGE/piBTkPEzRAFin62hLHwQbcOG1MK5tTdeSCrtnZ5ibGTKyNp
-	 jQOxNWQ6LVdOek8fAm2IGmIRx7JUhAbEfxrx+HNzev6IXdnVuMA575STmCVwBfTWAS
-	 x/wgIITxB7SYCSQurqKtSyLhTNevnl06tr1rhq0WwpzQN287sP/HyrXnfCq85zoFBH
-	 WB3rqqH16ZB2g==
-Message-ID: <a2ec6794-1131-421e-848b-3fddd39191e2@kernel.org>
-Date: Mon, 27 Oct 2025 14:10:18 +0100
+	s=arc-20240116; t=1761570888; c=relaxed/simple;
+	bh=yurVmvxSOFrWw32vD2Z36RTMlvMH+DXhPVbXI0Zm9yE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eNJyvnfU3CMF4EXQmKzclVc8qllL7o0Ci/7x11QXpaFS/33TmQcLNK/CmontsPPGRq308M6E1PYua2yRGY7W1ThjdfbgPEp7AihG9lui2Nua3bheSD0dLgh6du4HnScDdR3j36iPmlkFS+eUD+jZcmgUUBigPZdaGgMvJ2aJmT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pjh+2Rii; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59RCTq2t2752122
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 13:14:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=nFyzKi5bv7XzhZEu4Cpk+WRY
+	5dnAaHHoSnvN/ez9mr0=; b=pjh+2RiiyRIkOe3N+YJqN3TwoEj4CEejkjcAuiqg
+	eTNuHP0Os9Sz7E6MkyxZ7yPTKOTbVK6TAJMmFrSCsjvC860dongX6tGYnABRWVzS
+	wVYrnEqc9vFYFjjDuuYVIAXx3SVif6ZwmvJZwqvxE86/Q+LwSCYANe3T68ptbJrP
+	v9lVlF5LWEBQm6lIWoPKAyuai8LKrkTxNuw7UizS7jBGk/ZKo45otfCbUXpxU3Tx
+	gUH9KaOaJxEuNcrJ1+4zX1LQ3jHNlREa7Xz7JO3+5YVL/1GoYjbUcLmhYHDcpiBZ
+	Eb1JL06WICkHrog0IZHMk4odthMZx6HQNWiniq32TGyhow==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a28swg40f-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 13:14:44 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4e8916e8d4aso45558211cf.2
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 06:14:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761570884; x=1762175684;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nFyzKi5bv7XzhZEu4Cpk+WRY5dnAaHHoSnvN/ez9mr0=;
+        b=bfo4QEdbCeiC0KGmTAQGHVJE59KitRq3+Ad88R7wRZ8HGDH6t1VyAj4+47+3wQVZfg
+         7f/bj+HtTPNf5jQBx1KV1ETCPwPSQMbmTe2krB064Sw41haWa+t00WlMiM5yigUU59NW
+         XC31D0dl/M9f20VvGE2FYnO/camOpZJqRspQo9Dml99UXN1vyRFmEA8SMVa2DkFqWaTj
+         Lur1XdB2BALMknynQVIi8aIYgNf6TTGSyJZYTR3LzORMJ5G3utqpMxENwItH1B8Zbh73
+         wd44nTC72DJWSjUqfiz/xTHgcfV4j+UIexFiSFDn36wVo++FKY2fp8d/UijBjM1giKl9
+         TNhw==
+X-Forwarded-Encrypted: i=1; AJvYcCUKhCY91jJhYBaX15SPd4vgEX/tOTATMLrSrgFThTzozdniy8a6YJ3pnbHM26+9MaPyouY1IX67J58a@vger.kernel.org
+X-Gm-Message-State: AOJu0Yygx9gltJb4w0fkYhsW/KYkK6uJ1cck/W6I8FADZXEzXMe0vuNW
+	H4HBpdjILKVxLlAH2pZ7xwAa6baXMeLgEJLD90T4vOWljktPnJAj3NxsEdR/d7YCCjGlXnyYKoz
+	CJE3Co5e1BWxU9olhWZgIQXSkjOll4YqKietBgHQ24wFIjP+GKy/NXjEagYk5+nBA
+X-Gm-Gg: ASbGnctB2Y+4yI2r/DWnPK6JEZYjpW5IcJVF4qf1JuI1c8DHzci9mc/Rnsj52PkqcMI
+	cGPAnWj2uI682C1TfSy59oJdCPPRt+UGtvv7C8N4TeZak5ksTJrnX8geyktJUlxCInea7zZ049a
+	E9Jj3xdhsbl3IqZd2wVlgD6K8vNuXNMpOeZqruWa+jQjdhibncRnuFEShCFB0RqG3Jxp5YCsRVP
+	zU5nH4hTj3eYE+Ha3AGpyOWMhVDOpOg/p8R02usKCP7u1XYB/OOXFFHgXri9TYcT+qgVqDmeAH5
+	v70s8FzEB+807k23TJ4Dt538SBLrUcDAJNgYcSlhbZeQZzdCbostwL4cQR5oYckwClWlCoFz5o0
+	d36W/HugeNn1IcitRhEd60FVoMete8IzBGln2AQ9V50KkLiHyflNLEwqvxDUWqfwrKUZ1Iy1wKO
+	o5j5/BxUCbgE/G
+X-Received: by 2002:a05:622a:1b28:b0:4ec:ef85:cfbd with SMTP id d75a77b69052e-4ecef85d368mr61632171cf.80.1761570884063;
+        Mon, 27 Oct 2025 06:14:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGvwWHynaMcFsCoJT3Ymx6akKgKGq+AVYZliRWBvt3fl/sJ+nyNZdGM11CdtSCxGsRp/Z4JPA==
+X-Received: by 2002:a05:622a:1b28:b0:4ec:ef85:cfbd with SMTP id d75a77b69052e-4ecef85d368mr61631541cf.80.1761570883540;
+        Mon, 27 Oct 2025 06:14:43 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-378ee0a5655sm19154971fa.21.2025.10.27.06.14.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Oct 2025 06:14:42 -0700 (PDT)
+Date: Mon, 27 Oct 2025 15:14:40 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: yuanjiey <yuanjie.yang@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        robin.clark@oss.qualcomm.com, lumag@kernel.org,
+        abhinav.kumar@linux.dev, sean@poorly.run,
+        marijn.suijten@somainline.org, airlied@gmail.com, simona@ffwll.ch,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, quic_mkrishn@quicinc.com, jonathan@marek.ca,
+        quic_khsieh@quicinc.com, neil.armstrong@linaro.org,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
+        aiqun.yu@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com
+Subject: Re: [PATCH 01/12] drm/msm/dsi/phy: Add support for Kaanapali
+Message-ID: <einog245dsbqtx3by2cojyzmyctk2fffpwndwoe24puwqq4fta@cu6iiidxqgr4>
+References: <20251023075401.1148-1-yuanjie.yang@oss.qualcomm.com>
+ <20251023075401.1148-2-yuanjie.yang@oss.qualcomm.com>
+ <omlhiywjr46ik6bj2aiutgcf4aifen4vsvtlut7b44ayu4g4vl@zn4u3zkf6cqx>
+ <ad906eb5-c08f-4b66-9e37-aaba99889ad4@oss.qualcomm.com>
+ <aPryORKIuSwtXpon@yuanjiey.ap.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] decoder: Add V4L2 stateless H.264 decoder driver
-To: zhentao.guo@amlogic.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-References: <20251027-b4-s4-vdec-upstream-v1-0-620401813b5d@amlogic.com>
- <20251027-b4-s4-vdec-upstream-v1-3-620401813b5d@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251027-b4-s4-vdec-upstream-v1-3-620401813b5d@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aPryORKIuSwtXpon@yuanjiey.ap.qualcomm.com>
+X-Proofpoint-ORIG-GUID: z8VXERRYugERfPLwe8QHvSafpLtzzZvH
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI3MDEyMyBTYWx0ZWRfX8LpsVBr2z+Ci
+ 23nUYI2tx0r3q+qDbrkhNU3iDM8z8Qs1NxL4CjWhpoMHETZ/Zi+yA5dYJQAAVtZZZl7NgX8VDCQ
+ sj3tyunBKiHyifqI7WFCXXazVJtIyoq9297bhRwOxo8URyUfybxZdSMtRopdwZ2PDRpsM+8UH4A
+ hoxYveEluxYF7AJSXB57X5P/4uilKxub2vlupfR4Gnp7I8CJ8S890/KW5VZ/stJvXEh6s7uP/rN
+ sJvFf//mpL9fzqn+Ip1f9yHAhqHSl2ApuI8J6awThl+CcjTQL7YY4/enOUu0WNESEKw+CsgFrv3
+ e/SCqh2rMSKH6gobbicN35i5+kFAMsxacZVx3P54liw1vs9oWVoNzmTCBbfE80O5cusLZmvNas7
+ 38pLBzpk9d1zAwKsTrHkHkRTrB8ABA==
+X-Proofpoint-GUID: z8VXERRYugERfPLwe8QHvSafpLtzzZvH
+X-Authority-Analysis: v=2.4 cv=fL40HJae c=1 sm=1 tr=0 ts=68ff7044 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
+ a=ACmnMjwJHZESoQLvWlYA:9 a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-27_05,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 impostorscore=0 phishscore=0 suspectscore=0 priorityscore=1501
+ clxscore=1015 adultscore=0 malwarescore=0 lowpriorityscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510020000 definitions=main-2510270123
 
-On 27/10/2025 06:42, Zhentao Guo via B4 Relay wrote:
-> From: Zhentao Guo <zhentao.guo@amlogic.com>
+On Fri, Oct 24, 2025 at 11:27:53AM +0800, yuanjiey wrote:
+> On Thu, Oct 23, 2025 at 02:02:45PM +0200, Konrad Dybcio wrote:
+> > On 10/23/25 1:48 PM, Dmitry Baryshkov wrote:
+> > > On Thu, Oct 23, 2025 at 03:53:50PM +0800, yuanjie yang wrote:
+> > >> From: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
+> > >>
+> > >> Add DSI PHY support for the Kaanapali platform.
+> > >>
+> > >> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+> > >> Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
+> > >> ---
+> > 
+> > [...]
+> > 
+> > >> +	.io_start = { 0x9ac1000, 0xae97000 },
+> > > 
+> > > These two addresses are very strange. Would you care to explain? Other
+> > > than that there is no difference from SM8750 entry.
+> > 
+> > They're correct.
+> > Although they correspond to DSI_0 and DSI_2..
+> > 
+> > Yuanjie, none of the DSI patches mention that v2.10.0 is packed with
+> > new features. Please provide some more context and how that impacts
+> > the hw description.
 > 
-> This patch introduces initial driver support for Amlogic's new
-
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v6.16/source/Documentation/process/submitting-patches.rst#L94
-
-> video acceleration hardware architecture, designed for video
-> stream decoding. The driver is designed to support the
-> V4L2 M2M stateless decoder API. In phase 1, it supports H.264
-> bitstreams decoding.
+> Thanks for your reminder.
 > 
-> Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
+> Correct here:
+> io_start = { 0x9ac1000, 0x9ac4000 }  DSI_Phy0 DSI_phy1
+> 
+> And v2.10.0 no clearly meaningful changes compared to v2.9.0.
+> just some register address change.
 
-...
+Addition of DSI2 is a meaningful change, which needs to be handled both
+in the core and in the DSI / DSI PHY drivers.
 
+> 
+> Thanks,
+> Yuanjie
+>  
+> > Konrad
 
-> +
-> +static int aml_vdec_drv_probe(struct platform_device *pdev)
-> +{
-> +	struct aml_vdec_dev *dev;
-> +	struct video_device *vfd_dec;
-> +	struct aml_vdec_hw *hw;
-> +	int ret = 0;
-> +
-> +	dev = devm_kzalloc(&pdev->dev, sizeof(*dev), GFP_KERNEL);
-> +	if (!dev)
-> +		return -ENOMEM;
-> +
-> +	dev->plat_dev = pdev;
-> +	mutex_init(&dev->dev_mutex);
-> +
-> +	ret = v4l2_device_register(&pdev->dev, &dev->v4l2_dev);
-> +	if (ret)
-> +		return dev_err_probe(&pdev->dev, ret, "v4l2_device_register err\n");
-> +
-> +	vfd_dec = video_device_alloc();
-> +	if (!vfd_dec) {
-> +		v4l2_err(&dev->v4l2_dev, "Failed to allocate video device\n");
-> +		ret = -ENOMEM;
-> +		goto err_device_alloc;
-> +	}
-> +	*vfd_dec = dec_dev;
-> +	vfd_dec->v4l2_dev = &dev->v4l2_dev;
-> +	vfd_dec->lock = &dev->dev_mutex;
-> +	video_set_drvdata(vfd_dec, dev);
-> +	dev->vfd = vfd_dec;
-> +	platform_set_drvdata(pdev, dev);
-> +
-> +	hw = kzalloc(sizeof(*hw), GFP_KERNEL);
-
-Why aren't you using devm interfaces?
-
-> +	if (!hw) {
-> +		ret = -ENOMEM;
-> +		goto err_dec_mem_init;
-> +	}
-> +	dev->dec_hw = hw;
-> +
-> +	dev->pvdec_data = of_device_get_match_data(&pdev->dev);
-> +	ret = dev->pvdec_data->req_hw_resource(dev);
-> +	if (ret < 0)
-> +		goto err_hw_init;
-> +
-> +	dev->m2m_dev_dec = v4l2_m2m_init(&aml_vdec_m2m_ops);
-> +	if (IS_ERR((__force void *)dev->m2m_dev_dec)) {
-
-Huh? Why the cast?
-
-> +		v4l2_err(&dev->v4l2_dev, "Failed to init mem2mem dec device\n");
-> +		ret = PTR_ERR((__force void *)dev->m2m_dev_dec);
-> +		goto err_hw_init;
-> +	}
-> +
-> +	ret = video_register_device(vfd_dec, VFL_TYPE_VIDEO, -1);
-> +	if (ret) {
-> +		v4l2_err(&dev->v4l2_dev, "Failed to register video device");
-> +		goto err_vid_dev_register;
-> +	}
-> +
-> +	v4l2_info(&dev->v4l2_dev, "Registered %s as /dev/%s\n",
-> +		  vfd_dec->name, video_device_node_name(vfd_dec));
-
-This does not look like useful printk message. Drivers should be silent
-on success:
-https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/coding-style.rst#L913
-https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/debugging/driver_development_debugging_guide.rst#L79
-
-> +
-> +	dev->mdev.dev = &pdev->dev;
-> +	strscpy(dev->mdev.model, AML_VDEC_DRV_NAME, sizeof(dev->mdev.model));
-> +	media_device_init(&dev->mdev);
-> +	dev->mdev.ops = &aml_m2m_media_ops;
-> +	dev->v4l2_dev.mdev = &dev->mdev;
-> +
-> +	ret = v4l2_m2m_register_media_controller(dev->m2m_dev_dec, vfd_dec,
-> +						 MEDIA_ENT_F_PROC_VIDEO_DECODER);
-> +	if (ret) {
-> +		v4l2_err(&dev->v4l2_dev, "Failed to init mem2mem media controller\n");
-> +		goto error_m2m_mc_register;
-> +	}
-> +
-> +	ret = media_device_register(&dev->mdev);
-> +	if (ret) {
-> +		v4l2_err(&dev->v4l2_dev, "Failed to register media device");
-> +		goto err_media_dev_register;
-> +	}
-> +	vdec_enable(dev->dec_hw);
-> +	return 0;
-> +
-> +err_media_dev_register:
-> +	v4l2_m2m_unregister_media_controller(dev->m2m_dev_dec);
-> +error_m2m_mc_register:
-> +	media_device_cleanup(&dev->mdev);
-> +err_vid_dev_register:
-> +	v4l2_m2m_release(dev->m2m_dev_dec);
-> +err_hw_init:
-> +	kfree(hw);
-> +	dev->dec_hw = NULL;
-> +err_dec_mem_init:
-> +	video_device_release(vfd_dec);
-> +err_device_alloc:
-> +	v4l2_device_unregister(&dev->v4l2_dev);
-> +	return ret;
-> +}
-> +
-> +static void aml_vdec_drv_remove(struct platform_device *pdev)
-> +{
-> +	struct aml_vdec_dev *dev = platform_get_drvdata(pdev);
-> +
-> +	vdec_disable(dev->dec_hw);
-> +
-> +	if (media_devnode_is_registered(dev->mdev.devnode)) {
-> +		media_device_unregister(&dev->mdev);
-> +		media_device_cleanup(&dev->mdev);
-> +	}
-> +
-> +	if (dev->m2m_dev_dec)
-> +		v4l2_m2m_release(dev->m2m_dev_dec);
-> +	if (dev->vfd)
-> +		video_unregister_device(dev->vfd);
-> +	if (dev->dec_hw)
-> +		dev->pvdec_data->destroy_hw_resource(dev);
-> +
-> +	v4l2_device_unregister(&dev->v4l2_dev);
-> +
-> +	pr_debug("aml v4l2 decoder driver remove\n");
-
-
-This does not look like useful printk message. Drivers should be silent
-on success:
-https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/coding-style.rst#L913
-https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/debugging/driver_development_debugging_guide.rst#L79
-
-> +}
-> +
-> +static const struct of_device_id aml_vdec_match[] = {
-> +	{.compatible = "amlogic,s4-vcodec-dec", .data = &aml_vdec_s4_pdata},
-> +	{},
-> +};
-> +
-> +static struct platform_driver aml_vcodec_dec_driver = {
-> +	.probe    = aml_vdec_drv_probe,
-> +	.remove    = aml_vdec_drv_remove,
-> +	.driver    = {
-> +		.name    = AML_VDEC_DRV_NAME,
-> +		.of_match_table = aml_vdec_match,
-> +	},
-> +};
-> +
-> +static int __init aml_vdec_init(void)
-> +{
-> +	pr_debug("aml v4l2 decoder module init\n");
-> +
-> +	if (platform_driver_register(&aml_vcodec_dec_driver)) {
-> +		pr_err("failed to register aml v4l2 decoder\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void __exit aml_vdec_exit(void)
-> +{
-> +	pr_debug("aml v4l2 decoder module exit\n");
-> +	platform_driver_unregister(&aml_vcodec_dec_driver);
-
-No, drop entire init/exit. This is some really odd code, probably
-copy-paste from poor downstream. Please look at upstream drivers - do
-you see anything like that anywhere?
-
-> +}
-> +
-> +module_init(aml_vdec_init);
-> +module_exit(aml_vdec_exit);
-> +
-
-Best regards,
-Krzysztof
+-- 
+With best wishes
+Dmitry
 
