@@ -1,126 +1,100 @@
-Return-Path: <devicetree+bounces-231808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55180C11B8D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:34:26 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C09B0C11BB7
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:34:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 728F41A28532
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 22:34:50 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8DAE74EB751
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 22:34:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B28D72F5479;
-	Mon, 27 Oct 2025 22:34:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 363B22F12A8;
+	Mon, 27 Oct 2025 22:34:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b5q5hdt1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dz4qRStE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C90532E092D
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 22:34:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C38A239E7E;
+	Mon, 27 Oct 2025 22:34:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761604462; cv=none; b=hIYoz2jJgzS8Lhkosmc5zsSG2ZNCG/y/EXf5qvfl6/5R/o72e4fOH4Zi3ijp0yUoNarPsWngxbecCaIjyXJwz0S2pGzW+XCVjGrzROVIE/O/HYIptyWKJCyz8Wt8xAkmTcKJT+6qVZI9NptBRDSRdm0WYrEcbl3BDjdP/Jgd3p8=
+	t=1761604488; cv=none; b=BuVNTGP+kCtRji9rG9KVn9pO+fC2xPUReJSuRqMSe/1AaAeKc4Yf+/w2c1TjxbIdiT5vWd3jX000QgTGAJUFRkjNQkkOckqu6iBR/v0CKvh4c9veVKNluH2ooLdOJamVH0riXIKv6nfU4F0N4ji8cpIr0f8Pv5lGfIOH0WphUPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761604462; c=relaxed/simple;
-	bh=6FK4Cywp2kPqN6IZB7Pn8a9qrx5ElGyAJ2bbf8tmYpc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Lsl9VgrOjGuebvBAYTQIfV1SBjuhdREVYW9uXG0QlBlM9KexwVdMuJaVKxIuM/9Qe77srro/f7+pOMsI55EDTeuGrgCZ7KeE7pq2VOXR9N/gXEW4n4ZT6jeEszCOBf1bWkyjVYu0Tn1pRdGPo3NHoVWI11CxaEL3Ide9fjojCDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b5q5hdt1; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-78488cdc20aso68275267b3.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 15:34:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761604460; x=1762209260; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6FK4Cywp2kPqN6IZB7Pn8a9qrx5ElGyAJ2bbf8tmYpc=;
-        b=b5q5hdt1cL9wVjYbAkH1AYKzJIgDa5TsWEjX8dyjivJOfapORAREYYvKyA/iPWm2tj
-         jdLTg/5lfN55rkoJPgsEVGdUUKXpnBalcjBCv9TtrNcFVVjF7GtDNvgnSNmVkkIaYPXX
-         hpudTMw0ZlFb0tm9eSu2JnJQUikJ6zvK8L86g2qIJIf79h3o34sKAoMSgGLTUlqpgwX3
-         1TlTTn4jYV6lUjIyYNmvhByncI+JbC3ej7P1WNKFYhjzWg0Nrp8AEllBjroEKywayMr6
-         C7hDksahGiwpPgmSCsPbroAyx8bvOirouB7KbQG7gjXbTgpmTH4QdM/Hwct/DAefQ9No
-         nbvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761604460; x=1762209260;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6FK4Cywp2kPqN6IZB7Pn8a9qrx5ElGyAJ2bbf8tmYpc=;
-        b=lM7nmWJbYn1L4/GDRw0c+M7lb5qc9pRqC+FLFAWy1HGcCiaVyJj6ZJnfmLdYWJGgZv
-         /2zEXnShoOXcZ94DcmotVK//Ffnkj0kO3M3LIITx/xaQtYD3UV/cIxHzWEkOAO/0bEPt
-         SNqRXwdbkAxIvLHiHcY0wtspIVxq2p9OQZfoWQn2SxXxEulNFjsFkAvNhPlaWgd9fc1B
-         +gkFKS6FyJ99i+OMh6I71uSA5aShtA7mxAr0ibuXbZLQFgPZLlmeaXf58jq8rxXoj7C8
-         OzDxH8JZk12LqACb1nyuX1Fm5JXG9haMTcRUqaHvJsZQxzUB92hNv/VYW37Cjy51Rqgo
-         +cjw==
-X-Forwarded-Encrypted: i=1; AJvYcCXK6yjx5z+UFtzGDmFixN5sLuNMerHtBseX7Z8Yzo+ziCIOytvFnYyPuKazkX4AkMxty1rEQdGtLHJb@vger.kernel.org
-X-Gm-Message-State: AOJu0YydoPzM8qUMv4VFKcy04Z5DGuvk/wEzrGn2sFqQyNhiqekrgo+H
-	1vS5L2r9BVzTbQNkjo9a20CM9iEKfJmJ5rTSH0a8Rzlbn57N662S4gsGCSQlRkXiFxBueZr03IT
-	aDveuqG5Jg1zFXuQZL5ygomcE04jbg7mXBIrNwjoMrw==
-X-Gm-Gg: ASbGncvfx62s7PlIMl+fOq6RsR/mGM0QpzZm+rEES880a2NBKlyJAE/6BA/BJbZzvhc
-	LUNMujCB4c03KbZsm1FQtPDCq7oawPXAojHrjn0PIkaQR9vcXxmSQkdVZMfucA1WhxlYcCPrPHK
-	F3rg4rAers7ST45j+G8PMHOEf6N2rToqZUsBNHPOAxbqyygCkFdeyGGhYeuDCPdCt4hh4AEU2on
-	Y2/HWl8dapvSz5NsQ3yhGJ2Lo2XaxXA+Myk9f9TPNVMd5UfA/0TWRzs/EPV
-X-Google-Smtp-Source: AGHT+IHFxrQwcIAfHl/EDjyJgU4+jEXTaSyjinBJCcTfFFs/TuXmdRuhxaYs6OB/9vERDl+26CgqDxFOu0ooMCeyJi8=
-X-Received: by 2002:a05:690c:a00e:b0:781:1c1a:98f0 with SMTP id
- 00721157ae682-78617e5fb66mr12794187b3.18.1761604459817; Mon, 27 Oct 2025
- 15:34:19 -0700 (PDT)
+	s=arc-20240116; t=1761604488; c=relaxed/simple;
+	bh=vzBr+yxDuWYssqy8HhgZk1oBeKR5UFQrHdnJ7mJAUFA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IDHMMCCDo0FzUAFghyKt4L9U5S3d6oU4APL+5unqegWIf+6NrRiXjS1IBIEg8k9D6QwMcgY45aELkX/npj3DErs990dQfIhU76WzLj9vajB96hatIW3CnjcXVu3m/CMRx/lyt9CbQTgMrRKfhc+R4km4MdkydIWHA0QfuVCu1Yw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dz4qRStE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F929C4CEF1;
+	Mon, 27 Oct 2025 22:34:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761604486;
+	bh=vzBr+yxDuWYssqy8HhgZk1oBeKR5UFQrHdnJ7mJAUFA=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=dz4qRStEXx2NFtUH12/+N/Vs1bM7fWpdAIU9keu76nte39i7cBX559wW38xvW4wTy
+	 ANH5zm1C4NuH6A1f5OrKkyOZCWyWixCKf7raO5HXvQ9hMu8E6PBfceTy3une2AJnCx
+	 58j4D8f7Its92U1e7myipmcfZticYtpEPm9I4g3ajCnPGuY6Kcg5vEVvHiNLDAmELz
+	 i7M1lvl6HJZxRP2JeWL0WqAlTd1bdkkJU5P4ybYbpWaDxJDy9IrJ8IXUmqNWoSkNgt
+	 q8ofNzUZJt9iXLVrWLdmun26QpXwBrCtXniao8qvKGPpCQgBX0rB2ii54avZBnOAtB
+	 AOhpJ9cWo89ZA==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Rob Clark <robin.clark@oss.qualcomm.com>,
+	Dmitry Baryshkov <lumag@kernel.org>,
+	Abhinav Kumar <abhinav.kumar@linux.dev>,
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	Sean Paul <sean@poorly.run>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kuogee Hsieh <quic_khsieh@quicinc.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Abel Vesa <abel.vesa@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH v2 0/7] drm/msm: Add display support for Glymur platform
+Date: Mon, 27 Oct 2025 17:36:42 -0500
+Message-ID: <176160465226.73268.4378641662848766051.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251014-glymur-display-v2-0-ff935e2f88c5@linaro.org>
+References: <20251014-glymur-display-v2-0-ff935e2f88c5@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1761564043.git.mazziesaccount@gmail.com> <e8d0273bcf0ac67382e17c40be87d345e28ac06c.1761564043.git.mazziesaccount@gmail.com>
-In-Reply-To: <e8d0273bcf0ac67382e17c40be87d345e28ac06c.1761564043.git.mazziesaccount@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 27 Oct 2025 23:34:05 +0100
-X-Gm-Features: AWmQ_bmCeM1hCEpCcloBtHCP-z98b1djEaHpBG8dS_Pa6X6P_LL8sPGseuESUz4
-Message-ID: <CACRpkdbfjqbmy5EbLApee3p9TEsEzBKOcGMrbspeWxqUc_niiw@mail.gmail.com>
-Subject: Re: [PATCH v2 03/15] dt-bindings: power: supply: BD72720 managed battery
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lee Jones <lee@kernel.org>, 
-	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sebastian Reichel <sre@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Andreas Kemnade <andreas@kemnade.info>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Mon, Oct 27, 2025 at 12:45=E2=80=AFPM Matti Vaittinen
-<mazziesaccount@gmail.com> wrote:
 
-> The BD72720 PMIC has a battery charger + coulomb counter block. These
-> can be used to manage charging of a lithium-ion battery and to do fuel
-> gauging.
->
-> ROHM has developed a so called "zero-correction" -algorithm to improve
-> the fuel-gauging accuracy close to the point where battery is depleted.
-> This relies on battery specific "VDR" tables, which are measured from
-> the battery, and which describe the voltage drop rate. More thorough
-> explanation about the "zero correction" and "VDR" parameters is here:
-> https://lore.kernel.org/all/676253b9-ff69-7891-1f26-a8b5bb5a421b@fi.rohme=
-urope.com/
->
-> Document the VDR zero-correction specific battery properties used by the
-> BD72720 and some other ROHM chargers.
->
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+On Tue, 14 Oct 2025 15:38:25 +0300, Abel Vesa wrote:
+> The Glymur MDSS is based on the one found in SM8750, with 2 minor number
+> version bump. Differences are mostly in the DPU IP blocks numbers.
+> 
+> 
 
-From my PoV this looks good, and makes it easy for engineers
-to read the DTS file and understand what is going on, so after
-addressing Rob's final comments you can add:
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Applied, thanks!
 
-Yours,
-Linus Walleij
+[7/7] soc: qcom: ubwc: Add configuration Glymur platform
+      commit: 9b21c3bd24803e4ebab9f91bd812aa10576d8220
+
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
