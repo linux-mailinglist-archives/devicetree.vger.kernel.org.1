@@ -1,183 +1,154 @@
-Return-Path: <devicetree+bounces-231874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B71F3C12133
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 00:41:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD4CFC12172
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 00:47:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 54E4C4E17FA
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:41:29 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E1B534E2942
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:47:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC6AF32D0DF;
-	Mon, 27 Oct 2025 23:41:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 152D82C08BA;
+	Mon, 27 Oct 2025 23:47:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="V1fDhPjX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B60CA39ACF;
-	Mon, 27 Oct 2025 23:41:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76CDE283C8E
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 23:47:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761608486; cv=none; b=JPaneRDXYx+RKSkbHJPY05y64km6eidg4A+FgDfYjdF00WNF5UVrEuSuSp0qRJ+0t7QDPonAKqNQVi9yWr6aMRrO8bMmT1XQzc1vLwAZI/bcsLWi2H4RSG1m+nujKh+/6KuY+uAkemlx9wQ4eahIoVvJTf2jBrmEB0HEUlFj6K4=
+	t=1761608828; cv=none; b=W3nZ0SBW/X4jpEdoCHGtu4z3cqyBO7ViJxzEFSjFP7U9UDLyyn8txXYiG20eTC1A3I720Ylz88dvPQxZv032j3TX5M6Q95ch/ABvBP9fH/VuoFKHaDmKhm1AZrbeipTb27c+knSL3Is8xVBUUDNB4I/sbtAciDMG818VPI/auno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761608486; c=relaxed/simple;
-	bh=32fYWnaIMPU9AkYqGR9xgWgNQ7QLYLvhQjbl9a1CEps=;
+	s=arc-20240116; t=1761608828; c=relaxed/simple;
+	bh=YYHUzAcEn48hxpCkP434f80Wc8cJl1AevXLmPQTIRD4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rALs5pvlFJP04uj0Vc/slH6005g3B6EGx7PYa7gYQx91fypiORb4bvSz73Ugfip5RTE1tEXhYonriHXK1n105eWO/kH4M0S4tgd9BA2fgztP5OnQZPBp3ec1W42PDA27qbH6b4YMmZ90nZj6LgB3YFA3Br676q0GvtyvC+bTKbM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.98.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vDWpt-000000005gg-3ylV;
-	Mon, 27 Oct 2025 23:41:14 +0000
-Date: Mon, 27 Oct 2025 23:41:10 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=m7DQbXWinriL1fqGTXUNpyrhBTctFiMd12ucaTdm9ImjG+SEU2/JtY1RdA61Vi3FRM3Zy+F5ZeeMBltj3iiJ2SjoTTJhdOIjbAKgeSuk75YxbssU11IJHGi+fUrm7gPPsR7KuIZn1G/FnbZLRAXB5+9bBensRaJkzxkOcEPCzcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=V1fDhPjX; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (85-76-17-108-nat.elisa-mobile.fi [85.76.17.108])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 4250211DD;
+	Tue, 28 Oct 2025 00:45:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1761608715;
+	bh=YYHUzAcEn48hxpCkP434f80Wc8cJl1AevXLmPQTIRD4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=V1fDhPjXRoI6Z2EtHsqCOXN3Ss2/tf/XCQwabUASDvat+W0b/6C/kQSDIe4Ac/LtX
+	 sEpsbxgtzteiPSSdw8Vfp63aBPrJv5/KH7kGw0TyCwUTGmwEnOmesZtTVX/6UTmqci
+	 03IqR5ayiEfeCPFtkTSWLsfkDkwWiJ6bZdKhlEKU=
+Date: Tue, 28 Oct 2025 01:46:48 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	Emanuele Ghidoli <ghidoliemanuele@gmail.com>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Daniel Scally <dan.scally@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Stefan Klug <stefan.klug@ideasonboard.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Andreas Schirm <andreas.schirm@siemens.com>,
-	Lukas Stockmann <lukas.stockmann@siemens.com>,
-	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
-	Peter Christen <peter.christen@siemens.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH net-next v3 06/12] dt-bindings: net: dsa: lantiq,gswip:
- add support for MII delay properties
-Message-ID: <aQADFttLJeUXRyRF@makrotopia.org>
-References: <cover.1761521845.git.daniel@makrotopia.org>
- <cover.1761521845.git.daniel@makrotopia.org>
- <e7a4dadf49c506ff71124166b7ca3009e30d64d8.1761521845.git.daniel@makrotopia.org>
- <e7a4dadf49c506ff71124166b7ca3009e30d64d8.1761521845.git.daniel@makrotopia.org>
- <20251027230439.7zsi3k6da3rohrfo@skbuf>
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
+Message-ID: <20251027234648.GC24987@pendragon.ideasonboard.com>
+References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
+ <aP-ML-A_h13pXY2d@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251027230439.7zsi3k6da3rohrfo@skbuf>
+In-Reply-To: <aP-ML-A_h13pXY2d@shell.armlinux.org.uk>
 
-On Tue, Oct 28, 2025 at 01:04:39AM +0200, Vladimir Oltean wrote:
-> On Sun, Oct 26, 2025 at 11:45:19PM +0000, Daniel Golle wrote:
-> > Add support for standard tx-internal-delay-ps and rx-internal-delay-ps
-> > properties on port nodes to allow fine-tuning of RGMII clock delays.
-> > 
-> > The GSWIP switch hardware supports delay values in 500 picosecond
-> > increments from 0 to 3500 picoseconds, with a default of 2000
-> > picoseconds for both TX and RX delays.
-> > 
-> > This corresponds to the driver changes that allow adjusting MII delays
-> > using Device Tree properties instead of relying solely on the PHY
-> > interface mode.
-> > 
-> > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> > ---
-> > v3:
-> >  * redefine ports node so properties are defined actually apply
-> >  * RGMII port with 2ps delay is 'rgmii-id' mode
-> > 
-> >  .../bindings/net/dsa/lantiq,gswip.yaml        | 29 +++++++++++++++++--
-> >  1 file changed, 26 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> > index f3154b19af78..b0227b80716c 100644
-> > --- a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> > +++ b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> > @@ -6,8 +6,29 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >  
-> >  title: Lantiq GSWIP Ethernet switches
-> >  
-> > -allOf:
-> > -  - $ref: dsa.yaml#/$defs/ethernet-ports
-> > +$ref: dsa.yaml#
-> > +
-> > +patternProperties:
-> > +  "^(ethernet-)?ports$":
-> > +    type: object
-> > +    patternProperties:
-> > +      "^(ethernet-)?port@[0-6]$":
-> > +        $ref: dsa-port.yaml#
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          tx-internal-delay-ps:
-> > +            enum: [0, 500, 1000, 1500, 2000, 2500, 3000, 3500]
-> > +            default: 2000
+On Mon, Oct 27, 2025 at 03:13:51PM +0000, Russell King (Oracle) wrote:
+> On Sun, Oct 26, 2025 at 02:29:04PM +0200, Laurent Pinchart wrote:
+> > Energy Efficient Ethernet (EEE) is broken at least for 1000T on the EQOS
+> > (DWMAC) interface. When connected to an EEE-enabled peer, the ethernet
+> > devices produces an interrupts storm. Disable EEE support to fix it.
 > 
-> No. This is confusing and wrong. I looked at the driver implementation
-> code, wanting to note that it has the potential of being a breaking
-> change for device trees without the "tx-internal-delay-ps" and
-> "rx-internal-delay-ps" properties.
+> We've finally got to the bottom of what's going on here. Please try
+> this patch (it's building locally, but will take some time because
+> I'd wound the tree back to 6.13 and 6.14, so it's going to be a full
+> rebuild.) Thus, there may be compile bugs remaining.
+
+I've applied it on top of 
+
+I've started with a branch based on v6.18-rc3 plus "[PATCH net-next 0/5]
+net: stmmac: more cleanups" ([1]) and "[PATCH net-next v2 0/6] net: add
+phylink managed WoL and convert stmmac" ([2]) to make the patch apply
+cleanly.
+
+[1] https://lore.kernel.org/all/aO_HIwT_YvxkDS8D@shell.armlinux.org.uk/
+[2] https://lore.kernel.org/all/aPnyW54J80h9DmhB@shell.armlinux.org.uk/
+
+The base branch exhibits the interrupt storm issue. The patch
+unfortunately doesn't fix it.
+
+> This uncovered a latent bug in Emanuele's case - the TI PHY drivers
+> report EEE capabilities despite not being capable which also needs
+> fixing. The patch below will stop stmmac enabling EEE by default on
+> PHYs described in firmware, which is the behaviour the driver used
+> to have.
 > 
-> But then I saw that the driver implementation is subtly different.
-> "tx-internal-delay-ps" defaults to 2000 only if "rx-internal-delay-ps" is set, and
-> "rx-internal-delay-ps" defaults to 2000 only if "tx-internal-delay-ps" is set.
+> If we decide that EEE should be enabled by default, then we'll need
+> to revert this change. However, given Oleksij's recent input, I'm
+> wondering whether EEE should default to disabled given the issues
+> with Tq. The suggestion there is that many PHYs get it wrong and thus
+> are incompatible with each other when EEE is enabled.
 > 
-> So when implemented in this way, it won't cause the regressions I was
-> concerned about, but it is misrepresented in the schema.
-> 
-> Why overcomplicate this and just not set a default? Modify the RX clock
-> skew if set, and the TX clock skew if set.
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> index fd5106880192..c18690a6804f 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> @@ -1208,6 +1208,24 @@ static int stmmac_init_phy(struct net_device *dev)
+>  	return 0;
+>  }
+>  
+> +static bool stmmac_has_fw_phy(struct stmmac_priv *priv)
+> +{
+> +	struct fwnode_handle *fwnode;
+> +
+> +	fwnode = priv->plat->port_node;
+> +	if (!fwnode)
+> +		fwnode = dev_fwnode(priv->device);
+> +
+> +	if (!fwnode)
+> +		return false;
+> +
+> +	fwnode = fwnode_get_phy_node(fwnode);
+> +	if (fwnode)
+> +		fwnode_handle_put(fwnode);
+> +
+> +	return !!fwnode;
+> +}
+> +
+>  static int stmmac_phylink_setup(struct stmmac_priv *priv)
+>  {
+>  	struct stmmac_mdio_bus_data *mdio_bus_data;
+> @@ -1270,7 +1288,7 @@ static int stmmac_phylink_setup(struct stmmac_priv *priv)
+>  		/* All full duplex speeds above 100Mbps are supported */
+>  		config->lpi_capabilities = ~(MAC_1000FD - 1) | MAC_100FD;
+>  		config->lpi_timer_default = eee_timer * 1000;
+> -		config->eee_enabled_default = true;
+> +		config->eee_enabled_default = !stmmac_has_fw_phy(priv);
+>  	}
+>  
+>  	config->wol_phy_speed_ctrl = true;
 
-The problem is that before adding support for both *-internal-delay-ps
-properties the internal delays would be set exclusively based on the
-interface mode -- and are inverted logic:
+-- 
+Regards,
 
-```
-         switch (state->interface) {
-         case PHY_INTERFACE_MODE_RGMII_ID:
-                 gswip_mii_mask_pcdu(priv, GSWIP_MII_PCDU_TXDLY_MASK |
-                                           GSWIP_MII_PCDU_RXDLY_MASK, 0, port);
-                 break;
-         case PHY_INTERFACE_MODE_RGMII_RXID:
-                 gswip_mii_mask_pcdu(priv, GSWIP_MII_PCDU_RXDLY_MASK, 0, port);
-                 break;
-         case PHY_INTERFACE_MODE_RGMII_TXID:
-                 gswip_mii_mask_pcdu(priv, GSWIP_MII_PCDU_TXDLY_MASK, 0, port);
-                 break;
-         default:
-                 break;
-         }
-```
-
-As you can see the delays are set to 0 in case of the interface mode
-being RGMII_ID (and the same for RGMII_RXID and RGMII_TXID
-respectively).
-
-This is probably the result of the delays being initialized to 2000ps by
-default, and if the **PHY connected to the switch port** is set to take
-care of the clk/data delay then the switch port RGMII interface doesn't
-have to do it.
-
-From my understanding this is a bit awkward as "internal delay" usually
-means the delay is taken care of by the PHY rather than by discrete
-parts of the board design. Here, however, it is *never* part of the
-board design and always handled by either the switch RGMII interface
-(MAC side) or the connected PHY.
-
-So in order to not break existing board device trees expecting this
-behavior I've decided to only fall-back to adjust the delay based on the
-interface mode in case both properties are missing.
-
-Please correct me if that's the wrong thing to do or if my understanding
-is flawed in any way.
+Laurent Pinchart
 
