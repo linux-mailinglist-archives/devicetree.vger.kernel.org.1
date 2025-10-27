@@ -1,108 +1,98 @@
-Return-Path: <devicetree+bounces-231704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82F1AC0FE4E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:20:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1BE2C0FE57
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:21:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9786403653
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:19:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D11C019A7A94
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:21:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6189C2D7DF9;
-	Mon, 27 Oct 2025 18:19:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFE1A2D7D47;
+	Mon, 27 Oct 2025 18:21:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="hqARmNiw"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="pdqDhQOU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 588332D7806;
-	Mon, 27 Oct 2025 18:19:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40E0B2BE7B4;
+	Mon, 27 Oct 2025 18:21:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761589188; cv=none; b=IKLhPaduEOtaFl+4E4wztN8AdSI/WZ/zWMrPWcvcX8YLfQ6tVUJ9Qrt+m8n9hVY51dSxxlJyAH+N6US1+HV3vsNcOlogyUW4lOoOZNhGyOhDJZrQGpgDvXdqyR92WVBTTUcPuhkYN5hubbWDxo6TTkW9xmZgBD0YbqIKK9/TEQg=
+	t=1761589279; cv=none; b=o6+81Bl2GCCdjZkZfkGds9LgnmhsYJS1xtpuS1+37t1POYXZm7C57/r0xXH2Oz1odzYOKg9PB3gXcbN10syjVQRWjSlH117L9AybNbP/0HILlHAEIBY1m2/NTtzfPC8FffDwumDYpeZmFg5XSeH7Dex+4h5QEsTSCBEb+foQadI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761589188; c=relaxed/simple;
-	bh=11CBatggCCItYnQkkvuhnAvNnafMsLqpFZJIH0JJMsY=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=RRB3pg14Z+KJDyQvcrXpPTpFVsz4Ot9C1teB6lj0sOvBPb+Zi+Nv+FG8zvDsoFIOtq+EXmjWMm5/Q9mKhfEMDxud29iTHRwxKxeurkLU26CLZHplMEDCiVq0ZUr4HgAySZ++v/Nqakw4REhlH8cPiC3hzghnxx7W4BYBpwuZnVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=hqARmNiw; arc=none smtp.client-ip=142.132.176.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 9416840D1B;
-	Mon, 27 Oct 2025 19:19:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
-	t=1761589178; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=36Cbfb/vjeQ/MuEIGnK6bEu0FQjCPhD4xvsTx+U2YiI=;
-	b=hqARmNiwPpusSwZKYVqiX/9ApyoiqEQ34kuYnR5OGtVLZuJCUemXxsuyCtUKGlv3pq5bo0
-	VVnO2r9zlxTW1PAB6V1GeVc62DBZvqYa9UnFy0MwiAcHnEXFnHM05jUkspAdBO7fWYaP+y
-	urmSrkx/NUvm5Z6HBpzFwW2itsn+taP8SA28E8tHErXq4vUisZrUWn+M/umpX6vzHe408F
-	W3eqbHZWCfFvHz6QDWNTNIvaRvs5EeFKviSmsv0bPFZFLnZpdGgEwTYPRatYYhMsubajif
-	YjeqZ7OWCAGIRsKDHG4McORglLhhQK3i5cdkFLGwJyEe6Z0TnQup9qGF9TW7Jw==
-From: "Dragan Simic" <dsimic@manjaro.org>
-In-Reply-To: <60a1046c-437e-400a-8e2c-391cd471c358@kwiboo.se>
-Content-Type: text/plain; charset="utf-8"
-References: <20251027154517.136976-1-diederik@cknow-tech.com> <60a1046c-437e-400a-8e2c-391cd471c358@kwiboo.se>
-Date: Mon, 27 Oct 2025 19:19:36 +0100
-Cc: "Diederik de Haas" <diederik@cknow-tech.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, "Johan Jonker" <jbx6244@gmail.com>
-To: "Jonas Karlman" <jonas@kwiboo.se>
+	s=arc-20240116; t=1761589279; c=relaxed/simple;
+	bh=Z39cdubHOff8+JKx6/w34BrjsQRivvYjjTuRm9whb8U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ugxdtWnPFGjroPEsF1MJkEXI9JIi7Ugh4Jh43r51uLltd/xRWy5xYj8vGMd8afkAq+yXUkMZtzkoqYJZJlYq5if7p/0s204RoX3FYnU4KH5CWbIgk9yFT8cqgk0d7NkVrsQGByfhGXIef2gD+lCzIK1jWOdaE9bMgYmxB3z+gFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=pdqDhQOU; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4cwMJp49cdz9v9m;
+	Mon, 27 Oct 2025 19:21:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1761589274;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MGXgCo6JU4IvXIGzJengbpq5Z6UZltKHNPMXOi7+mRU=;
+	b=pdqDhQOUEkjZLDNyermMWMT4yNRlqfdwDnuDIabxWNYODbtZipil/WEcpHvLddc0Kr7oKQ
+	vskG4Ej5NWbt9EXUGcX3I6JNur/OnuMsbG+Ld9gqe4BNTYI+exZj5m2KqvrglsLW6JTR6O
+	hW1QBJfHWhQOMuTids1dyzRUmKCdalMXsTZz02mMnpVFY2qbnnl+sm7QD+akfOWQxQMb9i
+	c5EhO555tgYqhu4fsWhN/+AGbBBzioOVzVvGWmGiwRJjuZ2FZZFx1bG3J1Sb4SkiB7zH+v
+	5v5Ym3Vy+S8CbgekG5VMbioRfqIor0IQOh0fAnxGk4p3gaxVzvVKc5Wv5t835w==
+Message-ID: <29497db1-9a85-4c27-a0cb-eeee839c3797@mailbox.org>
+Date: Mon, 27 Oct 2025 19:21:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <7dc31259-c172-de0e-554c-2563014b9c2c@manjaro.org>
-Subject: =?utf-8?q?Re=3A?= [PATCH v2] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
- =?utf-8?q?_rockchip=3A?= Harmonize regulator formatting for Pine64 rk3566 
- devices
-User-Agent: SOGoMail 5.12.3
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: None
+Subject: Re: [PATCH] arm64: dts: renesas: sparrow-hawk: don't reserve SWDT
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20251017115123.3438-2-wsa+renesas@sang-engineering.com>
+ <CAMuHMdUCSRKAbD=DfJxfFGpfKTRkt=a2BO+HnwTqALBeeECOkA@mail.gmail.com>
+ <aPaSF2lokJ748cTx@shikoro>
+ <CAMuHMdXv_R6POTQe=MEcEOraKhjhzwrW5skkWnzgvijF2qAykw@mail.gmail.com>
+ <fba13116-2495-49a3-a1b5-2eecb33bb448@mailbox.org>
+ <CAMuHMdUP_bH5WW3=3J1H=6SocKzQXPdP7PFfYDrgaj4EhYTaYQ@mail.gmail.com>
+ <0e81437f-a13f-4605-b7f7-6e6640411f30@mailbox.org>
+ <CAMuHMdXs+FoL5g4ZgFVQ4WwXRt9Y-8BcX27d7=wFFROa939CwQ@mail.gmail.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <CAMuHMdXs+FoL5g4ZgFVQ4WwXRt9Y-8BcX27d7=wFFROa939CwQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 766e2b49623b309415f
+X-MBO-RS-META: d39bt3hz13uzkuekaq6cugatc5zwtu6h
 
-Hello Jonas and Heiko,
+On 10/27/25 11:09 AM, Geert Uytterhoeven wrote:
 
-On Monday, October 27, 2025 19:06 CET, Jonas Karlman <jonas@kwiboo.se> =
-wrote:
-> On 10/27/2025 4:39 PM, Diederik de Haas wrote:
-> > The regulator node properties in Pine64 rk3566 devices were formatt=
-ed
-> > rather inconsistently. To name a few:
-> > - 'name' was sometimes put at the top of the list, while at other t=
-imes
-> >   it was (mostly) sorted in alphabetical order
->=20
-> Personally I prefer to list the regulator-name as the first property,=
- I
-> think it makes it visually easier/quicker to identify a regulator wit=
-h
-> the name prop at top.
->=20
-> I typically try to use the following prop ordering for regulators on
-> board DTs I submit (and review):
->=20
-> - regulator-name as the first prop (to quickly identify the regulator=
-)
-> - regulator-min-* before regulator-max-* (natural order)
-> - regulator-* in alphabetical/natural order
->=20
-> Maybe this preference just comes from a long history of always puttin=
-g
-> id/primary key/unique identifiers at top or beginning of data tables,
-> classes, structs etc ;-)
+Hello Geert,
 
-Oh, I actually agree with your and Heiko's preferences when
-it comes to the ordering, regardless of that being personal
-preference, tribal knowledge or just common sense. :)
+> My Gray Hawk Single still has downstream firmware, and I can modify the
+> SWDT registers from U-Boot (unlike on Salvator-XS with R-Car H3 ES2),
+> so access is not blocked.
+> Hence I plan to drop the SWDT patches for all R-Car Gen4 boards.
 
-However, that's quite conflicting with the current official
-rules for writing DT files, which don't recognize such exceptions
-at all.  Perhaps we should attempt to incorporate such preferences
-into the official rules, because such non-standard ordering does
-make DTs more readable?  Following the rules is good, unless it
-makes the end results worse, IMHO.
+Thank you for testing. You can also flip the DIP switches on WhiteHawk 
+to boot the original firmware on it, it is left unmodified . Then we 
+would know whether even the WH is unaffected, but I suspect it likely is.
 
+-- 
+Best regards,
+Marek Vasut
 
