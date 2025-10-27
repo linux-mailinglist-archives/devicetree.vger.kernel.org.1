@@ -1,128 +1,95 @@
-Return-Path: <devicetree+bounces-231696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF974C0FD0F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:58:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D75FC0FD27
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 19:01:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B18FE19C78F4
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:59:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC4C5466810
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 18:01:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29CB731985C;
-	Mon, 27 Oct 2025 17:58:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CE662D6E6C;
+	Mon, 27 Oct 2025 18:01:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b5dMn04R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uGfwz6+0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56D703195E5
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 17:58:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21A1F25DB12;
+	Mon, 27 Oct 2025 18:01:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761587926; cv=none; b=fbiRqPGbnoRPC5la8VgzYE/nFC7TYSBn5HdPEniXQ5v2WkDbZGUhul8bL0OIoKRmdpKBnckrIualXNxnel4fpiY36NP+V0A3Vgg4FEJuqI9PBGt0w91fHpOLLL+hSHkRTkBb50c6OI/wGdbcBezsYxUj8iuZ355ObPz9IzeiV8w=
+	t=1761588081; cv=none; b=fSdsKyNXJQyQiasSHLNHbTQwSzmPjCCTlXsMkSBzMuXOIlbsf6i+wlQZq2G4jFAc4A+O8x9S/VnU2RPD+JkucQn0rO5sghbemL6IyYq1yWRv7NmPUlcXHIbCUPjQU4DWvct6nfVHoi/1lnjULMyX/u+Kb/BHqvAIqz110b7TOj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761587926; c=relaxed/simple;
-	bh=lrLZa5alrgHzC1J99K289oAUToN5br+ZIZn9l5DB14I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FDFTb9ICOYXwUvIpxYrZwC+wTmeFN5hKmS5wjwfZNfjGuMwA6/Nh36yGsozRVCohPHzSopZxognVaRVnNebXmDh0RmdYTrYXlaY9UCmsGlurI7xsepYROQTnCn72AzbGV1gNlIWLoEN6gGafZWlYgIF737a1/5Ji8NLjb1l5S7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b5dMn04R; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-421851bcb25so3077149f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 10:58:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761587923; x=1762192723; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lrLZa5alrgHzC1J99K289oAUToN5br+ZIZn9l5DB14I=;
-        b=b5dMn04RsBnItqzMCrb5hnhZy7S5RbR+b34HZ83ocRWHgAEC+41JFR/XB9gGdXfhOX
-         AEy5dHe3CpmqPWYAgEgp0XIQeIxawt1YD8j9ObNaAUgkN3kj46zrjZFzuGKGz3Y/LxYd
-         QiL6xQ/8/epQfyOZPzu/5eFO4BhrmoRE+nOqooYLV3lLQrJBMpedGZHDyGCF49BuTo+p
-         xQhOmLbKmtWl9p/JnsxUHeO+NRKpI2GZvDsho5pqpVjW6X9OvTKtgA6dpYMO9OjnSiSL
-         EW/edlUyJLao0lgmcVIoziB0HYEPyN75dIvuePvJPwahmVPokHxRYM3kj1dgB00w8wCS
-         iwYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761587923; x=1762192723;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lrLZa5alrgHzC1J99K289oAUToN5br+ZIZn9l5DB14I=;
-        b=vFu26Gp+dSM1FGHu1OQ+jatmOsv+O+uPOj/OtYK5HWBeYYvrGFPgIfJ45nkHwAzP3S
-         DI8Ox29KfEdHeJatgTpH8XTkHytdLvL+SSh7L+KMQN8uHJhibYr6EzV5Ef1b/xqCRvwp
-         q5hDNtkoX3xhSyMEu31oiMwq6m8XY9kESdOkniTHwHWtzD8Sw7YFJtfl7FOLuidVuLY5
-         WRxBUfVfbolYRNxFKqQ7HayJqr0cerdrlGtuXI4us2Mn/EQso8e93G3WEZF6AbVQHhPy
-         /bTvRcEF1rnvtUy01OAilqRHP/N/Wt+Uwiw6jUDPL4p44ma9LL7yb4sViF5u22JZcVL7
-         TIzA==
-X-Forwarded-Encrypted: i=1; AJvYcCWeNmNIdz7cdVCVstoUyxGtVzpglOqiexx2i8Mbqi/pyJiR2VMO86xhGP+6FKJvtPLaH1wqwBjPF84k@vger.kernel.org
-X-Gm-Message-State: AOJu0YxECk4AnwgetJHb5I/n12JszV1slFBEsr6GDdc3bAX7oIPIGBw5
-	MUQ7oNRgzpnnLNTRRZOHIZJ3+ciZh9XDBd/XRg4kdp/7CbzpaiuxULK1
-X-Gm-Gg: ASbGncsZatfbZN3jjntdprJWJWGS4FNgkMfkcwqrRHwlUWkje1KJK28pHDCyuBGMJum
-	Wqe1mQIC9GdL0BAuU5oA75WfwyyQWzonABB2TxNSm//2efSRlfsZ2d130jYHAo5HCXSlg8nijIh
-	Opz632q1UIZaNg42hMITpbughaU1ifsYJEGOpRR4wZNbjOkPkECWFEpPlYV7OO3/5qfq2GFbLNX
-	jsVao3kM6G0M+QgHTnQTI4dYXJo0foMvVdVbCdmit6kEJcFj3hDHG9RJh29AUKEE0ZCTQjTjODR
-	xHNLJEd1Q2/JcJAjH7kcp7vlsxuLM0lWrmW5biBHNjsiPfRRIKqqSftOBsDHhH9APLszMVrG00G
-	c2y2JywmkLtw3hl5pUvkZZeYJZS1hqgwpzZ8eTorNlehopYNrJi5xqqQHR7n/f5VTe4Kw8LiM57
-	zHGGAC50ZffDpyh4V/Xfi19gXvX5Zz/hLmDykL6UGf/CEW95lRn6PbLgwp2LUXxtpsVkKj
-X-Google-Smtp-Source: AGHT+IEEbY/WNAlAvL+pz8s7XDkjY8oak1WE3FbbRf2JSc/Ve9J9gkYo1nnN4xz8/yWauuSoOfnmDA==
-X-Received: by 2002:a05:6000:2287:b0:401:5ad1:682 with SMTP id ffacd0b85a97d-429a7e59dbemr594649f8f.14.1761587922569;
-        Mon, 27 Oct 2025 10:58:42 -0700 (PDT)
-Received: from jernej-laptop.localnet (178-79-73-218.dynamic.telemach.net. [178.79.73.218])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429952df3c7sm15264123f8f.40.2025.10.27.10.58.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Oct 2025 10:58:42 -0700 (PDT)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej@kernel.org>,
- Samuel Holland <samuel@sholland.org>, Mark Brown <broonie@kernel.org>,
- Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-sunxi@lists.linux.dev,
- linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v2 09/10] arm64: dts: allwinner: a523: Add SPDIF TX pin on PB and
- PI pins
-Date: Mon, 27 Oct 2025 18:58:41 +0100
-Message-ID: <4686611.LvFx2qVVIh@jernej-laptop>
-In-Reply-To: <20251027125655.793277-10-wens@kernel.org>
-References:
- <20251027125655.793277-1-wens@kernel.org>
- <20251027125655.793277-10-wens@kernel.org>
+	s=arc-20240116; t=1761588081; c=relaxed/simple;
+	bh=9jM1AyAjLgTLzGDPG1KyrYzLoMQUACPXx/AJXSYKCR8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g2++W1OltW3kszweIUkGJXR2hXCqbPlHbfpQXGRUDG7RXUMFXv/zMbwlszlB1PVWJLD7yP/TemZZBYjzI15jXR49gU/NE13BocnFNa2QCbKM2Ssv9vgBRKQ+Rd1+N8FDdcoe6E6ipLBCpajVwxoFJ1l79EJnNvG4hrc5W+MxsR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uGfwz6+0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B5F1C4CEF1;
+	Mon, 27 Oct 2025 18:01:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761588080;
+	bh=9jM1AyAjLgTLzGDPG1KyrYzLoMQUACPXx/AJXSYKCR8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uGfwz6+04+lKKSGIgJAX4Bj6rEpXWa0ZZmr/m04gLJCYeRf3xtu8z7+eiWlEKIKNk
+	 RBQS7TcAR0AKwibjHenjEiMjFMThvZ6hvMlzHKzPFQ3OL0vkV6NzVuP1JHcgVXFzYT
+	 6Zg2WXJL3Fh7p9SGEP8O5SLc5f2V0fe2TYPfl4zBFhL4rHaTwVN5Vozj+friwzaHCM
+	 NzegOTSsZB+WugVobmY78QPEKBWGXCMwHWtBNfPnwKN8QzoSlGs1DOVfsMAR7ai5gV
+	 3Ud6ZaanLvuOsWFI4Vamcj8axRLFGouGi9x6nYHCDawwz/hNQSrPxtB4/4V+/z0gFT
+	 MtDS49A2H7nLQ==
+Date: Mon, 27 Oct 2025 13:01:18 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+Cc: Sukrut Bellary <sbellary@baylibre.com>, hverkuil+cisco@kernel.org,
+	u-kumar1@ti.com, jai.luthra@ideasonboard.com,
+	linux-kernel@vger.kernel.org, mchehab@kernel.org,
+	sakari.ailus@linux.intel.com, devicetree@vger.kernel.org,
+	krzk+dt@kernel.org, bparrot@ti.com, linux-media@vger.kernel.org,
+	dale@farnsworth.org, conor+dt@kernel.org
+Subject: Re: [PATCH V5 3/4] dt-bindings: media: ti: vpe: Add support for
+ Video Input Port
+Message-ID: <176158807606.1250661.5992100889957757703.robh@kernel.org>
+References: <20251024094452.549186-1-y-abhilashchandra@ti.com>
+ <20251024094452.549186-4-y-abhilashchandra@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251024094452.549186-4-y-abhilashchandra@ti.com>
 
-Dne ponedeljek, 27. oktober 2025 ob 13:56:50 Srednjeevropski standardni =C4=
-=8Das je Chen-Yu Tsai napisal(a):
-> The SPDIF TX (called OWA OUT in the datasheet) is available on three
-> pins. Of those, the PH pin is unlikely to be used since it conflicts
-> with the first Ethernet controller.
->=20
-> The Radxa Cubie A5E exposes SPDIF TX through the PI pin group on the
-> 40-pin GPIO header.
->=20
-> The Orange Pi 4A exposes SPDIF TX through both the PB and PI pin
-> groups on the 40-pin GPIO header. The PB pin alternatively would be
-> used for I2S0 though.
->=20
-> Add pinmux settings for both options so potential users can directly
-> reference either one.
->=20
-> Signed-off-by: Chen-Yu Tsai <wens@kernel.org>
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+On Fri, 24 Oct 2025 15:14:51 +0530, Yemike Abhilash Chandra wrote:
+> From: Dale Farnsworth <dale@farnsworth.org>
+> 
+> Add device tree bindings for the Video Input Port. Video Input Port (VIP)
+> can be found on devices such as DRA7xx and provides a parallel interface
+> to a video source such as a sensor or TV decoder.
+> 
+> Signed-off-by: Dale Farnsworth <dale@farnsworth.org>
+> Signed-off-by: Benoit Parrot <bparrot@ti.com>
+> Signed-off-by: Sukrut Bellary <sbellary@baylibre.com>
+> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> ---
+> Changelog:
+> Changes in v5:
+> Krzysztof:
+> - Drop VIP node's label from the example
+> - Fix indentation of the example
+> 
+>  .../devicetree/bindings/media/ti,vip.yaml     | 152 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 153 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/ti,vip.yaml
+> 
 
-Best regards,
-Jernej
-
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
