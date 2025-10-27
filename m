@@ -1,108 +1,153 @@
-Return-Path: <devicetree+bounces-231397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8740EC0CE16
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 11:08:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDD44C0CE73
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 11:15:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9FBA18825A4
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:07:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAAC94023A6
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:10:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB24B1F92E;
-	Mon, 27 Oct 2025 10:06:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fiy4qYUo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C9272E5B1E;
+	Mon, 27 Oct 2025 10:10:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49F352E5B1E
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 10:06:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91772224B0D
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 10:10:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761559593; cv=none; b=Uz4kKumqyP7wi/Ow5icb50J2LXPZRr9blXFkNGGzrdQHMRwynMZSm+d/70ijxKhJpDkStFNOiW77OL/nFAAl/t+6ELoQrWpEew3bSKXWrKHZZPquHmLmRK07V4ESatcpu/rc4+3SQfRIdoY8gM+9ePiGj1Fej1QUrWbCRKuDGOo=
+	t=1761559808; cv=none; b=q3LXdNRsbbEPllSDzLDHkPrzqd0Q4/QyO1gKSIoakxCBNt18lxYK+oZl0yFoX7H+9w+iLGhTYXyuuyXLrrLqZO2heAknqXiXv1gjRcx5nNyFonWXkU+GnTiJM5U5GQ2XZqYsGWVzUQAoxfnE3v6SC07k3TWjX9vz9DNDLKXFGHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761559593; c=relaxed/simple;
-	bh=l5doOeAnSYSQI+MnlDBwnrzy87dYaAS/wZNmV4aDiaM=;
+	s=arc-20240116; t=1761559808; c=relaxed/simple;
+	bh=wabfbo3L0St98xqkI3dsSU5HnY98N7SPncJI9BJ0fCU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WY2Ts/R4PcIZrr8vLcgZB/WMi4uixEfrd/S4+Y/p8H0JjNVdrY+LSsUMDtbFfinwlmCLYAzCYGZ3r/j4PnH84VqM3jftNK71MmLpFOLpVnVNPfqjYpCed2/s5/eAOn6vibfKNJiQW222Kq2Z/RFPe/5oxKCkadAM64Yb00Z7ClI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fiy4qYUo; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	 To:Cc:Content-Type; b=FkwQAUxjZKQp0C6oo6AXU8d6GLATn4eCUzDNQrwYIDGhn+gopiy7KwJfdnz4O1woMfQj1QRiX1+7VZkFAAAb/WEf/vlvNfSr8KaKPJzAJpAloxC4mcAU50sQ7NebECjJb4HkgLj4h5qWrB0iqWwbpWYOZmw/MWB8RQcRyAxoxFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-26d0fbe238bso31734725ad.3
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 03:06:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761559591; x=1762164391; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l5doOeAnSYSQI+MnlDBwnrzy87dYaAS/wZNmV4aDiaM=;
-        b=Fiy4qYUoqhss1pi1BHikADkw0/OpvYvCrQutHG51Z0wIRRtAaZ1frbYR1pweve48vx
-         0kA+jJX/cVWYcaFb/tEcHIJNGA55MH281XkHq+Kutgau1YkngkwdHnFOD2FuLFB/vAUU
-         efXMXVWssGu7ZwRx0oTapHCA84iME1JhQZZ+KFM8GKFJ451lQD/chOO3+7P1+BosiBuk
-         N+cRZgFsRQPcGsgBAtQUE5QfbDrPGZmy4enX8fE30NGL+i+Jql1Ny5nzZ491vIWvQfVk
-         cDCLPOcJ3zk2AEufkmNe1Z4Y8/rth1Wri54ndffn61xfR+oV6GEP3VjN7GPUaHYrsNTN
-         fmjQ==
+Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-556a4651cfcso1521696e0c.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 03:10:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761559591; x=1762164391;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l5doOeAnSYSQI+MnlDBwnrzy87dYaAS/wZNmV4aDiaM=;
-        b=Vto+keiCNS0kH3+J4u74W+AsD5xuThutS9curqVF9RA/DHqmZKWSnyuFjIzPvqalgX
-         HhyZdZfs7twO3GCXzL4tWmlaUdU7fp0jTNXNhd2/kVQL7me4+xlACHnPa+hevd04Vq53
-         WNkeeYLuHIAqwpZpuQhY+Sc6mhgrO9p1WSeXQY7BP0QvBKeFns0ahM9LbEzD44z8JNM3
-         mZd2I2HdKqbYrmCxkDUYDKMpQhjA74wcCsz6EzD2u6TieUI1crceVCiz4VqArruwSJ7J
-         c6SHiHm3il0omfhhezSeU1w9PUFzzmW6+s2CKNBO90MLokwGe3n4EfVXY4+oFgiykK09
-         g1BA==
-X-Forwarded-Encrypted: i=1; AJvYcCUMGZsen/k/zUZZX65taDu3cMwcdEe2W3ZX3rrdEMkJUqm3uh9azGxRaFIOeHdhxA0EqjtMa7dZ5rTr@vger.kernel.org
-X-Gm-Message-State: AOJu0YwRzoj2OWxdy8OKrAVYEUFFpb95Dk6cPOztoptcQdOuLZyPNIeS
-	x0mJVDCdS/OUyO9IpD06Aay9hQ9xXYkCY//+RHiCpuCH1yKE1MeRWrqcEvaG5Un1k+p3f0673Wk
-	xGNtafBKca15ItUm8TWadGVhbc+wL9OY=
-X-Gm-Gg: ASbGncvICW7C08aEL2J3HII3dhvqqynVNFu1O6pyS47bGsizyANMuk6E7bCthGs3xCD
-	8BEktji7uYD94lePXO6+IHkiRY0E2O6zCliCAPR3phH4oegXkwdgNuL4nm/NBmRmCJnpZHfnPHr
-	Go3nexo/IroC6gO5UzG8gXEGQI491mcezVqhBtVAl3g7kF6nkr6LHIij0tjFrGhY4tGkLHZMBQa
-	JOj+rrWSjILJi+ksvoFHJOn6uRGmSE0gOHh3NKSARbgGrd5EcEy+pq/ASh4Lx52D96+57u594Ma
-	B2TfrtG2eA4BDg==
-X-Google-Smtp-Source: AGHT+IHRpB86RXroRDzzRdYSB7oYFAv4dqfXwWvXOZ++yIISCsXtN6hFohYhh9Tmy4ZRUzQ+j+Lng2VlTrE5kMPFzuc=
-X-Received: by 2002:a17:902:e5cc:b0:270:4964:ad82 with SMTP id
- d9443c01a7336-2948ba0d9a1mr120199225ad.38.1761559591357; Mon, 27 Oct 2025
- 03:06:31 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761559805; x=1762164605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xfKPIqPs1uhFSxfv2Q4P8MRWwGNst7LmX4Uw4wnrJps=;
+        b=KHdh30Fdu48gzsoUyFxISYoeiWngqKLKNh71ZQZZwsGG4Km2MnoghutSY+vPkvgJrJ
+         eufG4CKTNz+NF+S8RR3+LiVKiPIOSoVcWvr3CbXwIyYJhu2rc0WzWEF8q4VqR3BIcDbH
+         YWvqEM+aEeu1um40kT00u5ys1nrkJsMPXtTNUMyWXra15kQbaWfX4EmfcJMcG7oe4kRi
+         Skr63B3nF8rlu7p4tb4XHBMqDWNANCb+JASHQThn7GxJO6bISm8k3nwkWvpehe/nZH0e
+         ozuM9mGyJCKAMBEu1fTt0HR/neCLPzG1kfrhQg8bMa28ZUyetJCWK6OF7H2eGku8kOBl
+         P0vg==
+X-Forwarded-Encrypted: i=1; AJvYcCV/QJvS4kZmjuWputR0oT2gKVHP4PdVv4SEULMFrMS5tLsSmReZT+jHGtXu6QSiDJ6hKK1vItB4jIS5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfqRxGGuTnBY+wbQXC4gRDIWoSWfAL5tG6eDTq0Inf30exe+6T
+	p3+xOx63TB9rwfKA3jOW7oeUm9FDY4fRv9ux7pRig9uU3hfbMuEZ+x5tLeU0q9Ux
+X-Gm-Gg: ASbGncu3AKQWePBhVsXBnJOS5ReJC3CWeRF0BeqQZCaheqI+bSEe8XtssxxpR7Q8jkZ
+	/Gsp767vSBWrBzEmnXY1j6aHgy9E0f07CvrFDXUFYKGYhDmBOOlsbn7OuDD9LlGk1ohAtE5l5YU
+	ARdUqyj6v/CrW9WiFI9Lu6QD/AgYPT3sdiwuMAo2MmYhw71IM7LHPpKhqIS9RuH022Z08R6aV7C
+	LnBaTqDZEpc5JMZUrT8rP7RZ6b6aa7xxxPJ+imk07NP7JKEiizPYuOMoskAbzqX8oxQzWdg+jkn
+	zi5i1FiI+OEMkD+iXcuJg5li+dAmweiBvwuSL/lYa41FQW0gpMYk3PYeI4gfNWjG/qeXFciL2lB
+	+jhoKlhH3hZcfeFJthoKKQ3MGNJPjtFwIobMACbzPNJC9cp2igp0Tmu64DL/gR4ukVt7aU+CKQg
+	1v0u0X3V0+F6sVMY/nbnimhL6SIVFnxRx0pgbfnQ==
+X-Google-Smtp-Source: AGHT+IHosmS0rGwDvQEuxBgpJBkDHoN8cMIkGXd5WAac41dEs+s6m6EAacq7sfrBlwZv7QfjbmRmRg==
+X-Received: by 2002:a05:6122:828d:b0:54b:c83b:9299 with SMTP id 71dfb90a1353d-5564ef1e37emr10190168e0c.10.1761559805082;
+        Mon, 27 Oct 2025 03:10:05 -0700 (PDT)
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-557ddb5f493sm2703453e0c.17.2025.10.27.03.10.04
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Oct 2025 03:10:04 -0700 (PDT)
+Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-8e352f6c277so1120839241.2
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 03:10:04 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWUOrZSdfCJQ5k7hLU3dR2FGbrhJPaq3WFsEZOXd+CDAzTkrLlRfzaCSxmK0NIMnq49dtJGYAGq0djt@vger.kernel.org
+X-Received: by 2002:a05:6102:c13:b0:5d5:f6ae:38bf with SMTP id
+ ada2fe7eead31-5d7dd6fd644mr10702587137.40.1761559804326; Mon, 27 Oct 2025
+ 03:10:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251027093133.2344267-1-max.oss.09@gmail.com> <20251027093133.2344267-2-max.oss.09@gmail.com>
-In-Reply-To: <20251027093133.2344267-2-max.oss.09@gmail.com>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Mon, 27 Oct 2025 12:08:57 +0200
-X-Gm-Features: AWmQ_bmTfGXGF5x3XTOBQj8jm2eoTyHs4EQJMNTtCvVM7Dk1SHwZVtKvKWhTgLA
-Message-ID: <CAEnQRZDrqKFmenTiNi4U==X-xE0pv0Qt=qpXJAVi4sGvnBL4cg@mail.gmail.com>
-Subject: Re: [PATCH v1 1/5] arm64: dts: imx8-apalis: cleanup todo
-To: max.oss.09@gmail.com
-Cc: Max Krummenacher <max.krummenacher@toradex.com>, 
-	Stefan Eichenberger <stefan.eichenberger@toradex.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+References: <20251017115123.3438-2-wsa+renesas@sang-engineering.com>
+ <CAMuHMdUCSRKAbD=DfJxfFGpfKTRkt=a2BO+HnwTqALBeeECOkA@mail.gmail.com>
+ <aPaSF2lokJ748cTx@shikoro> <CAMuHMdXv_R6POTQe=MEcEOraKhjhzwrW5skkWnzgvijF2qAykw@mail.gmail.com>
+ <fba13116-2495-49a3-a1b5-2eecb33bb448@mailbox.org> <CAMuHMdUP_bH5WW3=3J1H=6SocKzQXPdP7PFfYDrgaj4EhYTaYQ@mail.gmail.com>
+ <0e81437f-a13f-4605-b7f7-6e6640411f30@mailbox.org>
+In-Reply-To: <0e81437f-a13f-4605-b7f7-6e6640411f30@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 27 Oct 2025 11:09:53 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXs+FoL5g4ZgFVQ4WwXRt9Y-8BcX27d7=wFFROa939CwQ@mail.gmail.com>
+X-Gm-Features: AWmQ_bmE-1yifXAR30P2TnxjB9vJART2nr5mauZfpbP5EFuHoaYAUyzx9tdTjHA
+Message-ID: <CAMuHMdXs+FoL5g4ZgFVQ4WwXRt9Y-8BcX27d7=wFFROa939CwQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: sparrow-hawk: don't reserve SWDT
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-renesas-soc@vger.kernel.org, 
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 27, 2025 at 11:32=E2=80=AFAM <max.oss.09@gmail.com> wrote:
->
-> From: Max Krummenacher <max.krummenacher@toradex.com>
->
-> Functionality has been added without removing the associated TODO
-> comments.
-> Clean that up by removing TODOs no longer applicable.
->
-> Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
+Hi Marek,
 
-Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+On Tue, 21 Oct 2025 at 18:07, Marek Vasut <marek.vasut@mailbox.org> wrote:
+> On 10/21/25 3:22 PM, Geert Uytterhoeven wrote:
+> > On Tue, 21 Oct 2025 at 15:14, Marek Vasut <marek.vasut@mailbox.org> wrote:
+> >> On 10/21/25 9:09 AM, Geert Uytterhoeven wrote:
+> >>> On Mon, 20 Oct 2025 at 21:48, Wolfram Sang
+> >>> <wsa+renesas@sang-engineering.com> wrote:
+> >>>>> Or better: drop all these swdt = reserved commits?
+> >>>>
+> >>>> Maybe. Since Marek is maybe interested in fixing FW...
+> >>>>
+> >>>>> TBH, I always had my doubts about making them reserved in the upstream
+> >>>>> DTS, and there does not seem to be much gain in doing so...
+> >>>>
+> >>>> No strong opinion here. With "reserved" I think I followed your
+> >>>> suggestion but I personally don't mind.
+> >>>
+> >>> Well, the proper mechanism would be that firmware using SWDT would
+> >>> override the status to reserved, preventing the user from using it if
+> >>> it was enabled in the DTB passed by the user.  But (a) the current
+> >>> firmware doesn't do that, and (b) we currently do not have a use-case
+> >>> for enabling SWDT in the DTB.
+> >>
+> >> Upstream TFA does enable SWDT for R-Car Gen3, but not for Gen4.
+> >
+> > Oh, so this is a "generic" R-Car Gen4 issue?
+> > Does that mean we can use SWDT in Linux on R-Car Gen4 with TF-A,
+> > or does TF-A still block access to it?
+>
+> I think this can be tested on Sparrow Hawk easily , with and without
+> TFA. Wolfram, how do I test the SWDT ?
+>
+> >> I can pass SWDT node from upstream TFA to next stage on Gen3 if you
+> >> would like that ?
+> >
+> > I guess that would be a good thing to do.  But I am afraid it is a bit
+> > late in the product life cycle.  Ideally, everything that is used by
+> > firmware should be marked reserved...
+>
+> It seems SWDT is not used by upstream TFA, but maybe it is used by
+> downstream one (or downstream loader). I can enable SWDT in either TFA
+> or U-Boot if that would be preferable, or leave it available for Linux.
+
+My Gray Hawk Single still has downstream firmware, and I can modify the
+SWDT registers from U-Boot (unlike on Salvator-XS with R-Car H3 ES2),
+so access is not blocked.
+Hence I plan to drop the SWDT patches for all R-Car Gen4 boards.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
