@@ -1,60 +1,68 @@
-Return-Path: <devicetree+bounces-231554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3893C0E3C2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 15:06:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D206EC0E3F5
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 15:07:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BBE3F422CD9
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:58:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5D1B3B3693
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:00:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF58B261581;
-	Mon, 27 Oct 2025 13:57:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF96A2BEC34;
+	Mon, 27 Oct 2025 14:00:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QYX9aQgn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KSINh/R2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1F1C1C27;
-	Mon, 27 Oct 2025 13:57:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F54A2797B5;
+	Mon, 27 Oct 2025 14:00:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761573475; cv=none; b=UiMUfxQnuesAh15DZY4UdPQf9th8CEcrTfMumAHM7PDJ9O0DZkhcj3WNk5VBKXpRdfsUJM8uSqXZLD9tK6ewZPq3kF01/zKVkIw3ZKh0KEWALflr5nQB+6ZgykBE/QuQRXLaezRR2yRhznurRgRUrjm77a4NldA1THr343ajicE=
+	t=1761573653; cv=none; b=Y28RaD26/dGDceN5azyQJKVtFBUhuZlGc7gTXoZMQxo3CSTAmakCiW/AItKHNyLaTgdLufncl4hZktvI+zvhNw5yUw+nF+MfGBHCJuQArKfz+iF2nBkq45rQN1XZ/0EpuBHw5S3e9L5OX6W1Z4UNJOcna6Ln0ocMO8/+BY2nrn4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761573475; c=relaxed/simple;
-	bh=vQlBeuOimfnDQArLcW6HVQ1cZwXaJm+WEydOmRjU5rE=;
+	s=arc-20240116; t=1761573653; c=relaxed/simple;
+	bh=cI5UkVL9m1fqP/3JizSr2bZRNqQZcgW7vO6CVyE+9Wo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o44Qk05Q+12V5eTHUyXfSl+dUTxz9TI0AGlBZsdXPXb75wiyCJ3rEDXcfyLaGST7I2SkqAe3SqjCptaVlmXlrPveB7xxVv6noVAVXw7FVD/IvTCfpiRJbigSl61vfhApUU5WItvV3tgrhQRSRv7/rzBALiptXO4jUrIw6mWvMNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QYX9aQgn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E7C3C4CEF1;
-	Mon, 27 Oct 2025 13:57:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hJYYWSVA65eNGtWNEfx579viho+MvJtvONKwSaVncRO6qaqW/t8+P8ufMAGIyOlbL5CkMZF6RcjiSF/5R+iQODdy36g53YdtPlIg2La0kazqoyksBOmTTxc8ptLeqwjywIEXwKReplP565PL9WHKrctgCj/nVX3wFnQnxh+jTok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KSINh/R2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAAF4C4CEF1;
+	Mon, 27 Oct 2025 14:00:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761573475;
-	bh=vQlBeuOimfnDQArLcW6HVQ1cZwXaJm+WEydOmRjU5rE=;
+	s=k20201202; t=1761573653;
+	bh=cI5UkVL9m1fqP/3JizSr2bZRNqQZcgW7vO6CVyE+9Wo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QYX9aQgnXs4w4qx23uZ1wSZQTKEhkqsu6hBA8OFqCL03nz4a66I2RXsW+tItPEiZB
-	 tTr+MMdzfFfQaEPMNodsnPXLZE8WCKh+lHTgF1W4gXBIi9U6kkQI382+B2swxQjFrv
-	 S3LuZBfQXKw0wr6cX8MbB15mCu0dRuPNPFnBjdfBMMB+2YrxFlnO0UvwTjznpckpc4
-	 hptzh3FzAeEHNNnePQXkAC3No2jW9SzTVKDMCuVmwymv7m+wKfeNW97T0SZepVPJxE
-	 sn/w1JCP5khrBGhHV9essXo5om5jcbms9lj5N7tuYGT4/ExjTRd4qOejG4inPuWxaE
-	 EyOKH6g+NzS4A==
-Date: Mon, 27 Oct 2025 08:57:52 -0500
-From: Rob Herring <robh@kernel.org>
-To: Charan Pedumuru <charan.pedumuru@gmail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Taichi Sugaya <sugaya.taichi@socionext.com>,
-	Takao Orito <orito.takao@socionext.com>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mmc: socionext,milbeaut-m10v-sdhci-3.0:
- convert to DT schema
-Message-ID: <20251027135752.GA316916-robh@kernel.org>
-References: <20251023-milbeaut-v1-1-3e4ff67110ad@gmail.com>
+	b=KSINh/R2b6K7gZt5irOCjtem5/v7uYotuid7sjdJj8puKg2oqclwuQ7a9Zy9NzEKz
+	 xTX3fdgYsaqv2duSGgpPY845Yd6q2Cq10b9O6brBVkSPds6exrqdKbTcc0+E8Q2yRi
+	 vBUy79UV6ckACiS7f2ZAGNwWbsrY8ITNuQGrhwS7PuAee6Fg+XGPIsMOP3NdCw+ZVC
+	 rUqLESPU0DSewSjl2kW16iHsA9x2m5rY94hisKWwHsB2dgKG6hkfEAgRguDLbgSAQj
+	 MW61LctI+aeC/FAS8H/Wb61Ri5NgOBZwddAp8IpFZ7KtHUS80QI/qQ1Ww47gdqPMjU
+	 OcdCbE16Ja+Fg==
+Date: Mon, 27 Oct 2025 09:00:50 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: David Heidelberg <david@ixit.cz>
+Cc: Simona Vetter <simona@ffwll.ch>, Jessica Zhang <jesszhan0024@gmail.com>,
+	Sam Ravnborg <sam@ravnborg.org>, Conor Dooley <conor+dt@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	linux-kernel@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	dri-devel@lists.freedesktop.org, phone-devel@vger.kernel.org,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Casey Connolly <casey.connolly@linaro.org>,
+	linux-arm-msm@vger.kernel.org, David Airlie <airlied@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v5 1/6] dt-bindings: panel: Add Samsung S6E3FC2X01 DDIC
+ with panel
+Message-ID: <176157364786.341627.9808596288039785278.robh@kernel.org>
+References: <20251023-s6e3fc2x01-v5-0-8f8852e67417@ixit.cz>
+ <20251023-s6e3fc2x01-v5-1-8f8852e67417@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,120 +71,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251023-milbeaut-v1-1-3e4ff67110ad@gmail.com>
+In-Reply-To: <20251023-s6e3fc2x01-v5-1-8f8852e67417@ixit.cz>
 
-On Thu, Oct 23, 2025 at 05:37:36PM +0000, Charan Pedumuru wrote:
-> Convert SOCIONEXT Milbeaut SDHCI controller binding to YAML format.
-> Add a new property "voltage-ranges" to resolve dt_check errors.
+
+On Thu, 23 Oct 2025 22:24:25 +0200, David Heidelberg wrote:
+> Basic description for S6E3FC2X01 DDIC with attached panel AMS641RW.
 > 
-> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+> Samsung AMS641RW is 6.41 inch, 1080x2340 pixels, 19.5:9 ratio panel
+> 
+> This panel has three supplies, while panel-simple-dsi is limited to one.
+> There is no user of this compatible, nor the compatible make sense.
+> Remove it from simple DSI panel definitions.
+> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
->  .../devicetree/bindings/mmc/sdhci-milbeaut.txt     | 30 ---------
->  .../mmc/socionext,milbeaut-m10v-sdhci-3.0.yaml     | 78 ++++++++++++++++++++++
->  2 files changed, 78 insertions(+), 30 deletions(-)
+>  .../bindings/display/panel/panel-simple-dsi.yaml   |  3 -
+>  .../bindings/display/panel/samsung,s6e3fc2x01.yaml | 81 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  5 ++
+>  3 files changed, 86 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-milbeaut.txt b/Documentation/devicetree/bindings/mmc/sdhci-milbeaut.txt
-> deleted file mode 100644
-> index 627ee89c125b..000000000000
-> --- a/Documentation/devicetree/bindings/mmc/sdhci-milbeaut.txt
-> +++ /dev/null
-> @@ -1,30 +0,0 @@
-> -* SOCIONEXT Milbeaut SDHCI controller
-> -
-> -This file documents differences between the core properties in mmc.txt
-> -and the properties used by the sdhci_milbeaut driver.
-> -
-> -Required properties:
-> -- compatible: "socionext,milbeaut-m10v-sdhci-3.0"
-> -- clocks: Must contain an entry for each entry in clock-names. It is a
-> -  list of phandles and clock-specifier pairs.
-> -  See ../clocks/clock-bindings.txt for details.
-> -- clock-names: Should contain the following two entries:
-> -	"iface" - clock used for sdhci interface
-> -	"core"  - core clock for sdhci controller
-> -
-> -Optional properties:
-> -- fujitsu,cmd-dat-delay-select: boolean property indicating that this host
-> -  requires the CMD_DAT_DELAY control to be enabled.
-> -
-> -Example:
-> -	sdhci3: mmc@1b010000 {
-> -		compatible = "socionext,milbeaut-m10v-sdhci-3.0";
-> -		reg = <0x1b010000 0x10000>;
-> -		interrupts = <0 265 0x4>;
-> -		voltage-ranges = <3300 3300>;
-> -		bus-width = <4>;
-> -		clocks = <&clk 7>, <&ahb_clk>;
-> -		clock-names = "core", "iface";
-> -		cap-sdio-irq;
-> -		fujitsu,cmd-dat-delay-select;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/mmc/socionext,milbeaut-m10v-sdhci-3.0.yaml b/Documentation/devicetree/bindings/mmc/socionext,milbeaut-m10v-sdhci-3.0.yaml
-> new file mode 100644
-> index 000000000000..6b67bef30347
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/socionext,milbeaut-m10v-sdhci-3.0.yaml
-> @@ -0,0 +1,78 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/socionext,milbeaut-m10v-sdhci-3.0.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: SOCIONEXT Milbeaut SDHCI controller
-> +
-> +maintainers:
-> +  - Taichi Sugaya <sugaya.taichi@socionext.com>
-> +  - Takao Orito <orito.takao@socionext.com>
-> +
-> +description:
-> +  The SOCIONEXT Milbeaut SDHCI controller is a specialized SD Host
-> +  Controller found in some of Socionext's Milbeaut image processing SoCs.
-> +  It features a dedicated "bridge controller." This bridge controller
-> +  implements special functions like reset control, clock management for
-> +  various SDR modes (SDR12, SDR25, SDR50) and physical pin property settings.
-> +
-> +allOf:
-> +  - $ref: sdhci-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: socionext,milbeaut-m10v-sdhci-3.0
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: core
-> +      - const: iface
-> +
-> +  fujitsu,cmd-dat-delay-select:
-> +    description:
-> +      Its presence indicates that the controller requires a specific command
-> +      and data line delay selection mechanism for proper operation, particularly
-> +      when dealing with high-speed SD/eMMC modes.
-> +    type: boolean
-> +
-> +  voltage-ranges:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
 
-Sounds more like a uint32-array.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-> +    description:
-> +      Two cells are required, first cell specifies minimum slot voltage (mV),
-> +      second cell specifies maximum slot voltage (mV).
-> +    maxItems: 1
-
-You can better describe it like this:
-
-items:
-  - description: minimum slot voltage (mV)
-  - description: maximum slot voltage (mV)
 
