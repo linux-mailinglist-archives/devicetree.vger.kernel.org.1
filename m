@@ -1,150 +1,157 @@
-Return-Path: <devicetree+bounces-231318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB342C0C57A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 09:40:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D62CC0C5AD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 09:43:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D817188C690
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 08:40:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C994C188DBFB
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 08:42:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D45792E8B6B;
-	Mon, 27 Oct 2025 08:40:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9C1A2E8B7A;
+	Mon, 27 Oct 2025 08:42:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MOpKhK+D"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="ImVrISTf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m15566.qiye.163.com (mail-m15566.qiye.163.com [101.71.155.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F6971C6A3;
-	Mon, 27 Oct 2025 08:40:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C9E82E543B;
+	Mon, 27 Oct 2025 08:41:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761554411; cv=none; b=tq3nqF5CTCU+aNDnmorKFL0H3ZgBs44AHQXOvNKNlQMmhf6BkjFiMxVatIM0imJwql+gK6nZzI0Fklf6LRrNVfhDy8L76Zh3GWg1sMXfwgkRdHIRQAAjXsJta819sNvmIJz0P23mdiezRFv1lw1TDIrc7p2AhwKafedwSWR2JbI=
+	t=1761554523; cv=none; b=DXnPiWaMfeneOxtPkKYc9kxPBDZnN5Vz6puF1I5syPm/G9vFhZotIYQ5bLkkAyv/byWATiBLyqHa8UVBRCzKRxJ0AVIvQ3aViwqU2/K2gMIuWeycufxqtZTYJKL7KiWZixiVbqWxWIf2y2YKp/ytoNADLAQ1YWt1VtGLB7sb6zA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761554411; c=relaxed/simple;
-	bh=pvUgbE/oVYUfBoByjaAA8fILG3lKoJTDuLSKJdOS/A4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d5o4FG8URXExV3LdhOg+ZsPtjm7g/MqCVsMb/4d7kmx7mVPXdDwzq1tKYJplxwvyb+6J5DEnuvphVxvsV2Gqv7A0vBYBK5aK6UgoGG5h3MDo9LeDiSegi3nfuCkfQrVw2WRLX4EJFGLGGrHlU25aorgG3oNODXtgnHACyOR4aZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MOpKhK+D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A44CC4CEF1;
-	Mon, 27 Oct 2025 08:40:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761554411;
-	bh=pvUgbE/oVYUfBoByjaAA8fILG3lKoJTDuLSKJdOS/A4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MOpKhK+DgLDZizQPWOGImQ/dASJaYmJwdQj44QvPvg7uNIOMhw5+TbGkYW8PJvU+q
-	 20H3lfjcN4Zai/LHogBPlspM1hXZ0wcVASpm8txMIMpRpLRJ3+uR9mfdtUmz5Q5uiV
-	 CZ44NKHjzOJIYyyUqn9VUaucJyYZqizP+H3cVcAekWm/XcPqrkkoDCicm2BTbTb2x2
-	 g/yVV3NJ++u4NhjMUkOKFxGM+e3xIsamFHZYKeySCgBkY1o2MvAL+l1n9Ff3WLHeOL
-	 vKfpgDSg8FdXuz7rXqzDUEp7N360OZu/yycoBB27XoZ8aNKOPm9eUd0PwxGH7xxTGf
-	 5zF8CtFjruJhA==
-Message-ID: <112db7fd-3c0e-4c56-a553-5aca12965bdf@kernel.org>
-Date: Mon, 27 Oct 2025 09:40:06 +0100
+	s=arc-20240116; t=1761554523; c=relaxed/simple;
+	bh=7MiPCENxUZ/fCOEbibw5Mo2DnHQfEI6AVeJWWSob4ZQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=T1WPJV3/ul1ZqqCj0ZyXKCCsTfzuNPIZpspuO4MZ/dSYePIBsSESAWd3Kc4PVW4AB8R6qEMrEd4TSI6V1jUhHxRF3yvXN9w6DFAY9sDJaFu2vqLx+05fGQ2zjt3WEWlWPzwWwXgw0/J9+lFeiRvrwc2Ock2dgbEOQFIpjhPW+PA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ImVrISTf; arc=none smtp.client-ip=101.71.155.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from rockchip.. (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 27504ffca;
+	Mon, 27 Oct 2025 16:41:48 +0800 (GMT+08:00)
+From: Elaine Zhang <zhangqing@rock-chips.com>
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	sugar.zhang@rock-chips.com,
+	zhangqing@rock-chips.com,
+	heiko@sntech.de,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	huangtao@rock-chips.com,
+	finley.xiao@rock-chips.com
+Subject: [PATCH v5 0/7] clk: rockchip: Add clock controller for the
+Date: Mon, 27 Oct 2025 16:41:40 +0800
+Message-Id: <20251027084147.4148739-1-zhangqing@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add support for ST TSC1641
- power monitor
-To: Guenter Roeck <linux@roeck-us.net>,
- Igor Reznichenko <igor@reznichenko.net>
-Cc: conor+dt@kernel.org, corbet@lwn.net, david.hunter.linux@gmail.com,
- devicetree@vger.kernel.org, krzk+dt@kernel.org, linux-doc@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org,
- skhan@linuxfoundation.org
-References: <408c1698-a8ad-4e16-8def-352c2c265f5a@kernel.org>
- <20251026184641.631641-1-igor@reznichenko.net>
- <a45ad6b8-b4d5-4e0c-8f1a-3641dddb240d@kernel.org>
- <e51c3dfa-406b-4dfa-bbb5-c31d1a2e0007@roeck-us.net>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <e51c3dfa-406b-4dfa-bbb5-c31d1a2e0007@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9a24d4aa2b03a3kunmca0e4b6150f557
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQx5PGVYZT05DSxoaSkNDGUJWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=ImVrISTf4o+rUYAIusaXaT0DpQY3MSyo77uYdCLrhY0GrBgXm3ScAdtFk6GGBymu70KimfHlukijYFdQVn8MXii86ZRdVH90UGZwUVlyeNQaxklaL/fO46BgdVCYLsy1K75fyKfxow4W0MfC/IeKEQbIYB2QMTc1Y+oup7rTG9M=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=sUOBzOKPhGR9AkwjvrsT4pC2JIm0fRun3DwujokAcjM=;
+	h=date:mime-version:subject:message-id:from;
 
-On 26/10/2025 20:58, Guenter Roeck wrote:
->>>>> +  reg:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  shunt-resistor-micro-ohms:
->>>>> +    description: Shunt resistor value in micro-ohms. Since device has internal
->>>>> +      16-bit RSHUNT register with 10 uOhm LSB, the maximum value is capped at
->>>>> +      655.35 mOhm.
->>>>> +    minimum: 100
->>>>> +    default: 1000
->>>>> +    maximum: 655350
->>>>> +
->>>>> +  st,alert-polarity-active-high:
->>>>
->>>> Isn't this just interrupt? You need proper interrupts property and then
->>>> its flag define the type of interrupt.
->>>
->>> This controls a bit written into device register.
->>> I omitted interrupt property after looking at existing power monitor bindings,
->>> especially hwmon/ti,ina2xx.yaml. INA226 has very similar bit controlling alert
->>> pin polarity and binding doesn't define alert pin as interrupt. Overall, I didn't
->>> find many power monitor bindings defining alert pins as interrupts.
->>
->>
->> On INA2xx that's SMBUS Alert. Is this the case here as well?
->>
-> 
-> It could be wired to SMBus alert, or it could be wired to a CPU interrupt pin.
+Add yaml and dt-bindings for the RV1126B and RK3506.
+RK3506 depend on patches 1/7 and 5/7, so it is merged and submitted.
 
-So please explain me why CPU interrupt pin, which in every really every
-device called "interrupts", would not be "interrupts" here? How CPU can
-even guess the number of the interrupt in such case, without
-"interrupts" property?
+Change in V5:
+[PATCH v5 1/7]: No change
+[PATCH v5 2/7]: No change
+[PATCH v5 3/7]: Drop RV1126B_GRF_SOC_STATUS0
+[PATCH v5 4/7]: Drop syscon
+[PATCH v5 5/7]: No change
+[PATCH v5 6/7]: Add clocks and clock-names, fix id define
+[PATCH v5 7/7]: Drop RK3506_GRF_SOC_STATUS
 
-Best regards,
-Krzysztof
+Change in V4:
+[PATCH v4 1/7]: No change
+[PATCH v4 2/7]: remove label
+[PATCH v4 3/7]: No change
+[PATCH v4 4/7]: remove label,fix order
+[PATCH v4 5/7]: No change
+[PATCH v4 6/7]: Add yaml and dt-bindings for the RK3506
+[PATCH v4 7/7]: Add clock controller for the RK3506
+
+Change in V3:
+[PATCH v3 1/5]: No change
+[PATCH v3 2/5]: Fix define error
+[PATCH v3 3/5]: update driver,fix errir
+[PATCH v3 4/5]: fix error
+[PATCH v3 5/5]: No change
+
+Change in V2:
+[PATCH v2 1/5]: update commit message, rename v2 to multi_pll
+[PATCH v2 2/5]: Modify DT binding headers license
+[PATCH v2 3/5]: update driver
+[PATCH v2 4/5]: fix error
+[PATCH v2 5/5]: update commit message
+
+
+Elaine Zhang (6):
+  clk: rockchip: Implement rockchip_clk_register_armclk_multi_pll()
+  dt-bindings: clock, reset: Add support for rv1126b
+  clk: rockchip: Add clock controller for the RV1126B
+  dt-bindings: clock: Add support for rockchip pvtpll
+  clk: rockchip: add support for pvtpll clk
+  clk: rockchip: Add clock and reset driver for RK3506
+
+Finley Xiao (1):
+  dt-bindings: clock: rockchip: Add RK3506 clock and reset unit
+
+ .../bindings/clock/rockchip,pvtpll.yaml       |   98 ++
+ .../bindings/clock/rockchip,rk3506-cru.yaml   |   51 +
+ .../bindings/clock/rockchip,rv1126b-cru.yaml  |   52 +
+ drivers/clk/rockchip/Kconfig                  |   14 +
+ drivers/clk/rockchip/Makefile                 |    2 +
+ drivers/clk/rockchip/clk-cpu.c                |  165 +++
+ drivers/clk/rockchip/clk-pvtpll.c             |  925 ++++++++++++++
+ drivers/clk/rockchip/clk-rk3506.c             |  869 +++++++++++++
+ drivers/clk/rockchip/clk-rv1126b.c            | 1103 +++++++++++++++++
+ drivers/clk/rockchip/clk.c                    |   24 +
+ drivers/clk/rockchip/clk.h                    |   96 ++
+ drivers/clk/rockchip/rst-rk3506.c             |  226 ++++
+ drivers/clk/rockchip/rst-rv1126b.c            |  444 +++++++
+ .../dt-bindings/clock/rockchip,rk3506-cru.h   |  285 +++++
+ .../dt-bindings/clock/rockchip,rv1126b-cru.h  |  392 ++++++
+ .../dt-bindings/reset/rockchip,rk3506-cru.h   |  211 ++++
+ .../dt-bindings/reset/rockchip,rv1126b-cru.h  |  405 ++++++
+ 17 files changed, 5362 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,pvtpll.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3506-cru.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rv1126b-cru.yaml
+ create mode 100644 drivers/clk/rockchip/clk-pvtpll.c
+ create mode 100644 drivers/clk/rockchip/clk-rk3506.c
+ create mode 100644 drivers/clk/rockchip/clk-rv1126b.c
+ create mode 100644 drivers/clk/rockchip/rst-rk3506.c
+ create mode 100644 drivers/clk/rockchip/rst-rv1126b.c
+ create mode 100644 include/dt-bindings/clock/rockchip,rk3506-cru.h
+ create mode 100644 include/dt-bindings/clock/rockchip,rv1126b-cru.h
+ create mode 100644 include/dt-bindings/reset/rockchip,rk3506-cru.h
+ create mode 100644 include/dt-bindings/reset/rockchip,rv1126b-cru.h
+
+
+base-commit: 9893549e592ad22d0a18de97acfb30204109290a
+-- 
+2.34.1
+
 
