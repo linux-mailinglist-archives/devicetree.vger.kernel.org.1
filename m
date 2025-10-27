@@ -1,152 +1,196 @@
-Return-Path: <devicetree+bounces-231523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 870F7C0DC5D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:02:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC770C0DC33
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:02:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 019DE34CF04
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:02:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FDDF3A0593
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:56:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1437A26FDA6;
-	Mon, 27 Oct 2025 13:00:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 736F0263C7F;
+	Mon, 27 Oct 2025 12:55:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="ZvqER0x0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
+Received: from mail-io1-f68.google.com (mail-io1-f68.google.com [209.85.166.68])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8613D263F32
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 13:00:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E18F25D528
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 12:55:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761570009; cv=none; b=Cd3CGCVdWsLF5oXx9OOWLp9Bs0VFIO0H5HTRmC0Yi+JbbCkJ6LAu4+D0O+befOxhnL4ppBI+GVAzeO4jR960u62wExBYigIqrrN0LnavozfwQGcncHNEQrzhCUoCMa7v+ORjwdTNGjUu5LqMzA4rDYwFqWN5ZEo+1smT0WI8F5g=
+	t=1761569713; cv=none; b=uitrwho8N9IYiKikXbhUpknqQNwN3wnV+JlDv/sqycoQwPGFf2PqPGby1oFuzO2Y0Czva8WjlDAXjeJ/VqYhE5+yukQn9t085ZOLPNpMycYdo9pfYvUy68HJ/6a6IEUKYhInThkoRP9ZeMiDVWyYfAywiHIK9uAVNbcBXNOp2v4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761570009; c=relaxed/simple;
-	bh=bwESskb9ZqdlwJb+BKR+lDbeJG3koqiFva6ys/hs5kU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=roLz0sZoetHEfBlEpASTBNzn1BxIicvuyUmYi8hBHSG2VTvnLYG2D1emIoSKchqxDtr5BW0OBhqvbswFjsqakCQv2IsnNlfLtUG4MtB28J01mxu7+3nKcYp+oonnqIi0A9/zSV6wiRLSjk0/kQQJlWk5dDsrhVc+GyQB5nD6zUM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.161.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-654ed784e42so1240469eaf.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 06:00:07 -0700 (PDT)
+	s=arc-20240116; t=1761569713; c=relaxed/simple;
+	bh=Y1P+Ko6EypVqbiO04L0KXvr1REByV8AEUux9zAD3i0s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SbL3KR6lEymgM+CWkP11pjPoRwP6pYwZQQIGvQDvzkncLo/9gaol52/DG46t4ujvZpyE7bP1sYfS0V9PRP85RMAu9HsziLHRlYVxPoISOfF78p1xvt18rqK0OTRlctSSVwQXDMu4h5BXeLHOo+i9ypdrMWkYkSjT8fuTEaXyJZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=ZvqER0x0; arc=none smtp.client-ip=209.85.166.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f68.google.com with SMTP id ca18e2360f4ac-938bf212b72so193984139f.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 05:55:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1761569709; x=1762174509; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4nAF82uQdqoZ+b3y8tjZiPVkCVKQg6rD1LcHeZvN9hk=;
+        b=ZvqER0x097OGPM9gQejW4oG4u0baRK2jM+AZOW6u7qGKku4U63SMkcVKZ+Q9y/946m
+         GpPCrvhw96mASkQpftNQYTsrmxpF7Agbez83rZhEJOU6qwEHQiLkfRQf++mG0EeNaq1M
+         vdaX5daqywna3CU+4W3n3bWha7WVp51oGWJCjsilQ3dhQD1PxcoAsp5kelW7/XjIcqJ3
+         3PJFgHrRv8m59H1Vt/Ay4KGLT5hYuZ7txhqnf7x90S0ce992X6cscrJPbTkAElvAh2gb
+         fvgt+sqxqu3aMVViXfSnY3IZ4KsJtaraon57gx/mr3560lUZaSrrA/uSWaX4oHkd0AEn
+         p5HA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761570006; x=1762174806;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1761569709; x=1762174509;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=yOYdLIvACytBpVHjrdATGnV0/c7ZzUCpXjvbRDnZ37c=;
-        b=OewVYuBKX+8dJnJ3pF7A6PUc7i0FiELUbklppSemFHfdJJIUpKDR7V7FKTe2Px+IIK
-         r2+KVFW8BgmwveXEPZCt9TSSS3Uo28sNrXCDy1T4g8fTgdrPXNdtJsC6n2et1BxkYqqC
-         PEEoodVBNxzIPdoTb3q0qXUX3+cA5UQrjNvAWKQ/9jiIOvAKjs6JEw7PDUGJryb5ZnAL
-         zz55ErTeaHp/ONmH1D37umF31Eq96bn5bNfWqEVr7cjy/hlHa3p+0e9fkeJ0osavfsaq
-         KVSTa0pKGGy5g25hq/K1G8afFIDLsgDvyjpHX1N2WQ6kEgP3Cub6naAlXb2+GulWWsdP
-         v8lQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUlIcaKz4dSrFXR/nrf+n3pbh269q/E+6TNCK7AoNYhoyyQF1NXOHLivN4PEYIPEWjNkaLpw5Bir962@vger.kernel.org
-X-Gm-Message-State: AOJu0YwnahF4bOkiPeA7lVZn+F9Pr38Ef48yXajdJSW+rPXj9u9VGEFa
-	lJLpl/dDfGVyTwn3P2ZS82COOWe0g41WQleUXzkNB7l5nlzn/qHH0jCJj9mTXpgd
-X-Gm-Gg: ASbGncut4ombWro2FnEdB0BgCaMyxq1pKdNYn3f3zOjW3dK2VBR0Imxa/Ia0Ypy+wgE
-	GXK0UY3oq65uIatwo44xAt2Xwqe9KPhI79A5MPCIf5vAwO+HxXWsmM3XgRYentsRosy7HyjXkt2
-	8w8Ch2OeqTrjP8EhDBVdqM+k0ilquPXQYXoQFhF/DMWCPYPmWgcpfbINxpyRg79Rs6l79RGNEyU
-	/LJnyHIn51WESVt0jIXX/FqKp8ofPeXmCr76JnAP0SUsa0aovdNldxv/mRZQwmC/bB+efwiBqEU
-	6LIUp94oI3UwcFLPbqykhMjfnuI199hdudqvzqW15WiuBeWDwF2fyIeZxbaqHrybpbQUQ5sU4VT
-	ACKljHVkpFHUVWaHA57Uf1GgTOLtohJ+GIBKIxBxL375lPKTnJb3UqwCv8gpeisQX04cmor6rf2
-	c0Z0vX4RXrID13OfW89sx1/AawEKCGa9Nzi7f8RYLt4vDoDSRT
-X-Google-Smtp-Source: AGHT+IENtF6lnfOAQM5DxMIC8QzM4+UNjhkWK0Z13BT3fR4qqNy+517Je9W2sW3CmkJoe95RouiiTw==
-X-Received: by 2002:a05:6870:2106:b0:3d3:ce01:1779 with SMTP id 586e51a60fabf-3d3ce011e36mr1574679fac.38.1761570006208;
-        Mon, 27 Oct 2025 06:00:06 -0700 (PDT)
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com. [209.85.210.48])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3d1e2d24eb1sm2413590fac.12.2025.10.27.06.00.05
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Oct 2025 06:00:05 -0700 (PDT)
-Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-7c2816c0495so3322925a34.3
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 06:00:05 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWjOOOKUaKM/tmi6FPbkvSxJmvAz1dVEnKjj8YVUneowF2S8kcViwlWLE2sM5YiNQ7pFJd9UOeAaAkP@vger.kernel.org
-X-Received: by 2002:a05:6102:26d4:b0:522:86ea:42c with SMTP id
- ada2fe7eead31-5d7dd5a64c5mr10674902137.11.1761569636629; Mon, 27 Oct 2025
- 05:53:56 -0700 (PDT)
+        bh=4nAF82uQdqoZ+b3y8tjZiPVkCVKQg6rD1LcHeZvN9hk=;
+        b=cqN0I82O9fabxjbn2PyCafmLHi5G6mw2VYoyPnYYkK92lLP4F8R31/yOu4iesYK652
+         ugOHdCpmrxvCoG9y2p0HIJyW12fDD4D3rY/ZRb6xEFUljeoy4EYvix40zvTgWqr7zByv
+         ZEdeogydthgyVIK/79RSNfhQ0AL1ZJCAK2e25SjgOt2Oued05LZsx5+ZhdQzxfzbIW4a
+         lF8XJG/lcc0YvwurVZqLi/xllE0kBYrorfVVpmAZEFVMYH5xU4hy54pnzFYljZfc5Eof
+         VfmMtIq/Le5Xpdeoqj+IBvwRmDQVleRArCxzFYOyIgeye832M2LwU9oW0ztLPZUzUsKL
+         PB6A==
+X-Forwarded-Encrypted: i=1; AJvYcCXo2x1GZK1nZLUlbVYZSYuLbipdXw4c6aPuqW4E6E0V4QAAYoTlJgTblidpMyttnvHzV+pOt9dAqBVE@vger.kernel.org
+X-Gm-Message-State: AOJu0YxtHoIlPy2i7ieArC20taACg5KPdr/E+pZb+P4Da9Is1lj/VKl/
+	1iv8CpO5CohBIFTAByC0LlpVi+Tsvia7Oc26VS7LtE9zSgCWuq0Cr27YkCoXeLino28=
+X-Gm-Gg: ASbGncveGmm3RMOdXXkhsD2ecvknPV4+w0TRJqIG5n8TIT80VglD0qofuPeZeALc1fZ
+	UqzjPxKyxI5sBn5G0Eg5e4CREHfjz3MIzOx1ScY0j95KWp14JipReumDFI0wZLSG9ho/iKOtpuv
+	AaTjmHLICkv9rQe7pk8DxTcx3E54XnMhA6SwOqJ6VWivRwtQcLCAM9V3lPkPGc62323iDtYXVg9
+	veW+HDmVXBzzd8Ja8xHvdA9uq0uVF7xbqdQgs5N8RDRmazh9/v3w3+RBCQ6focJbIxXLW0qVOhG
+	t8sPSN9RWvP34Llxzzz4Pnq6gr4DlHF8MAlghsCoaTNXPwJwxA9omj+nwLKxfOOvkoVAMtSmWQP
+	GIRzJeEfGXn00rZjhzi1Qi21GQinZ1C6Pl0Am7YzDcEuK9WnKuFKqqsKD4TVtGKxi3ImOjTra/u
+	j6RRAG7wVut0cqWnDHtvfukHU7jisEGspBZdVj4A9lOKtf4MD3UpIDVA==
+X-Google-Smtp-Source: AGHT+IF9dogLPfu3KKBrg4aJADxwDW+rw89Jp80NmbsD4vytQNTH3nxBh7Ne+iAACQ+ZbrAmLBB0QQ==
+X-Received: by 2002:a05:6602:29d2:b0:93e:871f:b060 with SMTP id ca18e2360f4ac-93e871fb6b2mr5001344339f.15.1761569709430;
+        Mon, 27 Oct 2025 05:55:09 -0700 (PDT)
+Received: from zippy.localdomain (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
+        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-94359e742efsm249121639f.7.2025.10.27.05.55.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Oct 2025 05:55:08 -0700 (PDT)
+From: Alex Elder <elder@riscstar.com>
+To: broonie@kernel.org,
+	dlan@gentoo.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	pjw@kernel.org,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	p.zabel@pengutronix.de,
+	devicetree@vger.kernel.org,
+	linux-spi@vger.kernel.org,
+	spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/3] spi: support the SpacemiT K1 SPI controller
+Date: Mon, 27 Oct 2025 07:55:00 -0500
+Message-ID: <20251027125504.297033-1-elder@riscstar.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251022070543.1169173-1-ryan_chen@aspeedtech.com>
- <20251022070543.1169173-5-ryan_chen@aspeedtech.com> <b5441728-06a7-44ea-8876-3a9fc3cf55be@app.fastmail.com>
- <TY2PPF5CB9A1BE626A2F0F6307461D8F64BF2F0A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
- <6a97fbb4-19c2-4ffa-9c73-26aea02c27e4@app.fastmail.com> <TY2PPF5CB9A1BE6CF8336D211641A18E2DEF2F1A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
- <71df9bdf-53b2-45e2-a9e3-5b00a556f957@lunn.ch> <TY2PPF5CB9A1BE6F3E95C7FD61CF4F90ECAF2FEA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
- <fdbc471f-514e-4521-b7a1-dcf6127d64ff@lunn.ch> <TY2PPF5CB9A1BE6DD93D0F397C961D5CB5AF2FCA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
- <01573262-69a8-44cf-ae02-2e9842c59dde@lunn.ch>
-In-Reply-To: <01573262-69a8-44cf-ae02-2e9842c59dde@lunn.ch>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 27 Oct 2025 13:53:45 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXAOPemhTjdJqminXhi+1+Dsc5rN1GLqAUcfF3ZyphRoQ@mail.gmail.com>
-X-Gm-Features: AWmQ_bnc0FKdJRTj1IhXsyeFKk3WmW431oeoaAfsizI36RwwOH6YiF14-6GD61A
-Message-ID: <CAMuHMdXAOPemhTjdJqminXhi+1+Dsc5rN1GLqAUcfF3ZyphRoQ@mail.gmail.com>
-Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC device tree
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Ryan Chen <ryan_chen@aspeedtech.com>, Arnd Bergmann <arnd@arndb.de>, 
-	BMC-SW <BMC-SW@aspeedtech.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
-	Andrew Jeffery <andrew@codeconstruct.com.au>, Jeremy Kerr <jk@codeconstruct.com.au>, 
-	Lee Jones <lee@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, Nishanth Menon <nm@ti.com>, 
-	=?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>, 
-	Taniya Das <quic_tdas@quicinc.com>, 
-	"Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Eric Biggers <ebiggers@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Andrew,
+This series adds support for the SPI controller found in the SpacemiT
+K1 SoC.  The driver currently supports only master mode.  The controller
+has two 32-entry FIFOs and supports PIO and DMA for transfers.
 
-On Mon, 27 Oct 2025 at 13:01, Andrew Lunn <andrew@lunn.ch> wrote:
-> On Mon, Oct 27, 2025 at 02:42:01AM +0000, Ryan Chen wrote:
-> > > Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC device
-> > > tree
-> > >
-> > > > SoC0, referred to as the CPU die, contains a dual-core Cortex-A35
-> > > > cluster and two Cortex-M4 cores, along with its own clock/reset
-> > > > domains and high-speed peripheral set.
-> > >
-> > > > SoC1, referred to as the I/O die, contains the Boot MCU and its own
-> > > > clock/reset domains and low-speed peripheral set, and is responsible
-> > > > for system boot and control functions.
-> > >
-> > > So is the same .dtsi file shared by both systems?
-> >
-> > This .dtsi represents the Cortex-A35 view only and is not shared
-> > with the Cortex-M4 or the Boot MCU side, since they are separate
-> > 32-bit and 64-bit systems running independent firmware.
->
-> DT describes the hardware. The .dtsi file could be shared, you just
-> need different status = <>; lines in the dtb blob.
->
-> > > How do you partition devices
-> > > so each CPU cluster knows it has exclusive access to which peripherals?
-> >
-> > Before the system is fully brought up, Boot MCU configure hardware
-> > controllers handle the resource partitioning to ensure exclusive access.
->
-> Are you saying it modifies the .dtb blob and changes some status =
-> "okay"; to "disabled";?
+Version 6 is identical to version 5, other than being rebased onto
+a current linux-next/master.
 
-"reserved" is the appropriate status value for that.
+                                        -Alex
 
-Gr{oetje,eeting}s,
+This series is available here:
+  https://github.com/riscstar/linux/tree/outgoing/spi-v6
 
-                        Geert
+Between version 5 and version 6:
+  - Rebase only
 
+Here is version 5 of this series:
+  https://lore.kernel.org/lkml/20251013123309.2252042-1-elder@riscstar.com/
+
+Between version 4 and version 5:
+  - Added Yixun's Reviewed-by tag on patch 3
+
+Here is version 4 of this series:
+  https://lore.kernel.org/lkml/20250925121714.2514932-1-elder@riscstar.com/
+
+Between version 3 and version 4 (all suggested by Yixun):
+  - Fixed an underrun/overrun comment error
+  - Renamed a pinctrl node
+  - Formatted dmas and dma-names properties on one line
+
+Here is version 3 of this series:
+  https://lore.kernel.org/lkml/20250922161717.1590690-1-elder@riscstar.com/
+
+Between version 2 and version 3:
+  - Add Conor's Acked-by to patch 1
+  - Add Rob's Reviewed-by to patch 1
+  - Added imply_PDMA to the SPI_SPACEMIT_K1 Kconfig option
+  - Fixed a bug pointed out by Vivian (and Troy) in word-sized reads
+  - Added a comment stating we use 1, 2, or 4 bytes per word
+  - Cleaned up DMA channels properly in case of failure setting up
+  - No longer use devm_*() for allocating DMA channels or buffer
+  - Moved the SPI controller into the dma-bus memory region
+
+Here is version 2 of this series:
+  https://lore.kernel.org/lkml/20250919155914.935608-1-elder@riscstar.com/
+
+Between version 1 and version 2:
+  - Use enum rather than const for the binding compatible string
+  - Omit the label and status property in the binding example
+  - The spi-spacemit-k1.o make target is now added in sorted order
+  - The SPI_SPACEMIT_K1 config option is added in sorted order
+  - The SPI_SPACEMIT_K1 config does *not* depend on MMP_PDMA,
+    however MMP_PDMA is checked at runtime, and if not enabled,
+    DMA will not be used
+  - Read/modify/writes of registers no longer use an additional
+    "virt" variable to hold the address accessed
+  - The k1_spi_driver_data->ioaddr field has been renamed base
+  - The DMA address for the base address is maintained, rather than
+    saving the DMA address of the data register
+  - The spi-max-frequency property value is now bounds checked
+  - A local variable is now initialized to 0 in k1_spi_write_word()
+  - The driver name is now "k1-spi"
+  - DT aliases are used rather than spacemit,k1-ssp-id for bus number
+  - The order of two pin control properties was changed as requested
+  - Clock names and DMA names are now on one line in the "k1.dtsi"
+  - The interrupts property is used rather than interrupts-extended
+  - The order of two pin control properties was changed as requested
+  - Clock names and DMA names are now on one line in the "k1.dtsi"
+  - The interrupts property is used rather than interrupts-extended
+
+Here is version 1 of this series:
+  https://lore.kernel.org/lkml/20250917220724.288127-1-elder@riscstar.com/
+
+Alex Elder (3):
+  dt-bindings: spi: add SpacemiT K1 SPI support
+  spi: spacemit: introduce SpacemiT K1 SPI controller driver
+  riscv: dts: spacemit: define a SPI controller node
+
+ .../bindings/spi/spacemit,k1-spi.yaml         |  84 ++
+ .../boot/dts/spacemit/k1-bananapi-f3.dts      |  15 +-
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  |  20 +
+ arch/riscv/boot/dts/spacemit/k1.dtsi          |  15 +
+ drivers/spi/Kconfig                           |   9 +
+ drivers/spi/Makefile                          |   1 +
+ drivers/spi/spi-spacemit-k1.c                 | 965 ++++++++++++++++++
+ 7 files changed, 1105 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
+ create mode 100644 drivers/spi/spi-spacemit-k1.c
+
+
+base-commit: 8fec172c82c2b5f6f8e47ab837c1dc91ee3d1b87
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.48.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
