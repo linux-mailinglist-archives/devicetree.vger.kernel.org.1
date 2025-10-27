@@ -1,397 +1,178 @@
-Return-Path: <devicetree+bounces-231646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 754E0C0F5DE
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:39:12 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14FC4C0F653
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 17:42:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 043994F05E4
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 16:37:09 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8E47A34F8BA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 16:42:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E87B431618E;
-	Mon, 27 Oct 2025 16:32:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBA83311C27;
+	Mon, 27 Oct 2025 16:42:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="AP3zRfjk"
+	dkim=pass (2048-bit key) header.d=gmx.de header.i=hendrik-noack@gmx.de header.b="kFxbWRJb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012050.outbound.protection.outlook.com [52.101.66.50])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86A4731195A;
-	Mon, 27 Oct 2025 16:32:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.50
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761582767; cv=fail; b=THVPEdqKcY1vZcIZqPludzFHRnSUQWWxe653gOAyEBJchiaAluB5cIwQzJXAWUnt95Z7zPczFHobhJG8XSlopan/irdAziAxwbNMKsSbmQCv48dCeblHVy0LPwFb3mqgAgJ9n/wBRcxkrPvzrmhgMNHzXwZP9kw7LpHDM8ZK2s0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761582767; c=relaxed/simple;
-	bh=e8nyBZUrs1MkfEdaAIaZrCdOcfAFvGF75z/Z1ZSpSeo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=FKbip4r6PwNika11TGbT8/XCy48CGdQQI9HcPdTTy27zNvqfRqydRBCUOrQ5/fPiaQkMPtIVb5knEa42es+b6USn/NT+yJyjvc+n+fj60kgMM8k793898j2wvj/dpE9PJ/T/wkVZqUcattwqx8VkFA0TFAuhy89K/H9S4K9a3A0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=AP3zRfjk; arc=fail smtp.client-ip=52.101.66.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=n/ZjoZtNkwOO+mpLcdy2MVU01EL3OkXykjCwwf/tO1VHBQizvO8b2Ym0ZG+aPRMv/n3SvgUUmQhBk7m+POK2byWSpoBa1lOm11G8AgZYFKVUYT0SJo0+ZcJEGpdGL5IcFZloYE+13ANI2phjTIEwLqK3ze+ZwVPRvlFXy/YwqzkO7PvkxdMxGjSANvu0zDnjgQ2pcEgcwjSbwWOYW66YIjU+R/TXvMEtCZiwQQansfjyTZpspkTBZNsNATznYv4u/GMFHkwDMib041711/IJHossW+pFuvSAs2TgVIcP4g17SjqvN45dLAyb0u9gDCcNoQLKQKnIrjxqLSAZ4qmlyg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HEDRKcr7TZ5RXVQdKs7htv4ABew/ZtEr9s0rt8ytp+E=;
- b=Un0jKaA0dzOZkYvUxv4Vcqguf2xR88BW3yOEPv1MT/X9UqXC9w3o0LySDRXGYhyrF3a0h53o2Rv8ggY/gEyz8gM939LmSXY6JU6Zd2K+9qseLc50FIsDyQz9asQdxcvxp+Q5ewIKza6uMQkTHXDMgFnRrrMqib72x7UT1kB5rcprUuBnrlKLIPxN5MIXeNqlI5sBWcA4wVrFCZZm70BbQeOIZ9yqGUsdo+c+XTgs17KIr+2WombilaOqjsfN/f8OZkdXtja9RVtNhczK4HNVtdoSVr96MbRl8QKgBa2F1bpFhc4KaCh6y9pKYB5EnpEHp4ERvDekSZKxDAEGmzCuvA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HEDRKcr7TZ5RXVQdKs7htv4ABew/ZtEr9s0rt8ytp+E=;
- b=AP3zRfjkktfGLMYmMh9V03nZBe0VdgL9kguo0JK+O2ViOt70IVjRfPWuHLyhA6mwjuRDeCodA+lrSOp5nIGl+IBp4yizJClkHKCqDwEyXnVJhFL2OqREep5qH0SYC2EQCMprFsTUodW2mkKuI0QZHfTwlRGnz4BnVYMEt+EmNXNHMrA0Q2fCPu0KvospR+W+jn2n1f1qP0jYb8sTCUR6VlQ1PguwMD68ahG+khSy0Chy2wBLvLNiWXdsiMRHbqcmnZIJne12Hrp3YzHQ+rHlzXsA3TjFEa9i5KynS3f/nvQ3itgIamfMqciTLIqgr7iaykZdBVob9dCiaj0CBrYHcA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS4PR04MB9621.eurprd04.prod.outlook.com (2603:10a6:20b:4ff::22)
- by AS4PR04MB9575.eurprd04.prod.outlook.com (2603:10a6:20b:4fd::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.16; Mon, 27 Oct
- 2025 16:32:40 +0000
-Received: from AS4PR04MB9621.eurprd04.prod.outlook.com
- ([fe80::a84d:82bf:a9ff:171e]) by AS4PR04MB9621.eurprd04.prod.outlook.com
- ([fe80::a84d:82bf:a9ff:171e%4]) with mapi id 15.20.9253.017; Mon, 27 Oct 2025
- 16:32:40 +0000
-Date: Mon, 27 Oct 2025 12:32:28 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Sakari Ailus <sakari.ailus@iki.fi>
-Cc: Rui Miguel Silva <rmfrfs@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63FB2311C32;
+	Mon, 27 Oct 2025 16:42:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761583344; cv=none; b=aVkMJlap10d2kfZHeAdaPEsE1B3nQtiFbJCKhbYPxKRQ2KYSnTw1avx0p9zkA0LbH1J5zW3IsL/fHd3DKyPN3F0+nm0pC17efoXtHOuddgOUhXyY2yT0WYukOx0msS0Lr/ilXW0re5mw9NSEJam86xo7UMU55T0LBz9rFrsh6Mo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761583344; c=relaxed/simple;
+	bh=SsHdZ25xCvtFBqedql5pR7f928ab+bzGC8496+VFiYs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=D/nUWf7WcbM1OzVOey8WujnWTydNXorxz53Sb0Gjjx1nIwNf31gijXEijoOmKXSmOS01mQK/2c80ntNyjA3G2I9JxlEAN8p7lg/rd5WCK/wlRxwpapk6NWyBFP2nfQib+fTr0JmTJPfjFUb9pNQqXc53wnZ1DLry9E36DWSVoX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=hendrik-noack@gmx.de header.b=kFxbWRJb; arc=none smtp.client-ip=212.227.17.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+	s=s31663417; t=1761583340; x=1762188140; i=hendrik-noack@gmx.de;
+	bh=C3ct9384JvzpeFOW0JMSzQYjvWTxzKv6eLhEAKeWWYM=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:
+	 MIME-Version:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=kFxbWRJbQgR7M48TVnrudXJBGIOL3MBNR23yTfjS+2mIhCcD+pvcB6qz9VK+T8e6
+	 py9EY7Tr2H7VuwRttQR/PzCeK0db0BELQNeXa4jF1edjjNx9ZDhVtj8GBDPexPC+5
+	 oSyJjVuuOyuFcuu9Q+kNQCnvw6dyi9spMIW+AQl1UNVW5YcHb6nzZtEpktMhgqEG0
+	 TrWj3a05jQGZKgGGSxO1JqF8YuwYL2ysbgsJygeYTavYsj6THKR07TWK1cpkRyrTg
+	 GG8ZSAWDPSEGzMILZ/DQegc3S3/HS7PI7FVIAd44v7hdE+fQ+skJtsPUNHYigw7ks
+	 0ZHLzTfd8LVG3CTuZA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from Hendrik-Linux ([217.85.39.201]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1McpNy-1udXVx31lq-00bL5O; Mon, 27
+ Oct 2025 17:42:19 +0100
+From: Hendrik Noack <hendrik-noack@gmx.de>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Eugen Hristev <eugen.hristev@linaro.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-	Alice Yuan <alice.yuan@nxp.com>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Steve Longerbeam <slongerbeam@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
-	linux-staging@lists.linux.dev, Luis Oliveira <lolivei@synopsys.com>
-Subject: Re: [PATCH v3 01/31] dt-bindings: media: add DW MIPI CSI-2 Host
- support
-Message-ID: <aP+enPOHPkvZAkzS@lizhi-Precision-Tower-5810>
-References: <20250821-95_cam-v3-0-c9286fbb34b9@nxp.com>
- <20250821-95_cam-v3-1-c9286fbb34b9@nxp.com>
- <aP8t3YClrZxOnHea@valkosipuli.retiisi.eu>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aP8t3YClrZxOnHea@valkosipuli.retiisi.eu>
-X-ClientProxiedBy: PH0P220CA0022.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:510:d3::21) To AS4PR04MB9621.eurprd04.prod.outlook.com
- (2603:10a6:20b:4ff::22)
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Hendrik Noack <hendrik-noack@gmx.de>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] Add support for Wacom W9000-series penabled touchscreens
+Date: Mon, 27 Oct 2025 17:36:59 +0100
+Message-ID: <20251027164050.113623-1-hendrik-noack@gmx.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4PR04MB9621:EE_|AS4PR04MB9575:EE_
-X-MS-Office365-Filtering-Correlation-Id: f8df48ae-33b5-4bfa-77e6-08de15767224
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|19092799006|7416014|52116014|376014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?iUCj/ph9n+KIxM4dMrhsL4btHNNOB7g5dJ59dAgQzuHfefHox24Kowomvowe?=
- =?us-ascii?Q?g/ZP4cjjpfPqVvJ/b0mn0gn3EdOI//CVPa3AYTr/Ma+17vdgZiqmNmJIDVH7?=
- =?us-ascii?Q?SR14zlp8QOFDcra3fOCWMlCegJdEyzE6AVRAcap6mDZjTmJM4iIBSu8dkrU8?=
- =?us-ascii?Q?v8sxi0S1+i2UMx5PJHJ8/+iv1dkQthT6vHrRtujMNfDab6J2ozZnm6q0YJVX?=
- =?us-ascii?Q?l1nFuX5VoG9mF7LSwpw6RrufGHbizmujGYcbTb6mXRu0FAA2pxn5NbRwg2vy?=
- =?us-ascii?Q?8w7IkYM6+anCW2sQGGbg0DWuty1UlQONj/XqnlQE1riJSkx/Arjtza+MReLx?=
- =?us-ascii?Q?FECUQbCkrttTzIhQHmlDpIK6gCT5Ed38KNBh2ZM2pZZXA6LM8IQI6o3YNUfO?=
- =?us-ascii?Q?/LrMU8TYGZiYLkUjRa4yWaFsBbUDd1GBqUZKDbYe4ilkvR4f5Ug7gTaCvQg+?=
- =?us-ascii?Q?mhdSPoIdwoTjDUQ1HCdjnjQF+QONRQ+4mPVk16PsZ7prX+Zm9l2grt4Qm4b5?=
- =?us-ascii?Q?MXxMSnG9fSeiZf9bylo6IpoJiY1CUNkT+S/uvxSDpUskTMw6I908SaRpR1aI?=
- =?us-ascii?Q?uxVxSdiXQeR+HYgxe87/jDfnpJuUfd1spbIYrk6kfI+MhUN+ekVcRRFZ3RfN?=
- =?us-ascii?Q?THEOnrR2V/n4Jgo6oQxqmCL7+bsR4F3tScyIY/uZRJjBbjj4x6fhqiB/fb7j?=
- =?us-ascii?Q?/PuOZyLVFnn7VK0LM7+vG2z/mW3gk1HwqM1++VSoVW4rIlgLfhz9+u3Td8X0?=
- =?us-ascii?Q?cyX3xd90bdwngE0akrznvZQhCZ1nHC+jF6j2/pTMsadTObOhH+Aoa7M6/yT0?=
- =?us-ascii?Q?Sr+EigfAp/QUghuVAIRUzsYmp8RrRtxfbbMg1bFwiLbbATpRsu85/zHRKMNV?=
- =?us-ascii?Q?9KJzdTE9Sb21vlYte7DvU6gh410BEIfT8MILl0rENhLJhBbsN9SNkkf9Op/5?=
- =?us-ascii?Q?EMLrcJsmLhxH8IkzFx3GIp/yZvyqsuhWk7/4QCiil4WEYe5NXUq3WVX6/RF9?=
- =?us-ascii?Q?42aXmoOlAEO1UeYCFjLaD0QrfqUvxyKYv/JzdmRluKPbceXvW7O7GeMF76vG?=
- =?us-ascii?Q?AgwtZlncX7PL0eUCrb94LjNzPrT3ia0yHd2knqUSphc+bd8GWW5haBLDHxK6?=
- =?us-ascii?Q?+zQKQ1qiAO8jURgYN5OOIa4brPslFwS7qzDF+3hn6uAVxG+FbNeCwQn98Fr0?=
- =?us-ascii?Q?rQaRE4FQqGtXAmewc+/FYcE/XbRVwW14aqPcYSCsIfjkNYxiy68GwE0BDgH8?=
- =?us-ascii?Q?bgmZJxV2SRaRqY7LwMqG9po8fGb3m9N/RZXTusI4aTTxtj6ckT9mmY9Vb+0w?=
- =?us-ascii?Q?sNPytEabFjKR5I723TFrW22G6oKqG4JsHpgwVGzjalMVgwzUgeSWt53XaTUx?=
- =?us-ascii?Q?2bTMa8rq8qitOZyJRiDSu6L+SusankHBsfekPh7A2H3yNVOXqScIUeaVwjsq?=
- =?us-ascii?Q?rljHA4TLrL0XRXZ1JHmIBZxTqRMaocRppomyEPoKrsDq6099pLPEjw=3D=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9621.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(52116014)(376014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?7ruaXgxWBfgkdXW+/GhBmvhBgWSvXSIyjIdXRattE8vxl6AlvZLnc0SeHpZw?=
- =?us-ascii?Q?zsSrjNFSxQoSwhPPAxTfLLUs0pbJLMK1KE8/ziK1xhQORydK9AacNCIrKpTt?=
- =?us-ascii?Q?nNkqjhvNdCuQ25a8sQp6YGUbZr6yOTdKG9lsUtOcH0qlnQlx5qXDTsJPXw32?=
- =?us-ascii?Q?vG0ENx7iBnICe4bQeL6a0yaeLz1siiVK5czzy/am0jvyFPlcnbn53hEteVVa?=
- =?us-ascii?Q?017gBMa6Hngw2Utn1cukKL87mtjVaVXXLTB7Ooa+SLrWNkdWHtNxlxt36fbt?=
- =?us-ascii?Q?LPtp4VL3Rcg6fjbDHDOVj8IG6ibiAFZOml1bDjNjRPnmT/JXZqCQvaMC1uH/?=
- =?us-ascii?Q?3OPA5iwrCJ4zybXwIBxOBOeP+UW8ZH2odDpelEAqD4JNCyXH5S8h+3O5t5o2?=
- =?us-ascii?Q?aw1IcH0FAI3x03bZUmyLhHDW836AvdB9ymFvPwkyhscJARwYOyWs1rgjWvh7?=
- =?us-ascii?Q?2SBR5VJVh0txmo2v7IDuRzwtLN3SkDAawWmIEO2XqkCWzOJLHSCNVZF0E+Ip?=
- =?us-ascii?Q?SVOX0pX3+VHc3Mljk7UmPKEAwbDXqtycIFu2Wsm2pmzPX4h8qnppm01zrkWw?=
- =?us-ascii?Q?vE6OKC5YvxPJ4V5RSKOKeUHwP7s9NbwFcKwPRhF/52VeMUOnkAV6FIkrB611?=
- =?us-ascii?Q?YuucIj0LbOO9MuVRe4QCADXt4YV7wM77EWkcYfsHeyFCOeGRyH0cY4OJNv3D?=
- =?us-ascii?Q?2Wv+UUhBKFV7lvjEfMqjWZP0wyOZlyUShRHKSbaL3jpi5r3q0huSxfSn20ry?=
- =?us-ascii?Q?mcUb9mvAujU1IuGMAugjhI9XTw1EGhlKXlWQilBt0X3fcghs8hPZ1uiiHW7L?=
- =?us-ascii?Q?Oc18NolMXYfaqUJyInAkpTQ/SaOoqyEGpJR6ryK7Mz6NA1/aAr1KtyGYEsIb?=
- =?us-ascii?Q?fnlDGDi2pGu64KxtdVsAAxbjmH4G2cT/dA+/zvSS4j6440nkJ7ZKRjeRPFfp?=
- =?us-ascii?Q?/xHmkl93ockjtj82w38FIfkUKrU3LvLJuD+GTF6CYNiUz/0JgjxkE/DJAyrC?=
- =?us-ascii?Q?A2Ro+89ES3ziueEP16LZpF/vpEQzJyhzr80Jm/qjfwM6NWEzXs/Ro8fCB/8T?=
- =?us-ascii?Q?RYaFhXwRmEki2PcLfHpqj/Mq7KVVhPB5Pco5Ouv4clct/NI1R2/fCsPbYSJN?=
- =?us-ascii?Q?8s+ktuC/Ahf1Y6xyiUMDI2e/JhgqI+igmuu5lC55SimTlha2X/4HujMDw6nN?=
- =?us-ascii?Q?N+1fvM6Oklw24GI1naA2wg18APUSFhB0GNro76XB0zNedB1Hzhm+fOdlnyML?=
- =?us-ascii?Q?Dz7qSLzxa81pEcfIwUPTMFJvghhPwOksxhT2wYplPwBmYxcoc3l1FVNYNysj?=
- =?us-ascii?Q?BrTVy4MsLsyfmPeOsWCVexu15LBUUhkwbhbLVlrccoOjfg2TaMVwfgORQNFm?=
- =?us-ascii?Q?NdiaGErfKAVGUsRmPUwqpHeq4W6lh/FHeiN0/Sp85mTis7J8wMqbgkF2RZHW?=
- =?us-ascii?Q?xn0K/zRjJuhqbXpXbUtHEOYZkPtuKq5JFlWvLEOcj2B9NeLyRkojFVRFBkRB?=
- =?us-ascii?Q?0TBTO63sXPpkBXC/L8GoJllA84SfyXvcvmBX5fe75SM1onv7dxC72Nmc8PwG?=
- =?us-ascii?Q?Iyy9ImOk5RIdEPP61wvSZ+FPqYzH1AMRK0fysdjX?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f8df48ae-33b5-4bfa-77e6-08de15767224
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9621.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2025 16:32:40.3164
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vNHjsC7HUl2uZcqdavZSC7ru7hoJQU+f11bOEmUKf4426yldzm8CwlmQMYHHFFbbJnGSVAnhU01j/ek2FH7O9w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9575
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:iW/V621wLGB//froWQUVpqYUexPaqC6GZSTklH0TmXqITIXDQkj
+ hwsXhrZGjtbJjLABVJVpDRr39IMn3fnbmSCIEvLLmyTS30Nrk06p1TYoDKwveP2S05+segZ
+ EbdtpGAOf9MBYxqGaDrDAtSMehQkuSGtvOPnnNS8Y6oTEBajJWtHXLRENUrJWqthEoE/NLa
+ 6aahuuLOdVELjS2Bnggjw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:un/QzTzQFGI=;e7XuMIpUa5msnfz0EAvCghWqYgR
+ VozcwI7rgzEbCVpgRPQAEoUBYe0UN+ShCfNVTM1slb1l6OMzHzMe4wEPVJkXsqPYh6iKuBDzP
+ A9MkmrdpcaVTT/TAAnDgXhgTtRzJwKr/GRqTIva1SrKzq85JpeqcEjDv7fIqfQz/qWidMwerK
+ EOb7jRN0DO5Hdv0bX3osoMxg5+QjO32qrXgmlJSU21xq49qZXB5NYVhbT+x8vrAlqpv3XLUJl
+ VWq1+b4XczA9/WZ3beLF+SuW2fLX2MLP9G0sn22knk+d49TVKpRTuvSakTjGGQ1RgIZLNF1kz
+ VBzCm73F87158CVXAgxKmkI86Nl02K5SY1Xbuv0Ay/5fnvSXReUvSfw5sYS6U5SV+dfr1f8fr
+ ItSYqm11eNUl//l+WdDG1lb2fo9ODdMC6FB4sV3DHwEnwU1eAjmxESsanFR5xW3X6bGeoNspK
+ HRMWl1u5C8JQwuY8vkCBW5/+hUbvltXA/+tfF8Siu/Bk9ahJNM50H5waNRn3nH3JXbGoc1M+K
+ HqHqsvngyqsMDgzLDeaiet0rdKd9PMJGv0Gq6A5bhPtzsDzVGY6Jxygycxei29t1eSUDMnwiR
+ Knl+AyR/tqsKVcMHD/U196PxvpaBpq+alA+Ejo1ZLT913kYdiuMwyFRBvfO5d1G5UWHWWHbWU
+ aAmjECBZun9/xJYM0/BeKA57/GdDZpgrZ7CTh/wrTFeaHp/zpFbntC0+iO14TQRjwWjRhZV/Q
+ swklrNy3+0kgw3LmtupmKnphAsjNpS4Y4DAyo7kqM9eC1AJkpGEpI4pN94XskPtJDonJOUcTD
+ YTaO42s8H+Kzv6DafgOSqoXvSvOt/A5orl9v4J41MLOlRQ7L31sloXGK6SLTlK3l8NkswscpC
+ p31/ovcQECt401Weh3aFx7pvvgr+TZri0eQgm1dm8PnXqaYKm5xzfW7QK5drSa6fBS503bB9s
+ leH41vTIFgoSASWO5iNvtNFqcaqKseJ+sb3jUjy3olXA9vTqkbl+VWrR8cte/3CdngVJwUx3f
+ wy9LO5SW4CbtexcE2ztKp2QHs6Ah9+9XhHkubzIODCC8LOWegReMRPG1+NAZE/5E1GDXIvPJl
+ Kqz96x648ZH+iVutdWZ2+T9QRRxUclAQNnbba1bfbEExhSQQLhviocHrksU+R2IMkxvGlu5Cq
+ u1cz5X557IrZknhz+CzlaVJECaHEupzk8opYH+IFoxnrF6CmOwo1NkR/XP60OUX2guJ7KMmwS
+ bdzU52KooSIA7flH6nP0HIkx/7tSPvnPD+4FeZEjQwmQOi2F1/W2PfgCMaKp9xOzrM04vwmsq
+ 1/WFeOzwx92ZZldfzbEhsIC//5WwYaSS8k7ADGHSV5aX0l7VCtxQtExcbhrYPFDPIxd2Lsxv1
+ xA+J247hvUptI6VEz+gVNDM4umoC8VWhrT+bVOSZHD+IyU4Cypa3z9WtRCX7C9BSKXXjc7QAZ
+ vps0xdOl1FKSC6gtNFOuYS/e0seEGdVISwSrXDoBAVKax7wBsDy5F7M39EVk47lm1uV763SCL
+ l6KmNhkU0ltOc6PKP8NhBl7Tkvn988nTxrgDgZZiNfWhrnjr+S8x0P5HUhecAZPeGu8G1Hs0a
+ hVpAOowca9OYvEhtyG1DeWfW5fq8asHUpbvYSoxyKSJKSif0Twuc+8Mz9Eomk+fl4oNqq5aE1
+ p6/+ns34iHLVO3sjOeWRisKbdds3TNcZxPy51+M7UY9DGPakgVw7tsQcZ9UhIpWldMTJITVgs
+ GRGXpc+g5ZlSamEOw8mR5StFryShjVod9dwQidiFTXvfcxYdpyRh9KMI/Y0qllRSR5eR6eDVP
+ PnetofKA6L+PsVKuwOvKBTYYDQmHK8ZcDYfF6Jt9LPLOlkv9iXr9gFdC5UhdQsotuMeBsw8lC
+ WmeT7q36F4tfwlw6qcJYdKo4fMQEwKRcG8cgQyJoHYH5ESZzzheyykgPqesh9uTqxjFc13eM9
+ yTPlaE75fdVauHDzHV9xWV2fknVMmzOnB603uATzkLVrhUkffw7fGJTRPJH062D4yldxX9zbX
+ m7A8qTA9nts62jBzYqZb3oX7gKwn25fL8uV+rkt8IHPyqirJRtGWEmMYE1u4TfcIwP1BCLSIN
+ utj80a6bAkOII1dpQMPYHhkBNN4PfcVs7gmiQ94rBSi1p942RNJsgacREevm/73eD0WVMBSe0
+ eA6m4cPcXT8GMJSjKVCXBw7+01J8B3ul7/O0vW3LjFk+d5TjQxMVSd+Go2wImzC+W0C9pH/Dw
+ SpLnbB2AL2Yx/w6dKEZrmTOjiP4mgmo5C1AHxpbGOCncqNemn0kddCr/aKkbqjkR4zbhtrt9U
+ GKGRFRtqjoLL9utUs++KBG/IkBaM8/1MApDsWfzKfmyJW0mThhpAXCmjWidutYfXwUHzwEMuh
+ tGQ/PrH/Vu5AMrjKw6MJWTlEkqJR5cOL5AKbkT7+T1K7jhgZFcNQwVcsYd0SS9kbik6JEWWkM
+ xqOuBo8XQ7UbMQl8Qg9NabOsx6mRUghzNvYSsutDer0iOK++kscYiIW2Cj4AoltiKvOfFP3t5
+ 7oMhdtq+URpX1frwiYt3rAVeqcjomdjL3IqCwhELW0tBcLt+W+X+5V277nfbnPjoLkZCzuV0C
+ OLIJCBEW3F1akBBGtAoSjIGV4bCLQAo9PzVsMBsMATR8U9I4rzmJGwE4W8WFdZaXBVqtxfi9d
+ 8hYg8ffW+11MdNwzZNAvgdaUhrNKuSi69OfD8Jr2xe/fNln8N8ojJdsRhBJ48dFlFLXv9/980
+ pl6MRC+lU+zIUCy5tWqRXFKeJ6E4OjFhL1bCsIvUeT6DL3b1VsTPCREJhT6GdTR+mm/lLMvw+
+ T+hHWXq3ex68S7vKV+wJibktgV052KFeR4hogWy1kaTSoWOF4wPr745ApmSPSA4nmNMs8nJsG
+ +PE7a0maW0sp+REmWSk954I66gcTIDOA1pjsGiFkRp+6ThIrv//1Vajkrb9mzlAIa9adNqTuj
+ eLwZGjDeyR4TXIg18oQZ60uMSajxczKSOUlepLwxCg9dR78/i+6tEtg2QGAFcMEqGYtnj/0NL
+ fkVTznfZZakliTPbyF7s4SVlAkWScXFTDwPCSHMQbQ/fMbd830jaw+PVWqibVS6IfjKbLh4Tp
+ 7xSb01TulRWYBCy+40yIRUnASjpGSgYsxkVAd/cuahElDueRl2YU8a5qBjptKcmyhW6v2CVy0
+ amJDMMg7saLpkyooPTFhbjkoEHafPrJ+CrTWW710vEK41s0pagtt5Y/MkQE+Pu2KqbNf8Fi41
+ sC1AmTGPE6v+OC3WsjIVhM3OR1RDAAwMER+AFkjsZS6l6pAXUPJo+GFCFOLiAE8C8XBux3siL
+ 6uzGRWPEuXaTYODX9L1le4ybAB0Aec2EPEPDpD3CdNYn56LZdMhkXffT2VcXRUmYAecCObl/u
+ S2y6j1kmiJqE20i2hDyPcVO6E2WfBW1WCvTHjTTXFXHnMUHRl4emhfE7t8RbGSjp3pNMdSUuH
+ J6d24FJzl15uU4wKE0mq7rupv11Ya6Rihx0kVWGkSZravlrRQHsjJDOONU06/1wb3W5xZGdZY
+ Z35H1aDJPM7bmWTStWRP4OZaWeIMVwvLno8IN8hx5Sgc8MfTKu6IFjSCIDti8eLhdExXWb2Ax
+ 7v/m7O5k6WomKKdKSJbz71Xqomz9ad6ZDQt2l6m8Udzv+qvVNe9Ens4EoWv+Auu0r/idTQRMW
+ 72uELFnvYyaONPpyJbdQEUoOa7QuiIPsvaYlSK5yYYYvn4BfaYEE5DCYyDQLoV3+QYDqjI7hf
+ K21q6mQIWPrrFQ1J7gXv+ABLBDJsLAJYgvf4g5I8TZMQ1uRict7OjXfy+4cgi9wiwD2WP++Tt
+ vjHwLf0TQLnawD0h+kJwLU6X9x9IPqpgqA5OC6vxMpu1VGxwp4TKUjQw2nQYZ9KUkiCSqvCut
+ mcPQrdP2qHWWhl7lk0p8CAOC4JCFzxPTad3GAi2Q64583fAYGctDwGMcpqJzqgejpNFsD3sN0
+ DFRG2pIwQAx3D+8maLH+0pFzcuuahFSKmKFpv+zNEAMUBFcCVSIUZQUlXY7B7KS7Ryj9iog/Y
+ xtgq2FOGpmxW4C4z+HVEhcqTJRLJ8KEav2RYcvK2N7mvIF0lpRb6KnAG7sqsd9tE/zVo4eI5j
+ Xc8AFDlN4y9Ot1B+4RI+DYrxSdZKqeYKbPNvqzgwuNCPD/dxHTXgkPgz9o5qr0qmenCvU9tXn
+ 6j5Jp2I8DkzunYW4AAk866+U/47yVvKhXSGG82CpWteryNrtfswrZj6Lo32NLHvPOjKYBUTDS
+ JdnfKs9WCLnKYcwmQmIZEwTxbcOwcgb2GOkChIyCfA9TG2RZtrxFxyPeyQXfHMA8gsTQfmvOj
+ KR+NSD5JQQMV+52mZ81QZmO0T8dGFoDrG5wzjGh4/rF59awkdkz88IiGzi6QFHIvt+BFJPpKK
+ 52mzNEasPRzNGMOeZG2kOnBJVhchSQ2Rtnn3xCpILB/jpstnn+LL5NZmKr3M70icLhKbQv1QC
+ DfLntzAWdmKkJ9ia5gBe7ABXx2zo9DwiTexn083j1GaHf0A2lpTbjjDFQkW2I2mdhJJi3WY3H
+ YPnTNC0s77JLVKitzGix0RHN71oCl5raesluX8dqeRYOqqD6RVVFhJkYIM16jsDqsK1GvN5b2
+ 50klYJul1vpXq1JBA+geSspW4ctcNlPRHkz6w0uvwSNhi4WGKQvhctDliBXf9msQ1c29aQmCr
+ eOqpDNPB8FuQyDakNTfnuCelwPaaTuK7d699+mXObZCDFjoZr5hV+1iMDZ1lJe4bUmbp3Pf5H
+ n8FfE+Qx1QxjNdKkdYH0D/XJJe4xcxrtnBhX55NN/1k+Mfqn/9kLRpI/IsHeP2P0bVfX/xkxe
+ YZaLvKQ04RabIHzydcO2USyRP8qr8+1/PToooWbPI0mNBhpvH8xRUQsctLNJOKirlzJW7ik1E
+ GWPKLdEWmh5aDGhwzIlfoxNg5CS8NcsR01z5TeB2ftDvB9D8YA4/61bAUiVxj5XJ2vPHWM/GD
+ MrR6G7qOIllaXAas5/km1PleGiIedq9AzikXii+nZUiOx4k7D985rh4SW/Hv26hKGUi8ZLHlh
+ OBKrA==
 
-On Mon, Oct 27, 2025 at 10:31:25AM +0200, Sakari Ailus wrote:
-> Hei Eugen,
->
-> On Thu, Aug 21, 2025 at 04:15:36PM -0400, Frank Li wrote:
-> > From: Eugen Hristev <eugen.hristev@linaro.org>
-> >
-> > Add bindings for Synopsys DesignWare MIPI CSI-2 host, which used at i.MX93
-> > and i.MX95 platform.
-> >
-> > Signed-off-by: Luis Oliveira <lolivei@synopsys.com>
-> > Signed-off-by: Eugen Hristev <eugen.hristev@linaro.org>
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> > Change in v3
-> > - drop remote-endpoint: true
-> > - drop clock-lanes
-> >
-> > Change in v2
-> > - remove Eugen Hristev <eugen.hristev@microchip.com> from mantainer.
-> > - update ugen Hristev's s-o-b tag to align original author's email address
-> > - remove single snps,dw-mipi-csi2-v150 compatible string
-> > - move additionalProperties after required
-> > ---
-> >  .../bindings/media/snps,dw-mipi-csi2-v150.yaml     | 151 +++++++++++++++++++++
-> >  MAINTAINERS                                        |   1 +
-> >  2 files changed, 152 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/snps,dw-mipi-csi2-v150.yaml b/Documentation/devicetree/bindings/media/snps,dw-mipi-csi2-v150.yaml
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..d950daa4ee9cfd504ef84b83271b2a1b710ffd6b
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/snps,dw-mipi-csi2-v150.yaml
-> > @@ -0,0 +1,151 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/snps,dw-mipi-csi2-v150.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Synopsys DesignWare CSI-2 Host controller (csi2host)
-> > +
-> > +maintainers:
-> > +  - Frank Li <Frank.Li@nxp.com>
-> > +
-> > +description:
-> > +  CSI2HOST is used to receive image coming from an MIPI CSI-2 compatible
-> > +  camera. It will convert the incoming CSI-2 stream into a dedicated
-> > +  interface called the Synopsys IDI (Image Data Interface).
-> > +  This interface is a 32-bit SoC internal only, and can be assimilated
-> > +  with a CSI-2 interface.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - fsl,imx93-mipi-csi2
-> > +      - const: snps,dw-mipi-csi2-v150
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: MIPI CSI-2 core register
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: core
-> > +
-> > +  clocks:
-> > +    maxItems: 2
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: per
-> > +      - const: pixel
-> > +
-> > +  phys:
-> > +    maxItems: 1
-> > +    description: MIPI D-PHY
-> > +
-> > +  phy-names:
-> > +    items:
-> > +      - const: rx
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> > +        unevaluatedProperties: false
-> > +        description:
-> > +          Input port node, single endpoint describing the input port.
-> > +
-> > +        properties:
-> > +          endpoint:
-> > +            $ref: video-interfaces.yaml#
-> > +            unevaluatedProperties: false
-> > +            description: Endpoint connected to input device
-> > +
-> > +            properties:
-> > +              bus-type:
-> > +                const: 4
->
-> If 4 is the only value supported, you can drop the property altogether.
+Add devicetree bindings and a driver for the Wacom W9000-series penabled
+touchscreens.
 
-Sorry, What's your means here? There are more options in video-interfaces.yaml.
-here just add restriction for bus-type. otherwise other value can be
-provide in dts file.
+The driver currently only contains the information for the W9007A, which I
+tested on my devices. It should also work with other chips, such as W9001 =
+or
+W9010. However, I couldn't test it on these and the message length would
+need to be added.
 
->
-> > +
-> > +              data-lanes:
-> > +                minItems: 1
-> > +                maxItems: 4
-> > +                items:
-> > +                  maximum: 4
-> > +
-> > +      port@1:
-> > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> > +        unevaluatedProperties: false
-> > +        description:
-> > +          Output port node, single endpoint describing the output port.
-> > +
-> > +        properties:
-> > +          endpoint:
-> > +            unevaluatedProperties: false
-> > +            $ref: video-interfaces.yaml#
-> > +            description: Endpoint connected to output device
-> > +
-> > +            properties:
-> > +              bus-type:
-> > +                const: 4
->
-> Are both input and output of this block CSI-2 with D-PHY?
+Note: This is my first driver I have ever worked on so if there is
+anything I can do to improve it please let me know!
 
-Yes, input from camera sensor, output to others image processors to do data
-transfer or format convert.
+Signed-off-by: Hendrik Noack <hendrik-noack@gmx.de>
+=2D--
+Hendrik Noack (2):
+  dt-bindings: Input: Add Wacom W9000-series penabled touchscreens
+  Input: Add support for Wacom W9000-series penabled touchscreens
 
-Frank
->
-> > +
-> > +    required:
-> > +      - port@0
-> > +      - port@1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reg-names
-> > +  - interrupts
-> > +  - ports
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    csi@3000 {
-> > +        compatible = "fsl,imx93-mipi-csi2", "snps,dw-mipi-csi2-v150";
-> > +        reg = <0x03000 0x1000>;
-> > +        reg-names = "core";
-> > +        phys = <&mipi_dphy_rx 0>;
-> > +        phy-names = "rx";
-> > +        resets = <&dw_rst 1>;
-> > +        interrupts = <2>;
-> > +
-> > +        ports {
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> > +
-> > +            port@0 {
-> > +                reg = <0>;
-> > +
-> > +                endpoint {
-> > +                    bus-type = <4>; /* MIPI CSI2 D-PHY */
-> > +                    remote-endpoint = <&camera_1>;
-> > +                    data-lanes = <1 2>;
-> > +                    clock-lanes = <0>;
-> > +                };
-> > +            };
-> > +
-> > +            port@1 {
-> > +                reg = <1>;
-> > +
-> > +                endpoint {
-> > +                    remote-endpoint = <&idi_receiver>;
-> > +                    bus-type = <4>;
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > +
-> > +...
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 9d9d2be7be8037dfa96f1c9edd24a0cf997b9393..ecb7bc7cc8ad797f43173075ca8973804bf335f7 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -15334,6 +15334,7 @@ F:	Documentation/devicetree/bindings/media/fsl,imx93-parallel-csi.yaml
-> >  F:	Documentation/devicetree/bindings/media/nxp,imx-mipi-csi2.yaml
-> >  F:	Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
-> >  F:	Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
-> > +F:	Documentation/devicetree/bindings/media/snps,dw-mipi-csi2-v150.yaml
-> >  F:	drivers/media/platform/nxp/imx-mipi-csis.c
-> >  F:	drivers/media/platform/nxp/imx-parallel-csi.c
-> >  F:	drivers/media/platform/nxp/imx7-media-csi.c
-> >
->
-> --
-> Regards,
->
-> Sakari Ailus
+ .../input/touchscreen/wacom,w9000-series.yaml |  79 +++
+ drivers/input/touchscreen/Kconfig             |  12 +
+ drivers/input/touchscreen/Makefile            |   1 +
+ drivers/input/touchscreen/wacom_w9000.c       | 525 ++++++++++++++++++
+ 4 files changed, 617 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/wa=
+com,w9000-series.yaml
+ create mode 100644 drivers/input/touchscreen/wacom_w9000.c
+
+=2D-=20
+2.43.0
+
 
