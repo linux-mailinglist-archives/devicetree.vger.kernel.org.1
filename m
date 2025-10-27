@@ -1,300 +1,104 @@
-Return-Path: <devicetree+bounces-231403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 286E1C0CF6B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 11:30:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC6EDC0CF7D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 11:32:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E1DE18905CB
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:31:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CD5E18822F5
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:31:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A603246769;
-	Mon, 27 Oct 2025 10:30:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 909A926B777;
+	Mon, 27 Oct 2025 10:31:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hd33ZkFi"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="sbnFY7w1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f68.google.com (mail-ej1-f68.google.com [209.85.218.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79CCA8462
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 10:30:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA18B1BC41
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 10:31:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761561042; cv=none; b=aLboyhk3xvVYUgD70mDej7IWeDFnuldrods0v0HqzfXyjKd01jYBlNxaz7DMV4+BqBqU3ubg/LeTFuuu36MQc7LyEuu8fxRbyOTFiTsBGWkSKttXlAJN8FR1e/wh701TAu2neT0qKEr1k/pkJGM74C0sk2kkmbJ1urMCLwGVoRk=
+	t=1761561085; cv=none; b=lzUcrjszFMdksDnx3c3B9hJjPbB1M485oPJCGJs9c4+RWFPz1vrO5hvnt1T7WFXmOM/5+SUF/1C7mkO7GJ3Zplqg4+izH53VPHLHwXwVZKzcRnX+Tb6MpNer0GPafh4Q2/eMHgRVkklmyWfSYfKprVjBAOZghBKxHhPDXP24To8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761561042; c=relaxed/simple;
-	bh=SqZ0Ub745WWb3ZeyhwmiHZeS8d01xTOY/Qojh9ScUdc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JeZmO17WxS4eEFB8Af3/o07y9HVLUdp4aqyB5eQ++aq+mBe5G+ICSKPouImTeeMj/+UilsZRCMiIFminyHdmqGS9p1t/Wl+mDSeyKxrfK+5Auw0KTGG0AZdpntZsPRsS5GLAM0UesHJP9+T4VstdomEd4DOAS82gJbR7eyovDgE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hd33ZkFi; arc=none smtp.client-ip=209.85.218.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f68.google.com with SMTP id a640c23a62f3a-b4aed12cea3so503596066b.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 03:30:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761561039; x=1762165839; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=r+t/oTmZjxhzW3SWsg5D/3k7ryEIEHaxHipwLWpbI60=;
-        b=hd33ZkFiXaYLiNJgs5vod1PJuWbeOcQHlPTdmM9XNSHMiGobxPQbFR1WJoaclcbOH6
-         LmAq06mazq8ByagF6BVAoUodPtdWAiglBKxE67DFh6Jn5ecbZLUbeXabQgbWMRDk7ChE
-         IfPqbChGH2kSAI0LKrU0kwfM9uodJp8DRQvP18IGFwwZe4WP0N/bhhg0MSif8t0CiY4W
-         0Rw7R41AXT+f3TXhN3OGcvdlCHh07poD4DylE2vKLRAq1FLIFbkKHE6ZjoD3/+yED1sq
-         +Oky2aKwK2QFgzJ7SAnAZGB7DJ/jbhni56Q7hvoLpeU/8SENae4PdNw6t9hG9Vyn//kG
-         yXNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761561039; x=1762165839;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=r+t/oTmZjxhzW3SWsg5D/3k7ryEIEHaxHipwLWpbI60=;
-        b=QhXPz4jBTvNHun4US9MXNTV1NiDBu+mJhSGpNQWJjmzmc43fVqztpsxfaJU80uDqiU
-         f/3ydkzmaQBw0PfQiNHJfeYryU7GnYdB4mueZfDnYQtOVsFdhh72wAv+9XV1mnIsGbfg
-         mZWF56fNwqWUnSYgV2l0bfUN2xyw/7XbgHWhR6RvggNjnqwaupFYKbStYYNtOFh7SoPo
-         Ne5/Wu39ShVwODIf04l59M2HKtuDHSkqkfsE8lRv6ad9bSaQCwSJPsmwNx2Llae8GVTB
-         2rDAWm2Mgu7NfoL4H1XrMv+UoSWFzA2TFkEYuBkY3fpOYTNrkOrfomMH9pIlyOAW0Xv5
-         WTgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUuyFUOBOFFRDpw6/a8QKqSAW40vhZYEPWXSTAxExWNSSF/DCtKuYbgeQ50hnSjYG44E7WKDiFHV0Bm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3V+8fa0B+rRA61FCuERFYLEYGFQfRG8GTQ08+VlPDc2L2OM4e
-	5sFNDGxtKlBENOr7GP8ueyFRNO5EjQFkD5Iwxv5eP81zpsxteFbvFcOURB1D8/+Cm0rxPDFth9a
-	0flcWGNEamXcAzYNAv0iPBJOG9UAuMWw=
-X-Gm-Gg: ASbGncsoSkIZTw91989VZB8+EPdk6EOqDB4w9wKMmrf8NnJS9I/lAesv7HL7mpvEm/4
-	+aeJAaAw/d7kVLzx45ozluXYqP9eZK9KRxKTLNI9b1mN5rJNarV4q+9Qm5lFP0LpunpJGr6943O
-	MUofrqKMmut1hd/RTWA+FYBHi2BScDOwpUBXCVZ6r8Cwj3tqa5UeyS1f6zFKrQOC2iLEHUgRTEL
-	CxIU+DNsSaqtNGhQ006K9uAJ7uSjx6kReQZJGJWaZ3HlHglERe+PLASQzTawYI6s9byGJo=
-X-Google-Smtp-Source: AGHT+IHLxFJ3SPEDNoyMay98zhNlSRUKkyfFmuSirmfTIVuYNM52PHBBa3Zie8g2ZOnRY/ZMCMowauQRHmA5eHcm2CY=
-X-Received: by 2002:a17:907:9448:b0:b04:626e:f43d with SMTP id
- a640c23a62f3a-b64751284f6mr3751346266b.47.1761561038573; Mon, 27 Oct 2025
- 03:30:38 -0700 (PDT)
+	s=arc-20240116; t=1761561085; c=relaxed/simple;
+	bh=woR0YkWOLoOVnkusOQvb+uOUj+GPQRpu6GLsFacG4SU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YXdSQhuZMB1JIc9/8wabRQovSNW2nwDfrKUztkBhHkH6ov+GhuWy+GNURtPou91tKzhOM/DblEI+zhEIf7hkFkCuXR6embTfovRmV/Qu7mtrKLJTP/4byKD5UDJYgXbKRPrwvP8vlpofgy0LPMRm9/sxYwgrYFOoi3aT3VP45UI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=sbnFY7w1; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (unknown [193.209.96.36])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 05415E1F;
+	Mon, 27 Oct 2025 11:29:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1761560973;
+	bh=woR0YkWOLoOVnkusOQvb+uOUj+GPQRpu6GLsFacG4SU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sbnFY7w1nY83x7Yfrg65qDDjoOFXFj29h8KBE/qIKqEQ2DR3hTiOM4IIhnH8GQB8f
+	 LXqClKaF1LarrQ6Mpd7Ekda+u/bgkFr7pkBrFVM1rxJTD1wL7Z8IYxLG9LcIBlMnsM
+	 FaNVPYUv0Mj0/7F9HRMlQYSQnRaetAbKQpjllrnQ=
+Date: Mon, 27 Oct 2025 12:31:07 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Andrew Lunn <andrew@lunn.ch>, Russell King <rmk+kernel@armlinux.org.uk>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Daniel Scally <dan.scally@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Stefan Klug <stefan.klug@ideasonboard.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
+Message-ID: <20251027103107.GF1544@pendragon.ideasonboard.com>
+References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
+ <e87ff7f2-d16f-41f2-b781-b175cfb84b21@lunn.ch>
+ <aP83bMDWCre7-Sjw@pengutronix.de>
+ <20251027100227.GE1544@pendragon.ideasonboard.com>
+ <aP9IB4y5_gyfJGMW@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251026123923.1531727-1-caojunjie650@gmail.com>
- <20251026123923.1531727-2-caojunjie650@gmail.com> <c17c10d4-cc1f-46fd-8719-e7bb9ffa91ba@kernel.org>
- <CAK6c68gqHMR-FpH3MY9E_9R+V0J75V9zOii=x81e+bRcnBYOig@mail.gmail.com> <c32970a8-c1d1-4130-839b-981bca5373f3@kernel.org>
-In-Reply-To: <c32970a8-c1d1-4130-839b-981bca5373f3@kernel.org>
-From: Junjie Cao <caojunjie650@gmail.com>
-Date: Mon, 27 Oct 2025 18:29:01 +0800
-X-Gm-Features: AWmQ_bmSyDTyEE0NzC1P6-5KqVAikLVF9X2J_Ed-gcKZn6A6nKVOVFcs4LVP9Cc
-Message-ID: <CAK6c68iV2qUFEp_ujWwKYFmgt261rvQNK8Jo5Wjt-dCRbG_BVw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: leds: backlight: Add Awinic AW99706 backlight
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>, 
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <aP9IB4y5_gyfJGMW@pengutronix.de>
 
-On Mon, Oct 27, 2025 at 4:38=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 27/10/2025 07:58, Junjie Cao wrote:
-> > On Sun, Oct 26, 2025 at 9:48=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
-> >>
-> >> On 26/10/2025 13:39, Junjie Cao wrote:
-> >>> +
-> >>> +  reg:
-> >>> +    maxItems: 1
-> >>> +
-> >>> +  enable-gpios:
-> >>> +    description: GPIO to use to enable/disable the backlight (HWEN p=
-in).
-> >>> +    maxItems: 1
-> >>> +
-> >>> +  awinic,dim-mode:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    description: >
-> >>> +      Select dimming mode of the device.
-> >>> +        0 =3D Bypass mode.
-> >>> +        1 =3D DC mode.
-> >>> +        2 =3D MIX mode.
-> >>> +        3 =3D MIX-26k.
-> >>> +    enum: [0, 1, 2, 3]
-> >>> +    default: 1
-> >>> +
-> >>> +  awinic,sw-freq:
-> >>
-> >> Please use proper units, see:
-> >> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas=
-/property-units.yaml
-> >> and other examples
-> >>
-> >> Same everywhere else.
-> >>
-> >
-> > ACK
-> >
-> >>
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    description: Boost switching frequency in kHz.
-> >>> +    enum: [300, 400, 500, 600, 660, 750, 850, 1000, 1200, 1330, 1500=
-, 1700]
-> >>> +    default: 750
-> >>> +
-> >>> +  awinic,sw-ilmt:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    description: Switching current limitation in mA.
-> >>> +    enum: [1500, 2000, 2500, 3000]
-> >>> +    default: 3000
-> >>> +
-> >>> +  awinic,iled-max:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    description: Maximum LED current setting in uA.
-> >>> +    minimum: 5000
-> >>> +    maximum: 50000
-> >>> +    multipleOf: 500
-> >>> +    default: 20000
-> >>> +
-> >>> +  awinic,uvlo-thres:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    description: UVLO(Under Voltage Lock Out) in mV.
-> >>> +    enum: [2200, 5000]
-> >>> +    default: 2200
-> >>> +
-> >>> +  awinic,fade-time:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    description: Fade In/Out Time(per step) in us.
-> >>> +    enum: [8, 16, 32, 64, 128, 256, 512, 1024]
-> >>
-> >> Why would this be fixed setting? This really looks like runtime, drop.
-> >>
-> >
-> > Yes, it is fixed. I am quoting this from the datasheet.
->
-> Fixed per board.
->
->
-> > AW99706B provides Fade in/out mode to transform backlight from one brig=
-htness
-> > to another or turn on/off backlight with a fixed slope. Writing 0b00 in=
-to
-> > RAMP_CTR (CFG 0x06) to enter Fade in/out mode, and the the slope of cur=
-rent
-> > transition can be set in FADE_TIME (CFG 0x06).
-> >
-> >>> +    default: 16
-> >>> +
-> >>> +  awinic,slope-time:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    description: Slope time in ms.
-> >>
-> >> Slope of what?
-> >>
-> >
-> > Ramp time in slope mode, it is retained from downstream drivers, it wil=
-l
-> > be more clear in the next version.
-> >
-> >>> +    enum: [8, 24, 48, 96, 200, 300, 400, 500]
-> >>> +    default: 300
-> >>> +
-> >>> +  awinic,ramp-ctl:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    description: >
-> >>> +      Select ramp control and filter of the device.
-> >>> +        0 =3D Fade in/fade out.
-> >>> +        1 =3D Light filter.
-> >>> +        2 =3D Medium filter.
-> >>> +        3 =3D Heavy filter.
-> >>> +    enum: [0, 1, 2, 3]
-> >>> +    default: 2
-> >>> +
-> >>> +  awinic,brt-mode:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    description: >
-> >>> +      Select brightness control of the device.
-> >>> +        0 =3D PWM.
-> >>> +        1 =3D IIC.
-> >>> +        2 =3D IIC x PWM.
-> >>> +        3 =3D IIC x PWM(P-ramp).
-> >>> +    enum: [0, 1, 2, 3]
-> >>> +    default: 1
-> >>> +
-> >>> +  awinic,onoff-time:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    description: Turn on/off time(per step) in ns.
-> >>> +    enum: [250, 500, 1000, 2000, 4000, 8000, 16000]
-> >>
-> >> Not a DT property.
-> >>
-> >
-> > It is mandatory in the downstream driver, I keep it.
->
-> Huh? I don't care about downstream driver. Again, not a DT property. You
-> cannot add here runtime properties and when, we tell you that, you just
-> ignore our review.
->
-> NAK
->
+On Mon, Oct 27, 2025 at 11:23:03AM +0100, Oleksij Rempel wrote:
+> On Mon, Oct 27, 2025 at 12:02:27PM +0200, Laurent Pinchart wrote:
+> > Hi Oleksij,
+> > > Please note, RTL8211E PHY do use undocumented SmartEEE mode by default.
+> > > It ignores RGMII LPI opcodes and doing own thing. It can be confirmed by
+> > > monitoring RGMII TX and MDI lines with oscilloscope and changing
+> > > tx-timer configurations. I also confirmed this information from other
+> > > source. To disable SmartEEE and use plain MAC based mode, NDA documentation
+> > > is needed.
+> > 
+> > That's useful information, thank you. Would you by any chance to know if
+> > such NDA would allow contributing the feature upstream ?
+> 
+> Good question, but the NDA process was actually aborted. We didn't move
+> forward due to a lack of time and ultimately, a lack of commercial
+> interest from any projects or customers for this PHY.
 
-My apologies for the misunderstanding and my poorly worded previous
-comment. I absolutely did not intend to ignore your review.
+Fair enough. I've tried :-)
 
-I mentioned the "downstream driver" only to explain why I had originally
-included the property.
+If we can't disable SmartEEE in the PHY, does it mean we need to somehow
+disable EEE in the MAC, but still program the PHY to advertise EEE to
+the link partner ?
 
-I now understand your point clearly. I will remove them in the next
-version.
-
-Thanks for your fast reviews and for clarifying this principle for me.
-
->
-> >
-> > The following is the description about it,
-> >
-> > If the value in ONOFF_CTR(CFG 0x08 [4:3]) is 0b00, the turning on/off r=
-amp of
-> > AW99706B is soft start and fast end. In this mode, the ramp time can be
-> > programmed by ONOFF_TIME (CFG 0x08 [2:0]).
-> >
-> >>> +    default: 2000
-> >>> +
-> >>> +required:
-> >>> +  - compatible
-> >>> +  - reg
-> >>> +  - enable-gpios
-> >>> +
-> >>> +unevaluatedProperties: false
-> >>> +
-> >>> +examples:
-> >>> +  - |
-> >>> +    #include <dt-bindings/gpio/gpio.h>
-> >>> +
-> >>> +    i2c {
-> >>> +        #address-cells =3D <1>;
-> >>> +        #size-cells =3D <0>;
-> >>> +
-> >>> +        aw99706@76 {
-> >>> +            compatible =3D "awinic,aw99706";
-> >>> +            reg =3D <0x76>;
-> >>> +            enable-gpios =3D <&tlmm 88 GPIO_ACTIVE_HIGH>;
-> >>
-> >> Where are other properties from common.yaml? Looks like you re-invente=
-d
-> >> some parts.
-> >>
-> >
-> > Sorry, I forgot it, when writing the bindings, I used ktz8866.yaml as a
-> > template. I  should have dropped the common.yaml. This driver does
-> > not require other properties in common.yaml.
->
->
-> I don't care about driver much, but anyway it should use common.yaml.
-> Please read the feedback very carefully.
->
-
-ACK
-
+-- 
 Regards,
-Junjie
+
+Laurent Pinchart
 
