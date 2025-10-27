@@ -1,207 +1,216 @@
-Return-Path: <devicetree+bounces-231436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B8AFC0D236
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:23:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B286C0D248
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:24:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C9FDC4E52B8
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 11:23:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0324240035A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 11:24:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D7922F1FC2;
-	Mon, 27 Oct 2025 11:23:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 719C72F7AC7;
+	Mon, 27 Oct 2025 11:24:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="myHeg4nG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0071273809
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 11:23:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0900F2F549F
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 11:24:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761564197; cv=none; b=Ptmvt3GPrRGGeXCeWTWuzy2Uq4J07N5AyK9EiM3AGG2Ief9CB/kn9sVDQAx8Ycis9JivZcvB4taHdyRs9MU9/vjLbou9NdvnwEfGg2nhgTPfwvS+sSUSJ7o3HylbcFMXPiTC05Q+16gGEsNUTZJhiwgWAXSogQDPYcNIehlzANk=
+	t=1761564280; cv=none; b=lXVQnrNKGeOvfEEm/S+CyGP+atEZJRH5wmXon1mJ8acPLIQUmoCqGnsjYjUO2ahgXoUJlZjfkENVDIKMQuQgV3JyFgXPYatIwrXT4vdvA9pnC7IRv4bq3e4uDruyxrezfY0C4WKjITjntz/HSKl21Pb19YS+bB1H8zd1T8y8BPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761564197; c=relaxed/simple;
-	bh=LCFinbYaaa5T1vbOy/YjHc9/jV/eLUmsdTmf3uq5Qlk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jO4ukzNkFujAMjywNpFGqb4uxx0dJdSuGXYRg6QOkkIM4NnH7ZxSxEiczLPB16jJTQ+H7Uiu0ELTYuzgr8UgutSfJsyM/zxGsW3uL3hUqeqoI0Qc2mnkBuxvcApCFNatM1Cj9gE2Wf+XD+xJmul13VB62BbrfCdodU1PGOIHO3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-5563c36f5dfso435922e0c.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 04:23:15 -0700 (PDT)
+	s=arc-20240116; t=1761564280; c=relaxed/simple;
+	bh=Tjn2XSdF4NEJWEm2F6LvPMPISBSVL+ChX6Q+leBvxl8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IVwomSkeKms25cMoe0kOp9CYsVoD5ytGDk2kxjTJbBnjtVv7JOIqIXZYUo8iObmAV5zPX3JzjQGuCwP/aBSpUsSetVUR2EkuMM0h0uLsWb/cBg6P4dDAqnkzGVJb1Z9sJznVrfsDeOz5vAwMkiuXvX9ci2d1cRmLuqloFHrdLEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=myHeg4nG; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59R7nkDe1065061
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 11:24:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	gg+oaNrvUF9ILfhrptxODjwkkTizmc6ksl2GN2fI8Sw=; b=myHeg4nG95IXEage
+	6WBFiaU261eLIJwivXFdqCUgGI87MV6Fm6N5FxeFLMb6pq76mUmaoKWRV+nI3EyA
+	3SJJoXPWzZU9EE+iA1YzEO1OnaIIXTZzKDcI1zRvq1NLxfIZ300EXZ2b33bPLyxD
+	ZT63QOlIlqXeSW893uNRZoGEfhmlUk/oJ5fEHdJC8LQSsO9t17gFwZ4Ay4KpxzEt
+	2lo6S+gQw9jNTbS+TvR5sawEYEgU7dNGUcAesgNoyHLEbjnAAarTn9+IJVT68Jyk
+	N2CvGXXIFila1yAiaSOzTF2CdBRI4vX34wv5PyFJeBoQMDEpwI3UFVeGJu3ibXgP
+	ISo2EA==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a0ps14aaj-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 11:24:38 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-7a26485fc5dso3334747b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 04:24:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761564194; x=1762168994;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HgNtIcnn6eENaUFz3K0ARDS/soEXQSArUyONWZnfjlQ=;
-        b=GztycjL0digwZY3EjtAUEBzSKII9KVZEK2LTvmBl1+ODDjBEYzrDJqigRHi+eMU1f8
-         jNsboo+kDrnv/iGkHxBfbyZ1a3WtiWd8mVoJC21R2SoO1l3Se2QSGu29vnppkTrS41zK
-         7kqku4GoBiouSWuI4cBZvs+y/h9aBXSZrsaYhR4sBCTmkW1BDTPcah2lP5+g9MUVty9F
-         NpP5jy/6c8SDwyFt5vy2qXtT/7eq18JPySz/cXAknIdjqSbdL0XL04WJh4zzKmof4mNd
-         Vfvwdwa8p9tipKS1L1nDgG4EWr038mSQmQ9arR10fo8uDSX0hNj+ca9AYw3+souMPsmz
-         gPfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVXfezk5SeYTjt7eIY77aiFASzdlfQQSTrLVXXDR3L/Gqv5VFQAzaWhePNu8qqw766Pu0Bw45c3h9NX@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSJ7s9YhOMD9MqyCTsb/YS0Faa02nCGYiOMHFP/mgrLzjUyERd
-	GLh/Kc048Oj1upBGzUiF28yo1dGITZ7g10cGR2XkWHjbfdFTheOunmMqxyw5Ra77
-X-Gm-Gg: ASbGncv6UR0WULArSp+vNm/xI2dF+NPU4B9KGn5xH4Knu5Ld+NeIPNnrBATqwnlIa2Q
-	yNBhqL226JzJqTTPVgjtIaPVw53Z/IFIHTNc2VNTVWH0QsDau/BTitiHTJJxonA9mBHAeW+X74C
-	ikxwgoKysR/tS9VM2dgj8jZ9Fi26s95jgBYO6bH88J7iaKqIL8y3CKFc+9CnXtAM57uRujxwvUl
-	7rdOmMYFDTIM19MwzRthTMf4A2652xnd81aa8OQ9aKU7vVESBn4ffRQThbznGmWl7ffwcte5Vya
-	VQ2L8stRP2RP51wV46lvOTnA9Bs3LKYQ1zLyHYAMFLiSMJ3K4UuabB9Mny5ITQ75SCFZUCFE/yn
-	KKRLcsVGtEzy+5U1Fgr8QMM/a3sLY4/u64iEoVK14DqEr1c2WqX+13bva+zQeTYvRVrLyajEelZ
-	1TYeZkdDoTncEe+2+vYTNySmp5kNy/41LzSP9UE8p/r0m7hl7b
-X-Google-Smtp-Source: AGHT+IHrw0+CORO1J4oOcddu2yK1hGLioXY0Cmoc2eU898B8J2FLSBLHhIagGXJJrdPlkr0IIU+lyA==
-X-Received: by 2002:a05:6122:3bd6:b0:556:a54e:f95a with SMTP id 71dfb90a1353d-557bf265815mr4349735e0c.16.1761564194457;
-        Mon, 27 Oct 2025 04:23:14 -0700 (PDT)
-Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com. [209.85.217.51])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-557ddb08fcfsm2743012e0c.9.2025.10.27.04.23.13
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20230601; t=1761564277; x=1762169077;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gg+oaNrvUF9ILfhrptxODjwkkTizmc6ksl2GN2fI8Sw=;
+        b=PV81MGCWAMX8RfzjfVFIyWYRXpU6/mc6WPw9WJJSHbb4pA8qfarw9GTAobcQy4DYci
+         45RrBdlNiL+XeRcPzwdg4rVPKGhWl7GfrXBbpk8FkUKccFRIlkno8haoMtqbvmSr28bZ
+         wvrc8kKQvULdhv2hY5anTM0rcldfluJxIVSOvc1ObQmRl3qqmBwKaCHnC+acladfilwI
+         FqGAssbFwSElQ3OBfE1JKkC4S5tN/CMZr6TAvICxwNi66bXTs4QDicxzWnbRhmnWMQA+
+         7yvm/zxZhaNbNdmUkEURtXPnoDrqVVYmsJyNG1eUMjTvjoY9NdiKiTOG4/a44GmhKvzV
+         yZpw==
+X-Forwarded-Encrypted: i=1; AJvYcCXinMJm6iCiCAZpDxTBVEuLvWaVOQrix91nTFWFyUa/db6Z1qfPm66qZD1IdmvLTTDDFqav3D6x/5Na@vger.kernel.org
+X-Gm-Message-State: AOJu0YyCwxTvNq7pQFMx93GuM8Kdmf+ZwD3bvolYznQH6PMPDgt8dYUK
+	smt9RtBloVly0/I95Ga7I1ES8vzZ3V4gbTTGhJUDbwJ+mZSJdeqYZ5cU2jRuPt1nfdYHRPLHs50
+	3A0xw2AcUBtqnT4smLIKnMfBwGS2V/IIHPZyj+DpryW+EKpIQ4jg+3QCNGMvpjTrz
+X-Gm-Gg: ASbGncurAhAFRTFi/QnsaWoUUR0q427lvxgXCFDa0RgN6aK0itIEwrfrSrku7RiX53l
+	n4M+Bp0G2loAlzJyeRlFPQzM65PA6JwgV+yjsQ0vPDgl0GcQpirVxyDxiie/rA5lfJ0GjYTEsS/
+	RbcGxgKhzq0vAjCp7WjCoOQ/49PBfZJX4FChq8HNWCeJbVd7BVdwWWS3TVkRhWBhO9X5yTteKPL
+	mWBjdlo2mSpiKt178q/7y6iSg/h+Mj3m8xj80RIekORRRSMP2j/v5DIyyNDtrdGnaL0UpKopgLj
+	y+3HkF6vN8HKBjNQGRUHaF9ZLOGpriVtlhYJBlMV4oN+0rpQ5asgpEgzEwUzRiAxIIyHGllJPPg
+	aohrD0bOLpDAtwdLobufy1XDtJp2vnO/X9nk=
+X-Received: by 2002:a05:6a20:72a3:b0:334:79cd:fb13 with SMTP id adf61e73a8af0-334a85047abmr47340885637.4.1761564277535;
+        Mon, 27 Oct 2025 04:24:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFsjhBOZkZx9w9MCvltT4iIAvo+2a9fFa7BitzsuZT9Yb4/U1sE4CsXunT2tHtCEoQe/u6iag==
+X-Received: by 2002:a05:6a20:72a3:b0:334:79cd:fb13 with SMTP id adf61e73a8af0-334a85047abmr47340843637.4.1761564276899;
+        Mon, 27 Oct 2025 04:24:36 -0700 (PDT)
+Received: from [192.168.1.3] ([122.169.146.201])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a41402e48esm7827559b3a.16.2025.10.27.04.24.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Oct 2025 04:23:13 -0700 (PDT)
-Received: by mail-vs1-f51.google.com with SMTP id ada2fe7eead31-5db39d2ce9fso1930989137.3
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 04:23:13 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUopUp+hlpL0XxifrQSnphV6Z/xU8pJ4ndnUqGhUh7edjL5ERWIunzCyutGLiknINDF3WSNTqvVHDJg@vger.kernel.org
-X-Received: by 2002:a05:6102:2921:b0:59d:458d:b629 with SMTP id
- ada2fe7eead31-5db2e58fe50mr3946640137.30.1761564193435; Mon, 27 Oct 2025
- 04:23:13 -0700 (PDT)
+        Mon, 27 Oct 2025 04:24:36 -0700 (PDT)
+Message-ID: <231e19ab-0ab7-4eb3-b472-258428a79cf1@oss.qualcomm.com>
+Date: Mon, 27 Oct 2025 16:54:31 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251015192611.241920-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdW1B7Yk1hUU9MSJsiL8wSmjAUGN7Qd_wgBHv8Ct=-wi4Q@mail.gmail.com>
- <CA+V-a8uY11uWoQ_en5QC=W4HPHRwT6rKQQJ-knT8Gi-+czm05w@mail.gmail.com> <20251021184502.GD19043@pendragon.ideasonboard.com>
-In-Reply-To: <20251021184502.GD19043@pendragon.ideasonboard.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 27 Oct 2025 12:23:01 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVrfVP1XZbQVNwEEP8L69mVzNN2yLSjNyHO7o2zqBuY0w@mail.gmail.com>
-X-Gm-Features: AWmQ_blPQXHDdcv3HEZmR70Xe3WDxqjStucPirJolGtaGc9WMslN79O8Z1NYVMM
-Message-ID: <CAMuHMdVrfVP1XZbQVNwEEP8L69mVzNN2yLSjNyHO7o2zqBuY0w@mail.gmail.com>
-Subject: Re: [PATCH v11 0/7] Add support for DU/DSI clocks and DSI driver
- support for the Renesas RZ/V2H(P) SoC
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>, 
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/2] usb: typec: hd3ss3220: Enable VBUS based on ID pin
+ state
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20251027072741.1050177-1-krishna.kurapati@oss.qualcomm.com>
+ <20251027072741.1050177-3-krishna.kurapati@oss.qualcomm.com>
+ <aP8_oZlJ4466BEf0@kuha.fi.intel.com>
+Content-Language: en-US
+From: Krishna Kurapati PSSNV <krishna.kurapati@oss.qualcomm.com>
+In-Reply-To: <aP8_oZlJ4466BEf0@kuha.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=Ju78bc4C c=1 sm=1 tr=0 ts=68ff5676 cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=os7cmxGP5G+7zi0Bb7vKnA==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=afDafrLgsQjIVlkna1UA:9 a=QEXdDO2ut3YA:10
+ a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-ORIG-GUID: Sjpu9tt2OhfEZg0GwcDwszEvu9jSbltW
+X-Proofpoint-GUID: Sjpu9tt2OhfEZg0GwcDwszEvu9jSbltW
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI3MDEwNiBTYWx0ZWRfX5aIX3JPbVnpo
+ SRjK8Z2eIPNQ3fhVsttGaEf1CIAGQlS/OoL0Qna+nGjgvYuB2njIw67CJAT6WJsrqqW3+IF7aFZ
+ QMAQh1tSNuSFsCsxQL8g5vy5Mci4LpFljaIzrxNbx3/SwKcLZSPPe5MT0OBc3mT4livnRzGuAaM
+ aPMPKVTMSWD8ihnJweyW8NyzofYCNxVbcBAK+8SV0t9OPHipCUrWZikyB0QC0UXRpZCrsQSgsvH
+ /Mq2JR387G1Koa15Lskt05SRD9gqWhWCWhiecYq0letXQOSIgV9JAp8UyhexK13Gf5xYutn2w4r
+ RFJ+GthVjXuiuY3WK5Zusjm2+yLmPGkBeFAy4izjANDf0MrOVHkG/49pEdPh7I7eYQf6xwIUZhd
+ RfWiCk/a4DhNbLe644/XQ8ShElYPYw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-27_05,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 phishscore=0 priorityscore=1501 spamscore=0 bulkscore=0
+ adultscore=0 clxscore=1015 impostorscore=0 lowpriorityscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510020000 definitions=main-2510270106
 
-On Tue, 21 Oct 2025 at 20:45, Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
-> On Tue, Oct 21, 2025 at 07:26:49PM +0100, Lad, Prabhakar wrote:
-> > On Tue, Oct 21, 2025 at 11:26=E2=80=AFAM Geert Uytterhoeven wrote:
-> > > On Wed, 15 Oct 2025 at 21:26, Prabhakar <prabhakar.csengg@gmail.com> =
-wrote:
-> > > > This patch series adds DU/DSI clocks and provides support for the
-> > > > MIPI DSI interface on the RZ/V2H(P) SoC.
-> > > >
-> > > > v10->v11:
-> > > > - Split CPG_PLL_CLK1_K/M/PDIV macro change into separate patch
-> > > > - Updated rzv2h_cpg_plldsi_div_determine_rate()
-> > > >   while iterating over the divider table
-> > > > - Added Acked-by tag from Tomi for patch 2/7 and 3/7
-> > > > - Added Reviewed-by tag from Geert for patch 2/7 and 3/7
-> > >
-> > > I think this series is ready for merging.
-> >
-> > \o/
-> >
-> > > > Lad Prabhakar (7):
-> > > >   clk: renesas: rzv2h-cpg: Add instance field to struct pll
-> > > >   clk: renesas: rzv2h-cpg: Use GENMASK for PLL fields
-> > > >   clk: renesas: rzv2h-cpg: Add support for DSI clocks
-> > > >   clk: renesas: r9a09g057: Add clock and reset entries for DSI and =
-LCDC
-> > > >   dt-bindings: display: bridge: renesas,dsi: Document RZ/V2H(P) and
-> > > >     RZ/V2N
-> > > >   drm: renesas: rz-du: mipi_dsi: Add LPCLK clock support
-> > > >   drm: renesas: rz-du: mipi_dsi: Add support for RZ/V2H(P) SoC
-> > >
-> > > As this touches both clk and drm, let's discuss the merge strategy.
-> > > My proposal:
-> > >   1. I queue patches 1-3 in an immutable branch with a signed tag,
-> > >      to be used as a base for the remaining patches,
 
-Done:
 
-The following changes since commit 3a8660878839faadb4f1a6dd72c3179c1df56787=
-:
+On 10/27/2025 3:17 PM, Heikki Krogerus wrote:
+> Hi Krishna,
+> 
+>> +static int hd3ss3220_get_vbus_supply(struct hd3ss3220 *hd3ss3220)
+>> +{
+>> +	struct device_node *hd3ss3220_node = hd3ss3220->dev->of_node;
+>> +	struct device_node *np;
+>> +
+>> +	np = of_graph_get_remote_node(hd3ss3220_node, 0, 0);
+>> +	if (!np) {
+>> +		dev_err(hd3ss3220->dev, "failed to get device node");
+>> +		return -ENODEV;
+>> +	}
+> 
+> So I guess that's the connector node. Why can't you just place the
+> regulator reference to the hd3ss3220 controller node instead of the
+> connector like the port controllers do?
+> 
+> That would allow us to do a simple devm_regulator_get_optional() call
+> that's not tied to DT only.
+> 
 
-  Linux 6.18-rc1 (2025-10-12 13:42:36 -0700)
+I did that in v1:
+https://lore.kernel.org/all/20251002172539.586538-3-krishna.kurapati@oss.qualcomm.com/
 
-are available in the Git repository at:
+But Dmitry mentioned that vbus supply must be in connector node:
+https://lore.kernel.org/all/cbpne2d7yr2vpxmrrveqajlp3irzsglxroxyyjmviuci2ewted@6ewwp6yyybk5/
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git
-tags/clk-renesas-rzv2h-plldsi-tag
+So keeping it in connector node.
 
-for you to fetch changes up to f864e4b721e386be132cc973eadefe5d52cdfd94:
+>> +	hd3ss3220->vbus = of_regulator_get_optional(hd3ss3220->dev, np, "vbus");
+>> +	if (IS_ERR(hd3ss3220->vbus))
+>> +		hd3ss3220->vbus = NULL;
+>> +
+>> +	of_node_put(np);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   static int hd3ss3220_probe(struct i2c_client *client)
+>>   {
+>>   	struct typec_capability typec_cap = { };
+> 
+> <snip>
+> 
+>> +	ret = hd3ss3220_get_vbus_supply(hd3ss3220);
+>> +	if (ret)
+>> +		return dev_err_probe(hd3ss3220->dev, ret, "failed to get vbus\n");
+> 
+> I think you have resource leaks here. I'm pretty sure you need to do
+> regulator_put() somewhere. You are also leaking the connector fwnode
+> that was acquired just before this point..
+> 
 
-  clk: renesas: rzv2h: Add support for DSI clocks (2025-10-27 11:58:03 +010=
-0)
+ACK. Will do regulator_put in cleanup path.
+For device node of connector, i am doing of_node_put above.
 
-----------------------------------------------------------------
-clk: renesas: rzv2h: Add support for DSI clocks
+>>   	if (IS_ERR(hd3ss3220->role_sw)) {
+>>   		ret = PTR_ERR(hd3ss3220->role_sw);
+>>   		goto err_put_fwnode;
+> 
+> Get the regulator here after the above condition. Then add a label for
+> the regulator_put(). And you already have the handle to the connector
+> fwnode so use that one instead of getting it again:
+> 
+>          hd3ss3220->vbus = of_regulator_get_optional(hd3ss3220->dev, to_of_node(connector), "vbus");
+> 
+> But do it like that only if you really can't place the vbus regulator
+> reference to the controller node. I would really prefer that we could
+> do a simple:
+> 
+>          hd3ss3220->vbus = devm_regulator_get_optional(hd3ss3220->dev, "vbus");
 
-RZ/V2H Clock Pulse Generator PLLDSI API, shared by clock and MIPI DSI
-driver source files.
+ACK.
 
-----------------------------------------------------------------
-Lad Prabhakar (3):
-      clk: renesas: rzv2h: Add instance field to struct pll
-      clk: renesas: rzv2h: Use GENMASK for PLL fields
-      clk: renesas: rzv2h: Add support for DSI clocks
+Thanks for the review.
 
- drivers/clk/renesas/rzv2h-cpg.c | 512 ++++++++++++++++++++++++++++++++++++=
-+++-
- drivers/clk/renesas/rzv2h-cpg.h |  26 +-
- include/linux/clk/renesas.h     | 145 ++++++++++++
- 3 files changed, 672 insertions(+), 11 deletions(-)
-
-> > >   2. I queue patch 4 on top of 1 in renesas-clk for v6.19,
-
-Done.
-
-> > >   3. The DRM people queue patches 5-7 on top of 1.
-> > >
-> > > Does that sound fine for you?
-> > Sounds good to me.
-> >
-> > Biju/Tomi, are you OK with the above?
->
-> The plan seems good to me. Note that you won't be able to push this
-> yourself to drm-misc as committers are limited to pushing linear
-> branches. We need an ack from the drm-misc maintainers, and one of them
-> will need to merge the branch (either branch 1. as prepared by Geert, on
-> top of which you can them push patches 5-7 yourself, or a branch you'll
-> prepare on top of 1. with patches 5-7).
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Regards,
+Krishna,
 
