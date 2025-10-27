@@ -1,208 +1,80 @@
-Return-Path: <devicetree+bounces-231772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DE18C1182D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 22:16:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48E01C11898
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 22:22:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A18514213A6
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 21:15:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F27A567268
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 21:20:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9051D31B83D;
-	Mon, 27 Oct 2025 21:15:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EC80329C7B;
+	Mon, 27 Oct 2025 21:20:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="F/x2zxpM"
+	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="ZzCJ2mvl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+Received: from out-171.mta0.migadu.com (out-171.mta0.migadu.com [91.218.175.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D03E31D753;
-	Mon, 27 Oct 2025 21:15:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33FC532AAD8
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 21:20:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761599713; cv=none; b=bM4qNaa35ya7tpvPcvIEgt3F+raYLsSsCtD5cTDGru4J/+LUVTBwAuDNZo3Da2AJFyVRgEMd9pxjvRlfnVnGusRHwsZgGxB69D7N2AWIhULqn8X2yDxytSnKlOV6WZo01Sq9oZRdr1qNSqtWzHlVWOFdJpl5uhlKOS02Aam2VAM=
+	t=1761600036; cv=none; b=DMc6vVPean+8qvTpvKH+eIab74szFfd0smPE+SIFe/LlkiKdmaVDR4xDEWYrp6EQH5LtO3yw7c5E99phGxsLEyZjnyCtE70mFI99jfMaxIPTHEsjS7d2ahBIH0w23clyM9ouZp5lP+zyDJ6Y65StsE2QmFW+OBY3BRI9HtGLa4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761599713; c=relaxed/simple;
-	bh=aIIISvl+2w9gMkRNXeAD6BlzEj3AzToc1TnYUAr3v0o=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=hV81cxL2Khzt9oFwFmNRT7L3oae4fhOlrtGSgoj4ldGSxY+Hen/m+2r5ec9h/jQeSo2pkfKQXqnEqkIPlCJXoPpJODXFLf2PiN4LL4aFQZKAak9/INUreJAe2Kg/UJItfMc1VJIN2WQrSn/fFHH9cLIP+go+vqA7TVWFQFxEPxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=F/x2zxpM; arc=none smtp.client-ip=142.132.176.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 6B5AD40DAC;
-	Mon, 27 Oct 2025 22:15:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
-	t=1761599706; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=NsJHqtCUOKaeyUZLOt1nWUAZg2XGRpC5R7J3KADVzZQ=;
-	b=F/x2zxpML96YLUS6jmMKMg2jetatzUaTlWCQIxO+AIbDXC1LdJWlwXOAK5j/QaZ0g4NlTX
-	ixcDHZqgVKJH3G6+DSSqXmFwUI9VDyp9wMOMe3VkzUwwIP13AnMts2noOBvM/fDiEeddIP
-	5mMTVYLUuoA/dDA13yCIysFWvsvmOisrpxF1shiyZQe5DzadoQVvUzHo+RT81wfJSCqeh4
-	VJc7bU0hJCdYkL7Zc9ggXastvje7yqVMvTD4fy1HeEK1WSIESJXQuIE0kVIFNYGfmOEnTD
-	aJ+vDrnKmjC5SOygsbpRLpsuJfTwcIy7hPWuQZM965sNkq5VJd/kB/K0TCFfCA==
-From: "Dragan Simic" <dsimic@manjaro.org>
-In-Reply-To: <CABjd4Yzfx-4xBHVB=W_r6nEdbwNJKdpHYB6bN3Xsk8dZOegJWw@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-References: <d583ee43-38c4-40fb-b33b-ce3153c9723b@gmail.com> <20251027200213.1821809-1-dsimic@manjaro.org> <CABjd4Yzfx-4xBHVB=W_r6nEdbwNJKdpHYB6bN3Xsk8dZOegJWw@mail.gmail.com>
-Date: Mon, 27 Oct 2025 22:15:05 +0100
-Cc: sigmaris@gmail.com, conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de, krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, robh@kernel.org
-To: "Alexey Charkov" <alchark@gmail.com>
+	s=arc-20240116; t=1761600036; c=relaxed/simple;
+	bh=5xdpCgI9+Y6cN5MSmGFBKONZOL4IJqg+NR9Qk85kt80=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=HC14vNWqbYaWhXnZlWP8UIf7iOf9aw3Q4c1td2Q8y7wSaEfHUBGFTmAsPnoSowZ+0n+JWEpjQU8d1jViTa5J0H47NtIHFDWel8iMMVclfdF0kRhwiwFCgvMVcJCDzXMC+CXdsCAxS1H+NY1xyImeBgDR0NUDkLAfq1EC+YPaCMs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=ZzCJ2mvl; arc=none smtp.client-ip=91.218.175.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow-tech.com
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Message-ID: <2cfeeb0c-f7e0-b101-62c4-3b6eae40a30b@manjaro.org>
-Subject: =?utf-8?q?Re=3A?= [PATCH] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
- =?utf-8?q?_rockchip=3A?= pwm-fan overlay for NanoPC-T6
-User-Agent: SOGoMail 5.12.3
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
+	s=key1; t=1761600021;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=5xdpCgI9+Y6cN5MSmGFBKONZOL4IJqg+NR9Qk85kt80=;
+	b=ZzCJ2mvlyM+oBKlKupVVpGp9PaleFmZxoOk6obZmhBvosz4iw+2eUciwBFZLxJZ4DVMsYo
+	aOS84kkPO+Wfv6bKDUrlWJhAAEhk6X8TOp79J3xdxG/PhfCUWA+dCMvQAyhFHY0oaaH5dJ
+	ylyBWIddMlEyQlCHODpPizWU2DVVELpXFUDVzORSZLltmiFNtab4+ATRxiXFbPJw3RwE4V
+	0wXb5+3/B2oYfw3NBxOsCXqCEWLjD51LN+aPmurrE3vUAx/YYhU3SwjOCV0QRUj7FriQGc
+	mI8bxn+QAE+UU9PmFZ9/HH28MR/bFpnTmpHQ6Ds9rnTFy4N9vXe8fMmM1NcbWQ==
 Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: None
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 27 Oct 2025 22:20:15 +0100
+Message-Id: <DDTF376168GE.27A08H5NLTCRF@cknow-tech.com>
+Cc: <sigmaris@gmail.com>, <conor+dt@kernel.org>,
+ <devicetree@vger.kernel.org>, <heiko@sntech.de>, <krzk+dt@kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <linux-rockchip@lists.infradead.org>, <robh@kernel.org>
+Subject: Re: [PATCH] arm64: dts: rockchip: pwm-fan overlay for NanoPC-T6
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <diederik@cknow-tech.com>
+To: "Dragan Simic" <dsimic@manjaro.org>, "Alexey Charkov"
+ <alchark@gmail.com>
+References: <d583ee43-38c4-40fb-b33b-ce3153c9723b@gmail.com>
+ <20251027200213.1821809-1-dsimic@manjaro.org>
+ <CABjd4Yzfx-4xBHVB=W_r6nEdbwNJKdpHYB6bN3Xsk8dZOegJWw@mail.gmail.com>
+ <2cfeeb0c-f7e0-b101-62c4-3b6eae40a30b@manjaro.org>
+In-Reply-To: <2cfeeb0c-f7e0-b101-62c4-3b6eae40a30b@manjaro.org>
+X-Migadu-Flow: FLOW_OUT
 
-Hello Alexey,
+On Mon Oct 27, 2025 at 10:15 PM CET, Dragan Simic wrote:
+> FWIW, the most user-friendly SBC family in the world, Raspberry
+> Pi, :) requires manual enabling of the fan on Raspberry Pi 4.
+> I haven't researched what's the background for that, perhaps the
 
-On Monday, October 27, 2025 21:56 CET, Alexey Charkov <alchark@gmail.co=
-m> wrote:
-> On Tue, Oct 28, 2025 at 12:02=E2=80=AFAM Dragan Simic <dsimic@manjaro=
-.org> wrote:
-> > On Mon, Oct 27, 2025 at 7:08=E2=80=AFPM Hugh Cole-Baker <sigmaris@g=
-mail.com> wrote:
-> > > On 27/10/2025 09:14, Alexey Charkov wrote:
-> > >
-> > >> Is there any downside to enabling this unconditionally in the bo=
-ard
-> > >> .dts?
-> > >
-> > > Only that it goes against the principle that the DT should descri=
-be the
-> > > hardware; the board .dts would describe a cooling device that doe=
-sn't
-> > > actually exist on the base board.
-> >
-> > Having a separate DT overlay is perfectly fine if we want to
-> > describe a board absolutely correctly: if the fan actually isn't
-> > present, the operating system shouldn't be made to think it is
-> > there, especially if there's no fan RPM feedback, which is the
-> > case on almost all Rockchip boards that support a fan.
-> >
-> > Preventing the kernel from managing a non-existent fan might even
-> > save some CPU cycles, ending up producing a bit less heat, which
-> > can only help in passively cooled setups.
->=20
-> Sounds like an overcomplication without real benefit. It's one thing
-> with overlays for functionality that can be software-incompatible
-> depending on whether an external attachment is connected or depending
-> on the type of attachment connected. Here we are looking at a plain
-> 2-pin fan which cannot be software incompatible to anything really
-> (it's not like one could repurpose the fan connector for anything
-> meaningful if a fan is not in use, and noone gets hurt if a PWM outpu=
-t
-> is left running without load).
->=20
-> The CPU cycles spent parsing a slightly larger DTB at boot are likely
-> comparable to those spent activating a PWM output needlessly upon
-> hitting the active cooling trip point, and both are negligible for an=
-y
-> practical purpose.
-
-Hmm, right, I forgot for a moment that the PWM output is generated
-by dedicated hardware, so not many CPU cycles would be wasted.
-
-BTW, with a fan PWM signal generated by a soft-GPIO output, much
-more CPU cycles would've been saved by omitting the fan definition
-if it isn't present, but that isn't the case here.
-
-> > However, the practice so far has been to describe the fans in the
-> > main board dts files, if the board provides fan support, regardless
-> > of the fan being present in a particular board setup or not.
-> >
-> > > I guess then in theory, an OS might allow the SoC to reach undesi=
-rably high
-> > > temperatures if it's relying on the nonexistent fan to cool it do=
-wn. But I
-> > > don't think this would be an issue on Linux, at least, in practic=
-e.
-> >
-> > We're safe, a thermal runaway isn't going to happen when the fan is
-> > defined in a board DT but actually isn't present.  Thermal CPU and
-> > GPU throttling will prevent the overheating from happening.
-> >
-> > >> Overlays require more user configuration, and not all
-> > >> bootloaders support them directly (e.g. systemd-boot users would
-> > >> struggle). Compiling with overlays enabled also makes .dtb's a l=
-ot
-> > >> larger due to added symbols information.
-> > >
-> > > Nowadays (on Debian at least) using overlays is pretty easy, I'm =
-using the
-> > > u-boot-menu package in Debian, I just copy the overlay(s) to /boo=
-t/dtbo/ and
-> > > it detects them automatically and adds them to extlinux.conf for =
-u-boot to
-> > > apply.
-> > >
-> > > Couldn't systemd-boot users just use rk3588-nanopc-t6-(lts-)with-=
-fan.dtb as
-> > > their single DT to load, if it doesn't support applying overlays =
-and they
-> > > want to use the fan addon?
->=20
-> Sure, but it's a manual configuration step, where otherwise the kerne=
-l
-> would just default to the correct dtb for the board that the firmware
-> told it about. The fan is not discoverable, so the firmware won't eve=
-r
-> offer the "-with-fan" variant, meaning users would need to supply it
-> manually in every instance.
-
-FWIW, the most user-friendly SBC family in the world, Raspberry
-Pi, :) requires manual enabling of the fan on Raspberry Pi 4.
-I haven't researched what's the background for that, perhaps the
-need to keep the GPIO expansion header completely unoccupied by
-default, because the fan attaches to the GPIO header, instead of
-to some dedicated fan connector.
-
-> > Yes, that's an option.  However, that in general doesn't resolve
-> > the issues arising from systemd-boot users wanting to apply more
-> > than a single DT overlay.
-> >
-> > > FWIW, I haven't noticed any problems with having a larger .dtb (u=
-sing mainline
-> > > U-Boot to load it) and several other RK3588 boards are also compi=
-led with
-> > > symbols enabled already, and I haven't seen any issues reported w=
-ith them.
-> >
-> > After thinking a bit about it, I'd support the extraction of fan
-> > definitions into separate DT overlays.  As I wrote above already,
-> > not managing the non-existent fan might actually help a bit with
-> > passively cooled board setups, which is a good enough reason for
-> > me to support separate DT overlays.
->=20
-> Practical benefits sound far fetched here, while forcing users to
-> manually configure something that would have otherwise just worked.
-> Let's see what Heiko thinks.
-
-Yeah, I forgot for a moment that the PWM signal is generated
-by hardware, which means that the resulting overheads when no
-fan is present are rather small.
-
-> > If we end up agreeing to accept this DT overlay, I'll have some
-> > comments on the way cooling maps are defined.  I think there's
-> > quite a bit of redundancy there.
->=20
-> Agree. Thermal governors can figure out the fan speed ramp-up without
-> specifying each and every temperature threshold manually. Two trips
-> seem to be enough for everyone (c) - as we've done e.g. on Rock 5B an=
-d
-> others.
-
-Indeed, and if there are actually measurable/audible benefits
-from having those manually defined thresholds/maps, then we
-should start thinking about improving the already existing
-fan-driving logic instead.
+RPi's have been using DT overlays basically from their start (ie way
+before it became practically usable on the upstream kernel).
 
 
