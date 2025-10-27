@@ -1,88 +1,88 @@
-Return-Path: <devicetree+bounces-231476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44C95C0D7C2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:22:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25FFEC0D85B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 13:30:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22E793A90A7
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:17:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA4E43B44A3
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:21:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6E002F7ADE;
-	Mon, 27 Oct 2025 12:17:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA2923002D3;
+	Mon, 27 Oct 2025 12:21:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="U4x+Ee6H"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Mh4W2s9i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C937685C4A
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 12:17:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADFCE2FE065
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 12:21:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761567448; cv=none; b=aMbifOnXKZwmu83jXKnFRlU9OkIF1T+phXKFFq4zIIfaEcCK07X6hyPnX53J2qTeBgCdF7Ykzz1NZOOEsUAdGak9RwqC/iY5yiGGazFTNNw9/c8kcMiLYyfaDUU+3y29omF9wxNxSPga8OXIVsCvAAq6sd/MLS8duyZvdHU05fI=
+	t=1761567664; cv=none; b=SFLi+wW/z6vgoIe+mP/uRpN8CgrhRCTZ/1P7w7cAAjGhpnSWylRAgs6xbEu2bpbQUNSlZQhYcu34EUVTg2ZQI1Z9jIs9XjDgWD/rx4svP6KXitYSomsO/qnCbRHn9h5JK8wUyoMtckWUULRqlmY7Ov2DVdC4TF4CxahrU6gPozU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761567448; c=relaxed/simple;
-	bh=7vlnI0TZ5Bag1tUeBU15VJaSZYQAFkM9+UW4jGEHfj4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JmxTXRO3ong9cKeHR442Q1GxnoIsZ9TbCw/+0IDG0fO7w/2dOJLLTf9MP1eeB8wUElSwcwl7u/tcvlAKsKTWKd+/APGKZouotD8fUdAPtthwL0TamyctFQcTwpHr62w9GW1ELSrPlglnE5DH4PD+ZQxzLkY6jz6gMH4pdZhwVJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=U4x+Ee6H; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1761567664; c=relaxed/simple;
+	bh=nxPWAEJRSRpuGJj36axWvM+AKJHgISMgHq4fyA83R84=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=UgVhny0nzI0qJX6nbcahEW1oRGgrtmHw4gAnjtYiwpsLYfVgVUnLJ1IeWABLTjM3pcMaIsQE2hYYlQeYm7WAhkpNxart68O2himSoRXfIts+U/1+EwX5dVI3k46oREBo8ZwMk41bPIjDVSodXGRyNGqabYIX1Al78kM9VgNspHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Mh4W2s9i; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59R8kne2917192
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 12:17:25 GMT
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59R8IlOg1130364
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 12:21:01 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	PJvMEwqlichb9fnTMHjp29i2LRX7Vih/4tQCp22heU8=; b=U4x+Ee6HZZ/Mcfe9
-	wyeE1KG7IGu+HYQSWlt2rfioW9Ubzn0/30tmVjKllCNTMGR4YfsZnktSLxT+lF0e
-	RUtLVCkoNhvxA/J7Aai7k/2StMGw9ZI586ve8XFp3hzRKjwH6Q0r1am8dVAZEEay
-	XcoSrDjuCikB8S2/zHLn7gMw1VVCM8l+v8gz+NksmD0RaBq7QI0LogtKRvATYEWV
-	5uVVtgMzmuS5THvQAJGgbOqjqAvVUQcfuOKQUPjOEgXgyJNuKl3Tj2NMuLpvc9in
-	hYW3I3LwdWw8dpPgIn0iSGmnVLfE6vH9kitN03D7idoHV4OCUQPruSBCFdF3wh+3
-	aKM87Q==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a0px6me4x-1
+	aP4mxhUOOvb5sFzTA2872hnI8+YOJ+Fa/nda32UGswI=; b=Mh4W2s9iCZTmOG/W
+	eiIFJyfeRI84xvhv9CLFGqr7pVww6ukMC+1WntxshoS2QBlBGiyNzZQbab4vU03T
+	x2NhEP65/wuehfB0uS64BV2OCCbF+Hp7LTcMjY1KdVxzSDNJkzoKQby8spZ/jNIl
+	0Iti/RVC0Af7lX8O450WcUbVPfcXp0OqV9iW4hhffprkXvBlFnmw4nNzinVVT9xf
+	AFeisaiUmfGxGbNFKWpgdhJYKxwHABwUXwJ/FAIeXCF3X0DKKJ099YkRBbt10l3C
+	LcwEdhew1qtui/XWreVyqvweyydqcBYpFXIzvDDD/zu04WvPLn3k5hY+GrUH5sQl
+	Ab9riQ==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a0nkamhp0-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 12:17:25 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-826b30ed087so13933846d6.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 05:17:25 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 12:21:01 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4eb9de10ecdso4128171cf.3
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 05:21:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761567445; x=1762172245;
+        d=1e100.net; s=20230601; t=1761567661; x=1762172461;
         h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :references:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PJvMEwqlichb9fnTMHjp29i2LRX7Vih/4tQCp22heU8=;
-        b=nxfJ+LxKT7WhYmXVNdpDxpMU8EIBKm2IXk/jz/Pt9VtYonIKc8cv7XbdlBX2ryGD4f
-         CoAIa4T8irEyJau/9KbBtppIvhWyzrjD+01jLBfLfxiQ9mRxaU+rS7P/1nmJNXJm8f8M
-         x0I4lSh4UlaUz9Z2l5UUWIW/uhcHEi98+rLEFh3HLctnHwIbNfZptCgBEQN53jb3+J5K
-         oIONUVazoYHTBe3IMrrTqdCQGzxd/sjh1uD4gzOoXlMkn7kSOlgR45jF2/OgVeAC1OUd
-         FyhtLMrx7+XQ8EBP/RZmGFxjs3XTf9JpWQ54aKWi+ml77EY9hxDZAfmxqibSs8GABJrL
-         2MoA==
-X-Forwarded-Encrypted: i=1; AJvYcCVFWgNIOCDoAI53yX/GEqt/hqTi3x76qECseEjF+TXXShqQpGghwyk1q7IiStS615ZjOVhz0N7wZxzP@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQkg/ExfOI9cTcpoauDn+2ZLSUDexQFs2YCitBrTGA+HI+zueY
-	jeZkylMWcYBMR7PNbiSF7WS3ifYdgqQa4qcJq7I0xQD72uSv713WZzdxI0XrgqRjyt7SXbjMBkw
-	EdD15+MiT6U1JH3dNkPbj3V7q1NQw8GkcA6gyDSlW6lj/iJTSM0LjD3sPkypgPosT
-X-Gm-Gg: ASbGncu+tJ7akJ68/rF8Ka5CTh6VJyoZKh9HjBxkITMg7BVNULlRXX4P9V7UJF4MhYz
-	UsY7lA8L6/R0GAQVX633mnUEGu1BjBqlDjYkQ3TqeG6rie/niZaooXI+fIzib+SIuYjLfSl5nuK
-	+plsbTjqWDQIdDK2mC/Bx+u8CqqH44BYBnRO6F24gBQz1VsTYrb6V/K2u+IypTohawaiJ5rN5Ap
-	cMdQnyddGxaEAoQciO9uM/C/Bf4ewp2LmtDf+oDVU3eM457JCwhxmb2rdRTnPVsoYEqELsHwGKK
-	qawzfQQrf3GdfXWQZ750INj31u+cGddelY7ueGiPzgnNkSwdcJNCOZ4Mbp4JdGkq3pWglYN59Gm
-	by45ORLkmaU+wQzJFAB/ihBYFycRhS0WyiyuJayimemoltbd7ue7Jzxfi
-X-Received: by 2002:a05:622a:148b:b0:4b3:4590:ab6d with SMTP id d75a77b69052e-4ea11710be3mr199776291cf.7.1761567444568;
-        Mon, 27 Oct 2025 05:17:24 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE/9nzepqcV3rOG2J5du1tIjffmHU4HFXiE9u0kz+PomNxTiOJlIcR4pib/NCaufzkxJVJVOg==
-X-Received: by 2002:a05:622a:148b:b0:4b3:4590:ab6d with SMTP id d75a77b69052e-4ea11710be3mr199775901cf.7.1761567444041;
-        Mon, 27 Oct 2025 05:17:24 -0700 (PDT)
+        bh=aP4mxhUOOvb5sFzTA2872hnI8+YOJ+Fa/nda32UGswI=;
+        b=nzdQLus9jSgzPb8jubgVe1Is5ZB8novSz8N7beg/CWkSRJxt2qYboQTcGSmsuMwrZX
+         Jnev1sLhPOblD/dvogooDl9n3nlbDDdJxD5crfJju8YDC1ktfWN5ePG6kCnDRPeDYvY8
+         DdfVoCOaQshn4y1NBsmSXBn0c07Ns3vIPKg9uNPXq0NtAXyr8VQ+B2RJIfvUFp632r5S
+         /WjczVjGtwgKWQFePTg/pAsbUbyeyDAmYgjGqRaZcOodlxSUrTcYGK/uXICwxh0HjM0t
+         Cp3eqR2xWCj3+RjspA7yeliBXaWeuvMdt+/g6Zch1sLUDiOwkGPhvilZ7m8zhCgNPHjQ
+         4MUA==
+X-Forwarded-Encrypted: i=1; AJvYcCXSYj1txwq773VvclAJnAEZTJc/As3v6GIv4r5zI9mZXNI8wYlKxwQ/v5/EUiTfoMIWw2otwFEKvxqK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHTR79+8VQP/PoqN4Nju4zSXe20cOKXz48oX6sOrVJkLVc7kk5
+	z6JzgEoDXhgmlA2Elr1kJqZZJcyM5/TuwYqUqhmef3r+ixPbCseZUeL/rbVd+RdFxLy/i2FCxr7
+	toOn6PUZRuNMUxPzVVoPze89MfF92H7gU4Dwt2Lr3o2Qms0RbbM8zUawailJn0Zru
+X-Gm-Gg: ASbGncu/IxtlD/YUv8y4sybQV1yix5VTVUEdYhp9h/Ie4Qa2OHByeIkBZtEuiczc3Np
+	Kt9EDCnh9CiCGPjQqwUcnbWC2jJZ+HhuDXsGg3/6Lv3i42rcO3yuCvo37oNP434f7/ci038fYPx
+	0I92p68lGF6SbydxEPmsC4SsecYIMsKAvCKMaO57j8exJ1ITHl92lFfpOOeWPkSDHAwBMYoqOyr
+	zZgXCwXVELxq5V58wwHSJqSjTJle5opVAotUWHeloZyGjsUy8WGT8FOAZZbzXeH17jWGpyO+BQ8
+	YV5VyjgMwBH5n7jE2A1u1cvaBzJHzO9/IrUtEzzeabv9QwgOQCmBr4MKZfQcKATkyOXTYhfNklS
+	+iAS9xt7ih9hurcWIIrOvtMT3Aubq6q6JQySGMZDCx9HUCyrlQCdbpuDa
+X-Received: by 2002:a05:622a:289:b0:4ec:ed46:ab6d with SMTP id d75a77b69052e-4eced46b36dmr54348661cf.9.1761567660960;
+        Mon, 27 Oct 2025 05:21:00 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE/Ymwp4j4U76wtRZGQW8EHbN2uGqMPPJ/w80E3/mCrIAWR0RdpJNVmK9Zxy1Lr+Yj9F1bPnQ==
+X-Received: by 2002:a05:622a:289:b0:4ec:ed46:ab6d with SMTP id d75a77b69052e-4eced46b36dmr54348351cf.9.1761567660538;
+        Mon, 27 Oct 2025 05:21:00 -0700 (PDT)
 Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d8536968csm756291566b.29.2025.10.27.05.17.22
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d853f9a0fsm746527466b.50.2025.10.27.05.20.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Oct 2025 05:17:23 -0700 (PDT)
-Message-ID: <35ae8415-9308-4cbc-b14e-c3cdc0a2318a@oss.qualcomm.com>
-Date: Mon, 27 Oct 2025 13:17:21 +0100
+        Mon, 27 Oct 2025 05:21:00 -0700 (PDT)
+Message-ID: <51da0617-db4f-4c6f-9f46-0492e49c9a2f@oss.qualcomm.com>
+Date: Mon, 27 Oct 2025 13:20:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,221 +90,76 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] spmi: spmi-pmic-arb: add support for PMIC arbiter
- v8
-To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e78100-t14s: Add audio playback
+ over DisplayPort
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov
+ <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        David Collins <david.collins@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
-        kamal.wadhwa@oss.qualcomm.com, jingyi.wang@oss.qualcomm.com
-References: <20251024-pmic_arb_v8-v3-0-cad8d6a2cbc0@oss.qualcomm.com>
- <20251024-pmic_arb_v8-v3-3-cad8d6a2cbc0@oss.qualcomm.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251021111050.28554-3-krzysztof.kozlowski@linaro.org>
+ <20251021111050.28554-4-krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251024-pmic_arb_v8-v3-3-cad8d6a2cbc0@oss.qualcomm.com>
+In-Reply-To: <20251021111050.28554-4-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI3MDExNCBTYWx0ZWRfX9Z3nu8ikeGAq
- 5XNx53O6m2gmGp1LredlAcAt5ELo7XTIAbnlobuGrn3oJ5VPa5pwE5m8pjYEoEqTHuPWCSi2TEi
- 7EU2OD6LJmSi+qEnfc1DPUMW3QaC0QVSeE2IkhSfV2Ozmt35ENaaApIBubU6P9py06o6xKPPHFT
- DdbxY0V3U7mdCA2sdEJIWeizaR89jG4jFw1gyvUNJakHszAGFO+c/cnaFzsV4WaIsjS9x01nzBc
- iDnW6Id0GdU09XIjj63qLzQoP+INaL4crALpPboIDVtAd6jLWxFRE9sQVJhBXz/8vUU0sgPY50C
- 9iNGmt/R/lcEfByMr+8uBsmmj7bEN865XSGnLbZ+Lm9wQ851ZGwTAPdyiZmTolHR29VvB70V3kq
- rRgdfph5U1I/gw4wlK+suQvDF1XXtQ==
-X-Proofpoint-ORIG-GUID: JJaIRWLDJ7BCgk0xzvwNdaHpXsU4g_cT
-X-Proofpoint-GUID: JJaIRWLDJ7BCgk0xzvwNdaHpXsU4g_cT
-X-Authority-Analysis: v=2.4 cv=WqMm8Nfv c=1 sm=1 tr=0 ts=68ff62d5 cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+X-Authority-Analysis: v=2.4 cv=AYW83nXG c=1 sm=1 tr=0 ts=68ff63ad cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
  a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=09qoSp1JXfaB3g97fQAA:9 a=QEXdDO2ut3YA:10
- a=OIgjcC2v60KrkQgK7BGD:22
+ a=KKAkSRfTAAAA:8 a=PIn3yDVZNjJHwrb619wA:9 a=QEXdDO2ut3YA:10
+ a=a_PwQJl-kcHnX1M80qC6:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: 8HuDYGrRnDlEsQDV1FEUHeUvIZwlPxn9
+X-Proofpoint-GUID: 8HuDYGrRnDlEsQDV1FEUHeUvIZwlPxn9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI3MDExNCBTYWx0ZWRfX82pbO1hORH+L
+ I1oM/8meSgBiTA05QNR/EYPcHXDTK0HxzRDZMAsIBvHgBSoSRnZ4znt/GHqNHF3InkECEceE6oP
+ llAVcX//cCmIp65b/sPMxRwG/DgroUeIbGRYm9jifwIYH639UlBA0XmEvLNJOLYeoXar2svM7L2
+ 5wP5/Ps1EdBKvl/MdBipQ0ocCBVWmc18AHFmxqGMqYfQIUNTqLWspe4hq/+4Mae0/oV0xEs+qwn
+ DN2VuWz3xxMeLyS0yBgCB0NZ/J51g6qNUVeCGHd+nwdjNfzBIW7ErTGIKnBuZtMKTeNR7hz3Z6N
+ Xb2yPPau87NZ0+n485O97EHKgP3DW2U6XHLOg18sgb26Qg/PhVZ/2aAZxzNaQxMrt0TwM7qJ9Sw
+ vdHZczOZhJKXHQYT2P8CcCA1k798cg==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-10-27_05,2025-10-22_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 priorityscore=1501 impostorscore=0 spamscore=0 phishscore=0
- suspectscore=0 lowpriorityscore=0 malwarescore=0 adultscore=0 bulkscore=0
+ spamscore=0 impostorscore=0 suspectscore=0 malwarescore=0 adultscore=0
+ priorityscore=1501 lowpriorityscore=0 bulkscore=0 clxscore=1015 phishscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2510020000 definitions=main-2510270114
 
-On 10/24/25 11:33 AM, Jishnu Prakash wrote:
-> From: David Collins <david.collins@oss.qualcomm.com>
+On 10/21/25 1:10 PM, Krzysztof Kozlowski wrote:
+> Add necessary DAI links and DAI name prefixes to enable audio playback
+> over USB/DisplayPort and HDMI.  The HDMI port is not yet enabled, but it
+> should carry respective DAI name prefix regardless.
 > 
-> PMIC arbiter v8 supports up to 4 SPMI buses and up to 8192 PMIC
-> peripherals.  Its register map differs from v7 as several fields
-> increased in size. Add support for PMIC arbiter version 8.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Signed-off-by: David Collins <david.collins@oss.qualcomm.com>
-> Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
 > ---
->  drivers/spmi/spmi-pmic-arb.c | 324 +++++++++++++++++++++++++++++++++++++++----
->  1 file changed, 294 insertions(+), 30 deletions(-)
 > 
-> diff --git a/drivers/spmi/spmi-pmic-arb.c b/drivers/spmi/spmi-pmic-arb.c
-> index 91581974ef84..612736973e4b 100644
-> --- a/drivers/spmi/spmi-pmic-arb.c
-> +++ b/drivers/spmi/spmi-pmic-arb.c
-> @@ -3,6 +3,7 @@
->   * Copyright (c) 2012-2015, 2017, 2021, The Linux Foundation. All rights reserved.
->   */
->  #include <linux/bitmap.h>
-> +#include <linux/bitfield.h>
-
-bit'f'ield < bit'm'ap
+> ALSA UCM and audioreach topology will follow up as well.
+> ---
 
 [...]
 
->  #define spec_to_hwirq(slave_id, periph_id, irq_id, apid) \
-> -	((((slave_id) & 0xF)   << 28) | \
-> -	(((periph_id) & 0xFF)  << 20) | \
-> -	(((irq_id)    & 0x7)   << 16) | \
-> -	(((apid)      & 0x3FF) << 0))
-> +	(FIELD_PREP(GENMASK(28, 24), (slave_id))  | \
-> +	FIELD_PREP(GENMASK(23, 16), (periph_id)) | \
-> +	FIELD_PREP(GENMASK(15, 13), (irq_id))    | \
-> +	FIELD_PREP(GENMASK(12, 0),  (apid)))
+>  &mdss_dp0 {
+> +	sound-name-prefix = "DisplayPort0";
 
-I think this could be further improved by:
-
-#define SOMETHING_SLAVE_ID_SOMETHING	GENMASK(28, 24)
-
-and then below:
-
-[...]
-
-> -	if (intspec[0] > 0xF || intspec[1] > 0xFF || intspec[2] > 0x7)
-> +	if (intspec[0] > 0x1F || intspec[1] > 0xFF || intspec[2] > 0x7)
->  		return -EINVAL;
-
-we can use FIELD_MAX(SOMETHING...)
-
-[...]
-
-> +static int pmic_arb_get_core_resources_v8(struct platform_device *pdev,
-> +					  void __iomem *core)
-> +{
-> +	struct spmi_pmic_arb *pmic_arb = platform_get_drvdata(pdev);
-> +
-> +	pmic_arb->apid_map = devm_platform_ioremap_resource_byname(pdev,
-> +								   "chnl_map");
-
-Feel free to unwrap this line
-
-> +	if (IS_ERR(pmic_arb->apid_map))
-> +		return PTR_ERR(pmic_arb->apid_map);
-> +
-> +	pmic_arb->core = core;
-> +
-> +	pmic_arb->max_periphs = PMIC_ARB_MAX_PERIPHS_V8;
-> +
-> +	return pmic_arb_get_obsrvr_chnls_v2(pdev);
-> +}
-> +
-> +static int pmic_arb_get_bus_resources_v8(struct platform_device *pdev,
-> +					 struct device_node *node,
-> +					 struct spmi_pmic_arb_bus *bus)
-> +{
-> +	int index;
-> +
-> +	index = of_property_match_string(node, "reg-names", "chnl_owner");
-> +	if (index < 0) {
-> +		dev_err(&pdev->dev, "chnl_owner reg region missing\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	bus->apid_owner = devm_of_iomap(&pdev->dev, node, index, NULL);
-> +
-> +	return PTR_ERR_OR_ZERO(bus->apid_owner);
-
-Is this any different chan using devm_platform_ioremap_resource_byname()
-like you did above?
-
-
-> +}
-> +
-> +static int pmic_arb_read_apid_map_v8(struct spmi_pmic_arb_bus *bus)
-> +{
-> +	struct spmi_pmic_arb *pmic_arb = bus->pmic_arb;
-> +	struct apid_data *apidd;
-> +	struct apid_data *prev_apidd;
-> +	u16 i, apid, ppid, apid_max;
-> +	bool valid, is_irq_ee;
-> +	u32 regval, offset;
-> +
-> +	/*
-> +	 * In order to allow multiple EEs to write to a single PPID in arbiter
-> +	 * version 8, there can be more than one APID mapped to each PPID.  The
-> +	 * owner field for each of these mappings specifies the EE which is
-> +	 * allowed to write to the APID.  The owner of the last (highest) APID
-> +	 * which has the IRQ owner bit set for a given PPID will receive
-> +	 * interrupts from the PPID.
-> +	 *
-> +	 * In arbiter version 8, the APID numbering space is divided between
-> +	 * the SPMI buses according to this mapping:
-> +	 * APID = 0     to N-1       --> bus 0
-> +	 * APID = N     to N+M-1     --> bus 1
-> +	 * APID = N+M   to N+M+P-1   --> bus 2
-> +	 * APID = N+M+P to N+M+P+Q-1 --> bus 3
-> +	 * where N = number of APIDs supported by bus 0
-> +	 *       M = number of APIDs supported by bus 1
-> +	 *       P = number of APIDs supported by bus 2
-> +	 *       Q = number of APIDs supported by bus 3
-> +	 */
-> +	apidd = &bus->apid_data[bus->base_apid];
-> +	apid_max = bus->base_apid + bus->apid_count;
-> +	for (i = bus->base_apid; i < apid_max; i++, apidd++) {
-> +		offset = pmic_arb->ver_ops->apid_map_offset(i);
-> +		regval = readl_relaxed(pmic_arb->apid_map + offset);
-> +		if (!regval)
-> +			continue;
-> +		ppid = regval & PMIC_ARB_V8_PPID_MASK;
-> +		is_irq_ee = PMIC_ARB_V8_CHAN_IS_IRQ_OWNER(regval);
-
-[...]
-
-
-If you parametrize the masks, the diff against pmic_arb_read_apid_map_v5
-is 3 lines of code instead
-
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int pmic_arb_init_apid_v8(struct spmi_pmic_arb_bus *bus, int index)
-> +{
-> +	struct spmi_pmic_arb *pmic_arb = bus->pmic_arb;
-> +	int ret, i;
-> +
-> +	if (index < 0 || index >= PMIC_ARB_MAX_BUSES_V8) {
-> +		dev_err(&bus->spmic->dev, "Unsupported bus index %d detected\n",
-> +			index);
-> +		return -EINVAL;
-> +	}
-> +
-> +	bus->base_apid = 0;
-> +	bus->apid_count = 0;
-> +	for (i = 0; i <= index; i++) {
-> +		bus->base_apid += bus->apid_count;
-> +		bus->apid_count = readl_relaxed(pmic_arb->core + PMIC_ARB_FEATURES + i * 4) &
-> +						PMIC_ARB_FEATURES_V8_PERIPH_MASK;
-
-You can almost replace pmic_arb_init_apid_v7 with this impl
-
-[...]
-
-> +static void __iomem *
-> +pmic_arb_apid_owner_v8(struct spmi_pmic_arb_bus *bus, u16 n)
-> +{
-> +	return bus->apid_owner + 0x4 * (n - bus->base_apid);
-> +}
-
-This is identical to pmic_arb_apid_owner_v7
+We should probably push this into SoC dtsi since #sound-dai-cells
+is there
 
 Konrad
 
