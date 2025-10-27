@@ -1,96 +1,78 @@
-Return-Path: <devicetree+bounces-231608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A44A3C0ED6F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 16:13:01 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB01AC0ED9C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 16:14:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C69F402AA8
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 15:03:53 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 96FA734C233
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 15:14:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DFE3824BD;
-	Mon, 27 Oct 2025 15:03:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB3153093CB;
+	Mon, 27 Oct 2025 15:13:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HosMZAWT"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="BsQ6jui8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8271C4A3E
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 15:03:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA6992D2499
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 15:13:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761577430; cv=none; b=Us7zicw1YtuyHvFezPAUYpTZ3HNKXYa766+TkxS4oYzEZHTmTgcUAZ1IrjsdvwafzTx00XYHf3JQs91m3lQbEL3Yinq3oCxDK7B43i6YYqS3NdW3Ilha2pgxI0rgDoC+l/0DI+BrewavGzCqffNqohutsGbLcv5fcCdaq0Qd4+Y=
+	t=1761578037; cv=none; b=nGSvLo0rq9BJl4Wouk67+DKYE4t7OQuoPFdgQ1C7a3z/WzdS0q1VspjjlC1TPNclAfNZO685uJrndqAwv78tnJAN8aXmLptSHNM0MsmEdO/qIr6pXAf3+3C3Qsfmd8qr3ZNJUDdsmfvag1GZedXjn9WYvOzxJqTZ80n95XpuFUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761577430; c=relaxed/simple;
-	bh=FR8f0o9ghG0deDpmoGKVQY2Rna2kf/qaf+nd7kZylfM=;
+	s=arc-20240116; t=1761578037; c=relaxed/simple;
+	bh=nFhrS3cEn1XfPtXxFdkzqzvxaJcy1h02P0GBJTtXtfI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QoHC06d80BXtK1MBU7wvgkbe/PXByyEi7UXk1szJqJTl9UPxZKxZXJOiABCgfKuXgGnOJAxu2Mr2lD3Uk7/eyCkhoUuOD+ezxyy3rCEY2n3hn6GnEvLeMP0RKwzrvQZuxZTD8eLQICqLzdhHgn8H5vrmOiyyWGgYHUCK5T7v96U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HosMZAWT; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-475dbc3c9efso16665035e9.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 08:03:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761577426; x=1762182226; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=UKpkOIXxwDv4N6ETMPC6x38UtxY2L9u2nMKcGEac270=;
-        b=HosMZAWTnBI5fHKAvY7Zzfa/ysWPhbKKwFzKnL8A76vumBaTbIM9wc4glGVaDuYuRF
-         7aTqQeZea9vtgJ+T6nTuENckZg8hlj6HayU/xA3D+/PZSXVYzdakiaHq4kMf0ajobAN1
-         NHJuddPTdwdMz0Yu3+HUpigjGKYhNfbq3PtqweXETPIKxAIFWjxrVAB8BE4JFC0iMne3
-         XouzqXEqsBKSHEehL0GSx8RAQKR+Kxqzb/XqnwE6KJvRgj/Rihk3dO223rHs+/0cIw80
-         AShFXr2HvQKiMeDVoDDWraj2IBBx2gnBBLBmq9avHEkuEfp5j4x/cUGWrh0sbRNb3mvj
-         JAGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761577426; x=1762182226;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UKpkOIXxwDv4N6ETMPC6x38UtxY2L9u2nMKcGEac270=;
-        b=F1RiOb8MP3npMi5r+aA40JL99Tv0mtDnsImVQo+XQF3nJiwAZtg44m/JFcjVFtHWSm
-         jtoZqcK/2XetTnJosbtc9dxRA61VilW+mQEGoZpgyY46ETGGb+Bo1iSTFZpWQ+ZZoNpB
-         tTyirG8YkbtqzhXMZTvzhTBKwscCZkjiE7aLCZnzziQqo0gig4cuGYWnqPoyL/qkfuz2
-         tSvSk/6T3Gf8lX1FPTwzKlhROz8aWj2CnF1LEO/qiphUc7eeXKjeMGx4RKb5iOImSwVa
-         jzwRzsCV1GWA+BWzdDVxGUCV2an9XBD3TKurCzbfFHThgvQrAw9rcroOr8ypbVm4LNIb
-         9iQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVZKHGdqeyavLWkgKv1NQtSF1aCN6nn6LokgNjTw9eKebBUY1S/i6gjD26wfqQ9cL9sC91cwavLEuCa@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPJg8hJEeosiw1ZlhYY5atCi6nIRg8S8bEr7jb6CeEaKZgtsrp
-	9GXUpejstxSk96HduLaOLBqLH2e+HHkXkukblA0JbgvUPjnaKIsJ70DNKfhhkyJe9WE=
-X-Gm-Gg: ASbGncuUDCBcMjJOY++RDDvuAlIuSOF5XSDZFxRJ7j7aZvwKTEok4SO33oIARL9lTND
-	/TQSXMAcv+p6r5NXdlntcCuNcJ1HPjmBQuzCfMWzL0UllXfD9AcsxhE4uzt9A/5EYb8/x2sgb49
-	2etk0df81mLLcuEsR8bo18UJU0kvJv+fU4RqDc4jxZe6SspNqf+xNtgt0GuelIooU8fLvpeKldS
-	EaYqNAgrDZQt7RdC0+55wzd/fo5/QH3fAi2hNg2wwNMbFqGRBDxCxJQTrYDJ5pPCNVQp4Z9GTyO
-	YCU2v4QTffJW8Br8yaVx8FfHgANzsmXuiTLbk0B1wFNqNv5t+fO/BzQwUKGeBBsHGY4543l2gR1
-	dL43vSsbU3xs6SHp5Xulk633LtiCk+spK9/9JKKcfRsNyaffoTY01ZPKAthVVlO/1dmCPSKk6
-X-Google-Smtp-Source: AGHT+IGdgZKKc8tkom/y4GwEbztmjQrk8NHF1ywqGi+zVO4NSb3Xu2bsylUy9DS3LDmgv6YYp+masg==
-X-Received: by 2002:a05:600c:1da7:b0:46e:4be1:a423 with SMTP id 5b1f17b1804b1-4711786d630mr260978135e9.1.1761577425808;
-        Mon, 27 Oct 2025 08:03:45 -0700 (PDT)
-Received: from linaro.org ([86.121.7.169])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-475ddccaaf5sm68399545e9.3.2025.10.27.08.03.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Oct 2025 08:03:45 -0700 (PDT)
-Date: Mon, 27 Oct 2025 17:03:43 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>, 
-	Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>, 
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 7/7] soc: qcom: ubwc: Add configuration Glymur platform
-Message-ID: <vngf7cnsj36ddg4pdm72airm2nketxk3m34qw6f65ompimpcfl@r3lbv73tmutj>
-References: <20251014-glymur-display-v2-0-ff935e2f88c5@linaro.org>
- <20251014-glymur-display-v2-7-ff935e2f88c5@linaro.org>
- <7dxq62ltoeerb4g2fgchb2hd7eomvlexfgyvamxsuuirblavtn@4bg3dy2bukdq>
+	 Content-Type:Content-Disposition:In-Reply-To; b=cumQS/yznqb2XvArlQIC0KJyMMdvcqlzfp27N5GyVzToZrVm8vNeDnr8TpzR8oj/nYjK0mBrrcFtJpVg71jr+mHNUtlr93Fpoyr3l9at9mq9Pd7KXEAlM3g4vkNHkHNNgmE1ZUjRiofXQagxWJny50H3gurSIMpT+ykmu+DEMWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=BsQ6jui8; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=ObvvfYM44FTbwUJpbdSEvWMrXCyw//C3N19B6DVqQac=; b=BsQ6jui8m6ldUL4e9YJPTB7YFt
+	qm8iwtSzX2G3fQ9WTrJGQYHLQ8LJI7R2rCKSOGMzdrhv1e8YGU4tnCc+o450aNval+U2ItnBhiv0m
+	a3gBtV/6I0pcreEIBU+voykE//AsQv/ws6EUrGySPVTrZwt2LeUi67ALyLNoBngIaRUmNasUwdqSJ
+	mpWXP77JvZkdyMH0Yj5gF5n34u54hA8+664sCHsuJ2mDhueqcUroUAfYm5LyKblqvsde1un1IG7Nz
+	UYz+Ym/PO2LGxM/f5+Z8luAE5R7Uc8/6+K0KCLsNcR/TH4QnrSzC/k0SKvhjXbSjonrkl1s6Lq/4u
+	XmrFyQxw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:48518)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vDOuu-0000000020b-2qfk;
+	Mon, 27 Oct 2025 15:13:52 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vDOut-000000005hO-1KtM;
+	Mon, 27 Oct 2025 15:13:51 +0000
+Date: Mon, 27 Oct 2025 15:13:51 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	Emanuele Ghidoli <ghidoliemanuele@gmail.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Daniel Scally <dan.scally@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Stefan Klug <stefan.klug@ideasonboard.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
+Message-ID: <aP-ML-A_h13pXY2d@shell.armlinux.org.uk>
+References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,23 +81,71 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <7dxq62ltoeerb4g2fgchb2hd7eomvlexfgyvamxsuuirblavtn@4bg3dy2bukdq>
+In-Reply-To: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On 25-10-27 14:29:01, Dmitry Baryshkov wrote:
-> On Tue, Oct 14, 2025 at 03:38:32PM +0300, Abel Vesa wrote:
-> > Describe the Universal Bandwidth Compression (UBWC) configuration
-> > for the new Glymur platform.
-> > 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> >  drivers/soc/qcom/ubwc_config.c | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> > 
-> 
-> Bjorn, do you indent to pick up this patch on your own or would you ack
-> merging it through the drm/msm tree?
-> 
+On Sun, Oct 26, 2025 at 02:29:04PM +0200, Laurent Pinchart wrote:
+> Energy Efficient Ethernet (EEE) is broken at least for 1000T on the EQOS
+> (DWMAC) interface. When connected to an EEE-enabled peer, the ethernet
+> devices produces an interrupts storm. Disable EEE support to fix it.
 
-Please note that v3 is out:
-https://lore.kernel.org/r/20251027-glymur-display-v3-0-aa13055818ac@linaro.org
+We've finally got to the bottom of what's going on here. Please try
+this patch (it's building locally, but will take some time because
+I'd wound the tree back to 6.13 and 6.14, so it's going to be a full
+rebuild.) Thus, there may be compile bugs remaining.
+
+This uncovered a latent bug in Emanuele's case - the TI PHY drivers
+report EEE capabilities despite not being capable which also needs
+fixing. The patch below will stop stmmac enabling EEE by default on
+PHYs described in firmware, which is the behaviour the driver used
+to have.
+
+If we decide that EEE should be enabled by default, then we'll need
+to revert this change. However, given Oleksij's recent input, I'm
+wondering whether EEE should default to disabled given the issues
+with Tq. The suggestion there is that many PHYs get it wrong and thus
+are incompatible with each other when EEE is enabled.
+
+diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+index fd5106880192..c18690a6804f 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
++++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+@@ -1208,6 +1208,24 @@ static int stmmac_init_phy(struct net_device *dev)
+ 	return 0;
+ }
+ 
++static bool stmmac_has_fw_phy(struct stmmac_priv *priv)
++{
++	struct fwnode_handle *fwnode;
++
++	fwnode = priv->plat->port_node;
++	if (!fwnode)
++		fwnode = dev_fwnode(priv->device);
++
++	if (!fwnode)
++		return false;
++
++	fwnode = fwnode_get_phy_node(fwnode);
++	if (fwnode)
++		fwnode_handle_put(fwnode);
++
++	return !!fwnode;
++}
++
+ static int stmmac_phylink_setup(struct stmmac_priv *priv)
+ {
+ 	struct stmmac_mdio_bus_data *mdio_bus_data;
+@@ -1270,7 +1288,7 @@ static int stmmac_phylink_setup(struct stmmac_priv *priv)
+ 		/* All full duplex speeds above 100Mbps are supported */
+ 		config->lpi_capabilities = ~(MAC_1000FD - 1) | MAC_100FD;
+ 		config->lpi_timer_default = eee_timer * 1000;
+-		config->eee_enabled_default = true;
++		config->eee_enabled_default = !stmmac_has_fw_phy(priv);
+ 	}
+ 
+ 	config->wol_phy_speed_ctrl = true;
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
