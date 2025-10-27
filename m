@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-231366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8040C0CA98
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:32:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4B2EC0CA9E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 10:32:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D28CF4E1DCB
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 09:32:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7102C189AE63
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 09:33:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57CA42F1FC1;
-	Mon, 27 Oct 2025 09:32:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E9202F39CE;
+	Mon, 27 Oct 2025 09:32:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V77sgyDD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MEfWoQFg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 861C82874F6
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 09:32:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BD732F1FE7
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 09:32:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761557548; cv=none; b=QKXlbtjrrHzkSCC+RzV5a738kxVEcvwo9Ne+9d0X3o2L25GmUdslVi5+HpfKmYlRcOThwCn1K/X5eS6AvBgO/2LZdx1nvEwvyQwq2FTpiwwVPk8jrxSK04Fj1YSD4JKA+pSfBgET4qiUezlTAVrDPzgYwz3Mv2DkE28ZbAFmm3U=
+	t=1761557550; cv=none; b=EmUrWAOzBe7S6UnoPChWhRR6kXidscvqQN5tBP2Yv8gZ3pF+/BypT4GYXeu6ZpR7LY058z0mNouIAUy6z6svefD+lLOgVflehaQvjAtZ+WGIU6gO23gQrrgoVouAz9P9w2Yj5WEU28vLKAjxJUCJXqbjLJNsBEfIEMod5KHiwq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761557548; c=relaxed/simple;
-	bh=ytEuxidEeyGVWdHcSV0Cu7NXfhvzR67Ajz+zEcL/AU0=;
+	s=arc-20240116; t=1761557550; c=relaxed/simple;
+	bh=72/KDI0ED0WOuGQa9wsAl7If0x4o4qq3O0o6SEkbMDk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aVONVgKU9ewiKUSOBUWlcqxEsL3ztB4wvRZo2z/zY5n2TeLoKmPzD7bysG37LaoOZUzDghOOA1N/ArtYZIC3bUeoF6CfB7Gw93z63uGPSYXEkHGLpyl2wyqNMARlc8itKjl+I9QiWHdglGR7AIf3KKOniwxoU/w9lDBhmRf28Pc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V77sgyDD; arc=none smtp.client-ip=209.85.208.48
+	 MIME-Version; b=LW6WNu2tnbLIkfUIfM5d/R+fvRD4P2akAEDSASjAkPAYxd/O0Fn0zgseQAWnaArlEg9VkGdZ/eeaIi1D2PZve7AhIG1pkzUsF1JxW17iuY0GauZtkceAs45q+qCCl/HfLnxGXLMEArzBe87eQN2m3f/8OXAahKZbjcqjJs24A7A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MEfWoQFg; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-62fc0b7bf62so219174a12.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 02:32:26 -0700 (PDT)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b403bb7843eso964660366b.3
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 02:32:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761557545; x=1762162345; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1761557546; x=1762162346; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=23eUEQXgE/OVJfCXbnrki5PnT5McCVtuG+I3zbarJTQ=;
-        b=V77sgyDDk60FaGLVpLQPdAE7mY2vIiDOhEyDNeZNBd4U9eIfRdT9Y/hlXANtNLTmOg
-         ItjpqbsQ+/f6rQ4n5L9kobOQlonDGC8O0T5gUCSlUj/3Y5OOzmEYuAGb/D3zYkhjDedq
-         PNDt/mfmlS2mf/UZZX+ibh0skxo/ytf9FUFnJjftz3TONxw+FKOZduMDCeeJgGPnnjqr
-         hyqRxpFR6wiZGrNbQqsFlX7z0KZQOwlseWYrvTMIW4UWkhhLSzGG7vhOM8OexnJnqyuO
-         JZAkuTz2EH40u5r52mgB7n/fd8Ufr8fKOJMWQDE2NDOg7V2gNKqRqAJMEl46dcEB9zyJ
-         SvRw==
+        bh=TCQDnPWqowHG59QXmb0jLVkKI2rjRu35406X3JQiDVY=;
+        b=MEfWoQFgX4dqQWoaBIY3Ty8zpZMxOTF2QyNzGnBERQV+ZbMRA83qL/ACG8TRMCBwKH
+         k/N/O4LHT51b/b0sGOi6e4eSRGx26+haznX0h64EPArqRdfl/34gKoJthfn1hOUDJ9z7
+         L2jOWw2SkJHDZBvmFIXZBv7L7C/bPHsb7QhNZ+t8w0kziYxqFuWEc8ujrrC+oGyOOdGv
+         RMzq3nXuCy851TPe9mxZQlm2BDkccj1go05B4aoiahzrCE3Hqg5my0DsRMwAWZTgXW7R
+         7fIVEYY/HPkAMxEPK+kzZO7koItgo3hj9//P/tgD9dPFVr7PMhmuJS1ZUFMvuhxkzxcD
+         wr+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761557545; x=1762162345;
+        d=1e100.net; s=20230601; t=1761557546; x=1762162346;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=23eUEQXgE/OVJfCXbnrki5PnT5McCVtuG+I3zbarJTQ=;
-        b=WLkU6CmPKrRK8/lFtnrUJr7RHWG9jlr7tRsVyvj3KfJlFXDW8fVikHkS9gIhf8Ddyd
-         H0v1oSX5VG9luKsHiOWLb6T+WKqvxmI0A/QL8ELlEF0x4CbNMk5wK1RbBixSQogcneDM
-         k/nAh+FZMM5MbyDqeMLllJMNkJhfYAlw7G3GPtKBqtY4j9QkSyKbK6lRKBinlNU8Q4OX
-         nQJOnKzFU7WePBimeYbhDgGNZ7P+whhYh19VofqANEXzH27ib4EKQefEQmvxzFdGFwev
-         k+JVf8UXE1rwy0hjmcUdGVzV49aNA6cgI35TBOJn7v3BvRaTxMb5DYVIcRmiPvuBpSlT
-         sXng==
-X-Forwarded-Encrypted: i=1; AJvYcCXmHnienjYCOc7e2YG1OGDqHpv5gDod/YXMgInhOnaypt2PPWw2zbaA7Q+PW19ENJMPZMVUO9It1NI8@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywq4ggOd8ozeWdNPUNY8qTchrZ+zycW0KVB3OkeDyj2ivA+lo+7
-	IEAo3XWQ2cDfsfexNtdv0ixk5mcY2jPLkiKUMq06Q8bIP54DMAly4vBY
-X-Gm-Gg: ASbGncuZun2Z19FifY36MwbvsS1y6utZBvrjS4JMTNJNE5VAyVo1HhxlN6EGnug31An
-	7/oxZFlCFWjd2bhvMVBgE80Z/Sin0d5Ncy+fpCkwg+s8N1EOtRrMRqdNbo6Cix4TxZL/UUl3jUW
-	AYubYsJt1Snk/K0fyAb7GQPr8+eocOwFopLmI6rxsL3M3dxWavdspTSWzWEe+w2L6LEmy2zSthT
-	X93n7WdKC9BLOfjv4UdpASZyM2IPIE9O4aC9LX4CJJjm6Pph76Ce3NmvlUyU/Iv62I4y3g5UJFW
-	o5QGm22t8FqjhT5xHqVQ7YVwNRb74o3tRiqM5g8I1FxxapH/bt/aPrK2QX1sN7D4e7wZmwqkq5x
-	vfAboKiImoHzn78a5klzUXLHRXkLT53ylGA0xbbho4831sKT8Y+k3+20aJsbHlLucl1h3F0AFYs
-	8UKuyX6nVuEV7ScgR7d5OxJfvzetmHhOvQ5JGPaFKC3JpHrR4X4znJ/WA3KRv6Nt2Dd4ZsQvpJw
-	sI1Ns4kJI1Fw2we
-X-Google-Smtp-Source: AGHT+IGTNqBigSY+yLBm+K5D+Qhni0CTXFG23WNwy2NenphYWj6Fl0c8XhhQtLNokHDZRXhqxEvdhA==
-X-Received: by 2002:a05:6402:2282:b0:63c:2e3:6cb with SMTP id 4fb4d7f45d1cf-63c1f6cea3fmr28237052a12.26.1761557544632;
-        Mon, 27 Oct 2025 02:32:24 -0700 (PDT)
+        bh=TCQDnPWqowHG59QXmb0jLVkKI2rjRu35406X3JQiDVY=;
+        b=uynSkIImAGUVpwS5+o0f5xM+zKmc1XcN8qQxhoyPH7WaZFIs9DRxwWUpSY050zO8cU
+         Y+lxEZbk6rg+IFA844nyLf1NBIMGHvG0tGnhPuoeSb4NszCEUNyilkiaL5F1xzkIk6J2
+         74Y4QnGMxUpoq9Zz/Fx3G86bd6dGDI5/nW7owIKbdpPNpolff9lHkm2ehA/t4n0EjGix
+         opfsan5NXbJtirS4NnvuV1ciumcQhghX1IH6fcoQRlJlEL5W98ZnCakoWdEmCHLqQDsl
+         weRus9fomS+Tb6od3TfZj3sic8Kbo9jOT6jYhplUQ8wUM9lCYUCTV1Cd+TrKeqnKFu0n
+         Vd7w==
+X-Forwarded-Encrypted: i=1; AJvYcCXiLcKdqdo2Kns22bOd7b5iL94D14sIIbyYrdZSUw1rY9Oi9hTWxT6WtsdZTHDtjxarOZmfLkALlWGc@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBRUxta275/HF2wa3TJ/nAMIDb7KsDMr9A2BAIIgmzaum7GXGA
+	ss/PanhGQ55Blqq0SMrqi5xk3z0LUUTBURfjKOuhyJrMCnaZPtZ2NR8/
+X-Gm-Gg: ASbGncvMv5zcd+TMOqREAw4DbWZm7AwD2tuDTb5idBfRiq3E1zq4NTjRAC4ErozK/0m
+	bLq0owwlQE3te2AYUsaTWnAaIt0YUs3aEUWCU87UOBJKIvDyHT4bmGb10sXICNdRo7LUHCM9HrA
+	KvLSxN1AS5qRPfHuuDv6nk/fqn/1EI2v9V7XfmFdhuLpSuejEU3MsWjMELuvzcLoPFXyQszIryL
+	FnAsX07bpIgE/nAVQloP5/CPNgDbP7SIo5EiGsKHCF+rNtcoAZox8A7xJHme1J3Zjz95V7A8yvQ
+	luakJ+7YeedyKp6Akk474/X0Jody72Gus0eeHBBnfReWlDnA5tOVTxmrogvG1VvdramVRGQZHrC
+	u53CpU7vJgMLYiiVTzJrRS7UMYnYjJRiEMBqsXES7fZSPefshqcRdWf0YUN9Y0L95/eYu0pu/Kw
+	VSibAw4aqKODtNrJ6ZkMorUCGdfO8fSfszWxHpMBxIVnHff2uV8YmNkM5B0ys/KHBBxLvk4tH9D
+	8lgGg==
+X-Google-Smtp-Source: AGHT+IGjcZLCWHusJQ+RRTOnS62EVI4AzVgjShANu+qiEsSh8iA493hRxBFjM7nRHQfw9gIc6kKZYg==
+X-Received: by 2002:a17:906:4fc4:b0:b3a:b22e:dd35 with SMTP id a640c23a62f3a-b6471d45a69mr4222583766b.2.1761557545758;
+        Mon, 27 Oct 2025 02:32:25 -0700 (PDT)
 Received: from toolbox.int.toradex.com (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63e7ef6be28sm5681014a12.2.2025.10.27.02.32.23
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63e7ef6be28sm5681014a12.2.2025.10.27.02.32.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Oct 2025 02:32:24 -0700 (PDT)
+        Mon, 27 Oct 2025 02:32:25 -0700 (PDT)
 From: max.oss.09@gmail.com
 To: Max Krummenacher <max.krummenacher@toradex.com>,
 	Stefan Eichenberger <stefan.eichenberger@toradex.com>
@@ -89,9 +89,9 @@ Cc: Conor Dooley <conor+dt@kernel.org>,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 1/5] arm64: dts: imx8-apalis: cleanup todo
-Date: Mon, 27 Oct 2025 10:30:07 +0100
-Message-ID: <20251027093133.2344267-2-max.oss.09@gmail.com>
+Subject: [PATCH v1 2/5] arm64: dts: imx8-apalis: add thermal nodes
+Date: Mon, 27 Oct 2025 10:30:08 +0100
+Message-ID: <20251027093133.2344267-3-max.oss.09@gmail.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20251027093133.2344267-1-max.oss.09@gmail.com>
 References: <20251027093133.2344267-1-max.oss.09@gmail.com>
@@ -105,56 +105,81 @@ Content-Transfer-Encoding: 8bit
 
 From: Max Krummenacher <max.krummenacher@toradex.com>
 
-Functionality has been added without removing the associated TODO
-comments.
-Clean that up by removing TODOs no longer applicable.
+Add the thermal-zones and cooling-maps nodes for the PMIC device.
 
 Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
 ---
 
- arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi | 8 --------
- arch/arm64/boot/dts/freescale/imx8qm-apalis.dtsi    | 2 --
- 2 files changed, 10 deletions(-)
+ .../boot/dts/freescale/imx8-apalis-v1.1.dtsi  | 30 +++++++++++++++++--
+ .../dts/freescale/imx8qm-apalis-v1.1.dtsi     | 10 ++++++-
+ 2 files changed, 37 insertions(+), 3 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-index 86d018f470c1..6ebeade2ce72 100644
+index 6ebeade2ce72..686fce7443bb 100644
 --- a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-@@ -31,12 +31,6 @@ gpio_fan: gpio-fan {
- 				      3000 1>;
+@@ -226,6 +226,34 @@ sound-spdif {
+ 		spdif-out;
  	};
  
--	/* TODO: LVDS Panel */
--
--	/* TODO: Shared PCIe/SATA Reference Clock */
--
--	/* TODO: PCIe Wi-Fi Reference Clock */
--
- 	/*
- 	 * Power management bus used to control LDO1OUT of the
- 	 * second PMIC PF8100. This is used for controlling voltage levels of
-@@ -269,8 +263,6 @@ &adc1 {
- 	pinctrl-0 = <&pinctrl_adc1>;
++	thermal-zones {
++		pmic-thermal {
++			polling-delay-passive = <250>;
++			polling-delay = <2000>;
++			thermal-sensors = <&tsens IMX_SC_R_PMIC_0>;
++
++			cooling-maps {
++				cooling_maps_map0: map0 {
++					trip = <&pmic_alert0>;
++				};
++			};
++
++			trips {
++				pmic_alert0: trip0 {
++					hysteresis = <2000>;
++					temperature = <110000>;
++					type = "passive";
++				};
++
++				pmic_crit0: trip1 {
++					hysteresis = <2000>;
++					temperature = <125000>;
++					type = "critical";
++				};
++			};
++		};
++	};
++
+ 	touchscreen: touchscreen {
+ 		compatible = "toradex,vf50-touchscreen";
+ 		interrupt-parent = <&lsio_gpio3>;
+@@ -833,8 +861,6 @@ &spdif0 {
+ 	status = "okay";
  };
  
--/* TODO: Asynchronous Sample Rate Converter (ASRC) */
+-/* TODO: Thermal Zones */
 -
- &cpu_alert0 {
- 	temperature = <95000>;
- };
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm-apalis.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-apalis.dtsi
-index f97feee52c81..7594ac61fe56 100644
---- a/arch/arm64/boot/dts/freescale/imx8qm-apalis.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qm-apalis.dtsi
-@@ -314,8 +314,6 @@ &pinctrl_pcie_sata_refclk {
- 		<IMX8QM_PCIE_CTRL0_CLKREQ_B_LSIO_GPIO4_IO27			0x00000021>;
+ /* TODO: Apalis USBH2, Apalis USBH3 and on-module Wi-Fi via on-module HSIC Hub */
+ 
+ /* Apalis USBH4 */
+diff --git a/arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1.dtsi
+index b1c3f331c4ed..8a37cbe922ac 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1.dtsi
+@@ -11,4 +11,12 @@ / {
+ 	model = "Toradex Apalis iMX8QM V1.1";
  };
  
--/* TODO: On-module Wi-Fi */
--
- /* Apalis MMC1 */
- &usdhc2 {
- 	/*
+-/* TODO: Cooling Maps */
++&cooling_maps_map0 {
++	cooling-device =
++		<&A53_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++		<&A53_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++		<&A53_2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++		<&A53_3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++		<&A72_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++		<&A72_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++};
 -- 
 2.42.0
 
