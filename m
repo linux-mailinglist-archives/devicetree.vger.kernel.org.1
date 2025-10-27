@@ -1,140 +1,211 @@
-Return-Path: <devicetree+bounces-231455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D461CC0D4E8
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:54:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A045C0D46A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 12:51:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C918F4071BE
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 11:48:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5826D19A7484
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 11:48:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BAEA2FFFB6;
-	Mon, 27 Oct 2025 11:47:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA2C93009C7;
+	Mon, 27 Oct 2025 11:47:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hz/nCLCj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fu084Giv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A09472FFF9D
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 11:47:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72C7A3002BA
+	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 11:47:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761565662; cv=none; b=iJE9AYGra1hYYP+pKLhw2B0KvPnILQIKe4wToWgvJvi7UjW1o39K+NojVddwEUCs5s4gqIPhclumpb/U8jvZ4ciObzG5HckWgJbBR6xGrR/3yWdyEsEhw1OuTTgDCBkE57QTWUUAA0iAaIlEd2tp4Gk00yeGlUT/r3eGU1lCWH8=
+	t=1761565666; cv=none; b=mDcqDFKVHRP64PmO8eotZm/eKXF9BJ/G5HEjxLXH3UbBxhSAql4R5c735Toz7dtzllckWA133f7PryV2kBUdAElqUCGvAQfxCJ2LuHjaM/ZN6/Gg/XpZB55bRivRoZORXiq7fILhmI49RFTsnaad9lcwGxDN0YRb6SkA8zmOTC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761565662; c=relaxed/simple;
-	bh=gjeT9bDglpMQa+8nRsoJxSuRqqUVmizcoxLrAXmV8+E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XzM1x2z9fq9ojq1lPdMCeWyfefNynwpYOo0AyPUnHGaKvvDPJ2wdDUTO0+3GvWUvBH1a1DSJVb7NcM9aLDmnAMziSilepPJ7Se/+/ErN2p+PpsxNZcGIuXp2TKwMf5g0SMyyUowBeuVF13JH56TxCZqN15msd8o2tFmmeC1pVXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hz/nCLCj; arc=none smtp.client-ip=209.85.218.52
+	s=arc-20240116; t=1761565666; c=relaxed/simple;
+	bh=p17Kucrh7jwU9Xcz2WTV3RzKYOXVG4AExxJcAYner1Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dl+Y5Ky3kUmA07lAZKm05/UxM4yx10iurh3UbhQjOduDBw34QB7d+49sFGKZLIjcArE415SNBpInzYd2Xoq+FpXWRuDjy6CEnEfbqGmsgie/Z4DzNp2R4jUDn/IC5vwANrR/EQlaeuC1HpuD2UJoa/sbqbIpmmdTpWhWJRk3xBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fu084Giv; arc=none smtp.client-ip=209.85.167.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b403bb7843eso994666666b.3
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 04:47:40 -0700 (PDT)
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-58d29830058so5182300e87.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 04:47:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761565659; x=1762170459; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3dA7DNOvN9+GRkIwpdijEck/U9WrX/wU0vswNS4MOK8=;
-        b=hz/nCLCjb8cVkDdBsvQmfsVsf1H0QNjKHupBZireRSXDaaWw8RL4gxhNjF7d6MiE28
-         QejjwBORYRjPUBS+IXODV8F3goVSl5MH25pRS6DOURubAxfW5+vTvudiR1CWVSaG3bmA
-         avuZerX6U5tlvGNURadmzeJ8LjzGeffTemyGjX8pNunAjFaPrPoBQ5GDRaV0rUIlrHzc
-         PKLf1vDuxM99xS9Y2bvjvkY5tgmrnoaoRJND/thFJ7yf8Y3sGjX6HzrqX+y4HRxRjd17
-         5umJQGXfvR8ECGRVfsyFSb5M+R558LAC5De86WDWEkLSOY1iH2/hpdQFLdM9k4TQkBU/
-         19iw==
+        d=gmail.com; s=20230601; t=1761565663; x=1762170463; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=XupAAXUKcZY4Ejq1lkE3J1vYR4j7xS27b1Ky2ExCNtQ=;
+        b=fu084Giv9JZYfwslxWcShsu/ggSh1uh6g3u2ppw9DNg5JJbJBBdLE28d65kQ6aV2oa
+         NEA3LdVeg1h7o7NtvJmf8uv2eUKulFZDBT1wnYmwHdoESJpgWtOKXJWWh7y6zfUIHal4
+         fzE6atRS3LCspctIRapDzU9I8s0Gznv8LGVmFli4dgq/SJhmZouC8YN4UbwyRMn08gPW
+         /rFB5YlFbLBhPPr70Jo3LEN0NHXRJ5M4csnm1WlRgrhMZvoAl0B4fvkH/cIo+pQMyyhT
+         hOkpPQ+zeyZVltutyGtS0zkHz3QyvHe3TESIDrEpwBUgJVbnVNKD5WNX5BZqLpcadjBn
+         XD2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761565659; x=1762170459;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3dA7DNOvN9+GRkIwpdijEck/U9WrX/wU0vswNS4MOK8=;
-        b=lGh7XUhou5swHPSDQl1p4DLG6B9/52UVRegumuu7kAGvMokFjZE/aQ7Qq1rmy0mcfH
-         GvG6/SQWPz9Rj5La1pOavhK/ZFgWhz5OSgG2WwZAWwj0+nH4m30/SZyaQ3R7Ul+51Qzf
-         lrxRJUlueRhMngJFqawIB9vtOG9Qq0/df0zdbZ2T33eTF3T+rXMNDscmFjU9Csi6Ke2z
-         C1S8KtPvBCbbJlMNgItWlOqTY4zvpIbpBcxk3RLl93ezZFKrTFKpg4Z3SG+141iF5T61
-         HNeB06OENgS0VAHRHEK6QOMU6uBysNEgTnesRRIbTjY8nu+qP1AOlwoozPLyGq2XViYE
-         2E9w==
-X-Forwarded-Encrypted: i=1; AJvYcCU9tFn9oglnUe+ylV71OTGK4Y93OAbN/mt7CvKV6ZpmSXyhjtI/9jSYkekojoJ/l97LiTJf+268kBiJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/yG2M+uGaDrD5kY0S7CChg84hZbQ60oERU/tFvhDydsEJg2/d
-	/bHqu+aAM1dOFW7674xzcIVx2d55BL+sTh4BOsatzjjo1skIE2uwPp/p
-X-Gm-Gg: ASbGncvgqPqz9qalot4iBhAgWGBVH7vf4QHe1g6+KaMmXrtoT1vBEhJr2Wv+emqJcuC
-	rKPVP2B7zwEOvt3fAnxVglNy+qEknA9BHor1MzHsmzOAbIu4zMJVw0xZerFBctoH0rs9zusNcoc
-	BAnQIfqfKECJyKq2q+5HNhCjk87g00ny7ZRO+7mO1gLg/d2wSPIwjSCDhBYGswQTqtsTqfrtVFS
-	W6Jtw9H4c9PK9k0jjfT/J1fgd0/R54h1K9eV/TGm/WHHSAgdhsX0UoKXZW5jjihZfA9nU5FMKiz
-	IpZcZS4NaWCaK5z7yPRm3qhvFXfE6ffb/Ja/7zsSgqaLsfobmLb8aU6N+jjkoabjagml2/Pq7yv
-	gMp0nZ+pPjf93QnvxbbTFNYpldovaVDVpjIX/a6JA6buFI0Fe+EtS59Q4aO0BV8uJXuNHRrIw2G
-	s3W0TqyveLYG+NeuxYukgmbVtLIOG0xeDE301Kj4jKzAJ45oR05dNN76/oGyQNxqDJrkpQXM5vI
-	rY4AIVp5hklNg==
-X-Google-Smtp-Source: AGHT+IFy8Sej3CcOEkpdvrCVde08UILRMDmtaKTdqCDrNYAJ47XcANLENt/DJ4RukrNXPpjXNZXRqA==
-X-Received: by 2002:a17:906:9c82:b0:b38:6689:b9fe with SMTP id a640c23a62f3a-b6471d45a01mr4021916866b.7.1761565658699;
-        Mon, 27 Oct 2025 04:47:38 -0700 (PDT)
-Received: from ?IPV6:2001:9e8:f10f:3501:4457:58fa:e678:17cf? ([2001:9e8:f10f:3501:4457:58fa:e678:17cf])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d853c5bd8sm737774466b.38.2025.10.27.04.47.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Oct 2025 04:47:38 -0700 (PDT)
-Message-ID: <70574ef0-6518-4320-b6f2-dee9e01b2cab@gmail.com>
-Date: Mon, 27 Oct 2025 12:47:37 +0100
+        d=1e100.net; s=20230601; t=1761565663; x=1762170463;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XupAAXUKcZY4Ejq1lkE3J1vYR4j7xS27b1Ky2ExCNtQ=;
+        b=PktIorTHVEn09sedLiSYlDQCxRy79Bt04QWsZmeWV7vabtQr8pLSfjD9N5809CkEd3
+         pPgqX0tNOc/8BlWeN9C/bzQg62MxYe/5gvYBaQPthdH0vyuBsMQ2rcKf4yQpI0Wxh9E+
+         DEUPHAlVn6qmj15FvtiimtU89K2c4UY7j/lAw1dbo0xfl/GaOZaNW3jbjrcnS7Wq1/Pk
+         p43VwnWpdD5o7vWfvI5On2Vk75X5zMWXqUhSUvUZQn7MI9ZUxysUrZZS0+c2W0RjQSHu
+         m3IAe3Ska1vNrjTu6yp+bdZDuGgLUNFBvRludyqjgQDL29IHCRul4Tom5GcjNwO/4uxA
+         ew6g==
+X-Forwarded-Encrypted: i=1; AJvYcCWHypAjoZOflAnCASbdW4rBg+VPzvjZJNqJIle+EV4redvvlqsLDqMUhT/7XKrt1tUbD6CByBvw8Wyr@vger.kernel.org
+X-Gm-Message-State: AOJu0YztD7nufvjTPzuW/Y9Lpk2USZFrtqNZCPEswCexDe6CTDTqPf52
+	eonSzgk+vsrW5Fz153+Ln0xICfKYZTyqxGJLgovs/vyzjCUK8yonrTHP
+X-Gm-Gg: ASbGncuJ7NzRfKDUg+g02pKv8Eys8zvTYUN5dIPbEFrV6hlA5RA0yVytzXkAPlFt17F
+	3qF+fkFPgoimMscToouZ21RX+Zh8ZvINdzmGmZkqrRzixXcSvvYa3xwAZqCVGQP2y76zrsludxP
+	m+zW+NdmZQiq1PQHP942L1ukFG+SR/oX+GN5RoJxjSIawqAKG3Mq+vIvriZz4ZV3mFQIvg9d2M+
+	EJt+Ri3XYxSiFrcpKnqRQc/eWztq4iBiH6IqC8S8B/BYIHJlTZSXhDS9b/pfR//K1OvEBmVwExp
+	pXoP05Chs5OG9N3NPmkCH42v1QCZnWrhrVyQXbTDA+PdMpojU8uE33uZaT5lrP2vZwhaVsPBDK2
+	9MIepi+pozcO3o+gB//njDD5qyey0I1z7SVMEHj12zgvmNubUCgaIvEc3I1skz1GDcmOUXw0ecT
+	YY/3O4EvnW3FkgeOrycmj6uqLBsJGV
+X-Google-Smtp-Source: AGHT+IF0uiGlpM6kk7ZEwBzbXbjrIni0QP5Pb+tj9gEs20ZTWYomYLWJR4y14n6ZYim0NyIT01Bxng==
+X-Received: by 2002:a05:6512:3c9e:b0:592:f48e:c725 with SMTP id 2adb3069b0e04-592f48ec7c2mr4210260e87.34.1761565662305;
+        Mon, 27 Oct 2025 04:47:42 -0700 (PDT)
+Received: from mva-rohm ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59301f41ce8sm2331591e87.6.2025.10.27.04.47.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Oct 2025 04:47:41 -0700 (PDT)
+Date: Mon, 27 Oct 2025 13:47:38 +0200
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-rtc@vger.kernel.org
+Subject: [PATCH v2 11/15] clk: clk-bd718x7: Support BD72720 clk gate
+Message-ID: <f1fbfba7750e151d4b0cb1435433ba079fc4e0af.1761564043.git.mazziesaccount@gmail.com>
+References: <cover.1761564043.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add gpio-line-mux controller
-Content-Language: en-US
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Peter Rosin <peda@axentia.se>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-gpio@vger.kernel.org
-References: <20251026231754.2368904-1-jelonek.jonas@gmail.com>
- <20251026231754.2368904-2-jelonek.jonas@gmail.com>
- <176156516117.3074175.12049051744005094692.robh@kernel.org>
-From: Jonas Jelonek <jelonek.jonas@gmail.com>
-In-Reply-To: <176156516117.3074175.12049051744005094692.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3UxHLcOOARS3Jvq5"
+Content-Disposition: inline
+In-Reply-To: <cover.1761564043.git.mazziesaccount@gmail.com>
 
 
+--3UxHLcOOARS3Jvq5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 27.10.25 12:39, Rob Herring (Arm) wrote:
-> My bot found errors running 'make dt_binding_check' on your patch:
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/gpio-line-mux.yaml: gpio-line-mux-states: missing type definition
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/gpio-line-mux.example.dtb: gpio-mux (gpio-mux): $nodename:0: 'gpio-mux' does not match '^mux-controller(@.*|-([0-9]|[1-9][0-9]+))?$'
-> 	from schema $id: http://devicetree.org/schemas/mux/mux-controller.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/gpio-line-mux.example.dtb: sfp-gpio-1 (gpio-line-mux): gpio-line-mux-states:0: 0 is not of type 'string'
-> 	from schema $id: http://devicetree.org/schemas/gpio/gpio-line-mux.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/gpio-line-mux.example.dtb: sfp-gpio-1 (gpio-line-mux): gpio-line-mux-states:1: 1 is not of type 'string'
-> 	from schema $id: http://devicetree.org/schemas/gpio/gpio-line-mux.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/gpio-line-mux.example.dtb: sfp-gpio-1 (gpio-line-mux): gpio-line-mux-states:2: 3 is not of type 'string'
-> 	from schema $id: http://devicetree.org/schemas/gpio/gpio-line-mux.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/gpio-line-mux.example.dtb: sfp-gpio-1 (gpio-line-mux): mux-controls: [[1]] is not of type 'object'
-> 	from schema $id: http://devicetree.org/schemas/gpio/gpio-line-mux.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/gpio-line-mux.example.dtb: sfp-p1 (sff,sfp): 'i2c-bus' is a required property
-> 	from schema $id: http://devicetree.org/schemas/net/sff,sfp.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mux/gpio-mux.example.dtb: sfp-gpio-1 (gpio-line-mux): gpio-line-mux-states:0: 0 is not of type 'string'
-> 	from schema $id: http://devicetree.org/schemas/gpio/gpio-line-mux.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mux/gpio-mux.example.dtb: sfp-gpio-1 (gpio-line-mux): gpio-line-mux-states:1: 1 is not of type 'string'
-> 	from schema $id: http://devicetree.org/schemas/gpio/gpio-line-mux.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mux/gpio-mux.example.dtb: sfp-gpio-1 (gpio-line-mux): gpio-line-mux-states:2: 2 is not of type 'string'
-> 	from schema $id: http://devicetree.org/schemas/gpio/gpio-line-mux.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mux/gpio-mux.example.dtb: sfp-gpio-1 (gpio-line-mux): mux-controls: [[2]] is not of type 'object'
-> 	from schema $id: http://devicetree.org/schemas/gpio/gpio-line-mux.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mux/gpio-mux.example.dtb: sfp-p0 (sff,sfp): 'i2c-bus' is a required property
-> 	from schema $id: http://devicetree.org/schemas/net/sff,sfp.yaml
->
-sorry for these silly errors, I'll fix them in the next iteration.
+The BD72720 has similar simple clk gate as a few other ROHM PMICs.
 
-Best,
-Jonas
+Add support for BD72720 clk gate.
+
+Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+
+---
+Revision history:
+ RFCv1 =3D>:
+ - No changes
+---
+ drivers/clk/Kconfig       |  4 ++--
+ drivers/clk/clk-bd718x7.c | 10 ++++++++--
+ 2 files changed, 10 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+index 3a1611008e48..619bd63a3c77 100644
+--- a/drivers/clk/Kconfig
++++ b/drivers/clk/Kconfig
+@@ -475,8 +475,8 @@ config COMMON_CLK_BD718XX
+ 	tristate "Clock driver for 32K clk gates on ROHM PMICs"
+ 	depends on MFD_ROHM_BD718XX || MFD_ROHM_BD71828
+ 	help
+-	  This driver supports ROHM BD71837, BD71847, BD71850, BD71815
+-	  and BD71828 PMICs clock gates.
++	  This driver supports ROHM BD71837, BD71847, BD71850, BD71815,
++	  BD71828, and BD72720 PMICs clock gates.
+=20
+ config COMMON_CLK_FIXED_MMIO
+ 	bool "Clock driver for Memory Mapped Fixed values"
+diff --git a/drivers/clk/clk-bd718x7.c b/drivers/clk/clk-bd718x7.c
+index ac40b669d60b..1cae974e6d1d 100644
+--- a/drivers/clk/clk-bd718x7.c
++++ b/drivers/clk/clk-bd718x7.c
+@@ -19,7 +19,8 @@
+ #define BD71828_REG_OUT32K	0x4B
+ /* BD71837 and BD71847 */
+ #define BD718XX_REG_OUT32K	0x2E
+-
++/* BD72720 */
++#define BD72720_REG_OUT32K	0x9a
+ /*
+  * BD71837, BD71847, and BD71828 all use bit [0] to clk output control
+  */
+@@ -118,6 +119,10 @@ static int bd71837_clk_probe(struct platform_device *p=
+dev)
+ 		c->reg =3D BD71815_REG_OUT32K;
+ 		c->mask =3D CLK_OUT_EN_MASK;
+ 		break;
++	case ROHM_CHIP_TYPE_BD72720:
++		c->reg =3D BD72720_REG_OUT32K;
++		c->mask =3D CLK_OUT_EN_MASK;
++		break;
+ 	default:
+ 		dev_err(&pdev->dev, "Unknown clk chip\n");
+ 		return -EINVAL;
+@@ -146,6 +151,7 @@ static const struct platform_device_id bd718x7_clk_id[]=
+ =3D {
+ 	{ "bd71847-clk", ROHM_CHIP_TYPE_BD71847 },
+ 	{ "bd71828-clk", ROHM_CHIP_TYPE_BD71828 },
+ 	{ "bd71815-clk", ROHM_CHIP_TYPE_BD71815 },
++	{ "bd72720-clk", ROHM_CHIP_TYPE_BD72720 },
+ 	{ },
+ };
+ MODULE_DEVICE_TABLE(platform, bd718x7_clk_id);
+@@ -161,6 +167,6 @@ static struct platform_driver bd71837_clk =3D {
+ module_platform_driver(bd71837_clk);
+=20
+ MODULE_AUTHOR("Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>");
+-MODULE_DESCRIPTION("BD718(15/18/28/37/47/50) and chip clk driver");
++MODULE_DESCRIPTION("BD718(15/18/28/37/47/50) and BD72720 chip clk driver");
+ MODULE_LICENSE("GPL");
+ MODULE_ALIAS("platform:bd718xx-clk");
+--=20
+2.51.0
+
+
+--3UxHLcOOARS3Jvq5
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmj/W9oACgkQeFA3/03a
+ocVksgf9FF1OVGzGvP2oM+r+3A6ONb1oRaQM6ReJDB5ubjWlruqoZFYZRhoQoHjd
+Rddg3OJCWDRoqDBaWT14glMzHhcZcSSp7vQLnuzhA+1hSk3vWo4iGrSXqaiyHJ8t
+zP5bxyqdva4ZsQriXCj4NjOQQYJ4GgmZyzbpS/Is5iyaqJcuQhWpEZeqp1TiYg/h
+ykucXcWJsuOry62COifxEvxO7rB15gaFRE3wFDz/DaQo2swBwxbnFPwIiWd0XlI5
+hdl6W6WU7mexwHCaI1unre/LIMe+ldjYJbx0o2MGM5j/7Pv/sa5x5MaN4Vg9JXZZ
+IdNhK6cw41ZdyLMvLprHtNQ0qB58Cw==
+=ZYO/
+-----END PGP SIGNATURE-----
+
+--3UxHLcOOARS3Jvq5--
 
