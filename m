@@ -1,115 +1,113 @@
-Return-Path: <devicetree+bounces-231557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A09DC0E3B6
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 15:04:53 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53154C0E639
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 15:24:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6A041898179
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:05:15 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D6E5C504A65
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 14:11:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07C49307ACA;
-	Mon, 27 Oct 2025 14:04:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HihCMwKt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C60A311C15;
+	Mon, 27 Oct 2025 14:07:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEDC7306B1A;
-	Mon, 27 Oct 2025 14:04:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E90D31196A;
+	Mon, 27 Oct 2025 14:07:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761573870; cv=none; b=nEeCLKswa1f6u+/niiOtXc+h3BfLdTuYlY6Y7yyOI9W25uS+cGbj9JKHHRoSbh1wKfOOFCNZY82dT8ImF4WaaEsNgfsrzhVhVsDVBA89bzwby3WaSLSvR3Zf5QZ1a32/9ih1e5OuclWqqSLx2fDQtnRNXZa/skXA1WpvitCByUE=
+	t=1761574025; cv=none; b=HOFHY7+TrEgfC3gbPqUGKa5czSRl4Tp61Vq13cX5rRLaXsvk+csaR6KrFp75L/qur6tDUiq+yJ+Cb3UCseSKSo8u9OVbBR4hJ5JdA2o9rVKK8wSWY1M2Am7jIJ4zi1ugXp8wGMkU4XSj2FRLEjLO0/mAxF1LYgIJGKI6j5opn9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761573870; c=relaxed/simple;
-	bh=ylzl9ZrQ1VTqBSBsE4EtAeYnesF+yl7Al++Z2aaqGVE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oWNbivwTi40gCVkZH8HdLKe2PMm09/eNaWXYqMnwnGiBSbmchvEBw23uydP0GNj6ZQa1eRfSG0zvf8o6/KXwCDdYRoDFTk0wYSJp7wAmM+mjZ9DxeJmayi1NGyTUZhkCCsD0VSauRr6N4qo2Rv2VnwxZEuP22f6dUArueDbPS2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HihCMwKt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4ABFC4CEF1;
-	Mon, 27 Oct 2025 14:04:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761573870;
-	bh=ylzl9ZrQ1VTqBSBsE4EtAeYnesF+yl7Al++Z2aaqGVE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=HihCMwKtP3kVwDkSg1HY7x8dD1LztfR9dGaWPjYDfb811P6oEkII1mSP5j//6JRs4
-	 TVdTemdHe2LqJ9yCJ9X3/WnVVOAaZpGIEp+xzSg+qhQnjxNFCKQ2z/mnbZSMOEyoTm
-	 oAA0ZRJ0+MdkPkhZIwX75oGow81dvsyh+KQDgp5iaV4+fbC3NR0fUxdwhssqlYDC80
-	 7bNDmJvNq7wsc33y0lhO56JUzACPH0Y+gAHv2FmBjefIvwQjwEL/r5gRnQh6zQsU9c
-	 kwnPJitiZbo2E0HIyJOew/QAdELVzy05Em1C/JVG0N1kfJdTUnJeFZlBUkosSGb94J
-	 8Sb2ZiuqLWvNA==
-Date: Mon, 27 Oct 2025 14:04:23 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <michael.hennerich@analog.com>, <nuno.sa@analog.com>,
- <eblanc@baylibre.com>, <dlechner@baylibre.com>, <andy@kernel.org>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <corbet@lwn.net>, <marcelo.schmitt1@gmail.com>
-Subject: Re: [PATCH v6 8/8] iio: adc: ad4030: Support common-mode channels
- with SPI offloading
-Message-ID: <20251027140423.61d96e88@jic23-huawei>
-In-Reply-To: <3fadbf22973098c4be9e5f0edd8c22b8b9b18ca6.1760984107.git.marcelo.schmitt@analog.com>
-References: <cover.1760984107.git.marcelo.schmitt@analog.com>
-	<3fadbf22973098c4be9e5f0edd8c22b8b9b18ca6.1760984107.git.marcelo.schmitt@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1761574025; c=relaxed/simple;
+	bh=gcVbKAqtB0mg/BJ3362VqIdt9dAcOjtsxlKosHR2Sdw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=E2MIqd9K9RYkN+v1+KGt/XbZkTgXAFnD9FcKtetAsWfUAa3u0u57raNUrQDE+EWTvD3Km4DUIgArwHf074bGpz3yZsWdSeUAj2kmtbYLRgYoAbb3jGwl4nY9w08SOiWtJnbqBEUdwZNqCX3xD0sFKToe8eIAzf+VnXULoQPWKQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-CSE-ConnectionGUID: 5UsIOpgoS8KyghiYWtNzAA==
+X-CSE-MsgGUID: nl20hn6CR8yLSPFSL3vi1A==
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 27 Oct 2025 23:06:55 +0900
+Received: from vm01.adwin.renesas.com (unknown [10.226.92.214])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 219FD41D9331;
+	Mon, 27 Oct 2025 23:06:52 +0900 (JST)
+From: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
+To: geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Add NMI pushbutton support
+Date: Mon, 27 Oct 2025 14:06:51 +0000
+Message-ID: <20251027140651.18367-1-ovidiu.panait.rb@renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Mon, 20 Oct 2025 16:15:39 -0300
-Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
+RZ/V2H EVK has a user pushbutton connected to the SoC NMI pin, which
+can be used to wake up the system from suspend to idle. Add a DT node
+in the device tree to instantiate the gpio-keys driver for this button.
 
-> AD4030 and similar devices can read common-mode voltage together with
-> ADC sample data. When enabled, common-mode voltage data is provided in a
-> separate IIO channel since it measures something other than the primary
-> ADC input signal and requires separate scaling to convert to voltage
-> units. The initial SPI offload support patch for AD4030 only provided
-> differential channels. Now, extend the AD4030 driver to also provide
-> common-mode IIO channels when setup with SPI offloading capability.
-> 
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> ---
-> New patch.
-> I hope this works for ADCs with two channels. It's not clear if works as
-> expected with current HDL and single-channel ADCs (like ADAQ4216).
-> 
-> The ad4630_fmc HDL project was designed for ADCs with two channels and
-> always streams two data channels to DMA (even when the ADC has only one
-> physical channel). Though, if the ADC has only one physical channel, the
-> data that would come from the second ADC channel comes in as noise and
-> would have to be discarded. Because of that, when using single-channel
-> ADCs, the ADC driver would need to use a special DMA buffer to filter out
-> half of the data that reaches DMA memory. With that, the ADC sample data
-> could be delivered to user space without any noise being added to the IIO
-> buffer. I have implemented a prototype of such specialized buffer
-> (industrialio-buffer-dmaengine-filtered), but it is awful and only worked
-> with CONFIG_IIO_DMA_BUF_MMAP_LEGACY (only present in ADI Linux tree). Usual
-> differential channel data is also affected by the extra 0xFFFFFFFF data
-> pushed to DMA. Though, for the differential channel, it's easier to see it
-> shall work for two-channel ADCs (the sine wave appears "filled" in
-> iio-oscilloscope).
-> 
-> So, I sign this, but don't guarantee it to work.
+Signed-off-by: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
+---
+ .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-So what's the path to resolve this?  Waiting on HDL changes or not support
-those devices until we have a clean solution?
-
-Also, just to check, is this only an issue with the additional stuff this
-patch adds or do we have a problem with SPI offload in general (+ this
-IP) and those single channel devices?
-
-Jonathan
-
-
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
+index 5c06bce3d5b4..7fff8bea9494 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
++++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
+@@ -9,6 +9,7 @@
+ 
+ #include <dt-bindings/pinctrl/renesas,r9a09g057-pinctrl.h>
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
+ #include "r9a09g057.dtsi"
+ 
+ / {
+@@ -34,6 +35,20 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
++	keys: keys {
++		compatible = "gpio-keys";
++		pinctrl-0 = <&nmi_pins>;
++		pinctrl-names = "default";
++
++		key-wakeup {
++			interrupts-extended = <&icu 0 IRQ_TYPE_EDGE_FALLING>;
++			linux,code = <KEY_WAKEUP>;
++			label = "NMI_SW";
++			debounce-interval = <20>;
++			wakeup-source;
++		};
++	};
++
+ 	memory@48000000 {
+ 		device_type = "memory";
+ 		/* first 128MB is reserved for secure area. */
+@@ -320,6 +335,10 @@ i2c8_pins: i2c8 {
+ 			 <RZV2H_PORT_PINMUX(0, 7, 1)>; /* I2C8_SCL */
+ 	};
+ 
++	nmi_pins: nmi {
++		pins = "NMI";
++	};
++
+ 	scif_pins: scif {
+ 		pins = "SCIF_TXD", "SCIF_RXD";
+ 		renesas,output-impedance = <1>;
+-- 
+2.51.0
 
 
