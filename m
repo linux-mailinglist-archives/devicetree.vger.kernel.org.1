@@ -1,81 +1,43 @@
-Return-Path: <devicetree+bounces-231873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80D9FC1212D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 00:38:07 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id B71F3C12133
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 00:41:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6FB3B4E41F7
-	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:36:36 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 54E4C4E17FA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Oct 2025 23:41:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 899D1328610;
-	Mon, 27 Oct 2025 23:36:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="anAEdHVg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC6AF32D0DF;
+	Mon, 27 Oct 2025 23:41:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C35F82D877C
-	for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 23:36:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B60CA39ACF;
+	Mon, 27 Oct 2025 23:41:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761608193; cv=none; b=fcduqgX+1IRZDWmneNEVQM32wr9Nh7Ug75cvIzOMMP2lLhS4n3YaCz0ODC23taILFjhwyf5kfVtbzuDJ4rOLwV1Q6Lvg5u+2WWwN2d7RNf9gifw7xVptCGqOK9KDOsCD1UpLIKfFGoAKwOTnMF0NEU2PJdULbCMmmcRBVdE5OGw=
+	t=1761608486; cv=none; b=JPaneRDXYx+RKSkbHJPY05y64km6eidg4A+FgDfYjdF00WNF5UVrEuSuSp0qRJ+0t7QDPonAKqNQVi9yWr6aMRrO8bMmT1XQzc1vLwAZI/bcsLWi2H4RSG1m+nujKh+/6KuY+uAkemlx9wQ4eahIoVvJTf2jBrmEB0HEUlFj6K4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761608193; c=relaxed/simple;
-	bh=qvWAYMr9N/DUBOKfCCTkn13ib5iwybEXtVQwmQA/Lb0=;
+	s=arc-20240116; t=1761608486; c=relaxed/simple;
+	bh=32fYWnaIMPU9AkYqGR9xgWgNQ7QLYLvhQjbl9a1CEps=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SM9cPi3wK+ZvbM4B8x3mMpLyLzP133esOEe5ZfWwVcQzoPhUOzhdzj1H5enN+DpcFccR6laoE9DgHRSWOyaLSMGXPh7mSLzV/QdOFmznI6I4/dQe+oFW+jd2FeC2HhZWvz6xXSTGuybwTOG5+HByVUEHUnXGNBXIx6j/wq7X2vs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=anAEdHVg; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b404a8be3f1so117714566b.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 16:36:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761608190; x=1762212990; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=tsJ+yBdg7GO/yeuRN4xr8Rgswci3SrqwbYTUaP0sSpI=;
-        b=anAEdHVgVkwjMttgKJ/nMkINi7cnTnjt+yV9m8gXdqgvE4lC918prkyfh77SKJ9RMv
-         2wQg3tMhTgh6EPLWpsKTvb7qrB+qPB17tnp622VCQUgYXC5uqzasM601oY9zaXl11ioi
-         RVoqXMaqzcfw6UR0oS23vDRhlTSDs0QgSQDwmOw54KlFD7CMLJf0x/l02ow/O8OhEoNo
-         ZeM5pcNU77xPLPq09ttqjzBEdgzigrbT2Y+IadN5i3Oxj65QwmOfqeGNHZG7GDCPi47p
-         Hn4abvJnYYW13UWoN4qu0jJ9wxJUNXZ6Bosw7IfRS210IyjV26Hn44AZFUnHA6f1GT1Q
-         YN7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761608190; x=1762212990;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tsJ+yBdg7GO/yeuRN4xr8Rgswci3SrqwbYTUaP0sSpI=;
-        b=m5Pt/iRzSSrUsXOgZ0rvDdUcV5oc3Ba4Jakoa+u6W+f6zCnIgRkZJDRa4KSQLCFEtA
-         gGUNRBtyeZ7ct24ObJs8bCafnCFAiO/dkNTxWVLBcY25zh5Tp+KzFkdD9A9Rv1rVrt6d
-         2oPGuQ7G/7Lw0uO5tR1Q2v6yh9PWJDSDToG1yaXC7tBRUuznOa2wRHkEb6mswXfbBapc
-         +TS8hhh9hJUO9TEjVsjQlRpTamPeG5NIXHZEnRH9TA4HMp3kxMD9iBNsdoP3C7tYIubR
-         +eQiKPRuafNMU6HspeZW49NURaXtej1ASlN1qiJZ7ZWaIuBBC3xcSYwirMcgL6KBHO0m
-         vbQw==
-X-Forwarded-Encrypted: i=1; AJvYcCXSUgEmVfi009m69cxjA2Qhv7h0JM9YmSQfSJ0JyHxyZLwmfVe+03+1fCtibgTVkUoAdE2BiLiVrcWp@vger.kernel.org
-X-Gm-Message-State: AOJu0YwwzYc6AUgG+VCktUwTD3HutbtUmjfqYS7QWiMQV6ymdcSUtVZd
-	dpRajf4SuxAEHH6kVX58EEPfHDIIerLv7npZ4fIxngKwDEH6oGjXZ0rT
-X-Gm-Gg: ASbGncuVGRpjZTdhXrRkTIjjGeF60vy/hRi0WAGDAo2V0WkIjivoSafd4ffLdGWLq5M
-	Jxy51vgalAkZUWPInmndJWpxwT6CjP6I74xKMjBusrkI/b3JHuovZwfl2z3DWYYAh0AZbnB66Yc
-	p84yZUCqNb5QdpP38wsTX09Vx1ksPuGauCq+hlinpbF2EhhwqmixHhPJ980kMc64s5jgp+NChRk
-	EY8IGozVgN45GjWNP/Q0JjcBbs8prWLCpNweKLq0R8TYXPQGWFpuOUTtJ//GUtn/3gxVA42QkjM
-	XAoypfwdPp73UObhTZr1cwbrQoD2ikRCj7HSMZksY8dv6Ol+0mXf7QjuxwcuBgI3r/hRUna68b+
-	TlSF4P22sfBvnxzfsL/5bMqCxsJCoqTxn7zfRMkvDFB04kgMs985nYxBChiPEGugCQEdUXihUj1
-	squMo=
-X-Google-Smtp-Source: AGHT+IFg/lCVtyz/HzS52kOUjJMQdUG7JrftCeugpNASZSGw37VW8nbfhJkVrtxD6rfrgOJBaoHF/w==
-X-Received: by 2002:a17:907:980b:b0:b6a:382a:1516 with SMTP id a640c23a62f3a-b6dba55aee5mr92721866b.5.1761608189883;
-        Mon, 27 Oct 2025 16:36:29 -0700 (PDT)
-Received: from skbuf ([2a02:2f04:d406:ee00:3eb9:f316:6516:8b90])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d85398439sm902573366b.36.2025.10.27.16.36.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Oct 2025 16:36:29 -0700 (PDT)
-Date: Tue, 28 Oct 2025 01:36:26 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Daniel Golle <daniel@makrotopia.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=rALs5pvlFJP04uj0Vc/slH6005g3B6EGx7PYa7gYQx91fypiORb4bvSz73Ugfip5RTE1tEXhYonriHXK1n105eWO/kH4M0S4tgd9BA2fgztP5OnQZPBp3ec1W42PDA27qbH6b4YMmZ90nZj6LgB3YFA3Br676q0GvtyvC+bTKbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.98.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vDWpt-000000005gg-3ylV;
+	Mon, 27 Oct 2025 23:41:14 +0000
+Date: Mon, 27 Oct 2025 23:41:10 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Vladimir Oltean <olteanv@gmail.com>
 Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
 	"David S. Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
@@ -96,11 +58,14 @@ Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
 	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
 	"Livia M. Rosu" <lrosu@maxlinear.com>,
 	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH net-next v3 09/12] net: dsa: lantiq_gswip: add vendor
- property to setup MII refclk output
-Message-ID: <20251027233626.d6vzb45gwcfvvorh@skbuf>
+Subject: Re: [PATCH net-next v3 06/12] dt-bindings: net: dsa: lantiq,gswip:
+ add support for MII delay properties
+Message-ID: <aQADFttLJeUXRyRF@makrotopia.org>
 References: <cover.1761521845.git.daniel@makrotopia.org>
- <869f4ea37de1c54b35eb92f1b8c55a022d125bd3.1761521845.git.daniel@makrotopia.org>
+ <cover.1761521845.git.daniel@makrotopia.org>
+ <e7a4dadf49c506ff71124166b7ca3009e30d64d8.1761521845.git.daniel@makrotopia.org>
+ <e7a4dadf49c506ff71124166b7ca3009e30d64d8.1761521845.git.daniel@makrotopia.org>
+ <20251027230439.7zsi3k6da3rohrfo@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -109,39 +74,110 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <869f4ea37de1c54b35eb92f1b8c55a022d125bd3.1761521845.git.daniel@makrotopia.org>
+In-Reply-To: <20251027230439.7zsi3k6da3rohrfo@skbuf>
 
-On Sun, Oct 26, 2025 at 11:47:21PM +0000, Daniel Golle wrote:
-> Read boolean Device Tree property "maxlinear,rmii-refclk-out" and switch
-> the RMII reference clock to be a clock output rather than an input if it
-> is set.
+On Tue, Oct 28, 2025 at 01:04:39AM +0200, Vladimir Oltean wrote:
+> On Sun, Oct 26, 2025 at 11:45:19PM +0000, Daniel Golle wrote:
+> > Add support for standard tx-internal-delay-ps and rx-internal-delay-ps
+> > properties on port nodes to allow fine-tuning of RGMII clock delays.
+> > 
+> > The GSWIP switch hardware supports delay values in 500 picosecond
+> > increments from 0 to 3500 picoseconds, with a default of 2000
+> > picoseconds for both TX and RX delays.
+> > 
+> > This corresponds to the driver changes that allow adjusting MII delays
+> > using Device Tree properties instead of relying solely on the PHY
+> > interface mode.
+> > 
+> > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> > ---
+> > v3:
+> >  * redefine ports node so properties are defined actually apply
+> >  * RGMII port with 2ps delay is 'rgmii-id' mode
+> > 
+> >  .../bindings/net/dsa/lantiq,gswip.yaml        | 29 +++++++++++++++++--
+> >  1 file changed, 26 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
+> > index f3154b19af78..b0227b80716c 100644
+> > --- a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
+> > +++ b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
+> > @@ -6,8 +6,29 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+> >  
+> >  title: Lantiq GSWIP Ethernet switches
+> >  
+> > -allOf:
+> > -  - $ref: dsa.yaml#/$defs/ethernet-ports
+> > +$ref: dsa.yaml#
+> > +
+> > +patternProperties:
+> > +  "^(ethernet-)?ports$":
+> > +    type: object
+> > +    patternProperties:
+> > +      "^(ethernet-)?port@[0-6]$":
+> > +        $ref: dsa-port.yaml#
+> > +        unevaluatedProperties: false
+> > +
+> > +        properties:
+> > +          tx-internal-delay-ps:
+> > +            enum: [0, 500, 1000, 1500, 2000, 2500, 3000, 3500]
+> > +            default: 2000
 > 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
->  drivers/net/dsa/lantiq/lantiq_gswip_common.c | 4 ++++
->  1 file changed, 4 insertions(+)
+> No. This is confusing and wrong. I looked at the driver implementation
+> code, wanting to note that it has the potential of being a breaking
+> change for device trees without the "tx-internal-delay-ps" and
+> "rx-internal-delay-ps" properties.
 > 
-> diff --git a/drivers/net/dsa/lantiq/lantiq_gswip_common.c b/drivers/net/dsa/lantiq/lantiq_gswip_common.c
-> index 60a83093cd10..bf38ecc13f76 100644
-> --- a/drivers/net/dsa/lantiq/lantiq_gswip_common.c
-> +++ b/drivers/net/dsa/lantiq/lantiq_gswip_common.c
-> @@ -1442,6 +1442,10 @@ static void gswip_phylink_mac_config(struct phylink_config *config,
->  		return;
->  	}
->  
-> +	if (of_property_read_bool(dp->dn, "maxlinear,rmii-refclk-out") &&
-> +	    !(miicfg & GSWIP_MII_CFG_MODE_RGMII))
-> +		miicfg |= GSWIP_MII_CFG_RMII_CLK;
-> +
+> But then I saw that the driver implementation is subtly different.
+> "tx-internal-delay-ps" defaults to 2000 only if "rx-internal-delay-ps" is set, and
+> "rx-internal-delay-ps" defaults to 2000 only if "tx-internal-delay-ps" is set.
+> 
+> So when implemented in this way, it won't cause the regressions I was
+> concerned about, but it is misrepresented in the schema.
+> 
+> Why overcomplicate this and just not set a default? Modify the RX clock
+> skew if set, and the TX clock skew if set.
 
-What did you mean with the !(miicfg & GSWIP_MII_CFG_MODE_RGMII) test?
-If the schema says "Only applicable for RMII mode.", what's the purpose
-of this extra condition? For example, GSWIP_MII_CFG_MODE_GMII also has
-the "GSWIP_MII_CFG_MODE_RGMII" bit (0x4) unset. Does this have any significance?
+The problem is that before adding support for both *-internal-delay-ps
+properties the internal delays would be set exclusively based on the
+interface mode -- and are inverted logic:
 
->  	gswip_mii_mask_cfg(priv,
->  			   GSWIP_MII_CFG_MODE_MASK | GSWIP_MII_CFG_RMII_CLK |
->  			   GSWIP_MII_CFG_RGMII_IBS | GSWIP_MII_CFG_LDCLKDIS,
-> -- 
-> 2.51.1
+```
+         switch (state->interface) {
+         case PHY_INTERFACE_MODE_RGMII_ID:
+                 gswip_mii_mask_pcdu(priv, GSWIP_MII_PCDU_TXDLY_MASK |
+                                           GSWIP_MII_PCDU_RXDLY_MASK, 0, port);
+                 break;
+         case PHY_INTERFACE_MODE_RGMII_RXID:
+                 gswip_mii_mask_pcdu(priv, GSWIP_MII_PCDU_RXDLY_MASK, 0, port);
+                 break;
+         case PHY_INTERFACE_MODE_RGMII_TXID:
+                 gswip_mii_mask_pcdu(priv, GSWIP_MII_PCDU_TXDLY_MASK, 0, port);
+                 break;
+         default:
+                 break;
+         }
+```
+
+As you can see the delays are set to 0 in case of the interface mode
+being RGMII_ID (and the same for RGMII_RXID and RGMII_TXID
+respectively).
+
+This is probably the result of the delays being initialized to 2000ps by
+default, and if the **PHY connected to the switch port** is set to take
+care of the clk/data delay then the switch port RGMII interface doesn't
+have to do it.
+
+From my understanding this is a bit awkward as "internal delay" usually
+means the delay is taken care of by the PHY rather than by discrete
+parts of the board design. Here, however, it is *never* part of the
+board design and always handled by either the switch RGMII interface
+(MAC side) or the connected PHY.
+
+So in order to not break existing board device trees expecting this
+behavior I've decided to only fall-back to adjust the delay based on the
+interface mode in case both properties are missing.
+
+Please correct me if that's the wrong thing to do or if my understanding
+is flawed in any way.
 
