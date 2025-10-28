@@ -1,196 +1,120 @@
-Return-Path: <devicetree+bounces-232289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8CB3C16211
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 18:25:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5777C16229
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 18:26:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CDAE1C245D7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 17:25:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D49B3B060D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 17:24:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF5CF34B693;
-	Tue, 28 Oct 2025 17:24:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E02D6336EDC;
+	Tue, 28 Oct 2025 17:24:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="KS3bEume"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C121346E59;
-	Tue, 28 Oct 2025 17:24:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 060F728C5B1
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 17:24:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761672277; cv=none; b=RpvwolCX7pC6CsdTUeNslkug4T1uFU0M0tyriaUZFemM64/jVn9mfsmNOMGL5GVWsP4VWEBRZ48igu97ZG/xAIMvr0zIzjsva0sDMVKl1kHC21M43wTAnWyz++IwCOMCJdDemBUCnZs94AApMjR57ZrLegeVFUGese3ZHWURMxc=
+	t=1761672273; cv=none; b=G7BRJUVa53Fes8BPfil+mkVbbAq2WQEQqZBJocDHVSQMURTS5OwWjfhG0QTLEQ9MJRSMs5jRuntifL3CveCWeQdhhOkKGV9pdWpPJHfTUyAXwSMxapGXXtMZOTQPShQjDLJm1grt/+mQjkYEIpHwNqn6Idlf8pBZ6Zipq1PgV6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761672277; c=relaxed/simple;
-	bh=BDlhpu+T4Rp4k38oLWisBDyf4v7KrBVQfdo5tGjha5c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hB7sIOTgM2RawAHzHHUBgs35rjbljSXHTBM33/rkRlfrQXPpQrKa9G0OZntiZP+Ekng7gz7kfjJI5nw2TSqo5+oh3FrgiJ8eNX5nPbHFyzTHP/AlHP5wc9BIA0FeO8iqnd5eAjb+wa/o2oTX8wtUpFqEL6ERhWTZ7L5TDpqgK9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.98.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vDnQk-000000002HE-31lQ;
-	Tue, 28 Oct 2025 17:24:22 +0000
-Date: Tue, 28 Oct 2025 17:24:18 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Andreas Schirm <andreas.schirm@siemens.com>,
-	Lukas Stockmann <lukas.stockmann@siemens.com>,
-	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
-	Peter Christen <peter.christen@siemens.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH net-next v3 11/12] net: dsa: add tagging driver for
- MaxLinear GSW1xx switch family
-Message-ID: <aQD8QnK-bnuptPlU@makrotopia.org>
-References: <cover.1761521845.git.daniel@makrotopia.org>
- <cover.1761521845.git.daniel@makrotopia.org>
- <81815f0c5616d8b1fe47ec9e292755b38c42e491.1761521845.git.daniel@makrotopia.org>
- <81815f0c5616d8b1fe47ec9e292755b38c42e491.1761521845.git.daniel@makrotopia.org>
- <20251028002841.zja7km3oesczrlo3@skbuf>
+	s=arc-20240116; t=1761672273; c=relaxed/simple;
+	bh=ZxONpV3i/ou2JfG5PzUXP70EAYe3B1djZLSgOaiLNhw=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
+	 References:In-Reply-To; b=W4GoHqRN/hyp9MYAbEzOVpsRJeNVZgRb0nBTNoRHwXiB6v5wtuK/2jACEZiI8qXRdvgZQMUPPB/lsetBlIYjUnrqIDOtGVnk4d5ba/3AetdiYaJQzBkOQAUJ2gMeJyZa2O1pxsLlUr6K7RST5FOmFz8BM7XwxZ6lJsBHj01aaAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=KS3bEume; arc=none smtp.client-ip=91.218.175.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow-tech.com
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251028002841.zja7km3oesczrlo3@skbuf>
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
+	s=key1; t=1761672268;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=E2Pml1G5/Sjw6JkBJ4bqsdsT4UzYGcaQDoLpBigadoI=;
+	b=KS3bEumeNJwU0gYoic7hWhR0ndlInGfhrNEn6Ci2g3j4++LN6XDcgIv2WFW8MuMQstfAk5
+	mqsoYLyRYPy1I4DpUa7/xk6VaprKxzABWovAfxk/3KHBNjflUqpERs0lxZMJcEXDjQqI2s
+	YP1wvNOsCuBhYM0B2H8nmaPjwR9tTaPSIAHzKAItCbNOiksouigAihswuXupUS23Lkzk94
+	mbbyEQnS0AyEaS2Bdmjffj8XpNKeuT9R5cPXTJz+O9Wj2+NoxPu9EnlbsZElH5MKiz8OP+
+	ajxITudT9sD1Z+8ttFtCxxp2FEglQc7l8QUy7Q8vOnfY1735r5TruuydJPX9aw==
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 28 Oct 2025 18:24:25 +0100
+Message-Id: <DDU4P6569O9M.3DKFYS1FDBROU@cknow-tech.com>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <diederik@cknow-tech.com>
+To: "FUKAUMI Naoki" <naoki@radxa.com>, <heiko@sntech.de>
+Cc: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <liujianfeng1994@gmail.com>, <dmitry.baryshkov@oss.qualcomm.com>,
+ <sebastian.reichel@collabora.com>, <andy.yan@rock-chips.com>,
+ <nicolas.frattaroli@collabora.com>, <damon.ding@rock-chips.com>,
+ <jbx6244@gmail.com>, <detlev.casanova@collabora.com>,
+ <devicetree@vger.kernel.org>, <linux-rockchip@lists.infradead.org>
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Fix USB Type-C host mode for
+ Radxa ROCK 5 ITX
+References: <20251028115040.101156-1-naoki@radxa.com>
+ <20251028115040.101156-2-naoki@radxa.com>
+In-Reply-To: <20251028115040.101156-2-naoki@radxa.com>
+X-Migadu-Flow: FLOW_OUT
 
-On Tue, Oct 28, 2025 at 02:28:41AM +0200, Vladimir Oltean wrote:
-> On Sun, Oct 26, 2025 at 11:48:23PM +0000, Daniel Golle wrote:
-> > Add support for a new DSA tagging protocol driver for the MaxLinear
-> > GSW1xx switch family. The GSW1xx switches use a proprietary 8-byte
-> > special tag inserted between the source MAC address and the EtherType
-> > field to indicate the source and destination ports for frames
-> > traversing the CPU port.
-> > 
-> > Implement the tag handling logic to insert the special tag on transmit
-> > and parse it on receive.
-> > [...]
-> > --- /dev/null
-> > +++ b/net/dsa/tag_mxl-gsw1xx.c
-> > [...]
-> > +#define GSW1XX_TX_CLASS_SHIFT		0
-> > +#define GSW1XX_TX_CLASS_MASK		GENMASK(3, 0)
-> 
-> Using FIELD_PREP() would eliminate these _SHIFT definitions and _MASK
-> would also go away from the macro names.
+On Tue Oct 28, 2025 at 12:50 PM CET, FUKAUMI Naoki wrote:
+> The USB Type-C port on the Radxa ROCK 5B+/5T supports Dual-Role-Data
+> and Dual-Role-Power. However, currently it cannot operate as host/
+> source.
 
-Ack, using FIELD_PREP() and FIELD_GET() does improve readability and
-I'll use that.
+You describe the ROCK 5B+/5T while modifying the 5 ITX. If the exact
+same logic applies to the 5 ITX, then ``s/5B+\/5T/5 ITX/`` above?
 
-> 
-> > +
-> > +/* Byte 3 */
-> > +#define GSW1XX_TX_PORT_MAP_LOW_SHIFT	0
-> > +#define GSW1XX_TX_PORT_MAP_LOW_MASK	GENMASK(7, 0)
-> > +
-> > +/* Byte 4 */
-> > +#define GSW1XX_TX_PORT_MAP_HIGH_SHIFT	0
-> > +#define GSW1XX_TX_PORT_MAP_HIGH_MASK	GENMASK(7, 0)
-> > +
-> > +#define GSW1XX_RX_HEADER_LEN		8
-> 
-> Usually you use two separate macros when the lengths are not equal, and
-> you set .needed_headroom to the largest value.
+Cheers,
+  Diederik
 
-A single macro
-#define GSW1XX_HEADER_LEN			8
-will do the trick as they are anyway equal, right?
+> By setting "power-role" to "dual" and "try-power-role" to "sink"
+> (along with adding related properties), the data role can operate as
+> host.
+>
+> Unfortunately, a remaining issue is that when a USB 3.0 SuperSpeed
+> device's orientation is reverse, the root port is detected but the
+> device itself is not. This must be addressed separately.
+> (USB 2.0/1.1 devices operate even in reverse orientation.)
+>
+> Fixes: 31390eb8ffbf2 ("arm64: dts: rockchip: add ROCK 5 ITX board")
+> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/ar=
+m64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+> index bc8140883de47..1664f85db4aaa 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+> @@ -484,9 +484,14 @@ usb_con: connector {
+>  			compatible =3D "usb-c-connector";
+>  			data-role =3D "dual";
+>  			label =3D "USB-C";
+> -			power-role =3D "source";
+> +			op-sink-microwatt =3D <50000>;
+> +			/* fusb302 supports PD Rev 2.0 Ver 1.2 */
+> +			pd-revision =3D /bits/ 8 <0x2 0x0 0x1 0x2>;
+> +			power-role =3D "dual";
+> +			sink-pdos =3D <PDO_FIXED(5000, 10, PDO_FIXED_USB_COMM)>;
+>  			source-pdos =3D
+>  				<PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
+> +			try-power-role =3D "sink";
+> =20
+>  			ports {
+>  				#address-cells =3D <1>;
 
-> > [...]
-> > +	u8 *gsw1xx_tag;
-> > +
-> > +	/* provide additional space 'GSW1XX_TX_HEADER_LEN' bytes */
-> > +	skb_push(skb, GSW1XX_TX_HEADER_LEN);
-> > +
-> > +	/* add space between MAC address and Ethertype */
-> > +	dsa_alloc_etype_header(skb, GSW1XX_TX_HEADER_LEN);
-> > +
-> > +	/* special tag ingress */
-> > +	gsw1xx_tag = dsa_etype_header_pos_tx(skb);
-> > +	gsw1xx_tag[0] = 0x88;
-> > +	gsw1xx_tag[1] = 0xc3;
-> 
-> Could you write this as a u16 pointer, to make it obvious to everyone
-> it's an EtherType, and define the EtherType constant in
-> include/uapi/linux/if_ether.h, to make it a bit more visible that it's
-> in use?
-
-Defining the EtherType in the appropriate header makes sense (even though
-0x88c3 is just the default and configuration of the chip allows to set it
-to anything else, or even have it omitted entirely).
-
-Using __be16 to access the tag fields will make the whole thing
-sensitive to endianess, which is a bit messy. I would prefer to keep
-using u8 type and some shifting and masking of the EtherType constant
-similar to how it is done in tag_dsa.c. Also note that the datasheet
-describes the special tag byte-by-byte, and there is even a 16-bit field
-which crosses word boundaries, GSW1XX_TX_PORT_MAP_LOW and
-GSW1XX_TX_PORT_MAP_HIGH (ie. it is obvious that this wasn't intended to
-be accessed as 16-bit words). So I'd rather make it easy to understand
-how the tag driver matches the datasheet instead of using __be16 just
-for the sake of the EtherType.
-
-I've implemented and tested using __be16 now, and it doesn't look very
-bad either, especially when skipping the PORT_MAP_HIGH/LOW part because
-on the actually produced chips there anyway aren't ever more than 6
-ports, so one anyway always only accesses the LOW part of the portmap.
-
-If you like to use __be16 (like eg. the realtek taggers) I will proceed
-like that in v4.
-
-> > [...] 
-> > +	if (gsw1xx_tag[0] != 0x88 && gsw1xx_tag[1] != 0xc3) {
-> > +		dev_warn_ratelimited(&dev->dev, "Dropping packet due to invalid special tag\n");
-> > +		dev_warn_ratelimited(&dev->dev,
-> > +				     "Tag: 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x\n",
-> > +				     gsw1xx_tag[0], gsw1xx_tag[1], gsw1xx_tag[2], gsw1xx_tag[3],
-> > +				     gsw1xx_tag[4], gsw1xx_tag[5], gsw1xx_tag[6], gsw1xx_tag[7]);
-> 
-> I think you could print the tag with %*ph, according to
-> https://elixir.bootlin.com/linux/v6.17.5/source/lib/vsprintf.c#L2453
-> (needs testing)
-
-I've tested that and it works fine (looks slightly different of course due
-to the missing '0x' prefix, but that doesn't matter for debugging)
-
-> > [...]
-> > +	/* remove the GSW1xx special tag between MAC addresses and the current
-> > +	 * ethertype field.
-> > +	 */
-> > +	skb_pull_rcsum(skb, GSW1XX_RX_HEADER_LEN);
-> > +	dsa_strip_etype_header(skb, GSW1XX_RX_HEADER_LEN);
-> 
-> You're not setting skb->offload_fwd_mark but you implement
-> port_bridge_join() so you offload L2 switching. If a packet gets flooded
-> from port A to the CPU and also to port B, don't you see that the
-> software bridge also creates a packet copy that it sends to port B a
-> second time?
-
-No, the opposite is true. If I set
-dsa_default_offload_fwd_mark(skb);
-forwarding between the ports no longer works.
-It can well be that this is an existing flaw in the driver, as tag_gswip.c
-also doesn't set offload_fwd_mark.
 
