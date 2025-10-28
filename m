@@ -1,171 +1,178 @@
-Return-Path: <devicetree+bounces-231971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A603C13586
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 08:43:21 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2096C135B6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 08:46:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AECD585339
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 07:38:37 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A6822565D8E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 07:39:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 815D42E0910;
-	Tue, 28 Oct 2025 07:36:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7144229A9C9;
+	Tue, 28 Oct 2025 07:38:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VfW+i13n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OzEqqrCE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4E542DF6F5;
-	Tue, 28 Oct 2025 07:36:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2244E86337;
+	Tue, 28 Oct 2025 07:38:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761636998; cv=none; b=eski3rjJUllvVgtduLg/RluldTzSapZVKpH7FyBhe9EQawTqzAJoA5DEB30OmUcU5w3Ti2Gk/gfn2JBtpl4XG+yzoIdRzfDyji/lX6M09lX2Z52EhK73FnyllRv3uWT6JxJ0kKGcfpciy5FBpts81T6B8EGJmy2LiDzhxmF2U24=
+	t=1761637131; cv=none; b=EM0RdkG6GcDUqg22Q9IgjBA+laBJ/HDqwi/3f306YWYjkIBI7eG05lQA+Dh2mil7oNSRPLA6mmiZ/URjJcFCVdancPEGpCWxKz0y1/qbhO8NU+B9a0U/7BQsBEcRQ3nJen+7CvDAWuvngZveG81EKDsNVbe/EOjFCe7cc+e0OFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761636998; c=relaxed/simple;
-	bh=Om0lvRWPDe6Ehq3RNTwvwbhIRct+e1KTrLwqUuXzyS8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kEmJBtdjZ7eoZ2gpnXdTsAh/6ILEGkzWDaFuXBAAbIc/JLdo5i25Qg95G+K8+t4rJSXX5jRIj9lsbiHGb5/v+LTkP0KLidJVONeQ0ND/Rxdh39+Qt8xiT6JNNPcaUWK/ERtYMs/dPk9GGlayXgGLPJMlQCTcmY86B4+Uy58BdsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VfW+i13n; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 8046D1A16F7;
-	Tue, 28 Oct 2025 07:36:35 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 56327606AB;
-	Tue, 28 Oct 2025 07:36:35 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 935F4102F251B;
-	Tue, 28 Oct 2025 08:36:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761636994; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=HDL+cduKGo0iwjImHuxRFOSxsiEzs6TUgE6gWmABSIg=;
-	b=VfW+i13nyaovNMhOgJDRHw3FVtH49cPKUE/qlj/T3LX2zoZz8OaUuNkQidN4SvX+UxhxmX
-	zAlRe30kXPqneuD46fPFB1Sk3osgunGsMn4ln0on/w604ivEwkGk7XIQ8ffKdyPByVRoh2
-	sjAZ72dzOLO+ScPme5ueaQGv27fjYaS7fCQVMW5RNdCiOH7vxCWzgc9ASauxrcPEjo5AyR
-	jxKqDPwBmDk64gC5RjIViG5XKDYfZVA92J7upzyz1QJPKOcyJNRuU0I52g1yri0xsPqVBI
-	oPc5ufrAS98mXp0AihVw9/N3ukKYmO5bv0+K/hA/14f8Xgvy1DVsYP5IoR83iA==
-From: Richard Genoud <richard.genoud@bootlin.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
-	Wentao Liang <vulab@iscas.ac.cn>,
-	Johan Hovold <johan@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-mtd@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Richard Genoud <richard.genoud@bootlin.com>
-Subject: [PATCH v4 16/16] arm64: dts: allwinner: h616: add NAND controller
-Date: Tue, 28 Oct 2025 08:35:09 +0100
-Message-ID: <20251028073534.526992-17-richard.genoud@bootlin.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251028073534.526992-1-richard.genoud@bootlin.com>
-References: <20251028073534.526992-1-richard.genoud@bootlin.com>
+	s=arc-20240116; t=1761637131; c=relaxed/simple;
+	bh=9mGaj0sbbdNrxuAO9crC1CuxjMpvcFqHIz84NURNSS4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WW7ZUF09zkHHsNjLfMA9qlCm1KDbgwZQN/KJy4XS6jUUrRhrnMmr45euw+8gej6i2vKnYSVuCxM35V1FCv3U+DcslF06x9OB3TPWeyf3GIObghhXngtkxGPRs7rGIq7NBOjLc/IZSt5NP/PTKM2bqfA3cFsVhuY5sCCjCYyc/EM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OzEqqrCE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CF70C4CEE7;
+	Tue, 28 Oct 2025 07:38:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761637130;
+	bh=9mGaj0sbbdNrxuAO9crC1CuxjMpvcFqHIz84NURNSS4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OzEqqrCEYkYDhMPTFAIOuO2h/oq+tBfbJENgxk/s1/SY0jgJdhP56yb42Qsqz1o3A
+	 ZBQ/AKLWy11BdWyZnpv0HNWb9cQr6IWl7inWbLxwwGE2OR7uqRzYNNhcs6O8pPCbE9
+	 WwmbcFq1L6WoDFvnRl/PVgKyM4iSUSljgd9b8s0BYTd8FIFyWT3+2BDk4kPj3IiW5/
+	 slWPRs+O1XszHouwLVgZsFJIrJnj9RPonYNqCaUtE7NmYcrsmyE6P6s1Kq/zOWVDo3
+	 llEDlXmlWk8Gynftch+k3ImSRcvDJVL6ZLBeCzbAkfTfNdA/exKD6SxdfS5axmojdl
+	 b0RlHdP2pGHSg==
+Date: Tue, 28 Oct 2025 08:38:48 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Hendrik Noack <hendrik-noack@gmx.de>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: Input: Add Wacom W9000-series penabled
+ touchscreens
+Message-ID: <20251028-hairy-caped-pronghorn-88d9b8@kuoka>
+References: <20251027164050.113623-1-hendrik-noack@gmx.de>
+ <20251027212535.4078-1-hendrik-noack@gmx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251027212535.4078-1-hendrik-noack@gmx.de>
 
-The H616 has a NAND controller quite similar to the A10/A23 ones, but
-with some register differences, more clocks (for ECC and MBUS), more ECC
-strengths, so this requires a new compatible string.
+On Mon, Oct 27, 2025 at 10:25:34PM +0100, Hendrik Noack wrote:
+> Add bindings for two Wacom W9007 variants which can be found in tablets.
+> 
+> Signed-off-by: Hendrik Noack <hendrik-noack@gmx.de>
+> ---
+>  .../input/touchscreen/wacom,w9000-series.yaml | 79 +++++++++++++++++++
+>  1 file changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/wacom,w9000-series.yaml
 
-Add the NAND controller node and pins in the device tree.
+Filename matching compatible,
 
-Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
----
- .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 52 +++++++++++++++++++
- 1 file changed, 52 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/wacom,w9000-series.yaml b/Documentation/devicetree/bindings/input/touchscreen/wacom,w9000-series.yaml
+> new file mode 100644
+> index 000000000000..93579ae0297e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/wacom,w9000-series.yaml
+> @@ -0,0 +1,79 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/touchscreen/wacom,w9000-series.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Wacom W9000-series penabled I2C touchscreen driver
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index ceedae9e399b..2a4d70298655 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -304,6 +304,42 @@ mmc2_pins: mmc2-pins {
- 				bias-pull-up;
- 			};
- 
-+			/omit-if-no-ref/
-+			nand_pins: nand-pins {
-+				pins = "PC0", "PC1", "PC2", "PC5", "PC8", "PC9",
-+				       "PC10", "PC11", "PC12", "PC13", "PC14",
-+				       "PC15", "PC16";
-+				function = "nand0";
-+			};
-+
-+			/omit-if-no-ref/
-+			nand_cs0_pin: nand-cs0-pin {
-+				pins = "PC4";
-+				function = "nand0";
-+				bias-pull-up;
-+			};
-+
-+			/omit-if-no-ref/
-+			nand_cs1_pin: nand-cs1-pin {
-+				pins = "PC3";
-+				function = "nand0";
-+				bias-pull-up;
-+			};
-+
-+			/omit-if-no-ref/
-+			nand_rb0_pin: nand-rb0-pin {
-+				pins = "PC6";
-+				function = "nand0";
-+				bias-pull-up;
-+			};
-+
-+			/omit-if-no-ref/
-+			nand_rb1_pin: nand-rb1-pin {
-+				pins = "PC7";
-+				function = "nand0";
-+				bias-pull-up;
-+			};
-+
- 			/omit-if-no-ref/
- 			spi0_pins: spi0-pins {
- 				pins = "PC0", "PC2", "PC4";
-@@ -377,6 +413,22 @@ iommu: iommu@30f0000 {
- 			#iommu-cells = <1>;
- 		};
- 
-+		nfc: nand-controller@4011000 {
-+			compatible = "allwinner,sun50i-h616-nand-controller";
-+			reg = <0x04011000 0x1000>;
-+			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_NAND>, <&ccu CLK_NAND0>,
-+				<&ccu CLK_NAND1>, <&ccu CLK_MBUS_NAND>;
-+			clock-names = "ahb", "mod", "ecc", "mbus";
-+			resets = <&ccu RST_BUS_NAND>;
-+			reset-names = "ahb";
-+			dmas = <&dma 10>;
-+			dma-names = "rxtx";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		mmc0: mmc@4020000 {
- 			compatible = "allwinner,sun50i-h616-mmc",
- 				     "allwinner,sun50i-a100-mmc";
--- 
-2.47.3
+Driver as Linux driver? if so, then drop.
+
+> +
+> +description:
+> +  The W9000-series are penabled touchscreen controllers by Wacom.
+> +
+> +maintainers:
+> +  - Hendrik Noack <hendrik-noack@gmx.de>
+> +
+> +allOf:
+> +  - $ref: touchscreen.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - wacom,w9007a_lt03
+> +      - wacom,w9007a_v1
+
+None of the compatibles use underscores. Please do not come up with
+entirely different coding style than existing kernel.
+
+Also, nothing explain here differences - not commit msg, not
+description.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description:
+> +      Optional regulator for the VDD digital voltage.
+> +
+> +  pdct-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Optional GPIO specifier for the touchscreen's pdct pin.
+> +
+> +  flash-mode-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Optional GPIO specifier for the touchscreen's flash-mode pin.
+> +
+> +  pen-inserted-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Optional GPIO specifier for the touchscreen's pen-insert pin.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - vdd-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      digitizer@56 {
+> +        compatible = "wacom,wacom,w9007a_v1";
+> +        reg = <0x56>;
+> +        interrupt-parent = <&gpx3>;
+> +        interrupts = <5 IRQ_TYPE_EDGE_RISING>;
+> +
+> +        vdd-supply = <&stylus_reg>;
+> +
+> +        pdct-gpios = <&gpd1 2 GPIO_ACTIVE_HIGH>;
+> +        flash-mode-gpios = <&gpd1 3 GPIO_ACTIVE_HIGH>;
+> +        pen-inserted-gpios = <&gpx0 0 GPIO_ACTIVE_LOW>;
+> +
+> +        touchscreen-x-mm = <262>;
+> +        touchscreen-y-mm = <164>;
+
+Never tested, after fixing compatible you will see errors. You need
+unevaluatedProperties.
+
+Best regards,
+Krzysztof
 
 
