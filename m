@@ -1,44 +1,81 @@
-Return-Path: <devicetree+bounces-232139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AF73C149ED
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 13:27:35 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD501C149E7
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 13:26:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 817C24F0AFB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 12:26:46 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C726F4F00E6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 12:26:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77EFC32D421;
-	Tue, 28 Oct 2025 12:26:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DD1B32D43F;
+	Tue, 28 Oct 2025 12:26:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kYlD7P4u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg150.qq.com (smtpbg150.qq.com [18.132.163.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62BC2139CE
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 12:26:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.132.163.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A57F730FC16
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 12:26:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761654404; cv=none; b=tfg++j8YrIGvGSbC7QXBXZWMhGAT44UniwQ9m56pEhei8zynjW7WSslsPzXm0L94ORxtIxcmTe6wwIxlWQLrqIDfbMRBpXDqraRNSuMMf6UMtOppeaIhHubpzg/wC69YMOdTC93RutzsxFlaKREwGvHoeNW73Kz0NxglukMwYmI=
+	t=1761654373; cv=none; b=Wqrty7eTzudOcHaUXqhd5GNILr/PST9pdMZabhBRUDjvFCtMhpb3SyueDDs/5z2sVf72KIta9pRoqJpE4PZot44SiQLrkqU2HDZl9UIBh3LjTTEnCnADEOYU71a05H7vn4jZ25pCqMGb7eENVXnYtVXrmKgm7R4Uawd8MGyAPS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761654404; c=relaxed/simple;
-	bh=N68wcf/V7B8aRXpClNfxorIGvhWOHLmzjflJ6wry/SI=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=oPbVkQT4pPvhd9pDDNuKNBEmgSqHQO/5o0Lr+n5UEmyUGqDfqnEsq3rPv8EXh2Lf1ugQsToIWYtchsElIkOwBXGq6Cn+C5XPa1AA7BT5/mZ1TOIV3NAsrNNO4ALq28tJcVzyJoQMPUAEVLBrGjbC0G0e/Mrw8Wq0rwVcyzw/MNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=18.132.163.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip2t1761654318t7f936c1d
-X-QQ-Originating-IP: yvfBL7O8gh818stg7fqBr3pW5/SJD7nE4jj2O24rJtk=
-Received: from [IPV6:240f:10b:7440:1:27fe:5767 ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 28 Oct 2025 20:25:05 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 9726398132461173433
-Message-ID: <2677EA3D584229BA+9a4c2359-c8ef-48f9-ab9f-ce197dbcc203@radxa.com>
-Date: Tue, 28 Oct 2025 21:25:02 +0900
+	s=arc-20240116; t=1761654373; c=relaxed/simple;
+	bh=uwxUcsIuPM1BspwiCN2LGPuwEz/Q8DZ08H0eTBjEAf0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iCKmeI2O18KhT9wMk750/00m6zabA4hcSl1HNxAqH4BYKhYYOkxYO0iN54rsEMjfIEQ412vFVym00aLl0xH1itYEu6xsnLBt8LQ4ZfZrQUKOXxHG7Ok+3MSsdBH4B9xroY8JPb8KYNkGGlSSUS49pPFf9zPu3rkFZ9ckoLUSYdc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kYlD7P4u; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-7a26ea3bf76so7783305b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 05:26:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761654371; x=1762259171; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0+2SA2fObPLKSwZ239eSz2VGkbI8LDqGXNPqULUKng4=;
+        b=kYlD7P4uals5GyNzKYNygh3FgppLdPTr8Evs27+t+9D+EIaU7lCb/W8kyZRBLGwmex
+         xSLoqlHtnjgBIQ0yv++DE5sfyu09zb7DuP9Q22/GzHEUbqH9WBohG4lee1lDFOi9U4vx
+         WR9eNtAn/56MDjSDRAkFBMksO0cbu3GsF0vqTgAa3RRmJYApBXhAUiZZpfd3fNmsMlXx
+         5KRR2Hs3rGDcIySnl5SFKURkXhVmAGTPyE0etu+1Q2pVdBdUXhl10XcecWwuKILrhbQN
+         eaFTHWcEMBqTzldLfDTkJCEQdIvULr2AvH0YFgkc3qWcpf0MUTsa8bcwsF+PGx/oNQlD
+         fskg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761654371; x=1762259171;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0+2SA2fObPLKSwZ239eSz2VGkbI8LDqGXNPqULUKng4=;
+        b=iDR1Cb1fdISRFb3uLcfno6ciAcLr22sxX0U3iOUV/OrmUFMbPOYvaBlzYro6KAeJXn
+         oG1m9BwbvFmaJQHKSOjlpLn4aFfAkj5SMiKJJxsEX4/VEPcVJtTBCA4O2Zq9L8s+nP9K
+         dKELp0zpxBre1pt/V9LGeXcGmlJ2Xd7NwndTFb1UbDHAOuzzVpZTLwrt7hcw8j0Iyz1W
+         qsCK+pZh4m8ZTQwUSvV57S69JTEXJ2moc/LO49PdZsvPMVxbBOboIYvW3chDW4kZIZPD
+         9jNqWA9TNyRyc3F0MNfu7gaICjiV/D9mg2C/SB5pE6av2o6q7bGOuRzz09L1fKoXiRgk
+         2mIw==
+X-Forwarded-Encrypted: i=1; AJvYcCVY6pCY8NRuLqFiErM12LKRTauRm1WPlDSeX5wST2DMMWlLpwpZXXvlEAaLXlI7C3FhSCluXM+0ByhG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw47oEgthiqTfdRzxlbQ0akHSPa3q1FsMbg7a715tGXhMU2+5/E
+	ifrnJtuPUUFe0/HL00fMz40o7kGTuKK7AWPP3M2rbCt7R6ee2cLY92IU
+X-Gm-Gg: ASbGncvw+QnEM+0qIa695iRB2Gt4hr1cKUjeJSbjtwee5eUlIAt2Bq2VfladZ98lYDt
+	YaBkK+FY4EqOwwjxqo7pXG+cfZMS2KSlNl2dcEeK82bOvs8ysYfCLi21YStfIIxpivRyolgMLqA
+	gbFwVI9f20xTtgqSlRfddQBObxMdh1nhrjYGQjJMYAonMfqbdg8YwuRBgZ6rHIljKK+duwt6+bh
+	Gx/pzOCv8tccfgllTqfXCZp8wu/yT2YTcr5QH44bZEXlTrVdPuMX1E7ChyIisxMjhaxUISSDWZ8
+	Dhb+7KgzWIBVpcscTQmeSGL2/TWd9Q5D5gUizgU8haXVPqWacpmaRo1FpSZzoC8zL+69cYjej22
+	c5JO2P1B98kuEAj1hAi15ULDRp2L5sPolYZOaT9uAgaitldLEjpMuLSVrzRuITej8bTX4/YZyrs
+	2O5uY+BGAtQRzH
+X-Google-Smtp-Source: AGHT+IFM5B90MTRkuycXatN32S0HgK0Vtm5Ew5XZWHko31fO5/IEORcqfpvvKXUVxG2pP/bPcEvg3w==
+X-Received: by 2002:a05:6a21:999c:b0:32e:af06:177b with SMTP id adf61e73a8af0-344d1da6059mr4308288637.12.1761654370740;
+        Tue, 28 Oct 2025 05:26:10 -0700 (PDT)
+Received: from [172.17.49.162] ([103.218.174.2])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b7127bf47a1sm10303431a12.10.2025.10.28.05.26.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Oct 2025 05:26:10 -0700 (PDT)
+Message-ID: <8012fbff-0fcd-41dd-b15e-5604345a078c@gmail.com>
+Date: Tue, 28 Oct 2025 17:56:05 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,170 +83,226 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/3] Add Radxa CM5 module and IO board dts
-From: FUKAUMI Naoki <naoki@radxa.com>
-To: Joseph Kogut <joseph.kogut@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Jimmy Hon <honyuenkwun@gmail.com>, Steve deRosier <derosier@cal-sierra.com>,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250617-rk3588s-cm5-io-dts-upstream-v5-0-8d96854a5bbd@gmail.com>
- <57969F385B5AF318+653dac83-8227-4987-84c6-f3e08b10085c@radxa.com>
- <CAMWSM7iHtAxewW4JkRqRsifVnccqeFviaCgeOyprKDr92FOurg@mail.gmail.com>
- <AE0735A6C797CCFF+10496d73-7c0a-4884-9561-24721305a24f@radxa.com>
+Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: talos-evk: Add support for
+ QCS615 talos evk board
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251028053248.723560-1-tessolveupstream@gmail.com>
+ <20251028053248.723560-3-tessolveupstream@gmail.com>
+ <20251028-proud-bullfrog-of-aurora-e2cdba@kuoka>
 Content-Language: en-US
-In-Reply-To: <AE0735A6C797CCFF+10496d73-7c0a-4884-9561-24721305a24f@radxa.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4a-0
-X-QQ-XMAILINFO: Mf+HUhdnuYe/4tSlQuwmfIpImsPDVH08knSQtbfVxEmRnWyZ10PiKQ6S
-	GEd57lo86F14FvgWovdqBphSKxF4UIO7Ud/gQsacRCDK4ks9+7JJg+8JiX6loOMnUPhdA2c
-	bHmnPwWcDmRYIXdj9ulGCoqO4FCwdhY63zTvFKlC1pgQmghKJHqCGmizFdebdEIxO7MnfAA
-	rdvx464wSOVfhT8qucFbTxhovBa9VshnyvPRpg5f2URpgkuJmqtrXVBFieJcnZJegPftfa3
-	nVB0OnpR9umxEy/lhnQO77L5hq8O7ZmhI+dBD8lIfpHjwggOlG2O6o7mO47ygSid8oF5U7n
-	SGyAohO6DIvdHegL5bZ6jmAiWgVkt+jbWOFy1W0gkWFwTaI7GaYAhLrOUP1MrCKmaPKtEj4
-	RdM0+NLtwdQo/FWoH9Bp+Uq+GnkrvVLNtCZ6Cf46OmvO7zQ7g9MLgbIMekFEBQ43HHYbwKg
-	0NCb8FULee8K5ytTiAUeRcsNrjOyMlbBz3xoEnabUPID+gtY2jEhfeDAzC3afFeA7ejY6R+
-	oPoGHK5msxtsFPuBjYYSyMP1zWvD3gnDBezg9Q7+MjCv1qjzjZhGQc4MtqniQASpLGPIL29
-	efDXDv8dVc31ZOcOogHAdSuDogoS0qmQNF2YmGz8fmX7lk6X/wbYgZw3DaKNa60wYgEKPWx
-	pkSmBCQ8rIodIxb/eZfyFmU4za+X3yPXCDklUBEwk8P2s144o6A4ZY0Tuh6U11nN+7+79Bf
-	CHGl59sG+bZ8K850bA9OvpVZ+CqpubbPfaMNNobOJPcuysu0/uUTNXnVs6qMeLID1TODpjc
-	bywQMdyk5lA8zbmKATygnCDQksFPappNZeN6iIHMgdu2pd7O2nf3nt+Xk9XHnOIKrP6jESB
-	HS0U9MTTuT66njaD+kEIr+0kVCAqnRbOQUj2dHp1mVZsGNCVjwA/nW3IZs0SufB5xy5E1DC
-	lX4Q9SGCK7Z0a7+zEr0td9nvnHIJKZuPtfOkdj5qu5wF1QuLTVp817quVN0J4iAxnvIvtwR
-	UPD5IxWg==
-X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
-X-QQ-RECHKSPAM: 0
+From: Tessolve Upstream <tessolveupstream@gmail.com>
+In-Reply-To: <20251028-proud-bullfrog-of-aurora-e2cdba@kuoka>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Joseph,
 
-I apologize for the delay in my work. My part is almost complete (see 
-below), but would you like to take over the rest?
 
-  https://github.com/RadxaNaoki/linux/commits/radxa-cm5-io/
-
-Best regards,
-
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-On 10/16/25 10:49, FUKAUMI Naoki wrote:
-> Hi Joseph,
-> 
-> On 10/16/25 08:39, Joseph Kogut wrote:
->> Hello Naoki,
+On 28/10/25 13:29, Krzysztof Kozlowski wrote:
+> On Tue, Oct 28, 2025 at 11:02:48AM +0530, Sudarshan Shetty wrote:
+>> Introduce the device tree support for the QCS615-based talos-evk
+>> platform, which follows the SMARC (Smart Mobility ARChitecture)
+>> standard. The platform is composed of two main hardware
+>> components: the talos-evk-som and the talos-evk carrier board.
 >>
+>> The talos-evk-som is a compact System on Module that integrates the
+>> QCS615 SoC, PMIC, and essential GPIO connectivity. It follows the
+>> SMARC standard, which defines a modular form factor allowing the SoM
+>> to be paired with different carrier boards for varied applications.
+> 
+> Drop paragraph, completely redundant. Please write concise, informative
+> messages, not something redundant and obvious. Or worse - marketing
+> junk.
+
+Okay, will update in next patch.
+> 
 >>
->> On Wed, Sep 3, 2025 at 1:28 AM FUKAUMI Naoki <naoki@radxa.com> wrote:
->>>
->>> Hi Joseph,
->>>
->>> I'm thinking of continuing your work, so if you've already done
->>> something, please let me know.
->>>
+>> The talos-evk is one such carrier board, designed for evaluation
+>> and development purposes. It provides additional peripherals
+>> such as UART, USB, and other interfaces to enable rapid
+>> prototyping and hardware bring-up.
 >>
->> I've not followed up on this series yet, but I'm planning on picking
->> it back up this week. I'm happy to collaborate with you, do let me
->> know if you've made any progress or improvements, and thank you for
->> your review earlier.
+>> This initial device tree provides the basic configuration needed
+>> to boot the platform to a UART shell. Further patches will extend
+>> support for additional peripherals and subsystems.
 > 
-> I've already almost finished the work. Unfortunately, a problem(*1) 
-> caused the work to stop for a few weeks, but the problem has been 
-> resolved(*2), so I can continue working. I'll post a patch soon once 
-> some minor tweaking and testing is complete.
+> Drop paragraph, it is contradictory to the next one.
+
+Okay, will update in next patch.
 > 
-> By the way, at some point I switched from "continuing your work" to 
-> "recreating a new one based on my current work." The results of my 
-> current work(*3) have changed significantly.
+>>
+>> The initial device tree includes basic support for:
+>>
+>> - CPU and memory
+>>
 > 
-> *1 https://patchwork.kernel.org/project/linux-pci/patch/20250922-pci-dt- 
-> aspm-v2-1-2a65cf84e326@oss.qualcomm.com/#26603499
-> *2 https://patchwork.kernel.org/project/linux-rockchip/ 
-> patch/20251015123142.392274-2-cassel@kernel.org/
-> *3 https://github.com/RadxaNaoki/u-boot/commits/radxa-cm5-io/
+> Drop blank lines
+> 
+> between
+> 
+> each
+> 
+> of
+> 
+> points. No need to inflate already huge commit msg.
+
+Okay, will update in next patch.
+> 
+> 
+>> - UART
+>>
+>> - GPIOs
+>>
+>> - Regulators
+>>
+>> - PMIC
+>>
+>> - Early console
+>>
+>> - AT24MAC602 EEPROM
+>>
+>> - MCP2515 SPI to CAN
+>>
+>> - Hook up the ADV7535 DSI-to-HDMI bridge
+>>
+>> - Add DP connector node and MDSS DisplayPort controller.
+>>
+>> QCS615 talos-evk uses a Quectel AF68E WiFi/BT module (PCIe for
+>> WiFi and UART for Bluetooth), which is different from the RIDE
+>> platform. Plan to enable these in a follow-up patch series.
+> 
+> Drop plans, not related. I also do not understand why you mention here
+> RIDE. Does it mean you are duplicating the board?
+> 
+This comment is added as per Dmitry feedback.
+https://lore.kernel.org/all/qq4aak33bn3mqxd2edu6zgkkshby63mmitg7zqkly2rj4c2lh7@4s7sndb7e2jr/T/#m6f653d7b4bd9b014dcbd86a4680cfd64583e784d
+
+Let me know your thought on this again, 
+I can remove and send the updated patch.
+>>
+> 
+> ..
+> 
+> 
+>> +&sdhc_1 {
+>> +	pinctrl-0 = <&sdc1_state_on>;
+>> +	pinctrl-1 = <&sdc1_state_off>;
+>> +	pinctrl-names = "default", "sleep";
+>> +
+>> +	bus-width = <8>;
+>> +	mmc-ddr-1_8v;
+>> +	mmc-hs200-1_8v;
+>> +	mmc-hs400-1_8v;
+>> +	mmc-hs400-enhanced-strobe;
+>> +	vmmc-supply = <&vreg_l17a>;
+>> +	vqmmc-supply = <&vreg_s4a>;
+>> +
+>> +	non-removable;
+>> +	no-sd;
+>> +	no-sdio;
+>> +
+>> +	status = "okay";
+>> +};
+>> +
+>> +&spi6 {
+>> +	status = "okay";
+>> +
+>> +	mcp2515@0 {
+> 
+> Still no improvements.
+> 
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> If you cannot find a name matching your device, please check in kernel
+> sources for similar cases or you can grow the spec (via pull request to
+> DT spec repo).
+
+Understood, will update in next patch.
+> 
+>> +		compatible = "microchip,mcp2515";
+>> +		reg = <0>;
+>> +		clock-frequency = <20000000>;
+>> +		interrupts-extended = <&tlmm 87 IRQ_TYPE_LEVEL_LOW>;
+>> +		spi-max-frequency = <10000000>;
+>> +		vdd-supply = <&vreg_v3p3_can>;
+>> +		xceiver-supply = <&vreg_v5p0_can>;
+>> +	};
+>> +};
+> 
+> ..
+> 
+>> diff --git a/arch/arm64/boot/dts/qcom/talos-evk.dts b/arch/arm64/boot/dts/qcom/talos-evk.dts
+>> new file mode 100644
+>> index 000000000000..5c2ac67383e7
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/talos-evk.dts
+>> @@ -0,0 +1,133 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause
+>> +/*
+>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+>> + */
+>> +/dts-v1/;
+>> +
+>> +#include "talos-evk-som.dtsi"
+>> +
+>> +/ {
+>> +	model = "Qualcomm QCS615 IQ 615 EVK";
+>> +	compatible = "qcom,talos-evk", "qcom,qcs615", "qcom,sm6150";
+>> +	chassis-type = "embedded";
+>> +
+>> +	aliases {
+>> +		mmc1 = &sdhc_2;
+>> +	};
+>> +
+>> +	dp0-connector {
+> 
+> dp-connector, unless there is here dp1. But then follow standard
+> practice of adding suffixes, so connector-0, connector-1, etc. I could
+> understand dp-connector-1 if you find dp-connector here:
+> 
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+Understood, will update in next patch.
+> 
+>> +		compatible = "dp-connector";
+>> +		label = "DP0";
+>> +		type = "full-size";
+>> +
+>> +		hpd-gpios = <&tlmm 104 GPIO_ACTIVE_HIGH>;
+>> +
+>> +		port {
+>> +			dp0_connector_in: endpoint {
+>> +				remote-endpoint = <&mdss_dp0_out>;
+>> +			};
+>> +		};
+>> +	};
+> 
+> ...
+> 
+>> +
+>> +&i2c1 {
+>> +	clock-frequency = <400000>;
+>> +
+>> +	status = "okay";
+>> +
+>> +	adv7535: adv7535@3d {
+> 
+> Still no improvements.
+> 
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> If you cannot find a name matching your device, please check in kernel
+> sources for similar cases or you can grow the spec (via pull request to
+> DT spec repo).
+
+Understood, will update in next path.
 > 
 > Best regards,
-> 
-> -- 
-> FUKAUMI Naoki
-> Radxa Computer (Shenzhen) Co., Ltd.
-> 
->> Best,
->> Joseph
->>
->>> Best regards,
->>>
->>> -- 
->>> FUKAUMI Naoki
->>> Radxa Computer (Shenzhen) Co., Ltd.
->>>
->>> On 6/18/25 07:11, Joseph Kogut wrote:
->>>> This patch series adds initial device tree support for the Radxa CM5 
->>>> SoM
->>>> and accompanying IO board.
->>>>
->>>> V4 -> V5:
->>>>     Patch (2/3), per Jimmy:
->>>>     - Alias eMMC to mmc0
->>>>     - Remove unused sdio alias
->>>>     - Move gmac, hdmi0 nodes to carrier board dts
->>>>
->>>>     Patch (3/3), per Jimmy:
->>>>     - Enable hdmi0_sound and i2s5_8ch
->>>>     - Remove redundant enablement of sdhci
->>>>     - Enable usb_host2_xhci
->>>>
->>>>     - Tested HDMI audio
->>>>
->>>> V3 -> V4:
->>>>     - Fixed XHCI initialization bug by changing try-power-role from 
->>>> source
->>>>       to sink
->>>>
->>>> V2 -> V3:
->>>>     - Addressed YAML syntax error in dt binding (per Rob)
->>>>     - Fixed whitespace issue in dts reported by checkpatch.pl
->>>>     - Split base SoM and carrier board into separate patches
->>>>     - Added further details about the SoM and carrier to the commit
->>>>       messages
->>>>
->>>> V1 -> V2:
->>>>     - Added copyright header and data sheet links
->>>>     - Removed non-existent property
->>>>     - Sorted alphabetically
->>>>     - Removed errant whitespace
->>>>     - Moved status to the end of each node
->>>>     - Removed pinctrl-names property from leds (indicated by 
->>>> CHECK_DTBS)
->>>>     - Removed delays from gmac with internal delay
->>>>
->>>> - Link to v4: https://lore.kernel.org/r/20250605-rk3588s-cm5-io-dts- 
->>>> upstream-v4-0-8445db5ca6b0@gmail.com
->>>>
->>>> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
->>>> ---
->>>> Joseph Kogut (3):
->>>>         dt-bindings: arm: rockchip: Add Radxa CM5 IO board
->>>>         arm64: dts: rockchip: Add rk3588 based Radxa CM5
->>>>         arm64: dts: rockchip: Add support for CM5 IO carrier
->>>>
->>>>    .../devicetree/bindings/arm/rockchip.yaml          |   7 +
->>>>    arch/arm64/boot/dts/rockchip/Makefile              |   1 +
->>>>    .../boot/dts/rockchip/rk3588s-radxa-cm5-io.dts     | 486 ++++++++ 
->>>> +++++++++++++
->>>>    .../arm64/boot/dts/rockchip/rk3588s-radxa-cm5.dtsi | 135 ++++++
->>>>    4 files changed, 629 insertions(+)
->>>> ---
->>>> base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
->>>> change-id: 20250605-rk3588s-cm5-io-dts-upstream-f4d1e853977e
->>>>
->>>> Best regards,
->>>
->>
-> 
+> Krzysztof
 > 
 
 
