@@ -1,89 +1,90 @@
-Return-Path: <devicetree+bounces-231934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F3F1C1324C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 07:28:29 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D912AC13252
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 07:28:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1FA344ED6C5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 06:28:23 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0CA804F6AFE
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 06:28:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C96022BE047;
-	Tue, 28 Oct 2025 06:28:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B4152BE7A6;
+	Tue, 28 Oct 2025 06:28:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dzDC5idH"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FM4dVzLG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0EA929293D
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 06:28:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E5FE29CB4D
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 06:28:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761632897; cv=none; b=BA1JHLhcMLtzQD+T7354NNBnk8vtFGAZS+i85Xagwb8APVDjrLt3x3/dhLHFdQxBtrzb9IiVpJrx/RLjKc5vhk3qgT217piRjClZ1iWrMlRo8oZynVYExEqOOcbDbLzDZS0LNr1Hm3t+EIvBygUmZt4QKUUHa8xsI7etjUdUStg=
+	t=1761632898; cv=none; b=SLyixpBHzdAdYat0HQX7R2lnQgZv2Awi3+CvVPQcbvHWC/gRvy2HE/JZEHjpxQTbUfR0cnkHmHuSUXl3gMfCjQcTBk+i6DJPAVVdV56QlHP7xK4eN8L+tmwfWPTotbUZSP1qu2axZyLSvpwQhMzqtTJQTxSjVnIRsRVkNaVdqGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761632897; c=relaxed/simple;
-	bh=6PnlglbBdA+sT72qw9FSQQcvFbM5sLJUf0oCBFAlNsY=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DA0rBisnXwWh675fgYi9rkfHKTA3CQe/6t+LpbY8sHfxLfnT/Dr5iKb2EQv4HQVjQbvPi7Mi+dgi7FHU6alG8Os/0QZ9Mdc4p1v3fwqKjZqN3F/HiHidAGBqUEv4sq3ED5Vi7LUVAz1OZY0KLuyxrFekAi0oYFh1zrk4Q3aWUfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dzDC5idH; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1761632898; c=relaxed/simple;
+	bh=PPtBIz8qEFvPp66GNhz5hdu3RpRfVBfYsLuidxR205M=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=lMLetAJDTOhkWSuUoeGsWCVo2+qzG9liOZvH8TvyIkNb62FQxszEm+oTEGH0enF/GLxOGKjY46tRhGwSNxeVzTrb6zJy6fJYrs2uJ0GB+V3vreeWmmvINJWMZc9U/IK6AGk1tVu+/IyUQpWQRxBfpMRsnHadDaMQ8NyaEBkwRRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FM4dVzLG; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59S1M0XV2963114
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 06:28:13 GMT
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59RK7lm52547332
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 06:28:15 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=JLnYbqr9msvD1/79xuZ9kB
-	CdhSNS4ncRjKXElM3L+tA=; b=dzDC5idHe0Jxo91n7QH8zNFdFHQw4ZgpsTIOv1
-	Q0pHCZGi+FzlQQjUK26QRIxsY2drrWPIF9SSqFmZfy35UpyYFD73HJgs4t8l6m1n
-	pZ4Vl8O5xqLJgoyNbaK7wtluIydB0eroX4WqEK+3MSTv+01ZyzbbwmjTQeet2kmp
-	YVMEQxWppgkrKtzf8rM6mPUqz1MdoRAW8qPiUK52qSlEB2aCMsVjM9PGjV0HSqUu
-	zV9i5BvMYbt4xizCzFcsSkfDxhqnzJVQNzCcC8P0KIntjd1/M61Vs8921aL82YZ9
-	IJs24ENyZtBkKdt34z3hUcyEwFlsl4G7T9VbqoO2aY2ALBSg==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a29v9tnue-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	cfzo+zhajCDy5YoRs8Kez4QqmFzyjmbKPNgTAWkNhwg=; b=FM4dVzLGC7j99Mox
+	3ZyFb8DhfHrblRfE49VgmXsWH7fS1hh5ezbI5Q/+l7oHyMwQSAOtcEKD2hq2nS+3
+	5kMe1mlpT+s3EiPtHNoXhz2PR13wbfB6nq0BdN3BdODxjUfjc57r428SKmgFPcr3
+	TxWsB2c+8lHYLXkyZWlUXUvy6yJ2/KOJT2ys2ytDpnf5zt5tZvTcsojtg6KWBcJf
+	DVZLx+r31e4RYMs7w0gB6YJw6IXQ0A0zesP+L6tFMGBBc8Tq1NCtQAHjKgvZ7MJX
+	BvPmhl0SiCnJEXYcDTQhe2sA4zBnDmCOARcWlLIfwAoz23c9YBdmeSLX4jEvg7E+
+	xiksTw==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a27s2k1v2-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 06:28:13 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2698b5fbe5bso75921245ad.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 23:28:13 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 06:28:15 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-290b13e3ac0so49249495ad.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 23:28:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761632892; x=1762237692;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JLnYbqr9msvD1/79xuZ9kBCdhSNS4ncRjKXElM3L+tA=;
-        b=TDi5Gj2WVSYtqWeRpDhlJtNllDcQR3kAVgpigEyK34TM+22C9fYN2X3+qy57XqwjGw
-         z1uFjm6tH2I0DX4ebWitG2P9mZE9V656yAINND2y/nKbZhj1Jfvm7t8BgBvpvA8dyfS6
-         TLPiQegm/knpl+95anNYGtzOHmZo7ac98nEwWLrLyo1l/1RRMBt0U4X//eXr/aCTfNY2
-         3oYW5AJJSZuhuxm7IznEDjtfieiVtGgcQrjDL3Agl5UGcyed7BOJi731rYuQib/euKYG
-         5xOZO/HQTi44rL2D4/u5zcid/HADaLJoBWLmp/EwUwSnJU9atKsaT9qv7a6Hfnn+rv1A
-         8LzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW6X7nFvbgsM5F+nquOsyYR1eogrL/KIV0pDR81oxqoGMRhW5bMT5A9dTdSb/dLGCnc2D2uSzr/Hhlo@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZDtg7amQRd53/4SE9w6Nxk5j52QSubbIC7gsRuqzuWdr00psC
-	DjLt7/rvdC6+S1fqpAKpsbp3nJQIVvhGZHxS5E0QCvs/FF9LQoKV92xMp5tYu1OjDbFH8a4gGEW
-	lSnKpMpHG2nGqZeYNRykVFSUHGDygIZtWm13A0TkHCjCOrEjOgLQ/8lNllq93Ek1L
-X-Gm-Gg: ASbGncs9jviZtfJ7X9w8iivGSYPXbHzlkYkVuj+2lGYV1xau5fFEaS3TuJLwn2rvjyS
-	VggHgsTCjIh3qxMyBJxU94CgBBUeTK0eQjjCv9d9hmGbz8rJkqKcqaiJ9xPF7Fwv/16sceahFWo
-	k0a1rRDPkEhE/V7jHfsjVHVw3oZG+AqKMTmTccw00WgUfvVUS7ArP/5dsjx2z8pCnBn8ppJYOeg
-	ZH3v1YWzEYaiygVwE6pRRgGWORLiv9mz0rpsh3kbUZ+ArkSfbIp1JhPNRxBoSlaFLy2lzMU9vhz
-	vXrsBe0Elqu+lHRW0Ayz5AbWBdg3yLWU46FRJpOLvHJGNMxup2mGoUQbnByx5GByTMSTHjpvw2F
-	gX90MBm+Sf2aJD+vK/YyJmxkYnAADDn30YN5lv6S++GAZ8zLE0D8qcAcM
-X-Received: by 2002:a17:903:38c5:b0:24c:da3b:7376 with SMTP id d9443c01a7336-294cb3a11dfmr30302255ad.26.1761632892464;
-        Mon, 27 Oct 2025 23:28:12 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGkoJ0/BWbeULjwvKLuQumjd4K3ei4AcaGQDzrzd6IcSgDpV2RBGOWAbR62jWKf3T2tuscaCw==
-X-Received: by 2002:a17:903:38c5:b0:24c:da3b:7376 with SMTP id d9443c01a7336-294cb3a11dfmr30301865ad.26.1761632892019;
-        Mon, 27 Oct 2025 23:28:12 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761632894; x=1762237694;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cfzo+zhajCDy5YoRs8Kez4QqmFzyjmbKPNgTAWkNhwg=;
+        b=JvhM0VqpFIERz9vqHhd6FIese0VoKY7p4mKhUxTNk10nrJMY/hey3jSW/Ev3bmN23h
+         MsFmxZR1xClHQLC59qmoy2exG5ho8KXcZdqTRnajEyQu+9pcb0HmDFnGePt+MfNSuIYG
+         vifzgJ+TnUrEadnt2VgIuZeCZMF64cAZzXC4HhT11RbpJZi+RvRU6cuxyqJh47cJN5EN
+         asCv4IRm0yzwefiXb4NOkW73t06r5Gc5yWnBOh5N6OCeHfjyM9IIop7MFaSxDigg8FE3
+         yJNpmXPSxdGfL3HLm5xNd8XFk74KzlhJmsdemuU2uqJn2E9zvtlr22uYpRWKuqMDD0p5
+         6EHA==
+X-Forwarded-Encrypted: i=1; AJvYcCV6wmG+NMHzRLIGcFw9GZr7KXQdWHEhx39bfiw4mItL6yPAup59RS7mmDtHQTHRMC7ofOIZJrslrdTu@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPovy2GUkwcUPdfg5K3or2abDQK2cfLYgX2XBHpxq+SWj1aymE
+	U3EQmC1Wmv9Bkgo5j1L24UVCRFshQnSQ0YPlrGIt65ODnWaBi7XUOsdSdx3PQdCgMRX3L+f9QzE
+	RnkDlAzkrz9eXvX+ayouO8PntmYUJWTTymGWYn/RHHzWQy7vSiK1D1BQCSiReHFUp
+X-Gm-Gg: ASbGnctFezF33tOumZEXHVDy58Xni6lN3ivKCBmA6qCp57n5l+DkPiwJQjjIseAQaj5
+	FdtzE/q9/MU/bfff8NWo0BBCKaLrt3GWyRWYodLyPdrSUt+Sme5RlatOvM07H7b6XRhV0Nv5BOT
+	X0hXbdN35sr2eBx/Cid0/ptYVkzaPg3oQXx1muDhsqUhUD7Bhusp6UyFHMIoQiUig678MdWeoHB
+	ftqkJzPGaxCQc3cqVxspLQxDAb7Ye2KElYvW79fDlLZPC6dFZhdArakAG3zZQjxEpuHB0XB+J9s
+	z/GCRzAPBDkovlJT0bUEV+0+UkY5XvRMi11osAlQjtatnQx0g/faY1676+OOc3lbT8fx7dgXq0Z
+	G2xaT7aDaq9qdwCtX+IvyMpxIOTHg0coON9GpOyQMrjFLNvmOEo/eTMw6
+X-Received: by 2002:a17:902:e5c6:b0:290:b53b:745b with SMTP id d9443c01a7336-294cb5232d3mr38383945ad.39.1761632893884;
+        Mon, 27 Oct 2025 23:28:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFLMay05a+vAXuQxOkbTQFiIgxcmfZljtBPlP7Po1PvPoXnE7k7Y6n0QTmLswWPRio4+BUB6A==
+X-Received: by 2002:a17:902:e5c6:b0:290:b53b:745b with SMTP id d9443c01a7336-294cb5232d3mr38383555ad.39.1761632893438;
+        Mon, 27 Oct 2025 23:28:13 -0700 (PDT)
 Received: from hu-yuanfang-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29498cf359asm102503265ad.12.2025.10.27.23.28.10
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29498cf359asm102503265ad.12.2025.10.27.23.28.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Oct 2025 23:28:11 -0700 (PDT)
+        Mon, 27 Oct 2025 23:28:13 -0700 (PDT)
 From: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
-Subject: [PATCH 00/12] coresight: Add CPU cluster funnel/replicator/tmc
- support
-Date: Mon, 27 Oct 2025 23:28:02 -0700
-Message-Id: <20251027-cpu_cluster_component_pm-v1-0-31355ac588c2@oss.qualcomm.com>
+Date: Mon, 27 Oct 2025 23:28:03 -0700
+Subject: [PATCH 01/12] dt-bindings: arm: coresight: Add cpu cluster
+ tmc/funnel/replicator support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,11 +92,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAHJiAGkC/x2MQQqAIBAAvxJ7TsjKiL4SIbFttVAqmhFIf086D
- sxMgkCeKcBQJPB0c2BrMsiyANxns5HgJTPUVa1kJTuBLmo8YrjIa7Sns4bMpd0pkJTs1yy1TQM
- 5d55Wfv71OL3vB2Lq3UJqAAAA
-X-Change-ID: 20251016-cpu_cluster_component_pm-ce518f510433
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251027-cpu_cluster_component_pm-v1-1-31355ac588c2@oss.qualcomm.com>
+References: <20251027-cpu_cluster_component_pm-v1-0-31355ac588c2@oss.qualcomm.com>
+In-Reply-To: <20251027-cpu_cluster_component_pm-v1-0-31355ac588c2@oss.qualcomm.com>
 To: Suzuki K Poulose <suzuki.poulose@arm.com>,
         Mike Leach <mike.leach@linaro.org>,
         James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
@@ -109,151 +109,179 @@ To: Suzuki K Poulose <suzuki.poulose@arm.com>,
 Cc: kernel@oss.qualcomm.com, coresight@lists.linaro.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>,
-        Jie Gan <jie.gan@oss.qualcomm.com>
+        Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761632890; l=5210;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761632890; l=4225;
  i=yuanfang.zhang@oss.qualcomm.com; s=20250814; h=from:subject:message-id;
- bh=6PnlglbBdA+sT72qw9FSQQcvFbM5sLJUf0oCBFAlNsY=;
- b=LALf6twg1OIvxPNPoUXNnYLUruCA2bLqVPFCSjxVHlq0x8jHuF1l0snyO9zy7Y4Zt8YntjTkp
- Oh08LcncK+5DapwYzG0b/O8jyAPAEAGclo9D7j34geQ6cr5DLet7C3r
+ bh=PPtBIz8qEFvPp66GNhz5hdu3RpRfVBfYsLuidxR205M=;
+ b=xr2MpTWnfc1z9/DYs0lmEaPgzO67s3OtRkMFlUDMRC0QKViHGXoLtClSlhp7erTCm29OL1zn3
+ 8IE3NPo0bKqDB+lxtdSRdV7bNd5lvpqfA9voMhVZAzwas3ZA4x0zJFk
 X-Developer-Key: i=yuanfang.zhang@oss.qualcomm.com; a=ed25519;
  pk=9oS/FoPW5k0CsqSDDrPlnV+kVIOUaAe0O5pr4M1wHgY=
-X-Proofpoint-GUID: Xiji8mounbmzDntJTUEEEMbuX3s0uRHj
-X-Authority-Analysis: v=2.4 cv=D/VK6/Rj c=1 sm=1 tr=0 ts=6900627d cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+X-Proofpoint-ORIG-GUID: XlDAbHimrcBqxgxCnig8bHEPRKSbSxHV
+X-Proofpoint-GUID: XlDAbHimrcBqxgxCnig8bHEPRKSbSxHV
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI4MDA1NCBTYWx0ZWRfXxFx0VAvHBnay
+ vywpVfH0OQCkZvoUwBM9GmXuFaWCNIkkh9BN+8tAhk2EFXuLjETA8228GSSwfSkowX29XlFE/eS
+ /EIGU3zdpxINogCr3MShMih5nKQ0LZMDMYyW6VwSS8cc6HjvrfvJh91zGGCZwdBB/sHAHqh4mEj
+ 3BWBHthB1ZbLIH+40LSTcIuoExyRvlvjsmqonWOvPXBXysyeLsMp7olw6YGnPxfq7HpUZsg/3kO
+ KsZ0Qi1FSqlWvhiTZUj9G71tFs8lRBGsqxC8o4XyC9LO+Msv8I6xUDLnb2S+wx/ecn2k7+XbWJv
+ qG6sN2gyAvQ6UmQQ9XDtcCg7x61j4ShX1Md5Kga7KzV0nkAgYqDzFG6MJk4/9rRhjBrlnUUTw6E
+ q0+yvhVhYx+lF3bWqM5lJKdCUuaRUw==
+X-Authority-Analysis: v=2.4 cv=R60O2NRX c=1 sm=1 tr=0 ts=6900627f cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
  a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=6muaAK4ZDRYgKIjbAQEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-ORIG-GUID: Xiji8mounbmzDntJTUEEEMbuX3s0uRHj
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI4MDA1NCBTYWx0ZWRfXyBMHaDcR/5wQ
- 9nUskgTKRJB/4V5RdGfkY/JKDHvrcKZSe83bWfeIe1DGzg0gu3PoOQIrCR+zpHkW4vaXzOI5L4r
- Fj3bvBc31ZbtxObnD5ORbrQY1QUSXxdE/6XYz4BiqcHxoSWbChdxUDc4bT0uhmXWZFcLccjMppu
- uZ+vhDLe+RHmnDG22JD9/hfAvSdLLDdfrw07R1htOPnz1zbp54jIwq9S8hM81ZP0diiRRi1jbDE
- gSBAcWMk6HgakIF5iHSF05QvZ8x6o9Ysq+wuMfCcyALZdAOT3vbuNXXfcVrFTwbFii7uoAQU6vn
- 3BKWiXbMckQYXfZaP/RQ8j5l0dom6J6BslgoBnyVXjvUc+b5tMF0jHs6VTZkIu5+WMO8Il3xQQo
- IcXYsFO9IFzviimkX6e6ZOtvRlQbOg==
+ a=EUspDBNiAAAA:8 a=G4amIDmpmRGM4OpAro8A:9 a=QEXdDO2ut3YA:10
+ a=GvdueXVYPmCkWapjIL-Q:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-10-28_03,2025-10-22_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 bulkscore=0 impostorscore=0 malwarescore=0 lowpriorityscore=0
- suspectscore=0 spamscore=0 adultscore=0 clxscore=1015 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510020000 definitions=main-2510280054
+ priorityscore=1501 lowpriorityscore=0 phishscore=0 bulkscore=0
+ impostorscore=0 clxscore=1015 spamscore=0 adultscore=0 malwarescore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510020000
+ definitions=main-2510280054
 
-This patch series introduces support for CPU cluster local CoreSight components,
-including funnel, replicator, and TMC, which reside inside CPU cluster
-power domains. These components require special handling due to power
-domain constraints.
+Add the following compatible strings to the bindings:
+- arm,coresight-cpu-funnel
+- arm,coresight-cpu-replicator
+- arm,coresight-cpu-tmc
 
-Unlike system-level CoreSight devices, CPU cluster local components share the
-power domain of the CPU cluster. When the cluster enters low-power mode (LPM),
-the registers of these components become inaccessible. Importantly, `pm_runtime_get`
-calls alone are insufficient to bring the CPU cluster out of LPM, making
-standard register access unreliable in such cases.
-
-To address this, the series introduces:
-- Device tree bindings for CPU cluster local funnel, replicator, and TMC.
-- Introduce a cpumask to record the CPUs belonging to the cluster where the
-  cpu cluster local component resides.
-- Safe register access via smp_call_function_single() on CPUs within the
-  associated cpumask, ensuring the cluster is power-resident during access.
-- Delayed probe support for CPU cluster local components when all CPUs of
-  this CPU cluster are offline, re-probe the component when any CPU in the
-  cluster comes online.
-- Introduce `cs_mode` to link enable interfaces to avoid the use
-  smp_call_function_single() under perf mode.
-
-Patch summary:
-Patch 1: Adds device tree bindings for CPU cluster funnel/replicator/TMC devices.
-Patches 2–3: Add support for CPU cluster funnel.
-Patches 4-6: Add support for CPU cluster replicator.
-Patches 7-10: Add support for CPU cluster TMC.
-Patch 11: Add 'cs_mode' to link enable functions.
-Patches 12-13: Add Coresight nodes for APSS debug block for x1e80100 and
-fix build issue.
-
-Verification:
-
-This series has been verified on sm8750.
-
-Test steps for delay probe:
-
-1. limit the system to enable at most 6 CPU cores during boot.
-2. echo 1 >/sys/bus/cpu/devices/cpu6/online.
-3. check whether ETM6 and ETM7 have been probed.
-
-Test steps for sysfs mode:
-
-echo 1 >/sys/bus/coresight/devices/tmc_etf0/enable_sink
-echo 1 >/sys/bus/coresight/devices/etm0/enable_source
-echo 1 >/sys/bus/coresight/devices/etm6/enable_source
-echo 0 >/sys/bus/coresight/devices/etm0/enable_source
-echo 0 >/sys/bus/coresight/devicse/etm6/enable_source
-echo 0 >/sys/bus/coresight/devices/tmc_etf0/enable_sink
-
-echo 1 >/sys/bus/coresight/devices/tmc_etf1/enable_sink
-echo 1 >/sys/bus/coresight/devcies/etm0/enable_source
-cat /dev/tmc_etf1 >/tmp/etf1.bin
-echo 0 >/sys/bus/coresight/devices/etm0/enable_source
-echo 0 >/sys/bus/coresight/devices/tmc_etf1/enable_sink
-
-echo 1 >/sys/bus/coresight/devices/tmc_etf2/enable_sink
-echo 1 >/sys/bus/coresight/devices/etm6/enable_source
-cat /dev/tmc_etf2 >/tmp/etf2.bin
-echo 0 >/sys/bus/coresight/devices/etm6/enable_source
-echo 0 >/sys/bus/coresight/devices/tmc_etf2/enable_sink
-
-Test steps for sysfs node:
-
-cat /sys/bus/coresight/devices/tmc_etf*/mgmt/*
-
-cat /sys/bus/coresight/devices/funnel*/funnel_ctrl
-
-cat /sys/bus/coresight/devices/replicator*/mgmt/*
-
-Test steps for perf mode:
-
-perf record -a -e cs_etm//k -- sleep 5
+Each requires 'power-domains' when used.
 
 Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
 ---
-Yuanfang Zhang (12):
-      dt-bindings: arm: coresight: Add cpu cluster tmc/funnel/replicator support
-      coresight-funnel: Add support for CPU cluster funnel
-      coresight-funnel: Handle delay probe for CPU cluster funnel
-      coresight-replicator: Add support for CPU cluster replicator
-      coresight-replicator: Handle delayed probe for CPU cluster replicator
-      coresight-replicator: Update mgmt_attrs for CPU cluster replicator compatibility
-      coresight-tmc: Add support for CPU cluster ETF and refactor probe flow
-      coresight-tmc-etf: Refactor enable function for CPU cluster ETF support
-      coresight-tmc: Update tmc_mgmt_attrs for CPU cluster TMC compatibility
-      coresight-tmc: Handle delayed probe for CPU cluster TMC
-      coresight: add 'cs_mode' to link enable functions
-      arm64: dts: qcom: x1e80100: add Coresight nodes for APSS debug block
+ .../bindings/arm/arm,coresight-dynamic-funnel.yaml | 23 +++++++++++++++++-----
+ .../arm/arm,coresight-dynamic-replicator.yaml      | 22 +++++++++++++++++----
+ .../devicetree/bindings/arm/arm,coresight-tmc.yaml | 22 +++++++++++++++++----
+ 3 files changed, 54 insertions(+), 13 deletions(-)
 
- .../bindings/arm/arm,coresight-dynamic-funnel.yaml |  23 +-
- .../arm/arm,coresight-dynamic-replicator.yaml      |  22 +-
- .../devicetree/bindings/arm/arm,coresight-tmc.yaml |  22 +-
- arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 885 +++++++++++++++++++++
- arch/arm64/boot/dts/qcom/x1p42100.dtsi             |  12 +
- drivers/hwtracing/coresight/coresight-core.c       |   7 +-
- drivers/hwtracing/coresight/coresight-funnel.c     | 260 +++++-
- drivers/hwtracing/coresight/coresight-replicator.c | 343 +++++++-
- drivers/hwtracing/coresight/coresight-tmc-core.c   | 396 +++++++--
- drivers/hwtracing/coresight/coresight-tmc-etf.c    | 105 ++-
- drivers/hwtracing/coresight/coresight-tmc.h        |  10 +
- drivers/hwtracing/coresight/coresight-tnoc.c       |   3 +-
- drivers/hwtracing/coresight/coresight-tpda.c       |   3 +-
- include/linux/coresight.h                          |   3 +-
- 14 files changed, 1912 insertions(+), 182 deletions(-)
----
-base-commit: 01f96b812526a2c8dcd5c0e510dda37e09ec8bcd
-change-id: 20251016-cpu_cluster_component_pm-ce518f510433
+diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
+index b74db15e5f8af2226b817f6af5f533b1bfc74736..8f32d4e3bbb750f5a6262db0032318875739cf81 100644
+--- a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
++++ b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
+@@ -28,19 +28,32 @@ select:
+   properties:
+     compatible:
+       contains:
+-        const: arm,coresight-dynamic-funnel
++        enum:
++          - arm,coresight-dynamic-funnel
++          - arm,coresight-cpu-funnel
+   required:
+     - compatible
+ 
+ allOf:
+   - $ref: /schemas/arm/primecell.yaml#
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: arm,coresight-cpu-funnel
++    then:
++      required:
++        - power-domains
++
+ properties:
+   compatible:
+-    items:
+-      - const: arm,coresight-dynamic-funnel
+-      - const: arm,primecell
+-
++    oneOf:
++      - items:
++          - const: arm,coresight-dynamic-funnel
++          - const: arm,primecell
++      - items:
++          - const: arm,coresight-cpu-funnel
+   reg:
+     maxItems: 1
+ 
+diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-replicator.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-replicator.yaml
+index 17ea936b796fd42bb885e539201276a11e91028c..5ce30c4e9c415f487ee61dceaf5b8ad12c78e671 100644
+--- a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-replicator.yaml
++++ b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-replicator.yaml
+@@ -28,18 +28,32 @@ select:
+   properties:
+     compatible:
+       contains:
+-        const: arm,coresight-dynamic-replicator
++        enum:
++          - arm,coresight-dynamic-replicator
++          - arm,coresight-cpu-replicator
+   required:
+     - compatible
+ 
+ allOf:
+   - $ref: /schemas/arm/primecell.yaml#
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: arm,coresight-cpu-replicator
++    then:
++      required:
++        - power-domains
++
+ properties:
+   compatible:
+-    items:
+-      - const: arm,coresight-dynamic-replicator
+-      - const: arm,primecell
++    oneOf:
++      - items:
++          - const: arm,coresight-dynamic-replicator
++          - const: arm,primecell
++      - items:
++          - const: arm,coresight-cpu-replicator
+ 
+   reg:
+     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
+index 96dd5b5f771a39138df9adde0c9c9a6f5583d9da..d7c0b618fe98a3ca584041947fb5c0f80f1ade6e 100644
+--- a/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
++++ b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
+@@ -29,18 +29,32 @@ select:
+   properties:
+     compatible:
+       contains:
+-        const: arm,coresight-tmc
++        enum:
++          - arm,coresight-tmc
++          - arm,coresight-cpu-tmc
+   required:
+     - compatible
+ 
+ allOf:
+   - $ref: /schemas/arm/primecell.yaml#
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: arm,coresight-cpu-tmc
++    then:
++      required:
++        - power-domains
++
+ properties:
+   compatible:
+-    items:
+-      - const: arm,coresight-tmc
+-      - const: arm,primecell
++    oneOf:
++      - items:
++          - const: arm,coresight-tmc
++          - const: arm,primecell
++      - items:
++          - const: arm,coresight-cpu-tmc
+ 
+   reg:
+     maxItems: 1
 
-Best regards,
 -- 
-Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
+2.34.1
 
 
