@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-232374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3F1FC16DFB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 22:09:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15952C16E13
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 22:10:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C86491C602C6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 21:09:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E7E31C6110E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 21:10:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAA6D2D7387;
-	Tue, 28 Oct 2025 21:09:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 781822D9ECB;
+	Tue, 28 Oct 2025 21:10:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AqGxJ+55"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VQoBn5zW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81A986FBF;
-	Tue, 28 Oct 2025 21:09:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FD5F2D97A5;
+	Tue, 28 Oct 2025 21:10:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761685750; cv=none; b=qJvZ4ACrNpMupBeI38j/3S2rBI2wb8HA9uUSv4WKbveVt8NImCZqchf1cAN9PPlAnl25Hgv3C6od0vs2NWIU5gnEMS9HoEh9YNUaO3OyVyhGi0RO7A85tu0Ty/DCn1q1Xau/4I6zS5VgUDc3CkdvZh1AOIBTavL7iz2h4CxkX60=
+	t=1761685811; cv=none; b=PgprURSDS8SgvMheYHwTRVjMXOXDDYoZMz+MVzfE4RquMdsHVJ1Juoo/HF5HwTXYzVsx3qvK3gmzC6fBDLDRJQoY9Vz6pMzf+hjdPrajK2ZTglm+4Oy1xghBqnt+pu2oP1eE/K8a0CITVEZjHn8GBH6MWnBmDXK6At7S29MYgWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761685750; c=relaxed/simple;
-	bh=SliK6vUaqzg8v6tMdDPxWlV7PCvGYh3QHD8eAZfx6X8=;
+	s=arc-20240116; t=1761685811; c=relaxed/simple;
+	bh=YotBn30JNy1S09WNuV+F7vJnGzh9gaNJ64bE2K4jb3c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BrhaBGqO8Fcke1crzsvraM7A0gai0eZwxVXwDL+6YQ0W35LYLzCesI5/7uY5bOG8ISCFEUhPpsYFLDwrQiXyTArQy8gUppCRd6jZYYW1qM7KGUtIsykKJT2EzZqe7eP0xh/m6DbF6M2hIUk6gd7dxQjAqS5cRCfqX3QKT9qFe2c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AqGxJ+55; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15EE1C4CEE7;
-	Tue, 28 Oct 2025 21:09:06 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Ak1tep0FmS8x4zMTSB1ndzS7bSQXui/qZcWALXpql+MXdwm334RGYrNnkvzKRDU2CePX/UN0PKZvQ4YaUvOo4AR7h71Er8f6TMsJW2CCPBrusd+2nVa5GfhA6vhhqII+Smivz8cYrYDzvWe8b3XzGJbGOea01YSQ3BWR3KILB2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VQoBn5zW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45B12C4CEE7;
+	Tue, 28 Oct 2025 21:10:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761685750;
-	bh=SliK6vUaqzg8v6tMdDPxWlV7PCvGYh3QHD8eAZfx6X8=;
+	s=k20201202; t=1761685810;
+	bh=YotBn30JNy1S09WNuV+F7vJnGzh9gaNJ64bE2K4jb3c=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AqGxJ+55lrAZqJ5nIQEd4zR95BjHjReBWZhU4mrrakOM7Y7ciWte/nAF2wHOyZj11
-	 FoG8UYnXxXemHqKTa4hBqpuka2aYHx0GNzBJPCReLyTMx64M34SH6QN7Kkbm8pdCG/
-	 YHt0dAGcV8DE5mUCmTbE307Q7Fx25L+zP/PZcYbeKceCJYSJkgLzsmA8l1Z7+w6Dpi
-	 rPSxtHb3vmpTL9g2BkK6hlzKGuQP/NrqUBxoNthRVcpl7KvztybrAsbR4rTLutkJOw
-	 0KBodfXGvhK9/dWLDbzA0Hwilqa/+6V/kOxC0hj8QA92+wlk9bZAvkze81GiX1jClZ
-	 pYYB2ebuFta3A==
-Message-ID: <68765cf5-0377-4c7a-a82a-7645fae0b142@kernel.org>
-Date: Tue, 28 Oct 2025 22:09:05 +0100
+	b=VQoBn5zWpM4DVt8R5nq+WuR/6ZkWOaaZBiyPibhVWnqCSFIsn0sOQxEce/CiC1UEF
+	 CcMj6HiMAUphUZS5tRabmwGwDJZBFmVA5Wfp5Y4PI7ET/f4+/Nrv9rnfxe8ik3bfwx
+	 HSxdQfV25UYYgHeSVZPmeJ6MhT5gNzzGC8qXqI7WKiXypZTwIVPPKzMXKOe3KjyD2V
+	 xrAccnNRhXbq3jj47KYOtNX6lruR1PNSs8RV1sH4aENVgJvojm6eqnkR0EX9L/QqGH
+	 idOoiJUCXt1lMpfzcvqoGDOefVOLoOlcy9H4wiVT7goDg9hXCnbpYzeNnvmqGcp1pa
+	 RfH5+lJ/qJfog==
+Message-ID: <8ee98adf-ce92-4d07-b17e-cfecfeaae77b@kernel.org>
+Date: Tue, 28 Oct 2025 22:10:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] dt-bindings: arm: rockchip: Add NineTripod X3568
- series
+Subject: Re: [PATCH v4 1/3] dt-bindings: vendor-prefixes: Add NineTripod
 To: Coia Prant <coiaprant@gmail.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
@@ -59,7 +58,6 @@ To: Coia Prant <coiaprant@gmail.com>, Rob Herring <robh@kernel.org>,
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20251026150358.1078453-1-coiaprant@gmail.com>
- <20251026150358.1078453-2-coiaprant@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,41 +103,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251026150358.1078453-2-coiaprant@gmail.com>
+In-Reply-To: <20251026150358.1078453-1-coiaprant@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 26/10/2025 16:03, Coia Prant wrote:
-> This documents NineTripod X3568 v4 which is a SBC based on RK3568 SoC.
-> 
-> Link: http://www.9tripod.com/showpro.php?id=117
-> Link: https://appletsapi.52solution.com/media/X3568V4%E5%BC%80%E5%8F%91%E6%9D%BF%E7%A1%AC%E4%BB%B6%E6%89%8B%E5%86%8C.pdf
+> Add NineTripod to the vendor prefixes.
 > 
 > Signed-off-by: Coia Prant <coiaprant@gmail.com>
 > ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index 6aceaa8ac..417100209 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -777,6 +777,12 @@ properties:
->            - const: netxeon,r89
->            - const: rockchip,rk3288
->  
-> +      - description: NineTripod X3568 series board
-> +        items:
-> +          - enum:
-> +              - ninetripod,x3568-v4
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index f1d188200..37687737e 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -1124,6 +1124,8 @@ patternProperties:
+>      description: National Instruments
+>    "^nicera,.*":
+>      description: Nippon Ceramic Co., Ltd.
+> +  "^ninetripod,.*":
 
 
-You are supposed to use domain name as prefix. 9tripod
-
-Don't send new versions 30 minutes after sending previous one. Allow
-people to actually review.
-
-You have now comments at v3 and here. You must implement them all.
+9tripod, as domain name.
 
 Best regards,
 Krzysztof
