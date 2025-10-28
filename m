@@ -1,800 +1,383 @@
-Return-Path: <devicetree+bounces-231908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C35CC12DCC
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 05:33:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F325DC12DDB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 05:34:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C888C347B7F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 04:33:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 226ED4682BF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 04:33:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4410B28507B;
-	Tue, 28 Oct 2025 04:32:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0826F23C38C;
+	Tue, 28 Oct 2025 04:33:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="l3sfA+MA"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="BM9JwYR5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cp2.siel.si (cp2.siel.si [46.19.12.180])
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010020.outbound.protection.outlook.com [52.101.228.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5636D271;
-	Tue, 28 Oct 2025 04:32:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.12.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761625977; cv=none; b=kCWITYnz5Ev0zWcmKMN5J6dnfsMqk3FmuvVMJqnhyW8s2gM+70yTwdEC7oLhtO4xO+4QSfT0clqiR2/C9RvTNswydGnSxHbr/aX9DJOB+zaOeLJbrpMqZq0oMm6lbFSsz5VC3ABqrZX08Vru3YwB4BRYqRtSbmJIEveVfLtgQso=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761625977; c=relaxed/simple;
-	bh=2QhUOp12fnANcqWVQ41yM3bjKTLPTy/tTt7WyIANVz4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=TF9JAb2Wt0n2hDB+jNTVVCkwydaqiM3s01Z1FD7STdbjyRbonznpiCewMgS9Lnm6M7ZMYULg8ir90Y+o9Q0ITPeO7IQAeCV3Lsbauqj7rQuTYHwHj+jAonwptgOAbKgPvGKF34SVr0EvM+lKrMMtIYMzBKIshlsJp3NoMpFo480=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=l3sfA+MA; arc=none smtp.client-ip=46.19.12.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=gLSL7AOg1CKMbLC94rHWh8x+xAmFgIHmAXffGihWN+0=; b=l3sfA+MANHoeQ4oCp3Bpe0CPQm
-	8gRVqw2ee/sacN1LAyAkGGTuj2HsgLX00gxEso3isB4hcuyhDW+1hJemA7TijFl4l4kHvfaxtcTy9
-	o6Q7BZxrCoBEeAbtZ8VdjAyqWeaS9ZzrHTojvUZIFmjPqTn+VJsfm/3VJ2bs/qcjty9BJA3mWZtUC
-	xH180G7O+LELQm9fsAl8DvL1nggWOBS2T6OZXsaHZMfETF5m8V13sdbhvZ9mZHmOHGphpz1yhviwD
-	wivDZN4/gIY5yemY5EfR/GzUyBQbnMI+9GLEcXOK5xuxOjAEas4qE5K/BhcVTs+UDqHopkJ5M63i2
-	dkqOjDSg==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:36546 helo=localhost.localdomain)
-	by cp2.siel.si with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <primoz.fiser@norik.com>)
-	id 1vDbO3-000000099zL-2PhM;
-	Tue, 28 Oct 2025 05:32:46 +0100
-From: Primoz Fiser <primoz.fiser@norik.com>
-To: Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD39288B1;
+	Tue, 28 Oct 2025 04:32:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.20
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761625980; cv=fail; b=GP1CdX521HLfNm0EAr5IHVjf8axDM0seb8e0BgDTHfrSHwAlp4C5eeQtJe8u+yUVREw1f77Dh31v36/ceGFHoKPMcttJRhQ+/Mns/R1Gdd4Uayl0l4y0UdUJNHQkRHh6u9DzjM1N0Uu39JCTrbR1P/okANS65uQ2VGbbPgjQn0k=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761625980; c=relaxed/simple;
+	bh=rRWJFj26gOS5Qn8oVoaMypPiGpophbzlehJkZm2l9aw=;
+	h=Message-ID:From:Subject:To:In-Reply-To:References:Content-Type:
+	 Date:MIME-Version; b=tzv3IcNEaPDRgz9+zPXECXodDcJIcchkWlh5CXDFPEspuXLTAdMg6NbQg9OdvdZlGKh3BBPPazl8S/6I0WuLE4TxMzAIz/SIRioLiBq/pMZ9CoOLHWnvz/NqchX0Y7cGc1WKqWAT4HP3K8A/hmjvu9vgE0DDwtgs6BuoAz8WDQw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=BM9JwYR5; arc=fail smtp.client-ip=52.101.228.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=a7i/+vcwQEqrVsJkL23EwsUP29RdicbjinzxBvk/uroBhHa/ohiQ4zHs9DpZorC/yg5jbQi4mtyURQunqe+5rQdECNeMpeYwKKlb6Zys9Sx8oGSdCymD9s/newTmqNjNW7wqzJdKmZpF8YqobZ95gZ7dWU1rvImKpEfbN/biS2qYmhq7jiJMcjobCddHokhYzGwzEEtXr0SI2AessIwRHwR+ZXlLhIf/hojy+teRHua2eMb9eKzbt/oqet+XOluQGcwqm2kVkd+9REYdpQ3tvPL4kQjPHaoW/Cp9SNg1lKryC4Mxp53vXo6h0S4wKjYjkOOslSKrxrrZJNH/wOxicA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/cDgn4VTLiRB9RREBBXr8kqurOJcXUC8T2ZpVK7PEWI=;
+ b=tVWCWmCpN1kMGWMo5Ue29Rz8sDDeNJkybCwpVIuBmUhL/iS6bcaQBl2ciMvqIi0NFBOT57ZDx77xnlntQZjE3//O6cs1ZGYIR9BemnW2nK3lr8eXGfziUWb8qwZQJVzRMoRpX38B74lzlkTypzEVjt0ekcC/XhzNvpmqEfSSS4IFo4AhFFvyiLIJuFbmlaJUuqh6005sge+m1Z+2h9jF7rSu2jC5CafcKN9VZaPUNGrgOlrQeBInA7hP6adirM02YnuinujV7tj5Law3z3kymGi/Mj7oR8MIg9gNl8YDkfnjyIAoar0fdmJOvD1OGtJdV2gD1GFLEaN4zI6Rt+fPEA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/cDgn4VTLiRB9RREBBXr8kqurOJcXUC8T2ZpVK7PEWI=;
+ b=BM9JwYR5P08Q2drE3gZwmKncluVXRZhHN6YyQvPR/bYVllLG+dt/Oga9zvBpJWckt/DqbJfThQqoNXiEQH+K/G8WzkVTzKy2uJHiUlW7u6nQJ2isGXerRvn0R+Bk3OCKeW5fVbUYYGyr/p+qgQiwh8B948UKJoRF/kxJZJmATY8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by OSCPR01MB13679.jpnprd01.prod.outlook.com
+ (2603:1096:604:380::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.12; Tue, 28 Oct
+ 2025 04:32:56 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11%3]) with mapi id 15.20.9275.011; Tue, 28 Oct 2025
+ 04:32:56 +0000
+Message-ID: <87ldkvsl1k.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Subject: [PATCH v2 2/3] mailbox: renesas: Support MFIS mailbox driver
+To: Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	upstream@lists.phytec.de
-Subject: [PATCH v2 2/2] arm64: dts: freescale: Add phyBOARD-Segin-i.MX91 support
-Date: Tue, 28 Oct 2025 05:32:44 +0100
-Message-Id: <20251028043244.496662-2-primoz.fiser@norik.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251028043244.496662-1-primoz.fiser@norik.com>
-References: <20251028043244.496662-1-primoz.fiser@norik.com>
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+In-Reply-To: <87o6prsl2z.wl-kuninori.morimoto.gx@renesas.com>
+References: <87o6prsl2z.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset=US-ASCII
+Date: Tue, 28 Oct 2025 04:32:55 +0000
+X-ClientProxiedBy: TY4PR01CA0054.jpnprd01.prod.outlook.com
+ (2603:1096:405:372::8) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cp2.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cp2.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cp2.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OSCPR01MB13679:EE_
+X-MS-Office365-Filtering-Correlation-Id: 11ab6127-402c-4711-707b-08de15db10e0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|376014|366016|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?SgBy8DsuIG+mLdHC1G1p8bDd1yPR1SKPFrhmWp64n1L7ZwBknm6J4GxJYf/B?=
+ =?us-ascii?Q?9WzO51IlFm0kGRC7jiKTknkvljmtRxD0HyW8FfGprqnSPnqjTQlK4sCXd36Z?=
+ =?us-ascii?Q?Sq+UIcTu1ZWPx91kGxsMUQYmxLoEMu4Aeonz5Vlx2uVMvRPvcwcdDWqNSCr1?=
+ =?us-ascii?Q?pRVaLu9+ojWEUqbNO2gGaAy6pJZybzeUxb9EO3WgAGiNMFXP1hWEZuvTAe9B?=
+ =?us-ascii?Q?YozwhYddHtgqAjQmPp7By+xUKoyGwRrKDKz0TxdSxj0kvjoF789jpwRm/2Gq?=
+ =?us-ascii?Q?gnmAjivWts8l4c6KUYqRvivcsQOzRWcKOJFb+/MbMgKJyiN0rRBxKtMfdgM5?=
+ =?us-ascii?Q?qClmi+HnUtc+s0qatrTXxHuXlE/qadJOsbZIi5TFSq4Ds1p07MOyG4pLxoCU?=
+ =?us-ascii?Q?EHzMGzNzNNzNW1UO/t5Ium1Le0Qc0Qcw5V/fECkB4mFX9T2WVL17ge+Bmi0d?=
+ =?us-ascii?Q?iFV/gUZsEgV+8xYQ0Mr4Ka05haRnrzu/KYhwCxpDiI56aCNgnEpcM+sim/hO?=
+ =?us-ascii?Q?TuKLZ9BajxwgDPXxuw9z0ZQHY5HTHydMab79OmO1EpPRKt8oZKGSFfjBoyVJ?=
+ =?us-ascii?Q?NuDlFQSFl9LZ472Pyxump0id6h94pqS5dOXhDQDnE0AGUG9D7m8V5tzbwv+8?=
+ =?us-ascii?Q?c4f+MreEtYo2tC7kO7dXwi6w+X8fSEzrjwY6ruLVVmjU+MfQT1F3RlIQa7OE?=
+ =?us-ascii?Q?Puu+BYNBbtTOboLhQq/fCF6MQ6nCPsgc+vpx46G3vuNhrAEdymX2pbu9RMJH?=
+ =?us-ascii?Q?Ph28fvIDcwHb5qhIB/7n/k2G077m0UIdxOJSdbVNvMItrigH1X3/N/Nr4XH4?=
+ =?us-ascii?Q?mexu2Sesdfghan19gI7RSMk829oE8reGzsuUhdu+5vR+BP3z6Arf3ERL5GrG?=
+ =?us-ascii?Q?veLjhFx0vhCMQ+KO1UpBZK89oE8KuPSzsxuzVYJjkJ2gWSWNAYgHEIo9chZX?=
+ =?us-ascii?Q?k9vU2HoBGEKf4XMRviApK5YIu3PBzJeNKPUt4vLMe9qdAu10gpVPxO8DBcrd?=
+ =?us-ascii?Q?1hDpR7QU4UQa9S7+dY6NJRejNQPX7KyE4KzWxJelHG3sIWg27MwfKFJgjABF?=
+ =?us-ascii?Q?Kl6P4qpyDlJQ/COCQygNodZF6Bm7mA+qlRjuwDCNf/J9rtqyFNnVYZfzmzdM?=
+ =?us-ascii?Q?4D3U+wJCUJm0jUZFdL9nXeSck8R+YMaBYsbTzC5ZanxY2BrPPFcRIGbNuGBX?=
+ =?us-ascii?Q?lWw2cowcar8lyK2zoA3ZGjAM1VCGflSWXRlq8rOIRyzYRTmOx1fhgEo4RtDj?=
+ =?us-ascii?Q?kp1czrTfh/unYZDL0cjkFzrHTsslZ+ACX4c9+/du/EqWjC+lRB6P4efIL9dE?=
+ =?us-ascii?Q?Fi/fEchsr1j4YM7NtieVi2S+6xVNt3lnaanBhw70KEIMvo9hLuM4BquMlhU7?=
+ =?us-ascii?Q?EaiVDHXzH0HI5bgb8aAqzHDQHCXe+Tc9FLWlGrf0vbgjB6cmReotG58RxwCx?=
+ =?us-ascii?Q?WnoDSKNt0R8yWRPcMP3jUAgOt2zfP2lBfewrgVsEtPOReN7z8oPQpDJDTnIK?=
+ =?us-ascii?Q?UWaxSv7IkFLmbV8d0V64hFb65ejZjpmTSLGi?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?d6M9lNNXCGPVh5UWjlScBFRaMtfOi2VgxCGnVP1fB4gc7hOB6HKcpY5twGdk?=
+ =?us-ascii?Q?FT2b2QRi3XEpxAJYoJvuUaDEVVvGLTZEoOkfx/Z8q8Cx3o7Kn6exHpM+O23Q?=
+ =?us-ascii?Q?MjOhmtqwB9lmjt+49SwFgLbNLmebQdSxhyDdCXZwMqeCMzzog8sjM+Y1RE8B?=
+ =?us-ascii?Q?is316xBN0M5SXwvw3a7XuMLLf809tMaCjpxZO2YNeLOzw1Uui0PpkzHk2Qew?=
+ =?us-ascii?Q?CjU2F0gK3C7Dx65jPIo2VMBN18aDvXLz2/XdMxrd69YQq9oQrKCrkc9mEO0D?=
+ =?us-ascii?Q?WjS28gE0FYrjQV1mhmMrtPkcWEXWXcAVZJ4fYGxQ+ev7z47e7DUvTv2XGe8i?=
+ =?us-ascii?Q?SqBNEbUQFJXKVg4Z+HaaNbigjoARrS5Y5Z73A/9jNIiKkUIMI488HLwdflny?=
+ =?us-ascii?Q?XvJRPCQGTxqJfILZ4Anw0uEP+ZP8DdrikGG2wfAxjzfio/lNnNFicqoJroiE?=
+ =?us-ascii?Q?QvNLdz0YXmVzacdo2h0tpwwuoFOkmil++Jx7SufkjpUkUP2mHTM9s7OE78nq?=
+ =?us-ascii?Q?hgWVfSKZKWV9UAhleoeMZYo+0BOSf+xIj4OpWpovR3ytEPwpwYrT/3SgwYbu?=
+ =?us-ascii?Q?EbbWcvUW6Hl75B5ND/mb+NeZTZOhjuSg9p3eYCBrWrrl0sc+8jzyfiItxLqu?=
+ =?us-ascii?Q?+SrorrsvyzXqFd84t0utHxo0J3J/4siV2X82jF0g2io7YK31R5wKWixr3oW9?=
+ =?us-ascii?Q?hHgaWiqm3hdE7oLSrfrUNnwK3v5rfvzELTcsGbMDSj4nYJ2a5unwRV4dwcTM?=
+ =?us-ascii?Q?/R9Nhs0wtqUN4f7iH0Y/ZlgVn0BjD9LtvmkS0aiXw7KTe2dM0MVBcRoR4+6O?=
+ =?us-ascii?Q?8UsG0gPIzK0LRmZTa5OrHxI/LuwjyD4/ohhWy4V6goQ3ULMjfbAJDTiJptk8?=
+ =?us-ascii?Q?a/qeeZ/lxugreTsk8Oo7SK3VZGELl29/Y8+508/Y0oxrrjFpwP5fzHqlcSmA?=
+ =?us-ascii?Q?suOmsQd1HxJFoCQFMKEajo12jneaQmYX9Z5QPSd6XU8YAvqYFbFCZNgjHL/T?=
+ =?us-ascii?Q?ZHV5YpS1aaMl/IyTUUFgC7gf8XQHS02+rETeocLW/IzftGA3QGzlaZl1fEef?=
+ =?us-ascii?Q?C5iCljxWUrUlg7i8Bfzd1hPAD4mGYMnH1SaIcmI6ueUCMLkXzeBVbSivwPLE?=
+ =?us-ascii?Q?qQGPcRHk8w1+haWp8049eGVltP2dbqJlnbrPDkuWnKRIb1Aa60d2lemlDB0m?=
+ =?us-ascii?Q?w7kWZMFwr59JzSrqzdSaQrlMD7gAmVjMacFWGgWKJKdrZPQ4sjhOWlvudAuv?=
+ =?us-ascii?Q?4leCrjGnTx+cGWx4+dKnYAifgXQEJOa6/19qF3kKLE9FSI0XoTFVEcZQ89ie?=
+ =?us-ascii?Q?S9WdFwrtwqmCMd01Nz5dS4dTFt7MW9M5CsegbY4QXA+Z4zGJ1WArK8R4bV/b?=
+ =?us-ascii?Q?6I406EJe2dZKH/sVkNOPQD1sHEgkrrsmfkXRw4qXz8g5HDWrwjSN3HYFSrwk?=
+ =?us-ascii?Q?W+2pKe/TeIxINulyJYuoiH6SxXjsitQwZcwobwMoWKyNJpIlzltULnKi03+s?=
+ =?us-ascii?Q?vaONc5FKb7C0TQ8lI+yxdXyh/1CeSOI6leC5NNQ1ZstMF3PnJE3BCi+vr4ys?=
+ =?us-ascii?Q?UnfVQZj7lKaTCtRvPLKLNIHHAHrexEmQZt4+IwxNL7VNfFJaDhkZHMq94Q4/?=
+ =?us-ascii?Q?OYz3eT0dICbcOL/9cWweqOg=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 11ab6127-402c-4711-707b-08de15db10e0
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2025 04:32:56.0115
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +bV2iiQaAXSUxaEYKM8MkTm8Le1m41++eFAIYHQdut5tBzuo7+iG3Uqwj7BnlveCPWMFBRAp8Xc4CwMkhPaUW8kTRXK//EoHV3UJid20NNTtlsYO3Yt5Hs43yDkM+cuP
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSCPR01MB13679
 
-Add initial support for the PHYTEC phyBOARD-Segin-i.MX91 board [1] based
-on the PHYTEC phyCORE-i.MX91 SoM (System-on-Module) [2].
+Add Renesas MFIS mailbox driver for R8A78000 (X5H)
 
-Supported features:
-* Audio
-* CAN
-* eMMC
-* Ethernet
-* I2C
-* RTC
-* SD-Card
-* UART
-* USB
-
-For more details see the product pages for the development board and the
-SoM:
-
-[1] https://www.phytec.eu/en/produkte/development-kits/phyboard-segin-kit/
-[2] https://www.phytec.eu/en/produkte/system-on-modules/phycore-imx-91-93/
-
-Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+Signed-off-by: Masashi Ozaki <masashi.ozaki.te@renesas.com>
+Signed-off-by: Vinh Nguyen <vinh.nguyen.xz@renesas.com>
+Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 ---
-Changes in v2:
-- Add comment to CAN phy xceiver node
-- Fix order of regulator-{max,min}-microvolt properties
+ drivers/mailbox/Kconfig             |   9 ++
+ drivers/mailbox/Makefile            |   2 +
+ drivers/mailbox/rcar-mfis-mailbox.c | 168 ++++++++++++++++++++++++++++
+ 3 files changed, 179 insertions(+)
+ create mode 100644 drivers/mailbox/rcar-mfis-mailbox.c
 
-Link to v1: https://lore.kernel.org/all/20251021093704.690410-2-primoz.fiser@norik.com/
-
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../dts/freescale/imx91-phyboard-segin.dts    | 345 ++++++++++++++++++
- .../boot/dts/freescale/imx91-phycore-som.dtsi | 304 +++++++++++++++
- 3 files changed, 650 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi
-
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 525ef180481d..34a81d34de39 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -344,6 +344,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8qxp-tqma8xqps-mb-smarc-2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8ulp-9x9-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx91-11x11-evk.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx91-phyboard-segin.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx91-tqma9131-mba91xxca.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb.dtb
+diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
+index e47cb68989267..0f1688f70ea14 100644
+--- a/drivers/mailbox/Kconfig
++++ b/drivers/mailbox/Kconfig
+@@ -379,6 +379,15 @@ config BCM74110_MAILBOX
+ 	  processor and coprocessor that handles various power management task
+ 	  and more.
  
-diff --git a/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts b/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts
++config RCAR_MFIS_MBOX
++	bool "Renesas R-Car Multifunctional Interface Mailbox Support"
++	depends on (ARM_SCMI_PROTOCOL && ARCH_RENESAS) || COMPILE_TEST
++	help
++	  This driver provides support for mailboxes of the MFIS
++	  (Multifunctional Interface) via the SCMI interface.
++	  It is used to send short message between different domains
++	  like AP, RT, and SCP.
++
+ config RISCV_SBI_MPXY_MBOX
+ 	tristate "RISC-V SBI Message Proxy (MPXY) Mailbox"
+ 	depends on RISCV_SBI
+diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
+index 81820a4f55285..060a9c7f6727b 100644
+--- a/drivers/mailbox/Makefile
++++ b/drivers/mailbox/Makefile
+@@ -27,6 +27,8 @@ obj-$(CONFIG_PL320_MBOX)	+= pl320-ipc.o
+ 
+ obj-$(CONFIG_OMAP2PLUS_MBOX)	+= omap-mailbox.o
+ 
++obj-$(CONFIG_RCAR_MFIS_MBOX)	+= rcar-mfis-mailbox.o
++
+ obj-$(CONFIG_ROCKCHIP_MBOX)	+= rockchip-mailbox.o
+ 
+ obj-$(CONFIG_PCC)		+= pcc.o
+diff --git a/drivers/mailbox/rcar-mfis-mailbox.c b/drivers/mailbox/rcar-mfis-mailbox.c
 new file mode 100644
-index 000000000000..7b18a58024f5
+index 0000000000000..c2de4eb03f578
 --- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts
-@@ -0,0 +1,345 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2025 PHYTEC Messtechnik GmbH
-+ * Author: Christoph Stoidner <c.stoidner@phytec.de>
-+ *
-+ * Product homepage:
-+ * phyBOARD-Segin carrier board is reused for the i.MX91 design.
-+ * https://www.phytec.eu/en/produkte/single-board-computer/phyboard-segin-imx6ul/
-+ */
-+/dts-v1/;
++++ b/drivers/mailbox/rcar-mfis-mailbox.c
+@@ -0,0 +1,168 @@
++// SPDX-License-Identifier: GPL-2.0
++//
++// Renesas MFIS (Multifunctional Inferface) Mailbox Driver
++//
++// Copyright (C) 2025, Renesas Electronics Corporation.
++//
 +
-+#include "imx91-phycore-som.dtsi"
++#include <linux/device.h>
++#include <linux/of_address.h>
++#include <linux/of_irq.h>
++#include <linux/interrupt.h>
++#include <linux/mailbox_controller.h>
++#include <linux/module.h>
++#include <linux/platform_device.h>
 +
-+/{
-+	model = "PHYTEC phyBOARD-Segin-i.MX91";
-+	compatible = "phytec,imx91-phyboard-segin", "phytec,imx91-phycore-som",
-+		     "fsl,imx91";
-+
-+	aliases {
-+		ethernet1 = &eqos;
-+		gpio0 = &gpio1;
-+		gpio1 = &gpio2;
-+		gpio2 = &gpio3;
-+		gpio3 = &gpio4;
-+		i2c0 = &lpi2c1;
-+		i2c1 = &lpi2c2;
-+		mmc0 = &usdhc1;
-+		mmc1 = &usdhc2;
-+		rtc0 = &i2c_rtc;
-+		rtc1 = &bbnsm_rtc;
-+		serial0 = &lpuart1;
-+	};
-+
-+	chosen {
-+		stdout-path = &lpuart1;
-+	};
-+
-+	flexcan1_tc: can-phy0 {
-+		/* TI SN65HVD234D CAN-CC 1MBit/s */
-+		compatible = "ti,tcan1043";
-+		#phy-cells = <0>;
-+		max-bitrate = <1000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_flexcan1_tc>;
-+		enable-gpios = <&gpio4 16 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	reg_sound_1v8: regulator-sound-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-max-microvolt = <1800000>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-name = "VCC1V8_AUDIO";
-+	};
-+
-+	reg_sound_3v3: regulator-sound-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "VCC3V3_ANALOG";
-+	};
-+
-+	reg_usb_otg1_vbus: regulator-usb-otg1-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB_OTG1_VBUS";
-+		regulator-max-microvolt = <5000000>;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_usb_otg2_vbus: regulator-usb-otg2-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB_OTG2_VBUS";
-+		regulator-max-microvolt = <5000000>;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_usdhc2_vmmc: regulator-usdhc2 {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio3 7 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "VCC_SD";
-+	};
-+
-+	sound: sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "phyBOARD-Segin-TLV320AIC3007";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,bitclock-master = <&dailink_master>;
-+		simple-audio-card,frame-master = <&dailink_master>;
-+		simple-audio-card,widgets =
-+			"Line", "Line In",
-+			"Line", "Line Out",
-+			"Speaker", "Speaker";
-+		simple-audio-card,routing =
-+			"Line Out", "LLOUT",
-+			"Line Out", "RLOUT",
-+			"Speaker", "SPOP",
-+			"Speaker", "SPOM",
-+			"LINE1L", "Line In",
-+			"LINE1R", "Line In";
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&sai1>;
-+		};
-+
-+		dailink_master: simple-audio-card,codec {
-+			sound-dai = <&audio_codec>;
-+			clocks = <&clk IMX93_CLK_SAI1>;
-+		};
-+	};
++enum direction {
++	TX,
++	RX,
++	NUM_DIRECTION,
 +};
 +
-+/* Ethernet */
-+&eqos {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_eqos>;
-+	phy-mode = "rmii";
-+	phy-handle = <&ethphy2>;
-+	assigned-clock-parents = <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>,
-+				 <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>;
-+	assigned-clock-rates = <100000000>, <50000000>;
-+	status = "okay";
++struct mfis_chan {
++	u32 __iomem *reg;
++	bool active;
 +};
 +
-+&mdio {
-+	ethphy2: ethernet-phy@2 {
-+		compatible = "ethernet-phy-id0022.1561";
-+		reg = <2>;
-+		clocks = <&clk IMX91_CLK_ENET2_REGULAR>;
-+		clock-names = "rmii-ref";
-+		micrel,led-mode = <1>;
-+	};
++struct mfis_priv {
++	struct mbox_controller mbox;
++	spinlock_t lock;
++	struct mbox_chan  chan[NUM_DIRECTION];
++	struct mfis_chan mchan[NUM_DIRECTION];
 +};
 +
-+/* CAN */
-+&flexcan1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexcan1>;
-+	phys = <&flexcan1_tc>;
-+	status = "okay";
++#define mfis_chan_to_priv(ch) chan->con_priv
++#define mfis_chan_to_mchan(priv, ch) (priv->mchan + (ch - priv->chan))
++
++static int mfis_send_data(struct mbox_chan *chan, void *data)
++{
++	struct mfis_priv *priv  = mfis_chan_to_priv(chan);
++	struct mfis_chan *mchan = mfis_chan_to_mchan(priv, chan);
++
++	iowrite32(0x1, mchan->reg);
++
++	return 0;
++}
++
++static irqreturn_t mfis_interrupt(int irq, void *data)
++{
++	struct mfis_priv *priv = data;
++
++	guard(spinlock)(&priv->lock);
++
++	for (int i = 0; i < NUM_DIRECTION; i++) {
++		struct mbox_chan *chan  = priv->chan  + i;
++		struct mfis_chan *mchan = priv->mchan + i;
++
++		if (mchan->active)
++			mbox_chan_received_data(chan, 0);
++
++		iowrite32(0x0, mchan->reg);
++	}
++
++	return IRQ_HANDLED;
++}
++
++static int mfis_chan_set_active(struct mbox_chan *chan, bool active)
++{
++	struct mfis_priv *priv  = mfis_chan_to_priv(chan);
++	struct mfis_chan *mchan = mfis_chan_to_mchan(priv, chan);
++
++	guard(spinlock_irqsave)(&priv->lock);
++
++	mchan->active = active;
++
++	return 0;
++}
++
++static int mfis_startup(struct mbox_chan *chan)
++{
++	return mfis_chan_set_active(chan, true);
++}
++
++static void mfis_shutdown(struct mbox_chan *chan)
++{
++	mfis_chan_set_active(chan, false);
++}
++
++static bool mfis_last_tx_done(struct mbox_chan *chan)
++{
++	return true;
++}
++
++static const struct mbox_chan_ops mfis_chan_ops = {
++	.send_data	= mfis_send_data,
++	.startup	= mfis_startup,
++	.shutdown	= mfis_shutdown,
++	.last_tx_done	= mfis_last_tx_done
 +};
 +
-+/* I2C2 */
-+&lpi2c2 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_lpi2c2>;
-+	pinctrl-1 = <&pinctrl_lpi2c2_gpio>;
-+	scl-gpios = <&gpio1 2 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio1 3 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
++static int mfis_mbox_probe(struct platform_device *pdev)
++{
++	struct mfis_priv *priv;
++	struct device *dev = &pdev->dev;
++	struct mbox_controller *mbox;
++	void __iomem *reg;
++	int ret, irq;
 +
-+	/* Codec */
-+	audio_codec: audio-codec@18 {
-+		compatible = "ti,tlv320aic3007";
-+		reg = <0x18>;
-+		#sound-dai-cells = <0>;
-+		AVDD-supply = <&reg_sound_3v3>;
-+		IOVDD-supply = <&reg_sound_3v3>;
-+		DRVDD-supply = <&reg_sound_3v3>;
-+		DVDD-supply = <&reg_sound_1v8>;
-+	};
++	irq = of_irq_get(dev->of_node, 0);
++	if (irq < 0)
++		return irq;
 +
-+	/* RTC */
-+	i2c_rtc: rtc@68 {
-+		compatible = "microcrystal,rv4162";
-+		reg = <0x68>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_rtc>;
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+	};
++	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
++
++	ret = devm_request_irq(dev, irq, mfis_interrupt, 0, dev_name(dev), priv);
++	if (ret < 0)
++		return ret;
++
++	reg = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(reg))
++		return PTR_ERR(reg);
++
++	spin_lock_init(&priv->lock);
++
++	priv->mchan[TX].reg	= reg + 0x4;
++	priv->mchan[RX].reg	= reg;
++
++	mbox = &priv->mbox;
++
++	mbox->chans			= priv->chan;
++	mbox->chans[TX].mbox		=
++	mbox->chans[RX].mbox		= mbox;
++	mbox->chans[TX].con_priv	=
++	mbox->chans[RX].con_priv	= priv;
++	mbox->txdone_poll		= true;
++	mbox->txdone_irq		= false;
++	mbox->txpoll_period		= 1;
++	mbox->num_chans			= NUM_DIRECTION;
++	mbox->ops			= &mfis_chan_ops;
++	mbox->dev			= dev;
++
++	ret = mbox_controller_register(mbox);
++	if (ret)
++		return ret;
++
++	platform_set_drvdata(pdev, mbox);
++
++	return 0;
++}
++
++static const struct of_device_id mfis_mbox_of_match[] = {
++	{ .compatible = "rcar,mfis-mailbox-gen5" },
++	{}
 +};
++MODULE_DEVICE_TABLE(of, mfis_mbox_of_match);
 +
-+/* Console */
-+&lpuart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
++static struct platform_driver mfis_mbox_driver = {
++	.driver = {
++		.name = "rcar-mfis-mailbox",
++		.of_match_table = mfis_mbox_of_match,
++	},
++	.probe	= mfis_mbox_probe,
 +};
++module_platform_driver(mfis_mbox_driver);
 +
-+/* Audio */
-+&sai1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sai1>;
-+	assigned-clocks = <&clk IMX93_CLK_SAI1>;
-+	assigned-clock-parents = <&clk IMX93_CLK_AUDIO_PLL>;
-+	assigned-clock-rates = <19200000>;
-+	fsl,sai-mclk-direction-output;
-+	status = "okay";
-+};
-+
-+/* USB  */
-+&usbphynop1 {
-+	vbus-supply = <&reg_usb_otg1_vbus>;
-+};
-+
-+&usbphynop2 {
-+	vbus-supply = <&reg_usb_otg2_vbus>;
-+};
-+
-+&usbotg1 {
-+	disable-over-current;
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&usbotg2 {
-+	disable-over-current;
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+/* SD-Card */
-+&usdhc2 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc2_default>, <&pinctrl_usdhc2_cd>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_cd>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_cd>;
-+	bus-width = <4>;
-+	cd-gpios = <&gpio3 0 GPIO_ACTIVE_LOW>;
-+	disable-wp;
-+	no-mmc;
-+	no-sdio;
-+	vmmc-supply = <&reg_usdhc2_vmmc>;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_eqos: eqosgrp {
-+		fsl,pins = <
-+			MX91_PAD_ENET1_TD2__ENET_QOS_CLOCK_GENERATE_CLK	0x4000050e
-+			MX91_PAD_ENET1_RD0__ENET_QOS_RGMII_RD0		0x57e
-+			MX91_PAD_ENET1_RD1__ENET_QOS_RGMII_RD1		0x57e
-+			MX91_PAD_ENET1_TD0__ENET_QOS_RGMII_TD0		0x50e
-+			MX91_PAD_ENET1_TD1__ENET1_RGMII_TD1		0x50e
-+			MX91_PAD_ENET1_RX_CTL__ENET_QOS_RGMII_RX_CTL	0x57e
-+			MX91_PAD_ENET1_TX_CTL__ENET_QOS_RGMII_TX_CTL	0x50e
-+			MX91_PAD_ENET1_RXC__ENET_QOS_RX_ER		0x57e
-+		>;
-+	};
-+
-+	pinctrl_flexcan1: flexcan1grp {
-+		fsl,pins = <
-+			MX91_PAD_PDM_BIT_STREAM0__CAN1_RX	0x139e
-+			MX91_PAD_PDM_CLK__CAN1_TX		0x139e
-+		>;
-+	};
-+
-+	pinctrl_flexcan1_tc: flexcan1tcgrp {
-+		fsl,pins = <
-+			MX91_PAD_ENET2_TD3__GPIO4_IO16		0x31e
-+		>;
-+	};
-+
-+	pinctrl_lpi2c2: lpi2c2grp {
-+		fsl,pins = <
-+			MX91_PAD_I2C2_SCL__LPI2C2_SCL		0x40000b9e
-+			MX91_PAD_I2C2_SDA__LPI2C2_SDA		0x40000b9e
-+		>;
-+	};
-+
-+	pinctrl_lpi2c2_gpio: lpi2c2gpiogrp {
-+		fsl,pins = <
-+			MX91_PAD_I2C2_SCL__GPIO1_IO2		0x31e
-+			MX91_PAD_I2C2_SDA__GPIO1_IO3		0x31e
-+		>;
-+	};
-+
-+	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
-+		fsl,pins = <
-+			MX91_PAD_SD2_RESET_B__GPIO3_IO7		0x31e
-+		>;
-+	};
-+
-+	pinctrl_rtc: rtcgrp {
-+		fsl,pins = <
-+			MX91_PAD_ENET2_RD2__GPIO4_IO26		0x31e
-+		>;
-+	};
-+
-+	pinctrl_sai1: sai1grp {
-+		fsl,pins = <
-+			MX91_PAD_UART2_RXD__SAI1_MCLK		0x1202
-+			MX91_PAD_SAI1_TXFS__SAI1_TX_SYNC	0x1202
-+			MX91_PAD_SAI1_TXC__SAI1_TX_BCLK		0x1202
-+			MX91_PAD_SAI1_TXD0__SAI1_TX_DATA0	0x1402
-+			MX91_PAD_SAI1_RXD0__SAI1_RX_DATA0	0x1402
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX91_PAD_UART1_RXD__LPUART1_RX		0x31e
-+			MX91_PAD_UART1_TXD__LPUART1_TX		0x30e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_cd: usdhc2cdgrp {
-+		fsl,pins = <
-+			MX91_PAD_SD2_CD_B__GPIO3_IO0		0x31e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_default: usdhc2grp {
-+		fsl,pins = <
-+			MX91_PAD_SD2_CLK__USDHC2_CLK		0x158e
-+			MX91_PAD_SD2_CMD__USDHC2_CMD		0x1382
-+			MX91_PAD_SD2_DATA0__USDHC2_DATA0	0x1386
-+			MX91_PAD_SD2_DATA1__USDHC2_DATA1	0x138e
-+			MX91_PAD_SD2_DATA2__USDHC2_DATA2	0x139e
-+			MX91_PAD_SD2_DATA3__USDHC2_DATA3	0x139e
-+			MX91_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-+		fsl,pins = <
-+			MX91_PAD_SD2_CLK__USDHC2_CLK		0x159e
-+			MX91_PAD_SD2_CMD__USDHC2_CMD		0x139e
-+			MX91_PAD_SD2_DATA0__USDHC2_DATA0	0x138e
-+			MX91_PAD_SD2_DATA1__USDHC2_DATA1	0x138e
-+			MX91_PAD_SD2_DATA2__USDHC2_DATA2	0x139e
-+			MX91_PAD_SD2_DATA3__USDHC2_DATA3	0x139e
-+			MX91_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-+		fsl,pins = <
-+			MX91_PAD_SD2_CLK__USDHC2_CLK		0x158e
-+			MX91_PAD_SD2_CMD__USDHC2_CMD		0x138e
-+			MX91_PAD_SD2_DATA0__USDHC2_DATA0	0x139e
-+			MX91_PAD_SD2_DATA1__USDHC2_DATA1	0x139e
-+			MX91_PAD_SD2_DATA2__USDHC2_DATA2	0x139e
-+			MX91_PAD_SD2_DATA3__USDHC2_DATA3	0x139e
-+			MX91_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
-+		>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi
-new file mode 100644
-index 000000000000..29a428a052b0
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi
-@@ -0,0 +1,304 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2025 PHYTEC Messtechnik GmbH
-+ * Author: Christoph Stoidner <c.stoidner@phytec.de>
-+ *
-+ * Product homepage:
-+ * https://www.phytec.eu/en/produkte/system-on-modules/phycore-imx-91-93/
-+ */
-+
-+#include <dt-bindings/leds/common.h>
-+
-+#include "imx91.dtsi"
-+
-+/ {
-+	model = "PHYTEC phyCORE-i.MX91";
-+	compatible = "phytec,imx91-phycore-som", "fsl,imx91";
-+
-+	aliases {
-+		ethernet0 = &fec;
-+	};
-+
-+	reserved-memory {
-+		ranges;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+
-+		linux,cma {
-+			compatible = "shared-dma-pool";
-+			reusable;
-+			alloc-ranges = <0 0x80000000 0 0x40000000>;
-+			size = <0 0x10000000>;
-+			linux,cma-default;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_leds>;
-+
-+		led-0 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_HEARTBEAT;
-+			gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	reg_vdda_1v8: regulator-vdda-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDA_1V8";
-+		regulator-max-microvolt = <1800000>;
-+		regulator-min-microvolt = <1800000>;
-+		vin-supply = <&buck5>;
-+	};
-+};
-+
-+/* ADC */
-+&adc1 {
-+	vref-supply = <&reg_vdda_1v8>;
-+};
-+
-+/* Ethernet */
-+&fec {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_fec>;
-+	phy-mode = "rmii";
-+	phy-handle = <&ethphy1>;
-+
-+	assigned-clocks = <&clk IMX91_CLK_ENET_TIMER>,
-+			  <&clk IMX91_CLK_ENET2_REGULAR>;
-+	assigned-clock-parents = <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>,
-+				 <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>;
-+	assigned-clock-rates = <100000000>, <50000000>;
-+	status = "okay";
-+
-+	mdio: mdio {
-+		clock-frequency = <5000000>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethphy1: ethernet-phy@1 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <1>;
-+			reset-gpios = <&gpio4 23 GPIO_ACTIVE_HIGH>;
-+			reset-assert-us = <30>;
-+		};
-+	};
-+};
-+
-+/* I2C3 */
-+&lpi2c3 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_lpi2c3>;
-+	pinctrl-1 = <&pinctrl_lpi2c3_gpio>;
-+	scl-gpios = <&gpio2 29 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio2 28 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+
-+	pmic@25 {
-+		compatible = "nxp,pca9451a";
-+		reg = <0x25>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pmic>;
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
-+
-+		regulators {
-+			buck1: BUCK1 {
-+				regulator-name = "VDD_SOC";
-+				regulator-max-microvolt = <950000>;
-+				regulator-min-microvolt = <610000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <3125>;
-+			};
-+
-+			buck2: BUCK2 {
-+				regulator-name = "VDDQ_0V6";
-+				regulator-max-microvolt = <600000>;
-+				regulator-min-microvolt = <600000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck4: BUCK4 {
-+				regulator-name = "VDD_3V3_BUCK";
-+				regulator-max-microvolt = <3300000>;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck5: BUCK5 {
-+				regulator-name = "VDD_1V8";
-+				regulator-max-microvolt = <1800000>;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck6: BUCK6 {
-+				regulator-name = "VDD_1V1";
-+				regulator-max-microvolt = <1100000>;
-+				regulator-min-microvolt = <1100000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo1: LDO1 {
-+				regulator-name = "PMIC_SNVS_1V8";
-+				regulator-max-microvolt = <1800000>;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo4: LDO4 {
-+				regulator-name = "VDD_0V8";
-+				regulator-max-microvolt = <800000>;
-+				regulator-min-microvolt = <800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo5: LDO5 {
-+				regulator-name = "NVCC_SD2";
-+				regulator-max-microvolt = <3300000>;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+
-+	/* EEPROM */
-+	eeprom@50 {
-+		compatible = "atmel,24c32";
-+		reg = <0x50>;
-+		pagesize = <32>;
-+		vcc-supply = <&buck4>;
-+	};
-+};
-+
-+/* eMMC */
-+&usdhc1 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc1>;
-+	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
-+	bus-width = <8>;
-+	non-removable;
-+	no-1-8-v;
-+	status = "okay";
-+};
-+
-+/* Watchdog */
-+&wdog3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdog>;
-+	fsl,ext-reset-output;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_fec: fecgrp {
-+		fsl,pins = <
-+			MX91_PAD_ENET2_MDC__ENET2_MDC			0x50e
-+			MX91_PAD_ENET2_MDIO__ENET2_MDIO			0x502
-+			/* the three pins below are connected to PHYs straps,
-+			 * that is what the pull-up/down setting is for.
-+			 */
-+			MX91_PAD_ENET2_RD0__ENET2_RGMII_RD0		0x37e
-+			MX91_PAD_ENET2_RD1__ENET2_RGMII_RD1		0x37e
-+			MX91_PAD_ENET2_RX_CTL__ENET2_RGMII_RX_CTL	0x57e
-+			MX91_PAD_ENET2_TD0__ENET2_RGMII_TD0		0x50e
-+			MX91_PAD_ENET2_TD1__ENET2_RGMII_TD1		0x50e
-+			MX91_PAD_ENET2_TX_CTL__ENET2_RGMII_TX_CTL	0x50e
-+			MX91_PAD_ENET2_TD2__ENET2_TX_CLK2		0x4000050e
-+			MX91_PAD_ENET2_RXC__GPIO4_IO23			0x51e
-+		>;
-+	};
-+
-+	pinctrl_leds: ledsgrp {
-+		fsl,pins = <
-+			MX91_PAD_I2C1_SDA__GPIO1_IO1		0x11e
-+		>;
-+	};
-+
-+	pinctrl_lpi2c3: lpi2c3grp {
-+		fsl,pins = <
-+			MX91_PAD_GPIO_IO28__LPI2C3_SDA		0x40000b9e
-+			MX91_PAD_GPIO_IO29__LPI2C3_SCL		0x40000b9e
-+		>;
-+	};
-+
-+	pinctrl_lpi2c3_gpio: lpi2c3gpiogrp {
-+		fsl,pins = <
-+			MX91_PAD_GPIO_IO28__GPIO2_IO28		0x31e
-+			MX91_PAD_GPIO_IO29__GPIO2_IO29		0x31e
-+		>;
-+	};
-+
-+	pinctrl_pmic: pmicgrp {
-+		fsl,pins = <
-+			MX91_PAD_ENET2_RD3__GPIO4_IO27		0x31e
-+		>;
-+	};
-+
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX91_PAD_SD1_CLK__USDHC1_CLK		0x179e
-+			MX91_PAD_SD1_CMD__USDHC1_CMD		0x1386
-+			MX91_PAD_SD1_DATA0__USDHC1_DATA0	0x138e
-+			MX91_PAD_SD1_DATA1__USDHC1_DATA1	0x1386
-+			MX91_PAD_SD1_DATA2__USDHC1_DATA2	0x138e
-+			MX91_PAD_SD1_DATA3__USDHC1_DATA3	0x1386
-+			MX91_PAD_SD1_DATA4__USDHC1_DATA4	0x1386
-+			MX91_PAD_SD1_DATA5__USDHC1_DATA5	0x1386
-+			MX91_PAD_SD1_DATA6__USDHC1_DATA6	0x1386
-+			MX91_PAD_SD1_DATA7__USDHC1_DATA7	0x1386
-+			MX91_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
-+		>;
-+	};
-+
-+	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
-+		fsl,pins = <
-+			MX91_PAD_SD1_CLK__USDHC1_CLK		0x17be
-+			MX91_PAD_SD1_CMD__USDHC1_CMD		0x139e
-+			MX91_PAD_SD1_DATA0__USDHC1_DATA0	0x138e
-+			MX91_PAD_SD1_DATA1__USDHC1_DATA1	0x139e
-+			MX91_PAD_SD1_DATA2__USDHC1_DATA2	0x13be
-+			MX91_PAD_SD1_DATA3__USDHC1_DATA3	0x139e
-+			MX91_PAD_SD1_DATA4__USDHC1_DATA4	0x139e
-+			MX91_PAD_SD1_DATA5__USDHC1_DATA5	0x139e
-+			MX91_PAD_SD1_DATA6__USDHC1_DATA6	0x139e
-+			MX91_PAD_SD1_DATA7__USDHC1_DATA7	0x139e
-+			MX91_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
-+		>;
-+	};
-+
-+	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
-+		fsl,pins = <
-+			MX91_PAD_SD1_CLK__USDHC1_CLK		0x17be
-+			MX91_PAD_SD1_CMD__USDHC1_CMD		0x139e
-+			MX91_PAD_SD1_DATA0__USDHC1_DATA0	0x139e
-+			MX91_PAD_SD1_DATA1__USDHC1_DATA1	0x13be
-+			MX91_PAD_SD1_DATA2__USDHC1_DATA2	0x13be
-+			MX91_PAD_SD1_DATA3__USDHC1_DATA3	0x13be
-+			MX91_PAD_SD1_DATA4__USDHC1_DATA4	0x13be
-+			MX91_PAD_SD1_DATA5__USDHC1_DATA5	0x13be
-+			MX91_PAD_SD1_DATA6__USDHC1_DATA6	0x13be
-+			MX91_PAD_SD1_DATA7__USDHC1_DATA7	0x13be
-+			MX91_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
-+		>;
-+	};
-+
-+	pinctrl_wdog: wdoggrp {
-+		fsl,pins = <
-+			MX91_PAD_WDOG_ANY__WDOG1_WDOG_ANY	0x31e
-+		>;
-+	};
-+};
++MODULE_LICENSE("GPL v2");
++MODULE_DESCRIPTION("R-Car MFIS mailbox driver");
 -- 
-2.34.1
+2.43.0
 
 
