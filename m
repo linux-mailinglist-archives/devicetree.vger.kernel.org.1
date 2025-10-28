@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-232071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 455B6C13F50
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:57:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F177AC13F71
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:58:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CB8734F0C97
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:55:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BF7E19C0E04
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:56:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7168E30506C;
-	Tue, 28 Oct 2025 09:54:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AF0E302749;
+	Tue, 28 Oct 2025 09:55:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="IrpHMJ/r"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="R8FjLV0v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90CAF302CC2;
-	Tue, 28 Oct 2025 09:53:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 895A5302160;
+	Tue, 28 Oct 2025 09:55:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761645240; cv=none; b=mmHjDNd8ZBOFiFFsfjt74GL41Ee9CQ46vyEF0TY7Zg0DbfRGjPrNhV5B/K/nXvQKpCCSTW66vThWglpziOFPUkAiCbhTGMGQDei4oMy331oarJbdOZ8PLoyANF+pfAKFEULWJMxBdY8UDmXEkbQo37wtnP53dty3N0eERO11OdU=
+	t=1761645347; cv=none; b=pZ3ZVN9zHf1VN9s8fsEhUBnMvFuaIxq4s8JAjpPm/4ElNPi8VChhyqKKurvHo9J0hFR7KPtswAHp5YQ4kHPAay6CSJm+l2ahw6NtBua0rdaDQh6BFlrfROTjFqnHN2tvlZ3sr8o7yCTfsbeMj/W6yQDprGYzFBWwbwlvRUCWLvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761645240; c=relaxed/simple;
-	bh=+58CVtXnt3w5k1YenKlBxrXneK4IFpaNCV8YTq5NzcY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p0UaV+qtX52e8duNRph3DjmKQv4RAQA8oiEZTrF09WTW+F0GCOr7ou5KGaWKMLi940EMPxQKXZvHh16rc5QHOx34kSzSHDbaO+fNvbWz67PGpIBDK/+bOIysjkJAO0AY/UpxiBDlkdkmLSEqoIcTz12t4baJb9ZStq2Rxp2l6/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=IrpHMJ/r; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 56353AB4;
-	Tue, 28 Oct 2025 10:52:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1761645127;
-	bh=+58CVtXnt3w5k1YenKlBxrXneK4IFpaNCV8YTq5NzcY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IrpHMJ/rffkKqPBly8M6fO/5qd3dmtEt4jMcsksXuhd0kXx6TWopVRehD25nn4TEs
-	 jQs8em1dB6LWVe39egZ/rrwfyaF/Dy0bSSc+esq7rTbPWuT3CWp6VAToDX9bmz1dXt
-	 PJ6cFK/l95mLYFiGdxUjTRGcoSEQTE7V3v9x9AVU=
-Message-ID: <5a3f30c7-fecd-4354-94bc-773dd44b4189@ideasonboard.com>
-Date: Tue, 28 Oct 2025 09:53:52 +0000
+	s=arc-20240116; t=1761645347; c=relaxed/simple;
+	bh=drUNvnzk4B66zjRoKAYXtMaNwYbmhzkjE6I26tkD0TU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=lK1+y+IfZ4OmP6G+EMyz8NHkWsbpEdDHTwK0+ZhNGncJGTVuSWL6ei60PSRdKOnPjuBoLB3pfh3Oes4369nmLQpdZOy4yQINwf0ksXNPraVa1i1W6uT8tTLcknzzaoU/Cx2NlLcZ2ilUfVM0VUp03MCB1l7a5Xp3AEkggUylL6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=R8FjLV0v; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59S4p2MF591277;
+	Tue, 28 Oct 2025 09:54:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	smXHDMXrCZNA+TvjDFOW48yo98V1HfJ29j+4aR1KUQE=; b=R8FjLV0v2mm/yqCC
+	Wr4HczVqwyo7QRsxb1OaxN73EJL6VxA+W3Z2mjSgTByxhb6XHsMOFaj4/NeIj9oR
+	2Bj7kKQaqPdSQT/DLcIiJNcP9ljYpaawC4BjXySVe3cBgGYTaQj82W8/6HY2G6Aa
+	G6kVZV/VhMelIieDEtPn3I8kZEMib9LperpsfxIy25z3h+OikJlEkR6X5abO16FJ
+	EL/mcCO3mPbdAQH3NA9M+RDIKLsInkP7fAyezzHuLm64pjTsJXsqSFs50uJkJihU
+	CgXulsXX0xWb5yKzZEOfbtquDcbQci3GcoBAMmoLukPLTXd/4SwbJqj7O3tfHxQo
+	DluBkQ==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a2q5u8vke-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Oct 2025 09:54:59 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 59S9swt8004710
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Oct 2025 09:54:58 GMT
+Received: from [10.206.96.75] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Tue, 28 Oct
+ 2025 02:54:49 -0700
+Message-ID: <9fe1375d-f4fc-443a-a9b0-eb8079e08376@quicinc.com>
+Date: Tue, 28 Oct 2025 15:24:46 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,196 +65,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/3] dt-bindings: media: Add bindings for the RZ/V2H(P)
- IVC block
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- jacopo.mondi@ideasonboard.com, biju.das.jz@bp.renesas.com,
- laurent.pinchart@ideasonboard.com,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20251002-ivc-v5-0-192c663fa70b@ideasonboard.com>
- <20251002-ivc-v5-1-192c663fa70b@ideasonboard.com>
- <CA+V-a8sCvhepEL1RnsemN_84U9gcLLoGBnOUtY0zLsZO+kcu7Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: phy: qcom-edp: Add edp ref clk for
+ sa8775p
 Content-Language: en-US
-From: Dan Scally <dan.scally@ideasonboard.com>
-In-Reply-To: <CA+V-a8sCvhepEL1RnsemN_84U9gcLLoGBnOUtY0zLsZO+kcu7Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Hello Prabhakar
-
-On 23/10/2025 22:49, Lad, Prabhakar wrote:
-> Hi Daniel,
-> 
-> Thank you for the patch.
-> 
-> On Thu, Oct 2, 2025 at 11:38 AM Daniel Scally
-> <dan.scally@ideasonboard.com> wrote:
->>
->> The RZ/V2H(P) SoC has a block called the Input Video Control block which
->> feeds image data into the Image Signal Processor. Add dt bindings to
->> describe the IVC.
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
->> ---
->> Changes in v5:
->>
->>          - Rename RZ/V2H to RZ/V2H(P)
->>
->> Changes in v3:
->>
->>          - Rename from rzv2h-ivc.yaml to r9a09g057-ivc.yaml
->>          - Update clock and reset names
->>
->> Changes in v2:
->>
->>          - compatible matches filename
->>          - Added power-domains
->>          - Aligned clock and reset entries on opening "<"
->>          - Removed status = "okay"; from example
->> ---
->>   .../bindings/media/renesas,r9a09g057-ivc.yaml      | 103 +++++++++++++++++++++
->>   1 file changed, 103 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/media/renesas,r9a09g057-ivc.yaml b/Documentation/devicetree/bindings/media/renesas,r9a09g057-ivc.yaml
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..8e236e46882668b2660d175e8b2cffe204aa781c
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/renesas,r9a09g057-ivc.yaml
->> @@ -0,0 +1,103 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/media/renesas,r9a09g057-ivc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Renesas RZ/V2H(P) Input Video Control Block
->> +
->> +maintainers:
->> +  - Daniel Scally <dan.scally@ideasonboard.com>
->> +
->> +description:
->> +  The IVC block is a module that takes video frames from memory and feeds them
->> +  to the Image Signal Processor for processing.
->> +
->> +properties:
->> +  compatible:
->> +    const: renesas,r9a09g057-ivc
-> Nit, `const: renesas,r9a09g057-ivc # RZ/V2H(P)` as done for the rest
-> of the Renesas bindings.
-
-Ack>
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    items:
->> +      - description: Input Video Control block register access clock
->> +      - description: Video input data AXI bus clock
->> +      - description: ISP system clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: reg
->> +      - const: axi
->> +      - const: isp
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +  resets:
->> +    items:
->> +      - description: Input Video Control block register access reset
->> +      - description: Video input data AXI bus reset
->> +      - description: ISP core reset
->> +
->> +  reset-names:
->> +    items:
->> +      - const: reg
->> +      - const: axi
->> +      - const: isp
->> +
->> +  port:
->> +    $ref: /schemas/graph.yaml#/properties/port
->> +    description: Output parallel video bus
->> +
->> +    properties:
->> +      endpoint:
->> +        $ref: /schemas/graph.yaml#/properties/endpoint
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - clocks
->> +  - clock-names
->> +  - power-domains
->> +  - resets
->> +  - reset-names
->> +  - port
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/renesas,r9a09g057-cpg.h>
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +    isp-input@16040000 {
->> +      compatible = "renesas,r9a09g057-ivc";
->> +      reg = <0x16040000 0x230>;
->> +
->> +      clocks = <&cpg CPG_MOD 0xe3>,
->> +               <&cpg CPG_MOD 0xe4>,
->> +               <&cpg CPG_MOD 0xe5>;
->> +      clock-names = "reg", "axi", "isp";
->> +
->> +      power-domains = <&cpg>;
->> +
->> +      resets = <&cpg 0xd4>,
->> +               <&cpg 0xd1>,
->> +               <&cpg 0xd3>;
->> +      reset-names = "reg", "axi", "isp";
->> +
->> +      interrupts = <GIC_SPI 861 IRQ_TYPE_EDGE_RISING>;
-> I understand we split this up from ISP, there are other interrupts for
-> ISP for example 860 which is similar to 861 where it outputs signal on
-> rising instead of falling. Do you foresee this interrupt being used
-> for IVC?  Rest LGTM.
-
-I don't think so...as far as I can tell that interrupt is used for determining when the transfer has 
-started, but I'm not aware of any decisions that we'd want to base on that event over the transfer 
-finished interrupt.
-
-Thanks
-Dan
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+CC: <robin.clark@oss.qualcomm.com>, <lumag@kernel.org>,
+        <abhinav.kumar@linux.dev>, <jessica.zhang@oss.qualcomm.com>,
+        <sean@poorly.run>, <marijn.suijten@somainline.org>,
+        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <quic_mahap@quicinc.com>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <mani@kernel.org>,
+        <James.Bottomley@hansenpartnership.com>, <martin.petersen@oracle.com>,
+        <vkoul@kernel.org>, <kishon@kernel.org>,
+        <cros-qcom-dts-watchers@chromium.org>, <linux-phy@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+        <quic_vproddut@quicinc.com>
+References: <20251013104806.6599-1-quic_riteshk@quicinc.com>
+ <20251013104806.6599-2-quic_riteshk@quicinc.com>
+ <aifibm7pjva3rkb4gkzyxun46sraxyeh7jh6vgcirv5tsbf6ad@7f5bbs4ix7sa>
+From: Ritesh Kumar <quic_riteshk@quicinc.com>
+In-Reply-To: <aifibm7pjva3rkb4gkzyxun46sraxyeh7jh6vgcirv5tsbf6ad@7f5bbs4ix7sa>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI4MDA4MyBTYWx0ZWRfXzukzlvziT20S
+ HHowZRHU+mOMJ+gVXtpwz2Z2hTQxObF4IrfL9fdSu8Tx2aLRfGNc6ocku5lIHq0HH930gddcqLw
+ 8VikFxtFZS5SU/RDyADfRqs6B1YsHX6Lb+vOJRJsjS+XJBwYci/UQzkQGr5lBWmhuTNi0nl0v2y
+ 3tB+h3ka3m8Gm1z9dFI1+yJ5lMwMBygShHiNEANftCw1c3F7VmEsQkvLkmb+pooKxU1pcbGTtdI
+ OunDTfEDA7E1zj5a0Tmw302DOz0LAm3M7Joa+In4+WAzTquB+TMFOulRBChBELdL7S+Aboubi2H
+ FQAaGmvkn7jpe0nASxBhzFH8lvKb11beeAS0TtsqTH73Nx70rLZxCL/Xs1nOq/2Yg275DOuTrSZ
+ pAhCckTou7M0fmeN1fJJo41Ig1kfpA==
+X-Proofpoint-ORIG-GUID: wX0ON1gh3e_AQW4vGI8oM0EVR5bZwTkO
+X-Proofpoint-GUID: wX0ON1gh3e_AQW4vGI8oM0EVR5bZwTkO
+X-Authority-Analysis: v=2.4 cv=c9CmgB9l c=1 sm=1 tr=0 ts=690092f3 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8 a=dsHzLA6eIQ2_NKwUNnsA:9
+ a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=nl4s5V0KI7Kw-pW0DWrs:22
+ a=pHzHmUro8NiASowvMSCR:22 a=xoEH_sTeL_Rfw54TyV31:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-28_03,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 spamscore=0 priorityscore=1501 adultscore=0
+ clxscore=1015 lowpriorityscore=0 impostorscore=0 phishscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510020000 definitions=main-2510280083
 
 
-> 
-> Cheers,
-> Prabhakar
-> 
->> +
->> +      port {
->> +        ivc_out: endpoint {
->> +          remote-endpoint = <&isp_in>;
->> +        };
->> +      };
->> +    };
->> +...
->>
->> --
->> 2.43.0
->>
->>
+On 10/13/2025 6:04 PM, Dmitry Baryshkov wrote:
+> On Mon, Oct 13, 2025 at 04:18:04PM +0530, Ritesh Kumar wrote:
+> > Add edp reference clock for sa8775p edp phy.
+> > 
+> > Signed-off-by: Ritesh Kumar <quic_riteshk@quicinc.com>
+> > ---
+> >  Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
+> > index bfc4d75f50ff..b0e4015596de 100644
+> > --- a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
+> > @@ -73,6 +73,7 @@ allOf:
+> >          compatible:
+> >            enum:
+> >              - qcom,x1e80100-dp-phy
+> > +            - qcom,sa8775p-edp-phy
+>
+> Usually such lists are sorted.
 
+Sure, will update in next version.
+
+>
+> >      then:
+> >        properties:
+> >          clocks:
+> > -- 
+> > 2.17.1
+> > 
+>
 
