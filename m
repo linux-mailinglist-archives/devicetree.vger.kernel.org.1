@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-232090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB446C1422E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 11:40:07 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63A72C142B2
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 11:47:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F2265E07D2
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:39:52 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 92D544FBE9C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:43:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 897A73043D4;
-	Tue, 28 Oct 2025 10:39:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28FC5306B18;
+	Tue, 28 Oct 2025 10:41:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EQqI10fx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ooP4jPdN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5578D238D54;
-	Tue, 28 Oct 2025 10:39:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0A9E3054E5;
+	Tue, 28 Oct 2025 10:41:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761647989; cv=none; b=XM6/Rw73Em7vsdahYtoofWm/9BoVOvE90lzkvzjS7ci0hSsFDD52xSFFrJCruq5caftf7sESPnmZKp/CsxdwKZU37RPtq02PpYNQTVURdJdnvnV5M0k8EZ3bjCDfWi4ADS0nRsTf3BaeVjWff6fEKNCa4KuSo4Z7PtBMCddJogg=
+	t=1761648103; cv=none; b=uVnh7BJ08NFFzflwvy5LIodUDIFZSoLjNrvMfjOQjKXCOtxVUupGGs1wRWJpfL2skWKJQerlIaItKr8FGhHm0VprSrN8xM3xAM5SkrVsAc8e7aVzlx6bPk3mFhsuVEyl3hChkWuwPrgP1JmiaiR03CxUWeAm+jz44Z5LAIxcUGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761647989; c=relaxed/simple;
-	bh=pu1gXratybryj+z26hPMEOT4CjuWX35Q/nNvNnEDIis=;
+	s=arc-20240116; t=1761648103; c=relaxed/simple;
+	bh=pL8cLCQ4d/YVjv8TZyN7yeRNOVxsFNE9EZDlNtGyw+w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tXX074yawbQqdoynuMYD0Exf6CPZzqs0oZxBl2B5TXCpFlYCRFBg6KxxIEZS3DgCnOT+/SfWy9DilU5Lt0jHwMfgDEBX7caFJlsS8iRyXD8+1Ry0+Ix8u730VRbVDdtQLLZGjvii/SkVpEDR1mbh/lZXgeBwbwPOjpaPmzZq1EE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EQqI10fx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A727C4CEE7;
-	Tue, 28 Oct 2025 10:39:45 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IAgAI8IFUvE3QXnqFrLWYRWWHcGICfXCnR9e+aHDH/4QIVccEttw8+NUOe37Sx07XX+OXQLw2fMd7VkpQ4JLcMOoMpKzod7Mlqz8W0vkmmjEpIwqwKdD6DWhPL/85AfejYpC3qDqx2cdcmyezx8PISQoQ9L+KBiTZL+MVcsuL5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ooP4jPdN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 108A2C4CEE7;
+	Tue, 28 Oct 2025 10:41:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761647989;
-	bh=pu1gXratybryj+z26hPMEOT4CjuWX35Q/nNvNnEDIis=;
+	s=k20201202; t=1761648102;
+	bh=pL8cLCQ4d/YVjv8TZyN7yeRNOVxsFNE9EZDlNtGyw+w=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EQqI10fx1io+vhRGmZz65ZqNoZOZ0siR/5KaMlFagnL7VDJYC0Dysw6cnlsOKO72r
-	 hWAwVKFJKU+fJMDxaPqHfmr8JV7wHJs/iLRHS0upoDcIfAlYomf0vnu8U5CCN85b6Y
-	 z2nwFxMQ3QYHnwu94a+SYqhCc61+9znxtEVAhxudBTrvpQct8YSVC0R75iTTNcuFq7
-	 hDo/pGiCR4nME8V8dmkcdz1dBT8bmNGMyeCUfbCWzZ9r4mWbKBjVNf1d1r/s9r4tr5
-	 FthTo2jEeoehU1xrwvLh/blGEsM7ryqb8xXnhHm9Ap1lGDcCnCAcUnt2trXgXlpgRX
-	 lzvBbaTeRB59Q==
-Message-ID: <b8550097-76c5-4843-9b05-0802f3a4e3e6@kernel.org>
-Date: Tue, 28 Oct 2025 11:39:43 +0100
+	b=ooP4jPdNSs+1pgH+IiPrvoVoGfJkdzDbrlkmWYMEuEoUtftf10U0+qz+c5QpHxHwR
+	 4Kt1S763gF96gZtrdvuWG17SFBERgr1ePDkyiuH0sCwSRzJ6J+tx5KtKm+bHXjAVw/
+	 bsOz9GBSeOLyv8CBup9jWQX5NIr3ZTR3UK4MkbDPybZBqGzbfe9n4pGg5L0Zd/bCvp
+	 FwvgkDCA8fzT2rKAV1JgqMchI7YE+z+2KqDd8E7q+t2jHhl6Y/6ZOE7oeEG5TE3UTI
+	 Fk4Xo/bmGo8UKQlBqry9TspEfu9r/cHKQ6BhTqhvfE0vU5XEAaz/CxhDyg/UjXKWpW
+	 aoYOKVNagpjxQ==
+Message-ID: <f12bc562-b5bb-4bdd-b274-23582df8f2d4@kernel.org>
+Date: Tue, 28 Oct 2025 11:41:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: media: camss: Add qcom,sm6350-camss
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Luca Weiss <luca.weiss@fairphone.com>
-Cc: Bryan O'Donoghue <bod@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 1/3] dt-bindings: arm: rockchip: Add Radxa CM5 IO board
+To: FUKAUMI Naoki <naoki@radxa.com>, Joseph Kogut <joseph.kogut@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251024-sm6350-camss-v1-0-63d626638add@fairphone.com>
- <20251024-sm6350-camss-v1-1-63d626638add@fairphone.com>
- <20251028-defiant-visionary-rottweiler-f97cda@kuoka>
- <DDTUHFIN3IEK.3FY5IS9S73ASO@fairphone.com>
- <0bf4ab2e-9846-4f8b-ad72-e9db6fb7d08e@kernel.org>
- <936ecaf4-8b48-4c93-a666-153a13ee9e16@linaro.org>
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Steve deRosier <derosier@cal-sierra.com>
+References: <174735136138.1544989.11909422896170025756.robh@kernel.org>
+ <20250528221823.2974653-1-joseph.kogut@gmail.com>
+ <20250528221823.2974653-2-joseph.kogut@gmail.com>
+ <20250529-impressive-real-monkey-a7818b@kuoka>
+ <6443BD03B4C4F1FE+d20c3903-e2dc-4c2b-8f6e-fac38f242898@radxa.com>
+ <2f4e7f94-2921-493c-94fa-45749a060bc0@kernel.org>
+ <870075785A1ED2B9+6fb5238e-dc57-406b-acf9-b88b237d8e5b@radxa.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,31 +109,54 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <936ecaf4-8b48-4c93-a666-153a13ee9e16@linaro.org>
+In-Reply-To: <870075785A1ED2B9+6fb5238e-dc57-406b-acf9-b88b237d8e5b@radxa.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/10/2025 11:24, Bryan O'Donoghue wrote:
-> On 28/10/2025 09:46, Krzysztof Kozlowski wrote:
->>>>> +  power-domain-names:
->>>>> +    items:
->>>>> +      - const: ife0
->>>>> +      - const: ife1
->>>>> +      - const: ife2
->>>>> +      - const: top
->>>> Uh, not your fault, but who came with this list in previous generations?
->>>> Instead of simple and obvious "top+ifeX" which allows growing/shrinking,
->>>> someone put "top" at the end which means this cannot follow same order
->>>> as X1E for example... Heh, it follows at least sm8550.
->>> Shall we put top as first power-domain? I don't think it's an issue to
->>> change the order.
->> Well, it matches sm8550, so I am just grumpy complaining. It's fine.
+On 28/10/2025 10:44, FUKAUMI Naoki wrote:
+> Hi Joseph
 > 
-> The provenance here is "top" was required to be added last because the 
-> code depended on magic indexing in dtb to know which was the TOP GDSC.
+> Your patch seems to be NAKed.
+> I will submit new patch soon.
+
+Sorry, what? Don't hijack other people's work.
+
+> 
+> Best regards,
+> 
+> --
+> FUKAUMI Naoki
+> Radxa Computer (Shenzhen) Co., Ltd.
+> 
+> On 10/28/25 18:37, Krzysztof Kozlowski wrote:
+>> On 28/10/2025 10:33, FUKAUMI Naoki wrote:
+>>> Hi Krzysztof,
+>>>
+>>> https://patchwork.kernel.org/project/linux-rockchip/patch/20250528221823.2974653-2-joseph.kogut@gmail.com/
+>>>
+>>> On 5/29/25 18:19, Krzysztof Kozlowski wrote:
+>>>> On Wed, May 28, 2025 at 03:18:21PM GMT, Joseph Kogut wrote:
+>>>>> Add device tree binding for the Radxa CM5 IO board.
+>>>>>
+>>>>> This board is based on the rk3588s.
+>>>>
+>>>> Do not attach (thread) your patchsets to some other threads (unrelated
+>>>> or older versions). This buries them deep in the mailbox and might
+>>>> interfere with applying entire sets.
+>>>>
+>>>>
+>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Please explain the sorting rule used for this file. You must have known
+>>> the sorting rule; otherwise, how can you be sure this patch is correct?
+>>
+>> Huh? I don't have a clue about sorting rule but if you mock my review
+>> let's make it different:
+>>
+>> NAK
 
 
-That's silly, because if it was first element would be much easier.
+Ah, you were poking around other patch? I should have ignored that :/
+
 
 Best regards,
 Krzysztof
