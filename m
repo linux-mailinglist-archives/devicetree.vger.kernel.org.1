@@ -1,602 +1,261 @@
-Return-Path: <devicetree+bounces-231949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 691ACC133E2
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 08:07:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 475E6C13400
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 08:10:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 199684E9166
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 07:06:43 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 751FA4E8A33
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 07:10:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A01026ED35;
-	Tue, 28 Oct 2025 07:06:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7C5C2C17A3;
+	Tue, 28 Oct 2025 07:09:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="moSgKFfy"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="nc6J3owj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from CY3PR05CU001.outbound.protection.outlook.com (mail-westcentralusazon11013037.outbound.protection.outlook.com [40.93.201.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5833D1DDA24;
-	Tue, 28 Oct 2025 07:06:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761635200; cv=none; b=Be6ftxH//BY7jIx9wJYprvvJ0Jg5pEtIGK7ayaNRnHzUz8b/zKrFu/oLTwsb08ABaGCat/rf5SXUud4eWy/r53wiFZEBBM33YSXSgrDkbVZw8uwrS1VDrA+0Hzi2o3InOEGz9ZRM5KTN4rphnYBJSMrwxJmL+sXVwtbGQXYWx4k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761635200; c=relaxed/simple;
-	bh=p0uLGk4zsu4WQ2fu7lvJZDbp/ixU7AGem6xGsXLon70=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Sg/LAZYX9RDT1zFnInxLT5IoKMgVJsQy/coIXvs1kOhzbPgYKy9Y8SqK0eLEnMaKQ6XJCsImCQzbmkA0+N989gbBZwgYNwx7iAMAtigLlmRPWn4qIiyoHZlvaRQEIncO2hbXBglVvmhzRG9op3IHheGdU/zqetWUuznTml78l6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=moSgKFfy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B3A7C4CEE7;
-	Tue, 28 Oct 2025 07:06:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761635199;
-	bh=p0uLGk4zsu4WQ2fu7lvJZDbp/ixU7AGem6xGsXLon70=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=moSgKFfyvyvjW8XIEqX1wK1c9LHWkIybzY80/u2yj7pvGPEtn79JMC8UqENXsZ78E
-	 LLt1aMrhkBzOQ4AZFNU7McNtVlgpvpsCTOcBwg5c4Sqz6+TEwOrc6X9gJmGEwI9lSI
-	 orCqzDfEBzCw6aL8gbnMNFv7XIE/8M7W1XMSzDEEWVhkfN0NsfgLGgpv7lVPkrf/9p
-	 ge/lRRYYGFP/j7yh/bBmUPbK2KFtrlHbPSSB2GNCqe0inonZ89s4f8j9SJONwt+9sA
-	 vMXBh/AuHKTQMdDnUc2mYUf/TELdtWGUSy319dCX+EZIHobCY/uDJjtH5r17sKYnnU
-	 n0UJCgTws22XQ==
-Date: Tue, 28 Oct 2025 12:36:23 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Alex Elder <elder@riscstar.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, vkoul@kernel.org, 
-	kishon@kernel.org, dlan@gentoo.org, guodong@riscstar.com, pjw@kernel.org, 
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de, 
-	christian.bruel@foss.st.com, shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, 
-	qiang.yu@oss.qualcomm.com, namcao@linutronix.de, thippeswamy.havalige@amd.com, 
-	inochiama@gmail.com, devicetree@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-phy@lists.infradead.org, spacemit@lists.linux.dev, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/7] PCI: spacemit: introduce SpacemiT PCIe host driver
-Message-ID: <paxtbwlvndtsmllhsdiovwqoes7aqwiltac6ah4ehrpkz554y6@uj5k3w5jxeln>
-References: <20251013153526.2276556-1-elder@riscstar.com>
- <20251013153526.2276556-6-elder@riscstar.com>
- <274772thveml3xq2yc7477b7lywzzwelbjtq3hiy4louc6cqom@o5zq66mqa27h>
- <4027609d-6396-44c0-a514-11d7fe8a5b58@riscstar.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3243F26A0AD;
+	Tue, 28 Oct 2025 07:09:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.201.37
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761635395; cv=fail; b=BDEMDgwFF9XnGalgR6PosXs7PvPdU7tnExzvfa5AIrqOrX3ABVrQiSkzw62Mavo+KnrXRCZDjC778nhaxCA8ByO00nEkVCnEPaFSity6Bg7OSYm3EpkWZyBdEJdFCbnumaw86nlAkzvFQ5xjsIuI34U1rFECa8c8S1BguealqAE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761635395; c=relaxed/simple;
+	bh=fkIF+ppJi0Y6Byny04OCT0P1ew7+/bpoMoEOIA9T2dY=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=RWkHq9RTAFVBcBgolf9ZJObEht3GNUZjVWBYHRZPeQ5OKrDd8U5R/QyovHUHc7LY38or/fzvvPvU935HlpiUboCpe8oVAj1P/ZuV05srUn2yQL8ahfxJOZtfVMwb3RWZNWvT2+yDZZIHOdXr875IN/4aDkXsNA41obub53miiJk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=nc6J3owj; arc=fail smtp.client-ip=40.93.201.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=cbI8SrdncCehF4+oZDvSjMhKq1QyxJIRH+FLO88pWdFkdDJTi6egghGDj9KU7LdD3GGhapc72Mgz+SClMCjpbeuN6rBM/DZl0QsOON2H5U7XdYuD/EBa7zb7mEVuWO1RRQcu/Sua3gIJOAKrUmgQit6T13wa5MpiZ1dpqtRJeaZ9tTiVNDLKJoyAADrJppaM9Tp/E4XVhocDWkkvJmkk4bMokiSk3EwVwnkH7xE6P2mVy/X5J4TR00gc516PG9H4AJbcfVX0Aem/vVTmigkpkVPWBJMvtu+3qVUAtrURqg+p3bKSh/d/qo3fNao6Fg27P8lJCz8iXwl2gK/w55Pnmg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5bA6+hV3jaizAn7SyebArU4P5rAHIjSf02IqmyI9yr8=;
+ b=XFXCoHdZQ1QerGLMAy9vueChxgF2QP38UcRsJRaNQHoo+RGAcutUBsX0YpOw/sA6KGYQW4HrJ0Coxs38d7W0pNvFGktYzCLkMj4ygtrD3pAa5Yu1mgTDHlCTXQ6uAy7F3L4HdQC3tZ8m9CqBqudsjQD6Lrg07b0ppIunmtQJEljLxIVk5ETiGVqby9VFB/JR0psTibU4dIDv7FWiuXhE/zAZ/VksavFL/GXsJTFtQ4cg6HoBGfgISr++MIu8U2gHXNKBQm4OKBQosAaS/4im66npnvdYJt1QkMVzU05xtiD+pWyTQq1jxJQVeZ/njSCfYFPZcJbNov7MVOXQA+7hww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5bA6+hV3jaizAn7SyebArU4P5rAHIjSf02IqmyI9yr8=;
+ b=nc6J3owjHQPxfDs1NUOBPcz3jzbx5G+AYzwWY24J9Ci63GgZumJ+cMhmWt9UsD013PrG/eKcVqAwHDLkBN++H0E7dfdpG3a4OWspod1/xreK3MRAirRNYMvibNpCwAeoBdLF4CpJSaQhqOwIt78RjESy19yTd2RDohU0IManZspEcGMEnxZM+ty9lpziihPV+Rt6kfD1+rv+HAjJOqa/oIy5qPD3zt4fZEC39RKNszzyRqQkiqSB5BJm+1ahEvQ8sh/KnXPDzqxBoZdfMj9BatCNlaTpQiwpVghovMN7BhZ/j0IYLTKmYxNHL+quqNGWQXr30SGZJd11Zve36wZd7A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CH8PR12MB9768.namprd12.prod.outlook.com (2603:10b6:610:260::9)
+ by MN0PR12MB6318.namprd12.prod.outlook.com (2603:10b6:208:3c1::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.19; Tue, 28 Oct
+ 2025 07:09:51 +0000
+Received: from CH8PR12MB9768.namprd12.prod.outlook.com
+ ([fe80::f7db:9f0:a574:1abf]) by CH8PR12MB9768.namprd12.prod.outlook.com
+ ([fe80::f7db:9f0:a574:1abf%5]) with mapi id 15.20.9253.017; Tue, 28 Oct 2025
+ 07:09:51 +0000
+Message-ID: <d64a3d70-1ac8-46d6-9e85-d75aebc1e012@nvidia.com>
+Date: Tue, 28 Oct 2025 12:39:12 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 0/4] Add NVIDIA VRS RTC support
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Thierry Reding <treding@nvidia.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rtc@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20251007135738.487694-1-shgarg@nvidia.com>
+Content-Language: en-US
+From: Shubhi Garg <shgarg@nvidia.com>
+In-Reply-To: <20251007135738.487694-1-shgarg@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2PR02CA0048.apcprd02.prod.outlook.com
+ (2603:1096:4:196::23) To CH8PR12MB9768.namprd12.prod.outlook.com
+ (2603:10b6:610:260::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4027609d-6396-44c0-a514-11d7fe8a5b58@riscstar.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH8PR12MB9768:EE_|MN0PR12MB6318:EE_
+X-MS-Office365-Filtering-Correlation-Id: 69f09ee2-d782-4090-6ec1-08de15f0fcb4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?M2pKSVdxUUZpalBoMmZYd0J5RUhkeWhQSzFEcXk2Mkdqc21nODBqWmpUTVFQ?=
+ =?utf-8?B?Vi9ISERCaUFESU5WeUp2eHJMMFhXMlhuMGxneCttdXRTYS9zVktQUWRia2Q5?=
+ =?utf-8?B?T3pCZHg4ZmhBcllLWG0rSzJOQ3FQMWJYQllZQkZIdEVFWlZwQzJMK3dtNHpR?=
+ =?utf-8?B?Z0dXSU9YQjV0b1I5bWVDblNZSkpJSHIvc3B3cGQrZzRXeFNSWjJOcGpQK0gx?=
+ =?utf-8?B?SlBhMXpHd1JPcENJQXg0WmRIM0k4U01Mc29pMDAwNS84dFlEbVE5bXdiWWZ6?=
+ =?utf-8?B?UFcxVk8rMzJuenUzSEMvNDk4TVBlb3R5UThvMFZRS0hNZGR3SzNWQklvTGNh?=
+ =?utf-8?B?NnV4TXo1Um1pdlFyanFYNkIzTEVrcENhTlk1K0Z3Si9waDNjUUxYVnpXN0tM?=
+ =?utf-8?B?L2hkWVRQbUNnUWM2cS9IT1gvb1cyWEQ1U0RSSEsrTXZuL3VES3dYVHdFK3Zh?=
+ =?utf-8?B?a1JsNlMzUE1LQ3lQV2UraDFGdFRjd09lMjFZV2NHTkNCMGFBNmdnUVQzdEdX?=
+ =?utf-8?B?R0xQREIxL0hucXpsVjVCZDdIMkZ4UlliRlZwMlh2MTlUSnh2OG1KUS9mWTlu?=
+ =?utf-8?B?T3JkcVFJcS93dmVOVmhoYzhNZWZjY3BIenIzVGVwV2hVaGJIWGJLTGdhMXln?=
+ =?utf-8?B?RmVPNUhSelRmQWV4ZmtLSWRxRnl0N0ZXa05XbUhiZDIyZjBZZktkc09LdVFJ?=
+ =?utf-8?B?SGZDNVAybnFFa0JuTUlldVBOdzlrQTNSVlhXaXJEVlpnV0VhaFlOKzRyOEsy?=
+ =?utf-8?B?RXJZMU9TMnBzNFlRZ1RGSFRrMEhQMVppTDZNQXZqcmpHcHJRVFFtS3E5SGVZ?=
+ =?utf-8?B?V1MyVVJVY3ozNUY1NjVZMEFsZnpGK3F0ZU5IWnNOR1ZQMTFrNFpCc2o0QUM1?=
+ =?utf-8?B?YVVNR0M4ak9BclBCSzk4RmlxNzk1UEpoTTI5TVptRm5qTWZ1VFExWlA3Tmcr?=
+ =?utf-8?B?UTBjeS90ZVY2c3BrV3ZUS2VUWHNTVlVtUnFWUDdTcTlCaFJzQ1YwcUNNOVdu?=
+ =?utf-8?B?SC8vR0ZMTjc0b1Zna1V3ZE1la1ZhcTEzT1BhZ3dUVjdyUDVLalpVNDJDS3FU?=
+ =?utf-8?B?NUlVR0plQ3ArekhhZFY1amNQL2cwbHdQaVdkUGsyaTJyeGxWcUMwakdYWURq?=
+ =?utf-8?B?bUh2aUdFdzJ5VHg5OXRKVDhRQ2RscTNxdm1zZ3FaaVEyY2M3SVhNaUVsdmNK?=
+ =?utf-8?B?VFh1VUVtZUs0TDJjbHRDeENvWFVXQTQyMVFNTEhkNFgrczNNYXVLTnhISmRX?=
+ =?utf-8?B?MEE1N3lnK1VtYnhRN3lhM0tUKzJhc3A2SXc2Q1VKNWQ3WjBubUFaNHV2cXVl?=
+ =?utf-8?B?MUZYT2x2WFBvZmc5VGk5K1hGdUVOV044Z3MvSzVxcXdMK1NRZEhVMDNhcXdH?=
+ =?utf-8?B?aWhTVTUrZmtVTTBNdnpIV2FHemZrV0hpNUdGaHg0bndPalNIWExheEM5R0NZ?=
+ =?utf-8?B?SWF0KzNIaXZWNE90N0sycTBZbVFZcXJ3QUl5UU8rR2Z4Z3ZLdGcvbTl4MEhF?=
+ =?utf-8?B?YWc3Vmt3a1ZmOXVUVEw3TDlIS0xCRWZoWFR2YUhSaEZ0aW10aEhFYzg5WW9R?=
+ =?utf-8?B?Tk1EZmtJMHFJY01obUNwanZUdjFna3RnTTZyaUJNWCtiMlI1dXpycHJEZ0x2?=
+ =?utf-8?B?UVZHZXRXbzVWYXppM3U4Z2l5OVUzQkFIcklVREtXbjdvZ1pCRmtYTFJrQWc1?=
+ =?utf-8?B?My80NTlNWFl1STRsbXRGNHdTc2NRdVlwYnAwM3I2enppeWRkRlk5ektYeHNk?=
+ =?utf-8?B?V0R6Y1NsUlJMU0F2S1RXRDZvaUtnMWRvTXYwcWQ0QUVmMTVRRzdoT1p1TVpD?=
+ =?utf-8?B?czJVakFSQkJYNG5meldmLzZDdUhmK1EwUEFHSkw2SjRzWnAzSEZiZmRBc21s?=
+ =?utf-8?B?Yk5CV3Z2M1M0MGdzMG5hMDI3QlR2b3BlSUJ3OUJ1M3dIUXlyUVAzNXd3c1RE?=
+ =?utf-8?Q?RpGgsfe00cyY+7nvYq5CVEoen8gMIm6A?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH8PR12MB9768.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?UXJIYnR6anN5aTROdENJRzJUVU1aZTg2VFk2dHI2WnMvakRoU1B6RDcreTJG?=
+ =?utf-8?B?T3lVMTNpa2k1WmdkQzlzYmhPNFhnZEt6aXo5Ym5BYzY5RmtqRjR4WlhrQmk1?=
+ =?utf-8?B?K1JjamppbUE4NldJNi9Tb2pQQUxyR0tBakhDWFBmWkpDSEw5dnBoczV1MHhN?=
+ =?utf-8?B?YjY0VlJmRkhRN0RiSS8xVjNqTjJ0eXpHVUc4TzB0NDhpckFldlZXKzBhMFRV?=
+ =?utf-8?B?WlA2aFlhckJzKys4bEtTK290dm1wQ1JQSExTNXdWeGlNSEFjckhzbWo4akls?=
+ =?utf-8?B?TkJvOVVvTFpvQlNMVnFFZzNEc3pkamFQVE1odzdXNE12WDhkbTVSTVE0T21D?=
+ =?utf-8?B?UWhsaFl4SlJXQlRBSHdFeEVPQ3VIWFB0NG10Qy9iVnJBVkxaV0RqOE9uM0JJ?=
+ =?utf-8?B?dGF5dHlsWTlBSm5FQnZWYWNsemV6TkhkcjA3b2pCWUdZL1FXakF1eElMRkhq?=
+ =?utf-8?B?SzlMRmpoQ1FnUEVsM0tZK0N6cHJDcDN4RnppMnlrV2NuL05CakJFQ3MzNU1C?=
+ =?utf-8?B?QysvSEllTTB6U0pUcmk5T0UwY2VmaFN3Uy9INnNtQVFqQWZIdkpWQlFkWnRz?=
+ =?utf-8?B?QnA4OHhHZDdlUnM5dkNYZHhuMnAxa2psVzBEaXlPUTg1NzYyS0VnMXAxTjZB?=
+ =?utf-8?B?aXJqSnZIdVR5TGNtTGRLY0c2U1lDVlhicFRBckF5Sm1xdTVTcWs3S1BiM0xz?=
+ =?utf-8?B?UjB5SmVlbXBLZ3VJNnJmbmExZk14RWM2aVNvK1ZMVFRueDRLUWNnRFViaEwx?=
+ =?utf-8?B?Q3N3ZndyVjh0NllldjQxaDRDZFpvZUtidWQ0b2drV0xVVnVmZ2NYMzRzMHVI?=
+ =?utf-8?B?bG40WkI5eldvNlVBTmJzd0VHdGJkRy9aTXJXbnEyY2U2VFN1ck5aL01UKzZQ?=
+ =?utf-8?B?eW5IMVpRTDRkOTlGVllYcGUrU2dkNTRsNUhtRUhRR3BoRHBWODBkZ3VrZlNS?=
+ =?utf-8?B?bGE2QzhPMDdXTGltUU95OEo4L3BCaU45ODhWaUEwRWozUk1hR1NmVGZRVm5k?=
+ =?utf-8?B?dW4xSE1GbHlud1B0SFpqN1JBTXRwZG9ZVnhWOWJpbGdpNUtMZEswMDRORHJy?=
+ =?utf-8?B?YWhTQVFoTEoybEVUQmFTZ253bGd2MmhiT0JYSlorQW9abzRiRmwvNHE0TXZR?=
+ =?utf-8?B?RjA0bkhxb1dDRjFYMXljYndpdTkwcWlQakQyZVBQUmoxWW4ya0IwWGdyMjRn?=
+ =?utf-8?B?UUhHa25lTENuaW5kWS9vNXFPaGVKT3YzM0JxMTZGTjFWTFlZOHI3dEg5b0NO?=
+ =?utf-8?B?a21lWVdkRGFiVVJXMDNTY3o5RG1zRDJoekY1SktsMTFKZXFMaGRVSzZraHU3?=
+ =?utf-8?B?TTFKN0xrNXFOZFY4bFdsNER5bWpmMGdtUUhod0NQNUd4dlhORTNNRkdBUUtL?=
+ =?utf-8?B?cDRwa2JyREM3RGdyVWxjcEJCVUQ1SVZreTg1YlV4YS9ZTTRVNUYrUitqc2tq?=
+ =?utf-8?B?eHluT3ZEMytRZFl4TXRxTzBRbHE2N0FlNEhxZHh1YmlPMmE1aVlaQ2xWMXVa?=
+ =?utf-8?B?T0xRdy9ENm1kd0xIdm1FdlFITEhLdEZzUUk4RTk5VUtoZ01VRXRZQlVDeGZy?=
+ =?utf-8?B?K29xUkcvV3A5cWpyQjB6K29WdDZUSFZ6aGVZRjkzb2NnTyt2MlgrWnFHMEhF?=
+ =?utf-8?B?MFZXYll2aElqcDFTVnRtY2dOOFZLQ3ROZDlJR29ob2FnRXU3UWFaNEVodnBz?=
+ =?utf-8?B?M0tMVHZTRC9oUDg5RzB2dnh4REZxR3VmTDJCQ3Z1L05mSEVaTnlZcWFPK3Zn?=
+ =?utf-8?B?djI2RVJHSU5WMFBNT2VyYXVKalE3UzQ4cmJ3VXdFMVRQa0cyYW11L2U2OS9o?=
+ =?utf-8?B?UEhyMnFzY3I5Q1ArOTNlNUhtMTNVRi93ckZJMWd1SVA1M09zdEV5UkdVTG5V?=
+ =?utf-8?B?SFJBdEhMNHcxK3Fzd0I5cHVBWUs4dERzSnduMXMzWTR1bjJia1hEWlA0Y1dT?=
+ =?utf-8?B?bWk3S2ZFSURCMGwwK0FPVE9HK0VaQkpFMjRIcG9VS0hLZlIxczhzTzhvVThE?=
+ =?utf-8?B?MmlwQjFza1hWMm5pOGEwK1dSN3dsZk1jVFYybDduN1BteUxlb00vMUJFSFB0?=
+ =?utf-8?B?dVhjNWUyY0dEV1YyYzB2ZHRnZXFBWW1SYU9XQnNCaXJHTG5VaVlzRms4enJi?=
+ =?utf-8?Q?7YY070D30NrUBiaoO5TMUjeyj?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 69f09ee2-d782-4090-6ec1-08de15f0fcb4
+X-MS-Exchange-CrossTenant-AuthSource: CH8PR12MB9768.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2025 07:09:51.2313
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: X5Celb/6wtbHRq84AlMMySxKPLjE3NzbTxOqN2r2Cm4CG7X+axpPyubCmHvzY7+Z2aoabMJXL0xDk8r1D2XBNQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6318
 
-On Mon, Oct 27, 2025 at 05:24:38PM -0500, Alex Elder wrote:
-> On 10/26/25 11:55 AM, Manivannan Sadhasivam wrote:
-> > On Mon, Oct 13, 2025 at 10:35:22AM -0500, Alex Elder wrote:
-> > > Introduce a driver for the PCIe host controller found in the SpacemiT
-> > > K1 SoC.  The hardware is derived from the Synopsys DesignWare PCIe IP.
-> > > The driver supports three PCIe ports that operate at PCIe gen2 transfer
-> > > rates (5 GT/sec).  The first port uses a combo PHY, which may be
-> > > configured for use for USB 3 instead.
-> > > 
-> > > Signed-off-by: Alex Elder <elder@riscstar.com>
-> > > ---
-> > > v2: - Renamed the PCIe driver source file "pcie-spacemit-k1.c"
-> > >      - Renamed the PCIe driver Kconfig option PCIE_SPACEMIT_K1; it
-> > >        is now tristate rather than Boolean
-> > >      - The PCIe host compatible string is now "spacemit,k1-pcie"
-> > >      - Renamed the PMU syscon property to be "spacemit,apmu"
-> > >      - Renamed the symbols representing the PCI vendor and device IDs
-> > >        to align with <linux/pci_ids.h>
-> > >      - Use PCIE_T_PVPERL_MS rather than 100 to represent a standard
-> > >        delay period.
-> > >      - Use platform (not dev) driver-data access functions; assignment
-> > >        is done only after the private structure is initialized
-> > >      - Deleted some unneeded includes in the PCIe driver.
-> > >      - Dropped error checking when operating on MMIO-backed regmaps
-> > >      - Added a regmap_read() call in two places, to ensure a specified
-> > >        delay occurs *after* the a MMIO write has reached its target.
-> > >      - Used ARRAY_SIZE() (not a local variable value) in a few spots
-> > >      - Now use readl_relaxed()/writel_relaxed() when operating on
-> > >        the "link" I/O memory space in the PCIe driver
-> > >      - Updated a few error messages for consistency
-> > >      - No longer specify suppress_bind_attrs in the PCIe driver
-> > >      - Now specify PCIe driver probe type as PROBE_PREFER_ASYNCHRONOUS
-> > >      - No longer use (void) cast to indicate ignored return values
-> > > 
-> > >   drivers/pci/controller/dwc/Kconfig            |  10 +
-> > >   drivers/pci/controller/dwc/Makefile           |   1 +
-> > >   drivers/pci/controller/dwc/pcie-spacemit-k1.c | 319 ++++++++++++++++++
-> > >   3 files changed, 330 insertions(+)
-> > >   create mode 100644 drivers/pci/controller/dwc/pcie-spacemit-k1.c
-> > > 
-> > > diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> > > index 349d4657393c9..ede59b34c99ba 100644
-> > > --- a/drivers/pci/controller/dwc/Kconfig
-> > > +++ b/drivers/pci/controller/dwc/Kconfig
-> > > @@ -509,6 +509,16 @@ config PCI_KEYSTONE_EP
-> > >   	  on DesignWare hardware and therefore the driver re-uses the
-> > >   	  DesignWare core functions to implement the driver.
-> > > +config PCIE_SPACEMIT_K1
-> > > +	tristate "SpacemiT K1 PCIe controller (host mode)"
-> > > +	depends on ARCH_SPACEMIT || COMPILE_TEST
-> > > +	depends on PCI && OF && HAS_IOMEM
-> > > +	select PCIE_DW_HOST
-> > > +	default ARCH_SPACEMIT
-> > > +	help
-> > > +	  Enables support for the PCIe controller in the K1 SoC operating
-> > > +	  in host mode.
-> > > +
-> > >   config PCIE_VISCONTI_HOST
-> > >   	bool "Toshiba Visconti PCIe controller"
-> > >   	depends on ARCH_VISCONTI || COMPILE_TEST
-> > > diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-> > > index 7ae28f3b0fb39..662b0a219ddc4 100644
-> > > --- a/drivers/pci/controller/dwc/Makefile
-> > > +++ b/drivers/pci/controller/dwc/Makefile
-> > > @@ -31,6 +31,7 @@ obj-$(CONFIG_PCIE_UNIPHIER) += pcie-uniphier.o
-> > >   obj-$(CONFIG_PCIE_UNIPHIER_EP) += pcie-uniphier-ep.o
-> > >   obj-$(CONFIG_PCIE_VISCONTI_HOST) += pcie-visconti.o
-> > >   obj-$(CONFIG_PCIE_RCAR_GEN4) += pcie-rcar-gen4.o
-> > > +obj-$(CONFIG_PCIE_SPACEMIT_K1) += pcie-spacemit-k1.o
-> > >   obj-$(CONFIG_PCIE_STM32_HOST) += pcie-stm32.o
-> > >   obj-$(CONFIG_PCIE_STM32_EP) += pcie-stm32-ep.o
-> > > diff --git a/drivers/pci/controller/dwc/pcie-spacemit-k1.c b/drivers/pci/controller/dwc/pcie-spacemit-k1.c
-> > > new file mode 100644
-> > > index 0000000000000..d58232cbb8a02
-> > > --- /dev/null
-> > > +++ b/drivers/pci/controller/dwc/pcie-spacemit-k1.c
-> > > @@ -0,0 +1,319 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * SpacemiT K1 PCIe host driver
-> > > + *
-> > > + * Copyright (C) 2025 by RISCstar Solutions Corporation.  All rights reserved.
-> > > + * Copyright (c) 2023, spacemit Corporation.
-> > > + */
-> > > +
-> > > +#include <linux/clk.h>
-> > > +#include <linux/delay.h>
-> > > +#include <linux/device.h>
-> > > +#include <linux/err.h>
-> > > +#include <linux/gfp.h>
-> > > +#include <linux/mfd/syscon.h>
-> > > +#include <linux/mod_devicetable.h>
-> > > +#include <linux/phy/phy.h>
-> > > +#include <linux/platform_device.h>
-> > > +#include <linux/regmap.h>
-> > > +#include <linux/reset.h>
-> > > +#include <linux/types.h>
-> > > +
-> > > +#include "pcie-designware.h"
-> > > +
-> > > +#define PCI_VENDOR_ID_SPACEMIT		0x201f
-> > > +#define PCI_DEVICE_ID_SPACEMIT_K1	0x0001
-> > > +
-> > > +/* Offsets and field definitions for link management registers */
-> > > +
-> > 
-> > nit: drop the extra newline
-> 
-> OK.
-> 
-> > > +#define K1_PHY_AHB_IRQ_EN			0x0000
-> > > +#define PCIE_INTERRUPT_EN		BIT(0)
-> > > +
-> > > +#define K1_PHY_AHB_LINK_STS			0x0004
-> > > +#define SMLH_LINK_UP			BIT(1)
-> > > +#define RDLH_LINK_UP			BIT(12)
-> > > +
-> > > +#define INTR_ENABLE				0x0014
-> > > +#define MSI_CTRL_INT			BIT(11)
-> > > +
-> > > +/* Some controls require APMU regmap access */
-> > > +#define SYSCON_APMU			"spacemit,apmu"
-> > > +
-> > > +/* Offsets and field definitions for APMU registers */
-> > > +
-> > 
-> > here also
-> 
-> OK.
-> 
-> > > +#define PCIE_CLK_RESET_CONTROL			0x0000
-> > > +#define LTSSM_EN			BIT(6)
-> > > +#define PCIE_AUX_PWR_DET		BIT(9)
-> > > +#define PCIE_RC_PERST			BIT(12)	/* 1: assert PERST# */
-> > > +#define APP_HOLD_PHY_RST		BIT(30)
-> > > +#define DEVICE_TYPE_RC			BIT(31)	/* 0: endpoint; 1: RC */
-> > > +
-> > > +#define PCIE_CONTROL_LOGIC			0x0004
-> > > +#define PCIE_SOFT_RESET			BIT(0)
-> > > +
-> > > +struct k1_pcie {
-> > > +	struct dw_pcie pci;
-> > > +	struct phy *phy;
-> > > +	void __iomem *link;
-> > > +	struct regmap *pmu;	/* Errors ignored; MMIO-backed regmap */
-> > > +	u32 pmu_off;
-> > > +};
-> > > +
-> > > +#define to_k1_pcie(dw_pcie) \
-> > > +		platform_get_drvdata(to_platform_device((dw_pcie)->dev))
-> > > +
-> > > +static void k1_pcie_toggle_soft_reset(struct k1_pcie *k1)
-> > > +{
-> > > +	u32 offset;
-> > > +	u32 val;
-> > > +
-> > > +	/*
-> > > +	 * Write, then read back to guarantee it has reached the device
-> > > +	 * before we start the delay.
-> > > +	 */
-> > > +	offset = k1->pmu_off + PCIE_CONTROL_LOGIC;
-> > > +	regmap_set_bits(k1->pmu, offset, PCIE_SOFT_RESET);
-> > > +	regmap_read(k1->pmu, offset, &val);
-> > > +
-> > > +	mdelay(2);
-> > > +
-> > > +	regmap_clear_bits(k1->pmu, offset, PCIE_SOFT_RESET);
-> > > +}
-> > > +
-> > > +/* Enable app clocks, deassert resets */
-> > > +static int k1_pcie_activate(struct k1_pcie *k1)
-> > 
-> > k1_pcie_enable_resources()?
-> 
-> OK, I'll use k1_pcie_{enable,disable}_resources().
-> 
-> > > +{
-> > > +	struct dw_pcie *pci = &k1->pci;
-> > > +	int ret;
-> > > +
-> > > +	ret = clk_bulk_prepare_enable(ARRAY_SIZE(pci->app_clks), pci->app_clks);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	ret = reset_control_bulk_deassert(ARRAY_SIZE(pci->app_rsts),
-> > > +					  pci->app_rsts);
-> > > +	if (ret)
-> > > +		goto err_disable_clks;
-> > > +
-> > > +	ret = reset_control_bulk_deassert(ARRAY_SIZE(pci->core_rsts),
-> > > +					  pci->core_rsts);
-> > > +	if (ret)
-> > > +		goto err_assert_resets;
-> > > +
-> > > +	return 0;
-> > > +
-> > > +err_assert_resets:
-> > > +	reset_control_bulk_assert(ARRAY_SIZE(pci->app_rsts), pci->app_rsts);
-> > > +err_disable_clks:
-> > > +	clk_bulk_disable_unprepare(ARRAY_SIZE(pci->app_clks), pci->app_clks);
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +/* Assert resets, disable app clocks */
-> > > +static void k1_pcie_deactivate(struct k1_pcie *k1)
-> > 
-> > k1_pcie_disable_resources()?
-> > 
-> > > +{
-> > > +	struct dw_pcie *pci = &k1->pci;
-> > > +
-> > > +	reset_control_bulk_assert(ARRAY_SIZE(pci->core_rsts), pci->core_rsts);
-> > > +	reset_control_bulk_assert(ARRAY_SIZE(pci->app_rsts), pci->app_rsts);
-> > > +	clk_bulk_disable_unprepare(ARRAY_SIZE(pci->app_clks), pci->app_clks);
-> > > +}
-> > > +
-> > > +static int k1_pcie_init(struct dw_pcie_rp *pp)
-> > > +{
-> > > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > > +	struct k1_pcie *k1 = to_k1_pcie(pci);
-> > > +	u32 offset;
-> > > +	u32 mask;
-> > > +	u32 val;
-> > > +	int ret;
-> > > +
-> > > +	k1_pcie_toggle_soft_reset(k1);
-> > > +
-> > > +	ret = k1_pcie_activate(k1);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	ret = phy_init(k1->phy);
-> > > +	if (ret) {
-> > > +		k1_pcie_deactivate(k1);
-> > > +
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	/* Set the PCI vendor and device ID */
-> > > +	dw_pcie_dbi_ro_wr_en(pci);
-> > > +	dw_pcie_writew_dbi(pci, PCI_VENDOR_ID, PCI_VENDOR_ID_SPACEMIT);
-> > > +	dw_pcie_writew_dbi(pci, PCI_DEVICE_ID, PCI_DEVICE_ID_SPACEMIT_K1);
-> > > +	dw_pcie_dbi_ro_wr_dis(pci);
-> > > +
-> > > +	/*
-> > > +	 * Assert fundamental reset (drive PERST# low).  Put the port in
-> > 
-> > s/port/controller
-> 
-> OK.
-> 
-> > > +	 * root complex mode, and indicate that Vaux (3.3v) is present.
-> > > +	 */
-> > > +	mask = PCIE_RC_PERST;
-> > > +	mask |= DEVICE_TYPE_RC | PCIE_AUX_PWR_DET;
-> > > +
-> > > +	/*
-> > > +	 * Write, then read back to guarantee it has reached the device
-> > > +	 * before we start the delay.
-> > > +	 */
-> > > +	offset = k1->pmu_off + PCIE_CLK_RESET_CONTROL;
-> > > +	regmap_set_bits(k1->pmu, offset, mask);
-> > > +	regmap_read(k1->pmu, offset, &val);
-> > > +
-> > > +	mdelay(PCIE_T_PVPERL_MS);
-> > > +
-> > > +	/* Deassert fundamental reset (drive PERST# high) */
-> > > +	regmap_clear_bits(k1->pmu, offset, PCIE_RC_PERST);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static void k1_pcie_deinit(struct dw_pcie_rp *pp)
-> > > +{
-> > > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > > +	struct k1_pcie *k1 = to_k1_pcie(pci);
-> > > +
-> > > +	/* Assert fundamental reset (drive PERST# low) */
-> > > +	regmap_set_bits(k1->pmu, k1->pmu_off + PCIE_CLK_RESET_CONTROL,
-> > > +			PCIE_RC_PERST);
-> > 
-> > You need assert PERST# here.
-> 
-> I don't understand this comment.
-> 
-> Setting PCIE_RC_PERST in this register drives PERST# low.
-> 
+Hi all,
 
-Sorry, it was a brain fade from my side. Ignore my comment.
+Gentle ping on this series.
 
-> > > +	phy_exit(k1->phy);
-> > > +
-> > > +	k1_pcie_deactivate(k1);
-> > > +}
-> > > +
-> > > +static const struct dw_pcie_host_ops k1_pcie_host_ops = {
-> > > +	.init		= k1_pcie_init,
-> > > +	.deinit		= k1_pcie_deinit,
-> > > +};
-> > > +
-> > > +static bool k1_pcie_link_up(struct dw_pcie *pci)
-> > > +{
-> > > +	struct k1_pcie *k1 = to_k1_pcie(pci);
-> > > +	u32 val;
-> > > +
-> > > +	val = readl_relaxed(k1->link + K1_PHY_AHB_LINK_STS);
-> > > +
-> > > +	return (val & RDLH_LINK_UP) && (val & SMLH_LINK_UP);
-> > > +}
-> > > +
-> > > +static int k1_pcie_start_link(struct dw_pcie *pci)
-> > > +{
-> > > +	struct k1_pcie *k1 = to_k1_pcie(pci);
-> > > +	u32 val;
-> > > +
-> > > +	/* Stop holding the PHY in reset, and enable link training */
-> > > +	regmap_update_bits(k1->pmu, k1->pmu_off + PCIE_CLK_RESET_CONTROL,
-> > > +			   APP_HOLD_PHY_RST | LTSSM_EN, LTSSM_EN);
-> > > +
-> > > +	/* Enable the MSI interrupt */
-> > > +	writel_relaxed(MSI_CTRL_INT, k1->link + INTR_ENABLE);
-> > > +
-> > > +	/* Top-level interrupt enable */
-> > > +	val = readl_relaxed(k1->link + K1_PHY_AHB_IRQ_EN);
-> > > +	val |= PCIE_INTERRUPT_EN;
-> > > +	writel_relaxed(val, k1->link + K1_PHY_AHB_IRQ_EN);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static void k1_pcie_stop_link(struct dw_pcie *pci)
-> > > +{
-> > > +	struct k1_pcie *k1 = to_k1_pcie(pci);
-> > > +	u32 val;
-> > > +
-> > > +	/* Disable interrupts */
-> > > +	val = readl_relaxed(k1->link + K1_PHY_AHB_IRQ_EN);
-> > > +	val &= ~PCIE_INTERRUPT_EN;
-> > > +	writel_relaxed(val, k1->link + K1_PHY_AHB_IRQ_EN);
-> > > +
-> > > +	writel_relaxed(0, k1->link + INTR_ENABLE);
-> > > +
-> > > +	/* Disable the link and hold the PHY in reset */
-> > > +	regmap_update_bits(k1->pmu, k1->pmu_off + PCIE_CLK_RESET_CONTROL,
-> > > +			   APP_HOLD_PHY_RST | LTSSM_EN, APP_HOLD_PHY_RST);
-> > > +}
-> > > +
-> > > +static const struct dw_pcie_ops k1_pcie_ops = {
-> > > +	.link_up	= k1_pcie_link_up,
-> > > +	.start_link	= k1_pcie_start_link,
-> > > +	.stop_link	= k1_pcie_stop_link,
-> > > +};
-> > > +
-> > > +static int k1_pcie_probe(struct platform_device *pdev)
-> > > +{
-> > > +	struct device *dev = &pdev->dev;
-> > > +	struct k1_pcie *k1;
-> > > +	int ret;
-> > > +
-> > > +	k1 = devm_kzalloc(dev, sizeof(*k1), GFP_KERNEL);
-> > > +	if (!k1)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	k1->pmu = syscon_regmap_lookup_by_phandle_args(dev_of_node(dev),
-> > > +						       SYSCON_APMU, 1,
-> > > +						       &k1->pmu_off);
-> > > +	if (IS_ERR(k1->pmu))
-> > > +		return dev_err_probe(dev, PTR_ERR(k1->pmu),
-> > > +				     "failed to lookup PMU registers\n");
-> > > +
-> > > +	k1->link = devm_platform_ioremap_resource_byname(pdev, "link");
-> > > +	if (!k1->link)
-> > > +		return dev_err_probe(dev, -ENOMEM,
-> > > +				     "failed to map \"link\" registers\n");
-> > > +
-> > > +	ret = devm_regulator_get_enable(dev, "vpcie3v3-supply");
-> > > +	if (ret)
-> > > +		return dev_err_probe(dev, ret,
-> > > +				     "failed to get \"vpcie3v3\" supply\n");
-> > 
-> > As mentioned in the bindings patch, you should rely on the PWRCTRL_SLOT driver
-> > to handle the power supplies. It is not yet handling the PERST#, but I have a
-> > series floating for that:
-> > https://lore.kernel.org/linux-pci/20250912-pci-pwrctrl-perst-v3-0-3c0ac62b032c@oss.qualcomm.com/
+
+On 07/10/25 7:27 pm, Shubhi Garg wrote:
+> This patch series adds support for NVIDIA's Voltage Regulator Specification
+> (VRS) RTC device. It provides following features:
+> - read/set system time
+> - 32kHz clock support with backup battery input to retain system time
+>    across boot
+> - alarm functionality to wake system from suspend and shutdown state
 > 
-> I think that just means that I'll define a DT node compatible with
-> "pciclass,0604", and in that node I'll specify the vpcie3v3-supply
-> property.  That will cause that (pwrctrl) device to get and enable
-> the supply before the "real" PCIe device probes.
+> The series includes:
+> - Device tree bindings for the VRS RTC
+> - VRS device tree nodes for NVIDIA platforms
+> - VRS RTC device driver
+> - Configuration updates to enable the driver
 > 
-
-Right.
-
-> And once your PERST work gets merged into the PCI power control
-> framework, a callback will allow that to assert PERST# as needed
-> surrounding power transitions.  (But I won't worry about that
-> for now.)
+> Changes in v7:
+> - rtc driver fixes to remove mutex lock
+> - moved rtc register definitions in driver
+> - dt binding file name fix to keep same as compatible
 > 
-
-I'm still nervous to say that you should not worry about it (about not
-deasserting PERST# at the right time) as it goes against the PCIe spec.
-Current pwrctrl platforms supporting PERST# are working fine due to sheer luck.
-
-So it would be better to leave the pwrctrl driver out of the equation now and
-enable the supply in this driver itself. Later, once my pwrctrl rework gets
-merged, I will try to switch this driver to use it.
-
-> Is that right?
+> Changes in v6:
+> - compatible name fixes to "nvidia,vrs-10"
+> - changed dtb node name to pmic@3c
 > 
-> > > +
-> > > +	/* Hold the PHY in reset until we start the link */
-> > > +	regmap_set_bits(k1->pmu, k1->pmu_off + PCIE_CLK_RESET_CONTROL,
-> > > +			APP_HOLD_PHY_RST);
-> > > +
-> > > +	k1->phy = devm_phy_get(dev, NULL);
-> > > +	if (IS_ERR(k1->phy))
-> > > +		return dev_err_probe(dev, PTR_ERR(k1->phy),
-> > > +				     "failed to get PHY\n");
-> > 
-> > Once you move these properties to Root Port binding, you need to have per-Root
-> > Port parser. Again, you can refer the STM32 driver.
+> Changes in v5:
+> - moved device tree bindings from mfd to rtc
+> - changed dtb node name to rtc@3c
+> - removed VRS MFD driver
+> - moved VRS common functions to RTC driver
+> - removed unused register definitions from header
+> - changed driver compatible to "nvidia,vrs10-rtc"
 > 
-> I see getting the PHY in stm32_pcie_parse_port(), but nothing
-> about the supply (which you mentioned in the other message).
+> Changes in v4:
+> - fixed device tree node name to "pmic@3c" in dtb aliases
 > 
-
-To conclude, you should move forward with defining the PHY and supply properties
-in the Root Port node, but parse/handle them in this driver itself.
-
-> > > +
-> > > +	k1->pci.dev = dev;
-> > > +	k1->pci.ops = &k1_pcie_ops;
-> > > +	dw_pcie_cap_set(&k1->pci, REQ_RES);
-> > > +
-> > > +	k1->pci.pp.ops = &k1_pcie_host_ops;
-> > > +	k1->pci.pp.num_vectors = MAX_MSI_IRQS;
-> > 
-> > This driver is just using a single 'msi' vector, which can only support 32 MSIs.
-> > But MAX_MSI_IRQS is 256. So this looks wrong.
+> Changes in v3:
+> - fixed device tree node name to generic "pmic@3c"
+> - fixed indentation in dt-bindings
+> - added rate limiting to interrupt clearing debug logs
+> - removed unnecessary braces in if blocks
+> - changed dependency from I2C=y to I2C in mfd Kconfig
+> - fixed return value in RTC driver function calls
+> - fixed sizeof(*variable) inside rtc driver devm_kzalloc
+> - switch to devm_device_init_wakeup() for automatic cleanup
 > 
-> In dw_pcie_host_init(), if unspecified, MSI_DEF_NUM_VECTORS=32 is
-> used for num_vectors.  If it is specified, only if the value
-> exceeds MAX_MSI_IRQS=256 is an error returned.
+> Changes in v2:
+> - fixed, copyrights, definitions and dtb node in dt-bindings
+> - removed unnecessary logs from MFD and RTC driver
+> - fixed RTC allocation and registration APIs
+> - removed unnecessary functions in RTC driver
+> - used rtc_lock/unlock in RTC irq handler
+> - added alias to assign VRS RTC as RTC0
+> - added driver entry in MAINTAINERS
+> - few other miinor changes done in drivers
 > 
-
-Yes, because the driver trusts the glue drivers to provide the num_vectors if
-they support more than 32.
-
-> In dw_handle_msi_irq(), "num_ctrls" is computed based on
-> num_vectors / MAX_MSI_IRQS_PER_CTRL=32.  A loop then
-> iterates over those "controllers"(?) to handle each bit
-> set in their corresponding register.
+> Shubhi Garg (4):
+>    dt-bindings: rtc: Document NVIDIA VRS RTC
+>    arm64: tegra: Add device-tree node for NVVRS RTC
+>    rtc: nvvrs: add NVIDIA VRS RTC device driver
+>    arm64: defconfig: enable NVIDIA VRS PSEQ RTC
 > 
-> This seems OK.  Can you explain why you think it's wrong?
+>   .../bindings/rtc/nvidia,vrs-10.yaml           |  59 ++
+>   MAINTAINERS                                   |   8 +
+>   .../arm64/boot/dts/nvidia/tegra234-p3701.dtsi |  11 +
+>   .../arm64/boot/dts/nvidia/tegra234-p3767.dtsi |  15 +
+>   arch/arm64/configs/defconfig                  |   1 +
+>   drivers/rtc/Kconfig                           |   9 +
+>   drivers/rtc/Makefile                          |   1 +
+>   drivers/rtc/rtc-nvidia-vrs10.c                | 542 ++++++++++++++++++
+>   8 files changed, 646 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/rtc/nvidia,vrs-10.yaml
+>   create mode 100644 drivers/rtc/rtc-nvidia-vrs10.c
 > 
-
-So both 'ctrl' and 'msi' IRQs are interrelated. Each 'ctrl' can have upto 32 MSI
-vectors only. If your platform supports more than 32 MSI vectors, like 256, then
-the platform DT should provide 8 'msi' IRQs.
-
-Currently the driver is not strict about this requirement. I will send a patch
-to print an error message if this requirement is not satisfied.
-
-> > > +
-> > > +	platform_set_drvdata(pdev, k1);
-> > > +
-> > 
-> > For setting the correct runtime PM state of the controller, you should do:
-> > 
-> > pm_runtime_set_active()
-> > pm_runtime_no_callbacks()
-> > devm_pm_runtime_enable()
-> 
-> OK, that's easy enough.
-> 
-> > This will fix the runtime PM hierarchy of PCIe chain (from host controller to
-> > client drivers). Otherwise, it will be broken.
-> Is this documented somewhere?  (It wouldn't surprise me if it
-> is and I just missed it.)
-> 
-
-Sorry no. It is on my todo list. But I'm getting motivation now.
-
-> This driver has as its origins some vendor code, and I simply
-> removed the runtime PM calls.  I didn't realize something would
-> be broken without making pm_runtime*() calls.
-> 
-
-It is the PM framework requirement to mark the device as 'active' to allow it to
-participate in runtime PM. If you do not mark it as 'active' and 'enable' it,
-the framework will not allow propagating the runtime PM changes before *this*
-device. For instance, consider the generic PCI topology:
-
-PCI controller (platform device)
-	|
-PCI host bridge
-	|
-PCI Root Port
-	|
-PCI endpoint device
-
-If the runtime PM is not enabled for the PCI Root Port, then if the PCI endpoint
-device runtime suspends, it will not trigger runtime suspend for the Root Port
-and also for the PCI controller. Also, since the runtime PM framework doesn't
-have the visibility of the devices underneath the bus (like endpoint), it may
-assume that no devices (children) are currently active and may trigger runtime
-suspend of the Root Port (parent) even though the endpoint device could be
-'active'.
-
-For all these reasons, it is recommended to properly reflect the runtime PM
-status of the device even if the driver doesn't do anything special about it.
-This is also the reason why I asked you to set pm_runtime_no_callbacks() since
-this driver doesn't register any runtime PM ops.
-
-Since this controller driver is the top of the hierarchy, you may ask what could
-happen if this driver runtime PM status is not reflected correctly. Well, most
-controllers have some power domain associated with them controlled by the genpd
-framework. If the runtime PM framework thinks that there are no devices
-connected to the bus and the controller driver also doesn't have the state
-enabled, it may disable the power domain associated with it. If that happens,
-the PCI controller will not work and so the devices in the hierarchy.
-
-Hope this clarifies.
-
-- Mani
 
 -- 
-மணிவண்ணன் சதாசிவம்
+Regards,
+Shubhi
+
 
