@@ -1,64 +1,60 @@
-Return-Path: <devicetree+bounces-232326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D27EC169E6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 20:31:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA9DEC169EF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 20:31:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 45BBF4EE064
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 19:31:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A9053A7C18
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 19:31:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B8C334F481;
-	Tue, 28 Oct 2025 19:31:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7CE347BDB;
+	Tue, 28 Oct 2025 19:31:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VxUFZdGh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gLs+Hv3f"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAECF341ACB;
-	Tue, 28 Oct 2025 19:31:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 681AB29A9F9;
+	Tue, 28 Oct 2025 19:31:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761679864; cv=none; b=T1AQQDUSLiuK/LHAfCxOseK2ltNOuXfTfD8cLMXt73p64BuQbkm48stiYQlFbGWLPCOuDEBnqi6vzCLamkas9fIh5jbexny5V/WB0aB7n6O2NtKu8q/bry+d1iJlJk+S/5YEKDSGs6pyt/cIE6Xf0rSkI1krTfGSEBIBE1rYoPE=
+	t=1761679898; cv=none; b=H5CN7rt5rOvsALQVlZ0qZqF+UOmiHZwKz1e4erKJWLOmac3CXCBbMxVVCf6PDQur0voZNl9Z1LSWu5UQn9ogEeljjh/Oau0X+1kvQcfllvSKR1VUws7EblcMFy1D5xamNwgN7zh8/cyb5ZGoP9LHqB3hSQRjo6k4accmOU0d5zQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761679864; c=relaxed/simple;
-	bh=Ap2aDiKKgM3tKJAnZU4Q4B3TnDOwGltx6KfPJhNhQVc=;
+	s=arc-20240116; t=1761679898; c=relaxed/simple;
+	bh=DcJvgp5kzm0iZtaexyuV+sB0byJmjCNfqV14wFgw6lg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mZ4eY7EJaA0DF+H1KfcvNg15uDdP7zf3bIe7Iv+PSI5ZEr/EhqzbEL8cJhtI7vj9vCyVftSGGWvhywAbc9KuHSOrKxbExt2vzlk1172feJ7tJJ5jmzoWSMyRn1JzPu6cvzLikLMFQLdSIHwcMtHQLtDRshe5TMNT1sTLtZZP2hI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VxUFZdGh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AA12C4CEE7;
-	Tue, 28 Oct 2025 19:31:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PxvCQDPT5Oo8xPgpStIJb7vJl5OKHfkwUAYfxtxpAB8QJkuoVeUeY3VY06HD473GsWPp76ZIcHGG6oRopfAUXEOt3FgPzEyl6/Np7Ue6RAcAd3v81CRRP1SI+WYuWpGAPclgNOxDFZHh79S8R+YPcBnqvuK8/xRQSq/6Ql996Oo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gLs+Hv3f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5242AC4CEE7;
+	Tue, 28 Oct 2025 19:31:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761679864;
-	bh=Ap2aDiKKgM3tKJAnZU4Q4B3TnDOwGltx6KfPJhNhQVc=;
+	s=k20201202; t=1761679898;
+	bh=DcJvgp5kzm0iZtaexyuV+sB0byJmjCNfqV14wFgw6lg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VxUFZdGhRnZM0z40KMY6YSizaPIMvp6WZfdcSA0K9AHjK8AgltfHcdJvoY+97btXc
-	 WZ19OKL/Jx66G9ZFqHjkApnaKFNxiXTeHRc7FrK7e8zJKzIDGCnntpQilJsuhJPITt
-	 SNm+N1M233FJP4lcxwOOOkiHSk1Nnjbs5ehUGy+QqVGNVG6uLB8Xh4GATgxdZMj6jq
-	 EEKrf7waFqEoOW9Un5oeZ4rJEhGZIKldMHsbNwrAdB2NcSSCmSu30G3QE//Zkc2WWR
-	 /gDtNqJo0y1Z2zYGVBQMVxC0jnyAyO8nDY1dqOtcD8KJpDfXD/QwSNaQ80waMCKM+G
-	 UFa3RhVTCd6wQ==
-Date: Tue, 28 Oct 2025 19:30:59 +0000
+	b=gLs+Hv3fT2HDVMwXUEt2CTggHlxbhkJkDlN492kqM9CTFlikSTjItP2mrafCdAZz3
+	 OiQwt+a+Haw56J/R0GesDE9SRDuGQZsmdfCQB+Rd2ocdV3qT21jiia2ZnOCGzPwP4m
+	 LArmmweR5wqKcoH2qdEA2KG74sAhzPCrh+SONneHc54U+DDEBY8k1OuqIMEMChzNqK
+	 vuSMl8JanF18Xx6+bbtWlef+AFIivymorqVbAK6mx0gLKeXhAwkXrMAsKNKGoFMSl5
+	 GvQ6rhbVvzdn2J25FMyUvZR5dchxaQkrT6/9kQ0OQKwBvEzXeVrbQ5naVaskBsdXTO
+	 GG4Jfuj+lrYQA==
+Date: Tue, 28 Oct 2025 19:31:34 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.au@gmail.com>
-Subject: Re: [PATCH 03/19] dt-bindings: serial: renesas,rsci: Document RZ/G3E
- support
-Message-ID: <20251028-mower-mundane-316cdd6b48b6@spud>
-References: <20251027154615.115759-1-biju.das.jz@bp.renesas.com>
- <20251027154615.115759-4-biju.das.jz@bp.renesas.com>
+	Conor Dooley <conor+dt@kernel.org>, Robin Gong <yibin.gong@nxp.com>,
+	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: regulator: nxp,pca9450: document
+ input supplies
+Message-ID: <20251028-luminous-undertook-c518378eb3d3@spud>
+References: <20251027124415.989301-1-o.rempel@pengutronix.de>
+ <20251027124415.989301-2-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,162 +62,40 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hzAPfaYWKFynogrI"
+	protocol="application/pgp-signature"; boundary="DkNDWamEZMwAVTmF"
 Content-Disposition: inline
-In-Reply-To: <20251027154615.115759-4-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20251027124415.989301-2-o.rempel@pengutronix.de>
 
 
---hzAPfaYWKFynogrI
+--DkNDWamEZMwAVTmF
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 27, 2025 at 03:45:50PM +0000, Biju Das wrote:
-> Add documentation for the serial communication interface (RSCI) found on
-> the Renesas RZ/G3E (R9A09G047) SoC. The RSCI IP on this SoC is identical
-> to that on the RZ/T2H (R9A09G077) SoC, but it has a 32-stage FIFO compared
-> to 16 on RZ/T2H. It supports both FIFO and non-FIFO mode operation. RZ/G3E
-> has 6 clocks compared to 3 on RZ/T2H, and it has multiple resets.
+On Mon, Oct 27, 2025 at 01:44:14PM +0100, Oleksij Rempel wrote:
+> Add missing supply properties for PCA945x input pin groups:
+> - inl1-supply (for LDOs)
+> - inb13-supply (for BUCK1/3)
+> - inb26-supply (for BUCK2/6)
+> - inb45-supply (for BUCK4/5)
 >=20
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
->  .../bindings/serial/renesas,rsci.yaml         | 82 ++++++++++++++++---
->  1 file changed, 71 insertions(+), 11 deletions(-)
+> These properties describe external power sources for each input group.
 >=20
-> diff --git a/Documentation/devicetree/bindings/serial/renesas,rsci.yaml b=
-/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-> index 6b1f827a335b..7cf6348e2b5b 100644
-> --- a/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-> +++ b/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-> @@ -10,17 +10,16 @@ maintainers:
->    - Geert Uytterhoeven <geert+renesas@glider.be>
->    - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> =20
-> -allOf:
-> -  - $ref: serial.yaml#
-> -
->  properties:
->    compatible:
->      oneOf:
-> -      - items:
-> -          - const: renesas,r9a09g087-rsci # RZ/N2H
-> -          - const: renesas,r9a09g077-rsci # RZ/T2H
-> +      - enum:
-> +          - renesas,r9a09g047-rsci # RZ/G3E non FIFO mode
-> +          - renesas,r9a09g047-rscif # RZ/G3E FIFO mode
-> +          - renesas,r9a09g077-rsci # RZ/T2H
-> =20
->        - items:
-> +          - const: renesas,r9a09g087-rsci # RZ/N2H
->            - const: renesas,r9a09g077-rsci # RZ/T2H
-> =20
->    reg:
-> @@ -42,14 +41,40 @@ properties:
-> =20
->    clocks:
->      minItems: 2
-> -    maxItems: 3
-> +    maxItems: 6
-> =20
->    clock-names:
-> -    minItems: 2
-> +    oneOf:
-> +      - items:
-> +          - const: operation
-> +          - const: bus
-> +      - items:
-> +          - const: operation
-> +          - const: bus
-> +          - const: sck # optional external clock input
-> +      - items:
-> +          - const: bus
-> +          - const: tclk
-> +          - const: tclk_div64
-> +          - const: tclk_div16
-> +          - const: tclk_div4
-> +      - items:
-> +          - const: bus
-> +          - const: tclk
-> +          - const: tclk_div64
-> +          - const: tclk_div16
-> +          - const: tclk_div4
-> +          - const: sck # optional external clock input
-> +
-> +  resets:
-> +    items:
-> +      - description: Input for resetting the APB clock
-> +      - description: Input for resetting TCLK
-> +
-> +  reset-names:
->      items:
-> -      - const: operation
-> -      - const: bus
-> -      - const: sck # optional external clock input
-> +      - const: presetn
-> +      - const: tresetn
-> =20
->    power-domains:
->      maxItems: 1
-> @@ -62,6 +87,41 @@ required:
->    - clock-names
->    - power-domains
-> =20
-> +allOf:
-> +  - $ref: serial.yaml#
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r9a09g077-rsci
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 3
-> +
-> +        clock-names:
-> +          maxItems: 3
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,r9a09g047-rsci
-> +              - renesas,r9a09g047-rscif
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 5
-> +
-> +        clock-names:
-> +          minItems: 5
-> +
-> +      required:
-> +        - resets
-> +        - reset-names
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
-Does this need an "else: properties: resets: false"? Or do other devices
-actually have resets too?
+pw-bot: not-applicable
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> +
->  unevaluatedProperties: false
-> =20
->  examples:
-> --=20
-> 2.43.0
->=20
-
---hzAPfaYWKFynogrI
+--DkNDWamEZMwAVTmF
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQEZ8wAKCRB4tDGHoIJi
-0jr8AQC10zxwsXijde5bsel7snQi6OfPDcFW0GiEiqh+cx2nSgD+PIWDM1s3mr71
-8MFwrONSM+wgriZwn6Wp3KU/b6BVQgs=
-=Es4J
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQEaFQAKCRB4tDGHoIJi
+0rfCAQC+JmVCiE4ACIE20eVbZN1rDutzHSSRk8ZqFkKFG0h0mwEAh9a7JNNQGx+7
+ihIQc0kZQEPsrzTZ8j1HusH1i+ldWA0=
+=ylpm
 -----END PGP SIGNATURE-----
 
---hzAPfaYWKFynogrI--
+--DkNDWamEZMwAVTmF--
 
