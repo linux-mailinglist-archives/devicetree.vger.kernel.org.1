@@ -1,138 +1,156 @@
-Return-Path: <devicetree+bounces-232104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC8F5C144B1
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 12:11:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 682EFC1449E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 12:10:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9174B5013DF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 11:04:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 32F1E543DB8
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 11:04:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E02622E6116;
-	Tue, 28 Oct 2025 11:04:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58413264A65;
+	Tue, 28 Oct 2025 11:04:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="ig3+jrf3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U9zbWuG8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6DE280033
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 11:04:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F16A2C08C0;
+	Tue, 28 Oct 2025 11:04:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761649451; cv=none; b=VEbL2f6gpn7Bbannew8rKIx2+YOWDKQ+m65yJ2kKktH17vY84/LcqA13XfJsYfkTLTsutf6ObWppsr/40qfVKCxE1J/4ohbK31TbuN7qO5FcgJXam9BZ5/DrEc/e4LZ2LeOi8TPs7BnjFmeror4u1f1YWy18sFYMr62yXhqsJ6Q=
+	t=1761649494; cv=none; b=ZJBFlReZDt0ehkHGC4RVkepk0OI5QQYKNuhu57yQ2AOHX+t4ZJWPpcqG1VcZujFEIuY3SbcL9RB/U8mHER+do7MOLuRk9X9onhopeByGz8JcUXMcsStuUHp7QblKvP3DyBi4XDbuF8aOOmAMR5b71hPv6tjTCMe925QfuQ3vXso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761649451; c=relaxed/simple;
-	bh=eiagCQlZPxukDR3dBg6xurkhW//GBX2JTyZWx8vsuMI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aIiX5zIWK/5NaBWTQqc7XSvUTX528Q5saZFSo8BSTn16uok5/EVgdQLfAG0IwP/+fuGWb6K7byR5+0JEA0vO/EUMXw6058AUeWJi7XtX5+kfl1uSzq6A+Vq14crVXij8pGIqG8st6b1ybTs3e9WySYIlyTb5/KzMOH/LT0oe8w0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=ig3+jrf3; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=QOoq
-	nRZ5QptYcwwwGgkRLC5034BSW6v2/L6Wq7Uo/2Y=; b=ig3+jrf3bi68lqz6da0W
-	mWtjD/HOikeN3Z4AskCYjTHg/+iLJjdY6FMjIJbBcCsyFqtG1hfxt2q0BJAyx1dW
-	gvh8Z/v86UXgKmv2Dt57xLLQ4/CfxU6zSktG3B4fajNUMajKKqq3Q2THx6ZFmmIf
-	zAvPt31DQnmPSjAzMdb+k0WG+61mDwEoPkv6H8CxGr5XEvaHZl/1pZN1HndZuqvK
-	b4m4sYEZygZ4ds7wHdRbZd3r38getxI7mIMo7ZFcyJlITd23rDikQujcaPRuXUx3
-	kpvEBSmwMvKVCNR6LSlSbZfMl9CTFri68qDCRjSqD09XnN/XJAPHg2M7HXUM0lmH
-	DA==
-Received: (qmail 3986450 invoked from network); 28 Oct 2025 12:04:05 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 28 Oct 2025 12:04:05 +0100
-X-UD-Smtp-Session: l3s3148p1@Yexp+TVCWscgAwDPXyjKAONDL9E53Fzy
-Date: Tue, 28 Oct 2025 12:04:05 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] dt-bindings: mailbox: Add Renesas MFIS Mailbox
-Message-ID: <aQCjJcXaKAjjUhTg@shikoro>
-References: <87o6prsl2z.wl-kuninori.morimoto.gx@renesas.com>
- <87jz0fsl0u.wl-kuninori.morimoto.gx@renesas.com>
- <CAMuHMdXz9egr_tye9CbVRMJws_Y-jh9jwCvTTOq0JRar7Zd_Xw@mail.gmail.com>
+	s=arc-20240116; t=1761649494; c=relaxed/simple;
+	bh=OBCXvKJjGdONFbMXWfGZ9ObyKFupdDq2VJVf7GEfLgU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kK5BN5QocLM0lLTm8/GwafiATVO0rSMs1pGCbPt8JL3FuWDGZ8L2LD3ECvtllW9nJvsIqcBhKa5z36xjYo51YRssdHVPt+k/qv1Po7X2kRBBu8lAW/5nTuO29PrdTQRQwOCAVtOioB1auHIslbT9+bGmNwV1o40l5d/JXA+nyl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U9zbWuG8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA94AC4CEE7;
+	Tue, 28 Oct 2025 11:04:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761649493;
+	bh=OBCXvKJjGdONFbMXWfGZ9ObyKFupdDq2VJVf7GEfLgU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=U9zbWuG8KfcIOhXoz2kCkYBTYFtIpBhypwWofwuVuGvRyhpkhaKSA3s1x1sWX1Yin
+	 RhN3YliNA0yS38qRRkhzS2xzrw9Ll7dUJU2HVWEPmP7U03foFueN9Q505fAV7LTqOV
+	 4vcGGjsrqQMwFWGF9XN3sGTSUFEvJB9d6RmCUxTZvvo/4OywsxranPm2hS4wS/np6O
+	 Z3zmhCPLai19R2G2quiwDIoL66nd8r6QU54z6v92Yu1nHE/6Myg7QWuM73pYPWV3w9
+	 1MYpqpfWXjtN8ewT+LhU0HQJssjABUcXlYiafczXV5OT0Unq8fqEeSrzIDXQmejDOb
+	 RV/cHU0MFpT/Q==
+Message-ID: <73955d58-544c-4299-a099-bfd9e5912a40@kernel.org>
+Date: Tue, 28 Oct 2025 12:04:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="D2ke92+uNBjFUwaA"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdXz9egr_tye9CbVRMJws_Y-jh9jwCvTTOq0JRar7Zd_Xw@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] watchdog: Add driver for Gunyah Watchdog
+To: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+References: <20251028-gunyah_watchdog-v3-1-e6d1ea438b1d@oss.qualcomm.com>
+ <25f7ff09-08ea-4969-9184-9fd01b097558@kernel.org>
+ <76479593-c47b-41a7-8349-5d7c1403f7c0@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <76479593-c47b-41a7-8349-5d7c1403f7c0@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+On 28/10/2025 11:58, Hrishabh Rajput wrote:
+> 
+> On 10/28/2025 3:10 PM, Krzysztof Kozlowski wrote:
+>> On 28/10/2025 10:35, Hrishabh Rajput via B4 Relay wrote:
+>>> +
+>>> +static int __init gunyah_wdt_init(void)
+>>> +{
+>>> +	struct arm_smccc_res res;
+>>> +	struct device_node *np;
+>>> +	int ret;
+>>> +
+>>> +	/* Check if we're running on a Qualcomm device */
+>>> +	np = of_find_compatible_node(NULL, NULL, "qcom,smem");
+>> I don't think you implemented my feedback. This again is executed on
+>> every platform, e.g. on Samsung, pointlessly.
+>>
+>> Implement previous feedback.
+> 
+> Do you want us to add platform device from another driver which is 
+> probed only on Qualcomm devices (like socinfo from previous discussion) 
+> and get rid of the module init function entirely? As keeping anything in 
+> the module init will get it executed on all platforms.
 
---D2ke92+uNBjFUwaA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Instead of asking the same can you read previous discussion? What is
+unclear here:
+https://lore.kernel.org/all/3b901f9d-dbfa-4f93-a8d2-3e89bd9783c9@kernel.org/
+?
 
-Hi Geert,
+> 
+> 
+> With this patch version, we have tried to reduce the code execution on 
+> non-Qualcomm devices (also tried the alternative as mentioned in the 
+> cover letter). Adding platform device from another driver as described 
+> above would eliminate it entirely, please let us know if you want us to 
+> do that.
 
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    mailbox@18842000  {
-> > +        compatible =3D "rcar,mfis-mailbox-r8a78000", "rcar,mfis-mailbo=
-x-gen5";
-> > +        reg =3D <0x18842000 0x8>;
->=20
-> This is an 8-byte block in the middle of the MFIS register space.
-> Perhaps the DT bindings should describe the full MFIS block, and not
-> just the mailbox part?
+Why do I need to repeat the same as last time?
 
-I think something in the middle. MFIS block also includes lock
-registers. We have a BSP driver for these using the hw_spinlock
-subsystem. That makes sense to me. Currently(tm), the register sets for
-mailbox and spinlocks are seperated. We could make use of that or we go
-anxious and start with an MFD right away.
-
-Gen5 has 64 of these mailbox TX/RX register pairs. It has additional
-message registers which should be included here IMHO. It is usually at
-offset 0x40. I'd think we want to have one MFIS entry in DT and access
-the mailbox we want with an index. Instead of having 64 entries in DT.
-Well, actually, we would have two MFIS entries, there is one dedicated
-to the SCP as well. It would add 32 more nodes if we describe every
-mailbox independently.
-
-Note: if we want Gen3/4 compatibility (I think we want that), we also
-should go for one MFIS DT entry. On Gen5, every mailbox is 0x1000 apart
-and has all needed registers in there. On Gen3, first the 8 communication
-registers come and then the 8 message registers. So, they are not
-seperated like on Gen5.
-
-Happy hacking,
-
-   Wolfram
-
-
---D2ke92+uNBjFUwaA
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmkAoyEACgkQFA3kzBSg
-KbZ84xAAl2tVacWHHDACqFO+oX5fWkC2z7Gpxkz6WVVc7LFcHUHDWnTT9DHxQ2Pa
-+UkfciwO2a+VbENwJ4iBRrIhWpYI5VFHzx3PPCKpjbj5NXpgDxTC3CxqL4wgLQ5K
-uY63h0sNiHIkNB7/+hjIeJzPPDgq6kLhvg3Z63hmRVIYrblsxkvdy+MrmqRnAQ0E
-jPZUN3qgH00ve/Mm56iItiug/oSTNkfsfMOA5DJaUSkqWUL56pu1UmNWC8FNCEjY
-RaUg8Wl2SrqwqD6SY+6pVkYgaqRX7Xw3nrLbgDbN5V4w+Gij2Qr9Ec70gI4YFAdx
-judMIdI2IiGkxOKqqnqvuK5p4JKZUEZlz1fb694TrLUMCLnQKh1xWpb7QJHkKMsk
-6N0SORoc4p93yKlq2w7oMSPlMIxmeCCP43KgUHCz1OilMuW95PEN8S2sZgwR8Qt9
-s/47U9GVCtg02p7N4crM7tDJ8QOxprUwO6gMZHfaZs895rYugrAAW7fXz6kD/WQG
-AQjQotR5r6cdIaOww5Y+/tRfzKXk5AyGbfRzuT6sp3xZl20meCgugJ0KTQmAljsq
-b1osFVskAny4ppOqoKtEdnlVQ/c5Rm6DmUPNLhcllMMgkqgnJy2mRZwM9uNeHH60
-UcEZOe+n96QBWuDjtyTqF7UUOX/t826cG+7lU9dzDw1FZkNRKek=
-=juE8
------END PGP SIGNATURE-----
-
---D2ke92+uNBjFUwaA--
+Best regards,
+Krzysztof
 
