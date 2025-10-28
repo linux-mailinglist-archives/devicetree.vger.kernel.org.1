@@ -1,226 +1,196 @@
-Return-Path: <devicetree+bounces-231895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ABAAC12AA7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 03:30:56 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74BAAC12B30
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 03:54:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F76719A2585
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 02:31:20 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6F2CA3547A1
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 02:54:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8DB5263F32;
-	Tue, 28 Oct 2025 02:30:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 218A2277819;
+	Tue, 28 Oct 2025 02:54:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023138.outbound.protection.outlook.com [40.107.44.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77547268C73;
-	Tue, 28 Oct 2025 02:30:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761618649; cv=none; b=WgLcjBK9L2hiyl3AhWELJwFTcgZ5JUOGVuut191dMrKS9IFwZJtJNGQDMI9IdOxb34Ua0MxgLsPsmu6yxnKozbQgWQsmAmPFfliq3EWJthulxmRpYZvrTSKUbjlkPDexW7KLEO1j8tNs1GPQt7lLVA4K6cQtZ1yTd8eBRyl4kRA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761618649; c=relaxed/simple;
-	bh=xu6yXI4+7ybUrFbd9+AD4NTlqekVd8a78X/5OlIsvUg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uCHyNzb6+qkh7hyF3AyKISVVEvQo0q/41t1hRj/vdXlf3ADmmQb8Zxs+zg1PKlmoCBa3z4pYffy2NHMC75zn8tJljig6Gvem/NVWicU44jWgqj0w57kOhsHWYjIraxCWsMRo/QfqFUDHkxXWi0NGK8ky3KQuWepbe1BbANAmLRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.98.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vDZTq-000000006N2-1xQR;
-	Tue, 28 Oct 2025 02:30:38 +0000
-Date: Tue, 28 Oct 2025 02:30:34 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Andreas Schirm <andreas.schirm@siemens.com>,
-	Lukas Stockmann <lukas.stockmann@siemens.com>,
-	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
-	Peter Christen <peter.christen@siemens.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH net-next v3 06/12] dt-bindings: net: dsa: lantiq,gswip:
- add support for MII delay properties
-Message-ID: <aQAqynybLOnzvUDn@makrotopia.org>
-References: <cover.1761521845.git.daniel@makrotopia.org>
- <cover.1761521845.git.daniel@makrotopia.org>
- <e7a4dadf49c506ff71124166b7ca3009e30d64d8.1761521845.git.daniel@makrotopia.org>
- <e7a4dadf49c506ff71124166b7ca3009e30d64d8.1761521845.git.daniel@makrotopia.org>
- <20251027230439.7zsi3k6da3rohrfo@skbuf>
- <aQADFttLJeUXRyRF@makrotopia.org>
- <20251028013944.lmjboagptxl4dob7@skbuf>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABCFB1EDA0F;
+	Tue, 28 Oct 2025 02:54:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.138
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761620096; cv=fail; b=YDR201DPbqO45OlaOEKntCb1P0vj9hmf5Q5q3bOE3vXr++rCPbLO2/eei3gU5XtGp3SAEeqGLhHDmkNIxAuy0N430QMqTevm2fJFDiyaVXq3QpejOW+QiE+0yD56foKTWVPcrMZHW0jPKv+UFN/BYq/bQ55+e0gweYAmEkR+tMc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761620096; c=relaxed/simple;
+	bh=J1a5ucYg/913Td4jDVO7jqxKZ+KUisxp0wdJa3e2jdk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Kti5U9b+U/Rpg2VmiWX5HQ/26jXsrjWwZCbKOC6t47Se71bWxHA6SVwvQZepscoL4XltOAhnNGf6qjuIooDQoUDbKEvUb+vH1Qd7LU6Oqt4mcDi5R+nwg5IPghbdCt7Dwyl6/Zb9n07t+op+aTX6iXh+shO+2liNSjfKPqSShM4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.44.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CLjrNOlSbNVxlwCLuZA7IKzA6y3lx+AF2ZPkNDi4KU48uL4g2TSFJ7wt22eFzE6SKi7M1spn6w8kEToITiJoWqWB0c6rOHqPlOdPTUfpTao2uX5TjG2eCuAQye9jG7bLjDB5SFNFaLzExsOIH/mLgh5We5PUPSEIoFQ4qyxcF8Ojg9CyVHwfPkdHFDx6BgB9oRQY1cjU+wDcJF/daqKqxgaWLRZpOApzBSTByAomyom71OAxGjN3mW/cKo4YxEvBrIb4ewQK3bMseG7ms3Nhd+nhm6J46hWnfH6qclbw0w06CQ/5/Zfo5Oh1PdKNZNZh5gF5c6qwDqV81bxkCB97+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lrKIs+MLrp3fK072nYRHc2NnwJhU4CFeuVXvOhDyNd4=;
+ b=YTzZQJC4HVrjtC1uVKx8CfH0ydn+ZpDQQxn0QHXjBTrVcOOvLch5UqMKKFUw5Ny0V/OOgSp8AlyH63F187c6ZZ3sekrYiyO0d3QTYIl2tMaXiJw6ms29FKFd4ItFU0rc2o0QDPR0rDmw7ojCG7q+v8y7y/5+z96QuTmOVsB92Ia47r7fGA1lMIagyzC8IFrjFCTYtnWbZOwCUx/YLWpfLdAaDZsgbRXgowxfWryU+e+UymImrhukAnDT9aGTYESPBdI1dCj18+OX3e1yFCjv7MpU+Pwriy1Kg3ZdCwQZth06ZkIthrkR/zQv1PpLWvGCcHruYBNIc8z9aex+hpbX9A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=amd.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SG2P153CA0040.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c6::9) by
+ KL1PR06MB6519.apcprd06.prod.outlook.com (2603:1096:820:f3::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9253.18; Tue, 28 Oct 2025 02:54:48 +0000
+Received: from SG1PEPF000082E7.apcprd02.prod.outlook.com
+ (2603:1096:4:c6:cafe::9c) by SG2P153CA0040.outlook.office365.com
+ (2603:1096:4:c6::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9298.4 via Frontend Transport; Tue,
+ 28 Oct 2025 02:54:48 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ SG1PEPF000082E7.mail.protection.outlook.com (10.167.240.10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9275.10 via Frontend Transport; Tue, 28 Oct 2025 02:54:48 +0000
+Received: from [172.20.96.41] (unknown [172.20.96.41])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id EC1FC41604E0;
+	Tue, 28 Oct 2025 10:54:46 +0800 (CST)
+Message-ID: <f9f43492-859a-4369-b660-7fa138c86e86@cixtech.com>
+Date: Tue, 28 Oct 2025 10:54:46 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251028013944.lmjboagptxl4dob7@skbuf>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] dt-bindings: spi: spi-cadence: update DT binding
+ docs to support cix sky1 SoC
+To: Conor Dooley <conor@kernel.org>
+Cc: peter.chen@cixtech.com, fugang.duan@cixtech.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, broonie@kernel.org,
+ linux-spi@vger.kernel.org, michal.simek@amd.com,
+ cix-kernel-upstream@cixtech.com, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251027084239.2610141-1-jun.guo@cixtech.com>
+ <20251027084239.2610141-3-jun.guo@cixtech.com>
+ <20251027-strangely-reverence-6f47d87efca5@spud>
+Content-Language: en-US
+From: Jun Guo <jun.guo@cixtech.com>
+In-Reply-To: <20251027-strangely-reverence-6f47d87efca5@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG1PEPF000082E7:EE_|KL1PR06MB6519:EE_
+X-MS-Office365-Filtering-Correlation-Id: 15b4be6f-a8eb-434e-b4b3-08de15cd5ba1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|1800799024|36860700013|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?THhLTHAzUDA1RytnSVE3eHZkL09NajdLZDA2ekhYUXh0dHQwMFFtcjlXZ1U0?=
+ =?utf-8?B?ay9CalVJV3pLSGFrR0hUU3hFR2ZRUE11VS9Mb2t0QVJOenpEdVhzdnlnZFBi?=
+ =?utf-8?B?SHI3QjM0ZHpjK2Q3OUliNkFCUUNKME9uQVJkTTdUdGJmbHNkOU0wOG4yV0RY?=
+ =?utf-8?B?WTI0UVVXYUMyMmZRakYyNVZ2dlFZODZ2cHc1MnF4WHhSRFVDejVydUdwaTd0?=
+ =?utf-8?B?R1p0L2Y4Uk02UVg5VHBwRjRYcmFPajRCUTU5NWhnUFhRYnU2K0pQQll2RThQ?=
+ =?utf-8?B?cmdVOHlrdCtPQUc2dStiZGdWKzg5Wk83eDU1WW1USE1UVGFPVGtqejhWZnlD?=
+ =?utf-8?B?VzJ4TUh5TFhIcVRsdkg0QVhHaFVMWGZVaFp4WHNCclBIaUJublVHWElyMTdS?=
+ =?utf-8?B?NnRsRFhKQkZVWDV1Vk83aThGWXIrZWUwdGM1c3NZdVZQUGlicWx4SXZrSEZ3?=
+ =?utf-8?B?V2YxbG53eUxVMDlub3Fpb05YbFB2TWc2S29KV1J0d3l0eXJxcjRDTmJlZ0JB?=
+ =?utf-8?B?RENERGdJTDU2NW1QNmZoUW9xWEVhNC9jRlNvUGtvR2I0Y08xN0R4MVF4NEVa?=
+ =?utf-8?B?OW1UMnpYd3pLVmdYOFRXS3dJN0FkTEpwOTl6cmM1ZVdQVlJ4a2NzT0FvdWFj?=
+ =?utf-8?B?ZDI2SUtWL0hLdWpCUXlxTWVQamVSQmJhSVFwREFFamhPMHpuckdpMWQ5enh1?=
+ =?utf-8?B?ZzBpaWgvUlVlb09FeTl4Qko4ZE05NGdZQjlrM05lT1F3aVlIelhwRVhCckhW?=
+ =?utf-8?B?dUpXNDIzbFFYWmNIZkxxWlNRcCtINkxMU1FQaGtqSHpqZnNIcmtJUHFKTkM3?=
+ =?utf-8?B?Y3l1ZmdQeWlRQW9xa3k3bG5UM1NCZU5XejNPcHlXVnNobFlkckc2d3ZvQUlq?=
+ =?utf-8?B?cDE4eUhEZHA3Wjl6MU1aeW1Udm1ZS1F6UE9ucC9KUEdvMUtnOThlWHpnQ0lS?=
+ =?utf-8?B?dU1pWEM0U0F1M3hKNy9WVmgweDhmS3BkcUpPSXZSYUV3MHdNOHV0dEx0cHlP?=
+ =?utf-8?B?TVROYU1RLzJDZVJGdHluZkNUK2RMMG4xUWJGTGltNkNBQ09QNEdCS2d4QzN6?=
+ =?utf-8?B?SHI0SnYzcXo4NStMZk1CMWZmcmk1dWRhMENnRVNsSVY1SmY1YjZERzlZNTlX?=
+ =?utf-8?B?MnZ1QVdkT1g1VkZUOVlWWWJWK2VTdlE4RkxjWTl4Q2NWQVpUOW5DN2hYQ3Bs?=
+ =?utf-8?B?MGduY3RJMjY5UlRvTU5MTDJEelNGL3l0Kzg0SHNpeHd0MXNDQ0NULzR6OHpC?=
+ =?utf-8?B?L2thcWtVT1pZUW5DeFNmT2RZMWpHY0dSeXVqK3R3ZGxEUzdJUllsWVA4VHFT?=
+ =?utf-8?B?UE9UTzBnUS9xUW1GMlZVN1UvbFdvQlROY1djR3phRFdtOGxlQjZyTU5CVGhu?=
+ =?utf-8?B?Rk5Pa1UyZ2hvZGJqazkzaUtuVXFITmdSeFRUQ25CbXBDRW94RlJYZy9mVGUx?=
+ =?utf-8?B?WG9Ga3NNS01pWEkzcnhPRzZMTmYvc0VMUUQ1MzRTOXpmejFURWlqUENYd0Vu?=
+ =?utf-8?B?dk1wbFM2VXAxRVRkRHVSUUhBeThFa2xtNDlRT21tdzFXMUpPRWFFbmRyeWdR?=
+ =?utf-8?B?bGQvb3NoWGwxcnE3MThRSFg3L0pTYzFzMzVZdXVDcGdpZzZWNVpES0JDR2Vt?=
+ =?utf-8?B?MXJzMXFwcmdlbzZyL3JvOVppcnJVNHZXeGk3Ti9sMlgvMTQyM1NFYUlNMVE5?=
+ =?utf-8?B?WlFhM084MzFVcUNBR2FJT1YraFpYcjd1c2U4Q0x6SXhyYXVPem9XVHBZTHNF?=
+ =?utf-8?B?elFIVjZXS1R5TUlVZGhpSlc3TWdQVCtmTXd0Z1lkM09sNmdaSlE4Tzh3RGM4?=
+ =?utf-8?B?RUw0ZXFxWWpJMnpjVURqRHBVUWVHb213MEhFdERSeXlXcjdNQ1RMeG5zNVg0?=
+ =?utf-8?B?UUMwMVZtaDljNnc3OUpwbkpveEhhc1gyNlVhcnhBbGRMYSs0TGI2M2J4dUF4?=
+ =?utf-8?B?bTBkaUxZY2UwQXhkQmtmR1Y3NnB3REZRRU4xdWtLcW1OYjU0NGtTb01BTUNW?=
+ =?utf-8?B?UTNBaTc0cTFjZXFHT1EwUC8rd21vakhWdUlvTWFuRE9lOVM3Y2ZEamxDcGJL?=
+ =?utf-8?B?eHo1S0Ryem9UK240a1ZVdlMvVG1iN2ROZjhJb2k5MjJEQk1USUgvd0J1Q3pF?=
+ =?utf-8?Q?tTlE=3D?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(36860700013)(82310400026);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2025 02:54:48.1398
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 15b4be6f-a8eb-434e-b4b3-08de15cd5ba1
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG1PEPF000082E7.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR06MB6519
 
-On Tue, Oct 28, 2025 at 03:39:44AM +0200, Vladimir Oltean wrote:
-> On Mon, Oct 27, 2025 at 11:41:10PM +0000, Daniel Golle wrote:
-> > On Tue, Oct 28, 2025 at 01:04:39AM +0200, Vladimir Oltean wrote:
-> > > On Sun, Oct 26, 2025 at 11:45:19PM +0000, Daniel Golle wrote:
-> > > > Add support for standard tx-internal-delay-ps and rx-internal-delay-ps
-> > > > properties on port nodes to allow fine-tuning of RGMII clock delays.
-> > > > 
-> > > > The GSWIP switch hardware supports delay values in 500 picosecond
-> > > > increments from 0 to 3500 picoseconds, with a default of 2000
-> > > > picoseconds for both TX and RX delays.
-> > > > 
-> > > > This corresponds to the driver changes that allow adjusting MII delays
-> > > > using Device Tree properties instead of relying solely on the PHY
-> > > > interface mode.
-> > > > 
-> > > > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> > > > ---
-> > > > v3:
-> > > >  * redefine ports node so properties are defined actually apply
-> > > >  * RGMII port with 2ps delay is 'rgmii-id' mode
-> > > > 
-> > > >  .../bindings/net/dsa/lantiq,gswip.yaml        | 29 +++++++++++++++++--
-> > > >  1 file changed, 26 insertions(+), 3 deletions(-)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> > > > index f3154b19af78..b0227b80716c 100644
-> > > > --- a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> > > > +++ b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> > > > @@ -6,8 +6,29 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > >  
-> > > >  title: Lantiq GSWIP Ethernet switches
-> > > >  
-> > > > -allOf:
-> > > > -  - $ref: dsa.yaml#/$defs/ethernet-ports
-> > > > +$ref: dsa.yaml#
-> > > > +
-> > > > +patternProperties:
-> > > > +  "^(ethernet-)?ports$":
-> > > > +    type: object
-> > > > +    patternProperties:
-> > > > +      "^(ethernet-)?port@[0-6]$":
-> > > > +        $ref: dsa-port.yaml#
-> > > > +        unevaluatedProperties: false
-> > > > +
-> > > > +        properties:
-> > > > +          tx-internal-delay-ps:
-> > > > +            enum: [0, 500, 1000, 1500, 2000, 2500, 3000, 3500]
-> > > > +            default: 2000
-> > > 
-> > > No. This is confusing and wrong. I looked at the driver implementation
-> > > code, wanting to note that it has the potential of being a breaking
-> > > change for device trees without the "tx-internal-delay-ps" and
-> > > "rx-internal-delay-ps" properties.
-> > > 
-> > > But then I saw that the driver implementation is subtly different.
-> > > "tx-internal-delay-ps" defaults to 2000 only if "rx-internal-delay-ps" is set, and
-> > > "rx-internal-delay-ps" defaults to 2000 only if "tx-internal-delay-ps" is set.
-> > > 
-> > > So when implemented in this way, it won't cause the regressions I was
-> > > concerned about, but it is misrepresented in the schema.
-> > > 
-> > > Why overcomplicate this and just not set a default? Modify the RX clock
-> > > skew if set, and the TX clock skew if set.
-> > 
-> > The problem is that before adding support for both *-internal-delay-ps
-> > properties the internal delays would be set exclusively based on the
-> > interface mode -- and are inverted logic:
-> > 
-> > ```
-> >          switch (state->interface) {
-> >          case PHY_INTERFACE_MODE_RGMII_ID:
-> >                  gswip_mii_mask_pcdu(priv, GSWIP_MII_PCDU_TXDLY_MASK |
-> >                                            GSWIP_MII_PCDU_RXDLY_MASK, 0, port);
-> >                  break;
-> >          case PHY_INTERFACE_MODE_RGMII_RXID:
-> >                  gswip_mii_mask_pcdu(priv, GSWIP_MII_PCDU_RXDLY_MASK, 0, port);
-> >                  break;
-> >          case PHY_INTERFACE_MODE_RGMII_TXID:
-> >                  gswip_mii_mask_pcdu(priv, GSWIP_MII_PCDU_TXDLY_MASK, 0, port);
-> >                  break;
-> >          default:
-> >                  break;
-> >          }
-> > ```
-> > 
-> > As you can see the delays are set to 0 in case of the interface mode
-> > being RGMII_ID (and the same for RGMII_RXID and RGMII_TXID
-> > respectively).
-> > 
-> > This is probably the result of the delays being initialized to 2000ps by
-> > default, and if the **PHY connected to the switch port** is set to take
-> > care of the clk/data delay then the switch port RGMII interface doesn't
-> > have to do it.
-> > 
-> > From my understanding this is a bit awkward as "internal delay" usually
-> > means the delay is taken care of by the PHY rather than by discrete
-> > parts of the board design. Here, however, it is *never* part of the
-> > board design and always handled by either the switch RGMII interface
-> > (MAC side) or the connected PHY.
-> > 
-> > So in order to not break existing board device trees expecting this
-> > behavior I've decided to only fall-back to adjust the delay based on the
-> > interface mode in case both properties are missing.
-> > 
-> > Please correct me if that's the wrong thing to do or if my understanding
-> > is flawed in any way.
+Hi Conor,
+
+​Thank you for your prompt feedback.​​
+
+On 10/28/2025 12:51 AM, Conor Dooley wrote:
+> On Mon, Oct 27, 2025 at 04:42:38PM +0800, Jun Guo wrote:
+>> - Add new compatible strings to the DT binding documents to support
+>>   cix sky1 SoC;
+>> - Adjust the configuration of the compatible property to support both
+>>   single-item and two-items cases.​​
+>>
+>> Signed-off-by: Jun Guo<jun.guo@cixtech.com>
+>> ---
+>>   .../devicetree/bindings/spi/spi-cadence.yaml          | 11 ++++++++---
+>>   1 file changed, 8 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/spi/spi-cadence.yaml b/Documentation/devicetree/bindings/spi/spi-cadence.yaml
+>> index 8de96abe9da1..e75b142a1368 100644
+>> --- a/Documentation/devicetree/bindings/spi/spi-cadence.yaml
+>> +++ b/Documentation/devicetree/bindings/spi/spi-cadence.yaml
+>> @@ -14,9 +14,14 @@ allOf:
+>>   
+>>   properties:
+>>     compatible:
+>> -    enum:
+>> -      - cdns,spi-r1p6
+>> -      - xlnx,zynq-spi-r1p6
+>> +    oneOf:
+>> +      - enum:
+>> +          - cdns,spi-r1p6
+>> +          - xlnx,zynq-spi-r1p6
+>> +      - items:
+>> +          - enum:
+>> +              - cix,sky1-spi-r1p6
+>> +          - const: cdns,spi-r1p6
+> This doesn't apply, probably needs a rebase on spi/for-next?
+> Approach is correct though, but it'll be a more minimal patch when
+> rebased.
+> pw-bot: changes-requested
 > 
-> Ok, I missed the fact that there's RGMII delay handling outside of
-> gswip_mii_delay_setup() too (a bit bizarre).
-> 
-> So "why overcomplicate this" has a good reason. You have legacy to
-> maintain for xrx200, xrx300, xrx330 - essentially the same situation as
-> documented in sja1105_parse_rgmii_delays(). But no legacy for the newly
-> introduced switches though?  I don't see why you'd opt them into this
-> behaviour of applying MAC delays based on phy-mode.
+Thank you for the heads-up. I've just seen your patch, and I will base 
+my PATCH v3 on top of it.>>
+>>     reg:
+>>       maxItems: 1
+>> -- 
+>> 2.34.1
 
-The answer here is also simple: because it would make the common part
-of the driver to draw an artificial line between older in-SoC switches
-and newer standalone chips, though the RGMII interface itself is
-exactly the same and hence part of the lantiq_gswip_common library
-module. I know that this reason alone doesn't fly with DT maintainers,
-which is why I thought that allowing a modern (ie. using the
-{rx,tx}-internal-delay-ps properties) way to set clk vs. data delays
-for both new and old hardware would be the best.
-
-Do you think doing an opt-out of the new hardware from this behavior
-is worth persuing? (it would obviously make both the bindings as well
-as the driver itself more complex in order to achieve that)
-
-> 
-> Also, the point still stands that your documented default delay value
-> is incorrect. What happens in lack of one property depends on the
-> presence of the other, and on the phy-mode. I think deleting the
-> default value from the schema is much better than having wrong
-> documentation for it.
-
-To me that sounds like a good compromise. The defaults are correct, but
-only if at least one of the two properties are present or if the reset
-value if kept in case of PHY_INTERFACE_MODE_RGMII (which doesn't zero
-either of the delays).
-
-I could also harmonize the situation in the driver by always starting
-with the default values selected in the legacy way (ie. based on the
-interface mode) and allow overriding that using the modern properties.
-Does that sound better than the current behavior?
 
