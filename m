@@ -1,120 +1,127 @@
-Return-Path: <devicetree+bounces-232288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5777C16229
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 18:26:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 532BCC1625C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 18:29:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D49B3B060D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 17:24:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18EC81C25BC1
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 17:29:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E02D6336EDC;
-	Tue, 28 Oct 2025 17:24:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8791734887B;
+	Tue, 28 Oct 2025 17:29:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="KS3bEume"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U4/Mxo6T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 060F728C5B1
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 17:24:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 553DE24291E;
+	Tue, 28 Oct 2025 17:29:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761672273; cv=none; b=G7BRJUVa53Fes8BPfil+mkVbbAq2WQEQqZBJocDHVSQMURTS5OwWjfhG0QTLEQ9MJRSMs5jRuntifL3CveCWeQdhhOkKGV9pdWpPJHfTUyAXwSMxapGXXtMZOTQPShQjDLJm1grt/+mQjkYEIpHwNqn6Idlf8pBZ6Zipq1PgV6U=
+	t=1761672551; cv=none; b=jrngebjpkpygCDAzGAuHmzfGLkKpt2k6m/gExWudNI4ilDoJN33EKxOSdBwHy2LeIceESqhHcBSlS4zSkTPVblr7/2mG5jtcgHcgLYkaO1PDMlRxjQOOtUzcEdZXxusUxrcyA5pN1usO9R3NTiX4bKlEMzTVyHPAHKg2KjxxUfU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761672273; c=relaxed/simple;
-	bh=ZxONpV3i/ou2JfG5PzUXP70EAYe3B1djZLSgOaiLNhw=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=W4GoHqRN/hyp9MYAbEzOVpsRJeNVZgRb0nBTNoRHwXiB6v5wtuK/2jACEZiI8qXRdvgZQMUPPB/lsetBlIYjUnrqIDOtGVnk4d5ba/3AetdiYaJQzBkOQAUJ2gMeJyZa2O1pxsLlUr6K7RST5FOmFz8BM7XwxZ6lJsBHj01aaAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=KS3bEume; arc=none smtp.client-ip=91.218.175.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow-tech.com
+	s=arc-20240116; t=1761672551; c=relaxed/simple;
+	bh=Wom80ZT67YTITNTpVsdfLNCY3yfm9u1godoIz9kWvXU=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=fUFoH7Zc8/5EHGROHGZCisev0gtSzu2ITJIEL+nUbjN4+8VNXDq2mBRRf+GWTEEGobdiqYNNireqJEXQu+MvcjQeUVi1zbkRj9tqYEJPaKYGAR30pEIW/xh0gRflY0y4+w0aNfCCrGSb5RAXEI3VWG2psjsDKMklKODWBbJ/2Es=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U4/Mxo6T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66B14C4CEE7;
+	Tue, 28 Oct 2025 17:29:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761672549;
+	bh=Wom80ZT67YTITNTpVsdfLNCY3yfm9u1godoIz9kWvXU=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=U4/Mxo6TSNgTJk3Guhyp2Zp5E0KA7wpH46VQs+P5cZAM/Ssw5jXYf15LjemYcSJXI
+	 iqJLvNJsB9aE76D4mae8Wpq5sOfnUZPt9lrCR86d+iN1ecVhpHmCo0StQ5dmFCXFFI
+	 Lmkb6VJUxKRbycbhcQOsCwjP7jAfTV8TKWgZCIySXdV7SgW/0p8ay3SaltoRRZrFaU
+	 o0aIKST9UaiwOMH/rq7rPeBgpmi7a6RU+lPCxhk/xInylQhgs4XJJKQrrv2X/FSYvO
+	 Vjd/9p2zA3sdHerImuTTDCqUhVhkUY6dCSCs0FzPlN42Tuwna1nvvBVIrlYir4qXZi
+	 4+FHV4oLLOTiw==
+Date: Tue, 28 Oct 2025 12:29:07 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
-	s=key1; t=1761672268;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=E2Pml1G5/Sjw6JkBJ4bqsdsT4UzYGcaQDoLpBigadoI=;
-	b=KS3bEumeNJwU0gYoic7hWhR0ndlInGfhrNEn6Ci2g3j4++LN6XDcgIv2WFW8MuMQstfAk5
-	mqsoYLyRYPy1I4DpUa7/xk6VaprKxzABWovAfxk/3KHBNjflUqpERs0lxZMJcEXDjQqI2s
-	YP1wvNOsCuBhYM0B2H8nmaPjwR9tTaPSIAHzKAItCbNOiksouigAihswuXupUS23Lkzk94
-	mbbyEQnS0AyEaS2Bdmjffj8XpNKeuT9R5cPXTJz+O9Wj2+NoxPu9EnlbsZElH5MKiz8OP+
-	ajxITudT9sD1Z+8ttFtCxxp2FEglQc7l8QUy7Q8vOnfY1735r5TruuydJPX9aw==
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 28 Oct 2025 18:24:25 +0100
-Message-Id: <DDU4P6569O9M.3DKFYS1FDBROU@cknow-tech.com>
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <diederik@cknow-tech.com>
-To: "FUKAUMI Naoki" <naoki@radxa.com>, <heiko@sntech.de>
-Cc: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <liujianfeng1994@gmail.com>, <dmitry.baryshkov@oss.qualcomm.com>,
- <sebastian.reichel@collabora.com>, <andy.yan@rock-chips.com>,
- <nicolas.frattaroli@collabora.com>, <damon.ding@rock-chips.com>,
- <jbx6244@gmail.com>, <detlev.casanova@collabora.com>,
- <devicetree@vger.kernel.org>, <linux-rockchip@lists.infradead.org>
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Fix USB Type-C host mode for
- Radxa ROCK 5 ITX
-References: <20251028115040.101156-1-naoki@radxa.com>
- <20251028115040.101156-2-naoki@radxa.com>
-In-Reply-To: <20251028115040.101156-2-naoki@radxa.com>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, 
+ Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, 
+ linux-arm-msm@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ linux-bluetooth@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ devicetree@vger.kernel.org, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+ Marcel Holtmann <marcel@holtmann.org>, Rocky Liao <quic_rjliao@quicinc.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20251028-dt-bindings-qcom-bluetooth-v1-2-524a978e3cda@linaro.org>
+References: <20251028-dt-bindings-qcom-bluetooth-v1-0-524a978e3cda@linaro.org>
+ <20251028-dt-bindings-qcom-bluetooth-v1-2-524a978e3cda@linaro.org>
+Message-Id: <176167254303.2794634.13957368391979283059.robh@kernel.org>
+Subject: Re: [PATCH 02/12] dt-bindings: bluetooth: qcom,qca2066-bt: Split
+ to separate schema
 
-On Tue Oct 28, 2025 at 12:50 PM CET, FUKAUMI Naoki wrote:
-> The USB Type-C port on the Radxa ROCK 5B+/5T supports Dual-Role-Data
-> and Dual-Role-Power. However, currently it cannot operate as host/
-> source.
 
-You describe the ROCK 5B+/5T while modifying the 5 ITX. If the exact
-same logic applies to the 5 ITX, then ``s/5B+\/5T/5 ITX/`` above?
-
-Cheers,
-  Diederik
-
-> By setting "power-role" to "dual" and "try-power-role" to "sink"
-> (along with adding related properties), the data role can operate as
-> host.
->
-> Unfortunately, a remaining issue is that when a USB 3.0 SuperSpeed
-> device's orientation is reverse, the root port is detected but the
-> device itself is not. This must be addressed separately.
-> (USB 2.0/1.1 devices operate even in reverse orientation.)
->
-> Fixes: 31390eb8ffbf2 ("arm64: dts: rockchip: add ROCK 5 ITX board")
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+On Tue, 28 Oct 2025 16:31:51 +0100, Krzysztof Kozlowski wrote:
+> One big Qualcomm Bluetooth schema is hardly manageable: it lists all
+> possible properties (19 supplies).  Split common part and
+> qcom,qca2066-bt to separate bindings, so each schema will be easier to
+> read/maintain and list only relevant properties.
+> 
+> The existing bindings do not mention interrupts, but
+> am335x-sancloud-bbe-extended-wifi.dts already defines such.  This issue
+> is not being fixed here.
+> 
+> Existing binding also did not mention any supplies (which do exist as
+> confirmed in datasheet) and Linux driver does not ask for any, thus keep
+> this state unchanged.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
 > ---
->  arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/ar=
-m64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-> index bc8140883de47..1664f85db4aaa 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-> @@ -484,9 +484,14 @@ usb_con: connector {
->  			compatible =3D "usb-c-connector";
->  			data-role =3D "dual";
->  			label =3D "USB-C";
-> -			power-role =3D "source";
-> +			op-sink-microwatt =3D <50000>;
-> +			/* fusb302 supports PD Rev 2.0 Ver 1.2 */
-> +			pd-revision =3D /bits/ 8 <0x2 0x0 0x1 0x2>;
-> +			power-role =3D "dual";
-> +			sink-pdos =3D <PDO_FIXED(5000, 10, PDO_FIXED_USB_COMM)>;
->  			source-pdos =3D
->  				<PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-> +			try-power-role =3D "sink";
-> =20
->  			ports {
->  				#address-cells =3D <1>;
+> 
+> Expected warnings:
+> arch/arm/boot/dts/ti/omap/am335x-sancloud-bbe-extended-wifi.dts
+> ---
+>  .../net/bluetooth/qcom,bluetooth-common.yaml       | 25 +++++++++++
+>  .../bindings/net/bluetooth/qcom,qca2066-bt.yaml    | 49 ++++++++++++++++++++++
+>  .../bindings/net/bluetooth/qualcomm-bluetooth.yaml | 24 -----------
+>  MAINTAINERS                                        |  1 +
+>  4 files changed, 75 insertions(+), 24 deletions(-)
+> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Lexical error: Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.example.dts:53.42-58 Unexpected 'GPIO_ACTIVE_HIGH'
+Lexical error: Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.example.dts:54.42-58 Unexpected 'GPIO_ACTIVE_HIGH'
+FATAL ERROR: Syntax error parsing input tree
+make[2]: *** [scripts/Makefile.dtbs:132: Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1528: dt_binding_check] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251028-dt-bindings-qcom-bluetooth-v1-2-524a978e3cda@linaro.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
