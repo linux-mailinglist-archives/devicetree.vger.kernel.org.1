@@ -1,60 +1,58 @@
-Return-Path: <devicetree+bounces-232327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA9DEC169EF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 20:31:43 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB141C16A01
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 20:35:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A9053A7C18
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 19:31:42 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7552E4EE7C3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 19:35:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7CE347BDB;
-	Tue, 28 Oct 2025 19:31:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B5D734F241;
+	Tue, 28 Oct 2025 19:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gLs+Hv3f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DVCLQu91"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 681AB29A9F9;
-	Tue, 28 Oct 2025 19:31:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6AB2342C80;
+	Tue, 28 Oct 2025 19:35:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761679898; cv=none; b=H5CN7rt5rOvsALQVlZ0qZqF+UOmiHZwKz1e4erKJWLOmac3CXCBbMxVVCf6PDQur0voZNl9Z1LSWu5UQn9ogEeljjh/Oau0X+1kvQcfllvSKR1VUws7EblcMFy1D5xamNwgN7zh8/cyb5ZGoP9LHqB3hSQRjo6k4accmOU0d5zQ=
+	t=1761680107; cv=none; b=BCsP90rjM4L/pJ7irG46GDx8FGlZK1I8syBgxowoiXdUBAVjSZz3cXOnwrdXyYGC5DlIVCPUJv6fRRDYnRK0MhHv2aKdUUbJEiJV7WKN9Ud7aGdqhzzhWbYQsTgD/0m0R+deqY+7RPgUnGAjgOxvTxzmqndQglCoOjeMgSkVsgM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761679898; c=relaxed/simple;
-	bh=DcJvgp5kzm0iZtaexyuV+sB0byJmjCNfqV14wFgw6lg=;
+	s=arc-20240116; t=1761680107; c=relaxed/simple;
+	bh=TduQ/dgw+UuyE9mcK4GdQk5Yb3BIZ3ZWL8E2yD0tmpc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PxvCQDPT5Oo8xPgpStIJb7vJl5OKHfkwUAYfxtxpAB8QJkuoVeUeY3VY06HD473GsWPp76ZIcHGG6oRopfAUXEOt3FgPzEyl6/Np7Ue6RAcAd3v81CRRP1SI+WYuWpGAPclgNOxDFZHh79S8R+YPcBnqvuK8/xRQSq/6Ql996Oo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gLs+Hv3f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5242AC4CEE7;
-	Tue, 28 Oct 2025 19:31:36 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dL/E+eqW8n6CMFId++OdK5swGHJRiiOD2dNF1fzQFrQV3yuaxBUquHTSsQLBWXpxkmJltmfDLQwDSXsqvt7+XVfbt66hV5Lkx8j5PItp+jCaZLRg1Jk/xYxEiYT0v+AMIlO5XySaTHO+LYLWdHM6oQOsidaTSCiK89bZPLjcojI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DVCLQu91; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41FDEC4CEE7;
+	Tue, 28 Oct 2025 19:35:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761679898;
-	bh=DcJvgp5kzm0iZtaexyuV+sB0byJmjCNfqV14wFgw6lg=;
+	s=k20201202; t=1761680105;
+	bh=TduQ/dgw+UuyE9mcK4GdQk5Yb3BIZ3ZWL8E2yD0tmpc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gLs+Hv3fT2HDVMwXUEt2CTggHlxbhkJkDlN492kqM9CTFlikSTjItP2mrafCdAZz3
-	 OiQwt+a+Haw56J/R0GesDE9SRDuGQZsmdfCQB+Rd2ocdV3qT21jiia2ZnOCGzPwP4m
-	 LArmmweR5wqKcoH2qdEA2KG74sAhzPCrh+SONneHc54U+DDEBY8k1OuqIMEMChzNqK
-	 vuSMl8JanF18Xx6+bbtWlef+AFIivymorqVbAK6mx0gLKeXhAwkXrMAsKNKGoFMSl5
-	 GvQ6rhbVvzdn2J25FMyUvZR5dchxaQkrT6/9kQ0OQKwBvEzXeVrbQ5naVaskBsdXTO
-	 GG4Jfuj+lrYQA==
-Date: Tue, 28 Oct 2025 19:31:34 +0000
+	b=DVCLQu91cK4OpYffGRZamj+PPqPn5Gscu6EfUvTLNA37ubHqnxoEvi7lkRhEUGzDU
+	 xL7ajaFSUyzXsA42/xVNQ4czWtB1MBMqhIvkJRa5prxJSIfw7Kp3H0aY6iGWN7cvqL
+	 DU+ZyTgdHiNVEh+Qk5neaRJecK1qppidmbUgTxG/SAgKOouzYEupm1cElGJlXC0/wj
+	 2E6l3/tTjg+U6Fn3iJozbSxLR97mwx/psasiVkUP0OIuaP5z2jOnFeBvBW90b/IXrU
+	 qZAspKr2+91BJwhGzKLTFSBj6DP9hVzPDA6reyF6X5dxROzHoXO68NWvz2H5XBajRg
+	 213VaXtJCbnKw==
+Date: Tue, 28 Oct 2025 19:35:01 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Robin Gong <yibin.gong@nxp.com>,
-	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: regulator: nxp,pca9450: document
- input supplies
-Message-ID: <20251028-luminous-undertook-c518378eb3d3@spud>
-References: <20251027124415.989301-1-o.rempel@pengutronix.de>
- <20251027124415.989301-2-o.rempel@pengutronix.de>
+To: Coia Prant <coiaprant@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, Dragan Simic <dsimic@manjaro.org>,
+	Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: vendor-prefixes: Add NineTripod
+Message-ID: <20251028-haste-amusing-78c28e834b5b@spud>
+References: <20251026143645.917588-2-coiaprant@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,40 +60,56 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="DkNDWamEZMwAVTmF"
+	protocol="application/pgp-signature"; boundary="Gl+av2e7HRT0n/2a"
 Content-Disposition: inline
-In-Reply-To: <20251027124415.989301-2-o.rempel@pengutronix.de>
+In-Reply-To: <20251026143645.917588-2-coiaprant@gmail.com>
 
 
---DkNDWamEZMwAVTmF
+--Gl+av2e7HRT0n/2a
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 27, 2025 at 01:44:14PM +0100, Oleksij Rempel wrote:
-> Add missing supply properties for PCA945x input pin groups:
-> - inl1-supply (for LDOs)
-> - inb13-supply (for BUCK1/3)
-> - inb26-supply (for BUCK2/6)
-> - inb45-supply (for BUCK4/5)
+On Sun, Oct 26, 2025 at 10:36:44PM +0800, Coia Prant wrote:
+> Add NineTripod to the vendor prefixes.
 >=20
-> These properties describe external power sources for each input group.
+> Signed-off-by: Coia Prant <coiaprant@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 >=20
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
+umentation/devicetree/bindings/vendor-prefixes.yaml
+> index f1d188200..37687737e 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -1124,6 +1124,8 @@ patternProperties:
+>      description: National Instruments
+>    "^nicera,.*":
+>      description: Nippon Ceramic Co., Ltd.
+> +  "^ninetripod,.*":
 
-pw-bot: not-applicable
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Why ninetripod instead of 9tripod? That's what the company uses and in
+the marketing fluff for the boards.
 
---DkNDWamEZMwAVTmF
+> +    description: Shenzhen 9Tripod Innovation and Development CO., LTD.
+>    "^nintendo,.*":
+>      description: Nintendo
+>    "^nlt,.*":
+> --=20
+> 2.47.3
+>=20
+
+--Gl+av2e7HRT0n/2a
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQEaFQAKCRB4tDGHoIJi
-0rfCAQC+JmVCiE4ACIE20eVbZN1rDutzHSSRk8ZqFkKFG0h0mwEAh9a7JNNQGx+7
-ihIQc0kZQEPsrzTZ8j1HusH1i+ldWA0=
-=ylpm
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQEa5QAKCRB4tDGHoIJi
+0lLpAQCEq5o2AIeBeKU/HTLGiRDFRwZsauzXLY1N19v7WOrccAEAk2K6wBMBRl7P
+WXToJKSFpArrZz2WIkOYuL/UaqrZ8w4=
+=1enS
 -----END PGP SIGNATURE-----
 
---DkNDWamEZMwAVTmF--
+--Gl+av2e7HRT0n/2a--
 
