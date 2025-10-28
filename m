@@ -1,164 +1,184 @@
-Return-Path: <devicetree+bounces-232003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A3E2C13A31
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:56:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17B9AC13A5B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:57:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 090D61893B13
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 08:53:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45C77561D46
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 08:54:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC5D2D97A5;
-	Tue, 28 Oct 2025 08:52:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 853642BE029;
+	Tue, 28 Oct 2025 08:54:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="fj/WnG8/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tsShvLtR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D436C2D949E
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 08:52:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50512241691;
+	Tue, 28 Oct 2025 08:54:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761641551; cv=none; b=EkSMjGD08wsKesY0X+4/NvlRQ+SfhYAQqUd18nrUGO6G9kpKDVYB0gQoBlswr8sPb904rqLGzjEmy/wqk5fXN2kln6vZVDIhe//ZsCBhqqBmp30uGhPMCuyaAkhnkKwtE0CnZY28FkJDfcZhj0bABEyBVVKKabWowdIcO03U6x4=
+	t=1761641647; cv=none; b=Dva2UTAjyeUqr6U2C2q3DdKwG3mAO1AUUuCiGVDlv8dYeU9SlHSijEqQHRUVCeyd78nZLQ3JgAN8PLiU42IL+vt/mPkzVyycIITHw1FmEveDAaF8JWM2swXk2Gj89MOWhMmOodf6E/19HA6sAJfjGZ4dx0H9G1nF9D7ZJYpDHHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761641551; c=relaxed/simple;
-	bh=Rci8oK8g4zQX2fXCwbMzzvTNYmicOZcufc/ud9MB8Lg=;
+	s=arc-20240116; t=1761641647; c=relaxed/simple;
+	bh=cA/3o2EI/6QkidbrM/XmmQ42U508vmgC5KPiMSjGlFs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OIPgaDgrLgoG7RUvt84rnBqPdR/LYSvq4L8kVqdjqV+lxcTekOwAOJMdb6T/qfFuagsnFyCRafx5sBhU1RHToxcRlAvg7WnAwtlbPrYRlxOM/OrAkNjXPKDa4GplOGL2R/StsRRMDe0IeF42gDBL6YA0Dm5WHagwyzAzJF43f30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=fj/WnG8/; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=7Y8M
-	a93sO96jbEi35vGpFMXIrwy6YnCZ8/pm8+7MgN0=; b=fj/WnG8/Mbcjl86+qfhN
-	b+DXh2/PrlnWcDTG+LhX/SEGUOyRJggDaesoz/BpDZgR3cvdV92O+g1amZt/KHVx
-	Gc38fp0AH886YeT5JF3NBKyGS4qxQ4jfz6OmZQHQcfDjtA+z/wZ1fD9Hc9nBA7Qf
-	6PdQ3tdyv649uILJX/vi3eMnOGPfXRyC0VIZUJ2WUixCbGm1/hQAvaZPftPSJxl6
-	4DMW6ZWI/uvsif31BOkBjxDWnSB85/d/Aa53q08jrk1gUd1zQ+VIa+Tt/z2Xuxjs
-	jqIZ6SdEHh7YauQV0lAf+GarFlMDtkwLHF6LS7LEfPPAhXRJUK0TN/Jkeb7V5D5u
-	EQ==
-Received: (qmail 3942912 invoked from network); 28 Oct 2025 09:52:20 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 28 Oct 2025 09:52:20 +0100
-X-UD-Smtp-Session: l3s3148p1@0ZIzIjRCTLwujnsk
-Date: Tue, 28 Oct 2025 09:52:19 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Hoan Tran <hoan@os.amperecomputing.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Phil Edworthy <phil.edworthy@renesas.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Pascal Eberhard <pascal.eberhard@se.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v6 7/8] soc: renesas: Add support for Renesas RZ/N1 GPIO
- Interrupt Multiplexer
-Message-ID: <aQCEQ0tye4vwb4Ej@ninjato>
-References: <20251027123601.77216-1-herve.codina@bootlin.com>
- <20251027123601.77216-8-herve.codina@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=EQzqE89q7rLYcHXdGmJK3pmqYwcZe53xIGvHc6S+ijPiT7w9a+WInP7lJXI+R5NCPozemEjiZFd/EsgcxySSJRHY//10u6Y/iXQo9Wk0VEHDuZxUn8WEqTNht+qp3/QUrTCn/Qqr22b9iZ0DYNEdNAYq4HVJr+tKW2VB/yEfxSQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tsShvLtR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D2CEC4CEE7;
+	Tue, 28 Oct 2025 08:54:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761641645;
+	bh=cA/3o2EI/6QkidbrM/XmmQ42U508vmgC5KPiMSjGlFs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tsShvLtR5H3Q3M8NKFxD1R3OjkQBCmpjiW9NeIMPSNgtU2B+x8MPmOT9QucAh80DE
+	 OyvwqJ+IX8eGHCJe/qRkzWiz3A56cyeWNAHMVKkSvecAIaOgWL9Txg7IoXrg2CHyXC
+	 j/oJdp6svdVFUGn33vwuGNzPECGY85yGOGakYbAIY72XRFzFofrkX0fs6xl1ARqbsV
+	 fJnLVxNGXClYQ1Pk2kKb0+7QeX8sPX3BG0Qb1tPZHLnSmRJSLXHczDXgFrX2fkGUDV
+	 VvyrsVNdrNNtGQ3d3OBZ6rAai7bB2KJ+A6IzFWiJ54QmJK5czngfVDpQicDwWJmSMI
+	 CJT3plTdgTMjw==
+Date: Tue, 28 Oct 2025 09:54:03 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Bryan O'Donoghue <bod@kernel.org>, Robert Foss <rfoss@kernel.org>, 
+	Todor Tomov <todor.too@gmail.com>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, ~postmarketos/upstreaming@lists.sr.ht, 
+	phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: media: camss: Add qcom,sm6350-camss
+Message-ID: <20251028-defiant-visionary-rottweiler-f97cda@kuoka>
+References: <20251024-sm6350-camss-v1-0-63d626638add@fairphone.com>
+ <20251024-sm6350-camss-v1-1-63d626638add@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="TfyCGKJsqzK7IN+Z"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251027123601.77216-8-herve.codina@bootlin.com>
+In-Reply-To: <20251024-sm6350-camss-v1-1-63d626638add@fairphone.com>
 
-
---TfyCGKJsqzK7IN+Z
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Herve,
-
-On Mon, Oct 27, 2025 at 01:35:59PM +0100, Herve Codina (Schneider Electric)=
- wrote:
-> On the Renesas RZ/N1 SoC, GPIOs can generate interruptions. Those
-> interruption lines are multiplexed by the GPIO Interrupt Multiplexer in
-> order to map 32 * 3 GPIO interrupt lines to 8 GIC interrupt lines.
->=20
-> The GPIO interrupt multiplexer IP does nothing but select 8 GPIO
-> IRQ lines out of the 96 available to wire them to the GIC input lines.
->=20
-> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.co=
-m>
-
-Good news first:
-
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-
-I can access GPIO LEDs on my board and PHY interrupts also work.
-
-> +	if (parent_args->args[1] < RZN1_IRQMUX_GIC_SPI_BASE ||
-> +	    parent_args->args[1] >=3D RZN1_IRQMUX_GIC_SPI_BASE + RZN1_IRQMUX_NU=
-M_OUTPUTS) {
-> +		dev_err(dev, "Invalid GIC interrupt %u\n", parent_args->args[1]);
-> +		return -EINVAL;
-> +	}
-
-I really like this solution. I think I suggested it before but can't
-recall the details. And it is not worth digging it up again. Looks good,
-works, perfect.
-
-=2E..
-
-> +static int rzn1_irqmux_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev =3D &pdev->dev;
-> +	struct device_node *np =3D dev->of_node;
-> +	u32 __iomem *regs;
+On Fri, Oct 24, 2025 at 02:23:59PM +0200, Luca Weiss wrote:
+ +
+> +  clock-names:
+> +    items:
+> +      - const: cam_ahb_clk
+> +      - const: cam_axi
+> +      - const: soc_ahb
+> +      - const: camnoc_axi
+> +      - const: core_ahb
+> +      - const: cpas_ahb
+> +      - const: csiphy0
+> +      - const: csiphy0_timer
+> +      - const: csiphy1
+> +      - const: csiphy1_timer
+> +      - const: csiphy2
+> +      - const: csiphy2_timer
+> +      - const: csiphy3
+> +      - const: csiphy3_timer
+> +      - const: slow_ahb_src
+> +      - const: vfe0_axi
+> +      - const: vfe0
+> +      - const: vfe0_cphy_rx
+> +      - const: vfe0_csid
+> +      - const: vfe1_axi
+> +      - const: vfe1
+> +      - const: vfe1_cphy_rx
+> +      - const: vfe1_csid
+> +      - const: vfe2_axi
+> +      - const: vfe2
+> +      - const: vfe2_cphy_rx
+> +      - const: vfe2_csid
+> +      - const: vfe_lite
+> +      - const: vfe_lite_cphy_rx
+> +      - const: vfe_lite_csid
 > +
-> +	regs =3D devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(regs))
-> +		return PTR_ERR(regs);
+> +  interrupts:
+> +    maxItems: 12
 > +
-> +	return rzn1_irqmux_setup(dev, np, regs);
+> +  interrupt-names:
+> +    items:
+> +      - const: csid0
+> +      - const: csid1
+> +      - const: csid2
+> +      - const: csid_lite
+> +      - const: csiphy0
+> +      - const: csiphy1
+> +      - const: csiphy2
+> +      - const: csiphy3
+> +      - const: vfe0
+> +      - const: vfe1
+> +      - const: vfe2
+> +      - const: vfe_lite
+> +
+> +  interconnects:
+> +    maxItems: 4
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: cam_ahb
+> +      - const: cam_hf_0_mnoc
+> +      - const: cam_sf_0_mnoc
+> +      - const: cam_sf_icp_mnoc
 
-The only super minor thing is that we could fold rzn1_irqmux_setup()
-into probe() according to my taste. But I am also fine as is. Looking
-really forward to see this series finally going upstream.
-
-Thanks again for your work on this!
-
-   Wolfram
+Please share the list with the previous generation of this device. Which
+one was used here as "previous"? For example x1e has quite different
+names - nothing with "cam". No "cam" in qcs8300, either.
 
 
---TfyCGKJsqzK7IN+Z
-Content-Type: application/pgp-signature; name="signature.asc"
+> +
+> +  iommus:
+> +    maxItems: 4
 
------BEGIN PGP SIGNATURE-----
+I was told iommus might differ. Are you sure all of them represent the
+same (e.g. not specific iommus for specific purposes)?
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmkAhDwACgkQFA3kzBSg
-KbZzBQ//dGfSzYjCMDbqSzzH9rp46J9h2ioOYhbgHqWSa38bRcLKNqtJ3hjpmnzi
-1qEPdSqdnxRgAxmV+B13czpT5Q9pUE+FFdaQ5vlU8B1fZlKNjj+mDP2Xo8/5KPb9
-NcPffqNgK3xqpoGHlYtv6j5/vJY1epinvXe8iqUyAilBToEfQwu1vapRm6jQQwb6
-3UeEjfhBrQloIdStvOMnys8NNs/o2ghxzbsWK38CWS1YN9erq3yCAgNqh+4Dlwif
-Y4Yqe4kQe8+SW2MZpeZvDX0MhMVFHRZSOBhOKG95YK+cijImA2bxooyr3LN4zZj1
-R2Cf1fdDWEhB3O2HqRWCArfYTAbYksYINMuJV/wt87RKx+zANXwwmSie+5f4rBja
-B0rXX2HxClE7NlDdVa6fF/3kK//BQ+nvuUwUvePJHNqYdgOwn6VlxSeaSPui/065
-su6hY1fupvJOVoEZBJ0ykj9W3/BLs+jkh3rfbBJ6un+JhZ2kIuzo5/v1pZGuUTIT
-grpCvlDXFVozNXGhjaUfXG4KmkPchidQ+0bcx3m/AaG5f5jJFnJ1H4xUZIRGC/LJ
-vbsFaJxZ/NgPjOOB9f4PQEWAL2anKeoH/YkKPkeF0OBGQ3YZq+XbT5c6QL7MdMGe
-wWBWmlyDmnlRLBy5Srs3KtrbUpq2qnCiURddjIeG7ZEJq173gLc=
-=o45b
------END PGP SIGNATURE-----
+> +
+> +  power-domains:
+> +    items:
+> +      - description: IFE0 GDSC - Image Front End, Global Distributed Switch Controller.
+> +      - description: IFE1 GDSC - Image Front End, Global Distributed Switch Controller.
+> +      - description: IFE2 GDSC - Image Front End, Global Distributed Switch Controller.
+> +      - description: Titan Top GDSC - Titan ISP Block, Global Distributed Switch Controller.
+> +
+> +  power-domain-names:
+> +    items:
+> +      - const: ife0
+> +      - const: ife1
+> +      - const: ife2
+> +      - const: top
 
---TfyCGKJsqzK7IN+Z--
+Uh, not your fault, but who came with this list in previous generations?
+Instead of simple and obvious "top+ifeX" which allows growing/shrinking,
+someone put "top" at the end which means this cannot follow same order
+as X1E for example... Heh, it follows at least sm8550.
+
+
+> +
+> +  vdda-0.9-supply:
+
+There are no dots in property names. Are you sure these are called
+VDDA_0.9 in the device datasheet (not schematics)? Please look at other
+bindings how this is being named, depending whether this is PHY or PLL
+supply (or only PHY).
+
+
+> +    description:
+> +      Phandle to a 0.9V regulator supply to a PHY.
+> +
+> +  vdda-1.25-supply:
+> +    description:
+> +      Phandle to a 1.25V regulator supply to a PHY.
+
+Best regards,
+Krzysztof
+
 
