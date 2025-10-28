@@ -1,93 +1,138 @@
-Return-Path: <devicetree+bounces-232371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E10DBC16DD4
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 22:07:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9955EC16DFE
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 22:09:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1E371AA4D6E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 21:07:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 799D33A7D6F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 21:08:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC27A2DC793;
-	Tue, 28 Oct 2025 21:06:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034A02D6E74;
+	Tue, 28 Oct 2025 21:08:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=erdfelt.com header.i=@erdfelt.com header.b="jcn4Qm+0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YYu4S94K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out.bound.email (out.bound.email [141.193.244.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B72D62DA757;
-	Tue, 28 Oct 2025 21:06:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=141.193.244.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCEF9221721;
+	Tue, 28 Oct 2025 21:08:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761685583; cv=none; b=qx94YawB318eFd/6+GsFCGWUYLsGf8fP46E8J/cNdAKGWG8l+246t2/gOjRZ1/jrMijf7kgvZE20KlWd+D9uIX2pDuhYFNLiYnUFU53dP6YbxNIeOd5ZZ9iPZdy3Om0BS1URzCt1baXGSpBYly1GUU3cRRmk9nlwDy1J/W698mE=
+	t=1761685684; cv=none; b=a2Kuju/ox5Y+JpBWlLaxmhgTzgt7oHbHN/jnFpllVlIoMN8I75w1LQUYcKogG6rqpluF/2BPHtGPsgSoR0M5guvytAphTeQYvKEPWZyvF66644F/kzMmjHndWoMUMhfP0QmkzSD8xTEPTOLKvbN6OxK4CzZ3//vK45EByJwbNzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761685583; c=relaxed/simple;
-	bh=Hv8DHOlyQnNQFBqPcnrsK3QnDX2yTB0jidqOY1dVoY0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ccvU97uXFjSvbv7JPMPXKbXgxSEbTLJyPCZqLEyfUBos/mz+FWBs57vj1k/ruuCNWJQU0YosL//bMO+RKaK/PPaBqaYuA58grzNApQ1eHYGQYH21Rk6zJqIQXt+ridAEffLej99UM5yHQJHCg3fYj37g2AUW6nF8PgeVBj0p1XQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=erdfelt.com; spf=pass smtp.mailfrom=erdfelt.com; dkim=pass (1024-bit key) header.d=erdfelt.com header.i=@erdfelt.com header.b=jcn4Qm+0; arc=none smtp.client-ip=141.193.244.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=erdfelt.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=erdfelt.com
-Received: from mail.sventech.com (localhost [127.0.0.1])
-	by out.bound.email (Postfix) with ESMTP id 341EF8A0A03;
-	Tue, 28 Oct 2025 14:06:19 -0700 (PDT)
-Received: by mail.sventech.com (Postfix, from userid 1000)
-	id 1C913160036F; Tue, 28 Oct 2025 14:06:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=erdfelt.com;
-	s=default; t=1761685579;
-	bh=MG2CHoxJgPs5SpTo/dvhA7IRWSaF2xM68nlYgIMcDJ0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jcn4Qm+0JCJsdorJ1JBiojYDHyMW7YVNCTmSHHHY/FrNV4YTHwhpO+kiX5dWW2tXs
-	 KFzHhV5TWX0wT97cjNNlL937Bgtwe3Yp1QXofXDtpA81ulz7ppYxfxYOE9H4Pegqib
-	 Z7fXwUy0Fyyf5PSq0/KK2pYIjzY0JiEvYCMCgxN0=
-Date: Tue, 28 Oct 2025 14:06:19 -0700
-From: Johannes Erdfelt <johannes@erdfelt.com>
-To: michael.opdenacker@rootcommit.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Emil Renner Berthing <emil.renner.berthing@gmail.com>,
-	Vivian Wang <wangruikang@iscas.ac.cn>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/1] riscv: dts: spacemit: add Ethernet and PDMA to
- OrangePi RV2
-Message-ID: <20251028210619.GO15521@sventech.com>
-References: <20251022201807.1474789-1-michael.opdenacker@rootcommit.com>
- <20251022201807.1474789-2-michael.opdenacker@rootcommit.com>
+	s=arc-20240116; t=1761685684; c=relaxed/simple;
+	bh=3AkiZofmz6pwFXQAq1U079I1Xph3rIN49Ra6SEJ+1As=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OFDwxiWUmJpM9FhcKFVb193vqyUXwuAUg2xhcbfjzUEAs+A8RVuDvM9htdZX8mlg3LVNXitY/G4v6FunljhrS1ocGRiy2J879frErFdXqw3zVwK9r85JR78Qo+s+62nzhmtwIFh8dioBAvdQndXFxKAjQtHxJ+1IPg/6bjy81Ao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YYu4S94K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0049C4CEE7;
+	Tue, 28 Oct 2025 21:08:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761685684;
+	bh=3AkiZofmz6pwFXQAq1U079I1Xph3rIN49Ra6SEJ+1As=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YYu4S94K7Vwh9TikT71wzX/HbblzYp4wZYaABsWm5XK0UuP8g7IYTUwGfMLQLWvwY
+	 4ihppXp6WWFJpnbTmMGlbCKE3NeZVSpCOUdstK3+Isp7tLt9+rXl43fvTMzQ21GmZB
+	 dASYBfOW+lTNJ5ufgCdqRhcLVsnCSxDKBCitgRGQdF5pN5uAytqscj/KQjZukifEW8
+	 cBdAsoiWuiTb6/ix5TTXnOj1RSAHVjrjnI/GjmebR0LHGGonf7pZWGA5np4VkhDN0X
+	 CXH9bLje+K2tWgSMxedEoRQDJ4g0OanmpH06dx8GNYzv4tvQ5HYChu04gXuLbJY0es
+	 aI6umrPPp49mA==
+Message-ID: <4e40baa6-10f3-4545-972c-f24eddc39a92@kernel.org>
+Date: Tue, 28 Oct 2025 22:07:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251022201807.1474789-2-michael.opdenacker@rootcommit.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: vendor-prefixes: Add NineTripod
+To: Conor Dooley <conor@kernel.org>, Coia Prant <coiaprant@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Dragan Simic <dsimic@manjaro.org>, Jonas Karlman <jonas@kwiboo.se>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251026143645.917588-2-coiaprant@gmail.com>
+ <20251028-haste-amusing-78c28e834b5b@spud>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251028-haste-amusing-78c28e834b5b@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Oct 22, 2025, michael.opdenacker@rootcommit.com <michael.opdenacker@rootcommit.com> wrote:
-> From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+On 28/10/2025 20:35, Conor Dooley wrote:
+> On Sun, Oct 26, 2025 at 10:36:44PM +0800, Coia Prant wrote:
+>> Add NineTripod to the vendor prefixes.
+>>
+>> Signed-off-by: Coia Prant <coiaprant@gmail.com>
+>> ---
+>>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>>  1 file changed, 2 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>> index f1d188200..37687737e 100644
+>> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>> @@ -1124,6 +1124,8 @@ patternProperties:
+>>      description: National Instruments
+>>    "^nicera,.*":
+>>      description: Nippon Ceramic Co., Ltd.
+>> +  "^ninetripod,.*":
 > 
-> The OrangePi RV2 board ships two RGMII ethernet ports.
-> Each has an external Motorcomm YT8531C PHY attached, the PHY uses GPIO
-> for reset pin control.
-> 
-> Enable PDMA for the SpacemiT K1-based SoC in the OrangePi RV2 board.
-> 
-> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-> CC: Emil Renner Berthing <emil.renner.berthing@gmail.com>
-> CC: Yixun Lan <dlan@gentoo.org>
-> CC: Vivian Wang <wangruikang@iscas.ac.cn>
+> Why ninetripod instead of 9tripod? That's what the company uses and in
+> the marketing fluff for the boards.
 
-I tested this patch on my RV2 board. I see similar iperf3 results.
 
-Tested-by: Johannes Erdfelt <johannes@erdfelt.com>
+The domain is 9tripod.com so this must be used.
 
-JE
-
+Best regards,
+Krzysztof
 
