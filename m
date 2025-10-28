@@ -1,176 +1,129 @@
-Return-Path: <devicetree+bounces-232144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC2D6C14B7F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 13:55:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A94BC14BF5
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 14:04:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1546188E63C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 12:55:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B10518973B2
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 13:05:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CD8032E68C;
-	Tue, 28 Oct 2025 12:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADE1033031E;
+	Tue, 28 Oct 2025 13:04:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="jLF0DRVT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ee9PufgH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com (mail-eastusazon11012021.outbound.protection.outlook.com [52.101.53.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED06C302CDF;
-	Tue, 28 Oct 2025 12:55:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.53.21
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761656113; cv=fail; b=hKN8jGDOVrAP7Si3HzXai0BZeMVlA0NgeTX+J0UQxV+x56gD+4V11ja0etNqCAxGgKbTD2YNNhdAqMvMjUHY3RupROgR1E03sKZlmtkiCsG3nl88fH14RGipjmGCAHXWN53qJhZ2beaD8XgDgpDyYHNaNPm1Xgm5pkEBDMHzEGY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761656113; c=relaxed/simple;
-	bh=Mqr3Vk6e8O6TLxw1bnWKo4S1PkrdlhjPuUlv7I/ZXa0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QU+0K0kirhHBVZ0rlQCEKaOk/Bt+kXy4oY31HVigIgzf7aSsLbjk6h8PDVkSVaC2p3cDJG+9a98xBCjiS5Zro6AuI6ZfDlcHN6D2MV1KY0FFiT27QtVBHNQrI2vi/tY4/aLYj8QnFgvjQ6KLl33iMhO9VOqI7Wkb+uAQ2vAO6qA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=jLF0DRVT; arc=fail smtp.client-ip=52.101.53.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hrJcZE0k13IsgsDPd10XIbrsgwtZ3HLOyEklU3tbDM7Jj7NeVSODPex9ojSl7tErtzDUSrK7S6XmOMvG31GMh3oH4XzlSACEGWjFVCevZ8/qY5XxG1yD42J6oD7FdwNnwZPZ8xFOZHKfp5n1aay6znatt+QqKdj5XjGiggHrdiH1VbGCTQPU5qaTr1/HDvhNTqUTQHvFMs3oPKA2S42a6o+ql9xnQ7eYjsxT5yyNcKbT7eXs9E4EWrfZvETCRosYspT62vaGsktbi0JSS5qHBl3cBJP/dCun69DoIR7NZiG7sNVko9d9cdZj3ppmqgh0sVMveHhZ0BqST6+gEcOb/A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NDYn9KETdNB3GdnmnyKNLRSkIQp6iaJUwYM448Xm+VQ=;
- b=H4RqjnHAIG4j1OlNWH+YvECSeCkdtldIjh+//p/Vx9YPOQhPxnpF4CljpcFw74aaXSEf4vliE1GZ0+1/eZPfMN3DHdHzMYhvaEN/monSe3g/naDIRvztzzTnUM1xRo7D//ilIu0zFJs1cpF8LVS+6mvacLtDGTEcyp3YWOQKs/+nncDN3vMcNJ7MadOmk9X/RvjUrytwNdGQAXVHpoivssiwQtvu3frpQiDGZ3oa4JLuDZeyoC+Ey08tpk4q3k8/QY6tl9b1p4DCMSh97stXbmpCMqUw/tAEvOpiQS/5mKaxcbjQzNPOLSZKueiNlPBba5F+Qi1wBcd1qxQe/ITmzQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NDYn9KETdNB3GdnmnyKNLRSkIQp6iaJUwYM448Xm+VQ=;
- b=jLF0DRVTzQanpc92odeoNFy7cb1fkXBjY+P9FLgcjuz24mXOTJ38H7dBpC571LH1MQBjvFcmwYjikThDNgfR/FuuY6tTSTC+cfHJpmrMrMNskZ51r0n7ln0OWIP+uNM039QUxKu/jTNY+Z6KfpZ/urRCpp26Uiv2VNUMSAwLaLRnE6b7cDjsN01c2rliolPi0b+iB4whOuq9rnopKDlHaEA/zGEybgEmK65Eb+xCeFbw5c8qfGgb9rXV3ag7M/JSv4M/1aA68zsTLPCGnmhFVfya1xQGZCLe7OESLELNbXkri64Dyiyw5zFLzw2jXZHAafI8qZsj/3sNd2LITJtgjA==
-Received: from BYAPR05CA0042.namprd05.prod.outlook.com (2603:10b6:a03:74::19)
- by CYYPR12MB8703.namprd12.prod.outlook.com (2603:10b6:930:c4::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.18; Tue, 28 Oct
- 2025 12:55:07 +0000
-Received: from CO1PEPF000066E6.namprd05.prod.outlook.com
- (2603:10b6:a03:74:cafe::7e) by BYAPR05CA0042.outlook.office365.com
- (2603:10b6:a03:74::19) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9275.12 via Frontend Transport; Tue,
- 28 Oct 2025 12:55:07 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- CO1PEPF000066E6.mail.protection.outlook.com (10.167.249.4) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9275.10 via Frontend Transport; Tue, 28 Oct 2025 12:55:07 +0000
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.34; Tue, 28 Oct
- 2025 05:54:54 -0700
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by rnnvmail204.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 28 Oct
- 2025 05:54:54 -0700
-Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.9) by mail.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
- Transport; Tue, 28 Oct 2025 05:54:50 -0700
-From: Akhil R <akhilrajeev@nvidia.com>
-To: <jonathanh@nvidia.com>
-CC: <akhilrajeev@nvidia.com>, <andi.shyti@kernel.org>, <conor+dt@kernel.org>,
-	<devicetree@vger.kernel.org>, <digetx@gmail.com>, <kkartik@nvidia.com>,
-	<krzk+dt@kernel.org>, <ldewangan@nvidia.com>, <linux-i2c@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-	<robh@kernel.org>, <thierry.reding@gmail.com>
-Subject: Re: [PATCH v9 3/4] i2c: tegra: Add support for SW mutex register
-Date: Tue, 28 Oct 2025 18:24:49 +0530
-Message-ID: <20251028125449.46934-1-akhilrajeev@nvidia.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <96e9898f-e306-4b73-9d06-5515916cd769@nvidia.com>
-References: <96e9898f-e306-4b73-9d06-5515916cd769@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E413090E1;
+	Tue, 28 Oct 2025 13:04:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761656693; cv=none; b=SRYVZz7WD1L51U6EiBwP20W7I5VxZJ9DVii6bjdlVjxelUNNs9OY20TbnozRBicHXayRXwggVioIAPRJ7j1XlAlhBjA9mdhcH4l08x0h37nC7MsgNlW7SYkg5spPwu6Px+p887wgSQ86UEVshOal61crvbd1RBsAxHzpNILlSk8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761656693; c=relaxed/simple;
+	bh=COftkVcMXpznFAQ7q3UfcCCg9EaLM8GZnSyuX/Zh4HY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QZvt/u56bQp36Dl3niM/07BXMVXPhcJcKA6SzCt2Nc0OutTCZw8mYMPcA0znxMA6+fF1MRunIYxTp+U+l2v499qCEYT0hFIN+w32gKQmEI3EbKUWKXqo3uzwADEYIcGRgZ/Yg4fRuElQ1DGcwShp8lQIPMF4YxN2fVaJfGC2wu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ee9PufgH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77EF5C4CEE7;
+	Tue, 28 Oct 2025 13:04:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761656693;
+	bh=COftkVcMXpznFAQ7q3UfcCCg9EaLM8GZnSyuX/Zh4HY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Ee9PufgHnFaH9dUWt2PJQGi/UqE3D8SxTAHyyb/gOrltPPdfIohh3cPapLZkoTXSH
+	 MvOneX3JxY5fIm/nuYuaaRfEMIwD97CRgE0jEF1YakseaP68xv8bEuPYgfc++hWnhl
+	 RFGlAUsDweXzCfB8y51EkkRpBEgybD55P+HWBcChQQWyccsj6ViQkP4xEteuGYlpEy
+	 vdxV4jHBC/XANAcEoj4vm+mn+DcKyj+A1YXpe7/NmE8Zpi/5OrAisVW1L3AYBvtnuT
+	 3BXziNHHe+9XDXaof3FN9UNqWMv1q1rHXvd/M1Dy1B2AKhHcjs3hSWudfmJQAN4jsC
+	 zNQE4VvLEgY5g==
+Message-ID: <c77e229c-26c6-41b7-b807-04e54617ae77@kernel.org>
+Date: Tue, 28 Oct 2025 14:04:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000066E6:EE_|CYYPR12MB8703:EE_
-X-MS-Office365-Filtering-Correlation-Id: cdae2292-b6ce-496d-f156-08de1621389e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|7416014|376014|36860700013|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?q9LgQak0zbKMHXoLk3ILP/POxQHNXcjKXKrTaQOp8tTlIWnyh3PZ781mPbAD?=
- =?us-ascii?Q?L8qYXKVaLOZZB+qDhtqOakBVwjWrJREeKBDs+bUxZ0VSsdQk4JmX6Ke9hzqa?=
- =?us-ascii?Q?tjIXXMZa0xTl8gTEjlmpZ0LhmmI05svYeil97z3uGPwmm/GtwZdoAd3ZzYlZ?=
- =?us-ascii?Q?wZ9GuSa6HIWDEwpqzwVOEMm1gCteXZy9cxd2CYZazMblzzzemjIU/kkHmXsq?=
- =?us-ascii?Q?iWZkmToKWABKxCOBKnLInpB9HnH+Nr0AGG8tt1iF3UqBnXl+a+fNiED1Va++?=
- =?us-ascii?Q?RnRdWhA8JeOE8D/rzIdo6o25sWb3D2iZTq6uvTzECanzeLkHm/qO8UPChHtu?=
- =?us-ascii?Q?XpYpbZ2gxp3UA6KZ+bTUzwRSImdsbBdK+wOCgZzWcHPNmKUKhSBGpw6hmPBA?=
- =?us-ascii?Q?befcOiO0nkEUiEZtQGWDrhV2fXWotEc/dKwLs9GUSfvGdRjc2T1MQSiNNT62?=
- =?us-ascii?Q?9RAsXHT4cxYlQ3HRHO5xaEVbCVnIGlW/+CYPmmRuGupLSHXv6LGVG+uCldZ2?=
- =?us-ascii?Q?DiDZfJl729deaAahNG/nE5q2d1T6hQVzpi1RdsU+CmirAIRk+ZQp4polgiMn?=
- =?us-ascii?Q?40LaYk91dDIlj1geLtQQNvTc/mYf8X3JXyakT5yzLS156gtR7sXVxtyukzrA?=
- =?us-ascii?Q?dtc1A8AjjJvH9x7CMouUL0hX35M5/xq70JYB5YLHye2EOhSHOnFmdPGH0cWt?=
- =?us-ascii?Q?QFV2y9PGbtnHnpfvqg8++/RluV0wElgPcQecuyI/C5hkQ10h6NZTPyPzyPIP?=
- =?us-ascii?Q?soebmchC1PV/dnKCOZyc8Je8lRedU9Lip6pTPaoEhKegdsEG18rybp82lEWO?=
- =?us-ascii?Q?wfQZ/tWqJKd1YZTQ5JU6WSc85ibdbPiX96RFKdr/1jJAtZ25wZWGdqXxF83Z?=
- =?us-ascii?Q?azaixCOubP7AwlBuma6VchYeJ8iftD7rZQ6+yZBS2xFUhhFwXJakt5lEql1w?=
- =?us-ascii?Q?6yruOxmjOo6Ll6cmMA9ULHYb3mzcaWH2CaR7oR5NRlshGsoGoMH957Zz92uU?=
- =?us-ascii?Q?ktimdL9OdBqy1ugJj1u4KSESjcGxpN+U0PjERwA6NVMeIhfpnZUlvC2LP/hM?=
- =?us-ascii?Q?sFnaF/Sg63+vwFRtLLPJVScJizrfkUMAiPk+k3zTxOl1apKb+IbcOdbYojIX?=
- =?us-ascii?Q?ruo7aaJS3ooyh+BHix/TZI8rNqWQxOdkSiAAycxDGD2EXJG0yfTQm696dwbg?=
- =?us-ascii?Q?d84950dh4W+S3iMjG0n6/IHC2CcA+trVab7CYUrFEy4tfLputajUTwhjGoF4?=
- =?us-ascii?Q?AHXRntBA9j1Jt7ib9vs4QdxJRSFmjhNyRkkp9F1lH1l7xEAJksHFmgrSVdub?=
- =?us-ascii?Q?Pp92pwRC3/38/w+qJsiiJpjsS57MuS2z/pb/Okhyluhv3avT7om9nMsjtt3o?=
- =?us-ascii?Q?Or+HglCcK4eqj9wGw6NnQrW9azcWwV9tjG8KhNvA6lknQr5+M0H0QiENwGwP?=
- =?us-ascii?Q?G4UdrsVKYnHtV/of9qt3V3LM7RzSMcF+kAC85wWLmKp4Ee4YCh9TsQyXzj1E?=
- =?us-ascii?Q?fuPWMytEYuIFUT03La8Uy1P1D46L4A/+LbnQPiyBxH19qBVuAECvdpddRorS?=
- =?us-ascii?Q?LawtoJjZbno3qeQ1KGQ=3D?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(7416014)(376014)(36860700013)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2025 12:55:07.1894
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cdae2292-b6ce-496d-f156-08de1621389e
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000066E6.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8703
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: display: panel: samsung,atna33xc20: Document
+ ATNA60CL08
+To: Abel Vesa <abel.vesa@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Douglas Anderson <dianders@chromium.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251028-drm-panel-samsung-add-atna60cl08-v1-1-73123789fcdb@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251028-drm-panel-samsung-add-atna60cl08-v1-1-73123789fcdb@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, 24 Oct 2025 16:42:06 +0100, Jon Hunter wrote:
-> On 01/10/2025 07:47, Kartik Rajput wrote:
->>   static void tegra_i2c_mask_irq(struct tegra_i2c_dev *i2c_dev, u32 mask)
->>   {
->>        u32 int_mask;
->> @@ -1432,6 +1512,10 @@ static int tegra_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[],
->>                return ret;
->>        }
->>  
->> +     ret = tegra_i2c_mutex_lock(i2c_dev);
->> +     if (ret)
->> +             return ret;
->> +
->>
->> I wonder if it would be better to have a wrapper function around
->> tegra_i2c_xfer() called tegra264_i2c_xfer() that is only used for
->> Tegra264 platforms and invokes these sw-mutex functions?
+On 28/10/2025 13:22, Abel Vesa wrote:
+> The Samsung ATNA40CT06 panel is a 16" AMOLED eDP panel. It is similar to
+> the ATNA33XC20 except that it is larger and has a different resolution.
+> It is found on Qualcomm Glymur CRD platform.
+> 
+> Raw panel edid:
+> 
 
-Wouldn't this only add another 'if' condition to tegra_i2c_xfer()?
-And probably making it more complex? Or am I missing something?
 
-Regards,
-Akhil
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
