@@ -1,81 +1,101 @@
-Return-Path: <devicetree+bounces-232320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20E11C1692B
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 20:10:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCEBEC16953
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 20:18:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CDC804E8936
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 19:10:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9551A3AAF16
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 19:18:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52CF734E769;
-	Tue, 28 Oct 2025 19:10:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 581C833DEFF;
+	Tue, 28 Oct 2025 19:18:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="HuXNwIYb"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Qo3Ag8i3";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QG/+FyPk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f193.google.com (mail-il1-f193.google.com [209.85.166.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF80234F47A
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 19:10:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C25F91E1DFC
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 19:18:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761678630; cv=none; b=JNupMGmwz95L8oWzLJMeUeF6+mKlphMpU4YZhzzb7Lcj6gt7g/l7kQH2tHVf5pJZIDttxiZWaxgryzjRNkDJkADtIVPMLP6NXEDKam39X6unf9nQTSV2EWF/avV6qkn19wDeLsGm2eFnmIrsqSzada+uJNuK7VTTzUT91F18hTQ=
+	t=1761679103; cv=none; b=qWnVUhVNLjCP5PxEZpcvcSrZ5G7CuFXyNxoM5ZaloM3Uguli/etGCIBPqDsMbE8yG3VQyhWn7h+piQe2JK8lgA/vu4lxqsaVJw3RURuy/XqSTPWGPNFdzB3a8Jl229xBL49/SYBUFiSfdDK5L3UR6H2Ow8GSzQtN0SjG9GPd41I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761678630; c=relaxed/simple;
-	bh=3OjBoUivvl+zOanIxYssWUPcoRgm2RdCmKqy3cG34n8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Idb+kQ860HAq2oilUuQo5XMqDBMT/qm57Dvn4mOj8xRa5VZ+/z8xWOkcYTgm6j+qz78Ao2pdrdBaww700Ro3C525kr6bAwPIiXaGVWHQU7x+D+c5lLMH20m0JzKChHchR/y9y2E19uVaDwnRQDmv8uOfDuWptIHvdbxsbt9fHP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=HuXNwIYb; arc=none smtp.client-ip=209.85.166.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f193.google.com with SMTP id e9e14a558f8ab-430d78a15b1so60020595ab.3
-        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 12:10:27 -0700 (PDT)
+	s=arc-20240116; t=1761679103; c=relaxed/simple;
+	bh=0hhlCwxtrTuVy9ywy8PZ04TLMeWmNoQW1VuNCe9Lhnc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LZ2u3KjqOjSUqiduarYWpRaXv//dTdyE4tRknMxJnbwAr5cdwIPm+8ByaLmmzDs/Gi8tiysNIJYEowTh3MILDhwi3YOjY4q+RkUBirbiWSbQDuqyXQSxBZbTo0XEgkLoSzDchLiTcM5LIl4pzRnCx7AbnAoj3qEpvr1JGzKjgDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Qo3Ag8i3; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QG/+FyPk; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59SEoB0H1966786
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 19:18:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	cE6kvUJtutSNKY0OcaTxxOhxbbMxO1uEYLUzt+x1AGw=; b=Qo3Ag8i3WEdvawyt
+	NceclgyZWGnUROoX+denb7Xm6kAQytPtpD/uxRZ73cnbLYHRF2oCqcfXeL3PtkSa
+	eEk1sGctW5envpKDehgT0XcQskIPf7lg7Eh6IUT10/xK7diITsF8YyGIGyfFCE6e
+	KulelTE+FNOym+MPN1HwHnuCCaPf1sWUoOMAWztPOozmTQvmr6f3fKzSE8xnDFFG
+	fYvA03BfEG61SE8LiL7DZ8PubSYphrSXwNBgdNe8IuP6FKao5VhWkW8+KCfaJ3vo
+	BhBSTOqjsEKO3eW84oj94icChInxUNoiMHBdkuMoxy+7zBU1nVAuKU5LgjfAvV1U
+	qSjojg==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a2w51sdj4-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 19:18:20 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-27ee41e062cso71506935ad.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 12:18:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1761678627; x=1762283427; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1761679100; x=1762283900; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=EvGdMAKfZ7Ml9MAZLdEsRbNSkR6vsJo2X4G5HAZ0rWo=;
-        b=HuXNwIYb7ieFCsPT3ncvYapfVqyBZQ7/hYMus6hbH1eZVBMJ2g9khFx4X7TFPmulwX
-         G/F7TDJ/Hz3UkMnGZwhRsXtRFjUrYIXOSxUAtVbEYWJpjd3mU/SyoSGhnWgj4nzeg1sg
-         Jixx9lgChjoXSdoQunrzblHwL9M0aBFgidKxY2cgQa2gdHNCQjVDtl6BS6XOLDUJFu2V
-         KFe+RQsmoyQgZXjQDznOKy9NO9dKidz1vHgZRAl7xW+a7ou22dzAaXtQZ7mlUrBkWRPS
-         GwGfltOT+A/1N9B681+ajGc6bntFcgIOlgzoISOpjYh5sLkaR6SWA0jMYme7/tHIGgAW
-         SCcw==
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cE6kvUJtutSNKY0OcaTxxOhxbbMxO1uEYLUzt+x1AGw=;
+        b=QG/+FyPki0zWQtzhKTVq2jrL1iOLEAYcw8vpkAApWE1a2KVVDvM9KcgUWILZlU7HyG
+         vitttkwIl3tFg+38o7MnMJ1teunPAXonY0Ej1Eq86RqZo92SpwrduewaE7xZEEAkesdH
+         O7DKa3mmHosXaALD1Y15S1TtSIYcao0V0OnwOd6fy5Yg/CyhpH+JZieLATDpedPDUnV7
+         CBx0LxkKs5dR6znc90Ua262ybk9bboF688FIu9Tu4gnwcEQbwnuf2AvVkfc3JbrQShpu
+         4ww2+JnjGN/XRKN6fKKSessdE3F1M569b7oyYqGrbwyV6khkHH6dSqzSD7VEIGUV22Xr
+         wNnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761678627; x=1762283427;
+        d=1e100.net; s=20230601; t=1761679100; x=1762283900;
         h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EvGdMAKfZ7Ml9MAZLdEsRbNSkR6vsJo2X4G5HAZ0rWo=;
-        b=P2Uz/GnTUoKE1f8BynT3umggrSQi3iR00jyZ52L/u8Cd4mm6UwGah1jxYOHnkHPA5d
-         Lw/K9s/ihe98HIfxU1KwLuzohVq8ivg20zzelJFzK7huB0Acth9x3riligIRD7ZN99+o
-         jAOVov2lDsdYNkik7y0j9qRFAenJuYdpxCLICQXgUpmOjrE93rV7w/Hesjdk2+Wg3OSQ
-         vC7Usq0ZzrgVEJk+7ijTfm0wSjjE9aDmxApj1d5D9cckk6JtxtEOaaKecuGPJgEaxC4M
-         7mMMgourhnB+Vk+kqSJY3HjaBGNPtINVIwcYPLq42nKxQCb58o0mmOe6v4vfwgk0S9hH
-         GoEg==
-X-Forwarded-Encrypted: i=1; AJvYcCWZ2NbexpmVTeukF0oUysLGWhZuS75H/fJarc8jcVblyoXVVMt75QZHBhkO5niwHFG4oRHyhdTJNOrR@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOcXFuRlz9hsf5mH10PcdQQ7CjUQkJEORL/37QSQyJVL0W44jo
-	X9P4MI385BtL6pzfNIZQZ9XBLfKxtZ92PuTGWVVPKgvL7+i6Z4G8UweOfdSppVM8Auw=
-X-Gm-Gg: ASbGncu+/kC8oFaXtOROIyH2Sj16AZG8Ay4dNGQb+rYLhFYPglYFaTPY4XEm7O/i90A
-	Zfyor6AqHNfZX1+px7xJJBI9SlyRE9+xahGP8SayMkh9OeIEeI7njVYYLZ5GfhowU/czWZgh/AI
-	yRvbdLJJRTp/qeOGt/CiAyzTtB+VXZjwMUOn73Igt7mg6B29FrEGPGFyC+CfZ22Yqn4kZ5hQ1Q2
-	KdTY69Ds3cMmQ1T3V2oqRNZMTzwRIMcaiDeO1RBbXOnqk2T3GQjheX+bJZfJlaVO94w4Ur7qbXH
-	kCsZBjRTq+S9eMRAOL0FnIJ70iiRVLxPwpOxbbA9Gi8Qq9vXYWhD4/vqO7JK7VadaKkoQLNJKsk
-	qm7s0n2/OtKZu15rJZx3lEXF+CH+BdRvfQFKjCNH1JtChkREef4LkJ6/+N/8xlOd7IRMjQ08YSp
-	7AYsqA/oZGHzU6xzaiFs68dCb6eDD6VyTLD8N7Hqxd
-X-Google-Smtp-Source: AGHT+IHKuwmELl5wvSW4I+FHrhUsBFKFYIw0+cikEGfn2t/jK11qnrH+VrvEbMUJ5F8utuhwE/grRQ==
-X-Received: by 2002:a05:6e02:214f:b0:42f:9560:f733 with SMTP id e9e14a558f8ab-432f8fad5c3mr5106075ab.13.1761678626721;
-        Tue, 28 Oct 2025 12:10:26 -0700 (PDT)
-Received: from [172.22.22.234] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-431f6899e76sm45826615ab.34.2025.10.28.12.10.23
+        bh=cE6kvUJtutSNKY0OcaTxxOhxbbMxO1uEYLUzt+x1AGw=;
+        b=bFeEkBiCUlQtEtONQazfPTs4YizDBrRKOSH+aVcb+LXN1CDvpnU1umDOWSipRtL512
+         RKe4vdsNoa297oWv8eP3WVRTnOi55AowZgxPXWM69U4ME2MJMNlRn8UpU3zZDyjCFs3Y
+         k/Y3xki8j0PvcugnYq+54s8Cbe2ykBnfxML/RORphuCEq3/zjWrPjiqO6IOgyi6s+b58
+         i/jhVhcxVy60JZzixSC8o6PIDil6uNPgopYc9GhxGth+dp7+ZnIvBLJteeW7SqrDqLmf
+         /rNQKG2t1jXNiIT9OpU1k8XeXAc75m9nYdVzUVm6IPpoP73gm4IyHkrBlbjW3l1T2PXn
+         UZ6A==
+X-Forwarded-Encrypted: i=1; AJvYcCXJmurV9R4J/cop9ozUlSZdYwE9zJ3Dy2rA1MqI7m0JxkYqZoOuwVdN+BtL416RG7NtFobSkhIaTR+v@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOUkC7eGO2P1sp86ytUtOQYhYbd17PLRHUivYUX87K5gsnM7z0
+	szf8u1rw1Ljqj3gsBFe/upqmIjEFOQ4D/iN98arEBJmg1Xsg8C9X8QL07pFfBqhCdMbqqKSVvbf
+	NhAdE90yvLzxW6Eh320eL3iOJP1WFm7KLF1mqRCsekdMacgYcieSdG9QEcHuT+xez
+X-Gm-Gg: ASbGncuuXPqSvl5wUlpfkVeiQWaNv2aVuytlhVSBFdR6a5mI7ronnCTLYQNfxSjcumK
+	zahXWWLzifezRvWiCmw8HqJFrUurlsAoClsaFkR86V4bwDzlDmnT0/FsjpZPrTkZrLB3XJiNwTN
+	sbfbruLB8F/mBnoLO1r70k8ouofr53cLC2fJdGhhYLuwcMZaVRmdU54jBHFM7AoeYA2DjQ+Z0dd
+	rWGx43+ASkwx+6+3XyG2ppA3NoocPwP7NEDugP4eF7TAAzwtk8nr01E+wIxbSenECG2okQux6p3
+	rvzhD0qI770yqXZZUnxlEWuFzDWBu9g16VaDHwJq5ecCetodkZbapwydUno8AtGIwq5N33au942
+	a2gLKCPGR4VsF3PBlxN73uQVvCQJefe3n44UpEoJCKzRImxD7HNSVRg==
+X-Received: by 2002:a17:903:2a85:b0:269:b2e5:ee48 with SMTP id d9443c01a7336-294def62ea6mr2685705ad.52.1761679100217;
+        Tue, 28 Oct 2025 12:18:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHiS4DA5cZRIsPNZiUXqoc8KRQ897PBaD+pMPM1dqIN+3BfFWkz5CMP9zUSwsQqIiqDj9LO5w==
+X-Received: by 2002:a17:903:2a85:b0:269:b2e5:ee48 with SMTP id d9443c01a7336-294def62ea6mr2685185ad.52.1761679099527;
+        Tue, 28 Oct 2025 12:18:19 -0700 (PDT)
+Received: from [10.62.37.19] (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29498cf49easm126964705ad.9.2025.10.28.12.18.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Oct 2025 12:10:25 -0700 (PDT)
-Message-ID: <82848c80-15e0-4c0e-a3f6-821a7f4778a5@riscstar.com>
-Date: Tue, 28 Oct 2025 14:10:22 -0500
+        Tue, 28 Oct 2025 12:18:18 -0700 (PDT)
+Message-ID: <c264e656-604c-4390-8edb-a9810e68dd79@oss.qualcomm.com>
+Date: Tue, 28 Oct 2025 12:18:17 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,186 +103,103 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/7] Introduce SpacemiT K1 PCIe phy and host controller
-To: Johannes Erdfelt <johannes@erdfelt.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, bhelgaas@google.com,
- lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
- vkoul@kernel.org, kishon@kernel.org, dlan@gentoo.org, guodong@riscstar.com,
- pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
- p.zabel@pengutronix.de, christian.bruel@foss.st.com, shradha.t@samsung.com,
- krishna.chundru@oss.qualcomm.com, qiang.yu@oss.qualcomm.com,
- namcao@linutronix.de, thippeswamy.havalige@amd.com, inochiama@gmail.com,
- devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-phy@lists.infradead.org, spacemit@lists.linux.dev,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251013153526.2276556-1-elder@riscstar.com>
- <aPEhvFD8TzVtqE2n@aurel32.net>
- <92ee253f-bf6a-481a-acc2-daf26d268395@riscstar.com>
- <aQEElhSCRNqaPf8m@aurel32.net> <20251028184250.GM15521@sventech.com>
+Subject: Re: [PATCH v3 2/6] dt-bindings: media: camss: Add
+ qcom,kaanapali-camss binding
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
+        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+        yijie.yang@oss.qualcomm.com,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+        Atiya Kailany <atiya.kailany@oss.qualcomm.com>
+References: <20251023-add-support-for-camss-on-kaanapali-v3-0-02abc9a107bf@oss.qualcomm.com>
+ <20251023-add-support-for-camss-on-kaanapali-v3-2-02abc9a107bf@oss.qualcomm.com>
+ <20251028-wonderful-olive-muskox-77f98d@kuoka>
+ <ac126c63-f40c-4159-87c9-1b3d7a8dec63@oss.qualcomm.com>
+ <7efc63ed-9c84-43c0-b524-f7e9e60b2846@kernel.org>
+ <f0c05321-776c-40af-b379-b9336b618340@oss.qualcomm.com>
+ <0ddf3634-d9eb-425a-b35b-c0b4ee995a4b@kernel.org>
 Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20251028184250.GM15521@sventech.com>
+From: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>
+In-Reply-To: <0ddf3634-d9eb-425a-b35b-c0b4ee995a4b@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: S-UBkf76t5k6QKLT44xiOWrIMViGjkCR
+X-Authority-Analysis: v=2.4 cv=YMiSCBGx c=1 sm=1 tr=0 ts=690116fc cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=I-EcnzrSYEg_xlsmLtMA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-ORIG-GUID: S-UBkf76t5k6QKLT44xiOWrIMViGjkCR
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI4MDE2MiBTYWx0ZWRfX5pwBw42C6qlR
+ kdAedevddgdyPNmes+nbiQpa3ghhPr3bijc9/nIkfSTBm0LX//H6sMU+G3WXPnnn/3AQ5Xd2yLL
+ e4saZq/K2cp68d01uROIdguUcX8Z70Wg7DoUWPOxIHtXoFlZ+y4hWkEZLmKtFij2Iw9oH9KQERg
+ 2Wrk+kSl1JOcGtOiDP4RLmMhUr3psnNsH8EH/27t4lA2huBcyovX4WX+ug7v6GA/8c0zk7ZLlJN
+ BSUrYtguGSRYb2edQC44oRQod/c+vVb7BL9nW5BkoDWTT7x4j7vtfL6WPC/G+sLQuFE9gPsd4pp
+ 0aRFCaZjsLPqk+MhUO3Znl4emXlSsI7PetYrk3HVHyELSfQQT7Oc6LC2qTI08r3i1tSJ0RzDvV+
+ TMTrs5IKHy275/56pcdEI+8Ns4HztA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-28_07,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 suspectscore=0 adultscore=0 clxscore=1015 priorityscore=1501
+ lowpriorityscore=0 impostorscore=0 spamscore=0 bulkscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510020000 definitions=main-2510280162
 
-On 10/28/25 1:42 PM, Johannes Erdfelt wrote:
-> On Tue, Oct 28, 2025, Aurelien Jarno <aurelien@aurel32.net> wrote:
->> Hi Alex,
->>
->> On 2025-10-17 11:21, Alex Elder wrote:
->>> On 10/16/25 11:47 AM, Aurelien Jarno wrote:
->>>> Hi Alex,
->>>>
->>>> On 2025-10-13 10:35, Alex Elder wrote:
->>>>> This series introduces a PHY driver and a PCIe driver to support PCIe
->>>>> on the SpacemiT K1 SoC.  The PCIe implementation is derived from a
->>>>> Synopsys DesignWare PCIe IP.  The PHY driver supports one combination
->>>>> PCIe/USB PHY as well as two PCIe-only PHYs.  The combo PHY port uses
->>>>> one PCIe lane, and the other two ports each have two lanes.  All PCIe
->>>>> ports operate at 5 GT/second.
->>>>>
->>>>> The PCIe PHYs must be configured using a value that can only be
->>>>> determined using the combo PHY, operating in PCIe mode.  To allow
->>>>> that PHY to be used for USB, the calibration step is performed by
->>>>> the PHY driver automatically at probe time.  Once this step is done,
->>>>> the PHY can be used for either PCIe or USB.
->>>>>
->>>>> Version 2 of this series incorporates suggestions made during the
->>>>> review of version 1.  Specific highlights are detailed below.
->>>>
->>>> With the issues mentioned in patch 4 fixed, this patchset works fine for
->>>> me. That said I had to disable ASPM by passing pcie_aspm=off on the
->>>> command line, as it is now enabled by default since 6.18-rc1 [1]. At
->>>> this stage, I am not sure if it is an issue with my NVME drive or an
->>>> issue with the controller.
+
+On 10/28/2025 11:39 AM, Krzysztof Kozlowski wrote:
+> On 28/10/2025 18:45, Vijay Kumar Tumati wrote:
+>>>>>> +      - const: tfe1
+>>>>>> +      - const: tfe2
+>>>>> Why not using the same names as before? It really does not matter that
+>>>>> it is thin or image, all of them are the same because only the
+>>>>> difference against top matters.
+>>>> Right, this is done to maintain the consistency with the clock driver on
+>>> Sorry, this makes no sense. This device has nothing to do with clock
+>>> driver. Don't ever use clock drivers as arguments for doing something in
+>>> completely different place.
 >>>
->>> Can you describe what symptoms you had that required you to pass
->>> "pcie_aspm=off" on the kernel command line?
->>>
->>> I see these lines in my boot log related to ASPM (and added by
->>> the commit you link to), for both pcie1 and pcie2:
->>>
->>>    pci 0000:01:00.0: ASPM: DT platform, enabling L0s-up L0s-dw L1 AS
->>> PM-L1.1 ASPM-L1.2 PCI-PM-L1.1 PCI-PM-L1.2
->>>    pci 0000:01:00.0: ASPM: DT platform, enabling ClockPM
->>>
->>>    . . .
->>>
->>>    nvme nvme0: pci function 0000:01:00.0
->>>    nvme 0000:01:00.0: enabling device (0000 -> 0002)
->>>    nvme nvme0: allocated 64 MiB host memory buffer (16 segments).
->>>    nvme nvme0: 8/0/0 default/read/poll queues
->>>     nvme0n1: p1
->>>
->>> My NVMe drive on pcie1 works correctly.
->>>    https://www.crucial.com/ssd/p3/CT1000P3SSD8
->>>
->>>    root@bananapif3:~# df /a
->>>    Filesystem     1K-blocks     Used Available Use% Mounted on
->>>    /dev/nvme0n1p1 960302804 32063304 879385040   4% /a
->>>    root@bananapif3:~#
->>
->> Sorry for the delay, it took me time to test some more things and
->> different SSDs. First of all I still see the issue with your v3 on top
->> of v6.18-rc3, which includes some fixes for ASPM support [1].
->>
->> I have tried 3 different SSDs, none of them are working, but the
->> symptoms are different, although all related with ASPM (pcie_aspm=off
->> workarounds the issue).
->>
->> With a Fox Spirit PM18 SSD (Silicon Motion, Inc. SM2263EN/SM2263XT
->> controller), I do not have more than this:
->> [    5.196723] nvme nvme0: pci function 0000:01:00.0
->> [    5.198843] nvme 0000:01:00.0: enabling device (0000 -> 0002)
->>
->> With a WD Blue SN570 SSD, I get this:
->> [    5.199513] nvme nvme0: pci function 0000:01:00.0
->> [    5.201653] nvme 0000:01:00.0: enabling device (0000 -> 0002)
->> [    5.270334] nvme nvme0: allocated 32 MiB host memory buffer (8 segments).
->> [    5.277624] nvme nvme0: 8/0/0 default/read/poll queues
->> [   19.192350] nvme nvme0: using unchecked data buffer
->> [   48.108400] nvme nvme0: controller is down; will reset: CSTS=0xffffffff, PCI_STATUS=0x10
->> [   48.113885] nvme nvme0: Does your device have a faulty power saving mode enabled?
->> [   48.121346] nvme nvme0: Try "nvme_core.default_ps_max_latency_us=0 pcie_aspm=off pcie_port_pm=off" and report a bug
->> [   48.176878] nvme0n1: I/O Cmd(0x2) @ LBA 0, 8 blocks, I/O Error (sct 0x3 / sc 0x71)
->> [   48.181926] I/O error, dev nvme0n1, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
->> [   48.243670] nvme 0000:01:00.0: enabling device (0000 -> 0002)
->> [   48.246914] nvme nvme0: Disabling device after reset failure: -19
->> [   48.280495] Buffer I/O error on dev nvme0n1, logical block 0, async page read
->>
->>
->> Finally with a PNY CS1030 SSD (Phison PS5015-E15 controller), I get this:
->> [    5.215631] nvme nvme0: pci function 0000:01:00.0
->> [    5.220435] nvme 0000:01:00.0: enabling device (0000 -> 0002)
->> [    5.329565] nvme nvme0: allocated 64 MiB host memory buffer (16 segments).
->> [   66.540485] nvme nvme0: I/O tag 28 (401c) QID 0 timeout, disable controller
->> [   66.585245] nvme 0000:01:00.0: probe with driver nvme failed with error -4
->>
->> Note that I also tested this latest SSD on a VisionFive 2 board with exactly
->> the same kernel (I just moved the SSD and booted), and it works fine with ASPM
->> enabled (confirmed with lspci).
-> 
-> I have been testing this patchset recently as well, but on an Orange Pi
-> RV2 board instead (and an extra RV2 specific patch to enable power to
-> the M.2 slot).
-> 
-> I ran into the same symptoms you had ("QID 0 timeout" after about 60
-> seconds). However, I'm using an Intel 600p. I can confirm my NVME drive
-> seems to work fine with the "pcie_aspm=off" workaround as well.
+>>> Not mentioning that drivers don't matter much for the bindings, so I
+>>> really do not get what you try to explain here.
+>> Understood. I meant to say that it is consistent with the naming for the
+>> TFE device that is available on Kaanapali. If our intention is to keep
+>> the names in the bindings same as previous generations despite the
+>> changing HW architectures, we could change these to IFEs, to be
+>> consistent with previous  generations. Please advise. Appreciate your
+>> inputs here.
+>
+> You name these based on the provider, the clock controller or whatever
+> controller, and that's the mistake. Names are coming from this device
+> point of view, from the consumer. This device does not care whether this
+> is Thin or Image or Whatever GDSC.
+>
+>
+> Best regards,
+> Krzysztof
+Gotcha. Thanks for the explanation, Krzysztof. Agree with you, we are 
+just trying to differentiate the GDSCs / power domains for TOP and to 
+each of the front end modules, to control them independently based on 
+the usage, as we have one common device 'camss' in the DT.
 
-I don't see this problem, and haven't tried to reproduce it yet.
-
-Mani told me I needed to add these lines to ensure the "runtime
-PM hierarchy of PCIe chain" won't be "broken":
-
-	pm_runtime_set_active()
-	pm_runtime_no_callbacks()
-	devm_pm_runtime_enable()
-
-Just out of curiosity, could you try with those lines added
-just before these assignments in k1_pcie_probe()?
-
-	k1->pci.dev = dev;
-	k1->pci.ops = &k1_pcie_ops;
-	dw_pcie_cap_set(&k1->pci, REQ_RES);
-
-I doubt it will fix what you're seeing, but at the moment I'm
-working on something else.
-
-Thanks.
-
-					-Alex
-
-> Of note, I don't have this problem with the vendor 6.6.63 kernel.
-> 
->>> I basically want to know if there's something I should do with this
->>> driver to address this.  (Mani, can you explain?)
->>
->> I am not sure on my side how to debug that. What I know is that it is
->> linked to ASPM L1, L0 works fine. In other words the SSDs work fine with
->> this patch:
->>
->> diff --git a/drivers/pci/pcie/aspm.c b/drivers/pci/pcie/aspm.c
->> index 79b9651584737..1a134ec68b591 100644
->> --- a/drivers/pci/pcie/aspm.c
->> +++ b/drivers/pci/pcie/aspm.c
->> @@ -801,8 +801,8 @@ static void pcie_aspm_override_default_link_state(struct pcie_link_state *link)
->>   	if (of_have_populated_dt()) {
->>   		if (link->aspm_support & PCIE_LINK_STATE_L0S)
->>   			link->aspm_default |= PCIE_LINK_STATE_L0S;
->> -		if (link->aspm_support & PCIE_LINK_STATE_L1)
->> -			link->aspm_default |= PCIE_LINK_STATE_L1;
->> +//		if (link->aspm_support & PCIE_LINK_STATE_L1)
->> +//			link->aspm_default |= PCIE_LINK_STATE_L1;
->>   		override = link->aspm_default & ~link->aspm_enabled;
->>   		if (override)
->>   			pci_info(pdev, "ASPM: default states%s%s\n",
->>
->> I can test more things if needed, but I don't know where to start.
-> 
-> I'm not a PCIe expert, but I'm more than happy to test as well.
-> 
-> JE
-> 
-
+Looking at this device as a whole (as a consumer), it has one TOP GDSC 
+and one GDSC to each of the TFEs (the front end device itself in this 
+architecture is called TFE) separately for clock gating. TFE_0_GDSC is 
+enabled only when TFE0 is used, for instance. That way it seemed fitting 
+too. But if that's not OK, we have two options. One, we change this to 
+"ife" to be consistent with previous targets or the second, use even 
+more superficial name like "xfe_0", "xfe_1"etc. for power domain names 
+that represent any front end (thin or otherwise, which like you said 
+doesn't matter here) and can be adopted to all future targets. Please 
+let us know your thoughts. Thank you very much.
 
