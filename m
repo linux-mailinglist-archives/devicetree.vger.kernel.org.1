@@ -1,387 +1,494 @@
-Return-Path: <devicetree+bounces-232147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38431C14C88
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 14:12:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BA43C14CD7
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 14:21:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4F3C18860B4
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 13:12:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B2E942429C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 13:21:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 289A2330B1F;
-	Tue, 28 Oct 2025 13:11:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05C252DA746;
+	Tue, 28 Oct 2025 13:21:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gocontrollcom.onmicrosoft.com header.i=@gocontrollcom.onmicrosoft.com header.b="8Udb5EXX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AjZ2rEYe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11023120.outbound.protection.outlook.com [52.101.72.120])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01CC432F768;
-	Tue, 28 Oct 2025 13:11:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.120
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761657098; cv=fail; b=e1jCnA7YzHkRSZGWxkwA5SWyYmH2UOtzEJ4Y60UZWrCylP82TlqCtFJ1IhoXboCgE6PzyTYDtggtPZAiKGo24j8lhYsII80LZYqT25vn6t2+XihfWAao1oA4LHFWatyaspzFq6v+nr+kcntAUZphlHMP6EyVkf+pPAMQFq5G4Lo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761657098; c=relaxed/simple;
-	bh=frPMziPl+S34vuk1f3KcCe1EIbDAxNli0YDAbWa3zP0=;
-	h=Message-ID:Date:Subject:From:To:Cc:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=SnVpRiCKLaBJmjcuU1HV16dL4llXomMLVkkSWPU+vJbRzsUBy2x1NTyF6XWtfH6rCITvzuJMxyNFltg4Ld5r5Pnpi5GNi3XAnSGOrle1YMUHVOZgMVvSVEU/fwR5z7kD9S3qXzsq4aFUZvEtC2DLxXo0/jXRIHUoJuBvR0qdfV8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gocontroll.com; spf=pass smtp.mailfrom=gocontroll.com; dkim=pass (2048-bit key) header.d=gocontrollcom.onmicrosoft.com header.i=@gocontrollcom.onmicrosoft.com header.b=8Udb5EXX; arc=fail smtp.client-ip=52.101.72.120
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gocontroll.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gocontroll.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SPy6zLphcHu5+BL7XfoPXIN+KYlOMO5i8EC8pIlPmyix9mv8PD01+RNZx408xTNIhahKMP2TTIA4jrRNJwYTFdMKq40EJBD1rulI7tL/0kbvzBD9vss0K29N4mkDSaFzfh3vAtCjlmSGtzekSRW751rGRDiWq0saNERR89Mv+PltbUjVRvVhBVhz4irU9li91HkW3St+M25ieCYvFcKMoG2xqzAbXlYQgg5Ma72iFnBQK6lrGcGPS5vhkX7UTKihvvZ8G3M7sgpJASpWlukCsmrAGFl9iBtC64ETk94zkIiN+qklIFnAkcmbTMtZEZRveemhA3GzTmcerdld1/8K/Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5lBFadlSkvZnEEehHr2LBcA47Jw0MHCMBx7fxzT8BbI=;
- b=OZTZeGMb/s2mEcmSrc6hMTyW5ss4NGSTWL+ur+Y8QLJ2bmHwN1vNFaofPIyFvfA/4feuy5Ov3eoky+3tPpYrciBFg6Pkzm6ygS2aQ46hP96yE78MYhR76NpjF0FVAusRwSmIjISHaw1nfyK05+/qHdBwykY8AdsjZ/dKBV2LJ8sNnwNotZmHfIeqr6XDySexFmX8NbWlys0flx6YB0UgHLoHiqY3+wmeaZPSEJEWP9OWBmWJAJbWQIdNfLJRaCXShEeStJ2JxEHngdAQSznBm3RTEgGELArpmE8UWm7qmdFGEnpWLUJKbPHXO1AazxDgl12U5OqcdpnsEd9Oh/fm5Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=gocontroll.com; dmarc=pass action=none
- header.from=gocontroll.com; dkim=pass header.d=gocontroll.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gocontrollcom.onmicrosoft.com; s=selector1-gocontrollcom-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5lBFadlSkvZnEEehHr2LBcA47Jw0MHCMBx7fxzT8BbI=;
- b=8Udb5EXXetHfp5Lo+7nIM7OA3Q/0FyWal0vEEuaJ84OPmeyN6YTTCr3zEmXFdE0BAmu4+TngCKDafoJ3pja+0vZTOPsqUy+BBrBsph4VRgTZ3p2o9m1AtZcW/uw73UxQ52ZqOcsZSI55DNnqI451JiqAE8GoyMR9HF8d8jXOOFo9S/r5gH4Y/u5YYUCTwzV5uLQXHcQ4o4CmT5MUozjVfBj9ZXOdifPqNmgBHxCU8t/EBIw61jIdZ4YRSZQQAKR+Ip99C2UWN1T1+/9ZUG4inVDRNKB2bn7UF3V0HTJWA5qWSvWP3rU9O7GIpQkEOnSp259S9dYT1ORsKoWQNrXCgQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=gocontroll.com;
-Received: from PA4PR04MB7630.eurprd04.prod.outlook.com (2603:10a6:102:ec::16)
- by DU0PR04MB11259.eurprd04.prod.outlook.com (2603:10a6:10:5dd::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.13; Tue, 28 Oct
- 2025 13:11:30 +0000
-Received: from PA4PR04MB7630.eurprd04.prod.outlook.com
- ([fe80::311b:ad3a:4a62:7b5f]) by PA4PR04MB7630.eurprd04.prod.outlook.com
- ([fe80::311b:ad3a:4a62:7b5f%6]) with mapi id 15.20.9253.018; Tue, 28 Oct 2025
- 13:11:28 +0000
-Message-ID: <938f85b0-4c9b-463a-960a-f5f4e4092480@gocontroll.com>
-Date: Tue, 28 Oct 2025 14:10:04 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/5] arm64: dts: freescale: add Ka-Ro Electronics
- tx8m-1610 COM
-From: Maud Spierings <maudspierings@gocontroll.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- LW@KARO-electronics.de
-References: <20251022-mini_iv-v2-0-20af8f9aac14@gocontroll.com>
- <20251022-mini_iv-v2-3-20af8f9aac14@gocontroll.com>
- <a7012995-c2a8-48a3-abe1-5c227272f21c@gmail.com>
- <65202d1f-6c4f-4d4e-9fef-85cfb74ec768@gocontroll.com>
-Content-Language: en-US
-In-Reply-To: <65202d1f-6c4f-4d4e-9fef-85cfb74ec768@gocontroll.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AM8P190CA0027.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:219::32) To PA4PR04MB7630.eurprd04.prod.outlook.com
- (2603:10a6:102:ec::16)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB2A22765E3;
+	Tue, 28 Oct 2025 13:21:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761657694; cv=none; b=Nz81bNvTJwnCc2vWUW0rRpqVO9A6T9FD6jgCApavqR5w13uei0MsbkWze6mlio2rkik631puoUqpS/73FgEG77vPe8X+34vJZBxXoqaae67Tk4FM/QQJHHIYVZxa6hd9Q0Fkt/nhGp5EHEkoUnwTmzx6ysYp146gkf07FN0KpPk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761657694; c=relaxed/simple;
+	bh=WaD4tJ+AXEjZDHr5tALQURL5gA1hTrCzYkmSf9OKPmk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e5fyqY32iajkEUbl6t/UgHxw7TDDaSMnMA0qrXdfqbiWyWLhXhJtxe1YZ/MDJMmOH45krzwv4lEhgVKL1HEdIQ5ayPlDY0zWOlBahWkW8JlM6kxEfPlgzWURTzRNTZ2QR7n1Bb18v/0e/Ot1Ekw8PS52UxjJ+RaIeP062SMKrk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AjZ2rEYe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4EA6C4CEF7;
+	Tue, 28 Oct 2025 13:21:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761657694;
+	bh=WaD4tJ+AXEjZDHr5tALQURL5gA1hTrCzYkmSf9OKPmk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AjZ2rEYeqopIpuVWy0dZGITG9nu8t4HTbSuEXu2dn/82sboaDSTTL9MJYpT0tW/hP
+	 IcLne9JU2jCzMr+fpUPRtGmAa9yY8RbekJ0LQodmQJm3v9UdhqPvs98pHDXvCAwrOZ
+	 ZEOKt8kiQ1uwcjPIZV6ouJWRpZM72z0ONTMoqP4z83sJK1Wf7hhLya97xmymUcaZYA
+	 KzaO+pw2YCBS1lUR0MhAlac1QozPSj/TKaPHsfxY1XbbGBjqnr9mZsZWSRY+cDEL9r
+	 3+62Qi2by1TUV9xWi1xBDmEeFKknHwtVWTb+XM42bfwGvFS++rSVNyU4tvkpakHAvh
+	 B3qsAtdLR37vw==
+Date: Tue, 28 Oct 2025 13:22:23 +0000
+From: Daniel Thompson <danielt@kernel.org>
+To: Junjie Cao <caojunjie650@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
+	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
+	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-fbdev@vger.kernel.org, Pengyu Luo <mitltlatltl@gmail.com>
+Subject: Re: [PATCH 2/2] backlight: aw99706: Add support for Awinic AW99706
+ backlight
+Message-ID: <aQDDjzl65dMZEnwM@aspen.lan>
+References: <20251026123923.1531727-1-caojunjie650@gmail.com>
+ <20251026123923.1531727-3-caojunjie650@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB7630:EE_|DU0PR04MB11259:EE_
-X-MS-Office365-Filtering-Correlation-Id: b60b657b-508e-4c12-ec0f-08de16238135
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|7416014|10070799003|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?S1BINlF4T3FHaFFzRjJvWmoxZ3AyZ3laVEQ4MndrdXV5RFU4Z1dObVJSaWZU?=
- =?utf-8?B?aVJRVTE0RXYzTzVSeUZBdFF1R0lYMVpLVnBkNGhiYSt4YUNzcUtNc2ljZmVH?=
- =?utf-8?B?R01VYVlkbno1elgzdUc1emd2ZnN4U3k3WWxUY2NXb1NjSFVZbTZEMHhiTjl4?=
- =?utf-8?B?TGkvNXpTSTdGaUMxTWdKd0FpMHdLbFJFS1NQeWIrb1FCOFNnME9HZTQzZGRH?=
- =?utf-8?B?Uy9NQkZKWVA2SGp5eGZBa0txeFMvbC9Oc1hhbXlHT3prSmxhMVVtOGFydkIr?=
- =?utf-8?B?blFJWHBybGRWTnIyYzNoUWh1V0lKbVpBcmZNMFU0UktsTG93RzV0VGFhaGdB?=
- =?utf-8?B?Tzd3SkVVZkhJaW53Zm00dkhYNEtiQUFMdlpBaGhIZk5QbFhseTAxVTVxUU1j?=
- =?utf-8?B?NzRCTld5V1BSUFFQT0dMQzBhNm1oY1dKclBscFVGa215M0hzM2EyaWN4TlRO?=
- =?utf-8?B?QkJwMWdKdDdZY1F1Z3pkR1ZBVWFyb3ZKeXJNZ3l2VGNkcUpKTCtCZ1VLenpj?=
- =?utf-8?B?ZlVDek1KemVUUlNJeGhSTnpSL25HNUZvTHlwUGR2NjRPSkdqMm04VXVoNDhq?=
- =?utf-8?B?cmNyZ1d3dGU4VVM1VUNHR0x5TDBacmdyYlBFSTNwSmY4bFFlMURYYlgvcnlr?=
- =?utf-8?B?U2R5ajRXWEJ0eVUyRmtBaUdCQUhXdDRMQUpFRTVsbWpBVXZObVhkVGpYWGgv?=
- =?utf-8?B?U3E0bmkzS0hxNmZLc3pzWlQ3ZGZwRWNUQXJabjNHenp3THRNUVhTSTN6cUMy?=
- =?utf-8?B?cGdPdEdDaDB5ZkxIRHU4d05xcEVYM0Y0K0R2ZmZJTEF3SmV2K3BKem1GTytw?=
- =?utf-8?B?WWFtV2NLbnZMci9oTnhHOEZ5azlZcThRVUVnYmpHRm1PZ25wUnBFVEJsUGJH?=
- =?utf-8?B?M2tNYktWcWhFbFBiREtZV0FrSnFaZVFxdzJmUkk4UUlkd2RwTVJxcEF4T0hL?=
- =?utf-8?B?bWFBdzltenhoNVNNZ1dCUGxtdzhJTnNZL1VRbGU4dnAyVGVmWTZpbUlsay9B?=
- =?utf-8?B?TWNHR2Y2MlFwZUZFeWxhYzExU3dmRzdPRGE3RlpwdzZGWnFwSGFvZEYzbzdS?=
- =?utf-8?B?MUdrL09oZCttUDgyOWxIRzAwVm1IUm5VVkhUN0JxU3ZKODVYT3NWeGhMNjZ2?=
- =?utf-8?B?Rm53M054STREK0VCYnI4QmV6b0pMQjA1YzlBTWJrcnlvTDZVdjVkWUNnODdF?=
- =?utf-8?B?MFlvRnVWNTJiSjNpTGhNdnBnTGZsN2Zma0dnQWlieVAvdlNXbzdVZGJUNzF6?=
- =?utf-8?B?WEJhbU1ORkxMc1ozS3ZRSXJUS0t2NjBuYlV3cEJXM1YrTlhHNXkvcERDTGNy?=
- =?utf-8?B?NGx2K21ub3NPWHNRcENNWU15OWo4TDRoSzhURUUvanFDZ28xYnZ4a1BpTk9Q?=
- =?utf-8?B?dnNtQTlSTk1MKzArSHBMSFhJdDBLMGFJU0xaWktadWRyL2xXS3FOQkFFbWNJ?=
- =?utf-8?B?K01LTExXbEluOG44M3VoNTB3Z0sxeHdkb1BsZVdIMFBlWEYrRVpGcWFwS09q?=
- =?utf-8?B?dFpXWnIvdFMreFI2VVgrS2NuczVHaXlpTFc5YStNbTFxbTlhajF1d0JqMVpJ?=
- =?utf-8?B?NWUyOWxLYk5vYzAyTjcwWmdELzRQbCtneWNjR2pJd3licmpaTDl5a1hMZDgz?=
- =?utf-8?B?d2lza1dXNEZFa0c0K2o4ei9FRFVQZThpL2VuL2JhdmRneXVSanRsZlc4SDhF?=
- =?utf-8?B?Z3dLTXRsblJOTTNtV0xJSUVZZFZ4TGh0TUtyWi85ZzBGV0JFbHBmMWdzS2t6?=
- =?utf-8?B?QlFCV1Z5bnRoNjFZajBoczU4YjZ3M1gzSFpVNGZFSGIzRTJ3eU85WVoydGts?=
- =?utf-8?B?TUZDb29PRHl2SEFPcnMxOFZWcEdheFdGSHhOUzVsdDdlL1RjUERFRW5EZGly?=
- =?utf-8?B?QTJ4Y3lYejZTVzUzWHc0NzFCbzFJL2dJcUR2NjhqSkZuNkgwWDRHUHBkaHZa?=
- =?utf-8?Q?xK1w/uwM+O9mR9pVjAjX5oylTpDhbx0n?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB7630.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(10070799003)(366016);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?UUpURWM4Tm5HNkV6b2pPQWxXY3pKb2hGSHlIRTIwNVFzSTRCRmpqSHZQdjF0?=
- =?utf-8?B?RmUxQjdtcWE0UUs5RmQ5bE1ENTVJY1k5Nkd4a1oxN3pzWkR5SXU1YVFySEli?=
- =?utf-8?B?U0gwUXdPbG1QTGorY0V3d2hSdUQ0eDVJTlpnQlpqWU02b2U1Zyt3ZVJhdFlC?=
- =?utf-8?B?WUFSbS9BckloUXFwMER2bEdmN0NTZU9wOElLZVh2ajllUFFhOWNaZUpibTNu?=
- =?utf-8?B?RzlRTmw0ZzlOK3hpVDhCWjdQdGVHWTVqc3o2dEV6bFlBYm5RTWNNTkg0Nmdv?=
- =?utf-8?B?NDR1ckc2dUxRVFFkRCtSelNTMTl0U1dUeG8yNzdrKy9zWFFZa0dtQ1N2eWE0?=
- =?utf-8?B?eFVMdlZUTXIxb2hBK1BLcDBsMjF3MC8wV29PTHQya1VwWFVuRlkxZllQTk1N?=
- =?utf-8?B?L0dNd3JQV1RiZVc4VXBCY0k0SGFkRjBhY3BmaWJUR3FFTGtJWjFUdWZpTUd3?=
- =?utf-8?B?ZW5qb2liYVc1ODhqd0dHNWVQajAwU1hsOXA0TU5vazZITDY2clZEOGdvb3Yz?=
- =?utf-8?B?Q0wxVkc2clFkcDAxOHBhSGZScjZQZzFpTFkwUWdzR3BIa2UzdGFWY2lLeTdN?=
- =?utf-8?B?QlR1cmkvdzRYVDdadWQ2VUkvVkRTcjBRKzQvVjVIZGt5ZlE1K2hGSEFkK1JZ?=
- =?utf-8?B?OWJSb3huMGFHajVtUk5vSDhNUG5ncnM5QVhqNDJiZDZmRDBPVldFODFCcTRR?=
- =?utf-8?B?TXFsSWpXWFhYQmp5S09nSUdtWjh0ZE1oS1pheDhPL1BDdmwyakNWU21oMDhv?=
- =?utf-8?B?cFFWL3F4Vk9EMndybFR5MEh6S1JFNHVET0E1MFdTTDU2WFZscUMrWmxTdHR2?=
- =?utf-8?B?bTJ3WTFqaDlKZmoydVM3b0hOOU1vTjhOVCtiOXd6Y1U3a1NzUTU3ZDZOK0xz?=
- =?utf-8?B?cEtaMkx3bXEyMzF4Y0NRNUZCNkVIOER1NVBrczI5dXVCYWJDSjNJbnNxR0k4?=
- =?utf-8?B?a1crTnhDMzExdk5UTzE4azVPT2NkQnZQYTduS080YzBBQ2JQWkorc1BqS3Y5?=
- =?utf-8?B?Q1NGbWlJTGlOV3lkcXd1K0s0VzhxdlNRS2loVGF5U2t5bXQrcmE2c1V2NU84?=
- =?utf-8?B?dmFaK1VmS3laWm5uRzVhNW0wZWFYdUhIYzBhTWw1T29PNjNlOUM2V2R0MExW?=
- =?utf-8?B?Q1pWaGYvQmhiN3NZT0c1RG5jcHE5aURnamgzM0hLMWRIMU5vUFVpVzFwMVpn?=
- =?utf-8?B?M1UrbTEyTWlQKzlyWitoM2VDSkMxWDBKYnBWWklkbXdEcVFFOE9MdUxKakxz?=
- =?utf-8?B?NUtrdDhXekVtSUlyZHR0elB1UllGMlJ1TDdqMnJ0dDZsL2hsM2dYYlNkRUdk?=
- =?utf-8?B?WXM0RFgxNlk0a1FWbWxhOTlnckRXeHBNcjZ3UjdYc3R2bHgyWFRSZW5rSkJ0?=
- =?utf-8?B?VzRXRXZreGNEWmdqdEEwVDVlNngzaW1YT0ovdk1tOVF1blRTdlQ1YXE5elZZ?=
- =?utf-8?B?cFROaVNVa01lVmI4d2dycjNJbmg2VG4yZElsZHFQSmVXb3hndXI4TCsyQTda?=
- =?utf-8?B?ck1yZm9vUDB1bkFCTEJIb1lWZTQxSkxUU3kvTlJaL0YrVTNXYkN4YXk2MXJX?=
- =?utf-8?B?TVlhaWI0UnpZYTkyVURQNDRKaklNK1lBdzZqaFA0akp6UVB0cWMwZ282Snlj?=
- =?utf-8?B?Zk5EKzk4aWtQd0F4YlBVVU9xbllZYTM1N3IwaU0vV003NnE5SkFmdUlHYUxs?=
- =?utf-8?B?V21xUzZPdXZOY0tZbWEzeEwvZ3lnb1VpWVpqaDNGcUNicXJKNm51ZXU1SFM2?=
- =?utf-8?B?RWtJSndOa0JtNXozdWF1bGVRWDhPMWs4RldrNi9WSUdWTFlHQlEweklmSFRS?=
- =?utf-8?B?NHU4RUJuUnpjOWJGeVFKTUhjR0dKdVFaUW4vSGtuM1ltb3hQY3pQcVYxb25S?=
- =?utf-8?B?Vk5hdFI5aFdNWDZHMFBEY3AwU3FnaklxclJiQTJOaEdjYkRTSTJpY3VLK2dX?=
- =?utf-8?B?R3JIYzF4czZ2bGRKc1ZhZm1NelpwbXIvM3pUQ0JLaVVJSFBaK254bWhQak1j?=
- =?utf-8?B?cVFSRWRkOXhWMGo2WWhEdjlXTEZPQjIvRWtjR0JQa1ZqR1BsaGFDcEFBMi9k?=
- =?utf-8?B?UWlvZ09iNWc4N29Uc3RjUHZkUG0zWGdjL1JlU0NQcHhLTmZycGVsZ1NUaHBy?=
- =?utf-8?B?N3NxL1hoM1pEc0lhTUNXSGozcVUzdTFqS2cvVXY5MVo2MHJUcmd3REpBRTA1?=
- =?utf-8?B?NjZrV1FFLzNFanFlOEFiOFNpd21zenBlWGFYSzhyWmppdVVrVExqd2lCVTFt?=
- =?utf-8?B?cjY2VnM0elREdi9wYjJhOHZYUWhRPT0=?=
-X-OriginatorOrg: gocontroll.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b60b657b-508e-4c12-ec0f-08de16238135
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB7630.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2025 13:11:28.2063
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4c8512ff-bac0-4d26-919a-ee6a4cecfc9d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: efvovRpLxm4yn1B5q7Q83lB+0NS30ZMnL5kU3lEMDTC+2vIgx/KyRWXZv+22Vf4jEbjvSDh1VF25XkyzIPSjDslH1FdM2q4qXcF6sViyhoE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB11259
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251026123923.1531727-3-caojunjie650@gmail.com>
 
-On 10/28/25 13:42, Maud Spierings wrote:
-> On 10/28/25 13:15, Matti Vaittinen wrote:
->> Hi Maud,
->>
->> Thanks for the upstreaming work! :)
->>
->> On 22/10/2025 10:22, Maud Spierings via B4 Relay wrote:
->>> From: Maud Spierings <maudspierings@gocontroll.com>
->>>
->>> The Ka-Ro Electronics tx8m-1610 is a COM based on the imx8mm SOC. It has
->>> 1 GB of ram and 4 GB of eMMC storage on board.
->>>
->>> Add it to enable boards based on this module
->>>
->>> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
->>> ---
->>>   .../arm64/boot/dts/freescale/imx8mm-tx8m-1610.dtsi | 439 ++++++++++ 
->>> + ++++++++++
->>>   1 file changed, 439 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tx8m-1610.dtsi b/ 
->>> arch/arm64/boot/dts/freescale/imx8mm-tx8m-1610.dtsi
->>> new file mode 100644
->>> index 0000000000000..46d3ad80942cc
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/freescale/imx8mm-tx8m-1610.dtsi
->>> @@ -0,0 +1,439 @@
->>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->>> +/*
->>> + * Copyright (C) 2021 Lothar Waßmann <LW@KARO-electronics.de>
->>> + * 2025 Maud Spierings <maudspierings@gocontroll.com>
->>> + */
->>> +
->>> +#include "imx8mm.dtsi"
->>> +
->>
->> // snip
->>
->>> +    pmic: pmic@4b {
->>> +        compatible = "rohm,bd71847";
->>> +        reg = <0x4b>;
->>> +        interrupt-parent = <&gpio1>;
->>> +        interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
->>> +        pinctrl-0 = <&pinctrl_pmic>;
->>> +        pinctrl-names = "default";
->>> +        rohm,reset-snvs-powered;
->>> +
->>> +        regulators {
->>> +            reg_vdd_soc: BUCK1 {
->>> +                regulator-always-on;
->>> +                regulator-boot-on;
->>> +                regulator-max-microvolt = <900000>;
->>> +                regulator-min-microvolt = <780000>;
->>> +                regulator-name = "buck1";
->>> +                regulator-ramp-delay = <1250>;
->>> +            };
->>> +
->>> +            reg_vdd_arm: BUCK2 {
->>> +                regulator-always-on;
->>> +                regulator-boot-on;
->>> +                regulator-max-microvolt = <950000>;
->>> +                regulator-min-microvolt = <805000>;
->>> +                regulator-name = "buck2";
->>> +                regulator-ramp-delay = <1250>;
->>> +                rohm,dvs-run-voltage = <950000>;
->>> +                rohm,dvs-idle-voltage = <810000>;
->>> +            };
->>> +
->>> +            reg_vdd_dram: BUCK3 {
->>> +                regulator-always-on;
->>> +                regulator-boot-on;
->>> +                regulator-max-microvolt = <900000>;
->>> +                regulator-min-microvolt = <805000>;
->>> +                regulator-name = "buck3";
->>> +            };
->>> +
->>> +            reg_vdd_3v3: BUCK4 {
->>> +                regulator-always-on;
->>> +                regulator-boot-on;
->>> +                regulator-max-microvolt = <3300000>;
->>> +                regulator-min-microvolt = <3300000>;
->>> +                regulator-name = "buck4";
->>> +            };
->>> +
->>> +            reg_vdd_1v8: BUCK5 {
->>> +                regulator-always-on;
->>> +                regulator-boot-on;
->>> +                regulator-max-microvolt = <1950000>;
->>> +                regulator-min-microvolt = <1700000>;
->>> +                regulator-name = "buck5";
->>> +            };
->>> +
->>> +            BUCK6 {
->>> +                regulator-always-on;
->>> +                regulator-boot-on;
->>> +                /*
->>> +                 * The default output voltage is 1.1V, bumped
->>> +                 * to 1.35V in HW by a 499R/2.2K voltage divider in the
->>> +                 * feedback path.
->>> +                 */
->>
->> Could/Should this be described using the:
->> 'rohm,feedback-pull-up-r1-ohms' and
->> 'rohm,feedback-pull-up-r2-ohms'? If I understand the comment 
->> correctly, that might allow the driver to be able to use correctly 
->> scaled voltages.
->>
->> https://elixir.bootlin.com/linux/v6.18-rc1/source/Documentation/ 
->> devicetree/bindings/regulator/rohm,bd71837-regulator.yaml#L108
->>
-> 
-> Ah I didn't know those existed, should've checked the bindings in more 
-> detail, thanks for the hint!
-> 
-> I will have to investigate this carefully, since I don't have access to 
-> the actual design of the COM, so I don't know exactly what is there.
-> 
+On Sun, Oct 26, 2025 at 08:39:23PM +0800, Junjie Cao wrote:
+> Add support for Awinic AW99706 backlight, which can be found in
+> tablet and notebook backlight, one case is the Lenovo Legion Y700
+> Gen4. This driver refers to the official datasheets and android
+> driver, they can be found in [1].
+>
+> [1] https://www.awinic.com/en/productDetail/AW99706QNR
+>
+> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+> Signed-off-by: Junjie Cao <caojunjie650@gmail.com>
+> ---
+> diff --git a/drivers/video/backlight/aw99706.c b/drivers/video/backlight/aw99706.c
+> new file mode 100644
+> index 000000000..8dafdea45
+> --- /dev/null
+> +++ b/drivers/video/backlight/aw99706.c
+> @@ -0,0 +1,503 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * aw99706 - Backlight driver for the AWINIC AW99706
+> + *
+> + * Copyright (C) 2025 Junjie Cao <caojunjie650@gmail.com>
+> + * Copyright (C) 2025 Pengyu Luo <mitltlatltl@gmail.com>
+> + *
+> + * Based on vendor driver:
+> + * Copyright (c) 2023 AWINIC Technology CO., LTD
+> + */
+> +
+> +#include <linux/backlight.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio.h>
+> +#include <linux/i2c.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +
+> +#define AW99706_MAX_BRT_LVL		4095
+> +#define AW99706_REG_MAX			0x1F
+> +#define AW99706_ID			0x07
+> +
+> +/* registers list */
+> +#define AW99706_CFG0_REG			0x00
+> +#define AW99706_DIM_MODE_MASK			GENMASK(1, 0)
+> +
+> +#define AW99706_CFG1_REG			0x01
+> +#define AW99706_SW_FREQ_MASK			GENMASK(3, 0)
+> +#define AW99706_SW_ILMT_MASK			GENMASK(5, 4)
+> +
+> +#define AW99706_CFG2_REG			0x02
+> +#define AW99706_ILED_MAX_MASK			GENMASK(6, 0)
+> +#define AW99706_UVLOSEL_MASK			BIT(7)
+> +
+> +#define AW99706_CFG3_REG			0x03
+> +#define AW99706_CFG4_REG			0x04
+> +#define AW99706_BRT_MSB_MASK			GENMASK(3, 0)
+> +
+> +#define AW99706_CFG5_REG			0x05
+> +#define AW99706_BRT_LSB_MASK			GENMASK(7, 0)
+> +
+> +#define AW99706_CFG6_REG			0x06
+> +#define AW99706_FADE_TIME_MASK			GENMASK(2, 0)
+> +#define AW99706_SLOPE_TIME_MASK			GENMASK(5, 3)
+> +#define AW99706_RAMP_CTL_MASK			GENMASK(7, 6)
+> +
+> +#define AW99706_CFG7_REG			0x07
+> +#define AW99706_BRT_MODE_MASK			GENMASK(1, 0)
+> +
+> +#define AW99706_CFG8_REG			0x08
+> +#define AW99706_ONOFF_TIME_MASK			GENMASK(2, 0)
+> +
+> +#define AW99706_CFG9_REG			0x09
+> +#define AW99706_CFGA_REG			0x0A
+> +#define AW99706_CFGB_REG			0x0B
+> +#define AW99706_CFGC_REG			0x0C
+> +#define AW99706_CFGD_REG			0x0D
+> +#define AW99706_FLAG_REG			0x10
+> +#define AW99706_BACKLIGHT_EN_MASK		BIT(7)
+> +
+> +#define AW99706_CHIPID_REG			0x11
+> +#define AW99706_LED_OPEN_FLAG_REG		0x12
+> +#define AW99706_LED_SHORT_FLAG_REG		0x13
+> +#define AW99706_MTPLDOSEL_REG			0x1E
+> +#define AW99706_MTPRUN_REG			0x1F
+> +
+> +#define RESV	0
+> +
+> +/* Boost switching frequency table, in kHz */
+> +static const u32 aw99706_sw_freq_tbl[] = {
+> +	RESV, RESV, RESV, RESV, 300, 400, 500, 600,
+> +	660, 750, 850, 1000, 1200, 1330, 1500, 1700
+> +};
+> +
+> +/* Switching current limitation table, in mA */
+> +static const u32 aw99706_sw_ilmt_tbl[] = {
+> +	1500, 2000, 2500, 3000
+> +};
+> +
+> +/* ULVO threshold table, in mV */
+> +static const u32 aw99706_ulvo_thres_tbl[] = {
+> +	2200, 5000
+> +};
+> +
+> +/* Fade In/Out time table, in us */
+> +static const u32 aw99706_fade_time_tbl[] = {
+> +	8, 16, 32, 64, 128, 256, 512, 1024
+> +};
+> +
+> +/* Slope time table, in ms */
+> +static const u32 aw99706_slopetime_tbl[] = {
+> +	8, 24, 48, 96, 200, 300, 400, 500
+> +};
+> +
+> +/* Turn on/off time table, in ns */
+> +static const u32 aw99706_onoff_time_tbl[] = {
+> +	RESV, 250, 500, 1000, 2000, 4000, 8000, 16000
+> +};
+> +
+> +struct aw99706_device {
+> +	struct i2c_client *client;
+> +	struct device *dev;
+> +	struct regmap *regmap;
+> +	struct backlight_device *bl_dev;
+> +	struct gpio_desc *hwen_gpio;
+> +	bool bl_enable;
+> +};
+> +
+> +enum reg_access {
+> +	REG_NONE_ACCESS	= 0,
+> +	REG_RD_ACCESS	= 1,
+> +	REG_WR_ACCESS	= 2,
+> +};
+> +
+> +struct aw99706_reg {
+> +	u8 defval;
+> +	u8 access;
+> +};
+> +
+> +const struct aw99706_reg aw99706_regs[AW99706_REG_MAX + 1] = {
+> +	[AW99706_CFG0_REG]		= {0x65, REG_RD_ACCESS | REG_WR_ACCESS},
+> +	[AW99706_CFG1_REG]		= {0x39, REG_RD_ACCESS | REG_WR_ACCESS},
+> +	[AW99706_CFG2_REG]		= {0x1e, REG_RD_ACCESS | REG_WR_ACCESS},
+> +	[AW99706_CFG3_REG]		= {0x04, REG_RD_ACCESS | REG_WR_ACCESS},
+> +	[AW99706_CFG4_REG]		= {0x00, REG_RD_ACCESS | REG_WR_ACCESS},
+> +	[AW99706_CFG5_REG]		= {0x00, REG_RD_ACCESS | REG_WR_ACCESS},
+> +	[AW99706_CFG6_REG]		= {0xa9, REG_RD_ACCESS | REG_WR_ACCESS},
+> +	[AW99706_CFG7_REG]		= {0x04, REG_RD_ACCESS | REG_WR_ACCESS},
+> +	[AW99706_CFG8_REG]		= {0x0c, REG_RD_ACCESS | REG_WR_ACCESS},
+> +	[AW99706_CFG9_REG]		= {0x4b, REG_RD_ACCESS | REG_WR_ACCESS},
+> +	[AW99706_CFGA_REG]		= {0x72, REG_RD_ACCESS | REG_WR_ACCESS},
+> +	[AW99706_CFGB_REG]		= {0x01, REG_RD_ACCESS | REG_WR_ACCESS},
+> +	[AW99706_CFGC_REG]		= {0x6c, REG_RD_ACCESS | REG_WR_ACCESS},
+> +	[AW99706_CFGD_REG]		= {0xfe, REG_RD_ACCESS | REG_WR_ACCESS},
+> +	[AW99706_FLAG_REG]		= {0x00, REG_RD_ACCESS},
+> +	[AW99706_CHIPID_REG]		= {AW99706_ID, REG_RD_ACCESS},
+> +	[AW99706_LED_OPEN_FLAG_REG]	= {0x00, REG_RD_ACCESS},
+> +	[AW99706_LED_SHORT_FLAG_REG]	= {0x00, REG_RD_ACCESS},
+> +
+> +	/*
+> +	 * Write bit is dropped here, writing BIT(0) to MTPLDOSEL will unlock
+> +	 * Multi-time Programmable (MTP).
+> +	 */
+> +	[AW99706_MTPLDOSEL_REG]		= {0x00, REG_RD_ACCESS},
+> +	[AW99706_MTPRUN_REG]		= {0x00, REG_NONE_ACCESS},
+> +};
+> +
+> +static bool aw99706_readable_reg(struct device *dev, unsigned int reg)
+> +{
+> +	return aw99706_regs[reg].access & REG_RD_ACCESS;
+> +}
+> +
+> +static bool aw99706_writeable_reg(struct device *dev, unsigned int reg)
+> +{
+> +	return aw99706_regs[reg].access & REG_WR_ACCESS;
+> +}
+> +
+> +static inline int aw99706_i2c_read(struct aw99706_device *aw, u8 reg,
+> +				   unsigned int *val)
+> +{
+> +	return regmap_read(aw->regmap, reg, val);
+> +}
+> +
+> +static inline int aw99706_i2c_write(struct aw99706_device *aw, u8 reg, u8 val)
+> +{
+> +	return regmap_write(aw->regmap, reg, val);
+> +}
+> +
+> +static inline int aw99706_i2c_update_bits(struct aw99706_device *aw, u8 reg,
+> +					  u8 mask, u8 val)
+> +{
+> +	return regmap_update_bits(aw->regmap, reg, mask, val);
+> +}
+> +
+> +struct aw99706_dt_prop {
+> +	const char * const name;
+> +	const u32 * const lookup_tbl;
+> +	u8 tbl_size;
+> +	u8 reg;
+> +	u8 mask;
+> +	u8 val;
+> +	u32 raw_val;
+> +};
+> +
+> +static struct aw99706_dt_prop aw99706_dt_props[] = {
+> +	{
+> +		"awinic,dim-mode", NULL,
+> +		0,
+> +		AW99706_CFG0_REG, AW99706_DIM_MODE_MASK
+> +	},
+> +	{
+> +		"awinic,sw-freq", aw99706_sw_freq_tbl,
+> +		ARRAY_SIZE(aw99706_sw_freq_tbl),
+> +		AW99706_CFG1_REG, AW99706_SW_FREQ_MASK
+> +	},
+> +	{
+> +		"awinic,sw-ilmt", aw99706_sw_ilmt_tbl,
+> +		ARRAY_SIZE(aw99706_sw_ilmt_tbl),
+> +		AW99706_CFG1_REG, AW99706_SW_ILMT_MASK
+> +	},
+> +	{
+> +		"awinic,iled-max", NULL,
+> +		0,
+> +		AW99706_CFG2_REG, AW99706_ILED_MAX_MASK
+> +
+> +	},
+> +	{
+> +		"awinic,uvlo-thres", aw99706_ulvo_thres_tbl,
+> +		ARRAY_SIZE(aw99706_ulvo_thres_tbl),
+> +		AW99706_CFG2_REG, AW99706_UVLOSEL_MASK
+> +	},
+> +	{
+> +		"awinic,fade-time", aw99706_fade_time_tbl,
+> +		ARRAY_SIZE(aw99706_fade_time_tbl),
+> +		AW99706_CFG6_REG, AW99706_FADE_TIME_MASK
+> +	},
+> +	{
+> +		"awinic,slope-time", aw99706_slopetime_tbl,
+> +		ARRAY_SIZE(aw99706_slopetime_tbl),
+> +		AW99706_CFG6_REG, AW99706_SLOPE_TIME_MASK
+> +	},
+> +	{
+> +		"awinic,ramp-ctl", NULL,
+> +		0,
+> +		AW99706_CFG6_REG, AW99706_RAMP_CTL_MASK
+> +	},
+> +	{
+> +		"awinic,brt-mode", NULL,
+> +		0,
+> +		AW99706_CFG7_REG, AW99706_BRT_MODE_MASK
+> +	},
+> +	{
+> +		"awinic,onoff-time", aw99706_onoff_time_tbl,
+> +		ARRAY_SIZE(aw99706_onoff_time_tbl),
+> +		AW99706_CFG8_REG, AW99706_ONOFF_TIME_MASK
+> +	},
+> +};
+> +
+> +static int aw99706_lookup(const u32 * const tbl, int size, u32 val)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < size; i++)
+> +		if (tbl[i] == val)
+> +			return i;
+> +
+> +	return -1;
+> +}
+> +
+> +static inline void aw99706_prop_set_default(struct aw99706_dt_prop *prop)
+> +{
+> +	prop->val = prop->mask & aw99706_regs[prop->reg].defval;
 
-So I am not yet entirely sure if this works out, I used the calculation 
-in the driver:
+Why included the default value in the register descriptions?
 
-/*
-  * Setups where regulator (especially the buck8) output voltage is scaled
-  * by adding external connection where some other regulator output is 
-connected
-  * to feedback-pin (over suitable resistors) is getting popular amongst 
-users
-  * of BD71837. (This allows for example scaling down the buck8 voltages 
-to suit
-  * lover GPU voltages for projects where buck8 is (ab)used to supply power
-  * for GPU. Additionally some setups do allow DVS for buck8 but as this do
-  * produce voltage spikes the HW must be evaluated to be able to 
-survive this
-  * - hence I keep the DVS disabled for non DVS bucks by default. I 
-don't want
-  * to help you burn your proto board)
-  *
-  * So we allow describing this external connection from DT and scale the
-  * voltages accordingly. This is what the connection should look like:
-  *
-  * |------------|
-  * |	buck 8  |-------+----->Vout
-  * |		|	|
-  * |------------|	|
-  *	| FB pin	|
-  *	|		|
-  *	+-------+--R2---+
-  *		|
-  *		R1
-  *		|
-  *	V FB-pull-up
-  *
-  *	Here the buck output is sifted according to formula:
-  *
-  * Vout_o = Vo - (Vpu - Vo)*R2/R1
-  * Linear_step = step_orig*(R1+R2)/R1
-  *
-  * where:
-  * Vout_o is adjusted voltage output at vsel reg value 0
-  * Vo is original voltage output at vsel reg value 0
-  * Vpu is the pull-up voltage V FB-pull-up in the picture
-  * R1 and R2 are resistor values.
-  *
-  * As a real world example for buck8 and a specific GPU:
-  * VLDO = 1.6V (used as FB-pull-up)
-  * R1 = 1000ohms
-  * R2 = 150ohms
-  * VSEL 0x0 => 0.8V – (VLDO – 0.8) * R2 / R1 = 0.68V
-  * Linear Step = 10mV * (R1 + R2) / R1 = 11.5mV
-  */
+defval is only used to provide values for missing DT properties so using
+the raw register values is cryptic and hard to read.
 
-Because I do not know the pull up voltage, and I am not sure if it is a 
-pull up.
+Including a default value in the aw99706_dt_props table instead would be
+much more readable (because the defaults could use the same units at the
+device tree).
 
-So:
-Vout_o = 1.35V
-Vo = 1.1V
-Vpu = unknown
-R2 = 499 Ohm
-R1 = 2200 Ohm
-Gives:
-Vpu = ~0V
 
-And:
-Vout_o = 1.35V
-Vo = 1.1V
-Vpu = unknown
-R2 = 2200 Ohm
-R1 = 499 Ohm
-Gives:
-Vpu = ~1.04V
+> +}
+> +
+> +static void aw99706_dt_property_convert(struct aw99706_dt_prop *prop)
+> +{
+> +	unsigned int val, shift;
+> +
+> +	if (prop->lookup_tbl) {
+> +		val = aw99706_lookup(prop->lookup_tbl, prop->tbl_size,
+> +				     prop->raw_val);
+> +		if (val < 0) {
+> +			aw99706_prop_set_default(prop);
 
-I am not quite sure which resistor is R1 and which is R2 but having 
-there be a pull down to 0V seems the most logical answer?
+This should not happen silently.
 
-I am adding Lothar from Ka-Ro to the CC maybe he can shed some light on 
-this setup.
+If the DT has provided an invalid value then we be issuing *at minimum*
+a message at warning level or above. Many drivers will simply refuse to
+probe when the DT is broken.
 
-Kind regards,
-Maud
+
+> +			return;
+> +		}
+> +
+> +	} else {
+> +		val = prop->raw_val;
+> +	}
+> +
+> +	shift = ffs(prop->mask) - 1;
+> +	val <<= shift;
+> +	prop->val = prop->mask & val;
+> +}
+> +
+> +static void aw99706_dt_parse(struct aw99706_device *aw)
+> +{
+> +	struct aw99706_dt_prop *prop;
+> +	int ret, i;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(aw99706_dt_props); i++) {
+> +		prop = &aw99706_dt_props[i];
+> +		ret = device_property_read_u32(aw->dev, prop->name,
+> +					       &prop->raw_val);
+> +		if (ret < 0) {
+> +			dev_warn(aw->dev, "Missing property %s: %d\n",
+> +				 prop->name, ret);
+
+Why is there a warning when an optional property is not present. A DT
+not including an optional property needs no message at all.
+
+
+> +
+> +			aw99706_prop_set_default(prop);
+> +		} else {
+> +			aw99706_dt_property_convert(prop);
+> +		}
+> +	}
+> +
+> +	/* This property requires a long linear array, using formula for now */
+> +	aw99706_dt_props[3].val = (aw99706_dt_props[3].raw_val - 5000) / 500;
+
+Using a formula is fine, but I don't like doing it retrospectively.
+Hard coding the 3 makes maintenance difficult and we end up making the
+whole of aw99706_dt_props writeable just so we can store raw_val once!
+
+Much better, IMHO, to embed a function pointer into the table and make
+the whole table const. The function pointer can be
+aw99706_dt_property_convert() in most cases (although rename it
+`aw99706_dt_property_lookup_from_table() ) and can implement any
+formula you need.
+
+
+> +}
+> +
+> +static int aw99706_hw_init(struct aw99706_device *aw)
+> +{
+> +	int ret, i;
+> +
+> +	gpiod_set_value_cansleep(aw->hwen_gpio, 1);
+> +
+> +	for (i = 0; i < ARRAY_SIZE(aw99706_dt_props); i++) {
+> +		ret = aw99706_i2c_update_bits(aw, aw99706_dt_props[i].reg,
+> +					      aw99706_dt_props[i].mask,
+> +					      aw99706_dt_props[i].val);
+> +		if (ret < 0) {
+> +			dev_err(aw->dev, "Failed to write init data %d\n", ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int aw99706_bl_enable(struct aw99706_device *aw, bool en)
+> +{
+> +	int ret;
+> +	u8 val;
+> +
+> +	FIELD_MODIFY(AW99706_BACKLIGHT_EN_MASK, &val, en);
+> +	ret = aw99706_i2c_update_bits(aw, AW99706_CFGD_REG,
+> +				      AW99706_BACKLIGHT_EN_MASK, val);
+> +	if (ret)
+> +		dev_err(aw->dev, "Failed to enable backlight!\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static int aw99706_backlight_switch(struct aw99706_device *aw, u32 brt_lvl)
+> +{
+> +	bool bl_enable_now = !!brt_lvl;
+> +	int ret = 0;
+> +
+> +	if (aw->bl_enable != bl_enable_now) {
+> +		aw->bl_enable = bl_enable_now;
+> +		ret = aw99706_bl_enable(aw, bl_enable_now);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int aw99706_update_brightness(struct aw99706_device *aw, u32 brt_lvl)
+> +{
+> +	int ret;
+> +
+> +	ret = aw99706_i2c_write(aw, AW99706_CFG4_REG,
+> +				(brt_lvl >> 8) & AW99706_BRT_MSB_MASK);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = aw99706_i2c_write(aw, AW99706_CFG5_REG,
+> +				brt_lvl & AW99706_BRT_LSB_MASK);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return aw99706_backlight_switch(aw, brt_lvl);
+
+I'm not sure there is much benefit pushing this out into a seperate
+function. Merge this inline.
+
+> +}
+
+
+Everything below this function looked OK at first glance.
+
+
+Daniel.
 
