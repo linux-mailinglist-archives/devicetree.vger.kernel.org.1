@@ -1,42 +1,43 @@
-Return-Path: <devicetree+bounces-232008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CC3DC13AAD
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:02:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00B1AC13AB3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:02:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C9F6561E28
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:00:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE5E13AACD0
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:00:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADCB92DE6E9;
-	Tue, 28 Oct 2025 09:00:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C57592DCF5D;
+	Tue, 28 Oct 2025 09:00:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="InrVh9lM"
+	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="UoA7eqru"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11022136.outbound.protection.outlook.com [52.101.66.136])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11022077.outbound.protection.outlook.com [52.101.66.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F56C262FC7
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:00:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.136
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96DCE2DD61E
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:00:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.77
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761642046; cv=fail; b=qFPKBRIsY5uDRe5cpg9HMFJ2aNBN0QRcedz5Z57oD3c6Zxaf/glEORiA1kW8mxVMbhalAuuuoeMY5kcD6LAMxyFw1LhmmLWQe9NEESGpjZkigkriGOWdFiKpPdha2ufgAJ+CNRDFUhmT/FT4qi6TBLOwrBGoCbu0CwHfAOGuooM=
+	t=1761642047; cv=fail; b=B1DS53z3hOQiJKYpXu9Ebsgw52rn2+Y4/hDbGPlfZOVv6gZldaJkfL4N6fjrTbU/sYHawn9CsAFntK2U8lyDdw8lqQgCQOKTbAuQmVF9JYrgyXukyDQTkFeXQJZCN/QuAqWXuEOVlnx/mJO0sjT5C7/1/IVUCRIuBAlr2GC0zZI=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761642046; c=relaxed/simple;
-	bh=IaxlvJrf7N5MwkrvL3UOqaSYMMkcVZBjJI8Ew0L1GTc=;
-	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=tYVUg8klIMtTVZZVDrLcgQwGRNbu6b/tys9yZ94GEPMJIuEAjLRcpAjfrpHC90NxEqLQx9qxtPXXSMyy2D8N2OgMfBe6nmWXSj6dx9PFHobOJCf+a90d7pDPad/vDmV8WgcJUk6+z3ukmsTlFo0w+g/YOhA4lx4MMWYrgKVmKzI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=InrVh9lM; arc=fail smtp.client-ip=52.101.66.136
+	s=arc-20240116; t=1761642047; c=relaxed/simple;
+	bh=bTlrxpH2NxVu0ZPEPB4zwcjmzvYBCXpgWA1duGVojl0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
+	 In-Reply-To:To:CC; b=NYNZmM5IrZPeLbLbnv4D73Uc7ghmxRqf/LLF7CefoJTXuSXQZ7OkuQoMietLhyH+YZRAxh4qs8lJ1Lma8Obhok5au5ZSr7HkmZVhzWZq7yNQSsj6fBf7nD5YIY8CZfAMKQOHC4aLlJhSXdKNivnvHU0nthzw2Fzkv2TSAibpngc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=UoA7eqru; arc=fail smtp.client-ip=52.101.66.77
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IppVN0gtu6+0VzdgMKK27aCgQbLNuCP6Qpq/c1wnAkju4NcxWT2BqRJvFtpZkOIoFLxzz6pqo4lBYh0UHS2fpR9DjwZZc5kpkYz+IusdMof9/Vcqcf54tpWZxs4uEL9LjFOkpDojthhbhbuK4N3q9QaxKChPaZTF+mg39HjMyZUBq8JobpoGJDItep7mRA0UyyAcMjbycdo7pSWuU/WLit4uEHt3hpydO2uCapyoyTfQ7+/dTRH2X+2P9ezRs4ijp45XWpFtK8B8qaBvHrmM8aS58M51cokz2RbEe0Hi7UhbmT7oYavYo5nkK0kCpkU6ReeD28soJ86V1jsz5SbGlQ==
+ b=eZRTLoK3sDABi6mHhur+bBPYGcSqKV3aH9UgJvlThmVAE/S3sjyS99eoaHjadefYtSpQ31WXFY+d2EWo7nZx7mgsDSFaV0BLgpYIcQd112zGRZQKBnR198rwuz6s4Hj8hUmVIhPYrHLMyHK6aOW2OSPEMZ2K9cHZ/CVNF7dHMReanXWucygGf9WZCr9NLC95kbIxJlzi2uDCaIuCvXzHUfaUp098GCD3KUJaaS+lHr++lOw5IuREbX1gtPpjMsV2dHQ8DKQ1Bod+32RGOWj3oAY0WEs4TwqQna2JxhqVldnOjrJJNjPG88Fu9Mk23h+Xa6bBb9ivtz6vTGX2p9E4Xg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kKcfdeINY6QRlfbHPF9aiUkgGzwG+7Yb2sscJT8dYOc=;
- b=chbn5zHItk2rjTcnERME8jAYB+n++PJ9AC6NItyE86ZrKL+r+zfXMykYcyEgOppLrUZZT/zZKhW7iiWnXV77l3E9pLkzqRC8hVtuizQ1hwN1/z0BM8eJMkwBIkC/lXAZqLAGpq+pywibhzoH97ND6sqz/yGpPQgVIFJ0UY8PGSXb7E2WtVM2r2bvxNFgvRkN1R5KgPmaC9Ptq5VEcm8iuhgdFWdMfXAKIcIY9CjK6MQtkRIOGsa+AtlIfZj5nxG5FB1VIWtTlU6ih9Og3wagT90cRpwxgTmJX9HZIbTK/Yro7gLge5+YrakvEFioRzat79yy1kQlZwoIGnKnpJLx5g==
+ bh=BxZ6B3rDVE+WyBW4zofvPil9cqqLk1F1XL+KoPJcTeI=;
+ b=jc4rnQaSMW/5gw15fUS0sl36T2hWScI54yMYu5mKsjtye/nd/9ww9Ljcn8U9JwOAToys3euZZEEYF808WqT17/MMh9USEA8YkJfJjieeHkEqdYMZrcIheHvN90d2WgCfdKV946PZWddZ/aPae00XKZq1CO5TU7RDhNNf5SLJc2r9K+ytYcnDmAtDanx4bUOlQ5gUWBEVzs3ljI0nFYIXrMJnmBPxa2WRFkjhjAUATiBBggcddqkuDhKCyO8L9Hrwumrl60m66zv3aMwbREu7rkweXx5yj2bziPJ6He3fRqB4n9AwCj68rF3DNEe8mlvxu7lxO2IuXLhZbBhC8aCdvw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
  is 91.26.50.189) smtp.rcpttodomain=pengutronix.de smtp.mailfrom=phytec.de;
  dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
@@ -44,18 +45,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kKcfdeINY6QRlfbHPF9aiUkgGzwG+7Yb2sscJT8dYOc=;
- b=InrVh9lMKfj7C7ErRoEV5nBytnPUzm9Xog7leAVemHdmPTrVPX5VRHnnR6ugwz95ieXKjkpR14Swb9DTzM5VWM5Gu05hJC1x1xuydH2qH7VMpRu7SXjd1j+BSCFBVqdCJlGsj4n+E32w3bZaMIfRLo2nzmduO1DENLjnPOseLt/xsYI5UEP3E23JO72/gusStjf81LQCJ/nThg8VBFtERmBBORgKii5Pj5whiVK/aThGDW+b10cK9i0Ww495ZottELRfmDwYmLOiRN8tbZfm1aULVD4TvYhPPEh7Obzuq4ShbSNHfK/D9W8EaVP66i2s6lQJtICJ6JjI1ptuPirDDQ==
-Received: from DB8P191CA0004.EURP191.PROD.OUTLOOK.COM (2603:10a6:10:130::14)
- by GVX0PFA76EE0505.EURP195.PROD.OUTLOOK.COM (2603:10a6:158:401::7dc) with
+ bh=BxZ6B3rDVE+WyBW4zofvPil9cqqLk1F1XL+KoPJcTeI=;
+ b=UoA7eqru4LGCJtVSHxL/iwVmIY/dZmdkzAwnioMdfcYs4iI3Y9n5tTv6ML8P1vasOiRJJqVO2DPzWD9MybTkROBIBGv1IxND5rqFyZNrI+R12+WuyB7SJrLDW0A7LloCa5958b4caJOOgXWGfnNA41xxj+o01g8GcR4KZx60sbvJhcgpE0svMkX/UjtpxKwGVcqOkPQXl7knWVAgRPCeSY3oekmNey0DsHoQMqENfTye00MxaGsiIAmwN0xt5P7c2Hy8z4AlkAnmwH2vQ2bg0ylcaPOxRsKLpnaHCf8f+8HWCIHgBCcWfo/gbkS9tBt+6E9urG3NNu/ECCWasjmNGw==
+Received: from DB8P191CA0022.EURP191.PROD.OUTLOOK.COM (2603:10a6:10:130::32)
+ by DB9P195MB1491.EURP195.PROD.OUTLOOK.COM (2603:10a6:10:33b::21) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.18; Tue, 28 Oct
- 2025 09:00:38 +0000
+ 2025 09:00:40 +0000
 Received: from DB1PEPF000509EF.eurprd03.prod.outlook.com
- (2603:10a6:10:130:cafe::ae) by DB8P191CA0004.outlook.office365.com
- (2603:10a6:10:130::14) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10a6:10:130:cafe::27) by DB8P191CA0022.outlook.office365.com
+ (2603:10a6:10:130::32) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9253.18 via Frontend Transport; Tue,
- 28 Oct 2025 09:00:38 +0000
+ 28 Oct 2025 09:00:40 +0000
 X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
  smtp.mailfrom=phytec.de; dkim=none (message not signed)
  header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
@@ -64,16 +65,15 @@ Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
 Received: from Postix.phytec.de (91.26.50.189) by
  DB1PEPF000509EF.mail.protection.outlook.com (10.167.242.73) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9253.7 via Frontend Transport; Tue, 28 Oct 2025 09:00:37 +0000
+ 15.20.9253.7 via Frontend Transport; Tue, 28 Oct 2025 09:00:40 +0000
 Received: from llp-jremmet.phytec.de (172.25.39.81) by Postix.phytec.de
  (172.25.0.11) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Tue, 28 Oct
  2025 10:00:37 +0100
 From: Jan Remmet <j.remmet@phytec.de>
-Subject: [PATCH v3 0/6] arm64: dts: imx8mm-phyboard-polis: cleanup and
- additional display
-Date: Tue, 28 Oct 2025 09:58:07 +0100
-Message-ID: <20251028-wip-j-remmet-phytec-de-bspimx8m-3801_peb-av-10_with_ac209-v3-0-9b98f29a6bb9@phytec.de>
+Date: Tue, 28 Oct 2025 09:58:09 +0100
+Subject: [PATCH v3 2/6] arm64: dts: imx8mm-phyboard-polis: move mipi bridge
+ to som
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,11 +82,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAJ+FAGkC/6XOzQrCMAzA8VeRno2kGXObJ99DZHRt5iJMSzuqI
- nt36wfi3eM/kPxyV5GDcFSbxV0FThLlfMpRLBfKDuZ0YBCXWxFSiQ2VcBEPRwg8jjyBH24TW3A
- MXfQyXusRihp167kDk0Bje5FpaI0lbIB7jbUmQ652Kt/3gXu5vuzdPvcgcTqH2+uVpJ/Tj1rgH
- 2rSgOBKh4W1XW+N3r7XV47VU030lTRi9Y9EWaq4dLwmWzVd/yvN8/wAVInTBmwBAAA=
-X-Change-ID: 20250925-wip-j-remmet-phytec-de-bspimx8m-3801_peb-av-10_with_ac209-ef10812a2d8d
+Message-ID: <20251028-wip-j-remmet-phytec-de-bspimx8m-3801_peb-av-10_with_ac209-v3-2-9b98f29a6bb9@phytec.de>
+References: <20251028-wip-j-remmet-phytec-de-bspimx8m-3801_peb-av-10_with_ac209-v3-0-9b98f29a6bb9@phytec.de>
+In-Reply-To: <20251028-wip-j-remmet-phytec-de-bspimx8m-3801_peb-av-10_with_ac209-v3-0-9b98f29a6bb9@phytec.de>
 To: Teresa Remmet <t.remmet@phytec.de>, Janine Hagemann
 	<j.hagemann@phytec.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
 	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
@@ -99,106 +97,184 @@ X-ClientProxiedBy: Postix.phytec.de (172.25.0.11) To Postix.phytec.de
  (172.25.0.11)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB1PEPF000509EF:EE_|GVX0PFA76EE0505:EE_
-X-MS-Office365-Filtering-Correlation-Id: 41891cf1-71dc-4743-9c34-08de16007681
+X-MS-TrafficTypeDiagnostic: DB1PEPF000509EF:EE_|DB9P195MB1491:EE_
+X-MS-Office365-Filtering-Correlation-Id: 37ccc4a8-570d-42fc-9dd6-08de16007841
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|376014|7416014|36860700013|1800799024;
+	BCL:0;ARA:13230040|7416014|376014|82310400026|1800799024|36860700013;
 X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?SWU5WWRodnV0ZXdKNXFKY1UycDM2RjUwS2p0N3U4RitSWjUrVy9hMy9Cd1I1?=
- =?utf-8?B?ZEJOTnY2THZkSlBGTHVTbVppS0R3S3llS3pkQ2tuZXM3ZmQyU253bDliL3B5?=
- =?utf-8?B?QTU4SE5rK0tOQjhJT1VOdCs0NThmakNwNWZ0dXAyZDVSN2M2dVNZa0JpN2Ft?=
- =?utf-8?B?d3RLVnBud3F6dHpsMVN2UnNWYVNlNGdEcWZ6TGxnUXNERE9Nb2xZZ0NVK0Yr?=
- =?utf-8?B?QlZqa0dudDVvdlE5cERGcWlyeWw1d3ljQ0lRYUxtVDE3bk45V09hVDM0MjRT?=
- =?utf-8?B?RnJkTVk5ZTYrSVFib2U5TDZ1dG9ZVmlsZkhSeW5mT1BBK2hlZkNDSklJc01C?=
- =?utf-8?B?UHVHOFZIL0hOTXBlcHJFUVB1RUJlODE1WW00Ni9nSzZncmJKMnBFQVRaSnlv?=
- =?utf-8?B?QUdldzN1clB5VHhtTURMb2d1bkppY21VT09CM1MrS0tYWWl4TkxRam5NTElV?=
- =?utf-8?B?R0MrM0xSdW5BbGJyTndmTC82bUFucHVHQlZuUkxIenI3KzF0NTRBd1UzNFF0?=
- =?utf-8?B?SUZUcjRWOURZd1orSkU5WXZKOHBSM1pYNFVTSGs3ZnNibm1TS0UzWFBlb1VD?=
- =?utf-8?B?OVR4bitJL1Q4Z2Q2VVlodmtlZU5DRmdlcm12QTk2MG8zZUhGRzFSa0NQaFc3?=
- =?utf-8?B?b0hJeHhEcXVaSmFHdjh4dlRBR3NFcWlRT3Vvb3RZZjh1Mm93T3Z4VVJKTTJ1?=
- =?utf-8?B?YVFpMzQ3OE1BQitzNWhnQlBnRHpPR01kcmtjaml6WURHOVcwNU51ZTVsQ004?=
- =?utf-8?B?TXdRNHlRbVcvazNoZjF5Tm9BRFBtallkcDExL09QNFViSVYzSVA1UklzL0Vj?=
- =?utf-8?B?andqSXZOREliZDFpR050UFY0Ujh2ajBPSmlrcjJjcjg1czhoRWhpZ2hoUTdL?=
- =?utf-8?B?K0dyeWl3bHJXcFQwMzFHSlEvTitDTllJOGNoWU9YLzFUWUZqTlIrYWp6NDZ0?=
- =?utf-8?B?WE1aSEpEWFVTVHlnLytIUGVhYWthK2FQNXZNVFZPNXY2c3l6WXF3dVpKVjFW?=
- =?utf-8?B?ejNBM0I1enpKM3FOanNUK1BFcDc1NTR4cTJMNXJGRkptQkFaa2kxemVNTytX?=
- =?utf-8?B?NTM1cTR5cFJVS2lnaWxHcWswMWtjWVpZM3hWdnlDSkp1WmdqMS9Pd2RURmhi?=
- =?utf-8?B?SVB6cEZhZkxTUlYxV05ZdGlXWWpjNFhkVzdDRkNVTkZ5V3B1Wkw4TEk0QXdp?=
- =?utf-8?B?ZVg2VHhOUHhFeDFoN3ZIUDd2UFFyOWsyeGg0aUM1WUwrSWFNWmxIYldOVzFr?=
- =?utf-8?B?eEFQUVNYK2tva01lbEZTc29pYTViL2plaTUvdFhTZVhwVXhtTExuMWhsQ0RS?=
- =?utf-8?B?bmw4RWVyK0N3a2dNUUlHZ3JncGVNYlZiQUFyRWtTVm9Zc3V0VlZLcXFlYmJV?=
- =?utf-8?B?Mmx0bVJLaG96Yi9xQXRURHlwKzgwM043WnFxTGFnZk1HalBpYWhaT0ZvNnNO?=
- =?utf-8?B?VU04TTZTWDFEK0VPbHhtMTh6Z29MbkRkOEZTd25Da0ZGWHNya1MzaVVpWXlq?=
- =?utf-8?B?YUlhQjJnUW5TRnpEZk52NGliVWhaNHI2Qkh1OXI5WkRJM1dXSDAyTS9KRmM2?=
- =?utf-8?B?N1VXa2NXVHYyREdaUnh2dnN2OS9qVWcvYzVjWkdjQzN1RFk2alpYdDc3b2FZ?=
- =?utf-8?B?VUc0V3Y0eGRWWUlZcVU4ZXVMR1EyM1Zmbkd4eEZTRXY5eHFnOEZEblJxMDRi?=
- =?utf-8?B?eW8rTVk0Vk5oN1NXSUl3NEo0U2pYNkRRMGIxaFdXY0U5RnVyeFN2NkRtOTNX?=
- =?utf-8?B?cXZyeEl0QVZ3QnJLSWZrcWh6aEUyQWlnZVJrUXRvZWhRTUJJWVNGbEh6dnhC?=
- =?utf-8?B?bmJVbmNSTStjcG5FamZubEl6dmZydEtMNjhsRDdIK0JXRTA0aHh2emRNakRV?=
- =?utf-8?B?aXJIenZCcHUyNWpJcHdINDdwNUI5WExJeFpHT29lYmhGUEF0WVFXcmYwK245?=
- =?utf-8?B?M2dsREl2REFiZ2luUVkwcEtyV1dpTXFhditmVElNcS9SSEVtcjNVVDZweDBY?=
- =?utf-8?B?bExrbE9Xc29UcmNWZ2JnaHBTaThXRyttQzBhVW5iT3EvTnFBZlE3cUZONG54?=
- =?utf-8?B?Z2hpSmJDSWdydVIrYnRQYUNVZEgvWU4rVDFJcWxybzVjQ0owNlZxM05NQnpM?=
- =?utf-8?Q?yuZTnCnirqdM98NpaKj2i7pLX?=
+	=?utf-8?B?L2NVdFV2YmJPTVFFNUdrOGttbXkrY1lYcDJmckVBUXJrb1FiNmkzOWg3eXVh?=
+ =?utf-8?B?Yk1GbUVDb0dXeXdYa0VtMFRYL3VveWdvRk5EdlJzVU8zdkw3d0pNMVhZSFZ3?=
+ =?utf-8?B?cENXZXVFb2RvTE0xWFpwdWNqUXgwQ1lXdFVSS0FZNTMvcXplL2YwbTJaWkQ0?=
+ =?utf-8?B?U1Q2SFBBbXRBdU16TXlxbWs5THpqMGFDMFZiT040c2tKTEhsSWVHN3hyYTRa?=
+ =?utf-8?B?N3lpZzlYYTMyME1LR2V0ZDRtT0QrdForem8vTmdaNklFbmp6dlpTZ2Y2NDFP?=
+ =?utf-8?B?ZGZ6NHhxZE50b0tDUDZHS0JhQ3FYSFNOMml5WGFzNFVsNkpVSlVEd25BYVlQ?=
+ =?utf-8?B?eUhUc0Fyb0ExeHFHbnNoR1dvTndWMVlyUUpxRVdEckxySWVtNW1teFdVOTJ2?=
+ =?utf-8?B?UWNNWmpMU1NCRFlYOCtYblNDT0l3dnpQVmJndkRRaE9XRnRVcit3V2NVR041?=
+ =?utf-8?B?QlFFR0hjYWkrUE9YaURxc05kKzNQZEpwbVNjSnRDZVkrakFDcHVHTEtLTDVD?=
+ =?utf-8?B?NllsRXcvbXRLTW9MNitVUmtrMWJBaytQbXo0YnlCcERZR0tabEFsTTVvb2lI?=
+ =?utf-8?B?K2xDbU44WFRibnljUytFWUxHb3ZhNzVha3RLTVA1Mjd2OUxMVnhEdjgvVUVU?=
+ =?utf-8?B?K0YvRkhRSnRETmk1cGZTNjBqR01JWFdkS1JWVk1JQ2YrQUNTREIzRlB1T1Av?=
+ =?utf-8?B?NDRSWnFRUUR1b3hRU05IQmdWQmFQZ09oMDJGMHRzekhVTzZGT0ZMLzVCVE9Q?=
+ =?utf-8?B?UmNxZlRSMzRWbHhUQVRXeWZOVGFmWXVINVRaNEJrUW9SYlhTS3BjOE02QStw?=
+ =?utf-8?B?MEJRZE9IRnhwaTBqVHZoam5SVzA2QnpIVkEwYTlCSEpwMGhlenRLVkI3ckVU?=
+ =?utf-8?B?S2JPWDdmMG0xdXBSZ2FkK0lUdTJaWXRyZjFWajYvWHEzSklDemNjNTFHazlM?=
+ =?utf-8?B?MVQydlBQVXRTaUY2Mk9LeFZVK0F5Y2JCWUlWVkdCNVVuTWViWG5zWTNDWFhy?=
+ =?utf-8?B?WTY2NlRDS29GTHRmdVlrUHhIcFBpSWpjR1JpQVN6alNUS0Nra2I3V2ZQYzdE?=
+ =?utf-8?B?Y0VqZzRUOFc5QXFHZ2VUYWJRcmN1bzc1U2svd3Y1U2s3V1BDN3pFRGJTQWt2?=
+ =?utf-8?B?STg1cHFHUjROa01TWGt5T3l3a1JpYVVtMFhrdmt1dEFRT0FmK1lOY2YrUzln?=
+ =?utf-8?B?VFoyMlFoOEl4SWxNcGlETkxSakdwT3JnL0pQd0ZJZ3Z1eTRkOHZ5NitJSk1V?=
+ =?utf-8?B?QkFmbkhaWnhjMzRoWDg5Rk9KOXRjNlk0ZWlMbTQzVUwzNW14RDE4WHY2TS9k?=
+ =?utf-8?B?S2ltOFVaRTZTbmcxMGlVa1pOWmM5dkttUWNkS2o5QldnYklIM01vUWF6VStM?=
+ =?utf-8?B?UkRzS2QwUnAwNklLckZzYWU3bGZMVzlsZjdRbDBiTEliZHR1L3YyU3F3TU9t?=
+ =?utf-8?B?djhmNGEwbW1LNW5rSUdxUVlOV1NTL3hPVnc0WGI1ZG13b1pURzdBelBTZVIv?=
+ =?utf-8?B?NVprWW05dVdrdm43TFJSSjY5cnVTR0dDZ0U5c01iTUxPd3RaRHZtQnh1K0hV?=
+ =?utf-8?B?c0dSUlRraEZESWQ2RFJYa053Y1FjOUZzcVpaRTJCQmIwcUpSSkJFOXBVNUt2?=
+ =?utf-8?B?bEpLa2ZFcFNyVkhPR2R6VVdURXdURFNEK2pMd1hHZHo0TldQS0lmOE1mRG8v?=
+ =?utf-8?B?dzRaVmRhY1oyRnlWY2M2U01UWVpSTFZSYW16YWZmUXZQUm5TSUlFQVdZdFd3?=
+ =?utf-8?B?MGxBZ0xxS09nelpGU2s5OFRpSlZYYlo2LzV1UXJLTEtrR2xMTEMzRTh1TGdS?=
+ =?utf-8?B?dTRGUG8wcVBhTDRVL2JVZVlaVzM5SkkyWmtKS3hlNkd5bmpRQ1FSTjhQVVhH?=
+ =?utf-8?B?U2VqMDFDUDQrU1htcERpNnhoSTlLaitHOWJ6aHJIWFdGNU44L0NMSVhaZUs0?=
+ =?utf-8?B?eDltU2h2L01aVHhRWDlrYStWYkxGUzFDdWZGQUlNODNJTm1zZVFMMkM4Z2xG?=
+ =?utf-8?B?WllVNTNud0lhMEwwU3pXSEtleHRva1d6Qi9RYjJMQUt6K3M3ekpHcnlmdjlI?=
+ =?utf-8?B?ZlFtb3pOVVBUUUtNSjlyaS9KQVB3akx5WHJZQXB6alhPOURaaXN5RFRyRnZy?=
+ =?utf-8?Q?loJA=3D?=
 X-Forefront-Antispam-Report:
-	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(7416014)(36860700013)(1800799024);DIR:OUT;SFP:1102;
+	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(82310400026)(1800799024)(36860700013);DIR:OUT;SFP:1102;
 X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2025 09:00:37.6481
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2025 09:00:40.5836
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 41891cf1-71dc-4743-9c34-08de16007681
+X-MS-Exchange-CrossTenant-Network-Message-Id: 37ccc4a8-570d-42fc-9dd6-08de16007841
 X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Postix.phytec.de]
 X-MS-Exchange-CrossTenant-AuthSource:
 	DB1PEPF000509EF.eurprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVX0PFA76EE0505
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9P195MB1491
 
-This patch stacks rework the handling of the peb-av-10 daughterboard.
-Update license.
-Move mipi bridge configuration to som.
-Allow peb-av-10 as audio only overlay.
-Add two display overlays for ETML1010G3DRA and PH128800T00.
+sn65dsi83 is mounted on som. Add the static configuration there.
+So it can be used by other boards too.
+Use mipi_dsi_out from imx8mm.dtsi directly.
 
 Signed-off-by: Jan Remmet <j.remmet@phytec.de>
 ---
-Changes in v3:
-- rebased onto shawnguo/for-next
-- add Acked-by
-- Link to v2: https://lore.kernel.org/r/20251007-wip-j-remmet-phytec-de-bspimx8m-3801_peb-av-10_with_ac209-v2-0-7e5de62c79bf@phytec.de
+ .../freescale/imx8mm-phyboard-polis-peb-av-10.dtso | 40 ++++------------------
+ .../boot/dts/freescale/imx8mm-phycore-som.dtsi     | 25 ++++++++++++++
+ 2 files changed, 31 insertions(+), 34 deletions(-)
 
-Changes in v2:
-- add Signed-off-by to patch6
-- Link to v1: https://lore.kernel.org/r/20250930-wip-j-remmet-phytec-de-bspimx8m-3801_peb-av-10_with_ac209-v1-0-d5d03ccbfca1@phytec.de
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtso b/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtso
+index 00da1eedf73aac1f0e87383ac3d12f21e007c4cc..7e60c96b3562f4baf19bcdda8940c2b0c52dd743 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtso
++++ b/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtso
+@@ -81,6 +81,12 @@ dailink_master: simple-audio-card,codec {
+ 	};
+ };
+ 
++&bridge_out {
++	remote-endpoint = <&panel_in>;
++	ti,lvds-vod-swing-clock-microvolt = <200000 600000>;
++	ti,lvds-vod-swing-data-microvolt = <200000 600000>;
++};
++
+ &i2c3 {
+ 	clock-frequency = <400000>;
+ 	pinctrl-names = "default", "gpio";
+@@ -128,19 +134,7 @@ &lcdif {
+ };
+ 
+ &mipi_dsi {
+-	samsung,esc-clock-frequency = <10000000>;
+ 	status = "okay";
+-
+-	ports {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		port@1 {
+-			reg = <1>;
+-			dsi_out: endpoint {
+-				remote-endpoint = <&bridge_in>;
+-			};
+-		};
+-	};
+ };
+ 
+ &pwm4 {
+@@ -168,28 +162,6 @@ &sai5 {
+ 
+ &sn65dsi83 {
+ 	status = "okay";
+-
+-	ports {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		port@0 {
+-			reg = <0>;
+-			bridge_in: endpoint {
+-				remote-endpoint = <&dsi_out>;
+-				data-lanes = <1 2 3 4>;
+-			};
+-		};
+-
+-		port@2 {
+-			reg = <2>;
+-			bridge_out: endpoint {
+-				remote-endpoint = <&panel_in>;
+-				ti,lvds-vod-swing-clock-microvolt = <200000 600000>;
+-				ti,lvds-vod-swing-data-microvolt = <200000 600000>;
+-			};
+-		};
+-	};
+ };
+ 
+ &iomuxc {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi
+index 54f724e1774c2c718cddd1ddc7378054f2b2f638..3d66c6701342ae20839254674261c8264beccde5 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi
+@@ -287,6 +287,23 @@ sn65dsi83: bridge@2d {
+ 		reg = <0x2d>;
+ 		vcc-supply = <&reg_vdd_1v8>;
+ 		status = "disabled";
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++				bridge_in: endpoint {
++					remote-endpoint = <&mipi_dsi_out>;
++					data-lanes = <1 2 3 4>;
++				};
++			};
++
++			port@2 {
++				reg = <2>;
++				bridge_out: endpoint {};
++			};
++		};
+ 	};
+ 
+ 	/* EEPROM */
+@@ -304,6 +321,14 @@ rv3028: rtc@52 {
+ 	};
+ };
+ 
++&mipi_dsi {
++	samsung,esc-clock-frequency = <10000000>;
++};
++
++&mipi_dsi_out {
++	remote-endpoint = <&bridge_in>;
++};
++
+ /* eMMC */
+ &usdhc3 {
+ 	assigned-clocks = <&clk IMX8MM_CLK_USDHC3_ROOT>;
 
----
-Jan Remmet (5):
-      arm64: dts: imx8mm-phyboard-polis: Use GPL-2.0-or-later OR MIT
-      arm64: dts: imx8mm-phyboard-polis: move mipi bridge to som
-      arm64: dts: imx8mm-phyboard-polis-peb-av-10: reorder properties to match dts coding style
-      arm64: dts: imx8mm-phyboard-polis-peb-av-10: split display configuration
-      arm64: dts: imx8mm-phyboard-polis-peb-av-10-ph128800t006
-
-Teresa Remmet (1):
-      arm64: dts: imx8mm-phyboard-polis-peb-av-10: Fix audio codec reset pin ctl
-
- arch/arm64/boot/dts/freescale/Makefile             |   6 +
- ...8mm-phyboard-polis-peb-av-10-etml1010g3dra.dtso |  44 ++++
- ...x8mm-phyboard-polis-peb-av-10-ph128800t006.dtso |  44 ++++
- .../freescale/imx8mm-phyboard-polis-peb-av-10.dtsi | 189 +++++++++++++++++
- .../freescale/imx8mm-phyboard-polis-peb-av-10.dtso | 234 +--------------------
- .../imx8mm-phyboard-polis-peb-eval-01.dtso         |   3 +-
- .../dts/freescale/imx8mm-phyboard-polis-rdk.dts    |   3 +-
- .../boot/dts/freescale/imx8mm-phycore-som.dtsi     |  28 ++-
- 8 files changed, 313 insertions(+), 238 deletions(-)
----
-base-commit: b61938e8910c5dc0eecaf319ff12d67a35e39d9f
-change-id: 20250925-wip-j-remmet-phytec-de-bspimx8m-3801_peb-av-10_with_ac209-ef10812a2d8d
-
-Best regards,
 -- 
-Jan Remmet <j.remmet@phytec.de>
+2.43.0
 
 
