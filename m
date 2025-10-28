@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-231888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E57AFC128CB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 02:30:48 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F21BC128DD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 02:31:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DF4CD4E7770
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 01:30:47 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AF1F334A6E1
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 01:31:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0B98239E7F;
-	Tue, 28 Oct 2025 01:30:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DCCA251795;
+	Tue, 28 Oct 2025 01:30:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hnr26WG3"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IspBHoCx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B1D3185E4A;
-	Tue, 28 Oct 2025 01:30:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1061E231A32;
+	Tue, 28 Oct 2025 01:30:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761615030; cv=none; b=kWDQMLNjfhZ6TDDrC2RjhupI/H/kXW6O6lV+D1jTSbYG0ZsBhKA++vJ0hY7/hoTo/43l9LD9WK9vCsPvri6C/oA2UEezjLkg7aXOHzgaiQ7gKR4D45hcs8syt+NGrvt//4xDaJwKVLukGbU1OPypi23Zm/wrxqAq/QvALbU/t6I=
+	t=1761615039; cv=none; b=Py2o1lXAG+SEsrrpgQhRK/1dEyoLLxiyOnRjtgOvGWFZwwRJvBKz22c6K789ZdMyKPr1laM6MiI7nLVqxmotbfvxmphvrKlNAQyDo3ROrSsTWzCUrfB6U8HdLPRRVuCQNrysplAgw2eaF3UsbUrOYhaZRjKKyIRXgilGXlUK8h4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761615030; c=relaxed/simple;
-	bh=Bm2irc7gXUY0CPdzzsQ3acckBICJU4QlM8eFUNd3X5Y=;
+	s=arc-20240116; t=1761615039; c=relaxed/simple;
+	bh=z/68Xn4iCXvzgo2hyC9o2OtUSV4NiDx8flvonDyRqsE=;
 	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=ZrTL/VyvKz2/EEuKu91U5oGeS7uQnzmvop4SKJrhqYspIwqoDVYKTJ6QRINgunOZCrfcHb11jdmPEU75EovBhwV4e2wCmasjZpGMrg/TgfFGtdsqIZFIVgwYz4xkzoZ0Eq/mgE1kzfmdjn4+oRciWISO2YTu1GfBdfWB310rqvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hnr26WG3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E557C4CEF1;
-	Tue, 28 Oct 2025 01:30:30 +0000 (UTC)
+	 In-Reply-To:To:Cc; b=eyTQPpCxmpZlzgSGgthkdFmWYv1X6BFPj10fS1gLCGDqPdmKy5NhMDLFfn3PZT+wQtMH4wjpplB7UOaMamAfiuNEGYZy9hv3dSIOg0+553P2mAHUXMh90CwQTyqCFjX43YR/22Xy9LiI3H3KhORbCG1fN3/pfqjb7e47frQU7P4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IspBHoCx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2A9FC113D0;
+	Tue, 28 Oct 2025 01:30:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761615030;
-	bh=Bm2irc7gXUY0CPdzzsQ3acckBICJU4QlM8eFUNd3X5Y=;
+	s=k20201202; t=1761615038;
+	bh=z/68Xn4iCXvzgo2hyC9o2OtUSV4NiDx8flvonDyRqsE=;
 	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=Hnr26WG3OLnFInlblb0f266rA6wtxVdNFWKC/epftIgZJ7fXAroehIm+TrueFE5IM
-	 daxlCSD8Z8HuN9z/PFR9JGDRwnPt5CAZmGEKyfMIdPXmGMt8V3DoME7GnOOUYzPAhE
-	 bfYXIsykI1KMN5VSL8qjV5FcTRyOZ/FUMV28JQFiiNdj+at8YB5aaOAyf7RIRLm4AX
-	 iobP3RB9fzN/ZZKifiiU6T5DhB31l+EMAF26B0mrakbs57ZUl2dvvGQdPBRkP2X+xW
-	 qZahuqyLgeiKIbbcwLiqTMynhl0my8EBErqLg3hicCuhDjgZBcndqydxadn853f1vi
-	 FF7/G9uD2b5Vg==
+	b=IspBHoCxdwvEZva5fnJ45TqA9VJYKrQ85tMI20MSvCehkqnR2CXDnrqXx7W4F7hMV
+	 jg5R8XnTDmk25QcjlbrUM2NyLRlOmfZtOtkWm/xjtkIT8JyvJKQVnNnHFFrChIKJ5S
+	 Qu7VgBlCcOp1pKOa4FPZDzJ8TzcEts2WRrkR7fWNmdD/1DM1VQO7GfTtPmtBtczGft
+	 Yw78KBB2ajZEr32D/Vm3DR5+dxBbxAZddUcLEUEdPCSqZCOVa0juWznMpPYhwz80uM
+	 N+Zl3xmm7rLCTdGNq8LwmrLY9wzWZm78IAAb3GUizs/YvsLzMBZtIqKKY4dtwhPGox
+	 pj4kpdB+aCwhw==
 Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 7131E39D60B9;
-	Tue, 28 Oct 2025 01:30:09 +0000 (UTC)
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EADBB39D60B9;
+	Tue, 28 Oct 2025 01:30:17 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -52,43 +52,39 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net v2] dt-bindings: net: sparx5: Narrow properly LAN969x
- register space windows
+Subject: Re: [PATCH net-next v2] dt-bindings: net: phy: vsc8531: Convert to DT
+ schema
 From: patchwork-bot+netdevbpf@kernel.org
 Message-Id: 
- <176161500826.1653952.7154756553118848296.git-patchwork-notify@kernel.org>
-Date: Tue, 28 Oct 2025 01:30:08 +0000
-References: <20251026101741.20507-2-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20251026101741.20507-2-krzysztof.kozlowski@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ <176161501674.1653952.15277465151671744173.git-patchwork-notify@kernel.org>
+Date: Tue, 28 Oct 2025 01:30:16 +0000
+References: <20251025064850.393797-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251025064850.393797-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Lad@codeaurora.org, Prabhakar <prabhakar.csengg@gmail.com>
 Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
  kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, Steen.Hegelund@microchip.com,
- daniel.machon@microchip.com, UNGLinuxDriver@microchip.com,
- lars.povlsen@microchip.com, robert.marko@sartura.hr, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
+ conor+dt@kernel.org, neil.armstrong@linaro.org, heiko@sntech.de,
+ devicetree@vger.kernel.org, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com
 
 Hello:
 
-This patch was applied to netdev/net.git (main)
+This patch was applied to netdev/net-next.git (main)
 by Jakub Kicinski <kuba@kernel.org>:
 
-On Sun, 26 Oct 2025 11:17:42 +0100 you wrote:
-> Commit 267bca002c50 ("dt-bindings: net: sparx5: correct LAN969x register
-> space windows") said that LAN969x has exactly two address spaces ("reg"
-> property) but implemented it as 2 or more.  Narrow the constraint to
-> properly express that only two items are allowed, which also matches
-> Linux driver.
+On Sat, 25 Oct 2025 07:48:50 +0100 you wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> Fixes: 267bca002c50 ("dt-bindings: net: sparx5: correct LAN969x register space windows")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Convert VSC8531 Gigabit ethernet phy binding to DT schema format. While
+> at it add compatible string for VSC8541 PHY which is very much similar
+> to the VSC8531 PHY and is already supported in the kernel. VSC8541 PHY
+> is present on the Renesas RZ/T2H EVK.
 > 
 > [...]
 
 Here is the summary with links:
-  - [net,v2] dt-bindings: net: sparx5: Narrow properly LAN969x register space windows
-    https://git.kernel.org/netdev/net/c/210b35d6a7ea
+  - [net-next,v2] dt-bindings: net: phy: vsc8531: Convert to DT schema
+    https://git.kernel.org/netdev/net-next/c/19ab0a22efbd
 
 You are awesome, thank you!
 -- 
