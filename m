@@ -1,109 +1,107 @@
-Return-Path: <devicetree+bounces-232000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5051BC13963
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:45:42 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6067AC13A4F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:57:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 095F24671C8
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 08:45:41 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8F5975642AA
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 08:51:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A528D1B424F;
-	Tue, 28 Oct 2025 08:45:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 342BE2DCF74;
+	Tue, 28 Oct 2025 08:50:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="X0nD8Ef8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qmHhx90L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C6144C98;
-	Tue, 28 Oct 2025 08:45:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 052432DBF75;
+	Tue, 28 Oct 2025 08:50:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761641137; cv=none; b=llBuZHFQPVTaCBN5wgT2zg361RHVwEbnHNegrNNY/zow33XXJikJZc+rAnQOtpZhmTMFa1aoaBV3QPP4RlCWyizvTN9ujCEQQuEUoHstx7mQ4CEnPbpBxvOZFLR/HXNUpb0MU4khHCLOKZEBpXxKgsQs/YQikzEMH1LF8tuj4u8=
+	t=1761641421; cv=none; b=kHad4uiNxrLPrsH/0DXa0wrfQ0mhSrxb1+jK4+2yjyU7ItK3fxib5fnhg0262qGGLucfRA4tr5aRm5kxybuaoyCtixBv5lTEmNLm1NjIkLob5QqnRU56+Hdolo6aPxzsaIOpSBrHP0I6OWbhacxXDsPcGPJvrP+bLN5O92W+cTo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761641137; c=relaxed/simple;
-	bh=AzfMJnxDlLOurBkOwjsFhj7GPFZLhxcijnAWsYYiWpE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=q+zU9VDbl2vpsCmI82JVzQciI0OLAaxWUfjinIm6bHnwCnPqw5IkcGMkYz5t2hA25Fcz13AkZmPjd+Jnvgq0AUwEd1UWunlrUAuHtjTLaP8mea2dmQl0Y4galOPRtOdfQlQ1Ek0aTzl6SK/FTQfKYERASkdDFR5iY/lcan1+Vj0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=X0nD8Ef8; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1761641133;
-	bh=AzfMJnxDlLOurBkOwjsFhj7GPFZLhxcijnAWsYYiWpE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=X0nD8Ef80li5RM/i0fesne7rsefbId77wgY5dQqPZ/+p46Npgi57Ixd6Clyo7K2En
-	 w+WmhFsu8DfyMvJLLF0/CYBB2aHJGFT7o1tpkjytMnM+rEGd/EiS0pd7gH01iUwkjv
-	 cKAjWSdV3D7EUoM8L83giRV2z4BxkTCeCxfMGOBU7jZ6YDL4d3Vq+YSU2molrl250P
-	 Jrxgx608OPhy4RzzFhSiSQedfHWcqDSH9xkZUoxaM+DZ6GrB92cPEvvLezPZRfphOM
-	 KHdPeOmFbZflKFvYSe4CpHUzQrV26EWCq+Pw1al9OBUwAo0dU6sx14lbpD7NVdwXYa
-	 +d+5i9L2Oxwwg==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id F070F17E126B;
-	Tue, 28 Oct 2025 09:45:32 +0100 (CET)
-Message-ID: <39602d94-7f2e-42b1-a77e-1d5a3e032277@collabora.com>
-Date: Tue, 28 Oct 2025 09:45:32 +0100
+	s=arc-20240116; t=1761641421; c=relaxed/simple;
+	bh=KDXhTRVe2x23tPuaEkQmJ+KZed5CS4Y7/Sq0vsM+Krs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kTzKzwjBK/t3+qR+tRJjH/+Lv66mZtlSzhHqHy1PWJHc56DAEzNv2pou/B1Pi+tRNg6Upz0fMyE6zRez0r41dZW+D2bWztIUGqXa5xnxvtZTAM7dX1sKjCIeOY9rhHpY81N2aqaxelD9wXzb7BbgAyvdJrmFhh8UepNnUEwzr9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qmHhx90L; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEECFC4CEE7;
+	Tue, 28 Oct 2025 08:50:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761641420;
+	bh=KDXhTRVe2x23tPuaEkQmJ+KZed5CS4Y7/Sq0vsM+Krs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qmHhx90LAeqKDo9OJhautzZdQwPxugsU/j5NRn1XafNc5m5Y1xk8DSY5IKucSYkm2
+	 6qDYFj8WKohnoZu3c9y2BRE3K8rqeW4eM1GWmpfy+us8eHq6wrWV9RoMB1fkhBo74a
+	 HagmcY1PvDNb3NGu0+25ssCRdCGrue2GwJ2n1+yZx/VbImaxnE3d3SDrswub9Adcpl
+	 hP07sZSlIlDscognFZ9tY5TdngpT31at74u3hfGl721sTxle7R8f0wk2JD51pKuFCR
+	 mAw+IXEqbYJ33NxTmlxqYXPYYBlVFHXCvfhbgoaR2Y/GAkboX3f5o95a05XJkaSFdK
+	 p8BvoQe2AvQ7g==
+Date: Tue, 28 Oct 2025 08:50:14 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Damon Ding <damon.ding@rock-chips.com>
+Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, Lee Jones <lee@kernel.org>,
+	William Breathitt Gray <wbg@kernel.org>, kernel@collabora.com,
+	Jonas Karlman <jonas@kwiboo.se>, Alexey Charkov <alchark@gmail.com>,
+	linux-rockchip@lists.infradead.org, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3 1/5] dt-bindings: pwm: Add a new binding for
+ rockchip,rk3576-pwm
+Message-ID: <20251028-favored-dynamite-fa626b96ecba@spud>
+References: <20251027-rk3576-pwm-v3-0-654a5cb1e3f8@collabora.com>
+ <20251027-rk3576-pwm-v3-1-654a5cb1e3f8@collabora.com>
+ <ff9631f5-8fff-4be8-8b6f-807c29943ef6@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/6] arm64: dts: mediatek: mt7988a: Add label for
- ssusb0
-To: frank-w@public-files.de, Krzysztof Kozlowski <krzk@kernel.org>,
- Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Sean Wang <sean.wang@mediatek.com>, Daniel Golle <daniel@makrotopia.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20251027132817.212534-1-linux@fw-web.de>
- <20251027132817.212534-4-linux@fw-web.de>
- <35504988-448e-4a5c-8ea6-769c06117c01@kernel.org>
- <F6FAB95A-9FF2-416C-B50A-C2B1808FC5FF@public-files.de>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <F6FAB95A-9FF2-416C-B50A-C2B1808FC5FF@public-files.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="O1U2C28gYoD3m1pn"
+Content-Disposition: inline
+In-Reply-To: <ff9631f5-8fff-4be8-8b6f-807c29943ef6@rock-chips.com>
 
-Il 27/10/25 20:04, Frank Wunderlich ha scritto:
-> Am 27. Oktober 2025 19:58:23 MEZ schrieb Krzysztof Kozlowski <krzk@kernel.org>:
->> On 27/10/2025 14:28, Frank Wunderlich wrote:
->>> From: Frank Wunderlich <frank-w@public-files.de>
->>>
->>> Add label for ssusb0 node which is used for BPI-R4-Pro.
->>
->> This makes no sense on its own. We do not add labels because they have 0
->> impact.
->>
->> Please drop or squash.
-> 
-> Thank you for the review.
-> 
-> I reference this label in part 4 and tried to separate
-> changes in soc dtsi and board layer.
-> But of course i can squash this to part 4.
-> 
->> Best regards,
->> Krzysztof
-> 
-> 
-> regards Frank
 
-Yes, please squash this to the patch where you actually use the label.
+--O1U2C28gYoD3m1pn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Cheers,
-Angelo
+On Tue, Oct 28, 2025 at 11:06:15AM +0800, Damon Ding wrote:
+> On 10/28/2025 1:11 AM, Nicolas Frattaroli wrote:
+=20
+> The RK3506 and RV1126B platforms that are about to be upstream also use t=
+his
+> PWM IP. Would it be better to name the yaml file "pwm-rockchip-v4.yaml"?
+
+No. Files should be named to match a compatibles.
+
+> Then subsequent platforms only need to expand the compatible property.
+
+That's all subsequent platforms need to do anyway!
+
+--O1U2C28gYoD3m1pn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQCDxgAKCRB4tDGHoIJi
+0oP/AQCtGkPkLjIuhG6acisp6J+BGBKZt/zk42Iegz+EmIq1xQEAvpU0wnBrYIGQ
+DQ8NJI1UvPDWp+Rn13RW0wjmDY/oaAg=
+=NwWc
+-----END PGP SIGNATURE-----
+
+--O1U2C28gYoD3m1pn--
 
