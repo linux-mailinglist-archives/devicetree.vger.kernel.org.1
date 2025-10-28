@@ -1,159 +1,198 @@
-Return-Path: <devicetree+bounces-232022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD132C13BBF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:12:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1C1CC13C0A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:16:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 20F363543F3
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:12:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E077A18837CD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:16:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 401F72BDC34;
-	Tue, 28 Oct 2025 09:12:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03C0D2FDC54;
+	Tue, 28 Oct 2025 09:16:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T3Tgk/HB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7C752D8DB0
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:12:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7B56155333;
+	Tue, 28 Oct 2025 09:16:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761642741; cv=none; b=il0cniUfr9r4ufb2eIdj8sIpr7d+1HNqX8zbk2mDGb0YhnRtVKKLriUX7hzn0cdfGN5ZmYGd8XC03RyyL1JFsV3lYzMYIG+8uhFnVt4mkPpwSFZnWuqlldT7SLmeZWSzIJFw1Vtc5loI/9ORAF5gWwVQCZc8bTA5p14K+WMOJ5E=
+	t=1761642983; cv=none; b=MrQlnY7JUiwhVVP1F/Wi11lyO4IC0Q9gTu9u495wuHFtomoLonc9AfZYg+VD1gYHXWuMCVw6rn2vRGNFYCPjI+n3DCQ8qUARE4aAgYqcnCjg7L+ZxOOq/yHX0MH4fNpVtlrbR1/KuY23Q88ot8vR/jTeDJ8Z56AAM7RxP4tqKAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761642741; c=relaxed/simple;
-	bh=g3pvM43euoTNMkyF3tnXObOAlhsabiDRTZkgJQ8/AzY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jO74/sZJdR5+PuokDKlS77q/0dadqz2pY6ib2GQDkIiJ+uOQRuDBYLJM5LfM5n9iF9dsxFnmUADBZcdHLL9eVMNchKnbJctf1SbheOzFsGezwMRtI7s9k6mInmEhaxqao6Yl/teLKIunaIIYzvPv20aBRyGBmIqtlXMX8vZOJGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-5db3ec75828so1767540137.1
-        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 02:12:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761642738; x=1762247538;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eb9kW5nZhZJglY2El2oztjCtmhGLcr4GvZ4KYhM1Wpo=;
-        b=bklyF7WSvWnYBbMF7Z88hAotWLEKilnfdIBt8XKWlsglXmKCCNPVi0yqhOjuS5r8am
-         rBSAn9lr3Ia6XvPtPQUQeaZz3ehmkDW6ZMAps+e1yrbheYlL9EyPr4Tio6bTcgmDtRNh
-         ekhbXORusNrGkoLsB8+ZcPoGXfA/W9shbjj+htbhdqHa0IdZR+8IIO68wHE6Etjtte69
-         Ee6QNLLuEt6At8wB+/rTEi1vN29Lp6cMrE0dFgcNYlNgrnoxAzeYkgoGV5Z14XMg9OGE
-         lwVo9mUXnnFc9anjchvBBbIWOxrIrP0Pso3zSzCZdoKvzGFexKIh7yvQcoJ1lfKm+cqo
-         1Mnw==
-X-Forwarded-Encrypted: i=1; AJvYcCV+37GNNccJyR/GlzTsKy8tt7IRJStmm1degG+Qvcs9VO1Z6IlhWt/+iE8q8a162naIGrGyltQRFXwT@vger.kernel.org
-X-Gm-Message-State: AOJu0YyC8FXWSR/PJLjMAOSw+CmRbhtCgWhJXRYu5URIUpz9RLz55Rtu
-	1lJlXM+6bnp2cF5uUqFYg3xwOR/pbiDRieAVPu87+1kDy5rCcqU8Ps+KnlCsBQUhSKk=
-X-Gm-Gg: ASbGncu6/qfdjV8N7wgMc2cuDjNsjhrT3JHYbTs7l1COhMm2qUnVvW8n9dqBNgHp8eV
-	2XUZU3wmN156q4a1rvpp2mM1WnRoTTgkDfmEhwFFxzn66+819Lg7hWmJEkV+R1rtVBF/A0fgNbh
-	CPElXHTOFd1EF2GlTPdWNp4/2s8diWBB2McQrhslu1s50MMSlZO9RTKdmlKOygQq+M//+RExSrD
-	fY+zk0zh3mOVeWHb7l1cK6Suz1vcqVGFtGmwjq7QQlE4ZF74mIP+RZQZZai4MixABeOHXbdYrD+
-	siofDHrVYVUe9czW7V4YdqiWk+jQOb6bKhrW8bYZ+oTDWvR/Vteb3rMUqXRkCUVlnpP5jvu/lkp
-	+Hp5/0rniiJTS6iH7uAr6qnUk5LWSz9CQGHuuc9+gLr4Jz0Gr3sjxwO/pMWj14+anrdk8Mp+mrO
-	1K8m1qQ/R1B/NgdjRUZLZbejG+nUJnkuHLLB/2xw==
-X-Google-Smtp-Source: AGHT+IGor43r2II/4JFZZMRj7hUcjQ7UOS93cm4GSbR53uCSszXz012ulro6D46TNxOi2i8ysW2deA==
-X-Received: by 2002:a05:6102:3a06:b0:595:ec25:3805 with SMTP id ada2fe7eead31-5db7caa4c1fmr810429137.14.1761642738121;
-        Tue, 28 Oct 2025 02:12:18 -0700 (PDT)
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-557ddb5f493sm4030088e0c.17.2025.10.28.02.12.17
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Oct 2025 02:12:17 -0700 (PDT)
-Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-5d61f261ebfso2591157137.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 02:12:17 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCULTZdMWaCRlouoIl8XobumSgxadgljf3wop6OTPheazrCxFnnDPxoQWs/Zx3jOhoj8847zkNZl1rNs@vger.kernel.org
-X-Received: by 2002:a05:6102:f8c:b0:59c:5e29:dd95 with SMTP id
- ada2fe7eead31-5db7cbbbd00mr906150137.26.1761642737253; Tue, 28 Oct 2025
- 02:12:17 -0700 (PDT)
+	s=arc-20240116; t=1761642983; c=relaxed/simple;
+	bh=ermaQYFhISuTCQTJxYy3b0GGBvXFWg+TgqJdvAMDq1w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HlDVaZp+4EbON/YcyLVSoU3yK9Sh3DJ6cx7tzVyxl37cTvxAdYDxx7/R8wwYAnfOZWmMDab57BVOggcIKxLb15OaB6FD7vdI9lGo87u59I+K72aEl0ld9GusZ4kQdpwjl5PlE33FqM+AIY2F9yXtnbo3JM7jUzw1o2QWs5MKVv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T3Tgk/HB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01154C4CEE7;
+	Tue, 28 Oct 2025 09:16:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761642983;
+	bh=ermaQYFhISuTCQTJxYy3b0GGBvXFWg+TgqJdvAMDq1w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=T3Tgk/HBdescmQFHs3usF8C2WVr86KXVLfJnamjTg3l4wtK9tdGQ66P3OedOtJOQ9
+	 Rp9vrEynvDGQxtg2xlzIyZofGUIZMqBmm2jfREbaoJTdydu3xpRVEDTdoPtzH77Bl6
+	 sETXMpqPPeMxl+PZo/Ipuzzbj2a/wzoO8PRIn1Dewk0hrLDnZtQx/jKtCaQkBm36vo
+	 oJPZrYxot0H5Cu/D1wtCRYYF+3B+dsRFFmUOrOAjZ1Xqf3KBG+bYqSyqSAKjNwrRtU
+	 JkQmJ/KZELw8eypfR9L3RaIuPKjCB/l31MOp6hOmFSF9kI8IMEDrQXNwj84E1iIw1T
+	 /H5dmNxronwWw==
+Message-ID: <ba760468-ac41-48e0-a56e-a675c3c0d5b7@kernel.org>
+Date: Tue, 28 Oct 2025 10:16:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87o6prsl2z.wl-kuninori.morimoto.gx@renesas.com> <87jz0fsl0u.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87jz0fsl0u.wl-kuninori.morimoto.gx@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 28 Oct 2025 10:12:06 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXz9egr_tye9CbVRMJws_Y-jh9jwCvTTOq0JRar7Zd_Xw@mail.gmail.com>
-X-Gm-Features: AWmQ_blYPEdo4BgGxuQ_Ho5uWeROgqH2E4WHi9ATSE8NxQYZidHzYlYDOH0zie8
-Message-ID: <CAMuHMdXz9egr_tye9CbVRMJws_Y-jh9jwCvTTOq0JRar7Zd_Xw@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] dt-bindings: mailbox: Add Renesas MFIS Mailbox
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: soc: qcom: qcom,pmic-glink: Add
+ Kaanapali and Glymur compatibles
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251027212250.3847537-1-anjelique.melendez@oss.qualcomm.com>
+ <20251027212250.3847537-2-anjelique.melendez@oss.qualcomm.com>
+ <20251028-private-chirpy-earthworm-6fccfe@kuoka>
+ <4cb41e69-fb32-4331-a989-529b5af0081c@kernel.org>
+ <918fc9d3-2cd5-4442-8bc6-b930596d95c1@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <918fc9d3-2cd5-4442-8bc6-b930596d95c1@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Morimoto-san,
+On 28/10/2025 10:04, Konrad Dybcio wrote:
+> On 10/28/25 9:36 AM, Krzysztof Kozlowski wrote:
+>> On 28/10/2025 09:29, Krzysztof Kozlowski wrote:
+>>> On Mon, Oct 27, 2025 at 02:22:49PM -0700, Anjelique Melendez wrote:
+>>>> Document the Kaanapali and Glymur compatibles used to describe the PMIC
+>>>> glink on each platform.
+>>>> Kaanapali will have the same battery supply properties as sm8550 platforms
+>>>> so define qcom,sm8550-pmic-glink as fallback for Kaanapali.
+>>>> Glymur will have the same battery supply properties as x1e80100 platforms
+>>>> so define qcom,x1e80100-pmic-glink as fallback for Glymur.
+>>>
+>>> What does it mean "battery supply properties"? Binding does not define
+>>> them, so both paragraphs do not help me understanding the logic behind
+>>> such choice at all.
+>>>
+>>> What are you describing in this binding? Battery properties? No, battery
+>>> properties go to the monitored-battery, right? So maybe you describe SW
+>>> interface...
+>>
+>> Or maybe you describe the device that it is different? >
+> 
+> Certain versions of the pmic-glink stack expose services (such as battmgr)
+> which support different features (e.g. 8550 exposes state of health and
+> charge control, x1e exposes charge control, 8280 exposes neither)
+> 
+> There seems to be a similar situation here
 
-On Tue, 28 Oct 2025 at 05:33, Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> Add device tree bindings for the Renesas Multifunctional Inferface
-> (MFIS) a mailbox controller.
->
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Then say that. Otherwise it feels like describing current Linux
+implementation and that would be obvious no-go. Why? Because then
+argument is: change Linux driver implementation.
 
-Thanks for your patch!
+> 
+>>>>
+>>>> Signed-off-by: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
+>>>> ---
+>>>>  .../devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml      | 7 +++++++
+>>>>  1 file changed, 7 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
+>>>> index 7085bf88afab..c57022109419 100644
+>>>> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
+>>>> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
+>>>> @@ -37,12 +37,19 @@ properties:
+>>>>            - const: qcom,pmic-glink
+>>>>        - items:
+>>>>            - enum:
+>>>> +              - qcom,kaanapali-pmic-glink
+>>>>                - qcom,milos-pmic-glink
+>>>>                - qcom,sm8650-pmic-glink
+>>>>                - qcom,sm8750-pmic-glink
+>>>
+>>> Why qcom,kaanapali-pmic-glink is not compatible with
+>>> qcom,sm8750-pmic-glink? If Glymur is compatible with previous
+>>> generation, I would expect that here too.
+>>
+>> And again to re-iterate:
+>>
+>> If X1E is compatible with SM8550 AND:
+>> SM8750 is compatible with SM8550 THEN
+>> WHY Glymur is compatible with previous generation but Kaanapali is not
+>> compatible with previous generation?
+> 
+> The announcement date does not directly correlate to 'generation'
+I don't know exactly this IP block/component, but in general these SoCs
+follow some sort of previous design, thus term "generation" is correct
+in many cases. Anyway don't be picky about wording.
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/rcar,mfis-mailbox.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/rcar,mfis-mailbox.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas MFIS (Multifunctional Inferface) Mailbox controller
-> +
-> +maintainers:
-> +  - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> +
-> +description:
-> +  The R-Car multifunctional interface (MFIS) provides an interface between
-> +  the different CPU Cores, such as AP System Core domain and the Realtime
-> +  Core domain, SCP Core domain and AP System Core domain or Realtime Core
-> +  domain and AP System Core domain or Realtime Core domain.
-> +  The MFIS supports the issuing of interrupts for each CPU core domain.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - rcar,mfis-mailbox-r8a78000   # R-Car X5H
+You can remove the generation and statement will be the same.
 
-renesas,r8a78000-mfis-mailbox?
+If A is compatible with B AND
+C is compatible with B
+THEN
 
-> +      - const: rcar,mfis-mailbox-gen5    # R-Car Gen5
+WHY D is compatible with (A and B) but E is not
+compatible with (C and B)?
 
-renesas,rcar-gen5-mfis-mailbox?
+Easier for you?
 
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    mailbox@18842000  {
-> +        compatible = "rcar,mfis-mailbox-r8a78000", "rcar,mfis-mailbox-gen5";
-> +        reg = <0x18842000 0x8>;
+Why nitpicking on wording "generation" instead of explaining the
+problems or issues with bindings...
 
-This is an 8-byte block in the middle of the MFIS register space.
-Perhaps the DT bindings should describe the full MFIS block, and not
-just the mailbox part?
 
-> +        interrupts = <GIC_SPI 4362 IRQ_TYPE_LEVEL_HIGH>;
-> +        #mbox-cells = <1>;
-> +    };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
 
