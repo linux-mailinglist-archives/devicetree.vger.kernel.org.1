@@ -1,64 +1,68 @@
-Return-Path: <devicetree+bounces-232336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 170FCC16A8E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 20:49:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B756C16AA3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 20:50:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 123491B27F3C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 19:49:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA9BE1B28034
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 19:51:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8324D1FECD4;
-	Tue, 28 Oct 2025 19:49:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A7C323A994;
+	Tue, 28 Oct 2025 19:50:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ph8sVaf5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lQENu0VY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FDA711713;
-	Tue, 28 Oct 2025 19:49:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B0BE2264CC;
+	Tue, 28 Oct 2025 19:50:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761680952; cv=none; b=kXsJec9tRtbt3ADRlInr4hYtujlp6O1SJMf4cOsD7/98TxXifBjEL5tm04iDy+myUSjPZioLDvRAKEL0MJ13jFXycDO/aTqSw2xunW4tSM5y/piFdS9er/2UVVVqvEb7Ggw53fGGbXgMga0rWqweQmj8KkcWn9qQscCigGmP0VY=
+	t=1761681047; cv=none; b=ReJ4oZN8jCQANQgNtpP8zqOQQ8hTFTgay9BIIVzt8wqvI24o4NJt+r2yhWYLjBz/uhGczvMaZv4XLekArxJnIT3GrabOXAM+KPTB6IsetpB1IwObR8LmudQ3a7gZelgeVY1ns8DW/SNMWD4Dv0wiHeYp40hvI02eqr1MWOAXo2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761680952; c=relaxed/simple;
-	bh=CKEsyC7pw4d0z7ZyuFMSd7YgtnsZCVl+k1LMpg2/quw=;
+	s=arc-20240116; t=1761681047; c=relaxed/simple;
+	bh=urY0TsI3YpOvkzhC5Aaj7bm6xndrDnvaVbi//LpjLyk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HnO7FDqb8J4lBlG7XkX9CeFDYb3wO6LsBIYTZ3FJ2le0rZbDILEj8c8dGfZrkg4PeBwdY96yX8glqbkiAPIB6uDWcj719gEM3ZP+B3zdpHsBQ+LsYjN/Td7JSSbTxbctKhNDBQ34G/gRKGXMUSXkIR5y1wgWmwKF+Eyqqd4EyPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ph8sVaf5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56113C4CEE7;
-	Tue, 28 Oct 2025 19:49:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IPKsql/ifEF4MU8tncSOm0zCn/Rwofje2qIDEVLVpgFiegq5Lt4XTZnl9mf2WLiWNQx1syBDg6f4x+Edbl/Ow2T/Jrx2ieLoB2mddki/KY8gFTzqHrb7emkH+Kre6/zk89lNGLWY+onYgR1eluD/VXF7qsbiaKPcSdPjTkS+hw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lQENu0VY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 220DBC4CEE7;
+	Tue, 28 Oct 2025 19:50:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761680951;
-	bh=CKEsyC7pw4d0z7ZyuFMSd7YgtnsZCVl+k1LMpg2/quw=;
+	s=k20201202; t=1761681046;
+	bh=urY0TsI3YpOvkzhC5Aaj7bm6xndrDnvaVbi//LpjLyk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ph8sVaf5Rtft1OeMIpzBp8XXE9J6AI73lJKLRRaYivAP68Bpc2gF40KapFg2+cIyT
-	 ppgm6rBqaFhCfpCjKvQ3gBfLwDFtOgjzTjmqnyOMomU8gs8dzoxVhxJHIBMuV5fP0H
-	 u1MQYtat+9F2bJHeS8NUskDn/cF8b5n9WHbvGKQXhfIgMesZXpkBLw8K+m4JCA+mha
-	 A/W8wzotRgYGNsaP6/gnaQUw6dMVU1/l+7AVW/9o31oX06sWDte6d7NWzpR/xWjYCv
-	 2c/Mhfw2KFu1hpm+kwVs7iW9Qi5wrmH+0DQOb3v95RBUyExK40+IOp4BXbRDUEzgk9
-	 vKiRzDgx7q7PQ==
-Date: Tue, 28 Oct 2025 19:49:07 +0000
+	b=lQENu0VYfgQnZZA5Br4Ng5xQ+VspOzihA9JzG60ugUFZ+jycvOkgfLV4JvyKymelk
+	 vI4n9Im3YnTVF2qulK3NATuo3OntkWDbc58CQ5HnMyLNO6P/d6+3svew42OWgTsYsy
+	 oXDfHLUjHhM+IwuYS0DNRop6OqbogCTYK3Z+YytBHc7CT271JyFsWwIucFqoxOeI1p
+	 M929jQwCxGFU+TMgcv8OxpS9ESL8Tn/djL7olUT3dqxFD+LsRZ/V/5ZQ2C7nye+nr9
+	 ArMpNa5CezshShvaZfZjtVahpydr3OZM1qeLWQ+vyEzvmPaSapQyioLb6SRRTXPXY+
+	 UHwGMHTcvBgEQ==
+Date: Tue, 28 Oct 2025 19:50:42 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Henrik Rydberg <rydberg@bitmath.org>,
-	Tony Lindgren <tony@atomide.com>, hns@goldelico.com,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCH RFC 1/3] dt-bindings: input: elan: Introduce Elan
- eKTP1059 Touchpad
-Message-ID: <20251028-unlocking-designing-efbdc8ca49df@spud>
-References: <20250825-ektp-submit-v1-0-1dd476c1277b@kemnade.info>
- <20250825-ektp-submit-v1-1-1dd476c1277b@kemnade.info>
- <20250825-decal-purchase-8cfe0003a3f2@spud>
- <20251028204149.325506f6@kemnade.info>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	"magnus.damm" <magnus.damm@gmail.com>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"biju.das.au" <biju.das.au@gmail.com>
+Subject: Re: [PATCH 02/19] dt-bindings: serial: rsci: Drop "uart-has-rtscts:
+ false"
+Message-ID: <20251028-desolate-roulette-e678476fb039@spud>
+References: <20251027154615.115759-1-biju.das.jz@bp.renesas.com>
+ <20251027154615.115759-3-biju.das.jz@bp.renesas.com>
+ <20251028-griminess-undocked-b6918de546fc@spud>
+ <TY3PR01MB113460F737A66E71E86482C5286FDA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,95 +70,67 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Jvj0xhg5VQhOffjA"
+	protocol="application/pgp-signature"; boundary="p4+0ILj/kKp+n3xh"
 Content-Disposition: inline
-In-Reply-To: <20251028204149.325506f6@kemnade.info>
+In-Reply-To: <TY3PR01MB113460F737A66E71E86482C5286FDA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 
 
---Jvj0xhg5VQhOffjA
+--p4+0ILj/kKp+n3xh
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 28, 2025 at 08:41:49PM +0100, Andreas Kemnade wrote:
-> On Mon, 25 Aug 2025 17:40:56 +0100
-> Conor Dooley <conor@kernel.org> wrote:
+On Tue, Oct 28, 2025 at 07:39:41PM +0000, Biju Das wrote:
+> Hi Conor Dooley,
 >=20
-> > On Mon, Aug 25, 2025 at 12:07:28AM +0200, Andreas Kemnade wrote:
-> > > The Elan eKTP1059 Touchpad is seen in the Epson Moverio BT-200
-> > > attached via SPI. Add a binding for this chip. Little is known.
-> > >=20
-> > > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> > > ---
-> > >  .../devicetree/bindings/input/elan,ektp1059.yaml   | 45 ++++++++++++=
-++++++++++
-> > >  1 file changed, 45 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/input/elan,ektp1059.ya=
-ml b/Documentation/devicetree/bindings/input/elan,ektp1059.yaml
-> > > new file mode 100644
-> > > index 000000000000..a10256a271e0
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/input/elan,ektp1059.yaml
-> > > @@ -0,0 +1,45 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/input/elan,ektp1059.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Elantech SPI Touchpad
-> > > +
-> > > +maintainers:
-> > > +  - Andreas Kemnade <andreas@kemnade.info>
-> > > +
-> > > +allOf:
-> > > +  - $ref: touchscreen/touchscreen.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: elan,ektp1059
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - interrupts
-> > > +
-> > > +additionalProperties: false =20
-
-btw, there's two spaces at EOL here. Is that in the patch itself, or
-just a mail artefact?
-
+> > -----Original Message-----
+> > From: Conor Dooley <conor@kernel.org>
+> > Sent: 28 October 2025 19:28
+> > Subject: Re: [PATCH 02/19] dt-bindings: serial: rsci: Drop "uart-has-rt=
+scts: false"
 > >=20
-> > Shouldn't this be unevalutedProperties: false, since you want to make
-> > use of what's in touchscreen.yaml?
-> >
-> did not do too much thought about this yet. But am I allowed to use this
-> in a touchpad? BTW: who defines whether the chip is a touchpad? T*P* in
-> its part number might be a hint, the device where I am using it, uses it
-> as a touchpad. But who says it cannot be glued onto some screen?
+> > On Mon, Oct 27, 2025 at 03:45:49PM +0000, Biju Das wrote:
+> > > Drop "uart-has-rtscts: false" from binding as the IP support hardware
+> > > flow control.
+> >=20
+> > Why is it being removed, rather than only being required for the existi=
+ng devices? It's not clear to
+> > me that the comment about the IP supporting flow control excludes the i=
+ntegration on these particular
+> > devices from somehow having flow control disabled.
+>=20
+> It was a mistake previously as the driver does not implement hardware flo=
+w control and
+> is excluded in device tree.
+>=20
+> Actually, the RSCI IP on all SoCs supports hardware flow control.
+> If a channel need flow control it can make use of the property uart-has-r=
+tscts;
+> That is the reason for removing hardware flow control disabled property("=
+uart-has-rtscts: false")
 
-I've got no idea what you're talking about here, I don't know anything
-about the mechanics of touchpad chips. All I am commenting on is that
-you're including touchscreen.yaml but do not permit any properties
-defined in that binding to be used for this device.
+Could you update the commit message to be clear that that's the case?
+Just something like "as the IP supports hardware flow control on all
+SoCs".
 
---Jvj0xhg5VQhOffjA
+With that,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+pw-bot: changes-requested
+
+--p4+0ILj/kKp+n3xh
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQEeMwAKCRB4tDGHoIJi
-0l5+AP4m7nww0iHVAtMhmQQmWIi5aQT1bVrqcjpi0pSyREAxmQD+Olwl99HkT547
-+YKrVSEzoLpdnnCeg8IDDotNDmhOmwc=
-=mLkH
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQEekQAKCRB4tDGHoIJi
+0lbqAQDrbvjZGyqEa4vMZ9yAGpwQWkCZPHRSDevgaBUe8ItJyQD+I/ga4At6wgCj
+t8bAQYNoMxGxgMXnkFB1xec89NgWzg0=
+=pS4z
 -----END PGP SIGNATURE-----
 
---Jvj0xhg5VQhOffjA--
+--p4+0ILj/kKp+n3xh--
 
