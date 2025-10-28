@@ -1,61 +1,59 @@
-Return-Path: <devicetree+bounces-231974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EB96C135C2
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 08:48:07 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15545C135FB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 08:52:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50FEA1A2167A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 07:48:31 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B9633342083
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 07:52:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 071FE1E2614;
-	Tue, 28 Oct 2025 07:48:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 049E322156C;
+	Tue, 28 Oct 2025 07:52:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JSp4dhCX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eeZ0Tj72"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBDE717BB21;
-	Tue, 28 Oct 2025 07:48:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA71B7494;
+	Tue, 28 Oct 2025 07:52:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761637682; cv=none; b=n/1t1UM4MINO/w5Mde2ke5C+Lrch3xsxAZmzncn8KpPozuBgcZYO6Lm/B77A0H8g3pNbkUBlAXnWrtW2bj4RT7uTrpcZ9K4yG5n0tY+xyjEogbzUzf91XIqmTfsz5uueyCtmksR9lyN65+mnq02UTXuvkmjTI8rlz36+2tAH8Fo=
+	t=1761637930; cv=none; b=OR8NJ1pMmtmxJB9AqI4CFcMvLjIaQ6PJvO2K8lz3pEQJwvo+Ss9PYbTCqdGyknNvOlTGDvkiLY4/nFJ+smD7E03slsus9tsGfTMRSWDx6sl/RtQTiHQU9NGd9YlGSliqWHYZiHmfJ/sNqciPpGhm621CQUbIwiSiNuMJAsedLRA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761637682; c=relaxed/simple;
-	bh=KClJh703ruviggVORWywOzunQO6HBuBT/e1jnVpnPXc=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TmzzxqOI5cxj72CBrtxto15bB5Stm/UkM5h7wokmcJidc+zJRoPMYOy7mWuRxMmF4RkAwUvcJyrxoFAQEBoYH8NNVDggJ0J7C8jnp9bjOaR5heMz6NDnw6zZgTb4iTPpYRFhAPaihFCdCmNxttYO6FeAnKpUBOLWV6QL4IcFDJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JSp4dhCX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD480C113D0;
-	Tue, 28 Oct 2025 07:48:00 +0000 (UTC)
+	s=arc-20240116; t=1761637930; c=relaxed/simple;
+	bh=lgCu1/5LkJDVUKGcQ1LJt6hU1F8MpL35/q8ICEa7ZPU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KSCG6foGYtxgE1uL2xO9aHVsC9nhUVTojOQwus3lWWYAdaXvD0eMH157OFB9PFD+Jmq+i4LycV/tK4eR7fIwuG6qcZTyCLtjvuF28lzEdOVkVeJEtBFNLIJR6keV3J+gpkUEp2ArXq6m31tYe4XSzsCQ9VrKjHgV6vTpX2857Xw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eeZ0Tj72; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF514C4CEE7;
+	Tue, 28 Oct 2025 07:52:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761637681;
-	bh=KClJh703ruviggVORWywOzunQO6HBuBT/e1jnVpnPXc=;
-	h=Date:From:To:Subject:References:In-Reply-To:From;
-	b=JSp4dhCXz/ltiFCTPO0JZcMRQ0fsKve6CAnHmMlvgGjKIsE9cs2S5JvV5W2MW7nAn
-	 82HXAZqM6GUp1+SVIebgExEctwbw5eR8rdTw73RBFVFYfA+vDmsp+U4HqdAgSoU5F/
-	 /TKhjJf/vrUuHq96xsIZAhivbBsQ/tgYZuM83LA1aYES/wvftOKN+q0du0hlugp8Sz
-	 fa01y6qXoBel8u57qib+5TEcobWqo/i4L+Cz73uiN0CdPftCQZDwWT1lXiIESFogAy
-	 6OQvGLFdXKq9D1mZ7L2/12L7C9M+hmgdIEAFAJ83G+sJ30s0jnr9tUhLF61qe4Wa7r
-	 a9BW8d4ARqz2g==
-Date: Tue, 28 Oct 2025 08:47:58 +0100
+	s=k20201202; t=1761637930;
+	bh=lgCu1/5LkJDVUKGcQ1LJt6hU1F8MpL35/q8ICEa7ZPU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eeZ0Tj72+n38VyiBnwzBzv1JPxT5YjRmABluQrQbslUPzrY4kOjj2dZbDJn+VKxVX
+	 QE4fZj6gTStX4n5HsGpMaSXgVAhZ+8sC6W3k2yfrzQi/FS5BfbFSmqjNtPow4aVUkg
+	 5DdvTG6gAECtFsUFZwk25O92EL6Ytj9Sf/i8d5n5tAvZb9+b9HIpIO2qNo6AoI1zbc
+	 uj3JznohxOTHbhva7pBZea7/H0kbzXJxVEhRbWpRCEKWiO5oxrTRcBgBQYjbVQsXEo
+	 U2OLHi4bSp94ssMT2o94756zksQZG9E2cv82F00lUI88X6OPvu6fGDPhE0qiZ7i57x
+	 tJY3u1FKZhsLA==
+Date: Tue, 28 Oct 2025 08:52:07 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ryan Chen <ryan_chen@aspeedtech.com>, bmc-sw@aspeedtech.com, 
-	benh@kernel.crashing.org, joel@jms.id.au, andi.shyti@kernel.org, jk@codeconstruct.com.au, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	andrew@codeconstruct.com.au, p.zabel@pengutronix.de, andriy.shevchenko@linux.intel.com, 
-	naresh.solanki@9elements.com, linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v21 2/4] dt-bindings: i2c: ast2600-i2c.yaml: Add
- global-regs and transfer-mode properties
-Message-ID: <20251028-ingenious-dazzling-jackdaw-af487d@kuoka>
-References: <20251027061240.3427875-1-ryan_chen@aspeedtech.com>
- <20251027061240.3427875-3-ryan_chen@aspeedtech.com>
- <93a2ff5f-2f8e-494b-9652-b93bc243c229@kernel.org>
+To: Elaine Zhang <zhangqing@rock-chips.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, sugar.zhang@rock-chips.com, 
+	heiko@sntech.de, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	huangtao@rock-chips.com, finley.xiao@rock-chips.com
+Subject: Re: [PATCH v5 4/7] dt-bindings: clock: Add support for rockchip
+ pvtpll
+Message-ID: <20251028-hasty-amusing-guan-e57f62@kuoka>
+References: <20251027084147.4148739-1-zhangqing@rock-chips.com>
+ <20251027084147.4148739-5-zhangqing@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,43 +62,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <93a2ff5f-2f8e-494b-9652-b93bc243c229@kernel.org>
+In-Reply-To: <20251027084147.4148739-5-zhangqing@rock-chips.com>
 
-On Mon, Oct 27, 2025 at 08:14:45PM +0100, Krzysztof Kozlowski wrote:
-> On 27/10/2025 07:12, Ryan Chen wrote:
-> > The AST2600 I2C controller supports three transfer modes: byte,
-> > buffer, and DMA. To allow board designers and firmware to
-> > explicitly select the preferred transfer mode for each controller
-> > instance. "aspeed,transfer-mode" to allow device tree to specify
-> > the desired transfer method used by each I2C controller instance.
-> > 
-> > And AST2600 i2c controller have two register mode, one is legacy
-> > register layout which is mix controller/target register control
-> > together, another is new mode which is separate controller/target
-> > register control.
-> > 
-> 
-> This implies your "reg" properties have now completely different meaning
-> and this would be quite an ABI break. We discussed this probably 15
-> revisions ago. Where did you document the resolution of that discussion?
-> 
-> >  
-> >  unevaluatedProperties: false
-> >  
-> > @@ -57,10 +85,12 @@ examples:
-> >        #address-cells = <1>;
-> >        #size-cells = <0>;
-> >        compatible = "aspeed,ast2600-i2c-bus";
-> > -      reg = <0x40 0x40>;
-> > +      reg = <0x80 0x80>, <0xc00 0x20>;
-> 
-> Not relevant to this patch. You just added this line in patch #1, so did
-> you add incorrect code just to fix it right away?
-> 
-> No, fix your example when creating it.
+On Mon, Oct 27, 2025 at 04:41:44PM +0800, Elaine Zhang wrote:
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#clock-cells":
+> +    const: 0
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-output-names:
+> +    maxItems: 1
+> +
+> +  rockchip,cru:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: |
+> +      Phandle to the main Clock and Reset Unit (CRU) controller.
+> +      Required for PVTPLLs that need to interact with the main CRU
+> +      for clock management operations.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#clock-cells"
 
-Heh, and this was not even tested... you have warnings here (see
-maintainer soc profiles).
+Missing clocks.
+
+> +  - clock-output-names
+
+Missing rockchip,cru
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    pvtpll@20480000 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+If you cannot find a name matching your device, please check in kernel
+sources for similar cases or you can grow the spec (via pull request to
+DT spec repo).
+
+> +      compatible = "rockchip,rv1126b-core-pvtpll";
+> +      reg = <0x20480000 0x100>;
+> +      #clock-cells = <0>;
+> +      clock-output-names = "clk_core_pvtpll";
+
+Incomplete example - missing clock.
+
+> +    };
+> +
+> +  - |
+> +    pvtpll@21c60000 {
+
+Drop all other examples, no need to repeat the same.
+
+They weren't even here before!
 
 Best regards,
 Krzysztof
