@@ -1,113 +1,222 @@
-Return-Path: <devicetree+bounces-232308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F954C165D7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 19:02:14 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C6E3C165FF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 19:03:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9B7A1896092
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 18:00:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 00856507B67
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 18:00:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C6B334DB59;
-	Tue, 28 Oct 2025 17:59:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 614641F5846;
+	Tue, 28 Oct 2025 18:00:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DWsbCydV"
+	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="R8Ovmd8N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from hall.aurel32.net (hall.aurel32.net [195.154.113.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 173A434CFDF;
-	Tue, 28 Oct 2025 17:59:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C9202F25F1;
+	Tue, 28 Oct 2025 18:00:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.154.113.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761674392; cv=none; b=BN5V7yBPgOM88Wlhi/dUgb2n2Hux2CfXL4izuXTB0bUBWgvvNEtnoKqCBzvcuXzsRwd4Sd/uT65FunE1H6W6XkuL6BY01wgZ8YcqzW5/SMsiWD6NcYIQ5D+DM31StFCqLpFNaDu9ikduMF+kytUI8OFPytc3hAAnVRGxWMwvc5A=
+	t=1761674419; cv=none; b=nsT/QklGPmnHXuUBH60g2lsTsYjPGNpGky37PdRYYk0V7mHDKoDbAqQLdbu1d8m8wwso/2jQxO6vM/jNdTkHzfxDJk5L2AWeqqrd0VNsepHmG1gwSOT9gEc/7kkg+XJTW5QPirRy49pTCBfUo3I/BugL2SRrrYL9jBwB1hdZw/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761674392; c=relaxed/simple;
-	bh=5NrAtnDMjFJ5Ghvd4YzRYA7Yl9j9ybNfKvOu24MzvDY=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=q+hxq7JEXmVIqqmNQQt0GkEeI1Gd+A7+kxYsVOPtRm7qSopQsO77LXeGtApfG5rD5cJQ7t/7Kp5KTVSOTdNslVgD8/XLSin+dllzseN+65jU8dEo+KsDlsyzQmNiVSTCi8N6KHKo69nyytfB8Rrx+Vyslf0HwI5kkxBkPGVQmO0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DWsbCydV; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id E66B2C0BEA8;
-	Tue, 28 Oct 2025 17:59:26 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 317B860692;
-	Tue, 28 Oct 2025 17:59:47 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5BF2A102F12E3;
-	Tue, 28 Oct 2025 18:59:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761674385; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=5NrAtnDMjFJ5Ghvd4YzRYA7Yl9j9ybNfKvOu24MzvDY=;
-	b=DWsbCydV//xvHJDzeBuKG+WnZG/edBwN8WM2T9lhTpTinwkZ0dIA2UZjyoX14KfXZp5A+L
-	6yMwepOhql+aaE6JDeDrZ0EkwWn+ZxHeml10mbFfmmD13E+s8mjiqKcU0M97nBX73UzWLN
-	BChe1d7SvfH6cinPba30dyagwWao6+OzFRhWx8huv/FYdeRLnV7o86wnuvqYDKG0YYWn+4
-	QGMv7SyPDnzCpT0vivKdNDoa7R7uZ/QonZ1SmGW0IbNzV67hjVN/wI/KjhEd7tWvm7OIpW
-	hFqkFFciyjrLYjfMEBIhI9DaTrqZqLbBT4CR+3wepCvI3BKcXwIXPJWwlyH2Yw==
+	s=arc-20240116; t=1761674419; c=relaxed/simple;
+	bh=VhuXtct2llGlUKtkPUEWUGkg5rp+EFF2CwePBKwQWAo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qm+nzxtt3drzMMPeEfRjHiODmW+PMk1dTAWGdNqrS5dOmwoKOj8vyJ3WVM/ITjyc2wu3sJdN+jfLW+947RFcN/Ulrs2wljsbtdltsAiccg7EYq9JiqHRExJswIFdV6/GZShUI8HtMwwvcB9U8O0GJ/m/hDz1zbPgW77FM/J8l+I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=R8Ovmd8N; arc=none smtp.client-ip=195.154.113.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aurel32.net
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
+	; s=202004.hall; h=In-Reply-To:Content-Type:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:From:Reply-To:
+	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
+	bh=Hg4yk8h2S9UFPnNuzCx8HQK8YMdf20o+Im/dr85/zXQ=; b=R8Ovmd8NBwXulNQtyTfLsMwMIN
+	QaO+L7OCqIGgkcse7iaihMcTfHlToyTu5bL/vSk1H1i70G9Dsd7TfFfH9+33HE1vEmN7rTZv5Ed8K
+	axV3kiRfH5LvXNPtmrDchc+LFcgS5UU2Pov1xpNZ43/a15QOHqa6omz2q+sPsFHtYxLUPI0gvdHR1
+	/ZRwZ+u66zpkOu9Fi8i1vzvyEfx8vrn1/JV+Iv1Enczfcz7L67mWJoN+pnsRK1QNciZyyLsgfCOnp
+	AckH7GcqIZNRoTHMsuMSzm/X7snvQftdDUwPafT1TdeSdKLxj22nogPSixHBQDL8NUZ3Ed20HEA3/
+	ILrcPEmA==;
+Received: from [2a01:e34:ec5d:a741:1ee1:92ff:feb4:5ec0] (helo=ohm.rr44.fr)
+	by hall.aurel32.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <aurelien@aurel32.net>)
+	id 1vDnz5-00000008hSt-1qV2;
+	Tue, 28 Oct 2025 18:59:51 +0100
+Date: Tue, 28 Oct 2025 18:59:50 +0100
+From: Aurelien Jarno <aurelien@aurel32.net>
+To: Alex Elder <elder@riscstar.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+	mani@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+	dlan@gentoo.org, guodong@riscstar.com, pjw@kernel.org,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	p.zabel@pengutronix.de, christian.bruel@foss.st.com,
+	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com,
+	qiang.yu@oss.qualcomm.com, namcao@linutronix.de,
+	thippeswamy.havalige@amd.com, inochiama@gmail.com,
+	devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-phy@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/7] Introduce SpacemiT K1 PCIe phy and host controller
+Message-ID: <aQEElhSCRNqaPf8m@aurel32.net>
+Mail-Followup-To: Alex Elder <elder@riscstar.com>, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, bhelgaas@google.com,
+	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
+	vkoul@kernel.org, kishon@kernel.org, dlan@gentoo.org,
+	guodong@riscstar.com, pjw@kernel.org, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
+	christian.bruel@foss.st.com, shradha.t@samsung.com,
+	krishna.chundru@oss.qualcomm.com, qiang.yu@oss.qualcomm.com,
+	namcao@linutronix.de, thippeswamy.havalige@amd.com,
+	inochiama@gmail.com, devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+References: <20251013153526.2276556-1-elder@riscstar.com>
+ <aPEhvFD8TzVtqE2n@aurel32.net>
+ <92ee253f-bf6a-481a-acc2-daf26d268395@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 28 Oct 2025 18:59:36 +0100
-Message-Id: <DDU5G3UHOYM7.2WNR6PPEK6ST1@bootlin.com>
-Cc: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
- <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-media@vger.kernel.org>, <linux-clk@vger.kernel.org>,
- <linux-staging@lists.linux.dev>
-Subject: Re: [PATCH v5 00/23] tegra-video: add CSI support for Tegra20 and
- Tegra30
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-To: "Svyatoslav Ryhel" <clamor95@gmail.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Thierry Reding" <thierry.reding@gmail.com>,
- "Jonathan Hunter" <jonathanh@nvidia.com>, "Sowjanya Komatineni"
- <skomatineni@nvidia.com>, "Prashant Gaikwad" <pgaikwad@nvidia.com>,
- "Michael Turquette" <mturquette@baylibre.com>, "Stephen Boyd"
- <sboyd@kernel.org>, "Mikko Perttunen" <mperttunen@nvidia.com>, "Mauro
- Carvalho Chehab" <mchehab@kernel.org>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, =?utf-8?q?Jonas_Schw=C3=B6bel?=
- <jonasschwoebel@yahoo.de>, "Dmitry Osipenko" <digetx@gmail.com>, "Charan
- Pedumuru" <charan.pedumuru@gmail.com>, "Diogo Ivo"
- <diogo.ivo@tecnico.ulisboa.pt>, "Aaron Kling" <webgeek1234@gmail.com>,
- "Arnd Bergmann" <arnd@arndb.de>
-X-Mailer: aerc 0.20.1
-References: <20251022142051.70400-1-clamor95@gmail.com>
-In-Reply-To: <20251022142051.70400-1-clamor95@gmail.com>
-X-Last-TLS-Session-Version: TLSv1.3
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <92ee253f-bf6a-481a-acc2-daf26d268395@riscstar.com>
+User-Agent: Mutt/2.2.13 (2024-03-09)
 
-Hello Svyatoslav,
+Hi Alex,
 
-On Wed Oct 22, 2025 at 4:20 PM CEST, Svyatoslav Ryhel wrote:
-> Add support for MIPI CSI device found in Tegra20 and Tegra30 SoC along
-> with a set of changes required for that.
+On 2025-10-17 11:21, Alex Elder wrote:
+> On 10/16/25 11:47 AM, Aurelien Jarno wrote:
+> > Hi Alex,
+> > 
+> > On 2025-10-13 10:35, Alex Elder wrote:
+> > > This series introduces a PHY driver and a PCIe driver to support PCIe
+> > > on the SpacemiT K1 SoC.  The PCIe implementation is derived from a
+> > > Synopsys DesignWare PCIe IP.  The PHY driver supports one combination
+> > > PCIe/USB PHY as well as two PCIe-only PHYs.  The combo PHY port uses
+> > > one PCIe lane, and the other two ports each have two lanes.  All PCIe
+> > > ports operate at 5 GT/second.
+> > > 
+> > > The PCIe PHYs must be configured using a value that can only be
+> > > determined using the combo PHY, operating in PCIe mode.  To allow
+> > > that PHY to be used for USB, the calibration step is performed by
+> > > the PHY driver automatically at probe time.  Once this step is done,
+> > > the PHY can be used for either PCIe or USB.
+> > > 
+> > > Version 2 of this series incorporates suggestions made during the
+> > > review of version 1.  Specific highlights are detailed below.
+> > 
+> > With the issues mentioned in patch 4 fixed, this patchset works fine for
+> > me. That said I had to disable ASPM by passing pcie_aspm=off on the
+> > command line, as it is now enabled by default since 6.18-rc1 [1]. At
+> > this stage, I am not sure if it is an issue with my NVME drive or an
+> > issue with the controller.
+> 
+> Can you describe what symptoms you had that required you to pass
+> "pcie_aspm=off" on the kernel command line?
+> 
+> I see these lines in my boot log related to ASPM (and added by
+> the commit you link to), for both pcie1 and pcie2:
+> 
+>   pci 0000:01:00.0: ASPM: DT platform, enabling L0s-up L0s-dw L1 AS
+> PM-L1.1 ASPM-L1.2 PCI-PM-L1.1 PCI-PM-L1.2
+>   pci 0000:01:00.0: ASPM: DT platform, enabling ClockPM
+> 
+>   . . .
+> 
+>   nvme nvme0: pci function 0000:01:00.0
+>   nvme 0000:01:00.0: enabling device (0000 -> 0002)
+>   nvme nvme0: allocated 64 MiB host memory buffer (16 segments).
+>   nvme nvme0: 8/0/0 default/read/poll queues
+>    nvme0n1: p1
+> 
+> My NVMe drive on pcie1 works correctly.
+>   https://www.crucial.com/ssd/p3/CT1000P3SSD8
+> 
+>   root@bananapif3:~# df /a
+>   Filesystem     1K-blocks     Used Available Use% Mounted on
+>   /dev/nvme0n1p1 960302804 32063304 879385040   4% /a
+>   root@bananapif3:~#
 
-Whole v5 series (including patches 21-23):
-Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com> # tegra20, parallel ca=
-mera
+Sorry for the delay, it took me time to test some more things and 
+different SSDs. First of all I still see the issue with your v3 on top 
+of v6.18-rc3, which includes some fixes for ASPM support [1].
 
-As you seem to have issues with sending a long series over e-mail, I may
-suggest looking at b4 [0] for the future. It automates many boring and
-repetitive tasks in handling a patch series, and also offers a way to send
-e-mails when an SMTP server is problematic e.g. due to limitations in
-e-mails per hour.
+I have tried 3 different SSDs, none of them are working, but the 
+symptoms are different, although all related with ASPM (pcie_aspm=off 
+workarounds the issue).
 
-[0] https://b4.docs.kernel.org
+With a Fox Spirit PM18 SSD (Silicon Motion, Inc. SM2263EN/SM2263XT 
+controller), I do not have more than this:
+[    5.196723] nvme nvme0: pci function 0000:01:00.0
+[    5.198843] nvme 0000:01:00.0: enabling device (0000 -> 0002)
 
-Luca
+With a WD Blue SN570 SSD, I get this:
+[    5.199513] nvme nvme0: pci function 0000:01:00.0
+[    5.201653] nvme 0000:01:00.0: enabling device (0000 -> 0002)
+[    5.270334] nvme nvme0: allocated 32 MiB host memory buffer (8 segments).
+[    5.277624] nvme nvme0: 8/0/0 default/read/poll queues
+[   19.192350] nvme nvme0: using unchecked data buffer
+[   48.108400] nvme nvme0: controller is down; will reset: CSTS=0xffffffff, PCI_STATUS=0x10
+[   48.113885] nvme nvme0: Does your device have a faulty power saving mode enabled?
+[   48.121346] nvme nvme0: Try "nvme_core.default_ps_max_latency_us=0 pcie_aspm=off pcie_port_pm=off" and report a bug
+[   48.176878] nvme0n1: I/O Cmd(0x2) @ LBA 0, 8 blocks, I/O Error (sct 0x3 / sc 0x71) 
+[   48.181926] I/O error, dev nvme0n1, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   48.243670] nvme 0000:01:00.0: enabling device (0000 -> 0002)
+[   48.246914] nvme nvme0: Disabling device after reset failure: -19
+[   48.280495] Buffer I/O error on dev nvme0n1, logical block 0, async page read
 
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+
+Finally with a PNY CS1030 SSD (Phison PS5015-E15 controller), I get this:
+[    5.215631] nvme nvme0: pci function 0000:01:00.0
+[    5.220435] nvme 0000:01:00.0: enabling device (0000 -> 0002)
+[    5.329565] nvme nvme0: allocated 64 MiB host memory buffer (16 segments).
+[   66.540485] nvme nvme0: I/O tag 28 (401c) QID 0 timeout, disable controller
+[   66.585245] nvme 0000:01:00.0: probe with driver nvme failed with error -4
+
+Note that I also tested this latest SSD on a VisionFive 2 board with exactly
+the same kernel (I just moved the SSD and booted), and it works fine with ASPM
+enabled (confirmed with lspci).
+
+> I basically want to know if there's something I should do with this
+> driver to address this.  (Mani, can you explain?)
+
+I am not sure on my side how to debug that. What I know is that it is 
+linked to ASPM L1, L0 works fine. In other words the SSDs work fine with 
+this patch:
+
+diff --git a/drivers/pci/pcie/aspm.c b/drivers/pci/pcie/aspm.c
+index 79b9651584737..1a134ec68b591 100644
+--- a/drivers/pci/pcie/aspm.c
++++ b/drivers/pci/pcie/aspm.c
+@@ -801,8 +801,8 @@ static void pcie_aspm_override_default_link_state(struct pcie_link_state *link)
+ 	if (of_have_populated_dt()) {
+ 		if (link->aspm_support & PCIE_LINK_STATE_L0S)
+ 			link->aspm_default |= PCIE_LINK_STATE_L0S;
+-		if (link->aspm_support & PCIE_LINK_STATE_L1)
+-			link->aspm_default |= PCIE_LINK_STATE_L1;
++//		if (link->aspm_support & PCIE_LINK_STATE_L1)
++//			link->aspm_default |= PCIE_LINK_STATE_L1;
+ 		override = link->aspm_default & ~link->aspm_enabled;
+ 		if (override)
+ 			pci_info(pdev, "ASPM: default states%s%s\n",
+
+I can test more things if needed, but I don't know where to start.
+
+Regards
+Aurelien
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=df5192d9bb0e38bf831fb93e8026e346aa017ca8
+
+-- 
+Aurelien Jarno                          GPG: 4096R/1DDD8C9B
+aurelien@aurel32.net                     http://aurel32.net
 
