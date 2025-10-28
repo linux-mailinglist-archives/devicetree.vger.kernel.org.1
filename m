@@ -1,60 +1,88 @@
-Return-Path: <devicetree+bounces-232285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id F007AC1614D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 18:14:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B409C161CC
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 18:21:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B36754E7BF3
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 17:14:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C56B1A64545
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 17:20:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BA1034AB0B;
-	Tue, 28 Oct 2025 17:13:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2FD134AAE3;
+	Tue, 28 Oct 2025 17:20:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GHWgETQ1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rW1MW/YY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59A7234321B;
-	Tue, 28 Oct 2025 17:13:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5EC8332ED7
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 17:20:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761671614; cv=none; b=EvOMDtgS5X0tiCCAQucb0/fXgzZzz+HgKeF0ybXeUXU71icwWSuH7Q2VzTrJV2Mzz9ntwC9vFxTVGgtzrGJmk/BaizMdJ055Y6jiRI8K5581BgkAbrq11unO5KnPXJcCas5kv+2T9HlZO1EUconzNT8YB0d31oEFsiYpO3HIhc0=
+	t=1761672020; cv=none; b=VU+okiLC9zJNsxEJBDuBkqW2dGr42TBDWl/eAqLmcDb2zardG9u3ArZhz4hRhH3dkVgRVOBXkfFbdPSfhUelJxJt4k+ahMfoR2wxtwColG+NMNfj0bhQNsLGWZsi9CaoCN+K0AM8CQ89NjP43Lq2j+wcqHf3Pq5Zc0ndpXrfhI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761671614; c=relaxed/simple;
-	bh=+cenkb0yL5U6fkb9PXEJLOZBBfbIw/K5JcCnxUVgehI=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=B315AAY8RW3CzJNNTcI7jrQftfdSb3ZKK5CwS3lwldZA4XvAO9crSJ7xZ9Yo+ra9p8IprJy/5F/n9GUQYc0UE+/d5Eap4SRewRQuLdSHAIUJsQbi0p4W10xk8Xqiq5iaaFtDtPR2RCG051LXD8Xd/skABKtfUAq6IDPn+Cc55cw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GHWgETQ1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B658BC4CEE7;
-	Tue, 28 Oct 2025 17:13:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761671611;
-	bh=+cenkb0yL5U6fkb9PXEJLOZBBfbIw/K5JcCnxUVgehI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=GHWgETQ1RNiG4NgBjVLnhJH9atMiVJdloWNMv11jPg99tyK+rmBwAzqK9hTb4gVhT
-	 2ZtFnJKwxLI4s2Q1P8yhoci5coU0j5l4vn2zCzKepsIfscxlIj7Zu5fXo/n3/KWGIz
-	 hHMqKbrGfsuMHEa9JXdVniJNLDuD3aTag4FRYpY8MZC7Tdt+1tj5Isr/dt42Ncc8NJ
-	 sH4jdipg5MKIr6H7mirxdjLBByUiKYKRocaUoLgV9TRC+GCZAmUas2q83NjwZJ561i
-	 7CYd2BuJMIACVxarC+376c/AlA60uR1HFbp6n2bx39j1c/IyYibnP+f7s04InfotSN
-	 hUMwQm5MxpCww==
-Date: Tue, 28 Oct 2025 12:13:30 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
-	robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
-	vkoul@kernel.org, kishon@kernel.org, linus.walleij@linaro.org,
-	p.zabel@pengutronix.de, linux-aspeed@lists.ozlabs.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, openbmc@lists.ozlabs.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v4 8/9] PCI: aspeed: Add ASPEED PCIe RC driver
-Message-ID: <20251028171330.GA1506282@bhelgaas>
+	s=arc-20240116; t=1761672020; c=relaxed/simple;
+	bh=ne+oS5H6z7JHWav73oVglAywE3vtySrxSDIgfblNIW4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z/O8GTvx4ChmeGAgR3+oz/vQkQi4STC+7NCxEU4hnh78ouYEIZpRt7J3JIyg/ewtly/76Yx2m4g7wXkdiUbmtlm/CvAoOQoCaRoP138WNFa2popJn6cQ8kDxNJ20ZmgyzFM/GgW3FXtsBcuxb/t4zTTrBz68kj1Si1Zt/VAlrZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rW1MW/YY; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3ee15b5435bso4705552f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 10:20:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761672016; x=1762276816; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=uFNR+yqQDNKQ0KUWuXjjm3zqWjAn6Hk7JWkoBuP7tog=;
+        b=rW1MW/YYiUVs7KqNWW5S/wzwzAjVgMFN72mwu1dgDqGdZjwXhMNiqXeP/EmrrhJHvx
+         ln1GVWiGYgqr0QGP/M0sS/cSneBYSd+Gu23MEM5bPZmG+YSiZvv4SU84un9Q9fE5pICB
+         QCp5d3CZ6C6wdRdm8tOhQBjjD0raXvWio7Crl9gyRzuYVMoPaXeHskjP25K0SJ/jQwI6
+         R38AQwmt59slAd3ge7LO1B023I0INudwQGHxSgMtMOv+qlazbsvM1s+VMRSiATZTf5eP
+         Xix123DVpvLOdf/3y2pB8Zpf1Yds11RgsTxu3ta5HbKR0ZvX2z/gAfl3ECrcSKO1iZan
+         7hww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761672016; x=1762276816;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uFNR+yqQDNKQ0KUWuXjjm3zqWjAn6Hk7JWkoBuP7tog=;
+        b=eYhtNMd8muKqjP/TqBj7vYi9SxgEyIAuKuwn2smDFWVzJqCKxyVvAWR71FeLcuC9nS
+         yzXoYtNEPR+V3gHWtIbsPVutrm0TdTCHvw8mk9SEHpKBl/UWgh+VdQlIxY1CFPNrbDpq
+         GpJbTwil/D1nhvwIyMYuCvJykWImtk8gwnofvAMN5Ko8Q56ntSuTDbQn80m0RNIGWOTT
+         8U+dR30AMkOxdRHmL2qK+ikfCZG/dQBjoYMTrhdujsU3y9p/c6eI5fFIhJ5ogmKCYLfW
+         ox8bOul1T7Og7hnLwReUEE24y4zPRiovFgcZX5G4Qw+t2FbP4kSASNNc0bdYt+DATf5k
+         OkIw==
+X-Forwarded-Encrypted: i=1; AJvYcCVBjEdl9/bVo3xrSBdDXMlacFMX4n7HVaKhQVUyNarsLb7f2xeiShsKWwWpE7hR63AYr2tbXfXESWRz@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyw4aqo5Tyb7wcP+tjxfpBkaFDjMQp+5nsPsq7+b+vxDp6JCSpK
+	YoTQ75C+R8RXKUsdK+7Xwj43MkDA2LMcWeQVGBlOjRpRi+qrdowY+G6M2U1CcUiVvN8=
+X-Gm-Gg: ASbGncvO0m9CTNc/LiUoTwOGikJAAXOA5QzijdRLtmbkmGnppgFmZw+jL+OOEHLyaE0
+	AUEfECU1/2Qcuo/bJsr05vYbpTG94RVSvOl/2Cw2p/Gn6TNbwnYz2v4xL6NAoY40b0QuY8BCLUR
+	pa6870h2fnmgJLClkktBbJf2K0JxuZ+RSQ7rcr0V9XE/N+kINmD3NqM9kEemz66kW69c65eMTN8
+	ZN+jlqotfF6BBRFjV5VD9OW3yRkD8L1OzyakDbqCcur9gvw5SMZSStJILx6US6w6+NRFxZiAhbs
+	6e/DW28Afv1kLyuO74T/cTnNvtR3lvYsQ7un/atyaIZR8hFScqwKbFegjpfxRRjHjQAFL/qz20h
+	U7sKynLC9IxmP6AZQvwQNOUH/N0fgZROH/Zb9FPSJGgB6s93wF+X/rNIkXL3Emi1sjiuSDRyR
+X-Google-Smtp-Source: AGHT+IHcdJ1fq9ADGcrcW4ZZKZhaA9eWlkrpV7+uDO6SDMKBeox7ZwKnGdmhFMB9LLUGwuioqWc7tw==
+X-Received: by 2002:a05:6000:2c05:b0:428:4354:aa36 with SMTP id ffacd0b85a97d-429a7e919f2mr3775348f8f.58.1761672015770;
+        Tue, 28 Oct 2025 10:20:15 -0700 (PDT)
+Received: from linaro.org ([86.121.7.169])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429952db99asm21844711f8f.32.2025.10.28.10.20.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Oct 2025 10:20:14 -0700 (PDT)
+Date: Tue, 28 Oct 2025 19:20:13 +0200
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] soc: qcom: pmic_glink: Add charger PDR service
+ path and service name to client data
+Message-ID: <5uyhz4uv7ccsj7cevimqrsoywne6f5ax5j2t4uosz6a7due4ac@3x4ouutt5nwy>
+References: <20251027212250.3847537-1-anjelique.melendez@oss.qualcomm.com>
+ <20251027212250.3847537-3-anjelique.melendez@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,113 +91,116 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251027095825.181161-9-jacky_chou@aspeedtech.com>
+In-Reply-To: <20251027212250.3847537-3-anjelique.melendez@oss.qualcomm.com>
 
-On Mon, Oct 27, 2025 at 05:58:24PM +0800, Jacky Chou wrote:
-> Introduce PCIe Root Complex driver for ASPEED SoCs. Support RC
-> initialization, reset, clock, IRQ domain, and MSI domain setup.
-> Implement platform-specific setup and register configuration for
-> ASPEED. And provide PCI config space read/write and INTx/MSI
-> interrupt handling.
-
-> +config PCIE_ASPEED
-> +	bool "ASPEED PCIe controller"
-> +	depends on ARCH_ASPEED || COMPILE_TEST
-> +	depends on OF
-> +	depends on PCI_MSI
-> +	select IRQ_MSI_LIB
-> +	help
-> +	  Enable this option to support the PCIe controller found on ASPEED
-> +	  SoCs.
+On 25-10-27 14:22:50, Anjelique Melendez wrote:
+> Currently, the charger PD service path and service name are hard coded
+> however these paths are not guaranteed to be the same between PMICs. For
+> example, on Kaanapali and Glymur, Charger FW runs on SOCCP(another subsystem)
+> which does not have any specific charger PDs defined.
+> 
+> Define charger PDR service path and service name as client data so that
+> each PMIC generation can properly define these paths.
+> 
+> While at it, add the qcom,kaanapali-pmic-glink and
+> qcom,glymur-pmic-glink compatible strings.
+> 
+> Signed-off-by: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
+> ---
+>  drivers/soc/qcom/pmic_glink.c | 66 ++++++++++++++++++++++-------------
+>  1 file changed, 42 insertions(+), 24 deletions(-)
+> 
+> diff --git a/drivers/soc/qcom/pmic_glink.c b/drivers/soc/qcom/pmic_glink.c
+> index c0a4be5df926..aa5ba9a0285e 100644
+> --- a/drivers/soc/qcom/pmic_glink.c
+> +++ b/drivers/soc/qcom/pmic_glink.c
+> @@ -23,13 +23,19 @@ enum {
+>  	PMIC_GLINK_CLIENT_UCSI,
+>  };
+>  
+> +struct pmic_glink_data {
+> +	unsigned long	client_mask;
+> +	char		*charger_pdr_service_name;
+> +	char		*charger_pdr_service_path;
+> +};
 > +
-> +	  This driver provides initialization and management for PCIe
-> +	  Root Complex functionality, including interrupt and MSI support.
-
-Maybe "INTx and MSI support", since MSI is an interrupt?
-
-> +/* Complete status */
-
-"Completion"
-
-> +static int aspeed_ast2700_ahb_remap_to_bar(struct aspeed_pcie *pcie)
-> +{
-> +	struct resource_entry *win, *tmp;
-> +	struct pci_host_bridge *bridge = pcie->host;
-> +
-> +	/* Configure AHB remapping to BAR on AST27x0.
-> +	 * The BAR region is HW-fixed in AST27x0, these BARs will be filled
-> +	 * in the ranges of pcie node in DT.
-> +	 */
-
-I don't understand what "HW-fixed" means here.  It looks like you're
-writing host bridge window addresses (that came from DT) to the
-hardware.  That sounds like they're not actually "fixed" but
-programmable.
-
-Host bridge windows are not BARs themselves.  Mem space for devices
-below the host bridge is allocated from the windows, and the addresses
-are programmed into BARs of those downstream devices.
-
-Multi-line comment style:
-
-  /*
-   * Configure ...
-   */
-
-Wrap to fill 78 columns, or add blank lines between paragraphs.
-
-> +	resource_list_for_each_entry_safe(win, tmp, &bridge->windows) {
-> +		struct resource *res = win->res;
-> +
-> +		if (resource_type(res) == IORESOURCE_MEM &&
-> +		    !(res->flags & IORESOURCE_MEM_64)) {
-> +			writel(ASPEED_REMAP_BAR_BASE(res->start),
-> +			       pcie->reg + ASPEED_H2X_REMAP_DIRECT_ADDR);
-> +			return 0;
+>  struct pmic_glink {
+>  	struct device *dev;
+>  	struct pdr_handle *pdr;
+>  
+>  	struct rpmsg_endpoint *ept;
+>  
+> -	unsigned long client_mask;
+> +	const struct pmic_glink_data *data;
+>  
+>  	struct auxiliary_device altmode_aux;
+>  	struct auxiliary_device ps_aux;
+> @@ -285,7 +291,6 @@ static struct rpmsg_driver pmic_glink_rpmsg_driver = {
+>  
+>  static int pmic_glink_probe(struct platform_device *pdev)
+>  {
+> -	const unsigned long *match_data;
+>  	struct pdr_service *service;
+>  	struct pmic_glink *pg;
+>  	int ret;
+> @@ -302,12 +307,10 @@ static int pmic_glink_probe(struct platform_device *pdev)
+>  	spin_lock_init(&pg->client_lock);
+>  	mutex_init(&pg->state_lock);
+>  
+> -	match_data = (unsigned long *)of_device_get_match_data(&pdev->dev);
+> -	if (!match_data)
+> +	pg->data = of_device_get_match_data(&pdev->dev);
+> +	if (!pg->data)
+>  		return -EINVAL;
+>  
+> -	pg->client_mask = *match_data;
+> -
+>  	pg->pdr = pdr_handle_alloc(pmic_glink_pdr_callback, pg);
+>  	if (IS_ERR(pg->pdr)) {
+>  		ret = dev_err_probe(&pdev->dev, PTR_ERR(pg->pdr),
+> @@ -315,27 +318,30 @@ static int pmic_glink_probe(struct platform_device *pdev)
+>  		return ret;
+>  	}
+>  
+> -	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI)) {
+> +	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI)) {
+>  		ret = pmic_glink_add_aux_device(pg, &pg->ucsi_aux, "ucsi");
+>  		if (ret)
+>  			goto out_release_pdr_handle;
+>  	}
+> -	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE)) {
+> +	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE)) {
+>  		ret = pmic_glink_add_aux_device(pg, &pg->altmode_aux, "altmode");
+>  		if (ret)
+>  			goto out_release_ucsi_aux;
+>  	}
+> -	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_BATT)) {
+> +	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_BATT)) {
+>  		ret = pmic_glink_add_aux_device(pg, &pg->ps_aux, "power-supply");
+>  		if (ret)
+>  			goto out_release_altmode_aux;
+>  	}
+>  
+> -	service = pdr_add_lookup(pg->pdr, "tms/servreg", "msm/adsp/charger_pd");
+> -	if (IS_ERR(service)) {
+> -		ret = dev_err_probe(&pdev->dev, PTR_ERR(service),
+> -				    "failed adding pdr lookup for charger_pd\n");
+> -		goto out_release_aux_devices;
+> +	if (pg->data->charger_pdr_service_name && pg->data->charger_pdr_service_path) {
+> +		service = pdr_add_lookup(pg->pdr, pg->data->charger_pdr_service_name,
+> +					 pg->data->charger_pdr_service_path);
+> +		if (IS_ERR(service)) {
+> +			ret = dev_err_probe(&pdev->dev, PTR_ERR(service),
+> +					    "failed adding pdr lookup for charger_pd\n");
+> +			goto out_release_aux_devices;
 > +		}
-> +	}
-> +
-> +	return -ENODEV;
-> +}
-> +
-> +static int aspeed_ast2700_setup(struct platform_device *pdev)
-> +{
-> +	struct aspeed_pcie *pcie = platform_get_drvdata(pdev);
-> +	struct device *dev = pcie->dev;
-> +	int ret;
-> +
-> +	pcie->cfg = syscon_regmap_lookup_by_phandle(dev->of_node,
-> +						    "aspeed,pciecfg");
-> +	if (IS_ERR(pcie->cfg))
-> +		return dev_err_probe(dev, PTR_ERR(pcie->cfg),
-> +				     "failed to map pciecfg base\n");
-> +
-> +	regmap_update_bits(pcie->cfg, ASPEED_SCU_60,
-> +			   ASPEED_RC_E2M_PATH_EN | ASPEED_RC_H2XS_PATH_EN |
-> +			   ASPEED_RC_H2XD_PATH_EN | ASPEED_RC_H2XX_PATH_EN |
-> +			   ASPEED_RC_UPSTREAM_MEM_EN,
-> +			   ASPEED_RC_E2M_PATH_EN | ASPEED_RC_H2XS_PATH_EN |
-> +			   ASPEED_RC_H2XD_PATH_EN | ASPEED_RC_H2XX_PATH_EN |
-> +			   ASPEED_RC_UPSTREAM_MEM_EN);
-> +	regmap_write(pcie->cfg, ASPEED_SCU_64,
-> +		     ASPEED_RC0_DECODE_DMA_BASE(0) |
-> +		     ASPEED_RC0_DECODE_DMA_LIMIT(0xff) |
-> +		     ASPEED_RC1_DECODE_DMA_BASE(0) |
-> +		     ASPEED_RC1_DECODE_DMA_LIMIT(0xff));
-> +	regmap_write(pcie->cfg, ASPEED_SCU_70, ASPEED_DISABLE_EP_FUNC);
-> +
-> +	aspeed_host_reset(pcie);
-> +
-> +	writel(0, pcie->reg + ASPEED_H2X_CTRL);
-> +	writel(ASPEED_H2X_BRIDGE_EN | ASPEED_H2X_BRIDGE_DIRECT_EN,
-> +	       pcie->reg + ASPEED_H2X_CTRL);
-> +
-> +	ret = aspeed_ast2700_ahb_remap_to_bar(pcie);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to assign BAR\n");
+>  	}
 
-This is not assigning *BARs*.  A host bridge doesn't have BARs in the
-PCI spec sense.  It might have programmable address ranges, but the
-host bridge is not itself a PCI device, so its programmability is
-device specific.
+But this does nothing on Kaanapali and Glymur. Am I wrong?
+
+Yes, you do not have a charger PD on Glymur, but you do have an ssr,
+for which you do need to register a notifier instead.
+
+You need to be doing something like this:
+https://gitlab.com/Linaro/arm64-laptops/linux/-/commit/2cd84e303d263d8fd5de3730714a16c29cc6788b
 
