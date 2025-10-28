@@ -1,164 +1,137 @@
-Return-Path: <devicetree+bounces-232038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 601E2C13CD1
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:29:16 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37193C13C89
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:26:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 135484F9863
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:25:47 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 937083549FC
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:26:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3CC130275F;
-	Tue, 28 Oct 2025 09:25:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ED083019AD;
+	Tue, 28 Oct 2025 09:25:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CYSLdPWG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gX332T8P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2997F3019C3
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:25:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 409132FE054
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:25:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761643529; cv=none; b=AvPZ8O/cOQ/Am3EWRZSOsltwRvCAisKYP5g7V+crKzDa/rLyb4Ajdb8WV8/gJRAtPIcSujvzJuMxi4AdW1dBsJiDmCJokV+5XphJskf9yD4JxrBzwVLLCSxSNST74bxQXRRszzDKrnVb+koktJumLXIKt+8wH3lgiWV5qqpsVz0=
+	t=1761643538; cv=none; b=LYoY5Chz/wfybOFBcKblQv9vjiAX/3W6mnz5FHDSLptibv9HSArWuOI1Km3SV154b9QlY4Q5ZihcfqPmmUq/mmyQYLqY7t9nJWC4l3APQdoxldT6l98THnGlF0aJw2+V7sdQ51vROF/rmhfb0KexDAgR5x4YOcltu/3yKemKF6I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761643529; c=relaxed/simple;
-	bh=GWMNhDtLv/kDpAWcmDnXHJG+taWjdcCA7zBj1ocUvUI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n7I3Em1swiCMFxrCxxC0Q0CRI2rcAxc0+slNgIKzZ0B4cO5QMYtY58pzY3WG6KFlq7pYJBIL86sdeZdvhg4afwUb8afpQsC2HbFF7miihqFkvIgig3RrnIvd9CgtprsuACrTA45C6YUWSzBGKOBlpPbnIENuNY0ycWldgxRohX4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CYSLdPWG; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59S3gYe23165297
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:25:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	8SK5QLPQR+xhdHyxzgW1kiyNV5P22KYcA2/y/XH+b0s=; b=CYSLdPWGLRdpGvdt
-	Fh/1/rEoA9+mGwiBBMbRYHydxOxKli5VyIcvcK/2DKAJ93n9ksPJoVgFEpsL0bDI
-	VwzmyCTukdBWOm8cxTNe3FPQ0hNjRqB0T5CunEuiZhCWEm+qu2nupIOeCsoW8206
-	s6yvfs1pKJcPkXGDquM0tel6h6AsZIEa0uXdU2sz+62qoGQP48XGfhaa8tSxCOul
-	3hf20+ji0bjjNPZ20dFMP6itV4zYMFFYPsdWXCSEC2LndFzLMXfDJyRc1hLGCMXy
-	DgsafTBAYHyoy6kSheajmKz+vtr8767LaNr4f/MDD4U7WhmRexo3W4SNpGIoI7qF
-	cfXdRQ==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a2bwx2nvy-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:25:26 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-87c0e043c87so16925076d6.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 02:25:26 -0700 (PDT)
+	s=arc-20240116; t=1761643538; c=relaxed/simple;
+	bh=/Iii+N1pB+IX8ozivJEIczKINrVHiSyEufjWtYoS9l0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=i81j0+J7Goq1wm9dQ3Zk3X2JeiJyqkFSUQCVIC6orr/xWw0nhypqomF77jbkJObUsP228IWo5VFRVICOllybTGFECPncjt4y/J5bzmyXwcgVnuo8YSV9YdzHPmnOuw6dcm5S0u/P+fRPEnoCEacDlwEQbPuS3dW/A/vBtExCpNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gX332T8P; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-42421b1514fso4031660f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 02:25:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761643535; x=1762248335; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eAEySv2XWlwHuqdOI9fzzrs359mLloz83GdyEXxt2mU=;
+        b=gX332T8P5aM33tKcdtBbI+kbhYvc+VvpvHoy68n3pCyd1VQXx8CFjdOJX0fs3tyjMP
+         I6DK9D7rxBevhg4tJTo83L/DtnoQGgqkJPXz031eq0WzlyRnYTDsOOoNZnv8AYIPgNTQ
+         dWjKJsw5epuhjco3d1G1S+pIDmV/eBeZjk6gkIt5LTcdr15UcT9qQM6vSKnxuzR7nn+W
+         ksFAj2hLeA+zVlUOOUN5e3vbxBkpCaf/BKNyt10oBfZiIRoXKih0oYcQvq5iJ61q31lD
+         d6eKu/Y0feK4iK4grTBoBo8fWIVTjWJbbHgWarUHSZh5jZVG0C8h5ygC0SewEMKEIP9d
+         l/bA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761643526; x=1762248326;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8SK5QLPQR+xhdHyxzgW1kiyNV5P22KYcA2/y/XH+b0s=;
-        b=ae33T7QCOMr/cDiWDQDFH9PAVnCJdj3WXP5vpHpwK3KKLZCc+A0aI4kwY0nisurBWB
-         m7hZqk1OU1B5sMHgZ2VidQqGP9FWs3iFHMAw9I4p49wJ5xfKCRYU+JmtXe+MMY+RNusX
-         3dYpQ4vxBvCAT5dj2cDc2QXDDcmuiknXFCTJm/apIeLtf9qxzTtD25GW/TB20DmNCg+c
-         TjJGD9RBjKTFuDR3ukAcILa66lJoAzeKjJDK1+xgJPWnpE8PlHvdkjohDPwCiDrhYKkq
-         yJbZnsVsUbmjstX7upDtD8lEhiWzLL3TX8+nu1yQGMvFnBQRNR4lAzPA1ebdfdrFWxct
-         Js8A==
-X-Forwarded-Encrypted: i=1; AJvYcCW59I9Vlm/fcY0iEIpSZYDr0+VDQeWgwRT3Sm656wSIItyMa+iyZZXLa8/vcCC3Sr3RQNfnFKBocw2E@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTYOexrbjMy5BJg/Dxmea6l0+2d+oX7sC2ShJ6+hIY+vuYapDH
-	IoY9f7ZZpdt/4xZOjhOlnXnwbwcp1L/uIu5fMDtI9NLAIZDb0h84CfUiEyNs0ankNJc1hBFyM95
-	dtXVF6k0rO/b69SmJJege5slDAd/MnzRLOsfBb9iM43OKlLN00ZrMTbaBP/oYfACNwFfMmeDZ
-X-Gm-Gg: ASbGnctsCoMz2B6bgehcsEpO98sZu/2pK07LJfsPeZ5QsjgDb6ncAnsBet6axVjClc1
-	WkAeXSws1NdxRs1t3Bk7popT1FrPeUyxhcadmDICZGP0lAJrDA7z9my2+RHBp09J2dL7WUYhG+D
-	MC9jy1Glw3Y4AhOgSwScApJeMfWx1+sU8QX1zHxzI+bBOOKqFqJcdy6rXeqCco8i5h5UdjxOvrF
-	ShkHi8h2lY4tb6S3ixiuPhW0Oh9+deBmqUzkl4ZlHUyEh7E+EMOAWQAKrQ1JWDqh2bLrZLn0I5k
-	zJI7w65JRnIln9XApLIysOWxVbV6Fw+hOi4df2ASAD6ZXk0AW/Bo3BsMkROMnlKV5NgujF4GPS9
-	tg0bgnwgr/QdjPdwpIDSEtxDdmGlP3tZ7pn4QYcegAiJQnq4BkR+hTz3k
-X-Received: by 2002:a05:6214:2521:b0:87c:2bf5:550e with SMTP id 6a1803df08f44-87ffb104bc4mr21876446d6.6.1761643526294;
-        Tue, 28 Oct 2025 02:25:26 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGi2+KT3Y8I/PL2gLm/2ohFliLpxgVh/WSkJ9F7uM911mGlAp973XdDMSrBXCrX0aCtRxDW6w==
-X-Received: by 2002:a05:6214:2521:b0:87c:2bf5:550e with SMTP id 6a1803df08f44-87ffb104bc4mr21876316d6.6.1761643525878;
-        Tue, 28 Oct 2025 02:25:25 -0700 (PDT)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d8535974asm1013525866b.25.2025.10.28.02.25.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Oct 2025 02:25:25 -0700 (PDT)
-Message-ID: <d05fe82a-640f-4a09-9d83-39bb5aff179d@oss.qualcomm.com>
-Date: Tue, 28 Oct 2025 10:25:23 +0100
+        d=1e100.net; s=20230601; t=1761643535; x=1762248335;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eAEySv2XWlwHuqdOI9fzzrs359mLloz83GdyEXxt2mU=;
+        b=W+ZMRoKXB7P4GkZ96QIcXPbCdp/MqwvV/Fq3f5mO3mumr9rbFXgs44RHL9DDT1ILMw
+         GyX4eb19mAjLdLQv+1S9nyMg92IOarVIXZpZhJps0hn5H9Q05t4JRe9k1i5ElqCMzYxh
+         tonTKkaP7tDlxWV9VPt6alNNt7RWNkZdtvCeyt2MQaoxGfw6lY5U0zz32O556PVvCImE
+         z29lTmtKA90T7Xgw5Id+3mG+D+ZPuWzHQgwj3ggzR7yDPoH9Xl8mqE2fmhLEuxGQyeQJ
+         qAK0sw2Cf3vMOaMK2JtqoSBo6PupdoB/2IB1Se9uDuclbyXXV4bDjRz4sG/OhYt6k9Qa
+         PlNg==
+X-Gm-Message-State: AOJu0YwsVm9VvGSRtfarJ2OSFuUXRY9cUV2ZnWBqzpSQA2TjQ16sSoxZ
+	BC09cGuwFE0Ve4X94Uc0ik5eNSDRdu6rYy/lOyAuXd2vURun4rJRp6R1
+X-Gm-Gg: ASbGncs156uJLk/yXo/Uotpx8+SelyW2MgbXcLjvUHo6TDiu4tla25ShNFCFzFUasLY
+	d8tzO6mJGS9/hi2y35Wj/ZkiU+ecvEMdtwOzPdvXPdFduuF4kvjoWfRU7eHnUs9Hc+ytqBKu3bq
+	wFewAbWN4yU3qiZqsABC3a21ts5sijaC6MdwzvVyOFmAxWsZzMqF+Bx6w8fGs/wzV+7xkWXsGbX
+	yTs2C8ZncdM9CoQOJ+AnIXKJfD9BCx41Qb1QX6DcZGelaS4MsN1FFf+rHaWMxTMiODmPAGLMU+W
+	wZ5Iu/d334JTD40rDLJPQss8QNTjtv8su4qsUJ7BMXSDnnCRa0p8sHJIkXhnuJNfyFwh8C9c4nu
+	MWp9zNz50nYfksgnr6qDo94JeuoKz4i7qrAINn1blZEseonq44cZHjG/nP6qX9fenVBk=
+X-Google-Smtp-Source: AGHT+IF3+1mOM9sG24twLPTOS4d6Ytk3inqVnLJlDJGYU4qNs2J8zRECxVSlGJ/pgP5nQ5QB1eWkjw==
+X-Received: by 2002:a5d:5886:0:b0:428:3cff:3240 with SMTP id ffacd0b85a97d-429a7e36fccmr1692146f8f.1.1761643535448;
+        Tue, 28 Oct 2025 02:25:35 -0700 (PDT)
+Received: from xeon.. ([188.163.112.61])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429952df5c9sm19231079f8f.41.2025.10.28.02.25.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Oct 2025 02:25:34 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Thierry Reding <treding@nvidia.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Svyatoslav Ryhel <clamor95@gmail.com>,
+	Ion Agorria <ion@agorria.com>
+Cc: devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/1 RESEND] ARM: tegra: add support for Xiaomi Mi Pad (A0101)
+Date: Tue, 28 Oct 2025 11:25:25 +0200
+Message-ID: <20251028092526.7349-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/1] arm64: dts: qcom: talos-evk: Add support for
- dual-channel LVDS panel
-To: Sudarshan Shetty <tessolveupstream@gmail.com>, andersson@kernel.org,
-        konradybcio@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20251028061636.724667-1-tessolveupstream@gmail.com>
- <20251028061636.724667-2-tessolveupstream@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251028061636.724667-2-tessolveupstream@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI4MDA3OSBTYWx0ZWRfX1L8DbU2cm+vW
- JOemetIyh7sb29S8ZgIQDIA8r5HnFxT6SzYwjGrWHX11gtUCOpCcEJDkpIn2ue3bIpuqqLrEAuY
- tRTpsKZbNQTqK/1bp5vM8QxSQKA4tYN0ctCvxoOu5iJ4zROHJUqtAIz3e97PHCOdvwsXrkSqy24
- DlbZ0Oyya2Lvgqhh36SuFwRMfcMvMFJrCrQv0uIELmssuvlfqekKr94849PxzE/oRIkvUIohLC7
- OBZUdENeSLDiI98fNE4jOPN55fcGqQryStkHyNZxqurq+YlgbeoOHx9M8bHzwzLP92Wenc/uBYF
- VtGtxxc/HzDe2Oh9IrYcLHKll296XPRk1kAXbBd50SWt7H5CAtXvn1zuZh4bUCGN+mpguFEAfpY
- ojBzfSLT8ahyirxH7/lUVVuhDh2z7g==
-X-Proofpoint-ORIG-GUID: YWEQ8zltoFGrImAweMhiAhXp0nSd44vX
-X-Authority-Analysis: v=2.4 cv=U9WfzOru c=1 sm=1 tr=0 ts=69008c07 cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=pGLkceISAAAA:8 a=QuCLnqFj5nzKUXK4Y7gA:9 a=QEXdDO2ut3YA:10
- a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-GUID: YWEQ8zltoFGrImAweMhiAhXp0nSd44vX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-28_03,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 impostorscore=0 bulkscore=0 clxscore=1015 malwarescore=0
- lowpriorityscore=0 priorityscore=1501 spamscore=0 suspectscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510020000 definitions=main-2510280079
+Content-Transfer-Encoding: 8bit
 
-On 10/28/25 7:16 AM, Sudarshan Shetty wrote:
-> This patch introduces a new device tree for the QCS615 Talos
-> EVK platform with dual-channel LVDS display support.
-> 
-> The new DTS file (`talos-evk-lvds.dts`) is based on the existing
-> `talos-evk.dts` and extends it to enable a dual-channel LVDS display
-> configuration using the TI SN65DSI84 DSI-to-LVDS bridge.
-> 
-> where channel-A carries odd pixel and channel-B carries even pixel
-> on the QCS615 talos evk platform.
-> 
-> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
-> ---
+The Mi Pad is a tablet computer based on Nvidia Tegra K1 SoC which
+originally ran the Android operating system. The Mi Pad has a 7.9" IPS
+display with 1536 x 2048 (324 ppi) resolution. 2 GB of RAM and 16/64 GB of
+internal memory that can be supplemented with a microSDXC card giving up
+to 128 GB of additional storage.
 
-[...]
+This patchset includes some schema changes not yet applied. They can be
+found here:
+- https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250909143432.121323-2-clamor95@gmail.com/
+- https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250912065146.28059-2-clamor95@gmail.com/
+- https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250912064253.26346-2-clamor95@gmail.com/
 
-> +	backlight: backlight {
-> +		compatible = "gpio-backlight";
-> +		gpios = <&tlmm 115 GPIO_ACTIVE_HIGH>;
-> +		default-on;
-> +	};
-> +
-> +	lcd0_pwm_en {
+UPD: patchsets above were accepted
 
-Use hyphens instead of underscores in node names
+---
+Changes in v2:
+- added fuel gauge interrupt
+- added CE gpio for charger
+- removed always-on for vdd_gpu
+- improved pinmux configuration
+- added camera regulators
+- removed usb@70090000 (already disabled in common tree)
+- set correct modes for mmc devices
+- removed thermistor thermal zone (not used by mocha)
+- fixed pmc interrupt polarity (removed interrupt inverted prop)
+- configured OTG support
+- removed bluetooth reset-gpios
+---
 
-> +		compatible = "pwm-gpio";
-> +		gpios = <&tlmm 59 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-0 = <&lcd0_bklt_pwm>;
+Svyatoslav Ryhel (1):
+  ARM: tegra: add device-tree for Xiaomi Mi Pad (A0101)
 
-I think your intention was to use pwm-backlight and wire this node
-up to that
+ arch/arm/boot/dts/nvidia/Makefile             |    3 +-
+ .../boot/dts/nvidia/tegra124-xiaomi-mocha.dts | 2790 +++++++++++++++++
+ 2 files changed, 2792 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/nvidia/tegra124-xiaomi-mocha.dts
 
-Konrad
+-- 
+2.48.1
+
 
