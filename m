@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-231977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27ECEC1363E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 08:55:11 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1480CC136A5
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:00:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 162A8567657
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 07:54:20 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3F92D4F0581
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 07:59:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7407429A9C9;
-	Tue, 28 Oct 2025 07:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 094812D5C61;
+	Tue, 28 Oct 2025 07:59:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ijJWElmD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JtvVYmhE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4897F7405A;
-	Tue, 28 Oct 2025 07:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFC8E2D46CE;
+	Tue, 28 Oct 2025 07:59:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761638054; cv=none; b=Md6zo1kcvT+/xSjR9Wq2D8fg+3u0bLrPkM589DpqRu1W9/5IughUeGkwRoJv899EKZuCAlRpI3+MXepXBrEoecIbyVKfaKrclkFzmGf65VLTovVkBq7FHo/mvTeip48/cWeEvV4MbY0S1/KGGKBIcHeGs3wgMnvOQF+ii0x+PpQ=
+	t=1761638385; cv=none; b=FNoNHzsTRHcNkBZChBuzRKABQ4KbSPQA1YP4YhfQwU/Y5Z2wzNJQRuD0TH/Yh3kmwva30QaJ8UJDN+fks+AyTYhzke+L92VDL2AIgpciEo4Y1n/C27tb7deHgRGR8Nv7ulN5ljnORHGgzF91QZQruLJqvYqTTA4swJG+VOaAygA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761638054; c=relaxed/simple;
-	bh=wUUKO54EgAdTNrG7tEupAzNScrGsxOhihdHV+0Y2eEU=;
+	s=arc-20240116; t=1761638385; c=relaxed/simple;
+	bh=HfhMDobu1SUJQyYm0YX92oqWhBmLIXxHwW9QTp0RVDI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bVvy5EvvKcn1xSdQbt2kMer//l27ECGAi954qi71W1qu51DoefOUV3s4/etaLoLJprFMIvpwQ5dHGU2xFulf2GrvXhxwKQdp25QbWH9t/3SmlKQ5yqeEjkmlNCrbltLYa9op9p2XKd0ejr5Hz5x1nLid9BiiPLMi070VPJtK6hk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ijJWElmD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58ADAC4CEE7;
-	Tue, 28 Oct 2025 07:54:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kKGphsjSFYFn8NIWTJIx9NpBBjrUK6dDiCuIw2aG+iWuy2PARAgeCO19TphhBPL5I8Oja+2T4pKn99aypP4eJDM8hSGEh/IqJeLaYluTq1AuzsGy+OXUIVBwCOLI1UH4KE7+YnZThEp1Gck+SwsZkEta0aGTaghVj12vFaAlecU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JtvVYmhE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF859C113D0;
+	Tue, 28 Oct 2025 07:59:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761638053;
-	bh=wUUKO54EgAdTNrG7tEupAzNScrGsxOhihdHV+0Y2eEU=;
+	s=k20201202; t=1761638385;
+	bh=HfhMDobu1SUJQyYm0YX92oqWhBmLIXxHwW9QTp0RVDI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ijJWElmDuT8jOWeTUGfgEnWd9otU2i50vp1GshC9HZ75Oshuo/RbWxUmGhPygHp23
-	 BvOk828KiLum/+llLUBIdZ4GPdWfVas6ta9N7+D8mO4jb6G7e7GqvOiP9YVCIK/5P5
-	 1BE0PuXPARw+n4BmLO5jh966FIbOspXsDSuor6MYSOuQyltCcgcw7XNkhU2k/raR2i
-	 ltqmAEkDxTQDSBEfqSa976UQU/nxRrjxpNnhN8+VIAHeXltj0Gg9qKORW0MZhNShFw
-	 NAmhNLy4td8YbvL5HYYMTc8Xg5VeyVtFvD77lmNtxFvpsW+Iof2u1KySbw2lWiEA42
-	 J1hCyk33/2EQw==
-Date: Tue, 28 Oct 2025 08:54:11 +0100
+	b=JtvVYmhEA4zlBpixwOQbzKeOOcqy/fJn6a/Bz4ie9T8WY7sF/wFRGACulRgv+IdpU
+	 Oz3v0SSL1haWVDAXEZ/jaxgoc86TaMjmMRCk7H0Y/rr/BB4qnt/9I6i0KYIpsyr0xx
+	 yaaOxA14HikP4WQr9MB2N99NzfZrXs1D1Nk7w/TxKXSIOmpB53dQV/obmN9QO2pakQ
+	 MuqdjU2lBHhM0cRTE52LdeQhUqtTV6PzbOmmkk1yTVhwNnXUOLVL2cSNF3HGmGMEkE
+	 OZJvQII9P/pVEPYHcoyBK+inEdFLs0raFw5xIWuNc5vxmx7xkggmbLskDcM9XRgKER
+	 9Fx6yOYSTnifA==
+Date: Tue, 28 Oct 2025 08:59:42 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Sudarshan Shetty <tessolveupstream@gmail.com>
 Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
 	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: qcom: talos-evk: Add QCS615
- Talos EVK SMARC platform
-Message-ID: <20251028-cuttlefish-of-impossible-downpour-9cccc4@kuoka>
+Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: talos-evk: Add support for
+ QCS615 talos evk board
+Message-ID: <20251028-proud-bullfrog-of-aurora-e2cdba@kuoka>
 References: <20251028053248.723560-1-tessolveupstream@gmail.com>
- <20251028053248.723560-2-tessolveupstream@gmail.com>
+ <20251028053248.723560-3-tessolveupstream@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,18 +60,190 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251028053248.723560-2-tessolveupstream@gmail.com>
+In-Reply-To: <20251028053248.723560-3-tessolveupstream@gmail.com>
 
-On Tue, Oct 28, 2025 at 11:02:47AM +0530, Sudarshan Shetty wrote:
-> Add binding support for the Qualcomm Technologies, Inc. Talos EVK
-> SMARC platform based on the QCS615 SoC.
+On Tue, Oct 28, 2025 at 11:02:48AM +0530, Sudarshan Shetty wrote:
+> Introduce the device tree support for the QCS615-based talos-evk
+> platform, which follows the SMARC (Smart Mobility ARChitecture)
+> standard. The platform is composed of two main hardware
+> components: the talos-evk-som and the talos-evk carrier board.
 > 
-> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> The talos-evk-som is a compact System on Module that integrates the
+> QCS615 SoC, PMIC, and essential GPIO connectivity. It follows the
+> SMARC standard, which defines a modular form factor allowing the SoM
+> to be paired with different carrier boards for varied applications.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Drop paragraph, completely redundant. Please write concise, informative
+messages, not something redundant and obvious. Or worse - marketing
+junk.
+
+> 
+> The talos-evk is one such carrier board, designed for evaluation
+> and development purposes. It provides additional peripherals
+> such as UART, USB, and other interfaces to enable rapid
+> prototyping and hardware bring-up.
+> 
+> This initial device tree provides the basic configuration needed
+> to boot the platform to a UART shell. Further patches will extend
+> support for additional peripherals and subsystems.
+
+Drop paragraph, it is contradictory to the next one.
+
+> 
+> The initial device tree includes basic support for:
+> 
+> - CPU and memory
+> 
+
+Drop blank lines
+
+between
+
+each
+
+of
+
+points. No need to inflate already huge commit msg.
+
+
+> - UART
+> 
+> - GPIOs
+> 
+> - Regulators
+> 
+> - PMIC
+> 
+> - Early console
+> 
+> - AT24MAC602 EEPROM
+> 
+> - MCP2515 SPI to CAN
+> 
+> - Hook up the ADV7535 DSI-to-HDMI bridge
+> 
+> - Add DP connector node and MDSS DisplayPort controller.
+> 
+> QCS615 talos-evk uses a Quectel AF68E WiFi/BT module (PCIe for
+> WiFi and UART for Bluetooth), which is different from the RIDE
+> platform. Plan to enable these in a follow-up patch series.
+
+Drop plans, not related. I also do not understand why you mention here
+RIDE. Does it mean you are duplicating the board?
+
+> 
+
+..
+
+
+> +&sdhc_1 {
+> +	pinctrl-0 = <&sdc1_state_on>;
+> +	pinctrl-1 = <&sdc1_state_off>;
+> +	pinctrl-names = "default", "sleep";
+> +
+> +	bus-width = <8>;
+> +	mmc-ddr-1_8v;
+> +	mmc-hs200-1_8v;
+> +	mmc-hs400-1_8v;
+> +	mmc-hs400-enhanced-strobe;
+> +	vmmc-supply = <&vreg_l17a>;
+> +	vqmmc-supply = <&vreg_s4a>;
+> +
+> +	non-removable;
+> +	no-sd;
+> +	no-sdio;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&spi6 {
+> +	status = "okay";
+> +
+> +	mcp2515@0 {
+
+Still no improvements.
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+If you cannot find a name matching your device, please check in kernel
+sources for similar cases or you can grow the spec (via pull request to
+DT spec repo).
+
+> +		compatible = "microchip,mcp2515";
+> +		reg = <0>;
+> +		clock-frequency = <20000000>;
+> +		interrupts-extended = <&tlmm 87 IRQ_TYPE_LEVEL_LOW>;
+> +		spi-max-frequency = <10000000>;
+> +		vdd-supply = <&vreg_v3p3_can>;
+> +		xceiver-supply = <&vreg_v5p0_can>;
+> +	};
+> +};
+
+..
+
+> diff --git a/arch/arm64/boot/dts/qcom/talos-evk.dts b/arch/arm64/boot/dts/qcom/talos-evk.dts
+> new file mode 100644
+> index 000000000000..5c2ac67383e7
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/talos-evk.dts
+> @@ -0,0 +1,133 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + */
+> +/dts-v1/;
+> +
+> +#include "talos-evk-som.dtsi"
+> +
+> +/ {
+> +	model = "Qualcomm QCS615 IQ 615 EVK";
+> +	compatible = "qcom,talos-evk", "qcom,qcs615", "qcom,sm6150";
+> +	chassis-type = "embedded";
+> +
+> +	aliases {
+> +		mmc1 = &sdhc_2;
+> +	};
+> +
+> +	dp0-connector {
+
+dp-connector, unless there is here dp1. But then follow standard
+practice of adding suffixes, so connector-0, connector-1, etc. I could
+understand dp-connector-1 if you find dp-connector here:
+
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +		compatible = "dp-connector";
+> +		label = "DP0";
+> +		type = "full-size";
+> +
+> +		hpd-gpios = <&tlmm 104 GPIO_ACTIVE_HIGH>;
+> +
+> +		port {
+> +			dp0_connector_in: endpoint {
+> +				remote-endpoint = <&mdss_dp0_out>;
+> +			};
+> +		};
+> +	};
+
+...
+
+> +
+> +&i2c1 {
+> +	clock-frequency = <400000>;
+> +
+> +	status = "okay";
+> +
+> +	adv7535: adv7535@3d {
+
+Still no improvements.
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+If you cannot find a name matching your device, please check in kernel
+sources for similar cases or you can grow the spec (via pull request to
+DT spec repo).
 
 Best regards,
 Krzysztof
