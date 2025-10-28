@@ -1,213 +1,136 @@
-Return-Path: <devicetree+bounces-232244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DADF8C15D13
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 17:31:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FA3DC15D25
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 17:31:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4ED03A32E8
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 16:23:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBD933B2C3D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 16:24:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3A6A271A6D;
-	Tue, 28 Oct 2025 16:23:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9BB12857CF;
+	Tue, 28 Oct 2025 16:24:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C6SeNnSG"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dMhRKhSR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0D3C24503C;
-	Tue, 28 Oct 2025 16:23:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91542275AE1;
+	Tue, 28 Oct 2025 16:24:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761668633; cv=none; b=VSseDfBggzigBbq1YPwpVdTuvYCcM3GWoih2r6JygnaeXay3lrk6UkYckLOH0HNINHL7+G8QHUwhxY5iosHPQTIt+t7zG5Qd5UXZ8Ca3ZDG/jw29i62IkO+4EVyWEhV3yF/pZCBv6fY5vFfE/xnVOHu36314FIKuUe2QX6M7ujo=
+	t=1761668674; cv=none; b=YLJgZ63IbzLV5rGVWEgTL3ZXKZsAQOIQJa7dTh63yC0rGrfiIIOu6m/J9R7ahY7mjPk3bguFrCNJEd73MFkTgxxJS9x7FVSSEd5P9S48RMsEiWH+5eXlobowi9Gf5Rq2tUdrdJA/jx1XiR/D4pCLjQkXwXC95xoMiln6iTW/iXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761668633; c=relaxed/simple;
-	bh=W/FEnj9VxOYcqmIZ+DDA0xkXzU5i3PtKbUPkgrRzNI8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ohDXDpC4H/tJsLLjo083bGBAMSWLyFQQ1Y6M6c2/EzMJpkd4Lz/VV6LzIiAN6Sx9VA4q0FfX16w8mXlX3PFUl9Q9A4UXEFK62ZI6Pq/Np8i+BG7Fytkj3yQOJmi9KY2U/PjAjdlSRzzx/mm5B6GjtSA1dQC/kIHlte1eLlteWio=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C6SeNnSG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B33A0C4CEE7;
-	Tue, 28 Oct 2025 16:23:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761668633;
-	bh=W/FEnj9VxOYcqmIZ+DDA0xkXzU5i3PtKbUPkgrRzNI8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=C6SeNnSGD+55bP4czAwMBmIYvjYQ74bgJnrP9sHnJv0CRjRUam9OxVbozOQNMHsKb
-	 yi4GWSQkQYH2ts4476SpOCGYSWzempXK5e3MzQ+hKeXVvhH19dgGyLguAr1Ojb8AYF
-	 aQYH+xzUQC0UbrzsJ/kxgLHUIUuZQaEshgsZTkXSj+80rGfs3AeEApLfJ0Y6n1h4KE
-	 UYNXqyTUNXwM2qooCEw5TaIMp/IkErey4/tknYAlAGPsYS8eQqAHTY94b6T2nACAB7
-	 TWrzUiUGhzw2pGN0qxChVTjvboBtIrPb5CX9XQiw4NTCvOe3HeiIGk4dlpppqmINVp
-	 e2yQtNQdVodcA==
-Message-ID: <a5e9f1ec-69f0-4f91-9dd1-387b3e4ace5b@kernel.org>
-Date: Tue, 28 Oct 2025 17:23:45 +0100
+	s=arc-20240116; t=1761668674; c=relaxed/simple;
+	bh=VRe6V7125oxWUGJk5S4vI+ueHpEsiwZrtR7k9jWbfW4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t2i4CIHl7M9NWejm1oxDmh1+CDeCnPguLTCDde5EH+tuRhQ097DJThl6q9E4SeItkWMrsnk+YBjqEoYU/GQAenWjxI+FUL5PWDMM8YcGZbjtcIT3zH2pz9V3ZZ6Ps5/vNWqblDJgPiHfyfQvekfdJKuk9FmYmttZZtxU9PjbVko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dMhRKhSR; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761668673; x=1793204673;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=VRe6V7125oxWUGJk5S4vI+ueHpEsiwZrtR7k9jWbfW4=;
+  b=dMhRKhSRG+ExTt0+AjEtP4rZp3ttd+BW9x/2CG370z8VevBdyc8i4MRV
+   555pELkjfe6e3vWvBzLZKeLqORQepwAI9t60DOHekSk5Q3OhV2o2GbXFu
+   d8PMnYNqmp6PQx6MYcu9zI7FAIcTEzpIupjJXT3qsvu98ldTL8XoiCPSO
+   OUOqQXCAWr1O+UBPhuYmtw45bPyQrwA0OdVp6Q5bZPn3BIcPrPkONTXiu
+   Q5xd0lM1+bXYKWccrV1FpkwLitRghf9eFpWSOP0mpW4Jdy2savmPdqvae
+   W+DxauOINdUM12pOT6wbTXIe/21wjbn1ofuWhq4UpdiD9OqbdDIQ8XvkU
+   A==;
+X-CSE-ConnectionGUID: aSwx/yx9QKiE2Fs47PFfrw==
+X-CSE-MsgGUID: vIM9vD8WSGmMbPD4bv36Ug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63661881"
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; 
+   d="scan'208";a="63661881"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Oct 2025 09:24:33 -0700
+X-CSE-ConnectionGUID: jxtDhWiGQRm+Dx+pMnwiAg==
+X-CSE-MsgGUID: sSNMMyz8Sc+00Hvqbi0YPA==
+X-ExtLoop1: 1
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.104])
+  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Oct 2025 09:24:28 -0700
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id 69E9A121E5D;
+	Tue, 28 Oct 2025 18:24:25 +0200 (EET)
+Date: Tue, 28 Oct 2025 18:24:25 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@xs4all.nl>, Hans de Goede <hansg@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 0/2] media: i2c: add Sony IMX111 CMOS camera sensor
+ driver
+Message-ID: <aQDuOSUYbuoLoFbf@kekkonen.localdomain>
+References: <20250819120428.83437-1-clamor95@gmail.com>
+ <aLB_7YS9HsfzfadI@kekkonen.localdomain>
+ <CAPVz0n1mXvdyzshei8Mbw7KVYCkQjziBA95ton4MKXPnPd0kbQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/10] dt-bindings: display: panel: ronbo,rb070d30: add
- port property
-To: Josua Mayer <josua@solid-run.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Jon Nettleton <jon@solid-run.com>,
- Mikhail Anikin <mikhail.anikin@solid-run.com>,
- Yazan Shhady <yazan.shhady@solid-run.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-References: <20251027-imx8mp-hb-iiot-v1-0-683f86357818@solid-run.com>
- <20251027-imx8mp-hb-iiot-v1-2-683f86357818@solid-run.com>
- <20251028-premium-sunfish-of-feminism-2bc6ab@kuoka>
- <5e055ce8-e30c-45b7-993a-3ea8f8a796d2@solid-run.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <5e055ce8-e30c-45b7-993a-3ea8f8a796d2@solid-run.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAPVz0n1mXvdyzshei8Mbw7KVYCkQjziBA95ton4MKXPnPd0kbQ@mail.gmail.com>
 
-On 28/10/2025 13:01, Josua Mayer wrote:
-> Am 28.10.25 um 10:03 schrieb Krzysztof Kozlowski:
->> On Mon, Oct 27, 2025 at 06:48:11PM +0100, Josua Mayer wrote:
->>> port property is used for linking dsi ports with dsi panels.
->>> Add port property to ronbo dsi panel binding.
->>>
->>> Signed-off-by: Josua Mayer <josua@solid-run.com>
->>> ---
->>>  Documentation/devicetree/bindings/display/panel/ronbo,rb070d30.yaml | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/panel/ronbo,rb070d30.yaml b/Documentation/devicetree/bindings/display/panel/ronbo,rb070d30.yaml
->>> index 04f86e0cbac91..a2dc67a87fa3b 100644
->>> --- a/Documentation/devicetree/bindings/display/panel/ronbo,rb070d30.yaml
->>> +++ b/Documentation/devicetree/bindings/display/panel/ronbo,rb070d30.yaml
->>> @@ -13,6 +13,7 @@ properties:
->>>    compatible:
->>>      const: ronbo,rb070d30
->>>  
->>> +  port: true
->> Port is never the second property. Please look at other bindings.
-> 
-> Some places did that ...., e.g.:
+Hi Svyatoslav,
 
-Yes, finding few outliers is not a good argument. Especially binding
-from 2020 where many conventions did not exist.
+On Fri, Aug 29, 2025 at 09:20:10PM +0300, Svyatoslav Ryhel wrote:
+> чт, 28 серп. 2025 р. о 19:12 Sakari Ailus <sakari.ailus@linux.intel.com> пише:
+> >
+> > Hi Svyatoslaw,
+> >
+> > On Tue, Aug 19, 2025 at 03:04:25PM +0300, Svyatoslav Ryhel wrote:
+> > > Add driver for Sony IMX111 CMOS sensor found in LG Optimus 4X and Vu
+> > > smartphones.
+> >
+> > Thanks for the set.
+> >
+> > I wonder how would the sensor work with the CCS driver. The register layout
+> > appears to be very much aligned with that (I haven't checked whether there
+> > are MSRs that depend on the mode).
+> >
+> 
+> After deeper testing I have found that imx111 may be nokia,smia
+> compatible, at least most of general registers and CCS logic is
+> applicable. Some of registers may cause issues, for example,
+> "phy_ctrl_capability" = 0, 0x0 and some insane pll ranges. Maybe that
+> can be addressed with a firmware patch idk. The trickiest part is that
+> each mode requires non-standard and non-common manufacturer code
+> (0x3xxx ranges). If you can explain how to address these issues, I
+> would love to add imx111 and a few other modules into list of CCS
+> supported devices.
 
-Look at the most of the bindings or the recently reviewed.
+On a closer look, only the image size related configuration and a little
+more appears to be CCS-like. That's not enough to configure the sensor;
+this is conveyed in the MSR space which indeed makes the sensor difficult
+to control using the CCS driver, unfortunately.
 
-> 
-> Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml-  compatible:
-> Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml-    enum:
-> Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml-      - mantix,mlaf057we51-x
-> Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml-      - ys,ys57pss36bh5gq
-> Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml-
-> Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml:  port: true
-> Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml-  reg:
-> 
->>
->> Also, missing blank line
-> Okay
->>  and missing top-level ref for panel-common.
-> 
-> Does this impact which properties are considered required / valid?
-> 
-> Ronbo panel has different gpios / names from panel-common:
-> 
-> power-gpios: similar to panel-common enable-gpios
-> reset-gpios: common to panel-common
-> shlr-gpios: special to ronbo
-> updn-gpios: special to ronbo
-> vcc-lcd-supply: similar to panel-common power-supply
-> backlight: common to panel-common
-> 
-> There are some other gpios in panel-common that ronbo panel does not use.
+Let me review v2.
 
-Just use the properties from the common schema where applicable.
+-- 
+Kind regards,
 
-> 
-> Is the above relevant?
-> Would it be correct adding the below?:
-> 
->  maintainers:
->    - Maxime Ripard <mripard@kernel.org>
->  
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
->  properties:
->    compatible:
->      const: ronbo,rb070d30
-> 
-> @@ -48,5 +50,6 @@ required:
->    - shlr-gpios
->    - updn-gpios
->    - vcc-lcd-supply
-> +  - port
->  
->  additionalProperties: false
-
-unevaluatedProperties:false now.
-
-
-Best regards,
-Krzysztof
+Sakari Ailus
 
