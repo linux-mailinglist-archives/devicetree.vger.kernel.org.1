@@ -1,174 +1,468 @@
-Return-Path: <devicetree+bounces-231885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB388C127D4
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 02:08:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7D63C1287D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 02:24:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 803294013AD
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 01:04:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67D92420CB3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 01:24:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54EA71AF4D5;
-	Tue, 28 Oct 2025 01:04:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CA7E2236F7;
+	Tue, 28 Oct 2025 01:24:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U0vWyiOX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022129.outbound.protection.outlook.com [52.101.126.129])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AD981FB1;
-	Tue, 28 Oct 2025 01:04:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.129
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761613488; cv=fail; b=L1gtsMNFF+jSb5moC++ATV8NwepE+rjL4VdMognWtUtlDby8eVJmJYKe9Iv6QrIA0ReKRk39CvHjeiN/cy3shFEZi4bRGpEyX1yuUmI3ep320MMHwy6xT/5kTwfW+KdveTSU84xJmo9EvBx/HGTiGt6i3BMJbar/XiOkTSvFgZU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761613488; c=relaxed/simple;
-	bh=gsr/7gMWonKMOLVyDfd9RGYZHM+vOoqa90iJ8Yy9x/I=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BF593B2A0
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 01:24:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761614679; cv=none; b=Q3nQonlchekD1vQ1ZDEhN7dGKamJ+gcz+dPR9byJm32+taulsbWs4xIOU1tufYGRJYuLWsRNzF4NoXSV40dD01X/1mY7tSafHnOnBrV6PgCZl26kDVLYOX5SDM5+YO+SHBMUvLHdi7mmr/zvEfS27h+5669c48JvsglpvrMmAy8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761614679; c=relaxed/simple;
+	bh=4NynEzoNyOfOs8XyWeTXvjhSF0u2cim6vJPFRBLI9L4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tT373PJLnmFCk3gnbTu2zinez/HNmHBEfKD8lX8Hm3u96V0s3tkvw8z4uZqEeHw/swJpc1VF/huwqCCWaTDDMyJU/HxaWabIiRKi2nNT0LBqM6QeTlhHZZ+u8ITWaLV+N6AEQC9UXIjwmFlPJVP3y2idpkglJsO43c48mSZIymI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.129
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=u8sHOM1O/C6YAOOjHaZ6dz1c3nOH9aHA0bdDbNTunm0ndVhPGczIezQpJXv2vnP/tWUB+iANAyvMwRxFvxpj+w+CSI0aqJEsIlXPxqtMbKpmRXYc/hgdNT+mejnZFheryb+rBGzcxDtKGyn+EgjCaOIJDqf5cS1ZF6ZKCxn4g/pyGkA4jlogyNJx2NFYYC1QJkvDLuyh7ODXLhJ8do9c5z72y7yXPE48EUcLxpE8dS9WhqvaLMXJhMMhgAm8teYGWvapTzlqAw1Nzczhanc7RhnympwLLLGFu1jPNvgQM2pDbrdGj4SylmKpCq0YzTL6/NwtgP9kFvOAM/Sf0kPoQQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M1b0T+zNG7FX7853CAhm9h6srd+70AMfgMEadt45RMs=;
- b=v9pTlq8PZqTmw9Geo8rupP1uqMYeMBSC+KWHmJv/lMjWBJ4dnyBCsrd3TfywOSUjaoOPaUnyyezINIMXBtXz4naSGf9OEpPSMNs+XqY3rZiBgzXt/LHHiBS7eeTx9v6UNABYI5EVeftN5kK9haGiwBSZCTlu51CNyPWlE2ojbUrrTz0JbjuJ6pUSQG/lYZcpHTpSiTnY9MKE3CPor0lpOF2RQgskpM//dm2ja58knCA0h+5SZgoS3AuQIJnJ7icgEur3yhvvW1xPbcuob8tmZYn6n4FsEqBGEDdJb2EaJuuI/JmlN9KlGFYDUq9S2PUqFlqa1qQa7RoK+2wNyR3GoQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SE2P216CA0089.KORP216.PROD.OUTLOOK.COM (2603:1096:101:2c2::15)
- by TY1PPFC6318BE81.apcprd06.prod.outlook.com (2603:1096:408::924) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.18; Tue, 28 Oct
- 2025 01:04:41 +0000
-Received: from TY2PEPF0000AB89.apcprd03.prod.outlook.com
- (2603:1096:101:2c2:cafe::a4) by SE2P216CA0089.outlook.office365.com
- (2603:1096:101:2c2::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9253.20 via Frontend Transport; Tue,
- 28 Oct 2025 01:04:41 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- TY2PEPF0000AB89.mail.protection.outlook.com (10.167.253.7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9275.10 via Frontend Transport; Tue, 28 Oct 2025 01:04:40 +0000
-Received: from nchen-desktop (unknown [172.16.64.25])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 6779541C0143;
-	Tue, 28 Oct 2025 09:04:39 +0800 (CST)
-Date: Tue, 28 Oct 2025 09:04:38 +0800
-From: Peter Chen <peter.chen@cixtech.com>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Gary Yang <gary.yang@cixtech.com>,
-	Fugang Duan <fugang.duan@cixtech.com>, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-gpio@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=QgxHZ1QVfWY7OA9Voy0IqDKuj0DW0VCET9TFHRjANWCHoHwosB702H9ESv8AauxH+wCNakKkRfqkis9jjiWjuUU8TNhLWxOUf3X7TlF+zuswCAl0mgjOEd+m8oOyaXOjGzekp1Uj+R5217LTO89j3wbhUvbseYYYNObinyEN3Ps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U0vWyiOX; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-42992e68ea3so253021f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 18:24:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761614676; x=1762219476; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=j6ZUZTL7e8DmbC5jX0PFFaJJw/WLsr+LBeNutmHi75Q=;
+        b=U0vWyiOXFdS9xWx9iPhxP8CO8sDbMQfTOV7rsbYJkDhDS6PtbYVb0Ffld5O/rR0lP8
+         k7XWkd8a/ql282mxQbXFhjIudFEqg14+u3qdwXyXYrvHri5q0yNq8E4qZ6GvXGqW+a3k
+         NIRd/cv1GMgyqI2+Z2wpj+jzEN/84Kpw34f4zjp5hmYOXNuIGMGJ/3gfPPkHLMWCumv5
+         +ggkMYNg9zgkj2O5dEwY8UV/8nj7vHW2Zioni4eTw0DWczZw5CUWjUsQwdRF60y/XIwo
+         ds822BcfAeVpSXHUaduOF9D2A0bNZUB8hHzfyTc5nq8Hwn1MYOhYKVKGHBnh33DMcJjL
+         CNhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761614676; x=1762219476;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j6ZUZTL7e8DmbC5jX0PFFaJJw/WLsr+LBeNutmHi75Q=;
+        b=Ynq6qtVDXUzefFHc0P3ZyWugH73pJmWE5IWT4r9ems2+yd7ie9DEAlDD5qRLH7XNy/
+         YsE34j5h7OZxzIbcenbJnO1i1GamiN1cOBjTrir0gSVZGgQAL94GUu5Dvsg1PeyHUc41
+         7Siw+L4mrkyqXQv0hyr849A5khqFeaADGkYtui8KYU7Iow2gZvKZ4Od5fd8al2X4Vj1Y
+         EXugve6Xec8LZqqXC5XECIKsTQwIGpJwPhpjlWvXDgNL7BYzb+ZCSMhz0z229yPlvGdy
+         SPxRm/kHpw7n009JTvIi2uh7F0+ZJtYatt9yqz4kd4UFaNlfjEdBZZ9R2AACTj7E1OqT
+         e9Kg==
+X-Forwarded-Encrypted: i=1; AJvYcCWHq/813LDlwKsi+3L1Ns+4kMmUrK5YUjNGb6kVatC+4wQ0sOXp1QxnsFu4lRCtVpA0sbSEOWxk7isu@vger.kernel.org
+X-Gm-Message-State: AOJu0YwNYty+CxJbh1bKNMuJL+o2wYi26h7SyuYkWwVCLPJJOy0Nd+BQ
+	sJfebgtJ/ZxWZtKZERWp+nQB5hqYBY+3bJCfzZifoq06P8CYUzL19Dia
+X-Gm-Gg: ASbGncuFLUFFPDhKo0E5kh2S7117XM6ZqI2TvTvUNDBmwWfN9GpySqEBTX5VYI/996Y
+	YHN9tKPGy2jprIB5n/9bSFp1hZFvJFrdNBBSW8ikOXPEY7ArQiEdj6E/A+QjMl77mHxUiW/X8VP
+	KTXXjEkDd3td/Gk1PJeCaLLmETuOoVEqlokedrgSjSK6D7T1ItGwvmBbKqo6HulmdRYX/KiYKb3
+	xPuExAH8ALkcsujXnRxMa6XQzNPjN9+BsPrxgmODGV3AmF690AP0yv5ThQoNT13Zj9nzrml15et
+	Clh6/bxRKhIys/l8FKLS4J/apvfnTEClWWKDOVrGEpEk7T180+Af3Dcblr2CLQ9FdDxn9LJ64aB
+	PjHWjFkrLodAZhrqnlX7pyNwqkMjU7PdWSRSoZkXHn/hSNm65OEOSSj+Kx8ElfHQMXlWi
+X-Google-Smtp-Source: AGHT+IG/sB2R//ACIIQwX3tQN8RaWUDP77vJKaawkbWCs1s/0AV7Jp1petBnpZs8/SYh4yt0C2qaFQ==
+X-Received: by 2002:a05:600c:45c7:b0:46b:938b:6897 with SMTP id 5b1f17b1804b1-47717df84a7mr8002495e9.1.1761614675505;
+        Mon, 27 Oct 2025 18:24:35 -0700 (PDT)
+Received: from skbuf ([2a02:2f04:d406:ee00:3eb9:f316:6516:8b90])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-475dd02cd5dsm164144055e9.4.2025.10.27.18.24.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Oct 2025 18:24:34 -0700 (PDT)
+Date: Tue, 28 Oct 2025 03:24:30 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	cix-kernel-upstream@cixtech.com
-Subject: Re: [PATCH v5 0/3] Add pinctrl support for Sky1
-Message-ID: <aQAWpkIXhsMW6ggo@nchen-desktop>
-References: <20251021070410.3585997-1-gary.yang@cixtech.com>
- <CACRpkdZAaEim0yJLkXNctJA0jBFj7LGyTGVvy7_mMf5G+vUWOQ@mail.gmail.com>
+	Andreas Schirm <andreas.schirm@siemens.com>,
+	Lukas Stockmann <lukas.stockmann@siemens.com>,
+	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
+	Peter Christen <peter.christen@siemens.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH net-next v3 12/12] net: dsa: add driver for MaxLinear
+ GSW1xx switch family
+Message-ID: <20251028012430.2khnl6hts2twyrz3@skbuf>
+References: <cover.1761521845.git.daniel@makrotopia.org>
+ <cover.1761521845.git.daniel@makrotopia.org>
+ <5055f997f3dea3c26d6a34f94ed06bceda020790.1761521845.git.daniel@makrotopia.org>
+ <5055f997f3dea3c26d6a34f94ed06bceda020790.1761521845.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACRpkdZAaEim0yJLkXNctJA0jBFj7LGyTGVvy7_mMf5G+vUWOQ@mail.gmail.com>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB89:EE_|TY1PPFC6318BE81:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0fb0977d-a22f-430c-0df0-08de15bdf912
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|82310400026|1800799024|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?dE0xTDBWNTAxcVAyL3RNM1UxOWZsb21ibEtHS255TTJHWENmTVJ0Q29LTXNU?=
- =?utf-8?B?VEo0dDFxY2YzYlNzOTF2WDhIVk5HL3JJYmd6dVovazVxUSt1WnRSNW9FWDVV?=
- =?utf-8?B?TmhVT3hxZ3BBamV0S3hVYS9FV2NnZW82N2VPTWZRaytPRkpYdlFyaExhbWJC?=
- =?utf-8?B?bXVCQzV5OUNLS2NCN1JuMHlxS1BBWklHcjQ0MU81ZGR6UzFtcjNVTVBZZVlt?=
- =?utf-8?B?SWQ4R0hhVHZvbXFxQzduR3pjendCVEovK1duc1NIV0htWmdzOWJSRFlnRTJG?=
- =?utf-8?B?Y2RhZkw4ZWprVHM2N1dhRmN6bG53NUVmYTIrcmFzQW1LQWorOGRzMC91b2hk?=
- =?utf-8?B?TG5hdGZ5N1NoMWRJVHlCNWw4ZXJPVXZDRFA4QnU4QUcwalRmdXBLVXIxVHVT?=
- =?utf-8?B?cWtXZ0xNZUpYS3BWak9wZnBaNkdvWEo4MFhJRUxnZ2ZsNXE1ajFCMTNHZnl3?=
- =?utf-8?B?TU9xVUR3ZnlLekgwZXJGeStTQ2o3UDdiNEtoRm96OW5USk00Si9DOUM0NDFN?=
- =?utf-8?B?YmxYV1NUcVZ3WDRnbkFwWE9iU3BhekV4YzdqSk1MSmVaSGNjcmd2Wis3bEs5?=
- =?utf-8?B?Y2FVYVdQT2tjQ3BKRGJkREdXTCtKaTd5SVg5T1BvdGhoZUExQUFaUzBRenpY?=
- =?utf-8?B?MlBBWVp6UWduVlYrWUIwRUVFMGRZZkRTTGpGOVZBYnNXZTFHa0ZrYjBYSG56?=
- =?utf-8?B?OWZCTHBMbWdSWDMzd0xPYzlkTGpKUk9XUkg0T1RNT1dKcWlYdVFxZTd2TDhp?=
- =?utf-8?B?QXdFTFhZUlAzZEY0TFpaa1U2Unp4dHJXLzUxMFI3Zlg0cUFnbHpBYi95L3NI?=
- =?utf-8?B?VUZpT2FsMDdyZjFVeHc4YlFkWUFLR2Z3bHBYN1hXQVBpNkR2SGRqVWs2ejY3?=
- =?utf-8?B?WFVKWU4zNjhNSS9zY3BwTE5yUTRiZTNkMExuUTY4OVRHNEovSS9IanVIaTVp?=
- =?utf-8?B?U0hYVjFCRHcvemt4YVYzMTVLT3Q1ZytFVzIvQlVjeEhuM2x4YVJhKzNMaEk4?=
- =?utf-8?B?NzBwa1NSOWJWMHRVQlRkVENzTWZtT3V5TTQyblpCbGxFMjcxYUhpREVxOVAy?=
- =?utf-8?B?bXpTSUk2RTcrbkdwaUo0aG84VEplL015dVNZZzd5OHpsSlpuNWlTc3M2V0Vi?=
- =?utf-8?B?VVNEMGNtTVUraU5GRnVHRjZEMDFYZWl0R3FDcFh5ejNhU3YyWW9vUU9ickFy?=
- =?utf-8?B?aVNhU0NFazd6VmptMFF4dW5VY1lJektiMDVxZkVBNFlqV3laMDFJNmF4VCtl?=
- =?utf-8?B?NU9YWGV1S1ZoQmhtZ0hOakRTeW41N1c3WmlPRmV3NmpUY0RSdGVHdVZVSXdH?=
- =?utf-8?B?RFBiYXI1UEtmclVPTjFFczVRS2x1YzJ1a0dLT3BPWU4wRVdxSE16YStUWXdo?=
- =?utf-8?B?ZUc2ZG9BUUFxb1Z0S0VETTRmWmtneE5SM2M0UGdvc0Z0cDNiUVhLY3VUSCs5?=
- =?utf-8?B?WnpUSDBSK3N2SzlUVHJHeWJOM080MzRpZmVjQ3QzNmJlUlc2WlcxNmcvUWlZ?=
- =?utf-8?B?aktEcG5tWjlCWlk3S0sxSHBvMXBBZHJTMU9mbGwzY1IzamQ4SFV2RE5Sbits?=
- =?utf-8?B?SHNGTDl1YnlRQXZkTGl0Z0NvQVZZWjdkRGJ5NWJsd2d3LzROamVBR3FuZmNI?=
- =?utf-8?B?Z1l6NytCZGJ6ZmNBaXk5V3piY0VhNVA3ODZmNmp3eVlxZ0NjTGNmZkE3VnNO?=
- =?utf-8?B?V1l4N2huVXRCay9VSzBjS3pyU2ZMblpXQnZmV29EZHhkVEFpMWdQakZ6eTlG?=
- =?utf-8?B?dDJsb3NjTUl1bEhzZWx5TGVyU0o3SUkwb1NoVHRrcUU3K21RZVhuSXVRV0ZC?=
- =?utf-8?B?NTFodGt2d0l4UFZzSU9kQ2ZMQWlSUFdqemowV1kxRXRQaFJnQmFOTHl6WjA1?=
- =?utf-8?B?a0RHS3l1eks2eTRrcHRXMmJsMzBzWHNhamFqWkpOYkJNaFZENlRlTHp2WGU3?=
- =?utf-8?B?M2tSWmthTExyOU1KeHdXcFU1NDhTdHVEaDRoeHRtTk5JSExseTI0ZElhZSs5?=
- =?utf-8?B?dWNKSkFCWFU1dHA4R25FN1VPN2EwMjhQU0p4bmpEUkpBNkRsQTdDWUtyT0xo?=
- =?utf-8?B?Y09PaGw1cmJFTHRpL1phT3lMMERVbFIrV3FGb2xLWVJ6Ti9rbytyK2U3K1o4?=
- =?utf-8?Q?TaPs=3D?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2025 01:04:40.2859
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0fb0977d-a22f-430c-0df0-08de15bdf912
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	TY2PEPF0000AB89.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PPFC6318BE81
+In-Reply-To: <5055f997f3dea3c26d6a34f94ed06bceda020790.1761521845.git.daniel@makrotopia.org>
+ <5055f997f3dea3c26d6a34f94ed06bceda020790.1761521845.git.daniel@makrotopia.org>
 
-On 25-10-27 22:56:56, Linus Walleij wrote:
-> EXTERNAL EMAIL
+On Sun, Oct 26, 2025 at 11:49:10PM +0000, Daniel Golle wrote:
+> Add driver for the MaxLinear GSW1xx family of Ethernet switch ICs which
+> are based on the same IP as the Lantiq/Intel GSWIP found in the Lantiq VR9
+> and Intel GRX MIPS router SoCs. The main difference is that instead of
+> using memory-mapped I/O to communicate with the host CPU these ICs are
+> connected via MDIO (or SPI, which isn't supported by this driver).
+> Implement the regmap API to access the switch registers over MDIO to allow
+> reusing lantiq_gswip_common for all core functionality.
 > 
-> Hi Gary,
-> 
-> On Tue, Oct 21, 2025 at 9:04 AM Gary Yang <gary.yang@cixtech.com> wrote:
-> 
-> > Gary Yang (3):
-> >   dt-bindings: pinctrl: Add cix,sky1-pinctrl
-> >   pinctrl: cix: Add pin-controller support for sky1
-> 
-> Patches 1 & 2 applied to the pin control tree for v6.19!
-> 
-> >   arm64: dts: cix: Add pinctrl nodes for sky1
-> 
-> This third patch should be applied to the SoC tree, Peter Chen or
-> Fugang Duan takes care of that I think? Not sure.
+> The GSW1xx also comes with a SerDes port capable of 1000Base-X, SGMII and
+> 2500Base-X, which can either be used to connect an external PHY or SFP
+> cage, or as the CPU port. Support for the SerDes interface is implemented
+> in this driver using the phylink_pcs interface.
 
-Thanks, Linus.
-Yes, since you have applied driver and dt-binding patches, I will
-apply Dts patch to CIX SoC Tree.
+I opened the GSW145 datasheet and it seems borderline in terms of what
+I'd suggest to implement via MFD, keeping the DSA driver to be just for
+the switch fabric, vs implementing everything in the DSA driver.
 
--- 
+Just to know what to expect in the future. Are there higher-spec'd
+switches with an embedded CPU, waiting to be supported by Linux?
+Linux running outside, but also potentially inside? Maybe you'll need
+full-fledged clock, pinmux, GPIO drivers, due to IPs reused in other
+parts? Interrupt controller support? The SGMII "PHY" block also seems
+distinct from the "PCS" block, more like a driver in drivers/phy/ would
+control.
 
-Best regards,
-Peter
+> +
+> +static int gsw1xx_pcs_phy_xaui_write(struct gsw1xx_priv *priv, u16 addr,
+> +				     u16 data)
+> +{
+> +	int ret, val;
+> +
+> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_D, data);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_A, addr);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_C,
+> +			   GSW1XX_SGMII_PHY_WRITE |
+> +			   GSW1XX_SGMII_PHY_RESET_N);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return regmap_read_poll_timeout(priv->sgmii, GSW1XX_SGMII_PHY_C,
+> +					val, val & GSW1XX_SGMII_PHY_STATUS,
+> +					1000, 100000);
+> +}
+> +
+> +static int gsw1xx_pcs_config(struct phylink_pcs *pcs, unsigned int neg_mode,
+> +			     phy_interface_t interface,
+> +			     const unsigned long *advertising,
+> +			     bool permit_pause_to_mac)
+> +{
+> +	struct gsw1xx_priv *priv = pcs_to_gsw1xx(pcs);
+> +	bool sgmii_mac_mode = dsa_is_user_port(priv->gswip.ds,
+> +					       GSW1XX_SGMII_PORT);
+
+In lack of the phy-mode = "revsgmii" that you also mention, can we just
+assume that any port with phy-mode = "sgmii" is in "MAC mode"?
+
+> +	struct dsa_port *dp = dsa_to_port(priv->gswip.ds,
+> +					  GSW1XX_SGMII_PORT);
+> +	u16 txaneg, anegctl, val, nco_ctrl;
+> +	bool reconf = false;
+> +	int ret;
+> +
+> +	/* do not unnecessarily disrupt link and skip resetting the hardware in
+> +	 * case the PCS has previously been successfully configured for this
+> +	 * interface mode
+> +	 */
+> +	if (priv->tbi_interface == interface)
+> +		reconf = true;
+> +
+> +	/* mark PCS configuration as incomplete */
+> +	priv->tbi_interface = PHY_INTERFACE_MODE_NA;
+> +
+> +	if (reconf)
+> +		goto skip_init_reset;
+> +
+> +	/* Assert and deassert SGMII shell reset */
+> +	ret = regmap_set_bits(priv->shell, GSW1XX_SHELL_RST_REQ,
+> +			      GSW1XX_RST_REQ_SGMII_SHELL);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = regmap_clear_bits(priv->shell, GSW1XX_SHELL_RST_REQ,
+> +				GSW1XX_RST_REQ_SGMII_SHELL);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Hardware Bringup FSM Enable  */
+> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_HWBU_CTRL,
+> +			   GSW1XX_SGMII_PHY_HWBU_CTRL_EN_HWBU_FSM |
+> +			   GSW1XX_SGMII_PHY_HWBU_CTRL_HW_FSM_EN);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Configure SGMII PHY Receiver */
+> +	val = FIELD_PREP(GSW1XX_SGMII_PHY_RX0_CFG2_EQ,
+> +			 GSW1XX_SGMII_PHY_RX0_CFG2_EQ_DEF) |
+> +	      GSW1XX_SGMII_PHY_RX0_CFG2_LOS_EN |
+> +	      GSW1XX_SGMII_PHY_RX0_CFG2_TERM_EN |
+> +	      FIELD_PREP(GSW1XX_SGMII_PHY_RX0_CFG2_FILT_CNT,
+> +			 GSW1XX_SGMII_PHY_RX0_CFG2_FILT_CNT_DEF);
+> +
+> +	if (of_property_read_bool(dp->dn, "maxlinear,rx-inverted"))
+> +		val |= GSW1XX_SGMII_PHY_RX0_CFG2_INVERT;
+> +
+> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_RX0_CFG2, val);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	val = FIELD_PREP(GSW1XX_SGMII_PHY_TX0_CFG3_VBOOST_LEVEL,
+> +			 GSW1XX_SGMII_PHY_TX0_CFG3_VBOOST_LEVEL_DEF);
+> +
+> +	if (of_property_read_bool(dp->dn, "maxlinear,tx-inverted"))
+> +		val |= GSW1XX_SGMII_PHY_TX0_CFG3_INVERT;
+> +
+> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_TX0_CFG3, val);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Reset and Release TBI */
+> +	val = GSW1XX_SGMII_TBI_TBICTL_INITTBI | GSW1XX_SGMII_TBI_TBICTL_ENTBI |
+> +	      GSW1XX_SGMII_TBI_TBICTL_CRSTRR | GSW1XX_SGMII_TBI_TBICTL_CRSOFF;
+> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_TBI_TBICTL, val);
+> +	if (ret < 0)
+> +		return ret;
+> +	val &= ~GSW1XX_SGMII_TBI_TBICTL_INITTBI;
+> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_TBI_TBICTL, val);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Release Tx Data Buffers */
+> +	ret = regmap_set_bits(priv->sgmii, GSW1XX_SGMII_PCS_TXB_CTL,
+> +			      GSW1XX_SGMII_PCS_TXB_CTL_INIT_TX_TXB);
+> +	if (ret < 0)
+> +		return ret;
+> +	ret = regmap_clear_bits(priv->sgmii, GSW1XX_SGMII_PCS_TXB_CTL,
+> +				GSW1XX_SGMII_PCS_TXB_CTL_INIT_TX_TXB);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Release Rx Data Buffers */
+> +	ret = regmap_set_bits(priv->sgmii, GSW1XX_SGMII_PCS_RXB_CTL,
+> +			      GSW1XX_SGMII_PCS_RXB_CTL_INIT_RX_RXB);
+> +	if (ret < 0)
+> +		return ret;
+> +	ret = regmap_clear_bits(priv->sgmii, GSW1XX_SGMII_PCS_RXB_CTL,
+> +				GSW1XX_SGMII_PCS_RXB_CTL_INIT_RX_RXB);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +skip_init_reset:
+> +	/* override bootstrap pin settings
+> +	 * OVRANEG sets ANEG Mode, Enable ANEG and restart ANEG to be
+> +	 * taken from bits ANMODE, ANEGEN, RANEG of the ANEGCTL register.
+> +	 * OVERABL sets ability bits in tx_config_reg to be taken from
+> +	 * the TXANEGH and TXANEGL registers.
+> +	 */
+> +	anegctl = GSW1XX_SGMII_TBI_ANEGCTL_OVRANEG |
+> +		  GSW1XX_SGMII_TBI_ANEGCTL_OVRABL;
+> +
+> +	switch (phylink_get_link_timer_ns(interface)) {
+> +	case 10000:
+> +		anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_LT,
+> +				      GSW1XX_SGMII_TBI_ANEGCTL_LT_10US);
+> +		break;
+> +	case 1600000:
+> +		anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_LT,
+> +				      GSW1XX_SGMII_TBI_ANEGCTL_LT_1_6MS);
+> +		break;
+> +	case 5000000:
+> +		anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_LT,
+> +				      GSW1XX_SGMII_TBI_ANEGCTL_LT_5MS);
+> +		break;
+> +	case 10000000:
+> +		anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_LT,
+> +				      GSW1XX_SGMII_TBI_ANEGCTL_LT_10MS);
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (neg_mode & PHYLINK_PCS_NEG_INBAND)
+> +		anegctl |= GSW1XX_SGMII_TBI_ANEGCTL_ANEGEN;
+> +
+> +	if (interface == PHY_INTERFACE_MODE_SGMII) {
+> +		if (sgmii_mac_mode) {
+> +			anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_ANMODE,
+> +					      GSW1XX_SGMII_TBI_ANEGCTL_ANMODE_SGMII_MAC);
+> +			txaneg = ADVERTISE_SGMII | ADVERTISE_LPACK;
+> +		} else {
+> +			/* lacking a defined reverse-SGMII interface mode this
+> +			 * driver decides whether SGMII (MAC side) or SGMII (PHY side)
+> +			 * is being used based on the port being a user port.
+> +			 */
+> +			anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_ANMODE,
+> +					      GSW1XX_SGMII_TBI_ANEGCTL_ANMODE_SGMII_PHY);
+> +			txaneg = LPA_SGMII | LPA_SGMII_1000FULL;
+> +		}
+> +	} else if (interface == PHY_INTERFACE_MODE_1000BASEX ||
+> +		   interface == PHY_INTERFACE_MODE_2500BASEX) {
+> +		anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_ANMODE,
+> +				      GSW1XX_SGMII_TBI_ANEGCTL_ANMODE_1000BASEX);
+> +		txaneg = phylink_mii_c22_pcs_encode_advertisement(interface,
+> +								  advertising);
+> +	} else {
+> +		dev_err(priv->gswip.dev, "%s: wrong interface mode %s\n",
+> +			__func__, phy_modes(interface));
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_TBI_TXANEGH,
+> +			   FIELD_GET(GENMASK(15, 8), txaneg));
+> +	if (ret < 0)
+> +		return ret;
+> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_TBI_TXANEGL,
+> +			   FIELD_GET(GENMASK(7, 0), txaneg));
+> +	if (ret < 0)
+> +		return ret;
+> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_TBI_ANEGCTL, anegctl);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (!reconf) {
+> +		/* setup SerDes clock speed */
+> +		if (interface == PHY_INTERFACE_MODE_2500BASEX)
+> +			nco_ctrl = GSW1XX_SGMII_2G5 | GSW1XX_SGMII_2G5_NCO2;
+> +		else
+> +			nco_ctrl = GSW1XX_SGMII_1G | GSW1XX_SGMII_1G_NCO1;
+> +
+> +		ret = regmap_update_bits(priv->clk, GSW1XX_CLK_NCO_CTRL,
+> +					 GSW1XX_SGMII_HSP_MASK |
+> +					 GSW1XX_SGMII_SEL,
+> +					 nco_ctrl);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret = gsw1xx_pcs_phy_xaui_write(priv, 0x30, 0x80);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	/* PCS configuration has now been completed, set mode to prevent
+> +	 * disrupting the link in case of future calls of this function for the
+> +	 * same interface mode.
+> +	 */
+> +	priv->tbi_interface = interface;
+> +
+> +	return 0;
+> +}
+
+Can you split up this function in multiple smaller logical blocks?
+The control flow with "reconf" and "skip_init_reset" is a bit difficult
+to follow. I can't say I understood what's going on. Ideally
+gsw1xx_pcs_config() fits in one-two screen.
+
+> +static int gsw1xx_probe(struct mdio_device *mdiodev)
+> +{
+> +	struct device *dev = &mdiodev->dev;
+> +	struct gsw1xx_priv *priv;
+> +	u32 version;
+> +	int ret;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->mdio_dev = mdiodev;
+> +	priv->smdio_badr = GSW1XX_SMDIO_BADR_UNKNOWN;
+> +
+> +	priv->gswip.dev = dev;
+> +	priv->gswip.hw_info = of_device_get_match_data(dev);
+> +	if (!priv->gswip.hw_info)
+> +		return -EINVAL;
+> +
+> +	priv->gswip.gswip = gsw1xx_regmap_init(priv, "switch",
+> +					       GSW1XX_SWITCH_BASE, 0xfff);
+> +	if (IS_ERR(priv->gswip.gswip))
+> +		return PTR_ERR(priv->gswip.gswip);
+> +
+> +	priv->gswip.mdio = gsw1xx_regmap_init(priv, "mdio", GSW1XX_MMDIO_BASE,
+> +					      0xff);
+> +	if (IS_ERR(priv->gswip.mdio))
+> +		return PTR_ERR(priv->gswip.mdio);
+> +
+> +	priv->gswip.mii = gsw1xx_regmap_init(priv, "mii", GSW1XX_RGMII_BASE,
+> +					     0xff);
+> +	if (IS_ERR(priv->gswip.mii))
+> +		return PTR_ERR(priv->gswip.mii);
+> +
+> +	priv->sgmii = gsw1xx_regmap_init(priv, "sgmii", GSW1XX_SGMII_BASE,
+> +					 0xfff);
+> +	if (IS_ERR(priv->sgmii))
+> +		return PTR_ERR(priv->sgmii);
+> +
+> +	priv->gpio = gsw1xx_regmap_init(priv, "gpio", GSW1XX_GPIO_BASE, 0xff);
+> +	if (IS_ERR(priv->gpio))
+> +		return PTR_ERR(priv->gpio);
+> +
+> +	priv->clk = gsw1xx_regmap_init(priv, "clk", GSW1XX_CLK_BASE, 0xff);
+> +	if (IS_ERR(priv->clk))
+> +		return PTR_ERR(priv->clk);
+> +
+> +	priv->shell = gsw1xx_regmap_init(priv, "shell", GSW1XX_SHELL_BASE,
+> +					 0xff);
+> +	if (IS_ERR(priv->shell))
+> +		return PTR_ERR(priv->shell);
+> +
+> +	priv->pcs.ops = &gsw1xx_pcs_ops;
+> +	priv->pcs.poll = true;
+> +	__set_bit(PHY_INTERFACE_MODE_SGMII,
+> +		  priv->pcs.supported_interfaces);
+> +	__set_bit(PHY_INTERFACE_MODE_1000BASEX,
+> +		  priv->pcs.supported_interfaces);
+> +	if (priv->gswip.hw_info->supports_2500m)
+> +		__set_bit(PHY_INTERFACE_MODE_2500BASEX,
+> +			  priv->pcs.supported_interfaces);
+> +	priv->tbi_interface = PHY_INTERFACE_MODE_NA;
+> +
+> +	/* assert SGMII reset to power down SGMII unit */
+> +	ret = regmap_set_bits(priv->shell, GSW1XX_SHELL_RST_REQ,
+> +			      GSW1XX_RST_REQ_SGMII_SHELL);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* configure GPIO pin-mux for MMDIO in case of external PHY connected to
+
+Can you explain that MMDIO stands for MDIO master interface? On first
+sight it looks like a typo.
+
+> +	 * SGMII or RGMII as slave interface
+> +	 */
+> +	regmap_set_bits(priv->gpio, GPIO_ALTSEL0, 3);
+> +	regmap_set_bits(priv->gpio, GPIO_ALTSEL1, 3);
+> +
+> +	ret = regmap_read(priv->gswip.gswip, GSWIP_VERSION, &version);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = gswip_probe_common(&priv->gswip, version);
+> +	if (ret)
+> +		return ret;
+> +
+> +	dev_set_drvdata(dev, &priv->gswip);
+> +
+> +	return 0;
+> +}
 
