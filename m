@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-231975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15545C135FB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 08:52:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B9CAC13610
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 08:53:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B9633342083
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 07:52:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8F271A21B20
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 07:53:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 049E322156C;
-	Tue, 28 Oct 2025 07:52:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3075C23D7DC;
+	Tue, 28 Oct 2025 07:53:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eeZ0Tj72"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KJ9GAhwG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA71B7494;
-	Tue, 28 Oct 2025 07:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02EBD86337;
+	Tue, 28 Oct 2025 07:53:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761637930; cv=none; b=OR8NJ1pMmtmxJB9AqI4CFcMvLjIaQ6PJvO2K8lz3pEQJwvo+Ss9PYbTCqdGyknNvOlTGDvkiLY4/nFJ+smD7E03slsus9tsGfTMRSWDx6sl/RtQTiHQU9NGd9YlGSliqWHYZiHmfJ/sNqciPpGhm621CQUbIwiSiNuMJAsedLRA=
+	t=1761637986; cv=none; b=mfG/8hNMoCVLPANtaD9/zYxotu/JKzKLJ8ZEXIFm1RR1aFHk9Cf1AFGEhISxVd7BjSaCHxgt0z0YU4ZKZwRyk4ywZAaiF+DVZmw0ffLYnPMUNG9V/iCy3Pc7oCjtWzKQEE+gZqMbAjdrBT8IX3N1KLVF+tI+Z6uQ902j1rUJPNY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761637930; c=relaxed/simple;
-	bh=lgCu1/5LkJDVUKGcQ1LJt6hU1F8MpL35/q8ICEa7ZPU=;
+	s=arc-20240116; t=1761637986; c=relaxed/simple;
+	bh=yCeW08scrr2ACBo1vbxVy1YcULpnUDlueJqIMQ2qt7E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KSCG6foGYtxgE1uL2xO9aHVsC9nhUVTojOQwus3lWWYAdaXvD0eMH157OFB9PFD+Jmq+i4LycV/tK4eR7fIwuG6qcZTyCLtjvuF28lzEdOVkVeJEtBFNLIJR6keV3J+gpkUEp2ArXq6m31tYe4XSzsCQ9VrKjHgV6vTpX2857Xw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eeZ0Tj72; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF514C4CEE7;
-	Tue, 28 Oct 2025 07:52:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jajI0eYEtX5KSKgj6ZP1GiJmvsR3cPUkLEj5bQplLsjYkULLgfraAgyh+T5YcEtlmhBXtuBQKDmAYddtMe1fG3LvaFaAUQVLQHQOp6GMxpFHtx+jh3f+OS6ImPgRliUGj/24UA71797kSgsHcs+L7neA5/xSEViuEkaJEmZC/kI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KJ9GAhwG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEAB9C113D0;
+	Tue, 28 Oct 2025 07:53:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761637930;
-	bh=lgCu1/5LkJDVUKGcQ1LJt6hU1F8MpL35/q8ICEa7ZPU=;
+	s=k20201202; t=1761637984;
+	bh=yCeW08scrr2ACBo1vbxVy1YcULpnUDlueJqIMQ2qt7E=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eeZ0Tj72+n38VyiBnwzBzv1JPxT5YjRmABluQrQbslUPzrY4kOjj2dZbDJn+VKxVX
-	 QE4fZj6gTStX4n5HsGpMaSXgVAhZ+8sC6W3k2yfrzQi/FS5BfbFSmqjNtPow4aVUkg
-	 5DdvTG6gAECtFsUFZwk25O92EL6Ytj9Sf/i8d5n5tAvZb9+b9HIpIO2qNo6AoI1zbc
-	 uj3JznohxOTHbhva7pBZea7/H0kbzXJxVEhRbWpRCEKWiO5oxrTRcBgBQYjbVQsXEo
-	 U2OLHi4bSp94ssMT2o94756zksQZG9E2cv82F00lUI88X6OPvu6fGDPhE0qiZ7i57x
-	 tJY3u1FKZhsLA==
-Date: Tue, 28 Oct 2025 08:52:07 +0100
+	b=KJ9GAhwGQiUOpcjuOp1NuWsZ3BZtwb4Eri9cttZxeRuZUm14FV9fzvpPkqAD/YJ4R
+	 2YsxmfjFSooPJ8j/dKdWTQp9CEysFOjZruputzlsYvAdBjwOi+lJWEIiz+GI8fTmze
+	 T8gOxlLywka3cT/6t1L/5aAu3EL+FsjmPEVXF80Y2eZcEdZYK9bTI+UgQmBRwe/RSC
+	 p3Sm/0khowvPb07B5bgjZSydbQnzzhWG252l2CkCmzXu6NXTv814h5FfLwhF7lZXbv
+	 e0zs3EsjocEpcO7ND3rFjhfG51I/1I7EgOtDRN3NbM4QPCNbT4BTKGaLmISZHWak+p
+	 XhqHrydapfx2g==
+Date: Tue, 28 Oct 2025 08:53:01 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Elaine Zhang <zhangqing@rock-chips.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, sugar.zhang@rock-chips.com, 
-	heiko@sntech.de, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	huangtao@rock-chips.com, finley.xiao@rock-chips.com
-Subject: Re: [PATCH v5 4/7] dt-bindings: clock: Add support for rockchip
- pvtpll
-Message-ID: <20251028-hasty-amusing-guan-e57f62@kuoka>
-References: <20251027084147.4148739-1-zhangqing@rock-chips.com>
- <20251027084147.4148739-5-zhangqing@rock-chips.com>
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org, 
+	robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	joel@jms.id.au, andrew@codeconstruct.com.au, vkoul@kernel.org, kishon@kernel.org, 
+	linus.walleij@linaro.org, p.zabel@pengutronix.de, linux-aspeed@lists.ozlabs.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, openbmc@lists.ozlabs.org, 
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v4 4/9] ARM: dts: aspeed-g6: Add AST2600 PCIe RC PERST#
+Message-ID: <20251028-witty-nickel-pig-5bd4bc@kuoka>
+References: <20251027095825.181161-1-jacky_chou@aspeedtech.com>
+ <20251027095825.181161-5-jacky_chou@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,68 +63,12 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251027084147.4148739-5-zhangqing@rock-chips.com>
+In-Reply-To: <20251027095825.181161-5-jacky_chou@aspeedtech.com>
 
-On Mon, Oct 27, 2025 at 04:41:44PM +0800, Elaine Zhang wrote:
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    const: 0
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-output-names:
-> +    maxItems: 1
-> +
-> +  rockchip,cru:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: |
-> +      Phandle to the main Clock and Reset Unit (CRU) controller.
-> +      Required for PVTPLLs that need to interact with the main CRU
-> +      for clock management operations.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#clock-cells"
+On Mon, Oct 27, 2025 at 05:58:20PM +0800, Jacky Chou wrote:
+> Add pinctrl support for PCIe RC PERST#.
 
-Missing clocks.
-
-> +  - clock-output-names
-
-Missing rockchip,cru
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    pvtpll@20480000 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-If you cannot find a name matching your device, please check in kernel
-sources for similar cases or you can grow the spec (via pull request to
-DT spec repo).
-
-> +      compatible = "rockchip,rv1126b-core-pvtpll";
-> +      reg = <0x20480000 0x100>;
-> +      #clock-cells = <0>;
-> +      clock-output-names = "clk_core_pvtpll";
-
-Incomplete example - missing clock.
-
-> +    };
-> +
-> +  - |
-> +    pvtpll@21c60000 {
-
-Drop all other examples, no need to repeat the same.
-
-They weren't even here before!
+This is part of PCI commit. Makes no sense on its own.
 
 Best regards,
 Krzysztof
