@@ -1,109 +1,147 @@
-Return-Path: <devicetree+bounces-232019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21CF6C13BCB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:12:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CD89C13B9E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:11:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 851CB561BBF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:09:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 559B418851C8
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:10:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 337612010EE;
-	Tue, 28 Oct 2025 09:08:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A36312DA776;
+	Tue, 28 Oct 2025 09:09:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="UGO0RhRc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MS8HsA3g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B45420E030
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:08:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67FF823507B;
+	Tue, 28 Oct 2025 09:09:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761642539; cv=none; b=oz8fE8C2nWZXbfPbVcWVulS3ePwCjUkfgzN6PHzq+NWc+y8zcF+ZtZ/Mv18fDgGdiCjVntoWfG49eccdF6MSM254j0+NEa1dB0/A14jyLCGLLjmP3kHMXwWA2BvFkj3yfJ3Yl1TPCM2t7pD/AEGfCJDCEiOmFOzKED/k+7QOe+A=
+	t=1761642579; cv=none; b=oU/nqIfX/FeWW3u+vGgIMyzrqdG4HOM7Yjrsagcyp+uLdNnICF3U75TDJY8zOQkvw6ztkHCIwf6VsMhtozOgDegr7Wbe+K2ax/StHmPb51WNiFjOrC+GKDN8Ovxk1DPpovMyx4A19wy3+6cElRSUuFZJvBhfPOhv35asOWE6Dic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761642539; c=relaxed/simple;
-	bh=Q7gfpyR9pw/aesaPwY/XBvsj4KBndXYG12dFVFLsjPY=;
+	s=arc-20240116; t=1761642579; c=relaxed/simple;
+	bh=ZeszJ3G5pFbOJEm0PLsqfPwRQuGZps8vSqiFmYtwyKY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BJ7VZHfMKGBFu7apoZ3acdAQafOKO7W21a8mgMgQ3YWi9oq0I4BbFm1eB/mmmeJSARzZfiIcKvJ/eN1hKD8DQkSizFS+4cBaiuWXY3Y7n75mKV67j2PFX+frlF3yM/+2Rj0BWQm2/lQ9vdrmdfJI1lXfb+8G25AcigAvr45peNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=UGO0RhRc; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=kxZn
-	ziVP2OB2AZZE3S/rpTYxPoXwwQUs15lEEjZDFVk=; b=UGO0RhRcNUSoXAkAjfDf
-	VXiqANoC5/268iZoxV73eJZt6DqoH0TdUuFw9k7eBWoQYop5WRys4TmqIBu+W9jm
-	uoYeqxetsd+0q94lF/3BkS1vvIikRh2SGuY8GcItwFRScWjmgGKaBOal2g6++Xkd
-	ju8jG6czy7I2UJYx9pVnzMA0dxPGBSbgjr6i8mXG8E7PF21k+8yfJaHqgk64Zdwu
-	6HyU4NQ7QZO6G/dWzOH7pTb6vXOaDBU//gLNS/uyxA0upyvWokpGt4IzS9dR2Bte
-	8WZkpegXIiCxKOYj/CHGYA4Z4dAB63GJ+5QsbeKKEW9Rpw9pf1EnBkZoP9Ztu1Cg
-	Kw==
-Received: (qmail 3948718 invoked from network); 28 Oct 2025 10:08:55 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 28 Oct 2025 10:08:55 +0100
-X-UD-Smtp-Session: l3s3148p1@CyaEXTRCgr8ujnsk
-Date: Tue, 28 Oct 2025 10:08:54 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH] ARM: dts: renesas: r9a06g032-rzn1d400-db: use
- interrupt for Micrel PHYs
-Message-ID: <aQCIJrKKM34FH3C3@ninjato>
-References: <20251001104312.40771-2-wsa+renesas@sang-engineering.com>
- <20251020103529.0f948c67@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=EAIrBmo2N/rtSB6YqHBWUsfyr/JsvFXBVE7MQsIEC4TYmvGY/qIx4DEk2yGb53ZnVaJuu5JVpb8w38q482fJ0REqJ997VG7CpYF+C0IkNrZvQSU9hlTMivI1KrflIHk/+zUTCbnMJWvv7ubi5bOlaR2HjiqkCh1bgimHGGEJBtI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MS8HsA3g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74176C4CEE7;
+	Tue, 28 Oct 2025 09:09:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761642579;
+	bh=ZeszJ3G5pFbOJEm0PLsqfPwRQuGZps8vSqiFmYtwyKY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MS8HsA3gHTzSFAkqVuH2/l8x1ouMjR1uDE4ZkKX7gH9k7EojJyCK4fKjjovw27RTp
+	 A1c4+6iqPHZjJW0zXOtiHS0TV+vlW37gAldPWA/ImTJljpZHvNLVI4Jpgs667xo6lH
+	 s6PVRRtHGv1l2bngpH5Qr3X8nQbgInqUMxD3jS+U9DMtXvfp9N5u06k0wpc4ZwpDqE
+	 BLC9iKNMcNuKGU5nfR/s2rAprUa7Wn4sKzQykkWjXuZcUwNPiZ4XW3I3VHby96bEtl
+	 whB5SVnoVtD8+xHnOA63yI7RY2LpBw23xPm2x+Ixy/LtxcDvzhi8dEG4SBVU7s7JcT
+	 EmlAuKIT3Mi6A==
+Date: Tue, 28 Oct 2025 10:09:36 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, 
+	Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
+	Leo Yan <leo.yan@linux.dev>, Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, kernel@oss.qualcomm.com, 
+	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 01/12] dt-bindings: arm: coresight: Add cpu cluster
+ tmc/funnel/replicator support
+Message-ID: <20251028-enigmatic-astonishing-husky-f2c47a@kuoka>
+References: <20251027-cpu_cluster_component_pm-v1-0-31355ac588c2@oss.qualcomm.com>
+ <20251027-cpu_cluster_component_pm-v1-1-31355ac588c2@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="OAAcoPccW+8g7sH4"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251020103529.0f948c67@bootlin.com>
+In-Reply-To: <20251027-cpu_cluster_component_pm-v1-1-31355ac588c2@oss.qualcomm.com>
 
+On Mon, Oct 27, 2025 at 11:28:03PM -0700, Yuanfang Zhang wrote:
+> Add the following compatible strings to the bindings:
+> - arm,coresight-cpu-funnel
+> - arm,coresight-cpu-replicator
+> - arm,coresight-cpu-tmc
 
---OAAcoPccW+8g7sH4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+We see that from the diff. Explain here the hardware instead.
 
-Hi Herve,
+> 
+> Each requires 'power-domains' when used.
+> 
+> Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
+> ---
+>  .../bindings/arm/arm,coresight-dynamic-funnel.yaml | 23 +++++++++++++++++-----
+>  .../arm/arm,coresight-dynamic-replicator.yaml      | 22 +++++++++++++++++----
+>  .../devicetree/bindings/arm/arm,coresight-tmc.yaml | 22 +++++++++++++++++----
+>  3 files changed, 54 insertions(+), 13 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
+> index b74db15e5f8af2226b817f6af5f533b1bfc74736..8f32d4e3bbb750f5a6262db0032318875739cf81 100644
+> --- a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
+> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
+> @@ -28,19 +28,32 @@ select:
+>    properties:
+>      compatible:
+>        contains:
+> -        const: arm,coresight-dynamic-funnel
+> +        enum:
+> +          - arm,coresight-dynamic-funnel
+> +          - arm,coresight-cpu-funnel
 
-> This v5 iteration should impact modification done in this RFC.
+Keep alphabetical sorting. We asked this multiple times already.
 
-What do you mean with "impact"? The patch works fine with your v6
-series.
+>    required:
+>      - compatible
+>  
+>  allOf:
+>    - $ref: /schemas/arm/primecell.yaml#
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: arm,coresight-cpu-funnel
+> +    then:
+> +      required:
+> +        - power-domains
 
-Happy hacking,
+Just move the allOf to the bottom like in example-schema.
 
-   Wolfram
+> +
+>  properties:
+>    compatible:
+> -    items:
+> -      - const: arm,coresight-dynamic-funnel
+> -      - const: arm,primecell
+> -
 
+Why do you remove this?
 
---OAAcoPccW+8g7sH4
-Content-Type: application/pgp-signature; name="signature.asc"
+> +    oneOf:
+> +      - items:
+> +          - const: arm,coresight-dynamic-funnel
+> +          - const: arm,primecell
+> +      - items:
+> +          - const: arm,coresight-cpu-funnel
 
------BEGIN PGP SIGNATURE-----
+Hm? Why do you need custom select if this is not primecell? And nothing
+in commit msg explains why this is not primecell anymore.
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmkAiCYACgkQFA3kzBSg
-KbY7ng//eqyDRge9CYUCLu9h7Fe5K9Uz/t1IRK9YwlJbN8VfWG81SjhztUuVy1h/
-lbkkhGPjuCGSMQWuxjpI3FXrzxG4Ed6ie4oE6lT4zOPOkeBrGdaFBCvBw7L7wG9e
-urU0p+2lHTBLrnpFWPBah53JIB4Ry/weBJRaQcdEc00RKk8LbJQP4o9iIBSKl6Dd
-qrcSADN/gQ3mnq9tL3MsnH5HNVao9ZPw9S/CHf6pniMiT80ndldEIFeFbnOju3nh
-lsYyBAw7EAq1CuwUXuCDos6+SklW5MNWDMB6K1Uo1xLhnOGsmgzJh7eo+kftnY7I
-1a0Z7jTbpIG8lqZBbSfekDk96eDjzWpJlhJy8rl66/LQjINo4+YQXBtQ3kWKO0mi
-N8DcTF1rIHb7pVGEkR+E9o40QkkZy0fozf9H/nT2yTGFCLG+k+kAqxcDv07lAEX6
-AjlCuCYOpfEi1Ss38fDGxHQODozGNubM1LuMtLBLBsvHwJO63zvgPTZVNXFUqIBh
-DHQ9+1igA7pdWDboSSxHEvrw21sI9IG/rp4wrl30PIfTyiYkmDH79z8CBz14wypo
-q8VKcOozE1BN0Kd70mXCqDzvq2PMKYNc0BtN41ZuXIpE4HqJWlftgQi6GwSs6d1c
-UEXSfXG+rGvhbFEroBPGMsb2Y0gyZeEVJ+vTHVC69EaFnMB/tbc=
-=PXr7
------END PGP SIGNATURE-----
+You have entire commit msg to say something useful, WHY you are doing
+this, WHY you are doing it DIFFERENTLY. Don't say what you did - that's
+obvious, we are capable of reading diffs.
 
---OAAcoPccW+8g7sH4--
+Best regards,
+Krzysztof
+
 
