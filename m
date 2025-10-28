@@ -1,44 +1,55 @@
-Return-Path: <devicetree+bounces-231954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0099C134F9
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 08:33:29 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD88CC134F3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 08:33:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 366E3466839
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 07:31:39 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 64B204F1B0B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 07:31:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1256269D18;
-	Tue, 28 Oct 2025 07:31:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3104525B31C;
+	Tue, 28 Oct 2025 07:30:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="1Y+wzb7U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgau1.qq.com (smtpbgau1.qq.com [54.206.16.166])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF20F1C84A0
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 07:31:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.16.166
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 996B923E355
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 07:30:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761636669; cv=none; b=JqY988Vkdw+2Eqf7DANabyJU9mLJtjaCloj1X5ZBZK6TFtxi6kBoqVBid5DF3ODHXEsnIezJYn/oKYx4xaNPqndQav1KwNScYFIOydSjXSOZ19bccU53E+gjU1BJ8JJ/2E6joZTW+sBIsU69HuSu1LJpB+dWG0HQ18Eb+x2s+pE=
+	t=1761636642; cv=none; b=q0NfMfZhSASN39ArSXD5V6fZ734PLKs36XaCFDIjmGY75MHL3xduVBX/tRcARvgfk7IMMkY11uGzlExm/9Ye/yaucH+ap6syrE4B9I8mErgfsiMxZ02o41LZ03NLc3MxqjUUaeP5BjyoHqLbEUgXmUn87vsWhH13lvRrVYZVrfU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761636669; c=relaxed/simple;
-	bh=RJtPlEVYyShFTNSYU99mE8jMJSuXSJB9ldYerE2/Aqw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CJidQTrupfbNrBRWhfPDEkMJOMQpwFIYJH9ARhcGmmCZREDj9n0UlKYnF3CzTFVODVZHel0X9fzFtQ58y272FmBHFuGmJ9kTIpbhnNHQpIss4y+PD+N/39/K+j83LUMYMjnZv0hf/82+L/7slQx9KFzrlBjbipq7B/ACMQlfyy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.206.16.166
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip3t1761636589t561f20e6
-X-QQ-Originating-IP: Z9ofJTy/4V9GYiUUEoWjwp0mZmyXtvCFrkn4y1tSXKM=
-Received: from [IPV6:240f:10b:7440:1:27fe:5767 ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 28 Oct 2025 15:29:42 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 3051709390252911974
-Message-ID: <A39F9BCC6572BA03+67736ed4-86a0-4a78-98af-b2f39aeb785e@radxa.com>
-Date: Tue, 28 Oct 2025 16:29:41 +0900
+	s=arc-20240116; t=1761636642; c=relaxed/simple;
+	bh=tgz/rtEYPnPsQJqZHHt5kVcRM6gfdi9tPqQHwZfBnFw=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=SsBnWfpOiVfhbR4OfMMiyHeJOQlYpYxMeqoRsUl+oieGxhQG3H7SapbaR/u/H2cM2L6hoVPDtF2+b2BWfic0RL1HdA5zGjJoaskdoWde48yPr/yeEqjRoeWWfwb0Xvk//jOxq7J18zE/h4UAoed3UYSK1uh7OE7MTk59G02H1GI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=1Y+wzb7U; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 3BC16C0BE98;
+	Tue, 28 Oct 2025 07:30:15 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 517D5606AB;
+	Tue, 28 Oct 2025 07:30:35 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 50BFD102F2511;
+	Tue, 28 Oct 2025 08:30:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1761636634; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=xs89r8H28EFiXnm/zzZ/Zym5khL0vOyiwLDrFtHPdCQ=;
+	b=1Y+wzb7UUJ61PlahSm8nRwugGzVzHAklP8KvqU1naq4LkJTh6EVjdR9QB+HkyhPM/23+Ik
+	8JxBOOwNk6N2aOfNDEeftgV7q2UXOSnD2/++xlMR9N0OgLLfBObu4XQccPwAmmBvQTB2bt
+	t7bhmwOYUZ0nME43CU413N3RjnODMgyNWlu/TBJ53iy5bz/59mDAAqXCXF6vMeEHbENRtU
+	jDgCxfC2s8YGsTesIXo++jJum/TR+Gy51avfvbU0JOWlRNOFS7izyCZxPBVbCzrXg52BWJ
+	HkxL7rUGsAwxzPp/7HP3EuPQscpm7FnfKxak+X+Ug2Ul2nyWPnqy20ZXljzk4w==
+Message-ID: <795aa141-e977-4628-826f-f65715afaf9d@bootlin.com>
+Date: Tue, 28 Oct 2025 08:30:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,73 +57,205 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] dt-bindings: arm: rockchip: Reorder the Radxa board
- entries
-To: Krzysztof Kozlowski <krzk@kernel.org>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- jonas@kwiboo.se, dsimic@manjaro.org, amadeus@jmu.edu.cn,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20251027122641.39396-1-naoki@radxa.com>
- <20251027122641.39396-5-naoki@radxa.com>
- <67e7badd-4b38-4f93-872b-e51a43281d3b@kernel.org>
- <6B986FE9E161F74F+f2826946-a3e9-4618-b5c8-6e29f9f6b83c@radxa.com>
- <1fc497ee-3363-49c9-93eb-20acd4373df9@kernel.org>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <1fc497ee-3363-49c9-93eb-20acd4373df9@kernel.org>
+From: Richard GENOUD <richard.genoud@bootlin.com>
+Subject: Re: [PATCH v3 13/15] mtd: rawnand: sunxi: Add support for H616 nand
+ controller
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
+ <vigneshr@ti.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Wentao Liang <vulab@iscas.ac.cn>, Johan Hovold <johan@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20251020101311.256819-1-richard.genoud@bootlin.com>
+ <20251020101311.256819-14-richard.genoud@bootlin.com>
+ <87ecqvthv4.fsf@bootlin.com>
+Content-Language: en-US, fr
+Organization: Bootlin
+In-Reply-To: <87ecqvthv4.fsf@bootlin.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4a-0
-X-QQ-XMAILINFO: NNCgUTg3ctKTko4szyorCihpTWEu0D1DKx9TQRyvuQg8T49GejY1m67D
-	xCV2FYw+BZCo2BXeurGNMug0Tvj9/aFHodFX7a+LH/GAe4FJ9oJuT3xsgUJgDG0Zso0jI03
-	ZzihXAT9pus84LPBBnYRXgvDE3JZNV/9DRpPcC0dLTroWfizVED41z1txTmQSuGLSKDK0PG
-	nmA6bzc5ldq3mJDfuQK4/0CO8yqTiP4AIwRQhPulgONn3ZPv4CZLgHWUG77dWqzIM9xUHKK
-	+5SXMgZt70CC/FmW5X9DixUUhh77Tn2L8chkpNuc34Tdm6t8GBOoQDNQvQ2JfT3PGeWCaJ4
-	OZXZFdDUkTp05oLjyBXYutVL3tIXsZ/tT0HCBYvtE+/2MI5A9WsSEPM9PKkogIl7Wnym9gV
-	XhgPOreWslEK1FoxghC1w/LU1L6gAQL8TOHWiWeBAuuv808EzPHhvsJl1X0Vb5mjVYt1nQm
-	l1etu+AdhapbwjMMVDNDs50MhSBQr2VJhad2iMIx9JjfxvJY7ce+cFTPP6UqqOj5VANYCYu
-	wN18C4zaQjMmIL/MnLckJM7nUgK/TTPoEkQNL4CkoupZHlNnNn+Ua8JOKXCEvF6Yx8c/ZuP
-	eLxSzqw4etgN7hxV3tDSSh8DoAY45aNbuGCBTp8Y/fWJCjeM17YqPh5mgiaiN2M6al6FiQ1
-	4PEoGYpPBH/LNcfEuUSF+8XlQblUd+d2TXIabgSY6Q4QLcxQAQBTNFJISfPJRJGjMYcKNx3
-	Mo0VRBl3dmtn8jlerXV9WBJVZWoj9J6L5wHLCc/KX45GnDK0xujJ4OqPCtP5T7V/7LeQzpl
-	u+2Hcp/tplZV0wX6e4yJyfR/NMYdn82YSoK2j0FdXJ4kGAUDDG3890fNKDtY0zHJtOeMD3C
-	ZwM0qDQrZBWynABGoKoiac9SBeqixR1Xjh3Dz+2pRE4RJXyjhY4w07CUxr7Ur2K9tqZOPb5
-	1UQmxp2LbAn3JNZnTaGF6UJcF
-X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
-X-QQ-RECHKSPAM: 0
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Krzysztof,
-
-On 10/28/25 16:26, Krzysztof Kozlowski wrote:
-> On 27/10/2025 23:30, FUKAUMI Naoki wrote:
->> Hi Krzysztof,
+Le 22/10/2025 à 11:18, Miquel Raynal a écrit :
+> Hello Richard,
+> 
+> On 20/10/2025 at 12:13:09 +02, Richard Genoud <richard.genoud@bootlin.com> wrote:
+> 
+>> The H616 nand controller has the same base as A10/A23, with some
+>> differences:
+>> - mdma is based on chained buffers
+>> - its ECC supports up to 80bit per 1024bytes
+>> - some registers layouts are a bit different, mainly due do the stronger
+>>    ECC.
+>> - it uses USER_DATA_LEN registers along USER_DATA registers.
+>> - it needs a specific clock for ECC and MBUS.
 >>
->> On 10/28/25 04:08, Krzysztof Kozlowski wrote:
->>> On 27/10/2025 13:26, FUKAUMI Naoki wrote:
->>>> Reorder the Radxa board entries alphanumerically, with the following
->>>> exceptions:
->>>
->>>
->>> Why? You must explain that in the commit. What sorting is being used by
->>> this file? Why do you think your re-order matches that sorting rule?
+>> Introduce the basic support, with ECC and scrambling, but without
+>> DMA/MDMA.
 >>
->> I understand there is no rule, only your preference. Thanks.
+>> Tested on Whatsminer H616 board (with and without scrambling, ECC)
+>>
+>> Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
 > 
+> ...
 > 
-> Really there is no? Are you sure?
-
-Could you please tell me what sort of sorting is being used for this file?
-
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-> Best regards,
-> Krzysztof
+>>   
+>> +#define NFC_TIMING_CFG2(tCDQSS, tSC, tCLHZ, tCSS, tWC)		\
+>> +	((((tCDQSS) & 0x1) << 11) | (((tSC) & 0x3) << 12) |	\
+>> +	 (((tCLHZ) & 0x3) << 14) | (((tCSS) & 0x3) << 16) |	\
+>> +	 (((tWC) & 0x3) << 18))
+>> +
+>>   /* define bit use in NFC_CMD */
+>>   #define NFC_CMD_LOW_BYTE_MSK	GENMASK(7, 0)
+>> -#define NFC_CMD_HIGH_BYTE_MSK	GENMASK(15, 8)
+>> +#define NFC_CMD_HIGH_BYTE_MSK	GENMASK(15, 8)  // 15-10 reserved on H6
 > 
+> Wrong comment type :-)
+ok
 
+> 
+>> +#define NFC_CMD_ADR_NUM_MSK	GENMASK(9, 8)
+>>   #define NFC_CMD(x)		(x)
+>>   #define NFC_ADR_NUM_MSK		GENMASK(18, 16)
+>>   #define NFC_ADR_NUM(x)		(((x) - 1) << 16)
+>> @@ -122,6 +156,7 @@
+>>   #define NFC_SEQ			BIT(25)
+>>   #define NFC_DATA_SWAP_METHOD	BIT(26)
+>>   #define NFC_ROW_AUTO_INC	BIT(27)
+>> +#define NFC_H6_SEND_RND_CMD2	BIT(27)
+>>   #define NFC_SEND_CMD3		BIT(28)
+>>   #define NFC_SEND_CMD4		BIT(29)
+>>   #define NFC_CMD_TYPE_MSK	GENMASK(31, 30)
+>> @@ -133,6 +168,7 @@
+>>   #define NFC_READ_CMD_MSK	GENMASK(7, 0)
+>>   #define NFC_RND_READ_CMD0_MSK	GENMASK(15, 8)
+>>   #define NFC_RND_READ_CMD1_MSK	GENMASK(23, 16)
+>> +#define NFC_RND_READ_CMD2_MSK	GENMASK(31, 24)
+> 
+> ...
+> 
+>> @@ -858,6 +967,8 @@ static int sunxi_nfc_hw_ecc_read_chunk(struct nand_chip *nand,
+>>   	if (ret)
+>>   		return ret;
+>>   
+>> +	sunxi_nfc_reset_user_data_len(nfc);
+>> +	sunxi_nfc_set_user_data_len(nfc, 4, 0);
+> 
+> I'm not sure I understand this properly. Why isn't this a fixed setting?
+> Also, what is 4? It is not obvious to me and my require either a comment
+> or a define (or maybe a sizeof()).
 
+Yes, indeed. There are '4' all over the place, maybe a bit of tidy up is 
+needed in a separate patch.
+(and some explanations)
+
+I'll resend a v4 with that.
+
+> 
+>>   	sunxi_nfc_randomizer_config(nand, page, false);
+>>   	sunxi_nfc_randomizer_enable(nand);
+>>   	writel(NFC_DATA_TRANS | NFC_DATA_SWAP_METHOD | NFC_ECC_OP,
+>> @@ -968,6 +1079,8 @@ static int sunxi_nfc_hw_ecc_read_chunks_dma(struct nand_chip *nand, uint8_t *buf
+>>   		return ret;
+>>   
+>>   	sunxi_nfc_hw_ecc_enable(nand);
+>> +	sunxi_nfc_reset_user_data_len(nfc);
+>> +	sunxi_nfc_set_user_data_len(nfc, 4, 0);
+>>   	sunxi_nfc_randomizer_config(nand, page, false);
+>>   	sunxi_nfc_randomizer_enable(nand);
+>>   
+>> @@ -1100,6 +1213,8 @@ static int sunxi_nfc_hw_ecc_write_chunk(struct nand_chip *nand,
+>>   
+>>   	sunxi_nfc_randomizer_config(nand, page, false);
+>>   	sunxi_nfc_randomizer_enable(nand);
+>> +	sunxi_nfc_reset_user_data_len(nfc);
+>> +	sunxi_nfc_set_user_data_len(nfc, 4, 0);
+>>   	sunxi_nfc_hw_ecc_set_prot_oob_bytes(nand, oob, 0, bbm, page);
+>>   
+>>   	writel(NFC_DATA_TRANS | NFC_DATA_SWAP_METHOD |
+>> @@ -1344,10 +1459,12 @@ static int sunxi_nfc_hw_ecc_write_page_dma(struct nand_chip *nand,
+>>   	if (ret)
+>>   		goto pio_fallback;
+>>   
+>> +	sunxi_nfc_reset_user_data_len(nfc);
+>>   	for (i = 0; i < ecc->steps; i++) {
+>>   		const u8 *oob = nand->oob_poi + (i * (ecc->bytes + 4));
+>>   
+>>   		sunxi_nfc_hw_ecc_set_prot_oob_bytes(nand, oob, i, !i, page);
+>> +		sunxi_nfc_set_user_data_len(nfc, 4, i);
+> 
+> Here you use it differently, maybe a bit of explanation in a comment
+> could help.
+> 
+yes, definitely
+
+>>   	}
+>>   
+>>   	nand_prog_page_begin_op(nand, page, 0, NULL, 0);
+>> @@ -2148,6 +2265,10 @@ static int sunxi_nfc_probe(struct platform_device *pdev)
+>>   	if (irq < 0)
+>>   		return irq;
+>>   
+>> +	nfc->caps = of_device_get_match_data(dev);
+>> +	if (!nfc->caps)
+>> +		return -EINVAL;
+>> +
+>>   	nfc->ahb_clk = devm_clk_get_enabled(dev, "ahb");
+>>   	if (IS_ERR(nfc->ahb_clk)) {
+>>   		dev_err(dev, "failed to retrieve ahb clk\n");
+>> @@ -2160,6 +2281,22 @@ static int sunxi_nfc_probe(struct platform_device *pdev)
+>>   		return PTR_ERR(nfc->mod_clk);
+>>   	}
+>>   
+> 
+> ...
+> 
+>>   static const struct sunxi_nfc_caps sunxi_nfc_a10_caps = {
+>>   	.has_ecc_block_512 = true,
+>> +	.has_ecc_clk = false,
+>> +	.has_mbus_clk = false,
+> 
+> As you want, but setting these fields (and below) to false is not
+> strictly required as they will be set to 0 (which means false,
+> automatically).
+> 
+yes, I'll remove them.
+
+>>   	.reg_io_data = NFC_REG_A10_IO_DATA,
+>>   	.reg_ecc_err_cnt = NFC_REG_A10_ECC_ERR_CNT,
+>>   	.reg_user_data = NFC_REG_A10_USER_DATA,
+>> @@ -2242,11 +2383,14 @@ static const struct sunxi_nfc_caps sunxi_nfc_a10_caps = {
+>>   	.dma_maxburst = 4,
+>>   	.ecc_strengths = sunxi_ecc_strengths_a10,
+>>   	.nstrengths = ARRAY_SIZE(sunxi_ecc_strengths_a10),
+>> +	.max_ecc_steps = 16,
+>>   	.sram_size = 1024,
+>>   };
+>>   
+> 
+>> +static const struct sunxi_nfc_caps sunxi_nfc_h616_caps = {
+>> +	.has_mdma = false, // H616 supports only chained descriptors
+> 
+> Wrong comment type :-)
+I'll drop this line also.
+
+> 
+> LGTM otherwise.
+> 
+> Thanks,
+> Miquèl
+Thanks!
+
+-- 
+Richard Genoud, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
