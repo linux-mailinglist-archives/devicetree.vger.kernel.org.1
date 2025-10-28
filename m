@@ -1,44 +1,101 @@
-Return-Path: <devicetree+bounces-232391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 239C0C17396
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 23:46:56 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 826AEC173CF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 23:55:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43CAA19C5962
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 22:47:20 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 36F464E3327
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 22:55:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 554A4433B3;
-	Tue, 28 Oct 2025 22:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1857369994;
+	Tue, 28 Oct 2025 22:55:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YhoYPg1E";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="d2DmbOXP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD3862E092D
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 22:46:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.129
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 070D236999D
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 22:55:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761691612; cv=none; b=KZqYkpFXLz2In/CHJRrUOJxzP6cNkjTrjUDHFwvakBCSWw23MVkwLezAEsUI/L+DiXSoXW1HnvslA5QgI1ksv9pfXAtthOCsS5NSqLlTXfy71CLrQbSNYSE2+h5DnyGJzI5K/Rv9IsWzNBiXhRJUz94qkYB7Zp8EQpFRuIENYC8=
+	t=1761692118; cv=none; b=ed9s/lQ+4/gobMCYQsmKJlvIo1HTdJxV1F8ZyV2v0ktI1KIym4rcNwBBKRWMVsaa6qJNycOHS03ozlQJrtilVfwHbCaDLGGRh8H6AzZUGo8i+DOER4sEH+tXd0LOvCHGrh3wPXDWFl+lRVWJ9FuPYFEOdN9uDL72uITfGc5+9sU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761691612; c=relaxed/simple;
-	bh=0twSq3c+ObXAcgVkvMfjw4uCd6uqp/alZJw+M9nkGsw=;
+	s=arc-20240116; t=1761692118; c=relaxed/simple;
+	bh=yzwDfwQsi48OmO7FMHn21UWUKfUVcr9ew/gPai8Jm58=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GyiciANRG0GB/BXCvUPpiqKTx4WDzXb5PxK2xOXNK9FE+BszIIJ7EcsabYAxqZqNDOJOpGNREj9Oz9tzBPe3/7XgG9ij7f3ET0u7fsVMHaRy7+mkmRjaanWY5sIBpAIs7Up7Z7xFP/cU5dEI0K5qv/ZGZt7CoGKUJ5pcXea+NbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.204.34.129
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip4t1761691579t1a7344d0
-X-QQ-Originating-IP: yt9xKjmej3y85LEm5BR5RfZpa0N3FfHfegGDCFQlBq4=
-Received: from [IPV6:240f:10b:7440:1:7dcf:d79: ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 29 Oct 2025 06:46:13 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 7599762567883759102
-Message-ID: <FAF4CA2A84F989D3+3f447970-cc22-4eba-badc-92ab9dad00fc@radxa.com>
-Date: Wed, 29 Oct 2025 07:46:13 +0900
+	 In-Reply-To:Content-Type; b=CM0KiRaQQ1eUdIHi085dazayCAT9rPOWQZLUyDAphffxyylD6bxU8gcL8siiCEbmVR8cBPThhB0F9B6ecbXzznQ5uXc1T4C2Sqz5M0RtnuwhxK3UXEijs/Mn+dVyz3JJpA5uA2C3617CDC2h1fqvhyNb8OusxuD7jP4jUo21FVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YhoYPg1E; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=d2DmbOXP; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59SJm1DB2553899
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 22:55:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	IWH5Yb4kYBWyOt0Ev0V2vzZdJPpepgJJhZOsAYCisGo=; b=YhoYPg1EgXm2WHsV
+	mWbWSk+UtDDbawHTC3JcbcHgk2C9uKVwr+93/RRtt6o5oJNOEgzv4U1q5Xq8du1L
+	lUw1OoIMVyAUBwE5aRRqMv80eeNtYmUK7JMfLPvffTj8PyRKugBPfSRyUAuycpcn
+	ZA9oUtTvITzbszjuelqynzsbn5ZN+LNJLpC/gU3khwsSVbf/bPwatjI2gcwzRQuA
+	ayZTUBMpzYstCn3jd5g1Co1PEk3TF2pqbcZvX34FAqMf64DT4YMnWTlShv6J1nje
+	MTmcjWSa3KcZiBaBx6IX2vVPm7ryrzSSiTwGtkSK+11AuTZqAauO3zOUA6ygWG+m
+	c73Ydw==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a34a2gfap-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 22:55:15 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-7a440d38452so3014050b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 15:55:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1761692115; x=1762296915; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IWH5Yb4kYBWyOt0Ev0V2vzZdJPpepgJJhZOsAYCisGo=;
+        b=d2DmbOXPQQ9wfHuCaBYBSXSit/zG0Ee8jbGJ8vsw/IcT8Fc8a9tIS3oqvVTdtD3C4N
+         8N45l9M040XBklVKIqUqj9xka/cTvMApwY8tsf8qjMMYdbvc2Dww3w97hpDesavG/Dfc
+         sSBYIB+VHrXb+3Zm4fuR/ijt1R6QBvCwn5wRZZ/gINzWoQ49+rc0DlU0GzrM1YlqHiZk
+         sc1LNUUT9k+kmY7FBjHER2JJvm5q8uPzDAwbwalrT8lCtB1Pgl7MWw8xALIWBr3di7wW
+         drmKmOqJ4+av/FCz1HHfu0+dCKqIi6Fingk0mAA5HMPSqL+o1btGI+VKS7nLpVNyj9/f
+         e7RQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761692115; x=1762296915;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IWH5Yb4kYBWyOt0Ev0V2vzZdJPpepgJJhZOsAYCisGo=;
+        b=Wk/tLLTirkqWSNR/TEEeNiSZgaeY3fgjP6HoqpG68/pkzcks1urAlF8DOItqbkLViS
+         DBl0ZPH/touhHxNi5pXQpx6Dyq5L+yOvO4jO89+FSg2o6vzCAqAMfi3v9NRxdX3DfBg0
+         WhZ3HlLoUnjSlEI1Z1rNrESrBnFNAVma4MALqLMxDLJPKHBnYSd16aWA91f++FMsC4FX
+         YDMOrvSd39/kVyIAIqGrXxN7Jmtkg/iOsv9o9h9CHlcKm9vOjua6JvGTptJVwp6B5rEe
+         XtuHrLygoiaQofHyQJBUfaakUPUoHOQ6bWoxFz1oOnNRUEksgQjR6ArynHWuGNbp1BlF
+         Y5Uw==
+X-Forwarded-Encrypted: i=1; AJvYcCXL99ZtF9emmQSOLq3FqEZd2FX0dlEode9tmT/LV1ERW2pKL7DlNloz44xhbrv5C1CZbZzVjfCfpan7@vger.kernel.org
+X-Gm-Message-State: AOJu0YyW5bKJ3zgugugjn//NKiCQiiWSjZUry32C0JylO3Yqh01Jn1Nh
+	x+Q5q6oo3sBPIqTVS47sIV/o4b5wE6ll8DpYCkoo960o4t3gOjfx1cAr+eSD8m4GJ8fjGOoMjcT
+	YkGc0UDrX/8rIsWgrr2GCqlp/FtFfIM9eOF/ZwyXDvWXhCSafuFURg1o5ymCVibEz
+X-Gm-Gg: ASbGncvDlKJ0CsAq+DnpmT4ONg48EVZ2zp6i3S9dsdlNl0d48wFiY5K73MRGboCNePz
+	LYoYLItX3/rXyn9UADVrOf5uDdLlx/VRttCACLtfCl2zSLZwFRBmawvx89X0NoS2HxEFP+2SJDb
+	EPU3ALAXsP8Bbb4eF12YdVUtawrxRyMpzSP31F2kttCbKMWQW1UHW3dfVtvtayb6rC+iigIz0DW
+	X28VXOdCxappa5LkOekgUsA87cNb+GCSljkVsUJGyKGfAS3nVlRLScOLOx+GRrhSKrsHqyW+VwW
+	soG0z07mMGVqEyuZUBzNJ3/Sd/28Pw6lWJjGNPePcBqinFn21rxx/LcoTpKzh9kt019OWHJ6NHW
+	Oa92A5rVxyr38X75Xr3GoRb26/71C3akyLkbQM9rLGYzxTr72o5CthSYlUmD1CA0=
+X-Received: by 2002:a05:6a20:6a23:b0:334:8d1f:fa8d with SMTP id adf61e73a8af0-34657f5b867mr750134637.18.1761692114718;
+        Tue, 28 Oct 2025 15:55:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEEW5reh+w5hgD74kbP2DyxqWnhWvQGt5/x/EERIqxSbt5YqENq8fvwnso1YY6Zz4H4MxyCZg==
+X-Received: by 2002:a05:6a20:6a23:b0:334:8d1f:fa8d with SMTP id adf61e73a8af0-34657f5b867mr750104637.18.1761692114233;
+        Tue, 28 Oct 2025 15:55:14 -0700 (PDT)
+Received: from [10.71.115.47] (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b71268bd810sm11701618a12.6.2025.10.28.15.55.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Oct 2025 15:55:13 -0700 (PDT)
+Message-ID: <481ec137-87cf-4448-99e9-4a1477f4854d@oss.qualcomm.com>
+Date: Tue, 28 Oct 2025 15:55:11 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,104 +103,215 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Fix USB Type-C host mode for
- Radxa ROCK 5 ITX
-To: Diederik de Haas <diederik@cknow-tech.com>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- liujianfeng1994@gmail.com, dmitry.baryshkov@oss.qualcomm.com,
- sebastian.reichel@collabora.com, andy.yan@rock-chips.com,
- nicolas.frattaroli@collabora.com, damon.ding@rock-chips.com,
- jbx6244@gmail.com, detlev.casanova@collabora.com,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20251028115040.101156-1-naoki@radxa.com>
- <20251028115040.101156-2-naoki@radxa.com>
- <DDU4P6569O9M.3DKFYS1FDBROU@cknow-tech.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: soc: qcom: qcom,pmic-glink: Add
+ Kaanapali and Glymur compatibles
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251027212250.3847537-1-anjelique.melendez@oss.qualcomm.com>
+ <20251027212250.3847537-2-anjelique.melendez@oss.qualcomm.com>
+ <20251028-private-chirpy-earthworm-6fccfe@kuoka>
+ <4cb41e69-fb32-4331-a989-529b5af0081c@kernel.org>
+ <918fc9d3-2cd5-4442-8bc6-b930596d95c1@oss.qualcomm.com>
+ <ba760468-ac41-48e0-a56e-a675c3c0d5b7@kernel.org>
+ <2676d88f-89a9-4b1f-895b-3bdc048f6fbf@oss.qualcomm.com>
+ <4e7f4211-3194-409a-b33c-e47bfdfdb203@kernel.org>
+ <01f419cc-3236-48b9-bd51-e7db07d1e6fe@kernel.org>
 Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <DDU4P6569O9M.3DKFYS1FDBROU@cknow-tech.com>
+From: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
+In-Reply-To: <01f419cc-3236-48b9-bd51-e7db07d1e6fe@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4a-0
-X-QQ-XMAILINFO: MB5+LsFw85NoYruGqZhgImwR9d6VNO722z8j04GzwZOD2NoejRDtHG2M
-	E0Qsvw/dy7rOVIte9oCwmZJudUtvuBssOGegP6n6PVQMgnNYNA6y9MA7Bm9/OJ21RtuF8tv
-	pvRZx0QSuQJ/qPDnouXFrbvQjRQRfvd6z5HNx7E9X54LuVI86wq4uYypr2OmTUI7yxF8Oaw
-	YTwlB9rX2s2G3evxm87VyKrRybuXnuMfRYKQNteuaSQ80ClWW/p3Gb+NI1rFAFQRe8Mvdo1
-	YgGCSgDWcpvHWa5lNKC10M72OHqRijFTcG/849Zt1vd+p4hnMMtjhPw+MzF42C0UYC5/u5+
-	Uhofhp3nSeyS4d+XHcIlw5RnGXo6GIATebaWLMHUWqXNzuk55T86auPBCDgpnTZXjJE4ZiV
-	w8Blqa0QxECMtRf+Xwd/g6mVl4dAspEB+jQRqm84yOs18PmAtM07CBHhi1ivl22zfYXH9Yz
-	zQAjUU6zr2RU4edVwf63aF1FHt6Ebir2aHuenHl1t5tnUIe/LDzm9rWldN74zRpO5cLgBbe
-	urn3KtlKmlJOnA66mH5vHAjUbaTxKV7AN2j6HmQGnx/duJKFaE+1oMsha8Zdub6c3xabbuj
-	GvlxFo7pVm7S0BjcHrM/EbpjUl+HxYwdIrevbN9wUjx/B+oKtmqYNhKh8pWui7p3hWFRjh+
-	JMyt2cQ4GudAXGw0JNE724WxJ1RAx3xM6ER9oB8eh+WRcTpzaYIxn+F3mtE4IuvTEchcIuU
-	OGO6EdmdpGOWmoNM/6PeEzwN7VM5CyjKDyhFyh78FCY38No6MEbljuEVKI7ICDb7Et6l0P/
-	tEBOP3pp1Tzd+eLxF8rNVFSbDHGqy0pP8yanYt0+Mxo3N1PuXpOeZQ59DDQ7T2rpnHY20DU
-	bTGTY1wJbCji0IgawKXKJvCtugpMmBbiTtHFIRKy/csd1wdOClKlLmR2sz052joI3JwFkp0
-	S+dLIs4WPLzE0wjHEtReUQ1130HjlYfXjfDj5kP70zF1C84qqIN7S4LMQ
-X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=
-X-QQ-RECHKSPAM: 0
+X-Proofpoint-GUID: DdMgcbqdJ9qxMYVGTa1nhwW6W3873dAx
+X-Proofpoint-ORIG-GUID: DdMgcbqdJ9qxMYVGTa1nhwW6W3873dAx
+X-Authority-Analysis: v=2.4 cv=PcvyRyhd c=1 sm=1 tr=0 ts=690149d3 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=-iQ0l0JE6UEMKG4t3oYA:9 a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI4MDE5MyBTYWx0ZWRfX95XrOXWmrcnk
+ lEMJWE/kY7OecY5t7XNu9HLC1uc0nfc+LfE8ou4n7YTqZm3DhhMRHb6KibLh6csBNjfii4fAQ7A
+ uhYmsamx1L1MUJ078Z54FogBZ82ggh3QM2C3k6kK0G8xNMCioj0uR5DWuPykXTXVahbu+JtjXmn
+ Us0EmXVlklA/HAIA19zo79CqVW8yuLC/vd1hQ6vNL6xWJ/d/EMXEcM66+O19EG+bbXplSfhXcg6
+ LQAlAxtrgdX3wEpQeDSdOtDF9ro3btx4EVTF4LVNl3QEL0p72qWsqZ/aTZajarZ1e274S5Z16A4
+ Hb8Lr0M/gbi7OWSJno/80aqYAQ4Kg8RV8W7tm8l+o4tS1+JgQ7wS2wzFRmO8o+9lO2AS569KqNS
+ Jpc/jfQEO+T2Vll9aRID4oUswBaPAg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-28_09,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 clxscore=1015 spamscore=0 adultscore=0 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 suspectscore=0 impostorscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510280193
 
-Hi Diederik,
 
-On 10/29/25 02:24, Diederik de Haas wrote:
-> On Tue Oct 28, 2025 at 12:50 PM CET, FUKAUMI Naoki wrote:
->> The USB Type-C port on the Radxa ROCK 5B+/5T supports Dual-Role-Data
->> and Dual-Role-Power. However, currently it cannot operate as host/
->> source.
+
+On 10/28/2025 2:30 AM, Krzysztof Kozlowski wrote:
+> On 28/10/2025 10:21, Krzysztof Kozlowski wrote:
+>> On 28/10/2025 10:19, Konrad Dybcio wrote:
+>>>>>
+>>>>>>>>
+>>>>>>>> Signed-off-by: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
+>>>>>>>> ---
+>>>>>>>>   .../devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml      | 7 +++++++
+>>>>>>>>   1 file changed, 7 insertions(+)
+>>>>>>>>
+>>>>>>>> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
+>>>>>>>> index 7085bf88afab..c57022109419 100644
+>>>>>>>> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
+>>>>>>>> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
+>>>>>>>> @@ -37,12 +37,19 @@ properties:
+>>>>>>>>             - const: qcom,pmic-glink
+>>>>>>>>         - items:
+>>>>>>>>             - enum:
+>>>>>>>> +              - qcom,kaanapali-pmic-glink
+>>>>>>>>                 - qcom,milos-pmic-glink
+>>>>>>>>                 - qcom,sm8650-pmic-glink
+>>>>>>>>                 - qcom,sm8750-pmic-glink
+>>>>>>>
+>>>>>>> Why qcom,kaanapali-pmic-glink is not compatible with
+>>>>>>> qcom,sm8750-pmic-glink? If Glymur is compatible with previous
+>>>>>>> generation, I would expect that here too.
+>>>>>>
+>>>>>> And again to re-iterate:
+>>>>>>
+>>>>>> If X1E is compatible with SM8550 AND:
+>>>>>> SM8750 is compatible with SM8550 THEN
+>>>>>> WHY Glymur is compatible with previous generation but Kaanapali is not
+>>>>>> compatible with previous generation?
+>>>>>
+>>>>> The announcement date does not directly correlate to 'generation'
+>>>> I don't know exactly this IP block/component, but in general these SoCs
+>>>> follow some sort of previous design, thus term "generation" is correct
+>>>> in many cases. Anyway don't be picky about wording.
+>>>>
+>>>> You can remove the generation and statement will be the same.
+>>>>
+>>>> If A is compatible with B AND
+>>>> C is compatible with B
+>>>> THEN
+>>>>
+>>>> WHY D is compatible with (A and B) but E is not
+>>>> compatible with (C and B)?
+
+I think some of the confusion is relating to both UCSI and battmngr aux 
+drivers using SM8550 as compatible strings...
+
+Really we should be thinking about this as:
+
+	SM8750 is compatible with SM8550 UCSI and SM8550 BATTMGR
+	X1E is compatible with SM8550 UCSI and X1E BATTMGR
+
+or
+	A is compatible with B and C
+	E is compatible with B and D
+
+
+More specifically:
+
+SM8750 has the same UCSI quirks (UCSI_DELAY_DEVICE_PDOS) as SM8550, so 
+we would want to use SM8550 compatible string in UCSI driver.
+SM8750 also exposes the same features, state of health and charge 
+control, in battmgr driver, so should use the SM8550 compatible string 
+for battmgr driver as well.
+
+Like SM8750, X1E has the same UCSI quirks (UCSI_DELAY_DEVICE_PDOS) as 
+SM8550, so will use the SM8550 compatible.
+BUT X1E only wants to have charge control exposed in battmngr driver. So 
+instead of using the SM8550 compatible, we should use the X1E compatible 
+in battmgr driver [1]
+
+
+
+Now we have Kaanapali and Glymur being introduced...
+
+Kaanapali IS compatible with SM8750, however since SM8750 did not 
+introduce any new "quirks" or features that Kaanapali should inherit, we 
+can simply define Kaanapali as compatible as SM8550 as well.
+
+Glymur IS compatible with X1E and since X1E introduces a new "feature" 
+that we would like Glymur to inherit, we need to explicitly defined 
+Glymur as compatible to X1E.
+
+
+
+If the reuse of SM8550 as compatible in both drivers is causing 
+confusion, perhaps we instead add an X1E compatible string to the UCSI 
+driver. i.e.
+
+--- a/drivers/usb/typec/ucsi/ucsi_glink.c
++++ b/drivers/usb/typec/ucsi/ucsi_glink.c
+@@ -319,6 +319,7 @@ static const struct of_device_id 
+pmic_glink_ucsi_of_quirks[] = {
+     {.compatible = "qcom,sm8350-pmic-glink", .data = &quirk_sc8180x, },
+     {.compatible = "qcom,sm8450-pmic-glink", .data = &quirk_sm8450, },
+     {.compatible = "qcom,sm8550-pmic-glink", .data = &quirk_sm8450, },
++   {.compatible = "qcom,x1e80100-pmic-glink", .data = &quirk_sm8450, },
+     {}
+  };
+
+
+
+Then we can have the bindings like:
+
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
+@@ -29,6 +29,7 @@ properties:
+                - qcom,sm8350-pmic-glink
+                - qcom,sm8450-pmic-glink
+                - qcom,sm8550-pmic-glink
++              - qcom,x1e80100-pmic-glink
+            - const: qcom,pmic-glink
+        - items:
+            - enum:
+@@ -37,12 +38,17 @@ properties:
+            - const: qcom,pmic-glink
+        - items:
+            - enum:
++              - qcom,kaanapali-pmic-glink
+                - qcom,milos-pmic-glink
+                - qcom,sm8650-pmic-glink
+                - qcom,sm8750-pmic-glink
+-              - qcom,x1e80100-pmic-glink
+            - const: qcom,sm8550-pmic-glink
+            - const: qcom,pmic-glink
++      - items:
++          - enum:
++              - qcom,glymur-pmic-glink
++          - const: qcom,x1e80100-pmic-glink
++          - const: qcom,pmic-glink
+
+
+[1] 
+https://lore.kernel.org/all/20250917-qcom_battmgr_update-v5-5-270ade9ffe13@oss.qualcomm.com/
 > 
-> You describe the ROCK 5B+/5T while modifying the 5 ITX. If the exact
-> same logic applies to the 5 ITX, then ``s/5B+\/5T/5 ITX/`` above?
-
-Oh, yes, it should be "5 ITX" :)
-
-Thanks!
-
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-> Cheers,
->    Diederik
 > 
->> By setting "power-role" to "dual" and "try-power-role" to "sink"
->> (along with adding related properties), the data role can operate as
->> host.
->>
->> Unfortunately, a remaining issue is that when a USB 3.0 SuperSpeed
->> device's orientation is reverse, the root port is detected but the
->> device itself is not. This must be addressed separately.
->> (USB 2.0/1.1 devices operate even in reverse orientation.)
->>
->> Fixes: 31390eb8ffbf2 ("arm64: dts: rockchip: add ROCK 5 ITX board")
->> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->> ---
->>   arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts | 7 ++++++-
->>   1 file changed, 6 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
->> index bc8140883de47..1664f85db4aaa 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
->> @@ -484,9 +484,14 @@ usb_con: connector {
->>   			compatible = "usb-c-connector";
->>   			data-role = "dual";
->>   			label = "USB-C";
->> -			power-role = "source";
->> +			op-sink-microwatt = <50000>;
->> +			/* fusb302 supports PD Rev 2.0 Ver 1.2 */
->> +			pd-revision = /bits/ 8 <0x2 0x0 0x1 0x2>;
->> +			power-role = "dual";
->> +			sink-pdos = <PDO_FIXED(5000, 10, PDO_FIXED_USB_COMM)>;
->>   			source-pdos =
->>   				<PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
->> +			try-power-role = "sink";
->>   
->>   			ports {
->>   				#address-cells = <1>;
+> Heh, and don't get me started on driver...
+> 
+> { .compatible = "qcom,glymur-pmic-glink", .data =
+> &pmic_glink_kaanapali_data },
+> { .compatible = "qcom,kaanapali-pmic-glink", .data =
+> &pmic_glink_kaanapali_data },
+> 
+> So how is now Glymur using Kaanapali, so basically compatible with it?
+> 
+> Even more questions I did not consider.
 > 
 > 
 
+Both Kaanapali and Glymur are running on SOCCP, so we should not define 
+PDR paths. Since both platforms have will have the same pmic_glink 
+services running(i.e. altmode, ucsi, and battmgr),we can reuse the 
+pmic_glink_data for both. I have no problem with instead defining 
+pmic_glink_kaanapali_data and pmic_glink_glymur_data separately but I 
+figured upstream would not like code reuse.
+
+
+> 
+> Best regards,
+> Krzysztof
 
 
