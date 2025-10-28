@@ -1,204 +1,99 @@
-Return-Path: <devicetree+bounces-231887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3100C128A4
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 02:28:00 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id E57AFC128CB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 02:30:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E3E819A2C3F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 01:28:24 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DF4CD4E7770
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 01:30:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6D712248B0;
-	Tue, 28 Oct 2025 01:27:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0B98239E7F;
+	Tue, 28 Oct 2025 01:30:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hnr26WG3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 875E51F3BAC;
-	Tue, 28 Oct 2025 01:27:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B1D3185E4A;
+	Tue, 28 Oct 2025 01:30:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761614875; cv=none; b=lQdN7rN6hZ5gwdMyWTQ/Ll1YEUsRYESoIpvdvJjf9shFXhIJ6fbgHFP1y1+9pUD39pRRgc5eWjPu612FSzSNCG7U5E7VHYY3yzvqCBxooJM956K790/rsqC5r6tlFNn9Gn72PR8PHdrWUen1c/fRvP7NgviFdVjJ79uhZkF+mVw=
+	t=1761615030; cv=none; b=kWDQMLNjfhZ6TDDrC2RjhupI/H/kXW6O6lV+D1jTSbYG0ZsBhKA++vJ0hY7/hoTo/43l9LD9WK9vCsPvri6C/oA2UEezjLkg7aXOHzgaiQ7gKR4D45hcs8syt+NGrvt//4xDaJwKVLukGbU1OPypi23Zm/wrxqAq/QvALbU/t6I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761614875; c=relaxed/simple;
-	bh=+xOOGvn43/VAMLY95I2MsreauEqB7OYAIu7MB39DSrc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Cs1ma0nUzF8FCLapQAUmjAYMxT+18ug5RGyAHDoLiLh3OlBjEW1k1giNrGzKhQeGSPWrv8+vXLQTDTQ4oQdV0bUy8N6d/8PC6K6wwMLbmHvAElKPryWkRyqXpakWvdV66NrX8EF5h4EFrI5u+OtHFXUD8Q1SzarVWq5pxAMdHFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.98.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vDYUy-0000000068J-2gMM;
-	Tue, 28 Oct 2025 01:27:44 +0000
-Date: Tue, 28 Oct 2025 01:27:39 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Andreas Schirm <andreas.schirm@siemens.com>,
-	Lukas Stockmann <lukas.stockmann@siemens.com>,
-	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
-	Peter Christen <peter.christen@siemens.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH net-next v3 10/12] dt-bindings: net: dsa: lantiq,gswip:
- add support for MaxLinear GSW1xx switches
-Message-ID: <aQAcC3lj5G_uoXPd@makrotopia.org>
-References: <cover.1761521845.git.daniel@makrotopia.org>
- <cover.1761521845.git.daniel@makrotopia.org>
- <f07c15befb17573ca50e507156892b067a25ee2c.1761521845.git.daniel@makrotopia.org>
- <f07c15befb17573ca50e507156892b067a25ee2c.1761521845.git.daniel@makrotopia.org>
- <20251028000959.3kiac5kwo5pcl4ft@skbuf>
+	s=arc-20240116; t=1761615030; c=relaxed/simple;
+	bh=Bm2irc7gXUY0CPdzzsQ3acckBICJU4QlM8eFUNd3X5Y=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=ZrTL/VyvKz2/EEuKu91U5oGeS7uQnzmvop4SKJrhqYspIwqoDVYKTJ6QRINgunOZCrfcHb11jdmPEU75EovBhwV4e2wCmasjZpGMrg/TgfFGtdsqIZFIVgwYz4xkzoZ0Eq/mgE1kzfmdjn4+oRciWISO2YTu1GfBdfWB310rqvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hnr26WG3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E557C4CEF1;
+	Tue, 28 Oct 2025 01:30:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761615030;
+	bh=Bm2irc7gXUY0CPdzzsQ3acckBICJU4QlM8eFUNd3X5Y=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=Hnr26WG3OLnFInlblb0f266rA6wtxVdNFWKC/epftIgZJ7fXAroehIm+TrueFE5IM
+	 daxlCSD8Z8HuN9z/PFR9JGDRwnPt5CAZmGEKyfMIdPXmGMt8V3DoME7GnOOUYzPAhE
+	 bfYXIsykI1KMN5VSL8qjV5FcTRyOZ/FUMV28JQFiiNdj+at8YB5aaOAyf7RIRLm4AX
+	 iobP3RB9fzN/ZZKifiiU6T5DhB31l+EMAF26B0mrakbs57ZUl2dvvGQdPBRkP2X+xW
+	 qZahuqyLgeiKIbbcwLiqTMynhl0my8EBErqLg3hicCuhDjgZBcndqydxadn853f1vi
+	 FF7/G9uD2b5Vg==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 7131E39D60B9;
+	Tue, 28 Oct 2025 01:30:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251028000959.3kiac5kwo5pcl4ft@skbuf>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net v2] dt-bindings: net: sparx5: Narrow properly LAN969x
+ register space windows
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <176161500826.1653952.7154756553118848296.git-patchwork-notify@kernel.org>
+Date: Tue, 28 Oct 2025 01:30:08 +0000
+References: <20251026101741.20507-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20251026101741.20507-2-krzysztof.kozlowski@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, Steen.Hegelund@microchip.com,
+ daniel.machon@microchip.com, UNGLinuxDriver@microchip.com,
+ lars.povlsen@microchip.com, robert.marko@sartura.hr, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
 
-On Tue, Oct 28, 2025 at 02:09:59AM +0200, Vladimir Oltean wrote:
-> On Sun, Oct 26, 2025 at 11:48:06PM +0000, Daniel Golle wrote:
-> > Extend the Lantiq GSWIP device tree binding to also cover MaxLinear
-> > GSW1xx switches which are based on the same hardware IP but connected
-> > via MDIO instead of being memory-mapped.
-> > 
-> > Add compatible strings for MaxLinear GSW120, GSW125, GSW140, GSW141,
-> > and GSW145 switches and adjust the schema to handle the different
-> > connection methods with conditional properties.
-> > 
-> > Add MaxLinear GSW125 example showing MDIO-connected configuration.
-> > 
-> > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> > ---
-> > v3:
-> >  * add maxlinear,rx-inverted and maxlinear,tx-inverted properties
-> > 
-> > v2:
-> >  * remove git conflict left-overs which somehow creeped in
-> >  * indent example with 4 spaces instead of tabs
-> > 
-> >  .../bindings/net/dsa/lantiq,gswip.yaml        | 275 +++++++++++++-----
-> >  1 file changed, 202 insertions(+), 73 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> > index dd3858bad8ca..1148fdd0b6bc 100644
-> > --- a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> > +++ b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> > @@ -4,7 +4,12 @@
-> >  $id: http://devicetree.org/schemas/net/dsa/lantiq,gswip.yaml#
-> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >  
-> > -title: Lantiq GSWIP Ethernet switches
-> > +title: Lantiq GSWIP and MaxLinear GSW1xx Ethernet switches
-> > +
-> > +description:
-> > +  Lantiq GSWIP and MaxLinear GSW1xx switches share the same hardware IP.
-> > +  Lantiq switches are embedded in SoCs and accessed via memory-mapped I/O,
-> > +  while MaxLinear switches are standalone ICs connected via MDIO.
-> >  
-> >  $ref: dsa.yaml#
-> >  
-> > @@ -34,6 +39,108 @@ patternProperties:
-> >              description:
-> >                Configure the RMII reference clock to be a clock output
-> >                rather than an input. Only applicable for RMII mode.
-> > +          maxlinear,rx-inverted:
-> > +            type: boolean
-> > +            description:
-> > +              Enable RX polarity inversion for SerDes port.
-> > +          maxlinear,tx-inverted:
-> > +            type: boolean
-> > +            description:
-> > +              Enable TX polarity inversion for SerDes port.
-> 
-> How urgently do you need these two properties? They are truly general,
-> not vendor-specific, and while I wanted to add such support to the
-> Synopsys XPCS, I started working on some generic variants.
+Hello:
 
-Inverting the RX inversion is required for the MaxLinear GSW145 demo
-board I got which got an MxL86111 PHY wired to the SGMII port of the
-switch. That's why I had to implement at least that in order to be able
-to test the SerDes port.
+This patch was applied to netdev/net.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-> There's some cleanup and consolidation to do. "st,pcie-tx-pol-inv" and
-> "st,sata-tx-pol-inv" are defined in .txt bindings but not implemented.
-> Then we have "st,px_rx_pol_inv" and "mediatek,pnswap" which would also
-> need deprecating and converted to the new formats.
+On Sun, 26 Oct 2025 11:17:42 +0100 you wrote:
+> Commit 267bca002c50 ("dt-bindings: net: sparx5: correct LAN969x register
+> space windows") said that LAN969x has exactly two address spaces ("reg"
+> property) but implemented it as 2 or more.  Narrow the constraint to
+> properly express that only two items are allowed, which also matches
+> Linux driver.
+> 
+> Fixes: 267bca002c50 ("dt-bindings: net: sparx5: correct LAN969x register space windows")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> [...]
 
-Sounds like a good plan, I'm all for it :)
+Here is the summary with links:
+  - [net,v2] dt-bindings: net: sparx5: Narrow properly LAN969x register space windows
+    https://git.kernel.org/netdev/net/c/210b35d6a7ea
 
-> 
-> Where I left things was that I haven't decided if there's any value in
-> defining the polarity per SerDes protocol (like
-> Documentation/devicetree/bindings/phy/transmit-amplitude.yaml) or if a
-> global value is fine. I.e. if the polarity is inverted for SATA, it's
-> normal for PCIe, or something like that. The existence of the independent
-> "st,pcie-tx-pol-inv" and "st,sata-tx-pol-inv" properties would suggest
-> yes, but the lack of an implementation casts some doubt on that.
-> 
-> Anyway, I do have some prototype patches that add something like this:
-> 
->     phy: phy {
->       #phy-cells = <1>;
->       tx-p2p-microvolt = <915000>, <1100000>, <1200000>;
->       tx-p2p-microvolt-names = "2500base-x", "usb-hs", "usb-ss";
-> 
->       /* RX polarity is inverted for usb-hs, normal for usb-ss */
->       rx-polarity = <PHY_POL_INVERT>, <PHY_POL_NORMAL>;
->       rx-polarity-names = "usb-hs", "usb-ss";
-> 
->       /* TX polarity is normal for all modes */
->       tx-polarity = <PHY_POL_NORMAL>;
->       tx-polarity-names = "default";
->     };
-> 
-> and a new drivers/phy/phy-common-props.c file (yes, outside of netdev)
-> with two exported API functions:
-> 
-> int phy_get_rx_polarity(struct fwnode_handle *fwnode, const char *mode_name);
-> int phy_get_tx_polarity(struct fwnode_handle *fwnode, const char *mode_name);
-> 
-> If you can split this up from the rest of the MDIO discrete switch
-> introduction series, I can accelerate work on these common properties in
-> the following weeks.
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-I can break out the SGMII polarity dt-bindings and functional patch
-and postpone it until generic properties to describe SerDes polarities
-are introduced.
 
-Also note that the SerDes PHY also got a bunch of other tunables which
-can make sense but aren't required on the demo board:
- * RX LOS Detector Enable
- * RX LOS Filter Count
- * RX LOS Threshold Level in mV
- * RX LOS Sensitivity Level
- * TX Amplitude Control
- * TX Vboost Enable
- * TX Vboost Level (0.844 V, 1.008 V, 1.156 V)
- * TX Remote Receiver Detection Request Enable
- * TX Preemphasis
- * ...
-
-Especially the voltage levels cry for being described in a generic
-way...
 
