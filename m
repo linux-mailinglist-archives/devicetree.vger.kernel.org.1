@@ -1,165 +1,205 @@
-Return-Path: <devicetree+bounces-232378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F86BC16E67
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 22:15:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1CB6C17062
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 22:34:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 79565350745
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 21:15:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C3F23BE5D3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 21:33:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8B9233DEE8;
-	Tue, 28 Oct 2025 21:15:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 793D92E4241;
+	Tue, 28 Oct 2025 21:32:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nxi08bX2";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="J+TmEca5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HoGACLRn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72B535695
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 21:15:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45C682E22BD;
+	Tue, 28 Oct 2025 21:32:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761686134; cv=none; b=jqOXXcowIwytN+wRdZJtHzfsIdvqtNqHNaw0YnZhpTVwj4XElVrGYa8nmulv4avjiudwGrcL4Ra4W4kwoStfrXvkz/3wiTgkkZOl2Owe/LgO0x8Lc5tw9uekkVIBLzYrjoymuD5J6hOVNX99S1WMv+sUcLsv8w/uxmO1gFosFjs=
+	t=1761687134; cv=none; b=YGAwohDnVv/yox1C21XbZm9TGtejDwvZmVIBHrJf9hQ12EPGc9Iv2cKk5UNzxpfVn2tqL3gfUobTLXVHVtHu1vJsjis8Zh39RhCoGpt/ManYYdja7nGPHwMKXuUm3cDIHddXSiUswS07zwiQyOHOk57Vy/tZHtEv2JfqlAG8Pas=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761686134; c=relaxed/simple;
-	bh=1SLvAEoZNQRLDp+XCv/j4QKTk2SclYwX86Ac4+yNShk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PbDsmNv0fbcW630uNtmUVv6m79XkgvixZ6SxPO0Vk0Ucp2JSkFA5IHo2XhO+bDgMvM532hVBamDBpEUuSo07mxm8YI2Lsb4bI4hwuqPgytEBhZFhfaK7hS6PCr+0xUX1fYKO193ZdSqP9ErScz+LFbjKNbOcw+t4dQN3loXjtT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nxi08bX2; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=J+TmEca5; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59SJllGS2524097
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 21:15:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=QkpH6v9dp0MRYRL2ohSXE3M+
-	TFxAVIa572J76dWKJgA=; b=nxi08bX2IU4RaynuB2unIXksIEnyXSImy8QR3tf4
-	wW4scOJqraycDpqGHrXSAQb0NWJTRBQ3879pjBeo6WtfRbd5GNaflYIu4ONOfthM
-	0UclQFVLgXg7lWUupC6gZkcAwggCVMWB8QqDOFcAGLn99cZLb5yS1sm6FFkvGU6l
-	4IdFYvhYxIZk+SmMIuPeeGUKXD1jJYedd7L/hA8gmNuV5sjbiGEb1OOPpJ0LmL3F
-	Ws1MPTnVhMr2BNzihnGtWx91/Q/E2iNnE38hE0t6gnMqGYk+Bjvr1an36a5j6Ekr
-	FiOSazzsg6o33kFGxRQx2KSIpB0CVyCmhp6prQtkeqnNYg==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a34a1r73b-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 21:15:32 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4e8a4c63182so191066641cf.3
-        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 14:15:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761686131; x=1762290931; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=QkpH6v9dp0MRYRL2ohSXE3M+TFxAVIa572J76dWKJgA=;
-        b=J+TmEca5qkleqQ1WJ7t7e+d3ljxErLpuxNvS7rx9kyQLB7safComikPqjA+8RY3ugf
-         asyx3mWkgSkssjvu1dxZ4Lu39yHtE3G+eqr9faB9ZwDutiyQe2Afw0mGsLDN7F9B0ZEW
-         ZxgafqitjHlt1VMJCW2gQ4aiKiKeMEDZLOcCYrYzwDy/jyJsuS1qBT+ERgZce9nSta77
-         mWZEdltqs/5p1WxY4y4TH1RPwVQVIztkdCfT9tIYopAogiY7Lp7OVz8PhoKoztVWoiem
-         HFEHKDpWU+cCQWbY22GuQFU7+5BM+UDt3TtOhDDdJ3OnNmdCpV8n+xq1WXt1tw4foYW+
-         Om5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761686131; x=1762290931;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QkpH6v9dp0MRYRL2ohSXE3M+TFxAVIa572J76dWKJgA=;
-        b=fRgMVj2YDSXmMF+ii6KAPJvMFyJ2FX8i++0Zg9y3NrzftHVILQFQhL1n7WxOiEILWj
-         eCsxzLsMFq1bBJth8CA4TTWdXsiUB/5CcEqhWBjrRAd5VaZzjUDwJH7xmNg96VNeLanp
-         g7bg2aKcXeXDVBgnymyITKhXNq2e84jOnML2yDxu9KDpZ4SRB6Parf6axb6g3UuesbGQ
-         va8DW2+nbzLsoA1j+wiCLjJDwVnoUkaocAyJ3wWqu92y/1GQEbt14qxpibROA1gVP+fm
-         4lVnajsOO40XYGuVa3NJESZ0pBjyNLP3qUXOYFaiKFOQDx5Ofk/pAOTWxphSvM3RlQoq
-         mjkw==
-X-Forwarded-Encrypted: i=1; AJvYcCWpompqGOwl6tadkIri0riOQ7okj+2o5zdK2pqfe3wf2+dKs/nMEUN2+Ju6SQouIrm8iwgIaRgodTT+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWk1hgPXnvhOpFDIy25z88ScwZ4Ud3zBjANDayBXVX3HZurHho
-	xd7S6FppCZGS6cwSA1d4ErG8m86MIs79y0g3brhra3HFWs09bvS63/MfrNw+qGqlTnDHJ+cycx9
-	ufnJiwYWLD3Q0SVo/42VXtGOtsN0WdT26MVrcQRKaiW0uqfTgvac+hvYHv6ZTf+w3
-X-Gm-Gg: ASbGncsg/ton1y2SZ3gId3DRB9g6Oz8Uxe1qoxF0t2fIXdp+CWz2DgTLUQN3AlIdlHl
-	qic/UOagSu1Om+bu8f5WzoSCyxXU9u98ZGQnwHE6AWBIEtBhovvOmjLnoNsawj2xkaGfY89UcsQ
-	HHbhB1eGJGmIKNzeY3qAqKIu133t2/S6GaApf8SCBzOQajX78Z05Sk62WaFubPz7LUXBi/o9Z7z
-	0J73VChrYYPp8DiB07Z9DCMRj3nEPpm0Jv6mwdxBL2b+hVXUs58f8F8RI+S3ZestNbaHB2SZ5GN
-	Wz9sx0OWyprkGWfERCU0PJCdbn4p3+YR066zmJqaryMpv0g6FhLBPqNEpe2pz8A3MxMKDYauCBe
-	a9FFHQd7hPV+JEHG4KTajou+0g7QNRc6j05j9havtqPOM5wdk3KqM9nbK6SfyO48TgbfaxHwQsp
-	d0/f2lEMt3/ngF
-X-Received: by 2002:ac8:5f4c:0:b0:4e8:a389:dde with SMTP id d75a77b69052e-4ed15c41cedmr9753691cf.69.1761686131525;
-        Tue, 28 Oct 2025 14:15:31 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGKCbOyz6J1IE9zwWL3LnWol43Zm3I7im5kTE/fmtuzRYUCbnmOO0TzpIxB75SnE6oGv5I3rA==
-X-Received: by 2002:ac8:5f4c:0:b0:4e8:a389:dde with SMTP id d75a77b69052e-4ed15c41cedmr9753391cf.69.1761686131083;
-        Tue, 28 Oct 2025 14:15:31 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59301f5093asm3285266e87.37.2025.10.28.14.15.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Oct 2025 14:15:30 -0700 (PDT)
-Date: Tue, 28 Oct 2025 23:15:28 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Wesley Cheng <wesley.cheng@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v9 2/3] arm64: dts: qcom: sm8750: Add USB support for
- SM8750 MTP platform
-Message-ID: <r5zjb7v2ngsbx2y63tmdhnm4gbpla5fki4uzpjhvn7sqmzsqi2@7637rbudt3z6>
-References: <20251024151521.2365845-1-krishna.kurapati@oss.qualcomm.com>
- <20251024151521.2365845-3-krishna.kurapati@oss.qualcomm.com>
+	s=arc-20240116; t=1761687134; c=relaxed/simple;
+	bh=2EEnmO6EhTOklvUkgMyvvlbcjjuWC8fHPgl82CQfRBQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LzBDQpo6ggChRq499BmVaNQbDaNFULtaFoRRMWzBkwL+fHaemPX/ZLjqlL9Mgrfwco7foEsdq9reLQjQUSx88Pf9NZXl4kW7OL3s1BxAC3Uf/3xqTmQiedgV15d3SoOl2ng8T7frqgRK3ybfUZQXn/2VLBr/OZkI9HMXkF07Y9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HoGACLRn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B89D1C4CEE7;
+	Tue, 28 Oct 2025 21:32:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761687133;
+	bh=2EEnmO6EhTOklvUkgMyvvlbcjjuWC8fHPgl82CQfRBQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=HoGACLRnYFxYU74CYWmWbQwHT1ZAWGcXS6OpTT5SUBi4fo/+P0gW034VpaXSDVEa8
+	 9dc6kuW5Ztq8SfkcYdEyu1RS90G7XbkZ8g4xJZtje+J0RZ4WGNN9UkeplAEscimKFI
+	 1PAMkwJrx3q6QLu8XaReLtV9OJhGYaZCnpF7GrioTCig0lSt7ZH/gfeUnugFPsL5jp
+	 KECqWsWB2k0RQlo0OIrE4JaiIT2aMr4ycQPLteH8vQcGdXbdQ+8bSpHtlrqfs2xU29
+	 2gazJ5KIjOgYX+wSHh8xopnbl4xYptk4VDRyH93lP9BbWQKtffgWGzG8WHKTA93JGr
+	 9WXRv+2iP8/+w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A5856CCF9F0;
+	Tue, 28 Oct 2025 21:32:13 +0000 (UTC)
+From: =?utf-8?q?Andr=C3=A9_Apitzsch_via_B4_Relay?= <devnull+git.apitzsch.eu@kernel.org>
+Subject: [PATCH v7 0/4] Add CAMSS support for MSM8939
+Date: Tue, 28 Oct 2025 22:30:41 +0100
+Message-Id: <20251028-camss-8x39-vbif-v7-0-91ee8becda85@apitzsch.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251024151521.2365845-3-krishna.kurapati@oss.qualcomm.com>
-X-Proofpoint-GUID: vbk-q7WqPpYimKMY1cEXBoRHfs-_ArFh
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI4MDE3OSBTYWx0ZWRfX/Ek6wMLoUdll
- 1dxRVdfrMG3P3IuvD9a7NKXJ9sz5fVzadofrMQ5GZYZ9TKuoP8kA7KAbU6Buu64ctFNXofqgrgz
- CwALTAs8RD3UpZCuDPw4WrXAywhKCeFS9uJGJi9JH7+8VcLtkQ9SEsNAgMMhKopA+2ZmtgHsCfD
- fWN4Jnb4MSck4YydYKfUJuHOToIwLjnPHFHE2L92kzacJGHgQeN2Yis98JwuaLajFsvZQbrxr0A
- xI1ycqG85G+UKIQyNdH25BR9vMTwMgQJwuCGaGI4319v7ocTr1Ceofq6lyWZr2iBd2TvvypW99W
- zvWxkGkinwmcRB7pDDgw5QdLxx2OgaZN67Ww8tKX19h/1DsnYN9JTmlpzcgMYUwjvdQzEoIPOly
- MhdyuG51b/gApeP5UKq5los6bNiQbw==
-X-Proofpoint-ORIG-GUID: vbk-q7WqPpYimKMY1cEXBoRHfs-_ArFh
-X-Authority-Analysis: v=2.4 cv=UObQ3Sfy c=1 sm=1 tr=0 ts=69013274 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=SMp4HK0SL3UJoFr3leoA:9 a=CjuIK1q_8ugA:10
- a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-28_08,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0 phishscore=0 bulkscore=0 priorityscore=1501
- spamscore=0 impostorscore=0 adultscore=0 lowpriorityscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510280179
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAI2AWkC/23Oza7CIBAF4FcxrMXw47TFle9x44IyYCdRMeAle
+ k3f/dLGRY0uzyTznfNk2Sfyme1WT5Z8oUzxUkO7XjE32MvRc8KamRIKBMiWO3vOmXd3bXjpKXD
+ TQgjQSSNNx+rXNflA91n8OdQ8UL7F9JgLipyuL0uJD6tILriVymEjRGOD2Z8tnWLcxHSc7PnRi
+ O77Y6gLnAkocIt7e6XbX3bDxv+yaUZRy2r4FFQVGtQIDmzYQrOsngG9APSX7Xqa4IxECX0P+A6
+ M4/gPwDZX7WsBAAA=
+X-Change-ID: 20250517-camss-8x39-vbif-975ff5819198
+To: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Vincent Knecht <vincent.knecht@mailoo.org>, 
+ =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761687132; l=4718;
+ i=git@apitzsch.eu; s=20240325; h=from:subject:message-id;
+ bh=2EEnmO6EhTOklvUkgMyvvlbcjjuWC8fHPgl82CQfRBQ=;
+ b=I+25c++9OwHTEcTYPssguogzhJJOpAF/xdE47WVyuaw1jC0UcXnukhX5n78ghEm0ZcYLoJMPL
+ nj/MzQ95NivC8HHrEO+rGX7+it8aoJMGro6h8FzvyRYB+/GTuH/SRZe
+X-Developer-Key: i=git@apitzsch.eu; a=ed25519;
+ pk=wxovcZRfvNYBMcTw4QFFtNEP4qv39gnBfnfyImXZxiU=
+X-Endpoint-Received: by B4 Relay for git@apitzsch.eu/20240325 with
+ auth_id=142
+X-Original-From: =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
+Reply-To: git@apitzsch.eu
 
-On Fri, Oct 24, 2025 at 08:45:20PM +0530, Krishna Kurapati wrote:
-> From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-> 
-> Enable USB support on SM8750 MTP variants.  The current definition will
-> start the USB controller in peripheral mode by default until
-> dependencies are added, such as USB role detection.
+This series adds CAMSS support for MSM8939.  It's mostly identical to
+MSM8916, except for some clocks and an additional CSI.
 
-Which dependencies?
+To fix black stripes across sensor output, and garbage in CSID TPG
+output, 2 VFE VBIF register settings are needed.  So the 2nd patch adds
+helper functions to do just that.
 
-> 
-> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-> [Konrad: Provided diff to flatten USB node on MTP]
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm8750-mtp.dts | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
-> 
+Patch 1: documents qcom,msm8939-camss DT bindings
+Patch 2: adds helper for VFE VBIF settings
+Patch 3: adds CAMSS_8x39 version in CAMSS driver
+Patch 4: adds camss and cci in msm8939.dtsi
 
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+[André: Apply reviewer comments]
+Signed-off-by: André Apitzsch <git@apitzsch.eu>
+---
+Changes in v7:
+- Fix revision (previous submission was wrongly labelled v1)
+- Pick up tags
+- Rebase on latest next/master
+- Link to v6: https://lore.kernel.org/r/20250908-camss-8x39-vbif-v1-0-f198c9fd0d4d@apitzsch.eu
+
+Changes in v6 (was wrongly labelled v1):
+- Move bindings patch to the beginning
+- Make the order of {reg, clock, interrupt} items the same as in 8916 +
+  append additional items
+- Drop R-b tags from bindings and dts patches as order of items was
+  changed
+- Link to v5: https://lore.kernel.org/r/20250613-camss-8x39-vbif-v5-0-a002301a7730@mailoo.org
+
+Changes in v5:
+- Patch 1: no change
+- Patch 2: no change
+- Patch 3: (bindings)
+  - Fix alphanumerical ordering wrt. underscore (Vladimir)
+  - Add 1.2V mention to vdda-supply description (Vladimir)
+  - Correct vdda-supply regulator name for 1.2V in example
+  - Add empty line between properties and child node (Vladimir)
+  - Remove clock-lanes property in example (Vladimir)
+- Patch 4: (dtsi)
+  - Apply ordering and isp node unit address changes from patch 3.
+- Link to v4: https://lore.kernel.org/r/20250602-camss-8x39-vbif-v4-0-32c277d8f9bf@mailoo.org
+
+Changes in v4:
+- Picked up tags
+- Patch 1:
+  - Fix alignment to match opening parenthesis (Bryan)
+- Patch 2: no change
+- Patch 3:
+  - Wrap line at 80 chars (Krzysztof)
+- Patch 4: no change
+- Link to v3: https://lore.kernel.org/r/20250530-camss-8x39-vbif-v3-0-fc91d15bb5d6@mailoo.org
+
+Changes in v3:
+- Patch 1:
+  - Use braces around multiline (Bryan)
+  - Rename vfe_vbif_reg_write to vfe_vbif_write_reg (Bryan)
+  - Get rid of switch block on CAMSS version (Bryan)
+- Patch 2:
+  - Get rid of switch block on CAMSS version (Bryan)
+- Patch 3: no change
+- Patch 4: no change
+  - Tried to get rid of CCI camss_ahb but this resulted in device
+    freeze+reboot (Konrad)
+- Link to v2: https://lore.kernel.org/r/20250525-camss-8x39-vbif-v2-0-6d3d5c5af456@mailoo.org
+
+Changes in v2:
+- Patch 1:
+  - Fix devm_platform_ioremap_resource_byname line to not end with
+    opening parenthesis (media-ci/1-checkpatch)
+  - Move camss-vfe-4-1.c handling of VBIF previously in patch 2 here
+    (Dmitry)
+- Patch 2:
+  - Declare regulators in PHY entries, not CSID ones (Bryan)
+- Patch 3: (bindings)
+  - Fix bindings checks for new errors (Rob)
+  - Fix properties ordering, code-style and example (Krzysztof)
+  - Sort reg-names, clock-names and interrupt-names alphanumerically (Bryan)
+- Patch 4: (dtsi)
+  - Move #address/#size cells before status (Konrad)
+  - Aligned CCI with msm8916, thus removing ispif_ahb mention (Konrad)
+    If "camss_ahb should be unnecessary", it's still required by qcom,i2c-cci.yaml
+- Link to v1: https://lore.kernel.org/r/20250520-camss-8x39-vbif-v1-0-a12cd6006af9@mailoo.org
+
+---
+Vincent Knecht (4):
+      media: dt-bindings: Add qcom,msm8939-camss
+      media: qcom: camss: vfe: Add VBIF setting support
+      media: qcom: camss: Add support for MSM8939
+      arm64: dts: qcom: msm8939: Add camss and cci
+
+ .../bindings/media/qcom,msm8939-camss.yaml         | 254 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi       |   4 +
+ arch/arm64/boot/dts/qcom/msm8939.dtsi              | 146 ++++++++++++
+ drivers/media/platform/qcom/camss/Makefile         |   1 +
+ drivers/media/platform/qcom/camss/camss-csiphy.c   |   1 +
+ drivers/media/platform/qcom/camss/camss-ispif.c    |   8 +-
+ drivers/media/platform/qcom/camss/camss-vfe-4-1.c  |  12 +
+ drivers/media/platform/qcom/camss/camss-vfe-vbif.c |  31 +++
+ drivers/media/platform/qcom/camss/camss-vfe-vbif.h |  19 ++
+ drivers/media/platform/qcom/camss/camss-vfe.c      |  10 +
+ drivers/media/platform/qcom/camss/camss-vfe.h      |   3 +
+ drivers/media/platform/qcom/camss/camss.c          | 157 +++++++++++++
+ drivers/media/platform/qcom/camss/camss.h          |   1 +
+ 13 files changed, 645 insertions(+), 2 deletions(-)
+---
+base-commit: f7d2388eeec24966fc4d5cf32d706f0514f29ac5
+change-id: 20250517-camss-8x39-vbif-975ff5819198
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+André Apitzsch <git@apitzsch.eu>
+
+
 
