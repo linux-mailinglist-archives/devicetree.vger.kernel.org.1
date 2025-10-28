@@ -1,178 +1,101 @@
-Return-Path: <devicetree+bounces-232117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96E36C1462D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 12:33:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD221C146A2
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 12:41:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85F43188384F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 11:33:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE9781AA3A3A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 11:41:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA60A2D6603;
-	Tue, 28 Oct 2025 11:33:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56D4B2FFDCE;
+	Tue, 28 Oct 2025 11:41:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hsZdRJQ2"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="XgoTuCBP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC2FE246327;
-	Tue, 28 Oct 2025 11:33:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C87EF303A38;
+	Tue, 28 Oct 2025 11:41:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761651204; cv=none; b=NwQ/VGiFQExef8M/wJdS7ybrYG9iv02dB5PijLMFcswuU6VB3ZEJ48Ben5ePDMnYTpsJHqoxTkEFImIGyo8OjkeemlxpEYGKnyxh+vy9L3IKyh+afZCcaI8vaClrC+JdxpzDmdiNUNiD/M+z6rAl0MXeO5LF75EY2zEOhU56jxI=
+	t=1761651682; cv=none; b=HviiWf+fTK99LNsT984V00Zk3eqEZpolf9kHebaZcsBgQekOCpC2GZEOzuYluc8k42A/HQJSxY07fQp/lp978CPlvUPoxXXyspZninmMX8wb/1c7YJNaOEoL3toMerP2rc3ePXVeiYB1L5Oa9hIevRlL/5tXtCmB9cjrYMfJeMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761651204; c=relaxed/simple;
-	bh=sNNc/PHl1tyQsKyadLH0fpHete1J310HQC59/CNChbM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gA/8OReTKCC4DLesQWLiZ3CadQOBkauKSBTYDfa8JFa6kj075MSJGvZOr4Y09JveAXbCTrEH5Ecr2k/tY9k3sQ3hYqZvHiSuxBi4VL/o65QsjQwD5tPbKDEZ/6lrM2DwlKYnyO36tj+xcU+ri0gZWxC6HPCMnFKfMde8gJWwaCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hsZdRJQ2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DFA2C4CEE7;
-	Tue, 28 Oct 2025 11:33:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761651204;
-	bh=sNNc/PHl1tyQsKyadLH0fpHete1J310HQC59/CNChbM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hsZdRJQ2/IPzeYvqYwKrtn77TozRrUO/RBs4r/VIN35LGS39wITO6iByWVsnvnupe
-	 9HG8OO1KOvmHusNpX1efrHCYs7fCI8LXSGoBUX7xRSz4cbDcWdmBMfDGpPdXsff9A5
-	 Y/dHtJVTKAFSaYrjjmwTwczfyIG0lU4h/b6tPjeZZG/oOnlM0VDcxsmcLxti5Ss7aO
-	 WC2hs0sh09eyMz3s6mkhZBTpLHL1jpjDeMAz2b30hvSlIn6TSFn8erU69ch8JZcbdt
-	 bzIIyqFZXCmpin5iJK/sh5FlkIFulcDGl+z1D8p/dtHat3Mn5HkxYuhRnxAh7h+HrF
-	 D8wDbkO3ZHBqQ==
-Message-ID: <606da3b1-f042-4cc1-89d0-4feb257f032f@kernel.org>
-Date: Tue, 28 Oct 2025 12:33:19 +0100
+	s=arc-20240116; t=1761651682; c=relaxed/simple;
+	bh=lIWN/uXXnZE+dReywDZ+dfXq6VnLncSyo8Te6h8L9T0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cCwAeA/XYWAACo9fgW88Mn2kLOsyXCDBZBDYXFhyfwiTyJE+/BABfuptOHGTxtuvecGUsvzdZaQwmfiCKey8cSPxMonBx186eoX5esYpsZw36DTMmQ1DQs8cM9RUj1AxYHSJuoXV5Pxtt4Wasv/zs1fsrKl/QEZdLNbW1ABKuRs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=XgoTuCBP; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id EBDFC4E41392;
+	Tue, 28 Oct 2025 11:41:17 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id A7CD8606AB;
+	Tue, 28 Oct 2025 11:41:17 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 90117102F250E;
+	Tue, 28 Oct 2025 12:41:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1761651677; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=L6ull9AD4o1okfpG3ooOsDENdDp5Rr6itgIS/m4js9w=;
+	b=XgoTuCBPmINONXuItzm0D/pt4I/NfGx1p7Qrp4gAAjr8UFCzQwqe09avOM0JuJQYerRsg5
+	6XTxIVGzrlFo4byQ5oy2og4gng4AuBfY6lI5fsz2A/AZ+/HPfVqq10t388FBNM59zPthdv
+	tB3DVKVEa/J6bM/N46xjc22iNe2sLwLdUN/dTnDfx54Qv4gVHyZv8csLcZk4eJNplddIFZ
+	pDBEehKqI8gZGq5gOmD8axOupsmjvTd9/RFhvcZVewjHPFHae3Nty/VQ3Msib/zRA2DjtH
+	5NHsgmwlGU+yNhzL3rPUoYNoX3DFF/XDt82n7CA5ybdvaFiaqpevgFe1MggqYQ==
+Date: Tue, 28 Oct 2025 12:41:09 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Geert Uytterhoeven
+ <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH] ARM: dts: renesas: r9a06g032-rzn1d400-db: use
+ interrupt for Micrel PHYs
+Message-ID: <20251028124109.3fa9cb36@bootlin.com>
+In-Reply-To: <aQCIJrKKM34FH3C3@ninjato>
+References: <20251001104312.40771-2-wsa+renesas@sang-engineering.com>
+	<20251020103529.0f948c67@bootlin.com>
+	<aQCIJrKKM34FH3C3@ninjato>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: vdec: Add binding document of Amlogic
- decoder accelerator
-To: Zhentao Guo <zhentao.guo@amlogic.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-References: <20251027-b4-s4-vdec-upstream-v1-0-620401813b5d@amlogic.com>
- <20251027-b4-s4-vdec-upstream-v1-1-620401813b5d@amlogic.com>
- <b989fba3-223d-498a-8efe-7a60e26cf0db@kernel.org>
- <40830266-692a-4731-8957-4462d4993746@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <40830266-692a-4731-8957-4462d4993746@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 28/10/2025 12:14, Zhentao Guo wrote:
->>> +properties:
->>> +  compatible:
->>> +    const: amlogic,s4-vcodec-dec
->>> +
->>> +  reg:
->>> +    maxItems: 2
->>> +
->>> +  reg-names:
->>> +    items:
->>> +      - const: dosbus
->>> +      - const: dmcbus
->> Is "bus" really name of this in datasheet?
-> No, it is not from the datasheet, in fact it was inherited from the
-> older SOCs. Do you have any suggestions about this?
+On Tue, 28 Oct 2025 10:08:54 +0100
+Wolfram Sang <wsa+renesas@sang-engineering.com> wrote:
 
-dos, dmc
-
->>> +
->>> +  interrupts:
->>> +    maxItems: 3
->>> +
->>> +  interrupt-names:
->>> +    items:
->>> +      - const: mailbox_0
->>> +      - const: mailbox_1
->>> +      - const: mailbox_2
->> Useless names, so just drop interrupt-names property.
-> Yes, we don't need the interrupt names. I'll drop them.
->>
->>> +
->>> +  clocks:
->>> +    maxItems: 3
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: vdec
->>> +      - const: clk_vdec_mux
->>> +      - const: clk_hevcf_mux
->>> +
->>> +  power-domains:
->>> +    maxItems: 2
->>> +
->>> +  power-domain-names:
->>> +    items:
->>> +      - const: pwrc-vdec
->> Drop pwrc
->>
->>> +      - const: pwrc-hevc
->> Drop pwrc
-> Ok, I'll drop the two pwrc(s) above.
->>
->> Missing iommus. I really doubt hardware works without IOMMU.
+> Hi Herve,
 > 
-> IOMMU is not supported by Amlogic SOCs, the decoder hardware needs to 
-> use contiguous memory.
+> > This v5 iteration should impact modification done in this RFC.  
+> 
+> What do you mean with "impact"? The patch works fine with your v6
+> series.
 
-I assume you speak about hardware, not drivers, so it is fine.
+Oups,
+
+s/should/should not/
+
+Sorry for the noise.
 
 Best regards,
-Krzysztof
+Hervé
+
+
+-- 
+Hervé Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
