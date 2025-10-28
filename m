@@ -1,182 +1,230 @@
-Return-Path: <devicetree+bounces-232199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69B89C15750
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 16:30:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAD02C15783
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 16:33:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAF8E424488
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 15:28:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF9104641F4
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 15:30:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8AC434405B;
-	Tue, 28 Oct 2025 15:27:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 933F7342C9D;
+	Tue, 28 Oct 2025 15:30:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BVMbOC9D"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GJXOPB2D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28136340DBE
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 15:27:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16A63340DBB
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 15:30:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761665236; cv=none; b=FtJuoeQVtnDi5JBAFt0py2sBssEOASALR1TmScNU9UQlckXYB5oLvcXHSwfEYRNDqTjqwk5QAZMWIGXtEB1/h5tOYXD+TDzxm06hHgNbqnGwFn+bC1gDSn4mlGzmpZBfzalOwCCO4Lw/Yt42sYu9WsRE3bpinFLMspnhliyleFA=
+	t=1761665437; cv=none; b=li7Dt0jtvRQUKNAAZh9LK0Efsk7EzoT5BmBDnmZEv2gtrWvzYUe5OkSIuoH6SqFI5aSKUR7jRDmWH06pNJxX22Qz2BtOMOdtZFAvihe8nV5QWyRrFkLz+wH/9Ca70zF/ifvHDRYuC+WYfvxAO9KzJaQFVHYZtXCyONKRRCmeLC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761665236; c=relaxed/simple;
-	bh=HYWjIFO0ntFquQpHN0l24OI9KvjX8KR7IgwrgsomREE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CX8SooQqZqd9LDbBXWfXZz2OidvEn36ni3oTW46yWXnCZA8ZnmvBc5pgHHM2eQYEm+dHONHqdjkx4UbdD8hVh6ggTzqnJeGlliEnEXkp18nQmholxoBn1Aw5FGfdiImVe5NxEoTq+2u/X5zb212VvXP3BjVmaDDea8+nKcpsCgo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BVMbOC9D; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59SEnssV1973387
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 15:27:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UGyfXeVKPbjgWlb4WeAZcL6J+OWf0aILgFM3g8oL4Ko=; b=BVMbOC9D3sepW2Gz
-	QyriUPQIx6YZ6mfqu0R1PdP/cL6ilQ8O4sCloBogVKj6tivSpKqc0oongrCfRTQU
-	ocpuN3XQFe9IB99fZEqxSiTeBsrA0nrLVJshw/d0DNtRvRrZw4NSDu+ULWp/aGcA
-	MHKGBk4WhzYAlAFVUdfzZ/TF0vwYI0l34er+RN+5qhgTkxdA0HUZkVZA0WoSqio8
-	rMWsTqon1Xxm/CfIszUik6zce/LcppHe/HzE4vU0fIwcubkYf/r9dkrrqNQpNjp2
-	zLLxPbY3H5bBMs7XgUS9ygtqJyLUalKWttOOTQu7bGFL/NnOCsGiDZhhSZlQYUau
-	kYhTzQ==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a2smusdd9-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 15:27:13 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-28c58e009d1so130925315ad.3
-        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 08:27:13 -0700 (PDT)
+	s=arc-20240116; t=1761665437; c=relaxed/simple;
+	bh=omCv2xt9sfDV1Sj6ZTG7T9nKYAOrU+rkJnFSocGZeR0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZoqI7wfDLpuyZW4sxkLExFBM9sJS9mKo9sKITkMkua2tEriqYveBd5laqfKpl+Um5vTQrSdxuB27jrnxxiraokwNX+wTmAKz0LjX/WYsbcwx2diF19bXT2ulYYnELErCK6aO1j/zCqlk4XTHllNqUedKuoriIfRCthwnbDeZ5TM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GJXOPB2D; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-7811a02316bso4483120b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 08:30:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761665433; x=1762270233; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NxRG+6Pho2gqh+4Q9HbMHt6ljAWQLQ6AqeZiXpRBEU8=;
+        b=GJXOPB2Daxx/pmTMYjIE5yzSaiUPH2jbPFwNqtzFYmwU5rMQvOgmyO9f9QxAC6gk4b
+         oxDGmtN2a/n7nHdUVvha9ZXRhJK+JivlZa2ffR3BasGxySA6ctSmLNjPWcfNcO6rHhKt
+         ACRm1BTiCTGEDHAaEoXWAxHbXtFSDTnjyVffUzrUZIc11acr+4We5yHykjuEUHghOBDY
+         GdQlGh/EKOOxm9r7xdNtpq1y3UEW+cCUbvPeauwmUv7yZS5p63Ad1Wmek4UgQUMz1rGd
+         mmE/lQepa/zvdoJ6GOOSKAXfbcHV/4/UO1lrSYJXWYFEC1JPCXhS7Plkd2Z9X5NNEf8y
+         AD7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761665233; x=1762270033;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1761665433; x=1762270233;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=UGyfXeVKPbjgWlb4WeAZcL6J+OWf0aILgFM3g8oL4Ko=;
-        b=jDnZyCd8YEQVP5ivfrfCf0qkmeGO+TiC/7XTfQBRF6n1pyyCbEIU4U1PVuJpcSkekb
-         0DnjTvZCAcHI1mpVjdBqItydKNHBodppZ8e8QS3V/DwCGVCaRIKZ4zL2vtXIp4j18S6d
-         ufueo5/o4zzMMJxz6vtg41hx3bHvq4gV0UnhGc2sT7d4LrDSo1NWs3o0t829Cx52W6ky
-         VCs3rtNAbSWn7MzFTgGLWFX3juEI08ff8yJqXy9n5dtOaK24px+o/MMFERuKrDmclAqy
-         yK7V6VkOTeFYqim6nHnHHbYCZYgDyRDPkzbS3rsnVe7rzrgtnBBEIdppnihubkz1gxfH
-         fHsA==
-X-Forwarded-Encrypted: i=1; AJvYcCU1jjs4KHJFko1JJ+lKEsbaIB2D1Z1QpIGxM8TCgFactaXcf5d28cL/x5nPBkpxXPNm+CcHU3ztSRQt@vger.kernel.org
-X-Gm-Message-State: AOJu0YxgOj5zqEDkfvnjkBifZrpps8uHGbwyyihbWHeGbH/77jskwmFa
-	oCpyzLVbBFD33UngBxg3oFxUeRYmeKRnAnUngrG+T0fThCab0U8y/R41gc8OkKZvxVlCk1Lk75x
-	yCLC62Z5K7XIfaqT5lEenTft0BlodTDf9hfX97hwCTltFO7mfeAHSk3+fjEgc1lTK
-X-Gm-Gg: ASbGncuV0qMuxq2iVnZD2VG7lDSvjWSdcw9trtI9+TklNrFtN1V4L6sYCmWqjmEDfbU
-	VO9R86R/HHNwiQvmztFGfnM/3Ob38PqMDBnSkEfbr7rytiqrObWu3KUKzv0QEdWvUn9cWMy1iuW
-	UZxP/nKtyQKrol5Fv9Q3uqJEPPQVGwnx4pmtv222gtH+uwFYHfXT+PnckY+U0fczMPQ4Z0M499y
-	bdxHgnkxR3K5MIxZ/bO5fC/7llCjcpcbdOY9QYwyujb4HjIyiJCZuAk9uPMERNNLMaKuu1gbNgb
-	WKnDyh0mW9/EC8OOAsVhZXr00TuA8OZAx48TbAAdNguLNzgvFGHcjUBMp4j5Oyij2F3cHapaGkE
-	5ubK43OmRMdBgsSUOrjjqq+68mUd7vhe96is=
-X-Received: by 2002:a17:903:1a07:b0:294:cc1d:e2b3 with SMTP id d9443c01a7336-294cc1deb8fmr41726665ad.38.1761665232858;
-        Tue, 28 Oct 2025 08:27:12 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE14cBnmetdTEvip2AiuMPqbNocEUBhwvIQ30b1DCC6u6VkGqRobEtLNnL3qD4nV422vPonug==
-X-Received: by 2002:a17:903:1a07:b0:294:cc1d:e2b3 with SMTP id d9443c01a7336-294cc1deb8fmr41726245ad.38.1761665232393;
-        Tue, 28 Oct 2025 08:27:12 -0700 (PDT)
-Received: from hu-vvalluru-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29498e4113fsm119490755ad.90.2025.10.28.08.27.07
+        bh=NxRG+6Pho2gqh+4Q9HbMHt6ljAWQLQ6AqeZiXpRBEU8=;
+        b=GMQRUkU2L2w08jZquxapeZeiIunSUbL9k+Ux+uCQilG+4w9WYC9v0KB8Tf4scqH39T
+         7+Gavf7UzNFr88fKsuWy2kBlk2vDMzgy/gVIq7Td53FSfLQzS5bDEB4iocneMWVObUxY
+         JulBAQWG2f35dnUvdAU2Z5WnFDiUdAb+9DOEhTHk3+6iyy0U+wilkiJ2J9gZLbGGZF++
+         pTfkxGcF+uI40EDL1V0sp9KEZ5A7azCqiIsS8VMsYpInQI/AmjpITj0UORGqI0S5HQZf
+         Xg38z41zvqk68a9SuLq8f4ubFFuek7MN/odsEaJaxUmrvnoOoRmq3Q2B+PL4c5481d/h
+         2BOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW5iBNfbxnFvz5HIbnRE3vmhaGekqjM0PwcW+YMY4te1L7+PAovmv64Myk/s9H9ReTA/oHh+iWIB4Q0@vger.kernel.org
+X-Gm-Message-State: AOJu0YzN1QEnPn/4zpdC6zv9qD8+BvZWxL2ejCaXHHpogyRNVCjwl7Oi
+	xv0ILYARWY5tOQxOlALWKJ+LlH6wGbg4i6pMlDA+Gd9DFDOA52Wa1RuC
+X-Gm-Gg: ASbGnctB0r9KK9/HUHB227SPStnnpuNcxsabkft4WAlZOFdWw5BVfxwBzOTzsrl1ZZY
+	HBvS1wU7aTR/nkb2+Lz0CiFrfKVExGxjP1wH3QhIWNyzeJXHFgAFhCYKIHld9EM73SetNCJWFOg
+	I6h9I+8TZRtzzC/d1ZvkJAR5enOYeCgKXNkAgRSw5JKfbyWOVLtCu3LPJocxLvVN4sIDfePNdWl
+	FXMGsktpjSKFt0pxJ370oyOVjHds+cfFiGZEwEBpRikl3jwJxGqgfknlcAQbgMm4V8jPvdjALvG
+	B0tTIMuwuf2uug/EKZc+OfvZldS36+LplDKtaM3qOz7JXfFLc5sPf4oHXfM1lOMyHYArfEy8Dc/
+	j48oujHR6Kq/tQfWP9I3Vcvmm+Wf4n8yJYiLkmi+QAoUyH+xOPSN1JG7VfyRuUQj7d2/kCZajdm
+	Os2JNvgJ4vFTb/
+X-Google-Smtp-Source: AGHT+IGPgJpaXpS+qGfCVwjy5qKW3g9pioh78AOdOiTvXDrTwpjB0TQBFCGFxXT+WLbv0GqTWaiN5w==
+X-Received: by 2002:a05:6a00:3926:b0:7a2:8111:780a with SMTP id d2e1a72fcca58-7a441bbe4a5mr4578185b3a.2.1761665433210;
+        Tue, 28 Oct 2025 08:30:33 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a414011acdsm11958328b3a.13.2025.10.28.08.30.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Oct 2025 08:27:12 -0700 (PDT)
-From: Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
-Date: Tue, 28 Oct 2025 20:56:50 +0530
-Subject: [PATCH 2/2] drm: bridge: add enable gpio for display-connector
+        Tue, 28 Oct 2025 08:30:32 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Tue, 28 Oct 2025 08:30:31 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-iio@vger.kernel.org, joshua.yeong@starfivetech.com,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 1/5] i3c: Add HDR API support
+Message-ID: <c0ee9047-691c-4f5d-a273-333a6bbcd5a8@roeck-us.net>
+References: <20251027-i3c_ddr-v7-0-866a0ff7fc46@nxp.com>
+ <20251027-i3c_ddr-v7-1-866a0ff7fc46@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251028-enable-gpio-dp-connector-v1-2-2babdf1d2289@oss.qualcomm.com>
-References: <20251028-enable-gpio-dp-connector-v1-0-2babdf1d2289@oss.qualcomm.com>
-In-Reply-To: <20251028-enable-gpio-dp-connector-v1-0-2babdf1d2289@oss.qualcomm.com>
-To: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761665215; l=1210;
- i=venkata.valluru@oss.qualcomm.com; s=20251028; h=from:subject:message-id;
- bh=HYWjIFO0ntFquQpHN0l24OI9KvjX8KR7IgwrgsomREE=;
- b=kZQ9dNvz5d07r2JVyT+l2SWfzUBeDR2/1r/VFgKtBPVDb02OA9jts1ZxG7kCK/+gfgkviLY6x
- tisl04gG8v4DpK/GIpDS7QDZ7hU6OoMaoKF1xlsuWnAogLAJTOP8PYh
-X-Developer-Key: i=venkata.valluru@oss.qualcomm.com; a=ed25519;
- pk=KEpJdy7/I8HDmNSf6B83x+sFHUNr+mjMNJ2qe4G/zXI=
-X-Proofpoint-ORIG-GUID: 3ntKOfq3RWWVD8uIqM2qSZv91D_WPUQP
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI4MDEzMCBTYWx0ZWRfX4i4Hy/KJobDe
- fBotiTkC0ZPg6WGZd+ZdFV2Rp34ArrDmIAKiSf87VUsT8cepxOqZtE2aZjqHlQZ4sSL+w76xQJV
- LdB5YBuTM85tDyVkQJpKp01/O44Z1imiJbHvBkxCx6VwoeATtFF5IAkh7hY/XJmfciS8gpCEvaT
- KnzL6wA9TQbiZMltR6zQc7FIZEdjLdjeUkEbBC4mwEcAsez7ZZ+ffNqPs9tW7tJ4VemuogDBCPV
- 3/e5P1byHpvn/WEgSnDAbWe5Mkq9aKcKZ9zFzeE2IxYE+L8awaeUjuC5jpFvKj2mVWeQkJhduuO
- 6NYCrmw6yYDqNGCiHEIEFs9gEyYmmWdLgdF4OVfYlc/AQhZTCOWLYQcLpmSxNEN5bRT9Vk9zF0S
- 7XGvoJ33eD5l0idDsxV1tNMKS9Tt5g==
-X-Authority-Analysis: v=2.4 cv=IcCKmGqa c=1 sm=1 tr=0 ts=6900e0d1 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=aOUc1jQm1-AEEL6HbbgA:9 a=QEXdDO2ut3YA:10
- a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-GUID: 3ntKOfq3RWWVD8uIqM2qSZv91D_WPUQP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-28_05,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 clxscore=1015 suspectscore=0 impostorscore=0 spamscore=0
- priorityscore=1501 adultscore=0 malwarescore=0 bulkscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510020000 definitions=main-2510280130
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251027-i3c_ddr-v7-1-866a0ff7fc46@nxp.com>
 
-In some cases, need gpio to be set for the connector
-enable. Add optional enable gpio to display-connector.
+On Mon, Oct 27, 2025 at 04:08:29PM -0400, Frank Li wrote:
+> Rename struct i3c_priv_xfer to struct i3c_xfer, since private xfer in the
+> I3C spec refers only to SDR transfers. Ref: i3c spec ver1.2, section 3,
+> Technical Overview.
+> 
+> i3c_xfer will be used for both SDR and HDR.
+> 
+> Rename enum i3c_hdr_mode to i3c_xfer_mode. Previous definition need match
+> CCC GET_CAP1 bit position. Use 31 as SDR transfer mode.
+> 
+> Add i3c_device_do_xfers() with an xfer mode argument, while keeping
+> i3c_device_do_priv_xfers() as a wrapper that calls i3c_device_do_xfers()
+> with I3C_SDR for backward compatibility.
+> 
+> Introduce a 'cmd' field in struct i3c_xfer as an anonymous union with
+> 'rnw', since HDR mode uses read/write commands instead of the SDR address
+> bit.
+> 
+> Add .i3c_xfers() callback for master controllers. If not implemented, fall
+> back to SDR with .priv_xfers(). The .priv_xfers() API can be removed once
+> all controllers switch to .i3c_xfers().
+> 
+> Add 'mode_mask' bitmask to advertise controller capability.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Why not add hdr mode in struct i3c_priv_xfer because mode can't be mixed in
+> one i3c transfer. for example, can't send a HDR follow one SDR between
+> START and STOP.
+> 
+> i3c_priv_xfer should be treat as whole i3c transactions. If user want send
+> HDR follow SDR, should be call i3c_device_do_priv_xfers_mode() twice,
+> instead put into a big i3c_priv_xfer[n].
+> 
+> change in v7
+> - explicit set enum I3C_HDR_* to value, which spec required.
+> - add comments about check priv_xfers and i3c_xfers
+> 
+> change in v5-v6
+> - none
+> 
+> change in v4
+> - Rename enum i3c_hdr_mode to i3c_xfer_mode.
+> 
+> change in v3
+> - Add Depreciated comment for priv_xfers.
 
-Signed-off-by: Prahlad Valluru <venkata.valluru@oss.qualcomm.com>
----
- drivers/gpu/drm/bridge/display-connector.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+Deprecated
 
-diff --git a/drivers/gpu/drm/bridge/display-connector.c b/drivers/gpu/drm/bridge/display-connector.c
-index e9f16dbc9535..52f5e4175e64 100644
---- a/drivers/gpu/drm/bridge/display-connector.c
-+++ b/drivers/gpu/drm/bridge/display-connector.c
-@@ -21,6 +21,7 @@ struct display_connector {
- 	struct drm_bridge	bridge;
- 
- 	struct gpio_desc	*hpd_gpio;
-+	struct gpio_desc	*enable_gpio;
- 	int			hpd_irq;
- 
- 	struct regulator	*supply;
-@@ -298,6 +299,12 @@ static int display_connector_probe(struct platform_device *pdev)
- 					     "Unable to retrieve HPD GPIO\n");
- 
- 		conn->hpd_irq = gpiod_to_irq(conn->hpd_gpio);
-+
-+		conn->enable_gpio = devm_gpiod_get_optional(&pdev->dev, "enable",
-+							 GPIOD_OUT_HIGH);
-+		if (IS_ERR(conn->enable_gpio))
-+			return dev_err_probe(&pdev->dev, PTR_ERR(conn->enable_gpio),
-+					     "Unable to retrieve enable GPIO\n");
- 	} else {
- 		conn->hpd_irq = -EINVAL;
- 	}
+> 
+> change in v2
+> - don't use 'priv_' since it is refer to sdr mode transfer in spec.
+> - add 'mode_mask' indicate controller's capibility.
+> - add helper function to check master's supported transfer mode.
+> ---
+...
+> --- a/drivers/i3c/master.c
+> +++ b/drivers/i3c/master.c
+> @@ -2821,10 +2821,14 @@ EXPORT_SYMBOL_GPL(i3c_generic_ibi_recycle_slot);
+>  
+>  static int i3c_master_check_ops(const struct i3c_master_controller_ops *ops)
+>  {
+> -	if (!ops || !ops->bus_init || !ops->priv_xfers ||
+> +	if (!ops || !ops->bus_init ||
+>  	    !ops->send_ccc_cmd || !ops->do_daa || !ops->i2c_xfers)
+>  		return -EINVAL;
+>  
+> +	/* Must provide one of priv_xfers (SDR only) or i3c_xfers (all modes) */
+> +	if (!ops->priv_xfers && !ops->i3c_xfers)
+> +		return -EINVAL;
+> +
+>  	if (ops->request_ibi &&
+>  	    (!ops->enable_ibi || !ops->disable_ibi || !ops->free_ibi ||
+>  	     !ops->recycle_ibi_slot))
+> @@ -3014,9 +3018,8 @@ int i3c_dev_setdasa_locked(struct i3c_dev_desc *dev)
+>  						dev->boardinfo->init_dyn_addr);
+>  }
+>  
+> -int i3c_dev_do_priv_xfers_locked(struct i3c_dev_desc *dev,
+> -				 struct i3c_priv_xfer *xfers,
+> -				 int nxfers)
+> +int i3c_dev_do_xfers_locked(struct i3c_dev_desc *dev, struct i3c_xfer *xfers,
+> +			    int nxfers, enum i3c_xfer_mode mode)
+>  {
+>  	struct i3c_master_controller *master;
+>  
+> @@ -3027,9 +3030,18 @@ int i3c_dev_do_priv_xfers_locked(struct i3c_dev_desc *dev,
+>  	if (!master || !xfers)
+>  		return -EINVAL;
+>  
+> +	if (mode != I3C_SDR && !(master->this->info.hdr_cap & BIT(mode)))
+> +		return -EOPNOTSUPP;
+> +
+> +	if (master->ops->i3c_xfers)
+> +		return master->ops->i3c_xfers(dev, xfers, nxfers, mode);
+> +
+>  	if (!master->ops->priv_xfers)
+>  		return -EOPNOTSUPP;
 
--- 
-2.34.1
+i3c_master_check_ops() already ensures that either i3c_xfers or priv_xfers
+is not NULL. The above check is therefore unnecessary.
 
+That is not a new issue, though. Maybe there was/is a reason for the
+additional check, but I don't see it.
+
+>  
+> +	if (mode != I3C_SDR)
+> +		return -EINVAL;
+> +
+>  	return master->ops->priv_xfers(dev, xfers, nxfers);
+>  }
+>  
+...
+> diff --git a/include/linux/i3c/master.h b/include/linux/i3c/master.h
+> index c52a82dd79a63436c1de6a01c11df9e295c1660e..7e22f9d2a2ca3f4ab808db50f809efd192c795cd 100644
+> --- a/include/linux/i3c/master.h
+> +++ b/include/linux/i3c/master.h
+> @@ -474,9 +474,13 @@ struct i3c_master_controller_ops {
+>  				 const struct i3c_ccc_cmd *cmd);
+>  	int (*send_ccc_cmd)(struct i3c_master_controller *master,
+>  			    struct i3c_ccc_cmd *cmd);
+> +	/* Depreciated, please use i3c_xfers() */
+
+Deprecated
 
