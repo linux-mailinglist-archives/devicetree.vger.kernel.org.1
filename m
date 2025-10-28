@@ -1,132 +1,127 @@
-Return-Path: <devicetree+bounces-232221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F3A6C15970
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 16:49:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27820C1597C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 16:49:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1FCED4E7F2C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 15:44:31 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F3E605441ED
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 15:45:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D55F2343D60;
-	Tue, 28 Oct 2025 15:43:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 901E0342C95;
+	Tue, 28 Oct 2025 15:43:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="F+asoayS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y+/32qUY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A469E3446B6
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 15:43:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B539D3446BE
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 15:43:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761666198; cv=none; b=GSALBhZpq6TyFyudBsgw4t9n0wHVAvCgo3wr/pJZ84wJtvs4RSPJcL/W75C+WRIrAQ8C7PCnhieUhCGGnXx3/ab0d+Y+I7BZB/4fLSvMkejqKS1h/QHJgu/RQpwWq3otXedZLDAU0cDuk4MwZ8yTK/WmQgQ7Urnf+xU+M2ii3Yg=
+	t=1761666214; cv=none; b=Ccy+YjVsPtVV2rKr3xTW4000jtueHRNMCVbTOt83vXjWGmEf+0+d8HRwdWq414h8TyXkA8BUYs4s2fqSVGvMc++PSiKaio122t3LE2fvhkD6SDk9hCr/X7sg04NiX8TPG9/yIZ+IeRD4ANs/VuS/JsgHkLeM8Ypr6rLIF6QEEKA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761666198; c=relaxed/simple;
-	bh=p8N0VHY2XpMh/L81W8FzKQHWHJk+NmZNjv7GuBCqyQI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=h0XF5o7vH/PW6SdVdwfHDFE3iVQ4DLTEGWZEzUhohmkrW8KS+jkQsOMreBpPpSISRJlrdVCaHshrLiOF1OGWhvZwuQ71y0edBwTkomhHIGsQY8jI6HKdD3iX1a90X+lr7zKTAMSRR356keU/JiIXbdVDF74Y1uqmuA8QgvCWjKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=F+asoayS; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-59093250aabso6777265e87.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 08:43:16 -0700 (PDT)
+	s=arc-20240116; t=1761666214; c=relaxed/simple;
+	bh=0OdKjf6E11PLhTN47izQgrYewu6DAaBIZBsxLqLrIEE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Oq6W+MtxYpcf9gCwXdK64nxYBanL1wgLQXB76FyoBi5J/Z3vhgtQrJ7I1bGE6p0nVPFYXbu6iF9mhf1NmnxMvfwe+xri7hoMdQsf4iD+xjjskGMp2tJ4KiqUxCahWRxrWRSt1en28Z1a55yce8CG/CpoC4NfrWTdHprbBvMN0u0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y+/32qUY; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-475dbb524e4so23843595e9.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 08:43:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1761666194; x=1762270994; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1761666211; x=1762271011; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=do7MuCP88nOM3eMBQKiSZ63kBzTalMH1rd1ZJUZo3vk=;
-        b=F+asoayS366GanZ5Gwtp4/aKW1G2d3JPcsnw2FFWfWbb4AWL5KcNSPx1XZ/4pah/WQ
-         KimGGQzgEriuGk9jfql0Ae7FH3H8UTDm57K5EotoyyHCE3D+PIqlk8PPwuhDwVi0jl6S
-         cu8oKVb3aXHkarELOAeTMXfCpwYs5tpurLC+i5aN6/zkJG5AZlDATun47wHkGYEmuFdY
-         XDo0gpi/DQRKjMaPD0g7Er2IJc4CYzKStv+05B5DUlPD6X+zIo2gu+F4uNXS8Zy27WJI
-         V2FdMrMR/fJQleq5P9AsmDRrd9soqpH2u0BbStY65TKNQHgXPWkMeSX7MP878chlsHOw
-         3RCQ==
+        bh=0OdKjf6E11PLhTN47izQgrYewu6DAaBIZBsxLqLrIEE=;
+        b=Y+/32qUYnUB+gqfNDafPgKTIQtmGDLg8GdilWpQT2hijTOq0kmzOGyZJCpBrV5qDdi
+         xPPKx4Q8wCx+fdZFoPBZjK+i7QrCBu1Ec9KPf+tJerMP4ng5Guh6ToDmJuA3rhTbVd84
+         r23Eqqn2FnJUVZMfsHLq+peJaOq+/615yY5gCAX8zA7koYOzJ1+hu/Oqc6l21G2Fo8dc
+         vNFR1ilSNiV4DNH6DMBk8fgjI8lR86K/Zcf8MabWqk7bDeT1Q6l5Fa66D5ItqEgoSRce
+         lYkyHBsaOySdBDz+T5OaPoCI1ZQnvcTFZAo+oLylrCaVlTJZqHAQ5KeLe+c2x7OAGWX9
+         5HBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761666194; x=1762270994;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1761666211; x=1762271011;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=do7MuCP88nOM3eMBQKiSZ63kBzTalMH1rd1ZJUZo3vk=;
-        b=EPJjCRLzUnTyZF3t5Re/cIBnLSPskcifBNIkM5g4UkKu452+X7SbE0nsPjzP7bsefP
-         nq4RjrWiA8obXnfc2K45aoOttxOLLkgo6/ZAp8iN8X2YkL8WpeaiYMVkC6VJRMtk1lfb
-         5rlCc8ARk+F2gW4t5gCZwW4fGYNx/wnaG2nWMSJVOY3SHcMiVxRGSUHnJa8qxJOqYuWg
-         mVU413LXNkLWeJ3ANFBu5MfUV2sqMv0QbHsI+y1EOWgRahULM+X2VZMUrNVvFHhTQEjz
-         wIs01nZEFcTq9ASEZpTuIQV4W6XGOQXru/1PXlJTsHxpnZtx1kURcKXl26RaaWeIIB+k
-         r2pQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVUMob/+clCVeE9ntysSXNNsx/N/gOdOYiX7skJcTTJ54TKlYEqYOxpJs1rEzEpG75C+F6PG41bn/O5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/OBmhBznic20W7JwT1n8KHzHqs4ajJ4g0FfhisB398WAbcgq/
-	vEl9HC9lrzrlsvHLWLGOf+sLuM9zLxRHTg2B8VD5gmVbI9+tXmDfMBBj7calfaKlWFe3rCZevvz
-	RpXfOrbAbteBK0/TiAGXpaaCXkHjQ/zlGgeN5rPd2yQ==
-X-Gm-Gg: ASbGncvZTy09W/zjI1cbqYkrtxoZSAiDP0ldICMwKKL3H0QorUg0J5GFynBEqAZjvEE
-	nLbvJTXrhKSBnJUE5Mg3iS8UCaHIqa4QYkSC8hYH94B2VNZ7cUcn2Eo0Ii/yURrmwCSY54K4c/f
-	tiaTGJqems1YJJc5UWVclg+lzBKqCvcT96KwaAoXNNO5lPRJn7tTT+BbtwUNsJOL61JuqGxo71u
-	sfTWShQkMgyW7+Td+7d5bv0eFtY6KDlZuF9EemDGXKd+BJQ/NEzS47CnhGsVWAe48b+mjqJm6qK
-	IyrcgZ8QcCm0o4UW
-X-Google-Smtp-Source: AGHT+IFTRBGcYDkiyCueyH65DwGrBfpjtYBktHnpsdJL9xh5HvsW1ijkB+8miiiXsCQ87IK4j3035BwnwPw7l+jO6Uc=
-X-Received: by 2002:a05:6512:4027:b0:592:f766:a49c with SMTP id
- 2adb3069b0e04-5930e997932mr1316517e87.15.1761666194042; Tue, 28 Oct 2025
- 08:43:14 -0700 (PDT)
+        bh=0OdKjf6E11PLhTN47izQgrYewu6DAaBIZBsxLqLrIEE=;
+        b=QY9GzPb/4uuwAm/V6JZ3VEQqTEN7IVPRJe+12MtXRz64Je52+kCXgWmpo2NTt0fQfH
+         tz47zxs8izcWyzofQeAsGBDeo4K4KDzeKg/OMpFP9S++CvCTBL6iHfgvIXWJ8l0DN6yH
+         2zUYeW0nT1bDWaeyE6Lkm8SsM8zhBOdSiQPM40X4kwAuTChSm1QwgLrguXAYi5TI5ngq
+         LxDA9K6+VBW90QsTuf8GN//K4A7CqaFp0rYdGNZDmO19DcqI9pKCeg/AjBRr9EYggU77
+         Eb0VHjET2XHKgxSLCtr6bEV4GhvFK/uHDalCND4Xubw/VmFgK5F5yZ/rTTLUkErqEQNb
+         /Lvw==
+X-Forwarded-Encrypted: i=1; AJvYcCX7s/cZtllj7Qvef5E0ndHzuN376HOv7bKwkQI/aItgfE91z2rLFcYLvJ8G+ewUFONbw1fXzrNni0KL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yykjv4NNcAsgeDRfVokDFDlkI0a3RRaSptDm+MSsL2VZC6jGNCO
+	pfbi3K/oa98aIJ4QJvNPeueIzloWb7MPS8dWuf0BB5PiUpzhacbNApEK
+X-Gm-Gg: ASbGnctkOWmzY3XGshiFka5jvvCwkO2lN/GtoT18a4+Shk7w8L9zetlUHpcxxT26bUr
+	GgFYezCjMAs/6I18Cr+BJpfgcszNGNbAPHwoS1Kchpx5ZYYZPrW4nv7Bbk4ICS9uSX4T12OT3sK
+	rdFakab4ZGTRl+yYU08PxMvZBvxc6o8xoQXAui7/LSYrixN7w98C1+zl4M0N+udIs/gIh6hrRnF
+	lt7T4T861sMUXTdSTtWXtYJOTtgk6zTJbujYFLRM/59EzN1i+VKwLd7ImIhKZhDxx9xw7UXi6Do
+	5M9AkMcTNfdpdIFGtuVfuMlb++AhjqXlrI4AYK92DUlztBc6aQow7XnLenhNCvneFXvjj3SUx+R
+	ioaPQWBAseOISOIDmXOInm97fqpHIfHiPmKWKkq3ueTRntPHQU5FDZgtc84duje5eadVVwJeNaH
+	XJ/qrYNn1/cFUYHsQTWbrQVUa5qpIZosCwgAwibfq5YmC6DCA7ThIORlYAGg==
+X-Google-Smtp-Source: AGHT+IGQT1sWn537O9lUQH0SeyIcZJ4uWohxTzjPx9kV6HFu78PmQQbglpth1JWOPqlEUpT9jeFZgg==
+X-Received: by 2002:a05:600c:4e02:b0:475:dd04:128a with SMTP id 5b1f17b1804b1-47717e6b4c8mr33281395e9.31.1761666210763;
+        Tue, 28 Oct 2025 08:43:30 -0700 (PDT)
+Received: from jernej-laptop.localnet (178-79-73-218.dynamic.telemach.net. [178.79.73.218])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-475dd02cd6dsm210045835e9.2.2025.10.28.08.43.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Oct 2025 08:43:30 -0700 (PDT)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>,
+ Richard Genoud <richard.genoud@bootlin.com>
+Cc: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>,
+ Wentao Liang <vulab@iscas.ac.cn>, Johan Hovold <johan@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Richard Genoud <richard.genoud@bootlin.com>
+Subject:
+ Re: [PATCH v4 08/16] mtd: rawnand: sunxi: add has_ecc_block_512 capability
+Date: Tue, 28 Oct 2025 16:43:29 +0100
+Message-ID: <8637155.NyiUUSuA9g@jernej-laptop>
+In-Reply-To: <20251028073534.526992-9-richard.genoud@bootlin.com>
+References:
+ <20251028073534.526992-1-richard.genoud@bootlin.com>
+ <20251028073534.526992-9-richard.genoud@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251028-dt-bindings-qcom-bluetooth-v1-0-524a978e3cda@linaro.org> <20251028-dt-bindings-qcom-bluetooth-v1-1-524a978e3cda@linaro.org>
-In-Reply-To: <20251028-dt-bindings-qcom-bluetooth-v1-1-524a978e3cda@linaro.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Tue, 28 Oct 2025 16:43:01 +0100
-X-Gm-Features: AWmQ_bmGdgwF3B9dB_VDDUnDofSCXpuNVCFm0vFH9VJDj6OZrO0qPdBbjuGlM8k
-Message-ID: <CAMRc=MdqAATOcDPhd=u0vOb8nLxSRd7N8rLGLO8F5Ywq3+=JCw@mail.gmail.com>
-Subject: Re: [PATCH 01/12] Bluetooth: MAINTAINERS: Orphan Qualcomm hci_qca
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Tue, Oct 28, 2025 at 4:33=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> There are no maintainers of Qualcomm hci_qca Bluetooth driver, so make
-> it explicit that driver was orphaned and no one cares to keep it
-> maintained.  That's also indication for future removal from the Linux
-> kernel.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  MAINTAINERS | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 8abdc0e50699..be637b9dc7c0 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -21146,7 +21146,7 @@ F:      drivers/net/wwan/qcom_bam_dmux.c
->
->  QUALCOMM BLUETOOTH DRIVER
->  L:     linux-arm-msm@vger.kernel.org
-> -S:     Maintained
-> +S:     Orphan
->  F:     drivers/bluetooth/btqca.[ch]
->  F:     drivers/bluetooth/btqcomsmd.c
->  F:     drivers/bluetooth/hci_qca.c
->
-> --
-> 2.48.1
->
->
+Dne torek, 28. oktober 2025 ob 08:35:01 Srednjeevropski standardni =C4=8Das=
+ je Richard Genoud napisal(a):
+> The H616 controller can't handle 512 bytes ECC block size. The
+> NFC_ECC_BLOCK_512 bit disappeared in H6, and NDFC_RANDOM_EN took its
+> place.
+>=20
+> So, add has_ecc_block_512 capability to only set this bit on SoC having
+> it.
+>=20
+> No functional change.
+>=20
+> Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
 
-Actually, I added that entry so that the arm-msm list can get Cc'ed on
-patches. The fact it didn't use to, caused some regressions. I have
-done some work on it, so I can take it over as maintainer.
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-Bart
+Best regards,
+Jernej
+
+
 
