@@ -1,74 +1,125 @@
-Return-Path: <devicetree+bounces-231883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EF45C123B9
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 01:46:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E1B7C127A7
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 02:04:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C37C4624FF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 00:45:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E3533B7204
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 00:58:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C169934CDD;
-	Tue, 28 Oct 2025 00:45:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88B571F130A;
+	Tue, 28 Oct 2025 00:58:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uZbfIKp4"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="DnK6ADmm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D4E6168BD
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 00:45:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1035820299B
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 00:58:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761612323; cv=none; b=Od1XHosBWKcgrP33k8Dp0qvYBuAuJAttndeJ6iWA+I4zyqwiF/+Mug7Nbrib9zAxw1z0lO0oNCqpQZ5twy3K7ha0Gl12h6IMj74h/xt3qSX/zXMIHRx/ugPneG3VT8FoPKBKS3mVJXWaFw846pcBIzYb5PUJI1lO/6yGpo9AXSw=
+	t=1761613083; cv=none; b=dKHFKgV9eng1YYm719aXpxec0y1VOYYNRGuf8Wg80WOeTdvWirHft8L0tiLfuFlYlK0NModEa0ynFwNwLjDWN7PvAXSRtXCBnpA2PgjKJtlnMKbSBw2yJbKaaKIiccvvpwaNha5EWyxp1lmzGW/5kGvXchM8zT81EW0TZ0GeIgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761612323; c=relaxed/simple;
-	bh=kiCGzfX1Rn3NMjDqMZoGFfmU+sqHKb8RcmulHZRuF2o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=E+krP6+v/NmFfluhTm1pGaUqc3w0bXxQcYvP74UTVGcK66he18jNnXmHGHX5cMg0ycha58CshSiXCB2CTF/Kjh95mI8dBByr3PZ2GP6IDLPLsuom+8AA/lSgAq2BUVBKSyaGbZatkyGetuVf/FU5PXDrjtWBb1z9JzFv5g8sMMA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uZbfIKp4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAEC6C4CEF1;
-	Tue, 28 Oct 2025 00:45:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761612323;
-	bh=kiCGzfX1Rn3NMjDqMZoGFfmU+sqHKb8RcmulHZRuF2o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uZbfIKp4Cls2nFP6ZYBOi/UzdrRP3GIpvYyW7KbRSGeOwwsQB3ypL5/bPEsPZV7hj
-	 +AJlkLCeN9NijArta2xON30Xp35G97OVvGYpTvAp93EXPFl5PqnVtymyCgEbg3WatI
-	 V0oDSSweVjMuhA6teUFWIG4b2KQOvlQVTz1QT4Ty/rw1/cFIVw2MtFz05YwPxyoYRz
-	 tpTvdtcPZ4p41aCizZoH/lwN55H3t0hDs0hmS8wyLanfz7mN+DOcvAa7FWbB/Ydj0N
-	 IwkwtrKYhUDAAusJ1+mnuUWBBa6j3b4vEdpW2vhJkvRG5W02j1wV0KH2JB/zdYw4n5
-	 4c/iJAjBv4CwQ==
-Message-ID: <00aa5c1f-e68e-48f5-b5d0-b6cf2c287abf@kernel.org>
-Date: Mon, 27 Oct 2025 19:45:20 -0500
+	s=arc-20240116; t=1761613083; c=relaxed/simple;
+	bh=Pu5kqYu+8gpM71WXhfUOgdtRRnjxllEImtX1gx/QT1Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OL5JTfMhFlhxHgP9gE6+Ed+149/jMLhmQuhidk3WmIPuqqrj5/AmiKmHNLhgctSiK8KT4Y2RaRpNj9LTeqtzhN2VbA5oYUFu4mwFUbc4odGCAy88Y18SAWGTBLuK9Dyvj+GZjEd+IRflSfm85kRV3aa6noumI2Ul8fEekGFr+sQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=DnK6ADmm; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=clpdrlOLu93rHtL/L9HiL9Is9OjufJxhxUPrU3Iy0XI=; b=DnK6ADmmspY4FAXcwDQ0Ysdv6z
+	3S4CPo2pihH5GZTA/oVF2y5e34bRyMhblv53WeQELRwkUO2BT5BmjkopFJJqVTZxkBuTjDsmNoWXa
+	6XPyCx0W3NSnUXXhnjbn+eZ7nLzC3iB7gQw9RFsMisCbk+om0sEEwp8A4bUacT7hTANRJoFNDfAAW
+	+KjQqHc52E4TUodg2IqcIY1/cQ543DC8JYYgGT5fuySvCJFGxqVK3+VzqhYDJpjXGF5SYw8X8jlHp
+	mp7PK+QbVNpLyXwif4OOcB3rHRfO7xpcd+7J7mOURBAHa3GZOsiCoIzMvOgzoSBslDz16MMQSadND
+	JXrThypQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:49596)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vDY29-000000002YH-25XH;
+	Tue, 28 Oct 2025 00:57:57 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vDY27-0000000064p-3UG9;
+	Tue, 28 Oct 2025 00:57:55 +0000
+Date: Tue, 28 Oct 2025 00:57:55 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	Emanuele Ghidoli <ghidoliemanuele@gmail.com>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Daniel Scally <dan.scally@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Stefan Klug <stefan.klug@ideasonboard.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
+Message-ID: <aQAVE96NAD4Z4lgt@shell.armlinux.org.uk>
+References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
+ <aP-ML-A_h13pXY2d@shell.armlinux.org.uk>
+ <20251027234648.GC24987@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: socfpga: agilex5: add generic "snps,dwxgmac"
- to ethernet
-To: devicetree@vger.kernel.org
-Cc: robh+dt@kernel.org, krzysztof.kozlowskii+dt@linaro.org,
- conor+dt@kernel.org
-References: <20251023214012.283600-1-dinguyen@kernel.org>
-Content-Language: en-US
-From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20251023214012.283600-1-dinguyen@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251027234648.GC24987@pendragon.ideasonboard.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
+On Tue, Oct 28, 2025 at 01:46:48AM +0200, Laurent Pinchart wrote:
+> On Mon, Oct 27, 2025 at 03:13:51PM +0000, Russell King (Oracle) wrote:
+> > On Sun, Oct 26, 2025 at 02:29:04PM +0200, Laurent Pinchart wrote:
+> > > Energy Efficient Ethernet (EEE) is broken at least for 1000T on the EQOS
+> > > (DWMAC) interface. When connected to an EEE-enabled peer, the ethernet
+> > > devices produces an interrupts storm. Disable EEE support to fix it.
+> > 
+> > We've finally got to the bottom of what's going on here. Please try
+> > this patch (it's building locally, but will take some time because
+> > I'd wound the tree back to 6.13 and 6.14, so it's going to be a full
+> > rebuild.) Thus, there may be compile bugs remaining.
+> 
+> I've applied it on top of 
+> 
+> I've started with a branch based on v6.18-rc3 plus "[PATCH net-next 0/5]
+> net: stmmac: more cleanups" ([1]) and "[PATCH net-next v2 0/6] net: add
+> phylink managed WoL and convert stmmac" ([2]) to make the patch apply
+> cleanly.
+> 
+> [1] https://lore.kernel.org/all/aO_HIwT_YvxkDS8D@shell.armlinux.org.uk/
+> [2] https://lore.kernel.org/all/aPnyW54J80h9DmhB@shell.armlinux.org.uk/
+> 
+> The base branch exhibits the interrupt storm issue. The patch
+> unfortunately doesn't fix it.
 
+So it's highly unlikely that your problem is the same as Emanuele's.
 
-On 10/23/25 16:40, Dinh Nguyen wrote:
-> The ethernet hardware node on Agilex 5 needs a generic "snps,dwxgmac"
-> binding. Without this binding, the ethernet driver will not be able to
-> correctly set the has_xgmac variable.
+Do you know when the interrupt storm behaviour started? If not, I'd
+suggest testing 6.13 and 6.14 as a starting point to see whether
+the phylink-managed EEE conversion is involved.
 
-Patch rescinded because of a net-next patch that removes the use of 
-has_xgmac.
+Thanks.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
