@@ -1,80 +1,43 @@
-Return-Path: <devicetree+bounces-231886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7D63C1287D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 02:24:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3100C128A4
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 02:28:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67D92420CB3
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 01:24:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E3E819A2C3F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 01:28:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CA7E2236F7;
-	Tue, 28 Oct 2025 01:24:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U0vWyiOX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6D712248B0;
+	Tue, 28 Oct 2025 01:27:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BF593B2A0
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 01:24:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 875E51F3BAC;
+	Tue, 28 Oct 2025 01:27:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761614679; cv=none; b=Q3nQonlchekD1vQ1ZDEhN7dGKamJ+gcz+dPR9byJm32+taulsbWs4xIOU1tufYGRJYuLWsRNzF4NoXSV40dD01X/1mY7tSafHnOnBrV6PgCZl26kDVLYOX5SDM5+YO+SHBMUvLHdi7mmr/zvEfS27h+5669c48JvsglpvrMmAy8=
+	t=1761614875; cv=none; b=lQdN7rN6hZ5gwdMyWTQ/Ll1YEUsRYESoIpvdvJjf9shFXhIJ6fbgHFP1y1+9pUD39pRRgc5eWjPu612FSzSNCG7U5E7VHYY3yzvqCBxooJM956K790/rsqC5r6tlFNn9Gn72PR8PHdrWUen1c/fRvP7NgviFdVjJ79uhZkF+mVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761614679; c=relaxed/simple;
-	bh=4NynEzoNyOfOs8XyWeTXvjhSF0u2cim6vJPFRBLI9L4=;
+	s=arc-20240116; t=1761614875; c=relaxed/simple;
+	bh=+xOOGvn43/VAMLY95I2MsreauEqB7OYAIu7MB39DSrc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QgxHZ1QVfWY7OA9Voy0IqDKuj0DW0VCET9TFHRjANWCHoHwosB702H9ESv8AauxH+wCNakKkRfqkis9jjiWjuUU8TNhLWxOUf3X7TlF+zuswCAl0mgjOEd+m8oOyaXOjGzekp1Uj+R5217LTO89j3wbhUvbseYYYNObinyEN3Ps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U0vWyiOX; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-42992e68ea3so253021f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 18:24:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761614676; x=1762219476; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=j6ZUZTL7e8DmbC5jX0PFFaJJw/WLsr+LBeNutmHi75Q=;
-        b=U0vWyiOXFdS9xWx9iPhxP8CO8sDbMQfTOV7rsbYJkDhDS6PtbYVb0Ffld5O/rR0lP8
-         k7XWkd8a/ql282mxQbXFhjIudFEqg14+u3qdwXyXYrvHri5q0yNq8E4qZ6GvXGqW+a3k
-         NIRd/cv1GMgyqI2+Z2wpj+jzEN/84Kpw34f4zjp5hmYOXNuIGMGJ/3gfPPkHLMWCumv5
-         +ggkMYNg9zgkj2O5dEwY8UV/8nj7vHW2Zioni4eTw0DWczZw5CUWjUsQwdRF60y/XIwo
-         ds822BcfAeVpSXHUaduOF9D2A0bNZUB8hHzfyTc5nq8Hwn1MYOhYKVKGHBnh33DMcJjL
-         CNhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761614676; x=1762219476;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=j6ZUZTL7e8DmbC5jX0PFFaJJw/WLsr+LBeNutmHi75Q=;
-        b=Ynq6qtVDXUzefFHc0P3ZyWugH73pJmWE5IWT4r9ems2+yd7ie9DEAlDD5qRLH7XNy/
-         YsE34j5h7OZxzIbcenbJnO1i1GamiN1cOBjTrir0gSVZGgQAL94GUu5Dvsg1PeyHUc41
-         7Siw+L4mrkyqXQv0hyr849A5khqFeaADGkYtui8KYU7Iow2gZvKZ4Od5fd8al2X4Vj1Y
-         EXugve6Xec8LZqqXC5XECIKsTQwIGpJwPhpjlWvXDgNL7BYzb+ZCSMhz0z229yPlvGdy
-         SPxRm/kHpw7n009JTvIi2uh7F0+ZJtYatt9yqz4kd4UFaNlfjEdBZZ9R2AACTj7E1OqT
-         e9Kg==
-X-Forwarded-Encrypted: i=1; AJvYcCWHq/813LDlwKsi+3L1Ns+4kMmUrK5YUjNGb6kVatC+4wQ0sOXp1QxnsFu4lRCtVpA0sbSEOWxk7isu@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNYty+CxJbh1bKNMuJL+o2wYi26h7SyuYkWwVCLPJJOy0Nd+BQ
-	sJfebgtJ/ZxWZtKZERWp+nQB5hqYBY+3bJCfzZifoq06P8CYUzL19Dia
-X-Gm-Gg: ASbGncuFLUFFPDhKo0E5kh2S7117XM6ZqI2TvTvUNDBmwWfN9GpySqEBTX5VYI/996Y
-	YHN9tKPGy2jprIB5n/9bSFp1hZFvJFrdNBBSW8ikOXPEY7ArQiEdj6E/A+QjMl77mHxUiW/X8VP
-	KTXXjEkDd3td/Gk1PJeCaLLmETuOoVEqlokedrgSjSK6D7T1ItGwvmBbKqo6HulmdRYX/KiYKb3
-	xPuExAH8ALkcsujXnRxMa6XQzNPjN9+BsPrxgmODGV3AmF690AP0yv5ThQoNT13Zj9nzrml15et
-	Clh6/bxRKhIys/l8FKLS4J/apvfnTEClWWKDOVrGEpEk7T180+Af3Dcblr2CLQ9FdDxn9LJ64aB
-	PjHWjFkrLodAZhrqnlX7pyNwqkMjU7PdWSRSoZkXHn/hSNm65OEOSSj+Kx8ElfHQMXlWi
-X-Google-Smtp-Source: AGHT+IG/sB2R//ACIIQwX3tQN8RaWUDP77vJKaawkbWCs1s/0AV7Jp1petBnpZs8/SYh4yt0C2qaFQ==
-X-Received: by 2002:a05:600c:45c7:b0:46b:938b:6897 with SMTP id 5b1f17b1804b1-47717df84a7mr8002495e9.1.1761614675505;
-        Mon, 27 Oct 2025 18:24:35 -0700 (PDT)
-Received: from skbuf ([2a02:2f04:d406:ee00:3eb9:f316:6516:8b90])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-475dd02cd5dsm164144055e9.4.2025.10.27.18.24.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Oct 2025 18:24:34 -0700 (PDT)
-Date: Tue, 28 Oct 2025 03:24:30 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Daniel Golle <daniel@makrotopia.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Cs1ma0nUzF8FCLapQAUmjAYMxT+18ug5RGyAHDoLiLh3OlBjEW1k1giNrGzKhQeGSPWrv8+vXLQTDTQ4oQdV0bUy8N6d/8PC6K6wwMLbmHvAElKPryWkRyqXpakWvdV66NrX8EF5h4EFrI5u+OtHFXUD8Q1SzarVWq5pxAMdHFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.98.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vDYUy-0000000068J-2gMM;
+	Tue, 28 Oct 2025 01:27:44 +0000
+Date: Tue, 28 Oct 2025 01:27:39 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Vladimir Oltean <olteanv@gmail.com>
 Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
 	"David S. Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
@@ -95,13 +58,14 @@ Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
 	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
 	"Livia M. Rosu" <lrosu@maxlinear.com>,
 	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH net-next v3 12/12] net: dsa: add driver for MaxLinear
- GSW1xx switch family
-Message-ID: <20251028012430.2khnl6hts2twyrz3@skbuf>
+Subject: Re: [PATCH net-next v3 10/12] dt-bindings: net: dsa: lantiq,gswip:
+ add support for MaxLinear GSW1xx switches
+Message-ID: <aQAcC3lj5G_uoXPd@makrotopia.org>
 References: <cover.1761521845.git.daniel@makrotopia.org>
  <cover.1761521845.git.daniel@makrotopia.org>
- <5055f997f3dea3c26d6a34f94ed06bceda020790.1761521845.git.daniel@makrotopia.org>
- <5055f997f3dea3c26d6a34f94ed06bceda020790.1761521845.git.daniel@makrotopia.org>
+ <f07c15befb17573ca50e507156892b067a25ee2c.1761521845.git.daniel@makrotopia.org>
+ <f07c15befb17573ca50e507156892b067a25ee2c.1761521845.git.daniel@makrotopia.org>
+ <20251028000959.3kiac5kwo5pcl4ft@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -110,359 +74,131 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5055f997f3dea3c26d6a34f94ed06bceda020790.1761521845.git.daniel@makrotopia.org>
- <5055f997f3dea3c26d6a34f94ed06bceda020790.1761521845.git.daniel@makrotopia.org>
+In-Reply-To: <20251028000959.3kiac5kwo5pcl4ft@skbuf>
 
-On Sun, Oct 26, 2025 at 11:49:10PM +0000, Daniel Golle wrote:
-> Add driver for the MaxLinear GSW1xx family of Ethernet switch ICs which
-> are based on the same IP as the Lantiq/Intel GSWIP found in the Lantiq VR9
-> and Intel GRX MIPS router SoCs. The main difference is that instead of
-> using memory-mapped I/O to communicate with the host CPU these ICs are
-> connected via MDIO (or SPI, which isn't supported by this driver).
-> Implement the regmap API to access the switch registers over MDIO to allow
-> reusing lantiq_gswip_common for all core functionality.
+On Tue, Oct 28, 2025 at 02:09:59AM +0200, Vladimir Oltean wrote:
+> On Sun, Oct 26, 2025 at 11:48:06PM +0000, Daniel Golle wrote:
+> > Extend the Lantiq GSWIP device tree binding to also cover MaxLinear
+> > GSW1xx switches which are based on the same hardware IP but connected
+> > via MDIO instead of being memory-mapped.
+> > 
+> > Add compatible strings for MaxLinear GSW120, GSW125, GSW140, GSW141,
+> > and GSW145 switches and adjust the schema to handle the different
+> > connection methods with conditional properties.
+> > 
+> > Add MaxLinear GSW125 example showing MDIO-connected configuration.
+> > 
+> > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> > ---
+> > v3:
+> >  * add maxlinear,rx-inverted and maxlinear,tx-inverted properties
+> > 
+> > v2:
+> >  * remove git conflict left-overs which somehow creeped in
+> >  * indent example with 4 spaces instead of tabs
+> > 
+> >  .../bindings/net/dsa/lantiq,gswip.yaml        | 275 +++++++++++++-----
+> >  1 file changed, 202 insertions(+), 73 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
+> > index dd3858bad8ca..1148fdd0b6bc 100644
+> > --- a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
+> > +++ b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
+> > @@ -4,7 +4,12 @@
+> >  $id: http://devicetree.org/schemas/net/dsa/lantiq,gswip.yaml#
+> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> >  
+> > -title: Lantiq GSWIP Ethernet switches
+> > +title: Lantiq GSWIP and MaxLinear GSW1xx Ethernet switches
+> > +
+> > +description:
+> > +  Lantiq GSWIP and MaxLinear GSW1xx switches share the same hardware IP.
+> > +  Lantiq switches are embedded in SoCs and accessed via memory-mapped I/O,
+> > +  while MaxLinear switches are standalone ICs connected via MDIO.
+> >  
+> >  $ref: dsa.yaml#
+> >  
+> > @@ -34,6 +39,108 @@ patternProperties:
+> >              description:
+> >                Configure the RMII reference clock to be a clock output
+> >                rather than an input. Only applicable for RMII mode.
+> > +          maxlinear,rx-inverted:
+> > +            type: boolean
+> > +            description:
+> > +              Enable RX polarity inversion for SerDes port.
+> > +          maxlinear,tx-inverted:
+> > +            type: boolean
+> > +            description:
+> > +              Enable TX polarity inversion for SerDes port.
 > 
-> The GSW1xx also comes with a SerDes port capable of 1000Base-X, SGMII and
-> 2500Base-X, which can either be used to connect an external PHY or SFP
-> cage, or as the CPU port. Support for the SerDes interface is implemented
-> in this driver using the phylink_pcs interface.
+> How urgently do you need these two properties? They are truly general,
+> not vendor-specific, and while I wanted to add such support to the
+> Synopsys XPCS, I started working on some generic variants.
 
-I opened the GSW145 datasheet and it seems borderline in terms of what
-I'd suggest to implement via MFD, keeping the DSA driver to be just for
-the switch fabric, vs implementing everything in the DSA driver.
+Inverting the RX inversion is required for the MaxLinear GSW145 demo
+board I got which got an MxL86111 PHY wired to the SGMII port of the
+switch. That's why I had to implement at least that in order to be able
+to test the SerDes port.
 
-Just to know what to expect in the future. Are there higher-spec'd
-switches with an embedded CPU, waiting to be supported by Linux?
-Linux running outside, but also potentially inside? Maybe you'll need
-full-fledged clock, pinmux, GPIO drivers, due to IPs reused in other
-parts? Interrupt controller support? The SGMII "PHY" block also seems
-distinct from the "PCS" block, more like a driver in drivers/phy/ would
-control.
+> There's some cleanup and consolidation to do. "st,pcie-tx-pol-inv" and
+> "st,sata-tx-pol-inv" are defined in .txt bindings but not implemented.
+> Then we have "st,px_rx_pol_inv" and "mediatek,pnswap" which would also
+> need deprecating and converted to the new formats.
 
-> +
-> +static int gsw1xx_pcs_phy_xaui_write(struct gsw1xx_priv *priv, u16 addr,
-> +				     u16 data)
-> +{
-> +	int ret, val;
-> +
-> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_D, data);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_A, addr);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_C,
-> +			   GSW1XX_SGMII_PHY_WRITE |
-> +			   GSW1XX_SGMII_PHY_RESET_N);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return regmap_read_poll_timeout(priv->sgmii, GSW1XX_SGMII_PHY_C,
-> +					val, val & GSW1XX_SGMII_PHY_STATUS,
-> +					1000, 100000);
-> +}
-> +
-> +static int gsw1xx_pcs_config(struct phylink_pcs *pcs, unsigned int neg_mode,
-> +			     phy_interface_t interface,
-> +			     const unsigned long *advertising,
-> +			     bool permit_pause_to_mac)
-> +{
-> +	struct gsw1xx_priv *priv = pcs_to_gsw1xx(pcs);
-> +	bool sgmii_mac_mode = dsa_is_user_port(priv->gswip.ds,
-> +					       GSW1XX_SGMII_PORT);
+Sounds like a good plan, I'm all for it :)
 
-In lack of the phy-mode = "revsgmii" that you also mention, can we just
-assume that any port with phy-mode = "sgmii" is in "MAC mode"?
+> 
+> Where I left things was that I haven't decided if there's any value in
+> defining the polarity per SerDes protocol (like
+> Documentation/devicetree/bindings/phy/transmit-amplitude.yaml) or if a
+> global value is fine. I.e. if the polarity is inverted for SATA, it's
+> normal for PCIe, or something like that. The existence of the independent
+> "st,pcie-tx-pol-inv" and "st,sata-tx-pol-inv" properties would suggest
+> yes, but the lack of an implementation casts some doubt on that.
+> 
+> Anyway, I do have some prototype patches that add something like this:
+> 
+>     phy: phy {
+>       #phy-cells = <1>;
+>       tx-p2p-microvolt = <915000>, <1100000>, <1200000>;
+>       tx-p2p-microvolt-names = "2500base-x", "usb-hs", "usb-ss";
+> 
+>       /* RX polarity is inverted for usb-hs, normal for usb-ss */
+>       rx-polarity = <PHY_POL_INVERT>, <PHY_POL_NORMAL>;
+>       rx-polarity-names = "usb-hs", "usb-ss";
+> 
+>       /* TX polarity is normal for all modes */
+>       tx-polarity = <PHY_POL_NORMAL>;
+>       tx-polarity-names = "default";
+>     };
+> 
+> and a new drivers/phy/phy-common-props.c file (yes, outside of netdev)
+> with two exported API functions:
+> 
+> int phy_get_rx_polarity(struct fwnode_handle *fwnode, const char *mode_name);
+> int phy_get_tx_polarity(struct fwnode_handle *fwnode, const char *mode_name);
+> 
+> If you can split this up from the rest of the MDIO discrete switch
+> introduction series, I can accelerate work on these common properties in
+> the following weeks.
 
-> +	struct dsa_port *dp = dsa_to_port(priv->gswip.ds,
-> +					  GSW1XX_SGMII_PORT);
-> +	u16 txaneg, anegctl, val, nco_ctrl;
-> +	bool reconf = false;
-> +	int ret;
-> +
-> +	/* do not unnecessarily disrupt link and skip resetting the hardware in
-> +	 * case the PCS has previously been successfully configured for this
-> +	 * interface mode
-> +	 */
-> +	if (priv->tbi_interface == interface)
-> +		reconf = true;
-> +
-> +	/* mark PCS configuration as incomplete */
-> +	priv->tbi_interface = PHY_INTERFACE_MODE_NA;
-> +
-> +	if (reconf)
-> +		goto skip_init_reset;
-> +
-> +	/* Assert and deassert SGMII shell reset */
-> +	ret = regmap_set_bits(priv->shell, GSW1XX_SHELL_RST_REQ,
-> +			      GSW1XX_RST_REQ_SGMII_SHELL);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = regmap_clear_bits(priv->shell, GSW1XX_SHELL_RST_REQ,
-> +				GSW1XX_RST_REQ_SGMII_SHELL);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Hardware Bringup FSM Enable  */
-> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_HWBU_CTRL,
-> +			   GSW1XX_SGMII_PHY_HWBU_CTRL_EN_HWBU_FSM |
-> +			   GSW1XX_SGMII_PHY_HWBU_CTRL_HW_FSM_EN);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Configure SGMII PHY Receiver */
-> +	val = FIELD_PREP(GSW1XX_SGMII_PHY_RX0_CFG2_EQ,
-> +			 GSW1XX_SGMII_PHY_RX0_CFG2_EQ_DEF) |
-> +	      GSW1XX_SGMII_PHY_RX0_CFG2_LOS_EN |
-> +	      GSW1XX_SGMII_PHY_RX0_CFG2_TERM_EN |
-> +	      FIELD_PREP(GSW1XX_SGMII_PHY_RX0_CFG2_FILT_CNT,
-> +			 GSW1XX_SGMII_PHY_RX0_CFG2_FILT_CNT_DEF);
-> +
-> +	if (of_property_read_bool(dp->dn, "maxlinear,rx-inverted"))
-> +		val |= GSW1XX_SGMII_PHY_RX0_CFG2_INVERT;
-> +
-> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_RX0_CFG2, val);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	val = FIELD_PREP(GSW1XX_SGMII_PHY_TX0_CFG3_VBOOST_LEVEL,
-> +			 GSW1XX_SGMII_PHY_TX0_CFG3_VBOOST_LEVEL_DEF);
-> +
-> +	if (of_property_read_bool(dp->dn, "maxlinear,tx-inverted"))
-> +		val |= GSW1XX_SGMII_PHY_TX0_CFG3_INVERT;
-> +
-> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_TX0_CFG3, val);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Reset and Release TBI */
-> +	val = GSW1XX_SGMII_TBI_TBICTL_INITTBI | GSW1XX_SGMII_TBI_TBICTL_ENTBI |
-> +	      GSW1XX_SGMII_TBI_TBICTL_CRSTRR | GSW1XX_SGMII_TBI_TBICTL_CRSOFF;
-> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_TBI_TBICTL, val);
-> +	if (ret < 0)
-> +		return ret;
-> +	val &= ~GSW1XX_SGMII_TBI_TBICTL_INITTBI;
-> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_TBI_TBICTL, val);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Release Tx Data Buffers */
-> +	ret = regmap_set_bits(priv->sgmii, GSW1XX_SGMII_PCS_TXB_CTL,
-> +			      GSW1XX_SGMII_PCS_TXB_CTL_INIT_TX_TXB);
-> +	if (ret < 0)
-> +		return ret;
-> +	ret = regmap_clear_bits(priv->sgmii, GSW1XX_SGMII_PCS_TXB_CTL,
-> +				GSW1XX_SGMII_PCS_TXB_CTL_INIT_TX_TXB);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Release Rx Data Buffers */
-> +	ret = regmap_set_bits(priv->sgmii, GSW1XX_SGMII_PCS_RXB_CTL,
-> +			      GSW1XX_SGMII_PCS_RXB_CTL_INIT_RX_RXB);
-> +	if (ret < 0)
-> +		return ret;
-> +	ret = regmap_clear_bits(priv->sgmii, GSW1XX_SGMII_PCS_RXB_CTL,
-> +				GSW1XX_SGMII_PCS_RXB_CTL_INIT_RX_RXB);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +skip_init_reset:
-> +	/* override bootstrap pin settings
-> +	 * OVRANEG sets ANEG Mode, Enable ANEG and restart ANEG to be
-> +	 * taken from bits ANMODE, ANEGEN, RANEG of the ANEGCTL register.
-> +	 * OVERABL sets ability bits in tx_config_reg to be taken from
-> +	 * the TXANEGH and TXANEGL registers.
-> +	 */
-> +	anegctl = GSW1XX_SGMII_TBI_ANEGCTL_OVRANEG |
-> +		  GSW1XX_SGMII_TBI_ANEGCTL_OVRABL;
-> +
-> +	switch (phylink_get_link_timer_ns(interface)) {
-> +	case 10000:
-> +		anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_LT,
-> +				      GSW1XX_SGMII_TBI_ANEGCTL_LT_10US);
-> +		break;
-> +	case 1600000:
-> +		anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_LT,
-> +				      GSW1XX_SGMII_TBI_ANEGCTL_LT_1_6MS);
-> +		break;
-> +	case 5000000:
-> +		anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_LT,
-> +				      GSW1XX_SGMII_TBI_ANEGCTL_LT_5MS);
-> +		break;
-> +	case 10000000:
-> +		anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_LT,
-> +				      GSW1XX_SGMII_TBI_ANEGCTL_LT_10MS);
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (neg_mode & PHYLINK_PCS_NEG_INBAND)
-> +		anegctl |= GSW1XX_SGMII_TBI_ANEGCTL_ANEGEN;
-> +
-> +	if (interface == PHY_INTERFACE_MODE_SGMII) {
-> +		if (sgmii_mac_mode) {
-> +			anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_ANMODE,
-> +					      GSW1XX_SGMII_TBI_ANEGCTL_ANMODE_SGMII_MAC);
-> +			txaneg = ADVERTISE_SGMII | ADVERTISE_LPACK;
-> +		} else {
-> +			/* lacking a defined reverse-SGMII interface mode this
-> +			 * driver decides whether SGMII (MAC side) or SGMII (PHY side)
-> +			 * is being used based on the port being a user port.
-> +			 */
-> +			anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_ANMODE,
-> +					      GSW1XX_SGMII_TBI_ANEGCTL_ANMODE_SGMII_PHY);
-> +			txaneg = LPA_SGMII | LPA_SGMII_1000FULL;
-> +		}
-> +	} else if (interface == PHY_INTERFACE_MODE_1000BASEX ||
-> +		   interface == PHY_INTERFACE_MODE_2500BASEX) {
-> +		anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_ANMODE,
-> +				      GSW1XX_SGMII_TBI_ANEGCTL_ANMODE_1000BASEX);
-> +		txaneg = phylink_mii_c22_pcs_encode_advertisement(interface,
-> +								  advertising);
-> +	} else {
-> +		dev_err(priv->gswip.dev, "%s: wrong interface mode %s\n",
-> +			__func__, phy_modes(interface));
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_TBI_TXANEGH,
-> +			   FIELD_GET(GENMASK(15, 8), txaneg));
-> +	if (ret < 0)
-> +		return ret;
-> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_TBI_TXANEGL,
-> +			   FIELD_GET(GENMASK(7, 0), txaneg));
-> +	if (ret < 0)
-> +		return ret;
-> +	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_TBI_ANEGCTL, anegctl);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (!reconf) {
-> +		/* setup SerDes clock speed */
-> +		if (interface == PHY_INTERFACE_MODE_2500BASEX)
-> +			nco_ctrl = GSW1XX_SGMII_2G5 | GSW1XX_SGMII_2G5_NCO2;
-> +		else
-> +			nco_ctrl = GSW1XX_SGMII_1G | GSW1XX_SGMII_1G_NCO1;
-> +
-> +		ret = regmap_update_bits(priv->clk, GSW1XX_CLK_NCO_CTRL,
-> +					 GSW1XX_SGMII_HSP_MASK |
-> +					 GSW1XX_SGMII_SEL,
-> +					 nco_ctrl);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = gsw1xx_pcs_phy_xaui_write(priv, 0x30, 0x80);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	/* PCS configuration has now been completed, set mode to prevent
-> +	 * disrupting the link in case of future calls of this function for the
-> +	 * same interface mode.
-> +	 */
-> +	priv->tbi_interface = interface;
-> +
-> +	return 0;
-> +}
+I can break out the SGMII polarity dt-bindings and functional patch
+and postpone it until generic properties to describe SerDes polarities
+are introduced.
 
-Can you split up this function in multiple smaller logical blocks?
-The control flow with "reconf" and "skip_init_reset" is a bit difficult
-to follow. I can't say I understood what's going on. Ideally
-gsw1xx_pcs_config() fits in one-two screen.
+Also note that the SerDes PHY also got a bunch of other tunables which
+can make sense but aren't required on the demo board:
+ * RX LOS Detector Enable
+ * RX LOS Filter Count
+ * RX LOS Threshold Level in mV
+ * RX LOS Sensitivity Level
+ * TX Amplitude Control
+ * TX Vboost Enable
+ * TX Vboost Level (0.844 V, 1.008 V, 1.156 V)
+ * TX Remote Receiver Detection Request Enable
+ * TX Preemphasis
+ * ...
 
-> +static int gsw1xx_probe(struct mdio_device *mdiodev)
-> +{
-> +	struct device *dev = &mdiodev->dev;
-> +	struct gsw1xx_priv *priv;
-> +	u32 version;
-> +	int ret;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->mdio_dev = mdiodev;
-> +	priv->smdio_badr = GSW1XX_SMDIO_BADR_UNKNOWN;
-> +
-> +	priv->gswip.dev = dev;
-> +	priv->gswip.hw_info = of_device_get_match_data(dev);
-> +	if (!priv->gswip.hw_info)
-> +		return -EINVAL;
-> +
-> +	priv->gswip.gswip = gsw1xx_regmap_init(priv, "switch",
-> +					       GSW1XX_SWITCH_BASE, 0xfff);
-> +	if (IS_ERR(priv->gswip.gswip))
-> +		return PTR_ERR(priv->gswip.gswip);
-> +
-> +	priv->gswip.mdio = gsw1xx_regmap_init(priv, "mdio", GSW1XX_MMDIO_BASE,
-> +					      0xff);
-> +	if (IS_ERR(priv->gswip.mdio))
-> +		return PTR_ERR(priv->gswip.mdio);
-> +
-> +	priv->gswip.mii = gsw1xx_regmap_init(priv, "mii", GSW1XX_RGMII_BASE,
-> +					     0xff);
-> +	if (IS_ERR(priv->gswip.mii))
-> +		return PTR_ERR(priv->gswip.mii);
-> +
-> +	priv->sgmii = gsw1xx_regmap_init(priv, "sgmii", GSW1XX_SGMII_BASE,
-> +					 0xfff);
-> +	if (IS_ERR(priv->sgmii))
-> +		return PTR_ERR(priv->sgmii);
-> +
-> +	priv->gpio = gsw1xx_regmap_init(priv, "gpio", GSW1XX_GPIO_BASE, 0xff);
-> +	if (IS_ERR(priv->gpio))
-> +		return PTR_ERR(priv->gpio);
-> +
-> +	priv->clk = gsw1xx_regmap_init(priv, "clk", GSW1XX_CLK_BASE, 0xff);
-> +	if (IS_ERR(priv->clk))
-> +		return PTR_ERR(priv->clk);
-> +
-> +	priv->shell = gsw1xx_regmap_init(priv, "shell", GSW1XX_SHELL_BASE,
-> +					 0xff);
-> +	if (IS_ERR(priv->shell))
-> +		return PTR_ERR(priv->shell);
-> +
-> +	priv->pcs.ops = &gsw1xx_pcs_ops;
-> +	priv->pcs.poll = true;
-> +	__set_bit(PHY_INTERFACE_MODE_SGMII,
-> +		  priv->pcs.supported_interfaces);
-> +	__set_bit(PHY_INTERFACE_MODE_1000BASEX,
-> +		  priv->pcs.supported_interfaces);
-> +	if (priv->gswip.hw_info->supports_2500m)
-> +		__set_bit(PHY_INTERFACE_MODE_2500BASEX,
-> +			  priv->pcs.supported_interfaces);
-> +	priv->tbi_interface = PHY_INTERFACE_MODE_NA;
-> +
-> +	/* assert SGMII reset to power down SGMII unit */
-> +	ret = regmap_set_bits(priv->shell, GSW1XX_SHELL_RST_REQ,
-> +			      GSW1XX_RST_REQ_SGMII_SHELL);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* configure GPIO pin-mux for MMDIO in case of external PHY connected to
-
-Can you explain that MMDIO stands for MDIO master interface? On first
-sight it looks like a typo.
-
-> +	 * SGMII or RGMII as slave interface
-> +	 */
-> +	regmap_set_bits(priv->gpio, GPIO_ALTSEL0, 3);
-> +	regmap_set_bits(priv->gpio, GPIO_ALTSEL1, 3);
-> +
-> +	ret = regmap_read(priv->gswip.gswip, GSWIP_VERSION, &version);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = gswip_probe_common(&priv->gswip, version);
-> +	if (ret)
-> +		return ret;
-> +
-> +	dev_set_drvdata(dev, &priv->gswip);
-> +
-> +	return 0;
-> +}
+Especially the voltage levels cry for being described in a generic
+way...
 
