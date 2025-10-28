@@ -1,281 +1,155 @@
-Return-Path: <devicetree+bounces-232313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41EB6C16771
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 19:28:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 587A4C1683A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 19:39:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BA0D1350EC6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 18:28:14 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D2006350780
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 18:39:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18D6633031F;
-	Tue, 28 Oct 2025 18:25:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED4A034DCF2;
+	Tue, 28 Oct 2025 18:39:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a1JaxdFE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RAAdeZK3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0709C347BA3
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 18:25:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2FB919F115;
+	Tue, 28 Oct 2025 18:39:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761675948; cv=none; b=uIrohWG4onNeRz0GqWnbPhAzUJoSVA5IWIUg8KVnA5bOH0lwb2sK6IJnEAbjP9gLM4D2uC0ZJ/0v+R+R0C60ZIeWI0CPoBuoz/iZR9h4+uIqTiRNoJyQm44dfq8I/dR2P6O+mIeF4/Sq8BSXZnPn4JFtqWKimd6UfGxluwCf3c4=
+	t=1761676767; cv=none; b=cU/rWeg+TnIN7eKOi7wJnuDGop/urWraKTFv6J/j5191TnD/YOBjV+/9i3SD/A72gFwCBbmuLol2W6scEocM8ekm4H0Uu6E6TwKwjNMs4o6mr4l2ncy6NTKR+XXgsSDVUSjPNN1rj9doPIxs1DwZfMhRakWYadx7wT7zA+v4ABI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761675948; c=relaxed/simple;
-	bh=ok6Tl7RUMhfY5AW2FmCbXe+CHbPj0fDsuBNMuXfUvss=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IIm06tLFuhZ1qwpGnj8pq+2ZbZx6lkPmSbgiRoS+USncLRP7VrkaSC+aPl0JayFaUh1+mLjIq+fcBki+nqZvi7WKC1IMWkUvbRp+4A56V01xyICA4RFQ5/Kj1nkZUzeyubiwoadM5DZqrK+jhw/P2AYz800xlLxctw6+7ewJN7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a1JaxdFE; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b6d53684cfdso1402210466b.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 11:25:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761675944; x=1762280744; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MCqkedhq8gefJ0vq9o5JT8van1611cBRTjmA+ft6YH8=;
-        b=a1JaxdFEoW9otWWdrRkL1qXmwKp1MNvcYvfo+UgiujAPVN5BaF5QIGSk+S8ue+V/Zu
-         j5JXFhtVROmQ0asi6K2qzXBu+28EDcoYn/slLxLurNL71v3bSKooMq/N/v35qt+ZoP/8
-         KSM9CLQW5xvmfpLai+y6Y7Lyxj1+VvWJO92YTP/q91Ckhk3YSCandKn/cdD6EGZKpqcf
-         sBh57HRvS0gvj8yVAosSNaR/4euD1+JD/SXdG0jhZwUZCvfllVgQVFm3UHFC/AOd5RFb
-         31iDdg9I4MQ3RdEfhDR0nOLjYNR1KtfTAPhRx9Ks4kzi+TC+ZcMht3uOXlQJU5uPGKNx
-         seZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761675944; x=1762280744;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MCqkedhq8gefJ0vq9o5JT8van1611cBRTjmA+ft6YH8=;
-        b=J2ZTGqTq/x+3LaKnR/IdVLwxP4T+4Y6iZ570bCwg6eSwzg2R6fHIuinPrpESzcGFUK
-         YH1/WRcOxTI7V8mvZ5hGfQpAnex1plAS0jma87TfGjywwm9UBZPvUeYmmvQjAWeN9m+U
-         iYTrDf11MG8vRHi7iDQbW/IuI4ROPvKVMKZq1nam5jXGVwaruPJvUzt2kbuzi+dj0RsM
-         bs33aw2lW2mjJcvlCpeFeI14qsOjgHXP/ruLrCGXMW0CcTy97GIsYIVIKlwXDQHXaSoK
-         fuXqKfC9XqsXN6yBmXgpZUjzXvWN8BlTe44qA4Tf1ZdtkyvYaRkR6Wpi6HMTkYOClQfU
-         R30w==
-X-Forwarded-Encrypted: i=1; AJvYcCUkrcahDZjK2NGkYC7vXuDGsMeeQLNVMU+Xdc5R9w3FfQKye/QjeFZuc4NYat4ZKzAtQ+LRaTQDDTpU@vger.kernel.org
-X-Gm-Message-State: AOJu0YwT0pJ/v1t8Qzw5kNUrtEoT2EhaQhDHvnY+qJoF2OrdhvKnNIfd
-	VdH0utdvSLi05KeSYWQIQjQofcKewu4Yb+iXe/3sWu5XiT6d3ZK7VMLUeEZ3jKsR422YimewwIq
-	uAYm9IA+PEKJMr/t9lbFPDKWT4kxbDlI=
-X-Gm-Gg: ASbGncvM4KSzb6d0WEC5o+YDG+8SgB1XQPVhIrjFxJYcfZyGVkOxUseSSRc0/fTpJcx
-	eq/0Uzxl7EhLgjYH2B+V5/Fo6bAsmkdn0k0HGGi8ExTTrvizXxveDh41+b8qIka1cBiOFy5G+F3
-	UNitzvWoiQDWX0HYcu/kuqbbdcE280pivWIE6PSLrq/TqaqVVVWEcPGkSWSICxfseWi94jg7cFf
-	AoxvwjX1M+jo+47IBJ43fzuT/FMYqx6l1pNezW9aIqXMo7Pmo4OdBXDc4gU
-X-Google-Smtp-Source: AGHT+IHUN9iAMdCMTe6iKPq3e6j4mC/AjCVKjhKIhI0duJ1VlADSpP0NivnP3lrSv3tcevZNdZbSiCNvU3n7YE5rU4Q=
-X-Received: by 2002:a17:907:6d0d:b0:b04:1249:2b24 with SMTP id
- a640c23a62f3a-b703290dd00mr58549566b.37.1761675944176; Tue, 28 Oct 2025
- 11:25:44 -0700 (PDT)
+	s=arc-20240116; t=1761676767; c=relaxed/simple;
+	bh=vAbZ834u8r2BTOo+5gC4v15rLlnSd6ggC4qhlRuryd0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oz0HPxwP2Cy5KcLjS1/Jx30knumDmeHT0YxMILPwRKS8LKPcYxo84Ml8n7lqqgVeYe2YrTjU5erz9JTkDHnrH7T5uSw2xwXE5c9VMNQUVH/jm+9jC5z1YCQsNyzSHd+azXtmFLjxW5mhRMBXCxXUkSUdj56PhMGRYqsKsE4Wrm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RAAdeZK3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2147EC4CEE7;
+	Tue, 28 Oct 2025 18:39:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761676767;
+	bh=vAbZ834u8r2BTOo+5gC4v15rLlnSd6ggC4qhlRuryd0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RAAdeZK3ICynb3uBtUdD3qSGSLNHvVsW5d+TmKLmS0cwy6PmPQk0xhjxhkIK3W4u+
+	 rmWlDHdGpEmKMHrlkXhTfRMudnPt3UFtPFKxbKR7MJkS3q6LrGPL1tGxKcho58nmAd
+	 ic02jG/o3z+q7M8SKYgZ1HhN3KSPvEgQcYen0Lt4UOzSQcubUc5ioXUNkukygRy5iC
+	 EIlVdR07mUiu3L5HkSmRWdXsPwPKrly650HTerHADD4M9+nqnSgw8XJYGZ3LKqtTd1
+	 KVTRZtWLrNbnGqlYfgHvivEdDsc7yR/T/QAllPDbZUjhYyTfCc/zPc6oW8V0ONIwN3
+	 8v7ZvvkQrzhBA==
+Message-ID: <0ddf3634-d9eb-425a-b35b-c0b4ee995a4b@kernel.org>
+Date: Tue, 28 Oct 2025 19:39:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251002-c55-v12-0-3eda2dba9554@ideasonboard.com> <20251002-c55-v12-4-3eda2dba9554@ideasonboard.com>
-In-Reply-To: <20251002-c55-v12-4-3eda2dba9554@ideasonboard.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Tue, 28 Oct 2025 18:25:17 +0000
-X-Gm-Features: AWmQ_bm2B_mhjyhjxwffXBBORyZZbcAxcXJ9p2Wws_R9xPcbz_GEzTbnOC3k5mM
-Message-ID: <CA+V-a8t8H9rYmXtrMrEvnx6otoktK=EFptZndYLTFCc9qM_mKg@mail.gmail.com>
-Subject: Re: [PATCH v12 04/15] media: uapi: Add controls for Mali-C55 ISP
-To: Daniel Scally <dan.scally@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com, 
-	jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com, robh+dt@kernel.org, 
-	mchehab@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com, 
-	laurent.pinchart@ideasonboard.com, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/6] dt-bindings: media: camss: Add
+ qcom,kaanapali-camss binding
+To: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>,
+ Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>,
+ Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux-i2c@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+ trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+ Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Atiya Kailany <atiya.kailany@oss.qualcomm.com>
+References: <20251023-add-support-for-camss-on-kaanapali-v3-0-02abc9a107bf@oss.qualcomm.com>
+ <20251023-add-support-for-camss-on-kaanapali-v3-2-02abc9a107bf@oss.qualcomm.com>
+ <20251028-wonderful-olive-muskox-77f98d@kuoka>
+ <ac126c63-f40c-4159-87c9-1b3d7a8dec63@oss.qualcomm.com>
+ <7efc63ed-9c84-43c0-b524-f7e9e60b2846@kernel.org>
+ <f0c05321-776c-40af-b379-b9336b618340@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <f0c05321-776c-40af-b379-b9336b618340@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, Oct 2, 2025 at 11:19=E2=80=AFAM Daniel Scally
-<dan.scally@ideasonboard.com> wrote:
->
-> Add definitions and documentation for the custom control that will
-> be needed by the Mali-C55 ISP driver. This will be a read only
-> bitmask of the driver's capabilities, informing userspace of which
-> blocks are fitted and which are absent.
->
-> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
-> ---
-> Changes in v12:
->
->         - Removed _FITTED suffix from control value names
->         - Specified bitmask for control name
->         - Used (1 << n) instead of BIT(n) in uapi header
->         - Updated comment to reserve 16 controls for driver
->
-> Changes in v11:
->
->         - None
-> Changes in v10:
->
->         - None
->
-> Changes in v9:
->
->         - New patch
-> ---
->  .../userspace-api/media/drivers/index.rst          |  1 +
->  .../userspace-api/media/drivers/mali-c55.rst       | 55 ++++++++++++++++=
-++++++
->  include/uapi/linux/media/arm/mali-c55-config.h     | 26 ++++++++++
->  include/uapi/linux/v4l2-controls.h                 |  6 +++
->  4 files changed, 88 insertions(+)
->
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 28/10/2025 18:45, Vijay Kumar Tumati wrote:
+>>>>> +      - const: tfe1
+>>>>> +      - const: tfe2
+>>>> Why not using the same names as before? It really does not matter that
+>>>> it is thin or image, all of them are the same because only the
+>>>> difference against top matters.
+>>> Right, this is done to maintain the consistency with the clock driver on
+>> Sorry, this makes no sense. This device has nothing to do with clock
+>> driver. Don't ever use clock drivers as arguments for doing something in
+>> completely different place.
+>>
+>> Not mentioning that drivers don't matter much for the bindings, so I
+>> really do not get what you try to explain here.
+> 
+> Understood. I meant to say that it is consistent with the naming for the 
+> TFE device that is available on Kaanapali. If our intention is to keep 
+> the names in the bindings same as previous generations despite the 
+> changing HW architectures, we could change these to IFEs, to be 
+> consistent with previous  generations. Please advise. Appreciate your 
+> inputs here.
 
-Cheers,
-Prabhakar
 
-> diff --git a/Documentation/userspace-api/media/drivers/index.rst b/Docume=
-ntation/userspace-api/media/drivers/index.rst
-> index d706cb47b1122b6e145a02ab826eb3ecc7997c2b..02967c9b18d6e90f414ccc132=
-9c09bffee895e68 100644
-> --- a/Documentation/userspace-api/media/drivers/index.rst
-> +++ b/Documentation/userspace-api/media/drivers/index.rst
-> @@ -32,6 +32,7 @@ For more details see the file COPYING in the source dis=
-tribution of Linux.
->         cx2341x-uapi
->         dw100
->         imx-uapi
-> +       mali-c55
->         max2175
->         npcm-video
->         omap3isp-uapi
-> diff --git a/Documentation/userspace-api/media/drivers/mali-c55.rst b/Doc=
-umentation/userspace-api/media/drivers/mali-c55.rst
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..74f2cdb717e0dddeb11fb1eab=
-a69eeebb2534f95
-> --- /dev/null
-> +++ b/Documentation/userspace-api/media/drivers/mali-c55.rst
-> @@ -0,0 +1,55 @@
-> +.. SPDX-License-Identifier: GPL-2.0-only
-> +
-> +Arm Mali-C55 ISP driver
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +The Arm Mali-C55 ISP driver implements a single driver-specific control:
-> +
-> +``V4L2_CID_MALI_C55_CAPABILITIES (bitmask)``
-> +    Detail the capabilities of the ISP by giving detail about the fitted=
- blocks.
-> +
-> +    .. flat-table:: Bitmask meaning definitions
-> +       :header-rows: 1
-> +       :widths: 2 4 8
-> +
-> +       * - Bit
-> +         - Macro
-> +         - Meaning
-> +        * - 0
-> +          - MALI_C55_GPS_PONG
-> +          - Pong configuration space is fitted in the ISP
-> +        * - 1
-> +          - MALI_C55_GPS_WDR
-> +          - WDR Framestitch, offset and gain is fitted in the ISP
-> +        * - 2
-> +          - MALI_C55_GPS_COMPRESSION
-> +          - Temper compression is fitted in the ISP
-> +        * - 3
-> +          - MALI_C55_GPS_TEMPER
-> +          - Temper is fitted in the ISP
-> +        * - 4
-> +          - MALI_C55_GPS_SINTER_LITE
-> +          - Sinter Lite is fitted in the ISP instead of the full Sinter =
-version
-> +        * - 5
-> +          - MALI_C55_GPS_SINTER
-> +          - Sinter is fitted in the ISP
-> +        * - 6
-> +          - MALI_C55_GPS_IRIDIX_LTM
-> +          - Iridix local tone mappine is fitted in the ISP
-> +        * - 7
-> +          - MALI_C55_GPS_IRIDIX_GTM
-> +          - Iridix global tone mapping is fitted in the ISP
-> +        * - 8
-> +          - MALI_C55_GPS_CNR
-> +          - Colour noise reduction is fitted in the ISP
-> +        * - 9
-> +          - MALI_C55_GPS_FRSCALER
-> +          - The full resolution pipe scaler is fitted in the ISP
-> +        * - 10
-> +          - MALI_C55_GPS_DS_PIPE
-> +          - The downscale pipe is fitted in the ISP
-> +
-> +    The Mali-C55 ISP can be configured in a number of ways to include or=
- exclude
-> +    blocks which may not be necessary. This control provides a way for t=
-he
-> +    driver to communicate to userspace which of the blocks are fitted in=
- the
-> +    design.
-> \ No newline at end of file
-> diff --git a/include/uapi/linux/media/arm/mali-c55-config.h b/include/uap=
-i/linux/media/arm/mali-c55-config.h
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..7fddece54ada9dadc3c76372d=
-496d9395237a41c
-> --- /dev/null
-> +++ b/include/uapi/linux/media/arm/mali-c55-config.h
-> @@ -0,0 +1,26 @@
-> +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
-> +/*
-> + * ARM Mali-C55 ISP Driver - Userspace API
-> + *
-> + * Copyright (C) 2023 Ideas on Board Oy
-> + */
-> +
-> +#ifndef __UAPI_MALI_C55_CONFIG_H
-> +#define __UAPI_MALI_C55_CONFIG_H
-> +
-> +#include <linux/v4l2-controls.h>
-> +
-> +#define V4L2_CID_MALI_C55_CAPABILITIES (V4L2_CID_USER_MALI_C55_BASE + 0x=
-0)
-> +#define MALI_C55_GPS_PONG              (1U << 0)
-> +#define MALI_C55_GPS_WDR               (1U << 1)
-> +#define MALI_C55_GPS_COMPRESSION       (1U << 2)
-> +#define MALI_C55_GPS_TEMPER            (1U << 3)
-> +#define MALI_C55_GPS_SINTER_LITE       (1U << 4)
-> +#define MALI_C55_GPS_SINTER            (1U << 5)
-> +#define MALI_C55_GPS_IRIDIX_LTM                (1U << 6)
-> +#define MALI_C55_GPS_IRIDIX_GTM                (1U << 7)
-> +#define MALI_C55_GPS_CNR               (1U << 8)
-> +#define MALI_C55_GPS_FRSCALER          (1U << 9)
-> +#define MALI_C55_GPS_DS_PIPE           (1U << 10)
-> +
-> +#endif /* __UAPI_MALI_C55_CONFIG_H */
-> diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2=
--controls.h
-> index 2d30107e047ee3cf6b149e5b075cc9d4137b7d3f..f84ed133a6c9b2ddc1aedbd58=
-2ddf78cb71f34e5 100644
-> --- a/include/uapi/linux/v4l2-controls.h
-> +++ b/include/uapi/linux/v4l2-controls.h
-> @@ -228,6 +228,12 @@ enum v4l2_colorfx {
->   */
->  #define V4L2_CID_USER_RKISP1_BASE              (V4L2_CID_USER_BASE + 0x1=
-220)
->
-> +/*
-> + * The base for the Arm Mali-C55 ISP driver controls.
-> + * We reserve 16 controls for this driver
-> + */
-> +#define V4L2_CID_USER_MALI_C55_BASE            (V4L2_CID_USER_BASE + 0x1=
-230)
-> +
->  /* MPEG-class control IDs */
->  /* The MPEG controls are applicable to all codec controls
->   * and the 'MPEG' part of the define is historical */
->
-> --
-> 2.43.0
->
->
+You name these based on the provider, the clock controller or whatever
+controller, and that's the mistake. Names are coming from this device
+point of view, from the consumer. This device does not care whether this
+is Thin or Image or Whatever GDSC.
+
+
+Best regards,
+Krzysztof
 
