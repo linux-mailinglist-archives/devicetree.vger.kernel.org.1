@@ -1,229 +1,181 @@
-Return-Path: <devicetree+bounces-231910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00D72C12DD2
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 05:33:35 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58242C12E0E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 05:49:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D44C1A62DFA
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 04:33:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 211464E2C06
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 04:49:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94B361C3F0C;
-	Tue, 28 Oct 2025 04:33:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E035279327;
+	Tue, 28 Oct 2025 04:49:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="NFoTjRrq"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="B3fhVUfP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU010.outbound.protection.outlook.com (mail-japanwestazon11011013.outbound.protection.outlook.com [40.107.74.13])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75899D271;
-	Tue, 28 Oct 2025 04:33:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.74.13
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761626006; cv=fail; b=E+YCXpk82aVztIC1g8aVtSbut9UXxcSfVXIsXD5GN2Q4yJPWsfXd2bJWTZN1F+BsjYjDZ3g0HhxaEnurF8DzmHVExQW/h2PXwN6M9+WngF/ibdfnluDLxL51zR+pe4aWNa+7/CQgO1GZUl6GCRoqn1tvwcOwWjoMNdV6emq/4gQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761626006; c=relaxed/simple;
-	bh=9NRzIsi2IT/eP4wXrny+Rh5cy7KYqA0sfzdcZA6EU/g=;
-	h=Message-ID:From:Subject:To:In-Reply-To:References:Content-Type:
-	 Date:MIME-Version; b=ON2htizAddjFuK0IqgrVeqEvQbuiIIA4a4wZXdmdHAxyh7b+m2OQJnONS9Pir1gLxq7H5Fwy453ENf4UuesYLhOu9Q38cLUCwtYkfU4c+izu3jUwd9CyqVYTgdJANeuCHnOdLPisrGl+h2StXctjEOt5upHRYNpv5xCno3NW/0o=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=NFoTjRrq; arc=fail smtp.client-ip=40.107.74.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UJ1mQ8CZGhK1A551IRi9tqJnCXEmnF5wHkw7PuA+H6r5e/KBph5UZggly7Z10u07zDK4GLD31MA8uxAuSYkmdqAQuNxZtNV3vx6McYG0yDip6ou/gXlM1J9NcyvnQ9Ui78DQ3E8WsE2LMhS43pNX8FibCafEgkn9jqGf+XbBB6VotnglLl2pvrCNql2HyAKC+hg0aN1JSHrDPSmdz18iYKvWwRN5J3DuMfqYs7s+QP6S0/Q95G45AxsAb4OIOIWFEbNTMOceSqMvUf6a/PsHQfy9SwKiUqS6Ufi+bkFQxXmBukxYlFWuybMYDkAYpGRVCj6dfLnODWGY8wkSSavFxA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CdGR5cVhBkw6+YmBSR/ivG6DnfGfrejnEPqudCwyElk=;
- b=KNsLvJ06OBaB77pKwAH3RAWwad9J4wdLxTScW0+FUuH0bZRPXNOw/o2JnPp3Sr4MCgTrwxidbUexeyP+dHgxUxQUt84YKrI6ABRIxSjJF/osiNkx590e3ctE7VWs/CUscvpFw0TL2M2jQgZyeIQZg5KmCqRFqKIvfZLP2jpsvw/IvUvawOPktGYzbCIUvuAWCm/VFOLgOF1MNRlTgQZ60QzjVGOqKCnKFGx+zN6MhoKuugTOqNk1xdQj66C0s4avRZ/RCkFBwUDlsA89U0nP1OJaDmv2v8O9jg9W0zBiC6kz/u/Scaxb0VKOJLHaCo7YXzVoYf/hruD+Cue1HEbbVw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CdGR5cVhBkw6+YmBSR/ivG6DnfGfrejnEPqudCwyElk=;
- b=NFoTjRrqr4cpShIYesenYmbrxZ+DZ2g9vvKTxLxfSd2rvEoaijXhL7H5Kz4rBCo24SFkRudz+p4Z5D4xZWZVh+X0DNw7cGIvLPu/E0ONJPu6gLaZxTp3LNsj8BozSLWXcUjDSQKtXxmM4DqKaOFi33L3BOuC+vD9Mef8tCVMQoE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by OSCPR01MB13679.jpnprd01.prod.outlook.com
- (2603:1096:604:380::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.12; Tue, 28 Oct
- 2025 04:33:22 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11%3]) with mapi id 15.20.9275.011; Tue, 28 Oct 2025
- 04:33:22 +0000
-Message-ID: <87jz0fsl0u.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Subject: [PATCH v2 3/3] dt-bindings: mailbox: Add Renesas MFIS Mailbox
-To: Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-In-Reply-To: <87o6prsl2z.wl-kuninori.morimoto.gx@renesas.com>
-References: <87o6prsl2z.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset=US-ASCII
-Date: Tue, 28 Oct 2025 04:33:21 +0000
-X-ClientProxiedBy: TYCP301CA0016.JPNP301.PROD.OUTLOOK.COM
- (2603:1096:400:381::17) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F25B220F21
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 04:49:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761626972; cv=none; b=uxZaoM0ukol+StNJOz4x5K0+luN7Qw2CLnMZA3SmK+wjSFjdCAdb+T2m5S3NR/Pit9LO7F4s/QeZnNiZyVTsQSMaQ5LReku0XFZmyeaStBcPOKRtpNdsmovdFclIqYAIVDatN+ObL4HDIK1fOttxsR1GVPy1mjZKttEwPn4nH+g=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761626972; c=relaxed/simple;
+	bh=XV7WU5zibZsJ+ZnEyeKr2n+YJVbN5IbMnAsV95YPJu8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gC7sWhvjQ8uYpD6k29ofYgLDNckcvLCOU/o5aEDxjoP54C3enLkp8n0lA/bFp88jNFtCrs/fnsfxAh6MUVbEZojJbAPSEah++wVdBDEj4mDaa+CDmItC4doX01k7DssqoKdHOhBLbJsrkyca+E3xcgIS0s0SlyzofuSyR2slbLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=B3fhVUfP; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59S3gYwk3165297
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 04:49:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	XuTBvjuiQOVwjZgQUe9fy1G+EeVQei0mWGOYbzBeS1c=; b=B3fhVUfPCGKJ5Nt9
+	z6YktbPuyDJQfGnyV+6K8bVcFjfL1ykH9Ir+r/7cdmtpF7GjPTgMaVK5XSclE3rn
+	MlkAzOlk/UnzxW3OZ6s3HiRCMlkh+OjYqmyoqXI4Nsbyr08Mh1vFv6H0Bd+GffdV
+	r3cynpTOd1kkeEd0cxHe867pPpIvPYhq9pH3gmNioD/P+HTIbPfhaQzQZG1fRuQo
+	IjsSQedFsjUgNcy0K68CcqEOt+32Jab/UowK+ffjshpNmjzYjSowPaaBy22o+YNR
+	q4JJ1BUSqnyvI3I+1FhBDmmypNAwpMartG5qqs6lk2jR11GUbnTHCeDa2mZTEYZj
+	DbaiMA==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a2bwx1v61-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 04:49:29 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b5a013bc46dso4184902a12.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Oct 2025 21:49:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761626968; x=1762231768;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XuTBvjuiQOVwjZgQUe9fy1G+EeVQei0mWGOYbzBeS1c=;
+        b=DSXlXvicooSMKlI94OcP5HwNtxSKaShAp+wGU62GprAh/WE+iiYBXkJF1vaYNMEZ/U
+         QWuoaBcQSTBykVF0GJ++iF3l5aykDmljthZYVrQ3TKKgpOIwJRGxR66lxS7MC6wpidGJ
+         2HbCftiOOSEY0FB2tq8Vv3hXcmrXq84Dg5BAp5Y6RgAxHXmt5By9Vj3ChnWTOq1gTNA5
+         LkDPbEYuTLAR/dzmrogdW8XUjeaEOKcbNhp+FGM4xYsgdEomFSK2BKi7l1QOM6bwtpdv
+         VU0jI/bREYoUtCmHobtws1TeJkZWo+6UVKCzub7/oibKaeqdloolC3Gey62r9bIjnhx3
+         WYgw==
+X-Forwarded-Encrypted: i=1; AJvYcCXGrGEmV1wx4S3QNG3biT4EjCMHXqX6qDxy+7eJyRqNBybkimveeJyP/XshHng56rpyDGzpHVRFExCW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxkt6RPvBgxGKoHsePskMkBT6i8CVlOHQ7rFU2K8fabWymDl0LZ
+	58uoidkpeUhdwlHcNs3d9tKqQ8DirVZFG0RxA5r0NMOb760MN2tAZFOBMFn+ZuKsuAYdInBvDFD
+	y2mLvp6wSab+xO+M35hc1CNI3WYgDw0hCLjwBxrv4FtcZGlXzz92aFWMtGzcBFrpU
+X-Gm-Gg: ASbGnctrVOo85KkjpXb/qfArJv92CB8RqQheUUE993MRcBKuJTobQawFaJIRGg7izJ9
+	2WdQIMHqmvKawQm3uu9Uh+Nyzqxdlx1FtAYogdTJYwENCECVezqZD7vOEgElCSF9t83fyil+kg9
+	+/iEIyyRwOzP9JySiiB9a2Sj8YjXyIzMw8gRd1Nxgs2ZQ89znX5tTqoz0d4VQYhevO+BW/8wDKN
+	36j9FdXInwkKrEciBxlPo4Z2W9HwNYe8wTRa7E15M5xtCKyy5OXcuR7ZMbYtlu74s4q3p4xet31
+	OjR+kg8IbggysUFurl6+P+uWMBCV6ZpybJwJe1MpC3j9kRIubv3iiiyvCjiZwwIiQVXcPflmKoH
+	GPnIOsrYKy/lVQ2bUWAs20Q==
+X-Received: by 2002:a17:902:c411:b0:261:1521:17a8 with SMTP id d9443c01a7336-294cb394731mr29305905ad.16.1761626968256;
+        Mon, 27 Oct 2025 21:49:28 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFfBO+WViq1JrCOzNCETVspcIjJUNeP8Juh1Xcs//lqcn1/LiJjXbaM6gkuaRAJV+zXwqEkng==
+X-Received: by 2002:a17:902:c411:b0:261:1521:17a8 with SMTP id d9443c01a7336-294cb394731mr29305755ad.16.1761626967781;
+        Mon, 27 Oct 2025 21:49:27 -0700 (PDT)
+Received: from [10.64.69.82] ([114.94.8.21])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29498d0abe6sm99973325ad.34.2025.10.27.21.49.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Oct 2025 21:49:27 -0700 (PDT)
+Message-ID: <305b9b6b-2003-48ab-97d0-c60226e1493b@oss.qualcomm.com>
+Date: Tue, 28 Oct 2025 12:48:57 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OSCPR01MB13679:EE_
-X-MS-Office365-Filtering-Correlation-Id: d0e18025-728a-49b8-b8f9-08de15db205c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|376014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?RzhXamDgc3llCjoH87hQ9TkdlZ1DDOAsJWw9iWOGcmIKmpdoYyTwi7GmJnK2?=
- =?us-ascii?Q?oQH8l3AivC13HDjaCRCQmSUmiqg29UvPyQCz5BPza80oBPwutELyq3oh/6TD?=
- =?us-ascii?Q?P42AeaxTR6uzf7EsbG2ntrxRdxROlCKUkKx+m70t0nF7wEAPmVAMWrPz4HDC?=
- =?us-ascii?Q?K2AnqqlQL4oKC8WaVfIoOu7A7Mlg9cOTVHDqp9FchX2eaOnGB0uMGT25Pv8t?=
- =?us-ascii?Q?/YLCOmzRIUOio1Nwvg1kgACF0i8PytZ7nVwyBBo9Vj1Pa1qAb3BMNGOTex0B?=
- =?us-ascii?Q?bvB+e99KBQ+LCCsNnMbIlzSuMY3eMEVSliGEvnGoJkBmqFVawNQCxJl2OyRv?=
- =?us-ascii?Q?Ne2Tnjm1gV6b/pJqqmoqzjRGzieSHtYwU+ADqIIx4i+WnvAbTpojZycAck2O?=
- =?us-ascii?Q?7YFsqvsEG49zJASg6sIJPsLMwbgXk+0xdZ0HN4kEnQUWWFbONXaEjR2mWvWT?=
- =?us-ascii?Q?KIRxlHVUWsCe88Veo7UG1nR/PRbUkb/XjnJWMKUiDfqkRUMRTKnSyWev0HlV?=
- =?us-ascii?Q?m9cZNAmIZitpLH7ILs0GX1XTRcD+SXul6AmXyfWdBh2V/4azwoQcnWVqplsg?=
- =?us-ascii?Q?9pLDvo9YwBWye2CiM4ys8At6HTkLFg2CGt/AE5n/4u/XS4zjo8arUlCiVIZS?=
- =?us-ascii?Q?yjceBUPPbSVqLQ3hRkgWg6DegyYXlk+UhvZA7uopXNduNE+9zcEEAQac+gda?=
- =?us-ascii?Q?cVDifFNj+c+bJep4HB+d8T6q2xooREJH/aX7egJKB1sMawxKkX8xxEizzfrI?=
- =?us-ascii?Q?lB2i9BVZCP+j0x6V3EKaIFA1hlEZ667cURvzDGrWtwNp182EGNQsp0k2VIny?=
- =?us-ascii?Q?BsIQJjjuL2zUFuvEJqZGpA5+RkOb+XBYD+guQmXllA55TQFgAMYnmOzuJ9jG?=
- =?us-ascii?Q?sq/GgxZ+M4mV2uIySqIyOgyvAGEXCTNrEiSAjxThpb4KNrXGvCQLKswVAjvI?=
- =?us-ascii?Q?RPKfZLdykCsRnz9oG4ucO5HmSyMEn6dwb75UF4I97LbDCHGPMM0cRfOzEioM?=
- =?us-ascii?Q?M1vQ9/h/ISDv7KTAbZmvzBQQSZhwX224+w5Zjd6Re6rhoycvnpLJnUD9a2fN?=
- =?us-ascii?Q?woftt38H0iUVw5lo5acQoIMwmRZ3Sbtwlay3FfNLjlRB4Psgw3xv8Et4YnYd?=
- =?us-ascii?Q?l88mtMHfeRUd1/WHa0CgOUMxPDVVtfj7jhkdgLDLbqFP/jKEyL+GtDfIYN/O?=
- =?us-ascii?Q?9icUori3b7Nm6J0d+zDm4+8bbeN15Zsg9J3oFY8HcrcJIvpBwLo036A8u4J9?=
- =?us-ascii?Q?r5OSn5rmKWalxO+cz8gWXm2/xbLl/WBjW8sAQR++kvSW0GaSXmOhShQiuFOC?=
- =?us-ascii?Q?9uU4msWknT6WBfWTg2bimIyyVuB/+9oh84AG+HqCixhttiJUA8PoQkhwf1et?=
- =?us-ascii?Q?8LwRxxzUMFTeE0qyo4EuSLGBxOZPZZZL2Xqo7/sJ5oEwai7+ueWr4Kak0/6B?=
- =?us-ascii?Q?eWOTYtpGrNEi60I5hmyW/l7dO5NKxHgXijMxVyPBmHt676iSn6/Vgg=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?S9ox/C5Ts3T5mOS9Jr2JmcV/oLiyrz4OIgpkyp+7i/a/Zh3QjnLqxrKF7IHW?=
- =?us-ascii?Q?2fuQLBFTH4J6LRaYo+j/1NTMnORdxxBnaWbqNDTkrj5FVKJIabDntb/9KYSL?=
- =?us-ascii?Q?KPo9m4j+Nfb7QdW44mRMiSR3rb0oZPYfPgWJiN0lwGtqmc/efJnbpmW7tvyP?=
- =?us-ascii?Q?qCfQZvHJOLKMYCcAXhWtzmpVB0fFMnI3Fs644K8iis5tW3b7D1zIyelFQs8o?=
- =?us-ascii?Q?1wJiai1jNyU5YPLl1CF11JWULNoK2hiLrPn3mKX/gUDl68UDjhADANE9fS8O?=
- =?us-ascii?Q?8UE6s6hDQdQRtAUJ0inwMqnuN0Z9FaRkKm3Q2PTzLFxBe2ESUfnHy8gyZCPN?=
- =?us-ascii?Q?xpfLBMoGEXh+aX4tK69IvEvmVv4witLcV+Kc45zf4ZpSpvd2HF7AMsK1YPd5?=
- =?us-ascii?Q?JxMn8cJerCMNNF8vGxE4CyYe65M8BoYnzK6Cw+ptKbhoqpQ2yWGBP/6OQQtJ?=
- =?us-ascii?Q?hfc+0bOB/ZeXm0qXPtfIYkzc7TcqoykivDH4gUO7H2KB5Rj5D5KgKZlN7XcK?=
- =?us-ascii?Q?OlYEcvucd5bwT+tJVf16gCSpGy7t8291Hvt0LwRyG1ZHJYCt2edBcBFa21SH?=
- =?us-ascii?Q?AubaPjrEOnWmBOKfS4ts5kKKlfthqazD/9LqzK95A0zd3Li/B97/FVIjUGG6?=
- =?us-ascii?Q?iOQ+h0fcSEn+27diwryWLPgtd1rqXIk0m/JxYUkx7Rgv2r+ZaaC1dcBLnKmo?=
- =?us-ascii?Q?+8LILkI/148pNsvMjXW4Txrmg6JR59GzzPM7QABDb62zWTfbWqA4UNq9rEOd?=
- =?us-ascii?Q?3TxeD5ahoSbsi0UE4eqwxwVL1Itd6mi3yPzG8iuKMD+ootembQvXcn8pRN06?=
- =?us-ascii?Q?qfJ8Vp0absSktEY5uVWfNq7EzeBCgEkQJgBV1cb8rwpyf51kKU4Y5taYnEcx?=
- =?us-ascii?Q?QY/HAai+O63PyULWy6ix2VZMZXj38G+45cqeqsH9GHKqHSoZzMK5xbKMJQ6X?=
- =?us-ascii?Q?ElXacIe1tn0Y1jQiOUi1kM9VOPXJjUgZz+LU8FTg83Cw19GqSNgPmwIZOmli?=
- =?us-ascii?Q?JXbjdPm7B0hPIuh8IVDSkWG2VJJfYgJUmNjzay7I9pqjei/1tNGAroclNpYA?=
- =?us-ascii?Q?9nD+jSzfavi0VTUgtG2KYbJDsovXuMgrWnKgxsL1JM2bpUC62g3XqtID5cwc?=
- =?us-ascii?Q?8hfcyB3igTGZuR76v7tBgq2aqCrl2WNhZdI0YgeFOYP5y1VGnwUBFjzT4H1W?=
- =?us-ascii?Q?sifg0MOtoXCiyWvUMQo9J7f2sQxpkNapdcUNRN1tnADbEaV39xTHOKSSqj/t?=
- =?us-ascii?Q?ikE/txrau3MhKks1fRZgaQr7dnTeK/oaXBouTD9+aolgkQoSPVKjJm8fP64B?=
- =?us-ascii?Q?oWHtezi6bAdEyLLe/qaAc09ftSLNTOZk+ArCj14pHP/cxTabNr3ffg31R0Bc?=
- =?us-ascii?Q?QRV8GKEV+45dM6M8QYNDCnDk/JGxjYZXrgiJeW+4XgfvsVr+iBwOkmDo+h4L?=
- =?us-ascii?Q?RFPcwEJyDPLJDfKiqmuPzvOPppCMS8vimQRFONpkXljtkl32EDhW+fG50hNL?=
- =?us-ascii?Q?VgXYuo+zHLdTU4ij0c2lTTSSeveiiwuLSjhUi3w6G/uLa2OX73RfCz5CSYf3?=
- =?us-ascii?Q?zdxvkUz8dvE19zmkJZe/+vc3CwxOeyhIsiExSZbGaeR9m1o4gn9QHGHfpQRu?=
- =?us-ascii?Q?uQF+aZokKTEZSJ0lA1U45K0=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d0e18025-728a-49b8-b8f9-08de15db205c
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2025 04:33:21.9800
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: U/pwglbEpewtUfvscX91VinMpmlIC0gA6LYOZbqz9PsVxyxUwPdHw442yIjqUFW9T4v5JddOgoc+zxz7mkJdAq/GO+nn7xKOtFwFA1lAmZ1A8rDZt7aAvAxqRfMUh8Nz
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSCPR01MB13679
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: hamoa-iot-evk: enable pwm rgb leds
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, kernel@oss.qualcomm.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+        Rakesh Kota <rakesh.kota@oss.qualcomm.com>,
+        Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+References: <20251017-add-rgb-led-for-hamoa-iot-evk-v1-1-6df8c109da57@oss.qualcomm.com>
+ <cb973808-005e-4920-a35b-3f02a402a78b@oss.qualcomm.com>
+ <ada950ed-7b51-4e62-93ff-550c427a73fa@oss.qualcomm.com>
+ <nepbosujmpldx5exylkqjylonntj6v3p4jnnoyxstmbmilb7jc@t65dwpxzorg7>
+Content-Language: en-US
+From: Tingguo Cheng <tingguo.cheng@oss.qualcomm.com>
+In-Reply-To: <nepbosujmpldx5exylkqjylonntj6v3p4jnnoyxstmbmilb7jc@t65dwpxzorg7>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI4MDAzOSBTYWx0ZWRfX5a0ai2Y0cyub
+ 7fi/4+qa6na3MAxaS9aXpuOHBMIctfaQlzmHACFzlDK2wCcRYf4qt3uhHaJAM8SKUxizSlZXKqS
+ 8YPIMyiVgN6VSJ0Kfc4YgNCP/xRBs2TsHhiB9F2TQJJ09gYXWo0VPVnERkTURPxizTxlPWl2sth
+ YL4wrxTBBhHgObuM1Q1yLhYZB879XiG/gPJ6i5h9KUQ2l1/aMNxGJCCLDOX+6kAvB8zHE7HlHeq
+ CjWZS0F1T4OY2MeLKA5lMmr1C/+oRRyQysEG91W/r4aeW5LGM+ihPHKJ+eUkUfCgWcmlc7gX505
+ xWtvluqk8Ej7IC4O/1jZI56InKACr8fhRGq3tnzmnr9Y06Equ3VCTsiVnsQhg5ijwJNm+a8QXOc
+ ufa/D4o6/bladhW/mPn1tnoPBFfClg==
+X-Proofpoint-ORIG-GUID: aaqXI2XcXCKYB3v4LS87LGvQzvGB-dLM
+X-Authority-Analysis: v=2.4 cv=U9WfzOru c=1 sm=1 tr=0 ts=69004b59 cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=Uz3yg00KUFJ2y2WijEJ4bw==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=-iULT8Sq9WsPgWKhyU8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=x9snwWr2DeNwDh03kgHS:22
+X-Proofpoint-GUID: aaqXI2XcXCKYB3v4LS87LGvQzvGB-dLM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-28_02,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 impostorscore=0 bulkscore=0 clxscore=1015 malwarescore=0
+ lowpriorityscore=0 priorityscore=1501 spamscore=0 suspectscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510020000 definitions=main-2510280039
 
-Add device tree bindings for the Renesas Multifunctional Inferface
-(MFIS) a mailbox controller.
 
-Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
----
- .../bindings/mailbox/rcar,mfis-mailbox.yaml   | 51 +++++++++++++++++++
- 1 file changed, 51 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mailbox/rcar,mfis-mailbox.yaml
+On 10/26/2025 11:15 AM, Bjorn Andersson wrote:
+> On Tue, Oct 21, 2025 at 02:29:22PM +0800, Tingguo Cheng wrote:
+>> On 10/17/2025 4:09 PM, Konrad Dybcio wrote:
+>>> On 10/17/25 10:06 AM, Tingguo Cheng wrote:
+>>>> Add red, green and blue LED channels for the RGB device connected to
+>>>> PMC8380C PWM-LED pins.
+>>>>
+>>>> Signed-off-by: Tingguo Cheng<tingguo.cheng@oss.qualcomm.com>
+>>>> ---
+>>> Just to make sure, is this a "multicolor LED" consisting of 3 ones,
+>>> and *not* three LEDs that are supposed to communicate different
+>>> functions (i.e. network, power, disk i/o)?
+>> Yes, it's a multicolor LED composed of three individual LEDs within a single
+>> package—not three separate LEDs for different functions like network, power,
+>> or disk I/O.
+>> However, there's one exception worth mentioning:
+>> The blue channel is connected to two sourcing signals—the EDL indicator and
+>> the PMIC PWM-RGB blue LED—via two resistors. These resistors allow selection
+>> between the two sources.
+>> By default, the board is configured with the resistor soldered to connect
+>> the blue LED to the EDL indicator.
+>> To support software control, I’ve added the blue channel in the DTS,
+>> enabling the capability to light the blue LED from the software side.
+>> Some developers may choose to re-solder the resistor to connect the blue LED
+>> to the PMIC PWM-RGB output instead, depending on their hardware setup.
+> Sounds like we have a RG LED, and if the user chooses to modify their
+> hardware, they have different hardware...which they can easily describe
+> by updating their DeviceTree.
+>
+>
+> It's a bit weird, but does it work to make this LED_COLOR_ID_MULTI with
+> just the RED and GREEN channels described?
 
-diff --git a/Documentation/devicetree/bindings/mailbox/rcar,mfis-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/rcar,mfis-mailbox.yaml
-new file mode 100644
-index 0000000000000..8f5f3a5ea717d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mailbox/rcar,mfis-mailbox.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mailbox/rcar,mfis-mailbox.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas MFIS (Multifunctional Inferface) Mailbox controller
-+
-+maintainers:
-+  - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-+
-+description:
-+  The R-Car multifunctional interface (MFIS) provides an interface between
-+  the different CPU Cores, such as AP System Core domain and the Realtime
-+  Core domain, SCP Core domain and AP System Core domain or Realtime Core
-+  domain and AP System Core domain or Realtime Core domain.
-+  The MFIS supports the issuing of interrupts for each CPU core domain.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - rcar,mfis-mailbox-r8a78000   # R-Car X5H
-+      - const: rcar,mfis-mailbox-gen5    # R-Car Gen5
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  "#mbox-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - "#mbox-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    mailbox@18842000  {
-+        compatible = "rcar,mfis-mailbox-r8a78000", "rcar,mfis-mailbox-gen5";
-+        reg = <0x18842000 0x8>;
-+        interrupts = <GIC_SPI 4362 IRQ_TYPE_LEVEL_HIGH>;
-+        #mbox-cells = <1>;
-+    };
--- 
-2.43.0
+Yes, I tired before with enabling RED and GREEN only, it works. (What 
+you said makes sense)
 
+Let me send V2 for *only enabling RED and GREEN*
+
+>
+> Regards,
+> Bjorn
+>
+>>> Konrad
 
