@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-232052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5886BC13DFA
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:41:26 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CF71C13E18
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:43:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42523586A1D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:37:29 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 692AB5074CE
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:40:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0F1F2FFDC2;
-	Tue, 28 Oct 2025 09:37:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B1C72D94A4;
+	Tue, 28 Oct 2025 09:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pFWREluD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MBEd6m/O"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A63CA27FD74;
-	Tue, 28 Oct 2025 09:37:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6EA277C96;
+	Tue, 28 Oct 2025 09:40:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761644246; cv=none; b=CGjXKYxc4AuIEqtj3EEdWgHQaTr9/VRW6bxT+zDnKLNjbMzjf3DLCPu6VAomuVagz6LEEY7RJcxNgNikKQmdkJ0GJ86Qotd/QWLyxQ3mQIOKcCnYIR5rEYzoU6z7eN+NlkIFNRbdVloDKUIKK5l1N9RnGAvAQLm+IxpWNYrTKQE=
+	t=1761644452; cv=none; b=mQ21UCe4PjrS3wPYm1uOVamLuerlRROhd5brrmyNcpBichVqZc1rb1hJT7pIKwJo72vaTvSS4JUpR6QIyGO53sYGEU30ivoDAYBMx8qouqRZ3qTcyBKI2yRKfXfXqFBil3AQz/dpwGy8yfFB4yu+QwIpWCIp5XtQy831X3zpWqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761644246; c=relaxed/simple;
-	bh=GDNRBS7USQzBWPlLsSGDE6NhCshXeRRSSiGMS+r9Hcw=;
+	s=arc-20240116; t=1761644452; c=relaxed/simple;
+	bh=CAj9EbuBpVdYlTgcMVHE1ut3dHJthCZWtUHq+3ny6Vg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N7nk3NqHfH0rmGCE+iT4LIq8LsWRfDIRKbsKA9mGmhRje+pDJJdob8HvFBBNVimFDKVK7kelNnXr2DIeQoVtSnHJ9lEZ2CQu/F0Ksf3CyGOR9Pzb+haOpM94vBhVZePGFJeTaJp+zlhzsfbtiSqOg82Zreyl78lLhWZs2ie1UNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pFWREluD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC975C4CEE7;
-	Tue, 28 Oct 2025 09:37:23 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=pJG/ppM47fTFfftmZ63FRHtcmPBMaKKK4fm/xlBi82RptcaW7V0Oc1/EL5r61dETnJV7wp3Y6gMuSu8jI1sEcAoAIxyMD+Kt3d3JqaDIcgiUw1tDF5sZsRKbjd7i5ztSXFljvKMFYNVv1ZWhV54xqKfkqub9SMhkZmDkbtq04v8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MBEd6m/O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDACCC4CEE7;
+	Tue, 28 Oct 2025 09:40:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761644246;
-	bh=GDNRBS7USQzBWPlLsSGDE6NhCshXeRRSSiGMS+r9Hcw=;
+	s=k20201202; t=1761644451;
+	bh=CAj9EbuBpVdYlTgcMVHE1ut3dHJthCZWtUHq+3ny6Vg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pFWREluD3irQI3yfrft+mpT8TTkde5vCAYtNUAYmO/AdreMcAt2HsM0HjEVDZHA92
-	 wvtYslOv/atQqg+mK/KZB62rl0DZjPoF3vF1+Wu5Dqqz0cYQ/xYXohXdxZ/AYBRjFp
-	 zyJDKcXbXWOuSkxek+bixDVKnGhSKa5S3oKnOzsmiuV9GrdsZjNbJ5q9EhYyTydxpX
-	 svA+/WVKLQLL12/GLnEczdkorMVR+ssFTIs/GTYeq3GeWGMvJLkggAMcrICWZBbM/b
-	 nYpeP4sVgrygPWn27HiULWUX7GQAdkvV4TG23hBgWNgW906HJndSrsTg0205Si7MoD
-	 d/FLtFthUI36A==
-Message-ID: <2f4e7f94-2921-493c-94fa-45749a060bc0@kernel.org>
-Date: Tue, 28 Oct 2025 10:37:22 +0100
+	b=MBEd6m/OD3C+uLQ9Wlam9chTWIdGZ5Coi36yKLaA/Jvds6rSekGwLhOkzgvyZ6JV/
+	 3iF9m/XyFBfSu7ZWLozKoTHsV4aK7H2h7ahLZCBkmgP8hOJhikDd5DzQIeCWoMgBkm
+	 HejFsgBqBsiat39j/hvT0pgZexqEKu0cjwk/DmoF258HTL91HKnQ4YZy+S22R3grcm
+	 JqKi8u3G8SmtjhHgq8mYyYUKVATqUqbueyrZsYgo+IPwQYJXIb9Xj4GSHhyeqNrKB7
+	 cBmr68IId1JbDjkW9r2rDBZjBytAxNPNUA1F5u6MDD/ZdW/71ri0ptFTrx9sC2wmnA
+	 YjZm9bmE2cUPw==
+Message-ID: <25f7ff09-08ea-4969-9184-9fd01b097558@kernel.org>
+Date: Tue, 28 Oct 2025 10:40:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: arm: rockchip: Add Radxa CM5 IO board
-To: FUKAUMI Naoki <naoki@radxa.com>, Joseph Kogut <joseph.kogut@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Steve deRosier <derosier@cal-sierra.com>
-References: <174735136138.1544989.11909422896170025756.robh@kernel.org>
- <20250528221823.2974653-1-joseph.kogut@gmail.com>
- <20250528221823.2974653-2-joseph.kogut@gmail.com>
- <20250529-impressive-real-monkey-a7818b@kuoka>
- <6443BD03B4C4F1FE+d20c3903-e2dc-4c2b-8f6e-fac38f242898@radxa.com>
+Subject: Re: [PATCH v3] watchdog: Add driver for Gunyah Watchdog
+To: hrishabh.rajput@oss.qualcomm.com, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+References: <20251028-gunyah_watchdog-v3-1-e6d1ea438b1d@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,34 +106,25 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <6443BD03B4C4F1FE+d20c3903-e2dc-4c2b-8f6e-fac38f242898@radxa.com>
+In-Reply-To: <20251028-gunyah_watchdog-v3-1-e6d1ea438b1d@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/10/2025 10:33, FUKAUMI Naoki wrote:
-> Hi Krzysztof,
-> 
-> https://patchwork.kernel.org/project/linux-rockchip/patch/20250528221823.2974653-2-joseph.kogut@gmail.com/
-> 
-> On 5/29/25 18:19, Krzysztof Kozlowski wrote:
->> On Wed, May 28, 2025 at 03:18:21PM GMT, Joseph Kogut wrote:
->>> Add device tree binding for the Radxa CM5 IO board.
->>>
->>> This board is based on the rk3588s.
->>
->> Do not attach (thread) your patchsets to some other threads (unrelated
->> or older versions). This buries them deep in the mailbox and might
->> interfere with applying entire sets.
->>
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Please explain the sorting rule used for this file. You must have known 
-> the sorting rule; otherwise, how can you be sure this patch is correct?
+On 28/10/2025 10:35, Hrishabh Rajput via B4 Relay wrote:
+> +
+> +static int __init gunyah_wdt_init(void)
+> +{
+> +	struct arm_smccc_res res;
+> +	struct device_node *np;
+> +	int ret;
+> +
+> +	/* Check if we're running on a Qualcomm device */
+> +	np = of_find_compatible_node(NULL, NULL, "qcom,smem");
 
-Huh? I don't have a clue about sorting rule but if you mock my review
-let's make it different:
+I don't think you implemented my feedback. This again is executed on
+every platform, e.g. on Samsung, pointlessly.
 
-NAK
+Implement previous feedback.
 
 Best regards,
 Krzysztof
