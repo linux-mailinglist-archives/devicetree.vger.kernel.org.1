@@ -1,212 +1,322 @@
-Return-Path: <devicetree+bounces-231898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4CBBC12B82
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 04:06:47 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15708C12C49
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 04:31:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1D755E01F1
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 03:06:37 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 97962354272
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 03:31:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A88327B352;
-	Tue, 28 Oct 2025 03:06:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC535213E9F;
+	Tue, 28 Oct 2025 03:31:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="GnW4Aw/d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eVtL5zvE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49239.qiye.163.com (mail-m49239.qiye.163.com [45.254.49.239])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 125735464F;
-	Tue, 28 Oct 2025 03:06:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.239
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B980D23AD;
+	Tue, 28 Oct 2025 03:31:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761620792; cv=none; b=EZq6L6kv9pV7OmJXc8mjID36n8YshF/J+saZwCCfXwO8zh37/PQn5YWqsKspMfN+2VLPe6FmCXajpwophxCziUvMc0gbcz4mBUapcO7PAjNrJmoo6AJKHoipCPXYTfbcer+8Y9eHQHLUOHSp++ErxAhLCaB/zZP1VsYfC70RO6Y=
+	t=1761622307; cv=none; b=kSmFNvMfG/XPhjgErRdU4rWT0zBR/n9kBeC1uJMO9iBdfLK9hrf+D/HIpzuCFC9sn9CIJtyfz0uhgQPf1d1ySHRSLTnabXopAghUvPfbJOmiPLpPFyzOEIMKMmYtlNPVEX/PSGhOJ1fBwkRkVuLbqTbOFL0ZNT1ps7yxDql2sXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761620792; c=relaxed/simple;
-	bh=xIMIjcLOtWWmvdtaALoAJEa4lY8Y+eycyiB5RfEQU5Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XPPzf+bFGLx9XAgXgrBx/32ZmGWlkzWzlZked1XyMgpOf/hVW4WtmshQf7AQgEjko4WS/cYtXCZtTyEyoBwq1B4tz0xQA3QlGBvw9k9e9rYoWAHNBzKldQ+Jdd8mTynMWKVFIotwaccPF9r5v9mWiyypsr2bLaS0m2Ob9NH/Wqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=GnW4Aw/d; arc=none smtp.client-ip=45.254.49.239
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.26] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 276a7504d;
-	Tue, 28 Oct 2025 11:06:16 +0800 (GMT+08:00)
-Message-ID: <ff9631f5-8fff-4be8-8b6f-807c29943ef6@rock-chips.com>
-Date: Tue, 28 Oct 2025 11:06:15 +0800
+	s=arc-20240116; t=1761622307; c=relaxed/simple;
+	bh=Jl/8CHVAK7+L4vEEBKRiYKyCXkLAMwmArYnWsTUg74Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ryhTCNerjog3O5aGuVDm5LksoRWERdbkotXvzu+Dq0PC7te/zqbmPyRRoBWfLS5ObjB7nRBTig6usEx/37KE7GjnrlaPBdavpHIv2V1fM/3fdLrhVZx1ibp9pCgsrdRqxy7Su++dDyH/mGJ/6XVdHwe+Wdw+miEBPvjsPOsnNaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eVtL5zvE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33DD9C4CEF1;
+	Tue, 28 Oct 2025 03:31:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761622307;
+	bh=Jl/8CHVAK7+L4vEEBKRiYKyCXkLAMwmArYnWsTUg74Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eVtL5zvE2Sw10TJD4SsYkiqzTAQtue5QkhxVXBEMu6PGR98ZO4hWUeFWZ1nd9sJhU
+	 IUMLgzg7shdljsdXSmXyEkx4UowbgfK3a55oOQz/HORjnlSw+gluAVF8uz/nWc4vCc
+	 nt/Oq9ddADgIDxNddJQI0lswU8CKJP1iiTG8bNwtqLhuMISeYZbOcvk8kTPzb7soD0
+	 I30ItpvPehfnNBrUnJLfHzGqu13Di0MCZIY6VAxF6HOsMKVtsFQxESr9FuI/Qr87Ap
+	 jvYm47igU8kBy6q4V/7kScMlRm0SsujXqm/fOr4bUg4qzsjHRjte7Yo13OXl0Vy+md
+	 +5E+MQ8sJKgQA==
+Date: Mon, 27 Oct 2025 22:34:41 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Sudeep Holla <sudeep.holla@arm.com>, Souvik Chakravarty <Souvik.Chakravarty@arm.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andy Yan <andy.yan@rock-chips.com>, Mark Rutland <mark.rutland@arm.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
+	Vinod Koul <vkoul@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Moritz Fischer <moritz.fischer@ettus.com>, John Stultz <john.stultz@linaro.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>, 
+	Stephen Boyd <swboyd@chromium.org>, Andre Draszik <andre.draszik@linaro.org>, 
+	Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, Elliot Berman <quic_eberman@quicinc.com>, 
+	Srinivas Kandagatla <srini@kernel.org>
+Subject: Re: [PATCH v16 01/14] power: reset: reboot-mode: Synchronize list
+ traversal
+Message-ID: <5l2tcjbdtikkhkuhuz64ymk5et6wtl4kwf2mc265su27oh57rt@3shmo3wfx7fb>
+References: <20251015-arm-psci-system_reset2-vendor-reboots-v16-0-b98aedaa23ee@oss.qualcomm.com>
+ <20251015-arm-psci-system_reset2-vendor-reboots-v16-1-b98aedaa23ee@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] dt-bindings: pwm: Add a new binding for
- rockchip,rk3576-pwm
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Lee Jones <lee@kernel.org>, William Breathitt Gray <wbg@kernel.org>
-Cc: kernel@collabora.com, Jonas Karlman <jonas@kwiboo.se>,
- Alexey Charkov <alchark@gmail.com>, linux-rockchip@lists.infradead.org,
- linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-References: <20251027-rk3576-pwm-v3-0-654a5cb1e3f8@collabora.com>
- <20251027-rk3576-pwm-v3-1-654a5cb1e3f8@collabora.com>
-Content-Language: en-US
-From: Damon Ding <damon.ding@rock-chips.com>
-In-Reply-To: <20251027-rk3576-pwm-v3-1-654a5cb1e3f8@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9a28c7d7a403a3kunm3d7a8e9cae638
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGR1NH1ZPQh5OGEpITh1MTR9WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpKQk
-	xVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=GnW4Aw/dYogb45ppMn1qSoJSL2pNnFjBY0b/PtiQx/TSoajxTtANAPZYI2US7qTJxIytb8x03LMsWpn+ewbLYxi7VKk8//rVLAHcgXAfWEQR2cipDN5G90peVYads7hG4fsu94iGsxFccwarJeK+jGAhcKRDXCFx5toNeGHGRYQ=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=nNMTKt7YjJq48T2Pcq2cArq/vrX7B1+Cr2MDe+JTEgw=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251015-arm-psci-system_reset2-vendor-reboots-v16-1-b98aedaa23ee@oss.qualcomm.com>
 
-Hi Nicolas,
+On Wed, Oct 15, 2025 at 10:08:16AM +0530, Shivendra Pratap wrote:
+> List traversals must be synchronized to prevent race conditions
+> and data corruption. The reboot-mode list is not protected by a
+> lock currently, which can lead to concurrent access and race.
 
-On 10/28/2025 1:11 AM, Nicolas Frattaroli wrote:
-> The Rockchip RK3576 SoC has a newer PWM controller IP revision than
-> previous Rockchip SoCs. This IP, called "PWMv4" by Rockchip, introduces
-> several new features, and consequently differs in its bindings.
+Is it a theoretical future race or something that we can hit in the
+current implementation?
+
 > 
-> Instead of expanding the ever-growing rockchip-pwm binding that already
-> has an if-condition, add an entirely new binding to handle this.
+> Introduce a mutex lock to guard all operations on the reboot-mode
+> list and ensure thread-safe access. The change prevents unsafe
+> concurrent access on reboot-mode list.
+
+I was under the impression that these lists where created during boot
+and then used at some later point, which at best would bring a
+theoretical window for a race... Reviewing the code supports my
+understanding, but perhaps I'm missing something?
+
 > 
-> There are two additional clocks, "osc" and "rc". These are available for
-> every PWM instance, and the PWM hardware can switch between the "pwm",
-> "osc" and "rc" clock at runtime.
+> Fixes: 4fcd504edbf7 ("power: reset: add reboot mode driver")
+> Fixes: ca3d2ea52314 ("power: reset: reboot-mode: better compatibility with DT (replace ' ,/')")
 > 
-> The PWM controller also comes with an interrupt now. This interrupt is
-> used to signal various conditions.
-> 
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+
+Skip this empty line, please.
+
+
+And given that you have fixes here, I guess this is a problem today. In
+which case, this shouldn't have been carried for 16 versions - but have
+sent and been merged on its own already.
+
+So please, if this is a real issue, start your commit message with a
+descriptive problem description, to make it clear that this needs to be
+merged yesterday - or drop the fixes.
+
+> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
 > ---
->   .../bindings/pwm/rockchip,rk3576-pwm.yaml          | 77 ++++++++++++++++++++++
->   MAINTAINERS                                        |  7 ++
->   2 files changed, 84 insertions(+)
+>  drivers/power/reset/reboot-mode.c | 96 +++++++++++++++++++++------------------
+>  include/linux/reboot-mode.h       |  4 ++
+>  2 files changed, 57 insertions(+), 43 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/pwm/rockchip,rk3576-pwm.yaml b/Documentation/devicetree/bindings/pwm/rockchip,rk3576-pwm.yaml
-> new file mode 100644
-> index 000000000000..48d5055c8b06
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/rockchip,rk3576-pwm.yaml
-> @@ -0,0 +1,77 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/rockchip,rk3576-pwm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/drivers/power/reset/reboot-mode.c b/drivers/power/reset/reboot-mode.c
+> index fba53f638da04655e756b5f8b7d2d666d1379535..8fc3e14638ea757c8dc3808c240ff569cbd74786 100644
+> --- a/drivers/power/reset/reboot-mode.c
+> +++ b/drivers/power/reset/reboot-mode.c
+> @@ -29,9 +29,11 @@ static unsigned int get_reboot_mode_magic(struct reboot_mode_driver *reboot,
+>  	if (!cmd)
+>  		cmd = normal;
+>  
+> -	list_for_each_entry(info, &reboot->head, list)
+> -		if (!strcmp(info->mode, cmd))
+> -			return info->magic;
+> +	scoped_guard(mutex, &reboot->rb_lock) {
+> +		list_for_each_entry(info, &reboot->head, list)
+> +			if (!strcmp(info->mode, cmd))
+> +				return info->magic;
+> +	}
+>  
+>  	/* try to match again, replacing characters impossible in DT */
+>  	if (strscpy(cmd_, cmd, sizeof(cmd_)) == -E2BIG)
+> @@ -41,9 +43,11 @@ static unsigned int get_reboot_mode_magic(struct reboot_mode_driver *reboot,
+>  	strreplace(cmd_, ',', '-');
+>  	strreplace(cmd_, '/', '-');
+>  
+> -	list_for_each_entry(info, &reboot->head, list)
+> -		if (!strcmp(info->mode, cmd_))
+> -			return info->magic;
+> +	scoped_guard(mutex, &reboot->rb_lock) {
+> +		list_for_each_entry(info, &reboot->head, list)
+> +			if (!strcmp(info->mode, cmd_))
+> +				return info->magic;
+> +	}
+>  
+>  	return 0;
+>  }
+> @@ -78,46 +82,50 @@ int reboot_mode_register(struct reboot_mode_driver *reboot)
+>  
+>  	INIT_LIST_HEAD(&reboot->head);
+>  
+> -	for_each_property_of_node(np, prop) {
+> -		if (strncmp(prop->name, PREFIX, len))
+> -			continue;
+> -
+> -		info = devm_kzalloc(reboot->dev, sizeof(*info), GFP_KERNEL);
+> -		if (!info) {
+> -			ret = -ENOMEM;
+> -			goto error;
+> -		}
+> -
+> -		if (of_property_read_u32(np, prop->name, &info->magic)) {
+> -			dev_err(reboot->dev, "reboot mode %s without magic number\n",
+> -				info->mode);
+> -			devm_kfree(reboot->dev, info);
+> -			continue;
+> -		}
+> -
+> -		info->mode = kstrdup_const(prop->name + len, GFP_KERNEL);
+> -		if (!info->mode) {
+> -			ret =  -ENOMEM;
+> -			goto error;
+> -		} else if (info->mode[0] == '\0') {
+> -			kfree_const(info->mode);
+> -			ret = -EINVAL;
+> -			dev_err(reboot->dev, "invalid mode name(%s): too short!\n",
+> -				prop->name);
+> -			goto error;
+> +	mutex_init(&reboot->rb_lock);
 > +
-> +title: Rockchip PWMv4 controller
+> +	scoped_guard(mutex, &reboot->rb_lock) {
+
+I don't see how this can race with anything, reboot_mode_register() is
+supposed to be called from some probe function, with reboot_mode_driver
+being a "local" object.
+
+The guard here "protects" &reboot->head, but that is not a shared
+resources at this point.
+
+> +		for_each_property_of_node(np, prop) {
+> +			if (strncmp(prop->name, PREFIX, len))
+> +				continue;
 > +
-> +maintainers:
-> +  - Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> +			info = devm_kzalloc(reboot->dev, sizeof(*info), GFP_KERNEL);
+> +			if (!info) {
+> +				ret = -ENOMEM;
+> +				goto error;
+> +			}
 > +
-> +description: |
-> +  The Rockchip PWMv4 controller is a PWM controller found on several Rockchip
-> +  SoCs, such as the RK3576.
+> +			if (of_property_read_u32(np, prop->name, &info->magic)) {
+> +				dev_err(reboot->dev, "reboot mode %s without magic number\n",
+> +					info->mode);
+> +				devm_kfree(reboot->dev, info);
+> +				continue;
+> +			}
 > +
-> +  It supports both generating and capturing PWM signals.
+> +			info->mode = kstrdup_const(prop->name + len, GFP_KERNEL);
+> +			if (!info->mode) {
+> +				ret =  -ENOMEM;
+> +				goto error;
+> +			} else if (info->mode[0] == '\0') {
+> +				kfree_const(info->mode);
+> +				ret = -EINVAL;
+> +				dev_err(reboot->dev, "invalid mode name(%s): too short!\n",
+> +					prop->name);
+> +				goto error;
+> +			}
 > +
-> +allOf:
-> +  - $ref: pwm.yaml#
+> +			list_add_tail(&info->list, &reboot->head);
+>  		}
+>  
+> -		list_add_tail(&info->list, &reboot->head);
+> -	}
+> -
+> -	reboot->reboot_notifier.notifier_call = reboot_mode_notify;
+> -	register_reboot_notifier(&reboot->reboot_notifier);
+> +		reboot->reboot_notifier.notifier_call = reboot_mode_notify;
+> +		register_reboot_notifier(&reboot->reboot_notifier);
+
+Once register_reboot_notifier() has been called, &reboot->head is
+visible outside the specific driver instance.
+
+So, there's no reason to lock in reboot_mode_register().
+
+>  
+> -	return 0;
+> +		return 0;
+>  
+>  error:
+> -	list_for_each_entry(info, &reboot->head, list)
+> -		kfree_const(info->mode);
+> +		list_for_each_entry(info, &reboot->head, list)
+> +			kfree_const(info->mode);
+> +	}
+>  
+>  	return ret;
+>  }
+> @@ -133,8 +141,10 @@ int reboot_mode_unregister(struct reboot_mode_driver *reboot)
+>  
+>  	unregister_reboot_notifier(&reboot->reboot_notifier);
+>  
+> -	list_for_each_entry(info, &reboot->head, list)
+> -		kfree_const(info->mode);
+> +	scoped_guard(mutex, &reboot->rb_lock) {
+
+get_reboot_mode_magic() is only called from reboot_mode_notify(), which
+is only invoked by blocking_notifier_call_chain().
+
+blocking_notifier_call_chain() takes a read semaphore.
+unregister_reboot_notifier() take a write semaphore.
+
+So, if we're racing with a shutdown or reboot, I see two possible
+things:
+
+1) blocking_notifier_call_chain() happens first and calls
+   reboot_mode_notify(), blocking unregister_reboot_notifier(). Once it
+   returns, the unregister proceeds and we enter case #2
+
+2) unregister_reboot_notifier() happens first (or after the
+   blocking_notifier_call_chain() returns). Our reboot object is removed
+   from the list and blocking_notifier_call_chain() will not invoke
+   reboot_mode_notify().
+
+In either case, the list has a single owner here.
+
+
+As far as I can see, the only race left is if multiple concurrent calls
+happens to blocking_notifier_call_chain(), the behavior of
+reboot->write() might be undefined. But I think that is reasonable.
+
+
+Please let me know if I'm missing something.
+
+Thanks,
+Bjorn
+
+> +		list_for_each_entry(info, &reboot->head, list)
+> +			kfree_const(info->mode);
+> +	}
+>  
+>  	return 0;
+>  }
+> diff --git a/include/linux/reboot-mode.h b/include/linux/reboot-mode.h
+> index 4a2abb38d1d612ec0fdf05eb18c98b210f631b7f..b73f80708197677db8dc2e43affc519782b7146e 100644
+> --- a/include/linux/reboot-mode.h
+> +++ b/include/linux/reboot-mode.h
+> @@ -2,11 +2,15 @@
+>  #ifndef __REBOOT_MODE_H__
+>  #define __REBOOT_MODE_H__
+>  
+> +#include <linux/mutex.h>
 > +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: rockchip,rk3576-pwm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Used to derive the PWM signal.
-> +      - description: Used as the APB bus clock.
-> +      - description: Used as an alternative to derive the PWM signal.
-> +      - description: Used as another alternative to derive the PWM signal.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pwm
-> +      - const: pclk
-> +      - const: osc
-> +      - const: rc
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#pwm-cells":
-> +    const: 3
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/rockchip,rk3576-cru.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        pwm@2add0000 {
-> +            compatible = "rockchip,rk3576-pwm";
-> +            reg = <0x0 0x2add0000 0x0 0x1000>;
-> +            clocks = <&cru CLK_PWM1>, <&cru PCLK_PWM1>, <&cru CLK_OSC_PWM1>,
-> +                     <&cru CLK_RC_PWM1>;
-> +            clock-names = "pwm", "pclk", "osc", "rc";
-> +            interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
-> +            #pwm-cells = <3>;
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 252b06d4240c..baecabab35a2 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -22366,6 +22366,13 @@ F:	Documentation/userspace-api/media/v4l/metafmt-rkisp1.rst
->   F:	drivers/media/platform/rockchip/rkisp1
->   F:	include/uapi/linux/rkisp1-config.h
->   
-> +ROCKCHIP MFPWM
-> +M:	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> +L:	linux-rockchip@lists.infradead.org
-> +L:	linux-pwm@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/pwm/rockchip,rk3576-pwm.yaml
-> +
->   ROCKCHIP RK3568 RANDOM NUMBER GENERATOR SUPPORT
->   M:	Daniel Golle <daniel@makrotopia.org>
->   M:	Aurelien Jarno <aurelien@aurel32.net>
+>  struct reboot_mode_driver {
+>  	struct device *dev;
+>  	struct list_head head;
+>  	int (*write)(struct reboot_mode_driver *reboot, unsigned int magic);
+>  	struct notifier_block reboot_notifier;
+> +	/*Protects access to reboot mode list*/
+> +	struct mutex rb_lock;
+>  };
+>  
+>  int reboot_mode_register(struct reboot_mode_driver *reboot);
 > 
-
-The RK3506 and RV1126B platforms that are about to be upstream also use 
-this PWM IP. Would it be better to name the yaml file 
-"pwm-rockchip-v4.yaml"? Then subsequent platforms only need to expand 
-the compatible property.
-
-Best regards,
-Damon
-
+> -- 
+> 2.34.1
+> 
 
