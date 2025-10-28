@@ -1,386 +1,244 @@
-Return-Path: <devicetree+bounces-232275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3C50C16014
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 17:58:48 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DDC5C15F69
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 17:53:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E1FA3B4A06
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 16:54:16 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B92E14E2E5F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 16:52:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A57E03469F4;
-	Tue, 28 Oct 2025 16:52:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F29346E77;
+	Tue, 28 Oct 2025 16:51:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IxWNFNEY"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PF7nbTOx";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="e/6hl608"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96CFA34B41E
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 16:52:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 597A1347BA3
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 16:51:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761670339; cv=none; b=JwYW2sp3Zgt4Gu3aRvndMUDB+Cj+AVpqaBmkRCIJ45SdfNoyiFgZWks+Fup6UFLRI7rcNIzwOw1o2Q7x1GUZYd7d8B1nKrI0Am1WyF5//BqboI3K3XrG3CAwYRmYrghJR0qi3gawLfH2psz74XyJBYWQbtWQVUcAH0oAVMsDAk8=
+	t=1761670311; cv=none; b=WMaMcv77xhTN1/sG4Mroe2R0t2mphRIq4UhUVYcG4U98wE32w114x5GJfrkjO8CQ5aktxWatEIrnQzqcdAiuC5i5kMUVWhBI9t1wRMs88J9Sx2ST4gADYgr6g48hZVGBESqifeoPE+6K07MUwHdtZqZcZ/sbd+O/g8ka30QvZXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761670339; c=relaxed/simple;
-	bh=WFew7RLc9Zd+tpZCR+smsad3xkEUOcASLxfJhKIGvy4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=tkfv6OGrlkOuZ4/fvulGIa2F2CGah+YWXs9Dw3ihaFhrQusRgFlpIcyRVx1Ny8Ws8TvI7K7HsOzkm9AynPNkDLJU7OVHKS9zNa8YziCPsooW1y3MRFe3L5kULBofD3iwaVRzOtlSpyoDOqp7GPperRNIpif0BH/VbDrG2Bz4qG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IxWNFNEY; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-27d4d6b7ab5so92034465ad.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:52:17 -0700 (PDT)
+	s=arc-20240116; t=1761670311; c=relaxed/simple;
+	bh=RapU0c9b1iHJl9YbwoTmwcITqxMavrj3HpztlsX+eWA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RADngMbUw0RCzTa3+DYIJ2wWSk+BzSQgpOMVaHCiI1ItD5M/9ppXaKPwiNr0DlSiR+Wq8piOSvegSIDkeISNYeoLMeTZc822MeilF/DPZk71ObmKOG6vq4BnL1xh8zUV6l7Ulv3+2fmTn5IuMwvGmBGhGjXmzihjQKP1tuo3mow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PF7nbTOx; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=e/6hl608; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59SEoICp1916421
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 16:51:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	i9C4HsulAXnn2OnJrBxI/dWINcjpzXYPZD87sN+8Dek=; b=PF7nbTOxluk1bO5V
+	3owJoXs6AoHbEix3yQp52rP5kEU53F20nn6o3WI+lIJYd1JRhHqOajCNevku2+zx
+	WQ3xKVVvDy+SBZQmbyINL1m3vbk0zJkeM8iokiK3N1Gk77i+hehqtjnx+aACkPqc
+	lJWgIEQJO5CKiYaBrBmVgk5FmlMtHOP6UyqGiORyeBwlAbu0PA9pXEnpONZ4zZQP
+	4nikLz/y4ns22KlIGgF4mOwObEki5ivFeGq7H8MDsdr9EXop3v4tue1YZbZ1JKrB
+	Qtdw4KpJygQNhXJBusOGh9blrVYk8gGnZK5jE49BnSNhCQuWsVdx1adSQcphtfw+
+	E05AIA==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a2g2fu7hj-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 16:51:49 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4e8916e8d4aso126676841cf.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:51:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761670337; x=1762275137; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b2Zr7HjUEXtUzytWwmBSdtq4q5NXObpurWZ+b8YgjWQ=;
-        b=IxWNFNEYxhQTCM2rMYn9CW50pF1EGoNavVi50nn8nqXEI7ayg8E3DmJDMY/+5dk+D/
-         S7fLZNaC+GdqZwCCojlM6FelFlmo5/IBmObTjSMlYFn30Zv7+e3v06wUawTlBndVajPp
-         1PzwKDkts6rHMUv2NGYzVIq0WcsZRoMmuHnrelmVBPp2+PBT7LXUs/jOql2QWiDtPTs/
-         ow0VgzyvUdJtTwuJJYCJXPoczTq8nR8/WHOEs183cBdDFztPATx7tos7SEYDRKD01lS2
-         R5P6tVl9QnJb2bj/MOAgOYA6IQiB7dkqVWpejmpOe9fUmCMK3sHkUHGs1LHwtckac1RS
-         /CcQ==
+        d=oss.qualcomm.com; s=google; t=1761670308; x=1762275108; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=i9C4HsulAXnn2OnJrBxI/dWINcjpzXYPZD87sN+8Dek=;
+        b=e/6hl608J+7Vc/1DWK9hjyyh0kqh8w6Yn3aRo/1UqlAqXbvIX8wC/ripvmdxhvpqZ/
+         f8kWFOI86yPz4uWkm3CqytGuyUjRsZPTrk7f5GYNqixJTSFvdd7HggpjSU7RP9L/HVOP
+         XVARnbhhvsPKMC73HAvBknC4qBpDpbHb4iICGOuXNTd92xiAtIpUNmHunGpFwFtOIeC2
+         t86mfB+nD3PxJAO8w0WNjXxqhibDuCfrpnxwVLvE4evKCkD8mOiBRqqSK5Qdc9g/VBag
+         u6dhXTjvOZ08Lsq0Yw8OBCpieG03Auya1bfNNMOwjU3TiDPUH4TuSxRCN0tOuHiJyl73
+         ldFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761670337; x=1762275137;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b2Zr7HjUEXtUzytWwmBSdtq4q5NXObpurWZ+b8YgjWQ=;
-        b=U/ZzTumPVwh3Pz0rENTWZDV+lzjRfIaCXbIsv1sejNtXW8mnuWc7WjvpJG6HyKzpQd
-         8lPETtYv52UQx7fZS26R8STkBBu9yv2Z3Y4VKwrFT8kBA2E9CTjrSRlg9Dj4BBh84dOx
-         xxNxZFzhT/z41Pz+RomTUYmx07YKvXUD0OxDKwC0qtqx1+ew6P73MmZo/L3xKkNpka/f
-         Kk6oB5N/IqDPpVgPqu0cESAKlK5eiZb2RO+5Cjj985wBhcsbrHuHl5EI7LAKy/4+fZsx
-         ohMPMyxyPKxHvnPyRPoatM06+d6RqbCAuBQIbdm+jtEGwgLTnZwEjuUQgUYez/gLtGzj
-         jdaA==
-X-Forwarded-Encrypted: i=1; AJvYcCXEoHcRtOitMqzo8U5OYxEykzue+zyJevLAfPt+1bILbkVlXCiM04p4KH9yTqBy5ASySwKMRvj5SMUv@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw7nsj+GZvA8QtaUEewJqQwOS9hXOZHWOnL01uZBW0LevEIT03D
-	tzrOTQAeNt8j+f1Wrr6cnRvUKj3WSWNPuIl22IyrjhFHkgQwt5k77Zid
-X-Gm-Gg: ASbGncuzmq6Fgeoyoi97RMiX13iRJAHAHxmapsTh/lj/KqCX5wVEU1+HSyUiQC/ylm6
-	ICaiNP3MfRTPe+qtbYQcdZfP3hdtXjRHoWsNmHPSgI6njvZsOahNbManbJcsh3J5E55/ZD7vzN/
-	ZK16VaJhA5CI76Yvc9yPNJPaz1fzlklIeYRC4Bxdaq5Td4xaovBhiFljFEoEc6mpKYDv+sBh6n7
-	TZW87r6h9nouboEbrHHHviLZsAXECRePyNSWvpWkWm9BxOP30E3d8bdxI7wK+5J99X06T53/51o
-	OA++HqyJGithcuNo4QpAnvjvuer/HNw3GMnZ0cul6xA4/IHb1+GzAYEfV6GT4jUhEKUUuOcAjhi
-	+zf3+hUlxNhXTjpm0EILWJsDnr9DTWjQM+wJXkfNgV4F0+xoN6JAAlpTZ6MBlcsSy42Ds3Spr0j
-	l5E9vfb/yJCf8Ogkr1JlDssg==
-X-Google-Smtp-Source: AGHT+IEgwFJI5NAIzF94P9PLCgQBGcLOI50Ks257zb4cT6sx/wW+6XXdpe9DB0mcBPoFARxUuU9xfg==
-X-Received: by 2002:a17:902:f68f:b0:26f:f489:bba6 with SMTP id d9443c01a7336-294cb540d36mr54558825ad.50.1761670336773;
-        Tue, 28 Oct 2025 09:52:16 -0700 (PDT)
-Received: from iku.. ([2401:4900:1c06:77f0:168f:479e:bf92:ce93])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29498f0be0esm122123665ad.96.2025.10.28.09.52.11
+        d=1e100.net; s=20230601; t=1761670308; x=1762275108;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=i9C4HsulAXnn2OnJrBxI/dWINcjpzXYPZD87sN+8Dek=;
+        b=RfPLttUfe0hE1hXV8+LEUpVGg6aOWccBEj3UT9nWdyh/MdcTeLNT2/TteK2DmLpz/p
+         nQO9E9iH0xhHN7pmOQtzf5X047uOetAEEBwRDzRx500aQcWkuiJsD3M23DO4gKh9Z5oQ
+         g1BU7x+SPpV4XHfrkxjnDYUtWujgbyZLn0ZP/yakW5VKWLQYktfVEyZDrLB/r5TMHRJ8
+         jwtQ155J34xBalvctO8x70QDq4ird5zqDqhSw3ocioJo4DrmbvSbNFYhrHPeH3IerG4Q
+         FUl77r7YfTHSrWk1khF4e5bwkzpnokApZzOfofibrrmXIuZDvpYOtpDSp4sO0zabfZlv
+         RiFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVTRhNZ5rX7n7lnG3bb54DtN71v2NxuaGnTw1boPVdvc0M2MQas0olM+l5oSlgiqwpkqHjvYy0K6bNn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3jJ3o4kIS/weF9z6f+49QxDGCcYGbOCvOxJ9GG02tWAvSG5pv
+	inp5Wkql0DZQjt7SjnoitA3UWNd10Et/ngcd3gqMiL98jfQoLL5zG5aDiPCJNkUubE9BIU8eQFv
+	gCQDNnoyBwHNpIJFPcLl0OOXyl8jC5G+5Xjyx4ysSiA8Y+yN0udxSgndwBTgWwMcN
+X-Gm-Gg: ASbGncvnS6IlykmbLdUTAnlvnzsujDiSBv9WSaB9RaN+BG10DdtzlTiTYcYaTmOYaYT
+	1qmi1A/zbaBEA9QPdpQEz6P5XZhaMGLBlI97st0KZCRl2eVLW/rWcFlNrLrz/NJwhllN65roC/C
+	vlpbDT8iDzG5d5VZ6RpBdHK6ttBJYWFHHQlFS/D44msqXDlSG7obdMAV+/P+U5XZOKy9x8tbT0C
+	bBmIAxeEm//8WDbhz+bJNzxzQ1y8IgVUfSjykZX1QWBVWjUUjjP/E/hP/Nahn3l2tjV+4YYyhhu
+	0fi956Ks0lr9hRGwIOGvYWlc+27TY7INnI3dFhkmw94/JUG+oyR7zcigpKnYk878qrwRPrSvEKf
+	LzDoWqeOIAa/iIJmNCKvQsyiqZ0IY6GTJLRQrBGkTD8m2vYLro1nNhC7cb6Ifr3iSAH484hTV+S
+	TwT1xGZIpVIgvG
+X-Received: by 2002:a05:622a:4a84:b0:4ed:542:bb38 with SMTP id d75a77b69052e-4ed150a9941mr5039001cf.74.1761670308006;
+        Tue, 28 Oct 2025 09:51:48 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGgQCsxZo2vWoOXautQIdSCHoqffWuFP7rAIohci6FYFBPiN70FLhSUPjD1x5V/JFyrFw8llA==
+X-Received: by 2002:a05:622a:4a84:b0:4ed:542:bb38 with SMTP id d75a77b69052e-4ed150a9941mr5038651cf.74.1761670307501;
+        Tue, 28 Oct 2025 09:51:47 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-378ee09204esm29835191fa.8.2025.10.28.09.51.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Oct 2025 09:52:16 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 5/5] clk: renesas: r9a09g077: Add xSPI core and module clocks
-Date: Tue, 28 Oct 2025 16:51:27 +0000
-Message-ID: <20251028165127.991351-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251028165127.991351-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20251028165127.991351-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Tue, 28 Oct 2025 09:51:46 -0700 (PDT)
+Date: Tue, 28 Oct 2025 18:51:43 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+        Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v3] watchdog: Add driver for Gunyah Watchdog
+Message-ID: <jaj5oxqcgckndtp7wwe6ukqbh4z5phe3pw3hnhp2hatgqffjzr@y7qevil4o3yr>
+References: <20251028-gunyah_watchdog-v3-1-e6d1ea438b1d@oss.qualcomm.com>
+ <25f7ff09-08ea-4969-9184-9fd01b097558@kernel.org>
+ <76479593-c47b-41a7-8349-5d7c1403f7c0@oss.qualcomm.com>
+ <73955d58-544c-4299-a099-bfd9e5912a40@kernel.org>
+ <636a1f99-acd4-4904-8fae-f159646cc1a0@kernel.org>
+ <f4d80be9-986f-4d37-9c25-725eff7bb653@quicinc.com>
+ <e03373d9-e2dd-48b6-93a6-554fcd623718@kernel.org>
+ <59a00934-cb42-43de-ac5b-a9292b08301d@quicinc.com>
+ <aa4faa81-6e9d-41c2-85f0-32045a8f9f51@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <aa4faa81-6e9d-41c2-85f0-32045a8f9f51@kernel.org>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI4MDE0MiBTYWx0ZWRfX+RE8DMzs8f/m
+ pyPqy0qw06SY0f54TIvUjBS76G8h8aQAeY0d7KwvRw4KaZrYGqNkMwuVlJg+OMNPLHyONghMs1y
+ vskIfWOYAgCMU9nHNdJ/QE5VwKkdNsh/7qi8m6FVMCsCwaNcNjJkr/cEVaCIkPT7mJXIAUxAXKT
+ uK60Dx1RjPQ/AWGK8kuzfckMSiiZpNI1DrEDRxdU/+EKxduP8YAw+/gIK9U3wUM7y2KpPt8bSbB
+ roy4aLVFaJnpLQ6gyv7KF21u0MbM5d/N09aFjpXLIizpqAf41R73Y9II7z7Q7t3y1DbqTdPrG6D
+ VisDUeJpT5cCotS1+zs5tNWoCZzE/CqSvnylN3ggeLZ87JB1ayvxMcb1RJ1keRcY01eCRNcyewP
+ p69Rlt/rbCA3DR46s90EMVi6XwsfFg==
+X-Proofpoint-ORIG-GUID: 9lazjtr6e1_SsWFH2Rhihu5hWQm55sOg
+X-Proofpoint-GUID: 9lazjtr6e1_SsWFH2Rhihu5hWQm55sOg
+X-Authority-Analysis: v=2.4 cv=FIMWBuos c=1 sm=1 tr=0 ts=6900f4a5 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10
+ a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=qhxFKX_6QV7TjQX2OZUA:9 a=3ZKOabzyN94A:10 a=wPNLvfGTeEIA:10
+ a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-28_06,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0 clxscore=1015
+ malwarescore=0 adultscore=0 impostorscore=0 spamscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510020000 definitions=main-2510280142
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Tue, Oct 28, 2025 at 05:40:33PM +0100, Krzysztof Kozlowski wrote:
+> On 28/10/2025 17:33, Pavan Kondeti wrote:
+> > On Tue, Oct 28, 2025 at 05:17:44PM +0100, Krzysztof Kozlowski wrote:
+> >> On 28/10/2025 13:27, Pavan Kondeti wrote:
+> >>> On Tue, Oct 28, 2025 at 12:07:40PM +0100, Krzysztof Kozlowski wrote:
+> >>>> On 28/10/2025 12:04, Krzysztof Kozlowski wrote:
+> >>>>> On 28/10/2025 11:58, Hrishabh Rajput wrote:
+> >>>>>>
+> >>>>>> On 10/28/2025 3:10 PM, Krzysztof Kozlowski wrote:
+> >>>>>>> On 28/10/2025 10:35, Hrishabh Rajput via B4 Relay wrote:
+> >>>>>>>> +
+> >>>>>>>> +static int __init gunyah_wdt_init(void)
+> >>>>>>>> +{
+> >>>>>>>> +	struct arm_smccc_res res;
+> >>>>>>>> +	struct device_node *np;
+> >>>>>>>> +	int ret;
+> >>>>>>>> +
+> >>>>>>>> +	/* Check if we're running on a Qualcomm device */
+> >>>>>>>> +	np = of_find_compatible_node(NULL, NULL, "qcom,smem");
+> >>>>>>> I don't think you implemented my feedback. This again is executed on
+> >>>>>>> every platform, e.g. on Samsung, pointlessly.
+> >>>>>>>
+> >>>>>>> Implement previous feedback.
+> >>>>>>
+> >>>>>> Do you want us to add platform device from another driver which is 
+> >>>>>> probed only on Qualcomm devices (like socinfo from previous discussion) 
+> >>>>>> and get rid of the module init function entirely? As keeping anything in 
+> >>>>>> the module init will get it executed on all platforms.
+> >>>>>
+> >>>>> Instead of asking the same can you read previous discussion? What is
+> >>>>> unclear here:
+> >>>>> https://lore.kernel.org/all/3b901f9d-dbfa-4f93-a8d2-3e89bd9783c9@kernel.org/
+> >>>>> ?
+> >>>>>
+> >>>>>>
+> >>>>>>
+> >>>>>> With this patch version, we have tried to reduce the code execution on 
+> >>>>>> non-Qualcomm devices (also tried the alternative as mentioned in the 
+> >>>>>> cover letter). Adding platform device from another driver as described 
+> >>>>>> above would eliminate it entirely, please let us know if you want us to 
+> >>>>>> do that.
+> >>>>>
+> >>>>> Why do I need to repeat the same as last time?
+> >>>>
+> >>>>
+> >>>> Now I see that you completely ignored previous discussion and sent THE
+> >>>> SAME approach.
+> >>>
+> >>> Our intention is not to waste reviewers time at all. It is just a
+> >>> misunderstanding on what your comment is about. Let me elaborate further
+> >>> not to defend our approach here but to get a clarity so that we don't
+> >>> end up in the same situation when v4 is posted.
+> >>>
+> >>> https://lore.kernel.org/all/b94d8ca3-af58-4a78-9a5a-12e3db0bf75f@kernel.org/ 
+> >>>
+> >>> You mentioned here
+> >>>
+> >>> ```
+> >>> To me socinfo feels even better. That way only, really only qcom devices
+> >>> will execute this SMC.
+> >>> ```
+> >>>
+> >>> We interpreted this comment as `avoid executing this SMC on non qcom
+> >>> devices`. That is exactly what we have done in the current patch. since
+> >>
+> >>
+> >> So where did you use socinfo? Point me to the code.
+> >>
+> > 
+> > Okay, lets go a bit deep into the socinfo part. we have used
+> > `soc_device_match()` API to detect if the device is qcom (`family =
+> > Snapdragon`). It works. However, when we built both `socinfo` and
+> 
+> socinfo driver. Read my first feedback:
+> 
+> 
+> "No, your hypervisor driver (which you have) should start the module via
+> adding platform/aux/something devices."
+> 
+> And then I agreed if you start it from the socinfo driver.
 
-Add core clocks and module clock definitions required by the xSPI
-(Expanded SPI) IP on the R9A09G077 SoC.
+I'd rather not tie this to socinfo. The socinfo is an optional driver,
+which is mainly used to provide debugfs entries. Watchdog is much more
+important. It should not be tied to debugfs-only entry.
 
-Define the new SCKCR fields FSELXSPI0/FSELXSPI1 and DIVSEL_XSPI0/1 and
-add two new core clocks XSPI_CLK0 and XSPI_CLK1. The xSPI block uses
-PCLKH as its bus clock (use as module clock parent) while the operation
-clock (XSPI_CLKn) is derived from PLL4. To support this arrangement
-provide mux/div selectors and divider tables for the supported
-XSPI operating rates.
-
-Add CLK_TYPE_RZT2H_FSELXSPI to implement a custom divider/mux clock
-where the determine_rate() callback enforces the hardware constraint:
-when the parent output is 600MHz only dividers 8 and 16 are valid,
-whereas for 800MHz operation the full divider set (6,8,16,32,64) may
-be used. The custom determine_rate() picks the best parent/divider pair
-to match the requested rate and programs the appropriate SCKCR fields.
-
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v1->v2:
-- Added custom divider clock type for XSPI clocks to enforce hardware
-  constraints on supported operating rates.
----
- drivers/clk/renesas/r9a09g077-cpg.c | 155 +++++++++++++++++++++++++++-
- 1 file changed, 154 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/clk/renesas/r9a09g077-cpg.c b/drivers/clk/renesas/r9a09g077-cpg.c
-index b46167d42084..678dc36461c0 100644
---- a/drivers/clk/renesas/r9a09g077-cpg.c
-+++ b/drivers/clk/renesas/r9a09g077-cpg.c
-@@ -11,6 +11,8 @@
- #include <linux/device.h>
- #include <linux/init.h>
- #include <linux/kernel.h>
-+#include <linux/math.h>
-+#include <linux/types.h>
- 
- #include <dt-bindings/clock/renesas,r9a09g077-cpg-mssr.h>
- #include <dt-bindings/clock/renesas,r9a09g087-cpg-mssr.h>
-@@ -54,12 +56,19 @@
- #define DIVSCI3ASYNC	CONF_PACK(SCKCR3, 12, 2)
- #define DIVSCI4ASYNC	CONF_PACK(SCKCR3, 14, 2)
- 
-+#define FSELXSPI0	CONF_PACK(SCKCR, 0, 3)
-+#define FSELXSPI1	CONF_PACK(SCKCR, 8, 3)
-+#define DIVSEL_XSPI0	CONF_PACK(SCKCR, 6, 1)
-+#define DIVSEL_XSPI1	CONF_PACK(SCKCR, 14, 1)
- #define SEL_PLL		CONF_PACK(SCKCR, 22, 1)
- 
-+#define DIVSELXSPI_RATE_600MHZ		600000000UL
-+#define DIVSELXSPI_RATE_800MHZ		800000000UL
- 
- enum rzt2h_clk_types {
- 	CLK_TYPE_RZT2H_DIV = CLK_TYPE_CUSTOM,	/* Clock with divider */
- 	CLK_TYPE_RZT2H_MUX,			/* Clock with clock source selector */
-+	CLK_TYPE_RZT2H_FSELXSPI,
- };
- 
- #define DEF_DIV(_name, _id, _parent, _conf, _dtable) \
-@@ -69,10 +78,13 @@ enum rzt2h_clk_types {
- 	DEF_TYPE(_name, _id, CLK_TYPE_RZT2H_MUX, .conf = _conf, \
- 		 .parent_names = _parent_names, .num_parents = _num_parents, \
- 		 .flag = 0, .mux_flags = _mux_flags)
-+#define DEF_DIV_FSELXSPI(_name, _id, _parent, _conf, _dtable) \
-+	DEF_TYPE(_name, _id, CLK_TYPE_RZT2H_FSELXSPI, .conf = _conf, \
-+		 .parent = _parent, .dtable = _dtable, .flag = 0)
- 
- enum clk_ids {
- 	/* Core Clock Outputs exported to DT */
--	LAST_DT_CORE_CLK = R9A09G077_ETCLKE,
-+	LAST_DT_CORE_CLK = R9A09G077_XSPI_CLK1,
- 
- 	/* External Input Clocks */
- 	CLK_EXTAL,
-@@ -88,12 +100,16 @@ enum clk_ids {
- 	CLK_SEL_CLK_PLL2,
- 	CLK_SEL_CLK_PLL4,
- 	CLK_PLL4D1,
-+	CLK_PLL4D1_DIV3,
-+	CLK_PLL4D1_DIV4,
- 	CLK_SCI0ASYNC,
- 	CLK_SCI1ASYNC,
- 	CLK_SCI2ASYNC,
- 	CLK_SCI3ASYNC,
- 	CLK_SCI4ASYNC,
- 	CLK_SCI5ASYNC,
-+	CLK_DIVSELXSPI0_SCKCR,
-+	CLK_DIVSELXSPI1_SCKCR,
- 
- 	/* Module Clocks */
- 	MOD_CLK_BASE,
-@@ -105,6 +121,15 @@ static const struct clk_div_table dtable_1_2[] = {
- 	{0, 0},
- };
- 
-+static const struct clk_div_table dtable_6_8_16_32_64[] = {
-+	{6, 64},
-+	{5, 32},
-+	{4, 16},
-+	{3, 8},
-+	{2, 6},
-+	{0, 0},
-+};
-+
- static const struct clk_div_table dtable_24_25_30_32[] = {
- 	{0, 32},
- 	{1, 30},
-@@ -119,6 +144,7 @@ static const char * const sel_clk_pll0[] = { ".loco", ".pll0" };
- static const char * const sel_clk_pll1[] = { ".loco", ".pll1" };
- static const char * const sel_clk_pll2[] = { ".loco", ".pll2" };
- static const char * const sel_clk_pll4[] = { ".loco", ".pll4" };
-+static const char * const sel_clk_pll4d1_div3_div4[] = { ".pll4d1_div3", ".pll4d1_div4" };
- 
- static const struct cpg_core_clk r9a09g077_core_clks[] __initconst = {
- 	/* External Clock Inputs */
-@@ -154,6 +180,15 @@ static const struct cpg_core_clk r9a09g077_core_clks[] __initconst = {
- 	DEF_DIV(".sci5async", CLK_SCI5ASYNC, CLK_PLL4D1, DIVSCI5ASYNC,
- 		dtable_24_25_30_32),
- 
-+	DEF_FIXED(".pll4d1_div3", CLK_PLL4D1_DIV3, CLK_PLL4D1, 3, 1),
-+	DEF_FIXED(".pll4d1_div4", CLK_PLL4D1_DIV4, CLK_PLL4D1, 4, 1),
-+	DEF_MUX(".divselxspi0", CLK_DIVSELXSPI0_SCKCR, DIVSEL_XSPI0,
-+		sel_clk_pll4d1_div3_div4,
-+		ARRAY_SIZE(sel_clk_pll4d1_div3_div4), 0),
-+	DEF_MUX(".divselxspi1", CLK_DIVSELXSPI1_SCKCR, DIVSEL_XSPI1,
-+		sel_clk_pll4d1_div3_div4,
-+		ARRAY_SIZE(sel_clk_pll4d1_div3_div4), 0),
-+
- 	/* Core output clk */
- 	DEF_DIV("CA55C0", R9A09G077_CLK_CA55C0, CLK_SEL_CLK_PLL0, DIVCA55C0,
- 		dtable_1_2),
-@@ -178,9 +213,15 @@ static const struct cpg_core_clk r9a09g077_core_clks[] __initconst = {
- 	DEF_FIXED("ETCLKC", R9A09G077_ETCLKC, CLK_SEL_CLK_PLL1, 10, 1),
- 	DEF_FIXED("ETCLKD", R9A09G077_ETCLKD, CLK_SEL_CLK_PLL1, 20, 1),
- 	DEF_FIXED("ETCLKE", R9A09G077_ETCLKE, CLK_SEL_CLK_PLL1, 40, 1),
-+	DEF_DIV_FSELXSPI("XSPI_CLK0", R9A09G077_XSPI_CLK0, CLK_DIVSELXSPI0_SCKCR,
-+			 FSELXSPI0, dtable_6_8_16_32_64),
-+	DEF_DIV_FSELXSPI("XSPI_CLK1", R9A09G077_XSPI_CLK1, CLK_DIVSELXSPI1_SCKCR,
-+			 FSELXSPI1, dtable_6_8_16_32_64),
- };
- 
- static const struct mssr_mod_clk r9a09g077_mod_clks[] __initconst = {
-+	DEF_MOD("xspi0", 4, R9A09G077_CLK_PCLKH),
-+	DEF_MOD("xspi1", 5, R9A09G077_CLK_PCLKH),
- 	DEF_MOD("sci0fck", 8, CLK_SCI0ASYNC),
- 	DEF_MOD("sci1fck", 9, CLK_SCI1ASYNC),
- 	DEF_MOD("sci2fck", 10, CLK_SCI2ASYNC),
-@@ -264,6 +305,116 @@ r9a09g077_cpg_mux_clk_register(struct device *dev,
- 	return clk_hw->clk;
- }
- 
-+static int r9a09g077_cpg_fselxspi_determine_rate(struct clk_hw *hw,
-+						 struct clk_rate_request *req)
-+{
-+	struct clk_divider *divider = to_clk_divider(hw);
-+	unsigned long parent_rate, best = 0, now;
-+	const struct clk_div_table *clkt;
-+	unsigned long rate = req->rate;
-+	int div = 0;
-+
-+	if (!rate)
-+		rate = 1;
-+
-+	for (clkt = divider->table; clkt->div; clkt++) {
-+		parent_rate = clk_hw_round_rate(req->best_parent_hw, rate * clkt->div);
-+		/*
-+		 * DIVSELXSPIx supports 800MHz and 600MHz operation.
-+		 * When the parent_rate is 600MHz, only dividers of 8 and 16
-+		 * are supported otherwise dividers of 6, 8, 16, 32, 64 are supported.
-+		 * This check ensures that FSELXSPIx is set correctly.
-+		 */
-+		if (parent_rate == DIVSELXSPI_RATE_600MHZ &&
-+		    (clkt->div != 8 && clkt->div != 16))
-+			continue;
-+		now = DIV_ROUND_UP_ULL((u64)parent_rate, clkt->div);
-+		if (abs(rate - now) < abs(rate - best)) {
-+			div = clkt->div;
-+			best = now;
-+			req->best_parent_rate = parent_rate;
-+		}
-+	}
-+
-+	if (!div) {
-+		u8 maxdiv = 0;
-+
-+		req->best_parent_rate = clk_hw_round_rate(req->best_parent_hw, 1);
-+		/*
-+		 * If DIVSELXSPIx is set to 800MHz set the maximum divider
-+		 * or else fall back to divider of 16 which is a maximum
-+		 * supported divider for 600MHz operation.
-+		 */
-+		if (req->best_parent_rate == DIVSELXSPI_RATE_800MHZ) {
-+			for (clkt = divider->table; clkt->div; clkt++) {
-+				if (clkt->div > maxdiv)
-+					maxdiv = clkt->div;
-+			}
-+			div = maxdiv;
-+		} else {
-+			div = 16;
-+		}
-+	}
-+
-+	req->rate = DIV_ROUND_UP_ULL((u64)req->best_parent_rate, div);
-+
-+	return 0;
-+}
-+
-+static struct clk * __init
-+r9a09g077_cpg_fselxspi_div_clk_register(struct device *dev,
-+					const struct cpg_core_clk *core,
-+					void __iomem *addr,
-+					struct cpg_mssr_pub *pub)
-+{
-+	static struct clk_ops *xspi_div_ops;
-+	struct clk_init_data init = {};
-+	const struct clk *parent;
-+	const char *parent_name;
-+	struct clk_divider *div;
-+	struct clk_hw *hw;
-+	int ret;
-+
-+	parent = pub->clks[core->parent];
-+	if (IS_ERR(parent))
-+		return ERR_CAST(parent);
-+
-+	div = devm_kzalloc(dev, sizeof(*div), GFP_KERNEL);
-+	if (!div)
-+		return ERR_PTR(-ENOMEM);
-+
-+	if (!xspi_div_ops) {
-+		xspi_div_ops = devm_kzalloc(dev, sizeof(*xspi_div_ops), GFP_KERNEL);
-+		if (!xspi_div_ops)
-+			return  ERR_PTR(-ENOMEM);
-+		memcpy(xspi_div_ops, &clk_divider_ops,
-+		       sizeof(const struct clk_ops));
-+		xspi_div_ops->determine_rate = r9a09g077_cpg_fselxspi_determine_rate;
-+	}
-+
-+	parent_name = __clk_get_name(parent);
-+	init.name = core->name;
-+	init.ops = xspi_div_ops;
-+	init.flags = CLK_SET_RATE_PARENT;
-+	init.parent_names = &parent_name;
-+	init.num_parents = 1;
-+
-+	div->reg = addr;
-+	div->shift = GET_SHIFT(core->conf);
-+	div->width = GET_WIDTH(core->conf);
-+	div->flags = core->flag;
-+	div->lock = &pub->rmw_lock;
-+	div->hw.init = &init;
-+	div->table = core->dtable;
-+
-+	hw = &div->hw;
-+	ret = devm_clk_hw_register(dev, hw);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
-+	return hw->clk;
-+}
-+
- static struct clk * __init
- r9a09g077_cpg_clk_register(struct device *dev, const struct cpg_core_clk *core,
- 			   const struct cpg_mssr_info *info,
-@@ -278,6 +429,8 @@ r9a09g077_cpg_clk_register(struct device *dev, const struct cpg_core_clk *core,
- 		return r9a09g077_cpg_div_clk_register(dev, core, addr, pub);
- 	case CLK_TYPE_RZT2H_MUX:
- 		return r9a09g077_cpg_mux_clk_register(dev, core, addr, pub);
-+	case CLK_TYPE_RZT2H_FSELXSPI:
-+		return r9a09g077_cpg_fselxspi_div_clk_register(dev, core, addr, pub);
- 	default:
- 		return ERR_PTR(-EINVAL);
- 	}
 -- 
-2.43.0
-
+With best wishes
+Dmitry
 
