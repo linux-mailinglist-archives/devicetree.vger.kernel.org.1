@@ -1,134 +1,101 @@
-Return-Path: <devicetree+bounces-232149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCE49C14D0F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 14:25:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA919C14D12
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 14:26:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7C125E5AFB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 13:25:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C67271B26BB6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 13:26:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 995263043AF;
-	Tue, 28 Oct 2025 13:25:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sjoerd@collabora.com header.b="ZwoIEHXc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F6D72FD1B0;
+	Tue, 28 Oct 2025 13:25:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C165D2765E3;
-	Tue, 28 Oct 2025 13:25:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761657921; cv=pass; b=fmGbrkrFwIFaSm+IepdyktW/4UR8YbCvMiiyfgSLGtfE565eQavs5WN6HPj05tz4nFRdGrfkyrmZ0HXi9j2VfYcoQnFDE9NdswZ+2jsSnkjcx1cxcQIyLOhGQ7dsAYhmmobD1Um70meQ3+cleyn1bhdeqOfqxdzxAkcuAdxnJH0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761657921; c=relaxed/simple;
-	bh=98jTqZUcQ5Qf4P1DNrN2dsmZVex8R7C740H3NeDUBVI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Cs+20O9UKgFWH9KMG880Jl6i6bNmlJFihvDb7upIHTDW4zJeQUWM85vLHEFmzLulPg1MpeFy/uGrZdjhhU5/0ENjDDHVHC0lLHxdMkWbPfwL+rW5UYN+ERmx4BcKr5Q5hLIjsv+JWXNYnkirMYINSvnzCQFcfaUpnAIejjc/KPY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sjoerd@collabora.com header.b=ZwoIEHXc; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1761657869; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=ZCTOLf2S+q8m7fxAVIx8Y+bCTP95emO4YmHpi3NRritxQmxe3ATRHjgeW0BrRIv/SbQdJcPkYSIUlLoL7Sl45gi2zztEIUBUCnLkgM8wr8gLtilOLj+4p0mgiYOXQchJqvmPzkbMfQ+hjVO2mN6HwX4WU2/7ifnbvDnEokHm7os=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1761657869; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=8/d3UUUhdWoIZXpk8NwqSpg4DExzAbF8PYQkQhgem3s=; 
-	b=mVNRJGLaKBa+FnpaA60HLtOXJLBTBabrws/EXB4240rOpfhff5FXpf/VNKnYWCwBu00BOQ3NWKiZVwJqhU0Q3gMtrBNyvabfFoH3VOmcPyKqHEO88TmrhOh57Z7cNaIbziW7X/3hIqvD/KY4twXCtuQs4aGT6BhvdTOPnX+n6xw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sjoerd@collabora.com;
-	dmarc=pass header.from=<sjoerd@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1761657869;
-	s=zohomail; d=collabora.com; i=sjoerd@collabora.com;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=8/d3UUUhdWoIZXpk8NwqSpg4DExzAbF8PYQkQhgem3s=;
-	b=ZwoIEHXchlDN8s9MvkdPt0IM1C2ZQYDwtGfbijZC9gXXVKG93gOrptfLgnMCk5QN
-	KWqWvywAsKEtYwEZm6+KZfkQE2jPZsK7IM4T470U+hBGQFBMILmP97pYYcSjTIEpo1C
-	3viKQ0jStrCNXpRAwgnP937Ec/N+iwr3jwOZzaVI=
-Received: by mx.zohomail.com with SMTPS id 1761657866228953.45389749315;
-	Tue, 28 Oct 2025 06:24:26 -0700 (PDT)
-Message-ID: <408842eda1caa53247ff759cd9ea75dcab624594.camel@collabora.com>
-Subject: Re: [PATCH 12/15] arm64: dts: mediatek: mt7981b-openwrt-one: Enable
- Ethernet
-From: Sjoerd Simons <sjoerd@collabora.com>
-To: Eric Woudstra <ericwouds@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
- "Lucien.Jheng" <lucienzx159@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
- <angelogioacchino.delregno@collabora.com>, Ryder Lee
- <ryder.lee@mediatek.com>,  Jianjun Wang <jianjun.wang@mediatek.com>, Bjorn
- Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi	 <lpieralisi@kernel.org>,
- Krzysztof =?UTF-8?Q?Wilczy=C5=84ski?=	 <kwilczynski@kernel.org>, Manivannan
- Sadhasivam <mani@kernel.org>, Chunfeng Yun	 <chunfeng.yun@mediatek.com>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Lee Jones <lee@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,  "David S.
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
- Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Lorenzo
- Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>, 
-	kernel@collabora.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, 	linux-pci@vger.kernel.org,
- linux-phy@lists.infradead.org, netdev@vger.kernel.org,  Daniel Golle
- <daniel@makrotopia.org>, Bryan Hinton <bryan@bryanhinton.com>
-Date: Tue, 28 Oct 2025 14:24:19 +0100
-In-Reply-To: <05610ae5-4a8a-47e9-808b-7ff98fade78e@gmail.com>
-References: <20251016-openwrt-one-network-v1-0-de259719b6f2@collabora.com>
-	 <20251016-openwrt-one-network-v1-12-de259719b6f2@collabora.com>
-	 <4f82aa17-1bf8-4d72-bc1f-b32f364e1cf6@lunn.ch>
-	 <8f5335a703905dea9d8d0c1840862a3478da1ca7.camel@collabora.com>
-	 <05610ae5-4a8a-47e9-808b-7ff98fade78e@gmail.com>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-5 
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F394204F8B;
+	Tue, 28 Oct 2025 13:25:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761657959; cv=none; b=rwSYD9QDYSYu5UQUqewu3YL4qdZVWXUwxJSBV5W7NO0buWRZqlJ0kzdBAUIP0BYzkUKToPGKnRS/amm8+zl2/PzAGgYCbPgBg1VQ7y0h4UjXYacyoRyU1OlbxXRN85o3QZRwLMZdA2s+HwmHA5QJ6RpNavSzsB3F4HZlFPYxdvw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761657959; c=relaxed/simple;
+	bh=1BBU9WDw7qdTRE7UOJ91zXlUXSSF4iWrmf0R5SGfxVQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LBbnhNVZ63/WUFPkO6Uctku1l+uegFzFpzsB+x8J1cGnwwpOqN+CxmkiA3krj4qq1PMLiLkR4DS8eEtlFDwCif6dtX8moxPeVg08YPBMYmjMcdNBxc/1xX3ckI7fi+GRtxwxXabNUuUq+SsIOsz2rDvQooSTcYZaFqEImE3Ryzg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-CSE-ConnectionGUID: +4XZSKA7RsW2Owz6ieAiaQ==
+X-CSE-MsgGUID: 32MqCp2zRUK8ycUwMlo8Ng==
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 28 Oct 2025 22:25:54 +0900
+Received: from demon-pc.localdomain (unknown [10.226.92.5])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id A740940078A8;
+	Tue, 28 Oct 2025 22:25:49 +0900 (JST)
+From: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+To: 
+Cc: John Madieu <john.madieu.xa@bp.renesas.com>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Subject: [PATCH v2 0/9] Add TSU support for RZ/T2H and RZ/N2H
+Date: Tue, 28 Oct 2025 15:25:08 +0200
+Message-ID: <20251028132519.1472676-1-cosmin-gabriel.tanislav.xa@renesas.com>
+X-Mailer: git-send-email 2.51.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
 
-On Tue, 2025-10-28 at 12:14 +0100, Eric Woudstra wrote:
->=20
->=20
-> On 10/21/25 10:21 PM, Sjoerd Simons wrote:
-> > On Fri, 2025-10-17 at 19:31 +0200, Andrew Lunn wrote:
-> > > > +&mdio_bus {
-> > > > +	phy15: ethernet-phy@f {
-> > > > +		compatible =3D "ethernet-phy-id03a2.a411";
-> > > > +		reg =3D <0xf>;
-> > > > +		interrupt-parent =3D <&pio>;
-> > > > +		interrupts =3D <38 IRQ_TYPE_EDGE_FALLING>;
-> > >=20
-> > > This is probably wrong. PHY interrupts are generally level, not edge.
-> >=20
-> > Sadly i can't find a datasheet for the PHY, so can't really validate th=
-at
-> > easily. Maybe Eric can
-> > comment here as the author of the relevant PHY driver.
-> >=20
-> > I'd note that the mt7986a-bananapi-bpi-r3-mini dts has the same setup f=
-or
-> > this PHY, however that's
-> > ofcourse not authoritative.
-> >=20
->=20
-> Lucien would have access to the correct information about the interrupt.
+Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs expose the
+temperature calibration via SMC SIP and do not have a reset for the
+TSU peripheral, and use different minimum and maximum temperature values
+compared to RZ/G3E.
 
-Thanks! For what it's worth i got around to putting a scope on the line las=
-t
-night. It looks like the interrupt line is pulled down until cleared, so it
-appears it's indeed a Level interrupt as Andrew guessed. But would be great=
- to
-have this confirmed based on the documentation :)
+Although the calibration data is stored in an OTP memory, the OTP itself
+is not memory-mapped, and instead, access to it is done through an OTP
+controller. The OTP controller is only accessible from the secure world,
+but the temperature calibration data stored in the OTP is exposed via
+SMC.
 
---=20
-Sjoerd Simons <sjoerd@collabora.com>
-Collabora
+V2:
+ * drop clk patch already present in linux-next
+ * dt-bindings: merge two items into a single enum
+
+Cosmin Tanislav (9):
+  thermal: renesas: rzg3e: make reset optional
+  thermal: renesas: rzg3e: make min and max temperature per-chip
+  thermal: renesas: rzg3e: make calibration value retrieval per-chip
+  dt-bindings: thermal: r9a09g047-tsu: document RZ/T2H and RZ/N2H
+  thermal: renesas: rzg3e: add support for RZ/T2H and RZ/N2H
+  arm64: dts: renesas: r9a09g077: add OPP table
+  arm64: dts: renesas: r9a09g087: add OPP table
+  arm64: dts: renesas: r9a09g077: add TSU and thermal zones support
+  arm64: dts: renesas: r9a09g087: add TSU and thermal zones support
+
+ .../thermal/renesas,r9a09g047-tsu.yaml        |  21 ++-
+ arch/arm64/boot/dts/renesas/r9a09g077.dtsi    |  65 +++++++++
+ arch/arm64/boot/dts/renesas/r9a09g087.dtsi    |  65 +++++++++
+ drivers/thermal/renesas/rzg3e_thermal.c       | 125 ++++++++++++------
+ 4 files changed, 230 insertions(+), 46 deletions(-)
+
+-- 
+2.51.1
+
 
