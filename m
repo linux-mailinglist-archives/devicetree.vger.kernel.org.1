@@ -1,251 +1,241 @@
-Return-Path: <devicetree+bounces-232248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91196C15CF8
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 17:30:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE0C1C15E04
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 17:41:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 303B7354D68
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 16:30:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 584EF3A9D41
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 16:31:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05F1B343D9E;
-	Tue, 28 Oct 2025 16:30:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46BBE2E8B83;
+	Tue, 28 Oct 2025 16:30:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mBoMXEwD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="R/yzjAPk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 072D7299A8E
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 16:30:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E4B3286419
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 16:30:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761669008; cv=none; b=BUaHmQ4uOVNwjNXHzNNhQi5D8MfgEWWsGfyAtCSJXPKsHZFjD8jEGiHw44b5zpalwhp70vNRq0nWe5+FEnKSdQDtzEVPB3gJmjgP4/kjkXdoRA3mH+mBLRZbkwGPEkPIEy7G8SJR3bLj66tKW1uXUaH9GTwNU/ht8iTYigUBifs=
+	t=1761669054; cv=none; b=PBWTZGU8spmS1iZHIsnTXD9vTuiC/UereMmISvNhBKTeeFgDf/8MnopcpqU3/PoNXfzhGuqxoBvdy8fLNtc56ZjITxJJKHJxY9cI+5kvMuwXLURO7Cz7rGSbNLAGxSahk0Pi3r2V38glmVKUnDZwF5Mp+stgm7l8fZssQasHb8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761669008; c=relaxed/simple;
-	bh=vEJyVeW39Pode9RTYwDr6fsdalld4CL9rZ6fznN/mPk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PrkOsd9YOtC52u6ogX8L0QYUqMEauGAwiLkKQkJkcEOzl7U7mBQ9k+JmeU2shgM/NrRHOq+LptNM0StmU7QCK0dCuaCLIBT2Znmc4CYK+0TyuqSwZDqG//VvNNm7+rhBh8AmXUC2Jld0m4dHmZXo7DA3pnh+OJBrCeReFioZBzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mBoMXEwD; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4770c2cd96fso23838675e9.3
-        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:30:05 -0700 (PDT)
+	s=arc-20240116; t=1761669054; c=relaxed/simple;
+	bh=s5hMutLaI7nwCrTj1SFXEAHlQONk8k/auDD71vMg5iw=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=LEDrW7YJ2pORZa5Bf9c3DiHcd0pcaPRNtkHwbWSGQbtaDybYd1f0JnFtKeMYwV0cEtFeizfRbQbtfdkTkqH4lpi6awAtuuEQEBdSYjGHrkmFg2WDtt0TS3n5fPgSPZajEFSTqdzmW7lYiQa06mPtfEZhc5s9o6smYGqe3KVrvLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=R/yzjAPk; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3f0ae439bc3so3934780f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:30:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761669004; x=1762273804; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hYWi3kUOD7uIG7yabDe41nV3YwEiScd0j0WIlkffe/I=;
-        b=mBoMXEwDpJIQtVjDWluPiaNNK2XYXB4gCIbAKhECbz669gsP5v+/myjl5l+u6Q6YoV
-         ya1FXUyUTIDWSAcaiyWecKtNZDHp4+4YRgHhJ1e5JlGRSsjbpnbVCO5++tSUn248r7Kr
-         uFD/6hOMpK27A9gCKyD2vWKy/vgqhusw6HgLGQdmY3LZkASzaoi++UxWnSKzNGWLl1n4
-         kP4sTmRBWJXE8cRiHK/s9sR0uupJM9Icx660kNvZ8jQRaK6bthSV2xVmoV1+Ns8Wdjyx
-         ZTB+/A3ebDyWTfHD7cjytcuj3mdhI+FNWVXcCDh1wh+4clb7heNuWa2JsDND+6akKxkF
-         ynNg==
+        d=linaro.org; s=google; t=1761669050; x=1762273850; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fVDiJVDBM3r7hMEfWoSSKv9hUr+ASYoSn4j0qVsMf88=;
+        b=R/yzjAPkCXLRbWxAx+5QdPaCHsQ44cFYejALdfikmCu2zpB/M4fX0TWvzm9BzOPgmp
+         IMNbu6kjHIm3kzhFSRXlGC+H73g32FNivurKNBA8p4mm0DIm+Q4pTB3qJtCpXcKtwE6S
+         VOz4zhwARoDAmJhO18otOKxpYtQml3Jd/hJiaR//RFQcixsRx2A6288zGoV6nT/4aRRD
+         GTsbxq2wJFOmw3Aw6txW1x0LM4Zi73t1DQ+Ep0Rzkbo/x/fh6FgU+DrTh6LP+m6pBEZZ
+         2UNm6ksaokKDp4cdy3zmEhMz/0m5KBIS0Eu1LdYRvHizKXrvFYanaMmWk4KPEmRLjrjL
+         cgNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761669004; x=1762273804;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hYWi3kUOD7uIG7yabDe41nV3YwEiScd0j0WIlkffe/I=;
-        b=uuSSs0tPw8U2N4Vg5Fr2+KVjjkSbkUzbYc+p/fzHL63wF2b45YbwafgcaV/DuWt7zv
-         h31ncOyDaVg1MOwcD8OO/T5X8Jpd7pNUXbosXEcJAfyKXtpSBiJKlfv3LbZqMA18swff
-         Zv/wS6+RAa+dl4vte5jfiZAHTl1NVW39yUQweVbdoAPaTEc2gziHEA3dd8tVqvueGfqH
-         VF1hX7ip8gmuXXGnn3SDP4Z0bmo6eR911TTt8Ccg/TH4DFck38QvyX0ozhXLIEpZScmB
-         +yOuO1+yHOFRU7pf/ITp0zjZXeO878Gbn7r/vdiq/4NEXIAa184CJgqgBcQxeUigCK1c
-         eQkA==
-X-Forwarded-Encrypted: i=1; AJvYcCUQwCtzJod7pxJhq5/myvHyjN3TpqFBK3Y2nSbeSJW5Bu6YrpyZzza4HFRtT8v8aiLD1QN0fHByC47Z@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyfg9p18RlEaoyKzz2NQOGLJe9l2o8Y1la9hRlKwUZ8TmZhsOK6
-	TZL/waST1/xEwtLBhE7k/2tr9q6l23hpXpMrZQNdoDXl2+9MLzv2HvZCm39GmkbdVxQrPx0hRkv
-	3/e58TqSvgtaQ29hOXbiiBaKVABxRXwU=
-X-Gm-Gg: ASbGncs1f9IVuvCT/8Aw2QmK8PVMYI5cNrZYPG4VDuwOfUm6v6wsyhWRWxQtswg3z39
-	FzpqoMifujcLWLWLBskAuRc3jIqoBqUXsUKlhMwDWLm/M/cq/F95WLqA5GNdsNheeS5AaJmrSWx
-	JauYWUjKxhmFUmH/4AxVtMVJDS4jRRbMofllmG7e6R4uPNLwl987zdL9G2IOfOIGrP+DpZdeiOS
-	nJKqOnwhBK54GIDmbiVkYDdPTCuXKhrQ+bna2fKwBPlosHLUzADo83lUuZZUw==
-X-Google-Smtp-Source: AGHT+IHADb2QWE6ixPqVKHBkjJRfRAtZ126uBgTNHUzgvYzRkxhDy9SHWGuh3n+pBuaIX0SDJwLoA+lYxFyX0QSEUsI=
-X-Received: by 2002:a05:6000:2908:b0:3e0:c28a:abbb with SMTP id
- ffacd0b85a97d-429a7e4ec21mr3568957f8f.13.1761669003948; Tue, 28 Oct 2025
- 09:30:03 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761669050; x=1762273850;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=fVDiJVDBM3r7hMEfWoSSKv9hUr+ASYoSn4j0qVsMf88=;
+        b=q2O8Wxc6C56tn177Prk812b82sO2aKWqULeuuO5tk9qpLQHXOy7USHhDqsXoKK8mvg
+         MIVrkrH03d4rW9sEOmOjJBajq0jpqYvx712X8ZFxo5+LKb6zCYuv8cVVYwlUvloNjJvA
+         28Yxmu9G7ei5eZS/4+be6rblZEXdywRZK9iJ4My6WROI/pffLTkZ/Sq/7NFoB+pypOiF
+         xawmmUGyeoDKpjVTF6eaPhV5gIweLbBCtx62Z6EklGhbEKghZ55YBwG/kkrDRBUbLQ06
+         UNMMOc5W1JoCeBgzqrawcdZjG4wNW0IE1Xa4MQrYl2+dDp/0RihKFiwTVTHqoYYOLCd0
+         3IOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXt6YsUq/h8AR7dT6ZzefaUkwLGEOYa9hmiux9XTOZaSsgRxJ0n9SBObUGtIZihG1u1nLlVtiCtJOEx@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHAz5DkTMDsreG8+7anvolZjY3ZeXD3zdAwYuMULrmNQcUtIOg
+	XPDAFTFJ3SEDMbf3b/JT9Yt4K4BIUAYkjd1oWQxMNGutr2qaBs3tOGoC3HzIBvrcYuM=
+X-Gm-Gg: ASbGncuGIbIMDyrOtAn748vmmfCNFGibbeX2Qp6pE5vaUJ2Y2UHrB3aobNCqx2O1Hlc
+	Njoa1TA301xHoGtYBWmTFwPDIJmbs4y/uHugltHijwyPqYAl+J6xZb2mOj+kriJMGYRuzpK/6Iq
+	LHY7FSJJTXopFmBrnkQDRraaYuhZ6+pHkfVTcMmcaAEPP/ZJY8SM79aqNQxKII1eZY0tm/HrwG9
+	lwtsn83J4KE4eWBqDhH2RH/zxFaEwW6nSTA77ailqIG3fqB04GJgOwYi84NYJ44JPysllbPm/ai
+	18A9v/IY9ddk2g99s+qOW+cQ+buqAzh0GHo8YuTlJtQL+douOvlE0g3s6b8NfZjkYVPOfNUAMmp
+	tVruihO3W08WWxJFmDIhptJwACKrhQurXs0IqvNKKswmtfFwAHyoMRdyRuQAnceCPK4ovX6PM6K
+	Q+9YQgSfHlfCMr5eNtRLKGZkK6ASri26WagnM6tjUG4ISV5qcJgg==
+X-Google-Smtp-Source: AGHT+IHt5ENMuRews3EQD4323nqKT3XHbXjD4V1NWnBfQQRfoInlYT9Drol6JmNVL5oSuEzT2fSBAg==
+X-Received: by 2002:a05:6000:2dc6:b0:428:bb7:174f with SMTP id ffacd0b85a97d-429a7e519efmr3769774f8f.26.1761669049257;
+        Tue, 28 Oct 2025 09:30:49 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:cad:2140:ebe6:df10:d28d:aa5? ([2a01:e0a:cad:2140:ebe6:df10:d28d:aa5])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429952e3201sm21243901f8f.47.2025.10.28.09.30.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Oct 2025 09:30:48 -0700 (PDT)
+Message-ID: <321f5289-64c0-48f1-91b5-c45e82396ca9@linaro.org>
+Date: Tue, 28 Oct 2025 17:30:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251028092200.7003-1-clamor95@gmail.com> <20251028092200.7003-2-clamor95@gmail.com>
- <aQDuotTgvEyzgHnv@kekkonen.localdomain>
-In-Reply-To: <aQDuotTgvEyzgHnv@kekkonen.localdomain>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Tue, 28 Oct 2025 18:29:51 +0200
-X-Gm-Features: AWmQ_bkYwYMcdqG9iiQmTj6L33lDtpgUCjNIDpHFy8HLbHs5MypfRj8MwOiVwW0
-Message-ID: <CAPVz0n1=xuue8btcEAc6fX_k-9Y_=_A_h5yuYyxwwgf00EZDcQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2 RESEND] dt-bindings: media: i2c: document Sony
- IMX111 CMOS sensor
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Hans Verkuil <hverkuil@xs4all.nl>, Hans de Goede <hansg@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Dongcheng Yan <dongcheng.yan@intel.com>, =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>, 
-	Sylvain Petinot <sylvain.petinot@foss.st.com>, 
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>, 
-	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v3] watchdog: Add driver for Gunyah Watchdog
+To: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251028-gunyah_watchdog-v3-1-e6d1ea438b1d@oss.qualcomm.com>
+ <25f7ff09-08ea-4969-9184-9fd01b097558@kernel.org>
+ <76479593-c47b-41a7-8349-5d7c1403f7c0@oss.qualcomm.com>
+ <73955d58-544c-4299-a099-bfd9e5912a40@kernel.org>
+ <636a1f99-acd4-4904-8fae-f159646cc1a0@kernel.org>
+ <f4d80be9-986f-4d37-9c25-725eff7bb653@quicinc.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <f4d80be9-986f-4d37-9c25-725eff7bb653@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-=D0=B2=D1=82, 28 =D0=B6=D0=BE=D0=B2=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 18:2=
-6 Sakari Ailus <sakari.ailus@linux.intel.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> Hi Svyatoslav,
->
-> On Tue, Oct 28, 2025 at 11:21:59AM +0200, Svyatoslav Ryhel wrote:
-> > Add bindings for Sony IMX111 CMOS Digital Image Sensor found in LG
-> > Optimus 4X (P880) and Optimus Vu (P895) smartphones.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  .../bindings/media/i2c/sony,imx111.yaml       | 112 ++++++++++++++++++
-> >  1 file changed, 112 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,im=
-x111.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx111.ya=
-ml b/Documentation/devicetree/bindings/media/i2c/sony,imx111.yaml
-> > new file mode 100644
-> > index 000000000000..a70017588891
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx111.yaml
-> > @@ -0,0 +1,112 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/i2c/sony,imx111.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Sony IMX111 8MP CMOS Digital Image Sensor
-> > +
-> > +maintainers:
-> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> > +
-> > +description:
-> > +  IMX111 sensor is a Sony CMOS active pixel digital image sensor with =
-an active
-> > +  array size of 2464H x 3280V. It is programmable through I2C interfac=
-e. Image
-> > +  data is sent through MIPI CSI-2, through 1 or 2 lanes.
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/media/video-interface-devices.yaml#
-> > +  - $ref: /schemas/nvmem/nvmem-consumer.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: sony,imx111
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    description: EXTCLK with possible frequency from 6 to 54 MHz
-> > +    maxItems: 1
-> > +
-> > +  reset-gpios:
-> > +    maxItems: 1
-> > +
-> > +  iovdd-supply:
-> > +    description: Digital IO power supply (1.8V)
-> > +
-> > +  dvdd-supply:
-> > +    description: Digital power supply (1.2V)
-> > +
-> > +  avdd-supply:
-> > +    description: Analog power supply (2.7V)
-> > +
-> > +  port:
-> > +    additionalProperties: false
-> > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > +
-> > +    properties:
-> > +      endpoint:
-> > +        $ref: /schemas/media/video-interfaces.yaml#
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          data-lanes: true
-> > +          bus-type: true
-> > +          link-frequencies: true
-> > +
-> > +        required:
-> > +          - data-lanes
-> > +          - bus-type
->
-> Can you drop bus-type? I.e. is the sensor D-PHY-only?
->
+On 10/28/25 13:27, Pavan Kondeti wrote:
+> On Tue, Oct 28, 2025 at 12:07:40PM +0100, Krzysztof Kozlowski wrote:
+>> On 28/10/2025 12:04, Krzysztof Kozlowski wrote:
+>>> On 28/10/2025 11:58, Hrishabh Rajput wrote:
+>>>>
+>>>> On 10/28/2025 3:10 PM, Krzysztof Kozlowski wrote:
+>>>>> On 28/10/2025 10:35, Hrishabh Rajput via B4 Relay wrote:
+>>>>>> +
+>>>>>> +static int __init gunyah_wdt_init(void)
+>>>>>> +{
+>>>>>> +	struct arm_smccc_res res;
+>>>>>> +	struct device_node *np;
+>>>>>> +	int ret;
+>>>>>> +
+>>>>>> +	/* Check if we're running on a Qualcomm device */
+>>>>>> +	np = of_find_compatible_node(NULL, NULL, "qcom,smem");
+>>>>> I don't think you implemented my feedback. This again is executed on
+>>>>> every platform, e.g. on Samsung, pointlessly.
+>>>>>
+>>>>> Implement previous feedback.
+>>>>
+>>>> Do you want us to add platform device from another driver which is
+>>>> probed only on Qualcomm devices (like socinfo from previous discussion)
+>>>> and get rid of the module init function entirely? As keeping anything in
+>>>> the module init will get it executed on all platforms.
+>>>
+>>> Instead of asking the same can you read previous discussion? What is
+>>> unclear here:
+>>> https://lore.kernel.org/all/3b901f9d-dbfa-4f93-a8d2-3e89bd9783c9@kernel.org/
+>>> ?
+>>>
+>>>>
+>>>>
+>>>> With this patch version, we have tried to reduce the code execution on
+>>>> non-Qualcomm devices (also tried the alternative as mentioned in the
+>>>> cover letter). Adding platform device from another driver as described
+>>>> above would eliminate it entirely, please let us know if you want us to
+>>>> do that.
+>>>
+>>> Why do I need to repeat the same as last time?
+>>
+>>
+>> Now I see that you completely ignored previous discussion and sent THE
+>> SAME approach.
+> 
+> Our intention is not to waste reviewers time at all. It is just a
+> misunderstanding on what your comment is about. Let me elaborate further
+> not to defend our approach here but to get a clarity so that we don't
+> end up in the same situation when v4 is posted.
+> 
+> https://lore.kernel.org/all/b94d8ca3-af58-4a78-9a5a-12e3db0bf75f@kernel.org/
+> 
+> You mentioned here
+> 
+> ```
+> To me socinfo feels even better. That way only, really only qcom devices
+> will execute this SMC.
+> ```
+> 
+> We interpreted this comment as `avoid executing this SMC on non qcom
+> devices`. That is exactly what we have done in the current patch. since
+> `smem` is not present on non qcom devices, we don't make a SMC. In fact
+> we don't even create platform device/driver.
+> 
+> Please help us understand if the better approach is to just register
+> platform driver here and let qcom specific code add the platform device.
+> 
+> Also, please help me understand why would non qcom platform who care
+> about performance load all modules that can be built w/ ARM64. There
+> will be many init calls and platform drivers registerd but they never
+> get probed at all since their platform does not support. I am not
+> defending our aproach, but trying to understand the rationale behind our
+> approach vs alternatives.
 
-Yes, there were suggestions from schema maintainers and I have
-included them locally, but forgot about them since no review from
-media maintainers. Please skip this patch and review the driver
-itself. I will include all schema maintainers suggestions along side
-your suggestions regarding the driver in v3.
++static int __init gunyah_wdt_init(void)
 
-> > +          - link-frequencies
-> > +
-> > +    required:
-> > +      - endpoint
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - port
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/media/video-interfaces.h>
-> > +
-> > +    i2c {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        camera@10 {
-> > +            compatible =3D "sony,imx111";
-> > +            reg =3D <0x10>;
-> > +
-> > +            clocks =3D <&imx111_clk>;
-> > +
-> > +            iovdd-supply =3D <&camera_vddio_1v8>;
-> > +            dvdd-supply =3D <&camera_vddd_1v2>;
-> > +            avdd-supply =3D <&camera_vdda_2v7>;
-> > +
-> > +            orientation =3D <1>;
-> > +            rotation =3D <90>;
-> > +
-> > +            nvmem =3D <&eeprom>;
-> > +            flash-leds =3D <&led>;
-> > +            lens-focus =3D <&vcm>;
-> > +
-> > +            reset-gpios =3D <&gpio 84 GPIO_ACTIVE_LOW>;
-> > +
-> > +            port {
-> > +                imx111_output: endpoint {
-> > +                    data-lanes =3D <1 2>;
-> > +                    bus-type =3D <MEDIA_BUS_TYPE_CSI2_DPHY>;
-> > +                    link-frequencies =3D /bits/ 64 <271200000>;
-> > +                    remote-endpoint =3D <&csi_input>;
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > +...
->
-> --
-> Regards,
->
-> Sakari Ailus
+will be called on ___all____ arm64 systems which uses the vanilla arm64 defconfig,
+while we could say the first call of "of_find_compatible_node()" would fail on all
+non-qcom platforms this is still unacceptable.
+
+The solution is to attach the wdt init to something only probed on qcom
+platforms (not the module init, the _probe_ which is mapped to a DT compatible)
+and very generic like socinfo which could accept HYP stuff.
+
+You could also setup the HYP WDT from the qcom scm driver since the
+communication is smc based.
+
+Neil
+
+> 
+>>
+>> NAK. It is waste of our time if you keep ignoring reviewers and force us
+>> to re-iterate the same over and over again.
+>>
+> Thanks for your time and valuable feedback. I am told getting negative
+> feedback is better than no feedback from reviewers in my upstream training :-)
+> 
+> We will incorporate your feedback in the next version based on your
+> answer to the above question.
+> 
+> Thanks,
+> Pavan
+
 
