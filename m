@@ -1,286 +1,182 @@
-Return-Path: <devicetree+bounces-232383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6429C17078
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 22:34:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8415C170FA
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 22:39:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39B23400029
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 21:33:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD284189A2C0
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 21:35:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE45A2E5B1D;
-	Tue, 28 Oct 2025 21:32:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 504F02DCF52;
+	Tue, 28 Oct 2025 21:34:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ak1J1M1+"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="Pq77o6HD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 653652E336F;
-	Tue, 28 Oct 2025 21:32:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEFEA2DC76C;
+	Tue, 28 Oct 2025 21:34:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761687134; cv=none; b=sUvV2K6Y+d7F0OGakBHYa6FcUxmKryFXX72b60RCAE161yiv4o1mPlEZC6Dr8LZfCS+5XCfPEoVKAm8mjiGm1YovesRbmNsNveUxe2sLJPrWpO7Sb38/IfXtUQLfYyRV2xmGWlGOA4rVVTEAqTz+5uHHBEtPrIvRFBIOzGy277A=
+	t=1761687252; cv=none; b=PDm35IatnvPDRQu02M/VBrRFlM8/mCt1RhvDx/LCnUMNCNLl325iN1QspKKa3RFExUEk7+rcGfTs/MfyC8ZNuqU1DhacvyA0WySpTnBqHuFG5L80QSpbRvVIsesiqaVBUtlJTr79j1voL8ZVaV1G8GASX5sY4AHoAE3hzqiHLlM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761687134; c=relaxed/simple;
-	bh=rUyecgTwsqCvUufit3wBcxnKv3nqT/whCCCo67e/TwM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ifl81C7KCWiaZ1BySFFYQsg4S8VjrKgV3MPEz5vmv2rLQooHMYIDZwSd5cYDgUKchc2dOXDiD+J6HW+4ZzDgD+IYr/qDr2pFvkGhVm7RceFjyCKflWWbJEVkeddaT7R5xGSv8xC4QyVVhk5ryQ+D8vDy2HW1Z1J67l82xR0EBrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ak1J1M1+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 1F45BC19424;
-	Tue, 28 Oct 2025 21:32:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761687134;
-	bh=rUyecgTwsqCvUufit3wBcxnKv3nqT/whCCCo67e/TwM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Ak1J1M1+6npfB01GOUWwAED2MhgG8GRvPtIfkvSyDcTpGvAk1D8njHQDZJ2pKAsd3
-	 7U8rMnYtYwCAIWajnqIXzmZAcl2LH4Aiay86idfcH3WSekZH6FsHb/k/4OWq/n0/n2
-	 6oAjiPRrHkTGq2feKivmceGzM8ieFuHqULU3G3VWB+kShgk1hPFVckJxmK2ryPLFSb
-	 A7P4885K8iGet/ylakvfHq6uE2aEV3QQSHCWEBdszhWC4EwVzEpC1v3KQGue6r4ktS
-	 O0Aldv2A4Jk1Lurjudy0oBR3fG24lcHqdWSBoXS4OZ7lxsPDpE6XkwqdPqAu2A7/O2
-	 8CDgiIVmKas/Q==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 13FA1CCF9EA;
-	Tue, 28 Oct 2025 21:32:14 +0000 (UTC)
-From: =?utf-8?q?Andr=C3=A9_Apitzsch_via_B4_Relay?= <devnull+git.apitzsch.eu@kernel.org>
-Date: Tue, 28 Oct 2025 22:30:45 +0100
-Subject: [PATCH v7 4/4] arm64: dts: qcom: msm8939: Add camss and cci
+	s=arc-20240116; t=1761687252; c=relaxed/simple;
+	bh=6z2zAHcHQRUUS1xGpWBDBRVkHZNTkAWeQeys2SgyWgE=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Bt+mf+i4kJ6PRfarNIA8Rn8OJfaqe4Ha24mkNdjmvr7BcJbCvbvmzfhS0LDKc+99Lcq8unwiKEYJXuPaan/XyuQm1nE74/X69vuwJss493Xpjnp36oT9LkXXtAcZ8/QtiOZXE2dKne12sHz+q0dh6JKyBtrtuD9hoNKQ1+Gk4/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=Pq77o6HD; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 63F6B40D1C;
+	Tue, 28 Oct 2025 22:33:58 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1761687241; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=OaeV3ReOG98zpsdwkv/9umMpI5IPraCJeVtVuXAToME=;
+	b=Pq77o6HDo9/OSHrQ6/4t3Dekd4Q49eaGkoic01K1yveOMuxs2bsV2H3d/whs55vA1RyDCx
+	ln0HayR5AoExJ7Wbfga9ma11rsONrEU9oNlFPw9SCS83lUocgFw8EHTxi5RN8wabT4y2Bk
+	EeivFgTwt9Re5mbQKNby3HqAN9OvLEKOa6SiiNQDfthFfsW6FeSPh4ZBd3UmQMmdS1aw59
+	u71NY+SwqsDrt/PCLeKunLGWcO2gBl24d8WGsVD298qayTt4K2qP2w3cu1hBaYCPj73MwS
+	7lPDhjLxRc9kgJ5MvzAUH6/XZ0N2E363TB02zrWCv/sQCb7DgndQLWjExOo+kQ==
+From: Dragan Simic <dsimic@manjaro.org>
+To: nicolas.frattaroli@collabora.com
+Cc: alexandre.belloni@bootlin.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dmitry.torokhov@gmail.com,
+	heiko@sntech.de,
+	kernel@collabora.com,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	robh@kernel.org
+Subject: [PATCH 2/4] Input: adc-keys - support types that aren't just keyboard keys
+Date: Tue, 28 Oct 2025 22:32:09 +0100
+Message-Id: <20251028213209.2646838-1-dsimic@manjaro.org>
+X-Mailer: git-send-email 2.33.1
+In-Reply-To: <20250630-rock4d-audio-v1-2-0b3c8e8fda9c@collabora.com>
+References: <20250630-rock4d-audio-v1-2-0b3c8e8fda9c@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20251028-camss-8x39-vbif-v7-4-91ee8becda85@apitzsch.eu>
-References: <20251028-camss-8x39-vbif-v7-0-91ee8becda85@apitzsch.eu>
-In-Reply-To: <20251028-camss-8x39-vbif-v7-0-91ee8becda85@apitzsch.eu>
-To: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Vincent Knecht <vincent.knecht@mailoo.org>, 
- =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761687132; l=5537;
- i=git@apitzsch.eu; s=20240325; h=from:subject:message-id;
- bh=un+kmwhPLrnW0O5VHk7Q4Pi0zfXDaXthz4QyW1loye8=;
- b=IQCtuqnclditOlLLyatCj3XvtmpTKH5exjdX5SQawoFbgNA07H+jyaZNS8u7mvSKt481Ba64u
- s18FKS/7+DnD0FWFsJ6VHGjnfuX8QJZkwlSVLI3f7OYYa4ClfhCSigk
-X-Developer-Key: i=git@apitzsch.eu; a=ed25519;
- pk=wxovcZRfvNYBMcTw4QFFtNEP4qv39gnBfnfyImXZxiU=
-X-Endpoint-Received: by B4 Relay for git@apitzsch.eu/20240325 with
- auth_id=142
-X-Original-From: =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-Reply-To: git@apitzsch.eu
+X-Last-TLS-Session-Version: TLSv1.3
 
-From: Vincent Knecht <vincent.knecht@mailoo.org>
+Hello Nicolas,
 
-Add the camera subsystem and CCI used to interface with cameras on the
-Snapdragon 615.
+On Monday, June 30, 2025, 12:19:24 Nicolas Frattaroli wrote:
+> Instead of doing something like what gpio-keys is doing, adc-keys
+> hardcodes that all keycodes must be of type EV_KEY.
+> 
+> This limits the usefulness of adc-keys, and overcomplicates the code
+> with manual bit-setting logic.
+> 
+> Instead, refactor the code to read the linux,input-type fwnode property,
+> and get rid of the custom bit setting logic, replacing it with
+> input_set_capability instead. input_report_key is replaced with
+> input_event, which allows us to explicitly pass the type.
 
-Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
-[André: Make order of items the same as in 8916]
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Signed-off-by: André Apitzsch <git@apitzsch.eu>
----
- arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi |   4 +
- arch/arm64/boot/dts/qcom/msm8939.dtsi        | 146 +++++++++++++++++++++++++++
- 2 files changed, 150 insertions(+)
+Thanks for this patch, it's indeed very useful!  Please see some
+comments below.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi
-index adb96cd8d643..659d127b1bc3 100644
---- a/arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi
-@@ -11,6 +11,10 @@
- #include "msm8939.dtsi"
- #include "pm8916.dtsi"
- 
-+&camss {
-+	vdda-supply = <&pm8916_l2>;
-+};
-+
- &mdss_dsi0 {
- 	vdda-supply = <&pm8916_l2>;
- 	vddio-supply = <&pm8916_l6>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8939.dtsi b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-index eb64ec35e7f0..d4d7b0c9206c 100644
---- a/arch/arm64/boot/dts/qcom/msm8939.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-@@ -1436,6 +1436,145 @@ mdss_dsi1_phy: phy@1aa0300 {
- 			};
- 		};
- 
-+		camss: isp@1b0ac00 {
-+			compatible = "qcom,msm8939-camss";
-+			reg = <0x01b0ac00 0x200>,
-+			      <0x01b00030 0x4>,
-+			      <0x01b0b000 0x200>,
-+			      <0x01b00038 0x4>,
-+			      <0x01b08000 0x100>,
-+			      <0x01b08400 0x100>,
-+			      <0x01b0a000 0x500>,
-+			      <0x01b00020 0x10>,
-+			      <0x01b10000 0x1000>,
-+			      <0x01b08800 0x100>,
-+			      <0x01b40000 0x200>;
-+			reg-names = "csiphy0",
-+				    "csiphy0_clk_mux",
-+				    "csiphy1",
-+				    "csiphy1_clk_mux",
-+				    "csid0",
-+				    "csid1",
-+				    "ispif",
-+				    "csi_clk_mux",
-+				    "vfe0",
-+				    "csid2",
-+				    "vfe0_vbif";
-+
-+			clocks = <&gcc GCC_CAMSS_TOP_AHB_CLK>,
-+				 <&gcc GCC_CAMSS_ISPIF_AHB_CLK>,
-+				 <&gcc GCC_CAMSS_CSI0PHYTIMER_CLK>,
-+				 <&gcc GCC_CAMSS_CSI1PHYTIMER_CLK>,
-+				 <&gcc GCC_CAMSS_CSI0_AHB_CLK>,
-+				 <&gcc GCC_CAMSS_CSI0_CLK>,
-+				 <&gcc GCC_CAMSS_CSI0PHY_CLK>,
-+				 <&gcc GCC_CAMSS_CSI0PIX_CLK>,
-+				 <&gcc GCC_CAMSS_CSI0RDI_CLK>,
-+				 <&gcc GCC_CAMSS_CSI1_AHB_CLK>,
-+				 <&gcc GCC_CAMSS_CSI1_CLK>,
-+				 <&gcc GCC_CAMSS_CSI1PHY_CLK>,
-+				 <&gcc GCC_CAMSS_CSI1PIX_CLK>,
-+				 <&gcc GCC_CAMSS_CSI1RDI_CLK>,
-+				 <&gcc GCC_CAMSS_AHB_CLK>,
-+				 <&gcc GCC_CAMSS_VFE0_CLK>,
-+				 <&gcc GCC_CAMSS_CSI_VFE0_CLK>,
-+				 <&gcc GCC_CAMSS_VFE_AHB_CLK>,
-+				 <&gcc GCC_CAMSS_VFE_AXI_CLK>,
-+				 <&gcc GCC_CAMSS_CSI2_AHB_CLK>,
-+				 <&gcc GCC_CAMSS_CSI2_CLK>,
-+				 <&gcc GCC_CAMSS_CSI2PHY_CLK>,
-+				 <&gcc GCC_CAMSS_CSI2PIX_CLK>,
-+				 <&gcc GCC_CAMSS_CSI2RDI_CLK>;
-+			clock-names = "top_ahb",
-+				      "ispif_ahb",
-+				      "csiphy0_timer",
-+				      "csiphy1_timer",
-+				      "csi0_ahb",
-+				      "csi0",
-+				      "csi0_phy",
-+				      "csi0_pix",
-+				      "csi0_rdi",
-+				      "csi1_ahb",
-+				      "csi1",
-+				      "csi1_phy",
-+				      "csi1_pix",
-+				      "csi1_rdi",
-+				      "ahb",
-+				      "vfe0",
-+				      "csi_vfe0",
-+				      "vfe_ahb",
-+				      "vfe_axi",
-+				      "csi2_ahb",
-+				      "csi2",
-+				      "csi2_phy",
-+				      "csi2_pix",
-+				      "csi2_rdi";
-+
-+			interrupts = <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 79 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 51 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 55 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 57 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 153 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "csiphy0",
-+					  "csiphy1",
-+					  "csid0",
-+					  "csid1",
-+					  "ispif",
-+					  "vfe0",
-+					  "csid2";
-+
-+			iommus = <&apps_iommu 3>;
-+
-+			power-domains = <&gcc VFE_GDSC>;
-+
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+				};
-+			};
-+		};
-+
-+		cci: cci@1b0c000 {
-+			compatible = "qcom,msm8916-cci", "qcom,msm8226-cci";
-+			reg = <0x01b0c000 0x1000>;
-+			interrupts = <GIC_SPI 50 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&gcc GCC_CAMSS_TOP_AHB_CLK>,
-+				 <&gcc GCC_CAMSS_CCI_AHB_CLK>,
-+				 <&gcc GCC_CAMSS_CCI_CLK>,
-+				 <&gcc GCC_CAMSS_AHB_CLK>;
-+			clock-names = "camss_top_ahb",
-+				      "cci_ahb",
-+				      "cci",
-+				      "camss_ahb";
-+			assigned-clocks = <&gcc GCC_CAMSS_CCI_AHB_CLK>,
-+					  <&gcc GCC_CAMSS_CCI_CLK>;
-+			assigned-clock-rates = <80000000>,
-+					       <19200000>;
-+			pinctrl-0 = <&cci0_default>;
-+			pinctrl-names = "default";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+
-+			cci_i2c0: i2c-bus@0 {
-+				reg = <0>;
-+				clock-frequency = <400000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
-+		};
-+
- 		gpu: gpu@1c00000 {
- 			compatible = "qcom,adreno-405.0", "qcom,adreno";
- 			reg = <0x01c00000 0x10000>;
-@@ -1500,6 +1639,13 @@ apps_iommu: iommu@1ef0000 {
- 			#iommu-cells = <1>;
- 			qcom,iommu-secure-id = <17>;
- 
-+			/* vfe */
-+			iommu-ctx@3000 {
-+				compatible = "qcom,msm-iommu-v1-sec";
-+				reg = <0x3000 0x1000>;
-+				interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
-+			};
-+
- 			/* mdp_0: */
- 			iommu-ctx@4000 {
- 				compatible = "qcom,msm-iommu-v1-ns";
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>  drivers/input/keyboard/adc-keys.c | 16 ++++++++++++----
+>  1 file changed, 12 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/input/keyboard/adc-keys.c b/drivers/input/keyboard/adc-keys.c
+> index f1753207429db02ce6510e5ec0da9b24d9edb61d..339dd4d4a0842108da2c6136b1e0098cd1f6a3cd 100644
+> --- a/drivers/input/keyboard/adc-keys.c
+> +++ b/drivers/input/keyboard/adc-keys.c
+> @@ -19,12 +19,14 @@
+>  struct adc_keys_button {
+>  	u32 voltage;
+>  	u32 keycode;
+> +	u32 type;
+>  };
+>  
+>  struct adc_keys_state {
+>  	struct iio_channel *channel;
+>  	u32 num_keys;
+>  	u32 last_key;
+> +	u32 last_type;
+>  	u32 keyup_voltage;
+>  	const struct adc_keys_button *map;
+>  };
+> @@ -35,6 +37,7 @@ static void adc_keys_poll(struct input_dev *input)
+>  	int i, value, ret;
+>  	u32 diff, closest = 0xffffffff;
+>  	int keycode = 0;
+> +	u32 type = EV_KEY;
+>  
+>  	ret = iio_read_channel_processed(st->channel, &value);
+>  	if (unlikely(ret < 0)) {
+> @@ -46,6 +49,7 @@ static void adc_keys_poll(struct input_dev *input)
+>  			if (diff < closest) {
+>  				closest = diff;
+>  				keycode = st->map[i].keycode;
+> +				type = st->map[i].type;
+>  			}
+>  		}
+>  	}
+> @@ -54,13 +58,14 @@ static void adc_keys_poll(struct input_dev *input)
+>  		keycode = 0;
+>  
+>  	if (st->last_key && st->last_key != keycode)
+> -		input_report_key(input, st->last_key, 0);
+> +		input_event(input, st->last_type, st->last_key, 0);
+>  
+>  	if (keycode)
+> -		input_report_key(input, keycode, 1);
+> +		input_event(input, type, keycode, 1);
 
--- 
-2.51.2
+When EV_ABS is defined in the DT as the key type, which happens with
+joysticks and whatnot, separate handling is needed, by requiring the
+actual associated button values to be reported in the input_event()
+invocations, more specifically on the keypresses only.
 
+That's also visible in the gpio_keys_gpio_report_event() function in
+drivers/input/keyboard/gpio_keys.c.
 
+>  	input_sync(input);
+>  	st->last_key = keycode;
+> +	st->last_type = type;
+>  }
+>  
+>  static int adc_keys_load_keymap(struct device *dev, struct adc_keys_state *st)
+> @@ -93,6 +98,10 @@ static int adc_keys_load_keymap(struct device *dev, struct adc_keys_state *st)
+>  			return -EINVAL;
+>  		}
+>  
+> +		if (fwnode_property_read_u32(child, "linux,input-type",
+> +					     &map[i].type))
+> +			map[i].type = EV_KEY;
+
+Going along with the remarks above, it will also be needed to read
+and record the values of "linux,input-value" DT properties here, and
+to extend the associated binding to define their presence.
+
+>  		i++;
+>  	}
+>  
+> @@ -156,9 +165,8 @@ static int adc_keys_probe(struct platform_device *pdev)
+>  	input->id.product = 0x0001;
+>  	input->id.version = 0x0100;
+>  
+> -	__set_bit(EV_KEY, input->evbit);
+>  	for (i = 0; i < st->num_keys; i++)
+> -		__set_bit(st->map[i].keycode, input->keybit);
+> +		input_set_capability(input, st->map[i].type, st->map[i].keycode);
+>  
+>  	if (device_property_read_bool(dev, "autorepeat"))
+>  		__set_bit(EV_REP, input->evbit);
 
