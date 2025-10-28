@@ -1,104 +1,176 @@
-Return-Path: <devicetree+bounces-232283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6F8FC1616B
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 18:15:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6E0CC161AB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 18:19:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C6C6422F35
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 17:08:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0BEDD3ABAA8
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 17:13:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11861346E7E;
-	Tue, 28 Oct 2025 17:08:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G3aAavwg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1907B34678A;
+	Tue, 28 Oct 2025 17:13:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2DAD2848B4;
-	Tue, 28 Oct 2025 17:08:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94537218ACC
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 17:13:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761671307; cv=none; b=XNKQGk1jiycmo4RGQZ4euCyJ9K5Zv5YoxwZb6+ecLlSwzz8kSyyc4bpAch75yTb9cTvhMZzXcPZhUB2TMMBx6pyE8JZ+6MqjtNG4BOxRFej0XyQZsoH67mWeNHb9xdBp0KvvzVVG/Zq+ysI3uDvbvQgzP9EQfFpEqcLlBtAVGrE=
+	t=1761671586; cv=none; b=H0LwqD9kp66grxLfcid/FtMwK+CosHWVi3/9ymoTAQWUfyJqyBtDVwf+q4sAalZ3zZzNPq3ont/4RKM7/n9dHZgAaT60HUf3QUnPOdQI1qSyxeJ7qAdKGrtkpHnz9keMEOuLlkLxuRf/ohBwmH399691NzZJd0xVxrt2Y+K1MSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761671307; c=relaxed/simple;
-	bh=9eUztxr0c5bs9J7IDIf5az3dpnFzy5BKhJ7flVcVeA4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=gAOpV1tyKQ2g8fYxWG/2ttiNil1sMkOGHUoYqpQHznKejggbNPJg6DxJ+1J2pzN2wfk1mi1bXvkqQOlOIpDtG09sgqjZF1HGmXy5Ur5X1M7VLpRo3Mh4yJJNF0m4FQWFmsFe/o3zLYE6oN/j0utVPNS8iwvRZtzzBvCnYFJ2itc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G3aAavwg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 416F7C4CEE7;
-	Tue, 28 Oct 2025 17:08:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761671306;
-	bh=9eUztxr0c5bs9J7IDIf5az3dpnFzy5BKhJ7flVcVeA4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=G3aAavwgwh9gFQLPVh9gLVrbNzRS7vPP3F+iQSp8h7oFGi/a7/yqzJfeel5KMYXsZ
-	 KpuDQ0bMz3eRPrsH5hF8bxUgyVuWDZNiuBNnncLYHSskrhU59hpxcbMAs+U/ORnhX4
-	 cFViZ0VLpddZJri4lwfTgaoaq4GFjJGin85kOhI0KI7y7XOJdonF9+NA3m+S/rmAR2
-	 epCaae+HjNGigmqsb/lLq2jpIbwTzqpg6XVZFmtN6cCesFNPM5hi66tA7KMBQTlYmr
-	 iYkt5jKvntMutcqKZt55xBvRKamuIEdVWHAWSULx5ePb6CUpiIn24DYPseHSvXgE53
-	 v8MIH7c1UBflA==
-Received: from wens.tw (localhost [127.0.0.1])
-	by wens.tw (Postfix) with ESMTP id 7E3F25F863;
-	Wed, 29 Oct 2025 01:08:23 +0800 (CST)
-From: Chen-Yu Tsai <wens@kernel.org>
-To: Jernej Skrabec <jernej@kernel.org>, 
- Samuel Holland <samuel@sholland.org>, Mark Brown <broonie@kernel.org>, 
- Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-sunxi@lists.linux.dev, 
- linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, dmaengine@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20251027125655.793277-1-wens@kernel.org>
-References: <20251027125655.793277-1-wens@kernel.org>
-Subject: Re: (subset) [PATCH v2 00/10] allwinner: a523: Enable I2S and
- SPDIF TX
-Message-Id: <176167130349.1161173.2622009044232312995.b4-ty@kernel.org>
-Date: Wed, 29 Oct 2025 01:08:23 +0800
+	s=arc-20240116; t=1761671586; c=relaxed/simple;
+	bh=PRqV0NiMm5h805OFFkFFy8tFBxkOLM7y4i7v5n8aeXE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q9K0PYbx90IrT1YRoN3G3AYrfWFnIacgQSLQ1UWZMvBaqMXnEXQKFAhpYd/HjVgc8UFIuqWNw0hrmStPHio7ETuVPgV5Vqq+J2+8k9YeqR9LkUPy2lZ9LJowLKLbye5P5GUznmF9XHooY9TBUDju2pWwMe1Fa1eW1S+YP7tzO/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1B977168F
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 10:12:52 -0700 (PDT)
+Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id A913F3F673
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 10:12:59 -0700 (PDT)
+Date: Tue, 28 Oct 2025 17:12:35 +0000
+From: Liviu Dudau <liviu.dudau@arm.com>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Boris Brezillon <boris.brezillon@collabora.com>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Chia-I Wu <olvaffe@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>,
+	Steven Price <steven.price@arm.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>, kernel@collabora.com,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-hardening@vger.kernel.org,
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH v8 1/5] dt-bindings: gpu: mali-valhall-csf: add
+ mediatek,mt8196-mali variant
+Message-ID: <aQD5gwByEmX6GQK9@e110455-lin.cambridge.arm.com>
+References: <20251017-mt8196-gpufreq-v8-0-98fc1cc566a1@collabora.com>
+ <20251017-mt8196-gpufreq-v8-1-98fc1cc566a1@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251017-mt8196-gpufreq-v8-1-98fc1cc566a1@collabora.com>
 
-On Mon, 27 Oct 2025 20:56:41 +0800, Chen-Yu Tsai wrote:
-> This is v2 of my Allwinner A523 family I2S and SPDIF enablement series.
+On Fri, Oct 17, 2025 at 05:31:08PM +0200, Nicolas Frattaroli wrote:
+> The Mali-based GPU on the MediaTek MT8196 SoC uses a separate MCU to
+> control the power and frequency of the GPU. This is modelled as a power
+> domain and clock provider.
 > 
-> Changes since v1:
-> - Collected tags
-> - Dropped clk patches that were merged
-> - Added patch for SPDIF pinmux settings that was missing in v1
-> - Dropped bogus change to DAI name in SPDIF driver
-> - Dropped clk rate message in SPDIF driver
-> - Switched my email to kernel.org one
+> It lets us omit the OPP tables from the device tree, as those can now be
+> enumerated at runtime from the MCU.
 > 
-> [...]
+> Add the necessary schema logic to handle what this SoC expects in terms
+> of clocks and power-domains.
+> 
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>  .../bindings/gpu/arm,mali-valhall-csf.yaml         | 37 +++++++++++++++++++++-
+>  1 file changed, 36 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> index 613040fdb444..860691ce985e 100644
+> --- a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> @@ -45,7 +45,9 @@ properties:
+>      minItems: 1
+>      items:
+>        - const: core
+> -      - const: coregroup
+> +      - enum:
+> +          - coregroup
+> +          - stacks
+>        - const: stacks
 
-Applied to sunxi/dt-for-6.19 in local tree, thanks!
-
-[01/10] dt-bindings: dma: allwinner,sun50i-a64-dma: Add compatibles for A523
-        commit: 697fbb43aba6dae48cbe5e1fa0d3023a0b12ab73
-[05/10] arm64: dts: allwinner: a523: Add DMA controller device nodes
-        commit: 55d43ef77712e3b7fd4c3db5715be1f405afe31e
-[06/10] arm64: dts: allwinner: a523: Add device node for SPDIF block
-        commit: e51b773798ea1dece229b44854256ec38d35cc41
-[07/10] arm64: dts: allwinner: a523: Add device nodes for I2S controllers
-        commit: 1fe1e9b67166e304e8c3e46bdd1104519d6d1bd7
-[08/10] arm64: dts: allwinner: a523: Add I2S2 pins on PI pin group
-        commit: a9050236f81c43fc2eaa2e13098c7fb53c3aba34
-[09/10] arm64: dts: allwinner: a523: Add SPDIF TX pin on PB and PI pins
-        commit: ae0d3f1e6dd2c6404db2fbd7556b93eddd6c87b8
+I'm not sure how to parse this part of the change. We're overwriting the property
+for mt8196-mali anyway so why do we need this? And if we do, should 'stacks'
+still remain as a const?
 
 Best regards,
--- 
-Chen-Yu Tsai <wens@kernel.org>
+Liviu
 
+>  
+>    mali-supply: true
+> @@ -110,6 +112,27 @@ allOf:
+>          power-domain-names: false
+>        required:
+>          - mali-supply
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: mediatek,mt8196-mali
+> +    then:
+> +      properties:
+> +        mali-supply: false
+> +        sram-supply: false
+> +        operating-points-v2: false
+> +        power-domains:
+> +          maxItems: 1
+> +        power-domain-names: false
+> +        clocks:
+> +          maxItems: 2
+> +        clock-names:
+> +          items:
+> +            - const: core
+> +            - const: stacks
+> +      required:
+> +        - power-domains
+>  
+>  examples:
+>    - |
+> @@ -145,5 +168,17 @@ examples:
+>              };
+>          };
+>      };
+> +  - |
+> +    gpu@48000000 {
+> +        compatible = "mediatek,mt8196-mali", "arm,mali-valhall-csf";
+> +        reg = <0x48000000 0x480000>;
+> +        clocks = <&gpufreq 0>, <&gpufreq 1>;
+> +        clock-names = "core", "stacks";
+> +        interrupts = <GIC_SPI 606 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                     <GIC_SPI 605 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                     <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH 0>;
+> +        interrupt-names = "job", "mmu", "gpu";
+> +        power-domains = <&gpufreq>;
+> +    };
+>  
+>  ...
+> 
+> -- 
+> 2.51.0
+> 
+
+-- 
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
 
