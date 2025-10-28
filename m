@@ -1,132 +1,104 @@
-Return-Path: <devicetree+bounces-232017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AA2BC13B4F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:08:44 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2DDBC13BE3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:13:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 027573B34F1
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:08:43 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7E775508461
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:10:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0A5A2F6932;
-	Tue, 28 Oct 2025 09:07:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29D992BDC34;
+	Tue, 28 Oct 2025 09:10:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="S0eW/f9U"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="mJLRAgOB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A92B2F618F
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:07:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45C592E8E0E
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:09:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761642447; cv=none; b=obt0iDo0sbFxa5rbhEVtZzjCswCMWjSex6jooLK7HGGH1f5dMf+6DghX0DqJ2zAH05pjStc7X6BgFKEMdhJYh49nKK9FViH5CpYHHwZI6fR0lnWYFiOw8XOWgK0HVPZUDiOU1jl2Z/fSDbzhGc+qQceVDNgggZiVPRUrF7BrCsU=
+	t=1761642601; cv=none; b=cngr66NnST/kDEZVrQUPQsCYheFUIwPdbOyzXzZAmYYgXb2aYGfehYJPqi3eTIjil/YvnizpcBygo/QwOWtOFUAYHErl0FMgMBH49baLcjaW1RNwk1qAInab/G6Jd4g84G0dv7MuFzuSNpJZkiYM0WkK8OJgptQF27tOFryE2Js=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761642447; c=relaxed/simple;
-	bh=ogfGDK7FerH6aANEa3sajifcX5aOLqxXa6oDsjUzPAQ=;
+	s=arc-20240116; t=1761642601; c=relaxed/simple;
+	bh=zUGY+xPee4aWhCbNw7W10rqEHgwsqSjRvspTfW/+QYg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=elmyW255BbUk4GdtnyKA/PSDMguxk7iu9nw4fO9+K72SWfRhMLNAtJmZ0syZyKHU6FtYZD6catGZkrarL1BAFwYIbs3t/Y/KBHiuYx1NxWjGIuiYnEd2x/aodO6bb83vzhp9w1MLIiT+DVamtZSUQSsKFelO8UYxF6/WQy8j/ZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=S0eW/f9U; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=ogfG
-	DK7FerH6aANEa3sajifcX5aOLqxXa6oDsjUzPAQ=; b=S0eW/f9U4hJ5dD0lE4im
-	BSwSGulkov/dZL9IHAMq1BQJ211SPZ9GzaSVLVQ/EMIXlPA7NQBnJDMjTE7IXmJ9
-	KoD5YGHkLc+4b+xruIa5aaMOkoT2zMxZf75ka+D/ImgUswxEh48cwVp+vOrrzrIo
-	LKrX/BDcdvUAh1/FxGGVWRW8tHYRB6Zd4dgKS9Mv6VGTOLBYdYXSOUdx83OgPGiF
-	N8DOsSRWl7nR9d0oTTcwPr7mDDd/V9Ah1RLHODaJthoPQcsN8lHoxqZ3DhnlOBn/
-	Xb2KKxFXTy8vNk9Ci51ERHMsyBQFngZm0bdx+jTeKFGoCcPB2ws1vxQxI8Xmqf+D
-	kQ==
-Received: (qmail 3948069 invoked from network); 28 Oct 2025 10:07:18 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 28 Oct 2025 10:07:18 +0100
-X-UD-Smtp-Session: l3s3148p1@wUe4VzRCtuQujnsk
-Date: Tue, 28 Oct 2025 10:07:17 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Hoan Tran <hoan@os.amperecomputing.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Phil Edworthy <phil.edworthy@renesas.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Pascal Eberhard <pascal.eberhard@se.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v6 8/8] ARM: dts: r9a06g032: Add support for GPIO
- interrupts
-Message-ID: <aQCHxTeP6M94oo7B@ninjato>
-References: <20251027123601.77216-1-herve.codina@bootlin.com>
- <20251027123601.77216-9-herve.codina@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ptTfvYKue4m2m/8+GHze9KCg1CaYd6ZEfnmnbW7f34KwLqnEydr9XnRRnOkgi1n32FTYlDFXmpoIj6G/5n1ruf1A4SvV/rYkhYTXFUZxCeOE/2HDBQ5Q5c/u6B2t3pO2BgfDfN1kzlIMKd6gaqW1KNJnDxRuGTfrT/eBx0JH0FQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=mJLRAgOB; arc=none smtp.client-ip=1.95.21.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=WaTABlPQzql62JP4bYpGFB1GN/KGFtKB/QnUa6OyJ+E=;
+	b=mJLRAgOBFmbF4UXSo3Qm6FPpTQs8JJU8wIFm7iGmahKNMDfFafS2NaRysmcHWa
+	c8NiIPAv/k9sNdIJDaFtj+1k5XDbw7Mg3OFeFAbOQz4s3DxWQpNYZoMj8xZl3jCt
+	7WImln7p/K3KCn4IAmqZQKXCN+G1FpLsBEc+lhPdVs0Lc=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDXf10BiABp90vTAA--.48036S3;
+	Tue, 28 Oct 2025 17:08:20 +0800 (CST)
+Date: Tue, 28 Oct 2025 17:08:17 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Rain Yang <jiyu.yang@oss.nxp.com>
+Cc: airlied@gmail.com, boris.brezillon@collabora.com, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de,
+	krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+	liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com,
+	marek.vasut@mailbox.org, mripard@kernel.org, p.zabel@pengutronix.de,
+	robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org,
+	simona@ffwll.ch, sre@kernel.org, steven.price@arm.com,
+	tzimmermann@suse.de, xianzhong.li@nxp.com
+Subject: Re: [PATCH v3 2/2] arm64: dts: imx95: Describe Mali G310 GPU
+Message-ID: <aQCIAfyUC6N5y2fB@dragon>
+References: <20250925203938.169880-1-marek.vasut@mailbox.org>
+ <20250925203938.169880-2-marek.vasut@mailbox.org>
+ <ba95487c-ada7-48a4-90b7-fd99a0278f51@mailbox.org>
+ <aP7DZCMk1pQ7wsFo@dragon>
+ <aQB88c_AEC1RAZtH@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="QxPk/9fThloBmEh/"
-Content-Disposition: inline
-In-Reply-To: <20251027123601.77216-9-herve.codina@bootlin.com>
-
-
---QxPk/9fThloBmEh/
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <aQB88c_AEC1RAZtH@oss.nxp.com>
+X-CM-TRANSID:Ms8vCgDXf10BiABp90vTAA--.48036S3
+X-Coremail-Antispam: 1Uf129KBjvdXoWrtrWrAFyUKr1kGw4UJw1xGrg_yoWkAFb_uF
+	4UCrs7Aw42gryUtFZ3CF4q9ryvkw15Jry3uw15JFnrZ34DAa48Ca9IkrWxZa4rCrWDArn8
+	tF98XryYkr4IvjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU1qQ6JUUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNwV94mkAiAXl5gAA3K
 
-On Mon, Oct 27, 2025 at 01:36:00PM +0100, Herve Codina (Schneider Electric)=
- wrote:
-> In the RZ/N1 SoC, the GPIO interrupts are multiplexed using the GPIO
-> Interrupt Multiplexer.
->=20
-> Add the multiplexer node and connect GPIO interrupt lines to the
-> multiplexer.
->=20
-> The interrupt-map available in the multiplexer node has to be updated in
-> dts files depending on the GPIO usage. Indeed, the usage of an interrupt
-> for a GPIO is board dependent.
->=20
-> Up to 8 GPIOs can be used as an interrupt line (one per multiplexer
-> output interrupt).
->=20
-> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.co=
-m>
-> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Tue, Oct 28, 2025 at 04:21:05PM +0800, Rain Yang wrote:
+> On Mon, Oct 27, 2025 at 08:57:08AM +0800, Shawn Guo wrote:
+> >On Sat, Oct 11, 2025 at 12:53:29PM +0200, Marek Vasut wrote:
+> >> On 9/25/25 10:38 PM, Marek Vasut wrote:
+> >> > The instance of the GPU populated in i.MX95 is the G310, describe this
+> >> > GPU in the DT. Include dummy GPU voltage regulator and OPP tables.
+> >> Is there still anything that should be changed with this patchset, or can it
+> >> be applied ?
+> >
+> >I'm waiting binding change to be applied first.  Or is it already done?
+> >
+> >Shawn
+> >
+> Hi Shawn,
+> It might be better for Marek to remove the always-on GPUAPB clock from the DTS, given that
+> it's an SCMI protocol clock and the kernel expects it to be available during operations.
+> 
+> Also, the gpu_fix_reg appears unnecessary for the driver and could be removed[1].
+> 
+> [1] https://cgit.freedesktop.org/drm/drm-misc/commit/?id=a8cb5ca53690aa809f4f65e14192753073e61a71,
+> https://cgit.freedesktop.org/drm/drm-misc/commit/?id=02df3543f3e0ea572e2c739605ebd6c20e1149c4
 
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Ah, sorry! I did not know we haven't reached agreement on the change.
 
+Shawn
 
---QxPk/9fThloBmEh/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmkAh8UACgkQFA3kzBSg
-Kbb3UxAAkKPTJ+QMFlgkn2kIIoOvsRAtxJDgb4wfu0pyjlAu3xihs6hvh9rwSQSE
-RTzbRuZAC5gQBK0SLkZwogHQEsC+xw2h5bo/n/1M8SzGEtYvr0DEYF9Gi9Vr0dlp
-1M4aX3mm8M7VMsX7bOiZ+DcdEs0UGvVXiWEdRfpb/zv2IS8P9rfusreydtHk5jFE
-00UtRFPqr04FBizidV2qGysuTSZgfIV/oEf6xWZCfUwMyGZn+RFmqYyG+9XwcwzX
-gi52wkiSMaxodl44SvgDnPgDD3HcMh6kdvzPDTY1/Lm1lw7rrBM3Jleg697ScNWK
-quwakJnUik6gFbjNQo7NR+dM7iqU7GzhhSnSWwJTjrBc36omX0BIM7lPFpAPTnqV
-7w/ie+5MkxvLt0QqFY36/vmoygcd8XoCR0CuFiyPJc2N4LcbFwVA5PrVqtkN1H0C
-C/R0p0p1hq/Ckd3+C8vhxCnebBdB6XnUUvSmKgDz5wtRdyyg6czo0f+CnALbIQJo
-TYdt2EqjsnqjrUsu8mo/M0SHKnq0TrKlP//PvRzNB86x7XNjpAmOQIggDruuXrbc
-XPuDY6f66FpuiK2zBRjGk/X3qznlV6T9CBnGGKEkWuNJwXPqp1q9O6Ir2yq8AAEy
-uNXg1Oi6lmwd1EwbA5Z+nD+FUbc3u0r9EdkZ4CVa9yELUROR92Q=
-=t4W6
------END PGP SIGNATURE-----
-
---QxPk/9fThloBmEh/--
 
