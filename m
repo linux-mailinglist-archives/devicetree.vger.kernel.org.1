@@ -1,150 +1,264 @@
-Return-Path: <devicetree+bounces-232030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47871C13CA4
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:27:11 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27D9FC13C8F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:26:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78F7E4048B7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:23:11 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4D3C14EA704
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:24:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89BFA3019CF;
-	Tue, 28 Oct 2025 09:22:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA1672D77E5;
+	Tue, 28 Oct 2025 09:24:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="e1h/4f9Y"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="VRz8I+Ws"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE32F302175
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:22:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA18A227B8E
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:24:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761643361; cv=none; b=RoElRxt+9aXuclZMtSliG2YwRiT6C2uSsb5Mo1CV+kFF/d1587DtCpU0oicG+/HwsIZ5T3GuVG0LDgIKTDSkhOxoyCWEcQR01jJMKrSTrHyvcQ7Fta3SHxNotkYJYRMoV0QtBzf0iR+t/tpcwSFoM7NQq4A1Qc+ezNskWUlvRFk=
+	t=1761643453; cv=none; b=lh7UuiCbqr5AwRBdN4HUzCjOwWJ/TqFFJ7ZXVDPBY+5/drbrbvwmi1/qAja6jMbumxecKvcQ5VUvKhgk6ye0o/8FLKa8a4wwgLlr7I+fqqJOrBNu8tp6gYO+SVC0Hr36Yo3BNDcUzImcMwBxDRz9P9wFE3MwcwhjBkvDxiwVmSA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761643361; c=relaxed/simple;
-	bh=qsFC1t/fVaM3KdBTuNCtkaYnQArD/UtI3nrJ3KbKVlU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rSm9aLJIn6Jdho0u10PqXkAg7oyRibhKXobXQFx2WK0vNuFvbIHlF3xmOztJOiGND/pg1Jl9tmY9I4Sz1xx3FPcAXpx65Gc9RaiSJdlEJ7Uh6xIdb9UhNyeKvQ/1aQWtyht/bgjg0kZ81ZT2a3HZ7huthOCCwS2kZFoAOoZNemM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=e1h/4f9Y; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59S7HO4T2546727
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:22:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	IX/AJuPm2H3fYAH/Y3OWD0ONewAieu2FIaoXZk0cs+s=; b=e1h/4f9YDvRe1gvj
-	fdP5jIbAD+QDcmuvJIqaGlfuOYHhVbNbAsP0u3qaO68jCxX0MKFdSMXo7q5ZV3Wl
-	hkVigg7lyJX9nF1wFcN0c/pqyuQLa4DSqkCAaAwSTTeo+QhhgMoHt8EghrA7biQq
-	kzrrfG1yQaxTizMSZyAIsM58/g0eTwyeylLgirEuRpAEY1M1W5FczTrdubr16CH6
-	nqJCCadPsGbuZtLs2wo6M7tD5+GBfejKisOLkP0MTN5iG8WXXyVsUWGJOgIk4aQB
-	lz5Gh+aU8Rfc0DDNGw3StQAPmfE7NQhf0zOzhe598yGgYJR8YoxtClk1RtTncgZ3
-	lCvtsw==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a27s2kk7p-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:22:38 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-87c19c8393dso16342606d6.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 02:22:38 -0700 (PDT)
+	s=arc-20240116; t=1761643453; c=relaxed/simple;
+	bh=s3V4ysK9VBeEHsI6usIIzKqsRASnw3Y4wlawsulPdaw=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=VWNaF5ORnTHUOom+6RFVj3Ach0m8M8lA2DwThk565UggyRueDJCKDe39cjLLGSizi9cUwE/uVAoysCbVYk+sDR1IxQmk2Idn5cEjxEAYD9G16u59nDGBulTb68mJXjn17GccAZtRjL+tD7pCLwSrsiNk9LUAi5oFM4stZhHSm2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=VRz8I+Ws; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-63c1413dbeeso9219286a12.0
+        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 02:24:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1761643450; x=1762248250; darn=vger.kernel.org;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0tCQxocYdhckVFualS/ORMJEwcZ+WPRq+V/HGiNgJY4=;
+        b=VRz8I+WsT4jSb+oysOLBJe2kthiqvrD5JrWgXb5iCnH0jMnSKE4nSzqmgJoPZfJ4cs
+         LLIAofzbTCnyVP7bzYZd/rUtSGiJmlKjqJGJYc16/HHSDMngNctKXWQr5xnwCfO38Nyj
+         u2KpzwdfOiCu6hcHOJJ/b9enkYuX9UY5zKFTsw8B9XONRblihNEyWs+FatwVT5yR68qq
+         Nvn2mWbFEhBeUuqsTB45ub7c9J6oAc93ABa8UkiTO50Z7FRBSRhYmBTWySfRKMOYe+mG
+         FRB0jG+VepfqS3o4LjyTYhULfvuNH5h3VDpNROhJIT8lw9urLEG1gR1ac0utQOYJECbl
+         sjXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761643358; x=1762248158;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IX/AJuPm2H3fYAH/Y3OWD0ONewAieu2FIaoXZk0cs+s=;
-        b=gdQIu6s2I+ShiQjg2jav6mdu5Z00kccvl5LwwsWUVuqn6/bMrjyT33IXeosXU5sUce
-         +xVSZe/G3zdgt6nP8hVhTH4BjA7kKfBwhxq3Rkf+PluCp6o9w+VTA9EuU59NPknYteJr
-         Y6fkLlKTF/zUcZcm5O6dm7kvSWyvWMcex4TpMfqYA2ivlNdXvjHyCvYDGH2Jdg0w8E9D
-         iSKsYINQxMWe+lle9lOpCroPtgv/kVkKfQ7+4R7TCXDTmiF9O9TOxHIxzRpT36fqNWbT
-         9xSzTTC+l9L85zmrMLJrXeJ7qbGTe224gc1k3tKzD458OtzljUT4jH4HzpX67CDKLTZQ
-         /Vhg==
-X-Forwarded-Encrypted: i=1; AJvYcCVvitWDXmAChsJpEyokr6LSc35vutS6nBGkzjlpqXvNneS0t24VFKNP1BjhujrmCofm+brT7x+tGbsM@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQss74Yl4rTkTE22sBp+KEE8Zq4LiXTNktIzENo3RmAlPEw3pp
-	N9IdM96tHXNG2OcQvNtbkRL1+Bi7jf3IMhwtV3AxoihXWrYHRDzhDX/u+DbwWJ15c4i5gFc+P4y
-	sEHe5eMjbNvjd4Yuw2CTdVxKPr7XlBVRS0FOWoLBH3ty/KdZ8XPStiRanOVFcd/UW
-X-Gm-Gg: ASbGnctVnYquryPztzPhMH1S/5l/mxWFf+4A18KC6XHJk3PhoaYmJlv2q7t5vEJ+FHe
-	aGBq/07Fb3ZIBwl5ire8Fbh2IK9dqP8rc0XQ6lbnDjOZ1mvMzx7LX4YGh/WYrQgi5kUyAaWXDTo
-	f1HF9EqIlg2Z7vcmyNm0KwnYIcodkCcxihH8nGZ5hlrZZjFR9gx7qvw6FElrsZOvAU3JShMJpqe
-	ydTSKLsXmz1w5uV816gHcHurd4bo7+0ZvQR8YCnjkB6qXUzy4S59p4Iun+6baTfzrFoLlvQFCQe
-	c7/cpo1DNiM8NNpDUoYuL8mYnSG29RUQiq5mCDCJ5MazAFV/Rd8mp0q/K7hXgbG1dvI2pl6Qgwx
-	DozlsEbnvPRoG5ykM6TdEwlHTIt14iv76gHAFOlgTZCtB1PnXb1FPM3ar
-X-Received: by 2002:a05:6214:27e9:b0:830:4f29:a648 with SMTP id 6a1803df08f44-87ffb112d3emr22293356d6.6.1761643358070;
-        Tue, 28 Oct 2025 02:22:38 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE1ZreXF9W3AcLutVyZajvD/Nw87lTiLoKTGKUZuS/I2lkFW6ZVkmxbJZsXQ+QjTyDQ5ip2zw==
-X-Received: by 2002:a05:6214:27e9:b0:830:4f29:a648 with SMTP id 6a1803df08f44-87ffb112d3emr22293176d6.6.1761643357549;
-        Tue, 28 Oct 2025 02:22:37 -0700 (PDT)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d853077e8sm1038621166b.14.2025.10.28.02.22.35
+        d=1e100.net; s=20230601; t=1761643450; x=1762248250;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=0tCQxocYdhckVFualS/ORMJEwcZ+WPRq+V/HGiNgJY4=;
+        b=r8sQUaBwtJePLifU2Js3zLMwOzYb0TP+/zp9/hCnPLtB/K6cgpwVqaBD3hqngd39y2
+         l/u2R2/z1E7Iqcoajxb5Ho6TpUHEj8ffIzAi4T1o3BjfGLBclOiTB+j7R596POCUihBX
+         uQ5kz99g5r/Ls1ZV9uUAO46no/4kbXQZj443BnwB3YHEmXbClc4IbKJqfF07elIdwvMa
+         Yk1FXEAzbdi6rOeirvzFbyIt/Rk4GRhcqg0UkqSOceN5y2/debgWbZjGHBtqt3ZUB3Fs
+         Zt4aaMJfAdmk2pixA/WfZwozQG0sfeaeM5JY3gkZf8OUPJyYDN5CEVyAa6CA4/D02K90
+         VUzw==
+X-Forwarded-Encrypted: i=1; AJvYcCWGMe+roJbX8MDGmAvcCh6gPBHql9LMkRfimBwmCVol92taw137UmgFrGiNp6cEWwacmgenhonSIfJ5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/hYuWW0tH6PIDLYMuYFV5dXBgHCbTgY8OpoGIfxYQylcDRt8n
+	4HteUoEAvggrU5W1s2peVlUgiquYXHGqDeWqEp+dSHydyaZ1UyLJ54CS+8ZOGYQALIw=
+X-Gm-Gg: ASbGncuYtwfwiu/qBk3FIG+/CFB+xhN6a+PfrT1A+Cm0SOhhx/X8ywvV9KR0CGyaZVT
+	KDSqy0iz/cKvF7q9C3Qjqcv0V01a8MWFhAJLsHLHC1W41YW9i57C2vGCG52yS51UX6y5hdsOh4S
+	nqJgUJaFcsq48dKNMAhW0E/PekKhvLu+4LtMBS6HlmE0OVhQnGdc3/SXMzmtXAS4+EeuJMS6Y0N
+	1mftV70u/ZWcQV2wPZmR9A2VDmsgi3ovhuvV1WQzpYgts58W7/5xBQHrwraZFjD9J8UASJKjUej
+	8SLvUcO/XinqbCAVBFFGOBl9jFFHFLmIyCIk+mVbwlwe5trAamuoSqzV9530h1NL8KSEewMmAkG
+	6FkTD//mk2D4pvbfJKwbgwIfSZoQjJWVPXMPAv2rXFhf2IQrso65QIjCSdj4Rp5jPhvJuKc2E4I
+	WvnXZgVIfJvemRlXLYmT5xgInjx5/wIeAS5r5vob0cBFeKVVGAfeaOReWDVMilFuFQudGYWKp57
+	58XmzKfGGTuwXTwbmzBndhhv3o=
+X-Google-Smtp-Source: AGHT+IGfDUGtMbK3LaipFusfcvhLMXyePNby/HE4OT8IWmTabw5qM3H/CNIe1K6Q4Ny3QldX+OWr2g==
+X-Received: by 2002:a05:6402:847:b0:63e:1e6a:5a88 with SMTP id 4fb4d7f45d1cf-63ed849e9f1mr2513657a12.24.1761643450214;
+        Tue, 28 Oct 2025 02:24:10 -0700 (PDT)
+Received: from localhost (2a02-8388-6584-6400-d322-7350-96d2-429d.cable.dynamic.v6.surfer.at. [2a02:8388:6584:6400:d322:7350:96d2:429d])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63e7ef82865sm8450241a12.9.2025.10.28.02.24.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Oct 2025 02:22:37 -0700 (PDT)
-Message-ID: <a9da8c31-fb88-4350-96a4-de61d68fd756@oss.qualcomm.com>
-Date: Tue, 28 Oct 2025 10:22:34 +0100
+        Tue, 28 Oct 2025 02:24:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] soc: qcom: pmic_glink: Add charger PDR service
- path and service name to client data
-To: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>,
-        andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20251027212250.3847537-1-anjelique.melendez@oss.qualcomm.com>
- <20251027212250.3847537-3-anjelique.melendez@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251027212250.3847537-3-anjelique.melendez@oss.qualcomm.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 5ufYqXaum1K960zTHZfcYu4nA-O-QYOi
-X-Proofpoint-GUID: 5ufYqXaum1K960zTHZfcYu4nA-O-QYOi
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI4MDA3OSBTYWx0ZWRfX3Bh2RDRjJF89
- UHhC25Mlpw88FIMn+xwS7ncGYgSJ/1W6cQ4CmNMtmkHB/fHHBCIjUfZ9sk4tXpS2LZysIbYRlTM
- BHt2R6FcWPZ1qyWF/7GZPU3z+2o2O4J0CyG6x3vonjBSE8j1YYx4iQBb5dcsHP5PXZdu7hyd1YH
- Bj4LfWve4mz6OJhDMNNdshRUW9BAe4/I+THfwnf8wErXL6xl5KTzO94yAws2Q84xt3WOHionEZe
- s/haAQBa+oRssgNjFxNalvAvy6693+slFP5mZ6gW7ssSjzbwS25cyODe62jBWZC9i2fSiY/RyiO
- fP7GzXEMdquJuAFlTSC/LmwHnW01Xu6k4BDfxBBNp1cTk0Arf75pjN5AS2Em/pC/oavYOjpSrd7
- Q9l7KxaGwZCt5cbpAj7X8ENkVX6qsQ==
-X-Authority-Analysis: v=2.4 cv=R60O2NRX c=1 sm=1 tr=0 ts=69008b5e cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=WU2mBd_dA-PMypUZboQA:9 a=QEXdDO2ut3YA:10
- a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-28_03,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 lowpriorityscore=0 phishscore=0 bulkscore=0
- impostorscore=0 clxscore=1015 spamscore=0 adultscore=0 malwarescore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510020000
- definitions=main-2510280079
+Date: Tue, 28 Oct 2025 10:24:07 +0100
+Message-Id: <DDTUHFIN3IEK.3FY5IS9S73ASO@fairphone.com>
+Subject: Re: [PATCH 1/3] dt-bindings: media: camss: Add qcom,sm6350-camss
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Luca Weiss"
+ <luca.weiss@fairphone.com>
+Cc: "Bryan O'Donoghue" <bod@kernel.org>, "Robert Foss" <rfoss@kernel.org>,
+ "Todor Tomov" <todor.too@gmail.com>, "Vladimir Zapolskiy"
+ <vladimir.zapolskiy@linaro.org>, "Mauro Carvalho Chehab"
+ <mchehab@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, "Bjorn Andersson"
+ <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>,
+ <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20251024-sm6350-camss-v1-0-63d626638add@fairphone.com>
+ <20251024-sm6350-camss-v1-1-63d626638add@fairphone.com>
+ <20251028-defiant-visionary-rottweiler-f97cda@kuoka>
+In-Reply-To: <20251028-defiant-visionary-rottweiler-f97cda@kuoka>
 
-On 10/27/25 10:22 PM, Anjelique Melendez wrote:
-> Currently, the charger PD service path and service name are hard coded
-> however these paths are not guaranteed to be the same between PMICs. For
-> example, on Kaanapali and Glymur, Charger FW runs on SOCCP(another subsystem)
-> which does not have any specific charger PDs defined.
-> 
-> Define charger PDR service path and service name as client data so that
-> each PMIC generation can properly define these paths.
-> 
-> While at it, add the qcom,kaanapali-pmic-glink and
-> qcom,glymur-pmic-glink compatible strings.
-> 
-> Signed-off-by: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
-> ---
+Hi Krzysztof,
 
-I think this change disqualifies Glymur from having a fallback to 8550,
-since it couldn't have worked without ignoring the PDR
+On Tue Oct 28, 2025 at 9:54 AM CET, Krzysztof Kozlowski wrote:
+> On Fri, Oct 24, 2025 at 02:23:59PM +0200, Luca Weiss wrote:
+>  +
+>> +  clock-names:
+>> +    items:
+>> +      - const: cam_ahb_clk
+>> +      - const: cam_axi
+>> +      - const: soc_ahb
+>> +      - const: camnoc_axi
+>> +      - const: core_ahb
+>> +      - const: cpas_ahb
+>> +      - const: csiphy0
+>> +      - const: csiphy0_timer
+>> +      - const: csiphy1
+>> +      - const: csiphy1_timer
+>> +      - const: csiphy2
+>> +      - const: csiphy2_timer
+>> +      - const: csiphy3
+>> +      - const: csiphy3_timer
+>> +      - const: slow_ahb_src
+>> +      - const: vfe0_axi
+>> +      - const: vfe0
+>> +      - const: vfe0_cphy_rx
+>> +      - const: vfe0_csid
+>> +      - const: vfe1_axi
+>> +      - const: vfe1
+>> +      - const: vfe1_cphy_rx
+>> +      - const: vfe1_csid
+>> +      - const: vfe2_axi
+>> +      - const: vfe2
+>> +      - const: vfe2_cphy_rx
+>> +      - const: vfe2_csid
+>> +      - const: vfe_lite
+>> +      - const: vfe_lite_cphy_rx
+>> +      - const: vfe_lite_csid
+>> +
+>> +  interrupts:
+>> +    maxItems: 12
+>> +
+>> +  interrupt-names:
+>> +    items:
+>> +      - const: csid0
+>> +      - const: csid1
+>> +      - const: csid2
+>> +      - const: csid_lite
+>> +      - const: csiphy0
+>> +      - const: csiphy1
+>> +      - const: csiphy2
+>> +      - const: csiphy3
+>> +      - const: vfe0
+>> +      - const: vfe1
+>> +      - const: vfe2
+>> +      - const: vfe_lite
+>> +
+>> +  interconnects:
+>> +    maxItems: 4
+>> +
+>> +  interconnect-names:
+>> +    items:
+>> +      - const: cam_ahb
+>> +      - const: cam_hf_0_mnoc
+>> +      - const: cam_sf_0_mnoc
+>> +      - const: cam_sf_icp_mnoc
+>
+> Please share the list with the previous generation of this device. Which
+> one was used here as "previous"? For example x1e has quite different
+> names - nothing with "cam". No "cam" in qcs8300, either.
 
-Konrad
+sm8250 is the big sibling for sm6350, so it's matching the names from
+there upstream. These exact names are also used downstream for
+"qcom,msm-bus,name".
+
+I don't think there's anything preventing removing the cam_ prefix though.
+
+>
+>
+>> +
+>> +  iommus:
+>> +    maxItems: 4
+>
+> I was told iommus might differ. Are you sure all of them represent the
+> same (e.g. not specific iommus for specific purposes)?
+
+I don't really know.
+
+These 4 iommus are labelled 'msm_cam_smmu_ife' downstream. There's still
+more iommus for more hardware blocks: jpeg, icp, cpas_cdm and lrme.
+
+Maybe someone from Qualcomm/Linaro can explain this further if
+necessary?
+
+>
+>> +
+>> +  power-domains:
+>> +    items:
+>> +      - description: IFE0 GDSC - Image Front End, Global Distributed Sw=
+itch Controller.
+>> +      - description: IFE1 GDSC - Image Front End, Global Distributed Sw=
+itch Controller.
+>> +      - description: IFE2 GDSC - Image Front End, Global Distributed Sw=
+itch Controller.
+>> +      - description: Titan Top GDSC - Titan ISP Block, Global Distribut=
+ed Switch Controller.
+>> +
+>> +  power-domain-names:
+>> +    items:
+>> +      - const: ife0
+>> +      - const: ife1
+>> +      - const: ife2
+>> +      - const: top
+>
+> Uh, not your fault, but who came with this list in previous generations?
+> Instead of simple and obvious "top+ifeX" which allows growing/shrinking,
+> someone put "top" at the end which means this cannot follow same order
+> as X1E for example... Heh, it follows at least sm8550.
+
+Shall we put top as first power-domain? I don't think it's an issue to
+change the order.
+
+>
+>
+>> +
+>> +  vdda-0.9-supply:
+>
+> There are no dots in property names. Are you sure these are called
+> VDDA_0.9 in the device datasheet (not schematics)? Please look at other
+> bindings how this is being named, depending whether this is PHY or PLL
+> supply (or only PHY).
+
+The following power supplies are mentioned:
+
+* VDD_CAMSS_PLL_0P9 - Camera SS PLL 0.9 V circuits
+    (not referenced in downstream kernel, connected to vreg_s5a in
+    schematics)
+* VDD_A_CSI_x_0P9 - MIPI CSIx 0.9 V circuits
+    With pad names VDD_A_CSI_0_0P9 to VDD_A_CSI_3_0P9
+* VDD_A_CSI_x_1P25 - MIPI CSIx 1.25 V circuits
+    With pad names VDD_A_CSI_0_1P25 to VDD_A_CSI_3_1P25
+
+Regards
+Luca
+
+>
+>
+>> +    description:
+>> +      Phandle to a 0.9V regulator supply to a PHY.
+>> +
+>> +  vdda-1.25-supply:
+>> +    description:
+>> +      Phandle to a 1.25V regulator supply to a PHY.
+>
+> Best regards,
+> Krzysztof
+
 
