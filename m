@@ -1,138 +1,159 @@
-Return-Path: <devicetree+bounces-232023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66580C13BD4
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:13:02 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD132C13BBF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:12:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB7CB188390D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:12:52 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 20F363543F3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:12:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7477C2DCF72;
-	Tue, 28 Oct 2025 09:12:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 401F72BDC34;
+	Tue, 28 Oct 2025 09:12:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgau2.qq.com (smtpbgau2.qq.com [54.206.34.216])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E252DA776
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:12:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.34.216
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7C752D8DB0
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 09:12:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761642745; cv=none; b=ROwaF0dZ03WNk0vdHUdJEyOe54MSrw3imAiHfAfqhkXoIH5O2B2LvyTjiXehGJ8rmMRI7tPWz66KHR44ZIrtk0O8dMVuuRffTNAU1tK/JvG5NQL60b9CtmrVfKNIMitTht59/44juu4ryVgAzFuIJcAaw5kpUoelWAxAbqFg6Ss=
+	t=1761642741; cv=none; b=il0cniUfr9r4ufb2eIdj8sIpr7d+1HNqX8zbk2mDGb0YhnRtVKKLriUX7hzn0cdfGN5ZmYGd8XC03RyyL1JFsV3lYzMYIG+8uhFnVt4mkPpwSFZnWuqlldT7SLmeZWSzIJFw1Vtc5loI/9ORAF5gWwVQCZc8bTA5p14K+WMOJ5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761642745; c=relaxed/simple;
-	bh=5+4bk9ZtMgv+Y+lVMwmUqgEgJj2gO/6czxH+VQqjsOw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=erGvrfNp0m0oeDKxxs5V+2oKG2Pt+GVxnLo7XwsfSnLmsF36e8Gn451FFOgIpRlNuKfNqEVzuFNP/QdL7mouhhWv0x0WlsotPIwFLF9m5dlRhkUUVF3rIjqEoOu01N3gURItEYLEFT7vr9QOiNXSJGvsHHNWv8trPlG048VkCWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.206.34.216
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip2t1761642629t75bdeecb
-X-QQ-Originating-IP: SWPYxiJW7sXMOgywlHY286iO5iMgqwJ6qjkrQv1EkKI=
-Received: from [IPV6:240f:10b:7440:1:27fe:5767 ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 28 Oct 2025 17:10:24 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 1404758684792863449
-Message-ID: <9BE63A25A37DE781+3dfa1aa3-a0d3-4877-94df-6e55c92a9773@radxa.com>
-Date: Tue, 28 Oct 2025 18:10:22 +0900
+	s=arc-20240116; t=1761642741; c=relaxed/simple;
+	bh=g3pvM43euoTNMkyF3tnXObOAlhsabiDRTZkgJQ8/AzY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jO74/sZJdR5+PuokDKlS77q/0dadqz2pY6ib2GQDkIiJ+uOQRuDBYLJM5LfM5n9iF9dsxFnmUADBZcdHLL9eVMNchKnbJctf1SbheOzFsGezwMRtI7s9k6mInmEhaxqao6Yl/teLKIunaIIYzvPv20aBRyGBmIqtlXMX8vZOJGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-5db3ec75828so1767540137.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 02:12:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761642738; x=1762247538;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eb9kW5nZhZJglY2El2oztjCtmhGLcr4GvZ4KYhM1Wpo=;
+        b=bklyF7WSvWnYBbMF7Z88hAotWLEKilnfdIBt8XKWlsglXmKCCNPVi0yqhOjuS5r8am
+         rBSAn9lr3Ia6XvPtPQUQeaZz3ehmkDW6ZMAps+e1yrbheYlL9EyPr4Tio6bTcgmDtRNh
+         ekhbXORusNrGkoLsB8+ZcPoGXfA/W9shbjj+htbhdqHa0IdZR+8IIO68wHE6Etjtte69
+         Ee6QNLLuEt6At8wB+/rTEi1vN29Lp6cMrE0dFgcNYlNgrnoxAzeYkgoGV5Z14XMg9OGE
+         lwVo9mUXnnFc9anjchvBBbIWOxrIrP0Pso3zSzCZdoKvzGFexKIh7yvQcoJ1lfKm+cqo
+         1Mnw==
+X-Forwarded-Encrypted: i=1; AJvYcCV+37GNNccJyR/GlzTsKy8tt7IRJStmm1degG+Qvcs9VO1Z6IlhWt/+iE8q8a162naIGrGyltQRFXwT@vger.kernel.org
+X-Gm-Message-State: AOJu0YyC8FXWSR/PJLjMAOSw+CmRbhtCgWhJXRYu5URIUpz9RLz55Rtu
+	1lJlXM+6bnp2cF5uUqFYg3xwOR/pbiDRieAVPu87+1kDy5rCcqU8Ps+KnlCsBQUhSKk=
+X-Gm-Gg: ASbGncu6/qfdjV8N7wgMc2cuDjNsjhrT3JHYbTs7l1COhMm2qUnVvW8n9dqBNgHp8eV
+	2XUZU3wmN156q4a1rvpp2mM1WnRoTTgkDfmEhwFFxzn66+819Lg7hWmJEkV+R1rtVBF/A0fgNbh
+	CPElXHTOFd1EF2GlTPdWNp4/2s8diWBB2McQrhslu1s50MMSlZO9RTKdmlKOygQq+M//+RExSrD
+	fY+zk0zh3mOVeWHb7l1cK6Suz1vcqVGFtGmwjq7QQlE4ZF74mIP+RZQZZai4MixABeOHXbdYrD+
+	siofDHrVYVUe9czW7V4YdqiWk+jQOb6bKhrW8bYZ+oTDWvR/Vteb3rMUqXRkCUVlnpP5jvu/lkp
+	+Hp5/0rniiJTS6iH7uAr6qnUk5LWSz9CQGHuuc9+gLr4Jz0Gr3sjxwO/pMWj14+anrdk8Mp+mrO
+	1K8m1qQ/R1B/NgdjRUZLZbejG+nUJnkuHLLB/2xw==
+X-Google-Smtp-Source: AGHT+IGor43r2II/4JFZZMRj7hUcjQ7UOS93cm4GSbR53uCSszXz012ulro6D46TNxOi2i8ysW2deA==
+X-Received: by 2002:a05:6102:3a06:b0:595:ec25:3805 with SMTP id ada2fe7eead31-5db7caa4c1fmr810429137.14.1761642738121;
+        Tue, 28 Oct 2025 02:12:18 -0700 (PDT)
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-557ddb5f493sm4030088e0c.17.2025.10.28.02.12.17
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Oct 2025 02:12:17 -0700 (PDT)
+Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-5d61f261ebfso2591157137.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 02:12:17 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCULTZdMWaCRlouoIl8XobumSgxadgljf3wop6OTPheazrCxFnnDPxoQWs/Zx3jOhoj8847zkNZl1rNs@vger.kernel.org
+X-Received: by 2002:a05:6102:f8c:b0:59c:5e29:dd95 with SMTP id
+ ada2fe7eead31-5db7cbbbd00mr906150137.26.1761642737253; Tue, 28 Oct 2025
+ 02:12:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] dt-bindings: arm: rockchip: Reorder the Radxa board
- entries
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jonas@kwiboo.se, dsimic@manjaro.org,
- amadeus@jmu.edu.cn, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20251027122641.39396-1-naoki@radxa.com>
- <20251027122641.39396-5-naoki@radxa.com>
- <67e7badd-4b38-4f93-872b-e51a43281d3b@kernel.org>
- <6B986FE9E161F74F+f2826946-a3e9-4618-b5c8-6e29f9f6b83c@radxa.com>
- <1fc497ee-3363-49c9-93eb-20acd4373df9@kernel.org>
- <A39F9BCC6572BA03+67736ed4-86a0-4a78-98af-b2f39aeb785e@radxa.com>
- <20251028-cunning-furry-slug-4fd3dc@kuoka>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20251028-cunning-furry-slug-4fd3dc@kuoka>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4a-0
-X-QQ-XMAILINFO: NvGGTAUhB2iWHb0P40L9ILh3FLZEsOuhmvWioYgz8sdmcjpGSrdjc9l2
-	jD5xRMiZhVGZG4yty6Phpwb5mvZL8KZXBznvANSq5x5BBOrbcxsWxkwVHcIS4qLz3FvYCCp
-	se6igFkxCgEPid8FfwUlRb2m7LGnDSIluHYix3SH4JznFnABtn8lsRR/df9sUItCvRkClpQ
-	HnVhKAETtCe5N0TedqjT/gUjXjBpTx4fzX4vORamnvBd5IAFTfzrRb4PvgQpbLArFT1lXvL
-	4drG0nhL/xzS0JlGJgQm9B9C2WWo740PccR21RJdRsJZ17qPtBXpIK/4mR4+yCNujvPYP6I
-	DJIasI5RSgg15Mx3z8uLcTBF8oe9fFeKl4/RM8N+sAKjIEsfWZVtqVyVGSDepTrW2VPVQvx
-	9P40Uu7UITGONSvqqJ9fGLioxwn6p7kJMYW/jhpEBUC2+CaZ5So9GFJ0YZoTNC28nFCDeW/
-	Omvei+Rshds+b6Z2Jstta66Q6hBkVgULNvSLwEcerbOzJtp1Ve4XE1HXTMvF2mnhaAjh4j9
-	gM70WZytU0bRFDYHAK98Wtg4GtX4yisGu39XRiWt1sLb5cruuGnRvVC5wTw0iFj9vtpO6s8
-	o8a34QNq7u2VeJssbp3wMYST8LLFaWIwKRQoGxqcLaoNRjGW5/P+BACEG2sfo1ae8FZbbgI
-	jNmvSt7cJSkBuMieDntnPJh97M52RLWUscVVaH62AFp/pJGUs7fIeNQxSYFrZMQ17zMekbr
-	gQlFIRFpjEIkjp9RYr8rkZ1NQzZxNb/sE0s2JQMOkEwUgm/UsTj/zDTwDuaL2gLGNAIcERX
-	xgcyp7iEQj1wzSYg5GREtIYAe0sp1ReIVc1vO7FiJsxfYv+nmcaeu8sh343lqCcblnEpzWA
-	qIQ17tZthb1HFcOCszolGfk0o92xzuysstHGDgS+qT+en2SK04StMpf2lnPZujHOm9XJaN/
-	to5cYrX/mWcelq80vFgvGl4tUMq9EBwp4Dsw=
-X-QQ-XMRINFO: OD9hHCdaPRBwq3WW+NvGbIU=
-X-QQ-RECHKSPAM: 0
+References: <87o6prsl2z.wl-kuninori.morimoto.gx@renesas.com> <87jz0fsl0u.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87jz0fsl0u.wl-kuninori.morimoto.gx@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 28 Oct 2025 10:12:06 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXz9egr_tye9CbVRMJws_Y-jh9jwCvTTOq0JRar7Zd_Xw@mail.gmail.com>
+X-Gm-Features: AWmQ_blYPEdo4BgGxuQ_Ho5uWeROgqH2E4WHi9ATSE8NxQYZidHzYlYDOH0zie8
+Message-ID: <CAMuHMdXz9egr_tye9CbVRMJws_Y-jh9jwCvTTOq0JRar7Zd_Xw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] dt-bindings: mailbox: Add Renesas MFIS Mailbox
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Krzysztof,
+Hi Morimoto-san,
 
-On 10/28/25 17:57, Krzysztof Kozlowski wrote:
-> On Tue, Oct 28, 2025 at 04:29:41PM +0900, FUKAUMI Naoki wrote:
->> Hi Krzysztof,
->>
->> On 10/28/25 16:26, Krzysztof Kozlowski wrote:
->>> On 27/10/2025 23:30, FUKAUMI Naoki wrote:
->>>> Hi Krzysztof,
->>>>
->>>> On 10/28/25 04:08, Krzysztof Kozlowski wrote:
->>>>> On 27/10/2025 13:26, FUKAUMI Naoki wrote:
->>>>>> Reorder the Radxa board entries alphanumerically, with the following
->>>>>> exceptions:
->>>>>
->>>>>
->>>>> Why? You must explain that in the commit. What sorting is being used by
->>>>> this file? Why do you think your re-order matches that sorting rule?
->>>>
->>>> I understand there is no rule, only your preference. Thanks.
->>>
->>>
->>> Really there is no? Are you sure?
->>
->> Could you please tell me what sort of sorting is being used for this file?
-> 
-> I don't know. I am asking you, because if you re-sort something you
-> clearly must have know the sorting rule. Otherwise without knowing what
-> is current sorting rule, how can you be sure that you sort it correctly
-> instead of just making a mess more messy?
+On Tue, 28 Oct 2025 at 05:33, Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> Add device tree bindings for the Renesas Multifunctional Inferface
+> (MFIS) a mailbox controller.
+>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
-If you don't know, how can you be sure my sorting is just making a mess 
-more messy?
+Thanks for your patch!
 
-I'm going to add a new board (Radxa CM5) to this file. First, could you 
-tell me where I should add it? Second, could you please tell me why 
-that's the correct place?
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mailbox/rcar,mfis-mailbox.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mailbox/rcar,mfis-mailbox.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas MFIS (Multifunctional Inferface) Mailbox controller
+> +
+> +maintainers:
+> +  - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> +
+> +description:
+> +  The R-Car multifunctional interface (MFIS) provides an interface between
+> +  the different CPU Cores, such as AP System Core domain and the Realtime
+> +  Core domain, SCP Core domain and AP System Core domain or Realtime Core
+> +  domain and AP System Core domain or Realtime Core domain.
+> +  The MFIS supports the issuing of interrupts for each CPU core domain.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - rcar,mfis-mailbox-r8a78000   # R-Car X5H
 
-Best regards,
+renesas,r8a78000-mfis-mailbox?
 
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
+> +      - const: rcar,mfis-mailbox-gen5    # R-Car Gen5
 
-> Best regards,
-> Krzysztof
-> 
-> 
+renesas,rcar-gen5-mfis-mailbox?
 
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    mailbox@18842000  {
+> +        compatible = "rcar,mfis-mailbox-r8a78000", "rcar,mfis-mailbox-gen5";
+> +        reg = <0x18842000 0x8>;
 
+This is an 8-byte block in the middle of the MFIS register space.
+Perhaps the DT bindings should describe the full MFIS block, and not
+just the mailbox part?
+
+> +        interrupts = <GIC_SPI 4362 IRQ_TYPE_LEVEL_HIGH>;
+> +        #mbox-cells = <1>;
+> +    };
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
