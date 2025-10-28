@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-232051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ACBBC13E00
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:41:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5886BC13DFA
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:41:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DA2ED4E284E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:36:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42523586A1D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 09:37:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 965392E764E;
-	Tue, 28 Oct 2025 09:36:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0F1F2FFDC2;
+	Tue, 28 Oct 2025 09:37:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jb6M25ei"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pFWREluD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E55B2153EA;
-	Tue, 28 Oct 2025 09:36:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A63CA27FD74;
+	Tue, 28 Oct 2025 09:37:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761644182; cv=none; b=CFYJ4K+w/W2voov0FvEiIaUo71kURpyaGuGsGDNGa1OY1WPHCm+hqfgaUDMYfnjXFS1MoxzfhFHuu5GjNNmG+tNwRWi9QYqUAXtwEu4TmTd+9EMVzkFAZ/TfXM3bPVg7ycnLOZwS5AdwrpAuYBu1BPwt9wI1ebweREuYyGBnFiM=
+	t=1761644246; cv=none; b=CGjXKYxc4AuIEqtj3EEdWgHQaTr9/VRW6bxT+zDnKLNjbMzjf3DLCPu6VAomuVagz6LEEY7RJcxNgNikKQmdkJ0GJ86Qotd/QWLyxQ3mQIOKcCnYIR5rEYzoU6z7eN+NlkIFNRbdVloDKUIKK5l1N9RnGAvAQLm+IxpWNYrTKQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761644182; c=relaxed/simple;
-	bh=/CnM+BwB4HWoGtBtLjRmY8adwf7rdmUhLpSovcchX3c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=ghi7isvwRFHYhmivXUVMFWW+fckIkjKBN392LGneDHuRcGNSvnotAFFAofjgxBMcYu1NbwbyBhw+EEm8PrX6JEgHwShMHK790P1yurSglXDs5X7ipI0GODGy7cgau/Pq//A7zFu1zjZdzgbqf837OZxKhIMB1hnaggrX3R7o7Y8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jb6M25ei; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7D50C4CEE7;
-	Tue, 28 Oct 2025 09:36:19 +0000 (UTC)
+	s=arc-20240116; t=1761644246; c=relaxed/simple;
+	bh=GDNRBS7USQzBWPlLsSGDE6NhCshXeRRSSiGMS+r9Hcw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=N7nk3NqHfH0rmGCE+iT4LIq8LsWRfDIRKbsKA9mGmhRje+pDJJdob8HvFBBNVimFDKVK7kelNnXr2DIeQoVtSnHJ9lEZ2CQu/F0Ksf3CyGOR9Pzb+haOpM94vBhVZePGFJeTaJp+zlhzsfbtiSqOg82Zreyl78lLhWZs2ie1UNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pFWREluD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC975C4CEE7;
+	Tue, 28 Oct 2025 09:37:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761644181;
-	bh=/CnM+BwB4HWoGtBtLjRmY8adwf7rdmUhLpSovcchX3c=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=jb6M25eiwvmfBqF1TxlJXLovlSNw7g78WBNmlA6vokpLm2haJrAUMMZ3J8B+K6I5u
-	 xGe4S0Okzi18az/OAP825tHMtU8I+9Rqr8UIjuJIhtBMYUqbJ5TDkK9zvINmt0iisl
-	 B2QAV7mGZ70Bt1YjYyrQgGm+z3nBz3oQKPx9di2dchkbnXnxW+q7ei3/IibyZ+lhD0
-	 c/ZVakc+oL0URqSVM5dTtsFwahdGyC8nwuwL0mj4OQ7zOyprlo1TgO1Z20bIxTFAiP
-	 7NOywBIEETZN5QF27h6vNq0E2vylRbap3IdZ6XqKv9eyVidVuQtC1S32OG/4kUKrWn
-	 esMpwzp+dPSAA==
-Message-ID: <0d9895d1-9c4a-406f-858f-fcb318b9f04b@kernel.org>
-Date: Tue, 28 Oct 2025 10:36:17 +0100
+	s=k20201202; t=1761644246;
+	bh=GDNRBS7USQzBWPlLsSGDE6NhCshXeRRSSiGMS+r9Hcw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pFWREluD3irQI3yfrft+mpT8TTkde5vCAYtNUAYmO/AdreMcAt2HsM0HjEVDZHA92
+	 wvtYslOv/atQqg+mK/KZB62rl0DZjPoF3vF1+Wu5Dqqz0cYQ/xYXohXdxZ/AYBRjFp
+	 zyJDKcXbXWOuSkxek+bixDVKnGhSKa5S3oKnOzsmiuV9GrdsZjNbJ5q9EhYyTydxpX
+	 svA+/WVKLQLL12/GLnEczdkorMVR+ssFTIs/GTYeq3GeWGMvJLkggAMcrICWZBbM/b
+	 nYpeP4sVgrygPWn27HiULWUX7GQAdkvV4TG23hBgWNgW906HJndSrsTg0205Si7MoD
+	 d/FLtFthUI36A==
+Message-ID: <2f4e7f94-2921-493c-94fa-45749a060bc0@kernel.org>
+Date: Tue, 28 Oct 2025 10:37:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: intel: Add Agilex5 SVC node with memory
- region
-To: Khairul Anuar Romli <khairul.anuar.romli@altera.com>,
- Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 1/3] dt-bindings: arm: rockchip: Add Radxa CM5 IO board
+To: FUKAUMI Naoki <naoki@radxa.com>, Joseph Kogut <joseph.kogut@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Mahesh Rao <mahesh.rao@altera.com>,
- devicetree@vger.kernel.org, open list <linux-kernel@vger.kernel.org>
-References: <cover.1761643239.git.khairul.anuar.romli@altera.com>
- <a3182556c07839dcd9227fa6a4a9d295507f3e8e.1761643239.git.khairul.anuar.romli@altera.com>
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Steve deRosier <derosier@cal-sierra.com>
+References: <174735136138.1544989.11909422896170025756.robh@kernel.org>
+ <20250528221823.2974653-1-joseph.kogut@gmail.com>
+ <20250528221823.2974653-2-joseph.kogut@gmail.com>
+ <20250529-impressive-real-monkey-a7818b@kuoka>
+ <6443BD03B4C4F1FE+d20c3903-e2dc-4c2b-8f6e-fac38f242898@radxa.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,46 +107,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <a3182556c07839dcd9227fa6a4a9d295507f3e8e.1761643239.git.khairul.anuar.romli@altera.com>
+In-Reply-To: <6443BD03B4C4F1FE+d20c3903-e2dc-4c2b-8f6e-fac38f242898@radxa.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/10/2025 10:29, Khairul Anuar Romli wrote:
-> Introduce the Stratix10 SoC service layer (SVC) node for Agilex5 SoCs.
-> The node includes the compatible string "intel,agilex5-svc" and references
-> a reserved memory region required for communication with the Secure Device
-> Manager (SDM).
+On 28/10/2025 10:33, FUKAUMI Naoki wrote:
+> Hi Krzysztof,
 > 
-> Agilex5 introduces a dependency on IOMMU-based translation for reserved
-> memory, unlike prior Agilex platforms. This commit introduces the
-> structural changes needed to support this feature once the IOMMU driver
-> is upstreamed.
+> https://patchwork.kernel.org/project/linux-rockchip/patch/20250528221823.2974653-2-joseph.kogut@gmail.com/
 > 
-> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
-> ---
->  arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-> index a13ccee3c4c3..15284092897e 100644
-> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-> @@ -841,5 +841,14 @@ queue7 {
->  				};
->  			};
->  		};
-> +
-> +		firmware {
-> +			svc {
-> +				compatible = "intel,agilex5-svc";
-> +				method = "smc";
-> +				memory-region = <&service_reserved>;
-> +				iommus = <&smmu 10>;
+> On 5/29/25 18:19, Krzysztof Kozlowski wrote:
+>> On Wed, May 28, 2025 at 03:18:21PM GMT, Joseph Kogut wrote:
+>>> Add device tree binding for the Radxa CM5 IO board.
+>>>
+>>> This board is based on the rk3588s.
+>>
+>> Do not attach (thread) your patchsets to some other threads (unrelated
+>> or older versions). This buries them deep in the mailbox and might
+>> interfere with applying entire sets.
+>>
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Please explain the sorting rule used for this file. You must have known 
+> the sorting rule; otherwise, how can you be sure this patch is correct?
 
+Huh? I don't have a clue about sorting rule but if you mock my review
+let's make it different:
 
-You did not test your code.
-
-Plus, where is the driver? Please read submitting patches in DT directory.
+NAK
 
 Best regards,
 Krzysztof
