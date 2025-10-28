@@ -1,63 +1,55 @@
-Return-Path: <devicetree+bounces-232084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98943C140C3
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 11:18:20 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF500C1417A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 11:25:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 437BA198020F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:18:42 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2806E4FD621
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 10:22:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4739030147E;
-	Tue, 28 Oct 2025 10:18:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37D8F2C3770;
+	Tue, 28 Oct 2025 10:22:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JD1RHsEV"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="nK6B7cYK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D029229B8E5;
-	Tue, 28 Oct 2025 10:18:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE61029CB3C
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 10:22:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761646693; cv=none; b=m/HBnRGO9Lsjg/3hMePosS1uskSgNcEsRp4mfc9BDex1uvAmptaotDzSLqxDCzlDfCEDmW39rp93Z2ji8vhsyARuMHTpPlS4TqGRU90gBwZdx/vRYDC94QehURiNPq5Emg5jEGg0BMoO9BK3fit8edckJKBoiigeXx5US0eHu7I=
+	t=1761646964; cv=none; b=DVnP/lO3yh/UfOHO8f1oYkcivhbDBPk1LSbohMAJv1CGCw5wYWaFl4S33o2dig/6S48t3StXjLt9cKRqwRb0ugazcLZo4vopLQc6AhBra09k7S2GazuRTNCUb3ott53q8CMlIvAe2uoSUpUfLwSgAr05pwFhdRtGMM5VUlrGJEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761646693; c=relaxed/simple;
-	bh=DW/2v99mhM/LvduFkpug9oJAgbm5ruwCzveIULjofKc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=TphkGeaWTkR+FmnM1YupOHoX76pKgMiiGWRSbWK2Knas1/STVyxZxKpT2+z0RvwHIbrlbrxjNLrD1Py2a3eSuFtqUO1/xm6bk2g26bfXP3CkQ/ynA0+CsaiCAGE+Tkg3zPAzxsG0OFhkh9c5T748+OJrY6VBnuapKbTRyiZlsIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JD1RHsEV; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59SA3G141238177;
-	Tue, 28 Oct 2025 10:17:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	MGKDPJuZtjAxrjYhGFT8RJZr9Zo2yfRsW8QGozN2CcE=; b=JD1RHsEVQMfZw6Bc
-	0ujWn82mVDZyit5vVP+3rnirjfvNrHKnQ2/D2mSoz9u1tpfEEkjF2oRh6X8BRmMd
-	fRNJONfBLsckyqgXyDnN3fL0HlDyEJffIaoU/5c6vxwZsMgWhWhwFqDFPC1zwTTb
-	BX5AJsW/7tzYm48aII9UCbJujh2uGrj86IidiMVeco5E4tsWo++xlEnlxlHaRDxB
-	8Oa1PZ0wav73WziCZOQQNdQE6GtClG594Htp0CfrtrZLs5JqUX2Zf7X2rbRRC1cs
-	AT19/6S331Doco6qH4F0hZWP2unyFDaKNGdb4/wBRtzJCRvpeVvorUBCEZ+KJ1zZ
-	1uMTmw==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a2ur3g14y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 28 Oct 2025 10:17:55 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 59SAHsS8013435
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 28 Oct 2025 10:17:54 GMT
-Received: from [10.206.96.75] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Tue, 28 Oct
- 2025 03:17:45 -0700
-Message-ID: <9bddcef9-56dd-46be-9354-c47f15b900f4@quicinc.com>
-Date: Tue, 28 Oct 2025 15:47:45 +0530
+	s=arc-20240116; t=1761646964; c=relaxed/simple;
+	bh=+jYHO2zNNdgUJXuN8ugHExdRSw1IDTNhRJAWZCcSHBE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Fc3s3WZ8o7oUhy+/JzOAiclV5Y7briOJnxscDvTFQU4v+OrYbDQZb9hR9I1di5bBiqBhEoGR5ReViuuJ7o9xhuY1+zdb6o3J/6WmKivsl1ryAruX40u4KbuNttYBeCsHteD0nHOdnN5v3LLa4KmgdBv86mIquaVwex5hAzR0zcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=nK6B7cYK; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id E0F58C0BE9C;
+	Tue, 28 Oct 2025 10:22:19 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 29ADA606AB;
+	Tue, 28 Oct 2025 10:22:40 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 793401179B966;
+	Tue, 28 Oct 2025 11:22:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1761646959; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=pqtOZsRtH9DHGRp6LR0r+HDjzdovCcKVPZfJ3ZtDVJY=;
+	b=nK6B7cYKJ8nuSOGm8w0gYH5wDdp25LHCaubantKLWhuFoVISMm8EGXquu74Kb946JMhzA6
+	8f+ZDjnPAWAtaDrwF8uwJ3lUb/DfTRkGRWB22/glf005AU2F4Tv11IIQq3NFtfEqs1da6s
+	loVmktq3OPX7tamdJC5q4xkSS8y7C4Mlp1JpOkRQ2brRrD6MgkdH4jnFiF4y76qcbSX6DW
+	psf5paisErJ4C2IbAgrJck42vG1sVny6XXWhZM6L2f89LxmMMPZtL/on8kUOJx9LM1oE7r
+	FizfJrf66JrdTB9hV2VkDwLRnHHwjKBbcP2yP249y/blS8qO6YIbCf46e5QcRg==
+Message-ID: <ce3f0f1a-9cb3-4721-9774-0b73f461a6e9@bootlin.com>
+Date: Tue, 28 Oct 2025 11:22:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,110 +57,56 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: lemans: Add edp reference clock
- for edp phy
+Subject: Re: [PATCH v2 2/2] gpio: add gpio-line-mux driver
+To: Peter Rosin <peda@axentia.se>, Jonas Jelonek <jelonek.jonas@gmail.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251026231754.2368904-1-jelonek.jonas@gmail.com>
+ <20251026231754.2368904-3-jelonek.jonas@gmail.com>
+ <50646b88-5746-4665-8085-09e394aa291f@bootlin.com>
+ <db36ee25-8a1e-f95c-4ac9-867379a1a5e3@axentia.se>
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-CC: <robin.clark@oss.qualcomm.com>, <lumag@kernel.org>,
-        <abhinav.kumar@linux.dev>, <jessica.zhang@oss.qualcomm.com>,
-        <sean@poorly.run>, <marijn.suijten@somainline.org>,
-        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <quic_mahap@quicinc.com>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <mani@kernel.org>,
-        <James.Bottomley@hansenpartnership.com>, <martin.petersen@oracle.com>,
-        <vkoul@kernel.org>, <kishon@kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>, <linux-phy@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
-        <quic_vproddut@quicinc.com>
-References: <20251013104806.6599-1-quic_riteshk@quicinc.com>
- <20251013104806.6599-4-quic_riteshk@quicinc.com>
- <c4bhkhw6xlaqlwhbataveafav6jcsrgnazk72lkgtj3fygwqjc@4bp5w4q5sygh>
-From: Ritesh Kumar <quic_riteshk@quicinc.com>
-In-Reply-To: <c4bhkhw6xlaqlwhbataveafav6jcsrgnazk72lkgtj3fygwqjc@4bp5w4q5sygh>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Thomas Richard <thomas.richard@bootlin.com>
+In-Reply-To: <db36ee25-8a1e-f95c-4ac9-867379a1a5e3@axentia.se>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI4MDA4NyBTYWx0ZWRfX1EF3sIFgt2Qw
- TMU/4Tn9tkFVdEAs3L+ssjUakiYviKALHHiVlOr4IfSaCINBMf5FnDwmccqrwZyDdM99rsGQ91A
- tKBBqNP8ydMT2NB87zs7lD0NgMnqf/mqhiOqO7TQl+vYuuVincbQJkrE1fadsuCxAREp/wOPCa5
- s7B4XgH0SL6dPnYoEe0iWHyU7R6wi2+kD3mPlEU7z7cDFDayariqC0Sxoitlo8nhO8HsYv44Ywj
- ExRSnp4RQv/A7NUpraxui4foMafDytSkhN57HVXXR4O7OCd8WW0BmK5bPmvLwwMqXbaxXq1Z/zl
- LezFnmSyzUp7wh1RQ/5ehHjJAaTPxT2HgAmA2MzTpIaNs/GuiNpDIA3RWXLhpoF/wtR28oCao50
- 9VSg2zh8SO6NJW+s2z8nRzRVXMdLfg==
-X-Authority-Analysis: v=2.4 cv=Jub8bc4C c=1 sm=1 tr=0 ts=69009853 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8 a=uennSmqHBHGcuoTQaU0A:9
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=nl4s5V0KI7Kw-pW0DWrs:22
- a=pHzHmUro8NiASowvMSCR:22 a=xoEH_sTeL_Rfw54TyV31:22
-X-Proofpoint-GUID: qrXBQMZvM0paN3xBsggAJcVzc11zzxeK
-X-Proofpoint-ORIG-GUID: qrXBQMZvM0paN3xBsggAJcVzc11zzxeK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-28_04,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 clxscore=1015 spamscore=0 bulkscore=0 adultscore=0
- suspectscore=0 impostorscore=0 phishscore=0 malwarescore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510020000 definitions=main-2510280087
+X-Last-TLS-Session-Version: TLSv1.3
 
+Hi Peter,
 
-On 10/13/2025 6:05 PM, Dmitry Baryshkov wrote:
-> On Mon, Oct 13, 2025 at 04:18:06PM +0530, Ritesh Kumar wrote:
-> > Add edp reference clock for edp phy on lemans chipset.
->
-> eDP, PHY, Fixes:foo bar baz
+On 10/28/25 11:09 AM, Peter Rosin wrote:
+> Hi!
+> 
+> 2025-10-28 at 10:45, Thomas Richard wrote:
+>> On 10/27/25 12:17 AM, Jonas Jelonek wrote:
+>>> +	ret = mux_control_select(glm->mux, glm->gpio_mux_states[offset]);
+>>> +	if (ret < 0)
+>>> +		return ret;
+>>> +
+>>> +	ret = gpiod_get_raw_value_cansleep(glm->shared_gpio);
+>>
+>> Why ignoring ACTIVE_LOW status ?
+>> And cansleep depends on your shared_gpio line, maybe it is not the case.
+>>
+>>> +	mux_control_deselect(glm->mux);
+> 
+> *snip*
+> 
+>>> +	glm->gc.can_sleep = true;
+>>
+>> depends on your shared_gpio line.
+> 
+> Does it? In this case, the gpio will always need to be able to
+> sleep, since mux_control_select() may sleep. Or, what am I
+> missing?
 
-Sure, will update in next version.
+Oh yes you're right, I forgot the mux part.
 
->
-> > 
-> > Signed-off-by: Ritesh Kumar <quic_riteshk@quicinc.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/lemans.dtsi | 12 ++++++++----
-> >  1 file changed, 8 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
-> > index cf685cb186ed..1bcf1edd9382 100644
-> > --- a/arch/arm64/boot/dts/qcom/lemans.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
-> > @@ -5034,9 +5034,11 @@
-> >  				      <0x0 0x0aec2000 0x0 0x1c8>;
-> >  
-> >  				clocks = <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_AUX_CLK>,
-> > -					 <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>;
-> > +					 <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>,
-> > +					 <&gcc GCC_EDP_REF_CLKREF_EN>;
-> >  				clock-names = "aux",
-> > -					      "cfg_ahb";
-> > +					      "cfg_ahb",
-> > +					      "ref";
-> >  
-> >  				#clock-cells = <1>;
-> >  				#phy-cells = <0>;
-> > @@ -5053,9 +5055,11 @@
-> >  				      <0x0 0x0aec5000 0x0 0x1c8>;
-> >  
-> >  				clocks = <&dispcc0 MDSS_DISP_CC_MDSS_DPTX1_AUX_CLK>,
-> > -					 <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>;
-> > +					 <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>,
-> > +					 <&gcc GCC_EDP_REF_CLKREF_EN>;
-> >  				clock-names = "aux",
-> > -					      "cfg_ahb";
-> > +					      "cfg_ahb",
-> > +					      "ref";
-> >  
-> >  				#clock-cells = <1>;
-> >  				#phy-cells = <0>;
-> > -- 
-> > 2.17.1
-> > 
->
+Best Regards,
+Thomas
+
 
