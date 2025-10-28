@@ -1,171 +1,194 @@
-Return-Path: <devicetree+bounces-232394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3621C175BF
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 00:30:46 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48812C17608
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 00:35:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0476402338
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 23:30:38 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0D4974E3B7B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 23:35:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AFF4306B00;
-	Tue, 28 Oct 2025 23:30:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 402E634DCF4;
+	Tue, 28 Oct 2025 23:35:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ta7nZkfX";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="IVCX3kpY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kOQPpC/m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D03972BE029
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 23:30:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 689212DEA96
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 23:35:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761694235; cv=none; b=Ktu/0KYI6SDp/00lFA2kr5GEoUqFZ3icX2kiqNYRcSi5t0FOABTVInPe5bV31Cta716lotJnfgfvPUfIOkv6k1N8I9FL6+n7hlmRa0IU2x6OW5olRDRzLLPgRGyoC6LU2In4uuzSMrnkbI0XrpHSSJbx2IwYLN1Y7+sibv/1gxs=
+	t=1761694555; cv=none; b=reECN6IUEvuxOWzUzLhbSAW/jjCj7TxiXB8N/TlSXdBtNHFvbAHRykfcVTgIHiR8BsW4ZO6Dis8cgEcnkGx/tPCMbQouox6YO27wQqf32AXytVUbI5CKuuIdUb1sMjzAVxSvSk/wzARG8UFuPqEcIlIlCqXkqGsbDZiOG6u+xQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761694235; c=relaxed/simple;
-	bh=QQYzuu+UNFRhwsoLlYdAVywWJIrOIBLHRRn7Jv4c5XM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cVMnzneXDvp6Ny8X59J96CrHiW8lhtW78YZyUQq1fpYMLtSxLT7vlagqoF+sTfvkjddPlC5jLQRtJ8kP5BsoZoHwfVdfog8xJ9zyAhrZxNTeXFOV8TCpiuHNdHAmRneLR667ElX8umLvXjMEjp3tofQarfMmAlrYf7gOWk5Zyi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ta7nZkfX; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=IVCX3kpY; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59SJlsvk2553759
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 23:30:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	GrqKDmod1cw8EXiAXH/BvumVP8XpB0njFSGNTmXfBao=; b=Ta7nZkfXy4phZn6M
-	Wdk8Y3Zyyfnvauwl18lhBotBpqKCBLEpAdFcIYprwmyHSM1Jn3qubwFqk/nne9QZ
-	jqfekL3+odZWnPk5k6X8xUNTWkjUtko+m4DN+qYQhhVD05nkEY6xjef+Oqxogk5A
-	oWZQGEzQk2qgaA4t7f2cvhmur83qP20AzKGnPw2WqFkIvgHNopGz8s+EV7m6Q6Md
-	hR7XmxdVxsvKKdC+Ut4kIgpBNUD/5nuy3oGra6O0L/lxAWUh7Q7Hk1N/yKG85RyO
-	udZ3n1L+LTufevgYSnG972PkxJHtU5vzav/tcn5YvbNBUJmW3OKGqPLSVIVy1j+u
-	BuPQFQ==
-Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a34a2gh7k-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 23:30:32 +0000 (GMT)
-Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-b6ceba8968dso4706654a12.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 16:30:32 -0700 (PDT)
+	s=arc-20240116; t=1761694555; c=relaxed/simple;
+	bh=pO3ezBcQxEG3Pj7tMfcTswPOd999jDNlRZTd+tb/its=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=D3ie3IVCzt+0/E2DyM1gqdi55mFjAUC/Y6dz+l36VXTjpjZKfO/CWs/B1/XpB+hNvlS6VzrgzlYvAJO/zY9tgdtElM9zev2OC5qfVECJ02vwbzxVKxuPYr5AFy7jRRqaK0JSL6mbfQacXZI3zoTphjLCOthf5BDtTSl2wPsb8x4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kOQPpC/m; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-47112a73785so41947795e9.3
+        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 16:35:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761694231; x=1762299031; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GrqKDmod1cw8EXiAXH/BvumVP8XpB0njFSGNTmXfBao=;
-        b=IVCX3kpYVrBzYre809HQsDM1nfqw3McfaB3vUNPX2piTc/rOl4hzh0lbQXxzuyueC3
-         Xye3D98X5PcsjjybAgn9fZ2glM4GaP0x1scdI6YFkcnVERgzRXPh2KbCEvXWRY1FogE8
-         GMYL15nHhssuQfXaqepoFkdOORzAH4AxOtM7fmjiBMjw7VZOYT7D5x2f8uhMP19YLsOp
-         75dxHwGlA4uqzr4PioikUtzmXi74BlsQRjG6yEpYUoqTvltSDntQ26ipZZcZ6IltqkKi
-         SuizUShYPyW2oScoesD7vi/EA0bA7Q+N3DmYlSXjwdnSjgeW7h+pwsJn5BqD1G6eIoXV
-         2/+A==
+        d=gmail.com; s=20230601; t=1761694552; x=1762299352; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=pO3ezBcQxEG3Pj7tMfcTswPOd999jDNlRZTd+tb/its=;
+        b=kOQPpC/mr/pSZI816b0Fn6HrfxFcQKig9QLpQq/T2i81OBCo/MpEQAmYLFXuicMtVW
+         89179mMigsvCEkIvqsiCgs9HLyfudd/Eao4peUhWhaUkCG+GEcbS3qOvaRK+6G4cEGpX
+         DovbewDH8zImjk6rpnaz+oA1WRu0TUq3otZlR6rw6rbLG1njtAJEcjWlHzFPblErCNkG
+         vQZ+wIZxY5MnLupPhSOBMfunuIccCHDuhD6QaPPyMfa7ykwnewec5Jw9gXPIBjp3piqR
+         6fgUgDgxqnuhFMnOtmcfRs8qVwkdEK16rW22EfU+fBRBbN5iQfgZF50LPPoLOx4X2h+M
+         QBig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761694231; x=1762299031;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GrqKDmod1cw8EXiAXH/BvumVP8XpB0njFSGNTmXfBao=;
-        b=ae3yuk5phgIiNrdX6IAQhJgXqN0qFsPcfCspXG0qzJtdqb0GrJ5kO8mrhgsm6JG66g
-         XrMXCvRqVBPfsiScx4ZKHmKpb11jj6lxDTGVD5b1YFao6o/Fk0u07TnTynUyIKE8srF9
-         jPxwHb1l1O8P42M/1As2sntBEH156MX2iUkZ2E554kCS3MxR7uWDUACznpiFG2FHT3vK
-         5f0Xs0MWjO8uBwn3oC0mKA1LT0JHfenIcGZeUoIGngGVQ1zV6c+rT6b6mmmVBVK2gpOn
-         H5khYvl/XovqhnNofnsH1ND2xyrQFxCtiponoil4U05MTjC0GywcIj4k6KxjpGmsBiOz
-         8/HQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVcap7ItK/v5ZSwFP1aE20B2yaZk2clGo9+/8KryA7NWUh7MU7BKz10Ym0HZO7e0SqEmrlyCM5/8oDD@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOfJ+2g06EpPsqF+8LAt8KAnuP93I66Y+fcaj1rsSS92jfRNSG
-	fABV15yD/5jk6XcSOpzeLo0cnzBjv3AORdAKTWiiIhdRyHLNo/GN8AdjcFd3CIvd1d+6nvOKYb1
-	wZMf+8gCUbIBmSpduRUIJhmLJXrHa521suYEkELt4wgAXKrESftSGJrzJUx3TCxasLHwDdVC0
-X-Gm-Gg: ASbGnctxM4phUjt4deb5SuYF+LlP9j1ozMmqQXQFnTF1LFSeKuy1DqoOI+A2/TTtUr9
-	tJjkISBLzV2FXII7ScEUdB/Ue9/mn5SqvQgbuXKkrisBYhszGFED3rbtxD12YGMmN2bcp7uCC5V
-	GKSf85wpvyV8J0US0xtmG+0IABG9KVRRhESo3colfY2LjhkWd2wk1xK7fUg+zxtGUS2tKHbxSQA
-	xhqEo1O8ODb36U4NCB2qYpKfF3jG1OyGGenXu3wL4b95LbI7K552nWvVk/l6bfQ0coVo4G0EHHl
-	yri1/32464ozjVDoAGFCKN1OijUYaTaRChuXoIHgeXTuhB1FYVU5K+HxYdW87AJnvcQMTCcbzuJ
-	LIex1wUaXIlrrSS5xfmjUYh4jL5q7uMFBZWR5g8Tj7Sn8UvR8haGx+3sSAwzoVkw=
-X-Received: by 2002:a17:90b:5251:b0:32d:e780:e9d5 with SMTP id 98e67ed59e1d1-3403a2a1f51mr879713a91.22.1761694231077;
-        Tue, 28 Oct 2025 16:30:31 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGeIB76rxF1ewtj7bTzAAIr67errSTWtZXbxCt6onHew8LqSAagnDxJDRLYKaevbRzo6yaifg==
-X-Received: by 2002:a17:90b:5251:b0:32d:e780:e9d5 with SMTP id 98e67ed59e1d1-3403a2a1f51mr879683a91.22.1761694230666;
-        Tue, 28 Oct 2025 16:30:30 -0700 (PDT)
-Received: from [10.71.115.47] (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33fed7e7039sm13427835a91.12.2025.10.28.16.30.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Oct 2025 16:30:30 -0700 (PDT)
-Message-ID: <54602e66-4692-409b-b520-2f880e0c3dd3@oss.qualcomm.com>
-Date: Tue, 28 Oct 2025 16:30:28 -0700
+        d=1e100.net; s=20230601; t=1761694552; x=1762299352;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pO3ezBcQxEG3Pj7tMfcTswPOd999jDNlRZTd+tb/its=;
+        b=QUw7d+kXR+Qpr5//MrRW/3LuXPdkQojgi2r8P1DBmAM21z09eEXMxHGdcuJ5GCAq5C
+         AnQ8gdznec6ikhspyiPEf8LzSsX3jhKb4nY1SqK4Io0WhsW5NGNI7Hcq6f0mOi2A81uM
+         +J8JRZmueIy2wTva91Xa41brmG+9qFDDQYWCvb520vb+f5y9Se+AOmvfS5bTPfD+V83h
+         H5C+K83JPm86dTIm6uBiHloCWTIShn9ayQNe+ceHEWdgnk0n2QqJux6WrlC2BEXqHHQc
+         PoaSVmz5VErUddpSCAK6e8Ws4ZkRSiTl7WY0jU2uzay8D9FxK0SmN6Tso3B+wUnFvvAd
+         b2RA==
+X-Forwarded-Encrypted: i=1; AJvYcCXq5UG5wO272+gMVUATLudb6UQb++fr1eKokJjxhTG7/uqPhoKZet6LbH/0sVTlzuR5O9tbAO7xPwjm@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUzkElACuSl52rVJpoNJ3mg7zZ8IC+5g1bBzL5pjavokckQ1sO
+	Zfq6JPjDV8/xI0/+M2hSKcbJx0Jjt489LJ04mmxUJymMNX+QJFPZwD1V
+X-Gm-Gg: ASbGnctvKnZ8qQ1NqGOgyzX9Rzwc3sCQ1iBrYcy4zjtJcgAU/onbFB+MLVMDkVr0jbv
+	AVylD/C1mwsqQo9l9bgQWqx6RVHtBxf1hhl83SdRgUteskc7AR0BYFS2hEW4ASUaBTP85CyuyDx
+	hxQ1IGJ289YnJ/yHJJj2GINgBGDkjm6/zGiY9kiDSznk1sxhkPsQVWsyDqYIHIhWF7W96SGlCNj
+	CFMTxszCdOBtgWoChQl7GFPQO7HHqCHy3RePKeyj6daurrbw2QPlKoluaRD63Of6vpzbWhpsgpH
+	86TV9XsIhLhGUt0tW+U3KCQl1d5UsNsloxaV3WyMG3b66CqGypQPOv2Et1gGXPf8qAYNqJXSLg1
+	nAg/poZM/+0skDIDD128cru2rtRMGM3Mg6GXDJhyvFpnY7VfWz+Rs/dBSXlK+1uRE62RWLSIOLl
+	nB9XukSIaOmLpYLanXcf+7MLU=
+X-Google-Smtp-Source: AGHT+IE+7lavUcbRiUEoBcPcWWhtl2Ye0Lqq0olW9TOJGPDFy5Ml5rtmUhOJt0ianoi/OzmsyK7njA==
+X-Received: by 2002:a05:600c:3b1d:b0:475:e007:baf1 with SMTP id 5b1f17b1804b1-4771e3b8626mr10555025e9.34.1761694551467;
+        Tue, 28 Oct 2025 16:35:51 -0700 (PDT)
+Received: from vitor-nb.Home (bl19-170-125.dsl.telepac.pt. [2.80.170.125])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4771e196a9asm17054265e9.7.2025.10.28.16.35.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Oct 2025 16:35:49 -0700 (PDT)
+Message-ID: <f99c528a19fa793035cece3f83b332d7ecafa7da.camel@gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: PCI: ti,j721e-pci-host: Add
+ optional regulator supplies
+From: Vitor Soares <ivitro@gmail.com>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Bjorn Helgaas
+ <bhelgaas@google.com>,  Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Krzysztof =?UTF-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Vitor
+ Soares <vitor.soares@toradex.com>, linux-pci@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Tue, 28 Oct 2025 23:35:48 +0000
+In-Reply-To: <wg2wpwex4vbwwxynk5salk6mbpneww76wfvznn442a2xyqrrck@a7qqqn3hjzcg>
+References: <20251014112553.398845-1-ivitro@gmail.com>
+	 <20251014112553.398845-2-ivitro@gmail.com>
+	 <20251020-kickass-fervent-capybara-9c48a0@kuoka>
+	 <2c3e4bdefb306dc89c15bebc549d854ea2b4cc32.camel@gmail.com>
+	 <wg2wpwex4vbwwxynk5salk6mbpneww76wfvznn442a2xyqrrck@a7qqqn3hjzcg>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4-0ubuntu2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] soc: qcom: pmic_glink: Add charger PDR service
- path and service name to client data
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251027212250.3847537-1-anjelique.melendez@oss.qualcomm.com>
- <20251027212250.3847537-3-anjelique.melendez@oss.qualcomm.com>
- <5uyhz4uv7ccsj7cevimqrsoywne6f5ax5j2t4uosz6a7due4ac@3x4ouutt5nwy>
-Content-Language: en-US
-From: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
-In-Reply-To: <5uyhz4uv7ccsj7cevimqrsoywne6f5ax5j2t4uosz6a7due4ac@3x4ouutt5nwy>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: JUCsAAJpqI-43_qQpAnik-WPkHVaKcWx
-X-Proofpoint-ORIG-GUID: JUCsAAJpqI-43_qQpAnik-WPkHVaKcWx
-X-Authority-Analysis: v=2.4 cv=PcvyRyhd c=1 sm=1 tr=0 ts=69015218 cx=c_pps
- a=rz3CxIlbcmazkYymdCej/Q==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=p0WdMEafAAAA:8 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=Vmq4KKF0IuPOMTWwbvIA:9 a=QEXdDO2ut3YA:10 a=bFCP_H2QrGi7Okbo017w:22
- a=poXaRoVlC6wW9_mwW8W4:22 a=pHzHmUro8NiASowvMSCR:22 a=n87TN5wuljxrRezIQYnT:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI4MDE5OSBTYWx0ZWRfX/38gbbb0N9jv
- j25ssnUEruQ5N2gWwCQhBZ6EwG/yPGoVb2M0lGkY+GeUqpNAhF6bvAfoRJYpVo7bib1W7HjSmkv
- tn79MTIv12JZPZJtCW9T5h/MfmKjEMGSoFtZjCG5b+sPeFZvgzxaM6Zw1dEnL12QW2NY/V354LB
- HPXXjD950VRHTbgyZW/EPlcryTc1Hiv58DK7Mzxq/RYnk/yckuK+7OPaOb6W3omubCee+QhwADC
- gBHiTqweUKlqMJUZZZ3F0ZzN8pWTHrWmyUTTD4OXxd6w+FqDKNA6A8OV2Dv85QKwYMGbNutIddD
- r2EqJKHlr5/eQUXUWzHRc3GI2H5pJLXeYhUzKbK+uTax4e+HIg8n4Kp0xymQ8FMUz0hUXWELJKU
- beH53iUssZdcKaNjxQ5JLAtwGMmncw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-28_09,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 clxscore=1015 spamscore=0 adultscore=0 priorityscore=1501
- lowpriorityscore=0 malwarescore=0 suspectscore=0 impostorscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510280199
 
+On Tue, 2025-10-28 at 11:11 +0530, Manivannan Sadhasivam wrote:
+> On Mon, Oct 27, 2025 at 11:22:26PM +0000, Vitor Soares wrote:
+> > Hi Krzysztof,
+> >=20
+> > Thank you for the feedback.
+> >=20
+> > On Mon, 2025-10-20 at 13:14 +0200, Krzysztof Kozlowski wrote:
+> > > On Tue, Oct 14, 2025 at 12:25:48PM +0100, Vitor Soares wrote:
+> > > > From: Vitor Soares <vitor.soares@toradex.com>
+> > > >=20
+> > > > Add optional regulator supply properties for PCIe endpoints on TI S=
+oCs.
+> > > > Some boards provide dedicated regulators for PCIe devices, such as
+> > > > 1.5V (miniPCIe), 3.3V (common for M.2 or miniPCIe), or 12V
+> > > > (for high-power devices). These supplies are now described as optio=
+nal
+> > > > properties to allow the driver to control endpoint power where
+> > > > supported.
+> > >=20
+> > > Last sentence is completely redundant. Please do not describe DT, we
+> > > all can read the patch. Driver is irrelevant here.
+> > >=20
+> > >=20
+> > Ack, I will remove last sentence.
+> >=20
+> > >=20
+> > > How you described here and in descriptions, suggests these are rather
+> > > port properties, not the controller.
+> >=20
+> > You are right - these supplies power the PCIe slot/connector, not the
+> > controller
+> > itself. However, as per my understanding, the current kernel practice i=
+s to
+> > place slot supplies in the root complex node rather than the endpoint n=
+ode.
+> > as
+> > seen in e.g.:
+> > - imx6q-pcie.yaml
+> > - rockchip-dw-pcie.yaml
+> > - rcar-pci-host.yaml
+> >=20
+> > This seems consistent with those existing bindings, but please let me k=
+now
+> > if
+> > I=E2=80=99m overlooking something specific to this case.
+> >=20
+>=20
+> We do not properly document it, but defining the slot supplies in host br=
+idge
+> (controller) node is deprecated. Some bindings still do it for legacy rea=
+sons,
+> but the new ones should define them in the Root Port nodes as they belong=
+ to.
+> We
+> do not have a separate DT node for PCI slots, but rather reuse the Root P=
+ort
+> node.
+>=20
+> There are also bindings that define supplies in the endpoint node. They d=
+o it
+> for devices directly connected to the PCI bus without a connector (like i=
+n
+> PCB).
+>=20
+> - Mani
+>=20
 
+Thanks for the clarification and context. From what I understand, the
+recommendation is to define the supply regulators under the individual root=
+ port
+node rather than in the host bridge (controller) node, as the supplies
+conceptually belong to each port rather than the controller itself.
 
-On 10/28/2025 10:20 AM, Abel Vesa wrote:
-> On 25-10-27 14:22:50, Anjelique Melendez wrote:
+On the j721e PCIe controller, the current driver implementation assumes a s=
+ingle
+root port and doesn=E2=80=99t parse child port nodes. To follow the new con=
+vention, I=E2=80=99d
+need to refactor the driver to support root port subnodes, and I wonder if =
+the
+PHY reference and reset should also be moved to the Root Port node in that =
+case.
 
->> -		goto out_release_aux_devices;
->> +	if (pg->data->charger_pdr_service_name && pg->data->charger_pdr_service_path) {
->> +		service = pdr_add_lookup(pg->pdr, pg->data->charger_pdr_service_name,
->> +					 pg->data->charger_pdr_service_path);
->> +		if (IS_ERR(service)) {
->> +			ret = dev_err_probe(&pdev->dev, PTR_ERR(service),
->> +					    "failed adding pdr lookup for charger_pd\n");
->> +			goto out_release_aux_devices;
->> +		}
->>   	}
-> 
-> But this does nothing on Kaanapali and Glymur. Am I wrong?
-> 
-> Yes, you do not have a charger PD on Glymur, but you do have an ssr,
-> for which you do need to register a notifier instead.
-> 
-> You need to be doing something like this:
-> https://gitlab.com/Linaro/arm64-laptops/linux/-/commit/2cd84e303d263d8fd5de3730714a16c29cc6788b
+Could you please point me to an example of a PCIe controller binding or dri=
+ver
+that already follows this approach?
 
-Please take a look at this change, just applied: 
-https://lore.kernel.org/all/20250919175025.2988948-1-anjelique.melendez@oss.qualcomm.com/.
-
+Best regards,
+Vitor Soares
 
