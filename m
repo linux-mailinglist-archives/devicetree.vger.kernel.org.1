@@ -1,125 +1,174 @@
-Return-Path: <devicetree+bounces-231884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E1B7C127A7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 02:04:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB388C127D4
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 02:08:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E3533B7204
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 00:58:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 803294013AD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 01:04:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88B571F130A;
-	Tue, 28 Oct 2025 00:58:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="DnK6ADmm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54EA71AF4D5;
+	Tue, 28 Oct 2025 01:04:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022129.outbound.protection.outlook.com [52.101.126.129])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1035820299B
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 00:58:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761613083; cv=none; b=dKHFKgV9eng1YYm719aXpxec0y1VOYYNRGuf8Wg80WOeTdvWirHft8L0tiLfuFlYlK0NModEa0ynFwNwLjDWN7PvAXSRtXCBnpA2PgjKJtlnMKbSBw2yJbKaaKIiccvvpwaNha5EWyxp1lmzGW/5kGvXchM8zT81EW0TZ0GeIgU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761613083; c=relaxed/simple;
-	bh=Pu5kqYu+8gpM71WXhfUOgdtRRnjxllEImtX1gx/QT1Q=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AD981FB1;
+	Tue, 28 Oct 2025 01:04:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.129
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761613488; cv=fail; b=L1gtsMNFF+jSb5moC++ATV8NwepE+rjL4VdMognWtUtlDby8eVJmJYKe9Iv6QrIA0ReKRk39CvHjeiN/cy3shFEZi4bRGpEyX1yuUmI3ep320MMHwy6xT/5kTwfW+KdveTSU84xJmo9EvBx/HGTiGt6i3BMJbar/XiOkTSvFgZU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761613488; c=relaxed/simple;
+	bh=gsr/7gMWonKMOLVyDfd9RGYZHM+vOoqa90iJ8Yy9x/I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OL5JTfMhFlhxHgP9gE6+Ed+149/jMLhmQuhidk3WmIPuqqrj5/AmiKmHNLhgctSiK8KT4Y2RaRpNj9LTeqtzhN2VbA5oYUFu4mwFUbc4odGCAy88Y18SAWGTBLuK9Dyvj+GZjEd+IRflSfm85kRV3aa6noumI2Ul8fEekGFr+sQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=DnK6ADmm; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=clpdrlOLu93rHtL/L9HiL9Is9OjufJxhxUPrU3Iy0XI=; b=DnK6ADmmspY4FAXcwDQ0Ysdv6z
-	3S4CPo2pihH5GZTA/oVF2y5e34bRyMhblv53WeQELRwkUO2BT5BmjkopFJJqVTZxkBuTjDsmNoWXa
-	6XPyCx0W3NSnUXXhnjbn+eZ7nLzC3iB7gQw9RFsMisCbk+om0sEEwp8A4bUacT7hTANRJoFNDfAAW
-	+KjQqHc52E4TUodg2IqcIY1/cQ543DC8JYYgGT5fuySvCJFGxqVK3+VzqhYDJpjXGF5SYw8X8jlHp
-	mp7PK+QbVNpLyXwif4OOcB3rHRfO7xpcd+7J7mOURBAHa3GZOsiCoIzMvOgzoSBslDz16MMQSadND
-	JXrThypQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:49596)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vDY29-000000002YH-25XH;
-	Tue, 28 Oct 2025 00:57:57 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vDY27-0000000064p-3UG9;
-	Tue, 28 Oct 2025 00:57:55 +0000
-Date: Tue, 28 Oct 2025 00:57:55 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Emanuele Ghidoli <ghidoliemanuele@gmail.com>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	 Content-Type:Content-Disposition:In-Reply-To; b=tT373PJLnmFCk3gnbTu2zinez/HNmHBEfKD8lX8Hm3u96V0s3tkvw8z4uZqEeHw/swJpc1VF/huwqCCWaTDDMyJU/HxaWabIiRKi2nNT0LBqM6QeTlhHZZ+u8ITWaLV+N6AEQC9UXIjwmFlPJVP3y2idpkglJsO43c48mSZIymI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=u8sHOM1O/C6YAOOjHaZ6dz1c3nOH9aHA0bdDbNTunm0ndVhPGczIezQpJXv2vnP/tWUB+iANAyvMwRxFvxpj+w+CSI0aqJEsIlXPxqtMbKpmRXYc/hgdNT+mejnZFheryb+rBGzcxDtKGyn+EgjCaOIJDqf5cS1ZF6ZKCxn4g/pyGkA4jlogyNJx2NFYYC1QJkvDLuyh7ODXLhJ8do9c5z72y7yXPE48EUcLxpE8dS9WhqvaLMXJhMMhgAm8teYGWvapTzlqAw1Nzczhanc7RhnympwLLLGFu1jPNvgQM2pDbrdGj4SylmKpCq0YzTL6/NwtgP9kFvOAM/Sf0kPoQQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=M1b0T+zNG7FX7853CAhm9h6srd+70AMfgMEadt45RMs=;
+ b=v9pTlq8PZqTmw9Geo8rupP1uqMYeMBSC+KWHmJv/lMjWBJ4dnyBCsrd3TfywOSUjaoOPaUnyyezINIMXBtXz4naSGf9OEpPSMNs+XqY3rZiBgzXt/LHHiBS7eeTx9v6UNABYI5EVeftN5kK9haGiwBSZCTlu51CNyPWlE2ojbUrrTz0JbjuJ6pUSQG/lYZcpHTpSiTnY9MKE3CPor0lpOF2RQgskpM//dm2ja58knCA0h+5SZgoS3AuQIJnJ7icgEur3yhvvW1xPbcuob8tmZYn6n4FsEqBGEDdJb2EaJuuI/JmlN9KlGFYDUq9S2PUqFlqa1qQa7RoK+2wNyR3GoQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SE2P216CA0089.KORP216.PROD.OUTLOOK.COM (2603:1096:101:2c2::15)
+ by TY1PPFC6318BE81.apcprd06.prod.outlook.com (2603:1096:408::924) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.18; Tue, 28 Oct
+ 2025 01:04:41 +0000
+Received: from TY2PEPF0000AB89.apcprd03.prod.outlook.com
+ (2603:1096:101:2c2:cafe::a4) by SE2P216CA0089.outlook.office365.com
+ (2603:1096:101:2c2::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9253.20 via Frontend Transport; Tue,
+ 28 Oct 2025 01:04:41 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ TY2PEPF0000AB89.mail.protection.outlook.com (10.167.253.7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9275.10 via Frontend Transport; Tue, 28 Oct 2025 01:04:40 +0000
+Received: from nchen-desktop (unknown [172.16.64.25])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 6779541C0143;
+	Tue, 28 Oct 2025 09:04:39 +0800 (CST)
+Date: Tue, 28 Oct 2025 09:04:38 +0800
+From: Peter Chen <peter.chen@cixtech.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Gary Yang <gary.yang@cixtech.com>,
+	Fugang Duan <fugang.duan@cixtech.com>, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	Daniel Scally <dan.scally@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Stefan Klug <stefan.klug@ideasonboard.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
-Message-ID: <aQAVE96NAD4Z4lgt@shell.armlinux.org.uk>
-References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
- <aP-ML-A_h13pXY2d@shell.armlinux.org.uk>
- <20251027234648.GC24987@pendragon.ideasonboard.com>
+	cix-kernel-upstream@cixtech.com
+Subject: Re: [PATCH v5 0/3] Add pinctrl support for Sky1
+Message-ID: <aQAWpkIXhsMW6ggo@nchen-desktop>
+References: <20251021070410.3585997-1-gary.yang@cixtech.com>
+ <CACRpkdZAaEim0yJLkXNctJA0jBFj7LGyTGVvy7_mMf5G+vUWOQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251027234648.GC24987@pendragon.ideasonboard.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdZAaEim0yJLkXNctJA0jBFj7LGyTGVvy7_mMf5G+vUWOQ@mail.gmail.com>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB89:EE_|TY1PPFC6318BE81:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0fb0977d-a22f-430c-0df0-08de15bdf912
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|82310400026|1800799024|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?dE0xTDBWNTAxcVAyL3RNM1UxOWZsb21ibEtHS255TTJHWENmTVJ0Q29LTXNU?=
+ =?utf-8?B?VEo0dDFxY2YzYlNzOTF2WDhIVk5HL3JJYmd6dVovazVxUSt1WnRSNW9FWDVV?=
+ =?utf-8?B?TmhVT3hxZ3BBamV0S3hVYS9FV2NnZW82N2VPTWZRaytPRkpYdlFyaExhbWJC?=
+ =?utf-8?B?bXVCQzV5OUNLS2NCN1JuMHlxS1BBWklHcjQ0MU81ZGR6UzFtcjNVTVBZZVlt?=
+ =?utf-8?B?SWQ4R0hhVHZvbXFxQzduR3pjendCVEovK1duc1NIV0htWmdzOWJSRFlnRTJG?=
+ =?utf-8?B?Y2RhZkw4ZWprVHM2N1dhRmN6bG53NUVmYTIrcmFzQW1LQWorOGRzMC91b2hk?=
+ =?utf-8?B?TG5hdGZ5N1NoMWRJVHlCNWw4ZXJPVXZDRFA4QnU4QUcwalRmdXBLVXIxVHVT?=
+ =?utf-8?B?cWtXZ0xNZUpYS3BWak9wZnBaNkdvWEo4MFhJRUxnZ2ZsNXE1ajFCMTNHZnl3?=
+ =?utf-8?B?TU9xVUR3ZnlLekgwZXJGeStTQ2o3UDdiNEtoRm96OW5USk00Si9DOUM0NDFN?=
+ =?utf-8?B?YmxYV1NUcVZ3WDRnbkFwWE9iU3BhekV4YzdqSk1MSmVaSGNjcmd2Wis3bEs5?=
+ =?utf-8?B?Y2FVYVdQT2tjQ3BKRGJkREdXTCtKaTd5SVg5T1BvdGhoZUExQUFaUzBRenpY?=
+ =?utf-8?B?MlBBWVp6UWduVlYrWUIwRUVFMGRZZkRTTGpGOVZBYnNXZTFHa0ZrYjBYSG56?=
+ =?utf-8?B?OWZCTHBMbWdSWDMzd0xPYzlkTGpKUk9XUkg0T1RNT1dKcWlYdVFxZTd2TDhp?=
+ =?utf-8?B?QXdFTFhZUlAzZEY0TFpaa1U2Unp4dHJXLzUxMFI3Zlg0cUFnbHpBYi95L3NI?=
+ =?utf-8?B?VUZpT2FsMDdyZjFVeHc4YlFkWUFLR2Z3bHBYN1hXQVBpNkR2SGRqVWs2ejY3?=
+ =?utf-8?B?WFVKWU4zNjhNSS9zY3BwTE5yUTRiZTNkMExuUTY4OVRHNEovSS9IanVIaTVp?=
+ =?utf-8?B?U0hYVjFCRHcvemt4YVYzMTVLT3Q1ZytFVzIvQlVjeEhuM2x4YVJhKzNMaEk4?=
+ =?utf-8?B?NzBwa1NSOWJWMHRVQlRkVENzTWZtT3V5TTQyblpCbGxFMjcxYUhpREVxOVAy?=
+ =?utf-8?B?bXpTSUk2RTcrbkdwaUo0aG84VEplL015dVNZZzd5OHpsSlpuNWlTc3M2V0Vi?=
+ =?utf-8?B?VVNEMGNtTVUraU5GRnVHRjZEMDFYZWl0R3FDcFh5ejNhU3YyWW9vUU9ickFy?=
+ =?utf-8?B?aVNhU0NFazd6VmptMFF4dW5VY1lJektiMDVxZkVBNFlqV3laMDFJNmF4VCtl?=
+ =?utf-8?B?NU9YWGV1S1ZoQmhtZ0hOakRTeW41N1c3WmlPRmV3NmpUY0RSdGVHdVZVSXdH?=
+ =?utf-8?B?RFBiYXI1UEtmclVPTjFFczVRS2x1YzJ1a0dLT3BPWU4wRVdxSE16YStUWXdo?=
+ =?utf-8?B?ZUc2ZG9BUUFxb1Z0S0VETTRmWmtneE5SM2M0UGdvc0Z0cDNiUVhLY3VUSCs5?=
+ =?utf-8?B?WnpUSDBSK3N2SzlUVHJHeWJOM080MzRpZmVjQ3QzNmJlUlc2WlcxNmcvUWlZ?=
+ =?utf-8?B?aktEcG5tWjlCWlk3S0sxSHBvMXBBZHJTMU9mbGwzY1IzamQ4SFV2RE5Sbits?=
+ =?utf-8?B?SHNGTDl1YnlRQXZkTGl0Z0NvQVZZWjdkRGJ5NWJsd2d3LzROamVBR3FuZmNI?=
+ =?utf-8?B?Z1l6NytCZGJ6ZmNBaXk5V3piY0VhNVA3ODZmNmp3eVlxZ0NjTGNmZkE3VnNO?=
+ =?utf-8?B?V1l4N2huVXRCay9VSzBjS3pyU2ZMblpXQnZmV29EZHhkVEFpMWdQakZ6eTlG?=
+ =?utf-8?B?dDJsb3NjTUl1bEhzZWx5TGVyU0o3SUkwb1NoVHRrcUU3K21RZVhuSXVRV0ZC?=
+ =?utf-8?B?NTFodGt2d0l4UFZzSU9kQ2ZMQWlSUFdqemowV1kxRXRQaFJnQmFOTHl6WjA1?=
+ =?utf-8?B?a0RHS3l1eks2eTRrcHRXMmJsMzBzWHNhamFqWkpOYkJNaFZENlRlTHp2WGU3?=
+ =?utf-8?B?M2tSWmthTExyOU1KeHdXcFU1NDhTdHVEaDRoeHRtTk5JSExseTI0ZElhZSs5?=
+ =?utf-8?B?dWNKSkFCWFU1dHA4R25FN1VPN2EwMjhQU0p4bmpEUkpBNkRsQTdDWUtyT0xo?=
+ =?utf-8?B?Y09PaGw1cmJFTHRpL1phT3lMMERVbFIrV3FGb2xLWVJ6Ti9rbytyK2U3K1o4?=
+ =?utf-8?Q?TaPs=3D?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2025 01:04:40.2859
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0fb0977d-a22f-430c-0df0-08de15bdf912
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	TY2PEPF0000AB89.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PPFC6318BE81
 
-On Tue, Oct 28, 2025 at 01:46:48AM +0200, Laurent Pinchart wrote:
-> On Mon, Oct 27, 2025 at 03:13:51PM +0000, Russell King (Oracle) wrote:
-> > On Sun, Oct 26, 2025 at 02:29:04PM +0200, Laurent Pinchart wrote:
-> > > Energy Efficient Ethernet (EEE) is broken at least for 1000T on the EQOS
-> > > (DWMAC) interface. When connected to an EEE-enabled peer, the ethernet
-> > > devices produces an interrupts storm. Disable EEE support to fix it.
-> > 
-> > We've finally got to the bottom of what's going on here. Please try
-> > this patch (it's building locally, but will take some time because
-> > I'd wound the tree back to 6.13 and 6.14, so it's going to be a full
-> > rebuild.) Thus, there may be compile bugs remaining.
+On 25-10-27 22:56:56, Linus Walleij wrote:
+> EXTERNAL EMAIL
 > 
-> I've applied it on top of 
+> Hi Gary,
 > 
-> I've started with a branch based on v6.18-rc3 plus "[PATCH net-next 0/5]
-> net: stmmac: more cleanups" ([1]) and "[PATCH net-next v2 0/6] net: add
-> phylink managed WoL and convert stmmac" ([2]) to make the patch apply
-> cleanly.
+> On Tue, Oct 21, 2025 at 9:04 AM Gary Yang <gary.yang@cixtech.com> wrote:
 > 
-> [1] https://lore.kernel.org/all/aO_HIwT_YvxkDS8D@shell.armlinux.org.uk/
-> [2] https://lore.kernel.org/all/aPnyW54J80h9DmhB@shell.armlinux.org.uk/
+> > Gary Yang (3):
+> >   dt-bindings: pinctrl: Add cix,sky1-pinctrl
+> >   pinctrl: cix: Add pin-controller support for sky1
 > 
-> The base branch exhibits the interrupt storm issue. The patch
-> unfortunately doesn't fix it.
+> Patches 1 & 2 applied to the pin control tree for v6.19!
+> 
+> >   arm64: dts: cix: Add pinctrl nodes for sky1
+> 
+> This third patch should be applied to the SoC tree, Peter Chen or
+> Fugang Duan takes care of that I think? Not sure.
 
-So it's highly unlikely that your problem is the same as Emanuele's.
-
-Do you know when the interrupt storm behaviour started? If not, I'd
-suggest testing 6.13 and 6.14 as a starting point to see whether
-the phylink-managed EEE conversion is involved.
-
-Thanks.
+Thanks, Linus.
+Yes, since you have applied driver and dt-binding patches, I will
+apply Dts patch to CIX SoC Tree.
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+
+Best regards,
+Peter
 
