@@ -1,136 +1,131 @@
-Return-Path: <devicetree+bounces-231951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-231952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ABC7C13448
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 08:18:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B05DC13487
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 08:26:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B76EF462E19
-	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 07:18:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FFB03BECF9
+	for <lists+devicetree@lfdr.de>; Tue, 28 Oct 2025 07:26:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E64218C02E;
-	Tue, 28 Oct 2025 07:18:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24BEE21FF4C;
+	Tue, 28 Oct 2025 07:26:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="AfcXcfvk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oH0sruXs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45EA747A6B
-	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 07:18:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F24CC1799F
+	for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 07:26:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761635917; cv=none; b=GBYgJdJ0RlKGIc2loDZtbiV5Jaec84paXTJHC3tjeg3bwwIWgtx5DviJ3Yp168o2IU4RIh3xGb895A8DvF7RF9ygcjj2/sYSnWj8LDWLttk6MyPqeuj/eeQnpACwLwPiQ1cePWmEhM+uE6AyJ5liTYMjNSpJ8Z9K2t82Ov3+ceM=
+	t=1761636390; cv=none; b=rPsQRqi3SUIkHt3FN+mWLewBj0NOQGxPRLrhj3RKUCmTnrStTyroRNeOvh2kXQPQKJ/IzwGsXKATb+naFSo36iQhJlErdy0MFx77FeayMpSAqv3jG+mkIOq2QkS29cFqO6tzlCYRTCKLK7U6hCqWLpnCSbfIYNVKYLZAv6Wd3xY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761635917; c=relaxed/simple;
-	bh=uwl4S+0VVmxOF+41YWBs/pcpifL5J3z3aL5XY8xuVBs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CcMGe6mo5CvOmPs7Z6+hTjSpdHLNbrMkjwH2DwtWDd/csm8B/0V4IX33EOgHNflRULEbOcFJ4RrWC38hbTd5E3wrcnqHRgFjTQqBmL82kAR4bfMEu5eacuRDtiPuYBzUFAqqS7NveAMBfm4B6I1vvn/0v5237Hn2YPSJVY8hoBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=AfcXcfvk; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (unknown [193.209.96.36])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 3FEB713BE;
-	Tue, 28 Oct 2025 08:16:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1761635802;
-	bh=uwl4S+0VVmxOF+41YWBs/pcpifL5J3z3aL5XY8xuVBs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AfcXcfvk823pXMB/CidGYHN1+aUyWZMHnwW+YXHN7FtGrmtU7EpVsZ8we+lcYbbDT
-	 FlZGTyDd5lcEsVTYojCsUFJAhGR/5nAoG6nIL5u6Y+Ab8HFNd0e5xzzr/3/qkhz4P+
-	 QdnRfbLjLaCVJ/fb+VmHF6JC8R8x/Yiuq+45APwU=
-Date: Tue, 28 Oct 2025 09:18:17 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Emanuele Ghidoli <ghidoliemanuele@gmail.com>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Daniel Scally <dan.scally@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Stefan Klug <stefan.klug@ideasonboard.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Catalin Popescu <catalin.popescu@leica-geosystems.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
-Message-ID: <20251028071817.GX13023@pendragon.ideasonboard.com>
-References: <20251026122905.29028-1-laurent.pinchart@ideasonboard.com>
- <aP-ML-A_h13pXY2d@shell.armlinux.org.uk>
- <20251027234648.GC24987@pendragon.ideasonboard.com>
- <aQAVE96NAD4Z4lgt@shell.armlinux.org.uk>
+	s=arc-20240116; t=1761636390; c=relaxed/simple;
+	bh=SNOI1ecGFarCW3MRZMjrKuj73rNcnp5V9FGnPyS9VAI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AYtra2RcCFilO22hZcaWFmf8hd3nxRGJCYJdmrpwjpwuMRpE0HZYfcnWhAfEaZxknedzHxWW643IeRXF5QBVWZMIfS7NpliBt0dFZOZxxX+yoRhDXGGNc3Pj5Ug7gt3NvTjwdUl6iBY3kmYN2a/nKKTi0O3wk0Nao8nBVUwiQZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oH0sruXs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11D64C4CEE7;
+	Tue, 28 Oct 2025 07:26:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761636389;
+	bh=SNOI1ecGFarCW3MRZMjrKuj73rNcnp5V9FGnPyS9VAI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oH0sruXsCZIxRfVo3X49yddnHTn7YZLjQFhT1z+cKzz+4hALKx2iFTwMhtj+xYboF
+	 CM8sHs6uh35Yr9/CdcWAPtyVRBXY/fuEQAVIeZTF/iuOEnVgdrDgCaclvkwZO0KRv3
+	 Aew3bAZ3azRHBP9baJMwy6aE/n86QCBFHfa/3tB5m2niCcTwQdmQaM9e0T4rNzBPDW
+	 ZOJYibNepr40otP35cC1u1qRfeahSF4Qv3YnXi+T4UuFb6otLTXtJl1uVTHWHLplhc
+	 YiA5VnWXynChdMR2U7Z16nEIm3dlA6jzguDY4+uVM2ERUh3JACsnXccK8O+P9qDX6L
+	 DgLU6BT9G5oeQ==
+Message-ID: <1fc497ee-3363-49c9-93eb-20acd4373df9@kernel.org>
+Date: Tue, 28 Oct 2025 08:26:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <aQAVE96NAD4Z4lgt@shell.armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] dt-bindings: arm: rockchip: Reorder the Radxa board
+ entries
+To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ jonas@kwiboo.se, dsimic@manjaro.org, amadeus@jmu.edu.cn,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20251027122641.39396-1-naoki@radxa.com>
+ <20251027122641.39396-5-naoki@radxa.com>
+ <67e7badd-4b38-4f93-872b-e51a43281d3b@kernel.org>
+ <6B986FE9E161F74F+f2826946-a3e9-4618-b5c8-6e29f9f6b83c@radxa.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <6B986FE9E161F74F+f2826946-a3e9-4618-b5c8-6e29f9f6b83c@radxa.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-(CC'ing Catalin)
-
-On Tue, Oct 28, 2025 at 12:57:55AM +0000, Russell King (Oracle) wrote:
-> On Tue, Oct 28, 2025 at 01:46:48AM +0200, Laurent Pinchart wrote:
-> > On Mon, Oct 27, 2025 at 03:13:51PM +0000, Russell King (Oracle) wrote:
-> > > On Sun, Oct 26, 2025 at 02:29:04PM +0200, Laurent Pinchart wrote:
-> > > > Energy Efficient Ethernet (EEE) is broken at least for 1000T on the EQOS
-> > > > (DWMAC) interface. When connected to an EEE-enabled peer, the ethernet
-> > > > devices produces an interrupts storm. Disable EEE support to fix it.
-> > > 
-> > > We've finally got to the bottom of what's going on here. Please try
-> > > this patch (it's building locally, but will take some time because
-> > > I'd wound the tree back to 6.13 and 6.14, so it's going to be a full
-> > > rebuild.) Thus, there may be compile bugs remaining.
-> > 
-> > I've applied it on top of 
-> > 
-> > I've started with a branch based on v6.18-rc3 plus "[PATCH net-next 0/5]
-> > net: stmmac: more cleanups" ([1]) and "[PATCH net-next v2 0/6] net: add
-> > phylink managed WoL and convert stmmac" ([2]) to make the patch apply
-> > cleanly.
-> > 
-> > [1] https://lore.kernel.org/all/aO_HIwT_YvxkDS8D@shell.armlinux.org.uk/
-> > [2] https://lore.kernel.org/all/aPnyW54J80h9DmhB@shell.armlinux.org.uk/
-> > 
-> > The base branch exhibits the interrupt storm issue. The patch
-> > unfortunately doesn't fix it.
+On 27/10/2025 23:30, FUKAUMI Naoki wrote:
+> Hi Krzysztof,
 > 
-> So it's highly unlikely that your problem is the same as Emanuele's.
+> On 10/28/25 04:08, Krzysztof Kozlowski wrote:
+>> On 27/10/2025 13:26, FUKAUMI Naoki wrote:
+>>> Reorder the Radxa board entries alphanumerically, with the following
+>>> exceptions:
+>>
+>>
+>> Why? You must explain that in the commit. What sorting is being used by
+>> this file? Why do you think your re-order matches that sorting rule?
 > 
-> Do you know when the interrupt storm behaviour started? If not, I'd
-> suggest testing 6.13 and 6.14 as a starting point to see whether
-> the phylink-managed EEE conversion is involved.
+> I understand there is no rule, only your preference. Thanks.
 
-I can't test it right now (no access to hardware during daytime for this
-week), but if I recall correctly my colleague Stefan Klug bisected the
-issue to
 
-commit dda1bc1d8ad13672c2728eedee0dd02d27a5314a
-Author: Catalin Popescu <catalin.popescu@leica-geosystems.com>
-Date:   Mon Oct 7 15:44:24 2024 +0200
+Really there is no? Are you sure?
 
-    arm64: dts: imx8mp: add cpuidle state "cpu-pd-wait"
-
-    So far, only WFI is supported on i.MX8mp platform. Add support for
-    deeper cpuidle state "cpu-pd-wait" that would allow for better power
-    usage during runtime. This is a port from NXP downstream kernel.
-
-    Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
-    Signed-off-by: Shawn Guo <shawnguo@kernel.org>
-
-I didn't notice it at the time because my board was connected to a
-switch that didn't support EEE.
-
--- 
-Regards,
-
-Laurent Pinchart
+Best regards,
+Krzysztof
 
