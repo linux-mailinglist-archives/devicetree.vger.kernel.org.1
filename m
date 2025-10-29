@@ -1,130 +1,142 @@
-Return-Path: <devicetree+bounces-232726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F732C1AB26
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:31:12 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78E7AC1AE69
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:48:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D100534DC3E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:31:11 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D8DEB5A36C9
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:32:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 854A22BDC10;
-	Wed, 29 Oct 2025 13:26:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51ADC25229C;
+	Wed, 29 Oct 2025 13:29:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iUmnKqAV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="We6K6x3a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2524029D29F
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 13:26:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C3A52459DC
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 13:29:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761744384; cv=none; b=XD2ldHrZKt7oMEAdP/qEDFVl85bT0dT1H1eUyzwaNglYy4MB65/B/b4Y45tJp3qMjOHGaCH3hc/4CbBxe2AA/6bmvpEgp4IKE4QdQLGr2hYvCdeg5xVSz3WhROQ7PnZMymAhDkorRjrP0ZMgmrE5EljVh1nLTYvyfhGasQ3jYKk=
+	t=1761744542; cv=none; b=f115Dtin4MQJz70YeHmA/4x/MjTJjBOEpn/TjwYEhYx7z81xfzKVdO8qSN6u043Ih4ipoMfbrxynL7aMDvitwqBw9xlBVCAb69HUflD1V4V1cMx3hkTyZ5f1m6kuGPZnwdrK0/v/WPCrnx/tA3r16lskuGPgNKYbZCkF54eAdzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761744384; c=relaxed/simple;
-	bh=aSKuU9xIOHp+USY+0olHQZuj/v2CpxFRMmxMh6Q5UbY=;
+	s=arc-20240116; t=1761744542; c=relaxed/simple;
+	bh=V8J0xvZ85AOyFUwvxTu3obUZitEUBIFVJbjXz+jtx9A=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EUaI9uF0FqOPJYhIedowIVEE8FWS7SYvB050Ettx9f3tJW8PYNDHlo6CBQoqrt3WSKL6JRDqTagQuT5W7ZwHcvmWmcK6Zts6PsHddmImPhUSPQ1AOdZxJJeYvHVweLDTPHdDVK+wnVQ38hJOhZukGcvZW1v1pfY8sdg4vgM6/UQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iUmnKqAV; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-378d246f0f1so78111631fa.3
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 06:26:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761744380; x=1762349180; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aSKuU9xIOHp+USY+0olHQZuj/v2CpxFRMmxMh6Q5UbY=;
-        b=iUmnKqAV2ZqMdwnarD5Ij79DsuDs8d9nv9eDEmFWWJiu41QA9o1q9vb8Pkbw3xbwmL
-         c6QCK4LsJtvpN8Y7BhbLijAl1jzxLs/rlhWG9ZVtfRggaPEayDKQmSSxpfpjumVUz0H5
-         I8GBQUEMGUmH5HGOvkZB47Y6tPmwj/vITe7gdeYhYEY9X5hUMk4F8RQ/Hv0XqxijV+c+
-         nb6NKK0uARBBlJV1IRx5XEZ8x3KkQqHeyeRmN11znwsMl4mZwxGKDovmKAqV81udKgkq
-         VTaAMZFkD/rpE6QxRLyak22lIf8mIBCRZqn4bUBxHJiRW7plr8/Hq7YjCbztGtpv29yI
-         C6+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761744380; x=1762349180;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aSKuU9xIOHp+USY+0olHQZuj/v2CpxFRMmxMh6Q5UbY=;
-        b=TRxsgrzW1/aIP3U4Kv5HP42MsEQs2DAcIEzUnL5ae0Kz29KDcvmlKjviAzyk6HBFrz
-         LTuvgryNBvdf1bhLUwT8Z1VKgUXgLHbUm+HI/c0HEWaMyVbWVNG/OxdqL9rhMOcnVr7q
-         EHAd/qkt+iQ3dTQG/X/iPBGpO+ADE+Ta4NM3wI032SOBjH6OFg03vRvWKhcDaJrSq5/7
-         SQE7izXqQ5eXfuGgb+7BVCWbYZWHyfkOlSNksIjql4NRCRvKBvMXjxy4Au4dqoycc6Bj
-         MTs7WpfddHWen/KLfOulOjlZJBB3orY+IdvJZ1EzyIxQ4uSIIah4mLxoPDswtxUBZbDw
-         WhAg==
-X-Forwarded-Encrypted: i=1; AJvYcCXnAKGGWxPeLH5I8kt2uHdT+vRO3dzgYi9xG42IKKCazhAPkZ+/IWxlg2xqW8Q5OzXsRmtK/5pDu2tO@vger.kernel.org
-X-Gm-Message-State: AOJu0YwaoPqqINXVWy8ISEfb/H3tLwci3lnVO58CxLEKshsS08QoQGqj
-	T/nHXRIG03KHaz3Gcj+orsnAY/6uTFreGVXdiBRtdRh20mpQ3aT1GMF/hz7Idrrx+mOeAHMNVbM
-	koL6rHt13wInWG4ZaOwGSth/sORI88Br8AXuRYuyM2A==
-X-Gm-Gg: ASbGncsbUwS+5RGHOyOlAhm/DJTQxxkaqJzbFwqso5AaUyu7IBF95qIWBiU3dKSoqLE
-	oC1syboUcaz5btUqgyAIXHwYJzBRBKq5b/aQhiN/6YFtBZg8a6Tw+e18rq8gi45PL4Y0xjK/sBu
-	LGm+3TrqzJYtNREleSGWGtkn7Z+8sSnkGZqi5Ks4U+D13xTUC+/9Oum+KYlrc0AhGconim5Q2Zn
-	aoPz7+mDmMeKCzIEy6RbxSjHWD8hVBxBzHLF7eMhV/Tr160mUyayaZwqxtW
-X-Google-Smtp-Source: AGHT+IFc/hCvDE1Zso/0IxQN+geIgWUqlAHmVbZSzAYj2L1gPzKHQM2rtOb3cVJ3wqFIdmrbO8L60WWStqgI5NAbuCE=
-X-Received: by 2002:a2e:9a12:0:b0:36a:f4d3:82e9 with SMTP id
- 38308e7fff4ca-37a023ba912mr9579411fa.6.1761744380200; Wed, 29 Oct 2025
- 06:26:20 -0700 (PDT)
+	 To:Cc:Content-Type; b=NuscJJzQ7OyU32Ad7HdVIJv/PgcabtvIKdni7yLjlpJ0CDr8kUkU8r3Z3dIT9kTae15COZqlbkaA4+LMA4y2bAtC5/tNkW2buJ5wasVFuy4zHnVT+OLogCOqaIFlDTkzObzhLv3JFjhpGP7V9uEUf+D63Ss7oyIXwkYKnCRDZ+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=We6K6x3a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0202C4CEFD
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 13:29:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761744541;
+	bh=V8J0xvZ85AOyFUwvxTu3obUZitEUBIFVJbjXz+jtx9A=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=We6K6x3aaF80R//VliizpEYIwZ2spVt1dUwsNp4vVoWylO1HUD7z4ncWBPHCG+JEV
+	 xYZdRHN5a2OgFmuZhkaBVhtpk/y8CTjLMt0T+/+QIE2ovam2qOde5dIKnAuO7W7QOr
+	 kaIiNZB21X5xGYD7wBhhd14oc0ukkNut7yjRHqdPRzzPXqW3kkvwWjoQ/NmQYhxWeN
+	 o+s+rCRJvnHynZ3gY2gSZJShEewi1YWOIXc24plvd+3B9jEHJHDqS3WXbCZH0zQHxw
+	 z1MCoXGzkOLwWvB+z94E9mI7YutQVYXju7IOvm+0ihoUasZp2LtTLOzVhcLPxNd9IB
+	 0b/sq3wN8qm7Q==
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-63e18829aa7so9737331a12.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 06:29:01 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWgcU5U2Oup1YNe4G9hXwSZBwwnU3J1/WxfdoHYB3PZVuy/p7Ubq2W4TByvMHUCTlsKZhJzd2igdkCj@vger.kernel.org
+X-Gm-Message-State: AOJu0YwtJ3z7v7fva6lcwzlujsDKJBTbr2I7icHFWqIlDszKboeHEpmt
+	Uz9oEHuRhvRv/KE0LaH2Cxlh1jM93AcIw8LkrxNhK3/aScF2V6s0SwoJNSB3726eoEtUsuJv+FY
+	WqQCUtlDz6XQUpfGfAIUXkKdKRx0piA==
+X-Google-Smtp-Source: AGHT+IHI66z2+Wy1IZFMnUdx5g+GMlZnEl4AgfredAbI3iQtA8d/rgYvCJw+HiU2ycuaI9mOG0aE98R28JLtoJ52E7Y=
+X-Received: by 2002:a05:6402:44cd:b0:640:464a:56ce with SMTP id
+ 4fb4d7f45d1cf-640464a5bf9mr1937220a12.2.1761744540388; Wed, 29 Oct 2025
+ 06:29:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1761564043.git.mazziesaccount@gmail.com>
- <b13b733e7e0fba05652f49f727412fed9e0ceb02.1761564043.git.mazziesaccount@gmail.com>
- <20251029-adamant-mamba-of-patience-cddb65@kuoka> <a81fba66-adf0-440f-96e1-bf3a83d504d8@gmail.com>
-In-Reply-To: <a81fba66-adf0-440f-96e1-bf3a83d504d8@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 29 Oct 2025 14:26:08 +0100
-X-Gm-Features: AWmQ_bkO8UFcogwNBcRXNNMdmHiXiiZyPgTHaU5THyaD5CILTj16yxOphtBr7r4
-Message-ID: <CACRpkdZcszMZEU2Wzx8kaoR46ytziqtedmCrsjEL3QOrDtDgzg@mail.gmail.com>
-Subject: Re: [PATCH v2 02/15] dt-bindings: Add trickle-charge upper limit
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
-	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+References: <20251029-knp-remoteproc-v2-0-6c81993b52ea@oss.qualcomm.com>
+ <20251029-knp-remoteproc-v2-6-6c81993b52ea@oss.qualcomm.com> <20251029132340.GA668444-robh@kernel.org>
+In-Reply-To: <20251029132340.GA668444-robh@kernel.org>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 29 Oct 2025 08:28:48 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJALs2=qAv5OkXzAvteSc0uUza_FMubTdEcrs7fe2r1rg@mail.gmail.com>
+X-Gm-Features: AWmQ_bmQUz1cUpz-qP4YsTh-ZRfrLy4fDLLOGOf77uIu22TQpbJbLmGmD_zxXy0
+Message-ID: <CAL_JsqJALs2=qAv5OkXzAvteSc0uUza_FMubTdEcrs7fe2r1rg@mail.gmail.com>
+Subject: Re: [PATCH v2 6/7] dt-bindings: remoteproc: qcom,sm8550-pas: Document
+ Glymur ADSP
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sebastian Reichel <sre@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Andreas Kemnade <andreas@kemnade.info>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, linux-leds@vger.kernel.org, 
+	Manivannan Sadhasivam <mani@kernel.org>, aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, 
+	trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com, 
+	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org
+	Sibi Sankar <sibi.sankar@oss.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 29, 2025 at 7:22=E2=80=AFAM Matti Vaittinen
-<mazziesaccount@gmail.com> wrote:
-
-> > But I believe this is wrong. Trickle charging does not switch to
-> > anything more, there is no fast charging after trickle. You have some
-> > sort of pre-pre-charging, which is just pre-charging.
+On Wed, Oct 29, 2025 at 8:23=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
+:
 >
-> There is trickle, pre and fast-charge phases. Furthermore, the
-> fast-charge is further divided to CC and CV. Finally, if my memory
-> serves me well, Linus W did explain me that some chargers use
-> 'trickle-charging' as a _last_ charging phase for a full battery. Thus
-> the term 'trickle-charging' is slightly confusing - but it is already
-> used by the existing bindings...
+> On Wed, Oct 29, 2025 at 01:05:44AM -0700, Jingyi Wang wrote:
+> > From: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+> >
+> > Document compatible for Qualcomm Glymur SoC ADSP which is fully compati=
+ble
+> > with SM8750 ADSP. Also with the Linux Host running on EL2, the remotepr=
+ocs
+> > need to be hypervisor independent, the iommu property is mandatory to
+> > ensure proper functionality.
+> >
+> > Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+> > Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> > ---
+> >  .../devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml     | 13 +++++=
+++++++++
+> >  1 file changed, 13 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-p=
+as.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
+> > index 3b66bd106737..8cb839ba1058 100644
+> > --- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
+> > +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
+> > @@ -29,6 +29,7 @@ properties:
+> >            - qcom,x1e80100-cdsp-pas
+> >        - items:
+> >            - enum:
+> > +              - qcom,glymur-adsp-pas
+> >                - qcom,kaanapali-adsp-pas
+> >                - qcom,sm8750-adsp-pas
+> >            - const: qcom,sm8550-adsp-pas
+> > @@ -101,6 +102,7 @@ allOf:
+> >          compatible:
+> >            contains:
+> >              enum:
+> > +              - qcom,glymur-adsp-pas
+> >                - qcom,kaanapali-adsp-pas
+> >                - qcom,kaanapali-cdsp-pas
+> >                - qcom,sm8750-adsp-pas
+> > @@ -247,6 +249,17 @@ allOf:
+> >              - const: mxc
+> >              - const: nsp
+> >
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - qcom,glymur-adsp-pas
+> > +    then:
+> > +      properties:
+> > +        iommus:
+> > +          maxItems: 1
 >
-> https://lore.kernel.org/all/20211116001755.2132036-1-linus.walleij@linaro=
-.org/
+> This doesn't make 'iommus' mandatory as the commit msg says.
 
-I think we need to refer to a textbook or IEEE articles to get this
-terminology right.
+Also, 'iommus' needs to be defined at the top-level of the schema.
 
-As you say it appears "trickle-charging" is ambiguous.
-
-Maybe what Krzysztof suggest to use: "pre-pre-charging" or
-"empty-battery-charging" or something like this is needed.
-
-But we really need a trustworthy academic source here.
-
-Yours,
-Linus Walleij
+Rob
 
