@@ -1,140 +1,277 @@
-Return-Path: <devicetree+bounces-232896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDE6CC1CD30
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 19:47:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 908A3C1CD7E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 19:56:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B40B3AB667
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 18:47:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4534F1890A21
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 18:55:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E4BD34CFCC;
-	Wed, 29 Oct 2025 18:47:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1F1135772B;
+	Wed, 29 Oct 2025 18:54:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hZSaB6st"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sVS4zzVo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40B073563FE
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 18:47:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3156357710;
+	Wed, 29 Oct 2025 18:54:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761763670; cv=none; b=tzWVdsGSH7xQb2euK6J+y7euonzzJfeupjnHN//cM6zW0rROXo+zpqKx3l/UtI29nfvdPoa26X6vy5yETb1JWe0sCsIpPK76W3ayhd7dxtHtf0nwzjk50nNGBeKB1XnFWt5gGM1H37mFhUid2t6ec7GjdqnHzGUEIWrX+x/r5yI=
+	t=1761764095; cv=none; b=IxyGrAS/qUiKSjg7UyXbCjoP+VppbsOWsZCCcoeWTKg++paWV7Lw9ibN5bfu3bnBF7LRwJwys0fVcQgyXN+66075M8PtM/7mJM7bu4e9LbEtxe9R2IYiDAKAZoVotpAzyHzmafYTjLaSXs0hXe/qzsCbXVbo+TaFG8GMNJWc9GM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761763670; c=relaxed/simple;
-	bh=0Tr3LCSHb84ftOumUd9propiyWY/G1DK/xvBH3c4z0k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H4c4VhGIG7wFxo9Anj5BVXQsG8B5JXTuZm8rkhEPymI1eCh0zOHgnJUlQLG9Caks2WqxgUdHNr3yTe0DNI94+cSOHPUbuFbAkIwHGaQaOeTtdhkoDHX0aMH9n1nuoI54oh0WTLMgfW/qD3ZRnLHSklAqKq34UaCi0G3vxCmOD+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hZSaB6st; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4710022571cso1879475e9.3
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 11:47:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761763666; x=1762368466; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=n7UlL3GKzUDEprO6nc/X4PQZdsoNuJnhVXYl9pMuUgU=;
-        b=hZSaB6stfLACJmEqNsUdwjSf2xtOI5p6B3TGS/c5ftCfg7bSAZ6/pTAloV+Cwgxl/t
-         Bh2YMigTgCP3OfdV31YYEMKAdOoKj5hgVHMv/pMpFtJ6as6GdbSu8R27zJoLBI5S7fOn
-         xn9UWzWrK1orsjyrfi+0oo3e4MhBxvQ7znYr7cdFedmj+rF27Y4USBbK2t+M7iJhxg6C
-         EKIQCWOsxGvLOIY1urX8aAOEQCdqq0mqYGLnCj6KFUmOBML8/nftx5THwq2utv+lqbiS
-         PeLeRNI24xFY5zFec19VrJEUSLqbLyzbMJND7suffct6Ll1SbcwiAJjtBtNdEaWevh/q
-         9hOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761763666; x=1762368466;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=n7UlL3GKzUDEprO6nc/X4PQZdsoNuJnhVXYl9pMuUgU=;
-        b=wWntiCIHOhaLKae5mkLgtvw/Fb3Zdcx775yZvJ6ezBSwmYGso9ROUV/d0HVHdanskB
-         F6/8uKhnOJ2MB94HAg9ISL1k8/D5BisLORYdya0ml5woKsUyh6lz/n+PCPSTp1HAk51b
-         qUILbGaGJJWwvwbUEECnsxWFXPvjNpXwm+i/cxjXpYYWq2R3unoYWe7bBqZLeWrAEXeq
-         7/qt5Tpi+9I6IbB20d+OtaR4zmjaL11T13h3kO1ilx87lNYMGcdJBYo2PeMK06iZb4dw
-         A56UtPzpM/U6DW01lBmapWfTWPKTnqolizRVMUlaJoEoWn37WlxvkrZc7TAeA+hg4xkY
-         aV5A==
-X-Forwarded-Encrypted: i=1; AJvYcCXUBheUQSHJdqlEWYBY3/oOoaAnr0WnwBM71KSwRNeKV0loA2XFjabKgHImcdcNaHaYRF915xsjuQQz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+tJnRzVd2m5x1wbqIyr+1EqsMbHfYSD/psnQuzOBD/TQEquwm
-	+1xaLo897FCvj/2dy8ZH5NyKT7kcfiK3fXx86yLn1BE9orm8sbINMGB3yzWk/sL/RdMqbrvrylN
-	m4jY4
-X-Gm-Gg: ASbGncurOM3s5gSQD0fIh08laboZaMaKr62ZxjWDpnkq/KuluwGpyQ8avENHe5gofhC
-	a9TzSlLwZzpymZcHlztVmFTqo8n15PNvvHkaasgUc5ycsLhQAt9BfV9cEuAQUJIakTOftCHbHto
-	GAgm6H8eYa/b3DUTlAGERkHCkC3Kq2VZj5lLpftEIkD2sT5Y6018vUbVH9LVdyxQTIznRVl4aik
-	mYT2QgvrE1aqfz0EVr+r33d3rLTeHnOqVxry+zuZQK+hEwuxPzjdTmKXsu1mxuoVAGZtnlJnrSB
-	651SW4MMCM9WRi0Sbi1xylvMvUMeUq9+zI7Ja8GkMeZ7AsnOjus8d24Cjzcm9nlhtZ4YwzTyKh3
-	1HerNe8tFSfSLhak+hUnAHFpL4DIwHhkpcVYrLwC4w3tLTLkq8fGDXgb8K5DKBA5qgT+UvmvRy0
-	WCRLTyjAY5GFk0IVjL
-X-Google-Smtp-Source: AGHT+IGpoPX9hNhKmRBMmW2j12M72FSxxCuC4T9cB82GM76vjMbsT/vObteBlRgx4MZwjCJgYtHIEw==
-X-Received: by 2002:a05:6000:26c3:b0:427:45f:ee1a with SMTP id ffacd0b85a97d-429b4c8748cmr573409f8f.25.1761763666459;
-        Wed, 29 Oct 2025 11:47:46 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-429952d5773sm29704529f8f.27.2025.10.29.11.47.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Oct 2025 11:47:45 -0700 (PDT)
-Date: Wed, 29 Oct 2025 21:47:41 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1761764095; c=relaxed/simple;
+	bh=Ux2ENO/i6V+guiQo5qhqzoW+zBs4ctUVICsR7hoAkmM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iUlXq4GdNLnJLVkWvpULDqDvpDdyez4k0w3XpTNfwZAk82v5JbB9XFHy1U5+Mx1r0LbUYm4AuxwnlKU6qS2AlTYWSobLsTPdqrItb9XuHp1ZAPJZS1Ld5G1X3w6SqjaBpQ+zYwnXJAowIGIp2LRcA9QeQLpZa2jGyPn3rjrdn0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sVS4zzVo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7164C4CEF8;
+	Wed, 29 Oct 2025 18:54:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761764095;
+	bh=Ux2ENO/i6V+guiQo5qhqzoW+zBs4ctUVICsR7hoAkmM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=sVS4zzVoWEbn3QNcolgohy69sS19mV2rlckr+Nb1zlcn94jHeFxnwQuWxg2DHk6BR
+	 igkJp82NMhShSfHOAPUq24eD+mGpH0QvxJv5r2lWjm9GKBe3az64cj9fhB0eZGaidy
+	 GtcLGhr4poM+za/wWzkLrP2at6lO0Bhu58WHOlV5yNHL7cswjeNgNX3vOkTdBy11BH
+	 Ax2+WrZY59Ww4m0riErBCGxbdr7U53xiZeruL+TohdZjmleelKKid3663ihTaWc/NG
+	 rHGxe2y6yJMfGcbI6AGlNEtck/TQC+G2RhMfqKzDX1qVj1LKBNW/oR+U+dQTVXGUbX
+	 aBEXlLI3AR2jQ==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Guenter Roeck <linux@roeck-us.net>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: syscon: introduce no-auto-mmio
- property for syscons
-Message-ID: <aQJhTbNJkezeipoc@stanley.mountain>
-References: <cover.1761753288.git.dan.carpenter@linaro.org>
- <230cf12861a4f0b9effc72522444d3e28c1de2c9.1761753288.git.dan.carpenter@linaro.org>
- <20251029-ambiance-snooper-43dc00dcee68@spud>
- <aQJR36s0cY34cLrr@stanley.mountain>
- <20251029-embroider-plunging-6356f50c7acd@spud>
+Subject: [PATCH] dt-bindings: hwmon: Convert aspeed,ast2400-pwm-tacho to DT schema
+Date: Wed, 29 Oct 2025 13:54:47 -0500
+Message-ID: <20251029185448.2121857-1-robh@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251029-embroider-plunging-6356f50c7acd@spud>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Oct 29, 2025 at 06:37:26PM +0000, Conor Dooley wrote:
-> On Wed, Oct 29, 2025 at 08:41:51PM +0300, Dan Carpenter wrote:
-> > On Wed, Oct 29, 2025 at 05:33:48PM +0000, Conor Dooley wrote:
-> > > On Wed, Oct 29, 2025 at 08:27:05PM +0300, Dan Carpenter wrote:
-> > > > Generally, syscons are created automatically and accessed direclty via
-> > > > MMIO however sometimes syscons might only be accessible from the secure
-> > > > partition or through SCMI etc.  Introduce the no-auto-mmio property to
-> > > > tell the operating system that the syscon needs to be handled manually.
-> > > 
-> > > "System controller node represents a register region containing a set
-> > > of miscellaneous registers."
-> > > 
-> > > If this isn't actually a register region, but is instead an interface
-> > > provided by SCMI or whatever "secure partition" is (optee?), why is the
-> > > syscon compatible being used for the device in the first place?
-> > 
-> > In the case that I'm looking at, it really is a syscon.  So right now
-> > we're upstreaming it and it's an MMIO syscon.  Very straight forward.
-> > But later, I guess, they want to have a new firmware which will only let
-> > you access the same registers through SCMI.
-> 
-> When the programming model changes, the compatible should too, no?
-> 
+Convert the ASpeed fan controller binding to DT schema format.
 
-I wasn't planning on it.  I haven't been asked to upstream the SCMI
-module but once my thinking was the transition would work like this.
+The '#cooling-cells' value used is 1 rather than 2. '#size-cells' is 0
+rather 1.
 
-Step 1: It would work as is with an MMIO syscon.
-Step 2: We would upstream the SCMI driver which would provide an
-        MMIO syscon as a fallback.  At that stage you would still get an
-        MMIO yscon regardless of whether the phandle was parsed before
-        or after the driver loaded.
-Step 3: We would set the no-auto-mmio property so you have to use the
-        driver and update the firmware so only the SCMI interface can
-        be used.
+Some users define more that 8 fan nodes where 2 fans share a PWM. The
+driver seems to let the 2nd fan just overwrite the 1st one. That also
+creates some addressing errors in the DT (duplicate addresses and wrong
+unit-addresses).
 
-regards,
-dan carpenter
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../hwmon/aspeed,ast2400-pwm-tacho.yaml       | 105 ++++++++++++++++++
+ .../bindings/hwmon/aspeed-pwm-tacho.txt       |  73 ------------
+ 2 files changed, 105 insertions(+), 73 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,ast2400-pwm-tacho.yaml
+ delete mode 100644 Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt
+
+diff --git a/Documentation/devicetree/bindings/hwmon/aspeed,ast2400-pwm-tacho.yaml b/Documentation/devicetree/bindings/hwmon/aspeed,ast2400-pwm-tacho.yaml
+new file mode 100644
+index 000000000000..018249f97a5d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/aspeed,ast2400-pwm-tacho.yaml
+@@ -0,0 +1,105 @@
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/aspeed,ast2400-pwm-tacho.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ASPEED AST2400/AST2500 PWM and Fan Tacho controller
++
++maintainers:
++  - Joel Stanley <joel@jms.id.au>
++  - Andrew Jeffery <andrew@codeconstruct.com.au>
++
++description: >
++  The ASPEED PWM controller can support upto 8 PWM outputs. The ASPEED Fan Tacho
++  controller can support upto 16 Fan tachometer inputs.
++
++  There can be up to 8 fans supported. Each fan can have 1 PWM output and
++  1-2 Fan tach inputs.
++
++properties:
++  compatible:
++    enum:
++      - aspeed,ast2400-pwm-tacho
++      - aspeed,ast2500-pwm-tacho
++
++  reg:
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++  '#cooling-cells':
++    const: 1
++
++  clocks:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++patternProperties:
++  '^fan@[0-7]$':
++    description: Fan subnode
++    type: object
++    additionalProperties: false
++
++    properties:
++      reg:
++        description: PWM source port index (0 = PWM A, ..., 7 = PWM H)
++        maximum: 7
++
++      cooling-levels:
++        description: PWM duty cycle values for cooling states
++        $ref: /schemas/types.yaml#/definitions/uint8-array
++        minItems: 1
++        maxItems: 16  # Should be enough
++
++      aspeed,fan-tach-ch:
++        description: Fan tachometer input channel
++        $ref: /schemas/types.yaml#/definitions/uint8-array
++        minItems: 1
++        maxItems: 2
++        items:
++          maximum: 15
++
++    required:
++      - reg
++      - aspeed,fan-tach-ch
++
++required:
++  - compatible
++  - reg
++  - '#address-cells'
++  - '#size-cells'
++  - clocks
++  - resets
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/aspeed-clock.h>
++
++    fan-controller@1e786000 {
++        compatible = "aspeed,ast2500-pwm-tacho";
++        reg = <0x1e786000 0x1000>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++        #cooling-cells = <1>;
++        clocks = <&syscon ASPEED_CLK_APB>;
++        resets = <&syscon ASPEED_RESET_PWM>;
++
++        fan@0 {
++            reg = <0x00>;
++            cooling-levels = /bits/ 8 <125 151 177 203 229 255>;
++            aspeed,fan-tach-ch = /bits/ 8 <0x00>;
++        };
++
++        fan@1 {
++            reg = <0x01>;
++            aspeed,fan-tach-ch = /bits/ 8 <0x01 0x02>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt b/Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt
+deleted file mode 100644
+index 8645cd3b867a..000000000000
+--- a/Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt
++++ /dev/null
+@@ -1,73 +0,0 @@
+-ASPEED AST2400/AST2500 PWM and Fan Tacho controller device driver
+-
+-The ASPEED PWM controller can support upto 8 PWM outputs. The ASPEED Fan Tacho
+-controller can support upto 16 Fan tachometer inputs.
+-
+-There can be upto 8 fans supported. Each fan can have one PWM output and
+-one/two Fan tach inputs.
+-
+-Required properties for pwm-tacho node:
+-- #address-cells : should be 1.
+-
+-- #size-cells : should be 1.
+-
+-- #cooling-cells: should be 2.
+-
+-- reg : address and length of the register set for the device.
+-
+-- pinctrl-names : a pinctrl state named "default" must be defined.
+-
+-- pinctrl-0 : phandle referencing pin configuration of the PWM ports.
+-
+-- compatible : should be "aspeed,ast2400-pwm-tacho" for AST2400 and
+-	       "aspeed,ast2500-pwm-tacho" for AST2500.
+-
+-- clocks : phandle to clock provider with the clock number in the second cell
+-
+-- resets : phandle to reset controller with the reset number in the second cell
+-
+-fan subnode format:
+-===================
+-Under fan subnode there can upto 8 child nodes, with each child node
+-representing a fan. If there are 8 fans each fan can have one PWM port and
+-one/two Fan tach inputs.
+-For PWM port can be configured cooling-levels to create cooling device.
+-Cooling device could be bound to a thermal zone for the thermal control.
+-
+-Required properties for each child node:
+-- reg : should specify PWM source port.
+-	integer value in the range 0 to 7 with 0 indicating PWM port A and
+-	7 indicating PWM port H.
+-
+-- cooling-levels: PWM duty cycle values in a range from 0 to 255
+-                  which correspond to thermal cooling states.
+-
+-- aspeed,fan-tach-ch : should specify the Fan tach input channel.
+-                integer value in the range 0 through 15, with 0 indicating
+-		Fan tach channel 0 and 15 indicating Fan tach channel 15.
+-		At least one Fan tach input channel is required.
+-
+-Examples:
+-
+-pwm_tacho: pwmtachocontroller@1e786000 {
+-	#address-cells = <1>;
+-	#size-cells = <1>;
+-	#cooling-cells = <2>;
+-	reg = <0x1E786000 0x1000>;
+-	compatible = "aspeed,ast2500-pwm-tacho";
+-	clocks = <&syscon ASPEED_CLK_APB>;
+-	resets = <&syscon ASPEED_RESET_PWM>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_pwm0_default &pinctrl_pwm1_default>;
+-
+-	fan@0 {
+-		reg = <0x00>;
+-		cooling-levels = /bits/ 8 <125 151 177 203 229 255>;
+-		aspeed,fan-tach-ch = /bits/ 8 <0x00>;
+-	};
+-
+-	fan@1 {
+-		reg = <0x01>;
+-		aspeed,fan-tach-ch = /bits/ 8 <0x01 0x02>;
+-	};
+-};
+-- 
+2.51.0
+
 
