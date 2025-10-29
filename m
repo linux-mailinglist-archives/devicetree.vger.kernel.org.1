@@ -1,116 +1,108 @@
-Return-Path: <devicetree+bounces-232820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id C145DC1C093
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 17:23:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDB96C1BCD6
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 16:52:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 456635C87BF
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:44:24 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E65F75A44B4
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:40:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62328344052;
-	Wed, 29 Oct 2025 15:42:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EF0133769D;
+	Wed, 29 Oct 2025 15:40:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="1wwya0A+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JWSOPckp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9316433F8BE;
-	Wed, 29 Oct 2025 15:42:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D65E42EB87F;
+	Wed, 29 Oct 2025 15:40:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761752572; cv=none; b=Ltx4SegrnTJ7p+CFAnHu/0EAXA8pQxqJqyj1y3QJmhhmCqNDhUqXhyZkrb8UgSZbpgHR1qSBjNu85Exs8/jZY3pFFF3c7wdLVBEXwwvY1YJQBR/bDt0DFwOIkh5Srdfc+ZWzx7pxcuF0HjVoJSJMfwk2CFgiToKXMvK8CMeDLGk=
+	t=1761752440; cv=none; b=CldX/6PhQ6xZrRSO5rqzHoi/eWmVer9fADmx4nLnPr85WKRHmRMs6093o+rulrl2lP2q2I3Mvk25pkQYE5/+2GO0q25XxrvoNFQHKFiLl+mFfNYwosWs8s8GYf0Aaf1mE9AYqVQCQLKrH7T9Ur3YeY3H/R7S2MfEdZiPtGH00Zw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761752572; c=relaxed/simple;
-	bh=mTyubcT0QXbiYSYuJBtiOy+znibfDRYqoP4/3JvVdrk=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=JDnuKSQhfR3rJ19SuMHH6CuDsXh8hJbCvmFDDxdh1MbP8wWCAmD0fbrG0R7vKM5hnbL8+QCPiMbg/Dl2BeW1rSV2p5htDKD1XVRaR5hKY+tKDRYtJVTr+VWEoTymGTBlYoCQVukBqJ+BAqUAMIWsUJVZABMo6CFXKP8LD3WuyGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=1wwya0A+; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 9F69C1A1751;
-	Wed, 29 Oct 2025 15:42:46 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 6CDF3606E8;
-	Wed, 29 Oct 2025 15:42:46 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3FA7D117F82C5;
-	Wed, 29 Oct 2025 16:42:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761752565; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=mTyubcT0QXbiYSYuJBtiOy+znibfDRYqoP4/3JvVdrk=;
-	b=1wwya0A+6J55bXJZ9i9zxIM9ypamlJUH+c9TrZ/M9MZrRukaDz3uACmVjIVbMqScFwybpX
-	+S1t9r/X8A5FxjJQ053o1+VlfzT3sEbVrL9J0es/RK8clpfRafAF8jipRoU09A/j6G83e0
-	KmO/BC2JWXI9sRkx3UMyDpVuAL53/ksHYqNY23lNEGTOPL7FiGaYlWKGjtejhbGoeeqRLL
-	LXAPhJ+uKDc9cuVFCeCJ/0ZpB+dJrh/DhvGl3nxA+Vc6dAG7aA+HjsGzZ3tt8+FE1eMcWU
-	xn7FnhuyfnKVUZqcN+FRdcG3NiFj6jA8J4HcsVPAP7QAGUlsr9Q0RHQkbRjWJg==
+	s=arc-20240116; t=1761752440; c=relaxed/simple;
+	bh=PbZwkdXNfvQm13fSa8McCaVV+TGgfVCC2xR6UwY+jzk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NUHEvu4Xz5bhQOXw8TMgXcR6wr8KFIczDVZsacZXAR8hKm+lR9W0XyrufJBu1C+LMNp0+f5BP1niTAmh9zw7LHNoEb+enWzUKUulDRdPmDd3tywRE7Tu03YnclzzmNS1dcU4NS8XZ9v4QVL4eOUkRT17I+1bf/6McsWZPUa/dQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JWSOPckp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA3CEC4CEF7;
+	Wed, 29 Oct 2025 15:40:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761752439;
+	bh=PbZwkdXNfvQm13fSa8McCaVV+TGgfVCC2xR6UwY+jzk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JWSOPckpSDYIkfQgJ4q/e1tdXS7lUiyCrMsZHqBM8SQ5b+pzOtyNAC8TcRTbHeWKU
+	 NTlWKlOGh7qKzmxUhx8qP0gZK84ZayCIReYqTH9FQ9enQvQcp3dM4xH4ELfQWYP0bN
+	 Dek14LFcV3PHvn0JUNRZRxFv7Dz0SJ0eNGQclYa3pZ1rthjcHJ3MdTQAb+wTESF/EP
+	 qYodeU/KEL2l0n7Zc+Hqjee4TX0bv4t/fhfQxwReT0WxJo+rPbG7bgUoRCSqZq/5ZB
+	 fMvuXnW+VNHFBgGF+2kHC44A9jn0YgTzqPsu312hwk5XxJC28Ls3rLkUMzBSQ3yJfN
+	 A5VRWFyWqkkqQ==
+Date: Wed, 29 Oct 2025 10:43:42 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Sudarshan Shetty <tessolveupstream@gmail.com>
+Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 0/1] arm64: dts: qcom: Add dual-channel LVDS support
+ on QCS615 Talos EVK
+Message-ID: <sygckhfcazo56jpmuldhctu3jnf3unekl4ahh7n3yels63ntpg@3esgqmoewfuo>
+References: <20251028061636.724667-1-tessolveupstream@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 29 Oct 2025 16:42:41 +0100
-Message-Id: <DDUX5TR1VIR9.1KDDNA4XZ6JYW@bootlin.com>
-Subject: Re: [PATCH 2/7] phy: Add driver for EyeQ5 Ethernet PHY wrapper
-Cc: <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
- <linux-clk@vger.kernel.org>, =?utf-8?q?Beno=C3=AEt_Monin?=
- <benoit.monin@bootlin.com>, "Maxime Chevallier"
- <maxime.chevallier@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>
-To: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, "Vladimir
- Kondratiev" <vladimir.kondratiev@mobileye.com>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Vinod Koul" <vkoul@kernel.org>,
- "Kishon Vijay Abraham I" <kishon@kernel.org>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Philipp
- Zabel" <p.zabel@pengutronix.de>, "Thomas Bogendoerfer"
- <tsbogend@alpha.franken.de>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20251022-macb-phy-v1-0-f29f28fae721@bootlin.com>
- <20251022-macb-phy-v1-2-f29f28fae721@bootlin.com>
-In-Reply-To: <20251022-macb-phy-v1-2-f29f28fae721@bootlin.com>
-X-Last-TLS-Session-Version: TLSv1.3
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251028061636.724667-1-tessolveupstream@gmail.com>
 
-Hello all,
+On Tue, Oct 28, 2025 at 11:46:35AM +0530, Sudarshan Shetty wrote:
+> Hi all,
+> 
+> This patch introduces a new device tree for the QCS615 Talos EVK platform
 
-On Wed Oct 22, 2025 at 5:39 PM CEST, Th=C3=A9o Lebrun wrote:
-> EyeQ5 embeds a system-controller called OLB. It features many unrelated
-> registers, and some of those are registers used to configure the
-> integration of the RGMII/SGMII Cadence PHY used by MACB/GEM instances.
->
-> Wrap in a neat generic PHY provider, exposing two PHYs with standard
-> phy_init() / phy_set_mode() / phy_power_on() operations.
+"This patch"? There shouldn't be a need for a cover letter for a single
+patch, the patch commit message should describe itself; as any
+information in the cover-letter is lost in the mail archive when the
+patch is merged.
 
-I am curious if anyone has feedback on this generic PHY driver? Patches
-on MACB landed in net-next [0]. If the phy-eyeq5-eth driver approach
-doesn't fly then I should sync with net land to revert MACB patches as
-they are useless unless we have phy-eyeq5-eth merged.
 
-V2 changelog at the moment (will wait a few more days before sending):
- - Acked-by: Conor Dooley on dt-bindings patch.
- - ptrdiff_t is printed using %td not %ld; warning on 32-bit archs [1].
+Also, please transition to b4, per our internal guidelines.
 
-[0]: https://lore.kernel.org/lkml/176166121351.2249512.7238254409117352079.=
-git-patchwork-notify@kernel.org/
-[1]: https://netdev.bots.linux.dev/static/nipa/1014126/14277857/build_32bit=
-/stderr
+Regards,
+Bjorn
 
-Thanks!
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+> with dual-channel LVDS display support.
+> 
+> The new DTS file (`talos-evk-lvds.dts`) is based on the existing
+> `talos-evk.dts` and extends it to enable a dual-channel LVDS display
+> configuration using the TI SN65DSI84 DSI-to-LVDS bridge.
+> 
+> In this setup:
+> - LVDS Channel A carries odd pixels.
+> - LVDS Channel B carries even pixels.
+> 
+> This patch only adds the new DTS and corresponding Makefile entry.
+> 
+> Thanks,
+> Sudarshan
+> 
+> ---
+> 
+> Sudarshan Shetty (1):
+>   arm64: dts: qcom: talos-evk: Add support for dual-channel LVDS panel
+> 
+>  arch/arm64/boot/dts/qcom/Makefile           |   1 +
+>  arch/arm64/boot/dts/qcom/talos-evk-lvds.dts | 128 ++++++++++++++++++++
+>  2 files changed, 129 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk-lvds.dts
+> 
+> -- 
+> 2.34.1
+> 
 
