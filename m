@@ -1,81 +1,101 @@
-Return-Path: <devicetree+bounces-232636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF3AEC19937
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 11:08:35 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8C07C1994C
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 11:09:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0AFF34E86B9
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 10:05:58 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3D31534517F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 10:09:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 440782E5437;
-	Wed, 29 Oct 2025 10:05:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEDAA2E6CC0;
+	Wed, 29 Oct 2025 10:09:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MRT4fBqv"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eC3rQwc2";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="IGYfRGGh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 556CF2E427B
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 10:05:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01C4B2E5427
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 10:09:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761732348; cv=none; b=K17/rOU0l28Mz9lH8Hl4/y14TW3mtV6235sUTPb60EhD99RFdAhUrpKrda+G9elJg82jz3nE/NesPo5xNl1rGGoEB9U2n6xd3GhdnQf4imDR1ZEmNQVTupAGVsoK1QMnDOocmDwHh8FXp8pmPLFsgKReqBA8wtVWYSSTwFb2GBM=
+	t=1761732562; cv=none; b=fDCjSSgbYRLhdK89aaDi2zMobZkDN7n2tqyE/L0jNjc0uKhB3qWC8P0212tsT9m5KLHJDWAv0wsSeT3P8UIYoUEh8TbueIL4zQzp2DLKc+4oQFm+jrqYftvHtTfGSFqDg4GsDtQRVuj9zwNkKNvBineZ/Y0v2HIwymM34sszytk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761732348; c=relaxed/simple;
-	bh=6fhlONikyziLKXSOgsIWG9Q5ws9vOabN9oCSLCgESxY=;
+	s=arc-20240116; t=1761732562; c=relaxed/simple;
+	bh=T+skC9JZPAVKoGOzV7tmD8ueHFS0TYHsN35wOLfRedg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mtZ3+8sdS+nITkD8+aj4GM5Y+gBgmlfUtHpjBtbzDoyxG3yM0DvtVQ7lZjZbcpq1iZC222x1/I+Eb5Qyc8YsnNJHiVtgzm/CfX5LddnHx2l0XHJdF+DfWp2FppEPmv/DkPeRIBEFp0IxcnJW8WQ+pzo77cACWjy3Gat6cwJOAXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MRT4fBqv; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-378d61ce75aso8388411fa.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 03:05:46 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=gWOeL+Z5wl31stkjIkdGoc0Gj9TMl0Efx5bxHCFjaEcy6mGZQ+u6OX+nLxk2gj2nsfOhlahicm305x19EGIQCQcauqS2OcJ3ALS1OEumNlRTyVhLAwAXQWb2MgSC5iC7aj+qXkCQLbft+hxdQndhoxFxXqJHk3fGf8OTm33fDxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eC3rQwc2; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=IGYfRGGh; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59T4v3bT3755359
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 10:09:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	9UFoaKdadr1g2i/MVgf4IFB2G1VGBqYfrKXQNVHn/VI=; b=eC3rQwc2rxh5ZH/u
+	MLIP7A06hX4U946VpCtfU1TDeWAya3SDZO+zbPnLs8OjMCNSne6rBKyiFzAKGesC
+	2VAxvlYKVR3jDhah0+HthQPcelMydWe5YyVPYL4kmyZoYKxJrnezia6C2i2ISW8b
+	vTdCFhRCSvnkOaOTIedA1fuZ+nV6kxT0xUi/gHz5KKo4Uec8YqzYqHQWdaUfFCYp
+	tQrTex1MG9yFQBsU1HxVcqnALnqVmoKBz9kT4nt4e19TCGhaTnxOK2S8I/oSHPmm
+	C4ZkFT8afG09z9lQHaz9WGSorKhZ342Ccz5iWt+pIPsSMlnvGRvnyarTK02YqeOn
+	oXrkLw==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a34a0j49h-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 10:09:19 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-290baa27f53so26935745ad.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 03:09:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761732344; x=1762337144; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1761732559; x=1762337359; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uijkDtADuxF9K7YO0wHfT0dqUWSv/gYtiCeLIm0pwtg=;
-        b=MRT4fBqvZ6hKMYRWETILIkdfAr+GsPdED1SHlqrmu5MXYxKPF95DiK5oGAUI4PD87R
-         zCHQgHXOqrfmvrB0rH0ZsjwW8ohSFk4j2SOSxeppZhzyMysSwcepKsOF7UxwPIK2IR3/
-         g8pD8ZGgDsyS//wwt1V0iLzbDQ7zJCd7YurzPfbJpORuMLdZQnKClY9ARJQVSUzxW7HV
-         a7kxwJBS1cLb9K3e3/FlmmC8UnIDX/GErVmtiXyADSJjiH0ZemDqNdLbn74gpWR4Qa1g
-         7+IvoYYgSE0nZ1tec9firm+t7rLhQuEsA/XQVCyh9xrN6Pb1yYegh/+bZz2OIhlfjSM3
-         UrFw==
+        bh=9UFoaKdadr1g2i/MVgf4IFB2G1VGBqYfrKXQNVHn/VI=;
+        b=IGYfRGGhKkoBH5WP8LHemVT5Oy5rOZ5ZewTjguxEdOUg/oJfbM4l8RjTsY+C23THvb
+         KW1q3tSAbj3MDsPRmTdSdKUMn8/BhnqZ0RzhjLogDYCApp8BFDQcnWAPA55jJlCt/JoR
+         gzyBQe8N91pvzuLVcYMByKb7TYAgQAyySTLJ4NotSjyczR7ZD0Z7pWBVH/CfocpOYUmt
+         wsrp09Umm+kl1XSAiXsZaN7K/TYgNI5Vz3gibZc637JPrLXoD3jyZaO6IRELjZ13usg+
+         kMYBrLO4oIVHI6MTt2kngDCddFJ52vx7ckuFxHJhNjTq9gjmlQIH9MVqDLbt8FsdJVR2
+         PL8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761732344; x=1762337144;
+        d=1e100.net; s=20230601; t=1761732559; x=1762337359;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uijkDtADuxF9K7YO0wHfT0dqUWSv/gYtiCeLIm0pwtg=;
-        b=NkhA57P+eu1T1R4FxB4VqBWdv0NWxy5jLbr7f3RUJ9fhKpfhFYHTRxU40Au7bWXxgN
-         l38khc1AZL1UgfiPZNB0MrdXEQm9xMYrPa8Uhng9ExQcFp4h/B2OVPUF7VxRwiQ7B2ui
-         e1zR3W+i9fX0qWH6subKpUpoPvXuVIhoR0BPImNXarDT5chMGt1oZaW63zYKrj3QcnI0
-         m1IEXjjeLJmNokpgjqO/H06TArJog5BrtUCoaIVWCmoMHiKuMAOfqWOEdEsjvUScTdjN
-         ZPCZ1sXlatXcu9u7xPEomUdxg/w0VkJNsg6uAlIeIZMJmqrjn+1/lmTWmkZoA2FzyxIl
-         2W8w==
-X-Forwarded-Encrypted: i=1; AJvYcCUVWS36GQNo2vtxMSqKLNmloEDL6LL02JTDOKhPwU46/54KqHEDNjOUszbfT1yuPVToKPw8v6wX1OSK@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAsZkVNqSf8GEEbVjvV7a27hPPQvGOpmOS/rRsXFpLE6gr+S1d
-	P6TQDZwJHrcojdjGprhs6KrU886TD+J+16DToxbsg2z9JtjC3VuIkd8J
-X-Gm-Gg: ASbGncuu5S++sSqVDZVg9Trpjl0T+kNYqRPBE7W3wDIAePZQMhdZwSYtUQRJdasmxrQ
-	OB881GM1vmXuOrIM7X7G6wOwgVwytC0IGYetG1k2nFM6ExAheMh/pOCunxfQoQrFazJyeMtaobx
-	28DjyDhL5ZUPCGNTFCuuXG4p6hIWaBSHKb69S4/OehQDZHoJst4Slp18jYWT2r2Z/4jZb0cB/iv
-	e89+KX3OPr7mQcEVDzWUnapoM3tlJH3cfDmqV6BG+uWp66lYafNL6QnbH3Ku+jvMJFEjXbFbpdr
-	vBnhDl8/TBF88yi10drkeodj58Sw+NS36ufulV83pKtuP3OdD30q/p0Yzmod49gGnefKK8A1ZH7
-	leeJkWDV21VIocxzagiyH2Qx2x+DdtEurxPPeRAEAYaP2PWwPMj+9SgdS62UE3gPKB25o+jd4vH
-	2m+N+EsnJItw==
-X-Google-Smtp-Source: AGHT+IGPxek9rb53Ximkpkaumucrgng5VeDuIhUsDvmIZ+V2MTxI6ONwkIEmWMDo7OzJnyOZGmVRjw==
-X-Received: by 2002:a05:651c:1614:b0:373:a93d:5b4d with SMTP id 38308e7fff4ca-37a05e4e256mr6276451fa.14.1761732344095;
-        Wed, 29 Oct 2025 03:05:44 -0700 (PDT)
-Received: from [10.38.18.54] ([213.255.186.37])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-378ee09213fsm32546531fa.1.2025.10.29.03.05.42
+        bh=9UFoaKdadr1g2i/MVgf4IFB2G1VGBqYfrKXQNVHn/VI=;
+        b=Y5NGKvRPLYKiVB9L93/ehnX2Yj8UqaxBGZJ7cyXmI/siMTgRkOpDtQZoxK6MoDByQd
+         W9QDDbJ1drsVxMhGKXajTtveGaY6EwI2a187v4514NDpAyw4RY215FEMWPjRRo2niju1
+         L2QR97rlDT89i5hSFxW7nXOfWKavEDANJaEiOLR6A1foPMBYZYp0NwKtnaIniWBejlfs
+         5kxNL4yj/FWpPqkZGH9o3D+mRcJEbzI8+Od4wYAizTK3cxQWW8rFOcEEChPuIXlYg5K6
+         DS0w4y/a5Z9uJ1Yn9x32cDNQ3w9Z0uKCOodNYzIZZp9SGGhr2aW7pZA6gw3vwqi6f2PG
+         TiWw==
+X-Forwarded-Encrypted: i=1; AJvYcCWwrjAs93eQ7u3JiZQJ7iE55TGTMk9t3hhe52FKhQr0k80pij7bYHH413y21LqezB0js8qlQu6id2L6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwhArnegFTA1e3kjpS3Eb0h4736jVoAk/HmHEDzK70ReVxStTMs
+	mCLucncB5YVQuqi8ZD129ZE3kZH66ZZNOMjK/O3LbJe4Bcf4+gVLKhKAQswlMwyfkSRocj93ZKL
+	5uYyZ6VpP9fxtEpZhpcV745UVjHbAIt1K4wWLp+AdgawQYD24L14qQUGIFKuCEHJE
+X-Gm-Gg: ASbGnctI39LE2GmE+NXQfeh0FqIgJxSchisbDmDuZUlo+13ISNdzzv+G2r13WFoB0p6
+	/ZkpaMwhwFIiyYf3g4Irr/qYFT549ThY+4fJogQTseABbRTtT6zwuYuaJ59NA5aQG4wnrmo+AH3
+	ss1FhH+leRh3oHqKylDwb0fb+qHHFqz5vdnY2Dn/kU9wH4COHiGKdyviCfF7ClNgx7gTzlRULuO
+	yxxBxB9jaaH8fZqefM8nJ8GfeLRz+IdcDG2s2+7sIHdan1KHu/V5ThB3eM2Xfn0imWv6DSaBlna
+	BljRBbkIAxtdtwnNAxaIXiC37Ifija8oZiO52XFlMr4QbiX6wgRjbNnaGZdc/uPBc9jVV5WQftl
+	vytoz3+ACxKTRQEIAsTAJkXTh+9z8FUdgDh415wYih7AT0C/n8j1xIkIvpkuDUkpA
+X-Received: by 2002:a17:903:182:b0:292:64ec:8f4d with SMTP id d9443c01a7336-294def32107mr13268915ad.8.1761732558666;
+        Wed, 29 Oct 2025 03:09:18 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFrhQOQPmCxS1LCe2JYoHowXrcsx36JRLe8QavrIxkEGUCUFIlfyO2q3wnnI4V0G19PT7t65w==
+X-Received: by 2002:a17:903:182:b0:292:64ec:8f4d with SMTP id d9443c01a7336-294def32107mr13268635ad.8.1761732558014;
+        Wed, 29 Oct 2025 03:09:18 -0700 (PDT)
+Received: from [10.133.33.95] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29498d273cdsm144849345ad.55.2025.10.29.03.09.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Oct 2025 03:05:43 -0700 (PDT)
-Message-ID: <d05c62c9-7ed7-46e4-aa4d-27172741b5ee@gmail.com>
-Date: Wed, 29 Oct 2025 12:05:42 +0200
+        Wed, 29 Oct 2025 03:09:17 -0700 (PDT)
+Message-ID: <ca033e96-2024-4418-80d1-5dd119c5d9d8@oss.qualcomm.com>
+Date: Wed, 29 Oct 2025 18:09:11 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,203 +103,161 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/5] arm64: dts: freescale: add Ka-Ro Electronics
- tx8m-1610 COM
-To: =?UTF-8?Q?Lothar_Wa=C3=9Fmann?= <LW@KARO-electronics.de>
-Cc: Maud Spierings <maudspierings@gocontroll.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
-References: <20251022-mini_iv-v2-0-20af8f9aac14@gocontroll.com>
- <20251022-mini_iv-v2-3-20af8f9aac14@gocontroll.com>
- <a7012995-c2a8-48a3-abe1-5c227272f21c@gmail.com>
- <65202d1f-6c4f-4d4e-9fef-85cfb74ec768@gocontroll.com>
- <938f85b0-4c9b-463a-960a-f5f4e4092480@gocontroll.com>
- <20251029081138.2161a92a@karo-electronics.de>
- <4a47b9b5-f482-41b6-a441-7728572c5a0c@gmail.com>
- <20251029104838.44c5adcf@karo-electronics.de>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20251029104838.44c5adcf@karo-electronics.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2 4/7] remoteproc: qcom: pas: Add late attach support for
+ subsystems
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>
+Cc: tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+        yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Gokul krishna Krishnakumar <Gokul.krishnakumar@oss.qualcomm>
+References: <20251029-knp-remoteproc-v2-0-6c81993b52ea@oss.qualcomm.com>
+ <20251029-knp-remoteproc-v2-4-6c81993b52ea@oss.qualcomm.com>
+Content-Language: en-US
+From: "Aiqun(Maria) Yu" <aiqun.yu@oss.qualcomm.com>
+In-Reply-To: <20251029-knp-remoteproc-v2-4-6c81993b52ea@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=HvZ72kTS c=1 sm=1 tr=0 ts=6901e7cf cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=stnUSK8qSH_NtdpFURMA:9 a=QEXdDO2ut3YA:10
+ a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-GUID: _4HvlgP8ehqOMVthNCnmYKfCKyAAOWjL
+X-Proofpoint-ORIG-GUID: _4HvlgP8ehqOMVthNCnmYKfCKyAAOWjL
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI5MDA3NiBTYWx0ZWRfX+pqo+cCFrokU
+ fg5GS2FITcghny7tcZJK9OGi/qsJDazVnv9cXO2AivaeyFeuJPS4r2UpC+78fSjviDIb+btEil/
+ SWOMPrrJSQZMJ9KWKc/+5WEXMbsI/7oGomNcX/KpeIZCuo2MmxiHxOaguYZYuFYcx7FM6CIhhxH
+ uFfG4vD2pHIlIadH+kN937z4Wn01KyNUTGr1EyS60FjPZ/qF10fPdTtcA353AV2xnjbSEpGWxlg
+ 9LxYhgle14HXvC77YzA2+mhb+MYL8XdrEkfJ4aVic1H+mBkzvF1SUwRl6F2Tmw9eIWDK8CsycIi
+ 0HoTyNtGnVIN7QZ/SHX0MEuR6aWNUdneVBSfI896xjZ2jE8QuPj9Eb4LYbDfPbu+jF75koSOPIx
+ NDpsWLy423Agtomi1NxLD1miwkUUDA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-29_04,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 priorityscore=1501 malwarescore=0 adultscore=0 impostorscore=0
+ lowpriorityscore=0 phishscore=0 bulkscore=0 spamscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510290076
 
-On 29/10/2025 11:48, Lothar Waßmann wrote:
-> Hi,
+On 10/29/2025 4:05 PM, Jingyi Wang wrote:
+> From: Gokul krishna Krishnakumar <Gokul.krishnakumar@oss.qualcomm>
 > 
-> On Wed, 29 Oct 2025 10:42:17 +0200 Matti Vaittinen wrote:
->> On 29/10/2025 09:11, Lothar Waßmann wrote:
->>> Hi,
->>>
->>> On Tue, 28 Oct 2025 14:10:04 +0100 Maud Spierings wrote:
->>>> On 10/28/25 13:42, Maud Spierings wrote:
->>>>> On 10/28/25 13:15, Matti Vaittinen wrote:
->>> [...]
->>>>>> Could/Should this be described using the:
->>>>>> 'rohm,feedback-pull-up-r1-ohms' and
->>>>>> 'rohm,feedback-pull-up-r2-ohms'? If I understand the comment
->>>>>> correctly, that might allow the driver to be able to use correctly
->>>>>> scaled voltages.
->>>>>>
->>>>>> https://elixir.bootlin.com/linux/v6.18-rc1/source/Documentation/
->>>>>> devicetree/bindings/regulator/rohm,bd71837-regulator.yaml#L108
->>>>>>      
->>>>>
->>>>> Ah I didn't know those existed, should've checked the bindings in more
->>>>> detail, thanks for the hint!
->>>>>
->>>>> I will have to investigate this carefully, since I don't have access to
->>>>> the actual design of the COM, so I don't know exactly what is there.
->>>>>       
->>>>
->>>> So I am not yet entirely sure if this works out, I used the calculation
->>>> in the driver:
->>>>
->>>> /*
->>>>     * Setups where regulator (especially the buck8) output voltage is scaled
->>>>     * by adding external connection where some other regulator output is
->>>> connected
->>>>     * to feedback-pin (over suitable resistors) is getting popular amongst
->>>> users
->>>>     * of BD71837. (This allows for example scaling down the buck8 voltages
->>>> to suit
->>>>     * lover GPU voltages for projects where buck8 is (ab)used to supply power
->>>>     * for GPU. Additionally some setups do allow DVS for buck8 but as this do
->>>>     * produce voltage spikes the HW must be evaluated to be able to
->>>> survive this
->>>>     * - hence I keep the DVS disabled for non DVS bucks by default. I
->>>> don't want
->>>>     * to help you burn your proto board)
->>>>     *
->>>>     * So we allow describing this external connection from DT and scale the
->>>>     * voltages accordingly. This is what the connection should look like:
->>>>     *
->>>>     * |------------|
->>>>     * |	buck 8  |-------+----->Vout
->>>>     * |		|	|
->>>>     * |------------|	|
->>>>     *	| FB pin	|
->>>>     *	|		|
->>>>     *	+-------+--R2---+
->>>>     *		|
->>>>     *		R1
->>>>     *		|
->>>>     *	V FB-pull-up
->>>>     *
->>>>     *	Here the buck output is sifted according to formula:
->>>>     *
->>>>     * Vout_o = Vo - (Vpu - Vo)*R2/R1
->>>>     * Linear_step = step_orig*(R1+R2)/R1
->>>>     *
->>>>     * where:
->>>>     * Vout_o is adjusted voltage output at vsel reg value 0
->>>>     * Vo is original voltage output at vsel reg value 0
->>>>     * Vpu is the pull-up voltage V FB-pull-up in the picture
->>>>     * R1 and R2 are resistor values.
->>>>     *
->>>>     * As a real world example for buck8 and a specific GPU:
->>>>     * VLDO = 1.6V (used as FB-pull-up)
->>>>     * R1 = 1000ohms
->>>>     * R2 = 150ohms
->>>>     * VSEL 0x0 => 0.8V – (VLDO – 0.8) * R2 / R1 = 0.68V
->>>>     * Linear Step = 10mV * (R1 + R2) / R1 = 11.5mV
->>>>     */
->>>>
->>>> Because I do not know the pull up voltage, and I am not sure if it is a
->>>> pull up.
->>>>
->>>> So:
->>>> Vout_o = 1.35V
->>>> Vo = 1.1V
->>>> Vpu = unknown
->>>> R2 = 499 Ohm
->>>> R1 = 2200 Ohm
->>>> Gives:
->>>> Vpu = ~0V
->>>>
->>>> And:
->>>> Vout_o = 1.35V
->>>> Vo = 1.1V
->>>> Vpu = unknown
->>>> R2 = 2200 Ohm
->>>> R1 = 499 Ohm
->>>> Gives:
->>>> Vpu = ~1.04V
->>>>
->>>> I am not quite sure which resistor is R1 and which is R2 but having
->>>> there be a pull down to 0V seems the most logical answer?
->>>>
->>>> I am adding Lothar from Ka-Ro to the CC maybe he can shed some light on
->>>> this setup.
->>>>   
->>> R2 is connected to GND, so Vpu = 0.
->>> With:
->>> 	regulator-min-microvolt = <1350000>;
->>> 	regulator-max-microvolt = <1350000>;
->>> 	rohm,fb-pull-up-microvolt = <0>;
->>> 	rohm,feedback-pull-up-r1-ohms = <2200>;
->>> 	rohm,feedback-pull-up-r2-ohms = <499>;
->>> the correct voltage should be produced on the BUCK8 output, but a quick
->>> test with these parameters led to:
->>> |failed to get the current voltage: -EINVAL
->>> |bd718xx-pmic bd71847-pmic.3.auto: error -EINVAL: failed to register buck6 regulator
->>> |bd718xx-pmic: probe of bd71847-pmic.3.auto failed with error -22
->>>
->>> Apparently noone has ever tested this feature in real life.
->>
->> Thanks for trying it out Lothar. I am positive this was tested - but
->> probably the use-case has been using a pull-up. I assume having the zero
->> pull-up voltage causes the driver to calculate some bogus values. I
->> think fixing the computation in the driver might not be that big of a
->> task(?) The benefit of doing it would be that the correct voltages would
->> be calculated by the driver.
->>
->> If real voltages aren't matching what is calculated by the driver, then
->> the voltages requested by regulator consumers will cause wrong voltages
->> to be applied. Debug interfaces will also show wrong voltages, and the
->> safety limits set in the device-tree will not be really respected.
->>
->> I think this would be well worth fixing.
->>
-> Before doing the real-life test I did the same calculation that's done
-> in the driver to be sure that it will generate the correct values:
-> bc 1.07.1
-> Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006, 2008, 2012-2017 Free Software Foundation, Inc.
-> This is free software with ABSOLUTELY NO WARRANTY.
-> For details type `warranty'.
-> fb_uv=0
-> r1=2200
-> r2=499
-> min=800000
-> step=10000
-> # default voltage without divider
-> min+30*step
-> 1100000
-> min=min-(fb_uv-min)*r2/r1
-> step=step*(r1+r2)/r1
-> min
-> 981454
-> step
-> 12268
-> # default voltage with divider
-> min+30*step
-> 1349494
-> 
-> Probably we need to use this value rather than the nominal 135000 as
-> the target voltage in the DTB.
+...
 
-Yes. When the driver calculates the voltages which match the actual 
-voltages, then you should also use the actual voltages in the device-tree.
+> +
+> +	/* Clear ping bit master kernel */
+> +	ret = qcom_smem_state_update_bits(q6v5->ping_state, BIT(q6v5->ping_bit), 0);
+> +	if (ret) {
+> +		pr_err("Failed to clear master kernel bits\n");
+> +		return ret;
+> +	}
+> +
+> +	if (ping_failed)
+> +		return ping_failed;
+> +
+> +	return 0;
 
-Yours,
-	-- Matti
+Prefer to just have:
+return ping_failed;> +}
+> +EXPORT_SYMBOL_GPL(qcom_q6v5_ping_subsystem);
+> +
+> +int qcom_q6v5_ping_subsystem_init(struct qcom_q6v5 *q6v5, struct platform_device *pdev)
+> +{
+> +	int ret = -ENODEV;
+> +
+> +	q6v5->ping_state = devm_qcom_smem_state_get(&pdev->dev, "ping", &q6v5->ping_bit);
+> +	if (IS_ERR(q6v5->ping_state)) {
+> +		dev_err(&pdev->dev, "failed to acquire smem state %ld\n",
 
-> 
-> 
-> Lothar Waßmann
+Change from "failed" to "Failed" to align with log format in this file.>
++			PTR_ERR(q6v5->ping_state));
+> +		return ret;
+> +	}
+> +
+> +	q6v5->pong_irq = platform_get_irq_byname(pdev, "pong");
+> +	if (q6v5->pong_irq < 0)
+> +		return q6v5->pong_irq;
+> +
 
+Maybe place here for before any chance of q6v5_pong_interrupt:
+init_completion(&q6v5->ping_done);> +	ret =
+devm_request_threaded_irq(&pdev->dev, q6v5->pong_irq, NULL,
+> +					q6v5_pong_interrupt, IRQF_TRIGGER_RISING | IRQF_ONESHOT,
+> +					"q6v5 pong", q6v5);
+> +	if (ret)
+> +		dev_err(&pdev->dev, "failed to acquire pong IRQ\n");
+
+Change from "failed" to "Failed" to align with log format in this file.> +
+> +	init_completion(&q6v5->ping_done);
+
+Better to have the init_completion before the pong_irq's
+devm_request_threaded_irq.> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(qcom_q6v5_ping_subsystem_init);
+> +
+>  /**
+>   * qcom_q6v5_init() - initializer of the q6v5 common struct
+...
+> +static int qcom_pas_attach(struct rproc *rproc)
+> +{
+> +	int ret;
+> +	struct qcom_pas *adsp = rproc->priv;
+> +	bool ready_state;
+> +	bool crash_state;
+> +
+> +	if (!adsp->q6v5.early_boot)
+> +		return -EINVAL;
+> +
+> +	ret = irq_get_irqchip_state(adsp->q6v5.fatal_irq,
+> +				    IRQCHIP_STATE_LINE_LEVEL, &crash_state);
+> +
+> +	if (crash_state) {
+> +		dev_err(adsp->dev, "Sub system has crashed before driver probe\n");
+> +		adsp->rproc->state = RPROC_CRASHED;
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = irq_get_irqchip_state(adsp->q6v5.ready_irq,
+> +				    IRQCHIP_STATE_LINE_LEVEL, &ready_state);
+> +
+> +	if (ready_state) {
+> +		dev_info(adsp->dev, "Sub system has boot-up before driver probe\n");
+> +		adsp->rproc->state = RPROC_DETACHED;
+> +	} else {
+> +		ret = wait_for_completion_timeout(&adsp->q6v5.subsys_booted,
+> +						  msecs_to_jiffies(EARLY_BOOT_RETRY_INTERVAL_MS));
+> +		if (!ret) {
+> +			dev_err(adsp->dev, "Timeout on waiting for subsystem interrupt\n");
+> +			return -ETIMEDOUT;
+> +		}
+> +	}
+
+How about:
+if (unlikely(!ready_state)) {
+	ret = wait_for_completion_timeout(&adsp->q6v5.subsys_booted,
+					  msecs_to_jiffies(EARLY_BOOT_RETRY_INTERVAL_MS));
+	if (!ret) {
+		dev_err(adsp->dev, "Timeout on waiting for subsystem interrupt\n");
+		return -ETIMEDOUT;
+	}
+}
+
+dev_info(adsp->dev, "Sub system has boot-up before driver probe\n");
+adsp->rproc->state = RPROC_DETACHED;
+
+
+
+-- 
+Thx and BRs,
+Aiqun(Maria) Yu
 
