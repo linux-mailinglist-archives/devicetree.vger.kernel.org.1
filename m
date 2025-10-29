@@ -1,139 +1,356 @@
-Return-Path: <devicetree+bounces-232722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 463D4C1B074
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:58:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48ED4C1AC5F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:37:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25DD5660BEE
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:22:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6AD4662CFD
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:25:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36FA63358D4;
-	Wed, 29 Oct 2025 13:15:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFF382D8391;
+	Wed, 29 Oct 2025 13:22:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="RuSYPpDF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pb0Fggjm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B1C3358D2
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 13:15:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F5D32D63FC;
+	Wed, 29 Oct 2025 13:22:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761743754; cv=none; b=dHBlMmYJ7fVXVL1NemtfNNpsGka5HwqaMGgpM5n7I/qLbjS9xRouPNOIrDFj90R94aho5QReu2BZo5ZXQr/tZE2XvZcdKU+9me64l0yInhDImishvHZJrOXX4kY9pxlI5dxE7F3oyVzwM0nQDbPbNDrwdIpXuNt8fBTvXtYoFqU=
+	t=1761744134; cv=none; b=JL8ZWXyJtEr8n2VcmY94URVu36INP6oCyx5npXpissfqjrJEoK9Bxsf/itYbhyHhZYx9cWJfyZFfLJj4y/VeYHuzKn4F5i4MwNcbBdsiCA7GBlKXOnRFVcwaylQphREdnMS1Vbe0AA/KF3/EZLQvg09ojQaO/wB9o/vSvG23cHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761743754; c=relaxed/simple;
-	bh=idJ1/xpsY9Qz5yevc36Vw8gxViLPchWiyXx0zGa+jFw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qdHFLSUrgHG4ZOJkLigIf54FO3q4cWqMEmsqJOvV+SN8l5wMPTKYCjrIHUGhJgnWIWTKVK+LmOFFVZd7gIDdJi8y4mf7GtLKgrmmGu0Cv3ZWhDZFm27X9dxtYj2I3c+DROAOxhqVW9Uzs8Qk0U6Z4pC1wO6fkQddEN7pgn0ab7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=RuSYPpDF; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-57bd04f2e84so8755200e87.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 06:15:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1761743751; x=1762348551; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oOUisOdkXU0bOduvB/ByBLb4wJp/5x2Vdu+Ct3A15wo=;
-        b=RuSYPpDFB4REAVfafBOGVygb/P7rkfXo3U5o7RAbKuf+FFtQdoHehowXFNnsFCLPKM
-         lsahh6Goc7ckmd8JBWRgi/E9gqB8MQg96XDwUWi1d+nXwsaHUHRbwiqSfcNcm1EzSoVf
-         jitUK50/2fXnjO1Dg+OKrHZouoTWCKozi3cLm9ahFPz0neptppiUdWslHosJ+xsEqvLh
-         qsoDLF3LmbaI28247Tn9fpyI7UXyXiTgY7h1kNq0Jd4W6EJiW+hPhx7bEenLKS2YGnbg
-         M2a9IsdyW1RGosdkcI5gUgKW8d8oE0Zm2V25u9/caZzaH3cme21/ZyVfMtLzK7BUnoIf
-         PAbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761743751; x=1762348551;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oOUisOdkXU0bOduvB/ByBLb4wJp/5x2Vdu+Ct3A15wo=;
-        b=JacHIMlOdC++5GCa8ENHEuCy0B7lfeMkKdUlknfHpuvWBLKZIJ01T4IMCjDjZXbFJ/
-         lancltV6QJ8Lx43ve5sYyAATfktr8biAW6k2fQ8Jrf/bahT7/1KKvC3DiwfHebKjiIyB
-         IAw+R/CtRPZcLaLL0ZCBEkTWAxmCOVHumdS0pA+eYJ0Y3rQF/dbQEATAdDYxHt7kRkGa
-         YSEJL0zac2M95UzEvt1S7RNxK9ChQf49QOKuY6Ujjl48hN6K8J4heOTR1PJYT1qfuXeW
-         vMgzkHWpF5mbve0qI/fCqrHj41rR/tW9B/fnQHrOO6jroeV+d/1Yiw07LvWCpDaEmdjx
-         Q8TA==
-X-Forwarded-Encrypted: i=1; AJvYcCUbZt10O9yDaBCMhPtwXrk6I22xg2HI1mz3JE9mnk+jYcYaML3MMMemRcL2wCq6HSIGWesu5DZqRaqI@vger.kernel.org
-X-Gm-Message-State: AOJu0YyBitQ3emqRSegcCddkuVlcL2wLsn8OME5jrAXgRLrk/X+9nPI4
-	WB5XuP4OsEEnZUVBhKhPud4rhWq8GDQn6qfwpdKq/cZmAu/0FsUML6HZjsjeLEHnEYAfkY/gzV3
-	yKdbpP9xdjsrIgRuMevdkWdp78y5eVJUICqs2gVsTsw==
-X-Gm-Gg: ASbGncvoJKAJL8RiUv0qs+4cHOyPXaA3FahTE8VZ1aT00H+v4K+QLubXFfl2Q36gnke
-	C9PjHPZvscn7VrW7q8cq+EVfWs+KuVwRbK4MxjS0WJgKx7CdJLS5S4LuxCR6pDrxo4axtqIdNRu
-	d0ab+YhySr7t+dK2fiJTYRPXqwlQ/ev0gFQBFm5LQO70CykjoA8g44gSX3zLxpTQ8uhFSNol5YG
-	8EGlRJ53QUeHKAt8ypV5y9ZoccnuJz3hYFJwzEf2XhTH84zYXuEn4xP7MS1S8Ek6qEKa7W+3VUS
-	1Qj4Oqx4WnlMccmenXE7zndkmr4=
-X-Google-Smtp-Source: AGHT+IERc+XWdsch1n0sjpOQOzD+cW2IjfHO0Rpz1QeHwY2DnN9gsWkr3+lO2lQRgACmeZoFB2eG85VNyJBLdF9v7Qc=
-X-Received: by 2002:a05:6512:e84:b0:593:5066:8e35 with SMTP id
- 2adb3069b0e04-59412878b7emr1119097e87.13.1761743750670; Wed, 29 Oct 2025
- 06:15:50 -0700 (PDT)
+	s=arc-20240116; t=1761744134; c=relaxed/simple;
+	bh=dksurn2Zyj1v1QRVjbcMWup8hwJVLLosZUHH7lCpAAw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qhTBQSU9cfdyvExtyaq/XgJnKAHLd7P1AfuNcoB9TB1ibzFdFlPgFvwngBFEH1a66uwDZH3sr9S0thH2eW1tzchVc8LrUbmth2bCrX2jjIfq1fpp5bui5+YAHXDWl5agLM6zb5uuAZhzHIo9NxLZzJkdeVFqm0+z2/ebWHaK8pw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pb0Fggjm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB954C4CEF7;
+	Wed, 29 Oct 2025 13:22:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761744134;
+	bh=dksurn2Zyj1v1QRVjbcMWup8hwJVLLosZUHH7lCpAAw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Pb0FggjmE6SQJcgQbdY4cGWQg+JdplqPCOhJBVsAZqREpW6i+dQZmraxw16JEtqEr
+	 RystfgNR5IjDlnnTDD9TT9xVMuK3bIaRq2d+vB7A1Aa/PYdHRrw3ASNXCQ8F6Jte0s
+	 2s8ah4p8n7UWckh1ohibTDG4JJwBHkHtmrhG0mcKto052wKJu3Vw4jqLqFLbvEVEoi
+	 F3nJFTQH6Uvk5qt8rKNDSnvtV8M4UDQ36B7WrE2/JtS+BgkeEtpfxnFaEsy7PZrol7
+	 Ofyj5IwCeiZrOEnsXwSRd792bkKuZPP8eV72N45iW4fDPTga0h7dRNz6xuSSm4o3PY
+	 15dJX+HCd+Tyg==
+Date: Wed, 29 Oct 2025 08:22:12 -0500
+From: Rob Herring <robh@kernel.org>
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>, aiqun.yu@oss.qualcomm.com,
+	tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+	yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+Subject: Re: [PATCH v2 3/7] dt-bindings: remoteproc: qcom,pas: Document pas
+ for SoCCP on Kaanapali and Glymur platforms
+Message-ID: <20251029132212.GA662078-robh@kernel.org>
+References: <20251029-knp-remoteproc-v2-0-6c81993b52ea@oss.qualcomm.com>
+ <20251029-knp-remoteproc-v2-3-6c81993b52ea@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251029-qps615_v4_1-v7-0-68426de5844a@oss.qualcomm.com> <20251029-qps615_v4_1-v7-7-68426de5844a@oss.qualcomm.com>
-In-Reply-To: <20251029-qps615_v4_1-v7-7-68426de5844a@oss.qualcomm.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 29 Oct 2025 14:15:37 +0100
-X-Gm-Features: AWmQ_bnxen2afRHV8wd2ApkjxBH0TleB__nu5t1NsDGu_HDLvXbdqDWBWRF_WWQ
-Message-ID: <CAMRc=McWw6tAjjaa6wst6y3+Dw=JT8446wwvQ0_c5LHHm=1Y-Q@mail.gmail.com>
-Subject: Re: [PATCH v7 7/8] arm64: defconfig: Enable TC9563 PWRCTL driver
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	chaitanya chundru <quic_krichai@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
-	Jingoo Han <jingoohan1@gmail.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	quic_vbadigan@quicnic.com, amitk@kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, jorge.ramirez@oss.qualcomm.com, 
-	linux-arm-kernel@lists.infradead.org, Dmitry Baryshkov <lumag@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251029-knp-remoteproc-v2-3-6c81993b52ea@oss.qualcomm.com>
 
-On Wed, Oct 29, 2025 at 12:30=E2=80=AFPM Krishna Chaitanya Chundru
-<krishna.chundru@oss.qualcomm.com> wrote:
->
-> Enable TC9563 PCIe switch pwrctl driver by default. This is needed
-> to power the PCIe switch which is present in Qualcomm RB3gen2 platform.
-> Without this the switch will not powered up and we can't use the
-> endpoints connected to the switch.
->
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.co=
-m>
+On Wed, Oct 29, 2025 at 01:05:41AM -0700, Jingyi Wang wrote:
+> Document the component used to boot SoCCP on Kaanapali SoC and add
+> compatible for Glymur SoCCP which could fallback to Kaanapali. Extend
+> the "qcom,smem-states" and "qcom,smem-state-names" properties and
+> add conditions for the "interrupts" and "interrupt-names" properties
+> in the pas-common.
+> 
+> Co-developed-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
 > ---
->  arch/arm64/configs/defconfig | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index e3a2d37bd10423b028f59dc40d6e8ee1c610d6b8..fe5c9951c437a67ac76bf939a=
-9e436eafa3820bf 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -249,6 +249,7 @@ CONFIG_PCIE_LAYERSCAPE_GEN4=3Dy
->  CONFIG_PCI_ENDPOINT=3Dy
->  CONFIG_PCI_ENDPOINT_CONFIGFS=3Dy
->  CONFIG_PCI_EPF_TEST=3Dm
-> +CONFIG_PCI_PWRCTRL_TC9563=3Dm
->  CONFIG_DEVTMPFS=3Dy
->  CONFIG_DEVTMPFS_MOUNT=3Dy
->  CONFIG_FW_LOADER_USER_HELPER=3Dy
->
-> --
-> 2.34.1
->
+>  .../remoteproc/qcom,kaanapali-soccp-pas.yaml       | 134 +++++++++++++++++++++
+>  .../bindings/remoteproc/qcom,pas-common.yaml       |  83 +++++++++----
+>  2 files changed, 194 insertions(+), 23 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,kaanapali-soccp-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,kaanapali-soccp-pas.yaml
+> new file mode 100644
+> index 000000000000..6b53121eede1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,kaanapali-soccp-pas.yaml
+> @@ -0,0 +1,134 @@
+> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/remoteproc/qcom,kaanapali-soccp-pas.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Kaanapali SoCCP Peripheral Authentication Service
+> +
+> +maintainers:
+> +  - Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> +
+> +description:
+> +  The SoC Control Processor (SoCCP) is small RISC-V MCU that controls USB
+> +  Type-C, battery charging and various other functions on Qualcomm SoCs, somewhat
+> +  analogous to traditional PC Embedded Controllers. This document describes
+> +  the Peripheral Authentication Service loads and boots firmware for SoCCP.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - qcom,glymur-soccp-pas
+> +          - const: qcom,kaanapali-soccp-pas
+> +      - enum:
+> +          - qcom,kaanapali-soccp-pas
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: XO clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: xo
+> +
+> +  power-domains:
+> +    items:
+> +      - description: CX power domain
+> +      - description: MX power domain
+> +
+> +  power-domain-names:
+> +    items:
+> +      - const: cx
+> +      - const: mx
+> +
+> +  firmware-name:
+> +    $ref: /schemas/types.yaml#/definitions/string-array
 
-Can't we just do the following in the respective Kconfig entry?
+Already has a type. Drop.
 
-config PCI_PWRCTRL_TC9563
-    tristate ...
-    default m if ARCH_QCOM
+> +    items:
+> +      - description: Firmware name of the Hexagon core
+> +      - description: Firmware name of the Hexagon Devicetree
+> +
+> +  memory-region:
+> +    items:
+> +      - description: Memory region for main Firmware authentication
+> +      - description: Memory region for Devicetree Firmware authentication
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - memory-region
+> +  - power-domains
+> +  - power-domain-names
+> +
+> +allOf:
+> +  - $ref: /schemas/remoteproc/qcom,pas-common.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,rpmh.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/mailbox/qcom-ipcc.h>
+> +    #include <dt-bindings/power/qcom-rpmpd.h>
+> +
+> +    remoteproc@d00000 {
+> +        compatible = "qcom,kaanapali-soccp-pas";
+> +        reg = <0x00d00000 0x200000>;
+> +
+> +        clocks = <&rpmhcc RPMH_CXO_CLK>;
+> +        clock-names = "xo";
+> +
+> +        interrupts-extended = <&intc GIC_SPI 167 IRQ_TYPE_EDGE_RISING>,
+> +                              <&soccp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
+> +                              <&soccp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
+> +                              <&soccp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
+> +                              <&soccp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>,
+> +                              <&soccp_smp2p_in 9 IRQ_TYPE_EDGE_RISING>,
+> +                              <&soccp_smp2p_in 10 IRQ_TYPE_EDGE_RISING>;
+> +        interrupt-names = "wdog",
+> +                          "fatal",
+> +                          "ready",
+> +                          "handover",
+> +                          "stop-ack",
+> +                          "pong",
+> +                          "wake-ack";
+> +
+> +        memory-region = <&soccp_mem>,
+> +                        <&soccp_dtb_mem_mem>;
+> +
+> +        firmware-name = "qcom/kaanapali/soccp.mbn",
+> +                        "qcom/kaanapali/soccp_dtb.mbn";
+> +
+> +        power-domains = <&rpmhpd RPMHPD_CX>,
+> +                        <&rpmhpd RPMHPD_MX>;
+> +        power-domain-names = "cx",
+> +                             "mx";
+> +
+> +        qcom,smem-states = <&soccp_smp2p_out 0>,
+> +                           <&soccp_smp2p_out 10>,
+> +                           <&soccp_smp2p_out 9>,
+> +                           <&soccp_smp2p_out 8>;
+> +        qcom,smem-state-names = "stop",
+> +                                "wakeup",
+> +                                "sleep",
+> +                                "ping";
+> +
+> +        glink-edge {
+> +            interrupts-extended = <&ipcc IPCC_MPROC_SOCCP
+> +                                         IPCC_MPROC_SIGNAL_GLINK_QMP
+> +                                         IRQ_TYPE_EDGE_RISING>;
+> +            mboxes = <&ipcc IPCC_MPROC_SOCCP
+> +                            IPCC_MPROC_SIGNAL_GLINK_QMP>;
+> +
+> +            label = "soccp";
+> +            qcom,remote-pid = <19>;
+> +
+> +            /* ... */
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
+> index 63a82e7a8bf8..f81d088c2bad 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
+> @@ -24,26 +24,6 @@ properties:
+>    interconnects:
+>      maxItems: 1
+>  
+> -  interrupts:
+> -    minItems: 5
+> -    items:
+> -      - description: Watchdog interrupt
+> -      - description: Fatal interrupt
+> -      - description: Ready interrupt
+> -      - description: Handover interrupt
+> -      - description: Stop acknowledge interrupt
+> -      - description: Shutdown acknowledge interrupt
+> -
+> -  interrupt-names:
+> -    minItems: 5
+> -    items:
+> -      - const: wdog
+> -      - const: fatal
+> -      - const: ready
+> -      - const: handover
+> -      - const: stop-ack
+> -      - const: shutdown-ack
+> -
+>    power-domains:
+>      minItems: 1
+>      maxItems: 3
+> @@ -55,13 +35,21 @@ properties:
+>    qcom,smem-states:
+>      $ref: /schemas/types.yaml#/definitions/phandle-array
+>      description: States used by the AP to signal the Hexagon core
+> +    minItems: 1
+>      items:
+> -      - description: Stop the modem
+> +      - description: Stop the remoteproc
+> +      - description: Wake up the remoteproc
+> +      - description: Make the remoteproc sleep
+> +      - description: Ping the remoteproc
+>  
+>    qcom,smem-state-names:
+>      description: The names of the state bits used for SMP2P output
+> +    minItems: 1
+>      items:
+>        - const: stop
+> +      - const: wakeup
+> +      - const: sleep
+> +      - const: ping
+>  
+>    smd-edge:
+>      $ref: /schemas/remoteproc/qcom,smd-edge.yaml#
+> @@ -80,9 +68,58 @@ properties:
+>  required:
+>    - clocks
+>    - clock-names
+> -  - interrupts
+> -  - interrupt-names
+>    - qcom,smem-states
+>    - qcom,smem-state-names
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,kaanapali-soccp-pas
 
-Bart
+The point of common schemas is to not have if/then/else schemas. If 
+interrupts is now variable, then it is no longer common and should be 
+moved out of the common schema. Or just have the widest constraints that 
+covers all cases ({minItems: 5, maxItems: 7}).
+
+
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          items:
+> +            - description: Watchdog interrupt
+> +            - description: Fatal interrupt
+> +            - description: Ready interrupt
+> +            - description: Handover interrupt
+> +            - description: Stop acknowledge interrupt
+> +            - description: Pong interrupt
+> +            - description: Wake acknowledge interrupt
+> +
+> +        interrupt-names:
+> +          items:
+> +            - const: wdog
+> +            - const: fatal
+> +            - const: ready
+> +            - const: handover
+> +            - const: stop-ack
+> +            - const: pong
+> +            - const: wake-ack
+> +
+> +    else:
+> +      properties:
+> +        interrupts:
+> +          minItems: 5
+> +          items:
+> +            - description: Watchdog interrupt
+> +            - description: Fatal interrupt
+> +            - description: Ready interrupt
+> +            - description: Handover interrupt
+> +            - description: Stop acknowledge interrupt
+> +            - description: Shutdown acknowledge interrupt
+> +
+> +        interrupt-names:
+> +          minItems: 5
+> +          items:
+> +            - const: wdog
+> +            - const: fatal
+> +            - const: ready
+> +            - const: handover
+> +            - const: stop-ack
+> +            - const: shutdown-ack
+> +
+>  additionalProperties: true
+> 
+> -- 
+> 2.25.1
+> 
 
