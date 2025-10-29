@@ -1,98 +1,152 @@
-Return-Path: <devicetree+bounces-232859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C5B1C1C41E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 17:54:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9BC0C1C5DE
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 18:09:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D1EEE4F20F8
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 16:47:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21DC56467B5
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:41:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ED222D8DB9;
-	Wed, 29 Oct 2025 16:47:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A7BC3446A3;
+	Wed, 29 Oct 2025 15:41:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PMc+qd+K"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ra/9fSiG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 626772848A8;
-	Wed, 29 Oct 2025 16:47:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1CB933F39F
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 15:41:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761756459; cv=none; b=qNw53gKCm56A5HPxXyQN+CVR3PAcP7tWi+FZh0jkIfP75WtGsb6Afwv8xbhJ3lbiE6ehxSEBArmKB//3BoZD1Jij82/N77Z9c6ZPpS0azNxkidE1FQKUHWbIN2eZ50x3cTv9cTIWo6kvFmgHztpGPbcNdK1QLu+6UOFN9kKkenI=
+	t=1761752466; cv=none; b=ZzDLZbWzj4sTCDRonogqKWu8khU4rGRZPkZlMtV5avSS6R9K1FY/IUP/oLzW3O6ImwFE/rS7gEvkwJBVnHKB4bYT76kLDZUcn8Eq71gouvh0XBrXp2Us0bCqGQoDFC/BrXNk7oPzBgPqFiDKTiOxGeXkX+/e2XeLs29U7MCsB78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761756459; c=relaxed/simple;
-	bh=pBcOOWGaRXezt8GRk5PoTNjC82ZTI+t9XQA0gwKB/hE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BFCa7bMd7BXH4IVNjVQRLyRZqjdSy0TUYKMy/cUgWqBpcFmbZEbsLqOx3p0fckxhetKxdmIzkjvPgX4B++31dK/aadCH11YARDT6omGrrH5m9r+HvZ0homAr0ppFHI4aSpn0sq9RB6BWkzbrxvm2UBvIDrySTIY+O9nc6HRX3Q8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PMc+qd+K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B481C4CEF7;
-	Wed, 29 Oct 2025 16:47:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761756458;
-	bh=pBcOOWGaRXezt8GRk5PoTNjC82ZTI+t9XQA0gwKB/hE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PMc+qd+KcRgFgTuLkhbxAKePNb/E4vp7MOrWdNSem8fzt6eDplE3odYrFAcAIRw/q
-	 Uvbzy40HvYIlF3OzdZl2OO9hYIKkIldnPhndeiya7hj6DpCXpZVM/jXh1zmBJ+TV4v
-	 A3yjBdy5aZCrI2VOxhxCT6oxn7YLKorsy/BFPljqC/06kfKVPxYRjWW+Cihg9hqwrv
-	 HVoNYlKkrjUF/Pyb3z912VkmF6/+JptOQyDImWsR8cOoPP+R78rk3tVr9c3WXXGsS2
-	 OnKrkSp+bb9uqtHMU8GBUPXVXNkAk7HYORfEjifTeO5aOPHx++S7kADYJrCV5Scwpt
-	 pASy+Y7cmuEbA==
-Date: Wed, 29 Oct 2025 11:50:42 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Xin Liu <xin.liu@oss.qualcomm.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	tingwei.zhang@oss.qualcomm.com, jie.gan@oss.qualcomm.com
-Subject: Re: [PATCH] arm64: dts: qcom: qcs615: Update 'model' string for
- qcs615 ride
-Message-ID: <wdneie3ioxxllqy42oucr7xh5nb3r5mzv6i5idnnstltuxrdu4@7nm33plkpush>
-References: <20251029023137.381386-1-xin.liu@oss.qualcomm.com>
+	s=arc-20240116; t=1761752466; c=relaxed/simple;
+	bh=jmZDND6HgYX8EZDdUAJP/IquD3beTYD9OCZKg3gtY5U=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=K64DupNEjvbgbikOIgMjmunpvo4dE58X9lVUCTDW7q8vvimrarpaAoekm6iWN17ZU0etBCYqKP3G+44TLnpKtPzuoshtV1BARURGTWGdW04rSUYgMIGERuPlV+plpvN8xGW3zpwI8sheaIXfGmmKRYxXwYO6ZuNl6ZcvPcyoO74=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ra/9fSiG; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-42708097bbdso597616f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 08:41:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761752462; x=1762357262; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VxI90H/RvA6j+47WbvbjLy4lY2bQBr0L5l614wF2bwQ=;
+        b=Ra/9fSiGcI7N2vrUAw+2qeKQ3MweoeRYW3rjZys/43icnJJfxWqeKQP0WSgZqQnLXc
+         KGGHl0C8uDKEJ70aaztiAMkpsaHjl5wly7oLcVc8a5XMbHpqy8rXgPKuMIi6xqWXs4Uf
+         UPKXNILrzwdHAwg/C/F34AFa6Rwqu7veTeaP3LdvEYb6nhuV1ztUT/Kn85nqK65JVpvg
+         6dpt93NBjUVAoxYDEyhkxRkCZ6uUP+YQ+WiTPLQXE0srmkHCcmslTruCN4RFWNqGypdo
+         +RQHCxRmupXylhYZ+lLIMBBkeUrxb78qe2NyCv0WVoaBeEgrAe9hhMMrFclrHb6n3p5V
+         +fnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761752462; x=1762357262;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VxI90H/RvA6j+47WbvbjLy4lY2bQBr0L5l614wF2bwQ=;
+        b=n5dHnrz0V776iA+nN+PLZl90iph9ojdCFspc+7ocvfzdONsBgYHzblnSprVncGSfmi
+         3rJQanSrHUvLHEbIlDYf7vLhZtm1Yo6EoqIg76ReeOd92iUkqb+o8vo9DkNGwEraJXpz
+         5ag1LZ25fne+IRngw0DCfhv2F8VjydMB/4FocHmLitB9ub5kCJOPWMU9nII3cSpE7gJq
+         ENDe0X1dLvJxDXCmgERDioOqtpT81FyQCxLSyai1ys3xPVRkZufA9Xe7q36VkxDYOkw7
+         oELIGfe4O5o09LMjeB3qvb8pYvodBTO04gbOr3Df1TrFvj1ukodEEZwpkKx95QWH1eR/
+         RxLg==
+X-Forwarded-Encrypted: i=1; AJvYcCUnKFdBy0uqxlFJbIDTrkVK7If//woZx+dIRtxwZLOVuoBwdj/eUhNrXVZRtpRxmG5TAHBpp0XN/1qu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8sK2xWy2WncxhHAAm38oo9FbZzIaQWWwZGNA60w1UNP8BfFL0
+	gITf160WKHr1IFzfUP4VZAHviRspGSk9GesCMJFY4QLNGK/4vr7eH9Q5HkM2t0aZ1Zo=
+X-Gm-Gg: ASbGncsjRvW3Ln5weHldex+dBY9kC8FyqYF3PV65ndsShnlV+l63HVhk+xd4qfuU3t3
+	4Ec1Sri6mW8j5OtSzHv9gaiR3NGhjt0aGkgRg9azPlLNNbXT6c0kE0GtZOiZ/bskz3ivnkIfF5z
+	RlB1ixfXUhY9Q2PlCSA/Ku/zmmiwEzYGg/CmKKKWtOXpolQqGhCRgQ0fivp5SkvfRcqIdoqZWL/
+	0qybwDqn2MrmZUCKK2dP44uloGa1Xz4D8KOVRaf+p9wi009IdWkW/ScA48AjpAcmD3WsSE1ktMB
+	g4RpSCmtWtjkUYZtSXWh7uDsLNooC3oarC6yRyXjJVljzno6VxGAbVTS2WqB5Ja8ymy9njxbM6Z
+	lpbblpZWCh2nWjnz5nEwLKvn7TzhqQl4AJF6KkUkYQ7HOc3QHikxXP9nGmGa77MEcbGfDnbOx1r
+	Nu05iJAsSi5ldXKUzX
+X-Google-Smtp-Source: AGHT+IH0MTxj4KideKlmnNCTWGRH1FJc2DdwXawsfzS+YbdnXfbjerZ4hGirRpqlsBnBP95NVvOT1w==
+X-Received: by 2002:a05:6000:2088:b0:3ee:1125:fb68 with SMTP id ffacd0b85a97d-429aef70b89mr1611585f8f.2.1761752462598;
+        Wed, 29 Oct 2025 08:41:02 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429952df5c9sm27006875f8f.41.2025.10.29.08.41.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Oct 2025 08:41:02 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Date: Wed, 29 Oct 2025 16:40:41 +0100
+Subject: [PATCH 4/9] dt-bindings: PCI: qcom,pcie-sm8150: Add missing
+ required power-domains
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251029023137.381386-1-xin.liu@oss.qualcomm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251029-dt-bindings-pci-qcom-fixes-power-domains-v1-4-da7ac2c477f4@linaro.org>
+References: <20251029-dt-bindings-pci-qcom-fixes-power-domains-v1-0-da7ac2c477f4@linaro.org>
+In-Reply-To: <20251029-dt-bindings-pci-qcom-fixes-power-domains-v1-0-da7ac2c477f4@linaro.org>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Abel Vesa <abel.vesa@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ stable@vger.kernel.org
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1043;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=jmZDND6HgYX8EZDdUAJP/IquD3beTYD9OCZKg3gtY5U=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpAjWBmcy4XgYDlp4xPS0l52FU7QL68VmVi3wFH
+ JptIegewAGJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaQI1gQAKCRDBN2bmhouD
+ 198pD/9wZok/UWTRqJu0zO4NrX3NW/CSMcltjXyHSXz9f1CNq4CDhov3GAq2fPqNYAwFbGZg4eg
+ RmW4EAElTFoutWfp5ht3GhccOCMM5nsiQE44AhZaDeLujUn8kcnNS48fpVjnkFgnYumkvmcBeQN
+ 51PHrVGSPgTW26Sex0ZDJTwPt//BZ9o74QJ3Ief+fJQtN6ACsJTEIM7sewm4dJw3Y5dsNeijb92
+ yjYNeQNfFD6NIb7PZFUgi1yVT0r3IBWtKYFp755iK3Agjfm/XrrHwqI3DidgoHYEs4HsHk13Xxp
+ rIvGsG3SMJ5LYSavdm37X5/ENlkLpj5NjC+dmBArbBkLbjQjs7/1C9kqM6fCG/5Tc24aqb5hILX
+ Av6B9bUNOaeUuR8YdSfhVtWQZy4i1venuSxvdFskZavcp//gfwW9TzODZOSu76kC7ZYRgcwaxHQ
+ cnNu1+HoLlP8JvKl4i/o/U108JORS4vsPO4uXxasvgGhumQaA2c22t3KltmJ//0Sod88rwonAe/
+ wd3soqsovOfNnLqFv4oTgT9TBdr2NTbuVxybhlnHRAh89YuK18KHuv4kP/UJNDOMyxvF/ZerH63
+ QZpA98YSVZSkCk9mrQvkpKlXcEYhTxEaB7RhJW5TbUB5mj2Gc0zHAgO1nzBk+xy7haa7Tg0TkaT
+ WXCe62oV/PbTsTg==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-On Tue, Oct 28, 2025 at 07:31:35PM -0700, Xin Liu wrote:
+Commit 51bc04d5b49d ("dt-bindings: PCI: qcom,pcie-sm8150: Move SM8150 to
+dedicated schema") move the device schema to separate file, but it
+missed a "if:not:...then:" clause in the original binding which was
+requiring power-domains for this particular chip.
 
-Please make sure that your subject prefix matches other changes to the
-affected files (qcs615 should be qcs615-ride), in the future.
+Cc: <stable@vger.kernel.org>
+Fixes: 51bc04d5b49d ("dt-bindings: PCI: qcom,pcie-sm8150: Move SM8150 to dedicated schema")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/pci/qcom,pcie-sm8150.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Thanks,
-Bjorn
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sm8150.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sm8150.yaml
+index 26b247a41785..ceec5baedcd8 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie-sm8150.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sm8150.yaml
+@@ -74,6 +74,9 @@ properties:
+     items:
+       - const: pci
+ 
++required:
++  - power-domains
++
+ allOf:
+   - $ref: qcom,pcie-common.yaml#
+ 
 
-> Update the 'model' property in the QCS615-ride device tree to include
-> the public board name "IQ-615 Beta EVK". This ensures consistency with
-> official documentation and release notes.
-> 
-> Signed-off-by: Xin Liu <xin.liu@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs615-ride.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-> index e8faa25da79f..047ba656f67d 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-> @@ -10,7 +10,7 @@
->  #include "talos.dtsi"
->  #include "pm8150.dtsi"
->  / {
-> -	model = "Qualcomm Technologies, Inc. QCS615 Ride";
-> +	model = "Qualcomm Technologies, Inc. QCS615 Ride (IQ-615 Beta EVK)";
->  	compatible = "qcom,qcs615-ride", "qcom,qcs615", "qcom,sm6150";
->  	chassis-type = "embedded";
->  
-> -- 
-> 2.34.1
-> 
+-- 
+2.48.1
+
 
