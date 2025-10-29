@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-232480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44139C185C5
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 06:52:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 894BCC185D7
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 06:57:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 01C914E2BF8
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 05:52:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42FD23AB6E2
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 05:57:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B30EC2E8B61;
-	Wed, 29 Oct 2025 05:52:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD02A2F7ABE;
+	Wed, 29 Oct 2025 05:57:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ea2h8PMk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PGPCgxf6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88E97548EE;
-	Wed, 29 Oct 2025 05:52:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A35F421B9C0;
+	Wed, 29 Oct 2025 05:57:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761717172; cv=none; b=H+HNMB8ViSXibnRErAR6eyqftYUv9LiIa9bxas474ZlPkDdAHV/URhYWlkoLb5upLl4zBmpYkdRyqr+OA8AgrbdiYOxApiNBc9pBE7ePRyTomYXJNUAhiam796QEWGP66ITSBR3kuxxolTTzS6fARN2NYprSA+OM/ByJdPvz6TY=
+	t=1761717423; cv=none; b=n6mBJVdt02BSbEwLYhQpxxCW5nnY45di6p+DAOjM5RdH7syNuFapuxVYb7gASJQRkPoepItiSqSfKu+licT5WtYaE6Afyj0l0XCaxAG3Bl0GlMGPKqiLkHDC3D3fFACxmU4QjJ095IK0+POmmsbdE4h35C6ROe1yoV6AwsLRm/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761717172; c=relaxed/simple;
-	bh=t2OAaxS3wOZJ96sx/1U0Mf33iqWHQhqhtM+FHQmSM2k=;
+	s=arc-20240116; t=1761717423; c=relaxed/simple;
+	bh=e+hYAF80RGk08jB65h35DfRu85xR11EJdxJCJuqcKwc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JdcqxIrphWOkN15N1z/iFbDW7+EdLRAHiXsfE+m7E9w47/uft2QL/UwmgLJFeJ5DuhEfe40sWlWmobMhuD4axma8+QlGY+ThHrHDPthrO9qcP0L99XLnCm5eeLM7QZ1QHfudGgL0q/ISZ9z2juUCtrVudaO1RJiWMHWy1dfxJLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ea2h8PMk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C14BC4CEF7;
-	Wed, 29 Oct 2025 05:52:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=aARpNUMYZoBwIeZoMn63SUrmBlig5LlltbtFUpX+kobdAZyHMvR1gxvupqiyFJ4jozMSzX+G6TK3DntBA9dcAZ+/+yZKFFbSPTtjPhFSX87zkG+aeokVYZB9gIder8hyYtCbX9xei1Ab0JonMlpFNrMpBlyw696CTy7ilAvzr5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PGPCgxf6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D585C4CEF7;
+	Wed, 29 Oct 2025 05:57:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761717171;
-	bh=t2OAaxS3wOZJ96sx/1U0Mf33iqWHQhqhtM+FHQmSM2k=;
+	s=k20201202; t=1761717423;
+	bh=e+hYAF80RGk08jB65h35DfRu85xR11EJdxJCJuqcKwc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ea2h8PMkfBD1QkHfA1E6oBD2dOmFHRHb1f28k1ERF1DCz9HRdg6rnplikDuFPMaF1
-	 4+VeuZomyt+Xz9fAfQFKiypsQvVfTEDM5PeOyjyAqTWdBEibzyBT+YqgSlDIcGoaLT
-	 iuJ+hax20NkCqvesZ5IxCit0pLEFoBzhAa+sRphxzCpO4QFaENz3zSROuRkpFJICX/
-	 wlAoV4nC6oVduKs5i0KKNX9+EsilcE4jzT1ksWUTG0HVXwWC6CD+o1ZniXDqKZqQ2v
-	 cqZOapLrEVGk71LMBYL/aCnxTmsoLitK68sE7gd4iAyLbTduZhJwLxQw423T54S1B3
-	 XxXvh119/YQiQ==
-Date: Wed, 29 Oct 2025 06:52:48 +0100
+	b=PGPCgxf6ZFqrptSm7Jbd2ngFAvekoHnAfI2QRFg+UAXVx/ZfObVYO0UpoGBZmfbK6
+	 frf5Txgvj2WkVGHsPSMa8xP/7Rns9lqtjrjQtnQS37n+FgVgxLorqXXbg9dvBgMi5T
+	 /At36bRTs6tqlVSTb2ue0aDU8z7KneZEXc2gXAxiPSz7NYyPVXN5g5kK2/sjXZeelf
+	 c6VlfRwU6Hz5qlllhowkhvpuhePqeN7/xVrzi2oxzW9yFcBOEZI3B74TWSM7nPW6vI
+	 P8MsTizs6Zhrjf32zhmEEBUakLJd9yHQSVuqVtvrIOuoO79jCLkAzm27zx8YuyWKGW
+	 ohx61e17+dygA==
+Date: Wed, 29 Oct 2025 06:57:00 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Joan-Na-adi <joan.na.devcode@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Joan Na <joan.na@analog.com>
-Subject: Re: [PATCH v5 1/2] regulator: dt-bindings: Add MAX77675 regulator
- binding
-Message-ID: <20251029-festive-solemn-mouse-c7a3cd@kuoka>
-References: <20251029023253.150257-1-joan.na@analog.com>
- <20251029023253.150257-2-joan.na@analog.com>
+To: Joshua Milas <josh.milas@gmail.com>
+Cc: tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, unicorn_wang@outlook.com, inochiama@gmail.com, 
+	paul.walmsley@sifive.com, samuel.holland@sifive.com, palmer@dabbelt.com, 
+	aou@eecs.berkeley.edu, alex@ghiti.fr, alexander.sverdlin@gmail.com, 
+	rabenda.cn@gmail.com, thomas.bonnefille@bootlin.com, chao.wei@sophgo.com, 
+	liujingqi@lanxincomputing.com, devicetree@vger.kernel.org, sophgo@lists.linux.dev, 
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 0/5] Add initial Milk-V Duo S board support
+Message-ID: <20251029-successful-pristine-ara-bd4d23@kuoka>
+References: <20251029001052.36774-1-josh.milas@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,29 +62,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251029023253.150257-2-joan.na@analog.com>
+In-Reply-To: <20251029001052.36774-1-josh.milas@gmail.com>
 
-On Wed, Oct 29, 2025 at 11:32:52AM +0900, Joan-Na-adi wrote:
-> From: Joan Na <joan.na@analog.com>
+On Tue, Oct 28, 2025 at 08:10:47PM -0400, Joshua Milas wrote:
+> This adds an initial device tree for the Milk-V Duo S board
+> with support for reading from the SD card and network over
+> Ethernet. This is continued work from Michael Opdenacker's
+> v6 series [1] on the ARM64 and RISCV side. It has been
+> tested with ARM64 and RISCV64 to boot from an SD card, have
+> networking, and read I2C slave devices over i2c4.
 > 
-> Add device tree binding YAML schema for the Maxim MAX77675 PMIC regulator.
-> This defines the node properties and supported regulator names for use
-> in device tree sources.
+> v3
+> - Added sg2000 interrupt controller and timer to documentation
+> - Added sg2000.dtsi for RISCV and moved DTS over to use it
+> - remove devices from DTS's to match what is available in the
+>   default pinmux config. spi0-2, i2c0-3, uart1-4
+> - Added i2c4 and spi3 aliases
 
-My comments form v3 were still not applied. I pointed out this at v4.
-
-You still did not reply to comments. Did not implement them, either.
-
-<form letter>
-This is a friendly reminder during the review process.
-
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
-
-Thank you.
-</form letter>
+How did you resolve previous comments on bindings? Nothing mentioned
+here.
 
 Best regards,
 Krzysztof
