@@ -1,394 +1,137 @@
-Return-Path: <devicetree+bounces-232528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57083C18B7A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 08:36:23 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id C62DDC18BB6
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 08:41:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55A3D3A8F13
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 07:33:57 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 407254EABFC
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 07:41:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F50224293C;
-	Wed, 29 Oct 2025 07:33:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E25B30FC3D;
+	Wed, 29 Oct 2025 07:41:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bEUqaJAd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ONj8wa1a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDBE030F93C
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 07:33:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A11F24293C
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 07:40:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761723233; cv=none; b=O3uzLyFpBpBBtA3mUdEFBdI4b1sE5AaS0iiLUTxqdrqXjvRsv0brdjae8p/9Ak4Oo25wqtalE/dsA/alz/P2LJ9nePd51KRzDLt/mBshe8ZQ1VROBmX+rnfkddR3HK1hkuhX+nehQsV3gaA1qpU2qrheFUvrzEL1F8iX1N8iv/Q=
+	t=1761723662; cv=none; b=cEgKWHqYWkDRtG+S+f5St9zFPwlWT4Rn1eYpl+6A89ZHLbcm9xBdI9TSWYE1HnTDujVuGJnixkHkMD1P1B3fW8kRQzT8n0puy5c07fojYMb5caH9hjLiDZBwfhHeYAQYZb30wtMFRUGBnBzxhb6DEx1RdZQDeZw7p/S96GScOxw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761723233; c=relaxed/simple;
-	bh=um3dhCwuxIhchysf4KVWj40F3Mmovi64QpAZjze1StE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qLVdQpngshdfiBR05MW2/GTcP0SxrA5GEoR8uZY/cb0lcCr6MVmQdFpyEZiuD2cXNDsPth+vRZTo90tHAc9rt3UbLDXngAqyeDMMjUBMeVgzTAYl2FGZg9mvvu2h1sdh1olwcECv00bqjVpXq0mhZQAvmxws81caHJSEJDulFkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bEUqaJAd; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-63c0c9a408aso11098330a12.3
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 00:33:51 -0700 (PDT)
+	s=arc-20240116; t=1761723662; c=relaxed/simple;
+	bh=fOAjv7j7SFgxzDGkJ4moXZTVUrxByDzt/RzwZg//8q4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mSTU60i7/d3lU8K30gxsvEFEZMDGo/OVhGwgskpEpq/GlPij18izh6fh8GOGiUuK9YoeBwkat69UDqTYufAgSMyKPqSQFBySfuWV3urUq2cLTqERgXkVaX5mFscImSYQEIC6vmiSmT5AsJallhKz8wicHR98i9YdO7QiTmtBhI4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ONj8wa1a; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-4283be7df63so3346371f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 00:40:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761723230; x=1762328030; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CsodC3FWvlnb/LUjIJTURF4MPYAArEifAvf57pNwduM=;
-        b=bEUqaJAdubmozR9z/YXYIyQJwN92vLDkmRJ7yyuQwQnU7NPlbtqlig3hYaGIKkWiu0
-         VbscwokGsGER/TgCyoXdNpsgP26rWUtnSdIxcIVQ6fqMNoJ5EBNvJU9NkxnBYz3Gf5g7
-         WNFyAESau01AvYcoED6O78EWDgEXuvFowAUNyVssZA43JXN2Ag6OJxT4/rsJomuIS6/l
-         uGAH9urvuX1SndVZQo1sigdV3kmevoDPUV+Bi29KIOioJw0UKZRoUVsWGKmPGp/WhmAc
-         DsMsOFjHe6KxW4JWbzIgT/2ZeejeYFY+fOWkisoUtmLqZiNhOlVZE0LQakwy+RqHMNVf
-         CWyQ==
+        d=linaro.org; s=google; t=1761723657; x=1762328457; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=AbFme51wo4xn9EeHD5Qfvqgq+jXrkaUfGgQGuVELTCA=;
+        b=ONj8wa1a/ZJQWv/vbEWrP5sGVJQz72UbpQTRGg8a2tWA+39MurjVSuTW4Hf/XWM9Yr
+         HiJsEPS6T7ueUG2dFBih6GFKV7ZCa4VV3Ehw0pmLGYbgJDwCIKcJY4Ja9z5vGxo7Z4kt
+         NNhZRMcNdrNlM7rAUVkLqaquD3SyEzov+PAVc9crdQSsY6DGYVFO4RXja48QgI0/VW/k
+         c6vQRuWCIEuaoEswpHXhBSK4/njqe6MD1CSPbxQXAuG99Rl17C92PrESOvmnndO3JPtA
+         CySI3mpm+3ZbXLPNZT9hNGNAcHxmZq6cssTRcnjMQL6QvD0s3vIA6V3rhAIixPBjAl/m
+         rCcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761723230; x=1762328030;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CsodC3FWvlnb/LUjIJTURF4MPYAArEifAvf57pNwduM=;
-        b=K9HXYhRo2ipvHAylh0grOnGw0IWBi1CgxqJfk6JuIIV1FmEddsAL1lHhNh/hP0geEM
-         81kY2AlSD8Yvd+h7WqSbNXW4xDdmQcHv5w6mrjw3ZOOMnNUC3pObZ8zx3/JJGrBuDPVV
-         +yAr5Qu2+R9XufANwtJUKcqS/WAauUSF7Pw7etQshQK4hFDVT2gnfUowVj+w3HXdfXyt
-         gMKGoRSrx1KsAepCuYpSf64bY0YdIiyLWi+khNZogyu0NYu/cLKzFHD0bM7nraLuWz7T
-         lqxbBS6s6DZhmQbOWKH1TaY3TTsVCxL23cqegpdBjH1dgR41bKlr85ezS9RktQVJmWKp
-         bTDw==
-X-Forwarded-Encrypted: i=1; AJvYcCXca0XX4y1cxU/kTDAteRz4BOWnCJTPYCljje94+wXZyAf3bzmBS9OUtqc5hogFadDf69ywHsgLn2Jl@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOI7Nzu3Rg7Wl8juCeChcCeBkbpyNtMWoEVcUD9ziKWMbMvnNM
-	UDAX6TpsvEdEqeagXqIj1E6WMooqaU77gV+hM/R3FUT0yicAav9KbYmgqA8+yDzhlr0EskfUyQk
-	+ch7U/bady20JaY5tahfBaoO0XFuRD+s=
-X-Gm-Gg: ASbGncvPsRr81WNobBWhgVdhgRa5Zpqx3JHGr2u91y1OMnOF8aT8sMu3Wsz+jypiMSU
-	HuL75BQS/nH3klutdIClPs1NXMtPzNJhCQIwOE8nqYhei++Mo6oDqh4xsSI1OLstwTzZLq0aVym
-	PE8+//QTass4KIETuQzj9MNrRcaH9AzFJglZfM5zRRVg+7ksXGqqQNc0y9/o2p4IDEhDs6D8jSg
-	kblOcc1528/VmhfG8gHP//VJyRF/qw3EmEX09x1UnXTgshbAz07vcw5ikzdRT8=
-X-Google-Smtp-Source: AGHT+IFoElBJzMz+S7sFHgF+i0aRhwEmOv6jEVOsP0y3fEEDYoyM0elt64gdocJadGJ4z6nVpqQQtrCRkokOEbSnFXc=
-X-Received: by 2002:a05:6402:50d0:b0:638:74dc:cf78 with SMTP id
- 4fb4d7f45d1cf-64044380bd9mr1618966a12.34.1761723229788; Wed, 29 Oct 2025
- 00:33:49 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761723657; x=1762328457;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AbFme51wo4xn9EeHD5Qfvqgq+jXrkaUfGgQGuVELTCA=;
+        b=f7HtB6mkCDtdQBkrHDtBy7xVQa6ngBXI6nzjTpqn6osAUCIhT+KkCd5SD+dTBjrCGI
+         8cCygEwwD0IUnFftDlKJG2L2MK8+802JmtatcJAcXMMLjqOpKx8A2pi5tS1FkB6M7QX5
+         qtDuu2eJB+UAJ8LzwYdcFvsMLLHtNyf+tlv6FYn9S9a8znbA42vHpSJYH+dR/8Ikf7Sh
+         hDH7fRPZSj2E8S+9kikMnq2n+tsApsYzPGvyClS99C4hCP8Shqq3rGSrEdu4GhKP2Ym1
+         OAoU4Tnx7NREGwzm5YWHlZS7de9JibOq0FSCUPaxThOnz7fK13hsZF7U6wKQjQRniXF/
+         pLpw==
+X-Forwarded-Encrypted: i=1; AJvYcCXRI5CkyFHGAjhyxVUEsLxYzO33ClZrWKJKQkRYiHnRrKsocb+LrIa/Rxu94SeTMvyMtbrcA/4hf9z4@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxj9oI11O5uD+hvnBDcnaG8zBE1oWJ6ldyP62bBnWuyXLtAfrIc
+	aFe7FNCW4MVgNh6nOavy7cS4LvwdJAv/YhZfUUwkIHFt4GK10DjzqqWGWkxVOuw1c8MWRJiVnwz
+	GCHLW
+X-Gm-Gg: ASbGnct8mRuBP6UPChRsQoEIRMHL8xxwmKKQrsRNpjqUJaJOUcTaPGwaqP7H4evlb2h
+	1zdsAS/s8E0Q/w+NMFIBRX4QJ1mb7on1f1t1FZpCjDuGcuQrjpXxcIEFha53q8wPWCZEu99qyup
+	yUqqA1DvdJMlMri0t5+So0For4Yc8haQlp9KzIZx7btz20lph+xxy1xMA2QoicBKBVqkb2znu0M
+	gGxYc8W+2zhmX7ja2xPg5C7zzC9IhR+iP4BW4M6QiCr3KOntrehMhiXz3BqrOdLxNzhTXyUrPOJ
+	51WZNBu/ZTpQuoYE7/pxsXFOWrgdBSRDTxPO+F+UGNEVGaoYMndl6sstIv0Ml29rDWyVmWYfXXt
+	2hqNR3H7VS19ptUSc6chTxOSjiqDpL00XnD0wSwq6+0rXXJ7rKHW6o2LPwKRa/Izvkd1t090H
+X-Google-Smtp-Source: AGHT+IGMnDPTwT/kgdtrsrLOV6KEqnyYwSmrAPqp6vapwMp97UENpV8di+mbWQ4I3pUNNnIxvqWPYg==
+X-Received: by 2002:a5d:5c8a:0:b0:3ee:154e:4f9 with SMTP id ffacd0b85a97d-429aef82fe0mr1522824f8f.20.1761723657326;
+        Wed, 29 Oct 2025 00:40:57 -0700 (PDT)
+Received: from linaro.org ([86.121.7.169])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429952ca569sm24298194f8f.12.2025.10.29.00.40.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Oct 2025 00:40:56 -0700 (PDT)
+Date: Wed, 29 Oct 2025 09:40:55 +0200
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jessica Zhang <jesszhan@quicinc.com>, Abhinav Kumar <abhinavk@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC/WIP 1/4] arm64: dts: qcom: sm8750: Add display (MDSS)
+ with Display CC
+Message-ID: <nwyrhupbrqrh6q5yvk6egtm3whi5h6xslhzio4g7f7l7yjx7c3@atl4bbk5f4vb>
+References: <20250424-sm8750-display-dts-v1-0-6fb22ca95f38@linaro.org>
+ <20250424-sm8750-display-dts-v1-1-6fb22ca95f38@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251029020847.1946295-1-zhoubinbin@loongson.cn>
- <20251029020847.1946295-2-zhoubinbin@loongson.cn> <dd97339d-a984-4e74-8043-be99046c5102@roeck-us.net>
-In-Reply-To: <dd97339d-a984-4e74-8043-be99046c5102@roeck-us.net>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Wed, 29 Oct 2025 15:33:37 +0800
-X-Gm-Features: AWmQ_bm5aypQJFVdhgGPmy69k7CbHcJ7S1fFWahyivSzAlBIFVkdYJo0hz2UKx0
-Message-ID: <CAMpQs4L2cGjTFUWAkFaXuvYpHS-SYC=8X5HD=yR6aQMkdvr9xg@mail.gmail.com>
-Subject: Re: [PATCH 1/6] watchdog: loongson1: Rename the prefix from ls1x to loongson
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Keguang Zhang <keguang.zhang@gmail.com>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Huacai Chen <chenhuacai@kernel.org>, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250424-sm8750-display-dts-v1-1-6fb22ca95f38@linaro.org>
 
-Hi Guenter:
+On 25-04-24 15:04:25, Krzysztof Kozlowski wrote:
+> Add device nodes for entire display: MDSS, DPU, DSI, DSI PHYs,
+> DisplayPort and Display Clock Controller.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Bindings (dtbs_check dependency):
+> https://lore.kernel.org/r/20250311-b4-sm8750-display-v4-0-da6b3e959c76@linaro.org/
+> ---
+>  arch/arm64/boot/dts/qcom/sm8750.dtsi | 415 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 415 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> index 30ee98567b6078e8225142f2e13b25b5f35a3038..753b069cab1de636a3b1108747f300bec0f33980 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
 
-Thanks for your reply.
+[...]
 
-On Wed, Oct 29, 2025 at 11:39=E2=80=AFAM Guenter Roeck <linux@roeck-us.net>=
- wrote:
->
-> On 10/28/25 19:08, Binbin Zhou wrote:
-> > In order to introduce the watchdog driver of the Loongson-2K0300 SoC,
-> > which is similar to Loongson-1.
-> >
-> > As preparation, rename all prefixes from ls1x-specific to
-> > Loongson-generic.
-> >
-> > No functional change intended.
-> >
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
->
-> This is unnecessary. We don't rename drivers or function names because
-> other chips are added to a driver. Doing so causes unnecessary churn
-> and other problems, such as (in this case) loongson1_defconfig no longer
-> enabling this watchdog. Any userspace depending (for whatever reason)
-> on the driver name would also have problems.
->
-> It is ok to make the driver more generic and remove the "1" from
-> the Kconfig description and from MODULE_DESCRIPTION. However,
-> please leave function and driver names alone.
+> +			mdss_dp0: displayport-controller@af54000 {
+> +				compatible = "qcom,sm8750-dp", "qcom,sm8650-dp";
+> +				reg = <0x0 0xaf54000 0x0 0x104>,
+> +				      <0x0 0xaf54200 0x0 0xc0>,
+> +				      <0x0 0xaf55000 0x0 0x770>,
+> +				      <0x0 0xaf56000 0x0 0x9c>,
+> +				      <0x0 0xaf57000 0x0 0x9c>;
+> +
+> +				interrupts-extended = <&mdss 12>;
+> +
+> +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_DPTX0_AUX_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_INTF_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK>;
 
-My initial thought was that the loongson1_* prefix might cause
-confusion for others, since we aim to support watchdog driver across
-the entire Loongson series.
-
-Additionally, looking across the entire kernel, only
-loongson1_defconfig enables it. My initial code synchronously updated
-this file, but the watchdog repository appears not to have updated the
-code base, resulting in code conflicts [1]. Therefore, changes to this
-section have been temporarily excluded.
-
-[1]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/com=
-mit/?id=3Dad79935dbc22
-
->
-> Thanks,
-> Guenter
->
-> > ---
-> >   drivers/watchdog/Kconfig                      |  6 +-
-> >   drivers/watchdog/Makefile                     |  2 +-
-> >   .../{loongson1_wdt.c =3D> loongson_wdt.c}       | 86 +++++++++-------=
----
-> >   3 files changed, 46 insertions(+), 48 deletions(-)
-> >   rename drivers/watchdog/{loongson1_wdt.c =3D> loongson_wdt.c} (50%)
-> >
-> > diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-> > index 0c25b2ed44eb..74edeb13e95b 100644
-> > --- a/drivers/watchdog/Kconfig
-> > +++ b/drivers/watchdog/Kconfig
-> > @@ -1963,12 +1963,12 @@ config LANTIQ_WDT
-> >       help
-> >         Hardware driver for the Lantiq SoC Watchdog Timer.
-> >
-> > -config LOONGSON1_WDT
-> > -     tristate "Loongson1 SoC hardware watchdog"
-> > +config LOONGSON_WDT
-> > +     tristate "Loongson SoC hardware watchdog"
-> >       depends on MACH_LOONGSON32 || COMPILE_TEST
-> >       select WATCHDOG_CORE
-> >       help
-> > -       Hardware driver for the Loongson1 SoC Watchdog Timer.
-> > +       Hardware driver for the Loongson SoC Watchdog Timer.
-> >
-> >   config RALINK_WDT
-> >       tristate "Ralink SoC watchdog"
-> > diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-> > index bbd4d62d2cc3..70be11bf7bbf 100644
-> > --- a/drivers/watchdog/Makefile
-> > +++ b/drivers/watchdog/Makefile
-> > @@ -178,7 +178,7 @@ obj-$(CONFIG_TXX9_WDT) +=3D txx9wdt.o
-> >   obj-$(CONFIG_OCTEON_WDT) +=3D octeon-wdt.o
-> >   octeon-wdt-y :=3D octeon-wdt-main.o octeon-wdt-nmi.o
-> >   obj-$(CONFIG_LANTIQ_WDT) +=3D lantiq_wdt.o
-> > -obj-$(CONFIG_LOONGSON1_WDT) +=3D loongson1_wdt.o
-> > +obj-$(CONFIG_LOONGSON_WDT) +=3D loongson_wdt.o
-> >   obj-$(CONFIG_RALINK_WDT) +=3D rt2880_wdt.o
-> >   obj-$(CONFIG_IMGPDC_WDT) +=3D imgpdc_wdt.o
-> >   obj-$(CONFIG_MT7621_WDT) +=3D mt7621_wdt.o
-> > diff --git a/drivers/watchdog/loongson1_wdt.c b/drivers/watchdog/loongs=
-on_wdt.c
-> > similarity index 50%
-> > rename from drivers/watchdog/loongson1_wdt.c
-> > rename to drivers/watchdog/loongson_wdt.c
-> > index 0587ff44d3a1..19f6a19fc811 100644
-> > --- a/drivers/watchdog/loongson1_wdt.c
-> > +++ b/drivers/watchdog/loongson_wdt.c
-> > @@ -10,7 +10,7 @@
-> >   #include <linux/platform_device.h>
-> >   #include <linux/watchdog.h>
-> >
-> > -/* Loongson 1 Watchdog Register Definitions */
-> > +/* Loongson Watchdog Register Definitions */
-> >   #define WDT_EN                      0x0
-> >   #define WDT_TIMER           0x4
-> >   #define WDT_SET                     0x8
-> > @@ -23,26 +23,25 @@ module_param(nowayout, bool, 0444);
-> >   static unsigned int heartbeat;
-> >   module_param(heartbeat, uint, 0444);
-> >
-> > -struct ls1x_wdt_drvdata {
-> > +struct loongson_wdt_drvdata {
-> >       void __iomem *base;
-> >       struct clk *clk;
-> >       unsigned long clk_rate;
-> >       struct watchdog_device wdt;
-> >   };
-> >
-> > -static int ls1x_wdt_ping(struct watchdog_device *wdt_dev)
-> > +static int loongson_wdt_ping(struct watchdog_device *wdt_dev)
-> >   {
-> > -     struct ls1x_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt_dev=
-);
-> > +     struct loongson_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt=
-_dev);
-> >
-> >       writel(0x1, drvdata->base + WDT_SET);
-> >
-> >       return 0;
-> >   }
-> >
-> > -static int ls1x_wdt_set_timeout(struct watchdog_device *wdt_dev,
-> > -                             unsigned int timeout)
-> > +static int loongson_wdt_set_timeout(struct watchdog_device *wdt_dev, u=
-nsigned int timeout)
-> >   {
-> > -     struct ls1x_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt_dev=
-);
-> > +     struct loongson_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt=
-_dev);
-> >       unsigned int max_hw_heartbeat =3D wdt_dev->max_hw_heartbeat_ms / =
-1000;
-> >       unsigned int counts;
-> >
-> > @@ -54,28 +53,27 @@ static int ls1x_wdt_set_timeout(struct watchdog_dev=
-ice *wdt_dev,
-> >       return 0;
-> >   }
-> >
-> > -static int ls1x_wdt_start(struct watchdog_device *wdt_dev)
-> > +static int loongson_wdt_start(struct watchdog_device *wdt_dev)
-> >   {
-> > -     struct ls1x_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt_dev=
-);
-> > +     struct loongson_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt=
-_dev);
-> >
-> >       writel(0x1, drvdata->base + WDT_EN);
-> >
-> >       return 0;
-> >   }
-> >
-> > -static int ls1x_wdt_stop(struct watchdog_device *wdt_dev)
-> > +static int loongson_wdt_stop(struct watchdog_device *wdt_dev)
-> >   {
-> > -     struct ls1x_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt_dev=
-);
-> > +     struct loongson_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt=
-_dev);
-> >
-> >       writel(0x0, drvdata->base + WDT_EN);
-> >
-> >       return 0;
-> >   }
-> >
-> > -static int ls1x_wdt_restart(struct watchdog_device *wdt_dev,
-> > -                         unsigned long action, void *data)
-> > +static int loongson_wdt_restart(struct watchdog_device *wdt_dev, unsig=
-ned long action, void *data)
-> >   {
-> > -     struct ls1x_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt_dev=
-);
-> > +     struct loongson_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt=
-_dev);
-> >
-> >       writel(0x1, drvdata->base + WDT_EN);
-> >       writel(0x1, drvdata->base + WDT_TIMER);
-> > @@ -84,25 +82,25 @@ static int ls1x_wdt_restart(struct watchdog_device =
-*wdt_dev,
-> >       return 0;
-> >   }
-> >
-> > -static const struct watchdog_info ls1x_wdt_info =3D {
-> > +static const struct watchdog_info loongson_wdt_info =3D {
-> >       .options =3D WDIOF_SETTIMEOUT | WDIOF_KEEPALIVEPING | WDIOF_MAGIC=
-CLOSE,
-> > -     .identity =3D "Loongson1 Watchdog",
-> > +     .identity =3D "Loongson Watchdog",
-> >   };
-> >
-> > -static const struct watchdog_ops ls1x_wdt_ops =3D {
-> > +static const struct watchdog_ops loongson_wdt_ops =3D {
-> >       .owner =3D THIS_MODULE,
-> > -     .start =3D ls1x_wdt_start,
-> > -     .stop =3D ls1x_wdt_stop,
-> > -     .ping =3D ls1x_wdt_ping,
-> > -     .set_timeout =3D ls1x_wdt_set_timeout,
-> > -     .restart =3D ls1x_wdt_restart,
-> > +     .start =3D loongson_wdt_start,
-> > +     .stop =3D loongson_wdt_stop,
-> > +     .ping =3D loongson_wdt_ping,
-> > +     .set_timeout =3D loongson_wdt_set_timeout,
-> > +     .restart =3D loongson_wdt_restart,
-> >   };
-> >
-> > -static int ls1x_wdt_probe(struct platform_device *pdev)
-> > +static int loongson_wdt_probe(struct platform_device *pdev)
-> >   {
-> >       struct device *dev =3D &pdev->dev;
-> > -     struct ls1x_wdt_drvdata *drvdata;
-> > -     struct watchdog_device *ls1x_wdt;
-> > +     struct loongson_wdt_drvdata *drvdata;
-> > +     struct watchdog_device *loongson_wdt;
-> >       unsigned long clk_rate;
-> >       int err;
-> >
-> > @@ -123,17 +121,17 @@ static int ls1x_wdt_probe(struct platform_device =
-*pdev)
-> >               return -EINVAL;
-> >       drvdata->clk_rate =3D clk_rate;
-> >
-> > -     ls1x_wdt =3D &drvdata->wdt;
-> > -     ls1x_wdt->info =3D &ls1x_wdt_info;
-> > -     ls1x_wdt->ops =3D &ls1x_wdt_ops;
-> > -     ls1x_wdt->timeout =3D DEFAULT_HEARTBEAT;
-> > -     ls1x_wdt->min_timeout =3D 1;
-> > -     ls1x_wdt->max_hw_heartbeat_ms =3D U32_MAX / clk_rate * 1000;
-> > -     ls1x_wdt->parent =3D dev;
-> > +     loongson_wdt =3D &drvdata->wdt;
-> > +     loongson_wdt->info =3D &loongson_wdt_info;
-> > +     loongson_wdt->ops =3D &loongson_wdt_ops;
-> > +     loongson_wdt->timeout =3D DEFAULT_HEARTBEAT;
-> > +     loongson_wdt->min_timeout =3D 1;
-> > +     loongson_wdt->max_hw_heartbeat_ms =3D U32_MAX / clk_rate * 1000;
-> > +     loongson_wdt->parent =3D dev;
-> >
-> > -     watchdog_init_timeout(ls1x_wdt, heartbeat, dev);
-> > -     watchdog_set_nowayout(ls1x_wdt, nowayout);
-> > -     watchdog_set_drvdata(ls1x_wdt, drvdata);
-> > +     watchdog_init_timeout(loongson_wdt, heartbeat, dev);
-> > +     watchdog_set_nowayout(loongson_wdt, nowayout);
-> > +     watchdog_set_drvdata(loongson_wdt, drvdata);
-> >
-> >       err =3D devm_watchdog_register_device(dev, &drvdata->wdt);
-> >       if (err)
-> > @@ -141,30 +139,30 @@ static int ls1x_wdt_probe(struct platform_device =
-*pdev)
-> >
-> >       platform_set_drvdata(pdev, drvdata);
-> >
-> > -     dev_info(dev, "Loongson1 Watchdog driver registered\n");
-> > +     dev_info(dev, "Loongson Watchdog driver registered\n");
-> >
-> >       return 0;
-> >   }
-> >
-> >   #ifdef CONFIG_OF
-> > -static const struct of_device_id ls1x_wdt_dt_ids[] =3D {
-> > +static const struct of_device_id loongson_wdt_dt_ids[] =3D {
-> >       { .compatible =3D "loongson,ls1b-wdt", },
-> >       { .compatible =3D "loongson,ls1c-wdt", },
-> >       { /* sentinel */ }
-> >   };
-> > -MODULE_DEVICE_TABLE(of, ls1x_wdt_dt_ids);
-> > +MODULE_DEVICE_TABLE(of, loongson_wdt_dt_ids);
-> >   #endif
-> >
-> > -static struct platform_driver ls1x_wdt_driver =3D {
-> > -     .probe =3D ls1x_wdt_probe,
-> > +static struct platform_driver loongson_wdt_driver =3D {
-> > +     .probe =3D loongson_wdt_probe,
-> >       .driver =3D {
-> > -             .name =3D "ls1x-wdt",
-> > -             .of_match_table =3D of_match_ptr(ls1x_wdt_dt_ids),
-> > +             .name =3D "loongson-wdt",
-> > +             .of_match_table =3D of_match_ptr(loongson_wdt_dt_ids),
-> >       },
-> >   };
-> >
-> > -module_platform_driver(ls1x_wdt_driver);
-> > +module_platform_driver(loongson_wdt_driver);
-> >
-> >   MODULE_AUTHOR("Yang Ling <gnaygnil@gmail.com>");
-> > -MODULE_DESCRIPTION("Loongson1 Watchdog Driver");
-> > +MODULE_DESCRIPTION("Loongson Watchdog Driver");
-> >   MODULE_LICENSE("GPL");
->
-
---=20
-Thanks.
-Binbin
+No PIXEL1_CLK ?
 
