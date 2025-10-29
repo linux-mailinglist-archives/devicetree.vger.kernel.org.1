@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-232853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC1DBC1C75F
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 18:34:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E494DC1C5D5
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 18:09:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E2686447E8
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 16:41:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AF801888D8A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 17:07:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B084314B83;
-	Wed, 29 Oct 2025 16:40:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC1BA347FEE;
+	Wed, 29 Oct 2025 17:06:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uToJNhpD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qHeaSkdZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18F962F0676;
-	Wed, 29 Oct 2025 16:40:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA8B8347BCF;
+	Wed, 29 Oct 2025 17:06:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761756002; cv=none; b=FCPUNLI9N+7ogeE7W4i9PyrUd9RdCXdOV54L3YTRMvShTBtNbifXgvMSibsgE5xabGnV69XdhbAGywDpm8uQWZ1doh8tCo68oJ17RHivwK/ea/yEEDViw558lvwd4guEZCTSKeOzOfU8eV5avygBBW8FrdrQ4veK9NC2FgWjAY8=
+	t=1761757614; cv=none; b=LHCBq/8zfFekksvGr9DTG2TfP1rMtY9Inr8mkBV2dj9TibPcfWw3CrOcNPjFCnxDr+pNZWGvSYbsKd9gYq8RYXUH0uWARiAYHTXunxrvqD2kqQbaQloFRV8DicRbBLGvZfWKTSlOFGKhcI0qGALsbpQUjVVjwOMn2Bbmccz8tSM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761756002; c=relaxed/simple;
-	bh=NdTp1VvlzXT2iMmRb+rzAshXMwZ79HLOe8xu+us+kJM=;
+	s=arc-20240116; t=1761757614; c=relaxed/simple;
+	bh=sFZTGSYKTnwBa0p3fbvzTrVI4AToQmojfH/yTJCVaA4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EmI7HbmkMPYt3nfRpS4ZfMZfjT3DQ680bhtz9IAN6HNqVxKOhn0/hlOIx9kPbOGtP6Fvp/hN7CkafSdi8wI+WNVuOPygCMHJ+vey07PUF2YtgCYZaj4IIPu0Qdqmuu6HzfuryBkrrmmTyfM7PULIzhtnaSnBSTTCtot4lBB04HU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uToJNhpD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5AB8C4CEF7;
-	Wed, 29 Oct 2025 16:39:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ToGgp1kmvfCzWcCDgFVseL/pmQgIo8S6Bextue641xx5Z0AGrDHtAXZSEXzxQWAu5Hgfbg4siDkIFZPVZGDQJmuDGmYacnuDgMTgITqzB57GIZalcbWVgLLhm6Zs070XvJ/njJX5ic307yHxhPv5mEBkMet2andDIexS5woCMaY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qHeaSkdZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE389C4CEF7;
+	Wed, 29 Oct 2025 17:06:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761756001;
-	bh=NdTp1VvlzXT2iMmRb+rzAshXMwZ79HLOe8xu+us+kJM=;
+	s=k20201202; t=1761757614;
+	bh=sFZTGSYKTnwBa0p3fbvzTrVI4AToQmojfH/yTJCVaA4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uToJNhpDTN6RNRLAFbn29AjYO7MrPMp2zZskc9hsRSRGpM+74g36Z0GDf51W6Mrza
-	 vETg//BYRbnaU8mg+KpsVXrosVmirha6BfUhF3Ycsr3cK8u5Af+l0F0lW+LA43NTZH
-	 QqvkIB0+1jdimtMKRncxhzAjvnOX4SCI4206/EDRJRkcseKpjS0Eyf+4NQvMFwomnA
-	 MLfvZdoIQ2BIRC4CGhCHpEKrHJdtlDrWb1dlCyAXnjc4z/L1G3JAM88gfWcw6uLZTs
-	 l+DonwkjYE1NdlthoHbTVWmf+muYP3xggO/DIQ6i/TNwv4Q6I0BzKdfAhhw7hu4u+T
-	 YXQXuHuWr/GWw==
-Date: Wed, 29 Oct 2025 11:43:04 -0500
+	b=qHeaSkdZUqEm/ASvyx7Se8Cn5vw18wArwi896aedwI6c251UjEBEQVqFuJsxIR1lu
+	 f6ak9jj5f4YdvkpiWB7oUMbADMqid3Q4/200n9gnbV0bdQXUQqSOFFfA+ju5afS1kl
+	 j8EOdCT1Y5Rdd4zmtvqbuHQyO7B1f0xv+yfpxsCWXXZTJimfDPg7Ty52SPL8KStUdA
+	 h8BHe9vhmQqdHxKeJmGztaotq9bOWyPe9NmxJl+sCQxBzO/ZBy5M9uUmTeO9VLg+G1
+	 q6d6jzIeg+9t0B2oAphB9HXtViwAIJdsyBxPze15sh3EduaSe5obvnVC/KsjFXZCmb
+	 W+DMfzo95h1nQ==
+Date: Wed, 29 Oct 2025 12:09:58 -0500
 From: Bjorn Andersson <andersson@kernel.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Baryshkov <lumag@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Sibi Sankar <sibi.sankar@oss.qualcomm.com>, Rajendra Nayak <quic_rjendra@quicinc.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk@kernel.org>, stable@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: x1e80100: Add missing TCSR ref
- clock to the DP PHYs
-Message-ID: <u6f4spt62rzqyqifaza7q34e7vf2jmbrbmzmgxtlhjupya3lsy@6vvssqcfhmtg>
-References: <20251029-phy-qcom-edp-add-missing-refclk-v4-0-adb7f5c54fe4@linaro.org>
- <20251029-phy-qcom-edp-add-missing-refclk-v4-3-adb7f5c54fe4@linaro.org>
+To: Krishna Kurapati PSSNV <krishna.kurapati@oss.qualcomm.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Wesley Cheng <wesley.cheng@oss.qualcomm.com>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v9 2/3] arm64: dts: qcom: sm8750: Add USB support for
+ SM8750 MTP platform
+Message-ID: <frbpbbvercsmytjmcfidd35p7frfmpuvoogi2s5wvf7rtzv6nr@eqceebjujasj>
+References: <20251024151521.2365845-1-krishna.kurapati@oss.qualcomm.com>
+ <20251024151521.2365845-3-krishna.kurapati@oss.qualcomm.com>
+ <r5zjb7v2ngsbx2y63tmdhnm4gbpla5fki4uzpjhvn7sqmzsqi2@7637rbudt3z6>
+ <469fc3aa-9b95-4b30-a704-d568a830452f@oss.qualcomm.com>
+ <vmtm6wy2ldvobgl2o7cqdtknyfg4fup2pqpddkftnhzs5tgqrq@vbo4j2gmr4px>
+ <bfc126ad-1443-4b9a-bc8d-3619606294e2@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,64 +66,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251029-phy-qcom-edp-add-missing-refclk-v4-3-adb7f5c54fe4@linaro.org>
+In-Reply-To: <bfc126ad-1443-4b9a-bc8d-3619606294e2@oss.qualcomm.com>
 
-On Wed, Oct 29, 2025 at 03:31:32PM +0200, Abel Vesa wrote:
-> The DP PHYs on X1E80100 need the ref clock which is provided by the
-> TCSR CC.
+On Wed, Oct 29, 2025 at 10:12:59PM +0530, Krishna Kurapati PSSNV wrote:
 > 
-> The current X Elite devices supported upstream work fine without this
-> clock, because the boot firmware leaves this clock enabled. But we should
-> not rely on that. Also, even though this change breaks the ABI, it is
-> needed in order to make the driver disables this clock along with the
-> other ones, for a proper bring-down of the entire PHY.
 > 
-> So lets attach it to each of the DP PHYs in order to do that.
+> On 10/29/2025 10:04 PM, Bjorn Andersson wrote:
+> > On Wed, Oct 29, 2025 at 09:20:48PM +0530, Krishna Kurapati PSSNV wrote:
+> > > 
+> > > 
+> > > On 10/29/2025 2:45 AM, Dmitry Baryshkov wrote:
+> > > > On Fri, Oct 24, 2025 at 08:45:20PM +0530, Krishna Kurapati wrote:
+> > > > > From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+> > > > > 
+> > > > > Enable USB support on SM8750 MTP variants.  The current definition will
+> > > > > start the USB controller in peripheral mode by default until
+> > > > > dependencies are added, such as USB role detection.
+> > > > 
+> > > > Which dependencies?
+> > > > 
+> > > 
+> > > Dependencies like pmic-glink and adding remote endpoints for otg support.
+> > > Till they are added, we can enable peripheral mode.
+> > > 
+> > 
+> > But this is 8750, Jishnu got qcom,sm8750-pmic-glink landed in the
+> > binding 9 months ago, so why are we spending time discussing this?
+> > 
+> > Why not just add the whole shebang at once?
+> > 
 > 
-> Cc: stable@vger.kernel.org # v6.9
-> Fixes: 1940c25eaa63 ("arm64: dts: qcom: x1e80100: Add display nodes")
+> Initially I didn't add those changes because the series already had acked
+> patches and I didn't want to disturb them. I can add them in next submission
+> and send them out.
+> 
 
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+Now that you don't carry them anymore - and you have to resubmit this
+anyways - I'd prefer that you just enable the whole thing over trying to
+make up a reason suitable for encoding in the git log...
 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/hamoa.dtsi | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-> index a17900eacb20396a9792efcfcd6ce6dd877435d1..59603616a3c229c69467c41e6043c63daa62b46b 100644
-> --- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-> @@ -5896,9 +5896,11 @@ mdss_dp2_phy: phy@aec2a00 {
->  			      <0 0x0aec2000 0 0x1c8>;
->  
->  			clocks = <&dispcc DISP_CC_MDSS_DPTX2_AUX_CLK>,
-> -				 <&dispcc DISP_CC_MDSS_AHB_CLK>;
-> +				 <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> +				 <&tcsr TCSR_EDP_CLKREF_EN>;
->  			clock-names = "aux",
-> -				      "cfg_ahb";
-> +				      "cfg_ahb",
-> +				      "ref";
->  
->  			power-domains = <&rpmhpd RPMHPD_MX>;
->  
-> @@ -5916,9 +5918,11 @@ mdss_dp3_phy: phy@aec5a00 {
->  			      <0 0x0aec5000 0 0x1c8>;
->  
->  			clocks = <&dispcc DISP_CC_MDSS_DPTX3_AUX_CLK>,
-> -				 <&dispcc DISP_CC_MDSS_AHB_CLK>;
-> +				 <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> +				 <&tcsr TCSR_EDP_CLKREF_EN>;
->  			clock-names = "aux",
-> -				      "cfg_ahb";
-> +				      "cfg_ahb",
-> +				      "ref";
->  
->  			power-domains = <&rpmhpd RPMHPD_MX>;
->  
-> 
-> -- 
-> 2.48.1
-> 
+Regards,
+Bjorn
+
+> Regards,
+> Krishna,
 
