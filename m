@@ -1,113 +1,150 @@
-Return-Path: <devicetree+bounces-232860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E494DC1C5D5
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 18:09:22 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44F38C1C6AB
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 18:23:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AF801888D8A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 17:07:24 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C25864E55FB
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 17:20:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC1BA347FEE;
-	Wed, 29 Oct 2025 17:06:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F0AC34F24D;
+	Wed, 29 Oct 2025 17:20:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qHeaSkdZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ELB/AyL5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA8B8347BCF;
-	Wed, 29 Oct 2025 17:06:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E94B34EEF5;
+	Wed, 29 Oct 2025 17:20:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761757614; cv=none; b=LHCBq/8zfFekksvGr9DTG2TfP1rMtY9Inr8mkBV2dj9TibPcfWw3CrOcNPjFCnxDr+pNZWGvSYbsKd9gYq8RYXUH0uWARiAYHTXunxrvqD2kqQbaQloFRV8DicRbBLGvZfWKTSlOFGKhcI0qGALsbpQUjVVjwOMn2Bbmccz8tSM=
+	t=1761758413; cv=none; b=rWG8BulD+ynt3QBztYhjN20Ncq4VKtN2wPmf6jhI1OMqOrjscYZ5rVSge4U//g+nFgptgDlFG7j15ltgrGzrqv4YP+Tpm+KjLyGZjsGaCNAQjnVJXXJ1gESNKzGrYKoQwYPntruBCu59LEytMBigAZYol/XYmIpPz6hDBbAcia4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761757614; c=relaxed/simple;
-	bh=sFZTGSYKTnwBa0p3fbvzTrVI4AToQmojfH/yTJCVaA4=;
+	s=arc-20240116; t=1761758413; c=relaxed/simple;
+	bh=65FyGIkkwp1js4Wp8sYOXm3ey3tzmJJd+jmMKiQaV04=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ToGgp1kmvfCzWcCDgFVseL/pmQgIo8S6Bextue641xx5Z0AGrDHtAXZSEXzxQWAu5Hgfbg4siDkIFZPVZGDQJmuDGmYacnuDgMTgITqzB57GIZalcbWVgLLhm6Zs070XvJ/njJX5ic307yHxhPv5mEBkMet2andDIexS5woCMaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qHeaSkdZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE389C4CEF7;
-	Wed, 29 Oct 2025 17:06:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qPiACl9qqJ4UBGpJGFflFN2GVTwvtDSC8bEX0Bl5eiD3nsBhq1KZAkRKpUm9MIk4K9xrUpf/Rlsr0VEnb06Whf+4CPo9qGtB1Ba6ytbZxYKp8tCocy4duO2JyaVT6ymwfVZN8KAZBcDbwlSc2wmBiQZhtGihcGJ4GzMCJzer/lI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ELB/AyL5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BAA8C4CEF8;
+	Wed, 29 Oct 2025 17:20:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761757614;
-	bh=sFZTGSYKTnwBa0p3fbvzTrVI4AToQmojfH/yTJCVaA4=;
+	s=k20201202; t=1761758412;
+	bh=65FyGIkkwp1js4Wp8sYOXm3ey3tzmJJd+jmMKiQaV04=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qHeaSkdZUqEm/ASvyx7Se8Cn5vw18wArwi896aedwI6c251UjEBEQVqFuJsxIR1lu
-	 f6ak9jj5f4YdvkpiWB7oUMbADMqid3Q4/200n9gnbV0bdQXUQqSOFFfA+ju5afS1kl
-	 j8EOdCT1Y5Rdd4zmtvqbuHQyO7B1f0xv+yfpxsCWXXZTJimfDPg7Ty52SPL8KStUdA
-	 h8BHe9vhmQqdHxKeJmGztaotq9bOWyPe9NmxJl+sCQxBzO/ZBy5M9uUmTeO9VLg+G1
-	 q6d6jzIeg+9t0B2oAphB9HXtViwAIJdsyBxPze15sh3EduaSe5obvnVC/KsjFXZCmb
-	 W+DMfzo95h1nQ==
-Date: Wed, 29 Oct 2025 12:09:58 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Krishna Kurapati PSSNV <krishna.kurapati@oss.qualcomm.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Wesley Cheng <wesley.cheng@oss.qualcomm.com>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v9 2/3] arm64: dts: qcom: sm8750: Add USB support for
- SM8750 MTP platform
-Message-ID: <frbpbbvercsmytjmcfidd35p7frfmpuvoogi2s5wvf7rtzv6nr@eqceebjujasj>
-References: <20251024151521.2365845-1-krishna.kurapati@oss.qualcomm.com>
- <20251024151521.2365845-3-krishna.kurapati@oss.qualcomm.com>
- <r5zjb7v2ngsbx2y63tmdhnm4gbpla5fki4uzpjhvn7sqmzsqi2@7637rbudt3z6>
- <469fc3aa-9b95-4b30-a704-d568a830452f@oss.qualcomm.com>
- <vmtm6wy2ldvobgl2o7cqdtknyfg4fup2pqpddkftnhzs5tgqrq@vbo4j2gmr4px>
- <bfc126ad-1443-4b9a-bc8d-3619606294e2@oss.qualcomm.com>
+	b=ELB/AyL5deaCCKeGWvWoISjvsovIELLv7JxG69kwZkivbdlvFql+jNUxowLqXhfkd
+	 2tcHQHAcubLW7AiZUDBtZErD7AJPGx834uygoyufhw3tKjo6bfBicHS3HLbjcwSmgK
+	 cVCd6wcMHiIbcVt7PlG3MRWS6QwXtb+6wM8oaXt8XeroB/73QiNaSdS937TqMxbJs8
+	 +Mis3OcDljRo+zn/EwRRhybxl+zNwmuEjFqEma7lj6YIhfPC4hFWhp77UFNripXmF3
+	 bkq5aNqVkefpMXI2PN5exJu5C9FNc2tJj+om54urPocotzQQzhaTo9BathW3GeVlus
+	 pJTnUokzdLt2w==
+Date: Wed, 29 Oct 2025 17:20:07 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	"magnus.damm" <magnus.damm@gmail.com>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"biju.das.au" <biju.das.au@gmail.com>
+Subject: Re: [PATCH 03/19] dt-bindings: serial: renesas,rsci: Document RZ/G3E
+ support
+Message-ID: <20251029-tannery-antics-f47cd59274b0@spud>
+References: <20251027154615.115759-1-biju.das.jz@bp.renesas.com>
+ <20251027154615.115759-4-biju.das.jz@bp.renesas.com>
+ <20251028-mower-mundane-316cdd6b48b6@spud>
+ <TY3PR01MB11346372AB6D191D30B4F058B86FDA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <20251028-veteran-smell-963bb76ab3ff@spud>
+ <TY3PR01MB11346239D8EB6EF5D120ABA0086FDA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="8/owQVjh2mo2RhT/"
+Content-Disposition: inline
+In-Reply-To: <TY3PR01MB11346239D8EB6EF5D120ABA0086FDA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+
+
+--8/owQVjh2mo2RhT/
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <bfc126ad-1443-4b9a-bc8d-3619606294e2@oss.qualcomm.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 29, 2025 at 10:12:59PM +0530, Krishna Kurapati PSSNV wrote:
-> 
-> 
-> On 10/29/2025 10:04 PM, Bjorn Andersson wrote:
-> > On Wed, Oct 29, 2025 at 09:20:48PM +0530, Krishna Kurapati PSSNV wrote:
-> > > 
-> > > 
-> > > On 10/29/2025 2:45 AM, Dmitry Baryshkov wrote:
-> > > > On Fri, Oct 24, 2025 at 08:45:20PM +0530, Krishna Kurapati wrote:
-> > > > > From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-> > > > > 
-> > > > > Enable USB support on SM8750 MTP variants.  The current definition will
-> > > > > start the USB controller in peripheral mode by default until
-> > > > > dependencies are added, such as USB role detection.
-> > > > 
-> > > > Which dependencies?
-> > > > 
-> > > 
-> > > Dependencies like pmic-glink and adding remote endpoints for otg support.
-> > > Till they are added, we can enable peripheral mode.
-> > > 
-> > 
-> > But this is 8750, Jishnu got qcom,sm8750-pmic-glink landed in the
-> > binding 9 months ago, so why are we spending time discussing this?
-> > 
-> > Why not just add the whole shebang at once?
-> > 
-> 
-> Initially I didn't add those changes because the series already had acked
-> patches and I didn't want to disturb them. I can add them in next submission
-> and send them out.
-> 
+On Tue, Oct 28, 2025 at 08:26:08PM +0000, Biju Das wrote:
+> Hi Conor Dooley,
+>=20
+> Thanks for the feedback.
+>=20
+> > -----Original Message-----
+> > From: Conor Dooley <conor@kernel.org>
+> > Sent: 28 October 2025 19:52
+> > Subject: Re: [PATCH 03/19] dt-bindings: serial: renesas,rsci: Document =
+RZ/G3E support
+> >=20
+> > On Tue, Oct 28, 2025 at 07:41:33PM +0000, Biju Das wrote:
+> > > > > +  - if:
+> > > > > +      properties:
+> > > > > +        compatible:
+> > > > > +          contains:
+> > > > > +            enum:
+> > > > > +              - renesas,r9a09g047-rsci
+> > > > > +              - renesas,r9a09g047-rscif
+> > > > > +    then:
+> > > > > +      properties:
+> > > > > +        clocks:
+> > > > > +          minItems: 5
+> > > > > +
+> > > > > +        clock-names:
+> > > > > +          minItems: 5
+> > > > > +
+> > > > > +      required:
+> > > > > +        - resets
+> > > > > +        - reset-names
+> > > >
+> > > > Does this need an "else: properties: resets: false"? Or do other de=
+vices actually have resets too?
+> > >
+> > > It is not required as resets are optional for RZ/T2H and RZ/N2H.
+> > > RZ/T2H and N2H does not have Resets.
+> >=20
+> > This is a contradiction. Either they are optional for these platforms o=
+r the platforms do not have
+> > resets. Cannot be both!
+>=20
+> Some RSCI IP SoCs has resets and some does not have. From RSCI IP point o=
+f view
+> this property is optional.
+>=20
+> I just try to avoid complex if else statements in dt schema by adding
+> Per SoC properties.
+>=20
+> If you prefer else statements for resets, I can add that as well. Please =
+let me know.
 
-Now that you don't carry them anymore - and you have to resubmit this
-anyways - I'd prefer that you just enable the whole thing over trying to
-make up a reason suitable for encoding in the git log...
+I would prefer that you do that, yes.
 
-Regards,
-Bjorn
+--8/owQVjh2mo2RhT/
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> Regards,
-> Krishna,
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQJMxwAKCRB4tDGHoIJi
+0vlZAP4vJX6jue1CICENBLmOUIFC2Kwhpbkt+1Jks7YDrIlgBgEAurOnuml7ge9D
+q/Oxs5telN5mLXaaJdzUPYQ9gSsE2wY=
+=oa+q
+-----END PGP SIGNATURE-----
+
+--8/owQVjh2mo2RhT/--
 
