@@ -1,252 +1,225 @@
-Return-Path: <devicetree+bounces-232469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2558C1848C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 06:23:44 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8B8DC184A2
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 06:27:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9382E3B74FE
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 05:23:27 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6A1BF4E7346
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 05:26:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E282F6929;
-	Wed, 29 Oct 2025 05:23:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61ECA2F746C;
+	Wed, 29 Oct 2025 05:26:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GC/QrFDj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YCeL5fE+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FFBA86323
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 05:23:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30A25261B60;
+	Wed, 29 Oct 2025 05:26:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761715404; cv=none; b=sfIxoqSyM60bFZLyilJrpzxuIFGZjRMl8+CETb+Cz1vwli5nLURdhlhr2XMcjF8VQxfdbOw03QsQ/kIl4y67dhzTkE/X6+lquAFKphOpeCABIN4BVFbQBOeXasReRGxvpQV47YPBE7TDJPw7KB5mrRFVMxG7GmmWn+iW6RI+BSk=
+	t=1761715591; cv=none; b=B3i3U/mewagHrnqriwLUjR5uP6jT2V0q/hXLMhzMxBXMZYGB55A6OHRrN08KQFOTYTkfbTVSesHNacrnnoWl1I0rXFaNRcAFclxU37dgDje2eZYIDqVuemfoM5VUoGLbmEnBFhyTH9RVekFH6bK9LvAYN/nMTab0EBn5KvwuM2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761715404; c=relaxed/simple;
-	bh=MVV4fn2U9kldtqYBjWGUoCfEKkSN8LPsc75pCGRRe34=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=FG4DoOZHHrKW8YYfESAjhLmeCW80aF+4fD9dTTJFsBdNuyWmsHriFGYif0iKlr5CkcCzvOyUWXCgiG/tuZZnkNTjgtdTGB7b1ein/SwaZq7aXIpxMJQcfEfu6Pa/9HVavQfVZ57Mc53LwLXMGal/6trqRn8otvUIiv5DRxqUgHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GC/QrFDj; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-290af0e154fso8452075ad.3
-        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 22:23:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761715402; x=1762320202; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=vsPKJDbsU1HLDhh7a3z0A0GhLekMgmfq9Z2ctQNja8o=;
-        b=GC/QrFDjzTQefo+2XMGdE/1zagpDaZDNeeH7zCtE+aX97yhhU3ZcsVQF44ltH8XgfQ
-         qtrNDGshfOGm4rSJYSfRRXaw9pWk/SBX6qBBmP1T2RIfw0T5EIKyghqBn4WK90y5VOpj
-         BAWWB+Rb0TxTttfeoub4aYm/z0gTcXYy/Rj01x8zQFedSxJgdouYIyQ8dEQs/p5QAe/a
-         addg/nJ5hkz/LY5pyI2Fqq8pahfP5sjt8NPYr8XMy+H4NwdGXa01ZVVRbVm/wsXeQwgy
-         hpPFZ2ZkHwi2a1NhoskQqZJcfQ0sjcF8cxYaInE/FZlp1qC1OzZ5lX0PP6TvlxIhPW9j
-         b1Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761715402; x=1762320202;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vsPKJDbsU1HLDhh7a3z0A0GhLekMgmfq9Z2ctQNja8o=;
-        b=L2qCRDgQDshCTiduSOl41ETTHFaJJ7bO8WiTV73fAjBsBl2b6Xk8GU2/51igTx9sza
-         JeGwxpo2A8NpWG+iXO6CaoxZb/cvCikBfbfI2VP8Y3UogTwnl6qmmclg8SrpC5OmMbQ2
-         UVUQnXrEF6K+4H+cKxzKAA8a5yJTSbXseEHO5FsjlzgepDQBqjItT3hwBTuNWsHW2MuU
-         pZhvpBFqv3m7Cvr4Yz4Gum2JxLwWRCyTf+MZpDTNUAwrHW0w0u3xHCsOSRsIySHHHBKT
-         Hq8SBKIhvCSXbSZDgNH3g8VuSxbyjmg2/euRjWBeO85WRx7zBzxUikyrW8Z1VfSjWH2D
-         J9+g==
-X-Forwarded-Encrypted: i=1; AJvYcCXFSNFZbnHBQuSwmeO2ozYwbrwy7fw7sXibGcHBz5NdhLCIFRGc0tWk5y1w9AKyfu0g+9hK1qh2fG9X@vger.kernel.org
-X-Gm-Message-State: AOJu0YzhXfeFoW980zcPxFshyfMPC1uT2adDZpF0M5nkt823z3PcfLvE
-	Fgyzh6DwbMQQr+SOJu9gtlt35aC0IBDhWNSO7ebVqTS0ouxu5pak+GzB
-X-Gm-Gg: ASbGncsKQxA40lRAHEcIH3LPNnYotujrzfQLbWtuHPgLgXVuPbP1Dw4FFA9SZC8xeup
-	NfNoK4GyfKvs+rAKN2uDXgRa4PbWgjrULVpsdxQAJ4LJjwK9CjSInGNEGGjK5HjxPjU64iD0NYN
-	JxJAPE2J5VPNCiZ0kyu8COt6acYGAHf19cbeEjOEY2YoJlYQq0nLM1//EbbqAlWpwsz9+HHuD0g
-	/qbaAN+crmUli1Pi44J6quPSX2FaIcsUSe6UlSG0p7uvuzRtnhR0Vn7jmbal+RpjCRqCytn4k/W
-	SCbktV2MxGMCBLMG+LiD3IP+meiKKLEVRX3wlwP/YcsiIIzTjvhAZ0SrbGeUlHV+q9uM3JM3ZOD
-	8rie0gTejmOXqGG1qQzKPQx2k1XptyLt+TIkaM//s92DvHyvezuRNRPBIk4X0CA1iAm7xjj+MH0
-	4QO9ueGA8rbxp+UPM3cSIx6U9y2lEWO0/ZctBaL0nfWR4yQw4vFEXo
-X-Google-Smtp-Source: AGHT+IFPBXAWHtWxVsH6BOk7hvQzebVLwsPZzDMBXOrqfB/oOU+pnQqSXpGyG55Woj+zHUIo1/Vq5Q==
-X-Received: by 2002:a17:902:ea05:b0:290:af0d:9381 with SMTP id d9443c01a7336-294deec2ed0mr11818285ad.7.1761715402314;
-        Tue, 28 Oct 2025 22:23:22 -0700 (PDT)
-Received: from [127.0.1.1] ([2406:7400:10c:6625:afa3:1ffa:3262:fea9])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29498e41697sm135526985ad.98.2025.10.28.22.23.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Oct 2025 22:23:21 -0700 (PDT)
-From: Ranganath V N <vnranganath.20@gmail.com>
-Date: Wed, 29 Oct 2025 10:53:04 +0530
-Subject: [PATCH v3] dt_bindings: sound: ti,pcm186x: convert to dtschema
+	s=arc-20240116; t=1761715591; c=relaxed/simple;
+	bh=8Q29z123cnrRN3gaZdZCB1y5nkXoqQK0+Osc0cFn55A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fcOpTURoZoxPTOjhloekpEGQKkbzTqV0JujDAtj1y3VDYFxn+cmRvVvWzM8fgEhl7jb3MzSKPrn+VHPonxkG9WCRgCGKE60slFaSTYKEuDTNZ6IVbUWuB+c4+62qou/jUMTLiniy0fCViPCTK3hdNqKXfz4NwoDaS9Tpb8CHbE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YCeL5fE+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9BCCC4CEF7;
+	Wed, 29 Oct 2025 05:26:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761715590;
+	bh=8Q29z123cnrRN3gaZdZCB1y5nkXoqQK0+Osc0cFn55A=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YCeL5fE+l2RNBqFHtV+gSzlR42sO+XEEpErtGcaoEhZB2m0fbdr4j8fqL0zPiInBo
+	 mbCjG1/lX+iuOhi0DmETfQA2gorPgcWaG4CfYGlB8ipqta5PfIKl5U7Xy+fbJIrV4S
+	 BTeDBkPsnCusf1dcbCHRZxU0HA90GHz2L30CJlV09HOxLBoCAy5G+K7sf3FTgbGgvw
+	 XGfiQIrdnU0laaHY6+zGwWfwqxCyAHz2zNyk0u99i3yqSZnBTmxkF6JYETWDg9FAaP
+	 1IzNkGsQZL/NmFB1Ql8YDQcT8XE9HVWIpiy55fREF1VWdqS+N3hIkG/9M+IU/QtUFi
+	 B5tKxFotS94rg==
+Message-ID: <c3603096-70c9-436b-9723-8a0daf1af9d6@kernel.org>
+Date: Wed, 29 Oct 2025 06:26:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: soc: qcom: qcom,pmic-glink: Add
+ Kaanapali and Glymur compatibles
+To: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251027212250.3847537-1-anjelique.melendez@oss.qualcomm.com>
+ <20251027212250.3847537-2-anjelique.melendez@oss.qualcomm.com>
+ <20251028-private-chirpy-earthworm-6fccfe@kuoka>
+ <4cb41e69-fb32-4331-a989-529b5af0081c@kernel.org>
+ <918fc9d3-2cd5-4442-8bc6-b930596d95c1@oss.qualcomm.com>
+ <ba760468-ac41-48e0-a56e-a675c3c0d5b7@kernel.org>
+ <2676d88f-89a9-4b1f-895b-3bdc048f6fbf@oss.qualcomm.com>
+ <4e7f4211-3194-409a-b33c-e47bfdfdb203@kernel.org>
+ <01f419cc-3236-48b9-bd51-e7db07d1e6fe@kernel.org>
+ <481ec137-87cf-4448-99e9-4a1477f4854d@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <481ec137-87cf-4448-99e9-4a1477f4854d@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251029-dtbs-v3-1-3cc162221c22@gmail.com>
-X-B4-Tracking: v=1; b=H4sIALekAWkC/12MQQ6CMBBFr0JmbQ0zAwiuvIdxUUqBSQRMSxoN4
- e4W4oK4fD//vQW8dWI9XJMFnA3iZRoj8CkB0+uxs0qayEAp5ZgSqmauvWLN2BZVZbICIV5fzrb
- y3jP3R+Re/Dy5z14NuK1/gYAKVVaxQa0p59rcukHL82ymAbZAoKNU/CSKkmm4viBrKkt7lNZ1/
- QJfhABfzQAAAA==
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, skhan@linuxfoundation.org, 
- david.hunter.linux@gmail.com, khalid@kernel.org, 
- linux-kernel-mentees@lists.linuxfoundation.org, 
- Ranganath V N <vnranganath.20@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761715398; l=3848;
- i=vnranganath.20@gmail.com; s=20250816; h=from:subject:message-id;
- bh=MVV4fn2U9kldtqYBjWGUoCfEKkSN8LPsc75pCGRRe34=;
- b=1ls32d42eEBD+XkDNskmfxIMVqWl1ESc2Gf9poGBFGwsENkGraiUn6GcqjlYtdXsIxiDLAvqj
- 03+OT+JCrjyDq3Vhx3BRE9kqVVqeoBuM518WDawPW8BNtayh46nVJXv
-X-Developer-Key: i=vnranganath.20@gmail.com; a=ed25519;
- pk=7mxHFYWOcIJ5Ls8etzgLkcB0M8/hxmOh8pH6Mce5Z1A=
 
-convert the Texas Instruments PCM186x Universal audio ADC bindings
-to DT schema.
+On 28/10/2025 23:55, Anjelique Melendez wrote:
+> 
+> 
+> On 10/28/2025 2:30 AM, Krzysztof Kozlowski wrote:
+>> On 28/10/2025 10:21, Krzysztof Kozlowski wrote:
+>>> On 28/10/2025 10:19, Konrad Dybcio wrote:
+>>>>>>
+>>>>>>>>>
+>>>>>>>>> Signed-off-by: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
+>>>>>>>>> ---
+>>>>>>>>>   .../devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml      | 7 +++++++
+>>>>>>>>>   1 file changed, 7 insertions(+)
+>>>>>>>>>
+>>>>>>>>> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
+>>>>>>>>> index 7085bf88afab..c57022109419 100644
+>>>>>>>>> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
+>>>>>>>>> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
+>>>>>>>>> @@ -37,12 +37,19 @@ properties:
+>>>>>>>>>             - const: qcom,pmic-glink
+>>>>>>>>>         - items:
+>>>>>>>>>             - enum:
+>>>>>>>>> +              - qcom,kaanapali-pmic-glink
+>>>>>>>>>                 - qcom,milos-pmic-glink
+>>>>>>>>>                 - qcom,sm8650-pmic-glink
+>>>>>>>>>                 - qcom,sm8750-pmic-glink
+>>>>>>>>
+>>>>>>>> Why qcom,kaanapali-pmic-glink is not compatible with
+>>>>>>>> qcom,sm8750-pmic-glink? If Glymur is compatible with previous
+>>>>>>>> generation, I would expect that here too.
+>>>>>>>
+>>>>>>> And again to re-iterate:
+>>>>>>>
+>>>>>>> If X1E is compatible with SM8550 AND:
+>>>>>>> SM8750 is compatible with SM8550 THEN
+>>>>>>> WHY Glymur is compatible with previous generation but Kaanapali is not
+>>>>>>> compatible with previous generation?
+>>>>>>
+>>>>>> The announcement date does not directly correlate to 'generation'
+>>>>> I don't know exactly this IP block/component, but in general these SoCs
+>>>>> follow some sort of previous design, thus term "generation" is correct
+>>>>> in many cases. Anyway don't be picky about wording.
+>>>>>
+>>>>> You can remove the generation and statement will be the same.
+>>>>>
+>>>>> If A is compatible with B AND
+>>>>> C is compatible with B
+>>>>> THEN
+>>>>>
+>>>>> WHY D is compatible with (A and B) but E is not
+>>>>> compatible with (C and B)?
+> 
+> I think some of the confusion is relating to both UCSI and battmngr aux 
+> drivers using SM8550 as compatible strings...
+> 
+> Really we should be thinking about this as:
+> 
+> 	SM8750 is compatible with SM8550 UCSI and SM8550 BATTMGR
+> 	X1E is compatible with SM8550 UCSI and X1E BATTMGR
 
-Signed-off-by: Ranganath V N <vnranganath.20@gmail.com>
----
-Convert the Texas Instruments PCM186x audio ADC bindings to DT schema.
----
-Changes in v3:
-- Unicode FEFF character was present in the begining of the file,
-- Removed unicode character.
-- Link to v2: https://lore.kernel.org/r/20251026-dtbs-v2-1-cd3b713a288e@gmail.com
+That's not what I said there. We don't speak here about these.
 
-Changes in v2:
-- Fixes as per the reviews suggested for the v1.
-- Link to v1: https://lore.kernel.org/r/20251021-dtbs-v1-1-493c1aa253bc@gmail.com
----
- .../devicetree/bindings/sound/pcm186x.txt          | 42 ---------------
- .../devicetree/bindings/sound/ti,pcm186x.yaml      | 61 ++++++++++++++++++++++
- 2 files changed, 61 insertions(+), 42 deletions(-)
+We speak ONLY about this compatible. How you map your compatible to
+UCSI, BATTMGR, FOO and BAR does not matter, although I asked about
+re-using of Kaanapali drvdata in one of my last replies.
 
-diff --git a/Documentation/devicetree/bindings/sound/pcm186x.txt b/Documentation/devicetree/bindings/sound/pcm186x.txt
-deleted file mode 100644
-index 1087f4855980..000000000000
---- a/Documentation/devicetree/bindings/sound/pcm186x.txt
-+++ /dev/null
-@@ -1,42 +0,0 @@
--Texas Instruments PCM186x Universal Audio ADC
--
--These devices support both I2C and SPI (configured with pin strapping
--on the board).
--
--Required properties:
--
-- - compatible : "ti,pcm1862",
--                "ti,pcm1863",
--                "ti,pcm1864",
--                "ti,pcm1865"
--
-- - reg : The I2C address of the device for I2C, the chip select
--         number for SPI.
--
-- - avdd-supply: Analog core power supply (3.3v)
-- - dvdd-supply: Digital core power supply
-- - iovdd-supply: Digital IO power supply
--        See regulator/regulator.txt for more information
--
--CODEC input pins:
-- * VINL1
-- * VINR1
-- * VINL2
-- * VINR2
-- * VINL3
-- * VINR3
-- * VINL4
-- * VINR4
--
--The pins can be used in referring sound node's audio-routing property.
--
--Example:
--
--	pcm186x: audio-codec@4a {
--		compatible = "ti,pcm1865";
--		reg = <0x4a>;
--
--		avdd-supply = <&reg_3v3_analog>;
--		dvdd-supply = <&reg_3v3>;
--		iovdd-supply = <&reg_1v8>;
--	};
-diff --git a/Documentation/devicetree/bindings/sound/ti,pcm186x.yaml b/Documentation/devicetree/bindings/sound/ti,pcm186x.yaml
-new file mode 100644
-index 000000000000..72a3e1dde0fa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,pcm186x.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,pcm186x.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments PCM186x Universal Audio ADC
-+
-+maintainers:
-+  - Ranganath V N <vnranganath.20@gmail.com>
-+
-+description:
-+  The Texas Instruments PCM186x family are multi-channel audio ADCs
-+  that support both I2C and SPI control interfaces, selected by
-+  pin strapping. These devices include on-chip programmable gain
-+  amplifiers and support differential or single-ended analog inputs.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,pcm1862
-+      - ti,pcm1863
-+      - ti,pcm1864
-+      - ti,pcm1865
-+
-+  reg:
-+    maxItems: 1
-+
-+  avdd-supply: true
-+
-+  dvdd-supply: true
-+
-+  iovdd-supply: true
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - avdd-supply
-+  - dvdd-supply
-+  - iovdd-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        audio-codec@4a {
-+            compatible = "ti,pcm1865";
-+            reg = <0x4a>;
-+
-+            avdd-supply = <&reg_3v3_analog>;
-+            dvdd-supply = <&reg_3v3>;
-+            iovdd-supply = <&reg_1v8>;
-+        };
-+    };
+> 
+> or
+> 	A is compatible with B and C
+> 	E is compatible with B and D
 
----
-base-commit: 211ddde0823f1442e4ad052a2f30f050145ccada
-change-id: 20251021-dtbs-3a31f699c461
+No, that was just because Konrad got focused on word "generation". Use
+my earlier comment.
+
+> 
+> 
+> More specifically:
+> 
+> SM8750 has the same UCSI quirks (UCSI_DELAY_DEVICE_PDOS) as SM8550, so 
+> we would want to use SM8550 compatible string in UCSI driver.
+> SM8750 also exposes the same features, state of health and charge 
+> control, in battmgr driver, so should use the SM8550 compatible string 
+> for battmgr driver as well.
+> 
+> Like SM8750, X1E has the same UCSI quirks (UCSI_DELAY_DEVICE_PDOS) as 
+> SM8550, so will use the SM8550 compatible.
+> BUT X1E only wants to have charge control exposed in battmngr driver. So 
+> instead of using the SM8550 compatible, we should use the X1E compatible 
+> in battmgr driver [1]
+> 
+> 
+> 
+> Now we have Kaanapali and Glymur being introduced...
+> 
+> Kaanapali IS compatible with SM8750, however since SM8750 did not 
+> introduce any new "quirks" or features that Kaanapali should inherit, we 
+> can simply define Kaanapali as compatible as SM8550 as well.
+> 
+> Glymur IS compatible with X1E and since X1E introduces a new "feature" 
+> that we would like Glymur to inherit, we need to explicitly defined 
+> Glymur as compatible to X1E.
+
+I don't understand whether you are explaining your patch - why it is
+done like that - or agreeing that your patch is wrong.
 
 Best regards,
--- 
-Ranganath V N <vnranganath.20@gmail.com>
-
+Krzysztof
 
