@@ -1,106 +1,139 @@
-Return-Path: <devicetree+bounces-232703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 962FCC1A8F1
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:13:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2F34C1A9D3
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:20:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5B0214FD465
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:04:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7D6F6255DC
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:07:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CC0033506D;
-	Wed, 29 Oct 2025 12:54:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DFF023EA8A;
+	Wed, 29 Oct 2025 12:58:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CG+TiDH9"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="KXLi4lY1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B1833328E8;
-	Wed, 29 Oct 2025 12:54:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ADFC2264DC
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 12:58:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761742474; cv=none; b=sMYFy6Pe70xZIrboF0Ni8bDxzN7n6H8D9haok0JLezX4znKGHGYIrezVjy1d3RJAGGQHraw6qF0NZZ9K/NRB+AVxA58PLgtC+Os+PaXAaY9KfIPInLnwk0xC2xDjL7/yzQo05ipDg74yC8FoKepzVqKheCcjD8tV8svNQd7KZKE=
+	t=1761742710; cv=none; b=SC9anLwWrgqnUFq2PVd4GyiE9PGgKWeFlOP9EU/HHBcrfP3mMeqdizAB393j5yZ8y7WfVKICZJ6TZ/xVpGbU/ODhadOFdpH+WpFtjyeQ8nvjggsAbrMl+h3MFFj2/qULsGX7ddCedzA+xEIh2OT+IWKoBNJmp2YUwzm6s03meyQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761742474; c=relaxed/simple;
-	bh=ERdenaaSnCayj1jM0xEoP/ksydq7NeKvn4duQyaIA68=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ceccZUrRaCvpoYVnnO4guT+Vi62uBWR9IQRCa3bOYP3MlwuG6V/AVefUMeYQEEGoOOPIahZXgt8WoE8IPYCL/k1Kwu8fzx1TfZjaaGaRc2NBvvNtUva4sKhii+GroVuwTDzD8oM6NemeNx4xC868gCacygDYHfkIZg1d/Hu1mP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CG+TiDH9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FC22C4CEF7;
-	Wed, 29 Oct 2025 12:54:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761742473;
-	bh=ERdenaaSnCayj1jM0xEoP/ksydq7NeKvn4duQyaIA68=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CG+TiDH9vGrRy+dyYgFaDqCLfCHqvH7YbbEpGB4Wyf1sfqV7Z72xZvLHkffLd2uin
-	 yRkW4y9wr6dcsSz2IXD+UhbcdQYbVmigc/lSyttE636E4xmsd81+TFdGtLgy18uNMq
-	 3P040ruFcjLA6waCPh/yOKM0ZKFgs/Bz5LteAXdIri9sarOU/pJVjqCNnCQS+8Qt7F
-	 8i3EaA0SU9esvTY3db6xHPuFGt4bS6T4/3N5Gg0ueJt6mQHvGgDUopWLmYvl8uwNRs
-	 Jcmg7njFZziQ00suGgN+EUSg84LwN3EMwaMfaDhoDK2ItrTLVNCkCbwJ58CoQogmoh
-	 v4h1uUFM1gJjw==
-Date: Wed, 29 Oct 2025 12:54:25 +0000
-From: Drew Fustini <fustini@kernel.org>
-To: Yao Zi <ziyao@disroot.org>
-Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Michal Wilczynski <m.wilczynski@samsung.com>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>,
-	Han Gao <rabenda.cn@gmail.com>, Han Gao <gaohan@iscas.ac.cn>
-Subject: Re: [PATCH v3 3/5] reset: th1520: Prepare for supporting multiple
- controllers
-Message-ID: <aQIOgbUf2IHoWCf2@gen8>
-References: <20251014131032.49616-1-ziyao@disroot.org>
- <20251014131032.49616-4-ziyao@disroot.org>
+	s=arc-20240116; t=1761742710; c=relaxed/simple;
+	bh=TDDpuTr0CLetRevhrD/TPFMjCfVhz7LhXDsBM4sAS+k=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:References; b=GriubD4E5rPVorTlx4tK14iQ1VYAQpCjNPwlYl61z1ieMil9HwM/2XWUh57/vZAjiMCDiO7wqMEUCkgHHSqpYgWsD4CGMijGx/vU3KMBx+IRk1XaKWU7Y0eJSRcExG2P+QNiV4d6ll/LLuGsveTMzNNiAi6BSFErtxm8EvqPLE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=KXLi4lY1; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20251029125825epoutp01a2671ba0e97f1e0eb727f2276faad116~y96f6LWun2840328403epoutp01s
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 12:58:25 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20251029125825epoutp01a2671ba0e97f1e0eb727f2276faad116~y96f6LWun2840328403epoutp01s
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1761742705;
+	bh=U8SkCPdYTPadYRj6j8r4FflnJm5Mydb82s1/8rVUOFE=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=KXLi4lY1tjmXEABU369VxAzZ6aH+Cj56CWhsgPn2AAKuhcRlskhXKvtOr8JOa0zAs
+	 8KNdB39oDEQycieHcpUFrOma+hi3oTYpPTDudPcR58eXe7YAje2XqI9PZKEz0Hlosv
+	 N7SFoxrdrv+4BI2ejxkHnUiP/e1Rnu4VzzWN5oS8=
+Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20251029125824epcas5p236a1c26bc6ce4baebf2ae1cc6cb7bd87~y96e-cNM60929409294epcas5p2-;
+	Wed, 29 Oct 2025 12:58:24 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.93]) by
+	epsnrtp02.localdomain (Postfix) with ESMTP id 4cxS3M12QHz2SSKY; Wed, 29 Oct
+	2025 12:58:23 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20251029125822epcas5p2aa18b39467dd109a8aa134894f7d1fa9~y96dULaBN0929409294epcas5p24;
+	Wed, 29 Oct 2025 12:58:22 +0000 (GMT)
+Received: from Jaguar.samsungds.net (unknown [107.109.115.6]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20251029125804epsmtip1ddffb39cab2dbd0730b45be9ffe04aba~y96NKD6XR0781907819epsmtip1Y;
+	Wed, 29 Oct 2025 12:58:04 +0000 (GMT)
+From: Ravi Patel <ravi.patel@samsung.com>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	jesper.nilsson@axis.com, lars.persson@axis.com, mturquette@baylibre.com,
+	sboyd@kernel.org, alim.akhtar@samsung.com, s.nawrocki@samsung.com,
+	cw00.choi@samsung.com
+Cc: ravi.patel@samsung.com, ksk4725@coasia.com, smn1196@coasia.com,
+	linux-arm-kernel@axis.com, krzk@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	pjsin865@coasia.com, gwk1013@coasia.com, bread@coasia.com,
+	jspark@coasia.com, limjh0823@coasia.com, lightwise@coasia.com,
+	hgkim05@coasia.com, mingyoungbo@coasia.com, shradha.t@samsung.com,
+	swathi.ks@samsung.com, kenkim@coasia.com
+Subject: [PATCH v2 0/4] Add basic clock and pmu support for the Axis
+ ARTPEC-9 SoC
+Date: Wed, 29 Oct 2025 18:26:37 +0530
+Message-Id: <20251029125641.32989-1-ravi.patel@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-CMS-MailID: 20251029125822epcas5p2aa18b39467dd109a8aa134894f7d1fa9
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-541,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20251029125822epcas5p2aa18b39467dd109a8aa134894f7d1fa9
+References: <CGME20251029125822epcas5p2aa18b39467dd109a8aa134894f7d1fa9@epcas5p2.samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251014131032.49616-4-ziyao@disroot.org>
 
-On Tue, Oct 14, 2025 at 01:10:30PM +0000, Yao Zi wrote:
-> TH1520 SoC is divided into several subsystems, shipping distinct reset
-> controllers with similar control logic. Let's make reset signal mapping
-> a data structure specific to one compatible to prepare for introduction
-> of more reset controllers in the future.
-> 
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
-> ---
->  drivers/reset/reset-th1520.c | 42 +++++++++++++++++++++++++-----------
->  1 file changed, 30 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/reset/reset-th1520.c b/drivers/reset/reset-th1520.c
-> index 14d964a9c6b6..2b65a95ed021 100644
-> --- a/drivers/reset/reset-th1520.c
-> +++ b/drivers/reset/reset-th1520.c
-[snip]
-> @@ -138,22 +147,31 @@ static int th1520_reset_probe(struct platform_device *pdev)
->  	if (IS_ERR(priv->map))
->  		return PTR_ERR(priv->map);
->  
-> -	/* Initialize GPU resets to asserted state */
-> -	ret = regmap_update_bits(priv->map, TH1520_GPU_RST_CFG,
-> -				 TH1520_GPU_RST_CFG_MASK, 0);
-> -	if (ret)
-> -		return ret;
-> +	if (of_device_is_compatible(dev->of_node, "thead,th1520-reset")) {
+Add basic clock driver and pmu compatible support for the
+Axis ARTPEC-9 SoC which contains 6-core Cortex-A55 CPU
+and other several IPs. This SoC is an Axis-designed chipset
+used in surveillance camera products.
 
-Is there a reason that there is a now a conditional check for the
-compatible here?
+This ARTPEC-9 SoC has a variety of Samsung-specific IP blocks and
+Axis-specific IP blocks and SoC is manufactured by Samsung Foundry.
 
-Thanks,
-Drew
+This patch series includes below changes:
+- CMU (Clock Management Unit) driver and its bindings (patch #1 to #3)
+- PMU bindings (patch #4)
+
+The patch series has been tested on the ARTPEC-9 EVB with
+Linux Samsung SoC tree (for-next branch) and intended
+to be merged via the `arm-soc` tree.
+
+---
+Changes in v2:
+- Decouple the device tree related patches which was present in v1 (Patch #5 to #7)
+  Device tree related patches will be sent in separate series.
+- Fix the division issue (in arm target) reported by kernel test in patch #2
+
+Link to v1: https://lore.kernel.org/linux-samsung-soc/20250917085005.89819-1-ravi.patel@samsung.com/
+---
+
+GyoungBo Min (3):
+  dt-bindings: clock: Add ARTPEC-9 clock controller
+  clk: samsung: Add clock PLL support for ARTPEC-9 SoC
+  clk: samsung: artpec-9: Add initial clock support for ARTPEC-9 SoC
+
+SungMin Park (1):
+  dt-bindings: samsung: exynos-pmu: Add compatible for ARTPEC-9 SoC
+
+ .../bindings/clock/axis,artpec9-clock.yaml    |  232 ++++
+ .../bindings/soc/samsung/exynos-pmu.yaml      |    1 +
+ drivers/clk/samsung/Makefile                  |    1 +
+ drivers/clk/samsung/clk-artpec9.c             | 1224 +++++++++++++++++
+ drivers/clk/samsung/clk-pll.c                 |  185 ++-
+ drivers/clk/samsung/clk-pll.h                 |   17 +
+ include/dt-bindings/clock/axis,artpec9-clk.h  |  195 +++
+ 7 files changed, 1847 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/axis,artpec9-clock.yaml
+ create mode 100644 drivers/clk/samsung/clk-artpec9.c
+ create mode 100644 include/dt-bindings/clock/axis,artpec9-clk.h
+
+--
+2.17.1
+
 
