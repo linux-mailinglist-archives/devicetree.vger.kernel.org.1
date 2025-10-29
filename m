@@ -1,200 +1,163 @@
-Return-Path: <devicetree+bounces-232554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D898C18E6E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 09:14:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D35B8C18FD4
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 09:22:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 546A0188FBAC
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 08:08:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47A721CC428B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 08:15:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A5483195E3;
-	Wed, 29 Oct 2025 08:05:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E978315D37;
+	Wed, 29 Oct 2025 08:07:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="C89gTu6R";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="OhHDVnkR"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Eq6sX/QO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D80823112C9
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 08:05:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2979315789;
+	Wed, 29 Oct 2025 08:07:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761725159; cv=none; b=rTj48MsC73MpYzHmSKpHgR5iwbyXfYmQonbCvAViT3a2lqDr//Hd8b/BhiLPXoj9i7GvYD7RAnCq6q1b0nOZnF21+2esgnmMoCmL/mEnihMn5647JfsjWjn8Xoqs6Osce42k7D+a4bNVBPYuy/MrWAp8diLv0tPVEUr7JQYcG/8=
+	t=1761725246; cv=none; b=tMyKEXmFoWw/rSo9qC6f40sh+21hJKxAB0tco1y0wq7uQ+7BwwWV7UTHEl1vjZDG7zBN0oH2BQ8j/X5yCy65InggU3Qea81JRathliVjqVUzeJSacmQ5Gxj040Sfu/5rjDKoimrlaUwBDKCmxBbbevZUvx9pWECaxhycGGlD8HM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761725159; c=relaxed/simple;
-	bh=lHEUneC8ZRFILfNpU6bdJg56I1ugvFyyWle4SHV6vRg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lcBPrchZe7WCWq3Gwm2oqqPT0mY7kqkltPC+sgGMxUQxkmsOL56gJkPwWeB5uC45LTghWyd1DqOclRAms0CLjP+LQeTBrVZx9zSmy4WjlS8V86AE4zVVTJZyOKd/j+SAhJZiO1lGgkQ2Ku29nxh2XyDdjywh6a07BY3Rh/FvEUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=C89gTu6R; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OhHDVnkR; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59T4v4RK3677834
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 08:05:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ofFGdSp31WO2sezoGGdCs4u+anOTrI9jfL6DeUVdYjk=; b=C89gTu6RsSLWPS77
-	0rupFkGUaZID0MJ04Ex9X06Pfbl1DliJyHpXRJWM1+41ymoCEIxvkE36ABhpL22J
-	Yuw7PhJg3RTqeki4qddbP40XpAZdmYqXX3lwuscIVJvwAqptpgEiNdCX5XAdHUvM
-	Oirg1ARVEklCqvEDiamT/HZkpi2vneP1Qq8sAYagYQ+NaCw0CNbXlM8V6J+isc+n
-	+bQzHR+Mz9nJ7fFScB03cPL4HaHBV2N2i5ffXE9hwSHQCKI3+G7QegEdmrqrdFK9
-	oRz/hY4Uirhh+Pyb3Y4HD2vJAaDLR/7v+cCLDs2ehpTxWcC8iOI++KlVVTt48+f8
-	BkuuQw==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a34a1hph0-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 08:05:55 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b6cf40b2c2bso12066341a12.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 01:05:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761725155; x=1762329955; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ofFGdSp31WO2sezoGGdCs4u+anOTrI9jfL6DeUVdYjk=;
-        b=OhHDVnkRSI3XCryVQxShTKuj8DWKeZmZC6/wY5Azwlg9mahsBZLot4LDFKIvgQx4gP
-         P+TdgKpWL+7vyT1l0THDs0GG4XrN5IUKZxOVp/pNN+N9WzEFtPHQ/fE8gCeAX4Be0uM/
-         kJ1irPR+Qx7uvF4EoPYM7hVrkCMpfMFml7gdytP0tD5YkxevQighbWgSrq/qNGEMU9o0
-         PTe7jmzhryBUBrEZW9lBgGfoK51YkxZ1gXpJva71xhOmlf6K4bPE19IyiVIg5rCku0d0
-         f7mW9Tg5p+S4x3StY0o4Zl2KYER9BMS6LgxRMCtbkn7HdalXQhoIqS/HEmClcpdnnWr/
-         PMpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761725155; x=1762329955;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ofFGdSp31WO2sezoGGdCs4u+anOTrI9jfL6DeUVdYjk=;
-        b=w36pSafuwRdubxXF17BKqX+xCgiRzxGwjBYzGNr+XJh+DXQ5rNbC7ojIVy3XMynSom
-         2ool+seMlv2F9/SlmdyTHvhEu1G9AJq/aGj9JEV7zrI3/ctz7DhfpFJlAkoQOUdVXWjn
-         lYCr9y7GSj05h1dWaEmVD3trQ38nNm/GEdih6X7KLYngC6pYOXGP5y7cXJEId8Wz96Ld
-         HdgVm/rxM9uU7xj8UjMpbP06Y1STPPA03nQ0bGhUl+zNLGEhQfbdEaxwEHDP2ENNaNyN
-         9P5quCwhFGZXcpxUmoo7sY29RJWLAZStY40ub38ipG3vLc12lZoO+AujKRQ3b55yL6GI
-         blTg==
-X-Forwarded-Encrypted: i=1; AJvYcCWefWiIkc2tZ4UdXuVjYf/SjVOdFpROKiSD4eMlvSU49q2nRI0EvIlHHUcWoUdq9ZMinTxAsVTyDf1N@vger.kernel.org
-X-Gm-Message-State: AOJu0YzfRdW8l3GjNxUUGbAc/cTc40d2qc1hllaj9NEt7/+UFXKoGqls
-	J8CAU5gyEUfokmKbDo39Wpx947f7nHYTmfAZPAI2hvHQ2VuvVkG6EWEsXqLWWNMOf6M6eleKM8r
-	jvceuut0V+ab9/mlBrG74GiqZ91eslvrqslGy/pjLdmI1WDXcAtD6rr9MjvuN3eOT
-X-Gm-Gg: ASbGncuZ1Gt69zqCilgT8LeqQFOofpYKTyfGapXuEdNuKmTDVYbNexUTtNukJYmh4vq
-	Y3VjGyXerhoHs4W0/ujuBt5U9YMpKxP+UtmiVa5HVziDePrFXOxdaFuDPQ1+YrUb3rzH1VUBQe5
-	VVkcusfmLUgHXFr5aanRoVNe3JcM4rsAnVuFAqMwg4TJJ/vhtIptjs0aFWiNmg/mKDaGrOabPE/
-	DPTKS1C0chBakKSFuyF16TcwxQ5WL/b+zLnDvvXWxRK53HpSHwpRVZ/PY8PHrlYo457WBEBEn6g
-	bkWlDNZLYOJqVAWNVZ5WOjNGgobWaSFR1guFv+iKm+VzH+DInPV7NT6/JRE1dxmUoAsCtA+vs7+
-	LmyOOm/E03Fq0+pLVgJwEq+YiYyxXe+TKqk1obFS/FH4LiiNhSQ==
-X-Received: by 2002:a17:903:f76:b0:272:f9c3:31f7 with SMTP id d9443c01a7336-294def30ed5mr17205325ad.50.1761725154749;
-        Wed, 29 Oct 2025 01:05:54 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH0sQ6XdTFb2LBlKCQ/zHj45O0tHgxtuQUKM32YYiyj+0jGQytHyGDZXzy58NbJ4DNT3kWVWQ==
-X-Received: by 2002:a17:903:f76:b0:272:f9c3:31f7 with SMTP id d9443c01a7336-294def30ed5mr17204935ad.50.1761725154150;
-        Wed, 29 Oct 2025 01:05:54 -0700 (PDT)
-Received: from hu-jingyw-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29498f0be0esm141754705ad.96.2025.10.29.01.05.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Oct 2025 01:05:53 -0700 (PDT)
-From: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Date: Wed, 29 Oct 2025 01:05:45 -0700
-Subject: [PATCH v2 7/7] dt-bindings: remoteproc: qcom,sm8550-pas: Document
- Glymur CDSP
+	s=arc-20240116; t=1761725246; c=relaxed/simple;
+	bh=28lsY/xP5QLqKPIvrhKvHJ0CklqT6R1GJ9nsZJRxcNw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lW3yeEIXS91fLn6mCtlMO1z9/WlYC5wVDP2gPkGTmCppySI4wa1ME+4fuBEpj8zQJT7/p7FvRfECYwFWSsaJggKBMDPFHaU/DQZpD1pVUsWJ57WVdASfETVaSzghkc8zPGedIlGI8wpcVyfEatj/W4YnbkrjyVU+3Gll54jgZB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Eq6sX/QO; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761725245; x=1793261245;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=28lsY/xP5QLqKPIvrhKvHJ0CklqT6R1GJ9nsZJRxcNw=;
+  b=Eq6sX/QOReyMh7RXOv+OE+vVYTwCLnzEH9ytQ96bX++kpEO+x00zSEWn
+   QtrGyT8P9rerJJLJLUPDeU9Cwwwh9LWL1klRif6pfsIASQWgi2NnnAL2H
+   oRUYBAn7KsQrcSrkD3jhOu0tyJgqlMddUpv4q5jMNT1mBW1GC7YLN6vAi
+   8A6iXFgYuP1RO+xHescgBDEuyn0BNDawtgFQb6znDuvbN/KDP6GTxdzal
+   LtBqGR9PurJCQtnomVZ/zlJlwBfBgZHSOJo/7jtM80PW/tHP/MZS+mVwV
+   QQ0SJqnPUFzLNiu5qruhIjBGEt9hvxqqPfB3YDQbM95DP1VvWN2DrTum3
+   A==;
+X-CSE-ConnectionGUID: pTmX07EATMiJLX5dCj72PA==
+X-CSE-MsgGUID: 1BeUafmXR4uJ2L4hckRYhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67480214"
+X-IronPort-AV: E=Sophos;i="6.19,263,1754982000"; 
+   d="scan'208";a="67480214"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Oct 2025 01:07:24 -0700
+X-CSE-ConnectionGUID: LIDXKcu/RGm3nxaG4wzKIg==
+X-CSE-MsgGUID: tiwr6C3HS+Wk4w+q89cWBg==
+X-ExtLoop1: 1
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.244.248])
+  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Oct 2025 01:07:20 -0700
+Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1vE1DA-00000003Y70-4Bfj;
+	Wed, 29 Oct 2025 10:07:17 +0200
+Date: Wed, 29 Oct 2025 10:07:16 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-iio@vger.kernel.org, joshua.yeong@starfivetech.com,
+	devicetree@vger.kernel.org, Carlos Song <carlos.song@nxp.com>,
+	Adrian Fluturel <fluturel.adrian@gmail.com>
+Subject: Re: [PATCH v7 5/5] iio: magnetometer: Add mmc5633 sensor
+Message-ID: <aQHLNIKK4EknyWEr@smile.fi.intel.com>
+References: <20251027-i3c_ddr-v7-0-866a0ff7fc46@nxp.com>
+ <20251027-i3c_ddr-v7-5-866a0ff7fc46@nxp.com>
+ <aQCgD3iVOXoNr7uY@smile.fi.intel.com>
+ <aQDhv/r0l0oOjb9t@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251029-knp-remoteproc-v2-7-6c81993b52ea@oss.qualcomm.com>
-References: <20251029-knp-remoteproc-v2-0-6c81993b52ea@oss.qualcomm.com>
-In-Reply-To: <20251029-knp-remoteproc-v2-0-6c81993b52ea@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Cc: aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
-        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-        Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-X-Mailer: b4 0.15-dev-99b12
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761725143; l=1548;
- i=jingyi.wang@oss.qualcomm.com; s=20250911; h=from:subject:message-id;
- bh=eYKPFpa37xMNWR6oEwup8N8ConVWUukUmzw5FoOa2kE=;
- b=AvoX10IlqCOMl7HP84G4AyH1pNYxj9zO1ddYq4rGSLndb0DlsH6L5kcMxVv8CeSO8/DprCGRy
- IZnVfnKBgdKAQ995OIdqn8MPVmj2ZBqsHEggTNOuDQ+NnZB2chDwwAD
-X-Developer-Key: i=jingyi.wang@oss.qualcomm.com; a=ed25519;
- pk=PSoHZ6KbUss3IW8FPRVMHMK0Jkkr/jV347mBYJO3iLo=
-X-Authority-Analysis: v=2.4 cv=Nu/cssdJ c=1 sm=1 tr=0 ts=6901cae3 cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=3YzqomBvCdNxOiMskVAA:9
- a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
-X-Proofpoint-GUID: 8Ux-0GHd-U96hXqcVd0gugjUnPRPYtwk
-X-Proofpoint-ORIG-GUID: 8Ux-0GHd-U96hXqcVd0gugjUnPRPYtwk
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI5MDA1OCBTYWx0ZWRfXwVzTNuQwxX+P
- lBEJkHFHw8/N0TfZoPK2cyFV1Q7/S3veLk9TNKiiUHESwMx+MGlKC3BnTW73/0Gt3X5aLbA4arb
- WMqaIHAyqNnpMSmJqrgZyfGUyu9yTggkM8YjDeKFBQr+YymLBQ94eH4awscVbKPBk6IXO7IRMhG
- +2BKF0WwufB86OjmWkBsmzi0XtMyJLkJ3NBxMdx4S2mfePARTZUo0i89go7toozSebeqIZIsoB/
- BrvB6aLbIipETk8Dymoq+sa1g7zYL31HBghRshwCcaq4ld1TSPrcYx22liPBm5Dju6dAzxvdQIo
- ByykSZtj//LZxoTRjPAcq6gCMlKdbRBsEwe/GrhFRpWvoWS2XcS56lc/GgGEC3UXQrKdmB/Lx6N
- 5dSmhj2gYqX6BGk6O7Bfapre2VnfxQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-29_03,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 priorityscore=1501 adultscore=0 suspectscore=0 clxscore=1015
- lowpriorityscore=0 phishscore=0 impostorscore=0 bulkscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510290058
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aQDhv/r0l0oOjb9t@lizhi-Precision-Tower-5810>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-From: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+On Tue, Oct 28, 2025 at 11:31:11AM -0400, Frank Li wrote:
+> On Tue, Oct 28, 2025 at 12:50:55PM +0200, Andy Shevchenko wrote:
+> > On Mon, Oct 27, 2025 at 04:08:33PM -0400, Frank Li wrote:
 
-Document compatible for Qualcomm Glymur SoC CDSP which is fully compatible
-with Kaanapali CDSP. Also with the Linux Host running on EL2, the
-remoteprocs need to be hypervisor independent, the iommu property is
-mandatory to ensure proper functionality.
+...
 
-Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
----
- Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+> > + time.h // for time constants
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
-index 8cb839ba1058..117150cebffa 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
-@@ -38,6 +38,7 @@ properties:
-           - const: qcom,sm8650-cdsp-pas
-       - items:
-           - enum:
-+              - qcom,glymur-cdsp-pas
-               - qcom,kaanapali-cdsp-pas
-           - const: qcom,sm8550-cdsp-pas
- 
-@@ -103,6 +104,7 @@ allOf:
-           contains:
-             enum:
-               - qcom,glymur-adsp-pas
-+              - qcom,glymur-cdsp-pas
-               - qcom,kaanapali-adsp-pas
-               - qcom,kaanapali-cdsp-pas
-               - qcom,sm8750-adsp-pas
-@@ -255,6 +257,7 @@ allOf:
-           contains:
-             enum:
-               - qcom,glymur-adsp-pas
-+              - qcom,glymur-cdsp-pas
-     then:
-       properties:
-         iommus:
+First of all, please, please remove the context you are agree with
+(non-replying to).
+
+...
+
+> > > +struct mmc5633_data {
+> > > +	struct device *dev;
+> > > +	struct i3c_device *i3cdev;
+> > > +	struct mutex mutex; /* protect to finish one whole measurement */
+> > > +	struct regmap *regmap;
+> >
+> > regmap has struct device, i3c_device presumable also, and here is struct
+> > device. Don't we have some overhead?
+> 
+> i3cdev is used for check it is i2c host or i3c host. If device connect to
+> i2c host, i3cdev will be NULL.
+> 
+> Only if connect to i3c host, driver can use i3c transfer api. The HDR
+> command is quite difference with SDR or I2C, which hard to wrap into regmap.
+> 
+> Anyway we need varible to indicate i3c or i2c. struct i3c_device *i3cdev
+> will be simple and needn't force convert struct device in regmap.
+
+This answers only to part of my question. Okay, let's leave it there, why do we
+need an explicit struct device then?
+
+> > > +};
+
+...
+
+> > > +static int mmc5633_suspend(struct device *dev)
+> > > +{
+> > > +	struct mmc5633_data *data = iio_priv(dev_get_drvdata(dev));
+> >
+> > Than regmap will be derived directly from a device.
+> 
+> I have not got your idea. Can you point me a example?
+
+dev_get_regmap()
+
+> > > +	regcache_cache_only(data->regmap, true);
+> > > +
+> > > +	return 0;
+> > > +}
+
+...
+
+> > > +	return mmc5633_common_probe(dev, regmap, "mmc5633_i3c", i3cdev);
+> >
+> > struct i3c_device doesn't have a name, does it?
+
+No answer?
+
 
 -- 
-2.25.1
+With Best Regards,
+Andy Shevchenko
+
 
 
