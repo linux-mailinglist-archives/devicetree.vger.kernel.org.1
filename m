@@ -1,72 +1,59 @@
-Return-Path: <devicetree+bounces-232798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F132BC1B965
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 16:18:03 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10C7EC1BC6D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 16:48:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 38337188A7B5
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:14:54 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 898B54FDBBB
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:13:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 314602E2286;
-	Wed, 29 Oct 2025 15:14:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 775542E2DD4;
+	Wed, 29 Oct 2025 15:13:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="dXiPVvjG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IZYIf+Uz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5F642C11E2;
-	Wed, 29 Oct 2025 15:14:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49BE22E1EE1;
+	Wed, 29 Oct 2025 15:13:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761750866; cv=none; b=GwWHd2iJro8AFpHadvm9Q+0Fd3JEoT+kUEaokY308L1CQ3oK6IVYOk1gTHWyeTCeICVvep2tlcq6Lp2/eN5JuR4Rophqd+xv3xZUrOqK5sz+rxbDmiMyI+faN0AS2PhIMwghkVUs6iWEfXTGhQ1l4XZQiJChfme7OTJOMIHzz9E=
+	t=1761750783; cv=none; b=PCoZTZemfX8Tqegys6VXhs9LfurRm1yhq9n2OyTqy8c50SuYAax0b+o80Vu9dMw+bunbWQK72qUDlDsvIVNpLw9W2s/krR+Z4lu/QWkGBZBU0Yxafm5wT5bVuscpAb9K053MTRc8XZwNoohHpIOjz1x9eaDaI2NZfqFlcMgyc48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761750866; c=relaxed/simple;
-	bh=Un1263Y3t/Nka3u0iyTUOo72BpVIJVxFmdi8tdLbhK4=;
+	s=arc-20240116; t=1761750783; c=relaxed/simple;
+	bh=a9WjV/wXG3p5oU/CJtQ3zKP/hL+FTs3eFaCuiRYs17Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E6m8FneTE91nf7kB8trZVPobqp2jwUHb3UA8Fm2SHUMsj9VjLzHtl/EKJ604W7AtvZhA63FwZ/icXBeGHabnHm1eIrRfgE76jEf0m75T1R9dzcNYOT1dIcrCOOajlIQN2TxKa01565mxGgdcY73HkASMcR8bpN+mD20E5uQPad0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=dXiPVvjG; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 2726D25746;
-	Wed, 29 Oct 2025 16:14:15 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 8G9h0oREbF2K; Wed, 29 Oct 2025 16:14:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1761750854; bh=Un1263Y3t/Nka3u0iyTUOo72BpVIJVxFmdi8tdLbhK4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=dXiPVvjG4PegWw59QZbcyAN4cY6mmMlz60Ip2wVjreAYmKclVc1RyCIJb5+6vG7tL
-	 o2dysstrnuIRKHOhSFr7yQDsJ44TlLI7GXJpF4nz5PgdAo4SDKRVWwD1WK+ud+AHhz
-	 O9sPOnKqe3xEiyyHh7ls+AJPdhSpeX5wjLf3SgQYYiEo3MZDpG4I01rKjvkTi7Bey1
-	 Yi3NxDzRpr2YwcdfmmwMADUgMNu3Y2F7bxuHrRKSZ/HPUkZyj2EKvZRo7hfK7Mzqva
-	 MEbMHhbMJsRhJljA99pCaPv5JOzXPOlUXB9CqXYCot0e5Y8lWJS+qlPLco4X72B86d
-	 yiedeL0ygHJdA==
-Date: Wed, 29 Oct 2025 15:13:46 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Drew Fustini <fustini@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Michal Wilczynski <m.wilczynski@samsung.com>,
-	Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org,
-	Han Gao <gaohan@iscas.ac.cn>, Han Gao <rabenda.cn@gmail.com>,
-	linux-kernel@vger.kernel.org, Guo Ren <guoren@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-riscv@lists.infradead.org, Fu Wei <wefu@redhat.com>
-Subject: Re: [PATCH v3 3/5] reset: th1520: Prepare for supporting multiple
- controllers
-Message-ID: <aQIvH4jbj9Ifd7Av@pie>
-References: <20251014131032.49616-1-ziyao@disroot.org>
- <20251014131032.49616-4-ziyao@disroot.org>
- <aQIOgbUf2IHoWCf2@gen8>
+	 Content-Type:Content-Disposition:In-Reply-To; b=NqilnILpKGffcb7sySoZ7g2yy2w8N/8sGebHAWWbSImNW8qDWK7md7Gay4BD6eWDEMuR/chHqicEGdLSvS8ZCmBCBUnsEHY9eAdsomPT8rLVrjhPk8iRzdBjmfc5BBF/+KUc1SdrpBicoCKMI2x1r/Gf9RJLzAT+EaDVHHOTjGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IZYIf+Uz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC160C4CEF7;
+	Wed, 29 Oct 2025 15:13:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761750782;
+	bh=a9WjV/wXG3p5oU/CJtQ3zKP/hL+FTs3eFaCuiRYs17Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IZYIf+Uz4+89T54FW3qFLqoyKBERl8NRLyfKThXmSWgS8Uh2F4i5IyU9QXZ5DO+Dk
+	 F5Zuu9p2xyy1msMIXON20/m3VOtkVeNG6v/fzyuBTo669cIPqL9WHFRw3z/tlv6xBD
+	 YMixdh6PlEXcI3gsvF77c6TlKfC0rty+1kgy0kxKuYLV6ss7mh3pf2u+89C9eur4q5
+	 YvesDgCeRxH9+OD1ODfMt+jW1c8HMHvEBClWSD3GLke1A8xShGixVru5D5Nn/iFAQo
+	 IH4b/Dl+zmCkjkuNCbQshts7Erx3DbI+8cbmf0cNgz8+n5rCR/0Dy8E63+qOUNanhz
+	 vEhNW5+KG5d4Q==
+Date: Wed, 29 Oct 2025 10:16:05 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: Manivannan Sadhasivam <mani@kernel.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, aiqun.yu@oss.qualcomm.com, 
+	tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: mailbox: qcom: Add IPCC support for
+ Kaanapali Platform
+Message-ID: <k2wgpzkfklso42nsd6w527gqiadgdb235kzmvgk4wy27vievir@vlyxti5y7yan>
+References: <20251029-knp-ipcc-v2-0-8ba303ab82de@oss.qualcomm.com>
+ <20251029-knp-ipcc-v2-1-8ba303ab82de@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,47 +62,114 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aQIOgbUf2IHoWCf2@gen8>
+In-Reply-To: <20251029-knp-ipcc-v2-1-8ba303ab82de@oss.qualcomm.com>
 
-On Wed, Oct 29, 2025 at 12:54:25PM +0000, Drew Fustini wrote:
-> On Tue, Oct 14, 2025 at 01:10:30PM +0000, Yao Zi wrote:
-> > TH1520 SoC is divided into several subsystems, shipping distinct reset
-> > controllers with similar control logic. Let's make reset signal mapping
-> > a data structure specific to one compatible to prepare for introduction
-> > of more reset controllers in the future.
-> > 
-> > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> > ---
-> >  drivers/reset/reset-th1520.c | 42 +++++++++++++++++++++++++-----------
-> >  1 file changed, 30 insertions(+), 12 deletions(-)
-> > 
-> > diff --git a/drivers/reset/reset-th1520.c b/drivers/reset/reset-th1520.c
-> > index 14d964a9c6b6..2b65a95ed021 100644
-> > --- a/drivers/reset/reset-th1520.c
-> > +++ b/drivers/reset/reset-th1520.c
-> [snip]
-> > @@ -138,22 +147,31 @@ static int th1520_reset_probe(struct platform_device *pdev)
-> >  	if (IS_ERR(priv->map))
-> >  		return PTR_ERR(priv->map);
-> >  
-> > -	/* Initialize GPU resets to asserted state */
-> > -	ret = regmap_update_bits(priv->map, TH1520_GPU_RST_CFG,
-> > -				 TH1520_GPU_RST_CFG_MASK, 0);
-> > -	if (ret)
-> > -		return ret;
-> > +	if (of_device_is_compatible(dev->of_node, "thead,th1520-reset")) {
-> 
-> Is there a reason that there is a now a conditional check for the
-> compatible here?
+On Wed, Oct 29, 2025 at 01:15:09AM -0700, Jingyi Wang wrote:
+> Add the physical client ids and binding for Kaanapali platform. Physical
+> client IDs instead of virtual client IDs are used for qcom new platforms
+> in the Inter Process Communication Controller (IPCC) driver as virtual to
+> physical mapping logic is removed in HW.
 
-Yes, this regmap operation is for initializing GPU resets and thus
-modifies TH1520_GPU_RST_CFG, which only applies for the VO reset
-controller (with compatible "thead,th1520-reset") but not others, or
-other unrelated resets could be unexpectedly asserted.
+Happy to see the description of what changed wrt physical vs virtual
+client IDs, but you're leaving the task of figuring out how this
+explanation is applicable to the imagination of the reader.
 
-> Thanks,
-> Drew
+Nobody knows that the values in dt-bindings/mailbox/qcom-ipcc.h are
+"virtual client IDs", so it's not clear that you're trying to provide an
+explanation to why a new, platform-specific, header file is needed here.
+
+
+Change looks good, but please update the commit message.
 
 Regards,
-Yao Zi
+Bjorn
+
+> 
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> ---
+>  .../devicetree/bindings/mailbox/qcom-ipcc.yaml     |  1 +
+>  include/dt-bindings/mailbox/qcom,kaanapali-ipcc.h  | 58 ++++++++++++++++++++++
+>  2 files changed, 59 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
+> index e5c423130db6..ee3fe093e3ca 100644
+> --- a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
+> +++ b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
+> @@ -24,6 +24,7 @@ properties:
+>    compatible:
+>      items:
+>        - enum:
+> +          - qcom,kaanapali-ipcc
+>            - qcom,milos-ipcc
+>            - qcom,qcs8300-ipcc
+>            - qcom,qdu1000-ipcc
+> diff --git a/include/dt-bindings/mailbox/qcom,kaanapali-ipcc.h b/include/dt-bindings/mailbox/qcom,kaanapali-ipcc.h
+> new file mode 100644
+> index 000000000000..b6208ad155ad
+> --- /dev/null
+> +++ b/include/dt-bindings/mailbox/qcom,kaanapali-ipcc.h
+> @@ -0,0 +1,58 @@
+> +/* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
+> +/*
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + */
+> +
+> +#ifndef __DT_BINDINGS_MAILBOX_IPCC_KAANAPALI_H
+> +#define __DT_BINDINGS_MAILBOX_IPCC_KAANAPALI_H
+> +
+> +/* Physical client IDs */
+> +#define IPCC_MPROC_AOP			0
+> +#define IPCC_MPROC_TZ			1
+> +#define IPCC_MPROC_MPSS			2
+> +#define IPCC_MPROC_LPASS		3
+> +#define IPCC_MPROC_SDC			4
+> +#define IPCC_MPROC_CDSP			5
+> +#define IPCC_MPROC_APSS			6
+> +#define IPCC_MPROC_SOCCP		13
+> +#define IPCC_MPROC_DCP			14
+> +#define IPCC_MPROC_SPSS			15
+> +#define IPCC_MPROC_TME			16
+> +#define IPCC_MPROC_WPSS			17
+> +
+> +#define IPCC_COMPUTE_L0_CDSP		2
+> +#define IPCC_COMPUTE_L0_APSS		3
+> +#define IPCC_COMPUTE_L0_GPU		4
+> +#define IPCC_COMPUTE_L0_CVP		8
+> +#define IPCC_COMPUTE_L0_CAM		9
+> +#define IPCC_COMPUTE_L0_CAM1		10
+> +#define IPCC_COMPUTE_L0_DCP		11
+> +#define IPCC_COMPUTE_L0_VPU		12
+> +#define IPCC_COMPUTE_L0_SOCCP		16
+> +
+> +#define IPCC_COMPUTE_L1_CDSP		2
+> +#define IPCC_COMPUTE_L1_APSS		3
+> +#define IPCC_COMPUTE_L1_GPU		4
+> +#define IPCC_COMPUTE_L1_CVP		8
+> +#define IPCC_COMPUTE_L1_CAM		9
+> +#define IPCC_COMPUTE_L1_CAM1		10
+> +#define IPCC_COMPUTE_L1_DCP		11
+> +#define IPCC_COMPUTE_L1_VPU		12
+> +#define IPCC_COMPUTE_L1_SOCCP		16
+> +
+> +#define IPCC_PERIPH_CDSP		2
+> +#define IPCC_PERIPH_APSS		3
+> +#define IPCC_PERIPH_PCIE0		4
+> +#define IPCC_PERIPH_PCIE1		5
+> +
+> +#define IPCC_FENCE_CDSP			2
+> +#define IPCC_FENCE_APSS			3
+> +#define IPCC_FENCE_GPU			4
+> +#define IPCC_FENCE_CVP			8
+> +#define IPCC_FENCE_CAM			8
+> +#define IPCC_FENCE_CAM1			10
+> +#define IPCC_FENCE_DCP			11
+> +#define IPCC_FENCE_VPU			20
+> +#define IPCC_FENCE_SOCCP		24
+> +
+> +#endif
+> 
+> -- 
+> 2.25.1
+> 
+> 
 
