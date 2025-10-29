@@ -1,276 +1,121 @@
-Return-Path: <devicetree+bounces-232794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2281C1B937
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 16:14:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F132BC1B965
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 16:18:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 886D71887336
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:08:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 38337188A7B5
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:14:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6A322F5A10;
-	Wed, 29 Oct 2025 15:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 314602E2286;
+	Wed, 29 Oct 2025 15:14:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UWG7eyBj"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="dXiPVvjG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazhn15011023.outbound.protection.outlook.com [52.102.137.23])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D9CC2EC09D;
-	Wed, 29 Oct 2025 15:07:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.102.137.23
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761750422; cv=fail; b=eVn7NBwfghYMwJuzx0CnIeWC3ep9eTwTo1IyXldbfAnurNqhmWJXpBJntc+ghKHKiAimWY2h/hJUohqNkwBn+ILoN+3iozBZJrFkLBvBwOd0H5PhV5Ai3l/rkzpMxo0n199Z2tmCDxaG7DO0Bpw2jKBipxEQ8TTOgfoHurxlxpA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761750422; c=relaxed/simple;
-	bh=42TKNicB0XKTrxG9rx6XDwfz3+Hg3kmsEaH3ujv0pI8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sThDGeSw5HBqFZsaGlCmaz5y+yQ1cmyudPH1hkWhLSkZwIoOjfaM9HYaxnXGGGJJyk51HRHMB025aWBEKNEGTeGWGS4svj51HUxNyFnp+0gJyaGLYio0w4P6smOCaWX8sKF5mwNgS18tgKm6ihP3oxz9XWrRQaaKmzDmsh9nXVg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UWG7eyBj; arc=fail smtp.client-ip=52.102.137.23
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gqwGO5KuSGkMqpgp3MHo0xtPpe1a5AuEALjDVYsnPcQU57K2RM5WA1gOAQw4VnYtAbIuQ3EhCtjwc7Yz0LgjS7rw30XxKBCBEQBCfHDb+2tlRazfuLqDlNdoGVMGlG8MCeazQTgM6i2pf3wn6UjFSt7s8YYPWIsFQjGyb3dRg3bTCTOH8A11okKIAXd42GbC4/OvYpNkQZR9lcylzS+Z55CBdxkzekuZRhyMuaXZR9BEhuaQ0JlxfaKfW0dAZ7WKcL4EkaAjEaxKBmcTqjenT++421yl8fA2+SMulKLGc7u+HB1PQnqeDYfx5QSv0pLwMtgDou0zjmnQnv09cpknxg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rMZ44PNrUrDuN8LhBFHa+4JMsZv6tiOKplJ+9mP0wGc=;
- b=HSYlpLEgRRTEERfbmA8U3FUITeV0oJfiCt95l/aDCNiAcO15P7JYNJqAAlBYfcuKirogyB3aOqJyeIN7BHrRSWZVQYaazcLuH1cEDZPO6kGW8Xpsss2pPBjUPIhae3gWdcGDKeNAEIwtKOM5cKZyn9P2ZWXvL1fTMP1oJNE1iP5Mid61jLvmKN5w5aseiWGsi+TG2UuNJN7HlBFsshGgqVsUtmNsfCeQ28mH8ybOe37nBhGXk8LDFvmmeAVRsJFQ3emMJGTcfCKysVsu4V6ieXe7kAnFS5y7nfo8adYERIDMi2rsdrVhgMIS/H6ZblqQDe1O94va4N/1l09rFl+x7w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=ideasonboard.com smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rMZ44PNrUrDuN8LhBFHa+4JMsZv6tiOKplJ+9mP0wGc=;
- b=UWG7eyBjh4hI2q22yU7cIey1lrdLUP5WShyFcNUDjoVx+j67JOPbMG6cXxp3TSb9MpVIVgzFh6lfpYbHiDBmkvYoowj2kkceRB/Uymj8SFCeJ15qay9xh34BmRIOWNJWk+dNGJtZwcA8qWhuWeuw3sC1LDfDcrF+CqHzpTRaQhQ=
-Received: from MW4PR04CA0081.namprd04.prod.outlook.com (2603:10b6:303:6b::26)
- by BLAPR10MB4945.namprd10.prod.outlook.com (2603:10b6:208:324::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.12; Wed, 29 Oct
- 2025 15:06:56 +0000
-Received: from SJ5PEPF000001ED.namprd05.prod.outlook.com
- (2603:10b6:303:6b:cafe::1c) by MW4PR04CA0081.outlook.office365.com
- (2603:10b6:303:6b::26) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9275.13 via Frontend Transport; Wed,
- 29 Oct 2025 15:06:56 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- SJ5PEPF000001ED.mail.protection.outlook.com (10.167.242.201) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9253.7 via Frontend Transport; Wed, 29 Oct 2025 15:06:54 +0000
-Received: from DFLE215.ent.ti.com (10.64.6.73) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 29 Oct
- 2025 10:06:44 -0500
-Received: from DFLE201.ent.ti.com (10.64.6.59) by DFLE215.ent.ti.com
- (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 29 Oct
- 2025 10:06:44 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE201.ent.ti.com
- (10.64.6.59) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 29 Oct 2025 10:06:44 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59TF6i7I022439;
-	Wed, 29 Oct 2025 10:06:44 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>, "Thomas
- Zimmermann" <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>,
-	"Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, Jernej Skrabec
-	<jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>, Laurent Pinchart
-	<Laurent.pinchart@ideasonboard.com>, Robert Foss <rfoss@kernel.org>, "Andrzej
- Hajda" <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
-	Phong LE <ple@baylibre.com>, Dmitry <dmitry.baryshkov@oss.qualcomm.com>
-CC: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<dri-devel@lists.freedesktop.org>, Robert Nelson <robertcnelson@gmail.com>,
-	Jason Kridner <jkridner@beagleboard.org>, Andrew Davis <afd@ti.com>, Tomi V
-	<tomi.valkeinen@ideasonboard.com>, Devarsh <devarsht@ti.com>, Nishanth Menon
-	<nm@ti.com>
-Subject: [PATCH V6 5/5] drm/bridge: it66121: Add minimal it66122 support
-Date: Wed, 29 Oct 2025 10:06:36 -0500
-Message-ID: <20251029150636.3118628-6-nm@ti.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20251029150636.3118628-1-nm@ti.com>
-References: <20251029150636.3118628-1-nm@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5F642C11E2;
+	Wed, 29 Oct 2025 15:14:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761750866; cv=none; b=GwWHd2iJro8AFpHadvm9Q+0Fd3JEoT+kUEaokY308L1CQ3oK6IVYOk1gTHWyeTCeICVvep2tlcq6Lp2/eN5JuR4Rophqd+xv3xZUrOqK5sz+rxbDmiMyI+faN0AS2PhIMwghkVUs6iWEfXTGhQ1l4XZQiJChfme7OTJOMIHzz9E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761750866; c=relaxed/simple;
+	bh=Un1263Y3t/Nka3u0iyTUOo72BpVIJVxFmdi8tdLbhK4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E6m8FneTE91nf7kB8trZVPobqp2jwUHb3UA8Fm2SHUMsj9VjLzHtl/EKJ604W7AtvZhA63FwZ/icXBeGHabnHm1eIrRfgE76jEf0m75T1R9dzcNYOT1dIcrCOOajlIQN2TxKa01565mxGgdcY73HkASMcR8bpN+mD20E5uQPad0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=dXiPVvjG; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 2726D25746;
+	Wed, 29 Oct 2025 16:14:15 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id 8G9h0oREbF2K; Wed, 29 Oct 2025 16:14:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1761750854; bh=Un1263Y3t/Nka3u0iyTUOo72BpVIJVxFmdi8tdLbhK4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=dXiPVvjG4PegWw59QZbcyAN4cY6mmMlz60Ip2wVjreAYmKclVc1RyCIJb5+6vG7tL
+	 o2dysstrnuIRKHOhSFr7yQDsJ44TlLI7GXJpF4nz5PgdAo4SDKRVWwD1WK+ud+AHhz
+	 O9sPOnKqe3xEiyyHh7ls+AJPdhSpeX5wjLf3SgQYYiEo3MZDpG4I01rKjvkTi7Bey1
+	 Yi3NxDzRpr2YwcdfmmwMADUgMNu3Y2F7bxuHrRKSZ/HPUkZyj2EKvZRo7hfK7Mzqva
+	 MEbMHhbMJsRhJljA99pCaPv5JOzXPOlUXB9CqXYCot0e5Y8lWJS+qlPLco4X72B86d
+	 yiedeL0ygHJdA==
+Date: Wed, 29 Oct 2025 15:13:46 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Drew Fustini <fustini@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Michal Wilczynski <m.wilczynski@samsung.com>,
+	Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org,
+	Han Gao <gaohan@iscas.ac.cn>, Han Gao <rabenda.cn@gmail.com>,
+	linux-kernel@vger.kernel.org, Guo Ren <guoren@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-riscv@lists.infradead.org, Fu Wei <wefu@redhat.com>
+Subject: Re: [PATCH v3 3/5] reset: th1520: Prepare for supporting multiple
+ controllers
+Message-ID: <aQIvH4jbj9Ifd7Av@pie>
+References: <20251014131032.49616-1-ziyao@disroot.org>
+ <20251014131032.49616-4-ziyao@disroot.org>
+ <aQIOgbUf2IHoWCf2@gen8>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001ED:EE_|BLAPR10MB4945:EE_
-X-MS-Office365-Filtering-Correlation-Id: 65a0ba76-dd5c-41e3-df4b-08de16fccc56
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700013|7416014|34020700016|82310400026|376014|921020|7053199007|12100799066;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?HLeMV32h/SrsCUnKqlRe1rwQwE3rso7YMGNhO9hYLqygrtSN/HJ04ObFuypq?=
- =?us-ascii?Q?yDu6LKdbOPgJqIyRBvIfUK6XVyRIk/SAgB1UPiu74Tqcx1RjYDTyh8g4qakm?=
- =?us-ascii?Q?KMA5s68PjgF+kR76ZyrAc2Gf3Z7gIrHgnvZZvcS9UZzZWYJeLa/1KH+rrLU7?=
- =?us-ascii?Q?UTfwRxGp2Xe7fY5MFtymMzI46hhGvefbF+HugliBf/6Rg/n5OzFettW4EghJ?=
- =?us-ascii?Q?fkF9fNujNrvXcJR22w0xZYN/cPzpXrnjbCvEpvZ9AQ4idM2hz10nbwAtL8yz?=
- =?us-ascii?Q?HH57fynF6GOyN8QTmg4m2GjSWcwMiBZTEnMGpXsM3cm95QuO6l5hm839yC1E?=
- =?us-ascii?Q?MxHRdcexOpVYwyu3CtJ/hpw5yEChmgKXpOMkHhsvl7Kh9SuTfUt38DA6LbRg?=
- =?us-ascii?Q?uq9zOUiuWlARKa+xEj9cDyPIewP0GpvDwjlHpEcChoOp4rbUm0jwnW8Xh8U9?=
- =?us-ascii?Q?wRcnMYxFgEEdJE31o2H05aL1Czhx0Z/fEyL0XYLw8kBoVMXFoojT1IfAQtpX?=
- =?us-ascii?Q?pToTIIhJzi3OsIawy79G9NAgI4QMkD8XSDUWBgiZL5RbxdIBl/Qga9CI/xBR?=
- =?us-ascii?Q?+5yGiXt24ii7m+l9el+4BXGurEVb6cJMpkqrGRb7vVMnicMUjienfRpl3oky?=
- =?us-ascii?Q?50NqKp8AyZo542uPJ0xU6EcF11isLQed5HMK4YtiGzUIVW92m2fkLrexxC3F?=
- =?us-ascii?Q?2bhEv7Vb4Bs0X0zHGPJ/Cpjp5lWFmrpynExYI/Xx//WBY8YWKPUYtcm2RStI?=
- =?us-ascii?Q?sir8M+rJftNpgDRDOY2qJ/2Rx3L8GeoW1VECrtQDGr8VqaaSwGJ9I2u7ShhQ?=
- =?us-ascii?Q?Y5InVmgGeQXloajAgFcBK2MTb3ENhmYVDebJMAKo2rUJhbogIO8avad1anM7?=
- =?us-ascii?Q?I4G1clbMPjTNJVUHjDUYt6DHvRErndnpGZXjhEKF3g3+oPxvYQ0Wpy0au+No?=
- =?us-ascii?Q?8+kFBqz2KOsq4ZRNBMYBLFojRBM25hdGPqGodJUaOJ58QnYhQWy2UXv8DZDU?=
- =?us-ascii?Q?s/aSGtDRX/kbo1ody2udDXzKKmkcQTwVpIMW8I0UPgjkKNJ4HhHR/+dOYAnt?=
- =?us-ascii?Q?kc11NpRt9zPCkkau+1c5UYsiN/4Z9ZYpaNP9AT9LwfZDkP+lgiiLVOQ6CAS4?=
- =?us-ascii?Q?P+VBmdXqWSW/oVWXwdNQKN+SI4uz0NtYp/79koF0iiHOp5YMyxnAkowyFZwx?=
- =?us-ascii?Q?3D5tkBiNVdCg5sKl9fsMRA2vqCPvyCG2br8PYbLSXCGbirHV0Y9SyF72aP0f?=
- =?us-ascii?Q?9WcXIoLtRZ9+V7oTywivJg+mTEe+6FBloLl3EX7rWPOlir9TFZ4mj9dLCeaN?=
- =?us-ascii?Q?OybVDi3HtsVySrpPrK31BmPcN+Awlh7sO7WsLuo2O0ltbpzHjAMoMILyASWv?=
- =?us-ascii?Q?8oP2FPfJPP15h9WAX+BU+eHliPi5zCTc9zk2IB3quQoFR8hjlogBNvtP9vEV?=
- =?us-ascii?Q?E9mtmT78lF0GTD7nIJCHu2lfhr+2QbIJW3F+Eqx1W1FtWEwdC4YGmMsxIo1O?=
- =?us-ascii?Q?NzHLp0mGa3VxadWmHt3elAHhidNrOZxg7oCmVpBoHZBQrswQyzEzpo2leKbk?=
- =?us-ascii?Q?UU6K7Nt3lSUxu3HWPP3aHnf5K5ANrl/OnAT/ykVP?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(7416014)(34020700016)(82310400026)(376014)(921020)(7053199007)(12100799066);DIR:OUT;SFP:1501;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2025 15:06:54.8266
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 65a0ba76-dd5c-41e3-df4b-08de16fccc56
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ5PEPF000001ED.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLAPR10MB4945
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aQIOgbUf2IHoWCf2@gen8>
 
-The IT66122 is a pin compatible replacement for the IT66122. Based on
-empirical testing, the new device looks to be compatible with IT66121.
-However due to a lack of public data sheet at this time beyond overall
-feature list[1] (which seems to add additional features vs ITT66121),
-it is hard to determine that additional register operations required
-to enable additional features.
+On Wed, Oct 29, 2025 at 12:54:25PM +0000, Drew Fustini wrote:
+> On Tue, Oct 14, 2025 at 01:10:30PM +0000, Yao Zi wrote:
+> > TH1520 SoC is divided into several subsystems, shipping distinct reset
+> > controllers with similar control logic. Let's make reset signal mapping
+> > a data structure specific to one compatible to prepare for introduction
+> > of more reset controllers in the future.
+> > 
+> > Signed-off-by: Yao Zi <ziyao@disroot.org>
+> > ---
+> >  drivers/reset/reset-th1520.c | 42 +++++++++++++++++++++++++-----------
+> >  1 file changed, 30 insertions(+), 12 deletions(-)
+> > 
+> > diff --git a/drivers/reset/reset-th1520.c b/drivers/reset/reset-th1520.c
+> > index 14d964a9c6b6..2b65a95ed021 100644
+> > --- a/drivers/reset/reset-th1520.c
+> > +++ b/drivers/reset/reset-th1520.c
+> [snip]
+> > @@ -138,22 +147,31 @@ static int th1520_reset_probe(struct platform_device *pdev)
+> >  	if (IS_ERR(priv->map))
+> >  		return PTR_ERR(priv->map);
+> >  
+> > -	/* Initialize GPU resets to asserted state */
+> > -	ret = regmap_update_bits(priv->map, TH1520_GPU_RST_CFG,
+> > -				 TH1520_GPU_RST_CFG_MASK, 0);
+> > -	if (ret)
+> > -		return ret;
+> > +	if (of_device_is_compatible(dev->of_node, "thead,th1520-reset")) {
+> 
+> Is there a reason that there is a now a conditional check for the
+> compatible here?
 
-So, introduce the device as a new compatible that we will detect based
-on vid/pid match, with explicit id that can be used to extend the
-driver capability as information becomes available later on.
+Yes, this regmap operation is for initializing GPU resets and thus
+modifies TH1520_GPU_RST_CFG, which only applies for the VO reset
+controller (with compatible "thead,th1520-reset") but not others, or
+other unrelated resets could be unexpectedly asserted.
 
-[1] https://www.ite.com.tw/en/product/cate1/IT66122
+> Thanks,
+> Drew
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
-Reviewed-by: Andrew Davis <afd@ti.com>
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
----
-Changes since V5:
-* Picked Tomi's Ack
-
-V5: https://lore.kernel.org/all/20250827202354.2017972-6-nm@ti.com/
-V4: https://lore.kernel.org/all/20250819130807.3322536-6-nm@ti.com/
-V3: https://lore.kernel.org/all/20250815034105.1276548-5-nm@ti.com/
-V2: https://lore.kernel.org/all/20250813204106.580141-4-nm@ti.com/
-
- drivers/gpu/drm/bridge/ite-it66121.c | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/bridge/ite-it66121.c b/drivers/gpu/drm/bridge/ite-it66121.c
-index 1b2ef774c770..0185f61e6e59 100644
---- a/drivers/gpu/drm/bridge/ite-it66121.c
-+++ b/drivers/gpu/drm/bridge/ite-it66121.c
-@@ -287,6 +287,7 @@
- enum chip_id {
- 	ID_IT6610,
- 	ID_IT66121,
-+	ID_IT66122,
- };
- 
- struct it66121_chip_info {
-@@ -402,7 +403,7 @@ static int it66121_configure_afe(struct it66121_ctx *ctx,
- 		if (ret)
- 			return ret;
- 
--		if (ctx->id == ID_IT66121) {
-+		if (ctx->id == ID_IT66121 || ctx->id == ID_IT66122) {
- 			ret = regmap_write_bits(ctx->regmap, IT66121_AFE_IP_REG,
- 						IT66121_AFE_IP_EC1, 0);
- 			if (ret)
-@@ -428,7 +429,7 @@ static int it66121_configure_afe(struct it66121_ctx *ctx,
- 		if (ret)
- 			return ret;
- 
--		if (ctx->id == ID_IT66121) {
-+		if (ctx->id == ID_IT66121 || ctx->id == ID_IT66122) {
- 			ret = regmap_write_bits(ctx->regmap, IT66121_AFE_IP_REG,
- 						IT66121_AFE_IP_EC1,
- 						IT66121_AFE_IP_EC1);
-@@ -599,7 +600,7 @@ static int it66121_bridge_attach(struct drm_bridge *bridge,
- 	if (ret)
- 		return ret;
- 
--	if (ctx->id == ID_IT66121) {
-+	if (ctx->id == ID_IT66121 || ctx->id == ID_IT66122) {
- 		ret = regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
- 					IT66121_CLK_BANK_PWROFF_RCLK, 0);
- 		if (ret)
-@@ -802,7 +803,7 @@ void it66121_bridge_mode_set(struct drm_bridge *bridge,
- 	if (regmap_write(ctx->regmap, IT66121_HDMI_MODE_REG, IT66121_HDMI_MODE_HDMI))
- 		goto unlock;
- 
--	if (ctx->id == ID_IT66121 &&
-+	if ((ctx->id == ID_IT66121 || ctx->id == ID_IT66122) &&
- 	    regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
- 			      IT66121_CLK_BANK_PWROFF_TXCLK,
- 			      IT66121_CLK_BANK_PWROFF_TXCLK)) {
-@@ -815,7 +816,7 @@ void it66121_bridge_mode_set(struct drm_bridge *bridge,
- 	if (it66121_configure_afe(ctx, adjusted_mode))
- 		goto unlock;
- 
--	if (ctx->id == ID_IT66121 &&
-+	if ((ctx->id == ID_IT66121 || ctx->id == ID_IT66122) &&
- 	    regmap_write_bits(ctx->regmap, IT66121_CLK_BANK_REG,
- 			      IT66121_CLK_BANK_PWROFF_TXCLK, 0)) {
- 		goto unlock;
-@@ -1501,6 +1502,7 @@ static const char * const it66121_supplies[] = {
- static const struct it66121_chip_info it66xx_chip_info[] = {
- 	{.id = ID_IT6610, .vid = 0xca00, .pid = 0x0611 },
- 	{.id = ID_IT66121, .vid = 0x4954, .pid = 0x0612 },
-+	{.id = ID_IT66122, .vid = 0x4954, .pid = 0x0622 },
- };
- 
- static int it66121_probe(struct i2c_client *client)
-@@ -1621,6 +1623,7 @@ static void it66121_remove(struct i2c_client *client)
- static const struct of_device_id it66121_dt_match[] = {
- 	{ .compatible = "ite,it6610" },
- 	{ .compatible = "ite,it66121" },
-+	{ .compatible = "ite,it66122" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, it66121_dt_match);
-@@ -1628,6 +1631,7 @@ MODULE_DEVICE_TABLE(of, it66121_dt_match);
- static const struct i2c_device_id it66121_id[] = {
- 	{ .name = "it6610" },
- 	{ .name = "it66121" },
-+	{ .name = "it66122" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, it66121_id);
--- 
-2.47.0
-
+Regards,
+Yao Zi
 
