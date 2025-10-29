@@ -1,223 +1,144 @@
-Return-Path: <devicetree+bounces-232805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 232C6C1BB2B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 16:36:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF44BC1BD6F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 16:55:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4F981880415
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:35:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C765B64111F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:39:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DACD033508C;
-	Wed, 29 Oct 2025 15:34:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C174A32C93C;
+	Wed, 29 Oct 2025 15:39:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hE/jr6Um"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vAlRS1mA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADFED32A3C5;
-	Wed, 29 Oct 2025 15:34:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D9F37A3AF;
+	Wed, 29 Oct 2025 15:39:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761752074; cv=none; b=fcYhKOPkNF1e5vrj36G7sYx2axwN0hRhLNljUcgj9tUhPgHGmeM/+rtYjcwlVlfg9vKNgLHtla/B+cQmIVI4cNWU5340poZabeUnHBdeB+3a3thqsXdk9udP0arsbRX0/WyXzXhQ3Jtx19cXIxzH5lymnkBJtfd2NG3s2onogPo=
+	t=1761752378; cv=none; b=YHwJX4dn/Xu99TTDzOAfs86Y3e1Ee25TbVwLjYfX3jTxhyP5Q/XRyio0ZGYTiLV6B7FZb98GZOEYgGxtUJxtG+gWGawa0trsA/dq8kMcyT4jhbaDgWwP3Mo7Mf7vzjZkLfB4p2lMERLU45luLfy5OIKk+h+Fck9zEN4mAbFL9uk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761752074; c=relaxed/simple;
-	bh=oNcXp8gdfxVeszlYk66nASq1kzOb0Ssu6NZIeyKk7zo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ljfky/Arb7KBTfQbDs8dO6yBgaI6Y7I17Q+2sa+6+00Z8R7pHB4BqFCZTcPQA19oZ/0pHA1eT4IzdARH4nTNb+eDB2NhRz+5RoxP74QYsR2NnXn+8hoWkhRCQZG75fwBa/ffPDzYp6fWU9cxLTueIisBVcRreWNNpKFdGc/7/VA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hE/jr6Um; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 154B1C4CEF7;
-	Wed, 29 Oct 2025 15:34:33 +0000 (UTC)
+	s=arc-20240116; t=1761752378; c=relaxed/simple;
+	bh=grPwEietiNbq1mSlzDL7WcODrofYGlPESBXp1qQNHsQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QTo88vE5BGEYbMoPWQEK5UJmHwJD7W7hIu7df5c2pE9i1VWdvGhUhwNRfqxqTkDWVCsjL2um+x4tahSD1SQFGHiiVc45isMbg4HRZKgjiG2eeEIDzFAQ3c6vppVYuc4+7k3a2w6RQ3uluCOLUMiTvr9Rpj4KsZwrkOqw7vW1yYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vAlRS1mA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1186C4CEF7;
+	Wed, 29 Oct 2025 15:39:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761752074;
-	bh=oNcXp8gdfxVeszlYk66nASq1kzOb0Ssu6NZIeyKk7zo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hE/jr6UmoeEWC6iPIljNx/9tlBFwlDtK48q/Jzn8vf7lr4GVm5v62CyUQrnE3ZQv3
-	 g3jjloFRmehvz3VXskd2AxiBpogBbLTG3wviLJ/90FA7DWIdKcSfmjcdmmaexUEv9F
-	 AWVltj9y7vM2w5HYXEi60R4juEoDl0KvjCGN8YKeZA0iJDeK6B8pN+s0dGyuaAjiB3
-	 1FpxCZmmVYezVi8j6nxnZ6ma/iKyK9vcCqoSCINgTCPMmMoNtyHAij9Zf2tmoAQaXC
-	 Aau0ViRLO/oOzlwaFv6deAg78MsFiqCFw8CFJvKE0YIvZ+HeuifyLYS8E6NPqci0+a
-	 UgNbvk1THbf2g==
-Date: Wed, 29 Oct 2025 10:37:37 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: "Aiqun(Maria) Yu" <aiqun.yu@oss.qualcomm.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	Jingyi Wang <jingyi.wang@oss.qualcomm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Robert Marko <robimarko@gmail.com>, 
-	Das Srinagesh <quic_gurus@quicinc.com>, tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, 
-	yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Eugen Hristev <eugen.hristev@linaro.org>
-Subject: Re: [PATCH v2 1/4] dt-bindings: soc: qcom: Add qcom,kaanapali-imem
- compatible
-Message-ID: <x4rzktpij4ggnbvnuyoli65gugymli5acrmrlovglttpakaauw@o3vu23bjedul>
-References: <20251022-knp-soc-binding-v2-0-3cd3f390f3e2@oss.qualcomm.com>
- <20251022-knp-soc-binding-v2-1-3cd3f390f3e2@oss.qualcomm.com>
- <g2iviaqetgxf5ycz2otzkpmmc4goo7xuyjmttuu254bfzqqvkf@4vybjh4eghpm>
- <4eebcb7d-1eca-4914-915a-d42232233f9f@oss.qualcomm.com>
- <dwfvko3hszsoh4ihnz3qdpsugmocbkrbhosijdw5q3bxh64kuo@o74as2li74px>
- <lz4sbvzfiij3qsa4d7jeblmi2vfubc4ltf435sh6tcs53l6fbq@7f3tfm7yiyjc>
- <mwin3lfvpcwxxhsub2whcpibuayk36f4ljrodvithfygqad5w4@cg4h6peh4v4a>
- <ygqgzflpavwgd43e5zedgcijm3lz27nqlzprttalgcroedz45u@ztqkppajpyry>
- <a7cdd2b3-6097-4a8c-a639-af974292cc8b@oss.qualcomm.com>
+	s=k20201202; t=1761752377;
+	bh=grPwEietiNbq1mSlzDL7WcODrofYGlPESBXp1qQNHsQ=;
+	h=From:To:Cc:Subject:Date:From;
+	b=vAlRS1mAFJLTp2ybW94RNMrdBL9c7LEqcafqarKYgFiPNlZ7pwx3TuoKI8thB7qcr
+	 4Bv7O/FqSAg7KTv4URkhPYbf7f5z28e7nawJfc+P55eiNrkVOo5FrUAxfJqpNl7lEN
+	 GUrpJtm03ct3XDlLhq+l9uOtujZBhKLpF792XMD+VWVxZDsbTEu0wo2EfmSMWfnYBm
+	 GQjiYgdwHeaNQ4WylG8ZP/9xH0Krj5OreqhS72QdXT3WJ8HCDWf0ZqDAqCRK6U5NT5
+	 NdbixIdBFcaLj6hnZnNMF1XWdrwilBcZDpjbxHmWEGWOF3IXSYoZnI7BAAuKD/IBDw
+	 HpytFTCoAhvgg==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64/arm: dts: marvell: Rename "nand-rb" pinctrl node names
+Date: Wed, 29 Oct 2025 10:39:25 -0500
+Message-ID: <20251029153927.1065446-1-robh@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a7cdd2b3-6097-4a8c-a639-af974292cc8b@oss.qualcomm.com>
 
-On Wed, Oct 29, 2025 at 07:47:11PM +0800, Aiqun(Maria) Yu wrote:
-> On 10/28/2025 2:44 AM, Bjorn Andersson wrote:
-> > On Thu, Oct 23, 2025 at 03:06:00AM +0300, Dmitry Baryshkov wrote:
-> >> On Wed, Oct 22, 2025 at 05:42:58PM -0500, Bjorn Andersson wrote:
-> >>> On Wed, Oct 22, 2025 at 12:34:58PM +0300, Dmitry Baryshkov wrote:
-> >>>> On Wed, Oct 22, 2025 at 05:05:30PM +0800, Jingyi Wang wrote:
-> >>>>>
-> >>>>>
-> >>>>> On 10/22/2025 4:49 PM, Dmitry Baryshkov wrote:
-> >>>>>> On Wed, Oct 22, 2025 at 12:28:41AM -0700, Jingyi Wang wrote:
-> >>>>>>> Document qcom,kaanapali-imem compatible.
-> >>>>>>>
-> >>>>>>> Reviewed-by: Eugen Hristev <eugen.hristev@linaro.org>
-> >>>>>>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> >>>>>>> ---
-> >>>>>>>  Documentation/devicetree/bindings/sram/qcom,imem.yaml | 1 +
-> >>>>>>>  1 file changed, 1 insertion(+)
-> >>>>>>>
-> >>>>>>> diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
-> >>>>>>> index 6a627c57ae2f..1e29a8ff287f 100644
-> >>>>>>> --- a/Documentation/devicetree/bindings/sram/qcom,imem.yaml
-> >>>>>>> +++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
-> >>>>>>> @@ -19,6 +19,7 @@ properties:
-> >>>>>>>        - enum:
-> >>>>>>>            - qcom,apq8064-imem
-> >>>>>>>            - qcom,ipq5424-imem
-> >>>>>>> +          - qcom,kaanapali-imem
-> >>>>>>
-> >>>>>> Can you use mmio-sram instead?
-> >>>>>>
-> >>>>>
-> >>>>> Here is the node: 
-> >>>>>
-> >>>>> 		sram@14680000 {
-> >>>>> 			compatible = "qcom,kaanapali-imem", "syscon", "simple-mfd";
-> >>>>> 			reg = <0x0 0x14680000 0x0 0x1000>;
-> >>>>> 			ranges = <0 0 0x14680000 0x1000>;
-> >>>>>
-> >>>>> 			#address-cells = <1>;
-> >>>>> 			#size-cells = <1>;
-> >>>>>
-> >>>>> 			pil-reloc@94c {
-> >>>>> 				compatible = "qcom,pil-reloc-info";
-> >>>>> 				reg = <0x94c 0xc8>;
-> >>>>> 			};
-> >>>>> 		};
-> >>>>>
-> >>>>> other qualcomm are also using imem, could you please give more details on why
-> >>>>> we should use mmio-sram here?
-> >>>>
-> >>>> https://lore.kernel.org/linux-arm-msm/e4c5ecc3-fd97-4b13-a057-bb1a3b7f9207@kernel.org/
-> >>>>
-> >>>
-> >>> I considered exactly this when I wrote the binding back then...
-> >>>
-> >>> But the binding defines mmio-sram as "Simple IO memory regions to be
-> >>> managed by the genalloc API." and the Linux sram driver follows that and
-> >>> registers a gen_pool across the sram memory region.
-> >>>
-> >>> I believe IMEM is SRAM (it's at least not registers), but its memory
-> >>> layout is fixed, so it's not a pool in any form.
-> >>>
-> >>>
-> >>> What Krzysztof says makes sense, but rather than just throwing a yak at
-> >>> Jingyi, it would be nice if you provided some guidance on how you would
-> >>> like to see this turn out.
-> >>
-> >> I tested, pretty same approach seems to work:
-> >>
-> > 
-> > Now you're shaving at random ;)
-> > 
-> >> 	sram@14680000 {
-> >> 		compatible = "mmio-sram";
-> > 
-> > You can put "pil-reloc-sram" wherever, because it will perform a
-> > of_find_compatible_node() to dig up some node with the compatible
-> > "qcom,pil-reloc-info" .
-> > 
-> > In other words, this line created a genpool for something that really
-> > isn't a genpool, but luckily that didn't have any side effects.
-> > 
-> > 
-> > There are however other users of IMEM, such as the "reboot-mode", which
-> > relies on the "sram" device probing child devices, and is implemented by
-> > "syscon-reboot-mode".
-> > 
-> > Perhaps the solution is to not support any new users of that?
-> > 
-> > 
-> > But no matter what, the definition "Simple IO memory regions to be
-> > managed by the genalloc API" will never be true for IMEM.
-> > 
-> > And as this isn't a syscon, simple-mfd, or mmio-sram...how about making
-> > the fallback "qcom,imem" (in this same binding) and omitting any
-> > implementation until we need one)?
-> 
-> 
-> Totally agree. We can remove the "syscon" and "simple-mfd" compatibles
-> for Kaanapali.
-> For Kaanapali, the reboot reason does not rely on imem at all—it uses
-> nvmem cells instead.
-> Previously, the syscon-reboot-mode required "syscon" and "simple-mfd"
-> compatibles for older targets like APQ8064, which used imem as the
-> reboot mode solution.
-> 
+Update the "nand-rb" pinctrl child node names to use the defined "-pins"
+suffix fixing DT schema warnings.
 
-And there's
-https://lore.kernel.org/lkml/20250527-topic-ipa_imem-v2-0-6d1aad91b841@oss.qualcomm.com/
-which Konrad pointed out, which would also work with this model
-(qcom,imem fallback but no implementation).
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ arch/arm/boot/dts/marvell/armada-38x.dtsi         | 2 +-
+ arch/arm/boot/dts/marvell/armada-xp-98dx3236.dtsi | 2 +-
+ arch/arm64/boot/dts/marvell/armada-70x0.dtsi      | 2 +-
+ arch/arm64/boot/dts/marvell/armada-80x0.dtsi      | 2 +-
+ arch/arm64/boot/dts/marvell/cn9130-db.dtsi        | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
 
+diff --git a/arch/arm/boot/dts/marvell/armada-38x.dtsi b/arch/arm/boot/dts/marvell/armada-38x.dtsi
+index 1181b13deabc..1d616edda322 100644
+--- a/arch/arm/boot/dts/marvell/armada-38x.dtsi
++++ b/arch/arm/boot/dts/marvell/armada-38x.dtsi
+@@ -247,7 +247,7 @@ nand_pins: nand-pins {
+ 					marvell,function = "dev";
+ 				};
+ 
+-				nand_rb: nand-rb {
++				nand_rb: nand-rb-pins {
+ 					marvell,pins = "mpp41";
+ 					marvell,function = "nand";
+ 				};
+diff --git a/arch/arm/boot/dts/marvell/armada-xp-98dx3236.dtsi b/arch/arm/boot/dts/marvell/armada-xp-98dx3236.dtsi
+index 7a7e2066c498..a9a71326aafc 100644
+--- a/arch/arm/boot/dts/marvell/armada-xp-98dx3236.dtsi
++++ b/arch/arm/boot/dts/marvell/armada-xp-98dx3236.dtsi
+@@ -322,7 +322,7 @@ nand_pins: nand-pins {
+ 		marvell,function = "dev";
+ 	};
+ 
+-	nand_rb: nand-rb {
++	nand_rb: nand-rb-pins {
+ 		marvell,pins = "mpp19";
+ 		marvell,function = "nand";
+ 	};
+diff --git a/arch/arm64/boot/dts/marvell/armada-70x0.dtsi b/arch/arm64/boot/dts/marvell/armada-70x0.dtsi
+index 293403a1a333..df939426d258 100644
+--- a/arch/arm64/boot/dts/marvell/armada-70x0.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-70x0.dtsi
+@@ -56,7 +56,7 @@ nand_pins: nand-pins {
+ 			marvell,function = "dev";
+ 		};
+ 
+-		nand_rb: nand-rb {
++		nand_rb: nand-rb-pins {
+ 			marvell,pins = "mpp13";
+ 			marvell,function = "nf";
+ 		};
+diff --git a/arch/arm64/boot/dts/marvell/armada-80x0.dtsi b/arch/arm64/boot/dts/marvell/armada-80x0.dtsi
+index ee67c70bf02e..fb361d657a77 100644
+--- a/arch/arm64/boot/dts/marvell/armada-80x0.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-80x0.dtsi
+@@ -89,7 +89,7 @@ nand_pins: nand-pins {
+ 			marvell,function = "dev";
+ 		};
+ 
+-		nand_rb: nand-rb {
++		nand_rb: nand-rb-pins {
+ 			marvell,pins = "mpp13", "mpp12";
+ 			marvell,function = "nf";
+ 		};
+diff --git a/arch/arm64/boot/dts/marvell/cn9130-db.dtsi b/arch/arm64/boot/dts/marvell/cn9130-db.dtsi
+index 50e9e0724828..3cc320f569ad 100644
+--- a/arch/arm64/boot/dts/marvell/cn9130-db.dtsi
++++ b/arch/arm64/boot/dts/marvell/cn9130-db.dtsi
+@@ -379,7 +379,7 @@ nand_pins: nand-pins {
+ 				       "mpp27";
+ 			marvell,function = "dev";
+ 		};
+-		nand_rb: nand-rb {
++		nand_rb: nand-rb-pins {
+ 			marvell,pins = "mpp13";
+ 			marvell,function = "nf";
+ 		};
+-- 
+2.51.0
 
-This also does leave the door open for a future qcom,imem
-implementation, if we need to associate some logic to the imem device
-itself.
-
-Regards,
-Bjorn
-
-> 
-> > 
-> > Regards,
-> > Bjorn
-> > 
-> >> 		reg = <0x0 0x14680000 0x0 0x1000>;
-> >> 		ranges = <0 0 0x14680000 0x1000>;
-> >>
-> >> 		#address-cells = <1>;
-> >> 		#size-cells = <1>;
-> >>
-> >> 		pil-reloc-sram@94c {
-> >> 			compatible = "qcom,pil-reloc-info";
-> >> 			reg = <0x94c 0xc8>;
-> >> 		};
-> >> 	};
-> >>
-> >>
-> >> -- 
-> >> With best wishes
-> >> Dmitry
-> 
-> 
-> -- 
-> Thx and BRs,
-> Aiqun(Maria) Yu
 
