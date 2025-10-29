@@ -1,252 +1,142 @@
-Return-Path: <devicetree+bounces-232661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D92BC19E9F
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 12:01:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E23CC19EC6
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 12:06:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D629B354313
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 11:01:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6583A3B00E9
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 11:06:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE7822FC865;
-	Wed, 29 Oct 2025 11:01:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E411930B525;
+	Wed, 29 Oct 2025 11:06:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d2Ab3UA0"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="AyEMWVjr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F1502E54CC
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 11:01:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 526A22E11A6
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 11:06:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761735679; cv=none; b=cHkFstT0st986eYL/AiOgGqkxI4L6AepB4QJvf3mlG3DhysWyXRkBbAiiVholpDmBLzysoGMnvo5mdmhiBOW7C8f+xduXWG4Nde4Eji/iUAx7UYyGrkqtrcQVeAO2LY+lXy6B4Fx2d04siJTAr5Eqiy7bk/0llR5vgAV2zsY0rM=
+	t=1761735992; cv=none; b=MEHfR6VPr6bH2zeHar02SF04Izy0sGzT3WTnel9XALrhWjD54JNzTUP8reNq0FvVEZ8wzlh5sze4NS4hZ56cZU2VPBsBuRG3mX20LhKPde0bu5hdd0d+a7B2AcP8ogZvg20KGZWQz+QbBr9s1XW4lGe4/RTWxvrXgdyAZk6mQgo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761735679; c=relaxed/simple;
-	bh=hXAUBSkUqybhhXZyTYQ9DuFdsPNmrVbpbQYulz4IDPk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VG+AxZ5M764yCJ/D1QiG3AHJ8ZXtcylk/EXH0/qdZ+agaRXKukz/MNMbprbQeQSKFuMbL/Jko0P+XilrkM9zN/tZ8HZVxBx4BH0r0WcljOswId9oZJqiYBd3wpQ3tPx7Vir6I0MnJluQKVnz2hyFU6/mLuEreEbN3Makb5trRLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=d2Ab3UA0; arc=none smtp.client-ip=209.85.222.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-891208f6185so649087085a.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 04:01:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761735675; x=1762340475; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eQWDpVejCHNnm4EwaVB6drbJOWDW2V1Yh8yBgxJN8YA=;
-        b=d2Ab3UA0YObITkdK6FoBmoK0OZVlsKdKYJPms8kn3nOg2HLJfJA+G1sL/ZyOVvf8wo
-         KBylXVJ/xk5CYCcoW7Oj2veY2xoOF8Y7ksl6ogjdGO2jvdKIL6I/3WN3kXwammHa4Hex
-         niBiJrBggqs+lcEY7KMiyFCzSLWKcsxyKQpi95l2JndUav0dEOJahdoRI7a8K1m9jdph
-         XYiFWMHG8tvaT1g8qbQqg9q05UFZ1BCSUBEtvu2TJhg5ylTRCSh1iC3ysxaLA8iY1EY0
-         SQE7mh9veBTJvJl5IJXUD4yFccv5hgRI7/On1htphSMKry5IsVfP/xcir+5EU0FmdYoe
-         fdTw==
+	s=arc-20240116; t=1761735992; c=relaxed/simple;
+	bh=jKGLCRj7hWPj6nCNCOR0lDjd3tjy9+HvWQH6dH7MB6o=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=a5LyHneGtIneP6RyF1fsGl+O6HqOpegKoMdsulx+YEwmVzRpKEIt+FmeI5bLYxn9aiX0+sW6fyZ9Nl0rQ3fM5K3nFt4CZObANhrduzejLOLt0RHM4zKZf0Ot8TSXQqnYVGUshUx9qDvxhbDdAF1kClavmHMNVhWiijCg8MeFc9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=AyEMWVjr; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1761735990;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=wq8ujO9Dpm/7YPTf3iw45Jy/+tYmVu6IfrY/4dh0q7w=;
+	b=AyEMWVjrdCfSxya38FkRF3wz9MtgYRHON3Mqea29OB7uqMIS11VWyG+dWCcY5lwQunx7lY
+	4841PKwKrT4ke21+/dPpa8jpmuU66yM2266I/v68B6pnhGjK5iNsxC4uy02N7S3ycIMusR
+	9pa46AP/M80n45OfESyivwKRnpiJpNo=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-126-hX0B89BoMdmm58g5WYyNag-1; Wed, 29 Oct 2025 07:06:29 -0400
+X-MC-Unique: hX0B89BoMdmm58g5WYyNag-1
+X-Mimecast-MFC-AGG-ID: hX0B89BoMdmm58g5WYyNag_1761735988
+Received: by mail-wr1-f71.google.com with SMTP id ffacd0b85a97d-427015f62a7so3347561f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 04:06:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761735675; x=1762340475;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eQWDpVejCHNnm4EwaVB6drbJOWDW2V1Yh8yBgxJN8YA=;
-        b=dfxTNsrt97a+z3PCq9Jgz5tnMOZJBqidKroceKhqgiv5+VzsUgZbKc4ug0iDbrtiUK
-         Rc4bfLcJmSA5nAoLjbrLdZuSohUjAeNcP88mM94Y0ftBWpd744oZ7M1Kg7hH98tXT2mA
-         9LRjFyyKGEplJp61WhRu3n9UzTQ24U9QM664L4dGubJdkW7sYIwdEl9lN9eTyXEb5MLz
-         xGuwSyREjyY6z7XCQYyvmgluDP1a7lCzi5WyaFYdzCP3Yx7f1VfOBFr63tvmdcNNzTOR
-         F9zQWnI7OxqyUuCqG7UQCv7PsX60TUyrVBnxOAA5FhR9OJ7SpPmlFk2letU6AAyL3BgK
-         JS0w==
-X-Forwarded-Encrypted: i=1; AJvYcCW8kk7/eQE+L4J0J4+Pjnq5XqYkFwzS4C5W2W955jS1keOPjgcQ0B5rW8j9nooQ3DDs510h9RTv/gcA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yykos537JtM58BdYLNutVLzPsExAWL7DSOmiqGLIGhgpSzXgG/2
-	VyqpyAwC9IuQAHtRVdxVt1C9quG9OhEilGvnznj0+Mui8jSn5CbP7JMn/RROXStsrL5CLVnjzSV
-	0BSLZcCw1Olc+YFKo4nL4XRodbFL4mo9uIrVleH7rBw==
-X-Gm-Gg: ASbGncsdZljtCYHPbAlMCaQOUgwBqjaMZe/YnTkB2j41kxwBgT5ib8oFCPJszMY6oBG
-	YMbxKPYVF8uyDZrGRkqjyom/IraqEGXASA6e3qQ5QHVMAe9ScH//IenVd7tyo8oKOKpnfj21yVt
-	C5HozJFcs2UNmx8sVov2iJidVlvBqw9MKWWWopXPVxJTQL95HyjbWhouEJAAPl9glwbvsn/6b9N
-	QsX4njWGnQkgVbx74QnGS95UnfdKmarr8ph3FZrcbPJpe9hrVJmPEgDCDoXjU0bhfHHfkFw0s2Y
-	1Vor5xiSJEXS42e6KA==
-X-Google-Smtp-Source: AGHT+IHWP5Cbc3G4W0Ik0NLLQcf3Rmww0dInCJA9bBcxiEAnG512YgHlmnNkFU3hoCfwOl86Kin1pgVlI3IyVxMDBkU=
-X-Received: by 2002:a05:620a:7019:b0:829:fa5d:6f0d with SMTP id
- af79cd13be357-8a8efb03ddfmr306069985a.82.1761735674490; Wed, 29 Oct 2025
- 04:01:14 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761735988; x=1762340788;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wq8ujO9Dpm/7YPTf3iw45Jy/+tYmVu6IfrY/4dh0q7w=;
+        b=c+Is00l8XdD+Rs/KlZTBnM0HLC03cF2gozYDXxiVd/tzHQBtjAH0NSV+SpamFFAG4i
+         uwfkgMMWSFLh4jpwxbEYad37oLWZw2N7uEZVJ/9OWV1TKilN8qU079LulocI7CLNOKEP
+         x5MMwS9mnl8/YEFM1E8x19w7ndjUBBD4BiehSeh0debOAeAAdInFUirWSrBHFdWvO2KC
+         bbOhu5zph+oOsjQ0l2nnJX3a6lpHTo/lAOD9t3W1hYvlLO9dLFV5u+aFfrszcdMnffyC
+         JWYvK/gq/+hfyAG6k8Lsnq9WF79Mu8vCvVlNrXaWU5VKl/eVcei3Qz79dG77Svl+SDMX
+         xDQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXPajMFEixMoD91da/yc3m9G/lW5PaRReLWzPLXPSrKiwlAbpTfhhtw0BDgdDmBANJ/J/I6Grb77cPY@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKjKEtZXLtLt0Ch8nEEiFSrTlIVfLR3Bo21gLd61C+6DoqsGhA
+	ZrjR3HkGvcmeMH6iQtXhtWJHGovVrBw2AwAbchJnXQs7IIreG8WmDxRCqn4E6giHGnG4Nx/LBpq
+	AuVZ314Vx87UWxjlvjqLvPhR8U1dFQl0/chTeCT0BwgzNfGL6uEPXlAiXUPrJaOc=
+X-Gm-Gg: ASbGncvwmeNGjy6uf6nAVFiXmb2geirN4basJl8uD6vUazcpmgUZbpHgwU0t9+bAVms
+	+ydejacEnxig5lmnhDtYr/DOTq4BpcdhUeDThpWkxOmXkNjaY459bUEf7WH5cOU/aE0QQB0YwU6
+	6qGX2CFUZU0f/gG5hQL4ZPVvKzcF2CZgOi1QgyF20Sf0/JPzonjlRo4bxLjHkUGEYNBROnz66nM
+	TpVg5XXGlV7Vc3QhNSZb5QapISAwEEllk9M3n77G94wsX+xbJkfHddAJ6nuASKv6csWU6pmuyH5
+	VAa5f/Pztmrk6t7Pd1mLabqtz9G5KmxrzcoNV4dn3lO5fRvnsdD6QWJ2JyzMJfo6XEDTmnEDVMh
+	gtqtXcyCdvnDagdPj9rtiZb5IydLN7hih+VPwFLXpmWMzbfF8
+X-Received: by 2002:a05:6000:2882:b0:427:e1bf:13db with SMTP id ffacd0b85a97d-429aefd0840mr1957005f8f.54.1761735987800;
+        Wed, 29 Oct 2025 04:06:27 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHB8RsWZ0SjBkvUi9VbRgSefrwznyNGIlSzLxxkHxgmXUspqFq3z5NvztJjJO8HtqyDc5C8pg==
+X-Received: by 2002:a05:6000:2882:b0:427:e1bf:13db with SMTP id ffacd0b85a97d-429aefd0840mr1956977f8f.54.1761735987352;
+        Wed, 29 Oct 2025 04:06:27 -0700 (PDT)
+Received: from lbulwahn-thinkpadx1carbongen12.rmtde.csb ([2a02:810d:7e01:ef00:ff56:9b88:c93b:ed43])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429952ca979sm26665735f8f.14.2025.10.29.04.06.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Oct 2025 04:06:26 -0700 (PDT)
+From: Lukas Bulwahn <lbulwahn@redhat.com>
+X-Google-Original-From: Lukas Bulwahn <lukas.bulwahn@redhat.com>
+To: Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
+	Houlong Wei <houlong.wei@mediatek.com>,
+	Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	kernel-janitors@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Lukas Bulwahn <lukas.bulwahn@redhat.com>
+Subject: [PATCH] MAINTAINERS: adjust file entry in MEDIATEK MDP DRIVER
+Date: Wed, 29 Oct 2025 12:06:23 +0100
+Message-ID: <20251029110623.96661-1-lukas.bulwahn@redhat.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251027-cpu_cluster_component_pm-v1-0-31355ac588c2@oss.qualcomm.com>
-In-Reply-To: <20251027-cpu_cluster_component_pm-v1-0-31355ac588c2@oss.qualcomm.com>
-From: Mike Leach <mike.leach@linaro.org>
-Date: Wed, 29 Oct 2025 11:01:03 +0000
-X-Gm-Features: AWmQ_bmBZ4u6Nr5AkhU0uSKV2P-I149L6WKOoDdLwfOOqdcc5hyzFz1zWOkxIwc
-Message-ID: <CAJ9a7VipQh=y0o+6k=fLMMK408E5eGD6vhY2TKBMm+q63NUiWA@mail.gmail.com>
-Subject: Re: [PATCH 00/12] coresight: Add CPU cluster funnel/replicator/tmc support
-To: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, James Clark <james.clark@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Leo Yan <leo.yan@linux.dev>, 
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, kernel@oss.qualcomm.com, 
-	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, Jie Gan <jie.gan@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi,
+From: Lukas Bulwahn <lukas.bulwahn@redhat.com>
 
-This entire set seems to initially check the generic power domain for
-a list of associated CPUs, then check CPU state for all other
-operations.
+Commit 169ac4bc5bc4 ("dt-bindings: media: Convert MediaTek mt8173-mdp
+bindings to DT schema") renames mediatek-mdp.txt to
+mediatek,mt8173-mdp.yaml as part of this dt-binding conversion, but misses
+to adjust the file entry in MEDIATEK MDP DRIVER.
 
-Why not simply use the generic power domain state itself, along with
-the power up / down notifiers to determine if the registers are safe
-to access? If the genpd is powered up then the registers must be safe
-to access?
+Adjust the file entry after the conversion.
 
-Regards
+Signed-off-by: Lukas Bulwahn <lukas.bulwahn@redhat.com>
+---
+ MAINTAINERS | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Mike
+diff --git a/MAINTAINERS b/MAINTAINERS
+index e428ec79dd24..c094b2fef0fc 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -15881,7 +15881,7 @@ M:	Minghsiu Tsai <minghsiu.tsai@mediatek.com>
+ M:	Houlong Wei <houlong.wei@mediatek.com>
+ M:	Andrew-CT Chen <andrew-ct.chen@mediatek.com>
+ S:	Supported
+-F:	Documentation/devicetree/bindings/media/mediatek-mdp.txt
++F:	Documentation/devicetree/bindings/media/mediatek,mt8173-mdp.yaml
+ F:	drivers/media/platform/mediatek/mdp/
+ F:	drivers/media/platform/mediatek/vpu/
+ 
+-- 
+2.51.0
 
-On Tue, 28 Oct 2025 at 06:28, Yuanfang Zhang
-<yuanfang.zhang@oss.qualcomm.com> wrote:
->
-> This patch series introduces support for CPU cluster local CoreSight comp=
-onents,
-> including funnel, replicator, and TMC, which reside inside CPU cluster
-> power domains. These components require special handling due to power
-> domain constraints.
->
-> Unlike system-level CoreSight devices, CPU cluster local components share=
- the
-> power domain of the CPU cluster. When the cluster enters low-power mode (=
-LPM),
-> the registers of these components become inaccessible. Importantly, `pm_r=
-untime_get`
-> calls alone are insufficient to bring the CPU cluster out of LPM, making
-> standard register access unreliable in such cases.
->
-> To address this, the series introduces:
-> - Device tree bindings for CPU cluster local funnel, replicator, and TMC.
-> - Introduce a cpumask to record the CPUs belonging to the cluster where t=
-he
->   cpu cluster local component resides.
-> - Safe register access via smp_call_function_single() on CPUs within the
->   associated cpumask, ensuring the cluster is power-resident during acces=
-s.
-> - Delayed probe support for CPU cluster local components when all CPUs of
->   this CPU cluster are offline, re-probe the component when any CPU in th=
-e
->   cluster comes online.
-> - Introduce `cs_mode` to link enable interfaces to avoid the use
->   smp_call_function_single() under perf mode.
->
-> Patch summary:
-> Patch 1: Adds device tree bindings for CPU cluster funnel/replicator/TMC =
-devices.
-> Patches 2=E2=80=933: Add support for CPU cluster funnel.
-> Patches 4-6: Add support for CPU cluster replicator.
-> Patches 7-10: Add support for CPU cluster TMC.
-> Patch 11: Add 'cs_mode' to link enable functions.
-> Patches 12-13: Add Coresight nodes for APSS debug block for x1e80100 and
-> fix build issue.
->
-> Verification:
->
-> This series has been verified on sm8750.
->
-> Test steps for delay probe:
->
-> 1. limit the system to enable at most 6 CPU cores during boot.
-> 2. echo 1 >/sys/bus/cpu/devices/cpu6/online.
-> 3. check whether ETM6 and ETM7 have been probed.
->
-> Test steps for sysfs mode:
->
-> echo 1 >/sys/bus/coresight/devices/tmc_etf0/enable_sink
-> echo 1 >/sys/bus/coresight/devices/etm0/enable_source
-> echo 1 >/sys/bus/coresight/devices/etm6/enable_source
-> echo 0 >/sys/bus/coresight/devices/etm0/enable_source
-> echo 0 >/sys/bus/coresight/devicse/etm6/enable_source
-> echo 0 >/sys/bus/coresight/devices/tmc_etf0/enable_sink
->
-> echo 1 >/sys/bus/coresight/devices/tmc_etf1/enable_sink
-> echo 1 >/sys/bus/coresight/devcies/etm0/enable_source
-> cat /dev/tmc_etf1 >/tmp/etf1.bin
-> echo 0 >/sys/bus/coresight/devices/etm0/enable_source
-> echo 0 >/sys/bus/coresight/devices/tmc_etf1/enable_sink
->
-> echo 1 >/sys/bus/coresight/devices/tmc_etf2/enable_sink
-> echo 1 >/sys/bus/coresight/devices/etm6/enable_source
-> cat /dev/tmc_etf2 >/tmp/etf2.bin
-> echo 0 >/sys/bus/coresight/devices/etm6/enable_source
-> echo 0 >/sys/bus/coresight/devices/tmc_etf2/enable_sink
->
-> Test steps for sysfs node:
->
-> cat /sys/bus/coresight/devices/tmc_etf*/mgmt/*
->
-> cat /sys/bus/coresight/devices/funnel*/funnel_ctrl
->
-> cat /sys/bus/coresight/devices/replicator*/mgmt/*
->
-> Test steps for perf mode:
->
-> perf record -a -e cs_etm//k -- sleep 5
->
-> Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
-> ---
-> Yuanfang Zhang (12):
->       dt-bindings: arm: coresight: Add cpu cluster tmc/funnel/replicator =
-support
->       coresight-funnel: Add support for CPU cluster funnel
->       coresight-funnel: Handle delay probe for CPU cluster funnel
->       coresight-replicator: Add support for CPU cluster replicator
->       coresight-replicator: Handle delayed probe for CPU cluster replicat=
-or
->       coresight-replicator: Update mgmt_attrs for CPU cluster replicator =
-compatibility
->       coresight-tmc: Add support for CPU cluster ETF and refactor probe f=
-low
->       coresight-tmc-etf: Refactor enable function for CPU cluster ETF sup=
-port
->       coresight-tmc: Update tmc_mgmt_attrs for CPU cluster TMC compatibil=
-ity
->       coresight-tmc: Handle delayed probe for CPU cluster TMC
->       coresight: add 'cs_mode' to link enable functions
->       arm64: dts: qcom: x1e80100: add Coresight nodes for APSS debug bloc=
-k
->
->  .../bindings/arm/arm,coresight-dynamic-funnel.yaml |  23 +-
->  .../arm/arm,coresight-dynamic-replicator.yaml      |  22 +-
->  .../devicetree/bindings/arm/arm,coresight-tmc.yaml |  22 +-
->  arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 885 +++++++++++++++=
-++++++
->  arch/arm64/boot/dts/qcom/x1p42100.dtsi             |  12 +
->  drivers/hwtracing/coresight/coresight-core.c       |   7 +-
->  drivers/hwtracing/coresight/coresight-funnel.c     | 260 +++++-
->  drivers/hwtracing/coresight/coresight-replicator.c | 343 +++++++-
->  drivers/hwtracing/coresight/coresight-tmc-core.c   | 396 +++++++--
->  drivers/hwtracing/coresight/coresight-tmc-etf.c    | 105 ++-
->  drivers/hwtracing/coresight/coresight-tmc.h        |  10 +
->  drivers/hwtracing/coresight/coresight-tnoc.c       |   3 +-
->  drivers/hwtracing/coresight/coresight-tpda.c       |   3 +-
->  include/linux/coresight.h                          |   3 +-
->  14 files changed, 1912 insertions(+), 182 deletions(-)
-> ---
-> base-commit: 01f96b812526a2c8dcd5c0e510dda37e09ec8bcd
-> change-id: 20251016-cpu_cluster_component_pm-ce518f510433
->
-> Best regards,
-> --
-> Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
->
-
-
---=20
-Mike Leach
-Principal Engineer, ARM Ltd.
-Manchester Design Centre. UK
 
