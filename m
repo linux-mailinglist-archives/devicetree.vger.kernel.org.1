@@ -1,890 +1,155 @@
-Return-Path: <devicetree+bounces-232717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A2C7C1AE64
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:48:02 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F57BC1AA30
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:23:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA0C86285B9
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:13:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DE505562BA6
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:15:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F8E132938F;
-	Wed, 29 Oct 2025 13:08:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30903341AAE;
+	Wed, 29 Oct 2025 13:09:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OXhMa8L8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wSayh/xO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89F00321F54;
-	Wed, 29 Oct 2025 13:08:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAD6319992C
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 13:09:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761743334; cv=none; b=HvZGhfnCOUcjpXU6lIS/OknU3sL/e67LCJJMYvEgkePs1cZCvKT0XImJpGDa0mpyQrIoklYKw7Or+LZlIsdaSDNDBmtuipjiSVcfXPliKDyixmXfBuF1z4A5KTUUvhnNjbiVVn06FEBYse5BYas29+cFdU6mrYOGaZxGn+6M15Y=
+	t=1761743353; cv=none; b=bgeZuT2mLA1DgaYr61/+pn/uXE7dxbC1pKkuckN27STBaH5AH/Sf/ZowC3qkpGY15yf3Y7PFx4RTNfSUdoW00aBare6q25cK0SvlDYpdHe97F+ih2fwWgmo2AlPjdfAaGqHN4p3AM2RCoyzC5pMwoc9grSgkZ46dkc+5QwYENZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761743334; c=relaxed/simple;
-	bh=Ol+VkDQkvKUx2fMe5qpVOKNuPNFpknlP8x3RhhyMb5Q=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=oKo8cJSLIhBuqyQBtCnncGcqalqyuhHCc0+LgZOkJfj34NHY0Xm7im364O0vn5uyfhw8FTwqD+yPKqPktVN60UQq/9x1KhEoqaUBcp3qaUjt4zH89tqX+irwtPW2LDluXqYAwbqVFP9o6AnGJUSQjwlfAiEiGcRg8R7t0g1Uy+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OXhMa8L8; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761743330; x=1793279330;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=Ol+VkDQkvKUx2fMe5qpVOKNuPNFpknlP8x3RhhyMb5Q=;
-  b=OXhMa8L8nd+MM4t80T9HOtrcCNKU51n+5xMuKcb3LykYOwphI5bEtgyc
-   WbGdpgsj+nrKkb09OqHA6o5v3ZZ66WTA808bivYp3qI0qKmlm/RzVF3BM
-   fEK/1mcXNAljpMBDHbBDPqfsNKB9vMgwbua5IaRUORYcyuswcLpEOdiO7
-   YTkoM5o1bXOwyZ5BZmv20qI1jNZwm7elwbLqo6okr5jx33lMekNXRV8Rt
-   VUOyW45C5jWb0tHzWl2UnruyY3s8db1mIP6kcKrOocJTZbxNLIw5oIuvb
-   DqjWz8+jNzk3itkNOLjfVTpR/uGwUMG/rFxfLcXeqc/oRiOuk35d5AEDy
-   g==;
-X-CSE-ConnectionGUID: Tyxs3e4/Q4utTCZfncL0qw==
-X-CSE-MsgGUID: ZhJy7Nm8TMyQLjf7JzWbcg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11596"; a="86491267"
-X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; 
-   d="scan'208";a="86491267"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Oct 2025 06:08:50 -0700
-X-CSE-ConnectionGUID: m081fLv4R0ubmw+1yOsPUQ==
-X-CSE-MsgGUID: BNW/DvpZQumlhfWsHbt0tA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; 
-   d="scan'208";a="190794097"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.68])
-  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Oct 2025 06:08:42 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Wed, 29 Oct 2025 15:08:38 +0200 (EET)
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-cc: Bjorn Helgaas <bhelgaas@google.com>, 
-    Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>, 
-    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, 
-    chaitanya chundru <quic_krichai@quicinc.com>, 
-    Bjorn Andersson <andersson@kernel.org>, 
-    Konrad Dybcio <konradybcio@kernel.org>, 
-    cros-qcom-dts-watchers@chromium.org, Jingoo Han <jingoohan1@gmail.com>, 
-    Bartosz Golaszewski <brgl@bgdev.pl>, 
-    =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kwilczynski@kernel.org>, 
-    Manivannan Sadhasivam <mani@kernel.org>, 
-    Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-    =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kwilczynski@kernel.org>, 
-    Manivannan Sadhasivam <mani@kernel.org>, quic_vbadigan@quicnic.com, 
-    amitk@kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-    LKML <linux-kernel@vger.kernel.org>, linux-arm-msm@vger.kernel.org, 
-    jorge.ramirez@oss.qualcomm.com, linux-arm-kernel@lists.infradead.org, 
-    Dmitry Baryshkov <lumag@kernel.org>, 
-    Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v7 8/8] PCI: pwrctrl: Add power control driver for
- tc9563
-In-Reply-To: <20251029-qps615_v4_1-v7-8-68426de5844a@oss.qualcomm.com>
-Message-ID: <80a8060d-7b8a-ab4d-f4e9-dceeed6b650d@linux.intel.com>
-References: <20251029-qps615_v4_1-v7-0-68426de5844a@oss.qualcomm.com> <20251029-qps615_v4_1-v7-8-68426de5844a@oss.qualcomm.com>
+	s=arc-20240116; t=1761743353; c=relaxed/simple;
+	bh=fyeNQjPbHba2zQACV1XwHgrmcj9u7mbSw/E0lwVQwQM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RhixaiLcbRq/kde905ffSnem2/KekVyJhlMVJ6QIG7Ic1/1o5ulsU53a6uTLt9bAy4RmHnIPFHUZbA7cRO+ScqBrO6U17+pyRKKu3P1iwGFGNQgYSqudDmySjRcGVuuXbDvwXLHlUvEbRttCQUSihGFxrDNw/oaoKdKsYr+ILNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wSayh/xO; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-592f098f7adso9277204e87.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 06:09:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761743347; x=1762348147; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cpAhRZEcISe/L4obGO6K/aBf0H3CSDRAh1WJSbvQ7BI=;
+        b=wSayh/xOnAy3dXi4ntAukqEAHjvP9ucW73ZNIZyHbw2cHQsLL1Szf+DGPNGYsn58u6
+         J0lwB0G/6WXg8TK1O1xAu8Frak99gd/QnbDsG5k9aR5NWpMNTDbuTL7oxRWZPWpRSOFx
+         xVvP+51Ubm/kNNqZYitAOZdba2XhAhmt56BKrWjh3RH4FNJICFR+nON5Pti46FzTT5X3
+         V25xSseaffbJRROIyrMREOd1AAqVkx51lYyblWTF4trc7wR1xEMOfoXA5rLlso0sYxnx
+         sgyo4EO5o2qzKCCrqcLaGoGl+Pw64TwIG1bOSVwYd4/QlwFZqZYmuo7DnuaZmUHhVtZr
+         9GHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761743347; x=1762348147;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cpAhRZEcISe/L4obGO6K/aBf0H3CSDRAh1WJSbvQ7BI=;
+        b=bzgyt7gekTiuJ46TWVtAHwMW5ZbzYNQlymrGiI1qRiQnigGEza8czEn22qGVtfZ+DX
+         Ps8CnYRIri1D6IQWP8AM3PO/yDBnoFIB+1BXRuYADPYX/giPtqQ/Vjo/Sy/X6Sp1f1im
+         07MYzlGtEEHii/bGw7PIaOoWIa0VJBdgxQwrqpVrBeyevQmoKZhzXOc6jW4aMgF51xdN
+         2Fh4EraavriDZVTx1TW0Q3eCnnQw0qhQ+FRMoCmiB5d/NdhXQ4GnPJx+J2rmdmKpnD8Q
+         OejqPSW6zUfDojw91OEob/Qfn4N8NN2YFW2n87fbmGATidtzllNSLfEtuTcBjmhYrr2s
+         YxJg==
+X-Forwarded-Encrypted: i=1; AJvYcCWED81PPrgIYPWVFSPzUz1yBrmeDbtVjFdcGFbum2GDirJsLWRee7YuiJ+INgQQZjxbQy0TjkatKTvW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzc+xAilcb2kCW4dSh6kWdgl7R8LyEVQtXFe0eJBfKL/udGx1tu
+	rr+6BSYwFSIUM+O3rTVsj2jq3nmxgCafsj2UT7RktDwRMkd8LVrth5RAjZeBgX++B+9BFzWrI0G
+	h/K0GH24cD8/xfd1Dk9/lQFI2lfiNf2QQU8KEBCKb+A==
+X-Gm-Gg: ASbGncvixAB12ATvzzT+E87z2yzCPlYzMXyD+WkpdTukc1Zzw149sqhr8Qf0PakKA9F
+	QNM2ZLxX1k3I0I5L/ZczgWrCSehxk72PEO6W4S9f7O+OfRLDZya/FTW9LsXebCHwbmr8dxjpdVN
+	V80ylfabTK8k6eyn+s3Ls3Kk2Bggx58agWBMaiAZNiTwAJk72YE9BTDqrU/ODgaTsy8N516CU/k
+	VEAbo/ItAWItacHERqkrZ29e7w0jyxSyk3TiB5AZL9ma95dbgLHr0JnxNy/
+X-Google-Smtp-Source: AGHT+IHoNXhvs7nAEQT1Pr7YoG6bCNTomzDjqEik5GRK5GTNnbmdXX4kn01zdcQcoosBSkAxyYQ6vANHvlPp3vj1L2g=
+X-Received: by 2002:a05:6512:3a8a:b0:592:f449:cbae with SMTP id
+ 2adb3069b0e04-594128617a3mr1173473e87.11.1761743347041; Wed, 29 Oct 2025
+ 06:09:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+References: <cover.1761564043.git.mazziesaccount@gmail.com>
+ <a5957c4f83724d4f32527fb892fc340af4eeddde.1761564043.git.mazziesaccount@gmail.com>
+ <CACRpkdYEUdJRvNPKhxx7orYHH3OE6BXXjrG9JVJo5MDHGKE88A@mail.gmail.com> <8b5dbbf6-bbde-4015-b0d1-12d6ec770ceb@gmail.com>
+In-Reply-To: <8b5dbbf6-bbde-4015-b0d1-12d6ec770ceb@gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 29 Oct 2025 14:08:55 +0100
+X-Gm-Features: AWmQ_bmctKf4r03BFEQZEB7--T8kdCIHNsOEFNutvbq6JrwVjRi4Ptn1KMtyXrQ
+Message-ID: <CACRpkdaK52wY7MYhnqCqzOAFVu2V=NejDTjAAhkxhf9rmrV8iA@mail.gmail.com>
+Subject: Re: [PATCH v2 04/15] dt-bindings: mfd: ROHM BD72720
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lee Jones <lee@kernel.org>, 
+	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sebastian Reichel <sre@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Andreas Kemnade <andreas@kemnade.info>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 29 Oct 2025, Krishna Chaitanya Chundru wrote:
+On Wed, Oct 29, 2025 at 1:30=E2=80=AFPM Matti Vaittinen
+<mazziesaccount@gmail.com> wrote:
+> On 28/10/2025 00:42, Linus Walleij wrote:
+> > Hi Matti,
+> >
+> > thanks for your patch!
+> >
+> > On Mon, Oct 27, 2025 at 12:45=E2=80=AFPM Matti Vaittinen
+> > <mazziesaccount@gmail.com> wrote:
+> >
+> >> +  rohm,clkout-open-drain:
+> >> +    description: clk32kout mode. Set to 1 for "open-drain" or 0 for "=
+cmos".
+> >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >> +    minimum: 0
+> >> +    maximum: 1
+> >
+> > I think CMOS is the same as "push-pull" ( I could be wrong, but I think=
+ I've
+> > seen that before) so I would probably try to use the pin config standar=
+d
+> > names as strings here but I'm not sure.
+> >
+> > rohm,clkout-bias-open-drain;
+> > rohm,clkout-bias-push-pull;
+> >
+> > Mutually exclusive.
+> >
+> > Or maybe use the pattern from rohm,pin-dvs0
+> > with string enumerators?
+> >
+> > rohm,clkout-bias =3D "open-drain";
+> > rohm,clkout-bias =3D "push-pull";
+> >
+>
+> Hmm. I kind of agree with you. Still, the way it was done in this patch
+> is used by the other existing ROHM PMICs (bd71815, bd71828, bd71879). I
+> am kind of reluctant to support another way in the same driver - and I
+> am also reluctant to change the existing bindings as that sounds a bit
+> like asking for a nose-bleed :) (I've in the past worked with some
+> devices which didn't update the device-trees when kernel was updated...)
+>
+> Do you think you could live with using this existing convention? :)
 
-> TC9563 is a PCIe switch which has one upstream and three downstream
-> ports. To one of the downstream ports integrated ethernet MAC is connected
-> as endpoint device. Other two downstream ports are supposed to connect to
-> external device. One Host can connect to TC9563 by upstream port. TC9563
-> switch needs to be configured after powering on and before the PCIe link
-> was up.
-> 
-> The PCIe controller driver already enables link training at the host side
-> even before this driver probe happens, due to this when driver enables
-> power to the switch it participates in the link training and PCIe link
-> may come up before configuring the switch through I2C. Once the link is
-> up the configuration done through I2C will not have any effect. To prevent
-> the host from participating in link training, disable link training on the
-> host side to ensure the link does not come up before the switch is
-> configured via I2C.
-> 
-> Based on dt property and type of the port, tc9563 is configured through
-> I2C.
-> 
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
->  drivers/pci/pwrctrl/Kconfig              |  13 +
->  drivers/pci/pwrctrl/Makefile             |   2 +
->  drivers/pci/pwrctrl/pci-pwrctrl-tc9563.c | 639 +++++++++++++++++++++++++++++++
->  3 files changed, 654 insertions(+)
-> 
-> diff --git a/drivers/pci/pwrctrl/Kconfig b/drivers/pci/pwrctrl/Kconfig
-> index 6956c18548114ce12247b560f1ef159eb7e90b10..de8632549f88d5171fcad9879dfeb6250180b060 100644
-> --- a/drivers/pci/pwrctrl/Kconfig
-> +++ b/drivers/pci/pwrctrl/Kconfig
-> @@ -22,6 +22,19 @@ config PCI_PWRCTRL_SLOT
->  	  PCI slots. The voltage regulators powering the rails of the PCI slots
->  	  are expected to be defined in the devicetree node of the PCI bridge.
->  
-> +config PCI_PWRCTRL_TC9563
-> +	tristate "PCI Power Control driver for TC9563 PCIe switch"
-> +	select PCI_PWRCTRL
-> +	help
-> +	  Say Y here to enable the PCI Power Control driver of TC9563 PCIe
-> +	  switch.
-> +
-> +	  This driver enables power and configures the TC9563 PCIe switch
-> +	  through i2c. TC9563 is a PCIe switch which has one upstream and three
-> +	  downstream ports. To one of the downstream ports integrated ethernet
-> +	  MAC is connected as endpoint device. Other two downstream ports are
-> +	  supposed to connect to external device.
-> +
->  # deprecated
->  config HAVE_PWRCTL
->  	bool
-> diff --git a/drivers/pci/pwrctrl/Makefile b/drivers/pci/pwrctrl/Makefile
-> index a4e5808d7850ceb0ca272731e5539e1dfc564e43..13b02282106c2bdbf884f487534f7466047c7fcf 100644
-> --- a/drivers/pci/pwrctrl/Makefile
-> +++ b/drivers/pci/pwrctrl/Makefile
-> @@ -7,3 +7,5 @@ obj-$(CONFIG_PCI_PWRCTRL_PWRSEQ)	+= pci-pwrctrl-pwrseq.o
->  
->  obj-$(CONFIG_PCI_PWRCTRL_SLOT)		+= pci-pwrctrl-slot.o
->  pci-pwrctrl-slot-y			:= slot.o
-> +
-> +obj-$(CONFIG_PCI_PWRCTRL_TC9563)	+= pci-pwrctrl-tc9563.o
-> diff --git a/drivers/pci/pwrctrl/pci-pwrctrl-tc9563.c b/drivers/pci/pwrctrl/pci-pwrctrl-tc9563.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..2f09931ae671eac16c33a78dfd541fba5dfa446b
-> --- /dev/null
-> +++ b/drivers/pci/pwrctrl/pci-pwrctrl-tc9563.c
-> @@ -0,0 +1,639 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/delay.h>
-> +#include <linux/device.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/i2c.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/pci.h>
-> +#include <linux/pci-pwrctrl.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/string.h>
-> +#include <linux/types.h>
-> +#include <linux/unaligned.h>
-> +
-> +#include "../pci.h"
-> +
-> +#define TC9563_GPIO_CONFIG		0x801208
-> +#define TC9563_RESET_GPIO		0x801210
-> +
-> +#define TC9563_PORT_L0S_DELAY		0x82496c
-> +#define TC9563_PORT_L1_DELAY		0x824970
-> +
-> +#define TC9563_EMBEDDED_ETH_DELAY	0x8200d8
-> +#define TC9563_ETH_L1_DELAY_MASK	GENMASK(27, 18)
+Yeah if there are precedents, either we can reuse that or we need to
+change them all, and that invariably involves deprecation and re-implementi=
+ng
+the parsing in several drivers in that case, which is annoying and
+takes time.
 
-Add include.
+It's fine with me to keep like this.
 
-> +#define TC9563_ETH_L1_DELAY_VALUE(x)	FIELD_PREP(TC9563_ETH_L1_DELAY_MASK, x)
-> +#define TC9563_ETH_L0S_DELAY_MASK	GENMASK(17, 13)
-> +#define TC9563_ETH_L0S_DELAY_VALUE(x)	FIELD_PREP(TC9563_ETH_L0S_DELAY_MASK, x)
-> +
-> +#define TC9563_NFTS_2_5_GT		0x824978
-> +#define TC9563_NFTS_5_GT		0x82497c
-> +
-> +#define TC9563_PORT_LANE_ACCESS_ENABLE	0x828000
-> +
-> +#define TC9563_PHY_RATE_CHANGE_OVERRIDE	0x828040
-> +#define TC9563_PHY_RATE_CHANGE		0x828050
-> +
-> +#define TC9563_TX_MARGIN		0x828234
-> +
-> +#define TC9563_DFE_ENABLE		0x828a04
-> +#define TC9563_DFE_EQ0_MODE		0x828a08
-> +#define TC9563_DFE_EQ1_MODE		0x828a0c
-> +#define TC9563_DFE_EQ2_MODE		0x828a14
-> +#define TC9563_DFE_PD_MASK		0x828254
-> +
-> +#define TC9563_PORT_SELECT		0x82c02c
-> +#define TC9563_PORT_ACCESS_ENABLE	0x82c030
-> +
-> +#define TC9563_POWER_CONTROL		0x82b09c
-> +#define TC9563_POWER_CONTROL_OVREN	0x82b2c8
-> +
-> +#define TC9563_GPIO_MASK		0xfffffff3
-> +
-> +#define TC9563_TX_MARGIN_MIN_VAL	400000
-
-If this is time related, add unit into the name.
-
-> +struct tc9563_pwrctrl_reg_setting {
-> +	unsigned int offset;
-> +	unsigned int val;
-> +};
-> +
-> +enum tc9563_pwrctrl_ports {
-> +	TC9563_USP,
-> +	TC9563_DSP1,
-> +	TC9563_DSP2,
-> +	TC9563_DSP3,
-> +	TC9563_ETHERNET,
-> +	TC9563_MAX
-> +};
-> +
-> +struct tc9563_pwrctrl_cfg {
-> +	u32 l0s_delay;
-> +	u32 l1_delay;
-> +	u32 tx_amp;
-> +	u8 nfts[2]; /* GEN1 & GEN2 */
-> +	bool disable_dfe;
-> +	bool disable_port;
-> +};
-> +
-> +#define TC9563_PWRCTL_MAX_SUPPLY	6
-> +
-> +static const char *const tc9563_supply_names[TC9563_PWRCTL_MAX_SUPPLY] = {
-> +	"vddc",
-> +	"vdd18",
-> +	"vdd09",
-> +	"vddio1",
-> +	"vddio2",
-> +	"vddio18",
-> +};
-> +
-> +struct tc9563_pwrctrl_ctx {
-> +	struct regulator_bulk_data supplies[TC9563_PWRCTL_MAX_SUPPLY];
-> +	struct tc9563_pwrctrl_cfg cfg[TC9563_MAX];
-> +	struct gpio_desc *reset_gpio;
-> +	struct i2c_adapter *adapter;
-> +	struct i2c_client *client;
-> +	struct pci_pwrctrl pwrctrl;
-> +};
-> +
-> +/*
-> + * downstream port power off sequence, hardcoding the address
-> + * as we don't know register names for these register offsets.
-> + */
-> +static const struct tc9563_pwrctrl_reg_setting common_pwroff_seq[] = {
-> +	{0x82900c, 0x1},
-> +	{0x829010, 0x1},
-> +	{0x829018, 0x0},
-> +	{0x829020, 0x1},
-> +	{0x82902c, 0x1},
-> +	{0x829030, 0x1},
-> +	{0x82903c, 0x1},
-> +	{0x829058, 0x0},
-> +	{0x82905c, 0x1},
-> +	{0x829060, 0x1},
-> +	{0x8290cc, 0x1},
-> +	{0x8290d0, 0x1},
-> +	{0x8290d8, 0x1},
-> +	{0x8290e0, 0x1},
-> +	{0x8290e8, 0x1},
-> +	{0x8290ec, 0x1},
-> +	{0x8290f4, 0x1},
-> +	{0x82910c, 0x1},
-> +	{0x829110, 0x1},
-> +	{0x829114, 0x1},
-> +};
-> +
-> +static const struct tc9563_pwrctrl_reg_setting dsp1_pwroff_seq[] = {
-> +	{TC9563_PORT_ACCESS_ENABLE, 0x2},
-> +	{TC9563_PORT_LANE_ACCESS_ENABLE, 0x3},
-> +	{TC9563_POWER_CONTROL, 0x014f4804},
-> +	{TC9563_POWER_CONTROL_OVREN, 0x1},
-> +	{TC9563_PORT_ACCESS_ENABLE, 0x4},
-> +};
-> +
-> +static const struct tc9563_pwrctrl_reg_setting dsp2_pwroff_seq[] = {
-> +	{TC9563_PORT_ACCESS_ENABLE, 0x8},
-> +	{TC9563_PORT_LANE_ACCESS_ENABLE, 0x1},
-> +	{TC9563_POWER_CONTROL, 0x014f4804},
-> +	{TC9563_POWER_CONTROL_OVREN, 0x1},
-> +	{TC9563_PORT_ACCESS_ENABLE, 0x8},
-> +};
-> +
-> +/*
-> + * Since all transfers are initiated by the probe, no locks are necessary,
-> + * as there are no concurrent calls.
-> + */
-> +static int tc9563_pwrctrl_i2c_write(struct i2c_client *client,
-> +				    u32 reg_addr, u32 reg_val)
-> +{
-> +	struct i2c_msg msg;
-> +	u8 msg_buf[7];
-> +	int ret;
-> +
-> +	msg.addr = client->addr;
-> +	msg.len = 7;
-> +	msg.flags = 0;
-> +
-> +	/* Big Endian for reg addr */
-> +	put_unaligned_be24(reg_addr, &msg_buf[0]);
-> +
-> +	/* Little Endian for reg val */
-> +	put_unaligned_le32(reg_val, &msg_buf[3]);
-> +
-> +	msg.buf = msg_buf;
-> +	ret = i2c_transfer(client->adapter, &msg, 1);
-> +	return ret == 1 ? 0 : ret;
-> +}
-> +
-> +static int tc9563_pwrctrl_i2c_read(struct i2c_client *client,
-> +				   u32 reg_addr, u32 *reg_val)
-> +{
-> +	struct i2c_msg msg[2];
-> +	u8 wr_data[3];
-> +	u32 rd_data;
-> +	int ret;
-> +
-> +	msg[0].addr = client->addr;
-> +	msg[0].len = 3;
-> +	msg[0].flags = 0;
-> +
-> +	/* Big Endian for reg addr */
-> +	put_unaligned_be24(reg_addr, &wr_data[0]);
-> +
-> +	msg[0].buf = wr_data;
-> +
-> +	msg[1].addr = client->addr;
-> +	msg[1].len = 4;
-> +	msg[1].flags = I2C_M_RD;
-> +
-> +	msg[1].buf = (u8 *)&rd_data;
-> +
-> +	ret = i2c_transfer(client->adapter, &msg[0], 2);
-> +	if (ret == 2) {
-> +		*reg_val = get_unaligned_le32(&rd_data);
-> +		return 0;
-> +	}
-> +
-> +	/* If only one message successfully completed, return -EIO */
-> +	return ret == 1 ? -EIO : ret;
-> +}
-> +
-> +static int tc9563_pwrctrl_i2c_bulk_write(struct i2c_client *client,
-> +					 const struct tc9563_pwrctrl_reg_setting *seq, int len)
-> +{
-> +	int ret, i;
-> +
-> +	for (i = 0; i < len; i++) {
-> +		ret = tc9563_pwrctrl_i2c_write(client, seq[i].offset, seq[i].val);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int tc9563_pwrctrl_disable_port(struct tc9563_pwrctrl_ctx *ctx,
-> +				       enum tc9563_pwrctrl_ports port)
-> +{
-> +	struct tc9563_pwrctrl_cfg *cfg  = &ctx->cfg[port];
-
-Extra space.
-
-> +	const struct tc9563_pwrctrl_reg_setting *seq;
-> +	int ret, len;
-> +
-> +	if (!cfg->disable_port)
-> +		return 0;
-> +
-> +	if (port == TC9563_DSP1) {
-> +		seq = dsp1_pwroff_seq;
-> +		len = ARRAY_SIZE(dsp1_pwroff_seq);
-> +	} else {
-> +		seq = dsp2_pwroff_seq;
-> +		len = ARRAY_SIZE(dsp2_pwroff_seq);
-> +	}
-> +
-> +	ret = tc9563_pwrctrl_i2c_bulk_write(ctx->client, seq, len);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return tc9563_pwrctrl_i2c_bulk_write(ctx->client,
-> +					    common_pwroff_seq, ARRAY_SIZE(common_pwroff_seq));
-> +}
-> +
-> +static int tc9563_pwrctrl_set_l0s_l1_entry_delay(struct tc9563_pwrctrl_ctx *ctx,
-> +						 enum tc9563_pwrctrl_ports port, bool is_l1, u32 ns)
-> +{
-> +	u32 rd_val, units;
-> +	int ret;
-> +
-> +	if (ns < 256)
-> +		return 0;
-> +
-> +	/* convert to units of 256ns */
-> +	units = ns / 256;
-
-Name this 256 with a define.
-
-> +
-> +	if (port == TC9563_ETHERNET) {
-> +		ret = tc9563_pwrctrl_i2c_read(ctx->client, TC9563_EMBEDDED_ETH_DELAY, &rd_val);
-> +		if (ret)
-> +			return ret;
-> +
-> +		if (is_l1)
-> +			rd_val = u32_replace_bits(rd_val, units, TC9563_ETH_L1_DELAY_MASK);
-> +		else
-> +			rd_val = u32_replace_bits(rd_val, units, TC9563_ETH_L0S_DELAY_MASK);
-
-Move the if into the last parameter using ? : operator like you seem to 
-already do below when writing.
-
-> +
-> +		return tc9563_pwrctrl_i2c_write(ctx->client, TC9563_EMBEDDED_ETH_DELAY, rd_val);
-> +	}
-> +
-> +	ret = tc9563_pwrctrl_i2c_write(ctx->client, TC9563_PORT_SELECT, BIT(port));
-> +	if (ret)
-> +		return ret;
-> +
-> +	return tc9563_pwrctrl_i2c_write(ctx->client,
-> +				       is_l1 ? TC9563_PORT_L1_DELAY : TC9563_PORT_L0S_DELAY, units);
-> +}
-> +
-> +static int tc9563_pwrctrl_set_tx_amplitude(struct tc9563_pwrctrl_ctx *ctx,
-> +					   enum tc9563_pwrctrl_ports port, u32 amp)
-> +{
-> +	int port_access;
-> +
-> +	if (amp < TC9563_TX_MARGIN_MIN_VAL)
-> +		return 0;
-> +
-> +	/* txmargin = (Amp(uV) - 400000) / 3125 */
-> +	amp = (amp - TC9563_TX_MARGIN_MIN_VAL) / 3125;
-> +
-> +	switch (port) {
-> +	case TC9563_USP:
-> +		port_access = 0x1;
-> +		break;
-> +	case TC9563_DSP1:
-> +		port_access = 0x2;
-> +		break;
-> +	case TC9563_DSP2:
-> +		port_access = 0x8;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	};
-> +
-> +	struct tc9563_pwrctrl_reg_setting tx_amp_seq[] = {
-> +		{TC9563_PORT_ACCESS_ENABLE, port_access},
-> +		{TC9563_PORT_LANE_ACCESS_ENABLE, 0x3},
-> +		{TC9563_TX_MARGIN, amp},
-> +	};
-> +
-> +	return tc9563_pwrctrl_i2c_bulk_write(ctx->client, tx_amp_seq, ARRAY_SIZE(tx_amp_seq));
-
-Include for ARRAY_SIZE().
-
-> +}
-> +
-> +static int tc9563_pwrctrl_disable_dfe(struct tc9563_pwrctrl_ctx *ctx,
-> +				      enum tc9563_pwrctrl_ports port)
-> +{
-> +	struct tc9563_pwrctrl_cfg *cfg  = &ctx->cfg[port];
-
-Extra space.
-
-> +	int port_access, lane_access = 0x3;
-> +	u32 phy_rate = 0x21;
-> +
-> +	if (!cfg->disable_dfe)
-> +		return 0;
-> +
-> +	switch (port) {
-> +	case TC9563_USP:
-> +		phy_rate = 0x1;
-> +		port_access = 0x1;
-> +		break;
-> +	case TC9563_DSP1:
-> +		port_access = 0x2;
-> +		break;
-> +	case TC9563_DSP2:
-> +		port_access = 0x8;
-> +		lane_access = 0x1;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	};
-
-You seem to have these kind of switches in a few places and some similar 
-if statements, maybe move all this hw info data into an array of structs 
-so you don't need to do switch/case everywhere.
-
-> +	struct tc9563_pwrctrl_reg_setting disable_dfe_seq[] = {
-> +		{TC9563_PORT_ACCESS_ENABLE, port_access},
-> +		{TC9563_PORT_LANE_ACCESS_ENABLE, lane_access},
-> +		{TC9563_DFE_ENABLE, 0x0},
-> +		{TC9563_DFE_EQ0_MODE, 0x411},
-> +		{TC9563_DFE_EQ1_MODE, 0x11},
-> +		{TC9563_DFE_EQ2_MODE, 0x11},
-> +		{TC9563_DFE_PD_MASK, 0x7},
-> +		{TC9563_PHY_RATE_CHANGE_OVERRIDE, 0x10},
-> +		{TC9563_PHY_RATE_CHANGE, phy_rate},
-> +		{TC9563_PHY_RATE_CHANGE, 0x0},
-> +		{TC9563_PHY_RATE_CHANGE_OVERRIDE, 0x0},
-> +	};
-> +
-> +	return tc9563_pwrctrl_i2c_bulk_write(ctx->client,
-> +					    disable_dfe_seq, ARRAY_SIZE(disable_dfe_seq));
-> +}
-> +
-> +static int tc9563_pwrctrl_set_nfts(struct tc9563_pwrctrl_ctx *ctx,
-> +				   enum tc9563_pwrctrl_ports port, u8 *nfts)
-> +{
-> +	struct tc9563_pwrctrl_reg_setting nfts_seq[] = {
-> +		{TC9563_NFTS_2_5_GT, nfts[0]},
-> +		{TC9563_NFTS_5_GT, nfts[1]},
-> +	};
-> +	int ret;
-> +
-> +	if (!nfts[0])
-> +		return 0;
-> +
-> +	ret =  tc9563_pwrctrl_i2c_write(ctx->client, TC9563_PORT_SELECT, BIT(port));
-> +	if (ret)
-> +		return ret;
-> +
-> +	return tc9563_pwrctrl_i2c_bulk_write(ctx->client, nfts_seq, ARRAY_SIZE(nfts_seq));
-> +}
-> +
-> +static int tc9563_pwrctrl_assert_deassert_reset(struct tc9563_pwrctrl_ctx *ctx, bool deassert)
-> +{
-> +	int ret, val;
-> +
-> +	ret = tc9563_pwrctrl_i2c_write(ctx->client, TC9563_GPIO_CONFIG, TC9563_GPIO_MASK);
-> +	if (ret)
-> +		return ret;
-> +
-> +	val = deassert ? 0xc : 0;
-
-Can this 0xc be named?
-
-Perhaps TC9563_GPIO_MASK could be constructed as inverse of it? (I'm not 
-sure if these those are connected but it looks suspiciously so).
-
-> +
-> +	return tc9563_pwrctrl_i2c_write(ctx->client, TC9563_RESET_GPIO, val);
-> +}
-> +
-> +static int tc9563_pwrctrl_parse_device_dt(struct tc9563_pwrctrl_ctx *ctx, struct device_node *node,
-> +					  enum tc9563_pwrctrl_ports port)
-> +{
-> +	struct tc9563_pwrctrl_cfg *cfg;
-> +	int ret;
-> +
-> +	cfg = &ctx->cfg[port];
-
-This is boilerplace, do it when declaring the variable.
-
-> +
-> +	/* Disable port if the status of the port is disabled. */
-> +	if (!of_device_is_available(node)) {
-> +		cfg->disable_port = true;
-> +		return 0;
-> +	};
-> +
-> +	ret = of_property_read_u32(node, "aspm-l0s-entry-delay-ns", &cfg->l0s_delay);
-> +	if (ret && ret != -EINVAL)
-> +		return ret;
-> +
-> +	ret = of_property_read_u32(node, "aspm-l1-entry-delay-ns", &cfg->l1_delay);
-> +	if (ret && ret != -EINVAL)
-> +		return ret;
-> +
-> +	ret = of_property_read_u32(node, "qcom,tx-amplitude-microvolt", &cfg->tx_amp);
-> +	if (ret && ret != -EINVAL)
-> +		return ret;
-> +
-> +	ret = of_property_read_u8_array(node, "n-fts", cfg->nfts, 2);
-
-2 -> ARRAY_SIZE().
-
-> +	if (ret && ret != -EINVAL)
-> +		return ret;
-> +
-> +	cfg->disable_dfe = of_property_read_bool(node, "qcom,no-dfe-support");
-> +
-> +	return 0;
-> +}
-> +
-> +static void tc9563_pwrctrl_power_off(struct tc9563_pwrctrl_ctx *ctx)
-> +{
-> +	gpiod_set_value(ctx->reset_gpio, 1);
-> +
-> +	regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-> +}
-> +
-> +static int tc9563_pwrctrl_bring_up(struct tc9563_pwrctrl_ctx *ctx)
-> +{
-> +	struct tc9563_pwrctrl_cfg *cfg;
-> +	int ret, i;
-> +
-> +	ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-> +	if (ret < 0)
-> +		return dev_err_probe(ctx->pwrctrl.dev, ret, "cannot enable regulators\n");
-> +
-> +	gpiod_set_value(ctx->reset_gpio, 0);
-> +
-> +	 /*
-> +	  * From TC9563 PORSYS rev 0.2, figure 1.1 POR boot sequence
-> +	  * wait for 10ms for the internal osc frequency to stabilize.
-> +	  */
-> +	fsleep(10000);
-
-Add define for it (with the unit in the name) and put comment next to that 
-define.
-
-
-(10 * USEC_PER_MSEC)
-
-> +
-> +	ret = tc9563_pwrctrl_assert_deassert_reset(ctx, false);
-> +	if (ret)
-> +		goto power_off;
-> +
-> +	for (i = 0; i < TC9563_MAX; i++) {
-> +		cfg = &ctx->cfg[i];
-> +		ret = tc9563_pwrctrl_disable_port(ctx, i);
-> +		if (ret) {
-> +			dev_err(ctx->pwrctrl.dev, "Disabling port failed\n");
-> +			goto power_off;
-> +		}
-> +
-> +		ret = tc9563_pwrctrl_set_l0s_l1_entry_delay(ctx, i, false, cfg->l0s_delay);
-> +		if (ret) {
-> +			dev_err(ctx->pwrctrl.dev, "Setting L0s entry delay failed\n");
-> +			goto power_off;
-> +		}
-> +
-> +		ret = tc9563_pwrctrl_set_l0s_l1_entry_delay(ctx, i, true, cfg->l1_delay);
-> +		if (ret) {
-> +			dev_err(ctx->pwrctrl.dev, "Setting L1 entry delay failed\n");
-> +			goto power_off;
-> +		}
-> +
-> +		ret = tc9563_pwrctrl_set_tx_amplitude(ctx, i, cfg->tx_amp);
-> +		if (ret) {
-> +			dev_err(ctx->pwrctrl.dev, "Setting Tx amplitude failed\n");
-> +			goto power_off;
-> +		}
-> +
-> +		ret = tc9563_pwrctrl_set_nfts(ctx, i, cfg->nfts);
-
-I wonder why you need to pass cfg-> variables to these functions (except 
-for the l0s/l1 variation) as the values is available through 
-ctx->cfg[port]->ntfs in the function itself.
-
-> +		if (ret) {
-> +			dev_err(ctx->pwrctrl.dev, "Setting N_FTS failed\n");
-> +			goto power_off;
-> +		}
-> +
-> +		ret = tc9563_pwrctrl_disable_dfe(ctx, i);
-> +		if (ret) {
-> +			dev_err(ctx->pwrctrl.dev, "Disabling DFE failed\n");
-> +			goto power_off;
-> +		}
-> +	}
-> +
-> +	ret = tc9563_pwrctrl_assert_deassert_reset(ctx, true);
-> +	if (!ret)
-> +		return 0;
-> +
-> +power_off:
-> +	tc9563_pwrctrl_power_off(ctx);
-> +	return ret;
-> +}
-> +
-> +static int tc9563_pwrctrl_probe(struct platform_device *pdev)
-> +{
-> +	struct pci_host_bridge *bridge = to_pci_host_bridge(pdev->dev.parent);
-> +	struct pci_bus *bus = bridge->bus;
-> +	struct device *dev = &pdev->dev;
-> +	enum tc9563_pwrctrl_ports port;
-> +	struct tc9563_pwrctrl_ctx *ctx;
-> +	struct device_node *i2c_node;
-> +	int ret, addr;
-> +
-> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-> +	if (!ctx)
-> +		return -ENOMEM;
-> +
-> +	ret = of_property_read_u32_index(pdev->dev.of_node, "i2c-parent", 1, &addr);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to read i2c-parent property\n");
-> +
-> +	i2c_node = of_parse_phandle(dev->of_node, "i2c-parent", 0);
-> +	ctx->adapter = of_find_i2c_adapter_by_node(i2c_node);
-> +	of_node_put(i2c_node);
-> +	if (!ctx->adapter)
-> +		return dev_err_probe(dev, -EPROBE_DEFER, "Failed to find I2C adapter\n");
-> +
-> +	ctx->client = i2c_new_dummy_device(ctx->adapter, addr);
-> +	if (IS_ERR(ctx->client)) {
-> +		dev_err(dev, "Failed to create I2C client\n");
-> +		i2c_put_adapter(ctx->adapter);
-> +		return PTR_ERR(ctx->client);
-> +	}
-> +
-> +	for (int i = 0; i < TC9563_PWRCTL_MAX_SUPPLY; i++)
-
-I'd prefer using ARRAY_SIZE() as you're iterating over an array here.
-
-> +		ctx->supplies[i].supply = tc9563_supply_names[i];
-> +
-> +	ret = devm_regulator_bulk_get(dev, TC9563_PWRCTL_MAX_SUPPLY, ctx->supplies);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret,
-> +			      "failed to get supply regulator\n");
-
-Fits to one line.
-
-> +		goto remove_i2c;
-> +	}
-> +
-> +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(ctx->reset_gpio)) {
-> +		ret = dev_err_probe(dev, PTR_ERR(ctx->reset_gpio), "failed to get reset GPIO\n");
-> +		goto remove_i2c;
-> +	}
-> +
-> +	pci_pwrctrl_init(&ctx->pwrctrl, dev);
-> +
-> +	port = TC9563_USP;
-> +	ret = tc9563_pwrctrl_parse_device_dt(ctx, pdev->dev.of_node, port);
-> +	if (ret) {
-> +		dev_err(dev, "failed to parse device tree properties: %d\n", ret);
-> +		goto remove_i2c;
-> +	}
-> +
-> +	/*
-> +	 * Downstream ports are always children of the upstream port.
-> +	 * The first node represents DSP1, the second node represents DSP2, and so on.
-> +	 */
-> +	for_each_child_of_node_scoped(pdev->dev.of_node, child) {
-> +		ret = tc9563_pwrctrl_parse_device_dt(ctx, child, port++);
-> +		if (ret)
-> +			break;
-> +		/* Embedded ethernet device are under DSP3 */
-> +		if (port == TC9563_DSP3)
-
-Add braces.
-
-I assume this check okay with the port being post-incremented? I'd prefer 
-doing this code like this:
-
-		port++;
-		/*
-		 * Downstream ports are always children of the upstream port.
-		 * The first node represents DSP1, the second node represents 
-		 * DSP2, and so on.
-		 */
-		ret = tc9563_pwrctrl_parse_device_dt(ctx, child, port - 1);
-		if (ret)
-			break;
-		/* Embedded ethernet device are under DSP3 */
-		if (port == TC9563_DSP3) {
-
-While this is functionally same as yours, the explicit "port - 1" makes 
-the difference between tc9563_pwrctrl_ports and DT indexing more obvious
-(the code doesn't look buggy on the first sight like it does with the 
-post-incrementing. I was sure the indexing is buggy until I read that 
-comment that was too far away from the line it was relevant to).
-
-> +			for_each_child_of_node_scoped(child, child1) {
-> +				ret = tc9563_pwrctrl_parse_device_dt(ctx, child1, port++);
-> +				if (ret)
-> +					break;
-> +			}
-> +	}
-> +	if (ret) {
-> +		dev_err(dev, "failed to parse device tree properties: %d\n", ret);
-> +		goto remove_i2c;
-> +	}
-> +
-> +	if (bridge->ops->assert_perst) {
-> +		ret = bridge->ops->assert_perst(bus, true);
-> +		if (ret)
-> +			goto remove_i2c;
-> +	}
-> +
-> +	ret = tc9563_pwrctrl_bring_up(ctx);
-> +	if (ret)
-> +		goto remove_i2c;
-> +
-> +	if (bridge->ops->assert_perst) {
-> +		ret = bridge->ops->assert_perst(bus, false);
-> +		if (ret)
-> +			goto power_off;
-> +	}
-> +
-> +	ret = devm_pci_pwrctrl_device_set_ready(dev, &ctx->pwrctrl);
-> +	if (ret)
-> +		goto power_off;
-> +
-> +	platform_set_drvdata(pdev, ctx);
-> +
-> +	return 0;
-> +
-> +power_off:
-> +	tc9563_pwrctrl_power_off(ctx);
-> +remove_i2c:
-> +	i2c_unregister_device(ctx->client);
-> +	i2c_put_adapter(ctx->adapter);
-> +	return ret;
-> +}
-> +
-> +static void tc9563_pwrctrl_remove(struct platform_device *pdev)
-> +{
-> +	struct tc9563_pwrctrl_ctx *ctx = platform_get_drvdata(pdev);
-> +
-> +	tc9563_pwrctrl_power_off(ctx);
-> +	i2c_unregister_device(ctx->client);
-> +	i2c_put_adapter(ctx->adapter);
-> +}
-> +
-> +static const struct of_device_id tc9563_pwrctrl_of_match[] = {
-> +	{ .compatible = "pci1179,0623"},
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, tc9563_pwrctrl_of_match);
-> +
-> +static struct platform_driver tc9563_pwrctrl_driver = {
-> +	.driver = {
-> +		.name = "pwrctrl-tc9563",
-> +		.of_match_table = tc9563_pwrctrl_of_match,
-> +		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-> +	},
-> +	.probe = tc9563_pwrctrl_probe,
-> +	.remove = tc9563_pwrctrl_remove,
-> +};
-> +module_platform_driver(tc9563_pwrctrl_driver);
-> +
-> +MODULE_AUTHOR("Krishna chaitanya chundru <quic_krichai@quicinc.com>");
-> +MODULE_DESCRIPTION("TC956x power control driver");
-> +MODULE_LICENSE("GPL");
-> 
-> 
-
--- 
- i.
-
+Yours,
+Linus Walleij
 
