@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-232482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 570C3C185E0
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 06:58:45 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A9F7C185F5
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 07:03:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 103FC3BF431
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 05:58:26 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8DDD434ECA1
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 06:03:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B57FE2F8BEE;
-	Wed, 29 Oct 2025 05:58:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB8CD2FB97A;
+	Wed, 29 Oct 2025 06:03:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eAJ/muu6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XVp8mbJ+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B18B2F83BB;
-	Wed, 29 Oct 2025 05:58:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEA25229B2E;
+	Wed, 29 Oct 2025 06:03:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761717505; cv=none; b=dVDDgpK4ZU626d3XpL96pMyiklWEOBK0g5u8Rb5Nb7PiWDQfyKGkEo0Wav+C8TnlVNqCOpMwlfHjsuzrOwRIzVfnXNfB1O8a9eCx1ZqR1lf0NCxEk5LZUVVJtrYOzNVBVa8XC+6frU17ylXoC0a5ZDXfT1/6ST12IY7eJSskT1g=
+	t=1761717785; cv=none; b=lWPj2iT2xVG9hfwKznvWqMMFbcZyl+QjwPLOO0KgjmHqbvnqruf4Db5A5BL62XqRqyCES8Y54KjztaVdwIykx0YbT8wzp0gaA4KFKxWwGHGfYJdNael8gNh6Q+KBC8NqOXGd8qrMgCzOqPHd9xgQRqo22B5VcdWBgqSJMooidJ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761717505; c=relaxed/simple;
-	bh=LsZ1vHE8LISoCJXup6m2y/jZ7lCTlE9JnkLZJ+nsGzs=;
+	s=arc-20240116; t=1761717785; c=relaxed/simple;
+	bh=YrHXSkSziP250cVRScq0phJVMi2r3oBtH0D/zUlpBuo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ez6PfHS2Je65K1IGcP3qa6+EFKJc/2VFXQG6UB2mxZlsJcxoHpNRBQUYTG1+VToP8clnCOiORH/wCPqmMs63T8Ebd1QoYUUGkEqvBG9lfa/LkglfyS2GDSxyZ7vG9K5Rk9omOUqkmsyokRhK8fu3M2yNJz60HvsfRWCaUCa0eTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eAJ/muu6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 761F6C4CEF7;
-	Wed, 29 Oct 2025 05:58:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tppksPYV6dUIjrIaWEOvHd8JKSz4XaBqTeEN0/IV6VNXiDqBaa7mQ0ZJ5tuFY/k+JdF16Is7K5NFjlUomN6Fgmy57NKt5+IPfBjCDEJjGZd9U/HrmqScbIpDn+fNV+SOtRumQlAy0BtoSF/VJKRwzOvVyQjjlOVzBxjF0HmXQjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XVp8mbJ+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04849C4CEF7;
+	Wed, 29 Oct 2025 06:03:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761717505;
-	bh=LsZ1vHE8LISoCJXup6m2y/jZ7lCTlE9JnkLZJ+nsGzs=;
+	s=k20201202; t=1761717785;
+	bh=YrHXSkSziP250cVRScq0phJVMi2r3oBtH0D/zUlpBuo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eAJ/muu6fYOzeweIFSbHTkQ+z16gj/rOD7Ap8GXMMI19Ct/8u40LmNL+9h4MAs6F4
-	 a1oJXoE31rZDuE5ZRKdV5X9rptMYNsOM1GxLQg6aPEdKxWoIxWtjkdWId7f6lYvCIl
-	 8lOwOzDGypOE4Qgkj3pPgLv8XRYy43c5xOo4J8wmZ00XpVkgtxSJxcz9zBOZxFRyki
-	 TPcdNOQTTIPbrWlmeU7nb4trAVv6JAN2mJ487gq2WD5BxSMmQjE330a30f/76Eeb1D
-	 dXeL8+okcXlUIlAYPDHnC12qHSkSL2yJ2Ijhr9Hc4HetXMBCfRuIsFCewHNBiqCqnh
-	 BAgq6ZXG7Jdtw==
-Date: Wed, 29 Oct 2025 06:58:22 +0100
+	b=XVp8mbJ+f1AtJM7ysqo48j/jMtEJGVLZ3OCElTVXnsOlhlWDFU29YM4/4SZjtN5r4
+	 T/Hj4DbRRVO71H4yIaZpgpNwoWEfN/MQ2lU2qflBqvePiFKnJruIcyqv73CxnglftJ
+	 y04Zkqi5qCXuxVoC6r4qDnl30bAij2NoXzmrgfkP+Xk9g4+m5hVebK540ljoAsf1GH
+	 bowdD/Ip6rq9Cbz6GcdbyRowL4Da3GTvNByAeyjaZfQl1ukT2IUofkigJCCfqlsx5J
+	 MRzttXvdsA5qjqrwiS6ECbL3RXL7RIAajDLtq3/jWOPUnjyoKmyqVZuBZuLhyJTk15
+	 Wa/8WDnbnb+gQ==
+Date: Wed, 29 Oct 2025 07:03:02 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Joshua Milas <josh.milas@gmail.com>
-Cc: tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, unicorn_wang@outlook.com, inochiama@gmail.com, 
-	paul.walmsley@sifive.com, samuel.holland@sifive.com, palmer@dabbelt.com, 
-	aou@eecs.berkeley.edu, alex@ghiti.fr, alexander.sverdlin@gmail.com, 
-	rabenda.cn@gmail.com, thomas.bonnefille@bootlin.com, chao.wei@sophgo.com, 
-	liujingqi@lanxincomputing.com, devicetree@vger.kernel.org, sophgo@lists.linux.dev, 
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 1/5] dt-bindings: soc: sophgo: add Milk-V Duo S board
- compatibles
-Message-ID: <20251029-nebulous-doberman-of-wholeness-0fd3a5@kuoka>
-References: <20251029001052.36774-1-josh.milas@gmail.com>
- <20251029001052.36774-2-josh.milas@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
+	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sebastian Reichel <sre@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Andreas Kemnade <andreas@kemnade.info>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org
+Subject: Re: [PATCH v2 02/15] dt-bindings: Add trickle-charge upper limit
+Message-ID: <20251029-adamant-mamba-of-patience-cddb65@kuoka>
+References: <cover.1761564043.git.mazziesaccount@gmail.com>
+ <b13b733e7e0fba05652f49f727412fed9e0ceb02.1761564043.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,23 +66,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251029001052.36774-2-josh.milas@gmail.com>
+In-Reply-To: <b13b733e7e0fba05652f49f727412fed9e0ceb02.1761564043.git.mazziesaccount@gmail.com>
 
-On Tue, Oct 28, 2025 at 08:10:48PM -0400, Joshua Milas wrote:
-> Document the compatible strings for the Milk-V Duo S board [1]
-> which uses the SOPHGO SG2000 SoC [2].
+On Mon, Oct 27, 2025 at 01:45:05PM +0200, Matti Vaittinen wrote:
+> Some of the chargers for lithium-ion batteries use a trickle-charging as
+> a first charging phase for very empty batteries, to "wake-up" the battery.
+
+In the few cases I was dealing with charging circuits, trickle charging
+was used in context of top-off charging, so when battery is 100%. It's
+also documented at Wiki like that:
+https://en.wikipedia.org/wiki/Trickle_charging
+
+> Trickle-charging is a low current, constant current phase. After the
+> voltage of the very empty battery has reached an upper limit for
+> trickle charging, the pre-charge phase is started with a higher current.
 > 
-> Link: https://milkv.io/duo-s [1]
-> Link: https://en.sophgo.com/sophon-u/product/introduce/sg200x.html [2]
+> Allow defining the upper limit for trickle charging voltage, after which
+> the charging should be changed to the pre-charging.
 
-Drop second link, not relevant. You are not adding new SoC here, are
-you?
+pre-charging is the trickle charging, no? Or you want to say that
+trickle-charging is pre-pre-charging? But then what is pre-charging in
+this binding?
 
 > 
-> Signed-off-by: Joshua Milas <josh.milas@gmail.com>
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> 
 > ---
+> Revision history:
+>  RFCv1 =>:
+>  - No changes
+> ---
+>  Documentation/devicetree/bindings/power/supply/battery.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/supply/battery.yaml b/Documentation/devicetree/bindings/power/supply/battery.yaml
+> index 491488e7b970..66bed24b3dee 100644
+> --- a/Documentation/devicetree/bindings/power/supply/battery.yaml
+> +++ b/Documentation/devicetree/bindings/power/supply/battery.yaml
+> @@ -66,6 +66,9 @@ properties:
+>    trickle-charge-current-microamp:
+>      description: current for trickle-charge phase
+>  
+> +  tricklecharge-upper-limit-microvolt:
 
-No changes against v2? You received comments, didn't you?
+Please keep existing format, look three lines above. trickle-charge-....
+
+But I believe this is wrong. Trickle charging does not switch to
+anything more, there is no fast charging after trickle. You have some
+sort of pre-pre-charging, which is just pre-charging.
 
 Best regards,
 Krzysztof
