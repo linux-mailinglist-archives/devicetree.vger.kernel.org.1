@@ -1,192 +1,92 @@
-Return-Path: <devicetree+bounces-232947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EC03C1D3AB
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 21:38:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09C3EC1D3C4
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 21:40:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E9B183472FC
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 20:38:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 139C2189C831
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 20:40:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E165633B6FB;
-	Wed, 29 Oct 2025 20:38:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED64C35A94D;
+	Wed, 29 Oct 2025 20:39:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gtrEB2PS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t8syutju"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5B21286D7E
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 20:38:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7CB926D4F7;
+	Wed, 29 Oct 2025 20:39:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761770314; cv=none; b=GsO2lfJj7rwT4Hbm8YKJBfqlC27lAijRA4DBTfxIVk9hh2v7/9WHMecgcgbpHTtFOY1ISfPwLnsBlB7vpjiarHOhLgrtxXlB2SDAO1ZHvt3n1ZVjeKMMjha2/lKEa/W1CC4FUAX7ItL91C0i9EGv5hdQ2CGfedSw49RWAU2iV3o=
+	t=1761770390; cv=none; b=bN8FvPX1+6AANXGdpboBMC6wUP7/1ydcVJx5LRPyKRXKP5dZj1KLIKZUly7tM4tUqS3J+ZqCuXmvto7U1afCTrKtp6AK3RwLo9TujVID6PVjr25VFPx0hN35jFSby773ozbnFa827sGAGVffguj54alKyb7ThoLNMKiUogLEMx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761770314; c=relaxed/simple;
-	bh=Kz7/bK+GUbrD9ET+l0rtf7SVykQOK10O8UYp9EWIkfo=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=oFzkKXcQXkcMJ2O+SdM+PjeW4Z4vN72YjDplm2j+t9M8RM7YzcnYULuBr77cJrCs/0rBBgHeAwnKntlz6jg2FjTnOMpKjEEOVRgezUvZCf8d9yVMb8Mg1nBZsTD5KfiIxf3y0STnPaZDnZQNWHPWB81yWQG5PyjE1YtTNvYD5yQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gtrEB2PS; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3ed20bdfdffso236825f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 13:38:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761770311; x=1762375111; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QZZWPacVTome8i/td23ATqpr5fxPQl52SGeEOJvaFRk=;
-        b=gtrEB2PSAZGKthYwlOJExwwj0oQ3EFOqczjd8//SPQHliCx3njFFSqu0LZXBvrSi8+
-         wqMj+l1sttu47PzDCWNMjkmmd8s4tXFXo0fHlmsnheSjfLD/VFLd63lQ4yBIDFSmt8gq
-         NNUrUbOsB1uO3Dv4t/qgU3lyAa/xvYghqp2PvGu0HzXFHjaNNWQjtYhWsmLtpgj+Qra+
-         EbuIL8LiXLZMLMxTwy2DKKNWAWo752wsiOGnXRJ8fTEnUPTzJSAoO22J4JtNiYBTWa4j
-         J0mPQHXYE8wVpQ8D0oz46V1W28zgt7DMvhZJbmtburMXF0oXwFYh2FZHS7VjGN3ZKuAg
-         mANg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761770311; x=1762375111;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=QZZWPacVTome8i/td23ATqpr5fxPQl52SGeEOJvaFRk=;
-        b=ixt3DSPRNok/gPCoD0GaU4NqU73TVO8BjOuE5M4WFir6ZoqOHub8MZ9XtwGE6zMWEf
-         0unK4O7BaGLNUufVbgnIt8hKWeZheZ+8cDZ4PihoGj2jIIkbCwu0MvSIrQ7YbFeK/p+1
-         IYZRBhm9mAgFWiD1SVk8GOgYUsVstWm0LhQG5LtMsjOE2QfwX9fWm+nV51xVNBccGJRW
-         aVu4auQHboQQbpdzCZ+UUfvJzzhBLxXXX23wJ+eu7VNTWpxi5aPFZyLRk3AJfb09Ym31
-         Iuo2FTG1JLm6m4IS/nFrk1URbJcmUUv4mF4HdXowTayTMAsOZpstrpUCJTxh2vrnGGFg
-         P7+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVlZy7MnxfzCHEq4aiow3qoZL1IzB1CMnKyjMl/NKOp2vX/ISFjoyQDtlPK2obROOLqxiJly8Xyku0y@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7V/bGKqFOppsvzwc82Vqkg9/pZcLl8577lsoEdvF2NTD/ZfQw
-	LsX5mnejGy36Rhll4yHYiUb9WI20LnOkbAjEzwU9M8ZP/kTBwp26EzQXBOgnK6ZYCWY=
-X-Gm-Gg: ASbGncsImhEd8/Y+WRXoR+NxNBmEnCF8MGN2tj/BjuW2z+rAFqgvT4ck+YZLhk/iOBi
-	ASIPEFifW3QDKZvo9SizFW2pdecfzTtXDG1YHU0DJLYrMl2PgoFbpP002dAbWD3LaS6m1R6fEwd
-	5XnJwp7MUWLXGWvWEph+L3KpZ8zxJB8jPQF3vVI4mXG84Hn/iEQK0l/LEx8fikcUm236MTYky5f
-	BvWMq16YeUCAijFsuRg0dOgnBuxyAVdoysbc5o/gQCJlLSybfohApU/E0BLGi3DrrVxANJH7HY9
-	h2aY1kVkCemKNOYu+tsP/sN09g0QU+Sa8d8lN4unM7XeQE+SjhrmcjSGw+FVvV9KPJkGG6x1WQF
-	GbluEaquD1VgyWkCXSDbVPR8bt2yK6S2CdTC4yXvCYlIow9dnQ0XsIkLP9QUaf231+0GO8T9TWl
-	LnJ3NUPEXHDUDAtA3sK5gYSDK++Q0a1trB+deaaIZqYf0IDh5ZLg==
-X-Google-Smtp-Source: AGHT+IEql7WhgFE2ZyhRhdguRGYBWDwfbeIdgbMOHnGRkmwfrCwTcZSg+FoIVVzr5qW+ZqxN0Ht5cw==
-X-Received: by 2002:a05:6000:4211:b0:429:8c31:84b7 with SMTP id ffacd0b85a97d-429aefd6aa2mr3537391f8f.39.1761770311185;
-        Wed, 29 Oct 2025 13:38:31 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:cad:2140:3447:eb7a:cb9f:5e0? ([2a01:e0a:cad:2140:3447:eb7a:cb9f:5e0])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477289e8139sm2028605e9.15.2025.10.29.13.38.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Oct 2025 13:38:30 -0700 (PDT)
-Message-ID: <74dbab41-a46a-464f-98ae-c478b4afd6b9@linaro.org>
-Date: Wed, 29 Oct 2025 21:38:30 +0100
+	s=arc-20240116; t=1761770390; c=relaxed/simple;
+	bh=OR5yoCv4acTmO/f49HQZ+y3rimJ/Lc+as+3o+SzCpOY=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=AbV1q/jPrMPO0JC7ewRzWqi+WQSYcu09mtLK+DieK4CBEycFYkSewimtRhBoA/WGuiYoHhPT35SYWSH+03RAWkM3DKu6gaxTLd2vs6/Ld64naiwWSpHHISUwQOJESIpBOLcN4jEjSFwkxBR5cEDPw+C+VrqD4WUg2FAbEFGb/jI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t8syutju; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0E1FC4CEF7;
+	Wed, 29 Oct 2025 20:39:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761770390;
+	bh=OR5yoCv4acTmO/f49HQZ+y3rimJ/Lc+as+3o+SzCpOY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=t8syutjuiUUcKl0oGKRTvuWIGMwkXhslUwNnZj2ENi6JEE+F+nbQ71w6puXgVyb/T
+	 3g0ClFx53rxDt9HWQF697DeffaaHQhW7Cad3ekCB4YRzG1KfBFeagUan9ouPVolVD9
+	 FSqPDRC0YVHGzdsRBG5HruiGudRZ9lQP0Urk2wq0WpmMr9/twihXbmDG1fMg62H3xP
+	 9mrE0Wh5R3DGNO7WAzN35SqlD4bkIm5WXhvKgDbrmd72t9vPeEANNYxxupxF+MlL9R
+	 UjmXMc6OAtiyjieZJDwOJL8oNniCrqG7E8r8HdrXoJHpdZT/ljD5QhT9GlDRQRKkBQ
+	 XVBL+WWubcI8g==
+Date: Wed, 29 Oct 2025 15:39:48 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 5/5] PCI: qcom: Use frequency and level based OPP
+ lookup
+Message-ID: <20251029203948.GA1585122@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] dt-bindings: display: bridge: renesas,dsi-csi2-tx: Align
- panel example with ili9881c binding
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>, devicetree@vger.kernel.org
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
- Robert Foss <rfoss@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-References: <20251029200519.214548-1-marek.vasut+renesas@mailbox.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20251029200519.214548-1-marek.vasut+renesas@mailbox.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251013-opp_pcie-v5-5-eb64db2b4bd3@oss.qualcomm.com>
 
-On 10/29/25 21:04, Marek Vasut wrote:
-> Update the panel example in this DT schema to match requirements in binding
-> display/panel/ilitek,ili9881c.yaml . This fixes the following schema check
-> warnings:
+On Mon, Oct 13, 2025 at 04:23:32PM +0530, Krishna Chaitanya Chundru wrote:
+> PCIe link configurations such as 8GT/s x2 and 16GT/s x1 may operate at
+> the same frequency but differ in other characteristics like RPMh votes.
+> The existing OPP selection based solely on frequency cannot distinguish
+> between such cases.
 > 
-> "
-> /tmp/dtx/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.example.dtb: panel@0 (raspberrypi,dsi-7inch): compatible: ['raspberrypi,dsi-7inch'] is too short
->          from schema $id: http://devicetree.org/schemas/display/panel/ilitek,ili9881c.yaml
-> /tmp/dtx/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.example.dtb: panel@0 (raspberrypi,dsi-7inch): 'power-supply' is a required property
->          from schema $id: http://devicetree.org/schemas/display/panel/ilitek,ili9881c.yaml
-> "
+> In such cases, frequency alone is insufficient to identify the correct OPP.
+> Use the newly introduced dev_pm_opp_find_key_exact() API to match both
+> frequency and level when selecting an OPP, here level indicates PCIe
+> data rate.
 > 
-> Fixes: c376a6943741 ("dt-bindings: display: bridge: renesas,dsi-csi2-tx: Allow panel@ subnode")
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> ---
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Cc: Jonas Karlman <jonas@kwiboo.se>
-> Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Neil Armstrong <neil.armstrong@linaro.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Robert Foss <rfoss@kernel.org>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-> Cc: devicetree@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-renesas-soc@vger.kernel.org
-> ---
->   .../bindings/display/bridge/renesas,dsi-csi2-tx.yaml           | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
-> index 51d685ed82891..b95f10edd3a29 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
-> @@ -157,7 +157,8 @@ examples:
->   
->           panel@0 {
->               reg = <0>;
-> -            compatible = "raspberrypi,dsi-7inch";
-> +            compatible = "raspberrypi,dsi-7inch", "ilitek,ili9881c";
-> +            power-supply = <&vcc_lcd_reg>;
->   
->               port {
->                   panel_in: endpoint {
+> To support older device tree's where opp-level is not defined, check if
+> opp-level is present or not using dev_pm_opp_find_level_exact(). if
+> not present fallback to frequency only match.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+What are the names of the DT properties here for the exact (frequency
++ level) and frequency-only values?  I'd like to mention them in the
+commit log so we can look at a DT and figure out what to expect from
+this change.
 
