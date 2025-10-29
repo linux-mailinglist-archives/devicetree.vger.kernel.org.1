@@ -1,96 +1,121 @@
-Return-Path: <devicetree+bounces-232663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DC76C19EFF
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 12:14:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C68E9C19F23
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 12:15:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B4D01A61D8C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 11:14:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75A5B1AA5A6E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 11:15:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A4EF334681;
-	Wed, 29 Oct 2025 11:12:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F12132D43F;
+	Wed, 29 Oct 2025 11:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ancwp3/X"
+	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="BEuPRpDq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42C9932ABFA;
-	Wed, 29 Oct 2025 11:12:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A68E32E131;
+	Wed, 29 Oct 2025 11:14:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761736375; cv=none; b=jhY/0EzObcVM77JyxHuTzqkQLfyDIlkAKFC3tRohtJLk+tfU0kXl9xjNKvV4C630O2unbsN6RWpEXKS/j0OLfbj4/izU352erpFomBGQRTx7m7JZgWjaPua2sRzJft6QG+nnF1mrrwsVwFpYqebT+EaF01PCDeaIhrJuW5RcSZE=
+	t=1761736478; cv=none; b=aJ6IgKgp7Bj8IJ/SUW4gUwmZtygMpXQV8kJ5uVkJ47WQdCBSw0b92Za2TQJQHimOPtHnX3uTD1y6K46vUIqKWROnKbQCAzvkKq9j57g2AoWIWbZmZ2V3joHFr+cUi9aEgMcHjFbekiQ4MLTMQEn2vRkE6K3vHMt92RxD/C2m7QA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761736375; c=relaxed/simple;
-	bh=s35qvMWiPZye3mUq5eDEkpYwlGbij9U1I7wTMhBYFyI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Jco0aGNuuvTKDNwCAOL+0t7QbGLAAllHlg1f8jUkNfhpska59kkl37bUcBsbZIO0dYXdPfxOZMzodU3rzQ8uCLsV3Is8KJkkrrBq654wvUh56Lq7r2dc4+AlI6M1HRlFwP16k/dtQey3Zl/H+DvofmD8fSBU7Cu+TPJ2RajN0/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ancwp3/X; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1761736371;
-	bh=s35qvMWiPZye3mUq5eDEkpYwlGbij9U1I7wTMhBYFyI=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=ancwp3/XUPKjTQvDhJuUU/IpaBlsnpvEiPhZsSTX2lmXUrROvRFfktCfKVyYdFuAk
-	 57F0XzYcMuB8hr40V6pD7NAbiOjIkUwf4r0b6Yd2ucGNYhWyfU5SbKxLifyscl8a/W
-	 a9S2E1f4CwNWV/ufrd7uWNuyVY2JQALxqu5ND4GIsgRpwQRW8Fbu5cZb83+K2tkk/S
-	 rlUMaBiaVCpgAS6+ocypqSOcomhDaBQnEqKJm6YPbtOMfmIFjl9hWVXrL4OlfGfn61
-	 pDmZ5eVgmCKit0O2HtSRPEkOh4OI+Fbfq7vGTFKgFFMquuqfdavABm3t6QUrF957fk
-	 BlMl0l1gxsUpA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	s=arc-20240116; t=1761736478; c=relaxed/simple;
+	bh=EoewAb52MRH1aE94oGSQx6yR9L8ttHqchxyjOpRpAO0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=b+vWiW1YKltEbsmmst+XE7vrZx89T8hig5iAMlANqEcu6shDQGQwt9xBvmxy5YbOJhzTF2UwvinFCwAYo9Jz5nvUOELV0AKjEtIwy3K2LS8U/l8hLtl1h5oEKzk4ELfQWLwTmtt0bk1uN6FvtVDDDV+Hgu+xS1GshLzh+EvVDMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=BEuPRpDq; arc=none smtp.client-ip=65.109.113.108
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 698F240E021D;
+	Wed, 29 Oct 2025 11:14:31 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+	header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id Zvn2uvFF2vbQ; Wed, 29 Oct 2025 11:14:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+	t=1761736467; bh=DQkRFEIwjwPvCcEFWdB8wz1gQTw6XbuZfP49kLOImGs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BEuPRpDq3zszaDovZGFI8/0iEOp5lkk1+Fb+9sxVcl1e53Fn31OTzn+r1AyMBVypX
+	 7ZnkNwWZe181mZF5BJH5dc7nQBvYX+M0liWMCgXg1keznF5+Q+A1g/SxCd6JTbVmog
+	 3CXOtwluhQQofNJrzpzn3KBR9md+p4P2RDxIM+mf69M9SJUrC04vxJac/UA3BWPVbX
+	 8/LkGkxN6M46IJVen43Nw37Oz20jswQsEzS3MH/VSgDKn7/Z3QVwdNsHpeOWM6JJ/y
+	 TyD7GulXBFfJncn1jt6Ldah2zNZdzXTD4kTPl+GfWZsPB9GRbIAkesaK2g/qnFpGSd
+	 0srRag33S1naiSj6L20uRFYToC9SksN0F6DnOMF4nY/jKNo6rqJ/7UvyMkpAOgwVHo
+	 SiRLemA9m3A6Zs22P6qWL2g3T9tj8tRP/KUqynsF/1yLUCgrm4Jqrl2lyyDkAEVrj2
+	 NOuZcdiC5ytCG+8i7SJpTjj0Kdw2HAQ95Z3UmpaBZ/GSBULTmMm4hcVbNOTTXd/Rj8
+	 91s2A5XswtBP9uKnQpGsbSQhVJlkYe7rQI5R00Zt2PK4hBR555MrKpy2qzcTisSjXY
+	 axj7DVzVxHGOtc8LocTGtMGSO/bI6mmlNBPFlsZCLIe2/v88V+DPs0ClhUZm4HiDbc
+	 AIb2zddL+jvs2J+WXuQnxuxA=
+Received: from zn.tnic (pd9530da1.dip0.t-ipconnect.de [217.83.13.161])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id D41B317E00A6;
-	Wed, 29 Oct 2025 12:12:50 +0100 (CET)
-Message-ID: <0ddae136-3c25-4d70-9bc2-4e423873cd43@collabora.com>
-Date: Wed, 29 Oct 2025 12:12:50 +0100
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id 54A9E40E021A;
+	Wed, 29 Oct 2025 11:14:06 +0000 (UTC)
+Date: Wed, 29 Oct 2025 12:13:58 +0100
+From: Borislav Petkov <bp@alien8.de>
+To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	"K. Y. Srinivasan" <kys@microsoft.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>,
+	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
+	Michael Kelley <mhklinux@outlook.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Saurabh Sengar <ssengar@linux.microsoft.com>,
+	Chris Oo <cho@microsoft.com>, "Kirill A. Shutemov" <kas@kernel.org>,
+	linux-hyperv@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Ricardo Neri <ricardo.neri@intel.com>,
+	"Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+	Yunhong Jiang <yunhong.jiang@linux.intel.com>
+Subject: Re: [PATCH v6 02/10] x86/acpi: Move acpi_wakeup_cpu() and helpers to
+ smpwakeup.c
+Message-ID: <20251029111358.GDaQH29lURT0p_WWsb@fat_crate.local>
+References: <20251016-rneri-wakeup-mailbox-v6-0-40435fb9305e@linux.intel.com>
+ <20251016-rneri-wakeup-mailbox-v6-2-40435fb9305e@linux.intel.com>
+ <20251027141835.GYaP9_O1C3cms6msfv@fat_crate.local>
+ <20251027205816.GB14161@ranerica-svr.sc.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 01/12] media: mediatek: jpeg: fix jpeg hw count
- setting
-To: Kyrie Wu <kyrie.wu@mediatek.com>, Hans Verkuil
- <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20251029065354.22257-1-kyrie.wu@mediatek.com>
- <20251029065354.22257-2-kyrie.wu@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20251029065354.22257-2-kyrie.wu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251027205816.GB14161@ranerica-svr.sc.intel.com>
 
-Il 29/10/25 07:53, Kyrie Wu ha scritto:
-> Different ICs have different amounts of hardware,
-> use a variable to set the amount of hardware.
+On Mon, Oct 27, 2025 at 01:58:16PM -0700, Ricardo Neri wrote:
+> Right. All the functions in the file start with the acpi_ prefix. It could
+> be kept under arch/x86/kernel/acpi/. The Kconfig symbol X86_MAILBOX_WAKEUP
+> would have to live in arch/x86/Kconfig as there is no Kconfig file under
+> arch/x86/kernel/acpi. ACPI_MADT_WAKEUP is arch/x86/Kconfig.
 > 
-> Fixes: 934e8bccac95 ("mtk-jpegenc: support jpegenc multi-hardware")
-> Fixes: 0fa49df4222f ("media: mtk-jpegdec: support jpegdec multi-hardware")
-> 
-> Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+> Does that sound acceptable?
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Right, this looks kinda weird. You have devicetree thing using ACPI code,
+you're trying to carve it out but then it is ACPI code anyway. So why even do
+that?
 
-> 
-> ---
->   drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c   | 8 ++++----
->   drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h   | 2 ++
->   drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c | 1 +
->   drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c | 1 +
->   4 files changed, 8 insertions(+), 4 deletions(-)
-> 
+You can simply leave ACPI enabled on that configuration. I don't see yet what
+the point for the split is - saving memory, or...?
+
+> Thank you for your feedback, Boris,
+
+Sure, np. Trying my best. :-)
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
 
