@@ -1,114 +1,195 @@
-Return-Path: <devicetree+bounces-232757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77B1DC1B916
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 16:12:32 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0781C1B9B6
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 16:20:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D57E0585496
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:21:27 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6A5345C0BBA
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:27:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9912B2641C6;
-	Wed, 29 Oct 2025 14:21:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 015882C2369;
+	Wed, 29 Oct 2025 14:26:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HWOzqi9B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1522725179A
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 14:21:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C41CE2BEC30;
+	Wed, 29 Oct 2025 14:26:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761747685; cv=none; b=dHw8MsneKCutSlzo1MSXnJqEVlAlDuUeBoqpYSou938g7owBxYLlhsHnWzWAixK2RGffIQu4Min52/pL2GctxRlbqo6w4XFOnKsy2taLTog0Y55J7tOiPcbUmTIEosCac4XGDCKsWbqn3x7x0iIN+tOnJmkRaOIXHCol4nJgqx4=
+	t=1761748000; cv=none; b=kItTT8gjiLXIct+mad4vylnpgpI5aCvkBW9k1COMCW6xIxKn4mpXQrFYPpF2PWC3o1I8RlNaRZLOl8yqKe4oTCeN3n5lwGf233ut3Wdc4Rh7un30bDi13VMVx/zDiE2GTo7XbSepaGAING2u1rSFY0JKO/jDu2fhikBtMqC31Qc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761747685; c=relaxed/simple;
-	bh=ibKGRxpsOOl2loLMD6bCBKnAklZf3fN8KaAmPERTqpk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PjhB7rbJvH2b3YfOzOyxLb9jpB1NqEzI73+GoyjTlRogC8jNJxcXii2ewpkDllnBAA/i/FSqU5kuHSgzxsGxo5gpD86obzBTfclb1PVb0nPC4tvAPPjG5z8MunWbuCVA9LGomjB03u7S95fYR9UmDCCf1ximIhbOBWpquXuz0pA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-934fb15ee9dso130155241.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 07:21:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761747683; x=1762352483;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kyBzuS5uu50decQRlhVuBsPB9Un8V1UaO7gxw+OVEYo=;
-        b=MrJPNzcfXCuvmZNaUr1WqtCsJQVT0yY25+FM4h1l6Bh+cY22Mu5nJvScG9x2evgJaX
-         YDJEj1sZiTl02LNFCX1bl8X7iEVvcb/qJaFivpNzxP3G6sFRI/xSnHsKWcmCZwfQCM3r
-         DgioHniVjdyAOGjoG+S0j+qTqna/fD+m9Bg/s6ALKG9AwBOvaifi2fkuEsqjDdmJTbxF
-         3DQCT4NyOwIphZfDw1NpIDTdanWjgwKtJRYfthX9ML5vQpKFdZDsQIUnq2dmXZwal1QU
-         7c6xb7f+EL6KRLr4+KmtZ07b588a2ykRh8JsAZelQmUKXMyjF/duIu2VfDfeQeWJPIMp
-         WD+A==
-X-Forwarded-Encrypted: i=1; AJvYcCXhamGN3Bd7qio9Mhy8jxx/zbzx8zwtHZT3FnnjQJllkbsUByBzdKAuSpXLTOCTIivVj5NL10FxLGmC@vger.kernel.org
-X-Gm-Message-State: AOJu0YyV8Q6PpKAvpCOSFGVjk3Xgrx6k0XEqmNUo2/h34Ymu7X9C9wre
-	Ac5bCPcCOCo8MTJoblM/x/5UoimuxkPOtBdqOWNIkO8bYsAd6HU+tLl7l9TS3+n7
-X-Gm-Gg: ASbGncs93SZNKk5pMQL01ElhxUyLBVVMizvCifcOl4XiQCuqOXX16i1mV9Vp1QvT+7y
-	op0lChAVsbP8ImoWSMgyC4rySoyfn92WxlCpMHmmqtriLWO14nIa9SnGK1D0tZxDb+wThfi5S4f
-	QDkDODok70t4KKcw2GIQCz0CjAMnNwooouJIjLSyyh4MqQhCa5X57URwK/B3GUEDTDOp0dqgPqn
-	J3kBsJVK+Xcl9Mit+EeJoH1+MpJjqmOvsozSqu9s8J5WAE4eiFPei4dT/t3zZWHit12G5vkqYZa
-	7CziMRssLM4z1kjBMmtDT4X1lh+2Yk1Qw8njOv/IhYWc4VNcXaWtwoQsg/yK3nza+biSm25sDGW
-	x8vkhNILPM1PejURihr9mNGJpJEw5f61kvJhKi8N45k7ocLomlFVqR1KztqjIN1wTqaEwsaIzri
-	hDE2Ud+Xag18RXXuqIx8pD6U4PcMw9MOaKrQhl8Pv8HHDHfQNQRChu
-X-Google-Smtp-Source: AGHT+IHOplPcA+5Xe3pCG7LyPk8Szlm8k3SZie8WvqRcdLGn0Rko6q/JfXPyIfCtOqjSTpOKnKLyRw==
-X-Received: by 2002:a05:6102:50a3:b0:5d6:18cc:6087 with SMTP id ada2fe7eead31-5db9067e5d2mr781263137.30.1761747682690;
-        Wed, 29 Oct 2025 07:21:22 -0700 (PDT)
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-934c3f152cfsm5107732241.4.2025.10.29.07.21.21
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Oct 2025 07:21:22 -0700 (PDT)
-Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-5db37a935f1so2960164137.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 07:21:21 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCX4j2b//0iNIR2UQdSzksUvLMENCvpYFbZMgDHM5NLEjxxpY7YPJ/u8pDhzVBWQF8yymgXG4fEXKECf@vger.kernel.org
-X-Received: by 2002:a05:6102:2926:b0:5db:33f9:adce with SMTP id
- ada2fe7eead31-5db9069da51mr902689137.41.1761747681523; Wed, 29 Oct 2025
- 07:21:21 -0700 (PDT)
+	s=arc-20240116; t=1761748000; c=relaxed/simple;
+	bh=uAFaddzt+o5Jaxvpc4u0qmiEWtTqty66JcCDtI2hth0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=L2xr2o1SNHTAKyh9xRiX0nWPvmBkm7B4dtMvZqJ32QlXc0AYq4wEdB7XPrBl0jYctZBfhq3UxpgoJMVK4IOdJTjAzJhyedDEUzZTypagkk6AGU8GBcwEZBKbNrV1Dia1VBw/inoik0JkpSKV4qccEE9IwEkUFFFpx43TxVF4Pqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HWOzqi9B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 63B83C4CEFF;
+	Wed, 29 Oct 2025 14:26:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761748000;
+	bh=uAFaddzt+o5Jaxvpc4u0qmiEWtTqty66JcCDtI2hth0=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=HWOzqi9Bxd3FHXRdr4CFX8V6rgdrLULLiUfNUWKA/TnH4K7W3ygUUHvKfbUvD0n9F
+	 BCqxIgLQ5YSqLKGJhQfVffKJlhU2lixUy0mBbkq0/UKfTw/NuFGQ8B65RAom6Sig3Z
+	 tp96yXpR5vz77Jf/I2EgXD8p8E1XS1NZjwe54BV0an2KV/zmTIKukPEWHUD8dTxCEZ
+	 WfgUvcP9Wij5fM8zSwBTtY8dgXuGFfMMlb7Kr5LUrp2YlE8s3gPo8dBO9ZTPaMxAze
+	 CWuUOXbOe7cIILBSW/Gnwl00ScbPjNsMYHG2PS5XsalV1tW11ELXqmwjrb4ZdmBoAD
+	 1jUDYwUg4e4VQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4A06FCCF9EB;
+	Wed, 29 Oct 2025 14:26:40 +0000 (UTC)
+From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
+Date: Wed, 29 Oct 2025 18:26:22 +0400
+Subject: [PATCH 1/6] dt: bindings: net: add bindings for QCN6122
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251027184604.34550-1-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20251027184604.34550-1-marek.vasut+renesas@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 29 Oct 2025 15:21:09 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW2sn09MQoV6ktBwd+JF-5M_c7jdW_e68xEGYsovqOr+A@mail.gmail.com>
-X-Gm-Features: AWmQ_blJcp5ae8kH23TjMg-NYbqTJRrYgHltFldOLdMifDYWeLy3Gz7jK56UcE0
-Message-ID: <CAMuHMdW2sn09MQoV6ktBwd+JF-5M_c7jdW_e68xEGYsovqOr+A@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: sparrow-hawk: Fix full-size DP
- connector node name and labels
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251029-ath11k-qcn6122-v1-1-58ed68eba333@outlook.com>
+References: <20251029-ath11k-qcn6122-v1-0-58ed68eba333@outlook.com>
+In-Reply-To: <20251029-ath11k-qcn6122-v1-0-58ed68eba333@outlook.com>
+To: Johannes Berg <johannes@sipsolutions.net>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org, 
+ ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ George Moussalem <george.moussalem@outlook.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761747997; l=4199;
+ i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
+ bh=8oCgkx2tBE/XoLjt2QmaWVlpynCUGOtanyX8ad9w9XQ=;
+ b=+Lg/GmnlljSyRRhc0gmBi4zkwu92ultczCM8t+AFO50E/X2H02QHzXOZ5sQq/NWMTJ4ecsWAg
+ BpYCx8WZCEsAmjBNYcHAARzuXPOGOojbgr8hchE+sS28bDo9FeHSEGM
+X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
+ pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
+X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
+ with auth_id=364
+X-Original-From: George Moussalem <george.moussalem@outlook.com>
+Reply-To: george.moussalem@outlook.com
 
-On Mon, 27 Oct 2025 at 19:46, Marek Vasut
-<marek.vasut+renesas@mailbox.org> wrote:
-> The DisplayPort connector on Retronix R-Car V4H Sparrow Hawk board
-> is a full-size DisplayPort connector. Fix the copy-paste error and
-> update the DT node name and labels accordingly. No functional change.
->
-> Fixes: a719915e76f2 ("arm64: dts: renesas: r8a779g3: Add Retronix R-Car V4H Sparrow Hawk board support")
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+From: George Moussalem <george.moussalem@outlook.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.19.
+QCN6122 is a PCIe based solution that is attached to and enumerated
+by the WPSS (Wireless Processor SubSystem) Q6 processor.
 
-Gr{oetje,eeting}s,
+Though it is a PCIe device, since it is not attached to APSS processor
+(Application Processor SubSystem), APSS will be unaware of such a decice
+so it is registered to the APSS processor as a platform device(AHB).
+Because of this hybrid nature, it is called as a hybrid bus device as
+introduced by WCN6750. It has 5 CE and 8 DP rings.
 
-                        Geert
+QCN6122 is similar to WCN6750 and follows the same codepath as for
+WCN6750.
+
+Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+---
+ .../bindings/net/wireless/qcom,ath11k.yaml         | 57 +++++++++++++++++++++-
+ 1 file changed, 56 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+index c089677702cf17f3016b054d21494d2a7706ce5d..4b0b282bb9231c8bc496fed42e0917b9d7d106d2 100644
+--- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+@@ -21,12 +21,13 @@ properties:
+       - qcom,ipq6018-wifi
+       - qcom,wcn6750-wifi
+       - qcom,ipq5018-wifi
++      - qcom,qcn6122-wifi
+ 
+   reg:
+     maxItems: 1
+ 
+   interrupts:
+-    minItems: 32
++    minItems: 13
+     maxItems: 52
+ 
+   interrupt-names:
+@@ -87,6 +88,14 @@ properties:
+     items:
+       - const: wlan-smp2p-out
+ 
++  qcom,userpd:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [2, 3]
++    description: instance ID of user PD (protection domain) in multi-PD
++                 architectures to distinguish between multiple instances
++                 of the same wifi chip used by QMI in its interface with
++                 the firmware running on Q6.
++
+ required:
+   - compatible
+   - reg
+@@ -268,6 +277,31 @@ allOf:
+             - description: interrupt event for ring DP20
+             - description: interrupt event for ring DP21
+             - description: interrupt event for ring DP22
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,qcn6122-wifi
++    then:
++      required:
++        - qcom,userpd
++      properties:
++        interrupts:
++          items:
++            - description: interrupt event for ring CE1
++            - description: interrupt event for ring CE2
++            - description: interrupt event for ring CE3
++            - description: interrupt event for ring CE4
++            - description: interrupt event for ring CE5
++            - description: interrupt event for ring DP1
++            - description: interrupt event for ring DP2
++            - description: interrupt event for ring DP3
++            - description: interrupt event for ring DP4
++            - description: interrupt event for ring DP5
++            - description: interrupt event for ring DP6
++            - description: interrupt event for ring DP7
++            - description: interrupt event for ring DP8
+ 
+ examples:
+   - |
+@@ -467,3 +501,24 @@ examples:
+             iommus = <&apps_smmu 0x1c02 0x1>;
+         };
+     };
++
++  - |
++    wifi1: wifi@b00a040 {
++        reg = <0x0b00a040 0x0>;
++        compatible = "qcom,qcn6122-wifi";
++        interrupts = <GIC_SPI 416 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 417 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 418 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 419 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 420 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 421 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 422 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 423 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 424 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 425 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 426 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 427 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 428 IRQ_TYPE_EDGE_RISING>;
++        qcom,rproc = <&q6v5_wcss_pd2>;
++        qcom,userpd = <2>;
++    };
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.51.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
 
