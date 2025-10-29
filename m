@@ -1,208 +1,168 @@
-Return-Path: <devicetree+bounces-232771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67013C1B672
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:51:19 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43CD2C1B6CF
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:53:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E01CC349BE2
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:51:18 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BE82934371D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:53:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78E0B34405D;
-	Wed, 29 Oct 2025 14:43:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AA6E320A0F;
+	Wed, 29 Oct 2025 14:46:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nUCG2dgA"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WrHSavp/";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Km42uYIh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C11433F388;
-	Wed, 29 Oct 2025 14:43:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D227330E82B
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 14:46:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761749022; cv=none; b=TKZQyAPh1+1Ua0HWGbGp8ZTnpnDZzZ83OFd9z+if7g+INVHv9j0NzIFA5JryKtmdx5Hbc/QJNXfVlHtiyOypoS+gqzGkKRyArWyXg6zt0mgl5JuBaGwCcMqBDkIl7/k0qkooaaLHEcb97a/g0BHNTbn8Xc7uRzW1CE9lRLU2GEg=
+	t=1761749214; cv=none; b=uKMU4r1+yG5GLoa5EICwzUWOX6/ef1Pegz4VjvkNs+RAaRuiRPMDrg5c02sFgg9oeapdA2rpwO7XGRiqa/fKH/w6xBW+ZcjlI70ikaA4jmSJnzsBWqDtkSuHH4Fky+hW+EJXeeUvcz3zk12NsyjxVjweT+fX6aEQrOd8LBGFq8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761749022; c=relaxed/simple;
-	bh=7aIwRuIOpA2NvB46ZJFZlfxwwf5CrcEct874eSGcgUE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MeHbIi50/Kkh6Oz+6E01yUZxOy+zXb6REEKD6dNKH2xAaZ/i3SOcrx5BHFVg9KU1U3NucQlLMzGh7xQf6Ycpb3mUl+AWssNACFjxBzhjOj0s+YF59Mq+iqD6Takyose0maU7BNomhEpP+OJ/qBc8SsziPnJm1veAqnQPRYzpjqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nUCG2dgA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66F0FC116C6;
-	Wed, 29 Oct 2025 14:43:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761749021;
-	bh=7aIwRuIOpA2NvB46ZJFZlfxwwf5CrcEct874eSGcgUE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nUCG2dgAAGxavtrh6AFskbiNPy7Opyv54fNrY/+gU0ZaTvBrd+ZtUjFEd4lc5Qbk/
-	 srjLlCZcD6v3yy00NaOnMM6kO85tayYB85zgXeLHHSpevQ6O2DGvXlTZcGF+ktUVor
-	 G0oJOc1gayru+VczSM4ZiddijK6BzGtNWVQ5cxsRUBBCvQgzVaswHsRgcDYtOKLawP
-	 at5sw+sOWuAecSORYOvFAW4sokeUujaDbydmhkXBgd33S7RBrbM2DgiSBbVNPSePhZ
-	 OnukuKbisUVQxThAKHPJxURwRslfcZUKDhTxzc0zF6/DUihlPrLIr5qeFFcPt3CXjz
-	 R9KUmZIa60r5g==
-Message-ID: <5137cd11-004c-43ed-8bbb-646beb105844@kernel.org>
-Date: Wed, 29 Oct 2025 15:43:37 +0100
+	s=arc-20240116; t=1761749214; c=relaxed/simple;
+	bh=WlLMZwo0H4Ep9SK9cIL4i/qaXEGNycF3lxaPWFNBL/g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Q8Uy7V3y7HEPqko8BhvamvRXrwtfb7T9CEm9V80Jouk283nvdwmHMf45IdRsAxxkipOV+8SIPu5mD+4tQPDt9LtQK7taIyPzErgFvI25Q+/cyQ4Mq2Lu+8HHZnp3gRaP7qf00L6r/GgZgqkY1WnvlYzXjwXLGlKqU9isXeidgCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WrHSavp/; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Km42uYIh; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59TDd97Q569233
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 14:46:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=3VQByPyxhbQga8wEr4/BN3Sn+0fDUaknqZU
+	S5siW03Q=; b=WrHSavp/1SNze8CpBfqeOmlH3QWMaVVrl+7Nx6bSc70s8EZ7CJO
+	AlxJ8sUtKvserq6JFA7HqErfhMbdZJhYgnoBjN1ipHlHD/THcG9Lpi9WbzomEdz1
+	I8RL8zyFKl8dDdevs+IBsWmylI9aG57h/+mxtRo6d6kZ9olfJeFBLZWi5azLTqtd
+	b3hwm+vAPw6K5cAbjKTi6H0u0m/KUg3HN8byDv6XnaLk31zLx6lmu8MOGSfMbPyS
+	Ihi+gwhwHqowjofIKo1ymKzo3xsxkHyzKCcVIAt4KnW8MFtDzf0oVC7rWMAlrP+6
+	2G6cywUi56DSEKmqTTZsmmf0o2Ss8ZGcFaw==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a3m0bg730-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 14:46:51 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4eb7853480dso228272191cf.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 07:46:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1761749211; x=1762354011; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3VQByPyxhbQga8wEr4/BN3Sn+0fDUaknqZUS5siW03Q=;
+        b=Km42uYIhCt6crVJbqvZUFh48lJ0/BkYL1rui7XQ7XcZeuSD6l+6pj8j+0UWcoUrTOp
+         3FbZRgBLcZtVaVXLtXC4l0dLlMRunut2CSgVPSHt5G1WVkTjyr+B8+Vg/wGrOt8Yxhsv
+         zhZxHHgHx11ZWfDYZMngmF5ce4ZxnNGMXpqFqKjOe0Z3Fkb0a9AdrZeG2ABCzX/qNQtM
+         FLsDebHYELz2Q4bsNlQi1uWeqH/Qf/i6sInRAAwUiqCXELFOBOrk2BZoeBmlFVucmMWu
+         BEJrwOTz5nT52BPkJuF8w2U15dHmCQG0qo9zugR91CIiX2n36WUkW3fdND6lbjAsErBk
+         IRgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761749211; x=1762354011;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3VQByPyxhbQga8wEr4/BN3Sn+0fDUaknqZUS5siW03Q=;
+        b=Nr+C1tvEgdesAr9jy6CgaXcdVFkptaFKM557AWEwfuUBmLKD61fedDC3oQAIWNR44z
+         55BE7Bow0eOC0Jbr2/q7h6PjrfMngnH5Ibz0UZCeDu7ZW08kicE6B88uS9N8FCgWxaS9
+         tCq+XqfklfgQudgjQerHIYhtT8HbSulh1gwaINuIX1hhyDSvx8epzsAppzitQy3m5u7W
+         AAWqy/5edKzRHrVqTflwVOyEdND1nlROssupBT0zn1CovL9FQNGgheZwEODZCITDRdCr
+         wyutn7urJy3rlTxgD6IcVTElv0JdFq3OMkYUm/1ckk1mI85ssbeowKj5hZ4fuIjPUPaz
+         xzKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX5F6BcIwAgaoGAAMV3HGY7YnkQVagRnT3WnIA9GomtfmyGbp7BKAMev0POzgm9lcNYgZ5eXvNbNdcH@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmOQcLafMSrhpHjqaHV61nhAs1jICw586mCR3UP2wSw7rsCGNf
+	uADoGO+WbRXWWpuvF3MdGoNott2SueeSLzKCAiypT8/W+rnTXETwFXnonMvJTjxeI7nu9wasAqb
+	79F6UuG9/zlP6t6I4wyqGrsJn/Dxbq+OTuaLUlx7o5cS8FrPsdPIc5NXbO3gbPEuAAXyU6eDr
+X-Gm-Gg: ASbGncvPmG+fKtfLTkIj8aX7eUDZQ9hef1ZWoXsH8aRUVasenkmwVivVgjxyIPgBBbr
+	dS88BoUOGJPxE7pYGEHPL2E/3z0zdZYIKETMBB4agYnVEY3kLDtH8og2V2L1hOOvs+WYIJD9FfA
+	xU+l0gUnyhUtSUwKraZfIqsOBJFSVKOV6u/HznrjizRUJ7JVzTVOt6ULJOk1tvSZltCzV8TQK5Q
+	m0wu+/g63A4w5cnfjYTjiTgCDCpW3xI6mO4w6sohzQVbmYAgwhL1rIRnv8/wUEwk3sBEfLlFQN5
+	6hA948NefxyXXAi95+YT+VYOHuG/Okn5xY7NNMidp39DRqNF2C7DuqmKJOB/9s69sjxgVx3Wnd8
+	AovnW5e3Y3x8u
+X-Received: by 2002:a05:622a:8354:b0:4ec:f07c:3e85 with SMTP id d75a77b69052e-4ed1e4dde2fmr11331041cf.43.1761749210912;
+        Wed, 29 Oct 2025 07:46:50 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEXErexYyuFdz0AmKoKmT2JVIOCX89erGQ023chN47ZncI2gn9SrZMs/CXgh80y8c6IyjAKUA==
+X-Received: by 2002:a05:622a:8354:b0:4ec:f07c:3e85 with SMTP id d75a77b69052e-4ed1e4dde2fmr11330681cf.43.1761749210348;
+        Wed, 29 Oct 2025 07:46:50 -0700 (PDT)
+Received: from debian ([5.133.47.210])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4771e18bd9dsm51573075e9.3.2025.10.29.07.46.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Oct 2025 07:46:49 -0700 (PDT)
+From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+To: robh@kernel.org, broonie@kernel.org
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+        perex@perex.cz, tiwai@suse.com, srini@kernel.org,
+        linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Subject: [PATCH] ASoC: dt-bindings: pm4125-sdw: correct number of soundwire ports
+Date: Wed, 29 Oct 2025 14:46:36 +0000
+Message-ID: <20251029144636.357203-1-srinivas.kandagatla@oss.qualcomm.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/6] wifi: ath11k: add multipd support for QCN6122
-To: george.moussalem@outlook.com, Johannes Berg <johannes@sipsolutions.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
- ath11k@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251029-ath11k-qcn6122-v1-0-58ed68eba333@outlook.com>
- <20251029-ath11k-qcn6122-v1-5-58ed68eba333@outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251029-ath11k-qcn6122-v1-5-58ed68eba333@outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: p2nsV1dyWtVYRSb_87d-YLLeXPdQ7p36
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI5MDExNSBTYWx0ZWRfX4pSRcjDWwf4D
+ aZRJvO0h1n6ykVZXK+LycnuMuDOeLf9FDriFF9Rh1q1vd8oafLXglTgIV/nrkPi78JryXSxlB2y
+ DQRYszDoBIpKiLRXE7y5eiske3OvmbhsKyIETaM1IxWXzNHUeKtCmv216czt2ah9kqJZmKevfSL
+ YcZ5B/gtDSHvVdbNS5MiXmSYyxd4KD6NoOnxk7lhLDBE63S+RU2Bwp+Clt5irBoi9mHuVYDJ+wx
+ bCWbEM4fRq9Aw8IByOohSNTVArfOXfSXZTGPuFevAWdvIpz5O+TDcUxldya6xUxn+DU81pl3nR0
+ ENiwYISj1jyVQ9Eh2zlteZLmsidnbbpKbGEzFcysfiNJsFj3NB4A6BvSNtqAEXaZSEIp2JEptVA
+ ajiz5NWJLjPChFFDFRBFGWSYorEx6w==
+X-Proofpoint-GUID: p2nsV1dyWtVYRSb_87d-YLLeXPdQ7p36
+X-Authority-Analysis: v=2.4 cv=YLySCBGx c=1 sm=1 tr=0 ts=690228db cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
+ a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=sX3_Zgyp12BJ_7Xf3x0A:9 a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-10-29_06,2025-10-29_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 phishscore=0 bulkscore=0 spamscore=0 malwarescore=0
+ adultscore=0 lowpriorityscore=0 clxscore=1015 impostorscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510290115
 
-On 29/10/2025 15:26, George Moussalem via B4 Relay wrote:
-> From: George Moussalem <george.moussalem@outlook.com>
-> 
-> IPQ5018/QCN6122 platforms use multi PD (protection domains) to avoid
-> having one instance of the running Q6 firmware crashing resulting in
-> crashing the others.
-> 
-> The IPQ5018 platform can have up to two QCN6122 wifi chips.
-> To differentiate the two, the PD instance number (1 or 2) is added to
-> the QMI service instance ID, which the QCN6122 firmware also expects.
-> IPQ5018 internal wifi is always the first PD while QCN6122 cards must be
-> second or third.
-> 
-> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
-> ---
-> See below patch for more info:
-> https://lore.kernel.org/all/20231110091939.3025413-1-quic_mmanikan@quicinc.com/
+For some reason we ended up limiting the number of soundwire ports to 2
+in the bindings, the actual codec supports 4 rx and 5 tx ports.
 
-I don't see any common part with that. Your bindings are completely
-different and while PD was justified there, there is no such
-justification here. Neither in the bindings.
+Fixes: 88d0d17192c5 ("ASoC: dt-bindings: add bindings for pm4125 audio codec")
+Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+---
+ Documentation/devicetree/bindings/sound/qcom,pm4125-sdw.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> ---
->  drivers/net/wireless/ath/ath11k/ahb.c  | 31 +++++++++++++++++++++++++++++++
->  drivers/net/wireless/ath/ath11k/core.h |  4 ++++
->  drivers/net/wireless/ath/ath11k/pci.c  |  1 +
->  3 files changed, 36 insertions(+)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-> index 7b267dd62e964b2c4d6c3bbe016abd1ad0297219..820a383e88caf125892176e421b0121fed7e7055 100644
-> --- a/drivers/net/wireless/ath/ath11k/ahb.c
-> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
-> @@ -429,6 +429,7 @@ static void ath11k_ahb_init_qmi_ce_config(struct ath11k_base *ab)
->  	cfg->svc_to_ce_map_len = ab->hw_params.svc_to_ce_map_len;
->  	cfg->svc_to_ce_map = ab->hw_params.svc_to_ce_map;
->  	ab->qmi.service_ins_id = ab->hw_params.qmi_service_ins_id;
-> +	ab->qmi.service_ins_id += ab->userpd_id;
->  }
->  
->  static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
-> @@ -1101,6 +1102,28 @@ static int ath11k_ahb_fw_resources_init(struct ath11k_base *ab)
->  	return ret;
->  }
->  
-> +static int ath11k_get_userpd_id(struct device *dev, int *userpd)
-> +{
-> +	int ret, userpd_id;
-> +
-> +	ret = of_property_read_u32(dev->of_node, "qcom,userpd", &userpd_id);
-> +
-> +	if (ret)
-> +		return ret;
-> +
-> +	switch (userpd_id) {
-> +	case 2:
-> +		*userpd = ATH11K_QCN6122_USERPD_2;
-> +		break;
-> +	case 3:
-> +		*userpd = ATH11K_QCN6122_USERPD_3;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +	return 0;
-> +}
-> +
->  static int ath11k_ahb_fw_resource_deinit(struct ath11k_base *ab)
->  {
->  	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
-> @@ -1142,6 +1165,7 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
->  	const struct ath11k_hif_ops *hif_ops;
->  	const struct ath11k_pci_ops *pci_ops;
->  	enum ath11k_hw_rev hw_rev;
-> +	int userpd_id = 0;
->  	int ret;
->  
->  	hw_rev = (uintptr_t)device_get_match_data(&pdev->dev);
-> @@ -1160,6 +1184,12 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
->  	case ATH11K_HW_QCN6122_HW10:
->  		hif_ops = &ath11k_ahb_hif_ops_qcn6122;
->  		pci_ops = &ath11k_ahb_pci_ops_wcn6750;
-> +		ret = ath11k_get_userpd_id(&pdev->dev, &userpd_id);
-> +		if (ret) {
-> +			dev_err(&pdev->dev, "failed to get userpd: %d\n", ret);
-> +			return ret;
-> +		}
-> +		dev_info(&pdev->dev, "multi-pd architecture - userpd: %d\n", userpd_id);
+diff --git a/Documentation/devicetree/bindings/sound/qcom,pm4125-sdw.yaml b/Documentation/devicetree/bindings/sound/qcom,pm4125-sdw.yaml
+index 23624f32ac30..769e4cb5b99b 100644
+--- a/Documentation/devicetree/bindings/sound/qcom,pm4125-sdw.yaml
++++ b/Documentation/devicetree/bindings/sound/qcom,pm4125-sdw.yaml
+@@ -32,7 +32,7 @@ properties:
+ 
+     $ref: /schemas/types.yaml#/definitions/uint32-array
+     minItems: 2
+-    maxItems: 2
++    maxItems: 4
+     items:
+       enum: [1, 2, 3, 4]
+ 
+@@ -48,7 +48,7 @@ properties:
+ 
+     $ref: /schemas/types.yaml#/definitions/uint32-array
+     minItems: 2
+-    maxItems: 2
++    maxItems: 5
+     items:
+       enum: [1, 2, 3, 4, 5]
+ 
+-- 
+2.51.0
 
-This does not look like useful printk message. Drivers should be silent
-on success:
-https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/coding-style.rst#L913
-https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/debugging/driver_development_debugging_guide.rst#L79
-
->  		break;
->  	default:
-
-Best regards,
-Krzysztof
 
