@@ -1,98 +1,101 @@
-Return-Path: <devicetree+bounces-232696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1783CC1A7BC
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:03:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7406FC1A82C
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:07:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4ADC1890B1B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 12:58:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50C2E427E9D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 12:55:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C6783491F5;
-	Wed, 29 Oct 2025 12:35:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85D5535772C;
+	Wed, 29 Oct 2025 12:30:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="QqCFy9dd"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PV8z0OSS";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Eh/1i3Zu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from tiger.tulip.relay.mailchannels.net (tiger.tulip.relay.mailchannels.net [23.83.218.248])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC559308F3D
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 12:35:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.218.248
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761741354; cv=pass; b=d0WYvMq0N4ZeHn5eyt3d3T7qnuD4dLuo5cj+s0MiEndaV05BTbXzp8Rv3zpXx0PXT7unDHfc7EhjavXtTm7Y5NpkW4/tuLEOUIM3AmJAUrbMAk78vlq3nuRlqs0BDPRL9mPtlrgDoVZk4rxbkqGZWhCUzUmRYsjU8Z3+A9yVzmA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761741354; c=relaxed/simple;
-	bh=02dEesbYfF9Lb3UCqLUaeV5MqepJFchgx9QTccnHX10=;
-	h=Message-ID:MIME-Version:Cc:Subject:To:References:From:In-Reply-To:
-	 Content-Type:Date; b=UNrKsW/MjVWBY51GsHuB7/aVz9SD6FV7uU1KErjGUenmMUBahUaOMDGEW7xwvNRvRQJl4IUg2RpcSQ/nHPB5EdmXGC5PtimXm1Z0ISDl/FJsF5e4P6B9rn/Q+lZw+hzmnTDZf+uIQwn0t7Q6fCGh7Xe7D85CeqCHzwfwTF0exxo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=QqCFy9dd; arc=pass smtp.client-ip=23.83.218.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id F0E8B4C1FF0;
-	Wed, 29 Oct 2025 12:35:50 +0000 (UTC)
-Received: from de-fra-smtpout10.hostinger.io (trex-green-0.trex.outbound.svc.cluster.local [100.121.87.184])
-	(Authenticated sender: hostingeremail)
-	by relay.mailchannels.net (Postfix) with ESMTPA id C55B64C250C;
-	Wed, 29 Oct 2025 12:35:46 +0000 (UTC)
-ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1761741350; a=rsa-sha256;
-	cv=none;
-	b=40AG28293lcDTnU4EkGeWjThsQv2Ycj7di6vxoaJB/Y9opRIhEx84gJhpug6FOLk9wAKDl
-	Z1lIzicDSaht6T/byvPkykL+mD9tUR5FRBb86xGPit0kOW/nzzaq1tQAv/tBXZAVhuL/pj
-	wybJCbB9qmlcPi1M7JK+vdacB0uMC+fflIPlC7inMEqjZULAx2gsSYMeUIgLVHiVWxJbYz
-	fx4GpocbHc6WG/TjsqgZN84LCSW6Kbjshn0qc+UN0RQA08EwaJc2sa7q6OOW3GW2LfwZWM
-	J6z+9EZntUNQHYt9BPXEoxlFUCz4Q3N8W8UpRJ33rE5FrVOBRsDeWp6ieMAHxw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1761741350;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=Oe4ZxNABvSWDZwn7RexTLvMDd+wgT6cbVoGwGOqVxHg=;
-	b=5h/1kphtPwN3wdEQwmqweaw5bDMC6d/36MrPpD09VaQjP/R0wsyTrHxki/7PMjyM7nc1GM
-	LhtANWRCuKZljOlyVNYq94T0ntE9nQjFM3NeVh5TrfXIaUn2CfKzhjTDO4wfzlKjg3MRM6
-	/7jtswoycquPX/TxEr0oj+RvC2yhzxLAriyBxMjqpsMSdjxBL/Efhzktnt1HYDLXpsjaUC
-	LSLmXVm5gky6f0gmbNSImDaUAA6ryasDcP1OOOxUPxg0GSRusC51d+vHbvQMy38pHW2oJj
-	s4pzyLIJmOEs29Q9Nf86e0/4CduBUyW96uedxwX8met0fDVdDf8aM02v6TsIXg==
-ARC-Authentication-Results: i=1;
-	rspamd-77bb85d8d5-bws2z;
-	auth=pass smtp.auth=hostingeremail
- smtp.mailfrom=michael.opdenacker@rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MC-Relay: Neutral
-X-MailChannels-SenderId:
- hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MailChannels-Auth-Id: hostingeremail
-X-Reaction-Whimsical: 5225e7ec7f8e8d96_1761741350820_2222081920
-X-MC-Loop-Signature: 1761741350820:903895263
-X-MC-Ingress-Time: 1761741350819
-Received: from de-fra-smtpout10.hostinger.io (de-fra-smtpout10.hostinger.io
- [148.222.55.9])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.121.87.184 (trex/7.1.3);
-	Wed, 29 Oct 2025 12:35:50 +0000
-Received: from [IPV6:2001:861:4450:d360:2406:5e25:7480:5f0b] (unknown [IPv6:2001:861:4450:d360:2406:5e25:7480:5f0b])
-	(Authenticated sender: michael.opdenacker@rootcommit.com)
-	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4cxRYC0mFQz3yqy;
-	Wed, 29 Oct 2025 12:35:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
-	s=hostingermail-a; t=1761741345;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Oe4ZxNABvSWDZwn7RexTLvMDd+wgT6cbVoGwGOqVxHg=;
-	b=QqCFy9ddIA4yBphJF9vcN8yRLz1amgW53X5uZ/GZbSSfH3tAt2r2FUlpP0iCF34YwP40Oj
-	sFAfJ1/S0R/rremkxFEv3QLx4517/PdZl2e9RIw50J8ZiUlSbqsXiiZN9jifSQ4jHqaZW4
-	i5iS/hBagb67/uCzOY2u2SCTRhg1kDGrErO3t405GwQLnYya7gsBXH3Te8QeMypEuulWaV
-	05TJL41XUVjk4yBRtr9+xX2L4OGyx+4WXTBWTD63hcNQIQeYtqN391MEugibgbysEAuk4J
-	9Mj7euBsD/kG0vNLuWeBUlrRrDU/uIYFIto7kkx4SVuGo/+Gkc94eIPXFoT+jg==
-Message-ID: <4b1b2580-63ce-4ce8-b4a9-1763d3d3a253@rootcommit.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F2D1346788
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 12:30:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761741014; cv=none; b=SnR5GuXojogqWRuC28UVX81JFyzeCcwyMreHO7lvcPb4ngq2FXE2SClOctUnePEKXvmgZRf/Ow40qAUPGuFm2PfE2SsgYDdQf26Hp+0CdmOPl7fYfaXOIVfVpWFhCFV/jnU9jmJHHg3ZDtLXm/doiJoBveMhL/BUU9+06MWchzE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761741014; c=relaxed/simple;
+	bh=kG5m0dyjBmsIXWdS8H3YMGbeyjdHEsjIAHd68POJ7Eg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pdtSr+fdZnUwpq2BAh5goLS5nUJ8oyUNO2neOuWSea97FemWt6gEU5/Oxr7lKatHEW/jyh1eZH4GFLWAESI189VjrgGDsfDGE9OpdEUdqMjAJ5FOWatPwu3IT8bL85WztSyGmCTnetWDZuFYerqDbAzvy2s2LAxSZV4RxrwltOE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PV8z0OSS; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Eh/1i3Zu; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59TC0Rif3720424
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 12:30:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	TMUc3tJ7ZtFekmGe/5Q8FFBOdVi1pg7gP6RmhoyB/Ls=; b=PV8z0OSS7fuvvlNo
+	d7s8xqEfukZ5V7h4g5zYmaZoXaL80TPf0ipHRn/xM27wKepv6LOcP+Aq7AfU7wn0
+	djbLwHYiWjEfZO/fxGy+SJVAPnJcJSb7+A2VBTlcMBSOUgly3kk4FIrwK9/JgEJW
+	0vMhMZdX7jZKEuYk/d/3UKj1NIvY5U7t3O69BbH/UDSHJ8AOUZ9KHpo1kcWfuHys
+	e8vynn4G3I6316tBXlXcLdRkUclTt3x3eYpHeq2wg1LY/iwc4scOZ2z0rZSawSTJ
+	BYIXImBp+B5rAm4a1p+zzvtujM8T+7HmUL1pcI+mt6CvM17UgsZhvZR2ha7joFpa
+	WQKvnQ==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a34a22h1w-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 12:30:10 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7a26485fc5dso5582203b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 05:30:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1761741010; x=1762345810; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TMUc3tJ7ZtFekmGe/5Q8FFBOdVi1pg7gP6RmhoyB/Ls=;
+        b=Eh/1i3Zu93qDmz6Dq2wttOnY9ABA0CsrOHmUeDF2B0ziXAR4+mfX8Cc/PSTWGd9D7H
+         tlxCmQU9xCHjLoJ+8JQPRUN1QHD2NIDHEQP5vb+WKvy388oWYT2+rRkUnAuxFxTrZdXJ
+         h0LSzBSPz9Ba8b9lMZAtC1pvme+oTDJJvNF+6+ntfWOt7R5Ajae7DRLbY4b/4WyUt92X
+         RPFVWOfHxQcI6Gn7ByxNxEwHwAEW1FGM31Iq2P7pTpJW8wKQTsYhYclSGL6BuUYvCYVc
+         wChVzRgSBEa1bh57R/R53FULjCStme2QsuXbgX1OMfpEyLJb0rDquAAszFFVb5XWqS8k
+         9HTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761741010; x=1762345810;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TMUc3tJ7ZtFekmGe/5Q8FFBOdVi1pg7gP6RmhoyB/Ls=;
+        b=StePTHn1TMFKq8BkyxZAjhmy8hRTGzuZpMYS8kzK1zqPMSd8bVh66xeC+6OJFdhW0Q
+         ZQW78o3DYykEME5XVStoRJ6wGi52XaATgW4LxFePU/le41cUzdduu3gY10LjuFvVuQ3J
+         etTBCyAwT3e8BMoG6XnAY3gakSvk7xuS2osWfSZdVrgktJKOCVUX/XTiC2oXlnGHWLeF
+         SR5AuyAN1qRLfm62l2X1ORfg7POpECg4i2cp0vZSIkq8kokKqmT8wVMqfxVQ2soL0Cbc
+         1jR8y9k555AKWj/FHldeJuCtcBtjcruNwfw8blCMuvwfn5nsZpE17HD9ov0Wq/IxJToZ
+         kLuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWZi9WKoHKXIuOQG2DqNzEb9U7gAlCApbHaLw26g0JgRf+outCkqYjFhyKQsbwSZ3fjfbETYZijYFQc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6Nz+6REk8+Rwxu9fwn762772xpLgRVBPqChb15VB0nYs0rd9s
+	ayHIRMIgBuxiAuI4yAuUWmCgTpaK7BXMROYdkYewh6klGhCGefRjl4hKhui0XjHtDZj/ID81LQI
+	VQbpQOejMROg03a8LN/ZaTtX7BiuoyUVS5hhwAE2aUtbJWLWF1zujBECOf+viv/cp
+X-Gm-Gg: ASbGncuihYQ//jPNc99d6QJLh34Qzgjh7Bf5MFvGFkdSDt53mB6jAvM54fWHppJ4eyW
+	Yh/7/WOT2SfUkrgmbfhKiycO3t3J1iGgRvsyCEVMNwCwHQJLXV82fsdpHqw0rvvhltmOv2q04Y3
+	ihya8BMo+yKJUCoQ9dgeUQVccX+jMrM3Ms9jOHMDrP+BhHDI4YV1hCX30Fv0vvMbg+K/puyOyah
+	EElxyGyAPotsotcMVj/u+GFVpuiFNAyhfoLCCx1ej3VCrN8KOP+dEObziXaeMFVIbWBMo3NuqJw
+	QD3YykgpWYxwf5rjYP/mzn6HPOXYaYqKI5EWdL8K5mIc+q97iHL6+wwSgAUbsQXJDI8IgMIC0+X
+	CtyDUrpH6JfB7pOUUBimfpQOjxXpFvJM4
+X-Received: by 2002:a05:6a00:cd2:b0:7a2:7a36:46dd with SMTP id d2e1a72fcca58-7a4e2df8684mr3535358b3a.5.1761741009596;
+        Wed, 29 Oct 2025 05:30:09 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFVwrrfaLG8ulMxEQ6t0UsGwp3wouMxuPndkKaFYkveJm2eyV1MsmhSCWLET27rZ8SM57ZGSg==
+X-Received: by 2002:a05:6a00:cd2:b0:7a2:7a36:46dd with SMTP id d2e1a72fcca58-7a4e2df8684mr3535313b3a.5.1761741008921;
+        Wed, 29 Oct 2025 05:30:08 -0700 (PDT)
+Received: from [10.218.1.199] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a414015724sm15081222b3a.14.2025.10.29.05.30.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Oct 2025 05:30:08 -0700 (PDT)
+Message-ID: <a8046f0d-ee74-457a-aafa-6473c67c6ab8@oss.qualcomm.com>
+Date: Wed, 29 Oct 2025 18:00:02 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,194 +103,125 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Cc: michael.opdenacker@rootcommit.com, devicetree@vger.kernel.org,
- sophgo@lists.linux.dev, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 2/5] arm64: dts: sophgo: add initial Milk-V Duo S board
- support
-To: Joshua Milas <josh.milas@gmail.com>, tglx@linutronix.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, unicorn_wang@outlook.com,
- inochiama@gmail.com, paul.walmsley@sifive.com, samuel.holland@sifive.com,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
- alexander.sverdlin@gmail.com, rabenda.cn@gmail.com,
- thomas.bonnefille@bootlin.com, chao.wei@sophgo.com,
- liujingqi@lanxincomputing.com
-References: <20251029001052.36774-1-josh.milas@gmail.com>
- <20251029001052.36774-3-josh.milas@gmail.com>
-Content-Language: en-US, fr
-From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-Organization: Root Commit
-In-Reply-To: <20251029001052.36774-3-josh.milas@gmail.com>
+Subject: Re: [PATCH v9 3/3] arm64: dts: qcom: sm8750: Add USB support for
+ SM8750 QRD platform
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+References: <20251024151521.2365845-1-krishna.kurapati@oss.qualcomm.com>
+ <20251024151521.2365845-4-krishna.kurapati@oss.qualcomm.com>
+ <a117b105-a734-4f67-9bb2-c06728e79083@kernel.org>
+ <6297468b-77d0-4202-8ec1-3e731acc43de@oss.qualcomm.com>
+ <6234e22a-c119-419c-83b7-2a53467951da@kernel.org>
+Content-Language: en-US
+From: Krishna Kurapati PSSNV <krishna.kurapati@oss.qualcomm.com>
+In-Reply-To: <6234e22a-c119-419c-83b7-2a53467951da@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Date: Wed, 29 Oct 2025 12:35:43 +0000 (UTC)
-X-CM-Analysis: v=2.4 cv=Ceda56rl c=1 sm=1 tr=0 ts=69020a20 a=wUKD9753dquIziLb6m98Lg==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=YzZgpwwcAAAA:8 a=d70CFdQeAAAA:8 a=pGLkceISAAAA:8 a=rAE3ZbY7XHi-JfuC7_kA:9 a=QEXdDO2ut3YA:10 a=diELbSsDbaqdzccPbx55:22 a=NcxpMcIZDGm-g932nG_k:22
-X-CM-Envelope: MS4xfAJT8EYqOXdyz75oxkACxsC0KJle9H+fVC0/lFHJ+Lv3v4L4AfKpVkFcFE9usfuSP33PfbJ396kKSwkJh363efFWzJ3RY3cLSBia1MzzRzFQ2zltbyX+ vWFcj5/jxXq8Xq+Dar3KlbCpBxnrECoGVNnZJjArKGmx6bVJYcclK1o9GM2aG+0359splJMr6JCVNQ1GAoczWYO73jGlmrwTYR2pbDZSJkycSSlM05W+W9cl RKsAXbnx38+H6b78+18fqqNuY6t+Z3qbMkrPnkdAMw7n7omyOxg1Dg6pQ/BILK6v0PU8FzLIG8puGMQ97m0H2AWzmy3DLQudAB04+1wFZ71eBGIzTsqKioAx +SL5YNUedMGsnXT9hmiNf/YBm1zcHyySmmv0DoD4sHskKHprwdBQ3kwScgP05r3CINkFDrIty5yLqLtVUlIAyOBczGx+rPl3Gz1tdw1caAiazacaae8sClTl usb62n5/lh2DDzzYN4u77WsCBUgiG3hZFJRVgxItacp24eqDJ1GqFyG6NT5mlUVn8sUGrd69Uox8wpvOIEUbiTaxSOTk/jcE7fj/BtdoWkPObS0+GvnRSgYS hm1ByLIKEy03qbnRNUozyHF2uN0vNRW5t1UkRNv+PrrtNEseWcO5hPpJ4UDsYNShyebkNuh12ShCgo2D1vQLjITN5JoJtJAcmfNoe+QqVRr5jknIhl/9wSs7 S9jpDkI6Nw12PJ4S/vDod4X+Ly8UncV6ep7vtOPHhZik97kSMcPbBz+SJBI8+Sk5Leb/jKY83uanH0buHkkV970sV0ye6A4TbWvoHdVVk9VnpZbo2g6qDJjy GFSaO/WMlRzVMVyN5eb24+WII2lh13uwsKjMMtvY0eotLVjKrcQzto4Phlf2oEBg1S4zo4l8zog8mCeIvn1ACFIsiM2eeKw8EEazWPcjTX+lhHatx4YZGzfb KcdUGJnPRVrDdBs
- yCIWrckQzm7W+P7JjDnnU3cnmds21ljOM1MX2HiwMuj1V67WAX28JIg==
-X-AuthUser: michael.opdenacker@rootcommit.com
-
-Hi Joshua
-
-Many thanks for this update! I'd love to have this board supported in 
-mainline, and when this happens, I'll add it to Yocto's meta-riscv layer 
-to make it easy to use.
-
-On 10/29/25 01:10, Joshua Milas wrote:
-> Adds initial arm64 support for the Milk-V Duo S board
-> [1] making it possible to boot Linux to the command line.
->
-> Link: https://milkv.io/duo-s [1]
->
-> Signed-off-by: Joshua Milas <josh.milas@gmail.com>
-> ---
->   arch/arm64/boot/dts/sophgo/Makefile           |  1 +
->   .../boot/dts/sophgo/sg2000-milkv-duo-s.dts    | 80 +++++++++++++++++++
->   2 files changed, 81 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts
->
-> diff --git a/arch/arm64/boot/dts/sophgo/Makefile b/arch/arm64/boot/dts/sophgo/Makefile
-> index 94f52cd7d994b..68aace728223a 100644
-> --- a/arch/arm64/boot/dts/sophgo/Makefile
-> +++ b/arch/arm64/boot/dts/sophgo/Makefile
-> @@ -1,2 +1,3 @@
->   # SPDX-License-Identifier: GPL-2.0
->   dtb-$(CONFIG_ARCH_SOPHGO) += sg2000-milkv-duo-module-01-evb.dtb
-> +dtb-$(CONFIG_ARCH_SOPHGO) += sg2000-milkv-duo-s.dtb
-> diff --git a/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts b/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts
-> new file mode 100644
-> index 0000000000000..174c194e1301d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts
-> @@ -0,0 +1,80 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +
-> +/dts-v1/;
-> +
-> +#include "sg2000.dtsi"
-> +
-> +/ {
-> +	model = "Milk-V Duo S";
-> +	compatible = "milkv,duo-s", "sophgo,sg2000";
-> +
-> +	aliases {
-> +		i2c4 = &i2c4;
-> +		mmc0 = &sdhci0;
-> +		serial0 = &uart0;
-> +		spi3 = &spi3;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +};
-> +
-> +&osc {
-> +	clock-frequency = <25000000>;
-> +};
-> +
-> +&dmac {
-> +	status = "okay";
-> +};
-> +
-> +&emmc {
-> +	bus-width = <4>;
-> +	no-1-8-v;
-> +	cap-mmc-hw-reset;
-> +	no-sd;
-> +	no-sdio;
-> +	non-removable;
-> +	status = "okay";
-> +};
-> +
-> +&gmac0 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c4 {
-> +	status = "okay";
-> +};
-> +
-> +&mdio {
-> +	status = "okay";
-> +};
-> +
-> +&saradc {
-> +	status = "okay";
-> +};
-> +
-> +&sdhci0 {
-> +	bus-width = <4>;
-> +	no-1-8-v;
-> +	disable-wp;
-> +	status = "okay";
-> +};
-> +
-> +&sdhci1 {
-> +	bus-width = <4>;
-> +	cap-sdio-irq;
-> +	no-mmc;
-> +	no-sd;
-> +	non-removable;
-> +	status = "okay";
-> +};
-> +
-> +&spi3 {
-> +	status = "okay";
-> +};
-> +
-> +&uart0 {
-> +	status = "okay";
-> +};
-> +
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI5MDA5NSBTYWx0ZWRfXzDh+ei8DGUgL
+ QEw0yoJHszhNgkukzQcECOdMq3y+mtLJorK49ZdTsumt78ZX9VK2z5taGZkMIdqrw3fSDnwh0KU
+ CycLxcHWbcBAOoR2lz45HCrPlQm9spl1X9gr/YbGdeS5VqLSOO0C3knCiYx8VKs+fGF2xBsRZDi
+ 7rwGCl1Dx4EWBKBBn2GiguHIBejZcKJZjArhafXpuszqzl52kBSN9Rn4lkI/TrqkGnlpqtkPI93
+ AUFs1DxdrKDQ7fmT8rGuzOvcOR/6SPbvya2jBbG6IQbBwu7xkpnHKDZlZeceT7/ZDH0shkzD1Sd
+ 2V4C3t4bATizixRhsZjzz06NxqR7kZVXLYeSZs8VdhkJ51u+Q4lbMzVbrI1VxSP6ldQoUwLZgQA
+ C1Oe4UOAchjloOfMCh0T/LKby8rRuw==
+X-Authority-Analysis: v=2.4 cv=V5ZwEOni c=1 sm=1 tr=0 ts=690208d2 cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=yTxWjB1dP65ezAuFSf8A:9
+ a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
+X-Proofpoint-GUID: Z_iDDNQja8TIuqe7C6SuX_EeJqkcWOvx
+X-Proofpoint-ORIG-GUID: Z_iDDNQja8TIuqe7C6SuX_EeJqkcWOvx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-10-29_05,2025-10-29_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 clxscore=1015 adultscore=0 suspectscore=0 bulkscore=0
+ phishscore=0 lowpriorityscore=0 priorityscore=1501 malwarescore=0
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2510290095
 
 
-I managed to boot the board and run tests:
 
-Tested successfully:
+On 10/29/2025 5:35 PM, Krzysztof Kozlowski wrote:
+> On 29/10/2025 12:42, Krishna Kurapati PSSNV wrote:
+>>
+>>
+>> On 10/29/2025 1:37 PM, Krzysztof Kozlowski wrote:
+>>> On 24/10/2025 17:15, Krishna Kurapati wrote:
+>>>> From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+>>>>
+>>>> Enable USB support on SM8750 QRD variant.  The current definition
+>>>> will start the USB controller in peripheral mode by default until
+>>>> dependencies are added, such as USB role detection.
+>>>>
+>>>> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+>>>> [Krishna: Flattened usb node QRD DTS]
+>>>> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+>>>
+>>> NAK.
+>>>
+>>> You ignored every previous tag - multiple reviews and tests, and then...
+>>>
+>>>> ---
+>>>>    arch/arm64/boot/dts/qcom/sm8750-qrd.dts | 22 ++++++++++++++++++++++
+>>>>    1 file changed, 22 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8750-qrd.dts b/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
+>>>> index 13c7b9664c89..fc5d12bb41a5 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
+>>>> +++ b/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
+>>>> @@ -1054,3 +1054,25 @@ &ufs_mem_hc {
+>>>>    
+>>>>    	status = "okay";
+>>>>    };
+>>>> +
+>>>> +&usb_1 {
+>>>> +	dr_mode = "peripheral";
+>>>
+>>> You sent something different with issues.
+>>>
+>>> Really, this was a correct patch. Was reviewed. Why you decided to drop
+>>> all this, drop everything which was correct?
+>>>
+>>> Your explanation:
+>>> "- Removed obtained RB tags since the code has changed significantly."
+>>> is just wrong. Almost NOTHING changed, except completely unimportant two
+>>> node merging.
+>>>
+>>> NAK
+>>>
+>>
+>>
+>> Apologies Krzysztof,
+>>
+>> On first patch that adds changes to base DTSI, there were changes moving
+>> to newer bindings and merging child node and parent node. I should've
+>> removed RB tags received on that patch only. But I was over cautious and
+>> misinterpreted the rules and removed them on the other patches as well.
+>> Will be careful the next time.
+>>
+>> Also is there any issue with marking dr_mode as peripheral here in usb_1
+>> node ?
+> 
+> No, I think I looked at your other patch. Tthis was reviewed at v4 and
+> v5, which then it was changed breaking sorting order. This one looks
+> correct.
+> 
 
-  * uart0: boot console
-  * mmc0 (sdhci0?): root filesystem
+Ok.
 
-Issues
+I will send v10 tomorrow. Can I add yours and Dmitry's RB tag on the MTP 
+and QRD patches and then send it ? I will implement feedback from Dmitry 
+on SOC dtsi patch in v10.
 
-  *
-
-    eth0:
-
-    ifconfig eth0 172.24.0.2
-    [ 48.893725] stmmaceth 4070000.ethernet eth0: Register
-    MEM_TYPE_PAGE_POOL RxQ-0
-    [ 48.903077] stmmaceth 4070000.ethernet eth0: cannot attach to PHY
-    (error: -ENODEV)
-    ifconfig: SIOCSIFFLAGS: No such device
-
-    I believe I have all drivers enabled though...
-
-  * emmc:
-
-    [ 2.730194] mmc2: Failed to initialize a non-removable card
-    [ 2.764843] mmc1: Failed to initialize a non-removable card
-
-    I tested with a board that has an eMMC
-
-  * i2c4: detected by "i2cdetect -l"
-    but no devices found by "i2cdetect -r 4"
-    I tried both pins 3/4 and pins 50/48, with two different devices
-    connected to the bus.
-    Which pins did you use? I could check the SoC pin muxing, but your
-    answer will save me time :D
-
-Would you mind sharing your defconfig file ("make savedefconfig") via a 
-private message or through a link (to avoid sending the entire file to 
-the list)?
-Thanks again
-Cheers
-Michael.
-
-
--- 
-Michael Opdenacker
-Root Commit
-Yocto Project and OpenEmbedded Training course - Learn by doing:
-https://rootcommit.com/training/yocto/
-
+Regards,
+Krishna,
 
