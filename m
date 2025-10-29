@@ -1,224 +1,168 @@
-Return-Path: <devicetree+bounces-232498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2209C1885E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 07:53:02 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEB30C188BB
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 07:55:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3648535143C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 06:53:02 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EB3BE4F54A5
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 06:54:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECA2F3081B1;
-	Wed, 29 Oct 2025 06:52:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4049230C609;
+	Wed, 29 Oct 2025 06:54:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NeDvyJ2Z"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="IG+ozAnr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFA573081CA;
-	Wed, 29 Oct 2025 06:52:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFCC230AACC;
+	Wed, 29 Oct 2025 06:54:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761720777; cv=none; b=YsbYyU8vOP7doHtXw6ouUoD1rPnDKiYYInV3Hg7EZAVyhMYM6xTGVe8pJEza0oF1zedKpML0RGylbJpOd4rRam59zuOzL8zYPhuf9xTzOt81zDmo/gKdttPwB7mf70XQyXAAXWMhH3ZxXqXwlNzTwrirM8WrU3jIjJENnl0lrUI=
+	t=1761720849; cv=none; b=YOO+L3xiUVnrm6pk0baEmnhwfiL4b01bLF+gZHPHqoYcpREnmkbB0CDTDecCfZRmZMVNylGKe1J50gvi8swd2z7xVQyPnRoWXZ1dM4QUXg2zVe9rnt+lIG3FTDUBR2isDq/WajBmQe6Yxgot1BYt1WAGhzJJVlNtEFqblhU/t9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761720777; c=relaxed/simple;
-	bh=wLvkhakhduQOY2vhLJheVjgPnyTOxK3Ps1mJoXA9jHw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pDBVMKm0hoDVLKcUEqzRM8ciESasRToyckHwuzUcFPh5gqWKU4RGFK98Tb79tEmhgLeg7hw5pXmchW04xQblwZyaGMUSQu6IcTsrB5ZsUkrrTxSodsPf6/Y4MkNxdXGqGMGGPCWK1KmatdZ6dToh1F6wMiP/Z0qtoMAjAG8drEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NeDvyJ2Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F474C4CEF7;
-	Wed, 29 Oct 2025 06:52:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761720777;
-	bh=wLvkhakhduQOY2vhLJheVjgPnyTOxK3Ps1mJoXA9jHw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NeDvyJ2Z+gTp2mFQGlLJeqXbER6gGXl07XSBLxOsgkquHKB+VKpSvWFDBw5zlA/fk
-	 RwgyDq6IFy3J8MA5p0nAhZ2yDkhcuqj6jc4Y02tsqykFpBmrcTdlkFsUV4KCEKTSuA
-	 vGMDtldMmloj2f+PtVtqx4Gv3+fX3+2zSZQudN5otZP9j4NdgQoQ7dzR4Fw59qnfO0
-	 2Clqp/iFUWPx+3cehGasieYo5LrNtvRhQTIZwVbiVQnw1f+MRbOuVmtnI+dLhM4HEo
-	 qz4rYrGLL6rNHfCYX2xEOL4i8tNRaSi4T06fHD9+g+0RxyA173PX0YxNdysAEfOLaW
-	 rVVMlHQdIvnJw==
-Date: Wed, 29 Oct 2025 07:52:54 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: niravkumarlaxmidas.rabara@altera.com
-Cc: dinguyen@kernel.org, matthew.gerlach@altera.com, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, bp@alien8.de, tony.luck@intel.com, 
-	linux-edac@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/6] EDAC/altera: Add support for CRAM SEU error handling
- on SoCFPGA
-Message-ID: <20251029-new-placid-woodlouse-6b975c@kuoka>
-References: <20251028092232.773991-1-niravkumarlaxmidas.rabara@altera.com>
- <20251028092232.773991-6-niravkumarlaxmidas.rabara@altera.com>
+	s=arc-20240116; t=1761720849; c=relaxed/simple;
+	bh=UWjg1I8loEhZ2p3rtKferQ04t5INBC31XUAKIahRIIk=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=OWZsgYRD9JD/eggRkzbGwPS+lOWzVz8N4qwTRqK2M4vmPK0jRS8pn0/HaA5JTVxPWrc9niSa/RlXYjobJtm1moyRlTQzBvj0oZGsdCd6xAijzAEJQC/HdiwvaXF/UEsEi0BUpadM2bOAPq9d85KTh4GQ0mb/7SvdrpSNLA4Kbnk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=IG+ozAnr; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 0b0cb084b49411f0b33aeb1e7f16c2b6-20251029
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:To:From; bh=qDq6w3/zzkTLqs+mK/IlOfjEbX3l3XrldgIdINPoi2o=;
+	b=IG+ozAnrnjIPCvw3rB+4FB1M391Q9rbmlIaotPZ6gQMtNNohV+KDeQGWCxbw4E9bx3J2tv5laeyEW1n9+ssfgjBd0ioxeRyfpI9ecZuR2Dw8f+tY7Ze37Cy30afwMkpE7GYPhWs9VIzzRFVGDecILltJElCzYxR70xBYCmida18=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.6,REQID:2cf4665f-8b70-443c-bc2c-4e9a7226467c,IP:0,UR
+	L:0,TC:0,Content:0,EDM:-20,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-20
+X-CID-META: VersionHash:a9d874c,CLOUDID:dfd96c84-4124-4606-b51d-d5c9eec0e7b9,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|888|898,TC:-5,Content:0|15|5
+	0,EDM:1,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA
+	:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 0b0cb084b49411f0b33aeb1e7f16c2b6-20251029
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+	(envelope-from <kyrie.wu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 944319919; Wed, 29 Oct 2025 14:53:58 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Wed, 29 Oct 2025 14:53:56 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1748.26 via Frontend Transport; Wed, 29 Oct 2025 14:53:56 +0800
+From: Kyrie Wu <kyrie.wu@mediatek.com>
+To: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab
+	<mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Kyrie Wu <kyrie.wu@mediatek.com>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>
+Subject: [PATCH v10 00/12] Enable jpeg enc & dec multi-hardwares for MT8196
+Date: Wed, 29 Oct 2025 14:53:41 +0800
+Message-ID: <20251029065354.22257-1-kyrie.wu@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251028092232.773991-6-niravkumarlaxmidas.rabara@altera.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On Tue, Oct 28, 2025 at 05:22:31PM +0800, niravkumarlaxmidas.rabara@altera.com wrote:
-> From: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
-> 
-> Add new EDAC driver support for detecting and handling Single Event Upset
-> (SEU) errors in the FPGA Configuration RAM (CRAM) on Altera SoCFPGA
-> devices.
-> 
-> The Secure Device Manager (SDM) is responsible for detecting correctable
-> and uncorrectable SEU errors and notifies the CPU through a dedicated
-> interrupt. Upon receiving the interrupt, the driver invokes an SMC call
-> to the ARM Trusted Firmware (ATF) to query the error status.
-> The ATF, in turn, communicates with the SDM via the mailbox interface to
-> retrieve the error details and returns to the driver.
-> 
-> Signed-off-by: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
-> ---
->  drivers/edac/Kconfig                         |  12 ++
->  drivers/edac/altera_edac.c                   | 178 +++++++++++++++++++
->  drivers/edac/altera_edac.h                   |   9 +
->  include/linux/firmware/intel/stratix10-smc.h |  37 ++++
->  4 files changed, 236 insertions(+)
-> 
-> diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
-> index 33a9fccde2fe..701b15e73a39 100644
-> --- a/drivers/edac/Kconfig
-> +++ b/drivers/edac/Kconfig
-> @@ -477,6 +477,18 @@ config EDAC_ALTERA_SDMMC
->  	  Support for error detection and correction on the
->  	  Altera SDMMC FIFO Memory for Altera SoCs.
->  
-> +config EDAC_ALTERA_CRAM_SEU
-> +	bool "Altera CRAM SEU"
-> +	depends on EDAC_ALTERA=y && 64BIT
-> +	help
-> +	  Support for error detection and correction on Altera SoCs for
-> +	  FPGA Configuration RAM(CRAM) Single Event Upset(SEU).
-> +	  The SEU errors caused by radiation or other transient events are
-> +	  monitored by the Secure Device Manager (SDM), which notifies the
-> +	  CPU through a dedicated interrupt.
-> +	  This driver uses an SMC interface to query the error status and
-> +	  report events to the EDAC framework.
-> +
->  config EDAC_SIFIVE
->  	bool "Sifive platform EDAC driver"
->  	depends on EDAC=y && SIFIVE_CCACHE
-> diff --git a/drivers/edac/altera_edac.c b/drivers/edac/altera_edac.c
-> index a82c3b01be1a..ac2151c625a2 100644
-> --- a/drivers/edac/altera_edac.c
-> +++ b/drivers/edac/altera_edac.c
-> @@ -656,6 +656,19 @@ static const struct file_operations altr_edac_a10_device_inject_fops __maybe_unu
->  	.llseek = generic_file_llseek,
->  };
->  
-> +#if IS_ENABLED(CONFIG_EDAC_ALTERA_CRAM_SEU)
-> +static ssize_t __maybe_unused
-> +altr_edac_seu_trig(struct file *file, const char __user *user_buf,
-> +		   size_t count, loff_t *ppos);
-> +
-> +static const struct file_operations
-> +altr_edac_cram_inject_fops __maybe_unused = {
-> +	.open = simple_open,
-> +	.write = altr_edac_seu_trig,
-> +	.llseek = generic_file_llseek,
-> +};
-> +#endif
-> +
->  #ifdef CONFIG_EDAC_ALTERA_IO96B
->  static ssize_t __maybe_unused
->  altr_edac_io96b_device_trig(struct file *file, const char __user *user_buf,
-> @@ -1492,6 +1505,56 @@ static const struct edac_device_prv_data a10_usbecc_data = {
->  
->  #endif	/* CONFIG_EDAC_ALTERA_USB */
->  
-> +#if IS_ENABLED(CONFIG_EDAC_ALTERA_CRAM_SEU)
-> +static irqreturn_t seu_irq_handler(int irq, void *dev_id)
-> +{
-> +	struct altr_edac_device_dev *dci = dev_id;
-> +	struct arm_smccc_res result;
-> +
-> +	arm_smccc_smc(INTEL_SIP_SMC_SEU_ERR_STATUS, 0,
-> +		      0, 0, 0, 0, 0, 0, &result);
-> +
-> +	if ((u32)result.a0) {
-> +		edac_printk(KERN_ERR, EDAC_DEVICE,
-> +			    "SEU %s: Count=0x%X, SecAddr=0x%X, ErrData=0x%X\n",
-> +			    ((u32)result.a2 & BIT(28)) == 0 ? "UE" : "CE",
-> +			    (u32)result.a0, (u32)result.a1, (u32)result.a2);
-> +
-> +		if ((u32)result.a2 & BIT(28))
-> +			edac_device_handle_ce(dci->edac_dev, 0, 0, dci->edac_dev_name);
-> +		else
-> +			edac_device_handle_ue(dci->edac_dev, 0, 0, dci->edac_dev_name);
-> +	}
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static ssize_t __maybe_unused
-> +altr_edac_seu_trig(struct file *file, const char __user *user_buf,
-> +		   size_t count, loff_t *ppos)
-> +{
-> +	struct edac_device_ctl_info *edac_dci = file->private_data;
-> +	struct altr_edac_device_dev *dev = edac_dci->pvt_info;
-> +	u8 trig_type;
-> +	struct arm_smccc_res result;
-> +
-> +	if (!user_buf || get_user(trig_type, user_buf))
-> +		return -EFAULT;
-> +
-> +	if (trig_type == ALTR_UE_TRIGGER_CHAR)
-> +		arm_smccc_smc(INTEL_SIP_SMC_SAFE_INJECT_SEU_ERR,
-> +			      ((u64)dev->seu.ue_msb << 32) |
-> +			      dev->seu.ue_lsb,
-> +			      2, 0, 0, 0, 0, 0, &result);
-> +	else
-> +		arm_smccc_smc(INTEL_SIP_SMC_SAFE_INJECT_SEU_ERR,
-> +			      ((u64)dev->seu.ce_msb << 32) |
-> +			      dev->seu.ce_lsb, 2, 0, 0, 0,
-> +			      0, 0, &result);
-> +
-> +	return count;
-> +}
-> +#endif
-> +
->  /********************** QSPI Device Functions **********************/
->  
->  #ifdef CONFIG_EDAC_ALTERA_QSPI
-> @@ -2031,6 +2094,117 @@ static int get_s10_sdram_edac_resource(struct device_node *np,
->  	return ret;
->  }
->  
-> +#if IS_ENABLED(CONFIG_EDAC_ALTERA_CRAM_SEU)
-> +static int altr_edac_seu_device_add(struct altr_arria10_edac *edac,
-> +				    struct platform_device *pdev, struct device_node *dev_node)
-> +{
-> +	struct edac_device_ctl_info *dci;
-> +	struct altr_edac_device_dev *altdev;
-> +	char *ecc_name = kstrdup(dev_node->name, GFP_KERNEL);
-> +	int edac_idx;
-> +	int seu_irq;
-> +	int rc = 0;
-> +
-> +	seu_irq = platform_get_irq_byname(pdev, "sdm_seu");
-> +	if (seu_irq < 0) {
-> +		dev_warn(&pdev->dev, "no %s IRQ defined\n", "sdm_seu");
-> +		return 0;
-> +	}
-> +
-> +	edac_idx = edac_device_alloc_index();
-> +	dci = edac_device_alloc_ctl_info(sizeof(*altdev), ecc_name,
-> +					 1, ecc_name, 1, 0, edac_idx);
-> +	if (!dci) {
-> +		edac_printk(KERN_ERR, EDAC_DEVICE,
-> +			    "%s: Unable to allocate EDAC device\n", ecc_name);
+This series have the follow changing:
+Firstly fix some bugs, including resolution change handleing, stop
+streaming sw flow, fix buffer layout and clock setting to support multi-hw
+jpeg working and others.
+Secondly add mt8196 jpegdec and jpegenc compatible to support MT8196
+kernel driver.
+Lastly, Add smmu setting to support smmu and iommu at the same time.
 
-NAK, you never print errors on ENOMEM.
+This series has been tested with MT8196 tast test.
+Encoding and decoding worked for this chip.
 
-Best regards,
-Krzysztof
+Patches 1 fix jpeg hw count setting to support different chips.
+Patches 2 fix jpeg buffer payload setting to handle buffer
+size bug while resolution changed.
+Patches 3 fix jpeg dst buffer layout.
+Patches 4 fix multi-core stop streaming flow
+Patches 5 fix multi-core clk suspend/resume setting
+Patches 6 fix decoding buffer number setting timing issue
+Patches 7 fix decoding resolution change operation
+Patches 8 fix remove buffer operation
+Patches 9-11 Adds jpeg encoder and decoder compatible.
+Patches 12 add jpeg smmu sid setting.
+
+---
+Changes compared with v9:
+--Rebased on top of the latest media tree
+
+Changes compared with v8:
+--Rebased on top of the latest media tree
+
+Changes compared with v7:
+--Rebased on top of the latest media tree
+
+Changes compared with v6:
+--Rebased on top of the latest media tree
+
+Changes compared with v5:
+--reorder the patches set.
+--fix commit message of patch 1-8.
+
+Changes compared with v4:
+--fix kernel robot build errors for patch 4.
+--add reviewer for patch 1 and patch 2.
+
+Changes compared with v3:
+--change patch subject of jpeg encoder and decoder compatible.
+
+Changes compared with v2:
+--refactor smmu sid setting function interface
+--Some modifications for patch v2's review comments.
+
+Changes compared with v1:
+--refine jpeg dt-bindings for MT8196
+--optimize software code to manage jpeg HW count
+--refactor smmu sid setting function interface
+--Some modifications for patch v1's review comments.
+
+Kyrie Wu (12):
+  media: mediatek: jpeg: fix jpeg hw count setting
+  media: mediatek: jpeg: fix jpeg buffer payload setting
+  media: mediatek: jpeg: fix jpeg buffer layout
+  media: mediatek: jpeg: fix stop streaming flow for multi-core
+  media: mediatek: jpeg: fix multi-core clk suspend and resume setting
+  media: mediatek: jpeg: fix decoding buffer number setting timing issue
+  media: mediatek: jpeg: fix decoding resolution change operation
+  media: mediatek: jpeg: fix remove buffer operation for multi-core
+  media: dt-bindings: mediatek,jpeg: Add mediatek, mt8196-jpgdec
+    compatible
+  media: dt-bindings: mediatek,jpeg: Add mediatek, mt8196-jpgenc
+    compatible
+  media: mediatek: jpeg: add jpeg compatible
+  media: mediatek: jpeg: add jpeg smmu sid setting
+
+ .../media/mediatek,mt8195-jpegdec.yaml        |   8 +-
+ .../media/mediatek,mt8195-jpegenc.yaml        |   8 +-
+ .../platform/mediatek/jpeg/mtk_jpeg_core.c    | 174 +++++++++++++-----
+ .../platform/mediatek/jpeg/mtk_jpeg_core.h    |  21 ++-
+ .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.c  | 112 ++++++++++-
+ .../platform/mediatek/jpeg/mtk_jpeg_enc_hw.c  | 112 ++++++++++-
+ 6 files changed, 378 insertions(+), 57 deletions(-)
+
+-- 
+2.45.2
 
 
