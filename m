@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-232745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A629C1B59F
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:46:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EA48C1B593
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:45:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D00D25A5D8E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:05:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D5A6E5A73E7
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:05:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 868C0355812;
-	Wed, 29 Oct 2025 13:56:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F6CF3559D0;
+	Wed, 29 Oct 2025 13:56:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JUvmwQig"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V0JbF/u7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F22C2E2EE7
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 13:56:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 005D835581F
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 13:56:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761746168; cv=none; b=Xg88AgorsrsrmtJ68b6kenz6/fJ2n4VWq8lu2hew71392cPI/gtB8Li3YDNgoqopMQrC8W95wNjdwLIy/mnkFx4eh15q5WAm1efPTOWvfX0xBFQ1X/FCge8E9iZMHEXAAqE8Oebq6lYs7ZLBgqbZEkI6NftFPAZZLYFZBCss0Qg=
+	t=1761746171; cv=none; b=hltrmztPwItxvi0KBpRPdFxhKDb7gsC7/j69a4yn+KJCauGwkglmdDHFBXgtMC6UBnIpui8qOb60q9Hok4WjoLh5SM96/M9DNBXpJzDkg1NyMRub0tT+jy/SvvW3+QWMKlTN1t57lE5NW8gQ04M4P3UAl1AHsnnmG+fJ/wRVNBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761746168; c=relaxed/simple;
-	bh=NlDVT84FRw/2mXN8rUhepff7GU8/kbx+go4sEcGg10w=;
+	s=arc-20240116; t=1761746171; c=relaxed/simple;
+	bh=OKYSetcDO2rFXo/y45ZZWWssOa+5KtBgQGteOChOd3k=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=oMGDyfd+G3/CKT5lqjZGb8I2MuucjLOiAZzgkuGeGWIc/eev0J10lxDdt6VbGJq/x09I3RGa6ca3deEKwZHWFEBZyEitwxm9v4FJAb3ue3aAq3cGBItG3IOSBeumhhKTfkmnlWZZQnyMrk/4klvi24AoU+BPDTLPIpLBReca49M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JUvmwQig; arc=none smtp.client-ip=209.85.218.45
+	 MIME-Version; b=kja7Ro9FslF1fC514xu/PwcNCJjx8yJD5e4Z0B61X/OfCcdCvRVUPhNrnYQ/W0SYY110uu0D0B5M6byGElwMd0sMRwQvq1lsnMNxhxakb2kM7wy5uFOMv+30iRiWyTm1GqUuE3MHNiefV6HEzJih+9w0cTmXJOxDHByADB7AjdM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V0JbF/u7; arc=none smtp.client-ip=209.85.218.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b6d78062424so57301566b.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 06:56:05 -0700 (PDT)
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-afcb7ae6ed0so1738669866b.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 06:56:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761746164; x=1762350964; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1761746167; x=1762350967; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=63ONXHD7xxtFJR0GpIWYvdgt2ZZqq/c+9blnPN26amc=;
-        b=JUvmwQig0QMMPmB9vK03RxTn3ZE2+uVje0SQ8kLE0k+3CnuQ30FcHY0hA2CEAp7MJv
-         Zmp5cVtp+PCzIbI4bG+ticjWg2wfJrs3AbDsYcEbJ39F4wdoEpq3uF20u1x/8CcSqC7l
-         6ersAjZh+uXXg23LYCU9xA9cLtYECINXMB8738A6Oc2yIqxPH/Xlyq3WeadeBR+coT7l
-         MpUDVGndh7FDT7k7ZxoanBO0GvDbrEgmXLMsu3ghPptWTBkRvKKt3T4SyVKjEsXkCNrx
-         IiWGAaDN2hjpWGQAQqFcrv7y9BlKqLLmU3yP972FAGNsfr3Xe58sF3quSCHvFutgiuv/
-         v49g==
+        bh=V3VoDc4JO2kSm8qVM4RA31MFseJ8uanXq2MvOCfPyqg=;
+        b=V0JbF/u7poz7+VnoTEohpx4I598Hd+qVbz42sO7wGPH3kj6sDJ0uDxKe7Ied68SYdA
+         IEt9e/S/pWH/JuCdwCYnEA3TsJPOYUE6A+s3SmMThDLpjAlvTBr6a/rCW3Mx6zEfcuUm
+         oK0xNIS9TE/20B861m1W/NHM7Pf1Z+xrImaRsU+BpXfIBiytf8eDfiKep9UhxmFRbwh8
+         DOBcWCAzn/kw2BMIsjoA3kAr10ZLgR5rf2aqoYPVhg8fORpi7wIntE982jEjKISA4cDA
+         5jtZRIBcTxxaM75iRoTT1WKqHtwC6g8xzcMVKG61gJpN2bRdm381VGflHM0faf/tidYa
+         7b3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761746164; x=1762350964;
+        d=1e100.net; s=20230601; t=1761746167; x=1762350967;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=63ONXHD7xxtFJR0GpIWYvdgt2ZZqq/c+9blnPN26amc=;
-        b=bnmLNtcCdKULZkc3sLw4IvsGOBeSt8Y/DreL6ZTVOUp5lJdY4tSLlxz8EFQ8B5Wj5M
-         romWHoxNBcofgALDcZwhQMDFCOZ7+58PJumSu215KGtgF3dgTZLnDvRsMbhAf2htMwpn
-         tL+qzTbAdVUJkGxbHZSsyhmDhn7CQGtQErsHOnF6EoYgsGHtD+YEX3GcIjTRuwMAkBpO
-         3U9H2CSPYXGokjHEG35Ow+qMm4SfnZtWFVIuquJ7DZhRStL6sCyOE1wXEBDe1UVajRzG
-         Kh2vJx/qczZyQv+c2n+yDLKx6vc3mC7feX+art+VteFGIlESraj70Y3EUqxDMFVYJ71a
-         OaZA==
-X-Forwarded-Encrypted: i=1; AJvYcCXkeZilLzASHwCh2hxXWSkpAvJiGfeEfuDhgTi59vJaI16XCfy4IGVnH/0PJugpVYaZw/pK3Nfni/xv@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWokf/1cIbb4jwzeMz/rF2+IlP4JD7QIJj0bEgVyoeS0gnzyXI
-	8xHhOjH9tM2dd1qTmo4lkuVUGxKzxBZhCPThWfVWv2UZ54S5XUtUdeDA
-X-Gm-Gg: ASbGncvqPpSUtM1GaxWYV5l1EUiz6gNbZEFrCLjjlH2XBCYKloopODbvfE0C1W+zNmC
-	y+FHIL9R3So9IfZxcCePgojptIzVpTLAxuCvsxS0pATcer7uLjj0XEiJcsTwtaJyvmv8vTy0los
-	XHFv5sUmesDqoqmAjXlYjvL80xFu5izumujk/NhlGTLBNHgoqFBMJ0dqMq0HpF9CM2e6J1dav6z
-	9A12pG6lzyWzBk92ZczoxTa4HkJbXa0Fm+t9D8H51Dadq2qD2d6Ny6PP+rkqOkVBfl8ta/guDlf
-	HE7iI21B/3bF+n7VG1kZGL4/VTPXIZDYe2gcMLT8enTcKTvpnACaG5Xrbbf4n43AKt5TTvrN5aL
-	bEvwQmADbSsu4JF9rqIlwXJ3zg9mL6orWkMJE6JUpwGzynmb7qDOqpuMphq8ciBH3u2sG05lh1V
-	wYfTtaAEhpRMafBYFsPcud8pO0DQ==
-X-Google-Smtp-Source: AGHT+IHH54LZbYTOXZg7mV9ntZU3iJVYCB8V/9k7x05K1JXFlb07Aw0IydcZp3Dr0TOMorMdCHGUFg==
-X-Received: by 2002:a17:906:f58f:b0:b3d:b8c3:768d with SMTP id a640c23a62f3a-b703d2cc2c0mr267175966b.7.1761746163828;
-        Wed, 29 Oct 2025 06:56:03 -0700 (PDT)
+        bh=V3VoDc4JO2kSm8qVM4RA31MFseJ8uanXq2MvOCfPyqg=;
+        b=vxRvnAQQPTjFuYYzpbqF+7kRzqxgBasYYcRPQ35JA87SfpXGVoYlztazu5/980Qk3g
+         MhXC74EXnjisUoz+oAGhtB3Q7jWDDSCOPnmWrTaq6D1CRlLoYy1HJM16PIsHTHr3MR6E
+         yIcdNPtocj5o6MfA9F9PD2AxN8bFCo3cGt/FM0XKq5MaRfIg9N6b3beC8MkYvvTjVIM2
+         kIicNb4mie6Bkp45B6Cfw2u7aZC624OJn4qTvKqEtQUI9k0VSobDS0Yc6FMW2GxHWVYc
+         EBn0pVGuVnUSyE0CDq2Q7dQLtYJ8Wdw+XaVU6WOsUlynsYDxJWtZpc8v8YGchG1Sprv4
+         7mbA==
+X-Forwarded-Encrypted: i=1; AJvYcCVm6XnSLRXn3BKEZKUx9gSqo0FwzhfyMlYMEAHdLF0uLuDZCcz2hu3RolPqJilCMLeYYULksEzlWZcb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/5VP5crQ52OOGaaSYvak1Y49RDFB62iv0QkFliKdC9SsxZc51
+	WWIVveOk65Rx/qQqR042yhCDWBdQbJvUC/l4+OmYbJCNR8ONahhD6tjc
+X-Gm-Gg: ASbGncsiyJ/bxeGiZUGs1wavz7VvTn9sAF1l4dsCXMfUKYU863ZfRCtdMw5Umx0MvmE
+	F0Epu5Lu6dXIfami2SHH22OP3JhJANUFwlsmLqIJuRTFJ0I85pGRKOk1IpaB2PYed025JPKouiA
+	z+PrKKxnk39Vrj1TVa0LSC9hAChl1YsWFpPiMNNjGbDhpkfBO/4qX3anh6zo7/0cpdrXSbUDqOw
+	xsqgR1ymkAlEqq9xw7qWaPfZwzKupU7mTUZLQLJLRgkyj9QX6lCHelddwm3N2pnbG/ozLoGmWeE
+	TwJofyoI55Be3b2PZp7o0xjGR8sIJ4ZNia1CjG10HpRRBV4TQd4dj86DiqtBAQlVR3qZL9CK3Pu
+	dBzL0d22V27GIU0armx4Ue2ieAuNAKdMpI7Cva6mZzqvNJV3iuwHGWihIGbIpkcw5J71gJnYzYo
+	Mblej0cUYR9CYkXPVPg6L1Z05RuA==
+X-Google-Smtp-Source: AGHT+IFJsqqYrA0WrTuMNeD7nw3M886Ul6n9khe7BJCg7Kfwbb6WZmCEdmQ2yDNV4wiQtrjXo+zUqQ==
+X-Received: by 2002:a17:906:f588:b0:b6d:bf78:8bde with SMTP id a640c23a62f3a-b703d2e3f70mr271201766b.7.1761746167029;
+        Wed, 29 Oct 2025 06:56:07 -0700 (PDT)
 Received: from SMW024614.wbi.nxp.com ([128.77.115.157])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d8534d99dsm1444960766b.21.2025.10.29.06.56.02
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d8534d99dsm1444960766b.21.2025.10.29.06.56.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Oct 2025 06:56:03 -0700 (PDT)
+        Wed, 29 Oct 2025 06:56:06 -0700 (PDT)
 From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
 To: Abel Vesa <abelvesa@kernel.org>,
 	Peng Fan <peng.fan@nxp.com>,
@@ -93,9 +93,9 @@ Cc: linux-clk@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH v3 2/8] dt-bindings: clock: document 8ULP's SIM LPAV
-Date: Wed, 29 Oct 2025 06:52:23 -0700
-Message-ID: <20251029135229.890-3-laurentiumihalcea111@gmail.com>
+Subject: [PATCH v3 3/8] clk: imx: add driver for imx8ulp's sim lpav
+Date: Wed, 29 Oct 2025 06:52:24 -0700
+Message-ID: <20251029135229.890-4-laurentiumihalcea111@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251029135229.890-1-laurentiumihalcea111@gmail.com>
 References: <20251029135229.890-1-laurentiumihalcea111@gmail.com>
@@ -109,133 +109,200 @@ Content-Transfer-Encoding: 8bit
 
 From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
-Add documentation for i.MX8ULP's SIM LPAV module.
+The i.MX8ULP System Integration Module (SIM) LPAV module is a block
+control module found inside the LPAV subsystem, which offers some clock
+gating options and reset line assertion/de-assertion capabilities.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+Therefore, the clock gate management is supported by registering the
+module's driver as a clock provider, while the reset capabilities are
+managed via the auxiliary device API to allow the DT node to act as a
+reset and clock provider.
+
 Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 ---
- .../bindings/clock/fsl,imx8ulp-sim-lpav.yaml  | 72 +++++++++++++++++++
- include/dt-bindings/clock/imx8ulp-clock.h     |  5 ++
- .../dt-bindings/reset/fsl,imx8ulp-sim-lpav.h  | 16 +++++
- 3 files changed, 93 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/fsl,imx8ulp-sim-lpav.yaml
- create mode 100644 include/dt-bindings/reset/fsl,imx8ulp-sim-lpav.h
+ drivers/clk/imx/Makefile               |   1 +
+ drivers/clk/imx/clk-imx8ulp-sim-lpav.c | 160 +++++++++++++++++++++++++
+ 2 files changed, 161 insertions(+)
+ create mode 100644 drivers/clk/imx/clk-imx8ulp-sim-lpav.c
 
-diff --git a/Documentation/devicetree/bindings/clock/fsl,imx8ulp-sim-lpav.yaml b/Documentation/devicetree/bindings/clock/fsl,imx8ulp-sim-lpav.yaml
-new file mode 100644
-index 000000000000..662e07528d76
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/fsl,imx8ulp-sim-lpav.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/fsl,imx8ulp-sim-lpav.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP i.MX8ULP LPAV System Integration Module (SIM)
-+
-+maintainers:
-+  - Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-+
-+description:
-+  The i.MX8ULP LPAV subsystem contains a block control module known as
-+  SIM LPAV, which offers functionalities such as clock gating or reset
-+  line assertion/de-assertion.
-+
-+properties:
-+  compatible:
-+    const: fsl,imx8ulp-sim-lpav
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 3
-+
-+  clock-names:
-+    items:
-+      - const: bus
-+      - const: core
-+      - const: plat
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  '#reset-cells':
-+    const: 1
-+
-+  mux-controller:
-+    $ref: /schemas/mux/reg-mux.yaml#
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - '#clock-cells'
-+  - '#reset-cells'
-+  - mux-controller
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/imx8ulp-clock.h>
-+
-+    clock-controller@2da50000 {
-+        compatible = "fsl,imx8ulp-sim-lpav";
-+        reg = <0x2da50000 0x10000>;
-+        clocks = <&cgc2 IMX8ULP_CLK_LPAV_BUS_DIV>,
-+                 <&cgc2 IMX8ULP_CLK_HIFI_DIVCORE>,
-+                 <&cgc2 IMX8ULP_CLK_HIFI_DIVPLAT>;
-+        clock-names = "bus", "core", "plat";
-+        #clock-cells = <1>;
-+        #reset-cells = <1>;
-+
-+        mux-controller {
-+            compatible = "reg-mux";
-+            #mux-control-cells = <1>;
-+            mux-reg-masks = <0x8 0x00000200>;
-+        };
-+    };
-diff --git a/include/dt-bindings/clock/imx8ulp-clock.h b/include/dt-bindings/clock/imx8ulp-clock.h
-index 827404fadf5c..c62d84d093a9 100644
---- a/include/dt-bindings/clock/imx8ulp-clock.h
-+++ b/include/dt-bindings/clock/imx8ulp-clock.h
-@@ -255,4 +255,9 @@
+diff --git a/drivers/clk/imx/Makefile b/drivers/clk/imx/Makefile
+index 03f2b2a1ab63..208b46873a18 100644
+--- a/drivers/clk/imx/Makefile
++++ b/drivers/clk/imx/Makefile
+@@ -41,6 +41,7 @@ clk-imx-lpcg-scu-$(CONFIG_CLK_IMX8QXP) += clk-lpcg-scu.o clk-imx8qxp-lpcg.o
+ clk-imx-acm-$(CONFIG_CLK_IMX8QXP) = clk-imx8-acm.o
  
- #define IMX8ULP_CLK_PCC5_END		56
+ obj-$(CONFIG_CLK_IMX8ULP) += clk-imx8ulp.o
++obj-$(CONFIG_CLK_IMX8ULP) += clk-imx8ulp-sim-lpav.o
  
-+/* LPAV SIM */
-+#define IMX8ULP_CLK_SIM_LPAV_HIFI_CORE		0
-+#define IMX8ULP_CLK_SIM_LPAV_HIFI_PBCLK		1
-+#define IMX8ULP_CLK_SIM_LPAV_HIFI_PLAT		2
-+
- #endif
-diff --git a/include/dt-bindings/reset/fsl,imx8ulp-sim-lpav.h b/include/dt-bindings/reset/fsl,imx8ulp-sim-lpav.h
+ obj-$(CONFIG_CLK_IMX1)   += clk-imx1.o
+ obj-$(CONFIG_CLK_IMX25)  += clk-imx25.o
+diff --git a/drivers/clk/imx/clk-imx8ulp-sim-lpav.c b/drivers/clk/imx/clk-imx8ulp-sim-lpav.c
 new file mode 100644
-index 000000000000..adf95bb26d21
+index 000000000000..1614d9209734
 --- /dev/null
-+++ b/include/dt-bindings/reset/fsl,imx8ulp-sim-lpav.h
-@@ -0,0 +1,16 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++++ b/drivers/clk/imx/clk-imx8ulp-sim-lpav.c
+@@ -0,0 +1,160 @@
++// SPDX-License-Identifier: GPL-2.0
 +/*
 + * Copyright 2025 NXP
 + */
 +
-+#ifndef DT_BINDING_RESET_IMX8ULP_SIM_LPAV_H
-+#define DT_BINDING_RESET_IMX8ULP_SIM_LPAV_H
++#include <dt-bindings/clock/imx8ulp-clock.h>
 +
-+#define IMX8ULP_SIM_LPAV_HIFI4_DSP_DBG_RST	0
-+#define IMX8ULP_SIM_LPAV_HIFI4_DSP_RST		1
-+#define IMX8ULP_SIM_LPAV_HIFI4_DSP_STALL	2
-+#define IMX8ULP_SIM_LPAV_DSI_RST_BYTE_N		3
-+#define IMX8ULP_SIM_LPAV_DSI_RST_ESC_N		4
-+#define IMX8ULP_SIM_LPAV_DSI_RST_DPI_N		5
++#include <linux/auxiliary_bus.h>
++#include <linux/clk-provider.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/of_platform.h>
++#include <linux/platform_device.h>
++#include <linux/regmap.h>
++#include <linux/slab.h>
 +
-+#endif /* DT_BINDING_RESET_IMX8ULP_SIM_LPAV_H */
++#define SYSCTRL0 0x8
++
++#define IMX8ULP_HIFI_CLK_GATE(gname, cname, pname, bidx)	\
++	{							\
++		.name = gname "_cg",				\
++		.id = IMX8ULP_CLK_SIM_LPAV_HIFI_##cname,	\
++		.parent = { .fw_name = pname },			\
++		.bit = bidx,					\
++	}
++
++struct clk_imx8ulp_sim_lpav_data {
++	void __iomem *base;
++	struct regmap *regmap;
++	spinlock_t lock; /* shared by MUX, clock gate and reset */
++	unsigned long flags; /* for spinlock usage */
++	struct clk_hw_onecell_data clk_data; /*  keep last */
++};
++
++struct clk_imx8ulp_sim_lpav_gate {
++	const char *name;
++	int id;
++	const struct clk_parent_data parent;
++	u8 bit;
++};
++
++static struct clk_imx8ulp_sim_lpav_gate gates[] = {
++	IMX8ULP_HIFI_CLK_GATE("hifi_core", CORE, "core", 17),
++	IMX8ULP_HIFI_CLK_GATE("hifi_pbclk", PBCLK, "bus", 18),
++	IMX8ULP_HIFI_CLK_GATE("hifi_plat", PLAT, "plat", 19)
++};
++
++static void clk_imx8ulp_sim_lpav_lock(void *arg) __acquires(&data->lock)
++{
++	struct clk_imx8ulp_sim_lpav_data *data = dev_get_drvdata(arg);
++
++	spin_lock_irqsave(&data->lock, data->flags);
++}
++
++static void clk_imx8ulp_sim_lpav_unlock(void *arg) __releases(&data->lock)
++{
++	struct clk_imx8ulp_sim_lpav_data *data = dev_get_drvdata(arg);
++
++	spin_unlock_irqrestore(&data->lock, data->flags);
++}
++
++static const struct regmap_config clk_imx8ulp_sim_lpav_regmap_cfg = {
++	.reg_bits = 32,
++	.val_bits = 32,
++	.reg_stride = 4,
++	.lock = clk_imx8ulp_sim_lpav_lock,
++	.unlock = clk_imx8ulp_sim_lpav_unlock,
++};
++
++static int clk_imx8ulp_sim_lpav_probe(struct platform_device *pdev)
++{
++	struct clk_imx8ulp_sim_lpav_data *data;
++	struct regmap_config regmap_config;
++	struct auxiliary_device *adev;
++	struct clk_hw *hw;
++	int i, ret;
++
++	data = devm_kzalloc(&pdev->dev,
++			    struct_size(data, clk_data.hws, ARRAY_SIZE(gates)),
++			    GFP_KERNEL);
++	if (!data)
++		return -ENOMEM;
++
++	dev_set_drvdata(&pdev->dev, data);
++
++	memcpy(&regmap_config, &clk_imx8ulp_sim_lpav_regmap_cfg, sizeof(regmap_config));
++	regmap_config.lock_arg = &pdev->dev;
++
++	/*
++	 * this lock is used directly by the clock gate and indirectly
++	 * by the reset and mux controller via the regmap API
++	 */
++	spin_lock_init(&data->lock);
++
++	data->base = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(data->base))
++		return dev_err_probe(&pdev->dev, PTR_ERR(data->base),
++				     "failed to ioremap base\n");
++	/*
++	 * although the clock gate doesn't use the regmap API to modify the
++	 * registers, we still need the regmap because of the reset auxiliary
++	 * driver and the MUX drivers, which use the parent device's regmap
++	 */
++	data->regmap = devm_regmap_init_mmio(&pdev->dev, data->base, &regmap_config);
++	if (IS_ERR(data->regmap))
++		return dev_err_probe(&pdev->dev, PTR_ERR(data->regmap),
++				     "failed to initialize regmap\n");
++
++	data->clk_data.num = ARRAY_SIZE(gates);
++
++	for (i = 0; i < ARRAY_SIZE(gates); i++) {
++		hw = devm_clk_hw_register_gate_parent_data(&pdev->dev,
++							   gates[i].name,
++							   &gates[i].parent,
++							   CLK_SET_RATE_PARENT,
++							   data->base + SYSCTRL0,
++							   gates[i].bit,
++							   0x0, &data->lock);
++		if (IS_ERR(hw))
++			return dev_err_probe(&pdev->dev, PTR_ERR(hw),
++					     "failed to register %s gate\n",
++					     gates[i].name);
++
++		data->clk_data.hws[i] = hw;
++	}
++
++	adev = devm_auxiliary_device_create(&pdev->dev, "reset", NULL);
++	if (!adev)
++		return dev_err_probe(&pdev->dev, -ENODEV,
++				     "failed to register aux reset\n");
++
++	ret = devm_of_clk_add_hw_provider(&pdev->dev,
++					  of_clk_hw_onecell_get,
++					  &data->clk_data);
++	if (ret)
++		return dev_err_probe(&pdev->dev, ret,
++				     "failed to register clk hw provider\n");
++
++	/* used to probe MUX child device */
++	return devm_of_platform_populate(&pdev->dev);
++}
++
++static const struct of_device_id clk_imx8ulp_sim_lpav_of_match[] = {
++	{ .compatible = "fsl,imx8ulp-sim-lpav" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, clk_imx8ulp_sim_lpav_of_match);
++
++static struct platform_driver clk_imx8ulp_sim_lpav_driver = {
++	.probe = clk_imx8ulp_sim_lpav_probe,
++	.driver = {
++		.name = "clk-imx8ulp-sim-lpav",
++		.of_match_table = clk_imx8ulp_sim_lpav_of_match,
++	},
++};
++module_platform_driver(clk_imx8ulp_sim_lpav_driver);
++
++MODULE_LICENSE("GPL");
++MODULE_DESCRIPTION("i.MX8ULP LPAV System Integration Module (SIM) clock driver");
++MODULE_AUTHOR("Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>");
 -- 
 2.43.0
 
