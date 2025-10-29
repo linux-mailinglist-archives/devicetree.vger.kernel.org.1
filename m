@@ -1,154 +1,160 @@
-Return-Path: <devicetree+bounces-232780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40CDEC1BD1E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 16:54:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DDEFC1B90A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 16:11:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3084D4647D3
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:56:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB9C9561D5D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:53:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3605A2D47F2;
-	Wed, 29 Oct 2025 14:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33B1032C941;
+	Wed, 29 Oct 2025 14:47:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="aTHNEf/T"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="e94+/JS3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from poodle.tulip.relay.mailchannels.net (poodle.tulip.relay.mailchannels.net [23.83.218.249])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B59E22D46BD
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 14:50:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.218.249
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761749450; cv=pass; b=aKhNRuntpaEncJWcrlbug7ePLwMUEEDaS/Zina4NGkS0/l9xINuRekRaMinjzTggCjXo9DHThUdtQAFfPSJO7iQd/76IvO9tpfNzxnSJMzz71mMOJ4DxTmdjxsmMAMHkVsqGfXiW/UXypyxpfTZPU6wcOyRftwZUksRQJ/jbKkk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761749450; c=relaxed/simple;
-	bh=BUgAW49e2nve4OrDnsZ3F5c2FdN5r+KeTRc5FJ8iWTM=;
-	h=Message-ID:MIME-Version:Cc:Subject:To:References:From:In-Reply-To:
-	 Content-Type:Date; b=PMOLdBJUXdKd/it8yYJLyyncjWOJV5aFF+lmjvzldKg7V/apT1Vp99IrgzyWNPm6j5q3hLLa2cbNXRkHgJYIRfyTVaDN4TJL/a6k7sqi0g11th0Q0oT/f6ZEtj1f87igW1G06lxx3F7aC7pMF7IeUz/CjTVHbhQawHbPepS8FdM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=aTHNEf/T; arc=pass smtp.client-ip=23.83.218.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id CD544721631;
-	Wed, 29 Oct 2025 14:41:49 +0000 (UTC)
-Received: from fr-int-smtpout24.hostinger.io (trex-green-8.trex.outbound.svc.cluster.local [100.123.122.56])
-	(Authenticated sender: hostingeremail)
-	by relay.mailchannels.net (Postfix) with ESMTPA id B43DD721840;
-	Wed, 29 Oct 2025 14:41:44 +0000 (UTC)
-ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1761748909; a=rsa-sha256;
-	cv=none;
-	b=i3WSzsLYo7teMpHtZN0AjNdZ4foxz/q0PwZGvGzYNAIojH4EsbGQ17K8774xGyd6mxTMLB
-	AIFpEh/IpG6S27BBxOBmbMKyRkp0I+RTMkqY9VNnJmGjAp/5zhmQSBIZ9ik8ZmdyxDfV9Y
-	CtoZTo531IguB7U3eMa+JvTOGrgOw5o1T8HKs4qiYSdjIzMLp49EKnCnj2XlxlxJhXl6do
-	UTgcHe4K0jjWChiat2QCh3vY/If2abb5ELbVYOrPljt73WetzLmien5MinVYd8jlcfxXK9
-	JzsdRypXg1FcWEly0Ooy8DLhFjhrL9z6fMsBuo6Q5q0ppMrMnUTDAHBzGlNXNg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1761748909;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=S1xXs3JGvgEgRE8/1iINIBl8/G8ZW5nPLsCFO5WNNV0=;
-	b=Imoa1XqZLGBRzJTPpZvMEnuo8HAAAUTw7rSu0RE6UGjbbYihjRQmrK+8e2MYrOuoBADE7b
-	CuJT06i83I8m6y86e2viB2TJxjZjs7wqrJixsuEj7/qwyycE/3eC/YpWhwae1WeRGqjHLT
-	RfaN50i7GBxmaOFuBUSJp385MIVpyCXG1GuDgtyg/AkunqUdWRxp0eTgvt/YOBYnP3rKJf
-	8fj2MFxLZNRLwM02rXkruzCCteryjWobWwkw8/0IfESu5fWEGmpN6COzIlqxXMfPLWPd5z
-	aIDYo50nQ/8sItNpH4GIGPp/TkxGe7twl2s2HW1UUfsJgquGeLTb5D0M6k+q0w==
-ARC-Authentication-Results: i=1;
-	rspamd-77bb85d8d5-wq79s;
-	auth=pass smtp.auth=hostingeremail
- smtp.mailfrom=michael.opdenacker@rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MC-Relay: Neutral
-X-MailChannels-SenderId:
- hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MailChannels-Auth-Id: hostingeremail
-X-Hysterical-Tart: 443c3104291b6376_1761748909567_1523129841
-X-MC-Loop-Signature: 1761748909567:1662878829
-X-MC-Ingress-Time: 1761748909567
-Received: from fr-int-smtpout24.hostinger.io (fr-int-smtpout24.hostinger.io
- [148.222.54.15])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.123.122.56 (trex/7.1.3);
-	Wed, 29 Oct 2025 14:41:49 +0000
-Received: from [IPV6:2001:861:4450:d360:cc54:3014:8454:2c6d] (unknown [IPv6:2001:861:4450:d360:cc54:3014:8454:2c6d])
-	(Authenticated sender: michael.opdenacker@rootcommit.com)
-	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4cxVLX0ChZz1xtT;
-	Wed, 29 Oct 2025 14:41:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
-	s=hostingermail-a; t=1761748903;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=S1xXs3JGvgEgRE8/1iINIBl8/G8ZW5nPLsCFO5WNNV0=;
-	b=aTHNEf/TnTquIxOWInYfDDw0QevBSwKkHEJE/6vbCJQM1iNFWM51fjwTq9EAa+mTsTrYwZ
-	vV2AjwVGgO1JRwKU7PPOJS8YvnGYfx6AuJh8sBDj8+PsufMUh+wx9+575Vqx5rwDFoGMES
-	0kcc4EG6lv9H5GM884Sa677DwQm1/uEzftU4PzLO3sedt4DZK5ParJh1A2Li57V2jOlVii
-	MjKQ2uvY2X8qGmdqo1CYuJN2HSQ7Kl7l8UAjzDGF97sZl6IPETXndKg+ONej2dAfktovuA
-	HjYxrk9I/zAv/CWN4En5fGw378QPqUKXB54XlBdnFWBwTcFdXvSiTjPT+009Vw==
-Message-ID: <6e4bf564-07e9-44a3-a18f-69bc716ca575@rootcommit.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FEE5325710;
+	Wed, 29 Oct 2025 14:47:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761749233; cv=none; b=NkneH+WPMZnPIKXzG9A9sXdO99vChIEDD2jE5oHo9exTDELWvZJwIuBS3Bloc9ZlDIZjOzVvZMwrGupzlAJPVJ5VZw8R3XlAihu1YkzjIywZ4hNaX9RC5QhXOLrgUi7PILxqm0VOfJL/xXwcAOyPebZYeX7IWByyKmbr3aJNw0s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761749233; c=relaxed/simple;
+	bh=SJYleUZaoyn5JK4o33oSWeOEvviFeuT9HgdwPb4wSrE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NQuqwBI7Ytr2eZLyoHIlo/Z74j2X495KsHMAx4C/AGtyRQMTOn+y5tPJxFMiW3gyRsPhonsq02YqG0+dZT4NDBHY8nZlZWVZIHz40BaBX56J7M+qAur/dHHg13/AEfWtYJTLEGg4Vzwenqe1K0uyyezAQhtOYkgjT1siPBrpVeI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=e94+/JS3; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id B30021A1745;
+	Wed, 29 Oct 2025 14:47:09 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 848DD606E8;
+	Wed, 29 Oct 2025 14:47:09 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 817CA102F24F9;
+	Wed, 29 Oct 2025 15:47:02 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1761749228; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=lhxyx3v6DA24a57QwH/fHNlyw7nDkFupsKGcsioXRTY=;
+	b=e94+/JS3+oQoYVE4PqzSqK/Wh07gs4jkbQwVJXJHXrm+8vfcCxDlMiqv1/UN0gSeab1NHt
+	37p3lLDyFvqP6KnxZGz2EKFNbBlW+ym+T5ptJ3EGa1NZqVe2RMEAZdNiO9r5RBIIdhjtuY
+	PBq6IuMOUmhvk9JAsTODUTgNEy/3PuFlL8zNFvQbdgfnCZwUcx9cqP8pdlkKW5vKv8zKkp
+	ZWcRjgc0AhmRCw7L5p4NhRsfm0r+P2M12I5kJllOA12usJ3M/zdkjHgYbjSjxCJTsQ9Wg2
+	M/c9kiLj64s014GyNTsYEWI3Sp/jezYcyYhbg536cpwUtkHCC1GSdWY31JwE6Q==
+From: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Cc: linux-iio@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Pascal Eberhard <pascal.eberhard@se.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v2 0/4] Add support for the Renesas RZ/N1 ADC
+Date: Wed, 29 Oct 2025 15:46:40 +0100
+Message-ID: <20251029144644.667561-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: michael.opdenacker@rootcommit.com, devicetree@vger.kernel.org,
- sophgo@lists.linux.dev, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 2/5] arm64: dts: sophgo: add initial Milk-V Duo S board
- support
-To: Joshua Milas <josh.milas@gmail.com>, tglx@linutronix.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, unicorn_wang@outlook.com,
- inochiama@gmail.com, paul.walmsley@sifive.com, samuel.holland@sifive.com,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
- alexander.sverdlin@gmail.com, rabenda.cn@gmail.com,
- thomas.bonnefille@bootlin.com, chao.wei@sophgo.com,
- liujingqi@lanxincomputing.com
-References: <20251029001052.36774-1-josh.milas@gmail.com>
- <20251029001052.36774-3-josh.milas@gmail.com>
- <4b1b2580-63ce-4ce8-b4a9-1763d3d3a253@rootcommit.com>
-Content-Language: en-US, fr
-From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-Organization: Root Commit
-In-Reply-To: <4b1b2580-63ce-4ce8-b4a9-1763d3d3a253@rootcommit.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Date: Wed, 29 Oct 2025 14:41:40 +0000 (UTC)
-X-CM-Analysis: v=2.4 cv=Lflu6Sfi c=1 sm=1 tr=0 ts=690227a6 a=cfTWVnPyVfvWbvVVnrj+XQ==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=d70CFdQeAAAA:8 a=-d3y0XjIFKyu09ZH-IMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=URPqgtl0u8oA:10 a=NcxpMcIZDGm-g932nG_k:22
-X-CM-Envelope: MS4xfHOzqohSyERV3CJIWO+IJIU8BQRPxIPwrQrUV+4GAs1IWYTl+vbhEX6eXClg5kyn3CmwykLaUiQ7Puc9aw+ckgifACezeIajAZLft/NMzaxbl1bjqTH/ cmK5oYOArSLZRvcIdNSH8xa9NPck0uNuLsKc5gex+MidQzKfJazvwkSSkh3zrWfQew2oG6ebqZE2XhwlJjSA/KHFmWHC+eYCRCU73jCIem2k305uXDvS3cZH IYkM2M1HMvQzzdDZq4h4FZ57vNsZ4Xnebs4BTkuc5WHnASdCVtLd4Felqspt7WZo8+tqgms+KVzGzt5AQtxnjIXAFTvCJRk5eS1ylwNdcgTjQz9R6SLm3I/w z3H1GeCV4+8hMSktb6P34ME7Qwzi/MJNJ1LgGoi+bTPDJMkmb3Ol3CDXghCGXXkgQHiQH9hxI2HM6JwcaylQSb2E4LlDDwl77s7OvTHGFvR6ohBsX0kwTXSa +phUG42SvbicvWSpSoLouBPHAYqv8P9ZmNEiutoWWUb8288YPcXhH8SmvwWnyvOXuOQhrU36LPx2nnjbn5yc2o0jIxV0rQieYY2mnK8n49306fJYKhAEteUL XF0D+RX7os5d39KXaa+mflRdTktPHjBszKHnuhrX1HkE8yxFrT0K9rptPA2CYTepyn97RqT9aKpUveWyCDeG5KH3QfJ7bT0EmLVKpg1rrxb1rCiNBEAVP4yC L0DxS7hY4X2fm3AtfNq7ls/6CHRD/c4+CQkAQKs4IgT0Kb2lS0lDmmO2QJGO5HLE5Xp5lIutq7Fwg3iSBXcgb8NjGEK76DcMbW62G0XXIfhc2lQlPC4wRB0U eubIa1NRquaD8ce5e4rAvWokg1vktm0qW9iraNtqp8cCqlJspet8NEVsZiRrxdC/fnvTSiotIZRECtjNuV3xcvvPyMm2W+Tj4Y71a9LBRgFK6YKuRgH49WsS 1B8jGMBo2yXd3ah
- 5ilCweGa3rx1sj85eeFLn9JjmjPbD8fCGa7d5SlNrB2O8u5DRdJOsgA==
-X-AuthUser: michael.opdenacker@rootcommit.com
+X-Last-TLS-Session-Version: TLSv1.3
 
-Greetings,
+Hi,
 
-On 10/29/25 13:35, Michael Opdenacker wrote:
->
-> I managed to boot the board and run tests:
->
-> Tested successfully:
->
->  * uart0: boot console
->  * mmc0 (sdhci0?): root filesystem
->
-> Issues
+The Renesas RZ/N1 ADC controller is the ADC controller available in the
+Renesas RZ/N1 SoCs family.
 
+It can use up to two internal ADC cores (ADC1 and ADC2) those internal
+cores are handled through ADC controller virtual channels.
 
-...
-I realize I replied to the arm64 part of the thread, but indeed I ran my 
-tests on riscv.
-Michael.
+Best regards,
+Herve Codina
+
+Changes v1 -> v2:
+
+v1: https://lore.kernel.org/lkml/20251015142816.1274605-1-herve.codina@bootlin.com/
+
+  Rebase on top of v6.18-rc3 to have commit db82b8dbf5f0 ("PM: runtime:
+  Fix conditional guard definitions")
+
+  Patch 1:
+    - Remove unneeded 'dependencies' part.
+    - Rename "adc-clk" clock to "adc".
+    - Move 'additionalProperties: false' just before the example.
+    - Use const instead of enum for the "renesas,r9a06g032-adc"
+      compatible string.
+    - Fix the ACD typo.
+
+  Patch 2:
+    - Fix the ACD typo.
+    - Rename "adc-clk" clock to "adc".
+    - Update included headers and sort them.
+    - Align register definitions at the same column.
+    - Inline the FIELD_GET() instead of having macros.
+    - Introduce RZN1_ADC_NO_CHANNEL
+    - Get Vref voltage value at probe().
+    - Remove the bitmap in rzn1_adc_set_iio_dev_channels().
+    - Use dev_err_probe() in rzn1_adc_set_iio_dev_channels().
+    - Use auto-cleanup variant for PM runtime "resume and get".
+    - Use scoped_guard() for mutex.
+    - Use devm_mutex_init().
+    - Use the fixed "rzn1-adc" string for indio_dev->name.
+    - Use DEFINE_RUNTIME_DEV_PM_OPS().
+    - Fix rzn1_adc_of_match table and remove of_match_ptr().
+    - Add a comment related to decoupling between IIO chans and ADC1 or
+      ADC2 core chans
+    - Update and add several comments related to ADC core usage and the
+      relationship with ADC core regulator presence.
+    - Remove clocks and regulators handling from PM runtime
+      suspend()/remove().
+    - Simplify the driver removing the no more relevant struct
+      rzn1_adc_core.
+
+  Patch 3:
+    - Rename "adc-clk" clock to "adc".
+    - Add 'Reviewed-by: Wolfram Sang'
+
+  Patch 4
+    - Removed the linux-iio list
+
+Herve Codina (Schneider Electric) (4):
+  dt-bindings: iio: adc: Add the Renesas RZ/N1 ADC
+  iio: adc: Add support for the Renesas RZ/N1 ADC
+  ARM: dts: renesas: r9a06g032: Add the ADC device
+  MAINTAINERS: Add the Renesas RZ/N1 ADC driver entry
+
+ .../bindings/iio/adc/renesas,rzn1-adc.yaml    | 111 ++++
+ MAINTAINERS                                   |   7 +
+ arch/arm/boot/dts/renesas/r9a06g032.dtsi      |  10 +
+ drivers/iio/adc/Kconfig                       |  10 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/rzn1-adc.c                    | 493 ++++++++++++++++++
+ 6 files changed, 632 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/renesas,rzn1-adc.yaml
+ create mode 100644 drivers/iio/adc/rzn1-adc.c
 
 -- 
-Michael Opdenacker
-Root Commit
-Yocto Project and OpenEmbedded Training course - Learn by doing:
-https://rootcommit.com/training/yocto/
+2.51.0
 
 
