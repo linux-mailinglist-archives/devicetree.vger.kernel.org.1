@@ -1,177 +1,121 @@
-Return-Path: <devicetree+bounces-232824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D961C1BFF6
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 17:16:26 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66BEFC1C2A4
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 17:42:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63C4080382A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:52:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 182885896DD
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:52:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F61345CBE;
-	Wed, 29 Oct 2025 15:51:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A72734E75C;
+	Wed, 29 Oct 2025 15:51:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TCdjSgLy";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="UFtuu3sL"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="vukrHudz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 972AA34575A
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 15:50:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6960347BC1;
+	Wed, 29 Oct 2025 15:51:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761753062; cv=none; b=b+Ep6u3GuVp2S9QNlqIZe7LfdgE0Rendn40dZZGF/VEqlhJO1ZBk75tmG2yfLuF20+u5XK/xiUET4mz0CF3yq5/zrMZVx9VryZ56BmX18nUN3wwFoObhe4+XQv0Xwfty5M37vYZOlorC4+KwAdul5VL6yV1nC4jvWdBmTEx8Vgc=
+	t=1761753082; cv=none; b=InkozMtFg8UrEz8XIZQz0GRhIKg8COMJFtnZbetJ9eD2SP22RZM0g96Ngj8saSHlH58o8clJWYb7DNL2RrZfe7IW9t8A/bZNmHqx08N1UWTOdq4X1ZIDWujWqF9I1MaFI1BTGcB8ilK+BbO4GfR1N/9lV0cNOZdOfeD4NrNJzHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761753062; c=relaxed/simple;
-	bh=KpjAEZlJlBH4L80ic3H39uXImkiiZ0w2wk8+E2WzktQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KkDsZpP6P5DQIufP6dtqwxbF0LLkAG/DUeiDczWuFFkCaaf6Tmb0PIKsG5qxkDpU8/LgbVUXlUk444StIY0SXI9s5Fz73AA3/Tm8tHcsMJhpTiKQ036ZDESBOXjnFHS0Fe2I5nin1IFvM6dxMbjZX3oswgX1I/AtzuKtVHPkFy8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TCdjSgLy; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=UFtuu3sL; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59TCB0V43677834
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 15:50:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ocDUjoSdi/BgXh7Ha09Y7XwcUnscyUVs5abme4yE1bk=; b=TCdjSgLyHetg/SV2
-	EQLSXW1obmCMlyu6lRzxRqPzs5+c3HHomrRz8lRFmZdEaN5DfK0hcl4D+uL1U5Oq
-	1g3H6Hz9sEv/vDKJ9WBWOAZjzT0brIw5xXZAYvsCJLMfWUaOAVrIDHdWX+w2W+8T
-	lGzuAvxiXxJAXrbpizZSxcmLibBhmLfxfyXTBNBP2QSFxZB5KsQ0HE9L+ztaMDT9
-	PK7cquyY2yX1ElB2lA4XGN73unLxB3n1pKetZabRdiwmIt7Q8zg6o/vi2nzB4KNX
-	6aZqXHbw0uHYdhvH5+s1GeRj2HolJBv/uPXWLFfBQkSuM8jN9s3Jj8Wsjl7jYhKD
-	zxeJwA==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a34a1k4ve-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 15:50:58 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-290c2d13a01so564425ad.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 08:50:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761753057; x=1762357857; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ocDUjoSdi/BgXh7Ha09Y7XwcUnscyUVs5abme4yE1bk=;
-        b=UFtuu3sLcGe6JfeuLsG3YgfbCDwTDvw7SCmm4ZWR8qIViccHjFaXS//7KrQjGFJv6C
-         cbqJNyuui4TyLv7AfYbIZ0QPFNOf7u4Z31YQcW+rXElPe7x6Ar+2vrVRMYxGuvPPMDwL
-         tMpKSs/AuVV5BvII11sPD9MXOE5XQWynVVjgqzmi4ZAmGVFm+8T9NJYj7yg96pCau+Yt
-         9R7yskrN3Wd2ncjJ2y6NIi8y0mUPYHr4DkIRANQOjlnBS9uEwdB9Ii8ru586gZksLqu1
-         m5tU1SiJ675kguJojckZw6lnn3JpvvPP18zCqw70khSaRw+w1kSmX5ccJU4wFfNmFd3s
-         pP7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761753057; x=1762357857;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ocDUjoSdi/BgXh7Ha09Y7XwcUnscyUVs5abme4yE1bk=;
-        b=rTNMTiviTcah7c8HH3yKvftaYHf+cciBob98QgyS36VLilCc5m4FkJ/ue4+237QYS2
-         0WBS40HuT74816jpQ+mHPzyD8O/XGMuE4izs1XJPMu/2B1IG5HZH73oDuFVrJ8erzf/4
-         5GMfzfqrd38JGPZ6fsUGhfMRtuPyTKBHHEJH31i342CqFooOZADXL9ewW0FB5+HYrqNm
-         cXdcEBHZKz8uhotvu7n9fQ7uqK9Rw6UQMrzwvP/m3N9zOvSwxXuHZyMSetozkH/4CLHx
-         +fV95J2Q1gYEL6aVFnJiK65nrvR9VMTmfZWmFtCa1va1YxTBm0AelT1JnjcflGeACotB
-         Jsrw==
-X-Forwarded-Encrypted: i=1; AJvYcCVt8djkUQBoxGz9HXAspOib1hxspvbj7fOvCG94/SLjKnYpK4QNifQggXGhBXujO1Ffg9pvif1B+0ZU@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKVqQpjtPMiZg8eSpONZOapInI5QL9phSCQRcC5eNS05NdJB+V
-	kZer126PgBKDUKrFMutXX2Lo6Ur3vHWEGnHjxrnt0Auwdtv3hlzzWWX0aFn85noX6cpRa+GRfgl
-	fdGDGylqrI8TCbtCqfpQbNk4eUA2w4YgQp0Vdi/zUbK39HoRdpWgRZTHDlmHQN7nd
-X-Gm-Gg: ASbGncveUZzHYKMreZz3gYYq4iT06JqRrt3+Q1gEhxW0Ztw9xF7WUbB93Ju16ITjnyP
-	UDg4K00L3xq5Jfsrb38BzdNwwFhkTQcfmDVaitDB4SUgJw6JBqk7pCm+FO0pxEeVxkVbcSqLFf1
-	U7vDSAL338SL0XjopyxVT3eRBAMAW+elK+sfJokr8ETjCxCPRDWE/MAeOWWiexooWQ9jft9Av+F
-	KXke5NcE8Ypc+hig+U3wVJN1XKXrMjfiyyqsO+TlhuFwrAaIYk/VJ3twKr/abbQWAe9Igr9Jhqd
-	J7Q6VBsB3SWZr4fMjwjx1HDLlnP5g6CFOtIHKnXxXFUhbbcTEzY0zfcvfgjGkm1CXQicbqsruR1
-	PmPlWotUnPAKG6FolnWj/TfwWvzKy6T4D
-X-Received: by 2002:a17:903:45d5:b0:25d:510:622c with SMTP id d9443c01a7336-294ed216be1mr362745ad.28.1761753057344;
-        Wed, 29 Oct 2025 08:50:57 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF/ybW31CBc2TweYbVe1W/JMckbSYfIxWNZt4i/NOSFxwW7CpDlMTBjMmkJHcLrTw1Ehl7uIw==
-X-Received: by 2002:a17:903:45d5:b0:25d:510:622c with SMTP id d9443c01a7336-294ed216be1mr362465ad.28.1761753056619;
-        Wed, 29 Oct 2025 08:50:56 -0700 (PDT)
-Received: from [10.218.1.199] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29498d23226sm157935525ad.49.2025.10.29.08.50.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Oct 2025 08:50:56 -0700 (PDT)
-Message-ID: <469fc3aa-9b95-4b30-a704-d568a830452f@oss.qualcomm.com>
-Date: Wed, 29 Oct 2025 21:20:48 +0530
+	s=arc-20240116; t=1761753082; c=relaxed/simple;
+	bh=VkIEbYbO2lmvSO+zYN2/qpg6TLG1lIbwcMUuFUY0hRI=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=iOy1Vm/S0HpPTshPxfAAqKlQp+iuE/Th2Rg/Ei8nZL5IUZ3zOBKkpNvOYqWq3Moieh5EhBOPWWo2k9KwD62+i4pBpPKXHcI6B1xNtBn1TY0OOMUjCKBvtMVH+BVt7SqP6zvPqmbOYZojPRy5DendQjl4/VkAN7aHnGnXQ1Zms+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=vukrHudz; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1761753081; x=1793289081;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=VkIEbYbO2lmvSO+zYN2/qpg6TLG1lIbwcMUuFUY0hRI=;
+  b=vukrHudzvHEzV86q0hHPFgi/4NgmvKvSjqtIOK5pri13hHVbAjNp9lPo
+   iOYveKdhkOvNUDVAYG9JWr6HV+DZGgRAcoHSwnFgCrJKB2WjiIh4aOo4b
+   eKmVkqvzkSvDfsSb8C13MbK5q/PE+LIL+rOXB/Lskmu2lWuGEj05Rijke
+   16Ws7sZLFvrUZr4hzEyobFMmK87gwLUPiaNS5ktdmTvUlOS3j4QLPx0RM
+   b8mf14efJBMp2Mc/rnl8mQSX7ZBv1m0rx9wZpZ2WrqkyJjfa378PDZ9t4
+   CFhOmheE5e8+45K4Zi5Q2XEVF5sDqA/HQhmx61Yu+k1SNQYMv/GyNaebu
+   Q==;
+X-CSE-ConnectionGUID: YUlZdbPOTGGodPHj5Yz7YQ==
+X-CSE-MsgGUID: ljkyKKKiSUiZTexeIdMnRw==
+X-IronPort-AV: E=Sophos;i="6.19,264,1754982000"; 
+   d="scan'208";a="48421760"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 29 Oct 2025 08:51:14 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Wed, 29 Oct 2025 08:51:09 -0700
+Received: from marius-VM.mshome.net (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Wed, 29 Oct 2025 08:51:07 -0700
+From: Marius Cristea <marius.cristea@microchip.com>
+Subject: [PATCH 0/2] Add support for Microchip EMC1812
+Date: Wed, 29 Oct 2025 17:50:57 +0200
+Message-ID: <20251029-hw_mon-emc1812-v1-0-be4fd8af016a@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 2/3] arm64: dts: qcom: sm8750: Add USB support for
- SM8750 MTP platform
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Wesley Cheng <wesley.cheng@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20251024151521.2365845-1-krishna.kurapati@oss.qualcomm.com>
- <20251024151521.2365845-3-krishna.kurapati@oss.qualcomm.com>
- <r5zjb7v2ngsbx2y63tmdhnm4gbpla5fki4uzpjhvn7sqmzsqi2@7637rbudt3z6>
-Content-Language: en-US
-From: Krishna Kurapati PSSNV <krishna.kurapati@oss.qualcomm.com>
-In-Reply-To: <r5zjb7v2ngsbx2y63tmdhnm4gbpla5fki4uzpjhvn7sqmzsqi2@7637rbudt3z6>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=Nu/cssdJ c=1 sm=1 tr=0 ts=690237e2 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=oOlcjaQNFUeFxkmBLZ4A:9
- a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-GUID: BSdJ7xBNC8AUaDvLvq20SmiDDwo3Ou8o
-X-Proofpoint-ORIG-GUID: BSdJ7xBNC8AUaDvLvq20SmiDDwo3Ou8o
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI5MDEyNCBTYWx0ZWRfX1nt8thMTiN4w
- 2iHzN1AAmAJ5QYV7ojrVQA6MutD684tl0Nuh49hWOt86A4AHgy+MyRjFD1/wLZy6o11vmgDbOtO
- L0kPhnJqTzpKAejBtmrkx19nCIg3G0CY+zhSt2dBjMb5rH/LzXqWgZk6ykJmFi38wdA18IDduls
- BhYIofTT2AZXP5LnOn/QASzr+pECXzjnkCV/wX+pVp7WI53LGy1eapsLesVd0ZJbq2HohQSH1iV
- BuOhv8/QCvTaJEFBgW3xzHzHNEVAM3LpfsEZtl/1cUtb6K4tQvznG3/4M9B3gXXrd2UxLSppzLl
- x3mLbdpJemiSV99dhXksBHEChslA6Wdr9WGjBG2/JbWExQZMZBQcynI2pNCBm2RCPjovqK7bpaK
- mTz28ju4bEtVUwMNSe0fPDC37jUTBw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-10-29_06,2025-10-29_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 priorityscore=1501 adultscore=0 suspectscore=0 clxscore=1015
- lowpriorityscore=0 phishscore=0 impostorscore=0 bulkscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510290124
+X-B4-Tracking: v=1; b=H4sIAOE3AmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDAwMj3Yzy+Nz8PN3U3GRDC0Mj3TTDJAsDMxML8xRDAyWgpoKi1LTMCrC
+ B0bG1tQDmTPZ+YAAAAA==
+X-Change-ID: 20251002-hw_mon-emc1812-f1b806487d10
+To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+CC: <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>, Marius Cristea
+	<marius.cristea@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1146;
+ i=marius.cristea@microchip.com; h=from:subject:message-id;
+ bh=VkIEbYbO2lmvSO+zYN2/qpg6TLG1lIbwcMUuFUY0hRI=;
+ b=owGbwMvMwCW2tbSTZa7u0x2Mp9WSGDKZzF8FP5upyn+27sHWnCl/mEKenPg1N/HlZZek8xrpU
+ eozTt062lHKwiDGxSArpsiy4q2fWtXaD5eVxDJ1YOawMoEMYeDiFICJrNnDyLDVLaMy2kFco8+C
+ 88yPn/ymh33zjojfP3DLJp/X56Ft3BJGhvuebupWVt7s3wL3Ffod/PMgw2jq8cnuPr1vbi9v3Nv
+ ExwsA
+X-Developer-Key: i=marius.cristea@microchip.com; a=openpgp;
+ fpr=E32F8D4396E72E463E8CCD91446DE0ABD9140C3E
 
+This is the hwmon driver for EMC1812/13/14/15/33 multichannel Low-Voltage
+Remote Diode Sensor Family. The chips in the family have one internal
+and different numbers of external channels, ranging from 1 (EMC1812) to
+4 channels (EMC1815).
+Reading diodes in anti-parallel connection is supported by EMC1814, EMC1815
+and EMC1833.
 
+Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
+---
+Marius Cristea (2):
+      dt-bindings: hwmon: temperature: add support for EMC1812
+      hwmon: temperature: add support for EMC1812
 
-On 10/29/2025 2:45 AM, Dmitry Baryshkov wrote:
-> On Fri, Oct 24, 2025 at 08:45:20PM +0530, Krishna Kurapati wrote:
->> From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
->>
->> Enable USB support on SM8750 MTP variants.  The current definition will
->> start the USB controller in peripheral mode by default until
->> dependencies are added, such as USB role detection.
-> 
-> Which dependencies?
-> 
+ .../bindings/hwmon/microchip,emc1812.yaml          | 176 ++++
+ Documentation/hwmon/emc1812.rst                    |  68 ++
+ MAINTAINERS                                        |   8 +
+ drivers/hwmon/Kconfig                              |  11 +
+ drivers/hwmon/Makefile                             |   1 +
+ drivers/hwmon/emc1812.c                            | 967 +++++++++++++++++++++
+ 6 files changed, 1231 insertions(+)
+---
+base-commit: d2b2fea3503e5e12b2e28784152937e48bcca6ff
+change-id: 20251002-hw_mon-emc1812-f1b806487d10
 
-Dependencies like pmic-glink and adding remote endpoints for otg 
-support. Till they are added, we can enable peripheral mode.
-
-Regards,
-Krishna,
-
->>
->> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
->> [Konrad: Provided diff to flatten USB node on MTP]
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sm8750-mtp.dts | 22 ++++++++++++++++++++++
->>   1 file changed, 22 insertions(+)
->>
-> 
+Best regards,
+-- 
+Marius Cristea <marius.cristea@microchip.com>
 
 
