@@ -1,201 +1,394 @@
-Return-Path: <devicetree+bounces-232527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A00A0C18B68
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 08:33:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57083C18B7A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 08:36:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3FD91CC1A1C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 07:27:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55A3D3A8F13
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 07:33:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F32FD238D52;
-	Wed, 29 Oct 2025 07:26:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F50224293C;
+	Wed, 29 Oct 2025 07:33:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="TsE+egRA";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="buCsAW9t"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bEUqaJAd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a8-smtp.messagingengine.com (fout-a8-smtp.messagingengine.com [103.168.172.151])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BE4D28695;
-	Wed, 29 Oct 2025 07:26:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDBE030F93C
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 07:33:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761722797; cv=none; b=TodE0ASUGyvHC6JlkhurkqmEs85r5WHuuJx8cPfzhL6zdpFyHCqu4ZaWcyIvlw4w7VSeA6FbkHT1mpmgdAbrD9KpeA0NHj5MHpUPuniJutBuJ3Cpz4XKD1+XmJrchxt8CbknE/ErnUshsDIagkXkzllEn236VF6oBc69CZFHki0=
+	t=1761723233; cv=none; b=O3uzLyFpBpBBtA3mUdEFBdI4b1sE5AaS0iiLUTxqdrqXjvRsv0brdjae8p/9Ak4Oo25wqtalE/dsA/alz/P2LJ9nePd51KRzDLt/mBshe8ZQ1VROBmX+rnfkddR3HK1hkuhX+nehQsV3gaA1qpU2qrheFUvrzEL1F8iX1N8iv/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761722797; c=relaxed/simple;
-	bh=KPjSUTxyohRs/1Ui+XaXLCsytke6zciENE3R5NXQmio=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=nQGmfGpqXE4IbZoGPVxeuSrCaTMBbU3Csd5b0vXmERFeLOBWt3yzlPnQLz38gIx3eW+XBheGbGGqg8DHalwX4rtm3VtC6bxH/dHj4Xwrg3UacX18cGhrymX26PoK2FhfPQMWBrxGzcVlJmH41OwKKxD3F0RuAxJ/iWDlWQzlV8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=TsE+egRA; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=buCsAW9t; arc=none smtp.client-ip=103.168.172.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
-	by mailfout.phl.internal (Postfix) with ESMTP id 7F356EC02AE;
-	Wed, 29 Oct 2025 03:26:34 -0400 (EDT)
-Received: from phl-imap-02 ([10.202.2.81])
-  by phl-compute-04.internal (MEProxy); Wed, 29 Oct 2025 03:26:34 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1761722794;
-	 x=1761809194; bh=HL4fT/7Pst+EfkWdbuJ+fjqkNVyr3cJdgOgkyt71Afs=; b=
-	TsE+egRAXaQBIxVtjjN73Rj3ClHl9oxqOMclN2UuaUPOqICef3WlHjzVkoPkP26i
-	6S07NpewUn14LKjz/knOQA4IPC3FO9rFGLEro/u7EWHATZtuA09YT/SGCAlHkSmh
-	PzpoJsW2sGQYsFlZ4ikrMDJR+7LqxKoJ/v1aPpI1EHzLgbkfPTMB6O39qBz1KHv+
-	ptxWi0kbx+eWKenyJCOlM0cKKv4WPYcIpHQc9gFL+rhOmKrs4ORfGsXzZTjL9Dkj
-	RIl4Is/trtRxorXiQp3PGObelWQXNcib1tdW883YrDPH1DCvKchp/A+TxYuaIrvZ
-	6wjM5j5Wwg7CnZNPTZbTvg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1761722794; x=
-	1761809194; bh=HL4fT/7Pst+EfkWdbuJ+fjqkNVyr3cJdgOgkyt71Afs=; b=b
-	uCsAW9t/9gdk3Zy52sXZvDD7pXH2XsqFW99aqUm2QzoL+VJUvhQHyzSRJwwSTX0w
-	dQ3iHNFx/MYMni8nuiOEG39me/i7EU6sNa7ai7hRXVRVxtA5ZYKL3ydiYkM/Dc8E
-	Orfqd49nh50reQicPAFJBs1lIkOyvO5lHut1Z1M0qJDp3Rxag2JtgcKGqNGh4rDR
-	12eUjydkKhvn//KTEobrB796qaJO+KlstPDOuLPte3iS7bbidy5wRJZ+Aq5hCPhj
-	6FF6eyixu4I3uEtOZM2nc3/lDj+lX2lYjOvq9DTj1NFsdxSUDUOEy3Rx28eDe+YP
-	PZ/wHj70FV2tjyhGXVO0Q==
-X-ME-Sender: <xms:p8EBaavqJ0QQ4LJo-rhQsWncvD6kEVTVV4rmvyBorYbJi2ZZA_WoBg>
-    <xme:p8EBaaRgB11oP8RMGDqRz83ry0S21PwUM7rCozkf1UFLjQeQYeu4wz8WJAWiTRJve
-    k9Jk8da1H7YYXAMXwecEt-kENWouf2s7N24_5Is_v-LY_sgVze9MXM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdduieefuddvucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddtnecuhfhrohhmpedftehrnhgu
-    uceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrthhtvg
-    hrnhephfdthfdvtdefhedukeetgefggffhjeeggeetfefggfevudegudevledvkefhvdei
-    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnh
-    gusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohepvdegpdhmohguvgepshhmthhpohhu
-    thdprhgtphhtthhopegtrghtrghlihhnrdhmrghrihhnrghssegrrhhmrdgtohhmpdhrtg
-    hpthhtohepsghmtgdqshifsegrshhpvggvughtvggthhdrtghomhdprhgtphhtthhopehr
-    higrnhgptghhvghnsegrshhpvggvughtvggthhdrtghomhdprhgtphhtthhopehprhgrsg
-    hhrghkrghrrdhmrghhrgguvghvqdhlrggurdhrjhessghprdhrvghnvghsrghsrdgtohhm
-    pdhrtghpthhtoheprghnughrvgifsegtohguvggtohhnshhtrhhutghtrdgtohhmrdgruh
-    dprhgtphhtthhopehjkhestghouggvtghonhhsthhruhgtthdrtghomhdrrghupdhrtghp
-    thhtohepnhhfrhgrphhrrgguohestgholhhlrggsohhrrgdrtghomhdprhgtphhtthhope
-    hjohgvlhesjhhmshdrihgurdgruhdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhn
-    vghlrdhorhhg
-X-ME-Proxy: <xmx:p8EBaYFzyY_GprhtuwuqqyoQGyXV2LxZTR_c6AbyWPVI9ohsqpYnXA>
-    <xmx:p8EBaROTWrCGhVE_WWzbSpg7rrjo7od7fRzKFUsvlIBN9LhKPMpGTw>
-    <xmx:p8EBafe3D93GA74moCEijH_lAR59ecXpZKMWzZFAUSpvEgFT8KDxAA>
-    <xmx:p8EBaWT1XfDyaIxoSFMXQslzpL37DWn7iZpL0U4ZpMTutgT1TyZBiA>
-    <xmx:qsEBadd_JnlZak_WFppPr5HmGeD3gT7u-9W5pyEPYgCtBu2nPWMjPsTC>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 81F87700063; Wed, 29 Oct 2025 03:26:31 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1761723233; c=relaxed/simple;
+	bh=um3dhCwuxIhchysf4KVWj40F3Mmovi64QpAZjze1StE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qLVdQpngshdfiBR05MW2/GTcP0SxrA5GEoR8uZY/cb0lcCr6MVmQdFpyEZiuD2cXNDsPth+vRZTo90tHAc9rt3UbLDXngAqyeDMMjUBMeVgzTAYl2FGZg9mvvu2h1sdh1olwcECv00bqjVpXq0mhZQAvmxws81caHJSEJDulFkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bEUqaJAd; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-63c0c9a408aso11098330a12.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 00:33:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761723230; x=1762328030; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CsodC3FWvlnb/LUjIJTURF4MPYAArEifAvf57pNwduM=;
+        b=bEUqaJAdubmozR9z/YXYIyQJwN92vLDkmRJ7yyuQwQnU7NPlbtqlig3hYaGIKkWiu0
+         VbscwokGsGER/TgCyoXdNpsgP26rWUtnSdIxcIVQ6fqMNoJ5EBNvJU9NkxnBYz3Gf5g7
+         WNFyAESau01AvYcoED6O78EWDgEXuvFowAUNyVssZA43JXN2Ag6OJxT4/rsJomuIS6/l
+         uGAH9urvuX1SndVZQo1sigdV3kmevoDPUV+Bi29KIOioJw0UKZRoUVsWGKmPGp/WhmAc
+         DsMsOFjHe6KxW4JWbzIgT/2ZeejeYFY+fOWkisoUtmLqZiNhOlVZE0LQakwy+RqHMNVf
+         CWyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761723230; x=1762328030;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CsodC3FWvlnb/LUjIJTURF4MPYAArEifAvf57pNwduM=;
+        b=K9HXYhRo2ipvHAylh0grOnGw0IWBi1CgxqJfk6JuIIV1FmEddsAL1lHhNh/hP0geEM
+         81kY2AlSD8Yvd+h7WqSbNXW4xDdmQcHv5w6mrjw3ZOOMnNUC3pObZ8zx3/JJGrBuDPVV
+         +yAr5Qu2+R9XufANwtJUKcqS/WAauUSF7Pw7etQshQK4hFDVT2gnfUowVj+w3HXdfXyt
+         gMKGoRSrx1KsAepCuYpSf64bY0YdIiyLWi+khNZogyu0NYu/cLKzFHD0bM7nraLuWz7T
+         lqxbBS6s6DZhmQbOWKH1TaY3TTsVCxL23cqegpdBjH1dgR41bKlr85ezS9RktQVJmWKp
+         bTDw==
+X-Forwarded-Encrypted: i=1; AJvYcCXca0XX4y1cxU/kTDAteRz4BOWnCJTPYCljje94+wXZyAf3bzmBS9OUtqc5hogFadDf69ywHsgLn2Jl@vger.kernel.org
+X-Gm-Message-State: AOJu0YyOI7Nzu3Rg7Wl8juCeChcCeBkbpyNtMWoEVcUD9ziKWMbMvnNM
+	UDAX6TpsvEdEqeagXqIj1E6WMooqaU77gV+hM/R3FUT0yicAav9KbYmgqA8+yDzhlr0EskfUyQk
+	+ch7U/bady20JaY5tahfBaoO0XFuRD+s=
+X-Gm-Gg: ASbGncvPsRr81WNobBWhgVdhgRa5Zpqx3JHGr2u91y1OMnOF8aT8sMu3Wsz+jypiMSU
+	HuL75BQS/nH3klutdIClPs1NXMtPzNJhCQIwOE8nqYhei++Mo6oDqh4xsSI1OLstwTzZLq0aVym
+	PE8+//QTass4KIETuQzj9MNrRcaH9AzFJglZfM5zRRVg+7ksXGqqQNc0y9/o2p4IDEhDs6D8jSg
+	kblOcc1528/VmhfG8gHP//VJyRF/qw3EmEX09x1UnXTgshbAz07vcw5ikzdRT8=
+X-Google-Smtp-Source: AGHT+IFoElBJzMz+S7sFHgF+i0aRhwEmOv6jEVOsP0y3fEEDYoyM0elt64gdocJadGJ4z6nVpqQQtrCRkokOEbSnFXc=
+X-Received: by 2002:a05:6402:50d0:b0:638:74dc:cf78 with SMTP id
+ 4fb4d7f45d1cf-64044380bd9mr1618966a12.34.1761723229788; Wed, 29 Oct 2025
+ 00:33:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: AMptcG-LwCSF
-Date: Wed, 29 Oct 2025 08:26:11 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Ryan Chen" <ryan_chen@aspeedtech.com>, "Andrew Lunn" <andrew@lunn.ch>
-Cc: BMC-SW <BMC-SW@aspeedtech.com>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Joel Stanley" <joel@jms.id.au>,
- "Andrew Jeffery" <andrew@codeconstruct.com.au>,
- "Jeremy Kerr" <jk@codeconstruct.com.au>, "Lee Jones" <lee@kernel.org>,
- "Catalin Marinas" <catalin.marinas@arm.com>,
- "Will Deacon" <will@kernel.org>,
- "Bjorn Andersson" <bjorn.andersson@oss.qualcomm.com>,
- "Geert Uytterhoeven" <geert@linux-m68k.org>,
- "Nishanth Menon" <nm@ti.com>,
- =?UTF-8?Q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>,
- "Taniya Das" <quic_tdas@quicinc.com>, "Lad,
- Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- "Kuninori Morimoto" <kuninori.morimoto.gx@renesas.com>,
- "Eric Biggers" <ebiggers@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Message-Id: <7c0c966b-c45f-47ad-9243-b945036a9bd2@app.fastmail.com>
-In-Reply-To: 
- <TY2PPF5CB9A1BE665D988A413B8BCD5CA27F2FAA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
-References: <20251022070543.1169173-1-ryan_chen@aspeedtech.com>
- <20251022070543.1169173-5-ryan_chen@aspeedtech.com>
- <b5441728-06a7-44ea-8876-3a9fc3cf55be@app.fastmail.com>
- <TY2PPF5CB9A1BE626A2F0F6307461D8F64BF2F0A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
- <6a97fbb4-19c2-4ffa-9c73-26aea02c27e4@app.fastmail.com>
- <TY2PPF5CB9A1BE6CF8336D211641A18E2DEF2F1A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
- <71df9bdf-53b2-45e2-a9e3-5b00a556f957@lunn.ch>
- <TY2PPF5CB9A1BE6F3E95C7FD61CF4F90ECAF2FEA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
- <fdbc471f-514e-4521-b7a1-dcf6127d64ff@lunn.ch>
- <TY2PPF5CB9A1BE6DD93D0F397C961D5CB5AF2FCA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
- <01573262-69a8-44cf-ae02-2e9842c59dde@lunn.ch>
- <TY2PPF5CB9A1BE665D988A413B8BCD5CA27F2FAA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
-Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC device tree
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+References: <20251029020847.1946295-1-zhoubinbin@loongson.cn>
+ <20251029020847.1946295-2-zhoubinbin@loongson.cn> <dd97339d-a984-4e74-8043-be99046c5102@roeck-us.net>
+In-Reply-To: <dd97339d-a984-4e74-8043-be99046c5102@roeck-us.net>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Wed, 29 Oct 2025 15:33:37 +0800
+X-Gm-Features: AWmQ_bm5aypQJFVdhgGPmy69k7CbHcJ7S1fFWahyivSzAlBIFVkdYJo0hz2UKx0
+Message-ID: <CAMpQs4L2cGjTFUWAkFaXuvYpHS-SYC=8X5HD=yR6aQMkdvr9xg@mail.gmail.com>
+Subject: Re: [PATCH 1/6] watchdog: loongson1: Rename the prefix from ls1x to loongson
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Keguang Zhang <keguang.zhang@gmail.com>, 
+	Wim Van Sebroeck <wim@linux-watchdog.org>, Huacai Chen <chenhuacai@kernel.org>, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 29, 2025, at 03:31, Ryan Chen wrote:
->> Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC device
->> tree
->> 
->> On Mon, Oct 27, 2025 at 02:42:01AM +0000, Ryan Chen wrote:
->> > > Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700
->> > > SoC device tree
->> > >
->> > > > SoC0, referred to as the CPU die, contains a dual-core Cortex-A35
->> > > > cluster and two Cortex-M4 cores, along with its own clock/reset
->> > > > domains and high-speed peripheral set.
->> > >
->> > > > SoC1, referred to as the I/O die, contains the Boot MCU and its
->> > > > own clock/reset domains and low-speed peripheral set, and is
->> > > > responsible for system boot and control functions.
->> > >
->> > > So is the same .dtsi file shared by both systems?
->> >
->> > This .dtsi represents the Cortex-A35 view only and is not shared with
->> > the Cortex-M4 or the Boot MCU side, since they are separate 32-bit and
->> > 64-bit systems running independent firmware.
->> 
->> DT describes the hardware. The .dtsi file could be shared, you just need
->> different status = <>; lines in the dtb blob.
+Hi Guenter:
+
+Thanks for your reply.
+
+On Wed, Oct 29, 2025 at 11:39=E2=80=AFAM Guenter Roeck <linux@roeck-us.net>=
+ wrote:
 >
-> Could you please share an example of a .dtsi that is shared between
-> different CPU architectures?
+> On 10/28/25 19:08, Binbin Zhou wrote:
+> > In order to introduce the watchdog driver of the Loongson-2K0300 SoC,
+> > which is similar to Loongson-1.
+> >
+> > As preparation, rename all prefixes from ls1x-specific to
+> > Loongson-generic.
+> >
+> > No functional change intended.
+> >
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+>
+> This is unnecessary. We don't rename drivers or function names because
+> other chips are added to a driver. Doing so causes unnecessary churn
+> and other problems, such as (in this case) loongson1_defconfig no longer
+> enabling this watchdog. Any userspace depending (for whatever reason)
+> on the driver name would also have problems.
+>
+> It is ok to make the driver more generic and remove the "1" from
+> the Kconfig description and from MODULE_DESCRIPTION. However,
+> please leave function and driver names alone.
 
-I can think of three that are shared between arm and riscv, with both
-able to boot Linux using a variation of the same device tree, with
-the .dtsi file being included from the respective other side:
+My initial thought was that the loongson1_* prefix might cause
+confusion for others, since we aim to support watchdog driver across
+the entire Loongson series.
 
-arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
-arch/arm/boot/dts/allwinner/sun8i-t113s.dtsi
-arch/arm64/boot/dts/sophgo/sg2000.dtsi
+Additionally, looking across the entire kernel, only
+loongson1_defconfig enables it. My initial code synchronously updated
+this file, but the watchdog repository appears not to have updated the
+code base, resulting in code conflicts [1]. Therefore, changes to this
+section have been temporarily excluded.
 
-All of these however use the same basic physical address layout
-as seen from the two CPUs, with only the set of on-chip devices
-being slightly different, such as using the native irqchip
-instance per CPU.
+[1]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/com=
+mit/?id=3Dad79935dbc22
 
-> In the AST2700 design, even though we have both Cortex-A35 (64-bit)
-> and Cortex-M4 (32-bit) cores, each runs in a distinct address space
-> and sees a different memory map.
+>
+> Thanks,
+> Guenter
+>
+> > ---
+> >   drivers/watchdog/Kconfig                      |  6 +-
+> >   drivers/watchdog/Makefile                     |  2 +-
+> >   .../{loongson1_wdt.c =3D> loongson_wdt.c}       | 86 +++++++++-------=
+---
+> >   3 files changed, 46 insertions(+), 48 deletions(-)
+> >   rename drivers/watchdog/{loongson1_wdt.c =3D> loongson_wdt.c} (50%)
+> >
+> > diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+> > index 0c25b2ed44eb..74edeb13e95b 100644
+> > --- a/drivers/watchdog/Kconfig
+> > +++ b/drivers/watchdog/Kconfig
+> > @@ -1963,12 +1963,12 @@ config LANTIQ_WDT
+> >       help
+> >         Hardware driver for the Lantiq SoC Watchdog Timer.
+> >
+> > -config LOONGSON1_WDT
+> > -     tristate "Loongson1 SoC hardware watchdog"
+> > +config LOONGSON_WDT
+> > +     tristate "Loongson SoC hardware watchdog"
+> >       depends on MACH_LOONGSON32 || COMPILE_TEST
+> >       select WATCHDOG_CORE
+> >       help
+> > -       Hardware driver for the Loongson1 SoC Watchdog Timer.
+> > +       Hardware driver for the Loongson SoC Watchdog Timer.
+> >
+> >   config RALINK_WDT
+> >       tristate "Ralink SoC watchdog"
+> > diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
+> > index bbd4d62d2cc3..70be11bf7bbf 100644
+> > --- a/drivers/watchdog/Makefile
+> > +++ b/drivers/watchdog/Makefile
+> > @@ -178,7 +178,7 @@ obj-$(CONFIG_TXX9_WDT) +=3D txx9wdt.o
+> >   obj-$(CONFIG_OCTEON_WDT) +=3D octeon-wdt.o
+> >   octeon-wdt-y :=3D octeon-wdt-main.o octeon-wdt-nmi.o
+> >   obj-$(CONFIG_LANTIQ_WDT) +=3D lantiq_wdt.o
+> > -obj-$(CONFIG_LOONGSON1_WDT) +=3D loongson1_wdt.o
+> > +obj-$(CONFIG_LOONGSON_WDT) +=3D loongson_wdt.o
+> >   obj-$(CONFIG_RALINK_WDT) +=3D rt2880_wdt.o
+> >   obj-$(CONFIG_IMGPDC_WDT) +=3D imgpdc_wdt.o
+> >   obj-$(CONFIG_MT7621_WDT) +=3D mt7621_wdt.o
+> > diff --git a/drivers/watchdog/loongson1_wdt.c b/drivers/watchdog/loongs=
+on_wdt.c
+> > similarity index 50%
+> > rename from drivers/watchdog/loongson1_wdt.c
+> > rename to drivers/watchdog/loongson_wdt.c
+> > index 0587ff44d3a1..19f6a19fc811 100644
+> > --- a/drivers/watchdog/loongson1_wdt.c
+> > +++ b/drivers/watchdog/loongson_wdt.c
+> > @@ -10,7 +10,7 @@
+> >   #include <linux/platform_device.h>
+> >   #include <linux/watchdog.h>
+> >
+> > -/* Loongson 1 Watchdog Register Definitions */
+> > +/* Loongson Watchdog Register Definitions */
+> >   #define WDT_EN                      0x0
+> >   #define WDT_TIMER           0x4
+> >   #define WDT_SET                     0x8
+> > @@ -23,26 +23,25 @@ module_param(nowayout, bool, 0444);
+> >   static unsigned int heartbeat;
+> >   module_param(heartbeat, uint, 0444);
+> >
+> > -struct ls1x_wdt_drvdata {
+> > +struct loongson_wdt_drvdata {
+> >       void __iomem *base;
+> >       struct clk *clk;
+> >       unsigned long clk_rate;
+> >       struct watchdog_device wdt;
+> >   };
+> >
+> > -static int ls1x_wdt_ping(struct watchdog_device *wdt_dev)
+> > +static int loongson_wdt_ping(struct watchdog_device *wdt_dev)
+> >   {
+> > -     struct ls1x_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt_dev=
+);
+> > +     struct loongson_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt=
+_dev);
+> >
+> >       writel(0x1, drvdata->base + WDT_SET);
+> >
+> >       return 0;
+> >   }
+> >
+> > -static int ls1x_wdt_set_timeout(struct watchdog_device *wdt_dev,
+> > -                             unsigned int timeout)
+> > +static int loongson_wdt_set_timeout(struct watchdog_device *wdt_dev, u=
+nsigned int timeout)
+> >   {
+> > -     struct ls1x_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt_dev=
+);
+> > +     struct loongson_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt=
+_dev);
+> >       unsigned int max_hw_heartbeat =3D wdt_dev->max_hw_heartbeat_ms / =
+1000;
+> >       unsigned int counts;
+> >
+> > @@ -54,28 +53,27 @@ static int ls1x_wdt_set_timeout(struct watchdog_dev=
+ice *wdt_dev,
+> >       return 0;
+> >   }
+> >
+> > -static int ls1x_wdt_start(struct watchdog_device *wdt_dev)
+> > +static int loongson_wdt_start(struct watchdog_device *wdt_dev)
+> >   {
+> > -     struct ls1x_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt_dev=
+);
+> > +     struct loongson_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt=
+_dev);
+> >
+> >       writel(0x1, drvdata->base + WDT_EN);
+> >
+> >       return 0;
+> >   }
+> >
+> > -static int ls1x_wdt_stop(struct watchdog_device *wdt_dev)
+> > +static int loongson_wdt_stop(struct watchdog_device *wdt_dev)
+> >   {
+> > -     struct ls1x_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt_dev=
+);
+> > +     struct loongson_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt=
+_dev);
+> >
+> >       writel(0x0, drvdata->base + WDT_EN);
+> >
+> >       return 0;
+> >   }
+> >
+> > -static int ls1x_wdt_restart(struct watchdog_device *wdt_dev,
+> > -                         unsigned long action, void *data)
+> > +static int loongson_wdt_restart(struct watchdog_device *wdt_dev, unsig=
+ned long action, void *data)
+> >   {
+> > -     struct ls1x_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt_dev=
+);
+> > +     struct loongson_wdt_drvdata *drvdata =3D watchdog_get_drvdata(wdt=
+_dev);
+> >
+> >       writel(0x1, drvdata->base + WDT_EN);
+> >       writel(0x1, drvdata->base + WDT_TIMER);
+> > @@ -84,25 +82,25 @@ static int ls1x_wdt_restart(struct watchdog_device =
+*wdt_dev,
+> >       return 0;
+> >   }
+> >
+> > -static const struct watchdog_info ls1x_wdt_info =3D {
+> > +static const struct watchdog_info loongson_wdt_info =3D {
+> >       .options =3D WDIOF_SETTIMEOUT | WDIOF_KEEPALIVEPING | WDIOF_MAGIC=
+CLOSE,
+> > -     .identity =3D "Loongson1 Watchdog",
+> > +     .identity =3D "Loongson Watchdog",
+> >   };
+> >
+> > -static const struct watchdog_ops ls1x_wdt_ops =3D {
+> > +static const struct watchdog_ops loongson_wdt_ops =3D {
+> >       .owner =3D THIS_MODULE,
+> > -     .start =3D ls1x_wdt_start,
+> > -     .stop =3D ls1x_wdt_stop,
+> > -     .ping =3D ls1x_wdt_ping,
+> > -     .set_timeout =3D ls1x_wdt_set_timeout,
+> > -     .restart =3D ls1x_wdt_restart,
+> > +     .start =3D loongson_wdt_start,
+> > +     .stop =3D loongson_wdt_stop,
+> > +     .ping =3D loongson_wdt_ping,
+> > +     .set_timeout =3D loongson_wdt_set_timeout,
+> > +     .restart =3D loongson_wdt_restart,
+> >   };
+> >
+> > -static int ls1x_wdt_probe(struct platform_device *pdev)
+> > +static int loongson_wdt_probe(struct platform_device *pdev)
+> >   {
+> >       struct device *dev =3D &pdev->dev;
+> > -     struct ls1x_wdt_drvdata *drvdata;
+> > -     struct watchdog_device *ls1x_wdt;
+> > +     struct loongson_wdt_drvdata *drvdata;
+> > +     struct watchdog_device *loongson_wdt;
+> >       unsigned long clk_rate;
+> >       int err;
+> >
+> > @@ -123,17 +121,17 @@ static int ls1x_wdt_probe(struct platform_device =
+*pdev)
+> >               return -EINVAL;
+> >       drvdata->clk_rate =3D clk_rate;
+> >
+> > -     ls1x_wdt =3D &drvdata->wdt;
+> > -     ls1x_wdt->info =3D &ls1x_wdt_info;
+> > -     ls1x_wdt->ops =3D &ls1x_wdt_ops;
+> > -     ls1x_wdt->timeout =3D DEFAULT_HEARTBEAT;
+> > -     ls1x_wdt->min_timeout =3D 1;
+> > -     ls1x_wdt->max_hw_heartbeat_ms =3D U32_MAX / clk_rate * 1000;
+> > -     ls1x_wdt->parent =3D dev;
+> > +     loongson_wdt =3D &drvdata->wdt;
+> > +     loongson_wdt->info =3D &loongson_wdt_info;
+> > +     loongson_wdt->ops =3D &loongson_wdt_ops;
+> > +     loongson_wdt->timeout =3D DEFAULT_HEARTBEAT;
+> > +     loongson_wdt->min_timeout =3D 1;
+> > +     loongson_wdt->max_hw_heartbeat_ms =3D U32_MAX / clk_rate * 1000;
+> > +     loongson_wdt->parent =3D dev;
+> >
+> > -     watchdog_init_timeout(ls1x_wdt, heartbeat, dev);
+> > -     watchdog_set_nowayout(ls1x_wdt, nowayout);
+> > -     watchdog_set_drvdata(ls1x_wdt, drvdata);
+> > +     watchdog_init_timeout(loongson_wdt, heartbeat, dev);
+> > +     watchdog_set_nowayout(loongson_wdt, nowayout);
+> > +     watchdog_set_drvdata(loongson_wdt, drvdata);
+> >
+> >       err =3D devm_watchdog_register_device(dev, &drvdata->wdt);
+> >       if (err)
+> > @@ -141,30 +139,30 @@ static int ls1x_wdt_probe(struct platform_device =
+*pdev)
+> >
+> >       platform_set_drvdata(pdev, drvdata);
+> >
+> > -     dev_info(dev, "Loongson1 Watchdog driver registered\n");
+> > +     dev_info(dev, "Loongson Watchdog driver registered\n");
+> >
+> >       return 0;
+> >   }
+> >
+> >   #ifdef CONFIG_OF
+> > -static const struct of_device_id ls1x_wdt_dt_ids[] =3D {
+> > +static const struct of_device_id loongson_wdt_dt_ids[] =3D {
+> >       { .compatible =3D "loongson,ls1b-wdt", },
+> >       { .compatible =3D "loongson,ls1c-wdt", },
+> >       { /* sentinel */ }
+> >   };
+> > -MODULE_DEVICE_TABLE(of, ls1x_wdt_dt_ids);
+> > +MODULE_DEVICE_TABLE(of, loongson_wdt_dt_ids);
+> >   #endif
+> >
+> > -static struct platform_driver ls1x_wdt_driver =3D {
+> > -     .probe =3D ls1x_wdt_probe,
+> > +static struct platform_driver loongson_wdt_driver =3D {
+> > +     .probe =3D loongson_wdt_probe,
+> >       .driver =3D {
+> > -             .name =3D "ls1x-wdt",
+> > -             .of_match_table =3D of_match_ptr(ls1x_wdt_dt_ids),
+> > +             .name =3D "loongson-wdt",
+> > +             .of_match_table =3D of_match_ptr(loongson_wdt_dt_ids),
+> >       },
+> >   };
+> >
+> > -module_platform_driver(ls1x_wdt_driver);
+> > +module_platform_driver(loongson_wdt_driver);
+> >
+> >   MODULE_AUTHOR("Yang Ling <gnaygnil@gmail.com>");
+> > -MODULE_DESCRIPTION("Loongson1 Watchdog Driver");
+> > +MODULE_DESCRIPTION("Loongson Watchdog Driver");
+> >   MODULE_LICENSE("GPL");
+>
 
-This is similar to the Cortex-M4 on i.MX7D. This is supported by
-the Linux code, but I don't see the corresponding dts file for it now,
-it may have never been merged.
-
-If you want to share the devicetree source files but have different
-physical addresses, you'll need to set up 'ranges' properties in
-the top-level .dtsi files that map the child buses into the CPU space
-as needed. arch/arm64/boot/dts/apple/t6002.dtsi has a rather
-sophisticated way of doing this where &die0 and &die1 set up the
-ranges for including the same child die multiple times at different
-addresses. You should be able to use similar method but make it
-a lot simpler for your case.
-
-      Arnd
+--=20
+Thanks.
+Binbin
 
