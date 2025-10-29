@@ -1,152 +1,292 @@
-Return-Path: <devicetree+bounces-232813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9BC0C1C5DE
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 18:09:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99B3AC1C6BA
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 18:24:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21DC56467B5
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:41:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF55466546F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 16:11:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A7BC3446A3;
-	Wed, 29 Oct 2025 15:41:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B36A5325737;
+	Wed, 29 Oct 2025 16:11:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ra/9fSiG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vL3wKFOI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1CB933F39F
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 15:41:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89B522F25E0;
+	Wed, 29 Oct 2025 16:11:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761752466; cv=none; b=ZzDLZbWzj4sTCDRonogqKWu8khU4rGRZPkZlMtV5avSS6R9K1FY/IUP/oLzW3O6ImwFE/rS7gEvkwJBVnHKB4bYT76kLDZUcn8Eq71gouvh0XBrXp2Us0bCqGQoDFC/BrXNk7oPzBgPqFiDKTiOxGeXkX+/e2XeLs29U7MCsB78=
+	t=1761754298; cv=none; b=A1NRlftlOsWZWSJlGW3a8fXwTu2b4rlkMb15XqeVVu3x3XXenAdCVT2GWA37g8FTbUPpLsuhR4Rgr5esLpRkvPM3hY1do9lZUJeViM7piYMVfs6CIRamd2MM89EuNYkSbReY98/8CXz3cgAT1ma6hWQ65Mx1pJHfmqBmerEU5X0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761752466; c=relaxed/simple;
-	bh=jmZDND6HgYX8EZDdUAJP/IquD3beTYD9OCZKg3gtY5U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=K64DupNEjvbgbikOIgMjmunpvo4dE58X9lVUCTDW7q8vvimrarpaAoekm6iWN17ZU0etBCYqKP3G+44TLnpKtPzuoshtV1BARURGTWGdW04rSUYgMIGERuPlV+plpvN8xGW3zpwI8sheaIXfGmmKRYxXwYO6ZuNl6ZcvPcyoO74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ra/9fSiG; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-42708097bbdso597616f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 08:41:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761752462; x=1762357262; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VxI90H/RvA6j+47WbvbjLy4lY2bQBr0L5l614wF2bwQ=;
-        b=Ra/9fSiGcI7N2vrUAw+2qeKQ3MweoeRYW3rjZys/43icnJJfxWqeKQP0WSgZqQnLXc
-         KGGHl0C8uDKEJ70aaztiAMkpsaHjl5wly7oLcVc8a5XMbHpqy8rXgPKuMIi6xqWXs4Uf
-         UPKXNILrzwdHAwg/C/F34AFa6Rwqu7veTeaP3LdvEYb6nhuV1ztUT/Kn85nqK65JVpvg
-         6dpt93NBjUVAoxYDEyhkxRkCZ6uUP+YQ+WiTPLQXE0srmkHCcmslTruCN4RFWNqGypdo
-         +RQHCxRmupXylhYZ+lLIMBBkeUrxb78qe2NyCv0WVoaBeEgrAe9hhMMrFclrHb6n3p5V
-         +fnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761752462; x=1762357262;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VxI90H/RvA6j+47WbvbjLy4lY2bQBr0L5l614wF2bwQ=;
-        b=n5dHnrz0V776iA+nN+PLZl90iph9ojdCFspc+7ocvfzdONsBgYHzblnSprVncGSfmi
-         3rJQanSrHUvLHEbIlDYf7vLhZtm1Yo6EoqIg76ReeOd92iUkqb+o8vo9DkNGwEraJXpz
-         5ag1LZ25fne+IRngw0DCfhv2F8VjydMB/4FocHmLitB9ub5kCJOPWMU9nII3cSpE7gJq
-         ENDe0X1dLvJxDXCmgERDioOqtpT81FyQCxLSyai1ys3xPVRkZufA9Xe7q36VkxDYOkw7
-         oELIGfe4O5o09LMjeB3qvb8pYvodBTO04gbOr3Df1TrFvj1ukodEEZwpkKx95QWH1eR/
-         RxLg==
-X-Forwarded-Encrypted: i=1; AJvYcCUnKFdBy0uqxlFJbIDTrkVK7If//woZx+dIRtxwZLOVuoBwdj/eUhNrXVZRtpRxmG5TAHBpp0XN/1qu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8sK2xWy2WncxhHAAm38oo9FbZzIaQWWwZGNA60w1UNP8BfFL0
-	gITf160WKHr1IFzfUP4VZAHviRspGSk9GesCMJFY4QLNGK/4vr7eH9Q5HkM2t0aZ1Zo=
-X-Gm-Gg: ASbGncsjRvW3Ln5weHldex+dBY9kC8FyqYF3PV65ndsShnlV+l63HVhk+xd4qfuU3t3
-	4Ec1Sri6mW8j5OtSzHv9gaiR3NGhjt0aGkgRg9azPlLNNbXT6c0kE0GtZOiZ/bskz3ivnkIfF5z
-	RlB1ixfXUhY9Q2PlCSA/Ku/zmmiwEzYGg/CmKKKWtOXpolQqGhCRgQ0fivp5SkvfRcqIdoqZWL/
-	0qybwDqn2MrmZUCKK2dP44uloGa1Xz4D8KOVRaf+p9wi009IdWkW/ScA48AjpAcmD3WsSE1ktMB
-	g4RpSCmtWtjkUYZtSXWh7uDsLNooC3oarC6yRyXjJVljzno6VxGAbVTS2WqB5Ja8ymy9njxbM6Z
-	lpbblpZWCh2nWjnz5nEwLKvn7TzhqQl4AJF6KkUkYQ7HOc3QHikxXP9nGmGa77MEcbGfDnbOx1r
-	Nu05iJAsSi5ldXKUzX
-X-Google-Smtp-Source: AGHT+IH0MTxj4KideKlmnNCTWGRH1FJc2DdwXawsfzS+YbdnXfbjerZ4hGirRpqlsBnBP95NVvOT1w==
-X-Received: by 2002:a05:6000:2088:b0:3ee:1125:fb68 with SMTP id ffacd0b85a97d-429aef70b89mr1611585f8f.2.1761752462598;
-        Wed, 29 Oct 2025 08:41:02 -0700 (PDT)
-Received: from [127.0.1.1] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429952df5c9sm27006875f8f.41.2025.10.29.08.41.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Oct 2025 08:41:02 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Wed, 29 Oct 2025 16:40:41 +0100
-Subject: [PATCH 4/9] dt-bindings: PCI: qcom,pcie-sm8150: Add missing
- required power-domains
+	s=arc-20240116; t=1761754298; c=relaxed/simple;
+	bh=SBPUsQQts6myI7KNC8yymj9GqGzDulDYvcTpau9/ALk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=DUwY9wnm8x1Mc228oaElWjMc8KYN4KZU6wMcR5qKfN2MTv2Ym0CTnkdse+kvp2frojq+knfB9FIheFDuUp4pIxReRcZmNz4zTuGzPGjbm7wj592+0pBP64jPBreahiKJ/ePcwXW7ByJ6UlYGxuCECFo/R09GtXqgwD3Jgq0AgG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vL3wKFOI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50589C4CEF7;
+	Wed, 29 Oct 2025 16:11:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761754298;
+	bh=SBPUsQQts6myI7KNC8yymj9GqGzDulDYvcTpau9/ALk=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=vL3wKFOIoq91uTTR96HuBCNCR0G7LITKAB33GwdtWlZeoGAyn+DRgPe0glvKcknJq
+	 M9dMTaEPAloeCsn6TK7lZM9RlOw7cUNUGcpknMdVf+CSTmLtZTHZjnDHZ5+KZWA8Jv
+	 e0VsXgB/8ulVgFyGI+viPeK1eZw66zUZaL4ZsnL34lkm/2q7H83ZUE0gXJCfSAUbZU
+	 QTJ2p9BZGr+TaXt1s0YcydKPPTW0I8OtPD0HnRh6m66XQCO1B20aARMNxTKscYWj/9
+	 hKRJN5h/fHLcopvATVbruTVkBSHhP8STh4N2SZh3s+wSpQ6gDjyLDLxscXROACoR8V
+	 d3FiA4wXgiqzQ==
+From: Conor Dooley <conor@kernel.org>
+To: claudiu.beznea@tuxon.dev
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	pierre-henry.moussay@microchip.com,
+	valentina.fernandezalanis@microchip.com,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-riscv@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 1/7] reset: mpfs: add non-auxiliary bus probing
+Date: Wed, 29 Oct 2025 16:11:17 +0000
+Message-ID: <20251029-macarena-neglector-318431fec367@spud>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251029-chewing-absolve-c4e6acfe0fa4@spud>
+References: <20251029-chewing-absolve-c4e6acfe0fa4@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251029-dt-bindings-pci-qcom-fixes-power-domains-v1-4-da7ac2c477f4@linaro.org>
-References: <20251029-dt-bindings-pci-qcom-fixes-power-domains-v1-0-da7ac2c477f4@linaro.org>
-In-Reply-To: <20251029-dt-bindings-pci-qcom-fixes-power-domains-v1-0-da7ac2c477f4@linaro.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Abel Vesa <abel.vesa@linaro.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- stable@vger.kernel.org
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1043;
- i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=jmZDND6HgYX8EZDdUAJP/IquD3beTYD9OCZKg3gtY5U=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpAjWBmcy4XgYDlp4xPS0l52FU7QL68VmVi3wFH
- JptIegewAGJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaQI1gQAKCRDBN2bmhouD
- 198pD/9wZok/UWTRqJu0zO4NrX3NW/CSMcltjXyHSXz9f1CNq4CDhov3GAq2fPqNYAwFbGZg4eg
- RmW4EAElTFoutWfp5ht3GhccOCMM5nsiQE44AhZaDeLujUn8kcnNS48fpVjnkFgnYumkvmcBeQN
- 51PHrVGSPgTW26Sex0ZDJTwPt//BZ9o74QJ3Ief+fJQtN6ACsJTEIM7sewm4dJw3Y5dsNeijb92
- yjYNeQNfFD6NIb7PZFUgi1yVT0r3IBWtKYFp755iK3Agjfm/XrrHwqI3DidgoHYEs4HsHk13Xxp
- rIvGsG3SMJ5LYSavdm37X5/ENlkLpj5NjC+dmBArbBkLbjQjs7/1C9kqM6fCG/5Tc24aqb5hILX
- Av6B9bUNOaeUuR8YdSfhVtWQZy4i1venuSxvdFskZavcp//gfwW9TzODZOSu76kC7ZYRgcwaxHQ
- cnNu1+HoLlP8JvKl4i/o/U108JORS4vsPO4uXxasvgGhumQaA2c22t3KltmJ//0Sod88rwonAe/
- wd3soqsovOfNnLqFv4oTgT9TBdr2NTbuVxybhlnHRAh89YuK18KHuv4kP/UJNDOMyxvF/ZerH63
- QZpA98YSVZSkCk9mrQvkpKlXcEYhTxEaB7RhJW5TbUB5mj2Gc0zHAgO1nzBk+xy7haa7Tg0TkaT
- WXCe62oV/PbTsTg==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
- fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6690; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=WjSYxPHoiecG3YZVCMCzeZtGrY72vr6u1gmlrYkaGJE=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJlMNusucCmdWFN9dEqkWdThu5L3a33SHX3fBXR6vp3+K bros658RykLgxgXg6yYIkvi7b4WqfV/XHY497yFmcPKBDKEgYtTACby6TcjQ/sq8czfXZ9/R5SZ +MfoHvu39vKcGU3K8g/llG8w7PoZtJCR4ccnFW6d3HN9xX3FZs84N9Z/8HoSZTn1yqxZV4psHsS t4wIA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-Commit 51bc04d5b49d ("dt-bindings: PCI: qcom,pcie-sm8150: Move SM8150 to
-dedicated schema") move the device schema to separate file, but it
-missed a "if:not:...then:" clause in the original binding which was
-requiring power-domains for this particular chip.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Cc: <stable@vger.kernel.org>
-Fixes: 51bc04d5b49d ("dt-bindings: PCI: qcom,pcie-sm8150: Move SM8150 to dedicated schema")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+While the auxiliary bus was a nice bandaid, and meant that re-writing
+the representation of the clock regions in devicetree was not required,
+it has run its course. The "mss_top_sysreg" region that contains the
+clock and reset regions, also contains pinctrl and an interrupt
+controller, so the time has come rewrite the devicetree and probe the
+reset controller from an mfd devicetree node, rather than implement
+those drivers using the auxiliary bus. Wanting to avoid propagating this
+naive/incorrect description of the hardware to the new pic64gx SoC is a
+major motivating factor here.
+
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- Documentation/devicetree/bindings/pci/qcom,pcie-sm8150.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+v6:
+- depend on MFD_SYSCON
+- return regmap_update_bits() result directly instead of an additional
+  return 0
 
-diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sm8150.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sm8150.yaml
-index 26b247a41785..ceec5baedcd8 100644
---- a/Documentation/devicetree/bindings/pci/qcom,pcie-sm8150.yaml
-+++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sm8150.yaml
-@@ -74,6 +74,9 @@ properties:
-     items:
-       - const: pci
+v4:
+- Only use driver specific lock for non-regmap writes
+
+v2:
+- Implement the request to use regmap_update_bits(). I found that I then
+  hated the read/write helpers since they were just bloat, so I ripped
+  them out. I replaced the regular spin_lock_irqsave() stuff with a
+  guard(spinlock_irqsave), since that's a simpler way of handling the two
+  different paths through such a trivial pair of functions.
+---
+ drivers/reset/Kconfig      |  1 +
+ drivers/reset/reset-mpfs.c | 79 ++++++++++++++++++++++++++++++--------
+ 2 files changed, 63 insertions(+), 17 deletions(-)
+
+diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+index 78b7078478d4..0ec4b7cd08d6 100644
+--- a/drivers/reset/Kconfig
++++ b/drivers/reset/Kconfig
+@@ -200,6 +200,7 @@ config RESET_PISTACHIO
+ config RESET_POLARFIRE_SOC
+ 	bool "Microchip PolarFire SoC (MPFS) Reset Driver"
+ 	depends on MCHP_CLK_MPFS
++	depends on MFD_SYSCON
+ 	select AUXILIARY_BUS
+ 	default MCHP_CLK_MPFS
+ 	help
+diff --git a/drivers/reset/reset-mpfs.c b/drivers/reset/reset-mpfs.c
+index f6fa10e03ea8..25de7df55301 100644
+--- a/drivers/reset/reset-mpfs.c
++++ b/drivers/reset/reset-mpfs.c
+@@ -7,13 +7,16 @@
+  *
+  */
+ #include <linux/auxiliary_bus.h>
++#include <linux/cleanup.h>
+ #include <linux/delay.h>
+ #include <linux/io.h>
++#include <linux/mfd/syscon.h>
+ #include <linux/module.h>
+ #include <linux/of.h>
+ #include <linux/platform_device.h>
+-#include <linux/slab.h>
++#include <linux/regmap.h>
+ #include <linux/reset-controller.h>
++#include <linux/slab.h>
+ #include <dt-bindings/clock/microchip,mpfs-clock.h>
+ #include <soc/microchip/mpfs.h>
  
-+required:
-+  - power-domains
+@@ -27,11 +30,14 @@
+ #define MPFS_SLEEP_MIN_US	100
+ #define MPFS_SLEEP_MAX_US	200
+ 
++#define REG_SUBBLK_RESET_CR	0x88u
 +
- allOf:
-   - $ref: qcom,pcie-common.yaml#
+ /* block concurrent access to the soft reset register */
+ static DEFINE_SPINLOCK(mpfs_reset_lock);
  
-
+ struct mpfs_reset {
+ 	void __iomem *base;
++	struct regmap *regmap;
+ 	struct reset_controller_dev rcdev;
+ };
+ 
+@@ -46,41 +52,46 @@ static inline struct mpfs_reset *to_mpfs_reset(struct reset_controller_dev *rcde
+ static int mpfs_assert(struct reset_controller_dev *rcdev, unsigned long id)
+ {
+ 	struct mpfs_reset *rst = to_mpfs_reset(rcdev);
+-	unsigned long flags;
+ 	u32 reg;
+ 
+-	spin_lock_irqsave(&mpfs_reset_lock, flags);
++	if (rst->regmap)
++		return regmap_update_bits(rst->regmap, REG_SUBBLK_RESET_CR, BIT(id), BIT(id));
++
++	guard(spinlock_irqsave)(&mpfs_reset_lock);
+ 
+ 	reg = readl(rst->base);
+ 	reg |= BIT(id);
+ 	writel(reg, rst->base);
+ 
+-	spin_unlock_irqrestore(&mpfs_reset_lock, flags);
+-
+ 	return 0;
+ }
+ 
+ static int mpfs_deassert(struct reset_controller_dev *rcdev, unsigned long id)
+ {
+ 	struct mpfs_reset *rst = to_mpfs_reset(rcdev);
+-	unsigned long flags;
+ 	u32 reg;
+ 
+-	spin_lock_irqsave(&mpfs_reset_lock, flags);
++	if (rst->regmap)
++		return regmap_update_bits(rst->regmap, REG_SUBBLK_RESET_CR, BIT(id), 0);
++
++	guard(spinlock_irqsave)(&mpfs_reset_lock);
+ 
+ 	reg = readl(rst->base);
+ 	reg &= ~BIT(id);
+ 	writel(reg, rst->base);
+ 
+-	spin_unlock_irqrestore(&mpfs_reset_lock, flags);
+-
+ 	return 0;
+ }
+ 
+ static int mpfs_status(struct reset_controller_dev *rcdev, unsigned long id)
+ {
+ 	struct mpfs_reset *rst = to_mpfs_reset(rcdev);
+-	u32 reg = readl(rst->base);
++	u32 reg;
++
++	if (rst->regmap)
++		regmap_read(rst->regmap, REG_SUBBLK_RESET_CR, &reg);
++	else
++		reg = readl(rst->base);
+ 
+ 	/*
+ 	 * It is safe to return here as MPFS_NUM_RESETS makes sure the sign bit
+@@ -130,11 +141,45 @@ static int mpfs_reset_xlate(struct reset_controller_dev *rcdev,
+ 	return index - MPFS_PERIPH_OFFSET;
+ }
+ 
+-static int mpfs_reset_probe(struct auxiliary_device *adev,
+-			    const struct auxiliary_device_id *id)
++static int mpfs_reset_mfd_probe(struct platform_device *pdev)
+ {
+-	struct device *dev = &adev->dev;
+ 	struct reset_controller_dev *rcdev;
++	struct device *dev = &pdev->dev;
++	struct mpfs_reset *rst;
++
++	rst = devm_kzalloc(dev, sizeof(*rst), GFP_KERNEL);
++	if (!rst)
++		return -ENOMEM;
++
++	rcdev = &rst->rcdev;
++	rcdev->dev = dev;
++	rcdev->ops = &mpfs_reset_ops;
++
++	rcdev->of_node = pdev->dev.parent->of_node;
++	rcdev->of_reset_n_cells = 1;
++	rcdev->of_xlate = mpfs_reset_xlate;
++	rcdev->nr_resets = MPFS_NUM_RESETS;
++
++	rst->regmap = device_node_to_regmap(pdev->dev.parent->of_node);
++	if (IS_ERR(rst->regmap))
++		dev_err_probe(dev, PTR_ERR(rst->regmap), "Failed to find syscon regmap\n");
++
++	return devm_reset_controller_register(dev, rcdev);
++}
++
++static struct platform_driver mpfs_reset_mfd_driver = {
++	.probe		= mpfs_reset_mfd_probe,
++	.driver = {
++		.name = "mpfs-reset",
++	},
++};
++module_platform_driver(mpfs_reset_mfd_driver);
++
++static int mpfs_reset_adev_probe(struct auxiliary_device *adev,
++				 const struct auxiliary_device_id *id)
++{
++	struct reset_controller_dev *rcdev;
++	struct device *dev = &adev->dev;
+ 	struct mpfs_reset *rst;
+ 
+ 	rst = devm_kzalloc(dev, sizeof(*rst), GFP_KERNEL);
+@@ -145,8 +190,8 @@ static int mpfs_reset_probe(struct auxiliary_device *adev,
+ 
+ 	rcdev = &rst->rcdev;
+ 	rcdev->dev = dev;
+-	rcdev->dev->parent = dev->parent;
+ 	rcdev->ops = &mpfs_reset_ops;
++
+ 	rcdev->of_node = dev->parent->of_node;
+ 	rcdev->of_reset_n_cells = 1;
+ 	rcdev->of_xlate = mpfs_reset_xlate;
+@@ -176,12 +221,12 @@ static const struct auxiliary_device_id mpfs_reset_ids[] = {
+ };
+ MODULE_DEVICE_TABLE(auxiliary, mpfs_reset_ids);
+ 
+-static struct auxiliary_driver mpfs_reset_driver = {
+-	.probe		= mpfs_reset_probe,
++static struct auxiliary_driver mpfs_reset_aux_driver = {
++	.probe		= mpfs_reset_adev_probe,
+ 	.id_table	= mpfs_reset_ids,
+ };
+ 
+-module_auxiliary_driver(mpfs_reset_driver);
++module_auxiliary_driver(mpfs_reset_aux_driver);
+ 
+ MODULE_DESCRIPTION("Microchip PolarFire SoC Reset Driver");
+ MODULE_AUTHOR("Conor Dooley <conor.dooley@microchip.com>");
 -- 
-2.48.1
+2.51.0
 
 
