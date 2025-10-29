@@ -1,130 +1,150 @@
-Return-Path: <devicetree+bounces-232686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED4F0C1A266
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:12:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BB6FC1A284
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:15:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9A4E73486CF
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 12:12:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E42B188F1D4
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 12:15:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D90FE33A012;
-	Wed, 29 Oct 2025 12:12:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F56F33B95A;
+	Wed, 29 Oct 2025 12:15:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b="OuiSYElE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A30312EA490;
-	Wed, 29 Oct 2025 12:12:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ADBE1CF5C6
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 12:15:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761739945; cv=none; b=AoD6gFyNTv/F11reyhTejOxMGec2dHYCw+yyJmIUthJ/585hQKHit66xqcW1XfJMv42qteXLraOGIAOW+Z8OJNoIJ4UUzKIZVTlKeLRV/hnh12be1oeoRjRZ0GHgtxPV7mcXl60MC20DtkO9wQdn/Z0UHptKCyvpw2kE8F2wJ7k=
+	t=1761740103; cv=none; b=ZoX0F6VsSQOrKySwWEVrPW5APQA4LUx/ZcpCoTwd5Zq7Gin0peLFapTw8UAbNLO5rJJRyZt0Omia4kY/G7Rqwz3TZXwyHNVyimFKhoSStA1YJOltkXz40tVc4kkLavHkA+W4DBhHnV68jkuGk54SAyCLJgD2mMGRF2F6PZWcEm0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761739945; c=relaxed/simple;
-	bh=D9ubV1MzwQjGbT7HGhaPF/W0DxBMGpzGkD/kypt2MLY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fc9UPzXu+TjIFF+6izhtDY8f4BWrabK83E19ks5d1ytyQpvGY+3h9tIZcQQgmHVv/UwPcG/c+rk2tb2s3FEOn/BU36xOpQpHSxfUVlkR7im8NTwEhvu7BOap73nTYKs3CcHMO70eMfQ3MHq3sNOEdnED6mAVmsjU6pAk1nCGczg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.98.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vE52C-000000007C6-3Tbc;
-	Wed, 29 Oct 2025 12:12:12 +0000
-Date: Wed, 29 Oct 2025 12:12:08 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Andreas Schirm <andreas.schirm@siemens.com>,
-	Lukas Stockmann <lukas.stockmann@siemens.com>,
-	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
-	Peter Christen <peter.christen@siemens.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH net-next v4 05/12] net: dsa: lantiq_gswip: define and use
- GSWIP_TABLE_MAC_BRIDGE_VAL1_VALID
-Message-ID: <aQIEmPfkaYPTtTaY@makrotopia.org>
-References: <cover.1761693288.git.daniel@makrotopia.org>
- <7d1a0368e95da42999af379d90de5d791283d24e.1761693288.git.daniel@makrotopia.org>
+	s=arc-20240116; t=1761740103; c=relaxed/simple;
+	bh=4F5sp4xcDzN409xfAeb6HN//KheRBXsuiCSpc6S1qF8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pb1MrSKqPIDwQPLc/IIUpZLNuZbH++YdQ5x5h4xPsD7szrJ2BnuG+m2OwNWS5vz/li7dJpXv4kPX0tnRT8uHshClPvoo+qkZ1TYKSzohKpRfKLm+9yge/RQJFXXeVVwQEbYrv2aBq2kQMLuU8pM7POLdwfYFz0mdTAs6KS9bvjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b=OuiSYElE; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b6d5e04e0d3so426958866b.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 05:15:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc.com; s=google; t=1761740099; x=1762344899; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JfdgCkjf6Dvq16Xjewrrl+WIt5oaPnZgbIkIulsqup8=;
+        b=OuiSYElEkORLIBMQHUxJEi09R2nQPB1vPTyDIBqLnGlHDpz7WpzbnG4a/2yTNKrYhl
+         3tCIMsTEAF3bJC19BS93ZhRwv139ta1tJwJ97imaJa/SRDtvwsyS/DTKAOMPUUY+khP9
+         xF56MsiSxM+hH+YrJFhOOQVYjr0jV5+AVqyyIhSvE9xI6p3UKejfJMx/Rllat0MnWzFU
+         hxQvVmGMsgZLwDLr61k6N7QP2d7yUn0jXOJK1kkYQSGmj/mahxwurwNA5yJZKAIv5N3q
+         VmZ3bGuycQiPwdenqNz6EI4JCDpz3r5bMeuBOtyC1Q7HkX0EiQCORHZKz4XwSwy6m3kE
+         Y2IQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761740099; x=1762344899;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JfdgCkjf6Dvq16Xjewrrl+WIt5oaPnZgbIkIulsqup8=;
+        b=pI5MhKICyKVIC7KMeaztBOKYmR+f8Kh2E2cFgvfoTBq/ZxQLRMOOww0cL4flR4KUOE
+         mjRxkUEDR3a13EOYdtkOToATiIgDSH5NfrKpmQQZXp5NEmZUvt0NA+MCT7LrSYr7txyC
+         brroOND5vp+AUCMliiEBrL2421yGEbTx1lGGi1zpS0wapOa6YhheffjBQOcfV8rkxJM3
+         pfIt2RS5lxLmBEirXsN4JJa1vz19QjHRlIlaeGgsl7njlAc8S2+l9aOrTjkYY3ABZ51A
+         ATqG7qn2h6FHKgbiBCdUrRbPqBWKcOcQEEaz5xI294J3ipaUqofGFCdsP+iSisT+aftw
+         7KlQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVgnoY2Vj89RCr1bigInwHexEEEAxRprIgvCZqUKJxweJNSYiZ8NrjiHb9AsMb6cfWU9VEJ3jn0TeNW@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxfU/SB57hrACz7HHCeWkXWWm0OaxNK8ikZFEcaZ6cUxH7n98F
+	OgRVJPXZcML9SbLYjMD8Cm5v1wvUuPEKF9ZxGcttjDyREru+yIPggUqzLjRh3xNtoez7yK+2/Cx
+	CYQnhTpvqw94Rvf46RxTCubXxKkI2uhBGJrE2zE5yiQ==
+X-Gm-Gg: ASbGncu2roFpNzj9UQsw8+EOiadLqBIM32zjmk30LR3CWcWQfPvC4mm6CP/+CKt3+Cn
+	FGWsrVax5fsxIC9TM/bF9OhYVXcLIA/PvELZWO6/JRwpqOTfVr6b5CpH/9kCO0HrVSsP0R5uDk1
+	8MI3Z2L9eUAaUWxD/+lZP4QWF34VLyoz7cLP4L88olhMSUtPvS+tYLin+wiZRuBB4dCvskjpgW/
+	qHYJoiztfmVv8pYaq0aBAj4Juwh19ZMPdzqPPksWQKVni4/5MMxVxo3o+EC
+X-Google-Smtp-Source: AGHT+IFshWb7jzNyyU6ez2u0+L5vTwFP/pSYeFZxnpO9nxdrMJpELvpuMzbB9JEsK4A89hE1IYFcIQmkgCRDM9n8HVo=
+X-Received: by 2002:a17:907:72c9:b0:b54:25dc:a644 with SMTP id
+ a640c23a62f3a-b703d5cb645mr241872966b.60.1761740098766; Wed, 29 Oct 2025
+ 05:14:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7d1a0368e95da42999af379d90de5d791283d24e.1761693288.git.daniel@makrotopia.org>
+References: <20251029-fix_gic_dt_licence-v1-1-af70840c5e61@bootlin.com>
+In-Reply-To: <20251029-fix_gic_dt_licence-v1-1-af70840c5e61@bootlin.com>
+From: Andrew Bresticker <abrestic@rivosinc.com>
+Date: Wed, 29 Oct 2025 08:14:47 -0400
+X-Gm-Features: AWmQ_blXxoAIGva9lz29zEL4bFZ2YDEi_RXAlhnztkgdDefGbYfYyjaOj_TdcdU
+Message-ID: <CALE4mHqi-aj9_WL=3BeTztQHt5FLC9DEJsJA62tWXmazvxJuRg@mail.gmail.com>
+Subject: Re: [PATCH] of: Update license for MIPS GIC header
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I've just received a definite answer from MaxLinear confirming that
+Hi Gregory,
 
-"The condition of GSWIP_TABLE_MAC_BRIDGE_VAL1_VALID is: (ETHSW_VERSION &
-0x00ff) >= 0x22"
-
-This matches the implementation now suggested.
-
-On Wed, Oct 29, 2025 at 12:17:18AM +0000, Daniel Golle wrote:
-> When adding FDB entries to the MAC bridge table on GSWIP 2.2 or later it
-> is needed to set an (undocumented) bit to mark the entry as valid. If this
-> bit isn't set for entries in the MAC bridge table, then those entries won't
-> be considered as valid MAC addresses.
-> 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+On Wed, Oct 29, 2025 at 3:22=E2=80=AFAM Gregory CLEMENT
+<gregory.clement@bootlin.com> wrote:
+>
+> According to Documentation/devicetree/bindings/submitting-patches.rst:
+> "DT binding files should be dual-licensed." The second license should
+> be a BSD-like license, allowing the use of the binding in projects
+> other than Linux. Initially, this file was submitted without any
+> license and was later automatically converted to the default Linux
+> license. Let=E2=80=99s now update it to follow the preferred license for =
+the
+> binding.
+>
+> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
 > ---
-> v4: keep previous behavior for GSWIP 2.1 and earlier
-> 
->  drivers/net/dsa/lantiq/lantiq_gswip.h        | 1 +
->  drivers/net/dsa/lantiq/lantiq_gswip_common.c | 7 ++++++-
->  2 files changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/dsa/lantiq/lantiq_gswip.h b/drivers/net/dsa/lantiq/lantiq_gswip.h
-> index 56de869fc472..42000954d842 100644
-> --- a/drivers/net/dsa/lantiq/lantiq_gswip.h
-> +++ b/drivers/net/dsa/lantiq/lantiq_gswip.h
-> @@ -224,6 +224,7 @@
->  #define  GSWIP_TABLE_MAC_BRIDGE_KEY3_FID	GENMASK(5, 0)	/* Filtering identifier */
->  #define  GSWIP_TABLE_MAC_BRIDGE_VAL0_PORT	GENMASK(7, 4)	/* Port on learned entries */
->  #define  GSWIP_TABLE_MAC_BRIDGE_VAL1_STATIC	BIT(0)		/* Static, non-aging entry */
-> +#define  GSWIP_TABLE_MAC_BRIDGE_VAL1_VALID	BIT(1)		/* Valid bit */
->  
->  #define XRX200_GPHY_FW_ALIGN	(16 * 1024)
->  
-> diff --git a/drivers/net/dsa/lantiq/lantiq_gswip_common.c b/drivers/net/dsa/lantiq/lantiq_gswip_common.c
-> index 0ac87eb23bb5..ff2cdb230e2c 100644
-> --- a/drivers/net/dsa/lantiq/lantiq_gswip_common.c
-> +++ b/drivers/net/dsa/lantiq/lantiq_gswip_common.c
-> @@ -1149,7 +1149,12 @@ static int gswip_port_fdb(struct dsa_switch *ds, int port,
->  	mac_bridge.key[2] = addr[1] | (addr[0] << 8);
->  	mac_bridge.key[3] = FIELD_PREP(GSWIP_TABLE_MAC_BRIDGE_KEY3_FID, fid);
->  	mac_bridge.val[0] = add ? BIT(port) : 0; /* port map */
-> -	mac_bridge.val[1] = GSWIP_TABLE_MAC_BRIDGE_VAL1_STATIC;
-> +	if (GSWIP_VERSION_GE(priv, GSWIP_VERSION_2_2_ETC))
-> +		mac_bridge.val[1] = add ? (GSWIP_TABLE_MAC_BRIDGE_VAL1_STATIC |
-> +					   GSWIP_TABLE_MAC_BRIDGE_VAL1_VALID) : 0;
-> +	else
-> +		mac_bridge.val[1] = GSWIP_TABLE_MAC_BRIDGE_VAL1_STATIC;
-> +
->  	mac_bridge.valid = add;
->  
->  	err = gswip_pce_table_entry_write(priv, &mac_bridge);
-> -- 
-> 2.51.1
-> 
+> Hi Andrew,
+>
+> I=E2=80=99m assuming you are the same Andrew Bresticker who initially wro=
+te
+> this file. As the author, would you agree to update the license for
+> the reasons I outlined in the commit log? If you=E2=80=99re okay with thi=
+s
+> change, I believe an Acked-by tag would suffice.
+>
+> Let me know your thoughts.
+
+Yes, that's me.
+
+Acked-by: Andrew Bresticker <abrestic@rivosinc.com>
+
+> Gregory
+> ---
+>  include/dt-bindings/interrupt-controller/mips-gic.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/include/dt-bindings/interrupt-controller/mips-gic.h b/includ=
+e/dt-bindings/interrupt-controller/mips-gic.h
+> index bd45cee0c3f05..647f22d5f0622 100644
+> --- a/include/dt-bindings/interrupt-controller/mips-gic.h
+> +++ b/include/dt-bindings/interrupt-controller/mips-gic.h
+> @@ -1,4 +1,4 @@
+> -/* SPDX-License-Identifier: GPL-2.0 */
+> +/* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
+>  #ifndef _DT_BINDINGS_INTERRUPT_CONTROLLER_MIPS_GIC_H
+>  #define _DT_BINDINGS_INTERRUPT_CONTROLLER_MIPS_GIC_H
+>
+>
+> ---
+> base-commit: dcb6fa37fd7bc9c3d2b066329b0d27dedf8becaa
+> change-id: 20251028-fix_gic_dt_licence-c876fd6d709e
+>
+> Best regards,
+> --
+> Gr=C3=A9gory CLEMENT, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
+>
 
