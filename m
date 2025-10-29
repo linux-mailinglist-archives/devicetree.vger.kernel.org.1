@@ -1,59 +1,58 @@
-Return-Path: <devicetree+bounces-232897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 908A3C1CD7E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 19:56:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 458D6C1CD6F
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 19:55:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4534F1890A21
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 18:55:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02B4A40540E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 18:55:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1F1135772B;
-	Wed, 29 Oct 2025 18:54:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 948F9357738;
+	Wed, 29 Oct 2025 18:55:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sVS4zzVo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PmExY34D"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3156357710;
-	Wed, 29 Oct 2025 18:54:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69937357729;
+	Wed, 29 Oct 2025 18:55:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761764095; cv=none; b=IxyGrAS/qUiKSjg7UyXbCjoP+VppbsOWsZCCcoeWTKg++paWV7Lw9ibN5bfu3bnBF7LRwJwys0fVcQgyXN+66075M8PtM/7mJM7bu4e9LbEtxe9R2IYiDAKAZoVotpAzyHzmafYTjLaSXs0hXe/qzsCbXVbo+TaFG8GMNJWc9GM=
+	t=1761764112; cv=none; b=RWUPNZq+LTWQzivUs1f58PsYl+mrGbo3PDKvZLrMrsw5vfjO6zFZverPkymMa4jT9OkE8I262RPwowJsDlCfIGG5a3+gms/bKGMQr9Sia1dkhbQ6zU8StTaBOOTm5++qEuOZ14GAaBzS3/rRs5ou3tGxuFEoKycN70S4zP/1kRE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761764095; c=relaxed/simple;
-	bh=Ux2ENO/i6V+guiQo5qhqzoW+zBs4ctUVICsR7hoAkmM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iUlXq4GdNLnJLVkWvpULDqDvpDdyez4k0w3XpTNfwZAk82v5JbB9XFHy1U5+Mx1r0LbUYm4AuxwnlKU6qS2AlTYWSobLsTPdqrItb9XuHp1ZAPJZS1Ld5G1X3w6SqjaBpQ+zYwnXJAowIGIp2LRcA9QeQLpZa2jGyPn3rjrdn0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sVS4zzVo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7164C4CEF8;
-	Wed, 29 Oct 2025 18:54:54 +0000 (UTC)
+	s=arc-20240116; t=1761764112; c=relaxed/simple;
+	bh=sggErpQd1c8hPjN2A5o1EFzWHHxgAVKtCjT9r1sMl2E=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GHu29cD0YR3bIJIcWGcMH8CWNfqkOarPz0sJXrPKF/wKYZCelyZ0UvOdAKomBYuh+pa+vYkp58CzGtv31FGXKT++oSilzgiwbB5Mde2AoRgegYCGIb3N2mpHOS6DrALpe+iOgRBqfTqhu6zLZH9/0+WzJJN3mEzqENWrSo9rWG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PmExY34D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23A85C4CEF7;
+	Wed, 29 Oct 2025 18:55:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761764095;
-	bh=Ux2ENO/i6V+guiQo5qhqzoW+zBs4ctUVICsR7hoAkmM=;
+	s=k20201202; t=1761764112;
+	bh=sggErpQd1c8hPjN2A5o1EFzWHHxgAVKtCjT9r1sMl2E=;
 	h=From:To:Cc:Subject:Date:From;
-	b=sVS4zzVoWEbn3QNcolgohy69sS19mV2rlckr+Nb1zlcn94jHeFxnwQuWxg2DHk6BR
-	 igkJp82NMhShSfHOAPUq24eD+mGpH0QvxJv5r2lWjm9GKBe3az64cj9fhB0eZGaidy
-	 GtcLGhr4poM+za/wWzkLrP2at6lO0Bhu58WHOlV5yNHL7cswjeNgNX3vOkTdBy11BH
-	 Ax2+WrZY59Ww4m0riErBCGxbdr7U53xiZeruL+TohdZjmleelKKid3663ihTaWc/NG
-	 rHGxe2y6yJMfGcbI6AGlNEtck/TQC+G2RhMfqKzDX1qVj1LKBNW/oR+U+dQTVXGUbX
-	 aBEXlLI3AR2jQ==
+	b=PmExY34DDSXvDTi4/n6n0Rk3++L6LHNi4jIo5mvKA2JU++htL6RT1DL2yBDklGDpS
+	 jjLcUWrg6kiTWulfMYWlSZbZdQPeqlkOIINNiaJdYemqe4TBLP9hdIcAMFdQwwQzyw
+	 ZSiw3YqzhUxDFKppIXhsmPCbtsEk7e2lhzpxM3Nn8tVgjdPjmRG+l0a8YAb93UpSaG
+	 8MSaK+jyJgDofXe5/NyjxNj3xWQDIyUNNnzKvQ5J5BSwPQnHr3BHPfAm3hOZInKF0b
+	 JMhLU0lCqDpehT8jOR+XEjhEiLmfaEv2Z8gzX9ZyGkxlxegePZ98INv1qAMwutjvE2
+	 A3IsoynRP97rQ==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Guenter Roeck <linux@roeck-us.net>,
+To: Moritz Fischer <mdf@kernel.org>,
+	Xu Yilun <yilun.xu@intel.com>,
+	Tom Rix <trix@redhat.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: linux-hwmon@vger.kernel.org,
+	Joel Holdsworth <joel@airwebreathe.org.uk>
+Cc: linux-fpga@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: hwmon: Convert aspeed,ast2400-pwm-tacho to DT schema
-Date: Wed, 29 Oct 2025 13:54:47 -0500
-Message-ID: <20251029185448.2121857-1-robh@kernel.org>
+Subject: [PATCH] dt-bindings: fpga: Convert lattice,ice40-fpga-mgr to DT schema
+Date: Wed, 29 Oct 2025 13:55:01 -0500
+Message-ID: <20251029185503.2124434-1-robh@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -63,214 +62,109 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Convert the ASpeed fan controller binding to DT schema format.
-
-The '#cooling-cells' value used is 1 rather than 2. '#size-cells' is 0
-rather 1.
-
-Some users define more that 8 fan nodes where 2 fans share a PWM. The
-driver seems to let the 2nd fan just overwrite the 1st one. That also
-creates some addressing errors in the DT (duplicate addresses and wrong
-unit-addresses).
+Convert the lattice,ice40-fpga-mgr binding to DT schema format. It's a
+straight-forward conversion.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- .../hwmon/aspeed,ast2400-pwm-tacho.yaml       | 105 ++++++++++++++++++
- .../bindings/hwmon/aspeed-pwm-tacho.txt       |  73 ------------
- 2 files changed, 105 insertions(+), 73 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,ast2400-pwm-tacho.yaml
- delete mode 100644 Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt
+ .../bindings/fpga/lattice,ice40-fpga-mgr.yaml | 59 +++++++++++++++++++
+ .../bindings/fpga/lattice-ice40-fpga-mgr.txt  | 21 -------
+ 2 files changed, 59 insertions(+), 21 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/fpga/lattice,ice40-fpga-mgr.yaml
+ delete mode 100644 Documentation/devicetree/bindings/fpga/lattice-ice40-fpga-mgr.txt
 
-diff --git a/Documentation/devicetree/bindings/hwmon/aspeed,ast2400-pwm-tacho.yaml b/Documentation/devicetree/bindings/hwmon/aspeed,ast2400-pwm-tacho.yaml
+diff --git a/Documentation/devicetree/bindings/fpga/lattice,ice40-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/lattice,ice40-fpga-mgr.yaml
 new file mode 100644
-index 000000000000..018249f97a5d
+index 000000000000..5121c6120785
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/aspeed,ast2400-pwm-tacho.yaml
-@@ -0,0 +1,105 @@
++++ b/Documentation/devicetree/bindings/fpga/lattice,ice40-fpga-mgr.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/hwmon/aspeed,ast2400-pwm-tacho.yaml#
++$id: http://devicetree.org/schemas/fpga/lattice,ice40-fpga-mgr.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: ASPEED AST2400/AST2500 PWM and Fan Tacho controller
++title: Lattice iCE40 FPGA Manager
 +
 +maintainers:
-+  - Joel Stanley <joel@jms.id.au>
-+  - Andrew Jeffery <andrew@codeconstruct.com.au>
-+
-+description: >
-+  The ASPEED PWM controller can support upto 8 PWM outputs. The ASPEED Fan Tacho
-+  controller can support upto 16 Fan tachometer inputs.
-+
-+  There can be up to 8 fans supported. Each fan can have 1 PWM output and
-+  1-2 Fan tach inputs.
++  - Joel Holdsworth <joel@airwebreathe.org.uk>
 +
 +properties:
 +  compatible:
-+    enum:
-+      - aspeed,ast2400-pwm-tacho
-+      - aspeed,ast2500-pwm-tacho
++    const: lattice,ice40-fpga-mgr
 +
 +  reg:
 +    maxItems: 1
 +
-+  '#address-cells':
-+    const: 1
++  spi-max-frequency:
++    minimum: 1000000
++    maximum: 25000000
 +
-+  '#size-cells':
-+    const: 0
-+
-+  '#cooling-cells':
-+    const: 1
-+
-+  clocks:
++  cdone-gpios:
 +    maxItems: 1
++    description: GPIO input connected to CDONE pin
 +
-+  resets:
++  reset-gpios:
 +    maxItems: 1
-+
-+patternProperties:
-+  '^fan@[0-7]$':
-+    description: Fan subnode
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      reg:
-+        description: PWM source port index (0 = PWM A, ..., 7 = PWM H)
-+        maximum: 7
-+
-+      cooling-levels:
-+        description: PWM duty cycle values for cooling states
-+        $ref: /schemas/types.yaml#/definitions/uint8-array
-+        minItems: 1
-+        maxItems: 16  # Should be enough
-+
-+      aspeed,fan-tach-ch:
-+        description: Fan tachometer input channel
-+        $ref: /schemas/types.yaml#/definitions/uint8-array
-+        minItems: 1
-+        maxItems: 2
-+        items:
-+          maximum: 15
-+
-+    required:
-+      - reg
-+      - aspeed,fan-tach-ch
++    description:
++      Active-low GPIO output connected to CRESET_B pin. Note that unless the
++      GPIO is held low during startup, the FPGA will enter Master SPI mode and
++      drive SCK with a clock signal potentially jamming other devices on the bus
++      until the firmware is loaded.
 +
 +required:
 +  - compatible
 +  - reg
-+  - '#address-cells'
-+  - '#size-cells'
-+  - clocks
-+  - resets
++  - spi-max-frequency
++  - cdone-gpios
++  - reset-gpios
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/clock/aspeed-clock.h>
++    #include <dt-bindings/gpio/gpio.h>
 +
-+    fan-controller@1e786000 {
-+        compatible = "aspeed,ast2500-pwm-tacho";
-+        reg = <0x1e786000 0x1000>;
++    spi {
 +        #address-cells = <1>;
 +        #size-cells = <0>;
-+        #cooling-cells = <1>;
-+        clocks = <&syscon ASPEED_CLK_APB>;
-+        resets = <&syscon ASPEED_RESET_PWM>;
 +
-+        fan@0 {
-+            reg = <0x00>;
-+            cooling-levels = /bits/ 8 <125 151 177 203 229 255>;
-+            aspeed,fan-tach-ch = /bits/ 8 <0x00>;
-+        };
-+
-+        fan@1 {
-+            reg = <0x01>;
-+            aspeed,fan-tach-ch = /bits/ 8 <0x01 0x02>;
++        fpga@0 {
++            compatible = "lattice,ice40-fpga-mgr";
++            reg = <0>;
++            spi-max-frequency = <1000000>;
++            cdone-gpios = <&gpio 24 GPIO_ACTIVE_HIGH>;
++            reset-gpios = <&gpio 22 GPIO_ACTIVE_LOW>;
 +        };
 +    };
-diff --git a/Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt b/Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt
+diff --git a/Documentation/devicetree/bindings/fpga/lattice-ice40-fpga-mgr.txt b/Documentation/devicetree/bindings/fpga/lattice-ice40-fpga-mgr.txt
 deleted file mode 100644
-index 8645cd3b867a..000000000000
---- a/Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt
+index 4dc412437b08..000000000000
+--- a/Documentation/devicetree/bindings/fpga/lattice-ice40-fpga-mgr.txt
 +++ /dev/null
-@@ -1,73 +0,0 @@
--ASPEED AST2400/AST2500 PWM and Fan Tacho controller device driver
+@@ -1,21 +0,0 @@
+-Lattice iCE40 FPGA Manager
 -
--The ASPEED PWM controller can support upto 8 PWM outputs. The ASPEED Fan Tacho
--controller can support upto 16 Fan tachometer inputs.
+-Required properties:
+-- compatible:		Should contain "lattice,ice40-fpga-mgr"
+-- reg:			SPI chip select
+-- spi-max-frequency:	Maximum SPI frequency (>=1000000, <=25000000)
+-- cdone-gpios:		GPIO input connected to CDONE pin
+-- reset-gpios:		Active-low GPIO output connected to CRESET_B pin. Note
+-			that unless the GPIO is held low during startup, the
+-			FPGA will enter Master SPI mode and drive SCK with a
+-			clock signal potentially jamming other devices on the
+-			bus until the firmware is loaded.
 -
--There can be upto 8 fans supported. Each fan can have one PWM output and
--one/two Fan tach inputs.
--
--Required properties for pwm-tacho node:
--- #address-cells : should be 1.
--
--- #size-cells : should be 1.
--
--- #cooling-cells: should be 2.
--
--- reg : address and length of the register set for the device.
--
--- pinctrl-names : a pinctrl state named "default" must be defined.
--
--- pinctrl-0 : phandle referencing pin configuration of the PWM ports.
--
--- compatible : should be "aspeed,ast2400-pwm-tacho" for AST2400 and
--	       "aspeed,ast2500-pwm-tacho" for AST2500.
--
--- clocks : phandle to clock provider with the clock number in the second cell
--
--- resets : phandle to reset controller with the reset number in the second cell
--
--fan subnode format:
--===================
--Under fan subnode there can upto 8 child nodes, with each child node
--representing a fan. If there are 8 fans each fan can have one PWM port and
--one/two Fan tach inputs.
--For PWM port can be configured cooling-levels to create cooling device.
--Cooling device could be bound to a thermal zone for the thermal control.
--
--Required properties for each child node:
--- reg : should specify PWM source port.
--	integer value in the range 0 to 7 with 0 indicating PWM port A and
--	7 indicating PWM port H.
--
--- cooling-levels: PWM duty cycle values in a range from 0 to 255
--                  which correspond to thermal cooling states.
--
--- aspeed,fan-tach-ch : should specify the Fan tach input channel.
--                integer value in the range 0 through 15, with 0 indicating
--		Fan tach channel 0 and 15 indicating Fan tach channel 15.
--		At least one Fan tach input channel is required.
--
--Examples:
--
--pwm_tacho: pwmtachocontroller@1e786000 {
--	#address-cells = <1>;
--	#size-cells = <1>;
--	#cooling-cells = <2>;
--	reg = <0x1E786000 0x1000>;
--	compatible = "aspeed,ast2500-pwm-tacho";
--	clocks = <&syscon ASPEED_CLK_APB>;
--	resets = <&syscon ASPEED_RESET_PWM>;
--	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_pwm0_default &pinctrl_pwm1_default>;
--
--	fan@0 {
--		reg = <0x00>;
--		cooling-levels = /bits/ 8 <125 151 177 203 229 255>;
--		aspeed,fan-tach-ch = /bits/ 8 <0x00>;
+-Example:
+-	fpga: fpga@0 {
+-		compatible = "lattice,ice40-fpga-mgr";
+-		reg = <0>;
+-		spi-max-frequency = <1000000>;
+-		cdone-gpios = <&gpio 24 GPIO_ACTIVE_HIGH>;
+-		reset-gpios = <&gpio 22 GPIO_ACTIVE_LOW>;
 -	};
--
--	fan@1 {
--		reg = <0x01>;
--		aspeed,fan-tach-ch = /bits/ 8 <0x01 0x02>;
--	};
--};
 -- 
 2.51.0
 
