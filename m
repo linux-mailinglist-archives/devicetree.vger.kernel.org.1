@@ -1,77 +1,79 @@
-Return-Path: <devicetree+bounces-232734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97D44C1B0F6
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:04:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 013FFC1B6C0
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:53:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6CF335A1FE7
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:45:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A124625B30
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:45:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D993B33F389;
-	Wed, 29 Oct 2025 13:37:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 252CD340A62;
+	Wed, 29 Oct 2025 13:37:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="F2bbbbDZ"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="LwkJkSES"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBA9D25785A
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 13:37:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16C5733F386
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 13:37:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761745039; cv=none; b=qUn0UNczeIvXpG6T5XKcdONinjXzrPxN3i6ldFJeXSICHDU4+Dhn9Bq6vwqxutpLYXWX1Pb0DvCmYdN7MNQW2WLdsxOC8L2MJ+pP9Vy7efFAD25IOoc4/hTUrGH8RvEojpilgfpwHmSLVG4QDIjdJxiTR3PvGgvF6fgtCvWGu4U=
+	t=1761745042; cv=none; b=dsRIIXsW8d3BI2+e8m9LA7b4jO6BIcqlpY5nHnwSSzcVCind4easgZ4JSSgQqgsZJL0RPYOql8JowJm+T/4pTlxE6255Ct1rX7mrzpXK3SbHg6t4R9Snq0eMJIPDvMQZCHCap1srL4kMoP9Q6P6x62ydU8EExThSrYkI4TEzkHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761745039; c=relaxed/simple;
-	bh=g2UzYoQMmBvyP0vqBmIs0mbCNRIvDuiSiZPQPavWlvA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=eeo7FtibA/GFOq3AoGVTiyIIBxaRNfwg5nZtVyGbhCqGi8r1rTwbhcTCMwa8TMWYX31PsW25+QZ0aXqlmKRp/SXt8RiGpXTsN+HVSaD86eQFKaWuDNOxwc+MbzcRpKiCy/5LBOVs3WkXr/rPkSq5rGqJdsJF4cJeC1kgwPG6ooI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=F2bbbbDZ; arc=none smtp.client-ip=209.85.128.41
+	s=arc-20240116; t=1761745042; c=relaxed/simple;
+	bh=jlYTpznkpw3t99tPLgYldrq4ef/KHX5tAA1xnNXrqPA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=TmDWNW7LDvAjq7uYr0fifB2PZsPtbQPVojb1CtDgZC7zppi+1D25ako6tq3vEs6JJmFd0+PiCPGZQT8O88nXyRtQOcBf8h6YoF9VC1V0+SEAPKnwc2cZGCFGV7nDPoUo6ekW+Xyh9x6aqb16m70FVUEINgMkRUL6N+8SezEXvrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=LwkJkSES; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-47710acf715so19322145e9.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 06:37:16 -0700 (PDT)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-475dbc3c9efso33884655e9.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 06:37:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1761745035; x=1762349835; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=raFhMoNXeeTJ+YCRDYZfwFJY7Igi8rgmNsUQLFF8MJk=;
-        b=F2bbbbDZKTCaOoUpcw2VGBy7Aghruf8zK9B1d2kLJsYAXtmw2YAHIsGXPQyDAUFESc
-         NOJRsepT5zuw6aHLGLPqI1g/l23+3izT+hn10ksddwQdcD8FKETVIHP41LrC/rVGom3h
-         GsaE1NgFSqnINoHHjO7fYSDZR5is26ENLbWMmXDcC17mh8uLV9+aORoN6qwjHGulRb3u
-         n5mqtJwMxHra0NlXSd7FOvAjwNYsP720RT1IMRhxCDeFVsfMTMIFe7Na/iizd/LQGfER
-         Z3byexXy14ja7nCFJUkRjmzPlD0tfyUqJzaWuxqXOS4fa9ieS+ynJPTPvzOkwfO40yk4
-         txvw==
+        d=tuxon.dev; s=google; t=1761745037; x=1762349837; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=09j0aMXtdkHUVjdaeP6fCOOTAlbXOhXvrDrARoqs4lM=;
+        b=LwkJkSESzOa+6ckpaa18sWgg8XrwuGA6vyTRoxosWIejkQceDISGwAP3gemk8XFiAV
+         wL28tNIG9cJnQNUg64/F8W7qT80E/L0mpw5OtiorjKGaYHa52IRIxQNenOjWwAbQCA8w
+         4lIENmFPPdjKboKqReNP2cCMLVNHGZKMrPgPLS8kBmq5oJei+ssNgCTCEInrdP2AImrf
+         ooagvYjQOkhlKon8HzaUAHvHMy4u2knLpAQBaU9N1z8IC4oSR6dKqQZLRI0qZzc5JBOT
+         fOmq6lRLIUy238q0HAOJe/nxWSVA8sonqgj1d3vALk+oBq6t3EonZQxgV3GP9KuqsuY7
+         m/0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761745035; x=1762349835;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=raFhMoNXeeTJ+YCRDYZfwFJY7Igi8rgmNsUQLFF8MJk=;
-        b=kNMdIDTad7i/llgAFgIfeim/k0VFrxp1ckQNnGhlKsBs9d+B5Px95BlsRLErk2dcFS
-         /k4bwFVBbruPxdezLe9PGIiQ4m1Ra0IILVgs/HLn/+QoHuuX2U5qJk2lcphXFv301mhh
-         hDwI6kat9cq8rJ+mNQ5mZ2Y+1eLk1czqN9txoulXF+puLSXrzA7g2raw+UVQGkKTGP/k
-         Scc3z2s5EWmfwA7K5BrnC2kQ3lbHx7QZDkJsbf1Gn/IaDxgb7UaVqTIP49pZFNKFLz7I
-         I1NX7ot/ca2FnWyZpUr7cE/ygP7EE/ULjPIy6h5kP8TM81Gsv5IhpZd8uj9WaCYfeMtM
-         6mXA==
-X-Forwarded-Encrypted: i=1; AJvYcCXhRfRs0HALjgHYBLFs8aceTtRBTx6uTzJN+JUlDWsvhtfqwwdKdZZU+9LU3V3Z4zIcGF40yxk5WdZt@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHqoT8+QtM41ZAzonIQbNBHN0MGYMMF7hBaQINIh/L2uKayHmk
-	2g5h/GEYzGzPOdbf4PbjFBtszhBzAzld6Ie24E3D1mgb8AjsFpaGq2eYY/Cq4/tNBzg=
-X-Gm-Gg: ASbGncv1ToFWrqpw53NJdxWhEX78kxZn5OrgrHiFdR/knfHdX7u/1srQfFbb7cg2eur
-	91IVuycE7Qud+sO5HY4x/UvHZSMKhpZCNzdJjTGsRgGqdRC+xACmk0YHlN3cJ523a8Mi2IAcZHx
-	u/FSSkOPlhT+wnVXKpqNDUkUXNFWrMFToXieI1B0LdHQRrgWdF2+bRl2XxVXzdQ/jsqo7LSYvhL
-	kYRYp9jljTcwXtRjKYv8hmOkGsGYlSmBI/97LEKKmjUp5cEuNVBu7uD6p9nALgjfSOjILEdjj02
-	GryRpJ4aTkAnIAGkIBUKI1o35cnppQ9vf7ni9faRr4ckyO1l8WMf+QL3zWaa6slV+rLdG8orgHD
-	u4GBvGb/lu+sT4ExCY1e77j9zloiEL/muL0FWZBTscT1fCoivK6QFmiggaQuulikIfVWV7f1vLj
-	y8azbrDcqp4no76HWfj+JKJYj29hFTcpDjyzPbfdeKHBZuzsNANzhvm+dI4WHQ
-X-Google-Smtp-Source: AGHT+IF9Ytr9phXCmFUbowfCjA8FrDjdRUcYYY+EYbpC7X4xEFDfts0q9wqBeybqLp87Haw2oAS9Og==
-X-Received: by 2002:a05:600c:6089:b0:46e:4be1:a423 with SMTP id 5b1f17b1804b1-4771e19c71bmr24184595e9.1.1761745035168;
-        Wed, 29 Oct 2025 06:37:15 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761745037; x=1762349837;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=09j0aMXtdkHUVjdaeP6fCOOTAlbXOhXvrDrARoqs4lM=;
+        b=LC1Sah3aUYVL5+YO9neVTlHn5eHlWEcLPrbopPzIOCfyh+oTOAh7BxWS+CZYLlX/vT
+         W+mFX6HhUzPZ2nNhT4+Jb8pQm2XU0VDmpFusOt5saKbijWVpgexb3nnsIE+Tw7e3M4gs
+         FX3tTCXVdCK1+th23mqoRsBjxCiAnkAoiKKczxxS3hlK2Wd5Weor+RQCHXMZKq0bahEO
+         cwni67Pk7/y7HbXmmdEnA3YazGdgbBlP2dGvfeDZUKowqtIDXvCeH/N8nGqBJGMnHgIr
+         3Ha1NXe8n9rdKDCY/xO96V7CUUGI6SUkyNd7V0ailxodfLBJsmATkpWKld7wZz2Bs9Na
+         xUig==
+X-Forwarded-Encrypted: i=1; AJvYcCV1EigiqGr6W/wCkUwjsspp8dRogoNZu7eBWieaczNom8Gr3Fbb7ntOc8F8LD2ch+uP5xkAfFFRx4c8@vger.kernel.org
+X-Gm-Message-State: AOJu0YzUngiT94Ess8uMVcf9VPGn28lyLzn5TdRbYP9VzM66AZx5tsy8
+	Ozp5aU0U2LMo7K8A+pk6gEsREiwgThznmDI+SlThQg3lSPOhD5oZQm/WKAhS+okJAPU=
+X-Gm-Gg: ASbGncuNy4ssdWqyEGhnzoeihoXn03hzIx3T0SAeIIt1W1MTEjKRcG/aBCLIEIVNBYN
+	0n0cu/EzMMdvvCrIEoEBEF6aY55wvz6puMIv6mwtfZCtHP+JdtAEodS60Nipmo+nT8qJc15cHam
+	AP0m39BhNFgDVHDFWr3suIzCmLhknqzVTtMFQUEajV8NmoRZ69wGPmPkI2U4GvsAq22X0YqISfn
+	vJ3eAMuJYMvHZrcFCiUMQErJ4Sr/UaT2g2Q5kbOwnF14dO9PtzH+9xpu5ru53rvCPOSCBUUWaGt
+	hK737a4YJC+wDo8zwpUuovNPrJc9DlwWFwDdBz4wBIOIEVpeyR4nqFYIjFXgFlYREnYzBw8tBhr
+	1LRHrdq/Z2qnugjda/oF4ENI1/Fk5AF72tXLIqaOJD4m6BLV7irFU/QsNCFRmw9yyXsdXFLvzAw
+	Ls9JX2WPfUENwFJfm6TPbqVHGflEOtXBFwu68G8pIjykkGRxoi1Z/If2PrV1wY
+X-Google-Smtp-Source: AGHT+IGJ3AE+vyuW70tOg6LygKMFQqtjwIY5dXfld6spAS47+bv6XCAjVr54PbOjL09BTrGD+nbGtg==
+X-Received: by 2002:a05:600c:4e15:b0:477:942:7521 with SMTP id 5b1f17b1804b1-4771e1ad3c9mr30682075e9.14.1761745037344;
+        Wed, 29 Oct 2025 06:37:17 -0700 (PDT)
 Received: from claudiu-TUXEDO-InfinityBook-Pro-AMD-Gen9.. ([2a02:2f04:6302:7900:aafe:5712:6974:4a42])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4771e22280fsm49774795e9.14.2025.10.29.06.37.13
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4771e22280fsm49774795e9.14.2025.10.29.06.37.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Oct 2025 06:37:14 -0700 (PDT)
+        Wed, 29 Oct 2025 06:37:16 -0700 (PDT)
 From: Claudiu <claudiu.beznea@tuxon.dev>
 X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
 To: lpieralisi@kernel.org,
@@ -90,10 +92,12 @@ Cc: claudiu.beznea@tuxon.dev,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH v6 0/6] PCI: rzg3s-host: Add PCIe driver for Renesas RZ/G3S SoC
-Date: Wed, 29 Oct 2025 15:36:47 +0200
-Message-ID: <20251029133653.2437024-1-claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v6 1/6] dt-bindings: PCI: renesas,r9a08g045s33-pcie: Add Renesas RZ/G3S
+Date: Wed, 29 Oct 2025 15:36:48 +0200
+Message-ID: <20251029133653.2437024-2-claudiu.beznea.uj@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251029133653.2437024-1-claudiu.beznea.uj@bp.renesas.com>
+References: <20251029133653.2437024-1-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,81 +108,313 @@ Content-Transfer-Encoding: 8bit
 
 From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Hi,
+The PCIe IP available on the Renesas RZ/G3S complies with the PCI Express
+Base Specification 4.0. It is designed for root complex applications and
+features a single-lane (x1) implementation. Add documentation for it.
 
-Series adds a PCIe driver for the Renesas RZ/G3S SoC.
-It is split as follows:
-- patches 1-2/6:	add PCIe support for the RZ/G3S SoC
-- patches 3-6/6:	add device tree support and defconfig flag
-
-Please provide your feedback.
-
-Merge strategy, if any:
-- patches 1-2/6 can go through the PCI tree
-- patches 3-6/6 can go through the Renesas tree
-
-Thank you,
-Claudiu Beznea
+Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+---
 
 Changes in v6:
-- addressed review comments on DT bindings and driver code
-- per-patch changes are described in each individual patch
+- updated the patch title
+- described the functionalites that system controller has for PCIe 
+- dropped /schemas/pci/pci-device.yaml# from allOf section
+- dropped max-link-speed from example
+- dropped pcie_port0 label from example
 
 Changes in v5:
-- dropped patch
-  "arm64: dts: renesas: rzg3s-smarc-som: Update dma-ranges for PCIe"
-  and introduced patch
-  "arm64: dts: renesas: rzg3s-smarc-som: Add PCIe reference clock"
-- addressed review comments
-- per-patch changes are described in each individual patch
+- dropped Tb tag
+- style updates to the dma-ranges and ranges properties from
+  examples section
+- re-enabled the node from examples section
 
 Changes in v4:
-- dropped v3 patches:
-  - "clk: renesas: r9a08g045: Add clocks and resets support for PCIe"
-  - "soc: renesas: rz-sysc: Add syscon/regmap support"
-  as they are already integrated
-- dropped v3 patch "PCI: of_property: Restore the arguments of the
-  next level parent" as it is not needed anymore in this version due
-  port being added in device tree
-- addressed review comments
-- per-patch changes are described in each individual patch
+- dropped "s33" string from compatible name
+- added port node documentation; due to this dropped Rob's Rb tag
+- reorderded properties
+- dropped spaces b/w "INT" and "A", "B", "C", "D" in comments
 
 Changes in v3:
-- added patch "PCI: of_property: Restore the arguments of the next level parent"
-  to fix the legacy interrupt request
-- addressed review comments
-- per-patch changes are described in each individual patch
+- collected tags
+- updated the flags of ranges property from example
 
 Changes in v2:
-- dropped "of/irq: Export of_irq_count()" as it is not needed anymore
-  in this version
-- added "arm64: dts: renesas: rzg3s-smarc-som: Update dma-ranges for PCIe"
-  to reflect the board specific memory constraints
-- addressed review comments
-- updated patch "soc: renesas: rz-sysc: Add syscon/regmap support"
-- per-patch changes are described in each individual patch
+- update the interrupt names by dropping "int" and "rc" string; due
+  to this the patch description was adjusted
+- added "interrupt-controller" and made it mandatory
+- s/clkl1pm/pm/g
+- dropped the legacy-interrupt-controller node; with this the gic
+  interrupt controller node was dropped as well as it is not needed
+  anymore
+- updated interrupt-map in example and added interrupt-controller
+- added clock-names as required property as the pm clock is not
+  handled though PM domains; this will allow the driver to have
+  the option to request the pm clock by its name when implementation
+  will be adjusted to used the pm clock
+- adjusted the size of dma-ranges to reflect the usage on
+  SMARC module board
+- moved "renesas,sysc" at the end of the node in example to align
+  with dts coding style
 
-Claudiu Beznea (6):
-  dt-bindings: PCI: renesas,r9a08g045s33-pcie: Add Renesas RZ/G3S
-  PCI: rzg3s-host: Add Renesas RZ/G3S SoC host driver
-  arm64: dts: renesas: r9a08g045: Add PCIe node
-  arm64: dts: renesas: rzg3s-smarc-som: Add PCIe reference clock
-  arm64: dts: renesas: rzg3s-smarc: Enable PCIe
-  arm64: defconfig: Enable PCIe for the Renesas RZ/G3S SoC
-
- .../bindings/pci/renesas,r9a08g045-pcie.yaml  |  249 +++
- MAINTAINERS                                   |    8 +
- arch/arm64/boot/dts/renesas/r9a08g045.dtsi    |   65 +
- .../boot/dts/renesas/rzg3s-smarc-som.dtsi     |    5 +
- arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi  |   11 +
- arch/arm64/configs/defconfig                  |    1 +
- drivers/pci/controller/Kconfig                |    9 +
- drivers/pci/controller/Makefile               |    1 +
- drivers/pci/controller/pcie-rzg3s-host.c      | 1759 +++++++++++++++++
- 9 files changed, 2108 insertions(+)
+ .../bindings/pci/renesas,r9a08g045-pcie.yaml  | 249 ++++++++++++++++++
+ 1 file changed, 249 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
- create mode 100644 drivers/pci/controller/pcie-rzg3s-host.c
 
+diff --git a/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml b/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
+new file mode 100644
+index 000000000000..d668782546a2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
+@@ -0,0 +1,249 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pci/renesas,r9a08g045-pcie.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas RZ/G3S PCIe host controller
++
++maintainers:
++  - Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
++
++description:
++  Renesas RZ/G3S PCIe host controller complies with PCIe Base Specification
++  4.0 and supports up to 5 GT/s (Gen2).
++
++properties:
++  compatible:
++    const: renesas,r9a08g045-pcie # RZ/G3S
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    items:
++      - description: System error interrupt
++      - description: System error on correctable error interrupt
++      - description: System error on non-fatal error interrupt
++      - description: System error on fatal error interrupt
++      - description: AXI error interrupt
++      - description: INTA interrupt
++      - description: INTB interrupt
++      - description: INTC interrupt
++      - description: INTD interrupt
++      - description: MSI interrupt
++      - description: Link bandwidth interrupt
++      - description: PME interrupt
++      - description: DMA interrupt
++      - description: PCIe event interrupt
++      - description: Message interrupt
++      - description: All interrupts
++
++  interrupt-names:
++    items:
++      - description: serr
++      - description: ser_cor
++      - description: serr_nonfatal
++      - description: serr_fatal
++      - description: axi_err
++      - description: inta
++      - description: intb
++      - description: intc
++      - description: intd
++      - description: msi
++      - description: link_bandwidth
++      - description: pm_pme
++      - description: dma
++      - description: pcie_evt
++      - description: msg
++      - description: all
++
++  interrupt-controller: true
++
++  clocks:
++    items:
++      - description: System clock
++      - description: PM control clock
++
++  clock-names:
++    items:
++      - description: aclk
++      - description: pm
++
++  resets:
++    items:
++      - description: AXI2PCIe Bridge reset
++      - description: Data link layer/transaction layer reset
++      - description: Transaction layer (ACLK domain) reset
++      - description: Transaction layer (PCLK domain) reset
++      - description: Physical layer reset
++      - description: Configuration register reset
++      - description: Configuration register reset
++
++  reset-names:
++    items:
++      - description: aresetn
++      - description: rst_b
++      - description: rst_gp_b
++      - description: rst_ps_b
++      - description: rst_rsm_b
++      - description: rst_cfg_b
++      - description: rst_load_b
++
++  power-domains:
++    maxItems: 1
++
++  dma-ranges:
++    description:
++      A single range for the inbound memory region.
++    maxItems: 1
++
++  renesas,sysc:
++    description: |
++      System controller registers control and monitor various PCIe
++      functionalities.
++
++      Control:
++      - transition to L1 state
++      - receiver termination settings
++      - RST_RSM_B signal
++
++      Monitor:
++      - clkl1pm clock request state
++      - power off information in L2 state
++      - errors (fatal, non-fatal, correctable)
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++patternProperties:
++  "^pcie@0,[0-0]$":
++    type: object
++    allOf:
++      - $ref: /schemas/pci/pci-pci-bridge.yaml#
++
++    properties:
++      reg:
++        maxItems: 1
++
++      vendor-id:
++        const: 0x1912
++
++      device-id:
++        const: 0x0033
++
++      clocks:
++        items:
++          - description: Reference clock
++
++      clock-names:
++        items:
++          - const: ref
++
++    required:
++      - device_type
++      - vendor-id
++      - device-id
++      - clocks
++      - clock-names
++
++    unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - interrupts
++  - interrupt-names
++  - interrupt-map
++  - interrupt-map-mask
++  - interrupt-controller
++  - power-domains
++  - "#address-cells"
++  - "#size-cells"
++  - "#interrupt-cells"
++  - renesas,sysc
++
++allOf:
++  - $ref: /schemas/pci/pci-host-bridge.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/r9a08g045-cpg.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    bus {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        pcie@11e40000 {
++            compatible = "renesas,r9a08g045-pcie";
++            reg = <0 0x11e40000 0 0x10000>;
++            ranges = <0x02000000 0 0x30000000 0 0x30000000 0 0x08000000>;
++            /* Map all possible DRAM ranges (4 GB). */
++            dma-ranges = <0x42000000 0 0x40000000 0 0x40000000 1 0x00000000>;
++            bus-range = <0x0 0xff>;
++            interrupts = <GIC_SPI 395 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 396 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 397 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 398 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 399 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 401 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 402 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 403 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 404 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 405 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 406 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 407 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 408 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 409 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 410 IRQ_TYPE_LEVEL_HIGH>;
++            interrupt-names = "serr", "serr_cor", "serr_nonfatal",
++                              "serr_fatal", "axi_err", "inta",
++                              "intb", "intc", "intd", "msi",
++                              "link_bandwidth", "pm_pme", "dma",
++                              "pcie_evt", "msg", "all";
++            #interrupt-cells = <1>;
++            interrupt-controller;
++            interrupt-map-mask = <0 0 0 7>;
++            interrupt-map = <0 0 0 1 &pcie 0 0 0 0>, /* INTA */
++                            <0 0 0 2 &pcie 0 0 0 1>, /* INTB */
++                            <0 0 0 3 &pcie 0 0 0 2>, /* INTC */
++                            <0 0 0 4 &pcie 0 0 0 3>; /* INTD */
++            clocks = <&cpg CPG_MOD R9A08G045_PCI_ACLK>,
++                     <&cpg CPG_MOD R9A08G045_PCI_CLKL1PM>;
++            clock-names = "aclk", "pm";
++            resets = <&cpg R9A08G045_PCI_ARESETN>,
++                     <&cpg R9A08G045_PCI_RST_B>,
++                     <&cpg R9A08G045_PCI_RST_GP_B>,
++                     <&cpg R9A08G045_PCI_RST_PS_B>,
++                     <&cpg R9A08G045_PCI_RST_RSM_B>,
++                     <&cpg R9A08G045_PCI_RST_CFG_B>,
++                     <&cpg R9A08G045_PCI_RST_LOAD_B>;
++            reset-names = "aresetn", "rst_b", "rst_gp_b", "rst_ps_b",
++                          "rst_rsm_b", "rst_cfg_b", "rst_load_b";
++            power-domains = <&cpg>;
++            device_type = "pci";
++            #address-cells = <3>;
++            #size-cells = <2>;
++            renesas,sysc = <&sysc>;
++
++            pcie@0,0 {
++                reg = <0x0 0x0 0x0 0x0 0x0>;
++                ranges;
++                clocks = <&versa3 5>;
++                clock-names = "ref";
++                device_type = "pci";
++                vendor-id = <0x1912>;
++                device-id = <0x0033>;
++                #address-cells = <3>;
++                #size-cells = <2>;
++            };
++        };
++    };
++
++...
 -- 
 2.43.0
 
