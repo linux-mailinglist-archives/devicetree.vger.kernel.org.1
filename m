@@ -1,204 +1,204 @@
-Return-Path: <devicetree+bounces-232545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32D5FC18D15
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 09:00:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6008EC18B0B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 08:30:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 75E544EA8DE
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 07:58:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43CCD1C861FA
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 07:23:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 417F531196A;
-	Wed, 29 Oct 2025 07:58:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEB72311C21;
+	Wed, 29 Oct 2025 07:21:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=toshiba.co.jp header.i=yuji2.ishikawa@toshiba.co.jp header.b="NkAaHME4"
+	dkim=pass (2048-bit key) header.d=karo-electronics.de header.i=@karo-electronics.de header.b="bznq++z1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo-csw-fb.securemx.jp (mo-csw-fb1802.securemx.jp [210.130.202.161])
+Received: from dd54918.kasserver.com (dd54918.kasserver.com [85.13.167.58])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06EE231195F;
-	Wed, 29 Oct 2025 07:58:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.130.202.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B276330F944;
+	Wed, 29 Oct 2025 07:21:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.13.167.58
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761724708; cv=none; b=dV7HlPQRRy4rrcNUTJyt2F3GA5eZSXGEsIQIma5Yqdep9tlc6GIY6NkAXjtAAX94pcINemosHTR4vgkicS2InR16kR3AIUh2JwlxAlz07t2CSTXL1aZ+YUqNCk5Ot//iuFzWyyAgx+uGQUSLlVo6tJYUNgh+zh8SlxpX2k9wz3s=
+	t=1761722468; cv=none; b=qdUYWPRGeiuqjS8DDIi6XIGzexACuO6tMVbAg7yb2kRYhdQhjTqP2zpk7Ifp+XcaeUnDHCupBa8r/CNfx2Zdi3CZpPru4RhbRwiyHT59XqntJ72RnJwLZKfEYk4INgzwyA7Fa6fStjzRpYRYOqfGgXZIhadd04k8DWRAIEOD9Cw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761724708; c=relaxed/simple;
-	bh=XQbm9gT0FmsvNn/DCDwiVeIZ+/JgLi9QBanOXYYx3M4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=MMG6cR0HZFhJ3x8ht76RpvK/96lbSmeLsdw+3N+bpeqOPWYmqxj2aw+SIe+/xnu9moRj+XpZiM/HKfAEiW4w7aB+SXAG837eEKW3ZSdD4iMyTzS33vWFaCSgGKKedRJbVMoNulhEdVqV9oYdnf7pNnudMBZLJrcuWdxdxaZHocs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=toshiba.co.jp; spf=pass smtp.mailfrom=toshiba.co.jp; dkim=pass (2048-bit key) header.d=toshiba.co.jp header.i=yuji2.ishikawa@toshiba.co.jp header.b=NkAaHME4; arc=none smtp.client-ip=210.130.202.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=toshiba.co.jp
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=toshiba.co.jp
-Received: by mo-csw-fb.securemx.jp (mx-mo-csw-fb1802) id 59T6JjeM2015011; Wed, 29 Oct 2025 15:19:45 +0900
-DKIM-Signature: v=1;a=rsa-sha256;c=relaxed/simple;d=toshiba.co.jp;h=From:To:Cc
-	:Subject:Date:Message-Id:In-Reply-To:References:MIME-Version:
-	Content-Transfer-Encoding;i=yuji2.ishikawa@toshiba.co.jp;s=key1.smx;t=
-	1761718755;x=1762928355;bh=XQbm9gT0FmsvNn/DCDwiVeIZ+/JgLi9QBanOXYYx3M4=;b=NkA
-	aHME4WgdZ7HUujpiLX+NIB4iI1nTVQSXiXv/6MO5bBDcP4r+mZH19HjpSCi6LjbF+7zyLVFINqLIp
-	DIXVVdxsucADivJDWH4yEavDpaAQ/Uzcqmc8aqnHf1q8V4xIesR1I9rrukTPJC76psKbPw5OLKppT
-	kyGI/ZzpZqDqNl/gxZJOQjEYjlbDe9xTZDT2jH3xrSCleFSGo9G5FjIoN6AhPoe4jAuyWYHILVRoC
-	plYvTl1okMVlqSdqEVb82TpmICTfYpdMhLvLuHGuIq0pgschGYdJq6P2WelqDg7TvBXtGjls8pY5s
-	Eq5pcM4a1kUvbwmnRGfyZ1AuGP8YpDg==;
-Received: by mo-csw.securemx.jp (mx-mo-csw1800) id 59T6JEMD1316549; Wed, 29 Oct 2025 15:19:14 +0900
-X-Iguazu-Qid: 2yAbDoX6mRH41gehdo
-X-Iguazu-QSIG: v=2; s=0; t=1761718753; q=2yAbDoX6mRH41gehdo; m=pclAYtZ7pBrHZt8LYmpYud/jNnTsExEG04RaG1tDPQk=
-Received: from imx2-a.toshiba.co.jp (imx2-a.toshiba.co.jp [106.186.93.35])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	 id 4cxHBm4wzRz1xnc; Wed, 29 Oct 2025 15:19:12 +0900 (JST)
-X-SA-MID: 53851528
-From: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-To: Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-Subject: [PATCH v2 2/2] clk: visconti: Add definition of VIIF on Toshiba Visconti TMPV770x SoC
-Date: Wed, 29 Oct 2025 15:13:44 +0900
-X-TSB-HOP2: ON
-Message-Id: <20251029061344.451222-3-yuji2.ishikawa@toshiba.co.jp>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251029061344.451222-1-yuji2.ishikawa@toshiba.co.jp>
-References: <20251029061344.451222-1-yuji2.ishikawa@toshiba.co.jp>
+	s=arc-20240116; t=1761722468; c=relaxed/simple;
+	bh=Ep9YwSgs0Aw5mqUfs23xGd+sVMID51I+Lkb//qQB47w=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=eJ4lv2mKtc8QbPZJB9Ph53mJTIUlT7yrkfS5fT0GyRahgsBz+3RUV3CdXP5SAR2rPOcVub9CZGq52WTAQhYYMUZsRdKCrnCmh9uZvqoCSO2wfBnzMtF1oS+ZuaA9W4jte8Arh/A9BkWSfkRvM6WFH34MLRbgUTgsT+3S6/DB/vU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=KARO-electronics.de; spf=pass smtp.mailfrom=KARO-electronics.de; dkim=pass (2048-bit key) header.d=karo-electronics.de header.i=@karo-electronics.de header.b=bznq++z1; arc=none smtp.client-ip=85.13.167.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=KARO-electronics.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=KARO-electronics.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=karo-electronics.de;
+	s=kas202509031142; t=1761721899;
+	bh=p4QsNcOQhnUQw6VKEs7EI/wgC6PCFii9ExA5HZIUu54=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=bznq++z1b8rF88YPcJ6xYK7ARpc5BTe4nHGirZoOAmRxuOpP6qsWpbhDl+YJIo4Sa
+	 1xp7tRIrE6inZOQEh7tLtORenFq22DazEDbm72wtHcPpMHPdGOW0RR2As/KtzRm6hm
+	 h+ggStXDiMT8tKoPcI+oWGccGbYV8+Kd4sX6W98RnzhBdJk07WsloMsyICnrKkcmMi
+	 EvlCHhmUsG9z1w9HNONCrZ2sOgjqR8SEyv4PQCn9bxIGKZcGgNH4cnOgTPi3ntgGil
+	 SNXjBfuIY1n+xEoCYcstKwVb4ZhjLy9ZQZUnzWrMnYAkzTPejA2GAuwMacrThsSEL7
+	 XVV8ou4/lOLgQ==
+Received: from karo-electronics.de (unknown [89.1.81.74])
+	by dd54918.kasserver.com (Postfix) with ESMTPSA id 4A289772C311;
+	Wed, 29 Oct 2025 08:11:39 +0100 (CET)
+Date: Wed, 29 Oct 2025 08:11:38 +0100
+From: Lothar =?UTF-8?B?V2HDn21hbm4=?= <LW@KARO-electronics.de>
+To: Maud Spierings <maudspierings@gocontroll.com>
+Cc: Matti Vaittinen <mazziesaccount@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 3/5] arm64: dts: freescale: add Ka-Ro Electronics
+ tx8m-1610 COM
+Message-ID: <20251029081138.2161a92a@karo-electronics.de>
+In-Reply-To: <938f85b0-4c9b-463a-960a-f5f4e4092480@gocontroll.com>
+References: <20251022-mini_iv-v2-0-20af8f9aac14@gocontroll.com>
+	<20251022-mini_iv-v2-3-20af8f9aac14@gocontroll.com>
+	<a7012995-c2a8-48a3-abe1-5c227272f21c@gmail.com>
+	<65202d1f-6c4f-4d4e-9fef-85cfb74ec768@gocontroll.com>
+	<938f85b0-4c9b-463a-960a-f5f4e4092480@gocontroll.com>
+Organization: Ka-Ro electronics GmbH
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Bar: +
 
-Add the control sequence of register bits to handle the clocks and the
-resets of Video Input Interface.
+Hi,
 
-Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
----
-Changelog v2:
-- Update clk_gate_tables to reflect changes in bindings identifiers.
----
- drivers/clk/visconti/clkc-tmpv770x.c | 71 ++++++++++++++++++++++++++++
- 1 file changed, 71 insertions(+)
+On Tue, 28 Oct 2025 14:10:04 +0100 Maud Spierings wrote:
+> On 10/28/25 13:42, Maud Spierings wrote:
+> > On 10/28/25 13:15, Matti Vaittinen wrote: =20
+[...]
+> >> Could/Should this be described using the:
+> >> 'rohm,feedback-pull-up-r1-ohms' and
+> >> 'rohm,feedback-pull-up-r2-ohms'? If I understand the comment=20
+> >> correctly, that might allow the driver to be able to use correctly=20
+> >> scaled voltages.
+> >>
+> >> https://elixir.bootlin.com/linux/v6.18-rc1/source/Documentation/=20
+> >> devicetree/bindings/regulator/rohm,bd71837-regulator.yaml#L108
+> >> =20
+> >=20
+> > Ah I didn't know those existed, should've checked the bindings in more=
+=20
+> > detail, thanks for the hint!
+> >=20
+> > I will have to investigate this carefully, since I don't have access to=
+=20
+> > the actual design of the COM, so I don't know exactly what is there.
+> >  =20
+>=20
+> So I am not yet entirely sure if this works out, I used the calculation=20
+> in the driver:
+>=20
+> /*
+>   * Setups where regulator (especially the buck8) output voltage is scaled
+>   * by adding external connection where some other regulator output is=20
+> connected
+>   * to feedback-pin (over suitable resistors) is getting popular amongst=
+=20
+> users
+>   * of BD71837. (This allows for example scaling down the buck8 voltages=
+=20
+> to suit
+>   * lover GPU voltages for projects where buck8 is (ab)used to supply pow=
+er
+>   * for GPU. Additionally some setups do allow DVS for buck8 but as this =
+do
+>   * produce voltage spikes the HW must be evaluated to be able to=20
+> survive this
+>   * - hence I keep the DVS disabled for non DVS bucks by default. I=20
+> don't want
+>   * to help you burn your proto board)
+>   *
+>   * So we allow describing this external connection from DT and scale the
+>   * voltages accordingly. This is what the connection should look like:
+>   *
+>   * |------------|
+>   * |	buck 8  |-------+----->Vout
+>   * |		|	|
+>   * |------------|	|
+>   *	| FB pin	|
+>   *	|		|
+>   *	+-------+--R2---+
+>   *		|
+>   *		R1
+>   *		|
+>   *	V FB-pull-up
+>   *
+>   *	Here the buck output is sifted according to formula:
+>   *
+>   * Vout_o =3D Vo - (Vpu - Vo)*R2/R1
+>   * Linear_step =3D step_orig*(R1+R2)/R1
+>   *
+>   * where:
+>   * Vout_o is adjusted voltage output at vsel reg value 0
+>   * Vo is original voltage output at vsel reg value 0
+>   * Vpu is the pull-up voltage V FB-pull-up in the picture
+>   * R1 and R2 are resistor values.
+>   *
+>   * As a real world example for buck8 and a specific GPU:
+>   * VLDO =3D 1.6V (used as FB-pull-up)
+>   * R1 =3D 1000ohms
+>   * R2 =3D 150ohms
+>   * VSEL 0x0 =3D> 0.8V =E2=80=93 (VLDO =E2=80=93 0.8) * R2 / R1 =3D 0.68V
+>   * Linear Step =3D 10mV * (R1 + R2) / R1 =3D 11.5mV
+>   */
+>=20
+> Because I do not know the pull up voltage, and I am not sure if it is a=20
+> pull up.
+>=20
+> So:
+> Vout_o =3D 1.35V
+> Vo =3D 1.1V
+> Vpu =3D unknown
+> R2 =3D 499 Ohm
+> R1 =3D 2200 Ohm
+> Gives:
+> Vpu =3D ~0V
+>=20
+> And:
+> Vout_o =3D 1.35V
+> Vo =3D 1.1V
+> Vpu =3D unknown
+> R2 =3D 2200 Ohm
+> R1 =3D 499 Ohm
+> Gives:
+> Vpu =3D ~1.04V
+>=20
+> I am not quite sure which resistor is R1 and which is R2 but having=20
+> there be a pull down to 0V seems the most logical answer?
+>=20
+> I am adding Lothar from Ka-Ro to the CC maybe he can shed some light on=20
+> this setup.
+>
+R2 is connected to GND, so Vpu =3D 0.
+With:
+	regulator-min-microvolt =3D <1350000>;
+	regulator-max-microvolt =3D <1350000>;
+	rohm,fb-pull-up-microvolt =3D <0>;
+	rohm,feedback-pull-up-r1-ohms =3D <2200>;
+	rohm,feedback-pull-up-r2-ohms =3D <499>;
+the correct voltage should be produced on the BUCK8 output, but a quick
+test with these parameters led to:
+|failed to get the current voltage: -EINVAL
+|bd718xx-pmic bd71847-pmic.3.auto: error -EINVAL: failed to register buck6 =
+regulator
+|bd718xx-pmic: probe of bd71847-pmic.3.auto failed with error -22
 
-diff --git a/drivers/clk/visconti/clkc-tmpv770x.c b/drivers/clk/visconti/clkc-tmpv770x.c
-index 6c753b2cb..b3f4de671 100644
---- a/drivers/clk/visconti/clkc-tmpv770x.c
-+++ b/drivers/clk/visconti/clkc-tmpv770x.c
-@@ -28,6 +28,10 @@ static const struct clk_parent_data pietherplls_parent_data[] = {
- 	{ .fw_name = "pietherpll", .name = "pietherpll", },
- };
- 
-+static const struct clk_parent_data pidnnplls_parent_data[] = {
-+	{ .fw_name = "pidnnpll", .name = "pidnnpll", },
-+};
-+
- static const struct visconti_fixed_clk fixed_clk_tables[] = {
- 	/* PLL1 */
- 	/* PICMPT0/1, PITSC, PIUWDT, PISWDT, PISBUS, PIPMU, PIGPMU, PITMU */
-@@ -64,6 +68,41 @@ static const struct visconti_clk_gate_table pietherpll_clk_gate_tables[] = {
- 		TMPV770X_RESET_PIETHER_125M, },
- };
- 
-+static const struct visconti_clk_gate_table pidnnpll_clk_gate_tables[] = {
-+	{ TMPV770X_CLK_VIIFBS0, "viifbs0",
-+		pidnnplls_parent_data, ARRAY_SIZE(pidnnplls_parent_data),
-+		0, 0x58, 0x158, 1, 1,
-+		NO_RESET, },
-+	{ TMPV770X_CLK_VIIFBS0_PROC, "viifbs0_proc",
-+		pidnnplls_parent_data, ARRAY_SIZE(pidnnplls_parent_data),
-+		0, 0x58, 0x158, 18, 1,
-+		NO_RESET, },
-+	{ TMPV770X_CLK_VIIFBS0_L1ISP, "viifbs0_l1isp",
-+		pidnnplls_parent_data, ARRAY_SIZE(pidnnplls_parent_data),
-+		0, 0x58, 0x158, 17, 1,
-+		NO_RESET, },
-+	{ TMPV770X_CLK_VIIFBS0_L2ISP, "viifbs0_l2isp",
-+		pidnnplls_parent_data, ARRAY_SIZE(pidnnplls_parent_data),
-+		0, 0x58, 0x158, 16, 1,
-+		NO_RESET, },
-+	{ TMPV770X_CLK_VIIFBS1, "viifbs1",
-+		pidnnplls_parent_data, ARRAY_SIZE(pidnnplls_parent_data),
-+		0, 0x58, 0x158, 5, 1,
-+		NO_RESET, },
-+	{ TMPV770X_CLK_VIIFBS1_PROC, "viifbs1_proc",
-+		pidnnplls_parent_data, ARRAY_SIZE(pidnnplls_parent_data),
-+		0, 0x58, 0x158, 22, 1,
-+		NO_RESET, },
-+	{ TMPV770X_CLK_VIIFBS1_L1ISP, "viifbs1_l1isp",
-+		pidnnplls_parent_data, ARRAY_SIZE(pidnnplls_parent_data),
-+		0, 0x58, 0x158, 21, 1,
-+		NO_RESET, },
-+	{ TMPV770X_CLK_VIIFBS1_L2ISP, "viifbs1_l2isp",
-+		pidnnplls_parent_data, ARRAY_SIZE(pidnnplls_parent_data),
-+		0, 0x58, 0x158, 20, 1,
-+		NO_RESET, },
-+};
-+
- static const struct visconti_clk_gate_table clk_gate_tables[] = {
- 	{ TMPV770X_CLK_HOX, "hox",
- 		clks_parent_data, ARRAY_SIZE(clks_parent_data),
-@@ -185,6 +224,22 @@ static const struct visconti_clk_gate_table clk_gate_tables[] = {
- 		clks_parent_data, ARRAY_SIZE(clks_parent_data),
- 		0, 0x14, 0x114, 0, 4,
- 		TMPV770X_RESET_SBUSCLK, },
-+	{ TMPV770X_CLK_VIIF0_CFGCLK, "csi2rx0cfg",
-+		clks_parent_data, ARRAY_SIZE(clks_parent_data),
-+		0, 0x58, 0x158, 0, 24,
-+		NO_RESET, },
-+	{ TMPV770X_CLK_VIIF0_APBCLK, "csi2rx0apb",
-+		clks_parent_data, ARRAY_SIZE(clks_parent_data),
-+		0, 0x58, 0x158, 2, 4,
-+		NO_RESET, },
-+	{ TMPV770X_CLK_VIIF1_CFGCLK, "csi2rx1cfg",
-+		clks_parent_data, ARRAY_SIZE(clks_parent_data),
-+		0, 0x58, 0x158, 4, 24,
-+		NO_RESET, },
-+	{ TMPV770X_CLK_VIIF1_APBCLK, "csi2rx1apb",
-+		clks_parent_data, ARRAY_SIZE(clks_parent_data),
-+		0, 0x58, 0x158, 6, 4,
-+		NO_RESET, },
- };
- 
- static const struct visconti_reset_data clk_reset_data[] = {
-@@ -220,6 +275,14 @@ static const struct visconti_reset_data clk_reset_data[] = {
- 	[TMPV770X_RESET_PIPCMIF]	= { 0x464, 0x564, 0, },
- 	[TMPV770X_RESET_PICKMON]	= { 0x410, 0x510, 8, },
- 	[TMPV770X_RESET_SBUSCLK]	= { 0x414, 0x514, 0, },
-+	[TMPV770X_RESET_VIIFBS0]	= { 0x458, 0x558, 0, },
-+	[TMPV770X_RESET_VIIFBS0_APB]	= { 0x458, 0x558, 1, },
-+	[TMPV770X_RESET_VIIFBS0_L2ISP]	= { 0x458, 0x558, 16, },
-+	[TMPV770X_RESET_VIIFBS0_L1ISP]	= { 0x458, 0x558, 17, },
-+	[TMPV770X_RESET_VIIFBS1]	= { 0x458, 0x558, 4, },
-+	[TMPV770X_RESET_VIIFBS1_APB]	= { 0x458, 0x558, 5, },
-+	[TMPV770X_RESET_VIIFBS1_L2ISP]	= { 0x458, 0x558, 20, },
-+	[TMPV770X_RESET_VIIFBS1_L1ISP]	= { 0x458, 0x558, 21, },
- };
- 
- static int visconti_clk_probe(struct platform_device *pdev)
-@@ -272,6 +335,14 @@ static int visconti_clk_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
-+	ret = visconti_clk_register_gates(ctx, pidnnpll_clk_gate_tables,
-+				    ARRAY_SIZE(pidnnpll_clk_gate_tables),
-+				    clk_reset_data, &tmpv770x_clk_lock);
-+	if (ret) {
-+		dev_err(dev, "Failed to register pidnnpll clock gate: %d\n", ret);
-+		return ret;
-+	}
-+
- 	return of_clk_add_hw_provider(np, of_clk_hw_onecell_get, &ctx->clk_data);
- }
- 
--- 
-2.34.1
+Apparently noone has ever tested this feature in real life.
 
 
+Lothar Wa=C3=9Fmann
 
