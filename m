@@ -1,121 +1,142 @@
-Return-Path: <devicetree+bounces-232720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 909DBC1AFCB
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:54:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93CFBC1A9E2
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:21:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A3D1641645
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:16:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08D7E1AA6346
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:13:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF4DE3491C1;
-	Wed, 29 Oct 2025 13:09:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ADAA329379;
+	Wed, 29 Oct 2025 13:08:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="F0bjp2pv"
+	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="jk5xCZs2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82EF9347BD7
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 13:09:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761743359; cv=none; b=hKCUBqOJ/0TjM9WPlOIkK13YEgDFD5XA6S+A3U1XijcKXwDvNuHeAG0a0RI826xZJNj5C7zxnHSILIeGlAX2+qoDBQuc20+Sm/E8SuXoN36anZgeWfuOPBIlYwXT7Lkhyt9XdtVftHBUEtF73gqWn+HTHARfa76eWlfDLLGFzvU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761743359; c=relaxed/simple;
-	bh=hX/L3l6he6aKhXrW+BbwyLOLFGJnEz73yJiqxGhKoaY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:Content-Type:
-	 References; b=HgUjoKbU3nN0wY1c7euxKDjpGF4KpsDEzCjazYbHxjcPhd7/Yh6nkL1rLu5UXVpUxpqmCoQ7dUQviaeXxDes69bxg0bHwce0B23/ZSVOgh0R+py312sZm6L8jGclRsAVfaCSLAN/WDG/qTtl8Db8N1eA58eLm6hAubhmAWwWMoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=F0bjp2pv; arc=none smtp.client-ip=203.254.224.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20251029130915epoutp029e92baae462e3faed384b6fdb46d0552~y_D_CSZLF0636306363epoutp02w
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 13:09:15 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20251029130915epoutp029e92baae462e3faed384b6fdb46d0552~y_D_CSZLF0636306363epoutp02w
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1761743355;
-	bh=mhdCUOJguwRxW0Me6zDM1dADDQ0Txm6u4urbm0RY+sY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=F0bjp2pvXZzSe9z4xpB0A9o7CfsedzMP+nonWQoLrSGd9+/sd+0VNviFOO86Qkvcn
-	 GwBUC+xGljVPf4btFlDtbtalMcxyI9RyONiIMIkHUYgH2VWz9fargriXNLdhVHEe1v
-	 J90dpC4kdTAxMaT83iVIVErLynCZAFqviEm9iJCs=
-Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20251029130914epcas5p1d645530f0d84d710a5b3096904e87d8f~y_D8guElW2691926919epcas5p1t;
-	Wed, 29 Oct 2025 13:09:14 +0000 (GMT)
-Received: from epcas5p1.samsung.com (unknown [182.195.38.92]) by
-	epsnrtp03.localdomain (Postfix) with ESMTP id 4cxSHs2873z3hhT3; Wed, 29 Oct
-	2025 13:09:13 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20251029130912epcas5p2f6596fefe3fe5513958b8209e78fa2c6~y_D6vKxIV3210832108epcas5p2o;
-	Wed, 29 Oct 2025 13:09:12 +0000 (GMT)
-Received: from Jaguar.samsungds.net (unknown [107.109.115.6]) by
-	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20251029130900epsmtip26950c5dad6ff42f9f52bc58d8e51c136~y_DvcRhBp1199811998epsmtip2e;
-	Wed, 29 Oct 2025 13:08:59 +0000 (GMT)
-From: Ravi Patel <ravi.patel@samsung.com>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	jesper.nilsson@axis.com, lars.persson@axis.com, mturquette@baylibre.com,
-	sboyd@kernel.org, alim.akhtar@samsung.com, s.nawrocki@samsung.com,
-	cw00.choi@samsung.com
-Cc: ravi.patel@samsung.com, ksk4725@coasia.com, smn1196@coasia.com,
-	linux-arm-kernel@axis.com, krzk@kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	pjsin865@coasia.com, gwk1013@coasia.com, bread@coasia.com,
-	jspark@coasia.com, limjh0823@coasia.com, lightwise@coasia.com,
-	hgkim05@coasia.com, mingyoungbo@coasia.com, shradha.t@samsung.com,
-	swathi.ks@samsung.com, kenkim@coasia.com
-Subject: [PATCH v3 4/4] dt-bindings: samsung: exynos-pmu: Add compatible for
- ARTPEC-9 SoC
-Date: Wed, 29 Oct 2025 18:37:31 +0530
-Message-Id: <20251029130731.51305-5-ravi.patel@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20251029130731.51305-1-ravi.patel@samsung.com>
-X-CMS-MailID: 20251029130912epcas5p2f6596fefe3fe5513958b8209e78fa2c6
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-541,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20251029130912epcas5p2f6596fefe3fe5513958b8209e78fa2c6
-References: <20251029130731.51305-1-ravi.patel@samsung.com>
-	<CGME20251029130912epcas5p2f6596fefe3fe5513958b8209e78fa2c6@epcas5p2.samsung.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF4F2325709;
+	Wed, 29 Oct 2025 13:08:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.185.170.37
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761743332; cv=pass; b=sYRcpMbN1iWfynIIZBig3w5F0OS9cmoJCcNm19qg0UY0l18W/5qm9CJZc7CUNU/PSRBXXv3Ld4sw2WHqoj5uku4UwAhcX6QEzvmKKUfzXCnXf6wfyfmfjTPyOzDJJpqsv/HAynRi+OUxuFv9eHtXftd4JJdqWkgOCZaMYYXWzRQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761743332; c=relaxed/simple;
+	bh=GbgKFbM23FJf40EYp3wxJOdmysbQkt83nRPhacGu1eA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M4OKU1ZBtS4AeQq/JKkeOMm5owun848jpz1HJGOuBGHOu5X6OGOuOwbYOHs4G3srn9hMpgeH49Bj5J/kC8klFX3zrxABL9b7IHl/ePuPGKoN7p7fr3sJZACg0ZtIPj4jdVO7wGXGy/CX61NpACbRa5JkltsPL3nNn9VqF3WBCls=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b=jk5xCZs2; arc=pass smtp.client-ip=185.185.170.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
+Received: from hillosipuli.retiisi.eu (91-158-51-183.elisa-laajakaista.fi [91.158.51.183])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4cxSH81sV3z49Q8y;
+	Wed, 29 Oct 2025 15:08:36 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+	t=1761743318;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9fpXvJaxUezX/qrHlm1Wc2qpJNkfgp6lz8sBDtu/HNk=;
+	b=jk5xCZs2MhJ6YV0WbgnrB6KrYUYYgRll8qz+FZ0cYkqAiYwipqdWCnAi6lyXbGAZcJXqkE
+	KzDf7WdkZ4Iil8qEkO9Rz/rPuLBO6YvqlFb56rpGJMSJq+/15HEcSsgVSBnaQewQF6j/YD
+	9Vs2D2q2ZrW4d9BFtKP7GhX41Z0ogUZ3jDjgyeZGOV5w7qhB4VQOATBWZxVgKuEqDCRbbr
+	v/YbFWdKeJw2aelyObzMQcIhHElcISRvozrd/pMfl2NAWfFn06fZvCFmg48TdXV1myVQsD
+	Z2rU78zR5OPZvPkt/jnSj3MPAbvf62u7dQn4Jcq3iEY8Hu6LQy5PPOhZX1T8xQ==
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1761743318; a=rsa-sha256;
+	cv=none;
+	b=tp2biwcG6TD4/1R1UJK1dPWB2mg9cHYaQB4U6s/t9jQe6+JFUsF4XZJblE6aur/0DJZcwm
+	sxHFlwGztav721qoQBihahfdm/bprdIKl0SsWrzjp4p2vC768v7P6WcZX8iPqlEg9PTpoe
+	AdnWDL/aA779EiDbvnxlFXmArGpmdeoC20MUXO8YP/GNZTN090o8SfrfT8oJjMQYnI2rgw
+	QjuIwNcT1W6Zw5HV6w67EFWLpNrgr6FxjQddSzH4aMhF0MCDivo54T4BcOw90I/ov+WEhf
+	rPwboAeQbaeJQUckruhackPuZIzNAououq6TDhhZR3kAA/8Uh5FRR6q60M2mgQ==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=lahtoruutu; t=1761743318;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9fpXvJaxUezX/qrHlm1Wc2qpJNkfgp6lz8sBDtu/HNk=;
+	b=ZvkgpX/FQ74zH8z7fM/WHCxsFU2vxWamDQJB/eW9eTWdtg1Psy+HGlAbjiCL0YMI4te1Td
+	bgPPKLFWpKUpicreBmdu8Q42vBg+DsQm9nbe36xlwTxxtenKkyvDdmIsOIvVAX5Tj1bWjW
+	NHqvQoEGys9BagIJhTLOr90fNNaodI+5ZIPvTuJYyzNRcteEGqVIlaY/ptmbb0PNMLPP4I
+	jUdut+KtbNgnKmFmqfDwxDUjmqNQjujY3sbIe2lQhng9SOJocg6gIYnkn2pP6AREw74YJ6
+	3dko+PeZACZS5t4NZa8q+Z0d8qWegf7KCwZp7CmDpwOawFYioXLbd8y1XknteA==
+Received: from valkosipuli.retiisi.eu (valkosipuli.local [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id B6E39634C50;
+	Wed, 29 Oct 2025 15:08:35 +0200 (EET)
+Date: Wed, 29 Oct 2025 15:08:35 +0200
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rui Miguel Silva <rmfrfs@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Purism Kernel Team <kernel@puri.sm>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Eugen Hristev <eugen.hristev@linaro.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	Alice Yuan <alice.yuan@nxp.com>, Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Steve Longerbeam <slongerbeam@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
+	linux-staging@lists.linux.dev
+Subject: Re: [PATCH v3 03/31] media: v4l2-common: Add helper function
+ media_bus_fmt_to_csi2_(bpp|dt)()
+Message-ID: <aQIR03RD0BekWkmX@valkosipuli.retiisi.eu>
+References: <20250821-95_cam-v3-0-c9286fbb34b9@nxp.com>
+ <20250821-95_cam-v3-3-c9286fbb34b9@nxp.com>
+ <aP81s4FDhj0-3WFh@valkosipuli.retiisi.eu>
+ <aP+isGnWmJ4tLXcs@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aP+isGnWmJ4tLXcs@lizhi-Precision-Tower-5810>
 
-From: SungMin Park <smn1196@coasia.com>
+Hi Frank,
 
-Add Axis ARTPEC-9 pmu compatible to the bindings documentation.
-It reuses the older samsung,exynos7-pmu design.
+On Mon, Oct 27, 2025 at 12:49:52PM -0400, Frank Li wrote:
+> On Mon, Oct 27, 2025 at 11:04:51AM +0200, Sakari Ailus wrote:
+> > > +/* DT value ref to MIPI Camera Serial Interface 2 Spec Ver4.1 section 9.4 */
+> >
+> > I'm not sure if I'd add such a reference here. At least it shouldn't be in
+> > this patch.
+> 
+> Still not in v6.18-rc3. I add comments in this patch because try to add
+> media_bus_fmt_to_csi2_dt().
+> 
+> If dt define is not standard, media_bus_fmt_to_csi2_dt() don't make sense.
+> the difference vendor choose difference dt values.
+> 
+> I am fine create patch for it before this one.
 
-Signed-off-by: SungMin Park <smn1196@coasia.com>
-Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
----
- Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Sounds good to me.
 
-diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
-index be1441193fee..9d3e8e9817fb 100644
---- a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
-+++ b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
-@@ -52,6 +52,7 @@ properties:
-           - const: syscon
-       - items:
-           - enum:
-+              - axis,artpec9-pmu
-               - samsung,exynos2200-pmu
-               - samsung,exynos7870-pmu
-               - samsung,exynos7885-pmu
---
-2.17.1
-
+-- 
+Sakari Ailus
 
