@@ -1,168 +1,293 @@
-Return-Path: <devicetree+bounces-232695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 466F3C1A7AB
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:03:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1783CC1A7BC
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:03:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 192171A23CA8
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 12:57:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4ADC1890B1B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 12:58:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16A7434A764;
-	Wed, 29 Oct 2025 12:35:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C6783491F5;
+	Wed, 29 Oct 2025 12:35:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HxI/3Mu1";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="L2WtPw4e"
+	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="QqCFy9dd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from tiger.tulip.relay.mailchannels.net (tiger.tulip.relay.mailchannels.net [23.83.218.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92A4933FE0A
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 12:35:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761741334; cv=none; b=RnLqW8CDPLBw+nnRMJIV5p74B+yO1CfEI+mXjBuolKSE1LR4Qc+fxwDnLn3oMxzRpYKXV8DsyBwcyLp6VS2t1mzukqLUtZLHshDHvCPYh09LOVbDV1MXCaGBnaD2xfgx6jq2rxiRkS8iHiIRLJqG9E2MopJRbZgIKtRJ7pjV1fA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761741334; c=relaxed/simple;
-	bh=8fFke6c0149lgV+lkfFHo2TkiBcnS7I6YDsk8uwDra4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Rz2ABtCf3SRSVoZ7ap+wbfmqE/IIcgpl5v05KFm/S2YX/yqPC3W9C0eqsZd2DL5tnH4sWJUyZJCgp+ZHBM4S5SDwKdqJGZ09vrfzxoTQkRpQc3grblDbrSp0fGAn4iXodySHIStZRJSWmtIbT66Y7cVfMJfIzh6CYWUTj7nFxTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HxI/3Mu1; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=L2WtPw4e; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59T4vDEl3755273
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 12:35:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=zsNFzolgSKQC2bBoDSwKUuUH
-	4xZt2AoJCzH7vtyB6vA=; b=HxI/3Mu1imbJSjFZxfP9X/PST34HR+EnlaSiLN96
-	4W+mFcnYBfVb/wI/Xa2LSjgxJSLxhIPy6i4Yupox8wY4UiBlDYwkdT25FHOPQ38p
-	QhsIcc4uXG+IhR/dCDe2zlufLR+p4r/Qe7kwkmAEtfTVWUFg0941hRkt+r61TRbm
-	G/vjPeMKwVNYsu15hF/VqlAzrJOTwi/H4Gj4ss9qS5t4Qn99KK955zZ5CtiIfy1p
-	MSKNxlXEz7I0nHlPIzian4Bza1K13gFQtHmz/8rZzYnaKc5hkKyQsrLS9CJgGK0Q
-	70hiHjvSoi0d+midtFxfXx2PegS9PUpbmFUdvLZYMr+0hw==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a34a02gmp-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 12:35:31 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4e8b33c1d8eso177324281cf.2
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 05:35:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761741331; x=1762346131; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=zsNFzolgSKQC2bBoDSwKUuUH4xZt2AoJCzH7vtyB6vA=;
-        b=L2WtPw4eogZlnY0aWCqU+rvCp7mca0pBh2finvGp9beyLrztoecv2J5WAXr2lPj/H0
-         oATQKlmzW2wL7AC+ANHT2EUfWa06hXUhql0GrveZmKY+V7p0HQQgSJxEov4l94wuk8Uy
-         dNsWRFhThX69rHJNXkt8Hf9QgSlw51B5rdgxM5r0nOPWO8cStffzxK6SROmhcd8/FLgp
-         C4XVVfLH7LiKeyuE7xkIQ4ny0F9wMWVMexGTtDwPYd2+wP2ND4pI2fOlmL5fDHBuqslN
-         ZnhkvAWQF3SI0jnV13zwBHKisFqTlcERNL5J/zd4W86eZLK5oDVVHRL/XsrY8cNFr6f+
-         vNfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761741331; x=1762346131;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zsNFzolgSKQC2bBoDSwKUuUH4xZt2AoJCzH7vtyB6vA=;
-        b=U591JZcAbHBG0tRs/OG05U7xoy0D/wrBvhvRxyp3RyxoUPQApMrPAqC1/w8i5/nXoo
-         1sKUb6iE7xm7rsdmUtG2SnrusTVEraAEWUwsYWxqvw3btdHK8/17VcV6q+zKQ+x34QFR
-         Tjq98Vi379w0en/7X9Grlm0aYOJ/W+Fut+XFYoTln9BoqPRvXepbJ0H/qpAChhx5MFUt
-         8EsqEaE0G1X3UpUFLyxezR2s0akbCPYb39D+42Npm2fLTQEAGlr+4JLT8OjpPu+/9rYj
-         MDfg8XIjOtru0CMVf0m+qbdMQw+OdQiVYonNP9QeKhRiAL6WkSGtToke5mlYPPepcHKX
-         OIeg==
-X-Forwarded-Encrypted: i=1; AJvYcCW/q49ALsONZUQszA8hPbyyJitLMR17DdBV2CrI5IPj6ukz0qprJGAMs/5IV1hMOeyzmF9eTTsVzEvC@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMVZl3Mx8TAsrca111GolKMfrd2DTRtx5p4az4pr3HjH/ujiLd
-	647pXN9EEi4CS9sSuEk+25+u0Kxnb7+W2EuwnYORQj0WxzmmBBCsJ/j/l7Kl8OPvjxTrMfVQYvE
-	YJDvCMX7ZiLQ4ToNLM1lGMttJUYvX+x9GH64ZD8Mq024KeujH69v7Njve+XdFzLsE
-X-Gm-Gg: ASbGnctMI1kCafrL9Q515CU5zDlmE2mu7bNdsokD9OjqB/BtQKoJb+/z5xn4p7OTx4T
-	zgvDibhw4UwAJYDFnxwbYUSws5cftHc6UIeGtIs4xFFxEGv4cRY0vFqcOn08VK/fusBgUxNeofy
-	cHJjRN4kVSC34A40vv84sB6cHa02pUbEbE/g68ZMPz6NWN6lbu4lUy0NFvtERTD6SPY0KidK7g7
-	QK5DQtHvkeapSTeSy91bsaWMTznv5h/Rg6xIKvL7hzXlMbWEyw9/jXje6t7mtkvEIfNxZei37qt
-	dYWZ1wu2PHhIl+S+Pxzf2xH1z+5Vmna+98TVlB4M8+NCh5PVhpNOKdwcF1GrSTVe7AmI8VQdqQy
-	H0NQlHEYtH3HbE2c91LLNiGhWEyNIrMSEQeJCmkxEKxMNthQ6z1lxOoT5srAvfK9Piw331p4xFX
-	q1tU6kuCbUs3To
-X-Received: by 2002:ac8:7d4c:0:b0:4e8:a9f6:360 with SMTP id d75a77b69052e-4ed15c9afdcmr29484281cf.70.1761741330784;
-        Wed, 29 Oct 2025 05:35:30 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGxJGkujipYQz/E6q183ffjavTVh1UaVtvW1PPo8+MkU/PVJgSAz9nur4gBHFIa/6cE2OuOjA==
-X-Received: by 2002:ac8:7d4c:0:b0:4e8:a9f6:360 with SMTP id d75a77b69052e-4ed15c9afdcmr29483741cf.70.1761741330083;
-        Wed, 29 Oct 2025 05:35:30 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59301f41ba4sm3794759e87.22.2025.10.29.05.35.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Oct 2025 05:35:28 -0700 (PDT)
-Date: Wed, 29 Oct 2025 14:35:26 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/7] arm64: dts: qcom: cleanup GPU's zap-shader node
-Message-ID: <dnup7gntevuioadecmslch42ye7j7ioamoqq2www2ytmz4ymws@tvka6m2e3js6>
-References: <20251028-dt-zap-shader-v1-0-7eccb823b986@oss.qualcomm.com>
- <c83079bd-ebd2-49fc-ab62-1fba08276cc4@oss.qualcomm.com>
- <51f10d4e-3962-4c20-9d5f-afd0ac3f598e@oss.qualcomm.com>
- <289d000a-b142-46cf-ad15-07ab8ed377c9@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC559308F3D
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 12:35:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.218.248
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761741354; cv=pass; b=d0WYvMq0N4ZeHn5eyt3d3T7qnuD4dLuo5cj+s0MiEndaV05BTbXzp8Rv3zpXx0PXT7unDHfc7EhjavXtTm7Y5NpkW4/tuLEOUIM3AmJAUrbMAk78vlq3nuRlqs0BDPRL9mPtlrgDoVZk4rxbkqGZWhCUzUmRYsjU8Z3+A9yVzmA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761741354; c=relaxed/simple;
+	bh=02dEesbYfF9Lb3UCqLUaeV5MqepJFchgx9QTccnHX10=;
+	h=Message-ID:MIME-Version:Cc:Subject:To:References:From:In-Reply-To:
+	 Content-Type:Date; b=UNrKsW/MjVWBY51GsHuB7/aVz9SD6FV7uU1KErjGUenmMUBahUaOMDGEW7xwvNRvRQJl4IUg2RpcSQ/nHPB5EdmXGC5PtimXm1Z0ISDl/FJsF5e4P6B9rn/Q+lZw+hzmnTDZf+uIQwn0t7Q6fCGh7Xe7D85CeqCHzwfwTF0exxo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=QqCFy9dd; arc=pass smtp.client-ip=23.83.218.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id F0E8B4C1FF0;
+	Wed, 29 Oct 2025 12:35:50 +0000 (UTC)
+Received: from de-fra-smtpout10.hostinger.io (trex-green-0.trex.outbound.svc.cluster.local [100.121.87.184])
+	(Authenticated sender: hostingeremail)
+	by relay.mailchannels.net (Postfix) with ESMTPA id C55B64C250C;
+	Wed, 29 Oct 2025 12:35:46 +0000 (UTC)
+ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1761741350; a=rsa-sha256;
+	cv=none;
+	b=40AG28293lcDTnU4EkGeWjThsQv2Ycj7di6vxoaJB/Y9opRIhEx84gJhpug6FOLk9wAKDl
+	Z1lIzicDSaht6T/byvPkykL+mD9tUR5FRBb86xGPit0kOW/nzzaq1tQAv/tBXZAVhuL/pj
+	wybJCbB9qmlcPi1M7JK+vdacB0uMC+fflIPlC7inMEqjZULAx2gsSYMeUIgLVHiVWxJbYz
+	fx4GpocbHc6WG/TjsqgZN84LCSW6Kbjshn0qc+UN0RQA08EwaJc2sa7q6OOW3GW2LfwZWM
+	J6z+9EZntUNQHYt9BPXEoxlFUCz4Q3N8W8UpRJ33rE5FrVOBRsDeWp6ieMAHxw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mailchannels.net;
+	s=arc-2022; t=1761741350;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=Oe4ZxNABvSWDZwn7RexTLvMDd+wgT6cbVoGwGOqVxHg=;
+	b=5h/1kphtPwN3wdEQwmqweaw5bDMC6d/36MrPpD09VaQjP/R0wsyTrHxki/7PMjyM7nc1GM
+	LhtANWRCuKZljOlyVNYq94T0ntE9nQjFM3NeVh5TrfXIaUn2CfKzhjTDO4wfzlKjg3MRM6
+	/7jtswoycquPX/TxEr0oj+RvC2yhzxLAriyBxMjqpsMSdjxBL/Efhzktnt1HYDLXpsjaUC
+	LSLmXVm5gky6f0gmbNSImDaUAA6ryasDcP1OOOxUPxg0GSRusC51d+vHbvQMy38pHW2oJj
+	s4pzyLIJmOEs29Q9Nf86e0/4CduBUyW96uedxwX8met0fDVdDf8aM02v6TsIXg==
+ARC-Authentication-Results: i=1;
+	rspamd-77bb85d8d5-bws2z;
+	auth=pass smtp.auth=hostingeremail
+ smtp.mailfrom=michael.opdenacker@rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MC-Relay: Neutral
+X-MailChannels-SenderId:
+ hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MailChannels-Auth-Id: hostingeremail
+X-Reaction-Whimsical: 5225e7ec7f8e8d96_1761741350820_2222081920
+X-MC-Loop-Signature: 1761741350820:903895263
+X-MC-Ingress-Time: 1761741350819
+Received: from de-fra-smtpout10.hostinger.io (de-fra-smtpout10.hostinger.io
+ [148.222.55.9])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
+	by 100.121.87.184 (trex/7.1.3);
+	Wed, 29 Oct 2025 12:35:50 +0000
+Received: from [IPV6:2001:861:4450:d360:2406:5e25:7480:5f0b] (unknown [IPv6:2001:861:4450:d360:2406:5e25:7480:5f0b])
+	(Authenticated sender: michael.opdenacker@rootcommit.com)
+	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4cxRYC0mFQz3yqy;
+	Wed, 29 Oct 2025 12:35:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
+	s=hostingermail-a; t=1761741345;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Oe4ZxNABvSWDZwn7RexTLvMDd+wgT6cbVoGwGOqVxHg=;
+	b=QqCFy9ddIA4yBphJF9vcN8yRLz1amgW53X5uZ/GZbSSfH3tAt2r2FUlpP0iCF34YwP40Oj
+	sFAfJ1/S0R/rremkxFEv3QLx4517/PdZl2e9RIw50J8ZiUlSbqsXiiZN9jifSQ4jHqaZW4
+	i5iS/hBagb67/uCzOY2u2SCTRhg1kDGrErO3t405GwQLnYya7gsBXH3Te8QeMypEuulWaV
+	05TJL41XUVjk4yBRtr9+xX2L4OGyx+4WXTBWTD63hcNQIQeYtqN391MEugibgbysEAuk4J
+	9Mj7euBsD/kG0vNLuWeBUlrRrDU/uIYFIto7kkx4SVuGo/+Gkc94eIPXFoT+jg==
+Message-ID: <4b1b2580-63ce-4ce8-b4a9-1763d3d3a253@rootcommit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <289d000a-b142-46cf-ad15-07ab8ed377c9@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI5MDA5NSBTYWx0ZWRfX3rrBNJutu0Yp
- jf2f2NHz8RZKW0ZkscJf9tbu3JVzKKnLMqvfPpAVDZGn03tmLAvJIrcoy6C9TOLEq7ZuscjUYxy
- ZJXaFikfSy5evUZQY126E69g3+p4JlIefwda6cQJ4O2uyXywlWNZDvdQ3wjXu7UZglEf07Et/k7
- ncC6f6Hd6d9xAHnaaEyaQ8ImZ2wChcOqAF6lqUnpfULxAUUoWBtKLwMpL3IACI0yhl4o2TMYzMu
- nKyTlwdMx6alxqSTrWPuE/SW6FHxbU4SvLEgbqZK+rSGaFLG24mdL+Q4xa2A+UBEZrI0Ov/KQii
- NAOMmCsYgSwkuAkLWl+BlCLL55Ha9pFsaPMeDwpM1y4GbDIrHNXZ3zhyLYiUrvQDra0fI9XlA2F
- aB/RMjbA/05wF9BVYP5D+1Mm2tOEMQ==
-X-Proofpoint-GUID: beNaPmm8viUZk-HCURLbA3T9vDtoGUaO
-X-Proofpoint-ORIG-GUID: beNaPmm8viUZk-HCURLbA3T9vDtoGUaO
-X-Authority-Analysis: v=2.4 cv=epXSD4pX c=1 sm=1 tr=0 ts=69020a13 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=KyuLurKa1yEd-JaHsGgA:9 a=CjuIK1q_8ugA:10 a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-10-29_05,2025-10-29_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 lowpriorityscore=0 spamscore=0 bulkscore=0
- suspectscore=0 malwarescore=0 clxscore=1015 adultscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510290095
+User-Agent: Mozilla Thunderbird
+Cc: michael.opdenacker@rootcommit.com, devicetree@vger.kernel.org,
+ sophgo@lists.linux.dev, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 2/5] arm64: dts: sophgo: add initial Milk-V Duo S board
+ support
+To: Joshua Milas <josh.milas@gmail.com>, tglx@linutronix.de, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, unicorn_wang@outlook.com,
+ inochiama@gmail.com, paul.walmsley@sifive.com, samuel.holland@sifive.com,
+ palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+ alexander.sverdlin@gmail.com, rabenda.cn@gmail.com,
+ thomas.bonnefille@bootlin.com, chao.wei@sophgo.com,
+ liujingqi@lanxincomputing.com
+References: <20251029001052.36774-1-josh.milas@gmail.com>
+ <20251029001052.36774-3-josh.milas@gmail.com>
+Content-Language: en-US, fr
+From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+Organization: Root Commit
+In-Reply-To: <20251029001052.36774-3-josh.milas@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Date: Wed, 29 Oct 2025 12:35:43 +0000 (UTC)
+X-CM-Analysis: v=2.4 cv=Ceda56rl c=1 sm=1 tr=0 ts=69020a20 a=wUKD9753dquIziLb6m98Lg==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=YzZgpwwcAAAA:8 a=d70CFdQeAAAA:8 a=pGLkceISAAAA:8 a=rAE3ZbY7XHi-JfuC7_kA:9 a=QEXdDO2ut3YA:10 a=diELbSsDbaqdzccPbx55:22 a=NcxpMcIZDGm-g932nG_k:22
+X-CM-Envelope: MS4xfAJT8EYqOXdyz75oxkACxsC0KJle9H+fVC0/lFHJ+Lv3v4L4AfKpVkFcFE9usfuSP33PfbJ396kKSwkJh363efFWzJ3RY3cLSBia1MzzRzFQ2zltbyX+ vWFcj5/jxXq8Xq+Dar3KlbCpBxnrECoGVNnZJjArKGmx6bVJYcclK1o9GM2aG+0359splJMr6JCVNQ1GAoczWYO73jGlmrwTYR2pbDZSJkycSSlM05W+W9cl RKsAXbnx38+H6b78+18fqqNuY6t+Z3qbMkrPnkdAMw7n7omyOxg1Dg6pQ/BILK6v0PU8FzLIG8puGMQ97m0H2AWzmy3DLQudAB04+1wFZ71eBGIzTsqKioAx +SL5YNUedMGsnXT9hmiNf/YBm1zcHyySmmv0DoD4sHskKHprwdBQ3kwScgP05r3CINkFDrIty5yLqLtVUlIAyOBczGx+rPl3Gz1tdw1caAiazacaae8sClTl usb62n5/lh2DDzzYN4u77WsCBUgiG3hZFJRVgxItacp24eqDJ1GqFyG6NT5mlUVn8sUGrd69Uox8wpvOIEUbiTaxSOTk/jcE7fj/BtdoWkPObS0+GvnRSgYS hm1ByLIKEy03qbnRNUozyHF2uN0vNRW5t1UkRNv+PrrtNEseWcO5hPpJ4UDsYNShyebkNuh12ShCgo2D1vQLjITN5JoJtJAcmfNoe+QqVRr5jknIhl/9wSs7 S9jpDkI6Nw12PJ4S/vDod4X+Ly8UncV6ep7vtOPHhZik97kSMcPbBz+SJBI8+Sk5Leb/jKY83uanH0buHkkV970sV0ye6A4TbWvoHdVVk9VnpZbo2g6qDJjy GFSaO/WMlRzVMVyN5eb24+WII2lh13uwsKjMMtvY0eotLVjKrcQzto4Phlf2oEBg1S4zo4l8zog8mCeIvn1ACFIsiM2eeKw8EEazWPcjTX+lhHatx4YZGzfb KcdUGJnPRVrDdBs
+ yCIWrckQzm7W+P7JjDnnU3cnmds21ljOM1MX2HiwMuj1V67WAX28JIg==
+X-AuthUser: michael.opdenacker@rootcommit.com
 
-On Wed, Oct 29, 2025 at 10:36:45AM +0100, Konrad Dybcio wrote:
-> On 10/29/25 10:35 AM, Dmitry Baryshkov wrote:
-> > On 29/10/2025 11:33, Konrad Dybcio wrote:
-> >> On 10/28/25 9:59 PM, Dmitry Baryshkov wrote:
-> >>> Historically all devices manually defined GPU zap-shader node in their
-> >>> board DT files. This practice is frowned upon. Add the zap-shader node
-> >>> on all platforms, define a label for it and use the label in order to
-> >>> patch the node with the firmware name.
-> >>
-> >> I'm not sure this is much of an improvement, since at the end of the
-> >> series, boards still have a &gpu { zap-shader {} } section, with the
-> >> inner one not being referred to through a label, which reduces
-> >> duplication in the single LoC used to assign memory-region, but
-> >> doesn't e.g. prevent typos in the zap-shader node name
-> > 
-> > By the end of the series the boards don't have zap-shader{}. They use &gpu_zap_shader { firmware-name = "something" ; };
-> 
-> /me wipes glasses
-> 
-> You're right, I skipped over the last patch
+Hi Joshua
 
-R-B ?
+Many thanks for this update! I'd love to have this board supported in 
+mainline, and when this happens, I'll add it to Yocto's meta-riscv layer 
+to make it easy to use.
+
+On 10/29/25 01:10, Joshua Milas wrote:
+> Adds initial arm64 support for the Milk-V Duo S board
+> [1] making it possible to boot Linux to the command line.
+>
+> Link: https://milkv.io/duo-s [1]
+>
+> Signed-off-by: Joshua Milas <josh.milas@gmail.com>
+> ---
+>   arch/arm64/boot/dts/sophgo/Makefile           |  1 +
+>   .../boot/dts/sophgo/sg2000-milkv-duo-s.dts    | 80 +++++++++++++++++++
+>   2 files changed, 81 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts
+>
+> diff --git a/arch/arm64/boot/dts/sophgo/Makefile b/arch/arm64/boot/dts/sophgo/Makefile
+> index 94f52cd7d994b..68aace728223a 100644
+> --- a/arch/arm64/boot/dts/sophgo/Makefile
+> +++ b/arch/arm64/boot/dts/sophgo/Makefile
+> @@ -1,2 +1,3 @@
+>   # SPDX-License-Identifier: GPL-2.0
+>   dtb-$(CONFIG_ARCH_SOPHGO) += sg2000-milkv-duo-module-01-evb.dtb
+> +dtb-$(CONFIG_ARCH_SOPHGO) += sg2000-milkv-duo-s.dtb
+> diff --git a/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts b/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts
+> new file mode 100644
+> index 0000000000000..174c194e1301d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts
+> @@ -0,0 +1,80 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +
+> +/dts-v1/;
+> +
+> +#include "sg2000.dtsi"
+> +
+> +/ {
+> +	model = "Milk-V Duo S";
+> +	compatible = "milkv,duo-s", "sophgo,sg2000";
+> +
+> +	aliases {
+> +		i2c4 = &i2c4;
+> +		mmc0 = &sdhci0;
+> +		serial0 = &uart0;
+> +		spi3 = &spi3;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +};
+> +
+> +&osc {
+> +	clock-frequency = <25000000>;
+> +};
+> +
+> +&dmac {
+> +	status = "okay";
+> +};
+> +
+> +&emmc {
+> +	bus-width = <4>;
+> +	no-1-8-v;
+> +	cap-mmc-hw-reset;
+> +	no-sd;
+> +	no-sdio;
+> +	non-removable;
+> +	status = "okay";
+> +};
+> +
+> +&gmac0 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c4 {
+> +	status = "okay";
+> +};
+> +
+> +&mdio {
+> +	status = "okay";
+> +};
+> +
+> +&saradc {
+> +	status = "okay";
+> +};
+> +
+> +&sdhci0 {
+> +	bus-width = <4>;
+> +	no-1-8-v;
+> +	disable-wp;
+> +	status = "okay";
+> +};
+> +
+> +&sdhci1 {
+> +	bus-width = <4>;
+> +	cap-sdio-irq;
+> +	no-mmc;
+> +	no-sd;
+> +	non-removable;
+> +	status = "okay";
+> +};
+> +
+> +&spi3 {
+> +	status = "okay";
+> +};
+> +
+> +&uart0 {
+> +	status = "okay";
+> +};
+> +
+
+
+I managed to boot the board and run tests:
+
+Tested successfully:
+
+  * uart0: boot console
+  * mmc0 (sdhci0?): root filesystem
+
+Issues
+
+  *
+
+    eth0:
+
+    ifconfig eth0 172.24.0.2
+    [ 48.893725] stmmaceth 4070000.ethernet eth0: Register
+    MEM_TYPE_PAGE_POOL RxQ-0
+    [ 48.903077] stmmaceth 4070000.ethernet eth0: cannot attach to PHY
+    (error: -ENODEV)
+    ifconfig: SIOCSIFFLAGS: No such device
+
+    I believe I have all drivers enabled though...
+
+  * emmc:
+
+    [ 2.730194] mmc2: Failed to initialize a non-removable card
+    [ 2.764843] mmc1: Failed to initialize a non-removable card
+
+    I tested with a board that has an eMMC
+
+  * i2c4: detected by "i2cdetect -l"
+    but no devices found by "i2cdetect -r 4"
+    I tried both pins 3/4 and pins 50/48, with two different devices
+    connected to the bus.
+    Which pins did you use? I could check the SoC pin muxing, but your
+    answer will save me time :D
+
+Would you mind sharing your defconfig file ("make savedefconfig") via a 
+private message or through a link (to avoid sending the entire file to 
+the list)?
+Thanks again
+Cheers
+Michael.
+
 
 -- 
-With best wishes
-Dmitry
+Michael Opdenacker
+Root Commit
+Yocto Project and OpenEmbedded Training course - Learn by doing:
+https://rootcommit.com/training/yocto/
+
 
