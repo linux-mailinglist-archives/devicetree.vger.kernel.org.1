@@ -1,214 +1,154 @@
-Return-Path: <devicetree+bounces-232759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5BF7C1B931
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 16:14:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40CDEC1BD1E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 16:54:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 84BDD56912A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:27:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3084D4647D3
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:56:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0B7F2C11F4;
-	Wed, 29 Oct 2025 14:26:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3605A2D47F2;
+	Wed, 29 Oct 2025 14:50:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SJyg0WvW"
+	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="aTHNEf/T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from poodle.tulip.relay.mailchannels.net (poodle.tulip.relay.mailchannels.net [23.83.218.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C415D2BE7C2;
-	Wed, 29 Oct 2025 14:26:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761748000; cv=none; b=V7wA6Fop0rtfO4PbnqERxq/DrUIDTICwr+7y6VMQ1R9qJx/iughLdC0FoxRJk3YziETOXJeG14wXl34WAoMLadaY05ZhIQZLzU1cn6CFvfWe3n0rx08hnUB+0SdigyI+mlcHjFutqJOekODJhSbp26FTwMDN3dG1ObKK5CvmfgY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761748000; c=relaxed/simple;
-	bh=mItrEmeR9FU3VM2ptXFfKvshAvAcV9+BLLTvG3OGXks=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CHpE7VbFYbTFT1qlGf1jrjUqHAqP9Qhht3LnECbcov1fZU0Oagy7qYxevyvfepnVWkMPqhTuFzSzdr7wEUGTLQgoKCzNHi3shTGmVQsqxJg45Yx+3QcQ+Y7ok6Y+iAaB/U0m6aNbGL0SUwMYJ9EAqCw6qSXqWw1LTlTpPYEXl6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SJyg0WvW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 71245C116D0;
-	Wed, 29 Oct 2025 14:26:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761748000;
-	bh=mItrEmeR9FU3VM2ptXFfKvshAvAcV9+BLLTvG3OGXks=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=SJyg0WvWtx67Cjh+ZefA1l69/7T9iwBn9QnmnLTQCZIAyWhsDACzhLsr4I1UIXWEs
-	 sxoMEPuvLhY/2tg5QgkBqlNotG9DM9z9YXBu+ccELW/2dNOeGpJMKwcsnHKEZRu2H8
-	 bryuYAfrQv4Hnf+vy6AsPNHehtMuQKO7XjkKIRfAJFQzP9QL7tp9FHRqShtoR+0TzQ
-	 f65Rbh2UFhuRKkiJ/57gZwuOJBYSNRD01aLhrv7SVti4MBMpAgMitv9FLq92iu+g0i
-	 iIeQKVoA4NaQ8xz1RuxrYUTH4OYcOPBqtSGDZC8gPvNFWqlp6kP74I+EZO8EiQU7X9
-	 CcuBa7zZXyYEg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B2DDCCF9F6;
-	Wed, 29 Oct 2025 14:26:40 +0000 (UTC)
-From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Wed, 29 Oct 2025 18:26:23 +0400
-Subject: [PATCH 2/6] wifi: ath11k: add hw params for QCN6122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B59E22D46BD
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 14:50:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.218.249
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761749450; cv=pass; b=aKhNRuntpaEncJWcrlbug7ePLwMUEEDaS/Zina4NGkS0/l9xINuRekRaMinjzTggCjXo9DHThUdtQAFfPSJO7iQd/76IvO9tpfNzxnSJMzz71mMOJ4DxTmdjxsmMAMHkVsqGfXiW/UXypyxpfTZPU6wcOyRftwZUksRQJ/jbKkk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761749450; c=relaxed/simple;
+	bh=BUgAW49e2nve4OrDnsZ3F5c2FdN5r+KeTRc5FJ8iWTM=;
+	h=Message-ID:MIME-Version:Cc:Subject:To:References:From:In-Reply-To:
+	 Content-Type:Date; b=PMOLdBJUXdKd/it8yYJLyyncjWOJV5aFF+lmjvzldKg7V/apT1Vp99IrgzyWNPm6j5q3hLLa2cbNXRkHgJYIRfyTVaDN4TJL/a6k7sqi0g11th0Q0oT/f6ZEtj1f87igW1G06lxx3F7aC7pMF7IeUz/CjTVHbhQawHbPepS8FdM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=aTHNEf/T; arc=pass smtp.client-ip=23.83.218.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id CD544721631;
+	Wed, 29 Oct 2025 14:41:49 +0000 (UTC)
+Received: from fr-int-smtpout24.hostinger.io (trex-green-8.trex.outbound.svc.cluster.local [100.123.122.56])
+	(Authenticated sender: hostingeremail)
+	by relay.mailchannels.net (Postfix) with ESMTPA id B43DD721840;
+	Wed, 29 Oct 2025 14:41:44 +0000 (UTC)
+ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1761748909; a=rsa-sha256;
+	cv=none;
+	b=i3WSzsLYo7teMpHtZN0AjNdZ4foxz/q0PwZGvGzYNAIojH4EsbGQ17K8774xGyd6mxTMLB
+	AIFpEh/IpG6S27BBxOBmbMKyRkp0I+RTMkqY9VNnJmGjAp/5zhmQSBIZ9ik8ZmdyxDfV9Y
+	CtoZTo531IguB7U3eMa+JvTOGrgOw5o1T8HKs4qiYSdjIzMLp49EKnCnj2XlxlxJhXl6do
+	UTgcHe4K0jjWChiat2QCh3vY/If2abb5ELbVYOrPljt73WetzLmien5MinVYd8jlcfxXK9
+	JzsdRypXg1FcWEly0Ooy8DLhFjhrL9z6fMsBuo6Q5q0ppMrMnUTDAHBzGlNXNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mailchannels.net;
+	s=arc-2022; t=1761748909;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=S1xXs3JGvgEgRE8/1iINIBl8/G8ZW5nPLsCFO5WNNV0=;
+	b=Imoa1XqZLGBRzJTPpZvMEnuo8HAAAUTw7rSu0RE6UGjbbYihjRQmrK+8e2MYrOuoBADE7b
+	CuJT06i83I8m6y86e2viB2TJxjZjs7wqrJixsuEj7/qwyycE/3eC/YpWhwae1WeRGqjHLT
+	RfaN50i7GBxmaOFuBUSJp385MIVpyCXG1GuDgtyg/AkunqUdWRxp0eTgvt/YOBYnP3rKJf
+	8fj2MFxLZNRLwM02rXkruzCCteryjWobWwkw8/0IfESu5fWEGmpN6COzIlqxXMfPLWPd5z
+	aIDYo50nQ/8sItNpH4GIGPp/TkxGe7twl2s2HW1UUfsJgquGeLTb5D0M6k+q0w==
+ARC-Authentication-Results: i=1;
+	rspamd-77bb85d8d5-wq79s;
+	auth=pass smtp.auth=hostingeremail
+ smtp.mailfrom=michael.opdenacker@rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MC-Relay: Neutral
+X-MailChannels-SenderId:
+ hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MailChannels-Auth-Id: hostingeremail
+X-Hysterical-Tart: 443c3104291b6376_1761748909567_1523129841
+X-MC-Loop-Signature: 1761748909567:1662878829
+X-MC-Ingress-Time: 1761748909567
+Received: from fr-int-smtpout24.hostinger.io (fr-int-smtpout24.hostinger.io
+ [148.222.54.15])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
+	by 100.123.122.56 (trex/7.1.3);
+	Wed, 29 Oct 2025 14:41:49 +0000
+Received: from [IPV6:2001:861:4450:d360:cc54:3014:8454:2c6d] (unknown [IPv6:2001:861:4450:d360:cc54:3014:8454:2c6d])
+	(Authenticated sender: michael.opdenacker@rootcommit.com)
+	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4cxVLX0ChZz1xtT;
+	Wed, 29 Oct 2025 14:41:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
+	s=hostingermail-a; t=1761748903;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=S1xXs3JGvgEgRE8/1iINIBl8/G8ZW5nPLsCFO5WNNV0=;
+	b=aTHNEf/TnTquIxOWInYfDDw0QevBSwKkHEJE/6vbCJQM1iNFWM51fjwTq9EAa+mTsTrYwZ
+	vV2AjwVGgO1JRwKU7PPOJS8YvnGYfx6AuJh8sBDj8+PsufMUh+wx9+575Vqx5rwDFoGMES
+	0kcc4EG6lv9H5GM884Sa677DwQm1/uEzftU4PzLO3sedt4DZK5ParJh1A2Li57V2jOlVii
+	MjKQ2uvY2X8qGmdqo1CYuJN2HSQ7Kl7l8UAjzDGF97sZl6IPETXndKg+ONej2dAfktovuA
+	HjYxrk9I/zAv/CWN4En5fGw378QPqUKXB54XlBdnFWBwTcFdXvSiTjPT+009Vw==
+Message-ID: <6e4bf564-07e9-44a3-a18f-69bc716ca575@rootcommit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251029-ath11k-qcn6122-v1-2-58ed68eba333@outlook.com>
-References: <20251029-ath11k-qcn6122-v1-0-58ed68eba333@outlook.com>
-In-Reply-To: <20251029-ath11k-qcn6122-v1-0-58ed68eba333@outlook.com>
-To: Johannes Berg <johannes@sipsolutions.net>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org, 
- ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
- George Moussalem <george.moussalem@outlook.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761747997; l=4833;
- i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
- bh=336+JRp6PC1s0koOSi14k/NRUhAY+mOyBfj5s8eLX8o=;
- b=Y08LUfTlUvGw10fN0S/pS3+157GXIWOr8HGsSX5NmErFynLJxOd4MCO0DqxDIRAMUox5IVfTn
- +C2CxiOa616CGcViwJTkqWJ69Ikj1KMOdjb7nS90S5gaLrByptYjRKO
-X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
- pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
-X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
- with auth_id=364
-X-Original-From: George Moussalem <george.moussalem@outlook.com>
-Reply-To: george.moussalem@outlook.com
+User-Agent: Mozilla Thunderbird
+Cc: michael.opdenacker@rootcommit.com, devicetree@vger.kernel.org,
+ sophgo@lists.linux.dev, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 2/5] arm64: dts: sophgo: add initial Milk-V Duo S board
+ support
+To: Joshua Milas <josh.milas@gmail.com>, tglx@linutronix.de, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, unicorn_wang@outlook.com,
+ inochiama@gmail.com, paul.walmsley@sifive.com, samuel.holland@sifive.com,
+ palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+ alexander.sverdlin@gmail.com, rabenda.cn@gmail.com,
+ thomas.bonnefille@bootlin.com, chao.wei@sophgo.com,
+ liujingqi@lanxincomputing.com
+References: <20251029001052.36774-1-josh.milas@gmail.com>
+ <20251029001052.36774-3-josh.milas@gmail.com>
+ <4b1b2580-63ce-4ce8-b4a9-1763d3d3a253@rootcommit.com>
+Content-Language: en-US, fr
+From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+Organization: Root Commit
+In-Reply-To: <4b1b2580-63ce-4ce8-b4a9-1763d3d3a253@rootcommit.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Date: Wed, 29 Oct 2025 14:41:40 +0000 (UTC)
+X-CM-Analysis: v=2.4 cv=Lflu6Sfi c=1 sm=1 tr=0 ts=690227a6 a=cfTWVnPyVfvWbvVVnrj+XQ==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=d70CFdQeAAAA:8 a=-d3y0XjIFKyu09ZH-IMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=URPqgtl0u8oA:10 a=NcxpMcIZDGm-g932nG_k:22
+X-CM-Envelope: MS4xfHOzqohSyERV3CJIWO+IJIU8BQRPxIPwrQrUV+4GAs1IWYTl+vbhEX6eXClg5kyn3CmwykLaUiQ7Puc9aw+ckgifACezeIajAZLft/NMzaxbl1bjqTH/ cmK5oYOArSLZRvcIdNSH8xa9NPck0uNuLsKc5gex+MidQzKfJazvwkSSkh3zrWfQew2oG6ebqZE2XhwlJjSA/KHFmWHC+eYCRCU73jCIem2k305uXDvS3cZH IYkM2M1HMvQzzdDZq4h4FZ57vNsZ4Xnebs4BTkuc5WHnASdCVtLd4Felqspt7WZo8+tqgms+KVzGzt5AQtxnjIXAFTvCJRk5eS1ylwNdcgTjQz9R6SLm3I/w z3H1GeCV4+8hMSktb6P34ME7Qwzi/MJNJ1LgGoi+bTPDJMkmb3Ol3CDXghCGXXkgQHiQH9hxI2HM6JwcaylQSb2E4LlDDwl77s7OvTHGFvR6ohBsX0kwTXSa +phUG42SvbicvWSpSoLouBPHAYqv8P9ZmNEiutoWWUb8288YPcXhH8SmvwWnyvOXuOQhrU36LPx2nnjbn5yc2o0jIxV0rQieYY2mnK8n49306fJYKhAEteUL XF0D+RX7os5d39KXaa+mflRdTktPHjBszKHnuhrX1HkE8yxFrT0K9rptPA2CYTepyn97RqT9aKpUveWyCDeG5KH3QfJ7bT0EmLVKpg1rrxb1rCiNBEAVP4yC L0DxS7hY4X2fm3AtfNq7ls/6CHRD/c4+CQkAQKs4IgT0Kb2lS0lDmmO2QJGO5HLE5Xp5lIutq7Fwg3iSBXcgb8NjGEK76DcMbW62G0XXIfhc2lQlPC4wRB0U eubIa1NRquaD8ce5e4rAvWokg1vktm0qW9iraNtqp8cCqlJspet8NEVsZiRrxdC/fnvTSiotIZRECtjNuV3xcvvPyMm2W+Tj4Y71a9LBRgFK6YKuRgH49WsS 1B8jGMBo2yXd3ah
+ 5ilCweGa3rx1sj85eeFLn9JjmjPbD8fCGa7d5SlNrB2O8u5DRdJOsgA==
+X-AuthUser: michael.opdenacker@rootcommit.com
 
-From: George Moussalem <george.moussalem@outlook.com>
+Greetings,
 
-Add QCN6122 platform support.
+On 10/29/25 13:35, Michael Opdenacker wrote:
+>
+> I managed to boot the board and run tests:
+>
+> Tested successfully:
+>
+>  * uart0: boot console
+>  * mmc0 (sdhci0?): root filesystem
+>
+> Issues
 
-QCN6122 is a PCIe based solution that is attached to and enumerated
-by the WPSS (Wireless Processor SubSystem) Q6 processor.
 
-Though it is a PCIe device, since it is not attached to APSS processor
-(Application Processor SubSystem), APSS will be unaware of such a decice
-so it is registered to the APSS processor as a platform device (AHB).
-Because of this hybrid nature, it is called as a hybrid bus device.
-
-QCN6122 is similar to WCN6750 and follows the same codepath as for
-WCN6750 though it does not support shadow regs.
-
-Signed-off-by: George Moussalem <george.moussalem@outlook.com>
----
- drivers/net/wireless/ath/ath11k/core.c | 67 ++++++++++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/core.h |  1 +
- drivers/net/wireless/ath/ath11k/qmi.h  |  3 +-
- 3 files changed, 70 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 2810752260f2f7eee226f88d5aea7cdabe7e9ed4..401b843402c6cca0e7fdd61e68b57fa6d5a6ae7e 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -907,6 +907,73 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.support_dual_stations = true,
- 		.pdev_suspend = false,
- 	},
-+	{
-+		.hw_rev = ATH11K_HW_QCN6122_HW10,
-+		.name = "qcn6122 hw1.0",
-+		.fw = {
-+			.dir = "QCN6122/hw1.0",
-+			.board_size = 256 * 1024,
-+			.cal_offset = 128 * 1024,
-+		},
-+		.hal_params = &ath11k_hw_hal_params_ipq8074,
-+		.max_radios = MAX_RADIOS_5018,
-+		.bdf_addr = 0x4D200000,
-+		.hw_ops = &ipq5018_ops,
-+		.hal_desc_sz = sizeof(struct hal_rx_desc_qcn9074),
-+		.qmi_service_ins_id = ATH11K_QMI_WLFW_SERVICE_INS_ID_V01_QCN6122,
-+		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
-+					BIT(NL80211_IFTYPE_AP) |
-+					BIT(NL80211_IFTYPE_MESH_POINT),
-+		.spectral = {
-+			.fft_sz = 2,
-+			.fft_pad_sz = 0,
-+			.summary_pad_sz = 16,
-+			.fft_hdr_len = 24,
-+			.max_fft_bins = 1024,
-+		},
-+		.internal_sleep_clock = false,
-+		.regs = &wcn6750_regs,
-+		.credit_flow = false,
-+		.max_tx_ring = 1,
-+		.supports_monitor = true,
-+		.supports_shadow_regs = false,
-+		.idle_ps = false,
-+		.supports_suspend = false,
-+		.host_ce_config = ath11k_host_ce_config_qcn9074,
-+		.ce_count = CE_CNT_5018,
-+		.target_ce_config = ath11k_target_ce_config_wlan_ipq5018,
-+		.target_ce_count = TARGET_CE_CNT_5018,
-+		.svc_to_ce_map = ath11k_target_service_to_ce_map_wlan_ipq5018,
-+		.svc_to_ce_map_len = SVC_CE_MAP_LEN_5018,
-+		.single_pdev_only = false,
-+		.rxdma1_enable = true,
-+		.num_rxdma_per_pdev = RXDMA_PER_PDEV_5018,
-+		.rx_mac_buf_ring = false,
-+		.vdev_start_delay = false,
-+		.htt_peer_map_v2 = true,
-+		.coldboot_cal_mm = false,
-+		.coldboot_cal_ftm = false,
-+		.cbcal_restart_fw = true,
-+		.fix_l1ss = true,
-+		.alloc_cacheable_memory = true,
-+		.m3_fw_support = false,
-+		.fixed_bdf_addr = true,
-+		.fixed_mem_region = true,
-+		.static_window_map = true,
-+		.hybrid_bus_type = true,
-+		.fw_mem_mode = 1,
-+		.supports_sta_ps = false,
-+		.dbr_debug_support = true,
-+		.bios_sar_capa = NULL,
-+		.fixed_fw_mem = false,
-+		.support_off_channel_tx = false,
-+		.tcl_ring_retry = true,
-+		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
-+		.smp2p_wow_exit = false,
-+		.support_fw_mac_sequence = false,
-+		.support_dual_stations = false,
-+		.pdev_suspend = false,
-+	},
- };
- 
- static const struct dmi_system_id ath11k_pm_quirk_table[] = {
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index e8780b05ce11e39bdd93dd02d39812be90689b40..afc591f9608f48506bf19851169828c519661d72 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -152,6 +152,7 @@ enum ath11k_hw_rev {
- 	ATH11K_HW_IPQ5018_HW10,
- 	ATH11K_HW_QCA2066_HW21,
- 	ATH11K_HW_QCA6698AQ_HW21,
-+	ATH11K_HW_QCN6122_HW10,
- };
- 
- enum ath11k_firmware_mode {
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
-index 7968ab122b65dc28a44eca7b34904f55f717f586..f6014b9662dbe5f4cfc6a2af7010938cad454267 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.h
-+++ b/drivers/net/wireless/ath/ath11k/qmi.h
-@@ -22,10 +22,11 @@
- #define ATH11K_QMI_WLFW_SERVICE_INS_ID_V01_IPQ8074	0x02
- #define ATH11K_QMI_WLFW_SERVICE_INS_ID_V01_QCN9074	0x07
- #define ATH11K_QMI_WLFW_SERVICE_INS_ID_V01_WCN6750	0x03
-+#define ATH11K_QMI_WLFW_SERVICE_INS_ID_V01_QCN6122	0x40
- #define ATH11K_QMI_WLANFW_MAX_TIMESTAMP_LEN_V01	32
- #define ATH11K_QMI_RESP_LEN_MAX			8192
- #define ATH11K_QMI_WLANFW_MAX_NUM_MEM_SEG_V01	52
--#define ATH11K_QMI_CALDB_SIZE			0x480000
-+#define ATH11K_QMI_CALDB_SIZE			0x500000
- #define ATH11K_QMI_BDF_EXT_STR_LENGTH		0x20
- #define ATH11K_QMI_FW_MEM_REQ_SEGMENT_CNT	5
- 
+...
+I realize I replied to the arm64 part of the thread, but indeed I ran my 
+tests on riscv.
+Michael.
 
 -- 
-2.51.1
-
+Michael Opdenacker
+Root Commit
+Yocto Project and OpenEmbedded Training course - Learn by doing:
+https://rootcommit.com/training/yocto/
 
 
