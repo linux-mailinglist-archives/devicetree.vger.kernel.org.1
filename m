@@ -1,93 +1,96 @@
-Return-Path: <devicetree+bounces-232890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAC7BC1CB2D
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 19:11:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F02C5C1CC34
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 19:24:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 367B41889BF8
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 18:11:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14C9F1896B7C
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 18:24:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A47F355026;
-	Wed, 29 Oct 2025 18:10:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 407893559E3;
+	Wed, 29 Oct 2025 18:24:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PV/xve4K"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="goL2QN2y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 966C0350D6B
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 18:10:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36D582F8BD9
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 18:24:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761761450; cv=none; b=HhL7hgTgkHNtHttq5REtl9gYwg/98dhf5igpuGx0L2oOLB3nZRIZM53gaiujc7+rjsfiCsVwNhNard3E29t0Qq4U/RrkcLec2c0Egh5fLZin1+3uxWLNkYdco4OWWkL8b2QdyuqYQHMMKx0jYLnQ8eLTOvmR/b4zgrAXA0Jee+Y=
+	t=1761762254; cv=none; b=JBThzD+oGxCoBD2tyn3DnTPkJDEwaWyYe1/x66jpUXzpJ0IcBAyLuOrx4WGW4aVZkoOOZt5+soTKOD8/MQRuDi/RY6SQIyIN32Jsc+W7+aWyXqXb+ql7dFQp6aRbhylzeBFExRij9ULZAtKvEHMrfKRZjR82KzkDoAOB1k+SceA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761761450; c=relaxed/simple;
-	bh=T1dDe4fF+Gy9LcvzjbTF78eafwB4w168lpzpr6gvaC4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dqX9jachUfyLtbFj+EXZvESnni179baW9FDKh7bEu4wQQvlzHgqNJwLs4Bufv4ihmQm+rzxs77CLZHovrSpm8zsqQfoYjdM3ywc8yTx0j7N1TXl6gMwLgln7Rp1gawZx/zvqB1k2JFJ/ZEtYmF3b0ii7NsTsVc42eS5nR2hHcyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PV/xve4K; arc=none smtp.client-ip=209.85.210.180
+	s=arc-20240116; t=1761762254; c=relaxed/simple;
+	bh=19BiiKEHLAAdUkK3kiHtZ+FIIIcqtIk4Br4GS4kuJIs=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Vl9zPGshoQYOIsVnAUOQp2fl4nwfmgUIUhTeWrr95zu3gmbCzgAM93+KfQFqjyKUk/H6WfgFuHCN/4V/3APSewWoba5IeeybNjegSTE/7ytiNSyhD8EJiUXfb6a8g93LMuqGCTjCIFrnnRMKHqCfdb4QVq0OSFtngUWNAEtkkz4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=goL2QN2y; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-7a26b9a936aso180003b3a.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 11:10:48 -0700 (PDT)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-47112edf9f7so1329955e9.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 11:24:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761761448; x=1762366248; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=agJFytMuXaOzzx9eJ7GjTw67SZ3daSqUTCtci+2uLtM=;
-        b=PV/xve4Kv2VqBQFNxT6v5eWFw3bNkdIZBKjd/Ds0PBuIsQT+dy17EquEg+gKCLjbXa
-         upFlDcG+SgpKbjCk98yUcfCOuUu19aGOovAg/obPTv+hzaRZfkaCbl9sXoM0QxKLq3d1
-         hfC8Sb0NYBZPNBLCeU+IMTM8jPpxl8ks6qzYq6PmpWXFrB1xfbq86tHM8WsvyCePS6SB
-         1PZ/xwURPDQKT+A1xUnUQ68MgNYvmCbqpmWF4S54Aunb71Gr0bzlNtyI5NXNrRyQHtmZ
-         USZOoya9ppLX+A3DD4U9AmjtRrWToHpyMzQLusnJoqyBQbsktX3xoQuMTlXW+aqhcCjS
-         6oiA==
+        d=gmail.com; s=20230601; t=1761762250; x=1762367050; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=bzK5qNzDD1OL6sh9VhoK7dF0ie9h0/HgqvIRoxOou0g=;
+        b=goL2QN2yFMLGLyetAyBqLAvRJkvmg28F5kZwnUkk6Q1zMK/oYWuHZacatToE0gtuNb
+         VIJLwKIRIORibslglSTsTNEz+uYqZwo17HznNnrKpCu9X8IA9ukGzg834/IQb/9oGHyc
+         ow3VMkI1jwyHdiwi68WndxA/4fzok8KSPPbkX/UzBse9XbzPE6pU0nLezOzRlkDIAE86
+         gVcJcKUrxaz5rUIRhHghITcE3Adf11tf0vC/ZP6ypJSNMavNsM4SPJqteF9Cc5ZrVZKu
+         uqu/u4S+D5eznmY0J7FyWPKi7X4OiAOfjZA1cYxpNPRHKGGlEaMbwjBR0qWGmN9jdjVf
+         h63A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761761448; x=1762366248;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1761762250; x=1762367050;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=agJFytMuXaOzzx9eJ7GjTw67SZ3daSqUTCtci+2uLtM=;
-        b=FgLiozGfJt0Uou4AvOWlcdsdgoSncSDZP9Iq1JstWZM8Fp+ovOtrvqXc2FQgHcpu6I
-         aeZS5aBk/26j3spWilP+Zho2nbb7VWq5a2+GvcNYa3VUZ99Kb6SYDnvwY5ZL9CxwIsFX
-         mT3pLceZc2x+PfqZIJjHS4KqBE4ElK1EO4u5WvDqCFF9Pg8FM/qQPGtWQDkd4fmsEbhQ
-         SjW/pMRXbNRvvDy9KqZzdklqBFN7BqtFKciWw4xB5mHJlFAfzrMB/RGkoSB9XMZeOsEH
-         1Dmhn/q6N0H69+s9et5+MU6JsxSWa4p4O1puEeEJy6Wej1tTNKc4A+PlTbOQv3p90gCV
-         SAnw==
-X-Forwarded-Encrypted: i=1; AJvYcCVxBafkEAL0piPaJKLE4oCwcPm5T9QBwHmUhexIClCbUTvfPMAztzXFG3NmeHSKHjUPGMsJmMyJPzWA@vger.kernel.org
-X-Gm-Message-State: AOJu0YwA5vdszOpTdeGGMF7lMcGdw1kEROdWoFTxVcTBXlU0w4tWkeJo
-	TMilJyba0odc/15W3pa/pEj8ToraD0ZQ82mh1qYJfJKnCU27zMtY/xg6
-X-Gm-Gg: ASbGncsEmxMF1SuJv4pRu49/FQ/zvMqL2tKLwvol6dW/VqFdugYSuyApHTi0V3aS/bG
-	IMzYHpmWs2hziWB3Pjk9aMtf6hOl31vQvXOjojXsE88suy26fINMdT2sWm/FkYdHHaCksC1JZFs
-	Gc/g3Uk8Q8AEW96kAlDCICe+vLfW/jajJFvG1mrPtpG0ME0fXBsm4rmQ0ITwFCFcBWgn178CxFR
-	tSB/yPpsDI48ZFeDW/EcOx9wt0JzM1YXk0OfqTe6uhjgxo4bKJOHsvRcvUVjHdlKtkgKnokEore
-	UbvTAFsqC4HDx5gkYTurW01U5PnpnkAMec1icg4c+QUgItftJIC3oPWlOuVyx1wCyLBjhiXMNrC
-	nQC3I/vOLp+IzZo9BPKr4ThbCLb6YotLGFo+2On+ussNtgddzJXCVFgdZlIcMjGvmQKODrPl68h
-	mOfq40IU6Pgw==
-X-Google-Smtp-Source: AGHT+IHmC5Yrl54xcDnexWsIAzQgtJ1USAgaMzHIOfEboyM5+j4bp63GVlKTN5o/1wavfr3co1WYBw==
-X-Received: by 2002:a05:6a20:3ca5:b0:33e:6885:2bb6 with SMTP id adf61e73a8af0-3478580e749mr390734637.23.1761761447662;
-        Wed, 29 Oct 2025 11:10:47 -0700 (PDT)
-Received: from localhost ([2804:30c:1653:6900:3b53:af9d:48d6:f107])
-        by smtp.gmail.com with UTF8SMTPSA id 41be03b00d2f7-b7128884e0asm14495232a12.16.2025.10.29.11.10.46
+        bh=bzK5qNzDD1OL6sh9VhoK7dF0ie9h0/HgqvIRoxOou0g=;
+        b=srdmYtx+tpq6CJ+/NAC8CYQVOuyapzSdfH1+DewjgX06ei+kaDCQsxQZTMwbGcL4+S
+         uWjqaqegJZhy/mAxtfttDBIetADjzdWg6n6JGp7kfSjmU4eGo+4ux2VKZm+Qwn23cxII
+         5wnutW1gq2gnQDqxM0t97MYwS9hRLxmWrXddsrOfFBaMfOX2Kc2MWorgkjg5brgw4J1c
+         QOvunV4YwJxGZcZ6tq/D2Aq3H+v6wAcmY2NL2d6h26tRuAmwJESnku7xA0yNWM/mnlB8
+         Mu8F1MwRgn/ZqzAv7l0dz9W17LXFlugpdhPogn/KucACLtAcXMlYPqQYeUqAw5a4u1Ez
+         UlNw==
+X-Forwarded-Encrypted: i=1; AJvYcCUuYshGqJ4BTTDVa6QafwOzfwcYVg1N6Kam7NTHfyL5NJGGazNPCRVAmeoEpd7aux6d3fnssgj7CI/o@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYpJmxHD5ItSQk3OpKUc/saHx4Zn6ChOa3qAMyj5YzZ3OD/OXJ
+	Vin1x1xYGYyIMWCOFg9aDACm5ok7Olf22UG4yJhuPZhdr4TMyi6x6Zv5
+X-Gm-Gg: ASbGncujNhCo9+wnuuDqNyIiKt5tZZ3l1NHC0fLslw6PUeKE4PUHq9gr6/IRWk/ect+
+	dtN8QAJQRZvPa0LjdYX9Geh1CsmgvQOghVYE5zW/Fd4avPv7ExRZlMsfBPb44HpJz4L27mAMARG
+	kcsw8oAoFiIhpoRzxXq2zmaaqX7BSgixo21izkn5HmRudgzPP5EmXOTg2/IqUnNbEVnUEdNw58U
+	Kpg4hUF6zPiA1n6F4KfKEBWjaz4wiuDwdGC7xkEcFt5WP7rz5kCkv8/SDsCLY6rlbFkmoqATgsu
+	/eS6QAdY461mKN6Loao8/h4mu/C/DKmKY958lCiWs9lmpM0A36/ol2uSyJC8MmHKA3WOGNYP4tB
+	2v+ThoKo+waxcQIUFm46tsKkmtm9V+g1C2QbLzEqfb8SbxbMhrIp02cdgSmVwbkl1q/BGeP9hwN
+	xojFsZmtAqiJif4VSBo07oICsQ5MIz
+X-Google-Smtp-Source: AGHT+IHiqbGMQAd5HKcmjlS9yIwTWKcuIT+kbHRohu/cwGjeIbdOsMSRiO92YQLIPJlRr2d/zjLp/w==
+X-Received: by 2002:a05:600c:468f:b0:46e:1cc6:25f7 with SMTP id 5b1f17b1804b1-4771e177ca5mr33863075e9.9.1761762250323;
+        Wed, 29 Oct 2025 11:24:10 -0700 (PDT)
+Received: from Ansuel-XPS. (93-34-90-37.ip49.fastwebnet.it. [93.34.90.37])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429952ca979sm28796326f8f.14.2025.10.29.11.24.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Oct 2025 11:10:46 -0700 (PDT)
-Date: Wed, 29 Oct 2025 15:11:57 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, michael.hennerich@analog.com,
-	nuno.sa@analog.com, eblanc@baylibre.com, dlechner@baylibre.com,
-	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, corbet@lwn.net
-Subject: Re: [PATCH v6 8/8] iio: adc: ad4030: Support common-mode channels
- with SPI offloading
-Message-ID: <aQJY7XizVWbE68ll@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1760984107.git.marcelo.schmitt@analog.com>
- <3fadbf22973098c4be9e5f0edd8c22b8b9b18ca6.1760984107.git.marcelo.schmitt@analog.com>
- <20251027140423.61d96e88@jic23-huawei>
+        Wed, 29 Oct 2025 11:24:09 -0700 (PDT)
+Message-ID: <69025bc9.5d0a0220.1f0440.deb9@mx.google.com>
+X-Google-Original-Message-ID: <aQJbxPm8SFN8WR7f@Ansuel-XPS.>
+Date: Wed, 29 Oct 2025 19:24:04 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] dt-bindings: phy: Add documentation for Airoha
+ AN7581 USB PHY
+References: <20251029173713.7670-1-ansuelsmth@gmail.com>
+ <20251029173713.7670-3-ansuelsmth@gmail.com>
+ <20251029-mutual-scotch-7ca52e17da69@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,61 +99,226 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251027140423.61d96e88@jic23-huawei>
+In-Reply-To: <20251029-mutual-scotch-7ca52e17da69@spud>
 
-On 10/27, Jonathan Cameron wrote:
-> On Mon, 20 Oct 2025 16:15:39 -0300
-> Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
-> 
-> > AD4030 and similar devices can read common-mode voltage together with
-> > ADC sample data. When enabled, common-mode voltage data is provided in a
-> > separate IIO channel since it measures something other than the primary
-> > ADC input signal and requires separate scaling to convert to voltage
-> > units. The initial SPI offload support patch for AD4030 only provided
-> > differential channels. Now, extend the AD4030 driver to also provide
-> > common-mode IIO channels when setup with SPI offloading capability.
+On Wed, Oct 29, 2025 at 06:07:22PM +0000, Conor Dooley wrote:
+> On Wed, Oct 29, 2025 at 06:37:10PM +0100, Christian Marangi wrote:
+> > Add documentation for Airoha AN7581 USB PHY that describe the USB PHY
+> > for the USB controller.
 > > 
-> > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> > Airoha AN7581 SoC support a maximum of 2 USB port. The USB 2.0 mode is
+> > always supported. The USB 3.0 mode is optional and depends on the Serdes
+> > mode currently configured on the system for the relevant USB port.
+> > 
+> > The first USB port on the SoC can be both used for USB 3.0 operation or
+> > Ethernet (HSGMII).
+> > The second USB port on the SoC can be both used for USB 3.0 operation or
+> > for an additional PCIe line.
+> > 
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 > > ---
-> > New patch.
-> > I hope this works for ADCs with two channels. It's not clear if works as
-> > expected with current HDL and single-channel ADCs (like ADAQ4216).
 > > 
-> > The ad4630_fmc HDL project was designed for ADCs with two channels and
-> > always streams two data channels to DMA (even when the ADC has only one
-> > physical channel). Though, if the ADC has only one physical channel, the
-> > data that would come from the second ADC channel comes in as noise and
-> > would have to be discarded. Because of that, when using single-channel
-> > ADCs, the ADC driver would need to use a special DMA buffer to filter out
-> > half of the data that reaches DMA memory. With that, the ADC sample data
-> > could be delivered to user space without any noise being added to the IIO
-> > buffer. I have implemented a prototype of such specialized buffer
-> > (industrialio-buffer-dmaengine-filtered), but it is awful and only worked
-> > with CONFIG_IIO_DMA_BUF_MMAP_LEGACY (only present in ADI Linux tree). Usual
-> > differential channel data is also affected by the extra 0xFFFFFFFF data
-> > pushed to DMA. Though, for the differential channel, it's easier to see it
-> > shall work for two-channel ADCs (the sine wave appears "filled" in
-> > iio-oscilloscope).
+> > For DT maintainers, in v2 there were some comments, hope the new
+> > description and names of the property better clarify the usage and
+> > why they are needed.
 > > 
-> > So, I sign this, but don't guarantee it to work.
+> >  .../bindings/phy/airoha,an7581-usb-phy.yaml   | 76 +++++++++++++++++++
+> >  MAINTAINERS                                   |  7 ++
+> >  .../dt-bindings/phy/airoha,an7581-usb-phy.h   | 11 +++
+> >  3 files changed, 94 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/phy/airoha,an7581-usb-phy.yaml
+> >  create mode 100644 include/dt-bindings/phy/airoha,an7581-usb-phy.h
+> > 
+> > diff --git a/Documentation/devicetree/bindings/phy/airoha,an7581-usb-phy.yaml b/Documentation/devicetree/bindings/phy/airoha,an7581-usb-phy.yaml
+> > new file mode 100644
+> > index 000000000000..5106685c124d
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/phy/airoha,an7581-usb-phy.yaml
+> > @@ -0,0 +1,76 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/phy/airoha,an7581-usb-phy.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Airoha AN7581 SoC USB PHY
+> > +
+> > +maintainers:
+> > +  - Christian Marangi <ansuelsmth@gmail.com>
+> > +
+> > +description: >
+> > +  The Airoha AN7581 SoC USB PHY describes the USB PHY for the USB controller.
+> > +
+> > +  Airoha AN7581 SoC support a maximum of 2 USB port. The USB 2.0 mode is
+> > +  always supported. The USB 3.0 mode is optional and depends on the Serdes
+> > +  mode currently configured on the system for the relevant USB port.
+> > +
+> > +  The first USB port on the SoC can be both used for USB 3.0 operation or
+> > +  Ethernet (HSGMII).
+> > +  The second USB port on the SoC can be both used for USB 3.0 operation or
+> > +  for an additional PCIe line.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: airoha,an7581-usb-phy
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  airoha,usb2-monitor-clk-sel:
+> > +    description: Describe what oscillator across the available 4
+> > +      should be selected for USB 2.0 Slew Rate calibration.
 > 
-> So what's the path to resolve this?  Waiting on HDL changes or not support
-> those devices until we have a clean solution?
+> Why's this being set in dt? What actually determines what oscillator
+> should be used? Do they have different performance characteristics?
+> How is someone meant to know which one to use?
+>
 
-Waiting for HDL to get updated I'd say.
+Hi Conor,
 
+thanks a lot for the review.
+
+The airoha,usb2-monitor-clk-sel is set in DT because it describe the HW
+and to what oscillator the PHY should be connected to.
+
+There are 2 PHY at different register space. One PHY needs to calibrate
+for oscillator 1 and the other PHY for oscillator 2 or the PHY doesn't
+work for USB 2.0 (the calibration fails)
+
+The previous implementation used an index property but that was rejected
+as it wasn't descriptive of the HW.
+
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [0, 1, 2, 3]
+> > +
+> > +  airoha,usb3-serdes:
+> > +    description: Describe what Serdes line is attached to the USB 3.0 port.
+> > +      Can be either Serdes USB1 or Serdes USB2.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [2, 3]
 > 
-> Also, just to check, is this only an issue with the additional stuff this
-> patch adds or do we have a problem with SPI offload in general (+ this
-> IP) and those single channel devices?
+> This is confusing. Why 2 and 3 for usb1 and usb2? What even is the
+> mapping? Is it 2:1/3:2 or 2:2/3:1?
+> 
 
-IMO, one solution would be to update the HDL project for AD4630 and similar ADCs
-to not send data from channel 2 to DMA memory when single-channel ADCs are
-connected. Another possibility would be to intercept and filter out the extra
-data before pushing it to user space. My first attempt of doing that didn't
-work out with upstream kernel but I may revisit that.
+AFAIK there isn't a way to directly reference dt-bindings.
 
-We could maybe split the driver into two. One for supporting two-channel ADCs
-and one for single-channel. Though, we would fall into the same issue when
-handling offloaded data for the single-channel driver.
+2 and 3 are from include/dt-bindings/soc/airoha,scu-ssr.h
+
+#define AIROHA_SCU_SERDES_USB1		2
+#define AIROHA_SCU_SERDES_USB2		3
+
+> > +
+> > +  airoha,scu:
+> > +    description: Phandle to the SCU syscon to configure the Serdes line.
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +
+> > +  '#phy-cells':
+> > +    description: Describe if the referred PHY is the USB 2.0 PHY or USB 3.0 PHY.
+> > +    const: 1
+> 
+> Which is which here?
+>
+
+Mhh I think I didn't understand here. #phy-cells describe the
+parameters to be used for phys property in a different node.
+
+The current usage would be
+
+<&usb0_phy PHY_TYPE_USB2> for USB 2.0
+or <&usb0_phy PHY_TYPE_USB3> for USB 3.0
+
+This node expose 2 PHY that can be referenced by the single parameters.
+
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - airoha,usb2-monitor-clk-sel
+> > +  - airoha,usb3-serdes
+> > +  - airoha,scu
+> > +  - '#phy-cells'
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/phy/airoha,an7581-usb-phy.h>
+> > +    #include <dt-bindings/soc/airoha,scu-ssr.h>
+> > +
+> > +    phy@1fac0000 {
+> > +        compatible = "airoha,an7581-usb-phy";
+> > +        reg = <0x1fac0000 0x10000>;
+> > +
+> > +        airoha,usb2-monitor-clk-sel = <AIROHA_USB2_MONCLK_SEL1>;
+> > +        airoha,usb3-serdes = <AIROHA_SCU_SERDES_USB1>;
+> > +        airoha,scu = <&scu>;
+> > +
+> > +        #phy-cells = <1>;
+> > +    };
+> > +
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 8085fdca7bcd..af23c590bbc6 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -763,6 +763,13 @@ S:	Maintained
+> >  F:	Documentation/devicetree/bindings/spi/airoha,en7581-snand.yaml
+> >  F:	drivers/spi/spi-airoha-snfi.c
+> >  
+> > +AIROHA USB PHY DRIVER
+> > +M:	Christian Marangi <ansuelsmth@gmail.com>
+> > +L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+> > +S:	Maintained
+> > +F:	Documentation/devicetree/bindings/phy/airoha,an7581-usb-phy.yaml
+> > +F:	include/dt-bindings/phy/airoha,an7581-usb-phy.h
+> > +
+> >  AIRSPY MEDIA DRIVER
+> >  L:	linux-media@vger.kernel.org
+> >  S:	Orphan
+> > diff --git a/include/dt-bindings/phy/airoha,an7581-usb-phy.h b/include/dt-bindings/phy/airoha,an7581-usb-phy.h
+> > new file mode 100644
+> > index 000000000000..efbb0ae75e3a
+> > --- /dev/null
+> > +++ b/include/dt-bindings/phy/airoha,an7581-usb-phy.h
+> > @@ -0,0 +1,11 @@
+> > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+> > +
+> > +#ifndef _DT_BINDINGS_AIROHA_AN7581_USB_PHY_H_
+> > +#define _DT_BINDINGS_AIROHA_AN7581_USB_PHY_H_
+> > +
+> > +#define AIROHA_USB2_MONCLK_SEL0                 0
+> > +#define AIROHA_USB2_MONCLK_SEL1                 1
+> > +#define AIROHA_USB2_MONCLK_SEL2                 2
+> > +#define AIROHA_USB2_MONCLK_SEL3                 3
+> 
+> These definitions seem completely pointless. The property is called
+> "airoha,usb2-monitor-clk-sel" so any use will look like
+> "airoha,usb2-monitor-clk-sel = <3>;"
+> That's more informative than the define is, since it doesn't even
+> truncate "monitor". I'd just delete this header entirely and use the
+> number. If you want the define in the driver to avoid magic numbers,
+> just define it in the driver.
+> 
+
+Well yes the idea here is to not have to use magic numbers in DT and try
+to use the naming in the SoC documentation since they are called
+monclk_sel0, monclk_sel1 ...
+
+Will drop.
+
+> pw-bot: changes-requested
+> 
+> Cheers,
+> Conor.
+> 
+> > +
+> > +#endif
+> > -- 
+> > 2.51.0
+> > 
+
+
+
+-- 
+	Ansuel
 
