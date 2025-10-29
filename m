@@ -1,214 +1,305 @@
-Return-Path: <devicetree+bounces-232689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A227C1A2AC
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:20:29 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01A94C1A465
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:37:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 10BE24E5968
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 12:20:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6C505566FE6
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 12:30:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0840A33B95C;
-	Wed, 29 Oct 2025 12:20:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADC70358D37;
+	Wed, 29 Oct 2025 12:22:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WcrqAkz4";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QvYeMVF3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B+WtS5yz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 766C2338F20
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 12:20:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C89A83587CE
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 12:22:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761740421; cv=none; b=oE+9bROf2e4whPQ9xjROYyCepr/p4XfjcUPIHg/16hNqkDBUKJGiNMRr+okw+Ethsghdyf95OFtCATARLgyBVyan30ptZOEWzFehLeX1PwuLQd1tyjMp+Ynzmhru3PgD2BWxmUO/qdF9ThluAxsVK6DkVQFhvSVdozmRIfw0izY=
+	t=1761740558; cv=none; b=DolZd8t1wAi9NvPgL3OuLb5rtQug8WO0GMeXqkGWZXRzd4hZCOG0j6Ih5G/ZXqX5phma4dv57WhX+9V0uSWuEUb3UeDoyJMOveRCoMdBPQVrH7oiDG1R/dTjfkVeZhxTe+ScTj8gI389Vnqag0/M9EFjxut47+3VLW4cH1gw1Zs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761740421; c=relaxed/simple;
-	bh=XyQkEd+y0CYJ9pfm1zE2yw6oEotr8KWYSmuNSIz3J7Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=frHtDUXMQ0RxlxPXwIpjo/fBKIZ1bCcMpcalZ81VcThC5ChSEyDDoy3uo8rTNpJd3GZgJkZ5R+nRi7N1gzILayZIo1N110EDXyfCG7PRpxvK3jA9p/PStHEC6kBNNxEAuYVQF90qNxa8GHERKsZdwvk5fGqbyW94iubp2GqUPwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WcrqAkz4; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QvYeMVF3; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59TC42SG3757545
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 12:20:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=LH8DR8//cQR8KFgIwkrvcAIa
-	YSLF/qbFcu8GX5YeQb0=; b=WcrqAkz4m03q0+tavsbkKVCsMXWn/NxbzL84+XjN
-	2XpR7kpBxA3vZ8JNgpfltVWDovqTqkatzpEr2K/gRtPFTko1y70bqf1c+3tYkdkz
-	rugMf7EfqXu8HLphzW5uszJlHyrKH8nAxerW6MuX14+ykXqE4Fs/NZLSpPrbsFmj
-	qITCnstZvNukN7Luyojrnxm9oaSgLDldM74YvVWjoJcIdV4p73J7WRpYIzdarl9v
-	LpC3Rus4umf7S8aJ4GFNt794vtn+1Qx1Txdsca62XoULLEoqZLMHRl765OY5n+ba
-	ZZU5o+E4gtnyZHCJ8aDVrYOTeqb16ZgcauouUgO1rMO2TQ==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a349y2fkq-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 12:20:19 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4e8984d8833so324867351cf.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 05:20:19 -0700 (PDT)
+	s=arc-20240116; t=1761740558; c=relaxed/simple;
+	bh=2uVsXjqYAFXDMXZsaLDabWe8n3+FWhGwBNQ1WHtgWew=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LtN5zTl9EEv7tepMvJWNJFsv/Y+w1VyK43ON7R9zR2QdxBEA1f9D7gEfDsTiZ61P0vogVs+LI+Y4MYmYe6lTgFv7uWY6xBFORarY9L5ZkUZI/lQxbGYsYhJmLEN3elTmgB/9coAUJiCS+XJG/BnjpFYyJ2eo2qa8NN495d3gTmA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B+WtS5yz; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-378cfd75fb0so76351791fa.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 05:22:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761740418; x=1762345218; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LH8DR8//cQR8KFgIwkrvcAIaYSLF/qbFcu8GX5YeQb0=;
-        b=QvYeMVF3xv9LQy2UVtZNH8Hy9UWUtUp7ucq9Fi3/ojq1oA+CiFGQ0vtQppoJt+qiJp
-         0QqtABoJ1eVW4FSRFIVr/LSJidcxE1twsu7XI+FQpoNdFqbRW53IX6e8KQv5Ni8q8OXs
-         9glZYIDCmjujJAAV7X4HtL8fI1O/8bWaDpAVpXkavQRhMpTKCkXLK9zeIgwZmE25GR0D
-         O16AMv78eGZ/qsrwXJHbtV54G6eFbnQzGCDETp49wqR6gLzsBTJhOUHOPdbP9M90edx/
-         wPHDWuaEvwf/Hm4+tf/wFDt1NBhzZomsbcnAcgk8Jhu5oRg2Z+/jyRJ7Mb3xm6Wv7v/t
-         rCEA==
+        d=gmail.com; s=20230601; t=1761740553; x=1762345353; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zZgl3eI7vg5tzy1n/3yyz3iAkoVI/IBOnqdMyOqmVk0=;
+        b=B+WtS5yzyIwpvOorO9CU/ozNNAtHkPHMMAjXFP3xqgEmQKRpMc19hxES+whEnMzcAP
+         Ua+K9G9dmrezmc9/NmRa4iUEjIzTGkY1sJNOcurg27zKfDjsSk7k88GPK2LpN7RGussR
+         n+9Antt2eU4T73u4NMvzOvv/58cz8kQd++01nlo8U7vF2ynyxq+t2vixohCpa7fsUsUE
+         D7SujO1reH5jhOVg+/rZ7B7kvE2acaQV9nMuMgCcVuLUHdsm5psGYhPJw8Q/kyO8Vcnf
+         AhU+tfTqYZReepGb7uXKa+w8I9df0RLPciZwLiEN+nq1O9XO/trAbUFiWpQdpFoyvC53
+         Vq4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761740418; x=1762345218;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LH8DR8//cQR8KFgIwkrvcAIaYSLF/qbFcu8GX5YeQb0=;
-        b=HgFv2e8k2TxTQhwDonDyfsz6B5pcsswTP4Ad/4RX6/ij4E9YJTUcdwbhfX8ojrBH4E
-         lJ8y69HYsRDRjVT6O+Sp33U7BHeYvX7YofOL5InA93xodWivd6mbcorQDv6Yx3Aoq1KG
-         2umer1MnvdvCXYbwFdiZ9tke3fTxWIyp7es2zV1GYI2hPyQS2K7nC0f6XfhOJ4uAg2+g
-         81Q8sI4feY6B1IGukLl2zCCJ92se7fFHOC8fVSmDoNuzdRho1LLsXtKz+zfm+AI8T6cg
-         t2tVCgAPxK1shIWkV6MdOJ8ImeBnMCv+JHEYV8tEh/mrgPLQ8/DArxWsy+Ox0ph4b9/H
-         ZWgg==
-X-Forwarded-Encrypted: i=1; AJvYcCUupFdCBOUspAyYuHhRo91m3cedWBJa1HjrRa4l+gp7E3Yo8eHb9/Qk8TZSL6sxj9Ij/fxmMVexIZeN@vger.kernel.org
-X-Gm-Message-State: AOJu0YxoY8Zst4XniplEOnFWUhkHRukeM5lD7uzwCPW3sw2Tt16zAgdf
-	czcH+9YGL6YsgR7hNwZRcC4bR/g0Yxa/Lrs/r9qtnox8Tp3+L2Kn6cwMafV/hE98+snZ0/tyhZ9
-	03b9BRe1fVs62frOyQ1Gl10v4Xoq+LS+jbphkK70XoF9ldFbGVGqWao51c8m49UGA
-X-Gm-Gg: ASbGncurSF2/KVc0dB7WtVV4ncSEOdZbW5CdmttO5q2RvIBi4Odeg5JIEyvMaXoOIMv
-	fHNmsrr0ifK80hqbb493k5A1QBcdaPes3rB7reCL21HfXIzTovhf90ww0TVz5gqz2JlZDu2TGKh
-	poJvpF15TCCix2PoTIybLjyqsakPLZK37lL7bK4pHx8QX1MJB7cYSoBexH5i1jrg24/0wcgwNIN
-	5pJYAxdptXZu6lrP77upw98oaArBopYItH6xt7Ib9BBL8B5TX9j13w93R8bGgxY/dPEhWPZ/vWl
-	ugBCrIfpk0uph937SzlX485A6rOqLF4735Id+vQOgD0hixfTx7xVnOpdjZnHWINciAxJcL6hnW/
-	Gkd9fapTWsWhxBWsdSrDs9ocwELlAwerth9yjWE+4Fdbh6d1LLmG4K2CvLqnwRjtQe340Nknw9a
-	aedfwcj6THuObc
-X-Received: by 2002:ac8:7e93:0:b0:4b6:24ba:dc6a with SMTP id d75a77b69052e-4ed15bcc6ebmr35801421cf.38.1761740417685;
-        Wed, 29 Oct 2025 05:20:17 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHMT4/swPPupz/E/qfuue3HwlcRqEuyeBtC/5cT+r75s92xpn7+XVN3dqNaiqtM4Q56IC82HA==
-X-Received: by 2002:ac8:7e93:0:b0:4b6:24ba:dc6a with SMTP id d75a77b69052e-4ed15bcc6ebmr35800721cf.38.1761740417042;
-        Wed, 29 Oct 2025 05:20:17 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59301f41cfesm3845182e87.11.2025.10.29.05.20.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Oct 2025 05:20:15 -0700 (PDT)
-Date: Wed, 29 Oct 2025 14:20:13 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: yuanjiey <yuanjie.yang@oss.qualcomm.com>
-Cc: robin.clark@oss.qualcomm.com, lumag@kernel.org, abhinav.kumar@linux.dev,
-        sean@poorly.run, marijn.suijten@somainline.org, airlied@gmail.com,
-        simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, quic_mkrishn@quicinc.com, jonathan@marek.ca,
-        quic_khsieh@quicinc.com, neil.armstrong@linaro.org,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
-        aiqun.yu@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com
-Subject: Re: [PATCH 07/12] drm/panel: Set sufficient voltage for panel nt37801
-Message-ID: <5hftxsuqz745mxxk2hjpwfxwrm73p2l3dxn2mb2uqb2c44fd2w@l5xvadj7gvvg>
-References: <20251023075401.1148-1-yuanjie.yang@oss.qualcomm.com>
- <20251023080609.1212-1-yuanjie.yang@oss.qualcomm.com>
- <20251023080609.1212-2-yuanjie.yang@oss.qualcomm.com>
- <zxofh6bwee3vjjlntlfqy7yg2iu2mipjvl7s5bcm6gbh233cjq@nuicjojawd2d>
- <aPsWEhM7i+gDjXE0@yuanjiey.ap.qualcomm.com>
- <4bnvh2ydtrmejknzpsxoalxoyjpq5g5cjbrico5ezbek24r52s@u5zy6ekh6lps>
- <aQF0zzUpLeUu4lrC@yuanjiey.ap.qualcomm.com>
+        d=1e100.net; s=20230601; t=1761740553; x=1762345353;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zZgl3eI7vg5tzy1n/3yyz3iAkoVI/IBOnqdMyOqmVk0=;
+        b=u5hYr04E4v6wdMwNj5VkBK8p7X0Q/UVXqVLohQlOQLVQgB7Z/6UrR1gfZ/rW9Pz0hN
+         pGl/3IBX/QoRo5Z9Ys8OBhigDsC5BtDiu4xnMe3f6x6Az7+HPchBRJB2elJ1OoKlQiTT
+         lOOoLNXW5WN+U6rhulLuU3Ey2DM/Ys5zOTAqh664dN2XPW9FozaSwtBmtjTJQ78aon8z
+         8GdIXzMvL6paq5UKqd26aN5nMH9YPEJovzXrmIUxiRf5ZZoImh9dnOQq9HaUKP0OYCr9
+         fpBs1LQ9cZOke7ybUft6FzgaqJmTrhL4PnebW5ZnQEMRlllMQ/e71N5znvhJeOGNGge7
+         BaiA==
+X-Forwarded-Encrypted: i=1; AJvYcCVf5fp/iyOR32Ana6LKtxfbnarv/C+ckcs0Bc64suUQ5Gx9G7KKLQj+rR3edRY5Ic+sGqAAhyLeouVD@vger.kernel.org
+X-Gm-Message-State: AOJu0YykLjEghMuAdC4bvZcOO4k0grQjL4wAMxgY8xjwbSHxfxEnCXc+
+	dFxSKWTsRq7Pj06wy01BzIXQ8E6V/AXGhC/Q3xgKkk/WS9qg6pclAQVs
+X-Gm-Gg: ASbGncvJ0sdqqPHj+WHIFbCQc49qna3Pco6QNZCD+u4fIU4sqO+IQ0htEicNkTL7jDM
+	MC4DKF/XvzgRQUYowzXa6i6kaC++acB1D/aPx7L0VUEfxBLhtJmpJk5NLgAdhuC97M1LI8vjnLY
+	A7qiWwh7Nu7rMIQNjXTNFgmAmtP+Nm4HJrdwWl57+KCrePAkUwOulDJ1E+U3SReHler1tvBdt9W
+	QS6P6D8sz1ntTH11EJoIO9/LFVItY6os1QQLaI2n9BG10OV6VzXBGWcGB4iZuigxfv6PrHjLKGx
+	W1UADmjYDe8cKJXiVv3bCGjxecPUTnOBJl8GQU1zjWshfZhOLgzu1PvGLsmOiwQL4AbKoNfnuwU
+	0lmo/zMM4LInAixFVzW/Im33Z7PadhFibYap1neuIhEJHiVC4wc2dKGifOG0yhneD3NwWW+3KBr
+	tMR5Koh8O7mQ==
+X-Google-Smtp-Source: AGHT+IE2iQbJln+N7SD4pplQmz5pd5RsqX+x6DtY4QwXN3fjqhUrh1ZJZX1iVGCG3vRTmo+/4QF4Bg==
+X-Received: by 2002:a05:651c:1542:b0:36d:114b:52e2 with SMTP id 38308e7fff4ca-37a024017b7mr7425661fa.34.1761740552495;
+        Wed, 29 Oct 2025 05:22:32 -0700 (PDT)
+Received: from [10.38.18.54] ([213.255.186.37])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-378ee09229asm33470711fa.9.2025.10.29.05.22.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Oct 2025 05:22:31 -0700 (PDT)
+Message-ID: <c28bbb75-36b0-4776-b81c-c5dc2dd5ae28@gmail.com>
+Date: Wed, 29 Oct 2025 14:22:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aQF0zzUpLeUu4lrC@yuanjiey.ap.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=D8RK6/Rj c=1 sm=1 tr=0 ts=69020683 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=e5mUnYsNAAAA:8 a=EUspDBNiAAAA:8 a=oqA_m_Aqcoo5Vt1K8d8A:9 a=CjuIK1q_8ugA:10
- a=kacYvNCVWA4VmyqE58fU:22 a=Vxmtnl_E_bksehYqCbjh:22
-X-Proofpoint-GUID: 1ntBFF5Eq0kO0xPfd0uE6u3tLWRGfCFN
-X-Proofpoint-ORIG-GUID: 1ntBFF5Eq0kO0xPfd0uE6u3tLWRGfCFN
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI5MDA5MyBTYWx0ZWRfX28JLC+vkcvaY
- yLfWopSH3aG/T4eNHQ8/EZIiOWGK0W5Di/f8vQP8UiGwau1DagjZXj1+DvygUBUDs1+FWKABExN
- z8ajLuj5/CJhjXnESiK5dN/eb3AzVL6EWiE6BbvVTOrTHBqigK3oICwi9/7IPQ8opxJZyokvp74
- 8/4sqnuQ7D3q3sAGXnMEWhNXgp3VexPBecQzU/JChsL17HuXnFoosF0wMOcHWrTRt7y8V0C6MVo
- h39/Xv9ajNbqYqJ/rmPPiEqVlMKrCatUVuOrJ0o6uvcuCo3fAI8Rl7SHrTE+MaLgHUjeEe2Lgkx
- jDbC7OY25ERzo/fx9Kjh8a5C8gKgn6Zgx8kF3psZJnnqw9Kcr5FJYSksxtzsEeBRmTkm253Pfyb
- pea2ZWDuHi8gueAUqBgODAatfWxcOg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-10-29_05,2025-10-22_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 adultscore=0 impostorscore=0 bulkscore=0
- clxscore=1015 malwarescore=0 lowpriorityscore=0 suspectscore=0
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2510290093
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 04/15] dt-bindings: mfd: ROHM BD72720
+To: Rob Herring <robh@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Andreas Kemnade <andreas@kemnade.info>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-rtc@vger.kernel.org
+References: <cover.1761564043.git.mazziesaccount@gmail.com>
+ <a5957c4f83724d4f32527fb892fc340af4eeddde.1761564043.git.mazziesaccount@gmail.com>
+ <20251027211351.GC1565353-robh@kernel.org>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20251027211351.GC1565353-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Oct 29, 2025 at 09:58:39AM +0800, yuanjiey wrote:
-> On Mon, Oct 27, 2025 at 02:22:04PM +0200, Dmitry Baryshkov wrote:
-> > On Fri, Oct 24, 2025 at 02:00:50PM +0800, yuanjiey wrote:
-> > > On Thu, Oct 23, 2025 at 03:14:38PM +0300, Dmitry Baryshkov wrote:
-> > > > On Thu, Oct 23, 2025 at 04:06:04PM +0800, yuanjie yang wrote:
-> > > > > From: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
-> > > > > 
-> > > > > The NT37801 Sepc V1.0 chapter "5.7.1 Power On Sequence" states
-> > > > > VDDI=1.65V~1.95V, so set sufficient voltage for panel nt37801.
-> > > > > 
-> > > > > Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-> > > > > Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/panel/panel-novatek-nt37801.c | 5 +++++
-> > > > >  1 file changed, 5 insertions(+)
-> > > > > 
-> > > > > diff --git a/drivers/gpu/drm/panel/panel-novatek-nt37801.c b/drivers/gpu/drm/panel/panel-novatek-nt37801.c
-> > > > > index d6a37d7e0cc6..7eda16e0c1f9 100644
-> > > > > --- a/drivers/gpu/drm/panel/panel-novatek-nt37801.c
-> > > > > +++ b/drivers/gpu/drm/panel/panel-novatek-nt37801.c
-> > > > > @@ -267,6 +267,11 @@ static int novatek_nt37801_probe(struct mipi_dsi_device *dsi)
-> > > > >  	if (ret < 0)
-> > > > >  		return ret;
-> > > > >  
-> > > > > +	ret = regulator_set_voltage(ctx->supplies[0].consumer,
-> > > > > +				    1650000, 1950000);
-> > > > 
-> > > > This should be done in the DT. Limit the voltage per the user.
-> > > Two reason:
-> > > 1.
-> > > I see https://patchwork.freedesktop.org/patch/354612/
-> > > 
-> > > panel panel-novatek-nt35510.c also use regulator_set_voltage set right voltage,
-> > > so I do the same work.
-> > 
-> > Please look for the majority rather than the exceptions. Out of all
-> > panel drivers only two set the voltage directly.
-> > 
-> > > 
-> > > 2.     Kaanapali vddio regulator:
-> > > 
-> > > 		vreg_l12b_1p8: ldo12 {
-> > > 			regulator-name = "vreg_l12b_1p8";
-> > > 			regulator-min-microvolt = <1200000>;
-> > > 			regulator-max-microvolt = <1800000>;
-> > > 
-> > > 	Voltage is from 1.2~.1.8 V , So I can not set it 1.65~1.95 V from DT(1.95V is beyond the allowed range).
-> > > 	So I use regulator_set_voltage to set voltage, and regulator_set_voltage will choose the appropriate voltage.
-> > 
-> > DT has to list the voltage values that work for the devices on that
-> > particular platform. So, ldo12 should be listing 1.64 - 1.8 V.
-> get it. I check downstream DT,
->   dosnstream DT:
->    regulator-min-microvolt = <1800000>;
->    regulator-max-microvolt = <1800000>;
+On 27/10/2025 23:13, Rob Herring wrote:
+> On Mon, Oct 27, 2025 at 01:45:46PM +0200, Matti Vaittinen wrote:
+>> The ROHM BD72720 is a power management IC integrating regulators, GPIOs,
+>> charger, LEDs, RTC and a clock gate.
+>>
+>> Add dt-binding doc for ROHM BD72720.
+>>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>>
+>> ---
+>> Revision history:
+>>   RFCv1 => v2:
+>>   - Typofixes
+>> ---
+>>   .../bindings/mfd/rohm,bd72720-pmic.yaml       | 269 ++++++++++++++++++
+>>   1 file changed, 269 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd72720-pmic.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd72720-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd72720-pmic.yaml
+>> new file mode 100644
+>> index 000000000000..b0d4bc01d199
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mfd/rohm,bd72720-pmic.yaml
+>> @@ -0,0 +1,269 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mfd/rohm,bd72720-pmic.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: ROHM BD72720 Power Management Integrated Circuit
+>> +
+>> +maintainers:
+>> +  - Matti Vaittinen <mazziesaccount@gmail.com>
+>> +
+>> +description: |
+>> +  BD72720 is a single-chip power management IC for battery-powered portable
+>> +  devices. The BD72720 integrates 10 bucks and 11 LDOs, and a 3000 mA
+>> +  switching charger. The IC also includes a Coulomb counter, a real-time
+>> +  clock (RTC), GPIOs and a 32.768 kHz clock gate.
+>> +
+>> +# In addition to the properties found from the charger node, the ROHM BD72720
+>> +# uses properties from a static battery node. Please see the:
+>> +# Documentation/devicetree/bindings/power/supply/rohm,vdr-battery.yaml
 > 
->   I test 1.8V works, So I will add 1.8V in next patch, do you think it is ok?
+> Why is all of this a comment?
 
-What does panel's datasheet say?
+Hi Rob,
 
--- 
-With best wishes
-Dmitry
+Thanks for (all the) reviews! Much appreciated.
+
+I added these as comments because they aren't meant to be in the BD72720 
+charger-node (which is described by this driver), but in a static 
+battery node. The battery node does not belong in the charger node.
+
+My idea was still to document (for integrator) the battery properties 
+this charger uses from a static battery node when present. Only thing we 
+include directly to this node is the:
+monitored-battery = <&battery>; - reference.
+
+> 
+>> +#
+>> +# Following properties are used
+>> +# when present:
+>> +#
+>> +# charge-full-design-microamp-hours: Battry capacity in mAh
+>> +# voltage-max-design-microvolt:      Maximum voltage
+>> +# voltage-min-design-microvolt:      Minimum voltage system is still operating.
+>> +# degrade-cycle-microamp-hours:      Capacity lost due to aging at each full
+>> +#                                    charge cycle.
+>> +# ocv-capacity-celsius:              Array of OCV table temperatures. 1/table.
+>> +# ocv-capacity-table-<N>:            Table of OCV voltage/SOC pairs. Corresponds
+>> +#                                    N.th temperature in ocv-capacity-celsius
+>> +#
+>> +# ROHM specific properties:
+>> +# rohm,voltage-vdr-thresh-microvolt: Threshold for starting the VDR correction
+>> +# rohm,volt-drop-soc:                Table of capacity values matching the
+>> +#                                    values in VDR tables.
+>> +# rohm,volt-drop-high-temp-microvolt: VDR table for high temperature
+>> +# rohm,volt-drop-normal-temp-microvolt: VDR table for normal temperature
+>> +# rohm,volt-drop-low-temp-microvolt:  VDR table for low temperature
+>> +# rohm,volt-drop-very-low-temp-microvolt: VDR table for very low temperature
+>> +#
+>> +# VDR tables are (usually) determined for a specific battery by ROHM.
+>> +# The battery node would then be referred from the charger node:
+>> +#
+>> +# monitored-battery = <&battery>;
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: rohm,bd72720
+>> +
+>> +  reg:
+>> +    description:
+>> +      I2C slave address.
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  gpio-controller: true
+>> +
+>> +  "#gpio-cells":
+>> +    const: 2
+>> +    description: |
+
+// snip
+
+>> +
+>> +  rohm,pin-dvs0:
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +    description:
+>> +      BD72720 has 4 different OTP options to determine the use of dvs0-pin.
+>> +      OTP0 - regulator RUN state control.
+>> +      OTP1 - GPI.
+>> +      OTP2 - GPO.
+>> +      OTP3 - Power sequencer output.
+>> +      This property specifies the use of the pin.
+>> +    enum:
+>> +      - dvs-input
+>> +      - gpi
+>> +      - gpo
+>> +
+>> +  rohm,pin-dvs1:
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +    description:
+>> +      see rohm,pin-dvs0
+>> +    enum:
+>> +      - dvs-input
+>> +      - gpi
+>> +      - gpo
+> 
+> These 2 could be combined into a single entry in patternProperties.
+> 
+>> +
+>> +  rohm,pin-exten0:
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +    description: BD72720 has an OTP option to use exten0-pin for different
+>> +      purposes. Set this property accordingly.
+>> +    const: gpo
+>> +
+>> +  rohm,pin-exten1:
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +    description: BD72720 has an OTP option to use exten1-pin for different
+>> +      purposes. Set this property accordingly.
+>> +    const: gpo
+> 
+> And these 2 also.
+> 
+>> +
+>> +  rohm,pin-fault_b:
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +    description: BD72720 has an OTP option to use fault_b-pin for different
+>> +      purposes. Set this property accordingly.
+>> +    const: gpo
+> 
+> Seems like different purposes would have more than 1 option.
+
+They do. I only omitted them because I don't think knowing those 
+use-cases is relevant for the software. OTOH, maybe they some day can be 
+so I will revise the other uses and make more complete list. Thanks.
+
+> 
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
+>> +  - "#clock-cells"
+>> +  - regulators
+>> +  - gpio-controller
+>> +  - "#gpio-cells"
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +    #include <dt-bindings/leds/common.h>
+>> +    i2c {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +        pmic: pmic@4b {
+>> +            compatible = "rohm,bd71828";
+>> +            reg = <0x4b>;
+> 
+> Just 1 complete example in the mfd schema and drop this example.
+
+Hmm? This is the MFD schema, right? :)
+
+Yours,
+	-- Matti
+
+
 
