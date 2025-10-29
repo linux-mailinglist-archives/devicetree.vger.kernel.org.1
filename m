@@ -1,95 +1,97 @@
-Return-Path: <devicetree+bounces-232961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232963-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 768FFC1D5A1
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 22:06:03 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A547C1D5DD
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 22:07:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5840188A96C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 21:06:27 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3CAD44E50AB
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 21:06:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A269B3195EB;
-	Wed, 29 Oct 2025 21:05:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80F5A314D00;
+	Wed, 29 Oct 2025 21:05:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Dsnfyfkg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fhvsOc/Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9D0C3161B9
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 21:05:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC28B3195FC
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 21:05:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761771942; cv=none; b=aKmAOTlKIKiQbZa3aHRV1ow5+m+FZIvQKcqYy3TgQ6lrjtUMcHzqzLvZ46txMEvQXHtEP+Mj8Pb6A9Bvt1hW8DVW7xWn2VYrGs8wrwkA6we9h+sEipZzDOlMNxl5oHHrnk/j1z/SPkYwYFzSw6FHXBGpo3/JkL8n5a/Qr8wxB5k=
+	t=1761771944; cv=none; b=JWwaaNw0B5XEwVrlaN5xBfrqn5COOrVbI+lDI/9qqvKy4IWRd0EN52WmlQe/Z53N13IeISqnBH5YM6GyEQlal3+o89g0u1HwosppL9C1m1ysokVvN/Z+HTu20p2qQ6q6HsDi5fD1hK0uenFbAjE7awUNWSBSaeTEuekJe4dlka8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761771942; c=relaxed/simple;
-	bh=uJ4ecdVVM1k105aqK4/ui370dV5EO8SGRN7iga9es04=;
+	s=arc-20240116; t=1761771944; c=relaxed/simple;
+	bh=rX966CQi+9UiDqKNCwMzzhyOwPxSPJPXDazMdIto3KU=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=jvLl46VAmdJnbKgJg2jtNhsnH4nnZZEN176VDOd6kgOyRzzznUseyiQFlJS4i7DoA2JSmuG1uCzaMh5VNXwD+e1GVuHS8H9uWUnL33Rg2H4KENdEdbZHDBFDjBMoAWUlR4I442cUxYGotUTYO661AniZC2/VvvyeYJLYwyf46jg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Dsnfyfkg; arc=none smtp.client-ip=209.85.221.48
+	 MIME-Version:Content-Type; b=ItTrRLHYM0SQUKm10ugfLPp/Nh4s2JJY3Mc/0xOzX1osKhgHko5+1ohHE6T//50Ub8Lw3MaYVIikU56ukVNpEsw0bJzKyO7yfFbBoLVBMOaQ76UpvhTv0AOE4Bp8jWQk7RPv/hF9cal0LScnOP2Vuo5hcEQPbYAcD6C7oJe6GO0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fhvsOc/Q; arc=none smtp.client-ip=209.85.221.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-421851bca51so248562f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 14:05:40 -0700 (PDT)
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-427060bc0f5so190819f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 14:05:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761771939; x=1762376739; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1761771941; x=1762376741; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XTofcu4fJBU+wnClkDXXNYpcQQPdGA2T8MS/AzVhf3s=;
-        b=Dsnfyfkg4xL6d6DSAhhfHSv4KYz4hFnbrq5NMal/+uaWk9U9ukZO7JYTGiil9UgM29
-         RCmw/yKXUZxGoI5bqawjfSqN5CRthAXPevvkpq4zmaR9Z+1sksAGmdim9g6fLXbsa3OT
-         HayslZDB4G3EECYnrqmg/KIOXm5Q0koa8EP/eCLKHWXeL7QLPKAdb4DjbD/+/N3IMIYz
-         zC5TAPTAi/3dLMSwE05CR957L2426KHpShQU5jc7DWXyrZxHx+G/qOjlnqqdgsGvO8Sn
-         d99dqTjpJPHSP0hO4Hz2EANFDBPAAebFAT8gtYxeDDqf7vImFbSuNf/u11OXJLeQj+BP
-         b1vg==
+        bh=mpxzYKWAnbzgsLyXnbb5p5d3wlWt84Zm/jE0R6RMIWA=;
+        b=fhvsOc/QcDAbAORS2XKkYYbYCG+h2BcKBm0aeExVaRYrL/lCKV9GCGOUPFKZ/fa3Er
+         nRzunkh/mr9A81yP61tGpW2d/UYyduAh3FbTa2MAVbUio9XrcDinLKmOBZOUNgWKxOaw
+         t2fgYP9dN0vLSIl5LkoMV0H197/VAH4zuy8jBqTH+Rwq8Zy2n45JL1pnXgybbwgcdszJ
+         hyIpxuuItOJae22R8WaA4bEjDkLC127OhzefdjW6r+jPmoeraB0tIZExG3wLIKK/KThH
+         znnEDlMVlL3go1iBsMyKrtFI9ZBpsXPVcZErmWQ6u9zEk2k8Dj9tvceEMaRN0bqUOCtS
+         8bbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761771939; x=1762376739;
+        d=1e100.net; s=20230601; t=1761771941; x=1762376741;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=XTofcu4fJBU+wnClkDXXNYpcQQPdGA2T8MS/AzVhf3s=;
-        b=axlzv6dN/219Johlft/yeLdQ9432l/L05ouVD8cE61fa5qTZKsSdHfGCe07mf1EZ4B
-         1+J8W8rCe4bYJm/jEHVMKYlZ/scjBoiZiD0Qzoa8j1kEf75MA9puSjDLugcMpZYGAOJL
-         JZI994VPGJSjD/I8XUMB697KtF5pC34RRvqnIYtVXVsfsDNLNrd1160sBxp4PqwzWkaB
-         uZmpKHNYGcB2BdpeI3sf/uGAgvRw13xoFdC8KUNmlXI9aynP8tFaesH3h+aexzd8iy6O
-         641bQqdV8LDjbzrfyM1410ONrqyGRKoYLpAJVPoP+j1H7XfbIMI1tS3uBKVzLsSqaaqB
-         mCNg==
-X-Forwarded-Encrypted: i=1; AJvYcCVq/inx2SWE6pItAKB2R5UN9j7LTXnD5du68iHmNaKUC0MQ8XJ9i2DNuNX72m+Ua+bpQ37zPXQmQa21@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVkkS0n/Env6Ae3YtVNKyYYlMXxjCLAPbOuzB8T3/Jg0OdmAXr
-	fL+cw1Ck7W58zACJO9uBFBEtqE+SwpMKpKGW1ScrblG40EQd4qbJYkVzekCR/6yniOE=
-X-Gm-Gg: ASbGncsAsOqi4RPQOLhhQqsCo6mAL53eY+SiPGj4NFc0BQJ7IMwi60imqQ5RbBKgf/0
-	aUIhYJdyNpbnYkysVrDfG1n0OXgd4JQ/8n1Uf73ODRFy/dgl9A57TEQL/AlhJ0dExZ5FimlWhZN
-	/f2eMS1PWfuN3TVfcrd67129EoM7duf6EZ+SKl40NWwImX8/vi4sAX5bkz+dsHp5rHNH6Ii0rOs
-	Tr5hfiZWbKtMn5ELBl1KIzOyT11bcar1MVyM/zsyAS1s9ynQes6NhYzYSw8ht1jahxTwu3FuoLt
-	sAKbitmCU6EmU6dZ6V1+qAiVx6skUJdPrZqzpDGwCQye8ka2TxB9Aic5virOA7WjvzmbM+rDUI/
-	PdIjSUFnmTydYMHUPrTTuz/yep7dquzD/CtVUp7fZnZ7Nr3OVzYt9/UWp8iwMd0pZnOGIEWU+l3
-	T6yfq2TokOYGjBTTP2eUrQXzq+s5bgs/c=
-X-Google-Smtp-Source: AGHT+IEXesMK4yi3aw7WNkX0LUl8o2qwDZkqC9YReAIB/Znsz0lE3UE+zV3f3Lh5yILl8ityWjzuTw==
-X-Received: by 2002:a05:6000:24c1:b0:427:492:79cd with SMTP id ffacd0b85a97d-429aefd6a64mr3010887f8f.41.1761771938978;
-        Wed, 29 Oct 2025 14:05:38 -0700 (PDT)
+        bh=mpxzYKWAnbzgsLyXnbb5p5d3wlWt84Zm/jE0R6RMIWA=;
+        b=JE9J47y6bwo4hL4e9Gs++Rmn69OzNYrTziGCF2WXYE0dKGOQPHtJh4pAKdlNDEUkXP
+         dyw8a5NL0wP7AIR2OnY5wegi5G4XfcIkjPUBvpXddZpmYwwxpcSldYWGdCL+wNUzDNfP
+         qYzk8sGEu9lDEkUt7vOF3pB4NMjURrrlZLkRPYWPpgiyTsSd7YsgN1SU2n2IT2aoU94o
+         J8uekdlN+IzRNknNmPynA3F/lnoGQ1WodP0XirNMYQ9uWBg7XZIUuFrRH+o8DHwBZadw
+         8JxAYMbmYocqIbl1wsHfAXAoVXPAIXflcyCPIl/mcGQemAEdlo3+H6FbP9BvMjhpudSr
+         lepg==
+X-Forwarded-Encrypted: i=1; AJvYcCV5Wyko5LgbQPg/AvcvtDnXX453+g5gXVn3udS7NKWd5qGNeod9uHjiwyA/uJ0/PpCXYQtQ3gzjeo2v@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxu/hc+a++5ofSXVxTXR7wiJLUDuvguPirMmF6C0oDsJtA8XNgo
+	l2T9xUHL7qAWsVyjDwvJSy/KvitEyCHbIEZ/LY4TxZx1y3FMzv3dhvLbbK86uzUGP0VoF33UzvL
+	uKlmq
+X-Gm-Gg: ASbGnctlzwFuUQcNS6z7i7+SUMhtBeaXWJRUwHkmIidim+8e9uFSswQfEU1weAyfUYT
+	8Xwwqajvp1RmyfP4RfnRDOEUgIYBWGxq4Vm2MxTDYjtykHdn4OGfq0B8J8/yKpVmaAzs7Jw6BVx
+	rgq+zpLwQaxEYkcSrdm5f144BimoV3CzrDhSXOswNUMCUdEvST78RKkeAqJ6GSUns1JqTu/QEnh
+	68/jbUBrhstAEj3fnwgKGoSEE2hKM/tgeLa9AJ2zd4A8Z5a3CZPlP6pQ/1wu0+F5Dqkw80rBU0B
+	SNv93mBuF29TSpQuK/qd0O7VPRL6pc5IqKMvE+FrrYb7ZW1bJEKmiC0sA1AGMouyBsHZ1ST6zfn
+	Xgd73raCaQZbOjVpaFFJ2vhuUCN9GzKX+mzTH4dLwEDRdwLrD2VPxaaGU0JznDax7yYZqOdC4P9
+	9lj5HwWkpKXioud2N3jb2T
+X-Google-Smtp-Source: AGHT+IFjNDVfG9nSVNxP5ccXtI2gzlalGw+f6JndpkQvQxKW+TdZft3QWHVbSd6609LOnuWGywP0fg==
+X-Received: by 2002:a05:6000:2506:b0:427:55e:9aa2 with SMTP id ffacd0b85a97d-429aef78924mr2715742f8f.9.1761771940865;
+        Wed, 29 Oct 2025 14:05:40 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429952de971sm27815109f8f.39.2025.10.29.14.05.38
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429952de971sm27815109f8f.39.2025.10.29.14.05.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Oct 2025 14:05:38 -0700 (PDT)
+        Wed, 29 Oct 2025 14:05:40 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Jessica Zhang <jesszhan0024@gmail.com>, 
+To: Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
- Douglas Anderson <dianders@chromium.org>, Abel Vesa <abel.vesa@linaro.org>
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>, 
+ Kaustabh Chakraborty <kauschluss@disroot.org>
 Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20251028-drm-panel-samsung-add-atna60cl08-v1-1-73123789fcdb@linaro.org>
-References: <20251028-drm-panel-samsung-add-atna60cl08-v1-1-73123789fcdb@linaro.org>
-Subject: Re: [PATCH] dt-bindings: display: panel: samsung,atna33xc20:
- Document ATNA60CL08
-Message-Id: <176177193834.2073083.4758126268960108187.b4-ty@linaro.org>
-Date: Wed, 29 Oct 2025 22:05:38 +0100
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20251009-panel-synaptics-tddi-v5-0-59390997644e@disroot.org>
+References: <20251009-panel-synaptics-tddi-v5-0-59390997644e@disroot.org>
+Subject: Re: [PATCH RESEND v5 0/2] Support for Synaptics TDDI series panels
+Message-Id: <176177193995.2073083.3709590896561728636.b4-ty@linaro.org>
+Date: Wed, 29 Oct 2025 22:05:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,28 +104,23 @@ X-Mailer: b4 0.14.3
 
 Hi,
 
-On Tue, 28 Oct 2025 14:22:48 +0200, Abel Vesa wrote:
-> The Samsung ATNA40CT06 panel is a 16" AMOLED eDP panel. It is similar to
-> the ATNA33XC20 except that it is larger and has a different resolution.
-> It is found on Qualcomm Glymur CRD platform.
+On Thu, 09 Oct 2025 21:52:09 +0530, Kaustabh Chakraborty wrote:
+> Synaptics' Touch and Display Driver Integration (TDDI) technology [1]
+> employs a single chip for both touchscreen and display capabilities.
+> Such designs reportedly help reducing costs and power consumption.
 > 
-> Raw panel edid:
-> 
-> 00 ff ff ff ff ff ff 00 4c 83 a6 41 00 00 00 00
-> 00 20 01 04 b5 22 16 78 03 0b d1 af 51 3d b6 23
-> 0b 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
-> 01 01 01 01 01 01 cb fe 40 64 b0 08 18 70 20 08
-> 88 00 58 d7 10 00 00 1b cb fe 40 64 b0 08 c8 7a
-> 20 08 88 00 58 d7 10 00 00 1b 00 00 00 fd 00 30
-> 78 da da 42 01 00 00 00 00 00 00 00 00 00 00 02
-> 00 00 00 00 19 96 c8 46 1c 5e c8 00 00 00 01 4c
+> Although the touchscreens, which are powered by Synaptics'
+> Register-Mapped Interface 4 (RMI4) touch protocol via I2C or SPI have
+> driver support in the kernel, the MIPI DSI display panels don't.
 > 
 > [...]
 
 Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
 
-[1/1] dt-bindings: display: panel: samsung,atna33xc20: Document ATNA60CL08
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/2a6550191adfa20c6f63044531fe21202cfa03e0
+[1/2] dt-bindings: display: panel: document Synaptics TDDI panel
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/5c42579b0705ea372ed7e6f158c880618850b409
+[2/2] drm: panel: add support for Synaptics TDDI series DSI panels
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/3eae82503f4fb24e36fc06f6827b8360678c2555
 
 -- 
 Neil
