@@ -1,189 +1,413 @@
-Return-Path: <devicetree+bounces-232881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 403CCC1C93B
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 18:51:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C2A1C1C974
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 18:52:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DDFCE4E112E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 17:48:16 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A52C24E0316
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 17:49:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38C25322A04;
-	Wed, 29 Oct 2025 17:48:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B55DA345CA3;
+	Wed, 29 Oct 2025 17:49:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CBBijb++"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XfBHCnkZ";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BaH7Mgdd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F0102F8BEE;
-	Wed, 29 Oct 2025 17:48:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABF872144D7
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 17:49:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761760094; cv=none; b=SWe86erTTp/vp+ViMs1lIh5qJv9ASx1b60ph6xpqmBhGASq7EuprRpMYmkCPbJWV0LhyE2Qk627FkJZPyxL/8DZxZlOZVUr6EbBforFyCg3n/gNNNwF7h8VH0eY+6abKUWwf5l80jqlgocsxSv87AFeySuM4ffvFXwL7XWKotVA=
+	t=1761760149; cv=none; b=cN+283aC2b6vytqomVy0wfBNLNuhWiDBqX2QJ2tY3Z077fac+XjMygHV0ZxkZJbtozH2iVL5HkWRpxDkX94jrMy5HAYAR3UNWxsTD8/wzUgd5D4YlYVkWWKGs/EvH9HS7v8fPHEnJiKW/p96hy+FrXIV6W+L89dS8VYJOzX0xxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761760094; c=relaxed/simple;
-	bh=gmuvfAv/HRo9/GwGj6MrrNns2n4S/yptkDh+ez1A/BA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g0RfxrPh28QY6ckcIyXAsQcs2eH3YXzzN8NrFHA7XQdiyyx2HxSR20HF6ZnezOe0/Ex9XZIWYXKKP39k/6sGS2vUbz3cRA2K/IzaxxrP4sPmdup9p7iJEmbcp/cE/Gjznl+kNEPf2O8gkUDeT168yRi8GrlASa4Pm+znKVzI85c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CBBijb++; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F30CCC4CEF7;
-	Wed, 29 Oct 2025 17:48:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761760093;
-	bh=gmuvfAv/HRo9/GwGj6MrrNns2n4S/yptkDh+ez1A/BA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CBBijb++94bBV+SfzKmrzvQHpsG2lpDu/Ezjq70clIZUkpYOKyA3Ucnx/leoM5EHN
-	 0vXvguO7ibhtHZLH86g0kSFNkQZT9uaU20GSzB2vxK/IXScQJAd5bkuFyS0vB3RkJC
-	 VKVwWVMYHbebGpxW5XkPxlzp+aMbXYTZFtjXsWiPm1fYv+oxg/mTiTWhEUejdTuXR5
-	 fkMwGORoAbO+FwFdJTrr0e3nHQxK8nR+uJJ6rwrxJ/aw8vmy3INxHi1PGcv9bXRzv0
-	 aqz46WoMgdfBdP7BBSOkD7beU9vqkIjYrknRILy5C0BYsQpZteiEB5ol1CsYdWhOrL
-	 GvA5x2rdvnZMg==
-Date: Wed, 29 Oct 2025 17:48:08 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Elaine Zhang <zhangqing@rock-chips.com>
-Cc: mkl@pengutronix.de, kernel@pengutronix.de, mailhol.vincent@wanadoo.fr,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	heiko@sntech.de, cl@rock-chips.com, linux-can@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 1/4] dt-bindings: can: rockchip_canfd: add rk3576 CAN
- controller
-Message-ID: <20251029-unreal-heroics-6e56a89e34d0@spud>
-References: <20251029032302.1238973-1-zhangqing@rock-chips.com>
- <20251029032302.1238973-2-zhangqing@rock-chips.com>
+	s=arc-20240116; t=1761760149; c=relaxed/simple;
+	bh=s3xBk+WH4G9lHuayprGFgPbsI1G+D4ZgrNl9qI03RLE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=U6IFkF1JD2IT7v4HwKsC3eEosS2ykB3FhWCyGdxRJOK0v+p+5nAh+aGTrOJV5PIoLzh4WNdEfpwgYQVzvSAjNxPYE3sGjpaLyzepa/MQW0SZz+3M0wU0FBZJR5OGEeTcxT0nwW2kMXqhcBPJ4LHv0BBV4fBo6OkfemO/PzfFLpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XfBHCnkZ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BaH7Mgdd; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59TBe9VY434953
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 17:49:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	zBBOWdMy0EgPxsuEOw/+fgZm8ur/jhP/dUsIn5rcIuY=; b=XfBHCnkZqZCpX5+4
+	3XL1BDMC0yRIVhFhvx9ni80s/OSQIxl/SHDpwMLzGrAV9qYYcOst84ikZxZRMlxc
+	R9Kihscce2h9DuJ6Vt4osioH3iSnlLIQlO13S50u0VPL/GB/aLVaBH9+HuLjQmUZ
+	cCLgeLaifXa01vvgwqKymuKpRkIewGcVK0xHkswlOenMNES3bLp5o1X3u5lKXPG0
+	LYwj1RZtyPpHGZzpAdAjZLGxBQdZ0OKOraZeqtoO8RiVmhmHMRMWlfYryHOfLp+d
+	JLtFyU9XOgnS9NwomeF6f6pkIktAgWX7ji1UvHH3ZxlTlRV6k7cW9RYtta9d3dzj
+	zH4gEA==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a3j8js68f-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 17:49:06 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-33bcb7796d4so166615a91.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 10:49:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1761760146; x=1762364946; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zBBOWdMy0EgPxsuEOw/+fgZm8ur/jhP/dUsIn5rcIuY=;
+        b=BaH7MgddxfjWCcSyfCUMISSkYlLFZ3978m9xpj+/Xk+DrO0aPeLmrT2CD3qV4Vz491
+         /uxWTvLjWy7zBPCqGCbekReb9C0JB0jElSIn/BEYhKGt0N7lotHITrvhB/Kpjj7J7ntP
+         mtPbm4lXoQsgmqoIrOLXPDL+DjmtRir+Lrnzcgb+HI8k+gMZDrYfkrL1wLaRqohpSXJ1
+         UlVm+voNIrWOm3xzlSSjHVTE4razv+h7yScAVYYzc1bAa9IGxldpT95eOEtB5QtCg3CZ
+         aDfMdtm2257pdywWhkhhiVkxD0dYle5GbsLq3Are6Dall+D+PYKZtOkKBSJRDKSjQr8L
+         h/Sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761760146; x=1762364946;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zBBOWdMy0EgPxsuEOw/+fgZm8ur/jhP/dUsIn5rcIuY=;
+        b=eb+tw5B6lmA0yLK7dNtHUgQQQzgvRfQSctteQUPLQc8E2HzTxL2g11F1ZCUuEyk/Ha
+         bK0q2DYaYtHKd7rML8AF9XMb8LAl8kmsk5gKMeVFuxRp+MB9tiq4jroIVRI/fE3CEiuD
+         KbryjLhpJkyqZWLq6oxABGoOF/cwen/JAfzmryBqcufMgTCg7MgHuML0d6Wkndqgx+tp
+         7WKBED6xsuEYkG2312pryLpqVhp/09hjPiT5f/Unggpkznk+q57aPYqfaVb1KDakvd/C
+         pqWzVOd1J3S9ZKcG7iFXIfZ1GQH9pQvHwT3lGKizQTptofKSaup1CereoaVZylNBt76G
+         uqrw==
+X-Forwarded-Encrypted: i=1; AJvYcCW4rwUv6Czu1JgQgpWDeG/aHWyQJd8cZWDVShfseCV0TsGbtuP9vnBT9Mk+VZsEl/lRTaWM/tPz97rW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWrWTUSKVXK7iczWiBv/jRNf5X9vyzJd5c9vsPeHZzcUUCQA1o
+	5gD+Ohw6PU+1xQRRQ2ijcbbPbUu7wo4FaMna+yHcPsJKhutjt8rNAaBKAOc/2aByQUDKk/lzrMZ
+	4FVoQJJ0ZLlVypupi75k3+qJWtCePdcqkhH0/f0ahbCXugWc0afG09fQvKM4ZxGIV
+X-Gm-Gg: ASbGncthfL/ku9NHAd6eEMpgnDDr+9URLUCmGdHZMWFbmLNi6B2yEcK9prPNWPRYPDZ
+	IgD1tQVXX9Lj6j6W+v1lDx/T6PskALbGHP5ld7tuyiK7rAFpWD2rzX7/CZeDmcEU6kcRPlebhcj
+	JnlGsAH9F6rOHXBjyV9ChoNaoZoDhbl+KP+rQ6SruIKg3MNQb2avKT4eTK9bbfvxnaKS0aHXrt7
+	6QP3+h20hpmtSl4BHwjUengvKAs1xAnQNEcOG3pk/TDvxDY1TZ8NPbWo84YxxOdG0WHmejhMpia
+	jtTaG0wjHZ+TAtAYexwtY5Vv+5JNu8AU0Mmht4COnoLJ4lSY3krLFwbQXI3ufUH10zBdjjTUUZx
+	/RdW8TeZqV4V50Ff6OQ+ps7hXAeTUbw9f
+X-Received: by 2002:a17:90b:52ce:b0:32b:6151:d1b with SMTP id 98e67ed59e1d1-3403a160f49mr4241487a91.8.1761760145301;
+        Wed, 29 Oct 2025 10:49:05 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFVJJ72rkoSQSQ2NSo1xC7KWX04uCUKN6W0tdBTOXGaqbvhURfKhLjwT83FJ6lFL/2Ey+77rQ==
+X-Received: by 2002:a17:90b:52ce:b0:32b:6151:d1b with SMTP id 98e67ed59e1d1-3403a160f49mr4241443a91.8.1761760144652;
+        Wed, 29 Oct 2025 10:49:04 -0700 (PDT)
+Received: from [10.216.40.51] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33fed7f604dsm16430255a91.15.2025.10.29.10.48.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Oct 2025 10:49:04 -0700 (PDT)
+Message-ID: <efb52d01-0430-8bdb-e0c7-86c5a2857ef6@oss.qualcomm.com>
+Date: Wed, 29 Oct 2025 23:18:52 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="01IpGdZZ9oQxgRWr"
-Content-Disposition: inline
-In-Reply-To: <20251029032302.1238973-2-zhangqing@rock-chips.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v16 01/14] power: reset: reboot-mode: Synchronize list
+ traversal
+Content-Language: en-US
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Moritz Fischer <moritz.fischer@ettus.com>,
+        John Stultz <john.stultz@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andre Draszik
+ <andre.draszik@linaro.org>,
+        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org,
+        Elliot Berman <quic_eberman@quicinc.com>,
+        Srinivas Kandagatla <srini@kernel.org>
+References: <20251015-arm-psci-system_reset2-vendor-reboots-v16-0-b98aedaa23ee@oss.qualcomm.com>
+ <20251015-arm-psci-system_reset2-vendor-reboots-v16-1-b98aedaa23ee@oss.qualcomm.com>
+ <5l2tcjbdtikkhkuhuz64ymk5et6wtl4kwf2mc265su27oh57rt@3shmo3wfx7fb>
+From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+In-Reply-To: <5l2tcjbdtikkhkuhuz64ymk5et6wtl4kwf2mc265su27oh57rt@3shmo3wfx7fb>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI5MDE0MiBTYWx0ZWRfX7rr3zKMuC/R+
+ oMSmAuHxwe8EuxIDg3R/oqv01jSxuikvpobJ7gOO8ghjlgE68lXPv95q9Kw2J0vFkR2zvuIjp3+
+ Wog5IRR+BlTkZLxGivOXt3kux3ByW67Xh9m9Aqkv4b77MpU8aZl0+Y9F5llkjwq49UrSQ8TvzQA
+ 14EEqTsJY1cckPb58tQjb0eXAcAgSpt0K1Fv9Knggvy1+NrQSJnC0/2gpL1hc1PN+Cyw+13xNz3
+ spc1eEqAj38vhKcsb9UWRmIviuVw8ld1zAKfamRWJvFZgg0LfqwTc43Vq6e03XPFSNjgF47yjIG
+ P9qr6H33i9V1EvOSSRsEvtVXPqIlBCQQAjXM4msP2arAnP6h7pup5mh89Pi/yHppBYPtEYzR/KM
+ aOdxPX3/IYRafV8MZ2NujUa/J1OFRA==
+X-Authority-Analysis: v=2.4 cv=FOoWBuos c=1 sm=1 tr=0 ts=69025392 cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=n0NvOUcOdHF0XYJju0UA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22
+X-Proofpoint-ORIG-GUID: SCAvVfrRV6O4ZysUxc3ASVBzm4TzcO9l
+X-Proofpoint-GUID: SCAvVfrRV6O4ZysUxc3ASVBzm4TzcO9l
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-10-29_07,2025-10-29_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 priorityscore=1501 adultscore=0 phishscore=0 lowpriorityscore=0
+ bulkscore=0 impostorscore=0 malwarescore=0 spamscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510290142
 
 
---01IpGdZZ9oQxgRWr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 29, 2025 at 11:22:59AM +0800, Elaine Zhang wrote:
-> Add documentation for the rockchip rk3576 CAN controller.
->=20
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> ---
->  .../net/can/rockchip,rk3568v2-canfd.yaml      | 52 +++++++++++++++++--
->  1 file changed, 48 insertions(+), 4 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-=
-canfd.yaml b/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-ca=
-nfd.yaml
-> index a077c0330013..30782218728e 100644
-> --- a/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-canfd.y=
-aml
-> +++ b/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-canfd.y=
-aml
-> @@ -10,13 +10,12 @@ title:
->  maintainers:
->    - Marc Kleine-Budde <mkl@pengutronix.de>
-> =20
-> -allOf:
-> -  - $ref: can-controller.yaml#
-> -
->  properties:
->    compatible:
->      oneOf:
-> -      - const: rockchip,rk3568v2-canfd
-> +      - enum:
-> +          - rockchip,rk3568v2-canfd
-> +          - rockchip,rk3576-can
->        - items:
->            - const: rockchip,rk3568v3-canfd
->            - const: rockchip,rk3568v2-canfd
-> @@ -43,6 +42,33 @@ properties:
->        - const: core
->        - const: apb
-> =20
-> +  dmas:
-> +    maxItems: 1
-> +
-> +  dma-names:
-> +    items:
-> +      - const: rx
-> +
-> +allOf:
-> +  - $ref: can-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: rockchip,rk3576-can
-> +    then:
-> +      properties:
-> +        dmas:
-> +          minItems: 1
-> +          maxItems: 2
-> +        dma-names:
-> +          minItems: 1
-> +          maxItems: 2
+On 10/28/2025 9:04 AM, Bjorn Andersson wrote:
+> On Wed, Oct 15, 2025 at 10:08:16AM +0530, Shivendra Pratap wrote:
+>> List traversals must be synchronized to prevent race conditions
+>> and data corruption. The reboot-mode list is not protected by a
+>> lock currently, which can lead to concurrent access and race.
+> 
+> Is it a theoretical future race or something that we can hit in the
+> current implementation?
+> 
+>>
+>> Introduce a mutex lock to guard all operations on the reboot-mode
+>> list and ensure thread-safe access. The change prevents unsafe
+>> concurrent access on reboot-mode list.
+> 
+> I was under the impression that these lists where created during boot
+> and then used at some later point, which at best would bring a
+> theoretical window for a race... Reviewing the code supports my
+> understanding, but perhaps I'm missing something?
+> 
+>>
+>> Fixes: 4fcd504edbf7 ("power: reset: add reboot mode driver")
+>> Fixes: ca3d2ea52314 ("power: reset: reboot-mode: better compatibility with DT (replace ' ,/')")
+>>
+> 
+> Skip this empty line, please.
+> 
+> 
+> And given that you have fixes here, I guess this is a problem today. In
+> which case, this shouldn't have been carried for 16 versions - but have
+> sent and been merged on its own already.
+> 
+> So please, if this is a real issue, start your commit message with a
+> descriptive problem description, to make it clear that this needs to be
+> merged yesterday - or drop the fixes.
+> 
+>> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+>> ---
+>>  drivers/power/reset/reboot-mode.c | 96 +++++++++++++++++++++------------------
+>>  include/linux/reboot-mode.h       |  4 ++
+>>  2 files changed, 57 insertions(+), 43 deletions(-)
+>>
+>> diff --git a/drivers/power/reset/reboot-mode.c b/drivers/power/reset/reboot-mode.c
+>> index fba53f638da04655e756b5f8b7d2d666d1379535..8fc3e14638ea757c8dc3808c240ff569cbd74786 100644
+>> --- a/drivers/power/reset/reboot-mode.c
+>> +++ b/drivers/power/reset/reboot-mode.c
+>> @@ -29,9 +29,11 @@ static unsigned int get_reboot_mode_magic(struct reboot_mode_driver *reboot,
+>>  	if (!cmd)
+>>  		cmd = normal;
+>>  
+>> -	list_for_each_entry(info, &reboot->head, list)
+>> -		if (!strcmp(info->mode, cmd))
+>> -			return info->magic;
+>> +	scoped_guard(mutex, &reboot->rb_lock) {
+>> +		list_for_each_entry(info, &reboot->head, list)
+>> +			if (!strcmp(info->mode, cmd))
+>> +				return info->magic;
+>> +	}
+>>  
+>>  	/* try to match again, replacing characters impossible in DT */
+>>  	if (strscpy(cmd_, cmd, sizeof(cmd_)) == -E2BIG)
+>> @@ -41,9 +43,11 @@ static unsigned int get_reboot_mode_magic(struct reboot_mode_driver *reboot,
+>>  	strreplace(cmd_, ',', '-');
+>>  	strreplace(cmd_, '/', '-');
+>>  
+>> -	list_for_each_entry(info, &reboot->head, list)
+>> -		if (!strcmp(info->mode, cmd_))
+>> -			return info->magic;
+>> +	scoped_guard(mutex, &reboot->rb_lock) {
+>> +		list_for_each_entry(info, &reboot->head, list)
+>> +			if (!strcmp(info->mode, cmd_))
+>> +				return info->magic;
+>> +	}
+>>  
+>>  	return 0;
+>>  }
+>> @@ -78,46 +82,50 @@ int reboot_mode_register(struct reboot_mode_driver *reboot)
+>>  
+>>  	INIT_LIST_HEAD(&reboot->head);
+>>  
+>> -	for_each_property_of_node(np, prop) {
+>> -		if (strncmp(prop->name, PREFIX, len))
+>> -			continue;
+>> -
+>> -		info = devm_kzalloc(reboot->dev, sizeof(*info), GFP_KERNEL);
+>> -		if (!info) {
+>> -			ret = -ENOMEM;
+>> -			goto error;
+>> -		}
+>> -
+>> -		if (of_property_read_u32(np, prop->name, &info->magic)) {
+>> -			dev_err(reboot->dev, "reboot mode %s without magic number\n",
+>> -				info->mode);
+>> -			devm_kfree(reboot->dev, info);
+>> -			continue;
+>> -		}
+>> -
+>> -		info->mode = kstrdup_const(prop->name + len, GFP_KERNEL);
+>> -		if (!info->mode) {
+>> -			ret =  -ENOMEM;
+>> -			goto error;
+>> -		} else if (info->mode[0] == '\0') {
+>> -			kfree_const(info->mode);
+>> -			ret = -EINVAL;
+>> -			dev_err(reboot->dev, "invalid mode name(%s): too short!\n",
+>> -				prop->name);
+>> -			goto error;
+>> +	mutex_init(&reboot->rb_lock);
+>> +
+>> +	scoped_guard(mutex, &reboot->rb_lock) {
+> 
+> I don't see how this can race with anything, reboot_mode_register() is
+> supposed to be called from some probe function, with reboot_mode_driver
+> being a "local" object.
+> 
+> The guard here "protects" &reboot->head, but that is not a shared
+> resources at this point.
+> 
+>> +		for_each_property_of_node(np, prop) {
+>> +			if (strncmp(prop->name, PREFIX, len))
+>> +				continue;
+>> +
+>> +			info = devm_kzalloc(reboot->dev, sizeof(*info), GFP_KERNEL);
+>> +			if (!info) {
+>> +				ret = -ENOMEM;
+>> +				goto error;
+>> +			}
+>> +
+>> +			if (of_property_read_u32(np, prop->name, &info->magic)) {
+>> +				dev_err(reboot->dev, "reboot mode %s without magic number\n",
+>> +					info->mode);
+>> +				devm_kfree(reboot->dev, info);
+>> +				continue;
+>> +			}
+>> +
+>> +			info->mode = kstrdup_const(prop->name + len, GFP_KERNEL);
+>> +			if (!info->mode) {
+>> +				ret =  -ENOMEM;
+>> +				goto error;
+>> +			} else if (info->mode[0] == '\0') {
+>> +				kfree_const(info->mode);
+>> +				ret = -EINVAL;
+>> +				dev_err(reboot->dev, "invalid mode name(%s): too short!\n",
+>> +					prop->name);
+>> +				goto error;
+>> +			}
+>> +
+>> +			list_add_tail(&info->list, &reboot->head);
+>>  		}
+>>  
+>> -		list_add_tail(&info->list, &reboot->head);
+>> -	}
+>> -
+>> -	reboot->reboot_notifier.notifier_call = reboot_mode_notify;
+>> -	register_reboot_notifier(&reboot->reboot_notifier);
+>> +		reboot->reboot_notifier.notifier_call = reboot_mode_notify;
+>> +		register_reboot_notifier(&reboot->reboot_notifier);
+> 
+> Once register_reboot_notifier() has been called, &reboot->head is
+> visible outside the specific driver instance.
+> 
+> So, there's no reason to lock in reboot_mode_register().
+> 
+>>  
+>> -	return 0;
+>> +		return 0;
+>>  
+>>  error:
+>> -	list_for_each_entry(info, &reboot->head, list)
+>> -		kfree_const(info->mode);
+>> +		list_for_each_entry(info, &reboot->head, list)
+>> +			kfree_const(info->mode);
+>> +	}
+>>  
+>>  	return ret;
+>>  }
+>> @@ -133,8 +141,10 @@ int reboot_mode_unregister(struct reboot_mode_driver *reboot)
+>>  
+>>  	unregister_reboot_notifier(&reboot->reboot_notifier);
+>>  
+>> -	list_for_each_entry(info, &reboot->head, list)
+>> -		kfree_const(info->mode);
+>> +	scoped_guard(mutex, &reboot->rb_lock) {
+> 
+> get_reboot_mode_magic() is only called from reboot_mode_notify(), which
+> is only invoked by blocking_notifier_call_chain().
+> 
+> blocking_notifier_call_chain() takes a read semaphore.
+> unregister_reboot_notifier() take a write semaphore.
+> 
+> So, if we're racing with a shutdown or reboot, I see two possible
+> things:
+> 
+> 1) blocking_notifier_call_chain() happens first and calls
+>    reboot_mode_notify(), blocking unregister_reboot_notifier(). Once it
+>    returns, the unregister proceeds and we enter case #2
+> 
+> 2) unregister_reboot_notifier() happens first (or after the
+>    blocking_notifier_call_chain() returns). Our reboot object is removed
+>    from the list and blocking_notifier_call_chain() will not invoke
+>    reboot_mode_notify().
+> 
+> In either case, the list has a single owner here.
+> 
+> 
+> As far as I can see, the only race left is if multiple concurrent calls
+> happens to blocking_notifier_call_chain(), the behavior of
+> reboot->write() might be undefined. But I think that is reasonable.
+> 
+> 
+> Please let me know if I'm missing something.
 
-This looks wrong. You have one dma, but you're setting maxItems to 2.
-Seems fine otherwise.
-pw-bot: changes-requested
+Thank you for the detailed review. Tried to summarize below:
 
+The mutex lock was introduced in v13 following earlier discussions about
+whether the issue was a theoretical future race or something that could
+occur in the current implementation.
 
-Cheers,
-Conor.
+At the time (prior to v13), we concluded that while no race condition was
+observable in the current code, there could be a potential in future
+changes or usage patterns — making it a theoretical concern.
 
-> +    else:
-> +      properties:
-> +        dmas: false
-> +        dma-names: false
-> +
->  required:
->    - compatible
->    - reg
-> @@ -72,3 +98,21 @@ examples:
->              reset-names =3D "core", "apb";
->          };
->      };
-> +
-> +  - |
-> +    soc {
-> +        #address-cells =3D <2>;
-> +        #size-cells =3D <2>;
-> +
-> +        can@2ac00000 {
-> +            compatible =3D "rockchip,rk3576-can";
-> +            reg =3D <0x0 0x2ac00000 0x0 0x1000>;
-> +            interrupts =3D <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks =3D <&cru CLK_CAN0>, <&cru PCLK_CAN0>;
-> +            clock-names =3D "baud", "pclk";
-> +            resets =3D <&cru SRST_CAN0>, <&cru SRST_P_CAN0>;
-> +            reset-names =3D "core", "apb";
-> +            dmas =3D <&dmac0 20>;
-> +            dma-names =3D "rx";
-> +        };
-> +    };
-> --=20
-> 2.34.1
->=20
+During review, there was further discussion around whether it's acceptable
+to leave the list unprotected simply because no race is currently suspected.
+The general consensus was that it's better practice to protect shared data
+structures like lists with a mutex to ensure correctness and future-proofing.
 
---01IpGdZZ9oQxgRWr
-Content-Type: application/pgp-signature; name="signature.asc"
+Based on that feedback, the mutex lock introduced in v13.
 
------BEGIN PGP SIGNATURE-----
+Later in v15, the reboot-mode maintainer suggested that the patch should
+include a Fixes tag, which was incorporated accordingly.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQJTWAAKCRB4tDGHoIJi
-0qVhAPsG3U2zIV2IEhCQGMbLtQJNoGSUmzb6yyOYDB/ZsqWM9gD/UvCgdautseC1
-gMmchbJQAcHxrEqzZGxopx+iLXenaQ8=
-=an9+
------END PGP SIGNATURE-----
+So both the mutex addition in v13 and the Fixes tag in v15 were made in
+response to upstream review comments.
 
---01IpGdZZ9oQxgRWr--
+Need some guidance on how to take this forward or is it ok to protect all
+list operation, as done in this patch and keep the fixes tag as suggested
+in earlier reviews?
+
+thanks,
+Shivendra
 
