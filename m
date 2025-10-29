@@ -1,187 +1,231 @@
-Return-Path: <devicetree+bounces-232606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBB30C19565
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 10:17:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEA8FC195B3
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 10:25:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D21094EA499
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 09:07:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FE493B86EE
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 09:23:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E7D930CD8D;
-	Wed, 29 Oct 2025 09:06:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7897F320CBB;
+	Wed, 29 Oct 2025 09:23:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GiY0piTp";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="AYlvD/V8"
+	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="CnysY0t4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 558FB2E0939
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 09:06:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7684231D742;
+	Wed, 29 Oct 2025 09:23:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761728817; cv=none; b=NnddhkA+Xm3tHnwiMa2Qd42hgQ+wE1jxotKBuM78S/DDuZhmeST03FLHKmcf7V0s/kAOhkWzYCM05dcJO4L82hsPq7eqxI4ohVJo7NtixjJvVx75ktX2W7ZS9AfWgjCjII7HDxt86/m1nCTCEfnZHQTbxJhFePke5169bMJMUWQ=
+	t=1761729821; cv=none; b=C94uGvQPdckUC4qcQnyZAriKRsWCDVeewFGvMAhmOZyaiYPDoQtP94s8xpE+1t2xYlVpxOMqFNv6cEx021lLM6l/mPdtt77RFdSjzWItDHkD0j6+GkUpIZ/za+VCbw0ngUV55f8/ynBtT3xh7XybAhXGrniXmucbV6fuUT89KNA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761728817; c=relaxed/simple;
-	bh=/aOcHy2cGKnKF0qFCj1+5HOdnIw5VqiLSzrAYeaYa2g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=usXHTIkNHBdYas7T27v5uaZZ0TdpsYLG7nBXzJfqVK38dftX9K5gGp3nr1o7DuBfjjVi4IrdxdzkMaY2V1p41O9W82SSabUb8jBzaPZxEyiEanqUrsdCye1hCVn4TnUlMy7eJ6pzxXVRKZQ9vPBBkNnyGrlandnFUSmYAgE8b7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GiY0piTp; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=AYlvD/V8; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59T9332W4155211
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 09:06:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Ej0L6LKhytRGlWJ7FZb9k2KB7kgXNOZxH5vlNiTRSCw=; b=GiY0piTpqDsnY58A
-	/KxblI9qLdx5MjhzLMYbTxvASq1uH5/oOG5H4jAX7VFBl0UkD/GdyUwtg0NfDYmv
-	0CQEm8hrfYCX762DYg/0WPbGDKZF+z2rvwIXQ5zZPmcWwyQOhWiJd5fFRaFHvAWG
-	PGutwSt4OBQmFXipMiHsSaCtePW3dY3HD2QEeP9Lauijyw8HswD055767l71dJRF
-	qG3tQesJISb8dSup3KHshn+OjGIc/WCx7oohXiXWhd6VvyCQa+l+363MufggwpXP
-	J034m+SD6YbwxmZMPndCSHpXMy+gaJk7s6FbCbrQFEL6kGkEgIUotS946fYdayng
-	CTX/WQ==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a3fy0r0d4-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 09:06:55 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8a4f7e885c9so106640085a.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 02:06:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761728815; x=1762333615; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ej0L6LKhytRGlWJ7FZb9k2KB7kgXNOZxH5vlNiTRSCw=;
-        b=AYlvD/V82FVLJQ9BToy16UnUg6E8Jdotf73V+ZH3eWKyOeySYz5dXpCq1AuVwAABW3
-         NuY7ybEixiC/kbR5L10IhjJ/1CYOEMA/WKP4TwubmPCI8R5ztpRRAiBWIJgC6jt1iY2+
-         tAu06UofjCAcVerJLZO5DdhA2Pvm8JKk12eyU9NwvGpusshQXDPQ8JAQakCyRd7JdTJJ
-         Gk3ge8tN87F0bSjzTpSVc+UKukmykIuM4nPsHdLMwaDV6AFK55JoDizkgLV4jEFIXR/X
-         lqmDJqEr5l2p24lN7A9itw58Q4nQtWc516/2BuulCK5yl4c9utBtzhtA8VN7mY1eMAVv
-         bj7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761728815; x=1762333615;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ej0L6LKhytRGlWJ7FZb9k2KB7kgXNOZxH5vlNiTRSCw=;
-        b=uFMVvLECxqVV7mErZzG3Pt1kWJtvdmK82jJuD9hNhIA7Dt8kSOFqgjUItH3TDtCQSM
-         HgMOnPBlcdgEFd+6K8kyLwgNky5omsrm/Ub/8CN66a3J4YNuqUwKf0qiqLE7QcQuSZ56
-         CoCoFi1Cvwong0KfEE4NPvu1qd5i/S7cfOduo0azG0hI6Bfjo+Rwu7OEgVeXOwZmTFMb
-         Bw4Irh9jMvU19N+leuQjnvnYX4s7dDSyoiHHbR9okRPBvALEfFd/aJF+1DDHRXzX0DYR
-         HdgY6wudcEGWG71F+OYWcNPjiyYhOAM//kfRs/KfwxTJxmgKxd/PCWXOyjyaDAEfZQhG
-         MVXQ==
-X-Gm-Message-State: AOJu0Yx5HU1iBog5Sb9/fK3UxLXoj34ZU56EBfz+9B8Z5ETmFf3h3KxT
-	Neys4eGHQofLuNJG96MRTpow1HBNkhnvGg6GWh3kJ8szcnpr/RHEx9PfhYdiHDZNiPKIF0PXHYf
-	k5EjQy37kaIyRXe5R2SE9P3YO27rErlSBjwa3tsk4kqcrYnIvFb8TAba2d/uNhuV/
-X-Gm-Gg: ASbGncugNCye6l6d0NGFqeE0YycTU2oha//0LVI8UQZgTPY5Bzu1nLecxmYaZbBLTLP
-	oN5yC0INeVLnQSPKN+5sQoruQnt9rgd+zUTEAkyMiRze8wPB9cKicJLIoSO51n1Y+ZJWwYABeTw
-	AyNZSgFJqXV55R6Uq/dqNIHndnkogpqndVmyohNWTiKxSJXxULglAwwkBpQjdpJQ82SSceqV6/8
-	G8yjYuWh7KTX6wEm9fLB2nR90kNKxdKrV3trcZNtJZNYbd8YZ5T09OYpjjv6foVg+OS0Buh9Zv/
-	ILLZfeURgf2YJ42nxoZfIsxZVA1Exox9IxL4McZFBKvP8LpKAMnEFj7hXmNXAdghzPxMGQ/FLq7
-	qvrGazPw9cqWX8nRnoNF+dzcbbCoP7KJKiqsFxma9od/HdD5eHI2EKRUC
-X-Received: by 2002:ac8:70d4:0:b0:4ec:fc4d:372f with SMTP id d75a77b69052e-4ed175111dcmr8545191cf.10.1761728814722;
-        Wed, 29 Oct 2025 02:06:54 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IElbt4qWPPUXpf4p9NUocwcarMsftG2aY1qck6zgu/XgkjJgWeUk2ELHyKmZMN1dhAIjOB7Sg==
-X-Received: by 2002:ac8:70d4:0:b0:4ec:fc4d:372f with SMTP id d75a77b69052e-4ed175111dcmr8544951cf.10.1761728814248;
-        Wed, 29 Oct 2025 02:06:54 -0700 (PDT)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d853fb3bdsm1348086466b.52.2025.10.29.02.06.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Oct 2025 02:06:53 -0700 (PDT)
-Message-ID: <d99b03f4-ae44-4b7d-b4d0-45e2c3058db0@oss.qualcomm.com>
-Date: Wed, 29 Oct 2025 10:06:50 +0100
+	s=arc-20240116; t=1761729821; c=relaxed/simple;
+	bh=J7iqhTzrlj86EMcGRA7xb60awDEhM6qHMzLGoaUVXis=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tZqRILK72kdQFBQoPqy9o74y9EAbKanYfZ2ymQtXivvJBBH/uHXR3xxqSUGroVOcG8R+uYDn6tJ69eXb5kbM4gycZD3g1SSY3CAJs59vbQRGMFePSAVg2xgs67pb5O8es7UqxTMPcmYcqWulR0k3835OvHBWe12zgkRJFmbKEKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=CnysY0t4; arc=none smtp.client-ip=217.92.40.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 43E2C1489CE9;
+	Wed, 29 Oct 2025 10:23:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
+	t=1761729808; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=1zLIEoaFBP4q/5p+hEtogKcFyzuImMfXPa+ST2olz9A=;
+	b=CnysY0t4pIjp6NlKEvBZFdi3Y3jdok7H4tpzujTzN0+P3Q4HSFSE0Wy8kEvWBNQQAx2qzi
+	Gz3vIodzUSWZfOwJXyKky1we/qFyzFFEECLnoANMVqvPJRrKhTjCVil567ApPhoHanQpkX
+	d6WjXx0eVDVzAI39NDFWAwabMtuDYWfgqfvELfVSfoBwFG/xN5OX1IYttnilLTIzf6iD1w
+	dt73CsRp67KCmTUmoVHsktfeOy90b5Sn1RurTuKEQ4t43brVGNuOXQRROd0137G/iQvl01
+	o+Pi0TWAVaSDNh5XtJTlA1X/yk5R/ZkpKnWplOnynXthsEoMxhutw1MmJgrXfw==
+Date: Wed, 29 Oct 2025 10:23:17 +0100
+From: Alexander Dahl <ada@thorsis.com>
+To: Josua Mayer <josua@solid-run.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Jon Nettleton <jon@solid-run.com>,
+	Mikhail Anikin <mikhail.anikin@solid-run.com>,
+	Yazan Shhady <yazan.shhady@solid-run.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	linux-leds@vger.kernel.org
+Subject: Re: [PATCH 08/10] arm64: dts: add description for solidrun imx8mp
+ hummingboard-iiot
+Message-ID: <20251029-jittery-ambiguity-14e03ad2f0df@thorsis.com>
+Mail-Followup-To: Josua Mayer <josua@solid-run.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Jon Nettleton <jon@solid-run.com>,
+	Mikhail Anikin <mikhail.anikin@solid-run.com>,
+	Yazan Shhady <yazan.shhady@solid-run.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	linux-leds@vger.kernel.org
+References: <20251027-imx8mp-hb-iiot-v1-0-683f86357818@solid-run.com>
+ <20251027-imx8mp-hb-iiot-v1-8-683f86357818@solid-run.com>
+ <2c54b7b7-4eb4-44a0-8025-8da16a28efd4@solid-run.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8150: Add support for Xiaomi
- Redmi K20 Pro
-To: Piyush Raj Chouhan <pc1598@mainlining.org>, linux-arm-msm@vger.kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hardening@vger.kernel.org, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, tony.luck@intel.com, gpiccoli@igalia.com
-References: <20251022054026.22816-1-pc1598@mainlining.org>
- <20251022054026.22816-2-pc1598@mainlining.org>
- <ccdd5d44-2382-44e9-a56d-cbc5da23b13f@oss.qualcomm.com>
- <5C7DC3D9-8DBB-409C-8672-6388EE01C320@mainlining.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <5C7DC3D9-8DBB-409C-8672-6388EE01C320@mainlining.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=VJLQXtPX c=1 sm=1 tr=0 ts=6901d92f cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=OuZLqq7tAAAA:8
- a=_p6pwalp-NRVsU-s1EEA:9 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
- a=AKGiAy9iJ-JzxKVHQNES:22
-X-Proofpoint-GUID: PAOJDoxlWVHEBmb1NVzqaU3IBfljwwq7
-X-Proofpoint-ORIG-GUID: PAOJDoxlWVHEBmb1NVzqaU3IBfljwwq7
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI5MDA2NyBTYWx0ZWRfX72wuUrK/ssFG
- DNZeZmKd0bn+a3yNp2zjsPbB7f8v6+AIFLtPUlBGTL5h3PaEPlVcta6mhCMvwqI4KX+8XLTbNOH
- gByAk9vg/fnjLv/J7ZCKIKYAyXiCf/El1W3NQm7E4/+gvbJ5JS9ae6KDpWW9KFs6sYZHAm1wLBH
- Xef5zzYmLr7sTZT/FW4zzYYGPUlw7qPvwFWjizJl0fmjmoECf0UezvIBnyq+dN4WYYeWFrPvkP7
- rA0p+CAxrUcUGC8nDguA11pxP8DDFnhMr2gG75eCW4R/ScFRRHI5B/HOOi8My2+rRzfmrtm22FE
- ik27+LQ66uJQ/z6Fu2Fkxac5cwpk7i+GUapsd3gcTKDKOmsVzWI8dcGHuDGFOAfSIjkfpyXMzGB
- l33EHhp6B9dj0n41BUYjW/j2XhsOxw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-29_04,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 phishscore=0 lowpriorityscore=0 spamscore=0 adultscore=0
- clxscore=1015 priorityscore=1501 bulkscore=0 suspectscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510290067
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2c54b7b7-4eb4-44a0-8025-8da16a28efd4@solid-run.com>
+User-Agent: Mutt/2.2.12 (2023-09-09)
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 10/28/25 5:13 PM, Piyush Raj Chouhan wrote:
-> Hi, konrad 
+Hello Josua,
+
+Am Tue, Oct 28, 2025 at 12:24:36PM +0000 schrieb Josua Mayer:
+> Am 27.10.25 um 18:48 schrieb Josua Mayer:
 > 
+> > Add description for the SolidRun i.MX8MP HummingBoard IIoT.
+> > The board is a new design around the i.MX8MP System on Module, not
+> > sharing much with previous HummingBoards.
+> >
+> > It comes with some common features:
+> > - 3x USB-3.0 Type A connector
+> > - 2x 1Gbps RJ45 Ethernet
+> > - USB Type-C Console Port
+> > - microSD connector
+> > - RTC with backup battery
+> > - RGB Status LED
+> > - 1x M.2 M-Key connector with PCI-E Gen. 3 x1
+> > - 1x M.2 B-Key connector with USB-2.0/3.0 + SIM card holder
+> > - 1x LVDS Display Connector
+> > - 1x DSI Display Connector
+> > - GPIO header
+> > - 2x RS232/RS485 ports (configurable)
+> > - 2x CAN
+> >
+> > In addition there is a board-to-board expansion connector to support
+> > custom daughter boards with access to SPI, a range of GPIOs and -
+> > notably - CAN and UART. Both 2x CAN and 2x UART can be muxed either
+> > to this b2b connector, or a termianl block connector on the base board.
+> >
+> > The routing choice for UART and CAN is expressed through gpio
+> > mux-controllers in DT and can be changed by applying dtb addons.
+> >
+> > Four dtb addons are provided:
+> >
+> > - dsi panel Winstar WJ70N3TYJHMNG0
+> > - lvds panel Winstar WF70A8SYJHLNGA
+> > - RS485 on UART port "A" (default rs232)
+> > - RS485 on UART port "B" (default rs232)
+> >
+> > Signed-off-by: Josua Mayer <josua@solid-run.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/Makefile             |   6 +
+> >  ...hummingboard-iiot-panel-dsi-WJ70N3TYJHMNG0.dtso |  70 ++
+> >  ...ummingboard-iiot-panel-lvds-WF70A8SYJHLNGA.dtso | 105 +++
+> >  .../imx8mp-hummingboard-iiot-rs485-a.dtso          |  18 +
+> >  .../imx8mp-hummingboard-iiot-rs485-b.dtso          |  18 +
+> >  .../dts/freescale/imx8mp-hummingboard-iiot.dts     | 710 +++++++++++++++++++++
+> >  6 files changed, 927 insertions(+)
+> cut
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot.dts b/arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot.dts
+> > new file mode 100644
+> > index 0000000000000..2e4cb676bc9da
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot.dts
+> cut
+> > +	led-controller@30 {
+> > +		compatible = "ti,lp5562";
+> > +		reg = <0x30>;
+> > +		/* use internal clock, could use external generated by rtc */
+> > +		clock-mode = /bits/ 8 <1>;
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +
+> > +		multi-led@0 {
+> > +			reg = <0x0>;
+> > +			color = <LED_COLOR_ID_RGB>;
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +
+> > +			led@0 {
+> > +				reg = <0x0>;
+> > +				color = <LED_COLOR_ID_RED>;
+> > +				led-cur = /bits/ 8 <0x32>;
+> > +				max-cur = /bits/ 8 <0x64>;
+> > +			};
+> > +
+> > +			led@1 {
+> > +				reg = <0x1>;
+> > +				color = <LED_COLOR_ID_GREEN>;
+> > +				led-cur = /bits/ 8 <0x19>;
+> > +				max-cur = /bits/ 8 <0x32>;
+> > +			};
+> > +
+> > +			led@2 {
+> > +				reg = <0x2>;
+> > +				color = <LED_COLOR_ID_BLUE>;
+> > +				led-cur = /bits/ 8 <0x19>;
+> > +				max-cur = /bits/ 8 <0x32>;
+> > +			};
+> > +		};
+> > +
+> > +		led@3 {
+> > +			reg = <3>;
+> > +			chan-name = "D8";
 > 
->>> +
->>> +&i2c19 {
->>> +	/* goodix,gt9886 @5d  */
->>
->> I see there's driver support for the GT98*97* - is there a chance you can
->> reuse some of it?
->>
+> chan-name gives the led the name D6 in sysfs.
 > 
-> I am currently testing touch on gtx8 driver which currently is in lkml, once its merged we could add support for it.
+> The bindings do not allow however setting chan-name on
+> the multi-led, and it has an auto-generated name in sysfs.
 > 
-> https://lore.kernel.org/linux-input/20250918-gtx8-v1-0-cba879c84775@mainlining.org
+> Am I missing something? Can multi-leds have a custom name?
 
-That's great!
+The sysfs names are auto-generated based on the attributes "color",
+"function", and "label" with the last being discouraged for new
+designs.  If the "ti,lp5562" driver does nothing special, you could
+add "function" to the multi-led node and see if that fits your needs.
 
-[...]
+Adding linux-leds to Cc, because this is a LED related question.
 
->>> +	led@2 {
->>> +		reg = <2>;
->>> +		color = <LED_COLOR_ID_RED>;
->>> +		function = LED_FUNCTION_STATUS;
->>> +		function-enumerator = <0>;
->>> +	};
->>> +
->>> +	led@3 {
->>> +		reg = <3>;
->>> +		color = <LED_COLOR_ID_RED>;
->>> +		function = LED_FUNCTION_STATUS;
->>> +		function-enumerator = <1>;
->>> +	};
->>
->> Are there really two separate red LEDs?
+Greets
+Alex
+
+> In v6.6 leds-lp5562 driver if I set in each multi-led led@[0-2] sub-node
+> chan-name to the same string "D7" - then the sysfs name becomes D7.
 > 
-> Yes, it has popup camera with an LED on both side, i have verified functionality of both LEDs. 
-
-OK, would you mind adding a label= entry with perhaps "Pop-up camera
-front/back"?
-
-Konrad
+> > +			color = <LED_COLOR_ID_GREEN>;
+> > +			led-cur = /bits/ 8 <0x19>;
+> > +			max-cur = /bits/ 8 <0x64>;
+> > +		};
+> > +	};
 
