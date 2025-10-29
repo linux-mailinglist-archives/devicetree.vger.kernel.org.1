@@ -1,183 +1,253 @@
-Return-Path: <devicetree+bounces-232629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6AF8C19824
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 10:56:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 186CCC19895
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 10:59:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 210123A575F
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 09:52:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA0213BA714
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 09:55:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AAB32D24BF;
-	Wed, 29 Oct 2025 09:52:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1354B326D69;
+	Wed, 29 Oct 2025 09:55:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="EkGbrx9w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010063.outbound.protection.outlook.com [52.101.201.63])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8512C20C48A
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 09:52:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761731540; cv=none; b=cKVf0QoQKlry2ZPViK9llYEGPc8KYM2AHTc0zeuGo5fqNAn+4/pBUADdF10zV+vOxa3fDI+UNk2Kcyep9KSpET7goS3CdU+7bmyS4trGKz7d8+P4+kaxmdgNzsgK+hPdbkOsr09LiRZAOr7jQbk9je6gqTbswUKiW+AuLeePgjk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761731540; c=relaxed/simple;
-	bh=6umXQY7PxYDhxCFHBGVvm62ZCKDd9XvEuaC2neC8JOQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=M47BXdn2LaD1kWycv1bKgM0rsPzgRiDS0Zb0NkOg+t+S05rKNTLGaIQHojaued+4lEjJgvVsslGOdBTRBhRxuL20esrn5TcTMnIOXOhdhincXmfj5k1qrJSyn59VhmCrflV1L9C6PFbuPINR7TJu5lqG61XT5JHkGI8wo3+zWaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-55716c1ffeeso1965884e0c.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 02:52:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761731537; x=1762336337;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dn3HJmw1LqF1sl88KtOEIxVUxtlj7baFmpOOANtcNAA=;
-        b=SXwgJEuT4gqhlhy4BIcEABh2S/2MGeETztDC64mwluZrQfCycySrvPn3ydXy9edOo+
-         xmhNtpEQPWccd6B8LOTmoIP/3ITVEF//sRd13yQXHO9ghWNCj7Bb6YYwgVQCfREQhsMW
-         RWX8LMEWJfrsaVCBovICSacpmCjwibPtr/DEbOKz7eqVRqJBEMfiI/LVBSvS6TWA8Qzx
-         ogRD7WdxcYJJjMyGQ0ME7PIzbUp0Ap9dyj7gqsAHm8zRjqUMu6rlyA/LCSIYeY/WE8ru
-         pPhDRQgMiAsj5KGmM2ZrAN25tU8txYxIZnU6QqcIX2+jlYSZjR0jd6PNL2N1XR2zZnM+
-         boJg==
-X-Forwarded-Encrypted: i=1; AJvYcCUGoQIF9QswI2jmOItp775QXFEJOSz8Bz5PmprW4U8XxGJqaEL+SbnAFCkXb5ZyrCKcY0OoBZaZUe9Z@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkiC0/CWvgbYff+3MaJoXkG2lfkkY5cNOUXyhxZBPbkvgTdu7y
-	LdEw3x0/RHmxqGZEFllUEb1BRmv/xxYLprIOLcZiZInnNu6ub5hdB3jTecH9C2q2
-X-Gm-Gg: ASbGncv8smEpg+MB6PhHc6muuzmheOgHQcFcQt3KH+C7FqRLl3NnwzlaHMVULn/uD48
-	OUw0OVWIRsJabdoJS8luMh33sohORA4Mk7AslW75mOnatiVurwPpssN9cwfmXYF7AoXfhpu5+wN
-	RDeUUxTOkIYgxM1Jes7nLUu84U365PhhSOG2ijF8DY8CTz8BqUc7sX962pRds0L8sJGMvKzdu6M
-	zGSV6Oy6w9PeXqeTleClnmD+/8u19qo1lQrB45iMq31xMe1+Bmc6U35prYQKmgckhrTzM9G5S9Y
-	Zr9Ko3/FOeAQEbGhR76sQaeh4+71vjx8WRUsTjDQAFwo+B9rus4ggbeZ0cnGyVjcMzZd8Ry/5tD
-	AqGxvI2QtQ+403kXSGuEIz0DN6TIPgQ7LYfHD3vJMjSD7wfmG9Y1BaEgnmotBQOhXo9P26Mx/+u
-	qGEX8HzuRGegLWAxOZ3dVg0Yz+U1f0Jq6/PM2+Tuu8nvwrwJlN
-X-Google-Smtp-Source: AGHT+IEV8kK8Sg12Z1VaQHvicbVUHTF41mBOqfpW6AxwpXMtQQNjYKyCq6lSl8LZRQ9uTpkDsnHYiw==
-X-Received: by 2002:a05:6123:2eb:b0:558:251:f0e8 with SMTP id 71dfb90a1353d-5581423c68cmr579802e0c.11.1761731537417;
-        Wed, 29 Oct 2025 02:52:17 -0700 (PDT)
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-557ddb08b9bsm5278705e0c.6.2025.10.29.02.52.17
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Oct 2025 02:52:17 -0700 (PDT)
-Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-5d61f261ebfso3214479137.2
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 02:52:17 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVuoYc2dYhnW6zI8Kt9VYsgRciN5D520SLuIPAUD7gSvbsyOQICxLUz9hvSgZrVE/LfJ4pbFdk3sOLN@vger.kernel.org
-X-Received: by 2002:a05:6102:942:b0:5d7:de89:ddd6 with SMTP id
- ada2fe7eead31-5db9057bad9mr557441137.1.1761731536861; Wed, 29 Oct 2025
- 02:52:16 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71E9E2E172D;
+	Wed, 29 Oct 2025 09:55:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.201.63
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761731735; cv=fail; b=GvSlSDkGBBpBspNhHM/Dk+EqM+bw0mCwweSjgSMVF8YxN9t74ECf62p+/G6B/z0aexCHWjfTvqWun9GoS3FEfH4oRlhonwffYJan8ERO8ydJtR7DYFW+1Z/BGCO4U6Md3fooLi4LfksrqGoYPeuAb1jluUoga9wrCBM+MdhxILs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761731735; c=relaxed/simple;
+	bh=f7BxDBCSSHZEZ7ujHfrwdvYjDyUVdpyL8ZOSMWBwwFw=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=Ck538r0bSWZZ6PUMICPmHTvrrkUHoc7ZoRWwtRx5YcILanZYzzwaHlyTGHncu6x2htSVhAxM7le2RiJc5xh336MRff35Ux0uBnry1vT/qHSOu4FpjKFy+gfAAHW5MsYPL28c2NlqhYWyByKxUYE0xQSkO2LsR8+5BricwTQMVZ0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=EkGbrx9w; arc=fail smtp.client-ip=52.101.201.63
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=sV/2SWcUu+/IooGGvluK8E9kr3Bc3yh6/wFkdKZwuLMRSK6m8gBQxCfvOVZogGwmui5Wclief5i8Lk0eSrOrT1COXZYA+X64vaEveEymcZA91Ys9hES+CoiD/XifAVd40THt5D4Nkz/c/oHWGDBopoYy6jeE6CUp3jAWa2OuimrCsN/mAy8/UjnPl1m6k5w6yT/odfxHgGQQ+5pCoiJwgVDV7luMYYh+7KqD7+chuxlLmRHyIHGjGjY2QIP9JkmmD5iPj2gEs9pluIK4mlNOBbFhE1bAKP5cWws5AwYhVJDAp0FU6fgz/gmrWRA6vyWB7Cheiou9kz6rfT8b4+rLKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iFjFI1PR51dQyzesPkqVp++1GfbRbbdMSjXTCL3KNjM=;
+ b=q+md3vM8r4uuNNWxhZJlpfY4GGur4TRu4o++QMx2jhzZtNoMjsqgHkFBms4Oox04/4g1UGD7QcrkVSJLoGCIB4TdwaDMQr+nc5LxAMeermt/OVHWDDC+SatLxO6mOio9k42vpjkrdkn5vQt55utBpKxbR5+JGL6R7Oo2GMDpPZZZk+pJnGOSoL2++ZzOihnalqEnOjToSLLXoaJyGd31R/By5A72pEUtGAwhMECcRbDqYGnLSxMkz3o26CWGIGAJqloIrcj63EfaJmJb1AWJ6AHBBWPhUUwXprREpLPtr2dEp0rbr4cnS+jP7fdwgRViOlwE1JyGHBK+38ZMyDdiYQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iFjFI1PR51dQyzesPkqVp++1GfbRbbdMSjXTCL3KNjM=;
+ b=EkGbrx9wyPr2cMGMZhEfyLVAtjvZJqkzdc0V07wXhNaC30ETNCR33mjnTPWb1+Z5BOoBbkofg7Nl8qHRfeV9yWP43DBL/2wGADYABn+hL8INY/Vrx3P5AL00CBtGj8hpnpXc78zdnOpssftQHCiGmkgMuFBEIMpZgiGUaQeVJmUP58iR92WJUodsJe3ZWpmXAzgvXTyyQyrzr30lxBJhtAcodzS5IGoF14fL0jbtlREYYwoIXoIVR867qlLAj9sPULor0KGu0VV5uFLQosIU0YgkLSvZGVO9o4gTGKjvA4yTZ4qzxGT+Ipgxd6nOq9lrTUwCBqvHflRmdNZMeMfXLA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from SJ2PR12MB8784.namprd12.prod.outlook.com (2603:10b6:a03:4d0::11)
+ by CY8PR12MB7587.namprd12.prod.outlook.com (2603:10b6:930:9a::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.13; Wed, 29 Oct
+ 2025 09:55:30 +0000
+Received: from SJ2PR12MB8784.namprd12.prod.outlook.com
+ ([fe80::1660:3173:eef6:6cd9]) by SJ2PR12MB8784.namprd12.prod.outlook.com
+ ([fe80::1660:3173:eef6:6cd9%4]) with mapi id 15.20.9275.013; Wed, 29 Oct 2025
+ 09:55:30 +0000
+Message-ID: <34d86deb-1087-4112-ba7d-bbc0cc542635@nvidia.com>
+Date: Wed, 29 Oct 2025 09:55:25 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: tegra: Enable NVDEC and NVENC on Tegra210
+To: webgeek1234@gmail.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250816-tegra210-media-enable-v1-1-bdb1c2554f0d@gmail.com>
+Content-Language: en-US
+From: Jon Hunter <jonathanh@nvidia.com>
+In-Reply-To: <20250816-tegra210-media-enable-v1-1-bdb1c2554f0d@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO4P123CA0428.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:18b::19) To SJ2PR12MB8784.namprd12.prod.outlook.com
+ (2603:10b6:a03:4d0::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251022070543.1169173-1-ryan_chen@aspeedtech.com>
- <20251022070543.1169173-5-ryan_chen@aspeedtech.com> <b5441728-06a7-44ea-8876-3a9fc3cf55be@app.fastmail.com>
- <TY2PPF5CB9A1BE626A2F0F6307461D8F64BF2F0A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
- <6a97fbb4-19c2-4ffa-9c73-26aea02c27e4@app.fastmail.com> <TY2PPF5CB9A1BE6CF8336D211641A18E2DEF2F1A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
- <71df9bdf-53b2-45e2-a9e3-5b00a556f957@lunn.ch> <TY2PPF5CB9A1BE6F3E95C7FD61CF4F90ECAF2FEA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
- <fdbc471f-514e-4521-b7a1-dcf6127d64ff@lunn.ch> <TY2PPF5CB9A1BE6DD93D0F397C961D5CB5AF2FCA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
- <01573262-69a8-44cf-ae02-2e9842c59dde@lunn.ch> <CAMuHMdXAOPemhTjdJqminXhi+1+Dsc5rN1GLqAUcfF3ZyphRoQ@mail.gmail.com>
- <TY2PPF5CB9A1BE6D0FC241696E44EB1F463F2FAA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
-In-Reply-To: <TY2PPF5CB9A1BE6D0FC241696E44EB1F463F2FAA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 29 Oct 2025 10:52:05 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWKsyt_bXaJ=smtCaGst_5O2trQakxmaKp2K1Jzc=Y9uA@mail.gmail.com>
-X-Gm-Features: AWmQ_bnPsVrgzrwpS4yuU54P6rGfuwJuhD3QhZm5C-G0nVGXJf4URRbbI7AGLcc
-Message-ID: <CAMuHMdWKsyt_bXaJ=smtCaGst_5O2trQakxmaKp2K1Jzc=Y9uA@mail.gmail.com>
-Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC device tree
-To: Ryan Chen <ryan_chen@aspeedtech.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>, BMC-SW <BMC-SW@aspeedtech.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, 
-	Jeremy Kerr <jk@codeconstruct.com.au>, Lee Jones <lee@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, Nishanth Menon <nm@ti.com>, 
-	=?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>, 
-	Taniya Das <quic_tdas@quicinc.com>, 
-	"Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Eric Biggers <ebiggers@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ2PR12MB8784:EE_|CY8PR12MB7587:EE_
+X-MS-Office365-Filtering-Correlation-Id: fc7064ac-c309-4692-a474-08de16d14b8f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|10070799003|376014|366016|1800799024|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?Z0pIRGxqTmVJdTNDUmc1NEpwbStCWHBDTTlCa28yd0UxelFOU1NMVC8yR2lP?=
+ =?utf-8?B?dVVMVjRxeFozeWhtTk9qZzQzZ09LUy9oQm40OVZDaFVVMEdsNFhaZGZ3NUpy?=
+ =?utf-8?B?OG1xZlRBS1E5U1Evdk5nY0FIbjQ5a3JVNWhsdS9zaUszNG1va0hBMTNzY2xL?=
+ =?utf-8?B?L2FnbTN3eUk0azBqWS9aR0dEcTdKY3FDQU4wSzBIOWY4UHpCVS94dmdtc3Vy?=
+ =?utf-8?B?N3kzTXRya3pBaDRhV3JoencxMmppanlqblY1dldiQ3dtVjZRRkN1ck5lSVlC?=
+ =?utf-8?B?L2pVbmR2UnpIdSs3bFYrMGdiQ2lzT0NPV0g4OGhwMWlQQ2FLSVY4TWJEVnhn?=
+ =?utf-8?B?U3RhU1dwWkltcDRXOW1uOTl6UGRST1U3eHBWbVcvcXFEQmRRUTYwUlJIeVZN?=
+ =?utf-8?B?aWFkOStyVWsrMTlGbnBsSDUyVFBzamdZUVh6L2g0ZGRsczdPMDBjYmxORUNZ?=
+ =?utf-8?B?ei9yYjMvNk91U0VITUdzYXdTeU9MSEc0SjYwYUNYU1BRc2pWbDlYTStTYUdM?=
+ =?utf-8?B?TVBqWDZxSW1wTTFnUGRNT3JiSHJib3Z5V2xwUVNVcUxzOEZ1bjcrVm5ENVJl?=
+ =?utf-8?B?TTd0aEkrYXA0RWNMKzVUZHVWWGQxb3hoL2Z3VkEwRXBEb2pHNGZCR1FzR2ND?=
+ =?utf-8?B?bE5pRllhclRYTExTSk4yWjRpOVZpeXpDOVJGblBMcEs3S0FqTmovMmxLRW5u?=
+ =?utf-8?B?Q3ZjZlgrNCtHWUFKR2dVeFJ0K21hektETjhKWkNpRTU4YnpzQnBjUnZDNk1t?=
+ =?utf-8?B?OVBRQWtGcjcySmNjQUFvd3RidnhqL2ZyOHRlTlVXZFN4aGgrenBQdW44VzNm?=
+ =?utf-8?B?eHJGU09qQ0RKL2o1S1hmV3ZOc1o1OVJUSGIxejhsVUdyMzcvQVlyVnZVRTVq?=
+ =?utf-8?B?S1lIZi9IOVkyam1xbjYvOE1yZVZxUi9PczdzQjNuRytTNnZYRm1hdFlKellw?=
+ =?utf-8?B?SHNuRUdnSHIwK2g0TFZtMnhCejJ4TTF3aUF3YktjREhDVE1DMWRDMzllR3BL?=
+ =?utf-8?B?V2JJclBpeXI1ME1XekZSOUV5V1dGVzZ4SlViZ2xWUEtyWnFLTDdlOXVqVXJn?=
+ =?utf-8?B?Rnc4czZXNXQ2OEZhQnord1QyWkkwNm44T3NtUmxlUUNwZUhjSDdDOUR4dTVF?=
+ =?utf-8?B?M3RmRTFuTjcza040TTFHYmVpTi9MRnpqZVpSMGk3WG9iK0RUSUFWS0lZeGtL?=
+ =?utf-8?B?REFwRXA0S0lIUDRNeUUweGM5YkNpMC9mS3hNK2RXZ0RJb09DOXJRczVFNlNP?=
+ =?utf-8?B?NVQ0TXlKRlVCc0pvc3pKRUtXZzVNSlVRT2xoWkVPSDZJZVoyK0ZtVHBEODhS?=
+ =?utf-8?B?c2EzV09BVElrRnlNUEVzSHZEbktzTFlzY2FNeUJIdkdmb002emk1czM0V2Fh?=
+ =?utf-8?B?d25tcEoyU0cvYWI4eis0bnBNTnd4RHpsQ1lQem53TEMwc1IybzVQYzlteDVV?=
+ =?utf-8?B?WXdWbFkxTTF3N0JNOERkdUR4Skd5QWUxMEd6WDEvMDgyQ1kxQ0l1ZHhZSTlG?=
+ =?utf-8?B?dzBuMWNOUTBNZzh0bnVXMElyRG5LTU1WdU9rTGtCNmZxMmFHaDZUcjNJaUc4?=
+ =?utf-8?B?Y0hUYUY5eUpZMlBJK2pFTEFnQmFuSGFTS0d3aVI3RWZnOEcxTGp4MVJ3amxq?=
+ =?utf-8?B?R0dDaTZmWlEvYWx0OVlQTUhDNG5HN0d6aUt1Vk9KeVl4VEcxNGw4c3Q0bWg5?=
+ =?utf-8?B?c01YZ0FSeEdrMHRuSjI4QVRsR2xUQjZ2bDc0Sy8wdW9ueUJiRWJub0FmSlBN?=
+ =?utf-8?B?U3V2ejY4Zi8rd3RwdXRzbTFjdGlZZGlleDNna0ZLSTV6VCtPcU4xeHdvRllm?=
+ =?utf-8?B?L2ErNXlwYW40MzNxTWtwNEhHTXVMRitkRTdaZnNESmNtRmpIbUZOL0x3c2Jh?=
+ =?utf-8?B?aHpMWXNuem03MlhneC9TMGZZVC8vZjQzZit0RGRST2RUelptM2ptQmtKZys5?=
+ =?utf-8?Q?7BEE3veiUi4FPS22L3liGFECv64msK9r?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8784.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(376014)(366016)(1800799024)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?ZDVnejJJYWt2czEzcXhwaTFRYUlaTVQrTHhkZ1lFTTVjSVlnWk45SWE3R1dp?=
+ =?utf-8?B?VDhCb3pUU2F1RkFTUVlyMUdWa0NMU0JGYzdlOW01Mk5jQXZNYS8vdTJYS2VB?=
+ =?utf-8?B?MEI4SDdZNUZVdTBCc2xpUm9TSjJSck1kVkE1UTFLMmdSOVppVlhSc0tMajlE?=
+ =?utf-8?B?R05McFZkNzU3Z3JucDlJMmVYU01meTJkY0hKcHU4V3lmQ2hMLys2Y1dvRHZk?=
+ =?utf-8?B?N0xhQVFINjJ4VlNxN3E0MVU4Y0NMMENQODBpYnphQTdJTkFkdGJoS2Zhbmtu?=
+ =?utf-8?B?N1RvNWhJVE1oOER2MjFmYUZPN2VIa0lIa1JUc3FtSWNua1JHWnlqcHg4Q29V?=
+ =?utf-8?B?cmVBb3ptRk9NdHJmTTR0b3ZZY3BrczNHK09odHNIWkZaU2Z3ZTZDV095dEk5?=
+ =?utf-8?B?YWJkWEhvOGZaVHN2bzFydUdxUTFkcG5yOTU5QXFBOHpSSWxXcFBIYVRSQ3RG?=
+ =?utf-8?B?UlI4SkRGRjM3cUw0Y09HQTQvenA0NUFXT3N2L2FaUkJkN0pzUXlCanNON005?=
+ =?utf-8?B?bU0rSExoeDUxcUtpaWpod0JjUEhKcmtqc2d3TU80M3hyTmxNOGhIT0JrZXRO?=
+ =?utf-8?B?RFl3RU9JdDNIbGxXbmlIY3Z4a0IrNWFZcGEyb2x2YlNjT3NmQlNVVnFXclZa?=
+ =?utf-8?B?YVhJQytYNDhsWUdPL2NFRFFnbUlNNUswdTI5YkxMTXJ0eHh1d2xwaTExbWlG?=
+ =?utf-8?B?eUpab3U3K0pJcE9RODVjd1FteDhyL3NrdkVySUtNQXZTd1RVV2ZZRmdBV0RZ?=
+ =?utf-8?B?TVZRdS9UbWlGOHR3VjBFdVY1TG9mMHE2endtUHIvODk4M1VYWGZHQWVPWjho?=
+ =?utf-8?B?MDJTVjlkY1dyRDYwU2lqRkxLNE5qcDQvR1BUQlJMMzAzZTd3eHZBNy9VOWV3?=
+ =?utf-8?B?YlhDVkJyLzZXQWhidW5TK1B0N0pvKy9PRWRVSy9CQmFCcE9ZWXQ3ZFNRMDM4?=
+ =?utf-8?B?YXVFeWlDSUpMNExlWUt6eVZJSDNuclVHYmlvMElScXk0QXpFemQ2d2h3UEU3?=
+ =?utf-8?B?UENVaGlNMFpMdUNTNnZzR0grdnpiV1I5RjllNTZFU1lnT3RNRk9UT2xvUGxG?=
+ =?utf-8?B?ZExzcXZ1b2N3RHlXTUlaUnRHMURVdHdMMWxYamZOZVljUEg1aGtVTlVsUldH?=
+ =?utf-8?B?ajNXRlVEelkwcmpTOUtvVllwZ0x3UHIxZldqY0VXamlpeW9NaHVleUp3RFBa?=
+ =?utf-8?B?ek9BbFJIMTM1b0JvaVJFMnprZEZqSGtuVnRYTjFjd2wvWmExMDlDMUtuUFRR?=
+ =?utf-8?B?cjdpSnJXMzVVSURmZGFoc1ZsNTlCMFNoOWtlNEpCVC9RZ3krbEpmUDZwb0NN?=
+ =?utf-8?B?MlRWZnZQMWZQbTVId2c3MVdjbU9aV1ZDRHNtWEt1ZDZoOW1xNE4wc3dGVlBD?=
+ =?utf-8?B?WXRITmlVSU1XS3J4QlZ5MmJrTUd3U29oM2tCVEgxRURiYkFmN2IxT2RyVjJ3?=
+ =?utf-8?B?RkoybEozc09OTUVqRWdab2FLanU0dmYxbDZHNzNJc1Rybzl5ZnZtcTA5SVBE?=
+ =?utf-8?B?T2pFcjBRaGtSSnhSazc0RmN4T2lGa0kwZU5VMFdEaVZXbDlwTzBlU1VyRzA4?=
+ =?utf-8?B?RGl5YjNNVUN3M0VMaEYrQk5wZ2FibGp2aTJ0Nk1kQmNnNncxTFRzMUowbEY1?=
+ =?utf-8?B?ZU9EdGNsV0wrWVNmeFpVSFIyK2VrVlhjcUdySzRuQzdQMlh2dzBkaXJ4VlJC?=
+ =?utf-8?B?cEJqSnJlWWJnTHpsTElkSDBlME9EZHpPVGlxM2tMMTNNOVcyU2xyWDBGbmhx?=
+ =?utf-8?B?L3FZYy93Wm1tcldYZTlKaGhsL25lNVlMbndPTE15YzBSRng3MFZ5dlpNaWJx?=
+ =?utf-8?B?dG1YVXZlMk5mUnB5Nm5rYzBPRzMwL1dHcDdhR0pFZ0dEczFUQ1huOGpUR2d6?=
+ =?utf-8?B?VmRXM0ZrUVJ6NVQ3aFJPdWpnMXk3YzI4WGJuVVJ3MHRhd1lnSkFoVnJkQWpv?=
+ =?utf-8?B?WlhrRThIWDhkeWNJTzRPNEpTdUFMb1IxUFhRa0Z2bkRwY2pJQ2xIWUhMTWlx?=
+ =?utf-8?B?dHllNXJ4Mk1xZEc2R3pOYlZKRW1ZV0hGZDNYNVNYYjRQZXZRK0FGMThUalo4?=
+ =?utf-8?B?U3FGbHdoQVJwRVF0Q0g4cjFkWHdocWVaV3JXZFJoNmYySUYwN09renUrbUh5?=
+ =?utf-8?B?QzJ6R3Y4U21IQ3BXTEwvdWZPSHYrWTh5YW81TDE4TDVtU0xsK1VxR2dDbzRh?=
+ =?utf-8?B?MFBZZEJmY0RsRFpsbnhDcDN6RU9tckpWOTVCY05vSE9jbTVpOVFnTTZRclNE?=
+ =?utf-8?B?dHViSDRXeDRkeGxFN2F1bWRXbnVBPT0=?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc7064ac-c309-4692-a474-08de16d14b8f
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8784.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2025 09:55:30.7562
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: KcPMuOROAaT0O2BEzSCXH4LSa9n4oeDoGKDFe8OpCwz9CDgEVQL9CmwELBcl9waYfUM7rYuBoKz2J/yRZZVH6Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7587
 
-Hi Ryan,
 
-On Wed, 29 Oct 2025 at 03:38, Ryan Chen <ryan_chen@aspeedtech.com> wrote:
-> > Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC=
- device
-> > On Mon, 27 Oct 2025 at 13:01, Andrew Lunn <andrew@lunn.ch> wrote:
-> > > On Mon, Oct 27, 2025 at 02:42:01AM +0000, Ryan Chen wrote:
-> > > > > Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial
-> > > > > AST2700 SoC device tree
-> > > > >
-> > > > > > SoC0, referred to as the CPU die, contains a dual-core
-> > > > > > Cortex-A35 cluster and two Cortex-M4 cores, along with its own
-> > > > > > clock/reset domains and high-speed peripheral set.
-> > > > >
-> > > > > > SoC1, referred to as the I/O die, contains the Boot MCU and its
-> > > > > > own clock/reset domains and low-speed peripheral set, and is
-> > > > > > responsible for system boot and control functions.
-> > > > >
-> > > > > So is the same .dtsi file shared by both systems?
-> > > >
-> > > > This .dtsi represents the Cortex-A35 view only and is not shared
-> > > > with the Cortex-M4 or the Boot MCU side, since they are separate
-> > > > 32-bit and 64-bit systems running independent firmware.
-> > >
-> > > DT describes the hardware. The .dtsi file could be shared, you just
-> > > need different status =3D <>; lines in the dtb blob.
-> > >
-> > > > > How do you partition devices
-> > > > > so each CPU cluster knows it has exclusive access to which periph=
-erals?
-> > > >
-> > > > Before the system is fully brought up, Boot MCU configure hardware
-> > > > controllers handle the resource partitioning to ensure exclusive ac=
-cess.
-> > >
-> > > Are you saying it modifies the .dtb blob and changes some status =3D
-> > > "okay"; to "disabled";?
-> >
-> > "reserved" is the appropriate status value for that.
->
-> Thanks for the clarification.
->
-> Since the SoC-level .dtsi is shared by all users (potentially other platf=
-orms),
-> I don=E2=80=99t actually know in advance which peripherals will be assign=
-ed to
-> which CPU. For this reason, marking nodes as `status =3D "reserved"` in t=
-he
-> .dtsi might be misleading.
+On 16/08/2025 07:03, Aaron Kling via B4 Relay wrote:
+> From: Aaron Kling <webgeek1234@gmail.com>
+> 
+> The other engines are already enabled, finish filling out the media
+> engine nodes and power domains.
+> 
+> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> ---
+>   arch/arm64/boot/dts/nvidia/tegra210.dtsi | 28 ++++++++++++++++++++++++++--
+>   1 file changed, 26 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+> index 402b0ede1472af625d9d9e811f5af306d436cc98..80d7571d0350205b080bcf48b8b8e2c1b93227f2 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+> @@ -277,13 +277,25 @@ dsib: dsi@54400000 {
+>   		nvdec@54480000 {
+>   			compatible = "nvidia,tegra210-nvdec";
+>   			reg = <0x0 0x54480000 0x0 0x00040000>;
+> -			status = "disabled";
+> +			clocks = <&tegra_car TEGRA210_CLK_NVDEC>;
+> +			clock-names = "nvdec";
+> +			resets = <&tegra_car 194>;
+> +			reset-names = "nvdec";
+> +
+> +			iommus = <&mc TEGRA_SWGROUP_NVDEC>;
+> +			power-domains = <&pd_nvdec>;
+>   		};
+>   
+>   		nvenc@544c0000 {
+>   			compatible = "nvidia,tegra210-nvenc";
+>   			reg = <0x0 0x544c0000 0x0 0x00040000>;
+> -			status = "disabled";
+> +			clocks = <&tegra_car TEGRA210_CLK_NVENC>;
+> +			clock-names = "nvenc";
+> +			resets = <&tegra_car 219>;
+> +			reset-names = "nvenc";
+> +
+> +			iommus = <&mc TEGRA_SWGROUP_NVENC>;
+> +			power-domains = <&pd_nvenc>;
+>   		};
+>   
+>   		tsec@54500000 {
+> @@ -894,6 +906,18 @@ pd_audio: aud {
+>   				#power-domain-cells = <0>;
+>   			};
+>   
+> +			pd_nvenc: mpe {
+> +				clocks = <&tegra_car TEGRA210_CLK_NVENC>;
+> +				resets = <&tegra_car 219>;
+> +				#power-domain-cells = <0>;
+> +			};
+> +
+> +			pd_nvdec: nvdec {
+> +				clocks = <&tegra_car TEGRA210_CLK_NVDEC>;
+> +				resets = <&tegra_car 194>;
+> +				#power-domain-cells = <0>;
+> +			};
+> +
+>   			pd_sor: sor {
+>   				clocks = <&tegra_car TEGRA210_CLK_SOR0>,
+>   					 <&tegra_car TEGRA210_CLK_SOR1>,
+> 
 
-Sure, not in the SoC-specific .dtsi.
+Looks good to me!
 
-> I think it=E2=80=99s more appropriate to keep all peripherals as
-> `status =3D "disabled"` in the common .dtsi, and let each board-level .dt=
-s or
-> firmware-specific DT decide whether a device should be `okay` or `reserve=
-d`
-> depending on the actual resource assignment.
+Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
 
-Correct.
+Jon
 
-Gr{oetje,eeting}s,
+-- 
+nvpublic
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
