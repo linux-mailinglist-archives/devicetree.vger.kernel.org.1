@@ -1,162 +1,185 @@
-Return-Path: <devicetree+bounces-232733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83AE4C1AFCE
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:54:46 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97D44C1B0F6
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:04:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 618EC1AA7614
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:44:17 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6CF335A1FE7
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:45:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F031325709;
-	Wed, 29 Oct 2025 13:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D993B33F389;
+	Wed, 29 Oct 2025 13:37:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ou1VjCWO"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="F2bbbbDZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 558EA302161;
-	Wed, 29 Oct 2025 13:33:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBA9D25785A
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 13:37:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761744826; cv=none; b=BBspC1ngBHAxsZ79Djil4H/CRYgMOf2diltm3E9skpwMVN+8qnzQTXO+nOTt9Eime1pxi/E5uOSb2cJw/VdCDofYoNIo125zZdM1j0ddHaN6bdAa8ZpTC3RoEi6CDwvgJhTyO02+B2yTgu8kddrY4drLEVCPqUCi5BCzN2icuIY=
+	t=1761745039; cv=none; b=qUn0UNczeIvXpG6T5XKcdONinjXzrPxN3i6ldFJeXSICHDU4+Dhn9Bq6vwqxutpLYXWX1Pb0DvCmYdN7MNQW2WLdsxOC8L2MJ+pP9Vy7efFAD25IOoc4/hTUrGH8RvEojpilgfpwHmSLVG4QDIjdJxiTR3PvGgvF6fgtCvWGu4U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761744826; c=relaxed/simple;
-	bh=ZHmNvpRE/27NOb0eEnH0tbeTut2ItrA5+TdUUFpGM7k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=blT7SeGxknvoDOgCUWRw1MXmnYjAQPPeXzgTUU0nXX4/0hLbguuFLh/Wn56SI6jAXCRakPuTwh4HzbmDMEWQGe0IQtAtoiTcrvJ1KGr5Kj2hq9JooXH2vKIEOEi2ldh679ICRalEnqSE5AvxfCdykTNe1wwqAIZel9coKGDlFI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ou1VjCWO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 078FAC4CEFF;
-	Wed, 29 Oct 2025 13:33:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761744825;
-	bh=ZHmNvpRE/27NOb0eEnH0tbeTut2ItrA5+TdUUFpGM7k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ou1VjCWOsp1l3s9vFI6F5hFO11knjGvnOej6wvPkNlcz5O9trZBuWS6cxW8obzWkb
-	 bMx37vdpUgjTmxB1gh1eVoiWHzy9/LiGlSL5LwAwAnGCSci6axkvgrSmx3KVIvRbxQ
-	 IYMNOrwm9nD8i7eRIW/WLbIs7RFi0pynXPTtFmRhO0WpmqOi9pwHNWRfUkMcm59dDr
-	 1DE6Df080zlVN+aRrOSPvvPx/0CyqeYw/EleSE9D7UKDMpMfH4tb3kBC/qRvroBooU
-	 LcYu8vzysBKt0so2mGg1SLT7NK+fR2PoP9EpZlRpeFx4hWkqjS/6m859KMB9Mj428o
-	 8GPcdUi8cgYWQ==
-Message-ID: <b81502cc-d91d-4801-ad72-034c20b1c72a@kernel.org>
-Date: Wed, 29 Oct 2025 14:33:39 +0100
+	s=arc-20240116; t=1761745039; c=relaxed/simple;
+	bh=g2UzYoQMmBvyP0vqBmIs0mbCNRIvDuiSiZPQPavWlvA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=eeo7FtibA/GFOq3AoGVTiyIIBxaRNfwg5nZtVyGbhCqGi8r1rTwbhcTCMwa8TMWYX31PsW25+QZ0aXqlmKRp/SXt8RiGpXTsN+HVSaD86eQFKaWuDNOxwc+MbzcRpKiCy/5LBOVs3WkXr/rPkSq5rGqJdsJF4cJeC1kgwPG6ooI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=F2bbbbDZ; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-47710acf715so19322145e9.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 06:37:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1761745035; x=1762349835; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=raFhMoNXeeTJ+YCRDYZfwFJY7Igi8rgmNsUQLFF8MJk=;
+        b=F2bbbbDZKTCaOoUpcw2VGBy7Aghruf8zK9B1d2kLJsYAXtmw2YAHIsGXPQyDAUFESc
+         NOJRsepT5zuw6aHLGLPqI1g/l23+3izT+hn10ksddwQdcD8FKETVIHP41LrC/rVGom3h
+         GsaE1NgFSqnINoHHjO7fYSDZR5is26ENLbWMmXDcC17mh8uLV9+aORoN6qwjHGulRb3u
+         n5mqtJwMxHra0NlXSd7FOvAjwNYsP720RT1IMRhxCDeFVsfMTMIFe7Na/iizd/LQGfER
+         Z3byexXy14ja7nCFJUkRjmzPlD0tfyUqJzaWuxqXOS4fa9ieS+ynJPTPvzOkwfO40yk4
+         txvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761745035; x=1762349835;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=raFhMoNXeeTJ+YCRDYZfwFJY7Igi8rgmNsUQLFF8MJk=;
+        b=kNMdIDTad7i/llgAFgIfeim/k0VFrxp1ckQNnGhlKsBs9d+B5Px95BlsRLErk2dcFS
+         /k4bwFVBbruPxdezLe9PGIiQ4m1Ra0IILVgs/HLn/+QoHuuX2U5qJk2lcphXFv301mhh
+         hDwI6kat9cq8rJ+mNQ5mZ2Y+1eLk1czqN9txoulXF+puLSXrzA7g2raw+UVQGkKTGP/k
+         Scc3z2s5EWmfwA7K5BrnC2kQ3lbHx7QZDkJsbf1Gn/IaDxgb7UaVqTIP49pZFNKFLz7I
+         I1NX7ot/ca2FnWyZpUr7cE/ygP7EE/ULjPIy6h5kP8TM81Gsv5IhpZd8uj9WaCYfeMtM
+         6mXA==
+X-Forwarded-Encrypted: i=1; AJvYcCXhRfRs0HALjgHYBLFs8aceTtRBTx6uTzJN+JUlDWsvhtfqwwdKdZZU+9LU3V3Z4zIcGF40yxk5WdZt@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHqoT8+QtM41ZAzonIQbNBHN0MGYMMF7hBaQINIh/L2uKayHmk
+	2g5h/GEYzGzPOdbf4PbjFBtszhBzAzld6Ie24E3D1mgb8AjsFpaGq2eYY/Cq4/tNBzg=
+X-Gm-Gg: ASbGncv1ToFWrqpw53NJdxWhEX78kxZn5OrgrHiFdR/knfHdX7u/1srQfFbb7cg2eur
+	91IVuycE7Qud+sO5HY4x/UvHZSMKhpZCNzdJjTGsRgGqdRC+xACmk0YHlN3cJ523a8Mi2IAcZHx
+	u/FSSkOPlhT+wnVXKpqNDUkUXNFWrMFToXieI1B0LdHQRrgWdF2+bRl2XxVXzdQ/jsqo7LSYvhL
+	kYRYp9jljTcwXtRjKYv8hmOkGsGYlSmBI/97LEKKmjUp5cEuNVBu7uD6p9nALgjfSOjILEdjj02
+	GryRpJ4aTkAnIAGkIBUKI1o35cnppQ9vf7ni9faRr4ckyO1l8WMf+QL3zWaa6slV+rLdG8orgHD
+	u4GBvGb/lu+sT4ExCY1e77j9zloiEL/muL0FWZBTscT1fCoivK6QFmiggaQuulikIfVWV7f1vLj
+	y8azbrDcqp4no76HWfj+JKJYj29hFTcpDjyzPbfdeKHBZuzsNANzhvm+dI4WHQ
+X-Google-Smtp-Source: AGHT+IF9Ytr9phXCmFUbowfCjA8FrDjdRUcYYY+EYbpC7X4xEFDfts0q9wqBeybqLp87Haw2oAS9Og==
+X-Received: by 2002:a05:600c:6089:b0:46e:4be1:a423 with SMTP id 5b1f17b1804b1-4771e19c71bmr24184595e9.1.1761745035168;
+        Wed, 29 Oct 2025 06:37:15 -0700 (PDT)
+Received: from claudiu-TUXEDO-InfinityBook-Pro-AMD-Gen9.. ([2a02:2f04:6302:7900:aafe:5712:6974:4a42])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4771e22280fsm49774795e9.14.2025.10.29.06.37.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Oct 2025 06:37:14 -0700 (PDT)
+From: Claudiu <claudiu.beznea@tuxon.dev>
+X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
+To: lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org,
+	robh@kernel.org,
+	bhelgaas@google.com,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	p.zabel@pengutronix.de
+Cc: claudiu.beznea@tuxon.dev,
+	linux-pci@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v6 0/6] PCI: rzg3s-host: Add PCIe driver for Renesas RZ/G3S SoC
+Date: Wed, 29 Oct 2025 15:36:47 +0200
+Message-ID: <20251029133653.2437024-1-claudiu.beznea.uj@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/15] dt-bindings: Add trickle-charge upper limit
-To: Linus Walleij <linus.walleij@linaro.org>,
- Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Andreas Kemnade <andreas@kemnade.info>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-rtc@vger.kernel.org
-References: <cover.1761564043.git.mazziesaccount@gmail.com>
- <b13b733e7e0fba05652f49f727412fed9e0ceb02.1761564043.git.mazziesaccount@gmail.com>
- <20251029-adamant-mamba-of-patience-cddb65@kuoka>
- <a81fba66-adf0-440f-96e1-bf3a83d504d8@gmail.com>
- <CACRpkdZcszMZEU2Wzx8kaoR46ytziqtedmCrsjEL3QOrDtDgzg@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CACRpkdZcszMZEU2Wzx8kaoR46ytziqtedmCrsjEL3QOrDtDgzg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 29/10/2025 14:26, Linus Walleij wrote:
-> On Wed, Oct 29, 2025 at 7:22 AM Matti Vaittinen
-> <mazziesaccount@gmail.com> wrote:
-> 
->>> But I believe this is wrong. Trickle charging does not switch to
->>> anything more, there is no fast charging after trickle. You have some
->>> sort of pre-pre-charging, which is just pre-charging.
->>
->> There is trickle, pre and fast-charge phases. Furthermore, the
->> fast-charge is further divided to CC and CV. Finally, if my memory
->> serves me well, Linus W did explain me that some chargers use
->> 'trickle-charging' as a _last_ charging phase for a full battery. Thus
->> the term 'trickle-charging' is slightly confusing - but it is already
->> used by the existing bindings...
->>
->> https://lore.kernel.org/all/20211116001755.2132036-1-linus.walleij@linaro.org/
-> 
-> I think we need to refer to a textbook or IEEE articles to get this
-> terminology right.
-> 
-> As you say it appears "trickle-charging" is ambiguous.
-> 
-> Maybe what Krzysztof suggest to use: "pre-pre-charging" or
-> "empty-battery-charging" or something like this is needed.
-> 
-> But we really need a trustworthy academic source here.
+From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Trickle charging is accurate for both cases - pre-pre and top-off -
-because it just describes very small current. That's why I found it in
-many TI datasheets - mostly for Li-Ion batteries describing Matti's
-case, but also in at least one case for Ni-Mh describing top-off (or
-maintenance).
+Hi,
 
-I am fine with the naming, but I want to be clear that this property
-will describe trickle only in case of pre-pre charging. Termination
-voltage simply does not fit the top-off/maintenance mode.
+Series adds a PCIe driver for the Renesas RZ/G3S SoC.
+It is split as follows:
+- patches 1-2/6:	add PCIe support for the RZ/G3S SoC
+- patches 3-6/6:	add device tree support and defconfig flag
 
-Best regards,
-Krzysztof
+Please provide your feedback.
+
+Merge strategy, if any:
+- patches 1-2/6 can go through the PCI tree
+- patches 3-6/6 can go through the Renesas tree
+
+Thank you,
+Claudiu Beznea
+
+Changes in v6:
+- addressed review comments on DT bindings and driver code
+- per-patch changes are described in each individual patch
+
+Changes in v5:
+- dropped patch
+  "arm64: dts: renesas: rzg3s-smarc-som: Update dma-ranges for PCIe"
+  and introduced patch
+  "arm64: dts: renesas: rzg3s-smarc-som: Add PCIe reference clock"
+- addressed review comments
+- per-patch changes are described in each individual patch
+
+Changes in v4:
+- dropped v3 patches:
+  - "clk: renesas: r9a08g045: Add clocks and resets support for PCIe"
+  - "soc: renesas: rz-sysc: Add syscon/regmap support"
+  as they are already integrated
+- dropped v3 patch "PCI: of_property: Restore the arguments of the
+  next level parent" as it is not needed anymore in this version due
+  port being added in device tree
+- addressed review comments
+- per-patch changes are described in each individual patch
+
+Changes in v3:
+- added patch "PCI: of_property: Restore the arguments of the next level parent"
+  to fix the legacy interrupt request
+- addressed review comments
+- per-patch changes are described in each individual patch
+
+Changes in v2:
+- dropped "of/irq: Export of_irq_count()" as it is not needed anymore
+  in this version
+- added "arm64: dts: renesas: rzg3s-smarc-som: Update dma-ranges for PCIe"
+  to reflect the board specific memory constraints
+- addressed review comments
+- updated patch "soc: renesas: rz-sysc: Add syscon/regmap support"
+- per-patch changes are described in each individual patch
+
+Claudiu Beznea (6):
+  dt-bindings: PCI: renesas,r9a08g045s33-pcie: Add Renesas RZ/G3S
+  PCI: rzg3s-host: Add Renesas RZ/G3S SoC host driver
+  arm64: dts: renesas: r9a08g045: Add PCIe node
+  arm64: dts: renesas: rzg3s-smarc-som: Add PCIe reference clock
+  arm64: dts: renesas: rzg3s-smarc: Enable PCIe
+  arm64: defconfig: Enable PCIe for the Renesas RZ/G3S SoC
+
+ .../bindings/pci/renesas,r9a08g045-pcie.yaml  |  249 +++
+ MAINTAINERS                                   |    8 +
+ arch/arm64/boot/dts/renesas/r9a08g045.dtsi    |   65 +
+ .../boot/dts/renesas/rzg3s-smarc-som.dtsi     |    5 +
+ arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi  |   11 +
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/pci/controller/Kconfig                |    9 +
+ drivers/pci/controller/Makefile               |    1 +
+ drivers/pci/controller/pcie-rzg3s-host.c      | 1759 +++++++++++++++++
+ 9 files changed, 2108 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
+ create mode 100644 drivers/pci/controller/pcie-rzg3s-host.c
+
+-- 
+2.43.0
+
 
