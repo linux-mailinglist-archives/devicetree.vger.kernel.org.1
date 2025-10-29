@@ -1,566 +1,180 @@
-Return-Path: <devicetree+bounces-232684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DED89C1A1DF
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 12:52:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5F99C1A217
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:05:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A43BF404276
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 11:51:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C14AB1A6117A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 12:06:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D946233891B;
-	Wed, 29 Oct 2025 11:51:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D94D1337B92;
+	Wed, 29 Oct 2025 12:05:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O80e/tCm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y3nObm9x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com [209.85.208.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B6CE337B85
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 11:51:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5CC72F5498;
+	Wed, 29 Oct 2025 12:05:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761738675; cv=none; b=mqMSiht31TT1IOJQCQsC5ywD260KBElg5cafUR2qUJokt94FzvNrAl9fUtGaj3HaRV+eKDv3+XD/pru1IKPFXp1AO+ap9B7mLrr83Y3MJnKKDc4PijaHhlCVku2H7EnWxpu85pJeyxayaU94ltVpz7dQ4Ux4ahdv6hlLRgMqnio=
+	t=1761739536; cv=none; b=UNLlZ+OaW9Sp5qgwfuGfWE5FwI/6BQYSJDoeAIuU8/AOaOofZkxd8oRopvMJUWii27gffwYIYgkLyjeG/RlnS3fWsE9QU2a3tBqRNPzb3iafBZNVsWuEwaH7ZD4sAQZ1vnMzePuFoEERJ8KUuLLc5mlm1LkxeGyNiLw56Vw/aEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761738675; c=relaxed/simple;
-	bh=sQSvCc+stRawyQCe28tVgqjb9XQM8BEV450CLz359gM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sweWIK3/AWLqaKojxGrcFVO82oXKFKKBf4wQcemtv8CYIujEnVjX7aqB6E6BKIqTWUXfmxlUChq177ijUbeQVGZasw/JtTP/n7REmWHpshfE7gFdw/GHAPF3v58T3djdj7JwK7qIkpQh3NPfvSGBLucFEbasc6mIrc/gS97uoMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O80e/tCm; arc=none smtp.client-ip=209.85.208.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f65.google.com with SMTP id 4fb4d7f45d1cf-63c4f1e7243so11001515a12.3
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 04:51:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761738671; x=1762343471; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6PmxXZLeWMcLI527g8jLuWPGtFvEcXvUEe7TnxQd8UI=;
-        b=O80e/tCm6+Iat8kAqUO18bZedek439vALlI22gIe+yJlliP+ULIePafq5C+cICvVHI
-         i3J141tK2p5XqA/zUYmGU1xd65djsLQVkF/T2Y9olvkuVemCnCMgmPPC5HZ8qNEj9mnm
-         8v7By0MDj3KVPZunHBgtSYNcg21xZO/Gbg+R4YdOIv0Aimoc9OfwLLZSp+NrJk005s86
-         ivGR/04m+ReFF3chCNv9Oj0+Mn7ABXbCJf21OoIKIoXQiWiULihs4dyBVmyjozPiPHZX
-         y9Wt8T83MDWuEO/p8XgL0nNVp5iqI8gnHX7rGbAdMfqCuVx/t9g0OTs8H21w8wXbRfci
-         /fhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761738671; x=1762343471;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6PmxXZLeWMcLI527g8jLuWPGtFvEcXvUEe7TnxQd8UI=;
-        b=KRTByXWDPf6wW1x+NyQ2wXfRpQ5Wqq0ZFC1MJCqIOYgIYl3jmhLNZLzJZ0rgbOpQtP
-         DiVQligG4nqOhde8ZZg+1Nnmhlyd8Ly54aqoSnOqGMYu4IU/AvBhg1YATmSE5pfhUa5l
-         QFqKY7uglXQf3p/8w6ht3rAW1MB1ja1q6VerReqd97ufhpbjgMpU4eDFpgSM/3si1FeC
-         cbroYdg0jkXIkNgEOIwzDoLRsT8wgWIKCZq/Wi7/BT6tVBpcARLsVFKZHKZELJRa+eiC
-         G4cTUHm6HJvPeoUW++2KAJvtsRwNXJ7pro+2dJ5b3Gc1DeiD/Jp4DOx18jLaqMRqc+zy
-         a0iw==
-X-Forwarded-Encrypted: i=1; AJvYcCWFeAJkT8WrF3CPkgoaT/0gEAuoM5983QzHl/pra6RjtmgWkN4p8A33XKbhQrBeOuXH0UlGGJS6EDj7@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaV6n5jPdxyw+QdT9zVvfd04dcx0jwKu0fZtD7EFRb0rRlmd8O
-	n7AdKiN99T6nkHRJeg4NHMczwflO4/BTJWEaFaF18mWEI9XnHXkhpsiJdJaYFMAmRs56yz6kZYV
-	Yklu2dR72OQjcjINjmdI6djZAebNAs+c=
-X-Gm-Gg: ASbGncslrFnKOEkGdlnK17Hf6hJlOp3tQcKB5LiVsBz5VH2ZQ580ilORLX/lTE3glL5
-	k0GY2NbSqx1ZGer3yE7GDo+9PsdALS154wEIkuSEBvPfKVJcm2EzI1BdAw3J+oLyxLYTFbd3tSp
-	yhxK6ctMUQAF+4mq0Jnp1w0AH+uZy+Y33Wg4g8GizLi7J5NCzg1HoOCelhiSJQd0FmmY+0Aud5E
-	bI1AnoU5AE0ObmpacO3CtRvl37kViRwEIHi/kKx3+iJk7Fdrnl9c1y6N4xx9OZiBL38c0o=
-X-Google-Smtp-Source: AGHT+IG9L5a0r/NdoAT1ohIBYjXSvm6NtF9CNaPrbz2JKpE2fMKa/uar54tyDQwfdBSdEpNrfQnRUbFFbJSiFt8W4EQ=
-X-Received: by 2002:a05:6402:1452:b0:63b:f22d:9254 with SMTP id
- 4fb4d7f45d1cf-64044399015mr2070280a12.23.1761738671158; Wed, 29 Oct 2025
- 04:51:11 -0700 (PDT)
+	s=arc-20240116; t=1761739536; c=relaxed/simple;
+	bh=BfHVh/Crto9uZ959nUqNwbPVgculG9sKCInYAplIz/s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QpwCX6z2CwV+VG3UH2YVoHzQ2LwNVV0U/6egV6+GDOOsErQSSu/SLOXNiqxk/OUolhkKZUsVV758t7TVHTKQhwlt2ZpAAiAmED4apqXus4ZmVNsgvXut23dvcDTzIUrB0ekPU7MvSz24TOM97Q/xCqc98SqrXTjo3cVrPQIPmc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y3nObm9x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDC55C4CEF7;
+	Wed, 29 Oct 2025 12:05:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761739536;
+	bh=BfHVh/Crto9uZ959nUqNwbPVgculG9sKCInYAplIz/s=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Y3nObm9x1TPyz39AJN4Yt4cJOCyao31ihbNNcWy+wFh51Fa9I+aAwRYX2rWZbu5th
+	 X2wuJ9FPFM3eTLs69uJoSpwSjahP0k0hlkiAIU4A+iBo+NEgEYj5LLkDng291a8P4q
+	 Yr2R0qQU05CNEkl819v8CnBBqznGPpUx/We1oLOSyCLGtJN+UW0Rgvytqe9fhO+sxo
+	 i1COUCuahF5DJNY05UYryZnEAsRg2Uy6B07Bdkn7nH8J6JIixuFOr3EiYaMusMyMd/
+	 UKx6OawuEhRdsOSEirDAYZXEnXGz48UCJSKpW8ha4YO7v/dRITtajTa6Qhgwq5pen5
+	 f6Ut9mzDigo3Q==
+Message-ID: <6234e22a-c119-419c-83b7-2a53467951da@kernel.org>
+Date: Wed, 29 Oct 2025 13:05:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251026123923.1531727-1-caojunjie650@gmail.com>
- <20251026123923.1531727-3-caojunjie650@gmail.com> <aQDDjzl65dMZEnwM@aspen.lan>
-In-Reply-To: <aQDDjzl65dMZEnwM@aspen.lan>
-From: Junjie Cao <caojunjie650@gmail.com>
-Date: Wed, 29 Oct 2025 19:49:35 +0800
-X-Gm-Features: AWmQ_bkmVwrubVSK9QRHrpoai2PlgXID_3JWsZtl1cctLfRNPfV3c2wXTnhUYhg
-Message-ID: <CAK6c68h3Mc0=JbbbVAmo_cYeOR_T-_rRy5EacgYQh7HgQZOPBg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] backlight: aw99706: Add support for Awinic AW99706 backlight
-To: Daniel Thompson <danielt@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, 
-	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>, 
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-fbdev@vger.kernel.org, Pengyu Luo <mitltlatltl@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 3/3] arm64: dts: qcom: sm8750: Add USB support for
+ SM8750 QRD platform
+To: Krishna Kurapati PSSNV <krishna.kurapati@oss.qualcomm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+References: <20251024151521.2365845-1-krishna.kurapati@oss.qualcomm.com>
+ <20251024151521.2365845-4-krishna.kurapati@oss.qualcomm.com>
+ <a117b105-a734-4f67-9bb2-c06728e79083@kernel.org>
+ <6297468b-77d0-4202-8ec1-3e731acc43de@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <6297468b-77d0-4202-8ec1-3e731acc43de@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Oct 28, 2025 at 9:21=E2=80=AFPM Daniel Thompson <danielt@kernel.org=
-> wrote:
->
-> On Sun, Oct 26, 2025 at 08:39:23PM +0800, Junjie Cao wrote:
-> > Add support for Awinic AW99706 backlight, which can be found in
-> > tablet and notebook backlight, one case is the Lenovo Legion Y700
-> > Gen4. This driver refers to the official datasheets and android
-> > driver, they can be found in [1].
-> >
-> > [1] https://www.awinic.com/en/productDetail/AW99706QNR
-> >
-> > Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
-> > Signed-off-by: Junjie Cao <caojunjie650@gmail.com>
-> > ---
-> > diff --git a/drivers/video/backlight/aw99706.c b/drivers/video/backligh=
-t/aw99706.c
-> > new file mode 100644
-> > index 000000000..8dafdea45
-> > --- /dev/null
-> > +++ b/drivers/video/backlight/aw99706.c
-> > @@ -0,0 +1,503 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * aw99706 - Backlight driver for the AWINIC AW99706
-> > + *
-> > + * Copyright (C) 2025 Junjie Cao <caojunjie650@gmail.com>
-> > + * Copyright (C) 2025 Pengyu Luo <mitltlatltl@gmail.com>
-> > + *
-> > + * Based on vendor driver:
-> > + * Copyright (c) 2023 AWINIC Technology CO., LTD
-> > + */
-> > +
-> > +#include <linux/backlight.h>
-> > +#include <linux/bitfield.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/gpio.h>
-> > +#include <linux/i2c.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/module.h>
-> > +#include <linux/regmap.h>
-> > +
-> > +#define AW99706_MAX_BRT_LVL          4095
-> > +#define AW99706_REG_MAX                      0x1F
-> > +#define AW99706_ID                   0x07
-> > +
-> > +/* registers list */
-> > +#define AW99706_CFG0_REG                     0x00
-> > +#define AW99706_DIM_MODE_MASK                        GENMASK(1, 0)
-> > +
-> > +#define AW99706_CFG1_REG                     0x01
-> > +#define AW99706_SW_FREQ_MASK                 GENMASK(3, 0)
-> > +#define AW99706_SW_ILMT_MASK                 GENMASK(5, 4)
-> > +
-> > +#define AW99706_CFG2_REG                     0x02
-> > +#define AW99706_ILED_MAX_MASK                        GENMASK(6, 0)
-> > +#define AW99706_UVLOSEL_MASK                 BIT(7)
-> > +
-> > +#define AW99706_CFG3_REG                     0x03
-> > +#define AW99706_CFG4_REG                     0x04
-> > +#define AW99706_BRT_MSB_MASK                 GENMASK(3, 0)
-> > +
-> > +#define AW99706_CFG5_REG                     0x05
-> > +#define AW99706_BRT_LSB_MASK                 GENMASK(7, 0)
-> > +
-> > +#define AW99706_CFG6_REG                     0x06
-> > +#define AW99706_FADE_TIME_MASK                       GENMASK(2, 0)
-> > +#define AW99706_SLOPE_TIME_MASK                      GENMASK(5, 3)
-> > +#define AW99706_RAMP_CTL_MASK                        GENMASK(7, 6)
-> > +
-> > +#define AW99706_CFG7_REG                     0x07
-> > +#define AW99706_BRT_MODE_MASK                        GENMASK(1, 0)
-> > +
-> > +#define AW99706_CFG8_REG                     0x08
-> > +#define AW99706_ONOFF_TIME_MASK                      GENMASK(2, 0)
-> > +
-> > +#define AW99706_CFG9_REG                     0x09
-> > +#define AW99706_CFGA_REG                     0x0A
-> > +#define AW99706_CFGB_REG                     0x0B
-> > +#define AW99706_CFGC_REG                     0x0C
-> > +#define AW99706_CFGD_REG                     0x0D
-> > +#define AW99706_FLAG_REG                     0x10
-> > +#define AW99706_BACKLIGHT_EN_MASK            BIT(7)
-> > +
-> > +#define AW99706_CHIPID_REG                   0x11
-> > +#define AW99706_LED_OPEN_FLAG_REG            0x12
-> > +#define AW99706_LED_SHORT_FLAG_REG           0x13
-> > +#define AW99706_MTPLDOSEL_REG                        0x1E
-> > +#define AW99706_MTPRUN_REG                   0x1F
-> > +
-> > +#define RESV 0
-> > +
-> > +/* Boost switching frequency table, in kHz */
-> > +static const u32 aw99706_sw_freq_tbl[] =3D {
-> > +     RESV, RESV, RESV, RESV, 300, 400, 500, 600,
-> > +     660, 750, 850, 1000, 1200, 1330, 1500, 1700
-> > +};
-> > +
-> > +/* Switching current limitation table, in mA */
-> > +static const u32 aw99706_sw_ilmt_tbl[] =3D {
-> > +     1500, 2000, 2500, 3000
-> > +};
-> > +
-> > +/* ULVO threshold table, in mV */
-> > +static const u32 aw99706_ulvo_thres_tbl[] =3D {
-> > +     2200, 5000
-> > +};
-> > +
-> > +/* Fade In/Out time table, in us */
-> > +static const u32 aw99706_fade_time_tbl[] =3D {
-> > +     8, 16, 32, 64, 128, 256, 512, 1024
-> > +};
-> > +
-> > +/* Slope time table, in ms */
-> > +static const u32 aw99706_slopetime_tbl[] =3D {
-> > +     8, 24, 48, 96, 200, 300, 400, 500
-> > +};
-> > +
-> > +/* Turn on/off time table, in ns */
-> > +static const u32 aw99706_onoff_time_tbl[] =3D {
-> > +     RESV, 250, 500, 1000, 2000, 4000, 8000, 16000
-> > +};
-> > +
-> > +struct aw99706_device {
-> > +     struct i2c_client *client;
-> > +     struct device *dev;
-> > +     struct regmap *regmap;
-> > +     struct backlight_device *bl_dev;
-> > +     struct gpio_desc *hwen_gpio;
-> > +     bool bl_enable;
-> > +};
-> > +
-> > +enum reg_access {
-> > +     REG_NONE_ACCESS =3D 0,
-> > +     REG_RD_ACCESS   =3D 1,
-> > +     REG_WR_ACCESS   =3D 2,
-> > +};
-> > +
-> > +struct aw99706_reg {
-> > +     u8 defval;
-> > +     u8 access;
-> > +};
-> > +
-> > +const struct aw99706_reg aw99706_regs[AW99706_REG_MAX + 1] =3D {
-> > +     [AW99706_CFG0_REG]              =3D {0x65, REG_RD_ACCESS | REG_WR=
-_ACCESS},
-> > +     [AW99706_CFG1_REG]              =3D {0x39, REG_RD_ACCESS | REG_WR=
-_ACCESS},
-> > +     [AW99706_CFG2_REG]              =3D {0x1e, REG_RD_ACCESS | REG_WR=
-_ACCESS},
-> > +     [AW99706_CFG3_REG]              =3D {0x04, REG_RD_ACCESS | REG_WR=
-_ACCESS},
-> > +     [AW99706_CFG4_REG]              =3D {0x00, REG_RD_ACCESS | REG_WR=
-_ACCESS},
-> > +     [AW99706_CFG5_REG]              =3D {0x00, REG_RD_ACCESS | REG_WR=
-_ACCESS},
-> > +     [AW99706_CFG6_REG]              =3D {0xa9, REG_RD_ACCESS | REG_WR=
-_ACCESS},
-> > +     [AW99706_CFG7_REG]              =3D {0x04, REG_RD_ACCESS | REG_WR=
-_ACCESS},
-> > +     [AW99706_CFG8_REG]              =3D {0x0c, REG_RD_ACCESS | REG_WR=
-_ACCESS},
-> > +     [AW99706_CFG9_REG]              =3D {0x4b, REG_RD_ACCESS | REG_WR=
-_ACCESS},
-> > +     [AW99706_CFGA_REG]              =3D {0x72, REG_RD_ACCESS | REG_WR=
-_ACCESS},
-> > +     [AW99706_CFGB_REG]              =3D {0x01, REG_RD_ACCESS | REG_WR=
-_ACCESS},
-> > +     [AW99706_CFGC_REG]              =3D {0x6c, REG_RD_ACCESS | REG_WR=
-_ACCESS},
-> > +     [AW99706_CFGD_REG]              =3D {0xfe, REG_RD_ACCESS | REG_WR=
-_ACCESS},
-> > +     [AW99706_FLAG_REG]              =3D {0x00, REG_RD_ACCESS},
-> > +     [AW99706_CHIPID_REG]            =3D {AW99706_ID, REG_RD_ACCESS},
-> > +     [AW99706_LED_OPEN_FLAG_REG]     =3D {0x00, REG_RD_ACCESS},
-> > +     [AW99706_LED_SHORT_FLAG_REG]    =3D {0x00, REG_RD_ACCESS},
-> > +
-> > +     /*
-> > +      * Write bit is dropped here, writing BIT(0) to MTPLDOSEL will un=
-lock
-> > +      * Multi-time Programmable (MTP).
-> > +      */
-> > +     [AW99706_MTPLDOSEL_REG]         =3D {0x00, REG_RD_ACCESS},
-> > +     [AW99706_MTPRUN_REG]            =3D {0x00, REG_NONE_ACCESS},
-> > +};
-> > +
-> > +static bool aw99706_readable_reg(struct device *dev, unsigned int reg)
-> > +{
-> > +     return aw99706_regs[reg].access & REG_RD_ACCESS;
-> > +}
-> > +
-> > +static bool aw99706_writeable_reg(struct device *dev, unsigned int reg=
-)
-> > +{
-> > +     return aw99706_regs[reg].access & REG_WR_ACCESS;
-> > +}
-> > +
-> > +static inline int aw99706_i2c_read(struct aw99706_device *aw, u8 reg,
-> > +                                unsigned int *val)
-> > +{
-> > +     return regmap_read(aw->regmap, reg, val);
-> > +}
-> > +
-> > +static inline int aw99706_i2c_write(struct aw99706_device *aw, u8 reg,=
- u8 val)
-> > +{
-> > +     return regmap_write(aw->regmap, reg, val);
-> > +}
-> > +
-> > +static inline int aw99706_i2c_update_bits(struct aw99706_device *aw, u=
-8 reg,
-> > +                                       u8 mask, u8 val)
-> > +{
-> > +     return regmap_update_bits(aw->regmap, reg, mask, val);
-> > +}
-> > +
-> > +struct aw99706_dt_prop {
-> > +     const char * const name;
-> > +     const u32 * const lookup_tbl;
-> > +     u8 tbl_size;
-> > +     u8 reg;
-> > +     u8 mask;
-> > +     u8 val;
-> > +     u32 raw_val;
-> > +};
-> > +
-> > +static struct aw99706_dt_prop aw99706_dt_props[] =3D {
-> > +     {
-> > +             "awinic,dim-mode", NULL,
-> > +             0,
-> > +             AW99706_CFG0_REG, AW99706_DIM_MODE_MASK
-> > +     },
-> > +     {
-> > +             "awinic,sw-freq", aw99706_sw_freq_tbl,
-> > +             ARRAY_SIZE(aw99706_sw_freq_tbl),
-> > +             AW99706_CFG1_REG, AW99706_SW_FREQ_MASK
-> > +     },
-> > +     {
-> > +             "awinic,sw-ilmt", aw99706_sw_ilmt_tbl,
-> > +             ARRAY_SIZE(aw99706_sw_ilmt_tbl),
-> > +             AW99706_CFG1_REG, AW99706_SW_ILMT_MASK
-> > +     },
-> > +     {
-> > +             "awinic,iled-max", NULL,
-> > +             0,
-> > +             AW99706_CFG2_REG, AW99706_ILED_MAX_MASK
-> > +
-> > +     },
-> > +     {
-> > +             "awinic,uvlo-thres", aw99706_ulvo_thres_tbl,
-> > +             ARRAY_SIZE(aw99706_ulvo_thres_tbl),
-> > +             AW99706_CFG2_REG, AW99706_UVLOSEL_MASK
-> > +     },
-> > +     {
-> > +             "awinic,fade-time", aw99706_fade_time_tbl,
-> > +             ARRAY_SIZE(aw99706_fade_time_tbl),
-> > +             AW99706_CFG6_REG, AW99706_FADE_TIME_MASK
-> > +     },
-> > +     {
-> > +             "awinic,slope-time", aw99706_slopetime_tbl,
-> > +             ARRAY_SIZE(aw99706_slopetime_tbl),
-> > +             AW99706_CFG6_REG, AW99706_SLOPE_TIME_MASK
-> > +     },
-> > +     {
-> > +             "awinic,ramp-ctl", NULL,
-> > +             0,
-> > +             AW99706_CFG6_REG, AW99706_RAMP_CTL_MASK
-> > +     },
-> > +     {
-> > +             "awinic,brt-mode", NULL,
-> > +             0,
-> > +             AW99706_CFG7_REG, AW99706_BRT_MODE_MASK
-> > +     },
-> > +     {
-> > +             "awinic,onoff-time", aw99706_onoff_time_tbl,
-> > +             ARRAY_SIZE(aw99706_onoff_time_tbl),
-> > +             AW99706_CFG8_REG, AW99706_ONOFF_TIME_MASK
-> > +     },
-> > +};
-> > +
-> > +static int aw99706_lookup(const u32 * const tbl, int size, u32 val)
-> > +{
-> > +     int i;
-> > +
-> > +     for (i =3D 0; i < size; i++)
-> > +             if (tbl[i] =3D=3D val)
-> > +                     return i;
-> > +
-> > +     return -1;
-> > +}
-> > +
-> > +static inline void aw99706_prop_set_default(struct aw99706_dt_prop *pr=
-op)
-> > +{
-> > +     prop->val =3D prop->mask & aw99706_regs[prop->reg].defval;
->
-> Why included the default value in the register descriptions?
->
-> defval is only used to provide values for missing DT properties so using
-> the raw register values is cryptic and hard to read.
->
-> Including a default value in the aw99706_dt_props table instead would be
-> much more readable (because the defaults could use the same units at the
-> device tree).
->
+On 29/10/2025 12:42, Krishna Kurapati PSSNV wrote:
+> 
+> 
+> On 10/29/2025 1:37 PM, Krzysztof Kozlowski wrote:
+>> On 24/10/2025 17:15, Krishna Kurapati wrote:
+>>> From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+>>>
+>>> Enable USB support on SM8750 QRD variant.  The current definition
+>>> will start the USB controller in peripheral mode by default until
+>>> dependencies are added, such as USB role detection.
+>>>
+>>> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+>>> [Krishna: Flattened usb node QRD DTS]
+>>> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+>>
+>> NAK.
+>>
+>> You ignored every previous tag - multiple reviews and tests, and then...
+>>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/sm8750-qrd.dts | 22 ++++++++++++++++++++++
+>>>   1 file changed, 22 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sm8750-qrd.dts b/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
+>>> index 13c7b9664c89..fc5d12bb41a5 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
+>>> @@ -1054,3 +1054,25 @@ &ufs_mem_hc {
+>>>   
+>>>   	status = "okay";
+>>>   };
+>>> +
+>>> +&usb_1 {
+>>> +	dr_mode = "peripheral";
+>>
+>> You sent something different with issues.
+>>
+>> Really, this was a correct patch. Was reviewed. Why you decided to drop
+>> all this, drop everything which was correct?
+>>
+>> Your explanation:
+>> "- Removed obtained RB tags since the code has changed significantly."
+>> is just wrong. Almost NOTHING changed, except completely unimportant two
+>> node merging.
+>>
+>> NAK
+>>
+> 
+> 
+> Apologies Krzysztof,
+> 
+> On first patch that adds changes to base DTSI, there were changes moving 
+> to newer bindings and merging child node and parent node. I should've 
+> removed RB tags received on that patch only. But I was over cautious and 
+> misinterpreted the rules and removed them on the other patches as well. 
+> Will be careful the next time.
+> 
+> Also is there any issue with marking dr_mode as peripheral here in usb_1 
+> node ?
 
-Agree, I will include the default values in the aw99706_dt_props table.
+No, I think I looked at your other patch. Tthis was reviewed at v4 and
+v5, which then it was changed breaking sorting order. This one looks
+correct.
 
->
-> > +}
-> > +
-> > +static void aw99706_dt_property_convert(struct aw99706_dt_prop *prop)
-> > +{
-> > +     unsigned int val, shift;
-> > +
-> > +     if (prop->lookup_tbl) {
-> > +             val =3D aw99706_lookup(prop->lookup_tbl, prop->tbl_size,
-> > +                                  prop->raw_val);
-> > +             if (val < 0) {
-> > +                     aw99706_prop_set_default(prop);
->
-> This should not happen silently.
->
-> If the DT has provided an invalid value then we be issuing *at minimum*
-> a message at warning level or above. Many drivers will simply refuse to
-> probe when the DT is broken.
->
-
-Indeed, I missed it.
-
->
-> > +                     return;
-> > +             }
-> > +
-> > +     } else {
-> > +             val =3D prop->raw_val;
-> > +     }
-> > +
-> > +     shift =3D ffs(prop->mask) - 1;
-> > +     val <<=3D shift;
-> > +     prop->val =3D prop->mask & val;
-> > +}
-> > +
-> > +static void aw99706_dt_parse(struct aw99706_device *aw)
-> > +{
-> > +     struct aw99706_dt_prop *prop;
-> > +     int ret, i;
-> > +
-> > +     for (i =3D 0; i < ARRAY_SIZE(aw99706_dt_props); i++) {
-> > +             prop =3D &aw99706_dt_props[i];
-> > +             ret =3D device_property_read_u32(aw->dev, prop->name,
-> > +                                            &prop->raw_val);
-> > +             if (ret < 0) {
-> > +                     dev_warn(aw->dev, "Missing property %s: %d\n",
-> > +                              prop->name, ret);
->
-> Why is there a warning when an optional property is not present. A DT
-> not including an optional property needs no message at all.
->
-
-They are mandatory in the downstream, and providing all properties is
-difficult sometimes, so I set a default value if one is missing. But
-one device may use a configuration different from the component
-vendor's. These default values may be not optimal, so I issue a
-warning for property missing. (I forgot to address it)
-
->
-> > +
-> > +                     aw99706_prop_set_default(prop);
-> > +             } else {
-> > +                     aw99706_dt_property_convert(prop);
-> > +             }
-> > +     }
-> > +
-> > +     /* This property requires a long linear array, using formula for =
-now */
-> > +     aw99706_dt_props[3].val =3D (aw99706_dt_props[3].raw_val - 5000) =
-/ 500;
->
-> Using a formula is fine, but I don't like doing it retrospectively.
-> Hard coding the 3 makes maintenance difficult and we end up making the
-> whole of aw99706_dt_props writeable just so we can store raw_val once!
->
-> Much better, IMHO, to embed a function pointer into the table and make
-> the whole table const. The function pointer can be
-> aw99706_dt_property_convert() in most cases (although rename it
-> `aw99706_dt_property_lookup_from_table() ) and can implement any
-> formula you need.
->
-
-Helpful opinion. I will do this in next version.
-
->
-> > +}
-> > +
-> > +static int aw99706_hw_init(struct aw99706_device *aw)
-> > +{
-> > +     int ret, i;
-> > +
-> > +     gpiod_set_value_cansleep(aw->hwen_gpio, 1);
-> > +
-> > +     for (i =3D 0; i < ARRAY_SIZE(aw99706_dt_props); i++) {
-> > +             ret =3D aw99706_i2c_update_bits(aw, aw99706_dt_props[i].r=
-eg,
-> > +                                           aw99706_dt_props[i].mask,
-> > +                                           aw99706_dt_props[i].val);
-> > +             if (ret < 0) {
-> > +                     dev_err(aw->dev, "Failed to write init data %d\n"=
-, ret);
-> > +                     return ret;
-> > +             }
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int aw99706_bl_enable(struct aw99706_device *aw, bool en)
-> > +{
-> > +     int ret;
-> > +     u8 val;
-> > +
-> > +     FIELD_MODIFY(AW99706_BACKLIGHT_EN_MASK, &val, en);
-> > +     ret =3D aw99706_i2c_update_bits(aw, AW99706_CFGD_REG,
-> > +                                   AW99706_BACKLIGHT_EN_MASK, val);
-> > +     if (ret)
-> > +             dev_err(aw->dev, "Failed to enable backlight!\n");
-> > +
-> > +     return ret;
-> > +}
-> > +
-> > +static int aw99706_backlight_switch(struct aw99706_device *aw, u32 brt=
-_lvl)
-> > +{
-> > +     bool bl_enable_now =3D !!brt_lvl;
-> > +     int ret =3D 0;
-> > +
-> > +     if (aw->bl_enable !=3D bl_enable_now) {
-> > +             aw->bl_enable =3D bl_enable_now;
-> > +             ret =3D aw99706_bl_enable(aw, bl_enable_now);
-> > +     }
-> > +
-> > +     return ret;
-> > +}
-> > +
-> > +static int aw99706_update_brightness(struct aw99706_device *aw, u32 br=
-t_lvl)
-> > +{
-> > +     int ret;
-> > +
-> > +     ret =3D aw99706_i2c_write(aw, AW99706_CFG4_REG,
-> > +                             (brt_lvl >> 8) & AW99706_BRT_MSB_MASK);
-> > +     if (ret < 0)
-> > +             return ret;
-> > +
-> > +     ret =3D aw99706_i2c_write(aw, AW99706_CFG5_REG,
-> > +                             brt_lvl & AW99706_BRT_LSB_MASK);
-> > +     if (ret < 0)
-> > +             return ret;
-> > +
-> > +     return aw99706_backlight_switch(aw, brt_lvl);
->
-> I'm not sure there is much benefit pushing this out into a seperate
-> function. Merge this inline.
->
-> > +}
->
-
-I see.
-
-Regards,
-Junjie
+Best regards,
+Krzysztof
 
