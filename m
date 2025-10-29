@@ -1,180 +1,130 @@
-Return-Path: <devicetree+bounces-232685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5F99C1A217
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:05:38 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED4F0C1A266
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:12:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C14AB1A6117A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 12:06:02 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9A4E73486CF
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 12:12:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D94D1337B92;
-	Wed, 29 Oct 2025 12:05:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y3nObm9x"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D90FE33A012;
+	Wed, 29 Oct 2025 12:12:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5CC72F5498;
-	Wed, 29 Oct 2025 12:05:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A30312EA490;
+	Wed, 29 Oct 2025 12:12:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761739536; cv=none; b=UNLlZ+OaW9Sp5qgwfuGfWE5FwI/6BQYSJDoeAIuU8/AOaOofZkxd8oRopvMJUWii27gffwYIYgkLyjeG/RlnS3fWsE9QU2a3tBqRNPzb3iafBZNVsWuEwaH7ZD4sAQZ1vnMzePuFoEERJ8KUuLLc5mlm1LkxeGyNiLw56Vw/aEk=
+	t=1761739945; cv=none; b=AoD6gFyNTv/F11reyhTejOxMGec2dHYCw+yyJmIUthJ/585hQKHit66xqcW1XfJMv42qteXLraOGIAOW+Z8OJNoIJ4UUzKIZVTlKeLRV/hnh12be1oeoRjRZ0GHgtxPV7mcXl60MC20DtkO9wQdn/Z0UHptKCyvpw2kE8F2wJ7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761739536; c=relaxed/simple;
-	bh=BfHVh/Crto9uZ959nUqNwbPVgculG9sKCInYAplIz/s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QpwCX6z2CwV+VG3UH2YVoHzQ2LwNVV0U/6egV6+GDOOsErQSSu/SLOXNiqxk/OUolhkKZUsVV758t7TVHTKQhwlt2ZpAAiAmED4apqXus4ZmVNsgvXut23dvcDTzIUrB0ekPU7MvSz24TOM97Q/xCqc98SqrXTjo3cVrPQIPmc8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y3nObm9x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDC55C4CEF7;
-	Wed, 29 Oct 2025 12:05:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761739536;
-	bh=BfHVh/Crto9uZ959nUqNwbPVgculG9sKCInYAplIz/s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Y3nObm9x1TPyz39AJN4Yt4cJOCyao31ihbNNcWy+wFh51Fa9I+aAwRYX2rWZbu5th
-	 X2wuJ9FPFM3eTLs69uJoSpwSjahP0k0hlkiAIU4A+iBo+NEgEYj5LLkDng291a8P4q
-	 Yr2R0qQU05CNEkl819v8CnBBqznGPpUx/We1oLOSyCLGtJN+UW0Rgvytqe9fhO+sxo
-	 i1COUCuahF5DJNY05UYryZnEAsRg2Uy6B07Bdkn7nH8J6JIixuFOr3EiYaMusMyMd/
-	 UKx6OawuEhRdsOSEirDAYZXEnXGz48UCJSKpW8ha4YO7v/dRITtajTa6Qhgwq5pen5
-	 f6Ut9mzDigo3Q==
-Message-ID: <6234e22a-c119-419c-83b7-2a53467951da@kernel.org>
-Date: Wed, 29 Oct 2025 13:05:31 +0100
+	s=arc-20240116; t=1761739945; c=relaxed/simple;
+	bh=D9ubV1MzwQjGbT7HGhaPF/W0DxBMGpzGkD/kypt2MLY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fc9UPzXu+TjIFF+6izhtDY8f4BWrabK83E19ks5d1ytyQpvGY+3h9tIZcQQgmHVv/UwPcG/c+rk2tb2s3FEOn/BU36xOpQpHSxfUVlkR7im8NTwEhvu7BOap73nTYKs3CcHMO70eMfQ3MHq3sNOEdnED6mAVmsjU6pAk1nCGczg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.98.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vE52C-000000007C6-3Tbc;
+	Wed, 29 Oct 2025 12:12:12 +0000
+Date: Wed, 29 Oct 2025 12:12:08 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Andreas Schirm <andreas.schirm@siemens.com>,
+	Lukas Stockmann <lukas.stockmann@siemens.com>,
+	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
+	Peter Christen <peter.christen@siemens.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH net-next v4 05/12] net: dsa: lantiq_gswip: define and use
+ GSWIP_TABLE_MAC_BRIDGE_VAL1_VALID
+Message-ID: <aQIEmPfkaYPTtTaY@makrotopia.org>
+References: <cover.1761693288.git.daniel@makrotopia.org>
+ <7d1a0368e95da42999af379d90de5d791283d24e.1761693288.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 3/3] arm64: dts: qcom: sm8750: Add USB support for
- SM8750 QRD platform
-To: Krishna Kurapati PSSNV <krishna.kurapati@oss.qualcomm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-References: <20251024151521.2365845-1-krishna.kurapati@oss.qualcomm.com>
- <20251024151521.2365845-4-krishna.kurapati@oss.qualcomm.com>
- <a117b105-a734-4f67-9bb2-c06728e79083@kernel.org>
- <6297468b-77d0-4202-8ec1-3e731acc43de@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <6297468b-77d0-4202-8ec1-3e731acc43de@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7d1a0368e95da42999af379d90de5d791283d24e.1761693288.git.daniel@makrotopia.org>
 
-On 29/10/2025 12:42, Krishna Kurapati PSSNV wrote:
-> 
-> 
-> On 10/29/2025 1:37 PM, Krzysztof Kozlowski wrote:
->> On 24/10/2025 17:15, Krishna Kurapati wrote:
->>> From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
->>>
->>> Enable USB support on SM8750 QRD variant.  The current definition
->>> will start the USB controller in peripheral mode by default until
->>> dependencies are added, such as USB role detection.
->>>
->>> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
->>> [Krishna: Flattened usb node QRD DTS]
->>> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
->>
->> NAK.
->>
->> You ignored every previous tag - multiple reviews and tests, and then...
->>
->>> ---
->>>   arch/arm64/boot/dts/qcom/sm8750-qrd.dts | 22 ++++++++++++++++++++++
->>>   1 file changed, 22 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sm8750-qrd.dts b/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
->>> index 13c7b9664c89..fc5d12bb41a5 100644
->>> --- a/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
->>> +++ b/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
->>> @@ -1054,3 +1054,25 @@ &ufs_mem_hc {
->>>   
->>>   	status = "okay";
->>>   };
->>> +
->>> +&usb_1 {
->>> +	dr_mode = "peripheral";
->>
->> You sent something different with issues.
->>
->> Really, this was a correct patch. Was reviewed. Why you decided to drop
->> all this, drop everything which was correct?
->>
->> Your explanation:
->> "- Removed obtained RB tags since the code has changed significantly."
->> is just wrong. Almost NOTHING changed, except completely unimportant two
->> node merging.
->>
->> NAK
->>
-> 
-> 
-> Apologies Krzysztof,
-> 
-> On first patch that adds changes to base DTSI, there were changes moving 
-> to newer bindings and merging child node and parent node. I should've 
-> removed RB tags received on that patch only. But I was over cautious and 
-> misinterpreted the rules and removed them on the other patches as well. 
-> Will be careful the next time.
-> 
-> Also is there any issue with marking dr_mode as peripheral here in usb_1 
-> node ?
+I've just received a definite answer from MaxLinear confirming that
 
-No, I think I looked at your other patch. Tthis was reviewed at v4 and
-v5, which then it was changed breaking sorting order. This one looks
-correct.
+"The condition of GSWIP_TABLE_MAC_BRIDGE_VAL1_VALID is: (ETHSW_VERSION &
+0x00ff) >= 0x22"
 
-Best regards,
-Krzysztof
+This matches the implementation now suggested.
+
+On Wed, Oct 29, 2025 at 12:17:18AM +0000, Daniel Golle wrote:
+> When adding FDB entries to the MAC bridge table on GSWIP 2.2 or later it
+> is needed to set an (undocumented) bit to mark the entry as valid. If this
+> bit isn't set for entries in the MAC bridge table, then those entries won't
+> be considered as valid MAC addresses.
+> 
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+> v4: keep previous behavior for GSWIP 2.1 and earlier
+> 
+>  drivers/net/dsa/lantiq/lantiq_gswip.h        | 1 +
+>  drivers/net/dsa/lantiq/lantiq_gswip_common.c | 7 ++++++-
+>  2 files changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/net/dsa/lantiq/lantiq_gswip.h b/drivers/net/dsa/lantiq/lantiq_gswip.h
+> index 56de869fc472..42000954d842 100644
+> --- a/drivers/net/dsa/lantiq/lantiq_gswip.h
+> +++ b/drivers/net/dsa/lantiq/lantiq_gswip.h
+> @@ -224,6 +224,7 @@
+>  #define  GSWIP_TABLE_MAC_BRIDGE_KEY3_FID	GENMASK(5, 0)	/* Filtering identifier */
+>  #define  GSWIP_TABLE_MAC_BRIDGE_VAL0_PORT	GENMASK(7, 4)	/* Port on learned entries */
+>  #define  GSWIP_TABLE_MAC_BRIDGE_VAL1_STATIC	BIT(0)		/* Static, non-aging entry */
+> +#define  GSWIP_TABLE_MAC_BRIDGE_VAL1_VALID	BIT(1)		/* Valid bit */
+>  
+>  #define XRX200_GPHY_FW_ALIGN	(16 * 1024)
+>  
+> diff --git a/drivers/net/dsa/lantiq/lantiq_gswip_common.c b/drivers/net/dsa/lantiq/lantiq_gswip_common.c
+> index 0ac87eb23bb5..ff2cdb230e2c 100644
+> --- a/drivers/net/dsa/lantiq/lantiq_gswip_common.c
+> +++ b/drivers/net/dsa/lantiq/lantiq_gswip_common.c
+> @@ -1149,7 +1149,12 @@ static int gswip_port_fdb(struct dsa_switch *ds, int port,
+>  	mac_bridge.key[2] = addr[1] | (addr[0] << 8);
+>  	mac_bridge.key[3] = FIELD_PREP(GSWIP_TABLE_MAC_BRIDGE_KEY3_FID, fid);
+>  	mac_bridge.val[0] = add ? BIT(port) : 0; /* port map */
+> -	mac_bridge.val[1] = GSWIP_TABLE_MAC_BRIDGE_VAL1_STATIC;
+> +	if (GSWIP_VERSION_GE(priv, GSWIP_VERSION_2_2_ETC))
+> +		mac_bridge.val[1] = add ? (GSWIP_TABLE_MAC_BRIDGE_VAL1_STATIC |
+> +					   GSWIP_TABLE_MAC_BRIDGE_VAL1_VALID) : 0;
+> +	else
+> +		mac_bridge.val[1] = GSWIP_TABLE_MAC_BRIDGE_VAL1_STATIC;
+> +
+>  	mac_bridge.valid = add;
+>  
+>  	err = gswip_pce_table_entry_write(priv, &mac_bridge);
+> -- 
+> 2.51.1
+> 
 
