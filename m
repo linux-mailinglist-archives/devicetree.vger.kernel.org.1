@@ -1,150 +1,280 @@
-Return-Path: <devicetree+bounces-232970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55F94C1D764
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 22:40:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0E95C1D70D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 22:30:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DD9B1882920
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 21:40:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABD403AB6FD
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 21:30:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 720F331A05E;
-	Wed, 29 Oct 2025 21:40:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05445314B80;
+	Wed, 29 Oct 2025 21:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=wismer.xyz header.i=@wismer.xyz header.b="FPz/K/Y2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iRTKTGbG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out26.tophost.ch (out26.tophost.ch [46.232.182.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB4C213C914;
-	Wed, 29 Oct 2025 21:40:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.232.182.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66766269D18
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 21:30:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761774022; cv=none; b=V1nLRBC0SbrO6s8jwASxSYZsvkmJ/n579dRwcaOD/Cxdn4UPT62qzrOoUk5LdK1qac7ipO/Mh3wzvSz5SqvcU2/I+gUix4yvbRJNRijT2H1ntu9XroGX4gr7EZyoQ6gGkTNtvinqvp52xKNumnU/UKlcZbQPTl3ljYwWrmI3Qe8=
+	t=1761773439; cv=none; b=Jf5QA/bxsOD6qNAMA1aAn3+uaosQbF6Qcxk4iiUh9YnBgTzJ+Fb5uQKrP4gjeplh1cbVbe0cr/X9dn1DSvPFbarVAXn3cPud7PgJ7fF/FIFoFo/ISOTGyIvODmaC+VsA1jrxnEzWddpXxwu+ug1V8SPKDlQ5XzzISeSOrwgSf+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761774022; c=relaxed/simple;
-	bh=KsLICYSdai358ng0LbivT+XEiH/kal9SLt5IS1MUsRQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bucPGpF2T3y3gzRJSw2JLchlCxvI9An5Ugkxt7ZTBLDp3R4k1dKFjRo85W0BQH8yPCL1KxmBMlK5U/cNpFlyakdPfALKM3JyjhBFIeITqr6oQ5MfioPE72vrM9y5+jhcU5gYmdNxWlHGoHG7PJzQbCAZdv4/miCZeFn5vGq0d4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wismer.xyz; spf=pass smtp.mailfrom=wismer.xyz; dkim=pass (2048-bit key) header.d=wismer.xyz header.i=@wismer.xyz header.b=FPz/K/Y2; arc=none smtp.client-ip=46.232.182.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wismer.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wismer.xyz
-Received: from srv125.tophost.ch ([194.150.248.5])
-	by filter4.tophost.ch with esmtps  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <thomas@wismer.xyz>)
-	id 1vEDeP-00EABt-KW; Wed, 29 Oct 2025 22:24:16 +0100
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=wismer.xyz;
-	s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=MCaTi5+1GdvtDvu93JLcxGyOsiwEWFfOOZdGKf+f5WM=; b=FPz/K/Y2Fn/1cbmSQ6IdK2LtDl
-	62el0AbYDSohkObKYK1HerVTZwU9l5OKqbFA6NOLcaXPTDC5tLoAMLmzHaKz45fx0VAeh7qiK6+mZ
-	h47Wv1eyltgc/7p+UGd4NbNkyEpKzxH6xnWFmXMW8wdrykqT+FrGebST95E+sa7ZXgarz10wiGJ6L
-	U5IkhOUgnAQhJN7dIveDupoXNqZnOo0OO/OQ30jqWLdV90oSnKbkBCuQDwBdaMUQNLhQZdF510Kib
-	4oOfEHmXcRFmM3yeXkYVBYYDlRab0zTJfv7NT6TuO5y9So3yK2IrZIs7mymliiVX+XeI2k5ZOL9Lr
-	khQX7ZvQ==;
-Received: from [2001:1680:4957:0:9918:f56f:598b:c8cf] (port=39522 helo=pavilion.lan)
-	by srv125.tophost.ch with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <thomas@wismer.xyz>)
-	id 1vEDeP-0000000Bf5t-1AjL;
-	Wed, 29 Oct 2025 22:24:11 +0100
-From: Thomas Wismer <thomas@wismer.xyz>
-To: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Kory Maincent <kory.maincent@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Thomas Wismer <thomas@wismer.xyz>,
-	Thomas Wismer <thomas.wismer@scs.ch>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH net-next v3 2/2] dt-bindings: pse-pd: ti,tps23881: Add TPS23881B
-Date: Wed, 29 Oct 2025 22:23:10 +0100
-Message-ID: <20251029212312.108749-3-thomas@wismer.xyz>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251029212312.108749-1-thomas@wismer.xyz>
-References: <20251029212312.108749-1-thomas@wismer.xyz>
+	s=arc-20240116; t=1761773439; c=relaxed/simple;
+	bh=55HAc3H2pTNFibfzo9flbFWBCV0NF4ne7pX++sLxqj4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EL9HoIcDe+m0ztOk82MoVvzh9uUQXDFOjcdEZ21C1aMJvGPbXWk9aBvfhjtqk2jNdB1KIXat4cLkHC3mnskqQTIgex2hRYJFOb7FtCI9g1KXtkegAWW5KKbvCSLi8rwc/3qPses/HAs9PwExHtb+vOTgV4kUneG9hXtGmFw8QWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iRTKTGbG; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-47719ad0c7dso3103855e9.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 14:30:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761773435; x=1762378235; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6MOSEMyF/K0yKEFT6dKUF7DE2m7sMRwO3zCRZtu9VWU=;
+        b=iRTKTGbGdpZQGj/cyRF8wEoeX1+TcrUYMbZkbXz12rjo7iTqz3caMzJpkeyWUw2M5p
+         TqNxjI/+ytG6dgxLol7PN1Da4QnHOeCKKUDAqJAvRyqo5+wo9JY6l1meuBcsCm27zZ7H
+         ALndFPSgWqjPYytov/k7l389ZAFcJMmtOyxx/rFG4p0Sl9AEfbFR7Vu1XYija04mT1U9
+         R+RNLSOhlW8OGXcwAvqV/g1I0CaTvGtrzZEHD2OCrExucPiC0bTZOa2CQWUy5THhELmw
+         8Rpe7dJeXaYFgpoNzJEX8ZF8g7XduRnQSuCkLZsNzWFrlLUf47AOvHaXnxcCnyxy7Auy
+         +y0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761773435; x=1762378235;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6MOSEMyF/K0yKEFT6dKUF7DE2m7sMRwO3zCRZtu9VWU=;
+        b=bL+cQzI1P65wVIwVWyntZcSNzP7ZERRU0/z360AQSioFTYWPeV+X1qH9GEdIR/9MHw
+         L10xEQd05x0wKg1BcVp0fOfXvfBDdI4tIKjBtP49E84d8QaTE27MwK4U6N4CyvZhCa25
+         b5WGshZ8wY4VDbjKUjyRXM69zLXI7kA509S3wEMDToashGKmjntRsC4vFM5IrUd76ybP
+         GpgoXMVQTFedw9Ak2is1GNfkYvayzrzrXwyj1LvAkU1DfC+dXcPnI16heUlzHaneIsj4
+         D6WN3xmQGwogxla89bog5qrIdgg8pVkNQYqd6WoIUogERfLcARG7vtRNGMV+ooDu1wMh
+         VMuw==
+X-Forwarded-Encrypted: i=1; AJvYcCWwfyrhoc1tZMhUlrZgP8wnqCTgONobozdwsf++tFpXlMrv7F9fSgOXogtC1wNaerczKfFcP70xvEFO@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUWGMyjdEYHZCdK2wL3b3IlnqQ5EtmId9AHDgdcKHvYUfHpun9
+	toFV7nARghs0gT5CAQ7jPEOshDsUHPGNyj8PmkwZ/DRnd5EJu0FrwRaYbnWNnEBsvK0=
+X-Gm-Gg: ASbGncsIWawwKf6cn8wJi05vMc8iB7feBbYfnKvnEaOpfOaMxSwcD37yxYEtqGCpv4v
+	Ph7T24T65NZmT4AOBBWNZjENXpxcJG0PoNKC8BHEmPU72fGLwBNOI2lk6Hn642viM9cOEJFbU3w
+	/cGNPxOl3pUgB7ZNNlyMGDRqImMbFqfs2ah+N1bKOYNVdBr4FzTI5XFWrjHrHjiHCXOw8rpAvXd
+	Y4j9zQ1HDar7Qe8vKtGyvZwCtepmmjlfQCtnom76rVanFfG7O4q6kgNGW6QeMk26bCDZWX5nbsT
+	7ukBxWoPJXCpBReRil32ZdJv7pSLE/28NWS5HjSekTVXN9qnefRQnom63VylvSIMt5dfgu6zVed
+	m8m/cI25Bbc5yJH73uxkcKIJo/Vc4aaeNdfkTKBGgwRT9khrawc9S2PNKiaPqDZqwWWqoV2BHt2
+	eJPVEGnPn2uF20cHwcC7B1K7Uv7Ii2iA==
+X-Google-Smtp-Source: AGHT+IE1eBg7TwUsq5KPf16TecjnHzMJffoLDM/OVCqrXzJVZwVvKSB2UMZvVMcbS7+LZIqpKrqHUQ==
+X-Received: by 2002:a05:6000:2313:b0:429:b21e:49ad with SMTP id ffacd0b85a97d-429b4c97c10mr843747f8f.37.1761773434517;
+        Wed, 29 Oct 2025 14:30:34 -0700 (PDT)
+Received: from gpeter-l.roam.corp.google.com ([145.224.90.44])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429952b7b43sm28573457f8f.6.2025.10.29.14.30.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Oct 2025 14:30:33 -0700 (PDT)
+From: Peter Griffin <peter.griffin@linaro.org>
+Subject: [PATCH v2 0/4] Implement hardware automatic clock gating (HWACG)
+ for gs101
+Date: Wed, 29 Oct 2025 21:29:21 +0000
+Message-Id: <20251029-automatic-clocks-v2-0-f8edd3a2d82b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Get-Message-Sender-Via: srv125.tophost.ch: authenticated_id: thomas@wismer.xyz
-X-Authenticated-Sender: srv125.tophost.ch: thomas@wismer.xyz
-X-Spampanel-Domain: smtpout.tophost.ch
-X-Spampanel-Username: 194.150.248.5
-Authentication-Results: tophost.ch; auth=pass smtp.auth=194.150.248.5@smtpout.tophost.ch
-X-Spampanel-Outgoing-Class: unsure
-X-Spampanel-Outgoing-Evidence: Combined (0.50)
-X-Recommended-Action: accept
-X-Filter-ID: 9kzQTOBWQUFZTohSKvQbgI7ZDo5ubYELi59AwcWUnuV5syPzpWv16mXo6WqDDpKEChjzQ3JIZVFF
- 8HV60IETFiu2SmbhJN1U9FKs8X3+Nt208ASTx3o2OZ4zYnDmkLm5Mv/tafLC72ko3Lqe/Da7zC9N
- dw2t5iMEflZxRNqEOiZKZR2tNRPIxp/vINc/oXVUCtmoQhY2xrBb8C+tWUvqrqBKsSdhvd/J5sX5
- daZjkYv0hq6Ot6Cbd9hg3807OZKQzthz0vNkOX8Em4cj6D/wdel5pGtBZGkILbtkwjuL+TU9W7vD
- 6C469DIPe8wH3iOJ3xyMg3et4b3PQUopDmbZCssYHNuxAmlPRpR5yzngsxCROUzReCS8EpKh0It9
- L25JS816nuiE0t5pG6MLXGczoanVmeCF7bI0BP7dENKtPTBPq+vGO3Vx+SwwWschmkdvs376y2A4
- OBi1/UyqO7jQnnICeA+KlS7G8xqewTcs6w6HLg3eq1lKkYVFbZT99AeINpdbOTIWFiLv1jhppNXa
- xS6MN8xFxlxHZge6OlcoYA//qN5p5dmu6xjQN9nmCfj7VmpmZJyx9iy0UVkVD75IgLollI+8fg4q
- Ktu8I/h2Z0dHZM6qE0STp2v0JiRE8jha5ZR/nf5efcITxrfNKzy0W9Bd37g8M9SCqD8uOq9nJ+Mm
- AyVp7BgHET6y8CCeFlQ7QPOIjlkSAfAYMUguLL/iJ9vYqKPILmSoZcvfXhdPMA/OB6L3DS5gd1SE
- E3USj80Z55NePwA7jxwlhcjVdk/mr85ytrd63MVeviF0i7IZfcqGEigUra+zu74YMVqBb/nqBf/o
- O9ENx2nriip8WhgYbnEnhEbOEzk5yB9ZHNSFnOX3WOuu10rVtxDPgG7Vtev3VUWM7vJdUMhhfiBi
- T4p0qQinxQdAM7oWNvokRStU21kywDQw+mt8yiYotxY5kTqW31/E3ahF5MMcDI7KdpjQKSCN+J6l
- bGev7o3ca3HK7nAdJ4O6PN0m2d+J9ACj3NF3yf2emCiQ6AuTowflAWn4v/afTNuGqIKbeT3Q0BtD
- AboBIkUL/j1Y48GvmeURQjjEeKVXbbsuQxCT7KwYHrWmLStOsQFbw8vrkGLslTiuxw4nPK5DkQL/
- /M3fHsVNrsMGJz4RQfBVfxkAwoVpA4J/KzRZEq6vMKhJ9oG2v1yvThzPEGEatp9rvw0eoI0HqUDY
- Z5lBVqqSQepN0b2sqifLOj/1zwA5Elj0L2+pr2KRBXGwDoDEJrayfp9Tsh2+VPTlfegw9R5Cyryt
- +7lKCjnJY+t4m7skVkCUrb1O+GFi8/GtOCoPdeOKuroIXJBF3iBhveOWAg2/DdpIH6kX9BAh5T56
- bZ65fgYTpVbNpCTXfzY/9c8AORJY9C9vqa9ikQVx1Rhgh1oSgTV2HRO5RU/ccaLd8PL+e7kGwNtP
- GEbZHUTlo9rdeDz1q6e5q9bAUPzG/Nre5J0/CRkN14v1yHfTQHe0DazGWAam0o2Vp5zQ/L8xL7hr
- JSk60SF3F6RYOYr2
-X-Report-Abuse-To: spam@filter1.tophost.ch
-X-Complaints-To: abuse@filter1.tophost.ch
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADGHAmkC/2WNQQ7CIBBFr9LMWsxAba2uvIfpAnHaTqxgAImm4
+ e5i487le8l/f4FAninAsVrAU+LAzhZQmwrMpO1Igq+FQaFqJGIn9DO6u45shJmduQWhdgd9aXF
+ olSEos4engV9r8twXnjhE59/rQ5Jf+4vJ+j+WpECxV10jiRBrxNPMVnu3dX6EPuf8AVmfFB+xA
+ AAA
+X-Change-ID: 20251008-automatic-clocks-249ab60f62ce
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Sam Protsenko <semen.protsenko@linaro.org>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>
+Cc: Will McVicker <willmcvicker@google.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+ kernel-team@android.com, Peter Griffin <peter.griffin@linaro.org>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7998;
+ i=peter.griffin@linaro.org; h=from:subject:message-id;
+ bh=55HAc3H2pTNFibfzo9flbFWBCV0NF4ne7pX++sLxqj4=;
+ b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBpAod2IMZsBiQQituoQboH4FGQqqNagEisEEWqs
+ TlXY7lxAKCJAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaQKHdgAKCRDO6LjWAjRy
+ ukDmD/4yJRJxiT5V0kURtDvDCAPnAFixfDT79EGsrWtRy1dhzX6HcG1WPUfR2SBeAowdf7GXxrx
+ u2Bmj7fI+s+hur4DDOxZc7RSWgchhA3U7qFsxWfprBfRE6gFi9yJAdOBRrHQR1j8ovxfUjYMzCy
+ b8AuR0wh94bZ45Y6M6BD/UYU1xlMiGzCWl50m3ZJQBTjr6XPpQoUO8eL7NxdOB9es6bLzVDLXMR
+ N6htqeF8dB2UyVzE2Ku6Oi2TEzAhTgC5UhemJKUzB/Av44iNf75J1Molty0e/0S+MCBGUZHDpbt
+ KvjIqtWgYKOcTTtMdkdyOdS9HR9Ucx2SI5002xY4TQfaNnG7japJtWXscsha7L49ycTFby2A0AL
+ VK7BZGQlV/Cmi0b86t1mZOm5bTea/n1NM0VVSaejv/LoUv3qj7E90rY4gYuHAoBUR3YCnFYrN8S
+ 4u/anpDmnd0aMtFxE4Y0CkEnn2HpHU8Vn6Wl1Kt9w+/3o2PWtevbNBtbhEAgolkTwZLxXwEX2rF
+ 9456hxmliTv6dYNApCJGpzu05p045/l2kfg97HNWnGjhbgXGq10iXZ3TxSd9CkCfgHp01Q+LDFZ
+ Q56ZTJbSr7CnryzjlBYfpUjuJzhYH5MOb7y8X1tknjUBw/vwIbtYtRLG5+37wZqtU6JCNeJEn6x
+ AbAXSwvaPYF505g==
+X-Developer-Key: i=peter.griffin@linaro.org; a=openpgp;
+ fpr=0EFC8E6F5578750D56B549FCCEE8B8D6023472BA
 
-From: Thomas Wismer <thomas.wismer@scs.ch>
+Hi folks,
 
-Add the TPS23881B I2C power sourcing equipment controller to the list of
-supported devices.
+This series addresses an issue with Samsung Exynos based upstream clock driver
+whereby the upstream clock driver sets all the clock gates into "manual mode"
+(which uses a bit that is documented as reserved in the gate registers).
 
-Falling back to the TPS23881 predecessor device is not suitable as firmware
-loading needs to handled differently by the driver. The TPS23881 and
-TPS23881B devices require different firmware. Trying to load the TPS23881
-firmware on a TPS23881B device fails and must therefore be omitted.
+Another issue with the current "manual clock gating" approach upstream is
+there are many bus/interconnect clocks whose relationships to the IPs
+are not well documented or defined in the specs. When adding a new CMU until
+now we have tried to label these clocks appropriately with CLK_IS_CRITICAL and
+CLK_IGNORE_UNUSED but doing so is both error prone and time consuming. If
+your lucky disabling a critical bus clock causes an immediate hang. Other
+clocks however aren't so obvious and show up through random instability
+some period of time later.
 
-Signed-off-by: Thomas Wismer <thomas.wismer@scs.ch>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Fortunately each CMU (at least on newer Exynos) provides a "hardware
+automatic clock gating" HWACG feature that is used by the downstream
+Samsung clock drivers. Hardware automatic clock gating uses a hardware
+interface between the CMU and IP to control all clocks required by the
+IP. This interface is called Q-channel, and is part of the Arm AMBA low
+power interface specification [1].
+
+The advantage of using this Qchannel hardware interface for
+enabling/disabling the clocks is that it takes care of all clocks
+(including bus/interconnect) ones for the IP automatically thereby reducing
+the dynamic power.
+
+Whilst each clock component (GATE, MUX, DIV, QCH etc) has a HWACG enable
+bit there are also some "global enable override" bits for the entire CMU in
+the CMU_CONTROLLER_OPTION register.
+
+This series makes use of those "global enable" override bits to enable auto
+clock mode for the entire CMU and every component within it. Through
+experimentation we can see that setting the "manual mode" reserved gate bit
+on a particular gate register overides the global enable bits. So the code
+is updated accordingly not to do that.
+
+Auto clock mode has been implemented as a "opt in" by setting a new
+auto_clock_gate flag in the CMU static data. The intention is existing
+platforms in manual mode should not be effected by any of these changes.
+
+If auto_clock_mode flag is set and the option_offset field is specified
+then the global enable override bits will be written for the
+CMU (to avoid relying on any prior bootstage configuration). Again if auto
+mode is enabled the code no longer sets MANUAL and clears HWACG bits on
+each gate register.
+
+To ensure compatibility with older DTs (that specified an incorrect CMU
+size) the resource size is checked and the driver falls back to manual
+clock gate mode in such cases. As the CLK_IGNORE_UNUSED and CLK_IS_CRITICAL
+flags are required for manual clock gate mode, the patch removing these
+flags has been dropped from v2. I tested with an old DT and we successfully
+switch to manual clock gate mode and the system correctly boots.
+
+To have dynamic root clock gating (drcg) of bus components and memclk
+enabled, it is required to set the bus_component_drcg and memclk registers
+in the correspondingly named sysreg controller. If auto clock mode is
+enabled the clock driver will now attempt to get the sysreg syscon via the
+samsung,sysreg property (as used by other Exynos drivers upstream) and set
+the registers accordingly. The suspend/resume code paths are also updated
+to handle saving/restoring registers using a regmap. Note cmu_top is an
+exception and does not have a corresondingly named sysreg_top.
+
+As all clock gates are currently exposed in the gs101 drivers and DT, we
+continue to register all of these gates in auto clock mode, but with some new
+samsung_auto_clk_gate_ops. As clk enable and clk disable are now handled by
+Q-channel interface the .enable and .disable implementations are
+no-ops. However by using some CMU qchannel debug registers we can report
+the current clock status (enabled or disabled) of every clock gate in the
+system. This has the nice effect of still being able to dump the entire
+clock tree from /sys/kernel/debug/clk/clk_summary and see a live view of
+every auto clock in the system.
+
+With the infrastructure in place, all the CMUs registered in clk-gs101 are
+now updated to enable auto clock mode. From dumping
+/sys/kernel/debug/clk/clk_summary it is possible to see that after enabling
+auto clock mode approximately 305 clocks are enabled, and 299 are now
+disabled. This number goes up and down a bit by 3-5 clocks just on a idle
+system sat at a console.
+
+With auto clock mode enabled it is now also possible to boot without the
+clk_ignore_unused kernel command line property for the first time!
+
+For future CMUs in gs101 I propose we continue to expose all gates, but
+register the CMU in "auto mode". For new device drivers or updates to
+existing dt bindings related to clocks to support gs101 I suggest we only
+use the "obviously correct" clock(s). By "obviously correct" I mean a clock
+has the IP name in the clock register name, but not try to deduce other
+obsucurely named bus/interconnect clocks which will now all be handled
+automatically. Note it is still possible to test whether the "obviously
+correct" clock is indeed correct by putting the individual gate in manual
+mode and disabling the clock (e.g. by using devmem).
+
+Note: As everything here will go via one of Krzysztof's trees I've sent it
+as one series.
+
+regards,
+
+Peter
+
+[1] https://documentation-service.arm.com/static/5f915e69f86e16515cdc3b3e?token=
+
+Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 ---
- Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Changes in v2:
+- Rebased onto next-20251024
+- Fallback to manual clock gate mode for old DTs with incorrect CMU reg
+  size (added samsung_is_auto_capable(). Tested with old DT and it works as
+  expected. It does require keeping all the CLK_IS_CRITICAL
+  CLK_IGNORE_UNUSED flags in clk-gs101 so patch removing those is
+  dropped. (Krzysztof)
+- Rename OPT_UNKNOWN bit to OPT_EN_LAYER2_CTRL (Andre)
+- Rename OPT_EN_MEM_PM_GATING to OPT_EN_MEM_PWR_GATING (Peter)
+- Reverse Option bit definitions LSB -> MSB (Krzysztof)
+- Update kerneldoc init_clk_regs comment (Andre)
+- Fix space on various comments (Andre)
+- Fix regmap typo on samsung_clk_save/restore calls (Andre)
+- Include error code in pr_err message (Andre)
+- Add macros for dcrg and memclk (Andre)
+- Avoid confusing !IS_ERR_OR_NULL(ctx->sysreg) test (Krzysztof)
+- Update kerneldoc to mention drcg_offset & memclk_offset are in sysreg
+(Andre)
+- Update bindings commit description as to why the sysreg is required
+(Krzysztof)
+- Link to v1: https://lore.kernel.org/r/20251013-automatic-clocks-v1-0-72851ee00300@linaro.org
 
-diff --git a/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml b/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-index bb1ee3398655..0b3803f647b7 100644
---- a/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-+++ b/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-@@ -16,6 +16,7 @@ properties:
-   compatible:
-     enum:
-       - ti,tps23881
-+      - ti,tps23881b
- 
-   reg:
-     maxItems: 1
+---
+Peter Griffin (4):
+      dt-bindings: clock: google,gs101-clock: add samsung,sysreg property as required
+      arm64: dts: exynos: gs101: add samsung,sysreg property to CMU nodes
+      clk: samsung: Implement automatic clock gating mode for CMUs
+      clk: samsung: gs101: Enable auto_clock_gate mode for each gs101 CMU
+
+ .../bindings/clock/google,gs101-clock.yaml         |  23 ++-
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi       |   6 +
+ drivers/clk/samsung/clk-exynos-arm64.c             |  62 ++++++-
+ drivers/clk/samsung/clk-exynos4.c                  |  12 +-
+ drivers/clk/samsung/clk-exynos4412-isp.c           |   4 +-
+ drivers/clk/samsung/clk-exynos5250.c               |   2 +-
+ drivers/clk/samsung/clk-exynos5420.c               |   4 +-
+ drivers/clk/samsung/clk-gs101.c                    |  56 ++++++
+ drivers/clk/samsung/clk-s3c64xx.c                  |   4 +-
+ drivers/clk/samsung/clk-s5pv210.c                  |   2 +-
+ drivers/clk/samsung/clk.c                          | 199 +++++++++++++++++++--
+ drivers/clk/samsung/clk.h                          |  55 +++++-
+ 12 files changed, 385 insertions(+), 44 deletions(-)
+---
+base-commit: 72fb0170ef1f45addf726319c52a0562b6913707
+change-id: 20251008-automatic-clocks-249ab60f62ce
+
+Best regards,
 -- 
-2.43.0
+Peter Griffin <peter.griffin@linaro.org>
 
 
