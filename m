@@ -1,60 +1,109 @@
-Return-Path: <devicetree+bounces-232449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 852F2C18021
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 03:09:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E265DC180F2
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 03:34:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B8E51C24613
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 02:09:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74BE6188E820
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 02:32:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85C182EA156;
-	Wed, 29 Oct 2025 02:09:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC134190685;
+	Wed, 29 Oct 2025 02:31:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Fn7SmH3V";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DM64cO6y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A1C52E9EB5;
-	Wed, 29 Oct 2025 02:09:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BD4610F1
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 02:31:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761703770; cv=none; b=N9Tv60ckznQvyjzODaeAGMFIf3G3TbvkOatJrYvVfDgDpj0ESl0iwkAefU7/oJedv+SvRLft+LcX8XUJSgt+UlAeIniE3WfuvQWkiSJxbutCQFI9Akjok+J5Y/dMhZdk31kJj34xHnOLQBKTHUMM6bPo0jI03+lpU0Qg4mXZ8Pc=
+	t=1761705103; cv=none; b=YyPXzFtLgNFtr5eGdlyAfJOQXuzPJLLLxE8fakwjPmXnCKTSIQmU97RXRs6Gg08p4llkdRk3r3DzWYOmmtO7jkRw4kT39xcvYru64s93OiYio6z06YmBZgIA/VR9S3wyaU35gh2Id41mkzO8cza0sdWl94QgKjVlOoyUO2JVEBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761703770; c=relaxed/simple;
-	bh=uQtJVchOapLDORyCgCL5YZthdIBpdXxwo4d1euFkDGU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=IXHPNPgDWeQTNn2+sVvslF2um0OupnwHuxnqucmqJd9e3xOPY3Vnec1+k6CrZibxQqzN2i8A2Vlr7fCbFstIPbigigu+q5Qt70nF6WzaecejnCShsYW5RtwYSFt858k7ZCQv7/EApCnt4e4dfUa4TE9ezh+MIA10K9P1TCBnhDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [223.64.68.45])
-	by gateway (Coremail) with SMTP id _____8BxF9FWdwFpidobAA--.60302S3;
-	Wed, 29 Oct 2025 10:09:26 +0800 (CST)
-Received: from localhost.localdomain (unknown [223.64.68.45])
-	by front1 (Coremail) with SMTP id qMiowJAx+8BRdwFp1rAXAQ--.27054S4;
-	Wed, 29 Oct 2025 10:09:25 +0800 (CST)
-From: Binbin Zhou <zhoubinbin@loongson.cn>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Keguang Zhang <keguang.zhang@gmail.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-watchdog@vger.kernel.org,
-	Binbin Zhou <zhoubinbin@loongson.cn>,
-	Xiaochuang Mao <maoxiaochuan@loongson.cn>
-Subject: [PATCH 6/6] watchdog: loongson: Add Loongson-2k0300 watchdog support
-Date: Wed, 29 Oct 2025 10:09:13 +0800
-Message-ID: <20251029020913.1946321-3-zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251029020913.1946321-1-zhoubinbin@loongson.cn>
-References: <20251029020913.1946321-1-zhoubinbin@loongson.cn>
+	s=arc-20240116; t=1761705103; c=relaxed/simple;
+	bh=g7N28kFHcXcwHBlOAWcJiAHR4xwx/pSur+aW4iGjL6w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HgB6es05s49jASeUl31xk0JYQqp5nRMwTPgPLOeyt4ffVAqfHcoW6cMhSFMzm6O73e0XRQLxELepWOlWJo32Ww0Ti/Dr/qVODyQM+9I9N5AA7Dc/pGhO+H+epfOm4HC68L5ANgIKUsglhz053JiWbCQhLkHZSCepQp9Lc5JcEC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Fn7SmH3V; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DM64cO6y; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59SJlY292525473
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 02:31:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=RCz1pudWlWhAvVjENZQZb1b5kECSVZ47OjN
+	VesESA0Y=; b=Fn7SmH3V3ELDvJaSFgHFh91wRDp0bROyf2S5xfV5QUZUC18cR86
+	UdyRR7W3uQBmd5agw1VoxjTuG8IOMsQkqDCobygkPyvSdDeV6hwV/hlNEElK7jAt
+	bi1/rl+DwA+mSl7VITcvi414awyuxi4d2JMxGntZzyXNQnwM2kpM2jlFJZw38Hm9
+	2VTLCh9Aknj+OK27fyw4947WxRu8sepJL5/4r3z4ob8RqBxKVwRaxTlsJ68e9510
+	m9Kg7VgBJaVgYHj2Bp+Y4QDbBGGT88DWJ7w5HHE1/akVsqWla3hKCdlhYb90a8hq
+	2UPqL9yFEPKV2C+9Fr1MMsZ6WlXZ0mwTUOQ==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a34a3rw24-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 02:31:41 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-32ee62ed6beso10770798a91.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 19:31:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1761705101; x=1762309901; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RCz1pudWlWhAvVjENZQZb1b5kECSVZ47OjNVesESA0Y=;
+        b=DM64cO6yDCThbRkEbirCf3lnhrnVcG86TF5IcdsLj4QiY5RAzTE+IRiB44Bj0C4/Ul
+         pj9ei5ahmhJke2fbsfDAcvaTA+fbv8f5lPwElDDoLz/p4NkglQw7C5rWckteNlwQa3B2
+         bWFR6bkbGmZ3YTaojq/H8QeyynX6GYWuSF4+pbbTWzbYuJxNJvsVbPDQiT8cOgN/gvru
+         IYx/HIsjIsWfB1RVIbIPC3oYHoFB+eZbWXbUd1skLTM7GjNzRnG5/rI19gfS8IWpq7RG
+         lEmIi+TP/TucaODKvCnePsLraCvqltn1WJIYiU8tUdAcQ6y+FrbkuzVtQFFr+Tc01l8l
+         IEeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761705101; x=1762309901;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RCz1pudWlWhAvVjENZQZb1b5kECSVZ47OjNVesESA0Y=;
+        b=Ktt7RTcn+fCjKtlq2wJdosDAmqprymuyFZ93OEYXIVkbUJRMAA9B4aenVcp52Y0iND
+         17MB4hBjmKxVVFDauPEXh+vWRWeVnhlHtbSXd48GYvtL/K910ph6+7FXHETjgOOCJCp+
+         LOMjUaRYvpvYezCgmdgnw3qCROR76msIqQfetiLB4QX3VYx5TVkRg05Gp+9t1XK2hUyu
+         roO8IVLpgUECIZcrs4EANctLQd4PvfrqdZwCR5wIHhDKH6Zru2xzVtkwWi3ha6F2YJt8
+         nAsy/yBcZfvn6RGYLVoIHUjOV5Whcmes/OJBjBzEwzgn9l5IK6u5xtWBVvMOb3Fy0AAd
+         1jaA==
+X-Forwarded-Encrypted: i=1; AJvYcCX3DsJf0A8iRoT3keFDFsEMhrVHcogWCrJz+0r3pGOmKGgOy6VnK7YPE/FO7AaQ07uocJ8atIoPA2Vz@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjIWprEl38TbNYGaXbFnJeF/nj7NkfMLDT6b3OBEDI9PyALVh/
+	t+ViA2/1eURF9ITAK6pl0PE6AbqR+cUyrOvZ1IK22VBTNJxblZYdKsmsLSv7ZOMMefWoVBP6f6e
+	fuV5Rtuv3+lQd07vugKVeS4gYSWKo9WIV0hCN0eohBDz14nSp9T+iPZkB1OEsx7/MpMlZNYbqfi
+	s=
+X-Gm-Gg: ASbGncvVrLwA0jrEdPl7QCvhqJvfyzO7CMxLAj/8ZWDmaE58Iaf8+4Ia5qM/KK9X8Ti
+	gzEVBcTODWsl1ujhaEMz/ytPOlZgEYvGl3uesAk0iRcBaMi7HAhmcaYLNX8V7YD4HLRm8wCNsa8
+	Un1qq4BVAD5tZ5VwZMIo3B7Hbw+aASGbYDY5p98ajI1q+Bx/vYHaSOILDmO7I3MCtCWYbbe0x6a
+	WerrvB2Gn3Kk+Ag83qni2budh4svQ0PZTZFQL5bdRlqthmUo4cvjz0javKeIAXJe0C9Y1ROl6Nd
+	4JLJ/CMlWIs4LMst7rgBgzv7JZfbqtRcRpW4aLuBWtAxwCj5tFmbnjR66CsMajctZLkJotydATG
+	Vi88UJeTGBdqpUWJO7Kv6HRBAUmgfIPQ/mzTM0pBiUKSS
+X-Received: by 2002:a17:90b:384d:b0:339:d03e:2a11 with SMTP id 98e67ed59e1d1-3403a15844cmr1480563a91.14.1761705100752;
+        Tue, 28 Oct 2025 19:31:40 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEd0VAQmf31SXQY4LxoHngpjy8YiK3tt2nlnsdCIY2Qe4hB//DaYRNWlZoiONNgbDcIgRqpTA==
+X-Received: by 2002:a17:90b:384d:b0:339:d03e:2a11 with SMTP id 98e67ed59e1d1-3403a15844cmr1480521a91.14.1761705099904;
+        Tue, 28 Oct 2025 19:31:39 -0700 (PDT)
+Received: from hu-liuxin-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33fed70a83csm13488875a91.4.2025.10.28.19.31.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Oct 2025 19:31:39 -0700 (PDT)
+From: Xin Liu <xin.liu@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
+        jie.gan@oss.qualcomm.com, xin.liu@oss.qualcomm.com
+Subject: [PATCH] arm64: dts: qcom: qcs615: Update 'model' string for qcs615 ride
+Date: Tue, 28 Oct 2025 19:31:35 -0700
+Message-ID: <20251029023137.381386-1-xin.liu@oss.qualcomm.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,213 +111,51 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qMiowJAx+8BRdwFp1rAXAQ--.27054S4
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAQEKCGkAWywU7wAAsn
-X-Coremail-Antispam: 1Uk129KBj93XoW3AryrJr48uF4UJFy3Jr1DJwc_yoWxGr48pF
-	WUA39YgrW3trs8Crsxt3yDCF43CrySq343Ja1xKw1rGa98tr1rXayrKF92q39IyFWxJr13
-	ZFy8KFWSka1DKrgCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUB2b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r126r13M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AK
-	xVW0oVCq3wAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0c
-	Ia020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Wrv_
-	ZF1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwI
-	xGrwCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWU
-	JVW8JwCFI7km07C267AKxVWUXVWUAwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4
-	vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IY
-	x2IY67AKxVW7JVWDJwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UMIIF0xvE42xK8V
-	AvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E
-	14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUVCJPDUUUU
+X-Proofpoint-ORIG-GUID: E_BW8YS2qKZzvP_ImKLuZqaRo72W507W
+X-Authority-Analysis: v=2.4 cv=HM3O14tv c=1 sm=1 tr=0 ts=69017c8d cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=a1m0clyzLRKmXXX_jUQA:9 a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDI5MDAxOCBTYWx0ZWRfX9szukA8CNz77
+ pcrlQTLrOV/8xjJ7i+XOcI0B6di+pjcSu+jO4rbRlM0xKwkzVlUg9HSuoJ+yqC1kgzUWIt8pkmf
+ lTSNgw8+14NHGgdy9/vtKCTYKF40xvsceN+h53Ixleokb6FNUHeFqda+JtlRd93hwHAMJSmUMgK
+ H7ONQsbKI0RMJOri7HmAlkW6Wa70XdM7eZwssRXkxtq38ADIJblsmZtTkH3p7USNIiFM5hvgkLG
+ xqY/5vY0/43vwPar/aTccBTEB+LZeU3UUYUi+O1bgwrE95KvLhMr1T50oQMdMTqrbhLV7CbfT8d
+ uee0RrQjcWrcRKE30/w7jJ/4YYPVuAXdwhQ8r4W2H0MeHOFgGFzYbvvpro7qaVbGSAZFK7nKwm9
+ de2I28OETvg+RFDiZV6TwNR/l4RsYA==
+X-Proofpoint-GUID: E_BW8YS2qKZzvP_ImKLuZqaRo72W507W
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-29_01,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 priorityscore=1501 malwarescore=0 adultscore=0 phishscore=0
+ spamscore=0 lowpriorityscore=0 impostorscore=0 clxscore=1011 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510290018
 
-According to the manual, the Loongson-2K0300 watchdog is similar to the
-Loongson-1, except for some register offsets and inconsistent register
-bit definitions. Separate definitions via driver_data suffice.
+Update the 'model' property in the QCS615-ride device tree to include
+the public board name "IQ-615 Beta EVK". This ensures consistency with
+official documentation and release notes.
 
-Co-developed-by: Xiaochuang Mao <maoxiaochuan@loongson.cn>
-Signed-off-by: Xiaochuang Mao <maoxiaochuan@loongson.cn>
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+Signed-off-by: Xin Liu <xin.liu@oss.qualcomm.com>
 ---
- drivers/watchdog/Kconfig        |  2 +-
- drivers/watchdog/loongson_wdt.c | 69 +++++++++++++++++++++++++++------
- 2 files changed, 59 insertions(+), 12 deletions(-)
+ arch/arm64/boot/dts/qcom/qcs615-ride.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-index 74edeb13e95b..cae1339d581e 100644
---- a/drivers/watchdog/Kconfig
-+++ b/drivers/watchdog/Kconfig
-@@ -1965,7 +1965,7 @@ config LANTIQ_WDT
+diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+index e8faa25da79f..047ba656f67d 100644
+--- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
++++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+@@ -10,7 +10,7 @@
+ #include "talos.dtsi"
+ #include "pm8150.dtsi"
+ / {
+-	model = "Qualcomm Technologies, Inc. QCS615 Ride";
++	model = "Qualcomm Technologies, Inc. QCS615 Ride (IQ-615 Beta EVK)";
+ 	compatible = "qcom,qcs615-ride", "qcom,qcs615", "qcom,sm6150";
+ 	chassis-type = "embedded";
  
- config LOONGSON_WDT
- 	tristate "Loongson SoC hardware watchdog"
--	depends on MACH_LOONGSON32 || COMPILE_TEST
-+	depends on MACH_LOONGSON32 || MACH_LOONGSON64 || COMPILE_TEST
- 	select WATCHDOG_CORE
- 	help
- 	  Hardware driver for the Loongson SoC Watchdog Timer.
-diff --git a/drivers/watchdog/loongson_wdt.c b/drivers/watchdog/loongson_wdt.c
-index 703c65952c7c..6fdf48d45e09 100644
---- a/drivers/watchdog/loongson_wdt.c
-+++ b/drivers/watchdog/loongson_wdt.c
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0-or-later
- /*
-  * Copyright (c) 2016 Yang Ling <gnaygnil@gmail.com>
-+ * Copyright (C) 2025 Binbin Zhou <zhoubinbin@loongson.cn>
-  */
- 
- #include <linux/clk.h>
-@@ -12,8 +13,6 @@
- 
- /* Loongson Watchdog Register Definitions */
- #define WDT_EN			0x0
--#define WDT_TIMER		0x4
--#define WDT_SET			0x8
- 
- #define DEFAULT_HEARTBEAT	30
- 
-@@ -27,18 +26,37 @@ module_param(heartbeat, uint, 0);
- MODULE_PARM_DESC(heartbeat, "Watchdog heartbeat in seconds. (default="
- 		 __MODULE_STRING(DEFAULT_HEARTBEAT) ")");
- 
-+struct loongson_wdt_pdata {
-+	u32 timer_offset;
-+	u32 set_offset;
-+	u32 wdt_en_bit;
-+};
-+
-+static const struct loongson_wdt_pdata ls1x_wdt_pdata = {
-+	.timer_offset = 0x4,
-+	.set_offset = 0x8,
-+	.wdt_en_bit = BIT(0),
-+};
-+
-+static const struct loongson_wdt_pdata ls2k0300_wdt_pdata = {
-+	.timer_offset = 0x8,
-+	.set_offset = 0x4,
-+	.wdt_en_bit = BIT(1),
-+};
-+
- struct loongson_wdt_drvdata {
- 	void __iomem *base;
- 	struct clk *clk;
- 	unsigned long clk_rate;
- 	struct watchdog_device wdt;
-+	const struct loongson_wdt_pdata *pdata;
- };
- 
- static int loongson_wdt_ping(struct watchdog_device *wdt_dev)
- {
- 	struct loongson_wdt_drvdata *drvdata = watchdog_get_drvdata(wdt_dev);
- 
--	writel(0x1, drvdata->base + WDT_SET);
-+	writel(0x1, drvdata->base + drvdata->pdata->set_offset);
- 
- 	return 0;
- }
-@@ -52,7 +70,7 @@ static int loongson_wdt_set_timeout(struct watchdog_device *wdt_dev, unsigned in
- 	wdt_dev->timeout = timeout;
- 
- 	counts = drvdata->clk_rate * min(timeout, max_hw_heartbeat);
--	writel(counts, drvdata->base + WDT_TIMER);
-+	writel(counts, drvdata->base + drvdata->pdata->timer_offset);
- 
- 	return 0;
- }
-@@ -61,7 +79,7 @@ static int loongson_wdt_start(struct watchdog_device *wdt_dev)
- {
- 	struct loongson_wdt_drvdata *drvdata = watchdog_get_drvdata(wdt_dev);
- 
--	writel(0x1, drvdata->base + WDT_EN);
-+	writel(drvdata->pdata->wdt_en_bit, drvdata->base + WDT_EN);
- 
- 	return 0;
- }
-@@ -69,8 +87,10 @@ static int loongson_wdt_start(struct watchdog_device *wdt_dev)
- static int loongson_wdt_stop(struct watchdog_device *wdt_dev)
- {
- 	struct loongson_wdt_drvdata *drvdata = watchdog_get_drvdata(wdt_dev);
-+	u32 val = readl(drvdata->base + WDT_EN);
- 
--	writel(0x0, drvdata->base + WDT_EN);
-+	val &= ~(drvdata->pdata->wdt_en_bit);
-+	writel(val, drvdata->base + WDT_EN);
- 
- 	return 0;
- }
-@@ -79,9 +99,9 @@ static int loongson_wdt_restart(struct watchdog_device *wdt_dev, unsigned long a
- {
- 	struct loongson_wdt_drvdata *drvdata = watchdog_get_drvdata(wdt_dev);
- 
--	writel(0x1, drvdata->base + WDT_EN);
--	writel(0x1, drvdata->base + WDT_TIMER);
--	writel(0x1, drvdata->base + WDT_SET);
-+	writel(drvdata->pdata->wdt_en_bit, drvdata->base + WDT_EN);
-+	writel(0x1, drvdata->base + drvdata->pdata->timer_offset);
-+	writel(0x1, drvdata->base + drvdata->pdata->set_offset);
- 
- 	return 0;
- }
-@@ -112,6 +132,8 @@ static int loongson_wdt_probe(struct platform_device *pdev)
- 		return -ENOMEM;
- 	platform_set_drvdata(pdev, drvdata);
- 
-+	drvdata->pdata = of_device_get_match_data(dev);
-+
- 	drvdata->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(drvdata->base))
- 		return PTR_ERR(drvdata->base);
-@@ -140,9 +162,32 @@ static int loongson_wdt_probe(struct platform_device *pdev)
- 	return devm_watchdog_register_device(dev, &drvdata->wdt);
- }
- 
-+static int loongson_wdt_resume(struct device *dev)
-+{
-+	struct loongson_wdt_drvdata *data = dev_get_drvdata(dev);
-+
-+	if (watchdog_active(&data->wdt))
-+		loongson_wdt_start(&data->wdt);
-+
-+	return 0;
-+}
-+
-+static int loongson_wdt_suspend(struct device *dev)
-+{
-+	struct loongson_wdt_drvdata *data = dev_get_drvdata(dev);
-+
-+	if (watchdog_active(&data->wdt))
-+		loongson_wdt_stop(&data->wdt);
-+
-+	return 0;
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(loongson_wdt_pm_ops, loongson_wdt_suspend, loongson_wdt_resume);
-+
- static const struct of_device_id loongson_wdt_dt_ids[] = {
--	{ .compatible = "loongson,ls1b-wdt", },
--	{ .compatible = "loongson,ls1c-wdt", },
-+	{ .compatible = "loongson,ls1b-wdt", .data = &ls1x_wdt_pdata },
-+	{ .compatible = "loongson,ls1c-wdt", .data = &ls1x_wdt_pdata },
-+	{ .compatible = "loongson,ls2k0300-wdt", .data = &ls2k0300_wdt_pdata },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, loongson_wdt_dt_ids);
-@@ -152,11 +197,13 @@ static struct platform_driver loongson_wdt_driver = {
- 	.driver = {
- 		.name = "loongson-wdt",
- 		.of_match_table = loongson_wdt_dt_ids,
-+		.pm = pm_ptr(&loongson_wdt_pm_ops),
- 	},
- };
- 
- module_platform_driver(loongson_wdt_driver);
- 
- MODULE_AUTHOR("Yang Ling <gnaygnil@gmail.com>");
-+MODULE_AUTHOR("Binbin Zhou <zhoubinbin@loongson.cn>");
- MODULE_DESCRIPTION("Loongson Watchdog Driver");
- MODULE_LICENSE("GPL");
 -- 
-2.47.3
+2.34.1
 
 
