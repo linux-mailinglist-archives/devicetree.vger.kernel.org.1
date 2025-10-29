@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-232701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97465C1A906
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:14:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FFCDC1A8C2
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:12:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2C33622EA3
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:03:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91E441A27C7B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:04:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B18252BD58C;
-	Wed, 29 Oct 2025 12:50:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4D9E32720F;
+	Wed, 29 Oct 2025 12:52:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EzcgEJ0B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eR089nn/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8777820297E;
-	Wed, 29 Oct 2025 12:50:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B2E820297E;
+	Wed, 29 Oct 2025 12:52:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761742258; cv=none; b=b3jAOf3IZBdTbH+Qg2FM32+5tEuU22xY75HxMrARabYUeWVp3SQ3TPstIkJ4rMAHE7IOs791NVuyxerLgNecKjI7HNs5Txxb9hgpjXXv7tH1/HuEfr43ckPn3sfHyIkupsJW9+1zMOARl8uLp+FM7IYPhf8xTjSY9497rMV2T88=
+	t=1761742342; cv=none; b=n+yH3+27KYbYg4tWagR1vC2+QDsnFp0s3PckHL+HDeJh1jwMYZ7OuHNriQQ60372uL7vyHiCmTC/zaDgfpS8S35J5C9fjQxXOLa3Wf42YBuUjItyKjatPGEhD37WmNhMa7bzY04GWIZiCt6QIKB/Yf/t1Yx4UP6YtXinRIA4FEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761742258; c=relaxed/simple;
-	bh=4TBWX2dHkHV9SwuNsU7c4yBhCIWcloSM+wJm+VDz19g=;
+	s=arc-20240116; t=1761742342; c=relaxed/simple;
+	bh=1HAJ1BJ3hJr4rMA1mSnM4Z+EA/gpodPOwk5FC2dXS+8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MGwSsWLSftr4Xsm1RH7GAO1p0LS3s1BX7GJ916Yp8BXr6tUFF2DWrE3Q+FvGuKCJViHI0UC2el6qdRPbxxSRXXRYavqnD7EvqIRe1qGqtaHOJf0d2dDAusC1CLFTZR8AU94MEmMR6ht6kDBrWIwJbl6yhNec1gulIWan/n9XANo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EzcgEJ0B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13910C4CEF7;
-	Wed, 29 Oct 2025 12:50:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YhMVYMTBSGc7S9VH+e45U1t2IAvUKu5v+ijowcdP9gMEkXFw4Hl5OuY0bnyqllnbsYB5QI4p1TtZMStSCshsM0C7io8yshXrkzB0wu9uNi2DI1xgebnFb5fdXEBwN9r08IifAG8TXIFlM9AII+weQ/0vvQt/SQLWXzaUd3RztyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eR089nn/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F402C4CEF7;
+	Wed, 29 Oct 2025 12:52:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761742258;
-	bh=4TBWX2dHkHV9SwuNsU7c4yBhCIWcloSM+wJm+VDz19g=;
+	s=k20201202; t=1761742342;
+	bh=1HAJ1BJ3hJr4rMA1mSnM4Z+EA/gpodPOwk5FC2dXS+8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EzcgEJ0BKNZr6wA+ygkQR6d44U8lmT5D7Mn/4HstBHyo6yyb1W7ER7wpPK/cX1bbZ
-	 /NXMB/pVwxddzZa8raLzXbbHtc2GlNvuZDZ9B+kZnpEeiJBAfO4pNB9MkQ2PwiRhqy
-	 Tv7S2t2XDresd6M0yS7uzKr4XFA05/cy9JjhVt3JeeXxgZ6nw9cnZrt/4lTu7p+Hj+
-	 owVYIH5bm4dGJip3seN0hr818oMFVxmTzba19fHyZkb7yjX3qEShQypEP5jN3nkNen
-	 2tjvfFNs/bBKCKvt1GT8ztNlL1hIgxeuCg1zFpjKsihTv07+CNbu9xibVdg1W9E30C
-	 QWG2doAdI4Oeg==
-Date: Wed, 29 Oct 2025 12:50:51 +0000
+	b=eR089nn/rglpiimPihlYCj2SAY7spC2qAj5Lr7H6Goy6akWpAa25G5+gOrKYvQ424
+	 MoaGPeC0uz358YVaYuA68Xmgpu+OTQO3hZ+xSYhXinicU4oLgbMDuN+tndeRCNsWki
+	 jenc5xV1wdfqBHdaxOJ/1pv+/eQyxjndYz45Qi7IYLuuxgRKGVSe1TbkSVX1e2PYmq
+	 2jq5hqWLHMD4bRNG6H/vlmS8WV618g19vR/E5AeXpInNitu+gGfbaXJW2HSbfKCIjG
+	 OuafbZLakfKlxk7EWUkm24lWPX9UccCbRtdWTLxiIH0RxWJD31ryDwlbS3NcZR4sSf
+	 7h6QQMFcwwLsw==
+Date: Wed, 29 Oct 2025 12:52:14 +0000
 From: Drew Fustini <fustini@kernel.org>
 To: Yao Zi <ziyao@disroot.org>
 Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
@@ -56,11 +56,11 @@ Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
 	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>,
 	Han Gao <rabenda.cn@gmail.com>, Han Gao <gaohan@iscas.ac.cn>
-Subject: Re: [PATCH v3 5/5] riscv: dts: thead: Add reset controllers of more
- subsystems for TH1520
-Message-ID: <aQINq-rdtT3Dps2g@gen8>
+Subject: Re: [PATCH v3 4/5] reset: th1520: Support reset controllers in more
+ subsystems
+Message-ID: <aQIN_lVnn3wcwBCg@gen8>
 References: <20251014131032.49616-1-ziyao@disroot.org>
- <20251014131032.49616-6-ziyao@disroot.org>
+ <20251014131032.49616-5-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,22 +69,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251014131032.49616-6-ziyao@disroot.org>
+In-Reply-To: <20251014131032.49616-5-ziyao@disroot.org>
 
-On Tue, Oct 14, 2025 at 01:10:32PM +0000, Yao Zi wrote:
-> Describe reset controllers for VI, MISC, AP, DSP and AO subsystems. The
-> one for AO subsystem is marked as reserved, since it may be used by AON
-> firmware.
+On Tue, Oct 14, 2025 at 01:10:31PM +0000, Yao Zi wrote:
+> Introduce reset controllers for AP, MISC, VI, VP and DSP subsystems and
+> add their reset signal mappings.
 > 
 > Signed-off-by: Yao Zi <ziyao@disroot.org>
 > ---
->  arch/riscv/boot/dts/thead/th1520.dtsi | 37 +++++++++++++++++++++++++++
->  1 file changed, 37 insertions(+)
+>  drivers/reset/reset-th1520.c | 793 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 793 insertions(+)
 
 Reviewed-by: Drew Fustini <fustini@kernel.org>
-
-There is a conflict now in next but I will fix it when applying.
-
-Thanks,
-Drew
 
