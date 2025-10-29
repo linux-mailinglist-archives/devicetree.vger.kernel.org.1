@@ -1,257 +1,179 @@
-Return-Path: <devicetree+bounces-232626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 346DDC19796
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 10:49:46 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75D2DC19880
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 10:58:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7852A19C4A14
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 09:49:24 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id ACF323548A0
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 09:58:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05D932E54A3;
-	Wed, 29 Oct 2025 09:48:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=karo-electronics.de header.i=@karo-electronics.de header.b="TDtzJGR8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE899329C5E;
+	Wed, 29 Oct 2025 09:58:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from dd54918.kasserver.com (dd54918.kasserver.com [85.13.167.58])
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 225582E22BE;
-	Wed, 29 Oct 2025 09:48:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.13.167.58
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 311122F6596
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 09:58:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761731331; cv=none; b=MpfBa0gk+jShdhnKL9N8bi6+Dok501mkiske1kL87kVbIVd/SIHFD5YCYdVY3lQmgoUHC4rVXMSvpsggpmwQGjB5LnRIHFkYJAiN2HoQAEfCE17AZ4XUdI5fsXdhx8M3ws7ULLxp9Ihar7qy2ZYCz9cRaxNR3v91j7xCI6BQrXs=
+	t=1761731899; cv=none; b=X/aM/QoUbPOE4kta38Koqn1LB1F06xKVyluRL4k4shfuj3CU1CqN4MH+5PzQ1JBZzwx0G7KhOl5CME3BOU/3LL1mXQsO04BVH+56SBbzOXlUWRzWUFl/auL7ynba5Cq37tG24tcQaMKB4Lm8SATQPNgmcdyIzpfWUZQoA8z2dm0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761731331; c=relaxed/simple;
-	bh=qZdOrwnhHhmvKW1sM3Zp3iwo7hcAfqJiRVXLnAoXGP0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DGRWPQblbHdeuPDBZaDte0T/hzmAixNS0/QvI2VTmUfkRDATqd/QFVfLO8okTHPrD34hVpkEKfDizwkJbUAn22cnG8gJYqw6iKPRVWL8ncKOsq5UHvm5yysqJRzPnXqogX9h5TmEgoplXZMUI5dsciQX6aLSe4imJKtJKPy6x08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=KARO-electronics.de; spf=pass smtp.mailfrom=KARO-electronics.de; dkim=pass (2048-bit key) header.d=karo-electronics.de header.i=@karo-electronics.de header.b=TDtzJGR8; arc=none smtp.client-ip=85.13.167.58
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=KARO-electronics.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=KARO-electronics.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=karo-electronics.de;
-	s=kas202509031142; t=1761731319;
-	bh=04PcYjGelANUAIc65GQpYCVFC3ej9UoaMVRsOSXvgHc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=TDtzJGR86gROx3Pc4Z2qYEJ32hS8ZvtuFzlUGHL57qkvnbaQzRfu6RmoW6ogL08lb
-	 AWZMvIYcbK1500vunWsfatyVMYzSWVi+D8brEp+su26RUqgYpl5RMLhKtxIwxE+6ue
-	 53GjmTbvpBDVlIktDcjnXme6rfTwJNoVErVKHoEta+XjNxlv4JHe/19m1CBbSp3tDB
-	 EbwpeGj7KA3yUvDdKCN5NXYhyImyMYafQbKM3zOOljzxl1SafL1kgf3Krinncnvdyp
-	 lO7US+ZMjxNPW4h7YOSxJyAcq/W051Jz9QTgo4AUSOQqRPLgGuyRPjJB7SZmsr6ZNJ
-	 Lib7yMYp/ccsg==
-Received: from karo-electronics.de (unknown [89.1.81.74])
-	by dd54918.kasserver.com (Postfix) with ESMTPSA id 55BA9772C365;
-	Wed, 29 Oct 2025 10:48:39 +0100 (CET)
-Date: Wed, 29 Oct 2025 10:48:38 +0100
-From: Lothar =?UTF-8?B?V2HDn21hbm4=?= <LW@KARO-electronics.de>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Maud Spierings <maudspierings@gocontroll.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 3/5] arm64: dts: freescale: add Ka-Ro Electronics
- tx8m-1610 COM
-Message-ID: <20251029104838.44c5adcf@karo-electronics.de>
-In-Reply-To: <4a47b9b5-f482-41b6-a441-7728572c5a0c@gmail.com>
-References: <20251022-mini_iv-v2-0-20af8f9aac14@gocontroll.com>
-	<20251022-mini_iv-v2-3-20af8f9aac14@gocontroll.com>
-	<a7012995-c2a8-48a3-abe1-5c227272f21c@gmail.com>
-	<65202d1f-6c4f-4d4e-9fef-85cfb74ec768@gocontroll.com>
-	<938f85b0-4c9b-463a-960a-f5f4e4092480@gocontroll.com>
-	<20251029081138.2161a92a@karo-electronics.de>
-	<4a47b9b5-f482-41b6-a441-7728572c5a0c@gmail.com>
-Organization: Ka-Ro electronics GmbH
+	s=arc-20240116; t=1761731899; c=relaxed/simple;
+	bh=WFpySCPpyBEuYY1GGmOmu9SMBn1hRDK+TPw/QGcBR+Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=q5xPd3OZHujJ5SGqYaES3uaj3ngJb7i8VnLzSwC3gvr9d1sOA6w6KuDgaMF57E0lG0Rh0yvkWktHtPRutSQsMHqJpa3vWFu5lMoIFa+NfQqqvp965haRoGB8TxWqVFoyAfCNxmHRLGcDBGOYDRR0LbFhvDRzN3UdYXT2FnuYWx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-87c1f61ba98so101842626d6.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 02:58:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761731897; x=1762336697;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tdMmTEVXmrdUQVal1cKnxdF6jTyKX4No0foVL6qsIc0=;
+        b=NKCjpXgfPIPyvw10V/6PZMYjXvU0E6OPZeBv/0G1rjLgaxjcHYJsBShznPl3SkBOWS
+         g9TCtXByr+/vxtey7h0zluSxi1+OOai5AC6EJrLZMRi29iAyRTpJlpYAnQmzP0qcFDLx
+         ZPK93YWzW1USSeV6G5XnM9cx1XAlFEvr0lWmH7YWS65ehU8k+TxpwBrLExWiNDu4/KyF
+         /Z5WAmfHHvkWpF5NLndbjZCQRpSx4hIHetUjphLG2wqS69/1h0z2OBRY269Cn92tRFEJ
+         iUudFu2MqKH6UYJLudtZ8ML844R2pPH6tix6zNZ6HWuy0PNfpYzaK9uda80QD3cm4kn2
+         ZluA==
+X-Forwarded-Encrypted: i=1; AJvYcCXF0Y/2tkD+W+l76zhZlrZwIjLmUz3SkMV57xUPpIonGk0libhJg8oNkd6dtA7NPEmOJRUSvTSmnLyE@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKPQYvAwf6/jLfxZYNc70LL0zOdnvpaOFdXVDBok6UNsa/tQbm
+	SB/6JQO2rgBM2f66j/OAGnVoKe9cfChA5fofyHnNmGBPjb+QWAQwuGCASoyyW1JV
+X-Gm-Gg: ASbGncvSy5Uj7T75k4sB7IubhXzoTQYMijK8tfzm06FJ9ZOIFR7L4uVm40k9ZCZh6iH
+	Fcx2BHLmx13xLYiEltkuaIpYNQUH2Hc5xvbcE2ifGHfv6GQ1QBhPCtew2jc9XzIbfDviCdd1vlu
+	tbxh12mYXtrqF5Wf5Hi5eYL3udOgxPUb1FKk8FP0/2Ja7DPHUGhRknZa4rIJjS2EeG2pYc9Bse/
+	VIT/rkUejlBiKLxp1VXAeWnR553z68Jb9jU/1gvV6jjyyLrrQRfLnclDAVgt+2J68HJLnuehpfZ
+	AxIvTYTNPvu2B9IiONnbpBLk35AUV7AiYGiO9z2zUbHC5IRzLV6GnQ4ygr7n0j5XajfXX4r1466
+	aAuIE/HQNo+TUsAfppDtn8AhWYnxQLgwefFevObpctSmgPd7PghXMT0kXGzJDG+kOBb2rqoMtUi
+	3h25Qfv1/PNGijB+ZxWr8oMcexRogR6/gtKv+icA==
+X-Google-Smtp-Source: AGHT+IFMLfQTD67nb+QNoq1zyORisDLSdAwFvZMU6Z98s7WptJfETG6RwaRRcx3GL2knVUeMxsSjJw==
+X-Received: by 2002:a05:6214:19e2:b0:87d:f74d:28c6 with SMTP id 6a1803df08f44-88009be5633mr25271036d6.42.1761731896842;
+        Wed, 29 Oct 2025 02:58:16 -0700 (PDT)
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com. [209.85.219.48])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-87fc49a9d92sm96315796d6.51.2025.10.29.02.58.16
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Oct 2025 02:58:16 -0700 (PDT)
+Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-791fd6bffbaso88477486d6.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 02:58:16 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUp4LL1Hr1J+EYPHEESf8cLSlTfv7JGM1XzpWNCQ7zFzirPomSEr6GJ23ao8UJUEgvd4cIIQjssswib@vger.kernel.org
+X-Received: by 2002:a05:6102:d87:b0:5d5:f6ae:390a with SMTP id
+ ada2fe7eead31-5db906e1ea2mr632557137.40.1761731454123; Wed, 29 Oct 2025
+ 02:50:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Bar: +
+References: <20251022070543.1169173-1-ryan_chen@aspeedtech.com>
+ <20251022070543.1169173-5-ryan_chen@aspeedtech.com> <b5441728-06a7-44ea-8876-3a9fc3cf55be@app.fastmail.com>
+ <TY2PPF5CB9A1BE626A2F0F6307461D8F64BF2F0A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+ <6a97fbb4-19c2-4ffa-9c73-26aea02c27e4@app.fastmail.com> <TY2PPF5CB9A1BE6CF8336D211641A18E2DEF2F1A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+ <71df9bdf-53b2-45e2-a9e3-5b00a556f957@lunn.ch> <TY2PPF5CB9A1BE6F3E95C7FD61CF4F90ECAF2FEA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+ <fdbc471f-514e-4521-b7a1-dcf6127d64ff@lunn.ch> <TY2PPF5CB9A1BE6DD93D0F397C961D5CB5AF2FCA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+ <01573262-69a8-44cf-ae02-2e9842c59dde@lunn.ch> <TY2PPF5CB9A1BE665D988A413B8BCD5CA27F2FAA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+ <7c0c966b-c45f-47ad-9243-b945036a9bd2@app.fastmail.com>
+In-Reply-To: <7c0c966b-c45f-47ad-9243-b945036a9bd2@app.fastmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 29 Oct 2025 10:50:43 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVueyxmATwS_EnqBBPtX-O0bw6Ubnj-Dey8wN=pEvo_zA@mail.gmail.com>
+X-Gm-Features: AWmQ_blS6idckwhpIjkOWHP0NGDWxrc7vZpSwkjlsFZQOSpuaInPPIOtTjyVPpU
+Message-ID: <CAMuHMdVueyxmATwS_EnqBBPtX-O0bw6Ubnj-Dey8wN=pEvo_zA@mail.gmail.com>
+Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC device tree
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Ryan Chen <ryan_chen@aspeedtech.com>, Andrew Lunn <andrew@lunn.ch>, 
+	BMC-SW <BMC-SW@aspeedtech.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+	Andrew Jeffery <andrew@codeconstruct.com.au>, Jeremy Kerr <jk@codeconstruct.com.au>, 
+	Lee Jones <lee@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, Nishanth Menon <nm@ti.com>, 
+	=?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>, 
+	Taniya Das <quic_tdas@quicinc.com>, 
+	"Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Eric Biggers <ebiggers@kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+Hi Arnd,
 
-On Wed, 29 Oct 2025 10:42:17 +0200 Matti Vaittinen wrote:
-> On 29/10/2025 09:11, Lothar Wa=C3=9Fmann wrote:
-> > Hi,
-> >=20
-> > On Tue, 28 Oct 2025 14:10:04 +0100 Maud Spierings wrote: =20
-> >> On 10/28/25 13:42, Maud Spierings wrote: =20
-> >>> On 10/28/25 13:15, Matti Vaittinen wrote: =20
-> > [...] =20
-> >>>> Could/Should this be described using the:
-> >>>> 'rohm,feedback-pull-up-r1-ohms' and
-> >>>> 'rohm,feedback-pull-up-r2-ohms'? If I understand the comment
-> >>>> correctly, that might allow the driver to be able to use correctly
-> >>>> scaled voltages.
-> >>>>
-> >>>> https://elixir.bootlin.com/linux/v6.18-rc1/source/Documentation/
-> >>>> devicetree/bindings/regulator/rohm,bd71837-regulator.yaml#L108
-> >>>>    =20
-> >>>
-> >>> Ah I didn't know those existed, should've checked the bindings in more
-> >>> detail, thanks for the hint!
-> >>>
-> >>> I will have to investigate this carefully, since I don't have access =
-to
-> >>> the actual design of the COM, so I don't know exactly what is there.
-> >>>     =20
+On Wed, 29 Oct 2025 at 08:26, Arnd Bergmann <arnd@arndb.de> wrote:
+> On Wed, Oct 29, 2025, at 03:31, Ryan Chen wrote:
+> >> Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC device
+> >> tree
 > >>
-> >> So I am not yet entirely sure if this works out, I used the calculation
-> >> in the driver:
+> >> On Mon, Oct 27, 2025 at 02:42:01AM +0000, Ryan Chen wrote:
+> >> > > Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700
+> >> > > SoC device tree
+> >> > >
+> >> > > > SoC0, referred to as the CPU die, contains a dual-core Cortex-A35
+> >> > > > cluster and two Cortex-M4 cores, along with its own clock/reset
+> >> > > > domains and high-speed peripheral set.
+> >> > >
+> >> > > > SoC1, referred to as the I/O die, contains the Boot MCU and its
+> >> > > > own clock/reset domains and low-speed peripheral set, and is
+> >> > > > responsible for system boot and control functions.
+> >> > >
+> >> > > So is the same .dtsi file shared by both systems?
+> >> >
+> >> > This .dtsi represents the Cortex-A35 view only and is not shared with
+> >> > the Cortex-M4 or the Boot MCU side, since they are separate 32-bit and
+> >> > 64-bit systems running independent firmware.
 > >>
-> >> /*
-> >>    * Setups where regulator (especially the buck8) output voltage is s=
-caled
-> >>    * by adding external connection where some other regulator output is
-> >> connected
-> >>    * to feedback-pin (over suitable resistors) is getting popular amon=
-gst
-> >> users
-> >>    * of BD71837. (This allows for example scaling down the buck8 volta=
-ges
-> >> to suit
-> >>    * lover GPU voltages for projects where buck8 is (ab)used to supply=
- power
-> >>    * for GPU. Additionally some setups do allow DVS for buck8 but as t=
-his do
-> >>    * produce voltage spikes the HW must be evaluated to be able to
-> >> survive this
-> >>    * - hence I keep the DVS disabled for non DVS bucks by default. I
-> >> don't want
-> >>    * to help you burn your proto board)
-> >>    *
-> >>    * So we allow describing this external connection from DT and scale=
- the
-> >>    * voltages accordingly. This is what the connection should look lik=
-e:
-> >>    *
-> >>    * |------------|
-> >>    * |	buck 8  |-------+----->Vout
-> >>    * |		|	|
-> >>    * |------------|	|
-> >>    *	| FB pin	|
-> >>    *	|		|
-> >>    *	+-------+--R2---+
-> >>    *		|
-> >>    *		R1
-> >>    *		|
-> >>    *	V FB-pull-up
-> >>    *
-> >>    *	Here the buck output is sifted according to formula:
-> >>    *
-> >>    * Vout_o =3D Vo - (Vpu - Vo)*R2/R1
-> >>    * Linear_step =3D step_orig*(R1+R2)/R1
-> >>    *
-> >>    * where:
-> >>    * Vout_o is adjusted voltage output at vsel reg value 0
-> >>    * Vo is original voltage output at vsel reg value 0
-> >>    * Vpu is the pull-up voltage V FB-pull-up in the picture
-> >>    * R1 and R2 are resistor values.
-> >>    *
-> >>    * As a real world example for buck8 and a specific GPU:
-> >>    * VLDO =3D 1.6V (used as FB-pull-up)
-> >>    * R1 =3D 1000ohms
-> >>    * R2 =3D 150ohms
-> >>    * VSEL 0x0 =3D> 0.8V =E2=80=93 (VLDO =E2=80=93 0.8) * R2 / R1 =3D 0=
-.68V
-> >>    * Linear Step =3D 10mV * (R1 + R2) / R1 =3D 11.5mV
-> >>    */
-> >>
-> >> Because I do not know the pull up voltage, and I am not sure if it is a
-> >> pull up.
-> >>
-> >> So:
-> >> Vout_o =3D 1.35V
-> >> Vo =3D 1.1V
-> >> Vpu =3D unknown
-> >> R2 =3D 499 Ohm
-> >> R1 =3D 2200 Ohm
-> >> Gives:
-> >> Vpu =3D ~0V
-> >>
-> >> And:
-> >> Vout_o =3D 1.35V
-> >> Vo =3D 1.1V
-> >> Vpu =3D unknown
-> >> R2 =3D 2200 Ohm
-> >> R1 =3D 499 Ohm
-> >> Gives:
-> >> Vpu =3D ~1.04V
-> >>
-> >> I am not quite sure which resistor is R1 and which is R2 but having
-> >> there be a pull down to 0V seems the most logical answer?
-> >>
-> >> I am adding Lothar from Ka-Ro to the CC maybe he can shed some light on
-> >> this setup.
-> >> =20
-> > R2 is connected to GND, so Vpu =3D 0.
-> > With:
-> > 	regulator-min-microvolt =3D <1350000>;
-> > 	regulator-max-microvolt =3D <1350000>;
-> > 	rohm,fb-pull-up-microvolt =3D <0>;
-> > 	rohm,feedback-pull-up-r1-ohms =3D <2200>;
-> > 	rohm,feedback-pull-up-r2-ohms =3D <499>;
-> > the correct voltage should be produced on the BUCK8 output, but a quick
-> > test with these parameters led to:
-> > |failed to get the current voltage: -EINVAL
-> > |bd718xx-pmic bd71847-pmic.3.auto: error -EINVAL: failed to register bu=
-ck6 regulator
-> > |bd718xx-pmic: probe of bd71847-pmic.3.auto failed with error -22
-> >=20
-> > Apparently noone has ever tested this feature in real life. =20
->=20
-> Thanks for trying it out Lothar. I am positive this was tested - but=20
-> probably the use-case has been using a pull-up. I assume having the zero=
-=20
-> pull-up voltage causes the driver to calculate some bogus values. I=20
-> think fixing the computation in the driver might not be that big of a=20
-> task(?) The benefit of doing it would be that the correct voltages would=
-=20
-> be calculated by the driver.
->=20
-> If real voltages aren't matching what is calculated by the driver, then=20
-> the voltages requested by regulator consumers will cause wrong voltages=20
-> to be applied. Debug interfaces will also show wrong voltages, and the=20
-> safety limits set in the device-tree will not be really respected.
->=20
-> I think this would be well worth fixing.
->=20
-Before doing the real-life test I did the same calculation that's done
-in the driver to be sure that it will generate the correct values:
-bc 1.07.1
-Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006, 2008, 2012-2017 Free Sof=
-tware Foundation, Inc.
-This is free software with ABSOLUTELY NO WARRANTY.
-For details type `warranty'.=20
-fb_uv=3D0
-r1=3D2200
-r2=3D499
-min=3D800000
-step=3D10000
-# default voltage without divider
-min+30*step
-1100000
-min=3Dmin-(fb_uv-min)*r2/r1
-step=3Dstep*(r1+r2)/r1
-min
-981454
-step
-12268
-# default voltage with divider
-min+30*step
-1349494
+> >> DT describes the hardware. The .dtsi file could be shared, you just need
+> >> different status = <>; lines in the dtb blob.
+> >
+> > Could you please share an example of a .dtsi that is shared between
+> > different CPU architectures?
+>
+> I can think of three that are shared between arm and riscv, with both
+> able to boot Linux using a variation of the same device tree, with
+> the .dtsi file being included from the respective other side:
+>
+> arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
+> arch/arm/boot/dts/allwinner/sun8i-t113s.dtsi
+> arch/arm64/boot/dts/sophgo/sg2000.dtsi
+>
+> All of these however use the same basic physical address layout
+> as seen from the two CPUs, with only the set of on-chip devices
+> being slightly different, such as using the native irqchip
+> instance per CPU.
 
-Probably we need to use this value rather than the nominal 135000 as
-the target voltage in the DTB.
+I can't speak for the last two ones, but the first one is not what Ryan
+is looking for, as r9a07g043 has either an ARM (r9a07g043u) or a
+RISC-V (r9a07g043f) CPU core, not both.
 
+> In the AST2700 design, even though we have both Cortex-A35 (64-bit)
+> > and Cortex-M4 (32-bit) cores, each runs in a distinct address space
+> > and sees a different memory map.
+>
+> This is similar to the Cortex-M4 on i.MX7D. This is supported by
+> the Linux code, but I don't see the corresponding dts file for it now,
+> it may have never been merged.
 
-Lothar Wa=C3=9Fmann
+The keyword here is "System DT", where you have a single file describing
+the whole SoC. From this, separate DTS files are generated that
+describe the view for the application CPU core, real-time CPU core,
+control CPU core, etc...
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
