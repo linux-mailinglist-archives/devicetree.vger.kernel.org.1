@@ -1,258 +1,181 @@
-Return-Path: <devicetree+bounces-232746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B10AC1B2B6
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:22:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0CD1C1B6F3
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 15:54:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1CFF91C21FD4
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:06:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 021815837C6
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:16:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 235C03559CC;
-	Wed, 29 Oct 2025 13:56:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 077562561D1;
+	Wed, 29 Oct 2025 14:16:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F09FA35581C
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 13:56:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D40E18DB35;
+	Wed, 29 Oct 2025 14:15:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761746171; cv=none; b=DRsMS2KMqOM7Ef1yI1ak8uQXrEccb8uYMllaaD5tuVcicXskBMH0I6bkvZ1bDPGsZDXnIRUPSH3DAQu03gHS2+GcoqdKuLdNu9rDbDVcz/Hqwp8L1UYDPLB0ST4Gc/EQGc0fNSgAbNdjMr3FMOksBrZdl/NoRG56nmlP9Iu69fk=
+	t=1761747359; cv=none; b=KGEuZFAt8l3289/yZcqbbqNr0+f0E1fGWgQ1NROGV3UeT4ty9MbmMU1b0k9uXk9Jo/06RsU11xlF5oZRp/2axe1P4muuMXe5mwYTkHMNWfvUsDgdJo6WmfF/UFxy21uuq8+XUTFDzPy1Ni6orQWDjukiYzk+loJj8fQfys4r3Fo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761746171; c=relaxed/simple;
-	bh=KubnLurAppQNnPOcx/MIihZ9+VYxUP4oaCZb0K//AZg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HPf9m26j79mXd8j216EN3R3Hi42JaLUcIgy3yPynjdrPvCalE3Tx5dvhPsju6UoDKQjxIrSiBi/KPpfsju2GQZAktIMH3QazEuv8EwtaH7dH6flW/2JrQhB7H2mwBGwSmrnvOGcCECAsPBonTR8icNwHhfuVq5YfwgzTvscAaVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7C4AE1AC1
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 06:56:00 -0700 (PDT)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 164BB3F66E
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 06:56:07 -0700 (PDT)
-Date: Wed, 29 Oct 2025 13:55:43 +0000
-From: Liviu Dudau <liviu.dudau@arm.com>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Rob Herring <robh@kernel.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Boris Brezillon <boris.brezillon@collabora.com>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Chia-I Wu <olvaffe@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>,
-	Steven Price <steven.price@arm.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>, kernel@collabora.com,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-hardening@vger.kernel.org,
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH v8 1/5] dt-bindings: gpu: mali-valhall-csf: add
- mediatek,mt8196-mali variant
-Message-ID: <aQIc39c8MvU37G_q@e110455-lin.cambridge.arm.com>
-References: <20251017-mt8196-gpufreq-v8-0-98fc1cc566a1@collabora.com>
- <6599426.lOV4Wx5bFT@workhorse>
- <aQFoKoWIlf7xPzZX@e110455-lin.cambridge.arm.com>
- <3127655.ElGaqSPkdT@workhorse>
+	s=arc-20240116; t=1761747359; c=relaxed/simple;
+	bh=4zgFNeOCPQmleSUKYm/voVb+OMXGrsLkRKFfu2VQ6gc=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=DTyv31b68rFWijRvOkDjAukAHw5AbMLZZJrT8/O92aoKUneUz3qA5E4rRAdV1hEaRneuTuivz53wsTfxRCzzV/o03htyw1ezIWiSdC9pInKPn8VZPPNStZrfJmyt0XY8zLB1V5CYAUoUEEEuDI/YPbH4Kg/FRI2XXDJ+NGsoz44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [58.61.140.134])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 27a69f6db;
+	Wed, 29 Oct 2025 22:00:37 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: i@chainsx.cn
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: Re: [PATCH v4 2/2] arm64: dts: rockchip: add DTs for 100ASK DShanPi A1
+Date: Wed, 29 Oct 2025 22:00:26 +0800
+Message-Id: <20251029140026.867458-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <77BB123A1F1E3D11+20251014021623.286121-3-i@chainsx.cn>
+References: <77BB123A1F1E3D11+20251014021623.286121-3-i@chainsx.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3127655.ElGaqSPkdT@workhorse>
+X-HM-Tid: 0a9a304543c703a2kunm624f917d129bff
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCGkJJVkpIHRhIGUkaSBhOSFYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlOQ1VNSlVKT0tVSkhPWVdZFhoPEhUdFFlBWU9LSFVKS0lCTUtKVUpLS1VLWQ
+	Y+
 
-On Wed, Oct 29, 2025 at 02:42:35PM +0100, Nicolas Frattaroli wrote:
-> On Wednesday, 29 October 2025 02:04:42 Central European Standard Time Liviu Dudau wrote:
-> > On Tue, Oct 28, 2025 at 09:51:43PM +0100, Nicolas Frattaroli wrote:
-> > > On Tuesday, 28 October 2025 18:12:35 Central European Standard Time Liviu Dudau wrote:
-> > > > On Fri, Oct 17, 2025 at 05:31:08PM +0200, Nicolas Frattaroli wrote:
-> > > > > The Mali-based GPU on the MediaTek MT8196 SoC uses a separate MCU to
-> > > > > control the power and frequency of the GPU. This is modelled as a power
-> > > > > domain and clock provider.
-> > > > > 
-> > > > > It lets us omit the OPP tables from the device tree, as those can now be
-> > > > > enumerated at runtime from the MCU.
-> > > > > 
-> > > > > Add the necessary schema logic to handle what this SoC expects in terms
-> > > > > of clocks and power-domains.
-> > > > > 
-> > > > > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> > > > > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> > > > > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > > > > ---
-> > > > >  .../bindings/gpu/arm,mali-valhall-csf.yaml         | 37 +++++++++++++++++++++-
-> > > > >  1 file changed, 36 insertions(+), 1 deletion(-)
-> > > > > 
-> > > > > diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-> > > > > index 613040fdb444..860691ce985e 100644
-> > > > > --- a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-> > > > > @@ -45,7 +45,9 @@ properties:
-> > > > >      minItems: 1
-> > > > >      items:
-> > > > >        - const: core
-> > > > > -      - const: coregroup
-> > > > > +      - enum:
-> > > > > +          - coregroup
-> > > > > +          - stacks
-> > > > >        - const: stacks
-> > > > 
-> > > > I'm not sure how to parse this part of the change. We're overwriting the property
-> > > > for mt8196-mali anyway so why do we need this? And if we do, should 'stacks'
-> > > > still remain as a const?
-> > > 
-> > > The properties section outside of the if branches outside here
-> > > specifies a pattern of properties that matches for all devices.
-> > > 
-> > > In this case, I changed it so that the second clock-names item
-> > > may either be "coregroup" or "stacks".
-> > 
-> > Why would we want to do that for non-MT8196 devices? It doesn't make sense to me.
-> > The overwrite in the if branch should be enough to give you want you want (i.e.
-> > core followed by stacks and only that).
-> 
-> I built my understanding of why on the same reason of why we specify
-> a minItems of 1 but require it to be 3 in the if branch of the only
-> other compatible (rk3588): it describes what may be found in those
-> properties, not what is required by the specific compatible preceding
-> the generic valhall compatible. arm,mali-valhall-csf is currently
-> not described as a compatible that's allowed to appear stand-alone
-> without some other compatible before it to specify further which SoC
-> it's on, so it really just is whatever RK3588 needs vs. whatever
-> MT8196 needs at the moment.
-> 
-> Arguably though, there's no functional difference here, and I'm not
-> aware on any rules regarding this. My change may be problematic
-> however, because of the whole double stacks thing.
+Hi,
 
-I think I'm saying the same thing. The "arm,mali-valhall-csf" is the most general
-compatible string and defines the common denominator if not overwritten. I'm
-not expecting anyone to use just that string for a compatible, but downstream
-we have additional compatible strings that don't have to update the schema at all.
-rk3588 has a specific setup that requires 3 clocks so you cannot have any optional,
-that's why it is overwriting the minItems. Your whole double stack thing is
-actually not needed if all you do is overwrite in the MT8196 case the clock
-names and maxItems to only need two clocks.
+From the schematic, DT still has some things wrong:
+https://dl.100ask.net/Hardware/MPU/RK3576-DshanPi-A1/DshanPi-A1-RK3576-SCH_V1.1.pdf
 
-> 
-> > > Yes, the third "stacks"
-> > > remains, though if you wanted to be extra precise you could
-> > > then specify in the non-MT8196 cases that we should not have
-> > > stacks followed by stacks, but I'd wager some checker for
-> > > duplicate names may already catch that.
-> > > 
-> > > However, I don't think it's a big enough deal to reroll this
-> > > series again.
-> > 
-> > I'm not asking you to re-roll the series but if you agree to drop that
-> > part I can make the edit when merging it.
-> 
-> If the other DT maintainers (especially Rob who gave it his R-b)
-> are okay with dropping it, then yes please do.
+Do you want to resend the whole patch or I send some patches fixing them?
 
-Rob, do you agree with dropping the change in the generic bindings?
+> +	vcc_1v2_ufs_vccq_s0: regulator-vcc-1v2-ufs-vccq-s0 {
+> +	vcc_1v8_ufs_vccq2_s0: regulator-vcc-1v8-ufs-vccq2-s0 {
+> +	vcc_3v3_rtc_s5: regulator-vcc-3v3-rtc-s5 {
+> +	vcc_3v3_ufs_s0: regulator-vcc-ufs-s0 {
 
-Best regards,
-Liviu
+These ufs and rtc regulators do not actually exist.
 
-> 
-> Kind regards,
-> Nicolas Frattaroli
-> 
-> > 
-> > Best regards,
-> > Liviu
-> > 
-> > > 
-> > > Kind regards,
-> > > Nicolas Frattaroli
-> > > 
-> > > > 
-> > > > Best regards,
-> > > > Liviu
-> > > > 
-> > > > >  
-> > > > >    mali-supply: true
-> > > > > @@ -110,6 +112,27 @@ allOf:
-> > > > >          power-domain-names: false
-> > > > >        required:
-> > > > >          - mali-supply
-> > > > > +  - if:
-> > > > > +      properties:
-> > > > > +        compatible:
-> > > > > +          contains:
-> > > > > +            const: mediatek,mt8196-mali
-> > > > > +    then:
-> > > > > +      properties:
-> > > > > +        mali-supply: false
-> > > > > +        sram-supply: false
-> > > > > +        operating-points-v2: false
-> > > > > +        power-domains:
-> > > > > +          maxItems: 1
-> > > > > +        power-domain-names: false
-> > > > > +        clocks:
-> > > > > +          maxItems: 2
-> > > > > +        clock-names:
-> > > > > +          items:
-> > > > > +            - const: core
-> > > > > +            - const: stacks
-> > > > > +      required:
-> > > > > +        - power-domains
-> > > > >  
-> > > > >  examples:
-> > > > >    - |
-> > > > > @@ -145,5 +168,17 @@ examples:
-> > > > >              };
-> > > > >          };
-> > > > >      };
-> > > > > +  - |
-> > > > > +    gpu@48000000 {
-> > > > > +        compatible = "mediatek,mt8196-mali", "arm,mali-valhall-csf";
-> > > > > +        reg = <0x48000000 0x480000>;
-> > > > > +        clocks = <&gpufreq 0>, <&gpufreq 1>;
-> > > > > +        clock-names = "core", "stacks";
-> > > > > +        interrupts = <GIC_SPI 606 IRQ_TYPE_LEVEL_HIGH 0>,
-> > > > > +                     <GIC_SPI 605 IRQ_TYPE_LEVEL_HIGH 0>,
-> > > > > +                     <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH 0>;
-> > > > > +        interrupt-names = "job", "mmu", "gpu";
-> > > > > +        power-domains = <&gpufreq>;
-> > > > > +    };
-> > > > >  
-> > > > >  ...
-> > > > > 
-> > > > 
-> > > > 
-> > > 
-> > > 
-> > > 
-> > > 
-> > 
-> > 
-> 
-> 
-> 
-> 
+> +	vcc_5v0_typec0: regulator-vcc-5v0-typec0 {
+> +		regulator-name = "vcc_5v0_typec0";
 
--- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
+The name on the schematic is vbus5v0_typec.
+
+> +&gmac1 {
+> +	clock_in_out = "output";
+> +	phy-mode = "rgmii-id";
+> +	phy-handle = <&rgmii_phy1>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&eth1m0_miim
+> +		     &eth1m0_tx_bus2
+> +		     &eth1m0_rx_bus2
+> +		     &eth1m0_rgmii_clk
+> +		     &eth1m0_rgmii_bus
+> +		     &ethm0_clk1_25m_out>;
+
+This should be ethm1_clk0_25m_out.
+It seems that the 25m clock is not used.
+
+> +&i2c4 {
+> +	status = "okay";
+> +
+> +	es8388: audio-codec@10 {
+> +		compatible = "everest,es8388", "everest,es8328";
+> +		reg = <0x10>;
+
+i2cdetect reports that its address is 0x11
+
+> +		clocks = <&cru CLK_SAI1_MCLKOUT_TO_IO>;
+> +		AVDD-supply = <&vcca_3v3_s0>;
+> +		DVDD-supply = <&vcc_3v3_s0>;
+> +		HPVDD-supply = <&vcca_3v3_s0>;
+> +		PVDD-supply = <&vcc_3v3_s0>;
+
+These are all from VCC3P3 (VCC3V3_S0).
+
+> +		assigned-clocks = <&cru CLK_SAI1_MCLKOUT_TO_IO>;
+> +		assigned-clock-rates = <12288000>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&sai1m0_mclk>;
+
+In fact, this is connected to sai2.
+The schematic is quite misleading here:
+RK3576 - SAI2_xxx - SAI1_xxx - ES8388
+
+> +		#sound-dai-cells = <0>;
+> +	};
+> +};
+
+> +&mdio0 {
+> +	rgmii_phy0: phy@1 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0x1>;
+
+The phy address configured in the schematic is 0,
+which is also the case in practice.
+
+> +		clocks = <&cru REFCLKO25M_GMAC0_OUT>;
+
+This 25m clock is not used.
+
+> +&mdio1 {
+> +	rgmii_phy1: phy@1 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0x1>;
+
+The phy address is 0.
+
+> +		clocks = <&cru REFCLKO25M_GMAC1_OUT>;
+
+This 25m clock is not used.
+
+> +	headphone {
+> +		hp_det: hp-det {
+> +			rockchip,pins = <0 RK_PD3 RK_FUNC_GPIO &pcfg_pull_up>;
+
+According to the schematic, this should be GPIO0_A2?
+
+> +		};
+> +	};
+
+> +&sdhci {
+> +	bus-width = <8>;
+> +	full-pwr-cycle-in-suspend;
+> +	max-frequency = <200000000>;
+
+max-frequency is already defined in dtsi
+
+> +&sdmmc {
+> +	bus-width = <4>;
+> +	cap-mmc-highspeed;
+> +	cap-sd-highspeed;
+> +	disable-wp;
+> +	max-frequency = <200000000>;
+
+max-frequency is already defined in dtsi
+
+> +	sd-uhs-sdr104;
+> +	vmmc-supply = <&vcc_3v3_s3>;
+
+This comes from VCC3P3 (VCC3V3_S0).
 
