@@ -1,153 +1,119 @@
-Return-Path: <devicetree+bounces-232863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22C35C1C6E4
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 18:28:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93448C1C703
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 18:29:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3650A4E29A4
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 17:25:02 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 283744E06B6
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 17:27:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3439E34DCC9;
-	Wed, 29 Oct 2025 17:25:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 022F834F246;
+	Wed, 29 Oct 2025 17:27:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EaCvJ3fi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LVKg42lR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07ED834DB44;
-	Wed, 29 Oct 2025 17:24:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12185347FF5
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 17:27:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761758700; cv=none; b=fO+OKncC6SdJiKIQEB450bh3rlsTNkORTzoQ3CDZtzwo/eRPNLsKw3HWSniuVv3ApwQok8fWXt6BrL1996SosApH6BE/qy5ExliYbMdfLMclOWQgIBmUx1tTtiofYFYV4xS3Uor7P7P3hWJoYH4mjvmJWqNY7Wera6Vbxym9BPI=
+	t=1761758828; cv=none; b=dO7WkEwQdzCRWHtkHy17hnVvGTHxE6/8dcJrdsN6eryKvaJohihKDpxUk23PNnMKfS4sUfGP9jsubJ89ZQ7+FOTupjH++8S4dt38dyXkvsbWK/Ne7qJcQj4TBFfP6tDasgFVT6+S2qQRN0/NmWyAeVTxifNQunKW05B64L3Ho9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761758700; c=relaxed/simple;
-	bh=Y9eg+bqtuiBvhj27qPsEMgI3sW1YPbmbNenD0mtafaU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jvaDjIitzZ3T00JIxbypcLbByQ0W2VVPRzPktVc5/k3HIlvHp9oke8YcHlM/Ex0B3mUzzd53GT12QfWIr0xBdRW1qc6rmasnCFD165suUDl4ejAm4jjGrxchx8d82WxrkvuXYdqNB7AQUvaN3nML7O427RGEKjYhBNpvlEnLhf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EaCvJ3fi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 560EFC4CEF7;
-	Wed, 29 Oct 2025 17:24:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761758699;
-	bh=Y9eg+bqtuiBvhj27qPsEMgI3sW1YPbmbNenD0mtafaU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EaCvJ3fiHxDt543+sjeDB8LsZ82ttPD7FQK0tI8+cvxbDcPE7liNpVCjbI6Bd3T5Y
-	 x+w4+dvepmDJXwiWd50kB95RLAM9dQRLbW3k60fPkivDBZVeYqxun0qWyark9akkKn
-	 MhL7NBjfLVhfH1d0eQY9xoeY68/dNDYU95kQuI9PURJVhVHno8mZ4PSGbBHoyAz4b6
-	 wQ3yxMXqOcUO/G7tU740cLgruD5pAF4FAaN+v+nqe/9gO7LDQaXab1TKVs8NJWeAZx
-	 qb3CCXhg5Fm7q365p30Cx5ETU4bXovasTXW64WcHN4Y0X5sqnBhh15ZCxj3k5vVek3
-	 vSWVve+SE470Q==
-Date: Wed, 29 Oct 2025 17:24:55 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Coia Prant <coiaprant@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Dragan Simic <dsimic@manjaro.org>,
-	Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: vendor-prefixes: Add NineTripod
-Message-ID: <20251029-reseller-unsavory-5461fe7f6cce@spud>
-References: <20251028-semicolon-audacity-dd5bdd418207@spud>
- <CALj3r0hWzH+pmkbJe7DdqEzwqcpSQdkfPFtv3S7m-H8gZp0A6w@mail.gmail.com>
+	s=arc-20240116; t=1761758828; c=relaxed/simple;
+	bh=nLdcEjD73TqcZhQfAF/K1QDbrMu5fdY4HoqJfW/B97g=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=o5WfgOai8CqSXsq3es07BbZdB9+IHIZdwaCIpsqgmm2KP0JX6e4+0zsYm4WYsd3D6xnzEMX8nddDcXi/9bOQO05tY9CqtGB042Z7CA+spmMwjWLR9D1uK6xgTO/AzD52eSM/cHrVeJ3C9wL5S5KV0Mx51nckBTyuKPOeESTLqlM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LVKg42lR; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-42421b1514fso61680f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 10:27:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761758825; x=1762363625; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PTLxD8/PeCN5+lbcjiqLAGIYiVKi49LLzCBzMkykXbA=;
+        b=LVKg42lRVIA1MOjv32eEmpHSEGBRoNnRNaC0FCfNt+co6z89p1xh3KIlRrNCy5CGE4
+         WSlokCvga6h+N6HS55cDA0DhdDQQ60fkRS7Fzj3oCwu77TnzGppaUy6odeZ9YzmXK10j
+         sOfUHj/PBDkpTkDXq0Z3gQTlg781nn5ktX+O5pTREHV0h0uI4Kgdlon/c8Vaaw4rBX/G
+         bMsMMLfTp9tQQ5cJd6Y3dMi4mnfwZKAAhtxTw1M8AtF7AnRmVQWKYv1jxn+UmkMAJjHH
+         gRazyjhn0IaKo+69o1BvUZRyklYmgaiQiRQoihTPKQkViSqGNgo/PrbeihmpbZqP0MB1
+         Znvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761758825; x=1762363625;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PTLxD8/PeCN5+lbcjiqLAGIYiVKi49LLzCBzMkykXbA=;
+        b=gXFyQ9Ygnol++tD1iisuvwqtZLJtDZM/1vPJ+KmMi8NFDgBTieD2JEYDHuW/nnk2r9
+         vt6LwsYTFp7Q29iKPHdhMXaI2vtfY0e2Ukd7CoNnnGHSFGgIQgOrGZlrHD0bFqpVTohk
+         +Z3o4FLOEeqZcHY8tvdc1ZWY1kGwksjdFQL2U11ZyForGm7vZ3QFP44efX8VEMwgXalL
+         4q3Y2rq75E+pqt3iJn8VKY+FpqPLXcT8e83bGUlAysFJqHkpThtzLhi2hvqGlEZA/lon
+         1uXqfyrhFec2BGgXVFS/IRv56hn2u5TiIVKjgP9YclLMz64fNa3fqGZOROoCKXivXVfG
+         HXSw==
+X-Forwarded-Encrypted: i=1; AJvYcCV+XR3M28TXnM1OLQQBfIh0Jz3aD8q+jNMplrJr1dvoU00spSgFJz1K5uWJyOkr86zcuC/Y3tnA3vRt@vger.kernel.org
+X-Gm-Message-State: AOJu0YwDJmlT/PFW9Pfwa7T+PL5m0GndIQ5L1/AgU9nfMTOQr2pKRyIf
+	2EKedXQo7t713OM05rMHyu7aJlk3SFrwwKzTJ84ZZe/yVuPzpTHLWaq8cImmTm8+GjY=
+X-Gm-Gg: ASbGncuicO7ZJ0y8XZxH/bvFvAkbG45J2/uqMCRt801W4yGSsPPaTD2cOVJuJESgv+d
+	X05o8vmcqC3+u03zo/HBsqx5xZNMtvISyniqnAFhkUEkIl35KDuOWrb3kME36CHy6hgSZQe8wDN
+	aZwiTaX/kk5nWTHriHoWNA4cX63QZK4z+2hbmFohE5EnhYm5zR5eedeGfMvcPXyY4SJqrMSOahU
+	U2sWMECv6rT3u+P+sMLReswsL97taglgJW1OZKBVp0MFtRyC5xatq0KIj1ApyOtmIyble/oTgnI
+	EoKtLi4nwkbfKXV1QRghf5tvG+TiMXY8I9PcU5LJYRFVPtclGKveJYLi981RxpNbNqS94erQoOZ
+	bFioL2AD31PYdKp/yIT0SMKsSxLYIbw2xaKjroEAZv2dKQ+KP/Je/yZicXbPUb2Sokv4/vgdmUi
+	IfVOuBehDJfdt+lILM
+X-Google-Smtp-Source: AGHT+IGrGTlJHnWW0SL55uNuRZuTPbaR18fj1P8buI5Z3DCiqzFLCxkZpjc9Q+yRSyDaqaUQ+bJ/OA==
+X-Received: by 2002:a05:6000:220f:b0:429:8cda:dd4e with SMTP id ffacd0b85a97d-429aefbbd70mr2829627f8f.32.1761758825168;
+        Wed, 29 Oct 2025 10:27:05 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-429952d5c9dsm28545855f8f.26.2025.10.29.10.27.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Oct 2025 10:27:04 -0700 (PDT)
+Date: Wed, 29 Oct 2025 20:27:00 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Lee Jones <lee@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Peter Griffin <peter.griffin@linaro.org>
+Subject: [PATCH 0/2] mfd: syscon: introduce no-auto-mmio DT property
+Message-ID: <cover.1761753288.git.dan.carpenter@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bqqsbG4ObdDSRjQO"
-Content-Disposition: inline
-In-Reply-To: <CALj3r0hWzH+pmkbJe7DdqEzwqcpSQdkfPFtv3S7m-H8gZp0A6w@mail.gmail.com>
-
-
---bqqsbG4ObdDSRjQO
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 28, 2025 at 01:04:32PM -0700, Coia Prant wrote:
-> There won't be any problems at the moment.
+Most syscons are accessed via MMMIO and created automatically.  But one
+example of a syscon that isn't is in drivers/soc/samsung/exynos-pmu.c
+where the syscon can only be accessed via the secure partition.  We are
+looking at upstreaming a different driver where the syscon will be
+accessed via SCMI.
 
-Please stop top posting.
+Normally, syscons are accessed by doing something like
+syscon_regmap_lookup_by_phandle_args() but that function will
+automatically create an MMIO syscon if one hasn't been registered.  So
+the ordering becomes a problem.  The exynos-pmu.c driver solves this
+but it's a bit awkward and it would be even trickier if there were
+several drivers accessing the same syscon.
 
-> Just out of habit (because when writing code, variable names cannot
-> begin with a number)
-> There may be some misimplemented parsers that cannot do this.
->=20
-> As a practical matter, the branch of openwrt has added support for
-> this board in advance, and openwrt uses the DTS name to initialize
-> some default settings such as LEDs and bridge
+Dan Carpenter (2):
+  dt-bindings: mfd: syscon: introduce no-auto-mmio property for syscons
+  mfd: syscon: Don't auto create "no-auto-mmio" syscons
 
-That sounds like a problem with the WRT development process. This is a
-trivial change, there could be more disruptive things required to
-satisfy reviewers. Why was it submitted there in advance anyway?
+ Documentation/devicetree/bindings/mfd/syscon.yaml |  4 ++++
+ drivers/mfd/syscon.c                              | 10 ++++++++--
+ 2 files changed, 12 insertions(+), 2 deletions(-)
 
-> I'm not sure if he will affect the version that has been released.
-> But maybe it's not a big problem.
->=20
-> If you feel that there is no problem, I can send a new set of patches
-> to fix this problem.
+-- 
+2.51.0
 
-Please do.
-
-> 2025-10-28 19:46 (GMT+00:00), Conor Dooley <conor@kernel.org> said:
-> > On Tue, Oct 28, 2025 at 12:38:10PM -0700, Coia Prant wrote:
-> > At first, it was to avoid problems with the beginning of numbers.
-> > What problems does starting with a number produce?
-> > Given that it is already used by downstream projects, we have retained
-> > this to ensure that users can seamlessly migrate to the mainline
-> > version.
-> > What's the actual impact of changing it from "nine" to "9" for
-> > downstream users? This is a board vendor, probably nothing is even
-> > interacting with the board-level compatible at all programmatically?
-> > Please don't top post.
-> > Thanks.
-> >
-> > 2025-10-28 19:35 (GMT+00:00), Conor Dooley  said:
-> > On Sun, Oct 26, 2025 at 10:36:44PM +0800, Coia Prant wrote:
-> > Add NineTripod to the vendor prefixes.
-> >
-> > Signed-off-by: Coia Prant
-> > ---
-> > Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
-> > 1 file changed, 2 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > index f1d188200..37687737e 100644
-> > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > @@ -1124,6 +1124,8 @@ patternProperties:
-> > description: National Instruments
-> > "^nicera,.*":
-> > description: Nippon Ceramic Co., Ltd.
-> > +  "^ninetripod,.*":
-> > Why ninetripod instead of 9tripod? That's what the company uses and in
-> > the marketing fluff for the boards.
-> > +    description: Shenzhen 9Tripod Innovation and Development CO., LTD.
-> > "^nintendo,.*":
-> > description: Nintendo
-> > "^nlt,.*":
-> > --
-> > 2.47.3
-> >
-
---bqqsbG4ObdDSRjQO
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQJN5gAKCRB4tDGHoIJi
-0jDdAPoClQkD6kyF0W8zdSBg6g+HBjeLj8bAkhQPXRv5HmS7DAD7B0sWK1QT34S4
-iTErDKBUfPq7GGimNUNj0cY2Mjo7tgI=
-=2YvP
------END PGP SIGNATURE-----
-
---bqqsbG4ObdDSRjQO--
 
