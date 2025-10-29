@@ -1,98 +1,98 @@
-Return-Path: <devicetree+bounces-232423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DB57C17A8A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 01:53:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFB74C17AE7
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 01:56:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 355A84E5C79
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 00:53:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BCCD400D52
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 00:56:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE0562773E5;
-	Wed, 29 Oct 2025 00:53:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE8E92D73B6;
+	Wed, 29 Oct 2025 00:56:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m8Sz4S42"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ew9HlEcK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DA84283124
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 00:53:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DBCA2D6E51
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 00:56:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761699194; cv=none; b=sw1lLcuvkGZloaklQKZKsgpZZ8YOgFNQYC417ZSZ4NooLI3FXeumQGRc0ERnRI9JNflHsQebMU1xYi3V7y+Jh0tQkEpRMdMBo+oqmOgapzMIB2ZTp09/UF2+AK3l7r3UXShsXur30RpaVudLYWKZwGjKDf6lRKzEZ5Bj12K4xKI=
+	t=1761699379; cv=none; b=USpwzfDOMLUWeJvwRX/MvjuTitiXjCS66QublfsESY87KPD+Wkffj2Eqm+ONhVj7r4NVwdm16KAfjWopJ6v+OVPSnVNqvjb3r5axjpIdIHxis6O9W8T0kvVReRRdfIi+0/FZ22kAy+g/8qSNgKbzRUqlHtHkk35G3dcBDMay87Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761699194; c=relaxed/simple;
-	bh=HZDU3Kuw8nlFpPJ+kNDV41s6nRqGkmewtH6tcnYPkoU=;
+	s=arc-20240116; t=1761699379; c=relaxed/simple;
+	bh=QLSCmp+DageXB/lbgTmmOjvd9XJyigv0R3q9m8lS9aU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aQDsGGAd6VGox7W7bjMLC4RxjoqVBu0szgkcXorVP7yMqtuK4SP5DIy/tLykGpLAYW/7/TjECmu8/4PXuTvW8hCIFN54CjRDg5waR4oekJoBEMEML9I+2R7xPR/Qv8+gTuICcl8gC5s3FPO5LtCRz5MvQoB4eTb5tN8yX3CuHwo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m8Sz4S42; arc=none smtp.client-ip=209.85.216.51
+	 Content-Type:Content-Disposition:In-Reply-To; b=fK2CQ2sxFq0FzTHOtF/iRwDumhePUGt6Rs6F0LFvRHOF097rMKUjsHB/HJwa/ImUCBd8S+Bmrm+ZWrC5pTU1AjWlkaEWXCtgpdrmTsFVjOklSxXQtLBo10NYrwFW4WYY1tSsAgcNV/2FBKZ0mDjLTYz005XCuf2firPau/Wy6jM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ew9HlEcK; arc=none smtp.client-ip=209.85.215.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-33067909400so4978089a91.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 17:53:12 -0700 (PDT)
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-b6329b6e3b0so371470a12.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Oct 2025 17:56:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761699192; x=1762303992; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1761699377; x=1762304177; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=m8SBa+XRdCWeVW9AmWkZ3MCowA+/EYnxZNZHdIoneiw=;
-        b=m8Sz4S4294OSn8mj04I8RJo0VC+b0enNpRsIILeqIBif7Olss/sEDchPe81V8NYT7L
-         H8Df5B5+FLHsNkNFqfCnYAfABLmSsZSmJzRFWdUsPuSye//V7OHo/H2pu/yutPzcsc6N
-         W3hLly6OjFsRbU1MMW7E38GVB3/jbrWeCLYIf+kg/uV5JkGahm6bYQLcvGhAPywj2TiK
-         S0W3McRNalqiqCVgujPcIdqEnWs3/HxzGoInlbsOCduYMEYEZAT9BUgyD76NdOdrtgJo
-         fl2BzSjQrGJoxULHey6RSD+lhuSWzCesn72hPswBwdPieuwW4z2KiC0YGo6d97OXjbmD
-         MM6w==
+        bh=pezF2VK8RuTzI7DSs1mIZQ9VJH2IBGxZMtiOZQj+jXY=;
+        b=ew9HlEcKt4uoaYutWi49vf4yST4qKRv/x7Coo9jumKpIe1hI4lF6tnihNI0DL9Y8FH
+         JANRfHVxTe2FdpYugEnrz7VK/nZ4yU75YiOfWcN/zB1HJm2YCOWakA24DPKq3RDhLncz
+         WJNW8bjyvlVLwRPrYbR68RH6d28RGKi7TEQrPurolZtI75QMORxFJSBr0SGXxCQzitGq
+         vKuBy0nyKKs7Uu3uQAqTHsBcmAj/pDdRE9H5SSScB31ZZ1tWY59IDormNG/YhhvX/xRd
+         guM+EBudY9tiekigiROq+/xQSvULwMvTzzSY1r5LrFBBFqXcGf7tngiuQud5r2BilhrB
+         Cn2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761699192; x=1762303992;
+        d=1e100.net; s=20230601; t=1761699377; x=1762304177;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=m8SBa+XRdCWeVW9AmWkZ3MCowA+/EYnxZNZHdIoneiw=;
-        b=dggF5Jnbp2T0PLq8KL2r+xbnDwi8mydOOCZmQFL8kS66fsYU5BZ1XxqtkNL3acLzyw
-         jGor7IeMUHPKz/OhC/F3+TkZzphSfRxblQVadZeBAVgRRnlCJYqCLH52ewUIFPsamwPJ
-         hjdz5ITj3V1n6IzlWhjHomrVtpPvsEfFb4WHU7L7HqUh+/4dyonUPlvS9MNkv2tZlIwP
-         XVRJUNg/OThkRLEJ81WuwpRRcfnDY5T3RwKGSJvMu+sRIbxACuxPbtz8TJGY9tCg4YOp
-         tUETT2VwPJoNzfxL4/yZ1rMydWiVYioLVrq+Twdjb1hKIY0F8LVtaLFW8ke9WbpceSGB
-         cD9A==
-X-Forwarded-Encrypted: i=1; AJvYcCUY25UZOKgJ+KmPJADuEpnOFGOSvxRwgdtypSR7lweF6tM9mdn8mga1D+L19EiPJ2L8R73DsOF8sol3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgyPOZyfFVbyJngqAScGvCvSMSNhIkcL8OpFvwpdGu1h5so1xm
-	yu89LDVGDXzILlfXFSM+UBmlBlmLujNRMElfDUzpNfEN8KuVOxmcEcQ/
-X-Gm-Gg: ASbGnctHc83uMOsA50KdKNSn5yRHOgooGw3fPZrixm082sTQ1mCdoLoyc5DyfUdZER9
-	hXa3a2DMX0qTk20JpGq5Z8XNTn8/VNmL+faKizTW1gGvYmu9zHTpLitE+9HNW9oAxFQWACFthzB
-	8j3lgmTicoX0DVE/Naxqh/3ahYgIiGb4QTq3RkwQ2L6aqaANVahz8C9Bs5DL/N9VitVWsN8Vd6D
-	4oYds5vkZfKZJ0/51qBWQ841C4CH3M9E3LjTzUMNPDyAnUJyOWS5RHxWwnuW3L4RZIhQS0e333X
-	tsuwHvx1iszyQ1PFca3gzHEa/6Hl+Zu1zaS5sgmvcr6zQI0iR47EHyTFY9tEqM/jA+OlrAIOH5P
-	sADOULmzpr1Bd2nI0u7zwQpixLHXu4RT7UAndqGexBVAMaChw6g9VLp6pFSBe/x0E4HVPjv587N
-	U=
-X-Google-Smtp-Source: AGHT+IE90UXiGYJzRQ58CyS5PxlflDC8vEvcklnc4McQT7Hk9PgOXlQ2qQeKd9vAUAOVnUzqvljQKw==
-X-Received: by 2002:a17:90b:2dcb:b0:32d:d5f1:fe7f with SMTP id 98e67ed59e1d1-3403a260a68mr941140a91.15.1761699192237;
-        Tue, 28 Oct 2025 17:53:12 -0700 (PDT)
+        bh=pezF2VK8RuTzI7DSs1mIZQ9VJH2IBGxZMtiOZQj+jXY=;
+        b=Ua6gU4CLuNHSpANo4NWIqBfemXACLHrpal8Y941mJJNwzN9N9ta6QjFPH6LDaBj9Zy
+         Xuyx2aUk/b+d9bxjp70KYCbDxqBA8Vvdu0SdmPZOn+KF12f/X/CtHms8oqg9+c8OmVv7
+         ndujmmeRAf6wsBUPPZnsT0nrVPo6EgGbiF9050Q1WPc74m3sc6QmZY81n/LFMkHt9IgD
+         oZsG942xN8JQlJGA6WMGclIVq7KWjxiLEbSukx0IhcJfshryE30uKj9AMR+K6BYh8nN8
+         fLUpzjzy3uhsC0I7TER4uZh3HfoIXJCY6p2QTz8duY4PCMP7yAalwiAKrxKndXdDPDTu
+         CXqg==
+X-Forwarded-Encrypted: i=1; AJvYcCWKyWS6B0XOeTEsee0HepLkyC1EaXQ8F7bn2wMMQnO+k4kHUx7ujvpwFWZZqxkJlezLyihUnkmk7Y/9@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQ4poWC1I6vA5FTQx5VFaynwQ29njSfU6gfKkcvaiNYWVPVRdt
+	e+r90hvLdqvTEQvXmMyfwbRckaA51k5G/bBjjtzNY/Omx5EeidEFnwrZ
+X-Gm-Gg: ASbGncsVm1LdE4aoTCNUBDVUFUTLo8NFI0JbL2IE3ig7Ztg1jVMKI0TTEXUqNtJd8Lf
+	mQuK7SILplbSCUbYiai57/px8W1Rcffs+AAdrkOfsIk1jUUJtSOp5JriscBD5lvVD0yjIyAFDID
+	PI/DpVl5wzMPb/CDn8f6evHTZGthYE7ndGL1xhUxJ4Qgw4MdH6hDvspzZts7oVhp+VtC7l1zGsN
+	veODswvb0I1xhFfy4kwCyBd3RCXn4Xsfz3//o/pza4VXT5soApJDUIGTjnKuHdL21Qn8q9Yw2xS
+	1yyfTzJ70XAV3SxkHv6c0+6cS51fnoUXzGuHpP+Ppf7bLTfIK26hZ8lrw3QBi1mS1FgQf4T6+2x
+	3fZhDv9bgETD+k7JKgTnPMPCC7DRW1nxqn6XA4ub/j1a2q8+noFECyMfthx2ZbuVTtWiEV3fIOW
+	A=
+X-Google-Smtp-Source: AGHT+IHOlz4wCJmTj/zx16kQtcK3MAOTVFHMVAoc2+es1wdMlMVDqBf6QFztVnrfW0sWZY15JATnUg==
+X-Received: by 2002:a17:903:41c2:b0:26c:4085:e3ef with SMTP id d9443c01a7336-294de9f7ae3mr12621045ad.21.1761699377445;
+        Tue, 28 Oct 2025 17:56:17 -0700 (PDT)
 Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33fed70a83csm13316804a91.4.2025.10.28.17.53.11
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29498d230c5sm130960935ad.47.2025.10.28.17.56.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Oct 2025 17:53:11 -0700 (PDT)
-Date: Wed, 29 Oct 2025 08:53:04 +0800
+        Tue, 28 Oct 2025 17:56:17 -0700 (PDT)
+Date: Wed, 29 Oct 2025 08:56:09 +0800
 From: Inochi Amaoto <inochiama@gmail.com>
-To: Michael Opdenacker <michael.opdenacker@rootcommit.com>, 
-	Joshua Milas <josh.milas@gmail.com>, Inochi Amaoto <inochiama@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	unicorn_wang@outlook.com, paul.walmsley@sifive.com, palmer@dabbelt.com, 
-	aou@eecs.berkeley.edu, alex@ghiti.fr, alexander.sverdlin@gmail.com, 
-	rabenda.cn@gmail.com, thomas.bonnefille@bootlin.com, chao.wei@sophgo.com, 
-	liujingqi@lanxincomputing.com, devicetree@vger.kernel.org, sophgo@lists.linux.dev, 
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 2/3] arm64: dts: sophgo: add initial Milk-V Duo S board
- support
-Message-ID: <7e37k5hdn7nnn7cxnfrzqfy7h7a3ofnaf4r6rgk7exehrhsn2i@rvxjxvh2sodw>
-References: <20251011014811.28521-1-josh.milas@gmail.com>
- <20251011014811.28521-3-josh.milas@gmail.com>
- <hkdnjyldwr4watvizsju4qcvpvkb3mtt5rathaooembpceyufx@ega5xrqj6v3y>
- <aOqtt7BDXxItrs7W@sleek>
- <bsol3uim4brrrsdmvuk6f3uzampbki2pyhziap6x4rw7txl435@rwoxrnctkf3y>
- <aP6UJFPP-ReYPzmq@sleek>
- <4bdad288-250b-4e94-abea-eb231fba5beb@rootcommit.com>
+To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
+Cc: Han Gao <rabenda.cn@gmail.com>, Icenowy Zheng <uwu@icenowy.me>, 
+	Vivian Wang <wangruikang@iscas.ac.cn>, Yao Zi <ziyao@disroot.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Russell King <linux@armlinux.org.uk>, "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, sophgo@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: net: sophgo,sg2044-dwmac: add phy
+ mode restriction
+Message-ID: <rclupbdjyk67fee2lgf74k6tkf7mnjcxzwcjvyk2bohgpetqt5@toxvy3m5orm2>
+References: <20251028003858.267040-1-inochiama@gmail.com>
+ <20251028003858.267040-2-inochiama@gmail.com>
+ <20251028-parka-proud-265e5b342b8e@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,75 +101,65 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <4bdad288-250b-4e94-abea-eb231fba5beb@rootcommit.com>
+In-Reply-To: <20251028-parka-proud-265e5b342b8e@spud>
 
-On Sun, Oct 26, 2025 at 10:48:50PM +0000, Michael Opdenacker wrote:
-> Hi Joshua
-> 
-> Thanks a lot for working on support for Milk-V Duo S. I'll be happy to test
-> your V3 :)
-> 
-> On 10/26/25 22:35, Joshua Milas wrote:
-> > Inochi,
+On Tue, Oct 28, 2025 at 07:22:37PM +0000, Conor Dooley wrote:
+> On Tue, Oct 28, 2025 at 08:38:56AM +0800, Inochi Amaoto wrote:
+> > As the ethernet controller of SG2044 and SG2042 only supports
+> > RGMII phy. Add phy-mode property to restrict the value.
 > > 
-> > Thanks for pointing me twards duo-pinmux. I was able to use it to get
-> > the default config which is uart0, spi3, and i2c4. I can change the
-> > dts to match, but...
+> > Also, since SG2042 has internal rx delay in its mac, make
+> > only "rgmii-txid" and "rgmii-id" valid for phy-mode.
+> 
+> Should this have a fixes tag?
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+
+Although I add a fixes tag to the driver, I am not sure whether the
+binding requires it. But if it is required, I think it should be
+
+Fixes: e281c48a7336 ("dt-bindings: net: sophgo,sg2044-dwmac: Add support for Sophgo SG2042 dwmac")
+
 > > 
-> > > I suggest enabling devices that are accessed by default
-> > Would we rather enable anything that can be accessed by the pinmux?
-> 
-> If I understand correctly, you can't do that because there will be
-> conflicts.
+> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > ---
+> >  .../bindings/net/sophgo,sg2044-dwmac.yaml     | 20 +++++++++++++++++++
+> >  1 file changed, 20 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml b/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
+> > index ce21979a2d9a..916ef8f4838a 100644
+> > --- a/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
+> > +++ b/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml
+> > @@ -70,6 +70,26 @@ required:
+> >  
+> >  allOf:
+> >    - $ref: snps,dwmac.yaml#
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: sophgo,sg2042-dwmac
+> > +    then:
+> > +      properties:
+> > +        phy-mode:
+> > +          enum:
+> > +            - rgmii-txid
+> > +            - rgmii-id
+> > +    else:
+> > +      properties:
+> > +        phy-mode:
+> > +          enum:
+> > +            - rgmii
+> > +            - rgmii-rxid
+> > +            - rgmii-txid
+> > +            - rgmii-id
+> > +
+> >  
+> >  unevaluatedProperties: false
+> >  
+> > -- 
+> > 2.51.1
+> > 
 
-> From the Duo S pinout diagram (https://milkv.io/duo-s/duos-pinout.webp), on
-> headers 41 and 39, you have to choose between MIPI, I2C2, PWM12/13 or SD1.
-> If at least 2 of these are selected at the same time, there will be a
-> conflict, and I assume that the pinctrl controller driver will flag it.
-> 
 
-Yes, that's true. Boards with CV18XX always require setting pinctrl.
-
-> Then it sounds complicated to define a default combination for the whole
-> board, because it's like a default use model. Who gets to choose? What
-> Inochi suggests is to follow the vendor kernel choice, which would
-> correspond to the way the vendor intended the board to be used. However the
-> community could choose another default way to use the board, so the choice
-> may be up to the first contributor to the mainline kernel for this board,
-> possibly revised through later discussions.
-> 
-
-In fact, I see the maintainers do not agree adding every possible
-configuration to the DTS, (especially without "omit-if-unused" flag).
-And in many case, it is impossible to add all possibility. As a
-result, I prefer to use DTS overlay if there is something custom,
-and keep the mainline DTS minimum.
-
-> I guess there are cases when the choice is easy:
-> 
-> - When only one configuration is available for a set of pins
-> - When there are important devices on I2C or SPI buses on the board. Then,
-> you want to find a way to prioritize such buses. Fortunately, I guess the
-> board design also guides you to the right choice.
-> 
-
-In fact the priority is the thing that is hard to decide. This is why
-I suggesting keeping compatible with the vendor kernel, as many people
-starts with vendor kernel and it is a good thing to refer.
-
->
-> I was facing the the same question today on another board, and that's why
-> I'm happy it's raised here. As thousands of DTS files have been written
-> before, I'd love to hear from people with experience on this topic. Are
-> guidelines written anywhere for board DTS creators?
-> 
-> Cheers
-> Michael.
-> 
-> -- 
-> Michael Opdenacker
-> Root Commit
-> Yocto Project and OpenEmbedded Training course - Learn by doing:
-> https://rootcommit.com/training/yocto/
-> 
 
