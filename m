@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-232512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0740C188EB
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 07:57:54 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DC21C1893A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 08:01:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 854D619C0F97
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 06:57:35 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D98AD560E40
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 06:57:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1730A30BF75;
-	Wed, 29 Oct 2025 06:54:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CBAC309EF7;
+	Wed, 29 Oct 2025 06:56:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IoOGCBX/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lyiZVdPK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD1F2DDAB;
-	Wed, 29 Oct 2025 06:54:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 423F63064A9;
+	Wed, 29 Oct 2025 06:56:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761720879; cv=none; b=VpvUM0qzF9qon2bYhlNK70YFQUw8cvo/b0v+fGqjssXBla7CtddE8hLTWYGp6AtLuPxcjOygFsEhi8Ik5YmkKcVcYK5/Npy2VuPDkghV8YxgT7cvHZdQtlrqNLvFdyy/MY2w4HNjSVzR1ocSgbl7UWq9vBoPRYdyrOPWA95lYac=
+	t=1761720972; cv=none; b=MLqmC7npXbGHAFoXl9p5ZDFwbp+RMpe373Oc0ESvotat40xijzv7Gpdf1zTkApS32UCuB91iyGb11jhgElgn5ZmLeZCeqJciSCgbaEbHHlLAhI4Y5ERQFFf+nXX3PEM0RqHAWVNjckQ55RyM9NGllAEi+X9kxwju3+P5HhfduHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761720879; c=relaxed/simple;
-	bh=4R0KWm5wenARfob6/8rdlFzK0JPGL4SK/5QXUbNr0fo=;
+	s=arc-20240116; t=1761720972; c=relaxed/simple;
+	bh=l+196rk3Qj1E1R2N6PcGKWNT7jd2HPdpzyOgOUHK7x0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kSoLJEjF9UnWbOGU1KtQCHs60yoppVnLl7ingYsVBGEkGDiBBix3zatY+g69wU2/9gLM/ZVku3MV3ETB0ubDSE7tBlLcwqaaz3ZNoBIThKASGpBeFF71T+CIDXgZo9sll2fmLilpf/h+MZYtnbRiOhk19AFuO1UXXOgzzqfP9ps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IoOGCBX/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C92D6C4CEF7;
-	Wed, 29 Oct 2025 06:54:36 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mjOkCpFGriKaejn8/M8mdGwH6NNR2CTJwDqiNQWmg7qAPyWHxsD/AFrITwfn4Ed8r22wYBVMzzAkpupTXTDzGj7LmoQ7GfB66BrwYursXYZmPpCYAbdV6jAn/h5HvtV8xb5YFkb0s+nu0SkwhnXOhIGahqshagKwZk3DJTkUCCw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lyiZVdPK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B080C4CEF7;
+	Wed, 29 Oct 2025 06:56:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761720877;
-	bh=4R0KWm5wenARfob6/8rdlFzK0JPGL4SK/5QXUbNr0fo=;
+	s=k20201202; t=1761720971;
+	bh=l+196rk3Qj1E1R2N6PcGKWNT7jd2HPdpzyOgOUHK7x0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IoOGCBX/cw6SLW8xwKj6s01nFBcLcomcPVoM2OCePKFLKmx38aIFcU1CIuso7MS+m
-	 /Cmi9FsnGoqGEeyJMKDGQHmzLOjiQgfexcXhFpN3d8wUqBz+4lQj7XkLpNRdcecD1f
-	 eSgwSGIsdfibYJNUUWDFojMQ9UPAXeYlNPFiMKgbWfUQciuwwClV9M6sYPQvtgqT6/
-	 5BnOGo4AgVNK2/JKflC8uu84rRrOuM2lGN2qEo/EU6DsXgsH+The4yXA+pwWY970Ql
-	 isj9F7T3FwHzq23WXIRVxHxVJufFjViSx6jXr96BeAzRhUUS4jqXL9FxcUSs0tJfYx
-	 +ojU0IIsV3jWQ==
-Date: Wed, 29 Oct 2025 07:54:34 +0100
+	b=lyiZVdPKmG4G0tl9CXwRUNMe5mGyhyDsNwhiSv+2fPuoj3N1pmmKBi4KApdAs2E6H
+	 evoz9RBLkZjghVAQ6q9GXI8IRNxmX88YRJw00QIUSWsPhnaQ5bSwkkbk01hmPB31+0
+	 N+8KaDBEzTxuIVFaTD5JcrdODy1EaommPZO3yXNJds7t99+NGsC6Tb+PkuaoSW9BgW
+	 GtMwtl+5J3cZnEWDXyrnSDvcsV+jrBzx0KnGNN4UOFdHPmbsbst/lVV3wZRR/LxJI9
+	 qSHUkyX+0ThzgBNordKOpshtvZD0kw6EYxMtq2f/KCQWDcV4dJeuonvw5lpKYPaPoR
+	 8KZ1ngiqp7aQw==
+Date: Wed, 29 Oct 2025 07:56:09 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux-input@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: input: fsl,scu-key: Add compatible
- string fsl,imx8qm-sc-key
-Message-ID: <20251029-nickel-lorikeet-of-conversion-ea447d@kuoka>
-References: <20251028-b4_qm_scu_key-v1-0-9732e92a5e83@nxp.com>
- <20251028-b4_qm_scu_key-v1-1-9732e92a5e83@nxp.com>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, 
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Keguang Zhang <keguang.zhang@gmail.com>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
+	Guenter Roeck <linux@roeck-us.net>, Huacai Chen <chenhuacai@kernel.org>, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH 5/6] dt-bindings: watchdog: loongson,ls1x-wdt: Add
+ ls2k0300-wdt compatible
+Message-ID: <20251029-whimsical-rottweiler-of-artistry-0bddeb@kuoka>
+References: <20251029020913.1946321-1-zhoubinbin@loongson.cn>
+ <20251029020913.1946321-2-zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,18 +64,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251028-b4_qm_scu_key-v1-1-9732e92a5e83@nxp.com>
+In-Reply-To: <20251029020913.1946321-2-zhoubinbin@loongson.cn>
 
-On Tue, Oct 28, 2025 at 04:01:28PM -0400, Frank Li wrote:
-> Add compatible string fsl,imx8qm-sc-key for i.MX8QM and fallback to
-> fsl,imx-sc-key.
+On Wed, Oct 29, 2025 at 10:09:12AM +0800, Binbin Zhou wrote:
+> Add the Loongson-2K0300 SoC's watchdog binding with DT schema format
+> using json-schema.
+
+And it is or it is not compatible with other devices? What is the
+difference? You just wrote what you did, but we see that from the diff.
+Write useful commit msgs, not repeating diffs.
+
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 > ---
->  Documentation/devicetree/bindings/input/fsl,scu-key.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/watchdog/loongson,ls1x-wdt.yaml        | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Your patchset did not reach lists. Only three out of six managed to.
 
 Best regards,
 Krzysztof
