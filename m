@@ -1,203 +1,202 @@
-Return-Path: <devicetree+bounces-232621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6152EC19769
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 10:48:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D19B8C197ED
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 10:53:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EEF455834ED
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 09:41:50 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C95785838A3
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 09:42:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F286332EC6;
-	Wed, 29 Oct 2025 09:39:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D3E1329C6F;
+	Wed, 29 Oct 2025 09:39:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="McJClldz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wPGfSKT/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B1EA3328F7;
-	Wed, 29 Oct 2025 09:39:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25F1A329C4C
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 09:39:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761730783; cv=none; b=OqiI8DZmguJZsYMwxln6d0DSimTo4BmL8z6/y6FLSiuj+RCMVsxTCEGi5aoGrnTMnmEwbIwMCMTf4JP1oFA1RlC0H0LE1PWHNoQL+b/8h3mVVWsbtrehGuVki1F45UA2k+6iHUma3wM9yXHskc7EA2IPt2xnuViVo6r65CIgN+s=
+	t=1761730794; cv=none; b=QMZjGBVgmZk2CI72pfUx9h0ujd77zcjcuSVcWOB4/0T675EoTNu+qXJJF8PrqlJop+8QzJrUtKTaM+cdh/fusCP6TnsTWXMVrbG3yLuPSFWvkNDQ3TFszUpc72v6ukcWnipYyx+39b7eOGhHrkMDVIILdpSarrFGJFYzvfjvaRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761730783; c=relaxed/simple;
-	bh=9Jrp+ehv1bHsY53MY3h58OEcHjCmI5PtpCsDcMmBsMo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Yj3YFidBt/dhj64ks2iwt0nxvdSeEAVRxmO7I+bZcqRDhd1ldgEM9wqBR7eWfcOm6rmpIgzKfYQide/X1HRSyYb9nk+6rQUQ6HGo2yPuDgGM1s/wXQAvyv163//1ZTdef/SBHAgA0W1NvBhF7fX9Bd9NNdk2FaTFTU3OPHkQUfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=McJClldz; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 9169C1A171D;
-	Wed, 29 Oct 2025 09:39:40 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 60D4B606E8;
-	Wed, 29 Oct 2025 09:39:40 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BE099117F19E1;
-	Wed, 29 Oct 2025 10:39:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761730779; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=cag2UQaMgFonyUk6auPnw8wxwz30sT+vgy2pDfTh9FE=;
-	b=McJClldzrIeRFKB4lV5B+LrsznjEJVBrhnFiYKfRM/oF0P+2JHq4H5AU1C3vQRIZKH/+m0
-	zdpgbyD5+rxfmQLC7ag4iUh/+wi+MH8hUgvlx2evyb546mf6kP28pTmknpX0C3OX9y10eA
-	OfykYcrXqc97WrBipy16emLqhOS3jmqh/Ds6N63k02x7KzcS8euA44ZTfZ64OPXf+XU7E3
-	iVFebs5g2Ap6JWxY8KkVFHX9B3v0E4Zwa4pr+Kj+Qj9OCcvrDAUM1YzkPkYlrN1Bp3A6vL
-	NgdmGyXHACqDjhn+czoywIA5c8R6NR5TRoktWagR9ifEtxddB8hfW+1FW79C+Q==
-From: Herve Codina <herve.codina@bootlin.com>
-To: David Rhodes <david.rhodes@cirrus.com>,
-	Richard Fitzgerald <rf@opensource.cirrus.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Nikita Shubin <nikita.shubin@maquefel.me>,
-	Axel Lin <axel.lin@ingics.com>,
-	Brian Austin <brian.austin@cirrus.com>
-Cc: linux-sound@vger.kernel.org,
-	patches@opensource.cirrus.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Herve Codina <herve.codina@bootlin.com>
-Subject: [PATCH v2 4/4] ASoC: cs4271: Add support for the external mclk
-Date: Wed, 29 Oct 2025 10:39:20 +0100
-Message-ID: <20251029093921.624088-5-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251029093921.624088-1-herve.codina@bootlin.com>
-References: <20251029093921.624088-1-herve.codina@bootlin.com>
+	s=arc-20240116; t=1761730794; c=relaxed/simple;
+	bh=urnwJ0948OZAY6zDTK8e1ZFZ719514SR28lbeFJUqg4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RJT+jU97mnLlTaLDBYZI/OYAhaGrThTi4A1tTU7JhqkGA+crAv+Sjt26sbRNGAIuy28lyoFpVnqFzKAg6/IFKC4E0FerFlFo7uO4Za2o7xI/Sz6zPj8EHALE+6FwG5Bwb3z7SpKzrfbGJ4ICYpWDG0Cba2fo1mFje4K8g5wIq2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wPGfSKT/; arc=none smtp.client-ip=209.85.222.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-qk1-f177.google.com with SMTP id af79cd13be357-89ef0cec908so578487785a.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 02:39:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761730791; x=1762335591; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=R+Rd5gslE+ZFZnAsPLhh3hhVOGomUEHbHKD97n8UNP4=;
+        b=wPGfSKT/hLUQDLu+IM3dvya6BTa5HIRiJPDXeQcIRHMMcvN9nJ5dTwWnUtnZ1MyQBJ
+         Ua2wkI3GDO8rRgOSa7zUo9Or7bg2WOTlpnxlI87SmPbgbaRsFEm6X8Yu16nYgsruQKIH
+         i4hw0qlda5N3rRGJ6gpqFzw/kOlownOZNCZ6KAkNoMt9t0MKU5Y6azqhQ8ODiYgu6U9y
+         O98EmsmxIzQqbxN2Hgmb7Nz+/GbeMwu+K00X9F2VSQEC8Fu3ptm9qPO50lnKb98lA4fb
+         XMNQ/c1dJZV4EPcZH7TYSe8VJpuVfR/UUepm3qvFrM6f3BZgatuZ7pyDLk1MyG92oAgY
+         g5Lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761730791; x=1762335591;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=R+Rd5gslE+ZFZnAsPLhh3hhVOGomUEHbHKD97n8UNP4=;
+        b=lpqNOh7Sfio3Gc/eKKz97uTTrrInpWo6mJgFBa8CnBiW5XazhURX+zV2AKd+YyN1uM
+         EEddet3KfQ94ktt0VfscBpYxj1y0DsKZ6y0GMU/mN1iaGoU3u/EMzlSIzSsoGbw/IVF5
+         ZYOAdiMqzy56iZYnwPvs9+GHxZ8kCu1WZcv54Kl3x3LAYmenHM34cvvNZ4GW4CDFB5da
+         RZL4F1qDh85u+YMo5RXgKWXmre5J9fmbw/1c45sRPb+C06xK181CHNF+90PF+JeDL5Q0
+         ihUwt+/OkR038/0tMU1dSG9yT9KIfCB5cbQUL5+z8RCVXq6Aa7Ge2PQ7HLazmE388imL
+         c7qw==
+X-Forwarded-Encrypted: i=1; AJvYcCUaLtkLocQ/IHuIvHFMR2UeRp3FXt3H2oV86WgOuHrjAExCwTMvl44b9XLb3sUfdu+wKkrMMkTN8JOm@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQBP6rl67+QuMpYv9+7gxrnPJcb7NZpcXfHJStnoDWNUf4zemK
+	ExDxsNjwzEIw9cKwfJola3Niuf6B7CjjMeQqpfCHNygs1hlnJeJrdaY0m/hiAcL9jLjQQnXnuqd
+	my99P8iyF/iU+GI7qzbDDyzNEFQ9ZIjvR+ifhAHHGpA==
+X-Gm-Gg: ASbGncu1eF34u44ZlH+xwyVWUiMt7Hzge8EfStjl0y5d3sSPrrldEVnwy3v9fQNSmjo
+	5oObJhyfLT4mEGnIu4BrdolLOHBlrPulrwOmRxEz4JnFomH37lQQq0Q8KmHYdw6Mnx5IE8XMNY+
+	qKpfJ15Pr1PoWtlPr6vMMfp46iehxPIJ2fVcn36NXfCgyeS+FrT53smQrlYUG8B+WZ4grXBMmYF
+	MQmX4o/l3KHJJGbM7gcFZPhdE6/zEEPrz19J9FQSu2eYeBqd+aVSr+LzLsYja77NwaCMeuTLI0P
+	P8K7byVahfBl5P8ts8ZDUyU4pDeU
+X-Google-Smtp-Source: AGHT+IHqXSf1MiiiqnfsW/ioS/jj/mhb/BAEdrr3nKBvzCE+jcWgD9EFD8HQohkXivlPjhP7YZ3CSvcZ9+eiOBWkEyk=
+X-Received: by 2002:a05:620a:3704:b0:813:31ad:bf3d with SMTP id
+ af79cd13be357-8a8e436119dmr303015885a.12.1761730790824; Wed, 29 Oct 2025
+ 02:39:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20251027-cpu_cluster_component_pm-v1-0-31355ac588c2@oss.qualcomm.com>
+ <20251027-cpu_cluster_component_pm-v1-1-31355ac588c2@oss.qualcomm.com> <20251028-enigmatic-astonishing-husky-f2c47a@kuoka>
+In-Reply-To: <20251028-enigmatic-astonishing-husky-f2c47a@kuoka>
+From: Mike Leach <mike.leach@linaro.org>
+Date: Wed, 29 Oct 2025 09:39:39 +0000
+X-Gm-Features: AWmQ_bkH9LQFvaEP4xZtRhiFYXppvNFKfWjaQQ7mkEY-rNttgjUoHB7gFuBi_fs
+Message-ID: <CAJ9a7Vg1jR=UBWwQanvyW_-ucXQ1HWQha47oJCUL6vkfQwgpKQ@mail.gmail.com>
+Subject: Re: [PATCH 01/12] dt-bindings: arm: coresight: Add cpu cluster
+ tmc/funnel/replicator support
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>, 
+	Suzuki K Poulose <suzuki.poulose@arm.com>, James Clark <james.clark@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Leo Yan <leo.yan@linux.dev>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, kernel@oss.qualcomm.com, 
+	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-The mclk (master clock) of the cs4271 codec can be an input clock.
+Hi,
 
-In this case the connected clock needs to be enabled outside of any
-audio stream. Indeed, this clock is needed for i2c communication.
+On Tue, 28 Oct 2025 at 09:09, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On Mon, Oct 27, 2025 at 11:28:03PM -0700, Yuanfang Zhang wrote:
+> > Add the following compatible strings to the bindings:
+> > - arm,coresight-cpu-funnel
+> > - arm,coresight-cpu-replicator
+> > - arm,coresight-cpu-tmc
+>
 
-Add support of this clock and enable it before the first i2c transfer.
+These are redundant - the actual hardware has not changed - what has
+is how the device is powered up / down on the system
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- sound/soc/codecs/cs4271.c | 29 ++++++++++++++++++++++++++---
- 1 file changed, 26 insertions(+), 3 deletions(-)
+> We see that from the diff. Explain here the hardware instead.
+>
+> >
+> > Each requires 'power-domains' when used.
 
-diff --git a/sound/soc/codecs/cs4271.c b/sound/soc/codecs/cs4271.c
-index a9d333e6c723..b8a50b9001e1 100644
---- a/sound/soc/codecs/cs4271.c
-+++ b/sound/soc/codecs/cs4271.c
-@@ -10,6 +10,7 @@
-  * DAPM support not implemented.
-  */
- 
-+#include <linux/clk.h>
- #include <linux/module.h>
- #include <linux/slab.h>
- #include <linux/delay.h>
-@@ -163,6 +164,7 @@ struct cs4271_private {
- 	/* enable soft reset workaround */
- 	bool				enable_soft_reset;
- 	struct regulator_bulk_data      supplies[ARRAY_SIZE(supply_names)];
-+	struct clk *clk;
- };
- 
- static const struct snd_soc_dapm_widget cs4271_dapm_widgets[] = {
-@@ -505,6 +507,7 @@ static int cs4271_soc_suspend(struct snd_soc_component *component)
- 		return ret;
- 
- 	regcache_mark_dirty(cs4271->regmap);
-+	clk_disable_unprepare(cs4271->clk);
- 	regulator_bulk_disable(ARRAY_SIZE(cs4271->supplies), cs4271->supplies);
- 
- 	return 0;
-@@ -522,6 +525,12 @@ static int cs4271_soc_resume(struct snd_soc_component *component)
- 		return ret;
- 	}
- 
-+	ret = clk_prepare_enable(cs4271->clk);
-+	if (ret) {
-+		dev_err(component->dev, "Failed to enable clk: %d\n", ret);
-+		return ret;
-+	}
-+
- 	/* Do a proper reset after power up */
- 	cs4271_reset(component);
- 
-@@ -567,22 +576,29 @@ static int cs4271_component_probe(struct snd_soc_component *component)
- 		cs4271->enable_soft_reset = cs4271plat->enable_soft_reset;
- 	}
- 
-+	ret = clk_prepare_enable(cs4271->clk);
-+	if (ret) {
-+		dev_err(component->dev, "Failed to enable clk: %d\n", ret);
-+		goto err_disable_regulators;
-+	}
-+
- 	/* Reset codec */
- 	cs4271_reset(component);
- 
- 	ret = regcache_sync(cs4271->regmap);
- 	if (ret < 0)
--		goto err_disable_regulators;
-+		goto err_disable_clk;
- 
- 	ret = regmap_update_bits(cs4271->regmap, CS4271_MODE2,
- 				 CS4271_MODE2_PDN | CS4271_MODE2_CPEN,
- 				 CS4271_MODE2_PDN | CS4271_MODE2_CPEN);
- 	if (ret < 0)
--		goto err_disable_regulators;
-+		goto err_disable_clk;
- 	ret = regmap_update_bits(cs4271->regmap, CS4271_MODE2,
- 				 CS4271_MODE2_PDN, 0);
- 	if (ret < 0)
--		goto err_disable_regulators;
-+		goto err_disable_clk;
-+
- 	/* Power-up sequence requires 85 uS */
- 	udelay(85);
- 
-@@ -593,6 +609,8 @@ static int cs4271_component_probe(struct snd_soc_component *component)
- 
- 	return 0;
- 
-+err_disable_clk:
-+	clk_disable_unprepare(cs4271->clk);
- err_disable_regulators:
- 	regulator_bulk_disable(ARRAY_SIZE(cs4271->supplies), cs4271->supplies);
- 	return ret;
-@@ -607,6 +625,7 @@ static void cs4271_component_remove(struct snd_soc_component *component)
- 
- 	regcache_mark_dirty(cs4271->regmap);
- 	regulator_bulk_disable(ARRAY_SIZE(cs4271->supplies), cs4271->supplies);
-+	clk_disable_unprepare(cs4271->clk);
- };
- 
- static const struct snd_soc_component_driver soc_component_dev_cs4271 = {
-@@ -641,6 +660,10 @@ static int cs4271_common_probe(struct device *dev,
- 				     "error retrieving RESET GPIO\n");
- 	gpiod_set_consumer_name(cs4271->reset, "CS4271 Reset");
- 
-+	cs4271->clk = devm_clk_get_optional(dev, "mclk");
-+	if (IS_ERR(cs4271->clk))
-+		return dev_err_probe(dev, PTR_ERR(cs4271->clk), "Failed to get mclk\n");
-+
- 	for (i = 0; i < ARRAY_SIZE(supply_names); i++)
- 		cs4271->supplies[i].supply = supply_names[i];
- 
+So why is this not used to adjust the power handling in the driver? Or
+another attribute.
+Look at the CTI bindings - these can be associated with a CPU or be a
+system CTI - we look at the cpu attribute to differentiate, not have
+two separate compatibles.
+
+Regards
+
+Mike
+
+
+> >
+> > Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
+> > ---
+> >  .../bindings/arm/arm,coresight-dynamic-funnel.yaml | 23 +++++++++++++++++-----
+> >  .../arm/arm,coresight-dynamic-replicator.yaml      | 22 +++++++++++++++++----
+> >  .../devicetree/bindings/arm/arm,coresight-tmc.yaml | 22 +++++++++++++++++----
+> >  3 files changed, 54 insertions(+), 13 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
+> > index b74db15e5f8af2226b817f6af5f533b1bfc74736..8f32d4e3bbb750f5a6262db0032318875739cf81 100644
+> > --- a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
+> > @@ -28,19 +28,32 @@ select:
+> >    properties:
+> >      compatible:
+> >        contains:
+> > -        const: arm,coresight-dynamic-funnel
+> > +        enum:
+> > +          - arm,coresight-dynamic-funnel
+> > +          - arm,coresight-cpu-funnel
+>
+> Keep alphabetical sorting. We asked this multiple times already.
+>
+> >    required:
+> >      - compatible
+> >
+> >  allOf:
+> >    - $ref: /schemas/arm/primecell.yaml#
+> >
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: arm,coresight-cpu-funnel
+> > +    then:
+> > +      required:
+> > +        - power-domains
+>
+> Just move the allOf to the bottom like in example-schema.
+>
+> > +
+> >  properties:
+> >    compatible:
+> > -    items:
+> > -      - const: arm,coresight-dynamic-funnel
+> > -      - const: arm,primecell
+> > -
+>
+> Why do you remove this?
+>
+> > +    oneOf:
+> > +      - items:
+> > +          - const: arm,coresight-dynamic-funnel
+> > +          - const: arm,primecell
+> > +      - items:
+> > +          - const: arm,coresight-cpu-funnel
+>
+> Hm? Why do you need custom select if this is not primecell? And nothing
+> in commit msg explains why this is not primecell anymore.
+>
+> You have entire commit msg to say something useful, WHY you are doing
+> this, WHY you are doing it DIFFERENTLY. Don't say what you did - that's
+> obvious, we are capable of reading diffs.
+>
+> Best regards,
+> Krzysztof
+>
+
+
 -- 
-2.51.0
-
+Mike Leach
+Principal Engineer, ARM Ltd.
+Manchester Design Centre. UK
 
