@@ -1,205 +1,176 @@
-Return-Path: <devicetree+bounces-232918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 747AFC1D0F9
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 20:51:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B79C7C1D105
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 20:54:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B37B61889BA5
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 19:52:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D052A189C503
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 19:55:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 204B435A141;
-	Wed, 29 Oct 2025 19:51:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B78B435A151;
+	Wed, 29 Oct 2025 19:54:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="A0Dm4WDZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EABGJVls"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A46692DC76A
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 19:51:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B710335A148
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 19:54:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761767514; cv=none; b=KN5xSnGkPusGuvokGJSsMsjXptONdOMFjqpzJjQqQxsvhVau9NhZAfm+pyiIRl1y1Tpd/DYmQISFZ7A1JJl7RuIJVPedOsHk2B0dsGuqnf+q6B7eTy1DlWZ9MbbzDZ3LpxCWfPp8RTttcMiyAHcw8CG014SJsB1oOcaGtl4/Eu0=
+	t=1761767686; cv=none; b=Ao5CmqPtlFpb4ZQoJgeR8PhXYoYCwEhc9eq7dG0vJ9TDR8czsbHRa9ggyNjT+A1pr6YRjepMJ6T1kzqYwC2J390FlDQDh+XhyG10l1Wufk9mcHm+75pOnxNwg+ukEHTMfirAMtnhDx35L7ng7qkqeDs5RKEPMo1Nj0AXqT/b6Rw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761767514; c=relaxed/simple;
-	bh=d2yGcyySeXyADu+wbT8E4ib2wnyaEk7mMm1o0foc9rM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EldnSjcN8o303ID8e6OQ2iZP/K7el0yNWgDLqNhA7l2x/CFNMCkA/ukNIq5GZf0msubdaLu1eIsshu/Ra9WHCcX6RVYHEuAe1mP+j7FVQkHtxIBxXp3eXajEJ9jnPmCKb1ATV2oaLCz3k6ZCxx6xC7wrUKTkVR0Eu82+pPMhQeE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=A0Dm4WDZ; arc=none smtp.client-ip=212.227.15.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1761767501; x=1762372301; i=wahrenst@gmx.net;
-	bh=d2yGcyySeXyADu+wbT8E4ib2wnyaEk7mMm1o0foc9rM=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=A0Dm4WDZgHVHJkGpRWZnLR6r3+WdSBRwGC4NpS4cMe26OFoBvLbcvawHY3T6Ytxk
-	 AGgBoxlrl70TC3aSoH5YQrN1NbVPx3iCa2fMVgOoNnjONKj2ovQeh8iVsKtimNzis
-	 JK+Come+z44Uq/0YD8JQO/IklqkJw7GoWn5GjYatQqTJVBCOLrlBObaijeCt8ebhR
-	 3lBu3/Shha4bD5SLGWDVfvtZgWZgyobCUhxjJB5/RFIkF6jsT9WAOfg7DJvHP9BTd
-	 qKESvv+vT/l8W2UHJTpyyt3TfHIvXFTwi6PnHnJFfm32Zyuq/NgReXVZcmQ2Dy58X
-	 fCF5f3sOivPZE19+Tw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.156] ([91.41.217.223]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MXGrE-1vlddi4Ata-00MPNh; Wed, 29
- Oct 2025 20:51:41 +0100
-Message-ID: <d6b14388-e0ab-44f0-b4d9-78adf74c2a7f@gmx.net>
-Date: Wed, 29 Oct 2025 20:51:38 +0100
+	s=arc-20240116; t=1761767686; c=relaxed/simple;
+	bh=byIwb2P1xzSyr7J2uiJPoWxM/iVSABJR6EsR8lHx1IA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NaVhdg4ZQI/IbFBubHtMxWNck6GQT+fMfuCT4TH7B26ozHeghwgfE+wDAKLc2PIQKIHE5o+Osha/pazNywmhWuVvt6ggaxFMVfWuTZRYq+2jJR3Dmega9YhUJ6eUOAUxHhtSVxXgQEiikC+b+tcw/UkHfPak9eAhbeeXl38AVeQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EABGJVls; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-592f098f7adso327969e87.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 12:54:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761767683; x=1762372483; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=byIwb2P1xzSyr7J2uiJPoWxM/iVSABJR6EsR8lHx1IA=;
+        b=EABGJVlsIzlENWjl88+JnLNvWYpEpfoji3CFjGsIycxaBnrElD8wX/Cm+kKzIeOd4r
+         kOn++9nwD/dcTEUcDJfv2+yoViWCCctsFGPfmqO5vgm3vLTz5pxJdDkfh7vdvIePFb7T
+         gNyEb9f0dvcZDGwsqE5tekfh6teafGDFRtfsdHD7mwf5hspSCA13pYiQW985vG90ldtx
+         22wG489KTZwKnGevLxLY1MbpQdirFXpz2Sbs2CvtWmWsuBONVcKJg9hULLf0OaAFsY2+
+         xqZBSWpNhRr/F39OeuS/N6rl3oJ7P3xcv/pi/UO0n9supusdqiKk1U8lewDQS7cQwZfX
+         oB/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761767683; x=1762372483;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=byIwb2P1xzSyr7J2uiJPoWxM/iVSABJR6EsR8lHx1IA=;
+        b=nhS/qQxr2i40DDXq2JgS6RoDDe6FPbN7Y21gmRGUxufl62ocSly4jGnfOH3tFY51GC
+         0dYuIVvzDDf2qPlhEomhoeEHZZCtEM5URKbT1NPoJdEwkLmHyXRD1qB0miEv1qqzNfML
+         tsBacsuB/MaKra5ub22HOA7O3+Sqmsm8pJmJNcR60EIpP2NzbbVNV2IoeN2/Zz0M+h22
+         NP5bfNpGZnvv5dVWcTJgkozgHhvdO6tDyFyvHsMwGUUd+trq3m++7SiAfG+Zb3GebMeC
+         TSCkahf5VOWWCkaaHLragU4D6fV6L6RKd4fkvYSIaNGPsIOnPp/CDK0dkR5UCG+JKBty
+         3z+g==
+X-Forwarded-Encrypted: i=1; AJvYcCV9x9umf/TUSO9GH0DeWn7ddfllnpduhCzwCZZZX8KaFef4T0zNXQB0Fhn11AG0+VuiJgCqFHeTAMKa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxb8e8hhy/7vOiQRjPUlSpBtPDL6CDda8i+qwcT6rda7a1YWDMe
+	XXVsL+BZLI1VoYCJ6P+fq1JDbcTkF4blEVDpGr74pHVAztCst+h1l181sHngwzOul7qhqRL1mGM
+	usVicWdJE3FLX3KQ7U3FvFTrudE0BSXU=
+X-Gm-Gg: ASbGncvj7BB2e4NUvAzUwrm5crrrpYkxqHZIDr0rdS+pCBVxJSGbet/i+WrtCvl7ML2
+	yVnOksPEsknif+ND324G0neRkH738mo0vjBD0X0yMkMkCF1knVmWPwyvHF2t4L6X9CTGC0llN9Q
+	VkrGSBtsgk8r+IBrtKDpPIljpRBvojrLAox7UvCmY+Z5Z4eYYlXb6bmb1bMk2ZUJ0AxD93NDUd/
+	l38m9hyEbhlOirS0KXoTxjyUXw2Enwf3fHG9eAS+NfSqA7K+2/Pz91R/VSF
+X-Google-Smtp-Source: AGHT+IE6nugI1RSYlE3lv5TXNplpg9rsZEQvlWlTN2w7AYCpm8+Ow1fHujfDgKlmIubO4wrE3hHviFIzmPX3ZC2l8So=
+X-Received: by 2002:a05:6512:2206:b0:591:c473:5bc7 with SMTP id
+ 2adb3069b0e04-594128c4d81mr1440914e87.50.1761767682551; Wed, 29 Oct 2025
+ 12:54:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: broadcom: rpi: Switch to V3D firmware clock
-To: Mark Brown <broonie@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- bcm-kernel-feedback-list@broadcom.com, Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>, Melissa Wen <mwen@igalia.com>,
- =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- Maxime Ripard <mripard@kernel.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Stephen Boyd
- <sboyd@kernel.org>, kernel-dev@igalia.com, kernel-list@raspberrypi.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20251005113816.6721-1-wahrenst@gmx.net>
- <9ebda74e-e700-4fbe-bca5-382f92417a9c@sirena.org.uk>
- <a5e1e279-7e20-458d-a75f-787e0adbc9fe@gmx.net>
- <ad07546f-0c2d-4bc2-b794-755b892c7328@sirena.org.uk>
- <a016e7e1-09f7-4056-a855-6cfaa8d51962@gmx.net>
- <10a4ef77-0e70-4ef2-b1df-535b476d256d@sirena.org.uk>
- <ecd75fd5-3131-4d10-ae3d-b6f608d9622a@gmx.net>
- <25e500c2-3dc1-476c-b6c1-ac4098a0501d@sirena.org.uk>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-Autocrypt: addr=wahrenst@gmx.net; keydata=
- xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
- IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
- NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
- JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
- TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
- f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
- V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
- aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
-In-Reply-To: <25e500c2-3dc1-476c-b6c1-ac4098a0501d@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+References: <20250803-p3450-mts-bug-v2-0-6307125408c3@gmail.com>
+ <20250803-p3450-mts-bug-v2-1-6307125408c3@gmail.com> <8ed69b4c-f656-47fa-a247-1c8d94dcc35d@nvidia.com>
+ <CALHNRZ86NjcNJhRJd+jtD_7fRTFJ2szPFAAN3HSad_xwnVrHWQ@mail.gmail.com> <0049bde1-15e2-4c33-8de9-49f3df0d7650@nvidia.com>
+In-Reply-To: <0049bde1-15e2-4c33-8de9-49f3df0d7650@nvidia.com>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Wed, 29 Oct 2025 14:54:30 -0500
+X-Gm-Features: AWmQ_bl-wrrhUBBpyLWRd1g2YRWbeHiuYgX2sFzM3mLqIPmPO5WuwhlB1ygmVeg
+Message-ID: <CALHNRZ_odC8jcu9h_ZKJ9+449pBhmYfXF=vBkprxYkqXhabM9A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] arm64: tegra: Add reserved-memory node for P3450
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:xV8UlzODuwiGwHX6qeLiVxxji4pbGya8VG8/lMnC+7UXBa8peVu
- PLZ7rgiTMfg05rYoBUaUPsaauqW7rvRNaAAd1/7nxmoOF7KmiVmVPcTyIaa+ommzUGAnCrL
- P6yCDnOvhpIQznJJ9E0zJmxebDTKkWB+SeTdIwRWNNSYLw0UJ1460OAvBgOFIuvvS84i8ht
- mLURoXE4KDy2XOf7ktgZQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:vHUvh8Kytes=;7BbnvTFrGXATKGygUSToU/dEzSK
- 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
- 07P5IuPmzy2dejTAQ6USrkVTyc=
 
-Am 28.10.25 um 19:47 schrieb Mark Brown:
-> On Tue, Oct 28, 2025 at 07:03:59PM +0100, Stefan Wahren wrote:
->> Am 27.10.25 um 17:51 schrieb Mark Brown:
->>>> Is there a HDMI cable connected?
->>> No, the boards only have ethernet, serial and power connected.
->> I switched to the same Raspberry Pi firmware 2023-10-17 and added U-Boo=
-t
->> 2024.01 as second stage bootloader, but still not able to reproduce.
->> Looking at the LAVA output, I'm seeing this as the very first issue(s):
->> [=C2=A0 =C2=A013.480675] platform wifi-pwrseq: deferred probe pending: =
-pwrseq_simple:
->> reset control not ready
->> [=C2=A0 =C2=A013.489095] platform bcm2835-power: deferred probe pending=
-:
->> bcm2835-power: Failed to get clock v3d
-Okay, here is my theory. The difference is about (boot) time. In my=20
-setup the whole device boot from SD card and in your case the kernel=20
-modules are stored via NFS.
-V3D requires two resources, a clock and a PM domain. Additionally the PM=
-=20
-domain itself depends on the very same clock. In arm64/defconfig the=20
-relevant clock driver is build as module, but the PM domain driver is=20
-builtin.
+On Tue, Oct 28, 2025 at 5:32=E2=80=AFAM Jon Hunter <jonathanh@nvidia.com> w=
+rote:
+>
+>
+> On 24/10/2025 18:46, Aaron Kling wrote:
+> > On Fri, Oct 24, 2025 at 11:16=E2=80=AFAM Jon Hunter <jonathanh@nvidia.c=
+om> wrote:
+> >>
+> >>
+> >> On 04/08/2025 04:14, Aaron Kling via B4 Relay wrote:
+> >>> From: Aaron Kling <webgeek1234@gmail.com>
+> >>>
+> >>> The Tegra210 L4T bootloader ram training will corrupt the in-ram kern=
+el
+> >>> dt if no reserved-memory node exists. This prevents said bootloader f=
+rom
+> >>> being able to boot a kernel without this node, unless a chainloaded
+> >>> bootloader loads the dt. Add the node to eliminate the requirement fo=
+r
+> >>> extra boot stages.
+> >>
+> >> I test this platform and don't see any problems. I assume that this
+> >> would prevent the board from booting.
+> >>
+> >> What bootloader are you using? Is this from a particular L4T release?
+> >
+> > Please see the longer description of my setup on the revision v1 patch
+> > here [0]. I am specifically using the cboot prebuilt from L4T r32.6.1
+> > as it is the last version to support usb input in the fastboot menu
+> > [1]. The rest of the boot stack is from L4T r32.7.6. The partition
+> > layout xml is here [2], which requires setting odmdata bit 11 to allow
+> > reading bootloader partitions off the sdcard. There is no u-boot
+> > involved, only cboot.
+> >
+> > I've had another report of the same issue, on a pure L4T r32.7.6 boot
+> > stack as well. The Nvidia downstream u-boot won't copy
+> > external-memory-controller nodes, namely the memory-region ones, from
+> > the cboot dtb to the kernel dtb unless the phandles match. Nv-tegra
+> > gitles isn't working right now, so I can't link directly, but on
+> > branch l4t/l4t-r32.7.6-v2020.04, file arch/arm/mach-tegra/dt-edit.c,
+> > see line 31. Which means that such only works if u-boot destination
+> > FDT is the downstream dtb. Using a mainline dtb causes the
+> > memory-region dt tables to not be available, thus the emc kernel
+> > driver fails to probe and emc clock stays stuck at 204MHz on
+> > p3450/p3541. Hence the user from the report trying to cut u-boot out
+> > of the mix in order to get emc scaling. And then hit this issue.
+> >
+> > You were able to boot with a mainline dtb on the DTB partition and a
+> > kernel on LNX, without u-boot and without this change? I have not been
+> > able to do this. The boot flow will get past nvtboot_cpu, but falls
+> > apart inside cboot due to the corrupted in-ram dtb, never getting to
+> > kernel logs.
+>
+> Yes, I am using r32.5.1 currently (which was probably what was available
+> at the time I enabled testing). But with this I am able to boot an
+> upstream DTB with the upstream kernel using cboot (no u-boot). However,
+> please note that I don't use the upstream DTB for the bootloaders (MB1,
+> MB2, cboot, etc). I specify the kernel DTB in the
+> /boot/extlinux/extlinux.conf file so only the kernel uses this.
 
-During boot "driver_deferred_probe_timeout" (10 s) expires before the=20
-clock driver could be loaded via NFS. So the PM domain core gave up:
-[=C2=A0 =C2=A016.936547] v3d fec00000.gpu: deferred probe timeout, ignorin=
-g dependency
+So the problem is with memory training, which is run in
+TBC/nvtboot_cpu. Iiuc, which is a limited understanding, mts primes
+with the dt emc tables from the bootloader dtb from RP1. Then if dt
+emc tables exist for the kernel dtb from DTB, it will copy the trained
+data to there. And on newer l4t versions, I don't know which version
+that started on, it will copy to a reserved memory location and set
+the location in the kernel dtb from DTB. This piece will fail if a
+reserved-memory node doesn't already exist in the kernel dtb from DTB.
+Causing the cascading failure described before.
 
-So this breaks probing of V3D driver in this case.
+For Android, cboot just boots an android boot image on LNX. There's no
+u-boot, extlinux, etc etc. I've got the downstream dtb from RP1, since
+the bootloader only works with the downstream layout. Then I've got
+the mainline dtb from DTB for handoff to the mainline kernel.
 
+Extlinux isn't useful for my usecase of android, but I'm in contact
+with people using Linux distros. So I'm curious if your setup copies
+the reserved-memory nodes to the extlinux FDT. Like, does the emc
+driver initialize properly and allow scaling?
 
+Aaron
 
