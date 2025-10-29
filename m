@@ -1,126 +1,139 @@
-Return-Path: <devicetree+bounces-232721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 271FCC1AABA
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:28:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 463D4C1B074
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 14:58:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB9731AA5290
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:21:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25DD5660BEE
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 13:22:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 389352C0F72;
-	Wed, 29 Oct 2025 13:14:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36FA63358D4;
+	Wed, 29 Oct 2025 13:15:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="hlOtlWVn"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="RuSYPpDF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D846A2C0262
-	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 13:14:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B1C3358D2
+	for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 13:15:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761743645; cv=none; b=PHDeQ0fAmgwK0mseR7daCW/ZesBL0RVX+hcYpaT8CsZtGigMtfdxnwXOs5bhLSgJ2ffcGnfhS0iJtSAOj2ET/EIUqbWg6URhUWQmnqg/QMT6Ui9oeDPwkWpJ3Z62z6/rX8vbEqZDznynn3HS/zekF3XcezYbx+3eQpptMYemwjU=
+	t=1761743754; cv=none; b=dHBlMmYJ7fVXVL1NemtfNNpsGka5HwqaMGgpM5n7I/qLbjS9xRouPNOIrDFj90R94aho5QReu2BZo5ZXQr/tZE2XvZcdKU+9me64l0yInhDImishvHZJrOXX4kY9pxlI5dxE7F3oyVzwM0nQDbPbNDrwdIpXuNt8fBTvXtYoFqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761743645; c=relaxed/simple;
-	bh=HXh8XVhftIlOuBLfg8NVk9leceRLV9HU/K4pAv4S7GA=;
+	s=arc-20240116; t=1761743754; c=relaxed/simple;
+	bh=idJ1/xpsY9Qz5yevc36Vw8gxViLPchWiyXx0zGa+jFw=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UG9lvFvxmObEgR/OZ9AtsAIMM9T9tA+sSPK47+W30/1YHU5u0BSh9Q0YeEqE5DxvjWaA8nRMCJp1ZV8x/ALIF1OyzhXGFTFpbRLxEP4MIOyYFYiGNDnflzgJhqRmjFiQQ889nz+Uj46s+ow4MqNLcVi/IBBr+DzDV35Tbn9eisY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=hlOtlWVn; arc=none smtp.client-ip=209.85.208.177
+	 To:Cc:Content-Type; b=qdHFLSUrgHG4ZOJkLigIf54FO3q4cWqMEmsqJOvV+SN8l5wMPTKYCjrIHUGhJgnWIWTKVK+LmOFFVZd7gIDdJi8y4mf7GtLKgrmmGu0Cv3ZWhDZFm27X9dxtYj2I3c+DROAOxhqVW9Uzs8Qk0U6Z4pC1wO6fkQddEN7pgn0ab7k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=RuSYPpDF; arc=none smtp.client-ip=209.85.167.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-3717780ea70so92995581fa.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 06:14:02 -0700 (PDT)
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-57bd04f2e84so8755200e87.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 06:15:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1761743641; x=1762348441; darn=vger.kernel.org;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1761743751; x=1762348551; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cqA6GSygQlCbGGE92uS1aB1PWjkaAYd841Sg4SieyII=;
-        b=hlOtlWVnpwS3XHlygstKeC9HQVK9qNA2JkqB1DjoDbBqjJI28RY8aBgzwcu5zobn6v
-         sjQKZ51sZzwj9Yo3JpjAfR/gZAs04ZPoLxvUkc0MZf4YpTU9O0erq77GdSZybw37WnP7
-         IfJ5EgphNSGdC4Kr55/1gLYQkQ2fb+iRbNM4z7fVFcxL5D0bt72gcgGRbSX1tc4Pz0He
-         f4lSbcZRI3eg6XPKLdtuJiQ+PJAuk5eTwYBfPhc8LP4zZtl2al59/lFALKr+pI86Jqow
-         isqLqslnToa664tkOsZ4Texuq9tE6N7j0k/gFF8LE/O0HEo88CCre1sa+lOpNVE/vQ9A
-         rZQA==
+        bh=oOUisOdkXU0bOduvB/ByBLb4wJp/5x2Vdu+Ct3A15wo=;
+        b=RuSYPpDFB4REAVfafBOGVygb/P7rkfXo3U5o7RAbKuf+FFtQdoHehowXFNnsFCLPKM
+         lsahh6Goc7ckmd8JBWRgi/E9gqB8MQg96XDwUWi1d+nXwsaHUHRbwiqSfcNcm1EzSoVf
+         jitUK50/2fXnjO1Dg+OKrHZouoTWCKozi3cLm9ahFPz0neptppiUdWslHosJ+xsEqvLh
+         qsoDLF3LmbaI28247Tn9fpyI7UXyXiTgY7h1kNq0Jd4W6EJiW+hPhx7bEenLKS2YGnbg
+         M2a9IsdyW1RGosdkcI5gUgKW8d8oE0Zm2V25u9/caZzaH3cme21/ZyVfMtLzK7BUnoIf
+         PAbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761743641; x=1762348441;
+        d=1e100.net; s=20230601; t=1761743751; x=1762348551;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=cqA6GSygQlCbGGE92uS1aB1PWjkaAYd841Sg4SieyII=;
-        b=mVaXrIL7ixxSNspwY5Q7UTw5i45rqV78m3cbLKHfYKDDil9DxruMa72O+qQ4D7IkGO
-         5RvU7e9eXWeVbD3wvLgixrTqhRi43c3k4Kn6oI+KQgqZnyGnx5d344O3cYo6qx7WK/Hq
-         kSgJrly7axoB5n72Np3mWZICoRS+l9RM3aO0iiPnus1isItzr9sTGyTJqoW1sc45Vl3R
-         NvpXN/MfQeyg4PGm2YxVSgfvHqs3mOofRE3xe5sMWhr6+1ZAprzRnPBOadaKR/q4Ts1Z
-         1varkXenIVZFGy3qWg2ncY2JjCyVJfTjdztp6t8Y49aqVF7OchWPM2KaoZUFmmiaea0a
-         ej5A==
-X-Forwarded-Encrypted: i=1; AJvYcCWAwYq4M9d5kZi/4ettN/xQvTbTFaqKLu3IonO9dkpy506roxJHFWX0m7ajQJ84iioiMvarLiREuC/y@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZCDE3mYmKBizfrZCaCN2MIhO0LoUgdZzDu8XjvSsPAtvNYEXE
-	VwNc5oW92BjOWTUMTk6QUjgxPJgfmk4YP0zTGafHyjlcodKy8sjFvSVrDA2ld6MEcNJgMEyJ6R5
-	+JTPigIVqkwwybidtHN9ETLTfndyLHBBLK3Ph6EFHJw==
-X-Gm-Gg: ASbGncsX2afazLVUHgYTNL88WKGviapyOCzJZGmgAVoIBa7ktUoJOaaxYb4+u61gMHL
-	XZvyOaG6ObX158J//32Jma3T2g6kkHqYatA8F+wncDIj6Qwe/rCQHhaFPTch/ekOv57uHX7jghK
-	ZHDDswU5UayyaZOds7ETqdMbYvgbjeqevZTzZaeHvW9xYLDizI07Ki92nKXI2ev/zBcmf0LkQEC
-	gRaiQdX337JXXOwd1KTEHIU3X3GnxCTsSnlmh8uL9MLvUZl70qnshWZc9AXCdBPfc6BShfOjamT
-	j1eVpemOidhpPY/ZvRKU3o8kqwQ=
-X-Google-Smtp-Source: AGHT+IEDeO7pOWXIiKISaidNbH4GhhTTnet358H+WU8HbsJA+qhtiRiRxFILoq29B6HEL7w4GKQI73DKFNYwKm/mQwI=
-X-Received: by 2002:a05:651c:1107:10b0:36f:4c94:b583 with SMTP id
- 38308e7fff4ca-37a052cfe5emr7976601fa.16.1761743640602; Wed, 29 Oct 2025
- 06:14:00 -0700 (PDT)
+        bh=oOUisOdkXU0bOduvB/ByBLb4wJp/5x2Vdu+Ct3A15wo=;
+        b=JacHIMlOdC++5GCa8ENHEuCy0B7lfeMkKdUlknfHpuvWBLKZIJ01T4IMCjDjZXbFJ/
+         lancltV6QJ8Lx43ve5sYyAATfktr8biAW6k2fQ8Jrf/bahT7/1KKvC3DiwfHebKjiIyB
+         IAw+R/CtRPZcLaLL0ZCBEkTWAxmCOVHumdS0pA+eYJ0Y3rQF/dbQEATAdDYxHt7kRkGa
+         YSEJL0zac2M95UzEvt1S7RNxK9ChQf49QOKuY6Ujjl48hN6K8J4heOTR1PJYT1qfuXeW
+         vMgzkHWpF5mbve0qI/fCqrHj41rR/tW9B/fnQHrOO6jroeV+d/1Yiw07LvWCpDaEmdjx
+         Q8TA==
+X-Forwarded-Encrypted: i=1; AJvYcCUbZt10O9yDaBCMhPtwXrk6I22xg2HI1mz3JE9mnk+jYcYaML3MMMemRcL2wCq6HSIGWesu5DZqRaqI@vger.kernel.org
+X-Gm-Message-State: AOJu0YyBitQ3emqRSegcCddkuVlcL2wLsn8OME5jrAXgRLrk/X+9nPI4
+	WB5XuP4OsEEnZUVBhKhPud4rhWq8GDQn6qfwpdKq/cZmAu/0FsUML6HZjsjeLEHnEYAfkY/gzV3
+	yKdbpP9xdjsrIgRuMevdkWdp78y5eVJUICqs2gVsTsw==
+X-Gm-Gg: ASbGncvoJKAJL8RiUv0qs+4cHOyPXaA3FahTE8VZ1aT00H+v4K+QLubXFfl2Q36gnke
+	C9PjHPZvscn7VrW7q8cq+EVfWs+KuVwRbK4MxjS0WJgKx7CdJLS5S4LuxCR6pDrxo4axtqIdNRu
+	d0ab+YhySr7t+dK2fiJTYRPXqwlQ/ev0gFQBFm5LQO70CykjoA8g44gSX3zLxpTQ8uhFSNol5YG
+	8EGlRJ53QUeHKAt8ypV5y9ZoccnuJz3hYFJwzEf2XhTH84zYXuEn4xP7MS1S8Ek6qEKa7W+3VUS
+	1Qj4Oqx4WnlMccmenXE7zndkmr4=
+X-Google-Smtp-Source: AGHT+IERc+XWdsch1n0sjpOQOzD+cW2IjfHO0Rpz1QeHwY2DnN9gsWkr3+lO2lQRgACmeZoFB2eG85VNyJBLdF9v7Qc=
+X-Received: by 2002:a05:6512:e84:b0:593:5066:8e35 with SMTP id
+ 2adb3069b0e04-59412878b7emr1119097e87.13.1761743750670; Wed, 29 Oct 2025
+ 06:15:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251029-dt-bindings-qcom-bluetooth-v2-0-dd8709501ea1@linaro.org>
-In-Reply-To: <20251029-dt-bindings-qcom-bluetooth-v2-0-dd8709501ea1@linaro.org>
+References: <20251029-qps615_v4_1-v7-0-68426de5844a@oss.qualcomm.com> <20251029-qps615_v4_1-v7-7-68426de5844a@oss.qualcomm.com>
+In-Reply-To: <20251029-qps615_v4_1-v7-7-68426de5844a@oss.qualcomm.com>
 From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 29 Oct 2025 14:13:47 +0100
-X-Gm-Features: AWmQ_bm2G7-iNhdxoXC19qDeGT6XRmVTZTDbAiHUQ68hSenSjedNVmrrWyCNe44
-Message-ID: <CAMRc=MeGLUvyM5GGv=eFpKd8_KCcSOnfKXCtZqJwpTGuRTixxA@mail.gmail.com>
-Subject: Re: [PATCH v2 00/11] Bluetooth: dt-bindings: qualcomm: Split binding
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+Date: Wed, 29 Oct 2025 14:15:37 +0100
+X-Gm-Features: AWmQ_bnxen2afRHV8wd2ApkjxBH0TleB__nu5t1NsDGu_HDLvXbdqDWBWRF_WWQ
+Message-ID: <CAMRc=McWw6tAjjaa6wst6y3+Dw=JT8446wwvQ0_c5LHHm=1Y-Q@mail.gmail.com>
+Subject: Re: [PATCH v7 7/8] arm64: defconfig: Enable TC9563 PWRCTL driver
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org
+	chaitanya chundru <quic_krichai@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
+	Jingoo Han <jingoohan1@gmail.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	quic_vbadigan@quicnic.com, amitk@kernel.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, jorge.ramirez@oss.qualcomm.com, 
+	linux-arm-kernel@lists.infradead.org, Dmitry Baryshkov <lumag@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 29, 2025 at 8:44=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Wed, Oct 29, 2025 at 12:30=E2=80=AFPM Krishna Chaitanya Chundru
+<krishna.chundru@oss.qualcomm.com> wrote:
 >
-> Changes in v2:
-> - Drop in few commits the properties (supplies) from
->   qualcomm-bluetooth.yaml which are not used by devices left there,
->   instead of removing them in final patch (qcom,wcn7850-bt).
-> - Fix dt_binding_check error - missing gpio.h header in the example.
-> - Drop maintainers update - split into separate patch.
-> - Add also Bartosz as maintainer of two bindings because he was working
->   with these in the past.
-> - Link to v1: https://patch.msgid.link/20251028-dt-bindings-qcom-bluetoot=
-h-v1-0-524a978e3cda@linaro.org
+> Enable TC9563 PCIe switch pwrctl driver by default. This is needed
+> to power the PCIe switch which is present in Qualcomm RB3gen2 platform.
+> Without this the switch will not powered up and we can't use the
+> endpoints connected to the switch.
 >
-> One big Qualcomm Bluetooth schema is hardly manageable: it lists all
-> possible properties (19 supplies).  Split qcom,qca6390-bt to separate
-> bindings, so device schema will be easier to read/maintain and list only
-> relevant properties.
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.co=
+m>
+> ---
+>  arch/arm64/configs/defconfig | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> What's more it messes up old (pre-PMU) and new (post-PMU) description in
-> one place adding to the total mess.
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index e3a2d37bd10423b028f59dc40d6e8ee1c610d6b8..fe5c9951c437a67ac76bf939a=
+9e436eafa3820bf 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -249,6 +249,7 @@ CONFIG_PCIE_LAYERSCAPE_GEN4=3Dy
+>  CONFIG_PCI_ENDPOINT=3Dy
+>  CONFIG_PCI_ENDPOINT_CONFIGFS=3Dy
+>  CONFIG_PCI_EPF_TEST=3Dm
+> +CONFIG_PCI_PWRCTRL_TC9563=3Dm
+>  CONFIG_DEVTMPFS=3Dy
+>  CONFIG_DEVTMPFS_MOUNT=3Dy
+>  CONFIG_FW_LOADER_USER_HELPER=3Dy
 >
-> Best regards,
-> Krzysztof
+> --
+> 2.34.1
 >
 
-Thanks for doing this. I would argue that the deprecation of the
-legacy supplies could happen before the split but that's not really
-important and would probably be harder to read.
+Can't we just do the following in the respective Kconfig entry?
 
-Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+config PCI_PWRCTRL_TC9563
+    tristate ...
+    default m if ARCH_QCOM
+
+Bart
 
