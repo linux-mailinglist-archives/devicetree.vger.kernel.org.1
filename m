@@ -1,144 +1,218 @@
-Return-Path: <devicetree+bounces-232493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-232494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A6CAC18801
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 07:40:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 696F7C18840
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 07:50:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAF423B4AD8
-	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 06:38:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21AC03BA327
+	for <lists+devicetree@lfdr.de>; Wed, 29 Oct 2025 06:50:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA8832FC031;
-	Wed, 29 Oct 2025 06:38:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32EA62DF3CC;
+	Wed, 29 Oct 2025 06:50:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HJXMi3Hg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jime9CZc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79A9C26ED57;
-	Wed, 29 Oct 2025 06:38:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 057BE126BF7;
+	Wed, 29 Oct 2025 06:50:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761719930; cv=none; b=hMnWzeI2lx8bHEgSG1TEy3W5C4tdaPeav7LuAw8JVPDuZjIT3cTB2ZvDXDN3jm7T4Zjm8pefekZtmE2kreO9d85u7Vxc0B5SPHT6OWadlAn3RVxhUkWrAJhH/ho+9TWlDaKDn6zbdHQq9zoAA5wYajgIFlWXuAVhNGtlR6flIvQ=
+	t=1761720608; cv=none; b=Yv3zPEAkASEqp5Wr+znLQd91SUdLQjiKbcytvRw+mS7C25AcK47YXTeoYFoLPkhcqHoy+BuXoKjC/X2xy0jS92sGZtHoyeeL2IZzJb4cwghMvL21uUx1blm66qR/iNgJdibjifTExMtEJiAsq0b2FYO6AKiA744tTTNFcwJJHGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761719930; c=relaxed/simple;
-	bh=fX3TRzUQYUf1han5LmQiXqOpSD9A4DO71dz9uUOS4is=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hWusvg7lT3PezktVuutU7Q+0Sg8KW31EzFAEM2GruWtdNhPlounLRWXGSYX9uDlCU2/dRa9fC95zjqri/yWfNpKSib6Lh00MUKVB4hXy3s8/oD+UqZDLBT2KVYh0ThpI2a21bicGSbb5xtMMgIiFpl7oTGWIuWFD1zx2R54a6bA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HJXMi3Hg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 613EEC4CEF7;
-	Wed, 29 Oct 2025 06:38:47 +0000 (UTC)
+	s=arc-20240116; t=1761720608; c=relaxed/simple;
+	bh=pDZtqhJqbNm3YHN3m6FTOaaPVV/5peqyF+hfo4Jai0c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mSG7f8fB+Huo+dHl0TBK7GOguxfQDPBUlnzxnQc1xYKrqu28Hnk0K/mBdrX9hOapxpmJbhJDy0TDq6FXsojMo6rwwVY9Rag3gWM6okx/Cx1NCCgEhjYtMCzv1dSm+G9i5g0T6gwTcMiDZSSMDXnUt/h0uDpoGSJ3t7BQ/2oNlIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jime9CZc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C061C4CEF7;
+	Wed, 29 Oct 2025 06:50:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761719930;
-	bh=fX3TRzUQYUf1han5LmQiXqOpSD9A4DO71dz9uUOS4is=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HJXMi3Hgw+/3aMPfeEVJnKtQaiwt7w/n22xHs8HAVtqgIX0YWbxbwQSFMgZ77MDpI
-	 A75tr5v27T2AjaUGzR/6wv3rP9884/uQyNRj46ptNA2AlauzZ4+UzMY1d5458XqvWz
-	 LpGM0AmxnA4GxSlIQ8kbDzdZrtCuKbuyU+N+ijx/zGlPgcNCwSJUo/klIeEoJV85cS
-	 9/xeKQq9K1QC8LFvt+OxUCjjqg0Uln6NyNGriRZ7PjvmrC2BW6PdGYbeBxBCmBPy6/
-	 GNAkj0DqdGTrS2evq1oNBTklF8B3iTkDz6Purl1IU7AZ4mfSPt+J5IBLyvpw4JqSp2
-	 Znims/ChXSgwQ==
-Message-ID: <068e8e8e-2968-44e8-8769-be0dfe1409c2@kernel.org>
-Date: Wed, 29 Oct 2025 07:38:45 +0100
+	s=k20201202; t=1761720604;
+	bh=pDZtqhJqbNm3YHN3m6FTOaaPVV/5peqyF+hfo4Jai0c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jime9CZcLYEA7ozWWX61TTZiJO/5IPMeaWoGslgh2zO6357fnVXasks5EcqdUYJIR
+	 UC5m5gvmA3Ay5s/wllYA+8Mok/N6UIsp8a9Qs0YC5Q5BYCbXGKG0cyMsVfJsaeeB3o
+	 vju37Jl32uuUi48+nq+hudouCbgEBuJbYT3XXoaKZsTfd9jyqmvK+h3a8ii9i8sCBQ
+	 t46mnwAjtUEBVfdxHyEKkUI9/iYRBlp/EGCI9XO9xsyPAhxu9l4DwxEf+1MNALANQc
+	 5NTU328rKWxDZ5GEHXZ3WDHKM7WSgxDw3iz8j0W61fhgqVakNB8pd/2MPTkx/kE2Of
+	 uKLtiWZpexTYw==
+Date: Wed, 29 Oct 2025 07:50:02 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: niravkumarlaxmidas.rabara@altera.com
+Cc: dinguyen@kernel.org, matthew.gerlach@altera.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, bp@alien8.de, tony.luck@intel.com, 
+	linux-edac@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: edac: altera: Document additional ECC
+ instances
+Message-ID: <20251029-adventurous-russet-jackal-64e3e5@kuoka>
+References: <20251028092232.773991-1-niravkumarlaxmidas.rabara@altera.com>
+ <20251028092232.773991-2-niravkumarlaxmidas.rabara@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: Add identifiers for VIIF on
- Toshiba Visconti TMPV770x SoC
-To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251029061344.451222-1-yuji2.ishikawa@toshiba.co.jp>
- <20251029061344.451222-2-yuji2.ishikawa@toshiba.co.jp>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251029061344.451222-2-yuji2.ishikawa@toshiba.co.jp>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251028092232.773991-2-niravkumarlaxmidas.rabara@altera.com>
 
-On 29/10/2025 07:13, Yuji Ishikawa wrote:
-> Add clock and reset identifiers for the Video Input Interface.
-> These identifiers support two instances: VIIF0 and VIIF1.
+On Tue, Oct 28, 2025 at 05:22:27PM +0800, niravkumarlaxmidas.rabara@altera.com wrote:
+> From: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
 > 
-> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-> ---
-> Changelog v2:
-> - Do not modify existing identifiers to avoid breaking ABI.
->   Keep existing identfiers for VIIF0.
->   Introduce new idenfifiers for VIIF1, following the same naming conventions.
-> ---
->  include/dt-bindings/clock/toshiba,tmpv770x.h | 15 +++++++++++++--
->  include/dt-bindings/reset/toshiba,tmpv770x.h | 10 +++++++++-
->  2 files changed, 22 insertions(+), 3 deletions(-)
+> Add support for Secure Device Manager(SDM) QSPI ECC, IO96B memory
+> controller ECC and Configuration RAM(CRAM) Single Event Upset(SEU).
 > 
-> diff --git a/include/dt-bindings/clock/toshiba,tmpv770x.h b/include/dt-bindings/clock/toshiba,tmpv770x.h
-> index 5fce71300..ff4ef1be5 100644
-> --- a/include/dt-bindings/clock/toshiba,tmpv770x.h
-> +++ b/include/dt-bindings/clock/toshiba,tmpv770x.h
-> @@ -141,7 +141,10 @@
->  #define TMPV770X_CLK_PIREFCLK		124
->  #define TMPV770X_CLK_SBUS		125
->  #define TMPV770X_CLK_BUSLCK		126
-> -#define TMPV770X_NR_CLK			127
+> Add interrupt-names property and increase interrupts maxItems from 2 to 7
+> to accommodate additional interrupts.
+> 
+> Signed-off-by: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
+> ---
+>  .../edac/altr,socfpga-ecc-manager.yaml        | 77 ++++++++++++++++++-
+>  1 file changed, 76 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/edac/altr,socfpga-ecc-manager.yaml b/Documentation/devicetree/bindings/edac/altr,socfpga-ecc-manager.yaml
+> index 3d787dea0f14..5e0c08a15ab9 100644
+> --- a/Documentation/devicetree/bindings/edac/altr,socfpga-ecc-manager.yaml
+> +++ b/Documentation/devicetree/bindings/edac/altr,socfpga-ecc-manager.yaml
+> @@ -33,7 +33,13 @@ properties:
+>  
+>    interrupts:
+>      minItems: 1
+> -    maxItems: 2
+> +    maxItems: 7
 
-You cannot change it, as explained last time. If this is not an ABI,
-then in separate patch drop it (see examples in the history for Samsung,
-NXP and probably many more SoCs).
+No, list the interrupts instead. Your commit msg must clearly explain
+why exception of not-fixed length/entries is justified.
+
+See writing bindings.
+
+> +
+> +  interrupt-names:
+> +    items:
+> +      enum: [global_sbe, global_dbe, io96b0, io96b1, sdm_qspi_sbe, sdm_qspi_dbe, sdm_seu]
+
+Nope, list the items instead. Please do not come up with some custom
+syntax.
+
+> +    minItems: 1
+> +    maxItems: 7
+>  
+>    interrupt-controller: true
+>  
+> @@ -70,6 +76,41 @@ properties:
+>        - interrupts
+>        - altr,sdr-syscon
+>  
+> +  cram-seu:
+
+Missing description, so difficult to say what is here.
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+If you cannot find a name matching your device, please check in kernel
+sources for similar cases or you can grow the spec (via pull request to
+DT spec repo).
+
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      compatible:
+> +        items:
+> +          - const: altr,socfpga-cram-seu
+
+Why do you need compatible?
+
+> +
+> +      reg:
+> +        maxItems: 1
+
+So you created child node only for reg? No, fold it into parent.
+
+You also forgot to update the example.
+
+> +
+> +      altr,seu-safe-inject-ce-msb:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: MSB of error injection command for Correctable Error
+> +
+> +      altr,seu-safe-inject-ce-lsb:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: LSB of error injection command for Correctable Error
+> +
+> +      altr,seu-safe-inject-ue-msb:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: MSB of error injection command for Uncorrectable Error
+> +
+> +      altr,seu-safe-inject-ue-lsb:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: LSB of error injection command for Uncorrectable Error
+
+How are these board-level properties?
+
+> +
+> +    required:
+> +      - compatible
+> +      - altr,seu-safe-inject-ce-msb
+> +      - altr,seu-safe-inject-ce-lsb
+> +      - altr,seu-safe-inject-ue-msb
+> +      - altr,seu-safe-inject-ue-lsb
+> +
+>  patternProperties:
+>    "^ocram-ecc@[a-f0-9]+$":
+>      type: object
+> @@ -191,6 +232,40 @@ patternProperties:
+>        - interrupts
+>        - altr,ecc-parent
+>  
+> +  "^sdm-qspi-ecc@[a-f0-9]+$":
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      compatible:
+> +        items:
+> +          - const: altr,socfpga-sdm-qspi-ecc
+
+No, drop.
+
+> +
+> +      reg:
+> +        maxItems: 1
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+
+No point for empty children. One reg is not justification for having a
+child.
+
+> +
+> +  "^io96b[0-9]-ecc@[a-f0-9]+$":
+
+You need to stop coming with random node names. Nothing explains why you
+need children, why these are not part of parent node.
+
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      compatible:
+> +        items:
+> +          - enum:
+> +              - altr,socfpga-io96b0-ecc
+> +              - altr,socfpga-io96b1-ecc
+
+Plus all your compatibles have WRONG format. See writing bindings and
+numerouse presentations - you always must use SoC specific compatible.
 
 Best regards,
 Krzysztof
+
 
