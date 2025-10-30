@@ -1,237 +1,181 @@
-Return-Path: <devicetree+bounces-233463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03A14C22697
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 22:27:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02313C2273C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 22:45:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DA1304E04E8
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 21:27:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 207AF1884A7F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 21:45:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FC9830AD05;
-	Thu, 30 Oct 2025 21:27:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A89DE2DE71C;
+	Thu, 30 Oct 2025 21:45:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sjoerd@collabora.com header.b="g3yElmKq"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ue3Nl992";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="bzpy78OW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 238C7235053;
-	Thu, 30 Oct 2025 21:27:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761859632; cv=pass; b=BXyPcIki9LLZgGonFXmG/LTP3kC8pjDMCD/r3Vzu4sJOPWlCnpk9ZHuCcbwgZ5t1XN4f2mPJKeZmxaevasVUphpDsyMS33p4LMjo2AgQY5oWOAHqMmsKW/5+pS2x4RdegOMIOClgB8VTuceu3M/a+EwnXNowdXIp94DVBUNDhmg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761859632; c=relaxed/simple;
-	bh=+FeCx4UfMrohbrMdvHoPB10eAhqDKvesqpVDKI/q1Wg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=HAxs80PY8MD4ju8MOijcKUwVUAVpDY4JXrFLnHDyKdjOcCJXq0V+P7eM8cmlImM+8N58DnhKwyOLJuCqTOAakSKj+/z/M2sIWvReP1cidmMhFimw8VQLmVU9ID8khVZ9K9xwaDs9N4fTq4nwBcFgx5+gw1Ws1FUSL2OsSQEO67E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sjoerd@collabora.com header.b=g3yElmKq; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1761859574; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=AMHNToO9uyH2UOzZxFbb68jVb8fRSxPJkx2uGcVBs/9gdG16OTxWSqbRDtjo45Z/FlXyS/FV+J25HRLJ6eE0mwzhoQpGPt8aSSAi4kt0fH/jZQCCxK7BQgcUefeohbYXnHcKtgTmArbRM/+KYIPB10Vi91lWfVPR0oE7a0Tgd88=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1761859574; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=ixRLpty5QKDOE0ulxvqD55Wb9bzwJbHlOe5KFSOLS1E=; 
-	b=C87w96dCEC6ElqmbmEvGOSTnDEU0vYB9JwkPlW+pp3+V/xALKyuPcmjyx712KT7yM4Yys2ExWU7CSClHlyTQ3hojI79O+7j1ufpxDUUgtjl8GcQp9VlndlyKTulH4INak4h+0reqYs9iVQrstaEVzyH089qEufBmTQ5g+eC7R0w=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sjoerd@collabora.com;
-	dmarc=pass header.from=<sjoerd@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1761859574;
-	s=zohomail; d=collabora.com; i=sjoerd@collabora.com;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=ixRLpty5QKDOE0ulxvqD55Wb9bzwJbHlOe5KFSOLS1E=;
-	b=g3yElmKq8LU2i4TbafpRnAEbkB1BmNCRln05g6k8WHT1ZVYQGKWV23fb3FJSpnWi
-	9Hx5p5E79qn3bFI5Npy3N0kbsz9U6rX3ggbLg03vvs5D9YK8cdErhhhtfzjfFgkdU8r
-	9MNcrZ/v/23ECwSTe6xbuIllyt+ePSWN22sOQvNU=
-Received: by mx.zohomail.com with SMTPS id 1761859569654684.60417196483;
-	Thu, 30 Oct 2025 14:26:09 -0700 (PDT)
-Message-ID: <7d7595a0a33b4e56828beea86f6037bd9ecc8f8d.camel@collabora.com>
-Subject: Re: [PATCH 11/15] arm64: dts: mediatek: mt7981b-openwrt-one: Enable
- SPI NOR
-From: Sjoerd Simons <sjoerd@collabora.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,  Matthias Brugger
- <matthias.bgg@gmail.com>, Ryder Lee <ryder.lee@mediatek.com>, Jianjun Wang	
- <jianjun.wang@mediatek.com>, Bjorn Helgaas <bhelgaas@google.com>, Lorenzo
- Pieralisi <lpieralisi@kernel.org>, Krzysztof =?UTF-8?Q?Wilczy=C5=84ski?=
- <kwilczynski@kernel.org>,  Manivannan Sadhasivam	 <mani@kernel.org>,
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul	 <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Lee Jones	 <lee@kernel.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"	
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski	
- <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Lorenzo Bianconi	
- <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-pci@vger.kernel.org, 
-	linux-phy@lists.infradead.org, netdev@vger.kernel.org, Daniel Golle
-	 <daniel@makrotopia.org>, Bryan Hinton <bryan@bryanhinton.com>
-Date: Thu, 30 Oct 2025 22:26:00 +0100
-In-Reply-To: <c9865ab0-cbc2-47b5-b7cf-acb8b9c52695@collabora.com>
-References: <20251016-openwrt-one-network-v1-0-de259719b6f2@collabora.com>
-	 <20251016-openwrt-one-network-v1-11-de259719b6f2@collabora.com>
-	 <c9865ab0-cbc2-47b5-b7cf-acb8b9c52695@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-5 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 288B92620C3
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 21:45:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761860717; cv=none; b=ZoAvOF/GCaAOsQZg4+EJH4ZPoGCEcfZcFg9ZFvlIAQGUmutniQScCCwWasRMLbRKl2QKIJlB67Xu5je+qKR/5px5TMoFe+AGZByujsyhdGONkfrsnB1QiHzvNdWhbz/oWqAk6H3JHr7FZ/2BALgJDdmrIXKxUHosZuabZr51b4g=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761860717; c=relaxed/simple;
+	bh=yoJyzRpSCCIReS9JjsFWUlo+3vKaeWCXo30gNMnXofg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i9GjKB92gVEdHdwo7jgzQlXGmlw+EHyTE4Lu+OfAlXffiQt3aeph4hHTQNgXg0lV93glQFhtvNCYTKuhhP/bA4PnN9fJ5HeiSEvUFeAey/fCrQ+r3oZRy9a4kWfm/Ctnjibx6YnxeR01ceIoBWVdJtaMtAZ/MDvju2aeWKIUFi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ue3Nl992; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=bzpy78OW; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59UB8fxk3808875
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 21:45:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	D805xAVnHSLtQWp6QWfqoMXrGvEhPuuHYPMCcOzODRs=; b=Ue3Nl992P1vXTS7r
+	2Kr9PRYarDt6PFsjHetNQJ5iXRjWthFw7vUr7/Cls5DA3qkatjX9sLs+B5ulKmt7
+	2A2DApK7uQ2OJdVT00r6dNjs6P09QDLkZzTGEo0l+e3/qyXn7Kg7IaCjKIJW2dz0
+	VlBMNhr+J1rWFYgJhC4QWZCCcGno3k0k40leCOUM1B2Xzdzg/3agIZ2Up6gN7enP
+	WVK1GhbbDq8OcC736Dxxkn+O8Yx3pUUWkLJb6Rov6Sb7YNfCdEMYSNKKT4VgdcV7
+	WFeb0eKJlZRimkoWzqt8hPs1cDc/JYvWUsMqGkdiktiCXzZpK8/BWdNie4YvCvs4
+	i1nr2A==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a46vv9seg-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 21:45:15 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4e88c912928so41334421cf.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 14:45:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1761860714; x=1762465514; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=D805xAVnHSLtQWp6QWfqoMXrGvEhPuuHYPMCcOzODRs=;
+        b=bzpy78OWKx/dBbU9jXd7xVIkn9EqWIy3tfc3nvjAVHoCXSRYCVxDGfBQx4WyjyKaPg
+         FqytnF0WNlB+w1Ru5sK3bSNslSrqvrCmWnjb0h/qlPnetXpK/xc2FgpHvB2pa1lBSACS
+         hFMR13yNtT88mZchubyidy6nkzNcv/LQCKeH+OJUp3MJivDztkUCC52YhKlG0ZWWWNMX
+         hiqNu1s/e1EmOgjK3oWAf/S72NFJmXSv+gT48B2BjilGYMo8oXwPJCf2FjDr7OEhSJoj
+         /rbvqMY4YNCT26jxG+dhVo+cn+BzyRnGRxPPC6RWEl0d9isXb9JPg9o+mWBCSR4bwAqY
+         9JWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761860714; x=1762465514;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=D805xAVnHSLtQWp6QWfqoMXrGvEhPuuHYPMCcOzODRs=;
+        b=sDQlyuhoXV4xbrousy1fIgzciIPPiatfhq7TuOExWAZ3itpryO1aA2PXyLVLlVnvYj
+         XkyvwrYyXMcka8l/X/7vEZ557IL7xKxydQFPzfuI0jVBoIvLPnBn3343chvi/kuYbvri
+         h4RVZpplETBzc6S3jXj/yASoNVFMmBwx+4nvy3e0wBJBFvcjB/Gyf09zN/SoVbuGcZGz
+         rWKDS4hGWdQK9SWCYEzYS5ZGZBe85Kw+1mGuX5RoTeiBKFU8qoaHDbYwBfLSy12qKL6S
+         9RcffVchglqlDjCEJNPvAXUwIVERomDA8qOSoJrWk7V3Ageq9dR9qpG18Gbul5khYKzT
+         i4nw==
+X-Forwarded-Encrypted: i=1; AJvYcCVM5GUQL8vMVJesTAXK1N2qSQgEQYXvhyrxi4KDKWawrPLoroJ/E0eAM9hY5bvraTm18jcoEGfCnqM6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwfCH7Jcy+B8lSTp+c0EEuahEwH1L3rdFNa3kV9wod7DYmXYCDp
+	h86/buKK3qiSVLzmcF++eB7xjN+P1poLwIjA+VjSd8ay9Xt0JyoWj4lQ9S6JUqqC3wEUSw5UP+E
+	vu4yAFV5ffLjWMSR7CJ0fTxaCsNrUTTP4b6daWmTIuG81JrJdSSGRt/YutkgGrDD7
+X-Gm-Gg: ASbGncurw1V1E0eUHoiwyVRHOMzCOQw4ptIVp7l4cTMAJJMsKr7owElKqVkJxLWDIqA
+	aPXPgwXmwwQtDObshTgOHrddFhs5rasmsYJjaTkEHhXVvPLAfjLeg73e+ty+t36MxsB3R4939c7
+	AYj7Io1sc0Dscw9Buvbquwevg9ZG9AOFAYAXKZQM1Osufkj0rRF/Vfyh1CmfnkG6BlShZS5EzjG
+	VPOEXQWsvXh7iyIQfjd78T59KywoVqbcmMtlpe4NrMimv3xJh/nCN+a1V8PB7JHeceBw3rpaGxL
+	yMwFwhx8Mikb0QJ+CKZI5ql/8Gt04eImgCJwt6eFkSzb0pNVQ0j0+eyXHMfccK3bS+kOTx/9/02
+	7TKY5F7AS/uAzi9FFADnyVOlHjA==
+X-Received: by 2002:a05:622a:5a15:b0:4ec:fafd:7605 with SMTP id d75a77b69052e-4ed31004db9mr15213001cf.60.1761860714358;
+        Thu, 30 Oct 2025 14:45:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEH+HqEuczJpMlpDDzdccuf2/KSeYvFUepMCMr+zEaProU5CUwiZbOCeHQ214hDIAAxXqCQ7w==
+X-Received: by 2002:a05:622a:5a15:b0:4ec:fafd:7605 with SMTP id d75a77b69052e-4ed31004db9mr15212691cf.60.1761860713800;
+        Thu, 30 Oct 2025 14:45:13 -0700 (PDT)
+Received: from [192.168.68.121] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-429952b7b43sm34225050f8f.6.2025.10.30.14.45.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Oct 2025 14:45:13 -0700 (PDT)
+Message-ID: <d51f38f5-ff04-4dc1-978d-ad8ee6908836@oss.qualcomm.com>
+Date: Thu, 30 Oct 2025 21:45:12 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
-
-On Thu, 2025-10-16 at 13:28 +0200, AngeloGioacchino Del Regno wrote:
-> Il 16/10/25 12:08, Sjoerd Simons ha scritto:
-> > The openwrt one has a SPI NOR flash which from factory is used for:
-> > * Recovery system
-> > * WiFi eeprom data
-> > * ethernet Mac addresses
-> >=20
-> > Describe this following the same partitions as the openwrt configuratio=
-n
-> > uses.
-> >=20
-> > Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
-> > ---
-> > =C2=A0 .../boot/dts/mediatek/mt7981b-openwrt-one.dts=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 | 83 ++++++++++++++++++++++
-> > =C2=A0 1 file changed, 83 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
-> > b/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
-> > index b6ca628ee72fd..9878009385cc6 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
-> > +++ b/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
-> > @@ -3,6 +3,7 @@
-> > =C2=A0 /dts-v1/;
-> > =C2=A0=20
-> > =C2=A0 #include "mt7981b.dtsi"
-> > +#include "dt-bindings/pinctrl/mt65xx.h"
-> > =C2=A0=20
-> > =C2=A0 / {
-> > =C2=A0=C2=A0	compatible =3D "openwrt,one", "mediatek,mt7981b";
-> > @@ -54,6 +55,25 @@ mux {
-> > =C2=A0=C2=A0		};
-> > =C2=A0=C2=A0	};
-> > =C2=A0=20
-> > +	spi2_flash_pins: spi2-pins {
-> > +		mux {
-> > +			function =3D "spi";
-> > +			groups =3D "spi2";
-> > +		};
-> > +
-> > +		conf-pu {
-> > +			bias-pull-up =3D <MTK_PUPD_SET_R1R0_11>;
-> > +			drive-strength =3D <MTK_DRIVE_8mA>;
->=20
-> drive-strength =3D <8>;
->=20
-> > +			pins =3D "SPI2_CS", "SPI2_WP";
-> > +		};
-> > +
-> > +		conf-pd {
-> > +			bias-pull-down =3D <MTK_PUPD_SET_R1R0_11>;
-> > +			drive-strength =3D <MTK_DRIVE_8mA>;
->=20
-> ditto
->=20
-> > +			pins =3D "SPI2_CLK", "SPI2_MOSI", "SPI2_MISO";
-> > +		};
-> > +	};
-> > +
-> > =C2=A0=C2=A0	uart0_pins: uart0-pins {
-> > =C2=A0=C2=A0		mux {
-> > =C2=A0=C2=A0			function =3D "uart";
-> > @@ -62,6 +82,69 @@ mux {
-> > =C2=A0=C2=A0	};
-> > =C2=A0 };
-> > =C2=A0=20
-> > +&spi2 {
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&spi2_flash_pins>;
-> > +	status =3D "okay";
-> > +
-> > +	flash@0 {
-> > +		compatible =3D "jedec,spi-nor";
-> > +		reg =3D <0>;
-> > +		spi-max-frequency =3D <40000000>;
-> > +		#address-cells =3D <1>;
-> > +		#size-cells =3D <1>;
-> > +
-> > +		partitions {
-> > +			compatible =3D "fixed-partitions";
-> > +			#address-cells =3D <1>;
-> > +			#size-cells =3D <1>;
-> > +
-> > +			partition@0 {
-> > +				reg =3D <0x00000 0x40000>;
-> > +				label =3D "bl2-nor";
-> > +			};
-> > +
-> > +			partition@40000 {
-> > +				reg =3D <0x40000 0xc0000>;
-> > +				label =3D "factory";
-> > +				read-only;
-> > +
-> > +				nvmem-layout {
-> > +					compatible =3D "fixed-layout";
-> > +					#address-cells =3D <1>;
-> > +					#size-cells =3D <1>;
-> > +
-> > +					eeprom_factory_0: eeprom@0 {
->=20
-> wifi_calibration:
->=20
-> > +						reg =3D <0x0 0x1000>;
-> > +					};
-> > +
-> > +					macaddr_factory_4: macaddr@4 {
->=20
-> macaddr_factory_gmac1?
->=20
-> You're not using this in the later commit where you enable ethernet nodes=
-,
-> did you miss adding that to gmac1 or what is this used for?
-
-gmac1 gets its mac from u-boot, passed in through device-tree; Haven't chec=
-ked where u-boot gets it
-from yet. I did spot it at offset 0x2a in this factory data, so that seems =
-likely candidate.
-
-However this particular mac is used by the wifi phy. I discovered after sen=
-ding this patch the kernel
-driver loads it directly from the "eeprom" area, so we could potentially dr=
-op this node.=20
-
-As mentioned in the commit message, I kept the same layouts as openwrt uses=
-. Though i'd be fine to
-minimize the nvmem cells just to what's referenced in the dtb.
-
-> > +						reg =3D <0x4 0x6>;
-> > +						compatible =3D "mac-base";
-> > +						#nvmem-cell-cells =3D <1>;
-> > +					};
-> > +
-> > +					macaddr_factory_24: macaddr@24 {
->=20
-> macaddr_factory_gmac0 ?
-
-
-That seems nicer, will add that in V2 (same for the previous naming suggest=
-ion)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ASoC: dt-bindings: pm4125-sdw: correct number of
+ soundwire ports
+To: Alexey Klimov <alexey.klimov@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
+        broonie@kernel.org, srini@kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, perex@perex.cz, tiwai@suse.com,
+        linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20251029144636.357203-1-srinivas.kandagatla@oss.qualcomm.com>
+ <DDVYM9SMCT7O.17T5SIB9IEED4@linaro.org>
+Content-Language: en-US
+From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+In-Reply-To: <DDVYM9SMCT7O.17T5SIB9IEED4@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: SHDzpogODJtH4O7seqQbxg8yw-Cm93mH
+X-Authority-Analysis: v=2.4 cv=dK6rWeZb c=1 sm=1 tr=0 ts=6903dc6b cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=cZRtUSbEUlCTYNoyqfMA:9 a=QEXdDO2ut3YA:10 a=-_B0kFfA75AA:10
+ a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-ORIG-GUID: SHDzpogODJtH4O7seqQbxg8yw-Cm93mH
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMwMDE4MyBTYWx0ZWRfX0+CQMdfVGlTO
+ bziHoRSaXFa2DCBBXvzR/ymrppgSkrOtdn3/DqatIM8xAk+tlLEROOianmMn59Re3J5eq9Y5lQG
+ w/LeagvpdvGkP/+gBAC9l7RJ5qnK3bzahMkv58YysVLp8nHIyZr6E90ZW0Ii9jsKLmYtfzLfdQk
+ GGlHfpHHuWSpC/f+2TzfTo+SluE2eKs3VAT0O9vwM6jynO+p4+1UfIS0c9x66GbGUcPqu4NCdvN
+ dnKgMe6agxXiLG146D6tiMkL3XL0CzD4yyjoPuKac2frQRR0xvodw+JtTNKleHq5uquDPOGlS77
+ 6vH/B589NkDZm+M277TqPztJMYugI0w9H/3lE/DBuNXdEdvKWNgZo1wK6GkRUzqLG9HYVX01+8O
+ PCXjOqtVzgv8yMky1UMJEFlIGFMXPw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-10-30_07,2025-10-29_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 impostorscore=0 suspectscore=0 clxscore=1015 spamscore=0
+ lowpriorityscore=0 phishscore=0 priorityscore=1501 bulkscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510300183
 
 
 
---=20
-Sjoerd Simons
-Collabora Ltd.
+On 10/30/25 9:03 PM, Alexey Klimov wrote:
+> On Wed Oct 29, 2025 at 2:46 PM GMT, Srinivas Kandagatla wrote:
+>> For some reason we ended up limiting the number of soundwire ports to 2
+>> in the bindings, the actual codec supports 4 rx and 5 tx ports.
+> 
+> The reason is quite simple. The available _limited_ documentation at that
+> point suggested that there are two rx and two tx ports. There simply
+> were no better docs.
+> If you finally got access to the right docs then it is good to fix that.
+> 
+>> Fixes: 88d0d17192c5 ("ASoC: dt-bindings: add bindings for pm4125 audio codec")
+>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+> 
+> You should run get_maintainer.pl script when sending patches and check who
+> should be put into c/c. See [1] too.
+> Here you should run smth like this:
+> 
+> get_maintainer.pl -f Documentation/devicetree/bindings/sound/qcom,pm4125-sdw.yaml 
+> 
+> or check with b4 how it works.
+> 
+thanks Alexey, for the suggestions!
+
+--srini> The c/c list is not full.
+> Perhaps this is a consequence of putting all Qcom audio related things under
+> one entry in maintainers file.
+> 
+> Best regards,
+> Alexey
+> 
+> [1]: https://docs.kernel.org/process/submitting-patches.html#select-the-recipients-for-your-patch
+> 
+
 
