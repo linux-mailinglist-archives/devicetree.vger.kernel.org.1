@@ -1,125 +1,115 @@
-Return-Path: <devicetree+bounces-233061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18C64C1ECF3
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:40:18 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BC0AC1ED05
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:41:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 989474E78AF
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 07:39:44 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 734134E51F6
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 07:40:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5C97337B96;
-	Thu, 30 Oct 2025 07:39:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DE8B2F6569;
+	Thu, 30 Oct 2025 07:40:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BzIK6nsN"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="QiXqai0Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A42D319E99F;
-	Thu, 30 Oct 2025 07:39:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E7DC33769F;
+	Thu, 30 Oct 2025 07:40:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761809978; cv=none; b=YKw7jT1HJRAI3ryYv1Cs2j3fng2ypu+WD6IsAVzxlXXZSMV7WTPNNCRhyjLPD5Kwum22slJf7TnXrzhmhC+Cx39AckUnRACiKqdQ5Veupb/aF+p0kkAzgKW+9QYd5U92CSzNH+TOhXPQRND9v1IjI1V+sJtuicQ57MqgdPnTidc=
+	t=1761810033; cv=none; b=KJxosi0aovzDHlnEKAOJxi3mT2114tpNA0xlh4FST7Gck1ht63O65z4XX+DVt3NUbrOEo5ryNqB1/lE1b20VlHS0dZk5PjwJFXPtcHR264vMjG9A5kj4O4azXs8fMUgLWK8S0yaMF2sHQ/T9EwpG04yNfRCrTX/3P1PKbgJ6FIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761809978; c=relaxed/simple;
-	bh=HlYcZX2VPFh0ZqWl/SD4VaS22mnQ6WhqhNp0UePO/jI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Gyw/jrFGQ/2k8Hnmwz9bd9KlbtE0GYFQ0X2lEug8uk8tWYZZzKuzA3m7vvP18N/kqwWOWyofAT2y6g6GQyGB+RrlZsBIsYO0znnkkjDdaCwMaWCeeiNTiFD4KLjkMPMymQySmIEqjM1TALfX+jTSOm9ozivVOJrTdyRRXpQ3rRw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BzIK6nsN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98D7FC4CEFB;
-	Thu, 30 Oct 2025 07:39:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761809978;
-	bh=HlYcZX2VPFh0ZqWl/SD4VaS22mnQ6WhqhNp0UePO/jI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BzIK6nsNtamZmFV6GxQnFsMO4Dc39aFn1qLhZpSmVUrLx89diLsvx3KMI0KEJ/iOd
-	 9CgX0VQyKlRiQdq+ybh9qnJ0GTjK14DNbpp57r9t+Qck5bw1g5v+OZHcPoQ0gr7WIR
-	 rgTGGmGys75cgp+fGQATHzCiT1PipNYynHpKFw6RRguKSH6076kWqJnmWb5vTkyQDQ
-	 z8Jq35oP83Vc5cJg7z2zMw0BUZG+P93KQgoYKaiJL7w4N3NJFCspbNpqB68w5bekje
-	 gYzoMWsKmW+54K2jGmhXnUn4CzF3BzJ6AYKIzuqcmvMM5cmRZvCtJmQUomJ9AdEU9r
-	 homOuhSr4WHlA==
-Message-ID: <f0f3485a-b500-418d-b24e-80d70248d378@kernel.org>
-Date: Thu, 30 Oct 2025 08:39:33 +0100
+	s=arc-20240116; t=1761810033; c=relaxed/simple;
+	bh=zCqPLDYFSTIRnT5sZnTePsSmoKp8F3Uxev9dTCYAwN4=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=sEnuQL+nTyU58kxvakCLyqWvtJ6Q6XvhZdpuBunZ6VfHYV7SloPV0RwLRYP/Jkx/oXRnfh2U1T5PQkqdYpazNwgYU441PjxN1tFPOr1qmi//FluEKRxtHlwPkP5OtghRfulNm96aKy+vD3kakBogrLCY8Sjd7WyspBLe/Batj/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=QiXqai0Y; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1761810029;
+	bh=zCqPLDYFSTIRnT5sZnTePsSmoKp8F3Uxev9dTCYAwN4=;
+	h=From:Date:Subject:To:Cc:From;
+	b=QiXqai0YhuS1zsntczP51FL2lAyKU+mSzKqZfJCF24pmV9eyjNKPbdY6dSXXi5sCX
+	 xxypI0eRqI5EsYdtJOW3UyEQG2oUVthHTGTar2H+01fSta0vTcFfE8Mfbb2EjtMWd3
+	 0Arc948XTbMu1DK6DwMoM+AJwMVAglltEbs0FSSyfls+MGi3DZWjI0zKolSp5SXBuh
+	 jaDV8jpIa6GCxzqlPKOU02S9wIXndsmpRDrHtxzSfzvBPPXEVkIDMxUokvE9V4b2/x
+	 LQkzyrqdbhiafbas/Vkp9CwIH33ZEHdgpGTY9kACO8GbjiGKYJXiG6SxxA4YZ+StUK
+	 f20h+BrRiuZHA==
+Received: from yukiji.home (amontpellier-657-1-116-247.w83-113.abo.wanadoo.fr [83.113.51.247])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laeyraud)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9AAEE17E009B;
+	Thu, 30 Oct 2025 08:40:28 +0100 (CET)
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Date: Thu, 30 Oct 2025 08:40:07 +0100
+Subject: [PATCH] dt-bindings: watchdog: mediatek,mtk-wdt: Add compatible
+ for MT8189 SoC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] Documentation: dt-bindings: arm: qcom: Add Pixel 3
- and 3 XL
-To: david@ixit.cz, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: phodina@protonmail.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- phone-devel@vger.kernel.org
-References: <20251030-pixel-3-v2-0-8caddbe072c9@ixit.cz>
- <20251030-pixel-3-v2-1-8caddbe072c9@ixit.cz>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251030-pixel-3-v2-1-8caddbe072c9@ixit.cz>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20251030-mt8189-dt-bindings-wdt-v1-1-975971ba29e5@collabora.com>
+X-B4-Tracking: v=1; b=H4sIAFYWA2kC/yXNwQqDMBAE0F8Je+5CEqmov1I8RLPaPSS22dgK4
+ r83NMc3MDMnCCUmgUGdkOjDwlssMDcF89PFlZB9MVht70bbHkPuTNejzzhx9BxXwW+Bb72zi26
+ cbTWU8ivRwsd/+DFWJ3rvZT/XECYnhPMWAudBRToy1o9Gw3hdPwdI4MGZAAAA
+X-Change-ID: 20251029-mt8189-dt-bindings-wdt-d6da2f03a260
+To: Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: kernel@collabora.com, linux-watchdog@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761810028; l=1181;
+ i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
+ bh=zCqPLDYFSTIRnT5sZnTePsSmoKp8F3Uxev9dTCYAwN4=;
+ b=Z/NT/ku5a3v7+z6gX10fuY1Tr/RmBBg9g8JoOhmLn+z6ju0nEQ29d788LkwfFkB5A/uNgX3BD
+ dya/nH7WNjHBzv4EOmQKpgqhWkG3puV6wox3ImpYnwwuBiJ0kgLucAJ
+X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
+ pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 
-On 30/10/2025 08:24, David Heidelberg via B4 Relay wrote:
-> From: David Heidelberg <david@ixit.cz>
-> 
-> Document the bindings for the Pixel 3 and 3 XL.
+Add compatible string for the watchdog block on MT8189 SoC, which is
+compatible with the one used on MT6589.
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+---
+ Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+index ba0bfd73ab62a86befead007d4b7d2a870b81a0c..caa1140fdf44f79f229644b54f759a93145f26d8 100644
+--- a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+@@ -41,6 +41,7 @@ properties:
+               - mediatek,mt7623-wdt
+               - mediatek,mt7629-wdt
+               - mediatek,mt8173-wdt
++              - mediatek,mt8189-wdt
+               - mediatek,mt8365-wdt
+               - mediatek,mt8516-wdt
+           - const: mediatek,mt6589-wdt
+
+---
+base-commit: d78b0fee454c25d292fb6343253eca06d7634fd9
+change-id: 20251029-mt8189-dt-bindings-wdt-d6da2f03a260
 
 Best regards,
-Krzysztof
+-- 
+Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+
 
