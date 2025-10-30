@@ -1,76 +1,78 @@
-Return-Path: <devicetree+bounces-233211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCFCFC1FEA2
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:03:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ECD5C1FEA8
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:03:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EBD314EA815
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 12:02:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 781D14EA5CF
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 12:03:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB983314B70;
-	Thu, 30 Oct 2025 12:02:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 490FE335BAF;
+	Thu, 30 Oct 2025 12:02:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UM+pbYlH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JYRVBpuh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1167C2DCF46
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 12:02:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F5463191A2
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 12:02:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761825766; cv=none; b=IEU7v75SF04OtV/jv5INVArz5GXITKv8gpaahO+8VhPZBVupJTGFAst2q4Omhn2Fx2A2IlBHoQBK/c+TgISE00XN2adWeoOaTc/OlYPdp1Mk35T3/ZYWHecYI2UzBaoo5/rgm6MIVf2eJV33RVltNgk1w9fp8+lG7avc4LhaCUI=
+	t=1761825769; cv=none; b=G6n2ZwpOzM8Jhu9brYXgNzv33PSFOy0Ajqm+4Cxfst5USPjveg5mTqfoZTkWIb9ybUMdBkXbEWg+T45SCrxiAY8mXtMd3XdTay5Q36WlcPIl9kR5sSzdnVo5If77UTXR22avUS5hunRTwmnlryv1uJ+3HYQIMj96hquMM55HrRY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761825766; c=relaxed/simple;
-	bh=2wqxvv1LyQFzj8yk+I9X6hMiGmB+zBuKRmM0nZOP2cs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=I0qszVugnRzUQUo6DkPL9DjPKsDkD3F0GSzTUjv1hJ3SEDnObs32Vt3pDS8M7AIJSBazAjJENDjJmsdJLY3WFiy1AyNjRgbyxFXBimxlBtJHPdV2Vg8n7+Mzu0QOi9129ip+9g1eQrr7xMjG67ktYxcrIbqU9MC71j7SodT++gU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UM+pbYlH; arc=none smtp.client-ip=209.85.221.44
+	s=arc-20240116; t=1761825769; c=relaxed/simple;
+	bh=QNI/ZfaPTG0phRPkECwpB5V6JS0vmdEEhkfXIQ5bFTY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=BWHALcFgEFAciwIZ9cRbISpciRP2SZ+4c5VBuZoSQsNn00SalXXpIOQVi01lFFVmqOk8ZSTm7ShbanMV+TK7eMyhk9bh8BUWnge6ra/y29R4oYMZWRvG1/XA6Zi5QuWFFU5IOYjxGnK7v6mCugOVZXSthfB/cWXkNs0NPrYOYxE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JYRVBpuh; arc=none smtp.client-ip=209.85.128.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-427007b1fe5so759494f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 05:02:44 -0700 (PDT)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-47721293fd3so5957735e9.1
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 05:02:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761825763; x=1762430563; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=NKKJA6fRomltCp481BiLWPXK7LT4XBfRN+VIaJM7fMU=;
-        b=UM+pbYlHnUIzInvqsPW9Qf5Yys5Qs2ZO7H4pQk2LVCtO70iJtqNjvge+5dfAMAuJ+8
-         MZVAV2ipFDKy3dvc08osdR5saIy2ZwBJMO+I/vwMfJN9fMbGbFWIKkOYJmHEmi/cWqCM
-         ZJ6Tkjne64CCLm5NeN5Os9a/BM14ftZD7CZIfaAPQgWdR5lke6EFLL70Jd0mB6L6nIeW
-         GsTbbu9AxFHTJxpINB07PmSam17kYqh1ER0cqcc8tko6eJyqkdTLNtFgulaCRDC7cilA
-         wdIEusGAIMLEhiscEce2qSBjchjOGngpbBEPOXAqPRbzpvycO9jqrtqpiYVk2VypNe16
-         oN3A==
+        d=gmail.com; s=20230601; t=1761825766; x=1762430566; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RU/IFjxmC5UzobtaqwaIgLh+ViOP+BMDNSNp906n97k=;
+        b=JYRVBpuhwCTG3MKDsuXU4oIukE9ZjNzr1/HsXdcorHtZlzGsmezEBSrJeMQWqTcUd6
+         gSIrsYBsskYc6aNoTMOMoORoQVLlBA6uSEXtpfa1/S/woLVYNR1XYdHI0zIa0jhDdSPo
+         4SDEYvz3xlxl6gZuZtxZgSGgyLQ6EexCx0XCVTsHDrot4XwZuI3RKw5oeuBTHra1vcUk
+         zFYokU3ho7lm5vv2DHkui1sVNWF4M48qX/61DjYarwb9ytOZLC+n5UuR9sI1ZGwSFxgG
+         ue6syb5Ke5F2d5CvWllwJr5Slw42HVIqKCheT37ppts7IPqrJFR2tLSszfiGxDpXQj+n
+         OPdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761825763; x=1762430563;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NKKJA6fRomltCp481BiLWPXK7LT4XBfRN+VIaJM7fMU=;
-        b=NxZx+bUORcf3X2FZH8WJp2kTkRbQyff3Nzxfp2k58k8gQVxOhm6YTx3x5neyqcL9Ex
-         cAvC/p/ddWqi7CqHe/uK89a2ZsqL6mOmWwZuCePhkeb3Ev98ZZBeADEYCW513mRAdyr/
-         cY0fTWm1zOCMFRsX/ASopnLFKRBx0RBJn5gRVjUVO3KTx3Am5cw8vhgKgGAsO/JK/Y4F
-         X5HKMLpoNZUNYv6KizpaZ1yod9OMjJJ0fot2MPFRW67EwarR8zrerKVjxNxly+9LXdbG
-         k4ygRaSsqU+ft1+oi1WsZZe8maWA2K7DIUTZbuZX74rE93J9YSoUmzniN8UOfw1nPrtO
-         bFMA==
-X-Gm-Message-State: AOJu0Yy7CsnxdWXQXoZ6hXu96N47oyTQiXymeO7/04rCcIByG/0FV3ii
-	PX88T59skQpyR1enBdkJmKpSkqhUO9OHeGz1uanPSOAXBeGVNOHKyjEGgEf7+Pbv
-X-Gm-Gg: ASbGncsHno2knEu14aNIJqiDj0KVeM/Bun3FuunM4t1eR6hLs8XBmO7c5Rl1EoH4Tcg
-	jlvXZgubykz2WxMLmHAviQB9hLCsp0C2rI4za4YiNl4Q5oZXF+WES9NEjeFGmPmCCmr2Hx2IoXd
-	v7YmsYY/vtze9rHphiA7z7V0E2pEvwHZ7iqylM7bNMwFc6tdo8U8psigmj+u488JQagM+yssHjy
-	ug5LalgBBtnAwP1uz0kjJ7XV1Xz94f0deglNJCsvodfCQ/Na4e9N7HoNl2DO3qeH68McKmIrbhI
-	3eK9Ipdz+54zvGdKxNDcDb9OFgJPuoiqX1rTfwqQWROi1oFUo3zFx7La2oPf/nEIY7RCrnn3mcs
-	Jcvrp49Or+OvPYYNhHajJ7wDmXUm1IHqG4XO3u0M/p0hTnlG043YdFNM2jvYNQu2MnUDHyrzqs5
-	dlxR9gGqFVFxeB/LVO0Rcjy/Ff8BENMfCtz7ze0vtlU2hNQiMc5absL8JNe7hYx9q73GbWdJFq
-X-Google-Smtp-Source: AGHT+IGkEzWaIhOle1zjpMnONwufJ9WytmJCNBOpcHQt6RREK2pdj8LZw4LmLrh8QmCmDfNohShFNg==
-X-Received: by 2002:a05:6000:26ce:b0:3e1:2d70:673e with SMTP id ffacd0b85a97d-429aefb2a1fmr5378560f8f.37.1761825763215;
-        Thu, 30 Oct 2025 05:02:43 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761825766; x=1762430566;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RU/IFjxmC5UzobtaqwaIgLh+ViOP+BMDNSNp906n97k=;
+        b=pzT8t0c3w9SGAgvZA/BVy7HXp8mCDy82HoJWPw4ivZpORkIbMbRNC1w8kzpjNSNSmi
+         l3CeHjVUsmvCsugFpBRU2wxtCkhbpHonRWjY3N4YuvOO6JGNApqXZOzy4zC7KQr+cOaF
+         K0E266hd5zJ8SzU3SaZrb8FGhZVtoEqNeq2rBm3BKbvfTOHHy3SHw7XhuZ3Q/sWyUWM3
+         7qHxf7yVywTguuLG6nDd/ZvumQ4v/k73Z36z4Wb0W8pPeyc7HEqNTm92rA+DyHfPuCHK
+         SnofoPKUBwnELOijsqxg+FaRs/O+FjLqbC5dBMCRVi6/3b9Mni3mPZDRBwfS4OeEG51o
+         OckQ==
+X-Gm-Message-State: AOJu0Yx0k3iZ2ZTwrlppfc+n8/+vcFD+KI5xqBYtAtwAk3yvDAB2fwPC
+	u5d2BSjLfLfGA/2jXB0SEsJ3sBVoI+IB9FFyC9b8h3hseNJf+18jBQc971I0q4hT
+X-Gm-Gg: ASbGncsMmQX12ayJv625dAVkT5GcHWatpvhRltbxrJyHOrG6cWr+wuguxppEQBzYSHa
+	fL2X5Z+JsP++LzkDcQ5U+qPxqE1UjRWi6Yl7r52Hmscf9W7SRvpu0noocvAPTFgHQXERxWFD56J
+	3JCgBSXXx9yLZWdWFNShv5Y87cjJOwfot9xQIZlbSqUJHqByarnXKn326k7FADCQChmFCTIglLl
+	Ylpf/F4b/PJy88sNxuRw9+oHMxW0Ed18w54WZMf0xJqluJ67C2qDenEfuW7iUnScXDD+XprsAp0
+	xur3ss8Y/+VCxCn8+JiubqpaPWizLa/SSrBq7k8/h2uNtMBflmkl5ziW5kv1t4hmCf6CE/rIN4V
+	3qZZDVAEHDb9bvBH9atV1dBaKxl4Y0ccQcwqm7BPw5F0hHNQNClXZvxdxmnO8RBAxZMQV6zPPGX
+	igizkkQHOHH+YtjlCNli/ZWvq+BYwgeTGot9aMBG4eyTs98d8H437WdHHOHOOc6VeUnzvWvDl7
+X-Google-Smtp-Source: AGHT+IGF+6bOCrVb3+3E532mSpXBs3rQ5f3sWNWs1oBDAb7QHFohBiPTXpW2jdZsUENdcJwLMcPkBw==
+X-Received: by 2002:a05:600d:830f:b0:477:ede:d2b4 with SMTP id 5b1f17b1804b1-47726263362mr19710395e9.9.1761825765597;
+        Thu, 30 Oct 2025 05:02:45 -0700 (PDT)
 Received: from Lord-Beerus.station (net-93-146-98-100.cust.vodafonedsl.it. [93.146.98.100])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429b9b436efsm2399848f8f.23.2025.10.30.05.02.42
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429b9b436efsm2399848f8f.23.2025.10.30.05.02.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Oct 2025 05:02:42 -0700 (PDT)
+        Thu, 30 Oct 2025 05:02:45 -0700 (PDT)
 From: Stefano Radaelli <stefano.radaelli21@gmail.com>
 To: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
@@ -84,10 +86,12 @@ Cc: Stefano Radaelli <stefano.radaelli21@gmail.com>,
 	Fabio Estevam <festevam@gmail.com>,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 0/4] arm64: dts: freescale: imx93-var-som: Align DTS with hardware revision
-Date: Thu, 30 Oct 2025 13:01:20 +0100
-Message-ID: <20251030120127.509933-1-stefano.radaelli21@gmail.com>
+Subject: [PATCH v2 1/4] arm64: dts: freescale: imx93-var-som: Add WiFi and Bluetooth support
+Date: Thu, 30 Oct 2025 13:01:21 +0100
+Message-ID: <20251030120127.509933-2-stefano.radaelli21@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251030120127.509933-1-stefano.radaelli21@gmail.com>
+References: <20251030120127.509933-1-stefano.radaelli21@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,33 +100,153 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This patch series updates the device tree for the VAR-SOM-MX93 to align it
-with the latest hardware revision of the module.
+Add device tree nodes for the WiFi and Bluetooth module mounted on the
+VAR-SOM-MX93. The module can be based on either the NXP IW612 or IW611
+chipset, depending on the configuration chosen by the customer.
 
-The updates include the addition of missing peripherals and devices present
-on the current SOM version, namely:
- - WiFi and Bluetooth module (NXP IW611/IW612)
- - PMIC (Dual NXP PCA9541)
- - Audio codec (NXP WM8904)
- - Resistive touch controller (TI ADS7846)
+Regardless of the chipset used, WiFi communicates over SDIO and Bluetooth
+over UART.
 
-These changes ensure the DTS reflects the real hardware configuration and
-enable full support for the mentioned peripherals.
+Signed-off-by: Stefano Radaelli <stefano.radaelli21@gmail.com>
+---
+v2:
+ - Fix pinctrl alignment
 
-Stefano Radaelli (4):
-  arm64: dts: freescale: imx93-var-som: Add WiFi and Bluetooth support
-  arm64: dts: freescale: imx93-var-som: Add PMIC support
-  arm64: dts: freescale: imx93-var-som: Add support for WM8904 audio
-    codec
-  arm64: dts: freescale: imx93-var-som: Add support for ADS7846
-    touchscreen
+ .../boot/dts/freescale/imx93-var-som.dtsi     | 94 ++++++++++++++++++-
+ 1 file changed, 93 insertions(+), 1 deletion(-)
 
- .../boot/dts/freescale/imx93-var-som.dtsi     | 332 +++++++++++++++++-
- 1 file changed, 331 insertions(+), 1 deletion(-)
-
-
-base-commit: e53642b87a4f4b03a8d7e5f8507fc3cd0c595ea6
-prerequisite-patch-id: bfa4df6e3787b415218cd441317fb838824e06c3
+diff --git a/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi
+index a5f09487d803..37f7837fb5ac 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi
+@@ -12,7 +12,7 @@ /{
+ 	model = "Variscite VAR-SOM-MX93 module";
+ 	compatible = "variscite,var-som-mx93", "fsl,imx93";
+ 
+-	mmc_pwrseq: mmc-pwrseq {
++	usdhc3_pwrseq: mmc-pwrseq {
+ 		compatible = "mmc-pwrseq-simple";
+ 		post-power-on-delay-ms = <100>;
+ 		power-off-delay-us = <10000>;
+@@ -70,6 +70,18 @@ led@1 {
+ 	};
+ };
+ 
++/* BT module */
++&lpuart5 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_lpuart5>, <&pinctrl_bluetooth>;
++	uart-has-rtscts;
++	status = "okay";
++
++	bluetooth {
++		compatible = "nxp,88w8987-bt";
++	};
++};
++
+ /* eMMC */
+ &usdhc1 {
+ 	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+@@ -81,7 +93,27 @@ &usdhc1 {
+ 	status = "okay";
+ };
+ 
++/* WiFi */
++&usdhc3 {
++	pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
++	pinctrl-0 = <&pinctrl_usdhc3>, <&pinctrl_usdhc3_wlan>;
++	pinctrl-1 = <&pinctrl_usdhc3_100mhz>, <&pinctrl_usdhc3_wlan>;
++	pinctrl-2 = <&pinctrl_usdhc3_200mhz>, <&pinctrl_usdhc3_wlan>;
++	pinctrl-3 = <&pinctrl_usdhc3_sleep>, <&pinctrl_usdhc3_wlan>;
++	bus-width = <4>;
++	mmc-pwrseq = <&usdhc3_pwrseq>;
++	non-removable;
++	wakeup-source;
++	status = "okay";
++};
++
+ &iomuxc {
++	pinctrl_bluetooth: bluetoothgrp {
++		fsl,pins = <
++			MX93_PAD_ENET2_MDIO__GPIO4_IO15		0x51e
++		>;
++	};
++
+ 	pinctrl_eqos: eqosgrp {
+ 		fsl,pins = <
+ 			MX93_PAD_ENET1_MDC__ENET_QOS_MDC			0x57e
+@@ -108,6 +140,15 @@ MX93_PAD_UART2_TXD__GPIO1_IO07			0x51e
+ 		>;
+ 	};
+ 
++	pinctrl_lpuart5: lpuart5grp {
++		fsl,pins = <
++			MX93_PAD_DAP_TDO_TRACESWO__LPUART5_TX   0x31e
++			MX93_PAD_DAP_TDI__LPUART5_RX            0x31e
++			MX93_PAD_DAP_TMS_SWDIO__LPUART5_RTS_B   0x31e
++			MX93_PAD_DAP_TCLK_SWCLK__LPUART5_CTS_B  0x31e
++		>;
++	};
++
+ 	pinctrl_usdhc1: usdhc1grp {
+ 		fsl,pins = <
+ 			MX93_PAD_SD1_CLK__USDHC1_CLK		0x15fe
+@@ -123,4 +164,55 @@ MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x13fe
+ 			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x15fe
+ 		>;
+ 	};
++
++	pinctrl_usdhc3: usdhc3grp {
++		fsl,pins = <
++			MX93_PAD_SD3_CLK__USDHC3_CLK		0x1582 /* SDIO_B_CLK */
++			MX93_PAD_SD3_CMD__USDHC3_CMD		0x40001382 /* SDIO_B_CMD */
++			MX93_PAD_SD3_DATA0__USDHC3_DATA0	0x40001382 /* SDIO_B_D0 */
++			MX93_PAD_SD3_DATA1__USDHC3_DATA1	0x40001382 /* SDIO_B_D1 */
++			MX93_PAD_SD3_DATA2__USDHC3_DATA2	0x40001382 /* SDIO_B_D2 */
++			MX93_PAD_SD3_DATA3__USDHC3_DATA3	0x40001382 /* SDIO_B_D3 */
++		>;
++	};
++
++	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
++		fsl,pins = <
++			MX93_PAD_SD3_CLK__USDHC3_CLK		0x158e /* SDIO_B_CLK */
++			MX93_PAD_SD3_CMD__USDHC3_CMD		0x4000138e /* SDIO_B_CMD */
++			MX93_PAD_SD3_DATA0__USDHC3_DATA0	0x4000138e /* SDIO_B_D0 */
++			MX93_PAD_SD3_DATA1__USDHC3_DATA1	0x4000138e /* SDIO_B_D1 */
++			MX93_PAD_SD3_DATA2__USDHC3_DATA2	0x4000138e /* SDIO_B_D2 */
++			MX93_PAD_SD3_DATA3__USDHC3_DATA3	0x4000138e /* SDIO_B_D3 */
++		>;
++	};
++
++	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
++		fsl,pins = <
++			MX93_PAD_SD3_CLK__USDHC3_CLK		0x15fe /* SDIO_B_CLK */
++			MX93_PAD_SD3_CMD__USDHC3_CMD		0x400013fe /* SDIO_B_CMD */
++			MX93_PAD_SD3_DATA0__USDHC3_DATA0	0x400013fe /* SDIO_B_D0 */
++			MX93_PAD_SD3_DATA1__USDHC3_DATA1	0x400013fe /* SDIO_B_D1 */
++			MX93_PAD_SD3_DATA2__USDHC3_DATA2	0x400013fe /* SDIO_B_D2 */
++			MX93_PAD_SD3_DATA3__USDHC3_DATA3	0x400013fe /* SDIO_B_D3 */
++		>;
++	};
++
++	pinctrl_usdhc3_sleep: usdhc3-sleepgrp {
++		fsl,pins = <
++			MX93_PAD_SD3_CLK__GPIO3_IO20		0x400
++			MX93_PAD_SD3_CMD__GPIO3_IO21		0x400
++			MX93_PAD_SD3_DATA0__GPIO3_IO22		0x400
++			MX93_PAD_SD3_DATA1__GPIO3_IO23		0x400
++			MX93_PAD_SD3_DATA2__GPIO3_IO24		0x400
++			MX93_PAD_SD3_DATA3__GPIO3_IO25		0x400
++		>;
++	};
++
++	pinctrl_usdhc3_wlan: usdhc3-wlangrp {
++		fsl,pins = <
++			MX93_PAD_ENET2_MDC__GPIO4_IO14		0x51e /* WIFI_REG_ON     */
++			MX93_PAD_SD2_RESET_B__GPIO3_IO07	0x51e /* WIFI_PWR_EN     */
++		>;
++	};
+ };
 -- 
 2.43.0
 
