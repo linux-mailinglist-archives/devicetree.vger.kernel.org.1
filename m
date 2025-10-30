@@ -1,71 +1,63 @@
-Return-Path: <devicetree+bounces-233330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 130ACC212AD
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:26:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D422AC212C8
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:27:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 316081A666C6
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 16:24:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9EA71A678B4
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 16:25:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38BC8369977;
-	Thu, 30 Oct 2025 16:22:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFF8A36B96C;
+	Thu, 30 Oct 2025 16:22:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tybFdWkn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y5SX6DkX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09D6236996F;
-	Thu, 30 Oct 2025 16:22:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 942DE36A61C;
+	Thu, 30 Oct 2025 16:22:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761841369; cv=none; b=Buol1IV6XvPO28xk8c1JVOfa0vbn/byX0GG406yAeDCmotQEu6Jc+0y3TPC+QewC/5Jar4/w2JNyIMgJC4ftmNQDu+9n14uLnS2QrQjUFPyyX3F64o5R2KGM/FJ9NYoWmHpTZxpNnNIufVJ5CrD4tSk8mOBQ6KarREnHEMaJrow=
+	t=1761841371; cv=none; b=YSqKLP5jKiXMczJqzIitEd2XmR7zJ82gL6ngWTNg7k4/Xb6kLOXppsNzBiOvG4J01SyJ2OYh8cAHldMMcl3GQGfpLmGgTap4HtCaNn/qBJe6ztzgSZ7XdxRdiLD6l0RDz0hlAEsWjVccq/74FUvyPliLvln+C4JiPH7ZC+Fc42E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761841369; c=relaxed/simple;
-	bh=P3F6FNR2z+xsU0YPcxjJGPxww0x9NMZ6Na5PqU31D4A=;
+	s=arc-20240116; t=1761841371; c=relaxed/simple;
+	bh=WZAmjSoGOgy3/S6QNh5UhcE8tubnTaz9O4xJNaQSAFk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=doB14b+YqmuKBoEaHI/L5Ni47iJCj21Rxym7Ny0HhVmMoipGmMv/jgeCmg6tFc3DPz7useFwVMEimAT25cHBQgAJ8dWNnwOz0d8FYjA1N02SYHXevODJVgZtXqVO2A616vqHZ4K7nvhJoJEe+8eYrFaXfIxfdHqZHp689Xb8ldM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tybFdWkn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C307C19422;
-	Thu, 30 Oct 2025 16:22:47 +0000 (UTC)
+	 MIME-Version:Content-Type; b=klqju9/7i+rFNWDMtbwIdmmRHXbXMz8cwAE0qthntLH0I+1Sbazr0TjUu3Vt9pEotSzE9R2VEPZaP/KF8UehfbMJYExNXS7EKXlW3PxHCg2r2LsViH3WF3g/LIIsJjAGSEGHVgCDCmSEMMibDKWN9mJu3t2joWoouTsU1YgN1cw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y5SX6DkX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84655C4CEF8;
+	Thu, 30 Oct 2025 16:22:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761841368;
-	bh=P3F6FNR2z+xsU0YPcxjJGPxww0x9NMZ6Na5PqU31D4A=;
+	s=k20201202; t=1761841371;
+	bh=WZAmjSoGOgy3/S6QNh5UhcE8tubnTaz9O4xJNaQSAFk=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=tybFdWknYeHd7GYsmZnN9Go8Dgv0EqqCKhRnMRx0yqxBtQ33zo1Qaycm7iRtJ1Vng
-	 wPVqrGJBPOYqDPNnmP7IDua+PZ5oDJdVXuGdpNPhF3nveTqoukjXjEnazhQ1BpJHdd
-	 l4MNVigmle9Yp0ZO4k8gkgO4PCKsgTnMah4x7zKVQuFn0KHXADrA2JNYCPG3jejpeO
-	 BTved38HeWwhrkGDu/qgamNYc3Xnk6gJGtH57HOVgxaGpbHGd4JYYetGbmFlsDdIng
-	 iUodQubO2H6/OQozJHkJuPKrRWecduAveIw23aAupuZ+drDwJ6NKo7goTG+c2gzF8O
-	 GrxwwW/56YL4A==
+	b=Y5SX6DkXrsc369n4H1kxKHkff+B2LkKnBhFxUGs2pC3G4bt/GKh+6eILUEiGhH4IR
+	 yvVOUG3pMhMNGUn8Pdkcd2ZV8of4VBfubr2NoVWkgnZmA7L6DeHNx8UYFXvQgqvwT/
+	 GrO8nHfa7DcQTX9li2xZm4xM/b+a4DLF6rVoJ/dZdUwmGrRhnjox9N6sSB5eFShDGu
+	 TWV6qn51Z3NNu/C8rtdiz7OGH6OCd3tGN89OIwM5hGN4L7114YP7FtwvIrAzSDqyFC
+	 7XJ05kDEqLOZk4IimIGHiJyFy+8Ua0r7896pb3wfVWOS2eKa8SD1K93AWTmNpdtcJI
+	 kzjTc9XUFbkhQ==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Ulf Hansson <ulf.hansson@linaro.org>,
+To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Sarthak Garg <quic_sartgarg@quicinc.com>
-Cc: linux-mmc@vger.kernel.org,
+	Xin Liu <xin.liu@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	quic_nguyenb@quicinc.com,
-	quic_rampraka@quicinc.com,
-	quic_pragalla@quicinc.com,
-	quic_sayalil@quicinc.com,
-	quic_nitirawa@quicinc.com,
-	quic_bhaskarv@quicinc.com,
-	kernel@oss.qualcomm.com
-Subject: Re: (subset) [PATCH V6 0/4] Add level shifter support for qualcomm SOC's.
-Date: Thu, 30 Oct 2025 11:25:40 -0500
-Message-ID: <176184154241.475875.8535266594593136722.b4-ty@kernel.org>
+	tingwei.zhang@oss.qualcomm.com,
+	jie.gan@oss.qualcomm.com
+Subject: Re: [PATCH] arm64: dts: qcom: qcs615: Update 'model' string for qcs615 ride
+Date: Thu, 30 Oct 2025 11:25:43 -0500
+Message-ID: <176184154236.475875.2628791155363083563.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20250908104122.2062653-1-quic_sartgarg@quicinc.com>
-References: <20250908104122.2062653-1-quic_sartgarg@quicinc.com>
+In-Reply-To: <20251029023137.381386-1-xin.liu@oss.qualcomm.com>
+References: <20251029023137.381386-1-xin.liu@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,22 +68,17 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Mon, 08 Sep 2025 16:11:18 +0530, Sarthak Garg wrote:
-> Add level shifter support for qualcomm SOC's.
+On Tue, 28 Oct 2025 19:31:35 -0700, Xin Liu wrote:
+> Update the 'model' property in the QCS615-ride device tree to include
+> the public board name "IQ-615 Beta EVK". This ensures consistency with
+> official documentation and release notes.
 > 
-> - Changed from v5
->     - As suggested by Krzysztof Kozlowski reintroduced minimum/maximum
->     in dt bindings and avoid repeating constraints in free form
->     text.
->     - As suggested by Krzysztof Kozlowski/Konrad Dybcio update commit
->     message reflecting discussions and previous disagreements.
 > 
-> [...]
 
 Applied, thanks!
 
-[4/4] arm64: dts: qcom: sm8550: Limit max SD HS mode frequency by default
-      commit: c3398456f6f6121e79f6c3d9bff00076cf7a3521
+[1/1] arm64: dts: qcom: qcs615: Update 'model' string for qcs615 ride
+      commit: 500d3d0e88362eaee5e655bcd3ab2e9c808bec66
 
 Best regards,
 -- 
