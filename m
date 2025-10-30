@@ -1,134 +1,222 @@
-Return-Path: <devicetree+bounces-233118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 027FEC1F3AA
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 10:17:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6920AC1F3C5
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 10:19:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A0E1B34D62F
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 09:17:26 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E246934D732
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 09:19:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97070340286;
-	Thu, 30 Oct 2025 09:17:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 966C831986E;
+	Thu, 30 Oct 2025 09:19:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZjyamIo9"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="aSFRlqer"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 274AB33EAE3
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 09:17:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 106342EC0B9
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 09:19:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761815831; cv=none; b=vAc8g6HAPlYmZebxQT3KvzMBl+Tvb4GuMWPTA4H33Hnl+F8tRTtNPoZHM03u4RyitdgJhKhMHA+BFVyh/l7C0zJFscXcxcUcUBLbs3k60oLle5PRaJ6wgC2fGHRWYuPIWfkJ/oHd3v5rWdwYTx9/V8xGKsrBngNXSxdknyNY+d4=
+	t=1761815945; cv=none; b=Ra6xFRUEZuarctEG1RlZ1IDs3dZsVdqpt1fC4jFhebyDUStqMNk9mQ9w+KCl0BkSfuwLcoLZNpnQukhJ+UYKZNI79+MoLjHitO3WJOpNBi2FL3XSTyV+HlCMps05b2UOizT+ep95YqEySWJnf9JOF+yIFOjnm4YZ8JRZzJZPdxQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761815831; c=relaxed/simple;
-	bh=BnIpf9hcG8I6QANI+v+HvnUpylMPQT5dEVYGSmlgmkY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ofSoJ818Z0vwIekDVYC9g3kIRVL7FngeQTnk6gh02FVLyXVafO0NXoLCjK/9qnjw1M2KPqCvFHwIl+1F3RY2OgVQnrNRjX4u+Qd9ZTjEQa8CGftyXaTsg3XFt0bs5Og2yW9nIUq/OkQLIr9BFEXM9GYvlQnv29+sX+PLrL9B/1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZjyamIo9; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2699ef1b4e3so1057055ad.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 02:17:09 -0700 (PDT)
+	s=arc-20240116; t=1761815945; c=relaxed/simple;
+	bh=zqYIIl4nQJ86jOsDALK6PFe87lmlujk5rxiqWGuMMag=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=L1e8+Lm3+N5gsB0ebk3/rQ7DIkFdyXwqUFiEIoQRgLOvy05KOpr9NgP5QFBULD4Hrr87ESO+Q0r8eH5dVSRLKi0cDkwOrloCqUjXd/GMEAaX7ZwQ2ady+oKvU2i/gc32Cos5atDZkgGm1C/ZXs69fCDslwscyYplv/v1VBtBJaw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=aSFRlqer; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3ece1102998so545848f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 02:19:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761815829; x=1762420629; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xiJKIWzvTq177G5Z1HqBbhq6LXsLpoXZ8DAbP1RW7sI=;
-        b=ZjyamIo9fQVodqwAKhg7S0fbJbZzga+mt5KgDX77Ly5eCcdwsNj3dJk+3rwVI/9W95
-         oa8aE8nmeTixmXYONeudtZkN++jVW0BP9Cq6vu4jDa7l3yv7XesXAJVAch7YymotdOGU
-         gqtQOOysbpvh3lWjfDKHLT5t6D9xeLRzne7kcSZQL7uypSSE+LB89qHvkLVdjjdJd/EX
-         l4zlcXG/2tRVIPZnrdvjZMtF+5G9te6bBNoFH2n8cnOlx4fJLCA/gKE/cYWUdhPPW6VI
-         FWgSuQwzAsSgwbwzm+2uiGzXY9DDRyofFBJjCa2fyOY8aqFbfrQ27fqQJ/3B4ufi0xXO
-         wUZA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1761815941; x=1762420741; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YSwv5JuXuXyqhsYe8FeccLuDilzKVXkpn0YsKK5l/YY=;
+        b=aSFRlqerOD9E7rZer01+JEOb3p+jKWhYY/c1kHmCtBZ+5PAxq1xuq68mHQl9L2LxFV
+         5pPuYQxcr9bNH3jd+RRMf6OsehnyzkzSsHLcvB0zQIvf456QzJXn0hrnNhZEx4zAm0o2
+         Z+eiTWkGd6dZ8BDNqMnadxhW7850ZIRXsALwB3WjdPtdmCZ0qLaX5Dkkrxkdh+1XTq4J
+         +il4ip5cmbJNmr2S9hJZHmP4RZ3pzxLUFnLm44ewe0QmX8ua73N9Kn9qCv24c7PNtwoL
+         IsubryFutiF1UCqjOl8oLdpFKgGrBdCNOEiqtVELqrlqBdyWsWuM5R3VY0JFdFI5b5m5
+         d1tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761815829; x=1762420629;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xiJKIWzvTq177G5Z1HqBbhq6LXsLpoXZ8DAbP1RW7sI=;
-        b=dJcH9qKT2MHKpAnaT535dif8EIQkoeR10Nb/ijZmL2lDynYeeOZ2mUnmlun5BS/3OL
-         R0wujq8iCq38AOxfp1hpfLu42gmxe3zgGI5bOY18G/RXkDkMiVPomfkmpw9JEN1v3UIG
-         M9SHBemHE+5fFUPcocNhUOIietKLSvGjPpSICMePmmNnvQFLJNBuDeXuDOucpqtnDLun
-         CiuXjuJscO4yDavRF1Im9GfDj6RwkR6IfGfG5wAvP/JDJrWrYaA0Pk+3QVpntsv3ZIbm
-         sbkkzfOi7nmjxOkRLYPsTckBoOfS8QMLWuIhMDT3NMiOLG7eELWs4e092btiDLbPr4g2
-         qtBw==
-X-Forwarded-Encrypted: i=1; AJvYcCUykvVUb4kNvLKqfdMAbUekoRnvBV5IMzdVNXuwVTVM2tpImJoA45q2k1X+EGV+pGpeE3FVH8/tXpvt@vger.kernel.org
-X-Gm-Message-State: AOJu0YyXixFIhkDOJuagUIXYWuQbcYL8t7i20ZtgPZjbn0cD0z9D2UxD
-	yUAkTN7u95VIpf3t8KLt1UDnI9KdGR85zDOlbqJhtT6gfh9FoPOvE55U
-X-Gm-Gg: ASbGncuicMfoDirLjep2tHInELblf+z0AyvRbzROdezapJVXuaBVBiUAwniR7dMoaFv
-	r4tgKtVJ3hs4ap+ujemBE1r0qeT82BSiYyq/eL0og9RV2uqK06GeODGBou16jCrsYDqq5oHhEIx
-	wP6CJSr1ZnmPbDOF6sjnRbrpzFstbGWrvkNTk+G5Twf1hXsDkETPyRQBLCbzm2O9IfeGRmBAUm4
-	vGvT69EtWu/HB5eVKiAxtScQn+mAu8L9zU6OM0rbiGmQcD8ggJRWWwCflNUWVy1TIo9Nx7uu+js
-	8WqkGBvOcIfYDGXwhkaTJEC9KCcgkh8tJlLjzVugKGlsHVduY+H9Aky7vqhRPfy/Orbgi3idviN
-	NC+arfVCvjT285kPXuwlZVF2j9SvWYEi3KWfDbgqxloPsQ0M/HFNeOB2f1UCH76yBPnD7J2kk5h
-	xQ
-X-Google-Smtp-Source: AGHT+IEHwddQUWpun54rQcO7TrQwu6s7Rbw0jMDLSLHGGO431eRobH10Dl1uhW5PbFwDQhRzruCIvw==
-X-Received: by 2002:a17:902:8c92:b0:294:9847:fbfc with SMTP id d9443c01a7336-294def6c333mr27333195ad.11.1761815829218;
-        Thu, 30 Oct 2025 02:17:09 -0700 (PDT)
-Received: from rock-5b.. ([45.32.55.39])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29498e42f3fsm178469605ad.103.2025.10.30.02.16.58
+        d=1e100.net; s=20230601; t=1761815941; x=1762420741;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YSwv5JuXuXyqhsYe8FeccLuDilzKVXkpn0YsKK5l/YY=;
+        b=BrnTSq9h8Q4mzyBw0m4v+MusJt2XNMYDOv1y/COdEgkMnU6Zlt3cCNVPMC8UjmGV0m
+         TNXIKsVT3HZVVmxq8+1xffddoOhLtZM798Nb+dCCDIPLg9gqvYbGeu8Stf/iGtR8bI0u
+         FZt1xr5xS6CGUlgdWitX+u+XVUTjd0R77cNoLZJoWJKo+Gfb3yIECBK7If1ri0ICwzm3
+         GUJSOCBCnQogWKqOZJ3CZqS+mLWLlDGy7OFF323jJV+dOGXLtWcGUJhDpmVrZmArmtQd
+         NQnfVibM0C5tzR7Ssuqy2G9b+MIoRLrf+B3Y5mEm0Yp1puH+n9DqqGELmSDsUvxvEzlK
+         8H8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVMdJHJovGPqJ7L2HgKeOg1SLZp9sl33U1l7XNGQQlMbxxH6CcIy+FOkhDDOLV2aOUlDXHuccRCqNf0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyz8aWcaYmGFdFKnfTLlr+WyHHyKPMH0tzWZ2GCpatW5hCLBtPT
+	6Hu33gW2H8ina/dGAM59baG+5lmM+XSpTKiNgYd5x55JtsoxidQDPIrctLHd0MiLkQY=
+X-Gm-Gg: ASbGnculqaDq0PCLfVQ8TV13UVn2UBQJ45uOF1WeMv4p76alrbJS5gNqfsK6vCkr4C/
+	2KjrfI1cEnR9VWlq8JLUjXFj1q/usOTzN74ijWi7bRhTZJHsCVIloM5H2X8ec/7aoHTWPzYes6n
+	J/guzmtbEOV7ALtuEW9JYj2Je2zclHRfbPqlG1b/t3sP9jv8RNHX+q1Pxy51BPQ7tU72v6LYWXe
+	0rabpnbd8W8FajAVOPbnCdA/bBXsXxm9DWIvPV8OwCmqDSaf4rp/YEfxRydKdEFjSCsN3R4fsrS
+	UPR8YkYzBEd/TEZYu/n2I0wI5d5Sc7mGCXvq5fY2oSuiePDYD4jGEbL7xdJQxKhvWhpAfsfvlTQ
+	UsDzCrkyXNUW7Qt6iWAT8sqKMLE0vPB2gNgZvoxsHIWbdGOqCQYb5EdTtIsZd3Ntg08K/QQQCvA
+	==
+X-Google-Smtp-Source: AGHT+IFBJraJgSepwNLraPb2/w3Ksa7ALKvRzY+k0hU5XwnAcd25WvkxjzsX4QfROikuqsVWVU8mTg==
+X-Received: by 2002:a5d:5d06:0:b0:428:4354:aa36 with SMTP id ffacd0b85a97d-429aefcd05fmr5037872f8f.58.1761815941338;
+        Thu, 30 Oct 2025 02:19:01 -0700 (PDT)
+Received: from localhost ([2001:4090:a245:8496:49da:2c07:5e9a:7fb9])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-429952de971sm30459906f8f.39.2025.10.30.02.19.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Oct 2025 02:17:08 -0700 (PDT)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: cnsztl@gmail.com
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dsimic@manjaro.org,
-	grzegorz@sternicz.uk,
-	heiko@sntech.de,
-	jonas@kwiboo.se,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	liujianfeng1994@gmail.com,
-	robh@kernel.org,
-	shawn.lin@rock-chips.com
-Subject: Re: [PATCH] arm64: dts: rockchip: fix eMMC corruption on NanoPC-T6 with A3A444 chips
-Date: Thu, 30 Oct 2025 17:16:49 +0800
-Message-ID: <20251030091649.25396-1-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <5af928c4-4b6e-489c-ad39-26cef3dd7473@gmail.com>
-References: <5af928c4-4b6e-489c-ad39-26cef3dd7473@gmail.com>
+        Thu, 30 Oct 2025 02:19:00 -0700 (PDT)
+From: "Markus Schneider-Pargmann (TI.com)" <msp@baylibre.com>
+Subject: [PATCH v4 0/6] arm64: dts: ti: k3-am62: Add wakeup-sources for low
+ power modes
+Date: Thu, 30 Oct 2025 10:17:22 +0100
+Message-Id: <20251030-topic-am62-dt-partialio-v6-15-v4-0-6b520dfa8591@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACItA2kC/4XOTWrDMBAF4KsYrTtFGvmnyar3KFmMpXEzEFuur
+ JqE4LtHsaGFUvDyScz33l1NHIUndSzuKvIsk4Qhh/KlUO5MwyeD+JwVaqx0aSpIYRQH1NcIPsF
+ IMQldJMBcQ/612Hhvus40nlQ2xsidXFf/47TlyF/fuSZtj6qlicGFvpd0LAa+JnhWGY0H9Tw4y
+ 5RCvK37ZrNebFPQ7EyZDWioHXuriTrv2/eWbhdpI7/muhWf8Rd8M7gHYgaxshXauiRN7h/Q/oB
+ G692FNoONPlQdY23Z8R9wWZYH+kraK6ABAAA=
+X-Change-ID: 20250415-topic-am62-dt-partialio-v6-15-327dd1ff17da
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Vishal Mahaveer <vishalm@ti.com>, 
+ Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, 
+ Sebin Francis <sebin.francis@ti.com>, Kendall Willis <k-willis@ti.com>, 
+ Akashdeep Kaur <a-kaur@ti.com>, 
+ "Markus Schneider-Pargmann (TI.com)" <msp@baylibre.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4652; i=msp@baylibre.com;
+ h=from:subject:message-id; bh=zqYIIl4nQJ86jOsDALK6PFe87lmlujk5rxiqWGuMMag=;
+ b=owGbwMvMwCXWejAsc4KoVzDjabUkhkxmXafTwYycM18bb1f8P+Ve37Y/899pCUuKf1g2/eeb3
+ oMFgS9jO0pZGMS4GGTFFFk6E0PT/svvPJa8aNlmmDmsTCBDGLg4BWAiC2QZ/kprWF1c+eC2VNbH
+ o8+r3+2W91NcH98o/OJ2jtPnKeWrPL8zMuywmx8WtfXiV3c2i6P9/sE71jtJuBvE/Plv5iz2PqQ
+ 2jw0A
+X-Developer-Key: i=msp@baylibre.com; a=openpgp;
+ fpr=BADD88DB889FDC3E8A3D5FE612FA6A01E0A45B41
 
-Hi Tianling,
+Hi,
 
-On Tue, 28 Oct 2025 01:34:25 +0800, Tianling Shen wrote:
->>> May I ask you to test another patch I just posted to see if it fixes
->>> your issue?
->>>
->>> https://patchwork.kernel.org/project/linux-mmc/ 
->>> patch/1760924981-52339-1- git-send-email-shawn.lin@rock-chips.com/
->> 
->> Thank you for the patch! I will ask my friend to test it but he uses 
->> this board as a home router, so it may take a few days or weeks to 
->> report the result.
->
->Hi all, sorry for the late. My friend has tested this patch and it works 
->fine after 50 times dd operation. A big thanks to Shawn!
->
->And hi Jianfeng, I found you made a similiar patch[1] for the ROCK 5 ITX 
->board to lower down the mmc speed, could you please check if this patch 
->also fixes your issue?
+This series adds devicetree changes needed for Partial-IO support on TI
+am62, am62a, and am62p SoCs. It defines system states for various low
+power modes and configures the wakeup-sources for devices in the CANUART
+group. Depending on the SoC and board details, some low power modes may
+not be available, so the wakeup-sources are described in the board
+files. The series also adds the necessary pinctrl settings required for
+proper wakeup functionality.
 
-I don't have rock 5 itx near my hand to test, but I have another board
-ROCK 5B with similar issue. And after applying the patch from Shawn, this
-board can run HS400 mode with max freq 200000000.
+Partial-IO Overview
+------------------
+Partial-IO is a low power system state in which nearly everything is
+turned off except the pins of the CANUART group (mcu_mcan0, mcu_mcan1,
+wkup_uart0 and mcu_uart0). These devices can trigger a wakeup of the
+system on pin activity. Note that this does not resume the system as the
+DDR is off as well. So this state can be considered a power-off state
+with wakeup capabilities.
 
-I will test on rock 5 itx later when I have chance.
+A documentation can also be found in section 6.2.4 in the TRM:
+  https://www.ti.com/lit/pdf/spruiv7
+
+Implementation Details
+----------------------
+The complete Partial-IO feature requires three coordinated series, each
+handling a different aspect of the implementation:
+
+1. [MERGED] m_can driver series: Implements device-specific wakeup
+   functionality for m_can devices, allowing them to be set as wakeup
+   sources. This is available in linux-next now.
+    https://lore.kernel.org/r/20251001-topic-mcan-wakeup-source-v6-12-v10-0-4ab508ac5d1e@baylibre.com
+
+2. This series (devicetree): Defines system states and wakeup sources in
+   the devicetree for am62, am62a and am62p.
+
+3. TI-SCI firmware series: Implements the firmware interface to enter
+   Partial-IO mode when appropriate wakeup sources are enabled.
+    https://gitlab.baylibre.com/msp8/linux/-/tree/topic/tisci-partialio/v6.18?ref_type=heads
+
+Testing
+-------
+A test branch is available here that includes all patches required to
+test Partial-IO:
+
+https://gitlab.baylibre.com/msp8/linux/-/tree/integration/am62-partialio/v6.18?ref_type=heads
+
+After enabling Wake-on-LAN the system can be powered off and will enter
+the Partial-IO state in which it can be woken up by activity on the
+specific pins:
+    ethtool -s can0 wol p
+    ethtool -s can1 wol p
+    poweroff
+
+I tested these patches on am62-lp-sk.
+
+Best,
+Markus
+
+Previous versions
+-----------------
+ - Link to v3: https://lore.kernel.org/r/20251001-topic-am62-dt-partialio-v6-15-v3-0-7095fe263ece@baylibre.com
+ - Link to v2: https://lore.kernel.org/r/20250812-topic-am62-dt-partialio-v6-15-v2-0-25352364a0ac@baylibre.com
+ - Link to v1: https://lore.kernel.org/r/20250421-topic-am62-dt-partialio-v6-15-v1-0-6ced30aafddb@baylibre.com
+ - As part of the series "firmware: ti_sci: Partial-IO support"
+   https://lore.kernel.org/r/20250306-topic-am62-partialio-v6-12-b4-v5-0-f9323d3744a2@baylibre.com
+
+Changes in v4:
+ - Rebase to next-20251029
+
+Changes in v3:
+ - Drop patch to add WKUP_EN and rebase to linux-next to base on the
+   patch that accepted which adds PIN_WKUP_EN instead
+   https://lore.kernel.org/all/20250909044108.2541534-1-a-kaur@ti.com/
+ - Fix small typos in the commit messages
+ - Use AM62AX_MCU_IOPAD for am62a and AM62PX_MCU_IOPAD for am62p
+
+Changes in v2:
+ - Combine k3-am62a7-sk.dts devicetree nodes with existing ones
+ - Combine k3-am62p5-sk.dts devicetree nodes with existing ones
+ - Update the idle-state-name properties to the new names from the
+   dt-schema
+ - Rebase to 6.17-rc1
+
+Signed-off-by: Markus Schneider-Pargmann (TI.com) <msp@baylibre.com>
+---
+Markus Schneider-Pargmann (TI.com) (6):
+      arm64: dts: ti: k3-am62: Define possible system states
+      arm64: dts: ti: k3-am62a: Define possible system states
+      arm64: dts: ti: k3-am62p: Define possible system states
+      arm64: dts: ti: k3-am62-lp-sk: Set wakeup-source system-states
+      arm64: dts: ti: k3-am62a7-sk: Set wakeup-source system-states
+      arm64: dts: ti: k3-am62p5-sk: Set wakeup-source system-states
+
+ arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts | 60 +++++++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62.dtsi      | 22 ++++++++++
+ arch/arm64/boot/dts/ti/k3-am62a.dtsi     | 27 ++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts  | 71 ++++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62p.dtsi     | 27 ++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts  | 71 ++++++++++++++++++++++++++++++++
+ 6 files changed, 278 insertions(+)
+---
+base-commit: c9a389ffad27e7847c69f4d2b67ba56b77190209
+change-id: 20250415-topic-am62-dt-partialio-v6-15-327dd1ff17da
 
 Best regards,
-Jianfeng
+-- 
+Markus Schneider-Pargmann (TI.com) <msp@baylibre.com>
+
 
