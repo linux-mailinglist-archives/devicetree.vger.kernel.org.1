@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-233141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0441EC1F632
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 10:51:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9FEFC1F665
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 10:56:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 398EB1A20BC9
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 09:49:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 804B43B87C0
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 09:56:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B69534A763;
-	Thu, 30 Oct 2025 09:49:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74CD3345CAC;
+	Thu, 30 Oct 2025 09:56:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="NeG8swoh"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="aepXyd1+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D879032B9AB;
-	Thu, 30 Oct 2025 09:49:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A98C313E0B;
+	Thu, 30 Oct 2025 09:56:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761817772; cv=none; b=JqBpXJfQONaqKwbEnbWeLLVJy8UECaR6wXYg6x/JhWx6OQ+gYmSXPUj5Mxj58fPp2iTYg545iufdfcu8g2NTHTA7wUUJwlz7mPsbjrGfgAAguXHxgDPlhKQ/9rhktLviQ1XwhltusdekPRX3B2wAo+Ka7I2Q2KEQrpT7yftWMa8=
+	t=1761818178; cv=none; b=XIoIT7EPJ/jo7KsO4VFCkzQy1PFk5ZXTBQxKJ0HhnEHrvXrSqUHgt4TXPqm+svX5/1NryCfjqupu+eIdN0p0ynkoLwybDEu4cbYedkckHN45Bxq+9R8oFLe2nk+Z5CSV4kKjdXUmt2Z6ZmtdqEoOUmQ2TEkd7s9d1On5HjgN92g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761817772; c=relaxed/simple;
-	bh=V5ZhmCAm/cdZVibF7PIYmLYjZQBg5RjTckmSZwa+atQ=;
+	s=arc-20240116; t=1761818178; c=relaxed/simple;
+	bh=WvybbrxQC7xpFEbmIAT4BCpykfs8com5ayDGPmW+4Gg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MwjSXQGrQceAxlZpTm05sPJ3N7yxn6VebEWzcouJQJFIS8ACLRsPhQBQUhRaSYt3zGpuLkBhQdjMSp+8zpWIM5a2C3X9AxDT4TEHNra7hv4KJtTOnU8CoyiYD6pdzhx8GwTO6QvVJ0LfQj0qCwv8JQyP85lMOJesTpXQPWnwxd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=NeG8swoh; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:Content-Type; b=FUB6rcUvSRAtRVoVaioXcBZQaZFP6qXffeSffuwrGTFbEcce7nBuTh8o+zUH64C7vSIbFyO4juXYrRBPEWQ5nbP0Hq2/ub5EPUAy2aFuKt5ryZfUnrJSTZbnGMK/RX5PdJZ5vwBROFw/uL4GSn+bd9N1hY//nbFs63AKm0iHCq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=aepXyd1+; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1761817768;
-	bh=V5ZhmCAm/cdZVibF7PIYmLYjZQBg5RjTckmSZwa+atQ=;
+	s=mail; t=1761818174;
+	bh=WvybbrxQC7xpFEbmIAT4BCpykfs8com5ayDGPmW+4Gg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NeG8swohnFlfiGgInFLvqViaV9n6mdCKVCy7FqA0Byk+V6riFCrCzIjik6HY4QAi7
-	 K+Pwk+d2Mt7praO4+N2hf8CNB8Ldyd4yFFFaudG/X1bbxxyqe2L6o4aCFYAkAb614M
-	 LBoTRN4LWl8FcZTTZBBIA20yBr3BW6MkgfXlx9mNQnukvY4Uy80ZigCaex4oidhh1d
-	 Ec+h2w4GgMom6sjmjUp/kHvhEPpMRjzmnUPES1zLsoKbFHQJu8f8BrHRia09RDgkUG
-	 dZIXKNSYFbj5PfpSktZRurBHwSE6S/Z7SdzakxhcAvGtF/JLmXuURczGx8kIZY3FGe
-	 YJEPkjzE+QYAg==
+	b=aepXyd1+E9wjCTbPm8FjKmWX5cbmUEfZepgfuu7m775MvfyKGxj5t3biFLJUhBsaP
+	 BlI4hnGsGmz4KBUC2HL5oKkQdZgI80XiqUTVVTk8CRCx54/5I1BeQXWmMDDBau+02m
+	 QmkULgfO2DIAZVmbphGwIjQZilrt9wRtNPbvAqowH/OTrzp7nodJoPfXSPMqNkq73N
+	 fTbFNqTSrs4CxUR4KcBDsmGWAufjQjENajbIPzujuECyCrh8/HoXJbfYVW+qFLB4XZ
+	 XlPMGEpyj2iHq8znx1U0t0XUbg4Tth0mgzYkzoGUZlLdrRMNHzANo4PzvSk5KMK7UY
+	 On9+nctzT84TA==
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9990717E009B;
-	Thu, 30 Oct 2025 10:49:27 +0100 (CET)
-Message-ID: <f4c3d7e6-22a8-4ef9-8d2b-a40637bc0626@collabora.com>
-Date: Thu, 30 Oct 2025 10:49:27 +0100
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 289EC17E009B;
+	Thu, 30 Oct 2025 10:56:14 +0100 (CET)
+Message-ID: <51705227-9172-47db-a9b3-3c8ea3fa5338@collabora.com>
+Date: Thu, 30 Oct 2025 10:56:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,26 +57,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: i2c: i2c-mt65xx: Add compatible for MT8189
- SoC
+Subject: Re: [PATCH] dt-bindings: watchdog: mediatek,mtk-wdt: Add compatible
+ for MT8189 SoC
 To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- Qii Wang <qii.wang@mediatek.com>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: kernel@collabora.com, linux-i2c@vger.kernel.org,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
+Cc: kernel@collabora.com, linux-watchdog@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20251030-mt8189-dt-bindings-i2c-v1-1-5b60914c6453@collabora.com>
+References: <20251030-mt8189-dt-bindings-wdt-v1-1-975971ba29e5@collabora.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <20251030-mt8189-dt-bindings-i2c-v1-1-5b60914c6453@collabora.com>
+In-Reply-To: <20251030-mt8189-dt-bindings-wdt-v1-1-975971ba29e5@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Il 30/10/25 08:56, Louis-Alexis Eyraud ha scritto:
-> Add compatible string for MT8189 SoC.
-> Its multiple I2C controller instances are compatible with the ones
-> found in the MT8188 SoC.
+Il 30/10/25 08:40, Louis-Alexis Eyraud ha scritto:
+> Add compatible string for the watchdog block on MT8189 SoC, which is
+> compatible with the one used on MT6589.
 > 
 > Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 
