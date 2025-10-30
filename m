@@ -1,64 +1,68 @@
-Return-Path: <devicetree+bounces-233423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE193C21EAF
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 20:21:55 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0EF8C21EC4
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 20:23:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BEAE93BB86A
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 19:21:29 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A1EF34EA3E0
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 19:23:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A821C2FC890;
-	Thu, 30 Oct 2025 19:21:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BC282E2661;
+	Thu, 30 Oct 2025 19:23:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fS++9y9M"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kCjGVX7P"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 778082F83B0;
-	Thu, 30 Oct 2025 19:21:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F193212559;
+	Thu, 30 Oct 2025 19:23:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761852061; cv=none; b=NsX+0n8kQV3YRCR+QAA2pKWOJwBeZViJdoKTmNzzm6UhzsCw2h6hlgZOl2FdHTDntmdS3BqD2okJ4bswYLszShHz/VsgKNyBpf5smLrtkJ6r6uTwB2qidq8JcPDVC6mXw2VFhnDSvluZZ0lQ2vtnToRLLwbhYoYI4+QHtuJ26S0=
+	t=1761852233; cv=none; b=lXI2GLXHTZdXg6drmM8ylQLCBrT2G+U2RRbCDqbLmYrwoFGx099DKUfRkhDLajQIzAxGJc4s9p0ifVnSac6HWSrj4viOvvunPBN0emgVbWT1OuO915RSNsUUlaC5Q09P8byV7hqCLlUh+0uhSeEUtMv1u2QKq6nSSH9v2VcajIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761852061; c=relaxed/simple;
-	bh=0JkqsqS5tCb85gDbvwjqHeyedU+RjUbJ8rLIGtE2kmw=;
+	s=arc-20240116; t=1761852233; c=relaxed/simple;
+	bh=l29PuVlYB/DSDvAWFqCiJUgqQxEZ/UZkLaFHmISdTS8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DGhLKyrSbqyr31Xk/BfwaUTnk5tKXQcpiTj0tk390UVNfyQFBhLeKKoCn/5JyGdvNXn0y+7T3vh/Dg/3ZmWKGNAER6rHeasa1bwhs+nw85q+H7c+LUtLiUqoH0ksVsvWLdAumugKM3Jn7XsnVkA6DvS7eKNzUTMZBXCBu3bLw9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fS++9y9M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78458C4CEFB;
-	Thu, 30 Oct 2025 19:20:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lDOd0Ui8c+5TkUf7v+ht+t2U3X/+zIEGhmnvmb/U/l+xvUE2UBain+K0R5XxkF0U7Irx+slsvQJcPdOTyrQSpYX+ausko5UxlX3Nbgd2xE47DaxtkNOGrCBpTWclgNvlAJoLTDbGPiM8bg+fUKdL790nSwF77xKTBhIZtcyjoeg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kCjGVX7P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE3A7C4CEF8;
+	Thu, 30 Oct 2025 19:23:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761852061;
-	bh=0JkqsqS5tCb85gDbvwjqHeyedU+RjUbJ8rLIGtE2kmw=;
+	s=k20201202; t=1761852233;
+	bh=l29PuVlYB/DSDvAWFqCiJUgqQxEZ/UZkLaFHmISdTS8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fS++9y9MCF0ZiskBXTARq1lIm1HeM+e/3U8/QJfmn2XcKwOMoofX5P6ymKVAjS02F
-	 2m9+5HqpYDLBS1l2PN9iq/lbOpNxjwvAHA4MIeQx/u8hoqoYPu+EEB+AHRPFeFDugt
-	 s0g2w6zFLWu6ZN3jSBbXTtsPmV0XeMX843zaD4pCBfzgBe3HKgJL5AyFIbbQigOJ8S
-	 4rFMNsdC6koU5YgJZ4xG6jd5FCREJhIU/6g2mCfAkWBcenxF+151cGUYu9p5S+nxFW
-	 +1SpI4esnayb+/1WasIDYuQ9gt4jlyMkUblTBEm9DT9yYBOm5vkgEA6ININn7K4/Cr
-	 Y/STOIT4slusQ==
-Date: Thu, 30 Oct 2025 19:20:56 +0000
+	b=kCjGVX7PgeXHms54JYg6MBTn0B/6ZQ9qrtHyj/juHePkmR4v5IrRKHm99qgv2m1SE
+	 9lGao6aQ5QfnB3DWrf9iE5yLFgvs9pjyGaOO+gRdHn6Mnvc2XVNjmjVqRcboSO/sln
+	 fWF61JTzn2ziCdBhEcjxYpBcljMC3NA2xJCwacod7fUi19ItiqcHHjLmaDyne3amwk
+	 ApnAok0v2SFAnHj47rNaD63rpaPswsX9tDy7pCv34BJMARqh2IxT50cew9vfAka7TA
+	 zyVD7lE2q/97py207wnF4WOXv/UUzvvD0bLwvbjHaczHi783jU0R1tQXCMwdipvCxf
+	 lc2tpGOMGi5XA==
+Date: Thu, 30 Oct 2025 19:23:47 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Biju <biju.das.au@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 01/13] dt-bindings: serial: renesas,rsci: Document
- RZ/G3E support
-Message-ID: <20251030-regroup-garter-c70c7fc6a71a@spud>
-References: <20251030175811.607137-1-biju.das.jz@bp.renesas.com>
- <20251030175811.607137-2-biju.das.jz@bp.renesas.com>
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Hans Verkuil <hverkuil@xs4all.nl>, Hans de Goede <hansg@kernel.org>,
+	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Tarang Raval <tarang.raval@siliconsignals.io>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: media: i2c: document Sony IMX111
+ CMOS sensor
+Message-ID: <20251030-wind-pellet-ecd2c96d26c6@spud>
+References: <20251030115757.33695-1-clamor95@gmail.com>
+ <20251030115757.33695-2-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,46 +70,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="96gbhf6HoQd777Ic"
+	protocol="application/pgp-signature"; boundary="g0VdOFDvWShnp82A"
 Content-Disposition: inline
-In-Reply-To: <20251030175811.607137-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20251030115757.33695-2-clamor95@gmail.com>
 
 
---96gbhf6HoQd777Ic
+--g0VdOFDvWShnp82A
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 30, 2025 at 05:57:49PM +0000, Biju wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
+On Thu, Oct 30, 2025 at 01:57:56PM +0200, Svyatoslav Ryhel wrote:
+> Add bindings for Sony IMX111 CMOS Digital Image Sensor found in LG
+> Optimus 4X (P880) and Optimus Vu (P895) smartphones.
 >=20
-> Add documentation for the serial communication interface (RSCI) found on
-> the Renesas RZ/G3E (R9A09G047) SoC. The RSCI IP on this SoC is identical
-> to that on the RZ/T2H (R9A09G077) SoC, but it has a 32-stage FIFO compared
-> to 16 on RZ/T2H. It supports both FIFO and non-FIFO mode operation. RZ/G3E
-> has 6 clocks(5 module clocks + 1 external clock) compared to 3 clocks
-> (2 module clocks + 1 external clock) on RZ/T2H, and it has multiple reset=
-s.
->=20
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v1->v2:
->  * Updated commit message
->  * Added resets:false for non RZ/G3E SoCs.
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 pw-bot: not-applicable
 
---96gbhf6HoQd777Ic
+--g0VdOFDvWShnp82A
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQO6mAAKCRB4tDGHoIJi
-0laSAP9pxMHyRXQYIgGpl3r62oKbo516FSvvC/GfT1XA/uhp9wEA+Q49sIHYp/5+
-X+jJ+g5f4+/Fb8F2w0YxcF8RoaFMrA4=
-=NK8g
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQO7QwAKCRB4tDGHoIJi
+0uD/AQDayaedzzm3AUzC5dQtC4kpq/sJHeFJLcP+p/tURHU4BQD6ArnbAUmitdUd
+VtR5iuCRfsthxZvsssHiCqfkYIUPJgw=
+=++f3
 -----END PGP SIGNATURE-----
 
---96gbhf6HoQd777Ic--
+--g0VdOFDvWShnp82A--
 
