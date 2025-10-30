@@ -1,101 +1,101 @@
-Return-Path: <devicetree+bounces-233066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0802AC1ED56
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:45:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5167BC1ED9E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:52:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18788189ADD2
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 07:45:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2EDE403E94
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 07:51:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3149F337B9F;
-	Thu, 30 Oct 2025 07:44:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4338F3385B9;
+	Thu, 30 Oct 2025 07:50:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dLiN7lhi";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YA5H2Tjj"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="doq3994X";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="WETNeMV6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60118270552
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 07:44:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A03E332E13E
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 07:50:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761810282; cv=none; b=HZRy/TDx8E2YZDB5AWeOi7O8rx9h4OtqNqf6LzfMSz9LQwjQfnrzsUYqtSizKznEe4In1u+EOgyxDyq6CozaAF1wvYi337vYytbrL/jVpDjeXy5H+yC9J4MCW1kYZCv+3ftGpbB9BHbq6nrgiYHSflDdpQQlBHZ3jq95zJfPjB0=
+	t=1761810658; cv=none; b=rSoEZwxtdnUV4vvH+D2ZUec2PDLQFOtcd4edwHsEQgL6FC3CI22CI5bHPXJhLBx92e8r9j3Xu2dCexDJArkCAwPWhMsldx9F41woXwuw9PLC/auxWtUPaNQC+wvH5nBN4ITAg/Or08vwSwmg8XP9Y2E/ZtIVGei7dtuMhwATKf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761810282; c=relaxed/simple;
-	bh=8tJPcTxT9z4IDaliirHoX8XXZGeflw5rPWBfvBf6BgU=;
+	s=arc-20240116; t=1761810658; c=relaxed/simple;
+	bh=pXjnDfOPXpQAncHdHfuPL6JFTlWW9bZTNDuiEUQ4R70=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BagLpzFKAPRZaGLDlL6eSovV7se8y3D49rYuHIrCIZ5O4IF/IfRW9Xjzn5uWnJNmxTncjEWq2Aoge/JNPl2+cYDNCOQ5YzIq0LZDBfrMXZhClM/XId4ML49UxyyFU926CRDuntSKgcHCl5alcSMXq9O7kFow8vDSLq/liRaNTnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dLiN7lhi; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YA5H2Tjj; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:Content-Type; b=Tl/dYcj4lhaZzzL8vVBZoO324E5shYJ+YQpTG0n7l0Ugdw4ID9Ub6b6jms4qob+UbPDmb6Wx1HEGFPvZfOfxHkpishXiwil21gXB4BB/+yCXJBO0q4/xtE2TnzUvAmw2PhUTpT/1FRVZtv03YQnwKlUXotw5M0fzOaUsbSX1ejk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=doq3994X; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WETNeMV6; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59U7Rebu1693358
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 07:44:39 GMT
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59U4xpcU2623182
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 07:50:55 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	i7EANkPIY6sJ6MNVVUUWWsaDcMkF831KMsY4DWyH9a0=; b=dLiN7lhiVWqOpJOr
-	rI5nRSYGoFkjwr0oHNj5Rf2sE4rHeB5iw4HDQjbvoQGwJp1CS0L4bAhhdJWms1HU
-	ClprxVWlmqU8Q2dChW7j4t0ATfvWYE1peabnGRi6ks2kZ2gWaYby/gVGCfpQnl90
-	Wm1pEXdRgOre+b+uZw6mpQBhKO25XwcmS8HiuPsqSgjac1UFo0RlJnV8GHdBv3We
-	96u/aEalTaag6kOp+vpofqY9k6Nab9cKFQfNAeEZ+a+zmaFoJMGVOSRv/Jw4zA4S
-	J8M15aJtizxc568sRBRgjH4uDNPAGRgH5RNJS4Uaav3PJdBCdNfUFRdDGNF0ZvfL
-	tMxEog==
+	B27lwA289hOVFDD03ZYundVjCw8IiiBblmiysgXXmQk=; b=doq3994XaUhaE0rB
+	KLEq6rcU08BZueNFtgYcY6bT68ZJXcagqL21OVCozmGfUSFEBCWAMrIREmyQ9OkE
+	71HYXBO3JRL+x1ECWXIwnQp35IQY0k87LZetNKSWyAGB5oU6Dfrcl7sF2TZOIDga
+	ZC5ZTS7XGKaYiBEiY0UEXbJFo90yLKa4r+A7HPr8ZsIVWlomwSbmJIcMVrbGa0uj
+	BVYNlL3H+vxLbj04/Ef575ZiwGu55SZ86vnUvYQDkx5l5avGrWntLF3PqES3JC8c
+	dwJUEmMTV9gXKgyU07T+x+0UK4O2vnJfelznZEa4J1qxVvpETxk9HhlmKOzy18iD
+	doV4Ag==
 Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a3trv1fxq-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a41fxgdb9-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 07:44:39 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-32eb18b5659so586442a91.2
-        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 00:44:39 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 07:50:55 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-34029cbe2f5so1883224a91.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 00:50:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761810279; x=1762415079; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1761810655; x=1762415455; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=i7EANkPIY6sJ6MNVVUUWWsaDcMkF831KMsY4DWyH9a0=;
-        b=YA5H2Tjjg4jCNxh/VzMqd73NJZtGacVNt+kor0WESky0Os3IJiiIxW/RdmozDrda8N
-         NmzCwJXbsE7Fwd4GN/OpDgJUqogwlg7NIijaBnf9/s/PaoXjIr+AaTv000X+iXSFV8W3
-         sFdqUkZmMFLXCAWerdRigzOvQvvJmhe0ZpjyzqLXZm204p2+XVYp2yRP/ltq2atWaMwc
-         sgAEXph6AZF/kf7VzjmqvD6zEvGtofwbYxXqXgL8grWpGdK2DWWzXuqU1WkO2lMW51xy
-         1MtKd2h6aiKoqjTFc+MQJZjnRpsf1DzXka/9mobzZzuqdM6C32yIcEOC5KbchC3pAdTn
-         hzHw==
+        bh=B27lwA289hOVFDD03ZYundVjCw8IiiBblmiysgXXmQk=;
+        b=WETNeMV6Mezk7WMGo0bJbTinpEQq77lANZ0w0u88/2tuyIAhNrTRiviQUcThfJMk0l
+         yavfEniJLo5vLWL5bch95v+ARVySIdYc7DVjxLMwBCOt1KySUx4ph3NA4zgn0DfMz16v
+         IhSUacxdolEdbedjaTwzT6/dBldf/d0aQ29yop8rzmqBneg07ZedSAdkMbQR/9ihYQ8o
+         bbLKtfst8zMzs30gg7Os6W2MVVvMKcbEDt1VfIPLMqSLxxI2j97TRt1QzZ7BRgpt9YOT
+         mJ188mSrsJpIlRCdgv+7l5psKO4FHGQh4JjALdiZ9hg9AKdTdKkFkukUILhRlDlfQ/4R
+         uKvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761810279; x=1762415079;
+        d=1e100.net; s=20230601; t=1761810655; x=1762415455;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=i7EANkPIY6sJ6MNVVUUWWsaDcMkF831KMsY4DWyH9a0=;
-        b=bEGIU3VjhfqH31hS8nwVnRXlH92tV9Oddh8Hmlvccadscb9ZgW+0cLxrn8iHAEaieM
-         cyD5D1K61W5JFJ0KZDm+SxtgBK+eiCQqeHhxVBNlG9FIfy0iCKq03OubMfQPKbqj8XXk
-         WdZevUGnydZUF9SYypkORh/UsDr4QJfBW8tbcdDA+TjvkGUys6JbWU1Nrn5jbTZfvy+u
-         mOtL5p+69tecnQCCj3bZUaFW4a3QzgAUq7S5NqJ/LwihSXvsJmEdotpo841boD1ANVIB
-         dpvBwS+VMgOqOBt9UzLVnaHW/WTLFVp0JHV0jR1OQ506Im/uQoreWibfi4MUE3C8I2ic
-         iLow==
-X-Forwarded-Encrypted: i=1; AJvYcCVpCmqyEphomGQStIsKLHaKHmxsehRUNPghKGQWBBDdJYfsL/HQ8Wtjc69XcWRWMaAoWklbJNb8C16/@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCmh1FncHXCg5UhjkRbEtUDuCJe8TLiRmU0UzCfGDMDgusKGP2
-	WpVLHIFgRDDFqLZMp67TLAH8+14zT8fDzfo2a3W+bPgV7VMZJuPbXeII174PcKot1b1JCharrtw
-	sdiSLlNF51wo+NwwYUj+p8YoXriAmXmcTZ1eH8D2ZYjYx3hGH4lhP4NRhNB5rBQMv
-X-Gm-Gg: ASbGncs3N2BPHCbNgRAtjOfgPV8l3n2suP40can9Pfnf9EPq5GFIivpatthmPwDaZdK
-	F0dx6NDa+H0oQ669Z4bUtgEhmTb8uWO8C0BdnEs/rqlm2WFEmANYCKtOsUKL9guT3SinjxvSYRD
-	GHNFAtEfCzpj3qBunCPJf/oiI3ublC0dSBh71C1bQqHBGThcfONvP+xBQiVgW/E40Boqo7tJoS+
-	4EGx8Gcvp1JJ7tPbIm7RFjgUU33e6mhIHk4Whal7yRCYUwLDwmve3RBWrDaRxG+7VdInTg5rgwT
-	Uz8bzeCE6phTI5fVUSGLkdnb6ULMGAiQJXODmv+/5lcEjJSkp3EybdmoRptQVXUSu/ucUkbiXX1
-	2R2sbpo4aE/1OicZj7FFmG9jb+LGwEmzHofoUVMEKEPpzFUkY8G7O/xvXFjxG7f7njyzO
-X-Received: by 2002:a17:90b:288a:b0:32e:7270:94aa with SMTP id 98e67ed59e1d1-3403a2a1f3amr6000444a91.19.1761810278534;
-        Thu, 30 Oct 2025 00:44:38 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF8+RjaKPwX93XaghYF7p0OFEzUtX/TgLWbygByweBSTnZbrgOlvjY9WXUf3vek6MQ9KgF6Vg==
-X-Received: by 2002:a17:90b:288a:b0:32e:7270:94aa with SMTP id 98e67ed59e1d1-3403a2a1f3amr6000418a91.19.1761810277931;
-        Thu, 30 Oct 2025 00:44:37 -0700 (PDT)
+        bh=B27lwA289hOVFDD03ZYundVjCw8IiiBblmiysgXXmQk=;
+        b=iYUuKgXJ82kypMOmxN55Nsj093pyTE4VGh3wNrrJTlOeaQwD/VOK81vb4Ou2+XrQEh
+         tzukK6iWexx50MgKIBep00QJOpV+ydC6CqrXhtpcyx83eNJGLwh2DJclbVlpg3mqC1I3
+         X7qUwHeFO4CQRxwSrIkMoJ62t+WGDqfzup8tuHYfNAx0acVk31FavioOnAgGlmUt0mR+
+         zRfPNlCCmAonnlyFc6UGXusRRa4XX+TavSwu88+wb7v9HJogYP7J3sCh/qZvEvFF9L24
+         SqhVwU7LVfeAUg1PtzFd+v7wDuzLcJ1O8Lwjte27g66GhuCcbWvw2A+3mruUjNLyhGIe
+         rIvA==
+X-Forwarded-Encrypted: i=1; AJvYcCUv3dZF6DnvCWivHsD0wkDjTRBLquxJlSKR078sfXLq5PYbh/zYTCCsATDzh8HUlAR5typxEstnYGoE@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFBgfbe+cw4soTUt5NKl0SXZWgKR1vhUWRBTORJnB+L/yhu24x
+	XCIUlnGOPone8J7z1SUsFBxbupYX0xV5lOoWWMfUyEyZM7719FKtd4oPlBtBJiP2ryYQTpM0gEf
+	bqhDjm0zh7Pad9Mr5QGprFsuPyy3hIc3tOGdcpEKnXV8tUx76/fJTLmOr/fzCPY8u
+X-Gm-Gg: ASbGncsyiMcPX4PfO1hspI0zywTNBbwtHbbVi05eKM4hKcVJrtRfSLgnGQ259n2A/B4
+	z5FwIlBtz0K+4h5DB/FbE6ZpsHMn6QwOZojsbsRhNMMlMT4gGDeeTIZAhuWf70hLEovwaxogwwv
+	AruhHjvNP6/Uea5AiYKmzwj7qBeByr4N7Dgz1c61U72cvsz9sAOQ2IlHgdyFSoAWYw5M7+g0jkP
+	B07ECQsr3Q8+F6BjWofn7OShJCIMfgePvrAJrWFygxX3e9x2d7p6ccMtEFnwHr45WeA2t4UbgrN
+	3sAvUO4gZIAOtryoONiBDGGKKOAJP6DJTqViNIfJaNX9MAma2mADIMhGzaGZRUY7AO0l+7H0gEC
+	5ghf2/X9laUNMH6Ga7eTnjHvd4OCVObx3RPtURHe4wrm0ElpQNA3dnPBBinnZUx7t7qlw
+X-Received: by 2002:a05:6a20:1588:b0:334:8ac9:bc5 with SMTP id adf61e73a8af0-34786a1374bmr3111382637.36.1761810654538;
+        Thu, 30 Oct 2025 00:50:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF4wdEqcvhO7xoUpldckKiNV9ktmOba6appBpb+kPac+Z78FjRfyPLDIShGA0wr9QQDPS9J5Q==
+X-Received: by 2002:a05:6a20:1588:b0:334:8ac9:bc5 with SMTP id adf61e73a8af0-34786a1374bmr3111348637.36.1761810654011;
+        Thu, 30 Oct 2025 00:50:54 -0700 (PDT)
 Received: from [10.133.33.37] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-340509e940bsm1554547a91.17.2025.10.30.00.44.34
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a41408757csm17590625b3a.59.2025.10.30.00.50.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Oct 2025 00:44:37 -0700 (PDT)
-Message-ID: <beaa89d2-c8b1-4c3e-8e04-22caf753570a@oss.qualcomm.com>
-Date: Thu, 30 Oct 2025 15:44:30 +0800
+        Thu, 30 Oct 2025 00:50:53 -0700 (PDT)
+Message-ID: <2f0b6ed4-046c-4257-9cb2-8c7403736bd3@oss.qualcomm.com>
+Date: Thu, 30 Oct 2025 15:50:48 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -105,9 +105,10 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2 3/7] dt-bindings: remoteproc: qcom,pas: Document pas
  for SoCCP on Kaanapali and Glymur platforms
-To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
 Cc: Bjorn Andersson <andersson@kernel.org>,
         Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Conor Dooley
  <conor+dt@kernel.org>,
@@ -119,208 +120,49 @@ Cc: Bjorn Andersson <andersson@kernel.org>,
         Sibi Sankar <sibi.sankar@oss.qualcomm.com>
 References: <20251029-knp-remoteproc-v2-0-6c81993b52ea@oss.qualcomm.com>
  <20251029-knp-remoteproc-v2-3-6c81993b52ea@oss.qualcomm.com>
- <20251029132212.GA662078-robh@kernel.org>
+ <20251030-venomous-apricot-falcon-b3fd64@kuoka>
 Content-Language: en-US
 From: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-In-Reply-To: <20251029132212.GA662078-robh@kernel.org>
+In-Reply-To: <20251030-venomous-apricot-falcon-b3fd64@kuoka>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: hu09Ef2kQ2WVOOXJ2XRo6SauD130Nq-p
-X-Authority-Analysis: v=2.4 cv=D+ZK6/Rj c=1 sm=1 tr=0 ts=69031767 cx=c_pps
+X-Proofpoint-GUID: 1-5_d3-3wpuGnO5VwY7id7ddpjXEKqaD
+X-Authority-Analysis: v=2.4 cv=UJrQ3Sfy c=1 sm=1 tr=0 ts=690318df cx=c_pps
  a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
  a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8
- a=-wIiT4SIM-LFa6w3TMwA:9 a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
- a=sptkURWiP4Gy88Gu7hUp:22
-X-Proofpoint-ORIG-GUID: hu09Ef2kQ2WVOOXJ2XRo6SauD130Nq-p
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMwMDA2MiBTYWx0ZWRfX+86YEGZixpRK
- jwpQrwQutI8c9CvyhoswLFYFKULhw9+PYdW6nUYzCJU1j5vMDCdDBMyG5gfSKnT/jlvNp6RgVeu
- HINXY9DqUlqVt4vCs9rG5qIEAsr68rGgDvV+zB+I8ujFRe+jRznC9G9vJs6xtX/3oOcKVqreVZc
- LGKy2rBiSyFFcd53eKDBrvb8brFWe3QhHpmPLXasTUS22ZmehE0WufP2ozA48K6RXv/GNt7iNxK
- 1goatX2IpGBdGqSwKJStc8d1sZLOHxZ3S41DASmDffnK01jyWcKOx0rfJ3hbE19aKHt3yn+aKQD
- gz5v5FAjEEbZZW8c7Ui5/FUJ08jZar0MxpdCBJHodrWcHE99tN6aIPidzQlE/HvpddUzMosuL4v
- W2VOJ8n8Q+V14f6YEx1UhPD2n2VMiQ==
+ a=VkNPw1HP01LnGYTKEx00:22 a=86O0OiZcg5MvzqARIlQA:9 a=QEXdDO2ut3YA:10
+ a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Proofpoint-ORIG-GUID: 1-5_d3-3wpuGnO5VwY7id7ddpjXEKqaD
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMwMDA2MiBTYWx0ZWRfX8Z7b8r+vsXYi
+ qJZxVQfxQ9m586fo/4aOiYL4XGj/sSUq1YNAIhlPoNU2Gc72UFp5DcUyL5FNj0mL99a+CYHtCTB
+ ijhpX5MO6yMxm6UYQLR40s63LZ3bsppIRoWbdWVO7i4pwYm5LLW1/1XLYM21N8fIgJhcatXLvE0
+ 2ouz7Id7uz5SbIx+U4/TmYxt3gPOlKT6SMRLVOzzpj6mMeb9D7WkLORi/PUQUcSzGUocwkQK0FY
+ vGIFE5qZqEgLsZevYbhICZuThifYKeTfA1YTYFFhXeYNNl+HyKemyaeYtKPzdNagQiMuqB8zk1z
+ ysW3hsz2y+vdR0GxgxwDsZvX5T6CYZlAxn1MBUGfyRnPpKkMO8ZIOlfhHeSjaCjwEaxch0sMbYt
+ LYs0WKMvz7SbGuoYJexGncjjEu/PAw==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-10-30_02,2025-10-29_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 suspectscore=0 malwarescore=0 phishscore=0 lowpriorityscore=0
- priorityscore=1501 adultscore=0 clxscore=1015 impostorscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510300062
+ clxscore=1015 lowpriorityscore=0 impostorscore=0 phishscore=0
+ priorityscore=1501 malwarescore=0 bulkscore=0 spamscore=0 suspectscore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2510300062
 
 
 
-On 10/29/2025 9:22 PM, Rob Herring wrote:
+On 10/30/2025 2:27 PM, Krzysztof Kozlowski wrote:
 > On Wed, Oct 29, 2025 at 01:05:41AM -0700, Jingyi Wang wrote:
 >> Document the component used to boot SoCCP on Kaanapali SoC and add
 >> compatible for Glymur SoCCP which could fallback to Kaanapali. Extend
 >> the "qcom,smem-states" and "qcom,smem-state-names" properties and
 >> add conditions for the "interrupts" and "interrupt-names" properties
 >> in the pas-common.
->>
->> Co-developed-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
->> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
->> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
->> ---
->>  .../remoteproc/qcom,kaanapali-soccp-pas.yaml       | 134 +++++++++++++++++++++
->>  .../bindings/remoteproc/qcom,pas-common.yaml       |  83 +++++++++----
->>  2 files changed, 194 insertions(+), 23 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,kaanapali-soccp-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,kaanapali-soccp-pas.yaml
->> new file mode 100644
->> index 000000000000..6b53121eede1
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,kaanapali-soccp-pas.yaml
->> @@ -0,0 +1,134 @@
->> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/remoteproc/qcom,kaanapali-soccp-pas.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Kaanapali SoCCP Peripheral Authentication Service
->> +
->> +maintainers:
->> +  - Jingyi Wang <jingyi.wang@oss.qualcomm.com>
->> +
->> +description:
->> +  The SoC Control Processor (SoCCP) is small RISC-V MCU that controls USB
->> +  Type-C, battery charging and various other functions on Qualcomm SoCs, somewhat
->> +  analogous to traditional PC Embedded Controllers. This document describes
->> +  the Peripheral Authentication Service loads and boots firmware for SoCCP.
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - items:
->> +          - enum:
->> +              - qcom,glymur-soccp-pas
->> +          - const: qcom,kaanapali-soccp-pas
->> +      - enum:
->> +          - qcom,kaanapali-soccp-pas
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    items:
->> +      - description: XO clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: xo
->> +
->> +  power-domains:
->> +    items:
->> +      - description: CX power domain
->> +      - description: MX power domain
->> +
->> +  power-domain-names:
->> +    items:
->> +      - const: cx
->> +      - const: mx
->> +
->> +  firmware-name:
->> +    $ref: /schemas/types.yaml#/definitions/string-array
 > 
-> Already has a type. Drop.
+> "extend" and "add conditions" but your patch:
 > 
-
-well noted
-
->> +    items:
->> +      - description: Firmware name of the Hexagon core
->> +      - description: Firmware name of the Hexagon Devicetree
->> +
->> +  memory-region:
->> +    items:
->> +      - description: Memory region for main Firmware authentication
->> +      - description: Memory region for Devicetree Firmware authentication
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - memory-region
->> +  - power-domains
->> +  - power-domain-names
->> +
->> +allOf:
->> +  - $ref: /schemas/remoteproc/qcom,pas-common.yaml#
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/qcom,rpmh.h>
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +    #include <dt-bindings/mailbox/qcom-ipcc.h>
->> +    #include <dt-bindings/power/qcom-rpmpd.h>
->> +
->> +    remoteproc@d00000 {
->> +        compatible = "qcom,kaanapali-soccp-pas";
->> +        reg = <0x00d00000 0x200000>;
->> +
->> +        clocks = <&rpmhcc RPMH_CXO_CLK>;
->> +        clock-names = "xo";
->> +
->> +        interrupts-extended = <&intc GIC_SPI 167 IRQ_TYPE_EDGE_RISING>,
->> +                              <&soccp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
->> +                              <&soccp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
->> +                              <&soccp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
->> +                              <&soccp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>,
->> +                              <&soccp_smp2p_in 9 IRQ_TYPE_EDGE_RISING>,
->> +                              <&soccp_smp2p_in 10 IRQ_TYPE_EDGE_RISING>;
->> +        interrupt-names = "wdog",
->> +                          "fatal",
->> +                          "ready",
->> +                          "handover",
->> +                          "stop-ack",
->> +                          "pong",
->> +                          "wake-ack";
->> +
->> +        memory-region = <&soccp_mem>,
->> +                        <&soccp_dtb_mem_mem>;
->> +
->> +        firmware-name = "qcom/kaanapali/soccp.mbn",
->> +                        "qcom/kaanapali/soccp_dtb.mbn";
->> +
->> +        power-domains = <&rpmhpd RPMHPD_CX>,
->> +                        <&rpmhpd RPMHPD_MX>;
->> +        power-domain-names = "cx",
->> +                             "mx";
->> +
->> +        qcom,smem-states = <&soccp_smp2p_out 0>,
->> +                           <&soccp_smp2p_out 10>,
->> +                           <&soccp_smp2p_out 9>,
->> +                           <&soccp_smp2p_out 8>;
->> +        qcom,smem-state-names = "stop",
->> +                                "wakeup",
->> +                                "sleep",
->> +                                "ping";
->> +
->> +        glink-edge {
->> +            interrupts-extended = <&ipcc IPCC_MPROC_SOCCP
->> +                                         IPCC_MPROC_SIGNAL_GLINK_QMP
->> +                                         IRQ_TYPE_EDGE_RISING>;
->> +            mboxes = <&ipcc IPCC_MPROC_SOCCP
->> +                            IPCC_MPROC_SIGNAL_GLINK_QMP>;
->> +
->> +            label = "soccp";
->> +            qcom,remote-pid = <19>;
->> +
->> +            /* ... */
->> +        };
->> +    };
->> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
->> index 63a82e7a8bf8..f81d088c2bad 100644
->> --- a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
->> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
->> @@ -24,26 +24,6 @@ properties:
->>    interconnects:
->>      maxItems: 1
->>  
+> 
 >> -  interrupts:
 >> -    minItems: 5
 >> -    items:
@@ -340,59 +182,20 @@ well noted
 >> -      - const: handover
 >> -      - const: stop-ack
 >> -      - const: shutdown-ack
->> -
->>    power-domains:
->>      minItems: 1
->>      maxItems: 3
->> @@ -55,13 +35,21 @@ properties:
->>    qcom,smem-states:
->>      $ref: /schemas/types.yaml#/definitions/phandle-array
->>      description: States used by the AP to signal the Hexagon core
->> +    minItems: 1
->>      items:
->> -      - description: Stop the modem
->> +      - description: Stop the remoteproc
->> +      - description: Wake up the remoteproc
->> +      - description: Make the remoteproc sleep
->> +      - description: Ping the remoteproc
->>  
->>    qcom,smem-state-names:
->>      description: The names of the state bits used for SMP2P output
->> +    minItems: 1
->>      items:
->>        - const: stop
->> +      - const: wakeup
->> +      - const: sleep
->> +      - const: ping
->>  
->>    smd-edge:
->>      $ref: /schemas/remoteproc/qcom,smd-edge.yaml#
->> @@ -80,9 +68,58 @@ properties:
->>  required:
->>    - clocks
->>    - clock-names
->> -  - interrupts
->> -  - interrupt-names
->>    - qcom,smem-states
->>    - qcom,smem-state-names
->>  
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,kaanapali-soccp-pas
 > 
-> The point of common schemas is to not have if/then/else schemas. If 
-> interrupts is now variable, then it is no longer common and should be 
-> moved out of the common schema. Or just have the widest constraints that 
-> covers all cases ({minItems: 5, maxItems: 7}).
+> ...removes them. So no interrupts anymore :/
 > 
+> That looks surprising if not wrong. You cannot remove properties when
+> you want to add grow them. See writing schema as well.
+> 
+> Best regards,
+> Krzysztof
 > 
 
-Thanks for clarify, if we use the comman schema, we need to change the
-constraint from "const" to "enum" like:
+There might be some misunderstanding on your comments for v1, so I removed
+it to allOf part and add "if-else".
+
+If it is changed here, we need to release the constraints like:
 
   interrupts:
     minItems: 5
@@ -405,9 +208,6 @@ constraint from "const" to "enum" like:
       - description: Shutdown acknowledge interrupt
       - description: Pong interrupt
       - description: Wake acknowledge interrupt
-
-(define "maxItems: 7" will cause err:   
-hint: "maxItems" is not needed with an "items" list)
 
   interrupt-names:
     minItems: 5
@@ -423,59 +223,7 @@ hint: "maxItems" is not needed with an "items" list)
         - pong
         - wake-ack
 
-is this okay?
 
 Thanks,
 Jingyi
-
->> +    then:
->> +      properties:
->> +        interrupts:
->> +          items:
->> +            - description: Watchdog interrupt
->> +            - description: Fatal interrupt
->> +            - description: Ready interrupt
->> +            - description: Handover interrupt
->> +            - description: Stop acknowledge interrupt
->> +            - description: Pong interrupt
->> +            - description: Wake acknowledge interrupt
->> +
->> +        interrupt-names:
->> +          items:
->> +            - const: wdog
->> +            - const: fatal
->> +            - const: ready
->> +            - const: handover
->> +            - const: stop-ack
->> +            - const: pong
->> +            - const: wake-ack
->> +
->> +    else:
->> +      properties:
->> +        interrupts:
->> +          minItems: 5
->> +          items:
->> +            - description: Watchdog interrupt
->> +            - description: Fatal interrupt
->> +            - description: Ready interrupt
->> +            - description: Handover interrupt
->> +            - description: Stop acknowledge interrupt
->> +            - description: Shutdown acknowledge interrupt
->> +
->> +        interrupt-names:
->> +          minItems: 5
->> +          items:
->> +            - const: wdog
->> +            - const: fatal
->> +            - const: ready
->> +            - const: handover
->> +            - const: stop-ack
->> +            - const: shutdown-ack
->> +
->>  additionalProperties: true
->>
->> -- 
->> 2.25.1
->>
-
 
