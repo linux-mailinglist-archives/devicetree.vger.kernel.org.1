@@ -1,179 +1,171 @@
-Return-Path: <devicetree+bounces-233091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69F8CC1F075
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 09:41:52 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD830C1F0BD
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 09:45:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C61644E7F8C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:41:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 84BED4E5451
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:44:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63C84338F24;
-	Thu, 30 Oct 2025 08:41:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z+pdfWjx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AE4A33C530;
+	Thu, 30 Oct 2025 08:43:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FE323385A7
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 08:41:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EC4E33A000
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 08:43:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761813676; cv=none; b=FV7T/5NbZWqbQK+ZJtJeOSsMidd8WFOobtM/la0csy/kc8I3xQZrQyIwM0si/0zL2xiHc5IJSnXYqXUL1+QnyfkOmODaDCx/qZdAAQsFL4qPYj2ym9W5G4dPUgW7i4dD53gK383cfU57ToEr7fN+VRLNTWdtpNEa7oHoC8S3uOY=
+	t=1761813824; cv=none; b=lYZ0Au2eNJncKvfYZHuE8Gz6Ae97lzd4BZ+CITsmbBhgN78Wlb2kGYQsJ1umRWQ4fQjSmvbe9OtxE1OVcupkvZQFzUqW66JyPpQojWv7h/lzSeEGMCprl9fkvotMIqdi8IKb/dKroB5K91RF90xckxUNlct0MpaYU8cLibxvQDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761813676; c=relaxed/simple;
-	bh=qCbGc/l+3FhemavilMQS0FZJGW57bn0dkTOragoXTKA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tZ6csLDjKfbE2oQbxNlW761axQNmANEwYSeESZCl8o5rR8IpnCsG0PS4siQIj1ZCXw2IPG6NEvsZjfHeMRfK0O0GL2wMk6b+h3Bi6kEVLMRShGF6HCRzIV1G4jKB0f/1v9hsh7fPmfg1T0kO70+uGaV7hkNo6IHgpZWQb0FR4ZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Z+pdfWjx; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-47116aaf345so304215e9.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 01:41:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761813672; x=1762418472; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=OOGbShnIiwYlkWUZPH8sZKIlbUAvtck7T0etBTHqYqY=;
-        b=Z+pdfWjxzHRezzwhd0eoNYEq19i4sBR7Ht1ibI/PV/pw8w/p1rekZ5qVK61FLaRyVP
-         crVhkeY8Bk5L9l/iV5A5JaWsSEs8ec7RuXTve3BospFVq63cSXDwp9cV7UWLUX1VISa0
-         DJM63EEBaCAyv9jLtXrCO4Dy4ibtxntf8+BuM15n2hAfDwvIdtEMpC4/goYNtZg0R/Nm
-         0JavSDBWqFZrdsJ3stznTFRzW52p1IP0BeNgLRk+3pjtx+4QMMEqnqUMU8DnzII2GAaR
-         gF/wUii9YluCkLXnGodegVdumkcszRFJyevm7Pz/Xp+/C/HWvOjF6s/qNajgV7/nZ7OS
-         x/6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761813672; x=1762418472;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OOGbShnIiwYlkWUZPH8sZKIlbUAvtck7T0etBTHqYqY=;
-        b=oVbhSYFtl5DBsvMzjq9MnxO6OedsfQ6JGxLo9tIDyMv5CuKRSmClMlc5t3hbMTr/xv
-         jOXPPPBeDgs3clY4I5jk0a5y3Uei2Gn9q/Pa3ZkUpX7QoR8PyCZr/Peqxi6HAawtJPCJ
-         8bKvqwCoKATe63Sjr3IYuQajOOF3weaJvhBkpNqrnjk+hcvs57sVnEYmPxekgSYkusPY
-         JlRPCOlC9AKL/LWIURDvJaz4Q1pXzc7JBkeUFct95DSY//zO60w6oG/g4022dXLP9rKD
-         wkaFK96K1Ha+2yproLwFu5YiIrJWTXwfAwLCDQoz0+d6Kv8ph6wAbn1KGjf577JwNq3l
-         JntQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV/vhI+kqPx7jYeDDv+vMil4+3iT6OeHrkQmVPdofBx4kCMlLsh6vSOq3fIUq7z/z+pWMrT4RvQdV3e@vger.kernel.org
-X-Gm-Message-State: AOJu0YyCpz/oy/S9WPjAsl7afJedfkcOS4SrWPMt1B8MCPA1SBanPP91
-	BCwRrcutPTKPCaTb1yhkOjtWQzjWOYbbUOpZSX9Ze7cg2cK9opPX0vCYbWw619tzaVo=
-X-Gm-Gg: ASbGnctrbKFrrhZmXfPi9VyXQFZh/RhsdnUSt+884UtzlpiuNZ004ys3r+oub3sWxHK
-	n2pJ3Wp8MJaV40LKF7rljFN7AnTmu4BQXrzmjRwB21n6nDAMANN0DLZx2G0AG66I8mSwVNI8MlP
-	vCE72wm8312Q07/YlcIpm3n0VFqtLukQPznC6UR13ug9S96eNH1Re1XUvdFnd7CgXim79yCzIY8
-	3w1gty9m7i9W3YUIM3OE7ZyCcIRLD/71YCxU5OS0u1cusoB48440J7lG71AXJsdwe+8mPoiumfp
-	0UoHNIMRCwVdPQ9VnmCpwzyl8daxZe9JqoroU3ifma6nElWQslnlhaLQdINX/pPSnG3S6JcDQCY
-	l0bYNJ2QimiFcjRVgNtKBVG2pt7OUgMz1AN4rLxrWvqAjTPhBnquV2efVtD67XwDiWKNvhIKjAh
-	sOh/WLFpIWGlmmYcyZVLnz
-X-Google-Smtp-Source: AGHT+IHCmttZ5bkh2jgtncYZnDJhzGb9sNwgFWQ0B/wyy2+IgScbjudgRWnWpECFGRuLQW4JMZgS/g==
-X-Received: by 2002:a05:600c:3b29:b0:475:dd59:d8ce with SMTP id 5b1f17b1804b1-4771e11b873mr30240075e9.0.1761813672464;
-        Thu, 30 Oct 2025 01:41:12 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477289b396dsm26629055e9.11.2025.10.30.01.41.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Oct 2025 01:41:11 -0700 (PDT)
-Message-ID: <ca90fd36-8b2c-4b91-9844-fe577c4ec227@linaro.org>
-Date: Thu, 30 Oct 2025 09:41:10 +0100
+	s=arc-20240116; t=1761813824; c=relaxed/simple;
+	bh=LcHZDPAbfQKcPbtW4crsMg3p6AgNd6ywFc7ZOHB4Eck=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=JIFa8mSg/DhSoFsol0P9lZ4RqDKuCj21r7gNjVDVPLeBModPPhL3aJC+MsFV7QCUGwbLMxBXkvQH4IIfY0DMJQS2sp/V+zsg/FtQzVXs+ki1aOjHSc2Y4TmlBMHprSlwgyKoPEuwGanlxK9FL7nkGPegK7AayCBR/y+tN9Dvjgc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1vEOFk-0007i2-7c; Thu, 30 Oct 2025 09:43:28 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1vEOFg-006BKb-2G;
+	Thu, 30 Oct 2025 09:43:24 +0100
+Received: from pza by lupine with local (Exim 4.98.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1vEOFg-000000003si-2Uey;
+	Thu, 30 Oct 2025 09:43:24 +0100
+Message-ID: <e29ccabbe674f0a8a45978db68ca627353694e42.camel@pengutronix.de>
+Subject: Re: [PATCH v4 2/2] PCI: EIC7700: Add Eswin PCIe host controller
+ driver
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: zhangsenchuan@eswincomputing.com, bhelgaas@google.com, mani@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, lpieralisi@kernel.org, 
+	kwilczynski@kernel.org, robh@kernel.org, jingoohan1@gmail.com, 
+	gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	christian.bruel@foss.st.com, mayank.rana@oss.qualcomm.com,
+ shradha.t@samsung.com, 	krishna.chundru@oss.qualcomm.com,
+ thippeswamy.havalige@amd.com, 	inochiama@gmail.com
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com, 
+	pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
+Date: Thu, 30 Oct 2025 09:43:24 +0100
+In-Reply-To: <20251030083143.1341-1-zhangsenchuan@eswincomputing.com>
+References: <20251030082900.1304-1-zhangsenchuan@eswincomputing.com>
+	 <20251030083143.1341-1-zhangsenchuan@eswincomputing.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/9] dt-bindings: PCI: qcom,pcie-sa8775p: Add missing
- required power-domains
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Abel Vesa <abel.vesa@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251029-dt-bindings-pci-qcom-fixes-power-domains-v1-0-da7ac2c477f4@linaro.org>
- <20251029-dt-bindings-pci-qcom-fixes-power-domains-v1-1-da7ac2c477f4@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <20251029-dt-bindings-pci-qcom-fixes-power-domains-v1-1-da7ac2c477f4@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 29/10/2025 16:40, Krzysztof Kozlowski wrote:
-> Commit 544e8f96efc0 ("dt-bindings: PCI: qcom,pcie-sa8775p: Move SA8775p
-> to dedicated schema") move the device schema to separate file, but it
-> missed a "if:not:...then:" clause in the original binding which was
-> requiring power-domains for this particular chip.
-> 
-> Fixes: 544e8f96efc0 ("dt-bindings: PCI: qcom,pcie-sa8775p: Move SA8775p to dedicated schema")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Do, 2025-10-30 at 16:31 +0800, zhangsenchuan@eswincomputing.com
+wrote:
+> From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+>=20
+> Add driver for the Eswin EIC7700 PCIe host controller, which is based on
+> the DesignWare PCIe core, IP revision 6.00a. The PCIe Gen.3 controller
+> supports a data rate of 8 GT/s and 4 channels, support INTX and MSI
+> interrupts.
+>=20
+> Signed-off-by: Yu Ning <ningyu@eswincomputing.com>
+> Signed-off-by: Yanghui Ou <ouyanghui@eswincomputing.com>
+> Signed-off-by: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
 > ---
->  Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
-> index 19afe2a03409..f3c54226a19d 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
-> @@ -78,6 +78,7 @@ properties:
->  required:
->    - interconnects
->    - interconnect-names
-> +  - power-domains
+>  drivers/pci/controller/dwc/Kconfig        |  11 +
+>  drivers/pci/controller/dwc/Makefile       |   1 +
+>  drivers/pci/controller/dwc/pcie-eic7700.c | 462 ++++++++++++++++++++++
+>  3 files changed, 474 insertions(+)
+>  create mode 100644 drivers/pci/controller/dwc/pcie-eic7700.c
+>=20
+[...]
+> diff --git a/drivers/pci/controller/dwc/pcie-eic7700.c b/drivers/pci/cont=
+roller/dwc/pcie-eic7700.c
+> new file mode 100644
+> index 000000000000..0016dd0be743
+> --- /dev/null
+> +++ b/drivers/pci/controller/dwc/pcie-eic7700.c
+> @@ -0,0 +1,462 @@
+[...]
+> +static int eswin_pcie_deassert(struct eswin_pcie *pcie)
+> +{
+> +	int ret;
+> +
+> +	ret =3D reset_control_deassert(pcie->cfg_rst);
+> +	if (ret) {
+> +		dev_err(pcie->pci.dev, "Failed to deassert CFG#");
+> +		return ret;
+> +	}
+> +
+> +	ret =3D reset_control_deassert(pcie->powerup_rst);
+> +	if (ret) {
+> +		dev_err(pcie->pci.dev, "Failed to deassert POWERUP#");
+> +		goto err_powerup;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_powerup:
+> +	reset_control_assert(pcie->cfg_rst);
+> +
+> +	return ret;
+> +}
+> +
+> +static void eswin_pcie_assert(struct eswin_pcie *pcie)
+> +{
+> +	reset_control_assert(pcie->powerup_rst);
+> +	reset_control_assert(pcie->cfg_rst);
+> +}
+
+These look like cfg and powerup resets could be controlled together via
+reset_control_bulk_assert/deassert().
+
+[...]
+> +static int eswin_pcie_parse_port(struct eswin_pcie *pcie,
+> +				 struct device_node *node)
+> +{		return -ENOMEM;
+[...]
+> +	port->perst =3D of_reset_control_get(node, "perst");
+
+Please use of_reset_control_get_exclusive() directly.
 
 
-I am going through more of the bindings and I noticed now that "resets"
-also were within "if:not:" and they should be required here too.
+[...]
+> +static int eswin_pcie_probe(struct platform_device *pdev)
+> +{
+[...]
+> +	pcie->powerup_rst =3D devm_reset_control_get(&pdev->dev, "powerup");
+> +	if (IS_ERR(pcie->powerup_rst))
+> +		return dev_err_probe(dev, PTR_ERR(pcie->powerup_rst),
+> +				     "Failed to get powerup reset\n");
+> +
+> +	pcie->cfg_rst =3D devm_reset_control_get(&pdev->dev, "dbi");
+> +	if (IS_ERR(pcie->cfg_rst))
+> +		return dev_err_probe(dev, PTR_ERR(pcie->cfg_rst),
+> +				     "Failed to get dbi reset\n");
 
-All patchses will be fixed in v2.
+Please use devm_reset_control_get_exclusive() directly.
 
-Best regards,
-Krzysztof
+Alternatively, you could get powerup and cfg/dbi resets in bulk via
+devm_reset_control_bulk_get_exclusive().
+
+regards
+Philipp
 
