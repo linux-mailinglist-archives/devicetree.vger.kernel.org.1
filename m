@@ -1,147 +1,166 @@
-Return-Path: <devicetree+bounces-233436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E603C21FBD
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 20:35:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3AF1C21FD2
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 20:37:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6D65A4E05BE
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 19:35:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8783D3A49AE
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 19:37:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 285182EFDA5;
-	Thu, 30 Oct 2025 19:35:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB0FA2F99B0;
+	Thu, 30 Oct 2025 19:36:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fthhA40S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eQeGbKb1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 687C721019E
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 19:35:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52C082F4A06;
+	Thu, 30 Oct 2025 19:36:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761852935; cv=none; b=hSb/yG4wG2Hl4096f+AAlQC8781ZXw+Y5Cm6dLf5lctsWYWulm7e3vvh7o3/pBopz6Or6SlgSbPh40HodwPM2nn7/xKmkRPvttTwpLZnN8kKlJYtrP3b50lfPGiXUvCcdr+Bl7dC9jnH+Rwoj3+sQhllAGj0BnBigcY6ki9QgO4=
+	t=1761853019; cv=none; b=I2VmFu6bY+b5aSZZUoBmHbKlGP2wTTd6i1ee2610yUGodvmzA6g3II5PLvu9YZEhyfWz5mnnff2ZfT6qJujdglYd5yCYynLConHxAfeaduNq5tK2b3WKU+Rwe7qJwoSvFeQR7/y4RCuci6zbK20r4dNx2eYios6a7IbqYRmFW1A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761852935; c=relaxed/simple;
-	bh=eqmRamTbG4clj9Aep7Jsrzc0cVWRszDs05w8x0McFHc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XLVndyVSE65OSJY4IJaZDv6fYQJWK0RHhgCUdsrh6LQeZD3hYtMHSoJwjcJkn5FHUylbS2rAkMFPWjtBDcR010EbUOOcHOP7L6iiqoxiRsEfEntfXuX9cvCqK40tdouAX3mGDsrog5rPSoUXzJyP2MoHcZCXFXFniThEncEZONE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fthhA40S; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-475de184058so5217245e9.2
-        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 12:35:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761852932; x=1762457732; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=EC6juY2xw4PiGI+9uqqaCXvPHetzGAwXkiLX/PSLR2g=;
-        b=fthhA40Sep+O4oojZFnwil1z+pwFbm6zvlYKEi9oBJ6q4WJZiCDODvjOIhe9Uc6MyD
-         pDzPXEktS0WJNcN9lxsvOu08aWgaY7rAwxWxlXqr9ssklMSf8pScJLG02B6tp5mzWF96
-         Bn55UYICjmpKAdfKscsThC8KLi/SKw/hsNce4tLM2zuJfXKwXUApM+UCSMq/Ls30wsAm
-         ToyVCpp1CfnYWqeKrb3/7ICN5CIO6o0zd7bH4ETmsxisy4ZLUMUzD6BWsWesfsyxAdlo
-         AI/9sykG9aS1n5aqrxcfINkAtOVYVx9Nhmiu4rz/C14rC6EdOA55SCfARfqR2BDoF0kf
-         /nXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761852932; x=1762457732;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EC6juY2xw4PiGI+9uqqaCXvPHetzGAwXkiLX/PSLR2g=;
-        b=rykq2yNjEV+SomrfFs0AYtF47i9NphlXyApHtRdxfmJbtON+Hcy7uJo4IgyQ7elxQM
-         rmFxLhYhmh6mO7Gp7JBKLLDKsm8XdHeJwJIEzjz8MxHrQDhuhpGZWGGNcGCd3ntQa+Ep
-         1b7BNiww/m5ENFmXMv5UooiH58CF1iOHcCLFLBesLvIiumgBrqiJ4dtmwlkD9Ty4x2kC
-         jYRlhFIAK1Ia7ub0qg3M02pxrPCJB3g4cpBSt8YR/lMlmdLmRYPMRUgpmpcyBvztXNt3
-         5YNw+QDqQfA0lLuQaXTHJusBu1OVgF9aeRKPb4azATy/8EJftT7D8HkpMkEa1cWZiY7E
-         jGIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXMgRGztvPlq2de7r+yVSUqExk6d4V74/f63izttG6QRWOhTY3DuSVfkhfDQQe+r3ZV3OTJXFnGCp3/@vger.kernel.org
-X-Gm-Message-State: AOJu0YxTeCnTjwO8zZf2/j5NZQ6LYDr21cKdARd97h8c6vEJ20FQIla5
-	WRCZ6eOHB3WyLfb3VULNTyrxbePz+yQ3cYt+jplH3FJIBFFxzT/BoBo6
-X-Gm-Gg: ASbGncskd5KDf6EYkrcCjTfv32ClHAOwgMEuwhvzVd079n1dAH7LC8vHQQdOmDbIP7y
-	ZnuuXlQBZiMM/lMLm1dLbvhCXFu+Dz2SyHSdldGvP/gYFDkHENNOOn0X8zrARNudotbgIql2Y+o
-	XSXOlIxGgPcPHKbGJ1OIGXzbSBx7l/mQmwDcBa8whGrpo4H8ZNWQGLqoVayvPZWarEwP0sA303e
-	jocZPnRpGmG2/GkmcUZoNe7kTv/wpt7YuoMhlASSdt2EcIV5CDfUx4GjrhctsxjDKet4iabSAmF
-	USXvNCJyusDvUa1OiAacoqZSdsAXrcVT3bHJW/R69+AzaPvyxciEU3jGwryCc+qx59fiQl/gh8Y
-	29h72bp9Do1TDocWFF9Vz219NJG/TvInqzIk7gpPjykYFQ2St1+yYuDoZpNk8FQ51sYxwHfPuOC
-	ZtxGWH1Z0KgUF7Gy2IljrQDU6UxysanjtgeCg8WnXfoYOSHQ+/Oev6uzPnXTNLzD0=
-X-Google-Smtp-Source: AGHT+IGFztItCHGY/qbdwBuHkfRV467cKKxUC0DGWgO8Y2TPr5ZY0z+xVGs6NBf6tqGX8bxV7Yrv3g==
-X-Received: by 2002:a05:600c:3f1a:b0:475:de80:bb2a with SMTP id 5b1f17b1804b1-477308a7cbamr9844395e9.35.1761852931647;
-        Thu, 30 Oct 2025 12:35:31 -0700 (PDT)
-Received: from orome (p200300e41f274600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f27:4600:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429952df3c7sm33074056f8f.40.2025.10.30.12.35.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Oct 2025 12:35:30 -0700 (PDT)
-Date: Thu, 30 Oct 2025 20:35:28 +0100
-From: Thierry Reding <thierry.reding@gmail.com>
-To: webgeek1234@gmail.com
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] arm64: tegra: Add NVIDIA Jetson Nano 2GB
- Developer Kit support
-Message-ID: <rvzqaji7na2oipwcbw427aigjiu4qxwpmc7maaz3uluprmip3a@s4gslwmiuqxv>
-References: <20250611-p3452-v2-0-fd2679706c63@gmail.com>
+	s=arc-20240116; t=1761853019; c=relaxed/simple;
+	bh=hU8kIQqXqh2RC+ap5a3ScOWDHPyItHVVbCRN+iRanSI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=r8EhCTgYPfD0EKBb2sfxREqwnd4ygGnyY8dw/wR2KIquaxKE8Xw8vyS4w6q5mLaJzqpjRxUi6cpHNhuMHdg6jcgWI0SdvAHsRURHEnBvHLW2rQqUD1Xk1wl8Qh9Lll8IB02HvOy/ckPOCdww3Wq/g5EUKzlxSfPyK53s4j2/5aM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eQeGbKb1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E85CC4CEF1;
+	Thu, 30 Oct 2025 19:36:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761853018;
+	bh=hU8kIQqXqh2RC+ap5a3ScOWDHPyItHVVbCRN+iRanSI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=eQeGbKb15jG1AFdHRLlPy2zrAD0mCVbucZ1NArmVWPhcdslIRNb5ijKQSCJnSpPDP
+	 TLuHezc+uDkx5FDyzFHq813fZZxW2wXZQ3/ySBol7KnbgYGZuJA13sJNic6EZHXQ1t
+	 vlxsry3ug9k9vkzYvGCVoHnYNQOfbOUDP8gpp32JytTQTxjQlviu/PvorkruKIatEm
+	 2PaHBSe4uf6n0dsDSSJrn4YZFqFa9I4L1fxCH7+JgFlE0KsLFLLjpw0izMhNJtFNsb
+	 +oq5GkTY0SLZ8R3dqrqQp8XKoB6udYrmXLaiG61I1F2gcrZkkKoI2GC1ensKDHr1Y0
+	 zAN4EMtviV8SQ==
+Message-ID: <d7f57521-22d1-465e-a918-2a5c1ce5dc64@kernel.org>
+Date: Thu, 30 Oct 2025 20:36:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="qccgnu2h7qzvmwyz"
-Content-Disposition: inline
-In-Reply-To: <20250611-p3452-v2-0-fd2679706c63@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: RPi 4 deferred probe timeout of V3D PM domain
+To: Stefan Wahren <wahrenst@gmx.net>, Mark Brown <broonie@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ bcm-kernel-feedback-list@broadcom.com, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>, Melissa Wen <mwen@igalia.com>,
+ =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Stephen Boyd
+ <sboyd@kernel.org>, kernel-dev@igalia.com, kernel-list@raspberrypi.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ "open list:GENERIC PM DOMAINS" <linux-pm@vger.kernel.org>
+References: <20251005113816.6721-1-wahrenst@gmx.net>
+ <9ebda74e-e700-4fbe-bca5-382f92417a9c@sirena.org.uk>
+ <a5e1e279-7e20-458d-a75f-787e0adbc9fe@gmx.net>
+ <ad07546f-0c2d-4bc2-b794-755b892c7328@sirena.org.uk>
+ <a016e7e1-09f7-4056-a855-6cfaa8d51962@gmx.net>
+ <10a4ef77-0e70-4ef2-b1df-535b476d256d@sirena.org.uk>
+ <ecd75fd5-3131-4d10-ae3d-b6f608d9622a@gmx.net>
+ <25e500c2-3dc1-476c-b6c1-ac4098a0501d@sirena.org.uk>
+ <d6b14388-e0ab-44f0-b4d9-78adf74c2a7f@gmx.net>
+ <d88f6420-5013-4856-99d6-da28f79bd7a5@sirena.org.uk>
+ <043f1702-52fc-4a83-82f7-683a26851623@gmx.net>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <043f1702-52fc-4a83-82f7-683a26851623@gmx.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+On 30/10/2025 20:13, Stefan Wahren wrote:
+> Hi Ulf,
+> 
+> Am 30.10.25 um 13:59 schrieb Mark Brown:
+>> On Wed, Oct 29, 2025 at 08:51:38PM +0100, Stefan Wahren wrote:
+>>> Am 28.10.25 um 19:47 schrieb Mark Brown:
+>>> Okay, here is my theory. The difference is about (boot) time. In my setup
+>>> the whole device boot from SD card and in your case the kernel modules are
+>>> stored via NFS.
+>>> V3D requires two resources, a clock and a PM domain. Additionally the PM
+>>> domain itself depends on the very same clock. In arm64/defconfig the
+>>> relevant clock driver is build as module, but the PM domain driver is
+>>> builtin.
+>>> During boot "driver_deferred_probe_timeout" (10 s) expires before the clock
+>>> driver could be loaded via NFS. So the PM domain core gave up:
+>>> [   16.936547] v3d fec00000.gpu: deferred probe timeout, ignoring dependency
+>>> So this breaks probing of V3D driver in this case.
+>> That seems buggy on the part of the core, particularly since userspace
+>> isn't there yet so we might be missing some filesystems - I would have
+>> expected the device to probe once the supply becomes available.  But I
+>> do agree with your analysis, it doesn't look like an issue with this
+>> driver.
+> recent changes to the Raspberry Pi 4 device tree revealed the issue for 
+> the following corner case:
+> V3D requires two resources, a clock and a PM domain. Additionally the PM 
+> domain itself depends on the very same clock. In arm64/defconfig the 
+> relevant clock driver clk-raspberrypi is build as module, but the PM 
+> domain driver bcm2835-pmdomain is builtin.
+> 
+> During boot "driver_deferred_probe_timeout" (10 s) expires before the 
+> clock driver could be loaded via NFS. So the PM domain core gave up:
+> [   16.936547] v3d fec00000.gpu: deferred probe timeout, ignoring dependency
 
---qccgnu2h7qzvmwyz
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 0/2] arm64: tegra: Add NVIDIA Jetson Nano 2GB
- Developer Kit support
-MIME-Version: 1.0
+Core clock modules you should have as part of your initramfs, not rely
+on rootfs to load. You can also move the domain to module, but it still
+won't solve the problem of lack of initramfs population.
 
-On Wed, Jun 11, 2025 at 01:53:36PM -0500, Aaron Kling via B4 Relay wrote:
-> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> ---
-> Changes in v2:
-> - Fix usb power supply to align with downstream power tree
-> - Control vdd_hdmi with gpio pa6 and delete unused vdd_hub_3v3 to avoid
->   conflicts
-> - Link to v1: https://lore.kernel.org/r/20250608-p3452-v1-0-4c2c1d7e4310@=
-gmail.com
->=20
-> ---
-> Aaron Kling (2):
->       dt-bindings: arm: tegra: Document Jetson Nano Devkits
->       arm64: tegra: Add NVIDIA Jetson Nano 2GB Developer Kit support
-
-Both patches applied now, thanks.
-
-Thierry
-
---qccgnu2h7qzvmwyz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmkDvgAACgkQ3SOs138+
-s6Hl1xAAjtuhL7toq4LSF9ZwClfCP2QV9wG87nvw1ztGXG3IWD4BzoVy8zBckjcS
-KEsTwNkqZICEuh6tculbT+si4jibUr4jSYIBGExOBq0M00EUGTIbILvbKhH7hdBj
-JUkLBJ1wDhLw5dT5rPqhSGMngTBTTY381iVnnpCCxQMeEm5lrFVGHg1nwM/LfIG0
-rhTgoiSMdGpVQgAuYPngchyTisnpp/rhkvUNeRycskacHv75QgGyG0y27vfmk+jR
-mA3ycvkXgZeCEp8BT4s9M/jATyopdHfSHF1MfXSOsn2zgKs60TxcJoBpVeR3NRcM
-7T/HENMCJ+E4LZ21aOu0I6H1f3Xuasxk17o9V1mJybH0LE764+m86btELURrhtmh
-kNkIkfyzyPrKItxFAHiNdrwTOW2Yu4BKvVm4a9X0m05PJnCqik0Oi4E9uf1MEgmI
-luAk/yPCHRXlBOC+6a8m2goClQ9Pl1ciUSl0YeMSZtRbec7bnMpkFNpDV/v0mW+1
-dur37Ry/6jP8gQxFqfPEMcZsIA/FKRG7jr3zowFtSCjj8VKAK8lfBbE/EmlXlGk4
-cdSrjFJMAyxrL5nMB3EzQYSTT2+6zbMLuNbkGM2+Ae7bbS69C1o2XvmpYSM32l1G
-JA9N24WvYN9497h2d/QEKtFAXvaRqFKks4VHYr7w7PmirXRtOK8=
-=dlVD
------END PGP SIGNATURE-----
-
---qccgnu2h7qzvmwyz--
+Best regards,
+Krzysztof
 
