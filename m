@@ -1,158 +1,153 @@
-Return-Path: <devicetree+bounces-233225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1803AC200F2
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:40:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF883C20162
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:51:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7DAEA4EA86D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 12:39:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF2BA1A23466
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 12:51:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9451731D740;
-	Thu, 30 Oct 2025 12:39:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03022354AC2;
+	Thu, 30 Oct 2025 12:51:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B/Ei5lNH"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="NaEUqv6n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx-relay16-hz2.antispameurope.com (mx-relay16-hz2.antispameurope.com [83.246.65.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABB662D0611
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 12:39:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761827960; cv=none; b=jH+ItOZann5azniGftbFmH/gzWY2Q1sit3s9MVwJexqZCeYCDn7epWZhAzhgvi3W6KzqxYWD99r2W5V7StN2K078dcU0hcBWvA433cWxRCzlXxunWdya8VAtRGIy8/wGUgjmYFOmYga9EMEnjlbicsb+gjeamELynL63IySrqMM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761827960; c=relaxed/simple;
-	bh=4Hfgd6pZImaL5bMSnhX1xRi+JePF8OhxSTdcJcG0kc4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tMGDy1uAnmzWdrzb46OfLpkycCPSrfZIidwJNYP4B9t0OL2REmluPVzFyzxbVIsB6ob29NSN76Av7gcunl/YKnnq0KftkQgx5mbdToLecJMA09XqRREm7/6UIdfKv40SSLn7vIaPjsazoJ01BDK8dN5D0beKOSMsnhbbAVGypQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=B/Ei5lNH; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-475db4ad7e4so3967025e9.3
-        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 05:39:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761827957; x=1762432757; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=6SHgl1jXnFM7GEAOvyl3kE/RBKA4OU9aP0eCADEKP2c=;
-        b=B/Ei5lNHzGJS4oB2j/W55TyA9tbj0ak6jsFl9UOJJIAc4tewe6O1PJmfyywNLfUyeu
-         oYrjCPytjjxyUThoTae+RweIybtYsg6QYzws343fx4bCBAlhGGTgoGlaQpQMUvtznUy6
-         pO+TuyHF5JlSsR/XNh1/8MtOxcOT3ZzbubrMyMxwsvJPPkWaQ7VYb4G6KsNuCQHGGiQi
-         ARrq40AbCAk2mCaXtY4tSfahnquGKGpds6EOfhe9PBXbspTvv0JPvvu62bmTqY1lcafe
-         daKOBKwkZ0hp8NGkdHzGWCZh7PcI9R9aNJAHrbrs8R7QoBIpsJWubgIX1UD3u1ZGqciC
-         5sHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761827957; x=1762432757;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6SHgl1jXnFM7GEAOvyl3kE/RBKA4OU9aP0eCADEKP2c=;
-        b=uPu5nANJGuo7ZdC7WztcWJwVrWFnLwUVb+VzR+9jF5ctsT7YCQ1BklVU9MfMN+eorl
-         LM++FMcBmcftfRlSyaPaDGP/4d/jZQPTJ/K+hJvY562HE+3F350W0h+sGE02gQt6hYaj
-         6FkkRDeaPn9Ak8//XYOlEnOZ41gHm5yPAoBqvA4NZPM6PIHBePlRgvGP6WwTPfAl+zKP
-         5FrQ7+2IWFedyK/XwXGJZXIsw5L3Twq1+pv/VcOnfHMAH4rV9JSQcwP3Y964PgXAMloS
-         oMy4DwRXGf76u2+o6TU5SxQmrD3YArv1nrEdgXJ6KUf13e2INO0gMnIW0PxH3CwAdeQL
-         RPKg==
-X-Forwarded-Encrypted: i=1; AJvYcCUOssUHsvodToV6lP2saiBk0I8FUfzlsIae0el+wm4ByfgyTRpc7oFflzKAWHGVsfm60hCgAKkSxCGy@vger.kernel.org
-X-Gm-Message-State: AOJu0YwzWhiSERnn4PO0HRWP3oS48fuIy2z9F24i0M+/z3zhrgRqgeXq
-	SRWDx3xSUT0Url2JHCp+sGzeYcb5dmIa1AG12XZgSBO7HShBSC9f3hkCuefw6VXS+t4=
-X-Gm-Gg: ASbGncvgAxqF0Hgc9j4xtT7jRHH+9+mWdNcPw+ejdFKnOsk7V7xF/Gg5jneJMfZCNOX
-	ABTKc9cU9/gC1OZSjLSyMYRMl6VpTHT2tejAjovCKtFeU8wjrY5IfryrDPlSEe8o9XmLDrOtBDK
-	EFQJy5r6JBT5NZwLDyV71Q3pFpMeQ5BD0UualNRioDtmcHiKRFFMkrdvVSq9XW/pZJvJoFV3VHs
-	Edb/XX5D2YYtoicGt5A+LfUUciD7nmyTb3qEFXktyoM5/DavusD9nIEqW81rBTfzPTFqM6SccuP
-	E8lpb6iHKBmXKzxYG8fUIJk13TAc6KGJ0pxuDtnU6uEhS3ASwG+8lrZOowgx5J9JEyxoFTJK540
-	bURr7foigHjlOCSHQ9wasn10SL//QND6FOLSUVoiKCBA4mUzc4L3yXX1/NICjZIe3Jl6CHNisZq
-	g3LPpnOrj+8m3tWV2j
-X-Google-Smtp-Source: AGHT+IH67xafVrhHY7veY1ynhOacSgGxfhuwrU8B+4INPnFgff3lwO9MEBwzQ34ecWnkYLaKp+NANg==
-X-Received: by 2002:a05:600c:4e88:b0:471:9da:524c with SMTP id 5b1f17b1804b1-4771e177c3cmr58937425e9.12.1761827956891;
-        Thu, 30 Oct 2025 05:39:16 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4771844127fsm69563425e9.2.2025.10.30.05.39.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Oct 2025 05:39:16 -0700 (PDT)
-Date: Thu, 30 Oct 2025 15:39:12 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Arnd Bergmann <arnd@arndb.de>,
-	John Madieu <john.madieu.xa@bp.renesas.com>,
-	Chen-Yu Tsai <wens@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B424340D93
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 12:51:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=83.246.65.158
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761828667; cv=pass; b=NK0hu6YAlfWF/Yb0PGPKIymlX2w7dTxo2fAxj3ZEjILswZuZnCA16VwIZbsEsV/ZC+KFQl0KdyzKM7ko1Rp+dvZjO8pDAHMX5N0W/RhlmeYs/Py+kwSjZjMFPlUV+e7FQ/jDUhBmq4JJbPNqfKaB33Dq3stHgHW4rRTR67CK6/s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761828667; c=relaxed/simple;
+	bh=f+RxHNX/PkgtqpUObsVvi3CaeeKjaEaIpLrIKPlMWiA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dMmAc8hv4zRRePx/ZUT20MeSbXQDPaI2x0aTs1Y2X3GnbaRgnss8ojhOcj9u0RyHekSBFTFnI+TbsvEruiHC8UC/NtnnKt9H1QEnN1ZIPI13yLB2D90TZ7JeTzZMktWO+p+UTWkD9xVjPuLcL6YKTiPd6OEhMo7r6mt//tpZC+M=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=NaEUqv6n; arc=pass smtp.client-ip=83.246.65.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+ARC-Authentication-Results: i=1; mx-gate16-hz2.hornetsecurity.com 1; spf=pass
+ reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
+ smtp.mailfrom=ew.tq-group.com
+ smtp.helo=hmail-p-smtp01-out04-hz1.hornetsecurity.com; dmarc=pass
+ header.from=ew.tq-group.com orig.disposition=pass
+ARC-Message-Signature: a=rsa-sha256;
+ bh=hEveejQ5LezW2cXHJne2TGfo1ZNO0O+jmUKcv/3d1g8=; c=relaxed/relaxed;
+ d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
+ t=1761828597;
+ b=U9XPP0hEUAQ9D5Mo74M9cYaveYEGoLrP1HQXYkd5cD9BdnfJiN8REFj/ckjbQTesc3Y8Wmlw
+ m4SuKgj588nR2zDp5hQP8Js7sklMHQ0mvN4JRmF1RpWSNa1LZyATIh2fraHSX7kfIhbh/jaiDoC
+ MHvKbcQhmN4NYQF3Vf04vw9btJn9KzOfOTb73vMnrtuD5monBqRHDDwWRw0Q6NO6P0/UKqpNZOU
+ dnNXGbGslOZf7As1FWGl1Nf/xI9FAHeRc2ZzCTDm5g7zZ249/tjDZ45DnPoabI5m59zNr75o7kg
+ OO+9ljuU1sNt3JS8iMQcrUSqTU2KHSHnQ0N9RjWaucOTQ==
+ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
+ t=1761828597;
+ b=lJA9t4Lysfj02YhUR2yyNY6sYvwstFmtkGX2AZqc1VQfjRkkEmxkIGpzSXnBGcDRSsUC4H6p
+ VsrarfP5LqXH1gHzcBZHnzpkls6w98Gw4cIcjF/782Wl5fG/aM0/ghTxXAONad/t1/GgCXk0Exu
+ 3+4RuXFSuiFPVtrzFBoj06Q2pkeotfUM0YtX3s/afuugozBwIoKAMsMp1Wl4vhbBieEWjD1kcAE
+ U0XB+LRfuAjVB9Tomgc2th31ZJKbXcvYlLhU7d0OnX0RluO7oQlXKjwpEPbikrlzgNpGlM5GSE/
+ tlwIgyWyI2N8a63MMuZC/+tw2i0wKGxDVYijtQLW/Djag==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay16-hz2.antispameurope.com;
+ Thu, 30 Oct 2025 13:49:57 +0100
+Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
+	(Authenticated sender: alexander.stein@ew.tq-group.com)
+	by hmail-p-smtp01-out04-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 1D6A7220C5A;
+	Thu, 30 Oct 2025 13:49:50 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Peter Griffin <peter.griffin@linaro.org>
-Subject: Re: [PATCH 0/2] mfd: syscon: introduce no-auto-mmio DT property
-Message-ID: <aQNccP-lHqgygmsu@stanley.mountain>
-References: <cover.1761753288.git.dan.carpenter@linaro.org>
- <3fd4beba-0d0b-4a20-b6ed-4e00df109b66@app.fastmail.com>
- <aQMUu08phVPqfgEB@stanley.mountain>
- <dbd5558a-90d9-404c-ae98-a8c04cdad08a@app.fastmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: linux@ew.tq-group.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 00/19] TQMa95xxSA DT fixes and cleanup
+Date: Thu, 30 Oct 2025 13:49:07 +0100
+Message-ID: <20251030124936.1408152-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dbd5558a-90d9-404c-ae98-a8c04cdad08a@app.fastmail.com>
+Content-Transfer-Encoding: 8bit
+X-cloud-security-sender:alexander.stein@ew.tq-group.com
+X-cloud-security-recipient:devicetree@vger.kernel.org
+X-cloud-security-crypt: load encryption module
+X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
+X-cloud-security-Mailarchivtype:outbound
+X-cloud-security-Virusscan:CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay16-hz2.antispameurope.com with 4cy3q25g17z29yQ2
+X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
+X-cloud-security-Digest:4af8d990a1c9f7c4fdb1574041f6d9a2
+X-cloud-security:scantime:1.686
+DKIM-Signature: a=rsa-sha256;
+ bh=hEveejQ5LezW2cXHJne2TGfo1ZNO0O+jmUKcv/3d1g8=; c=relaxed/relaxed;
+ d=ew.tq-group.com;
+ h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
+ t=1761828596; v=1;
+ b=NaEUqv6nSwgxCPxTzR6xL0OyX6mfM4AiQpvq0+f3idOmnfPoTV03K4eqUXqzZi4p7fiFvGI8
+ 0K0zOouyb32sHqlN6JLCxPQlitSolXfL3STN857D2QkqpNUsSnSNQDXRoHHr1CP1zv/CPNvfAqM
+ O99babQK4jZ/VdINqPxdmkwoAsIxlgW71p4YEmpHOqt8l+lCwIGoQ2AMyqcGdftdtlWiMKf5ipk
+ OHE1KafzEcA5DgWCdUoAj+SofARvKsnoUH+RXkVfGCb1shuxY7mz7eI400DsuzHD4ZRmnmZb49n
+ h+Kx1om1xB+lmLZLc0KYo/vPiSOA5ezFzNDfp1G4vbcsA==
 
-On Thu, Oct 30, 2025 at 09:33:39AM +0100, Arnd Bergmann wrote:
-> On Thu, Oct 30, 2025, at 08:33, Dan Carpenter wrote:
-> > On Wed, Oct 29, 2025 at 08:43:33PM +0100, Arnd Bergmann wrote:
-> >> On Wed, Oct 29, 2025, at 18:27, Dan Carpenter wrote:
-> >> > Most syscons are accessed via MMMIO and created automatically.  But one
-> >> > example of a syscon that isn't is in drivers/soc/samsung/exynos-pmu.c
-> >> > where the syscon can only be accessed via the secure partition.  We are
-> >> > looking at upstreaming a different driver where the syscon will be
-> >> > accessed via SCMI.
-> >> >
-> >> > Normally, syscons are accessed by doing something like
-> >> > syscon_regmap_lookup_by_phandle_args() but that function will
-> >> > automatically create an MMIO syscon if one hasn't been registered.  So
-> >> > the ordering becomes a problem.  The exynos-pmu.c driver solves this
-> >> > but it's a bit awkward and it would be even trickier if there were
-> >> > several drivers accessing the same syscon.
-> >> 
-> >> What would happen on the current exynos platform if we just take away
-> >> the 'regs' property? I would hope that we can avoid encoding what
-> >> is essentially operating system policy in that driver and instead
-> >> just describe it as a device that expects to be implemented by
-> >> firmware and doesn't need registers?
-> >
-> > Exynos solves this because they only have one phandle so when they parse
-> > it, that's when then they create the syscon.  If you had multiple drivers
-> > accessing the same syscon then that doesn't work.
-> 
-> I'm not following the logic here.  Do you mean that they avoid the
-> issue today by ensuring that the regmap is always probed before
-> its only user, or do you mean something else?
-> 
-> > If we left out the "regs" property it wouldn't be created automatically
-> > but syscon_regmap_lookup_by_phandle() will return -EINVAL and probe would
-> > fail.  It needs to be -EPROBE_DEFER so the probe tries again after the
-> > regmap is registered.  We'd need to add a check like this (untested):
-> 
-> Right, this is exactly what I had in mind. With a new kernel and old
-> dtb, this would not change anything, while an old kernel but new dtb
-> would run into a different bug and fail to probe instead of using the
-> wrong device. I think both cases are fine.
-> 
->      Arnd
+Hi everyone,
 
-Actually, probably the right thing to do is to leave out the "syscon"
-compatible.  That's what the drivers/soc/sunxi/sunxi_sram.c driver does.
-There is still an ordering issue where the sunxi_sram SoC driver needs
-to be probed first or the stmmac driver probe will fail.  There is probably
-some kind of way that SoC drivers are always probed earlier?
+this series includes two fixes for TQMa95xxSA. Having a Fixes-tag I put them
+at the beginning. Following patches are DT cleanups:
+* move pinctrl/config to module .dtsi as SMARC-2 already defines the pinout
+  the mux is fixed already.
+* Remove 'sleep' pinctrl settings as they are identical to 'default'
+* Add I2C bus recovery
+* EERPOM page size is increased to 32
+* Whitespace fix
+* Add MicIn routing
+* Mark LPUART1 reserved. Unique control of syste manager (SM)
 
-Beside the exynos driver the only other place that calls
-of_syscon_register_regmap() is drivers/soc/renesas/rz-sysc.c but I don't
-think that syscon has any users yet.
+Best regards,
+Alexander
 
-regards,
-dan carpenter
+Alexander Stein (14):
+  arm64: dts: imx95-tqma9596sa: reduce maximum FlexSPI frequency to
+    66MHz
+  arm64: dts: imx95-tqma9596sa: increase flexspi slew rate
+  arm64: dts: imx95-tqma9596sa: move flexcan pinctrl to SOM
+  arm64: dts: imx95-tqma9596sa: move lpspi3 pinctrl to SOM
+  arm64: dts: imx95-tqma9596sa: move sai config to SOM
+  arm64: dts: imx95-tqma9596sa: move pcie config to SOM
+  arm64: dts: imx95-tqma9596sa: update pcie config
+  arm64: dts: imx95-tqma9596sa: remove superfluous pinmux for flexspi
+  arm64: dts: imx95-tqma9596sa: remove superfluous pinmux for i2c
+  arm64: dts: imx95-tqma9596sa: remove superfluous pinmux for usdhci
+  arm64: dts: imx95-tqma9596sa: add gpio bus recovery for i2c
+  arm64: dts: imx95-tqma9596sa: whitespace fixes
+  arm64: dts: imx95-tqma9596sa-mb-smarc-2: Add MicIn routing
+  arm64: dts: imx95-tqma9596sa-mb-smarc-2: mark LPUART1 as reserved
+
+Markus Niebel (5):
+  arm64: dts: imx95-tqma9596sa: fix TPM5 pinctrl node name
+  arm64: dts: imx95-tqma9596sa: move USDHC2 config to SOM
+  arm64: dts: imx95-tqma9596sa: add EEPROM pagesize
+  arm64: dts: imx95-tqma9596sa-mb-smarc-2: remove superfluous line
+  arm64: dts: imx95-tqma9596sa-mb-smarc-2: add aliases for SPI
+
+ .../freescale/imx95-tqma9596sa-mb-smarc-2.dts |  75 ++-------
+ .../boot/dts/freescale/imx95-tqma9596sa.dtsi  | 153 +++++++++++++++---
+ 2 files changed, 139 insertions(+), 89 deletions(-)
+
+-- 
+2.43.0
+
 
