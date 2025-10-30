@@ -1,246 +1,104 @@
-Return-Path: <devicetree+bounces-233374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B0CCC2193C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 18:56:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4F37C21927
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 18:55:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5C7FE4EAB24
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:55:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33E551889850
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:55:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55A7636CA6F;
-	Thu, 30 Oct 2025 17:55:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="idMs0XJD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624F136C250;
+	Thu, 30 Oct 2025 17:55:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76EFF36CA7B
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 17:55:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53E8A365D39;
+	Thu, 30 Oct 2025 17:55:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761846934; cv=none; b=fhqhnBKRSnNzxoLSwrzRH79sDY1hS3oMwnUKe9i04oO0/pJjPrkdoLRzjplsi42SI+AVbTv9BHOd5ORnX9oK3IrY+ohT33e/VF+s3cWI2kHDWABOMiWPF4gJdL/rpzhLx5JX44aK0/1wRKWVCIK1dlIvrvtCtY/4VDLC/g9OCws=
+	t=1761846917; cv=none; b=evVs4EhEBkjaQBrVMaRJbOrtO//nqCgT6BuW69f3Fdw8URtke/1t0z+7Pb4R5pYmudPou79783tUBiqIVUjblCRlIsppFKOBqDAK56+diwjzSa9zPtAWML6mAAQOqB7qwmJAcXw7dP8VFzR7dd3PJDuFCdm6UEiVgzWwRGKwSXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761846934; c=relaxed/simple;
-	bh=3z2mhzRxyfQNv1R0hi7ZTnOWImB9S2k6FugjQXRhwUY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Jc9oUiElHKkNQH7sy6ZFmRIqc127UtSvW6w4U5rjA3/9/rlwgYYbOOUwpRHgr4ZE2nwgvqw7xs4OpC/nUeeXFeEiqnavygrDM3vi/FOVesH42W5MKqWI2EXBxte6PdOECxtPWuh5tpw/doBJhBHqUiQP8PguUe4vMTDxBakNjLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=idMs0XJD; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3ed20bdfdffso1262535f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 10:55:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761846930; x=1762451730; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m8YnOhLYa4+B1Ekt7MbimeIIDg/J8LnZDYbx9DRe05Y=;
-        b=idMs0XJDfBxf72c0ArwvwbhuGo/avWtFawSg+50NosGdBTO8xLjkEHaJE/i51+7aax
-         vTesM0W3QilOZ+LO0VRhRDQKph8PwNMh8rEFZEjW+vLDL6yKo/U3F+zP8KncZeYF4/fI
-         NmnWXYkGyNWWoWNtYhZCLgoKkmk9GIkm12Q/MLOe4ZXK8GOTeRe6hu9EuvdV2zEkiNHx
-         M2maA/B+OLPfLunPKmo3uHYrbcNTjD0Qq/qa/+4jg9rrCtwfnPdMyR2JTDW0ftHk3AZR
-         5kjwO5lgqksEJQojB6n+sOvnf2LQYdeBv853LshrkBMq+dOfydcvAkXVdN0INBvUSJm5
-         CWtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761846930; x=1762451730;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=m8YnOhLYa4+B1Ekt7MbimeIIDg/J8LnZDYbx9DRe05Y=;
-        b=IGVtC7/ceO07B/8DOwne4vMLYhCeuvFMdQO/LTRO8KeRfZf7dLyFbo2g/vEMxhprmS
-         0wu353vJHJsQ3EjLT1G3ZXfBM2O80mM+x2THFU6NyIm2SUdX4D4yEbTG++EgvMWgAQTb
-         tGxrGDUH87mwh5qfA2fHk12nKBRR3HEJzsRzabzYglN5k5LyVOCj8F46hhGuj3j7W4TD
-         +9b7zGS5XU7D1Gfw1AOEyx4ZXpEh5IRkoNfNjVI3EB/98bWVCQA+ZPZcFSn4mikk2RDm
-         eWvO3nAAy01qS71KccXruLawhovLHFOE+XdCfJoK2ElvsaHXLV/DgS7nODeR82vrhXvy
-         UScA==
-X-Forwarded-Encrypted: i=1; AJvYcCVBe239cqnxLyDXwCm7kzYeEa2A/flE9RdVMkgaYuNy06n2PRnYRiyEvJN7NR55uy3HW31bo071Fo6A@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWLltX0iD78b5CcshA0YRNt1GERsDybw4cnPrfmctngwply8I7
-	9U/NwVgqTuSMpzxdW9TvdZueKpl8cwZ2eiEIsLUn+W9MDt60vWvhwV+1
-X-Gm-Gg: ASbGncszcG9u62dJvgLvNMK0ydysFDUskMgiENQ1PLiny3LhTAklq0O+T2Tfk1y36Ua
-	7upUW6+tPFcBNbJ+btGkJEyt7jdRQUG7n+qeM8NxkOP7xRHBb3xUgmJTklZZ87CkTN/m5vU+5kv
-	5i1Fj9S0azb4QLQslPKqg3jB5N52l4h3SlLZKmb95bU85zCcXoaIpqIa5WHREePpuAjFxghwTSu
-	fGzWOHMhKusVrsEpm7ibTeVOh7EftAbpppXjq35DGKDqIGdWQAueIy/em1KtDujYCh2+o3UoAbG
-	XtHLl+LDdUJ01A9rGFJitCVgXYVRBql9V/dbZ+Bspi9x+KPtKaMDoZqBWNGm/as4Jl4Jp/IAVM0
-	U2s9vX7rnMUwfnU56ltYhvAUmZ5kXHg2uf8vaVPumJsw+mEg0ZRnPri/oNyozJT78/JM5li/w9S
-	hbizHtB1lrCSZRlsZ0AgivEf3rn8U46EYuMbRIdyz7HZjBpWUp67erQZYkHoRF
-X-Google-Smtp-Source: AGHT+IFwc9rIFO7apqC3XmXhkXUpx2h1S3c6wGBMHk4QlRiJ5KyIleWF8cbqLDTxKoIV//tw2zW3AQ==
-X-Received: by 2002:a5d:5846:0:b0:3fb:9950:b9eb with SMTP id ffacd0b85a97d-429bd683f6cmr459520f8f.28.1761846929243;
-        Thu, 30 Oct 2025 10:55:29 -0700 (PDT)
-Received: from biju.lan (host86-162-200-138.range86-162.btcentralplus.com. [86.162.200.138])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429952de5f9sm33384041f8f.38.2025.10.30.10.55.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Oct 2025 10:55:29 -0700 (PDT)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v2 01/13] dt-bindings: serial: renesas,rsci: Document RZ/G3E support
-Date: Thu, 30 Oct 2025 17:55:05 +0000
-Message-ID: <20251030175526.607006-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251030175526.607006-1-biju.das.jz@bp.renesas.com>
-References: <20251030175526.607006-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1761846917; c=relaxed/simple;
+	bh=n03Kkd8B9lkuPGGTD2/aS2js141OYFeGO2LxnTibEvA=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=W88UfAWvKnxTXS66if50YtNJ36Wx0ZNYcVLNzCCuzatAsM7n5B82VbnIxd00UvXsaFJ/ON5Q/a8GBYmD+W8Sgqc7SVgdDfdpF7Q/fm3rgM1CpcOeOHseSwB02RKuLUnHkUfT29QO26bdKggI6oAw3B0xMqzvheVCryiQ3lI1rD8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4cyBVw1ddfz6M4qj;
+	Fri, 31 Oct 2025 01:51:20 +0800 (CST)
+Received: from dubpeml100005.china.huawei.com (unknown [7.214.146.113])
+	by mail.maildlp.com (Postfix) with ESMTPS id C480F140370;
+	Fri, 31 Oct 2025 01:55:12 +0800 (CST)
+Received: from localhost (10.203.177.15) by dubpeml100005.china.huawei.com
+ (7.214.146.113) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Thu, 30 Oct
+ 2025 17:55:12 +0000
+Date: Thu, 30 Oct 2025 17:55:10 +0000
+From: Jonathan Cameron <jonathan.cameron@huawei.com>
+To: Ajith Anandhan <ajithanandhan0406@gmail.com>
+CC: <linux-iio@vger.kernel.org>, <jic23@kernel.org>, <dlechner@baylibre.com>,
+	<nuno.sa@analog.com>, <andy@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH 3/3] MAINTAINERS: Add entry for TI ADS1120 ADC
+ driver
+Message-ID: <20251030175510.00005af8@huawei.com>
+In-Reply-To: <20251030163411.236672-4-ajithanandhan0406@gmail.com>
+References: <20251030163411.236672-1-ajithanandhan0406@gmail.com>
+	<20251030163411.236672-4-ajithanandhan0406@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml100009.china.huawei.com (7.191.174.83) To
+ dubpeml100005.china.huawei.com (7.214.146.113)
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
+On Thu, 30 Oct 2025 22:04:11 +0530
+Ajith Anandhan <ajithanandhan0406@gmail.com> wrote:
 
-Add documentation for the serial communication interface (RSCI) found on
-the Renesas RZ/G3E (R9A09G047) SoC. The RSCI IP on this SoC is identical
-to that on the RZ/T2H (R9A09G077) SoC, but it has a 32-stage FIFO compared
-to 16 on RZ/T2H. It supports both FIFO and non-FIFO mode operation. RZ/G3E
-has 6 clocks(5 module clocks + 1 external clock) compared to 3 clocks
-(2 module clocks + 1 external clock) on RZ/T2H, and it has multiple resets.
+> Add a new MAINTAINERS entry for the Texas Instruments ADS1120
+> ADC driver and its device tree binding.
+blank line before tag block.
+> Signed-off-by: Ajith Anandhan <ajithanandhan0406@gmail.com>
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v1->v2:
- * Updated commit message
- * Added resets:false for non RZ/G3E SoCs.
----
- .../bindings/serial/renesas,rsci.yaml         | 85 ++++++++++++++++---
- 1 file changed, 74 insertions(+), 11 deletions(-)
+Just bring this in along with the code, it doesn't need a separate
+commit.
 
-diff --git a/Documentation/devicetree/bindings/serial/renesas,rsci.yaml b/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-index 6b1f827a335b..1c2ed4cd58fd 100644
---- a/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-+++ b/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-@@ -10,17 +10,16 @@ maintainers:
-   - Geert Uytterhoeven <geert+renesas@glider.be>
-   - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
- 
--allOf:
--  - $ref: serial.yaml#
--
- properties:
-   compatible:
-     oneOf:
--      - items:
--          - const: renesas,r9a09g087-rsci # RZ/N2H
--          - const: renesas,r9a09g077-rsci # RZ/T2H
-+      - enum:
-+          - renesas,r9a09g047-rsci # RZ/G3E non FIFO mode
-+          - renesas,r9a09g047-rscif # RZ/G3E FIFO mode
-+          - renesas,r9a09g077-rsci # RZ/T2H
- 
-       - items:
-+          - const: renesas,r9a09g087-rsci # RZ/N2H
-           - const: renesas,r9a09g077-rsci # RZ/T2H
- 
-   reg:
-@@ -42,14 +41,40 @@ properties:
- 
-   clocks:
-     minItems: 2
--    maxItems: 3
-+    maxItems: 6
- 
-   clock-names:
--    minItems: 2
-+    oneOf:
-+      - items:
-+          - const: operation
-+          - const: bus
-+      - items:
-+          - const: operation
-+          - const: bus
-+          - const: sck # optional external clock input
-+      - items:
-+          - const: bus
-+          - const: tclk
-+          - const: tclk_div64
-+          - const: tclk_div16
-+          - const: tclk_div4
-+      - items:
-+          - const: bus
-+          - const: tclk
-+          - const: tclk_div64
-+          - const: tclk_div16
-+          - const: tclk_div4
-+          - const: sck # optional external clock input
-+
-+  resets:
-+    items:
-+      - description: Input for resetting the APB clock
-+      - description: Input for resetting TCLK
-+
-+  reset-names:
-     items:
--      - const: operation
--      - const: bus
--      - const: sck # optional external clock input
-+      - const: presetn
-+      - const: tresetn
- 
-   power-domains:
-     maxItems: 1
-@@ -62,6 +87,44 @@ required:
-   - clock-names
-   - power-domains
- 
-+allOf:
-+  - $ref: serial.yaml#
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a09g077-rsci
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 3
-+
-+        clock-names:
-+          maxItems: 3
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,r9a09g047-rsci
-+              - renesas,r9a09g047-rscif
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 5
-+
-+        clock-names:
-+          minItems: 5
-+
-+      required:
-+        - resets
-+        - reset-names
-+    else:
-+      properties:
-+        resets: false
-+
- unevaluatedProperties: false
- 
- examples:
--- 
-2.43.0
+Thanks,
+
+Jonathan
+> ---
+>  MAINTAINERS | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 3da2c26a7..1efe88fc9 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -25613,6 +25613,13 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
+>  F:	drivers/iio/adc/ti-ads1119.c
+>  
+> +TI ADS1120 ADC DRIVER
+> +M:	Ajith Anandhan <ajithanandhan0406@gmail.com>
+> +L:	linux-iio@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/iio/adc/ti,ads1120.yaml
+> +F:	drivers/iio/adc/ti-ads1120.c
+> +
+>  TI ADS7924 ADC DRIVER
+>  M:	Hugo Villeneuve <hvilleneuve@dimonoff.com>
+>  L:	linux-iio@vger.kernel.org
 
 
