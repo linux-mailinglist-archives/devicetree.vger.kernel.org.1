@@ -1,86 +1,118 @@
-Return-Path: <devicetree+bounces-233348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B03C8C21505
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:54:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BE33C2151D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:55:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3EDBE4EFDAE
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 16:49:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9EA55618FD
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 16:50:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 912D92F12CA;
-	Thu, 30 Oct 2025 16:49:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41DB92DD61E;
+	Thu, 30 Oct 2025 16:50:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MtPn/Clr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h6qVH5W5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CD272EC55B;
-	Thu, 30 Oct 2025 16:49:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 080B9264F9C;
+	Thu, 30 Oct 2025 16:50:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761842969; cv=none; b=aLcVR2KeqU7q1yl6M1/g3NTbd+8GcOybqfASvx0xflHfP0d+Fc8i+nE2HjCyDjS7nVrutY4Et380DeHEzPvO/ujPj2JaiFdr9mP8m3Av+1YGBp6T+NB2ItLO+GrAdCR4SZWCDbdlqv2jAJEG+8zDKMFffhGCZ+lWVxPCpXgNAQ0=
+	t=1761843012; cv=none; b=PamIKfj9MGeQce/QwPaSa897Ykh0w1GyIXaqo8k8MM59DfEbzFuRefHPK2wd3VN0DRbk1L3/uA09moLS7t3/0Ch2cwESS5FQMj6FXvHE1VPboqCeptvcz9IVMxlEra3BR5olq/2oQ5nrmIEpy8FqhTMPhQolvWeOpgzqB0hi1Ww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761842969; c=relaxed/simple;
-	bh=7VQ46Vi+I3aZ0Fv1Chak1rm/T77YzQd7N0m61VOYC0M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WyFgvviYBO7Q+T2fydD9ChNdRJ+ZNic9m26tSIV3TzZ6DKNmiIq1fCct2inSwCHea0KjEAvks8dlvl1pmi2hwZdYUVgFxerJRfQo2LcwImwdotDmT0uRM/+HAHXOcP90+H2nLo5/PvyxAnw0QRjh7TcYBQDese//Tkmg7rtMoHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MtPn/Clr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8DD5C4CEFB;
-	Thu, 30 Oct 2025 16:49:28 +0000 (UTC)
+	s=arc-20240116; t=1761843012; c=relaxed/simple;
+	bh=2AgScSgFG6KmiHrgMKTGpPXiiYnevIIc9U4Q25rTP9E=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=o38tCV3LUkoh2fVVIzbFjJNaFgT8eOOu1pomX+RjpCNtXVWWVJtsNFvP8n33VoKQ17WgINGo+E2DFNvh7BX4qFJxqAtB1Ylzo18tPvgUAzQyL4yz8xwyW58ULwKVs3/hyEcmsbrO3b3SUg1g1UbOBw6Yq/kgu5R28s1fk4IqpEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h6qVH5W5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75B0DC4CEF1;
+	Thu, 30 Oct 2025 16:50:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761842969;
-	bh=7VQ46Vi+I3aZ0Fv1Chak1rm/T77YzQd7N0m61VOYC0M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MtPn/Clr354rV52c6Q6wMLQQdsuYH/7nPFqC6BrjTspxq/uLL5JeZd7xR95oNllUG
-	 pk3MN+B9ZV8GKITZxy4a3BgKY5ykqXBlCXyB7U8dVoya5hBfO3xQPS56lHCy6O8GWl
-	 FaQ9n9XKNd5as2r8qt7hlEOQ+iCADjC+7MipbNCi120NMgzi7wJbdOWpRhitS7VDBl
-	 u4YpA6ghe7TjEGJekPIidK1D5ck8fpHpdN1XqQ2L/SQGRumcaIGxgjdosSZ+7DZ2b9
-	 h6q2FB09k3/Ttyq5C+JehIcJ7r+6V+ZApYpAIB+JsC9nPknptFAFLEQgei2G+uFKea
-	 r4gklLP0mhw1g==
-Date: Thu, 30 Oct 2025 11:49:26 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Charan Pedumuru <charan.pedumuru@gmail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Taichi Sugaya <sugaya.taichi@socionext.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Takao Orito <orito.takao@socionext.com>, linux-mmc@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v2] dt-bindings: mmc: socionext,milbeaut-m10v-sdhci-3.0:
- convert to DT schema
-Message-ID: <176184296394.4162219.4477625887711205247.robh@kernel.org>
-References: <20251027-milbeaut-v2-1-9e1954ff7708@gmail.com>
+	s=k20201202; t=1761843011;
+	bh=2AgScSgFG6KmiHrgMKTGpPXiiYnevIIc9U4Q25rTP9E=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=h6qVH5W5vYLUQDpex+WP8aa3elxFOZ/pMFQRACcr8YqVvfQF42fTV+kZRY2GtQTbG
+	 2HsODoHVhydin98rNGobOTPkyt/cQGCgjxhkfDD83QTbmzNfEII83SKUw4dV6eE0Ky
+	 mmaZ87HWaRpqp+wHeZxLfP6AyE4V18YJwkw/06/iJZf71ylXS47VLy7cbHdIfZKg8z
+	 y/VAcr3H7QgU3NTXHdoUmDJvmqN5LYWPwbNdEv+/XVySnh0Fyulf54SrHBjDvvOsEg
+	 RR0Z0MTQCpcolhN1aAWUkLFk47wbn/ipemYmrDdJRz73jFDAiVuzs3IFqRyubWo9zq
+	 BCyVIhaPypN2Q==
+From: Mark Brown <broonie@kernel.org>
+To: David Rhodes <david.rhodes@cirrus.com>, 
+ Richard Fitzgerald <rf@opensource.cirrus.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, 
+ Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
+ Nikita Shubin <nikita.shubin@maquefel.me>, Axel Lin <axel.lin@ingics.com>, 
+ Brian Austin <brian.austin@cirrus.com>, 
+ Herve Codina <herve.codina@bootlin.com>
+Cc: linux-sound@vger.kernel.org, patches@opensource.cirrus.com, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+In-Reply-To: <20251029093921.624088-1-herve.codina@bootlin.com>
+References: <20251029093921.624088-1-herve.codina@bootlin.com>
+Subject: Re: (subset) [PATCH v2 0/4] Add support for an external Master
+ Clock in the Cirrus CS4271 codec
+Message-Id: <176184300823.119935.16469243761262240818.b4-ty@kernel.org>
+Date: Thu, 30 Oct 2025 16:50:08 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251027-milbeaut-v2-1-9e1954ff7708@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-88d78
 
-
-On Mon, 27 Oct 2025 16:46:16 +0000, Charan Pedumuru wrote:
-> Convert SOCIONEXT Milbeaut SDHCI controller binding to YAML format.
-> Add a new property "voltage-ranges" to resolve dt_check errors.
+On Wed, 29 Oct 2025 10:39:16 +0100, Herve Codina wrote:
+> The Cirrus CS4271 codec can have its Master Clock provided by an
+> external clock when no crystal is used.
 > 
-> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
-> ---
-> Changes in v2:
-> - Change the description for the property "voltage-ranges".
-> - Link to v1: https://lore.kernel.org/r/20251023-milbeaut-v1-1-3e4ff67110ad@gmail.com
-> ---
->  .../devicetree/bindings/mmc/sdhci-milbeaut.txt     | 30 --------
->  .../mmc/socionext,milbeaut-m10v-sdhci-3.0.yaml     | 79 ++++++++++++++++++++++
->  2 files changed, 79 insertions(+), 30 deletions(-)
+> This series adds support for this external Master clock.
 > 
+> The first patch in the series is not related to the clock but fixes an
+> issue related to module loading and MODULE_DEVICE_TABLE() due to a
+> driver split between i2c part and spi part.
+> 
+> [...]
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[2/4] ASoC: cs4271: Disable regulators in component_probe() error path
+      commit: 1e5351ba60f5355809f30c61bbd27e97611d2be9
+[3/4] ASoC: dt-bindings: cirrus,cs4271: Document mclk clock
+      commit: 3cd523ba270665861647304aa30500f238ebf26e
+[4/4] ASoC: cs4271: Add support for the external mclk
+      commit: cf6bf51b53252284bafc7377a4d8dbf10f048b4d
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
