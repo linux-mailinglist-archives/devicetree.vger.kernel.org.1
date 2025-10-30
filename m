@@ -1,107 +1,139 @@
-Return-Path: <devicetree+bounces-233416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B05CEC21E21
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 20:11:53 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85147C21DE2
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 20:08:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0532C4219C8
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 19:11:26 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CDA624ECE8F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 19:08:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DCE437572E;
-	Thu, 30 Oct 2025 19:10:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2152230C606;
+	Thu, 30 Oct 2025 19:08:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g5e2tGMs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DxbNvTrB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BAA337572A;
-	Thu, 30 Oct 2025 19:10:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8A23293C4E;
+	Thu, 30 Oct 2025 19:08:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761851454; cv=none; b=Ntkaky6nqZza0PecRP99q8Byvf5LcdQ7nVYWM4OmTKxvUgzK+RWyKyA5aju4TyOM+ZWu5GiABufillsuVsaH+G7rgWxsarq4aPFI1S8abrGOOwREPSxjPloAr3cjcSechslzvV5rKL8Sb5Tr7qFPp71f4+uSVSz6qwB2YM4EJdo=
+	t=1761851312; cv=none; b=RBWS/prf7NVrE8tGJkI63MVppPQMNmVGie7cs0gllRkOsSOY1B+fis5AQLfq4BmZCmbne4dxIZUO/20uFvhSmbDNfA8ED5rWhP+TNg4ZJYnZZWG/f2QNS5bF24XWNj3MU7/5dzerSXuFEPrvQ7pygwmHzy88nFUW+jWah+qjSbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761851454; c=relaxed/simple;
-	bh=adyXiT86E3/PnN/XVD2yWuOTXuTxM2aPkCYxiEEjduY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hF0L4FzUgelS+Hr+C8kDgQN5LaqbQbMlkQ/RKG5Dbyw3PosU2df/16JR6uAO+JuxPPrsYfuVB7gAr6u2FUlsmCLZDXqzpfurxCbqLw7VfEuAwKOTqldToCfGFiGRnT3dROK7JhHk8S5Gfn1vWKyyeuPOTSWrly1xsqxCkPB7cIc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g5e2tGMs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FD2AC4CEFD;
-	Thu, 30 Oct 2025 19:10:51 +0000 (UTC)
+	s=arc-20240116; t=1761851312; c=relaxed/simple;
+	bh=kOo+PpES5NgQcULf7S+Q+UVAhdpsgLGwKOQrs8bQIEw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jpH/XRcUFwVp/leX/ETe7XsaMKAUR/TlcqQKQWHnTfipHDSEbvOts+a4npvDg+PQdyaURhIYuFq7ZU3bhbFnPK0+C0NCa092IxQAfA2tagLbH655cyuXh5w1ORluucIQGHAxmuhEwOKGsMAKXVpt7YHR6WxFwPHNYGIS4iyovuU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DxbNvTrB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AC8FC4CEFB;
+	Thu, 30 Oct 2025 19:08:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761851453;
-	bh=adyXiT86E3/PnN/XVD2yWuOTXuTxM2aPkCYxiEEjduY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=g5e2tGMsymwn+FJBI5n1hSvtBJs0RhOvxQjknbrX07WyiUzOsLS0uIuE2C9Hmao4L
-	 Gm0B3HaAw+egPQJaJu9zGagx+wq+ARareGR0iXjMpULLlRsZCRDcRHxh0Sw5oKQUlv
-	 50tD4SlGVSqJZ11l3T6UMlB3n9/a7D+V9DD4GKb8vPOEvSpqL7pViiwopbcQkNedV2
-	 JrG2OBYSk9YZ6FsTdjouV48hYMh9Y+Zz5wkVnBwQMdSGpE7cBbDf6sW9O5R10xnz6M
-	 mJQLdAzM579Oj3g6HC170GETub0SU4WqyYhklgluYBYDf8GZSm8wXewpUQbenM6tSV
-	 gSWEST+q3TMBQ==
-From: akemnade@kernel.org
-Date: Thu, 30 Oct 2025 20:10:36 +0100
-Subject: [PATCH v2 3/3] ARM: dts: ti/omap: omap4-epson-embt2ws: add
- powerbutton
+	s=k20201202; t=1761851311;
+	bh=kOo+PpES5NgQcULf7S+Q+UVAhdpsgLGwKOQrs8bQIEw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DxbNvTrBua7xWRyCgNRUIZ3uCilnBZbV/HdNHv7X7+SaC+wACQ1cwzbTRtnwqeIt5
+	 s2JoJnBGaOwRV/uMKCFwHv9n+044xo2h5IDoWWFxDuL7UqA2OM114R+6xXCwZI3ntp
+	 ASzXawONhxHRiKUDwMeZbCpwxFzs7hSwq6eTO0gzCDmDE6npO9Y8QJCui+s6TQAVDJ
+	 bsOOL0v2QDyy3lozq/F8/itl3Dra4M5Lv6adOVL3qEofKcT12q5Z6SnlhOp4QhFLJl
+	 aGYRi1dD19NrzTbdNpY2A7RadUp8qRTIZh+LZ4M6ePkeKwBZBsFMb6pOqKwhESnx/z
+	 s4N2+YwlZE6MQ==
+Date: Thu, 30 Oct 2025 14:11:40 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, 
+	trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: mailbox: qcom: Add IPCC support for
+ Glymur Platform
+Message-ID: <ofoie57qkonmyots5y3jf3sn27zy45rd54raosvo2gu4nzrxjo@3hvm7bp7vswa>
+References: <20251029-knp-ipcc-v2-0-8ba303ab82de@oss.qualcomm.com>
+ <20251029-knp-ipcc-v2-2-8ba303ab82de@oss.qualcomm.com>
+ <67038d9f-7c6c-4bb3-ba64-b06816b76be7@kernel.org>
+ <qyfxtoe7ixko7k5whtzjpkynwpeqxzb2sgwq7y4y3kstblapz5@ggny5uq7qv6s>
+ <5468378e-3ca3-45d2-98bf-9388005bba85@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251030-twl6030-button-v2-3-09653d05a2b1@kernel.org>
-References: <20251030-twl6030-button-v2-0-09653d05a2b1@kernel.org>
-In-Reply-To: <20251030-twl6030-button-v2-0-09653d05a2b1@kernel.org>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andreas Kemnade <andreas@kemnade.info>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Tony Lindgren <tony@atomide.com>, Kevin Hilman <khilman@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-input@vger.kernel.org, linux-omap@vger.kernel.org, 
- Andreas Kemnade <akemnade@kernel.org>
-X-Mailer: b4 0.15-dev-50721
-X-Developer-Signature: v=1; a=openpgp-sha256; l=828; i=akemnade@kernel.org;
- h=from:subject:message-id; bh=kCywPpfG6XQhiUheZwu6EG6J7hIkcu/XRNjW/00c6gg=;
- b=owGbwMvMwCUm/rzkS6lq2x3G02pJDJnMOwwn8gmrlubETTjWsksq4ZzuSSPphL8zjpfdjOrfo
- nsyuXRhRykLgxgXg6yYIssvawW3TyrPcoOnRtjDzGFlAhnCwMUpABOJVGFkuGq027yq88/klKDj
- rBFPv07YwvUxqy1livmfso0Zyjd9WRj+Z+188rBn2t1cn40+IXMFtm3aJGq7QVyrPP3Jx/T4twn
- X+QA=
-X-Developer-Key: i=akemnade@kernel.org; a=openpgp;
- fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5468378e-3ca3-45d2-98bf-9388005bba85@kernel.org>
 
-From: Andreas Kemnade <andreas@kemnade.info>
+On Thu, Oct 30, 2025 at 06:53:59AM +0100, Krzysztof Kozlowski wrote:
+> On 29/10/2025 18:23, Bjorn Andersson wrote:
+> > On Wed, Oct 29, 2025 at 04:49:30PM +0100, Krzysztof Kozlowski wrote:
+> >> On 29/10/2025 09:15, Jingyi Wang wrote:
+> >>> diff --git a/include/dt-bindings/mailbox/qcom,glymur-ipcc.h b/include/dt-bindings/mailbox/qcom,glymur-ipcc.h
+> >>> new file mode 100644
+> >>> index 000000000000..3ab8189974a5
+> >>> --- /dev/null
+> >>> +++ b/include/dt-bindings/mailbox/qcom,glymur-ipcc.h
+> >>> @@ -0,0 +1,68 @@
+> >>> +/* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
+> >>> +/*
+> >>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> >>> + */
+> >>> +
+> >>> +#ifndef __DT_BINDINGS_MAILBOX_IPCC_GLYMUR_H
+> >>> +#define __DT_BINDINGS_MAILBOX_IPCC_GLYMUR_H
+> >>> +
+> >>> +/* Glymur physical client IDs */
+> >>> +#define IPCC_MPROC_AOP			0
+> >>
+> >>
+> >> Here the same - not used by Linux.
+> > 
+> > How is this different from e.g.:
+> > 
+> > include/dt-bindings/interrupt-controller/arm-gic.h:#define GIC_SPI 0
+> 
+> $ git grep GIC_SPI
+> drivers/irqchip/irq-mchp-eic.c
+> 
 
-There is a power button connected to the PMIC, so describe it to be able
-to power off the device in a convenient manner.
+My interpretation of that snippet (and the other use cases) is that they
+are programmatically constructing the values of a DT property, not that
+they define the SW API.
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+> How is this not used by Linux? What is drivers/irqchip/foo.c if not a
+> Linux driver?
+> 
 
-diff --git a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-index c90f43cc2fae..673df1b693f2 100644
---- a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-+++ b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-@@ -229,6 +229,11 @@ rtc {
- 			interrupts = <11>;
- 		};
- 
-+		pwrbutton {
-+			compatible = "ti,twl6030-pwrbutton";
-+			interrupts = <0>;
-+		};
-+
- 		ldo2: regulator-ldo2 {
- 			compatible = "ti,twl6032-ldo2";
- 			regulator-min-microvolt = <1000000>;
+No argument there.
 
--- 
-2.47.3
+[..]
+> > 
+> >> Or provide explanation in terms what Linux interface you are binding
+> >> here (please focus on Linux or other SW).
+> >>
+> > 
+> > Don't we use include/dt-bindings to define hardware constants for use in
+> 
+> No, we do not.
+> 
 
+I have completely missed this. Perhaps this is the first use case, but
+the result is non-the-less:
+
+$ find arch/*/boot/dts/qcom -name '*.h' | wc -l
+0
+
+
+But this makes sense, and I like it.
+
+@Jingyi, as these header constants are consumed only by DeviceTree
+source, please move them to arch/arm64/boot/dts/qcom/
+
+Thanks,
+Bjorn
 
