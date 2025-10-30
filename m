@@ -1,193 +1,229 @@
-Return-Path: <devicetree+bounces-233020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1412EC1E738
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 06:44:31 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59595C1E74D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 06:47:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A21F84018FD
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 05:44:29 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D3DBB34B075
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 05:47:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAA922F5A3E;
-	Thu, 30 Oct 2025 05:44:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BD482367D3;
+	Thu, 30 Oct 2025 05:47:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="ZTj3xkm5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UCKsZOhs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU010.outbound.protection.outlook.com (mail-japanwestazon11011044.outbound.protection.outlook.com [40.107.74.44])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 030B2228CA9;
-	Thu, 30 Oct 2025 05:44:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.74.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761803065; cv=fail; b=AW2h0e6Ou3z04Ly1285WEzBlQMtkNMc7yBOqe65Nv2vQx449jwANbZmEQ4kTinf73G+CGW28eY/NRM2UVam8o8z3J4QMLISyDT9uGbShJk6X6o3HckdWVH0B8yAK5TI91gMJxYZmLK33pwJ4oZ98s3v+vYSdO813iEswOOxw51E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761803065; c=relaxed/simple;
-	bh=KZb0j0GN/DNI5WAqOQ2Vhs3jCMV66CiZlbCH7U5BwNw=;
-	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 Date:MIME-Version; b=rnXmdpBy2TjhTwtOoqw9MxjTDvSUVfTphCCjAeGdDd8gdUo6yxiVZruc3EZdnUY2vdSRfWq8sWhDqpkkvtO2rhw0JhuVWZvYYMGhX2rb6rOMxyV4Cb3v+4ycuPQvjumW/cc+LSih9fvTEmIz1TherwYjONXk9xPZycp7i2veRP8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=ZTj3xkm5; arc=fail smtp.client-ip=40.107.74.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ICV4zyMcZMsBPpfQ4Nw9MSO6M6FlklNwEVLkwqIGQm6gW4pUUOxW3GyuXwX3oEIj5WG+irQIl68ktOF6oCjV8AoPToC8Hvmd4Umur+7ejNwgOLQJtsWcOBRcZGoE1U3VC9xOlSV8Gw0e6AiFeH152dEhW25HlUkOhDPNu/ZCzrDCWdkfodG1lYwqhBWg2y/AfYeP6uV1RQXMTfM6q1YWAKzAdRK9ZyggKINxLVyXPHvRLtcVFDAGXbaZ09uGS/LZ2V4/WqMOLC3LrWZnuXoe4Q2dY1GYqQpNwTQtSq9SpPvRG49EL6RWx6YfW1GMe2a0PyOwmcxZEwEtTHEyAagQcA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uTUYoRjUqqrMix9F88N1SGAGsvGQkC3nhlAXQjxbBBs=;
- b=CY9NgWl7+11kRnGTDaZyZvNI7ZXRh/ULxuku0COxVYHRlIGmx5f2+vSCxz0iQCfUT/iSyAr7qQZ3Cs07RqcNLCvGAJkFUi1qeqHG+wwIdsn2E9bHL+1YwQRB01V/EM2L0bbDmuUE9CJlxqc1Wk0qJUm+bDlj9wfBPrYHAYNlnCMS5ShaPWQWigwWSpURTGL/nYAxv7TMIjWsTMi5AP0tBP3LZ1xONmtrtnoWXCySCtHIvNCwt2rCZNlvb6w98TYRhyBmI7z5bs9r1K+2x5dzhmVtYv9aSfg6gBdtNFDXKZIqb4+QfAjZ68BfqenuAnmYC0s/2ggdnj5SkBKBReNRgg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uTUYoRjUqqrMix9F88N1SGAGsvGQkC3nhlAXQjxbBBs=;
- b=ZTj3xkm5cFhj3SFSTkh3H+algj4zqoc+OP/Lzp1AY4FkrCEoSdcTqUgolVqp42/4W+9hgqgj6tKO8jml+/fLGybekPMdJ2QXfipGzpz44wcpeAjEkWhtMEHb0ZwJ2/VQ90P+kWKxv04kzk+ezZMyoOM1qYRopUImLxbUvYJt0LI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by OS9PR01MB16171.jpnprd01.prod.outlook.com
- (2603:1096:604:3db::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.12; Thu, 30 Oct
- 2025 05:44:14 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11%3]) with mapi id 15.20.9275.013; Thu, 30 Oct 2025
- 05:44:14 +0000
-Message-ID: <87a5192bbm.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] dt-bindings: mailbox: Add Renesas MFIS Mailbox
-In-Reply-To: <5dd02143-861e-4b2c-af1b-79e6c57de076@kernel.org>
-References: <87o6prsl2z.wl-kuninori.morimoto.gx@renesas.com>
-	<87jz0fsl0u.wl-kuninori.morimoto.gx@renesas.com>
-	<20251028-pastoral-efficient-mandrill-c4e9ca@kuoka>
-	<878qguv8fh.wl-kuninori.morimoto.gx@renesas.com>
-	<CAMuHMdW9sEcKprPjiA50QOWm7b_fwoEkuJcLLKg-srQxwJX43A@mail.gmail.com>
-	<87v7jx2t7s.wl-kuninori.morimoto.gx@renesas.com>
-	<5dd02143-861e-4b2c-af1b-79e6c57de076@kernel.org>
-User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date: Thu, 30 Oct 2025 05:44:14 +0000
-X-ClientProxiedBy: TYCP286CA0002.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:26c::6) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DBDB37A3BB;
+	Thu, 30 Oct 2025 05:47:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761803269; cv=none; b=gV6rJXeQpS+hFoAePeBKbJnvzZ5Io5c1K9SHXkDg/t9EwlnryXsFnPAtZ3hTHbj/45aSU9+MYZG6ihGp3QEl9StNqvhpyAdsSlbrAFH5p7Iia54BRVMyNYrQp4fNJMEdFF7h4jVxdD48oicbfajI+K9vSyoLmzKcyNgGL6jqa2Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761803269; c=relaxed/simple;
+	bh=M0L09TztyNjiCDc0Fb+g18Hn3UGbrQ0moZLvALPRArs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ByeahxkhFaxAdbbJGZ6q5EtZuO3Np04e1uNjzih9AyZjnzbPCVdfBXIKCYxFdXuW9QkJvnApZp72iDVXTwQUpxqogZaaly6f7TrnZAoTHd6UDVuHNvFxrv2qq+29zCBJGCPNmWy2cV8q7nNhW4NQdKieHczxIk2Osnyf3SLJnG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UCKsZOhs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4806DC4CEF1;
+	Thu, 30 Oct 2025 05:47:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761803268;
+	bh=M0L09TztyNjiCDc0Fb+g18Hn3UGbrQ0moZLvALPRArs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UCKsZOhsyY1IhSirXHQDQstZCJkLbnus/ixxDFTWJBopPno78YIamfu11F2ZYTHeE
+	 j4hKn0TbDWKCquth7Q9IRZbw3o+aK/WT+eQN+A1ceicjqKy8Tnx5Ios2HHNOlNYEh0
+	 KgZTfhcE9RpjBMtrHogO363mF+I7l1HBS+ybg1GLjJZgskbYDJq+Foc13No4VcWFwm
+	 o71IW93b2TIweD2yCLvb3uno2HIibJSKVRkckg4d2NOhy5m0q5DCzIvYZ8dB/sEnlw
+	 Xcz3pnQE5U97HlPymLuaxeVMaQs6oL8VNkyb9p/nqUsSTrTjZqcXQaY0FKfRqQS5k9
+	 urWdccmHQqy7g==
+Message-ID: <da7ecb40-dbc2-4f6e-8026-d630e5b3bb52@kernel.org>
+Date: Thu, 30 Oct 2025 06:47:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OS9PR01MB16171:EE_
-X-MS-Office365-Filtering-Correlation-Id: dee6ecff-2c09-4015-30b9-08de17775bc9
-X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|366016|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Q2FhjO4e7DnDiTQXTFTshwtCvRnPoAQHlBgAkS9McfEdCh6mh5hANuS/5+uj?=
- =?us-ascii?Q?59O8rkeU3LubsS46OQuMIHJh4h10CcLpA1bGm+XbWqn7Tw7BRd1WmTcZOfu7?=
- =?us-ascii?Q?1qcLdszA/gerAOAvkMaVmLHUoZpL2oSpX/0RHYtrK5+d+zfE4a5dOz6El9uG?=
- =?us-ascii?Q?5BWdpmrtfpeDwZxZy1hcmkp7kGilodGsp9AYjJW/CI8JAMG3AfKded63V/16?=
- =?us-ascii?Q?vlFrb/e0j9sR7bC2c2ylnQmZA8FXHGzZrMQIRDPW626Z1AFyWcbmT17DiRMW?=
- =?us-ascii?Q?J7ckUBmm1RyaYaaoiG/To8CXDcL4C2zch7gsQX+lLHYm1xKIPA4vW1ULC1Zp?=
- =?us-ascii?Q?X0ggBVQoiT7VXz6hsOwujo4zqN/thUIP1lKFJOpP5A0Z1NImoc+hgm2hOXIs?=
- =?us-ascii?Q?UxSwfUs36Lb3xSVvtKyY/NrSCklSX754mngaHVvT7OhGAJIs6T9q+wcyADjT?=
- =?us-ascii?Q?UVrwERIdb3sU5BZzpHg1lUHKFs+lw5/UlrvWx8SjurldVFZ9J1kzI1GaT5/d?=
- =?us-ascii?Q?20Mx/hyTV43Mzy/JNwy9498gOglv7zylQWvGNu/XmxJEGpzNUUCRbVReGWgv?=
- =?us-ascii?Q?vROW2QilqPYVMGgpdeuAeBCxgQ7ytxadtEGTWuMJMd4dbuDhHpXIBNbMiaed?=
- =?us-ascii?Q?vdg7IaXcI7u4DB4iVurIUSeoLzJ6V08cE1PHDeg1+dl2J3IDUWGvhLrFA13K?=
- =?us-ascii?Q?1ixcDz294LCE5cj8AhBhb6sbSrHbghkuxe/XKkOOyzy4/GqJ01xzW1OoHTiI?=
- =?us-ascii?Q?/GPjQw03rZjrBwDZRd7nEGxb8WAKLT80kXnmnORreIpWu6NLos7Ss/gHUgz4?=
- =?us-ascii?Q?gkLtz9QW9SAhDgHAPXVEFmr5Jo7w0tBllk5Hc8/2GvodTI46VtbAqBxNFvJw?=
- =?us-ascii?Q?T6opQ4u6ft8zoiCRn3AaIFQl30dybtOjNR/vvQlRZsY5g6iSjvIOCRnLgyXC?=
- =?us-ascii?Q?vr+Mm5Epc0fa8OnIiJ8iDhEg08hOgxO2ClyLj+NOeDjHa7a7x507eurQYPb1?=
- =?us-ascii?Q?pj+Z3fNh/aIgN/Yd6rvt/eBaRpczt7fYDtMZso1y9Ksgkgs6ex4902Bx7zRf?=
- =?us-ascii?Q?S7PxhjD/a6cFWn2EKdwzNPMWstSXFsis9si5r3tXX7E1x7dx4MmH+25Idt5y?=
- =?us-ascii?Q?9Vp0PvBJeR0DvXR0IgltKTTRKzuPEzGw64eDwmQkK/iQuZutf9Wvnxa0/x6Z?=
- =?us-ascii?Q?wSzel67stmAgy0H/93F1VwtexEKqtKb2rVmMndBbAj0FWfTHmWloLPRS1dEI?=
- =?us-ascii?Q?hse7j1CZTqbQmOPpfWlMEj0YIW8IoVozH+16swewJTjxBd1Hu5xaRufGfeIX?=
- =?us-ascii?Q?IB+sSIPGF3lw8UbxGQ+hhaLOkz2JRmVkqIuJvZtu7tc/Ba51iqYTY4nrOo52?=
- =?us-ascii?Q?eaGRJ9p2O76NUzqjmhOrBh2bURl+7yXYbF+j83+rIgxl863+jkFckr9QxrXX?=
- =?us-ascii?Q?9V70KF09cpZUUi3f2CEidg7nfJCtgavKdYxmq81NWP6DNfTvb3c9bckmt9Q8?=
- =?us-ascii?Q?96iOAu+zFt/0PUt3VihYtqWcbpXtWKK9tx1k?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?tSTyxZhoW574ShvXDzlklvjomIAARs3ZI9wZVDuDxw1g/qUVjFmsMaFUjPLb?=
- =?us-ascii?Q?Z/Va7l4UdZw03Jk/88FTRDI+bR6Q1m1rvZo5WYvo7wdQI0NZA/obLuIgl5Kd?=
- =?us-ascii?Q?HslRgfGZMGJVWTuOAXNm1+vcjWs0TTtHZTbQlkbQP2alzVusT9vBx6VG5lZm?=
- =?us-ascii?Q?rc1bCj2ZEVQomrxKL9sZAyWq0UYyI8+JROZfxnfk6ANVAOqxxr++t5ffVaV7?=
- =?us-ascii?Q?LVPQ22ExtXxhWta8cRTKJQjQQsod9btesifAFYGMkvNMIlFWqCqvym5ECsFB?=
- =?us-ascii?Q?rT2yXMcJFY+jfy1Ht6ieSphme0fqqpMB58TAFxsibsgGBdYEvpsu2sjXel2s?=
- =?us-ascii?Q?hFy2xa8mKJ5hRuoAKwqDRQpILvHEtnZAB3TprSFPHND7jCaMABJYLqu8+Rha?=
- =?us-ascii?Q?j0jn9tk/hG0t8EUtMRcKBB1HB7gHH19+N7PzpRicNpGMY2oNQeFwpVDcp2vS?=
- =?us-ascii?Q?cYyK5rN8aryyxTOmnM73zgkNMEoR5NRll6XjzMipbFwi/CKCvUhZy6cLx5ph?=
- =?us-ascii?Q?MBiQ8hsYYLX5IIPnL74aRUv+o3ca2CZ2hgNxiQzOQ20db4snppvD6NPcLjRy?=
- =?us-ascii?Q?nAJfxikXoDYL1QdDrhEMkUmKWgoH6bk4fegfGMK0H+xjqvd0J1bNYq5oD0Rz?=
- =?us-ascii?Q?ET5g8CEECjE5izPTSXUMeCXFWbrXLXT7eC/YvpzJr+x9muCtEuAE1NiNV2lo?=
- =?us-ascii?Q?xD/H9xTxBLjwDSQWBMHXTAws6ss3eOlfqk4Hvc0MrypTEBlo/7veNvSsCKWx?=
- =?us-ascii?Q?okXhwAp4RWDcXV+Pe0SZzyps7NPdUkmY6f49HhucsYsXveOeU365i4FawEoT?=
- =?us-ascii?Q?AnX/HczFNdyItByugOB/DGZbhAO4fafeFc1OM34zpcJLNDiAtbb5HlwxG8vD?=
- =?us-ascii?Q?i95Rw4JVOS4k87VGH50C/b1wNYiWmdYnI6bpF42tjoSWgpT/Mz6cxHKtkQXT?=
- =?us-ascii?Q?0D5n6OkFARz+wWno2t5XTyHhimBk9QeUkUtg2hUgXsYzqcMIfjmlXmCNpCN2?=
- =?us-ascii?Q?sJtTWEWBIudLYWaYw4bDH0wifXhNDQDpQs9qMcOlYB2HakDhhttL101alsJA?=
- =?us-ascii?Q?emvDejMb69ss01UN00k2ArBNIi/aGcof+9089i+EWFb/MKqgquRgPrD/f980?=
- =?us-ascii?Q?E/KxEZJiJLs9yaS1UFW1LHho/sXv7l3G9uuk30MlPcsRVNdZj55e4Hgvc9tM?=
- =?us-ascii?Q?nTqYockutKcN0Z+a2hy1sON/nrXdarng3EbMCB08gZNu5ETPFedaqtaWDc39?=
- =?us-ascii?Q?rNx5dbcGmJZW7HF+kae/Do/ZEz9ZuvzB5Wegw2PKok7a65V/TFhMX0mPSLdK?=
- =?us-ascii?Q?ki8LvTF944DdCt8YJKVPRjARSr19pouUwS4Fkhs5J3lV6py6dNQgxlnyahav?=
- =?us-ascii?Q?4pogRzuero/8ZGysPzroPbKPf2UGIRbWXoeeW4mSKzfsGI81/ArI339XfxC0?=
- =?us-ascii?Q?8F69CsmwiVVZk2I4wm/pPSJL4nzEl7v7PWPa0wE4Per5rpcY6VgZ41OnZy+r?=
- =?us-ascii?Q?vD0wDYa5n0aAC0ynViJ8h9Pl7eypkHkL8jyosm4I+im3tgwDExeBE2nl9Ch9?=
- =?us-ascii?Q?txNnSVIY4yQ+atB47hQStkN9q1JQtKTxGua44zpu17EZGaYmga6rNjrV3NMN?=
- =?us-ascii?Q?YBWiOT+9dvX8AVacldILZWQ=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dee6ecff-2c09-4015-30b9-08de17775bc9
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2025 05:44:14.3101
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hhzqdDOaErhAbFI8zZRFa9qTBeY78lzTr2drNQ5hRpJ715T0ZCJdSos4dyQ/KxvDinUEPeyVk+RsRo1xTB/k4UKnAG1K3fNWMGOeMGfbojeJm5+gkw/4C/SLwgAcme8c
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS9PR01MB16171
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt: bindings: net: add bindings for QCN6122
+To: George Moussalem <george.moussalem@outlook.com>,
+ Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
+ ath11k@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251029-ath11k-qcn6122-v1-0-58ed68eba333@outlook.com>
+ <20251029-ath11k-qcn6122-v1-1-58ed68eba333@outlook.com>
+ <3dc712ae-b51f-4142-bbab-1eadbc27e60a@kernel.org>
+ <DS7PR19MB88836505C4CC48D3E62FBC0A9DFAA@DS7PR19MB8883.namprd19.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <DS7PR19MB88836505C4CC48D3E62FBC0A9DFAA@DS7PR19MB8883.namprd19.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 29/10/2025 17:12, George Moussalem wrote:
+> 
+> 
+> On 10/29/25 18:32, Krzysztof Kozlowski wrote:
+>> On 29/10/2025 15:26, George Moussalem via B4 Relay wrote:
+>>> From: George Moussalem <george.moussalem@outlook.com>
+>>>
+>>> QCN6122 is a PCIe based solution that is attached to and enumerated
+>>> by the WPSS (Wireless Processor SubSystem) Q6 processor.
+>>
+>> Please use subject prefixes matching the subsystem. You can get them for
+>> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+>> your patch is touching. For bindings, the preferred subjects are
+>> explained here:
+>> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+>>
+>> The prefix is never "dt:".
+>>
+> Will do in next version, thanks.
+> 
+>>
+>> A nit, subject: drop second/last, redundant "bindings for". The
+>> "dt-bindings" prefix is already stating that these are bindings.
+>> See also:
+>> https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+>>
+> 
+> Will change accordingly.
+> 
+>>>
+>>> Though it is a PCIe device, since it is not attached to APSS processor
+>>> (Application Processor SubSystem), APSS will be unaware of such a decice
+>>> so it is registered to the APSS processor as a platform device(AHB).
+>>> Because of this hybrid nature, it is called as a hybrid bus device as
+>>> introduced by WCN6750. It has 5 CE and 8 DP rings.
+>>>
+>>> QCN6122 is similar to WCN6750 and follows the same codepath as for
+>>> WCN6750.
+>>>
+>>> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+>>> ---
+>>>  .../bindings/net/wireless/qcom,ath11k.yaml         | 57 +++++++++++++++++++++-
+>>>  1 file changed, 56 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>>> index c089677702cf17f3016b054d21494d2a7706ce5d..4b0b282bb9231c8bc496fed42e0917b9d7d106d2 100644
+>>> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>>> @@ -21,12 +21,13 @@ properties:
+>>>        - qcom,ipq6018-wifi
+>>>        - qcom,wcn6750-wifi
+>>>        - qcom,ipq5018-wifi
+>>> +      - qcom,qcn6122-wifi
+>>
+>> Why people keep adding to the end... previously ipq5018 added by
+>> qualcom, did not even get any review.
+>>
+>> Place it before wcn and let ipq5018 be outlier since this was broken
+>> already.
+>>
+> 
+> it was exactly ipq5018 which got me thinking I should add it to the end.
+> Will alphabetically insert qcn6122. I could reorder the entire list as
+> well if you'd like (ipq6018 is also misplaced)
+> 
+>>>  
+>>>    reg:
+>>>      maxItems: 1
+>>>  
+>>>    interrupts:
+>>> -    minItems: 32
+>>> +    minItems: 13
+>>>      maxItems: 52
+>>>  
+>>>    interrupt-names:
+>>> @@ -87,6 +88,14 @@ properties:
+>>>      items:
+>>>        - const: wlan-smp2p-out
+>>>  
+>>> +  qcom,userpd:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    enum: [2, 3]
+>>> +    description: instance ID of user PD (protection domain) in multi-PD
+>>> +                 architectures to distinguish between multiple instances
+>>> +                 of the same wifi chip used by QMI in its interface with
+>>> +                 the firmware running on Q6.
+>>
+>> Broken indentation. It is supposed to be two spaces. Look at this file -
+>> why are you doing this completely different?
+>>
+>> Anyway, please do not come with 2nd or 3rd property for this. We already
+>> have such somewhere.
+> 
+> Would you mind pointing me to the property you're referring to? Do you
+> mean the QRTR ID as proposed in this RFC:
+> https://lore.kernel.org/linux-wireless/cover.1732506261.git.ionic@ionic.de/
+> 
+> if so, this wouldn't help this in this case. Although it's PCIe based,
+> PCI is not even enabled as the Q6 firmware itself takes care of that.
 
 
-Hi Krzysztof
+I expect something covering all cases, so it must cover ipq5332 and
+ipq9574 from the other patchset you mentioned:
+https://lore.kernel.org/all/20231110091939.3025413-2-quic_mmanikan@quicinc.com/
 
-> >> Please no more generic compatible values like "renesas,mfis-mailbox".
-> >> Especially in this case, as we know the MFIS mailbox on e.g. R-Car
-> >> Gen3 is not compatible with the one on R-Car Gen5.
-(snip)
-> > 	compatible = "rcar,r8a78000-mfis-mailbox",
-> > 		     "rcar,gen5-mfis-mailbox",
-> > 		     "rcar,mfis-mailbox";
-(snip)
-> You changed nothing. Please read again Geert answer.
+Same thing cannot be represented in two different ways.
 
-I guess you mentioned about generic compatible "rcar,mfis-mailbox".
-I didn't mention in this mail thread (?), but 1) we can keep compatible
-with Gen3/Gen4 and Gen5, 2) we don't support Gen3/Gen4.
+For APR and GPR we already have qcom,protection-domain as a service
+name. Linux drivers use it a bit differently than your code here, but
+unfortunately I focus on bindings and the binding sounds exactly the same.
 
-Thank you for your help !!
+Anyway instance ID is not acceptable. Check my slides for possible
+workarounds, if you do not know the actual protection domain.
 
-Best regards
----
-Kuninori Morimoto
+Best regards,
+Krzysztof
 
