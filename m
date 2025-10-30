@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-233240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F555C201E8
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:57:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DA46C201CA
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:56:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69A554662E8
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 12:55:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7250A1892733
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 12:56:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ACD8354AC6;
-	Thu, 30 Oct 2025 12:55:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1982E354AF4;
+	Thu, 30 Oct 2025 12:55:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A32CD32573C
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 12:55:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82D0135471E
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 12:55:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761828902; cv=none; b=Xm2xjIVNw1rvDFmXikDjsU7lyGBSWvWorI2nreJkF3xsxiVNVXvdtPQzJ8UYaPY+AmL9D3Bv+XSmpofae/vkK/e11I6x6WrSz1a8G3MvYFu6z6vrTelZn3HoHOYR9Q9juVV8qJBQc2HTp292Xwb2AgBVWoz70UoNtbWelF5MIas=
+	t=1761828930; cv=none; b=q9yVfW6pA5K4VGvbnZ+yna1/L/jMC5UY5ezD+Al7loZgBhvEXY0m3zHdcUqBu43qNuoCrHv3cueWbJCv/nWygUHzfv05CI8lsyY+0EubANLzxLlVeDYJLOfjrrxRdrkFljTkkNHY5X/i8qNYEZwe14qAvgJ76PK0OecunXu+Jx4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761828902; c=relaxed/simple;
-	bh=Po6b7mw3FBhvhgqPrfJ2LP2ZcFjOTAafBEccsvNf/3M=;
+	s=arc-20240116; t=1761828930; c=relaxed/simple;
+	bh=BPMkOSJzoxkfw6PUJolM0zDRGAMNQrtlbfSFl3O3j00=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=LcKGhFlJxpvlcf8ge3G/wOFB9JmaUk+spKNi8G81+KTI00m/jYwNbL/b5AwrlZ9d0PR5fZSt2JfP4Ae/ZqC8YusPa/zevSqQ9eSiGetBAlx718oSBHSgo66C3m7onL18z2gI86AxwZAwzyFwvYxEP5YWOkR5vmdETiTPCTOSOfE=
+	 Content-Type:MIME-Version; b=dtUf/VmrtaI+EU0VuN8m+Ur88tbRV3xanholiIzCP3ufnDG90UDzvHXLP0dwrNATlPkXrII7ojeuhgSgWV8e8W9sjX1zYZALstmg39y2feHCeOGoyf4kagbLCLPFPWYYRgZl3tr3vc9xE9jxS1q1s5ubtuaXL5mqNtFefqkwhKk=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -33,29 +33,31 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vESAy-0004fI-VK; Thu, 30 Oct 2025 13:54:48 +0100
+	id 1vESBP-0004jc-Tq; Thu, 30 Oct 2025 13:55:15 +0100
 Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vESAw-006DFP-2i;
-	Thu, 30 Oct 2025 13:54:46 +0100
+	id 1vESBO-006DFZ-3C;
+	Thu, 30 Oct 2025 13:55:15 +0100
 Received: from pza by lupine with local (Exim 4.98.2)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vESAw-000000009BE-3Bi1;
-	Thu, 30 Oct 2025 13:54:46 +0100
-Message-ID: <ea2a66b778e19dea7609370be0c16f1a440c99ed.camel@pengutronix.de>
-Subject: Re: [PATCH v7 0/2] Add driver support for ESWIN eic7700 SoC reset
- controller
+	id 1vESBO-000000009F0-3mw3;
+	Thu, 30 Oct 2025 13:55:14 +0100
+Message-ID: <0ba1350722a0f245257e462271d7edfc091a3097.camel@pengutronix.de>
+Subject: Re: [PATCH v8 0/7] Add initial USB support for the Renesas RZ/G3S
+ SoC
 From: Philipp Zabel <p.zabel@pengutronix.de>
-To: dongxuyang@eswincomputing.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com, 
-	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
-Date: Thu, 30 Oct 2025 13:54:46 +0100
-In-Reply-To: <20250930093132.2003-1-dongxuyang@eswincomputing.com>
-References: <20250930093132.2003-1-dongxuyang@eswincomputing.com>
+To: Claudiu <claudiu.beznea@tuxon.dev>, vkoul@kernel.org, kishon@kernel.org,
+ 	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ geert+renesas@glider.be, 	magnus.damm@gmail.com,
+ yoshihiro.shimoda.uh@renesas.com, 	biju.das.jz@bp.renesas.com
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Claudiu
+ Beznea	 <claudiu.beznea.uj@bp.renesas.com>
+Date: Thu, 30 Oct 2025 13:55:14 +0100
+In-Reply-To: <20251023135810.1688415-1-claudiu.beznea.uj@bp.renesas.com>
+References: <20251023135810.1688415-1-claudiu.beznea.uj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.56.1-1+deb13u1 
@@ -70,21 +72,32 @@ X-SA-Exim-Mail-From: p.zabel@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Di, 2025-09-30 at 17:31 +0800, dongxuyang@eswincomputing.com wrote:
-> From: Xuyang Dong <dongxuyang@eswincomputing.com>
+On Do, 2025-10-23 at 16:58 +0300, Claudiu wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >=20
-> This series depends on the config option patch [1].
+> Hi,
 >=20
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/c=
-ommit/?h=3Dnext-20250929&id=3Dce2d00c6e192b588ddc3d1efb72b0ea00ab5538f
-[...]
+> Series adds initial USB support for the Renesas RZ/G3S SoC.
+>=20
+> Series is split as follows:
+> - patches 1-2/7		- fixes on bindings and driver for USB PHY
+> - patches 3-5/7		- updates the rzg2l-usbphy-ctrl driver and documentation
+> 			  with support for setting PWRRDY though SYSC
+> - patches 6-7/7		- add device tree support
+>=20
+> Merge strategy, if any:
+> - patches 1-2/7 can go through the PHY tree
+> - patches 3-5/7 can go through the reset tree
 
-Applied to reset/next, thanks!
+Patches 3-5 applied to reset/next, thanks!
 
-[1/2] dt-bindings: reset: eswin: Documentation for eic7700 SoC
-      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3De40291127aa9
-[2/2] reset: eswin: Add eic7700 reset driver
-      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3Da4c5b6b610d9
+[3/7] dt-bindings: reset: renesas,rzg2l-usbphy-ctrl: Document RZ/G3S
+support
+      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3D7b129b5de3eb
+[4/7] reset: rzg2l-usbphy-ctrl: Add support for USB PWRRDY
+      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3D58128aa88867
+[5/7] reset: rzg2l-usbphy-ctrl: Add support for RZ/G3S SoC
+      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3Da729c4be5ce9
 
 regards
 Philipp
