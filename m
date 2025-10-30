@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-233293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72173C209EF
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 15:36:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 793ACC20A9D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 15:41:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F1E554EE4EC
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 14:33:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B509E189F73F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 14:36:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4300F27466D;
-	Thu, 30 Oct 2025 14:32:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A7F228506C;
+	Thu, 30 Oct 2025 14:35:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="c0frDGXY"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="BfITBlv/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 919AE1F0E39;
-	Thu, 30 Oct 2025 14:32:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 725F0283FF1;
+	Thu, 30 Oct 2025 14:34:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761834777; cv=none; b=bA1AGyG2bX8q3SFU9387F7GBOnaYYciMPbyUqYR0cqTMgQmSkrBFCR+ruNeOOwuRS2APoFKe4SaUJsm6c4Z70oc/JokQYFmBvDOTsE2aFDTmY9E0OjA8PDcZYTrrWGhVNq2JDRE6/T+pM4BJQhp1uGiiXs3g8qyPd6h0oMeSi1k=
+	t=1761834900; cv=none; b=CjwmDHG3TcAqdb9k4FYrh0/tznPMT/tNQsLBc7Q34EmkBf0bwWwjQ5WhiFXxmMPyT6MkA/Bidw/FBpm7yrkgtnntDGduNq4bRo301QYSZU1Wn+aYagzbKenLA058f94To1aTZ7kcpkHbmqrHBKQ5f5TMdOICvap71YQUALv3Uig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761834777; c=relaxed/simple;
-	bh=D62bdTPTtRN3AVB5FJdx5lqUZgowJjCwSpNZ7p2tbBQ=;
+	s=arc-20240116; t=1761834900; c=relaxed/simple;
+	bh=kzKBgV8r5q8edgixyS3j7wmuBEdehQSVMTJBgW7xz6E=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Oq08BJ30RFZwEgRXsiqQO5YuJf+CSPrdLsNmNGJAxcyldB+/yieLRu4RBwCZ8itIctevxiqgo9I8/HMhGswXfrnUda3sPZ62M2le3b1w3UmVKTp+zq4ChLPZeL6VuYw0wyuahY3ElBSrZJtOPlGAy4XeivbgZSMTUcxi0QCd2A4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=c0frDGXY; arc=none smtp.client-ip=68.232.154.123
+	 In-Reply-To:Content-Type; b=CsX7yIZIaXJQW9rTFplDbCam8XnMif61TnMxD/Ny+jhIITUSOv+LfdRmHqDtwGXYOPOr9fLZ/t1gJYsnbiIVCShzxlTBrEmoNnKKB84hskLG/eVMAs6XZVCJQFk8EDzqnRhXXy3GXjN7qIGTypbQkv+al7cNFz1lYoOU/2NU2o4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=BfITBlv/; arc=none smtp.client-ip=68.232.153.233
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1761834776; x=1793370776;
+  t=1761834899; x=1793370899;
   h=message-id:date:mime-version:subject:to:cc:references:
    from:in-reply-to:content-transfer-encoding;
-  bh=D62bdTPTtRN3AVB5FJdx5lqUZgowJjCwSpNZ7p2tbBQ=;
-  b=c0frDGXY4mr5bp5ucbHh5rxAMnnNH1fGGCo7N/yNDewjJyryHfC9ZTZp
-   99CqSw+1dSPpDByl/YjEmdVCHXD6M4C7skDjNGiUriHMBaKs9I8jU+nny
-   MYjvkZyTwOU6yXEULPgnhPbiM6Atg3T6IfCZRwom8GCaojJtSYzJmvTet
-   nAyQ2imByPY8ETjrdR1bW4oBoz2SMomesk0v2f+12qrTKHt0cwK9gl16f
-   35hR/CEdEoXURyemCcJ5x1yOTCtjrNWhvPqwz81TJsIhJ6Cb02GXxsfKO
-   S1lzHq3M3NWmEn6ahHvzK5Xnuq5kmFCoTwtJUwgGaQ6LH8Q0nYnklw9lA
-   g==;
-X-CSE-ConnectionGUID: dL1EgsYfRVKQ49uqN4PuEg==
-X-CSE-MsgGUID: LcgAnV1xSRm3PROQENaW/Q==
+  bh=kzKBgV8r5q8edgixyS3j7wmuBEdehQSVMTJBgW7xz6E=;
+  b=BfITBlv/T80CUadRIPGXDf6mSx5WZNa3ncao3fpK6ClgGI3cO9M3RlEA
+   MFgdiIrOaQVzFx9NqmKZDtLGS/+/WDzZgD3u5GLcv7Ntd8erYQvcjr1l+
+   U1hIVU5is5s24wN3DCJsjnW5wc3uk6N9J1k+06YhJyXYRrzLDvQLvaJVN
+   0DxeDPSMHiaNExODKpxpt2CtJEPYxZMBk9k4zr/hCWEjVBKSuiPbSVy89
+   wyNKguMB+HNqN+7XgrYGbDbeQUtE19035Pkz9OSB6Nblb1mN6taDuYxmd
+   +HLRDheHmoVe0HopG0OXqPk2DvdATRc5iSiPa+Q24OUltxDMKEIuiBZHP
+   A==;
+X-CSE-ConnectionGUID: iP8P+z7SToStG8EktGUkkw==
+X-CSE-MsgGUID: hH6D5D30RymrOV/Z5QwJMQ==
 X-IronPort-AV: E=Sophos;i="6.19,266,1754982000"; 
-   d="scan'208";a="48976230"
+   d="scan'208";a="48472823"
 X-Amp-Result: SKIPPED(no attachment in message)
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Oct 2025 07:32:54 -0700
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Oct 2025 07:34:57 -0700
 Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
  chn-vm-ex1.mchp-main.com (10.10.87.30) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.29; Thu, 30 Oct 2025 07:32:41 -0700
+ 15.2.2562.29; Thu, 30 Oct 2025 07:34:51 -0700
 Received: from [10.171.248.18] (10.10.85.11) by chn-vm-ex02.mchp-main.com
  (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
- Transport; Thu, 30 Oct 2025 07:32:36 -0700
-Message-ID: <f777c7d5-346d-42d3-b328-45320b22aacc@microchip.com>
-Date: Thu, 30 Oct 2025 15:32:35 +0100
+ Transport; Thu, 30 Oct 2025 07:34:45 -0700
+Message-ID: <cd0ae7c8-0df7-443f-a5d3-da2c3aa88582@microchip.com>
+Date: Thu, 30 Oct 2025 15:34:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v3 3/5] net: macb: add no LSO capability
- (MACB_CAPS_NO_LSO)
+Subject: Re: [PATCH net-next v3 4/5] net: macb: rename bp->sgmii_phy field to
+ bp->phy
 To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, Andrew Lunn
 	<andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
  Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
@@ -83,60 +83,153 @@ CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Vladimir Kondratiev
 	<vladimir.kondratiev@mobileye.com>, Andrew Lunn <andrew@lunn.ch>
 References: <20251023-macb-eyeq5-v3-0-af509422c204@bootlin.com>
- <20251023-macb-eyeq5-v3-3-af509422c204@bootlin.com>
+ <20251023-macb-eyeq5-v3-4-af509422c204@bootlin.com>
 From: Nicolas Ferre <nicolas.ferre@microchip.com>
 Content-Language: en-US, fr
 Organization: microchip
-In-Reply-To: <20251023-macb-eyeq5-v3-3-af509422c204@bootlin.com>
+In-Reply-To: <20251023-macb-eyeq5-v3-4-af509422c204@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
 
 On 23/10/2025 at 18:22, Théo Lebrun wrote:
-> LSO is runtime-detected using the PBUF_LSO field inside register DCFG6.
-> Allow disabling that feature if it is broken by using bp->caps coming
-> from match data.
+> The bp->sgmii_phy field is initialised at probe by init_reset_optional()
+> if bp->phy_interface == PHY_INTERFACE_MODE_SGMII. It gets used by:
+>   - zynqmp_config: "cdns,zynqmp-gem" or "xlnx,zynqmp-gem" compatibles.
+>   - mpfs_config: "microchip,mpfs-macb" compatible.
+>   - versal_config: "xlnx,versal-gem" compatible.
+> 
+> Make name more generic as EyeQ5 requires the PHY in SGMII & RGMII cases.
+> 
+> Drop "for ZynqMP SGMII mode" comment that is already a lie, as it gets
+> used on Microchip platforms as well. And soon it won't be SGMII-only.
 > 
 > Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 > Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
 
-Even if already applied:
 Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
 
 > ---
->   drivers/net/ethernet/cadence/macb.h      | 1 +
->   drivers/net/ethernet/cadence/macb_main.c | 7 +++++--
->   2 files changed, 6 insertions(+), 2 deletions(-)
+>   drivers/net/ethernet/cadence/macb.h      |  2 +-
+>   drivers/net/ethernet/cadence/macb_main.c | 26 +++++++++++++-------------
+>   2 files changed, 14 insertions(+), 14 deletions(-)
 > 
 > diff --git a/drivers/net/ethernet/cadence/macb.h b/drivers/net/ethernet/cadence/macb.h
-> index 93e8dd092313..05bfa9bd4782 100644
+> index 05bfa9bd4782..87414a2ddf6e 100644
 > --- a/drivers/net/ethernet/cadence/macb.h
 > +++ b/drivers/net/ethernet/cadence/macb.h
-> @@ -778,6 +778,7 @@
->   #define MACB_CAPS_DMA_64B                      BIT(21)
->   #define MACB_CAPS_DMA_PTP                      BIT(22)
->   #define MACB_CAPS_RSC                          BIT(23)
-> +#define MACB_CAPS_NO_LSO                       BIT(24)
+> @@ -1341,7 +1341,7 @@ struct macb {
 > 
->   /* LSO settings */
->   #define MACB_LSO_UFO_ENABLE                    0x01
+>          struct macb_ptp_info    *ptp_info;      /* macb-ptp interface */
+> 
+> -       struct phy              *sgmii_phy;     /* for ZynqMP SGMII mode */
+> +       struct phy              *phy;
+> 
+>          spinlock_t tsu_clk_lock; /* gem tsu clock locking */
+>          unsigned int tsu_rate;
 > diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
-> index be3d0c2313a1..8b688a6cb2f9 100644
+> index 8b688a6cb2f9..44188e7eee56 100644
 > --- a/drivers/net/ethernet/cadence/macb_main.c
 > +++ b/drivers/net/ethernet/cadence/macb_main.c
-> @@ -4564,8 +4564,11 @@ static int macb_init(struct platform_device *pdev)
->          /* Set features */
->          dev->hw_features = NETIF_F_SG;
+> @@ -2965,7 +2965,7 @@ static int macb_open(struct net_device *dev)
 > 
-> -       /* Check LSO capability */
-> -       if (GEM_BFEXT(PBUF_LSO, gem_readl(bp, DCFG6)))
-> +       /* Check LSO capability; runtime detection can be overridden by a cap
-> +        * flag if the hardware is known to be buggy
-> +        */
-> +       if (!(bp->caps & MACB_CAPS_NO_LSO) &&
-> +           GEM_BFEXT(PBUF_LSO, gem_readl(bp, DCFG6)))
->                  dev->hw_features |= MACB_NETIF_LSO;
+>          macb_init_hw(bp);
 > 
->          /* Checksum offload is only available on gem with packet buffer */
+> -       err = phy_power_on(bp->sgmii_phy);
+> +       err = phy_power_on(bp->phy);
+>          if (err)
+>                  goto reset_hw;
+> 
+> @@ -2981,7 +2981,7 @@ static int macb_open(struct net_device *dev)
+>          return 0;
+> 
+>   phy_off:
+> -       phy_power_off(bp->sgmii_phy);
+> +       phy_power_off(bp->phy);
+> 
+>   reset_hw:
+>          macb_reset_hw(bp);
+> @@ -3013,7 +3013,7 @@ static int macb_close(struct net_device *dev)
+>          phylink_stop(bp->phylink);
+>          phylink_disconnect_phy(bp->phylink);
+> 
+> -       phy_power_off(bp->sgmii_phy);
+> +       phy_power_off(bp->phy);
+> 
+>          spin_lock_irqsave(&bp->lock, flags);
+>          macb_reset_hw(bp);
+> @@ -5141,13 +5141,13 @@ static int init_reset_optional(struct platform_device *pdev)
+> 
+>          if (bp->phy_interface == PHY_INTERFACE_MODE_SGMII) {
+>                  /* Ensure PHY device used in SGMII mode is ready */
+> -               bp->sgmii_phy = devm_phy_optional_get(&pdev->dev, NULL);
+> +               bp->phy = devm_phy_optional_get(&pdev->dev, NULL);
+> 
+> -               if (IS_ERR(bp->sgmii_phy))
+> -                       return dev_err_probe(&pdev->dev, PTR_ERR(bp->sgmii_phy),
+> +               if (IS_ERR(bp->phy))
+> +                       return dev_err_probe(&pdev->dev, PTR_ERR(bp->phy),
+>                                               "failed to get SGMII PHY\n");
+> 
+> -               ret = phy_init(bp->sgmii_phy);
+> +               ret = phy_init(bp->phy);
+>                  if (ret)
+>                          return dev_err_probe(&pdev->dev, ret,
+>                                               "failed to init SGMII PHY\n");
+> @@ -5176,7 +5176,7 @@ static int init_reset_optional(struct platform_device *pdev)
+>          /* Fully reset controller at hardware level if mapped in device tree */
+>          ret = device_reset_optional(&pdev->dev);
+>          if (ret) {
+> -               phy_exit(bp->sgmii_phy);
+> +               phy_exit(bp->phy);
+>                  return dev_err_probe(&pdev->dev, ret, "failed to reset controller");
+>          }
+> 
+> @@ -5184,7 +5184,7 @@ static int init_reset_optional(struct platform_device *pdev)
+> 
+>   err_out_phy_exit:
+>          if (ret)
+> -               phy_exit(bp->sgmii_phy);
+> +               phy_exit(bp->phy);
+> 
+>          return ret;
+>   }
+> @@ -5594,7 +5594,7 @@ static int macb_probe(struct platform_device *pdev)
+>          mdiobus_free(bp->mii_bus);
+> 
+>   err_out_phy_exit:
+> -       phy_exit(bp->sgmii_phy);
+> +       phy_exit(bp->phy);
+> 
+>   err_out_free_netdev:
+>          free_netdev(dev);
+> @@ -5618,7 +5618,7 @@ static void macb_remove(struct platform_device *pdev)
+>          if (dev) {
+>                  bp = netdev_priv(dev);
+>                  unregister_netdev(dev);
+> -               phy_exit(bp->sgmii_phy);
+> +               phy_exit(bp->phy);
+>                  mdiobus_unregister(bp->mii_bus);
+>                  mdiobus_free(bp->mii_bus);
+> 
+> @@ -5645,7 +5645,7 @@ static int __maybe_unused macb_suspend(struct device *dev)
+>          u32 tmp;
+> 
+>          if (!device_may_wakeup(&bp->dev->dev))
+> -               phy_exit(bp->sgmii_phy);
+> +               phy_exit(bp->phy);
+> 
+>          if (!netif_running(netdev))
+>                  return 0;
+> @@ -5774,7 +5774,7 @@ static int __maybe_unused macb_resume(struct device *dev)
+>          int err;
+> 
+>          if (!device_may_wakeup(&bp->dev->dev))
+> -               phy_init(bp->sgmii_phy);
+> +               phy_init(bp->phy);
+> 
+>          if (!netif_running(netdev))
+>                  return 0;
 > 
 > --
 > 2.51.1
