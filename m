@@ -1,236 +1,135 @@
-Return-Path: <devicetree+bounces-233246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E11AFC202A0
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 14:08:50 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D076C202CD
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 14:10:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70E5D18849C6
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:07:17 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DFF154EAA7E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:10:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAFA9341650;
-	Thu, 30 Oct 2025 13:06:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55E193557ED;
+	Thu, 30 Oct 2025 13:10:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DaoE6Sqf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17686306B0D
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 13:06:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C35C355044
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 13:09:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761829608; cv=none; b=c41ocqvcAw2YrhO0sSu3WGGL8Il9DmDpvhIi7FX7O9CrF0onFMir7rkUq4Y+fSlNhXNYhO5G8BzILFpL6TI1WDIr4LZY32HBIGk3adbn7aIfEdQlINYHYrQIs13ySMU0XxmJ6ibbRBRSDE9K1DKS/YC52WwiaAJ+sVEDGmB/ovk=
+	t=1761829802; cv=none; b=cjZ9+id6IeCHaF58Ss8UMtPfuvMmxaa+/tUee92Y4UEmvTn6TgksF0RLac6K3OrpeiiegPl4eATTEqcxz/ccojC7h4LGyS+pnOieafz3FGBmLZrxbM0E0CWwQtPiqcX0CcDtreDrQ6P+PqiqAORxJA6flspdOU2LxrtBRL77dzE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761829608; c=relaxed/simple;
-	bh=tyv5U14rZUqntfSo8Ih2AZ1Lql7y8cKlmbDYXAk3K1c=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ea/bCjZHw6XyxecvXPGluuWzth27u8yUbLHLrW7gqqE5kMsUY+FW3H5rWEpFc6Ojhi3EI+OdKmRHcLbd2D9Bm9iaK1+8ZbfPDExMxSFMQUfWSSCY4HvVHGfH5NNyRPdtdo5vxVW6RBtMrjq3WJjaKHF7cIzNcR0lLKHk1evqneo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vESMJ-0006ym-Cs; Thu, 30 Oct 2025 14:06:31 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vESMI-006DXP-03;
-	Thu, 30 Oct 2025 14:06:30 +0100
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vESMH-000000009YP-3s7P;
-	Thu, 30 Oct 2025 14:06:29 +0100
-Message-ID: <105ed81ed67d8e4cacb63a83a606e206a4d6f310.camel@pengutronix.de>
-Subject: Re: [PATCH v3 5/8] reset: imx8mp-audiomix: Switch to using regmap
- API
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>, Abel Vesa
-	 <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, Michael Turquette
-	 <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	 <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Fabio Estevam
-	 <festevam@gmail.com>, Daniel Baluta <daniel.baluta@nxp.com>, Shengjiu Wang
-	 <shengjiu.wang@nxp.com>
-Cc: linux-clk@vger.kernel.org, imx@lists.linux.dev,
- devicetree@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org,  Pengutronix Kernel Team	
- <kernel@pengutronix.de>
-Date: Thu, 30 Oct 2025 14:06:29 +0100
-In-Reply-To: <20251029135229.890-6-laurentiumihalcea111@gmail.com>
-References: <20251029135229.890-1-laurentiumihalcea111@gmail.com>
-	 <20251029135229.890-6-laurentiumihalcea111@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1+deb13u1 
+	s=arc-20240116; t=1761829802; c=relaxed/simple;
+	bh=LN195ehH6mkaeBMWFVU2UiSTlFySjfIXc7oLwKEdmC0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kp2LMaaf+K2j4tpjBbXtz68xTywdUluzytSHZ8+ED8+9+QbY9CQxXi3Xx2wNztcW79Y3uLaeFdIEhuQp8qrcjJyC+Ryfm3JkqLSmRXLYlZEl8yoNYSSV1H9+XOEhsnF/lxnvMqTq8W4mKjcPAFmMZa8PTphyew/ajQ5om+MBTJc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DaoE6Sqf; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4710a1f9e4cso8546735e9.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 06:09:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761829797; x=1762434597; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=LeBRI/u8xeKdN9TEDvF4M3sR8Wge/buOtQAIlYrKrEk=;
+        b=DaoE6SqfHmgBfYcla046bIyaqD38SAvYl4eKvrQZmtzVnGULTRMC0e4kOQPjX8Gep7
+         QvC3wqPThxOu1ZykJLlsRQNo8yinTIQVdXdcm461Irg7hiht3joEb+2DoI3rYz4Nks2z
+         dPRIRawxM5q2IB8NcE+3qVF9Ej1s28slopw9jETbKsxsjkNxwlvSHnyFAwFzUH0cdnvx
+         tbaBEGGPb0lRl1u85HgknjWq+WMeUXqiqkXMMhlCsj3F9JMecBfnXQLzfHMoWxk36xx1
+         8jwZV2hcvDAIWI8dLOwswoHBrSYPzDx18Q0fGnRZTERD7XstC50Bnu+eZS2D4zEMJUhE
+         QkgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761829797; x=1762434597;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LeBRI/u8xeKdN9TEDvF4M3sR8Wge/buOtQAIlYrKrEk=;
+        b=IvbTh7MnUND8nRZ261KC5ezwC+7hR1pfl2WHUFH6bEi+yFroBP8I6QcSqbhBnAhDXk
+         dWYtpVLaVD1JCELkstUBycPwZiYWH3fJWWgTC1YPD3IzVK6T1UALD9LwIDaB7jurjD0N
+         5YTsETO3PSusdmbh1WQaWkmK+VkOp4EffipZc/rmvgz5A4/DtoOyrRUjmo+jUin7TsLM
+         PzSlfe96B880uU1HbGLZnHWCwlVgM9JU3O9yq9JPxq4u41OPsXXNrZ6h4XmteKEBHHnU
+         POZGjlA/dqfAWn9D8cbvLeO+1XXtzwDWwMk8zwof/JByiwndbsh8u1L5Dq02bc5Sy5Mt
+         o62w==
+X-Forwarded-Encrypted: i=1; AJvYcCVNywmo4coTnSW+N231PtRRPggmyq0uulDkONEQC48ZRfktt+5sq+zhpPzfFrG3xofnSdfA+cylHfmx@vger.kernel.org
+X-Gm-Message-State: AOJu0YwT43ZQ5J7+z9s8IcrGZrCPda5/YWjk0dkVFsewtac/b2UQslQX
+	yHw546FVaR80XSzklj2FZ5yOszXkh9PodigrQ77h0mrw71p09a4fzV986DLegJYa4jU=
+X-Gm-Gg: ASbGncsBB1wlAXQ9RRhvGCTl0ac59MXTvEtB1OgdXRLnskxSU8l1rrczprAl7SpyZF/
+	wnHIyw/5xiEIkMaNwAyy4PUmtwv/pqm8cnof0ATbB+WLY5/Si6P0yaCtYMGuQ7FvGUK7O7Gk2c0
+	ff8NHNgS2KPjolYU8kCjpJ2rW19FxG0SHKORGcv04p+fwoSNBC1zNO4A2rI1yGJfl3NnWo4aYZw
+	7WgllCcG6HunkM/u8mPxyYFUsEOgzVmhMjBvz1/9a1WrQmloBQ+jAjMRrXebR5diZXp9hL3p+i5
+	2OIvWQ9TYj/Hn3aubdTvLZXc++8uWgxigjPvWv2julcyhjaA/JpkjiaXDPVaT8tmLAtNyS/dsZ+
+	gL8efzHayc0NplM73EKPeVrBj57T+0CVJmiAMt7DX90WpwArNPwejo/l4ZCvmC2AMKqFbx7bSfD
+	rQzv2njw==
+X-Google-Smtp-Source: AGHT+IEuSEP7qxS4NaQyAdw06cnpw/gsltQisUNaoArx9BRmGnIGEWxBTAwt7g3x9+pa8EwuF/dyJw==
+X-Received: by 2002:a05:600c:4e4c:b0:471:5bf:cd02 with SMTP id 5b1f17b1804b1-4771e180b6emr59383185e9.11.1761829797084;
+        Thu, 30 Oct 2025 06:09:57 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-429952de4a1sm32637772f8f.37.2025.10.30.06.09.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Oct 2025 06:09:56 -0700 (PDT)
+Date: Thu, 30 Oct 2025 16:09:52 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Chen-Yu Tsai <wens@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>,
+	John Madieu <john.madieu.xa@bp.renesas.com>,
+	Lee Jones <lee@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Peter Griffin <peter.griffin@linaro.org>
+Subject: Re: [PATCH 0/2] mfd: syscon: introduce no-auto-mmio DT property
+Message-ID: <aQNjoM3fgAW6kxUz@stanley.mountain>
+References: <cover.1761753288.git.dan.carpenter@linaro.org>
+ <3fd4beba-0d0b-4a20-b6ed-4e00df109b66@app.fastmail.com>
+ <aQMUu08phVPqfgEB@stanley.mountain>
+ <dbd5558a-90d9-404c-ae98-a8c04cdad08a@app.fastmail.com>
+ <aQNccP-lHqgygmsu@stanley.mountain>
+ <CAGb2v664ybgMVCFWcDK-5cJZegC1HJmCg4-qJdgZ=7GAL4jOTw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAGb2v664ybgMVCFWcDK-5cJZegC1HJmCg4-qJdgZ=7GAL4jOTw@mail.gmail.com>
 
-On Mi, 2025-10-29 at 06:52 -0700, Laurentiu Mihalcea wrote:
-> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->=20
-> As far as the Linux kernel is concerned, block devices such as i.MX8MP's
-> AUDIOMIX block control or i.MX8ULP's SIM LPAV can simultaneously act as
-> clock controllers, reset controllers or mux controllers. Since these IPs
-> offer different functionalities through different subsystem APIs, it's
-> important to make sure that the register R-M-W cycles are performed under
-> the same lock across all subsystem APIs. This will ensure that registers
-> will not end up with the wrong values because of race conditions (e.g.
-> clock consumer tries to update block control register A, while, at the
-> same time, reset consumer tries to update the same block control register=
-).
->=20
-> However, the aforementioned race conditions will only impact block contro=
-l
-> IPs which use the same register for multiple functionalities. For example=
-,
-> i.MX8MP's AUDIOMIX block control IP provides clock gating functionalities
-> and reset control functionalities through different registers. This is wh=
-y
-> the current approach (i.e. clock control and reset control work using
-> different locks) has worked well so far.
->=20
-> Since we want to extend this driver to be usable for i.MX8ULP's SIM LPAV
-> block control IP, we need to make sure that clock control, reset control,
-> and mux control APIs use the same lock since all of these functionalities
-> are performed using the SYSCTRL0 register.
->=20
-> To do so, we need to switch to the regmap API and, if possible, use the
-> parent device's regmap, which, in the case of i.MX8ULP, will be the clock
-> controller. This way, we can make sure that the clock gates and the reset
-> controller will use the same lock to perform the register R-M-W cycles.
->=20
-> This change will also work fine for cases where we don't really need to
-> share the lock across multiple APIs (e.g. i.MX8MP's AUDIOMIX block
-> control) since regmap will take care of the locking we were previously
-> explicitly performing in the driver.
->=20
-> The transition to the regmap API also involves some cleanup. Specifically=
-,
-> we can make use of devres to unmap the device's memory and get rid of the
-> memory mapping-related error paths and the remove() function altogether.
->=20
-> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> ---
->  drivers/reset/reset-imx8mp-audiomix.c | 91 +++++++++++++++++----------
->  1 file changed, 57 insertions(+), 34 deletions(-)
->=20
-> diff --git a/drivers/reset/reset-imx8mp-audiomix.c b/drivers/reset/reset-=
-imx8mp-audiomix.c
-> index e9643365a62c..3f6d11270918 100644
-> --- a/drivers/reset/reset-imx8mp-audiomix.c
-> +++ b/drivers/reset/reset-imx8mp-audiomix.c
-> @@ -11,6 +11,7 @@
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/of_address.h>
-> +#include <linux/regmap.h>
->  #include <linux/reset-controller.h>
-> =20
->  #define IMX8MP_AUDIOMIX_EARC_RESET_OFFSET	0x200
-> @@ -42,8 +43,8 @@ static const struct imx8mp_reset_map reset_map[] =3D {
-> =20
->  struct imx8mp_audiomix_reset {
->  	struct reset_controller_dev rcdev;
-> -	spinlock_t lock; /* protect register read-modify-write cycle */
->  	void __iomem *base;
+Yeah.  Let me send this tommorrow if no one objects.  Pretty simple
+solution in retrospect.
 
-Drop base as well, better let devres handle this.
+[PATCH] mfd: syscon: Return -EPROBE_DEFER in device_node_get_regmap()
 
-[...]
+These days we can register syscons with of_syscon_register_regmap() so
+if we can't find the syscon that probably means it hasn't been registered
+yet.  Return -EPROBE_DEFER so the driver will try probing again.
 
-> +/* assumption: registered only if not using parent regmap */
-> +static void imx8mp_audiomix_reset_iounmap(void *data)
+Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+---
+ drivers/mfd/syscon.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Pass base instead of dev.
+diff --git a/drivers/mfd/syscon.c b/drivers/mfd/syscon.c
+index ae71a2710bed..e5d5def594f6 100644
+--- a/drivers/mfd/syscon.c
++++ b/drivers/mfd/syscon.c
+@@ -183,7 +183,7 @@ static struct regmap *device_node_get_regmap(struct device_node *np,
+ 		if (create_regmap)
+ 			syscon = of_syscon_register(np, check_res);
+ 		else
+-			syscon = ERR_PTR(-EINVAL);
++			syscon = ERR_PTR(-EPROBE_DEFER);
+ 	}
+ 	mutex_unlock(&syscon_list_lock);
+ 
+-- 
+2.51.0
 
-> +{
-> +	struct imx8mp_audiomix_reset *priv =3D dev_get_drvdata(data);
-> +
-> +	iounmap(priv->base);
-
-	void __iomem *base =3D data;
-
-	iounmap(base);
-
-> +}
-> +
-> +/* assumption: dev_set_drvdata() is called before this */
-
-Why not just pass priv instead of dev?
-
-> +static int imx8mp_audiomix_reset_get_regmap(struct device *dev)
-> +{
-> +	struct imx8mp_audiomix_reset *priv;
-> +	int ret;
-> +
-> +	priv =3D dev_get_drvdata(dev);
-> +
-> +	/* try to use the parent's regmap */
-> +	priv->regmap =3D dev_get_regmap(dev->parent, NULL);
-> +	if (priv->regmap)
-> +		return 0;
-> +
-> +	/* ... if that's not possible then initialize the regmap right now */
-> +	priv->base =3D of_iomap(dev->parent->of_node, 0);
-
-Make base a local variable ...
-
-> +	if (!priv->base)
-> +		return dev_err_probe(dev, -ENOMEM, "failed to iomap address space\n");
-> +
-> +	ret =3D devm_add_action_or_reset(dev, imx8mp_audiomix_reset_iounmap, de=
-v);
-
-... and pass it as data instead of dev.
-
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to register action\n");
-> +
-> +	priv->regmap =3D devm_regmap_init_mmio(dev, priv->base, &regmap_config)=
-;
-> +	if (IS_ERR(priv->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(priv->regmap),
-> +				     "failed to initialize regmap\n");
-> +
-> +	return 0;
-> +}
-> +
->  static int imx8mp_audiomix_reset_probe(struct auxiliary_device *adev,
->  				       const struct auxiliary_device_id *id)
->  {
-> @@ -105,36 +139,26 @@ static int imx8mp_audiomix_reset_probe(struct auxil=
-iary_device *adev,
->  	if (!priv)
->  		return -ENOMEM;
-> =20
-> -	spin_lock_init(&priv->lock);
-> -
->  	priv->rcdev.owner     =3D THIS_MODULE;
->  	priv->rcdev.nr_resets =3D ARRAY_SIZE(reset_map);
->  	priv->rcdev.ops       =3D &imx8mp_audiomix_reset_ops;
->  	priv->rcdev.of_node   =3D dev->parent->of_node;
->  	priv->rcdev.dev	      =3D dev;
->  	priv->rcdev.of_reset_n_cells =3D 1;
-> -	priv->base            =3D of_iomap(dev->parent->of_node, 0);
-> -	if (!priv->base)
-> -		return -ENOMEM;
-> =20
-> +	/* keep before call to imx8mp_audiomix_reset_init_regmap() */
-
-Not needed if priv is passed to it directly.
-
-regards
-Philipp
 
