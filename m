@@ -1,137 +1,140 @@
-Return-Path: <devicetree+bounces-233282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEC6AC208C0
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 15:20:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12A0FC208C6
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 15:20:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6E0DC4EFEC5
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 14:11:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B1411898343
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 14:15:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E11A1990A7;
-	Thu, 30 Oct 2025 14:11:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 350B3258CE1;
+	Thu, 30 Oct 2025 14:15:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="ZJF3QgWz";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="wHSYxCoc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TZRg3Lcv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-b3-smtp.messagingengine.com (fout-b3-smtp.messagingengine.com [202.12.124.146])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3B1713777E;
-	Thu, 30 Oct 2025 14:11:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.146
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD73023C513;
+	Thu, 30 Oct 2025 14:14:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761833485; cv=none; b=Pvna30I3L9SYk/EiZSmZeUMdEGLePGygQWYsB8uTg1G3pgMzlW7C9oEjvCbsb8IHk8L6YxjXbB/EHUSSomm81zJDJeojZNzOhEfwoc6Ja8hkGwoSLgr6Gn1sPTCPqOdKxFg4pIbMFByA/u8tVsnTbzDWRwps0MeKUpSFzhSqIps=
+	t=1761833701; cv=none; b=SKWjHsyDdAWWep/tmNZkHK1OVlWGngxy3JyVdyDoBl0idjiT9c2l/yJlydz6565Mbb72bmjrwSpOrJUnuzOVpqqpVI+hLio3mkCwFE8xy5oRJUeUn+aYteD9RCBt5jhPr7ZvXw9LXWy5Xso/9e4N7bwBgqmkX95O509ox2PoCOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761833485; c=relaxed/simple;
-	bh=l4JS5lND9Jw9NGezG0B3qnDmtn6thOLysKTQHHP0lYg=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=PqvYxCijJFIKEklX/i9vjOQfduMOI2ZOsIJu8nfkG5htW5hbm7dQZw9ZQBHMv2ChhPJ2hjiJIOQ3katg7NgY+Src4FPTJCKJFjX8LIHrqQBJ3VGaX8mZpiLzch383fxwaCRbgcFZgTqV2s7DWgXKJjj8KgTwZpMavSuNVafYkU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=ZJF3QgWz; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=wHSYxCoc; arc=none smtp.client-ip=202.12.124.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
-	by mailfout.stl.internal (Postfix) with ESMTP id 678281D000B4;
-	Thu, 30 Oct 2025 10:11:21 -0400 (EDT)
-Received: from phl-imap-02 ([10.202.2.81])
-  by phl-compute-04.internal (MEProxy); Thu, 30 Oct 2025 10:11:21 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1761833481;
-	 x=1761919881; bh=XADclG7x2nt5LtAAIY7ejRpRPo+LWILNnisG3WQHGeI=; b=
-	ZJF3QgWza+Wiowm/Kr1j25y2aVHe3wnXFuPBpJnNpLxsr8bn0EzK9TzirIDKEl33
-	Y6szaE5C03ykaOEHYJ3QKma/crhnC/eZUJES8LE6tOKTpaoxiU/ZsGS4ryD1Gnex
-	9ojvwW+qp1p09qaiGXd6Fea++cXMWAQ/JOPDa7J4FWeKk1vjLUnAvKuwdaVKGXtg
-	cjMaLVyxMEo+oCMK1s70mE5dsDA6HGKSd7tM0SPdDfpSAJI7OpyQYsXjq+6UDQk2
-	vUjoGo4+tCBTta0Ho/mxo5uAzupJigY8/y7GmGgXqWojUeIgP/hPrL5uLS9mTAPV
-	ra1bRgXoZmRYEjGS8NkA8w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1761833481; x=
-	1761919881; bh=XADclG7x2nt5LtAAIY7ejRpRPo+LWILNnisG3WQHGeI=; b=w
-	HSYxCoc2kPsvbEM9zLLwR4c2uGa3RcySEhYwRUO+5EwMJhKqkvaq9+DD5ARN8OxT
-	CoIrc+/PX+ftRAizlVSpZED3yh6W/mnDqObNxL3ZyTp0FaYGVEcL6T4dDeAnZMub
-	LBBakkKVQfctvtPeYelLKBXah34UlIRIVOOiiCLlalTAAs5YETtBjo8p4uqaqgym
-	8VgdJVWD+ZDYjwM/BBfeCp1JZiMOLQ9CtZXceND+VzkjpNKvH7hD5FMTFyLD863S
-	ELxySf32vWRS/NiM2pqHFqtVD/R1aXchYoid86TyhwamncdmaupgzRo/ZJB8KZsz
-	+J+BF3VY+lsAo3192N/Rg==
-X-ME-Sender: <xms:CHIDaZzMhjkEGhjPzgWKxiG98NBQj_VBpQytQEPw7SSJROsMnEhENA>
-    <xme:CHIDaUEamF0PWf8H5itTDcmqoOjQK3WLb0hXp24GDbBh4Jmu2jleOXePEau6EmomS
-    TQhgJshB3lSPzhq3ggPLIrBiuw-R7NiPygkNKh3wNVPjs3VD4C6Y20>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdduieeikedvucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddtnecuhfhrohhmpedftehrnhgu
-    uceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrthhtvg
-    hrnhephfdthfdvtdefhedukeetgefggffhjeeggeetfefggfevudegudevledvkefhvdei
-    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnh
-    gusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohepuddupdhmohguvgepshhmthhpohhu
-    thdprhgtphhtthhopehjohhhnhdrmhgrughivghurdigrgessghprdhrvghnvghsrghsrd
-    gtohhmpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphht
-    thhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlvggvsehkvg
-    hrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghp
-    thhtohepfigvnhhssehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrnhgurhgvrdgurh
-    grshiiihhksehlihhnrghrohdrohhrghdprhgtphhtthhopegurghnrdgtrghrphgvnhht
-    vghrsehlihhnrghrohdrohhrghdprhgtphhtthhopehpvghtvghrrdhgrhhifhhfihhnse
-    hlihhnrghrohdrohhrgh
-X-ME-Proxy: <xmx:CHIDaYZdLgOLNk1eFOYdLVGuqMvZPkq5Ivbsg2WFkqRVx2gwmCFjvw>
-    <xmx:CHIDafOgfStkr7znrXCs8MWNFW7_EsjksJY5eSeSvDRrZ0W7aKsoGg>
-    <xmx:CHIDaeUSbUXNgaUCYJWboUUrMS5ts3Y655NeFDF1s2kY3Cpa5GoQ8w>
-    <xmx:CHIDacIGNcJqPLjGNvCoHnKqI9LYOctBjhbFoBjywEyp_67n2Bk1AA>
-    <xmx:CXIDafbM5KEadsGns_0piyJIsllOjRhizvIzKzmCpLWEipz1IZeDQNfi>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 66607700054; Thu, 30 Oct 2025 10:11:20 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1761833701; c=relaxed/simple;
+	bh=ARkbEZwIcjtq3UHgVcwLTAhe5ywrSMfhcggmgV1iso8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pNVNM00lVRKALcENWHxHbHY5k8r2rKMp+mk4MNMxn5U9M5jP8vhYuXxgpfaD2CkScw1vlasg/8gVwPeh7PeEIfqlJIwJsm9hAb2zKcJq7nw/YjjWhVCTTTXRJZ6ipLExsajTdpucrkEYT4atv2gTa63YcCC+BD6L4ZoiuzcrrwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TZRg3Lcv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43177C4CEFF;
+	Thu, 30 Oct 2025 14:14:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761833699;
+	bh=ARkbEZwIcjtq3UHgVcwLTAhe5ywrSMfhcggmgV1iso8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TZRg3Lcvd8GObcu7mv5GNEOQTP82tLQK9Fl51npkDqQkq8vYqiXjd+sdbWRm+AaKS
+	 KM05NDknRHsO9S3x92lDMWSXtGzaU5EbeIrn74EMy0Vn9dsDaegeR4nvExsA3djLUP
+	 VIgK0Wjr8X+dTo/niyqSMRgbYKTqJXZY0RP0Co/azFwbieXvnh7lwPpyXWLgV7FNWX
+	 twXnIP0x8vUNwSyA96xXCYhrS/xVTBSa143Z2dBIN1G3kq1e9zqrIJRND6e/Nt9r7B
+	 CEPqGJIpLThMFYq2/zDzz6r1MwoPduvgQLuJg5UqqWx2aNvdP/Aj492SQNNbrfTU54
+	 3aj6I/1c7UcYQ==
+Date: Thu, 30 Oct 2025 09:14:48 -0500
+From: Rob Herring <robh@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Peter Rosin <peda@axentia.se>, Arnd Bergmann <arnd@arndb.de>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Charles Keepax <ckeepax@opensource.cirrus.com>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	David Rhodes <david.rhodes@cirrus.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Mark Brown <broonie@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Len Brown <lenb@kernel.org>, Davidlohr Bueso <dave@stgolabs.net>,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	Dave Jiang <dave.jiang@intel.com>,
+	Alison Schofield <alison.schofield@intel.com>,
+	Vishal Verma <vishal.l.verma@intel.com>,
+	Ira Weiny <ira.weiny@intel.com>,
+	Dan Williams <dan.j.williams@intel.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Wolfram Sang <wsa@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-i2c@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-sound@vger.kernel.org, patches@opensource.cirrus.com,
+	linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org,
+	linux-cxl@vger.kernel.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 05/29] dt-bindings: bus: Add simple-platform-bus
+Message-ID: <20251030141448.GA3853761-robh@kernel.org>
+References: <20251015071420.1173068-1-herve.codina@bootlin.com>
+ <20251015071420.1173068-6-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: AK9Cqudmt2dw
-Date: Thu, 30 Oct 2025 15:10:51 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Dan Carpenter" <dan.carpenter@linaro.org>,
- "Chen-Yu Tsai" <wens@kernel.org>
-Cc: "John Madieu" <john.madieu.xa@bp.renesas.com>,
- "Lee Jones" <lee@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- linux-kernel@vger.kernel.org, "Rob Herring" <robh@kernel.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- "Peter Griffin" <peter.griffin@linaro.org>
-Message-Id: <a84a68dd-8068-4e84-b0bf-f8f9230e05e8@app.fastmail.com>
-In-Reply-To: <aQNjoM3fgAW6kxUz@stanley.mountain>
-References: <cover.1761753288.git.dan.carpenter@linaro.org>
- <3fd4beba-0d0b-4a20-b6ed-4e00df109b66@app.fastmail.com>
- <aQMUu08phVPqfgEB@stanley.mountain>
- <dbd5558a-90d9-404c-ae98-a8c04cdad08a@app.fastmail.com>
- <aQNccP-lHqgygmsu@stanley.mountain>
- <CAGb2v664ybgMVCFWcDK-5cJZegC1HJmCg4-qJdgZ=7GAL4jOTw@mail.gmail.com>
- <aQNjoM3fgAW6kxUz@stanley.mountain>
-Subject: Re: [PATCH 0/2] mfd: syscon: introduce no-auto-mmio DT property
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251015071420.1173068-6-herve.codina@bootlin.com>
 
-On Thu, Oct 30, 2025, at 14:09, Dan Carpenter wrote:
-> Yeah.  Let me send this tommorrow if no one objects.  Pretty simple
-> solution in retrospect.
->
-> [PATCH] mfd: syscon: Return -EPROBE_DEFER in device_node_get_regmap()
->
-> These days we can register syscons with of_syscon_register_regmap() so
-> if we can't find the syscon that probably means it hasn't been registered
-> yet.  Return -EPROBE_DEFER so the driver will try probing again.
->
-> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+On Wed, Oct 15, 2025 at 09:13:52AM +0200, Herve Codina wrote:
+> A Simple Platform Bus is a transparent bus that doesn't need a specific
+> driver to perform operations at bus level.
+> 
+> Similar to simple-bus, a Simple Platform Bus allows to automatically
+> instantiate devices connected to this bus.
+> 
+> Those devices are instantiated only by the Simple Platform Bus probe
+> function itself.
 
-This clearly needs some testing, but I like it!
+Don't let Greg see this... :)
 
-Reviewed-by: Arnd Bergmann <arnd@arndb.de>
+I can't say I'm a fan either. "Platform bus" is a kernel thing, and the 
+distinction here between the 2 compatibles is certainly a kernel thing.
+
+I think this needs to be solved within the kernel.
+
+What I previously said is define a list of compatibles to not 
+instantiate the child devices. This would essentially be any case having 
+a specific compatible and having its own driver. So if someone has 
+'compatible = "vendor,not-so-simple-bus", "simple-bus"', when and if 
+they add a driver for "vendor,not-so-simple-bus", then they have to add 
+the compatible to the list in the simple-pm-bus driver. I wouldn't 
+expect this to be a large list. There's only a handful of cases where 
+"simple-bus" has a more specific compatible. And only a few of those 
+have a driver. A more general and complicated solution would be making 
+linux handle 2 (or more) drivers matching a node and picking the driver 
+with most specific match. That gets complicated with built-in vs. 
+modules. I'm not sure we really need to solve that problem.
+
+If we have to do something in the DT, then I think I prefer a property 
+to control the behavior. That way we have the option to ignore it.
+
+Rob
 
