@@ -1,104 +1,168 @@
-Return-Path: <devicetree+bounces-233242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71AECC201D6
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:56:47 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73D80C20206
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:59:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1EA7934EE4A
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 12:56:47 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 16AE64E5DC6
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 12:59:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 484BC346E48;
-	Thu, 30 Oct 2025 12:56:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 538ED3446AF;
+	Thu, 30 Oct 2025 12:59:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fw1E+tts"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAB74342177
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 12:56:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AA76340A51
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 12:59:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761828969; cv=none; b=ROoWmYmKSU+RQJosJI+NBzkjeLORtK2wdD3i+BPlD+ITaMfmNZC1u5ksMIreOkV4nrFnSyuFfIB7zmgAi5J9qZgVm1ZIJ4dNpuOn7LvvUAtI13g+cmz1A7hkZvtTxj/w+9b7jXXgY1pvEtbtPyW4VmoQH+ZFHdsoCLMhvC0X/C8=
+	t=1761829161; cv=none; b=ep6KNhaa2aBHkJ2baVtO+qjOXEnAG7p94CCkRl305AgjIulhp/yMAkj9bXePQgB7aO+f1NMxo07Zu6zMUkv4WAJv1cXdbB6sXakn7L7cx00nMPLv3dIl7yvXm4YKBsbRPdxyXR5/wmFwkR22RHB91G2WDQi1b6Tq2E7mRBHMc7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761828969; c=relaxed/simple;
-	bh=KQbToFNxIKZEOav2WExySd4IM3YdWRMB+9fwi/1SJSU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=u/Az44yBAn7S5rn3RIWNqoIOAl1HlQjEjAxKA1QtufzxEW1ZmFPh8BizHWk+hZqOb+pyiFOV5hyxsBBmXuOynUlegG5ny+UBC3rNc8PQh8TdsZlmWREgl+sXaHdgGjqwM1k+LiLnMmgiwR0rnx5UGUfE6J5Y94nWmBtymKL/+zY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vESBz-0004nE-8s; Thu, 30 Oct 2025 13:55:51 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vESBx-006DFj-09;
-	Thu, 30 Oct 2025 13:55:49 +0100
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vESBw-000000009Jt-3zT9;
-	Thu, 30 Oct 2025 13:55:48 +0100
-Message-ID: <845f360bb63bf3db5a57f90a5c474271a7194d9a.camel@pengutronix.de>
-Subject: Re: [PATCH v3 0/5] Add reset controllers for other TH1520 subsystems
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Yao Zi <ziyao@disroot.org>, Drew Fustini <fustini@kernel.org>, Guo Ren	
- <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley	 <paul.walmsley@sifive.com>, Palmer
- Dabbelt <palmer@dabbelt.com>, Albert Ou	 <aou@eecs.berkeley.edu>, Alexandre
- Ghiti <alex@ghiti.fr>, Michal Wilczynski	 <m.wilczynski@samsung.com>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>, Han Gao
-	 <rabenda.cn@gmail.com>, Han Gao <gaohan@iscas.ac.cn>
-Date: Thu, 30 Oct 2025 13:55:48 +0100
-In-Reply-To: <20251014131032.49616-1-ziyao@disroot.org>
-References: <20251014131032.49616-1-ziyao@disroot.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1+deb13u1 
+	s=arc-20240116; t=1761829161; c=relaxed/simple;
+	bh=nOnIPQ3cOTasc1cQWtl8J0uDzRnMImDchYg9bAXZ71A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=l93nP6ldF8OJnlik+r02gg8UeVPmMTiwu4XyoXnLcZ1BlLsvMgvxBf5/0i7LkmcXvQvlrd/I1Dk861ESKayJzcgi3C61unkPBgDhWg4T7dvqiamEWmzOYN9jkVBXiSkvH29MS7VcInsNDJEPJXnMkGjH3hWS6RNydZCe/EGUyDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fw1E+tts; arc=none smtp.client-ip=209.85.161.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-6567a0d456bso503895eaf.1
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 05:59:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761829159; x=1762433959; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=MUngWjQHOsHWyGvCCrS6bQFp36pm2JD9uz37P37Y7PE=;
+        b=fw1E+ttsMfaEI0PZtDenTKw8DZuyYRUCa1Z+ErhNrug1W/ogOPI86CPynmt9mmNQQx
+         anuMqpfeOHDA6ehYrScDQGI/BbdBIHNcyLbestc0tp/htfyrV3TF84qZtvqnt/8z9UCt
+         IvBdsB8cSE9TjVocHRkFO5QmnhuAbATRDVhRjTMj9ghmAwUXDthM7obqVjTljWtOkW4D
+         lr5JNtBd5YNeFRBHUBmA/drsaRHkFVwo9gLwHFnkq6MbVcFGwA6XTWZnLu4FBVlDFoti
+         KqyBwT0a5l55uerTHaNcHV+Xd3r7CoBxjc1J4OuaIL1x25RU1fGIqWLAga/lOYxcIYVd
+         4KOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761829159; x=1762433959;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MUngWjQHOsHWyGvCCrS6bQFp36pm2JD9uz37P37Y7PE=;
+        b=gTr/d5wKIlRq5E9qwynAad2Ti6c8xe5NyxcsRIetAnj2Fy7NNRQMZ8CiANpULFG+O5
+         T83WnIVJmRDagtMEa+/SrBgEhotjYXJ6JmwGlIuaCnro/caRunL6qdv7tmkfyvRirz3A
+         woROaMbDNdYH0MSI4M8mg1wV020RLEud/5DWi+1Zq+/dstAJg/s61X0OqWhX8ldjCYMH
+         u092KT1wXtn14hs+PCVzRgIZ9FsGcauX7XA/wOqPRtS7dMVxfEwPc5RIThTGNCkBbg0F
+         CmGLJ9Df0zTgqItabpa39ctmb0VUFbPwZKU/JROZmPXhxYAYhI5i5+K6i4QWYn1ovUVu
+         4YAw==
+X-Forwarded-Encrypted: i=1; AJvYcCUV1XNEPqhXFZFNtPmHXPIUQxBmAQYEv+s5xggU9hIThyl/o4OGwJPT9R/8eiD6cbjDikV6XHxoIoJM@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYv6+1KLm0dJNeLOIMejqcFZHYOsJ8LevSaE9VW8YY0bg3T66W
+	/NyxVw/S0BPnEb6TMaDC5EjCDLx4eKx4uV+qDqaOsL3wZ/IjIwW6Wf+TU4h1JO0jxfK94DqhEwi
+	TjyJSypbUTOgwCETvcjWLKykaL5UdbEzNLUUaExBRpA==
+X-Gm-Gg: ASbGncs6N7F/WdqFxP+amLt/BUenx3pAQaF+SEh55c56ts+5MA7//jK6tWs0rysdtb9
+	Ce6eQf8N7IzTybnA94TAcjQAlTUR8KW1rwVDstIqbWYzCL3Wx+IlZk802+uwfkjJXzJ6bikuG7U
+	11iuaWYbBnnb+wEMkLvNDl/U03VDth2ieHtVqNXLslYfhZdPX79cHik22UmI/j43z/4iYDoxa5V
+	3tEKluByKdVyL6gE/yezm2Aj2oEAhw98XJ3QjmtFfHOByHeWWjnOYO8os/RTLMdZ/DzQes=
+X-Google-Smtp-Source: AGHT+IFRuom+Xy9+RtTqY/d40GyBxzKZzSrQelpowXgj61eicpzP8axPc1aHoehl9CjeTBFVcIIo9t5t5GGK2d4bm9g=
+X-Received: by 2002:a05:6820:4b0f:b0:656:777d:e689 with SMTP id
+ 006d021491bc7-65677ec0f4amr2805499eaf.4.1761829158477; Thu, 30 Oct 2025
+ 05:59:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <cover.1761753288.git.dan.carpenter@linaro.org>
+ <3fd4beba-0d0b-4a20-b6ed-4e00df109b66@app.fastmail.com> <aQMUu08phVPqfgEB@stanley.mountain>
+ <dbd5558a-90d9-404c-ae98-a8c04cdad08a@app.fastmail.com> <aQNccP-lHqgygmsu@stanley.mountain>
+In-Reply-To: <aQNccP-lHqgygmsu@stanley.mountain>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Thu, 30 Oct 2025 12:59:06 +0000
+X-Gm-Features: AWmQ_bnA-rI4dp9Qdvin1M-58PMqgIsTTWEVmCI1FLpELioMXMO8Bqz7-50ytD4
+Message-ID: <CADrjBPoZM3rP3nNWvw9ca0CDBz1KOUYpGVamXYyV3o1-XQ02Bg@mail.gmail.com>
+Subject: Re: [PATCH 0/2] mfd: syscon: introduce no-auto-mmio DT property
+To: Dan Carpenter <dan.carpenter@linaro.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, John Madieu <john.madieu.xa@bp.renesas.com>, 
+	Chen-Yu Tsai <wens@kernel.org>, Lee Jones <lee@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On Di, 2025-10-14 at 13:10 +0000, Yao Zi wrote:
-> TH1520 SoC is split into several subsystems, and each of them comes with
-> distinct reset controllers. We've already had the one for VO subsystem
-> documented as "thead,th1520-reset" and supported, and this series adds
-> support for others, including AO, VI, MISC, AP, DSP and VO.
->=20
-> For TH1520_RESET_ID_{NPU,WDT0,WDT1}, these're reset signals that have
-> been introduced along with support for the VO reset controller. However,
-> registers in control of these resets don't stay in the VO reset region,
-> instead they're AP-subsystem resets, thus the original ABI is
-> problematic. I remove them in PATCH 1 and reintroduce them in PATCH 2.
-[...]
+Hi Dan / Arnd,
 
-Patches 1-4 applied to reset/next, thanks!
+Thanks for taking a look at this issue Dan!
 
-[1/5] dt-bindings: reset: thead,th1520-reset: Remove non-VO-subsystem reset=
-s
-      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3D68ce5ac15ff8
-[2/5] dt-bindings: reset: thead,th1520-reset: Add controllers for more subs=
-ys
-      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3D76001d5d3cd1
-[3/5] reset: th1520: Prepare for supporting multiple controllers
-      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3Dac3d323caee8
-[4/5] reset: th1520: Support reset controllers in more subsystems
-      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3Df5da5084e282
+On Thu, 30 Oct 2025 at 12:39, Dan Carpenter <dan.carpenter@linaro.org> wrote:
+>
+> On Thu, Oct 30, 2025 at 09:33:39AM +0100, Arnd Bergmann wrote:
+> > On Thu, Oct 30, 2025, at 08:33, Dan Carpenter wrote:
+> > > On Wed, Oct 29, 2025 at 08:43:33PM +0100, Arnd Bergmann wrote:
+> > >> On Wed, Oct 29, 2025, at 18:27, Dan Carpenter wrote:
+> > >> > Most syscons are accessed via MMMIO and created automatically.  But one
+> > >> > example of a syscon that isn't is in drivers/soc/samsung/exynos-pmu.c
+> > >> > where the syscon can only be accessed via the secure partition.  We are
+> > >> > looking at upstreaming a different driver where the syscon will be
+> > >> > accessed via SCMI.
+> > >> >
+> > >> > Normally, syscons are accessed by doing something like
+> > >> > syscon_regmap_lookup_by_phandle_args() but that function will
+> > >> > automatically create an MMIO syscon if one hasn't been registered.  So
+> > >> > the ordering becomes a problem.  The exynos-pmu.c driver solves this
+> > >> > but it's a bit awkward and it would be even trickier if there were
+> > >> > several drivers accessing the same syscon.
+> > >>
+> > >> What would happen on the current exynos platform if we just take away
+> > >> the 'regs' property? I would hope that we can avoid encoding what
+> > >> is essentially operating system policy in that driver and instead
+> > >> just describe it as a device that expects to be implemented by
+> > >> firmware and doesn't need registers?
+> > >
+> > > Exynos solves this because they only have one phandle so when they parse
+> > > it, that's when then they create the syscon.  If you had multiple drivers
+> > > accessing the same syscon then that doesn't work.
 
-regards
-Philipp
+It's slightly more nuanced than that. Exynos has multiple users of the
+PMU syscon (Watchdog/various Phys drivers etc). But the ordering there
+is enforced there by initcall levels. The "only user" of the
+exynos_get_pmu_regmap() is pinctrl driver which is the same initcall
+level as exynos-pmu.
+
+> >
+> > I'm not following the logic here.  Do you mean that they avoid the
+> > issue today by ensuring that the regmap is always probed before
+> > its only user, or do you mean something else?
+> >
+> > > If we left out the "regs" property it wouldn't be created automatically
+> > > but syscon_regmap_lookup_by_phandle() will return -EINVAL and probe would
+> > > fail.  It needs to be -EPROBE_DEFER so the probe tries again after the
+> > > regmap is registered.  We'd need to add a check like this (untested):
+
+Leaving out the "regs" property and adding the -EPROBE_DEFER check
+seems like a neat solution to me. I would like to see -EPROBE_DEFER
+for custom syscon regmap well supported, so we can modularize all the
+drivers that are currently builtin when ARCH_EXYNOS is selected.
+
+> >
+> > Right, this is exactly what I had in mind. With a new kernel and old
+> > dtb, this would not change anything, while an old kernel but new dtb
+> > would run into a different bug and fail to probe instead of using the
+> > wrong device. I think both cases are fine.
+> >
+> >      Arnd
+>
+> Actually, probably the right thing to do is to leave out the "syscon"
+> compatible.  That's what the drivers/soc/sunxi/sunxi_sram.c driver does.
+> There is still an ordering issue where the sunxi_sram SoC driver needs
+> to be probed first or the stmmac driver probe will fail.  There is probably
+> some kind of way that SoC drivers are always probed earlier?
+
+IIUC that would avoid creating a MMIO syscon, but wouldn't solve the
+-EPROBE_DEFER part of it?
+
+regards,
+
+Peter
 
