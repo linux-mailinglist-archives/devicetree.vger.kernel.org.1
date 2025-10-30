@@ -1,220 +1,198 @@
-Return-Path: <devicetree+bounces-233085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BA44C1EFA7
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 09:27:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7E1BC1EFD3
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 09:30:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1C4804E1D98
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:27:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 751F53ACF5A
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A59F337692;
-	Thu, 30 Oct 2025 08:27:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eTVQqxHd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48677337BB4;
+	Thu, 30 Oct 2025 08:29:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CCFE32E69B
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 08:27:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [4.193.249.245])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 706202A1C7;
+	Thu, 30 Oct 2025 08:29:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=4.193.249.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761812847; cv=none; b=K0xot1Dw/zluuPjE24C8qq46Bl8k7ukdIkzIHs8BmyI5FyCBR3uDoLsrrKq883NuTfhC3tKOoe/2zo7qVnl6ge0rya7tE/GVcgvcs2yI9G8813hGwD9Ln0/P+olN3d0ENAowv0pOGxUnKFMO8yr/TRzJ8ipAPM9mR4iJMEbMtus=
+	t=1761812997; cv=none; b=ZWvwGyEa+gyJhxoxfIs1Axp7lwYL/MqdS2isnWQ4Ata+AVk7v5BNTRDXLRW+Lk9Xf2peeMxYa4g+idv+k8FOOBx37BzjQxjutDoauoCjnwjfkpMnJ7YKjNnXY0fuTcxyvyzCWTiJF0OpJisCv6Cd2e/71raK7kCAQj6XfskPsoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761812847; c=relaxed/simple;
-	bh=UDQb1+mEWC8Kf1gDMEyhFiMaB5sUmGPqCh+7teEp0uE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PuWpEza8CwPeLmtVwzx/Rn60VBE+RoTAqvSNAu+NexyMLKXc/C/c3v4C3VmLDV5YTgSENmqtWr6mfGNosnGVI1cgconUXKHEueizRNo4rT3JVS+gT5or/9HPVx56FAaY13aDNpJUR1mqYBYa2qU04iUDs29A62Io+sxNui9sk/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eTVQqxHd; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-475dae5d473so5844925e9.2
-        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 01:27:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761812843; x=1762417643; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/Cx0kxFaBCbR91JhvRx0ITZZstWHSbBwKql2sLDgf/c=;
-        b=eTVQqxHdvR8f6FZR3vhYwHzTaOI+Iqd0AidYzy/cQ6Ctqe1GOfwMfzLV1dD+hBdKMe
-         /UwURHlukUYdg5P/svRVgpEQTFajBSlJeqOa6oDt7V3Rp77Eh3olF+4NwKLVzcquCynp
-         XaQYXnsOCrUYemZFQgZibun5vI0IDiZFcj4tCZC7KEf5oKhtWBvAo4LOxvr2xWcL9Q1p
-         dl+Fo+Ve+5YPDy5wFmAC1s8TbRwPp94YOg/UxAg2iKlD0tGc2tyG0HN/3gl6URGWgLNv
-         flCPO5ph9AKOsTfvsM65h8mcTnD37+HXivzXWB+mZ+TjwRiBA3drP9vPnEwGev3EmW8N
-         /qzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761812843; x=1762417643;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/Cx0kxFaBCbR91JhvRx0ITZZstWHSbBwKql2sLDgf/c=;
-        b=onDRO4CCODVcNcp1Vr/XOdq7M+n6crNkLamZus5BOUIMC7WCFOAAGSBaDkRuA6deeC
-         uU1nS5wSxreP8AnUCGkvl+2Dw3nq7RXJhlFF4Ij6GwswOpoI/Ft/qb5lRJHXaQL3h+Y/
-         bOLZTwr8wBu7QnQkPwn65byNl+9h3wSSWwJ5QD3CEsJ4UFEUfjSD2vgJcyMSmhvKNUYW
-         tPefQTmun60rdRP9hBc+1v4Be+sOe+8fA85UGCgAX+otbyzQkktI1PzVz2U4S1E7wWVh
-         w3uRHfOHn6obXfN8C6vD6jEJJt3Kql4UW+KXDLwe8aqmCcJLcYb2YUoEbmRKWH6fi9Mg
-         pz/A==
-X-Forwarded-Encrypted: i=1; AJvYcCW7r+7OlBqmnGyEqNttzP2lzvJJmJmi+iCfFlr6mqi0spgn6iipZxixSQqrDEgo1WPPng4v2b9yzS5x@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVUGX81iblNhZd2IkBA1VvhRXxJPaVE2BHRpJJ3lxfDGR9WLPm
-	mKDIUSF93d6N9ap112qBsfQutXcEaJEFHNyExgvrl2l7SqtIdTnqxy9FgnaJ2ZjYKq0=
-X-Gm-Gg: ASbGncuhr6y4ZMTbBojBUex3X9U0bP0fbFFtnTeGt5u20bGXpuIKNrC2cN8g3hfGMij
-	He0eDhGmfJsSDx0aORTuFGJnnQtkaXLusCfNQGizoTnfXTquJeMvbJyed3RtQ9rC6e4cgs4EqxT
-	EiygcAKimwe+7DOavDsGrRdJnGRkipJBs4xlD0me0btndCnik9Ek8Q2gn7qDwH9mlUbI000nKvI
-	bcVpplEAR/KVw6XFUOpXKgcPM02vpqVs4k8KRpqE1F0JPSkTwEfppVgg7dYBG5Dvep9gTZtNUcu
-	zOA0cZDitKzZXO9rM6b+3dO/0GqLMW8mVPc6NLc1ioGdyx4HZpF1JGdYN6I2sGiE47/hZajXe6F
-	4k+KPOjAn7SnHwdl8/PFuga4vjJMQ1btbf9OWCEobucJ8XAqFjVHos7kHbgUgQge6AQnJ0EtL0V
-	jIilipekSpDGiatffyAGDY8IUS9+paIFkp1eHQCC4z+PsJRd4p9p7Eq1Q=
-X-Google-Smtp-Source: AGHT+IEpOqqQd6suUlzGZQizli8cmv6trmiqjxQtOiZEhtbP++rOooGf2lSVBQRYJvEyQY/YzRO1Ig==
-X-Received: by 2002:a05:600c:4e52:b0:477:c37:2ea7 with SMTP id 5b1f17b1804b1-47726009fe6mr20555685e9.21.1761812843457;
-        Thu, 30 Oct 2025 01:27:23 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:7e89:8fed:3647:15c8? ([2a05:6e02:1041:c10:7e89:8fed:3647:15c8])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-477289e7fd2sm28493615e9.16.2025.10.30.01.27.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Oct 2025 01:27:22 -0700 (PDT)
-Message-ID: <050f96d5-e60c-4b33-b6d2-24fb3925e378@linaro.org>
-Date: Thu, 30 Oct 2025 09:27:21 +0100
+	s=arc-20240116; t=1761812997; c=relaxed/simple;
+	bh=ls2cGLc8qxKRv9NgAo9J9wR3ZCu34+cE+i+25qBw+oQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JcDcl8XAPRm+YzbJUVhAIiUZ6UnBJonqOKeYJiluvaVafuoezRGyjbL+98N4EmPMphVCsbQ/l5eUcosIOByW4zpDPgBr0MVOJy3b3I5N3KcGGqh8+VtADMuFcMX6SQMyCTMxo6srRrBqwKV3CgNTblOlGLxI93PmvygqyM9Uiz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=4.193.249.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0004758DT.eswin.cn (unknown [10.12.96.83])
+	by app1 (Coremail) with SMTP id TAJkCgD38WnVIQNphLYJAA--.41111S2;
+	Thu, 30 Oct 2025 16:29:12 +0800 (CST)
+From: zhangsenchuan@eswincomputing.com
+To: bhelgaas@google.com,
+	mani@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	robh@kernel.org,
+	p.zabel@pengutronix.de,
+	jingoohan1@gmail.com,
+	gustavo.pimentel@synopsys.com,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	christian.bruel@foss.st.com,
+	mayank.rana@oss.qualcomm.com,
+	shradha.t@samsung.com,
+	krishna.chundru@oss.qualcomm.com,
+	thippeswamy.havalige@amd.com,
+	inochiama@gmail.com
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	ouyanghui@eswincomputing.com,
+	Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+Subject: [PATCH v4 0/2] Add driver support for Eswin EIC7700 SoC PCIe controller
+Date: Thu, 30 Oct 2025 16:28:59 +0800
+Message-ID: <20251030082900.1304-1-zhangsenchuan@eswincomputing.com>
+X-Mailer: git-send-email 2.49.0.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] iio: adc: Add the NXP SAR ADC support for the
- s32g2/3 platforms
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
- andy@kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
- linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com,
- ghennadi.procopciuc@oss.nxp.com
-References: <20251017164238.1908585-1-daniel.lezcano@linaro.org>
- <20251017164238.1908585-3-daniel.lezcano@linaro.org>
- <aPP0uVZu1T7tTQGo@ashevche-desk.local>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <aPP0uVZu1T7tTQGo@ashevche-desk.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgD38WnVIQNphLYJAA--.41111S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3Jw1xWFy8KFyDZFWxWryxAFb_yoW7Zryxpa
+	9rKFWYkr95Jr43Zws7Aa109FyfXanxCFy5JwnFg347Za17Cas7tr9FkFy3ta47CrZavrWY
+	qa12qanYkFn8ArJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRkwIhUUUUU=
+X-CM-SenderInfo: x2kd0wpvhquxxxdqqvxvzl0uprps33xlqjhudrp/
 
+From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
 
-Hi Andy,
+Changes in v4:
+- Updates: eswin,eic7700-pcie.yaml
+  - Use snps,dw-pcie.yaml instead pci-host-bridge.yaml.
 
-On 10/18/25 22:12, Andy Shevchenko wrote:
-> On Fri, Oct 17, 2025 at 06:42:38PM +0200, Daniel Lezcano wrote:
->> From: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
->>
->> The NXP S32G2 and S32G3 platforms integrate a successive approximation
->> register (SAR) ADC. Two instances are available, each providing 8
->> multiplexed input channels with 12-bit resolution. The conversion rate
->> is up to 1 Msps depending on the configuration and sampling window.
->>
->> The SAR ADC supports raw, buffer, and trigger modes. It can operate
->> in both single-shot and continuous conversion modes, with optional
->> hardware triggering through the cross-trigger unit (CTU) or external
->> events. An internal prescaler allows adjusting the sampling clock,
->> while per-channel programmable sampling times provide fine-grained
->> trade-offs between accuracy and latency. Automatic calibration is
->> performed at probe time to minimize offset and gain errors.
->>
->> The driver is derived from the BSP implementation and has been partly
->> rewritten to comply with upstream requirements. For this reason, all
->> contributors are listed as co-developers, while the author refers to
->> the initial BSP driver file creator.
->>
->> All modes have been validated on the S32G274-RDB2 platform using an
->> externally generated square wave captured by the ADC. Tests covered
->> buffered streaming via IIO, trigger synchronization, and accuracy
->> verification against a precision laboratory signal source.
-> 
-> ...
-> 
->> +#include <linux/circ_buf.h>
-> 
-> Why not kfifo?
+- Updates: snps,dw-pcie-common.yaml
+  - Add powerup reset property, our powerup property is somewhat different
+    from the general attributes defined by Synopsys DWC binding.
 
-I'm sorry but I don't get your comment.
+- Updates: pcie-eic7700.c
+  - Update the driver submission comment.
+  - Alphabetize so the menuconfig entries remain sorted by vendor.
+  - Update use PCI_CAP_LIST_NEXT_MASK macro.
+  - Use readl_poll_timeout function.
+  - Update eswin_pcie_suspend/eswin_pcie_resume name to
+    eswin_pcie_suspend_noirq/eswin_pcie_resume_noirq.
+  - PM use dw_pcie_suspend_noirq and dw_pcie_resume_noirq function and add
+    eswin_pcie_get_ltssm, eswin_pcie_pme_turn_off, eswin_pcie_host_exit
+    function adapt to PM.
+- Link to V3: https://lore.kernel.org/linux-pci/20250923120946.1218-1-zhangsenchuan@eswincomputing.com/
 
-Do you mean why not use kfifo.h or use kfifo API and change all the code 
-using the circ_buf by the kfifo ?
-> ...
-> 
->> +#define NXP_SAR_ADC_IIO_BUFF_SZ		(NXP_SAR_ADC_NR_CHANNELS + (sizeof(u64) / sizeof(u16)))
-> 
-> Hmm... Don't we have some macros so we can avoid this kind of hard coding?
+Changes in v3:
+- Updates: eswin,eic7700-pcie.yaml
+  - Based on the last patch yaml file, devicetree separates the root port
+    node, changing it significantly. Therefore, "Reviewed-by: Krzysztof
+    Kozlowski <krzysztof.kozlowski@linaro.org>" is not added.
+  - Clock and reset drivers are under review. In yaml, macro definitions
+    used in clock and reset can only be replaced by constant values.
+  - Move the num-lanes and perst resets to the PCIe Root Port node, make
+    it easier to support multiple Root Ports in future versions of the
+    hardware.
+  - Update the num-lanes attribute and modify define num-lanes as decimal.
+  - Optimize the ranges attribute and clear the relocatable flag (bit 31)
+    for any regions.
+  - Update comment: inte~inth are actual interrupts and these names align
+    with the interrupt names in the hardware IP, inte~inth interrupts
+    corresponds to Deassert_INTA~Deassert_INTD.
+  - Add Signed-off-by: Yanghui Ou <ouyanghui@eswincomputing.com>.
 
-I don't find such a macro, do you have a pointer ?
+- Updates: pcie-eic7700.c
+  - Update the submission comment and add DWC IP revision, data rate, lane
+    information.
+  - Optimize the "config PCIE_EIC7700" configuration.
+  - Optimize the macro definition, add bitfield definition for the mask,
+    and remove redundant comments. optimize comments, make use of 80
+    columns for comments.
+  - Use the dw_pcie_find_capability function to obtain the offset by
+    traversing the function list.
+  - Remove the sets MPS code and configure it by PCI core.
+  - Alphabetize so the menuconfig entries remain sorted by vendor.
+  - Configure ESWIN VID:DID for Root Port as the default values are
+	invalid,and remove the redundant lane config.
+  - Use reverse Xmas order for all local variables in this driver
+  - Hardware doesn't support MSI-X but it advertises MSI-X capability, set
+    a flag and clear it conditionally.
+  - Resets are all necessary, Update the interface function for resets.
+  - Since driver does not depend on any parent to power on any resource,
+    the pm runtime related functions are removed.
+  - Remove "eswin_pcie_shutdown" function, our comment on the shutdown
+    function is incorrect. Moreover, when the host powers reboots,it will
+    enter the shutdown function, we are using host reset and do not need
+    to assert perst. Therefore, the shutdown function is not necessary.
+  - remove "eswin_pcie_remove", because it is not safe to remove it during
+    runtime, and this driver has been modified to builtin_platform_driver
+    and does not support hot plugging, therefore, the remove function is
+    not needed.
+  - The Suspend function adds link state judgment, and for controllers
+    with active devices, resources cannot be turned off.
+  - Add Signed-off-by: Yanghui Ou <ouyanghui@eswincomputing.com>.
+- Link to V2: https://lore.kernel.org/linux-pci/20250829082021.49-1-zhangsenchuan@eswincomputing.com/
 
-> ...
-> 
->> +	ndelay(div64_u64(NSEC_PER_SEC, clk_get_rate(info->clk)) * 80U);
-> 
-> Do you need those 'U':s? clk_get_rate() already returns unsigned value of the
-> same or higher rank than int. No?
+Changes in v2:
+- Updates: eswin,eic7700-pcie.yaml
+  - Optimize the naming of "clock-names" and "reset-names".
+  - Add a reference to "$ref: /schemas/pci/pci-host-bridge.yaml#".
+    (The name of the reset attribute in the "snps,dw-pcie-common.yaml"
+    file is different from our reset attribute and "snps,dw-pcie.yaml"
+    file cannot be directly referenced)
+  - Follow DTS coding style to optimize yaml attributes.
+  - Remove status = "disabled" from yaml.
 
-May be not needed, but harmless. I can remove them if you want
+- Updates: pcie-eic7700.c
+  - Remove unnecessary imported header files.
+  - Use dev_err instead of pr_err and remove the WARN_ON function.
+  - The eswin_evb_socket_power_on function is removed and not supported.
+  - The eswin_pcie_remove function is placed after the probe function.
+  - Optimize function alignment.
+  - Manage the clock using the devm_clk_bulk_get_all_enabled function.
+  - Handle the release of resources after the dw_pcie_host_init function
+    call fails.
+  - Remove the dev_dbg function and remove __exit_p.
+  - Add support for the system pm function.
+- Link to V1: https://lore.kernel.org/all/20250516094057.1300-1-zhangsenchuan@eswincomputing.com/
 
->> +static int nxp_sar_adc_start_conversion(struct nxp_sar_adc *info, bool raw)
->> +{
->> +	u32 mcr;
->> +
->> +	mcr = readl(NXP_SAR_ADC_MCR(info->regs));
->> +
->> +	FIELD_MODIFY(NXP_SAR_ADC_MCR_NSTART, &mcr, 0x1);
->> +	FIELD_MODIFY(NXP_SAR_ADC_MCR_MODE, &mcr, !raw);
-> 
-> !raw, which is boolean, as a parameter to FIELD_MODIFY() seems a bit odd to me,
-> perhaps simple
-> 
-> 	raw ? 0 : 1
-> 
-> would work better?
+Senchuan Zhang (2):
+  dt-bindings: PCI: EIC7700: Add Eswin PCIe host controller
+  PCI: EIC7700: Add Eswin PCIe host controller driver
 
-Sure
-> (Note, optimizer of the complier will avoid any branching)
-> 
->> +	writel(mcr, NXP_SAR_ADC_MCR(info->regs));
->> +
->> +	return 0;
->> +}
-> 
-> ...
-> 
->> +	dma_samples = (u32 *)dma_buf->buf;
-> 
-> Is it aligned properly for this type of casting?
+ .../bindings/pci/eswin,eic7700-pcie.yaml      | 166 +++++++
+ .../bindings/pci/snps,dw-pcie-common.yaml     |   2 +-
+ drivers/pci/controller/dwc/Kconfig            |  11 +
+ drivers/pci/controller/dwc/Makefile           |   1 +
+ drivers/pci/controller/dwc/pcie-eic7700.c     | 462 ++++++++++++++++++
+ 5 files changed, 641 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-eic7700.c
 
-TBH, I don't know the answer :/
+--
+2.25.1
 
-How can I check that ?
-
->> +	dmaengine_tx_status(info->dma_chan, info->cookie, &state);
-> 
-> No return value check?
-
-The return value is not necessary here because the caller of the 
-callback will check with dma_submit_error() in case of error which 
-covers the DMA_ERROR case and the other cases are not useful because the 
-residue is taken into account right after.
-
-It could be written differently with the DMA_COMPLETE check but the 
-result will be the same. I prefer to keep the current implementation 
-which has been tested.
-
->> +static const struct nxp_sar_adc_data s32g2_sar_adc_data = {
->> +	.vref_mV = 1800,
->> +	.model = "s32g2-sar-adc"
-> 
-> Keep a trailing comma as here it's not a termination member.
-Ok, I'll add it
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
 
