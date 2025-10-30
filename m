@@ -1,590 +1,289 @@
-Return-Path: <devicetree+bounces-233316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A879C210EA
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 16:55:11 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EBE3C210C6
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 16:53:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 000103B42EE
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 15:52:49 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AC033345435
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 15:53:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AC782D738E;
-	Thu, 30 Oct 2025 15:50:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EAD03655FB;
+	Thu, 30 Oct 2025 15:51:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="jamo+2XF"
+	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="n9j7Pa9l";
+	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="n9j7Pa9l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11023102.outbound.protection.outlook.com [52.101.83.102])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D02B2638BC;
-	Thu, 30 Oct 2025 15:50:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761839453; cv=none; b=YvhIJ1sL1qZ7Wcqxu7Ax1Prd2LNcwBpu+qtyM5/vmACRBNYpZNgteMcj3Igp1/ZLf6l7tjZpsgY896gtKw6ZxFGjEF59tTh5OIp0Wzl9PWV7vt1k9mf0+tKHxBHnVDa5L1wfomvSIbX0/YZU+4oya3MlImvg3RoWAXhoWrKSZ8o=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761839453; c=relaxed/simple;
-	bh=FtQzmHoTFEM48OA/9W8Mg+5qb4J64qOrSPthinoiWzo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IoyxCsmP7qLLy5YqyZJnEL/OoFmvB5dAlZXv6V/w2zrQIFXtgim8lTSo5kO9l7+WHaQ0xgh4Dim8kmLFscw3x/qi0sO6PEUP+jWIumPss7opwiTuhrbtblgBo1ZIeXLkeS4m2/u/FNgwz8ayjIWDKzdxRn4LCfkubzWvVwlvELc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=jamo+2XF; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4501A22B;
-	Thu, 30 Oct 2025 16:48:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1761839329;
-	bh=FtQzmHoTFEM48OA/9W8Mg+5qb4J64qOrSPthinoiWzo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jamo+2XFzyyMZiJOYxniY9zQsioadVaet5g8+qwb0sVFJV8wTUepCMBcF92zpPurM
-	 uaTn9wM9kp8kBUACWaiRou0Atgvrq733TjkDdeA8E/aNierdW//8yLW5DzSEyDFAGQ
-	 xWbxMMlLT+/5fzkhYLm4vhacyC/6ocesg2RP/RHc=
-Date: Thu, 30 Oct 2025 16:50:36 +0100
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Tarang Raval <tarang.raval@siliconsignals.io>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Hans Verkuil <hverkuil@xs4all.nl>, 
-	Hans de Goede <hansg@kernel.org>, =?utf-8?B?QW5kcsOp?= Apitzsch <git@apitzsch.eu>, 
-	Sylvain Petinot <sylvain.petinot@foss.st.com>, Benjamin Mugnier <benjamin.mugnier@foss.st.com>, 
-	Dongcheng Yan <dongcheng.yan@intel.com>, Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>, 
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] media: i2c: add Sony IMX111 CMOS camera sensor
- driver
-Message-ID: <nf5ad7wru2mmyvy7yskt3qkshsxjmnlwkxr7p32tf2ttslhgzj@7hz2rcksdcux>
-References: <20251030115757.33695-1-clamor95@gmail.com>
- <20251030115757.33695-3-clamor95@gmail.com>
- <PN3P287MB182950EC8691183FBFC4EC098BFBA@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
- <CAPVz0n0Vqi0xg8c=PS3vyFr9YzRC0PtFXyxw9G5yHohS4FKVbQ@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F5F32D97B9;
+	Thu, 30 Oct 2025 15:51:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.102
+ARC-Seal:i=4; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761839517; cv=fail; b=ixqYP0uxTNMqcnwLY4sNI3GkjX6wINb0IDernFA9TSUPdGofVfgn9eEIUJHOVYdBGv8X02qhx4zEINlD34y3A6k6d2vgL6Ti2QXJgQUkwKrIX4Dqk/9VAyRSLbmI1mNgLN+2i4cXXbT+Zeu04ddQp9UDreQ6LWZO9EOQgmSIFmA=
+ARC-Message-Signature:i=4; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761839517; c=relaxed/simple;
+	bh=72bViCH+1Hha13TSbvgV5aZmzEGnwrX6/qHCONLP3O4=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=KdyiFRN3qr805UukJ7x+H2CYLteyG9uqtNc/eFEL3GI7Bjd4hTDzgmb2rMUv6ArdW84oT7yrXc0x2igRNOPsTBMuyDFajMiwOnydTBrJ5lEK22tkFKNcf3hD2b2U8z18X82R+EE2LTbel2h828xA3uOHGeXOauUT7Gu+cQFuTBI=
+ARC-Authentication-Results:i=4; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=n9j7Pa9l; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=n9j7Pa9l; arc=fail smtp.client-ip=52.101.83.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
+ARC-Seal: i=3; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=LGi1ZGH4ZT1z/h50ci/6GxHhYGQ2V5NCR5OrOERFT/Lq0kX8/g3yYlbr0xGx+GynElz69oYUJG2S2Z1dBryfx64IJ6q14YnqdigtK7dIFZ+SU3ES44YM7j7z5uXgBJQqOhMwcezKNwwqNkziAiobi208DMrJzIiz31fS1P2+XORNYAdogyTH6+UJAZw7kTD1jff5xxcc8rL8Z4ZEYObGq7qgz6LoA6cvNNAlpC8S4tuVat36WK7t46bcx6rRVgdSCC5DTRwAz8YJ0QOxx4EUeoaRyvD6vyblLKg31NL9qTdf3VDvFZ7lx6pwqzW3LoH40Rnh8nLKOX85JpqtwSiYnQ==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=72bViCH+1Hha13TSbvgV5aZmzEGnwrX6/qHCONLP3O4=;
+ b=jOFC2bP3N+Ml/a4XBCuxgpoovU3ssWpmdRI0kXo53/3KNEWJ/DSrgLcw2Tmne+NxU0qllKV1VKwF0XFlZ5az2FLN5PyafFvJTTpDDZwramuqeZJCp6Rp2lgbp7muZPuXoTrMIEjLxS5z4wb8zmuJbqSteZu3mkTnj9d/zji9fXVbJKxkyMOOhCRjw/U94domniAKS8La0iXwOAzdx37OlMfYJekHL7KlvS1L54s0H0+NMfpGVjF4yuEfr9ygijvTq5/ZK90qW9iL3lHNKwDlCUdYyJVxqXri6p26zNVlpzrC3tZwxGQdHNzQFXExmGA92uqNYUnIZW5ll0iXfw7SYA==
+ARC-Authentication-Results: i=3; mx.microsoft.com 1; spf=fail (sender ip is
+ 52.17.62.50) smtp.rcpttodomain=baylibre.com smtp.mailfrom=solid-run.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=solid-run.com;
+ dkim=pass (signature was verified) header.d=solidrn.onmicrosoft.com; arc=pass
+ (0 oda=1 ltdi=1 spf=[1,1,smtp.mailfrom=solid-run.com]
+ dkim=[1,1,header.d=solid-run.com] dmarc=[1,1,header.from=solid-run.com])
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=72bViCH+1Hha13TSbvgV5aZmzEGnwrX6/qHCONLP3O4=;
+ b=n9j7Pa9lOBa5NBt5PXXNmMoMlEQo4ETGltiXZD9XKo5mDdOZWyPnwojjRp/3aGsoJVx2jH5BWpZhAS+CL0FF8kZD9o+YpQiUVotYK3zmv/P9GcQAUvDnq+zWRLybtOo3cWnsJK9sL/0UMXulF3DAoCy7xUDBCL8G/l8uXZ4zOTM=
+Received: from DU7P190CA0007.EURP190.PROD.OUTLOOK.COM (2603:10a6:10:550::31)
+ by VI0PR04MB10949.eurprd04.prod.outlook.com (2603:10a6:800:26c::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.12; Thu, 30 Oct
+ 2025 15:51:49 +0000
+Received: from DU2PEPF00028D10.eurprd03.prod.outlook.com
+ (2603:10a6:10:550:cafe::d0) by DU7P190CA0007.outlook.office365.com
+ (2603:10a6:10:550::31) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9275.14 via Frontend Transport; Thu,
+ 30 Oct 2025 15:51:48 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 52.17.62.50)
+ smtp.mailfrom=solid-run.com; dkim=pass (signature was verified)
+ header.d=solidrn.onmicrosoft.com;dmarc=fail action=none
+ header.from=solid-run.com;
+Received-SPF: Fail (protection.outlook.com: domain of solid-run.com does not
+ designate 52.17.62.50 as permitted sender) receiver=protection.outlook.com;
+ client-ip=52.17.62.50; helo=eu-dlp.cloud-sec-av.com;
+Received: from eu-dlp.cloud-sec-av.com (52.17.62.50) by
+ DU2PEPF00028D10.mail.protection.outlook.com (10.167.242.24) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9253.7
+ via Frontend Transport; Thu, 30 Oct 2025 15:51:48 +0000
+Received: from emails-3143366-12-mt-prod-cp-eu-2.checkpointcloudsec.com (ip-10-20-5-121.eu-west-1.compute.internal [10.20.5.121])
+	by mta-outgoing-dlp-467-mt-prod-cp-eu-2.checkpointcloudsec.com (Postfix) with ESMTPS id B88A080757;
+	Thu, 30 Oct 2025 15:51:48 +0000 (UTC)
+ARC-Authentication-Results: i=2; mx.checkpointcloudsec.com; arc=pass;
+  dkim=none header.d=none
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=checkpointcloudsec.com; s=arcselector01; t=1761839508; h=from : to :
+ subject : date : message-id : content-type : mime-version;
+ bh=72bViCH+1Hha13TSbvgV5aZmzEGnwrX6/qHCONLP3O4=;
+ b=ogX9uYHZSe4UN/t+SEgOukKWfEJDVYoyYiXs7NUZugr7syiW6Wr/xN2s0eZmED7fuZ+Ir
+ 1cUOeKxdfT09NTnKpybxd/zlgYHL15M+H/YUUNeZxF4Qf4l2/3ecY4IOglSmgjbPRYq0fUB
+ oGBjBbaPr4bP4uuMyrOGM0EVQc0DRXU=
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=checkpointcloudsec.com;
+ s=arcselector01; t=1761839508;
+ b=bmAhSbT6u0j4GKDi7wBzi7Qv3sYi2X8tSM5Rs9LksOpuTJZWfe+3EzrVkc1yc/mMMetfY
+ 2hHqTxe3/ff63CIe9MVPgLGR6zsn4iPQ+5oIf0RJac2r4eKkTD7Qe15qjS+7FOgRqt69SrM
+ JYqOgSZ0P5gFTj/ygLILtIH7MO91uxE=
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=gJe3Sc7NA2oc7SWk5p0nEdW9mxGuq0Mwqw2HBrlPR7oquRrmSY75AlZqgnUePO+ESuHsN4STOoXm/LvueRd4pJaX/8ahPqqe4YmMuaQHvlJRxsNMnBKbjLy0MBXhQ1CRdNI8ioO12t8eoi68lTY/Y5rG+1mvtRN0BSPOjXuz53VBp7DE+POZCDuS5gNKoc9Lxas12u1sfVn7ou2TheoCVmad+cxJf5wGWm1TBQzIdk5HQFOlUkzQXbzs6VZ6gVT97HvWJYzqSP17lUV+BJ7FIOae8VDpzwuWdxXn8L+3UGO/OW47i6KYiIgcg9Rnm4cG+lOM9RAR6A9OClgjpmly0A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=72bViCH+1Hha13TSbvgV5aZmzEGnwrX6/qHCONLP3O4=;
+ b=LOD0g7xvl7l+5zy5sHyNrxkYK6PjwXdbjURJtHU52vJhZBRcdH1YAmIMBw7bZq0JZsRRWAfZsVAJ6LkCQGi/y16Ju5Y+Ai8XF3e1rmMmGFxI4ccHOKuJamF3JWQfUIosEb+SNcP880YbZNvvX/6mXzpF8cNLR/BBeqPEW/qiHM1H3JfvfsfMPM26QSc3jAa63hWKvi3bs/pAP3CAwvrWlbq/dqa+GKT7GEp01AJMhk32hvXuEgRzauPWYdGdSosGuvZdqGLGASFOsM3j5Z9XQWW2G7YwnIqNuYCWM4DNq1PwZXnzURBeCs89Ti8qeKkVBYDgJcTv2QoWCDgP9iAT8Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=solid-run.com; dmarc=pass action=none
+ header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=72bViCH+1Hha13TSbvgV5aZmzEGnwrX6/qHCONLP3O4=;
+ b=n9j7Pa9lOBa5NBt5PXXNmMoMlEQo4ETGltiXZD9XKo5mDdOZWyPnwojjRp/3aGsoJVx2jH5BWpZhAS+CL0FF8kZD9o+YpQiUVotYK3zmv/P9GcQAUvDnq+zWRLybtOo3cWnsJK9sL/0UMXulF3DAoCy7xUDBCL8G/l8uXZ4zOTM=
+Received: from PAXPR04MB8749.eurprd04.prod.outlook.com (2603:10a6:102:21f::22)
+ by AS8PR04MB8071.eurprd04.prod.outlook.com (2603:10a6:20b:3f9::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.13; Thu, 30 Oct
+ 2025 15:51:35 +0000
+Received: from PAXPR04MB8749.eurprd04.prod.outlook.com
+ ([fe80::aa83:81a0:a276:51f6]) by PAXPR04MB8749.eurprd04.prod.outlook.com
+ ([fe80::aa83:81a0:a276:51f6%4]) with mapi id 15.20.9275.011; Thu, 30 Oct 2025
+ 15:51:35 +0000
+From: Josua Mayer <josua@solid-run.com>
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Gregory Clement <gregory.clement@bootlin.com>, Sebastian Hesselbarth
+	<sebastian.hesselbarth@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Michael
+ Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rabeeh
+ Khoury <rabeeh@solid-run.com>, Yazan Shhady <yazan.shhady@solid-run.com>,
+	Mikhail Anikin <mikhail.anikin@solid-run.com>, Jon Nettleton
+	<jon@solid-run.com>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-clk@vger.kernel.org"
+	<linux-clk@vger.kernel.org>
+Subject: Re: [PATCH 2/2] clk: mvebu: cp110 add CLK_IGNORE_UNUSED to pcie_x10,
+ pcie_x11 & pcie_x4
+Thread-Topic: [PATCH 2/2] clk: mvebu: cp110 add CLK_IGNORE_UNUSED to pcie_x10,
+ pcie_x11 & pcie_x4
+Thread-Index: AQHcSbAuiv7mDNK6B0OeSgxS412jebTa0cEAgAAFAoA=
+Date: Thu, 30 Oct 2025 15:51:35 +0000
+Message-ID: <481bf79f-0cec-498f-9827-f4c6dfd6c14e@solid-run.com>
+References: <20251030-cn913x-pci-clk-v1-0-e034d5903df1@solid-run.com>
+ <20251030-cn913x-pci-clk-v1-2-e034d5903df1@solid-run.com>
+ <05d450d8-8df9-490f-ac53-3f45544f1c29@lunn.ch>
+In-Reply-To: <05d450d8-8df9-490f-ac53-3f45544f1c29@lunn.ch>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-traffictypediagnostic:
+	PAXPR04MB8749:EE_|AS8PR04MB8071:EE_|DU2PEPF00028D10:EE_|VI0PR04MB10949:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7859f184-f98f-4721-6e3f-08de17cc3c81
+x-cloud-sec-av-info: solidrun,office365_emails,sent,inline
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted:
+ BCL:0;ARA:13230040|366016|376014|1800799024|7416014|38070700021;
+X-Microsoft-Antispam-Message-Info-Original:
+ =?utf-8?B?SzluMithUEVnS3cwRkpQS0c4UUsvdlIrZm5nWE9LUXR6ZVRRdGVycDduQ0xC?=
+ =?utf-8?B?YkZ4WUhOZDZsZVRVcDZzL3BMOEs2MFg2UFVYQkg3UjJSaENGUnk4MThlWHhj?=
+ =?utf-8?B?dHBKWmoyRXkrVGZuWWhXNk5YV2UvYVh0VEdGMENsREp5QVNNSUhORUZHNlpv?=
+ =?utf-8?B?b0o1UjRMVjJzK2FoaVZxeXh1VEdwaURCNFkvZ0hCMElRb2RqRnJzL0ppeVJO?=
+ =?utf-8?B?Yk42bFFuSXhaaldETXc1VENFQ0VKV2FOcHM4NEFWTGhOM2Y4dDZmeUFCVHMr?=
+ =?utf-8?B?aFBqWWlSV3NGTnRITFZQbGpjWjQvdFB2SndxRy8rL3M4aWppRUJ1VUtQMVh1?=
+ =?utf-8?B?cXhIRXF4bFg3azVrVHJnYkpjWTFOZG9uUE9WWnZ4Qm1KcVpFdVFOWVNHWTIv?=
+ =?utf-8?B?NG9ydGdaN29JT3R1aHQwbWk1V05hVkZUUFpRM2JIcEtEc0x2THpwUUtzQW5l?=
+ =?utf-8?B?RmZXR0huK2o5RkZwUlNsU1oyOVBsekxWNEJxOTBSNm1xQ0RFUUlsS05kUEE0?=
+ =?utf-8?B?cmFMQ2YxNmV3RE5XaThIc3NCKzZSUmFOU2IrSjNkOVhCZ0FaSnhkZHNXRlRD?=
+ =?utf-8?B?VFg1elBGTy9TTVE5S2gvMHZnQWRUK1FDcXd6QWhMVkNTZUFVZmc3eEpJeGF6?=
+ =?utf-8?B?Q1BkUmdIb1c1ZEtxcks4eDFuTUlESUVWTUpxRHM2c3BFU0VYcEE2L3Z1MFlP?=
+ =?utf-8?B?L2lUV0xTN1l3TnFzRTRUN0VscG9XL3ZTWWZMVm1CbjJESWtQaVFhL2Vsck51?=
+ =?utf-8?B?OWNXK3ZaWS9obTJvSVBMMGFmMDRSb3M3cjhCMVEvUnkwbGd0Q3RmR0hlMkZ5?=
+ =?utf-8?B?cW85RFpWR3NHenJwMGhqOWtwb2s2WFlWU3FqZW1nREtGZ0VQbVZIb3BRRHNI?=
+ =?utf-8?B?bFhyNS9EMHppREFFTXRFbDdRYW42REZhTW9ZSlVYQzRUUHZ3ekZZK3J6TkhH?=
+ =?utf-8?B?VWlxeDl3ZEczYWR1ZktGNlYyRnBxK1V5d2hnQXJKNDRaaHdkajdGS0tPSWg4?=
+ =?utf-8?B?bjhBTEZwVllJVFBlaVJLbGtCaXMzUFZvRHlFTHhnMUhHVHh1WWlqa3l0YWwy?=
+ =?utf-8?B?OXZoN3ZYclNqSmtUWTFCdWpoQytFaVJCUEJJUWtzZzV4SWRDd1ptdThJRXV5?=
+ =?utf-8?B?U1BRK2psdVVuUlRpYjlCL0plZ2creVcrUXRQZ2ZhaWZzNVZqQmVTbVJ2eWQ0?=
+ =?utf-8?B?NlVuQVZoclkrOFJ1T2ljYSs4Ym0zZnVGb05BUWMxV0E5RWRadDBWRVFSWVFO?=
+ =?utf-8?B?MU8rUGVrUFRrYWpZdWZ1OWFzQkFFdnYxUW1oTzhYRjhTdGtYYXByTTIxZVlL?=
+ =?utf-8?B?akJNTlEvWnBEVzdMRlBxZWV2aXpNcklYQ2lzY3dtZ2xmOFRBR3JJRlVDVHZp?=
+ =?utf-8?B?YXNDQ01OeEsxbWFoS0JOU1NGZmw4dGtzTHRCcHBsUVh0bEJVcFQxQVdSRExw?=
+ =?utf-8?B?QkpLMjVBajVaK3hmT1lleFRnWWh5R3ovUGZ2WlBTbTl0SThYeTUrSGgyc1Vv?=
+ =?utf-8?B?QktDcUN4eUpCYnhjbVl1emlyUVhMZ29nWW94bEw5cnoxY2RoVnNDZy9hd0VB?=
+ =?utf-8?B?b0hBSHV6all4U1pxRFIwalpGeVk4TTdjd3JvdERMbzVQNldlZW9qS1BSdmdF?=
+ =?utf-8?B?UDBmZ3ZJd2o1ZEJHZTJQVUw3MjZUMVEzcUQ0K2NYQnZ6RXlVby9GaHV6aDZM?=
+ =?utf-8?B?NzlXbThvZnJXekc4c25DV0xZeFNqQ1Z0Vi9FL3FibFN1dCt5bXpTdkVqeG5M?=
+ =?utf-8?B?dURDcmMza0FzMVhobzA0aFkwOHBuRU0xR2ZOQU9CTmhhanczbyt6OEpOaVRi?=
+ =?utf-8?B?b1VoM1J6bDdGRXQxbURZWWJVRHhBNG96bkRVeXNrNWc4RHQ3QWlWNjg5aXll?=
+ =?utf-8?B?NHBkQWlETm1DWVY0bnJsTS9KZ0g5RGpIcEZMdVltN2tNY2pHc2hTSXI5Q0Ex?=
+ =?utf-8?B?TWJ2am9NLzJGKzh5aUtUNzZVWjhXeElRTUZJVHBwTEY2SHhxRVcxbkxucVJn?=
+ =?utf-8?B?Tjh2SGtobG1tR3o5SnRQTFVjTUNzdEdVck94dHJtOVp0ODcycXFqWU4yaG9I?=
+ =?utf-8?Q?SiXGx7?=
+X-Forefront-Antispam-Report-Untrusted:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8749.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(7416014)(38070700021);DIR:OUT;SFP:1102;
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <38C5774B6E1F2F489E235402E574AD91@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAPVz0n0Vqi0xg8c=PS3vyFr9YzRC0PtFXyxw9G5yHohS4FKVbQ@mail.gmail.com>
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8071
+X-CLOUD-SEC-AV-INT-Relay: sent<mta-outgoing-dlp-mt-prod-cp-eu-2.checkpointcloudsec.com>
+X-CLOUD-SEC-AV-UUID: 71ac3f8a657b4061a8dd1f00283802a3:solidrun,office365_emails,sent,inline:22fa641f50dcc64560e2c0473a3ff695
+Authentication-Results-Original: mx.checkpointcloudsec.com; arc=pass;
+ dkim=none header.d=none
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped:
+ DU2PEPF00028D10.eurprd03.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs:
+	b1270b63-1a2c-4a2d-944a-08de17cc3471
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|36860700013|1800799024|82310400026|376014|35042699022|14060799003;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?TEhUbkJ4dDZuUXFZanlDRUFPQVYvbGlwb041NXllTTcvdFkyYUgyUGh3S3FL?=
+ =?utf-8?B?VGxQYy9zREMxdXdnM3Fya2o4dW1QWSt5aDBrVmVTamtjKzBuU2crUDZ1VlRy?=
+ =?utf-8?B?clQ0VlpYMnQ0aEo3dEFUMzloZzVMNlU3dlVKRm0yYWpzMGxIbCtFMkhJbE9J?=
+ =?utf-8?B?QWJxNEt3VDZCRzcwZk5jdlBKS0xXdzFKV3M0RXNFcDgzcUlJSU5ySlN6VjB2?=
+ =?utf-8?B?L3NwT2p5Qmdna1lMZHNHUWwyUzlKazhpZ3pITmpSZkRpcVhQUE9mazRZdkkw?=
+ =?utf-8?B?OUZGU0xQL1phdk8vT2gwYmJiNzZBckNMZDVGS3VrNlU1V0hpTEJ6KzRrU3Nn?=
+ =?utf-8?B?TXoyYmhLMzc0eDFGdzZkcktoamhlbWtkdC9nbnFveldmTVJ3VE1HM2Q3VUVZ?=
+ =?utf-8?B?UUV2ZStCRjk3L0dUeGpBNGdTQlF3V3dLSm5LNitMb1JTdjJoRUw0OFBFaURM?=
+ =?utf-8?B?ek1HZWdYaGE2YlN1MmxmYVMyQjhBZkxhUDUwc0xFQ1F2cVdaQmdRb3d0a2xi?=
+ =?utf-8?B?ZkxVRUprR3VQZXNYYXg4MWprVGErUDFveStFcHU3REhDRncwM0huOCthNStj?=
+ =?utf-8?B?UTA5MkwxZm1ISFBEOExCN2JXTEpvQklud3VBZisxVWZsRmNNMUd4NFM4U3VU?=
+ =?utf-8?B?YWNoZ0xLZnhrMHM5emxua1dRVVV3K0lBYlFTUGM4Y0Z3TElueGdhdU5BK1dQ?=
+ =?utf-8?B?ZlpCV2J6a3RjSzl3TG5HQkd3SFJKa1ZLWjM3SFdNQldjSm5kOWJGa3cyT2FD?=
+ =?utf-8?B?Y29zQ05KY244VWFZbHVGNVhBTXcvZHJ5WUdSYUJudGo3a2hQWm9TTUpSK21v?=
+ =?utf-8?B?VHgyeklWK3ZxeWkxK1A5U3J6eStpemloVUs2T0VmMUhkb1libWtOSW9TYjJF?=
+ =?utf-8?B?UnZ2TWN1bGYwWDF1enVldm9EdzBWbmZFSXlWUVVkeThWVnlIaXorTGdnTzBi?=
+ =?utf-8?B?QWRXdm0xM0xGbzk2cFlJVnRjWGxiM1ZFY1JzZzh3ZzZmTi9XUGVTaFhBTU5I?=
+ =?utf-8?B?UUtLSVNZTGZKRW9SZXE0SldCTEsySG5jSGZvQmd5UXlIbTU1N3lIYTlBSmVE?=
+ =?utf-8?B?Rmg2S01ZZVlIcDI4Uk1kdVY3NWV2VEVtdXV6S0dsdTROSjBwam5JM091ejU4?=
+ =?utf-8?B?ekswYXVoNE9ETkoxTXpNVndEOFU1WUd1T01KdG9yYUVFeEN5a3ZmZTNWSXEz?=
+ =?utf-8?B?ci9qVzErK2txNXpoNFBsZVJoUTA0a2RvT3VqamdzeGx2TW53Z01BajFNWUNS?=
+ =?utf-8?B?aStyaGFQS0hOanpyQ2QzYzY3eUZoV0x6RjUvaUxwQ1hHcldaejV0LzVFTC9o?=
+ =?utf-8?B?SWRFZUNsRko0MS9Xc0VYTkZzbW10RGFmamFpNnY5WmtyYVpJYjdKYVBOcDBS?=
+ =?utf-8?B?U2FCUk1Bck5xRlZsa2RDWFUvdzJaTmdrVUQyNm1yeUhVSlpIVTladTA1S2Vs?=
+ =?utf-8?B?YmpWYkdTQ0xBRmJPak5iZ1BxanhCQjZpNnNSZ1lHdThsNEV5Z0tPOXZtRTlh?=
+ =?utf-8?B?ZTZyd2d6NTlONGRTeHpFWGJxU2E2dmRENzdsaXhvTElTTy9Fdy9pN1lVK0tu?=
+ =?utf-8?B?czRnUzNYTnl3b1BGVHNMc1hZejk2RUFlUHk0RkN3YnBBMnRLcTMvMlN3bkxw?=
+ =?utf-8?B?YjNmNXlwN2lSS1BFUFNLWk5lTnVsUi9lUWV0QkR1Yk5EMktsOFlQY1pjbS91?=
+ =?utf-8?B?TmFESi9LZFZ4WUl1Z0VlakVzcmtESjMvV0NGYkhldjVzejhUOEd0VFdhaU40?=
+ =?utf-8?B?cU9ocTNvbzRQUHZWZWVDeFdESHN3czQyWjlBc0kvbVRWQ3dFZnlmTXpxQysz?=
+ =?utf-8?B?R3BLZ1J4cjB6WDJ3c1RMNWczSEV6aFBQU1VJYkdZMlAzRnllOG5FZ1M4QWIv?=
+ =?utf-8?B?WUtSeEZZMzB1eVh6M1BhWTRVVld6VllDYzJwUmVvNmREZGdqY1NTekxvaGov?=
+ =?utf-8?B?RTJuTG1ZeVpKSGszd1ZCQ3ZjK2xhQ2FJaS8xSWkxSXljT2ZBMG1PSWVYczdp?=
+ =?utf-8?B?Lys2WVdrbWZJOG9WQm9NblZOY3dHS29WbnVNMk1iZUZuZGJwa2FlQ0hLbWRh?=
+ =?utf-8?B?Y3YvYmcxSTcvQmZsL3FtL2pXTTgvb1ZzSXpucHpYN090eG5GNTVzejdHT1pt?=
+ =?utf-8?Q?tqd4=3D?=
+X-Forefront-Antispam-Report:
+	CIP:52.17.62.50;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:eu-dlp.cloud-sec-av.com;PTR:eu-dlp.cloud-sec-av.com;CAT:NONE;SFS:(13230040)(7416014)(36860700013)(1800799024)(82310400026)(376014)(35042699022)(14060799003);DIR:OUT;SFP:1102;
+X-OriginatorOrg: solid-run.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2025 15:51:48.8663
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7859f184-f98f-4721-6e3f-08de17cc3c81
+X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a4a8aaf3-fd27-4e27-add2-604707ce5b82;Ip=[52.17.62.50];Helo=[eu-dlp.cloud-sec-av.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DU2PEPF00028D10.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10949
 
-Hello,
-  sorry for entering the conversation
-
-On Thu, Oct 30, 2025 at 05:13:31PM +0200, Svyatoslav Ryhel wrote:
-> чт, 30 жовт. 2025 р. о 16:55 Tarang Raval <tarang.raval@siliconsignals.io> пише:
-> >
-> > Hi Svyatoslav,
-> >
-> > > Add a v4l2 sub-device driver for the Sony IMX111 image sensor. This is a
-> > > camera sensor using the i2c bus for control and the csi-2 bus for data.
-> > >
-> > > The following features are supported:
-> > > - manual exposure, digital and analog gain control support
-> > > - pixel rate/link freq control support
-> > > - supported resolution up to 3280x2464 for single shot capture
-> > > - supported resolution up to 1920x1080 @ 30fps for video
-> > > - supported bayer order output SGBRG10 and SGBRG8
-> > >
-> > > Camera module seems to be partially compatible with Nokia SMIA but it
-> > > lacks a few registers required for clock calculations and has different
-> > > vendor-specific per-mode configurations which makes it incompatible with
-> > > existing CCS driver.
-> > >
-> > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> >
-> > ---
-> >
-> > > +static int imx111_set_ctrl(struct v4l2_ctrl *ctrl)
-> > > +{
-> > > +   struct imx111 *sensor = ctrl_to_imx111(ctrl);
-> > > +   struct device *dev = regmap_get_device(sensor->regmap);
-> > > +   s64 max;
-> > > +   int ret = 0;
-> > > +
-> > > +   /* Propagate change of current control to all related controls */
-> > > +   switch (ctrl->id) {
-> >
-> > Do we need the switch statement, since only one case is present?
-> > You can use an 'if' instead.
-> >
->
-> imx219 and imx319 which are recommended references use switch, and it
-> seems that media maintainters are particularly picky to code style, I
-> have copied it from there.
->
-
-Personally, whenever doing reviews, receiving a reply that ignores the
-merit of the comment and simply refers to the existing code base as an
-excuse for not caring, it's what put me off the most.
-
-Please respect the time reviewers have invested in looking at your
-code by at least considering their comment instead of dismissing them.
-In this specific case you could have easily said "I like it more this
-way and it's consistent with what other drivers do". The same cannot
-be said for other comments that you have decided to ignore.
-
-
-> > > +   case V4L2_CID_VBLANK:
-> > > +         /* Update max exposure while meeting expected vblanking */
-> > > +         max = sensor->cur_mode->height + ctrl->val - 5;
-> >
-> > You can define a macro for the value 5 to improve readability.
-> > Also, make this change in the init_control function.
-> >
->
-> imx219 does not specifies this as a define
->
-
-It doesn't but it should, like 90% of other drivers in mainline do
-
-
-> > > +         __v4l2_ctrl_modify_range(sensor->exposure,
-> > > +                            sensor->exposure->minimum,
-> > > +                            max, sensor->exposure->step, max);
-> >
-> > This may fail; consider adding an error check.
-> >
->
-> imx219 does not return error here too
->
-
-so ?
-
-> > > +         break;
-> > > +   }
-> > > +
-> > > +   /*
-> > > +    * Applying V4L2 control value only happens
-> > > +    * when power is up for streaming
-> > > +    */
-> > > +   if (!pm_runtime_get_if_in_use(dev))
-> > > +         return 0;
-> > > +
-> > > +   switch (ctrl->id) {
-> > > +   case V4L2_CID_ANALOGUE_GAIN:
-> > > +         cci_write(sensor->regmap, IMX111_REG_ANALOG_GAIN, ctrl->val, &ret);
-> > > +         break;
-> > > +   case V4L2_CID_DIGITAL_GAIN:
-> > > +         ret = imx111_update_digital_gain(sensor, ctrl->val);
-> > > +         break;
-> > > +   case V4L2_CID_EXPOSURE:
-> > > +         cci_update_bits(sensor->regmap, IMX111_GROUP_WRITE, IMX111_GROUP_WRITE_ON,
-> > > +                     IMX111_GROUP_WRITE_ON, &ret);
-> > > +         cci_write(sensor->regmap, IMX111_INTEGRATION_TIME, ctrl->val, &ret);
-> > > +         cci_update_bits(sensor->regmap, IMX111_GROUP_WRITE, IMX111_GROUP_WRITE_ON,
-> > > +                     0, &ret);
-> > > +         break;
-> > > +   case V4L2_CID_HBLANK:
-> > > +         cci_update_bits(sensor->regmap, IMX111_GROUP_WRITE, IMX111_GROUP_WRITE_ON,
-> > > +                     IMX111_GROUP_WRITE_ON, &ret);
-> > > +         dev_err(dev, "writing 0x%x to HTL\n", sensor->cur_mode->width + ctrl->val);
-> > > +         cci_write(sensor->regmap, IMX111_HORIZONTAL_TOTAL_LENGTH,
-> > > +                 sensor->cur_mode->width + ctrl->val, &ret);
-> > > +         cci_update_bits(sensor->regmap, IMX111_GROUP_WRITE, IMX111_GROUP_WRITE_ON,
-> > > +                     0, &ret);
-> > > +         break;
-> > > +   case V4L2_CID_VBLANK:
-> > > +         cci_update_bits(sensor->regmap, IMX111_GROUP_WRITE, IMX111_GROUP_WRITE_ON,
-> > > +                     IMX111_GROUP_WRITE_ON, &ret);
-> > > +         dev_err(dev, "writing 0x%x to VTL\n", sensor->cur_mode->height + ctrl->val);
-> > > +         cci_write(sensor->regmap, IMX111_VERTICAL_TOTAL_LENGTH,
-> > > +                 sensor->cur_mode->height + ctrl->val, &ret);
-> > > +         cci_update_bits(sensor->regmap, IMX111_GROUP_WRITE, IMX111_GROUP_WRITE_ON,
-> > > +                     0, &ret);
-> > > +         break;
-> > > +   case V4L2_CID_HFLIP:
-> > > +   case V4L2_CID_VFLIP:
-> > > +         cci_write(sensor->regmap, IMX111_IMAGE_ORIENTATION,
-> > > +                 sensor->hflip->val | sensor->vflip->val << 1, &ret);
-> > > +         break;
-> > > +   case V4L2_CID_TEST_PATTERN:
-> > > +         cci_write(sensor->regmap, IMX111_TEST_PATTERN, ctrl->val, &ret);
-> > > +         break;
-> > > +   case V4L2_CID_TEST_PATTERN_RED:
-> > > +         cci_update_bits(sensor->regmap, IMX111_GROUP_WRITE, IMX111_GROUP_WRITE_ON,
-> > > +                     IMX111_GROUP_WRITE_ON, &ret);
-> > > +         cci_write(sensor->regmap, IMX111_SOLID_COLOR_RED, ctrl->val, &ret);
-> > > +         cci_update_bits(sensor->regmap, IMX111_GROUP_WRITE, IMX111_GROUP_WRITE_ON,
-> > > +                     0, &ret);
-> > > +         break;
-> > > +   case V4L2_CID_TEST_PATTERN_GREENR:
-> > > +         cci_update_bits(sensor->regmap, IMX111_GROUP_WRITE, IMX111_GROUP_WRITE_ON,
-> > > +                     IMX111_GROUP_WRITE_ON, &ret);
-> > > +         cci_write(sensor->regmap, IMX111_SOLID_COLOR_GR, ctrl->val, &ret);
-> > > +         cci_update_bits(sensor->regmap, IMX111_GROUP_WRITE, IMX111_GROUP_WRITE_ON,
-> > > +                     0, &ret);
-> > > +         break;
-> > > +   case V4L2_CID_TEST_PATTERN_BLUE:
-> > > +         cci_update_bits(sensor->regmap, IMX111_GROUP_WRITE, IMX111_GROUP_WRITE_ON,
-> > > +                     IMX111_GROUP_WRITE_ON, &ret);
-> > > +         cci_write(sensor->regmap, IMX111_SOLID_COLOR_BLUE, ctrl->val, &ret);
-> > > +         cci_update_bits(sensor->regmap, IMX111_GROUP_WRITE, IMX111_GROUP_WRITE_ON,
-> > > +                     0, &ret);
-> > > +         break;
-> > > +   case V4L2_CID_TEST_PATTERN_GREENB:
-> > > +         cci_update_bits(sensor->regmap, IMX111_GROUP_WRITE, IMX111_GROUP_WRITE_ON,
-> > > +                     IMX111_GROUP_WRITE_ON, &ret);
-> > > +         cci_write(sensor->regmap, IMX111_SOLID_COLOR_GB, ctrl->val, &ret);
-> > > +         cci_update_bits(sensor->regmap, IMX111_GROUP_WRITE, IMX111_GROUP_WRITE_ON,
-> > > +                     0, &ret);
-> > > +         break;
-> > > +   default:
-> > > +         ret = -EINVAL;
-> > > +   }
-> > > +
-> > > +   pm_runtime_put(dev);
-> > > +
-> > > +   return ret;
-> > > +}
-> >
-> > ---
-> >
-> > > +static int imx111_init_controls(struct imx111 *sensor)
-> > > +{
-> > > +   const struct v4l2_ctrl_ops *ops = &imx111_ctrl_ops;
-> > > +   struct device *dev = regmap_get_device(sensor->regmap);
-> > > +   const struct imx111_mode *mode = sensor->cur_mode;
-> > > +   struct v4l2_fwnode_device_properties props;
-> > > +   struct v4l2_subdev *sd = &sensor->sd;
-> >
-> > No need for a new variable; there is only one user in the function.
-> >
->
-> This make code reading cleaner, no?
->
-> > > +   struct v4l2_ctrl_handler *hdl = &sensor->hdl;
-> > > +   s64 pixel_rate_min, pixel_rate_max;
-> > > +   int i, ret;
-> > > +
-> > > +   ret = v4l2_fwnode_device_parse(dev, &props);
-> > > +   if (ret < 0)
-> > > +         return ret;
-> > > +
-> > > +   ret = v4l2_ctrl_handler_init(hdl, 13);
-> >
-> > Now there are 15 controls.
-> >
-> > No need for explicit error checking; you can omit the error check if you'd like.
-> >
-> > > +   if (ret)
-> > > +         return ret;
-> > > +
-> > > +   pixel_rate_min = div_u64(sensor->pixel_clk_raw, 2 * IMX111_DATA_DEPTH_RAW10);
-> > > +   pixel_rate_max = div_u64(sensor->pixel_clk_raw, 2 * IMX111_DATA_DEPTH_RAW8);
-> > > +   sensor->pixel_rate = v4l2_ctrl_new_std(hdl, NULL, V4L2_CID_PIXEL_RATE,
-> > > +                                  pixel_rate_min, pixel_rate_max,
-> > > +                                  1, div_u64(sensor->pixel_clk_raw,
-> > > +                                  2 * sensor->data_depth));
-> > > +
-> > > +   sensor->link_freq = v4l2_ctrl_new_int_menu(hdl, NULL, V4L2_CID_LINK_FREQ,
-> > > +                                    0, 0, &sensor->default_link_freq);
-> > > +   if (sensor->link_freq)
-> > > +         sensor->link_freq->flags |= V4L2_CTRL_FLAG_READ_ONLY;
-> > > +
-> > > +   v4l2_ctrl_new_std(hdl, ops, V4L2_CID_ANALOGUE_GAIN,
-> > > +                 IMX111_ANA_GAIN_MIN, IMX111_ANA_GAIN_MAX,
-> > > +                 IMX111_ANA_GAIN_STEP, IMX111_ANA_GAIN_DEFAULT);
-> > > +
-> > > +   v4l2_ctrl_new_std(hdl, ops, V4L2_CID_DIGITAL_GAIN,
-> > > +                 IMX111_DGTL_GAIN_MIN, IMX111_DGTL_GAIN_MAX,
-> > > +                 IMX111_DGTL_GAIN_STEP, IMX111_DGTL_GAIN_DEFAULT);
-> > > +
-> > > +   sensor->hflip = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_HFLIP, 0, 1, 1, 0);
-> > > +   if (sensor->hflip)
-> > > +         sensor->hflip->flags |= V4L2_CTRL_FLAG_MODIFY_LAYOUT;
-> > > +
-> > > +   sensor->vflip = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_VFLIP, 0, 1, 1, 0);
-> > > +   if (sensor->vflip)
-> > > +         sensor->vflip->flags |= V4L2_CTRL_FLAG_MODIFY_LAYOUT;
-> > > +
-> > > +   sensor->vblank = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_VBLANK, IMX111_VBLANK_MIN,
-> > > +                              IMX111_VTL_MAX - mode->height, 1,
-> > > +                              mode->vtl_def - mode->height);
-> > > +   sensor->hblank = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_HBLANK, IMX111_HBLANK_MIN,
-> > > +                              IMX111_HTL_MAX - mode->width, 1,
-> > > +                              mode->htl_def - mode->width);
-> > > +
-> > > +   /*
-> > > +    * The maximum coarse integration time is the frame length in lines
-> > > +    * minus five.
-> > > +    */
-> > > +   sensor->exposure = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_EXPOSURE,
-> > > +                                IMX111_INTEGRATION_TIME_MIN,
-> > > +                                IMX111_PIXEL_ARRAY_HEIGHT - 5,
-> > > +                                IMX111_INTEGRATION_TIME_STEP,
-> > > +                                IMX111_PIXEL_ARRAY_HEIGHT - 5);
-> > > +
-> > > +   v4l2_ctrl_new_fwnode_properties(hdl, ops, &props);
-> > > +
-> > > +   v4l2_ctrl_new_std_menu_items(hdl, ops, V4L2_CID_TEST_PATTERN,
-> > > +                          ARRAY_SIZE(test_pattern_menu) - 1, 0, 0,
-> > > +                          test_pattern_menu);
-> > > +   for (i = 0; i < 4; i++) {
-> > > +         /*
-> > > +          * The assumption is that
-> > > +          * V4L2_CID_TEST_PATTERN_GREENR == V4L2_CID_TEST_PATTERN_RED + 1
-> > > +          * V4L2_CID_TEST_PATTERN_BLUE   == V4L2_CID_TEST_PATTERN_RED + 2
-> > > +          * V4L2_CID_TEST_PATTERN_GREENB == V4L2_CID_TEST_PATTERN_RED + 3
-> > > +          */
-> > > +         v4l2_ctrl_new_std(hdl, ops, V4L2_CID_TEST_PATTERN_RED + i,
-> > > +                       IMX111_TESTP_COLOUR_MIN, IMX111_TESTP_COLOUR_MAX,
-> > > +                       IMX111_TESTP_COLOUR_STEP, IMX111_TESTP_COLOUR_MAX);
-> > > +         /* The "Solid color" pattern is white by default */
-> > > +   }
-> > > +
-> > > +   if (hdl->error)
-> > > +         return hdl->error;
-> > > +
-> > > +   sd->ctrl_handler = hdl;
-> > > +
-> > > +   return 0;
-> > > +};
-> >
-> > ---
-> >
-> > > +static int imx111_initialize(struct imx111 *sensor)
-> > > +{
-> > > +   struct device *dev = regmap_get_device(sensor->regmap);
-> > > +   int ret;
-> >
-> > ret = 0;
-> >
->
-> cci_write does not state that ret must be initiated.
-
-Could you at least take the time to read the code ?
-
-int cci_write(struct regmap *map, u32 reg, u64 val, int *err)
-{
-	bool little_endian;
-	unsigned int len;
-	u8 buf[8];
-	int ret;
-
-	if (err && *err)
-		return *err;
-
-And by the way, the documentation says:
-
-/**
- * cci_write() - Write a value to a single CCI register
- *
- * @map: Register map to write to
- * @reg: Register address to write, use CCI_REG#() macros to encode reg width
- * @val: Value to be written
- * @err: Optional pointer to store errors, if a previous error is set
- *       then the write will be skipped
- *
- * Return: %0 on success or a negative error code on failure.
- */
-int cci_write(struct regmap *map, u32 reg, u64 val, int *err);
-
-
->
-> > > +
-> > > +   /* Configure the PLL. */
-> > > +   cci_write(sensor->regmap, IMX111_PRE_PLL_CLK_DIVIDER_PLL1,
-> > > +           sensor->pll->pre_div, &ret);
-
-I'm very surprised this doesn't sometimes fail as ret is not
-initialized
-
-> > > +   cci_write(sensor->regmap, IMX111_PLL_MULTIPLIER_PLL1, sensor->pll->mult, &ret);
-> > > +   cci_write(sensor->regmap, IMX111_POST_DIVIDER, IMX111_POST_DIVIDER_DIV1, &ret);
-> > > +   cci_write(sensor->regmap, IMX111_PLL_SETTLING_TIME,
-> > > +           to_settle_delay(sensor->pll->extclk_rate), &ret);
-> > > +
-> > > +   ret = cci_multi_reg_write(sensor->regmap, imx111_global_init,
-> > > +                       ARRAY_SIZE(imx111_global_init), NULL);
-> >
-> > You are overwriting the previous errors.
-> >
-> > please use ret |=
-
-or you can pass ret to cci_multi_reg_write() as well
-
-Maybe that's why you don't see errors causes by uninitialized ret ?
-
-> >
-> > > +   if (ret < 0) {
-> > > +         dev_err(dev, "Failed to initialize the sensor\n");
-> > > +         return ret;
-> > > +   }
-> > > +
-> > > +   return 0;
-> > > +}
-> >
-> > ---
-> >
-> > > +static int imx111_set_format(struct v4l2_subdev *sd,
-> > > +                    struct v4l2_subdev_state *state,
-> > > +                    struct v4l2_subdev_format *format)
-> > > +{
-> > > +   struct imx111 *sensor = sd_to_imx111(sd);
-> > > +   struct v4l2_mbus_framefmt *mbus_fmt = &format->format;
-> > > +   struct v4l2_mbus_framefmt *fmt;
-> > > +   const struct imx111_mode *mode;
-> > > +
-> > > +   mode = v4l2_find_nearest_size(imx111_modes, ARRAY_SIZE(imx111_modes),
-> > > +                           width, height,
-> > > +                           mbus_fmt->width, mbus_fmt->height);
-> > > +
-> > > +   fmt = v4l2_subdev_state_get_format(state, format->pad);
-> > > +
-> > > +   fmt->code = imx111_get_format_code(sensor, mbus_fmt->code, false);
-> > > +   fmt->width = mode->width;
-> > > +   fmt->height = mode->height;
-> > > +   fmt->colorspace = V4L2_COLORSPACE_RAW;
-> > > +
-> > > +   *mbus_fmt = *fmt;
-> > > +
-> > > +   if (format->which == V4L2_SUBDEV_FORMAT_ACTIVE) {
-> > > +         sensor->cur_mode = mode;
-> > > +         sensor->data_depth = imx111_get_format_bpp(fmt);
-> > > +         __v4l2_ctrl_s_ctrl_int64(sensor->pixel_rate,
-> > > +                            div_u64(sensor->pixel_clk_raw, 2 * sensor->data_depth));
-> > > +
-> > > +         __v4l2_ctrl_modify_range(sensor->vblank, IMX111_VBLANK_MIN,
-> > > +                            IMX111_VTL_MAX - mode->height, 1,
-> > > +                            mode->vtl_def - mode->height);
-> > > +         __v4l2_ctrl_s_ctrl(sensor->vblank, mode->vtl_def - mode->height);
-> > > +
-> > > +         __v4l2_ctrl_modify_range(sensor->hblank, IMX111_HBLANK_MIN,
-> > > +                            IMX111_HTL_MAX - mode->width, 1,
-> > > +                            mode->htl_def - mode->width);
-> > > +         __v4l2_ctrl_s_ctrl(sensor->hblank, mode->htl_def - mode->width);
-> >
-> > All the above V4L2 operations need to check for errors.
-> >
->
-> yet again imx219 and imx319 do not check any of those
->
-
-And we recently got an error on imx219 controls update that went
-unnoticed because of this and I'm now fixing 40+ drivers because this
-has been copied over and over. Want to make them 41 ?
-
-> > > +   }
-> > > +
-> > > +   return 0;
-> > > +}
-> >
-> > ---
-> >
-> > > +static int imx111_identify_module(struct imx111 *sensor)
-> > > +{
-> > > +   struct device *dev = regmap_get_device(sensor->regmap);
-> > > +   u64 value, revision, manufacturer;
-> > > +   int ret;
-> > > +
-> > > +   ret = cci_read(sensor->regmap, IMX111_PRODUCT_ID, &value, NULL);
-> > > +   if (ret)
-> > > +         return ret;
-> > > +
-> > > +   if (value != IMX111_CHIP_ID) {
-> > > +         dev_err(dev, "chip id mismatch: %x!=%04llx", IMX111_CHIP_ID, value);
-> > > +         return -ENXIO;
-> > > +   }
-> > > +
-> > > +   cci_read(sensor->regmap, IMX111_REVISION, &revision, NULL);
-> > > +   cci_read(sensor->regmap, IMX111_MANUFACTURER_ID, &manufacturer, NULL);
-> >
-> > Instead of NULL, pass ret for the error code, and return ret at the end.
-> >
-> > > +
-> > > +   dev_dbg(dev, "module IMX%03llx rev. %llu manufacturer %llu\n",
-> > > +         value, revision, manufacturer);
-> > > +
-> > > +   return 0;
-> > > +}
-> > > +
-> > > +static int imx111_clk_init(struct imx111 *sensor)
-> > > +{
-> > > +   struct device *dev = regmap_get_device(sensor->regmap);
-> > > +   u32 ndata_lanes = sensor->bus_cfg.bus.mipi_csi2.num_data_lanes;
-> > > +   u64 extclk_rate, system_clk;
-> > > +   unsigned int i;
-> > > +
-> > > +   extclk_rate = clk_get_rate(sensor->extclk);
-> > > +   if (!extclk_rate)
-> > > +         return dev_err_probe(dev, -EINVAL, "EXTCLK rate unknown\n");
-> > > +
-> > > +   for (i = 0; i < ARRAY_SIZE(imx111_pll); i++) {
-> > > +         if (clk_get_rate(sensor->extclk) == imx111_pll[i].extclk_rate) {
-> > > +               sensor->pll = &imx111_pll[i];
-> > > +               break;
-> > > +         }
-> > > +   }
-> > > +   if (!sensor->pll)
-> > > +         return dev_err_probe(dev, -EINVAL, "Unsupported EXTCLK rate %llu\n", extclk_rate);
-> >
-> > Max line length should be 80 columns. This applies everywhere the line
-> > length exceeds 80 characters.
-
-In response to your reply in a separate email:
-
-https://www.kernel.org/doc/html/latest/driver-api/media/maintainer-entry-profile.html#coding-style-addendum
-Media development uses checkpatch.pl on strict mode to verify the code style, e.g.:
-$ ./scripts/checkpatch.pl --strict --max-line-length=80
-
-I don't like being that strict too. Feel free to send a patch, you'll
-have my ack
-
-> >
-> > > +
-> > > +   system_clk = div_u64(extclk_rate, sensor->pll->pre_div) * sensor->pll->mult;
-> > > +
-> > > +   /*
-> > > +    * Pixel clock or Logic clock is used for internal image processing is
-> > > +    * generated by dividing into 1/10 or 1/8 frequency according to the
-> > > +    * word length of the CSI2 interface. This clock is designating the pixel
-> > > +    * rate and used as the base of integration time, frame rate etc.
-> > > +    */
-> > > +   sensor->pixel_clk_raw = system_clk * ndata_lanes;
-> > > +
-> > > +   /*
-> > > +    * The CSI-2 bus is clocked for 16-bit per pixel, transmitted in DDR over n lanes
-> > > +    * for RAW10 default format.
-> > > +    */
-> > > +   sensor->default_link_freq = div_u64(sensor->pixel_clk_raw * 8,
-> > > +                               2 * IMX111_DATA_DEPTH_RAW10);
-> > > +
-> > > +   if (sensor->bus_cfg.nr_of_link_frequencies != 1 ||
-> > > +       sensor->bus_cfg.link_frequencies[0] != sensor->default_link_freq)
-> > > +         return dev_err_probe(dev, -EINVAL,
-> > > +                          "Unsupported DT link-frequencies, expected %llu\n",
-> > > +                          sensor->default_link_freq);
-> > > +
-> > > +   return 0;
-> > > +}
-> >
-> > ---
-> >
-> > > +static const struct of_device_id imx111_of_match[] = {
-> > > +   { .compatible = "sony,imx111" },
-> > > +   { /* sentinel */ }
-> > > +};
-> > > +MODULE_DEVICE_TABLE(of, imx111_of_match);
-> > > +
-> > > +static struct i2c_driver imx111_i2c_driver = {
-> > > +   .driver = {
-> > > +         .name = "imx111",
-> > > +         .of_match_table = imx111_of_match,
-> > > +         .pm = &imx111_pm_ops,
-> > > +   },
-> > > +   .probe = imx111_probe,
-> > > +   .remove = imx111_remove,
-> > > +};
-> > > +module_i2c_driver(imx111_i2c_driver);
-> > > +
-> > > +MODULE_AUTHOR("Svyatoslav Ryhel <clamor95@gmail.com>");
-> > > +MODULE_DESCRIPTION("Sony IMX111 CMOS Image Sensor driver");
-> > > +MODULE_LICENSE("GPL");
-> >
-> > Best Regards,
-> > Tarang
+SSBtaXNzZWQgYSBjb2xvbiBpbiB0aGUgc3ViamVjdCBsaW5lICJjcDExMDoiLA0Kc2hvdWxkIEkg
+cm9sbCB2MiBmb3IgdGhpcz8NCg0KQW0gMzAuMTAuMjUgdW0gMTY6MzMgc2NocmllYiBBbmRyZXcg
+THVubjoNCj4gT24gVGh1LCBPY3QgMzAsIDIwMjUgYXQgMDQ6MTY6MjZQTSArMDEwMCwgSm9zdWEg
+TWF5ZXIgd3JvdGU6DQo+PiBDUDExMCBiYXNlZCBwbGF0Zm9ybXMgcmVseSBvbiB0aGUgYm9vdGxv
+YWRlciBmb3IgcGNpIHBvcnQNCj4+IGluaXRpYWxpemF0aW9uLg0KPj4gVEYtQSBhY3RpdmVseSBw
+cmV2ZW50cyBub24tdWJvb3QgcmUtY29uZmlndXJhdGlvbiBvZiBwY2kgbGFuZXMsIGFuZCBtYW55
+DQo+PiBib2FyZHMgZG8gbm90IGhhdmUgc29mdHdhcmUgY29udHJvbCBvdmVyIHRoZSBwY2kgY2Fy
+ZCByZXNldC4NCj4+DQo+PiBJZiBhIHBjaSBwb3J0IGhhZCBsaW5rIGF0IGJvb3QtdGltZSBhbmQg
+dGhlIGNsb2NrIGlzIHN0b3BwZWQgYXQgYSBsYXRlcg0KPj4gcG9pbnQsIHRoZSBsaW5rIGZhaWxz
+IGFuZCBjYW4gbm90IGJlIHJlY292ZXJlZC4NCj4+DQo+PiBQQ0kgY29udHJvbGxlciBkcml2ZXIg
+cHJvYmUgLSBhbmQgYnkgZXh0ZW5zaW9uIG93bmVyc2hpcCBvZiBhIGRyaXZlciBmb3INCj4+IHRo
+ZSBwY2kgY2xvY2tzIC0gbWF5IGJlIGRlbGF5ZWQgZXNwZWNpYWxseSBvbiBsYXJnZSBtb2R1bGFy
+IGtlcm5lbHMsDQo+PiBjYXVzaW5nIHRoZSBjbG9jayBjb3JlIHRvIHN0YXJ0IGRpc2FibGluZyB1
+bnVzZWQgY2xvY2tzLg0KPj4NCj4+IEFkZCB0aGUgQ0xLX0lHTk9SRV9VTlVTRUQgZmxhZyB0byB0
+aGUgdGhyZWUgcGNpIHBvcnQncyBjbG9ja3MgdG8gZW5zdXJlDQo+PiB0aGV5IGFyZSBub3Qgc3Rv
+cHBlZCBiZWZvcmUgdGhlIHBjaSBjb250cm9sbGVyIGRyaXZlciBoYXMgdGFrZW4NCj4+IG93bmVy
+c2hpcCBhbmQgdGVzdGVkIGZvciBhbiBleGlzdGluZyBsaW5rLg0KPj4NCj4+IFRoaXMgZml4ZXMg
+ZmFpbGVkIHBjaSBsaW5rIGRldGVjdGlvbiB3aGVuIGNvbnRyb2xsZXIgZHJpdmVyIHByb2JlcyBs
+YXRlLA0KPj4gZS5nLiB3aXRoIGFybTY0IGRlZmNvbmZpZyBhbmQgQ09ORklHX1BIWV9NVkVCVV9D
+UDExMF9DT01QSFk9bS4NCj4gU2VlbXMgbGlrZSBhIHJlYXNvbmFibGUgY29tcHJvbWlzZSwgZ2l2
+ZW4gdGhhdCBURi1BIGNvdWxkIGJlIGNsYXNzZWQNCj4gYXMgYnJva2VuLiBUaGlzIG11c3QgYWxz
+byBwcmV2ZW50IHN1c3BlbmQvcmVzdW1lIHBvd2VyaW5nIG9mZiBQQ0kNCj4gZGV2aWNlcywgYW5k
+IHRoZW4gcmVjb25uZWN0aW5nIHRoZW0gb24gcmVzdW1lLg0KQ3VycmVudGx5IHBjaWUtYXJtYWRh
+OGsgKHVubGlrZSBlLmcuIHBjaS1pbXg2KSBkb2VzIG5vdCBjdXJyZW50bHkgZGVmaW5lDQphbnkg
+ZGV2X3BtX29wcyAtIHNvIHdlIHNob3VsZCBiZSBzYWZlIGZyb20gYW55IHBvd2VyLW1hbmFnZW1l
+bnQuDQo+DQo+IFJldmlld2VkLWJ5OiBBbmRyZXcgTHVubiA8YW5kcmV3QGx1bm4uY2g+DQo+DQo+
+ICAgICBBbmRyZXcNCg==
 
