@@ -1,346 +1,183 @@
-Return-Path: <devicetree+bounces-233055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6678EC1EB94
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:21:29 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92AFCC1EBAC
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:24:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 666E7189ED3C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 07:21:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 34B354E706A
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 07:24:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D30F336EC1;
-	Thu, 30 Oct 2025 07:21:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF6C336EEA;
+	Thu, 30 Oct 2025 07:24:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aJmdIQy1";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DdIOLyAT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OrhmKFbe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9332334C34
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 07:21:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D5543358AC;
+	Thu, 30 Oct 2025 07:24:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761808884; cv=none; b=Iydld+bq4xt2QvqZWMSsbta3sJiXmf7JSSM2ISApp8J3DLB5cgKuyrPEZfTTz70lUkJreEK1HVBkKNWYRLn8lkYV50XTChYvGxS7n2E0LRrrthplQs+89w1OhxIvTogyYL5CHZqTQ6gjl2U8ySvnbBAsBpTM+H/nXS6qKcUuBCU=
+	t=1761809075; cv=none; b=A1lEaLJDp8P04XIi5ECSR7u/+/+ms9TpbopFpIhkGhdXsInTFzuOPpBVSwl8qZ1yLDdrxS3t1ku7v7aXekTm2lSNMEGcVTsMecC8AzT5Ldsg2HUVRrlu9pobgptbITt6tDigA7BB/vOr5DbzGurPBpKv5YZGNkcKF26HtEt4rVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761808884; c=relaxed/simple;
-	bh=3ukC6tbY/13+u4PbBz4Lf/+5E1gIoHSg+SZx7O+Z0U8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BnUZki8//ZSx0jPLnLXMCO4KippVcRoeBKVhcg0Sqz8f7b/zDUo9eCpuefWlatatDknkKJ14THtP4hgdqgV1w3I4yKmNhzBnH1lUP86XCx1sD0S8xw9vsphiS/JzBnNLayWmPATQMRRuFyhA5GyhWUsykC0qj1Y80oxofahxDu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aJmdIQy1; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DdIOLyAT; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59TL7Gt51579002
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 07:21:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	LrLH04bvWmhv/7dSuz9/jODN0MrjOzjLTOOh3RzYK98=; b=aJmdIQy1dzNp+YSO
-	uYD5v7uBG6WccO2WyWuXmJygidw+st6zcZUCS7lIaBhlmZJpmOylw4iW5z7tzIQj
-	CBaIaIFmECBjjXRoQLDWMk5s5RLgnz8ykhYfpF+El3Y33ArA1HM9BKRJQDrJlzg8
-	Utf1dubsR4j27TTqKZRMdsjSU9OQpBCI2/hR9Hhwj3PsfUnCBk3PfEeOKWZiR7qG
-	RhE9JMfGC5xei95FUIMhAjSAVkvwYXHdKtJtm1v6t1rUxO/+xxo0QgR//A2GwDB3
-	/1UkAzswKyOkydIUPmcR2Yddv7v36LcZBzOJU4K+vB3kP8nvhREE+16xCZUtcZLV
-	RkBlyQ==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a3tjehesy-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 07:21:20 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-33b9dc9aec8so177830a91.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 00:21:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761808880; x=1762413680; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LrLH04bvWmhv/7dSuz9/jODN0MrjOzjLTOOh3RzYK98=;
-        b=DdIOLyATS1Q2EdId0TVXEA4WVP0DCm/CWnOBu0Fbc884jB8RuzDUi5qm+MzVzwzMYJ
-         66n0NWC19sDNNaJ6Os2qbaAg4dnMBt3RDWAxW33Q1agRJVmJHzfr2IYRfejsuEeOrJpv
-         J4/8ZgtYgWKywoo1irSW5XdWzlLMUOCtMwU0fZOF8IfWPJqpPnrOx9o90FL/c+/L2alk
-         R0DmfRcVSd2TgDyH9PtcWef7phJWFGlm62PGmrbfXVAPqAd8sNbH0UHK3T4NxKcZ/qGE
-         O0vPgEmLImo8muq5V8FS1eBWv0zI4k6BLN8R12pH3ROnctNe+btgK8bm9Mh/Mgc9TiRx
-         diwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761808880; x=1762413680;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=LrLH04bvWmhv/7dSuz9/jODN0MrjOzjLTOOh3RzYK98=;
-        b=KIJ/ip/lN+2eOLBNSBN2sqPLxOkfFVGNngoOBLgwFtmb0xYtaYCdAmkj2BcxMpST9Z
-         Tve8RrdUfkoDUSXzMeZDnNZ6FByN26u+2J2txRQDIS+xp+J3oWHSb21w18DXEjLKaCPc
-         aJtB/tgwJ2zFgMYF2LchjE/lU2kqHRvXQkGLqoraX3peIesJ+TVkP1oIHK54mZYhNU9g
-         lltPFxYg0ZR7EyZECL4byN10qzBsprWWp8D4seW+IfBAEWAQBQlAsRK/+lWP0llErLIT
-         6OwagyGjERpDkHOfGwvkOmzX/bYKoChugeRK8nxx0GaI4La73v1AsL80RwlnLzfw2YTd
-         mtQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVPlVD/hsiaoon/Kc+blNBjzyhctHUDwhu0LuE+iaPpahnKk8yKMD1+HSWye5IWNFLTJ7LL9hxM2sEf@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGpNiIEe6ws5jMgyXXvLqdenmMpLZKNcQTyJ5hiJSR9can1Iyl
-	7ksn1fD8a/c6noAZgcqjIrmIqgRdQVRRmxuNeCWvrH+j7QJTLAWxYb5vJ3kgprkM5Q1qzIBdpHG
-	oSep2TVZWd9TzY09gOTTleIx9JW4jasMgaRaM61ZmshPuHsZE4B61n31sdjoxpnG1
-X-Gm-Gg: ASbGncv8K1qNo4lwzVyRQ9lLmAQDTFs8viA0NL76irqlXlts8uNsRqh5lPrwW24Auqm
-	UBcBUtbPGJPr6GfAyuQ4wHOAIsk9Rkrumv6r4fZOtNZoEWazl6bnjEOIdbxZTMJVEohASWeQjVz
-	Y+EX9hW/zVezj99q/dsafddQ6twV4XWCe568JoEzBGGeweu8RcVa98OrXidepsBmFwCGPhqHRbB
-	Hab83HK7c7mpum84YtcgXCAGw3CJmt5M9linOctix/O2wSDFySLD3jI1wstCiUYXxljuWtdWnLS
-	Zt2GMv8qX1hWEJgrqS+rmpkFcgWNlrf1czfhwW7jUUwsO08SYbcDlwfKHBoiMl4Nzrvp3owk5yB
-	Bfy/VP7T9KtLcCaaRiS0bOStgR27/nx0fxN0lwSep4Nk1Nwr54S/6kz+AYtNKUBJvKLHpMg==
-X-Received: by 2002:a05:6a21:4d8c:b0:341:fcbf:90b9 with SMTP id adf61e73a8af0-34653c0cc95mr3991169637.4.1761808880202;
-        Thu, 30 Oct 2025 00:21:20 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEzZrHhcc1HTqPJ7CvrAphUHOthYYbudWGXcSpWUVourKLOVpK1kqUouzpCpiUJ1uwL+BHxGw==
-X-Received: by 2002:a05:6a21:4d8c:b0:341:fcbf:90b9 with SMTP id adf61e73a8af0-34653c0cc95mr3991136637.4.1761808879701;
-        Thu, 30 Oct 2025 00:21:19 -0700 (PDT)
-Received: from [10.133.33.251] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b8c0d2364d5sm3941558a12.19.2025.10.30.00.21.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Oct 2025 00:21:19 -0700 (PDT)
-Message-ID: <da6eebe0-13ec-4168-aac1-2eef9db3bd13@oss.qualcomm.com>
-Date: Thu, 30 Oct 2025 15:21:09 +0800
+	s=arc-20240116; t=1761809075; c=relaxed/simple;
+	bh=0GI+RXqQiTErAdEzgskdBRk3bXKy3i+/0wcYrcqI0lA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FWorCE3Ok39+SIyUd7x8wJl5YuvjT3e6OsDmqaZz1VNvrhNSLN7cO7Ntibf6QD3m/cC9tWTpif+TcjtAv8E7m6W3Qgq8PSt4Dp9EUH5mzGCPdQ9cTIdA5aYaQ8KH6Z1PzP+0EFc02RByLA9h+M8njQH+eo4ouKCfpHKw+O6pQMU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OrhmKFbe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CC7E8C4CEF1;
+	Thu, 30 Oct 2025 07:24:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761809074;
+	bh=0GI+RXqQiTErAdEzgskdBRk3bXKy3i+/0wcYrcqI0lA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=OrhmKFbeOoLilaehmFfrM3Ju6jIYwRSb3Dbjt5NtCW6aM/uA597FVahtxMpW1sLnM
+	 3kS9IAgjr0rp5SYymGxcYiFOQo/OcdfO5G8W52Dme94WfJtm5ghI3sA9sdFhdYycqK
+	 rSwdhAGbOyFDr6WdBhQAHM4Wjnn4KCp/FhLFv4wgr1t9hmTEJfVFytn/6D1EgK4RPA
+	 DB8VbHeNIrCtaHzyHufml40/oYGe7gN9CAAhM5sku38DwKeWgoVE0maiD7APD6xgNm
+	 +4S9AQ0wubyF0qArrfMfGCZz0JPRwLBfU3xBLSzQQFFjw/9ZyvFiN1rLVQlKXu5t9t
+	 Amcn17EBEEm3w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B6A5FCCF9F8;
+	Thu, 30 Oct 2025 07:24:34 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Subject: [PATCH v2 0/2] Add support for Pixel 3 and Pixel 3 XL
+Date: Thu, 30 Oct 2025 08:24:28 +0100
+Message-Id: <20251030-pixel-3-v2-0-8caddbe072c9@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/4] arm64: dts: qcom: Add DisplayPort and QMP USB3DP
- PHY for SM6150
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar
- <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com,
-        li.liu@oss.qualcomm.com,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20251024-add-displayport-support-to-qcs615-devicetree-v6-0-c4316975dd0e@oss.qualcomm.com>
- <20251024-add-displayport-support-to-qcs615-devicetree-v6-3-c4316975dd0e@oss.qualcomm.com>
- <xjes5h45y44cahs7avj4xngprwnks3alnf25tsbptyvckajz3q@lhawlg5vamls>
-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-In-Reply-To: <xjes5h45y44cahs7avj4xngprwnks3alnf25tsbptyvckajz3q@lhawlg5vamls>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 5xBTujqiaEo14GrpXkVLE_w_GNRhmsbI
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMwMDA1OCBTYWx0ZWRfXyZ3GZkAW8kQK
- X6+k/wOKj/2MB9zodMZ5tNhSpCYDfShXXtn9JoXJV9hOxLKppTPCCKDqKbND/qWzKc6/04PD+24
- gpE8wd7wBWlG191U0UizEW4HJOTh+d6U/lajopFKyMvW212bVhdbdAF9XOB6pBpnbBp9A6acWsI
- F2WZMRgSwpLWcs4oxfV+TS10Zzp26bDpYfbysoyMWi+FpUn4eg+7g5JrECtu6fGOBZdtvJpV/sw
- RQls6Povqk9Kgh6rd2mjfJYYpcEcqPHnlOhMjM4QYZz/FMINeUv37LAECwdtku753Z6C6BiqaGe
- Ky+dHz1mgivpQ6AOOU2e8XGwu055M5F9sy2xZ27TP8ZWRkEQzuFXoGaxucNw0hYqilXuP8WZ7gI
- fqwsDrxOQ6LKV+XiAaGI44kM6jNomg==
-X-Authority-Analysis: v=2.4 cv=a/Q9NESF c=1 sm=1 tr=0 ts=690311f1 cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=tU0UsG_G8rlFAKuj474A:9
- a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
-X-Proofpoint-ORIG-GUID: 5xBTujqiaEo14GrpXkVLE_w_GNRhmsbI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-10-30_01,2025-10-29_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 priorityscore=1501 lowpriorityscore=0 malwarescore=0
- suspectscore=0 phishscore=0 spamscore=0 adultscore=0 clxscore=1015
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2510300058
+X-B4-Tracking: v=1; b=H4sIAK0SA2kC/0XOSW7DMAwF0KsYWpeFZste9R5FFrJE1gKa2JVUI
+ wNy9ygO0C4/STz+GyuYExY2djeWcUslLacW5FvHwuxPXwgptswkl4ZrMcCazvgNCowQGIP02vK
+ etes1I7XVU/o8tDynUpd82eFNPKe7ITg3f8YmgIOf3OQMWaEUfaRzqu/hyg73F5nx57d1qi/3v
+ 1JruGPSQaxw9SuU2UfMEKkP0jiyRGFsfxsz+YIQluMx1bGjPkrlHCIGqQdrKehoAikZe26JG6F
+ JDj6Y1uD+AKU6euUdAQAA
+X-Change-ID: 20250419-pixel-3-511edc2a4607
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: phodina@protonmail.com, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ phone-devel@vger.kernel.org, David Heidelberg <david@ixit.cz>, 
+ Amit Pundir <amit.pundir@linaro.org>, Casey Connolly <casey@connolly.tech>, 
+ Joel Selvaraj <foss@joelselvaraj.com>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3373; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=0GI+RXqQiTErAdEzgskdBRk3bXKy3i+/0wcYrcqI0lA=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpAxKx/aC3TjOUiHTJgeiWXSedWFuEw7byLOkB2
+ +J9v2wuZB6JAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaQMSsQAKCRBgAj/E00kg
+ cp6uEADRJjf+khkFIOe95a6MLunuI93bagSMw3bt11Lq+Fm7s9cPWCgS1yyOfQ1b3j7fhSBLacf
+ AXNtcOTNgDlceEyknFduBQiYLqJNWLKysJqNYX9UDQtyAHG8r1LWsbE98SyaUhKoMswiBf/7JKO
+ qrXnELhDJkcInz33OLXaYKxSuSR9RGmwcvyWM0yktbXnd6EhAr5IDMldP2IsIEhkjWBUqo6Nvdo
+ twXWtfGgxIyg6mlvHJgFF4LmyzZvqKAtj8KncycaL/dQRe2bLeZcwjyjlQHIboW5JkPVnxApTdk
+ ISLfpxbnJFz0v18lpnq/ItaYS8N+VGUMIdV+vpzQ1HsdpBvoot/iTgohDDtQeB9//Mm2kIFjX96
+ Z3Nm5+SRZkJiGidiL0KvPHjSa2Ez5brQR47RsyyE31jkmdkP5SfZYnGClsDEIbSrZoPYVXnEHzZ
+ 8fGl9Ro6OYQVXGwDO/Fvxz1JceEqhkxBwn633saMq1PWoRgGY2xwDgKLqkC+8YBdm8W1lmTbQuN
+ PrS215m97EQf1pTAHvgVQ8snY9W3DthLuZnogzRF/ocDIv95u4qukUiRzXSLEUAU6lY9Qeh486v
+ K1r6bZP6yaC2PeU6/pHxQlFJCcJVfqv6h/032XIsbybgq5rNgbsTwM3uW1dy/fkPE4egk1pU/2f
+ /wx8MqynRgKbAOg==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
+
+This adds initial device tree support for the following phones:
+
+ - Google Pixel 3 (blueline)
+ - Google Pixel 3 XL (crosshatch)
+
+Both phone boards use the same identifiers and differ only slightly
+in their connected peripherals.
+
+This is mainly focused to get the base functionality of the board and
+being able to use the upstream DTS within Linux and u-boot.
+
+Booting
+-------
+For older Pixel 3 bootloaders, bootloader-compatible board and MSM IDs are
+required for the kernel to boot, so these have been added.
+
+For recent Pixel 3 bootloaders,
+a) you want chainloaded proper bootloader (f.e. u-boot),
+b) you can also boot kernel when adding back TEXT_OFFSET
+   (partial revert of 120dc60d).
+
+This series is a beggining of cleaning up and transitioning support from
+sdm845 close to mainline tree to the mainline.
+
+Note: I assume this won't get merged yet, but all or at least most of
+initial feedback to v1 should be incorporated.
+
+Depends on:
+- "[PATCH 0/7] arm64: dts: qcom: cleanup GPU's zap-shader node" series.
+
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+Changes in v2:
+- rebased on next-20251030
+- generalize chosen to -common (Dmitry)
+- demystify rmtfs_mem qcom,vmid
+- use qcom,use-guard-pages instead of lower/upper guard block
+- merge port@1 endpoint into label mdss_dsi0_out
+- sort pinctrl
+- sorted the nodes inside root
+- put status as a last property into mdss_dsi0 block
+- rename volume-keys to gpio-keys   
+- removed LS-UART1 label
+- removed gmu block, already enabled
+- removed accidentally introduced WIP crosshatch panel support
+- removed useless panel_pmgpio_pins (Dmitry)
+- removed usb_2 as it's unused on production units (only devkit)
+- move mdss node into the -common and disable in crosshatch (Dmitry)
+- move battery node into the -commonm
+- move framebuffer into the -common (Dmitry)
+- add all firmwares (Dmitry)
+- add Wi-Fi support
+- add Bluetooth support
+- add missing gpi_dma1 node
+- renamed regulators to follow regulator-foo-bar BCP (Dmitry)
+- adapt to recent cleanup GPU's zap-shader node
+- Link to v1: https://lore.kernel.org/r/20251005-pixel-3-v1-0-ab8b85f6133f@ixit.cz
+
+---
+David Heidelberg (2):
+      Documentation: dt-bindings: arm: qcom: Add Pixel 3 and 3 XL
+      arm64: dts: qcom: Add support for Pixel 3 and Pixel 3 XL
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   2 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   2 +
+ .../arm64/boot/dts/qcom/sdm845-google-blueline.dts |  94 ++++
+ arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi | 522 +++++++++++++++++++++
+ .../boot/dts/qcom/sdm845-google-crosshatch.dts     |  39 ++
+ 5 files changed, 659 insertions(+)
+---
+base-commit: f7d2388eeec24966fc4d5cf32d706f0514f29ac5
+change-id: 20250419-pixel-3-511edc2a4607
+prerequisite-change-id: 20251028-dt-zap-shader-df7c258f6ffc:v1
+prerequisite-patch-id: 0f0f709c9a638ec48be64bf357975cf75bc144ad
+prerequisite-patch-id: 495544e8cb329eff420e1134292446ed7ccd018f
+prerequisite-patch-id: 55c07e275cc46d1dc5a279fd0e3a789f67eec02d
+prerequisite-patch-id: 707a86a8dd82384f31847a6790d988b7896140bc
+prerequisite-patch-id: d8852b1c3dd3e8a16d391824c41b71bcb8a30c3a
+prerequisite-patch-id: 06dd1f88f5f076795a2e602582c0c9026aba01ba
+prerequisite-patch-id: 8b13202f3d3fef85bbe6d63b81d15c08c54b584f
+
+Best regards,
+-- 
+David Heidelberg <david@ixit.cz>
 
 
-On 10/30/2025 1:32 AM, Bjorn Andersson wrote:
-> On Fri, Oct 24, 2025 at 01:21:03PM +0800, Xiangxu Yin via B4 Relay wrote:
->> From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
->>
-> Please fix the subject prefix and drop the "for SM6150" suffix.
->
-> Regards,
-> Bjorn
-
-
-Ok, due to sm6150.dtsi have renamed to talos.dtsi in newest version.
-
-Will update to 'arm64: dts: qcom: talos: Add DisplayPort and QMP USB3DP PHY'
-
-
->> Introduce DisplayPort controller node and associated QMP USB3-DP PHY
->> for SM6150 SoC. Add data-lanes property to the DP endpoint and update
->> clock assignments for proper DP integration.
->>
->> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
->> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
->> ---
->>  arch/arm64/boot/dts/qcom/sm6150.dtsi | 115 ++++++++++++++++++++++++++++++++++-
->>  1 file changed, 113 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm6150.dtsi b/arch/arm64/boot/dts/qcom/sm6150.dtsi
->> index 6128d8c48f9c0807ac488ddac3b2377678e8f8c3..9741f8d14c72ed7dd6a5e483c5c0d578662f1d31 100644
->> --- a/arch/arm64/boot/dts/qcom/sm6150.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm6150.dtsi
->> @@ -14,6 +14,7 @@
->>  #include <dt-bindings/interconnect/qcom,icc.h>
->>  #include <dt-bindings/interconnect/qcom,qcs615-rpmh.h>
->>  #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +#include <dt-bindings/phy/phy-qcom-qmp.h>
->>  #include <dt-bindings/power/qcom-rpmpd.h>
->>  #include <dt-bindings/power/qcom,rpmhpd.h>
->>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
->> @@ -3717,6 +3718,7 @@ port@0 {
->>  						reg = <0>;
->>  
->>  						dpu_intf0_out: endpoint {
->> +							remote-endpoint = <&mdss_dp0_in>;
->>  						};
->>  					};
->>  
->> @@ -3749,6 +3751,89 @@ opp-307200000 {
->>  				};
->>  			};
->>  
->> +			mdss_dp0: displayport-controller@ae90000 {
->> +				compatible = "qcom,sm6150-dp", "qcom,sm8150-dp", "qcom,sm8350-dp";
->> +
->> +				reg = <0x0 0x0ae90000 0x0 0x200>,
->> +				      <0x0 0x0ae90200 0x0 0x200>,
->> +				      <0x0 0x0ae90400 0x0 0x600>,
->> +				      <0x0 0x0ae90a00 0x0 0x600>,
->> +				      <0x0 0x0ae91000 0x0 0x600>;
->> +
->> +				interrupt-parent = <&mdss>;
->> +				interrupts = <12>;
->> +
->> +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
->> +					 <&dispcc DISP_CC_MDSS_DP_AUX_CLK>,
->> +					 <&dispcc DISP_CC_MDSS_DP_LINK_CLK>,
->> +					 <&dispcc DISP_CC_MDSS_DP_LINK_INTF_CLK>,
->> +					 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>,
->> +					 <&dispcc DISP_CC_MDSS_DP_PIXEL1_CLK>;
->> +				clock-names = "core_iface",
->> +					      "core_aux",
->> +					      "ctrl_link",
->> +					      "ctrl_link_iface",
->> +					      "stream_pixel",
->> +					      "stream_1_pixel";
->> +
->> +				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
->> +						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>,
->> +						  <&dispcc DISP_CC_MDSS_DP_PIXEL1_CLK_SRC>;
->> +				assigned-clock-parents = <&usb_qmpphy_2 QMP_USB43DP_DP_LINK_CLK>,
->> +							 <&usb_qmpphy_2 QMP_USB43DP_DP_VCO_DIV_CLK>,
->> +							 <&usb_qmpphy_2 QMP_USB43DP_DP_VCO_DIV_CLK>;
->> +
->> +				phys = <&usb_qmpphy_2 QMP_USB43DP_DP_PHY>;
->> +				phy-names = "dp";
->> +
->> +				operating-points-v2 = <&dp_opp_table>;
->> +				power-domains = <&rpmhpd RPMHPD_CX>;
->> +
->> +				#sound-dai-cells = <0>;
->> +
->> +				status = "disabled";
->> +
->> +				ports {
->> +					#address-cells = <1>;
->> +					#size-cells = <0>;
->> +
->> +					port@0 {
->> +						reg = <0>;
->> +
->> +						mdss_dp0_in: endpoint {
->> +							remote-endpoint = <&dpu_intf0_out>;
->> +						};
->> +					};
->> +
->> +					port@1 {
->> +						reg = <1>;
->> +
->> +						mdss_dp0_out: endpoint {
->> +							data-lanes = <3 2 0 1>;
->> +						};
->> +					};
->> +				};
->> +
->> +				dp_opp_table: opp-table {
->> +					compatible = "operating-points-v2";
->> +
->> +					opp-160000000 {
->> +						opp-hz = /bits/ 64 <160000000>;
->> +						required-opps = <&rpmhpd_opp_low_svs>;
->> +					};
->> +
->> +					opp-270000000 {
->> +						opp-hz = /bits/ 64 <270000000>;
->> +						required-opps = <&rpmhpd_opp_svs>;
->> +					};
->> +
->> +					opp-540000000 {
->> +						opp-hz = /bits/ 64 <540000000>;
->> +						required-opps = <&rpmhpd_opp_svs_l1>;
->> +					};
->> +				};
->> +			};
->> +
->>  			mdss_dsi0: dsi@ae94000 {
->>  				compatible = "qcom,sm6150-dsi-ctrl", "qcom,mdss-dsi-ctrl";
->>  				reg = <0x0 0x0ae94000 0x0 0x400>;
->> @@ -3844,8 +3929,8 @@ dispcc: clock-controller@af00000 {
->>  				 <&mdss_dsi0_phy DSI_BYTE_PLL_CLK>,
->>  				 <&mdss_dsi0_phy DSI_PIXEL_PLL_CLK>,
->>  				 <0>,
->> -				 <0>,
->> -				 <0>;
->> +				 <&usb_qmpphy_2 QMP_USB43DP_DP_LINK_CLK>,
->> +				 <&usb_qmpphy_2 QMP_USB43DP_DP_VCO_DIV_CLK>;
->>  
->>  			#clock-cells = <1>;
->>  			#reset-cells = <1>;
->> @@ -4214,6 +4299,32 @@ usb_qmpphy: phy@88e6000 {
->>  			status = "disabled";
->>  		};
->>  
->> +		usb_qmpphy_2: phy@88e8000 {
->> +			compatible = "qcom,qcs615-qmp-usb3-dp-phy";
->> +			reg = <0x0 0x088e8000 0x0 0x2000>;
->> +
->> +			clocks = <&gcc GCC_USB2_SEC_PHY_AUX_CLK>,
->> +				 <&gcc GCC_USB3_SEC_CLKREF_CLK>,
->> +				 <&gcc GCC_AHB2PHY_WEST_CLK>,
->> +				 <&gcc GCC_USB2_SEC_PHY_PIPE_CLK>;
->> +			clock-names = "aux",
->> +				      "ref",
->> +				      "cfg_ahb",
->> +				      "pipe";
->> +
->> +			resets = <&gcc GCC_USB3PHY_PHY_SEC_BCR >,
->> +				 <&gcc GCC_USB3_DP_PHY_SEC_BCR>;
->> +			reset-names = "phy_phy",
->> +				      "dp_phy";
->> +
->> +			#clock-cells = <1>;
->> +			#phy-cells = <1>;
->> +
->> +			qcom,tcsr-reg = <&tcsr 0xbff0 0xb24c>;
->> +
->> +			status = "disabled";
->> +		};
->> +
->>  		usb_1: usb@a6f8800 {
->>  			compatible = "qcom,qcs615-dwc3", "qcom,dwc3";
->>  			reg = <0x0 0x0a6f8800 0x0 0x400>;
->>
->> -- 
->> 2.34.1
->>
->>
 
