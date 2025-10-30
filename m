@@ -1,112 +1,120 @@
-Return-Path: <devicetree+bounces-233362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBF42C2172C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 18:20:48 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC38DC2179F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 18:25:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8BC0C35033F
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:20:48 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D78744EE4BB
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:23:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61BB83678B6;
-	Thu, 30 Oct 2025 17:20:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C6633678B6;
+	Thu, 30 Oct 2025 17:23:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TkjBz/+e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ekDPxfxb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25B622F60A3;
-	Thu, 30 Oct 2025 17:20:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D09837A3C0;
+	Thu, 30 Oct 2025 17:23:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761844844; cv=none; b=opN3ZQ69G9iQjN4yB0fPVpQ4jv3tlAzEQu2klowQ8RUsQG+taql9/ks8sMFuUMcl9EYywarZiIgng3AgaeKW9mrxxsHW5LoXAWcO6Atfrn2tDE4PGQJ50jjRomS3DUFGhp8KbUwINuT7aPKqkj5Bw4aNP4ZubJCvT5F44sko2sY=
+	t=1761844981; cv=none; b=FxdRC7l0gKammsm0HAqPGljlKym9rFXrNjbguo/gzLf7m0ePZ5rzMtAS5PKSmdtc6WlSpKAxN7NHWvCjVzUXj6NTrTn8eK83Get0JxlgLkyEq+3ehztQlwWvlUahQQa8ZIVvQr7JG7LAnd9UTTDS1r7Rp7ZFNELBBxlGc/4k2Sc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761844844; c=relaxed/simple;
-	bh=u1y3B+8RUYFHKy7C4XHtKEXlhSgIPJIedO3quTvmsnw=;
+	s=arc-20240116; t=1761844981; c=relaxed/simple;
+	bh=5JXVFNlMTvdINtFW0DXyg4zvly79j27nW9MHNXzH3gQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hRFw5puCpyCA0Bi7KTXHVSgcuyrfOKFCONLCblz/B3j+mgWxDzXXmyn0WJ+aobHrNtW7Vk1UaD09WFZVhs1ur9WCz0RFTMLTPyvuqXklKV8GowlmK/CvLOE4qyzqiOfMyTm2C7XRPl2JmwEuYExV/J9jjGigIVBORqv6febHFWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TkjBz/+e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15760C4CEF8;
-	Thu, 30 Oct 2025 17:20:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TWzjISrXHDM56AXnvNVzWtKBXyhJfQHsEut2sHKztnVRrjeBOm3zn4cAcRl5BoCnvjZJ4AvLP72BgPyoyKFPADBYeSUrF0SDXc8FweIdH1rudLrAij57/hl6HSBC/+8rpokbQhFG65YdVHfzbNfPwo+DTAyaKFgTjKoA7ZAhaJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ekDPxfxb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B953C4CEF1;
+	Thu, 30 Oct 2025 17:23:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761844843;
-	bh=u1y3B+8RUYFHKy7C4XHtKEXlhSgIPJIedO3quTvmsnw=;
+	s=k20201202; t=1761844980;
+	bh=5JXVFNlMTvdINtFW0DXyg4zvly79j27nW9MHNXzH3gQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TkjBz/+eMf9gwnuS/btR8gNRi5Y9H5T1/MvDgOETJ01Dlf7POOO8RpU31DJXRWkz0
-	 2sg5vdBqJj8Ph6kWnzFnjJqOVHS0p9qIdVvuTwEQdEkbWnKfitwI60rwv1R0RaXOIM
-	 SllKsLbXxhoU+lYjc5zZSCwVSFAaxUBYQb1pw/L2dvWot+q9EEwCz01cn454THCbNq
-	 eW15Oz+PjCT/eyWSex7gJkIKAg9STU6JMZ93zoBM4JW6g3PVmElPdab0CgaA3lJY0S
-	 V180/yFR9pgQdRK2zMgvjebt/1nWBiFL0eYyUUTKzuqEz6PjDvxKLTfQ4gaxsmO29o
-	 dKSoOx1QelBig==
-Date: Thu, 30 Oct 2025 18:20:40 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Jack Hsu <jh.hsu@mediatek.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, 
-	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, srini@kernel.org, 
-	gregkh@linuxfoundation.org, jirislaby@kernel.org, daniel.lezcano@linaro.org, 
-	tglx@linutronix.de, chunfeng.yun@mediatek.com, wim@linux-watchdog.org, 
-	linux@roeck-us.net, sean.wang@mediatek.com, zhiyong.tao@mediatek.com, 
-	andrew-ct.chen@mediatek.com, lala.lin@mediatek.com, jitao.shi@mediatek.com, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-pwm@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v6 04/11] dt-bindings: pwm: Support MediaTek MT8189 evb
- board disp-pwm
-Message-ID: <fqceagmqxbix4bnpacimf2lwpnwrw3gpwzknh3a7pt7sfmccm2@4jnh4ynkwwcg>
-References: <20251030134541.784011-1-jh.hsu@mediatek.com>
- <20251030134541.784011-5-jh.hsu@mediatek.com>
+	b=ekDPxfxbY8/F3xn0eGyDZwX+LhpUsp96t2p5jcHv1VOrbWltNqYe1hJrPE46ST+iw
+	 Fx5A9ppwTBXR+5mLjA/A4D8WxPeK9U2qQJvY1T0OL/nY1Dgf5v5JX+6GPaQRRqFpKH
+	 WXYA/cKfVrQBgsjk2/+ZmfRpm/huKtlIAA/RMvv3d4rcusu5kyJc9OtIf01wvdbDhH
+	 kVIoKCdXCHedQdewx9Ywq1phFxb2Tw5gxZ+7xcf2UgDeRPorrTNynn4GqiKnAu3SDS
+	 66ba9TAx60jfWo33JecrjVZVxQo9qx8UfPmFkxUHqimhotZKzKD29ootdbv6+v89Tn
+	 l0kqj64jsj9AQ==
+Date: Thu, 30 Oct 2025 12:22:53 -0500
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+	Rocky Liao <quic_rjliao@quicinc.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 00/11] Bluetooth: dt-bindings: qualcomm: Split binding
+Message-ID: <20251030172253.GA4166743-robh@kernel.org>
+References: <20251029-dt-bindings-qcom-bluetooth-v2-0-dd8709501ea1@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="tnp73246a7ax7u7v"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251030134541.784011-5-jh.hsu@mediatek.com>
+In-Reply-To: <20251029-dt-bindings-qcom-bluetooth-v2-0-dd8709501ea1@linaro.org>
 
+On Wed, Oct 29, 2025 at 08:43:50AM +0100, Krzysztof Kozlowski wrote:
+> Changes in v2:
+> - Drop in few commits the properties (supplies) from
+>   qualcomm-bluetooth.yaml which are not used by devices left there,
+>   instead of removing them in final patch (qcom,wcn7850-bt).
+> - Fix dt_binding_check error - missing gpio.h header in the example.
+> - Drop maintainers update - split into separate patch.
+> - Add also Bartosz as maintainer of two bindings because he was working
+>   with these in the past.
+> - Link to v1: https://patch.msgid.link/20251028-dt-bindings-qcom-bluetooth-v1-0-524a978e3cda@linaro.org
+> 
+> One big Qualcomm Bluetooth schema is hardly manageable: it lists all
+> possible properties (19 supplies).  Split qcom,qca6390-bt to separate
+> bindings, so device schema will be easier to read/maintain and list only
+> relevant properties.
+> 
+> What's more it messes up old (pre-PMU) and new (post-PMU) description in
+> one place adding to the total mess.
+> 
+> Best regards,
+> Krzysztof
+> 
+> ---
+> Krzysztof Kozlowski (11):
+>       dt-bindings: bluetooth: qcom,qca2066-bt: Split to separate schema
+>       dt-bindings: bluetooth: qcom,qca9377-bt: Split to separate schema
+>       dt-bindings: bluetooth: qcom,qca6390-bt: Split to separate schema
+>       dt-bindings: bluetooth: qcom,wcn3950-bt: Split to separate schema
+>       dt-bindings: bluetooth: qcom,wcn3990-bt: Split to separate schema
+>       dt-bindings: bluetooth: qcom,wcn6750-bt: Split to separate schema
+>       dt-bindings: bluetooth: qcom,wcn6750-bt: Deprecate old supplies
+>       dt-bindings: bluetooth: qcom,wcn6855-bt: Split to separate schema
+>       dt-bindings: bluetooth: qcom,wcn6855-bt: Deprecate old supplies
+>       dt-bindings: bluetooth: qcom,wcn7850-bt: Split to separate schema
+>       dt-bindings: bluetooth: qcom,wcn7850-bt: Deprecate old supplies
+> 
+>  .../net/bluetooth/qcom,bluetooth-common.yaml       |  25 ++
+>  .../bindings/net/bluetooth/qcom,qca2066-bt.yaml    |  49 ++++
+>  .../bindings/net/bluetooth/qcom,qca6390-bt.yaml    |  64 +++++
+>  .../bindings/net/bluetooth/qcom,qca9377-bt.yaml    |  58 +++++
+>  .../bindings/net/bluetooth/qcom,wcn3950-bt.yaml    |  67 ++++++
+>  .../bindings/net/bluetooth/qcom,wcn3990-bt.yaml    |  66 ++++++
+>  .../bindings/net/bluetooth/qcom,wcn6750-bt.yaml    |  91 ++++++++
+>  .../bindings/net/bluetooth/qcom,wcn6855-bt.yaml    |  99 ++++++++
+>  .../bindings/net/bluetooth/qcom,wcn7850-bt.yaml    |  94 ++++++++
+>  .../bindings/net/bluetooth/qualcomm-bluetooth.yaml | 259 ---------------------
+>  MAINTAINERS                                        |   1 +
+>  11 files changed, 614 insertions(+), 259 deletions(-)
 
---tnp73246a7ax7u7v
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v6 04/11] dt-bindings: pwm: Support MediaTek MT8189 evb
- board disp-pwm
-MIME-Version: 1.0
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-On Thu, Oct 30, 2025 at 09:44:36PM +0800, Jack Hsu wrote:
-> add compatible string for mt8189 evb board dts node of disp-pwm
->=20
-> Signed-off-by: Jack Hsu <jh.hsu@mediatek.com>
-
-LGTM. Assuming this patch will go in together with the other patches
-=66rom this series via arm-soc:
-
-Acked-by: Uwe Kleine-K=F6nig <ukleinek@kernel.org>
-
-Best regards
-Uwe
-
---tnp73246a7ax7u7v
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmkDnmYACgkQj4D7WH0S
-/k6ntAgAmefAEgqrCjLWiUHmGcabEITjr9SAE4YojmK2oq78HLZC4n0T3P19U5zm
-VFVFw+gARsZVw2CQ2ANeQiQBXWVDyT8BQ9Vh0PZZvVvE7fqMZM3FfIQ9bU2OgdWE
-vmSpfUBeyu1Fm95OZrMi475gX0v9ej4Tj6uLesaLywvcW0l8JZRPpRHDwpARP7rL
-fXgtxa69IAvwq1YGDcJfHXe3M+Z4t7OIJpE8qbAVkTpAqH438a26TzlQEgxHsXzi
-4C26RMlvhfSb/Ajn1ZU+y1SYyskpUOyGNUKMVYYoRUQEN9D/o3Mrx1T8BAhzpu5A
-XXCuNcZ2Tx5Mz3amOjApNarZkQVZhw==
-=Yaxj
------END PGP SIGNATURE-----
-
---tnp73246a7ax7u7v--
 
