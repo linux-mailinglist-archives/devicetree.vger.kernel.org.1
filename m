@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-233018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF3EBC1E70B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 06:38:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02439C1E721
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 06:38:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 849AB1898B25
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 05:38:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16E3D3BE15F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 05:38:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C701828C035;
-	Thu, 30 Oct 2025 05:37:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AB382E8DF0;
+	Thu, 30 Oct 2025 05:38:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mw0YlVCP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DpuEnQsB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98A89286419;
-	Thu, 30 Oct 2025 05:37:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F2FE28C035;
+	Thu, 30 Oct 2025 05:38:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761802669; cv=none; b=LKrMOKZY7P3i6/Sk0RvJlNlOV5pYxyEbDvi5S/XAiudU1qVxaGwrkOxA+Yxgz8UM4qDhAd8xPn7qn8I24PByeGKBHa9Tvkhtj5Z+FhwGLIttw6eX4egHRYKS/kHOR8i43apo+lTvuMz1TTWQ4t3SyeyI1Pdom/koa+jD5xvzpXk=
+	t=1761802700; cv=none; b=dI4NnVDrdalhmAmQVsq7Prt8lluYg5fVQCr5c1G5bKtEC8AeDIhRKxIICthB/n0fGWZyssDB1fGINzvXcj9cO00UMrUhxtxSmyqdqCf/bdS+nFSJL52jGVRWBHZsh6FPe7wN+BavfEa2Lxg+FlZvTEd7LDXjjtLYrbFAqkzmpaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761802669; c=relaxed/simple;
-	bh=2Ql6M2oEHS7vNgrk7s8vVaKzAoHkuVoLhaBtq6nZqNQ=;
+	s=arc-20240116; t=1761802700; c=relaxed/simple;
+	bh=zOsjbjL5qWBGWQrx0ZuQEwEteMN6w5OjPevu9xuO7Iw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C7AYkgZ6u+mrdVsXGVAt7t8kHmZlEOJBnnaMMxZGTj0lBV1KcGB0wZzxgcII03zVij9CSkEhwWekUng43L+PAzV/TOHISBbq2cWRxC5rBSJZhT9kbfC4t7GdxiKdy+jm2csBznE5CA351NfgkkpZ8avHK7H397LQ5G9xyWHySSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mw0YlVCP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C4C7C4CEF1;
-	Thu, 30 Oct 2025 05:37:42 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=pQCzd8M3L4aGPkEfMiN6K+NOht54fTNOQmxdXiHWCnt4y9MZNm+Cd1vvFa0oaJkLKiRR6rD12mmssT/Az9+xD8VLJ7eLjN1NPlAhzZeN07bcFQ2m9VXyxr6hEdLHAWinvDzNGh65h+9zLgW88zqn+yIYCrsL0O3pLky/aRV0Fwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DpuEnQsB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBA6DC4CEF1;
+	Thu, 30 Oct 2025 05:38:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761802668;
-	bh=2Ql6M2oEHS7vNgrk7s8vVaKzAoHkuVoLhaBtq6nZqNQ=;
+	s=k20201202; t=1761802699;
+	bh=zOsjbjL5qWBGWQrx0ZuQEwEteMN6w5OjPevu9xuO7Iw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mw0YlVCPET7ndopNNr9hB7Re4x9WJIosMTGc0wbFHbfpjO3sIEor75y1+KYOPJGEK
-	 fBBnxkL+Cf+AVzk7EzlqCcnRHWnB4XJ1fyR/zrk1xVP0hFLXJRFVcKzOF3wll/F6eB
-	 2em8BRX45O0hHq8ozDzmHfGXOzt+P9jhiCzG3/8bW7KBT+SxixONMZTFGlf0ExV6VD
-	 ydCqfmtUBSx21kbCpQ2GaCIV95p5G3wmrosXkTd9YOvsIKc4u2MEOQGaxS/im3RVLD
-	 Z/Tt5eaEczxahwnvBN4Plu/6xl2BZui3hBMQQUUsl6EETPs0OAIbafkrJgSWz1W9Tf
-	 MPa0YcySif4LQ==
-Message-ID: <7c1e0cb5-2483-4efa-be52-84cbe5d1a4b2@kernel.org>
-Date: Thu, 30 Oct 2025 06:37:40 +0100
+	b=DpuEnQsBHuFSVDJEE/EuNqJqrVdWj3CKplvkYdWcRpUHwz23tgFR2BselDAHqfXNO
+	 fnuy/H5wHkF62Ou94nbEuT4Ie5BuWpFPXql+vq/vp1vd2U7pce1uED4wUlaoR/i6f9
+	 lXePvMtlIlq+qVX2IcGLjjchbzJhVRJV9lGZ5+QAuK1ppOfqpxYqK+YkAABa2rDU/U
+	 fNwSAjUG+Frf+MndxpoZjz91e3MTBlsLxYwuC2Kr4pxOBJCoGSivnnZ83xuvwscwc7
+	 nMaBnWE7Bo/xnNyGQxSjwLsX3NOvTB/VQccTTlpaRjLOUEXk1jR/ycL+k845BKyyFZ
+	 GPvBoo6SUQ38w==
+Message-ID: <5dd02143-861e-4b2c-af1b-79e6c57de076@kernel.org>
+Date: Thu, 30 Oct 2025 06:38:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 08/12] arm64: defconfig: Enable NT37801 DSI panel driver
-To: yuanjiey <yuanjie.yang@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, robin.clark@oss.qualcomm.com,
- lumag@kernel.org, abhinav.kumar@linux.dev, sean@poorly.run,
- marijn.suijten@somainline.org, airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- quic_mkrishn@quicinc.com, jonathan@marek.ca, quic_khsieh@quicinc.com,
- neil.armstrong@linaro.org, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- tingwei.zhang@oss.qualcomm.com, aiqun.yu@oss.qualcomm.com,
- yongxing.mou@oss.qualcomm.com
-References: <20251023075401.1148-1-yuanjie.yang@oss.qualcomm.com>
- <20251023080609.1212-1-yuanjie.yang@oss.qualcomm.com>
- <20251023080609.1212-3-yuanjie.yang@oss.qualcomm.com>
- <wuh7agcgg6spghilnx4amqukaaydj25u7kbdiod7fl6pu2ulvm@pmosyuo43cyw>
- <aQF98RvLuOlJZlFi@yuanjiey.ap.qualcomm.com>
- <38c8e26c-08a4-42d9-8f6d-93969af90d50@kernel.org>
- <aQLOaI3ngjswi7kd@yuanjiey.ap.qualcomm.com>
+Subject: Re: [PATCH v2 3/3] dt-bindings: mailbox: Add Renesas MFIS Mailbox
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Jassi Brar <jassisinghbrar@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <87o6prsl2z.wl-kuninori.morimoto.gx@renesas.com>
+ <87jz0fsl0u.wl-kuninori.morimoto.gx@renesas.com>
+ <20251028-pastoral-efficient-mandrill-c4e9ca@kuoka>
+ <878qguv8fh.wl-kuninori.morimoto.gx@renesas.com>
+ <CAMuHMdW9sEcKprPjiA50QOWm7b_fwoEkuJcLLKg-srQxwJX43A@mail.gmail.com>
+ <87v7jx2t7s.wl-kuninori.morimoto.gx@renesas.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,47 +109,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aQLOaI3ngjswi7kd@yuanjiey.ap.qualcomm.com>
+In-Reply-To: <87v7jx2t7s.wl-kuninori.morimoto.gx@renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/10/2025 03:33, yuanjiey wrote:
-> On Wed, Oct 29, 2025 at 02:05:20PM +0100, Krzysztof Kozlowski wrote:
->> On 29/10/2025 03:37, yuanjiey wrote:
->>> On Mon, Oct 27, 2025 at 10:51:23PM -0500, Bjorn Andersson wrote:
->>>> On Thu, Oct 23, 2025 at 04:06:05PM +0800, yuanjie yang wrote:
->>>>> From: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
->>>>>
->>>>> Build the NT37801 DSI panel driver as module.
->>>>>
->>>>> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
->>>>> Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
->>>>
->>>> You (Yuanjie) authored the patch, but forgot to sign-off, then Yongxing
->>>> provided certificate of origin, then you provide certificate of origin
->>>> and send it to list?
->>>>
->>>> Please correct.
->>>
->>> All the display patches were jointly developed by Yongxing and me.
->>> So every patch 
->>
->>
->> So two people were working on this absolutely trivial defconfig change?
->> I have troubles believing this.
-> I want to say these patches I am first author and yongxing give me support, so
-> I think yongxing is second author.
+On 30/10/2025 00:17, Kuninori Morimoto wrote:
 > 
-> I want to express my gratitude for Yongxing's support in every patch, so I included
-> both our names in the sign-off for each one.
+> Hi Geert
 > 
-> However, if my intention causes any trouble for maintainer, I can remove Yongxing's
-> sign-off from this patch.
+>>>         compatible = "renesas,r8a78000-mfis-mailbox",
+>>>                      "renesas,rcar-gen5-mfis-mailbox",
+>>>                      "renesas,mfis-mailbox";
+>>
+>> Please no more generic compatible values like "renesas,mfis-mailbox".
+>> Especially in this case, as we know the MFIS mailbox on e.g. R-Car
+>> Gen3 is not compatible with the one on R-Car Gen5.
+> 
+> So, it will be like...
+> 
+> 	compatible = "rcar,r8a78000-mfis-mailbox",
+> 		     "rcar,gen5-mfis-mailbox",
+> 		     "rcar,mfis-mailbox";
+> 
+> Thank you for your help !!
 
 
-Please read submitting patches to understand what Signed-off-by means.
-Otherwise I have doubts we can accept your patches - you simply do not
-understand what you are certifying.
+You changed nothing. Please read again Geert answer.
 
 Best regards,
 Krzysztof
