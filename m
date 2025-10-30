@@ -1,154 +1,167 @@
-Return-Path: <devicetree+bounces-233099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9392C1F221
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 09:55:48 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1668DC1F185
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 09:51:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 321AE1A23234
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:51:38 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8976D34BF26
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:51:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E8C033A038;
-	Thu, 30 Oct 2025 08:50:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB2923396EE;
+	Thu, 30 Oct 2025 08:51:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="llJpzuVU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmja2lje4os43os4xodqa.icoremail.net (zg8tmja2lje4os43os4xodqa.icoremail.net [206.189.79.184])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3506C339B5A;
-	Thu, 30 Oct 2025 08:50:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.79.184
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FAB42E092D
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 08:51:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761814254; cv=none; b=Y4Px3yGuNFMU4Fu8na8LnzLO9+NIboIhQmC9Uqjq00RnwdK9Ti4p22YS5lF0+ZSNbNj0t8FBuNG0Fkqqor18W5Vj1CM6ypo6vGNVDbbHdUTJX2aDs7hGo+wPSiZpc0p2KYtde48iG/+K8y7e9KpnBf6C3zpk3dPh7MxulOy2X3w=
+	t=1761814267; cv=none; b=UXjx5EX06v98xGM10vvtMqPzZMf4RGqQA6VV96rdZHXA2Qcm4FNxyZcyzLEQ2qJcdJlc/O/VdfI9jRx3zgbUNDOVqMrAlBEa1lKn6d9CkoVwF5nnQ+sxUZ2SsDS/xMve7qmiEp47ZuDWv4h4NP5Eu6KP4/B5Gdb4ohxY60E7uBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761814254; c=relaxed/simple;
-	bh=XUfZfKj6nRnDkuEEJo5idgz9v20/kXJKRqv+Tvuh7ME=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=otaagjP3xGB5YKdHFzwKSraReHtKkpBFLLTQdynLhqU0SAtSPO3v5eiecH/VFdFN0+jK8z/+3sVHwDXtsGkGnzyPlcK+4T3mwl7LJzhlRW/16cucniOn4ya0yAZy+6bh7x6j8LI+wheAzqdAUVxYgWbcOq+l11MXpXLjOmb8H04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.79.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005182LT.eswin.cn (unknown [10.12.96.155])
-	by app1 (Coremail) with SMTP id TAJkCgCHjmu+JgNpOMwJAA--.56198S2;
-	Thu, 30 Oct 2025 16:50:08 +0800 (CST)
-From: weishangjuan@eswincomputing.com
-To: devicetree@vger.kernel.org,
-	andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com,
-	rmk+kernel@armlinux.org.uk,
-	yong.liang.choong@linux.intel.com,
-	vladimir.oltean@nxp.com,
-	prabhakar.mahadev-lad.rj@bp.renesas.com,
-	weishangjuan@eswincomputing.com,
-	jan.petrous@oss.nxp.com,
-	inochiama@gmail.com,
-	jszhang@kernel.org,
-	0x1207@gmail.com,
-	boon.khai.ng@altera.com,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	robh@kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	lizhi2@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com
-Subject: [PATCH] dt-bindings: ethernet: eswin: fix yaml schema issues
-Date: Thu, 30 Oct 2025 16:50:01 +0800
-Message-Id: <20251030085001.191-1-weishangjuan@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
+	s=arc-20240116; t=1761814267; c=relaxed/simple;
+	bh=Ab4bFMlRn2+t7TcLaOM9kd7d6OlSqWi3gNKBX8PBHkw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=BPJVVvY9pYLz7NlRBHPpX0dTSes+S+TWSrzNJWHZacAl8L9+PFV3uGeV/h/vL1zuRNzaecXYIFtOa1eqverRDz9nE5xxZPPtnhPkgWoiu/FYYz+GNoPXxaqQF/LZS8SXxfywtM1wxAJRkRDqBMyzo+r/40E2iKyEDiREHyXCTXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=llJpzuVU; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b704117df3eso13788866b.1
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 01:51:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761814264; x=1762419064; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fphLVYMAvPJpHfDK6UrhmubmM09SFyL/nslykzGwIZk=;
+        b=llJpzuVUgcmuV7n6BUCxqyPBBxA7g3xTc7l6oj9M1mEABhtPD4Ll8/lFg1JRq9J9m8
+         SPPj06G4xe4XNcgxPJoe52qK15iWWhWagWfezSyKiepDl6JrZTxcMWCUMWRbKYTUI2AP
+         tHzAyhgvJ9Xmxb6DegqUHT5cdL7kYhSth8JlWJL4eDxMUy8h3BYEPPH2r/tQVHAxO6OW
+         mUXA6zaygG+0o3h58Uyz/O0Ot6zEc+su61Jb8IaN0M7riGtDYCHuKsYkzyJBKZrOiG0+
+         a2/rcLQ52844FWeVEULBPcEL9OWKVYrleousDHfmcGKtHMWahHiG3tB9CFh7Pv/n7XAV
+         sjlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761814264; x=1762419064;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fphLVYMAvPJpHfDK6UrhmubmM09SFyL/nslykzGwIZk=;
+        b=fYuH/uXPosYj127gXe0XwI7t55G4UmV7n5n3+584x4XtwhhUQycI7PHLGgCm/n8h1J
+         jqZyv/wcxB7YnAehuGkp/XH+HrThiOEulOrh4WVEtThf5tf72SEG/fsHnn+pGLksHWmr
+         2tWBGw1CUls3yZrUzI8CB90OCcmMOz9opolaDGvxo6yh/4ne1JM79UJoDzvpg88GcNDC
+         oMGwHmJhUiFqq5VVKSUV8hr5UwxZuOtdppJZV7lhIg4GSCn56b8s3jNt0JjhYD8yhJo8
+         q/kwx9NbqiySfXUO77kFtoP5A6MHLlHDGO3p6Wy2m+3eUg+mQ2tQBagH5hrLrwU049Ux
+         CBow==
+X-Forwarded-Encrypted: i=1; AJvYcCUP/DFWW4FupS3X4Q+MF+ymOkW2Y+NbCUWw9vLBsafOU/sEMYgGBibjsaxo0TaDmKsVwb5o0g0Zj7CV@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywf4zIXK/09c0xokM7Ym5MQk4RzvMPID4ASusRA3N35yPEKZIF4
+	stLEniDujDAEM9B+Zw9F2JfAhN1SXWNSUGKShoCQYE3YEOqUCUnW35OpoyiEbua62xbEIRbu2+4
+	R59s8
+X-Gm-Gg: ASbGncupmDyBbctDGphkLx8ta4qipUCM7a3smyiXu1mgeqMf+zgZ0XYx/rNuEfDcBg2
+	Nwj8WsjH7HwpmfkbEZCD2zW9VWIT8p9U1pDgW+e9/hYZmqhTmcbnxE74Ml5lURWfC+geHaghAew
+	wdETxQl3hFb8/n8J8RzH9MwLmg7u94sr4IpXMawA2QbVH98Zj2igFsb2YuX/iwwcvw0glk/ti3Y
+	ZBCCMHB2gJZGXQGbNLKY7hFtGt6TKiqriOz1WA0TptzduZQpEeacAv4dFUtcyEPov9Ey4EN/Yip
+	02PRQTyqK7NLVmEkDtKo91iLfYP2iRSstaPMhnSz210akJ/Ayyq+BpnArEPkk8z4f6rRpFwIfDD
+	AEunFyPP0uHOptUNKnhFho1h07CJG3q0ZxUrceWc76cVxlUxqab9VzagrEjYDb/se4X+ekdEMMm
+	v0++zWvgdOdhOjeGoOmzpt0Pr83Mw=
+X-Google-Smtp-Source: AGHT+IHFbhCJxIHhxK1PfIfJ3CGHx1FwG3numMCvfaT1IhJ+pDSEZ5JnH3CdW8UpTPiDkI4IfhzqnQ==
+X-Received: by 2002:a17:906:dc91:b0:b6d:606f:2a96 with SMTP id a640c23a62f3a-b703d30b8a2mr277791766b.4.1761814263561;
+        Thu, 30 Oct 2025 01:51:03 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d85ba3798sm1691789366b.39.2025.10.30.01.51.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Oct 2025 01:51:03 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 0/9] dt-bindings: PCI: qcom: Add missing required
+ power-domains and resets
+Date: Thu, 30 Oct 2025 09:50:43 +0100
+Message-Id: <20251030-dt-bindings-pci-qcom-fixes-power-domains-v2-0-28c1f11599fe@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TAJkCgCHjmu+JgNpOMwJAA--.56198S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxZw45tr4DGry3tr13ur15Jwb_yoW5Wr18pa
-	s7G39xJF1rZr17XayxK3W8KF4fJa9xCF4Ykrn7Xr1xX3Z0q3yvv3Wayry5Wa4UCrW8ZF45
-	WFy5Cay0yFyUArJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
-	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
-	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
-	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
-	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRBOJnUUUUU=
-X-CM-SenderInfo: pzhl2xxdqjy31dq6v25zlqu0xpsx3x1qjou0bp/
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOMmA2kC/52NTQ6CMBBGr0Jm7RgY+QmuvIdhUdoBJpEWW4Ia0
+ rtbOYLL9+XLezsE9sIBrtkOnjcJ4mwCOmWgJ2VHRjGJgXKqipxaNCv2Yo3YMeCiBZ/azTjImxO
+ 6F3s0blZiA15qVddtT0wVQdItno9bst27xJOE1fnPUd6K3/pHZCswR6MapUmXTTOUt4dY5d3Z+
+ RG6GOMX1QszouEAAAA=
+X-Change-ID: 20251029-dt-bindings-pci-qcom-fixes-power-domains-36a669b2e252
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Abel Vesa <abel.vesa@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ stable@vger.kernel.org
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2135;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=Ab4bFMlRn2+t7TcLaOM9kd7d6OlSqWi3gNKBX8PBHkw=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpAybq5uKkpMdxtoEseaUzYb3uSZL+fy7PNhr1U
+ nPiy80XCSCJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaQMm6gAKCRDBN2bmhouD
+ 12vbEACY82plr/2mBhTr/qkdJBo+0J2zKAWHMAMn2UGMm7j5dR/tmOp60DOC1zZP5kZJ6QBIAi6
+ crJEdgmncJ1ahlWEP3eLVBUvkttmcUonO6eozGNnczKYjTUT7K5JjiJpLHDDgCOzf4y3gPzG3I4
+ w8aAxVYirXSjaRz5Tr5kZ1YqmgPezND/8Ce5Dm2sKm8y0OgIf+qAdnQcdmFBBWHpzbbYZRd4J9y
+ yp49RXp//pp+CCYDpPXrXCw1IZgSiIrAHzRFxMgAp6HCcryghrjPtm3NJuDeCxJWzZwoCWBEJCE
+ eahc4hKM5a+kOqLQi6w0vXij8fx+uVcjMavX9ZWR9s4Co2e3VMVOWFF8RJQsioR8Hl3hdmk+03m
+ C3C+AcbssyW/A5PEaftf7Xu9FVIM759ZoQT+CHlB3R1wSbwaIHD2YiUkJWopI5KSZ1OGcyz1tZO
+ zx9Z077/bEh7WYakdRWsHZMh4TcGOpipdt0LLE1+PJ30IRnP7NST/5M5PTAkNBIoykDtjIMdyeB
+ P5R2HoMXlgvCpmpZGN21ge7uO7kMZid3IJPmTcBxbIwDBJ8igU+9SDoX7GTZF3MlwO8c/2YXODC
+ /qUbCsv+5zTtluq/6hreLaPjj+TLXQ9DloOQQDLpfe0ZCdla/yBM/p8N5KEIWg9uKDMYzoAKmrC
+ GzZXj9QFLrCEDrg==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-From: Shangjuan Wei <weishangjuan@eswincomputing.com>
+Changes in v2:
+- Add also resets
+- Drop cc-stable tag in the last patch
+- Link to v1: https://patch.msgid.link/20251029-dt-bindings-pci-qcom-fixes-power-domains-v1-0-da7ac2c477f4@linaro.org
 
-Due to the detection of errors in the eswin mmc module
-regarding the eswin,hsp-sp-csr attributes in the
-eswin,eic7700-eth.yaml file, the link is as follows:
-https://lore.kernel.org/all/176096011380.22917.1988679321096076522.robh@kernel.org/
-Therefore, the eswin,hsp-sp-csr attributes of the eic7700-eth.yaml file
-regarding eswin and hsp-sp-csr will be changed to the form of:
-items:
-  - items:
-      - description: ...
-      - description: ...
-      - description: ...
-      - description: ...
+Recent binding changes forgot to make power-domains and resets required.
 
-The MMC,Ethernet,and USB modules of eswin vendor have defined
-eswin,hsp-sp-csr attribute in YAML. In order to be consistent
-with the property description of MMC,USB, I have modified the
-description content of eswin,hsp-sp-csr attribute in Ethernet YAML.
+I am not updating SC8180xp because it will be fixed other way in my next
+patchset.
 
-Fixes: 888bd0eca93c("dt-bindings: ethernet: eswin: Document for EIC7700 SoC")
-Reported-by: Rob Herring (Arm) <robh@kernel.org>
-Closes: https://lore.kernel.org/all/176096011380.22917.1988679321096076522.robh@kernel.org/
-Signed-off-by: Shangjuan Wei <weishangjuan@eswincomputing.com>
+Best regards,
+Krzysztof
+
 ---
- .../bindings/net/eswin,eic7700-eth.yaml       | 20 ++++++++++---------
- 1 file changed, 11 insertions(+), 9 deletions(-)
+Krzysztof Kozlowski (9):
+      dt-bindings: PCI: qcom,pcie-sa8775p: Add missing required power-domains and resets
+      dt-bindings: PCI: qcom,pcie-sc7280: Add missing required power-domains and resets
+      dt-bindings: PCI: qcom,pcie-sc8280xp: Add missing required power-domains and resets
+      dt-bindings: PCI: qcom,pcie-sm8150: Add missing required power-domains and resets
+      dt-bindings: PCI: qcom,pcie-sm8250: Add missing required power-domains and resets
+      dt-bindings: PCI: qcom,pcie-sm8350: Add missing required power-domains and resets
+      dt-bindings: PCI: qcom,pcie-sm8450: Add missing required power-domains and resets
+      dt-bindings: PCI: qcom,pcie-sm8550: Add missing required power-domains and resets
+      dt-bindings: PCI: qcom,pcie-x1e80100: Add missing required power-domains and resets
 
-diff --git a/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
-index 9ddbfe219ae2..91e8cd1db67b 100644
---- a/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
-+++ b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
-@@ -69,17 +69,19 @@ properties:
-     enum: [0, 200, 600, 1200, 1600, 1800, 2000, 2200, 2400]
+ Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml  | 3 +++
+ Documentation/devicetree/bindings/pci/qcom,pcie-sc7280.yaml   | 5 +++++
+ Documentation/devicetree/bindings/pci/qcom,pcie-sc8280xp.yaml | 3 +++
+ Documentation/devicetree/bindings/pci/qcom,pcie-sm8150.yaml   | 5 +++++
+ Documentation/devicetree/bindings/pci/qcom,pcie-sm8250.yaml   | 5 +++++
+ Documentation/devicetree/bindings/pci/qcom,pcie-sm8350.yaml   | 5 +++++
+ Documentation/devicetree/bindings/pci/qcom,pcie-sm8450.yaml   | 5 +++++
+ Documentation/devicetree/bindings/pci/qcom,pcie-sm8550.yaml   | 5 +++++
+ Documentation/devicetree/bindings/pci/qcom,pcie-x1e80100.yaml | 5 +++++
+ 9 files changed, 41 insertions(+)
+---
+base-commit: 326bbf6e2b1ce8d1e6166cce2ca414aa241c382f
+change-id: 20251029-dt-bindings-pci-qcom-fixes-power-domains-36a669b2e252
 
-   eswin,hsp-sp-csr:
-+    description:
-+      HSP CSR is to control and get status of different high-speed peripherals
-+      (such as Ethernet, USB, SATA, etc.) via register, which can tune
-+      board-level's parameters of PHY, etc.
-     $ref: /schemas/types.yaml#/definitions/phandle-array
-     items:
--      - description: Phandle to HSP(High-Speed Peripheral) device
--      - description: Offset of phy control register for internal
--                     or external clock selection
--      - description: Offset of AXI clock controller Low-Power request
--                     register
--      - description: Offset of register controlling TX/RX clock delay
--    description: |
--      High-Speed Peripheral device needed to configure clock selection,
--      clock low-power mode and clock delay.
-+      - items:
-+          - description: Phandle to HSP(High-Speed Peripheral) device
-+          - description: Offset of phy control register for internal
-+                         or external clock selection
-+          - description: Offset of AXI clock controller Low-Power request
-+                         register
-+          - description: Offset of register controlling TX/RX clock delay
-
- required:
-   - compatible
---
-2.17.1
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
