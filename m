@@ -1,141 +1,128 @@
-Return-Path: <devicetree+bounces-233019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02439C1E721
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 06:38:50 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5987AC1E6FF
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 06:36:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16E3D3BE15F
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 05:38:23 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 738CD4E446B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 05:36:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AB382E8DF0;
-	Thu, 30 Oct 2025 05:38:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E39B287517;
+	Thu, 30 Oct 2025 05:36:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DpuEnQsB"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZAFpFgNl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F2FE28C035;
-	Thu, 30 Oct 2025 05:38:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB2F778F2B;
+	Thu, 30 Oct 2025 05:36:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761802700; cv=none; b=dI4NnVDrdalhmAmQVsq7Prt8lluYg5fVQCr5c1G5bKtEC8AeDIhRKxIICthB/n0fGWZyssDB1fGINzvXcj9cO00UMrUhxtxSmyqdqCf/bdS+nFSJL52jGVRWBHZsh6FPe7wN+BavfEa2Lxg+FlZvTEd7LDXjjtLYrbFAqkzmpaM=
+	t=1761802600; cv=none; b=LLteaGLpnIMq8dR9NHMs52j3Lf7oWx+e4nC1iH7hQSR5tP6lAj4kyt4M7GX2YRVzH7Su2PPTCapb6wLKYdc4MLX4RlhJ7jWfUSz+jSzFfs+YxsFTSCDWY0aI6rnucWeozCbQteyWuYp3tqad8LMzLdgcO5cvJHCjaNplJSVx4K4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761802700; c=relaxed/simple;
-	bh=zOsjbjL5qWBGWQrx0ZuQEwEteMN6w5OjPevu9xuO7Iw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pQCzd8M3L4aGPkEfMiN6K+NOht54fTNOQmxdXiHWCnt4y9MZNm+Cd1vvFa0oaJkLKiRR6rD12mmssT/Az9+xD8VLJ7eLjN1NPlAhzZeN07bcFQ2m9VXyxr6hEdLHAWinvDzNGh65h+9zLgW88zqn+yIYCrsL0O3pLky/aRV0Fwg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DpuEnQsB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBA6DC4CEF1;
-	Thu, 30 Oct 2025 05:38:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761802699;
-	bh=zOsjbjL5qWBGWQrx0ZuQEwEteMN6w5OjPevu9xuO7Iw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DpuEnQsBHuFSVDJEE/EuNqJqrVdWj3CKplvkYdWcRpUHwz23tgFR2BselDAHqfXNO
-	 fnuy/H5wHkF62Ou94nbEuT4Ie5BuWpFPXql+vq/vp1vd2U7pce1uED4wUlaoR/i6f9
-	 lXePvMtlIlq+qVX2IcGLjjchbzJhVRJV9lGZ5+QAuK1ppOfqpxYqK+YkAABa2rDU/U
-	 fNwSAjUG+Frf+MndxpoZjz91e3MTBlsLxYwuC2Kr4pxOBJCoGSivnnZ83xuvwscwc7
-	 nMaBnWE7Bo/xnNyGQxSjwLsX3NOvTB/VQccTTlpaRjLOUEXk1jR/ycL+k845BKyyFZ
-	 GPvBoo6SUQ38w==
-Message-ID: <5dd02143-861e-4b2c-af1b-79e6c57de076@kernel.org>
-Date: Thu, 30 Oct 2025 06:38:15 +0100
+	s=arc-20240116; t=1761802600; c=relaxed/simple;
+	bh=I0DvfS4U97yWtVOK4JDyCuktO+OnCUalK1razNfYHYY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VWV6W8IcyLam/KvB1fjTZn+ExLE1vfl1wu7ulGC1PnlgP3h0wQY5uEheZFIQlmrknoO2DV2juLjG6bc9VYYEsiWpJjLovL1xshezC0uMjWGLUU3yQHbvSqDPnKRr2TMok/E61DYhVdaiW9QTkXWH3aYtdUDTIb+xT4CC32AZ8BA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZAFpFgNl; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761802599; x=1793338599;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=I0DvfS4U97yWtVOK4JDyCuktO+OnCUalK1razNfYHYY=;
+  b=ZAFpFgNlRyrNqvSS2nGqp0PIjnZdUw7KsOKgKSgwrQvkfSkb8T5r6+Xt
+   1ekHqtkSlNc1Qk0LGDpSf87XgXhP4WJidxvEoqCwy4tzSAxdyL1lC/JZO
+   Nv2zoGKUVtrY0nPUniv+rMeql1k8nnP9/v6S3L4K0TkExiVhwRk2cBAvh
+   MF2DKaT2meWigO4Gjv71Z3kB7BRFg1IDQBdirSTPcYHxef3pPNu0VHyGY
+   D5R3/6J0omQj/UELgh1bfRyMc5HIX7Z9iw3xDBqy6uBow7fg1zpdessjf
+   iQuC/Ol8S5sEns0AfkudTVZdfSw0/mT5c69dEIJIR7DzYNaN0z08PKyOg
+   Q==;
+X-CSE-ConnectionGUID: 00A4lAj/TMuM6ki3qc9UWg==
+X-CSE-MsgGUID: LU/dPjw+TLe+kVwLsHCPRA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11597"; a="86561957"
+X-IronPort-AV: E=Sophos;i="6.19,265,1754982000"; 
+   d="scan'208";a="86561957"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Oct 2025 22:36:39 -0700
+X-CSE-ConnectionGUID: LvGHA+liS02goj4ga5s29g==
+X-CSE-MsgGUID: fXa5BMzSQTy9VXuquhwAag==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,265,1754982000"; 
+   d="scan'208";a="190224388"
+Received: from ranerica-svr.sc.intel.com ([172.25.110.23])
+  by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Oct 2025 22:36:34 -0700
+Date: Wed, 29 Oct 2025 22:43:50 -0700
+From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+To: Borislav Petkov <bp@alien8.de>
+Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	"K. Y. Srinivasan" <kys@microsoft.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>,
+	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
+	Michael Kelley <mhklinux@outlook.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Saurabh Sengar <ssengar@linux.microsoft.com>,
+	Chris Oo <cho@microsoft.com>, "Kirill A. Shutemov" <kas@kernel.org>,
+	linux-hyperv@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Ricardo Neri <ricardo.neri@intel.com>,
+	"Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+	Yunhong Jiang <yunhong.jiang@linux.intel.com>
+Subject: Re: [PATCH v6 02/10] x86/acpi: Move acpi_wakeup_cpu() and helpers to
+ smpwakeup.c
+Message-ID: <20251030054350.GA17477@ranerica-svr.sc.intel.com>
+References: <20251016-rneri-wakeup-mailbox-v6-0-40435fb9305e@linux.intel.com>
+ <20251016-rneri-wakeup-mailbox-v6-2-40435fb9305e@linux.intel.com>
+ <20251027141835.GYaP9_O1C3cms6msfv@fat_crate.local>
+ <20251027205816.GB14161@ranerica-svr.sc.intel.com>
+ <20251029111358.GDaQH29lURT0p_WWsb@fat_crate.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] dt-bindings: mailbox: Add Renesas MFIS Mailbox
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Jassi Brar <jassisinghbrar@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <87o6prsl2z.wl-kuninori.morimoto.gx@renesas.com>
- <87jz0fsl0u.wl-kuninori.morimoto.gx@renesas.com>
- <20251028-pastoral-efficient-mandrill-c4e9ca@kuoka>
- <878qguv8fh.wl-kuninori.morimoto.gx@renesas.com>
- <CAMuHMdW9sEcKprPjiA50QOWm7b_fwoEkuJcLLKg-srQxwJX43A@mail.gmail.com>
- <87v7jx2t7s.wl-kuninori.morimoto.gx@renesas.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <87v7jx2t7s.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251029111358.GDaQH29lURT0p_WWsb@fat_crate.local>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 
-On 30/10/2025 00:17, Kuninori Morimoto wrote:
+On Wed, Oct 29, 2025 at 12:13:58PM +0100, Borislav Petkov wrote:
+> On Mon, Oct 27, 2025 at 01:58:16PM -0700, Ricardo Neri wrote:
+> > Right. All the functions in the file start with the acpi_ prefix. It could
+> > be kept under arch/x86/kernel/acpi/. The Kconfig symbol X86_MAILBOX_WAKEUP
+> > would have to live in arch/x86/Kconfig as there is no Kconfig file under
+> > arch/x86/kernel/acpi. ACPI_MADT_WAKEUP is arch/x86/Kconfig.
+> > 
+> > Does that sound acceptable?
 > 
-> Hi Geert
+> Right, this looks kinda weird. You have devicetree thing using ACPI code,
+> you're trying to carve it out but then it is ACPI code anyway. So why even do
+> that?
 > 
->>>         compatible = "renesas,r8a78000-mfis-mailbox",
->>>                      "renesas,rcar-gen5-mfis-mailbox",
->>>                      "renesas,mfis-mailbox";
->>
->> Please no more generic compatible values like "renesas,mfis-mailbox".
->> Especially in this case, as we know the MFIS mailbox on e.g. R-Car
->> Gen3 is not compatible with the one on R-Car Gen5.
-> 
-> So, it will be like...
-> 
-> 	compatible = "rcar,r8a78000-mfis-mailbox",
-> 		     "rcar,gen5-mfis-mailbox",
-> 		     "rcar,mfis-mailbox";
-> 
-> Thank you for your help !!
+> You can simply leave ACPI enabled on that configuration. I don't see yet what
+> the point for the split is - saving memory, or...?
 
+I did not want to enable the whole of ACPI code as I need a tiny portion of it.
+Then yes, saving memory and having a smaller binary were considerations.
 
-You changed nothing. Please read again Geert answer.
+The only dependency that ACPI_MADT_WAKEUP has on ACPI is the code to read and
+parse the ACPI table that enumerates the mailbox. (There are a couple of
+declarations for CPU offlining that need tweaking if I want ACPI_MADT_WAKEUP to
+not depend on ACPI at all).
 
-Best regards,
-Krzysztof
+The DeviceTree firmware only needs the code to wake CPUs up. That is the code
+I am carving out.
+
+Having said that, vmlinux and bzImage increase by 4% if I enable ACPI.
+
+Thanks and BR,
+Ricardo
 
