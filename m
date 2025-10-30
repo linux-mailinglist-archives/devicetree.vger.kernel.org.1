@@ -1,174 +1,108 @@
-Return-Path: <devicetree+bounces-233081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A15B3C1EF28
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 09:19:33 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD443C1EF3D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 09:20:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79858423693
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:16:33 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5A01134B514
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:20:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 604902F693D;
-	Thu, 30 Oct 2025 08:16:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 810B52FFDFA;
+	Thu, 30 Oct 2025 08:20:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G3HIYDqY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lom8C+Kt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7718B2D320E
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 08:16:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5458937A3DF;
+	Thu, 30 Oct 2025 08:20:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761812191; cv=none; b=qYVqo1Xz0tS3o+D+X2fmTpZafC2aDLrFQzdhGh/GJkaqPkMWlynZ2fjYt45xjKZdtiilR/ea4uF6evvCu7KGMWWrM4p0vxZG2GhD3m+l3x+H2rWy332GIh0xXcgWFpKO1lkmpZ3hNKHqKpw6VouAZskdSQQSUtJdkc3Eq9cTC6w=
+	t=1761812439; cv=none; b=QErs7K8QhVM8w/mRgneCWNqHaz/onSyofiuqZuhDpq3KQZW+5mFXZE7XAwie/ZbrEH7eyQd65ugO/IBcoxvpAWc6u6pEOd3wevlX3BgIOxrQmwm7t7IqbCYY1CPgkCsmAM1wBlPx2LyG3H5SAe8ucEG3MM1TYptA9RG9H3WNH/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761812191; c=relaxed/simple;
-	bh=3pr3bE37JQekr4KteuJZhkqEhETeS9zVBmYKEXCpNBg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nwHEvVG68ZkGNaJlonm66iJtxcrluns6Hh3Qpg+qbM5BM9SpdRbW1H/hSuVgzvamDdwjgOVuEX3ZxVGnEnBqJwt7+WabUvowDvUmG4pvP8pj6XPn0EuCEH1Xrpd+0lw0/UUL95yKG8RoULNNlEbyKzFAT/LniLuqo3ym9BQgifE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G3HIYDqY; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-47107a9928cso467675e9.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 01:16:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761812188; x=1762416988; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=f4G1KZQl6cfiM/1J2+KFKVe0bth/8npRuFzDKYpdfXY=;
-        b=G3HIYDqY2EKikOV/FyYL7VAxpw3M8Ha803qNMCbKHNpi4/br4ETfGkpRgVoLG7dWam
-         90SVCko25GrK4arydrJVm6zWvzELmXU8fmkN4DQ6/mQrhHKxIbsyoFThu66+84QAS2fv
-         pKl03heLbaZFeLqwFF6kJ61Jhh2ykJN6EqIa5xRts7nHybQkqMKgtB1dyqBVdZ6G2Rf1
-         WtceGL+l+LzWwLHgLtvbc8Z+W5r+oxLTz66/9VIZ1OzaM9rihHNYW9UCPJvYS+8/ddTE
-         YX1E6IyMM3uiRvL+Q/dLKtMf+oCqSrAAkq0l90EoW5tukTQMB/awbfQ3nuq5MAjD+re6
-         0h/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761812188; x=1762416988;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f4G1KZQl6cfiM/1J2+KFKVe0bth/8npRuFzDKYpdfXY=;
-        b=uU++frq/1lbqVOOWuQlkyh1bRC57oPGQ+g/cpBUczSI8oMiMZTaCCCFye13ZmQSzTS
-         cp012pl8sAl48FOYgf9hkalb9JqWhAydLaCMWHoFKbe++Eb5AlTyil+b+kvzIXQtsQNQ
-         5A913XP6mqQMlodaR/5RlaYU675dxlaMhI+g2JoHlzvgTSsmpjj1wqLZ4Ce4B1Edx47v
-         Zwd7+q179yysPlxEQ9l7Kj+eeLnhMV31ThgZhTma2bInjA4hbsiXMHyKklIQvB1n/Yp4
-         KA+AGq75xPrSeS7UHwaLCyvFIOWT8MEW67AXltcewJ/3GEI29vAqFO+DglOkSslN0Wkk
-         bLGA==
-X-Forwarded-Encrypted: i=1; AJvYcCVcK3vmtXU1lD9+BX++nGMQghXKSGjl/OstZhreQVFstVlrkiZGJSgXdEudp+s4ibaFkFaMu+UjpoJj@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMMNi+fkpf0Nw83mIJR4aMAkgaUQR4FwKEIqWlMJzruyvxFoH6
-	POPT8lhYpzaYtBh393PHqAbJpr+kTShWzzvJkaBO03KASHnrBOUKskYc9EWQuQA93gk=
-X-Gm-Gg: ASbGncvHwOseuOUjmOAD1xCGUD7OoAul0cEG3Gtg7L4x4H2YtmF9y+7wdwQ0yUY7KEZ
-	lYrZUZOpNjYvfIgVt7aJqARvAOepcyE+4v860pe75yQvxLMkm6u5YDLSloFpN+tnUAZaNZ9ULRX
-	sWRVp2qLMiGt7K+6JpBYSnu3SfIlXy1vCGBvod7d//poQH/gSZmuhnhh1Y2zQVhC1BLXsVzS9uQ
-	NC6i0q1bFxCyfIUwPNT2vOOp78N2Kr1Ou1IldvUJRiKwR0Vf39WZ/HXGW3FjVJOKPp1vGaOJAKf
-	PgvsjhkQ02AI8352hApIN+9s9HhK/tXZwgwPQ++seEPjBjc9ZXliQJMOXgJSpEwGE4H+q5aNOLb
-	MsfooDjH0Ell2qjBlylmYmkf+NWpkOqWQjvxdcwi83SI0tZxeTrGONY0ymcBQc+LBkQAF4YI6Ku
-	AIKRUjUPElFSw3Wt88Kdfc
-X-Google-Smtp-Source: AGHT+IGwDYhY1y/SPYtXSVRvAki1Qhjtezt3Dx8lpKGDfc9ZEto5uWUnib3MEpqw2Tpt3iFbZQ1uAw==
-X-Received: by 2002:a05:600c:5251:b0:471:161b:4244 with SMTP id 5b1f17b1804b1-4771e1e3c66mr29643195e9.5.1761812187736;
-        Thu, 30 Oct 2025 01:16:27 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477289a5625sm26670275e9.5.2025.10.30.01.16.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Oct 2025 01:16:26 -0700 (PDT)
-Message-ID: <a0d9d5b8-8c6c-4da9-a660-4cbe0bfc444a@linaro.org>
-Date: Thu, 30 Oct 2025 09:16:25 +0100
+	s=arc-20240116; t=1761812439; c=relaxed/simple;
+	bh=zcrAfi9S+QHc4DexOb0H+VSKqGKbxFdOqarI8kmeRuY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VoLLohT4MomnykVI38KjOIVA0XPlagfzSwsVSO4fJ59annTsFdncJFcGC3N8yhF0xibwltmKM/n2WGy7XR4Yzi3h7WY99Z4k+s7DKVwYSnyf8dKggRonB4MKYkZLiT7rtmwIGJuauPVoYaMvrUnkWHVBgJyGBLGkVQyIQyfKN9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lom8C+Kt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D799C4CEF1;
+	Thu, 30 Oct 2025 08:20:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761812439;
+	bh=zcrAfi9S+QHc4DexOb0H+VSKqGKbxFdOqarI8kmeRuY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lom8C+KtepNxbw9FN3lLlPu97MlGjWEsZoU8oE40J7i6nCrA9sq8+5lMwR5Xn6TRd
+	 LigT3U6darE19rx56NrxprY3Xlrn4E1QgEa8bkqe0ySoVpv18Is/LVNjitnPZV4+NB
+	 Bd9uaYPI/asXmvVTPHazMq2dkPRtuQHKnDRBD8LeNXwXUuGvKCJWXj85Q1JYt3wzxO
+	 WWZ6xjSs6MvyYw+YSMl5gRwUjPgA1OxqR1iM+93kZi8eZTI6sstb0seH626+rtSJpC
+	 LzflXs8YHhD66Bb6wbn3xXzRFr5lTnbcBET+GhfxPbBjafQJNxGfD0Fo+V6gDenLrt
+	 xOFoRtALtrpIw==
+Date: Thu, 30 Oct 2025 09:20:36 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Dan Carpenter <dan.carpenter@linaro.org>
+Cc: Conor Dooley <conor@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: syscon: introduce no-auto-mmio
+ property for syscons
+Message-ID: <20251030-terrier-of-improbable-destiny-32ccb2@kuoka>
+References: <cover.1761753288.git.dan.carpenter@linaro.org>
+ <230cf12861a4f0b9effc72522444d3e28c1de2c9.1761753288.git.dan.carpenter@linaro.org>
+ <20251029-ambiance-snooper-43dc00dcee68@spud>
+ <aQJR36s0cY34cLrr@stanley.mountain>
+ <20251029-embroider-plunging-6356f50c7acd@spud>
+ <aQJhTbNJkezeipoc@stanley.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 9/9] dt-bindings: PCI: qcom,pcie-x1e80100: Add missing
- required power-domains
-Content-Language: en-US
-To: Johan Hovold <johan@kernel.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-References: <20251029-dt-bindings-pci-qcom-fixes-power-domains-v1-0-da7ac2c477f4@linaro.org>
- <20251029-dt-bindings-pci-qcom-fixes-power-domains-v1-9-da7ac2c477f4@linaro.org>
- <aQJE5kkOGh76dLvf@hovoldconsulting.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <aQJE5kkOGh76dLvf@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <aQJhTbNJkezeipoc@stanley.mountain>
 
-On 29/10/2025 17:46, Johan Hovold wrote:
-> On Wed, Oct 29, 2025 at 04:40:46PM +0100, Krzysztof Kozlowski wrote:
->> Power domains should be required for PCI, so the proper SoC supplies are
->> turned on.
->>
->> Cc: <stable@vger.kernel.org>
+On Wed, Oct 29, 2025 at 09:47:41PM +0300, Dan Carpenter wrote:
+> > > > "System controller node represents a register region containing a set
+> > > > of miscellaneous registers."
+> > > > 
+> > > > If this isn't actually a register region, but is instead an interface
+> > > > provided by SCMI or whatever "secure partition" is (optee?), why is the
+> > > > syscon compatible being used for the device in the first place?
+> > > 
+> > > In the case that I'm looking at, it really is a syscon.  So right now
+> > > we're upstreaming it and it's an MMIO syscon.  Very straight forward.
+> > > But later, I guess, they want to have a new firmware which will only let
+> > > you access the same registers through SCMI.
+> > 
+> > When the programming model changes, the compatible should too, no?
+> > 
 > 
-> I have a feeling I've pointed this out before, but these kind of binding
-> patches really does not seem to qualify for stable backporting (e.g.
-> does not "fix a real bug that bothers people").
+> I wasn't planning on it.  I haven't been asked to upstream the SCMI
+> module but once my thinking was the transition would work like this.
+> 
+> Step 1: It would work as is with an MMIO syscon.
+> Step 2: We would upstream the SCMI driver which would provide an
+>         MMIO syscon as a fallback.  At that stage you would still get an
+>         MMIO yscon regardless of whether the phandle was parsed before
+>         or after the driver loaded.
+> Step 3: We would set the no-auto-mmio property so you have to use the
+>         driver and update the firmware so only the SCMI interface can
+>         be used.
 
-I wish stable users of DT bindings (so some 3rd party projects or
-product trees) keep testing their stable kernels, their stable DTS with
-the bindings, whenever they upgrade their LTS kernel. And if they keep
-testing then they should be told about lack of the power domain. That's
-why this is for.
+And how would it work with old DTB without that property... Sorry, but
+DTS, just like hardware, is supposed to be fixed meaning it is static,
+unchangeable, except bugs.
 
-Of course fix impact is pretty small, so I don't mind if the stable tag
-is being dropped here, but I will not resend just for that unless PCI or
-stable maintainers ask me.
+Existing DTS does not have bug in this part. You cannot change it and
+keep adding properties just because you decided to do something
+differently in the software.
 
 Best regards,
 Krzysztof
+
 
