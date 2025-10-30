@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-233399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84631C21C67
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 19:31:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D2C6C21CA3
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 19:33:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 126F1350540
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 18:31:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50C403BEBB3
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 18:32:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50B6D36CE1A;
-	Thu, 30 Oct 2025 18:31:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F9A42F5474;
+	Thu, 30 Oct 2025 18:32:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RrX5K6ww"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dChJkHGi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2950236CE0E;
-	Thu, 30 Oct 2025 18:31:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 629E2277026;
+	Thu, 30 Oct 2025 18:32:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761849092; cv=none; b=dVZpsH2ncEIK3EFot9KErX4hKLkZ1Ccm+mZS3K9TnamYO1L6I5pfYa32hDDUsS3gkuMXaRwbwpJ689LESwjed9CNatxV5cNLGf9q4bei28/UotfnMWaP04L11SkDmCrauQAaXL9W+Dp/pV2REVOu+nlBcm0VfE4aTdnCNbjqFzw=
+	t=1761849163; cv=none; b=G2i3MpB7Bfr7c/+MwxrE13hLubLlsQXaLSsBvUmHxA1fcZ9sLfqcykRcx8YFfQBgHd37GCvyXZYMCRrYLCY9JNZ5PfPgmGz7lEFzJJ4/r9piwk++ZwFkUBByG0Wd+A2yu4LEFVErK5BSDSOKyPCkW0u2dRt6CShOH2r+04yEoG0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761849092; c=relaxed/simple;
-	bh=mnJDg2WGDKJZf/Vr8jH9TK7ujlvyU3706J8AQsGf+6c=;
+	s=arc-20240116; t=1761849163; c=relaxed/simple;
+	bh=CyMqvVzmILxJbVYS3TwbJAWt9vwMiFU9moEhJwXvZoU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mOVT55T/H+y3ztie0pWd4OmH/xKkvyaX2NvVJJRNfd59Y+fudDdieXtsSubjVjS0+scLgT6X8Eb30JmGRYFEFettidVsMHtrURN/FLDzL8OG2M9kYVgWs/n82e7EECTgePBL0QzzSD6fSeRkFAc3HDleb1yCHBdFNFM79x/1pOk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RrX5K6ww; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34D2BC4CEF1;
-	Thu, 30 Oct 2025 18:31:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oFnSuaiXvSDUjY3KfsA0I4I92ojsS4k/ZfyCP0Wmfh/JdRmF0GlyTgaK4f4Pljk/q0eogfae1hjPoqTg9KXSvl7IZA74ZTet7gvNIbXw29UuUbc0ojEmdLS9lNCeeguu9MAGnOXi10hJhZ60Bsx6c7JL1Gk3bDjMAcYDonxvIu0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dChJkHGi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C0FCC4CEF8;
+	Thu, 30 Oct 2025 18:32:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761849091;
-	bh=mnJDg2WGDKJZf/Vr8jH9TK7ujlvyU3706J8AQsGf+6c=;
+	s=k20201202; t=1761849162;
+	bh=CyMqvVzmILxJbVYS3TwbJAWt9vwMiFU9moEhJwXvZoU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RrX5K6wwbb3APve/VViJ7SCkh1wSjv1FBBNDscm6CyEcMzDIL2OhRrHaiyRbM1j+C
-	 KXRIIPttDnSkzINlq6735qu0REbZru8+HR4bxWIVvU4it/ajF5t7Tnl1YY8OH2Cko8
-	 z8LHrpy5x6paRFIiRmOEg7G10FKwe9jJLwejKMvgf1D4yzXCW8lY8GZasFCHHOwHSO
-	 vm0twT0L/qf32ao3hyV0lLpjGCS3iQyUOuUHrXekOnMcWRZht8DNE+taamR18nk92H
-	 RuS3GsojVOfKyuScICccgtch4npD5Fuow1w/RjRukOVTVMjydupSC61pDhhdfTRwwv
-	 SGIToUdaHGJNA==
-Date: Thu, 30 Oct 2025 18:31:26 +0000
+	b=dChJkHGi9P0T/5JCYP6jMztthAdoYUB6mpdAM8dtp3GAzo0MLc3WKBwN9Z6Fuk6dU
+	 JGx51adtuWLaIWm60DXn5JujV5qza2Ab8KQbzCGvIw4MGMYCSfmYwu0MWCb6YkfJKV
+	 j/CW9bCrUam1iOCBIxLtDZlTPiBnwLABCp2B5g5nM29PUUWQpwAdHu7clPw6wGwWCB
+	 wsufbohSRSjXhDpZz8e7V8KOaLbe6PiClajK1T1leU7RC9UIdwf++vr/aV4z2QmXhK
+	 2V6OZBWMI5T0M3uxtOsX2oIG7j5i+RJmuvXh0V7uksjHDxeHY9/eDH51hwb+tsqlTr
+	 tziFEGVj+RTpg==
+Date: Thu, 30 Oct 2025 18:32:38 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Cc: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>,
+Cc: Qii Wang <qii.wang@mediatek.com>, Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Matthias Brugger <matthias.bgg@gmail.com>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-	Lala Lin <lala.lin@mediatek.com>, kernel@collabora.com,
+	kernel@collabora.com, linux-i2c@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: nvmem: mediatek: efuse: Add compatible for
- MT8189 SoC
-Message-ID: <20251030-sandpaper-baritone-ecb365a33ff9@spud>
-References: <20251030-mt8189-dt-bindings-efuse-v1-1-1148e474a9f5@collabora.com>
+Subject: Re: [PATCH] dt-bindings: i2c: i2c-mt65xx: Add compatible for MT8189
+ SoC
+Message-ID: <20251030-profound-afloat-f3bd79b111d5@spud>
+References: <20251030-mt8189-dt-bindings-i2c-v1-1-5b60914c6453@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,35 +65,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3UnDEVVN0m5ukz0j"
+	protocol="application/pgp-signature"; boundary="szHEQ6Sx+ZZv/65v"
 Content-Disposition: inline
-In-Reply-To: <20251030-mt8189-dt-bindings-efuse-v1-1-1148e474a9f5@collabora.com>
+In-Reply-To: <20251030-mt8189-dt-bindings-i2c-v1-1-5b60914c6453@collabora.com>
 
 
---3UnDEVVN0m5ukz0j
+--szHEQ6Sx+ZZv/65v
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 30, 2025 at 11:26:10AM +0100, Louis-Alexis Eyraud wrote:
-> Add compatible string for the eFuse layout on MT8189 SoC, that is
-> compatible with MT8186.
+On Thu, Oct 30, 2025 at 08:56:29AM +0100, Louis-Alexis Eyraud wrote:
+> Add compatible string for MT8189 SoC.
+> Its multiple I2C controller instances are compatible with the ones
+> found in the MT8188 SoC.
 >=20
 > Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
 pw-bot: not-applicable
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---3UnDEVVN0m5ukz0j
+--szHEQ6Sx+ZZv/65v
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQOu/gAKCRB4tDGHoIJi
-0jyOAQCMZqMa4KCJVr16fS+kvyHNDmyxiyRUFY0xY3kWUc7SWgD+PRxa7CiB6A5Y
-OnbuON6dKugcaPsf6DWFkhLkUoSyOAI=
-=oK0x
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQOvRgAKCRB4tDGHoIJi
+0l/dAP9QPRUrWv16mVU4Ly4FWBzgIeEhsVfpsE4qCySvMSQ1RAEAnbotESMjb6UY
+LD7A78dpT+4iygPrnuzENkZIUiF2Nwk=
+=U++K
 -----END PGP SIGNATURE-----
 
---3UnDEVVN0m5ukz0j--
+--szHEQ6Sx+ZZv/65v--
 
