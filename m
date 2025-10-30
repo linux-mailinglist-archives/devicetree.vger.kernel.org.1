@@ -1,112 +1,114 @@
-Return-Path: <devicetree+bounces-233364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C8BCC217B9
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 18:26:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DFD2C21840
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 18:36:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 832704E8F86
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:25:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38CF840563C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:33:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D11D36839A;
-	Thu, 30 Oct 2025 17:25:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB7EB36A61B;
+	Thu, 30 Oct 2025 17:33:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gJ4Z2a97"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VuFB/+08"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20E0F2D0C76;
-	Thu, 30 Oct 2025 17:25:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E591368F4C
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 17:33:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761845122; cv=none; b=hk3VdD/hrrkZg8SBtXVe3/sZaCQWb/tBqKIajofVdSL2wdBiJ2DWe/TzKsmDMz71Ea6BZnyPo/Sh9gAQSlVBmEw38GYQcMxr76MY2RkYF5h+QXthP20biPoZu6VlzFMI+MmQ2oETPH0KdJ2PcQE2pObE2sRKT/geMnIWhEHr+yY=
+	t=1761845610; cv=none; b=dQVlW/hs/+29nluf4fU3rg/I7Zo5dJBQZW5+EUDqvw7cvPLkwIMEW5p4S2VgrGdq18JBjgSt6JeeBDm9yLle7S7OnjtcU7xtTEU+eCrX7bkWWkUCzdteHIFA5f0ihoBP3c7JGaM/KHkvrCWWuXQS82eN/4rzbOYpZTkWSSnGF2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761845122; c=relaxed/simple;
-	bh=WdKAIIhJT2gs5KV8kwsNjtVio9cg6WSq2p99GBETEiU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KN7Awa/72HPu8K0ZNSLWf42inNwWV625sLbtBG0DkTnBrRC+q/YcCmuFY34bVrzG12v4uTFWSF49zlywpn+eVGqOd2oKNdT2FLGDPxbhYm0CRkEcj8CZBRDZsZsTUtSPpG3juXRh14co217MFvq3t8fjugm5rRhNQh1E4DnooQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gJ4Z2a97; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 340B9C4CEF1;
-	Thu, 30 Oct 2025 17:25:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761845122;
-	bh=WdKAIIhJT2gs5KV8kwsNjtVio9cg6WSq2p99GBETEiU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gJ4Z2a97N4SQmnDYfBTyPyJqIXUTOcjtX4DbvlULHaJjEXBQsrU9LOyjU0uvz/A3o
-	 RmMAnZrmvgLLI0YipAkPR1YaKOWKftYVWea+T9jLVQWSrbOByywYVGEX01c8APY/ng
-	 Hpdx1FOQWWMi3IrUDXVZcgNNnN+w8p5GHeWG1TEr1NLmnWTHByH5YjV1LXW6nIDpmy
-	 XRSdZc9/iHUd726QArS8oukyEGGydDr5fJg4tGbDC2AQ4A0YZxghAesVml0l0ASx/q
-	 3uEAfbFj0tkWesItpGdIne16kxfjep/Ivbb8BBeZXcuCnOoe+kwY6iZfn08YgiwYdq
-	 99akdTws8dBJA==
-Date: Thu, 30 Oct 2025 12:28:31 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/7] arm64: dts: qcom: sc8180x: create common zap-shader
- node
-Message-ID: <weyze7a2pqmt2klt763lbwyvpezqndm5rjnitexalru7hy3xhh@tdqx6xeqp3qu>
-References: <20251028-dt-zap-shader-v1-0-7eccb823b986@oss.qualcomm.com>
- <20251028-dt-zap-shader-v1-3-7eccb823b986@oss.qualcomm.com>
- <c90b917e-b3bc-42fb-a127-ab47d5154d0d@oss.qualcomm.com>
- <c62a7f9d-6984-41c0-88c5-1d6c40d411dd@oss.qualcomm.com>
+	s=arc-20240116; t=1761845610; c=relaxed/simple;
+	bh=H4oxfW8LlpZdjRUq6Ea0t/3CAVHgSecFYn9aaImDYe4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=um6GtbqcpaJyae+udl7Ox5/1DA8PlhUiIe9GBnTpggkxpuNrBniGTqnrmIiEEousv8yLh8/kU9NoJUk+eX4Okdf8A02RCEvbBvgtRZvqVDhDixm3NkgrzDCHw+x7BdLcU3jlQjGfnP2n3BWd3M+Hm0Smm3OPBYqLpLwibx4AHIs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VuFB/+08; arc=none smtp.client-ip=209.85.215.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-b8f70154354so173972a12.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 10:33:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761845609; x=1762450409; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=H4oxfW8LlpZdjRUq6Ea0t/3CAVHgSecFYn9aaImDYe4=;
+        b=VuFB/+08pdYeJA78Eo4ssiG2X1KkwUEaqAoi6f+Mc5ll6SexgbAFJ3AdmuOYDeBTKG
+         5FaKeMQoWNfnPnePO+0mRpdfVxmhm7qAIVhhA88NgEpkEB0u2yEegWSQhwqtGE1MYf+e
+         Wz4+biaRNXGmftZgd6AfXdfC4Jgpa8Ik8yGL0i8Al48v0RsDI+NfU9/vsC6wkPDYVvEV
+         iDPhLaqrrorm81+00WSFevjLbxwZwI7gzeRL1Xw4xmtpNeZP1cgjPLzH0vfLyNNWg9nq
+         QgzXghDXWXbwkjsWr+CPWf3nbATZbfWv90NV2myUcWpOQ1HuHmsQ1QF9WeDlIaeGI7cX
+         zDQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761845609; x=1762450409;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=H4oxfW8LlpZdjRUq6Ea0t/3CAVHgSecFYn9aaImDYe4=;
+        b=dEt0ti6dB3tN9cdM1yN1rJF7SbKS+mS8rybiLe12AYH7KscDm3oq+Qh3i2c0z7L/q5
+         cBgSOm59RF4eE04U5R/rnfaRzruk82D7Rfdj9R2u+Do2Wq/OabQx/Ma+FTIvL5Vnkz9u
+         DrFbE46YuqmuqEUKiut5aqiKn5vi0Z/ssGukoGBvVfkyLoI3Q9UZe6TcK91E/sdO/62Z
+         QE8eM3hlfhg1txjQUYPEBPIofjCPd9aOLM979hvjnkeUOLRp3YE2sNBw49wQShaTsLrt
+         c7AICNuy2NHf1oQrZ05S4buUOyFXujThCavYQeXCA3estGDLdwihrcdNcY4bhnyfmbRb
+         WQUg==
+X-Forwarded-Encrypted: i=1; AJvYcCWke5IWOXPHvaWeHaeiqwBSPPgpTy5JDmvooCh/+21+VedgfYAqIM5nBLAjrCxmFxj5QeSy8ONWjr6B@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4UEFHjRxRpwtoye2W/6UgLBhy3R7F1rzFwRWxS+43QI2ttLTG
+	Z7B0QQVL/2GZcSulByezcJfwZl2BURJEtBCYJMH99DEA7tQoxgveyGqSX7ooP2E8WFDGaUqyqqD
+	ZhCTr2ST3sNSLl8fruc6ueqSRIyj9C/k=
+X-Gm-Gg: ASbGnctcef3IILSI0WOggZjlIa7FOBTkKabqlCOBSKLY2UzgaLC9x50erdRrqin3SRX
+	RNMUQGtq9tGTpfD0iVAydNGBbpTxAZG5/yod+2VoNuYOSjNjIOHIg7rw3+ugfCmSX5nV5qOT5ay
+	n29JnyjFiE89fLu7iwINh8xSlRpNGjZ5Yih3HjiOdegSkRRg+WJ3/GoCHjavVFicrT7XUf2AiW+
+	J2spPtq/RMAU4fmsYP/kafAv2JdVlTIEqD28pOG/U3sIrZpXcVwyVHcCehuB0h8Ihhpl798C9KM
+	hcQKHtIzJvyXrYs8UpZSXvc24GUOIoQrQAZjnV1YKgnTrA0XiieOx0/mIMWOIkklVMYPBb7Ht7X
+	t+R4=
+X-Google-Smtp-Source: AGHT+IEnjYjBApvEV2QGoZHHyDXa+qaKI8ES/te5I3LkfLBQaNi5vi9/OL65b9UrrS/ffKZv8Lj0Yn/P4npQa66AoQ8=
+X-Received: by 2002:a17:902:ecc1:b0:290:ccf2:9371 with SMTP id
+ d9443c01a7336-29519a8e2c3mr4051765ad.0.1761845608672; Thu, 30 Oct 2025
+ 10:33:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c62a7f9d-6984-41c0-88c5-1d6c40d411dd@oss.qualcomm.com>
+References: <20251030-zeroed-of-rs-v1-1-1c46d025128e@gmail.com>
+In-Reply-To: <20251030-zeroed-of-rs-v1-1-1c46d025128e@gmail.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Thu, 30 Oct 2025 18:33:15 +0100
+X-Gm-Features: AWmQ_bl1pEXbFGijSDZoaUSFwxjZwY7dR_OCs0R-sUe03E0zMHx4JxOi_bitJAg
+Message-ID: <CANiq72k1dEHK3f-5RxkAKL185Zx8dtUz8X_V2Pk7eALeyAzZ0w@mail.gmail.com>
+Subject: Re: [PATCH] rust: of: replace `core::mem::zeroed` with `pin_init::zeroed`
+To: moritz.zielke@gmail.com
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Benno Lossin <lossin@kernel.org>, 
+	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 30, 2025 at 11:59:00AM +0100, Konrad Dybcio wrote:
-> On 10/30/25 11:58 AM, Konrad Dybcio wrote:
-> > On 10/28/25 10:00 PM, Dmitry Baryshkov wrote:
-> >> In order to reduce duplication, move common GPU memory configuration
-> >> from individual board files to sc8180x.dtsi.
-> >>
-> >> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> >> ---
-> > 
-> > [...]
-> > 
-> >> diff --git a/arch/arm64/boot/dts/qcom/sc8180x-primus.dts b/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
-> >> index 93de9fe918ebdadf239832db647b84ac9d5a33f6..069953dcad378448800d45e14931efe1fe1a69fc 100644
-> >> --- a/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
-> >> +++ b/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
-> >> @@ -14,6 +14,8 @@
-> >>  #include "sc8180x.dtsi"
-> >>  #include "sc8180x-pmics.dtsi"
-> >>  
-> >> +/delete-node/ &gpu_mem;
+On Thu, Oct 30, 2025 at 5:45=E2=80=AFPM Moritz Zielke via B4 Relay
+<devnull+moritz.zielke.gmail.com@kernel.org> wrote:
+>
+> ---
+> This patch was suggested in the linked issue. It's my first attempt
+> of sending a patch to the kernel mailing list.
 
-I agree with your hmm, seems this line should be dropped(?)
+Looks good -- welcome!
 
-Dmitry, please confirm and I can fix it up as I'm applying the series.
+One nit: this sentence above would go below the tags and the `---`
+below (the `---` here, above the sentence, should not be here).
+Otherwise, when applying the patch, the tags will be lost.
 
-Regards,
-Bjorn
-
-> >> +
-> >>  / {
-> >>  	model = "Qualcomm SC8180x Primus";
-> >>  	compatible = "qcom,sc8180x-primus", "qcom,sc8180x";
-> >> @@ -444,7 +446,6 @@ &gpu {
-> >>  	status = "okay";
-> >>  
-> >>  	zap-shader {
-> >> -		memory-region = <&gpu_mem>;
-> > 
-> > Hm?
-> 
-> I "hm"d at the wrong line.. why are we delete-node-ing gpu_mem?
-> 
-> Konrad
+Cheers,
+Miguel
 
