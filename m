@@ -1,105 +1,168 @@
-Return-Path: <devicetree+bounces-233351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DE46C21572
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 18:00:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D08D9C20D55
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 16:09:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DB69F4E61F5
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 16:57:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0ABA51A27CBE
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 15:05:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85D623090D5;
-	Thu, 30 Oct 2025 16:57:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A72102E3387;
+	Thu, 30 Oct 2025 15:04:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="feigzhIk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oiV6/yhC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAE0B2153EA;
-	Thu, 30 Oct 2025 16:56:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4D6C2765D3
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 15:04:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761843421; cv=none; b=sd0Y/e2TQNixPFjdNAXhT1KBD/HcSgru5DO0DAnroYAYIY+n4H3Nf7NFDxC3QkV/Zj/H6wzjzYkCmBndApo9ZbsntAnK1vwLXb2HLw5zI71vRz2CwBpLLuyQSMhL9tNv5fHHywGJk5HP3iPRLmIuQtNR26Z4EwXpg+e3ch0fxuU=
+	t=1761836687; cv=none; b=Xn4G0Tp/edeb5zO7GWh6ZrRoxHjqNaZ4PGFR9CeZIkQEGYq0gsNe7ArbP1gZaUH7MIurkYoq2gHiubhs909STRk3IXRyQaMGQq8h4hEcJxIEWdxNG3d3CkKoDtXGUWxM7DmlM2GNap1dGKIvZqdxJf1B302nfwIlWOlrRr49WZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761843421; c=relaxed/simple;
-	bh=ObCCgXAh3hKBEDn3O9+rFUOfycQWl5QhnD3UMAg9k0s=;
+	s=arc-20240116; t=1761836687; c=relaxed/simple;
+	bh=yZ8qgx02pM58nDeBJ5XZDWSQRkiLYL1A5DAkUR5VYsc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=edQHSnXceSTJVghqa7VgvheKYe0vv1Nj4dYtHXUIx229XUoNulwTKXalNNmeHg2AlJHsDcgf6mHobvcwnw2+2/Xg2m7rkHbPxaq4dfn8BDaDgohyx8+FqIKhxeYeKXjJDPib8654RYgavIhQb9z2AWw1XTpwUSzznQdy6ncluo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=feigzhIk; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4cy9J662Stz9trP;
-	Thu, 30 Oct 2025 17:56:54 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1761843414;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/Ttz6snmnsibBpd8X+iGhr07gb4gBMz15P5Dl1gpIdA=;
-	b=feigzhIknOmJCiqSJntXwgtVUgYp+r3hUJ4AiIcY0POzP7JnwQo9z2DLGjw01rPIMDmfFK
-	WQXhIu7xz9Sg+FveiulwNoogOsngd6yh4zDNYteFIXTt3Vs5CLlwhnOQybhKmR5Mp3GI0j
-	c7ehmYIMRkvxCnTGqnRriLbZlgzzh80fD1rG8stC4qCwiAHVBzpySjOJEiRhMxAaqOAeZU
-	emAuLGoGDmRc9nwFhYiqQ75JnHT1HzqSanwNkB4k4OwT222oicJM7SMvrxD2nnC8N6Pk03
-	AVPsEiSlpZFo3lMXdFVmKUVAY+dvArxQSgl/uD9m4Lb4x4TcvOTlXEaExIryeQ==
-Message-ID: <bff8815c-e708-4573-a6f8-7fdec160a78f@mailbox.org>
-Date: Thu, 30 Oct 2025 14:51:22 +0100
+	 In-Reply-To:Content-Type; b=epznib8w+C12ux3wvcZ/HmPSXYUxSJvWfpZqJQR2ZEKYfNonKNBjdXflFea106Xfy2FfOQpLQOzTFAI3ZH80lFZaTE09uWAhnvN6GyvXYsIctWzOF7WSHeZ94kXjWoA0QSUFMPN0Y+nvc4NVQPsui77FbxnpzfJEuOXK5F9+3nI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oiV6/yhC; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-470ff9b5820so647995e9.3
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 08:04:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761836684; x=1762441484; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=9IZiOaLTYWrn2PDbPpBMfkH3Yjtj8eLXjgw6zPQrEyE=;
+        b=oiV6/yhCyPwOlUq10ETwIKhQJaAkKHCA7z3rxhS9RFYTUYkdS5SjjXJGaFspK/Ibz/
+         0GbAqXniagJDn50hAZ6lZK+6PyLedOJ8kkzFmPEEHIbiJVcapYApMbAU6N9bQ9kmT2St
+         KQvFO8kDez/zh1yNARISrxzHNjnMWrEvp8g8n70/mh02BPPPDCz/204Ju5WaK66GNyia
+         Uc2f6DYWpWKAxw/YRHd8to4pKDuzwO0dcOp1huPtMweWTT6b9EfZZTXdGvlDrLX4KS0q
+         4dwWAdrseYGEE4JrVOMqrpulqPhPtlT32lKmx4E0QFmQXzn2MaiZHzKA4ADOWqdmLBXj
+         z3qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761836684; x=1762441484;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9IZiOaLTYWrn2PDbPpBMfkH3Yjtj8eLXjgw6zPQrEyE=;
+        b=YYIFzYf2TNF2l0xsDI1OjPhhfugU0jhFRo4HJtHm4SnjRINBs+sR1KN+KgxUOC9sBl
+         Qj7ABly+GRK0luvkPsQiiL0LERTtEe8TYiGwHubT4rTsr55Z5n5eJpwbCNVKHWxBUiav
+         xdWAI34RLHPuoMJrgXj+YisaKfM6D+vH4qUfddiCwzeQBDhuS5tZ3edLdwVnNayYmcva
+         bKhh6R5xdZJoY/Euntyy0bx0H2cV8sV4cC12WkYl9sS+aiW+Wy8aQrjQSPPr2Okn2yun
+         Q73dtnTiDQ/ySGd56eE4DR0Y2YPZEfDW353+/UmFXGfBo4huPTDi6w+8ew9laqFx27eD
+         aXBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWqb9Mnjq3I7XVerAn0LWzsUojwiqmtNptxGM2tHfnCMP/6GgRnxQjiWPRfHme9YZ6ZS98oK/j7cYtd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3iL1Og6BjYt6WVCvKmHZYbqGq/2InQapdAoJnlfMqVictq+LT
+	OADYT8yYczq/Wn9rl4nTVICTpVICg97fDkiJhdWigJuEPzbiwUW1wR0t2Xsna1BxIpw=
+X-Gm-Gg: ASbGncscZ8Ust9pieO0xPFBiTDI69kMFOKl8Z7GMWEOKbs3rum/5sDBbH3F401gi5IU
+	LXlswPmmoqfuTCcFxT/agbUOZNKVjil7LyTrag/fPy0TNVKt/WUPYs+UBE+IUfHGyF3I1G3m78p
+	1nCMDukT6Y74oOHnYNnG4GTLnYWHa4SIB4b6ByiW53X/xPT7YbCPuAeK795HQSUq7inhtUwaR8m
+	HdMj++54bt1yrACCrBMLUf2sLZESnxrM+Env1kKPyXdicYyXIUa6Bq3jZT6N87IToWwrGa38zNa
+	aulh6yUYqEpaOTP9QJIGmVB9pzuIC+6QFd2tskTAPFwkgcOqTP6AroV2U6LlmlvS1rGw8yXa36Y
+	dQ0YdGBkYO/cTUwzKrngBiAO18vZAh4+1/cPxIYcxddRv3/ysXWF4COMZDuqhDP34ytB/1DOt7P
+	zOcXnb20qtN1j0tYe52wuO
+X-Google-Smtp-Source: AGHT+IHFpMD0eVnDwb5oVS94LvcYZChZWMQJPJhlP6HnGENuDl0EMyzMQMQXFK3G3pWhO/ZhJFfQEA==
+X-Received: by 2002:a05:600c:4fd6:b0:476:84e9:b552 with SMTP id 5b1f17b1804b1-4771e1cc7f2mr30753005e9.4.1761836681829;
+        Thu, 30 Oct 2025 08:04:41 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429952b7a7csm32848290f8f.8.2025.10.30.08.04.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Oct 2025 08:04:40 -0700 (PDT)
+Message-ID: <ad1bb032-6d58-435b-b2bc-04aa26d41d58@linaro.org>
+Date: Thu, 30 Oct 2025 16:04:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH] dt-bindings: gpu: img,powervr-rogue: Drop duplicate
- newline
-To: Matt Coster <Matt.Coster@imgtec.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Frank Binns <Frank.Binns@imgtec.com>,
- Alessio Belle <Alessio.Belle@imgtec.com>,
- Alexandru Dadu <Alexandru.Dadu@imgtec.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
- Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20251029194210.129326-1-marek.vasut+renesas@mailbox.org>
- <50c29b53-64b5-4ad4-a502-286248cbedfd@imgtec.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/6] arm64: introduce Black Sesame Technologies C1200
+ SoC and CDCU1.0 board
+To: Albert Yang <yangzh0906@thundersoft.com>, krzk@kernel.org
+Cc: krzk+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org,
+ arnd@arndb.de, robh@kernel.org, conor+dt@kernel.org, gordon.ge@bst.ai,
+ bst-upstream@bstai.top, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ ulf.hansson@linaro.org
+References: <20251016120558.2390960-1-yangzh0906@thundersoft.com>
+ <20251030114007.302401-1-yangzh0906@thundersoft.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <50c29b53-64b5-4ad4-a502-286248cbedfd@imgtec.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <20251030114007.302401-1-yangzh0906@thundersoft.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: 05f1c39c062893a7db8
-X-MBO-RS-META: h7kpnyktco16tquosm7bezq1bnxciiwo
 
-On 10/30/25 1:08 PM, Matt Coster wrote:
-
-Hello Matt,
-
-> On 29/10/2025 19:42, Marek Vasut wrote:
->> Fix the following DT schema check warning:
->>
->> ./Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml:103:1: [warning] too many blank lines (2 > 1) (empty-lines)
->>
->> One newline is enough. No functional change.
->>
->> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+On 30/10/2025 12:40, Albert Yang wrote:
+> Hi Krzysztof,
 > 
-> Good catch! Thanks for sending a fix. Does this also need:
+> Gentle ping on this series. It's been two weeks since v5 was posted.
+> 
+> This version addresses the DTS coding style and property ordering issues
+> from our previous discussion [1]. Following Arnd's suggestion [2], the MMC
+> patches have been removed and will be submitted separately.
+> 
+> Patch 2/6 (arm bindings) already has your Reviewed-by. The remaining
+> patches (Kconfig, DTS, defconfig, and MAINTAINERS) are ready for review
+> when you have time.
 
-Got a hint from Rob how to better scan bindings before sending patches, 
-so the credit really goes there.
+I don't understand this ping. You received the reviewed from me or other
+maintainers, where we were responsible to give such review. Probably you
+assume that my job is to review something else here, but sorry, that's
+not my job at the time of this patchset was prepared (we don't count
+here recent changes because that would mean you ping me after few days...).
 
-> Fixes: 18ff1dc462ef ("dt-bindings: gpu: img,powervr-rogue: Document GX6250 GPU in Renesas R-Car M3-W/M3-W+")
-I am not sure about this one, I would say no because it has no 
-functional impact on the kernel and/or does not fix any functional bug.
+Best regards,
+Krzysztof
 
