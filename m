@@ -1,161 +1,181 @@
-Return-Path: <devicetree+bounces-233456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB374C225AF
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 21:55:40 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5186C225C4
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 21:57:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 189B218996C1
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 20:55:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CC91C4EF31E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 20:56:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 666D0333459;
-	Thu, 30 Oct 2025 20:55:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9AE5334368;
+	Thu, 30 Oct 2025 20:56:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DzHczta4"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bQ5yju53"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8C28329E67
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 20:55:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E122624BBEC;
+	Thu, 30 Oct 2025 20:56:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761857724; cv=none; b=uWaY5z/9xWIn9gAyJM2WNq/HUO4Eui8M5iKKVKyuQ2bKC4qPNKHWJG5rZFk0kNt51oe1ox0Aeg40tR7zPhl6XMa/RT5sWqmRZhYKDFyk9cU5lql+mOzqQSPxwtmCr3AXB91a0w4IBwWfRSiy/+MJfY5q6pHAIC4n58pIdJLglbM=
+	t=1761857791; cv=none; b=GvrbImXjY2ZUnz4cunkH42dhLKdhqm34eLRhSbeT5lZbDex5GK/6ul9OA0NUB/EKsMkEAirqHK/HY9TG5JIl5ZjV4iUqzNlkIf3w8j0VEX50D02DhTlPmURjVlQvywLRtnTxq7trglHAlZ4p6HUz4YGAtGiZK3uyhk57AO/KQxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761857724; c=relaxed/simple;
-	bh=k5NogNEwBftCqfVJwZDljsHLBLthbF5NZyHKzBHs2gw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YC6rHQXbKpReZHoAO5GfkpWDEbBhDNdukjGFJYHHx9E+N9+9sWGZ3JeKoLkCoRC8q1CB/b9nhVKNlJt79zblHlwBhQDlO3/gV242u7i/VlnRPKb2xkRsLPp+UNiXSEq2A3BPm4fuFWk9AP1NMOWaaxPCnZvCqnqClqVB/uCcM+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DzHczta4; arc=none smtp.client-ip=209.85.216.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-339d7c4039aso1593167a91.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 13:55:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761857722; x=1762462522; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=zN4bBjWuku4YGSJ5wJV8vC52FeQTa3WBF3IWa4pnW0k=;
-        b=DzHczta4hdcVYPYvTymAOtXt1EsYZoUx/wyVqV7/PGzlwmmJsW+ScK18qYzQZjIoqC
-         mVy+wS+2wb9hkSOBFDPqKR4dEJMS0A6hUqJoNMBBa6++4BHnwDKYFhFCCFodzjMxuDdw
-         sdzvcTdycZ7mf+JNmt6jwdIBcFNmgeHP4GoAc47pq1c4nahQL34ufdlr618ybSle51cb
-         7eRVPSkhPYWFR6Ewmin7N/A+6rIkxRhn12cLgagUy01wdHge0WQwBec8z80fwwIqb9Oi
-         UaICZP1mcemFi0CtzfDjLFtl3794iuFNPuTlDpJlYVjqbdrcZOdWp50hOxxAgPz0TDGj
-         SIfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761857722; x=1762462522;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zN4bBjWuku4YGSJ5wJV8vC52FeQTa3WBF3IWa4pnW0k=;
-        b=LHGA0h0qCnZbrjEbXDFwXm+HLF5ORkvpfHbz5VzSMKXUYPNgk3MPrwKqAMk5rFNVsn
-         Hn4X/Y3y7Zfmc7lHE+iUV1ap4vbCFL9QkbnkHue9I/a/s31lrVTvmEzRQIkGbPDPNNGR
-         hdTdxi3wLjckHWI7gO8ugeEeE+Ux3htSWagF6JvqqSBjZ4T28BEqhn6f30RYfX88Kz7r
-         9sBOetFGZixYSg8dyAff9DInlnsgHj2gmfoBnor5gT9UVOMdNQPCN20c5KVrPSelADcY
-         3aIcR5f9am4ChrSh6V7tMCAKUyPe4UBAfyiRplBIF+FypsTjUYDDoYt7PVtQOCKbdQCq
-         r4Tw==
-X-Gm-Message-State: AOJu0YzxcRVO0mIR5MB5zQ5DsNILPqgZtQPHixc6VZ3wiuw8sMkjaz5Z
-	TEOHTGtRcbjf4JpUbYLOmmu1q/TTwPIPfV0TvIHM5atWAY5sfX0ors4i
-X-Gm-Gg: ASbGncutxnKx2fOffAPo5wWK0uH3oOCigsqTPLC8NYXQkdYJqtDKk3oMlgYp0tr5BbV
-	W8VNZEdcfV5+NsaXzB4AMMsOlngyJI5FLgoW9DKm2PBLBkAJqr0XTvTxemkKsIRpLYb+5W1g4qc
-	FOYj/h5K3ijcjNiJXHqaB0z8RXjjRUUWcmY1NZ2v0WznUyzapkszVOZNVlfAg7dQEYd5z0nWInE
-	pft8eyyfCmdbGPXrBXAuHEone1Yy31eJ7VpBHDcGnKJxs6Guuil9Mprsj+Qe84VRhBj3f5NR4A8
-	JIjhvhSRHh/CTB8SkV3IL1f/vQC8l8UQczTpWqDSuWYZsfXKVLMeQd2d35p8qZOhFUP7Wp4v2Kx
-	paoVwlMe098sfumGh4SboEWFzJFXrJYs9+ZW4oYg+lhPYnO0a0zVFNgQrKYMV9zm2QshpGj5viC
-	0rhmwhbT9LEZy6vpqdqjcIu1fTyRiJmboo2z0n8A9fhuFSC4vs
-X-Google-Smtp-Source: AGHT+IGTTrpX5NE0hCMUgu+CiuNJR8hM9WwkQlMhpfTOtremrzl3woSoRrfo65WzogsJVDOPBg4/eg==
-X-Received: by 2002:a17:90b:4b88:b0:32e:c6b6:956b with SMTP id 98e67ed59e1d1-34082fc656amr1413168a91.4.1761857721722;
-        Thu, 30 Oct 2025 13:55:21 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34050bb4828sm3611307a91.18.2025.10.30.13.55.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Oct 2025 13:55:21 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <12e946a5-b7d1-46a6-92a2-2b4bb165f671@roeck-us.net>
-Date: Thu, 30 Oct 2025 13:55:18 -0700
+	s=arc-20240116; t=1761857791; c=relaxed/simple;
+	bh=vThwM6bg5dh8w6h8yGfI/6gd9+bsmsZISHcjUp0Wi7E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kpdwqVynQX1HgbDckGZtNHfaxGApA54EGVb5KGCkkb7+nZ+oWaDk5kXBuCeRctye9fUEtRseVj3mSlTnJUPD7Yw08UJc50wrpLA6Kyxkl2+eBffulG86WlQ7x8QTi+NRQdZlYj07E27EVzAjub30v6cujZXOdQTlm7qtzt0/H3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bQ5yju53; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761857790; x=1793393790;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=vThwM6bg5dh8w6h8yGfI/6gd9+bsmsZISHcjUp0Wi7E=;
+  b=bQ5yju53h1jiSVl7lYAynbp9SpIUpIx0uQGB9b6GAJCOUIPC7hI9/HBm
+   KuGGKVqeqGY99BNKj9IBmy0vYKXCS/UDwRqNQl5iHjLJZ331o65EBCP/M
+   XkxT45k8M54o0S4kKXuFGb5d3qnsqGb8ItrBvPcbGQUamgoootXXIfMtz
+   5Vjyvl5uMLRwix/BdFk/SyKdBIcUCwy5FJl90rMa+rIUULyqxMZRDR3R8
+   3VKOwKmJRpSaZsJvYWsmV366UNfVW1LZ8GrDXOCtD1EURwE16SORRssyl
+   CYOZmMKhaAtVAjEmyedVr6jifOgC4NLumKl9bWsiijHKmloH4uN6QWrsh
+   w==;
+X-CSE-ConnectionGUID: fqbl8ENvRky3g910FADgRw==
+X-CSE-MsgGUID: wQj2WbKPQa6RQ5SN+Z+ckQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="67849505"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
+   d="scan'208";a="67849505"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Oct 2025 13:56:30 -0700
+X-CSE-ConnectionGUID: wuDqC9JaQY2quEW6MtBc5g==
+X-CSE-MsgGUID: iESQHGsTTD6bVq08VVjuJA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,267,1754982000"; 
+   d="scan'208";a="185933452"
+Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
+  by fmviesa006.fm.intel.com with ESMTP; 30 Oct 2025 13:56:25 -0700
+Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vEZh1-000MWi-13;
+	Thu, 30 Oct 2025 20:56:23 +0000
+Date: Fri, 31 Oct 2025 04:56:07 +0800
+From: kernel test robot <lkp@intel.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	sboyd@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, mturquette@baylibre.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com, laura.nao@collabora.com,
+	nfraprado@collabora.com, wenst@chromium.org,
+	y.oudjana@protonmail.com, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v2 7/7] clk: mediatek: Add support for MT6685 PM/Clock IC
+ Clock Controller
+Message-ID: <202510310450.vQV7FK3n-lkp@intel.com>
+References: <20251027111343.21723-8-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 08/11] dt-bindings: watchdog: Support MediaTek MT8189
- evb board wdt
-To: Jack Hsu <jh.hsu@mediatek.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jic23@kernel.org, dlechner@baylibre.com,
- nuno.sa@analog.com, andy@kernel.org, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, srini@kernel.org,
- ukleinek@kernel.org, gregkh@linuxfoundation.org, jirislaby@kernel.org,
- daniel.lezcano@linaro.org, tglx@linutronix.de, chunfeng.yun@mediatek.com,
- wim@linux-watchdog.org, sean.wang@mediatek.com, zhiyong.tao@mediatek.com,
- andrew-ct.chen@mediatek.com, lala.lin@mediatek.com, jitao.shi@mediatek.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-pwm@vger.kernel.org,
- linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-watchdog@vger.kernel.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20251030134541.784011-1-jh.hsu@mediatek.com>
- <20251030134541.784011-9-jh.hsu@mediatek.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20251030134541.784011-9-jh.hsu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251027111343.21723-8-angelogioacchino.delregno@collabora.com>
 
-On 10/30/25 06:44, Jack Hsu wrote:
-> modify dt-binding for support mt8189 evb board dts node of wdt
-> 
-> Signed-off-by: Jack Hsu <jh.hsu@mediatek.com>
+Hi AngeloGioacchino,
 
-Acked-by: Guenter Roeck <linux@roeck-us.net>
+kernel test robot noticed the following build warnings:
 
+[auto build test WARNING on clk/clk-next]
+[also build test WARNING on linus/master v6.18-rc3 next-20251030]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/clk-mediatek-Split-out-registration-from-mtk_clk_register_gates/20251027-191633
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+patch link:    https://lore.kernel.org/r/20251027111343.21723-8-angelogioacchino.delregno%40collabora.com
+patch subject: [PATCH v2 7/7] clk: mediatek: Add support for MT6685 PM/Clock IC Clock Controller
+config: arm64-randconfig-003-20251031 (https://download.01.org/0day-ci/archive/20251031/202510310450.vQV7FK3n-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 10.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251031/202510310450.vQV7FK3n-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202510310450.vQV7FK3n-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/clk/mediatek/clk-mtk-spmi.c: In function 'mtk_spmi_clk_simple_probe':
+   drivers/clk/mediatek/clk-mtk-spmi.c:48:13: error: implicit declaration of function 'devm_spmi_subdevice_alloc_and_add' [-Werror=implicit-function-declaration]
+      48 |  sub_sdev = devm_spmi_subdevice_alloc_and_add(&pdev->dev, sparent);
+         |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/clk/mediatek/clk-mtk-spmi.c:48:11: warning: assignment to 'struct spmi_subdevice *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+      48 |  sub_sdev = devm_spmi_subdevice_alloc_and_add(&pdev->dev, sparent);
+         |           ^
+   In file included from drivers/clk/mediatek/clk-mtk-spmi.c:16:
+   drivers/clk/mediatek/clk-mtk-spmi.c:52:46: error: invalid use of undefined type 'struct spmi_subdevice'
+      52 |  regmap = devm_regmap_init_spmi_ext(&sub_sdev->sdev, &mtk_spmi_clk_regmap_config);
+         |                                              ^~
+   include/linux/regmap.h:775:6: note: in definition of macro '__regmap_lockdep_wrapper'
+     775 |   fn(__VA_ARGS__, &_key,     \
+         |      ^~~~~~~~~~~
+   drivers/clk/mediatek/clk-mtk-spmi.c:52:11: note: in expansion of macro 'devm_regmap_init_spmi_ext'
+      52 |  regmap = devm_regmap_init_spmi_ext(&sub_sdev->sdev, &mtk_spmi_clk_regmap_config);
+         |           ^~~~~~~~~~~~~~~~~~~~~~~~~
+   cc1: some warnings being treated as errors
+
+
+vim +48 drivers/clk/mediatek/clk-mtk-spmi.c
+
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  21  
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  22  int mtk_spmi_clk_simple_probe(struct platform_device *pdev)
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  23  {
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  24  	struct regmap_config mtk_spmi_clk_regmap_config = {
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  25  		.reg_bits = 16,
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  26  		.val_bits = 8,
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  27  		.fast_io = true
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  28  	};
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  29  	struct device_node *node = pdev->dev.of_node;
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  30  	const struct mtk_spmi_clk_desc *mscd;
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  31  	struct spmi_subdevice *sub_sdev;
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  32  	struct spmi_device *sparent;
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  33  	struct regmap *regmap;
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  34  	int ret;
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  35  
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  36  	ret = of_property_read_u32(node, "reg", &mtk_spmi_clk_regmap_config.reg_base);
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  37  	if (ret)
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  38  		return ret;
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  39  
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  40  	/* If the max_register was not declared the pdata is not valid */
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  41  	mscd = device_get_match_data(&pdev->dev);
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  42  	if (mscd->max_register == 0)
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  43  		return -EINVAL;
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  44  
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  45  	mtk_spmi_clk_regmap_config.max_register = mscd->max_register;
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  46  
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  47  	sparent = to_spmi_device(pdev->dev.parent);
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27 @48  	sub_sdev = devm_spmi_subdevice_alloc_and_add(&pdev->dev, sparent);
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  49  	if (IS_ERR(sub_sdev))
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  50  		return PTR_ERR(sub_sdev);
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  51  
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  52  	regmap = devm_regmap_init_spmi_ext(&sub_sdev->sdev, &mtk_spmi_clk_regmap_config);
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  53  	if (IS_ERR(regmap))
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  54  		return PTR_ERR(regmap);
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  55  
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  56  	return mtk_clk_simple_probe_internal(pdev, node, mscd->desc, regmap);
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  57  }
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  58  EXPORT_SYMBOL_GPL(mtk_spmi_clk_simple_probe);
+80a000281742dc0 AngeloGioacchino Del Regno 2025-10-27  59  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
