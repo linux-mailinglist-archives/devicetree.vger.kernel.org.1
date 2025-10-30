@@ -1,101 +1,81 @@
-Return-Path: <devicetree+bounces-233168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EABEC1FB3A
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 12:05:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92ACCC1FB3E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 12:07:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 816B64E2E28
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 11:05:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B83C188CBC0
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 11:02:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 514AC354AD3;
-	Thu, 30 Oct 2025 11:04:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4626726D4C4;
+	Thu, 30 Oct 2025 11:01:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OObCSrmA";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="RD05/k4N"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GWKjYhS1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C16EE354710
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 11:04:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F6DA238175
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 11:01:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761822273; cv=none; b=L2L6ILsLmgpTEj7QvokMJgT9ZNhr0x1/6XWkiNumE90dB1GMcj5sAs5MvS4TtfVETbC3lhlwgJXEVN7qdB26roOmZGO2uafKLrRdXV1EV8XiRM+5zw+nvkPPUln+ixoklixyfK1TbZFs5U+TXva+5RJIQr6w6/21Hnx6UhIFq0o=
+	t=1761822119; cv=none; b=JVzb286cTZxoV6bCxBRt2nkpiCcCjJNTBPk9pSe2/XIeNtGmBsr8rCRnDVakFCGB4fHpMqtPPh9BXY3HkTL3YDsI/pkC60HBP7K0fjnT+fLksMznHkZRpZeX3CA85e7Bs+0LyPar2nbtjhgoF8tNNk8gB+1HpRk6q7z11Gt8tGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761822273; c=relaxed/simple;
-	bh=UNww3ygyeX71eQOpY9Y3q226oPQNNYee0k0JvCUw9MY=;
+	s=arc-20240116; t=1761822119; c=relaxed/simple;
+	bh=1DV21IpadLbe4eYTaHnc0P1T2OopeHa/ssPOoqFQHNA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iKjIblA87SYHUE2aQkJb2yboVCUJhKtUP7HdQ3eUKyEygheuA8O3N8ReNnFALaqWTN6fz2D6sifD9Hh1X6Y+mR9jSMx/NXo07HIqCMvNMaeAk+4SRxPwzr0dRjXjtDE7zU17ZaLQ+C/PBU6qgIBB/pXicm986QHPc8NhtRfiitY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OObCSrmA; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=RD05/k4N; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59U9N1Kx3116645
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 11:04:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	VzFg8UbB6EUgeft2R47u8fMbiAli+RP+Tb+HZKyVwRA=; b=OObCSrmA4jJmqJyV
-	hFOBygQYTAhXJVBcXd4BwgIPJX8NthFA8DdxTipC6G1ysw9MRqiqWM8Nms8Z0HAB
-	2vSLRf5rK0APCfhx+zKV/AzmetQGhuy42KobethA9DqnDl+/x1jC78LkPSaTlwl/
-	OdMC882WitswjuUcdn2sFAqovtZ2s2xd6+nNuK7PeE+PBy5v4RZVMvUqsYVNxPje
-	YYETjjIYFE3/hnvB5rE52QaBt6XUFg51rghAopXLbRjGdcTB32tW87a+0B1sJyvb
-	HLORF/7lSqhxsuyWpJYb47G0Ma5cNr/8ckz0APuRHD4j+XzBY22xU9Ltxx7eomcH
-	gfxFYg==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a45b40a6j-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 11:04:30 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-7f5798303b3so2652996d6.3
-        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 04:04:30 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=LNe4qkgkimjXX+DJhfbFuAeOFKk5z0HC7SJPlIRxl7mLQpFsc74OzwWcOGgALnrBVaZLVrnFuCOZvEpa3KZ/zG/OAewc+NhUdOiVaXRAxCRnbGf8T+7imMllqmCjFcQxgX0t6mdTi5J8w8gZxekaycDbSmh8sREr9IwlLvyW1aU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GWKjYhS1; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-592f600acb3so1271705e87.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 04:01:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761822270; x=1762427070; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1761822115; x=1762426915; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=VzFg8UbB6EUgeft2R47u8fMbiAli+RP+Tb+HZKyVwRA=;
-        b=RD05/k4NZPhDll2JM8gOkkKc4GHIVGEouQe9LjCYTCrSJHFuI0eUGRqYKAqZBCya4j
-         gWK+qiiXUSfP9FMfianCpYYPk9AsiCHJFxs/QJMAMWhj1qCMuAr5iFhLQ5N+Pp0h7dl0
-         8DxMx8F2I477tbZe15/l64gRsLHfJz17R49bXo8J1pOGaCAowrF/n2ZNYdNkqJsL3s29
-         TKwKYbwL5Sv1pD8XR9wJJPIDlrvEc+PS6SiJF0tKjMwZJkmsHNMnhielON9EuU+K2uT3
-         9RD3c2JKTED0YxTg8YXOt/pOaAX5qrZ/cCTnWJORiNR3p4a3Kklwc3O71SlolgZRwcsQ
-         QWXw==
+        bh=b8MLj8j7e7YQRcZlE+KIJJ5vGAzqn6SgU3Y1AxaodS0=;
+        b=GWKjYhS1UhxWQ8UYou5cBCS4hjISnY4+5oaBF2ExYijn9JaY1ctYEUSmjnmnYDehnb
+         wrPuPRPNit9G4DhO12D+2+GPeLgVkFzUZKEewJL4q8SCwHxUWyhXNl7aDdBBqxEItqfE
+         q1hhkC/9MXF+1xuKRv57wDjmJW6VpL6IDem0gBNUzMdDJzGiZelI1la8T6Ndj3xaTfmr
+         +aS3FDPh+tE7+QbqkCHcxU0DD7pBotefquGY0Zvhs/OjXSiogQvP8kExwRmVYvB6q3/t
+         l6C9n680sA9iBzz8mrnZhu3qMCQu+cZvFapxMFd3HxRmdo/i0ra0dgzdReQOyx1cBTFs
+         ZdmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761822270; x=1762427070;
+        d=1e100.net; s=20230601; t=1761822115; x=1762426915;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VzFg8UbB6EUgeft2R47u8fMbiAli+RP+Tb+HZKyVwRA=;
-        b=VM3v9B2G2aSQ1EhIrwN9J3KCqqHQz87F5rOyovKSQ2g+zvQ3vXa5jqSDGihiQ45H+a
-         m27LLl6q7r4mtEEQO8UBGd63xPEWGsIolHg//W7xCOiu5hLl2oY3XWrdmT8YBLlnnl4z
-         mmfMNW4GlP2mc+WmJG3UmSTxeQUr8BV4LvzYhpPDc70rKsDKBClLGYJzOcz8MLjFKySY
-         Lm+kkQqa9NuP12Pky+jSmkqA5Sm+qxZep4luEjABZClvFaWbfdp9F1QfE+71rkKD/1q+
-         nSSWZhP/TeJZulwsqxsahJMxdyGJ5FEkXaL7JcdqJDEeAheXzFGdrfLlnWKinFn5mFIn
-         5FYA==
-X-Forwarded-Encrypted: i=1; AJvYcCUUCXFHmc67+/N3vE+9G2+iBkoI8l1h2W52ju8Diuy5k/Oa8DlZs8LticY+XwfzURfuLBjaPA9kYs4R@vger.kernel.org
-X-Gm-Message-State: AOJu0YzlbeSCXp8YQX3FHgMeUH3C1s8R+ILtMK+1Li1CdP0nC4ct1+/c
-	nWB3cU4cxuyNQWN1FODhpKpUlYg1ma6UV9SNiqzmIyfO1xr0DZh6vj7ldUI7Av/dJQi0NtFjdxh
-	JTcKfYRQJd6L+BNEXiR+Rq8z/07xEBOQDr09FyuhvBi2o8smKGRTvdjR9TWzAUvU7
-X-Gm-Gg: ASbGnctPmFsVUUWDRussl4Xs3pcMYKr7W23rfvOKX+tKWVfF9Vv3oSDhGiNX0MG64RZ
-	bflFHy5QBraN1eYTsB4ym4DfQw0244CaB7n23yfAFV8+yYVaLndtUWNoxFdlQvtbNyLEtbNZ1Mx
-	qWMhhb/Iev3zxsQ1KHX3L4XJFJd/TLrUXMVobz+oUJt4l7nD/RYfuvpF7G7fhE2ZWZl3jfIc2m7
-	UOPGJnnozRFMKIyeLu83JAb1DF45VN6srtD0GF5QvEWc7+lBsm0h2MHONh1eqD/rfRh4hXJxLqz
-	PJ62LzgmfQDDFzIzjiEmVV4LzWH+zsXROzJ3DYQR3l691b3vDAVlFKG4XU/GP7qRBQFNyqWwOWJ
-	ZP7IZojGncTrVDlUsRDru7988FBkT+ajTvcr3U6+CvlcQagXuIR39DdP6
-X-Received: by 2002:ad4:4eeb:0:b0:81f:3abf:dc1f with SMTP id 6a1803df08f44-88009c1dcc8mr51973646d6.8.1761822269989;
-        Thu, 30 Oct 2025 04:04:29 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEj05MubBtygtqeTR6KibEHOmmH0Vqi1S90+C2VimB73/rb0UVkgKNAaSdUTuerVM8yOCSXMw==
-X-Received: by 2002:ad4:4eeb:0:b0:81f:3abf:dc1f with SMTP id 6a1803df08f44-88009c1dcc8mr51973356d6.8.1761822269232;
-        Thu, 30 Oct 2025 04:04:29 -0700 (PDT)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63e7ef6e777sm14245241a12.6.2025.10.30.04.04.27
+        bh=b8MLj8j7e7YQRcZlE+KIJJ5vGAzqn6SgU3Y1AxaodS0=;
+        b=oDybGJihAz8LBdrAOTxdQjYnUoxfdoQ4goHYXy5X+1lBcwZBRs3wbxigKVxL4vHX0r
+         LmiT1Ith0ds8lpPb1opfhnLJhdGyuqyWqdzTtUtrEclwNQ6dAEO81Dv+OelGVhOlp/C9
+         VbcbQFKPxoUlQ8MR1+4srLjLLelS29Q0/65So9O2yqII5qrRxQm/LaFSXfx2Y3wfHOie
+         LGlPO5YopoC9AbZPZ2JqJUPNYSlKPQnbdxGl/3JTO6BlyLzGQ88ltbGP4vPD2JROaIo3
+         H163x1qkE6/glFYUjlJKKhNmwkJ0lMKh3yGI3a1v2HduM5e+c3I8u3Z40oM3XCJGsDFu
+         23Rg==
+X-Forwarded-Encrypted: i=1; AJvYcCX4rHV5ti6CNkhvS2fsml2COfnxPvqfTB+dLq0M9y326GltoBCoTIfRt8W0+xLwrUmejMps7fByF0ac@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZHqUnjNsSqW85+GWlGzRzfZk6xIyfReNIFGxi2tnLmzZM4riG
+	48/zN9pYglk2FKura1S+VXrk1SpFlRcZ6GGrCIqN778VwGmA73h1hUQV
+X-Gm-Gg: ASbGncsKGcq2yuA3B2Gw8/5bKRTtCkkXjRWQU6sph3RX+aYErEkeF5oja6rxgbujChr
+	vz0wgRyOeCW2hEyKawiz6EoJcYpdK1FBYCRu3n4H/xBUv0b2nnMSaQGAf5LQ9dZFy6OGdHNnmHL
+	J17i0702cc32ZEZG10SrNxnAYzleWx5IBi6DZTLdk9yCt9oiFptjvjvffkJLIv04grngmqd8ILP
+	+0iWzKJRNs/bGTkcv7pq3ClPluZlz5Uk9h/BPg1Ql1mt4QgxwRpQY0vMu1vhh6T9s66ZHDPimGg
+	sxdCRHb5n9cIXC9kf3HKfT/g4o9yNZWcgz5MyHTKXBNzhDt7pH71m0Rl36U+qrxmpmR68vXAY4q
+	+KeNrC1AR50bRB7u+hMOkXYVaGKLGG0uDCexuY9M11MMGvH7wT5QVfzGrmWjPQe1F6e7maVrL8S
+	NU/d/F7SMiPyfBttIWrFYFX4+vsTsMScNGz3ipnthO5cNW/33qEndXmFqRAQ==
+X-Google-Smtp-Source: AGHT+IFVbeOcG1ymZvuui/950bfgz6qYiN2j/R5NM5+LVOvsYbyPSuDJ4V+PPpYZdgVHGMjGt2TR7Q==
+X-Received: by 2002:a05:6512:4007:b0:585:5cb5:590 with SMTP id 2adb3069b0e04-59412a3654amr2238284e87.11.1761822113991;
+        Thu, 30 Oct 2025 04:01:53 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59301f68e9fsm4592248e87.71.2025.10.30.04.01.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Oct 2025 04:04:28 -0700 (PDT)
-Message-ID: <5df2f0ad-1514-4a8e-9203-fe2b72141102@oss.qualcomm.com>
-Date: Thu, 30 Oct 2025 12:04:26 +0100
+        Thu, 30 Oct 2025 04:01:53 -0700 (PDT)
+Message-ID: <26fc62bb-3484-4812-b576-6640eef72c49@gmail.com>
+Date: Thu, 30 Oct 2025 13:01:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,73 +83,170 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/7] arm64: dts: qcom: cleanup GPU's zap-shader node
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251028-dt-zap-shader-v1-0-7eccb823b986@oss.qualcomm.com>
- <c83079bd-ebd2-49fc-ab62-1fba08276cc4@oss.qualcomm.com>
- <51f10d4e-3962-4c20-9d5f-afd0ac3f598e@oss.qualcomm.com>
- <289d000a-b142-46cf-ad15-07ab8ed377c9@oss.qualcomm.com>
- <dnup7gntevuioadecmslch42ye7j7ioamoqq2www2ytmz4ymws@tvka6m2e3js6>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <dnup7gntevuioadecmslch42ye7j7ioamoqq2www2ytmz4ymws@tvka6m2e3js6>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMwMDA5MCBTYWx0ZWRfX+HFdpS3yGSV1
- KQRRbfZdMSTcqssiAzzRT+0sx/uiXXu3Ck/ikfFBDoVu10lzSn5LbDgarbCm6ZXWE41G6fNIYDX
- SniNbkTB6WvdPqoj6g3JC9lwJdQRRW0u7iwFLhHXzW3e2f0MCvoy76iJQJj5SF5PJ4UIXyVt9nl
- 4n5i0Sb16fdDeLs6urdoCo6liGVmWk6wuTmHvASxKGQmXW8zK4VL/PdpEnodI8D1+dQNFNa0KPD
- TEZOl3rW1a1VhDJ/xK3k4ZvqlCZHwZ5dV5dtXLP1DriIJGa72WeL0pYDnBiTa53Dj9JDIQ49btR
- G0QBcj4LqfICGuFYVzm0dj6yPilqHrHjLZiUmlssIn8l2Dhw5ACjJBI4zECiqxUTdlRe6OnSYYy
- hsOGeBc3g06LXBdHio+ieiu4oIV9zg==
-X-Authority-Analysis: v=2.4 cv=KePfcAYD c=1 sm=1 tr=0 ts=6903463e cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=beMPh-m-NBtQyn-zy7EA:9 a=QEXdDO2ut3YA:10
- a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-ORIG-GUID: WUF6-O4dvhceOSIWTXsMLN9LZ50OyAVw
-X-Proofpoint-GUID: WUF6-O4dvhceOSIWTXsMLN9LZ50OyAVw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-10-30_03,2025-10-29_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 impostorscore=0 priorityscore=1501 bulkscore=0 adultscore=0
- lowpriorityscore=0 clxscore=1015 phishscore=0 spamscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510300090
+Subject: Re: [PATCH v2 3/5] arm64: dts: freescale: add Ka-Ro Electronics
+ tx8m-1610 COM
+To: =?UTF-8?Q?Lothar_Wa=C3=9Fmann?= <LW@KARO-electronics.de>,
+ Maud Spierings <maudspierings@gocontroll.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+References: <20251022-mini_iv-v2-0-20af8f9aac14@gocontroll.com>
+ <20251022-mini_iv-v2-3-20af8f9aac14@gocontroll.com>
+ <a7012995-c2a8-48a3-abe1-5c227272f21c@gmail.com>
+ <65202d1f-6c4f-4d4e-9fef-85cfb74ec768@gocontroll.com>
+ <938f85b0-4c9b-463a-960a-f5f4e4092480@gocontroll.com>
+ <20251029081138.2161a92a@karo-electronics.de>
+ <4a47b9b5-f482-41b6-a441-7728572c5a0c@gmail.com>
+ <20251029104838.44c5adcf@karo-electronics.de>
+ <d05c62c9-7ed7-46e4-aa4d-27172741b5ee@gmail.com>
+ <0667e026-99f3-4233-b3f6-e38273961d49@gocontroll.com>
+ <20251030095434.1dc06df2@karo-electronics.de>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20251030095434.1dc06df2@karo-electronics.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 10/29/25 1:35 PM, Dmitry Baryshkov wrote:
-> On Wed, Oct 29, 2025 at 10:36:45AM +0100, Konrad Dybcio wrote:
->> On 10/29/25 10:35 AM, Dmitry Baryshkov wrote:
->>> On 29/10/2025 11:33, Konrad Dybcio wrote:
->>>> On 10/28/25 9:59 PM, Dmitry Baryshkov wrote:
->>>>> Historically all devices manually defined GPU zap-shader node in their
->>>>> board DT files. This practice is frowned upon. Add the zap-shader node
->>>>> on all platforms, define a label for it and use the label in order to
->>>>> patch the node with the firmware name.
->>>>
->>>> I'm not sure this is much of an improvement, since at the end of the
->>>> series, boards still have a &gpu { zap-shader {} } section, with the
->>>> inner one not being referred to through a label, which reduces
->>>> duplication in the single LoC used to assign memory-region, but
->>>> doesn't e.g. prevent typos in the zap-shader node name
->>>
->>> By the end of the series the boards don't have zap-shader{}. They use &gpu_zap_shader { firmware-name = "something" ; };
->>
->> /me wipes glasses
->>
->> You're right, I skipped over the last patch
+On 30/10/2025 10:54, Lothar Waßmann wrote:
+> Hi,
 > 
-> R-B ?
+> On Wed, 29 Oct 2025 16:35:25 +0100 Maud Spierings wrote:
+>> Hi Matti,
+>>
+>> On 10/29/25 11:05, Matti Vaittinen wrote:
+>>> On 29/10/2025 11:48, Lothar Waßmann wrote:
+>>>> Hi,
+>>>>
+>>>> On Wed, 29 Oct 2025 10:42:17 +0200 Matti Vaittinen wrote:
+>>>>> On 29/10/2025 09:11, Lothar Waßmann wrote:
+>>>>>> Hi,
+>>>>>>
+>>>>>> On Tue, 28 Oct 2025 14:10:04 +0100 Maud Spierings wrote:
+>>>>>>> On 10/28/25 13:42, Maud Spierings wrote:
+>>>>>>>> On 10/28/25 13:15, Matti Vaittinen wrote:
+>>>>>> [...]
+>>>>>>>>> Could/Should this be described using the:
+>>>>>>>>> 'rohm,feedback-pull-up-r1-ohms' and
+>>>>>>>>> 'rohm,feedback-pull-up-r2-ohms'? If I understand the comment
+>>>>>>>>> correctly, that might allow the driver to be able to use correctly
+>>>>>>>>> scaled voltages.
+>>>>>>>>>
+>>>>>>>>> https://elixir.bootlin.com/linux/v6.18-rc1/source/Documentation/
+>>>>>>>>> devicetree/bindings/regulator/rohm,bd71837-regulator.yaml#L108
+>>>>>>>>
 
-rb!
+// snip
 
-Konrad
+>>>>>
+>>>>> If real voltages aren't matching what is calculated by the driver, then
+>>>>> the voltages requested by regulator consumers will cause wrong voltages
+>>>>> to be applied. Debug interfaces will also show wrong voltages, and the
+>>>>> safety limits set in the device-tree will not be really respected.
+>>>>>
+>>>>> I think this would be well worth fixing.
+>>>>>   
+>>>> Before doing the real-life test I did the same calculation that's done
+>>>> in the driver to be sure that it will generate the correct values:
+>>>> bc 1.07.1
+>>>> Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006, 2008, 2012-2017
+>>>> Free Software Foundation, Inc.
+>>>> This is free software with ABSOLUTELY NO WARRANTY.
+>>>> For details type `warranty'.
+>>>> fb_uv=0
+>>>> r1=2200
+>>>> r2=499
+>>>> min=800000
+>>>> step=10000
+>>>> # default voltage without divider
+>>>> min+30*step
+>>>> 1100000
+>>>> min=min-(fb_uv-min)*r2/r1
+>>>> step=step*(r1+r2)/r1
+>>>> min
+>>>> 981454
+>>>> step
+>>>> 12268
+>>>> # default voltage with divider
+>>>> min+30*step
+>>>> 1349494
+>>>>
+>>>> Probably we need to use this value rather than the nominal 135000 as
+>>>> the target voltage in the DTB.
+>>>
+>>> Yes. When the driver calculates the voltages which match the actual
+>>> voltages, then you should also use the actual voltages in the device-tree.
+>>>    
+>>
+
+// snip
+
+>>
+>> Then setting 1349494 as the actual voltage makes it fully work.
+>> Otherwise it complains:
+>> buck6: failed to apply 1350000-1350000uV constraint: -EINVAL
+>>
+>> Final debug output now:
+>> [    0.327807] rohm-bd718x7 0-004b: buck6: old range min 800000, step 10000
+>> [    0.327813] rohm-bd718x7 0-004b: new range min 981454, step 12268
+>> [    0.327819] rohm-bd718x7 0-004b: regulator 'buck6' has FB pull-up
+>> configured
+>>
+>> I will add this fix to the next version of this patchset and include
+>> your requested change in the dts.
+>>
+> Does it also work with min/max settings in the DTS that are taken from
+> the designated value +/- 5% tolerance margin, so that the DTS contains
+> reasonable values determined by the HW requirements, rather than some
+> artificial number that is enforced by the SW behaviour?
+
+I am unsure what you mean by "artificial number that is enforced by the 
+SW behaviour"?
+
+As far as I understand, the PMIC operation is altered by modifying the 
+feedback-pin voltage, right? So, the HW _really_ outputs something else 
+but the 'PMIC nominal voltage'? When this hardware connection to the 
+feedback-pin is done, the nominal voltage is never really seen anywhere 
+else but the PMIC data-sheet, right?
+
+> E.g.:
+> 	regulator-min-microvolts = <(135000 - 6750)>;
+> 	regulator-min-microvolts = <(135000 + 6750)>;
+> Thus, the nominal value of the voltage is explicitly shown in the DTS
+> file.
+
+I don't know why there should be two different min values? Assuming the 
+latter should be max - I have no problem seeing a range of allowed 
+voltages in constrains - if the hardware can tolerate voltages within 
+the range.
+
+In my opinion, the values used should however reflect the _actual_ 
+output voltage, taking the effect of the feedback-pin modification into 
+account. This is also what using the:
+'rohm,feedback-pull-up-r1-ohms'
+'rohm,feedback-pull-up-r2-ohms'
+and the pull-up voltage property allows one to use.
+
+In general, regulator consumers expect to get the _actual_ voltage the 
+regulator outputs, via regulator APIs. Think for example of an ADC 
+getting reference voltage from a regulator. If it asks for used voltage 
+and gets 1350000uV from the regulator subsystem it will use that to 
+calculate the scale. If voltage really is something else, altered by a 
+feedback-pin connection, the ADC will be having offset. I don't know if 
+voltages reported by the framework matter in your specific use-case - 
+but it doesn't mean letting the regulator subsystem use bogus voltages 
+is right.
+
+Yours,
+	-- Matti
+
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
