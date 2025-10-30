@@ -1,59 +1,57 @@
-Return-Path: <devicetree+bounces-233388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9997C21B92
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 19:17:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1806DC21B88
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 19:16:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E785C4EE536
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 18:11:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95A653B2C13
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 18:16:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DD2C315D4E;
-	Thu, 30 Oct 2025 18:11:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62C7A253F11;
+	Thu, 30 Oct 2025 18:16:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KOyg7Txd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="alXeYIsV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E13352D6E71;
-	Thu, 30 Oct 2025 18:11:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37F271A9FB4;
+	Thu, 30 Oct 2025 18:16:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761847867; cv=none; b=rK0SC6Vm8Tq1LRMBnCItdDhvMCQrLTRwUyRFls9ALE1oBohICFgz+Ht4YLVe1FL42c/3u+ITCITJcohSiokEUi8UDzystOu0nVlqtqJDPB+TGTRY7mXWxsAsxRMLaVfTNDJOv5TWjBVJ39c3GOxEx0vv2q1ardlWx6DjEIND494=
+	t=1761848206; cv=none; b=OP44Dm10X9SjzSBK94PGmjqhZsO/J2MnERUVlLZF1kVC3PBuW9cfIZ24BmyRUZuxy1/YxLrVouVo1xpDUZl0wUhdEIok06a0AupAim8hvdGIumVdzGa79YezwJr5gNsu9rJwmv9dwgyYF7eIOMh+ycLgwgU1v5PQrSaw8c4gXR4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761847867; c=relaxed/simple;
-	bh=c0/M9ovtNL3eX2rkNYnGKmK/DaJBhek0H2vibY+mrQI=;
+	s=arc-20240116; t=1761848206; c=relaxed/simple;
+	bh=nIQ2Ev++z+xo9XHpOFS+fOtVxZnODT3sXLS2ZI0U6bI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bst6g5c/taAJ/5tfwDFscXsznDwb/qu+Gi2CCuMgnSkp7d4uNEjTxPzO58giPaAwBmvpd0Y8O6y3h4Kq9Jd6ZNvBy+hPvCCtp6UStSAQHoPfOgIH37CuKM5NKXZXOg/bmDKDUcNj+CMdVkQQm84vi1sbe3sg9IBRUkjs3hyX0EM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KOyg7Txd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16F4EC4CEF1;
-	Thu, 30 Oct 2025 18:11:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oLnAKycebVDw9Bf2+KpC1hdfv3x66tmmzyq4WQ+5oxVJLkmzXAJ2oyaYSORXxehG9d5BVDrbN/+4qjTPAgvw4QO4YX6GOja9iyMqlE+mIuXdCIotMb4K73uMpLqrFSXG3xO0KPtnApU2+6Wq/DOJOHLem+PoA71QZEIWlXmxR6o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=alXeYIsV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 870C9C4CEF8;
+	Thu, 30 Oct 2025 18:16:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761847864;
-	bh=c0/M9ovtNL3eX2rkNYnGKmK/DaJBhek0H2vibY+mrQI=;
+	s=k20201202; t=1761848205;
+	bh=nIQ2Ev++z+xo9XHpOFS+fOtVxZnODT3sXLS2ZI0U6bI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KOyg7TxdQAjGbtDruH3glel6T3hv71tTYYgRF14QwXkFCxk2LY9MRz05PnVjlz4/a
-	 eF4Ff28Do0JtUN9yc+6lGCJMDd3/DYe1CxSmyApzMHFAIxksCZh1a+Ta9jUh4vaF3/
-	 /WYh1n1rF9OiAKuu13FDyzl9hkZLG2Q/GFg0vDcqjqpnq1LSJYEaB2JShzrQaFOcwM
-	 jbRu4aLhPaKX7Sw6WSPet+cDrrsln2n9D9QJ3++vWjbKuahxOcCoW4JkxI0dUVReel
-	 VSAlhNzqdT7zF3/5NEYwYYNo6jrcywA8V85wVPI6J0J4wQRGI+/BG0JJzS48C45pp5
-	 lzdYWfoEXgUrw==
-Date: Thu, 30 Oct 2025 13:11:02 -0500
+	b=alXeYIsVtmHMuUR0wO+aWyeprQe79H2MyQEd3fMLOVKmTLy5LPenlweu98eESrMgO
+	 po7GP1htEVaUdUaCpxfk+y22Kc8QfQxolDVAV5NYfXsF1loF5sww+rPtU21yLtm1z5
+	 eZk1C525y2UCXsl0n/LN+RbM3u/IUuuJzrnwFGiUEkBHQoPUUlNQppfPE8LoWqK3Vw
+	 L2oZEsvjlCTZXLyWXar8KXI0ALUFPpmPvq0us2CkbSMc+uGcOQxqOr4sZkSjfVUh4n
+	 HQjHcpSqEdlDfutZPohmnOOwUmTZqAIbIFYVUawE9GP+xuQ4JyOe+0C2efcfrbjq0i
+	 TyjoB+7NN7EfA==
+Date: Thu, 30 Oct 2025 13:16:43 -0500
 From: Rob Herring <robh@kernel.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Cc: broonie@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, perex@perex.cz, tiwai@suse.com,
-	srini@kernel.org, linux-sound@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	alexey.klimov@linaro.org
-Subject: Re: [PATCH 2/4] ASoC: dt-bindings: qcom,lpass-tx-macro: Add sm6115
- LPASS TX
-Message-ID: <20251030181102.GA128512-robh@kernel.org>
-References: <20251029160101.423209-1-srinivas.kandagatla@oss.qualcomm.com>
- <20251029160101.423209-3-srinivas.kandagatla@oss.qualcomm.com>
+To: Dan Carpenter <dan.carpenter@linaro.org>
+Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: syscon: introduce no-auto-mmio
+ property for syscons
+Message-ID: <20251030181643.GA130921-robh@kernel.org>
+References: <cover.1761753288.git.dan.carpenter@linaro.org>
+ <230cf12861a4f0b9effc72522444d3e28c1de2c9.1761753288.git.dan.carpenter@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,44 +60,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251029160101.423209-3-srinivas.kandagatla@oss.qualcomm.com>
+In-Reply-To: <230cf12861a4f0b9effc72522444d3e28c1de2c9.1761753288.git.dan.carpenter@linaro.org>
 
-On Wed, Oct 29, 2025 at 04:00:59PM +0000, Srinivas Kandagatla wrote:
-> Add bindings for Qualcomm SM6115 SoC Low Power Audio SubSystem (LPASS)
-> TX macro codec, which looks like compatible with SM8450.
-
-Add? Looks like it was already added.
-
+On Wed, Oct 29, 2025 at 08:27:05PM +0300, Dan Carpenter wrote:
+> Generally, syscons are created automatically and accessed direclty via
+> MMIO however sometimes syscons might only be accessible from the secure
+> partition or through SCMI etc.  Introduce the no-auto-mmio property to
+> tell the operating system that the syscon needs to be handled manually.
 > 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
 > ---
->  .../devicetree/bindings/sound/qcom,lpass-tx-macro.yaml       | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
-> index e5e65e226a02..8dd8005d73d6 100644
-> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
-> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
-> @@ -14,7 +14,6 @@ properties:
->      oneOf:
->        - enum:
->            - qcom,sc7280-lpass-tx-macro
-> -          - qcom,sm6115-lpass-tx-macro
->            - qcom,sm8250-lpass-tx-macro
->            - qcom,sm8450-lpass-tx-macro
->            - qcom,sm8550-lpass-tx-macro
-> @@ -26,6 +25,10 @@ properties:
->                - qcom,sm8750-lpass-tx-macro
->                - qcom,x1e80100-lpass-tx-macro
->            - const: qcom,sm8550-lpass-tx-macro
-> +      - items:
-> +          - enum:
-> +              - qcom,sm6115-lpass-tx-macro
-> +          - const: qcom,sm8450-lpass-tx-macro
->  
->    reg:
+> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> index 657c38175fba..a0ad12ae0bee 100644
+> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> @@ -245,6 +245,10 @@ properties:
+>    resets:
 >      maxItems: 1
-> -- 
-> 2.51.0
-> 
+>  
+> +  no-auto-mmio:
+> +    type: boolean
+> +    description: Prevents the syscon from being created automatically
+
+"syscon" literally means "have Linux create a regmap for me". If you 
+don't want that, don't use the "syscon" compatible. Really, I wish we'd 
+never added it in the first place.
+
+Rob
 
