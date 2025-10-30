@@ -1,89 +1,101 @@
-Return-Path: <devicetree+bounces-233065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FBA9C1ED47
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:44:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0802AC1ED56
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:45:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4A7124E83D2
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 07:43:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18788189ADD2
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 07:45:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E9E0337B91;
-	Thu, 30 Oct 2025 07:43:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3149F337B9F;
+	Thu, 30 Oct 2025 07:44:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="U/y38JhT"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dLiN7lhi";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YA5H2Tjj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0125337B96;
-	Thu, 30 Oct 2025 07:43:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=185.132.182.106
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761810226; cv=fail; b=iV2asrF/SED06p8MrFK1HYAFWeYy+zORko8eO1YpviDMddUVO1ojMoJIhNKYQDoANye0G98WxcntMGRK/nwPxXgVpiX0frN4ejGUF9rfRdKxxaiyVA2kgzG33CVxL0RjI0yBEDTq5HuQ026FhuXhbvnKY9eIUXzu32N3/RBTp80=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761810226; c=relaxed/simple;
-	bh=5UjeJnW+KKk+Z6xiCTiMAcC8dx57eRrzYhLkmT9ewr0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=INp6cz/UEM2sq5bP8YTD1T6dl9Wx4ImQXYrJrpY2IgwSHSXP4H9f65Ue2VK/4Nx7r4XT6xrq9lO2xLKwqDBps69CvCzETQx0kIgW3qKeKlF2jn/53U+7JUMv4x12CRyh0v/2C4wiSG3zyknqRu4+leGzp0DIneyi15U12mhe5Cc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=U/y38JhT; arc=fail smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59U75G0D1052236;
-	Thu, 30 Oct 2025 08:43:25 +0100
-Received: from du2pr03cu002.outbound.protection.outlook.com (mail-northeuropeazon11011053.outbound.protection.outlook.com [52.101.65.53])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4a3jdnbpc2-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Thu, 30 Oct 2025 08:43:25 +0100 (CET)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=i+yrTy7wAEfFA1e06/vUIhh17yvSNkfnSnxq1+wJekhYkWNYY4XZynVe9NdwVvuCyHiB0IwSAMPDURvLMhgHRs8qtohjUCljUWyN1nDMn+EfR4EfKAW3ba4wD7b2qb1HUVx8bRJYV2HzdkPxpjHbli+z2OClta6c45i3R2RNHzBtdYGL5tOm7UYf0aYfSryPioaKWOpVFaetFyoM3U+AfFiiUjqOIdihHVWTFoRZYvUFew1dik11W22hvUnz9gAHyRcdh2fec+wbQR/nHDAFLoQL4zm6n77+XC4qXKknU4DXV2lwl3Os4FfYvgPacDxQlGrQYHG1kq6GFba8oglntA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MmBgcSCUCqBom9dBBE445H9WS8fm1z+v/XX5IOSEW3o=;
- b=YIV5oOPv5iSvhCf15BI3tBADuwzZsWaP1DEuSfTCCfgA3/GxXG4M/hvgBK3MMP2z9uJ7KTnsvR5dPoZHKHBsItyBEaQ878zVyCryjrUqouP2/LKm7xNP6ow+wIXAp51yikSY1XeSIPuaPyEtAg6brDKxZrhYDYygnlLung3fHxdPJv7uBCMG7Ild9Pk0q54a11Qj8x2DIyyUyLqRk0QMKlQREWX+/HWTe5v12F4RGaytMJ8+h/uQbPoJUsQZbq5s9vOHSowuinM+u3SrYnbj1kDQd78Cl0Ch4d33EwWyTIk3VH/4XMCxpG/mnm2HKb3A8lWNR/Vk2RdlLA5htPy/pA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.43) smtp.rcpttodomain=gmail.com smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MmBgcSCUCqBom9dBBE445H9WS8fm1z+v/XX5IOSEW3o=;
- b=U/y38JhTS5bVsTyQhzILN7+lUDrkyTbCMqU8n+6mJ9ks/NX/KDYr07i3LyRYbhVgL+9qRH5Asq1FInHVTEHoBMMLaiwucTdeJKzwOy9N6eqCLpNW2LA9r0JWzOooEK71l7lrcacf2iUH92J5rVBEaGlkdLdpcPxELX+1HISxCuQM9EyF1cMdcWZA4IvK3iA+p4tHHxJUqrQGWht1m7SDnzMFqdSsA3jy419ROSPE9YoT+xNHbzt97lrGU0pokpInG8j28rYc0HyL1Tm+om89dLpj7SrLoKrGHifcgX0Gm91V58xmnETUHbolMyGpT/Y12aWU5dNcj6CwnLTImG0ktg==
-Received: from PAZP264CA0159.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:1f9::23)
- by AS1PR10MB5165.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:4ad::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.13; Thu, 30 Oct
- 2025 07:43:10 +0000
-Received: from AM4PEPF00025F98.EURPRD83.prod.outlook.com
- (2603:10a6:102:1f9:cafe::12) by PAZP264CA0159.outlook.office365.com
- (2603:10a6:102:1f9::23) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9253.20 via Frontend Transport; Thu,
- 30 Oct 2025 07:43:10 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.43)
- smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.43 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.43; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.43) by
- AM4PEPF00025F98.mail.protection.outlook.com (10.167.16.7) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9298.0 via Frontend Transport; Thu, 30 Oct 2025 07:43:09 +0000
-Received: from SHFDAG1NODE1.st.com (10.75.129.69) by smtpO365.st.com
- (10.250.44.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Thu, 30 Oct
- 2025 08:40:53 +0100
-Received: from [10.48.87.93] (10.48.87.93) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Thu, 30 Oct
- 2025 08:43:08 +0100
-Message-ID: <282c7206-e72e-432e-b666-496f3e2ab3ef@foss.st.com>
-Date: Thu, 30 Oct 2025 08:43:06 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60118270552
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 07:44:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761810282; cv=none; b=HZRy/TDx8E2YZDB5AWeOi7O8rx9h4OtqNqf6LzfMSz9LQwjQfnrzsUYqtSizKznEe4In1u+EOgyxDyq6CozaAF1wvYi337vYytbrL/jVpDjeXy5H+yC9J4MCW1kYZCv+3ftGpbB9BHbq6nrgiYHSflDdpQQlBHZ3jq95zJfPjB0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761810282; c=relaxed/simple;
+	bh=8tJPcTxT9z4IDaliirHoX8XXZGeflw5rPWBfvBf6BgU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BagLpzFKAPRZaGLDlL6eSovV7se8y3D49rYuHIrCIZ5O4IF/IfRW9Xjzn5uWnJNmxTncjEWq2Aoge/JNPl2+cYDNCOQ5YzIq0LZDBfrMXZhClM/XId4ML49UxyyFU926CRDuntSKgcHCl5alcSMXq9O7kFow8vDSLq/liRaNTnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dLiN7lhi; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YA5H2Tjj; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59U7Rebu1693358
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 07:44:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	i7EANkPIY6sJ6MNVVUUWWsaDcMkF831KMsY4DWyH9a0=; b=dLiN7lhiVWqOpJOr
+	rI5nRSYGoFkjwr0oHNj5Rf2sE4rHeB5iw4HDQjbvoQGwJp1CS0L4bAhhdJWms1HU
+	ClprxVWlmqU8Q2dChW7j4t0ATfvWYE1peabnGRi6ks2kZ2gWaYby/gVGCfpQnl90
+	Wm1pEXdRgOre+b+uZw6mpQBhKO25XwcmS8HiuPsqSgjac1UFo0RlJnV8GHdBv3We
+	96u/aEalTaag6kOp+vpofqY9k6Nab9cKFQfNAeEZ+a+zmaFoJMGVOSRv/Jw4zA4S
+	J8M15aJtizxc568sRBRgjH4uDNPAGRgH5RNJS4Uaav3PJdBCdNfUFRdDGNF0ZvfL
+	tMxEog==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a3trv1fxq-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 07:44:39 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-32eb18b5659so586442a91.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 00:44:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1761810279; x=1762415079; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=i7EANkPIY6sJ6MNVVUUWWsaDcMkF831KMsY4DWyH9a0=;
+        b=YA5H2Tjjg4jCNxh/VzMqd73NJZtGacVNt+kor0WESky0Os3IJiiIxW/RdmozDrda8N
+         NmzCwJXbsE7Fwd4GN/OpDgJUqogwlg7NIijaBnf9/s/PaoXjIr+AaTv000X+iXSFV8W3
+         sFdqUkZmMFLXCAWerdRigzOvQvvJmhe0ZpjyzqLXZm204p2+XVYp2yRP/ltq2atWaMwc
+         sgAEXph6AZF/kf7VzjmqvD6zEvGtofwbYxXqXgL8grWpGdK2DWWzXuqU1WkO2lMW51xy
+         1MtKd2h6aiKoqjTFc+MQJZjnRpsf1DzXka/9mobzZzuqdM6C32yIcEOC5KbchC3pAdTn
+         hzHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761810279; x=1762415079;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=i7EANkPIY6sJ6MNVVUUWWsaDcMkF831KMsY4DWyH9a0=;
+        b=bEGIU3VjhfqH31hS8nwVnRXlH92tV9Oddh8Hmlvccadscb9ZgW+0cLxrn8iHAEaieM
+         cyD5D1K61W5JFJ0KZDm+SxtgBK+eiCQqeHhxVBNlG9FIfy0iCKq03OubMfQPKbqj8XXk
+         WdZevUGnydZUF9SYypkORh/UsDr4QJfBW8tbcdDA+TjvkGUys6JbWU1Nrn5jbTZfvy+u
+         mOtL5p+69tecnQCCj3bZUaFW4a3QzgAUq7S5NqJ/LwihSXvsJmEdotpo841boD1ANVIB
+         dpvBwS+VMgOqOBt9UzLVnaHW/WTLFVp0JHV0jR1OQ506Im/uQoreWibfi4MUE3C8I2ic
+         iLow==
+X-Forwarded-Encrypted: i=1; AJvYcCVpCmqyEphomGQStIsKLHaKHmxsehRUNPghKGQWBBDdJYfsL/HQ8Wtjc69XcWRWMaAoWklbJNb8C16/@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCmh1FncHXCg5UhjkRbEtUDuCJe8TLiRmU0UzCfGDMDgusKGP2
+	WpVLHIFgRDDFqLZMp67TLAH8+14zT8fDzfo2a3W+bPgV7VMZJuPbXeII174PcKot1b1JCharrtw
+	sdiSLlNF51wo+NwwYUj+p8YoXriAmXmcTZ1eH8D2ZYjYx3hGH4lhP4NRhNB5rBQMv
+X-Gm-Gg: ASbGncs3N2BPHCbNgRAtjOfgPV8l3n2suP40can9Pfnf9EPq5GFIivpatthmPwDaZdK
+	F0dx6NDa+H0oQ669Z4bUtgEhmTb8uWO8C0BdnEs/rqlm2WFEmANYCKtOsUKL9guT3SinjxvSYRD
+	GHNFAtEfCzpj3qBunCPJf/oiI3ublC0dSBh71C1bQqHBGThcfONvP+xBQiVgW/E40Boqo7tJoS+
+	4EGx8Gcvp1JJ7tPbIm7RFjgUU33e6mhIHk4Whal7yRCYUwLDwmve3RBWrDaRxG+7VdInTg5rgwT
+	Uz8bzeCE6phTI5fVUSGLkdnb6ULMGAiQJXODmv+/5lcEjJSkp3EybdmoRptQVXUSu/ucUkbiXX1
+	2R2sbpo4aE/1OicZj7FFmG9jb+LGwEmzHofoUVMEKEPpzFUkY8G7O/xvXFjxG7f7njyzO
+X-Received: by 2002:a17:90b:288a:b0:32e:7270:94aa with SMTP id 98e67ed59e1d1-3403a2a1f3amr6000444a91.19.1761810278534;
+        Thu, 30 Oct 2025 00:44:38 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF8+RjaKPwX93XaghYF7p0OFEzUtX/TgLWbygByweBSTnZbrgOlvjY9WXUf3vek6MQ9KgF6Vg==
+X-Received: by 2002:a17:90b:288a:b0:32e:7270:94aa with SMTP id 98e67ed59e1d1-3403a2a1f3amr6000418a91.19.1761810277931;
+        Thu, 30 Oct 2025 00:44:37 -0700 (PDT)
+Received: from [10.133.33.37] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-340509e940bsm1554547a91.17.2025.10.30.00.44.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Oct 2025 00:44:37 -0700 (PDT)
+Message-ID: <beaa89d2-c8b1-4c3e-8e04-22caf753570a@oss.qualcomm.com>
+Date: Thu, 30 Oct 2025 15:44:30 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,139 +103,379 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] ARM: dts: sti: remove useless cells fields
-To: Raphael Gallais-Pou <rgallaispou@gmail.com>,
-        Alain Volmat
-	<alain.volmat@foss.st.com>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
-References: <20250717-sti-rework-v1-0-46d516fb1ebb@gmail.com>
- <20250717-sti-rework-v1-4-46d516fb1ebb@gmail.com>
+Subject: Re: [PATCH v2 3/7] dt-bindings: remoteproc: qcom,pas: Document pas
+ for SoCCP on Kaanapali and Glymur platforms
+To: Rob Herring <robh@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>, aiqun.yu@oss.qualcomm.com,
+        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+        yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+References: <20251029-knp-remoteproc-v2-0-6c81993b52ea@oss.qualcomm.com>
+ <20251029-knp-remoteproc-v2-3-6c81993b52ea@oss.qualcomm.com>
+ <20251029132212.GA662078-robh@kernel.org>
 Content-Language: en-US
-From: Patrice CHOTARD <patrice.chotard@foss.st.com>
-In-Reply-To: <20250717-sti-rework-v1-4-46d516fb1ebb@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+From: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+In-Reply-To: <20251029132212.GA662078-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM4PEPF00025F98:EE_|AS1PR10MB5165:EE_
-X-MS-Office365-Filtering-Correlation-Id: 23d016e5-bb17-48db-d61d-08de1787f8d4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|7416014|376014|36860700013|82310400026|921020|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?MkdiSGp5em8xR01nZ29tUTNVRVBmem9MOTNaK0hxb1dsUU1XVHV5RFpVRVlJ?=
- =?utf-8?B?dytXTm9vbmNadkJkNkFxQ21iTnlzVnJ4WEtjbkkwcjVzSWQ3MzNBbXFwVTBF?=
- =?utf-8?B?Mkp0QytYaXVjYzZMdTBmbDVSbUIwYkNHdllDc25SUzlRaXBDV0ZQT2IrOHhs?=
- =?utf-8?B?aGdHQnc4YW5wdzlaeTBSWlhaVFZkU0hmZXBGMmZKci91WWVyVnpBV1VBTFFm?=
- =?utf-8?B?ZHJsWDVicjJEME9NL2wvMUJ4MlFPdU0xZVVwU1JXYURxblRwT2tNRmVxUG9h?=
- =?utf-8?B?VXdUVkIyL2ZrMFgvdGpGUGtxbGFNNDVxMGdhZzFyVFA3Vk5Jc0lmQ2dYb1Ri?=
- =?utf-8?B?U1N3OVFRODdpMm8vYktvN3hGQ3hhVVQ0QmxjSnZrcjJRekUzS2dpMkthT0l1?=
- =?utf-8?B?K0pHM3VlY1dXMWxlcDd2WVVrRENhaDBMOTBmUzR1WnlqV0pnaFh0WWxjaFZ2?=
- =?utf-8?B?R3RjdUtHSEdpS2dIZDlRTWZoUDNwb0dlVmFnY2dWdDVzWE5zL09RbnVFbjh0?=
- =?utf-8?B?NXBxZDhTNmxCMngvMVJ1WTVKN2Q5TFNkRE0zaWo5NDlUU0xTaWhSOWg3aFph?=
- =?utf-8?B?OXg2SVZCVjcvY2FyOUlDZk1NVExObDJJUHJEUENITkZrSTVWUTlkalJPeVlL?=
- =?utf-8?B?dkorOW5UR2hYTWg5N0pHR1BiZmUvN1g1MlFhZDJYV05XTXloaDIzb05jQWdQ?=
- =?utf-8?B?VUJKU3dVNkhIdHFic0RpYnZCUEZ5SEVMbHRxQmRyQnlVRWtiL3ByWFJWVmV2?=
- =?utf-8?B?ZUUzenp1QWw2MDZHWlkzb1VidmdpTk1lUW9QVjIxa3o2ZENpL0ZGZ0xoZTdQ?=
- =?utf-8?B?TGFMVEFGOXJXWVhGcnZoalpPNGFxcjFJeXhZclhDcmxyZUJ2amJ3b04zWWR4?=
- =?utf-8?B?cEFPSlRiTWtUc0hocmJzcC9kVTJRS3dCemtvVWV6QmlwUXlpSnlwWnVjbW14?=
- =?utf-8?B?NktvOXUwc3NHQm10Ullxa0lLNWFFK3N0dHVsbTZ1S1FKbzFJTUY4T0JnY0Vh?=
- =?utf-8?B?ZlFaNDBTZVlVWDVieXZaR1NkUk9hbkM1cHRWQ1cveDJQVzF4VWJZWi9WUVFP?=
- =?utf-8?B?UVByYWtSRWF2RCtCMDkzRVJYaDBkL1pBVjhkek5sNkVRU3p6Y1Q3eEswaFJN?=
- =?utf-8?B?a2hXL3lEbFNpRXhuRmdjOGxoaERGZmo0WmxiN0FxWjRPZ05CZ0xoL1RGbEc2?=
- =?utf-8?B?S0pWRld2b2N1YlRwcVcrOXJZWFh2SjlNN3IwRFRMVk03UjhOUDdDWDNXWENP?=
- =?utf-8?B?Syt2Y2UrVlZSZmRVdHk5ZVhxNUpWWEp2ODNLQ2o3S0o2WTFtTFNwejdTNFlp?=
- =?utf-8?B?dktJYVJpbWFBSHN6dC9TTTZlS0pFWVJFSmhkYzVqK3dqekRib3NFWU5ES1dI?=
- =?utf-8?B?T1dLbXgrU2QyanRvVzJNVURteGRHSnNpakJRbmZFWkp6WW51R1lDZU9JbkNQ?=
- =?utf-8?B?UFpXTmhyRDFld3NqcHpYenU0R3d6Q2VGN3B3UFUxZk9QbmNtck9vRHYxZTNt?=
- =?utf-8?B?VlV4RUhUMGQ0YUw1blBsOWtCY3YvMFpmUWU3RXZHUHd3SHVtblJmYXRITFlm?=
- =?utf-8?B?S3lvSkZQMGNpT29sUE13LytXeXp6QkRNczJSMHhMTG5hYk9lNnVUbEQwR0dv?=
- =?utf-8?B?Ymk3L1d6dkZhVUcwMDlsajE3SmhOdXZrM3NxUGo3TEJzY2VRZDVIbnhBaVFT?=
- =?utf-8?B?dkxONFdXckpJekZzRzNXVnZoRXhmSHNaSzFkdFZ1R1htV1B2WTBFdzhndG8v?=
- =?utf-8?B?R3lNWHZucUdjZVRWejA1ZmEzZkg4a0RJVU1EYkVSUVBCenl1VUx5RG13N1Jq?=
- =?utf-8?B?Z1QyQTdOdTNuNDJ2L0tFS0tNaG1mTFRvMXhsQUJFZFhpRHR5NFdxSFMxb3Zr?=
- =?utf-8?B?Rm1yZ1JTOFdvNFNRV0w0elJGMjBjY0d5U2FFMGdLUHMrLzArd085MGh0aUZU?=
- =?utf-8?B?NUNmdE9BY0toQzZuU2xrL0xPVTVVMW1XeTJNdXo2bFVucGFmV2F6L3dBSStS?=
- =?utf-8?B?UEQ2RE4xT2g1aUt4NUJpck5Ta3JoUnBja0krTXQzVWxRY2hpOFhoRVZpQUlQ?=
- =?utf-8?B?NTJjZVhFTUdxZkNHYXBUQkN2YmRjQnIrT1JwamdqT0Q4Q1dBcFFidlBSUnlR?=
- =?utf-8?Q?w9Js5LnNxY1bqcupdm0RO94yE?=
-X-Forefront-Antispam-Report:
-	CIP:164.130.1.43;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(36860700013)(82310400026)(921020)(7053199007);DIR:OUT;SFP:1101;
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2025 07:43:09.4691
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 23d016e5-bb17-48db-d61d-08de1787f8d4
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.43];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM4PEPF00025F98.EURPRD83.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR10MB5165
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMwMDA2MSBTYWx0ZWRfXzzkdwQzbs7w2
- Emracmh0I5wgTfge1fpqkhSc/XYsE3zYKDtMe3rholCN5e79TP2EIPzieprGXT1v5GbIGj+ll/Y
- ALvqkvyWVtGRIgJLduTZz/ry7QUJnfFXjL7U0qmHD4q/iRL2ZdaNRxYjt3F3pDewpGDYFWPV9s+
- J0Ub02KswwZdBq2T6hpqJMGeDryCjjsoGTrX5RCo0pZ8C8dJCAuG21y9hC+NaQ3ZhoqVIKPHzZj
- dpIa7/8eswjHZSbkTYGS5Iw1kkPk5rM0CrRSsqGHndsvlMVkmiRUIYlyZhN76q9v2zj2+EPhw+K
- LIY/ASwmPLHxbzyAVjrNdghpf9pSEqgF55l4Un5F9q+fgckKRldiDA9xbs3UAX8Rmw9gGy6aT9z
- J0qGhkZAE6HsDRxYwim2hCYY/VSZ2g==
-X-Proofpoint-ORIG-GUID: 3DFgNnI-kVnhS4hgmXwOPKul2bbfamcR
-X-Proofpoint-GUID: 3DFgNnI-kVnhS4hgmXwOPKul2bbfamcR
-X-Authority-Analysis: v=2.4 cv=O900fR9W c=1 sm=1 tr=0 ts=6903171d cx=c_pps
- a=74JFWqOLuPB2BmQB8CJ9ow==:117 a=peP7VJn1Wk7OJvVWh4ABVQ==:17
- a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=XWp4PHTOCikA:10 a=IkcTkHD0fZMA:10
- a=x6icFKpwvdMA:10 a=s63m1ICgrNkA:10 a=KrXZwBdWH7kA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=pGLkceISAAAA:8 a=8b9GpE9nAAAA:8
- a=sh6T2Ih-f8sK8ep-gOcA:9 a=QEXdDO2ut3YA:10 a=T3LWEMljR5ZiDmsYVIUa:22
- a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-GUID: hu09Ef2kQ2WVOOXJ2XRo6SauD130Nq-p
+X-Authority-Analysis: v=2.4 cv=D+ZK6/Rj c=1 sm=1 tr=0 ts=69031767 cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8
+ a=-wIiT4SIM-LFa6w3TMwA:9 a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
+ a=sptkURWiP4Gy88Gu7hUp:22
+X-Proofpoint-ORIG-GUID: hu09Ef2kQ2WVOOXJ2XRo6SauD130Nq-p
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMwMDA2MiBTYWx0ZWRfX+86YEGZixpRK
+ jwpQrwQutI8c9CvyhoswLFYFKULhw9+PYdW6nUYzCJU1j5vMDCdDBMyG5gfSKnT/jlvNp6RgVeu
+ HINXY9DqUlqVt4vCs9rG5qIEAsr68rGgDvV+zB+I8ujFRe+jRznC9G9vJs6xtX/3oOcKVqreVZc
+ LGKy2rBiSyFFcd53eKDBrvb8brFWe3QhHpmPLXasTUS22ZmehE0WufP2ozA48K6RXv/GNt7iNxK
+ 1goatX2IpGBdGqSwKJStc8d1sZLOHxZ3S41DASmDffnK01jyWcKOx0rfJ3hbE19aKHt3yn+aKQD
+ gz5v5FAjEEbZZW8c7Ui5/FUJ08jZar0MxpdCBJHodrWcHE99tN6aIPidzQlE/HvpddUzMosuL4v
+ W2VOJ8n8Q+V14f6YEx1UhPD2n2VMiQ==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-10-30_02,2025-10-29_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 clxscore=1015
- impostorscore=0 malwarescore=0 priorityscore=1501 suspectscore=0 adultscore=0
- spamscore=0 lowpriorityscore=0 phishscore=0 bulkscore=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 suspectscore=0 malwarescore=0 phishscore=0 lowpriorityscore=0
+ priorityscore=1501 adultscore=0 clxscore=1015 impostorscore=0 spamscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510300061
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510300062
 
 
 
-On 7/17/25 21:15, Raphael Gallais-Pou wrote:
-> tvout node do not need the cells fields. Remove them.
+On 10/29/2025 9:22 PM, Rob Herring wrote:
+> On Wed, Oct 29, 2025 at 01:05:41AM -0700, Jingyi Wang wrote:
+>> Document the component used to boot SoCCP on Kaanapali SoC and add
+>> compatible for Glymur SoCCP which could fallback to Kaanapali. Extend
+>> the "qcom,smem-states" and "qcom,smem-state-names" properties and
+>> add conditions for the "interrupts" and "interrupt-names" properties
+>> in the pas-common.
+>>
+>> Co-developed-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+>> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+>> ---
+>>  .../remoteproc/qcom,kaanapali-soccp-pas.yaml       | 134 +++++++++++++++++++++
+>>  .../bindings/remoteproc/qcom,pas-common.yaml       |  83 +++++++++----
+>>  2 files changed, 194 insertions(+), 23 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,kaanapali-soccp-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,kaanapali-soccp-pas.yaml
+>> new file mode 100644
+>> index 000000000000..6b53121eede1
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,kaanapali-soccp-pas.yaml
+>> @@ -0,0 +1,134 @@
+>> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/remoteproc/qcom,kaanapali-soccp-pas.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Kaanapali SoCCP Peripheral Authentication Service
+>> +
+>> +maintainers:
+>> +  - Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+>> +
+>> +description:
+>> +  The SoC Control Processor (SoCCP) is small RISC-V MCU that controls USB
+>> +  Type-C, battery charging and various other functions on Qualcomm SoCs, somewhat
+>> +  analogous to traditional PC Embedded Controllers. This document describes
+>> +  the Peripheral Authentication Service loads and boots firmware for SoCCP.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - items:
+>> +          - enum:
+>> +              - qcom,glymur-soccp-pas
+>> +          - const: qcom,kaanapali-soccp-pas
+>> +      - enum:
+>> +          - qcom,kaanapali-soccp-pas
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: XO clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: xo
+>> +
+>> +  power-domains:
+>> +    items:
+>> +      - description: CX power domain
+>> +      - description: MX power domain
+>> +
+>> +  power-domain-names:
+>> +    items:
+>> +      - const: cx
+>> +      - const: mx
+>> +
+>> +  firmware-name:
+>> +    $ref: /schemas/types.yaml#/definitions/string-array
 > 
-> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
-> ---
->  arch/arm/boot/dts/st/stih410.dtsi | 2 --
->  1 file changed, 2 deletions(-)
+> Already has a type. Drop.
 > 
-> diff --git a/arch/arm/boot/dts/st/stih410.dtsi b/arch/arm/boot/dts/st/stih410.dtsi
-> index 47d66d7eb07a3d73d98b3e21d62b2253aa1171e4..07da9b48ccac16c25da546ace8e6ac5773c68569 100644
-> --- a/arch/arm/boot/dts/st/stih410.dtsi
-> +++ b/arch/arm/boot/dts/st/stih410.dtsi
-> @@ -191,8 +191,6 @@ tvout: encoder@8d08000 {
->  			reg-names = "tvout-reg";
->  			reset-names = "tvout";
->  			resets = <&softreset STIH407_HDTVOUT_SOFTRESET>;
-> -			#address-cells = <1>;
-> -			#size-cells = <1>;
->  			assigned-clocks = <&clk_s_d2_flexgen CLK_PIX_HDMI>,
->  					  <&clk_s_d2_flexgen CLK_TMDS_HDMI>,
->  					  <&clk_s_d2_flexgen CLK_REF_HDMIPHY>,
-> 
-Acked-by: Patrice Chotard <patrice.chotard@foss.st.com>
 
-Thanks
-PAtrice
+well noted
+
+>> +    items:
+>> +      - description: Firmware name of the Hexagon core
+>> +      - description: Firmware name of the Hexagon Devicetree
+>> +
+>> +  memory-region:
+>> +    items:
+>> +      - description: Memory region for main Firmware authentication
+>> +      - description: Memory region for Devicetree Firmware authentication
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - memory-region
+>> +  - power-domains
+>> +  - power-domain-names
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/remoteproc/qcom,pas-common.yaml#
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/qcom,rpmh.h>
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +    #include <dt-bindings/mailbox/qcom-ipcc.h>
+>> +    #include <dt-bindings/power/qcom-rpmpd.h>
+>> +
+>> +    remoteproc@d00000 {
+>> +        compatible = "qcom,kaanapali-soccp-pas";
+>> +        reg = <0x00d00000 0x200000>;
+>> +
+>> +        clocks = <&rpmhcc RPMH_CXO_CLK>;
+>> +        clock-names = "xo";
+>> +
+>> +        interrupts-extended = <&intc GIC_SPI 167 IRQ_TYPE_EDGE_RISING>,
+>> +                              <&soccp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
+>> +                              <&soccp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
+>> +                              <&soccp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
+>> +                              <&soccp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>,
+>> +                              <&soccp_smp2p_in 9 IRQ_TYPE_EDGE_RISING>,
+>> +                              <&soccp_smp2p_in 10 IRQ_TYPE_EDGE_RISING>;
+>> +        interrupt-names = "wdog",
+>> +                          "fatal",
+>> +                          "ready",
+>> +                          "handover",
+>> +                          "stop-ack",
+>> +                          "pong",
+>> +                          "wake-ack";
+>> +
+>> +        memory-region = <&soccp_mem>,
+>> +                        <&soccp_dtb_mem_mem>;
+>> +
+>> +        firmware-name = "qcom/kaanapali/soccp.mbn",
+>> +                        "qcom/kaanapali/soccp_dtb.mbn";
+>> +
+>> +        power-domains = <&rpmhpd RPMHPD_CX>,
+>> +                        <&rpmhpd RPMHPD_MX>;
+>> +        power-domain-names = "cx",
+>> +                             "mx";
+>> +
+>> +        qcom,smem-states = <&soccp_smp2p_out 0>,
+>> +                           <&soccp_smp2p_out 10>,
+>> +                           <&soccp_smp2p_out 9>,
+>> +                           <&soccp_smp2p_out 8>;
+>> +        qcom,smem-state-names = "stop",
+>> +                                "wakeup",
+>> +                                "sleep",
+>> +                                "ping";
+>> +
+>> +        glink-edge {
+>> +            interrupts-extended = <&ipcc IPCC_MPROC_SOCCP
+>> +                                         IPCC_MPROC_SIGNAL_GLINK_QMP
+>> +                                         IRQ_TYPE_EDGE_RISING>;
+>> +            mboxes = <&ipcc IPCC_MPROC_SOCCP
+>> +                            IPCC_MPROC_SIGNAL_GLINK_QMP>;
+>> +
+>> +            label = "soccp";
+>> +            qcom,remote-pid = <19>;
+>> +
+>> +            /* ... */
+>> +        };
+>> +    };
+>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
+>> index 63a82e7a8bf8..f81d088c2bad 100644
+>> --- a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
+>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
+>> @@ -24,26 +24,6 @@ properties:
+>>    interconnects:
+>>      maxItems: 1
+>>  
+>> -  interrupts:
+>> -    minItems: 5
+>> -    items:
+>> -      - description: Watchdog interrupt
+>> -      - description: Fatal interrupt
+>> -      - description: Ready interrupt
+>> -      - description: Handover interrupt
+>> -      - description: Stop acknowledge interrupt
+>> -      - description: Shutdown acknowledge interrupt
+>> -
+>> -  interrupt-names:
+>> -    minItems: 5
+>> -    items:
+>> -      - const: wdog
+>> -      - const: fatal
+>> -      - const: ready
+>> -      - const: handover
+>> -      - const: stop-ack
+>> -      - const: shutdown-ack
+>> -
+>>    power-domains:
+>>      minItems: 1
+>>      maxItems: 3
+>> @@ -55,13 +35,21 @@ properties:
+>>    qcom,smem-states:
+>>      $ref: /schemas/types.yaml#/definitions/phandle-array
+>>      description: States used by the AP to signal the Hexagon core
+>> +    minItems: 1
+>>      items:
+>> -      - description: Stop the modem
+>> +      - description: Stop the remoteproc
+>> +      - description: Wake up the remoteproc
+>> +      - description: Make the remoteproc sleep
+>> +      - description: Ping the remoteproc
+>>  
+>>    qcom,smem-state-names:
+>>      description: The names of the state bits used for SMP2P output
+>> +    minItems: 1
+>>      items:
+>>        - const: stop
+>> +      - const: wakeup
+>> +      - const: sleep
+>> +      - const: ping
+>>  
+>>    smd-edge:
+>>      $ref: /schemas/remoteproc/qcom,smd-edge.yaml#
+>> @@ -80,9 +68,58 @@ properties:
+>>  required:
+>>    - clocks
+>>    - clock-names
+>> -  - interrupts
+>> -  - interrupt-names
+>>    - qcom,smem-states
+>>    - qcom,smem-state-names
+>>  
+>> +allOf:
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,kaanapali-soccp-pas
+> 
+> The point of common schemas is to not have if/then/else schemas. If 
+> interrupts is now variable, then it is no longer common and should be 
+> moved out of the common schema. Or just have the widest constraints that 
+> covers all cases ({minItems: 5, maxItems: 7}).
+> 
+> 
+
+Thanks for clarify, if we use the comman schema, we need to change the
+constraint from "const" to "enum" like:
+
+  interrupts:
+    minItems: 5
+    items:
+      - description: Watchdog interrupt
+      - description: Fatal interrupt
+      - description: Ready interrupt
+      - description: Handover interrupt
+      - description: Stop acknowledge interrupt
+      - description: Shutdown acknowledge interrupt
+      - description: Pong interrupt
+      - description: Wake acknowledge interrupt
+
+(define "maxItems: 7" will cause err:   
+hint: "maxItems" is not needed with an "items" list)
+
+  interrupt-names:
+    minItems: 5
+    maxItems: 7
+    items:
+      enum:
+        - wdog
+        - fatal
+        - ready
+        - handover
+        - stop-ack
+        - shutdown-ack
+        - pong
+        - wake-ack
+
+is this okay?
+
+Thanks,
+Jingyi
+
+>> +    then:
+>> +      properties:
+>> +        interrupts:
+>> +          items:
+>> +            - description: Watchdog interrupt
+>> +            - description: Fatal interrupt
+>> +            - description: Ready interrupt
+>> +            - description: Handover interrupt
+>> +            - description: Stop acknowledge interrupt
+>> +            - description: Pong interrupt
+>> +            - description: Wake acknowledge interrupt
+>> +
+>> +        interrupt-names:
+>> +          items:
+>> +            - const: wdog
+>> +            - const: fatal
+>> +            - const: ready
+>> +            - const: handover
+>> +            - const: stop-ack
+>> +            - const: pong
+>> +            - const: wake-ack
+>> +
+>> +    else:
+>> +      properties:
+>> +        interrupts:
+>> +          minItems: 5
+>> +          items:
+>> +            - description: Watchdog interrupt
+>> +            - description: Fatal interrupt
+>> +            - description: Ready interrupt
+>> +            - description: Handover interrupt
+>> +            - description: Stop acknowledge interrupt
+>> +            - description: Shutdown acknowledge interrupt
+>> +
+>> +        interrupt-names:
+>> +          minItems: 5
+>> +          items:
+>> +            - const: wdog
+>> +            - const: fatal
+>> +            - const: ready
+>> +            - const: handover
+>> +            - const: stop-ack
+>> +            - const: shutdown-ack
+>> +
+>>  additionalProperties: true
+>>
+>> -- 
+>> 2.25.1
+>>
+
 
