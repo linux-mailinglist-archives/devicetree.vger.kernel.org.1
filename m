@@ -1,56 +1,86 @@
-Return-Path: <devicetree+bounces-233062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BC0AC1ED05
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:41:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CC37C1ED23
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:43:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 734134E51F6
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 07:40:36 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 603124E3A76
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 07:43:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DE8B2F6569;
-	Thu, 30 Oct 2025 07:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DFEB337B8C;
+	Thu, 30 Oct 2025 07:43:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="QiXqai0Y"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bdz06F7d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E7DC33769F;
-	Thu, 30 Oct 2025 07:40:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B284E337B85;
+	Thu, 30 Oct 2025 07:43:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761810033; cv=none; b=KJxosi0aovzDHlnEKAOJxi3mT2114tpNA0xlh4FST7Gck1ht63O65z4XX+DVt3NUbrOEo5ryNqB1/lE1b20VlHS0dZk5PjwJFXPtcHR264vMjG9A5kj4O4azXs8fMUgLWK8S0yaMF2sHQ/T9EwpG04yNfRCrTX/3P1PKbgJ6FIc=
+	t=1761810190; cv=none; b=fDmRtIkuqmDgMXx3BRYSaf/QL25QV2g8lXAudz0wtW7x9Hbo6lW782MBmKjTiiesb7SrwzIGsQp9wOHxKguSlHwcxhEjtufnt69z18bsW4WiFpve9Qv5+laE2G/lJditm2BQgHTY7pA9LUNmgJmQHAew5f4BZF1fYKysz/His68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761810033; c=relaxed/simple;
-	bh=zCqPLDYFSTIRnT5sZnTePsSmoKp8F3Uxev9dTCYAwN4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=sEnuQL+nTyU58kxvakCLyqWvtJ6Q6XvhZdpuBunZ6VfHYV7SloPV0RwLRYP/Jkx/oXRnfh2U1T5PQkqdYpazNwgYU441PjxN1tFPOr1qmi//FluEKRxtHlwPkP5OtghRfulNm96aKy+vD3kakBogrLCY8Sjd7WyspBLe/Batj/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=QiXqai0Y; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1761810029;
-	bh=zCqPLDYFSTIRnT5sZnTePsSmoKp8F3Uxev9dTCYAwN4=;
-	h=From:Date:Subject:To:Cc:From;
-	b=QiXqai0YhuS1zsntczP51FL2lAyKU+mSzKqZfJCF24pmV9eyjNKPbdY6dSXXi5sCX
-	 xxypI0eRqI5EsYdtJOW3UyEQG2oUVthHTGTar2H+01fSta0vTcFfE8Mfbb2EjtMWd3
-	 0Arc948XTbMu1DK6DwMoM+AJwMVAglltEbs0FSSyfls+MGi3DZWjI0zKolSp5SXBuh
-	 jaDV8jpIa6GCxzqlPKOU02S9wIXndsmpRDrHtxzSfzvBPPXEVkIDMxUokvE9V4b2/x
-	 LQkzyrqdbhiafbas/Vkp9CwIH33ZEHdgpGTY9kACO8GbjiGKYJXiG6SxxA4YZ+StUK
-	 f20h+BrRiuZHA==
-Received: from yukiji.home (amontpellier-657-1-116-247.w83-113.abo.wanadoo.fr [83.113.51.247])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9AAEE17E009B;
-	Thu, 30 Oct 2025 08:40:28 +0100 (CET)
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Thu, 30 Oct 2025 08:40:07 +0100
-Subject: [PATCH] dt-bindings: watchdog: mediatek,mtk-wdt: Add compatible
- for MT8189 SoC
+	s=arc-20240116; t=1761810190; c=relaxed/simple;
+	bh=KGD5nB20HVdhe2mTVoU+xDv/Az5ut52P+4tvJfuK3rA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kuAW87PreEPuB+zrfOFIrs9RM6t9o/gr8z1ITRbcTQSUq/acMzez7YcUhxbGMgekd/35BVYenMzmNx9u8QCfyFTKIqQWj91QRnWA6bRB0qapX78kVqKx68GU1b2AHLAlxtzMU6144nlNADqk0FYTyXpAq5iwOpAbaB3wYAdIN3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=hu-tingguoc-lv.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bdz06F7d; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=hu-tingguoc-lv.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59TLGhtJ1655543;
+	Thu, 30 Oct 2025 07:43:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	yxZoxMDbEiIA3AxADME7vRDlDBpKP/DUWYQZ8YPNipA=; b=bdz06F7djvW5oj0q
+	Bfra9Nb5AFA0tMCQoUjmXoVhpCmkl19+qiZmJgc3+StYzbnHKTfJFa4QU0gpE8fQ
+	E5NN1cv4Z5AYTmDudNLfeMCd483bWX+qlisTEb3MIvnqWOCS6CTZlRNF4PT2cUMk
+	+BiRgJQwzUwH4ZzHETr+4wLCs4ne/HdWDoZS409m3t52T5JaalYeOwejZTu2xYmH
+	Tox+CLBHMZJ0pBWVse8abhV9xS66kBpa96s3xlcjSxGR5j2xGPTz+0CtbZe8iyqH
+	xEUGJ7I8ld90aMVOfKJR5pztKBMLNdAR5/Df1DyyKB8coZP3qC5GnoDgQVnkSAL8
+	KiFrGw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a3tptsfsc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 Oct 2025 07:43:03 +0000 (GMT)
+Received: from pps.filterd (NALASPPMTA01.qualcomm.com [127.0.0.1])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 59U7h2S4004586;
+	Thu, 30 Oct 2025 07:43:02 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by NALASPPMTA01.qualcomm.com (PPS) with ESMTPS id 4a42a396uq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 Oct 2025 07:43:02 +0000
+Received: from NALASPPMTA01.qualcomm.com (NALASPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 59U7gVFs002508;
+	Thu, 30 Oct 2025 07:43:02 GMT
+Received: from hu-devc-lv-u24-a.qualcomm.com (hu-tingguoc-lv.qualcomm.com [10.81.95.108])
+	by NALASPPMTA01.qualcomm.com (PPS) with ESMTPS id 59U7h2m7004562
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 Oct 2025 07:43:02 +0000
+Received: by hu-devc-lv-u24-a.qualcomm.com (Postfix, from userid 2370279)
+	id 0001521805; Thu, 30 Oct 2025 00:43:01 -0700 (PDT)
+From: Tingguo Cheng <tingguoc@hu-tingguoc-lv.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: Tingguo Cheng <tingguo.cheng@oss.qualcomm.com>, kernel@oss.qualcomm.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+        Rakesh Kota <rakesh.kota@oss.qualcomm.com>,
+        Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+Subject: [PATCH v2] arm64: dts: qcom: hamoa-iot-evk: enable pwm rg leds
+Date: Thu, 30 Oct 2025 00:42:14 -0700
+Message-ID: <20251030-add-rgb-led-for-hamoa-iot-evk-v2-1-3b3326784d7b@oss.qualcomm.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <y>
+References: <y>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,58 +88,103 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251030-mt8189-dt-bindings-wdt-v1-1-975971ba29e5@collabora.com>
-X-B4-Tracking: v=1; b=H4sIAFYWA2kC/yXNwQqDMBAE0F8Je+5CEqmov1I8RLPaPSS22dgK4
- r83NMc3MDMnCCUmgUGdkOjDwlssMDcF89PFlZB9MVht70bbHkPuTNejzzhx9BxXwW+Bb72zi26
- cbTWU8ivRwsd/+DFWJ3rvZT/XECYnhPMWAudBRToy1o9Gw3hdPwdI4MGZAAAA
-X-Change-ID: 20251029-mt8189-dt-bindings-wdt-d6da2f03a260
-To: Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: kernel@collabora.com, linux-watchdog@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+X-Change-ID: 20251017-add-rgb-led-for-hamoa-iot-evk-43ed6bda73a5
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761810028; l=1181;
- i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=zCqPLDYFSTIRnT5sZnTePsSmoKp8F3Uxev9dTCYAwN4=;
- b=Z/NT/ku5a3v7+z6gX10fuY1Tr/RmBBg9g8JoOhmLn+z6ju0nEQ29d788LkwfFkB5A/uNgX3BD
- dya/nH7WNjHBzv4EOmQKpgqhWkG3puV6wox3ImpYnwwuBiJ0kgLucAJ
-X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
- pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761809973; l=1710; i=tingguo.cheng@oss.qualcomm.com; s=20240917; h=from:subject:message-id; bh=PAucMdJsakoDIrmnfPwibuCKPBaBNtbeP4z5DbseUYk=; b=AKG59P863Ki6XefEtuBh/XRoaeClb7eJQKU+/PhnbMrAKhRgaYNfLQqKXz1NJBLRSvSa2YL+d Za1DZYrePkJBQwEc8X/FzMKJtJ6ytZSeQECBvbIVE0JZYQ2rU76kzxz
+X-Developer-Key: i=tingguo.cheng@oss.qualcomm.com; a=ed25519; pk=PiFYQPN5GCP7O6SA43tuKfHAbl9DewSKOuQA/GiHQrI=
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMwMDA2MiBTYWx0ZWRfX8xyZOMn7QuxO
+ DOWVIBFZjHf0vrQiuQXGaIZ8OMg+0gY54XCk914vlPCG4p8o+tKUF0iM+IJE0mKzxOQjZmGGsPR
+ zWHCgaMpyycz0P9mWGlBaO5EcolWqU7hEmjV5cLI+1KkslvLqCFHhWeYlKmv+DcTdGvGocVdzIP
+ gF3HDFPV86G+hHyQ19sDs/fKo8mSBdUXle0nkZ63Hax2cGhvp7Tg2R15Hroo1/DrKr2GcQis9ED
+ bUXGgOVcOBaKNiPEez8XyBAJuYqNQzXh2TJH5nwrC8VR8fPBtBGysrxtnesnu+B4ysKvShgw093
+ jpi0HFtgZRxF2Y5s7VcQ4em5SF0n7gCIDtXDTq8Mb97R9mPDZ6aJS1+7ROxq4StuEDXWPWKm+uE
+ yg8mrGukuEDA962JgEwHsPZKL2s+Bg==
+X-Proofpoint-GUID: jXljtTkCW2zgUPBPIVakjZCai8cIOGwq
+X-Authority-Analysis: v=2.4 cv=MuRfKmae c=1 sm=1 tr=0 ts=69031707 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=F6_ufdXwtoZMk_li76YA:9 a=QEXdDO2ut3YA:10
+ a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-ORIG-GUID: jXljtTkCW2zgUPBPIVakjZCai8cIOGwq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-10-30_01,2025-10-29_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 impostorscore=0 suspectscore=0 spamscore=0
+ lowpriorityscore=0 clxscore=1034 bulkscore=0 phishscore=0 malwarescore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2510300062
 
-Add compatible string for the watchdog block on MT8189 SoC, which is
-compatible with the one used on MT6589.
+From: Tingguo Cheng <tingguo.cheng@oss.qualcomm.com>
 
-Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Add RED and GREEN LED channels for the RGB device connected to PMC8380C
+PWM-LED pins. Omit BLUE channel to match default hardware setup where
+it's tied to EDL indicator.
+
+Signed-off-by: Tingguo Cheng <tingguo.cheng@oss.qualcomm.com>
 ---
- Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Changes in v2:
+- Rebased on next-20251030.
+- Remove BLUE led channel to align with the default hardware configuration.
+- Link to v1: https://lore.kernel.org/r/20251017-add-rgb-led-for-hamoa-iot-evk-v1-1-6df8c109da57@oss.qualcomm.com
+---
+ arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
-index ba0bfd73ab62a86befead007d4b7d2a870b81a0c..caa1140fdf44f79f229644b54f759a93145f26d8 100644
---- a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
-@@ -41,6 +41,7 @@ properties:
-               - mediatek,mt7623-wdt
-               - mediatek,mt7629-wdt
-               - mediatek,mt8173-wdt
-+              - mediatek,mt8189-wdt
-               - mediatek,mt8365-wdt
-               - mediatek,mt8516-wdt
-           - const: mediatek,mt6589-wdt
+diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
+index 36dd6599402b4650b7f8ad2c0cd22212116a25fe..ef59e5ff59f2cbe0ee60a020a5d2929c67ad511b 100644
+--- a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
++++ b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
+@@ -5,6 +5,7 @@
+ 
+ /dts-v1/;
+ 
++#include <dt-bindings/leds/common.h>
+ #include "hamoa-iot-som.dtsi"
+ 
+ / {
+@@ -879,6 +880,28 @@ usb0_1p8_reg_en: usb0-1p8-reg-en-state {
+ 	};
+ };
+ 
++&pm8550_pwm {
++	status = "okay";
++
++	multi-led {
++		color = <LED_COLOR_ID_RGB>;
++		function = LED_FUNCTION_STATUS;
++
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		led@1 {
++			reg = <1>;
++			color = <LED_COLOR_ID_RED>;
++		};
++
++		led@2 {
++			reg = <2>;
++			color = <LED_COLOR_ID_GREEN>;
++		};
++	};
++};
++
+ &pmc8380_5_gpios {
+ 	usb0_pwr_1p15_reg_en: usb0-pwr-1p15-reg-en-state {
+ 		pins = "gpio8";
 
 ---
 base-commit: d78b0fee454c25d292fb6343253eca06d7634fd9
-change-id: 20251029-mt8189-dt-bindings-wdt-d6da2f03a260
+change-id: 20251017-add-rgb-led-for-hamoa-iot-evk-43ed6bda73a5
 
 Best regards,
 -- 
-Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Tingguo Cheng <tingguo.cheng@oss.qualcomm.com>
 
 
