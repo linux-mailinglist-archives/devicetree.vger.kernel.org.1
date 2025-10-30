@@ -1,204 +1,129 @@
-Return-Path: <devicetree+bounces-233210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 967AAC1FE71
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:00:24 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCFCFC1FEA2
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:03:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5131E4E9EA6
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 12:00:23 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EBD314EA815
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 12:02:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1CCE2F7AAF;
-	Thu, 30 Oct 2025 12:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB983314B70;
+	Thu, 30 Oct 2025 12:02:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=karo-electronics.de header.i=@karo-electronics.de header.b="TJzJ511K"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UM+pbYlH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from dd54918.kasserver.com (dd54918.kasserver.com [85.13.167.58])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A1BC313E2B;
-	Thu, 30 Oct 2025 12:00:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.13.167.58
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1167C2DCF46
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 12:02:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761825617; cv=none; b=qy4T2zfpJ58D0QCoFltOb10UAMXuHa15VgsTRMSEzFI6RpcAeLVPy9YJxr4U1b0uWdgY1xtnlDQuwBURSak573L1XWqD2FLmir85GIxoBMUjSIimNAh9vuRhOLBU7U+faUjW/Y/LS07jvK9z9a6Wt2yAHzrA13kwz8VuWljhNxs=
+	t=1761825766; cv=none; b=IEU7v75SF04OtV/jv5INVArz5GXITKv8gpaahO+8VhPZBVupJTGFAst2q4Omhn2Fx2A2IlBHoQBK/c+TgISE00XN2adWeoOaTc/OlYPdp1Mk35T3/ZYWHecYI2UzBaoo5/rgm6MIVf2eJV33RVltNgk1w9fp8+lG7avc4LhaCUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761825617; c=relaxed/simple;
-	bh=sUglKoVc/VLXRM9p0grmAN5nbBQlsBeZ6PJ7XKIOx40=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=V1wGT3y+Zq9rf4t22Kujy+XFpudesGmBnL8XQNUos9J87ypEGi19gXiojRNk2ouCIG3Z0vvd5EtuL3korkS/7IpaIE3BNVoY592NFsUGT+6AsC3wQHTr8doiotVsw2y6phvl40k5d5R0JjHPcCBcQxDCuVydckMtOPaOzu0lKW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=KARO-electronics.de; spf=pass smtp.mailfrom=KARO-electronics.de; dkim=pass (2048-bit key) header.d=karo-electronics.de header.i=@karo-electronics.de header.b=TJzJ511K; arc=none smtp.client-ip=85.13.167.58
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=KARO-electronics.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=KARO-electronics.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=karo-electronics.de;
-	s=kas202509031142; t=1761825608;
-	bh=KoSpIHesXav88BpAbWZAt/l5Rnoii11g5rgxnEXc2kk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=TJzJ511Kau45mJR/ckFCA6l46qxr2CBDpYPyYYz1OOpWhPc020ANMEuudO8sjC08G
-	 sM9XS3m5lGQ3xQfyCiiGSX5oSe5TQ2vjth86959tI4HZk9+d3HvaVHAx6Hj5nAvK9v
-	 dJX/coXRd4466/s0/mW4KrTYGl/jViyWqeGdJnTUuwM5krD+q8aL3fJWURaOv0Gqsm
-	 gajocVQfdWpacLTtC62WNP0lKarL4Aag6vDPFaQO9gGu+/YiBBBt4aSF9qzX12cgmZ
-	 1L/xK8IMiIbABbkK6L7S/Z9JVT9PjWNR00XTIghNyFX5ruaLOcvtWad1vV6GNF3wJA
-	 ZvTEQs1n8pzXw==
-Received: from karo-electronics.de (unknown [89.1.81.74])
-	by dd54918.kasserver.com (Postfix) with ESMTPSA id E53F9772C542;
-	Thu, 30 Oct 2025 13:00:07 +0100 (CET)
-Date: Thu, 30 Oct 2025 13:00:06 +0100
-From: Lothar =?UTF-8?B?V2HDn21hbm4=?= <LW@KARO-electronics.de>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Maud Spierings <maudspierings@gocontroll.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 3/5] arm64: dts: freescale: add Ka-Ro Electronics
- tx8m-1610 COM
-Message-ID: <20251030130006.0221957a@karo-electronics.de>
-In-Reply-To: <26fc62bb-3484-4812-b576-6640eef72c49@gmail.com>
-References: <20251022-mini_iv-v2-0-20af8f9aac14@gocontroll.com>
-	<20251022-mini_iv-v2-3-20af8f9aac14@gocontroll.com>
-	<a7012995-c2a8-48a3-abe1-5c227272f21c@gmail.com>
-	<65202d1f-6c4f-4d4e-9fef-85cfb74ec768@gocontroll.com>
-	<938f85b0-4c9b-463a-960a-f5f4e4092480@gocontroll.com>
-	<20251029081138.2161a92a@karo-electronics.de>
-	<4a47b9b5-f482-41b6-a441-7728572c5a0c@gmail.com>
-	<20251029104838.44c5adcf@karo-electronics.de>
-	<d05c62c9-7ed7-46e4-aa4d-27172741b5ee@gmail.com>
-	<0667e026-99f3-4233-b3f6-e38273961d49@gocontroll.com>
-	<20251030095434.1dc06df2@karo-electronics.de>
-	<26fc62bb-3484-4812-b576-6640eef72c49@gmail.com>
-Organization: Ka-Ro electronics GmbH
+	s=arc-20240116; t=1761825766; c=relaxed/simple;
+	bh=2wqxvv1LyQFzj8yk+I9X6hMiGmB+zBuKRmM0nZOP2cs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=I0qszVugnRzUQUo6DkPL9DjPKsDkD3F0GSzTUjv1hJ3SEDnObs32Vt3pDS8M7AIJSBazAjJENDjJmsdJLY3WFiy1AyNjRgbyxFXBimxlBtJHPdV2Vg8n7+Mzu0QOi9129ip+9g1eQrr7xMjG67ktYxcrIbqU9MC71j7SodT++gU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UM+pbYlH; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-427007b1fe5so759494f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 05:02:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761825763; x=1762430563; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NKKJA6fRomltCp481BiLWPXK7LT4XBfRN+VIaJM7fMU=;
+        b=UM+pbYlHnUIzInvqsPW9Qf5Yys5Qs2ZO7H4pQk2LVCtO70iJtqNjvge+5dfAMAuJ+8
+         MZVAV2ipFDKy3dvc08osdR5saIy2ZwBJMO+I/vwMfJN9fMbGbFWIKkOYJmHEmi/cWqCM
+         ZJ6Tkjne64CCLm5NeN5Os9a/BM14ftZD7CZIfaAPQgWdR5lke6EFLL70Jd0mB6L6nIeW
+         GsTbbu9AxFHTJxpINB07PmSam17kYqh1ER0cqcc8tko6eJyqkdTLNtFgulaCRDC7cilA
+         wdIEusGAIMLEhiscEce2qSBjchjOGngpbBEPOXAqPRbzpvycO9jqrtqpiYVk2VypNe16
+         oN3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761825763; x=1762430563;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NKKJA6fRomltCp481BiLWPXK7LT4XBfRN+VIaJM7fMU=;
+        b=NxZx+bUORcf3X2FZH8WJp2kTkRbQyff3Nzxfp2k58k8gQVxOhm6YTx3x5neyqcL9Ex
+         cAvC/p/ddWqi7CqHe/uK89a2ZsqL6mOmWwZuCePhkeb3Ev98ZZBeADEYCW513mRAdyr/
+         cY0fTWm1zOCMFRsX/ASopnLFKRBx0RBJn5gRVjUVO3KTx3Am5cw8vhgKgGAsO/JK/Y4F
+         X5HKMLpoNZUNYv6KizpaZ1yod9OMjJJ0fot2MPFRW67EwarR8zrerKVjxNxly+9LXdbG
+         k4ygRaSsqU+ft1+oi1WsZZe8maWA2K7DIUTZbuZX74rE93J9YSoUmzniN8UOfw1nPrtO
+         bFMA==
+X-Gm-Message-State: AOJu0Yy7CsnxdWXQXoZ6hXu96N47oyTQiXymeO7/04rCcIByG/0FV3ii
+	PX88T59skQpyR1enBdkJmKpSkqhUO9OHeGz1uanPSOAXBeGVNOHKyjEGgEf7+Pbv
+X-Gm-Gg: ASbGncsHno2knEu14aNIJqiDj0KVeM/Bun3FuunM4t1eR6hLs8XBmO7c5Rl1EoH4Tcg
+	jlvXZgubykz2WxMLmHAviQB9hLCsp0C2rI4za4YiNl4Q5oZXF+WES9NEjeFGmPmCCmr2Hx2IoXd
+	v7YmsYY/vtze9rHphiA7z7V0E2pEvwHZ7iqylM7bNMwFc6tdo8U8psigmj+u488JQagM+yssHjy
+	ug5LalgBBtnAwP1uz0kjJ7XV1Xz94f0deglNJCsvodfCQ/Na4e9N7HoNl2DO3qeH68McKmIrbhI
+	3eK9Ipdz+54zvGdKxNDcDb9OFgJPuoiqX1rTfwqQWROi1oFUo3zFx7La2oPf/nEIY7RCrnn3mcs
+	Jcvrp49Or+OvPYYNhHajJ7wDmXUm1IHqG4XO3u0M/p0hTnlG043YdFNM2jvYNQu2MnUDHyrzqs5
+	dlxR9gGqFVFxeB/LVO0Rcjy/Ff8BENMfCtz7ze0vtlU2hNQiMc5absL8JNe7hYx9q73GbWdJFq
+X-Google-Smtp-Source: AGHT+IGkEzWaIhOle1zjpMnONwufJ9WytmJCNBOpcHQt6RREK2pdj8LZw4LmLrh8QmCmDfNohShFNg==
+X-Received: by 2002:a05:6000:26ce:b0:3e1:2d70:673e with SMTP id ffacd0b85a97d-429aefb2a1fmr5378560f8f.37.1761825763215;
+        Thu, 30 Oct 2025 05:02:43 -0700 (PDT)
+Received: from Lord-Beerus.station (net-93-146-98-100.cust.vodafonedsl.it. [93.146.98.100])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429b9b436efsm2399848f8f.23.2025.10.30.05.02.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Oct 2025 05:02:42 -0700 (PDT)
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+To: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Stefano Radaelli <stefano.radaelli21@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/4] arm64: dts: freescale: imx93-var-som: Align DTS with hardware revision
+Date: Thu, 30 Oct 2025 13:01:20 +0100
+Message-ID: <20251030120127.509933-1-stefano.radaelli21@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Bar: /
+Content-Transfer-Encoding: 8bit
 
-Hi,
+This patch series updates the device tree for the VAR-SOM-MX93 to align it
+with the latest hardware revision of the module.
 
-On Thu, 30 Oct 2025 13:01:52 +0200 Matti Vaittinen wrote:
-> On 30/10/2025 10:54, Lothar Wa=C3=9Fmann wrote:
-> > Hi,
-> >=20
-> > On Wed, 29 Oct 2025 16:35:25 +0100 Maud Spierings wrote: =20
-> >> Hi Matti,
-> >>
-> >> On 10/29/25 11:05, Matti Vaittinen wrote: =20
-> >>> On 29/10/2025 11:48, Lothar Wa=C3=9Fmann wrote: =20
-> >>>> Hi,
-> >>>>
-> >>>> On Wed, 29 Oct 2025 10:42:17 +0200 Matti Vaittinen wrote: =20
-> >>>>> On 29/10/2025 09:11, Lothar Wa=C3=9Fmann wrote: =20
-> >>>>>> Hi,
-> >>>>>>
-> >>>>>> On Tue, 28 Oct 2025 14:10:04 +0100 Maud Spierings wrote: =20
-> >>>>>>> On 10/28/25 13:42, Maud Spierings wrote: =20
-> >>>>>>>> On 10/28/25 13:15, Matti Vaittinen wrote: =20
-> >>>>>> [...] =20
-> >>>>>>>>> Could/Should this be described using the:
-> >>>>>>>>> 'rohm,feedback-pull-up-r1-ohms' and
-> >>>>>>>>> 'rohm,feedback-pull-up-r2-ohms'? If I understand the comment
-> >>>>>>>>> correctly, that might allow the driver to be able to use correc=
-tly
-> >>>>>>>>> scaled voltages.
-> >>>>>>>>>
-> >>>>>>>>> https://elixir.bootlin.com/linux/v6.18-rc1/source/Documentation/
-> >>>>>>>>> devicetree/bindings/regulator/rohm,bd71837-regulator.yaml#L108 =
-=20
-> >>>>>>>> =20
->=20
-> // snip
->=20
-> >>>>>
-> >>>>> If real voltages aren't matching what is calculated by the driver, =
-then
-> >>>>> the voltages requested by regulator consumers will cause wrong volt=
-ages
-> >>>>> to be applied. Debug interfaces will also show wrong voltages, and =
-the
-> >>>>> safety limits set in the device-tree will not be really respected.
-> >>>>>
-> >>>>> I think this would be well worth fixing.
-> >>>>>    =20
-> >>>> Before doing the real-life test I did the same calculation that's do=
-ne
-> >>>> in the driver to be sure that it will generate the correct values:
-> >>>> bc 1.07.1
-> >>>> Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006, 2008, 2012-2017
-> >>>> Free Software Foundation, Inc.
-> >>>> This is free software with ABSOLUTELY NO WARRANTY.
-> >>>> For details type `warranty'.
-> >>>> fb_uv=3D0
-> >>>> r1=3D2200
-> >>>> r2=3D499
-> >>>> min=3D800000
-> >>>> step=3D10000
-> >>>> # default voltage without divider
-> >>>> min+30*step
-> >>>> 1100000
-> >>>> min=3Dmin-(fb_uv-min)*r2/r1
-> >>>> step=3Dstep*(r1+r2)/r1
-> >>>> min
-> >>>> 981454
-> >>>> step
-> >>>> 12268
-> >>>> # default voltage with divider
-> >>>> min+30*step
-> >>>> 1349494
-> >>>>
-> >>>> Probably we need to use this value rather than the nominal 135000 as
-> >>>> the target voltage in the DTB. =20
-> >>>
-> >>> Yes. When the driver calculates the voltages which match the actual
-> >>> voltages, then you should also use the actual voltages in the device-=
-tree.
-> >>>     =20
-> >> =20
->=20
-> // snip
->=20
-> >>
-> >> Then setting 1349494 as the actual voltage makes it fully work.
-> >> Otherwise it complains:
-> >> buck6: failed to apply 1350000-1350000uV constraint: -EINVAL
-> >>
-> >> Final debug output now:
-> >> [    0.327807] rohm-bd718x7 0-004b: buck6: old range min 800000, step =
-10000
-> >> [    0.327813] rohm-bd718x7 0-004b: new range min 981454, step 12268
-> >> [    0.327819] rohm-bd718x7 0-004b: regulator 'buck6' has FB pull-up
-> >> configured
-> >>
-> >> I will add this fix to the next version of this patchset and include
-> >> your requested change in the dts.
-> >> =20
-> > Does it also work with min/max settings in the DTS that are taken from
-> > the designated value +/- 5% tolerance margin, so that the DTS contains
-> > reasonable values determined by the HW requirements, rather than some
-> > artificial number that is enforced by the SW behaviour? =20
->=20
-> I am unsure what you mean by "artificial number that is enforced by the=20
-> SW behaviour"?
->=20
-The nominal voltage that is required by the consumer is 1.35 V. That's
-the voltage I would expect to set as target for the regulator.
-If that voltage cannot be achieved exactly, I would prefer to have the
-intended voltage listed explicitly rather than listing a value that
-accidentally can be achieved by the regulator but has nothing to do with
-the requirements of the consumer.
+The updates include the addition of missing peripherals and devices present
+on the current SOM version, namely:
+ - WiFi and Bluetooth module (NXP IW611/IW612)
+ - PMIC (Dual NXP PCA9541)
+ - Audio codec (NXP WM8904)
+ - Resistive touch controller (TI ADS7846)
 
-> I don't know why there should be two different min values? Assuming the=20
-> latter should be max - I have no problem seeing a range of allowed=20
->
-My copypaste is obviously spoiled... ;)
+These changes ensure the DTS reflects the real hardware configuration and
+enable full support for the mentioned peripherals.
+
+Stefano Radaelli (4):
+  arm64: dts: freescale: imx93-var-som: Add WiFi and Bluetooth support
+  arm64: dts: freescale: imx93-var-som: Add PMIC support
+  arm64: dts: freescale: imx93-var-som: Add support for WM8904 audio
+    codec
+  arm64: dts: freescale: imx93-var-som: Add support for ADS7846
+    touchscreen
+
+ .../boot/dts/freescale/imx93-var-som.dtsi     | 332 +++++++++++++++++-
+ 1 file changed, 331 insertions(+), 1 deletion(-)
 
 
-Lothar Wa=C3=9Fmann
+base-commit: e53642b87a4f4b03a8d7e5f8507fc3cd0c595ea6
+prerequisite-patch-id: bfa4df6e3787b415218cd441317fb838824e06c3
+-- 
+2.43.0
+
 
