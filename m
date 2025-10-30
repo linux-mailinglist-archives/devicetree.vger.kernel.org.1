@@ -1,137 +1,132 @@
-Return-Path: <devicetree+bounces-233335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 957AEC21355
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:34:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A29EEC21377
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:35:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15441189539D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 16:33:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 559D01A256D8
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 16:35:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF310267386;
-	Thu, 30 Oct 2025 16:33:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32DF026CE2E;
+	Thu, 30 Oct 2025 16:34:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QydVTpWt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QZoYAMV6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0D39235053;
-	Thu, 30 Oct 2025 16:33:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3F5D23909F
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 16:34:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761841999; cv=none; b=H8/WB2hulEliPgqgm/myifV94T7jROBNvLntXkeBU4S5I0bJ00rBxFC8vpnTTxj0FD6CNecH9K6MpDfoYSIL0tzguiA8agfYJX0qTr+nvleejseTY2g7w1TOJFtTZBccH1QZ0bqfGYkM69cwRHs8hsVF4t/xmlM3lC/s1EjdFhY=
+	t=1761842083; cv=none; b=WXLuvTjufe0LOCV0B6Ur2oDbukxs5+f9g3w4rLXjh9Ib2JCwApseuSeU9mdr/NoV+U+O65mokKoXMiFg5BXp6xu1w2GM69HShyIJmriAwaJwPYD3OmhNcHn8BNZe6XatE2tpyg9pRBeWGnm/Ea0kI403lsL2ecT/AXcOUfGXhUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761841999; c=relaxed/simple;
-	bh=DfAutBkwsyA5VIVFuVw3gl+rzbpA5Cob0IAO18VogBc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aoRZT780AqB5tS8cgrIr3JqcMjNdHIPdan3HoYPfzUUMSE8mEDdco5nJIdDy/1jmp3HADSJjNey81MNF9TPE5KDxDJCpY+mF5dOU51wPCpRk2XCKrsk65a5MZLqx26e30IefalliR9BwWx2tpLRRffXAp2uxYTAkOlK/CWNZP18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QydVTpWt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47EC9C4CEF1;
-	Thu, 30 Oct 2025 16:33:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761841999;
-	bh=DfAutBkwsyA5VIVFuVw3gl+rzbpA5Cob0IAO18VogBc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QydVTpWtdkDbJcIM8joGKrTe5OEjvZQ1839ccThM0xTTymcVTmnX4wO5Qa38mXZlC
-	 IYJ6rMdbgGRlmLOVRjqFDUFTh0oZxXu7LXkFdEzd5wnCC8mBIY+OFq6HpjB14eP059
-	 TvOKzi0ZJi6az5cRmWrUmbr1VHPlOTFz25g1T+2tXw36hj1lu89WhQVWbrS0bWeuxA
-	 FmPc29k/y9F6VbN9c9vUYBb87lbQFbZH+2IZgEcNwvOeMRZYNw9XF/57P9G3iiheJa
-	 nrxp2S7TDiFOyITaoF4AwFs9CDKuDciyVE8+jQcgFlMRASWK5uxzAZLppJl45l3yCK
-	 6+EwNitLRYKgw==
-Message-ID: <32c35bd4-fc49-428c-9204-a39bda7cef19@kernel.org>
-Date: Thu, 30 Oct 2025 17:33:15 +0100
+	s=arc-20240116; t=1761842083; c=relaxed/simple;
+	bh=49TrQUGUtrEr2yZhMBoKYVsIAJVY+BeJ0rODJ0UUTWw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Mprz4UVFmBr845xud7gC2JFDRAbP7+3PUYJU1V9i7H9Zk3LK10mtEma5twLcFzn5KTvjiUljat2wzkOP434KXSYhvcqYlHuYCjQP2jjS5nR5M+vj1qYNNcJO5/d+KfVIjJ41OuZYY7Y244whZrSM2GoAPdt7f5tRTKaiVaHxHnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QZoYAMV6; arc=none smtp.client-ip=209.85.215.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-b6cf3174ca4so985434a12.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 09:34:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761842081; x=1762446881; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2GemJnWb5rbunzFGiUAhg7eKB3QXcsT4ACvgb/nKBts=;
+        b=QZoYAMV6azRsYI4wMMudbgzETPhyCF0uRFgnDj0kFCm6BbFRka0ARsNJ8jF1RWdhYL
+         l8UCmeOlhwEA0ur39my95Pcv6um2mRoe1UG51/CVUOZmadDqZKtaSfsUeDyjiPhNUtLR
+         6QMy9UJG2BW19AJ886nRyzTdX9mEsfyzEkUqTJOGtzN1KdpLUzjBrBzjfJyCIjGGYa4e
+         FR17otrwGiMGLBF70OWq3PaAnZ8hF/TboHyMnfo4E70RJxITDV8sv2zgYvpxzBgksPTD
+         /GM7woueWkZI1Eb399L0zwKUP1IIF+JwBI/UXpG5pfzB3Gs6NJqfJbyRFcfeBgPhMJsh
+         FX5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761842081; x=1762446881;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2GemJnWb5rbunzFGiUAhg7eKB3QXcsT4ACvgb/nKBts=;
+        b=JXK8+5C0PCHwgS504UfhUa1u1biilf3VtFnw8weNbAjVI0UgSHiOpiKq3zVlmsozPB
+         c0NrIFAy7842kDuJVlPOftgcv5LaWKLOPH2y4C2JKCkMCYwe4xPzwH0yYttDB2/nGsJW
+         i33FzJ9JIjo6EJqoNHyFEifZt4fmEj4zloUZa7tuUDDkMixFbs2A4HVG0kOUGl/L0XXl
+         JjUr6+t6QfFiw4PR9N9Fv7hF0/yGMYuel+QcAQsnKi0EE1RBY3GCPu4Qint+ZfTh+KSs
+         JvSzvPgQxp9k4iOntqrUlg3EV/ogox6y8FMVXy/oLVJcdVNcQ28Ry9z7TnCbn8wmxhbX
+         vrNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUwq8Wo3kQMtrfko9tljxTjMPeM6/j7RDKt2Exor2WtMpAY1s3/RHLYr2gOtB3qCh6piCCSgTC/KJF5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLBPxKNbkwI3k4CPvCj99pxD9Gz84d340XkT5G9S5asXGZF0hQ
+	qI69v5uIuE6itLEOE6bxo7tbfT4chi4w2W/5g9J7xg0L7rH3ROY/Sf88
+X-Gm-Gg: ASbGncukaedEQ4XyYr9Ggq+bpjcZimnpMkndcMoDKVCOS91xFoSV+eV5p0+OFVgNFKp
+	mgU/Fi74SauBnnYNK53ZRqfhLJuZTIbTLErCn8NPAotyZ59A+7OcQ9ZXvHpaZj82PI1cbcpfDHI
+	CvO31MuALBgRJkAVXibGHlJlCLJSu3r/cavqmPzX2xjqm4OeQzMRSbzPbGExJ4UmrqLviKkrm2k
+	JTq/W/0CAiQNLajXKER7dy0uC4HzdqBlTWOrpJTl5dBqHnuQ71E5kPTMLWFtZgrEPQD4Zww3xJm
+	vxxvKm6JK+ScgmFvi916eL0iZ1Xq2b9kxwubw6Ruaj6MdQBG8d0J1xkGnBON/GILfm3HCPOpz7t
+	OJW2aIeNQsALCucLImetagvpV/BTXPC1/LYbzmygyzdIIsyFtgTRMm4LIEK32XnHQWD8SFPqp6F
+	JiMn2re1S+WwoDv0jr+ROpe1/tm5TZuhtjP3kWLKPHOOzSazncYeJY2hjkVOlkEgALUZ3fWQPWL
+	fbL7JEdXc2u/42ZA2oPmnSkbuS6TVZ2JBoGkC/3vvOfXwI=
+X-Google-Smtp-Source: AGHT+IFhVPa23fECGvV4dUIAld5HM4HNjatO6IlpoUW53cLuqxeeqTXNZkPLMxgkK1m51ToYYLi7xQ==
+X-Received: by 2002:a17:903:1111:b0:267:9931:dbfb with SMTP id d9443c01a7336-2951a526f47mr3589515ad.54.1761842080791;
+        Thu, 30 Oct 2025 09:34:40 -0700 (PDT)
+Received: from ajianan-Latitude-5591.. ([2402:e280:21d3:2:339d:c9c4:e069:47f7])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29498e429d9sm190932845ad.100.2025.10.30.09.34.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Oct 2025 09:34:40 -0700 (PDT)
+From: Ajith Anandhan <ajithanandhan0406@gmail.com>
+To: linux-iio@vger.kernel.org
+Cc: jic23@kernel.org,
+	dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	andy@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Ajith Anandhan <ajithanandhan0406@gmail.com>
+Subject: [RFC PATCH 0/3] iio: adc: Add support for TI ADS1120 ADC
+Date: Thu, 30 Oct 2025 22:04:08 +0530
+Message-Id: <20251030163411.236672-1-ajithanandhan0406@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] firmware: stratix10-svc: add the compatible value
- for Agilex5
-To: "Romli, Khairul Anuar" <khairul.anuar.romli@altera.com>
-Cc: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "Rao, Mahesh" <mahesh.rao@altera.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <cover.1761648711.git.khairul.anuar.romli@altera.com>
- <08cacb9328c338edb6a6f291c56c6d2c32a9e0cb.1761648711.git.khairul.anuar.romli@altera.com>
- <20251030-wakeful-hospitable-eagle-9dfca1@kuoka>
- <6b3cb11d-afbd-4242-b215-a3a0230cffb8@altera.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <6b3cb11d-afbd-4242-b215-a3a0230cffb8@altera.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 30/10/2025 12:35, Romli, Khairul Anuar wrote:
-> On 30/10/2025 3:58 pm, Krzysztof Kozlowski wrote:
->> On Thu, Oct 30, 2025 at 11:30:09AM +0800, Khairul Anuar Romli wrote:
->>> Add the compatible property value so we can reuse Intel Stratix10
->>> Service Layer driver on Intel Agilex5 SoC platform.
->>>
->>> This addition is an initial Agilex5 service layer driver enablement that
->>> will involve adding IOMMU changes in the future.
->>
->> Heh, your bindings said now there is no iommu. Can you please read
->> writing bindings before you post next version?
->>
->> Best regards,
->> Krzysztof
->>
-> I was excluding the iommu in the current patch series, not that I meant 
-> there is no iommu. It was meant for the future patches that will include 
+This RFC patch series adds support for the Texas Instruments ADS1120,
+a precision 16-bit delta-sigma ADC with SPI interface.
 
-Read your bindings again. They clearly do not list IOMMU, meaning there
-is no IOMMU.
+The driver provides:
+- 4 single-ended voltage input channels
+- Programmable gain amplifier (1 to 128)
+- Configurable data rates (20 to 1000 SPS)
+- Single-shot conversion mode
 
-Best regards,
-Krzysztof
+I'm looking for feedback on:
+1. The implementation approach for single-shot conversions
+2. Any other suggestions for improvement
+
+Datasheet: https://www.ti.com/lit/gpn/ads1120
+
+Ajith Anandhan (3):
+  dt-bindings: iio: adc: Add TI ADS1120 binding
+  iio: adc: Add support for TI ADS1120
+  MAINTAINERS: Add entry for TI ADS1120 ADC driver
+
+ .../bindings/iio/adc/ti,ads1120.yaml          |  50 ++
+ MAINTAINERS                                   |   7 +
+ drivers/iio/adc/Kconfig                       |  10 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/ti-ads1120.c                  | 509 ++++++++++++++++++
+ 5 files changed, 577 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1120.yaml
+ create mode 100644 drivers/iio/adc/ti-ads1120.c
+
+-- 
+2.34.1
+
 
