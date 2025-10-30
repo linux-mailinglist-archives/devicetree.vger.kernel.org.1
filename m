@@ -1,424 +1,195 @@
-Return-Path: <devicetree+bounces-233471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17033C227FC
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 23:04:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E21EFC2295F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 23:43:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 95D2D34DB0C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 22:04:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDA3E1A279B6
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 22:43:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9017033B6FF;
-	Thu, 30 Oct 2025 22:03:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADF4A33BBB8;
+	Thu, 30 Oct 2025 22:42:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="nATXWYqz"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="eDQ5Qf7J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6895433A013
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 22:03:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99A7A33BBAB
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 22:42:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761861799; cv=none; b=eNomMeqeL56c2wHHGTuYekIf9C0+XsuCzA4MSLaJa5s937W1xGeDu74g2UNxhIJbBRcdbqXvLggj4HuG+t+UFkeuPVT9X8abANK00IUEPzPQOJtXl+GOELrzmHIupJkz1xzQfTATFluNivWblPB/R/ng47n4NPKF1XcJpT3/HuE=
+	t=1761864168; cv=none; b=P+BKMjM3JJyYZkut9DG7rYkRXQ8OkiA/tA1ukpPxedKUuJ8LTkgOyvPhqq7PCop0e4wCPs+2SYTjtDFSDAg6qvBZtMeKmvfEo4TxAq9UhD/0N4/Q+k3zDwIE8ZMMcsGTMPSHtV56H87U1G5MOzJNxw0hsokrhqON0WFEoK+vmC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761861799; c=relaxed/simple;
-	bh=GpZeriVhTiKkxA1DOH9jayLNYQkpnW9Wx7r/YvKq44g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AL+D036kCGNWecdfGJgbnbH4lnYRh9zHqupTR+yfOgH2VKrAgIWzvN9P/EtWLuMUVbURCRtgwaIPF55MsRykoq+WEuNO5V41dLUEm1k8SL/o6rtTQa7Kcmp5COcZ+XHtxTXdKyfU3W4X70jdaK8raLdHv+SS+PrlmCmYf9QyYSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=nATXWYqz; arc=none smtp.client-ip=209.85.166.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f52.google.com with SMTP id ca18e2360f4ac-940d2b701a3so145142839f.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 15:03:17 -0700 (PDT)
+	s=arc-20240116; t=1761864168; c=relaxed/simple;
+	bh=9it6XLZdXae3RoTGHdsFpj66tzk86QiotM3zNBihiP0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=D4kUJtxGmyjWBd1cUVPm0QoJ71SC15OxqEAabin/vdNxYOP+Lr436DuNZ9cOmj+NXbibkLuKQ5UQP4Bq7ROXDP9OVUEaJrtjQ1Sw3STbXJ5Ud3FM07x2Hz1eZfnikjx1MohaSHVrlBKVaQ+29Jo5b5OsTS53+E9DBTF/ky84Ets=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=eDQ5Qf7J; arc=none smtp.client-ip=209.85.210.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-7c68c73b644so581904a34.1
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 15:42:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1761861796; x=1762466596; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ssN94hJ7tDMOdO+MzsS3/ARRASjKF6hGew3ilhnYkVM=;
-        b=nATXWYqz7K+gwaTHhTeMr4pwiPiwFn4IG0AWbvPZo/uH0PekDsfVcXlDD0zotfU+RV
-         H/3X4xlZrG9UHz6UVmNuO1YLT8lacHhj1Ntv7VEOt6cgzXY96YhogSn9n30lFK179888
-         dzHKK3gnZ/pHYR+w8NjShMUmKaR+mkEtdRMz7AGGbd0F41j+PDW1PaEA5KuwBSKSr6ed
-         5JXn5+8CiMjMN3/UAJTmHGl1KM8Wew0FbV+4z4uy1PXyR7+PwHO6nIuIdX+3B73oIAE6
-         iDgZ3VbgLUDCH4rySSeI9vXgyH7uq7UBr8/y95WkGKFj6aRfZEpTPrhJg+492RJqaPHw
-         J1Nw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1761864166; x=1762468966; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=L0HTAhQNYbWjGFi7/HeEAEeE9+brZM+DQRBAXbw9JCU=;
+        b=eDQ5Qf7J5GvGDEx57LiV1CpbUE+9lQMIWcyGIiuTVkl6bY7fOMCDuG1b7rXJRduRBM
+         3L63HyHbqJyF/QqNHrk5VB4jOCNbwiNRkvh79nPKauY6i3Xy3e96mwizL7rPpsitjHaE
+         Th0OcvSuI98MmO8sF6ejghxau1AniuC4Ak/IYgYuyG8GgLDA9pEC8MmPxlSiuiHbL9/a
+         Wg3z3uqcv6Upna8cAyfQ/fI0cWrZ2zcuFuFMjCHI9zVppPZ+PcNul4kz/sRHuG0gf28C
+         qQ7EuuROSM11S2k24JhfuxB2eXHh6gNhCo8VUch99eTw1uTQPM94t6y6BRS6lbopkB4h
+         Hkmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761861797; x=1762466597;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ssN94hJ7tDMOdO+MzsS3/ARRASjKF6hGew3ilhnYkVM=;
-        b=SRxCRfFVDWkJPqkvTEif/cr+yLaxfe3+0k9+OIdKJjyX18qqfSr6ZGAPRYNnFobo8R
-         px5xDruY+/E7wuJ+KiHwXSoJ0MextpPI8DPiUpix/oxWm1LGo868GzGtJ5VfoMxFnNAg
-         zAqfOP6gOkAD0vJ+XOuWFjL0LvA2knGxogCq3v+SpWgH511OcftyHSyZApTKpoFjQIkz
-         EbSqTMz72uJ43U/gixbG5qYB9MWyQXSmK1seUYw578D0AKkIQGF+KLSfeGIb3tf56yI0
-         ZWGU+xxjYJJKXOd2lIV+hvcywelv5aqPNcaeD7Be/I/lGHfft3HW8zsI8iLhGQ3x0wd/
-         fFNA==
-X-Forwarded-Encrypted: i=1; AJvYcCVuSJBO8ll0VRkJy7BhQi53juMpH+4YpVH8OLnJasWE/L5W/OareRWFmAvqydij2jFVZuZJjZynjd65@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywqb6t0RwFo4yED1DptjayUf52d0EUIANQP2v8onygQHsYaoYd0
-	qbI6yTEnOIHvVB6PeWaeeqLbqiKVblUWD63EJ/Gn1ZMDksuVx0peFOX02RTy+O0jaEw=
-X-Gm-Gg: ASbGncsdT6giBF2B/Oq118Ekgja2BQimv6Nok2pQN1uW4xQJcw05j4AdG9yspruQjMG
-	jMqyG4/zw2FP0+7nfkiVXW3/CpQZpMTCqBKMDMDyLJNtH2Jc/znmaF7jM/+P3JPrOcfIQNjgr5y
-	0I/xYOhEGh9d0zPLB2psmXW6WkB7uC8QgKKgYle9xnOd5Zp6CW8PVaX4praJhDY8gck+LOxd9AS
-	PS4Mp5iu+GBFHvsba2olwMeolJftZegpp8fRD6+Xy63Qr2X3QYqmLSyZJjxbyvwmNPuxN1BLm+y
-	yW1Dq1D21wHyTUAumjh/kdIxtmwm3GSUSOfg3gTWpWW+hWz0lUNDu/HFc+IVldTno6UrU2/+kjY
-	49UZL8cUlLUu50Hss4Hia67kMIXVBiqUJ0ae3/AtSc6NrZGAB7tLfw5p1SWhP1w+54g7apMDmaY
-	Mu22t8CWTSnWE1k+Jl6dPwMCElMqd++uOtFQLU4/79+6kEDemGAuYTew==
-X-Google-Smtp-Source: AGHT+IHWNc/L6uBzxik9TxBdPEbp5psLXag/RE7I8W+Hr43yDpYFX/CUwbqwmFRcAlb/sUi+3qwQeQ==
-X-Received: by 2002:a05:6602:1602:b0:945:cbd9:55c7 with SMTP id ca18e2360f4ac-94822864aa4mr242799839f.3.1761861796574;
-        Thu, 30 Oct 2025 15:03:16 -0700 (PDT)
-Received: from zippy.localdomain (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-94359efe149sm604118039f.13.2025.10.30.15.03.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Oct 2025 15:03:16 -0700 (PDT)
-From: Alex Elder <elder@riscstar.com>
-To: dlan@gentoo.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: pjw@kernel.org,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	guodong@riscstar.com,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 7/7] riscv: dts: spacemit: PCIe and PHY-related updates
-Date: Thu, 30 Oct 2025 17:02:58 -0500
-Message-ID: <20251030220259.1063792-8-elder@riscstar.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20251030220259.1063792-1-elder@riscstar.com>
-References: <20251030220259.1063792-1-elder@riscstar.com>
+        d=1e100.net; s=20230601; t=1761864166; x=1762468966;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=L0HTAhQNYbWjGFi7/HeEAEeE9+brZM+DQRBAXbw9JCU=;
+        b=A3/i7xEVrcQp3rD7WRxc2Ez3VERmRzF1DLarCniO2VIvep0vSKXAjDlN/yH5WBfZBY
+         9ceMAnyZlCEKwYjUG0+cKbxzXmJ3qRQZMw1pJccAUymBtjsB23K98t0H024/qnJMOORk
+         70mPfP6GJnj/yTBWYTdPpQuN9LCzZ8ekBmvZH/gQtrxTf3V5wj80WEcM8KLb0bvxEIXg
+         OpC9l7oQT+yTGCDcmiDuy8aIZJ2hTQ2213qNU1hggNTP8Vh/Kryb9yyA5KSVFbqUM/DH
+         5S2zeghiiZj6v4qStSiY+ij4+9Nw7I1KgyD/f0ZTCAnsORf1hi+amxDSQj53Yi0AqI0v
+         Y9BA==
+X-Forwarded-Encrypted: i=1; AJvYcCVbTbRSwQr5ly9CJAx1tU9XjDt9NfNxzb9jblpMXb7ceHfNZz46/we/5jQi64KvH4ihLInPogvlAi6C@vger.kernel.org
+X-Gm-Message-State: AOJu0YxuS4saDDceTnpZrXWW1rmzqr6jwDRINLvO5gjOPyKpCImM6JY9
+	cSYP+cAA6HEs1D8sImfxR92JH686ZLAqqHJ13yDuTL6Np8uMdFeiqTdOYZ+XS2WZPjw=
+X-Gm-Gg: ASbGncv9RqYYPKllr3UWw6xw1RhcdZvKUPsE42S3urYEiPY77eBMacooUwKnZ8hvIJr
+	ik3t8O/ho/X+3WvRe6GxymYcJI9XvSlL7JKmTnyomHf2VVnsAgy7LGQCwClyxp0mvInZl1ynFy7
+	DuFxew6F7gkqExRaORMSaNWN/iszFKqZJSec5GxHw50slI9WUUA49IOngjDHijew0h1wl7Pvuk4
+	xsgloImp0IuMpI72193+3G53ZVXKHPLCFdOrNvmUM5sa9uHYdZSZcb/gyovFGJCfFXOHLbUar+K
+	4U0QpNBk0wy65IH5hYnneVLI37O3zXd/whl02I10d2mhYbwnTmHhqsqIXr9FFDX8iuneQzCWMc8
+	XCkZu2vwejBV1eJSxPe3wdLFS70pufQSOv4H8yKFplpwO/JoX+YbzPbkNw++YHaLDCv5/9XW+4L
+	pDlth4sGQXs8OSXWXWzOD2sdzuZFETzJahalX19VHEzh8Ch0qSGg==
+X-Google-Smtp-Source: AGHT+IFygVcKrCt8dVyx7K2d1dIpysOgPE+1OoIdRWbtjGAosZSMsYYLHZhJRI76gQOSql4L5yVCHA==
+X-Received: by 2002:a05:6830:448f:b0:7b9:4dd5:1963 with SMTP id 46e09a7af769-7c6967b2d0bmr844138a34.24.1761864165644;
+        Thu, 30 Oct 2025 15:42:45 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:aa90:4f8c:bf59:360a? ([2600:8803:e7e4:500:aa90:4f8c:bf59:360a])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c699bde239sm44364a34.5.2025.10.30.15.42.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Oct 2025 15:42:45 -0700 (PDT)
+Message-ID: <f731ebd7-6494-45f5-861d-05a2926cc5fa@baylibre.com>
+Date: Thu, 30 Oct 2025 17:42:44 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: spi: Add spi-buses property
+To: Rob Herring <robh@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Michael Hennerich <michael.hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+ Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+References: <20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
+ <20251014-spi-add-multi-bus-support-v1-1-2098c12d6f5f@baylibre.com>
+ <20251021142129.GA34073-robh@kernel.org>
+ <14ae0769-341b-4325-b925-7bba6d57bbdf@baylibre.com>
+ <20251030135126.GA3749313-robh@kernel.org>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20251030135126.GA3749313-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Define PCIe and PHY-related Device Tree nodes for the SpacemiT K1 SoC.
+On 10/30/25 8:51 AM, Rob Herring wrote:
+> On Tue, Oct 21, 2025 at 09:59:22AM -0500, David Lechner wrote:
+>> On 10/21/25 9:21 AM, Rob Herring wrote:
+>>> On Tue, Oct 14, 2025 at 05:02:11PM -0500, David Lechner wrote:
+>>>> Add a spi-buses property to the spi-peripheral-props binding to allow
+>>>> specifying the SPI data bus or buses that a peripheral is connected to
+>>>> in cases where the SPI controller has more than one physical SPI data
+>>>> bus.
+>>>
+>>> Is there a reason why spi-rx-bus-width property doesn't work for you? 
+>>> The only thing I see would be you need to define the order of the pins 
+>>> like "data-lanes" property.
+>>>
+>>> Rob
+>>
+>> Because we can have both at the same time. In one of the other threads,
+>> we talked about the AD4630 ADC that will require this since it has 2 data
+>> buses each with a width of 4 (total of 8 lines).
+>>
+>> See: https://lore.kernel.org/linux-iio/ad929fe5-be03-4628-b95a-5c3523bae0c8@baylibre.com/
+> 
+> But it can't really be 2 independent buses/controllers unless the ADC 
+> has 2 completely independent interfaces, right?
 
-Enable the combo PHY and the two PCIe-only PHYs on the Banana Pi BPI-F3
-board.  The combo PHY is used for USB on this board, and that will be
-enabled when USB 3 support is accepted.
+Correct.
 
-The combo PHY must perform a calibration step to determine configuration
-values used by the PCIe-only PHYs.  As a result, it must be enabled if
-either of the other two PHYs is enabled.
+The proposed property really only concerns the data lines (tx/rx). It doesn't
+care if there is 1 or 2 SCLK lines and it doesn't care if there is only 1 CS
+line.
 
-Signed-off-by: Alex Elder <elder@riscstar.com>
----
- .../boot/dts/spacemit/k1-bananapi-f3.dts      |  36 ++++
- arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  |  33 ++++
- arch/riscv/boot/dts/spacemit/k1.dtsi          | 176 ++++++++++++++++++
- 3 files changed, 245 insertions(+)
+So maybe spi-data-buses would be a better name for the property? Or
+spi-data-ports (using the NXP FlexSPI controller docs terminology)?
+Or spi-data-channels?
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index a269c2cca3ac9..f1641e219a631 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -61,6 +61,12 @@ reg_vcc_4v: vcc-4v {
- 	};
- };
- 
-+&combo_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie0_3_cfg>;
-+	status = "okay";
-+};
-+
- &emmc {
- 	bus-width = <8>;
- 	mmc-hs400-1_8v;
-@@ -266,6 +272,36 @@ dldo7 {
- 	};
- };
- 
-+&pcie1_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie1_3_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie1_port {
-+	phys = <&pcie1_phy>;
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+};
-+
-+&pcie1 {
-+	status = "okay";
-+};
-+
-+&pcie2_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie2_4_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie2_port {
-+	phys = <&pcie2_phy>;
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+};
-+
-+&pcie2 {
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_2_cfg>;
-diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-index 4eef81d583f3d..d456dea7bd32a 100644
---- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-@@ -509,6 +509,39 @@ uart9-2-pins {
- 		};
- 	};
- 
-+	pcie0_3_cfg: pcie0-3-cfg {
-+		pcie0-3-pins {
-+			pinmux = <K1_PADCONF(54, 3)>,	/* PERST# */
-+				 <K1_PADCONF(55, 3)>,	/* WAKE# */
-+				 <K1_PADCONF(53, 3)>;	/* CLKREQ# */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <21>;
-+		};
-+	};
-+
-+	pcie1_3_cfg: pcie1-3-cfg {
-+		pcie1-3-pins {
-+			pinmux = <K1_PADCONF(59, 4)>,	/* PERST# */
-+				 <K1_PADCONF(60, 4)>,	/* WAKE# */
-+				 <K1_PADCONF(61, 4)>;	/* CLKREQ# */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <21>;
-+		};
-+	};
-+
-+	pcie2_4_cfg: pcie2-4-cfg {
-+		pcie2-4-pins {
-+			pinmux = <K1_PADCONF(62, 4)>,	/* PERST# */
-+				 <K1_PADCONF(112, 3)>,	/* WAKE# */
-+				 <K1_PADCONF(117, 4)>;	/* CLKREQ# */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <21>;
-+		};
-+	};
-+
- 	pwm14_1_cfg: pwm14-1-cfg {
- 		pwm14-1-pins {
- 			pinmux = <K1_PADCONF(44, 4)>;
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index af35f9cd64351..a20422db101ee 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -4,6 +4,7 @@
-  */
- 
- #include <dt-bindings/clock/spacemit,k1-syscon.h>
-+#include <dt-bindings/phy/phy.h>
- 
- /dts-v1/;
- / {
-@@ -358,6 +359,52 @@ syscon_rcpu2: system-controller@c0888000 {
- 			#reset-cells = <1>;
- 		};
- 
-+		combo_phy: phy@c0b10000 {
-+			compatible = "spacemit,k1-combo-phy";
-+			reg = <0x0 0xc0b10000 0x0 0x1000>;
-+			clocks = <&vctcxo_24m>,
-+				 <&syscon_apmu CLK_PCIE0_DBI>,
-+				 <&syscon_apmu CLK_PCIE0_MASTER>,
-+				 <&syscon_apmu CLK_PCIE0_SLAVE>;
-+			clock-names = "refclk",
-+				      "dbi",
-+				      "mstr",
-+				      "slv";
-+			resets = <&syscon_apmu RESET_PCIE0_GLOBAL>,
-+				 <&syscon_apmu RESET_PCIE0_DBI>,
-+				 <&syscon_apmu RESET_PCIE0_MASTER>,
-+				 <&syscon_apmu RESET_PCIE0_SLAVE>;
-+			reset-names = "phy",
-+				      "dbi",
-+				      "mstr",
-+				      "slv";
-+			#phy-cells = <1>;
-+			spacemit,apmu = <&syscon_apmu>;
-+			status = "disabled";
-+		};
-+
-+		pcie1_phy: phy@c0c10000 {
-+			compatible = "spacemit,k1-pcie-phy";
-+			reg = <0x0 0xc0c10000 0x0 0x1000>;
-+			clocks = <&vctcxo_24m>;
-+			clock-names = "refclk";
-+			resets = <&syscon_apmu RESET_PCIE1_GLOBAL>;
-+			reset-names = "phy";
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		pcie2_phy: phy@c0d10000 {
-+			compatible = "spacemit,k1-pcie-phy";
-+			reg = <0x0 0xc0d10000 0x0 0x1000>;
-+			clocks = <&vctcxo_24m>;
-+			clock-names = "refclk";
-+			resets = <&syscon_apmu RESET_PCIE2_GLOBAL>;
-+			reset-names = "phy";
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		syscon_apbc: system-controller@d4015000 {
- 			compatible = "spacemit,k1-syscon-apbc";
- 			reg = <0x0 0xd4015000 0x0 0x1000>;
-@@ -873,6 +920,135 @@ pcie-bus {
- 			#size-cells = <2>;
- 			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>,
- 				     <0x0 0xb8000000 0x1 0x38000000 0x3 0x48000000>;
-+			pcie0: pcie@ca000000 {
-+				device_type = "pci";
-+				compatible = "spacemit,k1-pcie";
-+				reg = <0x0 0xca000000 0x0 0x00001000>,
-+				      <0x0 0xca300000 0x0 0x0001ff24>,
-+				      <0x0 0x8f000000 0x0 0x00002000>,
-+				      <0x0 0xc0b20000 0x0 0x00001000>;
-+				reg-names = "dbi",
-+					    "atu",
-+					    "config",
-+					    "link";
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges = <0x01000000 0x0 0x00000000 0x0 0x8f002000 0x0 0x00100000>,
-+					 <0x02000000 0x0 0x80000000 0x0 0x80000000 0x0 0x0f000000>;
-+				interrupts = <141>;
-+				interrupt-names = "msi";
-+				clocks = <&syscon_apmu CLK_PCIE0_DBI>,
-+					 <&syscon_apmu CLK_PCIE0_MASTER>,
-+					 <&syscon_apmu CLK_PCIE0_SLAVE>;
-+				clock-names = "dbi",
-+					      "mstr",
-+					      "slv";
-+				resets = <&syscon_apmu RESET_PCIE0_DBI>,
-+					 <&syscon_apmu RESET_PCIE0_MASTER>,
-+					 <&syscon_apmu RESET_PCIE0_SLAVE>;
-+				reset-names = "dbi",
-+					      "mstr",
-+					      "slv";
-+				spacemit,apmu = <&syscon_apmu 0x03cc>;
-+				status = "disabled";
-+
-+				pcie0_port: pcie@0 {
-+					device_type = "pci";
-+					compatible = "pciclass,0604";
-+					reg = <0x0 0x0 0x0 0x0 0x0>;
-+					bus-range = <0x01 0xff>;
-+					#address-cells = <3>;
-+					#size-cells = <2>;
-+					ranges;
-+				};
-+			};
-+
-+			pcie1: pcie@ca400000 {
-+				device_type = "pci";
-+				compatible = "spacemit,k1-pcie";
-+				reg = <0x0 0xca400000 0x0 0x00001000>,
-+				      <0x0 0xca700000 0x0 0x0001ff24>,
-+				      <0x0 0x9f000000 0x0 0x00002000>,
-+				      <0x0 0xc0c20000 0x0 0x00001000>;
-+				reg-names = "dbi",
-+					    "atu",
-+					    "config",
-+					    "link";
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges = <0x01000000 0x0 0x00000000 0x0 0x9f002000 0x0 0x00100000>,
-+					 <0x02000000 0x0 0x90000000 0x0 0x90000000 0x0 0x0f000000>;
-+				interrupts = <142>;
-+				interrupt-names = "msi";
-+				clocks = <&syscon_apmu CLK_PCIE1_DBI>,
-+					 <&syscon_apmu CLK_PCIE1_MASTER>,
-+					 <&syscon_apmu CLK_PCIE1_SLAVE>;
-+				clock-names = "dbi",
-+					      "mstr",
-+					      "slv";
-+				resets = <&syscon_apmu RESET_PCIE1_DBI>,
-+					 <&syscon_apmu RESET_PCIE1_MASTER>,
-+					 <&syscon_apmu RESET_PCIE1_SLAVE>;
-+				reset-names = "dbi",
-+					      "mstr",
-+					      "slv";
-+				spacemit,apmu = <&syscon_apmu 0x3d4>;
-+				status = "disabled";
-+
-+				pcie1_port: pcie@0 {
-+					device_type = "pci";
-+					compatible = "pciclass,0604";
-+					reg = <0x0 0x0 0x0 0x0 0x0>;
-+					bus-range = <0x01 0xff>;
-+					#address-cells = <3>;
-+					#size-cells = <2>;
-+					ranges;
-+				};
-+			};
-+
-+			pcie2: pcie@ca800000 {
-+				device_type = "pci";
-+				compatible = "spacemit,k1-pcie";
-+				reg = <0x0 0xca800000 0x0 0x00001000>,
-+				      <0x0 0xcab00000 0x0 0x0001ff24>,
-+				      <0x0 0xb7000000 0x0 0x00002000>,
-+				      <0x0 0xc0d20000 0x0 0x00001000>;
-+				reg-names = "dbi",
-+					    "atu",
-+					    "config",
-+					    "link";
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges = <0x01000000 0x0 0x00000000 0x0 0xb7002000 0x0 0x00100000>,
-+					 <0x42000000 0x0 0xa0000000 0x0 0xa0000000 0x0 0x10000000>,
-+					 <0x02000000 0x0 0xb0000000 0x0 0xb0000000 0x0 0x07000000>;
-+				interrupts = <143>;
-+				interrupt-names = "msi";
-+				clocks = <&syscon_apmu CLK_PCIE2_DBI>,
-+					 <&syscon_apmu CLK_PCIE2_MASTER>,
-+					 <&syscon_apmu CLK_PCIE2_SLAVE>;
-+				clock-names = "dbi",
-+					      "mstr",
-+					      "slv";
-+				resets = <&syscon_apmu RESET_PCIE2_DBI>,
-+					 <&syscon_apmu RESET_PCIE2_MASTER>,
-+					 <&syscon_apmu RESET_PCIE2_SLAVE>;
-+				reset-names = "dbi",
-+					      "mstr",
-+					      "slv";
-+				spacemit,apmu = <&syscon_apmu 0x3dc>;
-+				status = "disabled";
-+
-+				pcie2_port: pcie@0 {
-+					device_type = "pci";
-+					compatible = "pciclass,0604";
-+					reg = <0x0 0x0 0x0 0x0 0x0>;
-+					bus-range = <0x01 0xff>;
-+					#address-cells = <3>;
-+					#size-cells = <2>;
-+					ranges;
-+				};
-+			};
- 		};
- 
- 		storage-bus {
--- 
-2.48.1
+> Surely the clock is shared across the 2 buses? 
+
+It depends on the mode of operation. In stripe or mirror mode, both
+clocks would be synchronized/identical. It doesn't matter if there is
+1 or two clock lines in these modes. And only one CS line is needed
+in these modes - but 2 also works - these properties are independent.
+
+It could also be used in a way where each data bus is used independently
+(one at a time rather than both at the same time). In this case, it could
+still work with one SCLK line as long as there were two CS lines. But if
+there are two SCLK lines, then each one could operate independently in this
+mode.
+
+> So aren't you really just borrowing pins and the fifo of the 2nd controller? 
+
+Yes, I think that is a valid way of thinking about it.
+
+> That seems pretty controller specific to support that. 
+
+Correct. This property could only be used with such controllers.
+
+> For example, how would you support this with spi-gpio 
+
+We would need to increase maxItems of several of the gpios properties.
+
+sck-gpios could be multiple gpios to allow for more than one SCLK
+line.
+
+miso-gpios would contain spi-rx-bus-width * ARRAY_SIZE(spi-buses)
+gpio phandles. mosi-gpios would be similar with tx instead of rx.
+
+> (obviously kind of pointless given the bandwidth needs with 8 data 
+> lines) or any 2 independent instances of SPI controllers?
+
+Doing this with two separate controllers wouldn't work for cases
+where only one SCLK line is wired up - unless it was a controller
+that supported a peripheral-provided clock, then it might.
+
+Performance wouldn't be great in this case either though, so I
+don't expect that anyone would be tempted to do this.
+
+To implement this, I would make a new SPI controller node that
+takes the phandles of two or more SPI controllers. The peripheral
+child nodes would be in this new controller node and the other
+two controller nodes would not have any child nodes.
+
+It might need some extra properties to say which data and clock
+lines are actually wired up similar to the spi-gpio.
+
+> 
+> Rob
+
 
 
