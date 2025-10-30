@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-233334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18AD7C21328
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:32:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 957AEC21355
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:34:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2CEB1A64F6D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 16:31:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15441189539D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 16:33:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4986F1F4CB7;
-	Thu, 30 Oct 2025 16:30:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF310267386;
+	Thu, 30 Oct 2025 16:33:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kCOItoPL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QydVTpWt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D6BC4503B;
-	Thu, 30 Oct 2025 16:30:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0D39235053;
+	Thu, 30 Oct 2025 16:33:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761841857; cv=none; b=pBUnHUKewTsDBEDSB8mkCTdbdXBa2snsV1EM5f2Vnz9WOx0VQmHrjSJaKswl/35kiV2v67xhSAikcFuQPWA61ItuAjfNgB9C2oYdJr1589HxpQx46O+oEV2fAW9Veoag1Ol6yTHLnVKk59Wsd1C1dOoHPmEs3ClZtZXHJjZ5C6o=
+	t=1761841999; cv=none; b=H8/WB2hulEliPgqgm/myifV94T7jROBNvLntXkeBU4S5I0bJ00rBxFC8vpnTTxj0FD6CNecH9K6MpDfoYSIL0tzguiA8agfYJX0qTr+nvleejseTY2g7w1TOJFtTZBccH1QZ0bqfGYkM69cwRHs8hsVF4t/xmlM3lC/s1EjdFhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761841857; c=relaxed/simple;
-	bh=h26E/9tOi5+3z+6AzmCTRNPJkZyNHYsjXa7b8MQ2gG8=;
+	s=arc-20240116; t=1761841999; c=relaxed/simple;
+	bh=DfAutBkwsyA5VIVFuVw3gl+rzbpA5Cob0IAO18VogBc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YkYwX9o12u63MMiTfqzBRDRtsfqg48de2phlWoXUM5KE/xkJoit66+TqgeYMAAqORSzqBO71IC6AtnZEYNjzDiRLsxhBAMFdMlL6yB2ZkwEV7LoBUf+OEzmN6w9k4sA1gngH3qjdFxYtJDZAzw+8jF/t0amIsdQ8h3ww9vjhS7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kCOItoPL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6DF1C4CEF1;
-	Thu, 30 Oct 2025 16:30:52 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=aoRZT780AqB5tS8cgrIr3JqcMjNdHIPdan3HoYPfzUUMSE8mEDdco5nJIdDy/1jmp3HADSJjNey81MNF9TPE5KDxDJCpY+mF5dOU51wPCpRk2XCKrsk65a5MZLqx26e30IefalliR9BwWx2tpLRRffXAp2uxYTAkOlK/CWNZP18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QydVTpWt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47EC9C4CEF1;
+	Thu, 30 Oct 2025 16:33:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761841856;
-	bh=h26E/9tOi5+3z+6AzmCTRNPJkZyNHYsjXa7b8MQ2gG8=;
+	s=k20201202; t=1761841999;
+	bh=DfAutBkwsyA5VIVFuVw3gl+rzbpA5Cob0IAO18VogBc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kCOItoPL9MmL87UaVXKYyIWFHkci5d9gEOG1qWi/gnlMaMkJQk/9MedsqbzBYRcil
-	 2gIlXMPv+mRlN6zCVPTZhCd+2PKGDNnCE+Yf9KMPpHX17A0UMWY9j7hiIgCQ2NTii/
-	 qsbxeFSJXsv9dkKNDvWvr3S9M8socy9dYHH70pHnpeN9jnL+imKP1AK53QugFRLdz8
-	 qDElIdUXlJ8QNYE0NuUcfHGYsw3+vF54ZkecOHW4x/bxx0NsHaTlzaIBsVjl7xnseN
-	 nw6syWgqMKgFOOez6jT3F0sjAVjk+/P5ojsLykc7eEX+NXMT0fwtCUh6WmlJClcMmr
-	 EVlzYn2zGOqMA==
-Message-ID: <bfd59dc5-9503-4642-ba01-5f54c12c0175@kernel.org>
-Date: Thu, 30 Oct 2025 17:30:51 +0100
+	b=QydVTpWtdkDbJcIM8joGKrTe5OEjvZQ1839ccThM0xTTymcVTmnX4wO5Qa38mXZlC
+	 IYJ6rMdbgGRlmLOVRjqFDUFTh0oZxXu7LXkFdEzd5wnCC8mBIY+OFq6HpjB14eP059
+	 TvOKzi0ZJi6az5cRmWrUmbr1VHPlOTFz25g1T+2tXw36hj1lu89WhQVWbrS0bWeuxA
+	 FmPc29k/y9F6VbN9c9vUYBb87lbQFbZH+2IZgEcNwvOeMRZYNw9XF/57P9G3iiheJa
+	 nrxp2S7TDiFOyITaoF4AwFs9CDKuDciyVE8+jQcgFlMRASWK5uxzAZLppJl45l3yCK
+	 6+EwNitLRYKgw==
+Message-ID: <32c35bd4-fc49-428c-9204-a39bda7cef19@kernel.org>
+Date: Thu, 30 Oct 2025 17:33:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC/WIP 0/4] arm64: dts: qcom: sm8750: Enable display
-To: Mahadevan P <mahadevan.p@oss.qualcomm.com>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- jesszhan0024@gmail.com, quic_rajeevny@quicinc.com,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 3/3] firmware: stratix10-svc: add the compatible value
+ for Agilex5
+To: "Romli, Khairul Anuar" <khairul.anuar.romli@altera.com>
+Cc: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Abhinav Kumar <abhinavk@quicinc.com>,
- Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250424-sm8750-display-dts-v1-0-6fb22ca95f38@linaro.org>
- <w6f3s56gx7psqgweuntqvkzrot7elhc5pdrxhvenukzwyt5eys@fndmaszfbo5k>
- <921afe20-42b1-4999-b5c4-035669dc831e@linaro.org>
- <32eb3b4f-b2c4-4895-8b48-ade319fd83de@oss.qualcomm.com>
- <CAO9ioeWdJpKfpu3jGyv42Mf5+02ehxyEu_Lj+Boz0NyDjPZ-CQ@mail.gmail.com>
- <58a658bb-7338-442f-ad8c-845b5fa5ce00@oss.qualcomm.com>
+ <conor+dt@kernel.org>, "Rao, Mahesh" <mahesh.rao@altera.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <cover.1761648711.git.khairul.anuar.romli@altera.com>
+ <08cacb9328c338edb6a6f291c56c6d2c32a9e0cb.1761648711.git.khairul.anuar.romli@altera.com>
+ <20251030-wakeful-hospitable-eagle-9dfca1@kuoka>
+ <6b3cb11d-afbd-4242-b215-a3a0230cffb8@altera.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,35 +107,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <58a658bb-7338-442f-ad8c-845b5fa5ce00@oss.qualcomm.com>
+In-Reply-To: <6b3cb11d-afbd-4242-b215-a3a0230cffb8@altera.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 30/10/2025 13:21, Mahadevan P wrote:
->>
+On 30/10/2025 12:35, Romli, Khairul Anuar wrote:
+> On 30/10/2025 3:58 pm, Krzysztof Kozlowski wrote:
+>> On Thu, Oct 30, 2025 at 11:30:09AM +0800, Khairul Anuar Romli wrote:
+>>> Add the compatible property value so we can reuse Intel Stratix10
+>>> Service Layer driver on Intel Agilex5 SoC platform.
 >>>
->>> Also, I’m curious to understand more about the DSI PHY PLL VCO rate issue that Jessica had narrowed down—could you please share some details?
->>>
->>> Lastly, I’d appreciate it if you could share the plan for merging these changes upstream. We’re aiming to enable display support on this target as part of our program.
+>>> This addition is an initial Agilex5 service layer driver enablement that
+>>> will involve adding IOMMU changes in the future.
 >>
->> Please see Documentation/process/, I think it describes the process of
->> merging patches pretty well.
-> 
-> Sorry for any confusion in my previous message. Could you please share 
-> when we might expect the next non-RFC version of this series, 
-> specifically for the DSI enablement patch? Alternatively, if there are 
+>> Heh, your bindings said now there is no iommu. Can you please read
+>> writing bindings before you post next version?
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> I was excluding the iommu in the current patch series, not that I meant 
+> there is no iommu. It was meant for the future patches that will include 
 
-When dependencies get merged. The patchset cannot be merged and posting
-something unmergeable, different than RFC, only clutters maintainers
-mailboxes. Ask owners of dependencies about their status (as I said, I
-stopped pinging for that)
-
-> no immediate plans to post an updated version, would it be acceptable 
-> for us to take it forward and submit the subsequent non-RFC versions of 
-
-No, because the patch is ready. It is waiting on dependencies, so you
-taking it would mean work is done twice. Plus you would not solve any
-problem - still cannot submit it.
+Read your bindings again. They clearly do not list IOMMU, meaning there
+is no IOMMU.
 
 Best regards,
 Krzysztof
