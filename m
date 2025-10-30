@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-233276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEA95C206C1
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 14:59:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6302C206A0
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 14:58:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 515403BC84A
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:55:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A91673B9D77
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:54:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B48EE263C8C;
-	Thu, 30 Oct 2025 13:55:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C86F5258EC1;
+	Thu, 30 Oct 2025 13:54:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="lHMLBwWp"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="SYYsYn4v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay73-hz1.antispameurope.com (mx-relay73-hz1.antispameurope.com [94.100.132.237])
+Received: from mx-relay17-hz2.antispameurope.com (mx-relay17-hz2.antispameurope.com [83.246.65.159])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B419261B6D
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 13:55:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.132.237
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23BDD259CAF
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 13:54:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=83.246.65.159
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761832505; cv=pass; b=IqJ7P2sa3NjE3PkpaqaYeh3XBaqjll23jBVkLYKsD/6yin9HNf6W7kma4+iTo7uuSb4H3peuBuRZVLPyly4CAmbv+PeXgjZkTx5N/UI2VNOI3IQJP7jmx3nnCyVgOUDMW25kAoyXTtwPGXWBYxrrfQZEBqtPqD0niXDxXWXPzKE=
+	t=1761832446; cv=pass; b=r7E7RAVmV+TJ8N+esJ8VvZ14x3FmlnAPuAInwR0smgZ2VVNx/m9YTp15am3jUe2WudMEOd+2724sgbPZ3znnrlosDWqhMDpXtFAjFUVcjOEfgPG7hD/tE2zuLyX44UG1Hj3DSZB8QJC16zD3+jAt/AvwclGvwNTMWFeBi7bNfWk=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761832505; c=relaxed/simple;
-	bh=g49/BvHAHefGv2lXoYjQ4KibKwtcnMRmtDWXdeTybdM=;
+	s=arc-20240116; t=1761832446; c=relaxed/simple;
+	bh=7TJedIY/9UFJw10oGIKYKIy0SHdFPabonZXK+kKB1VY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SJMQI82/4YGTd/xiedgj0rdKrVvxvbjHFq06a6JPkugQufN/H4jQHybMtoVqYmAzxMqXehGaue4Iv9jFsdamV3feOBlpGIfH5VexY5+rXmz07dnFKbb7DQvm4YmlWVziFRQwPe9Rh0EBFMzyA+2VmoBJdw5SIybqOFcv/c39xZU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=lHMLBwWp; arc=pass smtp.client-ip=94.100.132.237
+	 MIME-Version; b=puB9ALV7jBUUwDWPXw02Ox8mRAhoV/FKtkwO78im1Y3JfGsmmHhOmcEg6FMLPG0JqWdNldQWrDmw11ZeW1v8ilOgS1eetANvjL+6WKvhP2W4SUQz8voJ3m5Ltl9i5UolVINY4KIzJHVZDOL/zUtESEfTPUTDfqrmlBT6TDl7ncY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=SYYsYn4v; arc=pass smtp.client-ip=83.246.65.159
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate73-hz1.hornetsecurity.com 1; spf=pass
+ARC-Authentication-Results: i=1; mx-gate17-hz2.hornetsecurity.com 1; spf=pass
  reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
  smtp.mailfrom=ew.tq-group.com smtp.helo=smtp-out02-hz1.hornetsecurity.com;
  dmarc=pass header.from=ew.tq-group.com orig.disposition=pass
 ARC-Message-Signature: a=rsa-sha256;
- bh=No66cNLUicbMmk4yWzYnf+xkWOSrPxLslCLwe5XBnm4=; c=relaxed/relaxed;
+ bh=ftODCMJWq6xxBVzz35BWN/b7GEhpvIJPEY0znOy+1pQ=; c=relaxed/relaxed;
  d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1761832398;
- b=IAJwwgWhNMVbxce6djcyTLaOzh8Cghatk/BD1GWAlmGg+0cpAiH3DUPIIWOhezjeSPusWE1U
- uluyO76ReM5ueW3qSJBLRfFwxtN91dsDSERV/U0722nUJ8tqLeuNjq/mosmLtaZ2hTdie9tDAKa
- Rn3gB9bvAfHchgJxdd0ohsx2IeK16WeHrGfKj8AKk0x7mk7oqcsG1X5JK/cgsF8X7OAJzqq29EF
- beP/7moQ28jn1Q0iEjikkYqmAkAqG40rSvOlXrQEGdySTWw1eZW/lEVDc2Z/h8PA41pEHyT7lpX
- Mq0eS9xMYPCdDU0V7j1hGZD30By7qgx+b2B8+puilqPnA==
+ t=1761832400;
+ b=XvmfNzj/2t8m8Q2+Hvb6av1DkpGYXv6B0cYbglrYe68uU7/uxMSBlK3qudfRlBkJwNYm8x/8
+ 8bOWX9BR/v4tMKbHRgyI9jx9+W0nrIN2ThgX3eS5BYcsB46YoNywSbQDVvCaLnJwmOvUsFiODSt
+ 2ottjD25w3jFw7US6dh8KyWnW0zypAqYUVlCF7Mc3+KDaRfQtG6th8auP5ad+Al9q/hNnzrhkR8
+ 8vVYw32eSrbRw+44Ued8Oh+Dij6I5rQ7KR1eqtWi2c9Jx30K3Ws8eV8JOUo7CdObCgUe0+hv34W
+ iCO1ESlDtla+UFp/Qe3/4DymwFfU3KLPbpKwEPYukv/Qw==
 ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1761832398;
- b=Q7FE2PpLeoPgR0Sex6zTiJKGI1rEf8MnXVMfQTjoLL1XaF9q0QWoSKb+Lv9nO1tHhVK4Lh0I
- EwzUqwDT8qW+vTSpzOoArVp7rw7GpKwKv9ouK6py7CjxGyhh/D0Cl9ReEzHQR+vvIu/0X06EAlQ
- FIoEAKFsPOQBEDY5gNzknl6Pug1ClQxz0BWDSvT5Yj0ZiV4bGwgSTKuJd/5O4AtvP0OLKWBMgge
- 6PEwqeQvrpLNpL4kjqYhOIPtgCWZPa+riqe8qpautdm1kNF2b5tFEYsnk2gObFzeE0yY5LnZHnb
- WiJHpB4SE0kqKKyryJwO0D0dGKvojqj1MLc58jYcBRN/A==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay73-hz1.antispameurope.com;
- Thu, 30 Oct 2025 14:53:18 +0100
+ t=1761832400;
+ b=Oqf2l0x5pv2pOMby1hhLPkKYKw11t26kl8nkKCQEyoApFTTWqyXomkNmvLV9ZbJLp9an4/vS
+ QPytiN1tv9xEBOmvwn6HlLkEGmSmrABg4qKzAvxoy3U2XzSg9Bt8q3G2+R3yR6o9X9VMd2aKp0A
+ g8wQko6hmkeTYqdvDyQJkP4S+UJQd/K7hopXex53A5ivWY2kfsRjT5Be5DhT13+bQZRYh1tXKzd
+ Tq0WQYQFLDnyCeuiW96iNSBL1B7NUaWMvj3G6jkeyU/oiRcRL9dlwdcCmYFhily71U20V1uZaUy
+ v/gv4tPtuIQpJLBU85kVEuVbX1H1w6ZSCE/tvnsGtDbhA==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay17-hz2.antispameurope.com;
+ Thu, 30 Oct 2025 14:53:20 +0100
 Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
 	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by smtp-out02-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 8E76A5A04B4;
-	Thu, 30 Oct 2025 14:53:11 +0100 (CET)
+	by smtp-out02-hz1.hornetsecurity.com (Postfix) with ESMTPSA id D53C65A04FC;
+	Thu, 30 Oct 2025 14:53:12 +0100 (CET)
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -71,9 +71,9 @@ Cc: linux@ew.tq-group.com,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 12/19] arm64: dts: imx95-tqma9596sa: remove superfluous pinmux for usdhci
-Date: Thu, 30 Oct 2025 14:52:54 +0100
-Message-ID: <20251030135306.1421154-2-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 13/19] arm64: dts: imx95-tqma9596sa: add gpio bus recovery for i2c
+Date: Thu, 30 Oct 2025 14:52:55 +0100
+Message-ID: <20251030135306.1421154-3-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251030135306.1421154-1-alexander.stein@ew.tq-group.com>
 References: <20251030124936.1408152-1-alexander.stein@ew.tq-group.com>
@@ -91,45 +91,102 @@ X-cloud-security-crypt: load encryption module
 X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
 X-cloud-security-Mailarchivtype:outbound
 X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay73-hz1.antispameurope.com with 4cy5D82Hd3z14Sd1
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay17-hz2.antispameurope.com with 4cy5D94wS6zdbpV
 X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:4ada1ca96b2637bf43c610ce9808313e
-X-cloud-security:scantime:1.655
+X-cloud-security-Digest:4ebec40930e540c73b0a44225c3aa667
+X-cloud-security:scantime:1.733
 DKIM-Signature: a=rsa-sha256;
- bh=No66cNLUicbMmk4yWzYnf+xkWOSrPxLslCLwe5XBnm4=; c=relaxed/relaxed;
+ bh=ftODCMJWq6xxBVzz35BWN/b7GEhpvIJPEY0znOy+1pQ=; c=relaxed/relaxed;
  d=ew.tq-group.com;
  h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1761832397; v=1;
- b=lHMLBwWp6lq6ybCGrc56zVCRf0xfD39MLCjW8IJ8jYOhbZJmsfCbgNPA9c2cMdPSyd2KxAx/
- 29GqMjK36DaUwuNSyMENfKNIY4eC63YoSZvvNtx1sur8Bsrygax5Tds8fAopEFs9aEuO553KBzy
- +mBZ1sTPyD0ZrVs8aQPjcRQcHRg9tQsEVjUVrPA+qeXR4pCOOVAmmgGqjulT+vV7NJAoHcssQtU
- QJ/qdgk7nI99iTOF38o+I1TfhTqxwvwj95MG5TeweN+cTg1snD4aKx0bzCau4/bUzDVkmV37K5n
- U/LnSqBEatqACklClJADR42m60zd+5h5qFSyNJ+9+Qm/Q==
+ t=1761832399; v=1;
+ b=SYYsYn4vz0/UoZTGrUs/ikebzR4WyKU6cgA9nY3jbJneDfPOSdevKHoHvakqph/AR3dUQRp/
+ o7lOp1Um8wrIGuN/6dm/jrNfe3bDM6u/2NNE5Z1KaOmb10yS9knRtiwFkeXj+aSExy+DO7n2LiV
+ ZnHEir/F6yk/mtBU3bRSwENLAdZ8CqX8uCD+8+YaQa1bTCAi/qIVFm/ZWNMroaYSqUlHwbtQdmn
+ +/SLwkP1aIJneHIp5r7SIdSiLV/tQs2xNNvsEyl4BVLX+apA4M1dznYSR2xQc1PpsQq5n3VnxtU
+ HEIcMZV1ZzTe98Th1Tlg1+g6zCM2ZaK5e5NudhiE8XBoA==
 
-A sleep pin mux is not useful if it is the same as the normal pin mux.
+Add pinctrl group for GPIO based bus recovery.
 
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- arch/arm64/boot/dts/freescale/imx95-tqma9596sa.dtsi | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ .../boot/dts/freescale/imx95-tqma9596sa.dtsi  | 30 +++++++++++++++++--
+ 1 file changed, 27 insertions(+), 3 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx95-tqma9596sa.dtsi b/arch/arm64/boot/dts/freescale/imx95-tqma9596sa.dtsi
-index a6ab94208028a..cc251505f6280 100644
+index cc251505f6280..9c892cd8ff215 100644
 --- a/arch/arm64/boot/dts/freescale/imx95-tqma9596sa.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx95-tqma9596sa.dtsi
-@@ -493,11 +493,10 @@ &usb3_phy {
+@@ -263,8 +263,11 @@ expander1: gpio@75 {
+ /* I2C_CAM0 */
+ &lpi2c3 {
+ 	clock-frequency = <400000>;
+-	pinctrl-names = "default";
++	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_lpi2c3>;
++	pinctrl-1 = <&pinctrl_lpi2c3_gpio>;
++	sda-gpios = <&gpio2 28 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	scl-gpios = <&gpio2 29 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 	status = "okay";
+ 
+ 	dp_bridge: dp-bridge@f {
+@@ -299,16 +302,22 @@ dp_dsi_in: endpoint {
+ /* I2C_CAM1 */
+ &lpi2c4 {
+ 	clock-frequency = <400000>;
+-	pinctrl-names = "default";
++	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_lpi2c4>;
++	pinctrl-1 = <&pinctrl_lpi2c4_gpio>;
++	sda-gpios = <&gpio2 30 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	scl-gpios = <&gpio2 31 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 	status = "okay";
  };
  
- &usdhc1 {
--	pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
- 	pinctrl-0 = <&pinctrl_usdhc1>;
- 	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
- 	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
--	pinctrl-3 = <&pinctrl_usdhc1>;
- 	bus-width = <8>;
- 	non-removable;
- 	no-sdio;
+ /* I2C_LCD */
+ &lpi2c6 {
+ 	clock-frequency = <400000>;
+-	pinctrl-names = "default";
++	pinctrl-names = "default", "gpio";
+ 	pinctrl-0 = <&pinctrl_lpi2c6>;
++	pinctrl-1 = <&pinctrl_lpi2c6_gpio>;
++	sda-gpios = <&gpio2 2 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	scl-gpios = <&gpio2 3 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 	status = "okay";
+ };
+ 
+@@ -606,16 +615,31 @@ pinctrl_lpi2c3: lpi2c3grp {
+ 			   <IMX95_PAD_GPIO_IO29__LPI2C3_SCL			0x4000191e>;
+ 	};
+ 
++	pinctrl_lpi2c3_gpio: lpi2c3-gpiogrp {
++		fsl,pins = <IMX95_PAD_GPIO_IO28__GPIO2_IO_BIT28		0x4000191e>,
++			   <IMX95_PAD_GPIO_IO29__GPIO2_IO_BIT29		0x4000191e>;
++	};
++
+ 	pinctrl_lpi2c4: lpi2c4grp {
+ 		fsl,pins = <IMX95_PAD_GPIO_IO30__LPI2C4_SDA             0x4000191e>,
+ 			   <IMX95_PAD_GPIO_IO31__LPI2C4_SCL             0x4000191e>;
+ 	};
+ 
++	pinctrl_lpi2c4_gpio: lpi2c4-gpiogrp {
++		fsl,pins = <IMX95_PAD_GPIO_IO30__GPIO2_IO_BIT30		0x4000191e>,
++			   <IMX95_PAD_GPIO_IO31__GPIO2_IO_BIT31		0x4000191e>;
++	};
++
+ 	pinctrl_lpi2c6: lpi2c6grp {
+ 		fsl,pins = <IMX95_PAD_GPIO_IO02__LPI2C6_SDA             0x4000191e>,
+ 			   <IMX95_PAD_GPIO_IO03__LPI2C6_SCL             0x4000191e>;
+ 	};
+ 
++	pinctrl_lpi2c6_gpio: lpi2c6-gpiogrp {
++		fsl,pins = <IMX95_PAD_GPIO_IO02__GPIO2_IO_BIT2		0x4000191e>,
++			   <IMX95_PAD_GPIO_IO03__GPIO2_IO_BIT3		0x4000191e>;
++	};
++
+ 	pinctrl_lpspi3: lpspi3grp {
+ 		fsl,pins = <IMX95_PAD_GPIO_IO07__GPIO2_IO_BIT7		0x51e>,
+ 			   <IMX95_PAD_GPIO_IO08__GPIO2_IO_BIT8		0x51e>,
 -- 
 2.43.0
 
