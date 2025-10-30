@@ -1,159 +1,111 @@
-Return-Path: <devicetree+bounces-233425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B017C21EBE
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 20:22:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE193C21EAF
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 20:21:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2686D4ED136
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 19:21:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BEAE93BB86A
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 19:21:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACC9F2EF662;
-	Thu, 30 Oct 2025 19:21:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A821C2FC890;
+	Thu, 30 Oct 2025 19:21:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="DZE+XdfC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fS++9y9M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62FC72D249E;
-	Thu, 30 Oct 2025 19:21:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 778082F83B0;
+	Thu, 30 Oct 2025 19:21:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761852076; cv=none; b=uw6U4vseHC0Ko3CvLqSXlwqYoeKA523SsPNIWOmaNOSp3Pc3mvil4HWCgxZyiPo28tIEWdOapAnCJphQjpZ1rEnC7x8BBsjbATNa/df0HKhiAosx5e3TPN2+tfUhMYBkbLN9msuFfFd6czpYOtqbmob/SSnutFA3OiL4tTehXGU=
+	t=1761852061; cv=none; b=NsX+0n8kQV3YRCR+QAA2pKWOJwBeZViJdoKTmNzzm6UhzsCw2h6hlgZOl2FdHTDntmdS3BqD2okJ4bswYLszShHz/VsgKNyBpf5smLrtkJ6r6uTwB2qidq8JcPDVC6mXw2VFhnDSvluZZ0lQ2vtnToRLLwbhYoYI4+QHtuJ26S0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761852076; c=relaxed/simple;
-	bh=Lje3S1Cd+e65j5HWB+pO5sm3BW9jU4cXFc+79FHD8VM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mvcQMgLO71PvVZJODFgvnTl+2ojpRmfvHdDOpck5U6FXJLHWzfiRAzbksUuYFERm1NL6zHJQngBw0Zc+qX/mnE0iTChp/z1q1lKY2Yduz/i9SBdlU+G5PmW7wS28WaERtnjL0lLcHz33Zg7rtcsyUe3EV/dXJWRPdZ+SRChnLCo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=DZE+XdfC; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id E6AE825C4A;
-	Thu, 30 Oct 2025 20:21:12 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id zYlr5GNEC9O2; Thu, 30 Oct 2025 20:21:12 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1761852072; bh=Lje3S1Cd+e65j5HWB+pO5sm3BW9jU4cXFc+79FHD8VM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=DZE+XdfCUdZZEaRriPfY1gyDgc38Tagc4ZuWc4zaABBUVk3H/+jaGE7zf+Ze4fzeh
-	 oIxPTqI2AxFgthVSIzjwEL4Mk53dSNZNip/1say71X1RrJ/wm7IpHZDCsfsNcvIBDW
-	 5GPykKCPCl/nCXYiOHFF39FDEL+dyYkc7lkQkzJUSPDDxP8ELAt2bLhex3rxAPNf5I
-	 QZ5xhoXnv45BN6tyk2Hd6cSCS/g6BVSnKcu4y5ug+/2k+B8veXFhrfSTP50mwN2UJA
-	 48lbmA+VuqeF+6Mi3u3VXzzwMQOdWC985rDUas8BwgBXOxraX57Wei567f3bW7UBZI
-	 Lr1/UvLYpeVtA==
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-Date: Fri, 31 Oct 2025 00:50:19 +0530
-Subject: [PATCH v4 5/5] arm64: dts: exynos7870-j6lte: enable display panel
- support
+	s=arc-20240116; t=1761852061; c=relaxed/simple;
+	bh=0JkqsqS5tCb85gDbvwjqHeyedU+RjUbJ8rLIGtE2kmw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DGhLKyrSbqyr31Xk/BfwaUTnk5tKXQcpiTj0tk390UVNfyQFBhLeKKoCn/5JyGdvNXn0y+7T3vh/Dg/3ZmWKGNAER6rHeasa1bwhs+nw85q+H7c+LUtLiUqoH0ksVsvWLdAumugKM3Jn7XsnVkA6DvS7eKNzUTMZBXCBu3bLw9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fS++9y9M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78458C4CEFB;
+	Thu, 30 Oct 2025 19:20:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761852061;
+	bh=0JkqsqS5tCb85gDbvwjqHeyedU+RjUbJ8rLIGtE2kmw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fS++9y9MCF0ZiskBXTARq1lIm1HeM+e/3U8/QJfmn2XcKwOMoofX5P6ymKVAjS02F
+	 2m9+5HqpYDLBS1l2PN9iq/lbOpNxjwvAHA4MIeQx/u8hoqoYPu+EEB+AHRPFeFDugt
+	 s0g2w6zFLWu6ZN3jSBbXTtsPmV0XeMX843zaD4pCBfzgBe3HKgJL5AyFIbbQigOJ8S
+	 4rFMNsdC6koU5YgJZ4xG6jd5FCREJhIU/6g2mCfAkWBcenxF+151cGUYu9p5S+nxFW
+	 +1SpI4esnayb+/1WasIDYuQ9gt4jlyMkUblTBEm9DT9yYBOm5vkgEA6ININn7K4/Cr
+	 Y/STOIT4slusQ==
+Date: Thu, 30 Oct 2025 19:20:56 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Biju <biju.das.au@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v2 01/13] dt-bindings: serial: renesas,rsci: Document
+ RZ/G3E support
+Message-ID: <20251030-regroup-garter-c70c7fc6a71a@spud>
+References: <20251030175811.607137-1-biju.das.jz@bp.renesas.com>
+ <20251030175811.607137-2-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251031-exynos7870-drm-dts-v4-5-c1f77fb16b87@disroot.org>
-References: <20251031-exynos7870-drm-dts-v4-0-c1f77fb16b87@disroot.org>
-In-Reply-To: <20251031-exynos7870-drm-dts-v4-0-c1f77fb16b87@disroot.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Kaustabh Chakraborty <kauschluss@disroot.org>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761852020; l=1965;
- i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
- bh=Lje3S1Cd+e65j5HWB+pO5sm3BW9jU4cXFc+79FHD8VM=;
- b=bokrh+Ct0WkAsgVGoodJr+oOoQpG+p1LgELJVR03bASNgGTEldGNk8XeVvuo4eF74SGNWC3az
- 7AYbr624DaPDiK1fBrexzuBiHwhLkddfsgA7VBdGiRCYxECxjvTrppw
-X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
- pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="96gbhf6HoQd777Ic"
+Content-Disposition: inline
+In-Reply-To: <20251030175811.607137-2-biju.das.jz@bp.renesas.com>
 
-Enable DECON and DSI nodes, and add the compatible display panel and
-appropriate panel timings for this device. Also, remove the
-simple-framebuffer node in favor of the panel.
 
-This device has a 720x1480 AMOLED Samsung AMS561RA01 panel with
-S6E8AA5X01 controller.
+--96gbhf6HoQd777Ic
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
----
- arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts | 38 ++++++++++++++++---------
- 1 file changed, 24 insertions(+), 14 deletions(-)
+On Thu, Oct 30, 2025 at 05:57:49PM +0000, Biju wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+>=20
+> Add documentation for the serial communication interface (RSCI) found on
+> the Renesas RZ/G3E (R9A09G047) SoC. The RSCI IP on this SoC is identical
+> to that on the RZ/T2H (R9A09G077) SoC, but it has a 32-stage FIFO compared
+> to 16 on RZ/T2H. It supports both FIFO and non-FIFO mode operation. RZ/G3E
+> has 6 clocks(5 module clocks + 1 external clock) compared to 3 clocks
+> (2 module clocks + 1 external clock) on RZ/T2H, and it has multiple reset=
+s.
+>=20
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v1->v2:
+>  * Updated commit message
+>  * Added resets:false for non RZ/G3E SoCs.
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts b/arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts
-index eb4701dbafc5d1f30dddbb05d929c722f69a1a93..09f2367cfec9385cb5539a66f97d9148877c9e80 100644
---- a/arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts
-@@ -27,20 +27,7 @@ aliases {
- 	};
- 
- 	chosen {
--		#address-cells = <2>;
--		#size-cells = <1>;
--		ranges;
--
- 		stdout-path = &serial2;
--
--		framebuffer@67000000 {
--			compatible = "simple-framebuffer";
--			reg = <0x0 0x67000000 (720 * 1480 * 4)>;
--			width = <720>;
--			height = <1480>;
--			stride = <(720 * 4)>;
--			format = "a8r8g8b8";
--		};
- 	};
- 
- 	gpio-hall-effect-sensor {
-@@ -119,8 +106,9 @@ ramoops@46e00000 {
- 			pmsg-size = <0x4000>;
- 		};
- 
--		framebuffer@67000000 {
-+		cont_splash_mem: framebuffer@67000000 {
- 			reg = <0x0 0x67000000 (720 * 1480 * 4)>;
-+			iommu-addresses = <&decon 0x67000000 (720 * 1480 * 4)>;
- 			no-map;
- 		};
- 	};
-@@ -133,6 +121,28 @@ vibrator {
- 	};
- };
- 
-+&decon {
-+	memory-region = <&cont_splash_mem>;
-+
-+	status = "okay";
-+};
-+
-+&dsi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	samsung,burst-clock-frequency = <500000000>;
-+	samsung,esc-clock-frequency = <16000000>;
-+	samsung,pll-clock-frequency = <26000000>;
-+
-+	status = "okay";
-+
-+	panel@0 {
-+		compatible = "samsung,s6e8aa5x01-ams561ra01";
-+		reg = <0>;
-+	};
-+};
-+
- &gpu {
- 	status = "okay";
- };
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
--- 
-2.51.0
+--96gbhf6HoQd777Ic
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQO6mAAKCRB4tDGHoIJi
+0laSAP9pxMHyRXQYIgGpl3r62oKbo516FSvvC/GfT1XA/uhp9wEA+Q49sIHYp/5+
+X+jJ+g5f4+/Fb8F2w0YxcF8RoaFMrA4=
+=NK8g
+-----END PGP SIGNATURE-----
+
+--96gbhf6HoQd777Ic--
 
