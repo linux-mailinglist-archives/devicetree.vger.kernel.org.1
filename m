@@ -1,113 +1,184 @@
-Return-Path: <devicetree+bounces-233461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EABDC2265E
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 22:17:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E71DDC22661
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 22:18:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D76943B80DE
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 21:17:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F4AE3ABA5F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 21:18:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6401C302163;
-	Thu, 30 Oct 2025 21:17:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9494C30498D;
+	Thu, 30 Oct 2025 21:18:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="or7uHJAn"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FhFs/8Cw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 450E9268C40
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 21:16:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7C7D2EC09E;
+	Thu, 30 Oct 2025 21:18:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761859021; cv=none; b=T5BPDw0eL/ylvALLsOMGjEwuJyjG9Ffci/zpDDDg95BtbyQ66kfvxiNYErEmGmzmoTU43CM9EjFRsPO7NQ3WKRa7IKKYcBu3H0VmXo8OVPII3ZJyH9RTie7IYsORZkS/76DyWXVskt0++6RDUDhqBOeU/vvp6nAvbcazckM/zXk=
+	t=1761859094; cv=none; b=QNigrptVYZQIL2YuHyeMRuBU5H8ETAErA1xQAQaQgXlza9YAlOR39c5qO2PILb4LtgdAxf9jwaLkKeeVL9tr2VD91DB9V5Vv5nUc/6J57I1/Bi6/gkqI23y97bF+5+AUD7s1Z9IJwY2WNlSvGHVaBf1BZSeggG4vJ5o5UJc3IvY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761859021; c=relaxed/simple;
-	bh=z6375WTq4Yvi4ovxduQFOHZwxvwgNlfEn5b74zi9Rbg=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=jBSJy1SUSpnaNC8Yms7neIHvjCWfy9qaShP/mxvXpY8ZZ6GB3VUtpvduCqS4dZn9yWKND6UXfShTk9p36OnlmMR4QI/tq+O3uePFo+b+3iqh6jfB4q50PKZgzYak1JCBLrY/I0/s2QWNd8hkQGkS1qOzyavHf5JV1/AXBcR+nQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=or7uHJAn; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3f0ae439bc3so944947f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 14:16:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761859016; x=1762463816; darn=vger.kernel.org;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z6375WTq4Yvi4ovxduQFOHZwxvwgNlfEn5b74zi9Rbg=;
-        b=or7uHJAne3M168VW5hkOAZiNpBMKOY/XL62YNrIOzzKli99+ZiKYNPGbBTTqHhJAcC
-         h8BaAR/XjfhU0KG8oOpSV2rWvK5zON3ddOhOUG94cz6m7Nsivhma0lfflIr4zWBf9OMC
-         LkmZa7csBbFQxKFaqTU+y4pz0Q/K44e4M1YycNmryoUWcT8RPV8mhIBw6E6LZz3Nklz1
-         e/H1DL38CV1fDfXkd5Se7aElLvaxurMsqbRvB3KRDXdz8ibIlVDeOQQ0YCF2hZE6MUTR
-         7ZO95od0DmaVP9INcPeH1fagbYP03duxKLGtFPFtpzWE4k2LsnztzQ891E7KyX/y+n82
-         AgSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761859016; x=1762463816;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=z6375WTq4Yvi4ovxduQFOHZwxvwgNlfEn5b74zi9Rbg=;
-        b=bM1anv533Tl+MUGzbtPEQviKiunMW3N2XhPgbijuvxY/PGgRbPtbJO1AjtWW0P52DJ
-         MzhHZ/5PfvTcZXUCjFkS5tdQu2nAfCpsw7fIbm4VbOXoY/e9BsrIiiDJuKbb1F2ltBpe
-         WAd1UQb0S++J2pLOX9rQu58VB8kTFve8xicm47616dC5gN/0JeQ5rN15qCnHUJezLyDT
-         BwJ3t4aVwKkVkUz0EgDXBySg4cjOhrTK6cxGuup3f0GR0LjTemF4TcEl+xfy0285LedY
-         POECDchUshhgVsZl+7nNba2FeshGohqtH4NOliyE1nKqSIMEPs+R//e37lRC48bXBVsq
-         jKTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXqdSLWBZ0a/hgxald8uPDMM0n9Y9KwJPwOa/BUJjisVvlpMygL1PARLOkG8CEfFQwgVqc4cibU/iuF@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywodh+cMyurCe+BFLDJrCRgt1111N/ZEIlAZZ+fShbHR2F6PqpP
-	ubtjhgH36u+y0Gj34vlgBC6YcG65C5WmrC3qub87+W9fG4h1QfZCKlQVxlsX8wiqDv8=
-X-Gm-Gg: ASbGncsfEUk6AZvXHXG0a8AT5d2G5WmhTSlSt8xrB7bmqwLN4nHza5k8rayAuuboQvY
-	nPJ4xhU1McplXVJYZJPzE81qwK0HPmyJcwb+bHQyKrM8XVCuP9lcg3BkAt1huik9ljqT0ss61ca
-	4ZhHlRu1zBBt99keC6JwNJtMNqRe2QDuJpK9TJLhNBuJQHAzXBoL8KMDMwrR9qTe7uOZeBw/saI
-	Zw+vz9jhoeMr9sDow4rVp1f0WnkbHCxmpJ16i0eBvWCgLsya3d6ew5xyyeKFvMJDeUGj53Fw2Br
-	J3XProfqN0ndNmBCrVkDnJ7D9n65xaY7vn9GY2MCXALNfKGEFtZv08mzyp7Qut5nHmGUOyZYsHI
-	YJAhBsQg2QpAZX+BGVfEwHJwzIwfOTxKrhM06vwbnzW40WYWMsYvXYKJPZ9kwqA1iaCWtNvCwig
-	lo+Jgf7hdUb0s/qs0mfbqXml9uMQ==
-X-Google-Smtp-Source: AGHT+IER+NlrHMyAE87dwI1tkEn0iN9IkW6YNIezVtY3mnKy8AByh4iQATc1QapWcTKE5yrO18mcDQ==
-X-Received: by 2002:a5d:588e:0:b0:428:5674:7a13 with SMTP id ffacd0b85a97d-429bd6adccamr865686f8f.36.1761859016075;
-        Thu, 30 Oct 2025 14:16:56 -0700 (PDT)
-Received: from localhost (054722ac.skybroadband.com. [5.71.34.172])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429bf19c53csm626241f8f.34.2025.10.30.14.16.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Oct 2025 14:16:55 -0700 (PDT)
+	s=arc-20240116; t=1761859094; c=relaxed/simple;
+	bh=W+0SK1qT8n+0l/533/lRHWF9H99SYMZQ9sU3yINs8Rg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eN0U85BKDwUb6/c8Rpz5zREXVNR1BsOH3gSowj6Vk/guHzIhlnZ2aBkpn6/HDXxs2gS9istAOjAVfwZZZhiUrCeI9jjdTkplgEi9J1O8f8DRNH7ib0bCZwd7mqMIWV+GrUQTD76djklgQqciBL9IaKlAIh2IOkgbEKTTZcL2ci8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FhFs/8Cw; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761859094; x=1793395094;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=W+0SK1qT8n+0l/533/lRHWF9H99SYMZQ9sU3yINs8Rg=;
+  b=FhFs/8CwhwMU9DSK/b1WULGKSo7ekilo57+zBjNbUvvPjDfoRc2a25+r
+   FhDsyJvRuXgotW0u+TlaWbCsI6Cp0pcHcpE8ZVUIqmiYGJ33E7G3qldwi
+   Z8lZgmsW6UHr4LowVjD77EyrWlLrx1m0E9G0FvMM3nx3RYmkM1fPXEh62
+   4+cizn2ZYaSukjimADRCIkDBBrcac84AE/hWpSdswLxaZimUiBUmiV6eE
+   wQPRkjk4D6V5bv/f7y1ywe2FRwgTDSVQhJCrQlaFnEwpdlPSuRo8k6kJU
+   5e1GuzGf2vf9K/w2mIKWyg4C4HGegLuSd0B9RkT01SBANFVDTc6M60GWc
+   A==;
+X-CSE-ConnectionGUID: hIOzH4pDRPCU3bCs0/8zYw==
+X-CSE-MsgGUID: dlzO9D3xQn6sJXJfT60F2g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="75465042"
+X-IronPort-AV: E=Sophos;i="6.19,267,1754982000"; 
+   d="scan'208";a="75465042"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Oct 2025 14:18:13 -0700
+X-CSE-ConnectionGUID: VZ8phKHuQCi8K6y+EhBKow==
+X-CSE-MsgGUID: U9alOzekQ3u0J76f6RP/5Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,267,1754982000"; 
+   d="scan'208";a="186399100"
+Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
+  by fmviesa008.fm.intel.com with ESMTP; 30 Oct 2025 14:18:10 -0700
+Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vEa23-000MXg-2S;
+	Thu, 30 Oct 2025 21:18:07 +0000
+Date: Fri, 31 Oct 2025 05:17:28 +0800
+From: kernel test robot <lkp@intel.com>
+To: cy_huang@richtek.com, Sebastian Reichel <sre@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	ChiYuan Huang <cy_huang@richtek.com>, devicetree@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] power: supply: rt9756: Add Richtek RT9756 smart
+ cap divider charger
+Message-ID: <202510310457.iAWJdDLC-lkp@intel.com>
+References: <5eab51e111b092329519dd2c200858a522780626.1761699952.git.cy_huang@richtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 30 Oct 2025 21:16:54 +0000
-Message-Id: <DDVYW9DO3Y24.36V1557ZYB2XI@linaro.org>
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: rename qcm2290 to agatti
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>, "Bjorn
- Andersson" <andersson@kernel.org>, "Konrad Dybcio"
- <konradybcio@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- <cros-qcom-dts-watchers@chromium.org>
-Cc: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-X-Mailer: aerc 0.21.0
-References: <20251030-rename-dts-2-v1-0-80c0b81c4d77@oss.qualcomm.com>
- <20251030-rename-dts-2-v1-1-80c0b81c4d77@oss.qualcomm.com>
-In-Reply-To: <20251030-rename-dts-2-v1-1-80c0b81c4d77@oss.qualcomm.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5eab51e111b092329519dd2c200858a522780626.1761699952.git.cy_huang@richtek.com>
 
-On Thu Oct 30, 2025 at 6:20 PM GMT, Dmitry Baryshkov wrote:
-> QCM2290 and QRB2210 are two names for the same die, collectively known
-> as 'agatti'. Follow the example of other platforms and rename QCM2290 to
-> agatti.dtsi.
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Hi,
 
-Reviewed-by: Alexey Klimov <alexey.klimov@linaro.org>
+kernel test robot noticed the following build warnings:
 
+[auto build test WARNING on sre-power-supply/for-next]
+[also build test WARNING on krzk-dt/for-next robh/for-next linus/master v6.18-rc3 next-20251030]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Thanks,
-Alexey
+url:    https://github.com/intel-lab-lkp/linux/commits/cy_huang-richtek-com/dt-bindings-power-supply-Add-Richtek-RT9756-smart-cap-divider-charger/20251029-091554
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-power-supply.git for-next
+patch link:    https://lore.kernel.org/r/5eab51e111b092329519dd2c200858a522780626.1761699952.git.cy_huang%40richtek.com
+patch subject: [PATCH v3 2/3] power: supply: rt9756: Add Richtek RT9756 smart cap divider charger
+config: nios2-randconfig-r112-20251031 (https://download.01.org/0day-ci/archive/20251031/202510310457.iAWJdDLC-lkp@intel.com/config)
+compiler: nios2-linux-gcc (GCC) 9.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251031/202510310457.iAWJdDLC-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202510310457.iAWJdDLC-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/power/supply/rt9756.c:645:41: sparse: sparse: incorrect type in argument 2 (different base types) @@     expected unsigned int [usertype] size @@     got restricted gfp_t @@
+   drivers/power/supply/rt9756.c:645:41: sparse:     expected unsigned int [usertype] size
+   drivers/power/supply/rt9756.c:645:41: sparse:     got restricted gfp_t
+>> drivers/power/supply/rt9756.c:645:53: sparse: sparse: incorrect type in argument 3 (different base types) @@     expected restricted gfp_t [usertype] gfp @@     got unsigned int @@
+   drivers/power/supply/rt9756.c:645:53: sparse:     expected restricted gfp_t [usertype] gfp
+   drivers/power/supply/rt9756.c:645:53: sparse:     got unsigned int
+   drivers/power/supply/rt9756.c: note: in included file (through include/uapi/linux/swab.h, include/linux/swab.h, include/uapi/linux/byteorder/little_endian.h, ...):
+   arch/nios2/include/uapi/asm/swab.h:25:24: sparse: sparse: too many arguments for function __builtin_custom_ini
+
+vim +645 drivers/power/supply/rt9756.c
+
+   619	
+   620	static int rt9756_register_psy(struct rt9756_data *data)
+   621	{
+   622		struct power_supply_desc *desc = &data->psy_desc;
+   623		struct power_supply_desc *bat_desc = &data->bat_psy_desc;
+   624		struct power_supply_config cfg = {}, bat_cfg = {};
+   625		struct device *dev = data->dev;
+   626		char *psy_name, *bat_psy_name, **supplied_to;
+   627	
+   628		bat_cfg.drv_data = data;
+   629		bat_cfg.fwnode = dev_fwnode(dev);
+   630	
+   631		bat_psy_name = devm_kasprintf(dev, GFP_KERNEL, "rt9756-%s-battery", dev_name(dev));
+   632		if (!bat_psy_name)
+   633			return -ENOMEM;
+   634	
+   635		bat_desc->name = bat_psy_name;
+   636		bat_desc->type = POWER_SUPPLY_TYPE_BATTERY;
+   637		bat_desc->properties = rt9756_bat_psy_properties;
+   638		bat_desc->num_properties = ARRAY_SIZE(rt9756_bat_psy_properties);
+   639		bat_desc->get_property = rt9756_bat_psy_get_property;
+   640	
+   641		data->bat_psy = devm_power_supply_register(dev, bat_desc, &bat_cfg);
+   642		if (IS_ERR(data->bat_psy))
+   643			return dev_err_probe(dev, PTR_ERR(data->bat_psy), "Failed to register battery\n");
+   644	
+ > 645		supplied_to = devm_kzalloc(dev, GFP_KERNEL, sizeof(*supplied_to));
+   646		if (!supplied_to)
+   647			return -ENOMEM;
+   648	
+   649		/* Link charger psy to battery psy */
+   650		supplied_to[0] = bat_psy_name;
+   651	
+   652		cfg.drv_data = data;
+   653		cfg.fwnode = dev_fwnode(dev);
+   654		cfg.attr_grp = rt9756_sysfs_groups;
+   655		cfg.supplied_to = supplied_to;
+   656		cfg.num_supplicants = 1;
+   657	
+   658		psy_name = devm_kasprintf(dev, GFP_KERNEL, "rt9756-%s", dev_name(dev));
+   659		if (!psy_name)
+   660			return -ENOMEM;
+   661	
+   662		desc->name = psy_name;
+   663		desc->type = POWER_SUPPLY_TYPE_USB;
+   664		desc->usb_types = BIT(POWER_SUPPLY_USB_TYPE_UNKNOWN) | BIT(POWER_SUPPLY_USB_TYPE_SDP) |
+   665				  BIT(POWER_SUPPLY_USB_TYPE_DCP) | BIT(POWER_SUPPLY_USB_TYPE_CDP);
+   666		desc->properties = rt9756_psy_properties;
+   667		desc->num_properties = ARRAY_SIZE(rt9756_psy_properties);
+   668		desc->property_is_writeable = rt9756_psy_property_is_writeable;
+   669		desc->get_property = rt9756_psy_get_property;
+   670		desc->set_property = rt9756_psy_set_property;
+   671	
+   672		data->psy = devm_power_supply_register(dev, desc, &cfg);
+   673	
+   674		return PTR_ERR_OR_ZERO(data->psy);
+   675	}
+   676	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
