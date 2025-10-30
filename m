@@ -1,104 +1,221 @@
-Return-Path: <devicetree+bounces-233372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4F37C21927
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 18:55:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64016C219DB
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 19:00:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33E551889850
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:55:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1933E1AA1151
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:59:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624F136C250;
-	Thu, 30 Oct 2025 17:55:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FE7336CA89;
+	Thu, 30 Oct 2025 17:56:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eQq+vxVU";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Wp3fz8V4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53E8A365D39;
-	Thu, 30 Oct 2025 17:55:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D11D36CA7D
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 17:56:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761846917; cv=none; b=evVs4EhEBkjaQBrVMaRJbOrtO//nqCgT6BuW69f3Fdw8URtke/1t0z+7Pb4R5pYmudPou79783tUBiqIVUjblCRlIsppFKOBqDAK56+diwjzSa9zPtAWML6mAAQOqB7qwmJAcXw7dP8VFzR7dd3PJDuFCdm6UEiVgzWwRGKwSXw=
+	t=1761846994; cv=none; b=ZTP3bMMtaFBGXVIslRwCugrK+Tr01frUcHX2GHT5hZmwgSkNTqcNy0eQYg6Y+1vOjFebpjYWMY5rgCYofYN7awPfrFPTrbJ0WrpqRSt2hiMsBM1d5qkrgJu6UjXsl8Fup+LyJxw8/l8/QjNvSFW1KaiS+qZWy0MhFNZhqDodPnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761846917; c=relaxed/simple;
-	bh=n03Kkd8B9lkuPGGTD2/aS2js141OYFeGO2LxnTibEvA=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=W88UfAWvKnxTXS66if50YtNJ36Wx0ZNYcVLNzCCuzatAsM7n5B82VbnIxd00UvXsaFJ/ON5Q/a8GBYmD+W8Sgqc7SVgdDfdpF7Q/fm3rgM1CpcOeOHseSwB02RKuLUnHkUfT29QO26bdKggI6oAw3B0xMqzvheVCryiQ3lI1rD8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.216])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4cyBVw1ddfz6M4qj;
-	Fri, 31 Oct 2025 01:51:20 +0800 (CST)
-Received: from dubpeml100005.china.huawei.com (unknown [7.214.146.113])
-	by mail.maildlp.com (Postfix) with ESMTPS id C480F140370;
-	Fri, 31 Oct 2025 01:55:12 +0800 (CST)
-Received: from localhost (10.203.177.15) by dubpeml100005.china.huawei.com
- (7.214.146.113) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Thu, 30 Oct
- 2025 17:55:12 +0000
-Date: Thu, 30 Oct 2025 17:55:10 +0000
-From: Jonathan Cameron <jonathan.cameron@huawei.com>
-To: Ajith Anandhan <ajithanandhan0406@gmail.com>
-CC: <linux-iio@vger.kernel.org>, <jic23@kernel.org>, <dlechner@baylibre.com>,
-	<nuno.sa@analog.com>, <andy@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH 3/3] MAINTAINERS: Add entry for TI ADS1120 ADC
- driver
-Message-ID: <20251030175510.00005af8@huawei.com>
-In-Reply-To: <20251030163411.236672-4-ajithanandhan0406@gmail.com>
-References: <20251030163411.236672-1-ajithanandhan0406@gmail.com>
-	<20251030163411.236672-4-ajithanandhan0406@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1761846994; c=relaxed/simple;
+	bh=3Dt/rlrRqj6N/1r4mQm0gKfab49hbWWWCK2mMOdP1Rk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F1pYr+TKBx3jh4XIkWmPVkEGB8BvWwFu9GHlpuIavbYX3nl40NxPM+lpRCvtpKW6AbkkLNtxHVRtL+oZOG+JXie6hAXsDngMCKJB6AfeXZu4BijNQR1lfRGYTEIEkq+2qpkHaZVvyPAnKw2G0dLmaQ5/2U1ROCpngMqSzNLcAoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eQq+vxVU; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Wp3fz8V4; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59UFEO9T083962
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 17:56:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	vehAa8y1JkGkskeznsNK9Kcw3sMCXaLIMhNgGP3BvL8=; b=eQq+vxVUNgrL78u5
+	UB3aruuKZ326V4FXkcCLNMBEtp4ZykYoEQ41ZVMkNoDs92lK/z+VM+xSMwLBnoPX
+	Z25We6SQ3MhP5zb+U6w8Xx8Kn4ZhgIkFo3wRzGOyK71EYKbz/8hc0DH2rINQz0JL
+	YFrbxun3WpfKmzknP4Ra4DgZc/Hq4ODsOKUSp20XepAOPd6dO/1Ibv95JNSdMnD5
+	pGyWq544m2A1Z1iycbLQ5PzXOAil/JvGHxycNxu/UUmLXv9Zx7ZT7I8KdHy6AqCe
+	kfKxv9coApxd0yHsCBFVBB7yj7vlgPrxU4WYejl75FSSORvZsbMpCZpNEdv/gtMq
+	8TZh7A==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a4ag38fhj-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 17:56:32 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4eba120950fso29287921cf.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 10:56:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1761846991; x=1762451791; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=vehAa8y1JkGkskeznsNK9Kcw3sMCXaLIMhNgGP3BvL8=;
+        b=Wp3fz8V4XCHinGlF1iKieRVOnD2rYu7RBqkR4bwwxljnDJDGhkh/c3BglRpAb0Zhwr
+         1l+rEiw5DjFcDFiTAwAHJ+4siAaEorGu6dvdFt+j5cJqP/H4wxF+DaN2KJFxp7QfTZBo
+         eQ5vIf0oGXfZWMER3NbawMQ3TAwbU7JxHrCCNL5J1Q6HOJ131PPMEDHXvHLV2Fk9Bntg
+         QBSZ2vWypd2K/dRItv9EWpAZ92bmVioCPlOkcocj2KjqcHBeWvajQ/r5s+QpC6m13jUa
+         ZypJJu9fjI4vgySB+Gh7Wevd6mOwWgo7Qsov3rZtuB9ubU/wQXeeYsMhCBKHozqdf4Rn
+         Jl/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761846991; x=1762451791;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vehAa8y1JkGkskeznsNK9Kcw3sMCXaLIMhNgGP3BvL8=;
+        b=n2FQdP2loV4lNzdFEqXucCoqxHI/vOXVmerFBwZiFxC6+VIJ1PC74rnAglxGw/K4bI
+         9p0EUgJq5FIlQit8RNK0OKr/4ZWZFRSMu4zpasP3h0TBIo7khSKEpw2up7jq9WSbD18K
+         LLzzfWN2cG03v+0imfAlcPLIu6ySTG6Qp+FEP3zq9xo4jtK8UBbYRohqDg5O0Enujd+y
+         Ew9tX62TAtdrk8FvkgfC4Ww0iPGNFdYqyeE9wg6jxbc9AqsEGhcg8e9hpupPE1dqJRDG
+         L10tybJnk26CWr4DYcFGJ79mgwJwlT8y6Q6STFV+HofwqYPecG8jUc5AwljhbI2FL0tR
+         8i3g==
+X-Forwarded-Encrypted: i=1; AJvYcCWPH8TKuqb9kBftEUOt/4iiTjW0wnVP7zaUsskUzgAm68O5OnKJJjUziilxmrCbJBR5P9GqJwxvSpWL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2U5+iQTMR4G+DfpTGQrjDI0phhOKZ7hW0TmlHKtba3SOwCiPF
+	O299vDJlAMP+FKwbpjwC+00dTyX+nITTA+4/arQ/KlasoDPp1yJn03USo7634NaN8TVqC3uJgf0
+	BNzVnDb30WKcMCj1b9tIRINGzFe+A1T9sWgsXtE9O4UNasQUtdhQOGj1hHrw5OOsj
+X-Gm-Gg: ASbGncumOVo28iAMjolGBv0ATmTjd/3bu5FzoW1hBs8jiB4wxvygJ2NNDkHBnmROBLO
+	tgvufTVYZFc6T2eklngZu866XkBZWV47ZeOvYZXNiE7c3LMUncDW1emt6p1aJbg7P+ejsGPvcgV
+	B2AbEPxm6W+MKM44VrUcZCe/eD4gOiRY/25bmvWylXyPZY9azAc1Zlt25gWZl97AH4NxpM1e4ep
+	MQER83i3ZFuw5MvABXaz9gugZkTO5H/cI86fKGppsrD0kHnwLpEV8dmfGmpDCeFrPqB7Wf/l0RB
+	mYpqkhYyJVxfrXMR73oBPoenkLSXB0dZze+UXVPKFef4lP9CjnnFGECBfA1F/fwHzfoopAXQmYP
+	vr5zJrbCrAfM9j9CutOJcL9i57qxqoWJ+ElPtG/Yhhs+7NxgJTlrWJQfA+uSYE6+1jhDke2EYCu
+	EPx1Yg16Jxkv4Q
+X-Received: by 2002:a05:622a:5909:b0:4eb:a4fc:6095 with SMTP id d75a77b69052e-4ed31079258mr7180791cf.68.1761846991194;
+        Thu, 30 Oct 2025 10:56:31 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG1gTOZ9j/WQ4KYwl8p6DGINz2A+gvzkJGhTk6NeUfZTCXk3lRg0VzU9uLbO9XlJIFNowmF4w==
+X-Received: by 2002:a05:622a:5909:b0:4eb:a4fc:6095 with SMTP id d75a77b69052e-4ed31079258mr7180431cf.68.1761846990617;
+        Thu, 30 Oct 2025 10:56:30 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37907dd2312sm20061201fa.37.2025.10.30.10.56.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Oct 2025 10:56:29 -0700 (PDT)
+Date: Thu, 30 Oct 2025 19:56:28 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Mahadevan P <mahadevan.p@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        jesszhan0024@gmail.com, quic_rajeevny@quicinc.com,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Abhinav Kumar <abhinavk@quicinc.com>, Abel Vesa <abel.vesa@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC/WIP 0/4] arm64: dts: qcom: sm8750: Enable display
+Message-ID: <gbcy2uegaf5xdpsgwby3m7sj3pwahjboykfh6bxachsvabvhad@m6dbgxnigp7d>
+References: <20250424-sm8750-display-dts-v1-0-6fb22ca95f38@linaro.org>
+ <w6f3s56gx7psqgweuntqvkzrot7elhc5pdrxhvenukzwyt5eys@fndmaszfbo5k>
+ <921afe20-42b1-4999-b5c4-035669dc831e@linaro.org>
+ <32eb3b4f-b2c4-4895-8b48-ade319fd83de@oss.qualcomm.com>
+ <CAO9ioeWdJpKfpu3jGyv42Mf5+02ehxyEu_Lj+Boz0NyDjPZ-CQ@mail.gmail.com>
+ <58a658bb-7338-442f-ad8c-845b5fa5ce00@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100009.china.huawei.com (7.191.174.83) To
- dubpeml100005.china.huawei.com (7.214.146.113)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <58a658bb-7338-442f-ad8c-845b5fa5ce00@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMwMDE0OCBTYWx0ZWRfX5VUVrTSb1YkX
+ BoXwKGRL6+Wdcieq5LWpGAvSRCylWGl+aK6e8N3K93UG6IGflWGsStS+o2S4+sKcRw6fpuJHdjt
+ vXfKalHm7CRtHsBt6A+bZ3PJmKnTHmYboGrj1uw8NPzHAhgAtkTh0KpQGoah6gh4uziIlgb7oUh
+ P5HUQj5QWaMarJYOsyIqJbGxOvGYn44NAfIzQ4FGTA/ct1ZWYLFVSpfJdBuzjpAnwnwaiwRteie
+ 3fxCmTAy39kJ8mKOfyuvGfcur8X1eRyQbsI5NiF41aecXYd6zeiEx9N8uKtZZ8kbTKAsFO/Z2ci
+ CQLZyYgLKioulIWlM3f3oHZfEykQqr7VG+jOIPePFadTl84FcltwIJfU1khpprtfo4YsGozxULK
+ p0LuXQ6H9uo8IrF7agDgK+1BkUgdxw==
+X-Authority-Analysis: v=2.4 cv=TrnrRTXh c=1 sm=1 tr=0 ts=6903a6d0 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=-oEtJe5RtmD9yeKdI3YA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: KhGvAu47P_qS2xdDJ_XO7KWtRpAvklCC
+X-Proofpoint-GUID: KhGvAu47P_qS2xdDJ_XO7KWtRpAvklCC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-10-30_06,2025-10-29_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 spamscore=0 lowpriorityscore=0 clxscore=1015 impostorscore=0
+ bulkscore=0 malwarescore=0 adultscore=0 suspectscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510300148
 
-On Thu, 30 Oct 2025 22:04:11 +0530
-Ajith Anandhan <ajithanandhan0406@gmail.com> wrote:
-
-> Add a new MAINTAINERS entry for the Texas Instruments ADS1120
-> ADC driver and its device tree binding.
-blank line before tag block.
-> Signed-off-by: Ajith Anandhan <ajithanandhan0406@gmail.com>
-
-Just bring this in along with the code, it doesn't need a separate
-commit.
-
-Thanks,
-
-Jonathan
-> ---
->  MAINTAINERS | 7 +++++++
->  1 file changed, 7 insertions(+)
+On Thu, Oct 30, 2025 at 05:51:02PM +0530, Mahadevan P wrote:
+> Hi Dmitry/Krzysztof,
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 3da2c26a7..1efe88fc9 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -25613,6 +25613,13 @@ S:	Maintained
->  F:	Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
->  F:	drivers/iio/adc/ti-ads1119.c
->  
-> +TI ADS1120 ADC DRIVER
-> +M:	Ajith Anandhan <ajithanandhan0406@gmail.com>
-> +L:	linux-iio@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/iio/adc/ti,ads1120.yaml
-> +F:	drivers/iio/adc/ti-ads1120.c
-> +
->  TI ADS7924 ADC DRIVER
->  M:	Hugo Villeneuve <hvilleneuve@dimonoff.com>
->  L:	linux-iio@vger.kernel.org
+> On 10/30/2025 4:46 PM, Dmitry Baryshkov wrote:
+> > Hi Mahadevan,
+> > 
+> > On Wed, 29 Oct 2025 at 08:20, Mahadevan P <mahadevan.p@oss.qualcomm.com> wrote:
+> > > 
+> > > Hi Krzysztof,
+> > > 
+> > > On 4/26/2025 1:24 AM, Krzysztof Kozlowski wrote:
+> > > 
+> > > On 25/04/2025 21:34, Dmitry Baryshkov wrote:
+> > > 
+> > > On Thu, Apr 24, 2025 at 03:04:24PM +0200, Krzysztof Kozlowski wrote:
+> > 
+> > Could you please fix your email client to _never_ send HTML emails.
+> > You've destroyed all the quoting (quotation?) levels. Your email was
+> > caught by the automatic mailing list filters, etc.
+> 
+> Thank you for your feedback and I've updated my email client settings to
+> ensure only plain text is sent going forward.
+> 
+> > 
+> > > We at Qualcomm are currently working on bringing up the DSI display on MTP. For this, I’ve picked the following patches on top of v6.18-rc2:
+> > > 
+> > > All the DT changes mentioned in this series
+> > > [PATCH v2] drm/msm/dpu: Fix adjusted mode clock check for 3d merge
+> > > https://lore.kernel.org/all/1154f275-f934-46ae-950a-209d31463525@kernel.org/
+> > > [PATCH v2 0/2] drm/panel: Add Novatek NT37801 panel driver
+> > > https://lore.kernel.org/all/20250508-sm8750-display-panel-v2-0-3ca072e3d1fa@linaro.org/
+> > > 
+> > > However, when testing with modetest, the panel appears blank. I wanted to check if there are any additional patches already posted that I might have missed and should be included.
+> > 
+> > Any errors or warnings in dmesg?
+> 
+> There were no errors seen. only panel was not lighting up. Got unblocked and
+> able to validated modetest on DSI and working fine with this workaround on
+> linux-next
+> https://lore.kernel.org
+> all/20251023080609.1212-2-yuanjie.yang@oss.qualcomm.com/
 
+Broken link. Just to point out, this patch is NAKed.
+
+> 
+> > 
+> > > 
+> > > Also, I’m curious to understand more about the DSI PHY PLL VCO rate issue that Jessica had narrowed down—could you please share some details?
+> > > 
+> > > Lastly, I’d appreciate it if you could share the plan for merging these changes upstream. We’re aiming to enable display support on this target as part of our program.
+> > 
+> > Please see Documentation/process/, I think it describes the process of
+> > merging patches pretty well.
+> 
+> Sorry for any confusion in my previous message. Could you please share when
+> we might expect the next non-RFC version of this series, specifically for
+> the DSI enablement patch? Alternatively, if there are no immediate plans to
+> post an updated version, would it be acceptable for us to take it forward
+> and submit the subsequent non-RFC versions of the MDSS and DSI enablement
+> device tree patches by adding dependency to this https://lore.kernel.org
+> all/20251023080609.1212-2-yuanjie.yang@oss.qualcomm.com/.
+> 
+> > 
+> Thanks,
+> Mahadevan
+
+-- 
+With best wishes
+Dmitry
 
