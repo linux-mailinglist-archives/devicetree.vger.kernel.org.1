@@ -1,109 +1,139 @@
-Return-Path: <devicetree+bounces-233033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB0A7C1E901
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 07:30:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B58FAC1E94F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 07:36:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6F233B9702
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 06:30:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5031A3AB257
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 06:35:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE0EF2F7ADD;
-	Thu, 30 Oct 2025 06:30:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 726DD3002B9;
+	Thu, 30 Oct 2025 06:35:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r8fcdWt3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NlDL1fkO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9239A2F744F;
-	Thu, 30 Oct 2025 06:30:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 428E52DC76C;
+	Thu, 30 Oct 2025 06:35:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761805810; cv=none; b=c3OGvwJzGNc1HXF/y1a6+l5YQdOgxJ9KorMpzY+LJ2EJ9lgU4pVEpDAOG6LKt+0kc+iacPcIW7+Ac9D1SsAYCYN3TvwSSRsC11+Gna3smkui+cm/gOR1/eoLguLa7O+719M++ojNeko0uidQRYi5JW7jp5XVNxAYyG/wCr8fGL4=
+	t=1761806142; cv=none; b=fLOKJtmuiV4LAl6CzCwIW9kPZpNPc8590mnZiw+8yS6l6+x173uEYkqQpqAzukygrR1AR7L0NLT+aaEMuEIWYmrwi0UggU8yfsEETSGFJdhN5lQftpFWkZqPeBZOBwoCz8e9ehKFL3OQ/mYs1g1fw7otbXvxf/o0B/0u0msoAM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761805810; c=relaxed/simple;
-	bh=qj2BZ/nv8I7YMpz8gUgYrt5ObvzXmgUVZDC2GuWXJjY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f13QaZH5Ef0l08SvtED+prEyBs16QcUoxgm9EkAXeOKdMmtpR8HC5r28dhHyeks8+faezVgiZXcJBFj5zOGKJ144TngCS2qIIzpqiSYhhkLt1LzF8D/jWsdjF8HFxuN3nnomOd3lleoBf0KhRPw/js9y0KvDXaY12MWb+lQgUyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r8fcdWt3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73C71C4CEF1;
-	Thu, 30 Oct 2025 06:30:08 +0000 (UTC)
+	s=arc-20240116; t=1761806142; c=relaxed/simple;
+	bh=U7srSnWzfH6yj+mfSTGf2OP0Gg/vZlzbpPNFl8Dk7XQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CnxMnWCLX/t83bHvqxJBD/24uCN773YJm/AUEx0/xJRIZpZOx+VA853HsfRHCsyzJEgWh8CS/i75O9nha+TLWPjqfjPoXFLIZG2J53iGuCef12x+ZeP/chPDvRdd8FGMwQBz0Il22zZhxtKWE9ALVcudU+GpFdCDupCdUBTVNqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NlDL1fkO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CE418C4CEF1;
+	Thu, 30 Oct 2025 06:35:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761805809;
-	bh=qj2BZ/nv8I7YMpz8gUgYrt5ObvzXmgUVZDC2GuWXJjY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=r8fcdWt31RUFiEJhdm8gcCMkZu4AfT57uA2txrYNY7upTZj2gt2PDEQeQY1pVw+tf
-	 2Wa1WMl5SaPdJ7lNXSyR/+RjhNfOiBS5qUmfG6iuWQogNOXNF+RzCnN+uWYbTEuk0/
-	 ZP/L8H/ufRRyhoMTCOM8yOWeArImBlmw+yfh4Bz5FRD2V4fusweJNAjT7hTmQzfkbj
-	 oyUS4wcLi2NsPZGCuwmjGRsssLQTBkf2jV5VEOpqnM3oKVqXBN09LIDn8baz8BueaZ
-	 AJMdH5wg/LsH0bTMb1hVoWgpDNAq6dL4G7iplRPyLZtNSSSXW89eSR3nmCFjYIAZte
-	 VAc0xLoXiT2qQ==
-Date: Thu, 30 Oct 2025 07:30:06 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Cc: robh@kernel.org, broonie@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, perex@perex.cz, tiwai@suse.com, 
-	srini@kernel.org, linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, alexey.klimov@linaro.org
-Subject: Re: [PATCH 4/4] ASoC: dt-bindings: qcom,lpass-va-macro: Add sm6115
- LPASS VA
-Message-ID: <20251030-flat-elated-pony-de74ab@kuoka>
-References: <20251029160101.423209-1-srinivas.kandagatla@oss.qualcomm.com>
- <20251029160101.423209-5-srinivas.kandagatla@oss.qualcomm.com>
+	s=k20201202; t=1761806141;
+	bh=U7srSnWzfH6yj+mfSTGf2OP0Gg/vZlzbpPNFl8Dk7XQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=NlDL1fkOcAvWdTiWh1qtupEVkylVn1RCIvJ+Ecjz5Oz1PDX6y8bXubduJuudCf07i
+	 LCmJxNofOQoRyt3bMHI4qEr0Xt6n0oJjHCMpCeBX+V/6+tuQiSNkTdXeow1yIUTSv2
+	 PgbOCoRVkPwNfrZhWtr7vHionZGSVsLxEOCG/zMN9XufSTj5LKgLOLuY37HeBY3ICr
+	 /vrSwoXJjPpPMwxIeoHAcfNWaRJDtgnbgl63QX53xtCfVIxVSFyODmSwVCxPURc+x5
+	 fC9+x1NZOa5BOfCtR6HyoEO2sTjD+y2GBdkiZXtsuHBQaEc9TShNMEoWnywD8BB2Kr
+	 1coGiCDQUhPDg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B982CCCF9F0;
+	Thu, 30 Oct 2025 06:35:41 +0000 (UTC)
+From: Maud Spierings via B4 Relay <devnull+maudspierings.gocontroll.com@kernel.org>
+Subject: [PATCH v3 0/6] arm64: dts: freescale: add support for the
+ GOcontroll Moduline IV/Mini
+Date: Thu, 30 Oct 2025 07:35:36 +0100
+Message-Id: <20251030-mini_iv-v3-0-ef56c4d9f219@gocontroll.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251029160101.423209-5-srinivas.kandagatla@oss.qualcomm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADgHA2kC/2WMwQqDMBAFf0X23JRkNdT01P8opYQ00QVNJJHQI
+ v57o5cWPM7jzSyQbCSb4FotEG2mRMEXqE8VmF77zjJ6FQbkKAXnio3k6UmZaS6tNGgEYg3lPUX
+ r6L2X7o/CPaU5xM8ezmJbj40sGGeubltlGoWNvNy6YIKfYxiGswkjbKGMfzLiT8YiI9eudUprI
+ 5qDvK7rF7GCyXHgAAAA
+X-Change-ID: 20251009-mini_iv-a05e5c2c1223
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Matti Vaittinen <mazziesaccount@gmail.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ Maud Spierings <maudspierings@gocontroll.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761806140; l=2171;
+ i=maudspierings@gocontroll.com; s=20250214; h=from:subject:message-id;
+ bh=U7srSnWzfH6yj+mfSTGf2OP0Gg/vZlzbpPNFl8Dk7XQ=;
+ b=dUk+8sCZB3oHVtlOsJveFBg7XJlVdMloMj3tLjhulGXp3ipCK3pKsZ3y9+/ItK5lwGpdeSH5w
+ w8ba6dfY5LSB1w1EJjYBMGOe9hQZkJEhiH4z1nI3D8f52VgHf6f8MpU
+X-Developer-Key: i=maudspierings@gocontroll.com; a=ed25519;
+ pk=7chUb8XpaTQDvWhzTdHC0YPMkTDloELEC7q94tOUyPg=
+X-Endpoint-Received: by B4 Relay for maudspierings@gocontroll.com/20250214
+ with auth_id=341
+X-Original-From: Maud Spierings <maudspierings@gocontroll.com>
+Reply-To: maudspierings@gocontroll.com
 
-On Wed, Oct 29, 2025 at 04:01:01PM +0000, Srinivas Kandagatla wrote:
-> Add bindings for Qualcomm SM6115 SoC Low Power Audio SubSystem (LPASS)
-> VA macro codec, which looks like compatible with SM8450, however one of
-> the clocks macro is available in this SoC. So updated the bindings to
+Add initial support for the Moduline IV and Moduline Mini embedded
+controllers.
 
-is or is not? Which clock?
+These systems are powered by the Ka-Ro Electronics tx8m-1610 COM, which
+features an imx8mm SoC.
 
-> allow min-clocks to be 3 to be able to use SM8450 compatible for
-> SM6115.
-> 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/sound/qcom,lpass-va-macro.yaml | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-> index 5b450f227b70..1ac3392776ca 100644
-> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-> @@ -26,6 +26,10 @@ properties:
->                - qcom,sm8750-lpass-va-macro
->                - qcom,x1e80100-lpass-va-macro
->            - const: qcom,sm8550-lpass-va-macro
-> +      - items:
-> +          - enum:
-> +              - qcom,sm6115-lpass-va-macro
-> +          - const: qcom,sm8450-lpass-va-macro
->  
->    reg:
->      maxItems: 1
-> @@ -44,9 +48,9 @@ properties:
->      minItems: 1
->      items:
->        - const: mclk
-> -      - const: macro
+Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+---
+Changes in v3:
+- Add patch fixing the pmic driver
+- Use the proper feedback properties for BUCK6
+- Slightly rework the compatibles, acked by conor dropped
+- Add missing CAN interface supplies, remove the leftover comment
+- Add missing vled-supply
+- Add missing ethernet phy interrupt (doesn't work)
+- Fix the cs-gpios properties in all spi interfaces
+- Fix the order of properties in all spi interfaces
+- Remove unused labels for regulators of the PMIC
+- Link to v2: https://lore.kernel.org/r/20251022-mini_iv-v2-0-20af8f9aac14@gocontroll.com
 
-No, that's ABI break and I know existing code works fine, so there
-cannot be justification for exception here.
+Changes in v2:
+- Fix allignment issue in imx8mm-tx8m-1610.dtsi (fec1)
+- Move phy-reset into fec (works better in barebox)
+- Make the gpio-line-names groups of four on every line
+- Link to v1: https://lore.kernel.org/r/20251009-mini_iv-v1-0-f3889c492457@gocontroll.com
 
+---
+Maud Spierings (6):
+      dt-bindings: arm: fsl: Add GOcontroll Moduline IV/Mini
+      regulator: bd718x7: Fix voltages scaled by resistor divider
+      arm64: dts: imx8mm: Add pinctrl config definitions
+      arm64: dts: freescale: add Ka-Ro Electronics tx8m-1610 COM
+      arm64: dts: freescale: Add the GOcontroll Moduline IV
+      arm64: dts: freescale: Add the GOcontroll Moduline Mini
+
+ Documentation/devicetree/bindings/arm/fsl.yaml     |   8 +
+ arch/arm64/boot/dts/freescale/Makefile             |   3 +
+ arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h     |  33 +
+ .../imx8mm-tx8m-1610-moduline-iv-306-d.dts         | 800 +++++++++++++++++++++
+ .../imx8mm-tx8m-1610-moduline-mini-111.dts         | 688 ++++++++++++++++++
+ .../arm64/boot/dts/freescale/imx8mm-tx8m-1610.dtsi | 444 ++++++++++++
+ drivers/regulator/bd718x7-regulator.c              |   2 +
+ 7 files changed, 1978 insertions(+)
+---
+base-commit: 7c3ba4249a3604477ea9c077e10089ba7ddcaa03
+change-id: 20251009-mini_iv-a05e5c2c1223
 
 Best regards,
-Krzysztof
+-- 
+Maud Spierings <maudspierings@gocontroll.com>
+
 
 
