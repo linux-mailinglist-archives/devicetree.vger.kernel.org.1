@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-233071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A54EC1EDE0
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:57:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7AE7C1EDF2
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:58:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8130D4E5724
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 07:57:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24D033BC192
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 07:57:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10D50338909;
-	Thu, 30 Oct 2025 07:56:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEBE4338586;
+	Thu, 30 Oct 2025 07:57:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HMZrFydo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qVPMdLhU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB1453370E8;
-	Thu, 30 Oct 2025 07:56:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5CED337BB8;
+	Thu, 30 Oct 2025 07:57:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761811014; cv=none; b=N7pS0QKwVLEs0fDxUK3ecVD2A4xQnaWDFaDaxn3g5Gr6DqrMXXOoOfXwaPJRNNEzEH38BBjpetX0VpUWwa/fRGCEpvpcI4H0eGlgX3Ud6z95F7Z/Pc/K5hjojgFg7ywFX6Ife5zwdD85aEFXYRjT+CPNpcW6YYSuT4sSTtIr+7I=
+	t=1761811064; cv=none; b=UolyztHNac65o9b8YLLdORLFbEPhIYuoy0/84EPsNviVIFCx8Pyyhdzc5YzB9P4aPeyI1e5pMgz9Sn0RfBy8WFnWtFfhrjItjD5E+Nsz8s6vs1z9veWjt7fr3bdWwkth/gfJC3yDu6YiLfJwQike08wPzFhKZ4QlsLpLIvI9XIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761811014; c=relaxed/simple;
-	bh=zjYbPecjjnmHzNsJou3TxkfUOdtr4RaVDpxS/ktQUPI=;
+	s=arc-20240116; t=1761811064; c=relaxed/simple;
+	bh=Gbox8rdWGZ1D44utOerJFDJX1Ra41eaNoAS7VxhH3Ic=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IADbz3Ljf69TuYqJDLqZwBEtACc8XXd4aTPdhQ4B1W8xM9BN8p1xphuv0nUHBAbZSSoKG55wY/W9CgTTla8JmQl6NawMkB7Fc5NWvhCWDbB/RhZWdryGvAfe0lDDkdfkmwIlFEYZWmEo1eICfBX0tpytiF+Aey2qBbAantyVvaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HMZrFydo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F6C0C4CEF1;
-	Thu, 30 Oct 2025 07:56:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SwMvBwERIzgHgGBrV4nE3Xyi0M5oQYSCM4PCNttP/V5phtYFmjAPQu8nnnFgGqQ3wWXXrohWaZxoI6Ta9I8NTZjbyiBTeKmQqClwBt+uHz9oyVja3pSKcrVwyZMWc8qklEN0JWtxs/3eHr0iRFidebv4iXJAfkAPpOYEUKLofCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qVPMdLhU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7919C4CEF1;
+	Thu, 30 Oct 2025 07:57:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761811012;
-	bh=zjYbPecjjnmHzNsJou3TxkfUOdtr4RaVDpxS/ktQUPI=;
+	s=k20201202; t=1761811064;
+	bh=Gbox8rdWGZ1D44utOerJFDJX1Ra41eaNoAS7VxhH3Ic=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HMZrFydoWFCzeeBoZYYyrbQuU/ZwnPFlZo1prFAU+rnGmfne8GEFQlSKmdNGWFfVz
-	 d14HZ4JVCXa6fkFvKlJyRYGlYi4+U6NZFh006V8SgokNBubwoGInucX/IwNAoJiMqQ
-	 VloIHNpywAwQabJH3ZTHpzjqr+fr+fn0C2kBSpuMFGTKyWShVfV0tV5FhwLFYx/ku6
-	 o3rpS9eD9OF11MccEjL54AQIi6WqSl/8v6u0STM2hZhiSQEuEq/+Ye55KNniPa81xf
-	 xZDun5ru20PvNS4mZeDMfeYaFaE0U4CkfnuJ4ViXCafy3VzUP8iN1KPPu4CBsfxk2T
-	 RFINC1L9RmHsg==
-Date: Thu, 30 Oct 2025 08:56:49 +0100
+	b=qVPMdLhUbGJKktYokhEWTsad8YjDF/vFbc2Sfjwk/uT2nM4EGosKgZzWYosA+tE0E
+	 8Hzkp5Z0FfSNR40j/e23NH1PWXaykP7Y79netiPfK6t0M4LcfkjYKIIxdVyh4YSIt0
+	 6XKVNEw6g+3aR8U9JEn/3ewBGDmb19aYkdySAQOjPtRHFXVHFVHsiNzKiedSLjz9iP
+	 9L7haZq9egk4u9WYW1uupjiI+gQA8a+uMqASSgGkpN/+rWsYnhpnjk2VUAp3XLNTvr
+	 iJfFESaDnlVZbVMuN0VJ/RI6ZzfW5rhb4AOnpJvh+JGcX0j6CoqTG/abejMOHLjL3I
+	 /XS1rlglAe4Xg==
+Date: Thu, 30 Oct 2025 08:57:41 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
 Cc: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
 	Mahesh Rao <mahesh.rao@altera.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: firmware: Add Agilex5 SVC compatible
- string
-Message-ID: <20251030-poetic-ant-of-bloom-0ee7fb@kuoka>
+Subject: Re: [PATCH v2 3/3] firmware: stratix10-svc: add the compatible value
+ for Agilex5
+Message-ID: <20251030-pastoral-discerning-goldfish-e8f3bb@kuoka>
 References: <cover.1761648711.git.khairul.anuar.romli@altera.com>
- <71503d442d66054c023ec25ae21838c0939c72b4.1761648711.git.khairul.anuar.romli@altera.com>
+ <08cacb9328c338edb6a6f291c56c6d2c32a9e0cb.1761648711.git.khairul.anuar.romli@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,23 +60,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <71503d442d66054c023ec25ae21838c0939c72b4.1761648711.git.khairul.anuar.romli@altera.com>
+In-Reply-To: <08cacb9328c338edb6a6f291c56c6d2c32a9e0cb.1761648711.git.khairul.anuar.romli@altera.com>
 
-On Thu, Oct 30, 2025 at 11:30:07AM +0800, Khairul Anuar Romli wrote:
-> Enable support for the Agilex5 SoC in the Stratix10 Service Layer (SVC) by
-> adding the new compatible string "intel,agilex5-svc" to the device tree
-> bindings.
+On Thu, Oct 30, 2025 at 11:30:09AM +0800, Khairul Anuar Romli wrote:
+> Add the compatible property value so we can reuse Intel Stratix10
+> Service Layer driver on Intel Agilex5 SoC platform.
 > 
-> This allows distinguishing Agilex5 from earlier SoC generations, as it
-> uses a different mechanism for handling reserved memory regions.
+> This addition is an initial Agilex5 service layer driver enablement that
+> will involve adding IOMMU changes in the future.
 > 
 > Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
 > ---
 > Changes in v2:
-> 	- Reprase commit message to exclude iommu
+> 	- Add driver compatible for Agilex5-svc
+> ---
+>  drivers/firmware/stratix10-svc.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/firmware/stratix10-svc.c b/drivers/firmware/stratix10-svc.c
+> index e3f990d888d7..afc6c8b43e98 100644
+> --- a/drivers/firmware/stratix10-svc.c
+> +++ b/drivers/firmware/stratix10-svc.c
+> @@ -1117,6 +1117,7 @@ EXPORT_SYMBOL_GPL(stratix10_svc_free_memory);
+>  static const struct of_device_id stratix10_svc_drv_match[] = {
+>  	{.compatible = "intel,stratix10-svc"},
+>  	{.compatible = "intel,agilex-svc"},
+> +	{.compatible = "intel,agilex5-svc"},
 
-Last time you said there is a iommu, so please post complete bindings.
-See also writing-bindings doc.
+So device is fully compatible - drop this change and express
+compatibility in the bindings (see writing bindings, writing schema or
+slides from my last OSSE talk).
 
 Best regards,
 Krzysztof
