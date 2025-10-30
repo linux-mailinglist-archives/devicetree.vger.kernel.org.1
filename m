@@ -1,115 +1,214 @@
-Return-Path: <devicetree+bounces-233219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F896C1FF7C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:18:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5C35C1FFC1
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:22:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA1193AFC7C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 12:18:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D78319C4F33
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 12:21:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41DA82D0611;
-	Thu, 30 Oct 2025 12:18:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97D802E1C58;
+	Thu, 30 Oct 2025 12:21:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eqwvNwZ6"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aN2y5qTR";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hv+pWHew"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F72F2BD5BF;
-	Thu, 30 Oct 2025 12:18:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 131DB2C08A8
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 12:21:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761826687; cv=none; b=gWhyCgYApW1XYo/mvErtWZ/43QXj2BlK+GMMYmkfmbhv59/rZe16Xp0g88ZjHTKtUOd9kj5YZME4sFwleXrvbq5l3bFnPjLESIYmpE13Udo8ou2AmTRNUYR39YbkXbHk71piJKv7ozS1379Q4LHo6TL50gaIUskTnfqM3966cUE=
+	t=1761826872; cv=none; b=emNnTEIwFZfWPGA1nvECTy5wxbSzvkJWSPlljLbA/v1yq1usX6ITRk7iQw1JQnvbyD9Db7+m92xxZi96Q5IKEkpwmkpTt8vgqxuFaddoZri61qbGSaaWGjG4utHbuosGKOCvgb/FaLbHWM8BR3F8+LxQjnjJxYTd15lS48Y6xKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761826687; c=relaxed/simple;
-	bh=c/5NhRaDMZ/kbf4ALWp9C3bkG4NzH2gCZR2gh2BS+5Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jljr+d8amLThR7jFEp90n9bCzYdnwq2Mq0cJ9wTp+6ICFiFh5iQqcj+Zn79DUDZjfcGsxRaKP0KfKceQoMD31Hc75WGW8nCHQKaiB+O/mc0Z3+nFakfEE/nBNpAZ8GffU7WyAXd9jIVU63i5H3qdaypcBfUL1Dhj+D7egqBj/TU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eqwvNwZ6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BDE6C4CEF1;
-	Thu, 30 Oct 2025 12:18:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761826686;
-	bh=c/5NhRaDMZ/kbf4ALWp9C3bkG4NzH2gCZR2gh2BS+5Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eqwvNwZ6OXvD0PLLo9oKFlOauS0KB9w85q0SZ3Xda7sQevCZ+PF82wJOLsJwYVa8J
-	 1876w8uLPUw/grmthVZBX1OwHBWnWfh/zmDlS2ZyeNUGt17A6GXXqYHgyC01Wg4nP9
-	 lyC1pnN2cdKNa069kddROOPKTXz8sdfvgbqsp2K5m5AbGGI5cMnoBqIk7nkTXWGD7B
-	 qHg3KdbmcIwJKg+nCcKhbU70mhjWFFaHX+gynoFm2YmmwmXNcwEZLAY7PdGfXh+Brl
-	 udhaAHnl3jScbhaAQdPhAsXaix37XODTzGa5lfTJa6icjLK7SVb1kCjZgZhgvxT/XD
-	 pzVl8j7N89Y0w==
-Date: Thu, 30 Oct 2025 12:17:58 +0000
-From: Drew Fustini <fustini@kernel.org>
-To: Yao Zi <ziyao@disroot.org>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Michal Wilczynski <m.wilczynski@samsung.com>,
-	Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org,
-	Han Gao <gaohan@iscas.ac.cn>, Han Gao <rabenda.cn@gmail.com>,
-	linux-kernel@vger.kernel.org, Guo Ren <guoren@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-riscv@lists.infradead.org, Fu Wei <wefu@redhat.com>
-Subject: Re: [PATCH v3 3/5] reset: th1520: Prepare for supporting multiple
- controllers
-Message-ID: <aQNXdmH_sA6hgOKC@gen8>
-References: <20251014131032.49616-1-ziyao@disroot.org>
- <20251014131032.49616-4-ziyao@disroot.org>
- <aQIOgbUf2IHoWCf2@gen8>
- <aQIvH4jbj9Ifd7Av@pie>
+	s=arc-20240116; t=1761826872; c=relaxed/simple;
+	bh=BtClwc/SBf8PtBQY1f79oGGMCj6JUP94qOT273TptgI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=seEbl9u9waDy/x0DGVc/Fv2TfhgNecIX0YOsPxYgsWAeP30j8lw+zoliFDtDpSyFLoO6hnpau1okYsWh9QItVIUspLvSxDb7nTbslmPiD32ESjDgX1nSVIHjSSpvy0pVHf5SFfPOHi7PF2qCXx/zVJutNw6Od0mPJOdcXjGLyCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aN2y5qTR; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hv+pWHew; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59U9PJSa3509310
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 12:21:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	8u/d9fdIaldMlj+IUObUL1xUVuajEoWHiVt1WYY4+8o=; b=aN2y5qTR6+HqHbGk
+	1Sz3ZlwyuWtpaqPQyNOZWA48XBHZZvnXK0/pltTCzLseexL/RCUQiGEl6sBnkRb3
+	mKhLumvuW+9M3UdTFDFZTzqBp4xUaVnjub185VOxg6HLx4K0fED4jvykRjEA9iRG
+	Pt0xVaVR/5kWWPJ9loKMnOFauuL0yWc+kPGT1o8OSu5YZUFJzj1R27/c4YcaJTsL
+	pK+ssQC8i4QKfIQ85gTiOBWRXpUNJgeIcyJAHvPqR1CA7ZCCOBXkmE8sS/0/lHkH
+	tx1GTqodp7jpcGbmXloZb2vsuPW8L0vEbhm585peptBU2h3goNyB2OPmrbWfp7lr
+	L+EncA==
+Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a45cdgfrg-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 12:21:10 +0000 (GMT)
+Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-b62b7af4fddso662574a12.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 05:21:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1761826869; x=1762431669; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8u/d9fdIaldMlj+IUObUL1xUVuajEoWHiVt1WYY4+8o=;
+        b=hv+pWHewUIBDHriTHrsnPSopOIgsAtXlmLo+XvNyDwc/hRDqkpEFNFEm3d4nK/8gwM
+         urtPMtkox4nQsq2h37SCOHcOw1ktxfE3GfmjP1Uh4jK5KnMZ/1Go83+Ed3mcG4K4YpNJ
+         alQK4HJT7Um/MksWtUHux7NYXeLxu7O1eFOA/olSWc9k1ZAYhovz3UO8zU4+S+CPLHP7
+         gsYDud1HlZmddrUHY2FEek/p67BxLyGMvuDwsVeiOfcuLxHg3wmZZyK1TbrFdAXV2fND
+         AUD9Uhz2sUid/NV28fkYPJNeZkH82IgErWCRnPiQwutUeuHeop1bDrIBlZ6/4J/v2LCl
+         clBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761826869; x=1762431669;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8u/d9fdIaldMlj+IUObUL1xUVuajEoWHiVt1WYY4+8o=;
+        b=vesEeRjRcicF8r8ig1MJ+jpGEUrj20PBXqh+RjzkrYd5+oPWRKm8jFhaokVPezzOh6
+         6GvvtkcWf89ttdcW1u7/mSB7UvMSD7X6rKV3V3hFSbgPVNKseTxkvBKYZZhww4YhrJmC
+         KvkoYTUxh63IhT4E+N/J2zrHLWdlHC+LX26xaKgOG0tSiSMk0MtIx/cgItdpTTIkv0lX
+         78db63VqjDHwwRBFX26I/FFsJsw49amttTPZfyFWTESkfoAHKeebNZ8qZqTjVNVwX8ZK
+         N3a1IjMZ3Dxu7xUwDFlazq8bEgVdFhvMgJFGYpj/dnC1orupOp8/YkGN8wWpZMyLPj3o
+         YY0w==
+X-Forwarded-Encrypted: i=1; AJvYcCX6iViD4/QoVghxbgikd6WhA3RU8K0l1h+tYu83m9Zp1eq5yitzZXLcC4zvQTIcTri5TrBIZ39NSuhj@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFqYwcADYjT0vMLs4BT880OnV3IEX1tEjCkwthulYaKDgriaHj
+	IuC2RXhfyfuqdNDVe9/VGJqKjzgVHd6uwQ4h7QNquGYZiErgpAtQltjOW53PDJddTulUmy9T3JI
+	pn60XROK5LxyxyFioYGENuBlK7FZNYNqvT0FTSjN1Byjqk85kvVsTyjTT3b9OB8V4
+X-Gm-Gg: ASbGnctg0kXdpwXxHQdxOE0lO7yYLBG/TL2/t6Q0P/ou8P22gMfieS3+bK9Hs6CGqQ9
+	mQyuPUxkvWoNlQbkcd1YrXWRtauHeR3xX442YHJgfVfx60xUyWLsUvPoHFqoqVBLsumxZd6VgAr
+	fdPx6irsnTe2Ys3/8Bfo9VsCXKtmVYlO+rcZk9LbPBCm6uvrUvFzil0DsKo2oeEbGD9F+ZFVU42
+	MS/5o+KBlWRCJn3j++Fu5ZZFB82OzXCZHafK+uq0XFhMJirKeByaNntaQc0S7D7nkcsJd1Ghaf/
+	GDfo2NB/eNUiPiAb0gxkUp6tTvXt60nxsH6R1y2CArGaKUlYoMB9Irfh4cyZbDKw0Xhi32UWwfP
+	eOC5O9N95PIsVHHLvAVZa3AW7rpY=
+X-Received: by 2002:a17:902:c403:b0:246:7a43:3f66 with SMTP id d9443c01a7336-294edb935b2mr38686965ad.7.1761826869171;
+        Thu, 30 Oct 2025 05:21:09 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH9a+1g/H7YMX8/5719QDerZeZz7R1O7nnHZuhhQfmWjkfEEoOVbjmAyEBhWoR4OGVkuIGDFQ==
+X-Received: by 2002:a17:902:c403:b0:246:7a43:3f66 with SMTP id d9443c01a7336-294edb935b2mr38686465ad.7.1761826868367;
+        Thu, 30 Oct 2025 05:21:08 -0700 (PDT)
+Received: from [10.204.79.108] ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34050ba1472sm2466032a91.17.2025.10.30.05.21.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Oct 2025 05:21:08 -0700 (PDT)
+Message-ID: <58a658bb-7338-442f-ad8c-845b5fa5ce00@oss.qualcomm.com>
+Date: Thu, 30 Oct 2025 17:51:02 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aQIvH4jbj9Ifd7Av@pie>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC/WIP 0/4] arm64: dts: qcom: sm8750: Enable display
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        jesszhan0024@gmail.com, quic_rajeevny@quicinc.com,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Abhinav Kumar <abhinavk@quicinc.com>, Abel Vesa <abel.vesa@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250424-sm8750-display-dts-v1-0-6fb22ca95f38@linaro.org>
+ <w6f3s56gx7psqgweuntqvkzrot7elhc5pdrxhvenukzwyt5eys@fndmaszfbo5k>
+ <921afe20-42b1-4999-b5c4-035669dc831e@linaro.org>
+ <32eb3b4f-b2c4-4895-8b48-ade319fd83de@oss.qualcomm.com>
+ <CAO9ioeWdJpKfpu3jGyv42Mf5+02ehxyEu_Lj+Boz0NyDjPZ-CQ@mail.gmail.com>
+Content-Language: en-US
+From: Mahadevan P <mahadevan.p@oss.qualcomm.com>
+In-Reply-To: <CAO9ioeWdJpKfpu3jGyv42Mf5+02ehxyEu_Lj+Boz0NyDjPZ-CQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: oRFxAAPkMZbZbrRMeTA7vJhKxMcQMAnn
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMwMDEwMCBTYWx0ZWRfX+4a5/b06vh3i
+ tUmKsdUuXBeLubBeDLfcxphP7GRyf8uQ/4JKCtfMNYQkY738C5VE/WeRVkIf0N248dyrBKdvuny
+ l6+u4qNiikohiTp6+uisOHWkYBNtSdlowCx9owWgv2ROOG9jGOnhyL+p2hxFFJ4yN05K76EBiUB
+ Zo1c4swIoK+vFU2jYyUc0fabGKmVYwXO2X/CsuNgHw8c0R916raqTCX+iZy7vvbiuoAe6bdQJYK
+ jYS7124BG39aTGSvy244TqiSG+iXhAhKc8lfKFjNCBWVBUZcdgPdBreURSJEeowXZoSru0/dt4T
+ 2N+AWJc0DJeVpi7xc3bPpeNGqxoIGNuZHwR/ewgurFNBhRsmVoVaPiiFejpVrU1ocRuw4ALCSxQ
+ nm4Hwbf7U/QtldkbdZvKEgkee06WTA==
+X-Proofpoint-ORIG-GUID: oRFxAAPkMZbZbrRMeTA7vJhKxMcQMAnn
+X-Authority-Analysis: v=2.4 cv=ItUTsb/g c=1 sm=1 tr=0 ts=69035836 cx=c_pps
+ a=rz3CxIlbcmazkYymdCej/Q==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
+ a=RTWzoQZwi2ic3pXUtg0A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=bFCP_H2QrGi7Okbo017w:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-10-30_03,2025-10-29_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 malwarescore=0 suspectscore=0 spamscore=0 lowpriorityscore=0
+ bulkscore=0 phishscore=0 clxscore=1015 priorityscore=1501 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510300100
 
-On Wed, Oct 29, 2025 at 03:13:46PM +0000, Yao Zi wrote:
-> On Wed, Oct 29, 2025 at 12:54:25PM +0000, Drew Fustini wrote:
-> > On Tue, Oct 14, 2025 at 01:10:30PM +0000, Yao Zi wrote:
-> > > TH1520 SoC is divided into several subsystems, shipping distinct reset
-> > > controllers with similar control logic. Let's make reset signal mapping
-> > > a data structure specific to one compatible to prepare for introduction
-> > > of more reset controllers in the future.
-> > > 
-> > > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> > > ---
-> > >  drivers/reset/reset-th1520.c | 42 +++++++++++++++++++++++++-----------
-> > >  1 file changed, 30 insertions(+), 12 deletions(-)
-> > > 
-> > > diff --git a/drivers/reset/reset-th1520.c b/drivers/reset/reset-th1520.c
-> > > index 14d964a9c6b6..2b65a95ed021 100644
-> > > --- a/drivers/reset/reset-th1520.c
-> > > +++ b/drivers/reset/reset-th1520.c
-> > [snip]
-> > > @@ -138,22 +147,31 @@ static int th1520_reset_probe(struct platform_device *pdev)
-> > >  	if (IS_ERR(priv->map))
-> > >  		return PTR_ERR(priv->map);
-> > >  
-> > > -	/* Initialize GPU resets to asserted state */
-> > > -	ret = regmap_update_bits(priv->map, TH1520_GPU_RST_CFG,
-> > > -				 TH1520_GPU_RST_CFG_MASK, 0);
-> > > -	if (ret)
-> > > -		return ret;
-> > > +	if (of_device_is_compatible(dev->of_node, "thead,th1520-reset")) {
-> > 
-> > Is there a reason that there is a now a conditional check for the
-> > compatible here?
+Hi Dmitry/Krzysztof,
+
+On 10/30/2025 4:46 PM, Dmitry Baryshkov wrote:
+> Hi Mahadevan,
 > 
-> Yes, this regmap operation is for initializing GPU resets and thus
-> modifies TH1520_GPU_RST_CFG, which only applies for the VO reset
-> controller (with compatible "thead,th1520-reset") but not others, or
-> other unrelated resets could be unexpectedly asserted.
+> On Wed, 29 Oct 2025 at 08:20, Mahadevan P <mahadevan.p@oss.qualcomm.com> wrote:
+>>
+>> Hi Krzysztof,
+>>
+>> On 4/26/2025 1:24 AM, Krzysztof Kozlowski wrote:
+>>
+>> On 25/04/2025 21:34, Dmitry Baryshkov wrote:
+>>
+>> On Thu, Apr 24, 2025 at 03:04:24PM +0200, Krzysztof Kozlowski wrote:
+> 
+> Could you please fix your email client to _never_ send HTML emails.
+> You've destroyed all the quoting (quotation?) levels. Your email was
+> caught by the automatic mailing list filters, etc.
 
-Thanks for the explanation.
+Thank you for your feedback and I've updated my email client settings to 
+ensure only plain text is sent going forward.
 
-Reviewed-by: Drew Fustini <fustini@kernel.org>
+> 
+>> We at Qualcomm are currently working on bringing up the DSI display on MTP. For this, I’ve picked the following patches on top of v6.18-rc2:
+>>
+>> All the DT changes mentioned in this series
+>> [PATCH v2] drm/msm/dpu: Fix adjusted mode clock check for 3d merge
+>> https://lore.kernel.org/all/1154f275-f934-46ae-950a-209d31463525@kernel.org/
+>> [PATCH v2 0/2] drm/panel: Add Novatek NT37801 panel driver
+>> https://lore.kernel.org/all/20250508-sm8750-display-panel-v2-0-3ca072e3d1fa@linaro.org/
+>>
+>> However, when testing with modetest, the panel appears blank. I wanted to check if there are any additional patches already posted that I might have missed and should be included.
+> 
+> Any errors or warnings in dmesg?
+
+There were no errors seen. only panel was not lighting up. Got unblocked 
+and able to validated modetest on DSI and working fine with this 
+workaround on linux-next
+https://lore.kernel.org 
+all/20251023080609.1212-2-yuanjie.yang@oss.qualcomm.com/
+
+> 
+>>
+>> Also, I’m curious to understand more about the DSI PHY PLL VCO rate issue that Jessica had narrowed down—could you please share some details?
+>>
+>> Lastly, I’d appreciate it if you could share the plan for merging these changes upstream. We’re aiming to enable display support on this target as part of our program.
+> 
+> Please see Documentation/process/, I think it describes the process of
+> merging patches pretty well.
+
+Sorry for any confusion in my previous message. Could you please share 
+when we might expect the next non-RFC version of this series, 
+specifically for the DSI enablement patch? Alternatively, if there are 
+no immediate plans to post an updated version, would it be acceptable 
+for us to take it forward and submit the subsequent non-RFC versions of 
+the MDSS and DSI enablement device tree patches by adding dependency to 
+this https://lore.kernel.org 
+all/20251023080609.1212-2-yuanjie.yang@oss.qualcomm.com/.
+
+> 
+Thanks,
+Mahadevan
 
