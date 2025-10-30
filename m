@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-233079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA3E1C1EE85
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 09:07:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29360C1EE97
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 09:09:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3EF11892046
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:08:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FA873B7E6A
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 08:09:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3D4F2EF646;
-	Thu, 30 Oct 2025 08:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF09732C93C;
+	Thu, 30 Oct 2025 08:09:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EdZ6/68b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hk4e/BaF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAD6E21D3C9;
-	Thu, 30 Oct 2025 08:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC771285CB6;
+	Thu, 30 Oct 2025 08:09:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761811662; cv=none; b=klLEPAccRCDoF1SWz2slDtngRhBJxK7NjfhrdelXdrXDIejUwPCgdgDzw+4HsUdrshFrpwrbTnY+4BdGkpe+etxNy3WD3ZogtmduWQnpMlKFASBXyeh5qXfruTjS2M5Ow13qMBrZYbrqT48qXMjJ60Bh5kmSOfpMxP8JQQW/4e0=
+	t=1761811761; cv=none; b=EyS8r+VNQbxa1OCMDJuWzpu37YKqUE4QKA5SQNygOmT1BT2IoJdmpdnT7Dd7GUEdYdgfUkyxhoqVXYP0dC2TeX08lGbB0ImawT2NgDpXvAL/soGtMepVQQlgkfrrt8L0XQThqlh4ZVmRUgqE/XAV0wLwKXoz1JOwp4mT6v871+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761811662; c=relaxed/simple;
-	bh=tx+9ONWz0erQeG73gAESo7zYQdNz6syhMPWKMFLR3HY=;
+	s=arc-20240116; t=1761811761; c=relaxed/simple;
+	bh=x8/BowhFRHOAH0ZdTZL9raHDW0IwMOYMmnVPArRrZms=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KepZhKC6XYm6oXR/RWRCWechd9mOkA895aqZy2BdIySFUF3m2dIzG366sYLumJZ4D7eYlYWHT9Fywy/53wiP2MPFBag3GUbtPf+EQj81u3oaMMIqx35FfkE6ax6WGBLEb7yjSWiJHzsKtBEvTGxgpHCXITHQPS5GrVqyLcn9r98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EdZ6/68b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1B13C4CEF1;
-	Thu, 30 Oct 2025 08:07:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Do3V2vzaCRlbQDfuZliq+r8JTalx8T1c2BStUj8tvZMfMfqEKHk+XuEd5kO1sXXcABOvOVsB/+nwr8rXSaD7jGvN0Snp7LaJEQ953iBEBYcWhiHyBFGs/0U3TG8ldQAPxGtqjNCrQ8W1YlYm4AQsW84CwEXvr/CtiNMJnNJC7u0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hk4e/BaF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF24CC4CEF1;
+	Thu, 30 Oct 2025 08:09:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761811662;
-	bh=tx+9ONWz0erQeG73gAESo7zYQdNz6syhMPWKMFLR3HY=;
+	s=k20201202; t=1761811761;
+	bh=x8/BowhFRHOAH0ZdTZL9raHDW0IwMOYMmnVPArRrZms=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EdZ6/68boe1hfp3PniogA58QBsx6NZ7FXz+dP33luyMmfrP4T6JGDylpGUUV+TmZH
-	 Qu7NVCmcyvO+PY1OywmXbAiJlbvTeKcSQfHQEeEuOmCmEFcytKIzJqQoVUKyq/FDti
-	 wvnTk1rYQoRZSc/A15VbSDgsyqb+o+C0GAVVm4i8aQulRZTDKDGUzW8+0d9ExLfTmD
-	 9aqod/VD83bD3cQIyU6p0nsXdiAhCWrG+K9P9yckjC8m5OYJQBRNgHyRL0vFmEipzN
-	 0lzwZQ/ENzM1z+agqQRWhybduybGxtOx/Sn15vkQiqoNpmjsGJYlkPO4cUaAYkEc/+
-	 sQim1O1B5V4yw==
-Date: Thu, 30 Oct 2025 09:07:39 +0100
+	b=hk4e/BaF9H4N2OhzNCuZW9hA/Jtx5PApicPwNt1+cwQqC/Ic7yIM3DDeBSgkvoaIw
+	 cVFpObRwHLfGju4uyjesVHeoUVL2POE/ZtBtjBrpCPpqJ5wg+DOvJcRer3py//cws+
+	 ZijnKKnwBDVhEOIXxegasBhWh51hwKCj6emNXPXnCqv90vjyi99r20j6p9KHmgMy+r
+	 kwEyaAdhp5patXgfCtE3sgX4d09Ma0u6q3upneyDejtaDSstpaif30XPyMJi7NgoyE
+	 vbMgK/c9ta/+ZJ4iF5aY8qUg/8/Uy47uH73XKCKQEWK16X+xMoXyZgFBldmnpo0NS0
+	 +f4Q+j1FY993Q==
+Date: Thu, 30 Oct 2025 09:09:18 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Harsh Jain <h.jain@amd.com>
-Cc: herbert@gondor.apana.org.au, davem@davemloft.net, 
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, mounika.botcha@amd.com, sarat.chand.savitala@amd.com, 
-	michal.simek@amd.com, linux-arm-kernel@lists.infradead.org, jay.buddhabhatti@amd.com
-Subject: Re: [PATCH 04/15] dt-bindings: crypto: Mark zynqmp-aes as Deprecated
-Message-ID: <20251030-wandering-happy-dalmatian-9cce2b@kuoka>
-References: <20251029102158.3190743-1-h.jain@amd.com>
- <20251029102158.3190743-5-h.jain@amd.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Cc: robh@kernel.org, broonie@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, perex@perex.cz, tiwai@suse.com, 
+	srini@kernel.org, linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH] ASoC: dt-bindings: pm4125-sdw: correct number of
+ soundwire ports
+Message-ID: <20251030-premium-intrepid-gaur-fbfc1e@kuoka>
+References: <20251029144636.357203-1-srinivas.kandagatla@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,16 +60,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251029102158.3190743-5-h.jain@amd.com>
+In-Reply-To: <20251029144636.357203-1-srinivas.kandagatla@oss.qualcomm.com>
 
-On Wed, Oct 29, 2025 at 03:51:47PM +0530, Harsh Jain wrote:
-> zynqmp-aes-gcm updated to self discover, corresponding dt binding
-> can be mark deprecated.
+On Wed, Oct 29, 2025 at 02:46:36PM +0000, Srinivas Kandagatla wrote:
+> For some reason we ended up limiting the number of soundwire ports to 2
+> in the bindings, the actual codec supports 4 rx and 5 tx ports.
 > 
-> Signed-off-by: Harsh Jain <h.jain@amd.com>
+> Fixes: 88d0d17192c5 ("ASoC: dt-bindings: add bindings for pm4125 audio codec")
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
 > ---
->  Documentation/devicetree/bindings/crypto/xlnx,zynqmp-aes.yaml   | 2 ++
->  .../bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml          | 1 +
+>  Documentation/devicetree/bindings/sound/qcom,pm4125-sdw.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
