@@ -1,118 +1,83 @@
-Return-Path: <devicetree+bounces-233349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BE33C2151D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:55:48 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47BC0C21526
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:56:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9EA55618FD
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 16:50:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 353AA4F0F1D
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 16:51:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41DB92DD61E;
-	Thu, 30 Oct 2025 16:50:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D4B12E1F03;
+	Thu, 30 Oct 2025 16:50:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h6qVH5W5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YgICsIj8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 080B9264F9C;
-	Thu, 30 Oct 2025 16:50:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D2F3208961;
+	Thu, 30 Oct 2025 16:50:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761843012; cv=none; b=PamIKfj9MGeQce/QwPaSa897Ykh0w1GyIXaqo8k8MM59DfEbzFuRefHPK2wd3VN0DRbk1L3/uA09moLS7t3/0Ch2cwESS5FQMj6FXvHE1VPboqCeptvcz9IVMxlEra3BR5olq/2oQ5nrmIEpy8FqhTMPhQolvWeOpgzqB0hi1Ww=
+	t=1761843049; cv=none; b=hIwg5oRGq042AMnYk/K4EjBDlg7OcNvNXZdEuJgN1BRWKsT82mbwlTTc/3ejoSaRvzzjuknWY0x/jpO4y9xB/wgyi3qq5WUol104IWwltWJCm14U9rZHZD/iglvKJkFjckZSSy56z9tI12pN0xotnMKywaGIVrRK7Ima/Eh4pc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761843012; c=relaxed/simple;
-	bh=2AgScSgFG6KmiHrgMKTGpPXiiYnevIIc9U4Q25rTP9E=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=o38tCV3LUkoh2fVVIzbFjJNaFgT8eOOu1pomX+RjpCNtXVWWVJtsNFvP8n33VoKQ17WgINGo+E2DFNvh7BX4qFJxqAtB1Ylzo18tPvgUAzQyL4yz8xwyW58ULwKVs3/hyEcmsbrO3b3SUg1g1UbOBw6Yq/kgu5R28s1fk4IqpEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h6qVH5W5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75B0DC4CEF1;
-	Thu, 30 Oct 2025 16:50:08 +0000 (UTC)
+	s=arc-20240116; t=1761843049; c=relaxed/simple;
+	bh=XOl1BIiIwZMTTJDwcLrnUs9s09D9BbBLlOYuDHjP/eo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M469WTjPtMfBE5vJs5BsrkfHAp+FDNw5q8DQPKpIYfc+9P0KYXg1fN10ekhgiK3FqPYCw4/Auwj2ZrAJ03d+/eyWWe514TZR5NNEgGP+tW+5La+v5ABI/UH405ghtTd6bjQFBsXDQzaZsCYygdzFZJtb4eBhHNnIug3DAhiyx1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YgICsIj8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6F06C4CEF1;
+	Thu, 30 Oct 2025 16:50:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761843011;
-	bh=2AgScSgFG6KmiHrgMKTGpPXiiYnevIIc9U4Q25rTP9E=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=h6qVH5W5vYLUQDpex+WP8aa3elxFOZ/pMFQRACcr8YqVvfQF42fTV+kZRY2GtQTbG
-	 2HsODoHVhydin98rNGobOTPkyt/cQGCgjxhkfDD83QTbmzNfEII83SKUw4dV6eE0Ky
-	 mmaZ87HWaRpqp+wHeZxLfP6AyE4V18YJwkw/06/iJZf71ylXS47VLy7cbHdIfZKg8z
-	 y/VAcr3H7QgU3NTXHdoUmDJvmqN5LYWPwbNdEv+/XVySnh0Fyulf54SrHBjDvvOsEg
-	 RR0Z0MTQCpcolhN1aAWUkLFk47wbn/ipemYmrDdJRz73jFDAiVuzs3IFqRyubWo9zq
-	 BCyVIhaPypN2Q==
-From: Mark Brown <broonie@kernel.org>
-To: David Rhodes <david.rhodes@cirrus.com>, 
- Richard Fitzgerald <rf@opensource.cirrus.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, 
- Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
- Nikita Shubin <nikita.shubin@maquefel.me>, Axel Lin <axel.lin@ingics.com>, 
- Brian Austin <brian.austin@cirrus.com>, 
- Herve Codina <herve.codina@bootlin.com>
-Cc: linux-sound@vger.kernel.org, patches@opensource.cirrus.com, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-In-Reply-To: <20251029093921.624088-1-herve.codina@bootlin.com>
-References: <20251029093921.624088-1-herve.codina@bootlin.com>
-Subject: Re: (subset) [PATCH v2 0/4] Add support for an external Master
- Clock in the Cirrus CS4271 codec
-Message-Id: <176184300823.119935.16469243761262240818.b4-ty@kernel.org>
-Date: Thu, 30 Oct 2025 16:50:08 +0000
+	s=k20201202; t=1761843048;
+	bh=XOl1BIiIwZMTTJDwcLrnUs9s09D9BbBLlOYuDHjP/eo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YgICsIj8gsPlrJU8iZX1LW/io1YbFjSoc41RFwY4Wj0njX8TJcFygK4qxxRBvLtRj
+	 OItqQGl4ACLRMUNDQ+tDT1FonpwFKzfe3+NlJgGdKL41c+FfsFctPaNbiVjIyf1VwN
+	 FNN/PyQgrxhiJPubuYGM534Omb4m7jFgh/KEgB0wftfmozm/gMzsoRkX/+AfMI/G04
+	 z07njB5JiIpcTEVKCiHRUu9jcmkbjMAosthYJIzJKyU9jI03Aq3CSClHrJamIUZRDf
+	 uHIKJwRJ7scUsgO4Z/3/HswlWBoev8/Rrf+a/0S8n1uq+dIuNFudf7elZ6TjiO1sPv
+	 6Ef+KumbTNfvQ==
+Date: Thu, 30 Oct 2025 11:50:46 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Robert Foss <rfoss@kernel.org>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	linux-media@vger.kernel.org,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Todor Tomov <todor.too@gmail.com>,
+	Bryan O'Donoghue <bod@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] media: dt-bindings: qcom,x1e80100-camss: Fix typo in
+ CSIPHY supply description
+Message-ID: <176184304530.4163875.17235615769011193456.robh@kernel.org>
+References: <20251028111115.46261-2-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-88d78
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251028111115.46261-2-krzysztof.kozlowski@linaro.org>
 
-On Wed, 29 Oct 2025 10:39:16 +0100, Herve Codina wrote:
-> The Cirrus CS4271 codec can have its Master Clock provided by an
-> external clock when no crystal is used.
+
+On Tue, 28 Oct 2025 12:11:16 +0100, Krzysztof Kozlowski wrote:
+> Correct description of the CSIPHY 1.2 V supply
+> ("vdd-csiphy-1p2-supply"), because it supplies 1.2 V, confirmed with DTS
+> on the mailing lists.
 > 
-> This series adds support for this external Master clock.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/media/qcom,x1e80100-camss.yaml          | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> The first patch in the series is not related to the clock but fixes an
-> issue related to module loading and MODULE_DEVICE_TABLE() due to a
-> driver split between i2c part and spi part.
-> 
-> [...]
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[2/4] ASoC: cs4271: Disable regulators in component_probe() error path
-      commit: 1e5351ba60f5355809f30c61bbd27e97611d2be9
-[3/4] ASoC: dt-bindings: cirrus,cs4271: Document mclk clock
-      commit: 3cd523ba270665861647304aa30500f238ebf26e
-[4/4] ASoC: cs4271: Add support for the external mclk
-      commit: cf6bf51b53252284bafc7377a4d8dbf10f048b4d
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
