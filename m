@@ -1,122 +1,127 @@
-Return-Path: <devicetree+bounces-233441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AF9EC2210C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 20:49:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93E8BC22173
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 20:55:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 55D0D4EDE74
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 19:49:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A6F6424C1B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 19:53:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6967E2F12BE;
-	Thu, 30 Oct 2025 19:49:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE9F33148AC;
+	Thu, 30 Oct 2025 19:52:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lu/eBFP5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H5JZGt50"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C5ED283FD9;
-	Thu, 30 Oct 2025 19:49:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9141A243946;
+	Thu, 30 Oct 2025 19:52:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761853757; cv=none; b=hMq4fBIUOENJIOEtFceTUwXsLSB3lQs114mv140jqJ2ymXV/ZN8jNoo8prezPz4xXrsHyqLxeVz0n0g7qpi7ays6VkITJ0LAjwl94EAC+ShQDjrOKsg2h5TIcGhdx1MlU0MqHQSCjx54g4i/IKr6iuv2JMP04Opt5vNcs3FKF7I=
+	t=1761853960; cv=none; b=BwUC8iSfrfbP20UCYRBv528m0GXTmVfwmpTwFyQrVdUocLU+E6Akqrey3woHXHquhwYtCt10CKvT8g/njUTMxzFF0OTvGDWXkKHtR0r60kcTuzTaL2fCpY1qJkHUzto8cPob1YQjfw8+jgCwLhGHpnCNq4YaO2374R+cn8omWOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761853757; c=relaxed/simple;
-	bh=lgyDLafQE8DiQDUiJtyJ9+bt7JmcvlRaYp0Kn6urakc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GdwTESd6chY1SR85q5DDsB9Matu5aDUFh885jMMyn9HlnfF/NicyndfJ8a9QE05jjuP2E0AOJVOQw6aMACfTl0BO+iH1UJahWptylKjyKzeqE+XLhXm2x7rltNtWcGtVJAvto7I1Xlgq/j0xPvJYntVUS35E7RcVlM9HL8dz5Vw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lu/eBFP5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 084B2C4CEF8;
-	Thu, 30 Oct 2025 19:49:08 +0000 (UTC)
+	s=arc-20240116; t=1761853960; c=relaxed/simple;
+	bh=4HgBipmxXhhcehiRlZMF9JboY2r196/ISN/o9pU8e4U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=d9+M7RIiB1EIo3Ejd+TWk8+jZtFzLMc+gN9JpKWcel6IF7Cm7+yZ6BAdTJDhJJUEkk3OGEC9F+AbFyKfhtYDPX14b4k2zPYnGrfHRslMoV+JrBXIxHmZ69UfVEhX0YrYYp2HPuPFu7KLlkQGlHGMt9oU6D6+m+VcVvlyIdNMpPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H5JZGt50; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E93FDC4CEF8;
+	Thu, 30 Oct 2025 19:52:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761853754;
-	bh=lgyDLafQE8DiQDUiJtyJ9+bt7JmcvlRaYp0Kn6urakc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Lu/eBFP5oLDumMFhEBp06aze9McYEFE1zeHtLyHf/sA/wPzcnlWHWr09lV/qIkPX+
-	 qxMfJ+aT4WdooF22hWKVeSJDTJV6i6+YSHaGVbFY5JHMOo6NHj+iHKqq5W/iibB16l
-	 mEoKxOuSC5iS1FlIvtkIDOHLWKl7agqhk3pGa6rzO9pHeNO7cSfhkZvtjJVd1Dr4il
-	 LPLVA/244xMmWW93aRCOtXxClp2npsrzYGq1QhADfpsS1Zy60rOiWYHkHWFHOyvZZ7
-	 dHpqz/YoHkoaGWp4aMuK6O2/ahC2M4Jtd8mifw4McZg4uUv2C44rNMKg729jbC7gNq
-	 aFKX3OVv10sew==
-Date: Thu, 30 Oct 2025 19:49:07 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Jack Hsu <jh.hsu@mediatek.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	andy@kernel.org, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com, srini@kernel.org,
-	ukleinek@kernel.org, gregkh@linuxfoundation.org,
-	jirislaby@kernel.org, daniel.lezcano@linaro.org, tglx@linutronix.de,
-	chunfeng.yun@mediatek.com, wim@linux-watchdog.org,
-	linux@roeck-us.net, sean.wang@mediatek.com,
-	zhiyong.tao@mediatek.com, andrew-ct.chen@mediatek.com,
-	lala.lin@mediatek.com, jitao.shi@mediatek.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-pwm@vger.kernel.org,
-	linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-watchdog@vger.kernel.org,
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v6 00/11] Add mt8189 dts evaluation board and Makefile
-Message-ID: <20251030-deodorant-unglazed-190cbfb4a69b@spud>
-References: <20251030134541.784011-1-jh.hsu@mediatek.com>
+	s=k20201202; t=1761853960;
+	bh=4HgBipmxXhhcehiRlZMF9JboY2r196/ISN/o9pU8e4U=;
+	h=From:To:Cc:Subject:Date:From;
+	b=H5JZGt50+ojeqazuWXanXi5S58Xofr2W6JQC9zcJQCtsmTqaNTDSiY0rqVLlM2/6P
+	 cH94rgGc/GlS6pIY6tQGNIwvhtDSRPJlCtygzfKRH7GU9x9drXlryAH9ZLrFQtCCzI
+	 mMOa6yJkNcWm/TI1LGlNAju4ffSFcv7PodDAgcHn61n2cy5BUJOsGxOb1Jk6AzfUgw
+	 G4vx0FLwUHXnHGZN4IjVWd96xhc5vQ1vRo8gwo0vrDggGIxv04wKTOyFsaPRx02hmf
+	 ghXbyDyTmTaGreTMsn4XN16eCBOG944xXesfCh80CYC9b+UNwGrI+V6zzE0r/PGMvY
+	 9UM7n+rZbK7+Q==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: thermal: Drop db8500-thermal.txt
+Date: Thu, 30 Oct 2025 14:52:33 -0500
+Message-ID: <20251030195234.439141-1-robh@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="yaNJtXhYGM5K609h"
-Content-Disposition: inline
-In-Reply-To: <20251030134541.784011-1-jh.hsu@mediatek.com>
+Content-Transfer-Encoding: 8bit
 
+The binding is already defined in mfd/stericsson,db8500-prcmu.yaml and none
+of 'the tripN.*' properties appear to be in use.
 
---yaNJtXhYGM5K609h
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../bindings/thermal/db8500-thermal.txt       | 44 -------------------
+ 1 file changed, 44 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/thermal/db8500-thermal.txt
 
-On Thu, Oct 30, 2025 at 09:44:32PM +0800, Jack Hsu wrote:
-> In this patch series,=20
-> we add Mediatek MT8189 evaluation board dts, dtsi and Makefile,
-> and also related dt-binding documents.
-> Jack Hsu (11):
->   dt-bindings: arm: Add compatible for MediaTek MT8189
->   dt-bindings: iio: adc: Support MediaTek MT8189 evb board auxadc
->   dt-bindings: nvmem: Support MediaTek MT8189 evb board efuse
->   dt-bindings: pwm: Support MediaTek MT8189 evb board disp-pwm
->   dt-bindings: serial: Support MediaTek MT8189 evb board uart
->   dt-bindings: timer: Support MediaTek MT8189 evb board timer
->   dt-bindings: usb: Support MediaTek MT8189 evb board xhci
->   dt-bindings: watchdog: Support MediaTek MT8189 evb board wdt
+diff --git a/Documentation/devicetree/bindings/thermal/db8500-thermal.txt b/Documentation/devicetree/bindings/thermal/db8500-thermal.txt
+deleted file mode 100644
+index 2e1c06fad81f..000000000000
+--- a/Documentation/devicetree/bindings/thermal/db8500-thermal.txt
++++ /dev/null
+@@ -1,44 +0,0 @@
+-* ST-Ericsson DB8500 Thermal
+-
+-** Thermal node properties:
+-
+-- compatible : "stericsson,db8500-thermal";
+-- reg : address range of the thermal sensor registers;
+-- interrupts : interrupts generated from PRCMU;
+-- interrupt-names : "IRQ_HOTMON_LOW" and "IRQ_HOTMON_HIGH";
+-- num-trips : number of total trip points, this is required, set it 0 if none,
+-  if greater than 0, the following properties must be defined;
+-- tripN-temp : temperature of trip point N, should be in ascending order;
+-- tripN-type : type of trip point N, should be one of "active" "passive" "hot"
+-  "critical";
+-- tripN-cdev-num : number of the cooling devices which can be bound to trip
+-  point N, this is required if trip point N is defined, set it 0 if none,
+-  otherwise the following cooling device names must be defined;
+-- tripN-cdev-nameM : name of the No. M cooling device of trip point N;
+-
+-Usually the num-trips and tripN-*** are separated in board related dts files.
+-
+-Example:
+-thermal@801573c0 {
+-	compatible = "stericsson,db8500-thermal";
+-	reg = <0x801573c0 0x40>;
+-	interrupts = <21 0x4>, <22 0x4>;
+-	interrupt-names = "IRQ_HOTMON_LOW", "IRQ_HOTMON_HIGH";
+-
+-	num-trips = <3>;
+-
+-	trip0-temp = <75000>;
+-	trip0-type = "active";
+-	trip0-cdev-num = <1>;
+-	trip0-cdev-name0 = "thermal-cpufreq-0";
+-
+-	trip1-temp = <80000>;
+-	trip1-type = "active";
+-	trip1-cdev-num = <2>;
+-	trip1-cdev-name0 = "thermal-cpufreq-0";
+-	trip1-cdev-name1 = "thermal-fan";
+-
+-	trip2-temp = <85000>;
+-	trip2-type = "critical";
+-	trip2-cdev-num = <0>;
+-}
+-- 
+2.51.0
 
-Please drop mention of the evb from all of these commit messages. The
-compatible has nothing to do with the evb board, it's going to be common
-across all boards using an mt8189.
-
->   arm64: dts: mediatek: Add MT6319 PMIC Support
->   arm64: dts: mediatek: add properties for MT6359
-
-Wait a minute, what are these two patches even doing in this series in
-the first place, when it is otherwise about the mt8189?
-
->   arm64: dts: mediatek: Add mt8189 evaluation board dts
-
-
---yaNJtXhYGM5K609h
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQPBMgAKCRB4tDGHoIJi
-0lPkAQCRU09Z6yjkHdytWu2mAy2u6tRSvE2qwbIcuk80eZ/k7wD/UgxmnNEGR8HM
-8eS3jGJAmBHKHjZ6iiVHXynJ+4bEdwg=
-=YIMa
------END PGP SIGNATURE-----
-
---yaNJtXhYGM5K609h--
 
