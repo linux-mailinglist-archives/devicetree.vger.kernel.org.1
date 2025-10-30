@@ -1,131 +1,116 @@
-Return-Path: <devicetree+bounces-233342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D584C2146F
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:47:15 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3115AC21487
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 17:48:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F8153A3984
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 16:41:26 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 41B5B4F2208
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 16:44:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 311E62DECBA;
-	Thu, 30 Oct 2025 16:41:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8706F36839A;
+	Thu, 30 Oct 2025 16:43:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OFfTgDYU"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="f/wgvFeQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F37F82DE1E0;
-	Thu, 30 Oct 2025 16:41:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A8193678D0;
+	Thu, 30 Oct 2025 16:43:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761842484; cv=none; b=sKJWyP1goZ8K419qGaWpujAqngRnjsfL9m1fabaa5xZd2ICEFsZKGPf0JXCDplvhUV5SCSJor8/l4vyA7ZmnfRotu3xp/OwEF3BWKMhx/8THoBcXXmp+DICSdso+JhHVINquBfs53aKG/MZICANSQ4wW6epc/qigWnQ3hGkZCv8=
+	t=1761842632; cv=none; b=RuX9Stpv+6ySI8dexIgk/5t3E2ZsUO+dRYk/J9xBLpu1zBJY0aMDsbmv0HlI8FMptdgHC7qkcB3pppwggemHbKSV9vbSjqP0GLkI2l5N6OGy3hCdaF/07PrQS0m5QLPNjDDixwDKcKNMrJAiCPPcXLvJsdERXQN/z++mowt95oY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761842484; c=relaxed/simple;
-	bh=aIoUwknKACszK3iv7HnkpaK0g2nYzhodMj6uyK4R4cI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rVnbuwrPva/HQJQ0JlIpWyhASuXiLTfCFI9oTZWi5nLzR6o6XG9L4lTSgoFA3VqFBTx6p1H1K2mykEola3u3PPiOi41DCFLhymS0TiSy47NU0ULVl91KcT+57qIbPGsmisgcpMEIMbNQJal/14xJiq8djGxckcZnzDgX9eVpblo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OFfTgDYU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A17F5C4CEF1;
-	Thu, 30 Oct 2025 16:41:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761842483;
-	bh=aIoUwknKACszK3iv7HnkpaK0g2nYzhodMj6uyK4R4cI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OFfTgDYUwwtk9a3MXmhN+C5QZeQcKowOvQ7JtdxMp86xa7GEim8ms4eA76JdlZfHS
-	 eFhBevKSCYCx6yMiJ4R3yNh1fEKAOckpxYlBhI00S+GuEHbN3tDMHcHFjIQ1269XM1
-	 0162sMPeIP15mj38QzG6640TZdgvl0DyZO+zAfpQ7ma2P8O29xh8ZpHLOZ/sL32xe0
-	 iqWWZ9MUG/8ewMu0jydmDJAMYeZyKtiWVz81dJNlG9Bj+piDGu94CB0PcteyGg6uJe
-	 yPXStu00GL1l1YREbznHaQFRp4m3fyjHtsoP+kDTeTeOt9XtrZbecyLXwkT6Ds1J5w
-	 cFFbUk6PUfVZg==
-Date: Thu, 30 Oct 2025 22:11:12 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Johannes Erdfelt <johannes@erdfelt.com>, 
-	Aurelien Jarno <aurelien@aurel32.net>
-Cc: Alex Elder <elder@riscstar.com>, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, bhelgaas@google.com, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, vkoul@kernel.org, kishon@kernel.org, dlan@gentoo.org, 
-	guodong@riscstar.com, pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	alex@ghiti.fr, p.zabel@pengutronix.de, christian.bruel@foss.st.com, 
-	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, qiang.yu@oss.qualcomm.com, 
-	namcao@linutronix.de, thippeswamy.havalige@amd.com, inochiama@gmail.com, 
-	devicetree@vger.kernel.org, linux-pci@vger.kernel.org, linux-phy@lists.infradead.org, 
-	spacemit@lists.linux.dev, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/7] Introduce SpacemiT K1 PCIe phy and host controller
-Message-ID: <5kwbaj2eqr4imcaoh6otqo7huuraqhodxh4dbwc33vqpi5j5yq@ueufnqetrg2m>
-References: <20251013153526.2276556-1-elder@riscstar.com>
- <aPEhvFD8TzVtqE2n@aurel32.net>
- <92ee253f-bf6a-481a-acc2-daf26d268395@riscstar.com>
- <aQEElhSCRNqaPf8m@aurel32.net>
- <20251028184250.GM15521@sventech.com>
- <82848c80-15e0-4c0e-a3f6-821a7f4778a5@riscstar.com>
- <20251028204832.GN15521@sventech.com>
+	s=arc-20240116; t=1761842632; c=relaxed/simple;
+	bh=rVfyl+pgmeFK0Y407AbklcW4AJUJ4qHRNL3mYtIHjnE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ptk/uahbKopFbBbGtSnxxMuuARqMC2ZoXzkJcjx9KSBEo809NsEtGN53ITH5vbBKETB7P4n5HobjT7xsDGZ6EbQrQzVHjIvZYMTxzbNEx+TG1RunzZb0RN+rrf2tdXbeiSLgPq6yQPXK5LtDSg+TnVQMLGU8A+BLRdDQbqLdCyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=f/wgvFeQ; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id B6A464E413FE;
+	Thu, 30 Oct 2025 16:43:48 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 8C28560331;
+	Thu, 30 Oct 2025 16:43:48 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1D6F311808C40;
+	Thu, 30 Oct 2025 17:43:46 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1761842628; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=8ulDJoknkJyiEMiD+sux6OU4HHrhPcfi/m+a05DqKY8=;
+	b=f/wgvFeQ0iy1nNEdWzYBXfqLoyio4I+jITijGDz709akZ/FHS139EBBPH1AvjAzAuVOGTo
+	e09qUn91Nd2dOP8i9mb61oppChhsPWLONF2+BQCxwWQdkQ7lnC2fKppS5AvYJjDeN3lyse
+	VJE0KaOdut5L7dlEO8l56UmAXn9C6W6OUXTT32Jv+BfdCT+rA75alWcYsWHi92/pLhaZxh
+	+sLbIyo+8YcvY9zWdxUEUoAstgLwhIVc/TXe7+rV/oSknSWMSq4eTeJrJIyKOyjJ1ZkPBs
+	N3td8e+POQLXFMYRmyFigwnRu+izCITsHk5aIGCzCFmCWAPEqd6yUmO4UEL6RQ==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+Date: Thu, 30 Oct 2025 17:43:44 +0100
+Subject: [PATCH v2] dt-bindings: interrupt-controller: Update license for
+ MIPS GIC header
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251028204832.GN15521@sventech.com>
+Message-Id: <20251030-fix_gic_dt_licence-v2-1-94444b458e36@bootlin.com>
+X-B4-Tracking: v=1; b=H4sIAL+VA2kC/22NwQqDMBBEf0X23JQk1Kg99T+KiN2sumATSYK0i
+ P/eVOitxzfMvNkgUmCKcC02CLRyZO8y6FMBOPVuJME2M2ipSyV1LQZ+dSNjZ1M3M5JDElhXZrD
+ GVrIhyMMlUG4d0nubeeKYfHgfH6v6pj9d80+3KqFEP1Syvkgsyajbw/s0szujf0K77/sHwMv2x
+ 7YAAAA=
+X-Change-ID: 20251028-fix_gic_dt_licence-c876fd6d709e
+To: Andrew Bresticker <abrestic@rivosinc.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Gregory CLEMENT <gregory.clement@bootlin.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
 
-+ Aurelien
+According to Documentation/devicetree/bindings/submitting-patches.rst:
+"DT binding files should be dual-licensed." The second license should
+be a BSD-like license, allowing the use of the binding in projects
+other than Linux. Initially, this file was submitted without any
+license and was later automatically converted to the default Linux
+license. Let’s now update it to follow the preferred license for the
+binding.
 
-On Tue, Oct 28, 2025 at 01:48:32PM -0700, Johannes Erdfelt wrote:
-> On Tue, Oct 28, 2025, Alex Elder <elder@riscstar.com> wrote:
-> > On 10/28/25 1:42 PM, Johannes Erdfelt wrote:
-> > > I have been testing this patchset recently as well, but on an Orange Pi
-> > > RV2 board instead (and an extra RV2 specific patch to enable power to
-> > > the M.2 slot).
-> > > 
-> > > I ran into the same symptoms you had ("QID 0 timeout" after about 60
-> > > seconds). However, I'm using an Intel 600p. I can confirm my NVME drive
-> > > seems to work fine with the "pcie_aspm=off" workaround as well.
-> > 
-> > I don't see this problem, and haven't tried to reproduce it yet.
-> > 
-> > Mani told me I needed to add these lines to ensure the "runtime
-> > PM hierarchy of PCIe chain" won't be "broken":
-> > 
-> > 	pm_runtime_set_active()
-> > 	pm_runtime_no_callbacks()
-> > 	devm_pm_runtime_enable()
-> > 
-> > Just out of curiosity, could you try with those lines added
-> > just before these assignments in k1_pcie_probe()?
-> > 
-> > 	k1->pci.dev = dev;
-> > 	k1->pci.ops = &k1_pcie_ops;
-> > 	dw_pcie_cap_set(&k1->pci, REQ_RES);
-> > 
-> > I doubt it will fix what you're seeing, but at the moment I'm
-> > working on something else.
-> 
-> Unfortunately there is no difference with the runtime PM hierarchy
-> additions.
-> 
+Acked-by: Andrew Bresticker <abrestic@rivosinc.com>
+Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+---
+Changes in v2:
+- Add acknowledgement to Andrew Bresticker, the original author of the file.
+- Update the subject prefix following Conor's suggestion.
+- Link to v1: https://lore.kernel.org/r/20251029-fix_gic_dt_licence-v1-1-af70840c5e61@bootlin.com
+---
+ include/dt-bindings/interrupt-controller/mips-gic.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-These are not supposed to fix the issues you were facing. I discussed with Alex
-offline and figured out that L1 works fine on his BPI-F3 board with a NVMe SSD.
+diff --git a/include/dt-bindings/interrupt-controller/mips-gic.h b/include/dt-bindings/interrupt-controller/mips-gic.h
+index bd45cee0c3f05..647f22d5f0622 100644
+--- a/include/dt-bindings/interrupt-controller/mips-gic.h
++++ b/include/dt-bindings/interrupt-controller/mips-gic.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0 */
++/* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
+ #ifndef _DT_BINDINGS_INTERRUPT_CONTROLLER_MIPS_GIC_H
+ #define _DT_BINDINGS_INTERRUPT_CONTROLLER_MIPS_GIC_H
+ 
 
-And I believe, Aurelien is also using that same board, but with different
-SSDs. But what is puzzling me is, L1 is breaking Aurelien's setup with 3 SSDs
-from different vendors. It apparently works fine on Alex's setup. So it somehow
-confirms that Root Port supports and behaves correctly with L1. But at the same
-time, I cannot just say without evidence that L1 is broken on all these SSDs
-that you and Aurelien tested with.
+---
+base-commit: dcb6fa37fd7bc9c3d2b066329b0d27dedf8becaa
+change-id: 20251028-fix_gic_dt_licence-c876fd6d709e
 
-So until that is figured out, I've asked Alex to disable L1 CAP in the
-controller driver. So in the next version of this series, your SSDs should work
-out of the box.
-
-- Mani
-
+Best regards,
 -- 
-மணிவண்ணன் சதாசிவம்
+Grégory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
