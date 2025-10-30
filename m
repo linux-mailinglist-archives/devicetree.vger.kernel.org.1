@@ -1,267 +1,353 @@
-Return-Path: <devicetree+bounces-233474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B18E4C22AAC
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 00:12:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0F2CC22B2B
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 00:23:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 44C484E4FC4
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 23:11:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D23E3A42B5
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 23:22:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E42C33B969;
-	Thu, 30 Oct 2025 23:11:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA70333BBBA;
+	Thu, 30 Oct 2025 23:21:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="rVZ9JkW1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KCIsl/eS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013021.outbound.protection.outlook.com [52.101.72.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B8D320DD48;
-	Thu, 30 Oct 2025 23:11:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.21
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761865904; cv=fail; b=CRX7d26+b45jkn7AgEH2NwBHr/Uwb9w1LCGPMNQ0hLVw13ICTTDbx22rfnSLTu7+3Zda/i4tSjrmwoCybgak4j3U7vMWDmrFsrAGgN3K+Kj2vFQ0AJBL66wYKhPc1FvKjmIayg5TAZ6pINaCSZLa4sqQlvTP1U3gSA9frfg7xNg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761865904; c=relaxed/simple;
-	bh=3yqziy35RfsR7Hp2oDCK9V2t0iP/A+zWpX47QbVYLY4=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=nNVXUxVuYl5UW+0IgO0PwNYh+KEfXQVa6ZtHW+GLRjYzD4++X9Ilk0pZ3z15yQokl8HOgAdLwIddJDcSUsCjWa4SS/LrnUdssGMa/Hr3/DKGvYx8lFY/Ztbz+c9X90YFcVZmAd5dOgyPfhDBUaQgyFRP0qBmMW6/01pVWpezKOM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b=rVZ9JkW1; arc=fail smtp.client-ip=52.101.72.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AEG5C3r+7wRNfcl7lW5tiXSnFnbn/3MQidyidpaSVkqgrt47fTCIridlPYLiLkTTKUWaMLkWjcCeav3n54Sx7si70QWsHVGIAYd+PMZ4UnfeEA2fbq5/7lLdmm1XnCxEZPn30VSimb0a14AfdVcp/V0XtNbpq440155zlsDEuMYloo7T7F2at6WoCWRRkVLiZfdYgbD5DPB9HOmJMeZaiJaNggfu6Y+XyyK9ltWZkVlaGzuy7ENG/snGvrf/Ouy0AlaHCV4FJ5Tplcj0UNznXl8nN4v13OwmqCAy5AGIDHRsPrj50jtAWmOMwedY+G8gNlxtTsQfiTZw00e7khdDOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3yqziy35RfsR7Hp2oDCK9V2t0iP/A+zWpX47QbVYLY4=;
- b=SKbyDAHxWtq0UDKurbc3tOE5o45/hQEAAUFvS2ZyW2YcjsqarbwN9fSqN+rgp1nBiO/NHk6OnjvfLviiGjfz7BgrDEAIADnlvf/vxl8Ujf8JYE3VZcwux3e0J7F58UTc3P4q4kCnrCy7jt8IeCcxW28y2pBVSbaB4h4J/Go/hIMXfOzvbCu8HoBmCBsAsL/58mYc90TgRFtDjQWjqXBkE0t6uHHiGkPtfpn9AEENPal2X2VfeCLtJlAMZTAioT+S1q8m70+fb7Oy5NENF/Kew+9Y/v5ztoDp/rClnVsQl/fEvzhukh15avLYxtsFNksbvSPina+YoMZxP8Xej2Qdew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
- dkim=pass header.d=siemens.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3yqziy35RfsR7Hp2oDCK9V2t0iP/A+zWpX47QbVYLY4=;
- b=rVZ9JkW1AsotduwMR63c6BtEg9vhpxetCw+aKcTTU5R4PfbQvetoidxZ89p61wA33DqV9StOTdxF9GuLu8NYupVyjQj0yIA10dR3V4saMaRhCCTpK9aZjKp0M/XjrWHG4POsWMHAPqklZgKy0L9r+qcgzbJ1AGmBCBNl7tBh1QAj3nyN6cYo9wG5dv0WDU+Pl/AAzJidSCjOzTTPyyvv7TO61Ifl5HFvP8DmVoJB9F0KaGOkhwlX3I3zerNjjLwCUL4BUs7FLwTjHH+JyZkn2zG3EXDyr5F+l+ahh8m23zwt8Y0w0Ghel4H7jss6Pf2V85r+mr24YmnzyGjcKIA7Lg==
-Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:5b6::22)
- by DB9PR10MB7628.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:339::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.15; Thu, 30 Oct
- 2025 23:11:38 +0000
-Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::9126:d21d:31c4:1b9f]) by AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::9126:d21d:31c4:1b9f%3]) with mapi id 15.20.9275.013; Thu, 30 Oct 2025
- 23:11:38 +0000
-From: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>
-To: "olteanv@gmail.com" <olteanv@gmail.com>, "andrew@lunn.ch"
-	<andrew@lunn.ch>, "robh@kernel.org" <robh@kernel.org>, "davem@davemloft.net"
-	<davem@davemloft.net>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "edumazet@google.com" <edumazet@google.com>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux@armlinux.org.uk"
-	<linux@armlinux.org.uk>, "daniel@makrotopia.org" <daniel@makrotopia.org>,
-	"horms@kernel.org" <horms@kernel.org>, "hauke@hauke-m.de" <hauke@hauke-m.de>,
-	"kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "netdev@vger.kernel.org"
-	<netdev@vger.kernel.org>
-CC: "lxu@maxlinear.com" <lxu@maxlinear.com>, "john@phrozen.org"
-	<john@phrozen.org>, "yweng@maxlinear.com" <yweng@maxlinear.com>,
-	"bxu@maxlinear.com" <bxu@maxlinear.com>, "fchan@maxlinear.com"
-	<fchan@maxlinear.com>, "ajayaraman@maxlinear.com" <ajayaraman@maxlinear.com>,
-	"jpovazanec@maxlinear.com" <jpovazanec@maxlinear.com>
-Subject: Re: [PATCH net-next v5 12/12] net: dsa: add driver for MaxLinear
- GSW1xx switch family
-Thread-Topic: [PATCH net-next v5 12/12] net: dsa: add driver for MaxLinear
- GSW1xx switch family
-Thread-Index: AQHcSZCXaB6f1YuNi0uvpiLknDgJsLTbUfIA
-Date: Thu, 30 Oct 2025 23:11:38 +0000
-Message-ID: <3945b89128c71d2d0c9bda3a2d927f3c53b50c87.camel@siemens.com>
-References: <cover.1761823194.git.daniel@makrotopia.org>
-	 <229278f2a02ac2b145f425f282f5a84d07475021.1761823194.git.daniel@makrotopia.org>
-In-Reply-To:
- <229278f2a02ac2b145f425f282f5a84d07475021.1761823194.git.daniel@makrotopia.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-user-agent: Evolution 3.54.3 (3.54.3-2.fc41) 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siemens.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS8PR10MB6867:EE_|DB9PR10MB7628:EE_
-x-ms-office365-filtering-correlation-id: 9f493231-2e61-4605-f198-08de1809adce
-x-ms-exchange-atpmessageproperties: SA
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|7416014|1800799024|376014|366016|38070700021|921020;
-x-microsoft-antispam-message-info:
- =?utf-8?B?ekZWSkxINTJuU1gyMHpURkFza0tBcUNXd3JiRjRXK3ZxbEZjNTIzTlM1S3gy?=
- =?utf-8?B?aEI3NmwwVWtuS3dBWTBXa3BjNzRPNngxSlBVTzFtejBBdFJEcHhXNXkwVVo0?=
- =?utf-8?B?UWRwYmE1ZjNnZWpRZUpEYUYydkRWT1FDWFlYMmlrZ1Z2V3hybzBSS3FGVjh2?=
- =?utf-8?B?VXpCVEpxV1RoRHE3SmZQQnhXN1I2NjU5cnZXVzZNbDFVbGNvcmdPZUpPKy9M?=
- =?utf-8?B?V280RndCS2JZcnl6ZXVnTmRKYzRoaFU5VCt1dlJZU0dmWjcrNG9aazZYaTZa?=
- =?utf-8?B?WWtNZ09XQlRtdjNuakNrbXBRSFMxMzlveGQyMmlSV2orNDJMeWlPMjZKRjlU?=
- =?utf-8?B?ZU5hR2tIVmxhRTRUTHQ1WGVPSlQzbFQ4Ly9MeU9LTUs1dW9ZcWlwbExPYWVt?=
- =?utf-8?B?ZXpmRjVvZmJUMDhpMFFMOFpqb0V3bDI5cGNaRWd5cklXMTlHdXFZQnVsQkpk?=
- =?utf-8?B?MmZ4cEZaZGxqQm1vK1FJOE0wV3EycHFTaE1vaUlLMnY4RTg2MHQvelFlWHZR?=
- =?utf-8?B?OTNYK3F0VUIvVGc1NFMyT2dhOHVWTmRFVVVBOGVWWDl1eHRlSWR5QklJcE9C?=
- =?utf-8?B?VUp6b1IvWVRRaGJVL0R5a2l4Y0EzdTYySlJmYitWdEZjL3BNQ3JvOU42Mk9V?=
- =?utf-8?B?TmJEdmVVU3VmNjlubnVvS21FSU5CM3pRdEFFRGdudjlWR3FIeFB0SVREck9O?=
- =?utf-8?B?VnI5VUNNSkh1QXJoaDVldnRZS0ZoektUMkhmNzVnci9mVG93QUIxcFNyZHpp?=
- =?utf-8?B?VEdzc1FaeHo4aWRldjZUaGVwU2ptOGRmUlIwaUFGbnlJNzcwQU1kak9tMDkx?=
- =?utf-8?B?SWpyUDFBZmd4bjU3ekMyRE9uV3NjRVNWSmpRT09hSjJ1R29BNmJyUFA3Q2d3?=
- =?utf-8?B?QjN1M3F5Ly9GcERvblBBelFvZHY3dUwxT0pJM0prbjFUMDlnUGVIS2hkem9P?=
- =?utf-8?B?R0hYd1ovVUE0UjFoTldqSHIxYXJicDQvQ1pjTUxnR04wVFEyaTQ3cUdYRWI0?=
- =?utf-8?B?MEp4dEY2UTAwMXZ6a0xORlFWOHpZNWhKaHdDeG9SMDV2MThPRDRqQzE0UzJY?=
- =?utf-8?B?RG9tbWJtN3VSRHAzeVZWSXNUVWFkMGE3SnBOQ1pZNVZ2RzJhUWFOcVF1RXI0?=
- =?utf-8?B?T095ZUFQU1VucnFZTnJlQlhPbzJIaTY5L01LbWtVOHJrNUw3UFdwNHdWeCty?=
- =?utf-8?B?dDhVVnJuYWxMNFJjVWxRNnNBQS83a1Rrb1lMWXBPMUM4dzdjbXVYQVpSTXRJ?=
- =?utf-8?B?bnRrS2ZyOGdrYmkxNDVMTDU3Z2hTcHJlUTZYbXlWRGFaZmo2cHlvVDhMUXFm?=
- =?utf-8?B?d1I1Z2grSFkyRlNyNjZieGtlQktqSlluNExtdktqcEtVaThlNW4yZS8wdEN3?=
- =?utf-8?B?emVPaEVBZEk3K2hkcEdENWFMWXB6TFNrSjdwVVJDUDJPUElVR2xwOHdWWnZU?=
- =?utf-8?B?QWhmNktWWm9ISmoxRzVVVXA2bW9qclI5V2tKMFRCWUVsNnVEWFRQQ3VOZDA5?=
- =?utf-8?B?RzBEdms2eFVWWEUvRStvNWtML0Nta2g5RnI0NmFrQTBQQkIySlloNkptSGVN?=
- =?utf-8?B?OWU5NmNNNTl1cE1wRUV2WHZWR1NEWjF6NFVycTNadmtvSE8xeWhlQ244Vlo2?=
- =?utf-8?B?OGRlZUl5ZjExZkcwMDV2MEtuOTFoSWNGMGY4WFdmRE4vVUpUUExyZVRIUVp3?=
- =?utf-8?B?R09JQU9xVG9XZUF3dStzZHZwUkI4TFA4OU5KZU82dUdrSkJ1V0ZSUWRqZ3Bo?=
- =?utf-8?B?UDVIQ1kzRE1JSXY5SFJPeGFtNDFaNGhaQUdnejFFN3l6Q1BuL3hUMGV5RXU1?=
- =?utf-8?B?QUkvMWo1TGN6MHlPMmp0VWxEOEoxWTQ3NTVsblN2RWF2Q0RRVkZKRHByRy9T?=
- =?utf-8?B?SnN2bC9HTjI3dThUcUdXRUdKSFdqWXpoU2ZLbXNYejgrVStoOVNXTlFYWm4x?=
- =?utf-8?B?N210Wm4vbmhQY2ZkdkY0VnQ3QTVzYk5ZT3I0WXVzOTMwZnNkVjlqLythaTEx?=
- =?utf-8?Q?K4Wa63Jj7AVfT9FDfQP2geblsV/ZG0=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(366016)(38070700021)(921020);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?eWtiK2hyWmY1VGFIbm5GMWZkWXVEMW1jS0ZvcHd1YnVja2svTktkSkRsdUo4?=
- =?utf-8?B?bkFiNm9WM29VdGtmaXlBd0Y3dEEzVm1sSjFxN2NBU0F6a3A0QnJNbjhLQ3RC?=
- =?utf-8?B?eHBxTzU0TXI4YXZTK3ZzbmFoYm9SOTlvbmlVMXJKYVExN1lWV21LQlRsOVVF?=
- =?utf-8?B?T05NVUpYSGtmMVVSQUg2Y25ERGFub2tHL0ZhNXdHN2hDSGs1Y0NjWGlBK01Y?=
- =?utf-8?B?RTZwMHBnOGsrS2dtVG9JcTJhQWcxT2gvSnc3MnZIV2FIUCszWFlEYWUzUGl3?=
- =?utf-8?B?b3NqdktuVDhmL0FHZC9uU3d4ZEpxN0ZFbWJ4eDM1dUtpSTE1a1A2WkgvdHVy?=
- =?utf-8?B?VkxFQ0VRVnF4WWYvUEc1cTRveWM2L01tQ21DNkNFamNwQ3VJb0I4Ti9WTWFM?=
- =?utf-8?B?QmFyOHIvNXV4Zi90R0NCVWFXVW8zeDB0NnBTakp0Q0VJYktSN3BteCs0RmF6?=
- =?utf-8?B?clpXRUVGa0RUWnVXT3JUN1lNMmpRMVZOWGh0THNRYVEwRm9aU2VPVmlSbSta?=
- =?utf-8?B?RlZQcE5qQ3p4V1JGRSszM0tWWUpCTnMxNW1LVllUQW41V0QrOTRUVjNhK3BL?=
- =?utf-8?B?Qlg0bHFweTdGQk5Sb1J5ZVVYUUpxUFYyUkZNUUhMdHJWS0g0c0UvOGdpdUZN?=
- =?utf-8?B?VnVVWTRSQ3Z4bnVJVkVsNU54MHRuMmZqTWRGclFzd0dMOTJjYWlVTXhqVGxw?=
- =?utf-8?B?YU1MZzlDN0pWbGJLMHVxN2RwTGZxbFgzK2JMZzBMMksvVnNmTEk0YjlSeHN6?=
- =?utf-8?B?VTZLd0hpZTVRMThWdk1ySm54V0NRWEd4b3B0VVBFNFNaRm01ekRKS0w5ODJu?=
- =?utf-8?B?UExyKzJVUUdqeHMrcnZsc0l1Y0dYcFMrTHJLME5oTVpjZ2d4KzB0UUthOURM?=
- =?utf-8?B?dHpTcTk5c0Y3VW9WZjEyN0pnV2FQU1FKcXQ2cU9sNHJWOG9pbnMvOE8vdm1p?=
- =?utf-8?B?aGwwK2Q2QzlOYy9SSVVsN2I1QVRUbklEMGZIZ01hZjFaRDJmZmpXSFo1L0NQ?=
- =?utf-8?B?Q1hqUTl3QlFUTzRhWmRmUzBqdHN3WWJJZEIzU1pPRVFxVyszNHJvQ083WXZH?=
- =?utf-8?B?RUp1azViRHhSVU9ENlg5UUE4eC9nL2NSb1dpTGZZL0tmeHQwNGk5L21yOGJJ?=
- =?utf-8?B?eXUxdFlEMXhsc0dValpZWDhqY1NmRmVSbmtQL2lrYmJlK1VkSU9SQXB3aU13?=
- =?utf-8?B?eFNPRlQxMlZYdkFhSFI5aTVXaDI0K1lDMlhyMWhLaS9uYTVGeVZQQlY5T2tF?=
- =?utf-8?B?SmdTV09ya2wxeFZmdzB6MGhEOGE2OG5xeklIMHJWY2FuZlZMNnlHSzR5UFpo?=
- =?utf-8?B?ZXBHc2pWTlNrbWVmME5pM1lhbkwySFcrYTBZYkRDSktsR3hEMC9WUUpqalNX?=
- =?utf-8?B?dml5M2VKSWNNSlk3YVFZbGh4T0NLVS9MdWhOamtUNUFGR1YzdkZFZlBDeGRi?=
- =?utf-8?B?a1Rza2tvMCt2N0V1cXFpTXNiTERmaUdaN29Ba3YrQURlZUozMjlYdWZNYStk?=
- =?utf-8?B?dXc1NjdNT0NQQVBhNmVWZllQcU81RWVVQ0V1TFRiNW5TK1VsS1UzNzhJSHhj?=
- =?utf-8?B?am5OVW5iV2ZOd0pjRkxOZndzVGhzaFphRDFkbjE3WTExMjc0Tk5rTENvM2RN?=
- =?utf-8?B?aWNyRHlESEVlNVVOMmVjdlVldUVTNlV6Q1UwVlZYOWIxSVRRWWplb2xkQm8y?=
- =?utf-8?B?RDZhaHZNVC9aYmVma0tRR1AyUWZUTU5Gcm5ISlZCWEFQellCZ0hzaHNnS2hs?=
- =?utf-8?B?RFFVc3EvY0tTVmNoVTBSMFhPQUdVRXcrQU1nUmdSQ3pScmpkaU5IWEdlR3NG?=
- =?utf-8?B?dHNsdDdSa2lPYTk3ZTJqVHlYK28zZDh2dUZhTkdlR01QNm1ndnN5a1dKZkw3?=
- =?utf-8?B?T0Z3aTR6cWpSSHBtUWZoRFZKMlA3dWlZTzR4a0ZDRGlNK2l2Mm05NVJaZ2Jp?=
- =?utf-8?B?S2hBYzhXaHR6S1JaTllEWklOY3ZpaElheEFUb29WajQ0MEVpTjloL1NzSGpJ?=
- =?utf-8?B?aXlUZEdHVExuOG9sVWpRa3I4eDFxSzF3ZTIrREQzbVArakgzcmplQ3EyWGFs?=
- =?utf-8?B?d2F1SWJWeGMrdjdpZFlMV1FnNTUrY0JQbWd0bEdURm1qVFNLL2l5WGEzN2FS?=
- =?utf-8?B?SUh5Zjl2UHJBTU93WEZTNWt6QVk1bTMxV2U1R2tXSytHZHhJNkR0dzNDcW5N?=
- =?utf-8?Q?LlVU8ITcMo+Onv4GBjdS69w=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <3BAD347D3369ED47BFDEAB7D00183421@EURPRD10.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 797A933711D;
+	Thu, 30 Oct 2025 23:21:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761866517; cv=none; b=bOu7ErcjbJ47OmokUWhyBBb7XWE/SxOyYZQ3P59E3h1abUPShJKfbuacuZb/jGFqeKWNqtBe7lUI4MftX/daOLLXYkIb2vlhdtGrCZMu+nls3z2HvvNIIZ4Y3IluwftNPCxwKHyJHJ1PWd3vOWAP6p1yESfO7uh6MllVgK+AMoM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761866517; c=relaxed/simple;
+	bh=/rp/ubawNd5SVser7ZjxZ6b5BNO+EY12E0k+TbAyPLU=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=dg52PICT3J48AjEsCFRfMfvCHzChO4qtlHbHlF105MyWCLZis/wUdLMiDKOav5DxrwCuNseUuUbMyHoCqskSyKWnoxnZ0c0beJAjmGe22eVeChtLxa8eoEstxSoNzFfQwcD9MasbqRQRQYE09YT1K9AyhEbj0jOr2uegdYnclts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KCIsl/eS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E09D8C4CEF1;
+	Thu, 30 Oct 2025 23:21:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761866517;
+	bh=/rp/ubawNd5SVser7ZjxZ6b5BNO+EY12E0k+TbAyPLU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=KCIsl/eSxxSyFEaE2YxpIn3cJf5Hm5Kl0Zdm9XqB9RjEo1l2w3/qSrZZ3ZeMUOPiq
+	 2/ay8rzb/365zDTQg5fGF1CbeHn54vk/NebhkcE86H5nblkOZdoEjNqHXZNZi48RaL
+	 NaKnwoBpAba6uxmYaTr+E66WYmkSQPwr6zVjPl9q1HFV57QN9zultMQ5PbeCg7qUZz
+	 5+6JmZNaoIzGFcT79P0J+cSguJn0wOynq4UnF8uNPHc5/IL2MjoHE1TuLrm2d7V/xG
+	 hPK2MSXPIZb1EAND2TsiXdL635VlQDO84oTuAso4gVpgCyykLCm8BW/GqD0z54d8K1
+	 AME9spocr58SQ==
+Date: Thu, 30 Oct 2025 18:21:55 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: zhangsenchuan@eswincomputing.com
+Cc: bhelgaas@google.com, mani@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
+	robh@kernel.org, p.zabel@pengutronix.de, jingoohan1@gmail.com,
+	gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	christian.bruel@foss.st.com, mayank.rana@oss.qualcomm.com,
+	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com,
+	thippeswamy.havalige@amd.com, inochiama@gmail.com,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
+Subject: Re: [PATCH v4 2/2] PCI: EIC7700: Add Eswin PCIe host controller
+ driver
+Message-ID: <20251030232155.GA1632897@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9f493231-2e61-4605-f198-08de1809adce
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Oct 2025 23:11:38.2455
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: sEacBRC7Tg/aMdDIxDjWAYVzCLFfAhWnt4YaQuxw6vPJF9c7lIiHAgUe3ngQSUmwCwqegiagWzKz5XpZhPkYAw80iMUgolByiSLuCvmMy70=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR10MB7628
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251030083143.1341-1-zhangsenchuan@eswincomputing.com>
 
-SGkgRGFuaWVsLA0KDQpPbiBUaHUsIDIwMjUtMTAtMzAgYXQgMTE6MzAgKzAwMDAsIERhbmllbCBH
-b2xsZSB3cm90ZToNCj4gQWRkIGRyaXZlciBmb3IgdGhlIE1heExpbmVhciBHU1cxeHggZmFtaWx5
-IG9mIEV0aGVybmV0IHN3aXRjaCBJQ3Mgd2hpY2gNCj4gYXJlIGJhc2VkIG9uIHRoZSBzYW1lIElQ
-IGFzIHRoZSBMYW50aXEvSW50ZWwgR1NXSVAgZm91bmQgaW4gdGhlIExhbnRpcSBWUjkNCj4gYW5k
-IEludGVsIEdSWCBNSVBTIHJvdXRlciBTb0NzLiBUaGUgbWFpbiBkaWZmZXJlbmNlIGlzIHRoYXQg
-aW5zdGVhZCBvZg0KPiB1c2luZyBtZW1vcnktbWFwcGVkIEkvTyB0byBjb21tdW5pY2F0ZSB3aXRo
-IHRoZSBob3N0IENQVSB0aGVzZSBJQ3MgYXJlDQo+IGNvbm5lY3RlZCB2aWEgTURJTyAob3IgU1BJ
-LCB3aGljaCBpc24ndCBzdXBwb3J0ZWQgYnkgdGhpcyBkcml2ZXIpLg0KPiBJbXBsZW1lbnQgdGhl
-IHJlZ21hcCBBUEkgdG8gYWNjZXNzIHRoZSBzd2l0Y2ggcmVnaXN0ZXJzIG92ZXIgTURJTyB0byBh
-bGxvdw0KPiByZXVzaW5nIGxhbnRpcV9nc3dpcF9jb21tb24gZm9yIGFsbCBjb3JlIGZ1bmN0aW9u
-YWxpdHkuDQo+IA0KPiBUaGUgR1NXMXh4IGFsc28gY29tZXMgd2l0aCBhIFNlckRlcyBwb3J0IGNh
-cGFibGUgb2YgMTAwMEJhc2UtWCwgU0dNSUkgYW5kDQo+IDI1MDBCYXNlLVgsIHdoaWNoIGNhbiBl
-aXRoZXIgYmUgdXNlZCB0byBjb25uZWN0IGFuIGV4dGVybmFsIFBIWSBvciBTRlANCj4gY2FnZSwg
-b3IgYXMgdGhlIENQVSBwb3J0LiBTdXBwb3J0IGZvciB0aGUgU2VyRGVzIGludGVyZmFjZSBpcyBp
-bXBsZW1lbnRlZA0KPiBpbiB0aGlzIGRyaXZlciB1c2luZyB0aGUgcGh5bGlua19wY3MgaW50ZXJm
-YWNlLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogRGFuaWVsIEdvbGxlIDxkYW5pZWxAbWFrcm90b3Bp
-YS5vcmc+DQo+IC0tLQ0KPiB2NDoNCj4gwqAqIGJyZWFrIG91dCBQQ1MgcmVzZXQgaW50byBkZWRp
-Y2F0ZWQgZnVuY3Rpb24NCj4gwqAqIGRyb3AgaGFja3kgc3VwcG9ydCBmb3IgcmV2ZXJzZS1TR01J
-SQ0KPiDCoCogcmVtb3ZlIGFnYWluIHRoZSBjdXN0b20gcHJvcGVydGllcyBmb3IgVFggYW5kIFJY
-IGludmVydGVkIFNlckRlcw0KPiDCoMKgIFBDUyBpbiBmYXZvciBvZiB3YWl0aW5nIGZvciBnZW5l
-cmljIHByb3BlcnRpZXMgdG8gbGFuZA0KPiANCj4gdjM6DQo+IMKgKiBhdm9pZCBkaXNydXB0aW5n
-IGxpbmsgd2hlbiBjYWxsaW5nIC5wY3NfY29uZmlnKCkNCj4gwqAqIHNvcnQgZnVuY3Rpb25zIGFu
-ZCBwaHlsaW5rX3Bjc19vcHMgaW5zdGFuY2UgaW4gc2FtZSBvcmRlciBhcw0KPiDCoMKgIHN0cnVj
-dCBkZWZpbml0aW9uDQo+IMKgKiBhbHdheXMgc2V0IGJvb3RzdHJhcCBvdmVycmlkZSBiaXRzIGFu
-ZCBhZGQgZXhwbGFuYXRvcnkgY29tbWVudA0KPiDCoCogbW92ZSBkZWZpbml0aW9ucyB0byBzZXBh
-cmF0ZSBoZWFkZXIgZmlsZQ0KPiDCoCogYWRkIGN1c3RvbSBwcm9wZXJ0aWVzIGZvciBUWCBhbmQg
-UlggaW52ZXJ0ZWQgZGF0YSBvbiB0aGUgU2VyRGVzDQo+IMKgwqAgaW50ZXJmYWNlDQo+IA0KPiB2
-MjogcmVtb3ZlIGxlZnQtb3ZlcnMgb2YgNGsgVkxBTiBzdXBwb3J0ICh3aWxsIGJlIGFkZGVkIGlu
-IGZ1dHVyZSkNCj4gDQo+IMKgZHJpdmVycy9uZXQvZHNhL2xhbnRpcS9LY29uZmlnwqDCoMKgwqDC
-oMKgwqDCoMKgIHzCoCAxMiArDQo+IMKgZHJpdmVycy9uZXQvZHNhL2xhbnRpcS9NYWtlZmlsZcKg
-wqDCoMKgwqDCoMKgwqAgfMKgwqAgMSArDQo+IMKgZHJpdmVycy9uZXQvZHNhL2xhbnRpcS9sYW50
-aXFfZ3N3aXAuaMKgwqAgfMKgwqAgMSArDQo+IMKgZHJpdmVycy9uZXQvZHNhL2xhbnRpcS9teGwt
-Z3N3MXh4LmPCoMKgwqDCoCB8IDczMyArKysrKysrKysrKysrKysrKysrKysrKysNCj4gwqBkcml2
-ZXJzL25ldC9kc2EvbGFudGlxL214bC1nc3cxeHguaMKgwqDCoMKgIHwgMTI2ICsrKysNCj4gwqBk
-cml2ZXJzL25ldC9kc2EvbGFudGlxL214bC1nc3cxeHhfcGNlLmggfCAxNTQgKysrKysNCj4gwqA2
-IGZpbGVzIGNoYW5nZWQsIDEwMjcgaW5zZXJ0aW9ucygrKQ0KPiDCoGNyZWF0ZSBtb2RlIDEwMDY0
-NCBkcml2ZXJzL25ldC9kc2EvbGFudGlxL214bC1nc3cxeHguYw0KPiDCoGNyZWF0ZSBtb2RlIDEw
-MDY0NCBkcml2ZXJzL25ldC9kc2EvbGFudGlxL214bC1nc3cxeHguaA0KPiDCoGNyZWF0ZSBtb2Rl
-IDEwMDY0NCBkcml2ZXJzL25ldC9kc2EvbGFudGlxL214bC1nc3cxeHhfcGNlLmgNCg0KdGhhbmsg
-eW91IGZvciB0aGUgcGF0Y2ghDQoNCkZvciBzb21lIHJlYXNvbiB3aXRoIGJvdGggdjQgYW5kIHY1
-IEkgY2FuIHJlbGlhYmx5IHJlcHJvZHVjZSB0aGUgZm9sbG93aW5nDQp3YXJuaW5nIChBU1NFUlRf
-UlROTCgpKSBhdCB0aGUgdmVyeSBiZWdpbm5pbmcgb2YNCmRyaXZlcnMvbmV0L2RzYS9sb2NhbF90
-ZXJtaW5hdGlvbi5zaCBzZWxmdGVzdDoNCg0KUlROTDogYXNzZXJ0aW9uIGZhaWxlZCBhdCBnaXQv
-bmV0L2NvcmUvZGV2LmMgKDk0ODApDQpXQVJOSU5HOiBDUFU6IDEgUElEOiA1MjkgYXQgZ2l0L25l
-dC9jb3JlL2Rldi5jOjk0ODAgX19kZXZfc2V0X3Byb21pc2N1aXR5KzB4MTc0LzB4MTg4DQpDUFU6
-IDEgVUlEOiA5OTYgUElEOiA1MjkgQ29tbTogc3lzdGVtZC1yZXNvbHZlIFRhaW50ZWQ6IEcgICAg
-ICAgICAgIE8gICAgICAgIDYuMTguMC1yYzIrZ2l0ZTkwNzkzMDAwOTRkICMxIFBSRUVNUFQgDQpw
-c3RhdGU6IDYwMDAwMDA1IChuWkN2IGRhaWYgLVBBTiAtVUFPIC1UQ08gLURJVCAtU1NCUyBCVFlQ
-RT0tLSkNCnBjIDogX19kZXZfc2V0X3Byb21pc2N1aXR5KzB4MTc0LzB4MTg4DQpsciA6IF9fZGV2
-X3NldF9wcm9taXNjdWl0eSsweDE3NC8weDE4OA0KQ2FsbCB0cmFjZToNCiBfX2Rldl9zZXRfcHJv
-bWlzY3VpdHkrMHgxNzQvMHgxODggKFApDQogX19kZXZfc2V0X3J4X21vZGUrMHhhMC8weGIwDQog
-ZGV2X21jX2RlbCsweDk0LzB4YzANCiBpZ21wNl9ncm91cF9kcm9wcGVkKzB4MTI0LzB4NDEwDQog
-X19pcHY2X2Rldl9tY19kZWMrMHgxMDgvMHgxNjgNCiBfX2lwdjZfc29ja19tY19kcm9wKzB4NjQv
-MHgxODgNCiBpcHY2X3NvY2tfbWNfZHJvcCsweDE0MC8weDE3MA0KIGRvX2lwdjZfc2V0c29ja29w
-dCsweDE0MDgvMHgxODI4DQogaXB2Nl9zZXRzb2Nrb3B0KzB4NjQvMHhmOA0KIHVkcHY2X3NldHNv
-Y2tvcHQrMHgyOC8weDU4DQogc29ja19jb21tb25fc2V0c29ja29wdCsweDI0LzB4MzgNCiBkb19z
-b2NrX3NldHNvY2tvcHQrMHg3OC8weDE1OA0KIF9fc3lzX3NldHNvY2tvcHQrMHg4OC8weDExMA0K
-IF9fYXJtNjRfc3lzX3NldHNvY2tvcHQrMHgzMC8weDQ4DQogaW52b2tlX3N5c2NhbGwrMHg1MC8w
-eDEyMA0KIGVsMF9zdmNfY29tbW9uLmNvbnN0cHJvcC4wKzB4YzgvMHhmMA0KIGRvX2VsMF9zdmMr
-MHgyNC8weDM4DQogZWwwX3N2YysweDUwLzB4MmIwDQogZWwwdF82NF9zeW5jX2hhbmRsZXIrMHhh
-MC8weGU4DQogZWwwdF82NF9zeW5jKzB4MTk4LzB4MWEwDQoNCih0ZXN0aW5nIHdpdGggR1NXMTQ1
-KQ0KSSdtIG5vdCBzdXJlIHRob3VnaCwgaWYgaXQncyByZWxhdGVkIHRvIHRoZSBnc3cxeHggY29k
-ZSwgYW02NS1jcHN3LW51c3MgZHJpdmVyDQpvbiBteSBDUFUgcG9ydCBvciBpZiBpdCdzIGEgZnJl
-c2ggcmVncmVzc2lvbiBpbiBuZXQtbmV4dC4uLg0KDQpJIGNhbiBzZWUgdGhlIGFib3ZlIHNwbGF0
-IGlmIEkgYXBwbHkgdGhlIHBhdGNoc2V0IG9udG8gYmZlNjJkYjU0MjJiMWE1ZjI1NzUyYmQwODc3
-YTA5N2Q0MzZkODc2ZA0KYnV0IG5vdCB3aXRoIG9sZGVyIHBhdGNoc2V0IG9uIHRvcCBvZiBlOTA1
-NzY4MjljZTQ3YTQ2ODM4Njg1MTUzNDk0YmMxMmNkMWJjMzMzLg0KDQpJJ2xsIHRyeSB0byBiaXNl
-Y3QgdGhlIHVuZGVybHlpbmcgbmV0LW5leHQuLi4NCg0KLS0gDQpBbGV4YW5kZXIgU3ZlcmRsaW4N
-ClNpZW1lbnMgQUcNCnd3dy5zaWVtZW5zLmNvbQ0K
+Nit: if you run "git log --oneline drivers/pci/controller/", you'll
+notice that the driver tags ("EIC7700" here) are all lower-case.
+Same for the DT bindings.
+
+On Thu, Oct 30, 2025 at 04:31:42PM +0800, zhangsenchuan@eswincomputing.com wrote:
+> From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+> 
+> Add driver for the Eswin EIC7700 PCIe host controller, which is based on
+> the DesignWare PCIe core, IP revision 6.00a. The PCIe Gen.3 controller
+> supports a data rate of 8 GT/s and 4 channels, support INTX and MSI
+> interrupts.
+
+s/INTX/INTx/ to match spec usage.
+
+> +++ b/drivers/pci/controller/dwc/Kconfig
+> @@ -93,6 +93,17 @@ config PCIE_BT1
+>  	  Enables support for the PCIe controller in the Baikal-T1 SoC to work
+>  	  in host mode. It's based on the Synopsys DWC PCIe v4.60a IP-core.
+>  
+> +config PCIE_EIC7700
+> +	bool "Eswin PCIe controller"
+
+I think this should mention EIC7700.
+
+> +	depends on ARCH_ESWIN || COMPILE_TEST
+> +	depends on PCI_MSI
+> +	select PCIE_DW_HOST
+> +	help
+> +	  Say Y here if you want PCIe controller support for the Eswin.
+> +	  The PCIe controller on Eswin is based on DesignWare hardware,
+> +	  enables support for the PCIe controller in the Eswin SoC to
+> +	  work in host mode.
+
+Mention EIC7700 here also.
+
+> +++ b/drivers/pci/controller/dwc/pcie-eic7700.c
+> @@ -0,0 +1,462 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * ESWIN PCIe root complex driver
+
+Probably here also.
+
+> + *
+> + * Copyright 2025, Beijing ESWIN Computing Technology Co., Ltd.
+> + *
+> + * Authors: Yu Ning <ningyu@eswincomputing.com>
+> + *          Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+> + *          Yanghui Ou <ouyanghui@eswincomputing.com>
+> + */
+> +
+> +#include <linux/interrupt.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/pci.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/resource.h>
+> +#include <linux/reset.h>
+> +#include <linux/types.h>
+> +
+> +#include "pcie-designware.h"
+> +
+> +/* PCIe top csr registers */
+> +#define PCIEMGMT_CTRL0_OFFSET		0x0
+> +#define PCIEMGMT_STATUS0_OFFSET		0x100
+> +
+> +/* LTSSM register fields */
+> +#define PCIEMGMT_APP_LTSSM_ENABLE	BIT(5)
+> +
+> +/* APP_HOLD_PHY_RST register fields */
+> +#define PCIEMGMT_APP_HOLD_PHY_RST	BIT(6)
+> +
+> +/* PM_SEL_AUX_CLK register fields */
+> +#define PCIEMGMT_PM_SEL_AUX_CLK		BIT(16)
+> +
+> +/* ROOT_PORT register fields */
+> +#define PCIEMGMT_CTRL0_ROOT_PORT_MASK	GENMASK(3, 0)
+
+Looks like this is actually a "device type" field, not a "root port"
+field, since you OR in the PCI_EXP_TYPE_ROOT_PORT device type below.
+
+Maybe you could name it simply "PCIEMGMT_CTRL0_DEV_TYPE" or similar?
+
+> +/* Vendor and device id value */
+
+s/id/ID/
+
+> +#define PCI_VENDOR_ID_ESWIN		0x1fe1
+> +#define PCI_DEVICE_ID_ESWIN		0x2030
+> +
+> +struct eswin_pcie_data {
+
+Generally speaking the prefix for structs and functions matches the
+driver filename, i.e., "eic7700" in this case.
+
+  $ git grep "^struct .*_pcie {" drivers/pci/controller/dwc
+  drivers/pci/controller/dwc/pci-dra7xx.c:struct dra7xx_pcie {
+  drivers/pci/controller/dwc/pci-exynos.c:struct exynos_pcie {
+  drivers/pci/controller/dwc/pci-imx6.c:struct imx_pcie {
+  drivers/pci/controller/dwc/pci-keystone.c:struct keystone_pcie {
+  ...
+
+> +static int eswin_pcie_perst_deassert(struct eswin_pcie_port *port,
+> +				     struct eswin_pcie *pcie)
+> +{
+> +	int ret;
+> +
+> +	ret = reset_control_assert(port->perst);
+> +	if (ret) {
+> +		dev_err(pcie->pci.dev, "Failed to assert PERST#");
+> +		return ret;
+> +	}
+> +
+> +	/* Ensure that PERST has been asserted for at least 100 ms */
+
+s/PERST/PERST#/
+
+> +	msleep(PCIE_T_PVPERL_MS);
+> +
+> +	ret = reset_control_deassert(port->perst);
+> +	if (ret) {
+> +		dev_err(pcie->pci.dev, "Failed to deassert PERST#");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int eswin_pcie_parse_port(struct eswin_pcie *pcie,
+> +				 struct device_node *node)
+> +{
+> +	struct device *dev = pcie->pci.dev;
+> +	struct eswin_pcie_port *port;
+> +
+> +	port = devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
+> +	if (!port)
+> +		return -ENOMEM;
+> +
+> +	port->perst = of_reset_control_get(node, "perst");
+> +	if (IS_ERR(port->perst)) {
+> +		dev_err(dev, "Failed to get perst reset\n");
+
+s/perst/PERST#/ to match spec usage and messages above.
+
+> +static int eswin_pcie_host_init(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct eswin_pcie *pcie = to_eswin_pcie(pci);
+> +	struct eswin_pcie_port *port;
+> +	u8 msi_cap;
+> +	u32 val;
+> +	int ret;
+> +
+> +	pcie->num_clks = devm_clk_bulk_get_all_enabled(pci->dev, &pcie->clks);
+> +	if (pcie->num_clks < 0)
+> +		return dev_err_probe(pci->dev, pcie->num_clks,
+> +				     "Failed to get pcie clocks\n");
+> +
+> +	ret = eswin_pcie_deassert(pcie);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Configure root port type */
+> +	val = readl_relaxed(pcie->mgmt_base + PCIEMGMT_CTRL0_OFFSET);
+> +	val &= ~PCIEMGMT_CTRL0_ROOT_PORT_MASK;
+> +	writel_relaxed(val | PCI_EXP_TYPE_ROOT_PORT,
+> +		       pcie->mgmt_base + PCIEMGMT_CTRL0_OFFSET);
+
+Use FIELD_PREP() here to remove the assumption that
+PCIEMGMT_CTRL0_ROOT_PORT_MASK is in the low-order bits.
+
+> +static void eswin_pcie_host_exit(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct eswin_pcie *pcie = to_eswin_pcie(pci);
+> +	struct eswin_pcie_port *port;
+> +
+> +	/*
+> +	 * For controllers with active devices, resources are retained and
+> +	 * cannot be turned off, like NVMEe.
+
+s/NVMEe/NVMe/
+
+I'm a little skeptical about having behavior here that depends on
+specific kinds of downstream devices.
+
+Maybe there's some general requirement that these resources need to be
+retained if the link is up, and there's no need to mention NVMe
+specifically?  I don't see similar code in other drivers, though.
+
+> +	 */
+> +	if (!dw_pcie_link_up(&pcie->pci)) {
+> +		list_for_each_entry(port, &pcie->ports, list)
+> +			reset_control_assert(port->perst);
+> +		eswin_pcie_assert(pcie);
+> +		clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
+> +	}
+> +}
+> +
+> +static void eswin_pcie_pme_turn_off(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +
+> +	/*
+> +	 * Hardware doesn't support enter the D3code and L2/L3 states, send
+> +	 * PME_TURN_OFF message, which will then cause Vmain to be removed and
+> +	 * controller stop working.
+> +	 */
+> +	dev_info(pci->dev, "Can't send PME_TURN_OFF message\n");
+
+s/PME_TURN_OFF/PME_Turn_Off/ to match spec usage.
+
+> +}
+> +
+> +static const struct dw_pcie_host_ops eswin_pcie_host_ops = {
+> +	.init = eswin_pcie_host_init,
+> +	.deinit = eswin_pcie_host_exit,
+
+Please include "deinit" in this function name so it's connected to the
+.deinit structure member.
+
+> +static int eswin_pcie_probe(struct platform_device *pdev)
+> +{
+> +	const struct eswin_pcie_data *data;
+> +	struct eswin_pcie_port *port, *tmp;
+> +	struct device *dev = &pdev->dev;
+> +	struct eswin_pcie *pcie;
+> +	struct dw_pcie *pci;
+> +	int ret;
+> +
+> +	data = of_device_get_match_data(dev);
+> +	if (!data)
+> +		return dev_err_probe(dev, -EINVAL, "OF data missing\n");
+> +
+> +	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
+> +	if (!pcie)
+> +		return -ENOMEM;
+> +
+> +	INIT_LIST_HEAD(&pcie->ports);
+> +
+> +	pci = &pcie->pci;
+> +	pci->dev = dev;
+> +	pci->ops = &dw_pcie_ops;
+> +	pci->pp.ops = &eswin_pcie_host_ops;
+> +	pcie->msix_cap = data->msix_cap;
+
+I'm not sure there's really any value in copying msix_cap, since
+data->msix_cap is a read-only item anyway.
+
+For example, pcie-qcom.c has a per-SoC struct qcom_pcie_cfg, and it
+just saves the qcom_pcie_cfg pointer in struct qcom_pcie:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/pci/controller/dwc/pcie-qcom.c?id=v6.17#n286
+
+> +static int eswin_pcie_resume_noirq(struct device *dev)
+> +{
+> +	struct eswin_pcie *pcie = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	ret = dw_pcie_resume_noirq(&pcie->pci);
+
+Add blank line here.
+
+> +	/*
+> +	 * If the downstream device is not inserted, linkup will TIMEDOUT. At
+> +	 * this time, when the resume function return, -ETIMEDOUT shouldn't be
+> +	 * returned, which will raise "PM: failed to resume noirq: error -110".
+> +	 * Only log message "Ignore errors, the link may come up later".
+> +	 */
+> +	if (ret == -ETIMEDOUT && !pcie->linked_up) {
+> +		dev_info(dev, "Ignore errors, the link may come up later\n");
+> +		return 0;
+> +	}
+> +
+> +	return ret;
+> +}
+
+> +MODULE_DESCRIPTION("PCIe host controller driver for EIC7700 SoCs");
+
+Include vendor ("Eswin") in the description.  You can use this to see
+the typical style:
+
+  $ git grep MODULE_DESCRIPTION drivers/pci/controller/
 
