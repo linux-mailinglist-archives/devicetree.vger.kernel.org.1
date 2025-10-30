@@ -1,192 +1,279 @@
-Return-Path: <devicetree+bounces-233215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 126B0C1FEBA
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:04:23 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86650C1FED5
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:05:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF6D8425FA0
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 12:03:29 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B00C64EBD66
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 12:04:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8336A354AC1;
-	Thu, 30 Oct 2025 12:02:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D8F637A3D2;
+	Thu, 30 Oct 2025 12:04:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S2UkVujz"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="f+VYncrc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7F4234EF1C
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 12:02:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1297F2C2340;
+	Thu, 30 Oct 2025 12:03:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761825773; cv=none; b=B5m583dYCwyqin2ZRz2Gxp1OsV+4ySz+perc7AB+FV6Ifqch+PVDxU4JCPOJKDaIZVD6RS4MPKU4WMmTSMWRLPGe7WrS5wiPxFOs8J/3xG1Lu9Xq2s9sHeoHN/1kqTn15QrWWuquDwvjanGmoXJ3/vcrQ4abXRRPmIVHhoMPx30=
+	t=1761825842; cv=none; b=TyFy1aWQd7WXgQWSyizeHFMYOnPOzv2g9v0noycvCtnDdz4ObKoDZh1RNnL98Sf8Mxs3alrFatnbSAUyErzljhsaPvrBo1bRJOADLAuRvk6DVfJ533NVqBSQ6ndc0Mn4NBpPCpmDlmeTU7etnUsrcpSQ4cfwlbxpSDBc/c3RUIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761825773; c=relaxed/simple;
-	bh=e8pxQEqLtW1Slow0rZY/48Rg7tSYJ1oUbuHVlI3G87Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qGgj+r2JXK36om5de3VDrdCm7CPEYhYcXn67ffCRlBw14jAGSFlnUnTjp75RcIONbhl20FkhWXtrQLy086YzaFgbwezrU82w/To9mUIm3fmqIAvJw7FonniUjebLJ9+SgkEvtgF77ObQ7BOqVIpW+n5z6LDtccZZIVkYnTrNV7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S2UkVujz; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-429b7ba208eso400448f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 05:02:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761825770; x=1762430570; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Qu8nOseerJIwiaKexI9V+78CH5dDbgipqtlgAiyDwbk=;
-        b=S2UkVujzedid05Hj5qKYXwrjUdQ7uAW/1SASx3DekKx8tMNZDGcjCe2EanAd1TswdL
-         dS2cf7/AkThWBjOPuJM64qCy9I96umdA8E4iGq3Bw3KPCJ2h7QzzSA6t/mcec9aNMKIn
-         yPxxqy1hB2MrEVQ7AYgLb9+NBYyH3TsCE5SlwBdLaBmNELiwuwt/4XjoxG22tNcZo6T5
-         R8fpqInZ4Dfb6Uy6NuTwharSK7vFQOKJs6isLGADio2bj1H/wrfydwtb613L0uWlWkNT
-         1YlW+h1J+NqcACUgPCN+zi9m26Q1uIaFDeMvjxjxYzAtlcRZm6LwHXeaMNo7yg/FE7X3
-         YvUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761825770; x=1762430570;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Qu8nOseerJIwiaKexI9V+78CH5dDbgipqtlgAiyDwbk=;
-        b=j9bEQXxV7QTOCRSSO7lkOscVprMXBghKRWFKMci6fBkdbGymJ98G0XBpuTUWF1ZYv3
-         HQ7w3XCOLwYFDuO7feU1WDVyCAzmsPCCDlWSieTw2lS520DFkE1ItunnX/MQqPOnCGK2
-         0eMHpBs7sbwq4cp+MzsBXogdUjKyhWBM0VU5V7lOU+EMTrmkIhsuMvK4ulRduXomjD4H
-         XzXj0El21S+p38lFMnFL03yivWjkFOnC/l/NX7GeWd85qVIZTqKH/IZOvxJ14yGOrMp0
-         dxuUdT5g/tyMkLl1EgmJ5G3Gc4QTfPoVbLgdhrAZ7XCg0es2Up7hWPNq8RAXQhcQSazY
-         XwvA==
-X-Gm-Message-State: AOJu0Yy1MJ2PsyZbqk2x5ktQQZ95096OTWRE8lxP9mwBXzd3Gt6UUnv2
-	aTFA4uGPd3W+I9uSqlD6+Ao5AsKZ/Lw2IpCZCqhaISp+T2EP7PXDcHTnlOsW32Gz
-X-Gm-Gg: ASbGnctJ1PfBUybSZaERA+tjKXOIOWGrtQs9TbV9j4llUesU7aoPoj51RtmvemmCS17
-	G//WFBuj/cEknRiX9zedmgiGJfOoX85/3KI75GK2QPMNNDH0BOXjVnw9Aa0pm4YBoB4DWzSFm+d
-	N78yG0GCO/WxvQ9fzz9pwRFoavnjl11SdmU1112UT/m1ME2gS6R8UG4yyVH3TzTiVZit+D8rooW
-	kw6o/J2wxoxK3yJbDYiFdt9ynrkDbE/UDh9jPANkCjB0Fg2uZQflDor3zL1QyWUVOuPIt979BF7
-	XXUpz68JPZVKYqTIVwvUTg/kwrFBLxSibiiPTVA5SvmihsKXqUSyjIRMGoCvGNDNo4C7ERC6h/L
-	7Z0Fue54+uVjo/kIOk9tPCJO5T6BBR69BalVWyeX2KIJvKc9IIKT1YaIdvoNhbbjMKgvInyx+WH
-	hiocswwmBZJGjS+uqiyOuSmDqtwkzIG2vcPnbG36ZlBBoTl68SVpfaUZd3dVxtOIqxZ2NQHybA
-X-Google-Smtp-Source: AGHT+IHFni13l9ewEcMuX6++qZosCb8kSPle7LBBV+o9CF/LKnPDmcWv4Piuhrw/JZlMYaZ2eGkiDw==
-X-Received: by 2002:a05:6000:1a87:b0:3e9:3b91:e846 with SMTP id ffacd0b85a97d-429b4c73527mr2728446f8f.10.1761825769830;
-        Thu, 30 Oct 2025 05:02:49 -0700 (PDT)
-Received: from Lord-Beerus.station (net-93-146-98-100.cust.vodafonedsl.it. [93.146.98.100])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429b9b436efsm2399848f8f.23.2025.10.30.05.02.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Oct 2025 05:02:49 -0700 (PDT)
-From: Stefano Radaelli <stefano.radaelli21@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Stefano Radaelli <stefano.radaelli21@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 4/4] arm64: dts: freescale: imx93-var-som: Add support for ADS7846 touchscreen
-Date: Thu, 30 Oct 2025 13:01:24 +0100
-Message-ID: <20251030120127.509933-5-stefano.radaelli21@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251030120127.509933-1-stefano.radaelli21@gmail.com>
-References: <20251030120127.509933-1-stefano.radaelli21@gmail.com>
+	s=arc-20240116; t=1761825842; c=relaxed/simple;
+	bh=IL/RAuYRylzgjtXa31MWhQno7cUBCpBvvbUXdwM/9GI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dI6TA6ZqXdhmTHKKoOJeGHIxitFmNoGcp6jnWuG59VPT6AE+Z7URkI5D7OeyP9DJmCtQtSQFJggrMqeFOGVvb6yWBmFv8Jv6YTn5J2UUG24Dhbrn96iP9lnovjeGH6kl9udBsuQS0qNgt2JJb5u9hPopNAPd4r1U3rN764dQG5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=f+VYncrc; arc=none smtp.client-ip=94.112.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.4.92] (unknown [213.235.133.42])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 5E075534126F;
+	Thu, 30 Oct 2025 13:03:44 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1761825829;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=HCDJvVTDJefJzOa6Phkvo+tZTLtMHzdY0G2wDk5jBLI=;
+	b=f+VYncrcbQzJTnkYgXqJE4t8guaTGUVwLz/1Fghih8F9r9C4oZZAHhpH4BPlmbLxNu8fIc
+	uyAAp9z1F5ANkcbJiZniA8U0X42j8G3m4uCtREOK6mPw0m81zYphkeUCO4GL6f/T8ot4Rc
+	41LFF+iKCr+9IfgdxmxtqYHR3zyXEHY=
+Message-ID: <7f686f1b-7cc7-428d-941d-82883decee49@ixit.cz>
+Date: Thu, 30 Oct 2025 13:03:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: Add support for Pixel 3 and
+ Pixel 3 XL
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: phodina@protonmail.com, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ phone-devel@vger.kernel.org, Amit Pundir <amit.pundir@linaro.org>,
+ Casey Connolly <casey@connolly.tech>, Joel Selvaraj <foss@joelselvaraj.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>, Vinod Koul <vkoul@kernel.org>
+References: <20251030-pixel-3-v2-0-8caddbe072c9@ixit.cz>
+ <20251030-pixel-3-v2-2-8caddbe072c9@ixit.cz>
+ <8d32460d-894b-472a-a262-4c6a60fbcef1@oss.qualcomm.com>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <8d32460d-894b-472a-a262-4c6a60fbcef1@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The VAR-SOM-MX93 integrates an ADS7846 resistive touchscreen controller.
-The controller is physically located on the SOM, and its signals are
-routed to the SOM pins, allowing carrier boards to make use of it.
+On 30/10/2025 12:32, Konrad Dybcio wrote:
+> On 10/30/25 8:24 AM, David Heidelberg via B4 Relay wrote:
+>> From: David Heidelberg <david@ixit.cz>
+>>
+>> This adds initial device tree support for the following phones:
+>>
+>>   - Google Pixel 3 (blueline)
+>>   - Google Pixel 3 XL (crosshatch)
+> 
+> [...]
+> 
+>> +#include <dt-bindings/arm/qcom,ids.h>
+>> +#include <dt-bindings/dma/qcom-gpi.h>
+>> +#include <dt-bindings/input/linux-event-codes.h>
+>> +#include <dt-bindings/interrupt-controller/irq.h>
+>> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>> +
+>> +#include "sdm845.dtsi"
+>> +#include "pm8998.dtsi"
+>> +#include "pmi8998.dtsi"
+>> +
+>> +/delete-node/ &mpss_region;
+>> +/delete-node/ &venus_mem;
+>> +/delete-node/ &cdsp_mem;
+>> +/delete-node/ &mba_region;
+>> +/delete-node/ &slpi_mem;
+>> +/delete-node/ &spss_mem;
+>> +/delete-node/ &rmtfs_mem;
+>> +
+>> +/ {
+>> +	chassis-type = "handset";
+>> +	qcom,board-id = <0x00021505 0>;
+>> +	qcom,msm-id = <QCOM_ID_SDM845 0x20001>;
+>> +
+>> +	aliases {
+>> +		serial0 = &uart9;
+>> +		serial1 = &uart6;
+>> +	};
+>> +
+>> +	battery: battery {
+>> +		compatible = "simple-battery";
+>> +
+>> +		status = "disabled";
+> 
+> You added support for both non-proto boards based on this platform,
+> there is no usecase for you to disable the battery, remove this line
 
-This patch adds the ADS7846 node and the appropriate SPI controller.
+Should I keep the status = "okay" in the board files or drop it too?
 
-Signed-off-by: Stefano Radaelli <stefano.radaelli21@gmail.com>
----
-v2:
- - Fix pinctrl alignment
+> 
+> [...]
+> 
+>> +	reserved-memory {
+>> +		cont_splash_mem: splash@9d400000 {
+>> +			/* size to be updated by actual board */
+>> +			reg = <0x0 0x9d400000 0x0>;
+> 
+> Don't define it here then
+> 
+> Normally the bootloader allocates a bigger buffer here BTW
+> (although it shooould be reclaimable without issues)
 
- .../boot/dts/freescale/imx93-var-som.dtsi     | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
+Ok, I'll drop reg in next revision. Thou the reg is defined in the board 
+files.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi
-index 0b7f6740e5ad..2dc8b18ae91e 100644
---- a/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi
-@@ -212,6 +212,38 @@ wm8904: audio-codec@1a {
- 	};
- };
- 
-+&lpspi8 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_lpspi8>;
-+	cs-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+
-+	/* Resistive touch controller */
-+	ads7846: touchscreen@0 {
-+		compatible = "ti,ads7846";
-+		reg = <0>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_restouch>;
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <29 IRQ_TYPE_EDGE_FALLING>;
-+		spi-max-frequency = <1000000>;
-+		pendown-gpio = <&gpio4 29 0>;
-+		vcc-supply = <&buck5>;
-+		ti,x-min = /bits/ 16 <125>;
-+		ti,x-max = /bits/ 16 <4008>;
-+		ti,y-min = /bits/ 16 <282>;
-+		ti,y-max = /bits/ 16 <3864>;
-+		ti,x-plate-ohms = /bits/ 16 <180>;
-+		ti,pressure-max = /bits/ 16 <255>;
-+		ti,debounce-max = /bits/ 16 <10>;
-+		ti,debounce-tol = /bits/ 16 <3>;
-+		ti,debounce-rep = /bits/ 16 <1>;
-+		ti,settle-delay-usec = /bits/ 16 <150>;
-+		ti,keep-vref-on;
-+		wakeup-source;
-+	};
-+};
-+
- /* BT module */
- &lpuart5 {
- 	pinctrl-names = "default";
-@@ -307,6 +339,15 @@ MX93_PAD_GPIO_IO29__GPIO2_IO29		0x40000b9e
- 		>;
- 	};
- 
-+	pinctrl_lpspi8: lpspi8grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO12__GPIO2_IO12		0x31e
-+			MX93_PAD_GPIO_IO13__LPSPI8_SIN		0x31e
-+			MX93_PAD_GPIO_IO14__LPSPI8_SOUT		0x31e
-+			MX93_PAD_GPIO_IO15__LPSPI8_SCK		0x31e
-+		>;
-+	};
-+
- 	pinctrl_lpuart5: lpuart5grp {
- 		fsl,pins = <
- 			MX93_PAD_DAP_TDO_TRACESWO__LPUART5_TX   0x31e
-@@ -316,6 +357,12 @@ MX93_PAD_DAP_TCLK_SWCLK__LPUART5_CTS_B  0x31e
- 		>;
- 	};
- 
-+	pinctrl_restouch: restouchgrp {
-+		fsl,pins = <
-+			MX93_PAD_CCM_CLKO4__GPIO4_IO29		0x31e
-+		>;
-+	};
-+
- 	pinctrl_sai1: sai1grp {
- 		fsl,pins = <
- 			MX93_PAD_SAI1_TXC__SAI1_TX_BCLK		0x31e
+> 
+>> +			no-map;
+>> +
+>> +			status = "disabled";
+> 
+> ditto
+> 
+> [...]
+> 
+>> +	gpio-keys {
+>> +		compatible = "gpio-keys";
+>> +		label = "Volume keys";
+>> +		autorepeat;
+>> +
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&volume_up_gpio>;
+> 
+> property-n
+> property-names
+> 
+> in this order, please
+> 
+> [...]
+> 
+>> +&tlmm {
+>> +	gpio-reserved-ranges = <0 4>, <81 4>;
+> 
+> Could you add a comment (like in x1-crd.dtsi) mentioning what these
+> pins correspond to? Usually it's a fingerprint scanner or things like
+> that
+
+Sure, I looked into it, but I haven't found (so far) information about 
+the assigned blocks. In next revision it'll be addressed :)>
+>> +
+>> +	touchscreen_reset: ts-reset-state {
+>> +		pins = "gpio99";
+>> +		function = "gpio";
+>> +		drive-strength = <8>;
+>> +		bias-pull-up;
+>> +	};
+>> +
+>> +	touchscreen_pins: ts-pins-gpio-state {
+>> +		pins = "gpio125";
+>> +		function = "gpio";
+>> +		drive-strength = <2>;
+>> +		bias-disable;
+>> +	};
+>> +
+>> +	touchscreen_i2c_pins: qup-i2c2-gpio-state {
+>> +		pins = "gpio27", "gpio28";
+>> +		function = "gpio";
+>> +
+>> +		drive-strength = <2>;
+> 
+> stray \n above
+> 
+>> +		bias-disable;
+>> +	};
+>> +};
+>> +
+>> +&uart6 {
+>> +	pinctrl-0 = <&qup_uart6_4pin>;
+>> +
+>> +	status = "okay";
+>> +	bluetooth {
+> 
+> Please add a \n above, to separate the properties from subnodes
+> 
+> [...]
+> 
+>> +&mdss {
+>> +	/* until the panel is prepared */
+>> +	status = "disabled";
+>> +};
+> 
+> Is it not the same as on the little boy, except the resolution?
+> (don't know, just asking)
+It's completely different DDIC and panel. Generally, the DDIC has driver 
+mainlined already (due being same as Samsung S9 DDIC), but I must extend 
+support for the relevant panel.
+
+Thanks for the review
+WIP to v3 is here: https://gitlab.com/dhxx/linux/-/commits/b4/pixel-3
+
+David
+
+> 
+> Konrad
+
 -- 
-2.43.0
+David Heidelberg
 
 
