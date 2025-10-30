@@ -1,202 +1,123 @@
-Return-Path: <devicetree+bounces-233295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66DC5C20AAF
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 15:41:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CF0FC20B0C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 15:47:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45827424FBB
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 14:38:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 947041896CD9
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 14:40:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEAF9280CF6;
-	Thu, 30 Oct 2025 14:37:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F72226E6F5;
+	Thu, 30 Oct 2025 14:39:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="gDfgxYfu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M9L+Ez+W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2883274FDB;
-	Thu, 30 Oct 2025 14:37:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AF4A240611
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 14:39:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761835048; cv=none; b=GCzy7cRnVDF6ibjsEeDGQNFnXZpQ4bzailZoD28M6HXyu7stEpOBXcxQJKr0t9CV2PzRHbCuzUUo9MqSv/5ObqWlysEY1UpeZnu6WjbqsuK4rYA3F1dEs//k954M/XZC/Jrma+ewVNIReHVZBVD5W4+Mj1tTLq7rnSBipYUbJIw=
+	t=1761835191; cv=none; b=JLANXldPGBIumkZSoQY2T47mPDe/LRMLzRZn1kx21ZHdpSWUNyq3yEdgWXB5WGpYB2TcXlpsZSjIGule4yyxRVYjtcfEqUTx7NH2Lw1lqecw66PdUpfC1k7DiUEuJor6KANkps7gZrhjOb8YSFmhV5idxBAOpDD0t6oIDlbAMhU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761835048; c=relaxed/simple;
-	bh=lkxOu4GsU+Vd9vTFr5qO9VsRoZ8QwNjUPqkZVZIFsNs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=HANpxyPwJiu5f5NkpkZTlvVD7wDPFcgmOeSYjSUyZ7FVD1A60HMppjvpj+9ko4z2lcBpdhzdmKdax626My59xm0YCyJ5M6XmUoUoyfpGmG7mWyw5Z0TdCpA8g3Zb9BxQTyKAyPS8VO12R7+j8kWqOjs7xr3sfHxqQNhY/+LbTqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=gDfgxYfu; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1761835046; x=1793371046;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=lkxOu4GsU+Vd9vTFr5qO9VsRoZ8QwNjUPqkZVZIFsNs=;
-  b=gDfgxYfuCa7R3CKZRyV2zCFIe5Lpb9ax5EZG61oNTVXF/GclPTK7faBQ
-   PNKij1tbSozJIGwUtuYsEa7h/u5etVAG/Km1MRg5Zh2N1iRlAtCrlMAQP
-   8G1KM+4KYUFru4u9tVhE1OdEDqybzAybOZCx2cZm32QfZmkIf3l4KIBGx
-   T5/uu2I1V/TdA0lstudHsf1mvuzK/lopYFxSSshHoisIOTEGE59eVy/HU
-   t15S9N+bEt+C6x/z5oe5p+GkWWWvQpRkm/+n5X4ZL2TsrDquFCbbRpbYX
-   VKw7L2eO160+wCqPP4ouTI3xe4C98fYb7Q9UmtiIwjreasd/6wMtbNYGE
-   w==;
-X-CSE-ConnectionGUID: Gc6gALqnRPaiLmM/RLGxmg==
-X-CSE-MsgGUID: yhhwWjqSTAGp2vk5GLZgLg==
-X-IronPort-AV: E=Sophos;i="6.19,267,1754982000"; 
-   d="scan'208";a="47837983"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Oct 2025 07:37:24 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
- chn-vm-ex3.mchp-main.com (10.10.87.32) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.29; Thu, 30 Oct 2025 07:37:14 -0700
-Received: from [10.171.248.18] (10.10.85.11) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
- Transport; Thu, 30 Oct 2025 07:37:08 -0700
-Message-ID: <56aed16d-4e03-4da9-9c53-5bb8359f313b@microchip.com>
-Date: Thu, 30 Oct 2025 15:37:07 +0100
+	s=arc-20240116; t=1761835191; c=relaxed/simple;
+	bh=hjcJxnduxYBfm1/yiXsUuBIfCK14DHTXJzBF0o/xC6Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=d/OiNvCaiDvGtDJRM5LMgdoLExRuwbxqBVnVOmLDQm43eGMWiVqRE9LO3vRRCOiRJEZH2oCE944iGCUEmYC5ArcVA6owOCvFNzeNdmzz/BGX4QG45X5b94W4Ux3Arfak1k8Sgsd/Hev+KeudUJtWG63UpL8nlk4CY/CJR5azXO0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M9L+Ez+W; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B17B6C4CEF8
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 14:39:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761835190;
+	bh=hjcJxnduxYBfm1/yiXsUuBIfCK14DHTXJzBF0o/xC6Y=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=M9L+Ez+WzY4TJG6L0RX27xHKp0l/3shEnDOwpiuRF1pFxE1NVoAyWwPTGcP2towMS
+	 JvlWxk2cdF3bXCsegoyIiClGLni5cqfiBdBxWU7DiP00Bxm/3iH6zkjP3InOJIb22U
+	 E0Ut5kSm59C591xS5nZLzoAXFULp/0d++YLSGqdNt9/5yM9kAPOHgic44ueEFvEcgA
+	 aj+yNP5X3jkrz7HQPF1eoDz6VqQvO5dJQnOKQXJWO1YY7MioscYjBKh6eTtQ7uWs2P
+	 7XqnLdzqvbtzE+zG9HdnBRDWlXSLPmonuVmABTFurXlpj5vLIR6RJpczatYn4GCKG4
+	 gQ2iHOpyXx94A==
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-378e622e9e3so15585021fa.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 07:39:50 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVQ3k/ttT4YP/KVIJGj1GS7tZIftUXxttQEN2klFZQUuQ23qzx0ju97LUOMhjPl6/JJZzuQUU9aUkXP@vger.kernel.org
+X-Gm-Message-State: AOJu0YwfHSrAvcc+tPFfRnaMzDm0fEcD/c6rETYoF4bowPA8JLzy9+YA
+	piMukhXa+mlqgzmlmTCejhPfGB198ze0W7Op9U0fSn7XIkR9hR06xmhbPmN7G0lur6cqUz9Anjt
+	xDBdGlHMQMIWC5zKEaTgXt0w4LgyzcAg=
+X-Google-Smtp-Source: AGHT+IFLoHRoT/xBOfaxpGzVXuRSs1BHVdmKiKxSTiT1dPH61Kh3m1lm+iw330bafe7uumJC0YjML2XV87Ra0m0zt0o=
+X-Received: by 2002:a05:651c:2206:b0:336:b891:18db with SMTP id
+ 38308e7fff4ca-37a18d8832cmr414851fa.2.1761835189002; Thu, 30 Oct 2025
+ 07:39:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v3 5/5] net: macb: Add "mobileye,eyeq5-gem"
- compatible
-To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, Andrew Lunn
-	<andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
-	<pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Claudiu Beznea
-	<claudiu.beznea@tuxon.dev>, Russell King <linux@armlinux.org.uk>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, =?UTF-8?Q?Beno=C3=AEt_Monin?=
-	<benoit.monin@bootlin.com>, =?UTF-8?Q?Gr=C3=A9gory_Clement?=
-	<gregory.clement@bootlin.com>, Maxime Chevallier
-	<maxime.chevallier@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Vladimir Kondratiev
-	<vladimir.kondratiev@mobileye.com>
-References: <20251023-macb-eyeq5-v3-0-af509422c204@bootlin.com>
- <20251023-macb-eyeq5-v3-5-af509422c204@bootlin.com>
-From: Nicolas Ferre <nicolas.ferre@microchip.com>
-Content-Language: en-US, fr
-Organization: microchip
-In-Reply-To: <20251023-macb-eyeq5-v3-5-af509422c204@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <cover.1761753288.git.dan.carpenter@linaro.org>
+ <3fd4beba-0d0b-4a20-b6ed-4e00df109b66@app.fastmail.com> <aQMUu08phVPqfgEB@stanley.mountain>
+ <dbd5558a-90d9-404c-ae98-a8c04cdad08a@app.fastmail.com> <aQNccP-lHqgygmsu@stanley.mountain>
+ <CAGb2v664ybgMVCFWcDK-5cJZegC1HJmCg4-qJdgZ=7GAL4jOTw@mail.gmail.com> <aQNjoM3fgAW6kxUz@stanley.mountain>
+In-Reply-To: <aQNjoM3fgAW6kxUz@stanley.mountain>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Thu, 30 Oct 2025 22:39:35 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67oHJ5go2rhcrhL1C1_Mf2EZ6GiuG8So_=P89EbTHR4mw@mail.gmail.com>
+X-Gm-Features: AWmQ_bn91KS_PesDBZYqE9EcfhISK7QMLkBqlS-0KEPOhntWuR2LKtmq4VM18F0
+Message-ID: <CAGb2v67oHJ5go2rhcrhL1C1_Mf2EZ6GiuG8So_=P89EbTHR4mw@mail.gmail.com>
+Subject: Re: [PATCH 0/2] mfd: syscon: introduce no-auto-mmio DT property
+To: Dan Carpenter <dan.carpenter@linaro.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, John Madieu <john.madieu.xa@bp.renesas.com>, 
+	Lee Jones <lee@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Peter Griffin <peter.griffin@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 23/10/2025 at 18:22, Théo Lebrun wrote:
-> Add support for the two GEM instances inside Mobileye EyeQ5 SoCs, using
-> compatible "mobileye,eyeq5-gem". With it, add a custom init sequence
-> that must grab a generic PHY and initialise it.
-> 
-> We use bp->phy in both RGMII and SGMII cases. Tell our mode by adding a
-> phy_set_mode_ext() during macb_open(), before phy_power_on(). We are
-> the first users of bp->phy that use it in non-SGMII cases.
-> 
-> The phy_set_mode_ext() call is made unconditionally. It cannot cause
-> issues on platforms where !bp->phy or !bp->phy->ops->set_mode as, in
-> those cases, the call is a no-op (returning zero). From reading
-> upstream DTS, we can figure out that no platform has a bp->phy and a
-> PHY driver that has a .set_mode() implementation:
->   - cdns,zynqmp-gem: no DTS upstream.
->   - microchip,mpfs-macb: microchip/mpfs.dtsi, &mac0..1, no PHY attached.
->   - xlnx,versal-gem: xilinx/versal-net.dtsi, &gem0..1, no PHY attached.
->   - xlnx,zynqmp-gem: xilinx/zynqmp.dtsi, &gem0..3, PHY attached to
->     drivers/phy/xilinx/phy-zynqmp.c which has no .set_mode().
-> 
-> Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+On Thu, Oct 30, 2025 at 9:10=E2=80=AFPM Dan Carpenter <dan.carpenter@linaro=
+.org> wrote:
+>
+> Yeah.  Let me send this tommorrow if no one objects.  Pretty simple
+> solution in retrospect.
+>
+> [PATCH] mfd: syscon: Return -EPROBE_DEFER in device_node_get_regmap()
+>
+> These days we can register syscons with of_syscon_register_regmap() so
+> if we can't find the syscon that probably means it hasn't been registered
+> yet.  Return -EPROBE_DEFER so the driver will try probing again.
+>
+> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
 
-Looks good to me, thanks:
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
 
-Best regards,
-   Nicolas
+I'd also like to say I tested it since I have the same change in my local
+branch, but as I said before the case doesn't really happen on sunxi.
+
+ChenYu
 
 > ---
->   drivers/net/ethernet/cadence/macb_main.c | 38 ++++++++++++++++++++++++++++++++
->   1 file changed, 38 insertions(+)
-> 
-> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
-> index 44188e7eee56..b1ed98d9c438 100644
-> --- a/drivers/net/ethernet/cadence/macb_main.c
-> +++ b/drivers/net/ethernet/cadence/macb_main.c
-> @@ -2965,6 +2965,10 @@ static int macb_open(struct net_device *dev)
-> 
->          macb_init_hw(bp);
-> 
-> +       err = phy_set_mode_ext(bp->phy, PHY_MODE_ETHERNET, bp->phy_interface);
-> +       if (err)
-> +               goto reset_hw;
-> +
->          err = phy_power_on(bp->phy);
->          if (err)
->                  goto reset_hw;
-> @@ -5189,6 +5193,28 @@ static int init_reset_optional(struct platform_device *pdev)
->          return ret;
->   }
-> 
-> +static int eyeq5_init(struct platform_device *pdev)
-> +{
-> +       struct net_device *netdev = platform_get_drvdata(pdev);
-> +       struct macb *bp = netdev_priv(netdev);
-> +       struct device *dev = &pdev->dev;
-> +       int ret;
-> +
-> +       bp->phy = devm_phy_get(dev, NULL);
-> +       if (IS_ERR(bp->phy))
-> +               return dev_err_probe(dev, PTR_ERR(bp->phy),
-> +                                    "failed to get PHY\n");
-> +
-> +       ret = phy_init(bp->phy);
-> +       if (ret)
-> +               return dev_err_probe(dev, ret, "failed to init PHY\n");
-> +
-> +       ret = macb_init(pdev);
-> +       if (ret)
-> +               phy_exit(bp->phy);
-> +       return ret;
-> +}
-> +
->   static const struct macb_usrio_config sama7g5_usrio = {
->          .mii = 0,
->          .rmii = 1,
-> @@ -5343,6 +5369,17 @@ static const struct macb_config versal_config = {
->          .usrio = &macb_default_usrio,
->   };
-> 
-> +static const struct macb_config eyeq5_config = {
-> +       .caps = MACB_CAPS_GIGABIT_MODE_AVAILABLE | MACB_CAPS_JUMBO |
-> +               MACB_CAPS_GEM_HAS_PTP | MACB_CAPS_QUEUE_DISABLE |
-> +               MACB_CAPS_NO_LSO,
-> +       .dma_burst_length = 16,
-> +       .clk_init = macb_clk_init,
-> +       .init = eyeq5_init,
-> +       .jumbo_max_len = 10240,
-> +       .usrio = &macb_default_usrio,
-> +};
-> +
->   static const struct macb_config raspberrypi_rp1_config = {
->          .caps = MACB_CAPS_GIGABIT_MODE_AVAILABLE | MACB_CAPS_CLK_HW_CHG |
->                  MACB_CAPS_JUMBO |
-> @@ -5374,6 +5411,7 @@ static const struct of_device_id macb_dt_ids[] = {
->          { .compatible = "microchip,mpfs-macb", .data = &mpfs_config },
->          { .compatible = "microchip,sama7g5-gem", .data = &sama7g5_gem_config },
->          { .compatible = "microchip,sama7g5-emac", .data = &sama7g5_emac_config },
-> +       { .compatible = "mobileye,eyeq5-gem", .data = &eyeq5_config },
->          { .compatible = "raspberrypi,rp1-gem", .data = &raspberrypi_rp1_config },
->          { .compatible = "xlnx,zynqmp-gem", .data = &zynqmp_config},
->          { .compatible = "xlnx,zynq-gem", .data = &zynq_config },
-> 
+>  drivers/mfd/syscon.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/mfd/syscon.c b/drivers/mfd/syscon.c
+> index ae71a2710bed..e5d5def594f6 100644
+> --- a/drivers/mfd/syscon.c
+> +++ b/drivers/mfd/syscon.c
+> @@ -183,7 +183,7 @@ static struct regmap *device_node_get_regmap(struct d=
+evice_node *np,
+>                 if (create_regmap)
+>                         syscon =3D of_syscon_register(np, check_res);
+>                 else
+> -                       syscon =3D ERR_PTR(-EINVAL);
+> +                       syscon =3D ERR_PTR(-EPROBE_DEFER);
+>         }
+>         mutex_unlock(&syscon_list_lock);
+>
 > --
-> 2.51.1
-> 
-
+> 2.51.0
+>
 
