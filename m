@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-233135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB785C1F4C7
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 10:30:51 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16BCFC1F5AD
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 10:42:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 762654E98DE
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 09:30:05 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2F3854E8FE1
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 09:41:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04C37340A4C;
-	Thu, 30 Oct 2025 09:30:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AC37342CA9;
+	Thu, 30 Oct 2025 09:40:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="pmGq5W/4"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="vSrDUMlb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D530307AC4;
-	Thu, 30 Oct 2025 09:29:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E050D342C92
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 09:40:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761816600; cv=none; b=gnRl6lNE8nS485HywgGJh1RBl3nIrnMRzwaHufArfkO7PZmnqwmlA7s2tbilsJ7CizmP2/hXK7LJEz+A8cC0+o+LRrKoxvibHYBv2PS9HlbjQl6j1wxhLd0X1c82/vCzpIhwPWKYfrjxNTERh4bTlXg6B2mrnWTyM0yESVckLb8=
+	t=1761817256; cv=none; b=KS/2sNiHxbr1Sam9Q+LqThGWclydtXXiDG3Af6R8PgO6lUa1UrP5n8ZJ/yArN7H4cnKRON7ydxSgxDF4fbXh/E4TOpodH8FcCLAJDOfWEddN5SQ+2+xQA4gSdVoHnZATfLpj+51D+A757jxRdiiA7TcENH6SGhS00FECbzUIutQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761816600; c=relaxed/simple;
-	bh=Qc0+Uf2TFezTPsGtg5X2co1br8c8C1ZQ+ZgGCIOw4lE=;
+	s=arc-20240116; t=1761817256; c=relaxed/simple;
+	bh=AXhIip8aIJ6Y54u/3AC4lYdPqgouWN/WzBDGCLOYg0c=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jDRmX2Xwc/NyfGDsGcoIVYlBP+zykUzeUoFiUIRzcdu3AxcTacega4dREQRUsSzX/p5TLVCZnbvqX5dKDYAfWQstllmvuuUUS4vzOuCFpAFdNjZhCo/6BIxdEjt/sE5WzbVVAFsr2FqXdXd6ERkOPPO99Ji3uz+28r3p31bTpMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=pmGq5W/4; arc=none smtp.client-ip=185.246.85.4
+	 MIME-Version:Content-Type; b=LmFChGRJRrcba5tNhd0pcl9bl20CsknolwONSon6enepGG4cDF9blPO06jj4WLn8L1ZM60lDMxpvRw39e1hl5btAgmLFYzSL5v4uvoG5MXSfimJ88QJYoCim5UOp+sn3qyt4sDE8LcJa9g9XkzqBMnmtCRO2hkvQbZ3j2UzPAPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=vSrDUMlb; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 825414E413EF;
-	Thu, 30 Oct 2025 09:29:55 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id EF86D4E413EF;
+	Thu, 30 Oct 2025 09:40:51 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 3C1EA6068C;
-	Thu, 30 Oct 2025 09:29:55 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3F0E4118085A8;
-	Thu, 30 Oct 2025 10:29:50 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B150C6068C;
+	Thu, 30 Oct 2025 09:40:51 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EB2AA118085E6;
+	Thu, 30 Oct 2025 10:40:48 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761816594; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1761817250; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=Qc0+Uf2TFezTPsGtg5X2co1br8c8C1ZQ+ZgGCIOw4lE=;
-	b=pmGq5W/44Mtkdq7TTp7dSZj3t/TgnGDAWoHSYDgULOIpMa8IY9s7/DG1No2v0g/ibD7KUp
-	/c2WlIdCHUPNC22HynCrww9tlVnYdlC9c0DzeXQkwDcdiSMfXe+fFuNah2dYXjdetMnlG3
-	yVvIfGqSkZGntcz4aLJbkakQW3kv4gQ2j8c4b9N+3TbFF6A5pGV5PB2RQApxX0gO/kDaY6
-	faJ4kIqqLparBMUWB9QYjDHgxrIoxRfV6Q6cIe4PirYzdS8YSN/ib1BVxVn1p9jI+7t8AZ
-	9Tr+l7q2zKCLqM1ytbi1uUqIkpJKY7iD0A6Pet/THIF84zC+C88L21uGLGqH6A==
-Date: Thu, 30 Oct 2025 10:29:48 +0100
+	bh=AXhIip8aIJ6Y54u/3AC4lYdPqgouWN/WzBDGCLOYg0c=;
+	b=vSrDUMlbZ8avJZWyHiNapiup5y0BhHT/84h+ToSACliw/NSLq0u2GnKDCUxrDfZRDTZbO2
+	HK17XCryYRmoexUDrq84kUG5ffGjPlrPua9QR25+Jcp4jMkv6+/Z+5qw5upIO3tMT4F4Rh
+	eb1B2bEfwLYWgFvJ3pEnEmxMn2skbfby+RrMCHDxKu0LQf1M1/BBb5PbopdI/3CD4FMNLT
+	cayZYKMH4B8fLt4MQjVHjahr8jFcH2Cc7H7/B9dQJrPCu+HpVyWwtm28fJsV1o+zzwScpg
+	vf8/T6SHmPipvEXMhyuuE/XcD17AvonD5pXJXDD/erV93pIGw0uWYT7oFbkwbQ==
+Date: Thu, 30 Oct 2025 10:40:46 +0100
 From: Kory Maincent <kory.maincent@bootlin.com>
 To: Thomas Wismer <thomas@wismer.xyz>
 Cc: Oleksij Rempel <o.rempel@pengutronix.de>, Andrew Lunn
@@ -57,14 +57,13 @@ Cc: Oleksij Rempel <o.rempel@pengutronix.de>, Andrew Lunn
  Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
  Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Thomas
  Wismer <thomas.wismer@scs.ch>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Conor Dooley
- <conor.dooley@microchip.com>
-Subject: Re: [PATCH net-next v3 2/2] dt-bindings: pse-pd: ti,tps23881: Add
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v3 1/2] net: pse-pd: tps23881: Add support for
  TPS23881B
-Message-ID: <20251030102948.49cb0b42@kmaincent-XPS-13-7390>
-In-Reply-To: <20251029212312.108749-3-thomas@wismer.xyz>
+Message-ID: <20251030104046.107457ac@kmaincent-XPS-13-7390>
+In-Reply-To: <20251029212312.108749-2-thomas@wismer.xyz>
 References: <20251029212312.108749-1-thomas@wismer.xyz>
-	<20251029212312.108749-3-thomas@wismer.xyz>
+	<20251029212312.108749-2-thomas@wismer.xyz>
 Organization: bootlin
 X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
@@ -77,22 +76,18 @@ Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed, 29 Oct 2025 22:23:10 +0100
+On Wed, 29 Oct 2025 22:23:09 +0100
 Thomas Wismer <thomas@wismer.xyz> wrote:
 
 > From: Thomas Wismer <thomas.wismer@scs.ch>
 >=20
-> Add the TPS23881B I2C power sourcing equipment controller to the list of
-> supported devices.
+> The TPS23881B uses different firmware than the TPS23881. Trying to load t=
+he
+> TPS23881 firmware on a TPS23881B device fails and must be omitted.
 >=20
-> Falling back to the TPS23881 predecessor device is not suitable as firmwa=
-re
-> loading needs to handled differently by the driver. The TPS23881 and
-> TPS23881B devices require different firmware. Trying to load the TPS23881
-> firmware on a TPS23881B device fails and must therefore be omitted.
->=20
-> Signed-off-by: Thomas Wismer <thomas.wismer@scs.ch>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> The TPS23881B ships with a more recent ROM firmware. Moreover, no updated
+> firmware has been released yet and so the firmware loading step must be
+> skipped. As of today, the TPS23881B is intended to use its ROM firmware.
 
 Reviewed-by: Kory Maincent <kory.maincent@bootlin.com>
 
