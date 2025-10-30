@@ -1,252 +1,178 @@
-Return-Path: <devicetree+bounces-233029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A483BC1E85B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 07:13:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76865C1E8C2
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 07:24:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 299DB34A87E
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 06:13:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5F543BB49B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 06:24:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62E15322C88;
-	Thu, 30 Oct 2025 06:13:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 585D62F1FE3;
+	Thu, 30 Oct 2025 06:24:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lROL9xVX"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gJFiDHJz";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HWzECnMk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f50.google.com (mail-yx1-f50.google.com [74.125.224.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C44D131A049
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 06:13:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94C8A2F5A37
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 06:24:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761804815; cv=none; b=ijJTv3W16cQh+I/DMcOtC3KfcNhV56SjpoTl30EpM1tJzZS8WNTG4X9aSzPDXTqA2Vn1SSEHs7I1melD8XzzspJPrhxY2jdbZiAxIKG6v2QVY43pkVLD8gxOVu/abN5Sv3AvTq3ErTOLEE+a9pTSRT3rLjix9siILy7zYj1uuUg=
+	t=1761805486; cv=none; b=tRL+pW8MDwveL7QjH2WS2Db/K58OiTUx2QdGFvzDZihuzVFdIThJY5Ul0XPupQXWfEMSmsrRwll4TWorJvZ27fFvuxa9e8oZL67M6xvADeyoaQR5msG+IvX/MAHlPAgsYKMZcasrvTs6TTBUERliSA6N4y0Q/k1yu9F4VqiPR9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761804815; c=relaxed/simple;
-	bh=V4iSIcqHCoPaV5CCam1+eu0ZX2jdv7zYWXuwi/jze4o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PRSga8hLGqe7JaaxwjIYz0rJYKnyo0tH5rqi+AjU63Y+YDGaNTDV0wDmQjUZlA/CVolSuPYHy38oquQJ1UKHfrw7yzWXB2N7azE0hmHT6E6qa61CDR5hS0kwYET5dIMhCfuMp3zYhwTL7s3bF47YCoTY1vvd2e66MLUApydujVA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lROL9xVX; arc=none smtp.client-ip=74.125.224.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yx1-f50.google.com with SMTP id 956f58d0204a3-63d97bcb898so1282165d50.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 23:13:33 -0700 (PDT)
+	s=arc-20240116; t=1761805486; c=relaxed/simple;
+	bh=kYEpluhes8vtvdUH9J/X084zA0gsfE52X2hDQISOSCY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ebb0/HMlE81wc1vd07DqdDucQT+uUGlm/myyA+s2nYZV3cJ65MMJAOSWEATHKYSKSq+H08eg4YIiPiJcYLgSZ2l6QeTELjpzTnstNybH6TMpe7GEs2v6Esv3s0f3ca12+DFlDLHp6JIyBXSLyQwPxFh9v0cApJwEw5RG4Iln3wU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gJFiDHJz; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HWzECnMk; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59TLH1jc1656060
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 06:24:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	TupfMC0hAShbDroEeKNyDAfoUtonaMFCsnoDLZ49ALI=; b=gJFiDHJzFdm7P/MF
+	0aWVQFIiQEsrQaT06BSmsW5X63H/cxKXxgUahTncYilvKA/SC7BXtaE9+54Pv+Gr
+	ZEWEQsCrxyYCZyyfYTGj86XUEAwjX2XE6xRbxkQ9LY0yX8K28++rlFuLIKKWAWdX
+	kE3EmWUcmq0scuJk9hk2NlOUUKXU8FJfCU6FudfIgLLkFhvbqB4rNACV6sY9pQu6
+	kK7dNxZj+Fhtx/LgI7VxI9hdFbk1EBo4IoldDv+mN1uLz1OYcLCdT7mEa67eKiNc
+	Dhasqo9PkgDEHdFzbFX4QJuhOxJNNyN92h+8JYrtffCNb0/d2lDksVsqdRI3n6c/
+	UtX9cw==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a3tpts93q-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 06:24:43 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2697410e7f9so15445895ad.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Oct 2025 23:24:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761804813; x=1762409613; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3rF4eMVmZqF08Uiy4ZG4pr/6crlsmzGRDhN+59lsH5Y=;
-        b=lROL9xVXUqgSanMc281yfilk8GgVcrY5xOesO5jVGf3r4ubkAPHCXAxWhaoGuccOKV
-         wl8dXsXpqraWKIjs1uEzi7lKvtH3XC5QHxXcsTGkN493jtu1wAcyXqbQPL4qSJAGtVV+
-         cqMU37szn0hx+K0HXLnKyjbTM4PpmSh5Oc/a9Q5kXk678hLpLO/OBeAEQwWn2PamUeMX
-         28UM0w5JW8SftZWbrSHClxiITQ2XZ/R7AKJfgEgCaOvgNQ4opRIz3bA/pXTmjiCL6gzI
-         vYGlq+0EapwhEbEdB+t0J85iSu7ntmROf3tdY+/9UhPRVCNjIowuMVdwg1iDQfIbTOHO
-         hZag==
+        d=oss.qualcomm.com; s=google; t=1761805483; x=1762410283; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TupfMC0hAShbDroEeKNyDAfoUtonaMFCsnoDLZ49ALI=;
+        b=HWzECnMkapn7noACRhh0EkwEU9H9S2139h1OovqPC/E5la3N1oy1bdbwgGUVR74TqI
+         /5DEX0FQhQO48bDr9nPqAH/2sC4cVt6GWIInXkiL/IQN5DAaWKO9vLFs7/KPuzEVx8NW
+         RCczm0S+So/GjCYMm+s6YM2PUh77fl8nLCCAjJBB0NuRUatCXzhor97D2XBbpFFbKg9e
+         PIE86lDdA/GG0MITLstxUaBf5YdCQz9Hh0hYdr/2bAyhhdNT/ahA1pzlCjTwch0Lcgws
+         7a49CiFr1yZpa9If4ai4A9niQvF2vGvAp8aJdW1/Ar19vcNG+Q4XTk9cYy/+Hc9A83+b
+         egHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761804813; x=1762409613;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3rF4eMVmZqF08Uiy4ZG4pr/6crlsmzGRDhN+59lsH5Y=;
-        b=FxRwNn+xUpFGQtg1Mz8Anbadg6pNW1j/MNplHBtJnavDgq0oVfXWjDf/B6XeA5J6O/
-         iwXm7gwU8w6vHeYs7yHEASH3fLyLd/euDMhaigLl2hkb0oQXPYeYX7uJl+V86J/wB8/x
-         AATgXEEXPBoWbtuG+YtQMwqp3HbbBBBhfu4SoY8ehXVejes6azreruRcon9dD66ymaRl
-         DXiIGR8RU4FDnAc4ZWwRbsXAQqnqKYT/8mP3wZcHwafU7bDnzCZ1nMPot+2qgz6LuYlG
-         IK3BN4f6k+tmaKoZtYedjnmG0G57AcHsS9X2s3sDM7ZUJlBpIFX2DqJGTD9gFsZhvbEI
-         qKVA==
-X-Forwarded-Encrypted: i=1; AJvYcCXooZ5UiYjvRo3kghnEI8CHV718NMG4WRbvj4EdjGjGdw8UB6osszH0HjJt6Bp3DXXd9KPHZG2coU2E@vger.kernel.org
-X-Gm-Message-State: AOJu0YwncmE29xTTWDw7MIeKToGSdHt6yyfSpOSZlTMWyCHsfQ91jlgB
-	E29ycQOGL9Gk90td6U6Pqd4jhRPWpuSuwc+OMFmPpm46r7PTc6J9RuFFJEFGcmWnWDXe6iIg4Jn
-	Cb4REJz+Tfq2OI7GR6EocCZUahoAQIUs=
-X-Gm-Gg: ASbGnctI+0h1hwkLFMuVYOJO7XmX3LRGnuCaaHbMjptVj8q7TsEiuJoZDCtSNZCofNP
-	+5tc6tFPVVgVM3Plf6GKYM0/Y4xhSProRN+7bvazobik6kqOVpDyNQCJtGuINGw+rLpXIMegJZL
-	xgDXCVugbm4hDGJTKPFAFMz30JYbHP6Md3WAjldJr46wdErromQ83l6TjNM/b+OrC/w5SvpFY0t
-	K6b21IUycTOxaPes4k0a7H7hSVvSiF5FlqqdDBHdPbMVBgy/otpswMz/XGKIp2Zse6qoQ==
-X-Google-Smtp-Source: AGHT+IGNukfCrjaksH3Umzb+6A3Q6R4gH1hMz3jAmphM+O0AwBZJ/TjCDOWOuiqRoFX9uHUrvtIVlMk1omsejKcgRqU=
-X-Received: by 2002:a05:690e:14c6:b0:63e:2b9e:1462 with SMTP id
- 956f58d0204a3-63f829a66admr1708439d50.22.1761804812638; Wed, 29 Oct 2025
- 23:13:32 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761805483; x=1762410283;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TupfMC0hAShbDroEeKNyDAfoUtonaMFCsnoDLZ49ALI=;
+        b=g5zd61ygdIf2atkR2euMt335PUDMHO9WKOYo71xOYWi1sXWnRMnByzuPxpLCZKexyC
+         Z6KVKBGHpuRM6SyVEu/FFzKoWMN/iB1m1gAzpPmdpgQnC9GX0faZA+Yg/Tzra1cWc4Fn
+         xtB5ym16h8HrGUAsw7BFe9awa7hQRdtgyqSBqiH8CgJqEfXNPcO6E2ebzkIMuOL4bb2+
+         +TAAGZFUAvbZND/LVcq2SqDWlCibJZysaYmrZkd7y40oxy/fABVF5wcKDevje7x9dPiw
+         ptaX+907PizwSmDSxOdEeaqhKUB5nfOFXFIJc3B/zOcXTeYsVw3LtcAQbeJNJGQouyIn
+         Sp0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXSS/Eo1JqvwnukI0boOpq/LI3p4VG7RB9AHB/iWtAy6K9nUsr0SYJs9lGti8aC2jkG8lr1qN8I6OGN@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWMTjHiXS4U9NRogudLxIr7a1J2QYE2HUq3C2zL5CF9rNRSE9h
+	kR/8I8WZ2wu0EXQdkt7VCdHfd6a5AndkWF/ZxOyhnRsBk/FJz0OS7Zr+ZFlwMs+/8oa9uhyMABv
+	X2JDtIurE243xxWyt3lqghERlPanoUkhMg/EwlSzAk9krWN7Xj/Asb/bmaZG0ys/5
+X-Gm-Gg: ASbGnctTJvsODMdPWy28+vXnyNchI8MASegdFtDmvmV+04cnUhTfyJo6R/Jb9q8ZEky
+	9gOwzW9BifOnvkscsrxC+gUbuGu1cE96Uanzn2qUUmnvTzQpi2677j5TJdGX2WxMZwnsBiesqNu
+	fi4xWtYVm+NjPKwte2IvsFwwGQ9W9Wzk7tQQHy4xth1ituvnl/Ep3y4Hioxzs+iObrHTl8CU1lM
+	uXeqAVaLU4XZrphNUaoMYqo7WpQ/WZqUcfOlWwx8ntVLcVWpgQ+XwUYVLC94QjHL/7R98y7IPu0
+	0XCVKzUdZJMTD5ZTKWvqe0I/8FzLiyjvK/bSL15XILRU1O+7hpK76aJNTlH9KwVq2wxOMSp2osH
+	qrP0YvWnK/aL58KY1Z/OUllH4XQ==
+X-Received: by 2002:a17:903:2342:b0:27e:ed58:25e5 with SMTP id d9443c01a7336-294ee363bb2mr22404525ad.24.1761805483117;
+        Wed, 29 Oct 2025 23:24:43 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFJz1GrisRyN7i/NmCFoFsgU5+BoDtItFURjecEFsMAgMf5fYaBLHcaaSAGXDnvsc0wTyLO2A==
+X-Received: by 2002:a17:903:2342:b0:27e:ed58:25e5 with SMTP id d9443c01a7336-294ee363bb2mr22404175ad.24.1761805482652;
+        Wed, 29 Oct 2025 23:24:42 -0700 (PDT)
+Received: from [10.218.35.249] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29498d09a33sm171725965ad.32.2025.10.29.23.24.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Oct 2025 23:24:42 -0700 (PDT)
+Message-ID: <e308a74f-1724-48d4-9d1a-fba6d06a29aa@oss.qualcomm.com>
+Date: Thu, 30 Oct 2025 11:54:36 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251029071435.88-1-kernel@airkyi.com> <20251029071435.88-11-kernel@airkyi.com>
- <CAL411-o6mF71oBeRsJ-OPZNbLegn4iJ_ELN9xVdppTM3ssUPOw@mail.gmail.com>
- <cc8b583a-77ec-4a7f-97cc-2d148f7fee9f@rock-chips.com> <e0c5bda3-7428-49e0-9955-fa23f1e4f35d@rock-chips.com>
- <CAL411-oXfvp-iqN+uRmFHijdmW=1omKwozKOoZ2shxukMHmwPg@mail.gmail.com>
- <C6253E8254C80B0F+839b71d0-1bd8-40b7-9515-7ce4a1eb8673@airkyi.com>
- <CAL411-pULVu4AYybW9oW7kmr4M_kJhdytgBjLPb4y6w_2dj+0w@mail.gmail.com> <7853bbf0-34e5-4880-a2f4-2d73f25cd5e6@rock-chips.com>
-In-Reply-To: <7853bbf0-34e5-4880-a2f4-2d73f25cd5e6@rock-chips.com>
-From: Peter Chen <hzpeterchen@gmail.com>
-Date: Thu, 30 Oct 2025 14:13:21 +0800
-X-Gm-Features: AWmQ_bnKM651Al7hBqe9TPet6QHNgDQAymVR1zTv3jbaP-L2YDnRDbwZ2qTLHzg
-Message-ID: <CAL411-rFK0o_cxBO_yJFHWurGFKxZGxw6=kpqxRipMetJskTaQ@mail.gmail.com>
-Subject: Re: [PATCH v8 10/10] arm64: dts: rockchip: rk3399-evb-ind: Add
- support for DisplayPort
-To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Cc: Chaoyi Chen <kernel@airkyi.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>, 
-	Andy Yan <andy.yan@rock-chips.com>, Yubing Zhang <yubing.zhang@rock-chips.com>, 
-	Frank Wang <frank.wang@rock-chips.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>, 
-	Diederik de Haas <didi.debian@cknow.org>, Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] clk: qcom: ecpricc-qdu100: Add mem_enable_mask to
+ the clock memory branch
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+        Imran Shaik <imran.shaik@oss.qualcomm.com>,
+        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
+References: <20251024-sm8750-videocc-v2-v3-0-6286bbda3c8e@oss.qualcomm.com>
+ <20251024-sm8750-videocc-v2-v3-2-6286bbda3c8e@oss.qualcomm.com>
+ <102d9042-49cb-4aff-8b93-a882ed8da27c@oss.qualcomm.com>
+Content-Language: en-US
+From: Taniya Das <taniya.das@oss.qualcomm.com>
+In-Reply-To: <102d9042-49cb-4aff-8b93-a882ed8da27c@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMwMDA1MCBTYWx0ZWRfX1C8ke7CZa0BX
+ j1nOCY5CdmRMyVKbgNl9hSdmBlCQLchVxc8LY9blQDiwtcLjSY/i4VToIYr17QMOXrQSoUt/dfm
+ UmVmsdTu+M8laXcy2FQfTGZBPLGwiS8DlPT9jm7EdrIRzM9cQdbO2uj9ni4Vm5DVo+8AFqqVSYv
+ bda8WqtbfNWEfGkMpggssi2hpg0Bl2FbD082MnuNkafrrb4S3nxuD7ZlPc+zQTtTI09j7BdLSPM
+ lhKeO3EG4MYA6kY+AJKhfJjtmTkL88Bksy/KGc5IBg3grh5xUcV8d+woK1Zy9sZ6pvDYlX3BMFl
+ UMzYOMyc33bMdXcB8+bI3v/Zl+IstWzQxIvp8NrJ1c9iMpOH4jZVRoKl5NY8ls//KNpnYAFNTvO
+ E7vzKbz2JVQmFGpSHrM0Nygxj70xrw==
+X-Proofpoint-GUID: GfKZ6XStff2bzs1evvjscMICvhuxx2dM
+X-Authority-Analysis: v=2.4 cv=MuRfKmae c=1 sm=1 tr=0 ts=690304ab cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=FkIjl_B119Hb-vYOz_IA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-ORIG-GUID: GfKZ6XStff2bzs1evvjscMICvhuxx2dM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-10-30_01,2025-10-29_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 impostorscore=0 suspectscore=0 spamscore=0
+ lowpriorityscore=0 clxscore=1015 bulkscore=0 phishscore=0 malwarescore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2510300050
 
-On Thu, Oct 30, 2025 at 11:14=E2=80=AFAM Chaoyi Chen <chaoyi.chen@rock-chip=
-s.com> wrote:
->
-> On 10/30/2025 10:50 AM, Peter Chen wrote:
->
-> >>> Okay.  My question is basic: USB2 PHY supplies DP/DM, and the DP/DM i=
-s
-> >>> short for Type-C connector,
-> >>> and no control is needed for Type-C application.
-> >>> Why is there a remote-endpoint connection between USB2 PHY and Type-C=
- connector?
-> >>   From the perspective of Type-C, this should not be added.  Is the ap=
-proach in v2 correct [0] ?
-> >>
-> > Have you tried debugging based on upstream code?
->
-> Yes, I have tried both the v2 and v8 approaches, and both can work.
->
->
-> > v2 is correct, but the dts needs to improve.
-> > - There is a remote-endpoint connection for USB role switch between
-> > Type-C connector
-> > device and USB controller device
-> > - There is a remote-endpoint connection for orientation and lane config=
-uration
-> > between Type-C connector device and USB/DP PHY device.
->
-> In v8 patch5, we implemented typec_mux and typec_switch in the USB/DP PHY=
-.
->
-> I think the current remote-endpoint connections are all child node of the=
- USB/DP PHY. That is:
->
->
-> &tcphy0_dp {
->      mode-switch;
->      ...
-> };
->
->
-> &tcphy0_usb3 {
->      orientation-switch;
->      ...
-> };
->
->
-> Does this still need to be improved? Thank you.
->
 
-Hi Chaoyi,
 
-There are two questions I have still not seen the answer to:
-- Why USB2 PHY is related to your Type-C patch?
-- How does the USB role switch event notify the USB controller driver, eg d=
-wc3?
+On 10/24/2025 2:09 PM, Konrad Dybcio wrote:
+> On 10/24/25 6:24 AM, Taniya Das wrote:
+>> Add the newly introduced 'mem_enable_mask' to the memory control branch
+>> clocks of ECPRI clock controller to align to the new mem_ops handling.
+>>
+>> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+>> ---
+> 
+> This probably fixes some ugly issue, could you please mention what
+> the impact/problem is?
+> 
+Konrad, this isn’t an issue. Previously, the ECPRI clock controller’s
+mem_ops clocks used the mem_enable_ack_mask bit directly for both
+setting and polling. However, this approach didn’t apply to newer
+mem_ops clocks.
 
-Peter
->
-> >
-> > Peter
-> >
-> >> [0]: https://lore.kernel.org/all/20250715112456.101-6-kernel@airkyi.co=
-m/
-> >>
-> >> Or is the following approach correct?
-> >>
-> >>
-> >> port@0 {
-> >>       reg =3D <0>;
-> >>
-> >>       usbc_hs: endpoint {
-> >>           remote-endpoint =3D <&tcphy0>;
-> >>       };
-> >> };
-> >>
-> >> port@1 {
-> >>       reg =3D <1>;
-> >>
-> >>       usbc_ss: endpoint {
-> >>           remote-endpoint =3D <&tcphy0>;
-> >>       };
-> >> };
-> >>
-> >> port@2 {
-> >>       reg =3D <2>;
-> >>
-> >>       usbc_dp: endpoint {
-> >>           remote-endpoint =3D <&tcphy0_typec_dp>;
-> >>       };
-> >> };
-> >>
-> >>
-> >>>>>>> +                               port@1 {
-> >>>>>>> +                                       reg =3D <1>;
-> >>>>>>> +
-> >>>>>>> +                                       usbc_ss: endpoint {
-> >>>>>>> + remote-endpoint =3D <&tcphy0_typec_ss>;
-> >>>>>>> +                                       };
-> >>>>>>> +                               };
-> >>>>>>> +
-> >>>>>>> +                               port@2 {
-> >>>>>>> +                                       reg =3D <2>;
-> >>>>>>> +
-> >>>>>>> +                                       usbc_dp: endpoint {
-> >>>>>>> + remote-endpoint =3D <&tcphy0_typec_dp>;
-> >>>>>>> +                                       };
-> >>>>>>> +                               };
-> >>>>>>> +                       };
-> >>>>>>> +               };
-> >>>>>>> +       };
-> >>>>>>> +};
-> >>>>>>> +
-> >>>>>> .....
-> >>>>>>>     &u2phy0 {
-> >>>>>>>            status =3D "okay";
-> >>>>>>> +
-> >>>>>>> +       port {
-> >>>>>>> +               u2phy0_typec_hs: endpoint {
-> >>>>>>> +                       remote-endpoint =3D <&usbc_hs>;
-> >>>>>>> +               };
-> >>>>>>> +       };
-> >>>>>>>     };
-> >>>>>>>
-> >>>>>> There is no switch and mux, how to co-work with Type-C?
-> >>>>> I checked the phy-rockchip-inno-usb2.c but did not find any switch =
-or mux. Does this mean that we need to implement them? Thank you.
-> >>>> Wait a minute, actually we have multiple hardware interfaces, one of=
- which is Type-C, eventually connected to USBDPPHY, and the other is micro-=
-usb connected to U2PHY.
-> >>> I assume the Micro-USB connector does not use Type-C/PD IC, is it
-> >>> right? Does it relate to this patch?
-> >>>
-> >>> Best regards,
-> >>> Peter
-> >>>
-> >
-> --
-> Best,
-> Chaoyi
->
+Based on the feedback from v2, I’ve refactored the mem_ops code to
+handle these cases more cleanly, which required updating the ECPRI
+clocks as well.
+
+-- 
+Thanks,
+Taniya Das
+
 
