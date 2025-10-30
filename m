@@ -1,206 +1,139 @@
-Return-Path: <devicetree+bounces-233252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 674C8C204CC
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 14:44:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0E75C20511
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 14:48:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2494156009C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:40:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CA0E5616B3
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 13:44:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25C67246BD5;
-	Thu, 30 Oct 2025 13:40:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEFE0320CB8;
+	Thu, 30 Oct 2025 13:43:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VsKbr63m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ECFC246774
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 13:40:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3955425A354;
+	Thu, 30 Oct 2025 13:43:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761831650; cv=none; b=ENGpo5Wvgi4bbYRKfETeSoGQcX8jeUXh6RcXDS3gUGiMEyLOBkl9eIwBGZ06+6/LR0QMksSE6eDFUGnE1MY1EMJ2hERxWJQHOShbDzg1NlQYwi1vhdQS2qLcPQCfRJMKKYXn+nDOaazovIKMNDW4NTV4hd88uLCyZ3QsPoCQFvc=
+	t=1761831812; cv=none; b=dxNQ4+/KBuV5lrPV/gMfKLCZ6Cy/iStcKp34ObJgf+L4fCb5UdhfrmbAocwAK8V6XjHoXFehqwHsug0Qes7bQ0o90eCPu9EsNo97lEi+eFmEHK/7MHmRT3MSrDLalPcYT+XZquU90bdNm0zAyxgg2qmZ2+i76hmDLJQjaLssmKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761831650; c=relaxed/simple;
-	bh=isL6VAbzP+Fzay1Fnne65npENcp69zfoG4XwP/FfAdI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=NpnWfdkGlYNQAqtcicV5Kv5PfHHjH+h26wZi5c1wetDd/z4EGhPAFDBg5tH2dKcBumXRcE3R2PO3R8Rya8CS69xUCNqCshlzKcwnCWQ8MDOBw9jnwr7S0vwYhRqxC4Q2i3pVUtIjrbXD5gJdCIFVvEd8NHVHSytsRcstv8v9ZXs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vEStC-0002QT-NZ; Thu, 30 Oct 2025 14:40:30 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vEStC-006DiW-0z;
-	Thu, 30 Oct 2025 14:40:30 +0100
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vEStC-00000000AGH-0uQV;
-	Thu, 30 Oct 2025 14:40:30 +0100
-Message-ID: <4e3c3c3d6c1a0d2905a90e5f1c0b2cb8f67bc43b.camel@pengutronix.de>
-Subject: Re: [PATCH v6 1/7] reset: mpfs: add non-auxiliary bus probing
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Conor Dooley <conor@kernel.org>, claudiu.beznea@tuxon.dev
-Cc: Conor Dooley <conor.dooley@microchip.com>, Daire McNamara
-	 <daire.mcnamara@microchip.com>, pierre-henry.moussay@microchip.com, 
-	valentina.fernandezalanis@microchip.com, Michael Turquette
-	 <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Thu, 30 Oct 2025 14:40:30 +0100
-In-Reply-To: <20251029-macarena-neglector-318431fec367@spud>
-References: <20251029-chewing-absolve-c4e6acfe0fa4@spud>
-	 <20251029-macarena-neglector-318431fec367@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1+deb13u1 
+	s=arc-20240116; t=1761831812; c=relaxed/simple;
+	bh=+MGk1Y3VPikDiOf9J0ZfQJWgfYODUyIASv3ygzp6UYw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=A5NP+RMq148W71AVzl+65S7F6hzzRFSwDP+lr8YB3ky3fh+EIUTgb/y1DE1IvGtBBDX0+tiJKPONtku4dPUKtVjSYePYCisBrhvMIWQnYpQ8bz2i0+V0KdhvMKjAoXwY+Tu5flXWriMJyPWszRdg8wJKh/5TMVQ+hVi278Mykeo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VsKbr63m; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 2079D4E41406;
+	Thu, 30 Oct 2025 13:43:27 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id E705D6068C;
+	Thu, 30 Oct 2025 13:43:26 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EDF8A11808A57;
+	Thu, 30 Oct 2025 14:43:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1761831805; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=Vd/kfU9OxYb1b6llU5Rmw3RyZb77Ylq8cw6lND80BU4=;
+	b=VsKbr63mPIs9yUvMKlkj3cNdzhRSAdzBvvf+pP5P1v3o9sHqExExNM501MGKnXkvdo5ITC
+	iWeeE0K2WtXQC6fvAJUcEZm5KOxs431qM7Oo+rzyVuITNX+0N515WVLe/Z9mCM/QGdd5L/
+	u5KRMiaWIlXu6FHp3//Ebcmr0rzaAFayHVBJ38WwrfD+nC+bDAd9OpBhjcrp6ocWfItjyw
+	U3F9QQagbDox04QrE/9OUNBDP7Z7zYx6OmhZvOaJSJgMXJTDQ8b7F+gjzdEO6yxu8t6Ypf
+	SSJn8xc7K0Noaet2ES4GCuVOG4UXOLyE6cTvw46ChwKydLojNFvfVXZQXsAFgQ==
+Date: Thu, 30 Oct 2025 14:43:19 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Alexander Sverdlin <alexander.sverdlin@gmail.com>, Mark Brown
+ <broonie@kernel.org>
+Cc: David Rhodes	 <david.rhodes@cirrus.com>, Richard Fitzgerald
+ <rf@opensource.cirrus.com>, Liam Girdwood <lgirdwood@gmail.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Jaroslav Kysela	 <perex@perex.cz>, Takashi
+ Iwai <tiwai@suse.com>, Nikita Shubin	 <nikita.shubin@maquefel.me>, Axel Lin
+ <axel.lin@ingics.com>, Brian Austin	 <brian.austin@cirrus.com>,
+ linux-sound@vger.kernel.org, patches@opensource.cirrus.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Thomas Petazzoni
+  <thomas.petazzoni@bootlin.com>, stable@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] ASoC: cs4271: Fix cs4271 I2C and SPI drivers
+ automatic module loading
+Message-ID: <20251030144319.671368a2@bootlin.com>
+In-Reply-To: <06766cfb10fd6b7f4f606429f13432fe8b933d83.camel@gmail.com>
+References: <20251029093921.624088-1-herve.codina@bootlin.com>
+	<20251029093921.624088-2-herve.codina@bootlin.com>
+	<06766cfb10fd6b7f4f606429f13432fe8b933d83.camel@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mi, 2025-10-29 at 16:11 +0000, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
->=20
-> While the auxiliary bus was a nice bandaid, and meant that re-writing
-> the representation of the clock regions in devicetree was not required,
-> it has run its course. The "mss_top_sysreg" region that contains the
-> clock and reset regions, also contains pinctrl and an interrupt
-> controller, so the time has come rewrite the devicetree and probe the
-> reset controller from an mfd devicetree node, rather than implement
-> those drivers using the auxiliary bus. Wanting to avoid propagating this
-> naive/incorrect description of the hardware to the new pic64gx SoC is a
-> major motivating factor here.
->=20
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> v6:
-> - depend on MFD_SYSCON
-> - return regmap_update_bits() result directly instead of an additional
->   return 0
->=20
-> v4:
-> - Only use driver specific lock for non-regmap writes
->=20
-> v2:
-> - Implement the request to use regmap_update_bits(). I found that I then
->   hated the read/write helpers since they were just bloat, so I ripped
->   them out. I replaced the regular spin_lock_irqsave() stuff with a
->   guard(spinlock_irqsave), since that's a simpler way of handling the two
->   different paths through such a trivial pair of functions.
-> ---
->  drivers/reset/Kconfig      |  1 +
->  drivers/reset/reset-mpfs.c | 79 ++++++++++++++++++++++++++++++--------
->  2 files changed, 63 insertions(+), 17 deletions(-)
->=20
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index 78b7078478d4..0ec4b7cd08d6 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -200,6 +200,7 @@ config RESET_PISTACHIO
->  config RESET_POLARFIRE_SOC
->  	bool "Microchip PolarFire SoC (MPFS) Reset Driver"
->  	depends on MCHP_CLK_MPFS
-> +	depends on MFD_SYSCON
->  	select AUXILIARY_BUS
->  	default MCHP_CLK_MPFS
->  	help
-> diff --git a/drivers/reset/reset-mpfs.c b/drivers/reset/reset-mpfs.c
-> index f6fa10e03ea8..25de7df55301 100644
-> --- a/drivers/reset/reset-mpfs.c
-> +++ b/drivers/reset/reset-mpfs.c
-> @@ -7,13 +7,16 @@
->   *
->   */
->  #include <linux/auxiliary_bus.h>
-> +#include <linux/cleanup.h>
->  #include <linux/delay.h>
->  #include <linux/io.h>
-> +#include <linux/mfd/syscon.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/platform_device.h>
-> -#include <linux/slab.h>
-> +#include <linux/regmap.h>
->  #include <linux/reset-controller.h>
-> +#include <linux/slab.h>
->  #include <dt-bindings/clock/microchip,mpfs-clock.h>
->  #include <soc/microchip/mpfs.h>
-> =20
-> @@ -27,11 +30,14 @@
->  #define MPFS_SLEEP_MIN_US	100
->  #define MPFS_SLEEP_MAX_US	200
-> =20
-> +#define REG_SUBBLK_RESET_CR	0x88u
-> +
->  /* block concurrent access to the soft reset register */
->  static DEFINE_SPINLOCK(mpfs_reset_lock);
-> =20
->  struct mpfs_reset {
->  	void __iomem *base;
-> +	struct regmap *regmap;
->  	struct reset_controller_dev rcdev;
->  };
-> =20
-> @@ -46,41 +52,46 @@ static inline struct mpfs_reset *to_mpfs_reset(struct=
- reset_controller_dev *rcde
->  static int mpfs_assert(struct reset_controller_dev *rcdev, unsigned long=
- id)
->  {
->  	struct mpfs_reset *rst =3D to_mpfs_reset(rcdev);
-> -	unsigned long flags;
->  	u32 reg;
-> =20
-> -	spin_lock_irqsave(&mpfs_reset_lock, flags);
-> +	if (rst->regmap)
-> +		return regmap_update_bits(rst->regmap, REG_SUBBLK_RESET_CR, BIT(id), B=
-IT(id));
+Hi Alexander,
 
-This could use regmap_set_bits().
+On Wed, 29 Oct 2025 12:20:27 +0100
+Alexander Sverdlin <alexander.sverdlin@gmail.com> wrote:
 
-> +
-> +	guard(spinlock_irqsave)(&mpfs_reset_lock);
-> =20
->  	reg =3D readl(rst->base);
->  	reg |=3D BIT(id);
->  	writel(reg, rst->base);
+...
 
-Since I've just seen this in the i.MX8ULP series [1], it would be
-cleaner to convert the aux driver to regmap as well. The readl/writel()
-code paths could be dropped then.
+> > diff --git a/sound/soc/codecs/cs4271-spi.c b/sound/soc/codecs/cs4271-spi.c
+> > index 4feb80436bd9..28dd7b8f3507 100644
+> > --- a/sound/soc/codecs/cs4271-spi.c
+> > +++ b/sound/soc/codecs/cs4271-spi.c
+> > @@ -23,11 +23,24 @@ static int cs4271_spi_probe(struct spi_device *spi)
+> >  	return cs4271_probe(&spi->dev, devm_regmap_init_spi(spi, &config));
+> >  }
+> >  
+> > +static const struct spi_device_id cs4271_id_spi[] = {
+> > +	{ "cs4271", 0 },
+> > +	{}
+> > +};
+> > +MODULE_DEVICE_TABLE(spi, cs4271_id_spi);
+> > +
+> > +static const struct of_device_id cs4271_dt_ids[] = {
+> > +	{ .compatible = "cirrus,cs4271", },
+> > +	{ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, cs4271_dt_ids);  
+> 
+> So currently SPI core doesn't generate "of:" prefixed uevents, therefore this
+> currently doesn't help? However, imagine, you'd have both backends enabled
+> as modules, -spi and -i2c. udev/modprobe currently load just one module it
+> finds first. What is the guarantee that the loaded module for the "of:"
+> prefixed I2C uevent would be the -i2c module?
+> 
 
-[1] https://lore.kernel.org/lkml/20251029135229.890-1-laurentiumihalcea111@=
-gmail.com/
+I hesitate to fully remove cs4271_dt_ids in the SPI part.
 
-[...]
->  static int mpfs_deassert(struct reset_controller_dev *rcdev, unsigned lo=
-ng id)
->  {
->  	struct mpfs_reset *rst =3D to_mpfs_reset(rcdev);
-> -	unsigned long flags;
->  	u32 reg;
-> =20
-> -	spin_lock_irqsave(&mpfs_reset_lock, flags);
-> +	if (rst->regmap)
-> +		return regmap_update_bits(rst->regmap, REG_SUBBLK_RESET_CR, BIT(id), 0=
-);
+I understood having it could lead to issues if both SPI and I2C parts
+are compiled as modules but this is the pattern used in quite a lot of
+drivers.
 
-And this could use regmap_clear_bits().
+Maybe this could be handle globally out of this series instead of introducing
+a specific pattern in this series.
 
-regards
-Philipp
+But well, if you and Mark are ok to fully remove the cs4271_dt_ids from the
+SPI part and so unset the of_match_table from the cs4271_spi_driver, I can
+do the modification.
+
+Let me know if I should send a new iteration with cs4271_dt_ids fully removed
+from the SPI part.
+
+Also, last point, I don't have any cs4271 connected to a SPI bus.
+I use only the I2C version and will not be able to check for correct
+modifications on the SPI part.
+
+Best regards,
+Hervé
 
