@@ -1,353 +1,458 @@
-Return-Path: <devicetree+bounces-233476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0F2CC22B2B
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 00:23:06 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88621C22B88
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 00:39:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D23E3A42B5
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 23:22:00 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6A3704E1A7C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 23:39:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA70333BBBA;
-	Thu, 30 Oct 2025 23:21:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFA7133E346;
+	Thu, 30 Oct 2025 23:39:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KCIsl/eS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AIv7OXs3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 797A933711D;
-	Thu, 30 Oct 2025 23:21:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7FDC2BD590
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 23:38:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761866517; cv=none; b=bOu7ErcjbJ47OmokUWhyBBb7XWE/SxOyYZQ3P59E3h1abUPShJKfbuacuZb/jGFqeKWNqtBe7lUI4MftX/daOLLXYkIb2vlhdtGrCZMu+nls3z2HvvNIIZ4Y3IluwftNPCxwKHyJHJ1PWd3vOWAP6p1yESfO7uh6MllVgK+AMoM=
+	t=1761867540; cv=none; b=Nlu37SEQyGehDEx2N37gwEvukznd/nhHHaNtQ1NsFdOC328HkIWwD37ia2mLGpV1Jhk5EsFy/8nqH+pD9ED45tfpFHTV+kBPZQAh9tpL7R4yRCq6X1oaS3uz0FI9L735eVzjqz4jy7ZSj8pJwjKeVEQbbOCwrW/CKw4hQk+JBl0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761866517; c=relaxed/simple;
-	bh=/rp/ubawNd5SVser7ZjxZ6b5BNO+EY12E0k+TbAyPLU=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=dg52PICT3J48AjEsCFRfMfvCHzChO4qtlHbHlF105MyWCLZis/wUdLMiDKOav5DxrwCuNseUuUbMyHoCqskSyKWnoxnZ0c0beJAjmGe22eVeChtLxa8eoEstxSoNzFfQwcD9MasbqRQRQYE09YT1K9AyhEbj0jOr2uegdYnclts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KCIsl/eS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E09D8C4CEF1;
-	Thu, 30 Oct 2025 23:21:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761866517;
-	bh=/rp/ubawNd5SVser7ZjxZ6b5BNO+EY12E0k+TbAyPLU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=KCIsl/eSxxSyFEaE2YxpIn3cJf5Hm5Kl0Zdm9XqB9RjEo1l2w3/qSrZZ3ZeMUOPiq
-	 2/ay8rzb/365zDTQg5fGF1CbeHn54vk/NebhkcE86H5nblkOZdoEjNqHXZNZi48RaL
-	 NaKnwoBpAba6uxmYaTr+E66WYmkSQPwr6zVjPl9q1HFV57QN9zultMQ5PbeCg7qUZz
-	 5+6JmZNaoIzGFcT79P0J+cSguJn0wOynq4UnF8uNPHc5/IL2MjoHE1TuLrm2d7V/xG
-	 hPK2MSXPIZb1EAND2TsiXdL635VlQDO84oTuAso4gVpgCyykLCm8BW/GqD0z54d8K1
-	 AME9spocr58SQ==
-Date: Thu, 30 Oct 2025 18:21:55 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: zhangsenchuan@eswincomputing.com
-Cc: bhelgaas@google.com, mani@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	robh@kernel.org, p.zabel@pengutronix.de, jingoohan1@gmail.com,
-	gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	christian.bruel@foss.st.com, mayank.rana@oss.qualcomm.com,
-	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com,
-	thippeswamy.havalige@amd.com, inochiama@gmail.com,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
-Subject: Re: [PATCH v4 2/2] PCI: EIC7700: Add Eswin PCIe host controller
- driver
-Message-ID: <20251030232155.GA1632897@bhelgaas>
+	s=arc-20240116; t=1761867540; c=relaxed/simple;
+	bh=9K3g1fCDQB00UZtMahu41xV/73v3J4bRn59WZiFPp0s=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=bHsplhZNuYkDSEWgHo+nwQH38+ghaKcOZ7LG5oiLUyZok9YQVrmVk++pN/KTk26zur8IjAUjnz0oY/6sMg5aJwI46LyamZQeo8RuTzcNom2CmmVJJmNrDOm4p235S7NHI7kMuYe0h/ZsO4Qz4wCr+HwoZN02I6mkr6h1+s6wMRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AIv7OXs3; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b3c82276592so28400966b.3
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 16:38:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761867537; x=1762472337; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QW/G35MOi1nbpenKn0jGc/i9ZxGqUMDCw5SmHmcN3xo=;
+        b=AIv7OXs3jIaoA1ELEKzQBBso9E50TXsIF8n66R+00B/b90uKTfCxXqbq8jmIcH0r/E
+         g+4RTRMQqoJMH6FZyNks/tkvrUDETxFBVEUpOVsJ/bBRF+Mul638jCfomoqdxEP3OIwb
+         q/yawL/Tj70i6aKfzEcUQtq0yFKgtV54ra/c6NfmQ1WYjIUX0uYUB1HX1XHHzzwKdD0t
+         ar9iRoZCblQK9LgSrBDXfQYViAYaKHPZUalfd7xZknO3M1vwwKtqOeSfxo1vJcCk6cmO
+         fZl6KigArMaSCpa2VUl7RHKp2KBtrAgNQGEAj2i2SXZ+JN7aaSfLaENqIgNVviRnid42
+         jY1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761867537; x=1762472337;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=QW/G35MOi1nbpenKn0jGc/i9ZxGqUMDCw5SmHmcN3xo=;
+        b=owSln8WKZD6XZeo3Tij0xCxXpIbVLEkDm53CTevSx6nQ4dvUDqo4btOFXlc01+J8//
+         L+c1NxTnOeberJ2UOnj/XTCgwc68Z7O1tBy4kIqskO6WpCJkFT7nwvSvO5Jvl0/Og7kx
+         oNN1N7OtGPgziR85JhR8FnB83LYjuWWRCds4hSGhjzAjARLfmpLPHv+QgcHKPOrv+vK4
+         HIMS42UTyvKJOHOa5TBHH8B3QVhIVA61REQqNovEzu8P9YYuKQvzty9e7YOqM6ibOEZn
+         g7DAIRhXwuGB19t4iTaQZ8ED8r/965x20QtYryqwsMiThnx7r+kSStqDwT9y0mZ+NbQL
+         mCzw==
+X-Forwarded-Encrypted: i=1; AJvYcCVcWcStgIQMPdg2MxeOoVHzfpTzlMAn3JUuR58vZiRnrglh5NeNEuVtOiIXtjYAQ1LnGuzRSE2tMsI2@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywe1JTGVefZj/NYan6leA61cIbzvvJnrGCLrgdTQXakfb4VTc/P
+	6vV5oMyf3vfOAdlkP+hpeLIFUrWRaPIr9RjhS354shymzHDctE8xLpKM
+X-Gm-Gg: ASbGnctJ/nGXahgVgk8w0CdTDrr0LtLxPXfky3yM8TOb3fALEX4qTxMgucIHUN7WfLV
+	3TVb6Ncm8pR0GNY+zqndOM8kw8eAAdH+5Q5UKbYSk9idVQE3QV4ByWHHqqNttx2+uc/euNxppOC
+	pPK35UovRfnWuPlQSDSK1k7Ul3gy1s1/PMfjQVzSOIJ3YMvELLPpXkjKYI0C92vDq+MauRxfwsN
+	qG5j/jeknq+1NKStg1Z6B36petjjq6shT77eK1FR1amqxnPoJUE/7K1jDyjkZhNKg6sdgmB04oh
+	RfQQ13osGJ0s/EkvWDnqXJIFEMZiAGXD0WRynOZGBpS715RfekfQw3pcf4JK+tYqCr3MtOxeVLT
+	0whyjnp9ocLXAlK8f3DSCKs5zn332MKriXTOdNyciJAZntjWQFF9FO99viciaDjF/kPOCtSbTys
+	PwBiweOS+DBL5en+asRCOonZzqbGdzWRxqkeA0PljKAsoobLqxow==
+X-Google-Smtp-Source: AGHT+IFu52Lv7EHZGXKUGlAUADqfNrD4YHhFGg0CHcltbEW9aIgyfK1tlwF8IrE/Dn5an5+ltyyBEw==
+X-Received: by 2002:a17:907:3c8c:b0:b4e:e4c4:4245 with SMTP id a640c23a62f3a-b70701891d9mr74782666b.3.1761867536930;
+        Thu, 30 Oct 2025 16:38:56 -0700 (PDT)
+Received: from ?IPV6:2a02:a449:4071:0:32d0:42ff:fe10:6983? ([2a02:a449:4071:0:32d0:42ff:fe10:6983])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7077c3dbeesm11779266b.44.2025.10.30.16.38.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Oct 2025 16:38:56 -0700 (PDT)
+Message-ID: <b3d05df4-a916-48e1-8d9e-590782806bd5@gmail.com>
+Date: Fri, 31 Oct 2025 00:38:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251030083143.1341-1-zhangsenchuan@eswincomputing.com>
+User-Agent: Mozilla Thunderbird
+From: Johan Jonker <jbx6244@gmail.com>
+Subject: [PATCH v1] arm: dts: rockchip: fix tps65910 nodes
+To: heiko@sntech.de
+Cc: robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Nit: if you run "git log --oneline drivers/pci/controller/", you'll
-notice that the driver tags ("EIC7700" here) are all lower-case.
-Same for the DT bindings.
+The binding for tps65910 is converted to yaml and they have
+changed the regulator nodename layout and added some required
+properties. Fix the tps65910 nodes on Rockchip boards.
 
-On Thu, Oct 30, 2025 at 04:31:42PM +0800, zhangsenchuan@eswincomputing.com wrote:
-> From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> 
-> Add driver for the Eswin EIC7700 PCIe host controller, which is based on
-> the DesignWare PCIe core, IP revision 6.00a. The PCIe Gen.3 controller
-> supports a data rate of 8 GT/s and 4 channels, support INTX and MSI
-> interrupts.
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ .../boot/dts/rockchip/rk3066a-bqcurie2.dts    | 34 ++++++++++--------
+ .../boot/dts/rockchip/rk3066a-marsboard.dts   | 34 ++++++++++--------
+ .../boot/dts/rockchip/rk3066a-rayeager.dts    | 35 +++++++++++--------
+ 3 files changed, 59 insertions(+), 44 deletions(-)
 
-s/INTX/INTx/ to match spec usage.
+diff --git a/arch/arm/boot/dts/rockchip/rk3066a-bqcurie2.dts b/arch/arm/boot/dts/rockchip/rk3066a-bqcurie2.dts
+index c227691013ea..65f8bc804d21 100644
+--- a/arch/arm/boot/dts/rockchip/rk3066a-bqcurie2.dts
++++ b/arch/arm/boot/dts/rockchip/rk3066a-bqcurie2.dts
+@@ -80,26 +80,33 @@ &i2c1 {
+ 	clock-frequency = <400000>;
 
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -93,6 +93,17 @@ config PCIE_BT1
->  	  Enables support for the PCIe controller in the Baikal-T1 SoC to work
->  	  in host mode. It's based on the Synopsys DWC PCIe v4.60a IP-core.
->  
-> +config PCIE_EIC7700
-> +	bool "Eswin PCIe controller"
+ 	tps: tps@2d {
++		compatible = "ti,tps65910";
+ 		reg = <0x2d>;
 
-I think this should mention EIC7700.
++		gpio-controller;
++		#gpio-cells = <2>;
++
+ 		interrupt-parent = <&gpio6>;
+ 		interrupts = <RK_PA6 IRQ_TYPE_LEVEL_LOW>;
 
-> +	depends on ARCH_ESWIN || COMPILE_TEST
-> +	depends on PCI_MSI
-> +	select PCIE_DW_HOST
-> +	help
-> +	  Say Y here if you want PCIe controller support for the Eswin.
-> +	  The PCIe controller on Eswin is based on DesignWare hardware,
-> +	  enables support for the PCIe controller in the Eswin SoC to
-> +	  work in host mode.
++		interrupt-controller;
++		#interrupt-cells = <2>;
++
+ 		vcc5-supply = <&vcc_io>;
+ 		vcc6-supply = <&vcc_io>;
 
-Mention EIC7700 here also.
+ 		regulators {
+-			vcc_rtc: regulator@0 {
++			vcc_rtc: vrtc {
+ 				regulator-name = "vcc_rtc";
+ 				regulator-always-on;
+ 			};
 
-> +++ b/drivers/pci/controller/dwc/pcie-eic7700.c
-> @@ -0,0 +1,462 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * ESWIN PCIe root complex driver
+-			vcc_io: regulator@1 {
++			vcc_io: vio {
+ 				regulator-name = "vcc_io";
+ 				regulator-always-on;
+ 			};
 
-Probably here also.
+-			vdd_arm: regulator@2 {
++			vdd_arm: vdd1 {
+ 				regulator-name = "vdd_arm";
+ 				regulator-min-microvolt = <600000>;
+ 				regulator-max-microvolt = <1500000>;
+@@ -107,7 +114,7 @@ vdd_arm: regulator@2 {
+ 				regulator-always-on;
+ 			};
 
-> + *
-> + * Copyright 2025, Beijing ESWIN Computing Technology Co., Ltd.
-> + *
-> + * Authors: Yu Ning <ningyu@eswincomputing.com>
-> + *          Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> + *          Yanghui Ou <ouyanghui@eswincomputing.com>
-> + */
-> +
-> +#include <linux/interrupt.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/pci.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/resource.h>
-> +#include <linux/reset.h>
-> +#include <linux/types.h>
-> +
-> +#include "pcie-designware.h"
-> +
-> +/* PCIe top csr registers */
-> +#define PCIEMGMT_CTRL0_OFFSET		0x0
-> +#define PCIEMGMT_STATUS0_OFFSET		0x100
-> +
-> +/* LTSSM register fields */
-> +#define PCIEMGMT_APP_LTSSM_ENABLE	BIT(5)
-> +
-> +/* APP_HOLD_PHY_RST register fields */
-> +#define PCIEMGMT_APP_HOLD_PHY_RST	BIT(6)
-> +
-> +/* PM_SEL_AUX_CLK register fields */
-> +#define PCIEMGMT_PM_SEL_AUX_CLK		BIT(16)
-> +
-> +/* ROOT_PORT register fields */
-> +#define PCIEMGMT_CTRL0_ROOT_PORT_MASK	GENMASK(3, 0)
+-			vcc_ddr: regulator@3 {
++			vcc_ddr: vdd2 {
+ 				regulator-name = "vcc_ddr";
+ 				regulator-min-microvolt = <600000>;
+ 				regulator-max-microvolt = <1500000>;
+@@ -115,42 +122,42 @@ vcc_ddr: regulator@3 {
+ 				regulator-always-on;
+ 			};
 
-Looks like this is actually a "device type" field, not a "root port"
-field, since you OR in the PCI_EXP_TYPE_ROOT_PORT device type below.
+-			vcc18_cif: regulator@5 {
++			vcc18_cif: vdig1 {
+ 				regulator-name = "vcc18_cif";
+ 				regulator-always-on;
+ 			};
 
-Maybe you could name it simply "PCIEMGMT_CTRL0_DEV_TYPE" or similar?
+-			vdd_11: regulator@6 {
++			vdd_11: vdig2 {
+ 				regulator-name = "vdd_11";
+ 				regulator-always-on;
+ 			};
 
-> +/* Vendor and device id value */
+-			vcc_25: regulator@7 {
++			vcc_25: vpll {
+ 				regulator-name = "vcc_25";
+ 				regulator-always-on;
+ 			};
 
-s/id/ID/
+-			vcc_18: regulator@8 {
++			vcc_18: vdac {
+ 				regulator-name = "vcc_18";
+ 				regulator-always-on;
+ 			};
 
-> +#define PCI_VENDOR_ID_ESWIN		0x1fe1
-> +#define PCI_DEVICE_ID_ESWIN		0x2030
-> +
-> +struct eswin_pcie_data {
+-			vcc25_hdmi: regulator@9 {
++			vcc25_hdmi: vaux1 {
+ 				regulator-name = "vcc25_hdmi";
+ 				regulator-always-on;
+ 			};
 
-Generally speaking the prefix for structs and functions matches the
-driver filename, i.e., "eic7700" in this case.
+-			vcca_33: regulator@10 {
++			vcca_33: vaux2 {
+ 				regulator-name = "vcca_33";
+ 				regulator-always-on;
+ 			};
 
-  $ git grep "^struct .*_pcie {" drivers/pci/controller/dwc
-  drivers/pci/controller/dwc/pci-dra7xx.c:struct dra7xx_pcie {
-  drivers/pci/controller/dwc/pci-exynos.c:struct exynos_pcie {
-  drivers/pci/controller/dwc/pci-imx6.c:struct imx_pcie {
-  drivers/pci/controller/dwc/pci-keystone.c:struct keystone_pcie {
-  ...
+-			vcc_tp: regulator@11 {
++			vcc_tp: vaux33 {
+ 				regulator-name = "vcc_tp";
+ 				regulator-always-on;
+ 			};
 
-> +static int eswin_pcie_perst_deassert(struct eswin_pcie_port *port,
-> +				     struct eswin_pcie *pcie)
-> +{
-> +	int ret;
-> +
-> +	ret = reset_control_assert(port->perst);
-> +	if (ret) {
-> +		dev_err(pcie->pci.dev, "Failed to assert PERST#");
-> +		return ret;
-> +	}
-> +
-> +	/* Ensure that PERST has been asserted for at least 100 ms */
+-			vcc28_cif: regulator@12 {
++			vcc28_cif: vmmc {
+ 				regulator-name = "vcc28_cif";
+ 				regulator-always-on;
+ 			};
+@@ -158,9 +165,6 @@ vcc28_cif: regulator@12 {
+ 	};
+ };
 
-s/PERST/PERST#/
+-/* must be included after &tps gets defined */
+-#include "../tps65910.dtsi"
+-
+ &mmc0 { /* sdmmc */
+ 	status = "okay";
+ 	pinctrl-names = "default";
+diff --git a/arch/arm/boot/dts/rockchip/rk3066a-marsboard.dts b/arch/arm/boot/dts/rockchip/rk3066a-marsboard.dts
+index de42d1855121..15dbe1677e30 100644
+--- a/arch/arm/boot/dts/rockchip/rk3066a-marsboard.dts
++++ b/arch/arm/boot/dts/rockchip/rk3066a-marsboard.dts
+@@ -96,11 +96,18 @@ &i2c1 {
+ 	clock-frequency = <400000>;
 
-> +	msleep(PCIE_T_PVPERL_MS);
-> +
-> +	ret = reset_control_deassert(port->perst);
-> +	if (ret) {
-> +		dev_err(pcie->pci.dev, "Failed to deassert PERST#");
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int eswin_pcie_parse_port(struct eswin_pcie *pcie,
-> +				 struct device_node *node)
-> +{
-> +	struct device *dev = pcie->pci.dev;
-> +	struct eswin_pcie_port *port;
-> +
-> +	port = devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
-> +	if (!port)
-> +		return -ENOMEM;
-> +
-> +	port->perst = of_reset_control_get(node, "perst");
-> +	if (IS_ERR(port->perst)) {
-> +		dev_err(dev, "Failed to get perst reset\n");
+ 	tps: tps@2d {
++		compatible = "ti,tps65910";
+ 		reg = <0x2d>;
 
-s/perst/PERST#/ to match spec usage and messages above.
++		gpio-controller;
++		#gpio-cells = <2>;
++
+ 		interrupt-parent = <&gpio6>;
+ 		interrupts = <RK_PA4 IRQ_TYPE_LEVEL_LOW>;
 
-> +static int eswin_pcie_host_init(struct dw_pcie_rp *pp)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct eswin_pcie *pcie = to_eswin_pcie(pci);
-> +	struct eswin_pcie_port *port;
-> +	u8 msi_cap;
-> +	u32 val;
-> +	int ret;
-> +
-> +	pcie->num_clks = devm_clk_bulk_get_all_enabled(pci->dev, &pcie->clks);
-> +	if (pcie->num_clks < 0)
-> +		return dev_err_probe(pci->dev, pcie->num_clks,
-> +				     "Failed to get pcie clocks\n");
-> +
-> +	ret = eswin_pcie_deassert(pcie);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Configure root port type */
-> +	val = readl_relaxed(pcie->mgmt_base + PCIEMGMT_CTRL0_OFFSET);
-> +	val &= ~PCIEMGMT_CTRL0_ROOT_PORT_MASK;
-> +	writel_relaxed(val | PCI_EXP_TYPE_ROOT_PORT,
-> +		       pcie->mgmt_base + PCIEMGMT_CTRL0_OFFSET);
++		interrupt-controller;
++		#interrupt-cells = <2>;
++
+ 		vcc1-supply = <&vsys>;
+ 		vcc2-supply = <&vsys>;
+ 		vcc3-supply = <&vsys>;
+@@ -111,17 +118,17 @@ tps: tps@2d {
+ 		vccio-supply = <&vsys>;
 
-Use FIELD_PREP() here to remove the assumption that
-PCIEMGMT_CTRL0_ROOT_PORT_MASK is in the low-order bits.
+ 		regulators {
+-			vcc_rtc: regulator@0 {
++			vcc_rtc: vrtc {
+ 				regulator-name = "vcc_rtc";
+ 				regulator-always-on;
+ 			};
 
-> +static void eswin_pcie_host_exit(struct dw_pcie_rp *pp)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct eswin_pcie *pcie = to_eswin_pcie(pci);
-> +	struct eswin_pcie_port *port;
-> +
-> +	/*
-> +	 * For controllers with active devices, resources are retained and
-> +	 * cannot be turned off, like NVMEe.
+-			vcc_io: regulator@1 {
++			vcc_io: vio {
+ 				regulator-name = "vcc_io";
+ 				regulator-always-on;
+ 			};
 
-s/NVMEe/NVMe/
+-			vdd_arm: regulator@2 {
++			vdd_arm: vdd1 {
+ 				regulator-name = "vdd_arm";
+ 				regulator-min-microvolt = <600000>;
+ 				regulator-max-microvolt = <1500000>;
+@@ -129,7 +136,7 @@ vdd_arm: regulator@2 {
+ 				regulator-always-on;
+ 			};
 
-I'm a little skeptical about having behavior here that depends on
-specific kinds of downstream devices.
+-			vcc_ddr: regulator@3 {
++			vcc_ddr: vdd2 {
+ 				regulator-name = "vcc_ddr";
+ 				regulator-min-microvolt = <600000>;
+ 				regulator-max-microvolt = <1500000>;
+@@ -137,41 +144,41 @@ vcc_ddr: regulator@3 {
+ 				regulator-always-on;
+ 			};
 
-Maybe there's some general requirement that these resources need to be
-retained if the link is up, and there's no need to mention NVMe
-specifically?  I don't see similar code in other drivers, though.
+-			vcc18_cif: regulator@5 {
++			vcc18_cif: vdig1 {
+ 				regulator-name = "vcc18_cif";
+ 				regulator-always-on;
+ 			};
 
-> +	 */
-> +	if (!dw_pcie_link_up(&pcie->pci)) {
-> +		list_for_each_entry(port, &pcie->ports, list)
-> +			reset_control_assert(port->perst);
-> +		eswin_pcie_assert(pcie);
-> +		clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
-> +	}
-> +}
-> +
-> +static void eswin_pcie_pme_turn_off(struct dw_pcie_rp *pp)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +
-> +	/*
-> +	 * Hardware doesn't support enter the D3code and L2/L3 states, send
-> +	 * PME_TURN_OFF message, which will then cause Vmain to be removed and
-> +	 * controller stop working.
-> +	 */
-> +	dev_info(pci->dev, "Can't send PME_TURN_OFF message\n");
+-			vdd_11: regulator@6 {
++			vdd_11: vdig2 {
+ 				regulator-name = "vdd_11";
+ 				regulator-always-on;
+ 			};
 
-s/PME_TURN_OFF/PME_Turn_Off/ to match spec usage.
+-			vcc_25: regulator@7 {
++			vcc_25: vpll {
+ 				regulator-name = "vcc_25";
+ 				regulator-always-on;
+ 			};
 
-> +}
-> +
-> +static const struct dw_pcie_host_ops eswin_pcie_host_ops = {
-> +	.init = eswin_pcie_host_init,
-> +	.deinit = eswin_pcie_host_exit,
+-			vcc_18: regulator@8 {
++			vcc_18: vdac {
+ 				regulator-name = "vcc_18";
+ 				regulator-always-on;
+ 			};
 
-Please include "deinit" in this function name so it's connected to the
-.deinit structure member.
+-			vcc25_hdmi: regulator@9 {
++			vcc25_hdmi: vaux1 {
+ 				regulator-name = "vcc25_hdmi";
+ 				regulator-always-on;
+ 			};
 
-> +static int eswin_pcie_probe(struct platform_device *pdev)
-> +{
-> +	const struct eswin_pcie_data *data;
-> +	struct eswin_pcie_port *port, *tmp;
-> +	struct device *dev = &pdev->dev;
-> +	struct eswin_pcie *pcie;
-> +	struct dw_pcie *pci;
-> +	int ret;
-> +
-> +	data = of_device_get_match_data(dev);
-> +	if (!data)
-> +		return dev_err_probe(dev, -EINVAL, "OF data missing\n");
-> +
-> +	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
-> +	if (!pcie)
-> +		return -ENOMEM;
-> +
-> +	INIT_LIST_HEAD(&pcie->ports);
-> +
-> +	pci = &pcie->pci;
-> +	pci->dev = dev;
-> +	pci->ops = &dw_pcie_ops;
-> +	pci->pp.ops = &eswin_pcie_host_ops;
-> +	pcie->msix_cap = data->msix_cap;
+-			vcca_33: regulator@10 {
++			vcca_33: vaux2 {
+ 				regulator-name = "vcca_33";
+ 				regulator-always-on;
+ 			};
 
-I'm not sure there's really any value in copying msix_cap, since
-data->msix_cap is a read-only item anyway.
+-			vcc_rmii: regulator@11 {
++			vcc_rmii: vaux33 {
+ 				regulator-name = "vcc_rmii";
+ 			};
 
-For example, pcie-qcom.c has a per-SoC struct qcom_pcie_cfg, and it
-just saves the qcom_pcie_cfg pointer in struct qcom_pcie:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/pci/controller/dwc/pcie-qcom.c?id=v6.17#n286
+-			vcc28_cif: regulator@12 {
++			vcc28_cif: vmmc {
+ 				regulator-name = "vcc28_cif";
+ 				regulator-always-on;
+ 			};
+@@ -179,9 +186,6 @@ vcc28_cif: regulator@12 {
+ 	};
+ };
 
-> +static int eswin_pcie_resume_noirq(struct device *dev)
-> +{
-> +	struct eswin_pcie *pcie = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	ret = dw_pcie_resume_noirq(&pcie->pci);
+-/* must be included after &tps gets defined */
+-#include "../tps65910.dtsi"
+-
+ &emac {
+ 	phy = <&phy0>;
+ 	phy-supply = <&vcc_rmii>;
+diff --git a/arch/arm/boot/dts/rockchip/rk3066a-rayeager.dts b/arch/arm/boot/dts/rockchip/rk3066a-rayeager.dts
+index b0b029f14643..07c03ed6fac6 100644
+--- a/arch/arm/boot/dts/rockchip/rk3066a-rayeager.dts
++++ b/arch/arm/boot/dts/rockchip/rk3066a-rayeager.dts
+@@ -198,9 +198,18 @@ &i2c1 {
+ 	status = "okay";
 
-Add blank line here.
+ 	tps: tps@2d {
++		compatible = "ti,tps65910";
+ 		reg = <0x2d>;
++
++		gpio-controller;
++		#gpio-cells = <2>;
++
+ 		interrupt-parent = <&gpio6>;
+ 		interrupts = <RK_PA4 IRQ_TYPE_EDGE_RISING>;
++
++		interrupt-controller;
++		#interrupt-cells = <2>;
++
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pmic_int>, <&pwr_hold>;
 
-> +	/*
-> +	 * If the downstream device is not inserted, linkup will TIMEDOUT. At
-> +	 * this time, when the resume function return, -ETIMEDOUT shouldn't be
-> +	 * returned, which will raise "PM: failed to resume noirq: error -110".
-> +	 * Only log message "Ignore errors, the link may come up later".
-> +	 */
-> +	if (ret == -ETIMEDOUT && !pcie->linked_up) {
-> +		dev_info(dev, "Ignore errors, the link may come up later\n");
-> +		return 0;
-> +	}
-> +
-> +	return ret;
-> +}
+@@ -214,19 +223,19 @@ tps: tps@2d {
+ 		vccio-supply = <&vsys>;
 
-> +MODULE_DESCRIPTION("PCIe host controller driver for EIC7700 SoCs");
+ 		regulators {
+-			vcc_rtc: regulator@0 {
++			vcc_rtc: vrtc {
+ 				regulator-name = "vcc_rtc";
+ 				regulator-always-on;
+ 			};
 
-Include vendor ("Eswin") in the description.  You can use this to see
-the typical style:
+-			vcc_io: regulator@1 {
++			vcc_io: vio {
+ 				regulator-name = "vcc_io";
+ 				regulator-min-microvolt = <3300000>;
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-always-on;
+ 			};
 
-  $ git grep MODULE_DESCRIPTION drivers/pci/controller/
+-			vdd_arm: regulator@2 {
++			vdd_arm: vdd1 {
+ 				regulator-name = "vdd_arm";
+ 				regulator-min-microvolt = <600000>;
+ 				regulator-max-microvolt = <1500000>;
+@@ -234,7 +243,7 @@ vdd_arm: regulator@2 {
+ 				regulator-boot-on;
+ 			};
+
+-			vcc_ddr: regulator@3 {
++			vcc_ddr: vdd2 {
+ 				regulator-name = "vcc_ddr";
+ 				regulator-min-microvolt = <600000>;
+ 				regulator-max-microvolt = <1500000>;
+@@ -242,52 +251,52 @@ vcc_ddr: regulator@3 {
+ 				regulator-boot-on;
+ 			};
+
+-			vcc18: regulator@5 {
++			vcc18: vdig1 {
+ 				regulator-name = "vcc18";
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <1800000>;
+ 				regulator-always-on;
+ 			};
+
+-			vdd_11: regulator@6 {
++			vdd_11: vdig2 {
+ 				regulator-name = "vdd_11";
+ 				regulator-min-microvolt = <1100000>;
+ 				regulator-max-microvolt = <1100000>;
+ 				regulator-always-on;
+ 			};
+
+-			vcc_25: regulator@7 {
++			vcc_25: vpll {
+ 				regulator-name = "vcc_25";
+ 				regulator-min-microvolt = <2500000>;
+ 				regulator-max-microvolt = <2500000>;
+ 				regulator-always-on;
+ 			};
+
+-			vccio_wl: regulator@8 {
++			vccio_wl: vdac {
+ 				regulator-name = "vccio_wl";
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <1800000>;
+ 			};
+
+-			vcc25_hdmi: regulator@9 {
++			vcc25_hdmi: vaux1 {
+ 				regulator-name = "vcc25_hdmi";
+ 				regulator-min-microvolt = <2500000>;
+ 				regulator-max-microvolt = <2500000>;
+ 			};
+
+-			vcca_33: regulator@10 {
++			vcca_33: vaux2 {
+ 				regulator-name = "vcca_33";
+ 				regulator-min-microvolt = <3300000>;
+ 				regulator-max-microvolt = <3300000>;
+ 			};
+
+-			vcc_rmii: regulator@11 {
++			vcc_rmii: vaux33 {
+ 				regulator-name = "vcc_rmii";
+ 				regulator-min-microvolt = <3300000>;
+ 				regulator-max-microvolt = <3300000>;
+ 			};
+
+-			vcc28_cif: regulator@12 {
++			vcc28_cif: vmmc {
+ 				regulator-name = "vcc28_cif";
+ 				regulator-min-microvolt = <2800000>;
+ 				regulator-max-microvolt = <2800000>;
+@@ -296,8 +305,6 @@ vcc28_cif: regulator@12 {
+ 	};
+ };
+
+-#include "../tps65910.dtsi"
+-
+ &i2c2 {
+ 	status = "okay";
+ };
+--
+2.39.5
+
 
