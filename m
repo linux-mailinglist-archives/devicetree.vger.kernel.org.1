@@ -1,207 +1,209 @@
-Return-Path: <devicetree+bounces-233298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDDBBC20BC0
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 15:52:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4605C20C38
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 15:55:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F025F4F088B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 14:47:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00B8D1A6488C
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 14:51:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 937702773C1;
-	Thu, 30 Oct 2025 14:46:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AF5227C866;
+	Thu, 30 Oct 2025 14:50:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FCcQ0B+w"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="c4jfDxDa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F88D14A91;
-	Thu, 30 Oct 2025 14:46:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C685D277C96;
+	Thu, 30 Oct 2025 14:50:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761835617; cv=none; b=bUWjfzZ8JZsrvMjC54vPYJCY/PT230PRPV/ystkJPp3ZB/z7jMprpGk2LPXm0ja47MY7dtFW+f9LePxZqX5eckFqzMogrVJWm96X2CDe8d0gRAEbuQ4sCD0UEcrAQIMXYggpRGtPMdRym4nEc90DUajp3HmIL30+wBnaHNMGr0U=
+	t=1761835843; cv=none; b=TnNjY6y6eDoRjM2+mCGZQbcFV57Ahafpf48Eml49S1RaC126z28oayhOyUYPrm4zMHcyeouf6JAsXjca3wINAcEJJqQnSwsm5SfKG3wN9n302biqh8YdEVCNG1VK+Ryhxd/M1ig3YE/NiL7msOmAVTAX+yI9SIZ/xRlkuL0/UZ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761835617; c=relaxed/simple;
-	bh=ZbD7yOLwW/cgaU5VsklEXPxgoTiYiE4edNqVj6qNico=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e61Gp111G+88GCHPpvfyACPbeVEa3fw7ujsLioHbfn1WdfNd7WETM3webYkEcQGyQ6FVDOuZ7KhaLYWLd6Iw1jTYl4oa2MAYvRdJuOXqKs1HP2NhNxawgpVvihjzs5FN97DANRLXHYVLhFjb9BbjY83UKfG450dZuq3NFJNIf/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FCcQ0B+w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 840B5C4CEF8;
-	Thu, 30 Oct 2025 14:46:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761835616;
-	bh=ZbD7yOLwW/cgaU5VsklEXPxgoTiYiE4edNqVj6qNico=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FCcQ0B+w8LJ6ToMaS6Qm6GHAn0D54ovIPp2mSH+uiK/SKSLzgJBCV3Snalz6zFMcp
-	 UUjEDY+D73uxZGayO0srDEnQe6uWD3GHNw3n7bYLcbuxIiA8/sBQTFaoJB7/cI09E2
-	 XxQaY0TUrWYvhLs4KGQYVdvBusWUB9vRkaSu58MVvJheIaPF3suaEBTcmQ/puWLR8C
-	 x0qSrQuC3NGFxPrA7RSI5DXKUzK3z0kbqOVAbyA6CUn+thpA0Y3NC/0rem3AnoO9I/
-	 UblRftK8xQfF4/jViVZT1NPycEdWVdsd+pHU/H15mBM2H2zkXd3RmKIn0omPOZRxHc
-	 Sf80ZkUjpjz5g==
-Date: Thu, 30 Oct 2025 09:46:50 -0500
-From: Rob Herring <robh@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Peter Rosin <peda@axentia.se>, Arnd Bergmann <arnd@arndb.de>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Charles Keepax <ckeepax@opensource.cirrus.com>,
-	Richard Fitzgerald <rf@opensource.cirrus.com>,
-	David Rhodes <david.rhodes@cirrus.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Mark Brown <broonie@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Len Brown <lenb@kernel.org>, Davidlohr Bueso <dave@stgolabs.net>,
-	Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Dave Jiang <dave.jiang@intel.com>,
-	Alison Schofield <alison.schofield@intel.com>,
-	Vishal Verma <vishal.l.verma@intel.com>,
-	Ira Weiny <ira.weiny@intel.com>,
-	Dan Williams <dan.j.williams@intel.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Wolfram Sang <wsa@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-i2c@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-sound@vger.kernel.org, patches@opensource.cirrus.com,
-	linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org,
-	linux-cxl@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 19/29] of: property: Allow fw_devlink device-tree on
- x86
-Message-ID: <20251030144650.GA3911092-robh@kernel.org>
-References: <20251015071420.1173068-1-herve.codina@bootlin.com>
- <20251015071420.1173068-20-herve.codina@bootlin.com>
+	s=arc-20240116; t=1761835843; c=relaxed/simple;
+	bh=3L6GDKEDg3zuG7rGWxNDn00DLu7kQEV2e1daHP0d+hI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=teFb0/qRjnnbLuHiIER5UzhykTY3DOpJRw/rWoZ+f5M8YmahQQ/hJh6lgN//ISkhf/RcI0BtRI9JrbPhoafS90EBd4kmGSx6GiT+ouE6yHhSwQewEyfX/BwftaPgpB3b9ZGtKh4xbI14k75CFc2LMfndm3v6a+Xtft1Nm5MB2HU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=c4jfDxDa; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 0A8954E41402;
+	Thu, 30 Oct 2025 14:50:39 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id CEAE06068C;
+	Thu, 30 Oct 2025 14:50:38 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BA2EF118085D0;
+	Thu, 30 Oct 2025 15:50:28 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1761835837; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=+1Ygbu6e/z62ponw49iBMoX40vLxbr6Wro8ocFjVzww=;
+	b=c4jfDxDaT7/tVH7dUdrj/rMHhXZb5FKMUZRP2sjVcueoc2itU5lk3zruIAyueCdoFM1fLw
+	7McxfrFbhskqXwSsiRl+kz8Tow+vo3oRbaRsj8G+XmyLujC2rkg3lrfvPf5RTXemvc3D7S
+	xzdGDxlGRK2BFG/ZaNxn7LxlSvRkADyOizAuJDb9ZWYL0JADEPuY7WFrul65gkEWG4kvcx
+	CQLvKMhCKtQzpVM6W9HZdc/85ivPnl6XvHlsTZ6uTlGbqdhUPJtO+tNuj+28MCo78LJwpq
+	gisCKKFuiq9TnBRQUAK7AAo7a5N8dfuIBOIWMK7uRtBxFXjIPsTRC30aBWo38Q==
+Message-ID: <7a611937-a2af-4780-9b88-cf9f282f88b3@bootlin.com>
+Date: Thu, 30 Oct 2025 15:50:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251015071420.1173068-20-herve.codina@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v14 01/16] dt-bindings: net: Introduce the
+ ethernet-connector description
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: davem@davemloft.net, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ thomas.petazzoni@bootlin.com, Jakub Kicinski <kuba@kernel.org>,
+ Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+ Russell King <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Herve Codina <herve.codina@bootlin.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>,
+ =?UTF-8?Q?K=C3=B6ry_Maincent?= <kory.maincent@bootlin.com>,
+ =?UTF-8?Q?Marek_Beh=C3=BAn?= <kabel@kernel.org>,
+ Oleksij Rempel <o.rempel@pengutronix.de>,
+ =?UTF-8?Q?Nicol=C3=B2_Veronese?= <nicveronese@gmail.com>,
+ Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+ Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Romain Gantois <romain.gantois@bootlin.com>,
+ Daniel Golle <daniel@makrotopia.org>,
+ Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>
+References: <20251013143146.364919-1-maxime.chevallier@bootlin.com>
+ <20251013143146.364919-2-maxime.chevallier@bootlin.com>
+ <382973b8-85d3-4bdd-99c4-fd26a4838828@bootlin.com>
+ <b6a80aba-638f-45fd-8c40-9b836367c0ea@lunn.ch>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <b6a80aba-638f-45fd-8c40-9b836367c0ea@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed, Oct 15, 2025 at 09:14:06AM +0200, Herve Codina wrote:
-> PCI drivers can use a device-tree overlay to describe the hardware
-> available on the PCI board. This is the case, for instance, of the
-> LAN966x PCI device driver.
-> 
-> Adding some more nodes in the device-tree overlay adds some more
-> consumer/supplier relationship between devices instantiated from this
-> overlay.
-> 
-> Those fw_node consumer/supplier relationships are handled by fw_devlink
-> and are created based on the device-tree parsing done by the
-> of_fwnode_add_links() function.
-> 
-> Those consumer/supplier links are needed in order to ensure a correct PM
-> runtime management and a correct removal order between devices.
-> 
-> For instance, without those links a supplier can be removed before its
-> consumers is removed leading to all kind of issue if this consumer still
-> want the use the already removed supplier.
-> 
-> The support for the usage of an overlay from a PCI driver has been added
-> on x86 systems in commit 1f340724419ed ("PCI: of: Create device tree PCI
-> host bridge node").
-> 
-> In the past, support for fw_devlink on x86 had been tried but this
-> support has been removed in commit 4a48b66b3f52 ("of: property: Disable
-> fw_devlink DT support for X86"). Indeed, this support was breaking some
-> x86 systems such as OLPC system and the regression was reported in [0].
-> 
-> Instead of disabling this support for all x86 system, use a finer grain
-> and disable this support only for the possible problematic subset of x86
-> systems (at least OLPC and CE4100).
-> 
-> Those systems use a device-tree to describe their hardware. Identify
-> those systems using key properties in the device-tree.
-> 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> Link: https://lore.kernel.org/lkml/3c1f2473-92ad-bfc4-258e-a5a08ad73dd0@web.de/ [0]
-> ---
->  drivers/of/property.c | 31 ++++++++++++++++++++++++++++++-
->  1 file changed, 30 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index c1feb631e383..09b568e3b826 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1600,12 +1600,41 @@ static int of_fwnode_irq_get(const struct fwnode_handle *fwnode,
->  	return of_irq_get(to_of_node(fwnode), index);
->  }
->  
-> +static int match_property_by_path(const char *node_path, const char *prop_name,
-> +				  const char *value)
-> +{
-> +	struct device_node *np __free(device_node) = of_find_node_by_path(node_path);
-> +
-> +	return of_property_match_string(np, prop_name, value);
-> +}
-> +
-> +static bool of_is_fwnode_add_links_supported(void)
-> +{
-> +	static int is_supported = -1;
-> +
-> +	if (is_supported != -1)
-> +		return !!is_supported;
-> +
+Hi Andrew, thanks for the reply !
 
-All of this:
+On 30/10/2025 14:23, Andrew Lunn wrote:
+> On Thu, Oct 30, 2025 at 01:13:14PM +0100, Maxime Chevallier wrote:
+>> Hi,
+>>
+>>> @@ -313,5 +324,12 @@ examples:
+>>>                      default-state = "keep";
+>>>                  };
+>>>              };
+>>> +            /* Fast Ethernet port, with only 2 pairs wired */
+>>> +            mdi {
+>>> +                connector-0 {
+>>> +                    lanes = <2>;
+>>> +                    media = "BaseT";
+>>> +                };
+>>> +            };
+>>>          };
+>>>      };
+>>
+>> As Andrew suggest clearly differentiating "lanes" and "pairs", do we
+>> want this difference to also affect the binding ?
+>>
+>> I still think "lanes" makes some level of sense here, but at least
+>> the doc will need updating.
+> 
+> How do you define MDI?
+> 
+> For copper, one possibility is an RJ-45 plug/socket, and you have
+> twisted pairs, 2 or 4 of them.
+> 
+> Some people are old enough to remember 10Base2, using a coaxial cable
+> and BNC connectors. Would you consider that a pair? A lane?
+> 
+> How about an SFF, a soldered down module. Its MDI interface is likely
+> to be 2 fibre strands. But consider so called bidi modules, which use
+> one fibre, and two different wavelengths of light.
+> 
+> Or an SFP, where you have no idea what the MDI is until you plug it in
+> and read the EEPROM.
+> 
+> Do we need to be able to describe all the different MDI? Do we maybe
+> need to look at the media property to decide it is an RJ-45 connector
+> so there should be a pairs property? Or the media is -KS, so there
+> should be a lanes property for the number of PCS lanes on the PCB?
+> 
+> This needs further discussion, what are you actually trying to
+> represent here?
 
-> +	if (match_property_by_path("/soc", "compatible", "intel,ce4100-cp") >= 0)
-> +		goto not_supported;
-> +
-> +	if (match_property_by_path("/", "architecture", "OLPC") >= 0)
-> +		goto not_supported;
-> +
-> +	is_supported = 1;
-> +	return !!is_supported;
-> +
-> +not_supported:
-> +	is_supported = 0;
+What I'd like to represent here is at least BaseT connectors, or simple
+Fiber connectors without SFF/SFP (we already have an sff/sfp description
+in DT, and we can know what they do by reading the eeprom).
 
-can be simplified to:
+Let's consider these examples, which are representative of what I
+want to represent and why.
 
-is_supported = !((match_property_by_path("/soc", "compatible", "intel,ce4100-cp") >= 0) || 
-                 (match_property_by_path("/", "architecture", "OLPC") >= 0));
+As a remainder, the end-goal is to be able to list to userspace the
+front-facing ports that are beind a netdev, so that we can in the end
+support MII-side muxing.
 
-> +	return !!is_supported;
-> +}
-> +
->  static int of_fwnode_add_links(struct fwnode_handle *fwnode)
->  {
->  	const struct property *p;
->  	struct device_node *con_np = to_of_node(fwnode);
->  
-> -	if (IS_ENABLED(CONFIG_X86))
-> +	if (IS_ENABLED(CONFIG_X86) && !of_is_fwnode_add_links_supported())
+We have several examples of that already upstream :
+ - Turris omnia, where we have a mux in the SoC to output the SGMII/1000BaseX
+  either on a PHY or an SFP port. This is not covered by this series.
 
-I would move the IS_ENABLED() check to 
-of_is_fwnode_add_links_supported().
+ - The MCBin Doubleshot. Here we have the Marvell 88x3310 PHY connected to the MAC,
+and to both an SFP and a RJ45.
 
-Rob
+However, what we have in DT is :
+
+
+&cp0_xmdio {
+	status = "okay";
+
+	phy0: ethernet-phy@0 {
+		compatible = "ethernet-phy-ieee802.3-c45";
+		reg = <0>;
+		sfp = <&sfp_eth0>;
+	};
+
+	[...]
+};
+
+The question is, with the information we have in DT and from what the PHY
+can autodiscover, how do we know if we have this :
+
+MAC --- PHY ---- SFP
+
+or this :
+
+MAC ---PHY ----SFP
+        \-----RJ45
+
+I don't think we can, we are missing a description of the MDI-side of the PHY.
+
+Of course I don't want to start representing the MDI for every PHY out
+there, most common case we have one MDI, that supports whatever the PHY
+reports from .get_features(), with the possibility of reading some straps to
+adjust.
+
+When we start representing the MDI, we can take that opportunity to solve other
+problems :
+
+ - The proliferation of vendor properties like "ti,fiber-mode" or "micrel,fiber-mode"
+ - The use of "max-speed = <100>;" because the PHY is only connected to the RJ45 with
+   2 pairs
+
+So that being said, an option could be to only focus on pairs, only for medium = BaseT,
+and ditch the "lanes" terminology, at least when it comes to the DT bindings.
+
+Does that sound good ?
+
+Maxime
+
 
