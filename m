@@ -1,225 +1,194 @@
-Return-Path: <devicetree+bounces-233127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8505C1F3E9
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 10:20:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10129C1F3EF
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 10:20:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 543CC4E8415
-	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 09:20:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 273F41892F00
+	for <lists+devicetree@lfdr.de>; Thu, 30 Oct 2025 09:19:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9DB63446CC;
-	Thu, 30 Oct 2025 09:19:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B035D341AB0;
+	Thu, 30 Oct 2025 09:18:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="nYH0ENTQ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="A/keo+Gw";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="dBagm6oc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E152E327219
-	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 09:19:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B9B6340DB9
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 09:18:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761815963; cv=none; b=EJA6JSR3jYiBMtFtPL6V5cCFgS8rw6VLJ939LG4GYnagHVAWJ5JhLlBrGIHHeghiEjP0ZV4Y/mFeeis026bljKE0w/MxBq9bQFvoMWNsGIGEwyn7LI8KysI8v5jKegqEzv6PM4Jfe2dOf92U9EutyxNIKGnEhc/v6T9/nPzfrRE=
+	t=1761815911; cv=none; b=lXp+QPi3qe3rXjrt09irMelaqGbzqVQcfh1SIr4MNsF10I9lOYgHg/bhsLTz1tn5dq0FUZR1e59AIdNes3oAukEDdbvDeC2osHs/Oo3DiZKkGcxGHZAbTuZyNKgThEHzqlBUj6fUGkhs3fpgpCmfi0/FGqc2UVELK9GernjoQeo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761815963; c=relaxed/simple;
-	bh=fmSTQ+NAhyqd5hnJaZ0RF1b/fo5Oy35WVR6j4Ev0AlA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=aHXsyzv3a/3xagvtCoQJlTu4nWYNAiAAvHqWsuJWdox3UhXTtR8pJgeEh/bhzgYKxZD88CR5szu8QRasEqt9AlSeIM1HYvnbmjyW5mj1fuveHYfMwS7MikatMuwWexb4fSO1Iqhqh4nSGsbFuIqxYbtR2GapLCzNKJJshx5Slhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=nYH0ENTQ; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3ed20bdfdffso734632f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 02:19:21 -0700 (PDT)
+	s=arc-20240116; t=1761815911; c=relaxed/simple;
+	bh=RN5Gy2e44hs4pd5k+0pZ6+992/Fz5/HWJsqtJRp1kF8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FsxxPzXcYQsqF0EDD633rgUfXXlqIdPV35JsRdlfPiFN34BloFx/6xHeY1W0Gf0WSOBLHdZrRqs4JLNFGXIeCGNW9BDubn5wgXNnb9JGjzfTLr6b4wZ+VONCKwSJc3oWWsMUkIwqlFT7duqRvkVdm6bamm/A5X8z6BO7CWzPIUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=A/keo+Gw; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dBagm6oc; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59U2Jw3r4135755
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 09:18:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	oHEMia+Pz0ierHzqmwDGQUplMNYjbhxw/U4nXbi2Fyg=; b=A/keo+Gw3dIP4hy2
+	Hz27P8102pPNoLOWa0j56Rz3MBLe0+OIubXyDguxYIynIKbC5OUsg7XAP1IumZ6t
+	IGM3VGRwiotpM1XONEXmkHAy5E29HxK6XaB3CFzJj/LhQM7BLRa+D5UzIxYhb8G2
+	zWz5ejuD+FLPXSArWe4U0cfOsm4isOzDQcC+qrq0f6nLqxJzDCkqREK3KHNu0GAB
+	rbTf46q7N7fVBRN6OvN27I2Ye/gbS3Iw0zPxasTD6G0ZwHt7xsGQ68kBRWRF6qdn
+	MWG0MC4Gz2t8Ds1T8M6+PAW2osPcUHvFDSv+YggzAu6JyXHP7yCWY/4M0YbDSVAG
+	0nrw8w==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a3ff9v2cx-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 09:18:29 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4eb86039d9aso2170851cf.3
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 02:18:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1761815960; x=1762420760; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wv1v1rCyNVZow/EufS/6YnSEiovq7wLtWvMHkvWDLt8=;
-        b=nYH0ENTQEsCWpLHUUCtYR+GF0uvzVvNS5eE23domnDyzFrQTBxO2Xr2P4jEXIk/7WX
-         EIMOOpZNngtktFtDvUT8cG7fjIUMEKHttyjMU7XzwS48wOBmlTDJnU7qSt7e/yzxIpSo
-         KaDatqlno+Y6988BJMZfs/JSuTeKxufIDWAfAddiyLVnHeAXP/lJHUROIkwkuBSl3u8U
-         54OQc8KHjX4rH7QPigy0rl+pgUgh7d5whLst3jODjVvAfh0ieVOVwdq8QNK0F7g5KGGG
-         6/j7x0h0uQyfvmeugQ3oGwmpskk+BP32zvc+Cb5twj7PUEnoSTBGIuuv1HtTCYO/WiWJ
-         RSeQ==
+        d=oss.qualcomm.com; s=google; t=1761815908; x=1762420708; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oHEMia+Pz0ierHzqmwDGQUplMNYjbhxw/U4nXbi2Fyg=;
+        b=dBagm6ocwcBBmpBukpIpNSuSB1wSC7U25ecXFB5AY1BXST7AAAhWm3cd5+IR9u+ytr
+         tIGLRH3pK5+zUD1mNbC9e1tTKXcBks092++313OyTIffnsYNdYjfQyRpEDC8P/dUMXfp
+         dhsUrIvBUJlm5276ajmtWTSWZl8xgiEDh6iQnbW9nPtyn2sKddqEzg7TZAznP9DGq8o/
+         Ptw74YoI6FQI2tLcMvevhHpLVO+9WK9yHyM/zIhkYjjnY8rj9Kl/XhAP93rXwlEsnnaY
+         2WUkKEEvn6yDJQoszo1UftdwvXMCD4sCUmi+VHMCvXqxoFPS3lYVDfu60nJxMDlo328U
+         yTVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761815960; x=1762420760;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wv1v1rCyNVZow/EufS/6YnSEiovq7wLtWvMHkvWDLt8=;
-        b=PKdL4FD3igOSwgZGT48HFHFCn7OvlKjWUA8v7X0RsHhlt5uleVncPV/Y++oknDDhpt
-         U5l65fldypOo/01DNaY7HSSFrcLOFNOhd3cF3UgeQDKrCliuY0fZpllfVDXE7mGBsutR
-         YRDDo2ihrYWtuV+BgnQo+CAkvhPeAWKBBT8sD6cyWg0vTCDFYSUx4WVOVvhGuoJ2gUWg
-         rnDgA9vasFQnElVC9K0BKEGVkJOqFuRtjmzU64Ee/ergS8i6ANRwH4/rEyX3xjS50uCl
-         62cbYjhwl5+WO98srEqFTaWg6i60Spb4eBo8SnkQMLuF311MHNQ178j5Z5TtoZUXfyp/
-         0/WA==
-X-Forwarded-Encrypted: i=1; AJvYcCUfjx6JQG1r21nWPczTz/miFNOOdBAzcf0sHFoNgULqzTYnFKbcmcD10NuedDSRH3CM8LdxQ0uwVGm6@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkeLTytKP8btnTNQiMGQYcq+p0mK/qxZ/FPgdVThyiK0rl+STN
-	XBc5NvvGzExFz6HHemMaDcA7xzAort5Rr+dmKzPjm4ADxh5ZCxXDPyXFrgS0lfmBNNs=
-X-Gm-Gg: ASbGnct+NS9EQlcDzBcshr2Bh4XLaHb0Fm+insCCcSdYOtoMRVUV2kACery5d1Mqie+
-	PVq8CaiYfM70GXFBBfKR7NyJEQMnKQ/5tanimZfQ57S48RGyGhlNvVsSbWOi5h/HWIeAqeFXqQx
-	9e+i5FxlAQqctptKOhJSC3bPctjD1Xlz2d+dyn4811lqzEkc5sPH6titCEbTMK2zs/7kRwPBwmC
-	xocLMLPNnfNWy8tlcCueCXX72ChYqeGclStfs17KZ4bs5fK5GpQQL88lbRD3YzdXQ/QDkkr5JAp
-	yxgculsRxVXQ9VjUdpzOu+tHXt7s4VXez1uJwMbNWS+P5K5qfnZDAYENyCb68ZHS22o9Fse9Yau
-	ok6HAO/l6Sk5G/FvAW6yep9FTxstpcWF3WvxkISXemrLQaTkxdIJQCbuBkeY4pIlecqRnbrKmBQ
-	==
-X-Google-Smtp-Source: AGHT+IFFqwsdTXuFRrWP5NVqrkbjoDC7E0r4aa1TEQNijfGZoanbwnRQzyG3OWW1GIVKppxS8yiu3g==
-X-Received: by 2002:a05:6000:2212:b0:3ee:1461:1654 with SMTP id ffacd0b85a97d-429aeff11f1mr4513188f8f.50.1761815959934;
-        Thu, 30 Oct 2025 02:19:19 -0700 (PDT)
-Received: from localhost ([2001:4090:a245:8496:49da:2c07:5e9a:7fb9])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-429952de971sm30461198f8f.39.2025.10.30.02.19.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Oct 2025 02:19:19 -0700 (PDT)
-From: "Markus Schneider-Pargmann (TI.com)" <msp@baylibre.com>
-Date: Thu, 30 Oct 2025 10:17:28 +0100
-Subject: [PATCH v4 6/6] arm64: dts: ti: k3-am62p5-sk: Set wakeup-source
- system-states
+        d=1e100.net; s=20230601; t=1761815908; x=1762420708;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oHEMia+Pz0ierHzqmwDGQUplMNYjbhxw/U4nXbi2Fyg=;
+        b=mt0gGqWktuWsopCXU9SqAf1yf5Xdvieuz6KimzpErYTV8eK1nEUbNI6KYX0UID/f++
+         pS+Rsq1nKGtoVQaNqma1iT1TBKxkBq+k8PiEgnJCbbjASxiu8GwC3q+BkMnFgyfpWk22
+         zUL+/ZGcX3W9BmR2y8zQa8a1AjN4k/pJRhvw84ISBF0/BawSmV7a5AyWg3kVW0liLnY7
+         kQRUJ5q+kYQ2YmI+1AjFlrgFQPXb53XUqdZFFTRA+QkNMn4yEzKVH8cRsxx1F2kFqgiH
+         IgTXI+rqXfiLULs/IypDx2oli3Q1E5umt6zMqnE1k5bobIWHuQrWXQAQMxbsgP7inQBw
+         Grfg==
+X-Forwarded-Encrypted: i=1; AJvYcCWHBb6sVhxqxErmO8u1+qL9fodPCixgxXb0AskDua0UXBJy+I/PunJBWePjdwy3eMZDCWubCEZf/yy7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyji+B9bDSjQwqpE9Q8Kdd6jLZUxadD5QScOumWOPpoVfWviAET
+	/h+5cxf/pQkblp+IwmF7Yo8wr0KIGlin3Qz8VUs8yPDjXGSuMOIMJRxFEo4ixpk2h6YGzYPd0dg
+	/obQoJLMdFT/NTvEBqKR1yuHSqN3v6yiiFtHydWW1HT889gWg7eJiRoMYnvb2LEnS
+X-Gm-Gg: ASbGnctfqGSZklORWZ+JgNTqHn9lDnrEO7SxVKmGTlwBuHhvIHuFjH0+X+nQ9x+aDw+
+	IKMrLuaZpdjotaNLFd1YKBUPac/1dfflhXekiaAQdB+uyB15Bd0oLt8nWhi9rK5pNZL6P+K/qce
+	siKKfEJ142wb2oyh5fGl1smDNxfQ+w0Xs6FN06iiERjCqU/rPDtoRfTllqoso1ELMcZlw2MYm5B
+	cJIXM/QUacsvSupMQpAR4NmmgKLwlDmMIfPPP3A55jFQKod3vhW4xOpvSJjCqo34WVZU9OqkA6c
+	N3CLv6LqBnZytGMU/uqkaUuousEs6XvJ45PRT2INnzwNwgyCynRoS/rHiKJvlPskQ1VHxTcCuxY
+	63ZxIyKrvUTZQ+IEEDEX40Kaibu4wquRA11+eXo1VIQpfrfUiISkT/GQY
+X-Received: by 2002:ac8:7dc5:0:b0:4dc:cb40:706e with SMTP id d75a77b69052e-4ed15c7ab81mr56822851cf.13.1761815908361;
+        Thu, 30 Oct 2025 02:18:28 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGNCKE9kYbdCMSkRstEgNVCybw73OUFRcjBy2w5NSuhLAsNduqpvslgDuJLndZu+Bjw77eMCA==
+X-Received: by 2002:ac8:7dc5:0:b0:4dc:cb40:706e with SMTP id d75a77b69052e-4ed15c7ab81mr56822621cf.13.1761815907798;
+        Thu, 30 Oct 2025 02:18:27 -0700 (PDT)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-640342e5acesm6069096a12.28.2025.10.30.02.18.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Oct 2025 02:18:27 -0700 (PDT)
+Message-ID: <7e5b3291-c36b-49a9-8a82-fc62d93f73f2@oss.qualcomm.com>
+Date: Thu, 30 Oct 2025 10:18:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251030-topic-am62-dt-partialio-v6-15-v4-6-6b520dfa8591@baylibre.com>
-References: <20251030-topic-am62-dt-partialio-v6-15-v4-0-6b520dfa8591@baylibre.com>
-In-Reply-To: <20251030-topic-am62-dt-partialio-v6-15-v4-0-6b520dfa8591@baylibre.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Vishal Mahaveer <vishalm@ti.com>, 
- Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, 
- Sebin Francis <sebin.francis@ti.com>, Kendall Willis <k-willis@ti.com>, 
- Akashdeep Kaur <a-kaur@ti.com>, 
- "Markus Schneider-Pargmann (TI.com)" <msp@baylibre.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3461; i=msp@baylibre.com;
- h=from:subject:message-id; bh=fmSTQ+NAhyqd5hnJaZ0RF1b/fo5Oy35WVR6j4Ev0AlA=;
- b=owGbwMvMwCXWejAsc4KoVzDjabUkhkxm3ZrbPitYVvvZd3cU7/SIMVksJbTW7bU3bwXj5pRO5
- ZPte307SlkYxLgYZMUUWToTQ9P+y+88lrxo2WaYOaxMIEMYuDgFYCKqrxn+ZwtPNp19c4b7RENZ
- 9zUz59fdurXgd7mzwuraX7mmZwRvJjEynA/6cnghy0nxXV9vnah+KJCu8Hv67Feii1c061av0S8
- 5wwMA
-X-Developer-Key: i=msp@baylibre.com; a=openpgp;
- fpr=BADD88DB889FDC3E8A3D5FE612FA6A01E0A45B41
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/7] dt-bindings: i2c: qcom-cci: Document msm8953
+ compatible
+To: Luca Weiss <luca@lucaweiss.eu>, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org,
+        Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251028-msm8953-cci-v2-0-b5f9f7135326@lucaweiss.eu>
+ <20251028-msm8953-cci-v2-1-b5f9f7135326@lucaweiss.eu>
+ <48a217db-b85a-411c-81f2-3106b60da86f@oss.qualcomm.com>
+ <76f108e7-2ec6-4edd-8640-a82fc99f7dbc@lucaweiss.eu>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <76f108e7-2ec6-4edd-8640-a82fc99f7dbc@lucaweiss.eu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: rtBDMWagIrwoAkCw2gZTSqSZQxotgSPM
+X-Proofpoint-GUID: rtBDMWagIrwoAkCw2gZTSqSZQxotgSPM
+X-Authority-Analysis: v=2.4 cv=Cf4FJbrl c=1 sm=1 tr=0 ts=69032d65 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=dlmhaOwlAAAA:8 a=Z8tL6suUy-G7dtvowrsA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
+ a=y4cfut4LVr_MrANMpYTh:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMwMDA3NSBTYWx0ZWRfXy3F8u+Axad4V
+ KsTb/tqf1Ge4kGLBnBN5tMQPLcWHDlnABCDDvWGsslp4oQyTfXsFeyUyzbYSN9vfF5BQegc1ozk
+ TTjhw4hM/xqWqREoIlianVTg1jrhd3Nl2E0khp8edgKgFHlZyHI/Zdm22cY5k3d1IZPSaNNwNmJ
+ gxa3KfDLwSpnz5xsZuSzqyWJiOsPLOpP+hdJVM0S/AytdFfPQRKKJzyFRLcF57fWPVO7O1XprBC
+ mrI3apKhQPi1sfBzLLmPemfvPc2UP6CDWrXev1SHz+UDXmWXTsmdlCClSc11XN8aDwb8eEVOQ8y
+ +bbCcI6q8QKTfHLsizUJAL/+5qDowGAXebZrq4e2C1s/xgbeWCK2V9t+8Jq8ayyqxLswZVobfvG
+ rG5zJhMvjpYKkrUGZBiFsDjyYNx6jQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-10-30_02,2025-10-29_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 suspectscore=0 phishscore=0 malwarescore=0 impostorscore=0
+ clxscore=1015 priorityscore=1501 lowpriorityscore=0 spamscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510300075
 
-The CANUART pins of mcu_mcan0, mcu_mcan1, mcu_uart0 and wkup_uart0 are
-powered during Partial-IO and I/O Only + DDR and are capable of waking
-up the system in these states. Specify the states in which these units
-can do a wakeup on this board.
+On 10/29/25 9:41 PM, Luca Weiss wrote:
+> Hi Konrad,
+> 
+> On 29-10-2025 10:36, Konrad Dybcio wrote:
+>> On 10/28/25 5:40 PM, Luca Weiss wrote:
+>>> Add the msm8953 CCI device string compatible.
+>>>
+>>> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+>>> ---
+>>>   Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml | 2 ++
+>>>   1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+>>> index 9bc99d736343..ef8f5fe3a8e1 100644
+>>> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+>>> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+>>> @@ -15,6 +15,7 @@ properties:
+>>>       oneOf:
+>>>         - enum:
+>>>             - qcom,msm8226-cci
+>>> +          - qcom,msm8953-cci
+>>>             - qcom,msm8974-cci
+>>>             - qcom,msm8996-cci
+>>>   @@ -146,6 +147,7 @@ allOf:
+>>>               - contains:
+>>>                   enum:
+>>>                     - qcom,msm8916-cci
+>>> +                  - qcom,msm8953-cci
+>>>                 - const: qcom,msm8996-cci
+>>
+>> Sorry for only bringing it up now - could you check whether
+>> all the clocks that you defined are actually necessary?
+>>
+>> It may be that you can do without CAMSS_AHB_CLK and/or
+>> TOP_AHB_CLK
+> 
+> Removing either GCC_CAMSS_AHB_CLK or GCC_CAMSS_TOP_AHB_CLK from dts leads to an instant reboot during bootup - presumably during cci (or eeprom) probe.
 
-Note that the UARTs are not capable of wakeup in Partial-IO because of
-of a UART mux on the board not being powered during Partial-IO.
+So just like 8939.. thanks for confirming
 
-Add pincontrol definitions for mcu_mcan0 and mcu_mcan1 for wakeup from
-Partial-IO. Add these as wakeup pinctrl entries for both devices.
-
-Signed-off-by: Markus Schneider-Pargmann (TI.com) <msp@baylibre.com>
----
- arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 71 +++++++++++++++++++++++++++++++++
- 1 file changed, 71 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-index a064a632680ec69dba9dbe591fd49caeb9ac1111..36116210fbe6111ee8bb9a1736ed02bec0f20b67 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-@@ -716,12 +716,52 @@ AM62PX_MCU_IOPAD(0x028, PIN_OUTPUT, 0)	/* (D7) WKUP_UART0_TXD */
- 		>;
- 		bootph-all;
- 	};
-+
-+	mcu_mcan0_tx_pins_default: mcu-mcan0-tx-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x034, PIN_OUTPUT, 0) /* (D6) MCU_MCAN0_TX */
-+		>;
-+	};
-+
-+	mcu_mcan0_rx_pins_default: mcu-mcan0-rx-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x038, PIN_INPUT, 0) /* (B3) MCU_MCAN0_RX */
-+		>;
-+	};
-+
-+	mcu_mcan0_rx_pins_wakeup: mcu-mcan0-rx-wakeup-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x038, PIN_INPUT | PIN_WKUP_EN, 0) /* (B3) MCU_MCAN0_RX */
-+		>;
-+	};
-+
-+	mcu_mcan1_tx_pins_default: mcu-mcan1-tx-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x03c, PIN_OUTPUT, 0) /* (E5) MCU_MCAN1_TX */
-+		>;
-+	};
-+
-+	mcu_mcan1_rx_pins_default: mcu-mcan1-rx-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x040, PIN_INPUT, 0) /* (D4) MCU_MCAN1_RX */
-+		>;
-+	};
-+
-+	mcu_mcan1_rx_pins_wakeup: mcu-mcan1-rx-wakeup-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x040, PIN_INPUT | PIN_WKUP_EN, 0) /* (D4) MCU_MCAN1_RX */
-+		>;
-+	};
- };
- 
- &wkup_uart0 {
- 	/* WKUP UART0 is used by DM firmware */
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&wkup_uart0_pins_default>;
-+	wakeup-source = <&system_io_ddr>,
-+			<&system_deep_sleep>,
-+			<&system_mcu_only>,
-+			<&system_standby>;
- 	status = "reserved";
- 	bootph-all;
- };
-@@ -763,4 +803,35 @@ &epwm1 {
- 	status = "okay";
- };
- 
-+&mcu_mcan0 {
-+	pinctrl-names = "default", "wakeup";
-+	pinctrl-0 = <&mcu_mcan0_tx_pins_default>, <&mcu_mcan0_rx_pins_default>;
-+	pinctrl-1 = <&mcu_mcan0_tx_pins_default>, <&mcu_mcan0_rx_pins_wakeup>;
-+	wakeup-source = <&system_partial_io>,
-+			<&system_io_ddr>,
-+			<&system_deep_sleep>,
-+			<&system_mcu_only>,
-+			<&system_standby>;
-+	status = "okay";
-+};
-+
-+&mcu_mcan1 {
-+	pinctrl-names = "default", "wakeup";
-+	pinctrl-0 = <&mcu_mcan1_tx_pins_default>, <&mcu_mcan1_rx_pins_default>;
-+	pinctrl-1 = <&mcu_mcan1_tx_pins_default>, <&mcu_mcan1_rx_pins_wakeup>;
-+	wakeup-source = <&system_partial_io>,
-+			<&system_io_ddr>,
-+			<&system_deep_sleep>,
-+			<&system_mcu_only>,
-+			<&system_standby>;
-+	status = "okay";
-+};
-+
-+&mcu_uart0 {
-+	wakeup-source = <&system_io_ddr>,
-+			<&system_deep_sleep>,
-+			<&system_mcu_only>,
-+			<&system_standby>;
-+};
-+
- #include "k3-am62p-ti-ipc-firmware.dtsi"
-
--- 
-2.51.0
-
+Konrad
 
