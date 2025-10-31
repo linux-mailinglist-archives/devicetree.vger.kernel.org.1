@@ -1,155 +1,200 @@
-Return-Path: <devicetree+bounces-233609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 582CDC23F7E
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 10:00:03 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E614DC23F5E
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 09:59:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 953EB1A2294E
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 08:58:20 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 316534EE6F4
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 08:58:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 449BF325488;
-	Fri, 31 Oct 2025 08:57:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C6D4328B77;
+	Fri, 31 Oct 2025 08:58:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HSKXpXsb";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Bh6dcn88"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Aaa9ZbS3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF5D931814C
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 08:57:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 011CF283151;
+	Fri, 31 Oct 2025 08:58:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761901067; cv=none; b=gRLCqF+1DnM2iIQPaa7EscR+FxZP4UeULBgJtiNp9HyoKSQCAcuec+f5LcVZU6JaoXUi+p7z08hYBTEOZGs5AjTnNfV9BIi/9KP/pO4qkCxFlcHXKbJG02uLdsoW0ZAcjE1h3cZlzeB9pS+1GYLlIXXXEj2Dlglsxve1O9u+mFQ=
+	t=1761901132; cv=none; b=mJ1vj3C9DRUf7/rciE2ki4vinmNEcbeQZbpCFLsW4sp2dpL+hfS+54maZ6lVw1yl7muw3ds55pNfkCm85FIVWGEMlqjPUKeSYLGVKbBysZL0dLRnI5XGO/ovUnTf4zstU36dZbiX6JxZv75xx4dScSp4iF7rYPI6X5LzTjx7gkc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761901067; c=relaxed/simple;
-	bh=bNGqZbxihhh8ZM8J02vzVpuZCERlaf9gZph121pkYCQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kd8tqXX1iOvL2PzkCsQYtcH1nrp37+3e641ETphyQst32UlrCghuIlpzw1QgFZVJX+eyz7AsUwlEBeXM2n4LsIOcSZExdNBXAgk6rOWuY0C9Hkoz6X0v3hM0IEP2mO7izck+R74OL8CQSeirdU6ulJ1IZX8gVQ9wLsWELhK5WN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HSKXpXsb; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Bh6dcn88; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59V8o4G0898088
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 08:57:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	GaJvVZVi/qoSvZutu9WPcFmfGA+T6c27YzRimaE4g3U=; b=HSKXpXsb3hH4isTT
-	6HsA+BHXCHrjxphZBPCR03tzGijypWyyLvhhlZGGBwr6i6btTCqwPhXIxhJTMvZQ
-	+5AcXSbxffuC7k9GVLuIXPItLRSdMDzTvQ6wIqKwu9/OxM0Ude82Jj5MHrJwkaRB
-	uuRUkZDWV8tzrSn+cY999s3eElh33gEZJKPByCtGOOcS7k1AneM84Yu3xnraAfHN
-	2P/Lmr933C0YE2MOrDYMUwC234O75EcxwoMXTgQ8yXm6Nr7pNo7sy7XDNAwwh+km
-	tS/+QFA826miIf5KEoySo4CPXbgf5kRl3TcZkQrTooxQ9wNb/aY7jX0IohJr8UwG
-	YbhNKg==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a4gb21eyf-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 08:57:45 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4e8934ae68aso6137901cf.2
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 01:57:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761901064; x=1762505864; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GaJvVZVi/qoSvZutu9WPcFmfGA+T6c27YzRimaE4g3U=;
-        b=Bh6dcn88AU6v8GrMJYGwiurBe4sHq5NTfKXEx+PVIX/4MOVsUielnHoKVOGeF+tTx9
-         Dln09Wdc6T/QqtId3hLKNO7kdb9UzrKdQMbmXnoFrASc58NysLUKJjrnQFWlqb1TD+hZ
-         m9H4tiH6LpuP/ZlprO1a4JAY+NcCiN4+JSCm1tvWhJNXaomLjUakHqGDA7T5YTe6G8MZ
-         ScuEuUVQMhnoxDwXJ+Hafpi7M5mfHbJNAp0Avsdx6ZtVqvY0mMuszle+N5nWJrnZdCHQ
-         KBC+WPE7awyod11vm5kZIUUyNY4lqIP73T8fFQ+spLL1ee0pWlzRkrfdnCrDjjWkykWV
-         fugg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761901064; x=1762505864;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GaJvVZVi/qoSvZutu9WPcFmfGA+T6c27YzRimaE4g3U=;
-        b=wkCv4LIDZ9rKEKNDjIE9QZGsX+HD6E+AQFCRunKocZSX92aiHqOfgT5RFeqsiFhS1p
-         pnzB5MV3ZGTH/GbSaMLMVK0SpeYkp91yZ3Tcomj6aiWj7WruKyP0UIx9gxaZMBE+sxrG
-         W6Kv4rA0uVHSbnuVF8UTOpRiMRc7hCyL3Q+Ch+LWIioYYZMYafZJMxjsR2hb0PHnVpn9
-         AfmLmABjjGV6CFK8sIkd45y6kKAscG4mkdIqZSE6GkgkdJ++Ho/aB4yFDcCo5ujwAdat
-         WGKMs5tcJ41a6fC0yFlwY38MMyCdTMytgkNU3wvdylhSGYcdt/cR/arGGu07ofrY+/SR
-         CSaA==
-X-Forwarded-Encrypted: i=1; AJvYcCV+q3NGnjRcj4Xmqp9D9N71+a3+SVTvzf5HpHO8gqjl3vfbXbKIivXxfSrGdN/JaJx8GDCrcxNubidP@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNcGu7a9DRVXTmVrZbZUU3QGS6/GIdTt0se/ECkYHqHcxFPWtv
-	s6pXBp1g96ko5iR1M8cS5k3d89plCKvIXqlUOlp5BwiOHmoChfTgaifwKEbfHfJhZny5XNP+ToL
-	kXMMAgzRN/2g0M9I/JJ2xSMAy2Gbg6I+EEMQk73P0SVanuPTsntpn1D8BJ4Jw/uow
-X-Gm-Gg: ASbGncsIrfo9CduThi03Yqp/ye5pyN6LKRi+zACoXo20hu/m666P5sp+7fduqSGagQY
-	I7O9AdiReScPjV7HI8Ky6queKc4Dn21s/2yqJeG4bQmYAnbB3YEz54AO5QroUNTCjYefXdzMRZ/
-	Nlvn7+m9sbtgxku0YzcSJ/b4dYvNDQ7lneI+LOnHbOcouVBFkFGGPzzwipUd16Y2UWd9OnrqPho
-	nMUjuDjhUozq+L3rjn3bMWV2D1+RKhNqmKYLQcatdVble89sEsu7mc0GttQICO3qa+/YUKcpJ4q
-	ehh0wdnZ46tFe4vSfT47yne43dmzKQLuQ6E5teYwfQJ3R9v8tzOzvX8tyvOKguoOCyu1g9m3QFA
-	W0yqQew+cvUgmiJOU+PUpWR++0mUeH2V0M4ABsP9YeB9u1ySpdTox5RJi
-X-Received: by 2002:a05:622a:ce:b0:4ed:2f2b:aadb with SMTP id d75a77b69052e-4ed3100954dmr19658691cf.12.1761901063980;
-        Fri, 31 Oct 2025 01:57:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGl9blk7ijqkr5rpwUUW4nIIZVw2skP8seOcSCI7SDxhd4gKnkwI+5IUk8YhqUmXBl3g0Ixsw==
-X-Received: by 2002:a05:622a:ce:b0:4ed:2f2b:aadb with SMTP id d75a77b69052e-4ed3100954dmr19658491cf.12.1761901063525;
-        Fri, 31 Oct 2025 01:57:43 -0700 (PDT)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b70779762e9sm123101366b.7.2025.10.31.01.57.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Oct 2025 01:57:43 -0700 (PDT)
-Message-ID: <600ec6ce-4411-4d65-b483-c571502b7455@oss.qualcomm.com>
-Date: Fri, 31 Oct 2025 09:57:41 +0100
+	s=arc-20240116; t=1761901132; c=relaxed/simple;
+	bh=MtEcgHWyaqLlxzTyr9ciKsl/hLPFD4/hagDeJF47k2w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TfHCPrmbAcC+pJwpBhrB8Kr8JKgZWQ3RS8SXcTI9P84ySQUczqxZXZ9Se1v4SUmTET9vuYcUhBCWNQLhEhWPU8KG1IOs6+Mc2qePDkFMEeM7wBQ+vt72DUXFylWKH0qcZWS9ZyEfCRriw2qzlTi6o+xgOf/WrbQSBFfCoTHHpcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Aaa9ZbS3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECF33C4CEF1;
+	Fri, 31 Oct 2025 08:58:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761901131;
+	bh=MtEcgHWyaqLlxzTyr9ciKsl/hLPFD4/hagDeJF47k2w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Aaa9ZbS3lPXoscLxKrT5j9jf98ukrLEGtfj4P2nmaKNBxWR/iUsFWjL6Ki0MFrSd6
+	 kH6q+0U9nwZIQDyFnGM5PbzE5OCpKK5jUG3XN2mFJcEtrbgHuBC6nrLWGUhFRPG1VO
+	 jhvB2g9H/ylad70j3Gd0PMFy4Qj0nbZkhSdrS66pMqHradw2z067JYUln84yu8Wh1T
+	 +UKczNJ5Bv0Rxh6sOMVqb1vMcMboEPQMbWLcEs2yeJWJ5bJ7sWV04/pRwJFqORCEcf
+	 RrH1KDcSdM9PWZbv6UZuSHA41co8SJRQde0IrMw5PR0X6jHdIN5YcDOmyz5KGssaPu
+	 mV0Jh9LHyw8Ig==
+Date: Fri, 31 Oct 2025 09:58:48 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: joakim.zhang@cixtech.com
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com, 
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, cix-kernel-upstream@cixtech.com
+Subject: Re: [PATCH V1 1/3] dt-bindings: sound: add binding for CIX IPBLOQ
+ HDA controller
+Message-ID: <20251031-pearl-pheasant-from-atlantis-bf4e7a@kuoka>
+References: <20251030110928.1572703-1-joakim.zhang@cixtech.com>
+ <20251030110928.1572703-2-joakim.zhang@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: rename x1p42100 to purwa
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20251030-rename-dts-2-v1-0-80c0b81c4d77@oss.qualcomm.com>
- <20251030-rename-dts-2-v1-3-80c0b81c4d77@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251030-rename-dts-2-v1-3-80c0b81c4d77@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=efswvrEH c=1 sm=1 tr=0 ts=69047a09 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=QDRpGmHLnzjZVnEgbfQA:9
- a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMxMDA4MSBTYWx0ZWRfX5gkor2qs8hFp
- 7wBBlpU2MUKvWyzDNYzq/kPy9ZAbl2erHYSRXegqlrVVdSqjc1DfyjoEBWS+ChdXT8jlEGFNUNr
- QpmkoUC1UkU2MQr5vp6Rg3ofv2vHA72zU/myL9SUbJAjn0cTcnxA+yAWs7rZOijqte65TkQ+zGE
- A9VAdM7oUIWlgd/O0kce5CL8aCiEfv3SlGCXnrVYY8fYlyK2eZqGSvJRrPygmokmCEy9MVKYg3x
- ho/Atm1x89/WjVMYgyx4FZqtjzRi745OC0Gjrvq9go4hGTPF9VVSJ5LOWICIGFG/oLac7Jnz2yi
- C12TINqTtUECoKg/2J/QF9RXEviKZg1Xd0VuQ+jQeQMP9+qfMi2y6PY/1AqBcpGXvQoBVbYmyeJ
- DvSMCXVxBmR71AJvyuN34G9DLyTF2A==
-X-Proofpoint-GUID: E4x6LZUMpk0ytAi9j356FCmVpzC6uR91
-X-Proofpoint-ORIG-GUID: E4x6LZUMpk0ytAi9j356FCmVpzC6uR91
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-10-31_02,2025-10-29_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 malwarescore=0 phishscore=0 impostorscore=0 lowpriorityscore=0
- priorityscore=1501 spamscore=0 clxscore=1015 adultscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510310081
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251030110928.1572703-2-joakim.zhang@cixtech.com>
 
-On 10/30/25 7:20 PM, Dmitry Baryshkov wrote:
-> Follow the example of other platforms and rename X1P42100 to purwa.dtsi.
+On Thu, Oct 30, 2025 at 07:09:26PM +0800, joakim.zhang@cixtech.com wrote:
+> From: Joakim Zhang <joakim.zhang@cixtech.com>
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> This patch adds binding for CIX IPBLOQ HDA controller.
+
+Please do not use "This commit/patch/change", but imperative mood. See
+longer explanation here:
+https://elixir.bootlin.com/linux/v6.16/source/Documentation/process/submitting-patches.rst#L94
+
+Please use standard email subjects, so with the PATCH keyword in the
+title. 'git format-patch -vX' helps here to create proper versioned patches.
+Another useful tool is b4. Skipping the PATCH keyword makes filtering of
+emails more difficult thus making the review process less convenient.
+
+A nit, subject: drop second/last, redundant "binding for". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+> 
+> Signed-off-by: Joakim Zhang <joakim.zhang@cixtech.com>
 > ---
+>  .../bindings/sound/cix,ipbloq-hda.yaml        | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/cix,ipbloq-hda.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/cix,ipbloq-hda.yaml b/Documentation/devicetree/bindings/sound/cix,ipbloq-hda.yaml
+> new file mode 100644
+> index 000000000000..a4285d1e0319
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/cix,ipbloq-hda.yaml
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Filename must match the compatible. See writing bindings doc.
 
-Konrad
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/cix,ipbloq-hda.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: CIX IPBLOQ HDA controller
+> +
+> +description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +  CIX IPBLOQ High Definition Audio (HDA) Controller driver.
+
+driver as in Linux driver? No, please describe here briefly hardware.
+
+> +
+> +maintainers:
+> +  - Joakim Zhang <joakim.zhang@cixtech.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: cix,sky1-ipbloq-hda
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: The interrupt from the HDA controller
+
+Drop description, obvious. Cannot be anything else.
+
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 2
+
+You should list the items instead with description.
+
+> +
+> +  clock-names:
+> +    maxItems: 2
+
+No, you need to list the items. There is no syntax like that.
+
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    maxItems: 1
+
+No, you need to list the items.
+
+> +
+> +  cix,model:
+> +    $ref: /schemas/types.yaml#/definitions/string
+
+Use standard properties, see other bindings. Maybe ones from
+generic/simple audio card fit.
+
+
+> +    description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +      The user-visible name of this sound complex. If this property is
+> +      not specified then boards can use default name provided in hda driver.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include<dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    audss_ipb_hda: ipb-hda@70c0000 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+If you cannot find a name matching your device, please check in kernel
+sources for similar cases or you can grow the spec (via pull request to
+DT spec repo).
+
+e.g. sound or sound-card. Maybe hda, if it is known enough.
+
+Also drop unused label.
+
+Best regards,
+Krzysztof
+
 
