@@ -1,133 +1,282 @@
-Return-Path: <devicetree+bounces-233549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D7DDC23857
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 08:18:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE383C23880
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 08:20:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0D5934E2AA7
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 07:18:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC665189E318
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 07:20:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93D0C329364;
-	Fri, 31 Oct 2025 07:18:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0961A32936D;
+	Fri, 31 Oct 2025 07:20:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="2iLh78A1"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="MlGTlh8H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADB8A45038;
-	Fri, 31 Oct 2025 07:18:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07ED931D72A
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 07:20:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761895114; cv=none; b=CzXIfpaGZGkEFiCaBdXbiNeUbFgipzQ95c7S5f6z99revzAUuDq4o83FqcU60mgGPOKdAh8/nDRG+CNCegl+0JrKKJ55tMhKUW6p/Pjhcf1NfOsp6qxNg3vNjqDK0wOB7mdw13RkUISZfaJEMCCa65JEIYPnwnQ4dVu4tmLEudI=
+	t=1761895222; cv=none; b=nLi5Nlx55KnbxfmrgE3Cd1zR1Ism6okHTyhvx6SmASAjPWxWF/vc1nkxn9i7jM/KAXKabjC7K9Fik9PsxyoJ1iXli310I8ElcB9DfTI4TxReTBYn/FhH2B4Yuh6QdimqP9LdvUhozWltLSBgWc+ZSwakVqBhFECOJU/QYmo/g1k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761895114; c=relaxed/simple;
-	bh=vZmH4j1iRBHdyP/11gWs1D7OulzeT5LPIZQzEfM5xtY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Lwhhfq/WpBA7k6Ay98xi1/692VOIydosv4P0eq499+1+KxaLTWCgo04k6oYUvGIxkFgig1MjT0wIzvSptrvwgLHxJzW8YP+inMDpVJqrz0roIbfN4JWMxBG3+Y/Rke6wahCaVx8yo7EGJpwjYuJyX5ZrcGRrZVo3gd+fr8vn47A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=2iLh78A1; arc=none smtp.client-ip=220.130.44.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
-X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
-	s=richtek; t=1761895103;
-	bh=SBAaGqZMQDv2mThH8h5PuvqVwOb0ebtKCEAGSC2lmyQ=; l=1765;
-	h=From:To:Subject:Date:Message-ID:MIME-Version;
-	b=2iLh78A1ZwXrpsX6RCU4pII2g/PSTKFfqRYiNeozJ8AeP8WeGOffgj+UovDDfX18N
-	 W0rPvHfdso1K2+7WW1WtTs6CqAQuuDMKr4kBz+8pTYon24hHcVAK5pD7cwuERmFSZt
-	 rrI+23A+oo88hSoa8VZObWszWetPoJKu/Udji1SBxdsY8gyWSY/nx2uFGfrJpEr/DQ
-	 Q3pFkcPYPiapQRPxjPzOAVsnyVL11T1+poiWfbek91l3gv3q0cOVWu8nvV/lIuY4PG
-	 NkqfY481tE2mlLbhCY92/nd4gthTd96Im0d+AWfe/KJfgTu3V/ynL/ySDxn+K89tya
-	 g+bU+MBBYJ+7w==
-Received: from 192.168.10.46
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(3436931:0:AUTH_RELAY)
-	(envelope-from <cy_huang@richtek.com>)
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Fri, 31 Oct 2025 15:18:09 +0800 (CST)
-Received: from ex4.rt.l (192.168.10.47) by ex3.rt.l (192.168.10.46) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.26; Fri, 31 Oct
- 2025 15:18:08 +0800
-Received: from git-send.richtek.com (192.168.10.154) by ex4.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1748.26 via Frontend
- Transport; Fri, 31 Oct 2025 15:18:08 +0800
-From: <cy_huang@richtek.com>
-To: Sebastian Reichel <sre@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>
-CC: ob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "ChiYuan
- Huang" <cy_huang@richtek.com>, <devicetree@vger.kernel.org>,
-	<linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 3/3] Documentation: power: rt9756: Document exported sysfs entries
-Date: Fri, 31 Oct 2025 15:19:35 +0800
-Message-ID: <5138d4aa760d6ff81a5296cdf010a447056abce4.1761894605.git.cy_huang@richtek.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <cover.1761894605.git.cy_huang@richtek.com>
-References: <cover.1761894605.git.cy_huang@richtek.com>
+	s=arc-20240116; t=1761895222; c=relaxed/simple;
+	bh=mMqYgeH0UeWOZ3VddzUW82YN8pgLCvc0+QOH5FcuQZE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MePuVFKzTkR/l0dF0+NLuGd4iBjv6JoGdwCZlyP8x2r3KG+46vU/soKU0IClI7hDVXYO8P/29TY/viljR8emOlkrAjr/PZd3mGIinXXXNnNU+c7AEcw6H1sndl4FuGWBI8A23GXek/L6HPNL5v6h2Zn0DXOiFI+NIpE+uiyStPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=MlGTlh8H; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3ecdf2b1751so1229449f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 00:20:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1761895219; x=1762500019; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=c6jwEFLJ69MPfiwc21mJzxfsviakHrUqtdfEeBD68fU=;
+        b=MlGTlh8HtbGjg1KsOvbgFVC/CY85a3wgucZZ+tICTarzcjGzQ81jwGuSL/20Waikjk
+         ZOLuCmZucuYxu0mbzrEXy1U1fc8P1yCa4MDU/ktgHnDGjUtrIf+xLOlOhC1NraRNfA/8
+         PthQaH/2KtwRpHIy1PC90zf8P1W8N3ikn7aq3C4RKhvCU2wAontHEXC+qikfJAY8ln59
+         hio84PduTWYeLrzHZglmOA2dW+vuHGsgL/yiuNQ9LqTg+49PPDE0CnsHBKPCObDQeL/U
+         kv3CwTHUT/gbWyjga4i71jLFFzrko+xkR5dlCmAE6729/ZitBSZPE0A4uyUobeI+fLHY
+         M12w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761895219; x=1762500019;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=c6jwEFLJ69MPfiwc21mJzxfsviakHrUqtdfEeBD68fU=;
+        b=sQuDg7tOXNnX4GPke3zxPqgE03k/5tecMh4vxgVZVxSwTD+zlXEaPrb2uGlqkNZsuC
+         6iNLKU87NGcDPv05+3jukE+0APPaOCmkfWWdS/kyuLhmh+K8PvsXKCtG5Hf9uZXK838Y
+         j3MtslR3c03Ioxr3rNV0ut2RzfwUl5fDUrHiXvddlGGxXeZt4xHmnOCXY5FDmZ/nsRSR
+         X1rDgzYRxcmcUiRmgqsjIYFmDt3uuAzsurJfPUbkFKqEJyL9PtVbWPchkWcmBhEOkFbG
+         Pi0dqo7qeqR/TriPoN8u3ECuM/cRjLcX33jvuMSQi013Ao237PYvSFYNPP8eizsNjp5s
+         O6qQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXlPlbfqBroDZHBeLa/uBliySJ9uNK4BrhDPGtlcjx6XUZTHuvkPgeJ2HPGxRoBZc6ouuZHMOSmrSHD@vger.kernel.org
+X-Gm-Message-State: AOJu0Yym5BYJjhW5m1j4jg1C++hdJescoYcxTiWaOYl+RV+IHQupQlGH
+	1cZwdQ06PEZQf2BRF711AIWfRhxcXQrRi1NPnZaBpIHYDR6JRbgv8QUwj8PsJEE8Ejs=
+X-Gm-Gg: ASbGnctK0wlDUNC7zybZY/RxhbdBTckGPmPL3aci4ki7AfVyfspq7XmHW9Mnj2eEsry
+	BfIE+WUkzOaMlYqZYLrSyYmDfEM/n9qMVIl90ZCr+Tdm1JNZYeH3nT4FUui25jxBeR/9ZTQLJIE
+	Vl5FLtco5LYR3ulfjAvSeu7T9Tdw6XrbDR4/D0tac9Zqqwke7OotVAZr0wQCzhtjDWI25Ct7P0A
+	8M9Fk3oQJoZCI0qObDkcNcYGVndQTXq6V/t2dHjQwv1Iid5RUl3jLxk/jLSR9vwtbeUCqO0Cge+
+	8CnuSipiW1wJIJtfw2omHhVFIVJuSGP5ImLyDzoibfyTL25Nffge2DsCO8/eq0938tJMDrqzBmZ
+	xjABSQwXhp7dBikWHayMEHkNmJrqIS7sdZ1XIfTdd52v01cxXpb7Wr/GMvwvlw/mXHMWOE1u/om
+	UWxc6yEPN+xa2jjvxngA==
+X-Google-Smtp-Source: AGHT+IESPn1B27UDKqe6BRuoLyrklQLHzvgJJAtmUoGoNQEqfAcuNcYhohI3pcW3sVc+wl9uzkERfw==
+X-Received: by 2002:a05:6000:2908:b0:3e7:5f26:f1e5 with SMTP id ffacd0b85a97d-429bd680e96mr1864170f8f.23.1761895219281;
+        Fri, 31 Oct 2025 00:20:19 -0700 (PDT)
+Received: from [10.31.13.216] ([82.77.28.160])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429c13f192fsm1969656f8f.38.2025.10.31.00.20.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Oct 2025 00:20:18 -0700 (PDT)
+Message-ID: <a996e76e-8201-4b72-b4fa-0ea9ac62e6b1@tuxon.dev>
+Date: Fri, 31 Oct 2025 09:20:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/7] reset: mpfs: add non-auxiliary bus probing
+To: Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+ Daire McNamara <daire.mcnamara@microchip.com>,
+ pierre-henry.moussay@microchip.com, valentina.fernandezalanis@microchip.com,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-riscv@lists.infradead.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251029-chewing-absolve-c4e6acfe0fa4@spud>
+ <20251029-macarena-neglector-318431fec367@spud>
+Content-Language: en-US
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <20251029-macarena-neglector-318431fec367@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+Hi, Conor,
 
-Document the settings exported by rt9756 charger driver through sysfs
-entries:
+On 10/29/25 18:11, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> While the auxiliary bus was a nice bandaid, and meant that re-writing
+> the representation of the clock regions in devicetree was not required,
+> it has run its course. The "mss_top_sysreg" region that contains the
+> clock and reset regions, also contains pinctrl and an interrupt
+> controller, so the time has come rewrite the devicetree and probe the
+> reset controller from an mfd devicetree node, rather than implement
+> those drivers using the auxiliary bus. Wanting to avoid propagating this
+> naive/incorrect description of the hardware to the new pic64gx SoC is a
+> major motivating factor here.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> v6:
+> - depend on MFD_SYSCON
+> - return regmap_update_bits() result directly instead of an additional
+>    return 0
+> 
+> v4:
+> - Only use driver specific lock for non-regmap writes
+> 
+> v2:
+> - Implement the request to use regmap_update_bits(). I found that I then
+>    hated the read/write helpers since they were just bloat, so I ripped
+>    them out. I replaced the regular spin_lock_irqsave() stuff with a
+>    guard(spinlock_irqsave), since that's a simpler way of handling the two
+>    different paths through such a trivial pair of functions.
+> ---
+>   drivers/reset/Kconfig      |  1 +
+>   drivers/reset/reset-mpfs.c | 79 ++++++++++++++++++++++++++++++--------
+>   2 files changed, 63 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+> index 78b7078478d4..0ec4b7cd08d6 100644
+> --- a/drivers/reset/Kconfig
+> +++ b/drivers/reset/Kconfig
+> @@ -200,6 +200,7 @@ config RESET_PISTACHIO
+>   config RESET_POLARFIRE_SOC
+>   	bool "Microchip PolarFire SoC (MPFS) Reset Driver"
+>   	depends on MCHP_CLK_MPFS
+> +	depends on MFD_SYSCON
+>   	select AUXILIARY_BUS
+>   	default MCHP_CLK_MPFS
+>   	help
+> diff --git a/drivers/reset/reset-mpfs.c b/drivers/reset/reset-mpfs.c
+> index f6fa10e03ea8..25de7df55301 100644
+> --- a/drivers/reset/reset-mpfs.c
+> +++ b/drivers/reset/reset-mpfs.c
+> @@ -7,13 +7,16 @@
+>    *
+>    */
+>   #include <linux/auxiliary_bus.h>
+> +#include <linux/cleanup.h>
+>   #include <linux/delay.h>
+>   #include <linux/io.h>
+> +#include <linux/mfd/syscon.h>
+>   #include <linux/module.h>
+>   #include <linux/of.h>
+>   #include <linux/platform_device.h>
+> -#include <linux/slab.h>
+> +#include <linux/regmap.h>
+>   #include <linux/reset-controller.h>
+> +#include <linux/slab.h>
+>   #include <dt-bindings/clock/microchip,mpfs-clock.h>
+>   #include <soc/microchip/mpfs.h>
+>   
+> @@ -27,11 +30,14 @@
+>   #define MPFS_SLEEP_MIN_US	100
+>   #define MPFS_SLEEP_MAX_US	200
+>   
+> +#define REG_SUBBLK_RESET_CR	0x88u
+> +
+>   /* block concurrent access to the soft reset register */
+>   static DEFINE_SPINLOCK(mpfs_reset_lock);
+>   
+>   struct mpfs_reset {
+>   	void __iomem *base;
+> +	struct regmap *regmap;
+>   	struct reset_controller_dev rcdev;
+>   };
+>   
+> @@ -46,41 +52,46 @@ static inline struct mpfs_reset *to_mpfs_reset(struct reset_controller_dev *rcde
+>   static int mpfs_assert(struct reset_controller_dev *rcdev, unsigned long id)
+>   {
+>   	struct mpfs_reset *rst = to_mpfs_reset(rcdev);
+> -	unsigned long flags;
+>   	u32 reg;
+>   
+> -	spin_lock_irqsave(&mpfs_reset_lock, flags);
+> +	if (rst->regmap)
+> +		return regmap_update_bits(rst->regmap, REG_SUBBLK_RESET_CR, BIT(id), BIT(id));
+> +
+> +	guard(spinlock_irqsave)(&mpfs_reset_lock);
+>   
+>   	reg = readl(rst->base);
+>   	reg |= BIT(id);
+>   	writel(reg, rst->base);
+>   
+> -	spin_unlock_irqrestore(&mpfs_reset_lock, flags);
+> -
+>   	return 0;
+>   }
+>   
+>   static int mpfs_deassert(struct reset_controller_dev *rcdev, unsigned long id)
+>   {
+>   	struct mpfs_reset *rst = to_mpfs_reset(rcdev);
+> -	unsigned long flags;
+>   	u32 reg;
+>   
+> -	spin_lock_irqsave(&mpfs_reset_lock, flags);
+> +	if (rst->regmap)
+> +		return regmap_update_bits(rst->regmap, REG_SUBBLK_RESET_CR, BIT(id), 0);
+> +
+> +	guard(spinlock_irqsave)(&mpfs_reset_lock);
+>   
+>   	reg = readl(rst->base);
+>   	reg &= ~BIT(id);
+>   	writel(reg, rst->base);
+>   
+> -	spin_unlock_irqrestore(&mpfs_reset_lock, flags);
+> -
+>   	return 0;
+>   }
+>   
+>   static int mpfs_status(struct reset_controller_dev *rcdev, unsigned long id)
+>   {
+>   	struct mpfs_reset *rst = to_mpfs_reset(rcdev);
+> -	u32 reg = readl(rst->base);
+> +	u32 reg;
+> +
+> +	if (rst->regmap)
+> +		regmap_read(rst->regmap, REG_SUBBLK_RESET_CR, &reg);
+> +	else
+> +		reg = readl(rst->base);
+>   
+>   	/*
+>   	 * It is safe to return here as MPFS_NUM_RESETS makes sure the sign bit
+> @@ -130,11 +141,45 @@ static int mpfs_reset_xlate(struct reset_controller_dev *rcdev,
+>   	return index - MPFS_PERIPH_OFFSET;
+>   }
+>   
+> -static int mpfs_reset_probe(struct auxiliary_device *adev,
+> -			    const struct auxiliary_device_id *id)
+> +static int mpfs_reset_mfd_probe(struct platform_device *pdev)
+>   {
+> -	struct device *dev = &adev->dev;
+>   	struct reset_controller_dev *rcdev;
+> +	struct device *dev = &pdev->dev;
+> +	struct mpfs_reset *rst;
+> +
+> +	rst = devm_kzalloc(dev, sizeof(*rst), GFP_KERNEL);
+> +	if (!rst)
+> +		return -ENOMEM;
+> +
+> +	rcdev = &rst->rcdev;
+> +	rcdev->dev = dev;
+> +	rcdev->ops = &mpfs_reset_ops;
+> +
+> +	rcdev->of_node = pdev->dev.parent->of_node;
+> +	rcdev->of_reset_n_cells = 1;
+> +	rcdev->of_xlate = mpfs_reset_xlate;
+> +	rcdev->nr_resets = MPFS_NUM_RESETS;
+> +
+> +	rst->regmap = device_node_to_regmap(pdev->dev.parent->of_node);
+> +	if (IS_ERR(rst->regmap))
+> +		dev_err_probe(dev, PTR_ERR(rst->regmap), "Failed to find syscon regmap\n");
 
-- watchdog_timer
-- operation_mode
+Do you want to continue registering the reset controller here? rcdev->base is 
+NULL, thus the reset controller ops will fail, if I'm not wrong.
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
-V3
-- Remove customized description for battery voltage and current
----
- .../ABI/testing/sysfs-class-power-rt9756      | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-class-power-rt9756
-
-diff --git a/Documentation/ABI/testing/sysfs-class-power-rt9756 b/Documentation/ABI/testing/sysfs-class-power-rt9756
-new file mode 100644
-index 000000000000..c4d6c2b4715d
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-class-power-rt9756
-@@ -0,0 +1,30 @@
-+What:		/sys/class/power_supply/rt9756-*/watchdog_timer
-+Date:		Dec 2025
-+KernelVersion:	6.19
-+Contact:	ChiYuan Huang <cy_huang@richtek.com>
-+Description:
-+		This entry shows and sets the watchdog timer when rt9756 charger
-+		operates in charging mode. When the timer expires, the device
-+		will disable the charging. To prevent the timer expires, any
-+		host communication can make the timer restarted.
-+
-+		Access: Read, Write
-+
-+		Valid values:
-+		- 500, 1000, 5000, 30000, 40000, 80000, 128000 or 255000 (milliseconds),
-+		- 0: disabled
-+
-+What:		/sys/class/power_supply/rt9756-*/operation_mode
-+Date:		Dec 2025
-+KernelVersion:	6.19
-+Contact:	ChiYuan Huang <cy_huang@richtek.com>
-+Description:
-+		This entry shows and set the operation mode when rt9756 charger
-+		operates in charging phase. If 'bypass' mode is used, internal
-+		path will connect vbus directly to vbat. Else, default 'div2'
-+		mode for the switch-cap charging.
-+
-+		Access: Read, Write
-+
-+		Valid values:
-+		- 'bypass' or 'div2'
--- 
-2.34.1
+Thank you,
+Claudiu
 
 
