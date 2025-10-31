@@ -1,77 +1,63 @@
-Return-Path: <devicetree+bounces-233894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12071C26906
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 19:30:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0018C26924
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 19:31:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84266420944
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 18:30:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 098C21A61BF9
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 18:32:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6D7E24BBEE;
-	Fri, 31 Oct 2025 18:30:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A128322A27;
+	Fri, 31 Oct 2025 18:31:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LVrDAkeM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j70pvV+S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 893241DF269;
-	Fri, 31 Oct 2025 18:30:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33489288C24;
+	Fri, 31 Oct 2025 18:31:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761935421; cv=none; b=RFvqRCmGxJXkbUf91p2zq35tTGJglSv0a7KFXtzlwJXEVlcxY5wyiJqvxAz8XlRlrniGAoT8LyANIqwi2Wehtr0cjwUGbx0gBQsx9TUxPsf9mPYcVCE5H+1+Ke6GOwBQRCSa+Jw636PGC+J+uZqiFSQsyGT+VvJG/hoIA8ZXEuM=
+	t=1761935485; cv=none; b=WZ34rGSiHvb8dWERV8m+iRY1fmgGn8v58YEpiiAQNzL027YYj2F9XXsNOJzl2iEgjikJrLcPNk0WWJLITWmi9QJoWcFguHU7x7lUQivKWrYYion/WypDh9YFT/WSBupFzrEpXovI8rR28EHBzMddHiLy1mOa8yN05LDoxpFPm7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761935421; c=relaxed/simple;
-	bh=iH3501CDjRZhHJ4lYEDMDBUiVAkByJFY9KcipmE4ao0=;
+	s=arc-20240116; t=1761935485; c=relaxed/simple;
+	bh=7QjSpP4gSg2HMdbwtzWmMJkDfvOWMcYNnr6C2VlIBUU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tnTII4BuijbDNlAep8tb6R2uhrLiT9oaU/1iCvnXxCvqc047XpZ9lim+l8n1rcaN+D3M3OAA8JtVJwRo4MwTwS9j0Uyd1wElJ2GQ/we49wzPdBCwl8eNENYRUsbu9gl301/ZtbXUiY4Tog/UxNQkKrh+1dULRvRCnrCbFzcF2Tk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LVrDAkeM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0B8CC4CEFD;
-	Fri, 31 Oct 2025 18:30:20 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dn72csblJ+qN2CpZSSWI5btZpauHCFic0rsApfXcuOIPFT+vNeCrArk15yaJ51gN4eDGMOH1AdQB+AmxvgBId0XseYdmjD+FQzHbrv6DwQyCfOd2qwCLgJkQyUKLXZO9wubtzmceTlW5Fiu3WybJ760tH45oHmuaLyXaXyLVdhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j70pvV+S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BAA2C4CEE7;
+	Fri, 31 Oct 2025 18:31:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761935421;
-	bh=iH3501CDjRZhHJ4lYEDMDBUiVAkByJFY9KcipmE4ao0=;
+	s=k20201202; t=1761935484;
+	bh=7QjSpP4gSg2HMdbwtzWmMJkDfvOWMcYNnr6C2VlIBUU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LVrDAkeMvZUg+GxUROmbRi0HHxFeD4ggUGNCjRVdcTRenUqGzd3BWk96xlAVr4s4y
-	 l3MgMqKPetjdvHSh4k2/Ke0YvdlO0mzRYGC2NOfEfwOV/PmX9AdbSlBynJj4CrpWgC
-	 GiNYZG+WCZx/WAEEG+iO/1OcsudejKRhuz/nlkVLgmlN+3071krhAKT+xV5p6OWOfZ
-	 H0GmeDPTwDYl5XJvZsAfuQFa6OHL194/Doy0kv3KcYz/js88+XnGZRYIqvE7UQ3ZXd
-	 hvxM2mcjLhrj8thGw884hth2dTdJ3He/z4fgnoz0JKcNy7dxqObSneX17WjCVfoG+i
-	 UJAB1L/R4IbFA==
-Date: Fri, 31 Oct 2025 13:30:19 -0500
-From: Rob Herring <robh@kernel.org>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	b=j70pvV+SC94vUKhBHD8MQjUS05VvhFQfzM7I7ElZuOkGTFN/biEve4GPuD+mw6NE+
+	 AsQF+6RxXPXup+RO1x0FL8s9ipNAxL7t5TLX26pQ1PSO85xv6TqBkynY5ybRVRum99
+	 aGTCF0xJ0v9wn8J2QsbIChKckJkreP+bm/nOECTRtmZ6e6bHB8CRpQAebaD8IX4XV0
+	 7qfGbS5hXMh6JZoPt70UMKPMc5p2K2lFKdyO10ff85R38eesBNZ3BEcdDExOX+BfE1
+	 w+vyyDpqR/5v3q9M1GEHjX6dHVffIGwHPNRcG/zwUQoTPhU7zbCrQhoZFu61EbEolt
+	 81hXw9B364Yww==
+Date: Fri, 31 Oct 2025 13:31:23 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Peter Rosin <peda@axentia.se>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Support Opensource <support.opensource@diasemi.com>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Andreas Schirm <andreas.schirm@siemens.com>,
-	Lukas Stockmann <lukas.stockmann@siemens.com>,
-	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
-	Peter Christen <peter.christen@siemens.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH net-next v5 06/12] dt-bindings: net: dsa: lantiq,gswip:
- add support for MII delay properties
-Message-ID: <20251031183019.GA1606010-robh@kernel.org>
-References: <cover.1761823194.git.daniel@makrotopia.org>
- <8025f8c5fcc31adf6c82f78e5cfaf75b0f89397c.1761823194.git.daniel@makrotopia.org>
- <20251031002924.GA516142-robh@kernel.org>
- <20251031003704.GA533574-robh@kernel.org>
- <aQQbCs-zn4PfrS71@makrotopia.org>
+	asahi@lists.linux.dev, linux-sound@vger.kernel.org,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
+	patches@opensource.cirrus.com, Mark Brown <broonie@kernel.org>,
+	imx@lists.linux.dev, Lars-Peter Clausen <lars@metafoo.de>
+Subject: Re: [PATCH v2 1/1] ASoC: dt-bindings: consolidate simple audio codec
+ to trivial-codec.yaml
+Message-ID: <176193548186.1612475.2578905716183905679.robh@kernel.org>
+References: <20251031144622.4033833-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,69 +66,87 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aQQbCs-zn4PfrS71@makrotopia.org>
+In-Reply-To: <20251031144622.4033833-1-Frank.Li@nxp.com>
 
-On Fri, Oct 31, 2025 at 02:12:26AM +0000, Daniel Golle wrote:
-> On Thu, Oct 30, 2025 at 07:37:04PM -0500, Rob Herring wrote:
-> > On Thu, Oct 30, 2025 at 07:29:24PM -0500, Rob Herring wrote:
-> > > On Thu, Oct 30, 2025 at 11:28:35AM +0000, Daniel Golle wrote:
-> > > > Add support for standard tx-internal-delay-ps and rx-internal-delay-ps
-> > > > properties on port nodes to allow fine-tuning of RGMII clock delays.
-> > > > 
-> > > > The GSWIP switch hardware supports delay values in 500 picosecond
-> > > > increments from 0 to 3500 picoseconds, with a post-reset default of 2000
-> > > > picoseconds for both TX and RX delays. The driver currently sets the
-> > > > delay to 0 in case the PHY is setup to carry out the delay by the
-> > > > corresponding interface modes ("rgmii-id", "rgmii-rxid", "rgmii-txid").
-> > > > 
-> > > > This corresponds to the driver changes that allow adjusting MII delays
-> > > > using Device Tree properties instead of relying solely on the PHY
-> > > > interface mode.
-> > > > 
-> > > > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> > > > ---
-> > > > v4:
-> > > >  * remove misleading defaults
-> > > > 
-> > > > v3:
-> > > >  * redefine ports node so properties are defined actually apply
-> > > >  * RGMII port with 2ps delay is 'rgmii-id' mode
-> > > > 
-> > > >  .../bindings/net/dsa/lantiq,gswip.yaml        | 31 +++++++++++++++++--
-> > > >  1 file changed, 28 insertions(+), 3 deletions(-)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> > > > index f3154b19af78..8ccbc8942eb3 100644
-> > > > --- a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> > > > +++ b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> > > > @@ -6,8 +6,31 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > >  
-> > > >  title: Lantiq GSWIP Ethernet switches
-> > > >  
-> > > > -allOf:
-> > > > -  - $ref: dsa.yaml#/$defs/ethernet-ports
-> > > 
-> > > I think you can keep this as you aren't adding custom properties.
-> > 
-> > Nevermind, I see the next patch now...
-> 
-> I suppose you mean [08/12] ("dt-bindings: net: dsa: lantiq,gswip: add
-> MaxLinear RMII refclk output property"), right?
-> 
-> The intention to divert from dsa.yaml#/$defs/ethernet-ports
-> already in this patch was to enforce the possible values of
-> {rx,tx}-internal-delay-ps.
-> 
-> Anyway, so you are saying I can keep the change in this patch? Or
-> should I just drop the constraints on the possible values of the
-> delays and only divert from dsa.yaml#/$defs/ethernet-ports once I'm
-> actually adding maxlinear,rmii-refclk-out?
 
-You can keep it as-is, but strictly speaking, some of what's here is 
-only needed for [08/12]. Perhaps reverse the order of the patches. Then 
-it would be most of the changes here with the maxlinear,rmii-refclk-out 
-added, and then the 2nd patch is constraints on 
-{rx,tx}-internal-delay-ps.
+On Fri, 31 Oct 2025 10:46:19 -0400, Frank Li wrote:
+> Consolidate simple audio codec (one compatible string, one reg, one
+> optional reset-gpios and '#sound-dai-cells' 0) to a trivial-codec.yaml.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> change in v2
+> - update title to Trivial Audio Codecs
+> - update maintainer to rob
+> - add reset-gpios
+> - add charles keepax reviewed-by tag.
+> - add below
+> cirrus,cs4349
+> cirrus,cs4341a
+> cirrus,cs4265
+> "adi,ssm2602", "adi,ssm2603", "adi,ssm2604"
+> ti,pcm1792a
+> ti,pcm1789 (Add reset-gpios)
+> ti,pcm5102a
+> dlg,da9055-codec (already added v1).
+> ---
+>  .../bindings/sound/adi,max98363.yaml          | 60 --------------
+>  .../devicetree/bindings/sound/adi,ssm2602.txt | 19 -----
+>  .../bindings/sound/adi,ssm3515.yaml           | 49 ------------
+>  .../devicetree/bindings/sound/cs4265.txt      | 29 -------
+>  .../devicetree/bindings/sound/cs4341.txt      | 22 ------
+>  .../devicetree/bindings/sound/cs4349.txt      | 19 -----
+>  .../devicetree/bindings/sound/da9055.txt      | 22 ------
+>  .../bindings/sound/nuvoton,nau8540.yaml       | 40 ----------
+>  .../bindings/sound/nuvoton,nau8810.yaml       | 45 -----------
+>  .../bindings/sound/nxp,tfa9879.yaml           | 44 -----------
+>  .../bindings/sound/nxp,uda1342.yaml           | 42 ----------
+>  .../devicetree/bindings/sound/pcm1789.txt     | 22 ------
+>  .../devicetree/bindings/sound/pcm179x.txt     | 27 -------
+>  .../devicetree/bindings/sound/pcm5102a.txt    | 13 ---
+>  .../bindings/sound/trivial-codec.yaml         | 79 +++++++++++++++++++
+>  .../devicetree/bindings/sound/wlf,wm8510.yaml | 41 ----------
+>  .../devicetree/bindings/sound/wlf,wm8523.yaml | 40 ----------
+>  .../devicetree/bindings/sound/wlf,wm8580.yaml | 42 ----------
+>  .../devicetree/bindings/sound/wlf,wm8711.yaml | 40 ----------
+>  .../devicetree/bindings/sound/wlf,wm8728.yaml | 40 ----------
+>  .../devicetree/bindings/sound/wlf,wm8737.yaml | 40 ----------
+>  .../devicetree/bindings/sound/wlf,wm8750.yaml | 42 ----------
+>  .../devicetree/bindings/sound/wlf,wm8753.yaml | 62 ---------------
+>  .../devicetree/bindings/sound/wlf,wm8776.yaml | 41 ----------
+>  .../devicetree/bindings/sound/wlf,wm8961.yaml | 43 ----------
+>  .../devicetree/bindings/sound/wlf,wm8974.yaml | 41 ----------
+>  .../devicetree/bindings/sound/wm8770.txt      | 16 ----
+>  27 files changed, 79 insertions(+), 941 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/adi,max98363.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/adi,ssm2602.txt
+>  delete mode 100644 Documentation/devicetree/bindings/sound/adi,ssm3515.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/cs4265.txt
+>  delete mode 100644 Documentation/devicetree/bindings/sound/cs4341.txt
+>  delete mode 100644 Documentation/devicetree/bindings/sound/cs4349.txt
+>  delete mode 100644 Documentation/devicetree/bindings/sound/da9055.txt
+>  delete mode 100644 Documentation/devicetree/bindings/sound/nuvoton,nau8540.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/nuvoton,nau8810.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/nxp,tfa9879.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/nxp,uda1342.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/pcm1789.txt
+>  delete mode 100644 Documentation/devicetree/bindings/sound/pcm179x.txt
+>  delete mode 100644 Documentation/devicetree/bindings/sound/pcm5102a.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/trivial-codec.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8510.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8523.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8580.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8711.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8728.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8737.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8750.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8753.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8776.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8961.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8974.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/wm8770.txt
+> 
 
-Rob
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
 
