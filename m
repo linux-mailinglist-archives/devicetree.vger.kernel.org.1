@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-233576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 055E8C239FC
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 08:57:58 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76A99C23A1D
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 08:59:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DF4CE4E6EA8
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 07:57:56 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2330D34B45C
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 07:59:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3188328B63;
-	Fri, 31 Oct 2025 07:57:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89CBB328B70;
+	Fri, 31 Oct 2025 07:59:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mi6c9o42"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SbUSLubF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 716CA2868B0;
-	Fri, 31 Oct 2025 07:57:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E6E328B63;
+	Fri, 31 Oct 2025 07:59:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761897472; cv=none; b=fp4R9RMnVkKLcFOiwxLmjF/Esql3CRDi7QJ+H6PPBX7hty8Wu608yotJahSmEhqLqyBed8+R6DiyonDYW2pUmuKDARGmtw9AuDNZe2fnDM/Y71gPUw5w+9fZWMs5tu0ehbYqHLayA/fqyAMAPW1dzUpyF2IkOvBruY5rPZEPJDU=
+	t=1761897558; cv=none; b=Ns9W357Kl50bxRUFBWHc/uiFX/Ioy5M/EsYmFRLbpngb+3cmr4/I3tQkqwYmAg5FEAOs4pBW8Nms5hRJviytcc4ZydXUReBXuht5CCchm7Caz1bOj2gQP5R1HOwxzFQmBnFC+fKw+I9MQAAzlS6BHvf1V98RAfN6qbqH1O5YnLs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761897472; c=relaxed/simple;
-	bh=vQ/Dx8epVEdQRAojXTor7jEbqLmdUX/ovNoboeWfrE4=;
+	s=arc-20240116; t=1761897558; c=relaxed/simple;
+	bh=/fszV+dExO/J1cb7Xr8wY1ijLSyqy2hGp9+gTf7Zgnk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OV2pffhg3CB7CyXuFhfi72o87VBbvSs99z6WDffxVb/nXEufPxR/qTy2I8hlmEkFO8DxfHjXL86hikBIBw1JB8zc/v5TocJxK6FoXJDM+J3UU3jCoAbp434IgrhvRpPPyLErMvtlJFhkVpymcLgIigD49SoTOuKTc736hn5SCyQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mi6c9o42; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30E39C4CEE7;
-	Fri, 31 Oct 2025 07:57:49 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=BMBFG+ZeOTv0lbnNHkNFh3eOzvNdomvzzanA7qqDrdmS28+8Xf1a13Lh1Z8XNyyATi0zkscPVh6h1m5pNnR0xZBd3lWjxrm3kJuG/GfX5CvrxwZtiy5peCb992NRuhZ5sVIATv/o3aJjx8NEOUyhhRf/s+jt1GNrbRE26RY/Dl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SbUSLubF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF4F9C4CEF8;
+	Fri, 31 Oct 2025 07:59:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761897472;
-	bh=vQ/Dx8epVEdQRAojXTor7jEbqLmdUX/ovNoboeWfrE4=;
+	s=k20201202; t=1761897558;
+	bh=/fszV+dExO/J1cb7Xr8wY1ijLSyqy2hGp9+gTf7Zgnk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Mi6c9o42fJV5xgu+6CdlZZD9gd/QJLQaHdbeevzlap6aJGntUv33GT4cAFx4uYMMD
-	 La6RoxP6mlTTd3/czwwbivw7KibDaDBWjPYNo6mY5YxRvrTaK+Qi+Jbhl8FjhXQfBk
-	 cwB/0NwznQKkU98M5FRLrseRD6m54beuZ13jkFm2OrOOIrCNe13PaU61r4DhbhShQ9
-	 cq4ALwWfQvZEEff4E0bt9WkaBn0w0KIkW8FNJlvd4VnzM66Iu+paKcSTuzVUkreFzX
-	 o40e0ecOwuSHx0J3Dav9TjGlcjYUr1v3eF66Ca/E7i6weYP00kfQrVf339oRG5XeUX
-	 2LoK5kFniJXuw==
-Message-ID: <35d41d46-5bc8-43af-a84d-6b118fff08e0@kernel.org>
-Date: Fri, 31 Oct 2025 08:57:47 +0100
+	b=SbUSLubFgooU4uXGs0PhtroqQuGb+yRMBhePxRkg+9zOvhhtPkrjxWz5MpLG4o/gS
+	 3rL2bZqwBg9+eQ961HorWknPwOxr/pdG+evRj8cF0MtbJBmlPigFYQfnLCa6O4eGFg
+	 kImXVk2vy1nRrPhaKcaVVHzxXMxmb5jRKh7aLhxUYd1tahsfDzyD3hTqL3uxk7HDaM
+	 myqrnnA083fTre0d+00k1ewuMIMEwjZC3g1gyjtNhnwhabVANhZO1kAkH0csREYADb
+	 yFkmLvZGoh/WHZNQSM6ta9iYE30Wrm142oJMvz4nzjDSfFPJlfHfnVjT3Xf+s2Qb7J
+	 0Fi2QJ8I5IawA==
+Message-ID: <4540b5c0-1a31-4097-8ea0-e1377a193e5f@kernel.org>
+Date: Fri, 31 Oct 2025 08:59:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add support for ST TSC1641
- power monitor
-To: Igor Reznichenko <igor@reznichenko.net>, robh@kernel.org,
- linux@roeck-us.net
-Cc: conor+dt@kernel.org, corbet@lwn.net, david.hunter.linux@gmail.com,
- devicetree@vger.kernel.org, krzk+dt@kernel.org, linux-doc@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
- skhan@linuxfoundation.org
-References: <85e83f3e-3509-484b-8cc8-110156d5a2ab@roeck-us.net>
- <20251031044059.714744-1-igor@reznichenko.net>
+Subject: Re: [PATCH v2 3/3] dt-bindings: mailbox: Add Renesas MFIS Mailbox
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Jassi Brar <jassisinghbrar@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <87o6prsl2z.wl-kuninori.morimoto.gx@renesas.com>
+ <87jz0fsl0u.wl-kuninori.morimoto.gx@renesas.com>
+ <20251028-pastoral-efficient-mandrill-c4e9ca@kuoka>
+ <878qguv8fh.wl-kuninori.morimoto.gx@renesas.com>
+ <CAMuHMdW9sEcKprPjiA50QOWm7b_fwoEkuJcLLKg-srQxwJX43A@mail.gmail.com>
+ <87v7jx2t7s.wl-kuninori.morimoto.gx@renesas.com>
+ <5dd02143-861e-4b2c-af1b-79e6c57de076@kernel.org>
+ <87a5192bbm.wl-kuninori.morimoto.gx@renesas.com>
+ <877bwd2ap8.wl-kuninori.morimoto.gx@renesas.com>
+ <87o6pn3dl1.wl-kuninori.morimoto.gx@renesas.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,32 +113,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251031044059.714744-1-igor@reznichenko.net>
+In-Reply-To: <87o6pn3dl1.wl-kuninori.morimoto.gx@renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/10/2025 05:40, Igor Reznichenko wrote:
->> On 10/28/25 08:17, Igor Reznichenko wrote:
->>> Understood. The bit in question controls the alert pin polarity on the device side,
->>> independent of whether the pin is used as interrupt or not. I'll drop the property
->>> for now and revisit if there's a board that actually uses an inverter or needs to
->>> program the bit explicitly.
->>>
->>
->> This is kind of unusual. The requirement used to be that devicetree properties
->> shall be complete. "Only if there is a known use case" is a significant policy
->> change. Has the policy changed recently ?
->>
->> Thanks,
->> Guenter
+On 31/10/2025 05:22, Kuninori Morimoto wrote:
 > 
-> Rob, following up on Guenter's question above.
-> I'm not sure whether it's better to drop the property as discussed earlier or keep
-> it for binding completeness. 
-> Could you clarify what approach is preferred?
+> Hi Geert, Krzysztof
+> 
+>> 	compatible = "rcar,r8a78000-mfis-mailbox",
+>> 		     "rcar,gen5-mfis-mailbox",
+>> 		     "rcar,mfis-mailbox";
+> 
+> It is easy to confuse when contradictory comments are made
 
-Don't you have there possibility of interrupt (not only SMBus Alert)? At
-least this is what I understood from previous talks.
+There were no contradictory comments. I said absolutely nothing about
+compatible.
+
+> 
+> v3 will be
+> 
+>       compatible = "renesas,r8a78000-mfis-mailbox",
+> 		   "renesas,rcar-gen5-mfis-mailbox";
+> 
+> The file name will be
+> 
+> 	renesas,mfis-mailbox.yaml
+Again, read my comment. The filename must be EQUAL to the compatible.
+Which one? It is described in writing bindings which I pointed you to
+already.
+
+NAK
 
 Best regards,
 Krzysztof
