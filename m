@@ -1,108 +1,153 @@
-Return-Path: <devicetree+bounces-233732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CF8AC250EC
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:43:12 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA0A3C2510D
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:45:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78F213A4356
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:43:10 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5E7A834CA41
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:45:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF33E34A77A;
-	Fri, 31 Oct 2025 12:43:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE0A1B6D08;
+	Fri, 31 Oct 2025 12:45:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="KIY/eR+q"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tkuvf8gl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-183.mta1.migadu.com (out-183.mta1.migadu.com [95.215.58.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F15C5342CA5
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:43:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73A26183088
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:45:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761914587; cv=none; b=AGFnwgbGBFFMQ8Oj0cyqgBIJg2AAXpFkm/55d6ouYuZdCC0MzdVIK+SA2zm3v8N77abrvzKGdkvgRIzn3S2L+yPsLIpU4aQgnr+fsZSaT1XbSmHAYkOz9J8/GBU2p8ztgFLgUmqFhAHZ+aB6GB7K5lvr1oXrYXDQ90YXqqyCr94=
+	t=1761914721; cv=none; b=X5CFvadABKCThaNEA1RPSSrwg4lsOLsyPHLZ6qEfPhgBGSgwNnJxt1gYNiw4mHRyjnNRd2NJ/4wnQe4OnHeZOT2P0qAHNZExTVNLCIxmDanOhnO+VH76/uKDy3l6J+A7a8zOpI+Y4PlAMykNqszIFJhuweEsI/RtjewbZTJh03Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761914587; c=relaxed/simple;
-	bh=PLD/9RwCyc/wENbahoWPvbxicWmVeAGz1BL3RIu9cxE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QPP0hNznRIIXiWrjnSRpR4/Fu+t6UTFFGYOp0qDhEWJAOYev5b5tf5LtPVH4TCkeLms08eFrfCMktrc+vXEeOvF6O8isfN2FtLWsmQ+2jeSSohKg0GZSPK+uYqQ/MdM6kMudOnVFQd/Qiu0UzbahUE5YXKzdS+0YNSiJdZvvQI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=KIY/eR+q; arc=none smtp.client-ip=95.215.58.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
-Message-ID: <722a6cf2-7109-47e9-9957-cde5171d7053@postmarketos.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1761914574;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qBcoDhvBiRpbFrBHTGJxuS/5uthc7Xf+aqUT566+UzE=;
-	b=KIY/eR+qz/ils6v60wWH3T/RCgqwFResSB+xZ1PPuel1IdiFSAwnlBnEUY9hsUabolKn8r
-	4HD2rjsTLdTDtihF8ClUe0eGCsZvEr7xz5A4+iynARIoRSy/BuANrfHHp3zU0x6uQ7boy1
-	5KabZw0ZcOxGQV1ZmXK0H/yroDAbfmfn7EBFBxZvdqblnqkfSUQmNS9lTK9Bo5Se0rIvuH
-	99yRWEYAcxiCYNRLZT+Jyqtwg+wgpEwUTVmPrjhfS/bq2CzUHD9xrfLhozdvVQsW5yiVPW
-	YmcF+Zynh7HLDEKdZCXwv6bYGmBBJqqhdmolF/XUiiEWjQN4uNdmK4AO8Z2VSQ==
-Date: Fri, 31 Oct 2025 15:42:47 +0300
+	s=arc-20240116; t=1761914721; c=relaxed/simple;
+	bh=eShtlJ8Q5lLAIYL5hn7v+uZe4nyW0U4dTV2Vv/o37Is=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ME0tt3NbLQPHEy2U4yffd3xNh92BhbCIj4Y1AxAnH8HNcWE/dWtnWbs17F71fnHLAHKFEMsiahv8k27xHGtzaQfCrQy9hM95PHwRbOLzjcH6B7Yw3MzuvKEfOP9NJStdJ6dmag9EF4eHlPfQYnszwsoWz+Eve7H1z0KFWuNfgZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tkuvf8gl; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-46e6a689bd0so21677825e9.1
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 05:45:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761914717; x=1762519517; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cbj3gKZ0mzSwdkwPXRoDa/eaYfVSxFDtUK1SIosiT1M=;
+        b=tkuvf8gl1vis+wTuJce5VQPBQI8OXyaXxO7Oe/Kg9R2bBf0cZ0UiSOLp2ONdMl/YWF
+         f4CYcAixwuCSCiN3gSDFMuIU6HffGEeRTE+ig2ImLchnH0Yiibvyaik2S9QbKcR50J1v
+         G3xLFVAF/QA6VA09KivxvFLeIBDA/lC3E4en3TpVj43B1eJzaRz+BS2hyv/qMMBf9WuY
+         jlr76nUTkZZFz6SyDN18cuBdF3cJcdlzlYKn1Spcbw48fjyLvC5Hv5PSL/EjJpr90xkn
+         M6CnjRpCiVh7YzaOzkkkeRmf73UYHbhAHZ4xwxzVLin+vKUz/jTyGPSh+ht+wS7Eh/CG
+         hZmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761914717; x=1762519517;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cbj3gKZ0mzSwdkwPXRoDa/eaYfVSxFDtUK1SIosiT1M=;
+        b=DTwKBqyz1A+wlwbKWhw4PCqy/5QqpBQi0QrXbY1oDjdcBP2eq+0ERgF+QGxKYkTaHy
+         m05FY0TVZeE4oML6zLI7r7VZHopUPczjSaqpOvYDS2ICspBhuF1PCevXQOLOsm5ZqgMn
+         p8gwNsF1vuPWylHTecNPIWv7EX+E0SlxtJtPCBVbmpNBW20omvIgjJ2CNEjfWggGptFX
+         hB8PYlASu8H+8Ri4lv5+lq2mtksxtl67WNcp4NKzHbapDOG2g+NgIm9ozDaMZrcvrnl+
+         11FBSgsYhOoh8suQaEWb492KYG3ZJpmxmP6tqyxTPvncc/mGwO2zQz7Gmy8ih/NiS/2H
+         OiHw==
+X-Forwarded-Encrypted: i=1; AJvYcCX/qT/k2G8BwwmvFbtUzl1vO/bHKt1OklL1hS4ielxsRtz5i9xiGyXMWmCV+8GFocUAV1w+YgpNb6TD@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBfKf+Exmr0ifZ9seQYXbv831j6H8Lh/NvUoGF5OKl7Z1eh1fY
+	zUwrIsRFnDkmN635k9PXEf5zTUUh9l3ZcZ7nuzhZkvyB89FgEgOBr/PQeQZNH9o0gUE=
+X-Gm-Gg: ASbGncv2GtNTdReDgZ1EA7DiwVdaKYmMk9Qp256a1cgEcMY1xS/AZHagorxnXQk0gSj
+	pS2WxDBTvkU1Yjbt2hG1PtjbtuEu/YRmILYJiEXexAAFqNMj0wVO7b8tiJ92ZT3d3XaC8RRvlP6
+	qXf76LsMsUvHXAw/4IW848tRT9OA2fvlC/R7b3sioSnhLYj7Kp87mQajhstdT+0sqa1nj0T4eec
+	0yvu9sYdavNmafHM0u0PGt7klTmqQBhItQRZuCa344MjXjRTwlmcrvAn2f86sKN2qUr6cQmf7ld
+	P7xNZiw0y0a1Yz+0s0ys0a7gabOZunUCM5a6T52U5B4IWZ3Ps3NUf9NCpKJv/RQ00rG1GD7nM/s
+	2Ieqz7r8uaC54VfH8+Nuyi40fOqjSnKEVxN5xMOw+kBpCbJa/tIp7R/+W7EwguTe2HnNZX3xNp+
+	81ufc8NDQUw7sja+H5gzmX4X7v/J9sog1APGppGugV2Uv1wBcpGNof
+X-Google-Smtp-Source: AGHT+IHqy0NvjSEdkC5QA4dlobMBtMSys4ERttR9A7YfgXRw5s+9LrWnpqc3fCglT5Vt6XnCw3B/fA==
+X-Received: by 2002:a05:600c:4687:b0:45b:7d77:b592 with SMTP id 5b1f17b1804b1-477307c1f24mr29666305e9.12.1761914716741;
+        Fri, 31 Oct 2025 05:45:16 -0700 (PDT)
+Received: from ta2.c.googlers.com (213.53.77.34.bc.googleusercontent.com. [34.77.53.213])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47732ff7fdbsm31077535e9.16.2025.10.31.05.45.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Oct 2025 05:45:16 -0700 (PDT)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH 0/5] nvmem: add Samsung Exynos OTP support
+Date: Fri, 31 Oct 2025 12:45:08 +0000
+Message-Id: <20251031-gs101-otp-v1-0-2a54f6c4e7b6@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 0/3] SDM630/660: Add missing MDSS reset
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, stable@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht
-References: <20251031-sdm660-mdss-reset-v1-0-14cb4e6836f2@postmarketos.org>
- <25579815-5727-41e8-a858-5cddcc2897b7@oss.qualcomm.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Alexey Minnekhanov <alexeymin@postmarketos.org>
-In-Reply-To: <25579815-5727-41e8-a858-5cddcc2897b7@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+X-B4-Tracking: v=1; b=H4sIAFSvBGkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDA2ND3fRiQwND3fySAl2jNGOLVIskkyRzS2MloPqCotS0zAqwWdGxtbU
+ Av8ZwdFsAAAA=
+X-Change-ID: 20251031-gs101-otp-2f38e8b4b793
+To: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: semen.protsenko@linaro.org, willmcvicker@google.com, 
+ kernel-team@android.com, linux-kernel@vger.kernel.org, 
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761914715; l=1825;
+ i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
+ bh=eShtlJ8Q5lLAIYL5hn7v+uZe4nyW0U4dTV2Vv/o37Is=;
+ b=Cav6xp6EkVef+kR5+xm0NcqzjGfCB8JtxlbVHdTW7e4KMSsgOBlOfS4QS/NSWUZKRyXAq0Ff3
+ 4hPYHB6jVi2BPtPgXa6/b8DGjvet/fG+YJ7cfBVavtwrAhttcx6A8OS
+X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
+ pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 
-On 31.10.2025 12:21, Konrad Dybcio wrote:
-> On 10/31/25 3:27 AM, Alexey@web.codeaurora.org wrote:
->> Since kernel 6.17 display stack needs to reset the hardware properly to
->> ensure that we don't run into issues with the hardware configured by the
->> bootloader. MDSS reset is necessary to have working display when the
->> bootloader has already initialized it for the boot splash screen.
->>
->> Signed-off-by: Alexey Minnekhanov <<alexeymin@postmarketos.org>>
-> 
-> You git identity has two less/greater than symbols
-> 
-> Also.. thunderbird argues there's two of you:
-> 
-> 
-> Alexey@web.codeaurora.org
-> Minnekhanov@web.codeaurora.org
-> 
-> plus.. I thought codeaurora was long dead!?
-> 
-> My DNS certainly doesn't know about web.codeaurora.org specifically
-> 
-> Konrad
+The patch set has the typical dependency of the DT patch depending on
+the bindings patch. I propose thus to have the bindings patch taken
+via the Samsung SoC tree, if not all.
 
-This is a result of me first time trying to use b4 and misconfiguration
-of git: user.email contained my email inside '<' and '>' which somehow
-caused the prep/send process to generate emails with broken half-empty
-"From:" field, containing only name and surname without email. And then
-perhaps email server closer to your side decided to "fill the gaps" and
-append some non-existent web.codeaurora.org part? At least I don't have
-any better guess.
+Add support for the Samsung Exynos OTP controller. On the Google GS101
+SoC, this controller provides 32 Kbit of OTP memory space that can be
+read/program/lock using a specific sequence of register accesses.
 
-I will send v2 later and hopefully get this all fixed.
+The OTP controller register space is of interest as well because it
+contains dedicated registers for the Product ID and the Chip ID (apart
+from other things like TMU or ASV info). Register the OTP controller
+register space as a nvmem device so that other drivers can access its
+contents using nvmem cells.
 
---
-Regards,
-Alexey Minnekhanov
+Support for the OTP memory space can follow and be modeled as a
+dedicated nvmem device.
+
+Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+---
+Tudor Ambarus (5):
+      dt-bindings: nvmem: add google,gs101-otp
+      nvmem: add Samsung Exynos OTP support
+      arm64: dts: exynos: gs101: add OTP node
+      arm64: defconfig: enable Samsung Exynos OTP controller
+      MAINTAINERS: add entry for the Samsung Exynos OTP controller driver
+
+ .../bindings/nvmem/google,gs101-otp.yaml           | 68 +++++++++++++++
+ MAINTAINERS                                        |  8 ++
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi       | 17 ++++
+ arch/arm64/configs/defconfig                       |  1 +
+ drivers/nvmem/Kconfig                              | 10 +++
+ drivers/nvmem/Makefile                             |  2 +
+ drivers/nvmem/exynos-otp.c                         | 98 ++++++++++++++++++++++
+ 7 files changed, 204 insertions(+)
+---
+base-commit: 73f7017e663620a616171cc80d62504a624dc4de
+change-id: 20251031-gs101-otp-2f38e8b4b793
+
+Best regards,
+-- 
+Tudor Ambarus <tudor.ambarus@linaro.org>
+
 
