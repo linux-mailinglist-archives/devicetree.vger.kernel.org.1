@@ -1,217 +1,155 @@
-Return-Path: <devicetree+bounces-233484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE0E0C22DD8
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 02:23:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 335C7C22DE7
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 02:25:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B1EA84EC57C
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 01:23:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1625421898
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 01:24:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E148623B605;
-	Fri, 31 Oct 2025 01:23:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A540624113D;
+	Fri, 31 Oct 2025 01:24:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SvF2W5T0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52A7D22D7B0;
-	Fri, 31 Oct 2025 01:23:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1A523BF83
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 01:24:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761873790; cv=none; b=JNvXwLCPPll937QrUML3S++bgMUqVHYeAumBbGnT3mPbxA+4qqzax5YkZuNQDnJtksqtyQin2NrNiJpEiE+rwqVYT76INQgxc2eocsC9ZJKh8B4HYFRb1rbulZ8hxrUq1cIJuFFgQReS0iP/Aco3waQhqcugafkFIJjX5/eNa6g=
+	t=1761873894; cv=none; b=P0SUwLVQG8LsHPH+4ViFMi9xViiGGDsnXMsRAaXOnBm7Y5MsNgYTmJ1V8TVAJz5LAQuzn1KXM94FoyVfYAqc38tJpBqALai8Qz5CqMFAr/uyQnpU83Av3ZviPXRrqfIJQ8oUC0PgnoMtawOJw0COHTW27wCxH9a8BxUHw4Q8s5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761873790; c=relaxed/simple;
-	bh=jlmxFQimafhqBmUJkzBJtgtW68QKJSyDSZXPPeuZ/wY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kbb0JnkMpWCvwBhoG4gxQFztBVZhtk09yWN0eVv6vh0dioO839Fr7ZqqUS6CP8sPp919NK+c97ExL/6MKW89ti4+f7JW3inEw+38K7KBkdE+fNfLOiVu3KJ6Ifapnih7/mYpiy9KNDRinxsWOni1oB1iQzm4cS17GI8KU2q2pvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7370D15A1;
-	Thu, 30 Oct 2025 18:22:59 -0700 (PDT)
-Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 99D013F63F;
-	Thu, 30 Oct 2025 18:23:05 -0700 (PDT)
-Date: Fri, 31 Oct 2025 01:22:18 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Lee Jones <lee@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Samuel
- Holland <samuel@sholland.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] regulator: axp20x: add support for the AXP318W
-Message-ID: <20251031012218.7cc86801@minigeek.lan>
-In-Reply-To: <20251022075816-GYC1522542@gentoo.org>
-References: <20251021112013.2710903-1-andre.przywara@arm.com>
-	<20251021112013.2710903-4-andre.przywara@arm.com>
-	<20251022001420-GYA1522542@gentoo.org>
-	<20251022014706.2475539d@minigeek.lan>
-	<20251022075816-GYC1522542@gentoo.org>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+	s=arc-20240116; t=1761873894; c=relaxed/simple;
+	bh=1O5Q6QjcYdLu+tr6/vdj/EJ3D91zuR19wO0QY5I8Boo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gplEw0TDdMlsmA9BwBXxul1cEzrp+n46StHG+rjPvpc+4GhSF+aqPLncnfz1iNvKqHVE+FxDGaOXVNLKnO7sXUJcHBhuvbtSWOvI5udxq76zoDmOlbz4HolGwcpza4ZJ7XXFOtQ616309sUEWikQooKW4S3JLTFnI0FPkmajASM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SvF2W5T0; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-28e7cd6dbc0so21472255ad.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 18:24:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761873892; x=1762478692; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4k5u4IDHa2ldPO/YRgbWN7ExpsWnE3pSTkUg9MZsePQ=;
+        b=SvF2W5T0rRMj+hqOKjR14mfT5talv1v6rA0Za0tJ8x8kj2iPTWx4J9LYJ9Uwo8KnLE
+         EO+mcU3c7ChrHYZmIw2Cnqc4fI3uPUr0XKUNHJhUVMA3JoaPqpbFYemmD0vWIFyfA2rw
+         Fp3Bp7UvH4W45IgM8ZFlvmt4vQIPDeSYvthOh9HbfcjuoEov4LFJaWP0sJtCi8dN5Hr5
+         CaMWLd79Tki1v/EsX1XoFtARzrOBfOqrHMbwSaGjFoOR4Qf0dxiuAGPs7mRtWkYXiWrr
+         MsDoZimsYbmyo6zowP41pUOojysWgczJRWPa42US4ZxbDBE14vNw21agCDKfF7QJcbX0
+         svVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761873892; x=1762478692;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4k5u4IDHa2ldPO/YRgbWN7ExpsWnE3pSTkUg9MZsePQ=;
+        b=snOlt/d/AJcQtYOkHozuoHlbw4SemzHM9KA+lgqkGUcYH9a6oimRkqlxJmMoUzRKx7
+         1PNL0VK8EKH0gMeEqOW3XgV2G/WeJ+6re9b6PQ5Wmo8nT3W0qLLrYX9qh+DThlTh0ko5
+         EmfcDyxDmetvOgLONPdKIHCGOGzF/zsa8jVHhJvOeciUiv0XM4bjTNKXLSVQmKFzMXGV
+         paqWsCyVsgnpR7cA6x6vaqahH7kMRtwWNAum7xjkv3q+g/+xgQ+UcJM7nO/vaCYXuM/W
+         SDVgVpbq2wF+WmL/lKHk7+fWL/12XaJkx6avSBg7pzaX7nZDcbTMXWDzGcPauVEI0KFE
+         SgNg==
+X-Forwarded-Encrypted: i=1; AJvYcCXhoySIRNjvKqpho4xw/Tg+hc4CabgUsgJ5XxPGBSfx9z1EuQ25xoxKViVS5LBum1XePu6BEyjA7et7@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIzEqcBCMpTB5YHmTjSD5BMsLQZTj6HYvq5Ok3Ru+hNQrrt+SI
+	skg/wbcEHXSiyHb2XdXqZGS0pcp0fZlsvMFRzS5O7eWsUZlgm+8MSjpx
+X-Gm-Gg: ASbGncvBEc3pTHo/1H5dI9FddnGxx+KY0B0wX3DNkyqgVO2qArWxkZ8D449JzTNjMom
+	/mJdpewGIVunniHNvc7sZqwahKUzog0JiLd61o1JA8XxbU933OMafixhRtGMsHwovdb7Pea6+Xq
+	qb5fk1NSeRx7sG0hmlzPmZaauhN5lpsmtmEP8RJMt/++fe34WsYMakVr2MrouJmtnVURtYshq4Q
+	37pPGKqB6X/pwh5dyLWAsx75K6jwKmYpyxqq/zF68ByVvrBYOzVxuFVCVK4mInI5QPT8fdKy2r/
+	E4R0pH4qQjqIM4FeKf7K34F2CPL3s+sD1T9pkSbCYTcgl2rcvbkBjApvj7n87ZdeM/tqfyLN9BM
+	rwbShAZCXYZjCco8fe9gWbiUTjzL2g2m++um+sGncC1AGt/sd5x4CyePKZG1Ahdo1cfeqCne1pS
+	U=
+X-Google-Smtp-Source: AGHT+IEKj3bBCS9FtDr97rBmPSsnGuT/6Hzs7PvtGv6PRK2iG5dvba7cpbCl+e/48QRV8/RBzMyxUg==
+X-Received: by 2002:a17:902:c401:b0:24b:182b:7144 with SMTP id d9443c01a7336-2951a38fdf9mr20303525ad.7.1761873892179;
+        Thu, 30 Oct 2025 18:24:52 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2952699baabsm3091035ad.76.2025.10.30.18.24.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Oct 2025 18:24:51 -0700 (PDT)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Han Gao <rabenda.cn@gmail.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Vivian Wang <wangruikang@iscas.ac.cn>,
+	Yao Zi <ziyao@disroot.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: [PATCH v5 0/3] net: stmmac: dwmac-sophgo: Add phy interface filter
+Date: Fri, 31 Oct 2025 09:24:25 +0800
+Message-ID: <20251031012428.488184-1-inochiama@gmail.com>
+X-Mailer: git-send-email 2.51.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Wed, 22 Oct 2025 15:58:16 +0800
-Yixun Lan <dlan@gentoo.org> wrote:
+As the SG2042 has an internal rx delay, the delay should be remove
+when init the mac, otherwise the phy will be misconfigurated.
 
-Hi,
+Since this delay fix is common for other MACs, add a common helper
+for it. And use it to fix SG2042.
 
-> Hi Andre,
-> 
-> On 01:47 Wed 22 Oct     , Andre Przywara wrote:
-> > On Wed, 22 Oct 2025 08:14:20 +0800
-> > Yixun Lan <dlan@gentoo.org> wrote:
-> > 
-> > Hi,
-> > 
-> > thanks for having a look!
-> >   
-> > > Hi Andre,
-> > > 
-> > > On 12:20 Tue 21 Oct     , Andre Przywara wrote:  
-> > > > The X-Powers AXP318W is a typical PMIC from X-Powers, featuring nine
-> > > > DC/DC converters and 28 LDOs, on the regulator side.
-> > > > 
-> > > > Describe the chip's voltage settings and switch registers, how the
-> > > > voltages are encoded, and connect this to the MFD device via its
-> > > > regulator ID.
-> > > > We use just "318" for the internal identifiers, for easier typing and
-> > > > less churn. If something else other than the "AXP318W" shows up, that's
-> > > > an easy change, externally visible strings carry the additional letter
-> > > > already.
-> > > > 
-> > > > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > > > ---
-> > > >  drivers/regulator/axp20x-regulator.c | 170 ++++++++++++++++++++++++++-
-> > > >  include/linux/mfd/axp20x.h           |  43 +++++++
-> > > >  2 files changed, 211 insertions(+), 2 deletions(-)
-> > > >   
-> ..
-> > > > +
-> > > > +static const struct linear_range axp318_dcdc8_ranges[] = {
-> > > > +	REGULATOR_LINEAR_RANGE(500000,    0,  70,  10000),
-> > > > +	REGULATOR_LINEAR_RANGE(1220000,  71, 102,  20000),
-> > > > +	REGULATOR_LINEAR_RANGE(1900000, 103, 118, 100000),
-> > > > +};    
-> > > 
-> > > In the AXP318W datasheet, it says:
-> > > section 7.1 DCDC/LCO desgin
-> > >  8. DCDC6/7/8/9 only able to tune at two voltage ranges which are
-> > >  <1.54v and >1.54v, the tuning voltage should not step cross 1.54v
-> > >  (I translate the original doc into english)  
-> > 
-> > Thanks, I now read something similar in my Google translated copy of the
-> > datasheet. But I don't understand what this is supposed to mean? That
-> > exactly 1.54V does not work, so the value of 87 is invalid? But any
-> > other value can be set?  
-> I did a hard chinese - english translation..
-> 
-> No, I think it's probably a mistake that if user interpret value 87 as invalid,
-> from my understanding, DCDC6-9 only able to tune the voltage in two ranges:
-> (if user need to adjust the voltage dynamically)
-> 
-> a) range 0.5v - 1.54v (probably include 1.54v)
-> b) range 1.54v - 1.9v (probably also include 1.54v)
-> 
-> but can not tune in this case, example from range 1.5v - 1.6v which will
-> cross 1.54v point.
+Change from v4:
+- https://lore.kernel.org/all/20251028003858.267040-1-inochiama@gmail.com
+1. patch 3: add const qualifier to struct sg2042_dwmac_data
 
-I am not sure I fully understand: as far is this driver is concerned,
-these are just translations from target voltages to register values,
-there is no notion of some transition or slope. The upper layer is
-free to program any value it wants. So I don't know what the
-restriction is, really: is it that the first value programmed to this
-register sets a limit? So if you set something below 1.54V, you
-cannot program anything higher than that later? And how do you get out
-of this, by disabling the output, and re-programming? And do we really
-know that, or has someone verified that, or is that just what written
-in the manual?
+Change from v3:
+- https://lore.kernel.org/all/20251024015524.291013-1-inochiama@gmail.com
+1. patch 1: fix binding check error
 
-And if that's the case, I don't see how we can model this with the
-current driver. It's highly irrelevant anyway, since most voltages
-programmed are fixed anyways, and for instance on the Radxa A7E are all
-well below 1.54V.
+Change from v2:
+- https://lore.kernel.org/all/20251020095500.1330057-1-inochiama@gmail.com
+1. patch 3: fix comment typo
+2. patch 3: add check for PHY_INTERFACE_MODE_NA.
 
-So long story short: I would ignore this until someone reports an
-actual issue. For the boards at hand I don't expect any.
+Change from v1:
+- https://lore.kernel.org/all/20251017011802.523140-1-inochiama@gmail.com
+1. Add phy-mode property to dt-bindings of sophgo,sg2044-dwmac
+2. Add common helper for fixing RGMII phy mode
+3. Use struct to hold the compatiable data.
 
-> I don't understand the logic behind but guess it's up to the HW/SoC
-> restriction in the design perspective..
-> >   
-> > > 
-> > > so, with this restricition, should we split the range into two?
-> > > one is dcdc6_lo_range, another dcdc6_hi_range
-> > > 
-> > > or what do you think?
-> > > 
-> > > ..  
-> > > > +	AXP_DESC(AXP318, ELDO1, "eldo1", "eldoin", 500, 1500, 25,
-> > > > +		 AXP318_ELDO1_CONTROL, AXP318_ELDO_V_OUT_MASK,
-> > > > +		 AXP318_LDO_OUTPUT_CONTROL3, BIT(6)),
-> > > > +	AXP_DESC(AXP318, ELDO2, "eldo2", "eldoin", 500, 1500, 25,
-> > > > +		 AXP318_ELDO2_CONTROL, AXP318_ELDO_V_OUT_MASK,
-> > > > +		 AXP318_LDO_OUTPUT_CONTROL3, BIT(7)),
-> > > > +	AXP_DESC(AXP318, ELDO3, "eldo3", "eldoin", 500, 1500, 25,
-> > > > +		 AXP318_ELDO3_CONTROL, AXP318_ELDO_V_OUT_MASK,
-> > > > +		 AXP318_LDO_OUTPUT_CONTROL4, BIT(0)),
-> > > > +	AXP_DESC(AXP318, ELDO4, "eldo4", "eldoin", 500, 1500, 25,
-> > > > +		 AXP318_ELDO4_CONTROL, AXP318_ELDO_V_OUT_MASK,
-> > > > +		 AXP318_LDO_OUTPUT_CONTROL4, BIT(1)),
-> > > > +	AXP_DESC(AXP318, ELDO5, "eldo5", "eldoin", 500, 1500, 25,
-> > > > +		 AXP318_ELDO5_CONTROL, AXP318_ELDO_V_OUT_MASK,
-> > > > +		 AXP318_LDO_OUTPUT_CONTROL4, BIT(2)),
-> > > > +	AXP_DESC(AXP318, ELDO6, "eldo6", "eldoin", 500, 1500, 25,
-> > > > +		 AXP318_ELDO6_CONTROL, AXP318_ELDO_V_OUT_MASK,
-> > > > +		 AXP318_LDO_OUTPUT_CONTROL4, BIT(3)),    
-> > > 
-> > > also, in section 7.1 DCDC/LCO desgin
-> > >  3. ELDOIN can use DCDC's output as the voltage input, once in this case,
-> > >  the LDO (output?) config voltage should lower than DCDC input voltage.
-> > > 
-> > > Note: ELDOIN can use PS(Power Supply, should be equal to DCIN) or DCDC as input
-> > > 
-> > > in case of Radxa A7A (A733) board, it use DCDC9 as ELDOIN,
-> > > Should we do something in the driver level? or leave up to user  
-> > 
-> > "User" really means board vendor here, right? As the actual board  
-> could be user from software level perspective, who use or design this
+Inochi Amaoto (3):
+  dt-bindings: net: sophgo,sg2044-dwmac: add phy mode restriction
+  net: phy: Add helper for fixing RGMII PHY mode based on internal mac
+    delay
+  net: stmmac: dwmac-sophgo: Add phy interface filter
 
-No actual *user* on the software side would program those voltages,
-those are all described in the DT. Again, if the board designer didn't
-consider this, it's a major fault, and it just wouldn't work.
+ .../bindings/net/sophgo,sg2044-dwmac.yaml     | 20 +++++++++
+ .../ethernet/stmicro/stmmac/dwmac-sophgo.c    | 20 ++++++++-
+ drivers/net/phy/phy-core.c                    | 43 +++++++++++++++++++
+ include/linux/phy.h                           |  3 ++
+ 4 files changed, 85 insertions(+), 1 deletion(-)
 
-> > user is not meant to adjust those voltages anyway, and any range
-> > limitations should be considered during the board design phase.  
-> I'd be fine if push these up to designer, and blame them for wrong usage
+--
+2.51.2
 
-Yes.
-
-> > So yes, DCDC9 is at 1.24V on the Radxa, and ELDOIN is connected to
-> > that, but only ELDO1 and ELDO6 are used, and they are fixed to 900mV
-> > and 800mV, respectively, and connected to SoC pins that require exactly
-> > those voltages. So there is no room for change or to adjust things
-> > here, and the requirements are met.  
-> for this single case, right, we shouldn't worry about..
-> 
-> > If board designers/people ignore that, that it just won't work, and
-> > they get to keep the pieces. Nothing the driver can do here.
-> >   
-> from a driver level, at least we can emit an error message to alert 
-> user of the wrong voltage value set..
-
-But where would you do that? Is there a callback or hook, where we
-could check this? I don't see any.
-
-Cheers,
-Andre
 
