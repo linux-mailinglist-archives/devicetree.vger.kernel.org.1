@@ -1,171 +1,193 @@
-Return-Path: <devicetree+bounces-233944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E64BC26F79
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 22:00:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31704C26FA7
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 22:06:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 16E0E4E4F98
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 21:00:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D9061B27FAF
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 21:06:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56D031A9F8D;
-	Fri, 31 Oct 2025 21:00:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FE96298991;
+	Fri, 31 Oct 2025 21:06:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="hDOMS/AT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KdTQF6nI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010046.outbound.protection.outlook.com [52.101.193.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B66C11C695;
-	Fri, 31 Oct 2025 21:00:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.46
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761944430; cv=fail; b=SUzTNqsptx7UtvcjJMJVkwsykCWtsV1t6rGNL7hhUBsAremMYgG+Y309tcKk0Qj2MEDfViszwJgGQ6OFrcIVPgDaGQ3gv1I/FkadbMsByf8nDNMWng2XeSmxpZKoaeobNDb0P3NPQFJKTKzX+kD4A9G2fG9sEVbxl5oQu6Hx6Sc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761944430; c=relaxed/simple;
-	bh=Tduzn1VYg6Hs2/R+01qFBYX3s9z9a0wjUp7pOXmwbXM=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=in55C0i5Q9t7qnSvQEIWwCxyi/ZCBB4hrcsf1mFEA7ciZDSZMfMiHJ4og/yLIzlsSU3WrfOFxj8ENcm73BfisOszAEnARdywacf9ptx+H5VSLEOs26ibW1ho/QGKWpxmLFNYqyWpkKN8LUEhbeuP+1BxZ9EHx0LX/sQ4Xde+kbY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=hDOMS/AT; arc=fail smtp.client-ip=52.101.193.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vWKO0Mdw2KLIaeFwtazqt3BgGQ4tN7ou3QJmLsvwZ/4lg9GKWzQRL/Xeh+n1LKyI4rFcmt+3XPOPkEzVutf0hsQlQC5Pu3VjSjwrApizVNxTjhVNhOguneVqbXTemCHt3DGGwKOmhCv1NwN49ENekiZOYA+SGCQQ9OWUumGBWZsGfDVWWpjcCtkMXhsFkPDb9X2S63wdX8GyNCZgDJX5X57JhKz4D855fPWPXdfsGZrRe/ywhjOwLhUwHuu+lFB3lVn77EfhYv3E29DVA1suGiMuAMjtKn2ENXkEz/Zkqwf8h8t2GSFSZc9vwJppVbXR9BeNxJwaachpQkSvNom9uA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iRcR63eSkad99HHrIf8c3stt2LgXQ3oTsHFraoTOF8o=;
- b=weQqi7xkr2bXuY5VGcRsHhCFMpOJTPhaTvOkK53UmUj+gaVhah9ofgQTG1PsQOcMqSAIy6x1G6mUdKfl4Lg+x5v7lIVB+Fdf+k/QD3zO0riij07x+k3sLzu1d1AVOlQBzy9zLXOU4CSyketTfuPPljROw2ZN7Le7DeiN+khJulr+dEkqUbjmoG/sZQx8AorEWIM1qhhKHihbdBRKHW+LMs5N/ss69qIEzwejP4ZdWNR4d8597KJVXunFW4qvSH/Q7oETjSMFvozcx929vPYVpBpUsUhL3HkXRfatZ3HPiq38vjVEXDUsjckKwIKlrtOdnzFhWRwntPp1j/LtJsBcRw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.232) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iRcR63eSkad99HHrIf8c3stt2LgXQ3oTsHFraoTOF8o=;
- b=hDOMS/ATNpMkCpre9zjRG1WX608KezVxQtLmAwmvUwX+mYe9tnnWu7ItxedrRM0ywDcRxmC4cPTEPsUcNT6jMYoszxDaht/EIMxjYdv/66xOzINYrB1nUbS1C+g7b0uaDACKkB2ZdrNibH1ClkDUeUCANlZOkuIe2vK0J0cHxdiK8IuZ7DbScw1gg/t8F94PMA2+NXIG3PYfGam8QWyLGXPw9BiKfQBxM6LuhQCtE3yrmQsktJWixrLXmKraqQSAHvQ1gIaWUklLQyfeiQBWB3er5JSSVoipSupZbf6MKbHL6nRchMB5BrHmbjuJCXTyGddI+3qk2194WEgXdmlItw==
-Received: from SN7P222CA0025.NAMP222.PROD.OUTLOOK.COM (2603:10b6:806:124::35)
- by DS0PR12MB8293.namprd12.prod.outlook.com (2603:10b6:8:f3::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9275.15; Fri, 31 Oct 2025 21:00:24 +0000
-Received: from SN1PEPF0002529E.namprd05.prod.outlook.com
- (2603:10b6:806:124:cafe::b1) by SN7P222CA0025.outlook.office365.com
- (2603:10b6:806:124::35) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9275.15 via Frontend Transport; Fri,
- 31 Oct 2025 21:00:24 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.232) by
- SN1PEPF0002529E.mail.protection.outlook.com (10.167.242.5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9275.10 via Frontend Transport; Fri, 31 Oct 2025 21:00:24 +0000
-Received: from drhqmail203.nvidia.com (10.126.190.182) by mail.nvidia.com
- (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Fri, 31 Oct
- 2025 14:00:06 -0700
-Received: from drhqmail202.nvidia.com (10.126.190.181) by
- drhqmail203.nvidia.com (10.126.190.182) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.20; Fri, 31 Oct 2025 14:00:05 -0700
-Received: from Asurada-Nvidia (10.127.8.13) by mail.nvidia.com
- (10.126.190.181) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 31 Oct 2025 14:00:04 -0700
-Date: Fri, 31 Oct 2025 14:00:03 -0700
-From: Nicolin Chen <nicolinc@nvidia.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Ashish Mhetre <amhetre@nvidia.com>, <will@kernel.org>,
-	<robin.murphy@arm.com>, <joro@8bytes.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <thierry.reding@gmail.com>,
-	<jonathanh@nvidia.com>, <jgg@ziepe.ca>, <linux-tegra@nvidia.com>,
-	<linux-arm-kernel@lists.infradead.org>, <iommu@lists.linux.dev>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-tegra@vger.kernel.org>
-Subject: Re: [PATCH 2/3] dt-bindings: iommu: Add NVIDIA Tegra CMDQV support
-Message-ID: <aQUjU/mgccX7mt8R@Asurada-Nvidia>
-References: <20251031062959.1521704-1-amhetre@nvidia.com>
- <20251031062959.1521704-3-amhetre@nvidia.com>
- <20251031-witty-sociable-chachalaca-b73dbc@kuoka>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 966E726ED21
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 21:06:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761944784; cv=none; b=PUhm8XujdgAkZQ8PymAIyZiIcwcLciVxcLaPG/wBz3fv0oXoMpnj06UeThqnWwR3+Pmf8qDYlTviO8YvO5PUw+IP2YmTE7nF283RwXKtDUctoO6pnIFzL8YLGOnIk/RnMZC8g9scEL/6lFQ60a7xiCxoj82KhAr8TmLn0oL+nuQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761944784; c=relaxed/simple;
+	bh=ZQ8kJ/dQVhvAPrJjeJICrE9lcMOn5vbnS0hI7K0vOqE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YZpmuByzKJ1cwPbfNiVvzW0n0HCftbo3RzrKr78MCYbT3UAq/MxGjvNhiGYiyV4tRevYhR38HbilP6q9hP5gl0vWY1E/+J5iVWAuvFnTNajmpbTLUTVphkgA7O5EZWHmZkAhNipSMG2r3CHiAxyaL6QfesAe35SdraifJ/Gs1Y4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KdTQF6nI; arc=none smtp.client-ip=209.85.128.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-786583618d8so5074247b3.2
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 14:06:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761944781; x=1762549581; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZQ8kJ/dQVhvAPrJjeJICrE9lcMOn5vbnS0hI7K0vOqE=;
+        b=KdTQF6nIOCkJvRxfFMQQkkrpr6lmEuf7pbpriKg4wNp0MXwV54aRbM1g0NRIFJuVzv
+         y2lyXfLw3LhxoAmyBxQaIOUysMqIj/SaumDWF5UVLqZQOUbxXkIqWTHYiCwu+TMlGhek
+         bWTC2UxZL5BnUISTNf3I4naf0lAeODfI1nXDY8AQZphPgllxWOkLXlXfORJFn0T2qVVs
+         MQ6jZa65fEF+jKCenLh2K6gmWyOkSzt0cvfQ8r+h5Gp85C2jdJjxeiQ7jpN7SmeSNkcK
+         pIHaGpK3gTFiUCbDK54b6Xo331/G6b6TyLc6T1TQquZTSzYEfEHTn67B4ptHRidnJsWh
+         cM9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761944781; x=1762549581;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZQ8kJ/dQVhvAPrJjeJICrE9lcMOn5vbnS0hI7K0vOqE=;
+        b=dqpIktXugx6RaYBVV5OJUlukoIJRQF9OxozLFEZOISmLrvlX/m7kaz38SHFU3N/hxi
+         DUOCb3wFKFZ0rDkhKWHittogNqroPseaPkiBslqMh0PyaoqlEF6wnnCNYuH+HdmxqpF1
+         sWIgN3oQ5Id9G38OAfnU+IUJE+2K65afV6vU8GM84d8ohvJfdI8Q1Zvf5sbmbML9ZPrs
+         e2W5Z08HSMA35khD49Z5jCpFdYIcfZp2fbmSPSrDmWnPScMN7NvXOWIEPnwX4La/u2Ky
+         /Jzdh73PnRXh4NzUPY+j4SAjhdFsMrzFrCMYsZWiuX7WUkuznDZIeuNpPWF5mTeysYYp
+         uFFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWxIJULVuE69QzVzOz5Pr0sZEaQErpQIZQFoQZ6NLxLDUoKIOGipRCJDLk/R4J9+iOJHYtrSEWc5F59@vger.kernel.org
+X-Gm-Message-State: AOJu0YybqW9uSi04mystmdDKod2uOQfEP18HioZ5aX8KQzUJtiECr6CX
+	kFoVVH/tO10qevRnwxcC9hBMHzxuXmcfYz3dNu5fprF2rwR8fo8cML2dK3m1wLzzqFz0T3fDjf0
+	tiqAAuBCeOSjk5sCiITYzG6ooASIdeFY=
+X-Gm-Gg: ASbGncsObKSbQl82yKratgFGRpAfmTe3iVWWmQi7/iEWZ4S/lCJz7X7o3Cwa+UJQy7U
+	hffNxbUQzpx3S/eyT41Api1j5LweBfAzlRgQwVj3eKPM3rbJ4OxlR/7vGyQXrhXiQeV1GADTGRj
+	3ZKZasatCusiVQWMGzfzlFELnfBTCZoebFGMHl/GYxdzfyO0oqHGjDkkl/cFh6mH2Fq9dUhrMuH
+	4eBgERJXMrUym1k+auS434MrLXWEi6i8unXEHUZtEwKDgV5oT5DJ1D96JmAGQ==
+X-Google-Smtp-Source: AGHT+IE9sBE0jM85fWoe+G8dRBhCXA3kX4jwHQnI5VFiFvn+DYXwglZxhpeYQTVBqJJN5EkFNvDu2iBSj3Q8Q2wI6b0=
+X-Received: by 2002:a05:690c:d88:b0:784:ab8d:4b97 with SMTP id
+ 00721157ae682-7864856cc5dmr46049457b3.58.1761944781434; Fri, 31 Oct 2025
+ 14:06:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20251031-witty-sociable-chachalaca-b73dbc@kuoka>
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002529E:EE_|DS0PR12MB8293:EE_
-X-MS-Office365-Filtering-Correlation-Id: b15feded-d508-41c3-01f8-08de18c082e8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700013|1800799024|7416014|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?c/Cl4llGOpzFNh3Yoy0vS7Kx4oDSH1w8EPJ5BszjFfJFFeTs1OMDtHsMNiDD?=
- =?us-ascii?Q?Lbmctt2e3PdrcIc6Oz5Ro44hnf+58RRUNe0bQCDpQ0b3RHDW59kYb7ASYnsd?=
- =?us-ascii?Q?KecmQcTjbeeceWeShwWoNdyvmFkYn/aVWbFYSJlVwi6RrO9TcP8parNfTp2x?=
- =?us-ascii?Q?xDrgjqT3EHDjFwcdeVg1ycaoSCSn3aN+3Mx+1N49lVblz05ytgdo3wY1dQ1b?=
- =?us-ascii?Q?vaOni9bjOgx+kZoQqw8lWZ8xqWeJLlw7M8gpKKNgwIar8uridv54smRDTwM3?=
- =?us-ascii?Q?ZoviNXMVDUOC2tq59TQ1mk95Z0FM/BedH6kLyMvfvh5+AMmoopG7BPg3Yxll?=
- =?us-ascii?Q?IW5HJueIWVE+5vIYFbwhF9bAn5FocUhmccP0VC82q7BR+cFTbvkVqRyWtznp?=
- =?us-ascii?Q?MIvo6oxS9Cy8SbmQzzrmZ1x6QkO/0HYXKn45OVvfEzLo37jn6kmVLu2hNJ35?=
- =?us-ascii?Q?Uyg1ly3CjxizJmnAyigyGsu9/agOm0baThiNwooVxWg9kHMaSf6vFba1uMPp?=
- =?us-ascii?Q?2Ro5+NP7Xi5UyU8DaFEErCkY9S8sFKB+YnFwpSC5F60JNUOow8mLP9pHVjLw?=
- =?us-ascii?Q?4/jVzcpovWfbnACjHBBY/uFnz6RtjDKh0VEZvNuJdnVK6rxY8duLfre2idMP?=
- =?us-ascii?Q?6uKuzjCzi/Vm8+EuD24gonnCwVCijGHTGPk/Y/2D9T9+ICW7BHfSU9d7eLh5?=
- =?us-ascii?Q?Gy9Wvhvc4aBzi5H9GfzYJD81vjWSV7jtpCRvwMVTIxoazd23CLyxluSzxPJs?=
- =?us-ascii?Q?KbQvDRRSVqtWKKLKb08xOc1N4pa+uv4taYyrDmP5uR3alRWl/a/4yBptKN95?=
- =?us-ascii?Q?91Kqov5er8APN3efmPcR4SDQn81gsKTOjPpE2VJYCGAn6dgtMjJGeTAHshua?=
- =?us-ascii?Q?AOs6kYjXgXXiUOEzyF9AhtZ7KFd+3EKExDF09i7Jocy1CI7eREDcGQikrZkx?=
- =?us-ascii?Q?mYT/YSB7H+15nBu1V7AuMAai+nQQ7rhsVnk2XgNKkEZ5BynV1C9MlaTiQVwu?=
- =?us-ascii?Q?XmolAuXAUCYpOciUU/Gb5bjNjqHUcQt6CB/Mmi8Ghp9blMQQL6Eyw7up67bC?=
- =?us-ascii?Q?ljdfWq/VhcoaXsRvwtNJDRPPO0QnVO4NHmyLpt2+vwhmbzgmoPn8Nw7MZGLG?=
- =?us-ascii?Q?uorVaejBVWCkO5aRYCCp5ryLAopiEFRRrsTevKtqtrGDKiAamucBLTOgwKwp?=
- =?us-ascii?Q?5DtvwwwaFgYbW3Cg8VTTAoQFBSgi1icgwHXA+N3Ip7iBmi+ISNPMSF5Dcnbt?=
- =?us-ascii?Q?VrSfPAPcSRTiabaTH9WU2YKIL0aGYX+Ef4QyynZyQChmNhGhHVjUVdi3AJlj?=
- =?us-ascii?Q?/6plgKG6z8Adw1MLh3s61YGr2YGJpz3gri/yTgxg1WvGKXezrtxSlwxMFAo2?=
- =?us-ascii?Q?XJsgR90DMdCA/3BjdH5bkOsgPY9lqDtCSZMxhInByLTT8tlM3WjRf6WqrxBd?=
- =?us-ascii?Q?cMN4GuFTQox9ZhdaaUOa98k9q1bP1qXubchnkg8wwMMFeN+x+tYiVtnmXezc?=
- =?us-ascii?Q?QZf66pSLcIFLbC/d59l5qg+ZqcKmNUoUg3X/lcND1LK8CRX9WO4yQXQFyN1M?=
- =?us-ascii?Q?YuwYAHLnYAGtanAeMTk=3D?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(1800799024)(7416014)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2025 21:00:24.0777
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b15feded-d508-41c3-01f8-08de18c082e8
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SN1PEPF0002529E.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8293
+References: <20251014044135.177210-1-ghatto404@gmail.com> <20251014044135.177210-4-ghatto404@gmail.com>
+ <e114504e-4bdd-46b9-b708-8eebc3075163@oss.qualcomm.com> <CAMQHOhfjsi1L+3j3TrcjEjPp3xkn94KOdsrVZvJCyUDFBBSeqg@mail.gmail.com>
+ <d06a254f-bf54-4bdf-bd09-3ee5e5b31bad@oss.qualcomm.com> <CAMQHOhe=WYhtsjHMcRnJOi8UhnNNBfveTWRGSZ_bg24gFysAEw@mail.gmail.com>
+ <8bd5486f-38a9-4104-8d09-234f642b45fe@oss.qualcomm.com> <CAMQHOheTkKC8NcRrPxKZdB_h0SJGNJVMd4NUD7TE4becPouWyQ@mail.gmail.com>
+ <73d30994-3ec3-41bc-9b07-638d4173dfe6@oss.qualcomm.com> <7C2DF8E1-D84C-428C-B064-3D8CA16FEA29@gmail.com>
+ <7e5f753d-a26d-40fb-9cde-ec17eff85c27@oss.qualcomm.com> <E9C95D16-18DB-4AE9-8C50-BE3481A25FB3@gmail.com>
+ <a04742f3-8a1b-4d69-acd9-5d8dbd5a8886@oss.qualcomm.com>
+In-Reply-To: <a04742f3-8a1b-4d69-acd9-5d8dbd5a8886@oss.qualcomm.com>
+From: Ghatto <ghatto404@gmail.com>
+Date: Fri, 31 Oct 2025 18:06:08 -0300
+X-Gm-Features: AWmQ_bmacakBqv4QAY89pzDEVGDDX2AV4j0-p1iYjULhBum7nlyX1fQqrIZTKCE
+Message-ID: <CAMQHOhdmf5TvF3bA4QcTdBY+A2ao1_bDXPPya5aiOjHJ0yLqbQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/6] arm64: dts: qcom: r0q: add touchscreen support
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 31, 2025 at 09:14:25AM +0100, Krzysztof Kozlowski wrote:
-> On Fri, Oct 31, 2025 at 06:29:58AM +0000, Ashish Mhetre wrote:
-> > +  The CMDQ-Virtualization hardware block is part of the SMMUv3 implementation
-> > +  on Tegra264 SoCs. It assists in virtualizing the command queue for the SMMU.
-> > +
-> > +maintainers:
-> > +  - NVIDIA Corporation <linux-tegra@nvidia.com>
-> 
-> No. It should be a person. If entire Nvidia cannot find a person, I
-> don't think we are interested in having this in the kernel.
+On Wed, Oct 29, 2025 at 6:50=E2=80=AFAM Konrad Dybcio
+<konrad.dybcio@oss.qualcomm.com> wrote:
+>
+> On 10/27/25 7:32 PM, Eric Gon=C3=A7alves wrote:
+> >
+> >
+> > On October 20, 2025 9:18:18 AM GMT-03:00, Konrad Dybcio <konrad.dybcio@=
+oss.qualcomm.com> wrote:
+> >> On 10/17/25 8:22 PM, Eric Gon=C3=A7alves wrote:
+> >>>
+> >>>
+> >>> On October 17, 2025 5:20:43 AM GMT-03:00, Konrad Dybcio <konrad.dybci=
+o@oss.qualcomm.com> wrote:
+> >>>> On 10/16/25 10:08 PM, Ghatto wrote:
+> >>>>> On Thu, Oct 16, 2025 at 6:06=E2=80=AFAM Konrad Dybcio
+> >>>>> <konrad.dybcio@oss.qualcomm.com> wrote:
+> >>>>>>
+> >>>>>>
+> >>>>>>
+> >>>>>> On 10/14/25 9:04 PM, Ghatto wrote:
+> >>>>>>> On Tue, Oct 14, 2025 at 11:18=E2=80=AFAM Konrad Dybcio
+> >>>>>>> <konrad.dybcio@oss.qualcomm.com> wrote:
+> >>>>>>>>
+> >>>>>>>> On 10/14/25 5:10 PM, Ghatto wrote:
+> >>>>>>>>> On Tue, Oct 14, 2025 at 7:01=E2=80=AFAM Konrad Dybcio
+> >>>>>>>>> <konrad.dybcio@oss.qualcomm.com> wrote:
+> >>>>>>>>>>
+> >>>>>>>>>> On 10/14/25 6:41 AM, Eric Gon=C3=A7alves wrote:
+> >>>>>>>>>>> Enable the ST-Microelectronics FTS2BA61Y touchscreen. This pa=
+tch
+> >>>>>>>>>>> depends on "Input: add support for the STM FTS2BA61Y touchscr=
+een".
+> >>>>>>>>>>
+> >>>>>>>>>> The second sentence doesn't really make sense to be included i=
+n
+> >>>>>>>>>> the git log
+> >>>>>>>>> I'll keep it to the cover letter then
+> >>>>>>>>>>
+> >>>>>>>>>>> The device has an issue where SPI 8 (the bus which the touchs=
+creen is
+> >>>>>>>>>>> connected to) is not working properly right now, so
+> >>>>>>>>>>> spi-gpio is used instead.
+> >>>>>>>>>>
+> >>>>>>>>>> Some Samsung devices used to use spi/i2c-gpio intentionally, a=
+lso
+> >>>>>>>>>> on downstream. I'm assuming this isn't the case for r0q.
+> >>>>>>>>> It isn't, the device uses fts2ba61y on the spi8 bus - I hosted =
+the
+> >>>>>>>>> DT at https://github.com/ghatt-o/ss_experiments/blob/main/r0q.d=
+ts if you
+> >>>>>>>>> want to take a look.
+> >>>>>>>>>>
+> >>>>>>>>>> Did you enable gpi_dma1, qupv3_id_1 before spi8, when testing
+> >>>>>>>>> The driver probes, but it fails to recognize the touchscreen de=
+vice
+> >>>>>>>>
+> >>>>>>>> Could you post a complete dmesg and the precise DT diff you used=
+?
+> >>>>>>> https://pastebin.com/QkYa8nMp (android dmesg) mainline dmesg does=
+n't have
+> >>>>>>
+> >>>>>> The link has expired =F0=9F=99=81
+> >>>>> https://pastebin.com/s4abJS9M shouldn't expire now!
+> >>>>
+> >>>> And yet it did!
+> >>>>
+> >>>> Feel free to just attach it to your message.. the list may bounce
+> >>>> it, but it will still reach the To/Cc recipients
+> >>> Attached the dmesg.txt file.
+> >>
+> >> I'm interested in what happens early when the SPI hosts are programmed=
+,
+> >> whether there's any additional debug messages.
+> >>
+> >> If your log buffer is overrunning, you can add log_buf_len=3D8M to you=
+r
+> >> cmdline (which will make the buffer 8MiB long)
+> > Is it that big of a deal though? spi-gpio
+> > works just fine for touchscreen.
+>
+> It's like using CPU rendering even though your computer has a GPU in it..
+Yeah, but CPU rendering is slow, while the touchscreen
+on spi-gpio is just as fast as it is on Android.
 
-I was the submitter of the driver. I can take it up.
+>
+> Plus we don't expect the upstream driver to have such odd issues, so I'd
+> really like to get to the bottom of it
+I don't think the log buffer is overrunning, where can I find the SPI host =
+logs?
+>
+> Konrad
 
-Thanks
-Nicolin
+I'm gonna drop this patch so the other ones are able to get merged
+while I work on the driver.
 
