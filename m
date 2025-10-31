@@ -1,70 +1,62 @@
-Return-Path: <devicetree+bounces-233536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0C43C2352E
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 07:10:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38C14C2364D
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 07:29:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 225A74E21E7
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 06:10:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE045189942D
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 06:29:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 064D22EA17E;
-	Fri, 31 Oct 2025 06:10:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BDF52F3C1F;
+	Fri, 31 Oct 2025 06:29:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rDDA7osP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EaCUrI5v"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8ECC2E7F29;
-	Fri, 31 Oct 2025 06:10:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA5832F3635;
+	Fri, 31 Oct 2025 06:29:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761891032; cv=none; b=SO+d4LCrJQonTyTcBMfFpObhiJ2n4hy6UcHDdxCG+SqTYZUzaOD/VB+c0wKEl4vVRPPlGxfr56UeraYUELJvszPwbG4IUx89V9jY19VK/rHQbA4v4vwbiWzsXhzfjiN+XQLvWH3Fe2LWxLBWKZ3qgNmaYOr+3MT1UuydDCoyXy0=
+	t=1761892146; cv=none; b=Gyt5iGS4X7iHT4H18qIDRfdH/O2H+xt5rUh8zU8ZvGGXhGUl0Rp+v36iehpXpIOGxpE1vUSkLtXFJS+19Zk5SZZmss3WmhEi9xGi3GMhSqsCFUXi3oPyExgLzTK6dOOd6kt2UUNdjhGc/PnOiQN9oY6vjADq0S0K2msNXVC7XLQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761891032; c=relaxed/simple;
-	bh=mtI0bJgcONn/+JNea1wnkILdIZmOmfcP/gzxeMrjXJs=;
+	s=arc-20240116; t=1761892146; c=relaxed/simple;
+	bh=msn+7rMR8CJtIfyaABC/gzeHRs3sw2VizOv0Jwt5B8I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F53REGcIjse+lzScrGJaG41+qBZvJEGExd3Up0yrCxL//C0nyMlvlfqQFoRWJeElCSrmJR6oQm6SYHUrdSh2llISjDfKDnASfGeTovokMgd1xXYiA3TBovNe2OTlFzRp/1ZWraXfQW2aY1UBXuIRIm+BSGw07E6ZeruOrSfF4QI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rDDA7osP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6449CC4CEF1;
-	Fri, 31 Oct 2025 06:10:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=omWA3su8f+3oDRsmFfgq0j7VLLOlWz8oFqmygP1aufxmH8lWNLa8dTqXI/Y7vV8PSCnA82JQs4EDuATT5k0L2175XPsAMUHlvjUvC/GLf42OzlxOxU+SkaxPF3lMSSxFSN3nqq8RZVo/fX80X+W3iT5+v+unQmN9HDeztNmL6Js=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EaCUrI5v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 577C6C4CEF8;
+	Fri, 31 Oct 2025 06:29:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761891032;
-	bh=mtI0bJgcONn/+JNea1wnkILdIZmOmfcP/gzxeMrjXJs=;
+	s=k20201202; t=1761892145;
+	bh=msn+7rMR8CJtIfyaABC/gzeHRs3sw2VizOv0Jwt5B8I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rDDA7osPfNKJWxC6aUuvy+jowSUofyqimpL1QvPRJtDoh9joXUz9Z8pp/KYkh+boq
-	 TTVrkev+wIydtYDHxM68tfxTbDC0ODJHJPAxIdhsnYjMB8pTb3Ak0EjP+uD5U4DkiO
-	 jH19GobKrGOs6SyL56fIa0CDMZMsnivg+4JIRe+Pr6EudiD8BGkYp3q+ROhMzGr/KF
-	 sDNnYKqGRoVGXAbpSqe/jaBMfbuxrvMTDRE70DoBg9zVvGJKdqU1vG3PUJuRec39gb
-	 j/zSkPyOOih0ERHsQyiULHVo0xgh4JRnAzngtYMf5ZAVbqMx09OWcaCYBdkLjcQgpE
-	 iwi5wZpI9EtkA==
-Date: Fri, 31 Oct 2025 11:40:20 +0530
+	b=EaCUrI5vxJaXFfl708BD6FrjRFKQ7JfRhoUr8rCD41bDDp2pFd0cTixlCKNXbCX0a
+	 MstcelW2cNJZQxKXgFDZgAh2dPBezDuFIIipZUH9lHmyVwmksYNsWulZag5pjfvHZo
+	 nbghdH/+lV1zLJ8WfpToldEXnKaqb8X2NxFvRBitLOp4ihk2hiBbEn6i4Cij9ljh4q
+	 mKhYMh+Kae7ixD7f3niw2+28xIMZ4cB8Af2/rxx4T6BITw8P/N0dHTzT29CIcwhpOo
+	 Ubu9o4Mmfo70d1Akwg0QKQBzTAt7hK1r0x9+Ci/TwbAWRwOEiAsHJAfFR7TQkKdtB8
+	 bgjzuXwcUOQFg==
+Date: Fri, 31 Oct 2025 11:58:56 +0530
 From: Manivannan Sadhasivam <mani@kernel.org>
-To: Aurelien Jarno <aurelien@aurel32.net>
-Cc: Johannes Erdfelt <johannes@erdfelt.com>, 
-	Alex Elder <elder@riscstar.com>, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, vkoul@kernel.org, 
-	kishon@kernel.org, dlan@gentoo.org, guodong@riscstar.com, pjw@kernel.org, 
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de, 
-	christian.bruel@foss.st.com, shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, 
-	qiang.yu@oss.qualcomm.com, namcao@linutronix.de, thippeswamy.havalige@amd.com, 
-	inochiama@gmail.com, devicetree@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-phy@lists.infradead.org, spacemit@lists.linux.dev, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/7] Introduce SpacemiT K1 PCIe phy and host controller
-Message-ID: <ywr66wfkfay3xse77mb7ddbga5nced4yg7dapiybj3p2yp2an2@7zsaj5one5in>
-References: <20251013153526.2276556-1-elder@riscstar.com>
- <aPEhvFD8TzVtqE2n@aurel32.net>
- <92ee253f-bf6a-481a-acc2-daf26d268395@riscstar.com>
- <aQEElhSCRNqaPf8m@aurel32.net>
- <20251028184250.GM15521@sventech.com>
- <82848c80-15e0-4c0e-a3f6-821a7f4778a5@riscstar.com>
- <20251028204832.GN15521@sventech.com>
- <5kwbaj2eqr4imcaoh6otqo7huuraqhodxh4dbwc33vqpi5j5yq@ueufnqetrg2m>
- <aQOlMcI9jTdd7QNb@aurel32.net>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
+	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 5/5] PCI: qcom: Use frequency and level based OPP
+ lookup
+Message-ID: <ozlhnzkzwwifwhqn54ja5xqndtyjf35nbjnsidl5nn6xe3eijf@ptzzqchq2kwq>
+References: <20251013-opp_pcie-v5-5-eb64db2b4bd3@oss.qualcomm.com>
+ <20251029203948.GA1585122@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,77 +66,31 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aQOlMcI9jTdd7QNb@aurel32.net>
+In-Reply-To: <20251029203948.GA1585122@bhelgaas>
 
-On Thu, Oct 30, 2025 at 06:49:37PM +0100, Aurelien Jarno wrote:
-> Hi Mani,
-> 
-> On 2025-10-30 22:11, Manivannan Sadhasivam wrote:
-> > + Aurelien
+On Wed, Oct 29, 2025 at 03:39:48PM -0500, Bjorn Helgaas wrote:
+> On Mon, Oct 13, 2025 at 04:23:32PM +0530, Krishna Chaitanya Chundru wrote:
+> > PCIe link configurations such as 8GT/s x2 and 16GT/s x1 may operate at
+> > the same frequency but differ in other characteristics like RPMh votes.
+> > The existing OPP selection based solely on frequency cannot distinguish
+> > between such cases.
 > > 
-> > On Tue, Oct 28, 2025 at 01:48:32PM -0700, Johannes Erdfelt wrote:
-> > > On Tue, Oct 28, 2025, Alex Elder <elder@riscstar.com> wrote:
-> > > > On 10/28/25 1:42 PM, Johannes Erdfelt wrote:
-> > > > > I have been testing this patchset recently as well, but on an Orange Pi
-> > > > > RV2 board instead (and an extra RV2 specific patch to enable power to
-> > > > > the M.2 slot).
-> > > > > 
-> > > > > I ran into the same symptoms you had ("QID 0 timeout" after about 60
-> > > > > seconds). However, I'm using an Intel 600p. I can confirm my NVME drive
-> > > > > seems to work fine with the "pcie_aspm=off" workaround as well.
-> > > > 
-> > > > I don't see this problem, and haven't tried to reproduce it yet.
-> > > > 
-> > > > Mani told me I needed to add these lines to ensure the "runtime
-> > > > PM hierarchy of PCIe chain" won't be "broken":
-> > > > 
-> > > > 	pm_runtime_set_active()
-> > > > 	pm_runtime_no_callbacks()
-> > > > 	devm_pm_runtime_enable()
-> > > > 
-> > > > Just out of curiosity, could you try with those lines added
-> > > > just before these assignments in k1_pcie_probe()?
-> > > > 
-> > > > 	k1->pci.dev = dev;
-> > > > 	k1->pci.ops = &k1_pcie_ops;
-> > > > 	dw_pcie_cap_set(&k1->pci, REQ_RES);
-> > > > 
-> > > > I doubt it will fix what you're seeing, but at the moment I'm
-> > > > working on something else.
-> > > 
-> > > Unfortunately there is no difference with the runtime PM hierarchy
-> > > additions.
-> > > 
+> > In such cases, frequency alone is insufficient to identify the correct OPP.
+> > Use the newly introduced dev_pm_opp_find_key_exact() API to match both
+> > frequency and level when selecting an OPP, here level indicates PCIe
+> > data rate.
 > > 
-> > These are not supposed to fix the issues you were facing. I discussed with Alex
-> > offline and figured out that L1 works fine on his BPI-F3 board with a NVMe SSD.
-> > 
-> > And I believe, Aurelien is also using that same board, but with different
-> > SSDs. But what is puzzling me is, L1 is breaking Aurelien's setup with 3 SSDs
-> > from different vendors. It apparently works fine on Alex's setup. So it somehow
-> > confirms that Root Port supports and behaves correctly with L1. But at the same
-> > time, I cannot just say without evidence that L1 is broken on all these SSDs
-> > that you and Aurelien tested with.
+> > To support older device tree's where opp-level is not defined, check if
+> > opp-level is present or not using dev_pm_opp_find_level_exact(). if
+> > not present fallback to frequency only match.
 > 
-> It could be that we have different revision of the BPI-F3 board, it's 
-> not impossible that I got an early-ish version. That said I just 
-> visually checked the PCB against the schematics, and the devices on the 
-> CLKREQN line appear to be installed.
-> 
+> What are the names of the DT properties here for the exact (frequency
+> + level) and frequency-only values?  I'd like to mention them in the
+> commit log so we can look at a DT and figure out what to expect from
+> this change.
 
-CLKREQ# is only needed for L1 PM Substates (L1.1 and L1.2). In other ASPM states
-(L0s and L1), REFCLK is supposed to be ON. So those don't need CLKREQ# assertion
-by the endpoint.
-
-The L1 issue you are facing could be due to the board routing issue also. I'm
-just speculating here.
-
-> If someone has contacts to check what changes have been done between the 
-> different board revision, that could help. Or same if there are 
-> different revisions of the SpacemiT K1 chip.
-> 
-
-I hope Alex can get this information.
+Frequency: opp-hz
+Level: opp-level
 
 - Mani
 
