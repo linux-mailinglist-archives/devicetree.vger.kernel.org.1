@@ -1,95 +1,83 @@
-Return-Path: <devicetree+bounces-233823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2007C25DD6
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 16:37:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1315C25DF8
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 16:42:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 575C4423D21
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 15:35:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AC81189F37F
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 15:43:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD4AF2DE715;
-	Fri, 31 Oct 2025 15:35:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39AE82E4266;
+	Fri, 31 Oct 2025 15:42:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="jvvuLBX6";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="CSaLgj5u";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="N1VBlHlW";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="C3ibAOSu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kJjpSUV1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D250B2D543E
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 15:35:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FC5F2E11AB
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 15:42:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761924941; cv=none; b=ieZmaX2JrzzzNY/AMyVEcBMNnjhtC/CmCvtX8QHUWy+npb6/tZ85n1cbE/yqxIknCGyG2yHWlvQmilGsB+cgKzl0zyRMadXYlkQR/GzYpw+nmHgDaysns+xCqeKvpaKaXXEKMMAwxMhx5DPDrrXc+Jd+v6+j4Byr4CJ3OrQfLAU=
+	t=1761925349; cv=none; b=q8RxWmMb8y+wzV9+lZb1hBzuWl3dKIv1E8lilsizxYpITftHBTbazkIpHIX1PMPRwW1AAX5s6cOdNxwQwI38LWxt6jqiwHsBZJtJypIo8whtb9CBI8QY9F1mTdUHGGAnpnm0+NA/wOX2pE1+yQr158SE8fL+vvuTI0I/5jVtggQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761924941; c=relaxed/simple;
-	bh=u1H8y8Vd7BNxaixOkx1N50pHvue9IBSpzBkkFlBBc7k=;
+	s=arc-20240116; t=1761925349; c=relaxed/simple;
+	bh=DkC3XUMOy5x4fzNHe6722Vv0CXnahuKKD/D1E6lxj4I=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JuDnieOE1RDuDxWe95zkuYEIRgQHo7a+3ffS2C+2qWUDgLv6McEIwabQ0EL+0Rm5rSsiVFbmBvvG8DFppdiU2iQgih9Of8ZTKuvKevHlckS5QLqKO0eBSFoNiHPQ76kGYiDhLcthJBXmWlV3rmhd4av/+0It1VrcD259RmfYpSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=jvvuLBX6; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=CSaLgj5u; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=N1VBlHlW; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=C3ibAOSu; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id EAFFD22060;
-	Fri, 31 Oct 2025 15:35:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1761924938; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cTrayXkWBQ243Fr06I9R6N8F/Dz2fVCExTzhLcSW7QA=;
-	b=jvvuLBX6eRZdWnDxZUWCLDdwDqCQxJPndp0Js5OViRrYAsZXgJYFQgSYsvXUFmNuj+0n0x
-	Q+sIPjS8dN4Sid6iNm3HqhQNVsI5EB5MFdMvQqOhYCtKb5u0clrJj6TLT9CluOghoKHJGt
-	iVQRwIG8q5wdeYfSSN177UKJEP5a88g=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1761924938;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cTrayXkWBQ243Fr06I9R6N8F/Dz2fVCExTzhLcSW7QA=;
-	b=CSaLgj5uB8ub8e3FaH0J8twmCDxYJoejo1OmiZBQDlZhn567tL9cApOsAODybbc30je3Ld
-	Dv02ulfmJqe4WzCw==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1761924937; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cTrayXkWBQ243Fr06I9R6N8F/Dz2fVCExTzhLcSW7QA=;
-	b=N1VBlHlWxGpseLfy8E7f7YYKtHURzfK4Be2EB539ih///9PoZp+V/WvmdhebUx8r746z2h
-	NavdJ/iMupKJcxLHVs90DW1lvqlQzT4R5DDV3avDnDG4a++7Y5gWNMo/VfY4t4TAyQCKvG
-	PwIJunSb5PP5KyrTDkUcgoYeTg//6y4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1761924937;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cTrayXkWBQ243Fr06I9R6N8F/Dz2fVCExTzhLcSW7QA=;
-	b=C3ibAOSuwE0e3RVd590Zly7JfAteqpmrYBGX/qBahRWUX+DcZQvqN2ttiM/l3iF4t7zhyf
-	kYh2gK8WTJUUkjAw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5946413393;
-	Fri, 31 Oct 2025 15:35:37 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id Oiw2DknXBGn+SwAAD6G6ig
-	(envelope-from <svarbanov@suse.de>); Fri, 31 Oct 2025 15:35:37 +0000
-Message-ID: <eef9a83f-6103-4ab2-927c-921dd9a6a5b3@suse.de>
-Date: Fri, 31 Oct 2025 17:35:32 +0200
+	 In-Reply-To:Content-Type; b=bYJRC3vbZEXMJj6YXV5CUfjrd9K6Bq+Xg+S9sm/qW31ULgJeo/OQl0ZIorTWNKEqfH4AMtqj0KZnlIUSgwiMxt7TqdDnPRQRAgca/sIe+NwIYlJnluaSkkTGi0XDwS06GfCGedf6dIt22sZ05vDYzEJUz1PPjsx0rqgMHBmergk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kJjpSUV1; arc=none smtp.client-ip=209.85.216.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-339d7c403b6so2353759a91.2
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 08:42:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761925347; x=1762530147; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=DUW12GL783o5v1SNVDp+240/b8eqDDVvpE7KYeAY/BE=;
+        b=kJjpSUV1dPqH/N2jhFnh8YDjZV6SIEacxm4XSDXbkfhsIc/CRzKnZyC6IRsJEncIMB
+         aRg0dBxnT41ZBXWNr4KXrAeUksc4QmSxLAJjC0tvkPILQ2SxV0tMnS49F9vnclwd7BOO
+         WqVTsCj8S0ZR3mjdE6zOhyaRo8FWmgiPWSWiedes4YsRLsm7f+8GOvQgS2Cq9yEsp/1G
+         D2z7GQnczbQxETOak8oXnDZNt1hEW4xwGsn/RVZdKJBW63dc3XZ4ldW9hbCm6TnH8Qz8
+         x76C7JX5/4qEVGPdV+e3kIRbqvYRM+us4AbKFC4Rqpni7k6wzkO6PU2gnCi3dKkGYVc1
+         517A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761925347; x=1762530147;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DUW12GL783o5v1SNVDp+240/b8eqDDVvpE7KYeAY/BE=;
+        b=bZ3lSCwLcVITiiDR9hEptX2Z70eONdbZWDuQW+Fv2RrtO/PsZXOuM7/maSHjEEQd5Q
+         ty5bYsQ2eCuJBhpKye5PByioTVCcd1gcG6kC03ywm7+gKTLFvllAQm8e+cmneCOz0qqe
+         +1UNfqhLGGbOsBee04ywU109lBWtQoY7ESrN+83zZlanGkwtl85qgj0t5mdEj7+DAk2X
+         9s0WQ1SQ0yYiOW5fZ8U6AMTJTDV2IoSaIJIRh2mXMwCbnBksUv503zb6LwqrwgIMhASW
+         VFCp1CgZ1W96MIxiuTsXgD2DlMUoC0NrQidlZHuWh9R5gPKjpKCIsmrQqVIC6el5JA8f
+         fPfA==
+X-Forwarded-Encrypted: i=1; AJvYcCVXASrQ+F7CaEEMXiJVNa5ffC5jWFk0Hhq6pM3O0obc4GwdQdmCEi6FnsuYTJpAGvhjdvfsldLx/MSp@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOoGhfnn+buDP6DRrWfNs2Ab9kKpHYTwqzcc57H3b+WHsOcFOR
+	D83wj85eY6hADRvUd0S8A/QUsxeDyD0GK5lVw8xv54iS9kafMoKt/gnaHVHAxw==
+X-Gm-Gg: ASbGncseq738hQCZhJq1eNOH+QFz+iW60Racs7sJU15sJsGXOjUdbQ8NPnme6143Jb7
+	KI+dV406VTJdFWWhVPHxLywD9ekE4IsFIjFvlQuGGlZxeBX80nM8YOGVSGw4VXllTMdTAgDEjUE
+	kPb1R1iupEIRq80SMJhdiBahQ1a4Oi+BWdWEd9kE3GpP0zKuBpWzVsVbrnN7ZQr1Doj53wfQSew
+	Z8/bQyjxNYRSEvr/DXMMJvfEANRXMCei01IUwgTT/3wvBKu5lqQFJimkJBbZqalmdJu+tMopHG0
+	9fEul6K77rzAr3M+3SRy5jEKXL6IqX/hphweIjTLkGFhHJhvvale0+Q9ZtMeco6kMC0iMzq8mfb
+	3OmsidjUTPNXgXnNkphy6btEstbrgK9RYdWEvWxS2YnQEVucIuHCpMpejOom39LF1J5IqTzJf5k
+	pYaBOF+cCuv1e7x4MMPBTIQWkpjSVXmyYw2k6MiaIYPMNRmzN4
+X-Google-Smtp-Source: AGHT+IHzRt2IQAq49HtbK6kPh+mT205eusm0v30d77JYLIGZB3Pyg8nionXZOk5b5MIz/yIeIUsVdQ==
+X-Received: by 2002:a17:90a:d450:b0:340:a961:80c5 with SMTP id 98e67ed59e1d1-340a961873emr1202725a91.32.1761925346582;
+        Fri, 31 Oct 2025 08:42:26 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b93bef83380sm2466159a12.31.2025.10.31.08.42.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Oct 2025 08:42:26 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <ba0a378e-ccc3-45be-9c82-43e08b6ac3af@roeck-us.net>
+Date: Fri, 31 Oct 2025 08:42:24 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,111 +85,349 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/5] dd ethernet support for RPi5
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Stanimir Varbanov <svarbanov@suse.de>
-Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Andrew Lunn
- <andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v4 2/2] watchdog: Add driver for Gunyah Watchdog
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ hrishabh.rajput@oss.qualcomm.com
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
- Andrea della Porta <andrea.porta@suse.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Phil Elwell
- <phil@raspberrypi.com>, Jonathan Bell <jonathan@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>
-References: <20250822093440.53941-1-svarbanov@suse.de>
- <20251031114518.GA17287@pendragon.ideasonboard.com>
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Pavan Kondeti
+ <pavan.kondeti@oss.qualcomm.com>, Neil Armstrong <neil.armstrong@linaro.org>
+References: <20251031-gunyah_watchdog-v4-0-7abb1ee11315@oss.qualcomm.com>
+ <20251031-gunyah_watchdog-v4-2-7abb1ee11315@oss.qualcomm.com>
+ <4bxoananq55f7u4kckqjof37or6fflppmbyyc3j6noodzr75nt@vtfxbnhrcgzy>
 Content-Language: en-US
-From: Stanimir Varbanov <svarbanov@suse.de>
-In-Reply-To: <20251031114518.GA17287@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
+ RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
+ nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
+ 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
+ gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
+ IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
+ kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
+ VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
+ jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
+ BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
+ ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
+ CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAmgrMyQFCSbODQkACgkQyx8mb86fmYGcWRAA
+ oRwrk7V8fULqnGGpBIjp7pvR187Yzx+lhMGUHuM5H56TFEqeVwCMLWB2x1YRolYbY4MEFlQg
+ VUFcfeW0OknSr1s6wtrtQm0gdkolM8OcCL9ptTHOg1mmXa4YpW8QJiL0AVtbpE9BroeWGl9v
+ 2TGILPm9mVp+GmMQgkNeCS7Jonq5f5pDUGumAMguWzMFEg+Imt9wr2YA7aGen7KPSqJeQPpj
+ onPKhu7O/KJKkuC50ylxizHzmGx+IUSmOZxN950pZUFvVZH9CwhAAl+NYUtcF5ry/uSYG2U7
+ DCvpzqOryJRemKN63qt1bjF6cltsXwxjKOw6CvdjJYA3n6xCWLuJ6yk6CAy1Ukh545NhgBAs
+ rGGVkl6TUBi0ixL3EF3RWLa9IMDcHN32r7OBhw6vbul8HqyTFZWY2ksTvlTl+qG3zV6AJuzT
+ WdXmbcKN+TdhO5XlxVlbZoCm7ViBj1+PvIFQZCnLAhqSd/DJlhaq8fFXx1dCUPgQDcD+wo65
+ qulV/NijfU8bzFfEPgYP/3LP+BSAyFs33y/mdP8kbMxSCjnLEhimQMrSSo/To1Gxp5C97fw5
+ 3m1CaMILGKCmfI1B8iA8zd8ib7t1Rg0qCwcAnvsM36SkrID32GfFbv873bNskJCHAISK3Xkz
+ qo7IYZmjk/IJGbsiGzxUhvicwkgKE9r7a1rOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
+ 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
+ pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
+ J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
+ pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
+ 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
+ ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
+ I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
+ nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
+ HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
+ JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAmgrMyQFCSbODQkACgkQyx8mb86fmYHlgg/9
+ H5JeDmB4jsreE9Bn621wZk7NMzxy9STxiVKSh8Mq4pb+IDu1RU2iLyetCY1TiJlcxnE362kj
+ njrfAdqyPteHM+LU59NtEbGwrfcXdQoh4XdMuPA5ADetPLma3YiRa3VsVkLwpnR7ilgwQw6u
+ dycEaOxQ7LUXCs0JaGVVP25Z2hMkHBwx6BlW6EZLNgzGI2rswSZ7SKcsBd1IRHVf0miwIFYy
+ j/UEfAFNW+tbtKPNn3xZTLs3quQN7GdYLh+J0XxITpBZaFOpwEKV+VS36pSLnNl0T5wm0E/y
+ scPJ0OVY7ly5Vm1nnoH4licaU5Y1nSkFR/j2douI5P7Cj687WuNMC6CcFd6j72kRfxklOqXw
+ zvy+2NEcXyziiLXp84130yxAKXfluax9sZhhrhKT6VrD45S6N3HxJpXQ/RY/EX35neH2/F7B
+ RgSloce2+zWfpELyS1qRkCUTt1tlGV2p+y2BPfXzrHn2vxvbhEn1QpQ6t+85FKN8YEhJEygJ
+ F0WaMvQMNrk9UAUziVcUkLU52NS9SXqpVg8vgrO0JKx97IXFPcNh0DWsSj/0Y8HO/RDkGXYn
+ FDMj7fZSPKyPQPmEHg+W/KzxSSfdgWIHF2QaQ0b2q1wOSec4Rti52ohmNSY+KNIW/zODhugJ
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <4bxoananq55f7u4kckqjof37or6fflppmbyyc3j6noodzr75nt@vtfxbnhrcgzy>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.80 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	TAGGED_RCPT(0.00)[dt,netdev];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	ARC_NA(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_TLS_ALL(0.00)[];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	URIBL_BLOCKED(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:mid];
-	RCVD_COUNT_TWO(0.00)[2];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,imap1.dmz-prg2.suse.org:helo]
-X-Spam-Flag: NO
-X-Spam-Score: -2.80
-X-Spam-Level: 
 
-Hi Laurent,
-
-On 10/31/25 1:45 PM, Laurent Pinchart wrote:
-> Hi Stan,
-> 
-> On Fri, Aug 22, 2025 at 12:34:35PM +0300, Stanimir Varbanov wrote:
->> Hello,
+On 10/31/25 07:36, Dmitry Baryshkov wrote:
+> On Fri, Oct 31, 2025 at 10:18:14AM +0000, Hrishabh Rajput via B4 Relay wrote:
+>> From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
 >>
->> Changes in v2:
->>  - In 1/5 updates according to review comments (Nicolas)
->>  - In 1/5 added Fixes tag (Nicolas)
->>  - Added Reviewed-by and Acked-by tags.
+>> On Qualcomm SoCs running under the Gunyah hypervisor, access to watchdog
+>> through MMIO is not available on all platforms. Depending on the
+>> hypervisor configuration, the watchdog is either fully emulated or
+>> exposed via ARM's SMC Calling Conventions (SMCCC) through the Vendor
+>> Specific Hypervisor Service Calls space.
 >>
->> v1 can found at [1].
+>> Add driver to support the SMC-based watchdog provided by the Gunyah
+>> Hypervisor. Device registration is done in the SMEM driver after checks
+>> to restrict the watchdog initialization to Qualcomm devices.
+>> module_exit() is intentionally not implemented as this driver is
+>> intended to be a persistent module.
 >>
->> Comments are welcome!
+>> Signed-off-by: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+>> ---
+>>   MAINTAINERS                   |   1 +
+>>   drivers/watchdog/Kconfig      |  14 +++
+>>   drivers/watchdog/Makefile     |   1 +
+>>   drivers/watchdog/gunyah_wdt.c | 249 ++++++++++++++++++++++++++++++++++++++++++
+>>   4 files changed, 265 insertions(+)
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index c0b444e5fd5a..56dbd0d3e31b 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -3083,6 +3083,7 @@ F:	arch/arm64/boot/dts/qcom/
+>>   F:	drivers/bus/qcom*
+>>   F:	drivers/firmware/qcom/
+>>   F:	drivers/soc/qcom/
+>> +F:	drivers/watchdog/gunyah_wdt.c
+>>   F:	include/dt-bindings/arm/qcom,ids.h
+>>   F:	include/dt-bindings/firmware/qcom,scm.h
+>>   F:	include/dt-bindings/soc/qcom*
+>> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+>> index 0c25b2ed44eb..f0dee04b3650 100644
+>> --- a/drivers/watchdog/Kconfig
+>> +++ b/drivers/watchdog/Kconfig
+>> @@ -2343,4 +2343,18 @@ config KEEMBAY_WATCHDOG
+>>   	  To compile this driver as a module, choose M here: the
+>>   	  module will be called keembay_wdt.
+>>   
+>> +config GUNYAH_WATCHDOG
+>> +	tristate "Qualcomm Gunyah Watchdog"
+>> +	depends on ARCH_QCOM || COMPILE_TEST
+>> +	depends on HAVE_ARM_SMCCC
+>> +	depends on OF
+>> +	select WATCHDOG_CORE
+>> +	help
+>> +	  Say Y here to include support for watchdog timer provided by the
+>> +	  Gunyah hypervisor. The driver uses ARM SMC Calling Convention (SMCCC)
+>> +	  to interact with Gunyah Watchdog.
+>> +
+>> +	  To compile this driver as a module, choose M here: the
+>> +	  module will be called gunyah_wdt.
+>> +
+>>   endif # WATCHDOG
+>> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
+>> index bbd4d62d2cc3..308379782bc3 100644
+>> --- a/drivers/watchdog/Makefile
+>> +++ b/drivers/watchdog/Makefile
+>> @@ -102,6 +102,7 @@ obj-$(CONFIG_MSC313E_WATCHDOG) += msc313e_wdt.o
+>>   obj-$(CONFIG_APPLE_WATCHDOG) += apple_wdt.o
+>>   obj-$(CONFIG_SUNPLUS_WATCHDOG) += sunplus_wdt.o
+>>   obj-$(CONFIG_MARVELL_GTI_WDT) += marvell_gti_wdt.o
+>> +obj-$(CONFIG_GUNYAH_WATCHDOG) += gunyah_wdt.o
+>>   
+>>   # X86 (i386 + ia64 + x86_64) Architecture
+>>   obj-$(CONFIG_ACQUIRE_WDT) += acquirewdt.o
+>> diff --git a/drivers/watchdog/gunyah_wdt.c b/drivers/watchdog/gunyah_wdt.c
+>> new file mode 100644
+>> index 000000000000..bfe8b656d674
+>> --- /dev/null
+>> +++ b/drivers/watchdog/gunyah_wdt.c
+>> @@ -0,0 +1,249 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+>> + */
+>> +
+>> +#include <linux/arm-smccc.h>
+>> +#include <linux/delay.h>
+>> +#include <linux/errno.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
 > 
-> I'm very happy to see support for Raspberry Pi 5 progressing fast
-> upstream.
+> Is this header used here?
 > 
-> I've tested the latest mainline kernel (v6.18-rc3) that includes this
-> series (except for 1/5 that is replaced by
-> https://lore.kernel.org/all/20250820-macb-fixes-v4-0-23c399429164@bootlin.com/
-> as far as I understand). The ethernet controller is successfully
-> detected, and so is the PHY. Link status seems to work fine too, but
-> data doesn't seem to go through when the kernel tries to get a DHCP
-> address (for NFS root). Here's the end of the kernel log (with the
-> messages related to the USB controller stripped out):
+>> +#include <linux/platform_device.h>
+>> +#include <linux/watchdog.h>
+>> +
+>> +#define GUNYAH_WDT_SMCCC_CALL_VAL(func_id) \
+>> +	ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL, ARM_SMCCC_SMC_32,\
+>> +			   ARM_SMCCC_OWNER_VENDOR_HYP, func_id)
+>> +
+>> +/* SMCCC function IDs for watchdog operations */
+>> +#define GUNYAH_WDT_CONTROL   GUNYAH_WDT_SMCCC_CALL_VAL(0x0005)
+>> +#define GUNYAH_WDT_STATUS    GUNYAH_WDT_SMCCC_CALL_VAL(0x0006)
+>> +#define GUNYAH_WDT_PING      GUNYAH_WDT_SMCCC_CALL_VAL(0x0007)
+>> +#define GUNYAH_WDT_SET_TIME  GUNYAH_WDT_SMCCC_CALL_VAL(0x0008)
 > 
-> [    0.896779] rp1_pci 0002:01:00.0: assign IRQ: got 27
-> [    0.896809] rp1_pci 0002:01:00.0: enabling device (0000 -> 0002)
-> [    0.896840] rp1_pci 0002:01:00.0: enabling bus mastering
-> [    0.931874] macb 1f00100000.ethernet: invalid hw address, using random
-> [    0.944448] macb 1f00100000.ethernet eth0: Cadence GEM rev 0x00070109 at 0x1f00100000 irq 95 (da:2e:6d:9d:52:a4)
-> [    0.989067] macb 1f00100000.ethernet eth0: PHY [1f00100000.ethernet-ffffffff:01] driver [Broadcom BCM54210E] (irq=POLL)
-> [    0.989272] macb 1f00100000.ethernet eth0: configuring for phy/rgmii-id link mode
-> [    0.991271] macb 1f00100000.ethernet: gem-ptp-timer ptp clock registered.
-> [    4.039490] macb 1f00100000.ethernet eth0: Link is Up - 1Gbps/Full - flow control tx
-> [    4.062589] Sending DHCP requests .....
-> [   40.902771] macb 1f00100000.ethernet eth0: Link is Down
-> [   43.975334] macb 1f00100000.ethernet eth0: Link is Up - 1Gbps/Full - flow control tx
+> What about calls 0-4?
 > 
-> I've tried porting patches to drivers/net/phy/broadcom.c from the
-> Raspberry Pi kernel to specifically support the BCM54213PE PHY (which is
-> otherwise identified as a BCM54210E), but they didn't seem to help.
+>> +
+>> +/*
+>> + * Control values for GUNYAH_WDT_CONTROL.
+>> + * Bit 0 is used to enable or disable the watchdog. If this bit is set,
+>> + * then the watchdog is enabled and vice versa.
+>> + * Bit 1 should always be set to 1 as this bit is reserved in Gunyah and
+>> + * it's expected to be 1.
+>> + */
+>> +#define WDT_CTRL_ENABLE  (BIT(1) | BIT(0))
+>> +#define WDT_CTRL_DISABLE BIT(1)
+>> +
+>> +enum gunyah_error {
+>> +	GUNYAH_ERROR_OK				= 0,
+>> +	GUNYAH_ERROR_UNIMPLEMENTED		= -1,
+>> +	GUNYAH_ERROR_ARG_INVAL			= 1,
+>> +};
+>> +
+>> +/**
+>> + * gunyah_error_remap() - Remap Gunyah hypervisor errors into a Linux error code
+>> + * @gunyah_error: Gunyah hypercall return value
+>> + */
+>> +static inline int gunyah_error_remap(enum gunyah_error gunyah_error)
+>> +{
+>> +	switch (gunyah_error) {
+>> +	case GUNYAH_ERROR_OK:
+>> +		return 0;
+>> +	case GUNYAH_ERROR_UNIMPLEMENTED:
+>> +		return -EOPNOTSUPP;
+>> +	default:
+>> +		return -EINVAL;
+>> +	}
+>> +}
+>> +
+>> +static int gunyah_wdt_call(unsigned long func_id, unsigned long arg1,
+>> +			   unsigned long arg2, struct arm_smccc_res *res)
+>> +{
 > 
-> What's the status of ethernet support on the Pi 5, is it supposed to
-> work upstream, or are there pieces still missing ?
+> 	struct arm_smccc_res res;
+> 
+> There is no need to pass it through arguments.
+> 
+>> +	arm_smccc_1_1_smc(func_id, arg1, arg2, res);
+>> +	return gunyah_error_remap(res->a0);
+>> +}
+>> +
+>> +static int gunyah_wdt_start(struct watchdog_device *wdd)
+>> +{
+>> +	struct arm_smccc_res res;
+>> +	unsigned int timeout_ms;
+>> +	struct device *dev = wdd->parent;
+>> +	int ret;
+>> +
+>> +	ret = gunyah_wdt_call(GUNYAH_WDT_CONTROL, WDT_CTRL_DISABLE, 0, &res);
+>> +	if (ret && watchdog_active(wdd)) {
+>> +		dev_err(dev, "%s: Failed to stop gunyah wdt %d\n", __func__, ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	timeout_ms = wdd->timeout * 1000;
+>> +	ret = gunyah_wdt_call(GUNYAH_WDT_SET_TIME,
+>> +			      timeout_ms, timeout_ms, &res);
+>> +	if (ret) {
+>> +		dev_err(dev, "%s: Failed to set timeout for gunyah wdt %d\n",
+>> +			__func__, ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	ret = gunyah_wdt_call(GUNYAH_WDT_CONTROL, WDT_CTRL_ENABLE, 0, &res);
+>> +	if (ret)
+>> +		dev_err(dev, "%s: Failed to start gunyah wdt %d\n", __func__, ret);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int gunyah_wdt_stop(struct watchdog_device *wdd)
+>> +{
+>> +	struct arm_smccc_res res;
+>> +
+>> +	return gunyah_wdt_call(GUNYAH_WDT_CONTROL, WDT_CTRL_DISABLE, 0, &res);
+>> +}
+>> +
+>> +static int gunyah_wdt_ping(struct watchdog_device *wdd)
+>> +{
+>> +	struct arm_smccc_res res;
+>> +
+>> +	return gunyah_wdt_call(GUNYAH_WDT_PING, 0, 0, &res);
+>> +}
+>> +
+>> +static int gunyah_wdt_set_timeout(struct watchdog_device *wdd,
+>> +				  unsigned int timeout_sec)
+>> +{
+>> +	wdd->timeout = timeout_sec;
+>> +
+>> +	if (watchdog_active(wdd))
+>> +		return gunyah_wdt_start(wdd);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static unsigned int gunyah_wdt_get_timeleft(struct watchdog_device *wdd)
+>> +{
+>> +	struct arm_smccc_res res;
+>> +	unsigned int seconds_since_last_ping;
+>> +	int ret;
+>> +
+>> +	ret = gunyah_wdt_call(GUNYAH_WDT_STATUS, 0, 0, &res);
+>> +	if (ret)
+>> +		return 0;
+> 
+> This is the only place which passes something back in res. Please wrap
+> it separately and return int value.
+> 
+>> +
+>> +	seconds_since_last_ping = res.a2 / 1000;
+>> +	if (seconds_since_last_ping > wdd->timeout)
+>> +		return 0;
+>> +
+>> +	return wdd->timeout - seconds_since_last_ping;
+>> +}
+>> +
+>> +static int gunyah_wdt_restart(struct watchdog_device *wdd,
+>> +			      unsigned long action, void *data)
+>> +{
+>> +	struct arm_smccc_res res;
+>> +
+>> +	/* Set timeout to 1ms and send a ping */
+>> +	gunyah_wdt_call(GUNYAH_WDT_CONTROL, WDT_CTRL_ENABLE, 0, &res);
+>> +	gunyah_wdt_call(GUNYAH_WDT_SET_TIME, 1, 1, &res);
+>> +	gunyah_wdt_call(GUNYAH_WDT_PING, 0, 0, &res);
+>> +
+>> +	/* Wait to make sure reset occurs */
+>> +	mdelay(100);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct watchdog_info gunyah_wdt_info = {
+>> +	.identity = "Gunyah Watchdog",
+>> +	.firmware_version = 0,
+> 
+> =0 is default and can be omited
+> 
+>> +	.options = WDIOF_SETTIMEOUT
+>> +		 | WDIOF_KEEPALIVEPING
+>> +		 | WDIOF_MAGICCLOSE,
+>> +};
+>> +
+>> +static const struct watchdog_ops gunyah_wdt_ops = {
+>> +	.owner = THIS_MODULE,
+>> +	.start = gunyah_wdt_start,
+>> +	.stop = gunyah_wdt_stop,
+>> +	.ping = gunyah_wdt_ping,
+>> +	.set_timeout = gunyah_wdt_set_timeout,
+>> +	.get_timeleft = gunyah_wdt_get_timeleft,
+>> +	.restart = gunyah_wdt_restart
+>> +};
+>> +
+>> +static int gunyah_wdt_probe(struct platform_device *pdev)
+>> +{
+>> +	struct arm_smccc_res res;
+>> +	struct watchdog_device *wdd;
+>> +	struct device *dev = &pdev->dev;
+>> +	int ret;
+>> +
+>> +	ret = gunyah_wdt_call(GUNYAH_WDT_STATUS, 0, 0, &res);
+>> +	if (ret) {
+>> +		dev_dbg(dev, "Watchdog interface status check failed with %d\n", ret);
+> 
+> dev_err
 > 
 
-We have this [1] patch queued up, could you give it a try please.
+Then -ENODEV is inappropriate and the actual error should be returned.
 
-[1] https://www.spinics.net/lists/kernel/msg5889475.html
+Guenter
 
-
-
+>> +		return -ENODEV;
 
