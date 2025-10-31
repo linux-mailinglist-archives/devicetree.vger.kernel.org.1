@@ -1,151 +1,112 @@
-Return-Path: <devicetree+bounces-233596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73CB3C23D5C
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 09:34:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D0EAC23D74
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 09:37:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36EB83A58A6
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 08:32:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BF2C3B63EE
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 08:37:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48A022571C3;
-	Fri, 31 Oct 2025 08:32:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A0E92E6105;
+	Fri, 31 Oct 2025 08:37:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jDcMHA0E"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="efo3Ys7M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C20822172E;
-	Fri, 31 Oct 2025 08:32:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C9E8DF59;
+	Fri, 31 Oct 2025 08:37:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761899536; cv=none; b=i087A/qV2uj1hCsTNejeDWJWHC9NqEXk+ZNhqVk6Z2QwyL9w+ny6/oGipcG3Llbo+dm5vY0qrmcC133nN3cy7EfkMdJS47ZnbU/yAq/EUGJ4pi4TUR7uPdRCqD3HKZEiXxnN1X3uOi6f9nUJw8SidLyl9EW9/pm4g3J48RCOrc8=
+	t=1761899841; cv=none; b=gICILMiB5kCX1h1wOrCvh5uaFZ2w8hwFEuPg9EbzT+WY/eZKSyg7c+gj8pzLfHOgQk64ioVy5s18iIwJ5xvWfZf8z2MKawoNRFRs1DNk5Tigm29lPqpMHgXBfkdTumbMr5VeUQzZ7pNd+rbIfukY2v3EJHzRzPYzyNrVLbsynxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761899536; c=relaxed/simple;
-	bh=nx1bFMhC+/ZnLv3glzJqj6JjZtyvZj8yaPT91eXoZf4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=NeajZe/RQ+aG0tE6sMeQL0Pq+ogSG7/a7rwjyDzHLd4DpzclQiq2TbKkFzrRn+yUdd69HDSTlyqFAZEBcGeTcAiYLVfTKpMO4PTdNQQDWVbs4eZbdijXu5bBvmtzMduOzHaBfFmbjp/I/oHYxQrPiTLIxLzHL3NXRYUEHt4gNNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jDcMHA0E; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CA0BC4CEE7;
-	Fri, 31 Oct 2025 08:32:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761899535;
-	bh=nx1bFMhC+/ZnLv3glzJqj6JjZtyvZj8yaPT91eXoZf4=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=jDcMHA0EeTHBflo78In4rfteRxl09xWjSsqlUyk0dxK92NRm3p6aefJ1PxO1fD6Ys
-	 mXnAO/lS4/ZnRJ2XvppyotMtHyCquIGJiCU5weSqmV/vFxdNW80XKETY2E9M8MIWkN
-	 RUKh2UrwzuaFk4iJtB0J7wFRIvBdJ4utq496sJXS706LUYaBuYoSca/ywKm/UuEvOO
-	 fNeyGho5WNhv4qmfl5y/DDWHQ4V8573EpVh6eqmPOWW0nGKxW0LimPwrheQ6ZHOiBV
-	 D9ayPWxuOuD1LlVOgnnG6F0Xc9zY5+FfWqo7sriPmKFVB88cMrbXS/C30pTbnQ4D/B
-	 Cn7c64FD41pHw==
-Message-ID: <3218e1dc-b8ba-449c-bed0-1615d8aab0b7@kernel.org>
-Date: Fri, 31 Oct 2025 09:32:11 +0100
+	s=arc-20240116; t=1761899841; c=relaxed/simple;
+	bh=u2rSV+xALNV5Gy6zzb2fmDcmbew8tyHsmquJzh1ljDU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QrOxoUxjQidLwHbQOlTzdBKu5GHUZ/7mpi4mpIL4EU8oBzKFqvvCp2vuOT4B7VuTk1YDSOrBHrPeeSk3lZ1xdexKNmppMLD8O+nb5KdAya1+qOZI166fnhFTIiMRDd8fpwZzbFZQ2Ubh7QjH1qGrv4AhCq6luewZ4hpUqU5melM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=efo3Ys7M; arc=none smtp.client-ip=198.175.65.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761899840; x=1793435840;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=u2rSV+xALNV5Gy6zzb2fmDcmbew8tyHsmquJzh1ljDU=;
+  b=efo3Ys7MrIiHhtcgo9jRY6j3uzl8uuaD/xQ7LVb/b9xPWUZrTmjzxOOH
+   Nq4VojAfXt8Z6vqDDeI1TkxRVPMCLSczSARsAEW+ewmZdaD0lvP6czx3e
+   XHUj/FsgbN4WEW/JlEjCIaZoFjKZ8BchgKtQaf196QX9MwQyyl+xuO342
+   yCbitgcb6eiKSAlan2g7a71ND9w8eaBbp3M5elQr2m872ad+8QrsrEXJ0
+   xpqRoBsev0Zl/jq/gICUEhD45Apym09Qab/IRi96fWuR8R5p2DPA5CWpq
+   zwy9wL1ksBcehjnW2P2rI/YFGBBuEuozdn90Fh5PzyKN0mpO1Z4ZRPb1g
+   g==;
+X-CSE-ConnectionGUID: P98n0r4jS2uMtLkDSAwh8g==
+X-CSE-MsgGUID: DMCUfO4PTj6XtJtn6cNJOg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="74347088"
+X-IronPort-AV: E=Sophos;i="6.19,268,1754982000"; 
+   d="scan'208";a="74347088"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2025 01:37:20 -0700
+X-CSE-ConnectionGUID: 2UlwxA0iTvCXwGFLJGWuNg==
+X-CSE-MsgGUID: r/qe0u3cRXyz5xSqmlUsVA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,268,1754982000"; 
+   d="scan'208";a="185867159"
+Received: from mgoodin-mobl3.amr.corp.intel.com (HELO ashevche-desk.local) ([10.124.220.66])
+  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2025 01:37:17 -0700
+Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1vEkdE-00000004D6i-1UeL;
+	Fri, 31 Oct 2025 10:37:12 +0200
+Date: Fri, 31 Oct 2025 10:37:11 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Ajith Anandhan <ajithanandhan0406@gmail.com>
+Cc: linux-iio@vger.kernel.org, jic23@kernel.org, dlechner@baylibre.com,
+	nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 0/3] iio: adc: Add support for TI ADS1120 ADC
+Message-ID: <aQR1N__AwvPm21tm@smile.fi.intel.com>
+References: <20251030163411.236672-1-ajithanandhan0406@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 0/3] i3c: dw: Add Altera SoCFPGA runtime PM disable
- quirk
-To: adrianhoyin.ng@altera.com, alexandre.belloni@bootlin.com,
- Frank.Li@nxp.com, wsa+renesas@sang-engineering.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, dinguyen@kernel.org,
- linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <cover.1761893824.git.adrianhoyin.ng@altera.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <cover.1761893824.git.adrianhoyin.ng@altera.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251030163411.236672-1-ajithanandhan0406@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On 31/10/2025 09:27, adrianhoyin.ng@altera.com wrote:
-> From: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+On Thu, Oct 30, 2025 at 10:04:08PM +0530, Ajith Anandhan wrote:
+> This RFC patch series adds support for the Texas Instruments ADS1120,
+> a precision 16-bit delta-sigma ADC with SPI interface.
 > 
-> This patchset adds support for an Altera SoCFPGA-specific quirk
-> in the Synopsys DesignWare I3C master driver.
+> The driver provides:
+> - 4 single-ended voltage input channels
+> - Programmable gain amplifier (1 to 128)
+> - Configurable data rates (20 to 1000 SPS)
+> - Single-shot conversion mode
 > 
-> While running the I3C compliance test suite on the Altera Agilex5 SoCFPGA,
-> the I3C bus was observed to hang when a slave device issued an IBI after
-> the Dynamic Address Assignment (DAA) process completed.
+> I'm looking for feedback on:
+> 1. The implementation approach for single-shot conversions
+> 2. Any other suggestions for improvement
 > 
-> This issue occurs because the controller enters a suspended state after
-> DAA due to runtime PM being enabled. When suspended, the controller stops
-> driving the SCL line. As a result, an IBI transfer cannot complete, leaving
-> the SDA line stuck low and the bus in a hung state.
-> 
-> To address this issue, a new compatible string,
-> "altr,socfpga-dw-i3c-master", is introduced to identify the
-> SoCFPGA variant. When this compatible string is matched, a new
-> quirk (DW_I3C_DISABLE_RUNTIME_PM_QUIRK) disables all runtime PM
-> operations in the driver, ensuring the controller remains active
-> to handle IBI transactions reliably.
-> 
-> ---
-> changelog:
-> v1->v2:
-> *Add new compatible string in dw i3c dt binding.
-> *Added new compatible string for altr socfpga platform.
-> *Remove Kconfig that disables runtime PM added in v1.
-> *Update implementation to disable runtime PM via compatible string
-> match
+> Datasheet: https://www.ti.com/lit/gpn/ads1120
+
+The cover letter missed to answer the Q: Why a new driver? Have you checked the
+existing drivers? Do we have a similar enough one that may be extended to
+support this chip?
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-Why is this still RFC? Please always provide reason in changelog and be
-aware that some maintainers - including me - skip or just look briefly
-through RFC patches since they are simply not ready.
-
-Also remember that versioning *continuous* when dropping non-RFC.
-
-
-Best regards,
-Krzysztof
 
