@@ -1,83 +1,83 @@
-Return-Path: <devicetree+bounces-233746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27514C251E0
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:56:52 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF514C2522E
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 14:00:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98C1D463C92
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:56:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D7C5D4F4A64
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:56:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 948DF34AAFF;
-	Fri, 31 Oct 2025 12:56:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45B1534B18E;
+	Fri, 31 Oct 2025 12:56:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g6qbk92i"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jdWOXJDE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5D5C346FDA
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:56:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C5F2348472
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:56:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761915367; cv=none; b=uSwjfP/RFwzav5ih4Zfw8rkXuIE3GMGWQ61MnVf9b2CrYXfKmmDTvvRyAZH2lfN6mek0gR66FFFUgGoLalnnN/QSPb+lmTAqVnWTMdaCRsdWgAVP1wFh9mycwV2x+g28J8r8BGY9/yihlk0olqH0m2tY1njl/dkgppLXsSm5XKM=
+	t=1761915369; cv=none; b=B28vV9mgGRSvs5/hClyx0kOMs/YoW39FW6Fx4qsffyerq1M3O3NXUKhV5BCcOuVcFAO22KaIrU39GpLNWI6VnYJf4qLAgFfPDrCWrJrrdEPpVUJBbi+2bDrt8KG7TOkI8CRNFGtvEI+RKEo1yNdrsr7DzArprhffJIdbEnBwZ18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761915367; c=relaxed/simple;
-	bh=52mHw6aKRd81AmHkFdwI5f2O5qzG7/nRl12+OyMNuEs=;
+	s=arc-20240116; t=1761915369; c=relaxed/simple;
+	bh=WFBXv1nyzbfw8zq+ghHGpCgVYngil2VfWMf3BgFxbsY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ks9VJbRhpUf6rOGkWJujYF91CCU4XvgIly01U2eg+C7ph0hmrfkW4NecFwjrUUSpziRaikN+6tDNXhHcM3OgOb9PE2TMZf79qO9hvlrvUaI8JLxQwmIbsYgWCIz3g0c6SFo2B3fMi2eIVma+7NqaYOBZIfo+wPuvM2tIPWVzWhY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=g6qbk92i; arc=none smtp.client-ip=209.85.128.45
+	 In-Reply-To:To:Cc; b=tik5rX/NGCIwm1bRi6tAOheJkecIX/fvTdAe7rLLmqY1S3ycKEeoEyucNTpJ2mWCQUaESZ72RhfXf4FSH+XxvR7FjyO3IbpNGyv09jcXkXU+Wi7e+w94wQiofr7ko9CWpRs4eH/z3hFiRiaeUb98Ij02LjdfwrI42LKLN7Jt6ec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jdWOXJDE; arc=none smtp.client-ip=209.85.128.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-47719ad0c7dso19999955e9.0
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 05:56:05 -0700 (PDT)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-475dc6029b6so22550505e9.0
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 05:56:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761915364; x=1762520164; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1761915365; x=1762520165; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=w81C8PO6GyjajvSZnVcib72PAdJ1z5nHo14vlKsXejI=;
-        b=g6qbk92iiErU3uxKfLfXvLrkzgZputVtL26LTsivzUDsADma4Ty9cDeW4tEzKEzVZq
-         zLgVJAEi1zPzgMFvAsea3qw6eQb3tPSz/61rIVZt1/IYQZGwQMv1/IwHwFYiwZY9Pi3K
-         HYaPuj7B2o0i8P9QNO0HabpHQmq6fRKH9KUCy3t4JmZLiC1VUFTtVRhLYQ3AlcCwyGGl
-         0s5YHn24eUkYZz7OE+hxfHZ+yDPsP3i4Oxcel7vnEr/qzPoIvFOHjl8GIrQgF+WZz0bK
-         czQ8DgMYXxNcu484EWrM+pNS7M42IVBhcpgMm61smy5nTuEm7ZYk2UUQzdzJZPwASakn
-         R3iA==
+        bh=2aK59j1ErAGwj9CcBo7BjIb+jh09BV6QpI7OzF04L64=;
+        b=jdWOXJDEhd9eeoNjdGpp1fAXiV3cgrkB/4C5XpEHfmqRWK8rgIzCJMulprjgEBQRqN
+         pAkHlPB6ffQw0uu9Z/UDwuBzNoJbUL2PWzhJJKCxweI9zvIwm5awXnrDZkZ08nZaRmBH
+         nGQZPJm9ShEHXwitNyoQviD6E8j+LEGmzHzE1V/71Szdfut4WKXnqdpO7NsMxuNEZP3P
+         S/Msx2sruPdUhsSEk7pUmX2Ov9mlbD0nJ/gnxyUg1hHkJ70famCb8JgQEpbBxDjPKbY3
+         J7wmvvBq10Lv8paIBs/d517S54ppbK8T8CJylcU8AOzKn0QbR3xWGZ54KDZF/Q8479xm
+         E5Qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761915364; x=1762520164;
+        d=1e100.net; s=20230601; t=1761915365; x=1762520165;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=w81C8PO6GyjajvSZnVcib72PAdJ1z5nHo14vlKsXejI=;
-        b=P2ph1rK4wJk8680OT76ubczEjFu1D6Ii1NuDDZB9krrAYgr5rsYaKZzi6OTsZiZy+M
-         NuirvQmx6IdwKU3dO8/oC5dyLWOie7IRfooUmItYfh9n7+pf0TaBmnFQvG6cGTkl5E5b
-         353V443ESXlv+uiOi0THIhqktlO7vO/39josyCGJAJSIpIeMamj+v88t98cW62rf0JYl
-         1SeK+UZowlyjAtUWSDiX3LZ4CiJXbfR7aONGxmnu32cw++ZUcp3/UR2lCrpV94ShgXDK
-         PhhCyj+DooiqEHiWEd1TSMk5SbCVEV1ZMf/Y/5BMM/mZACZnrgoFBmhpe/R83E2QONN7
-         iNNw==
-X-Forwarded-Encrypted: i=1; AJvYcCXzWfawgxlOfzrWaYDwJMkCM7uZYMP76EUB4ovANIg413rwCk1swL50o9/0dAGVEN6YvCGqk0cwSVqV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw67RqWoJ6b3wBjNgb8GI1tYYPEh4YdNDkSDJ/eZ0O2fiPaU1Wd
-	uEC4SKKtv4S7YulVjwNAXr6UAy6QmtcVPFFSx7BdrJ5TBUStAJRd861ZK9/ouIW2Vzw=
-X-Gm-Gg: ASbGncs3yL3n3NbDB2kKjyGAzZL8ImyVhuy+gHBeGJ77ItfFz4EpfhxNUtzkZO84h7e
-	Kn8OPnwOp0nb+hQ9mXzEWYc3i2BMRvhvSaKUq2xBdX56nMT4Tz/k/r3yKIdfXzGOlSZuvMAJYC7
-	rPjeHhFP3ilgoIxojXIAekcsPNWJzcbWEFXmSbcs+52P/gBwxnodiOuMnF0Az7LA/lRcWKZKWGw
-	CRCSm3LkO0gR8e/IFn8NUC+kXKd3+6zpSMmjS+CgQ7Xhlp3BuMr5iFrXkW0BfBSeIZJGsuR/3sg
-	rPicTdL73rto65hgKu5wvC/xnoUfxJunPADX+7viUjGDI4zVKmQMhyvg7cRghQruSq2isFEvvu9
-	Zw5uzdGcPwxlx4SIc28Dm28zvNu8x8uMfUFDWhsJLKDi+Y3duPQvaHbY3+FQxRorpyjaBVBGaQ6
-	GoezwLMealqVV7+CiT3TMTsBTRHKZVnxraDBmRm99NJOiET0Vi2+F+4G9WIS5/31g=
-X-Google-Smtp-Source: AGHT+IE5HT8zyhO+x64QxgSYjKr7L7F+qcefl5D+0FWEsp9ZQtU+HT7k2Pn+gFUE7dvYr1UxapCqpw==
-X-Received: by 2002:a05:600c:19d1:b0:471:747:2116 with SMTP id 5b1f17b1804b1-477308b943dmr32724215e9.41.1761915364051;
+        bh=2aK59j1ErAGwj9CcBo7BjIb+jh09BV6QpI7OzF04L64=;
+        b=EXnq2hDwLuNeOBZgPN9BiO1KWLLrtdRvSNXYrQ8H3njHBMHjettLyCAyxc7oPpUCNR
+         nWK7u4nYcbAU/adAvNs+/YfVlznCBiknvbfzdWthuwjVgI4Qm0RqIHbRq6lkqzjozngx
+         YuZS+SnD3DJEaLIJmpDgOxrDnUXk2cF2IWJEzsQB4FEGxDF+ECWExiP67UEtPIE6iwvN
+         yTs4dItACA+hYiBUTW+SdizcHzNLaju7DtVXg5neFGSwxBaI60D3DFMe6VTDbH3IFEto
+         ezCHGMBrX8Pa6N1xqO2o+UF550XY+sVv5qMPbPm2z+VX9yO9MGGoBOQc69PJCpbq6Izu
+         cwMg==
+X-Forwarded-Encrypted: i=1; AJvYcCXDm8XeiP1lihkAMcf3ufUDpySeGbXSnx98Xiy72ejBNcE8q768ZzKkVNmCrvFthBVqL6SnqbBnuBpo@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxx89BRR3Te36CZCKljUehfZTHrL5mZ/A+TWOWp2i8YfBT9GntY
+	XNz+sbsLC7AtlpVz/ohF8f6oVk3KadIUhFg2/dO5z6jRnsYXapMKBlgh0etjPpbWOWk=
+X-Gm-Gg: ASbGnct2jx4bXJZbbFb0FUgTQVObP7hfS80zlgqx3fggvmb8jYoZ2qvfMPsz9B1hv8k
+	LuRjpx1xloNIKT7zf+/U37+RMcB73hceoYjvR6YGmYP4w/CAKesRfMM9ElQIdND2C90v5vgLOO9
+	H13RXVdnyllKxyG88IXv13sThbeaTXHGO/qpHB7OKW85yazmx+oGeXlHIpyRwnjSJ/vrT/fdZ4n
+	wkLL+XNOAJliVrUBkpOkxKcVCNnq7Mjz6GiqUw/griTYLBf4nrrksfr4GIl0T3Lk/VqBFpKox+E
+	dRA9dMnmLQdfXsiGU0E6FEaUB4hTMJXcndIVYQsHasG8Lp3IdEsgFd1ySe8cWGyExjBkhtuwYBs
+	d/Dxyi1pxShD8hGoGNBK3hB0DEiGS9gaF3+Cqu4cSd1FzCx3tSTVEhSNuNLTFce3L9+4MfYiEpZ
+	mO900mbc4D2hDQnPuToDR7Tkpvue/+ATFuxACyrrrNnRR7Bn+pciDe
+X-Google-Smtp-Source: AGHT+IEen8rgH8y7zo72nmcazSBpBM/gAUMmQggkgYQ2cpkTx7B7kTbDS6/45ddfno1IY5QEnPSQJQ==
+X-Received: by 2002:a05:600c:5021:b0:477:1709:1f32 with SMTP id 5b1f17b1804b1-4773087266fmr25975815e9.26.1761915364886;
         Fri, 31 Oct 2025 05:56:04 -0700 (PDT)
 Received: from ta2.c.googlers.com (213.53.77.34.bc.googleusercontent.com. [34.77.53.213])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47732fe1075sm31814585e9.11.2025.10.31.05.56.03
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47732fe1075sm31814585e9.11.2025.10.31.05.56.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Oct 2025 05:56:03 -0700 (PDT)
+        Fri, 31 Oct 2025 05:56:04 -0700 (PDT)
 From: Tudor Ambarus <tudor.ambarus@linaro.org>
-Date: Fri, 31 Oct 2025 12:56:00 +0000
-Subject: [PATCH 01/11] dt-bindings: hwinfo: samsung,exynos-chipid: add
- google,gs101 compatible
+Date: Fri, 31 Oct 2025 12:56:01 +0000
+Subject: [PATCH 02/11] soc: samsung: exynos-chipid: use a local dev
+ variable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,7 +86,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251031-gs101-chipid-v1-1-d78d1076b210@linaro.org>
+Message-Id: <20251031-gs101-chipid-v1-2-d78d1076b210@linaro.org>
 References: <20251031-gs101-chipid-v1-0-d78d1076b210@linaro.org>
 In-Reply-To: <20251031-gs101-chipid-v1-0-d78d1076b210@linaro.org>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -99,91 +99,82 @@ Cc: Krzysztof Kozlowski <krzk@kernel.org>, semen.protsenko@linaro.org,
  linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Tudor Ambarus <tudor.ambarus@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761915362; l=2586;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761915362; l=2538;
  i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
- bh=52mHw6aKRd81AmHkFdwI5f2O5qzG7/nRl12+OyMNuEs=;
- b=vpkvnaAKzBlUYUyJicoR7s8ZIonwBdHpBvPXSHqnML9kKehWnWDt6lXVGE1gK30tPNuHSi6tz
- tYeAfPhVfVCDtbiE6EMzCUWvpiA6l7oT7wpXfT4MIUlK7O4ZKhTeT4t
+ bh=WFBXv1nyzbfw8zq+ghHGpCgVYngil2VfWMf3BgFxbsY=;
+ b=QAW3wttm1FRERcy6yo9M/wXhR8vnpJD3NM/zeyw5mPRiA76Sag5UI/o7TUwkB0LqIEVC4cDVu
+ cutaZOoGKzzD6K6kvEKA4luo67bc7xnKrARcCebzI1DVxlOHjiQLoeF
 X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
  pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 
-Google GS101 Chip ID references the nvmem cells from the OTP controller,
-it doesn't need a reg space. Add the google,gs101-chipid compatible.
+Use a local variable for struct device to avoid dereferencing.
 
 Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 ---
- .../bindings/hwinfo/samsung,exynos-chipid.yaml     | 51 +++++++++++++++++++++-
- 1 file changed, 50 insertions(+), 1 deletion(-)
+ drivers/soc/samsung/exynos-chipid.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml b/Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml
-index b9cdfe52b62ff3a365d61368c39db21facff6565..6d6260be02d47712ebf1e4d31973802e8340cdfe 100644
---- a/Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml
-+++ b/Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml
-@@ -33,6 +33,16 @@ properties:
-               - samsung,exynosautov9-chipid
-               - samsung,exynosautov920-chipid
-           - const: samsung,exynos850-chipid
-+      - items:
-+          - const: google,gs101-chipid
-+
-+  nvmem-cells:
-+    maxItems: 2
-+
-+  nvmem-cell-names:
-+    items:
-+      - const: product-id
-+      - const: chip-id
+diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/exynos-chipid.c
+index 0f9f83a006795df08dae556ef37c2b78bd599ef5..d3b4b5508e0c808ee9f7b0039073ef57915d60fc 100644
+--- a/drivers/soc/samsung/exynos-chipid.c
++++ b/drivers/soc/samsung/exynos-chipid.c
+@@ -109,16 +109,17 @@ static int exynos_chipid_probe(struct platform_device *pdev)
+ 	const struct exynos_chipid_variant *drv_data;
+ 	struct exynos_chipid_info soc_info;
+ 	struct soc_device_attribute *soc_dev_attr;
++	struct device *dev = &pdev->dev;
+ 	struct soc_device *soc_dev;
+ 	struct device_node *root;
+ 	struct regmap *regmap;
+ 	int ret;
  
-   reg:
-     maxItems: 1
-@@ -47,7 +57,46 @@ properties:
+-	drv_data = of_device_get_match_data(&pdev->dev);
++	drv_data = of_device_get_match_data(dev);
+ 	if (!drv_data)
+ 		return -EINVAL;
  
- required:
-   - compatible
--  - reg
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            oneOf:
-+              - enum:
-+                  - samsung,exynos4210-chipid
-+                  - samsung,exynos850-chipid
-+              - items:
-+                  - enum:
-+                      - samsung,exynos5433-chipid
-+                      - samsung,exynos7-chipid
-+                      - samsung,exynos7870-chipid
-+                      - samsung,exynos8890-chipid
-+                  - const: samsung,exynos4210-chipid
-+              - items:
-+                  - enum:
-+                      - samsung,exynos2200-chipid
-+                      - samsung,exynos7885-chipid
-+                      - samsung,exynos8895-chipid
-+                      - samsung,exynos9610-chipid
-+                      - samsung,exynos9810-chipid
-+                      - samsung,exynos990-chipid
-+                      - samsung,exynosautov9-chipid
-+                      - samsung,exynosautov920-chipid
-+                  - const: samsung,exynos850-chipid
-+    then:
-+      required:
-+        - reg
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: google,gs101-chipid
-+    then:
-+      required:
-+        - nvmem-cells
-+        - nvmem-cell-names
+-	regmap = device_node_to_regmap(pdev->dev.of_node);
++	regmap = device_node_to_regmap(dev->of_node);
+ 	if (IS_ERR(regmap))
+ 		return PTR_ERR(regmap);
  
- additionalProperties: false
+@@ -126,8 +127,7 @@ static int exynos_chipid_probe(struct platform_device *pdev)
+ 	if (ret < 0)
+ 		return ret;
  
+-	soc_dev_attr = devm_kzalloc(&pdev->dev, sizeof(*soc_dev_attr),
+-				    GFP_KERNEL);
++	soc_dev_attr = devm_kzalloc(dev, sizeof(*soc_dev_attr), GFP_KERNEL);
+ 	if (!soc_dev_attr)
+ 		return -ENOMEM;
+ 
+@@ -137,8 +137,8 @@ static int exynos_chipid_probe(struct platform_device *pdev)
+ 	of_property_read_string(root, "model", &soc_dev_attr->machine);
+ 	of_node_put(root);
+ 
+-	soc_dev_attr->revision = devm_kasprintf(&pdev->dev, GFP_KERNEL,
+-						"%x", soc_info.revision);
++	soc_dev_attr->revision = devm_kasprintf(dev, GFP_KERNEL, "%x",
++						soc_info.revision);
+ 	if (!soc_dev_attr->revision)
+ 		return -ENOMEM;
+ 	soc_dev_attr->soc_id = product_id_to_soc_id(soc_info.product_id);
+@@ -152,13 +152,13 @@ static int exynos_chipid_probe(struct platform_device *pdev)
+ 	if (IS_ERR(soc_dev))
+ 		return PTR_ERR(soc_dev);
+ 
+-	ret = exynos_asv_init(&pdev->dev, regmap);
++	ret = exynos_asv_init(dev, regmap);
+ 	if (ret)
+ 		goto err;
+ 
+ 	platform_set_drvdata(pdev, soc_dev);
+ 
+-	dev_info(&pdev->dev, "Exynos: CPU[%s] PRO_ID[0x%x] REV[0x%x] Detected\n",
++	dev_info(dev, "Exynos: CPU[%s] PRO_ID[0x%x] REV[0x%x] Detected\n",
+ 		 soc_dev_attr->soc_id, soc_info.product_id, soc_info.revision);
+ 
+ 	return 0;
 
 -- 
 2.51.1.930.gacf6e81ea2-goog
