@@ -1,75 +1,55 @@
-Return-Path: <devicetree+bounces-233810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E23D4C25BD0
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 16:04:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E27A0C25BDF
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 16:05:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 805E3423BDB
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 15:01:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C460420C9C
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 15:02:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F80B2D0C97;
-	Fri, 31 Oct 2025 14:53:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01C4C248883;
+	Fri, 31 Oct 2025 14:58:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gn6d44Be"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NrcwX7Ps"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A11C20C004;
-	Fri, 31 Oct 2025 14:53:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C22D6192B84;
+	Fri, 31 Oct 2025 14:58:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761922391; cv=none; b=uYnjQHpeMLhvCDPSGdsIg6b9wldFBBPc3CgwyY0sp0zWN7TmyLTCO9T6DK/NI0FGCfhrH5DnZjLjbw0fyEltdkf7yrQ0Crf9/+nfavHntkGkUb+eB5+DiKs1xCsN71npp0gQogSpftVwbMd3rOjs7nslDFH7VpK6wdyaXBzPLoY=
+	t=1761922736; cv=none; b=GeC/pntn5BXBXlRMtIO7Q+Hf9uKVsehALYd2YBdXEMyVso78vb3gLszHFH6sq76OWD1OzvHN+sGu3DGbJ08UJCryQ2HGOYW3YJAbRF61M+Zso0hxKcNkzS2QEFBPxBNkwydhYhi5wDHsBE6ek6pFqq2gtA//xm4bBDGeuEq3jqY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761922391; c=relaxed/simple;
-	bh=lov+vmbKoZkT3iZ5MDyWTKKzx+/OVKK/WuReUGp7jH8=;
+	s=arc-20240116; t=1761922736; c=relaxed/simple;
+	bh=uhrdlxXYbAo8AMN1hNHmfe6mVo3BFTeqYCnXrGkeNpI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bcNI8da48kaGaonKXP6dqPRc3/cMuXvGnJljm3+gQ7RD3/PvR9ooMV/gQ4YJDsgCcPcRRse7FMWAZjAzQaoJIs8UJm3INGfQiHrTmTcOeOORMtVJmHezcZRWFvi6qRl3y/lpVmtsK5CX43WAcp7HbTAFaLfQFaW1KEeAOrujyRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gn6d44Be; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761922389; x=1793458389;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=lov+vmbKoZkT3iZ5MDyWTKKzx+/OVKK/WuReUGp7jH8=;
-  b=gn6d44BeepZC/Xq9ElHBVXpxm+7lKRIS8i4Xip5Mp+GAe3ko0hP+4KBK
-   yO74cjL/lGU/M1uZTXZIectC4MsD9OZgbt6Nzo9oaf2LkYaXmzDKH0okk
-   FGMnUXyJiP2ji91WYtYs7UInNh6RX6t0/RvVhrg7KWJ4rdUwUG1ZY72qz
-   7uy6cVPTc9ml+PmBBHgSuQFJNk/v/lHYfsKr+kqyaqubpW7iyIJxW0xsz
-   h0W9H38cUFXGY6+tJ+wuc7j5+4T2V6beMj6++KgQ8Y6vtrdse77gkVkQw
-   GS12imHlfwoDnlMIj/UO9NWKP3nWy5n0kxuRjxu+iXgWVsutK+ZUrs+Fh
-   w==;
-X-CSE-ConnectionGUID: pXF2APp3RMiP9JMViSnSUA==
-X-CSE-MsgGUID: oJkt8NmHTYCZIacuTEED6Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="81713628"
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; 
-   d="scan'208";a="81713628"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2025 07:53:07 -0700
-X-CSE-ConnectionGUID: 7Mj/o2sFSfSx0X2UfuffuA==
-X-CSE-MsgGUID: NVNlY3PoQqmz4ngBEtueig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; 
-   d="scan'208";a="216908680"
-Received: from mgoodin-mobl3.amr.corp.intel.com (HELO ashevche-desk.local) ([10.124.220.66])
-  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2025 07:53:02 -0700
-Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1vEqUq-00000004Iip-1OMj;
-	Fri, 31 Oct 2025 16:52:56 +0200
-Date: Fri, 31 Oct 2025 16:52:55 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ge42zReCNZBAKm56ZqsoCG6rGOyr+cWLekOPC26ocv6q1B5UsWeFQxdYaFCaxC9Nx6fcNph+SQwRKWzDgeR+NNArYFohZWwIFOtHExKfrSNps/CxljkvNTcCzDM1oAIcfpUqBsPyznDlhqMPpCknQUPJNUWBuh9jFH00/9SxNGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NrcwX7Ps; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FAC5C4CEE7;
+	Fri, 31 Oct 2025 14:58:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761922736;
+	bh=uhrdlxXYbAo8AMN1hNHmfe6mVo3BFTeqYCnXrGkeNpI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NrcwX7PsgjjlCzk6jFzcWCxDdKSMl47XA64eKM3sNrRyfDPcpB8E6IWehmUL4uaEs
+	 zVl0C7ahJqgHoFz0KOWeoLKMjaTxg4Oj1gVTZW5LM60+32FDfNMHKoXv7M0LJ5B2QK
+	 7efkiJfImRETflqM9E1NrFX2duLZ2IwbZZgUdK9rMmBDX4VPEmkDmz2A27+AQRVDhV
+	 ejWXw5TlXTkeBawqi4PtiyW8YR3ZVz9PZS3CAIaZQRhEOkvDMVS8Ye8dU2mot0G0/J
+	 87d5xtn43QIJR2juzsIV5j3GNnIMv0lcrkmSWE9oJrgHOhMrshmJQQDUPUKzm4EOTN
+	 a4OdQv8hN4Fmw==
+Date: Fri, 31 Oct 2025 14:58:49 +0000
+From: Conor Dooley <conor@kernel.org>
 To: =?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>
 Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
 	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
 	Jan Dabros <jsd@semihalf.com>,
 	Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
 	Clark Williams <clrkwllms@kernel.org>,
@@ -82,34 +62,69 @@ Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
 	Dmitry Guzman <dmitry.guzman@mobileye.com>,
 	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org, linux-rt-devel@lists.linux.dev
-Subject: Re: [PATCH v2 3/5] i2c: designware: Sort compatible strings in
- alphabetical order
-Message-ID: <aQTNR57ae-hGBPn0@smile.fi.intel.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: i2c: dw: Add Mobileye I2C controllers
+Message-ID: <20251031-segment-chance-40ba410eb55a@spud>
 References: <20251031-i2c-dw-v2-0-90416874fcc0@bootlin.com>
- <20251031-i2c-dw-v2-3-90416874fcc0@bootlin.com>
+ <20251031-i2c-dw-v2-1-90416874fcc0@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ST2W6XfdKwMk0moh"
+Content-Disposition: inline
+In-Reply-To: <20251031-i2c-dw-v2-1-90416874fcc0@bootlin.com>
+
+
+--ST2W6XfdKwMk0moh
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251031-i2c-dw-v2-3-90416874fcc0@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 31, 2025 at 03:35:41PM +0100, Benoît Monin wrote:
-> Reorder the of_device_id structures so that they are in alphabetical
-> order. Also drop the unneeded inner trailing comma in the
-> "snps,designware-i2c" struct.
+On Fri, Oct 31, 2025 at 03:35:39PM +0100, Beno=EEt Monin wrote:
+> Add compatible string for the I2C controllers present in Mobileye
+> Eyeq6Lplus SoC. The same controllers are also present in the EyeQ7H.
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Then where is the compatible for the q7h?
 
--- 
-With Best Regards,
-Andy Shevchenko
+pw-bot: changes-requested
 
+>=20
+> Signed-off-by: Beno=EEt Monin <benoit.monin@bootlin.com>
+> ---
+>  Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.ya=
+ml b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+> index d904191bb0c6..bc84631f28d1 100644
+> --- a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+> @@ -36,6 +36,7 @@ properties:
+>          const: baikal,bt1-sys-i2c
+>        - items:
+>            - enum:
+> +              - mobileye,eyeq6lplus-i2c
+>                - mscc,ocelot-i2c
+>                - sophgo,sg2044-i2c
+>                - thead,th1520-i2c
+>=20
+> --=20
+> 2.51.1
+>=20
 
+--ST2W6XfdKwMk0moh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQTOqQAKCRB4tDGHoIJi
+0vCsAP0WQefK8Nu5rXO98P4kJI737TCfj36gyYkXgaoPsLPgcgEAi3OUS3CUlm/D
+42OembnIL52BkQSEmlR7Ku1+Uzf87w8=
+=eMaq
+-----END PGP SIGNATURE-----
+
+--ST2W6XfdKwMk0moh--
 
