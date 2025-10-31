@@ -1,126 +1,395 @@
-Return-Path: <devicetree+bounces-233762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 596B9C253E5
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 14:23:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BC24C25478
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 14:38:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F05818899E0
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:22:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F5C2188EF33
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:38:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 434E232720D;
-	Fri, 31 Oct 2025 13:21:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78018221540;
+	Fri, 31 Oct 2025 13:38:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y+1qLC4K"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="Mv5qOTdj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-io1-f65.google.com (mail-io1-f65.google.com [209.85.166.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D3BD1B142D
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 13:21:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A908217F29
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 13:38:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761916906; cv=none; b=kwTcwgSOGkL4pHuRd316m+vE6TJXduI3i/boPL5zebEBIRnFqz0/2o0n+gEZ4rmACWZr1yccwJ4LWB2S7ua+O2Jt+6oOVfDSd+iEzqSLHmqoqLPoxV2G9b6YR3U9sBqxosWByj/HwIPvvbB1HNaYDiXG8/s8fb5Urm3hj8Nep10=
+	t=1761917891; cv=none; b=MYD4fNDI8EaShp6L4ajvzxI8Cp22oimhdl0zKYGobY1ke1p24Z1U4KfCT7KCRL1jTQEI4y8OKrNDzd3x6UPMQo+BDC6mLKoqsjd1K7kQxbU9hV7yeo2ZaQMr4KdC/8HhU5gh0WMSRiDTBLTHOfL8DUkLxegynhXbGKtNIbvBJSY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761916906; c=relaxed/simple;
-	bh=9F8gqc4rpAW0lwHjC+yXvFyXO3F6d/9S0upqMfbC7T4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=f0j3060iU+3hW8dr5oYcFRSWCpgG7mwn87VEIR+sn9VeoVNKoebg9z5XBb50QkDJAbNZBdTEBwuuMovfbL6oAKpijGfZcxz2tYtvYm8WwpHXOJQ2YZz8AZJh4PXLcV2g5WBih5PnNn+p046Dq8MXlCPRF7pmSJWf5uRij6OxH2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Y+1qLC4K; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b3f5a6e114dso39924266b.0
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 06:21:44 -0700 (PDT)
+	s=arc-20240116; t=1761917891; c=relaxed/simple;
+	bh=0VQdKp3Jr+HY34bWezsEjwJjWZHNfdtg/4c7OLz3/mY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mrnA63wvuF0HLKsfkIhlhpvgBloQn7evAOySzwkk2SeJ5hwy8Fl980TPPRX+S5PPY7V+ra1aMAa4qPBVNCnbXaisy6/FS3CcFWQPzmIh4hfWC0AY0ZnG32YoTMTr6y2g4IDUwKyk/HvJF88hp8k9kbQaK7UcmruV9HuVNB10Hsc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=Mv5qOTdj; arc=none smtp.client-ip=209.85.166.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f65.google.com with SMTP id ca18e2360f4ac-93e7d3648a8so91144539f.2
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 06:38:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761916903; x=1762521703; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5rcO1WrShaPm5De8Wjzz/fE42huUhjGMGtrFHb04y+8=;
-        b=Y+1qLC4KK9MQxsAJIOOGOzedunVHVCZwCJYjCtmh5fhXGS598PmyI0MshNA2B36HjZ
-         tvL6kJcLbFNpoDIDtfv3cQJXwZ6+4Re2wyh/DqO/pkZ/iFzhpd5//H0HYS1fpRIhIgl0
-         +dZCpHxR6TZQmfULI6J59oPZAJ3Dq8yY4AaTvyNO+moAU48sGSCr5Hg2iYRdRDfqxGSQ
-         R5OTPaRPI4UarfCZ5oQsElBLOQv5RjPc20n6F2AfqLf1eagxY7kLmxv9BLXt0W5/QBAK
-         l8qnsYULTCabapLhaiWj1dLGiCuJcXJdw7hX37AekWk6ozmbA8LMzKbbSwECbwAAFEX0
-         BeYQ==
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1761917888; x=1762522688; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yzRowIyyZmKGcUOSb4RASNAB36lhMpiLxSTkV7xgA5w=;
+        b=Mv5qOTdjUUR/8nLOJTyeUvyX09qa5G8fpSLcqmwUu+a4XfCDr9AnYI4FqPAGYKdSF9
+         AU5TaIybJvsYHVvNThBfdi2NZ+9JFBV1rcvwum+ek+bZXngVZSQM2vOsAROt6T0JJgBj
+         +8ZgQFszemqxpZK2eQ5PIABtHjQMFdZNdH9Q63IF6YyxIQ3zkEJpfiHrMOm4zhBzdV1/
+         gBEGYSrkMDj+sV3+1G2hmjnhVGJk/m9DfOxk5ZGBCBoUrtwZDlDDMl1pVYtYOoJFk3Wf
+         87H2iYlWNQKvPHej7LrufGO7zMH07p09wJh2Tn9HTyyBn+andk179XoASjAWxKFCW7sw
+         lcrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761916903; x=1762521703;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5rcO1WrShaPm5De8Wjzz/fE42huUhjGMGtrFHb04y+8=;
-        b=F+zAciIdcCK0CPVTaaxub20OUwGmrX3uyydME8Dfc36aAZHxkg3+5r0pt9a0jUWNWG
-         +QF++VCDYVBnjPIXfd9vUOb++P2O8ZuxsxRjF3eEOxCwBcyRu7p3CEvh7Q5rh4EENniR
-         cK7vy6HP6HQqzHd9fYsSJZeWzP+UOHUmOGmIIV0VAkj1wdh2xqWHB8UZUtvsdkgd/Squ
-         h1axEbQVywuQvkQOiHsPE8uEt8LvlEFvQZaVDc91zQF4chQghHnmj/VgqgQJi0M8QojJ
-         j7VpHxeQgZdMK04MLaOaypSyKSBllCEe37xmzmN4vqEtNLON928TzLA1wrtlsDBDYIiN
-         lI8w==
-X-Forwarded-Encrypted: i=1; AJvYcCUCR6tBGVBelreFlokn00NU+3BbEt8oarIk4Dqfa0XDORYFqrV8ijOn60O5SQwUuMf8O7w8vlFnV61+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxjyH3MLNtiQ90ma6c+jPPqYM3/FSXU4EQmg/C/E5RNX+jKQ3QF
-	w1BxtskYqbXSVI+TjZQqqmDq63WFs1Hea+UCdsi3+XHO2d2+qtkRoag/DLVOAF45HOo=
-X-Gm-Gg: ASbGncubXWfccZktzyO3TnDnD7fy4Sjpex7efiKO7MSqUUIOm74LS5zKNdE646lBnfN
-	JD0WmyqjdCRBFG8XsdP79QrrxomLleHPT42oOyw3O6LB9Vm2r1xCTeqWYSyqCHIk/wrbHt//DQy
-	8dHRaX4yY1BoziqaU1BMzZv4N1NihhQvte9HG+ptTmMTEe5LkvkpaglmrxDZ6MyNSdmEEVmndNb
-	gyu2QuTd4IPDumCkDSO9xeE9wskshThjJuXag3QEVmSVh6SgerTMjKdOHJig4j2R2SKbJkIlfap
-	19DBmxRUjJ8W+9HcFTwN9HmHQmFs+uars0Aiso8oXydmTYAV1QLIB7Iuv2AXLAE1MrYmRsIeOnK
-	P1m3rEf5EyzvpoCwpdyR9NenuTrQFak6pX0iRhl0QQZcwwmd0o+ccQ8wm4bs7l0vmPM4B1V3PlI
-	txd3HPFWD+4g2mHkQloQWcCrCwVc0=
-X-Google-Smtp-Source: AGHT+IHrjxX6puaY6w2PZtpMXH0moreOfvriHk3Y/1virPJB7joYYP7PIoZd61/ZbxsYgldtkurG8Q==
-X-Received: by 2002:a17:906:fd8a:b0:b6d:5106:86d2 with SMTP id a640c23a62f3a-b70708a3f30mr208643866b.8.1761916902672;
-        Fri, 31 Oct 2025 06:21:42 -0700 (PDT)
-Received: from [127.0.1.1] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7077975cfesm174858266b.4.2025.10.31.06.21.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Oct 2025 06:21:42 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, Aaron Kling <webgeek1234@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-tegra@vger.kernel.org
-In-Reply-To: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
-References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
-Subject: Re: [PATCH v4 0/5] memory: tegra: Support EMC dfs on
- Tegra186/Tegra194
-Message-Id: <176191690156.74562.382156724041473426.b4-ty@linaro.org>
-Date: Fri, 31 Oct 2025 14:21:41 +0100
+        d=1e100.net; s=20230601; t=1761917888; x=1762522688;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yzRowIyyZmKGcUOSb4RASNAB36lhMpiLxSTkV7xgA5w=;
+        b=JvV8/+qZ0NfLqCr9RvyfBmeNsYGD/EQRa0wgt44jIGAPH/CLgaKCrJvqQHVBKAbrfU
+         C7o8TX0vWnn8vacJ+g8x9Z683cdg6AFSq4YD2gTBXhp7iyheBhCI1jFu4Zf1OO+BkC89
+         LJeoXK8cKFTYdEq8LIXBDybtcvE54RsI8TeN5fhdZryd8eAEiHK7y0UvlB9NyENAV0aH
+         AYSTQJ7J2l14pTzIc/UFe51Gmnv7Fk0bs3vJ8xJI5s/sai7py4O70hhgrMQxpn5nuzeF
+         g89PAk9yyim0PwHNDqtSpGzMcerPFDVVdcH5GHotkZx0cOXN7el0Twj5sze4Olx3P1/B
+         jhdQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVJrpMN2f95KMgad4wF6WBP2MG7qWBrPiEJnRoxU03hNq6QWQUZWYOsZJinyNjPYZT4C1i5MxvZzc0y@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGWfkM60I2Y9LslIhSyfZgeTaFONsUliVcZjhBa02sreV1WTtp
+	SccfxC4yqwpE/YIBctGAxv/q5j7xoxR/BpgplllW67iAoEZc5RSphmKzuFeexdJ4gn4=
+X-Gm-Gg: ASbGncsBYb93t7zhBGJNenHOHP448hb1oKfS05ix83Ah6AH8pbJp4cfGQOecDp13rDi
+	Q29n2BkQBHMJGIbuH083W/EsmtajoUbiZkSSO0uf926SIYCx/g8fYCha6TIdRiDrEbof61kc06+
+	Zalk1c/Dlnt/VTfaxNMOeFsJEcABLh21tmZWLBbcXPJRnYmaQjcXi3rny7AYZGUf8fm7iYOMPfI
+	/D4hu513clqJ8Nl90C9V45biy3ecSGsKiC2ncdOBRbVU7RYmCLeBb/gb5+NxtNejtNgzSp+sy90
+	S8kBb9hQTbzDhd9WFRoeKkLzuVJX9l9dsreXnmESZrC/8vjR2dD8/PH2bCKgL+AXqAkYjnAjUoh
+	+g1uArg3phZ4ukcmHZQRG10b555oRFa7Ad0F5PuqlHuscYirDSGV3PMF09dtUiJu0A/FwPvs2nF
+	px0EE1ewUc8eijht8d8cQ3JPEu4mFA11mGq3YynQkkfqRpe0XQN+I=
+X-Google-Smtp-Source: AGHT+IFy2z/iuNwWKERvSpYZtZ5ZpYZ1zRomo2K0p0GcYWw60cslj3gZCJmO6Q+O9lj169DxL5GitQ==
+X-Received: by 2002:a05:6602:140c:b0:943:5c83:d68e with SMTP id ca18e2360f4ac-948229124fbmr219775639f.1.1761917888019;
+        Fri, 31 Oct 2025 06:38:08 -0700 (PDT)
+Received: from [172.22.22.234] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
+        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-94827b96fb0sm57705539f.7.2025.10.31.06.38.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Oct 2025 06:38:07 -0700 (PDT)
+Message-ID: <d5d44b8b-94a5-4830-8f61-0b8cbd72889c@riscstar.com>
+Date: Fri, 31 Oct 2025 08:38:04 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/7] PCI: spacemit: introduce SpacemiT PCIe host driver
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+ vkoul@kernel.org, kishon@kernel.org, dlan@gentoo.org, guodong@riscstar.com,
+ pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+ p.zabel@pengutronix.de, christian.bruel@foss.st.com, shradha.t@samsung.com,
+ krishna.chundru@oss.qualcomm.com, qiang.yu@oss.qualcomm.com,
+ namcao@linutronix.de, thippeswamy.havalige@amd.com, inochiama@gmail.com,
+ devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-phy@lists.infradead.org, spacemit@lists.linux.dev,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251013153526.2276556-1-elder@riscstar.com>
+ <20251013153526.2276556-6-elder@riscstar.com>
+ <274772thveml3xq2yc7477b7lywzzwelbjtq3hiy4louc6cqom@o5zq66mqa27h>
+ <4027609d-6396-44c0-a514-11d7fe8a5b58@riscstar.com>
+ <paxtbwlvndtsmllhsdiovwqoes7aqwiltac6ah4ehrpkz554y6@uj5k3w5jxeln>
+ <9bebde96-485f-4f30-b54c-be9e6c16f2d6@riscstar.com>
+ <546kfkmfkndae32mmculbgacuni4raqwpgmeb4xnhvsuavjl3w@3pjtpmblmril>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <546kfkmfkndae32mmculbgacuni4raqwpgmeb4xnhvsuavjl3w@3pjtpmblmril>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
 
-
-On Mon, 27 Oct 2025 13:55:14 -0500, Aaron Kling wrote:
-> This series borrows the concept used on Tegra234 to scale EMC based on
-> CPU frequency and applies it to Tegra186 and Tegra194. Except that the
-> bpmp on those archs does not support bandwidth manager, so the scaling
-> iteself is handled similar to how Tegra124 currently works.
+On 10/31/25 1:05 AM, Manivannan Sadhasivam wrote:
+> On Wed, Oct 29, 2025 at 07:10:10PM -0500, Alex Elder wrote:
+>> On 10/28/25 2:06 AM, Manivannan Sadhasivam wrote:
+>>> On Mon, Oct 27, 2025 at 05:24:38PM -0500, Alex Elder wrote:
+>>>> On 10/26/25 11:55 AM, Manivannan Sadhasivam wrote:
+>>>>> On Mon, Oct 13, 2025 at 10:35:22AM -0500, Alex Elder wrote:
+>>>>>> Introduce a driver for the PCIe host controller found in the SpacemiT
+>>>>>> K1 SoC.  The hardware is derived from the Synopsys DesignWare PCIe IP.
+>>>>>> The driver supports three PCIe ports that operate at PCIe gen2 transfer
+>>>>>> rates (5 GT/sec).  The first port uses a combo PHY, which may be
+>>>>>> configured for use for USB 3 instead.
+>>>>>>
+>>>>>> Signed-off-by: Alex Elder <elder@riscstar.com>
+>>>>>> ---
+>>
+>> . . .
+>>
+>>>>>> +	ret = devm_regulator_get_enable(dev, "vpcie3v3-supply");
+>>>>>> +	if (ret)
+>>>>>> +		return dev_err_probe(dev, ret,
+>>>>>> +				     "failed to get \"vpcie3v3\" supply\n");
+>>>>>
+>>>>> As mentioned in the bindings patch, you should rely on the PWRCTRL_SLOT driver
+>>>>> to handle the power supplies. It is not yet handling the PERST#, but I have a
+>>>>> series floating for that:
+>>>>> https://lore.kernel.org/linux-pci/20250912-pci-pwrctrl-perst-v3-0-3c0ac62b032c@oss.qualcomm.com/
+>>>>
+>>>> I think that just means that I'll define a DT node compatible with
+>>>> "pciclass,0604", and in that node I'll specify the vpcie3v3-supply
+>>>> property.  That will cause that (pwrctrl) device to get and enable
+>>>> the supply before the "real" PCIe device probes.
+>>>>
+>>>
+>>> Right.
+>>>
+>>>> And once your PERST work gets merged into the PCI power control
+>>>> framework, a callback will allow that to assert PERST# as needed
+>>>> surrounding power transitions.  (But I won't worry about that
+>>>> for now.)
+>>>>
+>>>
+>>> I'm still nervous to say that you should not worry about it (about not
+>>> deasserting PERST# at the right time) as it goes against the PCIe spec.
+>>> Current pwrctrl platforms supporting PERST# are working fine due to sheer luck.
+>>>
+>>> So it would be better to leave the pwrctrl driver out of the equation now and
+>>> enable the supply in this driver itself. Later, once my pwrctrl rework gets
+>>> merged, I will try to switch this driver to use it.
+>>
+>> As I understand it, PERST# should be only be deasserted after
+>> all power rails are known to be stable.
+>>
 > 
+> Yes
 > 
+>> This driver enables the regulator during probe, shortly
+>> before calling dw_pcie_host_init().  That function calls
+>> back to k1_pcie_init(), which enables clocks, deasserts
+>> resets, and initializes the PHY before it changes the
+>> PERST# state.
+>>
+>> By "changing the PERST# state" I mean it is asserted
+>> (driven low), then deasserted after 100 milliseconds
+>> (PCIE_T_PVPERL_MS).
+>>
+>> I have two questions on this:
+>> - You say the PCI spec talks about the "right time" to
+>>    deassert PERST# (relative to power).  Is that at all
+>>    related to PCIE_T_PVPERL_MS?
+> 
+> The PCI CEM spec says that PERST# should be deasserted atleast 100ms after the
+> power becomes stable. But with the current pwrctrl design, the host controller
 
-Applied, thanks!
+So it *is* related to that delay, but the concern you have is about
+the pwrctrl design.  Simply probing the pwrctrl device enables all
+its regulators, but that probe is not synchronized with the host
+controller driver.  In this driver, PERST# is deasserted in the
+dw_pcie_host_ops->init callback, which could be called *before*
+the pwrctrl probe, and we want it to occur only *after* it.
 
-[1/5] dt-bindings: memory: tegra186-mc: Add dummy client IDs for Tegra186
-      https://git.kernel.org/krzk/linux-mem-ctrl/c/c15b28b1b3befb7ebf1c01c42623c3cede4cf9d1
-[2/5] dt-bindings: memory: tegra194-mc: Add dummy client IDs for Tegra194
-      https://git.kernel.org/krzk/linux-mem-ctrl/c/2aad3b30a7df710ff281d12a81bf84aa4bd98500
-[3/5] memory: tegra186-emc: Support non-bpmp icc scaling
-      https://git.kernel.org/krzk/linux-mem-ctrl/c/1004666bc437e234910c660f9d03a71ad44c027a
-[4/5] memory: tegra186: Support icc scaling
-      https://git.kernel.org/krzk/linux-mem-ctrl/c/dd6814eefbe524e433e1dbc25229c9338cb50027
-[5/5] memory: tegra194: Support icc scaling
-      https://git.kernel.org/krzk/linux-mem-ctrl/c/c9e39dd13ad6650b46ff3288ed33130a8bc771f8
+I find on my system that (at least based on printk() time stamps)
+the PERST# is deasserted *before* regulator_bulk_enable() in
+pci_pwrctrl_slot_probe() has completed.  So you're absolutely
+right about the problem.  The NVMe device doesn't probe until
+at least 5 seconds later.
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I don't want to rely on this sketchy behavior, so here is what
+I plan to do (please tell me whether you agree).
 
+I will back out the change that moves the regulator into the
+root port.  I will still use the pwrctrl model--meaning the
+root port will still be compatible with "pciclass,0604"--but
+because it will define no regulators or clocks, it just won't
+do anything of value for now.
+
+Later, when you add the callback to the pwrctrl framework,
+we can implement that callback and then move the regulator
+definitions into the root port, and no longer enable them
+in the host controller driver.
+
+> deasserts the PERST# even before the pwrctrl probe. So this is in violation of
+> the spec. But depending on the endpoint device design, this might not cause any
+> issue as PERST# is a level triggered signal. So once the endpoint boots up, it
+> will see the PERST# deassert and will start working. I'm not justifying the
+> current design, but just mentioning that you might not see any issue.
+
+I'm not seeing any issue, but it's true, the sequence of events
+is not compliant with what you describe from the spec.
+
+> That being said, we are going to submit a series that reworks pwrctrl framework
+> such that each controller can call an API to probe pwrctrl drivers. This way,
+> host controller driver can make sure that the device will get powered ON before
+> it deasserts the PERST#.
+
+For DesignWare-based devices that might mean a new dw_pcie_host_ops
+callback function, or maybe it can just defer calling its ->init
+callback until it knows power is enabled and stable.
+
+>> - I notice that PERST# is in a deasserted state at the
+>>    time I assert it in this sequence.  Do you see any
+>>    reason I should assert it early as an initialization
+>>    step, or is asserting it and holding it there for
+>>    100 msec sufficient?
+>>
+> 
+> You should assert PERST# before doing any controller initialization sequence as
+> that may affect the endpoint. Once PERST# is asserted, it will cause the
+> endpoint to 'reset'. So you do your initialization sequence and deassert it once
+> done.
+
+Basically the probe function does basic setup, then calls
+dw_pcie_host_init().  The next thing that's expected is
+the ->init callback from the DesignWare core code, and
+that's where PERST# is asserted, then deasserted after
+some other actions.
+
+I think I'll assert PERST# (and delay 100 msec) a little
+earlier though.
+
+. . .
+
+>>>> In dw_handle_msi_irq(), "num_ctrls" is computed based on
+>>>> num_vectors / MAX_MSI_IRQS_PER_CTRL=32.  A loop then
+>>>> iterates over those "controllers"(?) to handle each bit
+>>>> set in their corresponding register.
+>>>>
+>>>> This seems OK.  Can you explain why you think it's wrong?
+>>>>
+>>>
+>>> So both 'ctrl' and 'msi' IRQs are interrelated. Each 'ctrl' can have upto 32 MSI
+>>> vectors only. If your platform supports more than 32 MSI vectors, like 256, then
+>>> the platform DT should provide 8 'msi' IRQs.
+>>
+>> I have asked SpacemiT about this, specifically whether there
+>> are additional interrupts (I don't think there are), or if
+>> not that, additional registers to support MSI 32+ (see
+>> below).  In their downstream driver they handle interrupts
+>> differently.  I suspect num_vectors needs to be set to 32
+>> (or I'll leave it unset and take the default).
+
+This was changed to use the default (32 MSI vectors) in v4
+of this series.  I haven't heard back from SpacemiT but I'm
+pretty sure this is correct.
+
+>> In the DesignWare driver, there are up to 8 "ctrls", and each
+>> ctrl has 32 bit positions representing 32 MSI vectors.  Each
+>> can have an msi_irq defined.  An msi_irq is always set up for
+>> ctrl 0.
+>>
+>> For any ctrl with an msi_irq assigned, dw_pcie_msi_host_init()
+>> sets its interrupt handler to dw_chained_msi_isr(), which just
+>> calls dw_handle_msi_irq().
+>>
+>> The way dw_handle_msi_irq() works, a single ctrl apparently can
+>> handle up to 256 MSI vectors, as long as the block of 3 registers
+>> that manage the ctrl (ENABLE, MASK, and STATUS presumably) are
+>> consecutive in I/O memory for consecutive ctrls.
+>>
+> 
+> I'm not sure how you came up with this observation. dw_handle_msi_irq() loops
+> over the 'status' using find_next_bit() of size MAX_MSI_IRQS_PER_CTRL, which is
+> 32. So I don't see how a single ctrl can handle up to 256 vectors.
+
+This doesn't matter, because you say it's not correct, but I'll
+explain what I meant.
+
+I'm saying *if* there were 8 consecutive sets of 3 registers for
+these ctrls:
+
+           ----------
+ctrl0:    | ENABLE |
+           |--------|
+           | STATUS |
+           |--------|
+           |  MASK  |
+           |--------|
+ctrl1:    | ENABLE |
+           |--------|
+           | STATUS |
+           |--------|
+           |  MASK  |
+           |--------|
+              ...
+
+then they could all be handled by a single interrupt, based on
+the way the loop works.
+
+If every ctrl has its own interrupt, then the interrupt handler
+could just handle the one ctrl's 32 possible interrupts.
+
+This loop structure is why I thought it was OK to have 256 MSI
+vectors with the one handler.
+
+>> I looked for other examples.  I see that "pcie-fu740.c", which
+>> supports compatible "sifive,fu740-pcie", sets num_vectors to
+>> MAX_MSI_IRQS, but "fu740-c000.dtsi" defines just one "msi"
+>> interrupt.  And "pci-dra7xx.c" seems to do something similar,
+>> and maybe "pcie-rcar-gen4.c" too.
+>>
+> 
+> Yes. But I think those are mistakes. I will submit patches to fix them.
+OK.  They reinforced my thought that this was doing the right
+thing.  The warning you added makes it clear it is not.
+
+Thank you very much for your explanation Mani.
+
+					-Alex
+
+>>> Currently the driver is not strict about this requirement. I will send a patch
+>>> to print an error message if this requirement is not satisfied.
+>>>
+>>>>>> +
+>>>>>> +	platform_set_drvdata(pdev, k1);
+>>>>>> +
+>>>>>
+>>>>> For setting the correct runtime PM state of the controller, you should do:
+>>>>>
+>>>>> pm_runtime_set_active()
+>>>>> pm_runtime_no_callbacks()
+>>>>> devm_pm_runtime_enable()
+>>>>
+>>>> OK, that's easy enough.
+>>>>
+>>>>> This will fix the runtime PM hierarchy of PCIe chain (from host controller to
+>>>>> client drivers). Otherwise, it will be broken.
+>>>> Is this documented somewhere?  (It wouldn't surprise me if it
+>>>> is and I just missed it.)
+>>>>
+>>>
+>>> Sorry no. It is on my todo list. But I'm getting motivation now.
+>>>
+>>>> This driver has as its origins some vendor code, and I simply
+>>>> removed the runtime PM calls.  I didn't realize something would
+>>>> be broken without making pm_runtime*() calls.
+>>>>
+>>>
+>>> It is the PM framework requirement to mark the device as 'active' to allow it to
+>>> participate in runtime PM. If you do not mark it as 'active' and 'enable' it,
+>>> the framework will not allow propagating the runtime PM changes before *this*
+>>> device. For instance, consider the generic PCI topology:
+>>>
+>>> PCI controller (platform device)
+>>> 	|
+>>> PCI host bridge
+>>> 	|
+>>> PCI Root Port
+>>> 	|
+>>> PCI endpoint device
+>>>
+>>> If the runtime PM is not enabled for the PCI Root Port, then if the PCI endpoint
+>>> device runtime suspends, it will not trigger runtime suspend for the Root Port
+>>> and also for the PCI controller. Also, since the runtime PM framework doesn't
+>>> have the visibility of the devices underneath the bus (like endpoint), it may
+>>> assume that no devices (children) are currently active and may trigger runtime
+>>> suspend of the Root Port (parent) even though the endpoint device could be
+>>> 'active'.
+>>
+>> So this basically marks this controller as a pass-through device that
+>> doesn't itself change state for runtime PM, but still communicates that
+>> somewhere at or below it there might be devices that do participate.
+> 
+> Yes.
+> 
+> - Mani
 
