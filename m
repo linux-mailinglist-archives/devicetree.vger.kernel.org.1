@@ -1,165 +1,236 @@
-Return-Path: <devicetree+bounces-233724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62242C2504D
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:32:46 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63A8EC25095
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:36:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5333F3BD942
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:32:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F03AB4F5416
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:34:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED9A334A3A4;
-	Fri, 31 Oct 2025 12:32:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95CBE33CEB9;
+	Fri, 31 Oct 2025 12:34:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arista.com header.i=@arista.com header.b="fpIJ5k6j"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lDhdJq+9";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="NT3M2xMp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8F86347BA4
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:32:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEFBA29ACDB
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:34:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761913928; cv=none; b=Tg6ixZ0aYn5MPiWtsHVCoswRymIVzirqwJ9yfrkz/rynVct1U/eP9+LhjZeKXeQezPkm/b2+issgQecod2KK3RRtoDsyv1H+UT6CHEEv636cdjYtef4Ot9WJvjw9unF2eiD2urAByuGNuUOm7DLH/woSjpjTFjy1Hk0tXFoZR6g=
+	t=1761914046; cv=none; b=i7ndZNsAzK63kiy4E20868wznXUy7wOATSGFQ6InNbQTFRbe+1c3lOybhWtoRmF1W+6wuLkrtjcSYZvmqLizdN4wo3Ookr+LxoyzYZs599FViaJMeKTZ3CS1UAFkmOL9dcN2R3S3xjXhElcSwizNq5EIpdm1SOSP7c37TAnFd2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761913928; c=relaxed/simple;
-	bh=EyUdF6niWEd87pLWTbZVjn7rdZe1vDwhwIQZCMaj54A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=L5vz7z6vQYvvy+hPdV0sIjdrHl1Jn1kZUp12jQ1Jtasdzl3ClEbyNbSs5k4fCmrShf3UeILJ3zdcJszMfHekU3Wdu/4Rpd/Mqu5ob+U9OPR9pYDEghTUujnGYyr3lrkUFAgVI0vfq3APCPWBcyllCr1XDNI6G3VMnX6JHzMFGFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=arista.com; spf=pass smtp.mailfrom=arista.com; dkim=pass (2048-bit key) header.d=arista.com header.i=@arista.com header.b=fpIJ5k6j; arc=none smtp.client-ip=209.85.167.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=arista.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arista.com
-Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-443a4426899so28224b6e.2
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 05:32:05 -0700 (PDT)
+	s=arc-20240116; t=1761914046; c=relaxed/simple;
+	bh=sqJNqwGnrrb/W2OtAanS252ug+Zw15TbKV12EdEx/nk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=JAlejbT4qzU6Vt1uBVBmpN1EWkIdbgU2oWVb3DTn8LegLrPQHF7g7vKfeqtm51wzq6Fsr+NVVesjPypT58d+vhqOLOk0P1pua+Y1DTgQUN0WnvVlkpf2hISQpMSipbtqpnP+A8nldU23Y5il2wRJM17SXbDwd4hgh9v6hxvEsa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lDhdJq+9; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=NT3M2xMp; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59VANPnK1513623
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:34:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=7YQCRRoiEM+61ba/NfudLdurcxlXk1dhmyr
+	M49MhVh4=; b=lDhdJq+90zXlXucjR1tOMZYWa9zX19EQUMY1O8rxBZCrdt0IShm
+	ditOfJTaeyJ80vjm7tLtQ+FIAFYaLOf7AF8aIPyV8Om9yma1GTOC89dQv4fasPl4
+	OP7ShwWfy/tjZtNc01EDsdzjOavX610ZZKX4HsEsM1qGKmERWLtbz6DECY2a4Q/e
+	8Pw+hFAkmbC2j2tOE+QUfjQ6sPn9RYjSfcnTVL8N4xzF4EDEwWDtich0Hj28kwdo
+	PsqHfz4duzWeO3kKtOEfU9kjVMB6CAo0IQoSswlhoJARlPp3Ud84D7hPzUboyZli
+	+YNNvXkA6OwB+txXeoWUTjXuF14YRdnWE4Q==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a4k69hngm-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:34:03 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-7a26c0c057eso2165334b3a.2
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 05:34:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=arista.com; s=google; t=1761913924; x=1762518724; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OlQXBrL6GJchLN0rsfCNDqviLGR3waoluveYLsj3WyU=;
-        b=fpIJ5k6j+UjSLXI30bMS6EXrrW/4JKH/FEdXHbp2Xj35sEgQH6GH+Uj4P1aO/diTcx
-         UA6KpJ06eI9WG39ygQX9prqjGuYZ8PSUS1A+XZDWFRlbfCiKJcumpfNXmrBm3+htAdPm
-         H+wJ6ddgMQFgupf5uJcFBA7h1VxM4Fmd5TrPqnzbe4tRHovsH31mSS6s6hXKbcmg0WMo
-         a21P8tQHOvmmnA66gXr2ta7wm3iTTZrbwPQD66K1CO3SXBF3oGi/I7oTLL3slsKcGORE
-         AR7tJ30tP41Klm73MjOfo054a3fb9e2RASqpv63EmkX4BSTc8+1e0gJ8Btj/HOrv9PWs
-         mXng==
+        d=oss.qualcomm.com; s=google; t=1761914043; x=1762518843; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7YQCRRoiEM+61ba/NfudLdurcxlXk1dhmyrM49MhVh4=;
+        b=NT3M2xMpJuE3avco5oHwI4+VNZnYNIqoIwrojxq38ZEYr6XG7ezJlkma//mlPJAvHc
+         bX3GAdHxh8JzxCo/q42yefC94iAnwwKrVnX7KN8cppMAELHUeoLcJfLJWCklzkuybSaO
+         Ss0unFj2EvAavwIxa2iqvp8SxiJuN3IhTKxeiYzp/NccbbEEA3GTUKlX1gdQ6NmFd2k+
+         N7VNP5yMuwEPs2NbYysr/2T/ZkMqIUjKkvBM5Y5WHEEBAF4BQnJcoNUGQiCDW9JgIFJa
+         6BDXUSAq/bFv3Dh8y6u9rixv7h8oBw9PNbOMaYZ0fzEnmetzEjialo+Tt21UAHqUPizf
+         0NYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761913924; x=1762518724;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OlQXBrL6GJchLN0rsfCNDqviLGR3waoluveYLsj3WyU=;
-        b=PzpYab8kDb1+0QpKsPrXmr+SKYVAUbkp7p5rW7K8roKygAsbDqWvqjh/juU+jt47Kc
-         KDkzamGwA6z9e1i8evO9QOLbxNnCHAQ+qxi48qJ6oyPaA72DAd5v8csnK5F7uhumt5Zc
-         TlJy2qRj1/wsYfGjicwt78kacAAV7NXGFA0XeAqEfHfpET1RkJUv0NURok+8crYQOrn2
-         wP8wpr4DRP3TzB51e4AdMtTMKM2XHobYJKSSlT8jjdsAF8LUrxM6kX0DrX9inJKFCffV
-         HW34WCauAHfF52kJyXXx0BKmsABDq00q6IzohgBkYq+P9anwLHEu1yY2DmxsAANl98s4
-         HMVg==
-X-Forwarded-Encrypted: i=1; AJvYcCVzcOMqGWgaco7ebHHs0q1RRpNP3VBPeqfb/FaeOyk2jKh5OMVETP8KiPCL5pZEqyo8eFrdpfi/sD3Z@vger.kernel.org
-X-Gm-Message-State: AOJu0YxX/uxWW0pTqsc+MkpBFTW0phAaLcXgSOK08/g8dIyABNnAIYhC
-	yPBRMsk2VE5LzN/bSNp1wr7qwiAAe9+Bs56jYnZbdQ1CP+wgxDs7E57NQhNG+9hGQyRiZV75IS7
-	I0jLn/XXv7k8jaafYmLGHqforsWzc2THsGnNqKJen
-X-Gm-Gg: ASbGncvoOffv4WfnVZw6YiIe0UmrQ8FI9SJzomq9aHVwdekcY6wJ4hDc+3xyrph92HP
-	pTrdLkW6fRavR/sYDluYn0H2Oq1vdoeB9g4zQpf6ABbfMTbsA1uOEFZuONirMToXoXRoeLPq9cz
-	kc116pNr5PBrUJ4BS97sKTvVJ+zLG30WZTgLGj2oY2n5yJWzzx5Bqg5cnMSzh2ZH40xQNxguWJG
-	SlRowSe3FslvHqfz7REZLCQSjh6cnvIdlKQCCVb2yinhd2IYOOH0v44STi0gA4+HiGf6qnbAVi+
-	8xQNCJJUkLgOI1RD
-X-Google-Smtp-Source: AGHT+IGYh3c4p7Lro2vb/Mmkwo7ehq0fLSmv/FWy9Te4d7O0xi13T47Zh+2e4+y9v1m45TtVgV5OLaRslqisajSlViY=
-X-Received: by 2002:a05:6808:1813:b0:443:9fe6:3bbd with SMTP id
- 5614622812f47-44f96061dd0mr676165b6e.8.1761913923931; Fri, 31 Oct 2025
- 05:32:03 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761914043; x=1762518843;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7YQCRRoiEM+61ba/NfudLdurcxlXk1dhmyrM49MhVh4=;
+        b=mME1r80xsYorHkAiojoWmJSMIRTXy7hu8UwZzNToUWGmiMCkayKsCLOoVrTPkTJoqx
+         mkSkcm61n4ZwM4r2bOfMKGEnlWScKalOX3QZ16gpmpP5Dp6+hn2rddibFGSoTJ3vfIXm
+         CLy2PCSPzaFuXHaPAsnJ+ycqOu7koX6tTHjBTav7NR+OgzMHqJJNvoIADIB346uFPFHk
+         6eEo/784aRr2aw+NZ/+f5kngKRzQihUiEg/leTFMz5p0p9n5F42SIrxLcXUw6f/sOKBZ
+         y34Q4beTdamHmjYfp5zJLWx3Js2J14i19vTaDdiMbaAuDO5iSBwo+NfLsdvxi23MBqGA
+         qd8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWcfugfgWLgIw36TV71c4jnkDICT+hY/wrLftjHrDP0VWPUrJYGw+P95HJDM5T5xxxo3N9JkRElGlA6@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9UTjR6rVrd2IysDcUUgEgzhHMf133w6yMHQsIup0WNtMGj4wk
+	cFYKmM2Z9uXG1yCdy7n9NuKi+YxiRmlFPcq45KqFEi96XUJ/SdeemThvO44eh3sKKBA9eGZZzYE
+	NUaSfDKyR0L5007JOROChgpWsfL6LZgRDz22fa44MBuWOrjetdunqImCh6mo1CRvl
+X-Gm-Gg: ASbGncvjFekzjzVZtDS4G6eZvuoRB8VVoXc0Lu7aksW8oj1q1ch2vXO2sYcsyjfifIQ
+	zMAa4r1DxBELMZTWRgcxn0MtdWg3inGsv2WgcwQGpq7kHPetjDQC7boh2E57XT63YnJvIIkU/AE
+	rGYIwkWEM/HSs/kH0ifVUeM73pknvuqArKJYRfzEhP/HLJHySaBW66yafwNzkYDaYiNrpfOfwcZ
+	xC+H63+8MLcMvOVHbldef74S2pIKl+FUHWeAUKs1mq2RLaGNBnRgdBXVNlrHZ4kwkoRCTVTshU7
+	+U4IVAe9WQXXS1EbO9t9Su+DNosegRGkRoT66nUY6K9XrQQmNJJqlk5KTEjxJhzOZ7oF5RhEauk
+	ki61/0zdHsf4JeSZNfp0aPcNys1GJ5pztJ/WT
+X-Received: by 2002:a05:6a00:39a7:b0:7a2:7cc3:c4ed with SMTP id d2e1a72fcca58-7a77737e83amr4042131b3a.4.1761914042484;
+        Fri, 31 Oct 2025 05:34:02 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHReIeOkpBnk0vAQ+/4MbA0+mM/Fvz1bOi9vC6V7Ci8ebXCWBjQBmBWS+FcPQgCmB068L7yjw==
+X-Received: by 2002:a05:6a00:39a7:b0:7a2:7cc3:c4ed with SMTP id d2e1a72fcca58-7a77737e83amr4042084b3a.4.1761914041930;
+        Fri, 31 Oct 2025 05:34:01 -0700 (PDT)
+Received: from hu-kriskura-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a7d8982109sm2131277b3a.1.2025.10.31.05.33.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Oct 2025 05:34:01 -0700 (PDT)
+From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+Subject: [PATCH v10 0/3] Introduce USB DT support for SM8750
+Date: Fri, 31 Oct 2025 18:03:51 +0530
+Message-Id: <20251031123354.542074-1-krishna.kurapati@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251031084101.701159-1-adriana@arista.com> <20251031101009.704759-1-adriana@arista.com>
- <20251031101009.704759-2-adriana@arista.com> <CAL_JsqJn+vG=FJEnBT2rMQ9Jf+JE2u_j-JpEb=mnWPuTsuz_4w@mail.gmail.com>
- <CAL_Jsq+421HUCRQB5ua9p2UBPi+sq8L0aSYpxVGgJpbpWu2MUQ@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+421HUCRQB5ua9p2UBPi+sq8L0aSYpxVGgJpbpWu2MUQ@mail.gmail.com>
-From: Adriana Nicolae <adriana@arista.com>
-Date: Fri, 31 Oct 2025 14:31:52 +0200
-X-Gm-Features: AWmQ_bkNOnWH29heQ4utX5bqmSvBneb1mSwkOXqgWEYTPI_SWMnLMKu6rap9SuQ
-Message-ID: <CAERbo5x3_+RVRsxY-BZseBPzR0Kkvn7SaSSdoC6fw8a5s5RtUA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: firmware: Add binding for SMBIOS
- /chosen properties
-To: Rob Herring <robh@kernel.org>
-Cc: ilias.apalodimas@linaro.org, ardb@kernel.org, trini@konsulko.com, 
-	krzk@kernel.org, jdelvare@suse.com, frowand.list@gmail.com, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, vasilykh@arista.com, 
-	arm.ebbr-discuss@arm.com, boot-architecture@lists.linaro.org, 
-	linux-efi@vger.kernel.org, uefi-discuss@lists.uefi.org, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: GUhpPX-WIlC0pgPZVT6z9L0zTXvvANxx
+X-Proofpoint-GUID: GUhpPX-WIlC0pgPZVT6z9L0zTXvvANxx
+X-Authority-Analysis: v=2.4 cv=OYaVzxTY c=1 sm=1 tr=0 ts=6904acbb cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=hjxnLiisKRasYILsxJMA:9
+ a=IoOABgeZipijB_acs4fv:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMxMDExMyBTYWx0ZWRfXw80LXmO+gWZO
+ 6j0EK4x1t4R6wibVZ2648xVvrZtadvWvMosV5ltW/uPOGsy70JK2hvi9DkQKO6LyIejmJ9Zv38n
+ xG19gHuiRtSYBCoisn8G3ofhZCxSHVVrmd6yzdFDKzK4AcaCX3d1ysoS1QpTUSiDV5FNPelkMDt
+ kk+SwtAJcfXJGrZ3DlMMqMlrlKXk+kuPjnNRPpNbi5KPCioqNvNajrXn5c+WufInNEOUlzS51o7
+ aIz0vIO6H9qoLDk3KU0Yq6gU6ruwtIQYhef++ns8o3kjZwNWfz3JmCJTze8EImBQ0Q3h9EOcFE3
+ 3mtxuPmIwW33UrYo5DEbix80FEpJfC0aMBmQOa/ru3JYLBMlQ7nnOSNi47UaKoiFLlEkOMUF0Kf
+ T/ANREutq6TDtM9pOZbJkqtRBN9QdQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-10-31_03,2025-10-29_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 adultscore=0 clxscore=1015 bulkscore=0 priorityscore=1501
+ lowpriorityscore=0 suspectscore=0 malwarescore=0 impostorscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510310113
 
-On Fri, Oct 31, 2025 at 1:43=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Fri, Oct 31, 2025 at 6:15=E2=80=AFAM Rob Herring <robh@kernel.org> wro=
-te:
-> >
-> > On Fri, Oct 31, 2025 at 5:10=E2=80=AFAM adriana <adriana@arista.com> wr=
-ote:
-> > >
-> > > Signed-off-by: adriana <adriana@arista.com>
-> > > ---
-> > >  .../firmware/linux,smbios3-entrypoint.yaml    | 25 +++++++++++++++++=
-++
-> > >  1 file changed, 25 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/firmware/linux,=
-smbios3-entrypoint.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/firmware/linux,smbios3=
--entrypoint.yaml b/Documentation/devicetree/bindings/firmware/linux,smbios3=
--entrypoint.yaml
-> > > new file mode 100644
-> > > index 000000000000..4d1521c685ff
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/firmware/linux,smbios3-entryp=
-oint.yaml
-> > > @@ -0,0 +1,25 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +# Copyright 2025 Arista Networks
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/firmware/linux,smbios3-entrypoint=
-.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Memory location for SMBIOS entry point
-> > > +
-> > > +description: |
-> > > +  This property is used in the /chosen node to pass the physical add=
-ress
-> > > +  of SMBIOS (System Management BIOS) or DMI (Desktop Management Inte=
-rface)
-> > > +  tables from firmware to the kernel. This is typically used on non-=
-EFI.
-> > > +
-> > > +maintainers:
-> > > +  - Adriana Nicolae <adriana@arista.com>
-> > > +  - Rob Herring <robh+dt@kernel.org>
-> > > +
-> > > +properties:
-> > > +  linux,smbios3-entrypoint:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint64
-> > > +    description:
-> > > +      The 64-bit physical address of the SMBIOSv3 entry point struct=
-ure.
-> >
-> > This needs to go in the chosen binding instead:
-> >
-> > https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/=
-chosen.yaml
->
-> Also, drop the 'linux,' prefix as SMBIOS is not a linux invention.
-Thanks! I've renamed it to "smbios3-entrypoint" and opened a separate
-PR for the binding:
-https://github.com/devicetree-org/dt-schema/pull/177
->
-> Rob
+Add support for the PHYs and controllers used for USB on SM8750 SoCs.
+
+Version-6 of this series has all the binding/driver/dt patches acked.
+But only the phy changes have been merged.
+
+Version 7 was a rebase to get acked patches merged. But comments came
+in to use flattened bindings.
+
+The v8 for usb bindings patch has been split and sent out separately [1]
+and it is ACKed.
+
+On v10, the pmic glink changes and usb role switch support are added while
+addressing some comments obtained.
+
+Defconfig patch has been resent by Jingyi on [2].
+
+---
+Changes in v10:
+- Squashed pmic-glink changes from [3] in this series.
+- Added remote endpoints between connector and usb nodes.
+- Added Jishnu's CDB & SOB tag to credit for pmic glink changes.
+- Renamed "usb_1"  to "usb" as per comments from Bjorn.
+- Added QMP Phy pipe clock in GCC properties as per comments from Dmitry.
+- Link to v9: https://lore.kernel.org/all/20251024151521.2365845-1-krishna.kurapati@oss.qualcomm.com/
+
+Changes in v9:
+- Updated commit tags (Removed Suggested-by of Konrad andadded his SoB)
+- Confirmed with Konrad offline before adding his Signed-off-by
+- Updated commit text in patch 1/3 as per suggestion from Bjorn.
+- Link to v8: https://lore.kernel.org/all/20251022084052.218043-1-krishna.kurapati@oss.qualcomm.com/
+
+Changes in v8:
+- Using Flattened DT representation.
+- Removed obtained RB tags since the code has changed significantly.
+- Modified Author mail address from quicinc to oss.qualcomm.com
+- Link to v7: https://lore.kernel.org/all/20251015105231.2819727-1-krishna.kurapati@oss.qualcomm.com/
+
+Changes in v7:
+- Rebased on top of linux next
+- Split usb patch and sent out separately.
+- Link to v6: https://lore.kernel.org/all/20250527-sm8750_usb_master-v6-0-d58de3b41d34@oss.qualcomm.com/
+
+Changes in v6:
+- Change readl_relaxed/writel_relaxed calls to just readl/writel in the readback function
+- Updated languange in the defconfig commit to specify SM8750 as a Qualcomm SoC
+- Link to v5: https://lore.kernel.org/r/20250421-sm8750_usb_master-v5-0-25c79ed01d02@oss.qualcomm.com
+
+Changes in v5:
+- Removed refclk_src from the QMP PHY driver as that is no longer used.
+- The decision to move the TCSR clkref property from controller --> phy
+node was made in v4, and the refclk_src was a lingering change that was
+meant to be removed.  CXO is the parent clock for TCSR clkref, so CXO
+clk will be voted for as well.
+- Relocate the SM8750 compatible within the qcom,dwc3 bindings.  This is
+to take into account the change in clock list.
+- Link to v4: https://lore.kernel.org/r/20250409-sm8750_usb_master-v4-0-6ec621c98be6@oss.qualcomm.com
+
+Changes in v4:
+- Made some fixups to the M31 eUSB2 driver
+- Moved TCSR refclk_en to the QMP PHY DT node
+- Link to v3: https://lore.kernel.org/r/20250324-sm8750_usb_master-v3-0-13e096dc88fd@quicinc.com
+
+Changes in v3:
+- Split platform DTs into separate commits.
+- Fixed up M31 eUSB2 PHY driver with feedback received.
+- Reordered DT properties based on feedback.
+- Rewrote commit message for enabling EUSB driver.
+- Link to v2: https://lore.kernel.org/r/20250304-sm8750_usb_master-v2-0-a698a2e68e06@quicinc.com
+
+Changes in v2:
+- Added new QMP PHY register definitions for v8 based QMP phys.
+- Made changes to clean up some code in the M31 eUSB2 PHY driver based
+on feedback received.
+- Added bulk regulator operations in M31 eUSB2 PHY, to ensure that
+both the vdd and vdda12 regulators are properly voted for.
+- Removed external references to other dt bindings in M31 example for
+the DT bindings change.
+- Split DT patches between SoC and plaform changes, as well as the
+PHY subsystem Kconfig changes when introducing the M31 eUSB2 PHY.
+- Added orientation switch and port definitions in the DT changes.EDITME: describe what is new in this series revision.
+- Link to v1: https://lore.kernel.org/r/20250113-sm8750_usb_master-v1-0-09afe1dc2524@quicinc.com
+
+[1]: https://lore.kernel.org/all/20251021050954.3462613-1-krishna.kurapati@oss.qualcomm.com/
+[2]: https://lore.kernel.org/all/20251021-knp-usb-v2-4-a2809fffcfab@oss.qualcomm.com/
+[3]: https://lore.kernel.org/all/20250113-sm8750_gpmic_master-v1-2-ef45cf206979@quicinc.com/
+
+Wesley Cheng (3):
+  arm64: dts: qcom: sm8750: Add USB support to SM8750 SoCs
+  arm64: dts: qcom: sm8750: Add USB support for SM8750 MTP platform
+  arm64: dts: qcom: sm8750: Add USB support for SM8750 MTP platform
+
+ arch/arm64/boot/dts/qcom/sm8750-mtp.dts |  73 +++++++++++
+ arch/arm64/boot/dts/qcom/sm8750-qrd.dts |  73 +++++++++++
+ arch/arm64/boot/dts/qcom/sm8750.dtsi    | 161 +++++++++++++++++++++++-
+ 3 files changed, 306 insertions(+), 1 deletion(-)
+
+-- 
+2.34.1
+
 
