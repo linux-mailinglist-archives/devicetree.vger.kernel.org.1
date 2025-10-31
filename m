@@ -1,111 +1,97 @@
-Return-Path: <devicetree+bounces-233589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A71AC23BEA
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 09:19:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C859C23CD1
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 09:28:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63830188A354
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 08:19:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0615C4044D6
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 08:20:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 659D52DC331;
-	Fri, 31 Oct 2025 08:19:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDC262BE7DF;
+	Fri, 31 Oct 2025 08:20:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WDRnDgoQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PjAfxm6t"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EB88253957;
-	Fri, 31 Oct 2025 08:19:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF95222AE45;
+	Fri, 31 Oct 2025 08:20:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761898769; cv=none; b=j3vFLogIf27MUB2fTS7r6Urg2QN5AwAtMvF/IGADtPaYhDytFdrpYCR+Rzt3BUSfoWVHd2csUFlrvZcFjpvL8ZcrxabbYr2x9cRPU3eJ2DcMkmU0P+6Z5sINgD0aRakXpsjVoSbodCWKWQ+M+0+nmtQcyhBJnD7GC+9qp+/bLuk=
+	t=1761898849; cv=none; b=ABOWwj9+sCxlvnNicYcv9CB9MHpIn3WcG8aW2Dj1qUG5il+02Ksu78oo7IWxYM+3pDfBITO8SIxWAmCJhQlyGFJXOTEyWaXhdJHsmRAkig8NBL52GiL7OPioLwpKoIAfDstDXz4ZWIqtTpBAli3z1NI7CyetWdrTkXDUw5pKDyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761898769; c=relaxed/simple;
-	bh=KxNLKm898ISK9bg5Y6Dwq7+27/Y6B02z4sitZmbdhhg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JeL23nKmxWsR8pUknxVwcbhG21vYHd//SBcwrYCCx13Z2ZWxmQXdXNAwG3bVjtqOeIF0edejj1ccqW5ua8Wu236AEKtPG4Rc+G+CgYvDjZ7CjLCb2uEhgUH276Xa+AU8rEgoY0/YJzBDGRh1yR0FL/A7fJBYZwLoiYsESxV0YlA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WDRnDgoQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2498BC4CEF1;
-	Fri, 31 Oct 2025 08:19:28 +0000 (UTC)
+	s=arc-20240116; t=1761898849; c=relaxed/simple;
+	bh=JxffaojoaNLBd6ekBMI0wGMUU29k4ICcZxn3vQPCuKo=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=hLjmFDm2qFEXlwdFA+ut2aitY99VbwFB+x1knQlpikZz8XLapHtOjwC+pJ75RwaVqkBsqMLc0esn59u03CZVtf1JXbmCFfemlCcM+AcNhnfkI+pLF9D24/ESzd5x12REv0p/gBUwH8C8L5tK2Cl44r2r7MG1j0d3viVrf8ofl/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PjAfxm6t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00A21C4CEE7;
+	Fri, 31 Oct 2025 08:20:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761898768;
-	bh=KxNLKm898ISK9bg5Y6Dwq7+27/Y6B02z4sitZmbdhhg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WDRnDgoQwv4gBXL/VUzJI6qGi4Zy3uokZrGwaE6SKKFuKRt+pTZT9gTjpAzBT/Co/
-	 Qso8QrABj/VtulwZ4lvoIr5kWCpirgnjzq1uHgwIwczKNgrEluq2uofGwIYFdELjUY
-	 PdkjBaZ3Ad2+4K0D9++HEFhucTPuw7Ca7DbD5Xo6hMZ98kj8GjyI88OlFGyZmT2V+1
-	 rb0goahzfje7Ej6/vgknrOKQmAX3LVt9QkYa3gMMQDbCjJABz5fByn1zTVvpSsI+BG
-	 9F4bbFi1MIW1bLytKYZ3uzPSKNN86cqFh+ZEYNvEaKpCdGDs5Bgbn7C4nuF4HeiykC
-	 K71fxnhwQdSRQ==
-Date: Fri, 31 Oct 2025 09:19:26 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Jack Hsu <jh.hsu@mediatek.com>, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, 
-	andy@kernel.org, matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
-	srini@kernel.org, ukleinek@kernel.org, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, daniel.lezcano@linaro.org, tglx@linutronix.de, 
-	chunfeng.yun@mediatek.com, wim@linux-watchdog.org, linux@roeck-us.net, 
-	sean.wang@mediatek.com, zhiyong.tao@mediatek.com, andrew-ct.chen@mediatek.com, 
-	lala.lin@mediatek.com, jitao.shi@mediatek.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-pwm@vger.kernel.org, linux-serial@vger.kernel.org, 
-	linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v6 07/11] dt-bindings: usb: Support MediaTek MT8189 evb
- board xhci
-Message-ID: <20251031-nifty-sticky-hoatzin-eeafeb@kuoka>
-References: <20251030134541.784011-1-jh.hsu@mediatek.com>
- <20251030134541.784011-8-jh.hsu@mediatek.com>
- <20251030-underwent-courier-1f4322e1cb34@spud>
+	s=k20201202; t=1761898848;
+	bh=JxffaojoaNLBd6ekBMI0wGMUU29k4ICcZxn3vQPCuKo=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=PjAfxm6teG9V4VjvlmxAHvsIsuw2dbgm9scYX0IerS8+rEKmlmAi1Qwt3b1LeI/DQ
+	 ol+GkuvfmSLLZVbKwqONXxDy2b39rDww0dCiCA6lGFzhJXKPepSdCrxy0bpnPCvU7r
+	 QVMwG9jT6jPdx+AGx9UlMaFEARI2gMEifjObDpi4Gcj5Blc4XD7aADbLU0aYXH8H6c
+	 8RzgfRKJ9mPWwLYOvQY/u696zjA6Rhv3croHEP/BN6J9/zp6TNOxjN4Motye6UVAzq
+	 IhLWlQ6Hc+UOv+N7P7OCm3FZZNuj6XejG9ELZ6QkS78eTc86Ar+iXAvKIIhhZYYt7U
+	 Jqu7aQKVAjrjA==
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Bjorn Andersson <andersson@kernel.org>, 
+ Qiang Yu <qiang.yu@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-pci@vger.kernel.org, Prudhvi Yarlagadda <quic_pyarlaga@quicinc.com>, 
+ Wenbin Yao <wenbin.yao@oss.qualcomm.com>, 
+ Qiang Yu <quic_qianyu@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+In-Reply-To: <20251017-glymur_pcie-v5-0-82d0c4bd402b@oss.qualcomm.com>
+References: <20251017-glymur_pcie-v5-0-82d0c4bd402b@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH v5 0/6] PCI: qcom: Add support for Glymur PCIe
+ Gen5 x4 and Gen4 x2
+Message-Id: <176189884156.5303.14323602106505981794.b4-ty@kernel.org>
+Date: Fri, 31 Oct 2025 13:50:41 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251030-underwent-courier-1f4322e1cb34@spud>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On Thu, Oct 30, 2025 at 07:32:26PM +0000, Conor Dooley wrote:
-> On Thu, Oct 30, 2025 at 09:44:39PM +0800, Jack Hsu wrote:
-> > modify dt-binding for support mt8189 evb board dts node of xhci
-> > 
-> > Signed-off-by: Jack Hsu <jh.hsu@mediatek.com>
-> > ---
-> >  .../devicetree/bindings/usb/mediatek,mtk-xhci.yaml         | 7 ++++++-
-> >  1 file changed, 6 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> > index 004d3ebec091..05cb6a219e5c 100644
-> > --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> > @@ -34,6 +34,7 @@ properties:
-> >            - mediatek,mt8183-xhci
-> >            - mediatek,mt8186-xhci
-> >            - mediatek,mt8188-xhci
-> > +          - mediatek,mt8189-xhci
-> >            - mediatek,mt8192-xhci
-> >            - mediatek,mt8195-xhci
-> >            - mediatek,mt8365-xhci
-> > @@ -119,6 +120,9 @@ properties:
-> >    resets:
-> >      maxItems: 1
-> >  
-> > +  reset-names:
-> > +    maxItems: 1
+
+On Fri, 17 Oct 2025 18:33:37 -0700, Qiang Yu wrote:
+> Glymur is the next generation compute SoC of Qualcomm. This patch series
+> aims to add support for the fourth, fifth and sixth PCIe instance on it.
+> The fifth PCIe instance on Glymur has a Gen5 4-lane PHY and fourth, fifth
+> and sixth PCIe instance have a Gen5 2-lane PHY.
 > 
-> Is this reset required on mt8189? Does it appear on other mediatek xhci
-> controllers?
+> The device tree changes and whatever driver patches that are not part of
+> this patch series will be posted separately after official announcement of
+> the SOC.
+> 
+> [...]
 
-reset was there, it is the name added for some unknown reason.
+Applied, thanks!
+
+[3/6] dt-bindings: PCI: qcom: Document the Glymur PCIe Controller
+      commit: f0b5af98e1b5761095d5186d3a7af5a0991a5cd9
 
 Best regards,
-Krzysztof
+-- 
+Manivannan Sadhasivam <mani@kernel.org>
 
 
