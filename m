@@ -1,70 +1,65 @@
-Return-Path: <devicetree+bounces-233815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C553CC25C73
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 16:12:48 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 477C8C25CA3
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 16:15:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D9B51884698
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 15:05:18 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B6C9B4F4518
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 15:08:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32F101D88D7;
-	Fri, 31 Oct 2025 15:04:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC91820C004;
+	Fri, 31 Oct 2025 15:08:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FsTz/Cp+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HMhdOB+M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05C1485626;
-	Fri, 31 Oct 2025 15:04:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F6791F5847;
+	Fri, 31 Oct 2025 15:08:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761923090; cv=none; b=Q+ebCM8hoizp4Kuen2gKXbDddJEM9EZkjKajvEGXo7LTCkvzIsgutgHVEQ7fT0VJEC52SCXUfy+2epyEzIVzs3ZrXiv2T7BU0XpdL0kOBVwfKwRlCqkWiurCxhCylTOSJOAsBa2lelBnKB9Nxhkcm8UhROMbef7vQk0vwt47M7w=
+	t=1761923290; cv=none; b=UCh/aside/MQ9CyhOLmmt6I/JMAR4F4jw9yeVs5FdXXc9l3tSB7IFAfV9l8G4FpQGVKLlHsCdZc1t1s4O42GqV5cFMQJJK62TeELJP4YMSQp/jYVCyQa0nD5cNfoaxBuSV33sNf3QNiXu0J0FlCoPvgFxVKlPMCU++SMFETemh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761923090; c=relaxed/simple;
-	bh=abvCv24Xykh2zMnbow02BKPEdSW0lshmPG5OcfXFUUA=;
+	s=arc-20240116; t=1761923290; c=relaxed/simple;
+	bh=hhV5vO7shNUsRg+5Wn47NeijB5Xy6knDF8kwZguxWqk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C0gIVhB9hw/dvpbrp+acM91PMe8FSg8Crlve/rpruR37Q2dFHoMYfYHUkaqVv2V76p9yR6eGJaqMfHQ8rryXs+UzKQoqvlc3NYIplXrVAJ/Z7o/sWofAy2hoBHePQCryLIqEO74pNR7I9LUCf7n+hoVc0z5anWJG9gz0AFgmIYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FsTz/Cp+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D2A1C4CEFB;
-	Fri, 31 Oct 2025 15:04:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=j4Wlj+mTzuWs1KTEvcgK1uFLbgAt2xttC5ogjvj+6uYkT8IHx+RrCs1YqoKDsfye3QugKQ/Ikr+FRDViirG2qIA783M8Zfhn+B4VqmMkSHnwnv5cPwtjVqp6s1wg5TQDHMi1wad/+qNp0Wq/PWrEjBKGGBecyPq4TLieotsrkpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HMhdOB+M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27B3DC4CEE7;
+	Fri, 31 Oct 2025 15:08:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761923089;
-	bh=abvCv24Xykh2zMnbow02BKPEdSW0lshmPG5OcfXFUUA=;
+	s=k20201202; t=1761923288;
+	bh=hhV5vO7shNUsRg+5Wn47NeijB5Xy6knDF8kwZguxWqk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FsTz/Cp++0swcNCc25qYTvDYYyFsuMx1yzIbuqupV+UMJxOdNxkGL/I1ZNGNwacJ7
-	 rAIisu/ZFnoyzsfS1jNl2MhHYU4JawMAWniVGUFUvBjao73krdR705gmzFsQaiZjGn
-	 vDKXps+a/U1wjkEoYnVwIPOyHZ5c8GtQZ3RXC8hyM/z3/tpuwwh0pbW+70UD+Bz2pL
-	 jqiW/Kqu3tcfSUR/hh54eBLTlpm4nteul4pfH6PCY8gojN/2oneyWCWElbD6Ww4ZNH
-	 9M6Ig+x5gKbkWyyG4gUop6ep19GG64vXkP4A/ywcwjtwKP2Pz4Xp4t18Zm4BkOA3F+
-	 6wsi4YElvDgkw==
-Date: Fri, 31 Oct 2025 15:04:43 +0000
+	b=HMhdOB+My6boDB6ghkVCj7rdVDZchfxroblBkTV3NJngTJFLkkd7IdPSU4x8GhOsr
+	 8zLQq+bVt7AZ/5C6Pg9w0qvrPucmmlcz6arvqG7EkUPvhKtzECdVtETdwOv9SBZXO5
+	 dhuRUGeWllOI3pdz3HOPyoahBMiq/HIPFrlHA5uGtGdB01A9EvXNgNR2eXKxW5e0yl
+	 WRYGhLPBuKB69/0IncRhGQIwo5ndwD66ttm1rhTCr73lb11rNpgfp1HnGSqg62PvQy
+	 BKXd8ucdt/7USw18Vi7w+43Ir4Y/vxFJ2WHPdhBDNz/z7JvS4DvakvAfCZIEyc8CT/
+	 DGYP1mx8SRZcw==
+Date: Fri, 31 Oct 2025 15:08:04 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Stanimir Varbanov <svarbanov@suse.de>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	linux-pm@vger.kernel.org, Rob Herring <robh@kernel.org>,
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Buday Csaba <buday.csaba@prolan.hu>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Lee Jones <lee@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
-	Willow Cunningham <willow.e.cunningham@gmail.com>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Saenz Julienne <nsaenz@kernel.org>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Jonathan Bell <jonathan@raspberrypi.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: Re: [PATCH v2 2/4] dt-bindings: soc: bcm: Add bcm2712 compatible
-Message-ID: <20251031-icon-woozy-58061dd3d4b4@spud>
-References: <20251031102423.1150093-1-svarbanov@suse.de>
- <20251031102423.1150093-3-svarbanov@suse.de>
+	Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: net: ethernet-phy: clarify when compatible
+ must specify PHY ID
+Message-ID: <20251031-smartness-cattishly-465de28ec20b@spud>
+References: <b8613028fb2f7f69e2fa5e658bd2840c790935d4.1761898321.git.buday.csaba@prolan.hu>
+ <f08d956b-4392-41c0-93d7-d7dd105c016c@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,116 +67,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="eLR4aUssiEfZ2HhD"
+	protocol="application/pgp-signature"; boundary="ntQblQwoVNjBFIgI"
 Content-Disposition: inline
-In-Reply-To: <20251031102423.1150093-3-svarbanov@suse.de>
+In-Reply-To: <f08d956b-4392-41c0-93d7-d7dd105c016c@lunn.ch>
 
 
---eLR4aUssiEfZ2HhD
+--ntQblQwoVNjBFIgI
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 31, 2025 at 12:24:21PM +0200, Stanimir Varbanov wrote:
-> Add bcm2712-pm compatible and update the bindings to satisfy it's
-> requirements. The PM hardware block inside bcm2712 lacks the "asb"
-> and "rpivid_asb" register ranges and also does not have clocks, update
-> the bindings accordingly.
+On Fri, Oct 31, 2025 at 02:01:26PM +0100, Andrew Lunn wrote:
+> On Fri, Oct 31, 2025 at 09:15:06AM +0100, Buday Csaba wrote:
+> > Change PHY ID description in ethernet-phy.yaml to clarify that a
+> > PHY ID is required (may -> must) when the PHY requires special
+> > initialization sequence.
+> >=20
+> > Link: https://lore.kernel.org/netdev/20251026212026.GA2959311-robh@kern=
+el.org/
+> > Link: https://lore.kernel.org/netdev/aQIZvDt5gooZSTcp@debianbuilder/
+> >=20
+> > Signed-off-by: Buday Csaba <buday.csaba@prolan.hu>
+> > ---
+> >  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 7 ++++---
+> >  1 file changed, 4 insertions(+), 3 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/=
+Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > index 2ec2d9fda..6f5599902 100644
+> > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > @@ -35,9 +35,10 @@ properties:
+> >          description: PHYs that implement IEEE802.3 clause 45
+> >        - pattern: "^ethernet-phy-id[a-f0-9]{4}\\.[a-f0-9]{4}$"
+> >          description:
+> > -          If the PHY reports an incorrect ID (or none at all) then the
+> > -          compatible list may contain an entry with the correct PHY ID
+> > -          in the above form.
+> > +          If the PHY reports an incorrect ID (or none at all), or the =
+PHY
+> > +          requires a specific initialization sequence (like a particul=
+ar
+> > +          order of clocks, resets, power supplies), then the compatibl=
+e list
+> > +          must contain an entry with the correct PHY ID in the above f=
+orm.
 >=20
-> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
-> Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
-> ---
->  .../bindings/soc/bcm/brcm,bcm2835-pm.yaml     | 38 ++++++++++++++++---
->  1 file changed, 32 insertions(+), 6 deletions(-)
+> That is good start, but how about:
 >=20
-> diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.ya=
-ml b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
-> index e28ef198a801..ce910802ee9d 100644
-> --- a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
-> +++ b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
-> @@ -13,23 +13,21 @@ description: |
->  maintainers:
->    - Nicolas Saenz Julienne <nsaenz@kernel.org>
-> =20
-> -allOf:
-> -  - $ref: /schemas/watchdog/watchdog.yaml#
-> -
->  properties:
->    compatible:
->      items:
->        - enum:
->            - brcm,bcm2835-pm
->            - brcm,bcm2711-pm
-> +          - brcm,bcm2712-pm
->        - const: brcm,bcm2835-pm-wdt
-> =20
->    reg:
-> -    minItems: 2
-> +    minItems: 1
->      maxItems: 3
-> =20
->    reg-names:
-> -    minItems: 2
-> +    minItems: 1
->      items:
->        - const: pm
->        - const: asb
-> @@ -62,7 +60,35 @@ required:
->    - reg
->    - "#power-domain-cells"
->    - "#reset-cells"
-> -  - clocks
-> +
-> +allOf:
-> +  - $ref: /schemas/watchdog/watchdog.yaml#
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - brcm,bcm2835-pm
-> +              - brcm,bcm2711-pm
-> +    then:
-> +      required:
-> +        - clocks
-> +
-> +      properties:
-> +        reg:
-> +          minItems: 2
-> +
-> +        reg-names:
-> +          minItems: 2
+>           PHYs contain identification registers. These will be read to
+>           identify the PHY. If the PHY reports an incorrect ID, or the
+>           PHY requires a specific initialization sequence (like a
+>           particular order of clocks, resets, power supplies), in
+>           order to be able to read the ID registers, then the
+>           compatible list must contain an entry with the correct PHY
+>           ID in the above form.
+>=20
+> The first two sentences make it clear we ideally use the ID registers.
+> Then we say what happens if cannot work.
+>=20
+> The "(or none at all)" is exactly the case you are trying to clarify,
+> it does not respond due to missing reset, clocks etc. We don't need to
+> say it twice, so i removed it.
 
-> +
-> +    else:
-> +      properties:
-> +        reg:
-> +          minItems: 1
-> +
-> +        reg-names:
-> +          minItems: 1
-
-This else has no impact, was it meant to be maxItems?
+I like this wording,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 pw-bot: changes-requested
 
-> =20
->  additionalProperties: false
-> =20
-> --=20
-> 2.47.0
->=20
-
---eLR4aUssiEfZ2HhD
+--ntQblQwoVNjBFIgI
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQTQCwAKCRB4tDGHoIJi
-0u7TAQCmY6ZrffsQeMrCOnwJwR+6+0PBxTS+VmwCXHJmSg55VAEA4E7lbHlwkUcC
-Yp1juErjw5xEnoaFEYM/iaJJlh3erwY=
-=eDwv
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQTQ0wAKCRB4tDGHoIJi
+0s2YAQCWOfnQgjf28reEeXDLxZn1pmVaVpd+2TFOYi3ZSjasUQEAoqOMOXyeufvW
+6R6eWhRA4n/i9o4N6Vdmd4NY+qDbVgw=
+=gNd4
 -----END PGP SIGNATURE-----
 
---eLR4aUssiEfZ2HhD--
+--ntQblQwoVNjBFIgI--
 
