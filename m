@@ -1,123 +1,139 @@
-Return-Path: <devicetree+bounces-233691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60456C24CD3
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:35:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9240C24D24
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:44:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 401151B22937
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 11:34:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 449463B2D06
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 11:43:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8C4F346789;
-	Fri, 31 Oct 2025 11:33:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40111346E7B;
+	Fri, 31 Oct 2025 11:43:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ffBvI+m3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CwcegOPh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEA1B33FE24;
-	Fri, 31 Oct 2025 11:33:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B78F346E4C
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 11:43:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761910389; cv=none; b=fbT/ENlFv1OtleFyeRDklFcGzJoYRncqMAJ9POnOo3zJLojxhxaMqCV+A7ff6dixfbO1uGZr6aLbUtiArk6yVlqdmU9AjXe2BW7vOUqmClJZbD6gknfmZoqHeXAxpDC0mOqWsBofagg21WjfMvsxWKfb2tHAW/HvNWqrh9ZS3iU=
+	t=1761911031; cv=none; b=fLrMI/hQ1gguQp2+4MtWjKDStXR7NOe5JeFglf28FPIHGcxx8LIQ3Bd8RVsXERr0T69VTywBOymkDQE817V0RgqCY9nOl0sOz65pltTCK9bOwTsM2Z4rgGgvMrnGmst8m9R/wjFeGtIg/oPqmriv++9fXXvp4LdnlC1Q3hF02Iw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761910389; c=relaxed/simple;
-	bh=Jj/sCVq2++7bILttJ31fyTjElFpsHnJaT4EuhVg7JLU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uyzhr+AVY22NmHd6qbZzIBgpEwQyI4GrrEHjpVcw1k3eFW4/39+pNVr7NZS2wCUFQ2//e4tFKfMFLBRqtitCzfMQtkF3HdWaID/GYUXzJb92goVy15GWX9oBGjRM2W/oDBUFUWDHpyVvnVA8PE3v8UuAdAW1rssgMQPYUghC8nY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ffBvI+m3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51421C4CEF8;
-	Fri, 31 Oct 2025 11:33:07 +0000 (UTC)
+	s=arc-20240116; t=1761911031; c=relaxed/simple;
+	bh=mdzbrJ0J4uL7MKIWBphzIXl1JweK8UJmEopl7jTNs98=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dpLk+hRp4dpJo0kt7WZdklj+g4olmrbEF4AIKctjcsIcYwwb5DFpy+FF4N4/mUSEttnp8Yi4v1oIzQNOi1K7haD8hPPL1cI+AvzfY2AQYinkZGAnm/+kQdR6kCEgd4cIqaJ3lxCqHVL+zBV6zHJeeebX9rlle4b/b01X6memcYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CwcegOPh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADB08C4AF0C
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 11:43:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761910389;
-	bh=Jj/sCVq2++7bILttJ31fyTjElFpsHnJaT4EuhVg7JLU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ffBvI+m3yyxfsc7eXV10hWopSt0aC5QOLs/hR+rnLVKAHGqdLQGUsQBtKYv+9muz8
-	 vRap3eV8ykevNsUljm2axEOWJxvAkSsehU3DH3NeYZjLpZx1lb6gZu9MafLaOVhQYU
-	 w5yWWolMQuK3ucF2v10fecWYMTFEyNPO1BFLEfQGbYANcMk5rrQ29CpReeuVjjj7d/
-	 eskf4HbRp/+ctiD+FPrYLBzxXeHX32or2/oWtuqBV7kEg3n8MkZWwwKDn0haIi8LU3
-	 Mc/xjxjqh04dDjldBQ90XnnVhPJXDV90YnfXsbEQRiZK+Nvftkukh1yCCxvuyW91dR
-	 4whT9ibFqdxKg==
-Message-ID: <ae81cc1b-472f-423f-9be4-710d4c135256@kernel.org>
-Date: Fri, 31 Oct 2025 12:33:05 +0100
+	s=k20201202; t=1761911030;
+	bh=mdzbrJ0J4uL7MKIWBphzIXl1JweK8UJmEopl7jTNs98=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=CwcegOPhjADnfYMsBl9VJU8444Zi7r5+Fje5jBkuUyLoW69fzojXbH1oiTz8pXuqp
+	 HmsUdiup+rEVmPdCxf2wJsyNy1pSAzr+EEm3Q4rdtbKf+Wq6CGNdAKbWtrTZnDMeOZ
+	 7kLvmgDlrRhAJBhuo6QgCQGV+jnGR38aJUfnUJ7mjdfWeLO5eT/AmgEc+q6bei45Sm
+	 zzeH3qZU2/5r3+YN2tdTiizgDzm/Pp8g69asdZ4jZp2CBjtZDBTQGJG+zZPZFsxT7t
+	 uNpIfbE2drxVRkVhChnwqGFYQN/uz+8sDVrXvbnphNz7pRIaTdsBPimhP3ScjGu54Y
+	 LFul/DdFP3daw==
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-63bea08a326so3111847a12.3
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 04:43:50 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVTJS10Tx9CN7jhO/RWAEsinE9PF9H6UFGxKdlzBD2vTfsUPA6DobnSDZdB7KWck3rZ5aPOX1/VDQtd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy1PpbyR+Qp3AdlZAgbwA0hrJPc3aMmOlGHnFS0GEr4zkreLE5F
+	NEaAtE0piTxbjhlWKyhSW8fjbCRFed1hgDMr5GolrTevO7yy/ALS6fYdKZwchAPEXvMGMd48php
+	mWo1y4hH2JAj339h4FPXitA54Y6Izmw==
+X-Google-Smtp-Source: AGHT+IEjMLK6OGl40HXHsXuGaAqP8D5LU+eugA99cHMlpyBU1ppcLNLQ3ZkPtjQ+CzfsdfP4X7J227AIT9NzZ3oM/mQ=
+X-Received: by 2002:a05:6402:2744:b0:63b:f59b:e607 with SMTP id
+ 4fb4d7f45d1cf-64076f66d22mr2833156a12.2.1761911029322; Fri, 31 Oct 2025
+ 04:43:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: intel: Add Agilex5 SoCFPGA 013b board
-To: niravkumarlaxmidas.rabara@altera.com, dinguyen@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251031103117.910187-1-niravkumarlaxmidas.rabara@altera.com>
- <20251031103117.910187-2-niravkumarlaxmidas.rabara@altera.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251031103117.910187-2-niravkumarlaxmidas.rabara@altera.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251031084101.701159-1-adriana@arista.com> <20251031101009.704759-1-adriana@arista.com>
+ <20251031101009.704759-2-adriana@arista.com> <CAL_JsqJn+vG=FJEnBT2rMQ9Jf+JE2u_j-JpEb=mnWPuTsuz_4w@mail.gmail.com>
+In-Reply-To: <CAL_JsqJn+vG=FJEnBT2rMQ9Jf+JE2u_j-JpEb=mnWPuTsuz_4w@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 31 Oct 2025 06:43:37 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+421HUCRQB5ua9p2UBPi+sq8L0aSYpxVGgJpbpWu2MUQ@mail.gmail.com>
+X-Gm-Features: AWmQ_bksFTqLinpU8zo27uHAZknvhm2S3I_vjliyAKm5aA1q3yssJinkZOpFVlQ
+Message-ID: <CAL_Jsq+421HUCRQB5ua9p2UBPi+sq8L0aSYpxVGgJpbpWu2MUQ@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: firmware: Add binding for SMBIOS
+ /chosen properties
+To: adriana <adriana@arista.com>
+Cc: ilias.apalodimas@linaro.org, ardb@kernel.org, trini@konsulko.com, 
+	krzk@kernel.org, jdelvare@suse.com, frowand.list@gmail.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, vasilykh@arista.com, 
+	arm.ebbr-discuss@arm.com, boot-architecture@lists.linaro.org, 
+	linux-efi@vger.kernel.org, uefi-discuss@lists.uefi.org, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 31/10/2025 11:31, niravkumarlaxmidas.rabara@altera.com wrote:
-> From: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
-> 
-> Add compatible for Agilex5 SoCFPGA 013b board.
-> 
-> Signed-off-by: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
-> ---
->  Documentation/devicetree/bindings/arm/intel,socfpga.yaml | 1 
+On Fri, Oct 31, 2025 at 6:15=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Fri, Oct 31, 2025 at 5:10=E2=80=AFAM adriana <adriana@arista.com> wrot=
+e:
+> >
+> > Signed-off-by: adriana <adriana@arista.com>
+> > ---
+> >  .../firmware/linux,smbios3-entrypoint.yaml    | 25 +++++++++++++++++++
+> >  1 file changed, 25 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/firmware/linux,sm=
+bios3-entrypoint.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/firmware/linux,smbios3-e=
+ntrypoint.yaml b/Documentation/devicetree/bindings/firmware/linux,smbios3-e=
+ntrypoint.yaml
+> > new file mode 100644
+> > index 000000000000..4d1521c685ff
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/firmware/linux,smbios3-entrypoi=
+nt.yaml
+> > @@ -0,0 +1,25 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +# Copyright 2025 Arista Networks
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/firmware/linux,smbios3-entrypoint.y=
+aml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Memory location for SMBIOS entry point
+> > +
+> > +description: |
+> > +  This property is used in the /chosen node to pass the physical addre=
+ss
+> > +  of SMBIOS (System Management BIOS) or DMI (Desktop Management Interf=
+ace)
+> > +  tables from firmware to the kernel. This is typically used on non-EF=
+I.
+> > +
+> > +maintainers:
+> > +  - Adriana Nicolae <adriana@arista.com>
+> > +  - Rob Herring <robh+dt@kernel.org>
+> > +
+> > +properties:
+> > +  linux,smbios3-entrypoint:
+> > +    $ref: /schemas/types.yaml#/definitions/uint64
+> > +    description:
+> > +      The 64-bit physical address of the SMBIOSv3 entry point structur=
+e.
+>
+> This needs to go in the chosen binding instead:
+>
+> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/ch=
+osen.yaml
 
+Also, drop the 'linux,' prefix as SMBIOS is not a linux invention.
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+Rob
 
