@@ -1,174 +1,239 @@
-Return-Path: <devicetree+bounces-233891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E69CC2689C
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 19:15:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5015C268C4
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 19:22:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B805B349088
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 18:15:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C436B1A24C47
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 18:22:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F8CB34DCC2;
-	Fri, 31 Oct 2025 18:15:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21B6235471A;
+	Fri, 31 Oct 2025 18:22:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vZ0VgQoJ"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="TzgpNHyK";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="CEH3HQeM";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="TzgpNHyK";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="CEH3HQeM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011001.outbound.protection.outlook.com [52.101.62.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DE752D0C9C;
-	Fri, 31 Oct 2025 18:15:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.1
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761934542; cv=fail; b=C6bQv7tvBnm0pxwMiuykuMk21f/PewblOhwYV8GjUcSlyS5KZDpsq3cPXk7Zzqu7+rZ6KLFp39b9NZOTNSUfGqliIWDpoMYtYxEGCim94cGzIoMxPfTPiWXWrR9yVtb5fAzFXtSH9rfVfi4klg2l91xpKFdLGcUYrxliVa/fGrs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761934542; c=relaxed/simple;
-	bh=ddj7VGJHugQVbtY/5mHCIXJDx/IZcapAJibxfoZLP8Q=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qxqV/DuIODlIuJnf6595dM6MBWUmDHWLP/pASLTbXkpBkCCTj7epsoEhlp2zwR15k1jRHBuqXmkLt29OjIeVQdgTD+ctjs4Py7Gsh7KS4L/3+T58xm3OzJsZtx0EoR4XjaVoz/gxbnhbu+F05+L8EJyHL2f42eEKHcA3tMpLbpo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=vZ0VgQoJ; arc=fail smtp.client-ip=52.101.62.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TE0M5BOVMm9aX02oGC322qYAKvaIe9j7KV+NqVtTm0N8qlAbKPNr0MCKYULNYvwkMRsOTyzlp3kJfRsbKnp7phDT45+bcohCi4MHmXKAoOhEvIIT2mhxUI438SCmwzF4NTPMcPj50/UXdW2iPTnO3Al2BdyWui/KZjEouPGh3McZiut2uOnFYsAm+tT6KyTUXkasEX+pwXfkii0LthGFXN3koq89vRNHrlZEJr4s5wZOzamfJMkCTtYCe9cDLo/so5kKsc023aG/TQk0XpM49NyKKkLE48WHKbcgyLvpsxfpaj9HfsHCB4Xv57ZffN7+Qw0RrBURPmJhKManlml1BQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZZRM1IIGA/FI/TVCSCkZ8tjEPNl3RLBRr9FnwfLBW34=;
- b=EgyCS7NdJS+tEVS6OIUqAw1FLStDfxdvFGEVHbYTQPVfLAZr6WWFJdtDwqU+CUgT7+BVHCeGzfsFl4TyMT0oM+dD4araui4xJYmksGNaRy8WnHleZROzrbJ8GH5QWH5kk+pYW0Nq/8RzOC1/8egpkZ7yZ07TquYm0MBBxjpRXH0Uo2tlJ8DZxV1YNssbxE9sYMlxgDi3/F/9CgONs5ckj4/ClhURUvHAw4OG2OgJXi1XAqLlNuhpsfM/k11R+NH478t8Bwnbo/+ZW3RliBvmcuNzdxT02wU+ZPdvZOOYeon+F4CJ4ze3tV1TYuNcA9FbkeMnID0ToY6Bsbt8AxEeiw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZZRM1IIGA/FI/TVCSCkZ8tjEPNl3RLBRr9FnwfLBW34=;
- b=vZ0VgQoJpZYNcK4gXhxtQFlTz0kdTmd2ZMWNjA30o4q59M/KmZu1UPiDb79oEfCi16LtpYWk63mzekXvjDCfu635yTCL7d3Hw2BNieecInfhYNLF1IcgIw1rcj8pwq7Wj05GZuZFCcS9xxqNbPIrtaihfdx71UPK64f4mPu8h4c=
-Received: from CH2PR12CA0019.namprd12.prod.outlook.com (2603:10b6:610:57::29)
- by SA2PR10MB4426.namprd10.prod.outlook.com (2603:10b6:806:117::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.15; Fri, 31 Oct
- 2025 18:15:37 +0000
-Received: from DS3PEPF0000C37F.namprd04.prod.outlook.com
- (2603:10b6:610:57:cafe::ac) by CH2PR12CA0019.outlook.office365.com
- (2603:10b6:610:57::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9275.15 via Frontend Transport; Fri,
- 31 Oct 2025 18:15:37 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- DS3PEPF0000C37F.mail.protection.outlook.com (10.167.23.9) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9275.10 via Frontend Transport; Fri, 31 Oct 2025 18:15:35 +0000
-Received: from DFLE212.ent.ti.com (10.64.6.70) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 31 Oct
- 2025 13:15:24 -0500
-Received: from DFLE215.ent.ti.com (10.64.6.73) by DFLE212.ent.ti.com
- (10.64.6.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 31 Oct
- 2025 13:15:23 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE215.ent.ti.com
- (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 31 Oct 2025 13:15:23 -0500
-Received: from localhost (lcpd911.dhcp.ti.com [172.24.233.130])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59VIFMlF138654;
-	Fri, 31 Oct 2025 13:15:23 -0500
-Date: Fri, 31 Oct 2025 23:45:22 +0530
-From: Dhruva Gole <d-gole@ti.com>
-To: Bryan Brattlof <bb@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, "Andrew
- Davis" <afd@ti.com>, Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, "Tony
- Lindgren" <tony@atomide.com>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>, <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH v7 3/3] arm64: dts: ti: k3-am62l: add initial reference
- board file
-Message-ID: <20251031181522.kkt622vlemiqfb2g@lcpd911>
-References: <20251031-am62lx-v7-0-cb426be9d6ee@ti.com>
- <20251031-am62lx-v7-3-cb426be9d6ee@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58086351FBE
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 18:22:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761934930; cv=none; b=iD+KFCPf9TjpyGZpzJqaAO25Hu5LPm4OEWHd78KrmtiD8sGLEkfANFWLjfO28ysM2ZkurK+a39XWBoa3ClIICdPZbGnrw5K8sIXtrMct3rs5H3m4gvheJgCy6sdwP6EUeM/m3FwRLv4sc/WMuKd1qLWOlewS1Fv3F0uaNASCHig=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761934930; c=relaxed/simple;
+	bh=ivxC6rH3aWZdDf91ZyEVWpF+MAQfTwbgZSJgH5XVPfs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VK059VohLaBTfzWD+XaHIiH3p6U0kdbkd4NddAh72VI8jkxIZK/qfGxnGdO0A8NDfezl/dzPvbjf9EcXeRHTLz9lub+7eMzMK/zDkZ9JrYa2hMEXmvAd7EmPkmA//1Zorb7thKD2N4hpLnPbz42lzPsXFyNnMIz6IAvjtHixTxI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=TzgpNHyK; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=CEH3HQeM; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=TzgpNHyK; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=CEH3HQeM; arc=none smtp.client-ip=195.135.223.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 433DE223E4;
+	Fri, 31 Oct 2025 18:22:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1761934926; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=jessRx6TNC0QixhPKRj2h5XBAo+ylMyAf01j+QDGZrw=;
+	b=TzgpNHyKZcFSDWwunMLd2X71Jgz9ba03UiBxZQcLzDelaJP6atFhs4LA0UDe8oMvUnDgwp
+	PXC4sOOnEzEEwiKdsskYEq54s11zaGrTZsRRvvU0ig797fLdg+pXn4i0rHIPxMGOQUoN6l
+	l6wrLEjXKj2RmV1xsZ8efQstlGY02JY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1761934926;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=jessRx6TNC0QixhPKRj2h5XBAo+ylMyAf01j+QDGZrw=;
+	b=CEH3HQeMT3rUTyh+KA1JIrTOUkOIE/w2GWcujKzHW1fp1rCI2mIJMdd52lszF9KohAiG1t
+	YyI7HhGigbhCIZBg==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1761934926; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=jessRx6TNC0QixhPKRj2h5XBAo+ylMyAf01j+QDGZrw=;
+	b=TzgpNHyKZcFSDWwunMLd2X71Jgz9ba03UiBxZQcLzDelaJP6atFhs4LA0UDe8oMvUnDgwp
+	PXC4sOOnEzEEwiKdsskYEq54s11zaGrTZsRRvvU0ig797fLdg+pXn4i0rHIPxMGOQUoN6l
+	l6wrLEjXKj2RmV1xsZ8efQstlGY02JY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1761934926;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=jessRx6TNC0QixhPKRj2h5XBAo+ylMyAf01j+QDGZrw=;
+	b=CEH3HQeMT3rUTyh+KA1JIrTOUkOIE/w2GWcujKzHW1fp1rCI2mIJMdd52lszF9KohAiG1t
+	YyI7HhGigbhCIZBg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id A086D13991;
+	Fri, 31 Oct 2025 18:22:05 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id 1SBoJU3+BGn3bwAAD6G6ig
+	(envelope-from <svarbanov@suse.de>); Fri, 31 Oct 2025 18:22:05 +0000
+Message-ID: <309707dc-43e6-4c2c-9547-cbfce2e9e1fb@suse.de>
+Date: Fri, 31 Oct 2025 20:22:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20251031-am62lx-v7-3-cb426be9d6ee@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PEPF0000C37F:EE_|SA2PR10MB4426:EE_
-X-MS-Office365-Filtering-Correlation-Id: f1c732a8-b6bd-4835-807e-08de18a97cf6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700013|34020700016|7416014|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?USYezSX+DvV7pr6oP2T0w0sTlHJ6QtVTR7D0uqtpTno2YYMO1JO7RBCVFnQv?=
- =?us-ascii?Q?/vtg0kC9uxI/I5Zuj8HJA1jk9SQDnfxBL+J0ucS5lLxk83G1MG/jr/NVX8lH?=
- =?us-ascii?Q?SPlxBsomvdvAxZF73oTX/9JEJUUcXk/AvSe+/HnVGQWD6baf0+TSTSpcmbeO?=
- =?us-ascii?Q?aJqZ5/6JK2PlbTpLcwKSa8qxgy0ujKUjaf4NE/JvwwytJWAGmYtOAzj+RK7i?=
- =?us-ascii?Q?jGYts378GxSoyLFhF4vTh+NSaPMteBX56OxiyG0fQwspknhdxoL956H0x63g?=
- =?us-ascii?Q?uy7UkxeTUIGDzuno3y8052gOcwNNfogs0x5cXNYfyQBrRRmxGOHhhttw0Wch?=
- =?us-ascii?Q?n2sTSMd9Xpe+bqFf720wZ1Q1mNjaiKloGCTzMx555gyNIi3RaBdj//W53VWC?=
- =?us-ascii?Q?hqjJ/UyUs6HWxL1wCFsrghUj3ExUfhfYIQ4XMn9u6YNX0CKVkIEiwhQE5cFd?=
- =?us-ascii?Q?4AO0y1yjmeBQW0qDdrpHwPrGYeM+/Xs+4zg7D+nJ+URY5mZ2qwimXXt12SCn?=
- =?us-ascii?Q?Ugj0YcwNTHglvoGmcFI1/QCwSXJkY1HOc5O/Zb9Gbue/jyIILGfG2CYRS89/?=
- =?us-ascii?Q?56VbPF3LmJ6jmP5UBye8iL+inbNjiEYEpy87htdWHn2ALkrxE0/4bL215npC?=
- =?us-ascii?Q?qL9qSnjxCS5rq7pq+CUKPV/6ja63DSc464i5/Xm2I0DJFcpntlpJdsC8LbGZ?=
- =?us-ascii?Q?pOUo/qZXNZOfcDSfOssIRqjQvAvaj00h0mfSx9RLeeyZ5iBLh3zf96nkAv/2?=
- =?us-ascii?Q?BDGO80wHfSpUaR/Bw4SgExKuIHFGZCrlcdF2jrICO9L58Ip57bMZS567Qrmf?=
- =?us-ascii?Q?1xE1mOuEzl7ZfRONfUftq0Ct91vVpIzOBizvUFQHMVbreEKu5a0M5BNPHOsa?=
- =?us-ascii?Q?r/WgPG3au8HB4N9xHMvvhFbNngSM3p2oBlJ4TEI49QpbaRDNV6xRKWCpHrdB?=
- =?us-ascii?Q?9saQwM+Otcd2D4EQCzm0HZkaQDZpTJ4+HKF+oSGk3p7syKrC9lr05ZUmW52w?=
- =?us-ascii?Q?Z3uNUVtTPomm4K2uPLnUE+ehEzOR0EvQ7/+iMEMR7zi5/pWpR3DlwPOeppBf?=
- =?us-ascii?Q?2tY5WNHDY9JMdqumrWVjxZ/qbQLan2L+vmsM8yh7BraztWzG36ij9lqmFZxT?=
- =?us-ascii?Q?acRc+3CgnYOJxBIsrQWg/WS7B72A72CnD2bBrAClfEE1naw/ruEXWcjiAh6Z?=
- =?us-ascii?Q?JCTB7MyVi62DSPu5UuuQgsQvzdwbgQuu4vVfurld8PnoedAzIJAjqv9587Et?=
- =?us-ascii?Q?jLvSGUR97yshWqbJYgp52e1JsSCeaa+hX97sni7CgzIJf6MGzgUq2HrIBukM?=
- =?us-ascii?Q?JyqxnWjnaScDQ4DmvJDW5DhLsOH/QqVHdpDDiP+egZR5vNcTNuuHK23mLbqP?=
- =?us-ascii?Q?k6+TucShZjA10ROy789U7erNk0p4Obn6U02uGseB8xXWDcpjxXVaEFw+Nhwk?=
- =?us-ascii?Q?mbCC6RyndldTo4zZ6KE/ajwXcAuRSO42SwdButX3RT3744d9itkUvwuXY2Yf?=
- =?us-ascii?Q?sRO44X1a/UmX4k3DFi/cLuYz8MQPiwFCKPiEL3n4mvwlzskJJ7JnTRFcOYZo?=
- =?us-ascii?Q?oBGkPwZi1Q722EGe5MU=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(34020700016)(7416014)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2025 18:15:35.7488
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f1c732a8-b6bd-4835-807e-08de18a97cf6
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DS3PEPF0000C37F.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR10MB4426
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] dt-bindings: soc: bcm: Add bcm2712 compatible
+To: Conor Dooley <conor@kernel.org>, Stanimir Varbanov <svarbanov@suse.de>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, linux-pm@vger.kernel.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Lee Jones <lee@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Willow Cunningham <willow.e.cunningham@gmail.com>,
+ Stefan Wahren <wahrenst@gmx.net>, Saenz Julienne <nsaenz@kernel.org>,
+ Andrea della Porta <andrea.porta@suse.com>,
+ Phil Elwell <phil@raspberrypi.com>, Jonathan Bell
+ <jonathan@raspberrypi.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>
+References: <20251031102423.1150093-1-svarbanov@suse.de>
+ <20251031102423.1150093-3-svarbanov@suse.de>
+ <20251031-icon-woozy-58061dd3d4b4@spud>
+Content-Language: en-US
+From: Stanimir Varbanov <svarbanov@suse.de>
+In-Reply-To: <20251031-icon-woozy-58061dd3d4b4@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-2.80 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	TAGGED_RCPT(0.00)[dt];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.net];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,broadcom.com,kernel.org,linaro.org,gmail.com,gmx.net,suse.com,raspberrypi.com];
+	TO_DN_SOME(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	RCVD_TLS_ALL(0.00)[];
+	TO_MATCH_ENVRCPT_SOME(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:email]
+X-Spam-Flag: NO
+X-Spam-Score: -2.80
+X-Spam-Level: 
 
-On Oct 31, 2025 at 09:08:06 -0500, Bryan Brattlof wrote:
-> From: Vignesh Raghavendra <vigneshr@ti.com>
-> 
-> Add the initial board file for the AM62L3's Evaluation Module.
-> 
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> Signed-off-by: Bryan Brattlof <bb@ti.com>
-> ---
-[...]
-Reviewed-by: Dhruva Gole <d-gole@ti.com>
+Hi Conor,
 
--- 
-Best regards,
-Dhruva Gole
-Texas Instruments Incorporated
+On 10/31/25 5:04 PM, Conor Dooley wrote:
+> On Fri, Oct 31, 2025 at 12:24:21PM +0200, Stanimir Varbanov wrote:
+>> Add bcm2712-pm compatible and update the bindings to satisfy it's
+>> requirements. The PM hardware block inside bcm2712 lacks the "asb"
+>> and "rpivid_asb" register ranges and also does not have clocks, update
+>> the bindings accordingly.
+>>
+>> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
+>> Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+>> ---
+>>  .../bindings/soc/bcm/brcm,bcm2835-pm.yaml     | 38 ++++++++++++++++---
+>>  1 file changed, 32 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+>> index e28ef198a801..ce910802ee9d 100644
+>> --- a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+>> +++ b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+>> @@ -13,23 +13,21 @@ description: |
+>>  maintainers:
+>>    - Nicolas Saenz Julienne <nsaenz@kernel.org>
+>>  
+>> -allOf:
+>> -  - $ref: /schemas/watchdog/watchdog.yaml#
+>> -
+>>  properties:
+>>    compatible:
+>>      items:
+>>        - enum:
+>>            - brcm,bcm2835-pm
+>>            - brcm,bcm2711-pm
+>> +          - brcm,bcm2712-pm
+>>        - const: brcm,bcm2835-pm-wdt
+>>  
+>>    reg:
+>> -    minItems: 2
+>> +    minItems: 1
+>>      maxItems: 3
+>>  
+>>    reg-names:
+>> -    minItems: 2
+>> +    minItems: 1
+>>      items:
+>>        - const: pm
+>>        - const: asb
+>> @@ -62,7 +60,35 @@ required:
+>>    - reg
+>>    - "#power-domain-cells"
+>>    - "#reset-cells"
+>> -  - clocks
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/watchdog/watchdog.yaml#
+>> +
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - brcm,bcm2835-pm
+>> +              - brcm,bcm2711-pm
+>> +    then:
+>> +      required:
+>> +        - clocks
+>> +
+>> +      properties:
+>> +        reg:
+>> +          minItems: 2
+>> +
+>> +        reg-names:
+>> +          minItems: 2
+> 
+>> +
+>> +    else:
+>> +      properties:
+>> +        reg:
+>> +          minItems: 1
+>> +
+>> +        reg-names:
+>> +          minItems: 1
+> 
+> This else has no impact, was it meant to be maxItems?
+
+Oops, yes it should be maxItems. Sending new version ...
+
+~Stan
+
 
