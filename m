@@ -1,208 +1,126 @@
-Return-Path: <devicetree+bounces-233758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94B34C253E2
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 14:22:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 596B9C253E5
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 14:23:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C64434F18EE
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:19:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F05818899E0
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:22:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5353C2E413;
-	Fri, 31 Oct 2025 13:19:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 434E232720D;
+	Fri, 31 Oct 2025 13:21:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZWXDynPN";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="K1pjdOwM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y+1qLC4K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA0D42900A8
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 13:19:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D3BD1B142D
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 13:21:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761916794; cv=none; b=ItGoaubro9+ldcfU/cBr0tc6wOnIUmZ1GnjOW6t3SowNK75HQ0JP59PaEpqhMSihRerVGLfU+yUsEFcX9ITq7J1H30n0QwjWxTnPIgVPM3FbDd+3Gsh3sXARRqWaZJNnXPOMK5ZzBbHEvS54Q8NBsR6Y+jsL3kLzC5tptGxh3/k=
+	t=1761916906; cv=none; b=kwTcwgSOGkL4pHuRd316m+vE6TJXduI3i/boPL5zebEBIRnFqz0/2o0n+gEZ4rmACWZr1yccwJ4LWB2S7ua+O2Jt+6oOVfDSd+iEzqSLHmqoqLPoxV2G9b6YR3U9sBqxosWByj/HwIPvvbB1HNaYDiXG8/s8fb5Urm3hj8Nep10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761916794; c=relaxed/simple;
-	bh=kKIlQC49+1HvPMZ+KSY6IKOFV0Kf/+b+20LKz34U5yw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kwzsPh14qzUFwze8F/Htd7AWa3PnVhxB+41W4k4B/w4EtcB5TCaqkHWZnqEqZfL7YzW5evNbFGP5BU4T+dWXoDSx+Xcjo5dn8RQCJOUkXrYZM5q5JqklBGrNZ87FHaA7gU57wCUJX7CIH57n9P2wAElRpnDznFwQU0cxJT8wRJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZWXDynPN; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=K1pjdOwM; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59VBo2r2102648
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 13:19:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=i1q+8kjbF6ZsBZxOZVi0iNgl
-	M800iA6/f1hi233PBSY=; b=ZWXDynPNwl8wiZazuA3y2ocv1d/aLxaGDtl82VqZ
-	EJtTz1fL6bsdzJbYiIqWIE1t1WEnaqsBLM4jIlbwx+DVvIotP/zdEwBmxc0MBiWH
-	2beK8WTOw/gZHacDNqEBkRLhP0vh827gI4xjjHsLYghT5UXV0gOl2mprGb2+VcUK
-	3l1H56sAOQxuCeCsNuOKEX+dntEu6GDfnWRoFcWsDDeV1w7CtdHkF0Xc85wwckKK
-	cQt0GI+bDoA1odYCOjt7l6ifAtK3UwFmViJU1/w34KixwQV5tTy/fQGIxiubqos9
-	2Li5JhKwouut+803Y1zYcoILNaRgKZ8kfYwjTu9jhuaPLQ==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a4ahdk8fe-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 13:19:51 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-286a252bfbfso52094635ad.3
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 06:19:51 -0700 (PDT)
+	s=arc-20240116; t=1761916906; c=relaxed/simple;
+	bh=9F8gqc4rpAW0lwHjC+yXvFyXO3F6d/9S0upqMfbC7T4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=f0j3060iU+3hW8dr5oYcFRSWCpgG7mwn87VEIR+sn9VeoVNKoebg9z5XBb50QkDJAbNZBdTEBwuuMovfbL6oAKpijGfZcxz2tYtvYm8WwpHXOJQ2YZz8AZJh4PXLcV2g5WBih5PnNn+p046Dq8MXlCPRF7pmSJWf5uRij6OxH2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Y+1qLC4K; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b3f5a6e114dso39924266b.0
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 06:21:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761916791; x=1762521591; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=i1q+8kjbF6ZsBZxOZVi0iNglM800iA6/f1hi233PBSY=;
-        b=K1pjdOwMQmIt7MXhmjeKr0ZdOz6v2iQ+AQk5lDa8HoyIlTL787GjS8YEZfIssWt+l0
-         agpcljPoYoU2BnHu1qzlX0SieWeFp3MA6Lt82c5LR+ZypqjZ1pIz8/fDQ2m7aHsBcdim
-         IZd6Q0/ZHSVUCdc2aOPncyUGtiAcZxNCbWmhqbIiq6QLZreaztpghxUjLadyQphzAxfW
-         7Kf/bWHNHcXGzWHoL9V8fyntbw+3ezhBUcpwAl1NMne6RMl4IEOh7qk3R6FMzcga9xrH
-         cVwe8wVY9hEL3Jn9a1tK6HVDFq4+KHxf4CkfK4utS+OyUAwwrZUOQbGG6IvZsNTf+oQj
-         4bng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761916791; x=1762521591;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1761916903; x=1762521703; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=i1q+8kjbF6ZsBZxOZVi0iNglM800iA6/f1hi233PBSY=;
-        b=HhMsyX/Ih1izgkvekWyiuaZQQ5FFMu8gPWpWjYuMm8F+WU/TH/3a4I3cdi3YK8jXxJ
-         B2HfQRosC6xscG8ITD/NQKVOjIqjfMC4cSeWap+Q45xzVHBKYr30Ogb82lteGc1rHuCx
-         FXSGcgfj5JAQti/o8Hpo/AdnOGIcb5c81zN8S8O+GyQ2U79a058lxwc1iO0Vms8MVdtp
-         vZgyxquY8VgnFkkWvYv8OKdLlebwaN9q9SOA8okk88MQVyketzTbjDsDDqVBk1jx9u2s
-         2FvRp6glaQSPwnYiLodptlA+QgtrsKo0ufXxmZu9QpcQIOF3CcECcsw+Eb24wRCei/op
-         UDxw==
-X-Forwarded-Encrypted: i=1; AJvYcCUIyUtf9IZOEyU+Yl8bqWul2kAAkd4cKjrjHmlW84/+3N234X5qx1PkrtBT9+Zt64WKNMEdBrrlwwdW@vger.kernel.org
-X-Gm-Message-State: AOJu0YyoDBpSjyr2Pb05sl9Sh+WAbmRB+Wy2JlJZzkxmMIDRm+uPL9yT
-	Z9MUnP762zR7X92oWP0UljbMtbPhHka8RUm9bV/updndybbECFobioxN/h8DtjnP4y6cbqh/80J
-	A8pEioKVBsccgNKmWkoHFf7sozOvYV1RgJ56/kjiaDCWFVPNA2vkN+mi77H+nUgeO
-X-Gm-Gg: ASbGncsd+ndt3ECFaYjx/VvjmBrnLdZXe1jakH4jX3DdnsV/eBEIqp0RBWfdzlVfCUB
-	DvrVMeUadln04R3k+wH2ACLjrMb/HtTeV/cvaATYdKCkHzAupWhL/Jm/ZP6dFS4Q3kQe/2tmL0d
-	jSNsgL5TW3npQcvF4Vacg2oki+VBsr99P4X5g9FcYkC39fQzZu7n2CJ16ziLliOPvCz0sG4zeA/
-	TS19RmSy+yl08mLRZ/sHhiwMHJ+VL+FiEwwxPiI8rRqVcf6l7eADq6vJRcTBD1dkcFyUBcfV9Fl
-	0N0RWE/HSgvegIH9u2S4wedrA/qQz0gzJUkMcxvQP02evDTb9W/2sFLOZG33mYl36ayHjeAuUak
-	eirTH5rNpwIvUadJ6XiMu+vv5Jx8mlniD
-X-Received: by 2002:a17:902:f544:b0:290:a70e:6261 with SMTP id d9443c01a7336-2951a361f70mr55559795ad.11.1761916791089;
-        Fri, 31 Oct 2025 06:19:51 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEWz7WaGspHmY6hwyIZRpl6IwBTpTBuIV69EQKKehTnyEv9Oq+hWYVVrkE1+HxBN8oUAGfLBg==
-X-Received: by 2002:a17:902:f544:b0:290:a70e:6261 with SMTP id d9443c01a7336-2951a361f70mr55559015ad.11.1761916790332;
-        Fri, 31 Oct 2025 06:19:50 -0700 (PDT)
-Received: from hu-pkondeti-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2952696df55sm24405685ad.70.2025.10.31.06.19.45
+        bh=5rcO1WrShaPm5De8Wjzz/fE42huUhjGMGtrFHb04y+8=;
+        b=Y+1qLC4KK9MQxsAJIOOGOzedunVHVCZwCJYjCtmh5fhXGS598PmyI0MshNA2B36HjZ
+         tvL6kJcLbFNpoDIDtfv3cQJXwZ6+4Re2wyh/DqO/pkZ/iFzhpd5//H0HYS1fpRIhIgl0
+         +dZCpHxR6TZQmfULI6J59oPZAJ3Dq8yY4AaTvyNO+moAU48sGSCr5Hg2iYRdRDfqxGSQ
+         R5OTPaRPI4UarfCZ5oQsElBLOQv5RjPc20n6F2AfqLf1eagxY7kLmxv9BLXt0W5/QBAK
+         l8qnsYULTCabapLhaiWj1dLGiCuJcXJdw7hX37AekWk6ozmbA8LMzKbbSwECbwAAFEX0
+         BeYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761916903; x=1762521703;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5rcO1WrShaPm5De8Wjzz/fE42huUhjGMGtrFHb04y+8=;
+        b=F+zAciIdcCK0CPVTaaxub20OUwGmrX3uyydME8Dfc36aAZHxkg3+5r0pt9a0jUWNWG
+         +QF++VCDYVBnjPIXfd9vUOb++P2O8ZuxsxRjF3eEOxCwBcyRu7p3CEvh7Q5rh4EENniR
+         cK7vy6HP6HQqzHd9fYsSJZeWzP+UOHUmOGmIIV0VAkj1wdh2xqWHB8UZUtvsdkgd/Squ
+         h1axEbQVywuQvkQOiHsPE8uEt8LvlEFvQZaVDc91zQF4chQghHnmj/VgqgQJi0M8QojJ
+         j7VpHxeQgZdMK04MLaOaypSyKSBllCEe37xmzmN4vqEtNLON928TzLA1wrtlsDBDYIiN
+         lI8w==
+X-Forwarded-Encrypted: i=1; AJvYcCUCR6tBGVBelreFlokn00NU+3BbEt8oarIk4Dqfa0XDORYFqrV8ijOn60O5SQwUuMf8O7w8vlFnV61+@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjyH3MLNtiQ90ma6c+jPPqYM3/FSXU4EQmg/C/E5RNX+jKQ3QF
+	w1BxtskYqbXSVI+TjZQqqmDq63WFs1Hea+UCdsi3+XHO2d2+qtkRoag/DLVOAF45HOo=
+X-Gm-Gg: ASbGncubXWfccZktzyO3TnDnD7fy4Sjpex7efiKO7MSqUUIOm74LS5zKNdE646lBnfN
+	JD0WmyqjdCRBFG8XsdP79QrrxomLleHPT42oOyw3O6LB9Vm2r1xCTeqWYSyqCHIk/wrbHt//DQy
+	8dHRaX4yY1BoziqaU1BMzZv4N1NihhQvte9HG+ptTmMTEe5LkvkpaglmrxDZ6MyNSdmEEVmndNb
+	gyu2QuTd4IPDumCkDSO9xeE9wskshThjJuXag3QEVmSVh6SgerTMjKdOHJig4j2R2SKbJkIlfap
+	19DBmxRUjJ8W+9HcFTwN9HmHQmFs+uars0Aiso8oXydmTYAV1QLIB7Iuv2AXLAE1MrYmRsIeOnK
+	P1m3rEf5EyzvpoCwpdyR9NenuTrQFak6pX0iRhl0QQZcwwmd0o+ccQ8wm4bs7l0vmPM4B1V3PlI
+	txd3HPFWD+4g2mHkQloQWcCrCwVc0=
+X-Google-Smtp-Source: AGHT+IHrjxX6puaY6w2PZtpMXH0moreOfvriHk3Y/1virPJB7joYYP7PIoZd61/ZbxsYgldtkurG8Q==
+X-Received: by 2002:a17:906:fd8a:b0:b6d:5106:86d2 with SMTP id a640c23a62f3a-b70708a3f30mr208643866b.8.1761916902672;
+        Fri, 31 Oct 2025 06:21:42 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7077975cfesm174858266b.4.2025.10.31.06.21.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Oct 2025 06:19:50 -0700 (PDT)
-Date: Fri, 31 Oct 2025 18:49:43 +0530
-From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
-        hrishabh.rajput@oss.qualcomm.com,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH v4 2/2] watchdog: Add driver for Gunyah Watchdog
-Message-ID: <51372234-0fd8-4cee-a296-a5e8626b52a8@quicinc.com>
-References: <20251031-gunyah_watchdog-v4-0-7abb1ee11315@oss.qualcomm.com>
- <20251031-gunyah_watchdog-v4-2-7abb1ee11315@oss.qualcomm.com>
- <13d2963d-e931-4e51-b875-a1650b899bb7@kernel.org>
- <09e8485f-f512-4069-be9f-3e94fb142aa3@quicinc.com>
- <68b2b40a-da98-46b8-bf48-ce17fb3b79cd@kernel.org>
+        Fri, 31 Oct 2025 06:21:42 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, Aaron Kling <webgeek1234@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-tegra@vger.kernel.org
+In-Reply-To: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
+References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
+Subject: Re: [PATCH v4 0/5] memory: tegra: Support EMC dfs on
+ Tegra186/Tegra194
+Message-Id: <176191690156.74562.382156724041473426.b4-ty@linaro.org>
+Date: Fri, 31 Oct 2025 14:21:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <68b2b40a-da98-46b8-bf48-ce17fb3b79cd@kernel.org>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMxMDExOSBTYWx0ZWRfXxnv2qqSPFHa0
- TyrGGA/CzEaUhnqMLuRNXED5LzB+laWS8KnA4C/Gn6Em5xLWbUuGWgqUhfXqTCVdYSdMwwrWsJ7
- gK9/XIHASg1iir3OiF7OLlZCdiaMTPgWN2ZPnGkCnl78Y98FSR/oawc+FGqjtwesSwzkSSS5kh5
- GqCa3bWnMr1oKAJO9+GzfKAv+4xGhzwFRYpAHLYf2DNYlQ9Yv/Nckx8kLDPQv35AMpfoi44/jBa
- OReWAl9L38E8Et/YC72Aaa+ie9tu9u+Cpz5DAzKTsqhNPzT2+a89zzrVS0hKlPAc4dXRHUtzjOg
- /jDvjvg3gvWF24FOtl3QVBI/X87ZrIa0++HG/J/p5KecucfcEqs4j0jncnYnDP13KMoSFf9slIs
- 7+9zJMlJIjyRu0wgBgyWi6XUjtjW8Q==
-X-Proofpoint-GUID: As06ILgbHxQ7hB8TAWpZI0ETSpRvvppJ
-X-Authority-Analysis: v=2.4 cv=TsnrRTXh c=1 sm=1 tr=0 ts=6904b777 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=kj9zAlcOel0A:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=1ZP6r6y3UWDVpadotx8A:9
- a=CjuIK1q_8ugA:10 a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-ORIG-GUID: As06ILgbHxQ7hB8TAWpZI0ETSpRvvppJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-10-31_04,2025-10-29_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0
- spamscore=0 bulkscore=0 phishscore=0 suspectscore=0 adultscore=0
- clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2510310119
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
 
-On Fri, Oct 31, 2025 at 01:39:11PM +0100, Krzysztof Kozlowski wrote:
-> On 31/10/2025 13:11, Pavan Kondeti wrote:
-> > On Fri, Oct 31, 2025 at 12:48:18PM +0100, Krzysztof Kozlowski wrote:
-> >> On 31/10/2025 11:18, Hrishabh Rajput via B4 Relay wrote:
-> >>> +
-> >>> +static DEFINE_SIMPLE_DEV_PM_OPS(gunyah_wdt_pm_ops, gunyah_wdt_suspend, gunyah_wdt_resume);
-> >>> +
-> >>> +static struct platform_driver gunyah_wdt_driver = {
-> >>> +	.probe = gunyah_wdt_probe,
-> >>> +	.driver = {
-> >>> +		.name = "gunyah-wdt",
-> >>> +		.pm = pm_sleep_ptr(&gunyah_wdt_pm_ops),
-> >>> +	},
-> >>> +};
-> >>> +
-> >>> +static int __init gunyah_wdt_init(void)
-> >>> +{
-> >>> +	return platform_driver_register(&gunyah_wdt_driver);
-> >>> +}
-> >>> +
-> >>> +module_init(gunyah_wdt_init);
-> >>
-> >>
-> >> Heh, what was my last message? If I see module_init() I will NAK it.
-> >>
-> >> At v3 you really ignored entire feedback and this one here continues the
-> >> pattern.
-> >>
-> >> NAK, please read how Linux driver model is works.
-> > 
-> > You mentioned in your previous reply that
-> > 
-> > ```
-> > If you call any module_init other than module_foo_driver I will keep
-> > NAKing your patch because it is wrong. I explained why wrong already
-> > multiple times in previous threads and other discussions.
-> > ```
-> > 
-> > If you are referring to why module_platform_driver() is not called here,
-> > Hrishabh answered that already previously. Please see
-> > https://lore.kernel.org/all/ndwwddd7vzjpgvzg55whdno4ondfxvyg25p2jbdsvy4lmzsfyy@jnn3wywc7xtp/
-> > 
+
+On Mon, 27 Oct 2025 13:55:14 -0500, Aaron Kling wrote:
+> This series borrows the concept used on Tegra234 to scale EMC based on
+> CPU frequency and applies it to Tegra186 and Tegra194. Except that the
+> bpmp on those archs does not support bandwidth manager, so the scaling
+> iteself is handled similar to how Tegra124 currently works.
 > 
 > 
-> Your commit msg does not explain why this cannot be unloaded. What you
-> want - intended to be a persistent module - is not relevant here. I want
-> it to be a proper and regular driver module and I said it last time.
-> 
-Thanks for the feedback. I am happy that the only concern you have is
-about unloading the module :-) I feel that is the easiest problems so
-far have been pointed out.
 
-Hrishabh, I belive we can disable watchdog via SMC interface. To make a
-proper and regular driver module like Krzysztof is asking, we can make
-it module_platform_driver by implementing remove method.
+Applied, thanks!
 
-Thanks,
-Pavan
+[1/5] dt-bindings: memory: tegra186-mc: Add dummy client IDs for Tegra186
+      https://git.kernel.org/krzk/linux-mem-ctrl/c/c15b28b1b3befb7ebf1c01c42623c3cede4cf9d1
+[2/5] dt-bindings: memory: tegra194-mc: Add dummy client IDs for Tegra194
+      https://git.kernel.org/krzk/linux-mem-ctrl/c/2aad3b30a7df710ff281d12a81bf84aa4bd98500
+[3/5] memory: tegra186-emc: Support non-bpmp icc scaling
+      https://git.kernel.org/krzk/linux-mem-ctrl/c/1004666bc437e234910c660f9d03a71ad44c027a
+[4/5] memory: tegra186: Support icc scaling
+      https://git.kernel.org/krzk/linux-mem-ctrl/c/dd6814eefbe524e433e1dbc25229c9338cb50027
+[5/5] memory: tegra194: Support icc scaling
+      https://git.kernel.org/krzk/linux-mem-ctrl/c/c9e39dd13ad6650b46ff3288ed33130a8bc771f8
+
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
