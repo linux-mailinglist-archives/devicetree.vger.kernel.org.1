@@ -1,152 +1,179 @@
-Return-Path: <devicetree+bounces-233895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0018C26924
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 19:31:57 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D392FC2693F
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 19:33:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 098C21A61BF9
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 18:32:22 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7CBEE346C49
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 18:33:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A128322A27;
-	Fri, 31 Oct 2025 18:31:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1360E2EBBA3;
+	Fri, 31 Oct 2025 18:33:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j70pvV+S"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="iwX7Axxi";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="i6Z+0iKm";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="iwX7Axxi";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="i6Z+0iKm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33489288C24;
-	Fri, 31 Oct 2025 18:31:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ACAA2E8B9B
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 18:33:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761935485; cv=none; b=WZ34rGSiHvb8dWERV8m+iRY1fmgGn8v58YEpiiAQNzL027YYj2F9XXsNOJzl2iEgjikJrLcPNk0WWJLITWmi9QJoWcFguHU7x7lUQivKWrYYion/WypDh9YFT/WSBupFzrEpXovI8rR28EHBzMddHiLy1mOa8yN05LDoxpFPm7Q=
+	t=1761935605; cv=none; b=S/0P35ehA+oVfXt6wDvhVYqt8BZMAHXUSRMGJCbjYdYq7LfQGFuFMgKN83YnqveEKf5bogoDsA5DdPGp7eRhCdCSNfL3k8YMILAQJvu5pQ3CbTAGTzIbr1QzuOg0bxtb6tl6JiAESOWpWdYNRb0p8yCtJuThy8muluDRhlsY20w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761935485; c=relaxed/simple;
-	bh=7QjSpP4gSg2HMdbwtzWmMJkDfvOWMcYNnr6C2VlIBUU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Dn72csblJ+qN2CpZSSWI5btZpauHCFic0rsApfXcuOIPFT+vNeCrArk15yaJ51gN4eDGMOH1AdQB+AmxvgBId0XseYdmjD+FQzHbrv6DwQyCfOd2qwCLgJkQyUKLXZO9wubtzmceTlW5Fiu3WybJ760tH45oHmuaLyXaXyLVdhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j70pvV+S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BAA2C4CEE7;
-	Fri, 31 Oct 2025 18:31:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761935484;
-	bh=7QjSpP4gSg2HMdbwtzWmMJkDfvOWMcYNnr6C2VlIBUU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j70pvV+SC94vUKhBHD8MQjUS05VvhFQfzM7I7ElZuOkGTFN/biEve4GPuD+mw6NE+
-	 AsQF+6RxXPXup+RO1x0FL8s9ipNAxL7t5TLX26pQ1PSO85xv6TqBkynY5ybRVRum99
-	 aGTCF0xJ0v9wn8J2QsbIChKckJkreP+bm/nOECTRtmZ6e6bHB8CRpQAebaD8IX4XV0
-	 7qfGbS5hXMh6JZoPt70UMKPMc5p2K2lFKdyO10ff85R38eesBNZ3BEcdDExOX+BfE1
-	 w+vyyDpqR/5v3q9M1GEHjX6dHVffIGwHPNRcG/zwUQoTPhU7zbCrQhoZFu61EbEolt
-	 81hXw9B364Yww==
-Date: Fri, 31 Oct 2025 13:31:23 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Peter Rosin <peda@axentia.se>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1761935605; c=relaxed/simple;
+	bh=jMDf2JsWg8aLp6iR1YoSo6thKSfJ8cpoz1OuofRcu+Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LPgSnqV2Ax7gM9dIyldqoCXfNNrkZ5uz8z2IDDdJlJw+flyVHBnB+2gg1oHAyZLGuS5Dm5+Lcr0vv24eNofYQW9EUHsGCL/hKVOMHQ4XBKoLvqxobcHphhF6kGBDyGTqTR4q2psIZT/a37JFUj2YTurx+PYnNd5rQzkogWSNOgU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=iwX7Axxi; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=i6Z+0iKm; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=iwX7Axxi; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=i6Z+0iKm; arc=none smtp.client-ip=195.135.223.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 29C181F387;
+	Fri, 31 Oct 2025 18:33:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1761935596; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+	bh=0L12JIWMWS76Dv2VBM1uGPm/iNOwe9xrhrPlZ8auzRE=;
+	b=iwX7AxxiJQ9UHY1MBoDN9k+KuB4lcg+/KujXgwqC3TVJX/B4c7cW5uKN0ezd6uSS3WjLtO
+	qKEKqV0h6kZJSuUQHdn5OyBrz7EH2P7cHPgGifwfc6yFhGo6R7YSG0WS9B3jOq6GKZGu45
+	60+3KXCO0QQWk9VXdocobi2YU1kLGmg=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1761935596;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+	bh=0L12JIWMWS76Dv2VBM1uGPm/iNOwe9xrhrPlZ8auzRE=;
+	b=i6Z+0iKm9UDfACGYMv3KZ0msq1E3+IJEyk8kVKpwnZAd58MiL+/O1PpoYK6mBQ98mnAOIA
+	WpnjaMCbuD/hSECw==
+Authentication-Results: smtp-out2.suse.de;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=iwX7Axxi;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=i6Z+0iKm
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1761935596; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+	bh=0L12JIWMWS76Dv2VBM1uGPm/iNOwe9xrhrPlZ8auzRE=;
+	b=iwX7AxxiJQ9UHY1MBoDN9k+KuB4lcg+/KujXgwqC3TVJX/B4c7cW5uKN0ezd6uSS3WjLtO
+	qKEKqV0h6kZJSuUQHdn5OyBrz7EH2P7cHPgGifwfc6yFhGo6R7YSG0WS9B3jOq6GKZGu45
+	60+3KXCO0QQWk9VXdocobi2YU1kLGmg=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1761935596;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+	bh=0L12JIWMWS76Dv2VBM1uGPm/iNOwe9xrhrPlZ8auzRE=;
+	b=i6Z+0iKm9UDfACGYMv3KZ0msq1E3+IJEyk8kVKpwnZAd58MiL+/O1PpoYK6mBQ98mnAOIA
+	WpnjaMCbuD/hSECw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 8F92113991;
+	Fri, 31 Oct 2025 18:33:15 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id gflIIesABWmTegAAD6G6ig
+	(envelope-from <svarbanov@suse.de>); Fri, 31 Oct 2025 18:33:15 +0000
+From: Stanimir Varbanov <svarbanov@suse.de>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	linux-pm@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Support Opensource <support.opensource@diasemi.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	asahi@lists.linux.dev, linux-sound@vger.kernel.org,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
-	patches@opensource.cirrus.com, Mark Brown <broonie@kernel.org>,
-	imx@lists.linux.dev, Lars-Peter Clausen <lars@metafoo.de>
-Subject: Re: [PATCH v2 1/1] ASoC: dt-bindings: consolidate simple audio codec
- to trivial-codec.yaml
-Message-ID: <176193548186.1612475.2578905716183905679.robh@kernel.org>
-References: <20251031144622.4033833-1-Frank.Li@nxp.com>
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Lee Jones <lee@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Willow Cunningham <willow.e.cunningham@gmail.com>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Saenz Julienne <nsaenz@kernel.org>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Stanimir Varbanov <svarbanov@suse.de>
+Subject: [PATCH v3 0/4] Add watchdog support for bcm2712
+Date: Fri, 31 Oct 2025 20:33:05 +0200
+Message-ID: <20251031183309.1163384-1-svarbanov@suse.de>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251031144622.4033833-1-Frank.Li@nxp.com>
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 29C181F387
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Spamd-Result: default: False [-1.51 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:dkim];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+	RCVD_COUNT_TWO(0.00)[2];
+	DKIM_TRACE(0.00)[suse.de:+];
+	FREEMAIL_CC(0.00)[kernel.org,broadcom.com,linaro.org,gmail.com,gmx.net,suse.com,raspberrypi.com,suse.de];
+	RCVD_TLS_ALL(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.net]
+X-Rspamd-Action: no action
+X-Spam-Flag: NO
+X-Spam-Score: -1.51
+X-Spam-Level: 
 
+Hello,
 
-On Fri, 31 Oct 2025 10:46:19 -0400, Frank Li wrote:
-> Consolidate simple audio codec (one compatible string, one reg, one
-> optional reset-gpios and '#sound-dai-cells' 0) to a trivial-codec.yaml.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> change in v2
-> - update title to Trivial Audio Codecs
-> - update maintainer to rob
-> - add reset-gpios
-> - add charles keepax reviewed-by tag.
-> - add below
-> cirrus,cs4349
-> cirrus,cs4341a
-> cirrus,cs4265
-> "adi,ssm2602", "adi,ssm2603", "adi,ssm2604"
-> ti,pcm1792a
-> ti,pcm1789 (Add reset-gpios)
-> ti,pcm5102a
-> dlg,da9055-codec (already added v1).
-> ---
->  .../bindings/sound/adi,max98363.yaml          | 60 --------------
->  .../devicetree/bindings/sound/adi,ssm2602.txt | 19 -----
->  .../bindings/sound/adi,ssm3515.yaml           | 49 ------------
->  .../devicetree/bindings/sound/cs4265.txt      | 29 -------
->  .../devicetree/bindings/sound/cs4341.txt      | 22 ------
->  .../devicetree/bindings/sound/cs4349.txt      | 19 -----
->  .../devicetree/bindings/sound/da9055.txt      | 22 ------
->  .../bindings/sound/nuvoton,nau8540.yaml       | 40 ----------
->  .../bindings/sound/nuvoton,nau8810.yaml       | 45 -----------
->  .../bindings/sound/nxp,tfa9879.yaml           | 44 -----------
->  .../bindings/sound/nxp,uda1342.yaml           | 42 ----------
->  .../devicetree/bindings/sound/pcm1789.txt     | 22 ------
->  .../devicetree/bindings/sound/pcm179x.txt     | 27 -------
->  .../devicetree/bindings/sound/pcm5102a.txt    | 13 ---
->  .../bindings/sound/trivial-codec.yaml         | 79 +++++++++++++++++++
->  .../devicetree/bindings/sound/wlf,wm8510.yaml | 41 ----------
->  .../devicetree/bindings/sound/wlf,wm8523.yaml | 40 ----------
->  .../devicetree/bindings/sound/wlf,wm8580.yaml | 42 ----------
->  .../devicetree/bindings/sound/wlf,wm8711.yaml | 40 ----------
->  .../devicetree/bindings/sound/wlf,wm8728.yaml | 40 ----------
->  .../devicetree/bindings/sound/wlf,wm8737.yaml | 40 ----------
->  .../devicetree/bindings/sound/wlf,wm8750.yaml | 42 ----------
->  .../devicetree/bindings/sound/wlf,wm8753.yaml | 62 ---------------
->  .../devicetree/bindings/sound/wlf,wm8776.yaml | 41 ----------
->  .../devicetree/bindings/sound/wlf,wm8961.yaml | 43 ----------
->  .../devicetree/bindings/sound/wlf,wm8974.yaml | 41 ----------
->  .../devicetree/bindings/sound/wm8770.txt      | 16 ----
->  27 files changed, 79 insertions(+), 941 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/adi,max98363.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/adi,ssm2602.txt
->  delete mode 100644 Documentation/devicetree/bindings/sound/adi,ssm3515.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/cs4265.txt
->  delete mode 100644 Documentation/devicetree/bindings/sound/cs4341.txt
->  delete mode 100644 Documentation/devicetree/bindings/sound/cs4349.txt
->  delete mode 100644 Documentation/devicetree/bindings/sound/da9055.txt
->  delete mode 100644 Documentation/devicetree/bindings/sound/nuvoton,nau8540.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/nuvoton,nau8810.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/nxp,tfa9879.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/nxp,uda1342.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/pcm1789.txt
->  delete mode 100644 Documentation/devicetree/bindings/sound/pcm179x.txt
->  delete mode 100644 Documentation/devicetree/bindings/sound/pcm5102a.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/trivial-codec.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8510.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8523.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8580.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8711.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8728.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8737.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8750.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8753.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8776.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8961.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8974.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/wm8770.txt
-> 
+Changes since v2:
+ * 2/4 - Use maxItems instead of wrong minItems in else clause (Conor).
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Comments are welcome!
+
+regards,
+~Stan
+
+Stanimir Varbanov (4):
+  pmdomain: bcm: bcm2835-power: Prepare to support BCM2712
+  dt-bindings: soc: bcm: Add bcm2712 compatible
+  mfd: bcm2835-pm: Add support for BCM2712
+  arm64: dts: broadcom: bcm2712: Add watchdog DT node
+
+ .../bindings/soc/bcm/brcm,bcm2835-pm.yaml     | 38 ++++++++++++++++---
+ arch/arm64/boot/dts/broadcom/bcm2712.dtsi     |  9 +++++
+ drivers/mfd/bcm2835-pm.c                      |  1 +
+ drivers/pmdomain/bcm/bcm2835-power.c          | 17 +++++++--
+ 4 files changed, 55 insertions(+), 10 deletions(-)
+
+-- 
+2.47.0
 
 
