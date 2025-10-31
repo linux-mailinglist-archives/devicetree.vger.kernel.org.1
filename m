@@ -1,75 +1,64 @@
-Return-Path: <devicetree+bounces-233863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1C31C26378
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 17:50:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2007C261F5
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 17:31:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D46F2424DB4
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 16:21:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B35B3188ED6A
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 16:28:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A341023D7FC;
-	Fri, 31 Oct 2025 16:21:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ACF328468C;
+	Fri, 31 Oct 2025 16:28:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="okGIWs0d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ii4vi4do"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 154E41C5D44;
-	Fri, 31 Oct 2025 16:21:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DB8B280327;
+	Fri, 31 Oct 2025 16:28:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761927711; cv=none; b=S6e3vQSBahi+aKg4i5M7y8AYZiibEE9WFSLLHd5HhmfNK0oxRxp5kKjfhveyQJLtHTryxoOgHig4fF2E08QQ/jO3oHeGIIfzbtXarPebOFwdk62riYtWhvYMujNNAYGLmxzcb13c1NHtohShn36Yx6vNzz/C9BqTL0R3EOY6Wjo=
+	t=1761928097; cv=none; b=D/DKtsofuhYGS+daHqIJpK/x+2W8q1TrsRhgc4hUPkNqzIH23rVh8jwoh++3Ist4alzE6tjwb8yMkb+TTvSKB8IDYo+QJ9SyxqZYLEUXqUIWqKJUH/CAwQJYMDkPNb6pkVotbsB7AzvR3aYm7zI+qdhTnGPp4lJL6djKXlWvt4k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761927711; c=relaxed/simple;
-	bh=A1OJuNy89ReYWRyHUw9vxGZ2tkUrpbPHpld8uz9ZjbU=;
+	s=arc-20240116; t=1761928097; c=relaxed/simple;
+	bh=J84IQUL9bblDhG1K4MYDhAu/ebJSucswpnmmazP+pEE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y4oggxrgovetSdBMxRJBfAYxCSKz7FhLm19ebIhWgW3qlKb1eXo6+dk5l91+21oEH4z3gCaK4Yr8Y1EPuKIedj7krG9ZDAQ9tEWGJym4ycPcClZQUFh8NiKBmtHOGvyzvCnx2dX58s+bNzPLpDnrynVEtbCxG4YAjTT3T7yLWS0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=okGIWs0d; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Fq379oOiqAtrnZ+bkfMKSoTJYOqJ/R3/WeAnEYH+Yms=; b=okGIWs0d0rRBVlo4THIcI4Yndw
-	CiHGWSGVQamirayhs3edW5StzRgTkwolWHI8YN1SRf0J0EmlNpv7HywE02ZQZsZDSy4h9FCEsIb67
-	ytMp1vXS2uywm9SUp1JvUd+Yy0nOwcq2/Zni6w5eE9tcv1olf1PIEdMweCCZJhIU37fc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vErsW-00Cc9X-R6; Fri, 31 Oct 2025 17:21:28 +0100
-Date: Fri, 31 Oct 2025 17:21:28 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Han Gao <rabenda.cn@gmail.com>, Icenowy Zheng <uwu@icenowy.me>,
-	Vivian Wang <wangruikang@iscas.ac.cn>, Yao Zi <ziyao@disroot.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH v5 3/3] net: stmmac: dwmac-sophgo: Add phy interface
- filter
-Message-ID: <651ae46b-8ca2-476a-8545-4c26c4e10f99@lunn.ch>
-References: <20251031012428.488184-1-inochiama@gmail.com>
- <20251031012428.488184-4-inochiama@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=bPw/3W8Wv1bfMgnYsCEzuCZZh5f4TcPIqprrO4hfMd1/lX2E8vTSgSuOkq4KgaFUpZCxoGTH+3YE8WX0A7IJ0OmtazI/sPnRBVL6j2vnbfLM5EKxm1/cIb7+SOkALks+F4GaFqCSd2Sgkm0cecvlb9b2hqQ7Os4ugbdAU5xYF/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ii4vi4do; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42381C4CEE7;
+	Fri, 31 Oct 2025 16:28:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761928094;
+	bh=J84IQUL9bblDhG1K4MYDhAu/ebJSucswpnmmazP+pEE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ii4vi4doCkLRPW1OiEegRLUvHoi9sSYnwbZx7UTKizmW4OWXgaXzOxHz70r9hpLvm
+	 fmyU7HJh+wUsDj4YPZHrynwCyFwqUutuINETDIPoz9V62zoBzQusuL/KP/5JcanLSL
+	 8LUSvnqGMiMWrmIIIy9xMOXdRDjULeBe6+zqsf38BYkhLYYJ6sdMoZ/dzWvaJ2MvIL
+	 WcfEXE8fN/sD216LUHAytWSIFyHyvwyNg8ioVpKwaNCELZl3VO9CWH61HRycvoU0Fq
+	 ocNnQBNxWoopcyYyPHIgg/zpxVhZg9f2ul65zTebNy8CdzzUQ9wJxhwFvB+sWRv+Nc
+	 /ODyNG6ol2Kxw==
+Date: Fri, 31 Oct 2025 11:28:13 -0500
+From: Rob Herring <robh@kernel.org>
+To: peter.wang@mediatek.com
+Cc: linux-scsi@vger.kernel.org, alim.akhtar@samsung.com,
+	avri.altman@wdc.com, bvanassche@acm.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jejb@linux.ibm.com, martin.petersen@oracle.com, lgirdwood@gmail.com,
+	broonie@kernel.org, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, wenst@chromium.org,
+	michael@walle.cc, conor.dooley@microchip.com, chu.stanley@gmail.com,
+	chun-hung.wu@mediatek.com, alice.chao@mediatek.com,
+	naomi.chu@mediatek.com, ed.tsai@mediatek.com
+Subject: Re: [PATCH v1] dt-bindings: ufs: mediatek,ufs: Update maintainer
+ information in mediatek,ufs.yaml
+Message-ID: <20251031162813.GA912533-robh@kernel.org>
+References: <20251031122008.1517549-1-peter.wang@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,17 +67,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251031012428.488184-4-inochiama@gmail.com>
+In-Reply-To: <20251031122008.1517549-1-peter.wang@mediatek.com>
 
-On Fri, Oct 31, 2025 at 09:24:28AM +0800, Inochi Amaoto wrote:
-> As the SG2042 has an internal rx delay, the delay should be removed
-> when initializing the mac, otherwise the phy will be misconfigurated.
+On Fri, Oct 31, 2025 at 08:19:12PM +0800, peter.wang@mediatek.com wrote:
+> From: Peter Wang <peter.wang@mediatek.com>
 > 
-> Fixes: 543009e2d4cd ("net: stmmac: dwmac-sophgo: Add support for Sophgo SG2042 SoC")
-> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> Tested-by: Han Gao <rabenda.cn@gmail.com>
+> Replace Stanley Chu with me and Chaotian in the maintainers field,
+> since his email address is no longer active.
+> 
+> Signed-off-by: Peter Wang <peter.wang@mediatek.com>
+> ---
+>  Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+The ufs-phy binding also needs updating. You can do a single patch and 
+I'll take it.
 
-    Andrew
+Rob
 
