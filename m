@@ -1,191 +1,114 @@
-Return-Path: <devicetree+bounces-233719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9444CC24F19
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:13:21 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AD36C24F62
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:20:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91DC318840F4
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:12:35 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 28EB64EB8FF
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:20:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 319053469F1;
-	Fri, 31 Oct 2025 12:12:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C6602C21E8;
+	Fri, 31 Oct 2025 12:20:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pxuhDPyn";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="g3Qj5VFp"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="oDuaB826"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD0F2EA755
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:12:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CE27242D6A;
+	Fri, 31 Oct 2025 12:20:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761912727; cv=none; b=adqLcW5jyMT13skuLtdOuC20iiNw1QuUvuE2sMCBFaYIh9xqxq8IE89/B8sd8ahfbY+q5TF0EiaxRjLfaABHbh1B8zwsumNmnBKsJb9IKyM2dbyZuryez8LjJBhtfWgmSJ3MNPFbWO7nnDZW4iA6DDOPRYbog6SyqcKQu0hNKW4=
+	t=1761913220; cv=none; b=hntAyPOBxZDmJxvUkWckFAQj4G4+5yLDHADl9jpq+cSYQAxzt9xsqcZ//TMM4NUW/D0KqMR7yX7oYYswRe2oDT3WJJztwqcjo3P4PY8qe9NzJfL2rUwBQVrrrH9E8Aj9dFTqCvvSeQg+tnMsvSc0nF0MfnoUMgL9ROEerKWNaBM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761912727; c=relaxed/simple;
-	bh=histqgWYWRJzF/fRVEEH99JEM6BEShvYwzywG0nFBU8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dPs/3LsvsgPzkU0vJSbbwUSyJYXDNuaOICqCB90CJGqMOAbU4s8Hq8s3pflxsFGmy0T4sla4ZVs8yr7jBqYDHjW6pfzdKZtkC2DcXiFFdithsGxj8P9cg8CaIpLy8Q2vhX0HbreVS8JlS+h1XT2hFYRlvpJepHHZFl6NgqNrtF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pxuhDPyn; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=g3Qj5VFp; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59V9tIHA1513353
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:12:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=t0ntCCJGokp8wjeBNRQ5jO4E
-	1nDyS9ibjhGJgiXXXCc=; b=pxuhDPynTe4oatb/be/N1kufH8tqBh8BbQmUFBc+
-	Umae1vEejTxvazmw5bvc+rHDy6X0tdczjJq/396cXHR2D1eZbWcpYCcNjHhmdSNF
-	LC1jiUmQa3FR7DHngMBz09YZ+OR+le24Hkt4/7DA7RUAOqaAy1rGZmE8d3nBAr36
-	VRX1BOc6HJdEUORYGDWcGtja+amIz9ACOq3Sn9yRgGfCpQXAzMi14saO8+P1xJhT
-	w2JZ8V676+YMrKc/jV3fkQGy5P0EfXnrPbB/AO/dekXxSWOZ0p1wPP++V0z0R+cs
-	vi1X49No2SxHc9HfuRR2Fq0cDjcQp0Eslg/3yj26SrmlDg==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a4k69hkxa-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:12:04 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-29526a0d1afso7707035ad.1
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 05:12:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761912723; x=1762517523; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=t0ntCCJGokp8wjeBNRQ5jO4E1nDyS9ibjhGJgiXXXCc=;
-        b=g3Qj5VFpmdzMgFRIWYk/86ia0QXtSJFsijt7DwVPNqQaYLl6juwxZbWawflu9i3RoT
-         ZbT7ibdU+fkGOYMbjnIjxrWITdMy9w4TWpDmprxKhS8/VuIDpwEdhp1BZ6hJNlz8MEky
-         nPpLgQ44C2SM29xc6TC50/FvKA341keCjQPYbODxR5/cHRVIqCjvkIGI1qUg/X/rV4GP
-         GTBUm4Pit3LDDJiHTYE4RCVnzO4gQBwy4DlVVftbfJSG4HIPtH47gMaI8f57nzCdYeov
-         w4tWHFuoQq93rVitIypsNeO1ihj0vc2uY9c1nt7g60QwTtbBJQvXhLOm2fSu0OXpabFT
-         qWLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761912723; x=1762517523;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t0ntCCJGokp8wjeBNRQ5jO4E1nDyS9ibjhGJgiXXXCc=;
-        b=MOj5Pj+Hk2lDplwhDM3EwCoPGw4PBIL7FJg5QRL2m4JoyqOgqJefGIlBfHc3Saaj+z
-         dx+csR4UpJbCBfEzaLhRgrpBvgNopJsTbdwKdt8xyYxF+Bg23qlFWPLSSl95s+Xseqwn
-         V5eA0v/9UP8UkLH/NHHcBYrGxjQjE8ea1/qBX6XLDoblR5WGjwoVj72qj7ilTsgzhFmi
-         gUhLMLRQknlqedNOzTnyK8hmPA9FQiqn8ILfE7rX3vKrYkhApVjkMzihNbrLOP4V4FF7
-         D+JRL+qHTLyS90Izks3OjpTIgBuM6uSCkQOgyNIiT/0Oxo8zXrMaM9DWyLGRaf11v4S0
-         n+HQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUURI+n3fwyf9jXJSaK4PoMpzF5Vpr7pExRKKwNJau6eDfBJ6v8j3+WR6fCseed3lTVPNQcda6zJBi3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6nq5X4C5CEMriiU4+nZbX3p7u4DiZRukyA+asfUCzVS8hjqaA
-	BrOc9/+oHc+odN4H+yvhS2biJRrfbiekkYhRv+Ol4+OEvjMYkhGwfroSomqYhnfcsaFJTVdfsb9
-	2oKTzA0TbLwSeMAqXiXyIxd8gq1K6zVmTqYRiPHrik4ldgfzRc7qVaDgb1rH80cRG
-X-Gm-Gg: ASbGncu88ZdTshJS9ujFkmlrKfLEHkyIa+ZiiNC87hldpDai+CQ459awX20BKgqdLuq
-	S3xM6cN86n/Ib9ivxCrhSlrpJ7C1yJeNPRjZpK7xsxFJRqk1Wu/rjGgVbn9fH0MgWwlbnBaMWg6
-	C26YYqUp9Oe3nu22VvVCToQ8AQNJNOpJwJ37I6Q63nGw5iiV0spbY2mpTHY+cA9+isXb1lt2x3+
-	8QHIrGYRh7v2ncOugOIemdKag7MDZSpVyIFS4wMC317xE6NZqgs7zJXQLrQAJyy2kvb/6BxSHVa
-	o4ptTcKV+rt6ynjb9zY0IUDNTZePU9trKmVchrv0qFVHlraYisRCFG3Rbs2adehJWR2XPKotbZn
-	3BV/JO0yN5dz+xm3V2fAGt0RvwC/1jYIs
-X-Received: by 2002:a17:902:dad1:b0:27e:f03e:c6b7 with SMTP id d9443c01a7336-294ed0982fbmr89140575ad.10.1761912723489;
-        Fri, 31 Oct 2025 05:12:03 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFFkkeZRsiuTlC1EpCac6wkygqEXe2Ou1I4f8XHFqwZycCb3yybQhK+4zAvwptAWwbxS1hO5w==
-X-Received: by 2002:a17:902:dad1:b0:27e:f03e:c6b7 with SMTP id d9443c01a7336-294ed0982fbmr89140035ad.10.1761912722819;
-        Fri, 31 Oct 2025 05:12:02 -0700 (PDT)
-Received: from hu-pkondeti-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-295268b553bsm21984775ad.39.2025.10.31.05.11.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Oct 2025 05:12:02 -0700 (PDT)
-Date: Fri, 31 Oct 2025 17:41:56 +0530
-From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: hrishabh.rajput@oss.qualcomm.com, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH v4 2/2] watchdog: Add driver for Gunyah Watchdog
-Message-ID: <09e8485f-f512-4069-be9f-3e94fb142aa3@quicinc.com>
-References: <20251031-gunyah_watchdog-v4-0-7abb1ee11315@oss.qualcomm.com>
- <20251031-gunyah_watchdog-v4-2-7abb1ee11315@oss.qualcomm.com>
- <13d2963d-e931-4e51-b875-a1650b899bb7@kernel.org>
+	s=arc-20240116; t=1761913220; c=relaxed/simple;
+	bh=d4QruSv1lElxzeFhg355PqgTOZcwg4+qTj9fRNfipAw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=bdDCxKoMnIRBiacFANltNg2hENbZBJhaWwfD+DSO2lkoq6JGeo6F9GKJ7AKfaOVjLmvCOyaM+3I/c0bdwy427+4QyPa6QQX0TQ1ole7uIbo16FYiYP3TcyYTPXlCgduL+ppqtPZL1neuP9Imuv5OfhohBaLngujUlJurJpuW1EY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=oDuaB826; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: f27bbdfab65311f0b33aeb1e7f16c2b6-20251031
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=gTU6KsNp/+TiTs2Aeqfmf3gR4n/zV/REoxgn6Z0vMHQ=;
+	b=oDuaB826EyfzqnTwMZDMimyB0TJ7Fxf8dRoZiDJMKWqOwKMQkltpr/7iPPqINpfaUvMob/k69eH/1b+ypGzXnT1IW47glToQWELb+ltUzOAFdZi+Bk0JUXfOenw8MrAyeKy/d2UasIOEOyMFM1zc0UJc+KcgOs25WH9iwrOPjW0=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.6,REQID:f2017535-c9cd-4233-a009-60515de517e4,IP:0,UR
+	L:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:25
+X-CID-META: VersionHash:a9d874c,CLOUDID:3cabfddf-3890-4bb9-a90e-2a6a4ecf6c66,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|123|836|888|898,TC:-5,Content:0|
+	15|50,EDM:-3,IP:nil,URL:97|99|83|106|11|1,File:130,RT:0,Bulk:nil,QS:nil,BE
+	C:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: f27bbdfab65311f0b33aeb1e7f16c2b6-20251031
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
+	(envelope-from <peter.wang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1198405061; Fri, 31 Oct 2025 20:20:11 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Fri, 31 Oct 2025 20:20:09 +0800
+Received: from mtksitap99.mediatek.inc (10.233.130.16) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1748.26 via Frontend Transport; Fri, 31 Oct 2025 20:20:09 +0800
+From: <peter.wang@mediatek.com>
+To: <linux-scsi@vger.kernel.org>
+CC: <alim.akhtar@samsung.com>, <avri.altman@wdc.com>, <bvanassche@acm.org>,
+	<robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <jejb@linux.ibm.com>, <martin.petersen@oracle.com>,
+	<lgirdwood@gmail.com>, <broonie@kernel.org>, <matthias.bgg@gmail.com>,
+	<angelogioacchino.delregno@collabora.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <wenst@chromium.org>,
+	<michael@walle.cc>, <conor.dooley@microchip.com>, <chu.stanley@gmail.com>,
+	<chun-hung.wu@mediatek.com>, <peter.wang@mediatek.com>,
+	<alice.chao@mediatek.com>, <naomi.chu@mediatek.com>, <ed.tsai@mediatek.com>
+Subject: [PATCH v1] dt-bindings: ufs: mediatek,ufs: Update maintainer information in mediatek,ufs.yaml
+Date: Fri, 31 Oct 2025 20:19:12 +0800
+Message-ID: <20251031122008.1517549-1-peter.wang@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <13d2963d-e931-4e51-b875-a1650b899bb7@kernel.org>
-X-Proofpoint-ORIG-GUID: QBXzaShrAupo9O_-ZDKw2jm5BZe1_Awn
-X-Proofpoint-GUID: QBXzaShrAupo9O_-ZDKw2jm5BZe1_Awn
-X-Authority-Analysis: v=2.4 cv=OYaVzxTY c=1 sm=1 tr=0 ts=6904a794 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=kj9zAlcOel0A:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=SWRU6URpa7t1zXFJtNkA:9
- a=CjuIK1q_8ugA:10 a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMxMDExMCBTYWx0ZWRfXxDlov/1oHpjN
- z+21GPlloVx4lrCI2Hy+VisybPKnf2hVHijS5qogOoQ8xKidsEJHXYMbuOEpoOjnWspWjMADySQ
- BXAvr9f0+6EWa4BzKGFmEXRGjBl3++FmY4Ujjb0zUJP2Oy2yKTNplgR87bUtTQWto13Q0/TzsYf
- /qwN9NI4Wf1T5uVCYdm7pa4sewpmpSAhQReGyXmuvP0D4ZuaFvMnZcrgL+GmheXj+d8pvuY0Ct4
- 44ENSP7ILHDElwTIcc2yk1iYLwQg6+bPtk29x5NIRyZ8fx54IOaz0EtCzyOsF613VaEuNOkefFn
- soJPGuSby1Y9APh7siarcPaRJvUFjmg7NucS497qUvYnIaVHGqEPmXlMJEcL+DT67m7RM4+Qlgc
- zE9Cx/+PaPbwo1XzCZ4skB0rVQJlkQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-10-31_03,2025-10-29_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 clxscore=1015 bulkscore=0 priorityscore=1501
- lowpriorityscore=0 suspectscore=0 malwarescore=0 impostorscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510310110
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On Fri, Oct 31, 2025 at 12:48:18PM +0100, Krzysztof Kozlowski wrote:
-> On 31/10/2025 11:18, Hrishabh Rajput via B4 Relay wrote:
-> > +
-> > +static DEFINE_SIMPLE_DEV_PM_OPS(gunyah_wdt_pm_ops, gunyah_wdt_suspend, gunyah_wdt_resume);
-> > +
-> > +static struct platform_driver gunyah_wdt_driver = {
-> > +	.probe = gunyah_wdt_probe,
-> > +	.driver = {
-> > +		.name = "gunyah-wdt",
-> > +		.pm = pm_sleep_ptr(&gunyah_wdt_pm_ops),
-> > +	},
-> > +};
-> > +
-> > +static int __init gunyah_wdt_init(void)
-> > +{
-> > +	return platform_driver_register(&gunyah_wdt_driver);
-> > +}
-> > +
-> > +module_init(gunyah_wdt_init);
-> 
-> 
-> Heh, what was my last message? If I see module_init() I will NAK it.
-> 
-> At v3 you really ignored entire feedback and this one here continues the
-> pattern.
-> 
-> NAK, please read how Linux driver model is works.
+From: Peter Wang <peter.wang@mediatek.com>
 
-You mentioned in your previous reply that
+Replace Stanley Chu with me and Chaotian in the maintainers field,
+since his email address is no longer active.
 
-```
-If you call any module_init other than module_foo_driver I will keep
-NAKing your patch because it is wrong. I explained why wrong already
-multiple times in previous threads and other discussions.
-```
+Signed-off-by: Peter Wang <peter.wang@mediatek.com>
+---
+ Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-If you are referring to why module_platform_driver() is not called here,
-Hrishabh answered that already previously. Please see
-https://lore.kernel.org/all/ndwwddd7vzjpgvzg55whdno4ondfxvyg25p2jbdsvy4lmzsfyy@jnn3wywc7xtp/
+diff --git a/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml b/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
+index 1dec54fb00f3..15c347f5e660 100644
+--- a/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
++++ b/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
+@@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Mediatek Universal Flash Storage (UFS) Controller
+ 
+ maintainers:
+-  - Stanley Chu <stanley.chu@mediatek.com>
++  - Peter Wang <peter.wang@mediatek.com>
++  - Chaotian Jing <chaotian.jing@mediatek.com>
+ 
+ properties:
+   compatible:
+-- 
+2.45.2
 
-If this is not what you are referring, please let us know. Thanks for
-your constant support/feedback on this series.
-
-Thanks,
-Pavan
 
