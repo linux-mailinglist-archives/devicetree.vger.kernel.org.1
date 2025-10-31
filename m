@@ -1,82 +1,48 @@
-Return-Path: <devicetree+bounces-233690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3473C24C9A
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:32:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60456C24CD3
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:35:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54268188DF0D
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 11:32:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 401151B22937
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 11:34:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A48B345CB0;
-	Fri, 31 Oct 2025 11:32:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8C4F346789;
+	Fri, 31 Oct 2025 11:33:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i39+8zXo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ffBvI+m3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B112125A0
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 11:32:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEA1B33FE24;
+	Fri, 31 Oct 2025 11:33:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761910329; cv=none; b=OsvoMA3FJRWFBZzjUh17y3Bmos4xzbKMuHAXPu44PNp5Z8ryruolAW1O3irUhz58tuS5iY7XldqTb2zbH6UfsQXUspOf3ZiqmBkxqCSFH1pJa/8F2S1xCfOE4Pf9jmCJSrEfGUqSBAiHL53vaD58Cp/+CaflgsFtMk6krT1RJNU=
+	t=1761910389; cv=none; b=fbT/ENlFv1OtleFyeRDklFcGzJoYRncqMAJ9POnOo3zJLojxhxaMqCV+A7ff6dixfbO1uGZr6aLbUtiArk6yVlqdmU9AjXe2BW7vOUqmClJZbD6gknfmZoqHeXAxpDC0mOqWsBofagg21WjfMvsxWKfb2tHAW/HvNWqrh9ZS3iU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761910329; c=relaxed/simple;
-	bh=rZ0TMSLeHMkDfV8viGGEm8oq1s3QC5Gza3J9ruliQrA=;
+	s=arc-20240116; t=1761910389; c=relaxed/simple;
+	bh=Jj/sCVq2++7bILttJ31fyTjElFpsHnJaT4EuhVg7JLU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N6AaXVYck6F4ziY4E+oyUY8KzHLe/l29g/e9dxZJNuaZLXssCAqHjcoSqWS+E770bJUex+rWJhGrzAVCccVvlqOPQF2u0bc1R+HLwtHZdhcpFsSbK/v2hiveBUpJvlRxzxn/Xn7MhE+lm1GqqMTtaqUMWBkOtlVkXwtttiLSfG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i39+8zXo; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4710a1f9e4cso17449445e9.0
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 04:32:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761910326; x=1762515126; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5o5Hvq1mHcb5vjOQOhhn20wc83exLDCb9EuvKhyDJL0=;
-        b=i39+8zXoiMXliW5qTf2LVHqKUyYObELIqYAS6elK1SnE7F9Nf9onPYuPScIS31KBeg
-         kbOjYB+lSKxgnY8gBeamUDk2mrwgUnz/LUoidT6CyOUDQmTPfcVPv9ouV4soyJ6UZvRW
-         XS/XNd+wfbL2r+RfTWWpTQiRZbvepnoXueEbBnvj18L/B/Ang6uF6n9K42jU+HdP1sHj
-         xFWSdgfysVn/2H0zgYzlo9f5pRCvSecDAGiqa9iTjmkYuEq78Kbq1wZmRjXUachW8AOG
-         Ouyk7IMXbku7QjTtA31bxU0HlLUQZmpAuI8FR0UjlfacT4H4fF1yM9O9LAO0cB9sGpFe
-         6K3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761910326; x=1762515126;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5o5Hvq1mHcb5vjOQOhhn20wc83exLDCb9EuvKhyDJL0=;
-        b=QEevU6ZdR+er3Yb9qt7UhZdpNrdoNVAGmWiH8KJDnYot59GIY9LbnAAdUoXTYMxct+
-         c2WAcrHx3bTC6wE0G/1hZ9KeW8Q83nof2R32oEYWsZFVE7rvzLJBa9EaNUZDSFQun+AH
-         ZsodiIyKG9dEfv4KAEUQj3+vCXDQz/aJi7/c7gAh2oXVSWiyfQ0NuCjQp9/cPrCYUPNA
-         9R3Djl5tcHoqrvZOblYjGj5JmxJxP150RgEqaItXXLDmrol8nTC8RfVf3TV4S/ghfxRt
-         s/+qRWH0b4Qb/ItyVClFzTFyHtDTrNJBVO30UfGuzlQaWaUsWv/E5Tr60XjFJw4TBsEA
-         hajA==
-X-Forwarded-Encrypted: i=1; AJvYcCWlbMH592FVrbeNIQayvorc72Na+pPRbtyQcU18F7VZFJUpXNsWk+Pfh8zWc5en+ZHTbKQGinTaZM/W@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyo4p9NR5Pnbl02zEVB0BMrferdhb9P+G5WgF6C71Z0hLmmSdun
-	uvzFTkHwEzr9umOaKZ/mI6eqz6p2bDY77YlWxvUG/wyaNpvu4sQ5dlES73zsZVVBsa9IrrCLuKE
-	0MlnxnZU=
-X-Gm-Gg: ASbGnctttJ67AZomCN0M1Dl8VcHPsNoMlJXrDGSFg90ZWbH07twVqbvRmdlQJ9giiMK
-	d12KStmuOjARtWyH8z5SPhQjMtoppVBgNkAoP3NeJdxSwT8FeXOofKzBeL+X50UrgFQlDYzYwKI
-	APQtyJTJ4PK4g6RMeBbbHk47BV6HgBXXFP6Ogy/4AUsNOxPc20k5dE0p8eF4cb2C5iI5UuuoH2/
-	0rGC+5K3KH4urBf43HG6CQRm0ZIca/XPf1hFlghGAQaD26cx+6uvFgR7E6Ox/sUU0RIYwMGZd53
-	RFAM1PRCYbmeTLF49+jaFXEkh1zALh6ROPycH40rSLAa96u8TP37ZjoHcu4CjJaCRZ5EpNuwoKF
-	KHwLZhbs7JiP6do9hhUUh1MM2qcyySYNOBQIqNbDNfdcHeROZQs6T6MYydtx/0cnJGjviJzdgG6
-	HwJvOC2fYppPER/ToxcB50Ich5v8cL8R8lObIZ1wuZR8u6cRPrCw==
-X-Google-Smtp-Source: AGHT+IEGw8J4fMoUSlvNobSiife2THo2Qv2aF9UAjT0gcyFDgCPPv/RSdWc/Vx7oZtBBWBje0Y1ZZA==
-X-Received: by 2002:a05:600c:a44:b0:477:df3:1453 with SMTP id 5b1f17b1804b1-477308cd816mr31858515e9.28.1761910325455;
-        Fri, 31 Oct 2025 04:32:05 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:2b:468c:c228:91bf? ([2a05:6e02:1041:c10:2b:468c:c228:91bf])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4772fbeef62sm21673055e9.1.2025.10.31.04.32.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Oct 2025 04:32:04 -0700 (PDT)
-Message-ID: <c4c14051-2ba2-4d80-a22d-4deb3709f727@linaro.org>
-Date: Fri, 31 Oct 2025 12:32:03 +0100
+	 In-Reply-To:Content-Type; b=uyzhr+AVY22NmHd6qbZzIBgpEwQyI4GrrEHjpVcw1k3eFW4/39+pNVr7NZS2wCUFQ2//e4tFKfMFLBRqtitCzfMQtkF3HdWaID/GYUXzJb92goVy15GWX9oBGjRM2W/oDBUFUWDHpyVvnVA8PE3v8UuAdAW1rssgMQPYUghC8nY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ffBvI+m3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51421C4CEF8;
+	Fri, 31 Oct 2025 11:33:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761910389;
+	bh=Jj/sCVq2++7bILttJ31fyTjElFpsHnJaT4EuhVg7JLU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ffBvI+m3yyxfsc7eXV10hWopSt0aC5QOLs/hR+rnLVKAHGqdLQGUsQBtKYv+9muz8
+	 vRap3eV8ykevNsUljm2axEOWJxvAkSsehU3DH3NeYZjLpZx1lb6gZu9MafLaOVhQYU
+	 w5yWWolMQuK3ucF2v10fecWYMTFEyNPO1BFLEfQGbYANcMk5rrQ29CpReeuVjjj7d/
+	 eskf4HbRp/+ctiD+FPrYLBzxXeHX32or2/oWtuqBV7kEg3n8MkZWwwKDn0haIi8LU3
+	 Mc/xjxjqh04dDjldBQ90XnnVhPJXDV90YnfXsbEQRiZK+Nvftkukh1yCCxvuyW91dR
+	 4whT9ibFqdxKg==
+Message-ID: <ae81cc1b-472f-423f-9be4-710d4c135256@kernel.org>
+Date: Fri, 31 Oct 2025 12:33:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,84 +50,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] iio: adc: Add the NXP SAR ADC support for the
- s32g2/3 platforms
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
- andy@kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
- linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com,
- ghennadi.procopciuc@oss.nxp.com
-References: <20251017164238.1908585-1-daniel.lezcano@linaro.org>
- <20251017164238.1908585-3-daniel.lezcano@linaro.org>
- <aPP0uVZu1T7tTQGo@ashevche-desk.local>
- <050f96d5-e60c-4b33-b6d2-24fb3925e378@linaro.org>
- <aQMvqHGN7r6babgw@smile.fi.intel.com>
+Subject: Re: [PATCH 1/2] dt-bindings: intel: Add Agilex5 SoCFPGA 013b board
+To: niravkumarlaxmidas.rabara@altera.com, dinguyen@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251031103117.910187-1-niravkumarlaxmidas.rabara@altera.com>
+ <20251031103117.910187-2-niravkumarlaxmidas.rabara@altera.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <aQMvqHGN7r6babgw@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251031103117.910187-2-niravkumarlaxmidas.rabara@altera.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 10/30/25 10:28, Andy Shevchenko wrote:
-> On Thu, Oct 30, 2025 at 09:27:21AM +0100, Daniel Lezcano wrote:
->> On 10/18/25 22:12, Andy Shevchenko wrote:
->>> On Fri, Oct 17, 2025 at 06:42:38PM +0200, Daniel Lezcano wrote:
-
-[ ... ]
-
->>>> +#define NXP_SAR_ADC_IIO_BUFF_SZ		(NXP_SAR_ADC_NR_CHANNELS + (sizeof(u64) / sizeof(u16)))
->>>
->>> Hmm... Don't we have some macros so we can avoid this kind of hard coding?
->>
->> I don't find such a macro, do you have a pointer ?
+On 31/10/2025 11:31, niravkumarlaxmidas.rabara@altera.com wrote:
+> From: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
 > 
-> If I got the use case correctly, I was thinking of IIO_DECLARE_BUFFER_WITH_TS().
-
-Oh right ! Actually, IIO_DECLARE_BUFFER_WITH_TS() is used but the macro 
-above was not removed :)
-
-[ ... ]
-
->>>> +	dma_samples = (u32 *)dma_buf->buf;
->>>
->>> Is it aligned properly for this type of casting?
->>
->> TBH, I don't know the answer :/
->>
->> How can I check that ?
+> Add compatible for Agilex5 SoCFPGA 013b board.
 > 
-> Is buf defined as a pointer to u32 / int or bigger? or is it just byte buffer?
-> If the latter, how does the address of it being formed? Does it come from a heap
-> (memory allocator)? If yes, we are fine, as this is usually the case for all
-> (k)malloc'ed memory.
-
-buf is a byte buffer allocated with dmam_alloc_coherent(..., GFP_KERNEL)
+> Signed-off-by: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
+> ---
+>  Documentation/devicetree/bindings/arm/intel,socfpga.yaml | 1 
 
 
-> ...
-> 
->>>> +	dmaengine_tx_status(info->dma_chan, info->cookie, &state);
->>>
->>> No return value check?
->>
->> The return value is not necessary here because the caller of the callback
->> will check with dma_submit_error() in case of error which covers the
->> DMA_ERROR case and the other cases are not useful because the residue is
->> taken into account right after.
-> 
-> In some cases it might return DMA_PAUSE (and actually this is the correct way
-> to get residue, one needs to pause the channel to read it, otherwise it will
-> give outdated / incorrect information).
 
-But if the residue is checked in the callback routine without checking 
-DMA_PAUSED, the result is the same no ?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Best regards,
+Krzysztof
 
