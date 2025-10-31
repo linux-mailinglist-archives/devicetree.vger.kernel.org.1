@@ -1,192 +1,145 @@
-Return-Path: <devicetree+bounces-233744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DEF5C251FA
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:57:27 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EFBDC25228
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 14:00:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 045694F5870
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:55:37 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DF4154F7893
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:56:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E021342CA5;
-	Fri, 31 Oct 2025 12:55:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BF0431D75D;
+	Fri, 31 Oct 2025 12:56:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BrhUviks"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DkHVekZx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A66C733C50B
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:55:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5DDA340A41
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:56:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761915333; cv=none; b=ZWc330Te/J2Ky+3p1GSRHwlBA+MwrECbs5P2SauCZeXC8KTKEULAU6Js1P2SCsMrroiEdITjdxYxZ7GtCvMZIydmj0EDP6UdEzE5wlnbPIYwLl/29LDZbcOaE1TYydOZBlR6qnwHIDGIWKl/pdJptwHPm8lbEShG8OQTobuGRgA=
+	t=1761915367; cv=none; b=Wozw08TpXaz2kBTpGo/GWtcix/qAD1BU1wOeaNDFbl6z8/LcwJ1QkQ5vdQXcyIhztNEc751u7gc3CkwmWWvoTEbo/bwEztYWHlMWGJqYWYwVXPaewwM9z7EHenBNn0wmGTyUMmhGfD15HW6WoaTfma8X7po9ZEKMkjj8vZEBdOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761915333; c=relaxed/simple;
-	bh=maxNummCODk3xOKN9REfqVWBI6syLE7tsnIUSjVMlfQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mDgvhzv5xSMeBBnzMcF0t3YWT5KHWCwn6MrLDstLua0PrzjaIblfC2xMqjM82O1VPn/qLu75ZUIeZESFi/7zr2JqmHL2ebZNe0AhLUmVYyQ8+jJUYmTs8e/JCDTRkmCZmRno+PfwCzuQwIqp4fqfIAiEhw3x2SpbHX7bEtwOE5M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BrhUviks; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-47721293fd3so12958905e9.1
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 05:55:31 -0700 (PDT)
+	s=arc-20240116; t=1761915367; c=relaxed/simple;
+	bh=5p1LeqfmmwFaeenEnSkkkwhzGqyUgPudlC9tgJJ0jsc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YkRPdpYI8TD0Gb6c8gw/YrajhxsEBa+nIZzBmi7WQH0ZfNqoYYg942CFQLeseLyPIJgwlTMEQ7iJ1U5tZ4GtVzmeZLY3Y3UHkiSEC84UoIrBEL7ONCH72PIV9rbf4A6to2z5H6DEbTJAlZ0iD+ulSu15+6kMojF+d1h7H9Dys0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DkHVekZx; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-47112edf9f7so17861035e9.0
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 05:56:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761915330; x=1762520130; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ur2nzdK93Gujnnrr7/bhg1o+Yu3Nd/Uvn3Pjsb5/zzU=;
-        b=BrhUviks04ASNyscWvpdQa4fgI7a1O+Zed/X9+Ue8fZrAVB0HTnUC1tco+vpsijy5Q
-         5JKHfiBmIWB6QHh9ccihqbC86KDvb/RnRqT8RkBFxROcN6RTLbloUfcr5BFTwKKO0Zic
-         DEDSKzUjcZxJDv8mOo0dhWijx9YVVeEdOVMp3qb7R+zYyvuDXt5Kd2Yl9c1NDqt0z6hH
-         JKMaQF9DcQRS5P5hkqC5peHJLQnx6WVLm/IMnkqK8A7Bdxk8meU3eHu3mExX81wmiCnm
-         FNsmpnb2bIEblzXQnZbzyDcyN2qhvLqu5oMkrwrVBmxvuLn/pABKo521vxR/s7Th1+Ee
-         Er0A==
+        d=linaro.org; s=google; t=1761915363; x=1762520163; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cSizeuZT4cpU3hNiP/rAVuNIA7WcfkZd0/3ee9GQoRM=;
+        b=DkHVekZxYsIHEKdYlAMZ7F6bfAVEFc0Er9nNl/RYgzkOO5wgMM8RxH2HGBCehKP6l4
+         Why2xa2PYnQK+Rt558m/Q41061Iu53f/jSHdMq90772oDde+ixRJ1ar8lvSMjijR+iCL
+         YnTGiqAYdRee8bBSTBcUybAgijTkaYQYKi2J6BKa3nJzBx2ZOBtlVlpabvHwPH/RreU1
+         Te9LDH4kwmdQSKxLQi35RqwkQNCHZOIWt8Nx7dcjic0rO3gUbsz/HSwkWJNTbEuueIrr
+         UvS/xBEU1KfpT+PUItslvFsVzFaTvS9yxC6M2kYjzv5L03iKgjUzCbFjeYjB+G/2+FiM
+         hDCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761915330; x=1762520130;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1761915363; x=1762520163;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Ur2nzdK93Gujnnrr7/bhg1o+Yu3Nd/Uvn3Pjsb5/zzU=;
-        b=wwyWLCwMOiH3EwPs4n4xTqLs0kRrNTAI4q5v4i98KyHry1+PMjmMw7O0owjmvPQlD+
-         rwg4NJyg81fh60VefF46Y3tLz7q/dFAAddn8KjHBuCHESYj79aZFAs7EhjvTytsfUBeo
-         JtoV4BD9nvtMAppNqhGgtWM8iMztRLiQM6o/scSU6KGbU3U+4l+JTxxpPQz/MPuW8q/3
-         5pKaMow1d2PXED0WKeayXcRE85Q8H1A5v+zYt0ePWWjaQV/1j+Ilj7R+Us5+8jgsM+bc
-         KUV/K8Sa1Ybcb+/bZx4TevgTPlyRq8xShB5iNFzSiMp/DdxZRWpz8KDdvJQC8R8tDw6i
-         wXAg==
-X-Forwarded-Encrypted: i=1; AJvYcCWhNWOlYO1ZR00V0XFtj2gdPhQZ8w+JW1KoXwyzOg34K3fp0Yn2MrYAd+vynSBGPAS6pgoNpN4vBv74@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJCiiq88LUfnliqYdcZeO1ZT2UPVz5siFIeloku/LxsuEWHcNZ
-	M+1XLFn8vCV1nDAyJG85IVWn3CoQulJc+9TGV+S53UU5fi1w8fm3zGXo
-X-Gm-Gg: ASbGncuyjLCP9t6pfloH6bEYWhTlNsfkSKsNMaU4opZZHWoUc4BjbKxV2lnTvgOy8ha
-	p0//A80y7r2VGzLQdmF9l8mh3OLtlBIlpycDRq2tS5uMkXQKKnKRHnelFapMcZC7wHI5HImyMmj
-	if628iPGKLWT9sl+BHV2UoTQznaY+q3FM/3Zm56lPnWWNU6FJaEnx5TNu/RMsYSVZhX0MBQamiJ
-	tPHee4aaRtKdcVBkt0XOD2r+3w6mapdgha3afhb7s1y2h8WEICELIamQgD2Q2hj4c11py2Eds+Z
-	tUMbCMS06zWkPIsNANJ3NZGtyjfzrQYaqDCBmce85YcupiB80sIwdaL/nIHONK4DxjbrM7OzKCt
-	N6zEt/PpHCR2uysvg2b17NnFoZwRYNhcQarEGcpO0WU5paGwgxp/jxh2yzMMLrH1js9xo/qqaFj
-	wkufTxTrY37OBQz3Xl8B/e8ps5DK6lThIF4BkzhTYkHNVGG6t0VH+BR6h56CXCK9k1nEXWiY8sK
-	CjuweBK1BL7Sk8I
-X-Google-Smtp-Source: AGHT+IHKkMjFYDq3sA/7iAVV6Ds+dv03BvTAXq+xvomUp5eBrJogf0XF/TD11Cyme54hAMfPd6Wl0w==
-X-Received: by 2002:a05:600c:c4a5:b0:475:ddad:c3a9 with SMTP id 5b1f17b1804b1-4773010641fmr38615415e9.13.1761915329775;
-        Fri, 31 Oct 2025 05:55:29 -0700 (PDT)
-Received: from toolbox.int.toradex.com (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429c54efcadsm99111f8f.5.2025.10.31.05.55.29
+        bh=cSizeuZT4cpU3hNiP/rAVuNIA7WcfkZd0/3ee9GQoRM=;
+        b=etumF6FPAEC7xQgJkPr6ZW6cP7pAq8JqIWbkto0gJHjtF8NXjPcEpZ3NNohM/2SqrL
+         P7fdBh5O/fvgeHJJjkv3OEypRuEn5r4LE1mFo+M+eG2lMzrOG5ceI3eind9DPz2fiahG
+         poNet3RSg/+vJl22uVMpt1SaDXbUJKIhR9RdRQxSrg94OZFJ9gCPt9AN8EA4lfjPCGqi
+         gMbFYvBBGfht40O3/6BBhy3Kunhi4H3cyYPlBKiNiDXlxzssjJb5+1W1KjFVo8MSAf8b
+         CRWQd90KtRNNR3yclq5F6ieS3BuSkSayyQvBrDgQTs1HmeuVOU2OHkSo/n1tXWHettHu
+         qHaA==
+X-Forwarded-Encrypted: i=1; AJvYcCUrbCz7DBZpHmSuq6JJRt/JD8WaaUKY7OVStS7ZqJwWBM1ZD4FD4Kf09F8GU284GQaFFMUfvr/R7lfc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzhb0TvyTrl5blkiVjm35ldbg8FjhQhVA229s2+T7gPBhUPECLb
+	BQRPndolXaJz6WnzSZx10O4TxEXIH3RE9jwL0hZEygGgrdYggmTs97Qi3349jPvcTm4=
+X-Gm-Gg: ASbGncsxAmbIT8Xsr2boo+WaYju4IlcMhmb6zKEM/RY3GXAcpCRpsjyPd8pYdJFcYhT
+	vNVRVcBWt861m+q2I+xhmWq8t4ZEBbDrnTngdGgD3lBq5KAwX1ZSxm2OcF87baSZXu4jYkm2xnz
+	iJHjUh2sDhRiC/8PCEjYDHMuHobsZRlSA/KLcuj+Mm/BCgs2HR6bOa5fSWJl7IYoqtXxTAyA3oy
+	wfXQqIFYRSjYuPvrd7SDW7OybG+lvZmr5Le0xOvtiYa4xYRHqkIV8Sm7xOfNB0K/5inC7LFh3j9
+	Uc5GE0wJDyMgiXJqejMDDWUa23a9OkQ51CM1VhAkdLHrYMncwnmZLhZ9g5dF+r3zMOqzd0LAH0Y
+	ZdzX+IqJuzrKkbBsLxA+S/UJ4vODFpKX1FoIn+p0DgnMsRjHCetxM2MhttMRfuzvEyISRvoaZWO
+	eXm/NoHN19vy6hWJ0cjkeQZLockQgHJCsa3J247OfKERSt8mYLMm9hgM2fl7D+lw0=
+X-Google-Smtp-Source: AGHT+IGWxYF93lfuQ/cW7BRqRYwYwuobMFF5l+VG4Chs/3oiv4JkKC1iwBzuzNb9Up1q3LYo95lusA==
+X-Received: by 2002:a05:600c:a088:b0:477:19c2:9765 with SMTP id 5b1f17b1804b1-477307da91dmr31824705e9.4.1761915363285;
+        Fri, 31 Oct 2025 05:56:03 -0700 (PDT)
+Received: from ta2.c.googlers.com (213.53.77.34.bc.googleusercontent.com. [34.77.53.213])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47732fe1075sm31814585e9.11.2025.10.31.05.56.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Oct 2025 05:55:29 -0700 (PDT)
-From: max.oss.09@gmail.com
-To: Max Krummenacher <max.krummenacher@toradex.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx8qm-apalis: add pwm used by the backlight
-Date: Fri, 31 Oct 2025 13:55:07 +0100
-Message-ID: <20251031125510.433175-1-max.oss.09@gmail.com>
-X-Mailer: git-send-email 2.42.0
+        Fri, 31 Oct 2025 05:56:02 -0700 (PDT)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH 00/11] soc: samsung: exynos-chipid: add gs101 support
+Date: Fri, 31 Oct 2025 12:55:59 +0000
+Message-Id: <20251031-gs101-chipid-v1-0-d78d1076b210@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAN+xBGkC/x3MQQqAIBBA0avIrBMcK5CuEi1ER52NiUIE4t2Tl
+ m/xf4dGlanBITpUerjxnSdwEeCSzZEk+2nQSu+oVpSxoULpEhf2MnizeWtssDrATEqlwO+/O68
+ xPkTejqdeAAAA
+X-Change-ID: 20251031-gs101-chipid-fd84da8afa2f
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, semen.protsenko@linaro.org, 
+ willmcvicker@google.com, kernel-team@android.com, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761915362; l=1738;
+ i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
+ bh=5p1LeqfmmwFaeenEnSkkkwhzGqyUgPudlC9tgJJ0jsc=;
+ b=d+BPbUINRjy4l2Ym1VjrE6HaCPsue9Nyr0tngMPGtDoQTB20S2dUN9hf3AEOOwYRtOSMPMOd5
+ AEgHi19masrB06nuIdc/Jx2kl1prsuWCOWbdWaO8oCSDDIa9mNVnt+f
+X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
+ pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 
-From: Max Krummenacher <max.krummenacher@toradex.com>
+The patch set has the typical dependency of the DT patch depending on
+the bindings patch. Plus, the dt patch references labels from the
+efuse node, thus it depends on the bindings and dt patch from:
+https://lore.kernel.org/linux-samsung-soc/20251031-gs101-otp-v1-0-2a54f6c4e7b6@linaro.org/
 
-Add pwm node used by the backlight output pin BKL1_PWM and
-reference it from the pwm-backlight node.
+GS101 reads the Product ID and the Chip ID from the OTP controller
+registers. Add suppot for Google GS101 SoC info.
 
-Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
-
+Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 ---
+Tudor Ambarus (11):
+      dt-bindings: hwinfo: samsung,exynos-chipid: add google,gs101 compatible
+      soc: samsung: exynos-chipid: use a local dev variable
+      soc: samsung: exynos-chipid: use heap allocated driver data
+      soc: samsung: exynos-chipid: refer to match->data as data
+      soc: samsung: exynos-chipid: introduce match_data->get_chipid_info()
+      soc: samsung: exynos-chipid: make asv_init opt-in
+      soc: samsung: exynos-chipid: add support for google,gs101-chipid
+      soc: samsung: exynos-chipid: prepend exynos_ to a method's name
+      soc: samsung: exynos-chipid: downgrade dev_info to dev_dbg for soc info
+      arm64: dts: exynos: gs101: add the chipid node
+      arm64: defconfig: enable Samsung Exynos chipid driver
 
- arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi       | 5 ++++-
- arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi | 5 ++++-
- arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi | 5 ++++-
- arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi       | 7 +++++--
- 4 files changed, 17 insertions(+), 5 deletions(-)
+ .../bindings/hwinfo/samsung,exynos-chipid.yaml     |  51 ++++++-
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi       |   6 +
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/soc/samsung/exynos-chipid.c                | 163 ++++++++++++++++-----
+ 4 files changed, 186 insertions(+), 35 deletions(-)
+---
+base-commit: 73f7017e663620a616171cc80d62504a624dc4de
+change-id: 20251031-gs101-chipid-fd84da8afa2f
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
-index 311d4950793c..06790255a764 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
-@@ -109,7 +109,10 @@ &pciea {
- 	status = "okay";
- };
- 
--/* TODO: Apalis BKL1_PWM */
-+/* Apalis BKL1_PWM */
-+&pwm_lvds1 {
-+	status = "okay";
-+};
- 
- /* Apalis DAP1 */
- &sai1 {
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
-index 3d8731504ce1..7022de46b8bf 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
-@@ -196,7 +196,10 @@ &pciea {
- 	status = "okay";
- };
- 
--/* TODO: Apalis BKL1_PWM */
-+/* Apalis BKL1_PWM */
-+&pwm_lvds1 {
-+	status = "okay";
-+};
- 
- /* Apalis DAP1 */
- &sai1 {
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
-index 106e802a68ba..12732ed7f811 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
-@@ -245,7 +245,10 @@ &pciea {
- 	status = "okay";
- };
- 
--/* TODO: Apalis BKL1_PWM */
-+/* Apalis BKL1_PWM */
-+&pwm_lvds1 {
-+	status = "okay";
-+};
- 
- /* Apalis DAP1 */
- &sai1 {
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-index 86d018f470c1..66261c0286d6 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-@@ -18,7 +18,7 @@ backlight: backlight {
- 		brightness-levels = <0 45 63 88 119 158 203 255>;
- 		default-brightness-level = <4>;
- 		enable-gpios = <&lsio_gpio1 4 GPIO_ACTIVE_HIGH>; /* Apalis BKL1_ON */
--		/* TODO: hook-up to Apalis BKL1_PWM */
-+		pwms = <&pwm_lvds1 0 6666667 PWM_POLARITY_INVERTED>;
- 		status = "disabled";
- 	};
- 
-@@ -799,7 +799,10 @@ &phyx2_lpcg {
- 		 <&hsio_refa_clk>, <&hsio_per_clk>;
- };
- 
--/* TODO: Apalis BKL1_PWM */
-+&pwm_lvds1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm_bkl>;
-+};
- 
- /* Apalis DAP1 */
- &sai1 {
+Best regards,
 -- 
-2.42.0
+Tudor Ambarus <tudor.ambarus@linaro.org>
 
 
