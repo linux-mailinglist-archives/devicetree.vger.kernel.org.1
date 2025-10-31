@@ -1,139 +1,146 @@
-Return-Path: <devicetree+bounces-233692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9240C24D24
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:44:11 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C43C6C24D31
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:45:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 449463B2D06
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 11:43:55 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 797C1350B9F
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 11:45:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40111346E7B;
-	Fri, 31 Oct 2025 11:43:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C880F2BE629;
+	Fri, 31 Oct 2025 11:45:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CwcegOPh"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="XIfLDkUs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B78F346E4C
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 11:43:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C2FE17C9E;
+	Fri, 31 Oct 2025 11:45:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761911031; cv=none; b=fLrMI/hQ1gguQp2+4MtWjKDStXR7NOe5JeFglf28FPIHGcxx8LIQ3Bd8RVsXERr0T69VTywBOymkDQE817V0RgqCY9nOl0sOz65pltTCK9bOwTsM2Z4rgGgvMrnGmst8m9R/wjFeGtIg/oPqmriv++9fXXvp4LdnlC1Q3hF02Iw=
+	t=1761911139; cv=none; b=ekiZl8JOxgggi988EFuPOuDzXz/cS1e+CCzDTECvu33XHSTt5XSd0nEJVCO5mZGqtXJSbLzIq02xpB9RYKvqSvkyhzABRHY1W45gdklYP6PCs7l88Xnt2rvwOPOqOAg18LaPvwAihL/pi7R0AsSqZiXs3vIKm2HXxJNMVwDc3i0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761911031; c=relaxed/simple;
-	bh=mdzbrJ0J4uL7MKIWBphzIXl1JweK8UJmEopl7jTNs98=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dpLk+hRp4dpJo0kt7WZdklj+g4olmrbEF4AIKctjcsIcYwwb5DFpy+FF4N4/mUSEttnp8Yi4v1oIzQNOi1K7haD8hPPL1cI+AvzfY2AQYinkZGAnm/+kQdR6kCEgd4cIqaJ3lxCqHVL+zBV6zHJeeebX9rlle4b/b01X6memcYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CwcegOPh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADB08C4AF0C
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 11:43:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761911030;
-	bh=mdzbrJ0J4uL7MKIWBphzIXl1JweK8UJmEopl7jTNs98=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=CwcegOPhjADnfYMsBl9VJU8444Zi7r5+Fje5jBkuUyLoW69fzojXbH1oiTz8pXuqp
-	 HmsUdiup+rEVmPdCxf2wJsyNy1pSAzr+EEm3Q4rdtbKf+Wq6CGNdAKbWtrTZnDMeOZ
-	 7kLvmgDlrRhAJBhuo6QgCQGV+jnGR38aJUfnUJ7mjdfWeLO5eT/AmgEc+q6bei45Sm
-	 zzeH3qZU2/5r3+YN2tdTiizgDzm/Pp8g69asdZ4jZp2CBjtZDBTQGJG+zZPZFsxT7t
-	 uNpIfbE2drxVRkVhChnwqGFYQN/uz+8sDVrXvbnphNz7pRIaTdsBPimhP3ScjGu54Y
-	 LFul/DdFP3daw==
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-63bea08a326so3111847a12.3
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 04:43:50 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVTJS10Tx9CN7jhO/RWAEsinE9PF9H6UFGxKdlzBD2vTfsUPA6DobnSDZdB7KWck3rZ5aPOX1/VDQtd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1PpbyR+Qp3AdlZAgbwA0hrJPc3aMmOlGHnFS0GEr4zkreLE5F
-	NEaAtE0piTxbjhlWKyhSW8fjbCRFed1hgDMr5GolrTevO7yy/ALS6fYdKZwchAPEXvMGMd48php
-	mWo1y4hH2JAj339h4FPXitA54Y6Izmw==
-X-Google-Smtp-Source: AGHT+IEjMLK6OGl40HXHsXuGaAqP8D5LU+eugA99cHMlpyBU1ppcLNLQ3ZkPtjQ+CzfsdfP4X7J227AIT9NzZ3oM/mQ=
-X-Received: by 2002:a05:6402:2744:b0:63b:f59b:e607 with SMTP id
- 4fb4d7f45d1cf-64076f66d22mr2833156a12.2.1761911029322; Fri, 31 Oct 2025
- 04:43:49 -0700 (PDT)
+	s=arc-20240116; t=1761911139; c=relaxed/simple;
+	bh=R6yONYYYsqby242jh6TH+ABfAPUopUW31yFooS58XAk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t/Z3uHWWC2EH5ZpW3xRui9Xw/+GVC5UPAmizuOTYrURAiyDr1yX4jTqYEaZPCggzthxbxu1+KbjUTo2LDEzrntwwfc7CUPBitgwS9iyaABdIxeavB0tKIPIENKf23H3zFP4Jz7UCzUV1w3Eyoc/qhQ8ISyL79pa6uVxoI2mA3WE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=XIfLDkUs; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (unknown [193.209.96.36])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id DC9FE15D2;
+	Fri, 31 Oct 2025 12:43:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1761911022;
+	bh=R6yONYYYsqby242jh6TH+ABfAPUopUW31yFooS58XAk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XIfLDkUs0wkpgMMux9UqqDbnkm3yB/emjfS2nTgpYyjivkfBfEhUlVkxOdphP5JnS
+	 AV0EwrKekY63YdHMRBuY98sFA/lxs00uwZgWT4lOCGm/v7RU5/MNXFHn5CxdLjrwhk
+	 DA3kg5kliVvmH6PoqK/0Y6i8/O1yo1nq0CFGAHQA=
+Date: Fri, 31 Oct 2025 13:45:18 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Stanimir Varbanov <svarbanov@suse.de>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>
+Subject: Re: [PATCH v2 0/5] dd ethernet support for RPi5
+Message-ID: <20251031114518.GA17287@pendragon.ideasonboard.com>
+References: <20250822093440.53941-1-svarbanov@suse.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251031084101.701159-1-adriana@arista.com> <20251031101009.704759-1-adriana@arista.com>
- <20251031101009.704759-2-adriana@arista.com> <CAL_JsqJn+vG=FJEnBT2rMQ9Jf+JE2u_j-JpEb=mnWPuTsuz_4w@mail.gmail.com>
-In-Reply-To: <CAL_JsqJn+vG=FJEnBT2rMQ9Jf+JE2u_j-JpEb=mnWPuTsuz_4w@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 31 Oct 2025 06:43:37 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+421HUCRQB5ua9p2UBPi+sq8L0aSYpxVGgJpbpWu2MUQ@mail.gmail.com>
-X-Gm-Features: AWmQ_bksFTqLinpU8zo27uHAZknvhm2S3I_vjliyAKm5aA1q3yssJinkZOpFVlQ
-Message-ID: <CAL_Jsq+421HUCRQB5ua9p2UBPi+sq8L0aSYpxVGgJpbpWu2MUQ@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: firmware: Add binding for SMBIOS
- /chosen properties
-To: adriana <adriana@arista.com>
-Cc: ilias.apalodimas@linaro.org, ardb@kernel.org, trini@konsulko.com, 
-	krzk@kernel.org, jdelvare@suse.com, frowand.list@gmail.com, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, vasilykh@arista.com, 
-	arm.ebbr-discuss@arm.com, boot-architecture@lists.linaro.org, 
-	linux-efi@vger.kernel.org, uefi-discuss@lists.uefi.org, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250822093440.53941-1-svarbanov@suse.de>
 
-On Fri, Oct 31, 2025 at 6:15=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Fri, Oct 31, 2025 at 5:10=E2=80=AFAM adriana <adriana@arista.com> wrot=
-e:
-> >
-> > Signed-off-by: adriana <adriana@arista.com>
-> > ---
-> >  .../firmware/linux,smbios3-entrypoint.yaml    | 25 +++++++++++++++++++
-> >  1 file changed, 25 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/firmware/linux,sm=
-bios3-entrypoint.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/firmware/linux,smbios3-e=
-ntrypoint.yaml b/Documentation/devicetree/bindings/firmware/linux,smbios3-e=
-ntrypoint.yaml
-> > new file mode 100644
-> > index 000000000000..4d1521c685ff
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/firmware/linux,smbios3-entrypoi=
-nt.yaml
-> > @@ -0,0 +1,25 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +# Copyright 2025 Arista Networks
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/firmware/linux,smbios3-entrypoint.y=
-aml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Memory location for SMBIOS entry point
-> > +
-> > +description: |
-> > +  This property is used in the /chosen node to pass the physical addre=
-ss
-> > +  of SMBIOS (System Management BIOS) or DMI (Desktop Management Interf=
-ace)
-> > +  tables from firmware to the kernel. This is typically used on non-EF=
-I.
-> > +
-> > +maintainers:
-> > +  - Adriana Nicolae <adriana@arista.com>
-> > +  - Rob Herring <robh+dt@kernel.org>
-> > +
-> > +properties:
-> > +  linux,smbios3-entrypoint:
-> > +    $ref: /schemas/types.yaml#/definitions/uint64
-> > +    description:
-> > +      The 64-bit physical address of the SMBIOSv3 entry point structur=
-e.
->
-> This needs to go in the chosen binding instead:
->
-> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/ch=
-osen.yaml
+Hi Stan,
 
-Also, drop the 'linux,' prefix as SMBIOS is not a linux invention.
+On Fri, Aug 22, 2025 at 12:34:35PM +0300, Stanimir Varbanov wrote:
+> Hello,
+> 
+> Changes in v2:
+>  - In 1/5 updates according to review comments (Nicolas)
+>  - In 1/5 added Fixes tag (Nicolas)
+>  - Added Reviewed-by and Acked-by tags.
+> 
+> v1 can found at [1].
+> 
+> Comments are welcome!
 
-Rob
+I'm very happy to see support for Raspberry Pi 5 progressing fast
+upstream.
+
+I've tested the latest mainline kernel (v6.18-rc3) that includes this
+series (except for 1/5 that is replaced by
+https://lore.kernel.org/all/20250820-macb-fixes-v4-0-23c399429164@bootlin.com/
+as far as I understand). The ethernet controller is successfully
+detected, and so is the PHY. Link status seems to work fine too, but
+data doesn't seem to go through when the kernel tries to get a DHCP
+address (for NFS root). Here's the end of the kernel log (with the
+messages related to the USB controller stripped out):
+
+[    0.896779] rp1_pci 0002:01:00.0: assign IRQ: got 27
+[    0.896809] rp1_pci 0002:01:00.0: enabling device (0000 -> 0002)
+[    0.896840] rp1_pci 0002:01:00.0: enabling bus mastering
+[    0.931874] macb 1f00100000.ethernet: invalid hw address, using random
+[    0.944448] macb 1f00100000.ethernet eth0: Cadence GEM rev 0x00070109 at 0x1f00100000 irq 95 (da:2e:6d:9d:52:a4)
+[    0.989067] macb 1f00100000.ethernet eth0: PHY [1f00100000.ethernet-ffffffff:01] driver [Broadcom BCM54210E] (irq=POLL)
+[    0.989272] macb 1f00100000.ethernet eth0: configuring for phy/rgmii-id link mode
+[    0.991271] macb 1f00100000.ethernet: gem-ptp-timer ptp clock registered.
+[    4.039490] macb 1f00100000.ethernet eth0: Link is Up - 1Gbps/Full - flow control tx
+[    4.062589] Sending DHCP requests .....
+[   40.902771] macb 1f00100000.ethernet eth0: Link is Down
+[   43.975334] macb 1f00100000.ethernet eth0: Link is Up - 1Gbps/Full - flow control tx
+
+I've tried porting patches to drivers/net/phy/broadcom.c from the
+Raspberry Pi kernel to specifically support the BCM54213PE PHY (which is
+otherwise identified as a BCM54210E), but they didn't seem to help.
+
+What's the status of ethernet support on the Pi 5, is it supposed to
+work upstream, or are there pieces still missing ?
+
+> [1] www.spinics.net/lists/netdev/msg1115266.html
+> 
+> Dave Stevenson (2):
+>   dt-bindings: net: cdns,macb: Add compatible for Raspberry Pi RP1
+>   net: cadence: macb: Add support for Raspberry Pi RP1 ethernet
+>     controller
+> 
+> Stanimir Varbanov (3):
+>   net: cadence: macb: Set upper 32bits of DMA ring buffer
+>   arm64: dts: rp1: Add ethernet DT node
+>   arm64: dts: broadcom: Enable RP1 ethernet for Raspberry Pi 5
+> 
+>  .../devicetree/bindings/net/cdns,macb.yaml     |  1 +
+>  .../boot/dts/broadcom/bcm2712-rpi-5-b.dts      | 18 ++++++++++++++++++
+>  arch/arm64/boot/dts/broadcom/rp1-common.dtsi   | 16 ++++++++++++++++
+>  drivers/net/ethernet/cadence/macb_main.c       | 18 +++++++++++++++++-
+>  4 files changed, 52 insertions(+), 1 deletion(-)
+
+-- 
+Regards,
+
+Laurent Pinchart
 
