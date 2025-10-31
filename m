@@ -1,148 +1,94 @@
-Return-Path: <devicetree+bounces-233859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E97CAC26132
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 17:20:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1C31C26378
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 17:50:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A57804F767C
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 16:15:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D46F2424DB4
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 16:21:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03C552F6562;
-	Fri, 31 Oct 2025 16:10:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A341023D7FC;
+	Fri, 31 Oct 2025 16:21:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="ZnPyPZNa"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="okGIWs0d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B36B82ED86F;
-	Fri, 31 Oct 2025 16:10:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 154E41C5D44;
+	Fri, 31 Oct 2025 16:21:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761927004; cv=none; b=hxAP1fUxsD5L2h9JRbPkiByztHYzusjZoyYvDEZeg1wMYt1Kzm1+simqYy5C1h6dYZOTCWxK9f4VJQtSuUCZMNiLze8gb105OMxp7jzhw0hi9Ofsky2gJJFrFuDtjh4s9jVpF46v+DiCoqcVf1G0MJA9UDEesQRGCi3M0ywDH/s=
+	t=1761927711; cv=none; b=S6e3vQSBahi+aKg4i5M7y8AYZiibEE9WFSLLHd5HhmfNK0oxRxp5kKjfhveyQJLtHTryxoOgHig4fF2E08QQ/jO3oHeGIIfzbtXarPebOFwdk62riYtWhvYMujNNAYGLmxzcb13c1NHtohShn36Yx6vNzz/C9BqTL0R3EOY6Wjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761927004; c=relaxed/simple;
-	bh=q4K6DmiYG9BhAg14/84SvF6SxZ+12Je3AHQfOc88CL8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VwhM7Y5q3wC1ME/1hcZyRFhLPb3m8hceidnRZX88TGl2WyxAUndHifDBwTEzV6CxN0m1BHy8o7VTkvFi6DEZqVAIEM+4rImYoUcoQJFnQGr3gBpVQJrKmLJs9EfihKnG6ILv1ud1i2uDCVLoWOvflB5xHTpr8BEeIGkS98581Tk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=ZnPyPZNa; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 0c2f5b9cb67411f0b33aeb1e7f16c2b6-20251101
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=pQ7Y6ikIfmTL4OiHioZhpeLNoYrylE0Dm3P0nx4WjG0=;
-	b=ZnPyPZNaO6nnN5VmxCL9MFP7zkwUa096CrCfWBD5sTEhswsXfIz9lr9sL7RYFBh/Ql5GepWy2Bu++WVNAlwAr81HvIat58slmkPVt4gQCFxBxxYbbHPJf1gRJbfpJn3fd1qLKqDLpCZywLVX9ESonVRJw58A3Kt7GEbbWUE7SQY=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.6,REQID:bce2dfdb-92ac-46db-9863-8a24cdde6e36,IP:0,UR
-	L:0,TC:0,Content:100,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:100
-X-CID-META: VersionHash:a9d874c,CLOUDID:9c52c818-3399-4579-97ab-008f994989ea,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|836|888|898,TC:-5,Content:
-	3|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OS
-	I:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 0c2f5b9cb67411f0b33aeb1e7f16c2b6-20251101
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
-	(envelope-from <jason-jh.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1890367973; Sat, 01 Nov 2025 00:09:58 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- MTKMBS09N1.mediatek.inc (172.21.101.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Sat, 1 Nov 2025 00:09:57 +0800
-Received: from mtksitap99.mediatek.inc (10.233.130.16) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1748.26 via Frontend Transport; Sat, 1 Nov 2025 00:09:57 +0800
-From: Jason-JH Lin <jason-jh.lin@mediatek.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>,
-	Chun-Kuang Hu <chunkuang.hu@kernel.org>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Mauro Carvalho Chehab
-	<mchehab@kernel.org>
-CC: Matthias Brugger <matthias.bgg@gmail.com>, Nicolas Dufresne
-	<nicolas@ndufresne.ca>, Jason-JH Lin <jason-jh.lin@mediatek.com>, Nancy Lin
-	<nancy.lin@mediatek.com>, Singo Chang <singo.chang@mediatek.com>, Paul-PL
- Chen <paul-pl.chen@mediatek.com>, Moudy Ho <moudy.ho@mediatek.com>, Xiandong
- Wang <xiandong.wang@mediatek.com>, Sirius Wang <sirius.wang@mediatek.com>,
-	Fei Shao <fshao@chromium.org>, Chen-yu Tsai <wenst@chromium.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-media@vger.kernel.org>
-Subject: [PATCH 3/3] mailbox: mtk-cmdq: Remove unsued cmdq_get_shift_pa()
-Date: Sat, 1 Nov 2025 00:09:34 +0800
-Message-ID: <20251031160955.1659524-4-jason-jh.lin@mediatek.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20251031160955.1659524-1-jason-jh.lin@mediatek.com>
-References: <20251031160955.1659524-1-jason-jh.lin@mediatek.com>
+	s=arc-20240116; t=1761927711; c=relaxed/simple;
+	bh=A1OJuNy89ReYWRyHUw9vxGZ2tkUrpbPHpld8uz9ZjbU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y4oggxrgovetSdBMxRJBfAYxCSKz7FhLm19ebIhWgW3qlKb1eXo6+dk5l91+21oEH4z3gCaK4Yr8Y1EPuKIedj7krG9ZDAQ9tEWGJym4ycPcClZQUFh8NiKBmtHOGvyzvCnx2dX58s+bNzPLpDnrynVEtbCxG4YAjTT3T7yLWS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=okGIWs0d; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Fq379oOiqAtrnZ+bkfMKSoTJYOqJ/R3/WeAnEYH+Yms=; b=okGIWs0d0rRBVlo4THIcI4Yndw
+	CiHGWSGVQamirayhs3edW5StzRgTkwolWHI8YN1SRf0J0EmlNpv7HywE02ZQZsZDSy4h9FCEsIb67
+	ytMp1vXS2uywm9SUp1JvUd+Yy0nOwcq2/Zni6w5eE9tcv1olf1PIEdMweCCZJhIU37fc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vErsW-00Cc9X-R6; Fri, 31 Oct 2025 17:21:28 +0100
+Date: Fri, 31 Oct 2025 17:21:28 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Han Gao <rabenda.cn@gmail.com>, Icenowy Zheng <uwu@icenowy.me>,
+	Vivian Wang <wangruikang@iscas.ac.cn>, Yao Zi <ziyao@disroot.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH v5 3/3] net: stmmac: dwmac-sophgo: Add phy interface
+ filter
+Message-ID: <651ae46b-8ca2-476a-8545-4c26c4e10f99@lunn.ch>
+References: <20251031012428.488184-1-inochiama@gmail.com>
+ <20251031012428.488184-4-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251031012428.488184-4-inochiama@gmail.com>
 
-Since the mailbox driver data can be obtained using cmdq_get_mbox_priv()
-and all CMDQ users have transitioned to cmdq_get_mbox_priv(),
-cmdq_get_shift_pa() can be removed.
+On Fri, Oct 31, 2025 at 09:24:28AM +0800, Inochi Amaoto wrote:
+> As the SG2042 has an internal rx delay, the delay should be removed
+> when initializing the mac, otherwise the phy will be misconfigurated.
+> 
+> Fixes: 543009e2d4cd ("net: stmmac: dwmac-sophgo: Add support for Sophgo SG2042 SoC")
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> Tested-by: Han Gao <rabenda.cn@gmail.com>
 
-Signed-off-by: Jason-JH Lin <jason-jh.lin@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/mailbox/mtk-cmdq-mailbox.c       |  8 --------
- include/linux/mailbox/mtk-cmdq-mailbox.h | 12 ------------
- 2 files changed, 20 deletions(-)
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmdq-mailbox.c
-index 1bf6984948ef..81cd98fc9664 100644
---- a/drivers/mailbox/mtk-cmdq-mailbox.c
-+++ b/drivers/mailbox/mtk-cmdq-mailbox.c
-@@ -123,14 +123,6 @@ void cmdq_get_mbox_priv(struct mbox_chan *chan, struct cmdq_mbox_priv *priv)
- }
- EXPORT_SYMBOL(cmdq_get_mbox_priv);
- 
--u8 cmdq_get_shift_pa(struct mbox_chan *chan)
--{
--	struct cmdq *cmdq = container_of(chan->mbox, struct cmdq, mbox);
--
--	return cmdq->pdata->shift;
--}
--EXPORT_SYMBOL(cmdq_get_shift_pa);
--
- static void cmdq_vm_init(struct cmdq *cmdq)
- {
- 	int i;
-diff --git a/include/linux/mailbox/mtk-cmdq-mailbox.h b/include/linux/mailbox/mtk-cmdq-mailbox.h
-index 07c1bfbdb8c4..a42b44d5fd49 100644
---- a/include/linux/mailbox/mtk-cmdq-mailbox.h
-+++ b/include/linux/mailbox/mtk-cmdq-mailbox.h
-@@ -96,16 +96,4 @@ struct cmdq_pkt {
-  */
- void cmdq_get_mbox_priv(struct mbox_chan *chan, struct cmdq_mbox_priv *priv);
- 
--/**
-- * cmdq_get_shift_pa() - get the shift bits of physical address
-- * @chan: mailbox channel
-- *
-- * GCE can only fetch the command buffer address from a 32-bit register.
-- * Some SOCs support more than 32-bit command buffer address for GCE, which
-- * requires some shift bits to make the address fit into the 32-bit register.
-- *
-- * Return: the shift bits of physical address
-- */
--u8 cmdq_get_shift_pa(struct mbox_chan *chan);
--
- #endif /* __MTK_CMDQ_MAILBOX_H__ */
--- 
-2.43.0
-
+    Andrew
 
