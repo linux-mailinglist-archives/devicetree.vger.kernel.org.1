@@ -1,81 +1,101 @@
-Return-Path: <devicetree+bounces-233489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9249C22E3E
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 02:38:04 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id E038BC22F10
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 03:04:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0635E3AAC83
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 01:37:25 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 304FA34A619
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 02:04:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0EB12517AF;
-	Fri, 31 Oct 2025 01:37:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DB8026E6FD;
+	Fri, 31 Oct 2025 02:04:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="uXty7MD2"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nmOoLPdm";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LadTAnMa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f195.google.com (mail-il1-f195.google.com [209.85.166.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92FC324DD09
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 01:37:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9CA228E5
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 02:04:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761874641; cv=none; b=N9pggcCgclDY6mTWpF6kLJM0S0wd9UZIKpYndWxZUfF/cPVDoFxuFE6tNgNimDcDzPvJWGas6AwS1qtiwrGE9JfFf91wo65WeUk1npZ0wDMkf8u2Tyxtkce6bRJYNvSEsPhKK9NICNkxgN7VGdmqDigk/6dTlf4f1UIJeCh0Osg=
+	t=1761876270; cv=none; b=QgSfmT78BCH2IytMDXeh1gMho69u6B6j6tFdJllh71NPEpzuuuFgQjUOGUiK0JH9cfhXJjRNRKlW2/znXQCzjkYfRP+qyKbmo8LmSC/No+YlePVxCqMSbuJboWTHq4yaSmGFSRu2WnUgkWZXGf/Xxif9zcjTrgd5K4CEmRZshS0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761874641; c=relaxed/simple;
-	bh=nQ29tceSmQ4urDG0IsVFtbhp5svpPgNTCQfprJofihs=;
+	s=arc-20240116; t=1761876270; c=relaxed/simple;
+	bh=tdYffZLSzQujMi32PrELXK0PP4FFY7IAqFQhXiSckd4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ApTZw7aAFAWTtn8dsHIoEbBBBfbxUeXICP7FxFTXRNOdYLjDdnB+uZAwZt+cULNV/g2TlXRU7zTImt3zrKLnfwSI82LGt8ZabRcI8poGZTBJR3WNmRDFmnBn9eKw4W7MjlY/AJbIS1rQul9Z9GDbN/216601ZRvIFq6Aa+6Cb4M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=uXty7MD2; arc=none smtp.client-ip=209.85.166.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f195.google.com with SMTP id e9e14a558f8ab-433100c59dcso773965ab.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 18:37:19 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=VvNeNwQvpZGDH9r6z/nf42LlYC9uyMFiFpyP9nN07qydYuWLhBTnOvqraHys5hYnKOiCWUDloy5qXPSGGHLAPwkTzxAYMGfy75gxMbwhksuv4IB+UX+SMj+Z09qJH3NlvgbL7e56zU+cnSBrIfBqE0u2UBe20kFttOHC8OkcFx4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nmOoLPdm; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LadTAnMa; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59UFEOp4083957
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 02:04:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	djT+NnSA608KvTHtSpVozsFEcF9kFAwEdJlIjstwg90=; b=nmOoLPdmG0a9Ry6f
+	dEhASUYQ4u948Uc8qReNCC0ExUt7Zf6RMlTuqHYpCCosKiFcXijO+Jcj4tRhMaFB
+	jeeG5bRXGmNoOXXZXMzglo4mgdzbueI3AUH9HwVVRf6StcWLowPt9Rwal6/0BfZR
+	OEuj4Glk8Tx3FuOCui51+WCfVo3XjvmyEjwcxcx3wplREFZe6Uz4YS0GyIuN4Qxn
+	/gkbkB+JgV1SFdU2obCD4ulnEwiBMJdVKXNrT5N+q5tJ8V31zETnNj607nDQeZse
+	kM7ncVwrpI1HLpN5MS53QCRw9rKNcZUpkWXugd02ZqYYrsGHgzS87OwY7J6D5uqM
+	tJigdg==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a4ag39jut-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 02:04:27 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-3405c46a22eso1465185a91.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 19:04:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1761874638; x=1762479438; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1761876267; x=1762481067; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=MZXfwu/E+BC+JAhEUtk1GdLUOAn+XEVcnmRSn9TxWj8=;
-        b=uXty7MD2IMXtj/z2YgEmQfmOPcGb9VBgZY/cYAYCiYEDpIyToMZuA/kRHfE+ZGDyHs
-         hdfQ3+3WdJ/gW8+b7OAW4wP5DWCqtCUQGauVyV+uvF6s+BkY0rmrkqo/pYXc0UMOnP4H
-         FmUmzIeQJx7ezApiDcl7829rTv6xNoXJHBrYibXPoPn1gpzR8oUGHQWLPH/KjHOQtGwc
-         NYE721SFaQmAa3WWk1B2jV8vpvUwk5DBu51p+vPi5M0hKDgOaE+gTAwKIqCAyO86ylaW
-         Fwxhw0mOMG3vArfRVV8Q1AenBBgtGrcmCbYIpB+yOIN7tjtL+/YMuSQx+/S/94X1Fpdi
-         tTDQ==
+        bh=djT+NnSA608KvTHtSpVozsFEcF9kFAwEdJlIjstwg90=;
+        b=LadTAnMaY4m6oqfG+OtPT1qflnpF+T+WrwQas8psjx9ya9U93BswUlI+rErHI+D1c/
+         GikUVjuPaYVMFp8iIkAPGs4B+MzqaWcDSgUqeCMDBg77vwynxMuZRFMbEtrVkjzr7nVg
+         AJ1GZotzaJbVzGLA2Hd1Pru/rBi2LuabXZ9eZtSKmbPu88hwGDwlnCLuG7rKUY5ueFCY
+         QGQcDeSlpxpjfy8kv8LUqLfblH/87pQDx6/Z1LiVtppIWVziGvdk//7lkHKCZczIyXxz
+         1CMMKjjsS39rnET8INuoE+gpSu7QnhhVa4S+jAzB2+HPfyImmOEJuJXrNLdIUvDw4rIo
+         Pp+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761874638; x=1762479438;
+        d=1e100.net; s=20230601; t=1761876267; x=1762481067;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MZXfwu/E+BC+JAhEUtk1GdLUOAn+XEVcnmRSn9TxWj8=;
-        b=A1CuWc9+zYafXBUkbTvh02tSw+LsNVb9OpaYNiOpXAW2hYzZLr6mIwg2yMZv+NEkP8
-         P4rq8hdtRan36iBx6XHvJpeKwnvjH/QcQg1z+0oI0ivLros7YDFdaQ8MbH2gZUIRkHAr
-         lSzmVHxZCol1lgcdgnu6g0QkZ+mIxk/EUefCAEQZomLfy+ph6KuPoP/31KjGd3a9Q97/
-         gb72gXekWyXWrTc92+tGY4M1KPOvzejBQ5a2uDP8o2w2eIcwc232nuIIlyaKXrMFIcp5
-         mjNm7N2CC/4d2Arg+IeMPv4A8h+dBbBQieKW8xW2gFixbEKhMhLOX7Az2t7OQfNYFqS2
-         /cgA==
-X-Forwarded-Encrypted: i=1; AJvYcCVyHs5a1SUDNugcP1BIAwCVNmQL1USYKEVb/UuDpt4i3Zv3t6j5sl4LYCq1LLrlj2DdRkrsjvLqF5Xn@vger.kernel.org
-X-Gm-Message-State: AOJu0YzW8sYT+YL58UJdsEXVhEmvP9FFBGa9PP5r++H8Mw4KFWCip4ZV
-	LJ3YH3JT73DygrwWJCMm64CuIVttHLhXCKdsyWA0MMCyZ+PkaCfgAz2GUs9dvXKQHa4=
-X-Gm-Gg: ASbGncuUwHp70oMPpck8pgO4XvQjiLvhcLrFYjL2F78QNj6VpDoiGu1cjMbahzDau1a
-	y0vD9R2p0EC5q69Cs61D85h6uYNGcD2I7hOOti+k8SBCCxYN9TsZM0xBk/wvvbdoyjonEeqLPGh
-	eIHAXJIDDEIKxulshBrGWszymNIkufIVNo7Yj0+qRSW6yKZqz52xrxAvRZWWrqmf6WKtozhBIKi
-	eoMponj4atCHvkgtWuxjn8+l3ExmJ3LbWyCNLPJO4wzj0MR5hnm80hiu//pVmPqz45IT+VuWYfJ
-	wU9Ab78IZSe+jz92gw63MKDmmAAjAJB+/gma5uVsnDobhkxsAwMG98IxJXnghso/8QGPaDc683A
-	TMk9tLrpS+CNeqiOokWRPzW7utSXnDlw42yc2TI7CcIqbDnuHSzcunQ5kldApFynGXtgV0KHdrp
-	XQ2rt1+YC6lUTXjAwnQ4ChN0CYm6E6gpk4mBXwZc8T
-X-Google-Smtp-Source: AGHT+IF8jKPMcN4haMJfj2iiZ24svqDtow1spkbfII1MB862Q9VVregRX2uRZw72R6OIomLop1+AMQ==
-X-Received: by 2002:a05:6e02:b27:b0:430:af13:accc with SMTP id e9e14a558f8ab-4330d1280afmr28635775ab.7.1761874638596;
-        Thu, 30 Oct 2025 18:37:18 -0700 (PDT)
-Received: from [172.22.22.234] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-43310245c34sm1321815ab.2.2025.10.30.18.37.16
+        bh=djT+NnSA608KvTHtSpVozsFEcF9kFAwEdJlIjstwg90=;
+        b=A59piRVH9XFC02izbLXlcUVsg8BSu9Pwnr1xaDWa6v2/s33ILM0UXs41AwMMPAifkH
+         uVo1Gi1qNaesbQGbxp6aU3k1YnLm51mMnW5oVjVMslFxs6e9fbEO6ZE+c8w6e4oiUb0n
+         v2w/nzymvP1ZhdC+/FqRqibdttOGU/K6dIs0CoY/gIkapVIJ6PjhI60htNURtyw1HnIk
+         o66S860M2sdr70g8XP9Hk79g2WkT6sIgBWXRx9YoXuLWw7uH3lzeMPhqvvBCMiJWN4EN
+         3QjcASR2YElVvDV/WgO+5Juj9/G9Q1K7FWiu6MxrLi6rmSI0MlF4sFS4J0GlLKJFve8t
+         1IYA==
+X-Forwarded-Encrypted: i=1; AJvYcCW47qMar9z4r/gkI3JkpkeoLisbDRlZQRwfuq3O1PuqLcBaabnxnfzkLJWNZLyKsRnatsQhbE0wMpzQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxsYRvFTZRDu4y6VLw15V2DLxfvAi9l1EFjzCvymd5Xq6MHT9u
+	HbZLdzyZ5FlS2ZToUVcCuM6//1jq4kbWzZIKgPdOH8PFtKU4g+8o2zp9nUQeL+YZybWcaqHMi+v
+	/mtKDnb/YhDQxTQ1PkwLGvsaGR6NmQJcwjRmY0i7n5j2Bhxzwgm5A/6wlN1tLN/o8BXr8arrC
+X-Gm-Gg: ASbGnctA33o4tGjtzhXikASQGNxCbQVfN+/IfgoO7XlH3ZEIsPkR5qiWjZa4oPHGhjp
+	0NduvXVmxkiS0iQ38JR5tZUdODcL2AdkmIrotgL2eOQ4rJocwAMQXohJ+gNFLoXoIHWKHFYDbVx
+	cjRtI0KdUy2q6sSVM4QBxknhjY4RVyI8jHoBG2A1o78K43MxgtmSACVtclyZ5MEIB3Bed7dtkcm
+	5iISFC7JYSmmxv9Cb5MbXJF5A1z0A142rhzX4RTMUSli8jNPFs8RDVJvDYALBLLxR+Rk9E/3ESM
+	unWDvkopiFYJ/9HHoNXEnfrb8x+Jmw3KdmWsBRtVOThgQlfI3z32rPoTjvT71nsEp4lzNia7M7H
+	ObdxL8czA/O/YIaiF8uYWiKyui4VtfnoGcoUvpWewmWfG40MIvksuRs/QLghPmpd5rtB/
+X-Received: by 2002:a17:90b:1f88:b0:340:66f9:381 with SMTP id 98e67ed59e1d1-34082fd8457mr2477945a91.10.1761876266989;
+        Thu, 30 Oct 2025 19:04:26 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEE7HF2TXhvKK3EBEv82uXmm0kHYC1Zh0LcA6W48Iw1TUnT2jVGvahzZZU683E3MQfdCGhOPw==
+X-Received: by 2002:a17:90b:1f88:b0:340:66f9:381 with SMTP id 98e67ed59e1d1-34082fd8457mr2477905a91.10.1761876266416;
+        Thu, 30 Oct 2025 19:04:26 -0700 (PDT)
+Received: from [10.133.33.37] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3407ef4c592sm556590a91.1.2025.10.30.19.04.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Oct 2025 18:37:18 -0700 (PDT)
-Message-ID: <9e60f7ed-7afc-4151-a301-4a0832b9105f@riscstar.com>
-Date: Thu, 30 Oct 2025 20:37:16 -0500
+        Thu, 30 Oct 2025 19:04:26 -0700 (PDT)
+Message-ID: <df62f5f5-3dca-4ffd-a25f-a7e247c8096a@oss.qualcomm.com>
+Date: Fri, 31 Oct 2025 10:04:20 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,139 +103,127 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/7] dt-bindings: pci: spacemit: introduce PCIe host
- controller
-To: Rob Herring <robh@kernel.org>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, bhelgaas@google.com,
- lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
- dlan@gentoo.org, guodong@riscstar.com, devicetree@vger.kernel.org,
- linux-pci@vger.kernel.org, spacemit@lists.linux.dev,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251030220259.1063792-1-elder@riscstar.com>
- <20251030220259.1063792-4-elder@riscstar.com>
- <20251031005718.GA539812-robh@kernel.org>
+Subject: Re: [PATCH v2 2/2] dt-bindings: mailbox: qcom: Add IPCC support for
+ Glymur Platform
+To: Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Manivannan Sadhasivam <mani@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, aiqun.yu@oss.qualcomm.com,
+        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+        yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+References: <20251029-knp-ipcc-v2-0-8ba303ab82de@oss.qualcomm.com>
+ <20251029-knp-ipcc-v2-2-8ba303ab82de@oss.qualcomm.com>
+ <67038d9f-7c6c-4bb3-ba64-b06816b76be7@kernel.org>
+ <qyfxtoe7ixko7k5whtzjpkynwpeqxzb2sgwq7y4y3kstblapz5@ggny5uq7qv6s>
+ <5468378e-3ca3-45d2-98bf-9388005bba85@kernel.org>
+ <ofoie57qkonmyots5y3jf3sn27zy45rd54raosvo2gu4nzrxjo@3hvm7bp7vswa>
 Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20251031005718.GA539812-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+In-Reply-To: <ofoie57qkonmyots5y3jf3sn27zy45rd54raosvo2gu4nzrxjo@3hvm7bp7vswa>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMxMDAxNiBTYWx0ZWRfXzMwYcuj8TAJA
+ L0djUGKf5U+BGG6rM4WbOzL2DIK6E4/fMX9iueLfFdN6WI+pI0WkcHAK4bOu2fAiZtxLbhDw+Nw
+ wHHZ4lFtojjqE5tC3E931FylPzIitJM/iVUFEVo/8RTOlwWW4aZF/WuZK9QQH+YB2WB0k+baDul
+ bepf3RG8gx3KUzx2B3l7oyAqkzvThNwoBXsQhmG243z5iwYKRYh4+9OSrBGTOEuLH6GcfYBNqZ6
+ +NAkMz7KNOhT0uOiR12CgpsYaCKCiQBycEAoMWv/lbHEhLvx0EEtgd6UQJ6x3Mk92yobH96pQ4f
+ 022Xkcf79meNQsV3SE6GWxF5ox+4rk4eWi4qr/FiAGmU17ss2kFpEo5DUR3mbkxMFsFwvOnbkq6
+ Wi8CrRqe8e0VgSDS3Q1M4/SJ86vAng==
+X-Authority-Analysis: v=2.4 cv=TrnrRTXh c=1 sm=1 tr=0 ts=6904192b cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=ufuRLt6-FL0P53dYqhkA:9 a=QEXdDO2ut3YA:10
+ a=iS9zxrgQBfv6-_F4QbHw:22
+X-Proofpoint-ORIG-GUID: p5OZC1awREWnzR3ymCi2EcJQrYTPV3fD
+X-Proofpoint-GUID: p5OZC1awREWnzR3ymCi2EcJQrYTPV3fD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-10-30_08,2025-10-29_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 spamscore=0 lowpriorityscore=0 clxscore=1015 impostorscore=0
+ bulkscore=0 malwarescore=0 adultscore=0 suspectscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510310016
 
-On 10/30/25 7:58 PM, Rob Herring wrote:
-> On Thu, Oct 30, 2025 at 05:02:54PM -0500, Alex Elder wrote:
->> Add the Device Tree binding for the PCIe root complex found on the
->> SpacemiT K1 SoC.  This device is derived from the Synopsys Designware
->> PCIe IP.  It supports up to three PCIe ports operating at PCIe gen 2
->> link speeds (5 GT/sec).  One of the ports uses a combo PHY, which is
->> typically used to support a USB 3 port.
+
+
+On 10/31/2025 3:11 AM, Bjorn Andersson wrote:
+> On Thu, Oct 30, 2025 at 06:53:59AM +0100, Krzysztof Kozlowski wrote:
+>> On 29/10/2025 18:23, Bjorn Andersson wrote:
+>>> On Wed, Oct 29, 2025 at 04:49:30PM +0100, Krzysztof Kozlowski wrote:
+>>>> On 29/10/2025 09:15, Jingyi Wang wrote:
+>>>>> diff --git a/include/dt-bindings/mailbox/qcom,glymur-ipcc.h b/include/dt-bindings/mailbox/qcom,glymur-ipcc.h
+>>>>> new file mode 100644
+>>>>> index 000000000000..3ab8189974a5
+>>>>> --- /dev/null
+>>>>> +++ b/include/dt-bindings/mailbox/qcom,glymur-ipcc.h
+>>>>> @@ -0,0 +1,68 @@
+>>>>> +/* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
+>>>>> +/*
+>>>>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+>>>>> + */
+>>>>> +
+>>>>> +#ifndef __DT_BINDINGS_MAILBOX_IPCC_GLYMUR_H
+>>>>> +#define __DT_BINDINGS_MAILBOX_IPCC_GLYMUR_H
+>>>>> +
+>>>>> +/* Glymur physical client IDs */
+>>>>> +#define IPCC_MPROC_AOP			0
+>>>>
+>>>>
+>>>> Here the same - not used by Linux.
+>>>
+>>> How is this different from e.g.:
+>>>
+>>> include/dt-bindings/interrupt-controller/arm-gic.h:#define GIC_SPI 0
 >>
->> Signed-off-by: Alex Elder <elder@riscstar.com>
->> ---
->>   .../bindings/pci/spacemit,k1-pcie-host.yaml   | 157 ++++++++++++++++++
->>   1 file changed, 157 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/pci/spacemit,k1-pcie-host.yaml
+>> $ git grep GIC_SPI
+>> drivers/irqchip/irq-mchp-eic.c
 >>
->> diff --git a/Documentation/devicetree/bindings/pci/spacemit,k1-pcie-host.yaml b/Documentation/devicetree/bindings/pci/spacemit,k1-pcie-host.yaml
->> new file mode 100644
->> index 0000000000000..58239a155ecc0
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pci/spacemit,k1-pcie-host.yaml
->> @@ -0,0 +1,157 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/pci/spacemit,k1-pcie-host.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: SpacemiT K1 PCI Express Host Controller
->> +
->> +maintainers:
->> +  - Alex Elder <elder@riscstar.com>
->> +
->> +description: >
->> +  The SpacemiT K1 SoC PCIe host controller is based on the Synopsys
->> +  DesignWare PCIe IP.  The controller uses the DesignWare built-in
->> +  MSI interrupt controller, and supports 256 MSIs.
 > 
-> Wrap lines at 80.
-
-OK.
-
->> +
->> +allOf:
->> +  - $ref: /schemas/pci/snps,dw-pcie.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: spacemit,k1-pcie
->> +
->> +  reg:
->> +    items:
->> +      - description: DesignWare PCIe registers
->> +      - description: ATU address space
->> +      - description: PCIe configuration space
->> +      - description: Link control registers
->> +
->> +  reg-names:
->> +    items:
->> +      - const: dbi
->> +      - const: atu
->> +      - const: config
->> +      - const: link
->> +
->> +  clocks:
->> +    items:
->> +      - description: DWC PCIe Data Bus Interface (DBI) clock
->> +      - description: DWC PCIe application AXI-bus master interface clock
->> +      - description: DWC PCIe application AXI-bus slave interface clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: dbi
->> +      - const: mstr
->> +      - const: slv
->> +
->> +  resets:
->> +    items:
->> +      - description: DWC PCIe Data Bus Interface (DBI) reset
->> +      - description: DWC PCIe application AXI-bus master interface reset
->> +      - description: DWC PCIe application AXI-bus slave interface reset
->> +
->> +  reset-names:
->> +    items:
->> +      - const: dbi
->> +      - const: mstr
->> +      - const: slv
->> +
->> +  interrupts:
->> +    items:
->> +      - description: Interrupt used for MSIs
->> +
->> +  interrupt-names:
->> +    const: msi
->> +
->> +  spacemit,apmu:
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +    description:
->> +      A phandle that refers to the APMU system controller, whose
->> +      regmap is used in managing resets and link state, along with
->> +      and offset of its reset control register.
->> +    items:
->> +      - items:
->> +          - description: phandle to APMU system controller
->> +          - description: register offset
->> +
->> +patternProperties:
->> +  '^pcie?@':
+> My interpretation of that snippet (and the other use cases) is that they
+> are programmatically constructing the values of a DT property, not that
+> they define the SW API.
 > 
-> It's always PCIe, so drop the '?'.
-
-I'll fix that.
-
-> With that,
+>> How is this not used by Linux? What is drivers/irqchip/foo.c if not a
+>> Linux driver?
+>>
 > 
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> No argument there.
+> 
+> [..]
+>>>
+>>>> Or provide explanation in terms what Linux interface you are binding
+>>>> here (please focus on Linux or other SW).
+>>>>
+>>>
+>>> Don't we use include/dt-bindings to define hardware constants for use in
+>>
+>> No, we do not.
+>>
+> 
+> I have completely missed this. Perhaps this is the first use case, but
+> the result is non-the-less:
+> 
+> $ find arch/*/boot/dts/qcom -name '*.h' | wc -l
+> 0
+> 
+> 
+> But this makes sense, and I like it.
+> 
+> @Jingyi, as these header constants are consumed only by DeviceTree
+> source, please move them to arch/arm64/boot/dts/qcom/
+> 
+> Thanks,
+> Bjorn
 
-Thanks for the review.
+Well noted.
 
-					-Alex
+Thanks,
+Jingyi
+
 
