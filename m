@@ -1,188 +1,191 @@
-Return-Path: <devicetree+bounces-233718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19D75C24EFB
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:11:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9444CC24F19
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:13:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7116E4245C1
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:09:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91DC318840F4
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:12:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5176347FE7;
-	Fri, 31 Oct 2025 12:07:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 319053469F1;
+	Fri, 31 Oct 2025 12:12:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WbVCnwqI"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pxuhDPyn";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="g3Qj5VFp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6FA92FF171;
-	Fri, 31 Oct 2025 12:07:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD0F2EA755
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:12:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761912476; cv=none; b=MtLtLCackhvcY7ItbCi/O6eEmdc/mNbaHXGw3VTlzWrzs3Hhp5JqGrFmuDagbISSjJS+ORu/zonPaLE4DTDVjLfEpEHvL0yI4SnG4T6h2OlCJ2MFPXHgkd/o8N07bT48faVULVol6ZdYU19Oqd1jJ+ojEULC5i6Ohn+1Q6ot+RE=
+	t=1761912727; cv=none; b=adqLcW5jyMT13skuLtdOuC20iiNw1QuUvuE2sMCBFaYIh9xqxq8IE89/B8sd8ahfbY+q5TF0EiaxRjLfaABHbh1B8zwsumNmnBKsJb9IKyM2dbyZuryez8LjJBhtfWgmSJ3MNPFbWO7nnDZW4iA6DDOPRYbog6SyqcKQu0hNKW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761912476; c=relaxed/simple;
-	bh=FdIPLrzBazADvULcobccxNMUECw5dXroZ8Nui3p0uOg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uyXtxO1WCRvKf+ADAGoEdhOZY+9P7BZzgcTiefxjhOdxDLlT/AFshCTIRErPDgXO5VwfaWxnoabgOIGicxSeJFU7rL++54DlDRawAhhiNq/RmA2AACSF30qHL3GsWkO2a9GszldfoI11cBT399kyhg6FpDCEy4q7ObIitehmjmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WbVCnwqI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82C3BC4CEE7;
-	Fri, 31 Oct 2025 12:07:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761912476;
-	bh=FdIPLrzBazADvULcobccxNMUECw5dXroZ8Nui3p0uOg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WbVCnwqIONAJBBxEzpEBdg+UMrZQzZhvOZ4ZviB3Mu6Y4i+eQ6B9xiQe/3lSty8J4
-	 4v2tlbV0XOKc8hoUcFvRY0zH+nlhe0Gn56a3S2xJmqnZtqz3zpc3RUmzciUeO7i4ew
-	 1yhd5i8jkJy/roBbcxrL6JVwfAmAPE6Th0uAbAy3o1NCZViv7wLwYNemMurtcjP62m
-	 43Yujj07cqiPXq+VS8D53Xd8uw5farO+6ZQpKkmP2Ggy1faZ6gcSdXee3ttHqiXoP2
-	 aSvNTds4qwjaCpWNGzkIbq03wBCsnbnuatJeesPmF0dkljqLx5Ci+SRHoZsiaioDku
-	 ODDwH6TOkpm5Q==
-Message-ID: <008ce91a-9037-4f18-9639-f1ccda277624@kernel.org>
-Date: Fri, 31 Oct 2025 13:07:51 +0100
+	s=arc-20240116; t=1761912727; c=relaxed/simple;
+	bh=histqgWYWRJzF/fRVEEH99JEM6BEShvYwzywG0nFBU8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dPs/3LsvsgPzkU0vJSbbwUSyJYXDNuaOICqCB90CJGqMOAbU4s8Hq8s3pflxsFGmy0T4sla4ZVs8yr7jBqYDHjW6pfzdKZtkC2DcXiFFdithsGxj8P9cg8CaIpLy8Q2vhX0HbreVS8JlS+h1XT2hFYRlvpJepHHZFl6NgqNrtF8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pxuhDPyn; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=g3Qj5VFp; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59V9tIHA1513353
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:12:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=t0ntCCJGokp8wjeBNRQ5jO4E
+	1nDyS9ibjhGJgiXXXCc=; b=pxuhDPynTe4oatb/be/N1kufH8tqBh8BbQmUFBc+
+	Umae1vEejTxvazmw5bvc+rHDy6X0tdczjJq/396cXHR2D1eZbWcpYCcNjHhmdSNF
+	LC1jiUmQa3FR7DHngMBz09YZ+OR+le24Hkt4/7DA7RUAOqaAy1rGZmE8d3nBAr36
+	VRX1BOc6HJdEUORYGDWcGtja+amIz9ACOq3Sn9yRgGfCpQXAzMi14saO8+P1xJhT
+	w2JZ8V676+YMrKc/jV3fkQGy5P0EfXnrPbB/AO/dekXxSWOZ0p1wPP++V0z0R+cs
+	vi1X49No2SxHc9HfuRR2Fq0cDjcQp0Eslg/3yj26SrmlDg==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a4k69hkxa-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:12:04 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-29526a0d1afso7707035ad.1
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 05:12:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1761912723; x=1762517523; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=t0ntCCJGokp8wjeBNRQ5jO4E1nDyS9ibjhGJgiXXXCc=;
+        b=g3Qj5VFpmdzMgFRIWYk/86ia0QXtSJFsijt7DwVPNqQaYLl6juwxZbWawflu9i3RoT
+         ZbT7ibdU+fkGOYMbjnIjxrWITdMy9w4TWpDmprxKhS8/VuIDpwEdhp1BZ6hJNlz8MEky
+         nPpLgQ44C2SM29xc6TC50/FvKA341keCjQPYbODxR5/cHRVIqCjvkIGI1qUg/X/rV4GP
+         GTBUm4Pit3LDDJiHTYE4RCVnzO4gQBwy4DlVVftbfJSG4HIPtH47gMaI8f57nzCdYeov
+         w4tWHFuoQq93rVitIypsNeO1ihj0vc2uY9c1nt7g60QwTtbBJQvXhLOm2fSu0OXpabFT
+         qWLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761912723; x=1762517523;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t0ntCCJGokp8wjeBNRQ5jO4E1nDyS9ibjhGJgiXXXCc=;
+        b=MOj5Pj+Hk2lDplwhDM3EwCoPGw4PBIL7FJg5QRL2m4JoyqOgqJefGIlBfHc3Saaj+z
+         dx+csR4UpJbCBfEzaLhRgrpBvgNopJsTbdwKdt8xyYxF+Bg23qlFWPLSSl95s+Xseqwn
+         V5eA0v/9UP8UkLH/NHHcBYrGxjQjE8ea1/qBX6XLDoblR5WGjwoVj72qj7ilTsgzhFmi
+         gUhLMLRQknlqedNOzTnyK8hmPA9FQiqn8ILfE7rX3vKrYkhApVjkMzihNbrLOP4V4FF7
+         D+JRL+qHTLyS90Izks3OjpTIgBuM6uSCkQOgyNIiT/0Oxo8zXrMaM9DWyLGRaf11v4S0
+         n+HQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUURI+n3fwyf9jXJSaK4PoMpzF5Vpr7pExRKKwNJau6eDfBJ6v8j3+WR6fCseed3lTVPNQcda6zJBi3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx6nq5X4C5CEMriiU4+nZbX3p7u4DiZRukyA+asfUCzVS8hjqaA
+	BrOc9/+oHc+odN4H+yvhS2biJRrfbiekkYhRv+Ol4+OEvjMYkhGwfroSomqYhnfcsaFJTVdfsb9
+	2oKTzA0TbLwSeMAqXiXyIxd8gq1K6zVmTqYRiPHrik4ldgfzRc7qVaDgb1rH80cRG
+X-Gm-Gg: ASbGncu88ZdTshJS9ujFkmlrKfLEHkyIa+ZiiNC87hldpDai+CQ459awX20BKgqdLuq
+	S3xM6cN86n/Ib9ivxCrhSlrpJ7C1yJeNPRjZpK7xsxFJRqk1Wu/rjGgVbn9fH0MgWwlbnBaMWg6
+	C26YYqUp9Oe3nu22VvVCToQ8AQNJNOpJwJ37I6Q63nGw5iiV0spbY2mpTHY+cA9+isXb1lt2x3+
+	8QHIrGYRh7v2ncOugOIemdKag7MDZSpVyIFS4wMC317xE6NZqgs7zJXQLrQAJyy2kvb/6BxSHVa
+	o4ptTcKV+rt6ynjb9zY0IUDNTZePU9trKmVchrv0qFVHlraYisRCFG3Rbs2adehJWR2XPKotbZn
+	3BV/JO0yN5dz+xm3V2fAGt0RvwC/1jYIs
+X-Received: by 2002:a17:902:dad1:b0:27e:f03e:c6b7 with SMTP id d9443c01a7336-294ed0982fbmr89140575ad.10.1761912723489;
+        Fri, 31 Oct 2025 05:12:03 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFFkkeZRsiuTlC1EpCac6wkygqEXe2Ou1I4f8XHFqwZycCb3yybQhK+4zAvwptAWwbxS1hO5w==
+X-Received: by 2002:a17:902:dad1:b0:27e:f03e:c6b7 with SMTP id d9443c01a7336-294ed0982fbmr89140035ad.10.1761912722819;
+        Fri, 31 Oct 2025 05:12:02 -0700 (PDT)
+Received: from hu-pkondeti-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-295268b553bsm21984775ad.39.2025.10.31.05.11.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Oct 2025 05:12:02 -0700 (PDT)
+Date: Fri, 31 Oct 2025 17:41:56 +0530
+From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: hrishabh.rajput@oss.qualcomm.com, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: Re: [PATCH v4 2/2] watchdog: Add driver for Gunyah Watchdog
+Message-ID: <09e8485f-f512-4069-be9f-3e94fb142aa3@quicinc.com>
+References: <20251031-gunyah_watchdog-v4-0-7abb1ee11315@oss.qualcomm.com>
+ <20251031-gunyah_watchdog-v4-2-7abb1ee11315@oss.qualcomm.com>
+ <13d2963d-e931-4e51-b875-a1650b899bb7@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 1/2] dt-bindings: memory: mediatek: Add SMI reset and
- clamp for MT8188
-To: =?UTF-8?B?RnJpZGF5IFlhbmcgKOadqOmYsyk=?= <Friday.Yang@mediatek.com>,
- "robh@kernel.org" <robh@kernel.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>
-References: <20250917120724.8650-1-friday.yang@mediatek.com>
- <20250917120724.8650-2-friday.yang@mediatek.com>
- <5e3a0317-31b2-43f1-9a4b-b66447a6044d@kernel.org>
- <1c84112b5a7fa48d8422f531e660aa1b49ec6487.camel@mediatek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <1c84112b5a7fa48d8422f531e660aa1b49ec6487.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <13d2963d-e931-4e51-b875-a1650b899bb7@kernel.org>
+X-Proofpoint-ORIG-GUID: QBXzaShrAupo9O_-ZDKw2jm5BZe1_Awn
+X-Proofpoint-GUID: QBXzaShrAupo9O_-ZDKw2jm5BZe1_Awn
+X-Authority-Analysis: v=2.4 cv=OYaVzxTY c=1 sm=1 tr=0 ts=6904a794 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=kj9zAlcOel0A:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=SWRU6URpa7t1zXFJtNkA:9
+ a=CjuIK1q_8ugA:10 a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMxMDExMCBTYWx0ZWRfXxDlov/1oHpjN
+ z+21GPlloVx4lrCI2Hy+VisybPKnf2hVHijS5qogOoQ8xKidsEJHXYMbuOEpoOjnWspWjMADySQ
+ BXAvr9f0+6EWa4BzKGFmEXRGjBl3++FmY4Ujjb0zUJP2Oy2yKTNplgR87bUtTQWto13Q0/TzsYf
+ /qwN9NI4Wf1T5uVCYdm7pa4sewpmpSAhQReGyXmuvP0D4ZuaFvMnZcrgL+GmheXj+d8pvuY0Ct4
+ 44ENSP7ILHDElwTIcc2yk1iYLwQg6+bPtk29x5NIRyZ8fx54IOaz0EtCzyOsF613VaEuNOkefFn
+ soJPGuSby1Y9APh7siarcPaRJvUFjmg7NucS497qUvYnIaVHGqEPmXlMJEcL+DT67m7RM4+Qlgc
+ zE9Cx/+PaPbwo1XzCZ4skB0rVQJlkQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-10-31_03,2025-10-29_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 adultscore=0 clxscore=1015 bulkscore=0 priorityscore=1501
+ lowpriorityscore=0 suspectscore=0 malwarescore=0 impostorscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510310110
 
-On 31/10/2025 07:10, Friday Yang (杨阳) wrote:
-> On Sat, 2025-10-18 at 18:42 +0200, Krzysztof Kozlowski wrote:
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>
->>
->> On 17/09/2025 14:07, Friday Yang wrote:
->>> Add 'resets' and 'reset-names' properties for SMI LARBs to support
->>> SMI reset operations.
->>
->> Not informative...
->>
->>> diff --git a/Documentation/devicetree/bindings/memory-
->>> controllers/mediatek,smi-larb.yaml
->>> b/Documentation/devicetree/bindings/memory-
->>> controllers/mediatek,smi-larb.yaml
->>> index 2e7fac4b5094..fc5feb2eac1f 100644
->>> --- a/Documentation/devicetree/bindings/memory-
->>> controllers/mediatek,smi-larb.yaml
->>> +++ b/Documentation/devicetree/bindings/memory-
->>> controllers/mediatek,smi-larb.yaml
->>> @@ -70,6 +70,12 @@ properties:
->>>      description: the hardware id of this larb. It's only required
->>> when this
->>>        hardware id is not consecutive from its M4U point of view.
->>>
->>> +  resets:
->>> +    maxItems: 1
->>> +
->>> +  reset-names:
->>> +    const: larb
->>
->> Is the reset valid for all existing devices as well? Commit msg does
->> not
->> explain that... it is pretty useless - you say what you did. We see
->> that
->> from the diff. Explain something not obvious.
->>
+On Fri, Oct 31, 2025 at 12:48:18PM +0100, Krzysztof Kozlowski wrote:
+> On 31/10/2025 11:18, Hrishabh Rajput via B4 Relay wrote:
+> > +
+> > +static DEFINE_SIMPLE_DEV_PM_OPS(gunyah_wdt_pm_ops, gunyah_wdt_suspend, gunyah_wdt_resume);
+> > +
+> > +static struct platform_driver gunyah_wdt_driver = {
+> > +	.probe = gunyah_wdt_probe,
+> > +	.driver = {
+> > +		.name = "gunyah-wdt",
+> > +		.pm = pm_sleep_ptr(&gunyah_wdt_pm_ops),
+> > +	},
+> > +};
+> > +
+> > +static int __init gunyah_wdt_init(void)
+> > +{
+> > +	return platform_driver_register(&gunyah_wdt_driver);
+> > +}
+> > +
+> > +module_init(gunyah_wdt_init);
 > 
-> Thanks, I could add more descriptions here, like below:
 > 
-> On the MediaTek MT8188 SoC, bus glitches may occur during MTCMOS
-> on/off transitions. To prevent these glitches from causing errors,
-> SMI requires clamp and reset operations. This issue specifically
-> affects the image, camera, and IPE subsystems. 
+> Heh, what was my last message? If I see module_init() I will NAK it.
+> 
+> At v3 you really ignored entire feedback and this one here continues the
+> pattern.
+> 
+> NAK, please read how Linux driver model is works.
 
-This explains why you need it. But I asked more questions than only "whY".
+You mentioned in your previous reply that
 
-Read the question:
-"Is the reset valid for all existing devices as well?"
-Where is the answer for that? I still do not know...
+```
+If you call any module_init other than module_foo_driver I will keep
+NAKing your patch because it is wrong. I explained why wrong already
+multiple times in previous threads and other discussions.
+```
 
-Do not reply to only pieces of review.
+If you are referring to why module_platform_driver() is not called here,
+Hrishabh answered that already previously. Please see
+https://lore.kernel.org/all/ndwwddd7vzjpgvzg55whdno4ondfxvyg25p2jbdsvy4lmzsfyy@jnn3wywc7xtp/
 
-> This change adds the
-> 'resets' and 'reset-names' properties to the SMI LARBs within
-> these subsystems to support the necessary reset operations.
+If this is not what you are referring, please let us know. Thanks for
+your constant support/feedback on this series.
 
-Read again my message:
-" it is pretty useless - you say what you did"
-That's the same, drop.
-
-So again you just cared to implement only piece of review.
-
-Best regards,
-Krzysztof
+Thanks,
+Pavan
 
