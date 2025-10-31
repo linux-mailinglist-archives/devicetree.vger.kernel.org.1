@@ -1,180 +1,112 @@
-Return-Path: <devicetree+bounces-233585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29E47C23C8B
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 09:27:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC0BDC23C99
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 09:27:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 374955656B8
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 08:14:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA3AE3AFB52
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 08:15:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C106328B70;
-	Fri, 31 Oct 2025 08:14:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A9792BE7DF;
+	Fri, 31 Oct 2025 08:15:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LJbKnESF"
+	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="l0Vt9XNQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 369EA3009DE;
-	Fri, 31 Oct 2025 08:14:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59186283FD9;
+	Fri, 31 Oct 2025 08:15:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761898468; cv=none; b=EkP7TlwtxRCP+xJND5+9QAl2VmwcpvbLr1tPSr6jze42w4xgL08PRW3sXzh9VmFuSjEtX7fWD0lNizZ7FkLTcb0CTN6lrUrvsTMBNNYf+IarGPIKsDHf+/7quq2NZ3ML+VEQ+a7B7wsNymhDbKiz3jbSvJrijb09pQw4PeuOu/w=
+	t=1761898523; cv=none; b=HFy1EXoATbrzGnM7aOoQdh55aN8kb7NoNLZ6Rf7Fiagp8NVD2qejpZelffvhAUY6e14N2E+SxKeiMN9Cg5bT79SHe4O9iLca9FWNzottyhCgzQl7BcMbsXzAdw4MUuUSoLQCTWiE0mp0iHMDNQySlrr3WoufeDeEfg4ecTHfhv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761898468; c=relaxed/simple;
-	bh=T7nI7xvtFl7krfWTdP/qjx1BlQ3XmAzSZCU1Kz/Md9c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P4O8g6Q0JOWN2XufPa6QGFk2cNx3MYQuUndsqCWvsVKV3mQcO/P6GoKcFP4Y1eey+orRMxjRSBPwV3EgUznQxd6EXVD8FqB2+rJPJajdEjbyx63AO4VvCtI+EbtgD2ftQGPho4DDcrKhQMBtMt7LC7hhBajaIQUw4ClBj0t9czk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LJbKnESF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 754F3C4CEFB;
-	Fri, 31 Oct 2025 08:14:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761898468;
-	bh=T7nI7xvtFl7krfWTdP/qjx1BlQ3XmAzSZCU1Kz/Md9c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LJbKnESFg6XyUjYSq7gFteRw1AzLeEOwhq/R1FQ9acELAGb+1lo+BK3K6HG4G/O9k
-	 xCbFSxVcLC6lxIA0RrBry1xU4Ny6c2H9iQpJGAXLuYmETlnLIP8hBxSbvlZPayn7P3
-	 pcdWLf2PtvqhAnCGPD2p3hRJ9Lk1gYYEF4knXXJYhNNNRjes5DC7lcoG0kLdNdtV/1
-	 nCEB4VgBWNM6NXS1awmf6VveSzpRC4x8tIriIrbbOk8w5xV8RlXWbSdrKrJV1DsLdn
-	 UnSBH3oBfQXE59g/0J4wbD5O4tEdAtNlrTE0qdoi8niaUfHbef0uVckyS7o8sjZq5k
-	 qYs5Od5VGpOrQ==
-Date: Fri, 31 Oct 2025 09:14:25 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ashish Mhetre <amhetre@nvidia.com>
-Cc: will@kernel.org, robin.murphy@arm.com, joro@8bytes.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	thierry.reding@gmail.com, jonathanh@nvidia.com, jgg@ziepe.ca, nicolinc@nvidia.com, 
-	linux-tegra@nvidia.com, linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: iommu: Add NVIDIA Tegra CMDQV support
-Message-ID: <20251031-witty-sociable-chachalaca-b73dbc@kuoka>
-References: <20251031062959.1521704-1-amhetre@nvidia.com>
- <20251031062959.1521704-3-amhetre@nvidia.com>
+	s=arc-20240116; t=1761898523; c=relaxed/simple;
+	bh=TkuW446e07aVvRNoD/2OBW7hiIMfiCZOhDLN5PcO/ww=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KZ9Zp8vX0LpniCPe6/9UAqdy2TpU9NeVIYGQVkHjTXa3I+PVx/Y9ojg9rQztIgcgNPWotIYAnmNRI9kFnw02HucuMHMC90FtGAnMeYKa7PAIBy9nP5MRsttwSV/dFihv/Tuxydxcg3gAi+N1tjYBuZ5kz7vEEqNg3QCW+p0yVho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=l0Vt9XNQ; arc=none smtp.client-ip=193.68.50.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
+Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
+	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 7C4D7A06F4;
+	Fri, 31 Oct 2025 09:15:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:from:from:message-id:mime-version:reply-to:subject:subject:to
+	:to; s=mail; bh=fNyFuLbHFHMnPQduFVhMqMv+ss2KCFXTeDgcG6D6th0=; b=
+	l0Vt9XNQYUiIPK2wKMwxgMw9z/Z91aKTGxWlMQHOddJGGCpwasn1GG9Zz0vjzGDn
+	N/7WVP7ckHvAykxlppOV1ISG68ueyldIZMqtovHatCX6/ZrqQiru0Q+GpMX7Y5YY
+	e6cv3vP617seQAs2G1Gl0j0LERfVM6omd/kj0Pl3WYu9irB2Y6yHnLVeAlPiNyRb
+	A8vhHLDqemMHSTbiOmiI/SqI5LjMjQDwg07p2lXZjYvUCamcuATpYu/fknazebnG
+	RHEEuXIqXpe6TaKgeuLT6NuNmJf0jKVXOIPHFYG5Py41nwXXC2qm8WfXMNsWv/F0
+	0mGCpc34MStwQ49+2ntArb08CAb/q0xc0aSGvFbWyITcJBJNyEOnjVAORN5zM21V
+	PBzcwkZ6Ru48TjHlywu3MGsVyI+svfGQWPglawFx0HCXq824htU1+M59h7DBvCoi
+	WK5MgaR/ZAb/XqIHuhysIyVUcY3JpIZNT6B4D0zqPqL6ihexkijZA7jGDX+4C5Jp
+	IASkZ4SEqmDGP62RLZjXF6j5NnPyVQ/0zBA82/o5hPEO+u+nJdnar9HVClyoWOyO
+	EpET8Fg8oiCUtg3ta/9zjbLlyfNKGklqyxbfiXNjwqnid9bplaZDbaJkpWzKn+rS
+	+D0P9w0nS8pwqoUDSp5GGtpv2dpGAbY8qZOlUqnYg34=
+From: Buday Csaba <buday.csaba@prolan.hu>
+To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, "David S. Miller"
+	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
+	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+CC: Buday Csaba <buday.csaba@prolan.hu>
+Subject: [PATCH] dt-bindings: net: ethernet-phy: clarify when compatible must specify PHY ID
+Date: Fri, 31 Oct 2025 09:15:06 +0100
+Message-ID: <b8613028fb2f7f69e2fa5e658bd2840c790935d4.1761898321.git.buday.csaba@prolan.hu>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251031062959.1521704-3-amhetre@nvidia.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1761898508;VERSION=8001;MC=3880224194;ID=191218;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
+X-ESET-Antispam: OK
+X-EsetResult: clean, is OK
+X-EsetId: 37303A296767155F677D62
 
-On Fri, Oct 31, 2025 at 06:29:58AM +0000, Ashish Mhetre wrote:
-> The Command Queue Virtualization (CMDQV) hardware is part of the
-> SMMUv3 implementation on NVIDIA Tegra SoCs. It assists in
-> virtualizing the command queue for the SMMU.
+Change PHY ID description in ethernet-phy.yaml to clarify that a
+PHY ID is required (may -> must) when the PHY requires special
+initialization sequence.
 
-If this is specific to Nvidia, then I think you need specific front
-compatible and disallow it for other vendors.
+Link: https://lore.kernel.org/netdev/20251026212026.GA2959311-robh@kernel.org/
+Link: https://lore.kernel.org/netdev/aQIZvDt5gooZSTcp@debianbuilder/
 
-> 
-> Add a new device tree binding document for nvidia,tegra264-cmdqv.
-> 
-> Also update the arm,smmu-v3 binding to include an optional nvidia,cmdqv
-> property. This property is a phandle to the CMDQV device node, allowing
-> the SMMU driver to associate with its corresponding CMDQV instance.
-> 
-> Signed-off-by: Ashish Mhetre <amhetre@nvidia.com>
-> ---
->  .../bindings/iommu/arm,smmu-v3.yaml           | 10 ++++
->  .../bindings/iommu/nvidia,tegra264-cmdqv.yaml | 46 +++++++++++++++++++
->  2 files changed, 56 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iommu/nvidia,tegra264-cmdqv.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-> index 75fcf4cb52d9..edc0c20a0c80 100644
-> --- a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-> @@ -58,6 +58,15 @@ properties:
->  
->    msi-parent: true
->  
-> +  nvidia,cmdqv:
-> +    description: |
-> +      A phandle to its pairing CMDQV extension for an implementation on NVIDIA
-> +      Tegra SoC.
-> +
-> +      If this property is absent, CMDQ-Virtualization won't be used and SMMU
-> +      will only use its own CMDQ.
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +
->    hisilicon,broken-prefetch-cmd:
->      type: boolean
->      description: Avoid sending CMD_PREFETCH_* commands to the SMMU.
-> @@ -92,4 +101,5 @@ examples:
->              dma-coherent;
->              #iommu-cells = <1>;
->              msi-parent = <&its 0xff0000>;
-> +            nvidia,cmdqv = <&cmdqv>;
->      };
-> diff --git a/Documentation/devicetree/bindings/iommu/nvidia,tegra264-cmdqv.yaml b/Documentation/devicetree/bindings/iommu/nvidia,tegra264-cmdqv.yaml
-> new file mode 100644
-> index 000000000000..f22c370278a3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iommu/nvidia,tegra264-cmdqv.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Tegra264 CMDQV
+Signed-off-by: Buday Csaba <buday.csaba@prolan.hu>
+---
+ Documentation/devicetree/bindings/net/ethernet-phy.yaml | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-Missing blank line
+diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+index 2ec2d9fda..6f5599902 100644
+--- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
++++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+@@ -35,9 +35,10 @@ properties:
+         description: PHYs that implement IEEE802.3 clause 45
+       - pattern: "^ethernet-phy-id[a-f0-9]{4}\\.[a-f0-9]{4}$"
+         description:
+-          If the PHY reports an incorrect ID (or none at all) then the
+-          compatible list may contain an entry with the correct PHY ID
+-          in the above form.
++          If the PHY reports an incorrect ID (or none at all), or the PHY
++          requires a specific initialization sequence (like a particular
++          order of clocks, resets, power supplies), then the compatible list
++          must contain an entry with the correct PHY ID in the above form.
+           The first group of digits is the 16 bit Phy Identifier 1
+           register, this is the chip vendor OUI bits 3:18. The
+           second group of digits is the Phy Identifier 2 register,
+-- 
+2.39.5
 
-> +description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +  The CMDQ-Virtualization hardware block is part of the SMMUv3 implementation
-> +  on Tegra264 SoCs. It assists in virtualizing the command queue for the SMMU.
-> +
-> +maintainers:
-> +  - NVIDIA Corporation <linux-tegra@nvidia.com>
-
-No. It should be a person. If entire Nvidia cannot find a person, I
-don't think we are interested in having this in the kernel.
-
-> +
-> +properties:
-> +  compatible:
-> +    const: nvidia,tegra264-cmdqv
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: cmdqv
-
-Drop interript names, obvious.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    cmdqv: cmdqv@8105200000 {
-
-Drop unused label
-
-Best regards,
-Krzysztof
 
 
