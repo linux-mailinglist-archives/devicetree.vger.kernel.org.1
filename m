@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-233577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76A99C23A1D
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 08:59:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1369C23A59
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 09:03:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2330D34B45C
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 07:59:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D12451885286
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 08:01:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89CBB328B70;
-	Fri, 31 Oct 2025 07:59:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18B8A304972;
+	Fri, 31 Oct 2025 08:00:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SbUSLubF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JHGCdJL0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E6E328B63;
-	Fri, 31 Oct 2025 07:59:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E33A4303A08;
+	Fri, 31 Oct 2025 08:00:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761897558; cv=none; b=Ns9W357Kl50bxRUFBWHc/uiFX/Ioy5M/EsYmFRLbpngb+3cmr4/I3tQkqwYmAg5FEAOs4pBW8Nms5hRJviytcc4ZydXUReBXuht5CCchm7Caz1bOj2gQP5R1HOwxzFQmBnFC+fKw+I9MQAAzlS6BHvf1V98RAfN6qbqH1O5YnLs=
+	t=1761897645; cv=none; b=Ik/LdBRDjroFwRLBdpm8hn7lKjavQSwFtLMFmVjH/cM7rP4SfwTePzShuRCmxx3BZjPMub7eAzLwdXNrdJfAu13i51ViXA+04qndHX6LQ72PErDqm11qEq+PFcLoBPqcPSsgPpYSja3atONQG/p4JXthsAhbXEv5c+ZfdYetpZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761897558; c=relaxed/simple;
-	bh=/fszV+dExO/J1cb7Xr8wY1ijLSyqy2hGp9+gTf7Zgnk=;
+	s=arc-20240116; t=1761897645; c=relaxed/simple;
+	bh=YAoJrxrOYGrC8GcptnUVlgLCLdcOtYk2kSlCnDVrfcA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BMBFG+ZeOTv0lbnNHkNFh3eOzvNdomvzzanA7qqDrdmS28+8Xf1a13Lh1Z8XNyyATi0zkscPVh6h1m5pNnR0xZBd3lWjxrm3kJuG/GfX5CvrxwZtiy5peCb992NRuhZ5sVIATv/o3aJjx8NEOUyhhRf/s+jt1GNrbRE26RY/Dl8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SbUSLubF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF4F9C4CEF8;
-	Fri, 31 Oct 2025 07:59:15 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=CEqx9t4xxgGscm3BraUFM7lG1AIVqtiyhvK4kphRDSnTSwkaKLVX/yxfAatx/O8ULjrcARvdUDJZEAG49DFPZ5WmXEaMqXJY7suQbzT6hLJogBcZodN/kVTpUEnctEyNF3h2uE5d3ufT1Tke7R1vBFNXizUHSJO/+2A2+c7QrPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JHGCdJL0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EA15C4AF09;
+	Fri, 31 Oct 2025 08:00:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761897558;
-	bh=/fszV+dExO/J1cb7Xr8wY1ijLSyqy2hGp9+gTf7Zgnk=;
+	s=k20201202; t=1761897644;
+	bh=YAoJrxrOYGrC8GcptnUVlgLCLdcOtYk2kSlCnDVrfcA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SbUSLubFgooU4uXGs0PhtroqQuGb+yRMBhePxRkg+9zOvhhtPkrjxWz5MpLG4o/gS
-	 3rL2bZqwBg9+eQ961HorWknPwOxr/pdG+evRj8cF0MtbJBmlPigFYQfnLCa6O4eGFg
-	 kImXVk2vy1nRrPhaKcaVVHzxXMxmb5jRKh7aLhxUYd1tahsfDzyD3hTqL3uxk7HDaM
-	 myqrnnA083fTre0d+00k1ewuMIMEwjZC3g1gyjtNhnwhabVANhZO1kAkH0csREYADb
-	 yFkmLvZGoh/WHZNQSM6ta9iYE30Wrm142oJMvz4nzjDSfFPJlfHfnVjT3Xf+s2Qb7J
-	 0Fi2QJ8I5IawA==
-Message-ID: <4540b5c0-1a31-4097-8ea0-e1377a193e5f@kernel.org>
-Date: Fri, 31 Oct 2025 08:59:13 +0100
+	b=JHGCdJL0IQ9p/wa6Z09CgutGo8rgGa/8KHSUO2JtiIrMJMLhZDUmXw7vRT4MwLiYm
+	 na3ON8RTsDkI9orwFJvnFqieqsygPhQ67a/U5bK9RbZLHyZx3eW/o5GmtoZ/eRXq+g
+	 9SjyVS/pZy81D/UD7P6h2/htEXsSXk6q6E7lKW6JJOlKPLcAG86JlcjXvMIo9hkxor
+	 2u8jYeJmwttGKu4NTUPRzJfQTLm38XNz0Cu5JPoO8rRzIPrx5c+Xd0d9GFXNfKdsf4
+	 KQ+tnj2ueM4/6fLM+EWpJ91fX1yzrhrLB4THVUnzKp4Jb2xgfTI2B7qSfzoZuV4XhU
+	 DzhJM/UR++7VA==
+Message-ID: <47d6bf68-10a7-499c-8876-7e3f64e4b7bb@kernel.org>
+Date: Fri, 31 Oct 2025 09:00:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] dt-bindings: mailbox: Add Renesas MFIS Mailbox
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Jassi Brar <jassisinghbrar@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <87o6prsl2z.wl-kuninori.morimoto.gx@renesas.com>
- <87jz0fsl0u.wl-kuninori.morimoto.gx@renesas.com>
- <20251028-pastoral-efficient-mandrill-c4e9ca@kuoka>
- <878qguv8fh.wl-kuninori.morimoto.gx@renesas.com>
- <CAMuHMdW9sEcKprPjiA50QOWm7b_fwoEkuJcLLKg-srQxwJX43A@mail.gmail.com>
- <87v7jx2t7s.wl-kuninori.morimoto.gx@renesas.com>
- <5dd02143-861e-4b2c-af1b-79e6c57de076@kernel.org>
- <87a5192bbm.wl-kuninori.morimoto.gx@renesas.com>
- <877bwd2ap8.wl-kuninori.morimoto.gx@renesas.com>
- <87o6pn3dl1.wl-kuninori.morimoto.gx@renesas.com>
+Subject: Re: [PATCH v2 3/3] firmware: stratix10-svc: add the compatible value
+ for Agilex5
+To: "Romli, Khairul Anuar" <khairul.anuar.romli@altera.com>
+Cc: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "Rao, Mahesh" <mahesh.rao@altera.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <cover.1761648711.git.khairul.anuar.romli@altera.com>
+ <08cacb9328c338edb6a6f291c56c6d2c32a9e0cb.1761648711.git.khairul.anuar.romli@altera.com>
+ <20251030-wakeful-hospitable-eagle-9dfca1@kuoka>
+ <6b3cb11d-afbd-4242-b215-a3a0230cffb8@altera.com>
+ <32c35bd4-fc49-428c-9204-a39bda7cef19@kernel.org>
+ <eef97a92-40ea-429d-8bc4-6fb22f05d2a7@altera.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,37 +109,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <87o6pn3dl1.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <eef97a92-40ea-429d-8bc4-6fb22f05d2a7@altera.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/10/2025 05:22, Kuninori Morimoto wrote:
+On 31/10/2025 00:08, Romli, Khairul Anuar wrote:
+> On 31/10/2025 12:33 am, Krzysztof Kozlowski wrote:
+>>> I was excluding the iommu in the current patch series, not that I meant
+>>> there is no iommu. It was meant for the future patches that will include
+>>
+>> Read your bindings again. They clearly do not list IOMMU, meaning there
+>> is no IOMMU.
+>>
+>> Best regards,
+>> Krzysztof
 > 
-> Hi Geert, Krzysztof
+> I will add that in the next revision also after going through 
+> https://www.kernel.org/doc/Documentation/devicetree/bindings/writing-bindings.rst
 > 
->> 	compatible = "rcar,r8a78000-mfis-mailbox",
->> 		     "rcar,gen5-mfis-mailbox",
->> 		     "rcar,mfis-mailbox";
-> 
-> It is easy to confuse when contradictory comments are made
+> One question, if the property only meant for a specific compatible, do 
+> you accept the logical "if" statement to ensure that the property only 
+> for specific device but not others?
 
-There were no contradictory comments. I said absolutely nothing about
-compatible.
-
-> 
-> v3 will be
-> 
->       compatible = "renesas,r8a78000-mfis-mailbox",
-> 		   "renesas,rcar-gen5-mfis-mailbox";
-> 
-> The file name will be
-> 
-> 	renesas,mfis-mailbox.yaml
-Again, read my comment. The filename must be EQUAL to the compatible.
-Which one? It is described in writing bindings which I pointed you to
-already.
-
-NAK
+Yes, see example-schema how to do it (and property is always described
+in top-level).
 
 Best regards,
 Krzysztof
