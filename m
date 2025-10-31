@@ -1,101 +1,70 @@
-Return-Path: <devicetree+bounces-233632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EC1AC24204
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 10:24:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D75BC24293
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 10:30:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 550461886CE3
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 09:22:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11E1D3BA662
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 09:23:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A5843314BC;
-	Fri, 31 Oct 2025 09:21:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eOWi6KF1";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Sdvu7OWO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CE8724E4C3;
+	Fri, 31 Oct 2025 09:22:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023130.outbound.protection.outlook.com [52.101.127.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46245330B1D
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 09:21:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761902492; cv=none; b=t/tSJbKwRwhVUnL4fEDWjiXpxl+ZCD9KJrh+JGW/KRGlDDb6gzgClRQOVuwG5D+tnrrw5Sq9Js1uDbuNyux/zmIo6KH6upDG5cP2OB7Ow906tNK7qrHkkoSu5EJcKEHdri47++ctk0Ku35vTBXwmYhP3LYpnbJHIoKdASVMkBB4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761902492; c=relaxed/simple;
-	bh=w8yfOd60KDdKJreuFqthqsd4fR7/UZE2/5nBgUt6onQ=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACA7F31DDBB;
+	Fri, 31 Oct 2025 09:22:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.130
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761902578; cv=fail; b=HNZufIQiOL6okM3jQyZS5AKtzFIY715/bJCtyGnhLl1/DNSxYiPI+bDlm8cCIy70adnN/ZzZXok2exoYPzfxIgkp0sf4t6QUj9aUfYFHpzJmQ9+6nCjBJVz4NwWVzI2bWj3aAwSF5ImNaxjMzqZ49RHjB8QSclnqbvA4WOhr90g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761902578; c=relaxed/simple;
+	bh=Xzkdx4QTafBXsStNTdJT0seGef3G48+xAq12u3A0oeQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AyE/Tj5yMCvDJ/rbAqQgiYwQUAIKUtdGj+sTtWVrTZEWT4EvUm+9qUmnJanMMYt3NxXM0A6lb8wM98u+uRRZnAVN7oDcGT/+9bR32tWmNhVD0HxvyUm1FegMtFRKmyJrZnbAo7Ang8jqpvHOmFjNDdvbne/k9UZW5RbxCSgEwPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eOWi6KF1; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Sdvu7OWO; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59V2wRNr102769
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 09:21:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1gAPrC5tF4vPjEpXPBO+URBh6gx1S2+j2eTdd5IbfCM=; b=eOWi6KF1gNtTSuYt
-	DmYPGZ4NdfZ1wmCWN1MdjC9u/96ET7d3GSgO5A48EQyJT0xiuHJgoCfF3YlK2z6K
-	0qBqUReETVN7U3lwt0MMul6+CApYb5wbWsVGkEJmNwtA+r2YqWj60u9BqHk2oxd9
-	Ds6xElCR8XGK3qiNPIbuk7lGCbeGxWIHdoMFWx7561j1JGi8x+5KmCWzdve7dDYb
-	BbyFXq66M7bn0UtWIWdMnu45mwcn4tc34FmvWSQE44os1du1JKVLrSMhoFybqyS1
-	VHLeH+g43gZjqteDHcbHC0Hq7dzr11ZHN63JAchU4ywtHvnFWZ8xdCyiNzu5s02D
-	jEuKiQ==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a4ahdjmfd-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 09:21:28 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-87c262c72b5so6068386d6.2
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 02:21:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761902487; x=1762507287; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1gAPrC5tF4vPjEpXPBO+URBh6gx1S2+j2eTdd5IbfCM=;
-        b=Sdvu7OWOEBUOh6sEkV+23PEZoRiA0PXC4Rj+48h+qFVrjLN04KhwgCL5CZGwPPFE8D
-         kFsw/gUrGa1vFDxbbIQllFhT+rijZyg72pCjf7kiyVTQnAgjc0lgywP58Z+qCYVKLSAA
-         W+8hcaLErczgqpJ/vP4zODSoJ8Jp62mLk/ZApfAlngTIa2FeTHLN8V8qVre54X46V/57
-         ZBRQ8ITH590gk166jmTelDo+ENHGlZyTxSfqC8Li/GLiClfK+gRn2bKItn97xoYisJBr
-         DgtwKz0SMw72ohLcr+GaLNKfGzQCjOyxYuVPasWGDzIemDR1R17nHCOa/p2mLQF1Ym/q
-         5Cxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761902487; x=1762507287;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1gAPrC5tF4vPjEpXPBO+URBh6gx1S2+j2eTdd5IbfCM=;
-        b=R/JM0WATJnTiqOqsS0vRBHBlp/ccL3+AFNDPSaXSjIAU2q86E/bo1hgfC3h9WD+O1g
-         qOOJU+Nyx950FZfxVOOLljtrhWZzqid0SaqkZ1wFfDkT9pfy0lcLHY9Fy1gfHmTS9o58
-         B1M6n+PBWchAUZSdFGQnPvW3nR1ZwJzrlBAUcdhCUNqSOxBfksUe4wrQdGmwq1NzqmlW
-         0paCgABKK4RPHHxOlgjws+nGbdZFyihvD6HU/W2R+r2YLdytR4f8w6fW5Xf800e+yl0v
-         yPmRmreiJJK8KWJHXty4wV5WF+7W6+e2mtFpQ4M4h3ha08cs3rHU6JlJv/rOTEbsOK21
-         Dj9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVSepZw0eH7RQEd9ZaPPhFhE8wBHEkztMLVrgV08ofSTYk+Rk68+DUe4NLqOphOmd1/2ELUDx07ekLX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzg+Q8aNGe3RYxQWtTHrrpHU0K6FFaa1a+aYTjhYSTMarIXwVsT
-	LYjA/LIbQu6DXRHYp01VT2RMeezTU5CLifSWhZAv2AajlZzOwsvfwE/Egz5js8SAzsHjHE1AbpE
-	AeigvhNZpS67KeiEbUKlorN2+UF8nNIKCUBpqB3MW6W6/cQ0X5JwBKfKZ1KgC4k8B
-X-Gm-Gg: ASbGncuGH7APqd/yX0dZDx8VesK+zR7SMPe2CqkHjertpOJox/HOkaZPaaiyf3Y4ydP
-	0H6gbe9mhBLFJ+b3oIy6Hc+YzfNtoCtf1RWH18j9217+q1+9rwV7oJXyWfkcLqUZjrMiKWQJs+M
-	OgqO5vtJ/G+Vk/fwtQKv52j9xHWveWjH6jgyy++FIzreFxinuxJDdLCS1G6EV9TSpHM1VILPsOa
-	1rWfA/yHz6pUvUxpJuxQR5bO+iX/6w+I3o6pI1V0G4M76w7CJ4SsCVps8V+v8HYqPSUU5lKyQet
-	0kUBbOdnr96nnRO+UnMdrD0k2m8iCNiTLJazOkyAmqkOkY2VAKjTMJgW5++J3kBZfhY2RSZcaL9
-	OM9pGisk3jEqqLP+1oTQRAG+mJ2CcBmbebmZhHypB69aiyoT6LKhvhA4z
-X-Received: by 2002:a05:6214:2aa2:b0:880:1eb1:fdfb with SMTP id 6a1803df08f44-8802ec2ef50mr21081186d6.0.1761902487464;
-        Fri, 31 Oct 2025 02:21:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGNUAdNYmumEqNj+QhWtcRqw7r8QN5GKfMaLwnY2Fp+tH9FpwHXyXjINbqWk1YR3C2goLdtzw==
-X-Received: by 2002:a05:6214:2aa2:b0:880:1eb1:fdfb with SMTP id 6a1803df08f44-8802ec2ef50mr21081026d6.0.1761902486985;
-        Fri, 31 Oct 2025 02:21:26 -0700 (PDT)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6407b438b05sm1120434a12.27.2025.10.31.02.21.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Oct 2025 02:21:26 -0700 (PDT)
-Message-ID: <25579815-5727-41e8-a858-5cddcc2897b7@oss.qualcomm.com>
-Date: Fri, 31 Oct 2025 10:21:23 +0100
+	 In-Reply-To:Content-Type; b=roRm7TsfF2vl9BVpgXQEct9jqI6NsNSJEgz5iksx90pgzkTA9x2L60eVuO+PkdVTSQg8a93hTU4iWEe2bbqSbwm46tByaNKpjKpHp1TSpji538n08bBuOJA12M5bgSBOvT2o3MJO7By7y+wPVQXH6ntyBrU3QSwg7kd2MOoFtek=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=LcqTrZu7SLxXea5dpBHb4YpOIN6GdiRd+4Bvrhe4Tv9bx+GvYyrSH6H+N88trEcp8uh/ZPDXwrjlDkCYzDy8htm0WD23n0heqgH0Z0B4bAVbclXhQnWcH2hBW9/6p3Mqy9XEMzfkpl9UYQuHkV04g6x9CWjowDpZlaUSQr8RR0AidO93crG94HlaMKqIAfmnqRZhd5RfU2C41yDHNBbYN7+YhNNdYzabE5x3SAP2bnfYzkaPfREXYo5v9ZIUajomtbR3B/gseKPcZXuJE1IFpJ31b7/y9L0rkhjT1IUQCYUfz+27kmaksIiHJHkfDEjYoDMGRMFF1y8MoysbYFM4lA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=h6eYtTL0DQhhbLLDjkdPhsGYhqMz2kAOuy2S58hQrCk=;
+ b=TIZc1VrPGLUMePCZH0rFeaMWZ6zKyiFt0lPxUFthS/LeB14htfMZ4AYM6+FXz5sANSVfwdPJxr/tJ1QjWFDwTznRbCu6w9HZOuGMf+67J2gVYC17qa4ZCftevdPL83/itVBaOAcsvpSFwqSgvNZK1gHcjf2Y8d1rWiddryOpgUU2qkfpLVO5g4/1AuMTv5+DJt8Xby5wWL9I/o5/EHyqn8bvwWdLAWZM2WcACqor1HS3kjCiLk62Hwvem60WYZCJRwxO2LlXOmtT+ksrPYxZNgwz0OwaTj4Ww93i5+5/ERujFpmIr7h9+dCJcBq9BR2aJp1E9T/lGCOxq7aPam4Xbg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from PS2PR02CA0090.apcprd02.prod.outlook.com (2603:1096:300:5c::30)
+ by PUZPR06MB5652.apcprd06.prod.outlook.com (2603:1096:301:fb::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.13; Fri, 31 Oct
+ 2025 09:22:52 +0000
+Received: from TY2PEPF0000AB89.apcprd03.prod.outlook.com
+ (2603:1096:300:5c:cafe::80) by PS2PR02CA0090.outlook.office365.com
+ (2603:1096:300:5c::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9275.15 via Frontend Transport; Fri,
+ 31 Oct 2025 09:22:53 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ TY2PEPF0000AB89.mail.protection.outlook.com (10.167.253.7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9275.10 via Frontend Transport; Fri, 31 Oct 2025 09:22:51 +0000
+Received: from [172.16.96.116] (unknown [172.16.96.116])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 5A30A41C0145;
+	Fri, 31 Oct 2025 17:22:50 +0800 (CST)
+Message-ID: <0f5a28f4-ecf3-4a47-aa09-ab5b0e08e1d5@cixtech.com>
+Date: Fri, 31 Oct 2025 17:22:49 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,70 +72,404 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] SDM630/660: Add missing MDSS reset
-To: Alexey@web.codeaurora.org, Minnekhanov@web.codeaurora.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        stable@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Alexey Minnekhanov <alexeymin@postmarketos.org>
-References: <20251031-sdm660-mdss-reset-v1-0-14cb4e6836f2@postmarketos.org>
+Subject: Re: [PATCH v10 07/10] PCI: sky1: Add PCIe host support for CIX Sky1
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: bhelgaas@google.com, helgaas@kernel.org, lpieralisi@kernel.org,
+ kw@linux.com, robh@kernel.org, kwilczynski@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mpillai@cadence.com, fugang.duan@cixtech.com,
+ guoyin.chen@cixtech.com, peter.chen@cixtech.com,
+ cix-kernel-upstream@cixtech.com, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251020042857.706786-1-hans.zhang@cixtech.com>
+ <20251020042857.706786-8-hans.zhang@cixtech.com>
+ <aoxdmg4mxa7j575vzjw66uo5i6ibvfkgkrqhy6bhwpie7v4rk7@yj5fmhplivxp>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251031-sdm660-mdss-reset-v1-0-14cb4e6836f2@postmarketos.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMxMDA4NCBTYWx0ZWRfX1ROCJdiLIVGD
- LuC+QiDeETRPB7XLn+Lg6yh0JgYQhPC0MgZzVAbgqEH03My7L+fNF+e7WYAya/UJUygBDGfnzFx
- 1fYdr6H1qp3ekTgWfwr75FZwGaA9VzscqSPHUDGXVgTGnZoMvdX19NS3kMEbWWUS6px6H1tY/IR
- 0QKeV6duWtloeK8+uZsEsR0CaePVRdw+aT+OR+wBsEm87JBnz2gIezpWcgU/bmUVZwfEscXmXfR
- /xU9Yp39LKeeskASmHdP8rmWnUF+0MEzogPc4r1HK36P8P5vkEAGrOo8KUx5J7a0XuJtE7B23k8
- Bs62g5hf/rJiRkgAP5ba8CTQMyImypRcMSMuy1y3wpw5mr7q3vLibZmyUqr+TnXVyonEWeJMmwo
- YY42pPu7ddZZQYcZTbEv0z6lnRfNjA==
-X-Proofpoint-GUID: xRUy1tZh0I20iUT9Iid17ms5yA9TTNU4
-X-Authority-Analysis: v=2.4 cv=TsnrRTXh c=1 sm=1 tr=0 ts=69047f98 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=LpQP-O61AAAA:8 a=Gbw9aFdXAAAA:8
- a=QdJS1fbVFv8XyC4bU-YA:9 a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22
- a=pioyyrs4ZptJ924tMmac:22 a=9vIz8raoGPyDa4jBFAYH:22
-X-Proofpoint-ORIG-GUID: xRUy1tZh0I20iUT9Iid17ms5yA9TTNU4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-10-31_02,2025-10-29_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0
- spamscore=0 bulkscore=0 phishscore=0 suspectscore=0 adultscore=0
- clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2510310084
+From: Hans Zhang <hans.zhang@cixtech.com>
+In-Reply-To: <aoxdmg4mxa7j575vzjw66uo5i6ibvfkgkrqhy6bhwpie7v4rk7@yj5fmhplivxp>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB89:EE_|PUZPR06MB5652:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1434953c-36f6-46d5-eb59-08de185f10db
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|7416014|36860700013|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?Q3VrS0o1U29YYmwxdVM2YWI3OHozSlJBS0txekZTL09QK1M2WlJSK3lCVHI3?=
+ =?utf-8?B?bGtJWEZQZGpQanlQeDA0MmRwcHNsNGlOQzJrOWkrOU1OY25vL25ta0hkcVlk?=
+ =?utf-8?B?S1MxVTU1Qm9OcFNudkV3a2dVRm54OVpJUFdIbW5GU1VsUzBZRkhPbUZDeTNi?=
+ =?utf-8?B?eG1nekpMeXFvOHZnWDRCWEw0RktMYVFTSWtOMmlPZWsxUDRUNXlGRjVhNU1Q?=
+ =?utf-8?B?ZVgzTFRRKzZweWdWTG9CaTl6S1l3UlM0d2I1cXhCQkZPbVk5Z2k0VDZNR3dJ?=
+ =?utf-8?B?TXA3RmcvMUJyMTNNaTRrZ3JVZTBiS0RIK1g2eU5ZMFZUd1ZzUFZ3MFhvNmF1?=
+ =?utf-8?B?TzRoeUNrRlNPZXV6bFZoQUdjaGJnZWwwTUJHTzdzYTVnK2hBU2FENEwxTjlm?=
+ =?utf-8?B?VTU4US9RZUFkbkNPRC81T0tCNXhtU2R6cXZKYy9yWW91dURuUkg3aG1MWlJI?=
+ =?utf-8?B?M3VLMGtKbHJYWnMrQ3BDUUk2YnVML05pOWVIcnRFemJ1SEsydFlKUHJoaHZ1?=
+ =?utf-8?B?b2VjS0RuL0QxblUwNG9FTUpyVk1FVFdSMWE4eFFVS2ZqeHQrVGFwbU1ZSW5o?=
+ =?utf-8?B?OGMvbmNqNERHWDd3Y0F3aXdnVlRoT2lGRlpXOG1Ma3FUVUozNW9xOGcvZnpL?=
+ =?utf-8?B?YkJCN0F1dmRwMUZUanRMVnU4MWFDQXU4d3BUaUZlYTIwd3cwTnFwOGpRYkJD?=
+ =?utf-8?B?Q3pqMlpwUTNidmg2d1BMak5qbDFGZDNReDFmWWJaRGxCQjRpcEVSMkV4K0dG?=
+ =?utf-8?B?UnJ2V1RRc3A3YnZzYWRKUklnMnlSWmk1Ym04UkJGUk1qZXh0SGNvK1RESVJp?=
+ =?utf-8?B?VVNBb01ScDVjaU1pa0UzdWZGSnpaU2FvaGtZd3ZDU3pra2syYmhCem5HMWJR?=
+ =?utf-8?B?U3UxL2VUZ0JWSU5DNmxlOTdjVHNnQnp3YVZ0NWdOdmg0YmorZW5hcmtzRzMy?=
+ =?utf-8?B?WlBvamNBWUx2TTZZZjBqR2JOQVFsMGN1WnRRZHR5Skh4dEEvRG1Lc2dwY01J?=
+ =?utf-8?B?TWVHSHlSdTd6V3AzNk9xVzBTb3luSUE4SWxNMXdHc21zZWRROThMYzJ1b25m?=
+ =?utf-8?B?dTRxb3dJNVdVNXdhUzhDcXdIc3hWZDVRajVETDVTeWlmdkxPYytSZ3E2ZFdl?=
+ =?utf-8?B?Y08xTFErZGFDU1ZIMWRjTW1NcnhQSzdkU2ZEK2xxVmZmVk9Rbmo4amZJKzcr?=
+ =?utf-8?B?VUhkMGtjSHpDcUhzTnhmdi84Wm9yM0VrMlhZTVJpQTU4UHpvTmNMZDlCZ3RE?=
+ =?utf-8?B?cnR0bE9DVUpWTjd1QWJsczRNVExTeG9XSDIwclBsOHhvdjRrdW5vbTdNT2w2?=
+ =?utf-8?B?c1h0ckExUFVVQnlXRkFNSEEyTWZNazMvSDBLK0hwbkJSSXZQNWtqNEp2RXpu?=
+ =?utf-8?B?alREMlc1SEtPREdPcDJFSEN6QldDejFqOGhJZCtENGwrNStVcU92S2VRZmh0?=
+ =?utf-8?B?Mi9NUTlYeWRkWDZOSEllNmllcGNjVGlnQUlhRlBxcGZpTlo1QXpyT3IzYkZh?=
+ =?utf-8?B?YWF1eEpiMWlBT3dYeFRvUVpGKzIyVkhrT29wNkxVY3JIWk4xc2U3YXR4eVBk?=
+ =?utf-8?B?U285U3ZWZk92NEJSZ0I0K2xScjRlejB5eklYUU5JNVRtMUx5T1JtN1BZdTdm?=
+ =?utf-8?B?N1A1OEJ5TUdGSU9SRFNMb1NoczNiNzgyUnd6UlNMVWpRN0ZZNVdVdmpNc2tF?=
+ =?utf-8?B?Y1B2QnpFREZLbzdSMVV3Y0FFZGRXaFRjb0xOMFpxUEhydE1Pc2dYbmJRdnRO?=
+ =?utf-8?B?SlByang5MGlJUnZ0NHk3UklWNWxmdi9pcVhycHFOV0VWYmFCRmIrMW5kVG0y?=
+ =?utf-8?B?aTNVa1YvSmw0a1RLOXRQRHdyUVNoL3U3Y2Z1UHVJd2syeWZ4MnhFTXYyYUZ5?=
+ =?utf-8?B?VGwvYmN5OVZxVDZmZjB3cWtOQkR3RElib1g1YUFPZE9vaHFWa2sxeGVPeDNy?=
+ =?utf-8?B?bHVhMTRTSzRyWmpIb0xQVlcvbmJ6aWhGbDErVGRMVGxIOXN0aUtUY3dXdWtr?=
+ =?utf-8?B?ZWtjUWtITVArNHdXUFBwYkl2VXowVWR4b0ovUnE3M1puRmc5NHluWFR5dFd6?=
+ =?utf-8?B?VTFPTG9BeDMwbE5vN09qQjF2Q2xCZ2J1UFU2N0NrbGZBVm5vM0tFZk5rYi9w?=
+ =?utf-8?Q?wqP0=3D?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(7416014)(36860700013)(376014);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2025 09:22:51.4379
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1434953c-36f6-46d5-eb59-08de185f10db
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	TY2PEPF0000AB89.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR06MB5652
 
-On 10/31/25 3:27 AM, Alexey@web.codeaurora.org wrote:
-> Since kernel 6.17 display stack needs to reset the hardware properly to
-> ensure that we don't run into issues with the hardware configured by the
-> bootloader. MDSS reset is necessary to have working display when the
-> bootloader has already initialized it for the boot splash screen.
+
+
+On 10/31/2025 5:15 PM, Manivannan Sadhasivam wrote:
+> EXTERNAL EMAIL
 > 
-> Signed-off-by: Alexey Minnekhanov <<alexeymin@postmarketos.org>>
+> On Mon, Oct 20, 2025 at 12:28:54PM +0800, hans.zhang@cixtech.com wrote:
+>> From: Hans Zhang <hans.zhang@cixtech.com>
+>>
+>> Add driver for the CIX Sky1 SoC PCIe Gen4 16 GT/s controller based
+>> on the Cadence PCIe core.
+>>
+>> Supports MSI/MSI-x via GICv3, Single Virtual Channel, Single Function.
+>>
+>> Signed-off-by: Hans Zhang <hans.zhang@cixtech.com>
+>> ---
+>>   drivers/pci/controller/cadence/Kconfig    |  15 ++
+>>   drivers/pci/controller/cadence/Makefile   |   1 +
+>>   drivers/pci/controller/cadence/pci-sky1.c | 233 ++++++++++++++++++++++
+>>   3 files changed, 249 insertions(+)
+>>   create mode 100644 drivers/pci/controller/cadence/pci-sky1.c
+>>
+>> diff --git a/drivers/pci/controller/cadence/Kconfig b/drivers/pci/controller/cadence/Kconfig
+>> index 0b96499ae354..ceff65934e5f 100644
+>> --- a/drivers/pci/controller/cadence/Kconfig
+>> +++ b/drivers/pci/controller/cadence/Kconfig
+>> @@ -51,6 +51,21 @@ config PCIE_SG2042_HOST
+>>          controller in host mode. Sophgo SG2042 PCIe controller uses Cadence
+>>          PCIe core.
+>>
+>> +config PCI_SKY1_HOST
+>> +     tristate "CIX SKY1 PCIe controller (host mode)"
+>> +     depends on OF
+>> +     select PCIE_CADENCE_HOST
+>> +     select PCI_ECAM
+>> +     help
+>> +       Say Y here if you want to support the CIX SKY1 PCIe platform
+>> +       controller in host mode. CIX SKY1 PCIe controller uses Cadence
+>> +       HPA (High Performance Architecture IP [Second generation of
+>> +       Cadence PCIe IP])
+>> +
+>> +       This driver requires Cadence PCIe core infrastructure
+>> +       (PCIE_CADENCE_HOST) and hardware platform adaptation layer
+>> +       to function.
+>> +
+>>   config PCI_J721E
+>>        tristate
+>>        select PCIE_CADENCE_HOST if PCI_J721E_HOST != n
+>> diff --git a/drivers/pci/controller/cadence/Makefile b/drivers/pci/controller/cadence/Makefile
+>> index 30189045a166..b8ec1cecfaa8 100644
+>> --- a/drivers/pci/controller/cadence/Makefile
+>> +++ b/drivers/pci/controller/cadence/Makefile
+>> @@ -9,3 +9,4 @@ obj-$(CONFIG_PCIE_CADENCE_EP) += pcie-cadence-ep-mod.o
+>>   obj-$(CONFIG_PCIE_CADENCE_PLAT) += pcie-cadence-plat.o
+>>   obj-$(CONFIG_PCI_J721E) += pci-j721e.o
+>>   obj-$(CONFIG_PCIE_SG2042_HOST) += pcie-sg2042.o
+>> +obj-$(CONFIG_PCI_SKY1_HOST) += pci-sky1.o
+>> diff --git a/drivers/pci/controller/cadence/pci-sky1.c b/drivers/pci/controller/cadence/pci-sky1.c
+>> new file mode 100644
+>> index 000000000000..4b0388394db3
+>> --- /dev/null
+>> +++ b/drivers/pci/controller/cadence/pci-sky1.c
+>> @@ -0,0 +1,233 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * PCIe controller driver for CIX's sky1 SoCs
+>> + *
+>> + * Copyright 2025 Cix Technology Group Co., Ltd.
+>> + * Author: Hans Zhang <hans.zhang@cixtech.com>
+>> + */
+>> +
+>> +#include <linux/kernel.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/of_device.h>
+>> +#include <linux/pci.h>
+>> +#include <linux/pci-ecam.h>
+>> +#include <linux/pci_ids.h>
+>> +
+>> +#include "pcie-cadence.h"
+>> +#include "pcie-cadence-host-common.h"
+>> +
+>> +#define STRAP_REG(n)                 ((n) * 0x04)
+>> +#define STATUS_REG(n)                        ((n) * 0x04)
+>> +#define LINK_TRAINING_ENABLE         BIT(0)
+>> +#define LINK_COMPLETE                        BIT(0)
+>> +
+>> +#define SKY1_IP_REG_BANK             0x1000
+>> +#define SKY1_IP_CFG_CTRL_REG_BANK    0x4c00
+>> +#define SKY1_IP_AXI_MASTER_COMMON    0xf000
+>> +#define SKY1_AXI_SLAVE                       0x9000
+>> +#define SKY1_AXI_MASTER                      0xb000
+>> +#define SKY1_AXI_HLS_REGISTERS               0xc000
+>> +#define SKY1_AXI_RAS_REGISTERS               0xe000
+>> +#define SKY1_DTI_REGISTERS           0xd000
+>> +
+>> +#define IP_REG_I_DBG_STS_0           0x420
+>> +
+>> +struct sky1_pcie {
+>> +     struct cdns_pcie *cdns_pcie;
+>> +     struct cdns_pcie_rc *cdns_pcie_rc;
+>> +
+>> +     struct resource *cfg_res;
+>> +     struct resource *msg_res;
+>> +     struct pci_config_window *cfg;
+>> +     void __iomem *strap_base;
+>> +     void __iomem *status_base;
+>> +     void __iomem *reg_base;
+>> +     void __iomem *cfg_base;
+>> +     void __iomem *msg_base;
+>> +};
+>> +
+>> +static int sky1_pcie_resource_get(struct platform_device *pdev,
+>> +                               struct sky1_pcie *pcie)
+>> +{
+>> +     struct device *dev = &pdev->dev;
+>> +     struct resource *res;
+>> +     void __iomem *base;
+>> +
+>> +     base = devm_platform_ioremap_resource_byname(pdev, "reg");
+>> +     if (IS_ERR(base))
+>> +             return dev_err_probe(dev, PTR_ERR(base),
+>> +                                  "unable to find \"reg\" registers\n");
+>> +     pcie->reg_base = base;
+>> +
+>> +     res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "cfg");
+>> +     if (!res)
+>> +             return dev_err_probe(dev, ENXIO, "unable to get \"cfg\" resource\n");
+> 
+> s/ENXIO/ENODEV
 
-You git identity has two less/greater than symbols
 
-Also.. thunderbird argues there's two of you:
+Hi Mani,
 
+Thank you very much for your reply.
 
-Alexey@web.codeaurora.org
-Minnekhanov@web.codeaurora.org
+Will change.
 
-plus.. I thought codeaurora was long dead!?
+> 
+>> +     pcie->cfg_res = res;
+>> +
+>> +     base = devm_platform_ioremap_resource_byname(pdev, "rcsu_strap");
+>> +     if (IS_ERR(base))
+>> +             return dev_err_probe(dev, PTR_ERR(base),
+>> +                                  "unable to find \"rcsu_strap\" registers\n");
+>> +     pcie->strap_base = base;
+>> +
+>> +     base = devm_platform_ioremap_resource_byname(pdev, "rcsu_status");
+>> +     if (IS_ERR(base))
+>> +             return dev_err_probe(dev, PTR_ERR(base),
+>> +                                  "unable to find \"rcsu_status\" registers\n");
+>> +     pcie->status_base = base;
+>> +
+>> +     res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "msg");
+>> +     if (!res)
+>> +             return dev_err_probe(dev, ENXIO, "unable to get \"msg\" resource\n");
+> 
+> s/ENXIO/ENODEV
 
-My DNS certainly doesn't know about web.codeaurora.org specifically
+Will change.
 
-Konrad
+> 
+>> +     pcie->msg_res = res;
+>> +     pcie->msg_base = devm_ioremap_resource(dev, res);
+>> +     if (IS_ERR(pcie->msg_base)) {
+>> +             return dev_err_probe(dev, PTR_ERR(pcie->msg_base),
+>> +                                  "unable to ioremap msg resource\n");
+>> +     }
+>> +
+>> +     return 0;
+>> +}
+>> +
+>> +static int sky1_pcie_start_link(struct cdns_pcie *cdns_pcie)
+>> +{
+>> +     struct sky1_pcie *pcie = dev_get_drvdata(cdns_pcie->dev);
+>> +     u32 val;
+>> +
+>> +     val = readl(pcie->strap_base + STRAP_REG(1));
+>> +     val |= LINK_TRAINING_ENABLE;
+>> +     writel(val, pcie->strap_base + STRAP_REG(1));
+>> +
+>> +     return 0;
+>> +}
+>> +
+>> +static void sky1_pcie_stop_link(struct cdns_pcie *cdns_pcie)
+>> +{
+>> +     struct sky1_pcie *pcie = dev_get_drvdata(cdns_pcie->dev);
+>> +     u32 val;
+>> +
+>> +     val = readl(pcie->strap_base + STRAP_REG(1));
+>> +     val &= ~LINK_TRAINING_ENABLE;
+>> +     writel(val, pcie->strap_base + STRAP_REG(1));
+>> +}
+>> +
+>> +static bool sky1_pcie_link_up(struct cdns_pcie *cdns_pcie)
+>> +{
+>> +     u32 val;
+>> +
+>> +     val = cdns_pcie_hpa_readl(cdns_pcie, REG_BANK_IP_REG,
+>> +                               IP_REG_I_DBG_STS_0);
+>> +     return val & LINK_COMPLETE;
+>> +}
+>> +
+>> +static const struct cdns_pcie_ops sky1_pcie_ops = {
+>> +     .start_link = sky1_pcie_start_link,
+>> +     .stop_link = sky1_pcie_stop_link,
+>> +     .link_up = sky1_pcie_link_up,
+>> +};
+>> +
+>> +static int sky1_pcie_probe(struct platform_device *pdev)
+>> +{
+>> +     struct cdns_plat_pcie_of_data *reg_off;
+>> +     struct device *dev = &pdev->dev;
+>> +     struct pci_host_bridge *bridge;
+>> +     struct cdns_pcie *cdns_pcie;
+>> +     struct resource_entry *bus;
+>> +     struct cdns_pcie_rc *rc;
+>> +     struct sky1_pcie *pcie;
+>> +     int ret;
+>> +
+>> +     pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
+>> +     if (!pcie)
+>> +             return -ENOMEM;
+>> +
+>> +     bridge = devm_pci_alloc_host_bridge(dev, sizeof(*rc));
+>> +     if (!bridge)
+>> +             return -ENOMEM;
+>> +
+>> +     ret = sky1_pcie_resource_get(pdev, pcie);
+>> +     if (ret < 0)
+>> +             return ret;
+>> +
+>> +     bus = resource_list_first_type(&bridge->windows, IORESOURCE_BUS);
+>> +     if (!bus)
+>> +             return -ENODEV;
+>> +
+>> +     pcie->cfg = pci_ecam_create(dev, pcie->cfg_res, bus->res,
+>> +                                 &pci_generic_ecam_ops);
+>> +     if (IS_ERR(pcie->cfg))
+>> +             return PTR_ERR(pcie->cfg);
+>> +
+>> +     bridge->ops = (struct pci_ops *)&pci_generic_ecam_ops.pci_ops;
+>> +     rc = pci_host_bridge_priv(bridge);
+>> +     rc->ecam_supported = 1;
+>> +     rc->cfg_base = pcie->cfg->win;
+>> +     rc->cfg_res = &pcie->cfg->res;
+>> +
+>> +     cdns_pcie = &rc->pcie;
+>> +     cdns_pcie->dev = dev;
+>> +     cdns_pcie->ops = &sky1_pcie_ops;
+>> +     cdns_pcie->reg_base = pcie->reg_base;
+>> +     cdns_pcie->msg_res = pcie->msg_res;
+>> +     cdns_pcie->is_rc = 1;
+>> +
+>> +     reg_off = devm_kzalloc(dev, sizeof(*reg_off), GFP_KERNEL);
+>> +     if (!reg_off)
+>> +             return -ENOMEM;
+>> +
+>> +     reg_off->ip_reg_bank_offset = SKY1_IP_REG_BANK;
+>> +     reg_off->ip_cfg_ctrl_reg_offset = SKY1_IP_CFG_CTRL_REG_BANK;
+>> +     reg_off->axi_mstr_common_offset = SKY1_IP_AXI_MASTER_COMMON;
+>> +     reg_off->axi_slave_offset = SKY1_AXI_SLAVE;
+>> +     reg_off->axi_master_offset = SKY1_AXI_MASTER;
+>> +     reg_off->axi_hls_offset = SKY1_AXI_HLS_REGISTERS;
+>> +     reg_off->axi_ras_offset = SKY1_AXI_RAS_REGISTERS;
+>> +     reg_off->axi_dti_offset = SKY1_DTI_REGISTERS;
+>> +     cdns_pcie->cdns_pcie_reg_offsets = reg_off;
+>> +
+>> +     pcie->cdns_pcie = cdns_pcie;
+>> +     pcie->cdns_pcie_rc = rc;
+>> +     pcie->cfg_base = rc->cfg_base;
+>> +     bridge->sysdata = pcie->cfg;
+>> +
+>> +     rc->vendor_id = PCI_VENDOR_ID_CIX;
+>> +     rc->device_id = PCI_DEVICE_ID_CIX_SKY1;
+>> +     rc->no_inbound_map = 1;
+>> +
+>> +     dev_set_drvdata(dev, pcie);
+>> +
+>> +     ret = cdns_pcie_hpa_host_setup(rc);
+>> +     if (ret < 0) {
+>> +             pci_ecam_free(pcie->cfg);
+>> +             return ret;
+>> +     }
+>> +
+>> +     return 0;
+>> +}
+>> +
+>> +static const struct of_device_id of_sky1_pcie_match[] = {
+>> +     { .compatible = "cix,sky1-pcie-host", },
+>> +     {},
+>> +};
+> 
+> Missing MODULE_DEVICE_TABLE(). Your driver is not going to be auto loaded.
+
+Will add.
+
+> 
+>> +
+>> +static void sky1_pcie_remove(struct platform_device *pdev)
+>> +{
+>> +     struct sky1_pcie *pcie = platform_get_drvdata(pdev);
+>> +
+>> +     pci_ecam_free(pcie->cfg);
+>> +}
+>> +
+>> +static struct platform_driver sky1_pcie_driver = {
+>> +     .probe  = sky1_pcie_probe,
+>> +     .remove = sky1_pcie_remove,
+>> +     .driver = {
+>> +             .name = "sky1-pcie",
+>> +             .of_match_table = of_sky1_pcie_match,
+> 
+> Use .probe_type = PROBE_PREFER_ASYNCHRONOUS.
+
+Will change. Thank you for your reminder.
+
+Best regards,
+Hans
+
+> 
+> - Mani
+> 
+> --
+> மணிவண்ணன் சதாசிவம்
+
 
