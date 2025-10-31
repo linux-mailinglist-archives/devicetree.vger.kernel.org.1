@@ -1,93 +1,87 @@
-Return-Path: <devicetree+bounces-233945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31704C26FA7
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 22:06:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33DEFC26FB8
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 22:12:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D9061B27FAF
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 21:06:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9CF63BF09C
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 21:12:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FE96298991;
-	Fri, 31 Oct 2025 21:06:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA0E72EDD75;
+	Fri, 31 Oct 2025 21:12:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KdTQF6nI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XVOC31sb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 966E726ED21
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 21:06:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F6A12E0914
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 21:12:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761944784; cv=none; b=PUhm8XujdgAkZQ8PymAIyZiIcwcLciVxcLaPG/wBz3fv0oXoMpnj06UeThqnWwR3+Pmf8qDYlTviO8YvO5PUw+IP2YmTE7nF283RwXKtDUctoO6pnIFzL8YLGOnIk/RnMZC8g9scEL/6lFQ60a7xiCxoj82KhAr8TmLn0oL+nuQ=
+	t=1761945152; cv=none; b=GHxz350s6R2IsbigtsYHgRoudvnJ1X9tOnKyDNEdClgfIc8yEhgRtr21uYgRSbZgSuo7hUxoXwNAoLZh/v9/TnPg8suRL947GH/Onf50Rxvlipq60FBLJjuAh6Cky+gFOmEB/cMIsjvF38RehIwfcW2/o8Gs1xF3M9+DBOh0vcg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761944784; c=relaxed/simple;
-	bh=ZQ8kJ/dQVhvAPrJjeJICrE9lcMOn5vbnS0hI7K0vOqE=;
+	s=arc-20240116; t=1761945152; c=relaxed/simple;
+	bh=RxRZVbgBXbZ11l9CJuzna3nb+s+vri3PRzzPf/vY52E=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YZpmuByzKJ1cwPbfNiVvzW0n0HCftbo3RzrKr78MCYbT3UAq/MxGjvNhiGYiyV4tRevYhR38HbilP6q9hP5gl0vWY1E/+J5iVWAuvFnTNajmpbTLUTVphkgA7O5EZWHmZkAhNipSMG2r3CHiAxyaL6QfesAe35SdraifJ/Gs1Y4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KdTQF6nI; arc=none smtp.client-ip=209.85.128.174
+	 To:Cc:Content-Type; b=QvjpcgWMPl+xvLNQ6ATGEoBmQUZojOKTLEyG8LfB/NKh43t56lVFpocEk9SUzgdY4x3Ilzr9HjpcnDoD6+yMnBGMXE0J9Q53RPa+OJxCoC54u2hhZsPsK0Vj2lNoocY3uYjwGZo5plUCQZRsJ3k5htucUZwjOxYLiIdyRfjEqlw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XVOC31sb; arc=none smtp.client-ip=209.85.128.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-786583618d8so5074247b3.2
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 14:06:22 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-78488cdc20aso38874537b3.1
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 14:12:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761944781; x=1762549581; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1761945150; x=1762549950; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZQ8kJ/dQVhvAPrJjeJICrE9lcMOn5vbnS0hI7K0vOqE=;
-        b=KdTQF6nIOCkJvRxfFMQQkkrpr6lmEuf7pbpriKg4wNp0MXwV54aRbM1g0NRIFJuVzv
-         y2lyXfLw3LhxoAmyBxQaIOUysMqIj/SaumDWF5UVLqZQOUbxXkIqWTHYiCwu+TMlGhek
-         bWTC2UxZL5BnUISTNf3I4naf0lAeODfI1nXDY8AQZphPgllxWOkLXlXfORJFn0T2qVVs
-         MQ6jZa65fEF+jKCenLh2K6gmWyOkSzt0cvfQ8r+h5Gp85C2jdJjxeiQ7jpN7SmeSNkcK
-         pIHaGpK3gTFiUCbDK54b6Xo331/G6b6TyLc6T1TQquZTSzYEfEHTn67B4ptHRidnJsWh
-         cM9A==
+        bh=RxRZVbgBXbZ11l9CJuzna3nb+s+vri3PRzzPf/vY52E=;
+        b=XVOC31sbo9r5F7BVAWX5E/04JfG3p7nH5F3qCrZ2DQ1cQz15Uw15+2oZcQU4FIHodW
+         vkyPNxj4b0FhXxT38Q8lXTNbYaKNZGMO8RtTrWnOSUmShjcK4zx3FlKPvUQZ74AXPrYb
+         rMYtQbcV+i/scrt536UfZjv10zhBBdyxZpHtyjPSgQzuetr2dA/YvqB7iWHxCHDKRK1A
+         01c/Hh0zE05wcc43EmF6Fe1KiLR5ntFUHf+uV4FDc/XuvoL4raii/92gP2yFlIre4Z75
+         nclkMgk9upNA50VoOKXV3/gXP9aBu4Lno7NGfbJWRClal6YE+abvDic3D7FfGXC6sJFg
+         Q14Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761944781; x=1762549581;
+        d=1e100.net; s=20230601; t=1761945150; x=1762549950;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ZQ8kJ/dQVhvAPrJjeJICrE9lcMOn5vbnS0hI7K0vOqE=;
-        b=dqpIktXugx6RaYBVV5OJUlukoIJRQF9OxozLFEZOISmLrvlX/m7kaz38SHFU3N/hxi
-         DUOCb3wFKFZ0rDkhKWHittogNqroPseaPkiBslqMh0PyaoqlEF6wnnCNYuH+HdmxqpF1
-         sWIgN3oQ5Id9G38OAfnU+IUJE+2K65afV6vU8GM84d8ohvJfdI8Q1Zvf5sbmbML9ZPrs
-         e2W5Z08HSMA35khD49Z5jCpFdYIcfZp2fbmSPSrDmWnPScMN7NvXOWIEPnwX4La/u2Ky
-         /Jzdh73PnRXh4NzUPY+j4SAjhdFsMrzFrCMYsZWiuX7WUkuznDZIeuNpPWF5mTeysYYp
-         uFFQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWxIJULVuE69QzVzOz5Pr0sZEaQErpQIZQFoQZ6NLxLDUoKIOGipRCJDLk/R4J9+iOJHYtrSEWc5F59@vger.kernel.org
-X-Gm-Message-State: AOJu0YybqW9uSi04mystmdDKod2uOQfEP18HioZ5aX8KQzUJtiECr6CX
-	kFoVVH/tO10qevRnwxcC9hBMHzxuXmcfYz3dNu5fprF2rwR8fo8cML2dK3m1wLzzqFz0T3fDjf0
-	tiqAAuBCeOSjk5sCiITYzG6ooASIdeFY=
-X-Gm-Gg: ASbGncsObKSbQl82yKratgFGRpAfmTe3iVWWmQi7/iEWZ4S/lCJz7X7o3Cwa+UJQy7U
-	hffNxbUQzpx3S/eyT41Api1j5LweBfAzlRgQwVj3eKPM3rbJ4OxlR/7vGyQXrhXiQeV1GADTGRj
-	3ZKZasatCusiVQWMGzfzlFELnfBTCZoebFGMHl/GYxdzfyO0oqHGjDkkl/cFh6mH2Fq9dUhrMuH
-	4eBgERJXMrUym1k+auS434MrLXWEi6i8unXEHUZtEwKDgV5oT5DJ1D96JmAGQ==
-X-Google-Smtp-Source: AGHT+IE9sBE0jM85fWoe+G8dRBhCXA3kX4jwHQnI5VFiFvn+DYXwglZxhpeYQTVBqJJN5EkFNvDu2iBSj3Q8Q2wI6b0=
-X-Received: by 2002:a05:690c:d88:b0:784:ab8d:4b97 with SMTP id
- 00721157ae682-7864856cc5dmr46049457b3.58.1761944781434; Fri, 31 Oct 2025
- 14:06:21 -0700 (PDT)
+        bh=RxRZVbgBXbZ11l9CJuzna3nb+s+vri3PRzzPf/vY52E=;
+        b=cT4ve3jdxsuI+QPhUiE94feyzfLP6pst984fEHjQcO2+Tc6Ce/ztgu43itdsGuFzUh
+         KzGh/psgXfQ1IJVePFnR+JImI5OOsT2noAP7jSJmEI/KTmex8UVRoxdkksJKH/cEfS+3
+         sQKH/eyhXwzZglOCLEjaiVD0Nep2GvzswkNp+JSclwHwEjU6T1kX5T+83PquieOib7Yp
+         0pieDaVQC4Vv238TbOCaQBOJqMJE/IkFIpK12UhR5t7oY/gYTfxvF8Shwwcv77grkFWh
+         Z4m3pBk+dJN3F99xPdc7NYoi4EMaE8Q8KQ4uDbzuyvB0Qw5XVvqQSDrZt4+lwrevIRpk
+         IdKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXzUlWtY9FyWG7Ub007j6igtcN4BsScfHolrfWaDxcK6MPUS0SvzdRifLrvjYvxPq2FzxDulO/nIH+g@vger.kernel.org
+X-Gm-Message-State: AOJu0YxeJZNsGbYWV7SqsnZxMvxnSQpiISadqV8dl1PvUKxFiDh7Znd7
+	u+nbAZaF1hDyLBOgFmLpcUkkcLcWuSD/sOgZidm4mYpYwZHf2VsvuD+IjjVmE4wjhzOdzSaCbyk
+	GW47zNdO0OyfmDjEzHYMozpKJgEc8nGQ=
+X-Gm-Gg: ASbGncsHUL+QM1VLX/FnOcKksSYGiGyuEnq6XsMv0Hh18/jQfq1L7T4TjNpc70h3QH3
+	rruL9yMRSo41ssXr/wEi9kR25bPL5Ih2+NVW0Z4YvL45r3MvCx1VnaQCziyoezuhpTd3WKe1o85
+	xQwNxv88y9ADBhFhgGTHmNEpkSmGqncyuCn7d4b3FcD6pIFuoiCXHrRM92WUdFyc4Sll8ExIDnG
+	YS/KBxSVswPZK46wWn2U4nFNJgbw0gx9Dg8ha/jzi2NIiBxPm6gNmsj+aoxmA==
+X-Google-Smtp-Source: AGHT+IGf+2hqwNIvkxF2qVcHXGJA9AdN87r2O00FhqVjx+0PJJ4RnIdOz3Y2v4WN+nf2PaxkjO4OJTI6SiNS6tCn6BE=
+X-Received: by 2002:a05:690c:6111:b0:786:56ec:e3c6 with SMTP id
+ 00721157ae682-78656ecee71mr19761427b3.55.1761945150168; Fri, 31 Oct 2025
+ 14:12:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251014044135.177210-1-ghatto404@gmail.com> <20251014044135.177210-4-ghatto404@gmail.com>
- <e114504e-4bdd-46b9-b708-8eebc3075163@oss.qualcomm.com> <CAMQHOhfjsi1L+3j3TrcjEjPp3xkn94KOdsrVZvJCyUDFBBSeqg@mail.gmail.com>
- <d06a254f-bf54-4bdf-bd09-3ee5e5b31bad@oss.qualcomm.com> <CAMQHOhe=WYhtsjHMcRnJOi8UhnNNBfveTWRGSZ_bg24gFysAEw@mail.gmail.com>
- <8bd5486f-38a9-4104-8d09-234f642b45fe@oss.qualcomm.com> <CAMQHOheTkKC8NcRrPxKZdB_h0SJGNJVMd4NUD7TE4becPouWyQ@mail.gmail.com>
- <73d30994-3ec3-41bc-9b07-638d4173dfe6@oss.qualcomm.com> <7C2DF8E1-D84C-428C-B064-3D8CA16FEA29@gmail.com>
- <7e5f753d-a26d-40fb-9cde-ec17eff85c27@oss.qualcomm.com> <E9C95D16-18DB-4AE9-8C50-BE3481A25FB3@gmail.com>
- <a04742f3-8a1b-4d69-acd9-5d8dbd5a8886@oss.qualcomm.com>
-In-Reply-To: <a04742f3-8a1b-4d69-acd9-5d8dbd5a8886@oss.qualcomm.com>
+References: <20251014044135.177210-1-ghatto404@gmail.com> <91113d48-a8ef-4a24-a73f-6d32ac271a00@oss.qualcomm.com>
+In-Reply-To: <91113d48-a8ef-4a24-a73f-6d32ac271a00@oss.qualcomm.com>
 From: Ghatto <ghatto404@gmail.com>
-Date: Fri, 31 Oct 2025 18:06:08 -0300
-X-Gm-Features: AWmQ_bmacakBqv4QAY89pzDEVGDDX2AV4j0-p1iYjULhBum7nlyX1fQqrIZTKCE
-Message-ID: <CAMQHOhdmf5TvF3bA4QcTdBY+A2ao1_bDXPPya5aiOjHJ0yLqbQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/6] arm64: dts: qcom: r0q: add touchscreen support
+Date: Fri, 31 Oct 2025 18:12:18 -0300
+X-Gm-Features: AWmQ_bkJM_BsqbzwVWRLOCiui_KfbOc2l1X_oA_9DhB9pGWlZLXqfCHgZ0VRaqY
+Message-ID: <CAMQHOhcMUk99wdS03yjQiwzTg0D0mt8H-QU5QQFn44m7sDZ25Q@mail.gmail.com>
+Subject: Re: [PATCH v2 0/6] arm64: dts: qcom: r0q: enable more peripherals
 To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 Cc: Krzysztof Kozlowski <krzk@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
 	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -96,98 +90,37 @@ Cc: Krzysztof Kozlowski <krzk@kernel.org>, Bjorn Andersson <andersson@kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 29, 2025 at 6:50=E2=80=AFAM Konrad Dybcio
+On Tue, Oct 14, 2025 at 6:58=E2=80=AFAM Konrad Dybcio
 <konrad.dybcio@oss.qualcomm.com> wrote:
 >
-> On 10/27/25 7:32 PM, Eric Gon=C3=A7alves wrote:
-> >
-> >
-> > On October 20, 2025 9:18:18 AM GMT-03:00, Konrad Dybcio <konrad.dybcio@=
-oss.qualcomm.com> wrote:
-> >> On 10/17/25 8:22 PM, Eric Gon=C3=A7alves wrote:
-> >>>
-> >>>
-> >>> On October 17, 2025 5:20:43 AM GMT-03:00, Konrad Dybcio <konrad.dybci=
-o@oss.qualcomm.com> wrote:
-> >>>> On 10/16/25 10:08 PM, Ghatto wrote:
-> >>>>> On Thu, Oct 16, 2025 at 6:06=E2=80=AFAM Konrad Dybcio
-> >>>>> <konrad.dybcio@oss.qualcomm.com> wrote:
-> >>>>>>
-> >>>>>>
-> >>>>>>
-> >>>>>> On 10/14/25 9:04 PM, Ghatto wrote:
-> >>>>>>> On Tue, Oct 14, 2025 at 11:18=E2=80=AFAM Konrad Dybcio
-> >>>>>>> <konrad.dybcio@oss.qualcomm.com> wrote:
-> >>>>>>>>
-> >>>>>>>> On 10/14/25 5:10 PM, Ghatto wrote:
-> >>>>>>>>> On Tue, Oct 14, 2025 at 7:01=E2=80=AFAM Konrad Dybcio
-> >>>>>>>>> <konrad.dybcio@oss.qualcomm.com> wrote:
-> >>>>>>>>>>
-> >>>>>>>>>> On 10/14/25 6:41 AM, Eric Gon=C3=A7alves wrote:
-> >>>>>>>>>>> Enable the ST-Microelectronics FTS2BA61Y touchscreen. This pa=
-tch
-> >>>>>>>>>>> depends on "Input: add support for the STM FTS2BA61Y touchscr=
-een".
-> >>>>>>>>>>
-> >>>>>>>>>> The second sentence doesn't really make sense to be included i=
-n
-> >>>>>>>>>> the git log
-> >>>>>>>>> I'll keep it to the cover letter then
-> >>>>>>>>>>
-> >>>>>>>>>>> The device has an issue where SPI 8 (the bus which the touchs=
-creen is
-> >>>>>>>>>>> connected to) is not working properly right now, so
-> >>>>>>>>>>> spi-gpio is used instead.
-> >>>>>>>>>>
-> >>>>>>>>>> Some Samsung devices used to use spi/i2c-gpio intentionally, a=
-lso
-> >>>>>>>>>> on downstream. I'm assuming this isn't the case for r0q.
-> >>>>>>>>> It isn't, the device uses fts2ba61y on the spi8 bus - I hosted =
-the
-> >>>>>>>>> DT at https://github.com/ghatt-o/ss_experiments/blob/main/r0q.d=
-ts if you
-> >>>>>>>>> want to take a look.
-> >>>>>>>>>>
-> >>>>>>>>>> Did you enable gpi_dma1, qupv3_id_1 before spi8, when testing
-> >>>>>>>>> The driver probes, but it fails to recognize the touchscreen de=
-vice
-> >>>>>>>>
-> >>>>>>>> Could you post a complete dmesg and the precise DT diff you used=
-?
-> >>>>>>> https://pastebin.com/QkYa8nMp (android dmesg) mainline dmesg does=
-n't have
-> >>>>>>
-> >>>>>> The link has expired =F0=9F=99=81
-> >>>>> https://pastebin.com/s4abJS9M shouldn't expire now!
-> >>>>
-> >>>> And yet it did!
-> >>>>
-> >>>> Feel free to just attach it to your message.. the list may bounce
-> >>>> it, but it will still reach the To/Cc recipients
-> >>> Attached the dmesg.txt file.
-> >>
-> >> I'm interested in what happens early when the SPI hosts are programmed=
+> On 10/14/25 6:41 AM, Eric Gon=C3=A7alves wrote:
+> > This patchset adds support for multiple devices found on the Galaxy S22=
 ,
-> >> whether there's any additional debug messages.
-> >>
-> >> If your log buffer is overrunning, you can add log_buf_len=3D8M to you=
-r
-> >> cmdline (which will make the buffer 8MiB long)
-> > Is it that big of a deal though? spi-gpio
-> > works just fine for touchscreen.
+> > side buttons, touchscreen, max77705 charger/fuelgauge, RTC and UFS. It
+> > depends on "Input: add support for the STM FTS2BA61Y touchscreen" for
+> > TS to be enabled - and for the fuelgauge/charger to work,
+> > "mfd: max77705: support revision 0x2" is needed too.
+> >
+> > Thanks!
+> >
+> > Changes in v2:
+> > - split the gpio keys patch into 2 for small refactor
+> > - rename spi-gpio: spi-gpio@0 to spi8
+> > - use tabs instead of spaces on max77705 nodes
+> > - added new patch that fixes adsp_mem and video_mem memory regions
+> > I couldn't find the clock-frequency for i2c5 bus :(
 >
-> It's like using CPU rendering even though your computer has a GPU in it..
-Yeah, but CPU rendering is slow, while the touchscreen
-on spi-gpio is just as fast as it is on Android.
-
+> You can boot downstram and run debugcc to dump the current state
+> (incl. rates) of all clocks
 >
-> Plus we don't expect the upstream driver to have such odd issues, so I'd
-> really like to get to the bottom of it
-I don't think the log buffer is overrunning, where can I find the SPI host =
-logs?
+> https://github.com/linux-msm/debugcc
+I can't get a custom build of the downstream kernel running on recent
+Android versions...
+>
+> Or /sys/kernel/debug/clk/gcc_name_of_the_clock/clk_rate
+Nothing exists past /sys/kernel/debug
+>
+> may also give you a good result, although YMMV
 >
 > Konrad
-
-I'm gonna drop this patch so the other ones are able to get merged
-while I work on the driver.
 
