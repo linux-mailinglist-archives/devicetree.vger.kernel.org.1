@@ -1,163 +1,230 @@
-Return-Path: <devicetree+bounces-233716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C7A0C24EF2
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:10:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8608CC24EAA
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:07:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C04A91B22C6C
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:09:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBEFB3B7BE9
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:07:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4632234A761;
-	Fri, 31 Oct 2025 12:07:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D26983469E9;
+	Fri, 31 Oct 2025 12:07:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DrtbRIPU";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="K5o4IEfH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KwzKI244"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 856CA347FE6
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:07:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F100D284690
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:07:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761912466; cv=none; b=Db01eR9WZF/WIALj8+4pTu2qHGRZHqLPLzOq7rEIul9Qsq+9Uux4Yv7RcvqOXIQIkRZwEsSCV20aGS5FFd3MC14Sr5fgfb1YnKThuHKFJAlALSgkEVyyNXV5MlfFy+kfsGVomnnuaHx+bY7IG1/FCFsl0/jpUwzBi0GgEebGK5s=
+	t=1761912429; cv=none; b=AdjqpVUGeGvnIGnJoBdwqQCz2NwepfOXDyqwqUevAfgePWPOS2/Lt54IvJo/dGJnvlcWlv0dWA/KpY/cdtYWuJ+fuZx4pZeT+BfLPBtd9r9x3/WwccUyxD3aHOyOpNifO03xxz8uQBF+n6K/BG+RHr9eTuSOzWkrDR8smnfuv+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761912466; c=relaxed/simple;
-	bh=Af1tMCfkDQ1lQfRQaKUsYRHlEVRdIg23yVqZC+J8rAU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Qju7bXPVYJUzf1JswMZr92XMlCkPg0g9HOQzXj6k2Hsf2TgrcA/M7qbRdWERbHRynP15/35QJzqtBNeIL0W/5l8hUwH3GhdqDZb+WXzPi2LFjkdDB2TJxTTTD8CSqiuZT3cgrM+iN6WAOFTz8riyUENuahhUh+V8IdWVfxOx2ek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DrtbRIPU; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=K5o4IEfH; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59VA3pic2558875
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:07:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=4E/WBBGg3Ro
-	41UM204RDH20wPcFyThixToHapyaAtXQ=; b=DrtbRIPUjVvDUgoTP0uCtrh9CuI
-	1IyG17YIoo0TcBrD74kFtD2GfA5Q3eLPYKgL5ppJ29mRyvvkSFY73bqBsDBfzF+N
-	o/7wC0BjfrNbAQ62+U1wPbBNRND9N+Mj0FMoFcx3DHCw1TwA/yjnjLXzBMHz58cR
-	IHxsqFzQSOiHfoBdk0SCFo5l2SPzsF6I/UaHRnAkn/8kxMxxIDIUBOwAjZAtyFnn
-	K4SeK5iGNAmpx1bVyysdH9MLb8NrJ/Wa6jfrUMZkeHCNv+3cTjWi72uS6bmerl67
-	tzKHaSLDjuHNUuB8PYgGZiE/khIWT6GiNgsghaaSDY0fMyi1GV/dXOov5cw==
-Received: from mail-ua1-f71.google.com (mail-ua1-f71.google.com [209.85.222.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a4u1gra2w-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:07:43 +0000 (GMT)
-Received: by mail-ua1-f71.google.com with SMTP id a1e0cc1a2514c-9351826a24aso116820241.2
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 05:07:43 -0700 (PDT)
+	s=arc-20240116; t=1761912429; c=relaxed/simple;
+	bh=QdfcKgydSkRm0A8GQzQXVINVhev5YokC6RzzW3M0ueA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i+ublX6dreuqqOA/LR8VZy3F1x+MH3iYWsgMVcoz+xJ2dssQZqb22b9LLio7v9WdcSYLwMGVrTfrZk3tiiowD601sZhCgZeBI4wJ9fv8gRIGtBcpA0BxrerbyTdgRbasyhb99nKKScVOCXZpCtSwCw5kboMdrP5k3GhFzLi6HgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KwzKI244; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-378de7d3057so22697611fa.1
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 05:07:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761912463; x=1762517263; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4E/WBBGg3Ro41UM204RDH20wPcFyThixToHapyaAtXQ=;
-        b=K5o4IEfHMoNrYTye+aN9CjacNnCH+K0UFpkjfNUyIQQjLDXVSL2DYXjVgezsOeR5m8
-         iAzJLbDXtpwCI4JhIMMxV04mw7nnvBy8bT7W5fnL4t1HYmwIzpMuQu4W52lXLK0t2W0v
-         RJgNCMQMdsWNOBkJeAIrC3fw20ti4kCWcxiWUtk6+0kHiMOb4kR9c2NQi0j1qlFpgUj9
-         8fdzmZ4gLbPykxo0GO7Kr8fg23mD2tJo9qVhjcIWO6VHbC1PNngDxxuYXrqLt84lpv1+
-         sON3DqFc/OkwrTiACrQyQjuPaWSH2yxtYE7ff2Gat0TWClkjmCIYHMtYLIYr71mwOt/c
-         TkEA==
+        d=gmail.com; s=20230601; t=1761912425; x=1762517225; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=g+wNT7KW8FpybzoaA+6FfZ6C32T5hx5xiEfdag3k3wE=;
+        b=KwzKI2443RijErWYu4cl00L0syz5MC2rHdkgSLEWH4DPGUMs0ccrLqzJ0S5ruQAex1
+         sMvDS7t3GnTjq3FpHst5tKk5JTDawJJIPblNPxRnK+ds/vI5ck30DDKxb2IHFX7KkYbS
+         Mhgy/48fpaLpHxhfYIvka6+o/y7PNv6zHoBNGHG+NOO7fG15RloVXaqAGzoVSA/aNneU
+         G40DQYhXV4fD3d2KR7gzhoEVDiqFSaiq5SGiz4JNtMGRGvCefgw2sgXgaExiUXEyL7Sl
+         ZiwRJcuB3FMUzBV+NHsA1ecR1Q635sD8qm6qr4Rk/VSyax4pDeSGsS9DMu/s0vCpfL51
+         L48A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761912463; x=1762517263;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4E/WBBGg3Ro41UM204RDH20wPcFyThixToHapyaAtXQ=;
-        b=C5v6TTzteTM01YDFAiL/+YoAdkvL2PB2l1+HXfOWvsInAbaaqQ2FyaEWZhW46UEYlD
-         Bg/UvlY5uS+dz20A69LdCSZLVDNXNbS+IaasvSEBFtrcHfahn1NDzGPn9QNwjhgJHPEu
-         W6rWLoL3zkq8Ni+acH69cK6XEeMEzWLlYk1Y4xFeWBUWmPHEIFhsx5OvqVDiOOYYkX+F
-         3v2OHsK63Uf+icFzBUgrsH82BiAjUNZVL1Fy0FAEmCF7B5JQvqzwBhZJZHgn7yRTDCMA
-         LlAVC5TumYntAtfaxgWwJcjueFgLqHTeraUN868A/Jyk8baL2bbtdfam15iO7aMNECSR
-         WzUA==
-X-Forwarded-Encrypted: i=1; AJvYcCUUTNsSaFxy2uQznJd7zHreDrZ4GxRRzBUFeREwZ44TrZNZ4yvHKXSf/nzScox32HP3TI64BR2od+qR@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqFun/rNIKv965wT+10IsvWkGmECY5FTm9RszNhL2vxxn29bwB
-	zp8KhZHY5AO0Gy9lDSCL6YBDAuN9slqwBHf8a4D+Z7Vup9NEPwYCbRw7FjIRB2viUdbkeE3n/Rc
-	gEUYQBRaCZQyE/9s2wwe0W8S0JnaAESvVVC8KzjpeRP/KZ2o39cc0mueXKyCZHG9e
-X-Gm-Gg: ASbGnctzsLEs2t5DFjg8/IWp9s9SeZOmIMnpxywfCf6O4XtIA/UoaWGIUFAt28jq8o0
-	9bx68i9fi50U84bzCbJvb3ALWl4Z0+ZUutoaQ8/7SVvDWdGlMs7bPsiFUK7rZagI9pJ0akuxsTp
-	huqz6d4LyVVRhll17sEq/yIO5xepmoeqyoPT3juVjQItS/bg3ubAWe4NtYivY+RLEaL/OOUNI/W
-	2tsffxaEeRVBVYzK/Sv2bpSkSRxN5/9HUnErTz+/PgKmTMpqnEYsJH/QfeQKAgf9xeWRPq2qQXu
-	AvkowUqmC31vM8WX8GGUas9R26DjkPrw/o1BGqIXUK7U0yeoY2rRXAiDeeTITBFCkIskHZywSXC
-	sxlc+oNv58mnT
-X-Received: by 2002:a05:6123:2e9:b0:544:75d1:15ba with SMTP id 71dfb90a1353d-5593e467f8emr1039442e0c.8.1761912463002;
-        Fri, 31 Oct 2025 05:07:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHmn3zvTc/ojKOR+bK9ywlieZ+Q+24hvli/i5RQ1FY8kSGgXDi2oxCTcFN1MlGAfHvp3RcDVQ==
-X-Received: by 2002:a05:6123:2e9:b0:544:75d1:15ba with SMTP id 71dfb90a1353d-5593e467f8emr1039417e0c.8.1761912462568;
-        Fri, 31 Oct 2025 05:07:42 -0700 (PDT)
-Received: from debian ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4772fd280fbsm21273995e9.5.2025.10.31.05.07.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Oct 2025 05:07:42 -0700 (PDT)
-From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-To: robh@kernel.org, broonie@kernel.org
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-        perex@perex.cz, tiwai@suse.com, srini@kernel.org,
-        linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, alexey.klimov@linaro.org,
-        konradybcio@kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Subject: [PATCH v3 5/6] ASoC: codecs: lpass-va-macro: add SM6115 compatible
-Date: Fri, 31 Oct 2025 12:07:02 +0000
-Message-ID: <20251031120703.590201-6-srinivas.kandagatla@oss.qualcomm.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251031120703.590201-1-srinivas.kandagatla@oss.qualcomm.com>
-References: <20251031120703.590201-1-srinivas.kandagatla@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1761912425; x=1762517225;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=g+wNT7KW8FpybzoaA+6FfZ6C32T5hx5xiEfdag3k3wE=;
+        b=DtVefXbiQOfpZPp1UC2W0yMiGGwZEbHtqZPnd62yR/rgFhXHTb6JKNFjF/mLrdQjva
+         SI1217YpnvE3EuDntAJZ9s7V/Xu5lRD4MDEdxdfCe2ahkEeUnkCmxa5J6zU9EM0TG1va
+         KimAAa9CkxOnaUq713DjsG73zND/2Sfj9vTVBegjelEGg1zen/ZxqxG10v6mQ6A2tDit
+         z+XjrjGetC0p8uJK/WpUWcYCSpWD3qa+7cl4fc1+E5neR/odKuJlom+Ai9UTaA2K9W5x
+         yGuACGnRzLVxKwcuoHC1UTwNs+zskFXuWFRQRyEpDIn2DFDJ+oN/TECOnZHf1gI+OxEL
+         7bhA==
+X-Forwarded-Encrypted: i=1; AJvYcCXQgwa781ixnqhY+FOXVGZie/RYH8Xy4gxZ6Be6K50h4bjIxraZS7+uis9E21Bwlo3Hy2uU9vlANwHb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/WTvWW2pAzAvswkI+cDvqD7jKcy25qyOz28RtyzqVqwevavqg
+	uqLF5AJGrYyB9w/M5+ADYnEbgpsDBPg2QuMmCkzLEkGOzkbWt4EjzKyS
+X-Gm-Gg: ASbGncv7SUaDy7+8ty5gDHmSJ9l7h8gVJOhWVYj8kybwBvQBgQ5gUl6uaNcgp27ZfCR
+	NFZP2YSriDKmc9KINrDOtdgekTfH+35F1kGX8Cc6/ns4rfT+aTBI6mDsTqhu5+jR6Xk/PY7U4qN
+	ICOXksRvJa3xNtryHaAgZELXswJOcJPOTdIcKnN0jxUvkJsySxgTVX3apZuPeSBRFKsqESqpyVE
+	IYxA0x6eylRkZ32Ixxy4raoNnjfyxZHRbok77puE+nIqthAoLitHcyg45PoYzabnFqBq1QrqhKA
+	b7Era8+nHH8bs4QWonOjv1RdDiKH7qIRIJ7aXKeEYyc7L6p/3U0V3SuwL2jZFHGIdDBjAqVZJMw
+	2V+7cc34glNFAniSRfkvHw81Bbs9rgRllWtsClx2C3ZlDokhNo5KJZqj/IyHE+sHkFl0hE6ujeh
+	usMVnkKUZN0D3o7BNOfObPsyzswNVShnrgwCnva9UCvzVvaJLNdZtAUwRHaC/l/oevG5tZ
+X-Google-Smtp-Source: AGHT+IH/ICNj/bMV5RVGbwRdK/Ejd2emYkz7dh/g7c7spskiA/UNWUDs1dQqtabTPzVdNpWwUCQDtw==
+X-Received: by 2002:a2e:8689:0:b0:36a:925e:cf3c with SMTP id 38308e7fff4ca-37a18dc7311mr10659721fa.31.1761912424618;
+        Fri, 31 Oct 2025 05:07:04 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37a1bfb3e70sm3216571fa.12.2025.10.31.05.07.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Oct 2025 05:07:03 -0700 (PDT)
+Message-ID: <0beeacba-c484-43c0-80fb-66b2e0293681@gmail.com>
+Date: Fri, 31 Oct 2025 14:07:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/5] arm64: dts: freescale: add Ka-Ro Electronics
+ tx8m-1610 COM
+To: =?UTF-8?Q?Lothar_Wa=C3=9Fmann?= <LW@KARO-electronics.de>
+Cc: Maud Spierings <maudspierings@gocontroll.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+References: <20251022-mini_iv-v2-0-20af8f9aac14@gocontroll.com>
+ <20251022-mini_iv-v2-3-20af8f9aac14@gocontroll.com>
+ <a7012995-c2a8-48a3-abe1-5c227272f21c@gmail.com>
+ <65202d1f-6c4f-4d4e-9fef-85cfb74ec768@gocontroll.com>
+ <938f85b0-4c9b-463a-960a-f5f4e4092480@gocontroll.com>
+ <20251029081138.2161a92a@karo-electronics.de>
+ <4a47b9b5-f482-41b6-a441-7728572c5a0c@gmail.com>
+ <20251029104838.44c5adcf@karo-electronics.de>
+ <d05c62c9-7ed7-46e4-aa4d-27172741b5ee@gmail.com>
+ <0667e026-99f3-4233-b3f6-e38273961d49@gocontroll.com>
+ <20251030095434.1dc06df2@karo-electronics.de>
+ <26fc62bb-3484-4812-b576-6640eef72c49@gmail.com>
+ <20251030130006.0221957a@karo-electronics.de>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20251030130006.0221957a@karo-electronics.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=Lo+fC3dc c=1 sm=1 tr=0 ts=6904a68f cx=c_pps
- a=KB4UBwrhAZV1kjiGHFQexw==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=sAbSznBxNPymwqveVGQA:9 a=o1xkdb1NAhiiM49bd1HK:22
-X-Proofpoint-ORIG-GUID: 97pjaHWTNf10wO6C6gnmLVHqN9WoOuyq
-X-Proofpoint-GUID: 97pjaHWTNf10wO6C6gnmLVHqN9WoOuyq
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMxMDEwOCBTYWx0ZWRfXwG+otTpMPrjh
- Dkwjhz37rVeWQcckSc/OB6FAmuPuEmVUalYPk/7faCmHTKuxXhdMoXkwvqNiPswEtMUpSuUNLsi
- f08C9lW8JpH6Rev+EKBV/gCsQ3CccJpI/R62S0p9BiBN12+oMaVWQ4nxByBW0kqHX95sJPtydsj
- dO4D6K5Mqk7bELYuzqbPN6/Q4pwwgQKzFusUJ5VCLUE6ab6t9fDXIPHKMMiehTPfRUpaLgYt1r5
- JhQDl5cs6LeSCPg+eecmEKjRVgdTZa3wDqSYrCkhFMGrlyArRcG2lkMpvkhl+p3vYpf4wVkteXF
- FRu0aS2f9P5/E97BRxf9OqtGprzsxls/ypmYuGohvil3RTZagyOGHRkqlt+u4ON58ig3e3TmxwS
- ZKH9HSlSlwGKZobboUwZCLvnRYidfQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-10-31_03,2025-10-29_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 adultscore=0 impostorscore=0 lowpriorityscore=0 clxscore=1015
- spamscore=0 priorityscore=1501 malwarescore=0 bulkscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510310108
 
-SM6115 does not have "macro" clock, so its bindings differ with existing
-SoC support in va-macro. So add dedicated compatible in both driver and
-dt-bindings to be able to address that difference.
+On 30/10/2025 14:00, Lothar Waßmann wrote:
+> Hi,
+> 
+> On Thu, 30 Oct 2025 13:01:52 +0200 Matti Vaittinen wrote:
+>> On 30/10/2025 10:54, Lothar Waßmann wrote:
+>>> Hi,
+>>>
+>>> On Wed, 29 Oct 2025 16:35:25 +0100 Maud Spierings wrote:
+>>>> Hi Matti,
+>>>>
+>>>> On 10/29/25 11:05, Matti Vaittinen wrote:
+>>>>> On 29/10/2025 11:48, Lothar Waßmann wrote:
+>>>>>> Hi,
+>>>>>>
+>>>>>> On Wed, 29 Oct 2025 10:42:17 +0200 Matti Vaittinen wrote:
+>>>>>>> On 29/10/2025 09:11, Lothar Waßmann wrote:
+>>>>>>>> Hi,
+>>>>>>>>
+>>>>>>>> On Tue, 28 Oct 2025 14:10:04 +0100 Maud Spierings wrote:
+>>>>>>>>> On 10/28/25 13:42, Maud Spierings wrote:
+>>>>>>>>>> On 10/28/25 13:15, Matti Vaittinen wrote:
+>>>>>>>> [...]
+>>>>>>>>>>> Could/Should this be described using the:
+>>>>>>>>>>> 'rohm,feedback-pull-up-r1-ohms' and
+>>>>>>>>>>> 'rohm,feedback-pull-up-r2-ohms'? If I understand the comment
+>>>>>>>>>>> correctly, that might allow the driver to be able to use correctly
+>>>>>>>>>>> scaled voltages.
+>>>>>>>>>>>
+>>>>>>>>>>> https://elixir.bootlin.com/linux/v6.18-rc1/source/Documentation/
+>>>>>>>>>>> devicetree/bindings/regulator/rohm,bd71837-regulator.yaml#L108
+>>>>>>>>>>   
+>>
+>> // snip
+>>
+>>>>>>>
+>>>>>>> If real voltages aren't matching what is calculated by the driver, then
+>>>>>>> the voltages requested by regulator consumers will cause wrong voltages
+>>>>>>> to be applied. Debug interfaces will also show wrong voltages, and the
+>>>>>>> safety limits set in the device-tree will not be really respected.
+>>>>>>>
+>>>>>>> I think this would be well worth fixing.
+>>>>>>>      
+>>>>>> Before doing the real-life test I did the same calculation that's done
+>>>>>> in the driver to be sure that it will generate the correct values:
+>>>>>> bc 1.07.1
+>>>>>> Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006, 2008, 2012-2017
+>>>>>> Free Software Foundation, Inc.
+>>>>>> This is free software with ABSOLUTELY NO WARRANTY.
+>>>>>> For details type `warranty'.
+>>>>>> fb_uv=0
+>>>>>> r1=2200
+>>>>>> r2=499
+>>>>>> min=800000
+>>>>>> step=10000
+>>>>>> # default voltage without divider
+>>>>>> min+30*step
+>>>>>> 1100000
+>>>>>> min=min-(fb_uv-min)*r2/r1
+>>>>>> step=step*(r1+r2)/r1
+>>>>>> min
+>>>>>> 981454
+>>>>>> step
+>>>>>> 12268
+>>>>>> # default voltage with divider
+>>>>>> min+30*step
+>>>>>> 1349494
+>>>>>>
+>>>>>> Probably we need to use this value rather than the nominal 135000 as
+>>>>>> the target voltage in the DTB.
+>>>>>
+>>>>> Yes. When the driver calculates the voltages which match the actual
+>>>>> voltages, then you should also use the actual voltages in the device-tree.
+>>>>>       
+>>>>   
+>>
+>> // snip
+>>
+>>>>
+>>>> Then setting 1349494 as the actual voltage makes it fully work.
+>>>> Otherwise it complains:
+>>>> buck6: failed to apply 1350000-1350000uV constraint: -EINVAL
+>>>>
+>>>> Final debug output now:
+>>>> [    0.327807] rohm-bd718x7 0-004b: buck6: old range min 800000, step 10000
+>>>> [    0.327813] rohm-bd718x7 0-004b: new range min 981454, step 12268
+>>>> [    0.327819] rohm-bd718x7 0-004b: regulator 'buck6' has FB pull-up
+>>>> configured
+>>>>
+>>>> I will add this fix to the next version of this patchset and include
+>>>> your requested change in the dts.
+>>>>   
+>>> Does it also work with min/max settings in the DTS that are taken from
+>>> the designated value +/- 5% tolerance margin, so that the DTS contains
+>>> reasonable values determined by the HW requirements, rather than some
+>>> artificial number that is enforced by the SW behaviour?
+>>
+>> I am unsure what you mean by "artificial number that is enforced by the
+>> SW behaviour"?
+>>
+> The nominal voltage that is required by the consumer is 1.35 V. That's
+> the voltage I would expect to set as target for the regulator.
+> If that voltage cannot be achieved exactly, I would prefer to have the
+> intended voltage listed explicitly rather than listing a value that
+> accidentally can be achieved by the regulator but has nothing to do with
+> the requirements of the consumer.
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
----
- sound/soc/codecs/lpass-va-macro.c | 1 +
- 1 file changed, 1 insertion(+)
+Ah. Thanks for the explanation. I get it now - sorry for the noise.
 
-diff --git a/sound/soc/codecs/lpass-va-macro.c b/sound/soc/codecs/lpass-va-macro.c
-index fbe5ebeeaa80..902abc9843fa 100644
---- a/sound/soc/codecs/lpass-va-macro.c
-+++ b/sound/soc/codecs/lpass-va-macro.c
-@@ -1759,6 +1759,7 @@ static const struct dev_pm_ops va_macro_pm_ops = {
- 
- static const struct of_device_id va_macro_dt_match[] = {
- 	{ .compatible = "qcom,sc7280-lpass-va-macro", .data = &sm8250_va_data },
-+	{ .compatible = "qcom,sm6115-lpass-va-macro", .data = &sm8450_va_data },
- 	{ .compatible = "qcom,sm8250-lpass-va-macro", .data = &sm8250_va_data },
- 	{ .compatible = "qcom,sm8450-lpass-va-macro", .data = &sm8450_va_data },
- 	{ .compatible = "qcom,sm8550-lpass-va-macro", .data = &sm8550_va_data },
 -- 
-2.51.0
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
 
+~~ When things go utterly wrong vim users can always type :help! ~~
 
