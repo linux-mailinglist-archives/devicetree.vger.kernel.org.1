@@ -1,131 +1,195 @@
-Return-Path: <devicetree+bounces-233618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 174DBC24058
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 10:08:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7C5FC24187
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 10:20:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D118B4F3053
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 09:06:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 371A85831B5
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 09:07:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29C7032F773;
-	Fri, 31 Oct 2025 09:05:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3B2E32ED38;
+	Fri, 31 Oct 2025 09:06:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KPZsEXln"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="loiaIyIR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 554DD32E734
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 09:05:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC91532E6B8
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 09:06:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761901544; cv=none; b=lVfw2u/Y81AnonFnXoLZMyUptliDwyO/ZrwmnlsaxIb5PEjaAemwycP1p4C/kNo7lOlC3LSDt/XR8J5R6WAW/SqLjhuko26ARMu/peqHYlNBvJlxjmu6cBvwIJ+v13UhQBSdHWaruXxbgro9+aR0vQoq5wWXunROStOFepV85sQ=
+	t=1761901564; cv=none; b=p0L5MODYhuzfh4C3jtG0Np4BrARsSlOOSHfZiJDaiMUNVB+jyo2V9mz8YYVfjawJBWfnBaknhwrHQDX2ATNXnAyVqWgqcKL/TnuhbETFpzDcWB7lA/W8o78RDurFG1sRAICFW+oL1cG1yh5/pFy+g8xcGZ4nlgfbNxVBc6WvrHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761901544; c=relaxed/simple;
-	bh=3ngI3i1BG0C9azbqBN/4q7nJ2yCSJxmqD7ABvsTPKbo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=i7MEWLwrYIygKgnVL9T4MyJTKAzApszflvMLsUJlIouD27QLQjdRCCpaTaAjfBGD+K9NSDZ6emSsviSjOV+FJick6p690wqwieOcjRHB1UqbvVTo4ddj2wnjaj112beQ0Tm9eo1VVOidfwgjLMDcXNXpLgVS2LfkAO6UT9PdjKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KPZsEXln; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-47728f914a4so9743025e9.1
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 02:05:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761901541; x=1762506341; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=m97kyP3HTS70kAnw3EPRct0ZUapkHpzYxU+r81cO+AM=;
-        b=KPZsEXlnVmIZuIwDkpzhvf+Nnez81AXn7aDwJVAyvcTzYtE3IjUfgw5IGQbMc1W4p9
-         iVbX/6DOnCKWDbjl64BkreB5ihQVdS7Q2kUh6kx3Hy/gra7RQ2gQ97fAdsxRVFDS20UI
-         p2vcv5a4/xSyIbVWDuS+eW2a7oqtQBCBiX45zaVFfVNi/afiiD8rbSaf8OB7JltOzEtn
-         DzUjsJ3hTrpID4P/qoAk57n+VHagqMlG0Mbkamihcp4QL3bTONzYcxPHH27S8srR6ZUR
-         3jlFPfEPaI5LRNSPR+8q8cFFkC8Pu9Jm2upMZ0Md6Yp1ngtUtjowUZox0LPEGz+YvSkR
-         GTCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761901541; x=1762506341;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=m97kyP3HTS70kAnw3EPRct0ZUapkHpzYxU+r81cO+AM=;
-        b=KPM8Mz6nagKwjsT+UUt2fDXF7yAdOXQeZdFSaL+tAV++Pt2qndV33V8ZoIh+TBI2B0
-         81gPYYTw1bil+V8qLGjiQU5IzVHIYmKdpc734m2MuIMyWRGk3GpAPpimUDHN62AbfC52
-         rU4vpNFfO7pcvVytLlbQniUO1cJjdkMquD1OWCqCm4HSD1v954bYkIFdxejsJ30Gm6WI
-         NDCtiefMjNYQTQpN3S5+DXSPuUkDpmgvrIaJzHOX7Ojijq2ktXz6RABT2DBC+v7N+GiL
-         BP+g2dV9NzxaD61VFffSqJubQ0pGFujRP37ZOJdJcnM/vVvRdVVqjiy1Ui+W95aIoqzr
-         rK3w==
-X-Forwarded-Encrypted: i=1; AJvYcCU0vRVjizaDjjOnt+pzUU0uk1koC2tA9RlGw1HTHtMfRhUbzaX5hpt3wC5cMCWwIfgWuKfRQfpUrumA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyf0AgI3iCN1xMHh9c43CkJ8EA+Ozp5lSDjlVeTbk3Xi1uCKRLw
-	EsH0p70/9C9IFPkiIqjzZto6chvHQsf65gkilUL8n5CV0d68Vxvts4a4
-X-Gm-Gg: ASbGnctQGZV24bgmmQTfCmxk4v7MDrv1ya9xPl0jc7gzHdDdrJwbj8Z+AUTeOYX2yK5
-	uV0cqk8DlsoOUQWMxVmFWMis8FllEryfFmmWB6K4KSuulZnO1YmCcTJLCNGobEUBaPqG9ruNX5o
-	4FP8iIpmp/yFDTWXY4h8m2gGTAPretgqtCVdjZRtEjuEm3MlR9EqR03n2TExZ9ikUo1eiZPjAly
-	Cx0dr6jpmS8iZJ5YMabIOnAmP4E6ibZPmDqrinilP+Ku2CbG3XrCenJ48UsfTXD623Z0e75SdMM
-	DnZsELN/nt+ekT2Tftg56tFQLrqQaOcgALmKHDQk+ewMDT2jkR6zVRBdDVfK0SaGCCC/atemtuU
-	h2pma372GiRj3JL0YHotDTmny9htzQYLJI8UTIKIOFORZgoeS9Lli6zlSZTYfXm2aafRYSm7lE/
-	jREHpjf49YWnMMIzcgD8ry7+z/+tp36/5DY71rY2QZNyNofUGowc0N
-X-Google-Smtp-Source: AGHT+IHaEdfxWwYT2zJAyLRZyUAgi4BdK3quhN7NkvDh1BylxO25NofIDcQ0FfuX8++X59NClzV6hw==
-X-Received: by 2002:a05:600c:1e06:b0:477:1be1:9afe with SMTP id 5b1f17b1804b1-477307b879bmr22506295e9.9.1761901540395;
-        Fri, 31 Oct 2025 02:05:40 -0700 (PDT)
-Received: from ipedrosa-thinkpadx1carbongen12.rmtes.csb ([5.225.139.156])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477289adaf8sm93454475e9.7.2025.10.31.02.05.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Oct 2025 02:05:39 -0700 (PDT)
-From: Iker Pedrosa <ikerpedrosam@gmail.com>
-Date: Fri, 31 Oct 2025 10:05:19 +0100
-Subject: [PATCH v4 3/3] MAINTAINERS: Add entry for Sitronix ST7920 driver
+	s=arc-20240116; t=1761901564; c=relaxed/simple;
+	bh=HY35X0Jzske9SGqhpLiK1C62JcE5DLM53IEaMjOcCVY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mlAlIVGp4THMSMywkUHekME7Z8GHSoHMDL6C97YVRxCbPri4qktcCnuIng31jwAJ3EhAO7s1IPIIgZFVCFx21NnJ1SIVY2l6aExfwhs84y87lDYyn6obPVyEASkdoYUL7ipUTj8JB/Nsr0s8iovEWoXh/alkKrwk4TlcsiK0VJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=loiaIyIR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D895C4AF0B
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 09:06:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761901564;
+	bh=HY35X0Jzske9SGqhpLiK1C62JcE5DLM53IEaMjOcCVY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=loiaIyIRL4ulsJ+FEOYNY2/S0JaFMly4NkQGS459NSi2JDRp7vA9vd5hhO/+s7lQP
+	 PDKYs9cFu3Y4+CBCIeg22y9Ur+yDODNTSL5i+QmD8p0vlURZy3XlnZDOjc2mOAxD5X
+	 VDVAPczTuQaBCJPIlj9a0Az9kAhcSmQWxNcvFIUxTKIXfTrWUVuNu/OzuGtn69HfFL
+	 KJLb9+41Ok1E3GdO0yLxMPmjL3lgN+fQ67PjkNROqU7hkuOspvJ/ozRFnIjDn6VMkQ
+	 ZwBKrsyRrEuTxqye8yU9QRH+FwGRNNHB9h32JsCwr1RRGbtZJ4KUxO1akKXde+Yj9w
+	 02c7pcoln4uUQ==
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-37a0d3d2e8aso21996011fa.0
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 02:06:04 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVMciIXj/ovC9QqYnMfG1VCEZ22Bz5r1IQfwmkQZDK3uH/YmKDyJrS41FRJlZk4pKniTY+liCl+/Cex@vger.kernel.org
+X-Gm-Message-State: AOJu0YwT63ALKhEc/WkxsnfUfPJPtriDK7std0awZDkaAjg9ew0ij/k4
+	HnB+VgkHWLtULmeWzt2z9tk0DOpWwRqy7X+Km2YOHXc+HILUmxjaEVsZY4zw1iuBmpKiqPHwA6N
+	0OxUARktQRYYtJKswmwzOyne2khJa/Xw=
+X-Google-Smtp-Source: AGHT+IHo1BDxtEcYJCNqrkX3cSbClvnLOEGhzOUXS7m3YmCBUjmZoaCOU8Y8UHOzac6EJyOFBI9H4ZUYvlMV1sk1fT0=
+X-Received: by 2002:a05:651c:50f:b0:372:9fd0:8c44 with SMTP id
+ 38308e7fff4ca-37a18da85c2mr7825361fa.3.1761901562867; Fri, 31 Oct 2025
+ 02:06:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251031-st7920-v4-3-35291f8076b2@gmail.com>
-References: <20251031-st7920-v4-0-35291f8076b2@gmail.com>
-In-Reply-To: <20251031-st7920-v4-0-35291f8076b2@gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Javier Martinez Canillas <javierm@redhat.com>, 
- Iker Pedrosa <ikerpedrosam@gmail.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org
-X-Mailer: b4 0.14.2
+References: <20251022114527.618908-1-adriana@arista.com> <20251031084101.701159-1-adriana@arista.com>
+ <20251031084101.701159-3-adriana@arista.com>
+In-Reply-To: <20251031084101.701159-3-adriana@arista.com>
+From: Ard Biesheuvel <ardb@kernel.org>
+Date: Fri, 31 Oct 2025 10:05:51 +0100
+X-Gmail-Original-Message-ID: <CAMj1kXE6L2PTtYYqOC7+fQd7HoB_FJAOtF=p=u+AimhqkLzV8w@mail.gmail.com>
+X-Gm-Features: AWmQ_blu14Z2p8TiOqD9ran31qq1TH0PhxjuvuYB7qcqo-ibv4LM8TnejHIrFyE
+Message-ID: <CAMj1kXE6L2PTtYYqOC7+fQd7HoB_FJAOtF=p=u+AimhqkLzV8w@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] drivers: firmware: dmi_scan: Add support for
+ reading SMBIOS from DT
+To: adriana <adriana@arista.com>
+Cc: ilias.apalodimas@linaro.org, trini@konsulko.com, robh@kernel.org, 
+	krzk@kernel.org, jdelvare@suse.com, frowand.list@gmail.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, vasilykh@arista.com, 
+	arm.ebbr-discuss@arm.com, boot-architecture@lists.linaro.org, 
+	linux-efi@vger.kernel.org, uefi-discuss@lists.uefi.org, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 
-Add Iker as ST7920 driver maintainer.
+Hello Adriana,
 
-Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+On Fri, 31 Oct 2025 at 09:41, adriana <adriana@arista.com> wrote:
+>
+> From: Adriana Nicolae <adriana@arista.com>
+>
+> Signed-off-by: Adriana Nicolae <adriana@arista.com>
+> ---
+>  drivers/firmware/dmi_scan.c | 58 +++++++++++++++++++++++++++++++++++++
+>  1 file changed, 58 insertions(+)
+>
+> diff --git a/drivers/firmware/dmi_scan.c b/drivers/firmware/dmi_scan.c
+> index 70d39adf50dc..acc0e18b8d0f 100644
+> --- a/drivers/firmware/dmi_scan.c
+> +++ b/drivers/firmware/dmi_scan.c
+> @@ -10,6 +10,9 @@
+>  #include <linux/random.h>
+>  #include <asm/dmi.h>
+>  #include <linux/unaligned.h>
+> +#if IS_ENABLED(CONFIG_OF)
+> +#include <linux/of.h>
+> +#endif
+>
+>  #ifndef SMBIOS_ENTRY_POINT_SCAN_START
+>  #define SMBIOS_ENTRY_POINT_SCAN_START 0xF0000
+> @@ -670,6 +673,54 @@ static int __init dmi_smbios3_present(const u8 *buf)
+>         return 1;
+>  }
+>
+> +#if IS_ENABLED(CONFIG_OF)
+> +/**
+> + * dmi_scan_from_dt - Find and parse DMI/SMBIOS tables from the Device Tree
+> + *
+> + * Checks if the bootloader has passed SMBIOS table addresses via the /chosen
+> + * node in the Device Tree. This follows the standard kernel DT bindings and
+> + * assumes a fixed 32-byte mapping for the entry point.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5ddf37f0acc960039422ef988cadfa7176972fc5..79b8a277e38b55ebcff05450d6c565c0d87c6b51 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -7861,6 +7861,13 @@ T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
- F:	Documentation/devicetree/bindings/display/sitronix,st7735r.yaml
- F:	drivers/gpu/drm/sitronix/st7735r.c
- 
-+DRM DRIVER FOR SITRONIX ST7920 LCD DISPLAYS
-+M:	Iker Pedrosa <ikerpedrosam@gmail.com>
-+S:	Maintained
-+T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
-+F:	Documentation/devicetree/bindings/display/sitronix,st7920.yaml
-+F:	drivers/gpu/drm/sitronix/st7920.c
-+
- DRM DRIVER FOR SOLOMON SSD130X OLED DISPLAYS
- M:	Javier Martinez Canillas <javierm@redhat.com>
- S:	Maintained
+Not sure what 'the standard kernel DT bindings' are, or what you mean
+by 'a fixed 32-byte mapping. You could just drop this sentence, I
+think, or otherwise, describe that the DT property gives us the
+physical address of the SMBIOS3 entrypoint structure.
 
--- 
-2.51.0
+> + * Returns true if a valid table is found and successfully parsed.
 
+if a valid entry point is found
+
+> + */
+> +static bool __init dmi_scan_from_dt(void)
+> +{
+> +       struct device_node *chosen;
+> +       const __be64 *prop;
+> +       char buf[32];
+> +       void __iomem *p;
+> +       bool dmi_available = false;
+> +       u64 addr;
+> +       int len;
+> +
+> +       chosen = of_find_node_by_path("/chosen");
+> +       if (!chosen)
+> +               return false;
+> +
+> +       prop = of_get_property(chosen, "linux,smbios3-table", &len);
+> +       if (prop && len >= sizeof(u64)) {
+> +               addr = be64_to_cpup(prop);
+> +
+> +               p = dmi_early_remap(addr, 32);
+> +               if (p == NULL)
+> +                       goto out;
+> +
+> +               memcpy_fromio(buf, p, sizeof(buf));
+> +               dmi_early_unmap(p, 32);
+> +
+> +               if (!dmi_smbios3_present(buf)) {
+> +                       dmi_available = true;
+> +                       goto out;
+> +               }
+> +       }
+> +
+> +out:
+> +       of_node_put(chosen);
+> +       return dmi_available;
+> +}
+> +#else
+> +static bool __init dmi_scan_from_dt(void) { return false; }
+> +#endif /* IS_ENABLED(CONFIG_OF) */
+> +
+>  static void __init dmi_scan_machine(void)
+>  {
+>         char __iomem *p, *q;
+> @@ -718,6 +769,13 @@ static void __init dmi_scan_machine(void)
+>                         dmi_available = 1;
+>                         return;
+>                 }
+> +       } else if (IS_ENABLED(CONFIG_OF) && dmi_scan_from_dt()) {
+
+Please drop the IS_ENABLED() here, and fold it into dmi_scan_from_dt(), by doing
+
+if (!IS_ENABLED(CONFIG_OF))
+    return false;
+
+at the beginning. This removes the need to provide two different
+versions of dmi_scan_from_dt().
+
+
+> +               /*
+> +                * If EFI is not present or failed, try getting SMBIOS
+> +                * tables from the Device Tree.
+> +                */
+> +               dmi_available = 1;
+> +               return;
+>         } else if (IS_ENABLED(CONFIG_DMI_SCAN_MACHINE_NON_EFI_FALLBACK)) {
+>                 p = dmi_early_remap(SMBIOS_ENTRY_POINT_SCAN_START, 0x10000);
+>                 if (p == NULL)
+> --
+> 2.51.0
+>
 
