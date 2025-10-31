@@ -1,89 +1,325 @@
-Return-Path: <devicetree+bounces-233955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47A5CC27266
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 23:54:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10FD9C2736E
+	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 00:45:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 932A81A22BF1
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 22:54:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC340427C93
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 23:45:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA92B3233FA;
-	Fri, 31 Oct 2025 22:54:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 876E1329369;
+	Fri, 31 Oct 2025 23:45:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="xgwXqGFK"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="3TS22OsL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ECF332A3D4;
-	Fri, 31 Oct 2025 22:54:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAFCF41C62
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 23:45:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761951245; cv=none; b=OMxtXpNLJgIJej2Do1ADyKr8mi/LFtkZudUijqmJ4tEwgwVBwjyez0F3M7oFeZGaEglhZiqBoaKMl8ojXBsUnDFosoNH9buLyTz4qZtciMiow4p+EO22iT5DTlfR68azZQdI4ZTVFTMyQPM0drcQfGEPz/IXxQQfHiiNe4bIDjk=
+	t=1761954356; cv=none; b=hN0Skui1TKLibuAffX5wSSdq5P6whiMVWkCS4MNbQdFcaSKZdt4V0NBuKc4BuOj1pDeF11YlrPVDSn/PqXOZIW5mwmp3TDnHL5NiRqCOZfPjsz0EQBOVEEo1NG7/PSItKJJDwoS072AYi5Wq6+rTWzk9B4WtAGEjZ1wDwvgAWs4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761951245; c=relaxed/simple;
-	bh=6Wqf++XLTMHjisyj9HNYe5hEzbNQnXL3weWh2kqgg5Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qjbal+1//txbq/bgURN3VB7YFvUPsyPggtsdEeTvETBov8/EGRkO+nn++4zrazUdhrH28wtZk+adFwwBZEuckv8fat11/ZwneKxC0N/JllaqVLb75MFq1fuOwxWteznP+lF1Yi1RlV0zyeYaMzb9QJ9wCdjjyyb+d4mqhaz3QQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=xgwXqGFK; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=lRpBRBWaIHX6eIuECYCQwXUzbJ82+e6Wq9lqx2nwbRs=; b=xgwXqGFKSBKVZuxYEma799JQZb
-	VtGDMgxEaTNZkC8hCr3EtN+fkIsXPNlUXkO+ZVxF0HRWOI2b1tLYZs9PMbD/WwM5/qZ7JF+njeAjS
-	omAfGpJ/lnK6jd5sTJWwGl6xJAu/OUbq5gYtc30bOwCd0KSvmt2jogOGyrxtFAnostK6GMadnx7p7
-	7bbAPXxj4qBZiJ1v9Qu815We0SytOFeR+VvypBqcydkwbGhfPnOOjjyLkNZTyUEiXsQlFS53YFErw
-	l0/xxoZcErsEvGT+HqgTwr5jwYeoi/dq13RUHcBrm6niYxUo2ewiO+K725p033wnavkobNLzZB14z
-	Lz7nG8Zw==;
-Received: from i53875bca.versanet.de ([83.135.91.202] helo=phil.fritz.box)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vExzs-0004vM-CO; Fri, 31 Oct 2025 23:53:28 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Johan Jonker <jbx6244@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] arm: dts: rockchip: rk3288-veyron: add spi_flash label
-Date: Fri, 31 Oct 2025 23:53:23 +0100
-Message-ID: <176195118795.233084.13649684258296887756.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <8a423a6f-bfdc-4947-aef9-35ee7c4f6ca2@gmail.com>
-References: <8a423a6f-bfdc-4947-aef9-35ee7c4f6ca2@gmail.com>
+	s=arc-20240116; t=1761954356; c=relaxed/simple;
+	bh=LfBu4uLxRbeleeRHsvF5DjXOwBmxpyTMCk/7ScFYLvg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YMsVynPPeuu1fZWiGPL9L5ms7A3CgI23+LNhv6q2kA63vt5wrdUemijNC+ZKoJVB67b3nNji94jI5fIUm+DCq5P4mNyZoEQirS0dC/SbWs+mi1WZ7KcPnfkhb1Ujy2JT3YLNvCIrWWCq2gV9hR3HZkSvpUXNKzDRMW8/1XWnVCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=3TS22OsL; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-294fe7c2e69so23292395ad.0
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 16:45:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1761954354; x=1762559154; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SfR9l6DRduOmqk2saCjRPV+UB+Qm0nERAOdlSE0n2ok=;
+        b=3TS22OsLcBoFGxZGEvkx25lpBPlMGE+h7Pd8+q9D5ukA765dziC158BCDdqVSBEZ+P
+         QQFRTp0yjJp0IllgymhIwoeJQZFJ1EgzvJTyrDERqNWyMn8APHb5aicjQGNnGXhGc3Yg
+         JNd6cdlCRdMtVEF72jfe/sRIEbyUS08yMt5n5C5g8NIfYAvh3rCgXJC1g83IY1G49+0I
+         iRzfdeoF3B8NFiMK/NlSHwZebLF/NUcRuaIk3qpkIBalnvcJPPvDcM1MVSanWVi3eqXM
+         1I/MmrgIfKOqkhqVxMIFur5pqPTRlQb/ATYqNTyaRAZWvAZfLA7ZsfEPm5odyPIGRGaY
+         mAJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761954354; x=1762559154;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SfR9l6DRduOmqk2saCjRPV+UB+Qm0nERAOdlSE0n2ok=;
+        b=KAb7fijc+mGQ7OK99buLoBu1t9DRDoWqTElHTPWmfgiU4IWJs3KtMKNhmzL/0O3dtq
+         Aqn3MlI9H/C8MyW/iynZe24WRba1dE6hseOpl0Qq2GTtxUo+DLkLlHsd3UPXCIKfGfis
+         AlO05iS0b5uu4DImXLdzzzOreUbX89Q84gQyst63/yAqy1kJduJl3aYOuhIOgajSc5sR
+         kXiYh/3i/iIzfRA6058hPI9nhDg0/uE0IV2b/ahXtyFOpntkTcttPhU3wmele5ys9+jv
+         0TAf54mxFTgDeBXFRtoTbEGVL0/VE1RDKqPFlzYOVURBHRFOZdHbtymeqXkyH/r2jYf/
+         82hA==
+X-Forwarded-Encrypted: i=1; AJvYcCWfgyQ2fsiHjqGXf5Xmf+ODkolTNpIDXjNXMmi+Xmtah/AIow2tThPyviDwalIAIOjr6MpAtXCTL76t@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCco1wq36+WwzPP4ueW+7W7OWQ55hWFoYS57rLkGxoaY6dNKZu
+	eSNrtpiFKf+hxf1ydFp2MlmlL7LKUAPU2vPYbrCQLbRLvXGKvmylllLLlPAZ7y3EJwhBEXr7d59
+	1Xg8M8/IA31JxqQc7vVks3RaWIYA7ivTleU3pdCGu
+X-Gm-Gg: ASbGncsBn8arxix4l1DftRISnkLcjHCPiwfbCOfjH39fEgDjeVNKnOvFGL21x/nXjOY
+	6PUDO3abqmkKlZCeheomNWiqpghManQWrznwnNk15e0mcHRiZYRo53qdieV8vl+82WA4nnJHcMU
+	7oP2TB938MiRv8cg2dcyfBGSZJu0Naqmw0OagynMZL+ZEZZhpC33aJmfG891mUsP0YiaGlg/Osm
+	No1Qdbl0F4YFJFdIVPOY91Jpx8A0IEjoduI30XLpRYgoQqEzIkqEOePxgbgNXlb4LpP9MUdAlRE
+	9CHZwTIYcbQ6bzJP
+X-Google-Smtp-Source: AGHT+IFPdvFe/pMPUJplv+X0Jq5mOmKEcydS82p+NTasUHTcfiqahbrVRLGJQ3FKbcWUmKbkOdLRKW3c4LwYcpzwoXQ=
+X-Received: by 2002:a17:902:d2cd:b0:290:b92d:907 with SMTP id
+ d9443c01a7336-2951a511475mr66921545ad.53.1761954353589; Fri, 31 Oct 2025
+ 16:45:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20251029214032.3175261-1-royluo@google.com> <20251029214032.3175261-2-royluo@google.com>
+ <20251030-cunning-copper-jellyfish-1b5f3b@kuoka>
+In-Reply-To: <20251030-cunning-copper-jellyfish-1b5f3b@kuoka>
+From: Roy Luo <royluo@google.com>
+Date: Fri, 31 Oct 2025 16:45:15 -0700
+X-Gm-Features: AWmQ_bmO0vWs_gLnS0Ww23izAMQNvvQgDrOF0xipRHiQf9rQ8XlagmQ9EzJ_9xY
+Message-ID: <CA+zupgxV7SH8Jmghg7HUkWi63dN3m6KLQNBbf+BOQPFbRsiKiw@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: phy: google: Add Google Tensor G5 USB PHY
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Peter Griffin <peter.griffin@linaro.org>, 
+	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Doug Anderson <dianders@google.com>, 
+	Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>, 
+	Badhri Jagan Sridharan <badhri@google.com>, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Oct 30, 2025 at 12:37=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On Wed, Oct 29, 2025 at 09:40:31PM +0000, Roy Luo wrote:
+> > Document the device tree bindings for the USB PHY interfaces integrated
+> > with the DWC3 controller on Google Tensor SoCs, starting with G5
+> > generation. The USB PHY on Tensor G5 includes two integrated Synopsys
+> > PHY IPs: the eUSB 2.0 PHY IP and the USB 3.2/DisplayPort combo PHY IP.
+> >
+> > Due to a complete architectural overhaul in the Google Tensor G5, the
+> > existing Samsung/Exynos USB PHY binding for older generations of Google
+> > silicons such as gs101 are no longer compatible, necessitating this new
+> > device tree binding.
+> >
+> > Signed-off-by: Roy Luo <royluo@google.com>
+> > ---
+> >  .../bindings/phy/google,gs5-usb-phy.yaml      | 127 ++++++++++++++++++
+> >  1 file changed, 127 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/phy/google,gs5-us=
+b-phy.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/phy/google,gs5-usb-phy.y=
+aml b/Documentation/devicetree/bindings/phy/google,gs5-usb-phy.yaml
+> > new file mode 100644
+> > index 000000000000..8a590036fbac
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/phy/google,gs5-usb-phy.yaml
+> > @@ -0,0 +1,127 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +# Copyright (C) 2025, Google LLC
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/phy/google,gs5-usb-phy.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Google Tensor Series (G5+) USB PHY
+> > +
+> > +maintainers:
+> > +  - Roy Luo <royluo@google.com>
+> > +
+> > +description: |
+> > +  Describes the USB PHY interfaces integrated with the DWC3 USB contro=
+ller on
+> > +  Google Tensor SoCs, starting with the G5 generation.
+> > +  Two specific PHY IPs from Synopsys are integrated, including eUSB 2.=
+0 PHY IP
+> > +  and USB 3.2/DisplayPort combo PHY IP.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: google,gs5-usb-phy
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: USB3.2/DisplayPort combo PHY core registers.
+> > +      - description: USB3.2/DisplayPort combo PHY Type-C Assist regist=
+ers.
+> > +      - description: USB2 PHY configuration registers.
+> > +      - description: USB3.2/DisplayPort combo PHY top-level registers.
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: usb3_core
+> > +      - const: usb3_tca
+> > +      - const: usb2_cfg
+> > +      - const: usb3_top
+>
+> These prefixes are redundant. Also, you are still referencing here
+> completely different devices. MMIO of IP blocks do not have size of 0xc
+> and they do not span over other blocks (0x0c410000 and then next one is
+> 0x0c637000).
 
-On Thu, 30 Oct 2025 18:52:34 +0100, Johan Jonker wrote:
-> The u-boot,spl-boot-order property requires a label at a boot
-> device node. In order to migrate to OF_UPSTREAM more easier
-> add a spi_flash label to the rk3288-veyron.dtsi file.
-> 
-> 
+I'd like to explain why MMIO of IP blocks looks discontinuous.
+As outlined in the description, this device contains two SNPS PHY IPs
+including eUSB2 PHY and USB3.2/DP combo PHY, and is integrated
+with the SNPS DWC3 USB controller. A top-level subsystem wrapper
+sits above the PHYs and controller. This wrapper integrates these IPs
+and is where the Tensor-specific implementation resides. It's essential
+to touch these wrapper registers to control the underlying SNSP IPs.
+Unfortunately, the top-level wrapper's MMIO space lacks a clear
+boundary between these IPs. Specifically, the registers required to
+configure a particular IP are not always adjacent to that IP, and in
+some cases, multiple IPs may even share the same address space.
 
-Applied, thanks!
+The following is the register layout overview:
+- 0xc400000: Dedicated address space for DWC3 controller IP.
+- 0xc410000: Dedicated address space for USB3.2/DP combo PHY IP.
+- 0cc440000: Dedicated address space for the eUSB2 PHY IP.
+                      While this is not in use, it should perhaps be
+called out in
+                      the binding for completeness.
+- 0xc450000: This address range contains top-level wrapper registers
+                      and its space is shared by two devices: the DWC3
+                      controller and the eUSB2 PHY.
+                      It includes control registers for the DWC3 controller
+                      (e.g. hibernation control and interrupt registers) an=
+d
+                      the eUSB2 PHY (e.g. registers for USB2 PHY
+                      frequency configuration).
+                      Because the space is shared, the MMIO range for the
+                      PHY becomes fragmented and is only allocated a size
+                      of 0xc, as the remaining registers in this range are
+                      assigned to the DWC3 controller.
+- 0xc460000: This address range contains registers for other blocks
+                      within the same top-level wrapper (such as PCIe PHY
+                      and DP controller) which are not relevant to USB.
+- 0xc637000: Another region of top-level wrapper registers.
+                      This area is relevant to both the eUSB2 PHY IP
+                      (e.g. control register for vbus valid) and USB3.2/DP
+                      combo PHY (e.g. registers relevant to PHY firmware).
 
-[1/1] arm: dts: rockchip: rk3288-veyron: add spi_flash label
-      commit: ac7116a626e00d3024adedb43b74bdf2ce45efc2
+Thanks for taking the time to go through this wall of text.
+This is definitely not an ideal register layout, but I'm open
+to any suggestions on how best to address this fragmentation.
+If discontinuous MMIO space is a concern, does it make sense to
+make the wrapper registers a syscon node so that it can be
+shared by multiple devices?
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+>
+>
+> > +            reg =3D <0 0x0c410000 0 0x20000>,
+> > +                  <0 0x0c430000 0 0x1000>,
+> > +                  <0 0x0c450014 0 0xc>,
+> > +                  <0 0x0c637000 0 0xa0>;
+> > +
+> > +  "#phy-cells":
+> > +    description: |
+> > +      The phandle's argument in the PHY specifier selects one of the t=
+hree
+> > +      following PHY interfaces.
+> > +      - 0 for USB high-speed.
+> > +      - 1 for USB super-speed.
+> > +      - 2 for DisplayPort.
+> > +    const: 1
+> > +
+> > +  clocks:
+> > +    minItems: 2
+> > +    items:
+> > +      - description: USB2 PHY clock.
+> > +      - description: USB2 PHY APB clock.
+> > +      - description: USB3.2/DisplayPort combo PHY clock.
+> > +      - description: USB3.2/DisplayPort combo PHY firmware clock.
+> > +    description:
+> > +      USB3 clocks are optional if the device is intended for USB2-only
+> > +      operation.
+>
+> No, they are not. SoCs are not made that internal wires are being
+> disconnected when you solder it to a different board.
+>
+> I stopped reviewing here.
+>
+> You are making unusual, unexpected big changes after v4. At v4 you
+> received only few nits because the review process was about to finish.
+>
+> Now you rewrite everything so you ask me to re-review from scratch.
+
+Apologies for the trouble, my intent was to address your feedback on v4
+by describing the USB3/DP PHY block for completeness.
+Like mentioned earlier, this device contains two underlying IPs: eUSB2
+PHY and USB3.2/DP combo PHY. The device can operate in USB2-only
+mode by initializing just the eUSB2 block without touching the USB3
+PHY block - but not the other way around. The v4 patch reflected this
+USB2-only configuration.
+I tried to support the USB 2.0-only configuration in the binding by
+making the USB 3.0 clocks and resets optional. However, if I
+understand your comment correctly, the binding should describe
+FULL hardware capability. I will make USB3 resources mandatory
+in the next version, please let me know if I've misunderstood it.
+
+>
+> > +
+> > +  clock-names:
+> > +    minItems: 2
+> > +    items:
+> > +      - const: usb2
+> > +      - const: usb2_apb
+> > +      - const: usb3
+> > +      - const: usb3_fw
+>
+> Again, what's with the prefixes? apb is bus clock, so how you could have
+> bus clock for usb2 and usb3? This means you have two busses, so two
+> devices.
+
+The prefixes are to differentiate the clocks and resets for the
+underlying two SNPS IP as outlined in the device description.
+- eUSB2 PHY IP needs clocks and resets for the phy itself
+  and its apb bus.
+- USB3.2/DP combo PHY has its own clocks and resets for
+  the phy, plus it needs a clock for its PHY firmware.
+Technically these are two separate IPs, but they're deeply
+integrated together so that they share top-level wrapper
+register space (see the register layout above), and they
+have implicit hardware dependency like mentioned earlier
+(USB2 PHY can work without USB3 PHY, but not vice-versa),
+hence I'm describing them in the same device.
+
+Thanks,
+Roy Luo
+
+>
+> > +
+> > +  resets:
+> > +    minItems: 2
+> > +    items:
+> > +      - description: USB2 PHY reset.
+> > +      - description: USB2 PHY APB reset.
+> > +      - description: USB3.2/DisplayPort combo PHY reset.
+> > +    description:
+> > +      USB3 clocks are optional if the device is intended for USB2-only
+> > +      operation.
+> > +
+> > +  reset-names:
+> > +    minItems: 2
+> > +    items:
+> > +      - const: usb2
+> > +      - const: usb2_apb
+> > +      - const: usb3
+>
+> And here?
+>
+> This all looks like downstream code.
+>
+> Best regards,
+> Krzysztof
+>
 
