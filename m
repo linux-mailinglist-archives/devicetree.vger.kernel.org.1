@@ -1,251 +1,137 @@
-Return-Path: <devicetree+bounces-233825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B32E3C25E10
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 16:43:47 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD007C25F2A
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 17:00:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15C8D3A1A96
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 15:43:34 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6A9F13491AE
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 16:00:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D3852E0938;
-	Fri, 31 Oct 2025 15:43:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 984572F49F2;
+	Fri, 31 Oct 2025 15:58:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="K/sQ4NRY";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="G377tDWt"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="duhoxMid"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 797D52C2343
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 15:43:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AFAD2E8894;
+	Fri, 31 Oct 2025 15:58:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761925411; cv=none; b=sEqrvc4a6fYWpbBnnkFcLIZ2wiBKQVlwIs0gOSJqirauv6zN82dKPe82HBrpqR4UBZJA8eZO/LPdKKVDx9wQePiA8kcGG+v60K2cv9gxj5g9Lsr6EK4GZ95im79soImu4/vM4JPkfG6rSKGmQyi40SNFA+vyGLdFdzD6Wy0ZJNs=
+	t=1761926332; cv=none; b=niGqkgHPUxj0AtKeGSkYyWemTUUZIWZTeRdisW0vzjWuUsBQ6d345PWzRvX5t1ovbArUTu98yWO7EYXABUFZkB4BugIGbnL6OA1spik5mx2gzmcO+6Ue73W69j5Rl8ImVdevEseE3sKjBGKHQjiC5wPw9bH3PWfdutFtw4npa8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761925411; c=relaxed/simple;
-	bh=LU4zbDVx4NbF8EhWTlBBqiKUrpuABwRR04ESl5ewXWM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oqYSKrIE330l5HzOQn8C1aaCS5v0G5fXGO1rcBf0ipz/LPUdOknwzcfEWDGp+VOdwKpd9+5zNl8mekhbOiiK3JHAvr5qlUkBJ8ghD6PfyDfxVq+okqSOLOP6EU66kgow1ni+V8amrYUCN125MUp1nuwsLqvLjnOaHn+z4z4K308=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=K/sQ4NRY; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=G377tDWt; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59VAXf8P1571785
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 15:43:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4JFmZvuI7Px4Apbk0cnCG+kjMARdLNyYjmhmEWKvxe4=; b=K/sQ4NRYmSLBGIpo
-	3uMcLBcwLEFQ+C6z/3XPMKqSqc4mBX+EkV6d/DvRjNvw9iypt1yAya5X/S9KCExX
-	jPzBHOepU1TwzF+DbbckBcO9V73oNRbj9XDJtuOXROQKd8Fl9/etunalv3cGpJNr
-	+OFlsLm5wX78l8cl4jzocBIYsrm+rmLXlnCy5hDdnHJmvcueAzLIg4OafpdCH+VM
-	aVs02kgsr5LzO2nciYm0E2zFE97+GFWF5BUu3KOETNf0hThTTg8Mnsf0GIeOWW8O
-	clrm9nyuThytGDYLPTMqS8DgNSL93P1aIRSYAmYnwlWZ78kXLsgkdzWwl/hTPBjd
-	y6TdoQ==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a4ksc23a4-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 15:43:28 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4eba930d6ecso61145701cf.3
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 08:43:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761925408; x=1762530208; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4JFmZvuI7Px4Apbk0cnCG+kjMARdLNyYjmhmEWKvxe4=;
-        b=G377tDWtPi87YotKnKHidIhj/yowwqQH0I0fedyFoExeChWQ+mDn5ExfPa7LFE04Kv
-         C1QxCMdXcXikduK59YSot9amjFAvaX2QzWhixs2h34h8pXGqiIlKDMQhXFNflryzhfBC
-         qbzTxLM0MXs3PT3GDmxNpg5TIhxgB0+y47gqkJab0K9JXZ44U8qm04Wttn1RXCI2CZ5C
-         teUUUo55NH/tZM2NqTV8Q+vzP4ZoF2ukrxlEHCib8mPY8bqfIMECCfLHheDPgv5izBd/
-         DpVohv1RfD16RGC8mthxpXjujqUmsC7623ZonaOmV188LMxgeG+zH08LbrA/HEpk5HOP
-         UN9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761925408; x=1762530208;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4JFmZvuI7Px4Apbk0cnCG+kjMARdLNyYjmhmEWKvxe4=;
-        b=sszrx6lDYAMntMxR8xsvCs1D69gvS/ZAj1Lfam8zkFRrzDzFN7V7WBXG19la+lmcdZ
-         QL851/rvcTGWxZUDDt0jxUuZGmvTBJOmRLQlsSpFXd48IemQTM+INjHstYTBglIIKHec
-         iWCxQvq7u0Cg2kWe+egiGeIk6ZKL8jd+6m3BrtOQpGMwthwbJ1qahAUgglUjNCToXfBY
-         BM77GU0EIMOE+unaiWOxqtvLJLfZRTfD5owy20/6xS5KwNW6KeEYswMp6jWDShm46iGY
-         tfyjbQqVhBY8f6fMdOmj+28EqWg0fXqU4P8l5JPX34ShgSB3cohd13eWa2Lw+2ManUEH
-         ui9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUWJpN/5iG2nM95KBi/r9XL5MfpxcaYXFoVa30mAnWUvQcgrM45eXVCEi9jFoTo7zX8YFcMBUYiHJKA@vger.kernel.org
-X-Gm-Message-State: AOJu0YxTdUcTadjOOVq5rI0Kf3oGTaMc9HV/55S3JgxI20L3ULb8TanR
-	0kFVjt2kOrpfBmjtZUvU/UBzChjdGgayEFmp1HY8xCxA0lD/H3yriHe0NjWCwmBdjuJIG/iGrGx
-	y7qFlHCA6gr5PUBVOLGpphIQjMOMk5j0WOsFdLhfg72aHoeMANXEV1YklKgEevXM4
-X-Gm-Gg: ASbGnct3MSDV2eXujB/ny29ZbPaFIML/tl4voR3KB1qgx0TtUOVDoiOeqBxzd+MW0F9
-	MB64Irn5XF5TrfZFYR4kvfqCL96DzgkE0Yms9BRIJJv5Jjc5p/KHXhzC5GKSVcQRZzXI87Sqo0F
-	4TM3dvTgCV/EIdwr+KANp3dCYhrHQVg7Omec4W7a1U4NR3+GvjtXM4lQuoKw6BLnyElHB5ZiQsl
-	EpPfmJ89ZVMlJrokgYHI4faXj0UZIUlRtZJgxHydkGXktCIKYpX9rhSdb7flUbSTGjHwJMtzvOW
-	84AjYFwKOcAVse7cF1e2CMM/CL4RFR0gKRQ1X7ypl9uQzAKxEJ+LOU4a87hpmbCD2lrTX/1LTZf
-	4WX1urXlbYtJsQVAL405QIQFeoqPsU+N2F4M8RkSXjkQyGLQ7lWgtk5wwsOqGqQ==
-X-Received: by 2002:a05:622a:153:b0:4ec:f035:d60 with SMTP id d75a77b69052e-4ed30d923e3mr43230821cf.5.1761925407730;
-        Fri, 31 Oct 2025 08:43:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHQAWd1J7oWtcMPX3rnVkF6XNlyYFAMR5sObmDNnVQ/IctF28iJZltsP22Ps9WEpLaV+65wUw==
-X-Received: by 2002:a05:622a:153:b0:4ec:f035:d60 with SMTP id d75a77b69052e-4ed30d923e3mr43230481cf.5.1761925407236;
-        Fri, 31 Oct 2025 08:43:27 -0700 (PDT)
-Received: from [192.168.10.38] (91-154-146-251.elisa-laajakaista.fi. [91.154.146.251])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37a1bfb45easm4478091fa.16.2025.10.31.08.43.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Oct 2025 08:43:25 -0700 (PDT)
-Message-ID: <e758dc56-a5eb-4c4a-9ab0-74e9b9b86c7c@oss.qualcomm.com>
-Date: Fri, 31 Oct 2025 17:43:26 +0200
+	s=arc-20240116; t=1761926332; c=relaxed/simple;
+	bh=7ZocrOdZoOe8U0HbdKT4/kjrzm5YzPGNjP4XkVa5BWs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=L4UHYiQrmTWXy8QdtVexeyt8foonA8+vGxBZ5YihTDvHBKrwdjiIYXa8jLqnPMJojvlTdCICxui2rGa5iXylIvJi0jTdD1igipigFs7vkUs0R7bJNa+MI0MI8Gae4FamGEas9bMnr76uY9zP9C+E2/c1/r8O4VZqaNC5FxbVZj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=duhoxMid; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 787881f4b67211f0b33aeb1e7f16c2b6-20251031
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=bov98rlRxQkhC4GLJxADuB3XDxqpYat/vql3Q23B3/o=;
+	b=duhoxMidtH5SSxYzqL5w5+blGJJ2NumIp1jIV4xwe3YQ75SVVWR1NbdsjTBx8+t773mbJqK+kFORVve9CW9X4kFOyN4R7F7KdNr7xfULE2Vuomeqb+dAO2ffYTZsbSTbAM4d6OzIBUcj39u901QBc1GJmc+Dnm3MoTvIFxzLXqo=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.6,REQID:76af375b-8c22-495a-9007-4ab11db5d6a8,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:a9d874c,CLOUDID:4413e76a-d4bd-4ab9-8221-0049857cc502,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|888|898,TC:-5,Content:0|15|5
+	0,EDM:-3,IP:nil,URL:99|1,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0
+	,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 787881f4b67211f0b33aeb1e7f16c2b6-20251031
+Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw02.mediatek.com
+	(envelope-from <jason-jh.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 561415047; Fri, 31 Oct 2025 23:58:41 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Fri, 31 Oct 2025 23:58:39 +0800
+Received: from mtksitap99.mediatek.inc (10.233.130.16) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1748.26 via Frontend Transport; Fri, 31 Oct 2025 23:58:39 +0800
+From: Jason-JH Lin <jason-jh.lin@mediatek.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>,
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Mauro Carvalho Chehab
+	<mchehab@kernel.org>
+CC: Matthias Brugger <matthias.bgg@gmail.com>, Nicolas Dufresne
+	<nicolas@ndufresne.ca>, Jason-JH Lin <jason-jh.lin@mediatek.com>, Nancy Lin
+	<nancy.lin@mediatek.com>, Singo Chang <singo.chang@mediatek.com>, Paul-PL
+ Chen <paul-pl.chen@mediatek.com>, Moudy Ho <moudy.ho@mediatek.com>, Xiandong
+ Wang <xiandong.wang@mediatek.com>, Sirius Wang <sirius.wang@mediatek.com>,
+	Fei Shao <fshao@chromium.org>, Chen-yu Tsai <wenst@chromium.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-media@vger.kernel.org>,
+	Jason-jh Lin <jason-jh.lin@mediatek.corp-partner.google.com>
+Subject: [PATCH 0/9] Add GCE support for MT8196 (series 1/4)
+Date: Fri, 31 Oct 2025 23:56:28 +0800
+Message-ID: <20251031155838.1650833-1-jason-jh.lin@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/12] drm/panel: Set sufficient voltage for panel nt37801
-To: yuanjiey <yuanjie.yang@oss.qualcomm.com>
-Cc: robin.clark@oss.qualcomm.com, lumag@kernel.org, abhinav.kumar@linux.dev,
-        sean@poorly.run, marijn.suijten@somainline.org, airlied@gmail.com,
-        simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, quic_mkrishn@quicinc.com, jonathan@marek.ca,
-        quic_khsieh@quicinc.com, neil.armstrong@linaro.org,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
-        aiqun.yu@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com
-References: <20251023075401.1148-1-yuanjie.yang@oss.qualcomm.com>
- <20251023080609.1212-1-yuanjie.yang@oss.qualcomm.com>
- <20251023080609.1212-2-yuanjie.yang@oss.qualcomm.com>
- <zxofh6bwee3vjjlntlfqy7yg2iu2mipjvl7s5bcm6gbh233cjq@nuicjojawd2d>
- <aPsWEhM7i+gDjXE0@yuanjiey.ap.qualcomm.com>
- <4bnvh2ydtrmejknzpsxoalxoyjpq5g5cjbrico5ezbek24r52s@u5zy6ekh6lps>
- <aQF0zzUpLeUu4lrC@yuanjiey.ap.qualcomm.com>
- <5hftxsuqz745mxxk2hjpwfxwrm73p2l3dxn2mb2uqb2c44fd2w@l5xvadj7gvvg>
- <aQLInjBCbeNJVanK@yuanjiey.ap.qualcomm.com>
- <r3sbg5r5pesrfrave7l6nx4ws62eogfn7m4f5c3ur2a6xkhsss@f5vfre2hd2cr>
- <aQQdQoCLeKhYtY7W@yuanjiey.ap.qualcomm.com>
-Content-Language: en-US
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <aQQdQoCLeKhYtY7W@yuanjiey.ap.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMxMDE0MSBTYWx0ZWRfX7jpqaKvrS7U5
- kCnXQPhV2uBHJ3YwtUT/tJ//UPk99rlyxYML3t8i5g7G1m7nEpOyHIKlNU4ZTP5GU81yQn58Rm/
- TC4BLsltPheZ4Hbvp8p4ZaHfP7QYAHlL9+tnx5rCin+FOyZkqFqAFkJXgGBVYdxRMoz00e/QmNN
- d98ir4jMGzIdlO+3pO1VugNMIa8JaP44iSAiXBtHMzpt2Ijbp2+AbCxnzPst3yhdkJ4307XGakQ
- MamudpFeT4a8YHk+VkTpg/uCF0DIaBB0M+1W10azER6yxfBzZKcYuqn3SX70a2qcbfTa4soq1T8
- e8IP/F6bnCOgTpE6dPlyJ4ojvfirE0tMvwC77jlk3ZQXo92AQZzIBITqVbgiyuGtioU+3eAq0Ak
- iKsINggWAyiJ8jOxbWIKVqh8xrKI0A==
-X-Authority-Analysis: v=2.4 cv=Q8PfIo2a c=1 sm=1 tr=0 ts=6904d920 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=CKk/IlMN6Gw3Dq31eR3Dfg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=e5mUnYsNAAAA:8 a=EUspDBNiAAAA:8
- a=Gjd6gEmqAeAVqTANhbgA:9 a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
- a=Vxmtnl_E_bksehYqCbjh:22
-X-Proofpoint-ORIG-GUID: 1ABsDZMr8I4rb3hEk5fmDCGceOi0j3rB
-X-Proofpoint-GUID: 1ABsDZMr8I4rb3hEk5fmDCGceOi0j3rB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-10-31_05,2025-10-29_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 priorityscore=1501 adultscore=0 malwarescore=0 suspectscore=0
- spamscore=0 lowpriorityscore=0 impostorscore=0 phishscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510310141
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On 31/10/2025 04:21, yuanjiey wrote:
-> On Thu, Oct 30, 2025 at 07:57:46PM +0200, Dmitry Baryshkov wrote:
->> On Thu, Oct 30, 2025 at 10:08:30AM +0800, yuanjiey wrote:
->>> On Wed, Oct 29, 2025 at 02:20:13PM +0200, Dmitry Baryshkov wrote:
->>>> On Wed, Oct 29, 2025 at 09:58:39AM +0800, yuanjiey wrote:
->>>>> On Mon, Oct 27, 2025 at 02:22:04PM +0200, Dmitry Baryshkov wrote:
->>>>>> On Fri, Oct 24, 2025 at 02:00:50PM +0800, yuanjiey wrote:
->>>>>>> On Thu, Oct 23, 2025 at 03:14:38PM +0300, Dmitry Baryshkov wrote:
->>>>>>>> On Thu, Oct 23, 2025 at 04:06:04PM +0800, yuanjie yang wrote:
->>>>>>>>> From: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
->>>>>>>>>
->>>>>>>>> The NT37801 Sepc V1.0 chapter "5.7.1 Power On Sequence" states
->>>>>>>>> VDDI=1.65V~1.95V, so set sufficient voltage for panel nt37801.
->>>>>>>>>
->>>>>>>>> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
->>>>>>>>> Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
->>>>>>>>> ---
->>>>>>>>>   drivers/gpu/drm/panel/panel-novatek-nt37801.c | 5 +++++
->>>>>>>>>   1 file changed, 5 insertions(+)
->>>>>>>>>
->>>>>>>>> diff --git a/drivers/gpu/drm/panel/panel-novatek-nt37801.c b/drivers/gpu/drm/panel/panel-novatek-nt37801.c
->>>>>>>>> index d6a37d7e0cc6..7eda16e0c1f9 100644
->>>>>>>>> --- a/drivers/gpu/drm/panel/panel-novatek-nt37801.c
->>>>>>>>> +++ b/drivers/gpu/drm/panel/panel-novatek-nt37801.c
->>>>>>>>> @@ -267,6 +267,11 @@ static int novatek_nt37801_probe(struct mipi_dsi_device *dsi)
->>>>>>>>>   	if (ret < 0)
->>>>>>>>>   		return ret;
->>>>>>>>>   
->>>>>>>>> +	ret = regulator_set_voltage(ctx->supplies[0].consumer,
->>>>>>>>> +				    1650000, 1950000);
->>>>>>>>
->>>>>>>> This should be done in the DT. Limit the voltage per the user.
->>>>>>> Two reason:
->>>>>>> 1.
->>>>>>> I see https://patchwork.freedesktop.org/patch/354612/
->>>>>>>
->>>>>>> panel panel-novatek-nt35510.c also use regulator_set_voltage set right voltage,
->>>>>>> so I do the same work.
->>>>>>
->>>>>> Please look for the majority rather than the exceptions. Out of all
->>>>>> panel drivers only two set the voltage directly.
->>>>>>
->>>>>>>
->>>>>>> 2.     Kaanapali vddio regulator:
->>>>>>>
->>>>>>> 		vreg_l12b_1p8: ldo12 {
->>>>>>> 			regulator-name = "vreg_l12b_1p8";
->>>>>>> 			regulator-min-microvolt = <1200000>;
->>>>>>> 			regulator-max-microvolt = <1800000>;
->>>>>>>
->>>>>>> 	Voltage is from 1.2~.1.8 V , So I can not set it 1.65~1.95 V from DT(1.95V is beyond the allowed range).
->>>>>>> 	So I use regulator_set_voltage to set voltage, and regulator_set_voltage will choose the appropriate voltage.
->>>>>>
->>>>>> DT has to list the voltage values that work for the devices on that
->>>>>> particular platform. So, ldo12 should be listing 1.64 - 1.8 V.
->>>>> get it. I check downstream DT,
->>>>>    dosnstream DT:
->>>>>     regulator-min-microvolt = <1800000>;
->>>>>     regulator-max-microvolt = <1800000>;
->>>>>
->>>>>    I test 1.8V works, So I will add 1.8V in next patch, do you think it is ok?
->>>>
->>>> What does panel's datasheet say?
->>>
->>> The NT37801 Sepc V1.0 chapter "5.7.1 Power On Sequence" states
->>> VDDI=1.65V~1.95V.
->>>
->>> So I should follow datasheet to set DT ldo12: 1.64 - 1.8V ?
->>
->> If the panel declares minimum voltage to 1.65 V, why are you declaring
->> 1.64 V as the mimimal voltage for the rail?
-> 
-> Corrcet here:
-> 
-> DT ldo12 will be  1.65 - 1.8V
+From: Jason-jh Lin <jason-jh.lin@mediatek.corp-partner.google.com>
 
-Yep.
+This series adds initial support for the MediaTek MT8196 GCE in the CMDQ
+driver, including related API changes for new hardware requirements.
 
-> 
-> Thanks,
-> Yuanjie
-> 
->   
->>>
->>> if you think it is ture, I will fix it in next patch.
->> -- 
->> With best wishes
->> Dmitry
+Series application order:
+  1. [Fixes] Refine DMA address handling for the command buffer
+  - https://lore.kernel.org/all/20251022171847.379470-1-jason-jh.lin@mediatek.com/
+  2. [Series 1/4] Add GCE support for MT8196 and update CMDQ APIs (this series)
+  3. [Series 2/4] Migrate subsystems to new CMDQ APIs
+  4. [Series 3/4] Remove shift_pa from CMDQ jump functions
+  5. [Series 4/4] Remove deprecated CMDQ APIs
 
+Please apply this series after the DMA address handling Fixes patch[1],
+and before the following series.
+
+---
+
+Jason-JH Lin (9):
+  arm64: dts: mediatek: Add GCE header for MT8196
+  mailbox: mtk-cmdq: Add cmdq private data to cmdq_pkt for generating
+    instruction
+  mailbox: mtk-cmdq: Add GCE hardware virtualization configuration
+  mailbox: mtk-cmdq: Add mminfra_offset configuration for DRAM
+    transaction
+  mailbox: mtk-cmdq: Add driver data to support for MT8196
+  soc: mediatek: mtk-cmdq: Add cmdq_get_mbox_priv() in cmdq_pkt_create()
+  soc: mediatek: mtk-cmdq: Add pa_base parsing for hardware without
+    subsys ID support
+  soc: mediatek: mtk-cmdq: Extend cmdq_pkt_write API for SoCs without
+    subsys ID
+  soc: mediatek: mtk-cmdq: Add mminfra_offset adjustment for DRAM
+    addresses
+
+ arch/arm64/boot/dts/mediatek/mt8196-gce.h | 612 ++++++++++++++++++++++
+ drivers/mailbox/mtk-cmdq-mailbox.c        |  74 ++-
+ drivers/soc/mediatek/mtk-cmdq-helper.c    |  77 ++-
+ include/linux/mailbox/mtk-cmdq-mailbox.h  |  19 +
+ include/linux/soc/mediatek/mtk-cmdq.h     |  93 ++++
+ 5 files changed, 869 insertions(+), 6 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8196-gce.h
 
 -- 
-With best wishes
-Dmitry
+2.43.0
+
 
