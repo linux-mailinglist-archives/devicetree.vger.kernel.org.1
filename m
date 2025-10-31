@@ -1,1191 +1,344 @@
-Return-Path: <devicetree+bounces-233920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6453C26BB0
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 20:28:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3D85C26BF6
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 20:30:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 570E2464D20
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 19:24:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00D863B2B30
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 19:28:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C80934D920;
-	Fri, 31 Oct 2025 19:23:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A07C430E82B;
+	Fri, 31 Oct 2025 19:28:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="fnavbkeR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013041.outbound.protection.outlook.com [40.107.162.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2445230DD31;
-	Fri, 31 Oct 2025 19:23:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761938592; cv=none; b=WWnRALHOS5CssapiqUfMTPTYAk/zpGfiTY7usRSWzQPubG6N0htrEShzBV2c2Q5mGUkwvl/PPqNsZjp4fjz3s5dYiqMhPtGJDeF02ribhEQYIy+snvpyeqP1bdmNzSpYlE5Se7MH9HgwzBhdQtQX005KNqA+p5YxWP7zseEdnn4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761938592; c=relaxed/simple;
-	bh=CSxnXsB58gbXocXTo/y4KcJI+9aNHSPU0QxadsecUBQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NMGMwL0Yluo0Xj3cKHhYn8OSyNd2RGHUDpSmnRwzkCj9j4+GY3HUmpwtdTEh5L70AfaIIRXOIHtdCBJviqULf2jpLTXn5cxQ4boGdymqpTPCusPOGbfviIqjEaPNVatT8LVqSxz6kZpo6gjNZRSSe6P0oySXhCzCZuVvaeOf8qo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.98.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vEuiG-000000005vf-3lID;
-	Fri, 31 Oct 2025 19:23:05 +0000
-Date: Fri, 31 Oct 2025 19:23:01 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33CC12F7466;
+	Fri, 31 Oct 2025 19:28:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761938902; cv=fail; b=N+/8l8JZfe1NOET3LYC8G/5tb8Sf+N6XUsqJEXECNBncddkt6lqMe87+aXHZRYMXWoRhFyXwMoto38q27iiIugTufs3yVw89iw0ESnyva9HHEoYekW6Cn5kOQbb+dlVV7jhpy2WxoJuqIm2M6st53b3vnzrZm9OGHzWdsPohOaA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761938902; c=relaxed/simple;
+	bh=W/mqFm9I+2OUQzc9/bPjNwG5TTm0Ua+12WZaOfCxqo8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=neOTSCJCUI9PwAyjqjluNqS01YdZmiaBeM2cFQzW9DUmY88d7VLmiQFfd8On3VqmfFmGY94lUwPRf0upQsPprpEz5coqAbnVDj5F8fy+V3b73+TbiPL1jqvpyAE8sPvN6ry5UoAvMXCMrtwdq80UaWDENP5Sh2TDt8bI0VQM6Uo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=fnavbkeR; arc=fail smtp.client-ip=40.107.162.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=uyGBZvMzMew4IhkkG9yKSfxH/vCRhY4NmQ2hstmufkK0iUcRBNknVHHiGh4LWpuiJeTmUKJUj1dGvjKBIDhum0TqhOAM2xLp+OAfGaVFrtvvRCJ9/3xmUABYps/tBLBQVwJQhCp7elQdTIHblyUPUarP/936ThTJIdGFUP6YuNXzfml+F/Ump41Bujwkza17V8sZy4N8XKglpWsZb4/E73S0o+/7GBoydZFD6reY6jIybJQ2JVP6mjU+9I7dHEEj3LtbvKp3NCxkuYvCC2BDsDkQ0o99gJWv2SGKyAWmGe+j7+faBufmZ+jkJq0UAcsNNwlUS+cIWTKCVGoCUKQfwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JXcmgFgJLbkHMSBVSOuJG4lorwpxSl5Hs0TTaSCW/1Y=;
+ b=dgVbIA5ZOS08lcTahR5xKRt0REUy+fR+TlhH1DAUETFqg/pEw9IM6DhUY+ndXO4Ufdz6vASCL3abhjqTBIlgVvfpUZUzs753z47nsuPbVUFoEPvpWIIIxoCHL+32A/Q7kR3U+/oPq3h+4vS38ZXLoM8J5rXOYuPpDEwquJNBQVhrLVYpBA/0j09Duv5wfmU8JZa6RZnBBv0hdEpZ/PtCL59otxlnoto3VRxHDXS5GbkRO1VvgEABEc8wVCj9AUrvdPzTdiodvvKNmA+PrEstQ8Gw+F82HViDNf/OgxPT+p931X4oulVz8inNn1udDAjHjVLti0N9zKiHSWXQqG30TQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JXcmgFgJLbkHMSBVSOuJG4lorwpxSl5Hs0TTaSCW/1Y=;
+ b=fnavbkeRWF+yu0Vu50dFZM1FPXTE0UUIx0MVGzz0fvl9Avs2RM01fJzDYMTxceL1sNhd2kFtTCSFKepe4ZT5ctRfGHYT0lOUjM6BdhBhFFHQrjBklRM9NDKmw3cHO/M0OuUGzyIl5xgF3STvUM3INI7FxDkqVOSpBSjtYzwvvIoiyUqqBi9CSweLyMdHiC0P2zv6eW72sV6p81fDmeL9wRm/srP5Th1ANfyjcwgnJi66ibn+cl6VCdtHlUdOZBiHMeN9SyHBFo5w93XkPlGKZcWVvSqFIa1oS+rv1Udmi0FT0hdM0GNhu45qvzyDMMERu705GNXNJ0VNVydlxO1hlA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
+ by DBBPR04MB7596.eurprd04.prod.outlook.com (2603:10a6:10:201::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.17; Fri, 31 Oct
+ 2025 19:28:16 +0000
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd]) by DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd%4]) with mapi id 15.20.9275.013; Fri, 31 Oct 2025
+ 19:28:16 +0000
+Date: Fri, 31 Oct 2025 15:28:07 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Andreas Schirm <andreas.schirm@siemens.com>,
-	Lukas Stockmann <lukas.stockmann@siemens.com>,
-	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
-	Peter Christen <peter.christen@siemens.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: [PATCH net-next v6 12/12] net: dsa: add driver for MaxLinear GSW1xx
- switch family
-Message-ID: <6b62366d0414931f77975ae7a3594cfcb0b8c02c.1761938079.git.daniel@makrotopia.org>
-References: <cover.1761938079.git.daniel@makrotopia.org>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 4/5] remoteproc: imx_rproc: Add support for System
+ Manager API
+Message-ID: <aQUNx0SWWO7HjyL5@lizhi-Precision-Tower-5810>
+References: <20251031-imx95-rproc-2025-10-31-v2-0-758b2e547a55@nxp.com>
+ <20251031-imx95-rproc-2025-10-31-v2-4-758b2e547a55@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251031-imx95-rproc-2025-10-31-v2-4-758b2e547a55@nxp.com>
+X-ClientProxiedBy: BYAPR21CA0009.namprd21.prod.outlook.com
+ (2603:10b6:a03:114::19) To DB9PR04MB9626.eurprd04.prod.outlook.com
+ (2603:10a6:10:309::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1761938079.git.daniel@makrotopia.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|DBBPR04MB7596:EE_
+X-MS-Office365-Filtering-Correlation-Id: b043b740-a870-4c88-315b-08de18b3a401
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|52116014|1800799024|366016|19092799006|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?lQaHOvQUVawlu7fJ5yDDQhOrn1uwzKNH/adz8G1fhqB01d6Yqcps+UlI+f6B?=
+ =?us-ascii?Q?JABoYYoImASEdrhb9Jjb4+V5tTDiqTXAKxtwoxsqPcDaTS3It98r+pQ3a2cP?=
+ =?us-ascii?Q?G3uUuHUxTTwEWLfN1dADXA/fuYvh1ERczwlU/l0xq/VfKNp5VubAmIcim6RV?=
+ =?us-ascii?Q?oxDqahlRJPMkBsfIweLQDC0lxv9IDPA48Qi7pzLfNU94hnw0jllSB2lPeIK/?=
+ =?us-ascii?Q?VBKhNYTPDol0qtUgn6teVV+bFGJ5Fc8jgomAae6d7FgutAG3bYtOHDlLq+/2?=
+ =?us-ascii?Q?lC5ygNT0WTOrZMCdd5iLfELjvrvDX8MAtJei2w88zUQmTHvCiMZdZxRKmHeo?=
+ =?us-ascii?Q?5pqjXoF7WHxU6YFwdtHiEZsSV4VYqkh9Ou9i0OTS4ehq1eIaLrs4zyQleTR5?=
+ =?us-ascii?Q?ss3lB5a7f9/rugiAJ+1TLYpNLH4p2l7re4Qbf6vlI7Mnxh1wCHoo1Hi329i3?=
+ =?us-ascii?Q?CqsunmoeBCvobOSZ4PbH/Bfttf35/lv1A12ZsK9Ux2CXQRLMFrx3yG8q+IcQ?=
+ =?us-ascii?Q?VISd/zitoqj8PJ8PrJkptvYrdP80Tw8GwHE/fMms6vURwcc6/BenJcYf98bZ?=
+ =?us-ascii?Q?EUW9AzirvqMY5JRcdRDBwE0H0VDS02eKrwArCV+9j92xl4roI0rP+KW0yonx?=
+ =?us-ascii?Q?boXYcSqyIcivvWF1LUYsol1UjuSdwliLcZko2OLWeHGYQO1eu0KP2RB1kUqK?=
+ =?us-ascii?Q?nG7JSOkdPuw+dsoDSdKtT/iAuY/bvlSPhnRNeM3FXHOec/2J36H9xi9gMReQ?=
+ =?us-ascii?Q?EyRniXUeKW5attLNqVebHVuM3F0y4JlGZyZpy/gc1HmqtrSJAbYgNm/IDc5v?=
+ =?us-ascii?Q?+NEV7ZiJFAgXm9ZWruX18W4sbJ6wZ9ScFex6kKF3QaPSBCwkz4tWP9SSt/Rx?=
+ =?us-ascii?Q?gCgmpwpnxLHFUP1ibQT/iZU8+947CwBnQdYWwi9HZWiC5q9FOaIx1r9cXu/W?=
+ =?us-ascii?Q?28kg4Rv9hpu9t9MBQtK+pzsO+bEZH3rfNKTC343lRISajtyvTbFPbfSfkh2R?=
+ =?us-ascii?Q?Yly/1jFnzuukOS3TPqNnLdIzeNQlbakHP3ZhAPHs59wH30xyk04uyzNIx5Cv?=
+ =?us-ascii?Q?XZHoBT0jk1vR8qCdrpulptKoRHsLXqMmzqU2o5REV6h7Jk+zFTJ13DW0zaoh?=
+ =?us-ascii?Q?bAb1rpBQBmKVtpiAgAHWclCrbsYLTGivZP4wYPvmGAc7g2kEvjOP5cEVKspK?=
+ =?us-ascii?Q?Aof1+aeNGjrDO7+lNUBu8tN7HCPmz2y/mdHdEpYXHXZUw+VzfUGVNysSC52m?=
+ =?us-ascii?Q?2oTAE10OtKjnbfNk2885Zxk7pwTZF9sc4/nhLPfPSKM2/zua+0JMffPb7aYo?=
+ =?us-ascii?Q?eZ7yR+aZVP7gWpJGoReymJseulDjRHjlstj7Vp0E8V3knPgDNB1TA7O8IfZg?=
+ =?us-ascii?Q?gVUytTPkDxbpbIEeg1w0yCisrP6UulhjuxReCOm4jZRFV1vUNsMzPA8IBHoM?=
+ =?us-ascii?Q?voC11uijSfSJT1H/+JEIJiklYBOsLjMZTazgQuo5qZpqGGGyz/ilzaUVtMRc?=
+ =?us-ascii?Q?Ll6K/hlVagw0T+8ghWqdBW2WxOIbZTxzR3YN?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(52116014)(1800799024)(366016)(19092799006)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?VehuLYgaq5AmEKdB7uGX/0pCeFuWAj67DeUxddLtHEt90n4WKY5u0qUWfodY?=
+ =?us-ascii?Q?KSDwInr1g9olr+BELeTHd+0Xe4T0QlJiDmvHQ5kj752w8qv2CtpduhYZK3D6?=
+ =?us-ascii?Q?XrEpK0/4SqjFvxU1cisvz8se5M2Bf5S0HzAnBVhNQXmYoDbmPpYSLU5e2OLm?=
+ =?us-ascii?Q?0H4EfrxSssYtXsG8psDQThIxvFkcdvzvB5ia/aAGK78evLv8omckkmenU7Ks?=
+ =?us-ascii?Q?4f6xHOGEjewO2X0BwK4r2JzO+4ikXvhkNaFYAImjNh3SS+Thzszi+UGMtXQ3?=
+ =?us-ascii?Q?eYUV2v8tToEJnuCQJaghrO4AddacrG1cQNTAR09eEtF2MlOAj20Gs3YZh6qh?=
+ =?us-ascii?Q?/oGkNfm5PW0pTr8MeokjiS70MeRhuFXmMA09ijirzd7mqy0VYnp1uID7IzFi?=
+ =?us-ascii?Q?/nF6ZUi3eg6RMu1BBIahzuUerc7ReRk86a1aMyVSBVbhMTWj0ypZNB1+M1PO?=
+ =?us-ascii?Q?g/uUOmSFt56BL4RmWrIO1Vk7X50nv7Di5o+MLbTyPv8xFzN8L1tPUreENarG?=
+ =?us-ascii?Q?0OVuFc7dwzj36kAZiybozreNNVtJQv6SMtg95jh0C3u7/RZLtTa/waOpohuc?=
+ =?us-ascii?Q?uSGE8Fo2ZPYvll4R+Y4AQLM0+O96O3Za1yboUTMugZ2qHzzb2NHd46/DY23l?=
+ =?us-ascii?Q?zlA1QjABiJ5dyXyqpPZVwNfHFrYjl6HwOjIlL0zP+D0daUU1lGzXd4sw8SJS?=
+ =?us-ascii?Q?ogwZTWjl0iIiWp9Lh/DVhuANld5+U0WseFhFxn+EGvXZ0J/RI7tD7/HFcZPB?=
+ =?us-ascii?Q?AUeTSX3eN3lAhdHCVmfQbTCxg0NdPgM8Y/ZKYFkEhhvwQG8RoAaBCM4GEGPg?=
+ =?us-ascii?Q?9MzZnsyJHx+sXF1y5SzUHM4rBeyPN2PvTcANU4YFwJWdecWfrLoRCEjN1y7e?=
+ =?us-ascii?Q?hfn7cYT/+7NU4eiwxcJ9HTdKrfO5ykT7xViH67JiKHSlzP44KTDwHfNigZDH?=
+ =?us-ascii?Q?1k1V6wLgBdPmVoRP3GUmxKg41J9ZuocA/zAYjGq9Ir4SC+I1YB0ayR84yXjB?=
+ =?us-ascii?Q?ux3Ke25TcPEaZS+cSSR3vLn9Zti08/+3MF1x7X6u0a7dIaEo6LAMMoW/7P2n?=
+ =?us-ascii?Q?WorbZAmJp6UCqcJLirvyXq1COUmp+VJjX+4B+d7BZsFm5b8M4vVn4JqN3QK+?=
+ =?us-ascii?Q?LLW5xlRdeJUoQ65TheAdQwsKPSu/zAjL/HFj/yxbgFx0s3QWpzT8GdEmpRK5?=
+ =?us-ascii?Q?ogbB5OB8uiZJ/aG03p8X/55HrI2cD7EaMy0DygndCIWnFh3bmqZxP925OrL9?=
+ =?us-ascii?Q?Uz5+FLcCL6yv7SVtbptl9/u7egr7Garrl2yC4WctDb4cbaM1sd9q3O2cjxiD?=
+ =?us-ascii?Q?x//16xOIqPJAXR75KJIXmG4gxW5FcV+MT0/vwFRv84go6/Qfb8myUQpxHDeW?=
+ =?us-ascii?Q?a20afzRuRVTFJwkFJydm8nJeDEXsb18LjvZX1xbfV9OPVnz87oku5ccAh2w9?=
+ =?us-ascii?Q?lUq0Lyj+Ycnqet3O0rV1uYSwtAUNGRPSnPdnSZhF4UK4A2heAe0b5wsBuuvJ?=
+ =?us-ascii?Q?KYne3+FRSRmEn9UbXd8hr/FOa7ljU22kx5VWvF7WQg0RaFvgXcru4HQ+/wQ/?=
+ =?us-ascii?Q?0QGqEfrwdA3EvxiO0xGmq2yC1OYk8WtaxBnNyQfF?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b043b740-a870-4c88-315b-08de18b3a401
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2025 19:28:16.4675
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZuAKbIIESk1KcttEQEGVJkXx9BBrb+tAWMqvRT6xacn8LXG0OlYvO3LLFWPr0CcwWycf5BKRQMD9SN0WysQ2Qg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7596
 
-Add driver for the MaxLinear GSW1xx family of Ethernet switch ICs which
-are based on the same IP as the Lantiq/Intel GSWIP found in the Lantiq VR9
-and Intel GRX MIPS router SoCs. The main difference is that instead of
-using memory-mapped I/O to communicate with the host CPU these ICs are
-connected via MDIO (or SPI, which isn't supported by this driver).
-Implement the regmap API to access the switch registers over MDIO to allow
-reusing lantiq_gswip_common for all core functionality.
+On Fri, Oct 31, 2025 at 10:24:55AM +0800, Peng Fan wrote:
+> i.MX95 features a Cortex-M33 core, six Cortex-A55 cores, and
+> one Cortex-M7 core. The System Control Management Interface(SCMI)
+> firmware runs on the M33 core. The i.MX95 SCMI firmware named System
+> Manager(SM) includes vendor extension protocols, Logical Machine
+> Management(LMM) protocol and CPU protocol and etc.
+>
+> There are three cases for M7:
+>  (1) M7 in a separate Logical Machine(LM) that Linux can't control it.
+>  (2) M7 in a separate Logical Machine that Linux can control it using
+>      LMM protocol
+>  (3) M7 runs in same Logical Machine as A55, so Linux can control it
+>      using CPU protocol
+>
+> So extend the driver to using LMM and CPU protocol to manage the M7 core.
+>  - Compare linux LM ID(got using scmi_imx_lmm_info) and M7 LM ID(the ID
+>    is fixed as 1 in SM firmware if M7 is in a seprate LM),
+>    if Linux LM ID equals M7 LM ID(linux and M7 in same LM), use CPU
+>    protocol to start/stop. Otherwise, use LMM protocol to start/stop.
+>    Whether using CPU or LMM protocol to start/stop, the M7 status
+>    detection could use CPU protocol to detect started or not. So
+>    in imx_rproc_detect_mode, use scmi_imx_cpu_started to check the
+>    status of M7.
+>  - For above case (1) and (2), Use SCMI_IMX_LMM_POWER_ON to detect whether
+>    the M7 LM is under control of A55 LM.
+>  - For above case , after using SCMI_IMX_LMM_POWER_ON to check
+>    permission, SCMI_IMX_LMM_SHUTDOWN API should be called to shutdown
+>    the M7 LM to save power only when M7 LM is going to be started by
+>    remoteproc framework. Otherwise bypass SCMI_IMX_LMM_SHUTDOWN API if
+>    M7 LM is started before booting Linux.
+>
+> Current setup relies on pre-Linux software(U-Boot) to do M7 TCM ECC
+> initialization. In future, we could add the support in Linux to decouple
+> U-Boot and Linux.
+>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  drivers/remoteproc/Kconfig     |   2 +
+>  drivers/remoteproc/imx_rproc.c | 192 +++++++++++++++++++++++++++++++++++++++++
+>  drivers/remoteproc/imx_rproc.h |   3 +
+>  3 files changed, 197 insertions(+)
+>
+> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
+> index 48a0d3a69ed08057716f1e7ea950899f60bbe0cf..ee54436fea5ad08a9c198ce74d44ce7a9aa206de 100644
+> --- a/drivers/remoteproc/Kconfig
+> +++ b/drivers/remoteproc/Kconfig
+> @@ -27,6 +27,8 @@ config IMX_REMOTEPROC
+>  	tristate "i.MX remoteproc support"
+>  	depends on ARCH_MXC
+>  	depends on HAVE_ARM_SMCCC
+> +	depends on IMX_SCMI_CPU_DRV || !IMX_SCMI_CPU_DRV
+> +	depends on IMX_SCMI_LMM_DRV || !IMX_SCMI_LMM_DRV
+>  	select MAILBOX
+>  	help
+>  	  Say y here to support iMX's remote processors via the remote
+> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
+> index 232eb91e0b5dc2432131b1c140d6688b073fea1d..1fb17701964ca4ee4b73d343b5ec1be8e2ee5fda 100644
+> --- a/drivers/remoteproc/imx_rproc.c
+> +++ b/drivers/remoteproc/imx_rproc.c
+> @@ -8,6 +8,7 @@
+...
+> +
+> +static int imx_rproc_sm_lmm_check(struct rproc *rproc, bool started)
+> +{
+> +	struct imx_rproc *priv = rproc->priv;
+> +	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
+> +	struct device *dev = priv->dev;
+> +	int ret;
+> +
+> +	/*
+> +	 * Use power on to do permission check. If rproc is in different LM,
+> +	 * and linux has permission to handle the LM, set IMX_RPROC_FLAGS_SM_LMM_AVAIL.
+> +	 */
+> +	ret = scmi_imx_lmm_operation(dcfg->lmid, SCMI_IMX_LMM_POWER_ON, 0);
+> +	if (ret != 0) {
 
-The GSW1xx also comes with a SerDes port capable of 1000Base-X, SGMII and
-2500Base-X, which can either be used to connect an external PHY or SFP
-cage, or as the CPU port. Support for the SerDes interface is implemented
-in this driver using the phylink_pcs interface.
+	if (!ret)
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
-v4:
- * break out PCS reset into dedicated function
- * drop hacky support for reverse-SGMII
- * remove again the custom properties for TX and RX inverted SerDes
-   PCS in favor of waiting for generic properties to land
+> +		if (ret == -EACCES) {
+> +			/* Not under Linux Control, so only do IPC between rproc and Linux */
+> +			dev_info(dev, "lmm(%d) not under Linux Control\n", dcfg->lmid);
+> +			return 0;
+> +		}
+> +
+> +		dev_info(dev, "power on lmm(%d) failed: %d\n", dcfg->lmid, ret);
 
-v3:
- * avoid disrupting link when calling .pcs_config()
- * sort functions and phylink_pcs_ops instance in same order as
-   struct definition
- * always set bootstrap override bits and add explanatory comment
- * move definitions to separate header file
- * add custom properties for TX and RX inverted data on the SerDes
-   interface
+dev_err()? because it is "... failed"
 
-v2: remove left-overs of 4k VLAN support (will be added in future)
+> +		return ret;
+> +	}
+> +
+> +	priv->flags |= IMX_RPROC_FLAGS_SM_LMM_AVAIL;
+> +
+> +	/* rproc was started before boot Linux and under control of Linux, directly return */
+> +	if (started)
+> +		return 0;
+> +
+> +	/* else shutdown the LM to save power */
+> +	ret = scmi_imx_lmm_operation(dcfg->lmid, SCMI_IMX_LMM_SHUTDOWN, 0);
+> +	if (ret) {
+> +		dev_err(dev, "shutdown lmm(%d) failed: %d\n", dcfg->lmid, ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int imx_rproc_sm_detect_mode(struct rproc *rproc)
+> +{
+> +	struct imx_rproc *priv = rproc->priv;
+> +	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
+> +	struct device *dev = priv->dev;
+> +	struct scmi_imx_lmm_info info;
+> +	bool started = false;
+> +	bool is_cpu_ops;
+> +	int ret;
+> +
+> +	ret = scmi_imx_cpu_started(dcfg->cpuid, &started);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to detect cpu(%d) status: %d\n", dcfg->cpuid, ret);
+> +		return ret;
+> +	}
+> +
+> +	if (started)
+> +		priv->rproc->state = RPROC_DETACHED;
+> +
+> +	/* Get current Linux Logical Machine ID */
+> +	ret = scmi_imx_lmm_info(LMM_ID_DISCOVER, &info);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to get current LMM ID err: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/*
+> +	 * Check whether remote processor is in same Logical Machine as Linux.
+> +	 * If yes, use CPU protocol API to manage remote processor.
+> +	 * If no, use Logical Machine API to manage remote processor.
+> +	 */
+> +	is_cpu_ops = dcfg->lmid == info.lmid;
+> +
+> +	if (is_cpu_ops) {
+> +		priv->ops = &imx_rproc_ops_sm_cpu;
+> +		dev_info(dev, "Using CPU Protocol OPS\n");
+> +		return 0;
+> +	}
 
- drivers/net/dsa/lantiq/Kconfig          |  12 +
- drivers/net/dsa/lantiq/Makefile         |   1 +
- drivers/net/dsa/lantiq/lantiq_gswip.h   |   1 +
- drivers/net/dsa/lantiq/mxl-gsw1xx.c     | 733 ++++++++++++++++++++++++
- drivers/net/dsa/lantiq/mxl-gsw1xx.h     | 126 ++++
- drivers/net/dsa/lantiq/mxl-gsw1xx_pce.h | 154 +++++
- 6 files changed, 1027 insertions(+)
- create mode 100644 drivers/net/dsa/lantiq/mxl-gsw1xx.c
- create mode 100644 drivers/net/dsa/lantiq/mxl-gsw1xx.h
- create mode 100644 drivers/net/dsa/lantiq/mxl-gsw1xx_pce.h
+does need else branch to set  priv->ops?
 
-diff --git a/drivers/net/dsa/lantiq/Kconfig b/drivers/net/dsa/lantiq/Kconfig
-index 78db82a47d09..4a9771be5d58 100644
---- a/drivers/net/dsa/lantiq/Kconfig
-+++ b/drivers/net/dsa/lantiq/Kconfig
-@@ -10,3 +10,15 @@ config NET_DSA_LANTIQ_GSWIP
- 	help
- 	  This enables support for the Lantiq / Intel GSWIP 2.1 found in
- 	  the xrx200 / VR9 SoC.
-+
-+config NET_DSA_MXL_GSW1XX
-+	tristate "MaxLinear GSW1xx Ethernet switch support"
-+	select NET_DSA_TAG_MXL_GSW1XX
-+	select NET_DSA_LANTIQ_COMMON
-+	help
-+	  This enables support for the MaxLinear GSW1xx family of 1GE switches
-+	    GSW120 4 port, 2 PHYs, RGMII & SGMII/2500Base-X
-+	    GSW125 4 port, 2 PHYs, RGMII & SGMII/2500Base-X, industrial temperature
-+	    GSW140 6 port, 4 PHYs, RGMII & SGMII/2500Base-X
-+	    GSW141 6 port, 4 PHYs, RGMII & SGMII
-+	    GSW145 6 port, 4 PHYs, RGMII & SGMII/2500Base-X, industrial temperature
-diff --git a/drivers/net/dsa/lantiq/Makefile b/drivers/net/dsa/lantiq/Makefile
-index 65ffa7bb71aa..85fce605310b 100644
---- a/drivers/net/dsa/lantiq/Makefile
-+++ b/drivers/net/dsa/lantiq/Makefile
-@@ -1,2 +1,3 @@
- obj-$(CONFIG_NET_DSA_LANTIQ_GSWIP) += lantiq_gswip.o
- obj-$(CONFIG_NET_DSA_LANTIQ_COMMON) += lantiq_gswip_common.o
-+obj-$(CONFIG_NET_DSA_MXL_GSW1XX) += mxl-gsw1xx.o
-diff --git a/drivers/net/dsa/lantiq/lantiq_gswip.h b/drivers/net/dsa/lantiq/lantiq_gswip.h
-index 0c32ec85e127..9c38e51a75e8 100644
---- a/drivers/net/dsa/lantiq/lantiq_gswip.h
-+++ b/drivers/net/dsa/lantiq/lantiq_gswip.h
-@@ -255,6 +255,7 @@ struct gswip_hw_info {
- 	unsigned int allowed_cpu_ports;
- 	unsigned int mii_ports;
- 	int mii_port_reg_offset;
-+	bool supports_2500m;
- 	const struct gswip_pce_microcode (*pce_microcode)[];
- 	size_t pce_microcode_size;
- 	enum dsa_tag_protocol tag_protocol;
-diff --git a/drivers/net/dsa/lantiq/mxl-gsw1xx.c b/drivers/net/dsa/lantiq/mxl-gsw1xx.c
-new file mode 100644
-index 000000000000..0816c61a47f1
---- /dev/null
-+++ b/drivers/net/dsa/lantiq/mxl-gsw1xx.c
-@@ -0,0 +1,733 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/* DSA Driver for MaxLinear GSW1xx switch devices
-+ *
-+ * Copyright (C) 2025 Daniel Golle <daniel@makrotopia.org>
-+ * Copyright (C) 2023 - 2024 MaxLinear Inc.
-+ * Copyright (C) 2022 Snap One, LLC.  All rights reserved.
-+ * Copyright (C) 2017 - 2019 Hauke Mehrtens <hauke@hauke-m.de>
-+ * Copyright (C) 2012 John Crispin <john@phrozen.org>
-+ * Copyright (C) 2010 Lantiq Deutschland
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/delay.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/of_mdio.h>
-+#include <linux/regmap.h>
-+#include <net/dsa.h>
-+
-+#include "lantiq_gswip.h"
-+#include "mxl-gsw1xx.h"
-+#include "mxl-gsw1xx_pce.h"
-+
-+struct gsw1xx_priv {
-+	struct mdio_device	*mdio_dev;
-+	int			smdio_badr;
-+	struct			regmap *sgmii;
-+	struct			regmap *gpio;
-+	struct			regmap *clk;
-+	struct			regmap *shell;
-+	struct			phylink_pcs pcs;
-+	phy_interface_t		tbi_interface;
-+	struct gswip_priv	gswip;
-+};
-+
-+static int gsw1xx_config_smdio_badr(struct gsw1xx_priv *priv,
-+				    unsigned int reg)
-+{
-+	struct mii_bus *bus = priv->mdio_dev->bus;
-+	int sw_addr = priv->mdio_dev->addr;
-+	int smdio_badr = priv->smdio_badr;
-+	int res;
-+
-+	if (smdio_badr == GSW1XX_SMDIO_BADR_UNKNOWN ||
-+	    reg - smdio_badr >= GSW1XX_SMDIO_BADR ||
-+	    smdio_badr > reg) {
-+		/* Configure the Switch Base Address */
-+		smdio_badr = reg & ~GENMASK(3, 0);
-+		res = __mdiobus_write(bus, sw_addr, GSW1XX_SMDIO_BADR, smdio_badr);
-+		if (res < 0) {
-+			dev_err(&priv->mdio_dev->dev,
-+				"%s: Error %d, configuring switch base\n",
-+				__func__, res);
-+			return res;
-+		}
-+		priv->smdio_badr = smdio_badr;
-+	}
-+
-+	return smdio_badr;
-+}
-+
-+static int gsw1xx_regmap_read(void *context, unsigned int reg,
-+			      unsigned int *val)
-+{
-+	struct gsw1xx_priv *priv = context;
-+	struct mii_bus *bus = priv->mdio_dev->bus;
-+	int sw_addr = priv->mdio_dev->addr;
-+	int smdio_badr;
-+	int res;
-+
-+	smdio_badr = gsw1xx_config_smdio_badr(priv, reg);
-+	if (smdio_badr < 0)
-+		return smdio_badr;
-+
-+	res = __mdiobus_read(bus, sw_addr, reg - smdio_badr);
-+	if (res < 0) {
-+		dev_err(&priv->mdio_dev->dev, "%s: Error %d reading 0x%x\n",
-+			__func__, res, reg);
-+		return res;
-+	}
-+
-+	*val = res;
-+
-+	return 0;
-+}
-+
-+static int gsw1xx_regmap_write(void *context, unsigned int reg,
-+			       unsigned int val)
-+{
-+	struct gsw1xx_priv *priv = context;
-+	struct mii_bus *bus = priv->mdio_dev->bus;
-+	int sw_addr = priv->mdio_dev->addr;
-+	int smdio_badr;
-+	int res;
-+
-+	smdio_badr = gsw1xx_config_smdio_badr(priv, reg);
-+	if (smdio_badr < 0)
-+		return smdio_badr;
-+
-+	res = __mdiobus_write(bus, sw_addr, reg - smdio_badr, val);
-+	if (res < 0)
-+		dev_err(&priv->mdio_dev->dev,
-+			"%s: Error %d, writing 0x%x:0x%x\n", __func__, res, reg,
-+			val);
-+
-+	return res;
-+}
-+
-+static const struct regmap_bus gsw1xx_regmap_bus = {
-+	.reg_write = gsw1xx_regmap_write,
-+	.reg_read = gsw1xx_regmap_read,
-+};
-+
-+static void gsw1xx_mdio_regmap_lock(void *mdio_lock)
-+{
-+	mutex_lock_nested(mdio_lock, MDIO_MUTEX_NESTED);
-+}
-+
-+static void gsw1xx_mdio_regmap_unlock(void *mdio_lock)
-+{
-+	mutex_unlock(mdio_lock);
-+}
-+
-+static unsigned int gsw1xx_pcs_inband_caps(struct phylink_pcs *pcs,
-+					   phy_interface_t interface)
-+{
-+	return LINK_INBAND_DISABLE | LINK_INBAND_ENABLE;
-+}
-+
-+static struct gsw1xx_priv *pcs_to_gsw1xx(struct phylink_pcs *pcs)
-+{
-+	return container_of(pcs, struct gsw1xx_priv, pcs);
-+}
-+
-+static int gsw1xx_pcs_enable(struct phylink_pcs *pcs)
-+{
-+	struct gsw1xx_priv *priv = pcs_to_gsw1xx(pcs);
-+
-+	/* Deassert SGMII shell reset */
-+	return regmap_clear_bits(priv->shell, GSW1XX_SHELL_RST_REQ,
-+				 GSW1XX_RST_REQ_SGMII_SHELL);
-+}
-+
-+static void gsw1xx_pcs_disable(struct phylink_pcs *pcs)
-+{
-+	struct gsw1xx_priv *priv = pcs_to_gsw1xx(pcs);
-+
-+	/* Assert SGMII shell reset */
-+	regmap_set_bits(priv->shell, GSW1XX_SHELL_RST_REQ,
-+			GSW1XX_RST_REQ_SGMII_SHELL);
-+
-+	priv->tbi_interface = PHY_INTERFACE_MODE_NA;
-+}
-+
-+static void gsw1xx_pcs_get_state(struct phylink_pcs *pcs,
-+				 unsigned int neg_mode,
-+				 struct phylink_link_state *state)
-+{
-+	struct gsw1xx_priv *priv = pcs_to_gsw1xx(pcs);
-+	int ret;
-+	u32 val;
-+
-+	ret = regmap_read(priv->sgmii, GSW1XX_SGMII_TBI_TBISTAT, &val);
-+	if (ret < 0)
-+		return;
-+
-+	state->link = !!(val & GSW1XX_SGMII_TBI_TBISTAT_LINK);
-+	state->an_complete = !!(val & GSW1XX_SGMII_TBI_TBISTAT_AN_COMPLETE);
-+
-+	ret = regmap_read(priv->sgmii, GSW1XX_SGMII_TBI_LPSTAT, &val);
-+	if (ret < 0)
-+		return;
-+
-+	state->duplex = (val & GSW1XX_SGMII_TBI_LPSTAT_DUPLEX) ?
-+			 DUPLEX_FULL : DUPLEX_HALF;
-+	if (val & GSW1XX_SGMII_TBI_LPSTAT_PAUSE_RX)
-+		state->pause |= MLO_PAUSE_RX;
-+
-+	if (val & GSW1XX_SGMII_TBI_LPSTAT_PAUSE_TX)
-+		state->pause |= MLO_PAUSE_TX;
-+
-+	switch (FIELD_GET(GSW1XX_SGMII_TBI_LPSTAT_SPEED, val)) {
-+	case GSW1XX_SGMII_TBI_LPSTAT_SPEED_10:
-+		state->speed = SPEED_10;
-+		break;
-+	case GSW1XX_SGMII_TBI_LPSTAT_SPEED_100:
-+		state->speed = SPEED_100;
-+		break;
-+	case GSW1XX_SGMII_TBI_LPSTAT_SPEED_1000:
-+		state->speed = SPEED_1000;
-+		break;
-+	case GSW1XX_SGMII_TBI_LPSTAT_SPEED_NOSGMII:
-+		if (state->interface == PHY_INTERFACE_MODE_1000BASEX)
-+			state->speed = SPEED_1000;
-+		else if (state->interface == PHY_INTERFACE_MODE_2500BASEX)
-+			state->speed = SPEED_2500;
-+		else
-+			state->speed = SPEED_UNKNOWN;
-+		break;
-+	}
-+}
-+
-+static int gsw1xx_pcs_phy_xaui_write(struct gsw1xx_priv *priv, u16 addr,
-+				     u16 data)
-+{
-+	int ret, val;
-+
-+	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_D, data);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_A, addr);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_C,
-+			   GSW1XX_SGMII_PHY_WRITE |
-+			   GSW1XX_SGMII_PHY_RESET_N);
-+	if (ret < 0)
-+		return ret;
-+
-+	return regmap_read_poll_timeout(priv->sgmii, GSW1XX_SGMII_PHY_C,
-+					val, val & GSW1XX_SGMII_PHY_STATUS,
-+					1000, 100000);
-+}
-+
-+static int gsw1xx_pcs_reset(struct gsw1xx_priv *priv)
-+{
-+	int ret;
-+	u16 val;
-+
-+	/* Assert and deassert SGMII shell reset */
-+	ret = regmap_set_bits(priv->shell, GSW1XX_SHELL_RST_REQ,
-+			      GSW1XX_RST_REQ_SGMII_SHELL);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = regmap_clear_bits(priv->shell, GSW1XX_SHELL_RST_REQ,
-+				GSW1XX_RST_REQ_SGMII_SHELL);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Hardware Bringup FSM Enable  */
-+	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_HWBU_CTRL,
-+			   GSW1XX_SGMII_PHY_HWBU_CTRL_EN_HWBU_FSM |
-+			   GSW1XX_SGMII_PHY_HWBU_CTRL_HW_FSM_EN);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Configure SGMII PHY Receiver */
-+	val = FIELD_PREP(GSW1XX_SGMII_PHY_RX0_CFG2_EQ,
-+			 GSW1XX_SGMII_PHY_RX0_CFG2_EQ_DEF) |
-+	      GSW1XX_SGMII_PHY_RX0_CFG2_LOS_EN |
-+	      GSW1XX_SGMII_PHY_RX0_CFG2_TERM_EN |
-+	      FIELD_PREP(GSW1XX_SGMII_PHY_RX0_CFG2_FILT_CNT,
-+			 GSW1XX_SGMII_PHY_RX0_CFG2_FILT_CNT_DEF);
-+
-+	/* TODO: Take care of inverted RX pair once generic property is
-+	 *       available
-+	 */
-+
-+	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_RX0_CFG2, val);
-+	if (ret < 0)
-+		return ret;
-+
-+	val = FIELD_PREP(GSW1XX_SGMII_PHY_TX0_CFG3_VBOOST_LEVEL,
-+			 GSW1XX_SGMII_PHY_TX0_CFG3_VBOOST_LEVEL_DEF);
-+
-+	/* TODO: Take care of inverted TX pair once generic property is
-+	 *       available
-+	 */
-+
-+	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_PHY_TX0_CFG3, val);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Reset and Release TBI */
-+	val = GSW1XX_SGMII_TBI_TBICTL_INITTBI | GSW1XX_SGMII_TBI_TBICTL_ENTBI |
-+	      GSW1XX_SGMII_TBI_TBICTL_CRSTRR | GSW1XX_SGMII_TBI_TBICTL_CRSOFF;
-+	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_TBI_TBICTL, val);
-+	if (ret < 0)
-+		return ret;
-+	val &= ~GSW1XX_SGMII_TBI_TBICTL_INITTBI;
-+	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_TBI_TBICTL, val);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Release Tx Data Buffers */
-+	ret = regmap_set_bits(priv->sgmii, GSW1XX_SGMII_PCS_TXB_CTL,
-+			      GSW1XX_SGMII_PCS_TXB_CTL_INIT_TX_TXB);
-+	if (ret < 0)
-+		return ret;
-+	ret = regmap_clear_bits(priv->sgmii, GSW1XX_SGMII_PCS_TXB_CTL,
-+				GSW1XX_SGMII_PCS_TXB_CTL_INIT_TX_TXB);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Release Rx Data Buffers */
-+	ret = regmap_set_bits(priv->sgmii, GSW1XX_SGMII_PCS_RXB_CTL,
-+			      GSW1XX_SGMII_PCS_RXB_CTL_INIT_RX_RXB);
-+	if (ret < 0)
-+		return ret;
-+	return regmap_clear_bits(priv->sgmii, GSW1XX_SGMII_PCS_RXB_CTL,
-+				 GSW1XX_SGMII_PCS_RXB_CTL_INIT_RX_RXB);
-+}
-+
-+static int gsw1xx_pcs_config(struct phylink_pcs *pcs, unsigned int neg_mode,
-+			     phy_interface_t interface,
-+			     const unsigned long *advertising,
-+			     bool permit_pause_to_mac)
-+{
-+	struct gsw1xx_priv *priv = pcs_to_gsw1xx(pcs);
-+	u16 txaneg, anegctl, nco_ctrl;
-+	bool reconf = false;
-+	int ret = 0;
-+
-+	/* do not unnecessarily disrupt link and skip resetting the hardware in
-+	 * case the PCS has previously been successfully configured for this
-+	 * interface mode
-+	 */
-+	if (priv->tbi_interface == interface)
-+		reconf = true;
-+
-+	/* mark PCS configuration as incomplete */
-+	priv->tbi_interface = PHY_INTERFACE_MODE_NA;
-+
-+	if (!reconf)
-+		ret = gsw1xx_pcs_reset(priv);
-+
-+	if (ret)
-+		return ret;
-+
-+	/* override bootstrap pin settings
-+	 * OVRANEG sets ANEG Mode, Enable ANEG and restart ANEG to be
-+	 * taken from bits ANMODE, ANEGEN, RANEG of the ANEGCTL register.
-+	 * OVERABL sets ability bits in tx_config_reg to be taken from
-+	 * the TXANEGH and TXANEGL registers.
-+	 */
-+	anegctl = GSW1XX_SGMII_TBI_ANEGCTL_OVRANEG |
-+		  GSW1XX_SGMII_TBI_ANEGCTL_OVRABL;
-+
-+	switch (phylink_get_link_timer_ns(interface)) {
-+	case 10000:
-+		anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_LT,
-+				      GSW1XX_SGMII_TBI_ANEGCTL_LT_10US);
-+		break;
-+	case 1600000:
-+		anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_LT,
-+				      GSW1XX_SGMII_TBI_ANEGCTL_LT_1_6MS);
-+		break;
-+	case 5000000:
-+		anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_LT,
-+				      GSW1XX_SGMII_TBI_ANEGCTL_LT_5MS);
-+		break;
-+	case 10000000:
-+		anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_LT,
-+				      GSW1XX_SGMII_TBI_ANEGCTL_LT_10MS);
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	if (neg_mode & PHYLINK_PCS_NEG_INBAND)
-+		anegctl |= GSW1XX_SGMII_TBI_ANEGCTL_ANEGEN;
-+
-+	txaneg = phylink_mii_c22_pcs_encode_advertisement(interface, advertising);
-+
-+	if (interface == PHY_INTERFACE_MODE_SGMII) {
-+		/* lacking a defined reverse-SGMII interface mode this
-+		 * driver only supports SGMII (MAC side) for now
-+		 */
-+		anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_ANMODE,
-+				      GSW1XX_SGMII_TBI_ANEGCTL_ANMODE_SGMII_MAC);
-+		txaneg |= ADVERTISE_LPACK;
-+	} else if (interface == PHY_INTERFACE_MODE_1000BASEX ||
-+		   interface == PHY_INTERFACE_MODE_2500BASEX) {
-+		anegctl |= FIELD_PREP(GSW1XX_SGMII_TBI_ANEGCTL_ANMODE,
-+				      GSW1XX_SGMII_TBI_ANEGCTL_ANMODE_1000BASEX);
-+	} else {
-+		dev_err(priv->gswip.dev, "%s: wrong interface mode %s\n",
-+			__func__, phy_modes(interface));
-+		return -EINVAL;
-+	}
-+
-+	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_TBI_TXANEGH,
-+			   FIELD_GET(GENMASK(15, 8), txaneg));
-+	if (ret < 0)
-+		return ret;
-+	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_TBI_TXANEGL,
-+			   FIELD_GET(GENMASK(7, 0), txaneg));
-+	if (ret < 0)
-+		return ret;
-+	ret = regmap_write(priv->sgmii, GSW1XX_SGMII_TBI_ANEGCTL, anegctl);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (!reconf) {
-+		/* setup SerDes clock speed */
-+		if (interface == PHY_INTERFACE_MODE_2500BASEX)
-+			nco_ctrl = GSW1XX_SGMII_2G5 | GSW1XX_SGMII_2G5_NCO2;
-+		else
-+			nco_ctrl = GSW1XX_SGMII_1G | GSW1XX_SGMII_1G_NCO1;
-+
-+		ret = regmap_update_bits(priv->clk, GSW1XX_CLK_NCO_CTRL,
-+					 GSW1XX_SGMII_HSP_MASK |
-+					 GSW1XX_SGMII_SEL,
-+					 nco_ctrl);
-+		if (ret)
-+			return ret;
-+
-+		ret = gsw1xx_pcs_phy_xaui_write(priv, 0x30, 0x80);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	/* PCS configuration has now been completed, store mode to prevent
-+	 * disrupting the link in case of future calls of this function for the
-+	 * same interface mode.
-+	 */
-+	priv->tbi_interface = interface;
-+
-+	return 0;
-+}
-+
-+static void gsw1xx_pcs_an_restart(struct phylink_pcs *pcs)
-+{
-+	struct gsw1xx_priv *priv = pcs_to_gsw1xx(pcs);
-+
-+	regmap_set_bits(priv->sgmii, GSW1XX_SGMII_TBI_ANEGCTL,
-+			GSW1XX_SGMII_TBI_ANEGCTL_RANEG);
-+}
-+
-+static void gsw1xx_pcs_link_up(struct phylink_pcs *pcs,
-+			       unsigned int neg_mode,
-+			       phy_interface_t interface, int speed,
-+			       int duplex)
-+{
-+	struct gsw1xx_priv *priv = pcs_to_gsw1xx(pcs);
-+	u16 lpstat;
-+
-+	/* When in-band AN is enabled hardware will set lpstat */
-+	if (neg_mode == PHYLINK_PCS_NEG_INBAND_ENABLED)
-+		return;
-+
-+	/* Force speed and duplex settings */
-+	if (interface == PHY_INTERFACE_MODE_SGMII) {
-+		if (speed == SPEED_10)
-+			lpstat = FIELD_PREP(GSW1XX_SGMII_TBI_LPSTAT_SPEED,
-+					    GSW1XX_SGMII_TBI_LPSTAT_SPEED_10);
-+		else if (speed == SPEED_100)
-+			lpstat = FIELD_PREP(GSW1XX_SGMII_TBI_LPSTAT_SPEED,
-+					    GSW1XX_SGMII_TBI_LPSTAT_SPEED_100);
-+		else
-+			lpstat = FIELD_PREP(GSW1XX_SGMII_TBI_LPSTAT_SPEED,
-+					    GSW1XX_SGMII_TBI_LPSTAT_SPEED_1000);
-+	} else {
-+		lpstat = FIELD_PREP(GSW1XX_SGMII_TBI_LPSTAT_SPEED,
-+				    GSW1XX_SGMII_TBI_LPSTAT_SPEED_NOSGMII);
-+	}
-+
-+	if (duplex == DUPLEX_FULL)
-+		lpstat |= GSW1XX_SGMII_TBI_LPSTAT_DUPLEX;
-+
-+	regmap_write(priv->sgmii, GSW1XX_SGMII_TBI_LPSTAT, lpstat);
-+}
-+
-+static const struct phylink_pcs_ops gsw1xx_pcs_ops = {
-+	.pcs_inband_caps = gsw1xx_pcs_inband_caps,
-+	.pcs_enable = gsw1xx_pcs_enable,
-+	.pcs_disable = gsw1xx_pcs_disable,
-+	.pcs_get_state = gsw1xx_pcs_get_state,
-+	.pcs_config = gsw1xx_pcs_config,
-+	.pcs_an_restart = gsw1xx_pcs_an_restart,
-+	.pcs_link_up = gsw1xx_pcs_link_up,
-+};
-+
-+static void gsw1xx_phylink_get_caps(struct dsa_switch *ds, int port,
-+				    struct phylink_config *config)
-+{
-+	struct gswip_priv *priv = ds->priv;
-+
-+	config->mac_capabilities = MAC_ASYM_PAUSE | MAC_SYM_PAUSE |
-+				   MAC_10 | MAC_100 | MAC_1000;
-+
-+	switch (port) {
-+	case 0:
-+	case 1:
-+	case 2:
-+	case 3:
-+		__set_bit(PHY_INTERFACE_MODE_INTERNAL,
-+			  config->supported_interfaces);
-+		break;
-+	case 4: /* port 4: SGMII */
-+		__set_bit(PHY_INTERFACE_MODE_SGMII,
-+			  config->supported_interfaces);
-+		__set_bit(PHY_INTERFACE_MODE_1000BASEX,
-+			  config->supported_interfaces);
-+		if (priv->hw_info->supports_2500m) {
-+			__set_bit(PHY_INTERFACE_MODE_2500BASEX,
-+				  config->supported_interfaces);
-+			config->mac_capabilities |= MAC_2500FD;
-+		}
-+		return; /* no support for EEE on SGMII port */
-+	case 5: /* port 5: RGMII or RMII */
-+		__set_bit(PHY_INTERFACE_MODE_RMII,
-+			  config->supported_interfaces);
-+		phy_interface_set_rgmii(config->supported_interfaces);
-+		break;
-+	}
-+
-+	config->lpi_capabilities = MAC_100FD | MAC_1000FD;
-+	config->lpi_timer_default = 20;
-+	memcpy(config->lpi_interfaces, config->supported_interfaces,
-+	       sizeof(config->lpi_interfaces));
-+}
-+
-+static struct phylink_pcs *gsw1xx_phylink_mac_select_pcs(struct phylink_config *config,
-+							 phy_interface_t interface)
-+{
-+	struct dsa_port *dp = dsa_phylink_to_port(config);
-+	struct gswip_priv *gswip_priv = dp->ds->priv;
-+	struct gsw1xx_priv *gsw1xx_priv = container_of(gswip_priv,
-+						       struct gsw1xx_priv,
-+						       gswip);
-+
-+	switch (dp->index) {
-+	case GSW1XX_SGMII_PORT:
-+		return &gsw1xx_priv->pcs;
-+	default:
-+		return NULL;
-+	}
-+}
-+
-+static struct regmap *gsw1xx_regmap_init(struct gsw1xx_priv *priv,
-+					 const char *name,
-+					 unsigned int reg_base,
-+					 unsigned int max_register)
-+{
-+	const struct regmap_config config = {
-+		.name = name,
-+		.reg_bits = 16,
-+		.val_bits = 16,
-+		.reg_base = reg_base,
-+		.max_register = max_register,
-+		.lock = gsw1xx_mdio_regmap_lock,
-+		.unlock = gsw1xx_mdio_regmap_unlock,
-+		.lock_arg = &priv->mdio_dev->bus->mdio_lock,
-+	};
-+
-+	return devm_regmap_init(&priv->mdio_dev->dev, &gsw1xx_regmap_bus,
-+				priv, &config);
-+}
-+
-+static int gsw1xx_probe(struct mdio_device *mdiodev)
-+{
-+	struct device *dev = &mdiodev->dev;
-+	struct gsw1xx_priv *priv;
-+	u32 version;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->mdio_dev = mdiodev;
-+	priv->smdio_badr = GSW1XX_SMDIO_BADR_UNKNOWN;
-+
-+	priv->gswip.dev = dev;
-+	priv->gswip.hw_info = of_device_get_match_data(dev);
-+	if (!priv->gswip.hw_info)
-+		return -EINVAL;
-+
-+	priv->gswip.gswip = gsw1xx_regmap_init(priv, "switch",
-+					       GSW1XX_SWITCH_BASE, 0xfff);
-+	if (IS_ERR(priv->gswip.gswip))
-+		return PTR_ERR(priv->gswip.gswip);
-+
-+	priv->gswip.mdio = gsw1xx_regmap_init(priv, "mdio", GSW1XX_MMDIO_BASE,
-+					      0xff);
-+	if (IS_ERR(priv->gswip.mdio))
-+		return PTR_ERR(priv->gswip.mdio);
-+
-+	priv->gswip.mii = gsw1xx_regmap_init(priv, "mii", GSW1XX_RGMII_BASE,
-+					     0xff);
-+	if (IS_ERR(priv->gswip.mii))
-+		return PTR_ERR(priv->gswip.mii);
-+
-+	priv->sgmii = gsw1xx_regmap_init(priv, "sgmii", GSW1XX_SGMII_BASE,
-+					 0xfff);
-+	if (IS_ERR(priv->sgmii))
-+		return PTR_ERR(priv->sgmii);
-+
-+	priv->gpio = gsw1xx_regmap_init(priv, "gpio", GSW1XX_GPIO_BASE, 0xff);
-+	if (IS_ERR(priv->gpio))
-+		return PTR_ERR(priv->gpio);
-+
-+	priv->clk = gsw1xx_regmap_init(priv, "clk", GSW1XX_CLK_BASE, 0xff);
-+	if (IS_ERR(priv->clk))
-+		return PTR_ERR(priv->clk);
-+
-+	priv->shell = gsw1xx_regmap_init(priv, "shell", GSW1XX_SHELL_BASE,
-+					 0xff);
-+	if (IS_ERR(priv->shell))
-+		return PTR_ERR(priv->shell);
-+
-+	priv->pcs.ops = &gsw1xx_pcs_ops;
-+	priv->pcs.poll = true;
-+	__set_bit(PHY_INTERFACE_MODE_SGMII,
-+		  priv->pcs.supported_interfaces);
-+	__set_bit(PHY_INTERFACE_MODE_1000BASEX,
-+		  priv->pcs.supported_interfaces);
-+	if (priv->gswip.hw_info->supports_2500m)
-+		__set_bit(PHY_INTERFACE_MODE_2500BASEX,
-+			  priv->pcs.supported_interfaces);
-+	priv->tbi_interface = PHY_INTERFACE_MODE_NA;
-+
-+	/* assert SGMII reset to power down SGMII unit */
-+	ret = regmap_set_bits(priv->shell, GSW1XX_SHELL_RST_REQ,
-+			      GSW1XX_RST_REQ_SGMII_SHELL);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* configure GPIO pin-mux for MMDIO in case of external PHY connected to
-+	 * SGMII or RGMII as slave interface
-+	 */
-+	regmap_set_bits(priv->gpio, GPIO_ALTSEL0, 3);
-+	regmap_set_bits(priv->gpio, GPIO_ALTSEL1, 3);
-+
-+	ret = regmap_read(priv->gswip.gswip, GSWIP_VERSION, &version);
-+	if (ret)
-+		return ret;
-+
-+	ret = gswip_probe_common(&priv->gswip, version);
-+	if (ret)
-+		return ret;
-+
-+	dev_set_drvdata(dev, &priv->gswip);
-+
-+	return 0;
-+}
-+
-+static void gsw1xx_remove(struct mdio_device *mdiodev)
-+{
-+	struct gswip_priv *priv = dev_get_drvdata(&mdiodev->dev);
-+
-+	if (!priv)
-+		return;
-+
-+	gswip_disable_switch(priv);
-+
-+	dsa_unregister_switch(priv->ds);
-+}
-+
-+static void gsw1xx_shutdown(struct mdio_device *mdiodev)
-+{
-+	struct gswip_priv *priv = dev_get_drvdata(&mdiodev->dev);
-+
-+	if (!priv)
-+		return;
-+
-+	dev_set_drvdata(&mdiodev->dev, NULL);
-+
-+	gswip_disable_switch(priv);
-+}
-+
-+static const struct gswip_hw_info gsw12x_data = {
-+	.max_ports		= GSW1XX_PORTS,
-+	.allowed_cpu_ports	= BIT(GSW1XX_MII_PORT) | BIT(GSW1XX_SGMII_PORT),
-+	.mii_ports		= BIT(GSW1XX_MII_PORT),
-+	.mii_port_reg_offset	= -GSW1XX_MII_PORT,
-+	.mac_select_pcs		= gsw1xx_phylink_mac_select_pcs,
-+	.phylink_get_caps	= &gsw1xx_phylink_get_caps,
-+	.supports_2500m		= true,
-+	.pce_microcode		= &gsw1xx_pce_microcode,
-+	.pce_microcode_size	= ARRAY_SIZE(gsw1xx_pce_microcode),
-+	.tag_protocol		= DSA_TAG_PROTO_MXL_GSW1XX,
-+};
-+
-+static const struct gswip_hw_info gsw140_data = {
-+	.max_ports		= GSW1XX_PORTS,
-+	.allowed_cpu_ports	= BIT(GSW1XX_MII_PORT) | BIT(GSW1XX_SGMII_PORT),
-+	.mii_ports		= BIT(GSW1XX_MII_PORT),
-+	.mii_port_reg_offset	= -GSW1XX_MII_PORT,
-+	.mac_select_pcs		= gsw1xx_phylink_mac_select_pcs,
-+	.phylink_get_caps	= &gsw1xx_phylink_get_caps,
-+	.supports_2500m		= true,
-+	.pce_microcode		= &gsw1xx_pce_microcode,
-+	.pce_microcode_size	= ARRAY_SIZE(gsw1xx_pce_microcode),
-+	.tag_protocol		= DSA_TAG_PROTO_MXL_GSW1XX,
-+};
-+
-+static const struct gswip_hw_info gsw141_data = {
-+	.max_ports		= GSW1XX_PORTS,
-+	.allowed_cpu_ports	= BIT(GSW1XX_MII_PORT) | BIT(GSW1XX_SGMII_PORT),
-+	.mii_ports		= BIT(GSW1XX_MII_PORT),
-+	.mii_port_reg_offset	= -GSW1XX_MII_PORT,
-+	.mac_select_pcs		= gsw1xx_phylink_mac_select_pcs,
-+	.phylink_get_caps	= gsw1xx_phylink_get_caps,
-+	.pce_microcode		= &gsw1xx_pce_microcode,
-+	.pce_microcode_size	= ARRAY_SIZE(gsw1xx_pce_microcode),
-+	.tag_protocol		= DSA_TAG_PROTO_MXL_GSW1XX,
-+};
-+
-+/*
-+ * GSW125 is the industrial temperature version of GSW120.
-+ * GSW145 is the industrial temperature version of GSW140.
-+ */
-+static const struct of_device_id gsw1xx_of_match[] = {
-+	{ .compatible = "maxlinear,gsw120", .data = &gsw12x_data },
-+	{ .compatible = "maxlinear,gsw125", .data = &gsw12x_data },
-+	{ .compatible = "maxlinear,gsw140", .data = &gsw140_data },
-+	{ .compatible = "maxlinear,gsw141", .data = &gsw141_data },
-+	{ .compatible = "maxlinear,gsw145", .data = &gsw140_data },
-+	{ /* sentinel */ },
-+};
-+
-+MODULE_DEVICE_TABLE(of, gsw1xx_of_match);
-+
-+static struct mdio_driver gsw1xx_driver = {
-+	.probe		= gsw1xx_probe,
-+	.remove		= gsw1xx_remove,
-+	.shutdown	= gsw1xx_shutdown,
-+	.mdiodrv.driver	= {
-+		.name = "mxl-gsw1xx",
-+		.of_match_table = gsw1xx_of_match,
-+	},
-+};
-+
-+mdio_module_driver(gsw1xx_driver);
-+
-+MODULE_AUTHOR("Daniel Golle <daniel@makrotopia.org>");
-+MODULE_DESCRIPTION("Driver for MaxLinear GSW1xx ethernet switch");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/net/dsa/lantiq/mxl-gsw1xx.h b/drivers/net/dsa/lantiq/mxl-gsw1xx.h
-new file mode 100644
-index 000000000000..38e03c048a26
---- /dev/null
-+++ b/drivers/net/dsa/lantiq/mxl-gsw1xx.h
-@@ -0,0 +1,126 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/* Register definitions for MaxLinear GSW1xx series switches
-+ *
-+ * Copyright (C) 2025 Daniel Golle <daniel@makrotopia.org>
-+ * Copyright (C) 2023 - 2024 MaxLinear Inc.
-+ */
-+#ifndef __MXL_GSW1XX_H
-+#define __MXL_GSW1XX_H
-+
-+#include <linux/bitfield.h>
-+
-+#define GSW1XX_PORTS				6
-+/* Port used for RGMII or optional RMII */
-+#define GSW1XX_MII_PORT				5
-+/* Port used for SGMII */
-+#define GSW1XX_SGMII_PORT			4
-+
-+#define GSW1XX_SYS_CLK_FREQ			340000000
-+
-+/* SMDIO switch register base address */
-+#define GSW1XX_SMDIO_BADR			0x1f
-+#define  GSW1XX_SMDIO_BADR_UNKNOWN		-1
-+
-+/* GSW1XX SGMII PCS */
-+#define GSW1XX_SGMII_BASE			0xd000
-+#define GSW1XX_SGMII_PHY_HWBU_CTRL		0x009
-+#define  GSW1XX_SGMII_PHY_HWBU_CTRL_EN_HWBU_FSM	BIT(0)
-+#define  GSW1XX_SGMII_PHY_HWBU_CTRL_HW_FSM_EN	BIT(3)
-+#define GSW1XX_SGMII_TBI_TXANEGH		0x300
-+#define GSW1XX_SGMII_TBI_TXANEGL		0x301
-+#define GSW1XX_SGMII_TBI_ANEGCTL		0x304
-+#define  GSW1XX_SGMII_TBI_ANEGCTL_LT		GENMASK(1, 0)
-+#define   GSW1XX_SGMII_TBI_ANEGCTL_LT_10US	0
-+#define   GSW1XX_SGMII_TBI_ANEGCTL_LT_1_6MS	1
-+#define   GSW1XX_SGMII_TBI_ANEGCTL_LT_5MS	2
-+#define   GSW1XX_SGMII_TBI_ANEGCTL_LT_10MS	3
-+#define  GSW1XX_SGMII_TBI_ANEGCTL_ANEGEN	BIT(2)
-+#define  GSW1XX_SGMII_TBI_ANEGCTL_RANEG		BIT(3)
-+#define  GSW1XX_SGMII_TBI_ANEGCTL_OVRABL	BIT(4)
-+#define  GSW1XX_SGMII_TBI_ANEGCTL_OVRANEG	BIT(5)
-+#define  GSW1XX_SGMII_TBI_ANEGCTL_ANMODE	GENMASK(7, 6)
-+#define   GSW1XX_SGMII_TBI_ANEGCTL_ANMODE_1000BASEX	1
-+#define   GSW1XX_SGMII_TBI_ANEGCTL_ANMODE_SGMII_PHY	2
-+#define   GSW1XX_SGMII_TBI_ANEGCTL_ANMODE_SGMII_MAC	3
-+#define  GSW1XX_SGMII_TBI_ANEGCTL_BCOMP		BIT(15)
-+
-+#define GSW1XX_SGMII_TBI_TBICTL			0x305
-+#define  GSW1XX_SGMII_TBI_TBICTL_INITTBI	BIT(0)
-+#define  GSW1XX_SGMII_TBI_TBICTL_ENTBI		BIT(1)
-+#define  GSW1XX_SGMII_TBI_TBICTL_CRSTRR		BIT(4)
-+#define  GSW1XX_SGMII_TBI_TBICTL_CRSOFF		BIT(5)
-+#define GSW1XX_SGMII_TBI_TBISTAT		0x309
-+#define  GSW1XX_SGMII_TBI_TBISTAT_LINK		BIT(0)
-+#define  GSW1XX_SGMII_TBI_TBISTAT_AN_COMPLETE	BIT(1)
-+#define GSW1XX_SGMII_TBI_LPSTAT			0x30a
-+#define  GSW1XX_SGMII_TBI_LPSTAT_DUPLEX		BIT(0)
-+#define  GSW1XX_SGMII_TBI_LPSTAT_PAUSE_RX	BIT(1)
-+#define  GSW1XX_SGMII_TBI_LPSTAT_PAUSE_TX	BIT(2)
-+#define  GSW1XX_SGMII_TBI_LPSTAT_SPEED		GENMASK(6, 5)
-+#define   GSW1XX_SGMII_TBI_LPSTAT_SPEED_10	0
-+#define   GSW1XX_SGMII_TBI_LPSTAT_SPEED_100	1
-+#define   GSW1XX_SGMII_TBI_LPSTAT_SPEED_1000	2
-+#define   GSW1XX_SGMII_TBI_LPSTAT_SPEED_NOSGMII	3
-+#define GSW1XX_SGMII_PHY_D			0x100
-+#define GSW1XX_SGMII_PHY_A			0x101
-+#define GSW1XX_SGMII_PHY_C			0x102
-+#define  GSW1XX_SGMII_PHY_STATUS		BIT(0)
-+#define  GSW1XX_SGMII_PHY_READ			BIT(4)
-+#define  GSW1XX_SGMII_PHY_WRITE			BIT(8)
-+#define  GSW1XX_SGMII_PHY_RESET_N		BIT(12)
-+#define GSW1XX_SGMII_PCS_RXB_CTL		0x401
-+#define  GSW1XX_SGMII_PCS_RXB_CTL_INIT_RX_RXB	BIT(1)
-+#define GSW1XX_SGMII_PCS_TXB_CTL		0x404
-+#define  GSW1XX_SGMII_PCS_TXB_CTL_INIT_TX_TXB	BIT(1)
-+
-+#define GSW1XX_SGMII_PHY_RX0_CFG2		0x004
-+#define  GSW1XX_SGMII_PHY_RX0_CFG2_EQ		GENMASK(2, 0)
-+#define   GSW1XX_SGMII_PHY_RX0_CFG2_EQ_DEF	2
-+#define  GSW1XX_SGMII_PHY_RX0_CFG2_INVERT	BIT(3)
-+#define  GSW1XX_SGMII_PHY_RX0_CFG2_LOS_EN	BIT(4)
-+#define  GSW1XX_SGMII_PHY_RX0_CFG2_TERM_EN	BIT(5)
-+#define  GSW1XX_SGMII_PHY_RX0_CFG2_FILT_CNT	GENMASK(12, 6)
-+#define   GSW1XX_SGMII_PHY_RX0_CFG2_FILT_CNT_DEF	20
-+
-+#define GSW1XX_SGMII_PHY_TX0_CFG3		0x007
-+#define  GSW1XX_SGMII_PHY_TX0_CFG3_VBOOST_EN	BIT(12)
-+#define  GSW1XX_SGMII_PHY_TX0_CFG3_VBOOST_LEVEL	GENMASK(11, 9)
-+#define   GSW1XX_SGMII_PHY_TX0_CFG3_VBOOST_LEVEL_DEF	4
-+#define  GSW1XX_SGMII_PHY_TX0_CFG3_INVERT	BIT(8)
-+
-+/* GSW1XX PDI Registers */
-+#define GSW1XX_SWITCH_BASE			0xe000
-+
-+/* GSW1XX MII Registers */
-+#define GSW1XX_RGMII_BASE			0xf100
-+
-+/* GSW1XX GPIO Registers */
-+#define GSW1XX_GPIO_BASE			0xf300
-+#define GPIO_ALTSEL0				0x83
-+#define GPIO_ALTSEL0_EXTPHY_MUX_VAL		0x03c3
-+#define GPIO_ALTSEL1				0x84
-+#define GPIO_ALTSEL1_EXTPHY_MUX_VAL		0x003f
-+
-+/* MDIO bus controller */
-+#define GSW1XX_MMDIO_BASE			0xf400
-+
-+/* generic IC registers */
-+#define GSW1XX_SHELL_BASE			0xfa00
-+#define  GSW1XX_SHELL_RST_REQ			0x01
-+#define   GSW1XX_RST_REQ_SGMII_SHELL		BIT(5)
-+/* RGMII PAD Slew Control Register */
-+#define  GSW1XX_SHELL_RGMII_SLEW_CFG		0x78
-+#define   RGMII_SLEW_CFG_RX_2_5_V		BIT(4)
-+#define   RGMII_SLEW_CFG_TX_2_5_V		BIT(5)
-+
-+/* SGMII clock related settings */
-+#define GSW1XX_CLK_BASE				0xf900
-+#define  GSW1XX_CLK_NCO_CTRL			0x68
-+#define   GSW1XX_SGMII_HSP_MASK			GENMASK(3, 2)
-+#define   GSW1XX_SGMII_SEL			BIT(1)
-+#define   GSW1XX_SGMII_1G			0x0
-+#define   GSW1XX_SGMII_2G5			0xc
-+#define   GSW1XX_SGMII_1G_NCO1			0x0
-+#define   GSW1XX_SGMII_2G5_NCO2			0x2
-+
-+#endif /* __MXL_GSW1XX_H */
-diff --git a/drivers/net/dsa/lantiq/mxl-gsw1xx_pce.h b/drivers/net/dsa/lantiq/mxl-gsw1xx_pce.h
-new file mode 100644
-index 000000000000..eefcd411a340
---- /dev/null
-+++ b/drivers/net/dsa/lantiq/mxl-gsw1xx_pce.h
-@@ -0,0 +1,154 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * PCE microcode code update for driver for MaxLinear GSW1xx switch chips
-+ *
-+ * Copyright (C) 2023 - 2024 MaxLinear Inc.
-+ * Copyright (C) 2022 Snap One, LLC.  All rights reserved.
-+ * Copyright (C) 2017 - 2019 Hauke Mehrtens <hauke@hauke-m.de>
-+ * Copyright (C) 2012 John Crispin <john@phrozen.org>
-+ * Copyright (C) 2010 Lantiq Deutschland
-+ */
-+
-+#include "lantiq_gswip.h"
-+
-+#define INSTR 0
-+#define IPV6 1
-+#define LENACCU 2
-+
-+/* GSWIP_2.X */
-+enum {
-+	OUT_MAC0 = 0,
-+	OUT_MAC1,
-+	OUT_MAC2,
-+	OUT_MAC3,
-+	OUT_MAC4,
-+	OUT_MAC5,
-+	OUT_ETHTYP,
-+	OUT_VTAG0,
-+	OUT_VTAG1,
-+	OUT_ITAG0,
-+	OUT_ITAG1,	/* 10 */
-+	OUT_ITAG2,
-+	OUT_ITAG3,
-+	OUT_IP0,
-+	OUT_IP1,
-+	OUT_IP2,
-+	OUT_IP3,
-+	OUT_SIP0,
-+	OUT_SIP1,
-+	OUT_SIP2,
-+	OUT_SIP3,	/* 20 */
-+	OUT_SIP4,
-+	OUT_SIP5,
-+	OUT_SIP6,
-+	OUT_SIP7,
-+	OUT_DIP0,
-+	OUT_DIP1,
-+	OUT_DIP2,
-+	OUT_DIP3,
-+	OUT_DIP4,
-+	OUT_DIP5,	/* 30 */
-+	OUT_DIP6,
-+	OUT_DIP7,
-+	OUT_SESID,
-+	OUT_PROT,
-+	OUT_APP0,
-+	OUT_APP1,
-+	OUT_IGMP0,
-+	OUT_IGMP1,
-+	OUT_STAG0 = 61,
-+	OUT_STAG1 = 62,
-+	OUT_NONE = 63,
-+};
-+
-+/* parser's microcode flag type */
-+enum {
-+	FLAG_ITAG = 0,
-+	FLAG_VLAN,
-+	FLAG_SNAP,
-+	FLAG_PPPOE,
-+	FLAG_IPV6,
-+	FLAG_IPV6FL,
-+	FLAG_IPV4,
-+	FLAG_IGMP,
-+	FLAG_TU,
-+	FLAG_HOP,
-+	FLAG_NN1,	/* 10 */
-+	FLAG_NN2,
-+	FLAG_END,
-+	FLAG_NO,	/* 13 */
-+	FLAG_SVLAN,	/* 14 */
-+};
-+
-+#define PCE_MC_M(val, msk, ns, out, len, type, flags, ipv4_len) \
-+	{ (val), (msk), ((ns) << 10 | (out) << 4 | (len) >> 1),\
-+	 ((len) & 1) << 15 | (type) << 13 | (flags) << 9 | (ipv4_len) << 8 }
-+
-+/* V22_2X (IPv6 issue fixed) */
-+static const struct gswip_pce_microcode gsw1xx_pce_microcode[] = {
-+	/*       value   mask    ns  fields      L  type     flags       ipv4_len */
-+	PCE_MC_M(0x88c3, 0xFFFF, 1,  OUT_ITAG0,  4, INSTR,   FLAG_ITAG,  0),
-+	PCE_MC_M(0x8100, 0xFFFF, 4,  OUT_STAG0,  2, INSTR,   FLAG_SVLAN, 0),
-+	PCE_MC_M(0x88A8, 0xFFFF, 4,  OUT_STAG0,  2, INSTR,   FLAG_SVLAN, 0),
-+	PCE_MC_M(0x9100, 0xFFFF, 4,  OUT_STAG0,  2, INSTR,   FLAG_SVLAN, 0),
-+	PCE_MC_M(0x8100, 0xFFFF, 5,  OUT_VTAG0,  2, INSTR,   FLAG_VLAN,  0),
-+	PCE_MC_M(0x88A8, 0xFFFF, 6,  OUT_VTAG0,  2, INSTR,   FLAG_VLAN,  0),
-+	PCE_MC_M(0x9100, 0xFFFF, 4,  OUT_VTAG0,  2, INSTR,   FLAG_VLAN,  0),
-+	PCE_MC_M(0x8864, 0xFFFF, 20, OUT_ETHTYP, 1, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0800, 0xFFFF, 24, OUT_ETHTYP, 1, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x86DD, 0xFFFF, 25, OUT_ETHTYP, 1, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x8863, 0xFFFF, 19, OUT_ETHTYP, 1, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0000, 0xF800, 13, OUT_NONE,   0, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0000, 0x0000, 44, OUT_ETHTYP, 1, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0600, 0x0600, 44, OUT_ETHTYP, 1, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0000, 0x0000, 15, OUT_NONE,   1, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0xAAAA, 0xFFFF, 17, OUT_NONE,   1, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0300, 0xFF00, 45, OUT_NONE,   0, INSTR,   FLAG_SNAP,  0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_DIP7,   3, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0000, 0x0000, 21, OUT_DIP7,   3, INSTR,   FLAG_PPPOE, 0),
-+	PCE_MC_M(0x0021, 0xFFFF, 24, OUT_NONE,   1, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0057, 0xFFFF, 25, OUT_NONE,   1, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0000, 0x0000, 44, OUT_NONE,   0, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x4000, 0xF000, 27, OUT_IP0,    4, INSTR,   FLAG_IPV4,  1),
-+	PCE_MC_M(0x6000, 0xF000, 30, OUT_IP0,    3, INSTR,   FLAG_IPV6,  0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0000, 0x0000, 28, OUT_IP3,    2, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0000, 0x0000, 29, OUT_SIP0,   4, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0000, 0x0000, 44, OUT_NONE,   0, LENACCU, FLAG_NO,    0),
-+	PCE_MC_M(0x1100, 0xFF00, 43, OUT_PROT,   1, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0600, 0xFF00, 43, OUT_PROT,   1, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0000, 0xFF00, 36, OUT_IP3,   17, INSTR,   FLAG_HOP,   0),
-+	PCE_MC_M(0x2B00, 0xFF00, 36, OUT_IP3,   17, INSTR,   FLAG_NN1,   0),
-+	PCE_MC_M(0x3C00, 0xFF00, 36, OUT_IP3,   17, INSTR,   FLAG_NN2,   0),
-+	PCE_MC_M(0x0000, 0x0000, 43, OUT_PROT,   1, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0000, 0x00F0, 38, OUT_NONE,   0, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0000, 0x0000, 44, OUT_NONE,   0, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0000, 0xFF00, 36, OUT_NONE,   0, IPV6,    FLAG_HOP,   0),
-+	PCE_MC_M(0x2B00, 0xFF00, 36, OUT_NONE,   0, IPV6,    FLAG_NN1,   0),
-+	PCE_MC_M(0x3C00, 0xFF00, 36, OUT_NONE,   0, IPV6,    FLAG_NN2,   0),
-+	PCE_MC_M(0x0000, 0x00FC, 44, OUT_PROT,   0, IPV6,    FLAG_NO,    0),
-+	PCE_MC_M(0x0000, 0x0000, 44, OUT_NONE,   0, IPV6,    FLAG_NO,    0),
-+	PCE_MC_M(0x0000, 0x0000, 44, OUT_SIP0,  16, INSTR,   FLAG_NO,    0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_APP0,   4, INSTR,   FLAG_IGMP,  0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_END,   0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_END,   0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_END,   0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_END,   0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_END,   0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_END,   0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_END,   0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_END,   0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_END,   0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_END,   0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_END,   0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_END,   0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_END,   0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_END,   0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_END,   0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_END,   0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_END,   0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_END,   0),
-+	PCE_MC_M(0x0000, 0x0000, 45, OUT_NONE,   0, INSTR,   FLAG_END,   0),
-+};
--- 
-2.51.2
+Frank
+> +
+> +	dev_info(dev, "Using LMM Protocol OPS\n");
+> +
+> +	return imx_rproc_sm_lmm_check(rproc, started);
+> +}
+> +
+>  static int imx_rproc_detect_mode(struct imx_rproc *priv)
+>  {
+>  	/*
+> diff --git a/drivers/remoteproc/imx_rproc.h b/drivers/remoteproc/imx_rproc.h
+> index e4b9ede656506142b260aa7515823f489a168ba4..c05bfc4528f3b7518d4f2272d15fdeab1a68c2a3 100644
+> --- a/drivers/remoteproc/imx_rproc.h
+> +++ b/drivers/remoteproc/imx_rproc.h
+> @@ -52,6 +52,9 @@ struct imx_rproc_dcfg {
+>  	enum imx_rproc_method		method;
+>  	u32				flags;
+>  	const struct imx_rproc_plat_ops	*ops;
+> +	/* For System Manager(SM) based SoCs, the IDs are from SM firmware */
+> +	u32				cpuid;
+> +	u32				lmid;
+>  };
+>
+>  #endif /* _IMX_RPROC_H */
+>
+> --
+> 2.37.1
+>
 
