@@ -1,71 +1,66 @@
-Return-Path: <devicetree+bounces-233947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FCF5C27123
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 22:46:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 153BDC27186
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 23:01:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C352D401F90
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 21:46:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4D20425318
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 22:00:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 942D5301482;
-	Fri, 31 Oct 2025 21:46:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71037329E6E;
+	Fri, 31 Oct 2025 22:00:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="quF/zU/Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A2E2311969;
-	Fri, 31 Oct 2025 21:46:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F51A2E092D;
+	Fri, 31 Oct 2025 22:00:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761947182; cv=none; b=UlC61vL4/cHTMCsx7Oj+dlRa/j2gcImGW5Ue4E0L/xUKBi6T4R5pSMIBncJAI1DWwqmr90tlOs3814ZeCpo1D96fSFxCVvOlOvEZ0Vvn4mlDa/nr1m+j34pdTO8JpS2WX8IxqOZWytAlAh+Js2IPruwpjrWn5a1oBcyMNmq+1kU=
+	t=1761948014; cv=none; b=NjOQPFR3lEtUxDX3HVtk7IEMS0nnLxccrOOJ+Uji83hv2XqPS6R+px2oxXXPd0di6nWsjIOmqmp50fW61CiGSwiDY10zzfKTapKi3vVevT0ifBFads+4Jr325IhCL9iSCuTm8I5Ty8P6mM9myHkzX3RSN71xY5/6vyJkKDAXFBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761947182; c=relaxed/simple;
-	bh=kGRCeCTwBu75yr3tcWy7SGS5hUJuS9Kx8L7XTs320cc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FdsA6xSyZIqcJzD48lN83ttfNUMQkCMZEFqqBUxEt1uISBto2rJ+h0Uz0ygo0X+sLOAnFB5Ku9qX8Z1aFUZWE99fLMyZueioUTIeGd/du4Fx5sNrZLBAe3D/6o3EUQRw8TK9xQ1UtBYXap6J4DdQAjj5D5TGH9esIR5mVLwoLPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.98.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vEwwo-000000006TW-0Tkg;
-	Fri, 31 Oct 2025 21:46:14 +0000
-Date: Fri, 31 Oct 2025 21:46:06 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>
-Cc: "olteanv@gmail.com" <olteanv@gmail.com>,
-	"andrew@lunn.ch" <andrew@lunn.ch>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-	"horms@kernel.org" <horms@kernel.org>,
-	"hauke@hauke-m.de" <hauke@hauke-m.de>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"lxu@maxlinear.com" <lxu@maxlinear.com>,
-	"john@phrozen.org" <john@phrozen.org>,
-	"yweng@maxlinear.com" <yweng@maxlinear.com>,
-	"bxu@maxlinear.com" <bxu@maxlinear.com>,
-	"fchan@maxlinear.com" <fchan@maxlinear.com>,
-	"ajayaraman@maxlinear.com" <ajayaraman@maxlinear.com>,
-	"jpovazanec@maxlinear.com" <jpovazanec@maxlinear.com>
-Subject: Re: [PATCH net-next v5 12/12] net: dsa: add driver for MaxLinear
- GSW1xx switch family
-Message-ID: <aQUuHjhWSJgYsTEn@makrotopia.org>
-References: <cover.1761823194.git.daniel@makrotopia.org>
- <229278f2a02ac2b145f425f282f5a84d07475021.1761823194.git.daniel@makrotopia.org>
- <3945b89128c71d2d0c9bda3a2d927f3c53b50c87.camel@siemens.com>
+	s=arc-20240116; t=1761948014; c=relaxed/simple;
+	bh=O0fhSqjLTinpVRH+cK6fr7ALKjje1XRwe9Px2Bt83Tc=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=ig+OfkFIEsHr00Aa7//uErOOXCUKM3IUe7GB5FOrb749l0np27R1Kfx7doJa2CUwIFRUxWOFTptb8E1tSH/7JZ8CPSbOXTw9r0dkZD6yPCrVP7ut6IcPN04zxYKcMbBfbKd80fuYzj4uqqUanA+MLtXH93aZxg9aRspbAD/S8u8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=quF/zU/Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95548C4CEE7;
+	Fri, 31 Oct 2025 22:00:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761948013;
+	bh=O0fhSqjLTinpVRH+cK6fr7ALKjje1XRwe9Px2Bt83Tc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=quF/zU/YfBROOIbiQp5K1GKS/F5/XE7EaFei9v05twKPYSXRdSLZSzygogRRigvgz
+	 mX2H4q2mlyw8xrPEbUGRj5lTk4Lw/kPfgA5oAOt9/njm3wckJFsDKjK73CbZdEK4C6
+	 mE5q2Sd3dW8iBHU7O5YaPVuHhnzP0aQQ1fKmfftNEUKyVo7J9ZHPuJorVjI1Rx10Pa
+	 sE56HW4fI8K1D06g+B5nTIU9pj+CW2dghqzwT1vuFrTZyiskm+z85luhki4G4rR/Nv
+	 R1Vk1r+rBzLdCPIK73uy03Yv21epedexkYwogeNfNLgalsMDHKmS8Zo5w7oAOj5mUE
+	 Xryox64cfj0Lg==
+Date: Fri, 31 Oct 2025 17:00:12 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v8 1/7] dt-bindings: PCI: Add binding for Toshiba TC9563
+ PCIe switch
+Message-ID: <20251031220012.GA1711108@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,56 +69,139 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3945b89128c71d2d0c9bda3a2d927f3c53b50c87.camel@siemens.com>
+In-Reply-To: <20251031-tc9563-v8-1-3eba55300061@oss.qualcomm.com>
 
-On Thu, Oct 30, 2025 at 11:11:38PM +0000, Sverdlin, Alexander wrote:
-> [...]
-> For some reason with both v4 and v5 I can reliably reproduce the following
-> warning (ASSERT_RTNL()) at the very beginning of
-> drivers/net/dsa/local_termination.sh selftest:
-> 
-> RTNL: assertion failed at git/net/core/dev.c (9480)
-> WARNING: CPU: 1 PID: 529 at git/net/core/dev.c:9480 __dev_set_promiscuity+0x174/0x188
-> CPU: 1 UID: 996 PID: 529 Comm: systemd-resolve Tainted: G           O        6.18.0-rc2+gite9079300094d #1 PREEMPT 
-> pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-> pc : __dev_set_promiscuity+0x174/0x188
-> lr : __dev_set_promiscuity+0x174/0x188
-> Call trace:
->  __dev_set_promiscuity+0x174/0x188 (P)
->  __dev_set_rx_mode+0xa0/0xb0
->  dev_mc_del+0x94/0xc0
->  igmp6_group_dropped+0x124/0x410
->  __ipv6_dev_mc_dec+0x108/0x168
->  __ipv6_sock_mc_drop+0x64/0x188
->  ipv6_sock_mc_drop+0x140/0x170
->  do_ipv6_setsockopt+0x1408/0x1828
->  ipv6_setsockopt+0x64/0xf8
->  udpv6_setsockopt+0x28/0x58
->  sock_common_setsockopt+0x24/0x38
->  do_sock_setsockopt+0x78/0x158
->  __sys_setsockopt+0x88/0x110
->  __arm64_sys_setsockopt+0x30/0x48
->  invoke_syscall+0x50/0x120
->  el0_svc_common.constprop.0+0xc8/0xf0
->  do_el0_svc+0x24/0x38
->  el0_svc+0x50/0x2b0
->  el0t_64_sync_handler+0xa0/0xe8
->  el0t_64_sync+0x198/0x1a0
-> 
-> (testing with GSW145)
-> I'm not sure though, if it's related to the gsw1xx code, am65-cpsw-nuss driver
-> on my CPU port or if it's a fresh regression in net-next...
-> 
-> I can see the above splat if I apply the patchset onto bfe62db5422b1a5f25752bd0877a097d436d876d
-> but not with older patchset on top of e90576829ce47a46838685153494bc12cd1bc333.
-> 
-> I'll try to bisect the underlying net-next...
+On Fri, Oct 31, 2025 at 04:41:58PM +0530, Krishna Chaitanya Chundru wrote:
+> Add a device tree binding for the Toshiba TC9563 PCIe switch, which
+> provides an Ethernet MAC integrated to the 3rd downstream port and
+> two downstream PCIe ports.
 
-Did you try to rebase the patches necessary for the GSW145 on top of the
-last known-to-work net-next commit?
+> +++ b/Documentation/devicetree/bindings/pci/toshiba,tc9563.yaml
+> @@ -0,0 +1,178 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/toshiba,tc9563.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Toshiba TC9563 PCIe switch
+> +
+> +maintainers:
+> +  - rishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 
-Also note that I've successfully tested local_termination.sh on top
-of ea7d0d60ebc9bddf3ad768557dfa1495bc032bf6, but using the modified
-RaspberryPi 4B provided by MaxLinear, so there obviously is a different
-Ethernet driver on the CPU port...
+s/rishna/Krishna/ ?
+
+> +  i2c-parent:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      A phandle to the parent I2C node and the slave address of the device
+> +      used to do configure tc9563 to change FTS, tx amplitude etc.
+
+s/used to do/used to/
+
+> +patternProperties:
+> +  "^pcie@[1-3],0$":
+> +    description:
+> +      child nodes describing the internal downstream ports
+> +      the tc9563 switch.
+
+s/ports/ports of/ ?
+
+> +      toshiba,no-dfe-support:
+> +        type: boolean
+> +        description:
+> +          Disable DFE (Decision Feedback Equalizer), which mitigates
+> +          intersymbol interference and some reflections caused by impedance mismatches.
+
+Wrap to fit in 78 columns
+
+> +    pcie {
+> +        #address-cells = <3>;
+> +        #size-cells = <2>;
+> +
+> +        pcie@0 {
+> +            device_type = "pci";
+> +            reg = <0x0 0x0 0x0 0x0 0x0>;
+> +
+> +            #address-cells = <3>;
+> +            #size-cells = <2>;
+> +            ranges;
+> +            bus-range = <0x01 0xff>;
+> +
+> +            pcie@0,0 {
+> +                compatible = "pci1179,0623";
+> +
+> +                reg = <0x10000 0x0 0x0 0x0 0x0>;
+> +                device_type = "pci";
+> +                #address-cells = <3>;
+> +                #size-cells = <2>;
+> +                ranges;
+> +                bus-range = <0x02 0xff>;
+> ...
+
+> +                pcie@1,0 {
+> +                    compatible = "pciclass,0604";
+> +                    reg = <0x20800 0x0 0x0 0x0 0x0>;
+> +                    #address-cells = <3>;
+> +                    #size-cells = <2>;
+> +                    device_type = "pci";
+> +                    ranges;
+> +                    bus-range = <0x03 0xff>;
+> +
+> +                    toshiba,no-dfe-support;
+
+IIUC, there are two downstream ports available for external devices,
+and pcie@1,0 is one of them.
+
+  1) Putting "toshiba,no-dfe-support" in the pcie@1,0 stanza suggests
+  that it only applies to that port.
+
+  But from tc9563_pwrctrl_disable_dfe() in "[PATCH v8 6/7] PCI:
+  pwrctrl: Add power control driver for tc9563", it looks like it's
+  applied to the upstream port and both downstream ports.  So I guess
+  my question is putting "toshiba,no-dfe-support" in just one
+  downstream port is the right place for it.
+
+  2) I see a lookup of "qcom,no-dfe-support" in [PATCH v8 6/7] PCI:
+  pwrctrl: Add power control driver for tc9563; is that supposed to
+  match this "toshiba,no-dfe-support"?
+
+> +                };
+> +
+> +                pcie@2,0 {
+> +                    compatible = "pciclass,0604";
+> +                    reg = <0x21000 0x0 0x0 0x0 0x0>;
+> +                    #address-cells = <3>;
+> +                    #size-cells = <2>;
+> +                    device_type = "pci";
+> +                    ranges;
+> +                    bus-range = <0x04 0xff>;
+> +                };
+> +
+> +                pcie@3,0 {
+> +                    compatible = "pciclass,0604";
+> +                    reg = <0x21800 0x0 0x0 0x0 0x0>;
+> +                    #address-cells = <3>;
+> +                    #size-cells = <2>;
+> +                    device_type = "pci";
+> +                    ranges;
+> +                    bus-range = <0x05 0xff>;
+> +
+> +                    toshiba,tx-amplitude-microvolt = <10>;
+> +
+> +                    ethernet@0,0 {
+> +                        reg = <0x50000 0x0 0x0 0x0 0x0>;
+> +                    };
+> +
+> +                    ethernet@0,1 {
+> +                        reg = <0x50100 0x0 0x0 0x0 0x0>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+> 
+> -- 
+> 2.34.1
+> 
 
