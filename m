@@ -1,37 +1,36 @@
-Return-Path: <devicetree+bounces-233503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC905C23020
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 03:29:09 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDF73C2301A
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 03:29:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B1CC3B40C4
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 02:28:40 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B4CE04EF455
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 02:28:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D882D27FD78;
-	Fri, 31 Oct 2025 02:28:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1857828DB49;
+	Fri, 31 Oct 2025 02:28:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-188.mta1.migadu.com (out-188.mta1.migadu.com [95.215.58.188])
+Received: from out-170.mta1.migadu.com (out-170.mta1.migadu.com [95.215.58.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76524221DB9;
-	Fri, 31 Oct 2025 02:28:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.188
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05712281351
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 02:28:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761877715; cv=none; b=AErv8qTziHlH54QwYtm5iDCGONpafMdhN7fz4HJj6EZ5NYrBcVL1wATh2p8dllzb+LNb4wcgkYDU+5ClP6iQQogYLDoRqVK02cXjXeEQlyvYx1V6EO8E8BeU1qvVmxTQJNc9/P2SFGWOEmijZzN6zUP5CAKwTP3oUUbljyq/Ats=
+	t=1761877721; cv=none; b=HXk966HYqknN+B8wZURYZxvQAxUs3VKCXxD1AubzPq9vI2iZLLgb8LLEjP6rCvUdtYM5mb+1OoGA5EaJxb/atcyvLbe0XyH5J9i0DF/uMKL36IVRM74SkkRKlykhw1mklz9v0Uz7lDTJVREaY7cPzy+3EAdCuUWhD4KZ/cu/xRE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761877715; c=relaxed/simple;
-	bh=saSevqQqF0NKsGN4g+J82OxGRpjZfSGnHrYhDSzT1Yk=;
+	s=arc-20240116; t=1761877721; c=relaxed/simple;
+	bh=7XisM2rwpdDlhZ2y1kfdlXbHH1vW3/EhUUIBGKIvWfM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=pAJChHYW/B85BUPbg+dtSlUhg7Vi+WE4JihAtb1EHmawmbVl5lVzQe0NJd/f+mcU95J0Ruv+deOmwRmwldsYp7WBowjdDuDjbGnT3p5VpJOicvBnk8xqw4oCFNcbGxBj5CIZ/+ZIJVPMlYsr/mAbT0rvokSvYZ6aViZG6uXh9M0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=permerror (bad message/signature format); arc=none smtp.client-ip=95.215.58.188
+	 In-Reply-To:To:Cc; b=TGDJy2A+dRMe6+e+0W+ntxFWgbTMN7k+cspFQZMwOW5JZ4nd6To2+hCOI2a1ozY3VEs4I9B11m0K77RsXSAJy7EBwyiAvqykmus0CUVyoGwAU5BsJIh/o/7Sk+P6Ib/yDQZeRc6Q/albQADsOCbKyS51iM69NuIKG0iAVwx/EXg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=permerror (bad message/signature format); arc=none smtp.client-ip=95.215.58.170
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 From: Alexey@web.codeaurora.org, Minnekhanov@web.codeaurora.org
-Date: Fri, 31 Oct 2025 05:27:43 +0300
-Subject: [PATCH 1/3] dt-bindings: clock: mmcc-sdm660: Add missing MDSS
- reset
+Date: Fri, 31 Oct 2025 05:27:44 +0300
+Subject: [PATCH 2/3] clk: qcom: mmcc-sdm660: Add missing MDSS reset
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -40,7 +39,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251031-sdm660-mdss-reset-v1-1-14cb4e6836f2@postmarketos.org>
+Message-Id: <20251031-sdm660-mdss-reset-v1-2-14cb4e6836f2@postmarketos.org>
 References: <20251031-sdm660-mdss-reset-v1-0-14cb4e6836f2@postmarketos.org>
 In-Reply-To: <20251031-sdm660-mdss-reset-v1-0-14cb4e6836f2@postmarketos.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -56,25 +55,26 @@ X-Migadu-Flow: FLOW_OUT
 
 From: Alexey Minnekhanov <alexeymin@postmarketos.org>
 
-Add definition for display subsystem reset control.
+Add offset for display subsystem reset in multimedia clock controller
+block.
 
 Cc: <stable@vger.kernel.org> # 6.17
 Signed-off-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
 ---
- include/dt-bindings/clock/qcom,mmcc-sdm660.h | 1 +
+ drivers/clk/qcom/mmcc-sdm660.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/include/dt-bindings/clock/qcom,mmcc-sdm660.h b/include/dt-bindings/clock/qcom,mmcc-sdm660.h
-index f9dbc21cb5c7..ee2a89dae72d 100644
---- a/include/dt-bindings/clock/qcom,mmcc-sdm660.h
-+++ b/include/dt-bindings/clock/qcom,mmcc-sdm660.h
-@@ -157,6 +157,7 @@
- #define BIMC_SMMU_GDSC							7
+diff --git a/drivers/clk/qcom/mmcc-sdm660.c b/drivers/clk/qcom/mmcc-sdm660.c
+index b723c536dfb6..dbd3f561dc6d 100644
+--- a/drivers/clk/qcom/mmcc-sdm660.c
++++ b/drivers/clk/qcom/mmcc-sdm660.c
+@@ -2781,6 +2781,7 @@ static struct gdsc *mmcc_sdm660_gdscs[] = {
+ };
  
- #define CAMSS_MICRO_BCR				 0
-+#define MDSS_BCR				1
- 
- #endif
+ static const struct qcom_reset_map mmcc_660_resets[] = {
++	[MDSS_BCR] = { 0x2300 },
+ 	[CAMSS_MICRO_BCR] = { 0x3490 },
+ };
  
 
 -- 
