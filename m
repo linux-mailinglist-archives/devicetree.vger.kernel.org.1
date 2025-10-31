@@ -1,158 +1,113 @@
-Return-Path: <devicetree+bounces-233818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC15FC25D16
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 16:24:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D20E0C25D37
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 16:26:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 322184F5A06
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 15:20:36 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E43764F4181
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 15:24:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26AB727702D;
-	Fri, 31 Oct 2025 15:20:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC4B62C17B6;
+	Fri, 31 Oct 2025 15:24:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ZXX1Bma9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DeNtmRQL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 986B62BEFFB;
-	Fri, 31 Oct 2025 15:20:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4D002C0F6C;
+	Fri, 31 Oct 2025 15:24:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761924030; cv=none; b=eWvEBfYoofgZYGGNvXRoATYIRW25fSwPcbDNByHzyfPUadCk56dguPOzT7QeGUN5pI3ifB6hI2IR7XKD2bAJ76vI8s/QoJFJpJ8cejGgp6HqWUbP1wwKly05czU8zU3r54WechXzFo/UxXjt33gr0vqZZ8mnhCYYrXTo5Oiiy0Q=
+	t=1761924277; cv=none; b=WHGsKb9Cy1km4Krn0jfmokuSfZDfkpltMXkbMuGMJSF+zcJIUV6UkJxtBb4V/erQFtVv+a3mzamexUej6MUf/BjRwFsO98Hyp6iSjaYQ7ACOxs8ThybFKUBNOodCKKjpkOjbghsNYdARIqv5LF9bsxpuoe+LRzvyWtov8nW390g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761924030; c=relaxed/simple;
-	bh=y3b+wUCsWckPBCTPgAZadRRNBEdlpxrfsSHKNnGesNY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IIaBcq2DZFuFNWCJ69Rp0+KvIfpGueRbZrey+b0r4YUEldPX23/cFLYyPXuR7y7OVFEDeUfC36Mk+wy6edhs8knsppObLPKWJzX7olzwvTmKIcm7U2PRpgMev9arNBx8aTv5dw3R4a0H4WpDPy2dAuPOut7Zp8NffcGGgLtXzO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ZXX1Bma9; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 36A3FC0E957;
-	Fri, 31 Oct 2025 15:20:05 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 9CDE360710;
-	Fri, 31 Oct 2025 15:20:25 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 067DE11818041;
-	Fri, 31 Oct 2025 16:20:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761924023; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=goHQM/1NASiwEpJFuU+gt1w80LtYcWXr5Gc0K9tmMcc=;
-	b=ZXX1Bma9X3KMNXlEJ6m3KmzgeWaoHvqKZUDGbtyXcyczSWNcqa1WxZl7PaaP3QnmzL9gq4
-	h0YuPlq7t/ag22Qc0RV6DUkEOizZ8aU4YvVAi5tQ0oCrNCN9uTlgnrGvmTf6uzjWAFrc/P
-	iOZon5nGEinDurKqvP8UIygDFPUWAiUqm59zHUbmHyOs3e60XOGs63ifmZhf114mLUKRqK
-	bIKj+JoZJxnMO/w5PK2AbEIM7ADXeVegLKetdhc6qx0E6UYxyvcnSln30z+BZXKje9+TfM
-	AmSNEEcgTn5HJwFcJWmSNYyzhr1jXdHX0RhRB0lSnwspgtNFDoD+bFqnfo/hgQ==
-Date: Fri, 31 Oct 2025 16:20:04 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Michael
- Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Andi
- Shyti <andi.shyti@kernel.org>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, Arnd
- Bergmann <arnd@arndb.de>, Saravana Kannan <saravanak@google.com>, Bjorn
- Helgaas <bhelgaas@google.com>, Charles Keepax
- <ckeepax@opensource.cirrus.com>, Richard Fitzgerald
- <rf@opensource.cirrus.com>, David Rhodes <david.rhodes@cirrus.com>, Linus
- Walleij <linus.walleij@linaro.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- Mark Brown <broonie@kernel.org>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, Sakari Ailus
- <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>, Davidlohr
- Bueso <dave@stgolabs.net>, Jonathan Cameron <jonathan.cameron@huawei.com>,
- Dave Jiang <dave.jiang@intel.com>, Alison Schofield
- <alison.schofield@intel.com>, Vishal Verma <vishal.l.verma@intel.com>, Ira
- Weiny <ira.weiny@intel.com>, Dan Williams <dan.j.williams@intel.com>, Geert
- Uytterhoeven <geert+renesas@glider.be>, Wolfram Sang <wsa@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-sound@vger.kernel.org,
- patches@opensource.cirrus.com, linux-gpio@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Horatiu Vultur
- <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 05/29] dt-bindings: bus: Add simple-platform-bus
-Message-ID: <20251031162004.180d5e3f@bootlin.com>
-In-Reply-To: <20251030141448.GA3853761-robh@kernel.org>
-References: <20251015071420.1173068-1-herve.codina@bootlin.com>
-	<20251015071420.1173068-6-herve.codina@bootlin.com>
-	<20251030141448.GA3853761-robh@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1761924277; c=relaxed/simple;
+	bh=wELlLjOopO70GyAAjcrhLoBkcEk7e3coegAXgBgiU5c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ep6xaA6zfCjI/QLkesUomGQhStmSiItBpSv3gJMX6LM/7VJmJ5o429twByml4brpGl3qAROdROlb8QKbOPIlHRQAW4ta8G2QZVPCTdqLY+Fhz13640v8FJG5v9782rBBypQRnFcgWPjoviQ1UmJ4iOZGfMRMxfWn9NpDD3QWrl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DeNtmRQL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 644DFC4CEE7;
+	Fri, 31 Oct 2025 15:24:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761924277;
+	bh=wELlLjOopO70GyAAjcrhLoBkcEk7e3coegAXgBgiU5c=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DeNtmRQLpubaHm2ENZAO70y35ZxllIqPJtIyUT06xT7pzFwQwK3qKMej06+407oZM
+	 NqC8IY5IfqcsWGAgnXIdM2CewkMdBFcYzSfLp09FJpcmSRNVcFDhCpzNi3Y2CsEA3w
+	 poNj4Vn/9JtGEYCSB7GfQln30WgJvkDm9KR8VdMt/TtDCxcmSg503VkkdZcU6o9JBw
+	 pMpG6zqdDli9p5GRlA8x5P1Y/mOf+1rOsiwPU3BL0khA+iCZWAce7pkDrOvQIIyZdY
+	 iUPiYEMB0EWI2NGn4p2zDrVzXaaIuubpH9QHl8DwnGo5YWR/0dOrSuxqrZJ6ei9D77
+	 GcW7EGj0LR56Q==
+Message-ID: <c9542093-aa2c-49a5-9126-e495f1fe1497@kernel.org>
+Date: Fri, 31 Oct 2025 10:24:07 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/2] Add support for Agilex5 SoCFPGA 013b board
+To: niravkumarlaxmidas.rabara@altera.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251031131739.914012-1-niravkumarlaxmidas.rabara@altera.com>
+Content-Language: en-US
+From: Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <20251031131739.914012-1-niravkumarlaxmidas.rabara@altera.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Rob,
 
-On Thu, 30 Oct 2025 09:14:48 -0500
-Rob Herring <robh@kernel.org> wrote:
 
-> On Wed, Oct 15, 2025 at 09:13:52AM +0200, Herve Codina wrote:
-> > A Simple Platform Bus is a transparent bus that doesn't need a specific
-> > driver to perform operations at bus level.
-> > 
-> > Similar to simple-bus, a Simple Platform Bus allows to automatically
-> > instantiate devices connected to this bus.
-> > 
-> > Those devices are instantiated only by the Simple Platform Bus probe
-> > function itself.  
+On 10/31/25 08:17, niravkumarlaxmidas.rabara@altera.com wrote:
+> From: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
 > 
-> Don't let Greg see this... :)
+> Agilex5 SoCFPGA 013b is a low cost and small form factor development kit
+> compared to other Agilex5 development kits.
+> It Supports both tabletop and PCIe add-in card operation. It features
+> expansion headers for Raspberry Pi 4/5 HATs and Digilent Pmod modules,
+> enabling integration with popular ecosystems.
 > 
-> I can't say I'm a fan either. "Platform bus" is a kernel thing, and the 
-> distinction here between the 2 compatibles is certainly a kernel thing.
+> https://www.altera.com/products/devkit/a1jui0000057q9nmau/agilex-5-fpga-e-series-013b-development-kit
 > 
-> I think this needs to be solved within the kernel.
-
-I fully agree with that.
-
+> * Patch 1 - Add compatible string for the new 013b board.
+> * Patch 2 - Add device tree for 013b board.
 > 
-> What I previously said is define a list of compatibles to not 
-> instantiate the child devices. This would essentially be any case having 
-> a specific compatible and having its own driver. So if someone has 
-> 'compatible = "vendor,not-so-simple-bus", "simple-bus"', when and if 
-> they add a driver for "vendor,not-so-simple-bus", then they have to add 
-> the compatible to the list in the simple-pm-bus driver. I wouldn't 
-> expect this to be a large list. There's only a handful of cases where 
-> "simple-bus" has a more specific compatible. And only a few of those 
-> have a driver. A more general and complicated solution would be making 
-> linux handle 2 (or more) drivers matching a node and picking the driver 
-> with most specific match. That gets complicated with built-in vs. 
-> modules. I'm not sure we really need to solve that problem.
+> Note:
+> The patch 2 depends on the series: "Add iommu supports"
+> https://lore.kernel.org/all/cover.1760486497.git.khairul.anuar.romli@altera.com/
+> 
+> Patch series "Add iommu supports" is applied to socfpga maintainer's tree
+> https://git.kernel.org/pub/scm/linux/kernel/git/dinguyen/linux.git/log/?h=socfpga_dts_for_v6.19
+> 
+> Changelog:
+> v1->v2:
+> * No change in DT bindings patch, retains Acked-by
+> * Add more description about 013b board in cover letter.
+> * Drop Agilex5 from commit header in DTS patch.
+> * Add more details about 013b board in commit message of DTS patch.
+> 
+> v1 patch link:
+> https://lore.kernel.org/all/20251031103117.910187-1-niravkumarlaxmidas.rabara@altera.com/
+> 
+> Niravkumar L Rabara (2):
+>    dt-bindings: intel: Add Agilex5 SoCFPGA 013b board
+>    arm64: dts: socfpga: agilex5: add support for 013b board
+> 
+>   .../bindings/arm/intel,socfpga.yaml           |   1 +
+>   arch/arm64/boot/dts/intel/Makefile            |   1 +
+>   .../dts/intel/socfpga_agilex5_socdk_013b.dts  | 126 ++++++++++++++++++
+>   3 files changed, 128 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_013b.dts
+> 
 
-Right. Let discard the "more general and complicated solution" and focus
-on the list of compatible to avoid child devices instantiation.
+Applied!
 
-Do you mean that, for "simple-bus" compatible we should:
- - Remove the recursive device instantiation from of_platform_populate().
- - In simple-bus probe(), check the device we probe against the
-   'no_instantiate_children' list
-      - If it matches, do not instantiate chidren
-      - If it doesn't match instantiate children
+Thanks,
+Dinh
 
-Is that correct?
-
-Best regards,
-Hervé
 
