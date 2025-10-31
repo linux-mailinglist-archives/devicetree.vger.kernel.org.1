@@ -1,84 +1,83 @@
-Return-Path: <devicetree+bounces-233741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E338C251A6
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:52:42 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3194C251AC
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:54:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AE17188F086
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:51:38 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6FD5F4F5EEA
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:51:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25C31340A41;
-	Fri, 31 Oct 2025 12:51:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F57734B1B0;
+	Fri, 31 Oct 2025 12:51:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jRW/wLfO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="czqxuVGb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C261DF979
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:51:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72B91329E6F
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:51:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761915069; cv=none; b=VBFK4DkKFbiypgvNBTMqUl2JMNIusZHsvylj+ftdiUFlRDa7p8TN12GpWyDWvFD8XmELCQVO+gtEBoKHeF+a7yhu7+yypnGS7z3y13QkiR4kku/jCP2P6tIIZR/u8EO6H80Lla5pCuqinF51tcc1K1WT4xUhtadoRrdWZjCFZ2g=
+	t=1761915070; cv=none; b=Y3GaCZGLX9FPGJLUMoGAPnxG8J58OcVrhz4lbRA0mquWdNzdFDmuRgssdR0WzcH61JaUUWwbw3PO03l/P7bnfz+OY+IKzdlgs+8WlSi2ueDfJxkhRY/xUfNhTRXmPjT2QynPlMwWAKtKBex246tkVcqppqwLMvih0V0apZLaVPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761915069; c=relaxed/simple;
-	bh=Ug8IOVgjasY3stOjuvtaJgMJUnmgn94MwSPp4Jf04B4=;
+	s=arc-20240116; t=1761915070; c=relaxed/simple;
+	bh=Yu/2j0GxwZBaEKqZGl6yxDClZc58fe7sUMa878UE3Uc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=n6uSzyEdbJPhDPJOlh8Ca3s/1BdGkI5Is7PZd2gGZOye4L8LmG94HV6U13kSXufWhkRfhKRBPH0ef7aqezo/ksFtxkD38d6kAMziWc9iTkor1TRfs0i9HJVmJwjNlj9GvicZcYvvzQq/XjZYLgZh7bPE38Hh1c1Yzbmqk4QXNyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jRW/wLfO; arc=none smtp.client-ip=209.85.128.47
+	 MIME-Version; b=oH0L6gSHQcxys1SgPtvoJUjbC8K5whk943bleCXmS0qEh8U8HESVVrKmbCbC2yG2StzAAVMW2fM7jxg5xT7TpEh78bL5EbVybTGbQ8kDlKoHxwlFFx/PiU+gZLmg8XbONHrAOPufGlSqXTXu8zmam1+k4V88lYzQkpGYolvmuP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=czqxuVGb; arc=none smtp.client-ip=209.85.221.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-474975af41dso16171935e9.2
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 05:51:07 -0700 (PDT)
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3ece1102998so1575367f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 05:51:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761915066; x=1762519866; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1761915067; x=1762519867; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=84OopfA9mZxUTjhIOMCRmTS5zKmOVI3F35SNw7q2yS8=;
-        b=jRW/wLfOypgBAksRp7ghRzXsu0k0zhwPSulrjPM3K87Z0tK1QRj5bLY3wt7M7AEzaC
-         aR2Pf9lbiLoxKA5LfnAypcIhwj7uXISbO2COpD+fy4KXVF3gvzvlZ70suYA08bGdYlPR
-         mKz8Rx4BQnfWlEhy/kArCVPN8POGMINjNoPqxg73xni85HqeiEI3taC76X0ETG/Y0FmA
-         hgAOfNBOeL2pBX1Xqjk0bf2m/IY/SZKujZ/ZsxPTVWTTdfKh/zSOipAbmtmA2VNvtErN
-         xx+tXbszBVv+kAPxLNtao1ymoyArBtjbjmtsD2XQq7rse9r2LNp0GK3jfBhWMRvKwqZW
-         bzDg==
+        bh=qvXLX7+QZgiVzZvZ0wG+LadEzSHLnJ6P5bBzFMwgkSc=;
+        b=czqxuVGbYv2FIGy4das2YsdxTGkLU9rL1hwVIHmXlQDR1l9Kw9KZckb5z2fgQSTM1x
+         1pnYvNkQ7qNillU/Cpudr8VfDPgQv6PAgd2npORNSRNQXb8UW0Ih2vHTVZboqqK2bgPz
+         l2LXYQXub1jHg0KIwH8OKQGtk337Mf6Fv5iv9zqqiIU+fznM0b/4j7SNYJdHqY3hy1dP
+         MrnqA1lvP1qyBhkLQwXRhrhDJ40kEUW9YZW3LbHu6ltxl7eGzc5mhnTYK7Kt8Yu/UXoI
+         BvBC6FPUzFL8GS1FpYzI2PDn0syUzuezJRQmvuV04LV2/6/u2gYxJAL5nYvHSbojAOeC
+         xZVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761915066; x=1762519866;
+        d=1e100.net; s=20230601; t=1761915067; x=1762519867;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=84OopfA9mZxUTjhIOMCRmTS5zKmOVI3F35SNw7q2yS8=;
-        b=ZX/jPHhW1q4KdWzMm2stGOYtJFMJnyQuFl84AAlhlm68FP/BSU/TeXgLLgYiEWy0/7
-         eEYCcCnOeBmkCk4nb/LYpEf1WrDYc2ycOvbPuXJ8o0CRbXkN6jfjxc0ogp1EkYG1B4oW
-         02xmMmnjqs+wP3EOMoUr6cMJ53nJk8jEqhXs5BXiAK8HuB+YLhmE24MQdwFOUVmKKAGJ
-         vY1/UHx5+hnaDvwnzhXAamlckStV0AhqEiuTD4bHaonvjt/Pa8k8xscBkHhi0ci/PS4I
-         wUX8XqAtCNRBz/3rNc5CQzOpZ8787aM8JznCaJMLfw+TLzOK/kKHEAwy0FdXuu6SUpG9
-         B0CQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW4vJwRaXHUQEGv8WIFuWYNLksgZB2LExoq3l3agZzkpLA2WDh1/4b+8eJIR1N+OdlhPjlHajMEybBu@vger.kernel.org
-X-Gm-Message-State: AOJu0YytpU8NpAPjGpb6ANsmU4Z4qgI4MsCb0166UPVqO4LZsnvVGJpx
-	c1OebvLfxkUNCWQpJV4iiSGqV1e13rkSTADFnq4z2gJDC/5mmV6AdR6GLkm8Pg==
-X-Gm-Gg: ASbGncvYTbPOGkKyDTFM4nuIzx1HQ9kJbKgJ7qKuh2mRIJHIYZfwfAJC8ya3Xr/MDSf
-	LdC76S7qFIfTENNVv3Q18mhBK4R4vQaOcqmfr7kmqQQKKJPJ12lrmfDtUZTU0bBelSHjQABEeex
-	kZ39ghA25tW9qKW+Ce2tbO5WskTUDIOWFRLWYPdasEdJoPz68a7UGcLK0UlBVbUN4L8iHCqyUeL
-	FcTUO0yGtIhpIrEbKHCd/OVhR5KBZF5KJ+U/nYrgjbVZqcshop/35s4dJKzPG38hhf+40TlRd12
-	p+duDtz7ULZURoP9waFqAwijl/BqHMJ01Ipi70WyFQr2Y7M8c1tnC6wumzmhWtqjqj0WUIcqZ9P
-	SOyeMOkK/v1j5p521jFLEZpKvr2AbW1fE3IPoVXw5E2h7UhsoPmgc0ajd7uYQq21LuF2O7YCiHT
-	4EMUjgwebH4lxhdCC9UMwrppl5ZYLH4R6o9hXcNYdR9ifyJ69UXA/yAe7tZHI7XqYt+RLZZwmSO
-	IpwhAsoCEbfwTx7
-X-Google-Smtp-Source: AGHT+IGB0cRZQfP//mvz/xRWB0n6w+4bOdOBWvxAmCGMTwbSqhPC6TI42uARNBDnwNWcdV2q2zNChQ==
-X-Received: by 2002:a05:600c:3e8f:b0:475:dac3:699f with SMTP id 5b1f17b1804b1-477307c1470mr32473225e9.9.1761915065568;
-        Fri, 31 Oct 2025 05:51:05 -0700 (PDT)
+        bh=qvXLX7+QZgiVzZvZ0wG+LadEzSHLnJ6P5bBzFMwgkSc=;
+        b=o9hAPFfNHVUKbd0dTnnUxA2AV4Cbci97werkbkZa06bXZjDqRXqNie8S53IWZ+F9YJ
+         d8OFY7OAq8TIYaFnWkS6VJrvj80AUFvs+dTsgL7a0WqdvToCTHCzJrsX/y3TR/sDvsdQ
+         Y6gAkx09N1nWmU2gWGvgE3hPMKxsmLUxAf2dL6/657rEG8yWB0EiA3zMb1T5uBdUBB+p
+         dR7BXb29lTUujV7NhmjjBRG0mN8JWY1kSEOmukM676O6MvG0obyfAbqh3GG44o12jvFG
+         EqOCjm1JlfSMSqL6hOsl321NrLiwR4s3w9/Hgf5Bb+z7OvYKrgK+eaxGz0UJw006mPIT
+         rXDw==
+X-Forwarded-Encrypted: i=1; AJvYcCXzXiiZINM6QGfxwSksNItPT45VgznOy9HiFfo4T0yQHE2lC4B4392cJIiVs4k/+GB7zb5eLgrf5h0I@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKms8NQIZI+BtMckKxSm5KP7PcOuA1YWrGqgMtb7PAnAXX8hOv
+	JAX7Bn3NDowlhW9t4qSVfrBjtNDOO5pKDZvjmV1jJ1YT0zYgaBIwvppx
+X-Gm-Gg: ASbGncsOlqpCF9iRKD6yNlsiAn/3xabZPHl6GVMFf8to/TFGYVMrQr7+m0xV741aEON
+	y3rBazR4fcvtlGW22Nmxb03vtoNdkTociBeXLJN9j/rntBnHgu+To0wOdW857XoEjaKl+iQ8V9t
+	jZyfbUq8OZ0TTm7NPq3a3vMYV+SVtN/rq+Bq2UC2NiqZaFXcyA2AzeC3uZiAXycxX799QiOTOdY
+	hbkGX6m0wyQp/aahTmg0vfinuDNxyd7PPnh4tRVGd/wRYoEJ3Pw1356iBi7nitftLwtxV15XuHK
+	8mQbcekpZquv0fvCnzglQYuwjM+RhrPgmauECeSmiOgl6MEl8v/EHMCc3YJttUFFHSCdT98U/ei
+	7Nl13fmmc9mrmHANCOvk/uyZ/jiZkYhgsvZXCcpBhiVay+tciQyrkM1vVwESwaZXCYhBPFUiQoW
+	GsPf1tLkJlcrSnp4qaUl7/5bvbGPE5WWzTLqWOS8Ex97zQV6GJetvoVHMKowQwMbBlkzjao8GoW
+	3FSNw==
+X-Google-Smtp-Source: AGHT+IER0uBeKPOPxvxxiQO98NZsaBc8tk7mKIGeshxcLGZG7k6FCf35yqXCrk9lgrCyQ4EIIt8pbg==
+X-Received: by 2002:a05:6000:4713:b0:429:95de:163 with SMTP id ffacd0b85a97d-429bd67bd22mr3151971f8f.20.1761915066584;
+        Fri, 31 Oct 2025 05:51:06 -0700 (PDT)
 Received: from toolbox.int.toradex.com (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429c13f1d4csm3144559f8f.39.2025.10.31.05.51.04
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429c13f1d4csm3144559f8f.39.2025.10.31.05.51.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Oct 2025 05:51:05 -0700 (PDT)
+        Fri, 31 Oct 2025 05:51:06 -0700 (PDT)
 From: max.oss.09@gmail.com
 To: Max Krummenacher <max.krummenacher@toradex.com>
-Cc: Philippe Schenker <philippe.schenker@toradex.com>,
-	Conor Dooley <conor+dt@kernel.org>,
+Cc: Conor Dooley <conor+dt@kernel.org>,
 	Fabio Estevam <festevam@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
@@ -89,9 +88,9 @@ Cc: Philippe Schenker <philippe.schenker@toradex.com>,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 1/3] arm64: dts: colibri-imx8x: Add backlight
-Date: Fri, 31 Oct 2025 13:49:41 +0100
-Message-ID: <20251031125003.275033-2-max.oss.09@gmail.com>
+Subject: [PATCH v1 2/3] arm64: dts: colibri-imx8x: Add wi-fi 32kHz clock
+Date: Fri, 31 Oct 2025 13:49:42 +0100
+Message-ID: <20251031125003.275033-3-max.oss.09@gmail.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20251031125003.275033-1-max.oss.09@gmail.com>
 References: <20251031125003.275033-1-max.oss.09@gmail.com>
@@ -103,44 +102,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Philippe Schenker <philippe.schenker@toradex.com>
+From: Max Krummenacher <max.krummenacher@toradex.com>
 
-Add a backlight node to colibri-imx8x. The node can be enabled from
-an overlay once display output is implemented.
+The Wi-Fi module requires a 32kHz clock to support Wi-Fi/BT low power
+operation.
+Setting the pinmuxing option on the connected pin to 32kHz is all
+needed to generated the signal.
 
-Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
 Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
 ---
 
- arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-index 8e9e841cc828..318fe4db1b64 100644
+index 318fe4db1b64..32bca4c6f37e 100644
 --- a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-@@ -3,7 +3,21 @@
-  * Copyright 2019 Toradex
-  */
- 
-+#include "dt-bindings/pwm/pwm.h"
-+
- / {
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_bl_on>;
-+		brightness-levels = <0 45 63 88 119 158 203 255>;
-+		default-brightness-level = <4>;
-+		enable-gpios = <&lsio_gpio3 12 GPIO_ACTIVE_HIGH>; /* Colibri BL_ON */
-+		power-supply = <&reg_module_3v3>;
-+		pwms = <&adma_pwm 0 6666667 PWM_POLARITY_INVERTED>;
-+		status = "disabled";
-+	};
-+
- 	chosen {
- 		stdout-path = &lpuart3;
- 	};
+@@ -490,7 +490,7 @@ &mu1_m0 {
+ /* On-module PCIe for Wi-Fi */
+ &pcieb {
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_pcieb>;
++	pinctrl-0 = <&pinctrl_pcieb>, <&pinctrl_wifi>;
+ 	phys = <&hsio_phy 0 PHY_TYPE_PCIE 0>;
+ 	phy-names = "pcie-phy";
+ 	reset-gpios = <&lsio_gpio4 0 GPIO_ACTIVE_LOW>;
 -- 
 2.42.0
 
