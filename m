@@ -1,208 +1,237 @@
-Return-Path: <devicetree+bounces-233493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 351A2C22F5D
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 03:17:36 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBF65C22FA2
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 03:22:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51B0E1894895
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 02:18:00 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6C5A94E2422
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 02:22:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9A5E272810;
-	Fri, 31 Oct 2025 02:17:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C40B82749C5;
+	Fri, 31 Oct 2025 02:22:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ABZHWdIM";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="dV9xKuNo"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MTKCRy3C";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="PfZeAdov"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0148F26E71E
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 02:17:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 251182741CD
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 02:22:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761877051; cv=none; b=ssT/zbwPDrhEiv9DVNCc4OjIC7o07vsF5CJIcXEr2YRuJMXckpFAc3gCOVC2NF9RRenFtyecRO+UsoyCIBTIftadnz+Wq3AaXXnek61Sxa5LEuVNHes3lvAW3vy0+0Yw8vw39fcsIhggWDbsDPxEI/rYLgbhycos8H4ZRG9QMXs=
+	t=1761877331; cv=none; b=SxcfX+P+3w/luZ/q/350DNebLqEn6QAJ4HrIrjA9yJ0Bj96UT1MAQFzbO4ckK9mPqfQ1l+3kty8WHVnl0J50eYv8zW9WLC6G4c4050B7Pi0aKeW8CiHOuWahhfCd0yLw9AICS0sVCXpkuqvN5m+yYwT51/rkEzWxuhNJzDZLRHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761877051; c=relaxed/simple;
-	bh=X6s8f9B2KM9vd9HXPjufd+VkW8o9mM1aybCul0Q86rA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=naV9W9O8ppRTGLV4FI8yr2PgiJMd7WF+5s51PZbi8153xY3AMQ+RjqYv6MSQyPeBJ0IRUQTyxlzNYPI1stjK9l+5wZrLscmQWF2X65sWDd0WwSrC5ZDH5rANh8g+0OX1WI20Rj69CPFfxZfk6OD//zJVAfyJfnP0DGDkm/inr/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ABZHWdIM; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dV9xKuNo; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1761877331; c=relaxed/simple;
+	bh=GDH8b2/gQBMRAEIq8JShRRNhVZCWvHt8kDM4sifpUmc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AbAAVxB8a6To1eLoXtpP0j5cRUuFx4khXGmdPpvkixW8QZzKb6B+2tP651p06jL14e75VHfiWqHrGMMCkmvlypHJSfQa8LpjZFv5dAXgOvu8do3kwKsAEZ51FfOG0Z7vwrOW7YjuvywX532+rgoO1vz1JYtG1QqRw60L1Sb9IE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MTKCRy3C; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=PfZeAdov; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59V17sTQ1416935
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 02:17:29 GMT
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59UIIswM3116501
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 02:22:08 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0RBCLi4ChvVVrxy0q6O9ni8V6jsx7gpnSYJCNKWxoIg=; b=ABZHWdIMwEH9WCTv
-	zlg10GfseJClW4FG+RyWFd3BAG6pw+HZPNHegk5iAlf6xD+UHkz5Y1o19Dg2ZelG
-	4e6Wa5XHoq64GSl9B4TE16tmMDDpocO0IpGm/ZwqUwoGB1wbpaOD6RK3JjEnjx5W
-	NaBw7eBNy+WSCdU+DhBY8PwRJD5a8p0nmcAJdM+f2DBYV4yzhlvoPmT+DoGUO6LD
-	KLzohufpdNNbMy1rHO9ih2hTgzJy31HPuF1h3mLchsSrYoZS5iJ7/Q5v5igaysD6
-	qxf7XsxwDkeIBzayybEnLJiTTaAMXVtLKpPJTFAXzcpaZNNbB+ZBk3m3GnyXSuGD
-	xzuq9Q==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a4k69g4yh-1
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=3c1obq8ZZLIS5GwXPjQ6YRMj
+	wgPZ1GO2NkBLtaKSH38=; b=MTKCRy3C00PEmbbajCqM9XMRIvF2EC05LSoBw22u
+	eBnXU0FrabPR3cpF6hGOD6gYTkAwQbQVRIRA6vDvQseAOEqQuepSKlej9SmCLIWq
+	e2NEU7cTHtO9Q1fTh7ttZfb9Fr0+nZFQAGnMg7PaGSB1VdO1iN+t6iQKJlSe+R94
+	VSVsxtVahIg6dFuwWyYJGPhBbt1hEkkAVkLluopHS+5Up4/vmjaFPxTaBDGcnz8G
+	nqe0iX16qBTXFM6298vQqSNWwAfaIx0u4tgbi6k/FhbIh+/VXiEWoaTvtIJQHbaZ
+	yKkQDWtjrB9O+FKhanWMBct4H+tbv2+pjILWPSVoFDgW8Q==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a45b42kjw-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 02:17:28 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-33d75897745so4426866a91.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 19:17:28 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 02:22:07 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4e88947a773so68882331cf.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Oct 2025 19:22:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761877048; x=1762481848; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0RBCLi4ChvVVrxy0q6O9ni8V6jsx7gpnSYJCNKWxoIg=;
-        b=dV9xKuNo1iU/1OU0irlZYnvhSvWCFUiXwF2zZRRT6mhTdb0c0LM38IVErE6+qagQsf
-         1BfEPJgJfx8NlWroeBSpvDGgWh6mImUMtNsjHdAex3ciUPJeDig8B/V4AmjmDU9oJfe6
-         o4+TNRcRo3aMk54hHat5QR2gOZx2MHwuKJhT644VkEnCJTbr6/r83tp5XUppdUZU8Zeo
-         gG5z3DWSDA5Jh3CGJXZ//nS2db+IWbMQV6I3GBcamvEaiTInL5/VivTceTnigH0qUYio
-         Lw//uVH4io9YZ9xOvA6M8tBuJ+0chFG3zYxTOJwxUSB1/ZGOzjHONlgKLy5y1E9vqR2c
-         MRFw==
+        d=oss.qualcomm.com; s=google; t=1761877327; x=1762482127; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3c1obq8ZZLIS5GwXPjQ6YRMjwgPZ1GO2NkBLtaKSH38=;
+        b=PfZeAdovsrZ7x1/ual/vn4flHF6k6GItvODUrNXxysL52FblgD2aFVdLx5aJrU57mX
+         DO03I++W5EVYiTzhOEOi0AwcUQ44SVhe6MOmt8OmZr5K4KCT7yhXdb08MWKGzyOQHX2c
+         JY9nz3H/15Ady8gnQuFrzUIT+340EewlliOuY0YxlDlGpHOCfF1HZVN+6q80PBrnOZnG
+         1OyBHEnhyPvhvThZNDG+5r2aIffOeswtmcQB9lBApA9ZPqeL39HX9/BsV64BDByYUe7B
+         MtVEGhiTQ50LXZmJ3gJpLuHihdzwG+qlnUq68RJLI5O+NjtwMRod5qXxe8cA07PCZBEr
+         A6FA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761877048; x=1762481848;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0RBCLi4ChvVVrxy0q6O9ni8V6jsx7gpnSYJCNKWxoIg=;
-        b=NRPOPAY0vuCM1DPKxikgM7pCFx4HFfsQCRuO77w3gIM6Ri3hlz9mOEbzNIY/SRYNoJ
-         URpQ0vk4Y/yppWffSVywnSHubGQyjwq1AGBYLQf2GZ/S05pm9UG1S9dEpPxOBSOazLsZ
-         1ja7aFFfnwqlE0oXs6TZ7Qe1nPy9mcT+D2xB+oBJjAnTC2x69/zQ3+2DwyukLY0iKPDD
-         U9a2SRzFtXP23PJuoIucJZsMSxGX9i/0glDKizbzLYV0pyhx/Rar2V/6yJsBBL2ww0D3
-         e/dD02wbER+83G6Duy7VXBbKjzofC6feFwPsAVmy+yzvD8m8k6/yDOXFSOlQ6SygZ5sN
-         Zn4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUMOV6LNlhIgYLNjTOfokcoH6+eWZ594/wFv4hfFXbSZIKknvPyicNFu1VNIJRpn6GImdqxLDdVxOI+@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywi1TLo8D1qlZ4jw6b4B8QPvUonVYV1M2oJ6dUzWpSrvFTFHlxW
-	A3ofH49E6hsPd9Ig1DB+U1diniL7rUfQCEmVMO2GCXTHJDIB6ex/SForbGDl+4UkZcsGBl/EQEP
-	bIN8/soMzpE4R5HIkaK+qrhjfemVTx7samTaAe80WI9jfC3a5oUWITI3yQgKL1jbo
-X-Gm-Gg: ASbGncvTYcJcYbt+6tXgDWie3koaC2RAqzzSWt4QglypK5UB8cRLXrcRZt6kNB4dYLJ
-	7sC0yva9I+KWTZcwyFuLW6vlCO9uFEcXZbPzPAM5QHAiHWnMtCHCKp4uMIm7dLGQmon20cwYvm7
-	F4cuMySgo0v251ilI+Xek6YOek7n8RRF2VjXYqIlkQyt3I5gq4iQUkItXNH0eIQ2a3aKbslycRz
-	HrcOWQNJIHs8vPq6dw7tcAQ8ARzbTODu+Jger+3zJGvYjuUvjfXH1zhJaZBQxCSMaMR/cY2rJe4
-	QCShheEAapyeZwtcpz+hT8kJHUJEGhUdUCCqmM2CfGje+Xlhl8eQh/EnGwIs5uI2fNySYEJSJdd
-	Q4GTsXlz5yV0srZJu5/L0hN+eLnUPM3ArJWvoZPmgpoHf2kzzFQgGb+MHMkb2AxSrjTsJFg==
-X-Received: by 2002:a17:90b:2584:b0:330:6d5e:f174 with SMTP id 98e67ed59e1d1-34083055439mr2409439a91.20.1761877047825;
-        Thu, 30 Oct 2025 19:17:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH9falBZKVcylZWCH4G/onhKqQ9MxiOjfP8YU20DqJtlRyYGNpFe3ZpstGwO4uUqN++QHWxbQ==
-X-Received: by 2002:a17:90b:2584:b0:330:6d5e:f174 with SMTP id 98e67ed59e1d1-34083055439mr2409392a91.20.1761877047286;
-        Thu, 30 Oct 2025 19:17:27 -0700 (PDT)
-Received: from [10.133.33.25] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3409288c8f6sm369375a91.7.2025.10.30.19.17.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Oct 2025 19:17:26 -0700 (PDT)
-Message-ID: <79dd446c-0c78-4dd0-b1cf-431d3995d94f@oss.qualcomm.com>
-Date: Fri, 31 Oct 2025 10:17:21 +0800
+        d=1e100.net; s=20230601; t=1761877327; x=1762482127;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3c1obq8ZZLIS5GwXPjQ6YRMjwgPZ1GO2NkBLtaKSH38=;
+        b=ZMwfAFXU8jKGdTorObHgcPAMKRZFf02n3KkKqMd3uvWaA5RQIuaPEby44X1Q0wRPSR
+         3GTBUK0aGH2JrNp5lpkCuBBJwrE7zttzfdWOXcqAOS48iHWVlzhYQF52Sp8lRoEx/0oH
+         Bf61QpcZhKwvS3gHE1Hn6kJIB+N6KGaNjm5D/P4MbjsxnyUoJPHTnvuTCE10phVjU+2w
+         ri5hJFAKNcoag5OGDh3xBddj9oqmPBCFUwRw3b9gW+54w3iRsYsKMeLekawAXlis2uxF
+         wFXRsWcEdU2n71K4O88yddAq84HpAeeYLe0H2VPjO7kIXfIbRaqpYnJCJDl1pH9mbERq
+         bhCA==
+X-Forwarded-Encrypted: i=1; AJvYcCWIgl+PGNgRbGLQefPKXlB5Utlq8cZv0IrPkN1Of81EtWF7c3Z935u/8zK5c78YL/cEBThXSWBEjwdN@vger.kernel.org
+X-Gm-Message-State: AOJu0YycZ+YcHofh70fILVuVWO4gCHm5XEmXngFZjGJqZHfVkIUn+hDI
+	z00aY9KeEUB9d+UaTjAdOJiXhqk7wY8T69PwgM6KG9wrdXqwrUhCOWXj31B/D6qB+iygX7pWIys
+	OFjkLNmJibX3gqqZlgr/4snohtd5j9i1BM6pGRLeWvphwhdiCf81pmLqCqzm+DgwJ
+X-Gm-Gg: ASbGncuHrtpP6crs4nLAyEq1yk2LPwVlThK3dIKP8Ik7diFVYKAzpiG6oBjQKIggRBx
+	tBKo2zlNKvLBw72deVJ9br33Nv8H+sTgTko143MHDXnXvfIEaYvGu7hD8Dxym8uixtG3PioIi0O
+	1tSfqWcL9zKW9s5DQM9erVYlbM3MNTXqHzuUK1TmQa+lMYU0EdiDf+7TrBpMFivvS9oN0jQOoz1
+	Zhj3R1JEZMPNZ9z3GoANhbuqN5Ahdyey7bN51UWhklIn7RFjDL7fok9rTFdPI5gMclSNTUzf6gd
+	1jXaVHon/RILczLjc+iH9kyQ640cHWusQLC+VRV9iGxWqvgHwAk6xTkfDIas48ReL4Ycxg4kl58
+	84M6iFPPkdFD8Sq1IubnDAqmujRG0r+0dlP4PlWcSBfqB64ZMRxWsWXGErb+7
+X-Received: by 2002:a05:622a:44c:b0:4ed:2715:611d with SMTP id d75a77b69052e-4ed31076fc4mr20775751cf.65.1761877327124;
+        Thu, 30 Oct 2025 19:22:07 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGarE31FcqziYFgtP5AQeoEmQTIs0pBD7iyBHmNixxePHSIEujlFrVA2g4rLiwQlMH6ljRAYw==
+X-Received: by 2002:a05:622a:44c:b0:4ed:2715:611d with SMTP id d75a77b69052e-4ed31076fc4mr20775461cf.65.1761877326654;
+        Thu, 30 Oct 2025 19:22:06 -0700 (PDT)
+Received: from yuanjiey.ap.qualcomm.com (Global_NAT1_IAD_FW.qualcomm.com. [129.46.232.65])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8ac03a75453sm23545385a.51.2025.10.30.19.21.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Oct 2025 19:22:06 -0700 (PDT)
+Date: Fri, 31 Oct 2025 10:21:54 +0800
+From: yuanjiey <yuanjie.yang@oss.qualcomm.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: robin.clark@oss.qualcomm.com, lumag@kernel.org, abhinav.kumar@linux.dev,
+        sean@poorly.run, marijn.suijten@somainline.org, airlied@gmail.com,
+        simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, quic_mkrishn@quicinc.com, jonathan@marek.ca,
+        quic_khsieh@quicinc.com, neil.armstrong@linaro.org,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
+        aiqun.yu@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com
+Subject: Re: [PATCH 07/12] drm/panel: Set sufficient voltage for panel nt37801
+Message-ID: <aQQdQoCLeKhYtY7W@yuanjiey.ap.qualcomm.com>
+References: <20251023075401.1148-1-yuanjie.yang@oss.qualcomm.com>
+ <20251023080609.1212-1-yuanjie.yang@oss.qualcomm.com>
+ <20251023080609.1212-2-yuanjie.yang@oss.qualcomm.com>
+ <zxofh6bwee3vjjlntlfqy7yg2iu2mipjvl7s5bcm6gbh233cjq@nuicjojawd2d>
+ <aPsWEhM7i+gDjXE0@yuanjiey.ap.qualcomm.com>
+ <4bnvh2ydtrmejknzpsxoalxoyjpq5g5cjbrico5ezbek24r52s@u5zy6ekh6lps>
+ <aQF0zzUpLeUu4lrC@yuanjiey.ap.qualcomm.com>
+ <5hftxsuqz745mxxk2hjpwfxwrm73p2l3dxn2mb2uqb2c44fd2w@l5xvadj7gvvg>
+ <aQLInjBCbeNJVanK@yuanjiey.ap.qualcomm.com>
+ <r3sbg5r5pesrfrave7l6nx4ws62eogfn7m4f5c3ur2a6xkhsss@f5vfre2hd2cr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/6] dt-bindings: i2c: qcom-cci: Document Kaanapali
- compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>, Andi Shyti <andi.shyti@kernel.org>
-Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>,
-        Robert Foss <rfoss@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
-        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
-        yijie.yang@oss.qualcomm.com,
-        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-        Atiya Kailany <atiya.kailany@oss.qualcomm.com>
-References: <20251028-add-support-for-camss-on-kaanapali-v4-0-7eb484c89585@oss.qualcomm.com>
- <20251028-add-support-for-camss-on-kaanapali-v4-1-7eb484c89585@oss.qualcomm.com>
- <20251030-masterful-daring-lorikeet-ae45b0@kuoka>
-Content-Language: en-US
-From: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
-In-Reply-To: <20251030-masterful-daring-lorikeet-ae45b0@kuoka>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMxMDAxNyBTYWx0ZWRfX1pUnR0x349iT
- eraPS3lIEXroDBGrMHdrUBW2uLiFCvf03Fr65nLRXxtbz7Q29UlbypPvR6GIkmURbzfQOFmGwB6
- BiOg7AC0gzRJWlNZPpiTe/JV3l5q/nycxSQFWTallqQBzdt6eHvDkyGMSh9WXvAK6jetLd1RsSu
- R7qBeLPK57ZnXUlAA1HxutXF78skItp4ZrwAEuXYDOQEQV44GZFpEZ5TQ9/6ifb2l71/KAyNIix
- tYLXO86u3SB1N+8K2UFvT128EcIx/dQZ4ptcsCAgBZl5S675PPMq7Jutm1I6lCrzfdj9R1UVzjk
- sqkF6ZaFAvB2wq010ZJqlKMRui/rI3ksLknaoiZrHq6MAsoiV0g2AWVT4eKkeWupL49qCK69fzf
- BOMciOloHjxr0klkwcl5YCbDW0qXKA==
-X-Authority-Analysis: v=2.4 cv=Bv2QAIX5 c=1 sm=1 tr=0 ts=69041c38 cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=P-IC7800AAAA:8 a=EUspDBNiAAAA:8
- a=D9yHQimw3Z_xc7UoUzwA:9 a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22
- a=d3PnA9EDa4IxuAV0gXij:22 a=HhbK4dLum7pmb74im6QT:22
-X-Proofpoint-GUID: hXCpEbQ-2uTNFBZanBlVxs1PEXIv6e9H
-X-Proofpoint-ORIG-GUID: hXCpEbQ-2uTNFBZanBlVxs1PEXIv6e9H
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <r3sbg5r5pesrfrave7l6nx4ws62eogfn7m4f5c3ur2a6xkhsss@f5vfre2hd2cr>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMxMDAxOSBTYWx0ZWRfXyA12O/gO5iNb
+ +sO/9Skb4Vt6lpL4Zw2ZR/FS9zNsG/Yifk7gue3aa5/ea8Y0QN1q5KCDNvhLCHgH9GHy/N/Z8Ap
+ JHL1d25awvUqq0T8zRaTC5e3BEANtSSEQYD2r+GzrdX3148YZJj2CVGNfNca1ruBO5pNFOanH45
+ 9wosBIV2xyCp9AWQfEmZnctMtWB7WlYnsA4W2TrDtR6Lsu2BHG3X6kLwNWyI07NFFmnZe9uiVJI
+ IjczdFduh7dxRxB9b4fHZLh6tR0YcYCbLPKdNOfCq8BuLCMRsyfrkvdhArxkyEKhiyyvrzZdqD0
+ Pk7G5y+gbEm4y8iwEeoWLTi95krfqWyO/EAWWtvR+7qyhnbgZRhpP8C/ZNnBPHOd4ecGXmIQ0A/
+ +CWQk2Iq5DbjNImUd2c9hmWKQpZLqw==
+X-Authority-Analysis: v=2.4 cv=KePfcAYD c=1 sm=1 tr=0 ts=69041d4f cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=C3Dk8TwHQYyIj7nOf9RCJw==:17
+ a=kj9zAlcOel0A:10 a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=e5mUnYsNAAAA:8 a=EUspDBNiAAAA:8
+ a=hV_kQwtX5ugguncQdNAA:9 a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22
+ a=Vxmtnl_E_bksehYqCbjh:22
+X-Proofpoint-ORIG-GUID: DoC7PfoESdBHLMKSYxcFeOXvsXgZjmxS
+X-Proofpoint-GUID: DoC7PfoESdBHLMKSYxcFeOXvsXgZjmxS
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-10-30_08,2025-10-29_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0 priorityscore=1501
- adultscore=0 malwarescore=0 spamscore=0 clxscore=1015 impostorscore=0
+ suspectscore=0 impostorscore=0 priorityscore=1501 bulkscore=0 adultscore=0
+ lowpriorityscore=0 clxscore=1015 phishscore=0 spamscore=0 malwarescore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510310017
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510310019
 
-On 10/30/2025 3:12 PM, Krzysztof Kozlowski wrote:
-> On Tue, Oct 28, 2025 at 10:44:10PM -0700, Hangxiang Ma wrote:
->> Add Kaanapali compatible consistent with CAMSS CCI interfaces.
->>
+On Thu, Oct 30, 2025 at 07:57:46PM +0200, Dmitry Baryshkov wrote:
+> On Thu, Oct 30, 2025 at 10:08:30AM +0800, yuanjiey wrote:
+> > On Wed, Oct 29, 2025 at 02:20:13PM +0200, Dmitry Baryshkov wrote:
+> > > On Wed, Oct 29, 2025 at 09:58:39AM +0800, yuanjiey wrote:
+> > > > On Mon, Oct 27, 2025 at 02:22:04PM +0200, Dmitry Baryshkov wrote:
+> > > > > On Fri, Oct 24, 2025 at 02:00:50PM +0800, yuanjiey wrote:
+> > > > > > On Thu, Oct 23, 2025 at 03:14:38PM +0300, Dmitry Baryshkov wrote:
+> > > > > > > On Thu, Oct 23, 2025 at 04:06:04PM +0800, yuanjie yang wrote:
+> > > > > > > > From: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
+> > > > > > > > 
+> > > > > > > > The NT37801 Sepc V1.0 chapter "5.7.1 Power On Sequence" states
+> > > > > > > > VDDI=1.65V~1.95V, so set sufficient voltage for panel nt37801.
+> > > > > > > > 
+> > > > > > > > Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+> > > > > > > > Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
+> > > > > > > > ---
+> > > > > > > >  drivers/gpu/drm/panel/panel-novatek-nt37801.c | 5 +++++
+> > > > > > > >  1 file changed, 5 insertions(+)
+> > > > > > > > 
+> > > > > > > > diff --git a/drivers/gpu/drm/panel/panel-novatek-nt37801.c b/drivers/gpu/drm/panel/panel-novatek-nt37801.c
+> > > > > > > > index d6a37d7e0cc6..7eda16e0c1f9 100644
+> > > > > > > > --- a/drivers/gpu/drm/panel/panel-novatek-nt37801.c
+> > > > > > > > +++ b/drivers/gpu/drm/panel/panel-novatek-nt37801.c
+> > > > > > > > @@ -267,6 +267,11 @@ static int novatek_nt37801_probe(struct mipi_dsi_device *dsi)
+> > > > > > > >  	if (ret < 0)
+> > > > > > > >  		return ret;
+> > > > > > > >  
+> > > > > > > > +	ret = regulator_set_voltage(ctx->supplies[0].consumer,
+> > > > > > > > +				    1650000, 1950000);
+> > > > > > > 
+> > > > > > > This should be done in the DT. Limit the voltage per the user.
+> > > > > > Two reason:
+> > > > > > 1.
+> > > > > > I see https://patchwork.freedesktop.org/patch/354612/
+> > > > > > 
+> > > > > > panel panel-novatek-nt35510.c also use regulator_set_voltage set right voltage,
+> > > > > > so I do the same work.
+> > > > > 
+> > > > > Please look for the majority rather than the exceptions. Out of all
+> > > > > panel drivers only two set the voltage directly.
+> > > > > 
+> > > > > > 
+> > > > > > 2.     Kaanapali vddio regulator:
+> > > > > > 
+> > > > > > 		vreg_l12b_1p8: ldo12 {
+> > > > > > 			regulator-name = "vreg_l12b_1p8";
+> > > > > > 			regulator-min-microvolt = <1200000>;
+> > > > > > 			regulator-max-microvolt = <1800000>;
+> > > > > > 
+> > > > > > 	Voltage is from 1.2~.1.8 V , So I can not set it 1.65~1.95 V from DT(1.95V is beyond the allowed range).
+> > > > > > 	So I use regulator_set_voltage to set voltage, and regulator_set_voltage will choose the appropriate voltage.
+> > > > > 
+> > > > > DT has to list the voltage values that work for the devices on that
+> > > > > particular platform. So, ldo12 should be listing 1.64 - 1.8 V.
+> > > > get it. I check downstream DT,
+> > > >   dosnstream DT:
+> > > >    regulator-min-microvolt = <1800000>;
+> > > >    regulator-max-microvolt = <1800000>;
+> > > > 
+> > > >   I test 1.8V works, So I will add 1.8V in next patch, do you think it is ok?
+> > > 
+> > > What does panel's datasheet say?
+> > 
+> > The NT37801 Sepc V1.0 chapter "5.7.1 Power On Sequence" states 
+> > VDDI=1.65V~1.95V.
+> > 
+> > So I should follow datasheet to set DT ldo12: 1.64 - 1.8V ?
 > 
-> You are using b4 so I don't understand why you still ignore our review.
-> 
-> <form letter>
-> This is a friendly reminder during the review process.
-> 
-> It looks like you received a tag and forgot to add it.
-> 
-> If you do not know the process, here is a short explanation:
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-> versions of patchset, under or above your Signed-off-by tag, unless
-> patch changed significantly (e.g. new properties added to the DT
-> bindings). Tag is "received", when provided in a message replied to you
-> on the mailing list. Tools like b4 can help here. However, there's no
-> need to repost patches *only* to add the tags. The upstream maintainer
-> will do that for tags received on the version they apply.
-> 
-> Please read:
-> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-> 
-> If a tag was not added on purpose, please state why and what changed.
-> </form letter>
-> 
-> Best regards,
-> Krzysztof
-> 
-On 10/30/2025 8:30 PM, Andi Shyti wrote:> Hi,
-> 
-> On Tue, Oct 28, 2025 at 10:44:10PM -0700, Hangxiang Ma wrote:
->> Add Kaanapali compatible consistent with CAMSS CCI interfaces.
->>
->> Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
-> 
-> Patch 1/6 applied to i2c/i2c-host.
-> 
-> b4 added automatically Loic's and Krzysztof's r-b. Please, next
-> time don't forget to add the reviews you got. It's also useful
-> for the maintainer not to dig the mail history to figure out the
-> tags you received.
-> 
-> Thanks,
-> Andi
+> If the panel declares minimum voltage to 1.65 V, why are you declaring
+> 1.64 V as the mimimal voltage for the rail?
 
-Thanks Krzysztof, Andi. Will add these tags by b4 tool in next revision.
+Corrcet here:
 
----
-Hangxiang
+DT ldo12 will be  1.65 - 1.8V
 
+Thanks,
+Yuanjie
+
+ 
+> > 
+> > if you think it is ture, I will fix it in next patch.
+> -- 
+> With best wishes
+> Dmitry
 
