@@ -1,149 +1,121 @@
-Return-Path: <devicetree+bounces-233739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 091B4C25155
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:48:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBB28C2519D
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:52:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2C3BC4F5A39
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:46:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DBA75188A1EB
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:51:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02CE434C814;
-	Fri, 31 Oct 2025 12:45:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75D351F419B;
+	Fri, 31 Oct 2025 12:50:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UelD8j+/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BHV9YMce"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05904348889;
-	Fri, 31 Oct 2025 12:45:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C0591DF979
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 12:50:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761914739; cv=none; b=D9qtHHbrU8htqNWaMB62Bv38Rb8ECExvwgzGjqZAGSMrh6sZoPSthV9ADP6MDhRVPvR/ruAqV4jsn0thMibW0uVNw7zvGQ/0aghyNwOEeGdmwuo/wWkVhtmyM63qp1EdlSvVnOtbp8pGwlq7JCiFCkMj81zEFk0ORIqzF/HIX3A=
+	t=1761915053; cv=none; b=gwERLm7oTaOiNMfUACmpBcEIU8z/4AdA6u/8kD/Y1ldv5dtFJRi2h7+pGd57EWOEW/BcbquEIw2Wq1INL8Opqr8PWDEDqNO33u06/SDNFcURqYAwNFcumH/B+WK8szwGllGbtFQOqkmyWlkzG/WV1xsecqtqv+z79bBEQ1S01yw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761914739; c=relaxed/simple;
-	bh=Z3DtaplncQCwf1eaBkhUb+bWO6Ge80YXZRoSm6Dj8vA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W1VEi4XZaLB6neQTxhZz2HjSDK0iqmEPILbD7qqXdhQdz8gqPMF9rmFo/D3Kvd7pbGST2gZlZ8Ko5dnqM9YYQrnLQ0YJcwsBeM4RP3Bls2AbrJug7oMON3GaR8DmjNsSVlMZWx8rOvFmQP5LVlOoFTGqukTWdamrPLuhmrpkTLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UelD8j+/; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761914738; x=1793450738;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Z3DtaplncQCwf1eaBkhUb+bWO6Ge80YXZRoSm6Dj8vA=;
-  b=UelD8j+/gdTSDY/JcKBA38nFGcyCiZ86Ndv6ZLtKoQosAvvKDgIKzSSy
-   iaeymij9smCz83piXizgpiHIS8vj+tJg8JydGeO/643iftflmiRKHq3vI
-   eNk1EbgMwmC46bsSQPRqAX+Gn7+siWi/5d8ObVP1t54EbbFA/RsqdDf5f
-   EH65NxcLP/sYvDyS4hXMoT4SZ6H48+u3X64yWjgf093Fum8mJaLnJg1Kl
-   uPVbMev4amxvpA9nbskYDocBD0pk65l9CBwjVDvvPnORKNraFRry8wb78
-   ngFjXAKIy4aAYE0nbWxPjduAkG3pOjf2sDogH65BY3ukbg+kl0B25TqI4
-   Q==;
-X-CSE-ConnectionGUID: GMCwTKQhTiCRpezPs0YyIg==
-X-CSE-MsgGUID: UCch8fogQzGC/67X/EKF8Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="67729988"
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; 
-   d="scan'208";a="67729988"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2025 05:45:36 -0700
-X-CSE-ConnectionGUID: nALomowwSlS9F5TSN9uSXA==
-X-CSE-MsgGUID: YQ/DdgXgS7aMgSwnPC7IBQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; 
-   d="scan'208";a="190575543"
-Received: from mgoodin-mobl3.amr.corp.intel.com (HELO ashevche-desk.local) ([10.124.220.66])
-  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2025 05:45:32 -0700
-Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1vEoVS-00000004GOn-265I;
-	Fri, 31 Oct 2025 14:45:26 +0200
-Date: Fri, 31 Oct 2025 14:45:25 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	andy@kernel.org, robh@kernel.org, conor+dt@kernel.org,
-	krzk+dt@kernel.org, linux-iio@vger.kernel.org, s32@nxp.com,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	chester62515@gmail.com, mbrugger@suse.com,
-	ghennadi.procopciuc@oss.nxp.com
-Subject: Re: [PATCH v5 2/2] iio: adc: Add the NXP SAR ADC support for the
- s32g2/3 platforms
-Message-ID: <aQSvZT73NBWZFVfk@smile.fi.intel.com>
-References: <20251017164238.1908585-1-daniel.lezcano@linaro.org>
- <20251017164238.1908585-3-daniel.lezcano@linaro.org>
- <aPP0uVZu1T7tTQGo@ashevche-desk.local>
- <050f96d5-e60c-4b33-b6d2-24fb3925e378@linaro.org>
- <aQMvqHGN7r6babgw@smile.fi.intel.com>
- <c4c14051-2ba2-4d80-a22d-4deb3709f727@linaro.org>
+	s=arc-20240116; t=1761915053; c=relaxed/simple;
+	bh=H4Q6r6e/iHzGIp6iZre79NI2YVcV9IoFpqa7zETW6IA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=i/4eD2hFq4RvgHuV+2f1uf0QMwBSu/9Xw3mNSpSfywaD+ArF9RE7Cp2ckgji059z4zNxa10WDCZiB8BT0KMUUQVEjcK6nFRkR/lHroTqHkMCe/RNyADfWBymh9Vng58m8sfJbdK4+NfwRUfOouIgkWyaH+GAXiEXDIYVmFDBb68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BHV9YMce; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-429c4c65485so278060f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 05:50:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761915050; x=1762519850; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mO2KtY6kpP/4dstvJ2/nd3TfZivPb0AjpquB+Jg3MoM=;
+        b=BHV9YMce+gUvO2KN/qVSwRKSx6igujwJBEcjDzPHChI6zaOGmCDOCTAxeveqyRX3LQ
+         lK0MwDKtardXFzjL4Pu6BnMti4CusanSIRKCflyjh2YknAShySDdDM+dU60eULdOsj7J
+         tm0AcxubAPScho0KBbctM19yaekE3jErpxdNLoQk65osh+769Mv+daRrwR1rWiOV/LEA
+         fTNnhS1BXsTQ23BQuuoP19I14LGY6nrfVFEqqsQifjlwBCWhGfcFId6UBDDmV78yMkg8
+         G9rFJ2Ot64OZDMloI4qo4nUccP17ljs3mdQrNFp59ZdwiSK+j+i0UEGfz8aFwWl8btFX
+         DZcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761915050; x=1762519850;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mO2KtY6kpP/4dstvJ2/nd3TfZivPb0AjpquB+Jg3MoM=;
+        b=erheKguxhc56kK8dgDXG/c8UHO7BP+PWBTAfuKSttdgfzPZZM6DeCzRXsUBSdrzZtT
+         vocMRdyXu65ypxAaN6hhb/bEpiG/w4HM87g85oeUgTk/rL5N+gP46IN8ti+30Zd2sszw
+         L+hP66PC7Iez/AVCVK+qoIVOf1IXGdFlDhDuUKbF6m9ctoctZmxaCKuHA9w68gwBNiJI
+         8mxCn/+Ih9r1a7uHKb3Mwk0es2ZE11DlfCUh9nnur7HCeVk7Wr9R1IkchtbyJCfICffk
+         Ad/CCZib8niPm7e0Kiwc17TJOGxmdjMAKZymm+IoGSqARdR24BSOn9U3gEliLxxG+1LO
+         xrxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWUfLKLkhMAW11FrQhjHdNMl765TxjeVJ75QuGF28e+Sa6B4oLMYu3O7mgVpdJcFTT1E6wyvtmQpDb5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUTLWVDhJC/4fi7fKnWmc008BZK4D7bVu8a5aqLRtrXozuURYW
+	7WHVwKDT0DyyG+T8P3AMQg2S4bTOh/b1UtGH5zd6BzubUv9Fn4aaXx88
+X-Gm-Gg: ASbGncs16SjMGKG4aeTl4P4KbHHkeJTMI67BK6PRdqKybdlP0RhZv6T2qevNBBNoDPR
+	zn7ct+fNv+SuNaHpH/sKIhMGwJcIKaQnpvb/n87CKf011xStXsVDTqN02vP/has2WSLTBc31utH
+	tu+nL3N5C/s93nkSWY2w/3h67ruxG5LsFcdWRgfCMvgKbsP+8m2Sp1fH3iUulJsItHA0f8urjpk
+	0SZUv1F1EGgDs1T6+hkgrH2VYpmKnKu15cDUtXNd/WaFFK2eMdF5AWbTprjMA4XbmvF5bkP3l3j
+	yFvnmfYQUpRRhUPRKJMoOFot4i7Rv2UwquEfvIilZ5NlDlxO3se71+wA0DPvIeQ6eMn2/UlHz7F
+	E9MJ6T6CefXIi4TwSkuY/fcAS0Cg8qInk/+h+B2ocaLRsMdZSutdcC8QBhfShBgr5SbDFtamhr4
+	0qB4Z/xdjG6ND7E2iO9Pmrst3ei7J8zc6CRtapdGZ3HxKVfeLvwlXDa4xGBVQycEH1781AP+Xud
+	6sdyg==
+X-Google-Smtp-Source: AGHT+IF9Do9nR03BStcy/ENSw/8pRxFisHxazSviyoAjb3tK/ts2RifiuU7Em2HOcQoiNKmeoGdqBg==
+X-Received: by 2002:a05:6000:2908:b0:429:8b47:2f35 with SMTP id ffacd0b85a97d-429bd689dc1mr3344895f8f.26.1761915049784;
+        Fri, 31 Oct 2025 05:50:49 -0700 (PDT)
+Received: from toolbox.int.toradex.com (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429c13f1d4csm3144559f8f.39.2025.10.31.05.50.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Oct 2025 05:50:49 -0700 (PDT)
+From: max.oss.09@gmail.com
+To: Max Krummenacher <max.krummenacher@toradex.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/3] arm64: dts: imx8x-colibri: add additional functionality
+Date: Fri, 31 Oct 2025 13:49:40 +0100
+Message-ID: <20251031125003.275033-1-max.oss.09@gmail.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c4c14051-2ba2-4d80-a22d-4deb3709f727@linaro.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
 
-On Fri, Oct 31, 2025 at 12:32:03PM +0100, Daniel Lezcano wrote:
-> On 10/30/25 10:28, Andy Shevchenko wrote:
-> > On Thu, Oct 30, 2025 at 09:27:21AM +0100, Daniel Lezcano wrote:
-> > > On 10/18/25 22:12, Andy Shevchenko wrote:
-> > > > On Fri, Oct 17, 2025 at 06:42:38PM +0200, Daniel Lezcano wrote:
+From: Max Krummenacher <max.krummenacher@toradex.com>
 
-[ ... ]
+Provide a pwm-backlight.
+Provide the 32kHz Wi-Fi clock used during low-power operation.
+Configure CMA from the device tree.
 
-> > > > > +	dma_samples = (u32 *)dma_buf->buf;
-> > > > 
-> > > > Is it aligned properly for this type of casting?
-> > > 
-> > > TBH, I don't know the answer :/
-> > > 
-> > > How can I check that ?
-> > 
-> > Is buf defined as a pointer to u32 / int or bigger? or is it just byte buffer?
-> > If the latter, how does the address of it being formed? Does it come from a heap
-> > (memory allocator)? If yes, we are fine, as this is usually the case for all
-> > (k)malloc'ed memory.
-> 
-> buf is a byte buffer allocated with dmam_alloc_coherent(..., GFP_KERNEL)
 
-We are fine :-)
+Max Krummenacher (1):
+  arm64: dts: colibri-imx8x: Add wi-fi 32kHz clock
 
-...
+Philippe Schenker (2):
+  arm64: dts: colibri-imx8x: Add backlight
+  arm64: dts: colibri-imx8x: Add cma memory
 
-> > > > > +	dmaengine_tx_status(info->dma_chan, info->cookie, &state);
-> > > > 
-> > > > No return value check?
-> > > 
-> > > The return value is not necessary here because the caller of the callback
-> > > will check with dma_submit_error() in case of error which covers the
-> > > DMA_ERROR case and the other cases are not useful because the residue is
-> > > taken into account right after.
-> > 
-> > In some cases it might return DMA_PAUSE (and actually this is the correct way
-> > to get residue, one needs to pause the channel to read it, otherwise it will
-> > give outdated / incorrect information).
-> 
-> But if the residue is checked in the callback routine without checking
-> DMA_PAUSED, the result is the same no ?
-
-DMA in some corner cases might have already be charged for the next transfer.
-Do you have a synchronisation between DMA start and residue check?
-
-I.o.w. this may work for your case, but in general it's not guaranteed. The proper
-read of residue is to: pause DMA --> read residue --> resume DMA.
+ .../boot/dts/freescale/imx8x-colibri.dtsi     | 29 ++++++++++++++++++-
+ 1 file changed, 28 insertions(+), 1 deletion(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.42.0
 
 
