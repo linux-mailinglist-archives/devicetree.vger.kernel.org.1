@@ -1,127 +1,153 @@
-Return-Path: <devicetree+bounces-233705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 175DDC24E3E
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:58:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C839C24E59
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:00:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1302F3B6C85
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 11:55:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA4F73A5D21
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 11:59:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E5DD34214F;
-	Fri, 31 Oct 2025 11:55:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A65B347BB0;
+	Fri, 31 Oct 2025 11:59:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UpJakExD"
+	dkim=pass (2048-bit key) header.d=arista.com header.i=@arista.com header.b="NY03c2px"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 308F32F261D;
-	Fri, 31 Oct 2025 11:55:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DDE1346E7F
+	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 11:59:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761911751; cv=none; b=dA7p+OTnqFmS3I9bDK67XTwiJyd2a8t75rsYjUwo23YTOmLHq3byzGyHweDkZjdlsDf/6xp1vHCuDsHvMB11GIlqidxFrMyDEnS7Pdbn+K5clEB/pYcOIjhhhzzRobbHKJx0z/eKJ8qdTE/tY58sshS7CONvW3G67c+cj7wS034=
+	t=1761911963; cv=none; b=t3U7qxaj+K2PpUkTdTFCGEvSftwYijC+mufz6iTmuoVFYbcnpdmhOP9frKuhEyz7/MlxZa/pUBHSerwhE2D+cHD0NXNSybix+Ln9+Yf/jP55py0mujO2R99v1lDAU0f+z7OecoIphNHMa0ukcAlaTKkDRWQXx2OGE9R9no2fRb4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761911751; c=relaxed/simple;
-	bh=fIa0j/GtzmZQoXo7Ot/AE5uFcIg/11da1EjbWi+1FyM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pcsf02VWu3JjbcOAFLTi75SXS8N/R9iSgak/l44mDwoT7Gm7JXt1WoiZ2QvcB3B5NUUfCD59vzRQ4mZyjbSBkI0yRzR2WFM7pgJgoZj3z5v6JqiqxfIfgpg+CTQJZDBg8kzKrRnvonKFlNIa4Q7sjZ8IUaO6iZwkNc5AMG2fLyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UpJakExD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FBE8C4CEFB;
-	Fri, 31 Oct 2025 11:55:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761911749;
-	bh=fIa0j/GtzmZQoXo7Ot/AE5uFcIg/11da1EjbWi+1FyM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UpJakExDBsWMDyNT5cd0cPM42pmALGG2HG3KDlSC3d8/dEsp+7uftN1mBP9pSq2kC
-	 SfzBHxziQDTrKJ01VLakWP/ATUknVzGs6NrPObaM+mqD7wncIu23SKVPxLczhm7VBp
-	 5cwB36DRphXuiOt4h+PDSgirRDnzM4b9xQ1wHnNYf8Vov6UXW5xjf7UidadrsHiT1S
-	 jd9AFjcrKoHNubKtEHzOyUSs0QlNtYQ7ZmYJaDX8FM3QqQUU1PEIzIk7VTCiAwOH/i
-	 MgaRyAP/A0P+FRa4+2EC5Tw7LzIsFYLaQk+F5WSWrXNYtOZCQVQlBkZRYaiqMOs31A
-	 lQIrDRXvqRt4Q==
-Date: Fri, 31 Oct 2025 11:55:44 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: claudiu.beznea@tuxon.dev, Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	pierre-henry.moussay@microchip.com,
-	valentina.fernandezalanis@microchip.com,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/7] reset: mpfs: add non-auxiliary bus probing
-Message-ID: <20251031-rewrap-single-e13bbfd9f1bb@spud>
-References: <20251029-chewing-absolve-c4e6acfe0fa4@spud>
- <20251029-macarena-neglector-318431fec367@spud>
- <4e3c3c3d6c1a0d2905a90e5f1c0b2cb8f67bc43b.camel@pengutronix.de>
+	s=arc-20240116; t=1761911963; c=relaxed/simple;
+	bh=QVnWjOAXd7aPZ68ee1nAsyAELz6UdZxKtmQM9NHmoz0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=L/+nGv2Z1Y+qHzcg+yR39FT+PQ+BezXAjcl8IXTkypkOHebwgFvh8IxyQLViwqj8Waopw1uI0Ri8cuKCwrX45DSJK2LAu+PxAp3zPvmBUlCXbrvNmbOPv3q6AnLOxVM38n3ygGGZtTVrIq25yZqi3u1WBpmcBBbw4qMb12OkTLA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=arista.com; spf=pass smtp.mailfrom=arista.com; dkim=pass (2048-bit key) header.d=arista.com header.i=@arista.com header.b=NY03c2px; arc=none smtp.client-ip=209.85.215.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=arista.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arista.com
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-b8b33cdf470so192107a12.0
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 04:59:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=arista.com; s=google; t=1761911962; x=1762516762; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SqPGPofsDjLbOGH0rnbeWAJ0+JsLnxZQ9584rgmYpJM=;
+        b=NY03c2pxudtxTpqhNveGHQacdPbIPcc7U9XcuvL/GN80R2O8D+/nmhxeyQbEbCVJf8
+         zpoLu1y/eP9Hc5PeLy6vnr8tkTvLXn+TO/eAm1ZIKfUCofbZLTpOzwFfBPxazLN27Sca
+         nPBIWku9mL99JDtxt3aC6s2Na1VTuX1xLn2QYOb68ZBN9DzKo2VSxM0kyOpF7cg3hpMq
+         PACkE9o9vhnxSUPV6/D1PALFC/jHLiS7k9gfm8hX1q4GiJvglYjxZVKTcd2Dv4+S+yhs
+         arP+Gb69kQAYF183bMrD3tNTQGzu4HCVCchD7AtgbQWcd+aAaWEn3knMCpGOaOZblh0Z
+         WZ7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761911962; x=1762516762;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SqPGPofsDjLbOGH0rnbeWAJ0+JsLnxZQ9584rgmYpJM=;
+        b=b45WUOAyjyveTdebs/1AhPcPuayoZZyj2DKbbfdQsySUbsqmrnrPv9eMnmrTG4hxEn
+         NvNQFV+nVkcd4VHbbNDLDrD5r1xYP74IIDwPKQ9pWIzKxFgbhu5lwV2EctUkCydYLxh9
+         Xfbvf+wjLlHUM3yHHtzJiZ5xS2P7RAjn60y6fI0wzt1ADhDJ6hhIbBlx7mny+gs2CdeT
+         MmchhEr6EG7Wa9R9pQb+P8UPdcTvt4x0JMcED9NW0+uGS5cVA98Y0nuROVwDZzYE73BG
+         8GbnfpoN0FM8goqzeYuDs+wxxGa/P2LJcwvn5hZlRvFlLdUSt0fjdK49fzCw6rP5fvpC
+         oBmw==
+X-Forwarded-Encrypted: i=1; AJvYcCWupw6h2fItAKneuMiRVod92SrMYgFdm3vNTEM7OA4pVPowX83tFrYLvZL8j/zxi0ztPVCGQYJdWhuB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6CCfo2s8HcX0NmvuchcfkJppSYuS7uK/T9wtdBNV/51JzRgCY
+	mQ8K5M661sUcqLH5CSqEwUomlxX7kwRZPzQfVQsulAhtZGKYuXVQGWt3HlH3+cb4cA==
+X-Gm-Gg: ASbGncvLj36ojdkYJUu/92Vufvx4kZTUwb5b8QN1nKCJtlYmENwbWdyYlWGAB90l03R
+	8YHT/UNHlH+wqXw2j533v+Isao+iqEfRVRqCRWa6EajY+iy61divgPOzeZLYnnT6p9lfY80oVh/
+	1if8zK9UitvBpeXb37hbP/ZQcd6EKmIyc7nLtmvPvT/QjELS+eZbclmbNRtt4fVBabMt2Xk98HE
+	LSk0KfqMjY8s2dePToVREagQ4enjw6+iAsXkRhx77kGUg5+GDDTHBkdFMKeF/QiZ36hEJpBMz5R
+	y4ANsbffvhxmolz1RWzly6r/FV12EZd030100a43Z2R/j4dzJZ5sIkcsVtR5D93dl4zInTxzp9G
+	DvTalAmDLizffQ94N2AZBH0OXnkEAthEebW5nn2XD6Eig6E6TNQnf4t0S70aoNQknlUQlQt+Ok8
+	B/HHaIEMYLhJFL4bvTKijMNhaDTLvdpT2D7VeAlJMLVLlxKec=
+X-Google-Smtp-Source: AGHT+IG5NB5+LRZtm0ExsbVUC4NOlOx/SwbXsQNMfhC5es5sBTc2hH9ErmodwvJH/vPOTN6UenpeVA==
+X-Received: by 2002:a05:6a00:39a0:b0:77e:ec80:b3d0 with SMTP id d2e1a72fcca58-7a7797c305emr2344339b3a.3.1761911961486;
+        Fri, 31 Oct 2025 04:59:21 -0700 (PDT)
+Received: from adriana-dmi-upstream.sjc.aristanetworks.com ([74.123.28.16])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a7dbb61839sm1973837b3a.71.2025.10.31.04.59.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Oct 2025 04:59:21 -0700 (PDT)
+From: adriana <adriana@arista.com>
+To: ilias.apalodimas@linaro.org,
+	ardb@kernel.org,
+	trini@konsulko.com,
+	robh@kernel.org
+Cc: krzk@kernel.org,
+	jdelvare@suse.com,
+	frowand.list@gmail.com,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	vasilykh@arista.com,
+	arm.ebbr-discuss@arm.com,
+	boot-architecture@lists.linaro.org,
+	linux-efi@vger.kernel.org,
+	uefi-discuss@lists.uefi.org,
+	linux-arm-kernel@lists.infradead.org,
+	adriana <adriana@arista.com>
+Subject: [PATCH v5 0/1] DMI: Scan for DMI table from DTS info
+Date: Fri, 31 Oct 2025 04:59:16 -0700
+Message-ID: <20251031115917.713105-1-adriana@arista.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251031101009.704759-1-adriana@arista.com>
+References: <20251031101009.704759-1-adriana@arista.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3ertujbkv4Kiy4c2"
-Content-Disposition: inline
-In-Reply-To: <4e3c3c3d6c1a0d2905a90e5f1c0b2cb8f67bc43b.camel@pengutronix.de>
+Content-Transfer-Encoding: 8bit
 
+Some bootloaders like U-boot, particularly for the ARM architecture,
+provide SMBIOS/DMI tables at a specific memory address. However, these
+systems often do not boot using a full UEFI environment, which means the
+kernel's standard EFI DMI scanner cannot find these tables.
 
---3ertujbkv4Kiy4c2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series adds support for the kernel to find these tables by
+reading the associated property from the Device Tree /chosen node. The
+bootloader can specify the physical addresses using the property
+"smbios3-entrypoint".
 
-On Thu, Oct 30, 2025 at 02:40:30PM +0100, Philipp Zabel wrote:
-> On Mi, 2025-10-29 at 16:11 +0000, Conor Dooley wrote:
-> > @@ -46,41 +52,46 @@ static inline struct mpfs_reset *to_mpfs_reset(stru=
-ct reset_controller_dev *rcde
-> >  static int mpfs_assert(struct reset_controller_dev *rcdev, unsigned lo=
-ng id)
-> >  {
-> >  	struct mpfs_reset *rst =3D to_mpfs_reset(rcdev);
-> > -	unsigned long flags;
-> >  	u32 reg;
-> > =20
-> > -	spin_lock_irqsave(&mpfs_reset_lock, flags);
-> > +	if (rst->regmap)
-> > +		return regmap_update_bits(rst->regmap, REG_SUBBLK_RESET_CR, BIT(id),=
- BIT(id));
->=20
-> This could use regmap_set_bits().
->=20
-> > +
-> > +	guard(spinlock_irqsave)(&mpfs_reset_lock);
-> > =20
-> >  	reg =3D readl(rst->base);
-> >  	reg |=3D BIT(id);
-> >  	writel(reg, rst->base);
->=20
-> Since I've just seen this in the i.MX8ULP series [1], it would be
-> cleaner to convert the aux driver to regmap as well. The readl/writel()
-> code paths could be dropped then.
->=20
-> [1] https://lore.kernel.org/lkml/20251029135229.890-1-laurentiumihalcea11=
-1@gmail.com/
+This patch implements the driver logic in dmi_scan.c.
 
-Yeah, it's definitely a lot neater this way. I'll do that. Patch ends up
-touching the clock driver in the process, but I don't think that's a big
-deal, since it's just the auxdev bits relating to the iomem pointer
-becoming a regmap pointer instead.
+Changes in v5:
+  - Removed linux,smbios3-entrypoint.yaml file and the first patch.
+  - Renamed property to "smbios3-entrypoint".
 
---3ertujbkv4Kiy4c2
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v4:
+  - Renamed linux,smbios3-table.yaml file, removed mention of ARM/ARM64
+    (Patch 1/2).
+  - Drop the second definition of dmi_scan_from_dt() and fold checking
+    for CONFIG_OF (Patch 2/2).
+  - Drop unnecessary goto on the success case (Patch 2/2).
+  - Replace magic number for entrypoint size with SMBIOS3_ENTRY_POINT_SIZE
+    definition (Patch 2/2).
 
------BEGIN PGP SIGNATURE-----
+Changes in v3:
+  - Removed linux,smbios-table property, only keep the SMBIOSv3 property
+    (Patch 1/2).
+  - Search DT for linux,smbios3-table only, removed the code searching
+    for the previous property (Patch 2/2).
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQSjwAAKCRB4tDGHoIJi
-0vFhAQDkkuWAVOeVDtGSxjnEuSHfZc3mS1vaWbu8o2swToIRfQD/arEA8nv6Wdrl
-4zip7L/VCNOznI8CuShbdOQVEj1BuAM=
-=py6j
------END PGP SIGNATURE-----
+Changes in v2:
+  - Add missing Device Tree binding documentation (Patch 1/2).
+  - Split the original patch into a 2-part series (binding + driver).
+  - (No functional changes to the driver code in patch 2/2).
 
---3ertujbkv4Kiy4c2--
+adriana (1):
+  drivers: firmware: dmi_scan: Add support for reading SMBIOS from DT
+
+ drivers/firmware/dmi_scan.c | 54 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+
+-- 
+2.51.0
+
 
