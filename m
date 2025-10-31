@@ -1,176 +1,118 @@
-Return-Path: <devicetree+bounces-233688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3857C24C70
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:28:16 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1FDCC24C88
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 12:31:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F1FC3AFD89
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 11:28:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7504E4E12ED
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 11:31:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 013543451AD;
-	Fri, 31 Oct 2025 11:28:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14BC13451DA;
+	Fri, 31 Oct 2025 11:30:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="bPOYesMS";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="4aqtPf/f";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="bPOYesMS";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="4aqtPf/f"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="FnLxw10M";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="n2QcmDv0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29E9D2D4807
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 11:28:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87C16332EDC;
+	Fri, 31 Oct 2025 11:30:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761910090; cv=none; b=SRzWjrzLlFzQwXtLQ+XeHpX9KMUynnQTtZouy+TrdmRk62brtLPEZY1za8pRx7HBHrffayvsWzU+htqqp6v81YAI9ZlHpKI5VcMToKR2M+E8AQhTh6yxcJ1EzK3oXIvoUxuXYjV8a1YDySGKFUxJDhnhZJ42RUA0tUHQehgNHAo=
+	t=1761910258; cv=none; b=ubnhPc/UCLhiPI/zPPShqINtZ/KFdoieINO9fWc2mZv9o9N1iz14GFCBWWuYvMam/DwrFonw9UWdoVjY9Nve2SM9W3ZB8cIAR7zgi9zWQ7btKdGwOgzLEvl8ia0sqsS/1rMMcySl+bjAPGnfEL4cxdzNzoQS6AeaWzAtQOKAYZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761910090; c=relaxed/simple;
-	bh=2h/2gmGGNrZOBFIeJKnPnvriszhl+VX/sFgtFT8T57Q=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cI0QrYDcgAfGgXNDeTVIwhZ41TSYtKzraa07oQOFLPOH9uXphSs4V+rqVcTNih/Xgijh2eCtizwxPJXofMUroqnPhZioB6lNDdrVyxtXuWXJWUDyk7qdeOdf2IRR8Ckc8Z4PAULA5HzQvyfVyMdYY1RGtxr4IFHxyZkdaslolTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=bPOYesMS; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=4aqtPf/f; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=bPOYesMS; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=4aqtPf/f; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 2D06A1F79A;
-	Fri, 31 Oct 2025 11:28:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1761910087; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1tW+WNA5ATprsP8oCiVckcDyzpM1eUIX38rqMb49zAc=;
-	b=bPOYesMSn4HNbGbdu/Q7y5UdMTxGxzhfzpRik1G5amw8f+/1ipYzenBjJAkdD8N83WQHiE
-	yrBa6dX4Gtxm/5Buw87K8vFnpL8ONsIr578WuE5eK2x8tgoOnM87fBXwCEdgpuizgWxx+J
-	gtpexaqDKJgg7Ys5SlV/381JMaK8NCk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1761910087;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1tW+WNA5ATprsP8oCiVckcDyzpM1eUIX38rqMb49zAc=;
-	b=4aqtPf/fJs733dtA5NTwZVpA64LxECG/M4p129nHQtYgvvkh/nGv9AKlyfKH0yUJ2Js1Dn
-	G8SRAbL1ixz2C2Aw==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1761910087; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1tW+WNA5ATprsP8oCiVckcDyzpM1eUIX38rqMb49zAc=;
-	b=bPOYesMSn4HNbGbdu/Q7y5UdMTxGxzhfzpRik1G5amw8f+/1ipYzenBjJAkdD8N83WQHiE
-	yrBa6dX4Gtxm/5Buw87K8vFnpL8ONsIr578WuE5eK2x8tgoOnM87fBXwCEdgpuizgWxx+J
-	gtpexaqDKJgg7Ys5SlV/381JMaK8NCk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1761910087;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1tW+WNA5ATprsP8oCiVckcDyzpM1eUIX38rqMb49zAc=;
-	b=4aqtPf/fJs733dtA5NTwZVpA64LxECG/M4p129nHQtYgvvkh/nGv9AKlyfKH0yUJ2Js1Dn
-	G8SRAbL1ixz2C2Aw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id CACF113393;
-	Fri, 31 Oct 2025 11:28:06 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id V1FAMEadBGn3UAAAD6G6ig
-	(envelope-from <tiwai@suse.de>); Fri, 31 Oct 2025 11:28:06 +0000
-Date: Fri, 31 Oct 2025 12:28:06 +0100
-Message-ID: <87pla3joop.wl-tiwai@suse.de>
-From: Takashi Iwai <tiwai@suse.de>
-To: joakim.zhang@cixtech.com
-Cc: lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	perex@perex.cz,
-	tiwai@suse.com,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	cix-kernel-upstream@cixtech.com
-Subject: Re: [PATCH V1 2/3] ALSA: hda: add bus callback for address translation
-In-Reply-To: <20251030110928.1572703-3-joakim.zhang@cixtech.com>
-References: <20251030110928.1572703-1-joakim.zhang@cixtech.com>
-	<20251030110928.1572703-3-joakim.zhang@cixtech.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+	s=arc-20240116; t=1761910258; c=relaxed/simple;
+	bh=HcpOOYkGpWQwMpSrJthQI3UkUlHo088WhNa2tIBVrqE=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=paA/yRTNgpRZmYsuk3DbsoEjDLOmL8FvnBXqiHOxM43FNXS6dWnONkU2PlnF/KyAzS2+ucrrQmD3Fhggd2pYtwkjYxpJUIglLgt4qUo8aF9tPF8W27VZ2iCLmUfn5Q4sNiyGWENuKDwSVRGP8bnmDo7DSQD54rqp4s5IfkemFWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=FnLxw10M; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=n2QcmDv0; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=To:From:Subject:Date:Message-ID; t=1761910235; bh=U2qSHYLdvuBSg97SIvNd5cF
+	/bbA8KgNNtNgU+K6wqPg=; b=FnLxw10M660qSOuIolQCuxHU3eEodgElGWvhzLnJ8bsk+a4Fx6
+	6vCcPNKaAMmGZLl4y9eHdXiR5ci8gCwhqMpFhk0vaeSf1AOHpL7L25MIcykfNj9pK/pzuCe89Td
+	IxAF3CEdo2DV2iRCEMjkgoDexBvExysKZG+GNQOrkY0wHfics1iTjLiEqume9HvFK90NCsoONcJ
+	Rna/tHs713rdmZopOJyvVlgYk7b5k7zPtrjb4UgWEbU4uum8zrKBBJvL+J3w5efirZKl6P/FwrG
+	KI6nLWzsqQhPI7Kr5+ceO6USvEu1mDm4TLXXZcB2Lq+YUWNFpa+Rme7uQu3Q0bbaYow==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=To:From:Subject:Date:Message-ID; t=1761910235; bh=U2qSHYLdvuBSg97SIvNd5cF
+	/bbA8KgNNtNgU+K6wqPg=; b=n2QcmDv0U6EfUVNhvSV62MhssN7vfChtLYHUICG6AkTQREr5US
+	FHIHHpMLHpZrSybhTjkIIuGyX2LFAMvL0SCw==;
+Message-ID: <a3cb6633-1595-41e7-8e87-ca48a98f822c@mainlining.org>
+Date: Fri, 31 Oct 2025 14:30:34 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Level: 
-X-Spamd-Result: default: False [-1.80 / 50.00];
-	BAYES_HAM(-3.00)[99.99%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	NEURAL_HAM_SHORT(-0.20)[-0.999];
-	MIME_GOOD(-0.10)[text/plain];
-	TAGGED_RCPT(0.00)[dt];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_TLS_ALL(0.00)[];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,perex.cz,suse.com,vger.kernel.org,cixtech.com];
-	MIME_TRACE(0.00)[0:+];
-	FROM_EQ_ENVFROM(0.00)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	TO_DN_NONE(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,imap1.dmz-prg2.suse.org:helo]
-X-Spam-Flag: NO
-X-Spam-Score: -1.80
-
-On Thu, 30 Oct 2025 12:09:27 +0100,
-joakim.zhang@cixtech.com wrote:
-> 
-> From: Joakim Zhang <joakim.zhang@cixtech.com>
-> 
-> This patch adds bus callback for address translation, for some
-> SoCs such as CIX SKY1 which is ARM64, HOST and HDAC has different
-> memory view, so need to do address translation between HOST and HDAC.
-> 
-> Signed-off-by: Joakim Zhang <joakim.zhang@cixtech.com>
-> ---
->  include/sound/hdaudio.h     |  3 +++
->  sound/hda/core/controller.c | 25 +++++++++++++++++++------
->  sound/hda/core/stream.c     | 17 ++++++++++++++---
->  3 files changed, 36 insertions(+), 9 deletions(-)
-> 
-> diff --git a/include/sound/hdaudio.h b/include/sound/hdaudio.h
-> index 4e0c1d8af09f..61b41a014f4a 100644
-> --- a/include/sound/hdaudio.h
-> +++ b/include/sound/hdaudio.h
-> @@ -293,6 +293,9 @@ struct hdac_bus {
->  	const struct hdac_bus_ops *ops;
->  	const struct hdac_ext_bus_ops *ext_ops;
->  
-> +	/* address translation from host to hdac */
-> +	dma_addr_t (*addr_host_to_hdac)(struct hdac_bus *bus, dma_addr_t addr);
-
-This should be rather added to hdac_bus_ops instead.
-
-Or, we can just add addr_offset field in hdac_bus instead of yet
-another callback.  Then the change would be simpler.
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sdm630/660: Add CDSP-related
+ nodes
+From: Nickolay Goppen <setotau@mainlining.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ linux@mainlining.org
+References: <20251023-qcom-sdm660-cdsp-adsp-dts-v2-0-895ffe50ab5f@mainlining.org>
+ <20251023-qcom-sdm660-cdsp-adsp-dts-v2-1-895ffe50ab5f@mainlining.org>
+ <07066c46-4121-48da-846a-3a180d245589@oss.qualcomm.com>
+ <47b40a91-8365-4431-9fd9-1e48fad2a4e1@mainlining.org>
+Content-Language: ru-RU, en-US
+In-Reply-To: <47b40a91-8365-4431-9fd9-1e48fad2a4e1@mainlining.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
-thanks,
+24.10.2025 16:58, Nickolay Goppen пишет:
+>
+> 24.10.2025 11:28, Konrad Dybcio пишет:
+>> On 10/23/25 9:51 PM, Nickolay Goppen wrote:
+>>> In order to enable CDSP support for SDM660 SoC:
+>>>   * add shared memory p2p nodes for CDSP
+>>>   * add CDSP-specific smmu node
+>>>   * add CDSP peripheral image loader node
+>>>
+>>> Memory region for CDSP in SDM660 occupies the same spot as
+>>> TZ buffer mem defined in sdm630.dtsi (which does not have CDSP).
+>>> In sdm660.dtsi replace buffer_mem inherited from SDM630 with
+>>> cdsp_region, which is also larger in size.
+>>>
+>>> SDM636 also doesn't have CDSP, so remove inherited from sdm660.dtsi
+>>> related nodes and add buffer_mem back.
+>>>
+>>> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
+>>> ---
+>> [...]
+>>
+>>> +            label = "turing";
+>> "cdsp"
+> Ok, I'll change this in the next revision.
+>>> +            mboxes = <&apcs_glb 29>;
+>>> +            qcom,remote-pid = <5>;
+>>> +
+>>> +            fastrpc {
+>>> +                compatible = "qcom,fastrpc";
+>>> +                qcom,glink-channels = "fastrpcglink-apps-dsp";
+>>> +                label = "cdsp";
+>>> +                qcom,non-secure-domain;
+>> This shouldn't matter, both a secure and a non-secure device is
+>> created for CDSP
+> I've added this property, because it is used in other SoC's, such as 
+> SDM845 and SM6115 for both ADSP and CDSP
+Is this property not neccessary anymore?
+>> Konrad
+>
+-- 
+Best regards,
+Nickolay
 
-Takashi
 
