@@ -1,182 +1,118 @@
-Return-Path: <devicetree+bounces-233612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F166CC23FC2
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 10:03:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CE9FC23EC8
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 09:53:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 104D5563A2D
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 08:59:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58FDB189A811
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 08:53:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5B35329367;
-	Fri, 31 Oct 2025 08:59:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F4B0313298;
+	Fri, 31 Oct 2025 08:53:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DYEKqxr2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 472A42D23BC
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 08:59:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14882310625;
+	Fri, 31 Oct 2025 08:53:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761901183; cv=none; b=oFH7VPEC3e1ZFiyl3s1ok4pFIuwVkB6DK0TwLls4u9in6VkFdQ4gd3D7dhDelqATmL8G48sWwQ6bZSBeQFY1/Ibm+GTMaUONe5G7W0ohHwigyjTcYoOONhdP41aptAHjoMTykXLdazyWGM6mW/8QS6jf8wRpuB18RoEZ6sqGyW8=
+	t=1761900798; cv=none; b=Di9ylg654/JVFSqnGwllK2GA/5t+OOGud3bg8ijgB5PrrmWIuWqzJc/9dQNeqjxrI+6lOZDyIM2RTh6bU9Uro+ssCvB1VcNfbli0WGXPyzuWAnJJITD2dqH2IZR8h3BJNbig+Ed9ExjGPV0r40Whd/r/SFQ8Hub6dLnTXuS/pPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761901183; c=relaxed/simple;
-	bh=NYbl8HJcgb3R5SVJ9GXGI/Jq2+mOIag8w0HzHBPHPoY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BPmo5Kk1t/iV0ReUws6PGUStld66j0RakDYlKxy5sO7eC6YFOynYAeOUSec3B5jSNMHVppwOpwVdMmlKV+a1qFfXkW3NFJqMzyXsQBrQIcY/287RFlWOq0ixeZSWng70bu+Kmag8bmCCO0XTXtYkEpulnn0xiihrwK6wXAFMySE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-89ec7919c71so220821885a.1
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 01:59:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761901181; x=1762505981;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lQVVX5c2GB+a2QgL3UYe6DKU+bmVaydohzEFkpxq/1c=;
-        b=J34Qb3EKKDThokd/L3/iidmdnblIvXUhwrKHOzpR1ViR9WdwEKHdcSbhObG5VmaNn3
-         K7DwDRHDqgTzlOuZOiMXgxDLDA3O3OUuIsbHzRX37b07bQk7XhLbdQaGDrcOeRVh1goq
-         7/JZ+dQ/fmZKigmLz8yyPVbmO4YYSZHWrzqzpjamw4GjcApvYaSiylkX7CkWI1/UZA3d
-         IDJC3hY+Gtlc7RgnYlv+bk4AtsTzROz3ZV16B8JK3i3oPPV+WYvL2YEbpvVQznqYlHxa
-         5e6KpiB4cvnYZs77hpOBNJ5IWS/ddq0tSaYj2QYki/afI/93COvU+M40AH0YZoJXC0Yj
-         pzFQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUuuLfU3TkNMC4+sL9X5+TCDMWGSucPrfB4ca4hHfWHu/wDHwFoZctiJwwO4M/baqi1Ue9B5g5mhmnU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+Kxn7sdikC7YiKzJigzwgDd05iwDmEF2eYuBDWWp6bYWzwTJM
-	uJlGJmtASRqiZnt1EdNDr5USdEohtziDobLGcSNJS4NRX67ORnCuXQbS3pmx6iaV
-X-Gm-Gg: ASbGncv2ArYN3zGh+1wMzcSD1+IFzL7rBawLN/pjOKSHM3BDmb60SKDGorIQwVUku6G
-	qLiNehz4p3dzh9L4Sqqz0oktdL3m+ZIZj15k5ln+LRB8LKnJk5g9sIWaHfsHLqDvzpS87ReBNl5
-	L7HdrX/17TBsco460c46Lnyg5fuQqMMHQWZBNHucy3GP0qNAspQPcHFaVhzwEiyT62nYSItuIM3
-	csKITcHmapcEAmNyreHqVwWWw7LzfgcdgO50lMNUBToDZ2mFEV81NdJWcFxKOqpSnAf/4+bW0tt
-	8tvKUjRHnm5rogGt3zzu2M19ciHSf1ODCzdRt3s8KVmUGJ7BxVY+Ghpq+eeBYFMEC4aO3ziwrBa
-	Esqt5wn5s7WSSq9aw2ePs2CK8PpW/GVeXMIn+aJStEGo8oLljTJG7gq80DBZI5t2DeHZSNhHAoM
-	zvnNRLuit4YYEmterV272yy56DTczCl1wqiV9rcekA/XM8O0H6X3ELyBhb/CY=
-X-Google-Smtp-Source: AGHT+IESvfKxXIX7kd9QAlLJHHNohSuR0EXobk64Q3AOXm7LkBz9lDGsdVHzjsh+OFUQ33OLYANLiA==
-X-Received: by 2002:a05:620a:3724:b0:89f:3bd5:cadb with SMTP id af79cd13be357-8ab9b0c9072mr304388685a.49.1761901180834;
-        Fri, 31 Oct 2025 01:59:40 -0700 (PDT)
-Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com. [209.85.219.43])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8ac03581871sm73985985a.42.2025.10.31.01.59.40
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Oct 2025 01:59:40 -0700 (PDT)
-Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-880255e7e4aso13985576d6.0
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 01:59:40 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUZhw4vJ9ThKIN3jEJfvCblMXIKvBrFBPwv99jzMCCaJM5nKYbJpqk7NYMXciGxrOYdYoMB2ljh3HMz@vger.kernel.org
-X-Received: by 2002:a05:6102:c13:b0:5d5:f6ae:38c6 with SMTP id
- ada2fe7eead31-5dbb136ecc7mr717064137.37.1761900747573; Fri, 31 Oct 2025
- 01:52:27 -0700 (PDT)
+	s=arc-20240116; t=1761900798; c=relaxed/simple;
+	bh=oK5nbB1LtOV7g02ZprYXgPq8GKEmIM9bcsXX+afO7Kc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g1BgbiuW8l7yY2zOa8Oiag+rq/KeCuZASbLsTMUT0HyG40Qpm8xOBRAkOxL+VQ/o2aCjgFaCHs2TyzNR6I1HyYDvIjgnDrVdQOD5HjsnwZpgHRTbk7lPbsiNiBESM+HgXrFE0WS90lrR31s9Gth3bXZUjt3gVUeqFtaISjUkDnU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DYEKqxr2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11393C4CEF1;
+	Fri, 31 Oct 2025 08:53:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761900797;
+	bh=oK5nbB1LtOV7g02ZprYXgPq8GKEmIM9bcsXX+afO7Kc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DYEKqxr2pRl3d4ijIZ5ZZYCcw/en5aFTZ5TcxpfP/QJ/ZgAtoCyBwnXU3e4SfKfTW
+	 WIUQWa+Y0SU4tIKw68AHY4F928BIByHXV5FqmoMmT99dz6DbRvpPJozKjMgge7YxxH
+	 TjmTg8tIUZvZyr/dlja+uj+/OKCvrbuS2ANl8RXD0vOKF+goo9uuUDr52O1N6T6ciQ
+	 q/glR4+532A3FeETTACxSYqblvKYGQEfoNgo89uv/UL1TmYJyBrDHns/tDyk/7cvIq
+	 SqxnjErCtLd3Pf0aCARGpwKJ6mWGAVMfTes+Br3yGaakDaY4gK9hgAfh6tJ+pY1u7G
+	 HqtI34pitwAOA==
+Date: Fri, 31 Oct 2025 09:53:15 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: weishangjuan@eswincomputing.com
+Cc: devicetree@vger.kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net, 
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com, 
+	alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk, yong.liang.choong@linux.intel.com, 
+	vladimir.oltean@nxp.com, prabhakar.mahadev-lad.rj@bp.renesas.com, jan.petrous@oss.nxp.com, 
+	inochiama@gmail.com, jszhang@kernel.org, 0x1207@gmail.com, boon.khai.ng@altera.com, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	robh@kernel.org, linux-arm-kernel@lists.infradead.org, ningyu@eswincomputing.com, 
+	linmin@eswincomputing.com, lizhi2@eswincomputing.com, pinkesh.vaghela@einfochips.com
+Subject: Re: [PATCH] dt-bindings: ethernet: eswin: fix yaml schema issues
+Message-ID: <20251031-elated-radical-limpet-6a0eaf@kuoka>
+References: <20251030085001.191-1-weishangjuan@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251015071420.1173068-1-herve.codina@bootlin.com> <20251015071420.1173068-6-herve.codina@bootlin.com>
-In-Reply-To: <20251015071420.1173068-6-herve.codina@bootlin.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 31 Oct 2025 09:52:16 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVnsWMB24BTFKwggEXKOtqJ96GWZh2Xz+ogocQHM+=+6Q@mail.gmail.com>
-X-Gm-Features: AWmQ_bm5vGlc5XXZic8RvnXrZNNcCRnf0-7M9Km7uh4sqx0Aign1FjKoX2MZmow
-Message-ID: <CAMuHMdVnsWMB24BTFKwggEXKOtqJ96GWZh2Xz+ogocQHM+=+6Q@mail.gmail.com>
-Subject: Re: [PATCH v4 05/29] dt-bindings: bus: Add simple-platform-bus
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, 
-	Arnd Bergmann <arnd@arndb.de>, Saravana Kannan <saravanak@google.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Charles Keepax <ckeepax@opensource.cirrus.com>, 
-	Richard Fitzgerald <rf@opensource.cirrus.com>, David Rhodes <david.rhodes@cirrus.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Mark Brown <broonie@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Daniel Scally <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>, 
-	Davidlohr Bueso <dave@stgolabs.net>, Jonathan Cameron <jonathan.cameron@huawei.com>, 
-	Dave Jiang <dave.jiang@intel.com>, Alison Schofield <alison.schofield@intel.com>, 
-	Vishal Verma <vishal.l.verma@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
-	Dan Williams <dan.j.williams@intel.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Wolfram Sang <wsa@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-pci@vger.kernel.org, linux-sound@vger.kernel.org, 
-	patches@opensource.cirrus.com, linux-gpio@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-spi@vger.kernel.org, 
-	linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org, 
-	Allan Nielsen <allan.nielsen@microchip.com>, Horatiu Vultur <horatiu.vultur@microchip.com>, 
-	Steen Hegelund <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251030085001.191-1-weishangjuan@eswincomputing.com>
 
-Hi Herv=C3=A9,
+On Thu, Oct 30, 2025 at 04:50:01PM +0800, weishangjuan@eswincomputing.com wrote:
+> From: Shangjuan Wei <weishangjuan@eswincomputing.com>
+> 
+> Due to the detection of errors in the eswin mmc module
+> regarding the eswin,hsp-sp-csr attributes in the
+> eswin,eic7700-eth.yaml file, the link is as follows:
+> https://lore.kernel.org/all/176096011380.22917.1988679321096076522.robh@kernel.org/
 
-On Wed, 15 Oct 2025 at 09:17, Herve Codina <herve.codina@bootlin.com> wrote=
-:
-> A Simple Platform Bus is a transparent bus that doesn't need a specific
-> driver to perform operations at bus level.
->
-> Similar to simple-bus, a Simple Platform Bus allows to automatically
-> instantiate devices connected to this bus.
->
-> Those devices are instantiated only by the Simple Platform Bus probe
-> function itself.
->
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+Drop, reported already says that.
 
-Thanks for your patch!
+Just say that this is one phandle with multiple arguments, so the syntax
+should be in the form of:
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/bus/simple-platform-bus.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bus/simple-platform-bus.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Simple Platform Bus
-> +
-> +maintainers:
-> +  - Herve Codina <herve.codina@bootlin.com>
-> +
-> +description: |
-> +  A Simple Platform Bus is a transparent bus that doesn't need a specifi=
-c
-> +  driver to perform operations at bus level.
-> +
-> +  Similar to simple-bus, a Simple Platform Bus allows to automatically
-> +  instantiate devices connected to this bus. Those devices are instantia=
-ted
-> +  only by the Simple Platform Bus probe function itself.
+> Therefore, the eswin,hsp-sp-csr attributes of the eic7700-eth.yaml file
+> regarding eswin and hsp-sp-csr will be changed to the form of:
 
-So what are the differences with simple-bus? That its children are
-instantiated "only by the Simple Platform Bus probe function itself"?
-If that is the case, in which other places are simple-bus children
-instantiated?
+> items:
+>   - items:
+>       - description: ...
+>       - description: ...
+>       - description: ...
+>       - description: ...
+> 
+> The MMC,Ethernet,and USB modules of eswin vendor have defined
+> eswin,hsp-sp-csr attribute in YAML. In order to be consistent
+> with the property description of MMC,USB, I have modified the
+> description content of eswin,hsp-sp-csr attribute in Ethernet YAML.
 
-Do we need properties related to power-management (clocks, power-domains),
-or will we need a "simple-pm-platform-bus" later? ;-)
+That's redundant paragraph. Write concise messages describing the
+problem, not some background or unrelated bindings. See also submitting
+patches about preferred English form.
 
-FTR, I still think we wouldn't have needed the distinction between
-"simple-bus" and "simple-pm-bus"...
+> 
+> Fixes: 888bd0eca93c("dt-bindings: ethernet: eswin: Document for EIC7700 SoC")
 
-Gr{oetje,eeting}s,
+Missing space, missing checkpatch.
 
-                        Geert
+Please run scripts/checkpatch.pl on the patches and fix reported
+warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+patches and (probably) fix more warnings. Some warnings can be ignored,
+especially from --strict run, but the code here looks like it needs a
+fix. Feel free to get in touch if the warning is not clear.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+With first paragraph and fixes tag corrected:
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
 
