@@ -1,234 +1,205 @@
-Return-Path: <devicetree+bounces-233791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB290C25A34
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 15:44:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4BCFC25A4F
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 15:45:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7F2EA4F54E4
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 14:40:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0BD5D1A644E3
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 14:43:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBF9234C997;
-	Fri, 31 Oct 2025 14:40:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3EE134C984;
+	Fri, 31 Oct 2025 14:42:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cl3fuCcq";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BUvh9BTT"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IRUWm0rp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (mail-southcentralusazon11011011.outbound.protection.outlook.com [40.93.194.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 700E334A76D
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 14:40:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761921646; cv=none; b=CMtknuPN8foSRpAU4IkJfYh+9NoZGdo6E4AF55Dev9GVZX5rbUaaINjp7XB6vfeeDMFf6gBL+ESUlBmy0K60jpt9fJT47XT5apBBwJ+tpQtoM25ZiFF3KCb47jNq9fKUIIyAEKKsNdyAPy8KHdq73OfodzSShnkK4NfoxNnWYZQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761921646; c=relaxed/simple;
-	bh=1WjeL52Ou5NBeKCANEfpX7bxhAFnFSpBFQ1ir5Aps24=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qd33Af4DxEwvVdYKXjgX8F2/GvyXBK3VodjPfNonAgKyB4gb9aVMLOL13eyHZxRQuyVlKskV3+gYn2oKhtcsH6MSrXlGDnXhZwea8aGiX9vbuVUY4kRYH56gTPZ2K17Bzgd3f0yF5i+fI0vQ5USL8mT5C3r61ZqF/xNDQvkJJc8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cl3fuCcq; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BUvh9BTT; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59V80WNH832623
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 14:40:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=x6u3aryrAWIuWoxLABamr7dh
-	kWuzvuraC8U4rGQdnls=; b=cl3fuCcqncR2Tai7Am7sixA6EAvM1UqEpDf492cq
-	CV8LT/JoTCODQ9BvIi5am5bAnuQUDSA5ONGc7P+UbWfs4IBjiYDYt3BEuSGaW/ue
-	M6RE+pUc7zSemn9UI68lPt7QusZpo5aXf3vSHgSy6QU2EEmoweCgOtX+u24K7TbA
-	cSvWEoCRx32H97SeEzvXwosr4IsL3XJUd3Kd5tw4NUKRjfswjgjGBvvn3A/UogN2
-	PBd08b0BXxz9FstY98MQBzXvkeRgLXkwQVDz2N6xCJ6KSK4uyZ6FVyJ8N2P0uD9a
-	NEO0FcEnX9dWh1xtQvyuX0wk1O7/ekcXjOTu0XzjPAV6DQ==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a4ffb2h17-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 14:40:43 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4ecf8faf8bdso96072561cf.1
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 07:40:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761921643; x=1762526443; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=x6u3aryrAWIuWoxLABamr7dhkWuzvuraC8U4rGQdnls=;
-        b=BUvh9BTTxYyOVnahEKSCXsN1Y/VgdJzGBiwNjS1FSyRDcwLJztHvwtMF3YS+pprvvY
-         fyD24soGnkojZcqi8QIn5yeeBMWBNG5poo0fDmh9CvhJJTqKTWkszclSfNUTi28bwHnd
-         tVn8XaYdKajd8ipbW6D8oZ6lqAUNg1EJ8xFy5xZKPRJhZ6e8Fk4hQw/ithJt+3bAgBXY
-         on7RssZiLNuc688EYV7GiXb8m3HgsxDbmxQxpa4NpS+SJ50KmskWtGqBOt6jRlHDklW/
-         JLp2Iu7TuhvkGfrILmw95ZkLRJvW+3xBKgZuI72OdxmUUZ/q04OxBgtH2E72O2iHAyv0
-         WMRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761921643; x=1762526443;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=x6u3aryrAWIuWoxLABamr7dhkWuzvuraC8U4rGQdnls=;
-        b=HTYlkrjfDdJEIyZTrjmJpivzemzw3if3H/xgqmRmDlr8urCE4P3VcJvSCJFmvd/Ph+
-         ZGFz7tf+/vBpRaQoMHjuU+EyGlb0W719p8Ap0QIqd8ayiMwH69z5Z5VmMZ0p/jMRkFyr
-         jmN9V9lQ9zigTuzwkR5s3Fc88hBr/oRrYYpxCqstJgSOJmxT6iwNJeGplqer0+D+LM8E
-         064880oNNKEvSNHaAKGRMSIv0EqGHBqVCuzRhyaBvGqLDWi5zF/fm4ndNKkXLV7yjKKC
-         lC1Aq50Lsa+OLFMpcmtLSvEcHZkxIpGuEeOob71Kj74SeO6WgJ+mRWItba6jKcxAbTBY
-         ryKA==
-X-Forwarded-Encrypted: i=1; AJvYcCWqf64pFgHWLpdHZgpCIW4zje3pvnPfzoxjWNxbfX+ja/53YP/8UbtjX68aw4bagapevqH6gCO0rJEd@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCao+9UEKC7PiO7DtGjLDTjmdkRzHE+QJYy2gy7g8MGLoY7gs7
-	lFC8BYJ9cMDW7EVi3CeSZXzlY0pDUqRg0wDiK+VbxZX/uqWWN8sM/l2JJGDVHyL0+U+E0GiXZAC
-	RVPhhCfz1cHIKxfmKyij/Xdef+xCdCKa9ksIQcBO6xGDQ8WA0fqPeYUdYBS6UsCnN
-X-Gm-Gg: ASbGnctKTcp1wZdhNRjCPFxZQi4HjP6Y1DPLz2sUFTD6iVwyS56m1z2xC9oWe+BJ4pq
-	eQQS8bi9/MbCa/pmMygtGnTG9Dr/ZfTZwV99h7UEXSYS0Wt/5tRjngKRY76VzD4h4ratYvrt/qg
-	5YoUEagrT7B36qRKmPSRGeUw6a/Qy5GMpnMyaOkAD+fRZtImydHwAdMPA5QP/2V8mEoASh+vO9w
-	KdNlITm+aMmenvW69fhNx0nFDD8uhGb86rcNxSTHnaBfa64LoydrN6aJXa4+rKPi/9p5hdyt8g4
-	/j6GJewTk8WJRTyOFmRBH8z+uFQEBI717bweokAUADECe+3QfD/lufOhVPEMSJVoA8+f37pgPig
-	66GWdxumKvlxwm311IVq3Ecgpxx8btqWLuUpH4Sl3Hz8iou77o51HA5D6e4NWiAE0DSE1ECo76y
-	Ya5Kc+bW/Ankav
-X-Received: by 2002:a05:622a:987:b0:4e8:85e8:801a with SMTP id d75a77b69052e-4ed30f8737fmr49106391cf.40.1761921641992;
-        Fri, 31 Oct 2025 07:40:41 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE2+ettvTm/rlPxr5+QDWURz0RmtxNkaZagWptKT2OOfzSE65n8XvrjFNhfMMIWI1cGq4DZQw==
-X-Received: by 2002:a05:622a:987:b0:4e8:85e8:801a with SMTP id d75a77b69052e-4ed30f8737fmr49102621cf.40.1761921641100;
-        Fri, 31 Oct 2025 07:40:41 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5941f5c27a4sm531517e87.106.2025.10.31.07.40.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Oct 2025 07:40:40 -0700 (PDT)
-Date: Fri, 31 Oct 2025 16:40:37 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: hrishabh.rajput@oss.qualcomm.com
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v4 1/2] soc: qcom: smem: Register gunyah watchdog device
-Message-ID: <jnm4djtfiimdj52cg6cfm2kki3munecvbq4rilmqwg6be5y2tx@kxtrthcnee33>
-References: <20251031-gunyah_watchdog-v4-0-7abb1ee11315@oss.qualcomm.com>
- <20251031-gunyah_watchdog-v4-1-7abb1ee11315@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABF4734C82D;
+	Fri, 31 Oct 2025 14:42:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.194.11
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761921777; cv=fail; b=LKJr6eTXn4z+uVQ3KhoZHcSQ4zTwR1imxa/SmFkShAt8fy3Wpquw0cuDpN2P6JkXB/g1EpUNZ8Bq5hWBnq8avesNeu07KXuTxb/trC1gURlfSoAO2EgIBtZ8xJqs6L8h2G0VgFjpB9UTuU8SzT8oDnAM4mUhVprIfqZ2AqtDnXo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761921777; c=relaxed/simple;
+	bh=GbTcGtdy5nc04bMN/Ppv/y+iotyRl6+ld55b/Tci3rc=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WfsMQcNS9IGh4g2m1yqa3NA7NnMXAsYlQcXbQ5BBZlvudNne7UbM9snZJ+2f2pGEBjvvjBnQoYK8rPxEu5FqZnaYHLfHzJV6e5kY/7+fx0H+11v6TZkw4wFTLH36W/evrDh3+WjueUlYN/EsBkCL04+F5XgTzAiNUW7jrG0bMNo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IRUWm0rp; arc=fail smtp.client-ip=40.93.194.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FZtzxbdMGIMroQfSOzIWbDPhwkdQ3+mSiNWGVX0MDxaZvLiXU97WuAvD398D+HML88N60zmyCgCEj2tSZd9tpBNrtiiBvFFuRGFvON6HzMlhfGDUgNcVMH7nJAE2aSN5+1KYTnWvOXuCgaGkB6oOtegn07nJHL84YNqdJW8w0KIaLrXQ3nPCAO0rJLhyWxngEaJ9MiT9Dw/DC1gZZYLjmECKgbpOnm68YfxkegYODMUvwh6RHkGHDVN/Qvl/GQZqh2PGDsFYp4/biNSplR5PeNm5Z1bIsNj124b2EoB94J3z/MVEOMlbjiB2LWFzVbtDxxkOItu1Dm7ty6YYYoXxng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8jNgLgU+8Dhd7NVBFoNb21G3Q8hVCVLA9VFcRjhpm5M=;
+ b=CnEcSH+l9gU7tdStpAoD3LzqHs+ATLDEslgHc2V/cDKeb9kdJdLRGNHxKkw037zNqF1F0p9l1Nd+cPwuJThnCB6f6hFjyaaqrbUYC05qX+HGP7XhkLAXhuCWTVSZoy10W6oVUCGvytSuVOE96pw6g5mb0y6B3t7qKixUs2T9HSdBp6bC5cBY5/hMgu316HgSHROkRGrqtvPR5VnVQs9ztN9sc6rhh7QXNXiOxd3KoRx5Y+mfLB9sCsloiOAjEPqcIhHffcnwX0k22Yl9dorxs5BvsKSmnLBKXpyDBku5KM7splT2680II0wVuTHfl9h8lEZhiLACcCmKQEnWDY/uWg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8jNgLgU+8Dhd7NVBFoNb21G3Q8hVCVLA9VFcRjhpm5M=;
+ b=IRUWm0rpM17peMxxOktS2YirEKUZqPpuNv14V2zSzbQsgYrBa4KT0ibFxGmxiJOopFRr0Ub2etfC5YfDJ1YKaAW8ohBDaJv1qlmAmko1ao2IVRTWIPMENBfGYViln2J61v+QaliXi1xfot58K6WwmazcBsjFpznOWVfyTJMJRLQ=
+Received: from MN2PR12CA0024.namprd12.prod.outlook.com (2603:10b6:208:a8::37)
+ by CH0PR10MB5209.namprd10.prod.outlook.com (2603:10b6:610:da::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.15; Fri, 31 Oct
+ 2025 14:42:51 +0000
+Received: from BL02EPF00021F6E.namprd02.prod.outlook.com
+ (2603:10b6:208:a8:cafe::72) by MN2PR12CA0024.outlook.office365.com
+ (2603:10b6:208:a8::37) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9275.15 via Frontend Transport; Fri,
+ 31 Oct 2025 14:42:51 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ BL02EPF00021F6E.mail.protection.outlook.com (10.167.249.10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9275.10 via Frontend Transport; Fri, 31 Oct 2025 14:42:51 +0000
+Received: from DLEE211.ent.ti.com (157.170.170.113) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 31 Oct
+ 2025 09:42:45 -0500
+Received: from DLEE200.ent.ti.com (157.170.170.75) by DLEE211.ent.ti.com
+ (157.170.170.113) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 31 Oct
+ 2025 09:42:45 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE200.ent.ti.com
+ (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Fri, 31 Oct 2025 09:42:45 -0500
+Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.233.103])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59VEgf5V4024498;
+	Fri, 31 Oct 2025 09:42:42 -0500
+From: Vignesh Raghavendra <vigneshr@ti.com>
+To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, Aniket Limaye
+	<a-limaye@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>, <gehariprasath@ti.com>
+Subject: Re: [PATCH v3] arm64: dts: ti: k3-j784s4: Fix I2C pinmux pull configuration
+Date: Fri, 31 Oct 2025 20:10:53 +0530
+Message-ID: <176192142809.427883.385396429453219228.b4-ty@ti.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20251022122638.234367-1-a-limaye@ti.com>
+References: <20251022122638.234367-1-a-limaye@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251031-gunyah_watchdog-v4-1-7abb1ee11315@oss.qualcomm.com>
-X-Proofpoint-GUID: 4C7rkyIW07s9XuJaQ94YUngDNccezo54
-X-Authority-Analysis: v=2.4 cv=fpjRpV4f c=1 sm=1 tr=0 ts=6904ca6b cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=x6icFKpwvdMA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=kq2FUEKZF3Nr8Tfa17QA:9 a=CjuIK1q_8ugA:10
- a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-ORIG-GUID: 4C7rkyIW07s9XuJaQ94YUngDNccezo54
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDMxMDEzMSBTYWx0ZWRfX5bzVWVdmWVA/
- BCegOKhdE3qNo6zL0dK+K3FM3PqjfwIhXGU6sqjrlNXqpX+buPki8e2NrEt15j57UdTTDwxQ4Cy
- O5zm45zGZkH2Wma1KXgdp8eXht5/aDMWWJTMudSL88q2Sh4cWB2AL85d1/rOhdMFnijbK6d9oo2
- N08f5zO93PS1g+ZRaxB2uih8eqqrZuNtsqwELx6R+0Q9nxHJFySa85FKAztkrEl0OSQNMC2s7CV
- eLcN7BSkbGwHhTmzGZAZ7g6qTAA9E3s9RK9UgFEx3A00LSsMqGiGBs7cjDuK4Y4Xlwb7PqBoGdd
- lFoZO2+9MvcrzHp3FfDXitLcyYn7nr5mdQlk5OGgTUN4bRmQTh4z84NEbIz+Qv4ebOyzDnYZCjk
- g+mhmWKcuamC8eOhQ9/ZkrRuySr/hA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-10-31_04,2025-10-29_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 clxscore=1015 lowpriorityscore=0 adultscore=0 impostorscore=0
- bulkscore=0 priorityscore=1501 phishscore=0 malwarescore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2510310131
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF00021F6E:EE_|CH0PR10MB5209:EE_
+X-MS-Office365-Filtering-Correlation-Id: ed08deda-bb62-415d-5bf0-08de188bc4d8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|36860700013|34020700016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?V1U3ZlQ4SXBuUjVrTjZPZHV3VlplVTNYb2lUaWxwSHNGWDZQNnp2YjVKeGNT?=
+ =?utf-8?B?MnBFd3hKYStBUExWSCtKdXJSQno2dWlyNWxzTjRLbFVkb2U1ZGhvRzhVTTYr?=
+ =?utf-8?B?NFdDdFljcWJ4Y3gwZUtMeUZjT1kxMTNienVRZ3N3ajNuSU5BbUZUN3VueHFL?=
+ =?utf-8?B?WW53MHhVcFRDcmRyKzJzTjBWQ2MwK25ZZXNrQ1hVdEZtU3Vub3NoZUlFMGZZ?=
+ =?utf-8?B?NzhSTnBCb3lSa3BPd0JFUkpLZXJ0V0o1SVFCS2tUZ3YzWnJsMUFNNGdwNjVn?=
+ =?utf-8?B?OHJwcEppZ3VKK0VkUzh0ZWlaQSs3dVZLM25XTWg4SkhLQjF6ZXVJU2VzTlA1?=
+ =?utf-8?B?cjZoL2xvR2dSRlgvMExYc3NHd1ZQVWh6K01ndURPdlV6K0lLYjNsSytZTVVQ?=
+ =?utf-8?B?TUVEaEF2aTN4cWQvaXhUd1BCdlVtYjRaWVl5akNDUjRRMGhmQzhheGZtQ2tP?=
+ =?utf-8?B?REhFTlNjT2o5ZkNlazRwSXhSc2lpamlHb1FhYzVuNHdYZ2JxbEpTOEVkaW13?=
+ =?utf-8?B?RlBFYnJYWFhkaEZVc1h3UGZGNXQ0anFWVGVSdWU3bWNvRUlmd1M1SEJIbk5D?=
+ =?utf-8?B?bjZNaGpSeVIxRm5qYkFEOS9JYnJDbXNQbTljOHAzdk1oWTlMMWxBVTEvQWpr?=
+ =?utf-8?B?MXY2c01nVTVzejF6K3NnK1o0ZmxwUEljOVdlTzNPM0FuZngrekpzZlVEMmpM?=
+ =?utf-8?B?TDRVR0JxemtZVG83dmszZ0F0RlVSRGZwZmFDcWNqNTJSMVFMd0RiYURrVWpJ?=
+ =?utf-8?B?NjFSWnAwci9IQ1YyS2JyQlJvL3J3eG4vUkEza1pXS2hRZWFOUGV2MFk2WGZD?=
+ =?utf-8?B?NDhnTnpPK01yaStQRmdjczdSZ2NBZnVuMlEvYkw2cFlDV1B1clFYTWF5c1VZ?=
+ =?utf-8?B?eVFvWVBpRGc1WFFVNlZSeFg5VnFlWnJIaFlVMUZuOVg1U01KTUd4ZHhzVlZh?=
+ =?utf-8?B?TzYxeU9XeVBwSUtzdkZPeTdpNmVNdGt2dXI2amg2cjZKSUMzM2dDMUdKYlc4?=
+ =?utf-8?B?ejhweGpkNUVkSkcwdlJ2RkFxYXRWSXQzR0kyckgvNEsydDVHZUlqY2REZS90?=
+ =?utf-8?B?U3FUS2JQSmxoRlJFMmtmckFId29OOGJ4RGlyMlNVVlkxbjU0UzJGM21nakVa?=
+ =?utf-8?B?OE9vd0ZkQlpCcDZuT3k1V3FacnZnVzlwcmwrQU5LaUQ4a1gxZHFRVFlueFpU?=
+ =?utf-8?B?MWZkZ28yclA0ZTdtdlZ2R3g5cjg4VkhqMmN0djR2Tk9ua3htSFhFYnUyQVNv?=
+ =?utf-8?B?eFZsSG5LK2ZKbFl2bU4zZjV4dnBwSnE5ZktuZHpVNlhpeFFBWkhPSXBGMURo?=
+ =?utf-8?B?QW5VWkczUlgrazJlTysrSzFuRjNEdklkUDlLWkwxVm0zOHErS21GNFpWU0dY?=
+ =?utf-8?B?cjBqMGVReVp6ODdCbGFQSElOWmVPbXlmNHJjWkRCd2h1c1lCeC9YSjdjZ213?=
+ =?utf-8?B?TmN0SGFyVU9qdlpTTzFFcm5rb3JFTHpwb1BSRVZOdkdOWkxLREJoaWxsWGNQ?=
+ =?utf-8?B?cUl1Mmw4T3ZpbjBIdWVScEs5UFY5NTJyQ2pNMmhRR3hzN2plSTlTVElsdGl3?=
+ =?utf-8?B?ZGdrckQxa2pWS2tCQ1o4aUNmakVrWkpubEpPbW5HbUgwOTFvQnBQTXpnSlpx?=
+ =?utf-8?B?NmNVVUIvM1FjRFI1R0xkYStnUXFiWFltVWdsZlJMVzdGSlgxdXRobWtOSnZG?=
+ =?utf-8?B?MHV3d1ZGVGlwekRKRHFhUnRRdys0bDAxOEtJaktGejBQWThPUDFxamJBYmJs?=
+ =?utf-8?B?R3JyNUdIaVNyanNYS2l2NFIwN3k4QWtkZkE3Vm9tMGJDU01lN0RqdUJOWlFa?=
+ =?utf-8?B?QTN3a2owQTFBN2xOTklObjN2VlJ5ZXRyZDdkMXE4QzFqVERSWHp1Q0Mremgx?=
+ =?utf-8?B?ZThiRDhDTmhtMGpkMzZTVkxxdERXOGowZmEzeXdBYmVUUW9Jem9RTS9nOFhm?=
+ =?utf-8?B?clZZZUgrTHN1RFFGUEhSb001Q0F4VUgzSlJvY1M5OVU1ZENUWkZwNVBSdVFJ?=
+ =?utf-8?B?STc4cGlGUmNVUkplM3JRZ0NUUWFhejZ3Z3BjcXJQdlVMWXNmS2lRZ2l6TVdJ?=
+ =?utf-8?B?dUh0UmlhSkMvMDJ0RDJzNnppR1VBalM2bnd5MWc2NEFkSThxTFhJUjB5U3Bx?=
+ =?utf-8?Q?hOkg=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(34020700016)(376014)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2025 14:42:51.4500
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed08deda-bb62-415d-5bf0-08de188bc4d8
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL02EPF00021F6E.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR10MB5209
 
-On Fri, Oct 31, 2025 at 10:18:13AM +0000, Hrishabh Rajput via B4 Relay wrote:
-> From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-> 
-> To restrict gunyah watchdog initialization to Qualcomm platforms,
-> register the watchdog device in the SMEM driver.
-> 
-> When Gunyah is not present or Gunyah emulates MMIO-based
-> watchdog, we expect Qualcomm watchdog or ARM SBSA watchdog device to be
-> present in the devicetree. If none of these device nodes are detected,
-> we register the SMC-based Gunyah watchdog device.
-> 
-> Signed-off-by: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-> ---
->  drivers/soc/qcom/smem.c | 37 +++++++++++++++++++++++++++++++++++++
->  1 file changed, 37 insertions(+)
-> 
-> diff --git a/drivers/soc/qcom/smem.c b/drivers/soc/qcom/smem.c
-> index cf425930539e..40e4749fab02 100644
-> --- a/drivers/soc/qcom/smem.c
-> +++ b/drivers/soc/qcom/smem.c
-> @@ -1118,6 +1118,34 @@ static int qcom_smem_resolve_mem(struct qcom_smem *smem, const char *name,
->  	return 0;
->  }
->  
-> +static int register_gunyah_wdt_device(void)
-> +{
-> +	struct platform_device *gunyah_wdt_dev;
-> +	struct device_node *np;
-> +
-> +	/*
-> +	 * When Gunyah is not present or Gunyah is emulating a memory-mapped
-> +	 * watchdog, either of Qualcomm watchdog or ARM SBSA watchdog will be
-> +	 * present. Skip initialization of SMC-based Gunyah watchdog if that is
-> +	 * the case.
-> +	 */
+Hi Aniket Limaye,
 
-Should this also be limited to the platforms which had the particular
-version of Gunyah?
+On Wed, 22 Oct 2025 17:56:33 +0530, Aniket Limaye wrote:
+> The I2C pins for some of the instances on J784S4/J742S2/AM69 are
+> configured as PIN_INPUT_PULLUP while these pins are open-drain type and
+> do not support internal pull-ups [0][1][2]. The pullup configuration
+> bits in the corresponding padconfig registers are reserved and any
+> writes to them have no effect and readback checks on those bits fail.
+> 
+> Update the pinmux settings to use PIN_INPUT instead of PIN_INPUT_PULLUP
+> to reflect the correct hardware behaviour.
+> 
+> [...]
 
-> +	np = of_find_compatible_node(NULL, NULL, "qcom,kpss-wdt");
-> +	if (np) {
-> +		of_node_put(np);
-> +		return 0;
-> +	}
-> +
-> +	np = of_find_compatible_node(NULL, NULL, "arm,sbsa-gwdt");
-> +	if (np) {
-> +		of_node_put(np);
-> +		return 0;
-> +	}
-> +
-> +	gunyah_wdt_dev = platform_device_register_simple("gunyah-wdt", -1,
-> +							 NULL, 0);
-> +	return PTR_ERR_OR_ZERO(gunyah_wdt_dev);
-> +}
-> +
->  static int qcom_smem_probe(struct platform_device *pdev)
->  {
->  	struct smem_header *header;
-> @@ -1236,11 +1264,20 @@ static int qcom_smem_probe(struct platform_device *pdev)
->  	if (IS_ERR(smem->socinfo))
->  		dev_dbg(&pdev->dev, "failed to register socinfo device\n");
->  
-> +	ret = register_gunyah_wdt_device();
-> +	if (ret)
-> +		dev_dbg(&pdev->dev, "failed to register watchdog device\n");
-> +
->  	return 0;
->  }
->  
->  static void qcom_smem_remove(struct platform_device *pdev)
->  {
-> +	/*
-> +	 * Gunyah watchdog is intended to be a persistent module. Hence, the
-> +	 * watchdog device is not unregistered.
-> +	 */
-> +
->  	platform_device_unregister(__smem->socinfo);
->  
->  	hwspin_lock_free(__smem->hwlock);
-> 
-> -- 
-> 2.43.0
-> 
-> 
+I have applied the following to branch ti-next on [1].
+Thank you!
 
--- 
-With best wishes
-Dmitry
+[1/1] arm64: dts: ti: k3-j784s4: Fix I2C pinmux pull configuration
+      commit: 671c852fc53d1b6f5eccdb03c1889a484c9d1996
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
+
 
