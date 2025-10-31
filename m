@@ -1,227 +1,198 @@
-Return-Path: <devicetree+bounces-233812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2421BC25C34
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 16:08:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBC4FC25C1C
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 16:07:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 060874FBE02
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 15:01:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46AC2462B2E
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 15:03:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B0701A9F88;
-	Fri, 31 Oct 2025 14:58:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D5521B0437;
+	Fri, 31 Oct 2025 15:02:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OZJQ8oQv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TX0Ut3TQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDFC734D385;
-	Fri, 31 Oct 2025 14:58:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FAA038F9C;
+	Fri, 31 Oct 2025 15:02:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761922693; cv=none; b=tuug/BVBHHpL6BR31VaciZI+c4XAW/utjZhGVP69fHWp6PSyzVzm2I32v7t1fGSyJ+WVEHDQngW61tynVoeDHAodoJjdGZLZXUmhcUTcRnUcFrVTcNmGmj4aXhjDtXjnS15tg5UEgFN4T6NumxlM07O3FoOVzTvjxsQhPXZ+gu4=
+	t=1761922927; cv=none; b=r/4aSeQ8AL2ywvQ3YzbdQFvF4cILzd4vFZmtzVA0N2+yCmlGjApoDk1SUpqlOI9KBA01UnskH0d1gAjB8hYBnN4AldWWpRl+B0TajBEwU2l1oDlmuzvDJNyWnASImW9Ct4bFl+31Mc8M9TGfSJyNE2lM6G3oawbu96u3368Ow44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761922693; c=relaxed/simple;
-	bh=hJWzz6XCk4hYFyEUatn9zLjpnq+roHgfo0xNOZNwXeY=;
+	s=arc-20240116; t=1761922927; c=relaxed/simple;
+	bh=A6j+79ZaDyl14b4czHD2Hz3q07hKaC3/PBYZxWZEW7Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=npAY0jsergAnZqo7kf1wtVANb/AdM4GQDT2AqBh93pxYZZGxJQ/7r+sqR2PgM7DdJQ1WJzD7PqZ980WRBL0dwNydB9kMAztUjx/Ar0AHvWuFkritfFwRdUTJoEeYWgpEBferegOPT3n34Wdq54NKSQL1WcM8FmLy8xXASgIP0vE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OZJQ8oQv; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761922691; x=1793458691;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=hJWzz6XCk4hYFyEUatn9zLjpnq+roHgfo0xNOZNwXeY=;
-  b=OZJQ8oQvuCpuJZEcRQxRbjVtpIrLHcE0iUTk59ESmJZ3sz1cekNB4DN+
-   SxLw4oXbqnmirQi0SR/ynC0lWTT+60K9ESEa/DRnLyWBZy46by30Ir+sg
-   lxdXNPp7+0GPA6ilzp3IDJH5R2gO+wPacNu2y9I5VOnqAfa7QYZdQNDVh
-   pohhg/1guu+yVibtNW3BdtHhpWkWSxTPSCBjSdOHXAAdPcFUj0sHOMS/1
-   Ti/v2OrtAXxBF0XaJsZ/i54TEHJ5iW9QSlDkTYnkUQLAHe90iGMo8XpP/
-   GyOoP7WgeRf6JAmGxLN5trWMgJ/0jMFgUz7WHvSkXn21YBAS6jzRygK+2
-   A==;
-X-CSE-ConnectionGUID: Pmrbe/2pTAuO4ibac5Qp6Q==
-X-CSE-MsgGUID: ZullW2zkRdCLum5aUM4S8w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="75201585"
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; 
-   d="scan'208";a="75201585"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2025 07:58:10 -0700
-X-CSE-ConnectionGUID: wZxVrHPYTKGc0sRQ28fQ0A==
-X-CSE-MsgGUID: gEOuztlpS5u3NzlhBamfgQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; 
-   d="scan'208";a="185470386"
-Received: from mgoodin-mobl3.amr.corp.intel.com (HELO ashevche-desk.local) ([10.124.220.66])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2025 07:58:06 -0700
-Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1vEqZj-00000004Imb-3mXr;
-	Fri, 31 Oct 2025 16:57:59 +0200
-Date: Fri, 31 Oct 2025 16:57:59 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: =?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=T+BYYd3UzvH9CkuqYZWSx/kmUN+i3bBoWK+e3TXjFzPx8s54C4YSCmu5uHAKvtMtMX/dkTUAa2fgVLg+yJs02VC1zTvZG+QGldK/eBQqT/lY4HoanBJnxlXR3D7NB8t7Z++hCFi6SyO4EY4QS56dgZ0qXrqrDBVArI/7IFsxI3I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TX0Ut3TQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2191BC4CEE7;
+	Fri, 31 Oct 2025 15:02:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761922927;
+	bh=A6j+79ZaDyl14b4czHD2Hz3q07hKaC3/PBYZxWZEW7Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TX0Ut3TQ6crDZ0ZG/j7ordqRhLzS6QiXiKwdM5uYEBLnnXofofePNUeKEQFyaUG+Z
+	 wKJTnF4KNl+HDA7LQjO2y4SNWDYBFrt2GEFNTmf69bECZFtZLryn62jfhqiXNGnATu
+	 EQ2spNcNXRC4+3pSdUQhbYZtGypQKGI39vnMMLfND/yIX3M4LvGAoB0guqcXw/AO/l
+	 rUMXZBC7JVTrwlJ/Qcr0pIS10UsS/7gGascLkyC0MUz9t3wU6bVBmiO/OLfCplhuZn
+	 5cHSA7HV9zzc6j0ETSvLv4DvPZ1DiZjIPAJx97pHDvJhfFOZGqjYnYOuqa+t+btqhF
+	 H2J4KqgXgacaA==
+Date: Fri, 31 Oct 2025 15:02:01 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Jan Dabros <jsd@semihalf.com>,
-	Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-	Clark Williams <clrkwllms@kernel.org>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Dmitry Guzman <dmitry.guzman@mobileye.com>,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-rt-devel@lists.linux.dev
-Subject: Re: [PATCH v2 4/5] i2c: designware: Implement I2C_M_STOP support
-Message-ID: <aQTOd4tghCexT_0Z@smile.fi.intel.com>
-References: <20251031-i2c-dw-v2-0-90416874fcc0@bootlin.com>
- <20251031-i2c-dw-v2-4-90416874fcc0@bootlin.com>
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	semen.protsenko@linaro.org, willmcvicker@google.com,
+	kernel-team@android.com, linux-kernel@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/5] dt-bindings: nvmem: add google,gs101-otp
+Message-ID: <20251031-seltzer-briskness-6f223654c993@spud>
+References: <20251031-gs101-otp-v1-0-2a54f6c4e7b6@linaro.org>
+ <20251031-gs101-otp-v1-1-2a54f6c4e7b6@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="usvtYDXm1VC9pvha"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251031-i2c-dw-v2-4-90416874fcc0@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <20251031-gs101-otp-v1-1-2a54f6c4e7b6@linaro.org>
 
-On Fri, Oct 31, 2025 at 03:35:42PM +0100, Benoît Monin wrote:
-> Add the support of the I2C_M_STOP flag in i2c_msg by splitting
-> i2c_dw_xfer() in two: __i2c_dw_xfer_unlocked() for the core transfer logic
-> and i2c_dw_xfer() for handling the high-level transaction management.
-> 
-> In detail __i2c_dw_xfer_unlocked() starts a transaction and wait for its
-> completion, either with a STOP on the bus or an error. i2c_dw_xfer()
-> loops over the messages to search for the I2C_M_STOP flag and calls
-> __i2c_dw_xfer_unlocked() for each part of the messages up to a STOP or
-> the end of the messages array.
-> 
-> i2c_dw_xfer() holds the device lock while calling __i2c_dw_xfer_unlocked(),
-> this allows to group multiple accesses to device that support a STOP in
-> a transaction when done via i2c_dev I2C_RDWR ioctl, in a single-master
-> configuration.
-> 
-> Also, now that we have a lookup of the messages in i2c_dw_xfer() prior
-> to each transaction, we use it to make sure the messages are valid for
-> the transaction. We check that the target address does not change before
-> starting the transaction instead of aborting the transfer while it is
-> happening, as it was done in i2c_dw_xfer_msg(). The target address can
-> only be changed after an I2C_M_STOP flag, thus a STOP on the i2c bus.
-> 
-> The I2C_FUNC_PROTOCOL_MANGLING flag is added to the list of
-> functionalities supported by the adapter, except for the AMD NAVI i2c
-> controller which uses its own xfer() function and is left untouched.
 
-...
+--usvtYDXm1VC9pvha
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->  /*
-> - * Prepare controller for a transaction and call i2c_dw_xfer_msg.
-> + * Prepare controller for a transaction, start the transfer of the msgs
-> + * and wait for completion.
-> + * Caller must hold the device lock.
-
-Comment is good, but having a lockdep annotation in addition to is even better!
-
->   */
-
-...
-
-> +done:
-> +	return ret;
-
-Drop now unneeded label, return directly.
-
-...
-
-> +static int
-> +i2c_dw_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[], int num)
-> +{
-> +	struct dw_i2c_dev *dev = i2c_get_adapdata(adap);
-> +	struct i2c_msg *msg;
-> +	int ret, cnt;
+On Fri, Oct 31, 2025 at 12:45:09PM +0000, Tudor Ambarus wrote:
+> Add binding for the OTP controller found on Google GS101.
+>=20
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> ---
+>  .../bindings/nvmem/google,gs101-otp.yaml           | 68 ++++++++++++++++=
+++++++
+>  1 file changed, 68 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/nvmem/google,gs101-otp.yam=
+l b/Documentation/devicetree/bindings/nvmem/google,gs101-otp.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..2144911297beb89337b0389b3=
+0fe6609db4156ea
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/nvmem/google,gs101-otp.yaml
+> @@ -0,0 +1,68 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/nvmem/google,gs101-otp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	dev_dbg(dev->dev, "%s: msgs: %d\n", __func__, num);
-
-__func__ can be turned on or off at runtime (with Dynamic Debug help).
-
-> +	pm_runtime_get_sync(dev->dev);
-
-Can you switch to use ACQUIRE() ?
-
-> +	switch (dev->flags & MODEL_MASK) {
-> +	case MODEL_AMD_NAVI_GPU:
-> +		ret = amd_i2c_dw_xfer_quirk(adap, msgs, num);
-> +		goto done_nolock;
-> +	default:
-> +		break;
-> +	}
+> +title: Google GS101 OTP Controller
 > +
-> +	ret = i2c_dw_acquire_lock(dev);
-> +	if (ret)
-> +		goto done_nolock;
+> +maintainers:
+> +  - Tudor Ambarus <tudor.ambarus@linaro.org>
 > +
-> +	/*
-> +	 * If the I2C_M_STOP is present in some the messages,
-> +	 * we do one transaction for each part up to the STOP.
-> +	 */
-> +	for (msg = msgs; msg < msgs + num; msg += cnt) {
-> +		u16 addr = msg->addr;
+> +description: |
+> +  OTP controller drives a NVMEM memory where system or user specific data
+> +  can be stored. The OTP controller register space if of interest as well
+> +  because it contains dedicated registers where it stores the Product ID
+> +  and the Chip ID (apart other things like TMU or ASV info).
 > +
-> +		/*
-> +		 * Count the messages in a transaction, up to a STOP
-> +		 * or the end of the msgs.
-> +		 */
-> +		for (cnt = 1; ; cnt++) {
-> +			/*
-> +			 * We cannot change the target address during
-> +			 * a transaction, so make sure the address stays
-> +			 * the same.
-> +			 */
-> +			if (msg[cnt - 1].addr != addr) {
-> +				dev_err(dev->dev, "invalid target address\n");
-> +				ret = -EINVAL;
-> +				goto done;
-> +			}
-> +
-> +			if ((msg[cnt - 1].flags & I2C_M_STOP) ||
-> +			    (msg + cnt == msgs + num))
-> +				break;
-> +		}
-> +
-> +		ret = __i2c_dw_xfer_unlocked(dev, msg, cnt);
-> +		if (ret < 0)
-> +			goto done;
-> +	}
-> +
->  done:
->  	i2c_dw_release_lock(dev);
->  
->  done_nolock:
->  	pm_runtime_put_autosuspend(dev->dev);
->  
-> -	return ret;
-> +	if (ret < 0)
-> +		return ret;
-> +	return num;
->  }
+> +allOf:
+> +  - $ref: nvmem.yaml#
+> +  - $ref: nvmem-deprecated-cells.yaml
 
--- 
-With Best Regards,
-Andy Shevchenko
+Why are the deprecated cells needed here?
+|  Before introducing NVMEM layouts all NVMEM (fixed) cells were defined
+|  as direct device subnodes. That syntax was replaced by "fixed-layout"
+|  and is deprecated now. No new bindings should use it.
 
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: google,gs101-otp
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: pclk
 
+Why bother with clock-names when you only have one clock? Are you
+anticipating a variant with more?
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - clock-names
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/google,gs101.h>
+> +
+> +    otp: efuse@10000000 {
+> +        compatible =3D "google,gs101-otp";
+> +        reg =3D <0x10000000 0xf084>;
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <1>;
+> +        clocks =3D <&cmu_misc CLK_GOUT_MISC_OTP_CON_TOP_PCLK>;
+> +        clock-names =3D "pclk";
+> +
+> +        product_id: product_id@0 {
+
+Why does this node name have an underscore?
+
+Additionally, all nodes here should lose their labels.
+
+pw-bot: changes-requested
+
+> +            reg =3D <0x0 0x4>;
+> +        };
+> +
+> +        chip_id: chip-id@4 {
+> +            reg =3D <0x4 0x10>;
+> +        };
+> +    };
+>=20
+> --=20
+> 2.51.1.930.gacf6e81ea2-goog
+>=20
+
+--usvtYDXm1VC9pvha
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQTPaQAKCRB4tDGHoIJi
+0o2cAP9I0IfVYwrgz4yBIgFzfJebObNu1sDfp54Jot15zJ20yQEAy6bLbD/bixRO
+unoT5rHftBNPQEVc7PZ4SzaJ+kmQoQE=
+=2JhO
+-----END PGP SIGNATURE-----
+
+--usvtYDXm1VC9pvha--
 
