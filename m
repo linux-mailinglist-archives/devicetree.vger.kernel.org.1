@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-233635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52687C2426A
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 10:28:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D84F9C24272
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 10:28:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 45CBB4E649F
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 09:26:58 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 418344E26CC
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 09:28:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CE99331A59;
-	Fri, 31 Oct 2025 09:26:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B243D3321AE;
+	Fri, 31 Oct 2025 09:28:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ezweDsMM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UKDGrwt3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAB2E32E6B3;
-	Fri, 31 Oct 2025 09:26:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89FAE331A6C;
+	Fri, 31 Oct 2025 09:28:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761902814; cv=none; b=cJRWelUEc3IxRHc/7yyFBI3s3B6aSl19i9rIhesoaoYzceamGRstFVlOxNyWe6bXmESXFwr5Wpd0ezlwAAe+nAk6/ZG1rASlzlp4GRb7S+b+1dA/u6Bw77rMXMwoEzgKD9QQcUpuANI/a5z3wZd5wUYjV8l/jxyoZICTDpmewhY=
+	t=1761902909; cv=none; b=OvxwiG8X4HD0MxBfeiRnoung2tHnEYLm6q06fOy1Y+LS8A14fEYjko8yC9yZgXW1W5Xfnd7N29AkLeHcWWgoZObxtyd9FgNPbOD6cCq6E37Zo+7sam5CCUEeKnViPMYfofzMBk95D2pc96uzVjVjrk/2ce/PSybFZVSOC0cRMsQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761902814; c=relaxed/simple;
-	bh=CSh6DLaOHwQald5csCnyTUKYtrZ8rGuIJR8WgQ5r3vg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=LP1W5rXkWYJt8UgUS5IWVO+nvyw0fXo9ZoLQH5h5IAGHnf+Q/yiE40G9BQgHFmuQvSrx/okmEDF9DgDsQ54GubU6v37ffFRDuGyjil1N3nYdpdXK4uEOm+PyHODWeu5XByhjmqUoSt+klOOVcwsy3YmdzB8Z4ZKM/jHpopn9Ho8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ezweDsMM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3A78C4CEF1;
-	Fri, 31 Oct 2025 09:26:50 +0000 (UTC)
+	s=arc-20240116; t=1761902909; c=relaxed/simple;
+	bh=/N2PuaclPR5ogOAKmwjFWAU8b1HhKY75jZyoJwmz3H0=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=gBTWmUsGRTsXzt/4imPCn8rUusMrX804YngKZQrsCRXhI/5MRDLeeos6iwzybOw6N+fArxEt57qfnWZC+8bjx9s/rxffImEKkatMnLAAikeqV/+2gDWYRAB5NPNWDyy/uruoAESIpXE8Cp3BW/8nqA6OgxQMHkv8GxzfOK8+bZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UKDGrwt3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5375CC4CEE7;
+	Fri, 31 Oct 2025 09:28:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761902813;
-	bh=CSh6DLaOHwQald5csCnyTUKYtrZ8rGuIJR8WgQ5r3vg=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=ezweDsMM12m+/0EnwbgBhzMGl4NG35lgKnZktenVRTiwBBprJ6eRLlK6AeKGG6fKo
-	 MsxxWKT+Er8cIDzgE+gDmivvbJt0ZU4BhYz0nF+M4OckDLFStKQ636oqyC6onpg8rA
-	 erHWhn5b7Fo8gG/H/TJP5iUW3FTsZl1g4fa2zPueiU78EsGzx8amSqCn28Y+JKm12O
-	 0xYVYx23fpzuxqLWxWBH4r+JGe/Po6bDqlWrvjgTjG4f55o2kPSasKN+hyqhE42221
-	 upO8CEy210TjFNUCSmvU2pygpN9HBVezI+n6DhVviIcSnQGXvX8AVqC2HXG1u4l7oF
-	 4uL4RvK2pMqgg==
-Message-ID: <9dd9c4fb-0696-4244-bae5-65730a940b07@kernel.org>
-Date: Fri, 31 Oct 2025 10:26:48 +0100
+	s=k20201202; t=1761902909;
+	bh=/N2PuaclPR5ogOAKmwjFWAU8b1HhKY75jZyoJwmz3H0=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=UKDGrwt3D5cA/jaUGmGD2Qtv7Ffi/cvBgDgyFXEdUzk88/XCU9rhriFJj+LYJPvcE
+	 JZ3Ubuc4vS9f2Kwy4Z+KOTyUVZcLJ0dQQfBcUOmj88DznC4i/FBEQk8/2hD1M5srG2
+	 f780GUJitr1tczBVu/TqR34A/H3uMGi02/TW77z2mz/Yp/hgBf1JwD7tbwJijgYR0X
+	 1ThuxlvpUT559BPTjDFja+GJzb6Yz3kbkOcz0FGHwSFsKuItKzda8ZYePUm+OU7g/g
+	 4h7BcpljsYNCgkGoij5t78CD08phEXXz4550q7DJYP8m18OfXw6jFkGHoHG93QpfPB
+	 FjmQ3gjc5yohA==
+Message-ID: <6d7d939b-3d77-44f7-b98f-af5b93c32976@kernel.org>
+Date: Fri, 31 Oct 2025 10:28:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: i3c: snps: Add Altera Agilex5 SoC
- compatible
-To: adrianhoyin.ng@altera.com, alexandre.belloni@bootlin.com,
- Frank.Li@nxp.com, wsa+renesas@sang-engineering.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, dinguyen@kernel.org,
- linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <cover.1761901158.git.adrianhoyin.ng@altera.com>
- <c55c62f31b63a9aa821501bbf93c6b5e9fb2487b.1761901158.git.adrianhoyin.ng@altera.com>
+Subject: Re: [PATCH V1 1/3] dt-bindings: sound: add binding for CIX IPBLOQ HDA
+ controller
 From: Krzysztof Kozlowski <krzk@kernel.org>
+To: joakim.zhang@cixtech.com
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ cix-kernel-upstream@cixtech.com
+References: <20251030110928.1572703-1-joakim.zhang@cixtech.com>
+ <20251030110928.1572703-2-joakim.zhang@cixtech.com>
+ <20251031-pearl-pheasant-from-atlantis-bf4e7a@kuoka>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -104,22 +105,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <c55c62f31b63a9aa821501bbf93c6b5e9fb2487b.1761901158.git.adrianhoyin.ng@altera.com>
+In-Reply-To: <20251031-pearl-pheasant-from-atlantis-bf4e7a@kuoka>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/10/2025 10:05, adrianhoyin.ng@altera.com wrote:
-> From: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
-> 
-> Add the "altr,agilex5-dw-i3c-master" compatible string to the
-> Synopsys DesignWare I3C master binding. This allow Agilex5 to
-> use the generic DW I3C master controller while applying any
-> required platform-specific quirks.
-> 
-> Signed-off-by: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+On 31/10/2025 09:58, Krzysztof Kozlowski wrote:
+> On Thu, Oct 30, 2025 at 07:09:26PM +0800, joakim.zhang@cixtech.com wrote:>
+> Please use standard email subjects, so with the PATCH keyword in the
+> title. 'git format-patch -vX' helps here to create proper versioned patches.
+> Another useful tool is b4. Skipping the PATCH keyword makes filtering of
+> emails more difficult thus making the review process less convenient.
+That's wrong template, sorry. I wanted one about the subject prefixes,
+here it goes:
 
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ASoC: dt-bindings: add CIX ...
 
 Best regards,
 Krzysztof
