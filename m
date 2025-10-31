@@ -1,122 +1,299 @@
-Return-Path: <devicetree+bounces-233767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7338C255C5
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 14:54:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04A10C25610
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 14:58:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B68013B8B63
-	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:54:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D87B542701D
+	for <lists+devicetree@lfdr.de>; Fri, 31 Oct 2025 13:58:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD2CA3451BF;
-	Fri, 31 Oct 2025 13:54:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAF7634B418;
+	Fri, 31 Oct 2025 13:58:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="iaBfzCTi"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OVR3g0Ci"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F99B309EF4
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 13:54:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CB8F286A4;
+	Fri, 31 Oct 2025 13:58:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761918864; cv=none; b=kkf7Mkixm9NHSFBR80Q4cSA+2R6DuDzxwfX6zMh+BLLWcK3BYqf5vHME6Pt8aqrn6aGaIlTQHp2iOqMDDgBDovw1OKJVwpFJOeGXBIAk44d43E2r/4i4reKLoyp75Jo6YBT93nsyjk5DPWlzf1NH185lQ/v5SMN1WIBOsHiyfNs=
+	t=1761919114; cv=none; b=ZhvixBFIqr/s/N94JkTUDbs8F6+sxcEW0FEQvuwje3ddSi+wzMqDJeicWFwTJorM2o9q4xNOyFNtBjJ8XUTI9JC2iNybl92thInDma5+YBAGdUU1YNh/d6ItoHtDPRfoYVc1O4LAs7Akm+C7s2Drlm/bnEwU32FTZgPQjdlbd8E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761918864; c=relaxed/simple;
-	bh=asAFsQ8F4ZYJqFSR3Zv8xcgKb8/7+CLRiStvVMcPgwI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=eiuftusmcdegHUJ7LxARoVp005JGxUIWPuBCNzt5Lp6BRxqqINFH2Pv1l7FgaRYcanBXMIPsUpBUw+8Vy3cfHhJilFDICJIIE6BiFDfOgNetp5NA7p3emPdMIvNgEY2BkYxOsSBeJzhCGTjWDy2LaypNhYngAiLwSXTP7+KDptA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=iaBfzCTi; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20251031135418euoutp01c8ffd337f31d4c805b3ea036dbf30e9c~zl93aqB7W0367803678euoutp01B
-	for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 13:54:18 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20251031135418euoutp01c8ffd337f31d4c805b3ea036dbf30e9c~zl93aqB7W0367803678euoutp01B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1761918858;
-	bh=Biwe3xggY6rX66H/gYXOoATgjPhp88WrOScO7zPxMig=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=iaBfzCTizhDjc5gow7AhT58vuDx9h05kGixniiU3hamt4lFZnlBWVs7tqkz0uEFZu
-	 qMcshY4usR3ALixCwSfL7fUeYs7r6QUGJuJbNXh39vH8HNZ1RpzA1GkrKKT0U+fGMV
-	 CuLCKPuc0/8UJPC5iJCoKsSsPpmDimNKjYG5AC5o=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20251031135417eucas1p229a2f6bb12f5ebbeb4ad74c155347e1a~zl921986N0589105891eucas1p2P;
-	Fri, 31 Oct 2025 13:54:17 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20251031135416eusmtip1695a6772d241ce4f9305448af7d48726~zl91_Dyis1078110781eusmtip1f;
-	Fri, 31 Oct 2025 13:54:16 +0000 (GMT)
-Message-ID: <aff4e3de-6dde-475b-9df0-3d7d6ad5d740@samsung.com>
-Date: Fri, 31 Oct 2025 14:54:15 +0100
+	s=arc-20240116; t=1761919114; c=relaxed/simple;
+	bh=bayY/glbkyFlGSSY0jLX8k8RyrFSF/EZWDZ5KOPr+xg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kKD7PufTOA9sBggV4coi5H1bJluZd5k7l5Bz4gV+Mi/3E7qd8kh3owj67RORwyNPebtCXawmzsUJiBVCz3kKNVCsVXrotmjpHeE3BMi9NX8nOpcbexXg/00lF3JVu8xTbEqPygIWgeIy6YnHYtjZw4l/CUvj6jn6E5hRZS1Y/tc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OVR3g0Ci; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761919113; x=1793455113;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=bayY/glbkyFlGSSY0jLX8k8RyrFSF/EZWDZ5KOPr+xg=;
+  b=OVR3g0Cit2Rm3JrAGouXlGurZz0dmE7OrIY5L3xcP57jkpI42mt2AI+i
+   R4ufaICWB9SPsvqwK7i1DVDYxKvjM78tYMb7AaCRL8h2MfObU1ZxCjB1U
+   ZmxqgP6x3eUxfceDQR9b2ZD7ASTXUevw3txmSQPiNH8vexhsw4HAScVL7
+   ++AxiRm72OZdqa6GkMjSJDUtrTr5W6I7Gpy6OlWMkJSmvKejTKbQrTpsp
+   5oebppWtIbQqjcES2DJUuszUqLMJc0HAdeJufEUwCLaNum3eU4X+72eAZ
+   Osf1ZjNSJ2K2wY1lBUbq6BIMlwEIAkQK4AGV3KDRpeSv321StQ/ABN70P
+   g==;
+X-CSE-ConnectionGUID: 18Kd9dp5R+2KtmcPH6bm3g==
+X-CSE-MsgGUID: YPDW3612SouO7iN8XleB5g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11598"; a="64110923"
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; 
+   d="scan'208";a="64110923"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2025 06:58:32 -0700
+X-CSE-ConnectionGUID: 0FL1TS1dQjWf+PAOirhHgg==
+X-CSE-MsgGUID: aAVBaDI1RMyRq5JrNtEbZg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,269,1754982000"; 
+   d="scan'208";a="191387593"
+Received: from jjgreens-desk20.amr.corp.intel.com (HELO kuha.fi.intel.com) ([10.124.220.81])
+  by orviesa005.jf.intel.com with SMTP; 31 Oct 2025 06:58:16 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 31 Oct 2025 15:58:13 +0200
+Date: Fri, 31 Oct 2025 15:58:13 +0200
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Chaoyi Chen <kernel@airkyi.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Yubing Zhang <yubing.zhang@rock-chips.com>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Amit Sunil Dhamne <amitsd@google.com>,
+	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+	Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
+	Diederik de Haas <didi.debian@cknow.org>,
+	Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v8 03/10] drm/bridge: Implement generic USB Type-C DP HPD
+ bridge
+Message-ID: <aQTAdaIgjgTRSgxL@kuha.fi.intel.com>
+References: <20251029071435.88-1-kernel@airkyi.com>
+ <20251029071435.88-4-kernel@airkyi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Betterbird (Windows)
-Subject: Re: RPi 4 deferred probe timeout of V3D PM domain
-To: Mark Brown <broonie@kernel.org>
-Cc: Stefan Wahren <wahrenst@gmx.net>, Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Florian Fainelli
-	<florian.fainelli@broadcom.com>, bcm-kernel-feedback-list@broadcom.com, Ray
-	Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, Melissa Wen
-	<mwen@igalia.com>, =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>, Maxime
-	Ripard <mripard@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	kernel-dev@igalia.com, kernel-list@raspberrypi.com,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, "open
- list:GENERIC PM DOMAINS" <linux-pm@vger.kernel.org>
-Content-Language: en-US
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <3c171b6b-f8f5-4192-a3a3-da453a900316@sirena.org.uk>
-Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20251031135417eucas1p229a2f6bb12f5ebbeb4ad74c155347e1a
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20251030191426eucas1p29ce063b538b60e4a998bcd32f925267c
-X-EPHeader: CA
-X-CMS-RootMailID: 20251030191426eucas1p29ce063b538b60e4a998bcd32f925267c
-References: <ad07546f-0c2d-4bc2-b794-755b892c7328@sirena.org.uk>
-	<a016e7e1-09f7-4056-a855-6cfaa8d51962@gmx.net>
-	<10a4ef77-0e70-4ef2-b1df-535b476d256d@sirena.org.uk>
-	<ecd75fd5-3131-4d10-ae3d-b6f608d9622a@gmx.net>
-	<25e500c2-3dc1-476c-b6c1-ac4098a0501d@sirena.org.uk>
-	<d6b14388-e0ab-44f0-b4d9-78adf74c2a7f@gmx.net>
-	<d88f6420-5013-4856-99d6-da28f79bd7a5@sirena.org.uk>
-	<CGME20251030191426eucas1p29ce063b538b60e4a998bcd32f925267c@eucas1p2.samsung.com>
-	<043f1702-52fc-4a83-82f7-683a26851623@gmx.net>
-	<b02c8890-4568-4afe-8628-10b77e79bf44@samsung.com>
-	<3c171b6b-f8f5-4192-a3a3-da453a900316@sirena.org.uk>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251029071435.88-4-kernel@airkyi.com>
 
-On 31.10.2025 13:39, Mark Brown wrote:
-> On Thu, Oct 30, 2025 at 09:12:57PM +0100, Marek Szyprowski wrote:
->> On 30.10.2025 20:13, Stefan Wahren wrote:
->>> Any ideas how to solve this?
->> As I mentioned in the other thread, this is imho a configuration issue.
->> If core modules are distributed on NFS rootfs, then one should increase
->> deferred probe timeout by adding deferred_probe_timeout=60 to cmdline.
-> Like I say I just don't think we should apply timeouts that take things
-> out of commision entirely.
->
->> On the other hand drivers built into the kernel should not depend on the
->> resources provided by the drivers built as modules, so maybe it would
->> make sense to change CONFIG_CLK_RASPBERRYPI from 'm' to 'y' in
->> arch/arm64/configs/defconfig.
-> Or the GPU driver should be moved to a module to match the clock.
+Wed, Oct 29, 2025 at 03:14:28PM +0800, Chaoyi Chen kirjoitti:
+> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> 
+> Several USB-C controller drivers have already implemented the DP HPD
+> bridge function provided by aux-hpd-bridge.c, but there are still
+> some USB-C controller driver that have not yet implemented it.
+> 
+> This patch implements a generic DP HPD bridge based on aux-hpd-bridge.c,
+> so that other USB-C controller drivers don't need to implement it again.
+> 
+> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> ---
+> 
+> Changes in v8:
+> - Merge generic DP HPD bridge into one module.
+> 
+>  drivers/gpu/drm/bridge/Kconfig                |  5 +-
+>  drivers/gpu/drm/bridge/Makefile               |  8 +++-
+>  drivers/gpu/drm/bridge/aux-hpd-bridge.c       | 23 ++++++++-
+>  drivers/gpu/drm/bridge/aux-hpd-bridge.h       | 13 +++++
+>  .../gpu/drm/bridge/aux-hpd-typec-dp-bridge.c  | 47 +++++++++++++++++++
+>  5 files changed, 93 insertions(+), 3 deletions(-)
+>  create mode 100644 drivers/gpu/drm/bridge/aux-hpd-bridge.h
+>  create mode 100644 drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
+> 
+> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
+> index a250afd8d662..17257b223a28 100644
+> --- a/drivers/gpu/drm/bridge/Kconfig
+> +++ b/drivers/gpu/drm/bridge/Kconfig
+> @@ -23,13 +23,16 @@ config DRM_AUX_BRIDGE
+>  	  build bridges chain.
+>  
+>  config DRM_AUX_HPD_BRIDGE
+> -	tristate
+> +	tristate "AUX HPD bridge support"
 
-V3D already is being built as a module in ARM64's defconfig. The problem 
-is in CONFIG_BCM2835_POWER driver (defaults to 'y'), which depends on 
-resources provided by CONFIG_CLK_RASPBERRYPI (defaults to 'm'). IMHO 
-both of them should be built-in and this will solve this issue.
+Don't you now need:
 
-Best regards
+        depends on TYPEC || !TYPEC
+
+>  	depends on DRM_BRIDGE && OF
+>  	select AUXILIARY_BUS
+>  	help
+>  	  Simple bridge that terminates the bridge chain and provides HPD
+>  	  support.
+>  
+> +	  Specifically, if you want a default Type-C DisplayPort HPD bridge for
+> +	  each port of the Type-C controller, say Y here.
+> +
+>  menu "Display Interface Bridges"
+>  	depends on DRM && DRM_BRIDGE
+>  
+> diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
+> index c7dc03182e59..2998937444bc 100644
+> --- a/drivers/gpu/drm/bridge/Makefile
+> +++ b/drivers/gpu/drm/bridge/Makefile
+> @@ -1,6 +1,12 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  obj-$(CONFIG_DRM_AUX_BRIDGE) += aux-bridge.o
+> -obj-$(CONFIG_DRM_AUX_HPD_BRIDGE) += aux-hpd-bridge.o
+> +
+> +hpd-bridge-y := aux-hpd-bridge.o
+> +ifneq ($(CONFIG_TYPEC),)
+> +hpd-bridge-y += aux-hpd-typec-dp-bridge.o
+> +endif
+> +obj-$(CONFIG_DRM_AUX_HPD_BRIDGE) += hpd-bridge.o
+> +
+>  obj-$(CONFIG_DRM_CHIPONE_ICN6211) += chipone-icn6211.o
+>  obj-$(CONFIG_DRM_CHRONTEL_CH7033) += chrontel-ch7033.o
+>  obj-$(CONFIG_DRM_CROS_EC_ANX7688) += cros-ec-anx7688.o
+> diff --git a/drivers/gpu/drm/bridge/aux-hpd-bridge.c b/drivers/gpu/drm/bridge/aux-hpd-bridge.c
+> index 2e9c702c7087..11ad6dc776c7 100644
+> --- a/drivers/gpu/drm/bridge/aux-hpd-bridge.c
+> +++ b/drivers/gpu/drm/bridge/aux-hpd-bridge.c
+> @@ -12,6 +12,8 @@
+>  #include <drm/drm_bridge.h>
+>  #include <drm/bridge/aux-bridge.h>
+>  
+> +#include "aux-hpd-bridge.h"
+> +
+>  static DEFINE_IDA(drm_aux_hpd_bridge_ida);
+>  
+>  struct drm_aux_hpd_bridge_data {
+> @@ -204,7 +206,26 @@ static struct auxiliary_driver drm_aux_hpd_bridge_drv = {
+>  	.id_table = drm_aux_hpd_bridge_table,
+>  	.probe = drm_aux_hpd_bridge_probe,
+>  };
+> -module_auxiliary_driver(drm_aux_hpd_bridge_drv);
+> +
+> +static int drm_aux_hpd_bridge_mod_init(void)
+> +{
+> +	int ret;
+> +
+> +	ret = auxiliary_driver_register(&drm_aux_hpd_bridge_drv);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return drm_aux_hpd_typec_dp_bridge_init();
+> +}
+> +
+> +static void drm_aux_hpd_bridge_mod_exit(void)
+> +{
+> +	drm_aux_hpd_typec_dp_bridge_exit();
+> +	auxiliary_driver_unregister(&drm_aux_hpd_bridge_drv);
+> +}
+> +
+> +module_init(drm_aux_hpd_bridge_mod_init);
+> +module_exit(drm_aux_hpd_bridge_mod_exit);
+>  
+>  MODULE_AUTHOR("Dmitry Baryshkov <dmitry.baryshkov@linaro.org>");
+>  MODULE_DESCRIPTION("DRM HPD bridge");
+> diff --git a/drivers/gpu/drm/bridge/aux-hpd-bridge.h b/drivers/gpu/drm/bridge/aux-hpd-bridge.h
+> new file mode 100644
+> index 000000000000..69364731c2f1
+> --- /dev/null
+> +++ b/drivers/gpu/drm/bridge/aux-hpd-bridge.h
+> @@ -0,0 +1,13 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +#ifndef AUX_HPD_BRIDGE_H
+> +#define AUX_HPD_BRIDGE_H
+> +
+> +#if IS_REACHABLE(CONFIG_TYPEC)
+> +int drm_aux_hpd_typec_dp_bridge_init(void);
+> +void drm_aux_hpd_typec_dp_bridge_exit(void);
+> +#else
+> +static inline int drm_aux_hpd_typec_dp_bridge_init(void) { return 0; }
+> +static inline void drm_aux_hpd_typec_dp_bridge_exit(void) { }
+> +#endif /* IS_REACHABLE(CONFIG_TYPEC) */
+> +
+> +#endif /* AUX_HPD_BRIDGE_H */
+> diff --git a/drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c b/drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
+> new file mode 100644
+> index 000000000000..6f2a1fca0fc5
+> --- /dev/null
+> +++ b/drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
+> @@ -0,0 +1,47 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +#include <linux/of.h>
+> +#include <linux/usb/typec_altmode.h>
+> +#include <linux/usb/typec_dp.h>
+> +#include <linux/usb/typec_notify.h>
+> +
+> +#include <drm/bridge/aux-bridge.h>
+> +
+> +#include "aux-hpd-bridge.h"
+> +
+> +#if IS_REACHABLE(CONFIG_TYPEC)
+
+You don't need that. You should not use ifdefs in .c files.
+
+> +static int drm_typec_bus_event(struct notifier_block *nb,
+> +			       unsigned long action, void *data)
+> +{
+> +	struct typec_altmode *alt = (struct typec_altmode *)data;
+> +
+> +	if (action != TYPEC_ALTMODE_REGISTERED)
+> +		goto done;
+> +
+> +	if (is_typec_partner(&alt->dev) || alt->svid != USB_TYPEC_DP_SID)
+> +		goto done;
+> +
+> +	/*
+> +	 * alt->dev.parent->parent : USB-C controller device
+> +	 * alt->dev.parent         : USB-C connector device
+> +	 */
+> +	drm_dp_hpd_bridge_register(alt->dev.parent->parent,
+> +				   to_of_node(alt->dev.parent->fwnode));
+> +
+> +done:
+> +	return NOTIFY_OK;
+> +}
+> +
+> +static struct notifier_block drm_typec_event_nb = {
+> +	.notifier_call = drm_typec_bus_event,
+> +};
+> +
+> +int drm_aux_hpd_typec_dp_bridge_init(void)
+> +{
+> +	return typec_altmode_register_notify(&drm_typec_event_nb);
+> +}
+> +
+> +void drm_aux_hpd_typec_dp_bridge_exit(void)
+> +{
+> +	typec_altmode_unregister_notify(&drm_typec_event_nb);
+> +}
+> +#endif
+> -- 
+> 2.49.0
+
 -- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
-
+heikki
 
