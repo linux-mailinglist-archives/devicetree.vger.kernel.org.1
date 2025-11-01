@@ -1,203 +1,147 @@
-Return-Path: <devicetree+bounces-234015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46760C27CB7
-	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 12:29:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33AA0C27CDA
+	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 12:39:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 742CC4E6044
-	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 11:29:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FD7A3AC6AE
+	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 11:37:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F5D62F5496;
-	Sat,  1 Nov 2025 11:29:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E1A72F5A03;
+	Sat,  1 Nov 2025 11:37:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LxfJq7h6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kmWx0x2Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97C402EBDD6;
-	Sat,  1 Nov 2025 11:29:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85E1126ED21
+	for <devicetree@vger.kernel.org>; Sat,  1 Nov 2025 11:37:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761996546; cv=none; b=jji6JFLnXDIteUXi41UBqfK5H4at/hQfH90GNiZr5u0zSQ58CAF36lEyc3mR4IA1+mRpSijp5FdK5ZPL+Zg2vc7ECYNbO/K0j2S+y+SCzk6y6ofsul437zhZkH0QB/JzH4QhyPDuPb505Mhwdg5eDhkWRsabkd0dU07GjJFoASo=
+	t=1761997066; cv=none; b=D7BHQ2Q+iuS1S2TEI64BrzVZqAa/dPn4ZaeEP4ANCj/NrG26s6/uBCeIbTKuK90GfjJuNvsVAjoScjfE/Z07bgKyHKjpvLyjGxwdor5Iuqq5HsKtT1xLCJm7lSsaoeB1nVNdI6kLKbTInXX16TQJZ2X12e1WlM7H5ehphjGS6aE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761996546; c=relaxed/simple;
-	bh=Reok4oEuIAaxqAgmj0W2bIeJU4APzPDb2Uj5NGGYoJI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=luM+IBelyyYapgbICy5peGdyptB2sv4+wYndVelTiJ4J5W3ri4Z2SvBagJV6oYzfz9bE2QipC6omr7zaPKA/EvcafrX5ZtfS67r5ukDlx2dYZPFA9fiU80ffkBfHu0Jfzh6tQxkjs8i2omsxxEClxV4PJejXLaU8kv83w9vc8qs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LxfJq7h6; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761996543; x=1793532543;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Reok4oEuIAaxqAgmj0W2bIeJU4APzPDb2Uj5NGGYoJI=;
-  b=LxfJq7h6nlqEhK0aQBIt5/CjznfSKlvsMb4+IT3xkdLh97pivLLBjPyv
-   /TwHYFm8LA1fpTGhM8o9f7658Y5u8YFYUAqQYAcRTxt8fkFlQ/tGrh5kS
-   kIk3/ophOg4PZ4Skm6jNhCO8o9I6suuSmWMKwca2vKK0CnWxTpBM4txGP
-   ++kewSF7WybErWevSJdWDIddgJlgo1X7X7HlM7cIjSiFFlkGf6PxTOEn9
-   rgJ8j2or0Q4EAwOcTrEd0MdfclJFGRmm/tX8/759chtb0hGpUoW33aJbq
-   gJFxx08efNP8HtAB5GZkrHKMGlShi2HYBtPNU5PXUu9u0Ta5Kgk1cLrC+
-   w==;
-X-CSE-ConnectionGUID: YLzi93uwSBq0b/Rv/zY/8w==
-X-CSE-MsgGUID: xmVmJOCdSUK9+jZk+QZBrg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="64031509"
-X-IronPort-AV: E=Sophos;i="6.19,272,1754982000"; 
-   d="scan'208";a="64031509"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Nov 2025 04:29:03 -0700
-X-CSE-ConnectionGUID: cKgZ26MZRE2lzqT36WXJvQ==
-X-CSE-MsgGUID: rpFU1DQ1RS6UsQlYYlZchw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,272,1754982000"; 
-   d="scan'208";a="187183168"
-Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
-  by fmviesa010.fm.intel.com with ESMTP; 01 Nov 2025 04:28:57 -0700
-Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vF9mx-000OBq-01;
-	Sat, 01 Nov 2025 11:28:55 +0000
-Date: Sat, 1 Nov 2025 19:28:27 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jason-JH Lin <jason-jh.lin@mediatek.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-media@vger.kernel.org,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Nicolas Dufresne <nicolas@ndufresne.ca>,
-	Jason-JH Lin <jason-jh.lin@mediatek.com>,
-	Nancy Lin <nancy.lin@mediatek.com>,
-	Singo Chang <singo.chang@mediatek.com>,
-	Paul-PL Chen <paul-pl.chen@mediatek.com>,
-	Moudy Ho <moudy.ho@mediatek.com>,
-	Xiandong Wang <xiandong.wang@mediatek.com>,
-	Sirius Wang <sirius.wang@mediatek.com>,
-	Fei Shao <fshao@chromium.org>, Chen-yu Tsai <wenst@chromium.org>,
-	Project_Global_Chrome_Upstream_Group@mediatek.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/5] soc: mediatek: mtk-cmdq: Add
- cmdq_pkt_jump_rel_temp() for removing shift_pa
-Message-ID: <202511011919.0lkK3DY8-lkp@intel.com>
-References: <20251031160309.1654761-3-jason-jh.lin@mediatek.com>
+	s=arc-20240116; t=1761997066; c=relaxed/simple;
+	bh=7IfCe1yJZ8OATH2vDaCumIpLU4/MgZjeWWPo4JOsHeI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=omaBal2r7p7P46TpCb6rJ9Z1dirgW3OCk1RENEJl3IKcpLc7a/r6Xub8wKT4n7v762/xCF3LZ18bBMxM8jCM+oMFeusBxAanHoKxQIYL/8F1uaAToO5VcA/T8A7zknhPxtrQb6YGM0SMY2zlEKI9aPXElVk/69fYzOkVqzy4e4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kmWx0x2Q; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2953b321f99so10757665ad.1
+        for <devicetree@vger.kernel.org>; Sat, 01 Nov 2025 04:37:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761997064; x=1762601864; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=l7p4U/aotayqb+o6BTayF37konWJWlNpUHWv7lMsZ+s=;
+        b=kmWx0x2QJm2h7NYgilHXZjUnELxxao2Pn4NalMWDEtRS/GPrf6n0ogY01KiOuo6BXR
+         kTpi4XFwIWtsqmkAJuGudfkY42Ro0eFGRyq39YfFvBfMiDonqXPm5dD/Tf+rzDGT1r9m
+         L2RYAdlMcIDCAckLPN3jVjUq7EMhJ6np3YveBaoHkWfH8Cf7hdWNjpl8dlDGmB4aq4Pv
+         nwmZZNnardmgtwv5gmWH6/1uCsqnZOTw4xpFa8N/Q23wOlKPsWYjz6/DKmb3oEif/rNn
+         rQGyZ1WDY0N4EPQ6Vho6z4lV3/42e4ZY38vlUmmxjFCE1UXgXuJ322HE42vXasccKb33
+         jgSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761997064; x=1762601864;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=l7p4U/aotayqb+o6BTayF37konWJWlNpUHWv7lMsZ+s=;
+        b=NTD77Ae2AWBzGMNZrQhXLrS6LeJzbkXYh6YQvA3tv5iF+iBWCrjA5ZP6Z4fxMTnyjU
+         /U8zf6jMIn8TJ4ZPPQf+wSYMMWUUrzeKRufWa1v24m06aHy5qqlzpfwG+7BeFi/UURds
+         zesRLqAKr2GN/UYpAm03p1lWW0tmfAcmImKfbuuSYmV4Fa7RQIFS5UVQHBC7ZLeK2xoq
+         57H8puY1p8Qfl9lPExcP85xbHA9Wxyanaui9trs2Ph5heFIb26dZAEQwS8o3Pzo8a24n
+         97MAdk10GOtqZ3jXyW/ILx5uqOYpHm+S7RYpApuVybvP8RJNIm2xoLVuTtpozBs/TAPQ
+         23hw==
+X-Forwarded-Encrypted: i=1; AJvYcCUUa9ErxyRTcQKP/TXYK5QzlzMzKM0r8aIOoXagz3TEBNmPkU9IAs+P3vHUsLfZnfRB5xpdGLOkTDyI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyx5OEjXd4fsTCBsIKPhA/Wu+XAZ09ARDh+8S9yeCLGgkvw5KmY
+	wipzqAv7/EjkM7ulDbZbEvegLZ78yU/voTPrmEIBykrkGoj+Xxq17iq/
+X-Gm-Gg: ASbGnctzR+1sKSGp+IKNQs/ywtBm9mAC88wUl1B7SYHuPWKbT69mLhEf/wVbo60FGb3
+	nTEWqUHgO2kNIbBTwIeqrURmf4nM59UZMLBmXbSaCjtIGPul5N1dYrrsLSdSHoc0m4ZiA8NfK45
+	E8NOe9kRpoeEZE1M9f+kmmlKngr90olbWK38SgbpWRvCy6vAUeZDd3O6e2nHE3LJBbPF0awlA4z
+	2PaqCB1xHDLwzN7KFky5R7dcyaHd+vNCiRdG27oo+zNmrNgWwmG/n5iMbZBnMO7qktvKVdl52t5
+	in9riHZp4owZAyYefORSS8DAijf7lSmARxyQXPmc6EjOPRKAgAehSKbE1Kb3/1oaDBBE72NRaRu
+	Z0Lw0X+4pPnUWk0W7dpjihzwwjWZ7TvgSw6UTb4fmzEaH4n0+mmzwjcx3it1nWn/4N/LHEQoHCL
+	4tuiMqENFId0RGdHirru8kD7cl9L1wwYtG2gGPdd25cGS40QE0kEaB2A179r6fEo+yZ/cnXlrct
+	RVlNmhOYmi+SHgB0J0fiJgE4BkaYLZEUeAYtG7Y+w8UqNztMNm1jehxrciUpJ6GQDldr/RtV7PL
+	OV2WpnoF
+X-Google-Smtp-Source: AGHT+IElqgpdi0hmBlhoWaDzwCMRVG9l19J7bo2p6s9Q8XOq2cgtoU26ySYjwTwYUrWC/KeNqbFRWQ==
+X-Received: by 2002:a17:903:18b:b0:295:5dbe:f629 with SMTP id d9443c01a7336-2955dbef73cmr10992835ad.8.1761997063284;
+        Sat, 01 Nov 2025 04:37:43 -0700 (PDT)
+Received: from ?IPV6:2402:e280:21d3:2:61a9:cfa6:c139:b812? ([2402:e280:21d3:2:61a9:cfa6:c139:b812])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2955967f329sm16919845ad.108.2025.11.01.04.37.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 01 Nov 2025 04:37:43 -0700 (PDT)
+Message-ID: <406fbb02-5a2b-4097-a645-b97d3d74287c@gmail.com>
+Date: Sat, 1 Nov 2025 17:07:38 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251031160309.1654761-3-jason-jh.lin@mediatek.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 0/3] iio: adc: Add support for TI ADS1120 ADC
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: linux-iio@vger.kernel.org, jic23@kernel.org, dlechner@baylibre.com,
+ nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251030163411.236672-1-ajithanandhan0406@gmail.com>
+ <aQR1N__AwvPm21tm@smile.fi.intel.com>
+Content-Language: en-US
+From: Ajith Anandhan <ajithanandhan0406@gmail.com>
+In-Reply-To: <aQR1N__AwvPm21tm@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Jason-JH,
+On 10/31/25 2:07 PM, Andy Shevchenko wrote:
+> On Thu, Oct 30, 2025 at 10:04:08PM +0530, Ajith Anandhan wrote:
+>> This RFC patch series adds support for the Texas Instruments ADS1120,
+>> a precision 16-bit delta-sigma ADC with SPI interface.
+>>
+>> The driver provides:
+>> - 4 single-ended voltage input channels
+>> - Programmable gain amplifier (1 to 128)
+>> - Configurable data rates (20 to 1000 SPS)
+>> - Single-shot conversion mode
+>>
+>> I'm looking for feedback on:
+>> 1. The implementation approach for single-shot conversions
+>> 2. Any other suggestions for improvement
+>>
+>> Datasheet: https://www.ti.com/lit/gpn/ads1120
+> The cover letter missed to answer the Q: Why a new driver? Have you checked the
+> existing drivers? Do we have a similar enough one that may be extended to
+> support this chip?
+>
+Hi Andy,
 
-kernel test robot noticed the following build errors:
+Thank you for the feedback.
 
-[auto build test ERROR on linuxtv-media-pending/master]
-[also build test ERROR on media-tree/master linus/master v6.18-rc3 next-20251031]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+I evaluated the following existing driver before creating a new one:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jason-JH-Lin/soc-mediatek-Use-pkt_write-function-pointer-for-subsys-ID-compatibility/20251101-000555
-base:   https://git.linuxtv.org/media-ci/media-pending.git master
-patch link:    https://lore.kernel.org/r/20251031160309.1654761-3-jason-jh.lin%40mediatek.com
-patch subject: [PATCH 2/5] soc: mediatek: mtk-cmdq: Add cmdq_pkt_jump_rel_temp() for removing shift_pa
-config: x86_64-buildonly-randconfig-001-20251101 (https://download.01.org/0day-ci/archive/20251101/202511011919.0lkK3DY8-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251101/202511011919.0lkK3DY8-lkp@intel.com/reproduce)
+ads124s08.c - TI ADS124S08
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511011919.0lkK3DY8-lkp@intel.com/
+- This is the closest match (both are delta-sigma, SPI-based)
 
-All errors (new ones prefixed by >>):
+- However, significant differences exist:
 
-   In file included from drivers/soc/mediatek/mtk-mmsys.c:14:
-   In file included from include/linux/soc/mediatek/mtk-mmsys.h:11:
->> include/linux/soc/mediatek/mtk-cmdq.h:530:10: error: use of undeclared identifier 'EIMVAL'
-     530 |         return -EIMVAL;
-         |                 ^
-   drivers/soc/mediatek/mtk-mmsys.c:170:26: error: no member named 'pkt_write_mask' in 'struct cmdq_client_reg'
-     170 |                 ret = mmsys->cmdq_base.pkt_write_mask(cmdq_pkt,
-         |                       ~~~~~~~~~~~~~~~~ ^
-   drivers/soc/mediatek/mtk-mmsys.c:172:30: error: no member named 'pa_base' in 'struct cmdq_client_reg'
-     172 |                                                       mmsys->cmdq_base.pa_base,
-         |                                                       ~~~~~~~~~~~~~~~~ ^
-   3 errors generated.
---
-   In file included from drivers/soc/mediatek/mtk-mutex.c:12:
-   In file included from include/linux/soc/mediatek/mtk-mmsys.h:11:
->> include/linux/soc/mediatek/mtk-cmdq.h:530:10: error: use of undeclared identifier 'EIMVAL'
-     530 |         return -EIMVAL;
-         |                 ^
-   drivers/soc/mediatek/mtk-mutex.c:1002:16: error: no member named 'pkt_write' in 'struct cmdq_client_reg'
-    1002 |         mtx->cmdq_reg.pkt_write(cmdq_pkt, mtx->cmdq_reg.subsys, en_addr, en_addr, 1);
-         |         ~~~~~~~~~~~~~ ^
-   2 errors generated.
---
-   In file included from mtk-mmsys.c:14:
-   In file included from include/linux/soc/mediatek/mtk-mmsys.h:11:
->> include/linux/soc/mediatek/mtk-cmdq.h:530:10: error: use of undeclared identifier 'EIMVAL'
-     530 |         return -EIMVAL;
-         |                 ^
-   mtk-mmsys.c:170:26: error: no member named 'pkt_write_mask' in 'struct cmdq_client_reg'
-     170 |                 ret = mmsys->cmdq_base.pkt_write_mask(cmdq_pkt,
-         |                       ~~~~~~~~~~~~~~~~ ^
-   mtk-mmsys.c:172:30: error: no member named 'pa_base' in 'struct cmdq_client_reg'
-     172 |                                                       mmsys->cmdq_base.pa_base,
-         |                                                       ~~~~~~~~~~~~~~~~ ^
-   3 errors generated.
---
-   In file included from mtk-mutex.c:12:
-   In file included from include/linux/soc/mediatek/mtk-mmsys.h:11:
->> include/linux/soc/mediatek/mtk-cmdq.h:530:10: error: use of undeclared identifier 'EIMVAL'
-     530 |         return -EIMVAL;
-         |                 ^
-   mtk-mutex.c:1002:16: error: no member named 'pkt_write' in 'struct cmdq_client_reg'
-    1002 |         mtx->cmdq_reg.pkt_write(cmdq_pkt, mtx->cmdq_reg.subsys, en_addr, en_addr, 1);
-         |         ~~~~~~~~~~~~~ ^
-   2 errors generated.
+     * Different register layout (ADS124S08 has more registers)
 
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for OF_GPIO
-   Depends on [n]: GPIOLIB [=y] && OF [=n] && HAS_IOMEM [=y]
-   Selected by [y]:
-   - GPIO_TB10X [=y] && GPIOLIB [=y] && HAS_IOMEM [=y] && (ARC_PLAT_TB10X || COMPILE_TEST [=y])
-   WARNING: unmet direct dependencies detected for GPIO_SYSCON
-   Depends on [n]: GPIOLIB [=y] && HAS_IOMEM [=y] && MFD_SYSCON [=y] && OF [=n]
-   Selected by [y]:
-   - GPIO_SAMA5D2_PIOBU [=y] && GPIOLIB [=y] && HAS_IOMEM [=y] && MFD_SYSCON [=y] && OF_GPIO [=y] && (ARCH_AT91 || COMPILE_TEST [=y])
-   WARNING: unmet direct dependencies detected for I2C_K1
-   Depends on [n]: I2C [=y] && HAS_IOMEM [=y] && (ARCH_SPACEMIT || COMPILE_TEST [=y]) && OF [=n]
-   Selected by [y]:
-   - MFD_SPACEMIT_P1 [=y] && HAS_IOMEM [=y] && (ARCH_SPACEMIT || COMPILE_TEST [=y]) && I2C [=y]
+     * Different command set ADS124S08 has built-in MUX for differential 
+inputs
 
+     * Different register addressing and bit fields and conversion 
+timing and data retrieval.
 
-vim +/EIMVAL +530 include/linux/soc/mediatek/mtk-cmdq.h
+would require extensive conditional code paths that might reduce 
+maintainability for both devices. A separate, focused driver seemed cleaner.
 
-   526	
-   527	/* This wrapper has to be removed after all users migrated to jump_rel */
-   528	static inline int cmdq_pkt_jump_rel_temp(struct cmdq_pkt *pkt, s32 offset, u8 shift_pa)
-   529	{
- > 530		return -EIMVAL;
-   531	}
-   532	
+BR,
+Ajith Anandhan.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
