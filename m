@@ -1,210 +1,88 @@
-Return-Path: <devicetree+bounces-234052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98E85C28020
-	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 14:37:50 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26815C28077
+	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 15:03:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 844C23B8AF9
-	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 13:35:08 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ADFD44E8D1F
+	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 14:01:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 289CD2FFF9B;
-	Sat,  1 Nov 2025 13:33:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="E2Y4n+Ev"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45611149E17;
+	Sat,  1 Nov 2025 14:01:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 597CE2FBDF5;
-	Sat,  1 Nov 2025 13:33:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D8C1225D6;
+	Sat,  1 Nov 2025 14:01:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762003988; cv=none; b=uxbhNy55qzSH5ujCiCuAL/GquCKY2JELcYsQhgIxXJKksvsCpx7/shCxT/QR8nkigz/5JdTWhlPbCPELr79FCr1/YhSG0fnlG+vushxHhWtOWkfinTsh9vV2sg3Tc99VkSbUW7fgQ9WxduLRRT9LgV8F9RGhNNGOVxrf+KiWAPM=
+	t=1762005676; cv=none; b=sotvdxsYpDec0o3+msaIRmq1OBYpW7SC3gNl+IWy3vU6LzhHUrrk6KqlpSxLWnnf2cwcgzNZKCwmBScK/WZDYiJSHp3tJoPLcjDfPptOFv1OtW4WRTVWYCOKe86HlclZV/nNITn9WQR+ZAlKX/01y/APOjuCkBzGxVrOzPrUmdU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762003988; c=relaxed/simple;
-	bh=UijHeDMHMdBNIO9BLCrR9i8WyBLXoUJhDobFME3OXHY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=coyeVg7ID0SqbxN/O109Q4337PkruuG3tyoMG7CA566JQJDoxrlGMNSmYnJnCY8U3gC6y8vgvZjunRJqWAt/WmzEYHOfd+Uelv+SUGWYs7zWspmn2fFxAw+6HQL5jxS7pRpx6drnRfSza8lFX0N4nym+yqN9NWY53hhMo3NVNYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=E2Y4n+Ev; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1762003979;
-	bh=UijHeDMHMdBNIO9BLCrR9i8WyBLXoUJhDobFME3OXHY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=E2Y4n+EvnaE3MViZJ+XtsJMVOGjHDNaXPHmKm7axkj15Dv1CxLY1N8BjXN02rR8O0
-	 9TvvzOxKf4fnbLYiwGtq7+KCVzMMr324qhvDZC3P8vK53ZLTd/0useF9Bh6e8Zd6vB
-	 c2NXXUGlc4EwCg83rG+hSzrN3UPVRlNcY2M8G+2zaRI5mKoEOnT7A2o93LSBBDgwwt
-	 12sD3DVv7WpV7RolzzryQw1AQbd1VdYpIuf/c9iigfn8fZKxbpDCb+ti2l5lhxemt8
-	 n+YJ2TdqlN+mtwTrYmyMYs2+s2Ch4ZKIwk3V4g8pxJOMe5GCobJ2vKfhTG8x0b2RfR
-	 BuygEanXt5xVg==
-Received: from beast.luon.net (simons.connected.by.freedominter.net [45.83.240.172])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: sjoerd)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id AB5BE17E15C9;
-	Sat,  1 Nov 2025 14:32:59 +0100 (CET)
-Received: by beast.luon.net (Postfix, from userid 1000)
-	id DC29010E9D046; Sat, 01 Nov 2025 14:32:58 +0100 (CET)
-From: Sjoerd Simons <sjoerd@collabora.com>
-Date: Sat, 01 Nov 2025 14:33:00 +0100
-Subject: [PATCH v2 15/15] arm64: dts: mediatek: mt7981b-openwrt-one: Enable
- software leds
+	s=arc-20240116; t=1762005676; c=relaxed/simple;
+	bh=HmLDqZjPh71HViCKLV+TWEt6q822ASQnQS3XE4kj9bE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=EK5a7IoPDgKhdJ+dcsjsIZBecMQtoFSx4bjPzEr9uYOtQ5/5HeDV6rDguSqYY/ejRZC/e6zQQIOOeDfEmlwdcQf3KpRmR3UrWjRwSohHC85YCsfqYoLg0BVPLSrimkT2EGH+fXlpnG56KfcM677rqAWkWKCELXevle6bJvoGuRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [58.61.140.134])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 2802e7076;
+	Sat, 1 Nov 2025 22:01:07 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: [PATCH 1/1] arm64: dts: rockchip: drop reset from rk3576 i2c9 node
+Date: Sat,  1 Nov 2025 22:01:01 +0800
+Message-Id: <20251101140101.302229-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251101-openwrt-one-network-v2-15-2a162b9eea91@collabora.com>
-References: <20251101-openwrt-one-network-v2-0-2a162b9eea91@collabora.com>
-In-Reply-To: <20251101-openwrt-one-network-v2-0-2a162b9eea91@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Ryder Lee <ryder.lee@mediatek.com>, 
- Jianjun Wang <jianjun.wang@mediatek.com>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, 
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Lee Jones <lee@kernel.org>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, linux-pci@vger.kernel.org, 
- linux-phy@lists.infradead.org, netdev@vger.kernel.org, 
- Daniel Golle <daniel@makrotopia.org>, Bryan Hinton <bryan@bryanhinton.com>, 
- Sjoerd Simons <sjoerd@collabora.com>
-X-Mailer: b4 0.14.3
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9a3fb8ce2803a2kunm744b76102df25f
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZThpCVkpOGUJOSh4YSBoaH1YeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlOQ1VNSlVKT0tVSkhPWVdZFhoPEhUdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQk
+	tLWQY+
 
-The openwrt has 3 status leds at the front:
-* red: Used as failsafe led by openwrt
-* white: Used as boot led by openwrt
-* green: Used as running/upgrade led by openwrt
+The reset property is not part of the binding, so drop it.
+It is also not used by the driver, so it was likely copied
+from some vendor-kernel node.
 
-On the back each RJ45 jack has the typical amber/green leds. For the WAN
-jack this is hardware controlled by the phy, for LAN these are under
-software control and enabled by this patch.
-
-Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
+Fixes: 57b1ce903966 ("arm64: dts: rockchip: Add rk3576 SoC base DT")
+Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
 ---
-V1 -> V2:
-  - Improve commit message
-  - Re-order nodes to be alphabetical
----
- .../boot/dts/mediatek/mt7981b-openwrt-one.dts      | 57 ++++++++++++++++++++++
- arch/arm64/boot/dts/mediatek/mt7981b.dtsi          |  2 +-
- 2 files changed, 58 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts b/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
-index b13f16d7816bf..b308b7ad4945d 100644
---- a/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
-@@ -26,6 +26,50 @@ memory@40000000 {
- 		device_type = "memory";
- 	};
- 
-+	pwm-leds {
-+		compatible = "pwm-leds";
-+
-+		led-0 {
-+			color = <LED_COLOR_ID_WHITE>;
-+			default-brightness = <0>;
-+			function = LED_FUNCTION_STATUS;
-+			max-brightness = <255>;
-+			pwms = <&pwm 0 10000>;
-+		};
-+
-+		led-1 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			default-brightness = <0>;
-+			function = LED_FUNCTION_STATUS;
-+			max-brightness = <255>;
-+			pwms = <&pwm 1 10000>;
-+		};
-+	};
-+
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&pio 9 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-1 {
-+			color = <LED_COLOR_ID_AMBER>;
-+			function = LED_FUNCTION_LAN;
-+			gpios = <&pio 34 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "netdev";
-+		};
-+
-+		led-2 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_LAN;
-+			gpios = <&pio 35 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "netdev";
-+		};
-+	};
-+
- 	reg_3p3v: regulator-3p3v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-3.3V";
-@@ -111,6 +155,13 @@ mux {
- 		};
- 	};
- 
-+	pwm_pins: pwm-pins {
-+		mux {
-+			function = "pwm";
-+			groups = "pwm0_0", "pwm1_1";
-+		};
-+	};
-+
- 	spi2_flash_pins: spi2-pins {
- 		mux {
- 			function = "spi";
-@@ -147,6 +198,12 @@ conf {
- 	};
- };
- 
-+&pwm {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm_pins>;
-+	status = "okay";
-+};
-+
- &spi2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&spi2_flash_pins>;
-diff --git a/arch/arm64/boot/dts/mediatek/mt7981b.dtsi b/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-index 17dd13d4c0015..66d89495bac52 100644
---- a/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-@@ -126,7 +126,7 @@ apmixedsys: clock-controller@1001e000 {
- 			#clock-cells = <1>;
- 		};
- 
--		pwm@10048000 {
-+		pwm: pwm@10048000 {
- 			compatible = "mediatek,mt7981-pwm";
- 			reg = <0 0x10048000 0 0x1000>;
- 			clocks = <&infracfg CLK_INFRA_PWM_STA>,
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+index f0c3ab00a7f3..a86fc6b4e8c4 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+@@ -2549,8 +2549,6 @@ i2c9: i2c@2ae80000 {
+ 			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
+ 			pinctrl-names = "default";
+ 			pinctrl-0 = <&i2c9m0_xfer>;
+-			resets = <&cru SRST_I2C9>, <&cru SRST_P_I2C9>;
+-			reset-names = "i2c", "apb";
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			status = "disabled";
 -- 
-2.51.0
+2.25.1
 
 
