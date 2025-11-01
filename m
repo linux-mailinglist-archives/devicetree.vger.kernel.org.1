@@ -1,128 +1,288 @@
-Return-Path: <devicetree+bounces-234076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44EA7C283AD
-	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 18:02:12 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3536C283BF
+	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 18:07:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 65298189C1CC
-	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 17:01:37 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 29F394E2483
+	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 17:07:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F831DFE26;
-	Sat,  1 Nov 2025 17:01:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B00EC27AC57;
+	Sat,  1 Nov 2025 17:07:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JEVxwday"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MHo98+zq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B767FF50F;
-	Sat,  1 Nov 2025 17:01:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE4D7248F47
+	for <devicetree@vger.kernel.org>; Sat,  1 Nov 2025 17:07:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762016468; cv=none; b=VOXCodL1matGD/R4uwFaF5uOok+eEMZKkd+Rbr7tRDdsZqMvJQFLrG9SPYO0fa2Ok9B6d2vSnyOwmjL38TUyHqnlOE3y5EPOl6ppZu8kOGZK1jwQTU49wfYWn0D7K6LUi0ZSfrVVernQ4WXkNRB6q5UglGukY5LVU9orNZjRXWM=
+	t=1762016855; cv=none; b=TTu+Moj0J16TDXx4ydtE+gBgO/D9VEuqW80VkcC2hveocJM7kXzFrAsYguo2V3dw6sP1Uv6Ip1GdS7ZcHqSWrD+byUThFp7oLczO7z0xa4frM4HrMossj/8u6cbujyRbwprrksYKvJsTlCPpSqtYqBEkIgdY/PHVDYfLJ8JGd8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762016468; c=relaxed/simple;
-	bh=YBK3fYNnzq+1jHwjFCOYuKzbG9pghzxjXXAehS4SiVA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I/GVucYFZGTO4Gx0I3QoCxp9+tWx+Pc22SEGsXoWUsQ4AqdsxXG76VJPphIoGMJp+SbXiNf2tk/EQ9AoIlRz5KvC6ldUQUa+9KmUen20+oChFOeH6rheSDKeX4/XiIZPCrDYCMkQsPQ43m2VZ/8hYhb5Sqf8o3PG7/hckfov/aw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JEVxwday; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8C2AC4CEF1;
-	Sat,  1 Nov 2025 17:01:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762016468;
-	bh=YBK3fYNnzq+1jHwjFCOYuKzbG9pghzxjXXAehS4SiVA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JEVxwdayC0bE/lJBcnn4eMKjd+M0tHSV90UscLxPXwCnMYCdoDKINZa1zZC/DLIso
-	 BLxRYcDi51+425WWUOdvGNEuC5P1ra11Udq8wmndtgSoVOB0IJ6d5s4pYBoRrgmTZh
-	 yVFQhBqU+uSjYzP1KhTseUAMbtZZM0qS6n1BGAz3EfL/MI///iNWrLtjTjcCAsYS0N
-	 NUvbxJ1B900Kqs7rX+BfB1fEiOQ0CQv+wQorSjgBqlUnhnoGo4fPt8wS+C2q+WVPXt
-	 km601KkdxePGYdoS8na0PaQ821HLNBZCoNDzlWIk4k+HfrQzdE8qbCRqRveBVVxw66
-	 hxfdOcXG0IW0w==
-Date: Sat, 1 Nov 2025 12:04:27 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/7] arm64: dts: qcom: sc8180x: create common zap-shader
- node
-Message-ID: <3cn67vhygwbqcjsmiesgskxzindatoiuyrukmoqgueqoej5qgj@ca66omtjzsip>
-References: <20251028-dt-zap-shader-v1-0-7eccb823b986@oss.qualcomm.com>
- <20251028-dt-zap-shader-v1-3-7eccb823b986@oss.qualcomm.com>
- <c90b917e-b3bc-42fb-a127-ab47d5154d0d@oss.qualcomm.com>
- <c62a7f9d-6984-41c0-88c5-1d6c40d411dd@oss.qualcomm.com>
- <weyze7a2pqmt2klt763lbwyvpezqndm5rjnitexalru7hy3xhh@tdqx6xeqp3qu>
- <p5apfg5cbwcdmilfr3omoncvuj7z7zbj6dkex2eicjdubkyxwj@h42bzzhx4amt>
- <fuach44wl236rfm57itxmcvj376vr3m7idi4byge6mbbxcrr3h@4uzjnuefh2y5>
- <adae8998-8b64-4814-8713-2dc63380452c@oss.qualcomm.com>
+	s=arc-20240116; t=1762016855; c=relaxed/simple;
+	bh=9PKLqVSpqbJZCM4LUPMSSnMa4TBcwj8ckL4x2FdwcsU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DDNfBrnYSI/G/eu1bF59WnYrnpp5R37hHPntc+e/eitsTbs6YneJRGQYwC6ZMC6OlQHB2FpMBwjiBkVTPU6eRNbcjW2Xs2TU2U9QwrzADGClLwxNpzy2Ux5c+inW5rnGcpTzaSqP692oZByiB/fi2ieS8iJdeSK1PfB8O5f3bDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MHo98+zq; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b704db3686cso689721866b.3
+        for <devicetree@vger.kernel.org>; Sat, 01 Nov 2025 10:07:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762016852; x=1762621652; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EwqU3yflKRW5oNlu8dwjZBgSW+w2OUOQ9FQXOEjEFOk=;
+        b=MHo98+zqOSOa81bA4guxEBQ1cbvJn/YNc+pJWnhgzMbvThST2OAS+wex2X0Ueks21q
+         rkjQBx5vXEx9TqSdyAmM5GYrk/aaGvmW828nYHX4e8gb64FPH3D5k66kXZBqgOCtzSAn
+         JjYsu1+xjhJlZ0WpRnGDwdQuU6oIGXceFizXGsg2LuE8ATaOBAAv0CM+CHT4kPBhAI28
+         DXRDk7dZ4AkP+XE2SfEPib8E/W0QKzS3GE4DddKqzzP1WlUXxLLiUkmz0FNkTVtsD45T
+         EdBVE/3bC3asc8BZhM2oz8bTM8jcVouBofeUiUQmJKQga/1uS08vAGRt7RSBuHCaNGKD
+         rd8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762016852; x=1762621652;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EwqU3yflKRW5oNlu8dwjZBgSW+w2OUOQ9FQXOEjEFOk=;
+        b=Z8UPKepiU1n8X8mMkRfwWrTv7OJ9yFCR5TgzJNTtOfzOQv1NXJHCUXzEeXUqEbwZMv
+         RvixUMyxSAWsuNAGeUWRwrCYv3RBJMn4DDqZmiHvhYe/t39HJLavKH4pCVif761j8aNy
+         yjZF6i0oaS1A84oxazVwn2Z/Xf9NMmPjV7vIRlcwPaYcycx8nfLUTYsnOCYePTcwI/0i
+         jZ2oTYTyiMF+EMwzR/o6NPaDoM04RrmKTZ+Pij0baBsikHSDPJOBwkj77T3nueBNJLSJ
+         BmekK5BqhKuoe0WIc71VkC1u2fHgGDZ1MF/CGHyDuPkSUZ3ec52NgNsBXB1p2ySc15Ms
+         C6bQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVBPu2voXE8AX6ty5Yrvt0OVyvtVB0PPh/BTiDqjUI7AORsT6iKx9GfkSld8v60df+JyPd37povJBbN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9mb/2X28T5oWcAcasSyB/u5if+xK3t/CxR4EBeYD/Wev1ojLd
+	uLhAh6XVnBpcuN+JYCRlJEvyx8e0WVlcTt48gFQzNSEnURMTMBWWzJ5/GmR0BJF2xZWkykCz1CW
+	m9MsvWTudodDFT3IxNyVQ55RtUztHW5Y=
+X-Gm-Gg: ASbGncsgUGhv0OvO4+zLmgJbTZDdE8Yvh9o+6FyAIu1cFm07As7I4eWO+EbMqRE/eO8
+	tLyqiwm+3Ota1ZrfZV0uSIk2AwnLUs4Nfb05yF0O8s3VqZc0WuR+X3FeGTmRc499Xf33aVDijPR
+	+AyKc5H7v3otieY5pGfmpk/4QQdUVwRUDeruKmJmK29ljliBVwdOKAAKiwLY95QurbwHdg4290w
+	21MjKnzS5PNpdTa0epbCz4PTy6/QGv+il6fN7EHA95GdXWKGZ1R20cINXI=
+X-Google-Smtp-Source: AGHT+IGIlqSDf+EXTXyrGJ57kthTyg/wYcJhKTwOBBUkRF0PYtYHzhxvKOPRUBbMMuqTOOiN++zzRQYKu4gUy0r7nQs=
+X-Received: by 2002:a17:907:7f2a:b0:b57:2ffa:f17e with SMTP id
+ a640c23a62f3a-b7070132a9dmr778193366b.19.1762016851893; Sat, 01 Nov 2025
+ 10:07:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <adae8998-8b64-4814-8713-2dc63380452c@oss.qualcomm.com>
+References: <20250926141913.25919-1-jefflessard3@gmail.com>
+ <20250926141913.25919-5-jefflessard3@gmail.com> <aQSEWGg50VHIECoM@smile.fi.intel.com>
+ <B4CFA18F-CE12-4257-AAD0-FA9B744A1E29@gmail.com>
+In-Reply-To: <B4CFA18F-CE12-4257-AAD0-FA9B744A1E29@gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Sat, 1 Nov 2025 19:06:55 +0200
+X-Gm-Features: AWmQ_bnnewjUkrk43oqtm7eYsVsIg2AkzJTKhqnM9WyLndyacL6QFEAoC2l5gV8
+Message-ID: <CAHp75VdaPVcKhLSCOiUw+0cqNq6pkxZqVpd2Bk-q-9dNV=+kqA@mail.gmail.com>
+Subject: Re: [PATCH v5 4/7] auxdisplay: Add TM16xx 7-segment LED matrix
+ display controllers driver
+To: =?UTF-8?Q?Jean=2DFran=C3=A7ois_Lessard?= <jefflessard3@gmail.com>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, Andy Shevchenko <andy@kernel.org>, 
+	Geert Uytterhoeven <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	Paolo Sabatino <paolo.sabatino@gmail.com>, Christian Hewitt <christianshewitt@gmail.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 31, 2025 at 10:30:17AM +0100, Konrad Dybcio wrote:
-> On 10/30/25 7:45 PM, Bjorn Andersson wrote:
-> > On Thu, Oct 30, 2025 at 07:58:46PM +0200, Dmitry Baryshkov wrote:
-> >> On Thu, Oct 30, 2025 at 12:28:31PM -0500, Bjorn Andersson wrote:
-> >>> On Thu, Oct 30, 2025 at 11:59:00AM +0100, Konrad Dybcio wrote:
-> >>>> On 10/30/25 11:58 AM, Konrad Dybcio wrote:
-> >>>>> On 10/28/25 10:00 PM, Dmitry Baryshkov wrote:
-> >>>>>> In order to reduce duplication, move common GPU memory configuration
-> >>>>>> from individual board files to sc8180x.dtsi.
-> >>>>>>
-> >>>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> >>>>>> ---
-> >>>>>
-> >>>>> [...]
-> >>>>>
-> >>>>>> diff --git a/arch/arm64/boot/dts/qcom/sc8180x-primus.dts b/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
-> >>>>>> index 93de9fe918ebdadf239832db647b84ac9d5a33f6..069953dcad378448800d45e14931efe1fe1a69fc 100644
-> >>>>>> --- a/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
-> >>>>>> +++ b/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
-> >>>>>> @@ -14,6 +14,8 @@
-> >>>>>>  #include "sc8180x.dtsi"
-> >>>>>>  #include "sc8180x-pmics.dtsi"
-> >>>>>>  
-> >>>>>> +/delete-node/ &gpu_mem;
-> >>>
-> >>> I agree with your hmm, seems this line should be dropped(?)
-> >>>
-> >>> Dmitry, please confirm and I can fix it up as I'm applying the series.
-> >>
-> >> Oh, and this line is necessary, because sc8180x-primus has its own
-> >> location for the gpu_mem.
-> >>
-> > 
-> > Hmm, you're right, not sure why the memory map differs... But this looks
-> > good then.
-> 
-> The latest memory map for 8180 says:
-> 
-> GPU micro-code @ 0x98715000, 0x2000-long
-> (matching the Flex 5G)
-> 
-> Across all the revisions, Primus's range is either part of a
-> "reserved" region, or the CDSP's memory.
-> 
-> So it's either wrong or OEM-modified, with the latter being rather
-> an odd thing given it's a CRD..
-> 
+On Fri, Oct 31, 2025 at 7:17=E2=80=AFPM Jean-Fran=C3=A7ois Lessard
+<jefflessard3@gmail.com> wrote:
+> Le 31 octobre 2025 05 h 41 min 44 s HAE, Andy Shevchenko <andriy.shevchen=
+ko@intel.com> a =C3=A9crit :
+> >On Fri, Sep 26, 2025 at 10:19:05AM -0400, Jean-Fran=C3=A7ois Lessard wro=
+te:
 
-I have a faint memory of having issues placing that region, so I might
-be that I just winged it on the primus...
+...
 
-Perhaps it doesn't need to be different, if so that's a separate change.
+> >> +static inline void tm16xx_set_seg(const struct tm16xx_display *displa=
+y,
+> >> +                              const u8 hwgrid, const u8 hwseg, const =
+bool on)
+> >> +{
+> >> +    assign_bit(hwgrid * display->num_hwseg + hwseg, display->state, o=
+n);
+> >
+> >Do you need an atomic call here? Perhaps __assign_bit() would suffice,
+>
+> Keeping assign_bit(), it's required here. Two distinct concurrency scenar=
+ios
+> exist:
+> - Bitmap: Multiple LED triggers (network, timer) + userspace write to
+>   display->state concurrently -> need atomic ops
+> - Hardware: Mutex serializes different hardware operations (flush_init,
+>   flush_display, keypad polling) that can race
+> The mutex doesn't eliminate bitmap concurrency needs, they're orthogonal
+> concerns.
 
-Regards,
-Bjorn
+Okay, but the below bitmap_read() is non-atomic. And in general the
+bitmap API is not atomic.
+
+> >> +}
+
+...
+
+> >> +                            ret =3D fwnode_property_read_u32_array(ch=
+ild,
+> >> +                                                                 "seg=
+ments", segments,
+> >> +                                                                 TM16=
+XX_DIGIT_SEGMENTS * 2);
+> >
+> >> +                            if (ret < 0)
+> >> +                                    return ret;
+> >
+> >Why '< 0'? Here it's definitely not a counting call, so it should never =
+return
+> >positive in this case.
+>
+> Keeping if (ret < 0). While usage with non-NULL buffer won't return posit=
+ive
+> values, fwnode_property_read_u32_array() documentation explicitly states =
+it can
+> return count when buffer is NULL. Using < 0 is the defensive, API-complia=
+nt
+> pattern that matches the function signature.
+
+Okay, it's fine to keep this way.
+
+...
+
+> >> +                            ret =3D fwnode_property_read_u32_array(ch=
+ild, "reg", reg, 2);
+> >> +                            if (ret < 0)
+> >
+> >Ditto,.
+> >
+>
+> As per above.
+>
+> >> +                                    return ret;
+
+...
+
+> >> +    INIT_WORK(&display->flush_init, tm16xx_display_flush_init);
+> >> +    INIT_WORK(&display->flush_display, tm16xx_display_flush_data);
+> >
+> >devm-helpers.h have something for this case, I believe.
+>
+> Cannot use devm_work_autocancel(). The shutdown sequence requires specifi=
+c
+> ordering: (1) unregister LEDs to stop triggers, (2) clear display state, =
+(3)
+> flush pending work, (4) turn off display. This sequence prevents hardware
+> access races when triggers attempt to update the display during removal. =
+Manual
+> INIT_WORK with explicit flush/cancel in remove() provides this control.
+
+Do you mean that the removal order is not symmetrical to the probe one?
+At bare minimum this needs a comment in the code (as summary above) to
+explain why devm_*() are not being used.
+
+...
+
+> >> +    main->max_brightness =3D display->controller->max_brightness;
+> >> +    device_property_read_u32(dev, "max-brightness", &main->max_bright=
+ness);
+> >> +    main->max_brightness =3D umin(main->max_brightness,
+> >> +                                display->controller->max_brightness);
+> >
+> >Hmm... Why 'u' variant of macro?
+> >
+> >> +    main->brightness =3D main->max_brightness;
+> >> +    device_property_read_u32(dev, "default-brightness", &main->bright=
+ness);
+> >> +    main->brightness =3D umin(main->brightness, main->max_brightness)=
+;
+> >
+> >Ditto.
+>
+> Correct for unsigned brightness values. umin() is the appropriate macro f=
+or
+> unsigned types to avoid type conversion warnings.
+
+But are you in control of all the variable types? If so, why not align
+the types?
+
+...
+
+> >Given a comment about propagating fwnode, why do we need all this? Doesn=
+'t led
+> >core take care of these properties as well?
+>
+> Manual handling is necessary because:
+> 1. default-brightness: Not implemented in LED core
+
+Oh, indeed, I mixed this with default-state. But the side question
+here is what prevents us from implementing it? I suspect there were
+discussions in the past, but I haven;t dug the lore archive to see if
+any indeed happened.
+
+> 2. max-brightness defaulting: If DT property is absent, default to
+>    controller->max_brightness
+> 3. Ceiling enforcement: When DT property IS present, clamp to not exceed
+>    hardware limits (controller->max_brightness)
+>
+> LED core only reads max-brightness optionally, it doesn't handle defaulti=
+ng or
+> hardware ceiling enforcement.
+
+Yep, thanks for elaborating.
+
+...
+
+> >> +            ret =3D led_classdev_register_ext(dev, &led->cdev, &led_i=
+nit);
+> >
+> >Why not devm_led_*()?
+>
+> Intentional non-devm design documented in commit notes. Explicit unregist=
+ration
+> before removal immediately stops LED triggers, preventing them from acces=
+sing
+> hardware post-removal. devm_led_*() would require complex brightness call=
+back
+> state tracking to handle trigger activity during remove(). Explicit unreg=
+ister
+> is cleaner and eliminates this race.
+
+Right, so I think the summary of this needs to be commented on in the
+code (as well).
+
+...
+
+> >> +    ret =3D linedisp_attach(&display->linedisp, display->main_led.dev=
+,
+> >> +                          display->num_digits, &tm16xx_linedisp_ops);
+
+> >If we haven't yet devm for this, it can be
+> >1) introduced, OR
+> >2) wrapped to become a such (see devm_add_action_or_reset() usage).
+> >
+>
+> While devm_add_action_or_reset() could wrap linedisp_detach(), the overal=
+l
+> shutdown still requires explicit ordering across multiple subsystems (lin=
+edisp,
+> LEDs, workqueues, hardware). Using devm for just one component while manu=
+ally
+> managing others adds complexity without benefit. The current explicit app=
+roach
+> keeps all cleanup logic together in remove() for clarity.
+
+Okay, I need to have a look at this again when you send a new version,
+but I want to finish reviewing this one. Sorry it takes time.
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
