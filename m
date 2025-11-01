@@ -1,172 +1,169 @@
-Return-Path: <devicetree+bounces-233990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77035C278FD
-	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 08:20:56 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A669C27906
+	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 08:30:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 032234E215A
-	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 07:20:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4DF7D4E1F92
+	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 07:30:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 510E6296BD8;
-	Sat,  1 Nov 2025 07:20:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D21E29992B;
+	Sat,  1 Nov 2025 07:30:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b="tcezc+ZH"
+	dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b="Nnko5s8s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C86328B4E2
-	for <devicetree@vger.kernel.org>; Sat,  1 Nov 2025 07:20:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C34F21C3C11
+	for <devicetree@vger.kernel.org>; Sat,  1 Nov 2025 07:30:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761981652; cv=none; b=hJ+pQx/NlNyms4FTy8kCukys3YollCT/Q1lO50h256KsA6JHSQh2TJNnbQ25mmFH5NCVUyEeqC3HO228PmMFVZ3YPoJkguT2yQl/V50DgtO7WLJRGzhKo2EFzoV/GUScJmF4Yx8jAXlMtvZ5GAX0R2OBG0STG0nIq811PKS13rk=
+	t=1761982203; cv=none; b=GnCazZIKbZt9FmcaKGi2edkvFLtEPVcKfYhQrh0PcoVct0a9k9pSvshtCweyNKzk7H/RVg03lEbd45SWBsUqHpk/0U0U+o8gHbGRB1UbAJEWk/elnLNAw3qr+dbNMnpB4vACKMqIOcMpYeIzYmI1ZcRpm93/TEhJ87xn855Tlfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761981652; c=relaxed/simple;
-	bh=kilYbLdYIaf2hSrE+nJ6zDswVrvJpNLoQ2tFF31pBDw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IpxgYvLajGxTLQG7qOus38O04Pzs8WihgbjF+jM/sW8xExP3lhuAbtA4NahCcNuSvLeIXP8t7hwl2rdAocr4/lx/QAVZmZDCzqF93TQ8X1PMBjTIPfe4fpClc5YWppmJ0CWbQwDuP9Hvo4cvIyA79BdNGgEuhBfTxWWzNGCpT54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org; spf=none smtp.mailfrom=nigauri.org; dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b=tcezc+ZH; arc=none smtp.client-ip=209.85.218.50
+	s=arc-20240116; t=1761982203; c=relaxed/simple;
+	bh=B5SWonhqNpEs3bZ1pzeJUP+eSL2yusqAaC0Q6rL45gA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fV9/OLdRf1j+utVbYd6HrITwMT1ikywGfvSyfq9tQ45t0+4C87Xm2mGmnEElPpyt1Id/gxMe6FHHCFPkg59tfZUK8Zv+A/PKKICJ5hPw4KNlyZpKG7sC+5d1Tiu9fzdOIYEH/JkNmJ3n71GELYGlBoMcyLa9fPGjFTapc/luG3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org; spf=none smtp.mailfrom=nigauri.org; dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b=Nnko5s8s; arc=none smtp.client-ip=209.85.214.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nigauri.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-b6d402422c2so605326566b.2
-        for <devicetree@vger.kernel.org>; Sat, 01 Nov 2025 00:20:49 -0700 (PDT)
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2951a817541so23992905ad.2
+        for <devicetree@vger.kernel.org>; Sat, 01 Nov 2025 00:30:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nigauri-org.20230601.gappssmtp.com; s=20230601; t=1761981648; x=1762586448; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Rtq1UTr0UPwwqORfG0FbJYYqFuloO33lCM+eu5gqKMo=;
-        b=tcezc+ZHA89LiM85/IV21TERbkRRxR9rxUGPuPPt00F/EYILrAmHACNHopdHW3Ytiy
-         cEHETRdWUqw2bLrZnANcgvtbfe36uJJUd60tx1Sd1l+KjmopCaFglxjc0WLuWxjXbfzS
-         6RlOj16HXaTYsj+VYmaUGJTbp+KfFENW6CtZYgzqYH7Ma9GVIYJvTPfJrFWiH0zWaRUA
-         yOb2uAIR7dAYON25eDJhfOJNrf7mHpCzEqCAhKHJs4myupZ1gbmNPznfHtBducKmXHJB
-         XuxWQKKEFKE1dvoDFTb324g/Bxzd7EHFQjAuEfxVBxF+WQnjmmVqdU9guFuBFvYsxxnN
-         ZWZg==
+        d=nigauri-org.20230601.gappssmtp.com; s=20230601; t=1761982201; x=1762587001; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lKkyHQItIZ9YZXNeYIjftxth5SwFfksAxfyA3kqQauo=;
+        b=Nnko5s8snQL/n9vrNs7sZrOQuMX4S2/r4KEri7Maq9x4DP9QZVOgI4FZxbuTAk9pWr
+         TvSzI53n3DUq1zKXeEdJ/fSZIACfUOifcBU8VMx6LlSSvKMFx/5R2ndnSJiH5AfempX9
+         5PZz7rp0/hjkVQUzbslI93SBrzUV+JYmQowoL5y3A1ce8Uh45pgK+3jjOt6XWVZ4BztI
+         XJeqlR2h6mgW5DqbEP3j+vqOtjIm6urxqDOO90lLCEybm6x+ZYLpfg/5t4AzO4UKkUQn
+         HIC/zULKW/nk5LZJo14w/WKWXtat0AjgfVpmapJXsE23pFPtyF8odclgphYTj1nPFDaw
+         r5vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761981648; x=1762586448;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Rtq1UTr0UPwwqORfG0FbJYYqFuloO33lCM+eu5gqKMo=;
-        b=EMoP1BatvGgvHdxoPoC6UsVR1YNjhtfWlA9A8NjS6z5Wx8pmaogJp+Il753/4S0WlW
-         4WXRvOmOFUuKweWsx+sBa8cw574gzQs8nPNhEriI7Tlfcbdsz6ZXl4jEIqniDIDqZ8WZ
-         KESC2555pp/TzklIUqD8aq860yE62fEp2jRTs6r6gnfam5bdWhAgCPK2GMbrnqpirYPq
-         cRU6g1ZKMIA/MFJucXq3XCSrxAy4Wx/c8BzGxbV3xqHPZ/nTJIFsfHtxg54ITq2CZ4/Q
-         i24od6HrkH2IjNsa55m8FbBVtqvjSz7w2dk9hFHkES39lMAcdKq6XbCX+rJ6c7z4fkC4
-         f1Ww==
-X-Forwarded-Encrypted: i=1; AJvYcCU5wZCFHT7NBaz7UtvKyBK+OJBYrstpibIR606xnd8cxwaOWpnPjQbQTwfAK6zJG4CH95gwbHIALJOq@vger.kernel.org
-X-Gm-Message-State: AOJu0YxxjFLiyikvNskLlCJFGfSdRbQE9jPWHR7GsU/1ileaCkiDFuqy
-	1cKssbxOxmMYsjDlRiQNy3cD0pgwEMpxicsdIl/027kNs5LA4dDQM0EAFjBORDwoO3+mf0k4xHy
-	hGyZqLB1enCZYZ9d4T5msB2QhM05ZPNP3WHcencU=
-X-Gm-Gg: ASbGncsXtTSYT2VNeXYrbzKaccrIxnjVgcdy5O8aMIgCiYhkz3PMA1k+kzBfM8m4yLd
-	STszypg8s+RyFKWJpbROk1ceSMSPSlqlbkNzxXzHCcirrAriWNVBwSDaMLgFbCIunXVo4uaaFIL
-	7nsMg//H+3rB0HG9eddxNUbWuuASwxEtLh13wu5NteNC35Mb/OshLR83PWcP0cfddh/kddHeE7/
-	d+tqXXtsGdRzEEQ11zH5pY1yIQmq5PEAugaRnB3OiW3bmn6Z9qPwZNWmI2p7E9cW5s=
-X-Google-Smtp-Source: AGHT+IG5Tddyj7k9AhnVLje/7zK0LWAl7G7xkeGFkbQxk258uIYlLJR59L9wOrzUthuN7A7v9giWi00jdfqWUlBjacQ=
-X-Received: by 2002:a17:907:2d90:b0:b47:de64:df34 with SMTP id
- a640c23a62f3a-b707062c89dmr569820966b.51.1761981648222; Sat, 01 Nov 2025
- 00:20:48 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761982201; x=1762587001;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lKkyHQItIZ9YZXNeYIjftxth5SwFfksAxfyA3kqQauo=;
+        b=mOQ3J7GZcPsG/NjC7p2CNucYChTbBTVl9CuI1dT90iKD7GDRwwBo2qMY4ry9y5xf0Q
+         syNDNHyMinuTomfTgt+wGcIlgNpc4A/TNc5kez8HVwLmBRI38MxYTJZIPtkch5fudl2y
+         KXLjKG4BixnVQVgeWuwEchxtu3Edj+1uybqbVPpX8/dCLfhP3KTWvSeEQpaAuc304lM/
+         KZbvcyQi7E/sXEpcN987HCLsTm4bbaAXwRqReke6JJjQWo9t5e2xWXW2B7F8Af4+YR+r
+         0Wpk33qtvm0ah9Ia+Fiw2vaX0FlQZz8viAG6AOdjRoQiyqEhlS7yFtiB7LTKOl8l6s9b
+         uzAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWtUdKZMNVMA56DvE0byWhe7lxbniy3EcmricKwcaFyDPTyMbkN4Z3OxfcnSyPwYl2aFTMi7t5J94C4@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDvxmEKSTECj53ZGOIEcSpQWUuGMlmMuvXmAb9p+9GmJjiFtRN
+	OaGRAHyMVhOhHvN+tQd021Ac6mvpPTQAWea9f2OqOw2reXgdvGglw5AQOxYC8j2j
+X-Gm-Gg: ASbGncsaDbk/N+PuatvQBGOl5oSxKiu8Z585AYI+kJzYusC5BvKsF2cZGHRDSUHVIdT
+	MQiMBkxy+ObHs/q2s4NvxrS6Hu93xbBx+xjLso5hHzk/PmEODRk7hgqupWlhDvC5qTSGlMNxu20
+	Ip9jVdNDXjVRmFsSLIesSji8veyAQ2tvb8C8jkor5uqqSWXsCy/30Jf2zCl1nP/k4DHCxWm5n/d
+	KmceQX0NXP12GdSZokb8x981fmkEvEzdhNft7Uc018lOQF9FpChg7UvFgBmsnvbxkMD3aym9PuF
+	6ExA3yNeQNTiX8xa7jDL/68cMS960FaUSihyEvK2DSA0KTz+Z5vPHSTRfQtzXKtHwg770oD1NHf
+	vbIDXkauzfjJ+9Jryd2V2GWMLmpWBjcuw203Hx3iXTnaCSHtSqUtlv2I8pI2IepUWNsibk6QSEs
+	9SfQ4n7AXaLV8vGZysAmZFFR3XlGna2E2nDlyGtHCtuFf3AbAvfgiRUjM=
+X-Google-Smtp-Source: AGHT+IHm0rv+V8qH4mlrg7JK5mnX3c06DGfXnz734pOXC3OVejEb36UvdOBwYi8lV2QMww2XBRY5iA==
+X-Received: by 2002:a17:902:f693:b0:28d:190a:1913 with SMTP id d9443c01a7336-2951a4dfd23mr88571875ad.38.1761982200802;
+        Sat, 01 Nov 2025 00:30:00 -0700 (PDT)
+Received: from localhost (ae043235.dynamic.ppp.asahi-net.or.jp. [14.3.43.235])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-29558f51f73sm10512815ad.32.2025.11.01.00.29.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 01 Nov 2025 00:29:59 -0700 (PDT)
+From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Subject: [PATCH] arm64: dts: renesas: r9a09g057h48-kakip: Enable SPI NOR Flash
+Date: Sat,  1 Nov 2025 16:29:51 +0900
+Message-ID: <20251101072951.2681630-1-iwamatsu@nigauri.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251010-kakip_eth0-v1-1-0d8fdcbceb9a@ideasonboard.com>
- <CAMuHMdWZD1m6t8MnYTA83RV=h9G9o6M3KSZjO32rRjOpz6px+w@mail.gmail.com>
- <bcdc9a86-bda1-4646-9ccc-1dc00a710b44@ideasonboard.com> <CAMuHMdUDuuXncX4sbd6oa+8KcS8x+1Sp-ahmvyh8fRdQt1GqKA@mail.gmail.com>
- <8b984f13-0498-4cc6-a64e-e2b6b147c346@ideasonboard.com> <CABMQnV+z=8-ORRGTjxM=6iP+6+qbJa-N_C0csi8K53wpFwLp_A@mail.gmail.com>
- <CABMQnVJu-rVHSYcSU271sVeVvuHN=+h8YOAMkDXW--MWfxguuA@mail.gmail.com> <9a9b2fc0-81ca-445c-981c-104d7ed9043c@ideasonboard.com>
-In-Reply-To: <9a9b2fc0-81ca-445c-981c-104d7ed9043c@ideasonboard.com>
-From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Date: Sat, 1 Nov 2025 16:20:22 +0900
-X-Gm-Features: AWmQ_blXKl9v9g-u7dHQXbQk_jl6qulvN0hVjTOAUEA7mOWLjjpL9cvLYAqeMf4
-Message-ID: <CABMQnV+bR1bteABAWOS_tYd3LZqg190tE-=_kqzZYe95fTQttg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r9a09g057h48-kakip: Enable eth0
-To: Dan Scally <dan.scally@ideasonboard.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Dan,
+This enables W25Q256JWPIM NOR Flash connected to XSPI.
+Additionally, this adds fixed 1.8V regulator node (`reg_1p8v`) required for
+NOR Flash.
 
-2025=E5=B9=B410=E6=9C=8828=E6=97=A5(=E7=81=AB) 19:56 Dan Scally <dan.scally=
-@ideasonboard.com>:
->
-> Good morning Nobuhiro - thanks for your comments
->
-> On 26/10/2025 03:54, Nobuhiro Iwamatsu wrote:
-> > Hi all,
-> >
-> > 2025=E5=B9=B410=E6=9C=8826=E6=97=A5(=E6=97=A5) 10:06 Nobuhiro Iwamatsu =
-<iwamatsu@nigauri.org>:
-> >
-> >
-> >>>
-> >>> Indeed, I couldn't find it anywhere either so resorted to phytool.
-> >>>
-> >>>>
-> >>>> Which PHY is actually mounted on the board you have?
-> >>>> Can you inspect it visually?
-> >>>
-> >>> It says LAN8830, plus a couple of other strings.
-> >>>
-> >>
-> >> Yes, this board has a LAN9930 chip.
->
-> Sorry; is that a typo? Should that be LAN8830?
+Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+---
+ .../boot/dts/renesas/r9a09g057h48-kakip.dts   | 39 +++++++++++++++++++
+ 1 file changed, 39 insertions(+)
 
-Sorry, it is typo, LAN8830 is correct.
-
->
-> >> Since this chip's PHY_ID is 0x22165X, I believe the PHY driver needs
-> >> to be modified.
-> >
-> > I have confirmed that this IC is supported by micrel.c, not microchip.c=
-.
->
-> Excuse my ignorance; I have no experience with phys really. The driver th=
-at claims the phy is indeed
-> micrel.c, and with the phy id set to 0x00221652 it's picked up as "Microc=
-hip LAN8841 Gigabit PHY".
-> When I take a look at that the PHY_ID_LAN8841 (0x00551650) and MICREL_PHY=
-_ID_MASK (0x00fffff0) seem
-> like they're appropriate already. What needs to be modified?
->
-
-Sorry for not explaining well.
-We need to update compatible from ethernet-phy-id0022.1640 to
-ethernet-phy-id0022.1650".
-Because this chip's ID is 0055165X.
-
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts b/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
+index 37062adb1e04ab..1ad7bec7bbb72e 100644
 --- a/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
 +++ b/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
-@@ -70,7 +70,7 @@ &eth0 {
+@@ -31,6 +31,15 @@ memory@48000000 {
+ 		reg = <0x0 0x48000000 0x1 0xF8000000>;
+ 	};
+ 
++	reg_1p8v: regulator-1p8v {
++		compatible = "regulator-fixed";
++		regulator-name = "fixed-1.8V";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
+ 	reg_3p3v: regulator-3v3 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "fixed-3.3V";
+@@ -153,6 +162,18 @@ sd0-mux {
+ 			pinmux = <RZV2H_PORT_PINMUX(A, 5, 15)>; /* SD0_CD */
+ 		};
+ 	};
++
++	xspi_pins: xspi0 {
++		ctrl {
++			pins = "XSPI0_RESET0N", "XSPI0_CS0N", "XSPI0_CKP";
++			output-enable;
++		};
++
++		io {
++			pins = "XSPI0_IO0", "XSPI0_IO1", "XSPI0_IO2", "XSPI0_IO3";
++			renesas,output-impedance = <3>;
++		};
++	};
+ };
+ 
+ &qextal_clk {
+@@ -175,3 +196,21 @@ &sdhi0 {
+ 
+ 	status = "okay";
+ };
++
++&xspi {
++	pinctrl-0 = <&xspi_pins>;
++	pinctrl-names = "default";
++	assigned-clocks = <&cpg CPG_CORE R9A09G057_SPI_CLK_SPI>;
++	assigned-clock-rates = <133333334>;
++	status = "okay";
++
++	flash@0 {
++		/* W25Q256JWPIM */
++		compatible = "jedec,spi-nor";
++		reg = <0>;
++		vcc-supply = <&reg_1p8v>;
++		m25p,fast-read;
++		spi-tx-bus-width = <4>;
++		spi-rx-bus-width = <4>;
++	};
++};
+-- 
+2.51.0
 
- &mdio0 {
-        phy3: ethernet-phy@3 {
--               compatible =3D "ethernet-phy-id0022.1640",
-"ethernet-phy-ieee802.3-c22";
-+               compatible =3D "ethernet-phy-id0022.1650",
-"ethernet-phy-ieee802.3-c22";
-                reg =3D <3>;
-                rxc-skew-psec =3D <0>;
-                txc-skew-psec =3D <0>;
-
-Best regards,
-  Nobuhiro
-
-
-
-
-
---
-Nobuhiro Iwamatsu
-   iwamatsu at {nigauri.org / debian.org / kernel.org}
-   GPG ID: 32247FBB40AD1FA6
 
