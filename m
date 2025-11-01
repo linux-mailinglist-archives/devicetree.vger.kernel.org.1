@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-234060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 738E0C28191
-	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 16:44:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12D3DC28194
+	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 16:44:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EE8F74EB097
-	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 15:43:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37B67189CC76
+	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 15:44:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D73D82FABF8;
-	Sat,  1 Nov 2025 15:43:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECED92F9984;
+	Sat,  1 Nov 2025 15:43:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="ioDoXFBw"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="lA8Raf54"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED94F2F9DB0
-	for <devicetree@vger.kernel.org>; Sat,  1 Nov 2025 15:43:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6858A2FABE7
+	for <devicetree@vger.kernel.org>; Sat,  1 Nov 2025 15:43:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762011809; cv=none; b=OQ5aCwyVQUCeHtJINW9NeYQKTuKVF9zDXYVFQP8C6Posuz/HIqcWt+P2mEMykwv451bDYjgu5vNMaITl6fWCy/V1j7bcdjvSr9CJTCM0SBP2gipBojBZ3Y6pKi3JgBS6Z7k4/Lbjhqo1TlAwNJ88pzoqOVWcspT5bzVEgWCuTKY=
+	t=1762011817; cv=none; b=rTifiq+ELbJrZ6/5juFO9oLol+kO1ZSQJrc2c5Rb5yv+pF3vSnbqMj4GHJySpoJ/wDCZQ1lIIMNlY90q2FMgv/oHTmvGtpJdc0d/YflM3OoRee+wW2AAzM2bT6k9QwsfDYlRJTUh86JtIR4xLehu9cy8KPc+rpKWypAO4F9LkKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762011809; c=relaxed/simple;
-	bh=BvBD0Z9+XjSQERc0S1HJVRiFVdEPJieSXUF2h1D9pgU=;
+	s=arc-20240116; t=1762011817; c=relaxed/simple;
+	bh=/B8Y/5QX6tFLftY6wKUyS0+gWGKDmzQfDNzD5G0vJ0s=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SIDK3Uw+0fD3caw7RUHWf04iswEOW7UF9nuOcXrrTTCwDwlP3dyaqaXpcz7g4oKr+DEawufq9WwFLWGFjQQpnPXbq6FRyKf/BtNq75xb+FLSUNNFLAQTkflz53EWSaapvRmsxdHfZiKvY9CYd+kyX7LUMAhBpZJRwB4rCKmylRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=ioDoXFBw; arc=none smtp.client-ip=209.85.214.169
+	 MIME-Version; b=BibQ8XC1UOiyX3nCIyZZ15dR7ytk6wnULR9/W/fvcZ8f/nOoSg6LhXLbwQPonVetSR1VRcNdUEx05yi/EUugSJjqZ4qjDJ6Vx1B565scKlEaI3oJlyiXfiyMzAs93nRXWPAFW96Xh+wKkLle6rJ3N7/+GunkOfEoG+SwLjyrAPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=lA8Raf54; arc=none smtp.client-ip=209.85.214.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2957850c63bso1464715ad.0
-        for <devicetree@vger.kernel.org>; Sat, 01 Nov 2025 08:43:27 -0700 (PDT)
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2953ad5517dso14121265ad.0
+        for <devicetree@vger.kernel.org>; Sat, 01 Nov 2025 08:43:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1762011807; x=1762616607; darn=vger.kernel.org;
+        d=ventanamicro.com; s=google; t=1762011816; x=1762616616; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kOvY7+y3+k/BpOCCJeQtfZUneWdciA55AKvg4KUFkXw=;
-        b=ioDoXFBwA8ZOnkRIz/m1RZ1T6qHrTZBye8CD323znd8X8DdztmjfxKtECI8/4QMYZW
-         pjpdhassZDBVWEdMG5mXzXajrh9ZayncN1oY2+RrBrQjMidyXUoM+j8DI9SD4zqYCo25
-         YK9ysOzdsEgUhTPBVPJAqDVszhNCwMxhH88zHRzIAOZRiqyP228BD5vd2ehgsEXHn4Tj
-         TSpcTmO5KDK04JfROR2cee3cdHmid4PgsfTAS90acZFTMWpTE/0Qi5N5xL44Ka05J/59
-         5S5tPZKC6uKx0t78wY9oV6+h2yfD5LQmkfRnZ4xWnVb+jULllf5cQc0oWFmrSS6h7tkk
-         1fog==
+        bh=nfEP9PIU9MbWencudNocKuygkeJ/OR2b1cy84VkwN7s=;
+        b=lA8Raf541lNlrj10Km9ucFx3K0m933YJP23P/cPyGjVsDZO6nuhKp+CqGTpiYZumYt
+         zwlOWdGxopQ+DMMT3Tdvsj6jJ3pKEKkZtq8SfVn5WsXCQvWye7/xW+3YYXEly/Qb98jA
+         fKOWJgXgxh+gzQrdmNkM5DWyUE8uwFHfjxVMbhHpVyFZ78NXG3nsVBiiERC1sL8+6Fp7
+         om+CR41O2CUV+VmoH5kgQwKZ/z3XfaLdPYpW23EZCHuEyM+6IAzv8dMgQgB+lbHNooFx
+         9gLr3Bxu/tOj2CVmo0vosyea3yVw7+txMMCQiA/L7Kyyz7wAFTsErEOAIe8ch0uhL6zr
+         erJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762011807; x=1762616607;
+        d=1e100.net; s=20230601; t=1762011816; x=1762616616;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=kOvY7+y3+k/BpOCCJeQtfZUneWdciA55AKvg4KUFkXw=;
-        b=qBcTVtnbHSfBcX3PREls4qa7rNkku/QumS3D0ZRSrGaP1uPcPI2i+x8vwkgyqXH55u
-         DpWiTbFs92euCwvaRiBpmYlGpJMpqb/7lw06d4Gr7oKtDMuZe+nNlaPVLSG3qqJjOVy3
-         pweTkYV04R/vGBxY2Dg7UZh3cmkD3bAevUdAbd4dIwgtcSyMNvXT3VJVB+A7CrUaFnjX
-         YIjcFsVTmApiuXcHNno1FNoujEYRKynkmsO13J2MMs4b6/+VvnK3+TtkdihjP1ScAZ75
-         QAxj6Vou1PbKKmRSOywON9fKhk1eCZRmhkWO+MEV1MR+MJLfSjmbwxwbaqK0hMIPwNDp
-         VA9w==
-X-Forwarded-Encrypted: i=1; AJvYcCWRJTI8PPloKe/+RzAzNEl7XFiT7X14Z10EX71xZu9UTZ8f+PGrlrkfK3yHq5sN+voG9NjvHJ4ePz8t@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJvIt25iR4OdiISFB8WkwqfIWvhHHZnfPp1L8Q60udknv6QDVd
-	YyhrsAiE+gNx4YkRq7iSnRrf46H2UuZNQcYB3JO11GjQdq46ZlAB+Umh3ghFPUL2FHA=
-X-Gm-Gg: ASbGncvJuvnqTsOmutH5mxEhLM8bAp/kVWLdAq9sBQtN5pSOa16tBvZ0E0AXi30eCQr
-	Z3mq2QMIx1yB+edydyXCvva0bsCTJc9Or7CBOBctpTnIUcFhe0BNyrgd3kym1cZa4aGIYQco9mN
-	lOrjrgjMQXl1C9i+NPtm+SqmO+veFL+lCUsq5JGDRwlfjrUdgx3AN7eoWHjVJWftV7oXDDcxG7o
-	Q6Dynisrvbe5MnRc/29IGrVooSLOS+VV+2LliYcXwWoWINwKOJFl1iabLYnOqbR5GrDzpbrC5ZN
-	KJcFQYKmV1GcqKq2k1OH1om/wF6ysOlKgDYnn+1fYTNcYFVLb0noDkeu/MKBetmM3jKLng84xGE
-	4W6Hu3IMK6xlHP4KJoKIv4JTM1aC30dDDNuPeArO9Qk6dKAZ0UTjbG8I2SBuNEp0rBxyWSBnBsF
-	JWp2ZceWmNvAL7Nk4sViqmiJYiMl/NbVILVRzg/4MS/gN/L8yaOeAr
-X-Google-Smtp-Source: AGHT+IEfN3sDw4+c9kAcEeOlETsmvroTxjtc7mSSvF7SLOSV5F4wykTjDG1l/xLBcJfYOVZ8mhA2wg==
-X-Received: by 2002:a17:903:41ce:b0:295:82d0:9baa with SMTP id d9443c01a7336-29582d0a17cmr2501135ad.17.1762011806967;
-        Sat, 01 Nov 2025 08:43:26 -0700 (PDT)
+        bh=nfEP9PIU9MbWencudNocKuygkeJ/OR2b1cy84VkwN7s=;
+        b=c08Lwf3Z+sgeuvVwXrf6ETIGUIy2DMXqHafgfO1KPWZ2BxjfMSWA+Zw564lrcjHfNa
+         YNZVVPn3CKNcnB4J6ns0yDucjxor7d2KR1nAd6CRXY8B71/ebFczLMRhfQrjdfluVtRW
+         nwiIUVPYLnf1az/Dq3e2i8X92C9of+gyoJUmks4PksNr8CayNwzQf8UuagpxN8iHlFnT
+         Ujn7Rf+vrCCKKPYEKBCy7EYgyORpByuBimU+MkJKTtZ+NXxiALRxqn68pve81Aw/7zZQ
+         Bet5i1YRX0vqBY/waAlc5dcJOv32Qe27xUBNsnpK8rKVBPjMXLGWJwg3puO/3/S311rO
+         C5sg==
+X-Forwarded-Encrypted: i=1; AJvYcCWumRoicQH5kEJX4R95dotK0wzcpJob3Bp3+XJd0lznuX0THgE+04E7hK2gsoVMfjvBcY0bgMI315gC@vger.kernel.org
+X-Gm-Message-State: AOJu0YzeFC1o6/4RZLLtd5EmGqUhX1a8mQhq+4rhZeLimR/DpwKJLhch
+	Q4xpCqBC6VGpeEZs40ouMO6aRUKFQOGetsOErljUgg65fcOdkIbbe8KW2Z0cOy661a0=
+X-Gm-Gg: ASbGncuQuRcJHA9ls3YkuDkqMgiODpl2drSqe2mHSwEaH0/OEGeg046rKTpjOc654QB
+	BPBbXiXCVmCOKGZTNQskMs3m0TxbJMiI/XifL4r4XdGlqI82mNV3swsIFHyvuSjsGkVe/fYDUB5
+	qoHefinoYOFLhrFGq3FpFs0kjBu0rRx3/kl5L0TZwPY9xwFvFuR+WWqYfz0Rbz6Em2Un6p/16Jf
+	zDjrLECT1jfxY/v0A2/lCdhUswjcXnQe+S/dvR0XpEkNJj/OLvquqq8Ky5Hfdr0a2Rehzx0R7r/
+	N0L+8XRc5yELMH3TEEObdS4dNDkhFUEgOixn5kGsHYGA+U/YCcpuJA5JFLr9tF7475YRrfUzv7c
+	9A+LfdtAXaBsrjidGLapSaSvDODqV7oelS9A4hfOxmgIblbMmPTA3SqwTwF4bxM12KyvD4m+KyY
+	rYBA2Qf1ls5XUZ0piSkfMBDUHL7OTzfZEbmnNf0AkZyA==
+X-Google-Smtp-Source: AGHT+IE3shkEkgNOrmF/SQpIoxDdNl0ITxKDPFu9uZQNBFl+V+HOFkfpCYl/Xzoqo1IWNRiPw24eiA==
+X-Received: by 2002:a17:903:2285:b0:264:70e9:dcb1 with SMTP id d9443c01a7336-2951a4bf845mr83133985ad.56.1762011815528;
+        Sat, 01 Nov 2025 08:43:35 -0700 (PDT)
 Received: from localhost.localdomain ([122.171.20.36])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-295269bd2fesm59990105ad.105.2025.11.01.08.43.18
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-295269bd2fesm59990105ad.105.2025.11.01.08.43.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 01 Nov 2025 08:43:26 -0700 (PDT)
+        Sat, 01 Nov 2025 08:43:34 -0700 (PDT)
 From: Anup Patel <apatel@ventanamicro.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -99,11 +99,11 @@ Cc: Alexandre Ghiti <alex@ghiti.fr>,
 	linux-riscv@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Anup Patel <apatel@ventanamicro.com>,
-	Mayuresh Chitale <mchitale@ventanamicro.com>
-Subject: [PATCH v2 03/12] rvtrace: Add functions to create/destroy a trace component path
-Date: Sat,  1 Nov 2025 21:12:36 +0530
-Message-ID: <20251101154245.162492-4-apatel@ventanamicro.com>
+	Mayuresh Chitale <mchitale@ventanamicro.com>,
+	Anup Patel <apatel@ventanamicro.com>
+Subject: [PATCH v2 04/12] rvtrace: Add functions to start/stop tracing on a component path
+Date: Sat,  1 Nov 2025 21:12:37 +0530
+Message-ID: <20251101154245.162492-5-apatel@ventanamicro.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251101154245.162492-1-apatel@ventanamicro.com>
 References: <20251101154245.162492-1-apatel@ventanamicro.com>
@@ -115,342 +115,103 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Trace needs to be configured on a chain of trace components which are
-connected to each other. These chain of components is also referred
-to as trace component path. Add functions to create/destroy a trace
-component path which will be later used by RISC-V trace perf support.
+From: Mayuresh Chitale <mchitale@ventanamicro.com>
 
-Co-developed-by: Mayuresh Chitale <mchitale@ventanamicro.com>
-Signed-off-by: Mayuresh Chitale <mchitale@ventanamicro.com>
+The perf driver framework needs to be able to start / stop all components
+in a trace component path during its operation. Add rvtrace_path_start()
+and rvtrace_path_stop() functions for this purpose.
+
+Co-developed-by: Anup Patel <apatel@ventanamicro.com>
 Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+Signed-off-by: Mayuresh Chitale <mchitale@ventanamicro.com>
 ---
- drivers/hwtracing/rvtrace/rvtrace-core.c | 223 +++++++++++++++++++++++
- include/linux/rvtrace.h                  |  43 ++++-
- 2 files changed, 264 insertions(+), 2 deletions(-)
+ drivers/hwtracing/rvtrace/rvtrace-core.c | 44 ++++++++++++++++++++++++
+ include/linux/rvtrace.h                  |  6 ++++
+ 2 files changed, 50 insertions(+)
 
 diff --git a/drivers/hwtracing/rvtrace/rvtrace-core.c b/drivers/hwtracing/rvtrace/rvtrace-core.c
-index 32fda1647b39..7006a4469d62 100644
+index 7006a4469d62..35bd77d6880a 100644
 --- a/drivers/hwtracing/rvtrace/rvtrace-core.c
 +++ b/drivers/hwtracing/rvtrace/rvtrace-core.c
-@@ -211,6 +211,53 @@ int rvtrace_disable_component(struct rvtrace_component *comp)
+@@ -631,6 +631,50 @@ static void rvtrace_release_path_nodes(struct rvtrace_path *path)
+ 	}
  }
- EXPORT_SYMBOL_GPL(rvtrace_disable_component);
  
-+static int __rvtrace_walk_output_components(struct rvtrace_component *comp,
-+					    bool *stop, void *priv,
-+					    int (*fn)(struct rvtrace_component *comp, bool *stop,
-+						      struct rvtrace_connection *stop_conn,
-+						      void *priv))
++int rvtrace_path_start(struct rvtrace_path *path)
 +{
-+	struct rvtrace_connection *conn, *stop_conn = NULL;
-+	struct rvtrace_platform_data *pdata = comp->pdata;
-+	int i, ret;
-+
-+	for (i = 0; i < pdata->nr_outconns; i++) {
-+		conn = pdata->outconns[i];
-+		ret = __rvtrace_walk_output_components(conn->dest_comp, stop, priv, fn);
-+		if (ret)
-+			return ret;
-+		if (*stop) {
-+			stop_conn = conn;
-+			break;
-+		}
-+	}
-+
-+	ret = fn(comp, stop, stop_conn, priv);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+int rvtrace_walk_output_components(struct rvtrace_component *comp, void *priv,
-+				   int (*fn)(struct rvtrace_component *comp, bool *stop,
-+					     struct rvtrace_connection *stop_conn,
-+					     void *priv))
-+{
-+	bool stop = false;
++	const struct rvtrace_driver *rtdrv;
++	struct rvtrace_component *comp;
++	struct rvtrace_path_node *node;
 +	int ret;
 +
-+	if (!comp || !fn)
-+		return -EINVAL;
-+
-+	mutex_lock(&rvtrace_mutex);
-+	ret = __rvtrace_walk_output_components(comp, &stop, priv, fn);
-+	mutex_unlock(&rvtrace_mutex);
-+
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(rvtrace_walk_output_components);
-+
- struct rvtrace_component *rvtrace_cpu_source(unsigned int cpu)
- {
- 	if (!cpu_present(cpu))
-@@ -463,6 +510,182 @@ void rvtrace_unregister_component(struct rvtrace_component *comp)
- }
- EXPORT_SYMBOL_GPL(rvtrace_unregister_component);
- 
-+struct rvtrace_path_node {
-+	struct list_head		head;
-+	struct rvtrace_component	*comp;
-+	struct rvtrace_connection	*conn;
-+};
-+
-+struct rvtrace_component *rvtrace_path_source(struct rvtrace_path *path)
-+{
-+	struct rvtrace_path_node *node;
-+
-+	node = list_first_entry(&path->comp_list, struct rvtrace_path_node, head);
-+	return node->comp;
-+}
-+EXPORT_SYMBOL_GPL(rvtrace_path_source);
-+
-+struct rvtrace_component *rvtrace_path_sink(struct rvtrace_path *path)
-+{
-+	struct rvtrace_path_node *node;
-+
-+	node = list_last_entry(&path->comp_list, struct rvtrace_path_node, head);
-+	return node->comp;
-+}
-+EXPORT_SYMBOL_GPL(rvtrace_path_sink);
-+
-+static int rvtrace_assign_trace_id(struct rvtrace_path *path)
-+{
-+	const struct rvtrace_driver *rtdrv;
-+	struct rvtrace_component *comp;
-+	struct rvtrace_path_node *node;
-+	int trace_id;
-+
 +	list_for_each_entry(node, &path->comp_list, head) {
 +		comp = node->comp;
 +		rtdrv = to_rvtrace_driver(comp->dev.driver);
-+
-+		if (!rtdrv->get_trace_id)
++		if (!rtdrv->start)
 +			continue;
 +
-+		trace_id = rtdrv->get_trace_id(comp, path->mode);
-+		if (trace_id > 0) {
-+			path->trace_id = trace_id;
-+			return 0;
-+		} else if (trace_id < 0) {
-+			return trace_id;
-+		}
++		ret = rtdrv->start(comp);
++		if (ret)
++			return ret;
 +	}
 +
 +	return 0;
 +}
++EXPORT_SYMBOL_GPL(rvtrace_path_start);
 +
-+static void rvtrace_unassign_trace_id(struct rvtrace_path *path)
++int rvtrace_path_stop(struct rvtrace_path *path)
 +{
 +	const struct rvtrace_driver *rtdrv;
 +	struct rvtrace_component *comp;
 +	struct rvtrace_path_node *node;
++	int ret;
 +
 +	list_for_each_entry(node, &path->comp_list, head) {
 +		comp = node->comp;
 +		rtdrv = to_rvtrace_driver(comp->dev.driver);
-+
-+		if (!rtdrv->put_trace_id)
++		if (!rtdrv->stop)
 +			continue;
 +
-+		rtdrv->put_trace_id(comp, path->mode, path->trace_id);
-+	}
-+}
-+
-+static bool rvtrace_path_ready(struct rvtrace_path *path)
-+{
-+	struct rvtrace_path_node *node;
-+
-+	list_for_each_entry(node, &path->comp_list, head) {
-+		if (!node->comp->ready)
-+			return false;
-+	}
-+
-+	return true;
-+}
-+
-+struct build_path_walk_priv {
-+	struct rvtrace_path		*path;
-+	struct rvtrace_component	*sink;
-+};
-+
-+static int build_path_walk_fn(struct rvtrace_component *comp, bool *stop,
-+			      struct rvtrace_connection *stop_conn,
-+			      void *priv)
-+{
-+	struct build_path_walk_priv *ppriv = priv;
-+	struct rvtrace_path *path = ppriv->path;
-+	struct rvtrace_path_node *node;
-+
-+	if ((!ppriv->sink && rvtrace_is_sink(comp->pdata)) ||
-+	    (ppriv->sink && ppriv->sink == comp))
-+		*stop = true;
-+
-+	if (*stop) {
-+		node = kzalloc(sizeof(*node), GFP_KERNEL);
-+		if (!path)
-+			return -ENOMEM;
-+		INIT_LIST_HEAD(&node->head);
-+		rvtrace_get_component(comp);
-+		node->comp = comp;
-+		node->conn = stop_conn;
-+		list_add(&node->head, &path->comp_list);
++		ret = rtdrv->stop(comp);
++		if (ret)
++			return ret;
 +	}
 +
 +	return 0;
 +}
++EXPORT_SYMBOL_GPL(rvtrace_path_stop);
 +
-+static void rvtrace_release_path_nodes(struct rvtrace_path *path)
-+{
-+	struct rvtrace_path_node *node, *node1;
-+
-+	list_for_each_entry_safe(node, node1, &path->comp_list, head) {
-+		list_del(&node->head);
-+		rvtrace_put_component(node->comp);
-+		kfree(node);
-+	}
-+}
-+
-+struct rvtrace_path *rvtrace_create_path(struct rvtrace_component *source,
-+					 struct rvtrace_component *sink,
-+					 enum rvtrace_component_mode mode)
-+{
-+	struct build_path_walk_priv priv;
-+	struct rvtrace_path *path;
-+	int ret = 0;
-+
-+	if (!source || mode >= RVTRACE_COMPONENT_MODE_MAX) {
-+		ret = -EINVAL;
-+		goto err_out;
-+	}
-+
-+	path = kzalloc(sizeof(*path), GFP_KERNEL);
-+	if (!path) {
-+		ret = -ENOMEM;
-+		goto err_out;
-+	}
-+	INIT_LIST_HEAD(&path->comp_list);
-+	path->mode = mode;
-+	path->trace_id = RVTRACE_INVALID_TRACE_ID;
-+
-+	priv.path = path;
-+	priv.sink = sink;
-+	ret = rvtrace_walk_output_components(source, &priv, build_path_walk_fn);
-+	if (ret < 0)
-+		goto err_release_path_nodes;
-+
-+	if (!rvtrace_path_ready(path)) {
-+		ret = -EOPNOTSUPP;
-+		goto err_release_path_nodes;
-+	}
-+
-+	ret = rvtrace_assign_trace_id(path);
-+	if (ret < 0)
-+		goto err_release_path_nodes;
-+
-+	return path;
-+
-+err_release_path_nodes:
-+	rvtrace_release_path_nodes(path);
-+	kfree(path);
-+err_out:
-+	return ERR_PTR(ret);
-+}
-+EXPORT_SYMBOL_GPL(rvtrace_create_path);
-+
-+void rvtrace_destroy_path(struct rvtrace_path *path)
-+{
-+	rvtrace_unassign_trace_id(path);
-+	rvtrace_release_path_nodes(path);
-+	kfree(path);
-+}
-+EXPORT_SYMBOL_GPL(rvtrace_destroy_path);
-+
- int __rvtrace_register_driver(struct module *owner, struct rvtrace_driver *rtdrv)
- {
- 	rtdrv->driver.owner = owner;
+ struct rvtrace_path *rvtrace_create_path(struct rvtrace_component *source,
+ 					 struct rvtrace_component *sink,
+ 					 enum rvtrace_component_mode mode)
 diff --git a/include/linux/rvtrace.h b/include/linux/rvtrace.h
-index e8e055ad6583..4b31ab96e721 100644
+index 4b31ab96e721..e2842e8728d4 100644
 --- a/include/linux/rvtrace.h
 +++ b/include/linux/rvtrace.h
-@@ -8,6 +8,8 @@
+@@ -274,10 +274,14 @@ struct rvtrace_path *rvtrace_create_path(struct rvtrace_component *source,
+ 					 struct rvtrace_component *sink,
+ 					 enum rvtrace_component_mode mode);
+ void rvtrace_destroy_path(struct rvtrace_path *path);
++int rvtrace_path_start(struct rvtrace_path *path);
++int rvtrace_path_stop(struct rvtrace_path *path);
  
- #include <linux/device.h>
- #include <linux/io.h>
-+#include <linux/limits.h>
-+#include <linux/list.h>
- #include <linux/platform_device.h>
- #include <linux/property.h>
- #include <linux/types.h>
-@@ -72,6 +74,12 @@ enum rvtrace_component_impid {
- 	RVTRACE_COMPONENT_IMPID_MAX
- };
- 
-+/* Supported usage modes for RISC-V trace components */
-+enum rvtrace_component_mode {
-+	RVTRACE_COMPONENT_MODE_PERF,
-+	RVTRACE_COMPONENT_MODE_MAX
-+};
-+
- /**
-  * struct rvtrace_connection - Representation of a physical connection between
-  * two RISC-V trace components.
-@@ -238,22 +246,53 @@ int rvtrace_poll_bit(struct rvtrace_platform_data *pdata, int offset,
- int rvtrace_enable_component(struct rvtrace_component *comp);
- int rvtrace_disable_component(struct rvtrace_component *comp);
- 
-+int rvtrace_walk_output_components(struct rvtrace_component *comp, void *priv,
-+				   int (*fn)(struct rvtrace_component *comp, bool *stop,
-+					     struct rvtrace_connection *stop_conn,
-+					     void *priv));
- struct rvtrace_component *rvtrace_cpu_source(unsigned int cpu);
- 
- struct rvtrace_component *rvtrace_register_component(struct rvtrace_platform_data *pdata);
- void rvtrace_unregister_component(struct rvtrace_component *comp);
- 
-+/**
-+ * struct rvtrace_path - Representation of a RISC-V trace path from source to sink
-+ * @comp_list: List of RISC-V trace components in the path
-+ * @mode:      Usage mode for RISC-V trace components
-+ * @trace_id:  ID of the trace source (typically hart id)
-+ */
-+struct rvtrace_path {
-+	struct list_head		comp_list;
-+	enum rvtrace_component_mode	mode;
-+	u32				trace_id;
-+#define RVTRACE_INVALID_TRACE_ID	0
-+};
-+
-+struct rvtrace_component *rvtrace_path_source(struct rvtrace_path *path);
-+struct rvtrace_component *rvtrace_path_sink(struct rvtrace_path *path);
-+struct rvtrace_path *rvtrace_create_path(struct rvtrace_component *source,
-+					 struct rvtrace_component *sink,
-+					 enum rvtrace_component_mode mode);
-+void rvtrace_destroy_path(struct rvtrace_path *path);
-+
  /**
   * struct rvtrace_driver - Representation of a RISC-V trace driver
   * id_table: Table to match components handled by the driver
-- * probe:    Driver probe() function
-- * remove:   Driver remove() function
-+ * probe:        Driver probe() function
-+ * remove:       Driver remove() function
-+ * get_trace_id: Get/allocate a trace ID
-+ * put_trace_id: Put/free a trace ID
-  * driver:   Device driver instance
++ * start:        Callback to start tracing
++ * stop:         Callback to stop tracing
+  * probe:        Driver probe() function
+  * remove:       Driver remove() function
+  * get_trace_id: Get/allocate a trace ID
+@@ -286,6 +290,8 @@ void rvtrace_destroy_path(struct rvtrace_path *path);
   */
  struct rvtrace_driver {
  	const struct rvtrace_component_id *id_table;
++	int			(*start)(struct rvtrace_component *comp);
++	int			(*stop)(struct rvtrace_component *comp);
  	int			(*probe)(struct rvtrace_component *comp);
  	void			(*remove)(struct rvtrace_component *comp);
-+	int			(*get_trace_id)(struct rvtrace_component *comp,
-+						enum rvtrace_component_mode mode);
-+	void			(*put_trace_id)(struct rvtrace_component *comp,
-+						enum rvtrace_component_mode mode,
-+						u32 trace_id);
- 	struct device_driver	driver;
- };
- 
+ 	int			(*get_trace_id)(struct rvtrace_component *comp,
 -- 
 2.43.0
 
