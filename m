@@ -1,169 +1,183 @@
-Return-Path: <devicetree+bounces-233991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A669C27906
-	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 08:30:06 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DC76C2793F
+	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 08:57:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4DF7D4E1F92
-	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 07:30:05 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9774034AFE7
+	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 07:57:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D21E29992B;
-	Sat,  1 Nov 2025 07:30:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99C13264A97;
+	Sat,  1 Nov 2025 07:57:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b="Nnko5s8s"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LJlkvtxw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C34F21C3C11
-	for <devicetree@vger.kernel.org>; Sat,  1 Nov 2025 07:30:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3A2C258ECC;
+	Sat,  1 Nov 2025 07:57:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761982203; cv=none; b=GnCazZIKbZt9FmcaKGi2edkvFLtEPVcKfYhQrh0PcoVct0a9k9pSvshtCweyNKzk7H/RVg03lEbd45SWBsUqHpk/0U0U+o8gHbGRB1UbAJEWk/elnLNAw3qr+dbNMnpB4vACKMqIOcMpYeIzYmI1ZcRpm93/TEhJ87xn855Tlfs=
+	t=1761983838; cv=none; b=cLLRtPMD4pKo/rAiU+mGYzdcQch1vX4zh9l44S5WaKfgu34S/TAEdemlG523Y0d+u6Yqb//k3rbPr9Smga069ZGc1hjGn/nzPbv0JOsH33pz+nNf6vSkbOL6MwDi52P/2SA4lrcpeMyDxX3Dcc706I6KnTMbcBUzrywvYzc8WUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761982203; c=relaxed/simple;
-	bh=B5SWonhqNpEs3bZ1pzeJUP+eSL2yusqAaC0Q6rL45gA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fV9/OLdRf1j+utVbYd6HrITwMT1ikywGfvSyfq9tQ45t0+4C87Xm2mGmnEElPpyt1Id/gxMe6FHHCFPkg59tfZUK8Zv+A/PKKICJ5hPw4KNlyZpKG7sC+5d1Tiu9fzdOIYEH/JkNmJ3n71GELYGlBoMcyLa9fPGjFTapc/luG3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org; spf=none smtp.mailfrom=nigauri.org; dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b=Nnko5s8s; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nigauri.org
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2951a817541so23992905ad.2
-        for <devicetree@vger.kernel.org>; Sat, 01 Nov 2025 00:30:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nigauri-org.20230601.gappssmtp.com; s=20230601; t=1761982201; x=1762587001; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=lKkyHQItIZ9YZXNeYIjftxth5SwFfksAxfyA3kqQauo=;
-        b=Nnko5s8snQL/n9vrNs7sZrOQuMX4S2/r4KEri7Maq9x4DP9QZVOgI4FZxbuTAk9pWr
-         TvSzI53n3DUq1zKXeEdJ/fSZIACfUOifcBU8VMx6LlSSvKMFx/5R2ndnSJiH5AfempX9
-         5PZz7rp0/hjkVQUzbslI93SBrzUV+JYmQowoL5y3A1ce8Uh45pgK+3jjOt6XWVZ4BztI
-         XJeqlR2h6mgW5DqbEP3j+vqOtjIm6urxqDOO90lLCEybm6x+ZYLpfg/5t4AzO4UKkUQn
-         HIC/zULKW/nk5LZJo14w/WKWXtat0AjgfVpmapJXsE23pFPtyF8odclgphYTj1nPFDaw
-         r5vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761982201; x=1762587001;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lKkyHQItIZ9YZXNeYIjftxth5SwFfksAxfyA3kqQauo=;
-        b=mOQ3J7GZcPsG/NjC7p2CNucYChTbBTVl9CuI1dT90iKD7GDRwwBo2qMY4ry9y5xf0Q
-         syNDNHyMinuTomfTgt+wGcIlgNpc4A/TNc5kez8HVwLmBRI38MxYTJZIPtkch5fudl2y
-         KXLjKG4BixnVQVgeWuwEchxtu3Edj+1uybqbVPpX8/dCLfhP3KTWvSeEQpaAuc304lM/
-         KZbvcyQi7E/sXEpcN987HCLsTm4bbaAXwRqReke6JJjQWo9t5e2xWXW2B7F8Af4+YR+r
-         0Wpk33qtvm0ah9Ia+Fiw2vaX0FlQZz8viAG6AOdjRoQiyqEhlS7yFtiB7LTKOl8l6s9b
-         uzAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWtUdKZMNVMA56DvE0byWhe7lxbniy3EcmricKwcaFyDPTyMbkN4Z3OxfcnSyPwYl2aFTMi7t5J94C4@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDvxmEKSTECj53ZGOIEcSpQWUuGMlmMuvXmAb9p+9GmJjiFtRN
-	OaGRAHyMVhOhHvN+tQd021Ac6mvpPTQAWea9f2OqOw2reXgdvGglw5AQOxYC8j2j
-X-Gm-Gg: ASbGncsaDbk/N+PuatvQBGOl5oSxKiu8Z585AYI+kJzYusC5BvKsF2cZGHRDSUHVIdT
-	MQiMBkxy+ObHs/q2s4NvxrS6Hu93xbBx+xjLso5hHzk/PmEODRk7hgqupWlhDvC5qTSGlMNxu20
-	Ip9jVdNDXjVRmFsSLIesSji8veyAQ2tvb8C8jkor5uqqSWXsCy/30Jf2zCl1nP/k4DHCxWm5n/d
-	KmceQX0NXP12GdSZokb8x981fmkEvEzdhNft7Uc018lOQF9FpChg7UvFgBmsnvbxkMD3aym9PuF
-	6ExA3yNeQNTiX8xa7jDL/68cMS960FaUSihyEvK2DSA0KTz+Z5vPHSTRfQtzXKtHwg770oD1NHf
-	vbIDXkauzfjJ+9Jryd2V2GWMLmpWBjcuw203Hx3iXTnaCSHtSqUtlv2I8pI2IepUWNsibk6QSEs
-	9SfQ4n7AXaLV8vGZysAmZFFR3XlGna2E2nDlyGtHCtuFf3AbAvfgiRUjM=
-X-Google-Smtp-Source: AGHT+IHm0rv+V8qH4mlrg7JK5mnX3c06DGfXnz734pOXC3OVejEb36UvdOBwYi8lV2QMww2XBRY5iA==
-X-Received: by 2002:a17:902:f693:b0:28d:190a:1913 with SMTP id d9443c01a7336-2951a4dfd23mr88571875ad.38.1761982200802;
-        Sat, 01 Nov 2025 00:30:00 -0700 (PDT)
-Received: from localhost (ae043235.dynamic.ppp.asahi-net.or.jp. [14.3.43.235])
-        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-29558f51f73sm10512815ad.32.2025.11.01.00.29.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 01 Nov 2025 00:29:59 -0700 (PDT)
-From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Subject: [PATCH] arm64: dts: renesas: r9a09g057h48-kakip: Enable SPI NOR Flash
-Date: Sat,  1 Nov 2025 16:29:51 +0900
-Message-ID: <20251101072951.2681630-1-iwamatsu@nigauri.org>
-X-Mailer: git-send-email 2.51.0
+	s=arc-20240116; t=1761983838; c=relaxed/simple;
+	bh=5l6XRwzZKsnytv0pszvZHGNvjbLNPdZfFglWR7zjF60=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o83m3CCL7VgwCbkPnuZskA+YKYHeE4YiTAF72M+Tsds9JhlsDKHkRHFCniLDyV3cwl2osDafWmHZdt76Xoee7vNjWqzLZPMb5iD4diX/B0yGHdiV6vg8yGwTOn/XKDo6b35JvzbaxbkAenVtiMWRagmIn+bG9K7iN0178wQp3Lo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LJlkvtxw; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761983837; x=1793519837;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5l6XRwzZKsnytv0pszvZHGNvjbLNPdZfFglWR7zjF60=;
+  b=LJlkvtxwOEkUVQtBPS5fYpk0v/qVx0qApxCyvjGxHDS4XFz0/WLstrIe
+   Q5YdrMQnZlqCgbkKq39/+8uJF2DTNb1sfy5P58jzMSSjMXkNtZ9/mKBJo
+   btJwACIAWM6SGY+iJa8Iq2JcuKlo/z6B+qSbxJMvBX0W9iurcxh/F8pxQ
+   jHw5XlzeyDYCoOhfUDBhAZoHCi//raaAEoEF9yrr/ipHWkFNQU0tSOVKq
+   eH42wyY8hnbS1vCSqvv/ox+W7fzpBpXry2wlTr9ClS4MOOU0/NsoX4G4J
+   MlpPhA34oNh4zLJaO3KNVBC51EO1Fzl8eCTeWqm6Mha9jOEGkQTnONGLf
+   A==;
+X-CSE-ConnectionGUID: rRRCmi9TQu61sAhAZI4fag==
+X-CSE-MsgGUID: L0V/SIpgTtKmQzMVN9r86A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="64169420"
+X-IronPort-AV: E=Sophos;i="6.19,271,1754982000"; 
+   d="scan'208";a="64169420"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Nov 2025 00:57:15 -0700
+X-CSE-ConnectionGUID: R1dMWY33SMC/exy6kVUwnw==
+X-CSE-MsgGUID: a8gUVw5kSwqTYqY+tMzaWw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,271,1754982000"; 
+   d="scan'208";a="223659476"
+Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
+  by orviesa001.jf.intel.com with ESMTP; 01 Nov 2025 00:57:10 -0700
+Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vF6Tz-000O1Q-2M;
+	Sat, 01 Nov 2025 07:57:07 +0000
+Date: Sat, 1 Nov 2025 15:56:49 +0800
+From: kernel test robot <lkp@intel.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	sboyd@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	mturquette@baylibre.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com, laura.nao@collabora.com,
+	nfraprado@collabora.com, wenst@chromium.org,
+	y.oudjana@protonmail.com, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v2 7/7] clk: mediatek: Add support for MT6685 PM/Clock IC
+ Clock Controller
+Message-ID: <202511011537.ccyYOMhK-lkp@intel.com>
+References: <20251027111343.21723-8-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251027111343.21723-8-angelogioacchino.delregno@collabora.com>
 
-This enables W25Q256JWPIM NOR Flash connected to XSPI.
-Additionally, this adds fixed 1.8V regulator node (`reg_1p8v`) required for
-NOR Flash.
+Hi AngeloGioacchino,
 
-Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
----
- .../boot/dts/renesas/r9a09g057h48-kakip.dts   | 39 +++++++++++++++++++
- 1 file changed, 39 insertions(+)
+kernel test robot noticed the following build errors:
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts b/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
-index 37062adb1e04ab..1ad7bec7bbb72e 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
-@@ -31,6 +31,15 @@ memory@48000000 {
- 		reg = <0x0 0x48000000 0x1 0xF8000000>;
- 	};
- 
-+	reg_1p8v: regulator-1p8v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-1.8V";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
- 	reg_3p3v: regulator-3v3 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-3.3V";
-@@ -153,6 +162,18 @@ sd0-mux {
- 			pinmux = <RZV2H_PORT_PINMUX(A, 5, 15)>; /* SD0_CD */
- 		};
- 	};
-+
-+	xspi_pins: xspi0 {
-+		ctrl {
-+			pins = "XSPI0_RESET0N", "XSPI0_CS0N", "XSPI0_CKP";
-+			output-enable;
-+		};
-+
-+		io {
-+			pins = "XSPI0_IO0", "XSPI0_IO1", "XSPI0_IO2", "XSPI0_IO3";
-+			renesas,output-impedance = <3>;
-+		};
-+	};
- };
- 
- &qextal_clk {
-@@ -175,3 +196,21 @@ &sdhi0 {
- 
- 	status = "okay";
- };
-+
-+&xspi {
-+	pinctrl-0 = <&xspi_pins>;
-+	pinctrl-names = "default";
-+	assigned-clocks = <&cpg CPG_CORE R9A09G057_SPI_CLK_SPI>;
-+	assigned-clock-rates = <133333334>;
-+	status = "okay";
-+
-+	flash@0 {
-+		/* W25Q256JWPIM */
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		vcc-supply = <&reg_1p8v>;
-+		m25p,fast-read;
-+		spi-tx-bus-width = <4>;
-+		spi-rx-bus-width = <4>;
-+	};
-+};
+[auto build test ERROR on clk/clk-next]
+[also build test ERROR on linus/master v6.18-rc3 next-20251031]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/clk-mediatek-Split-out-registration-from-mtk_clk_register_gates/20251027-191633
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+patch link:    https://lore.kernel.org/r/20251027111343.21723-8-angelogioacchino.delregno%40collabora.com
+patch subject: [PATCH v2 7/7] clk: mediatek: Add support for MT6685 PM/Clock IC Clock Controller
+config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20251101/202511011537.ccyYOMhK-lkp@intel.com/config)
+compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251101/202511011537.ccyYOMhK-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511011537.ccyYOMhK-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/clk/mediatek/clk-mtk-spmi.c:48:13: error: call to undeclared function 'devm_spmi_subdevice_alloc_and_add'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+      48 |         sub_sdev = devm_spmi_subdevice_alloc_and_add(&pdev->dev, sparent);
+         |                    ^
+>> drivers/clk/mediatek/clk-mtk-spmi.c:48:11: error: incompatible integer to pointer conversion assigning to 'struct spmi_subdevice *' from 'int' [-Wint-conversion]
+      48 |         sub_sdev = devm_spmi_subdevice_alloc_and_add(&pdev->dev, sparent);
+         |                  ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/clk/mediatek/clk-mtk-spmi.c:52:46: error: incomplete definition of type 'struct spmi_subdevice'
+      52 |         regmap = devm_regmap_init_spmi_ext(&sub_sdev->sdev, &mtk_spmi_clk_regmap_config);
+         |                                             ~~~~~~~~^
+   include/linux/regmap.h:1116:5: note: expanded from macro 'devm_regmap_init_spmi_ext'
+    1116 |                                 dev, config)
+         |                                 ^~~
+   include/linux/regmap.h:775:6: note: expanded from macro '__regmap_lockdep_wrapper'
+     775 |                 fn(__VA_ARGS__, &_key,                                  \
+         |                    ^~~~~~~~~~~
+   drivers/clk/mediatek/clk-mtk-spmi.c:31:9: note: forward declaration of 'struct spmi_subdevice'
+      31 |         struct spmi_subdevice *sub_sdev;
+         |                ^
+   3 errors generated.
+
+
+vim +/devm_spmi_subdevice_alloc_and_add +48 drivers/clk/mediatek/clk-mtk-spmi.c
+
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  21  
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  22  int mtk_spmi_clk_simple_probe(struct platform_device *pdev)
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  23  {
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  24  	struct regmap_config mtk_spmi_clk_regmap_config = {
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  25  		.reg_bits = 16,
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  26  		.val_bits = 8,
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  27  		.fast_io = true
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  28  	};
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  29  	struct device_node *node = pdev->dev.of_node;
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  30  	const struct mtk_spmi_clk_desc *mscd;
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  31  	struct spmi_subdevice *sub_sdev;
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  32  	struct spmi_device *sparent;
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  33  	struct regmap *regmap;
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  34  	int ret;
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  35  
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  36  	ret = of_property_read_u32(node, "reg", &mtk_spmi_clk_regmap_config.reg_base);
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  37  	if (ret)
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  38  		return ret;
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  39  
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  40  	/* If the max_register was not declared the pdata is not valid */
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  41  	mscd = device_get_match_data(&pdev->dev);
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  42  	if (mscd->max_register == 0)
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  43  		return -EINVAL;
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  44  
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  45  	mtk_spmi_clk_regmap_config.max_register = mscd->max_register;
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  46  
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  47  	sparent = to_spmi_device(pdev->dev.parent);
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27 @48  	sub_sdev = devm_spmi_subdevice_alloc_and_add(&pdev->dev, sparent);
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  49  	if (IS_ERR(sub_sdev))
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  50  		return PTR_ERR(sub_sdev);
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  51  
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27 @52  	regmap = devm_regmap_init_spmi_ext(&sub_sdev->sdev, &mtk_spmi_clk_regmap_config);
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  53  	if (IS_ERR(regmap))
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  54  		return PTR_ERR(regmap);
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  55  
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  56  	return mtk_clk_simple_probe_internal(pdev, node, mscd->desc, regmap);
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  57  }
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  58  EXPORT_SYMBOL_GPL(mtk_spmi_clk_simple_probe);
+80a000281742dc AngeloGioacchino Del Regno 2025-10-27  59  
+
 -- 
-2.51.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
