@@ -1,87 +1,66 @@
-Return-Path: <devicetree+bounces-234010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E081C27B78
-	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 10:56:32 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27228C27B82
+	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 10:59:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A1F9D4E7B8B
-	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 09:56:23 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4E82E34AC4B
+	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 09:59:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECBAD2C3257;
-	Sat,  1 Nov 2025 09:56:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2B1E2BD013;
+	Sat,  1 Nov 2025 09:59:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mnBvA1FW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HzC5Tlwb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 329C92C11C6;
-	Sat,  1 Nov 2025 09:56:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB93822CBC6;
+	Sat,  1 Nov 2025 09:59:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761990977; cv=none; b=adjV4Hr6PXIqlbByMvsmADQ9Ran4/vfs+4/UqfX0jJFlwdoZYwVRXFKEWK2pHF4LjnG4eHWj+iuTKwYZdeeeAzLOiz2Z8PjtQW1lB7kNH9k19LwHbNiWNiVKMvBevV92qQmeymODVowHqQxPzDTp2Z1uEshzbgY08bDk5IaekzY=
+	t=1761991163; cv=none; b=Ru1/PVu7QTQQ4GL/WBurvmOd2xSK8uFpoXrM95zkvjsDl1m2e0WDkjw/nmKZvviDtuzfmh0WQETIi0YwhNZe3N/Ro8IsMyIBgcOcyZQEGW4cl1YtwMEx7H30ZAeK4R0XLMYxGg2kc3JDT9Wocm3N043NOpBGkTlMedj8P6qk8mk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761990977; c=relaxed/simple;
-	bh=92Kmi3hGY3gJbK+jA3mmu9XQ60R/d5Owd7Ceo+/Oqcw=;
+	s=arc-20240116; t=1761991163; c=relaxed/simple;
+	bh=IjdCMT0CzaODPEdiqPE/BBz8I40EGyTVW1/f1aFsFhI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PKbHNKhDdbIQx8YcZw+9dMkWBJFkvs2jPrc1s0gLyRLfS0OqtI/sTYRWVzIhvqsvURv6YffKA3WFGBoqRQ63VC8lbm4/HpmcBX3O9G7Boba8v6wqb8Jq3azHOT4B3dA5A47dkXvySDSCLESxzIamrO3x43c6Vf0mvmpDiAX97ZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mnBvA1FW; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761990976; x=1793526976;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=92Kmi3hGY3gJbK+jA3mmu9XQ60R/d5Owd7Ceo+/Oqcw=;
-  b=mnBvA1FWqSQcgt4tiEgyVIpZiSCRrrL/B/g/zblzwAftYoCX8aabLydR
-   A2gqm7OfHRU2yDOdtJiidFwn6uqap0DtOUONhi1a+AyKhtyCJowrRwnQg
-   ndFBacaZgFLxouB/sUB6UbpGiYvBXMR7JkLwR8QnTL/KA9DnKFGKOf5Ju
-   Ax0NDiga+AilkszKZgd9n73G10kgK9VQPEmsIodVtm0vIEWtps1t7yLAI
-   C5OgdZlX2+tqe9Uyi/tSgbsnLQQ2sfQyH+1lyUVUUf5KWEgf3iRj0EIok
-   rnxrXuk7/gvqsyycw5eK8L8cCGBFrbp4Qcgkjh0C6WYdsud+e1+GknWck
-   g==;
-X-CSE-ConnectionGUID: 1/VuiilvTSSNzVSTqfTm/A==
-X-CSE-MsgGUID: hUt5YuA8TMeoW6yGi2OQVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="66756163"
-X-IronPort-AV: E=Sophos;i="6.19,271,1754982000"; 
-   d="scan'208";a="66756163"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Nov 2025 02:56:15 -0700
-X-CSE-ConnectionGUID: O2fTRgmIQjmEKfVEkXCqiA==
-X-CSE-MsgGUID: YLJowlZ/RgaoT/WcyKg7Rg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,271,1754982000"; 
-   d="scan'208";a="186766072"
-Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
-  by fmviesa008.fm.intel.com with ESMTP; 01 Nov 2025 02:56:12 -0700
-Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vF8KZ-000O5w-2M;
-	Sat, 01 Nov 2025 09:56:05 +0000
-Date: Sat, 1 Nov 2025 17:53:22 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=g1OlU5NxkXGyri/JSv8LyccAmLozNTV2Fhs3RNWsq2iqAwsPcuYHB/YdUb4zX3k9OcWErhI+VlXThJX1Ysp5DIaXxbNNJDWaqJNVuAHtbnPZOPJ6EAnRHdHhuRlI8Mo/QE/2zvwspMWWTiK+c9764QApnjndW4VgFWYgKMeCqcY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HzC5Tlwb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADB00C4CEF1;
+	Sat,  1 Nov 2025 09:59:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761991163;
+	bh=IjdCMT0CzaODPEdiqPE/BBz8I40EGyTVW1/f1aFsFhI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HzC5TlwbpCo+vAQ8OoU0MEC77hUcM1JhYZwdLAiyhakas77mh/q2Sh3vbOKf59hFX
+	 zGCvAqd6EYw21u9e9bDF8tTGvfgA0ylgDJUSAnSDm5QkK+EOkdrXpU6cb36+HWViln
+	 Cj0iYYFMWouS9OrjZuVr+LNjiF06weYfsmBCg5duVNW0sYax7RfTua9LDaQcLaYnpG
+	 BRykl9ZuDzKxDcUFcQsYcpl0J3CK0vv9oFTVgnv4oU6B8S20gO3Vt4yL+ub4433S82
+	 +Qjq30Sm4czVZwV8dXBB1vw5fqhBFagcOrrOsYGzFLzYbCaZQTWRLALHFoy7HJHkbr
+	 BLQ7mifSoRp0A==
+Date: Sat, 1 Nov 2025 09:59:16 +0000
+From: Drew Fustini <fustini@kernel.org>
+To: Yao Zi <ziyao@disroot.org>
+Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
-	trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
-	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-	Gokul krishna Krishnakumar <Gokul.krishnakumar@oss.qualcomm>
-Subject: Re: [PATCH v2 4/7] remoteproc: qcom: pas: Add late attach support
- for subsystems
-Message-ID: <202511011702.IgpENW3z-lkp@intel.com>
-References: <20251029-knp-remoteproc-v2-4-6c81993b52ea@oss.qualcomm.com>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Michal Wilczynski <m.wilczynski@samsung.com>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>,
+	Han Gao <rabenda.cn@gmail.com>, Han Gao <gaohan@iscas.ac.cn>
+Subject: Re: [PATCH v3 5/5] riscv: dts: thead: Add reset controllers of more
+ subsystems for TH1520
+Message-ID: <aQXZ9OjXC-cse0lk@gen8>
+References: <20251014131032.49616-1-ziyao@disroot.org>
+ <20251014131032.49616-6-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,32 +69,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251029-knp-remoteproc-v2-4-6c81993b52ea@oss.qualcomm.com>
+In-Reply-To: <20251014131032.49616-6-ziyao@disroot.org>
 
-Hi Jingyi,
+On Tue, Oct 14, 2025 at 01:10:32PM +0000, Yao Zi wrote:
+> Describe reset controllers for VI, MISC, AP, DSP and AO subsystems. The
+> one for AO subsystem is marked as reserved, since it may be used by AON
+> firmware.
+> 
+> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> ---
+>  arch/riscv/boot/dts/thead/th1520.dtsi | 37 +++++++++++++++++++++++++++
+>  1 file changed, 37 insertions(+)
 
-kernel test robot noticed the following build warnings:
+I've applied this to thead-dt-for-next.
 
-[auto build test WARNING on aaa9c3550b60d6259d6ea8b1175ade8d1242444e]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Jingyi-Wang/dt-bindings-remoteproc-qcom-sm8550-pas-Add-Kaanapali-ADSP/20251029-163330
-base:   aaa9c3550b60d6259d6ea8b1175ade8d1242444e
-patch link:    https://lore.kernel.org/r/20251029-knp-remoteproc-v2-4-6c81993b52ea%40oss.qualcomm.com
-patch subject: [PATCH v2 4/7] remoteproc: qcom: pas: Add late attach support for subsystems
-config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20251101/202511011702.IgpENW3z-lkp@intel.com/config)
-compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project cc271437553452ede002d871d32abc02084341a8)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251101/202511011702.IgpENW3z-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511011702.IgpENW3z-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> Warning: drivers/remoteproc/qcom_q6v5.c:333 function parameter 'early_boot' not described in 'qcom_q6v5_init'
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks,
+Drew
 
