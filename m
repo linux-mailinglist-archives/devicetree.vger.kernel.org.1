@@ -1,138 +1,217 @@
-Return-Path: <devicetree+bounces-234056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234057-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF8E3C28161
-	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 16:35:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEC06C2817C
+	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 16:43:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B48CF4E285B
-	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 15:35:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A88C63B0386
+	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 15:43:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D2F01FE451;
-	Sat,  1 Nov 2025 15:35:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8CB622A4D6;
+	Sat,  1 Nov 2025 15:43:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q8hLat10"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="YTb0rAyj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C9CE60B8A
-	for <devicetree@vger.kernel.org>; Sat,  1 Nov 2025 15:35:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B85260B8A
+	for <devicetree@vger.kernel.org>; Sat,  1 Nov 2025 15:43:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762011330; cv=none; b=aaKLaXZDzK7UsTIZkfPwBQ0JcZpoeUmbU2kQ8G/DbJgxlEgIvkJ3AFQ1KAnTtyvWkT14U5D6fqcH9fQp+QA9afUWMJ/rih1jDYurF+hJU+HqEArZIo0lhUAI0F0XjjmBEz2DD46spKKo4YExu9xVZrkT8KbhhXUxk4YPePH5l4U=
+	t=1762011784; cv=none; b=Jc2z3C3/ewbSMSEjPAqn6fS3asm1WO+2TPH97pFRceQYu2XEjXBYufeG2yokFWL/LtiBktkO38Dw5Naq+C8+A+xCm2/k6kSFvJLq/jg8mOSp+qlFIDybPwtwFbViGVYB9Dfbe6On2ap2+IN6pubLfi+pgbFy3ojxFc8hOFsglps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762011330; c=relaxed/simple;
-	bh=2l14iCi71vkVUgeo+E1Q/tEM4El2uFdeq8BhYm+l/kM=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=aFSTDxgxkMIrNU2x8P8Jg7DP831vArAej7RopeJ9ARrMA94tO3dcfsvyR6v5/WggXVFag7+bB4lvHylrMVOPrfXP+Sft98m/mhmvYiTh//nXrYQpB8CH0R3kf7XvJfK++rq6N4pwfmUmaH2brKwA4JdqKBZZmFoTrp9XaAQ7mwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q8hLat10; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-6390fdaa1f4so681291a12.3
-        for <devicetree@vger.kernel.org>; Sat, 01 Nov 2025 08:35:29 -0700 (PDT)
+	s=arc-20240116; t=1762011784; c=relaxed/simple;
+	bh=/BUHD+TqBUu2u7lzEzSO1RxlvB0Via63D0fVHgQ3CRY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=amyoisMbxlQxnN+JsKEx7nO484TT2s+gFMhw/cO7HhC1+e2jkF74hdUYG2H7hING+gDIkapVdpFtqVtO+7YdnUKVNfjK/Um9hLGzq1ILbw424RswC5+2Y70k1X4MesW4lQhqtTVNiCVwj+Tg0v3Inlrf/lEfJrnZ8k9QRAddlss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=YTb0rAyj; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2953e415b27so11704015ad.2
+        for <devicetree@vger.kernel.org>; Sat, 01 Nov 2025 08:43:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762011328; x=1762616128; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h0Tk9dDcYmqBenbtFC0DeeXVXsg2rmtasPdJhxUdBos=;
-        b=Q8hLat10cBiTqyiSayLxowXV9Md4o03S2ySShBAk9A/3UNNC2YWCSdgHGRauYwMmot
-         AcrTfEUXGBXyd7j3V+0fu2+upl71lyrKwU2dxxONyhFXl733R2zFegJke9TbsBNRKhor
-         N4wfehNo2YdW6FX6QOdRHVaIZyUyl9XCN/uTXioOZJA6/UTuajJ+EnWzCjGywvpc/BfI
-         doAQQu36ps1rj1yUpxkSU4R0Pfq3Wh6dUD5i/+w1w/PaVMChAFFRrQ06nB+r24U29Q4k
-         +E1aA9wHNw4GlSP0bN/mvZjEA1WOK10IgzrGwxh1tZ4CtnkBJQS4zd4jooux/WtU9PJu
-         kA2A==
+        d=ventanamicro.com; s=google; t=1762011782; x=1762616582; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qzSxlietdv08Nz41XlGqZnExJjtZBryEPCo4y1RIDZc=;
+        b=YTb0rAyj3IT+yHKWHCQswOITrOyROZGQnPrQuo7w2MciIniv5TMtuPi1KSv/z4eG67
+         K25dI7kNvvFrYES5qtWqfAHU2XbAT5tRXhBkg+/z31bdJCGzQQXvo2YBQd5SrPuLOILt
+         /k9Clf510imFt5eMKq9icsaWKqZe0Oh3Liyq3BwotdG/eZT/sPdLJY0tJokCsO7NvjhJ
+         1mvOT8sTUxabFnYUxxwnTA89uCHvOSuWuSaPVaW/LxijmmJVPpVFWu6NQIzSjcgEyXPY
+         SXOzoyA/caK8d1o2GCFmB9bgDobDYKrlPxt9H8KQ8/0ay4/nkxPGwrlI94Bbi4wvqP1G
+         Ebsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762011328; x=1762616128;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=h0Tk9dDcYmqBenbtFC0DeeXVXsg2rmtasPdJhxUdBos=;
-        b=iLhI/Ne84WFNhSsxsFaMC0RPv+P2O7fiuTtIOHC4gSXB9AqdmIEE0izzzBpnf3EiNP
-         IxanBQ4vD4qA/Q2NWcy+kpua9czF6u0RbTxGgSzYw1lzXMapbnapLCCPRUtCrfMMce79
-         YZFQM4ZVV9Ee28lJQGV8Gy2p/rq+YGE0QCKfyVAHiw2clk0wenaVovFDQFxrut5gmmS5
-         RD3snxNcxmwbFfUGMExyqBf/NQDpOK/OP0aFlccQW4bxWhItF5ftVsWIXNffTfwe7nBc
-         AKCjqo5rWT9QX8OZ0k0X6ZCCigRT4TylkJ1uvhUFDzhVkc9UyYSA1AbVz5B5+4u58rbm
-         YX0A==
-X-Forwarded-Encrypted: i=1; AJvYcCUvpsQ9gXwSD0liOgk02S6Kbgyy3bERILL7jaIJCQv6N20EBWVEmiP69FeF6yhubZSoj9Kl4EnpWDnX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzJlLxNwkskfprCXRpZhL4Juxr1ltdwqrsL2ko535zv+mQwYHK
-	e1GMgLjBWICY6w065cpuXMNR46JtyhqtfzLI8OWFyOxYbYtx5WMho9pqeqJJlQ==
-X-Gm-Gg: ASbGncvHH65ZyZC3UeP/gP/w81vG+l+XdzrwnteXxQvouxax0V9WBJWb+XxnS9laXG0
-	4UkO16911W9ShUpXG27NeVioivvtOjwEWcDHWGmX9VxFMsHc7VjHTqToHfOO68L7ycGme1VUPmQ
-	HfBel37UMN4F9qn8J4xpfTmDKO94F6WvrtVZjPwVexIcb47ZHwRLAL6dG4wcPPVneETrYMI6LcO
-	tFsRDA0Gqe+Lx/zlOR0/c3mMtq8KkupX2psgqlfvEucknDnUPEuz4LABRlugH8/oxFrx3Cn2ZlU
-	+GwJwKuYn8NSiBVgYZCB8rXcbvxvnVZ4bPLQ6IQsFFFJd7LsjAzq58wylit0RKJuGAIcyEsVWGU
-	9618GVJ5Z/vbXKd5NdYsFJUR0GWitx7piCqSY71axAHdUXjeV4afHpcmHNiSZaXOwqr4RmNJqIK
-	j/bxsCdGLlZ5kCYs5s1l6IQaiT4bicLsj+DaphilIrrRXnlfHi0Q==
-X-Google-Smtp-Source: AGHT+IGGbZKmix+04v0yBeE+miuCe2f5O67VTMu7nJKCL7jr0B/QprRarMtQ6I/yofHU8ylwWgs/DA==
-X-Received: by 2002:a17:906:730b:b0:b6d:5587:e336 with SMTP id a640c23a62f3a-b70708c8a6fmr418924566b.9.1762011327533;
-        Sat, 01 Nov 2025 08:35:27 -0700 (PDT)
-Received: from ?IPV6:2a02:a449:4071:0:32d0:42ff:fe10:6983? ([2a02:a449:4071:0:32d0:42ff:fe10:6983])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7077cfa966sm478124166b.65.2025.11.01.08.35.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Nov 2025 08:35:27 -0700 (PDT)
-Message-ID: <92714b6c-6c0d-4a10-afe4-73ed313c87c0@gmail.com>
-Date: Sat, 1 Nov 2025 16:35:26 +0100
+        d=1e100.net; s=20230601; t=1762011782; x=1762616582;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qzSxlietdv08Nz41XlGqZnExJjtZBryEPCo4y1RIDZc=;
+        b=SAOwqWtXjQqVMlKAG355CYHx7zQLe89b6tIFJp7ta5aIATSuQst7LkcaUfAmdDuKFl
+         nacjl0HxW84btBpNs+2EGZpoZYfihTGbsjK5dyCoz48DR5Bt+z/c6XMOk76EhJ3VOtAY
+         IWRDET1muSmvJ9Z4d1zFRdn/W2sQ1bl+ZGB3DFEGvfJBknVRFE6ggSaiEJwguDj3rits
+         Sw0qRvXNfSV0dKu8M2rqAm/K2r5+Ckoh2drg/KBgkgHr8NbOIXq43ZRBehDrclUkcKZE
+         B0pIZMojx4pFJb11Q7ki8A00STQMb0p6I9PRUF63LQ1OiTX+CAB+2XtcOeR1RYh3dKjI
+         f+Ug==
+X-Forwarded-Encrypted: i=1; AJvYcCV4ElTgKV8M5r9HEaZ9ImhbE+sE4KOwTRWXps8ri4dS6fDjfhsEQYLEfLdAi+wSEJ34oACcELKqkPS/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+rwazXip56qOWfIz9UBrI2bqJbCdcOCQK1Q3xJzwJ9pMmmKOb
+	qJq1DmpBXrYfXcMogd9MoNehdHSsRUB6HfZprHBVVAPjAN3xuDj4lPi0QqDlIeVmKKI=
+X-Gm-Gg: ASbGncuoG4VkiJw9//kVzIRrW2QoTKVqqfb57BRhggo8pibV4visBkZVAg91NrPGo1q
+	oBkZAYHdV7Y99GVcaxZ+bZrBIUaEqCH0FEani+Rd2JllYQ7tFvcOgypcZFbai4ej7ferTYPMarR
+	A1tQbt7NMguGp6f0kxdOmho47d9QyeKHBMJ+BGBKDLkBl/YbIVSVc8MKiH/jvft/0wjH44IRk6t
+	76//noHhDTtP7M12xGWd2TcdTUPjOrKb5GHT3rZkHlC8mIwIoLhekzNOLgnHHhcv4ILz+J8Kphp
+	Q+uAjEqs/L1jZvh/6zN79/5lBgfECPvxpXpnoxmSYGhYv1J8ouFsmJp1g1dVarqozuLywkg4qnD
+	llNAk/OKBplRH/+U6QP9eOB4OxJzAm7XV19Bda9cktWFqeJTLEBe+iRnPvqMos5UcdE7LcINrAJ
+	S8xMFFiC+chF3G3DcA4fMqI6puNL5AI/4=
+X-Google-Smtp-Source: AGHT+IG9sjo4xwPEkzo6ctV338QETzcZ1vLZmEK24hr2B/GgahZDtRfJJ0dMRkfnA3yh0prDVDGKIw==
+X-Received: by 2002:a17:902:e749:b0:295:7f1d:b034 with SMTP id d9443c01a7336-2957f1db313mr4827205ad.4.1762011782049;
+        Sat, 01 Nov 2025 08:43:02 -0700 (PDT)
+Received: from localhost.localdomain ([122.171.20.36])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-295269bd2fesm59990105ad.105.2025.11.01.08.42.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 01 Nov 2025 08:43:01 -0700 (PDT)
+From: Anup Patel <apatel@ventanamicro.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Greg KH <gregkh@linuxfoundation.org>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Ian Rogers <irogers@google.com>
+Cc: Alexandre Ghiti <alex@ghiti.fr>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>,
+	Namhyung Kim <namhyung@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Jiri Olsa <jolsa@kernel.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Liang Kan <kan.liang@linux.intel.com>,
+	Mayuresh Chitale <mchitale@gmail.com>,
+	Anup Patel <anup@brainfault.org>,
+	Atish Patra <atish.patra@linux.dev>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Anup Patel <apatel@ventanamicro.com>
+Subject: [PATCH v2 00/12] Linux RISC-V trace framework and drivers
+Date: Sat,  1 Nov 2025 21:12:33 +0530
+Message-ID: <20251101154245.162492-1-apatel@ventanamicro.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Johan Jonker <jbx6244@gmail.com>
-Subject: [PATCH v1] arm64: dts: rockchip: correct assigned-clock-rates
- spelling
-To: heiko@sntech.de
-Cc: robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Due to some copy and paste from the manufacturer tree the property
-assigned-clock-rate is missing a letter "s". Correct spelling to
-reduce dtbs_check output.
+This series adds initial support for RISC-V trace framework and drivers.
+The RISC-V trace v1.0 specification is already ratified and can be found at:
+https://github.com/riscv-non-isa/e-trace-encap/releases/tag/v1.0.0-ratified
+https://github.com/riscv-non-isa/tg-nexus-trace/releases/tag/1.0_Ratified
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
+The RISC-V trace framework and drivers are designed to be agnostic to the
+underlying trace protocol hence both RISC-V E-trace and RISC-V N-trace should
+work fine. The discovery of trace protocl parameters are left to user-space
+trace decoder.
 
-https://github.com/rockchip-linux/kernel/blob/develop-4.4/arch/arm64/boot/dts/rockchip/rk3328-evb.dts#L313
----
- arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts | 2 +-
- arch/arm64/boot/dts/rockchip/rk3328-evb.dts     | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+In ther future, there will be subsequent series adding:
+1) Sysfs support
+2) ACPI support
+3) More trace drivers (such as funnel, ATB, etc)
+4) Support for upcoming self-hosted trace specification
+5) ... and more ...
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts b/arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts
-index b5bf84322031..b9d4d78bff0f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts
-@@ -184,7 +184,7 @@ &emmc {
+These patches can also be found in the riscv_trace_support_v2 branch at:
+https://github.com/avpatel/linux.git
 
- &gmac2phy {
- 	assigned-clock-parents = <&cru SCLK_MAC2PHY_SRC>;
--	assigned-clock-rate = <50000000>;
-+	assigned-clock-rates = <50000000>;
- 	assigned-clocks = <&cru SCLK_MAC2PHY>;
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-evb.dts b/arch/arm64/boot/dts/rockchip/rk3328-evb.dts
-index 3707df6acf1f..76715de886e2 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-evb.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-evb.dts
-@@ -101,7 +101,7 @@ &emmc {
- &gmac2phy {
- 	phy-supply = <&vcc_phy>;
- 	clock_in_out = "output";
--	assigned-clock-rate = <50000000>;
-+	assigned-clock-rates = <50000000>;
- 	assigned-clocks = <&cru SCLK_MAC2PHY>;
- 	assigned-clock-parents = <&cru SCLK_MAC2PHY_SRC>;
- 	status = "okay";
---
-2.39.5
+To test the patches, we need QEMU virt machine with RISC-V trace support
+which can be found in rv-etrace branch at:
+https://gitlab.com/danielhb/qemu.git
+
+To capture rvtrace data using perf on QEMU virt machine do the following:
+1) Launch QEMU virt machine
+   $ qemu-system-riscv64 -nographic -M virt -smp 2 -bios fw_dynamic.bin \
+     -kernel Image -append "root=/dev/vda rw console=ttyS0 earlycon=sbi" \
+     -drive file=/path/to/rootfs.img,id=disk1,if=none,format=raw \
+     -device virtio-blk-device,drive=disk1
+2) Run perf record to capture rvtrace data
+   $ perf record --all-cpus -e rvtrace/event=0x1/ <command>
+3) The step2 would create a perf.data file which has the rvtrace data.
+   Now run perf report -D and look for PERF_RECORD_AUXTRACE event
+   section(s) which point(s) to the actual rvtrace data offset.
+
+Changes since v1:
+ - Rebased on Linux-6.18-rc3
+ - Addressed Rob's comments in dt-bindings added by PATCH1
+ - Get reference of conn->dest_fwnode and add missing break in
+   rvtrace_of_parse_outconns() of rvtrace-platform drivers added
+   by PATCH2
+ - Added new inline function rvtrace_comp_is_empty() in PATCH2
+   and used it in rvtrace_encoder_stop() added by PATCH5
+ - Fixed trRamWPLow usage in PATCH7
+ - Determine RAM sink buffer size based on component implementation
+   ID and reduce default RAM sink buffer size to 1MB
+ - Add new PATCH8 to enable DMA_RESTRICTED_POOL in RISC-V defconfig
+   so that implementations with RAM sink address restrictions can
+   be handled.
+
+Anup Patel (6):
+  dt-bindings: Add RISC-V trace component bindings
+  rvtrace: Initial implementation of driver framework
+  rvtrace: Add functions to create/destroy a trace component path
+  rvtrace: Add function to copy into perf AUX buffer
+  riscv: Enable DMA_RESTRICTED_POOL in defconfig
+  MAINTAINERS: Add entry for RISC-V trace framework and drivers
+
+Mayuresh Chitale (6):
+  rvtrace: Add functions to start/stop tracing on a component path
+  rvtrace: Add trace encoder driver
+  rvtrace: Add trace ramsink driver
+  rvtrace: Add perf driver for tracing using perf tool
+  perf tools: Add RISC-V trace PMU record capabilities
+  perf tools: Initial support for RISC-V trace decoder
+
+ .../bindings/riscv/riscv,trace-component.yaml | 112 +++
+ MAINTAINERS                                   |  11 +
+ arch/riscv/configs/defconfig                  |   1 +
+ drivers/Makefile                              |   1 +
+ drivers/hwtracing/Kconfig                     |   2 +
+ drivers/hwtracing/rvtrace/Kconfig             |  33 +
+ drivers/hwtracing/rvtrace/Makefile            |   6 +
+ drivers/hwtracing/rvtrace/rvtrace-core.c      | 798 ++++++++++++++++++
+ drivers/hwtracing/rvtrace/rvtrace-encoder.c   | 107 +++
+ drivers/hwtracing/rvtrace/rvtrace-perf.c      | 343 ++++++++
+ drivers/hwtracing/rvtrace/rvtrace-platform.c  | 192 +++++
+ drivers/hwtracing/rvtrace/rvtrace-ramsink.c   | 262 ++++++
+ include/linux/rvtrace.h                       | 349 ++++++++
+ tools/perf/arch/riscv/util/Build              |   1 +
+ tools/perf/arch/riscv/util/auxtrace.c         | 218 +++++
+ tools/perf/util/Build                         |   1 +
+ tools/perf/util/auxtrace.c                    |   4 +
+ tools/perf/util/auxtrace.h                    |   1 +
+ tools/perf/util/rvtrace-decoder.c             |  91 ++
+ tools/perf/util/rvtrace.h                     |  20 +
+ 20 files changed, 2553 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/riscv/riscv,trace-component.yaml
+ create mode 100644 drivers/hwtracing/rvtrace/Kconfig
+ create mode 100644 drivers/hwtracing/rvtrace/Makefile
+ create mode 100644 drivers/hwtracing/rvtrace/rvtrace-core.c
+ create mode 100644 drivers/hwtracing/rvtrace/rvtrace-encoder.c
+ create mode 100644 drivers/hwtracing/rvtrace/rvtrace-perf.c
+ create mode 100644 drivers/hwtracing/rvtrace/rvtrace-platform.c
+ create mode 100644 drivers/hwtracing/rvtrace/rvtrace-ramsink.c
+ create mode 100644 include/linux/rvtrace.h
+ create mode 100644 tools/perf/arch/riscv/util/auxtrace.c
+ create mode 100644 tools/perf/util/rvtrace-decoder.c
+ create mode 100644 tools/perf/util/rvtrace.h
+
+-- 
+2.43.0
 
 
