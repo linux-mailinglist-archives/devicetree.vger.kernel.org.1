@@ -1,189 +1,310 @@
-Return-Path: <devicetree+bounces-233962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233963-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 692DCC27599
-	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 02:45:09 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3CFEC275D7
+	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 03:20:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91639188F245
-	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 01:45:33 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6F3A24E1424
+	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 02:20:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64D0824DCE6;
-	Sat,  1 Nov 2025 01:44:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74054253951;
+	Sat,  1 Nov 2025 02:20:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="THODQjr8"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="llT2g3WP";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="kL8uqpnX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD52F24BCF5
-	for <devicetree@vger.kernel.org>; Sat,  1 Nov 2025 01:44:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C911823B607
+	for <devicetree@vger.kernel.org>; Sat,  1 Nov 2025 02:20:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761961498; cv=none; b=cOEiomrN2c6OIbLVymKU53V2Djg/yaIKJpdfXsJU0W0bcYFcH4F/siaSdbCMeydsXWlAaW3H6hg3bIbAzsT+M59U1Xq7zYzrbtISYx9q0jXNdqAGG+9J22A4fTd1CrdFqH1vozJTEFOME9MRPWi+noHFGygmBDOBJAqS34/SQWU=
+	t=1761963647; cv=none; b=l4iHYdTibU+x1gLntuWPUfVNbX0rgtWTKoUC4KelmEFM4TBUpCcrIQgSdw3pJcfO6pNJ0drRxWnJxmSEJOMfMsXSuOmzGZjNgcHMnl+CwgfW3F5NCcBnW34kBTwTJTvHwctuO+oSsZZR5JQM8SPs/XqU4ywXJTxxiYZs8fGovCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761961498; c=relaxed/simple;
-	bh=Wr7LJ8peoDW/jo3pY5MeceHU7Si+wM9BWcaylcwONyU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=cZAhTGbsnkU/+6m7mWXJVjtuhfL0EMA8ENoAhMTEspHHwcYtrvsCS9DwX7dbXb1PEr940JxNunLLwXf4j66WylQZ/BF+SrCidaj8HCIUoVqsTzVREnIMaOfxnfDOaeoMTvUYNcmNUCYSuhGfCsguh6NLcB7PXgs2L3hzFmjJ4Sw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=THODQjr8; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-7a74b13f4f8so1888593b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 18:44:56 -0700 (PDT)
+	s=arc-20240116; t=1761963647; c=relaxed/simple;
+	bh=jf9nuEo/WZwv0Yv47DYo7uzLK5W5wJ2W9WpUgSib3Dk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sBlSGc9xkHctbtK0qT6MbhbkrrtX+cKYgvVCLmJT0PvpHKr0tTSWtXiRsCAiZubSRvf+on5CIvc3prRKlOLqKkoCsGyDdj/cwBQidVAjrNGW/fsFp2inJXKuvgOESN+bsFofRMcQ7n59saU4IZa2l9muo9+btD7qF9CRnbd74c0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=llT2g3WP; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=kL8uqpnX; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59VLok1S3965649
+	for <devicetree@vger.kernel.org>; Sat, 1 Nov 2025 02:20:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ZvfEZK/lcMq9/a9VxgZ2s25HZusbbZGiu+j3EGbryv0=; b=llT2g3WPAh7zbrBa
+	ecjQiRralvIf1qIJQkH2gcGrd4XFXPSveAf4MDNz/vpHU4O7CZJwEqLPbYNC3/qI
+	t2LNUmSyiq37Nd2svsYEWpv+XIzoD73RiscEjtc3YFa6eMaCsIWz4/pHDkSi+38m
+	fQ36fQquW3B6NB2ci1WH1lXhayJT2GYXz6ETOcz67xY7pKrxvLyiLfs1azSGRa8D
+	COeEyIaFG0xCceJMlF2lgV5VjraZVJxgPfqmVtceaSV3yBLVZu2wXBuurI6q8zWo
+	9qM9PAovpjjmU8NcbqHVZqSf+VHKr4avw7uMWPAc+hYzPVggTfL8L18tpVBCTPZ0
+	IOaNIQ==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a55ch8ebp-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 01 Nov 2025 02:20:39 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-340be2e9c4bso243581a91.1
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 19:20:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761961496; x=1762566296; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gK6/9/Nd88Q9gusSePNbcMpaVCV2+VwX5wGIqW+nXzI=;
-        b=THODQjr8gPbUtSjYmPlDpZwekXfLVMmNV83TyFN8/qsfjYelFMMSl9L7v3VcdjK/wo
-         Ao+6+t+T1OvKdpXfvkihIw03b0gT3OrQhmP35U7ImW1qRQG+xId9xWZvC7yn47AL9MPU
-         abfzilaudlE4OZmUwXdG+n9oUMkWPu8fEoQzIkVdrRp5CVrjpP+93wdiLuZIXleMl160
-         aij2T53YtGs85Qvsy9e63oE0/uCKTsOdcdh95MdzDYiSbsoQ0Arro0nVlnzCQyaok5kF
-         fNzkRBvdKjN+/SIYJIO0zS0PNYG0z83IDeKLO5xwfnsJl+C11C0fCR39UYlVPIynwoVq
-         UYAA==
+        d=oss.qualcomm.com; s=google; t=1761963636; x=1762568436; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZvfEZK/lcMq9/a9VxgZ2s25HZusbbZGiu+j3EGbryv0=;
+        b=kL8uqpnXWdX/mxm4441fFb1geJDjWHxUHO9n+egEBSNirEjICurxgSCBrY6eMDsn2g
+         Y0FcG5rrojCx+QenEEnrWfYFdYpbkkSp9T/H4dgL8y920NPR/HTaJ6FFxK0VAoRF/jRd
+         gdFZQMT4GIltyqzCa/vp/WlKNwNWXsQH3FhrEH8S/6eN6AkC6r1RDuVsBcfW/I3x+Urn
+         X7Wd9TtfDtKvnOHKhr0qKsrQ+9bFXMrHAhOj1VtSvnSEmee+c/f8pcYGvj5exeZArN5d
+         rWC2rcp7eNgwwfNoLOufWVN7Js1HOs44T/E7kDo1KVvHcPuql2e2Keu0JeTSTRf4E2Gn
+         keIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761961496; x=1762566296;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gK6/9/Nd88Q9gusSePNbcMpaVCV2+VwX5wGIqW+nXzI=;
-        b=BYbqCLvODtmUo5R+GdBX0XGIzf1w482YUIEZkzQbxo8u43hyjZTpFgGqeFVevb64sr
-         ocw/k+zdyjP0fIQo8CgCMIizg9icSx/+wsimzWwEZFxGyV/edAuFU+3mVmfZ3j1Do2pN
-         mYI7sMRg48PxNyn3JqQ/6rwEHDYMw9VrVld3kYpTCtfNYjF7UEDpQxIovYL5+aj4nJeY
-         osf01U+KhgCVV1uU23JUlEX7tQxS15WPMMTp7BMySH7oK/kn+gHm89MTJTpQrWVksu7+
-         BUAqCnZUu12Lwx49qjbf9CjqXVcnQ4CufwWcivyqxGGR71TkFbCsNIIXnAlUdxb6ZzJP
-         9CwA==
-X-Forwarded-Encrypted: i=1; AJvYcCWT+oEeL8+gdFaXEbtlYpUKuSHZTpIInp/OwcEs43y4dezZF/rOZrJZnFivE1wTnYfiaj0VSdK1hvlN@vger.kernel.org
-X-Gm-Message-State: AOJu0YyD0kKZjORMVJUobpM408r4pnkae+X79c20ZqiNFtE6I1HBT347
-	njVYO0J532xHVj4RV+KrLN0vjD8h8Sbb+ioCCeWtrcK8Nr/Te51CdpvM
-X-Gm-Gg: ASbGncv7FDMphKoBEd8/hViKK6AhmVuIRLBhT4eOl9UVztFDnY0fOP5AP+UrkgwlnsS
-	3SNnaPETWiEtZVD/+osCdO9UGNYay9ASxKTRHan2pXrb4S5MRHUsWGxG2qSWg/0jCPhn6qjLqrQ
-	+lekYysFDG5fPZ8Lvtn7f6xto42JZrs/2pjRp5ttG/BbLBRs15+6T9Lzu2kDkFj10mKuM0qBNt8
-	bAqXffRdZuldU/t4ODBp6z4I8o+9OjcRPvlcj3h7Rx+4scjGhHfDIQvQwD0WYY2IkBm9hZHx/YB
-	93SSQ0bw6AWCMjhw6Q6LCPb4l+tRGMQJAY2EcgfCPxwiZLCD3d3LN18ZS8hkUEUQn39TiwEA1eu
-	Wjw/eAiunf6EB/NmOHAJIISjvT8S0isIUnXzCBo1r2m89cd5+h/oKdB8/6V0fy3RjPYqz82Vapx
-	NYEb35MnRy4o535YXGcl97jyGE4rHB1f1EDZ6dPA==
-X-Google-Smtp-Source: AGHT+IG73fXaL0VcqLIqRkANfPCq0IjyN6Ot8qtT20JHVXUm6Q3Tb0hIJV982rzY2kwxu6Q35wHvuw==
-X-Received: by 2002:a05:6a20:431d:b0:334:a953:1263 with SMTP id adf61e73a8af0-348ca566211mr6539181637.9.1761961496152;
-        Fri, 31 Oct 2025 18:44:56 -0700 (PDT)
-Received: from localhost.localdomain ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b93bf078924sm3350585a12.32.2025.10.31.18.44.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Oct 2025 18:44:55 -0700 (PDT)
-From: Longbin Li <looong.bin@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Ze Huang <huangze@whut.edu.cn>
-Cc: Longbin Li <looong.bin@gmail.com>,
-	devicetree@vger.kernel.org,
-	sophgo@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v5 3/3] riscv: dts: sophgo: Add USB support for cv18xx
-Date: Sat,  1 Nov 2025 09:43:23 +0800
-Message-ID: <20251101014329.18439-4-looong.bin@gmail.com>
-X-Mailer: git-send-email 2.51.2
-In-Reply-To: <20251101014329.18439-1-looong.bin@gmail.com>
-References: <20251101014329.18439-1-looong.bin@gmail.com>
+        d=1e100.net; s=20230601; t=1761963636; x=1762568436;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZvfEZK/lcMq9/a9VxgZ2s25HZusbbZGiu+j3EGbryv0=;
+        b=nDcFqESsYey/b45yTtGqx5ND+vuPnOuHghw5DzlxcBH2RWMPs6OsWENmOzDAgrgVr3
+         ryBtuAg92Y/LpOpEKZlu976lYEPJQffSWf8xdXMVVhf0dk+3hf9b9FCnhiLtTn0rtBJ4
+         dHj05IrI0eRORwO2lgVlexXQfXKjVAjFtmox+3m/sx7wgJMxfZeOjcH3F/BZROKIX4M+
+         2AaBn45K982wV44x1XiBxWGgdMppP+6lco1lRtmS1KcWsVXDmLEfwGbW6YfjqixY6ZWd
+         WFeTZhJ9B3R922gqX8gePcF4rXhEHSgxMzDjW/RRnN5hEYBVpiQR4rj1yO8ViJNOYA1T
+         k+fA==
+X-Forwarded-Encrypted: i=1; AJvYcCWTTm1O1pMfU9O0oIxAyejdLq5n5gWY4z55xIA38WamkYlgBVjFFdhovum2qBulZjiSx2YyNsiA8DGR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yypz2HnhyFdYUvwDh45QDLRBxUOcUHqOKw4VuzXDH1EiygfKOEi
+	X+hYJ4UJ43D0/pufAZMfL08KeSRxZwNrj18xR3D9mTNhsmd6AdpUFMNCtQTXt4hR/LE7IlpHzxK
+	n4koSp8jIg8eK/DHzsI1u+O2wHnlngH3vn/pBb8bjF2H4LeMawzRZvS5Xs80kUlSF
+X-Gm-Gg: ASbGnct6TCk0qRH+1kztnkhTbahJjNFj427tegPbyz69Igx+wO8tNrgRWQw8Vo+S/7i
+	jG02/S/62M1a7gnugPuLCWO2XtQ3XuaxAs9nO0Jx30UEYJUqZRuKVHEt2+BySMNCe9Jpjzyjp/e
+	jo2kKgCWmEoeI7XUclaMydS9eYSAmvfIGYOnIb1g86ux8HFNRiHVRjp9uSGBLbTnBG+cxu51PhU
+	3g2HK9ln63lrcaEaXVYtVVGCd94Qdq14Aa6vMMw22WhOAf6xJWXarsVbV/7Yto9bK2Q4Nkfj5aS
+	3bX5S4w5OJnanudWKfoc3M+y6wgGktzAzGj4Q4yCgKh6FMrFNKxNPVQCuJYFXx8W0mVnEKbkbe5
+	1Fnh70PVkxe9Ikwp110FIbCJa9G0/
+X-Received: by 2002:a17:90b:4f86:b0:32d:e75a:5009 with SMTP id 98e67ed59e1d1-34082fc40f5mr6185280a91.1.1761963636220;
+        Fri, 31 Oct 2025 19:20:36 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFmrUTOAVQUC5qvFh43h8kZ9c7nnsaSwK0Esi4Ukjz3kmt1bDnV0nhclIVnDDy9QDV0qq28SQ==
+X-Received: by 2002:a17:90b:4f86:b0:32d:e75a:5009 with SMTP id 98e67ed59e1d1-34082fc40f5mr6185208a91.1.1761963635296;
+        Fri, 31 Oct 2025 19:20:35 -0700 (PDT)
+Received: from [10.216.5.37] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34050bb7a29sm7309498a91.21.2025.10.31.19.20.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Oct 2025 19:20:34 -0700 (PDT)
+Message-ID: <d10e2eea-4b86-4e1a-b7a0-54c55907a605@oss.qualcomm.com>
+Date: Sat, 1 Nov 2025 07:50:16 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V7 3/5] dt-bindings: iio: adc: Add support for QCOM PMIC5
+ Gen3 ADC
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        "Rob Herring (Arm)" <robh@kernel.org>, Lee Jones <lee@kernel.org>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, agross@kernel.org,
+        andersson@kernel.org, lumag@kernel.org,
+        dmitry.baryshkov@oss.qualcomm.com, konradybcio@kernel.org,
+        daniel.lezcano@linaro.org, sboyd@kernel.org, amitk@kernel.org,
+        thara.gopinath@gmail.com, rafael@kernel.org,
+        subbaraman.narayanamurthy@oss.qualcomm.com,
+        david.collins@oss.qualcomm.com, anjelique.melendez@oss.qualcomm.com,
+        kamal.wadhwa@oss.qualcomm.com, rui.zhang@intel.com,
+        lukasz.luba@arm.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        cros-qcom-dts-watchers@chromium.org, quic_kotarake@quicinc.com,
+        neil.armstrong@linaro.org, stephan.gerhold@linaro.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+References: <20250826083657.4005727-1-jishnu.prakash@oss.qualcomm.com>
+ <20250829-classic-dynamic-clam-addbd8@kuoka>
+ <5d662148-408f-49e1-a769-2a5d61371cae@oss.qualcomm.com>
+ <4e974e77-adfc-49e5-90c8-cf8996ded513@kernel.org>
+ <a0e885be-e87d-411a-884e-3e38a0d761e5@oss.qualcomm.com>
+ <8c90cc3f-115e-4362-9293-05d9bee24214@linaro.org>
+ <5d4edecf-51f3-4d4a-861f-fce419e3a314@oss.qualcomm.com>
+ <20250927144757.4d36d5c8@jic23-huawei>
+ <a3158843-dfac-4adc-838a-35bb4b0cbea4@oss.qualcomm.com>
+ <CAGE=qrrCvq28pr9Y7it-CGMW=szKUnU+XBj1TmpoUwuASM05ig@mail.gmail.com>
+ <31bd08ce-823a-4a71-baca-a9d1e02fcb6a@oss.qualcomm.com>
+ <08eb477f-ea34-4a31-b181-bfc629aef4c8@kernel.org>
+ <68a9b8e8-bdf4-430f-baef-6a293ccea78d@oss.qualcomm.com>
+ <d8a78b7c-e3a9-44b5-986d-8ac32f328eb6@kernel.org>
+ <3a32746a-5b0e-4c0a-8322-00cd3a84394a@oss.qualcomm.com>
+ <4979bd26-0a77-4390-9db2-6d40cd7f963c@kernel.org>
+ <c4b2c474-c6d0-4b1d-bcc3-a3fddea699c7@oss.qualcomm.com>
+ <d7627a5d-893a-4bc3-8b67-c151ee0bea32@kernel.org>
+Content-Language: en-US
+From: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+In-Reply-To: <d7627a5d-893a-4bc3-8b67-c151ee0bea32@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: Z5Wz8wTV6E2vdxVcIk22_nFPDaRsGsp_
+X-Authority-Analysis: v=2.4 cv=LZgxKzfi c=1 sm=1 tr=0 ts=69056e77 cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=X18Rc80VOUBE94RK4nMA:9
+ a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-ORIG-GUID: Z5Wz8wTV6E2vdxVcIk22_nFPDaRsGsp_
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTAxMDAxOCBTYWx0ZWRfX5y0JUUCvPP9J
+ S7PoDLA2OzazjJVjZokwefLDU4x2lO3YEtM90VIsZgPdtSea260MUzuBC+wWOb4HCUlB4xrjhLg
+ /6anzsncV+UYDe6i42/aczm8haFiygAU65IV7sUj/BCxjfTQGpLnCgYQLTp61J3yu11dwx6ulAs
+ 6JwXXULXwQSLNcv31wACxNTRboJR+re47agaaMJPtk7vJSloRJh5fUiMJi3iuS4fGI++apein8e
+ +fg0OFVGktCNeGBdIrolQBjyhWK5JB+Jsq8VDSDJYfQODK1xWCD5AHUCIDn4a35fmmwi0LemCoX
+ zoiJJG/sDw4kw+euMgakA4vErlIpGVPS5N9w47jzrhDmVHbBXDyUZdPemUrS6A/L+87lIMidwld
+ rvYUH8coLk2vQgRZv27QOoN7+Moo8A==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-10-31_08,2025-10-29_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 impostorscore=0 spamscore=0 clxscore=1015 bulkscore=0
+ malwarescore=0 phishscore=0 adultscore=0 priorityscore=1501 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511010018
 
-Add USB controller node for cv18xx and enable it for Huashan Pi, milkv-duo.
+Hi Krzysztof,
 
-Co-developed-by: Inochi Amaoto <inochiama@gmail.com>
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-Signed-off-by: Longbin Li <looong.bin@gmail.com>
-Tested-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
----
- arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts |  5 +++++
- arch/riscv/boot/dts/sophgo/cv180x.dtsi           | 16 ++++++++++++++++
- .../riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts |  5 +++++
- .../boot/dts/sophgo/sg2002-licheerv-nano-b.dts   |  5 +++++
- 4 files changed, 31 insertions(+)
+On 10/27/2025 10:00 PM, Krzysztof Kozlowski wrote:
+> On 22/10/2025 13:02, Konrad Dybcio wrote:
+>>>>>>>>
+>>>>>>>> On 10/4/2025 12:22 PM, Krzysztof Kozlowski wrote:
+>>>>>>>>> On Sat, 4 Oct 2025 at 11:42, Jishnu Prakash
+>>>>>>>>> <jishnu.prakash@oss.qualcomm.com> wrote:
+>>>>>>>>>>
+>>>>>>>>>> Hi Jonathan,
+>>>>>>>>>>
+>>>>>>>>>> On 9/27/2025 7:17 PM, Jonathan Cameron wrote:
+>>>>>>>>>>> On Fri, 19 Sep 2025 20:17:43 +0530
+>>>>>>>>>>> Jishnu Prakash <jishnu.prakash@oss.qualcomm.com> wrote:
+>>>>
+>>>> [...]
+>>>>
+>>>>>> Can you please provide your suggestions on changes we can make
+>>>>>> in the above points ?
+>>>>>
+>>>>> You just pasted DT. I asked about SW, software. Please read carefully
+>>>>> previous comments.
+>>>>
+>>>> Is the problem that Jishnu included some indices in dt-bindings without
+>>>> also adding them in the driver's adc5_gen3_chans_pmic[] array?
+>>>>
+>>>> As in, would the resolution to this thread be simply handling all of
+>>>> them in the driver correctly?
+>>>
+>>> The solution is to remove them from the bindings, just like we do with
+>>> many other hardware constants. Of course if these are not hardware
+>>> constants, but part of ABI, then solution would be different but no one
+>>> provided proof or argument that this is any binding. All proofs were
+>>> "but I want to use it in my DTS", which proofs nothing. Not a binding.
+>>>
+>>> While this issue is not that important, we keep discussing it because
+>>> author does not try to understand the problem or even keep up the
+>>> discussion. Instead repeats the same without really reading my
+>>> messages... and then disappears for month or more.
+>>
+>> In Bulgaria, people shake their heads left to right to say "yes", and
+>> up&down to say "no" (or so I've heard).. I feel like we're having a
+>> similar situation here..
+>>
+>> I'll try to make a case for keeping these defines in some form.
+>> Here's hopefully all the related aspects, condensed down:
+>>
+>> 1. In a multi-PMIC setup, only the main PMIC's ADC is accessible by the OS.
+>>    It then mediates accesses to secondary PMICs' ADCs through internal
+>>    mechanisms, which requires the SID of the target to be retrieved and written
+>>    to a register, along with the physical index of the desired channel to be
+>>    measured (see patch 3/5 commit msg).
+> 
+> 
+> SID is still a hardware value, right? Combination of two hardware values
+> is still a hardware value, not a software ABI construct. Even if you
+> claim only the driver can decode it. These are still the hardware values.
+> 
+> If you had two IIO cells - one for SID and one for ADC channel - would
+> you claim they are both needed for software? Probably not.
+> 
+> io-channels = <&pm8550_adc SID_whatever CHANNEL_XYZ>
+> 
+> It's basically the same as some pin muxes, like NXP:
+> git grep MX8MM_IOMUXC_GPIO1_IO04_GPIO1_IO4
+> 
+> Complex value, which driver parses. Is it SW construct? No. These are
+> register values.
+> 
+> 
+>>
+>> 2. The PMIC SIDs are fixed per board and are the values of PMIC top-level
+>>    nodes' reg property (since forever)
+>>
+>> 3. The channel indices are fixed in HW, but this patchset proposed to reuse
+>>    them for logical mappings consumed through io-channels = <> as well (because
+>>    of 1.), with the drivers taking the lower 8 bits that of reg/io-channels[1]
+>>    value as the ADC channel id and the higher 8 bits as the SID (this is the
+>>    define macros with an argument)
+>>
+>> 4. Fixing 3. in a "simply define all possible options and bind them to
+>>    consecutive integers" fashion would require a huge table matching 0..n to
+>>    [0-max_sid][0-max_chan] which is unreasonable
+> 
+> I do not insist on fixing anything or changing the interface. I only
+> question their necessity to be a binding.
+> 
+>>
+>> The alternative to the SID packing would be to reference the target PMIC
+>> somehow, be it by referencing the PMIC itself:
+>>
+>> io-channels = <&pm8550_adc &pmr735a CHANNEL_XYZ>
+>>
+>> or by creating a faux node for the actual inaccessible ADC onboard each of
+>> the PMICs:
+>>
+>> io-channels = <&pm8550_adc &pmr735a_adc CHANNEL_XYZ>
+>>
+>> and have the OS retrieve the SID from the DT node & encode that value instead
+>> of hardcoding it in the DT, leaving just the actual channel IDs in dt-bindings.
+>>
+>>
+>> The define macros without an argument do specify physical channel indices, but
+>> we do need some sort of an identifier to put into io-channels (which is why this
+>> lives in dt-bindings in the first place), and a 1:1 mapping to the physical id
+>> sounds like a good option.
+>>
+>>
+>> I don't think anyone objects to any of these resolutions, so long as they
+>> are acceptable from your side
+> 
+> You can go these ways, but I never proposed to change the interface.
+> Just don't store these as bindings, so they don't have to be treated as
+> ABI, because they are not. They do not constitute the contract between
+> software (driver) and DTS. Treat them the same as we treat all hardware
+> constants - directly encoded or moved to DTS headers (which we did for
+> many of such cases already - see commit
+> 9d9292576810d0b36897718c24dfbc1a2835314b 3 years ago and other)
+> 
 
-diff --git a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
-index 9feb520eaec4..0e6d79e6e3a4 100644
---- a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
-+++ b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
-@@ -100,3 +100,8 @@ &uart0 {
- 	pinctrl-names = "default";
- 	status = "okay";
- };
-+
-+&usb {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-diff --git a/arch/riscv/boot/dts/sophgo/cv180x.dtsi b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-index 42303acb2b39..1b2b1969a648 100644
---- a/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-@@ -432,6 +432,22 @@ dmac: dma-controller@4330000 {
- 			status = "disabled";
- 		};
+Thanks for your explanation and the above suggestion and example,
+it's clear now. I'll move the macros we need into a DTS header file.
 
-+		usb: usb@4340000 {
-+			compatible = "sophgo,cv1800b-usb";
-+			reg = <0x04340000 0x10000>;
-+			clocks = <&clk CLK_AXI4_USB>, <&clk CLK_APB_USB>;
-+			clock-names = "otg", "utmi";
-+			g-np-tx-fifo-size = <32>;
-+			g-rx-fifo-size = <536>;
-+			g-tx-fifo-size = <768 512 512 384 128 128>;
-+			interrupts = <SOC_PERIPHERAL_IRQ(14) IRQ_TYPE_LEVEL_HIGH>;
-+			phys = <&usbphy>;
-+			phy-names = "usb2-phy";
-+			resets = <&rst RST_USB>;
-+			reset-names = "dwc2";
-+			status = "disabled";
-+		};
-+
- 		rtc@5025000 {
- 			compatible = "sophgo,cv1800b-rtc", "syscon";
- 			reg = <0x5025000 0x2000>;
-diff --git a/arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts b/arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts
-index 4a5835fa9e96..aedf79f47407 100644
---- a/arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts
-+++ b/arch/riscv/boot/dts/sophgo/cv1812h-huashan-pi.dts
-@@ -86,3 +86,8 @@ &sdhci1 {
- &uart0 {
- 	status = "okay";
- };
-+
-+&usb {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-diff --git a/arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dts b/arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dts
-index 86a712b953a5..b1853770d017 100644
---- a/arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dts
-+++ b/arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dts
-@@ -93,3 +93,8 @@ &uart0 {
- 	pinctrl-names = "default";
- 	status = "okay";
- };
-+
-+&usb {
-+	dr_mode = "host";
-+	status = "okay";
-+};
---
-2.51.0
+
+Also to Lee/Rob/Jonathan, as you had given your Acked-by tags on
+patch 1 - based on the discussion in this thread, I think it's
+also best to update patch 1 similarly now, to move the ADC channel macros
+from the include/dt-bindings/iio folder to the arch/arm(64)/boot/dts/qcom
+folders. I'll make this update in the next version, please have a look
+at it too.
+
+Thanks,
+Jishnu
+
+> Best regards,
+> Krzysztof
+
 
