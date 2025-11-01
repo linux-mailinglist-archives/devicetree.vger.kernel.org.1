@@ -1,66 +1,80 @@
-Return-Path: <devicetree+bounces-234011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27228C27B82
-	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 10:59:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8399C27C76
+	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 12:08:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4E82E34AC4B
-	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 09:59:27 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 41E0D349DF8
+	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 11:08:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2B1E2BD013;
-	Sat,  1 Nov 2025 09:59:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 125502F39A3;
+	Sat,  1 Nov 2025 11:07:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HzC5Tlwb"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XJ//iB0m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB93822CBC6;
-	Sat,  1 Nov 2025 09:59:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D6D02F360F;
+	Sat,  1 Nov 2025 11:07:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761991163; cv=none; b=Ru1/PVu7QTQQ4GL/WBurvmOd2xSK8uFpoXrM95zkvjsDl1m2e0WDkjw/nmKZvviDtuzfmh0WQETIi0YwhNZe3N/Ro8IsMyIBgcOcyZQEGW4cl1YtwMEx7H30ZAeK4R0XLMYxGg2kc3JDT9Wocm3N043NOpBGkTlMedj8P6qk8mk=
+	t=1761995270; cv=none; b=VycBhYcUL/beM0v4oyl3SULDMVDub9qsSrwa79/DPzt1MAH7meERC1piUA6LRpczDuBkeD5Zyzmcw1ogAZWQq9b2DNL18/K+AI19i46DFR/23794znoOri5ck76SoIbSt3V06Ybfi56vMlsKtEOAM61qp3zfL71dWgpLb29u+is=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761991163; c=relaxed/simple;
-	bh=IjdCMT0CzaODPEdiqPE/BBz8I40EGyTVW1/f1aFsFhI=;
+	s=arc-20240116; t=1761995270; c=relaxed/simple;
+	bh=KiBsSbViKMDxxR1+aLrfoJnj3kQ563rOF1uBzwFrkzk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g1OlU5NxkXGyri/JSv8LyccAmLozNTV2Fhs3RNWsq2iqAwsPcuYHB/YdUb4zX3k9OcWErhI+VlXThJX1Ysp5DIaXxbNNJDWaqJNVuAHtbnPZOPJ6EAnRHdHhuRlI8Mo/QE/2zvwspMWWTiK+c9764QApnjndW4VgFWYgKMeCqcY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HzC5Tlwb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADB00C4CEF1;
-	Sat,  1 Nov 2025 09:59:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761991163;
-	bh=IjdCMT0CzaODPEdiqPE/BBz8I40EGyTVW1/f1aFsFhI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HzC5TlwbpCo+vAQ8OoU0MEC77hUcM1JhYZwdLAiyhakas77mh/q2Sh3vbOKf59hFX
-	 zGCvAqd6EYw21u9e9bDF8tTGvfgA0ylgDJUSAnSDm5QkK+EOkdrXpU6cb36+HWViln
-	 Cj0iYYFMWouS9OrjZuVr+LNjiF06weYfsmBCg5duVNW0sYax7RfTua9LDaQcLaYnpG
-	 BRykl9ZuDzKxDcUFcQsYcpl0J3CK0vv9oFTVgnv4oU6B8S20gO3Vt4yL+ub4433S82
-	 +Qjq30Sm4czVZwV8dXBB1vw5fqhBFagcOrrOsYGzFLzYbCaZQTWRLALHFoy7HJHkbr
-	 BLQ7mifSoRp0A==
-Date: Sat, 1 Nov 2025 09:59:16 +0000
-From: Drew Fustini <fustini@kernel.org>
-To: Yao Zi <ziyao@disroot.org>
-Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=PADyIJ9ZuYm5qyXqU/nAxKNmIeBMIJ4rKBA8Cbkk/yp/NXKIRP+7pQ+Q13uMf+Nb8ucaq1onFgRpogUIoBWeV62vz2AiRXMb9fRpX7AvqBlY2VKdWN1yRHRzC9b3G+bvOLpEwgYBa+UVfFFUl4Rbgh4qfDdeEsaTxHF2kG5XPvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XJ//iB0m; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761995268; x=1793531268;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=KiBsSbViKMDxxR1+aLrfoJnj3kQ563rOF1uBzwFrkzk=;
+  b=XJ//iB0mB6neVhSRyP/moEQBI5mAO6DCKv6YccilFUE5Q1jeKqG9HZzC
+   CT3TDis81BdLOUba4U9eP8brPdLsq84E8bje/miK/XBlupth46OkPT8FF
+   PpSd5ly+IVHvj9TgFHKpWNzGxFC0JyWgR5WBP6SPdVNB3uwpnSK8hEvH7
+   56iYxkYz6lgLYNPx+HxjyOt9jxvWQ/PFem556lH7pDD0J4FJMl9LPSx5A
+   bcCQk6nuS2S7JI+CnrA7GbXX5OGq37NMpoQXrH2u1grvCMtdcNv+vnlKq
+   aBO8/jwZHW6OkXFe+/qNz/xnttIRCILTQI7oNh3DmDTDrD6a2iSDSQh0P
+   w==;
+X-CSE-ConnectionGUID: Oattsm47RY6SwhVhnxAaQQ==
+X-CSE-MsgGUID: rXV18VYJTN2mtV+GOQ+unw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="64173310"
+X-IronPort-AV: E=Sophos;i="6.19,271,1754982000"; 
+   d="scan'208";a="64173310"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Nov 2025 04:07:47 -0700
+X-CSE-ConnectionGUID: 7NZDx6euQNyyDNaldPJczg==
+X-CSE-MsgGUID: 2+Wci7r0R0ir1K52qe1bzw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,271,1754982000"; 
+   d="scan'208";a="185665250"
+Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
+  by orviesa006.jf.intel.com with ESMTP; 01 Nov 2025 04:07:45 -0700
+Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vF9SL-000OAU-1R;
+	Sat, 01 Nov 2025 11:07:39 +0000
+Date: Sat, 1 Nov 2025 19:06:36 +0800
+From: kernel test robot <lkp@intel.com>
+To: Khairul Anuar Romli <khairul.anuar.romli@altera.com>,
+	Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Michal Wilczynski <m.wilczynski@samsung.com>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>,
-	Han Gao <rabenda.cn@gmail.com>, Han Gao <gaohan@iscas.ac.cn>
-Subject: Re: [PATCH v3 5/5] riscv: dts: thead: Add reset controllers of more
- subsystems for TH1520
-Message-ID: <aQXZ9OjXC-cse0lk@gen8>
-References: <20251014131032.49616-1-ziyao@disroot.org>
- <20251014131032.49616-6-ziyao@disroot.org>
+	Mahesh Rao <mahesh.rao@altera.com>, devicetree@vger.kernel.org,
+	open list <linux-kernel@vger.kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH 2/2] arm64: dts: intel: Add Agilex5 SVC node with memory
+ region
+Message-ID: <202511011821.wW4mmrec-lkp@intel.com>
+References: <a3182556c07839dcd9227fa6a4a9d295507f3e8e.1761643239.git.khairul.anuar.romli@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,20 +83,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251014131032.49616-6-ziyao@disroot.org>
+In-Reply-To: <a3182556c07839dcd9227fa6a4a9d295507f3e8e.1761643239.git.khairul.anuar.romli@altera.com>
 
-On Tue, Oct 14, 2025 at 01:10:32PM +0000, Yao Zi wrote:
-> Describe reset controllers for VI, MISC, AP, DSP and AO subsystems. The
-> one for AO subsystem is marked as reserved, since it may be used by AON
-> firmware.
-> 
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
-> ---
->  arch/riscv/boot/dts/thead/th1520.dtsi | 37 +++++++++++++++++++++++++++
->  1 file changed, 37 insertions(+)
+Hi Khairul,
 
-I've applied this to thead-dt-for-next.
+kernel test robot noticed the following build errors:
 
-Thanks,
-Drew
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.18-rc3 next-20251031]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Khairul-Anuar-Romli/arm64-dts-intel-Add-Agilex5-SVC-node-with-memory-region/20251028-183009
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/a3182556c07839dcd9227fa6a4a9d295507f3e8e.1761643239.git.khairul.anuar.romli%40altera.com
+patch subject: [PATCH 2/2] arm64: dts: intel: Add Agilex5 SVC node with memory region
+config: arm64-randconfig-002-20251101 (https://download.01.org/0day-ci/archive/20251101/202511011821.wW4mmrec-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project cc271437553452ede002d871d32abc02084341a8)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251101/202511011821.wW4mmrec-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511011821.wW4mmrec-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> ERROR: Input tree has errors, aborting (use -f to force output)
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
