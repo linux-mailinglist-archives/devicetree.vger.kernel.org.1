@@ -1,174 +1,92 @@
-Return-Path: <devicetree+bounces-234088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EF57C285E3
-	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 20:04:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6AECC285EC
+	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 20:09:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB150189F3B7
-	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 19:05:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1CC9188ED39
+	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 19:09:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C87332701CC;
-	Sat,  1 Nov 2025 19:04:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCB392F6169;
+	Sat,  1 Nov 2025 19:08:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kH9Y+8IL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bROy2xW1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9875A24E00F;
-	Sat,  1 Nov 2025 19:04:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2CDEF50F;
+	Sat,  1 Nov 2025 19:08:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762023877; cv=none; b=LFGszcm1J2UHknGsszpAIGPzaLsvQFHLLbnuPLLjdl77u1Whn0FqwbLv2FeQ1bgs+gdVgxDCYHnfRkCKlTRY7EjlOzjgt8odHDEHPsc2WLd0PYTg6N/P8i29VtnVj97KtWqLSJE9Bq1FCPQGS2K9RYF65sNNdA8u9DmOgisY0Zc=
+	t=1762024132; cv=none; b=iDmOkUx+XVRuXo5rA98bhPhRhSCTVIM7OqYZOqN3GrixGqYm//4nlO/mZwUqPX2fIjEU6wo/ej7tfqFqTw7zbIPh2QRvICJ+sXqWKwe4qpAi06qSWhoOkEribEEUxswLzfmFUIZsJCEMOFWqwILMe+67ek1E+4FPbXxEkaUU9p4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762023877; c=relaxed/simple;
-	bh=5N11yKVyBA+qauA6wVJCmMj0NiycKObSE7fCGo3xjys=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AoId8jIXNr+jvB44gh9c9Smt5+46KHIAvAipTWb+ngp/IIASrZ8Bn0t80Im8KZYTByhBziJJtL0gpcKCzxncuXtfVNay7x+W7lr5zfQH+mua7u3ixLZyYaOgPOa3/g71+hSQ3BUOVpPQvdDeS1DbtKGB8OHfx9yH+30cD6MJhJw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kH9Y+8IL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C8B0C4CEF1;
-	Sat,  1 Nov 2025 19:04:36 +0000 (UTC)
+	s=arc-20240116; t=1762024132; c=relaxed/simple;
+	bh=0mGBzrzv6jnE6T7BFP57GnWz7zVRobJH9dhCr6K0970=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YrFj6yLbzhFPNpRCY85uqVNJ2RbtMKru6JFsVcRF5ezrzsXbekrXD0tWwxdm+wziy4F/NDlfMuU8U7xPeCN0XGKvhmOsiT11OvAneXpprGzhZlhDTvOPSaZ3i6oTHJU6DtoICm6y2mhQlOyvmnprE0HNmG5BLs0XRBhr9nqr0Ok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bROy2xW1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54F52C4CEF1;
+	Sat,  1 Nov 2025 19:08:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762023877;
-	bh=5N11yKVyBA+qauA6wVJCmMj0NiycKObSE7fCGo3xjys=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kH9Y+8ILueNnKPneXNt5fwfPm/ofB3cPnMshe3SJPi/HKx6qXT4ahLSrckAwChBkq
-	 TBKyMmmSPR31BfhE16ouOKlKt6kDLIdJe+DXs94mxHF+alnlEXZ8XE4DB5M/3VMOAc
-	 9+vRVL+5kJE5HrolhJSgQJCDpe1eliPa1Dy3WnpdFTDLZ/Lxn72G1Y6GqiHDHMzwrs
-	 eYkibhh/VegjtSqDVM1nvx720IiemqdXGmER5MPdTIoGxEXIxYJ2bPUdLEEZkGeQPB
-	 FZfYyxSjAR3Po6zeSDbgcRhTbmuooNYW4dZu9gd6Jufm1XLDAbNyPcsBA8ZZkbB1cl
-	 ovpMI5VBmd5mA==
-Date: Sat, 1 Nov 2025 14:07:57 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Cc: Manivannan Sadhasivam <mani@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, aiqun.yu@oss.qualcomm.com, 
-	tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] arm64: dts: qcom: Add header file for IPCC
- physical client IDs on Kaanapali platform
-Message-ID: <hwrbtnxy2jy5wimgvr6s4de2iuu44njnefmxlgzn5onj47b7b3@l5nj3zhhgvc5>
-References: <20251031-knp-ipcc-v3-0-62ffb4168dff@oss.qualcomm.com>
- <20251031-knp-ipcc-v3-2-62ffb4168dff@oss.qualcomm.com>
+	s=k20201202; t=1762024132;
+	bh=0mGBzrzv6jnE6T7BFP57GnWz7zVRobJH9dhCr6K0970=;
+	h=From:To:Cc:Subject:Date:From;
+	b=bROy2xW1qi/BkCp5lBMVuQWnVAelxa/aDeBK8HLK7qeZ+UJ/QXux9pJ4fPzgPcOgw
+	 4YVSclmuuXr2P+uQCfE0imq9xgZKrcqO9DXSiKPgyV5kuXHjKOnqrLont1cqaA1t/S
+	 2qVOLgiAf9ypDZGwFjPmwIXlwLocWqj5AjjwexDBJ8u+AOn2lZwVlQZP+as0R4d/fz
+	 gqdG+KQ9IViBFw0CNKd6eQUa7nIUoFymriw9vyVBk/KINCZkZ5zyiv6eOhE2+VbZPq
+	 +A5VPTOABbH6o4Dbhz61UI7kZMkvqRvFbkYnGaLMIdEyDgCTc8HAE7qaJsAdA2NpZI
+	 ObLlClHegs9Cw==
+From: Dinh Nguyen <dinguyen@kernel.org>
+To: devicetree@vger.kernel.org
+Cc: dinguyen@kernel.org,
+	linux-fpga@vger.kernel.org,
+	yilun.xu@intel.com,
+	trix@redhat.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowskii+dt@linaro.org,
+	conor+dt@kernel.org,
+	michal.simek@amd.com
+Subject: [PATCH] dt-bindings: fpga: update link for Altera's and AMD partial recon
+Date: Sat,  1 Nov 2025 14:08:48 -0500
+Message-ID: <20251101190848.24271-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.42.0.411.g813d9a9188
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251031-knp-ipcc-v3-2-62ffb4168dff@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
 
-On Fri, Oct 31, 2025 at 12:41:45AM -0700, Jingyi Wang wrote:
+The link is giving the 404 error, so use the correct link for the
+documents
 
-Whenever you have a subject line that ends in "on <soc/platform>",
-that's a good indicator that you're missing something in the subject
-prefix.
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+---
+ Documentation/devicetree/bindings/fpga/fpga-region.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Compare:
-arm64: dts: qcom: Add header file for IPCC physical client IDs on Kaanapali platform
+diff --git a/Documentation/devicetree/bindings/fpga/fpga-region.yaml b/Documentation/devicetree/bindings/fpga/fpga-region.yaml
+index 7d2d3b7aa4b7..98e7c311c0c8 100644
+--- a/Documentation/devicetree/bindings/fpga/fpga-region.yaml
++++ b/Documentation/devicetree/bindings/fpga/fpga-region.yaml
+@@ -215,9 +215,9 @@ description: |
+   FPGA Bridges that exist on the FPGA fabric prior to the partial reconfiguration.
+ 
+   --
+-  [1] www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/ug/ug_partrecon.pdf
++  [1] https://www.intel.com/programmable/technical-pdfs/683404.pdf
+   [2] tspace.library.utoronto.ca/bitstream/1807/67932/1/Byma_Stuart_A_201411_MAS_thesis.pdf
+-  [3] https://www.xilinx.com/support/documentation/sw_manuals/xilinx14_1/ug702.pdf
++  [3] https://docs.amd.com/v/u/en-US/ug702
+ 
+ properties:
+   $nodename:
+-- 
+2.42.0.411.g813d9a9188
 
-with:
-arm64: dts: qcom: kaanapali: Add IPCC client IDs
-
-
-Also, now that this is "devicetree", it would make sense to merge them
-together with the users. Or at least after we've introduced
-kaanapali.dtsi...
-
-
-I don't think you need to resubmit this though, I can fix up the subject
-when I merge. But please get to the point where it makes sense to merge
-them as fast as possible.
-
-Regards,
-Bjorn
-
-> On earlier platforms, Inter Process Communication Controller (IPCC) used
-> virtual client IDs and performed virtual-to-physical mapping in hardware,
-> so the IDs defined in dt-bindings/mailbox/qcom-ipcc.h are common across
-> platforms. Physical client IDs instead of virtual client IDs are used for
-> qcom new platforms like Kaanapali, which will be parsed by the devicetree
-> and passed to hardware to use Physical client IDs directly. Since physical
-> client IDs could vary across platforms, add a corresponding header file
-> for the Kaanapali platform.
-> 
-> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/kaanapali-ipcc.h | 58 +++++++++++++++++++++++++++++++
->  1 file changed, 58 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/kaanapali-ipcc.h b/arch/arm64/boot/dts/qcom/kaanapali-ipcc.h
-> new file mode 100644
-> index 000000000000..125375a4aac0
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/kaanapali-ipcc.h
-> @@ -0,0 +1,58 @@
-> +/* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
-> +/*
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + */
-> +
-> +#ifndef __DTS_KAANAPALI_MAILBOX_IPCC_H
-> +#define __DTS_KAANAPALI_MAILBOX_IPCC_H
-> +
-> +/* Physical client IDs */
-> +#define IPCC_MPROC_AOP			0
-> +#define IPCC_MPROC_TZ			1
-> +#define IPCC_MPROC_MPSS			2
-> +#define IPCC_MPROC_LPASS		3
-> +#define IPCC_MPROC_SDC			4
-> +#define IPCC_MPROC_CDSP			5
-> +#define IPCC_MPROC_APSS			6
-> +#define IPCC_MPROC_SOCCP		13
-> +#define IPCC_MPROC_DCP			14
-> +#define IPCC_MPROC_SPSS			15
-> +#define IPCC_MPROC_TME			16
-> +#define IPCC_MPROC_WPSS			17
-> +
-> +#define IPCC_COMPUTE_L0_CDSP		2
-> +#define IPCC_COMPUTE_L0_APSS		3
-> +#define IPCC_COMPUTE_L0_GPU		4
-> +#define IPCC_COMPUTE_L0_CVP		8
-> +#define IPCC_COMPUTE_L0_CAM		9
-> +#define IPCC_COMPUTE_L0_CAM1		10
-> +#define IPCC_COMPUTE_L0_DCP		11
-> +#define IPCC_COMPUTE_L0_VPU		12
-> +#define IPCC_COMPUTE_L0_SOCCP		16
-> +
-> +#define IPCC_COMPUTE_L1_CDSP		2
-> +#define IPCC_COMPUTE_L1_APSS		3
-> +#define IPCC_COMPUTE_L1_GPU		4
-> +#define IPCC_COMPUTE_L1_CVP		8
-> +#define IPCC_COMPUTE_L1_CAM		9
-> +#define IPCC_COMPUTE_L1_CAM1		10
-> +#define IPCC_COMPUTE_L1_DCP		11
-> +#define IPCC_COMPUTE_L1_VPU		12
-> +#define IPCC_COMPUTE_L1_SOCCP		16
-> +
-> +#define IPCC_PERIPH_CDSP		2
-> +#define IPCC_PERIPH_APSS		3
-> +#define IPCC_PERIPH_PCIE0		4
-> +#define IPCC_PERIPH_PCIE1		5
-> +
-> +#define IPCC_FENCE_CDSP			2
-> +#define IPCC_FENCE_APSS			3
-> +#define IPCC_FENCE_GPU			4
-> +#define IPCC_FENCE_CVP			8
-> +#define IPCC_FENCE_CAM			8
-> +#define IPCC_FENCE_CAM1			10
-> +#define IPCC_FENCE_DCP			11
-> +#define IPCC_FENCE_VPU			20
-> +#define IPCC_FENCE_SOCCP		24
-> +
-> +#endif
-> 
-> -- 
-> 2.25.1
-> 
 
