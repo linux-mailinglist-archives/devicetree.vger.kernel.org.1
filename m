@@ -1,142 +1,142 @@
-Return-Path: <devicetree+bounces-234096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9421C28889
-	for <lists+devicetree@lfdr.de>; Sun, 02 Nov 2025 00:22:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92975C28895
+	for <lists+devicetree@lfdr.de>; Sun, 02 Nov 2025 00:44:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 652E3348772
-	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 23:22:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E2CE3BA6B8
+	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 23:44:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7363323BF9E;
-	Sat,  1 Nov 2025 23:21:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3486C25CC4D;
+	Sat,  1 Nov 2025 23:44:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U0PZvVRA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="im+5SDmF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF53834D39A
-	for <devicetree@vger.kernel.org>; Sat,  1 Nov 2025 23:21:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A792A1E1DE7
+	for <devicetree@vger.kernel.org>; Sat,  1 Nov 2025 23:44:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762039315; cv=none; b=iXuUauCk6gAkBDsrnFQE2P4YJ31RTa2GbMPLi875AiW0Rqln6FXRoMFRR6uOfZU0Cv3SXq2X1dUWtivJqjsBrVYnYNZ15eDkc6sdmMox0yY/GWPs4WOUH6GJVUyzoagcF75SqCUMuWsmyly7TBYPWphu8CsWtt+wucKy0jcemro=
+	t=1762040669; cv=none; b=rPlzctpKfceM57fpEbol/s4T3OoBHAROQPHsAd35V7+FVbWfzSJMuq0yj8vZwlj8IqSe5oUmmgfNfcGNfWK77Ua+rPuUNE2weNbyqJm3J1CMGAuWB+GVyQe/AWp7hbwlQYjxvPHcN8zbRW4tyeTRndZ+npZq02+ez/6Gd+j93pM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762039315; c=relaxed/simple;
-	bh=Ih48fCgGxmcDC+rq9KAGCQ12b/6J7vEnVTVpSk2fSik=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jMmt00pEeB/t2lqq12hQPtsS9soOQRNPyF/b6yGeuUDdKnK3tn51kkv2yvRFHnI2kDNJQO/SirsnwfrHt3p4sRe3nfk6tnZX5weJ80ewN4g0/RtbmafWVmxj5v0XKLCyWH4h/40NZyQ5Jp6Vt4mA4ieEAawf6o4zutm3qQ94lJw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U0PZvVRA; arc=none smtp.client-ip=209.85.167.53
+	s=arc-20240116; t=1762040669; c=relaxed/simple;
+	bh=jh7KR1Uq6F54HgOUIevcql72dp2/doXnUhOqdIkZoG0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=iQN7Z+jPHrYs3b6YATdf6D4kZLcpfmxqotp5X9JuQaMngb9voI6RAp913eUUPsyZtHfB8i9qqmWH1BGbO1+izvcp8Jqm5R2U0sXr3/x1Eb7kP9Oqw1dLdG25ZNVkwo7qGzn0KKoesGK3w0mwGVrEnmGTkdDY09t/IMHnnSSdKC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=im+5SDmF; arc=none smtp.client-ip=209.85.214.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-57bd04f2e84so4174892e87.1
-        for <devicetree@vger.kernel.org>; Sat, 01 Nov 2025 16:21:53 -0700 (PDT)
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2958db8ae4fso1396645ad.2
+        for <devicetree@vger.kernel.org>; Sat, 01 Nov 2025 16:44:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762039312; x=1762644112; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1762040667; x=1762645467; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=tE6bLmNTkidBdeLhF+rPCfURMSNj/Z7BnksFHtpAFII=;
-        b=U0PZvVRAaJghF9lBb+PWMgbKUg7C2NPU8N48ATqvPgt1KO3LekxPewU5fRWylIN631
-         gQJ44UW3qe33Fyr74FW6h3owIj4pBa9uo59teMSPHfE8av/nyKL0m2kFHNrO5vaeD2PV
-         e+jTaLeF+rNeWD18/OWkU0SKk/kAGBBI10Z8x1E35jnCuieoL8rhlfypbGZkTxGUR302
-         HQ0dchYajVVl4AVYqjU+E5PU4PRNXrUZTzI15ZyVK1viX+OkZcpOL/czbHrQaKnJamiv
-         DAmqH2TezMU9p3MG01nWbVKXpmdZ0XbVfwZwdrIYnih/kiIyX1norjXPsURzmTCEpdIM
-         sobA==
+        bh=M5xrL6w1s6Y/SwQgHOGtWpqSk58YCr4boule2VrLo7o=;
+        b=im+5SDmF5tPZ4a5UnxL2LVPvU9FUg4lX/xrf/PJ4CD3ZPI/ZL+w0La28uu8ZNT+yI9
+         buAhJ89vnkuNU3Kl5967D6j06vFe51WJaYyDYROXZyr0e9dEKuKjE+hn/T8mkOXe6t6R
+         hvUELjTRG8fo184kg1ubxi4ed+FIT53SFi4TQFEa0OS+G9O6ZabD9rmF1bR0jRhDuzMQ
+         kcDpX2jhbTEIXwLMRY0/64eyrqROhMEMNFGtEN987Sc2vcVAVhbR8J59Y++yl69XJWzB
+         DGgpQAgpjA24dENnZv0Pgj3W6TUMF3ITbwNNGKfi/XNFRHT5apHuogucAmX32UGIeTlr
+         DbjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762039312; x=1762644112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1762040667; x=1762645467;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=tE6bLmNTkidBdeLhF+rPCfURMSNj/Z7BnksFHtpAFII=;
-        b=mlxTbCrKJgywDS94oJKok6x8YE+Q1szXQrPCS9kAKKYeiuPrusB96bOS72+yweAUrv
-         THhsCqA2ESB1yNK2SMjCQpEebVagKBZfkJkUPMbGR/9c06OpEZozcpwbFhbLx5w1HCO8
-         16y1o2NWDM4SPy6v8iN5y2IbEg+TrmliuwjvXqz/YGY2+Hj5XVmUCfq/HMmeHz+czGR9
-         1jsMZm5KuZ3ldGH7fghe7TXibfBjv2wAOFB7ny84YfFKcoddOrX+93BLQgaji8E1eAYW
-         hKc5IA8sVQ2+g8lhvluuw+xFvULO7B0qfgWVRvotkRf7iSe81dT8DS/YRsAqIqwwqGww
-         VXhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXbo4ib8xMvSTYaXS4VoRpEiJD4mLp2kTMh+AY14EUcYCKO8SaCd0hkZ4vMmocSYX3UifFfHhW/kfOV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8ZfN/zJeCwFPVvsbG/IbQ4Xs7vgJSYNvNamWjvC5+zznQ30Je
-	t4N+BNXR2gXEDhFncgzTfdcfLdB+2bvhvDowSYgFqNt/A9y8dPSgqcAg+cQU0QlhtBtRKCMUXD/
-	aTTc783mPP+g2PKKHks6lW8C5iIoeWiUKUgVs
-X-Gm-Gg: ASbGnctf6QQUICbJG9pALCiPFQOcZISiXhUWi9e5KVn4807zOg2s2tSchpVaJM9dGG5
-	xwAM+EElH3oazwHEh6Fh7m7RA+z6AIGyIEyuJaDAgM5sk+kHXeUG3/m8nz3OA9ltDTZvnsNTSDQ
-	OtWzmBG34UmfIdEfXeF39q8gxGtby4/J7E4Wd2Ynxro9qjfRejv530T/1ZFIjt26m1FPpCLpZcQ
-	h1/jNZTqVcL1idizT6dRFd/IqqJmVbq5b/+IBxQXZJ1QlBuL9MNa9KUs4KjIJhYDIvavKk=
-X-Google-Smtp-Source: AGHT+IEvPRmi56xA8VSlKhoU4qy0ZWuJI01gXXRCxfZUpYfce2ybmegTH3BGaEdGz4/nTwnns4xZ4vmoZY61Tko8f6Q=
-X-Received: by 2002:a05:6512:6ca:b0:571:8fad:ecee with SMTP id
- 2adb3069b0e04-5941d50d172mr2275685e87.21.1762039311783; Sat, 01 Nov 2025
- 16:21:51 -0700 (PDT)
+        bh=M5xrL6w1s6Y/SwQgHOGtWpqSk58YCr4boule2VrLo7o=;
+        b=M8PwdcdHJqmbymJqJafRMMemtXZqBkXZpR/PT5bkr4qvI2D5T/XHaEVgy2RSXww359
+         ZL+PugY7KiDdtJLMRLKBxHE2bAolVuSEsYgtIobm23NhMucYfmHyexSxlyg6Vg8up5kO
+         hkK13Fbreojd1k+++OQ5eUHbAozrLUMfLqSX15zzBac8ng7Qz9TJFlPhfVcOGDlJhzai
+         wCXGwhxw8XO3O0GA+LMLo2H8APJQChNCHCuc8yogdj3wNH7NGm5F6HxEf6sqwc+yufF+
+         yinC5qkTj/3WEKsWrRpaHUqTlVnD1wTJBgZ9tMmtWt5+PtWL1wWgQRmNG7T+wUSP43cv
+         QIkw==
+X-Forwarded-Encrypted: i=1; AJvYcCWFKotOHUK/VIxZG6ne02WLgPffiXOJm7rO+fVJBgsUXnqn1lPKG1mmhw+QNEQpCKUD6KLqR7icMohP@vger.kernel.org
+X-Gm-Message-State: AOJu0YyaELiesBTMUQYeBG9+OIQKjnLnURQLgQzrgtXGXkh9vrwoZy38
+	UqJczXhPhZg5bE8dSngqb7cdXsV5CNbK/HVaJzYrfpKG8wE+0W97y3Ii
+X-Gm-Gg: ASbGncuVhAMS0lny/GrbQSeomB43ykinZqEXWJdQ5vovKD4d14/9RqO+CSh6/2PzH0U
+	6vdZ9zn+sGqwmh1BDJVj+8PsRgUkjhno5each3yUuobCxG3/BohJimdVoX2WT1nadjIscNpUXvM
+	+WY5gwwqYZ4O/ktauR2jfbCadaQVgjNIFBKqFkizN8U+7lbzNf1WUMtCEy2uM8PoBEnbuygWrzc
+	6MLCxzz6K7S+6zFWvq2OwUbPvnSSPStUjIo+sa+Y4aj5ciGV45+KCaKpCf40ByLkc5RzOXyaeCn
+	U+mldYJ2UVIj7hB6+ePp4aR0Uj3m2Nittrvkn4jlvReNcN9vZm63gOCXzV2DpjErXao1Tu0O+o+
+	B6p85xqvO4oUnnBXe5zqWF72Wkj1FnRKQrz8ma2Wyi/cycDxmfevfMrBZ426vKLyrDVCt+VQnHu
+	oCw8fScDZ2cA==
+X-Google-Smtp-Source: AGHT+IHes7gAPMGnU9C8dtef1adr+TMQgs0cEQ/JgUMpaIjuvVBJgyDHwEuzKah+vpeRkyOHYuQGpw==
+X-Received: by 2002:a17:902:c942:b0:295:7f1f:a80a with SMTP id d9443c01a7336-2957f1fb69dmr17823945ad.27.1762040666931;
+        Sat, 01 Nov 2025 16:44:26 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-340b070ec06sm4370384a91.3.2025.11.01.16.44.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 01 Nov 2025 16:44:26 -0700 (PDT)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: u.kleine-koenig@baylibre.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	unicorn_wang@outlook.com,
+	conor+dt@kernel.org,
+	rabenda.cn@gmail.com,
+	krzk+dt@kernel.org,
+	mani@kernel.org,
+	liujingqi@lanxincomputing.com,
+	palmer@dabbelt.com,
+	pjw@kernel.org,
+	robh@kernel.org,
+	tglx@linutronix.de,
+	sycamoremoon376@gmail.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	sophgo@lists.linux.dev,
+	chao.wei@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	fengchun.li@sophgo.com,
+	Chen Wang <unicornxw@gmail.com>
+Cc: Inochi Amaoto <inochiama@gmail.com>
+Subject: Re: [PATCH 0/4] Add PCIe support in DTS for Sophgo SG2042 SoC
+Date: Sun,  2 Nov 2025 07:44:12 +0800
+Message-ID: <176204064246.157916.1254578946904175496.b4-ty@gmail.com>
+X-Mailer: git-send-email 2.51.2
+In-Reply-To: <cover.1760929111.git.unicorn_wang@outlook.com>
+References: <cover.1760929111.git.unicorn_wang@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251021-tegra186-icc-p3-v3-0-68184ee8a89c@gmail.com>
-In-Reply-To: <20251021-tegra186-icc-p3-v3-0-68184ee8a89c@gmail.com>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Sat, 1 Nov 2025 18:21:40 -0500
-X-Gm-Features: AWmQ_bmZzHSXWhAY2pY6BRtjObw17AvJtuzUsKcg8jYHF9w1YWeOmRl20FG9z7g
-Message-ID: <CALHNRZ-uFJhMjyyV1vUS6ye3q-nNVPT7Ab4vuO41ziHqg8MOvA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] arm64: tegra: Add CPU OPP tables for Tegra186/Tegra194
-To: webgeek1234@gmail.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Tue, Oct 21, 2025 at 8:13=E2=80=AFPM Aaron Kling via B4 Relay
-<devnull+webgeek1234.gmail.com@kernel.org> wrote:
->
-> Bindings Dependencies:
-> - https://lore.kernel.org/r/20251021-tegra186-icc-p2-v3-0-1a50b526dd40@gm=
-ail.com
->
-> Logical Dependencies:
-> - https://lore.kernel.org/r/20251021-tegra186-icc-p1-v3-1-7e6db3b070c4@gm=
-ail.com
->
-> Merge Strategy:
-> - Merge all patches only after all dependencies are picked up
->
-> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> ---
-> Changes in v3:
-> - Split series
-> - Link to v2: https://lore.kernel.org/r/20250909-tegra186-icc-v2-0-094137=
-24e781@gmail.com
->
-> Changes in v2:
-> - Use opp scoped free in patch 3
-> - Cleanup as requested in patch 3
-> - Move patch 3 to the start of the series to keep subsystems grouped
-> - Link to v1: https://lore.kernel.org/r/20250831-tegra186-icc-v1-0-607ddc=
-53b507@gmail.com
->
-> ---
-> Aaron Kling (2):
->       arm64: tegra: Add CPU OPP tables for Tegra186
->       arm64: tegra: Add CPU OPP tables for Tegra194
->
->  arch/arm64/boot/dts/nvidia/tegra186.dtsi | 317 +++++++++++++++
->  arch/arm64/boot/dts/nvidia/tegra194.dtsi | 636 +++++++++++++++++++++++++=
-++++++
->  2 files changed, 953 insertions(+)
-> ---
-> base-commit: 211ddde0823f1442e4ad052a2f30f050145ccada
-> change-id: 20251021-tegra186-icc-p3-3f6454da5ec4
->
-> Best regards,
-> --
-> Aaron Kling <webgeek1234@gmail.com>
->
->
-All dependencies have been picked up, unblocking this.
+On Mon, 20 Oct 2025 11:32:55 +0800, Chen Wang wrote:
+> From: Chen Wang <unicorn_wang@outlook.com>
+> 
+> This new patch set is a continuation of the previous patchset
+> "[PATCH v3 0/7] Add PCIe support to Sophgo SG2042 SoC" [1].
+> 
+> The drivers and bindings have already been merged into the kernel
+> mainline, and this patchset will focus on submitting the remaining
+> DTS changes into the mainline.
+> 
+> [...]
 
-Aaron
+Applied to dt/riscv, thanks!
+
+[1/4] riscv: sophgo: dts: add PCIe controllers for SG2042
+      https://github.com/sophgo/linux/commit/4e27aca4881ace1e9a812fc2c88b33dd84e29993
+[2/4] riscv: sophgo: dts: enable PCIe for PioneerBox
+      https://github.com/sophgo/linux/commit/b85ad0d06a19de95d41f91162389a1bbb461a405
+[3/4] riscv: sophgo: dts: enable PCIe for SG2042_EVB_V1.X
+      https://github.com/sophgo/linux/commit/c6c215099e89b1eb71ed6592163ae5b530f4538e
+[4/4] riscv: sophgo: dts: enable PCIe for SG2042_EVB_V2.0
+      https://github.com/sophgo/linux/commit/579d6526aa43a155c8685a88ef8350a8c29afa47
+
+Thanks,
+Inochi
+
 
