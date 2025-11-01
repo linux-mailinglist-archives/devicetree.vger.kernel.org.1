@@ -1,180 +1,172 @@
-Return-Path: <devicetree+bounces-233989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E5C6C278D4
-	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 07:34:36 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77035C278FD
+	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 08:20:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BBDA51894C06
-	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 06:35:00 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 032234E215A
+	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 07:20:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2FF9284894;
-	Sat,  1 Nov 2025 06:34:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 510E6296BD8;
+	Sat,  1 Nov 2025 07:20:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="d4VCR4kL"
+	dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b="tcezc+ZH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B851C264628;
-	Sat,  1 Nov 2025 06:34:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C86328B4E2
+	for <devicetree@vger.kernel.org>; Sat,  1 Nov 2025 07:20:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761978873; cv=none; b=g32AaDcr7o9xtZuwdJm5z2OxOWwDFlknuZOOH3o1GDoaEL0DSUc7WeSZqJ19cMn5+dr1PTgvBYIOeu0bOYrjZuHipk7LDmmwWk2fOdGF98AwATpIa3OesftTI3D6DK0i6SkU9XiYr0TKAUf518PFWklA3uwLlHZ2XtdE+LkR7WI=
+	t=1761981652; cv=none; b=hJ+pQx/NlNyms4FTy8kCukys3YollCT/Q1lO50h256KsA6JHSQh2TJNnbQ25mmFH5NCVUyEeqC3HO228PmMFVZ3YPoJkguT2yQl/V50DgtO7WLJRGzhKo2EFzoV/GUScJmF4Yx8jAXlMtvZ5GAX0R2OBG0STG0nIq811PKS13rk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761978873; c=relaxed/simple;
-	bh=svHrHLDDhTnGKlEJaxJBVr2ClX4h1Mz3MZ8oZRBL50U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CwXLrempom2u35fBbUqZUzhV/2sKt/4Fq5DLOb4na+lsCtqs+lcfLTrmfKxCeCaL84PVZMjGJidusuiunvQCEcMnQ1aCSvxaI5y6eRIKQAF6r5smP330NN4REiBua/aWyItSrEyz/BWdwIa2iPTe3v+0AOD9bNrxwNGXrFeOMNg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=d4VCR4kL; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761978872; x=1793514872;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=svHrHLDDhTnGKlEJaxJBVr2ClX4h1Mz3MZ8oZRBL50U=;
-  b=d4VCR4kL9JTiesVZ/NxAm8wam6Sl8XhwNH7aBZehuSIwtdQBrMOvOO3y
-   9RbCkkalv3gO6pJzFykypLZczQETx46JVTQ4orCCJUGm2hfwmD0eFZic/
-   vUWyZFErb6AEu5q3b/Ezs2Pf3fIM2DCRW2cBPpvt82QmGdlOJXmUHipn/
-   VJijaCFyfcyZGM884rIHslom/DhfL6bpFEdDwd7GiedQIfwc9GmdontBG
-   yd60vSm1/73UpAHsX52XsAFQLg5nkwpo73wrYpyOSZtfab7XRQKtmOfUr
-   EA6XtWTDDDV/zUuV8ILBtWK8MNRBRRQg86T35yW9tJzV8L9rN6pCBc5ZM
-   A==;
-X-CSE-ConnectionGUID: 41Wf7znTQ0aRTHLPiR+r1Q==
-X-CSE-MsgGUID: eR0A5ImES9GmU15wf2ZN7Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11599"; a="75485753"
-X-IronPort-AV: E=Sophos;i="6.19,271,1754982000"; 
-   d="scan'208";a="75485753"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2025 23:34:31 -0700
-X-CSE-ConnectionGUID: TOVc8IFERiOx9yzGOalz9w==
-X-CSE-MsgGUID: bHthRj8XTdGc0S/Gcn+6Vw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,271,1754982000"; 
-   d="scan'208";a="185632982"
-Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
-  by orviesa006.jf.intel.com with ESMTP; 31 Oct 2025 23:34:26 -0700
-Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vF5Bw-000Nxw-1a;
-	Sat, 01 Nov 2025 06:34:24 +0000
-Date: Sat, 1 Nov 2025 14:33:29 +0800
-From: kernel test robot <lkp@intel.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	sboyd@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, mturquette@baylibre.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com, laura.nao@collabora.com,
-	nfraprado@collabora.com, wenst@chromium.org,
-	y.oudjana@protonmail.com, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v2 7/7] clk: mediatek: Add support for MT6685 PM/Clock IC
- Clock Controller
-Message-ID: <202511011423.LH8doBcv-lkp@intel.com>
-References: <20251027111343.21723-8-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1761981652; c=relaxed/simple;
+	bh=kilYbLdYIaf2hSrE+nJ6zDswVrvJpNLoQ2tFF31pBDw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IpxgYvLajGxTLQG7qOus38O04Pzs8WihgbjF+jM/sW8xExP3lhuAbtA4NahCcNuSvLeIXP8t7hwl2rdAocr4/lx/QAVZmZDCzqF93TQ8X1PMBjTIPfe4fpClc5YWppmJ0CWbQwDuP9Hvo4cvIyA79BdNGgEuhBfTxWWzNGCpT54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org; spf=none smtp.mailfrom=nigauri.org; dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b=tcezc+ZH; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nigauri.org
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-b6d402422c2so605326566b.2
+        for <devicetree@vger.kernel.org>; Sat, 01 Nov 2025 00:20:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nigauri-org.20230601.gappssmtp.com; s=20230601; t=1761981648; x=1762586448; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Rtq1UTr0UPwwqORfG0FbJYYqFuloO33lCM+eu5gqKMo=;
+        b=tcezc+ZHA89LiM85/IV21TERbkRRxR9rxUGPuPPt00F/EYILrAmHACNHopdHW3Ytiy
+         cEHETRdWUqw2bLrZnANcgvtbfe36uJJUd60tx1Sd1l+KjmopCaFglxjc0WLuWxjXbfzS
+         6RlOj16HXaTYsj+VYmaUGJTbp+KfFENW6CtZYgzqYH7Ma9GVIYJvTPfJrFWiH0zWaRUA
+         yOb2uAIR7dAYON25eDJhfOJNrf7mHpCzEqCAhKHJs4myupZ1gbmNPznfHtBducKmXHJB
+         XuxWQKKEFKE1dvoDFTb324g/Bxzd7EHFQjAuEfxVBxF+WQnjmmVqdU9guFuBFvYsxxnN
+         ZWZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761981648; x=1762586448;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Rtq1UTr0UPwwqORfG0FbJYYqFuloO33lCM+eu5gqKMo=;
+        b=EMoP1BatvGgvHdxoPoC6UsVR1YNjhtfWlA9A8NjS6z5Wx8pmaogJp+Il753/4S0WlW
+         4WXRvOmOFUuKweWsx+sBa8cw574gzQs8nPNhEriI7Tlfcbdsz6ZXl4jEIqniDIDqZ8WZ
+         KESC2555pp/TzklIUqD8aq860yE62fEp2jRTs6r6gnfam5bdWhAgCPK2GMbrnqpirYPq
+         cRU6g1ZKMIA/MFJucXq3XCSrxAy4Wx/c8BzGxbV3xqHPZ/nTJIFsfHtxg54ITq2CZ4/Q
+         i24od6HrkH2IjNsa55m8FbBVtqvjSz7w2dk9hFHkES39lMAcdKq6XbCX+rJ6c7z4fkC4
+         f1Ww==
+X-Forwarded-Encrypted: i=1; AJvYcCU5wZCFHT7NBaz7UtvKyBK+OJBYrstpibIR606xnd8cxwaOWpnPjQbQTwfAK6zJG4CH95gwbHIALJOq@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxjFLiyikvNskLlCJFGfSdRbQE9jPWHR7GsU/1ileaCkiDFuqy
+	1cKssbxOxmMYsjDlRiQNy3cD0pgwEMpxicsdIl/027kNs5LA4dDQM0EAFjBORDwoO3+mf0k4xHy
+	hGyZqLB1enCZYZ9d4T5msB2QhM05ZPNP3WHcencU=
+X-Gm-Gg: ASbGncsXtTSYT2VNeXYrbzKaccrIxnjVgcdy5O8aMIgCiYhkz3PMA1k+kzBfM8m4yLd
+	STszypg8s+RyFKWJpbROk1ceSMSPSlqlbkNzxXzHCcirrAriWNVBwSDaMLgFbCIunXVo4uaaFIL
+	7nsMg//H+3rB0HG9eddxNUbWuuASwxEtLh13wu5NteNC35Mb/OshLR83PWcP0cfddh/kddHeE7/
+	d+tqXXtsGdRzEEQ11zH5pY1yIQmq5PEAugaRnB3OiW3bmn6Z9qPwZNWmI2p7E9cW5s=
+X-Google-Smtp-Source: AGHT+IG5Tddyj7k9AhnVLje/7zK0LWAl7G7xkeGFkbQxk258uIYlLJR59L9wOrzUthuN7A7v9giWi00jdfqWUlBjacQ=
+X-Received: by 2002:a17:907:2d90:b0:b47:de64:df34 with SMTP id
+ a640c23a62f3a-b707062c89dmr569820966b.51.1761981648222; Sat, 01 Nov 2025
+ 00:20:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251027111343.21723-8-angelogioacchino.delregno@collabora.com>
+References: <20251010-kakip_eth0-v1-1-0d8fdcbceb9a@ideasonboard.com>
+ <CAMuHMdWZD1m6t8MnYTA83RV=h9G9o6M3KSZjO32rRjOpz6px+w@mail.gmail.com>
+ <bcdc9a86-bda1-4646-9ccc-1dc00a710b44@ideasonboard.com> <CAMuHMdUDuuXncX4sbd6oa+8KcS8x+1Sp-ahmvyh8fRdQt1GqKA@mail.gmail.com>
+ <8b984f13-0498-4cc6-a64e-e2b6b147c346@ideasonboard.com> <CABMQnV+z=8-ORRGTjxM=6iP+6+qbJa-N_C0csi8K53wpFwLp_A@mail.gmail.com>
+ <CABMQnVJu-rVHSYcSU271sVeVvuHN=+h8YOAMkDXW--MWfxguuA@mail.gmail.com> <9a9b2fc0-81ca-445c-981c-104d7ed9043c@ideasonboard.com>
+In-Reply-To: <9a9b2fc0-81ca-445c-981c-104d7ed9043c@ideasonboard.com>
+From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Date: Sat, 1 Nov 2025 16:20:22 +0900
+X-Gm-Features: AWmQ_blXKl9v9g-u7dHQXbQk_jl6qulvN0hVjTOAUEA7mOWLjjpL9cvLYAqeMf4
+Message-ID: <CABMQnV+bR1bteABAWOS_tYd3LZqg190tE-=_kqzZYe95fTQttg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r9a09g057h48-kakip: Enable eth0
+To: Dan Scally <dan.scally@ideasonboard.com>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi AngeloGioacchino,
+Hi Dan,
 
-kernel test robot noticed the following build errors:
+2025=E5=B9=B410=E6=9C=8828=E6=97=A5(=E7=81=AB) 19:56 Dan Scally <dan.scally=
+@ideasonboard.com>:
+>
+> Good morning Nobuhiro - thanks for your comments
+>
+> On 26/10/2025 03:54, Nobuhiro Iwamatsu wrote:
+> > Hi all,
+> >
+> > 2025=E5=B9=B410=E6=9C=8826=E6=97=A5(=E6=97=A5) 10:06 Nobuhiro Iwamatsu =
+<iwamatsu@nigauri.org>:
+> >
+> >
+> >>>
+> >>> Indeed, I couldn't find it anywhere either so resorted to phytool.
+> >>>
+> >>>>
+> >>>> Which PHY is actually mounted on the board you have?
+> >>>> Can you inspect it visually?
+> >>>
+> >>> It says LAN8830, plus a couple of other strings.
+> >>>
+> >>
+> >> Yes, this board has a LAN9930 chip.
+>
+> Sorry; is that a typo? Should that be LAN8830?
 
-[auto build test ERROR on clk/clk-next]
-[also build test ERROR on linus/master v6.18-rc3 next-20251031]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Sorry, it is typo, LAN8830 is correct.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/clk-mediatek-Split-out-registration-from-mtk_clk_register_gates/20251027-191633
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-patch link:    https://lore.kernel.org/r/20251027111343.21723-8-angelogioacchino.delregno%40collabora.com
-patch subject: [PATCH v2 7/7] clk: mediatek: Add support for MT6685 PM/Clock IC Clock Controller
-config: arm-allmodconfig (https://download.01.org/0day-ci/archive/20251101/202511011423.LH8doBcv-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251101/202511011423.LH8doBcv-lkp@intel.com/reproduce)
+>
+> >> Since this chip's PHY_ID is 0x22165X, I believe the PHY driver needs
+> >> to be modified.
+> >
+> > I have confirmed that this IC is supported by micrel.c, not microchip.c=
+.
+>
+> Excuse my ignorance; I have no experience with phys really. The driver th=
+at claims the phy is indeed
+> micrel.c, and with the phy id set to 0x00221652 it's picked up as "Microc=
+hip LAN8841 Gigabit PHY".
+> When I take a look at that the PHY_ID_LAN8841 (0x00551650) and MICREL_PHY=
+_ID_MASK (0x00fffff0) seem
+> like they're appropriate already. What needs to be modified?
+>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511011423.LH8doBcv-lkp@intel.com/
+Sorry for not explaining well.
+We need to update compatible from ethernet-phy-id0022.1640 to
+ethernet-phy-id0022.1650".
+Because this chip's ID is 0055165X.
 
-All errors (new ones prefixed by >>):
+--- a/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
++++ b/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
+@@ -70,7 +70,7 @@ &eth0 {
 
-   drivers/clk/mediatek/clk-mtk-spmi.c: In function 'mtk_spmi_clk_simple_probe':
->> drivers/clk/mediatek/clk-mtk-spmi.c:48:20: error: implicit declaration of function 'devm_spmi_subdevice_alloc_and_add' [-Wimplicit-function-declaration]
-      48 |         sub_sdev = devm_spmi_subdevice_alloc_and_add(&pdev->dev, sparent);
-         |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/clk/mediatek/clk-mtk-spmi.c:48:18: error: assignment to 'struct spmi_subdevice *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-      48 |         sub_sdev = devm_spmi_subdevice_alloc_and_add(&pdev->dev, sparent);
-         |                  ^
-   In file included from drivers/clk/mediatek/clk-mtk-spmi.c:16:
->> drivers/clk/mediatek/clk-mtk-spmi.c:52:53: error: invalid use of undefined type 'struct spmi_subdevice'
-      52 |         regmap = devm_regmap_init_spmi_ext(&sub_sdev->sdev, &mtk_spmi_clk_regmap_config);
-         |                                                     ^~
-   include/linux/regmap.h:775:20: note: in definition of macro '__regmap_lockdep_wrapper'
-     775 |                 fn(__VA_ARGS__, &_key,                                  \
-         |                    ^~~~~~~~~~~
-   drivers/clk/mediatek/clk-mtk-spmi.c:52:18: note: in expansion of macro 'devm_regmap_init_spmi_ext'
-      52 |         regmap = devm_regmap_init_spmi_ext(&sub_sdev->sdev, &mtk_spmi_clk_regmap_config);
-         |                  ^~~~~~~~~~~~~~~~~~~~~~~~~
+ &mdio0 {
+        phy3: ethernet-phy@3 {
+-               compatible =3D "ethernet-phy-id0022.1640",
+"ethernet-phy-ieee802.3-c22";
++               compatible =3D "ethernet-phy-id0022.1650",
+"ethernet-phy-ieee802.3-c22";
+                reg =3D <3>;
+                rxc-skew-psec =3D <0>;
+                txc-skew-psec =3D <0>;
+
+Best regards,
+  Nobuhiro
 
 
-vim +/devm_spmi_subdevice_alloc_and_add +48 drivers/clk/mediatek/clk-mtk-spmi.c
 
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  21  
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  22  int mtk_spmi_clk_simple_probe(struct platform_device *pdev)
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  23  {
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  24  	struct regmap_config mtk_spmi_clk_regmap_config = {
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  25  		.reg_bits = 16,
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  26  		.val_bits = 8,
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  27  		.fast_io = true
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  28  	};
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  29  	struct device_node *node = pdev->dev.of_node;
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  30  	const struct mtk_spmi_clk_desc *mscd;
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  31  	struct spmi_subdevice *sub_sdev;
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  32  	struct spmi_device *sparent;
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  33  	struct regmap *regmap;
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  34  	int ret;
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  35  
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  36  	ret = of_property_read_u32(node, "reg", &mtk_spmi_clk_regmap_config.reg_base);
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  37  	if (ret)
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  38  		return ret;
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  39  
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  40  	/* If the max_register was not declared the pdata is not valid */
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  41  	mscd = device_get_match_data(&pdev->dev);
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  42  	if (mscd->max_register == 0)
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  43  		return -EINVAL;
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  44  
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  45  	mtk_spmi_clk_regmap_config.max_register = mscd->max_register;
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  46  
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  47  	sparent = to_spmi_device(pdev->dev.parent);
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27 @48  	sub_sdev = devm_spmi_subdevice_alloc_and_add(&pdev->dev, sparent);
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  49  	if (IS_ERR(sub_sdev))
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  50  		return PTR_ERR(sub_sdev);
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  51  
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27 @52  	regmap = devm_regmap_init_spmi_ext(&sub_sdev->sdev, &mtk_spmi_clk_regmap_config);
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  53  	if (IS_ERR(regmap))
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  54  		return PTR_ERR(regmap);
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  55  
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  56  	return mtk_clk_simple_probe_internal(pdev, node, mscd->desc, regmap);
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  57  }
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  58  EXPORT_SYMBOL_GPL(mtk_spmi_clk_simple_probe);
-80a000281742dc AngeloGioacchino Del Regno 2025-10-27  59  
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+
+--
+Nobuhiro Iwamatsu
+   iwamatsu at {nigauri.org / debian.org / kernel.org}
+   GPG ID: 32247FBB40AD1FA6
 
