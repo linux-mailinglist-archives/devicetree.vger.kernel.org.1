@@ -1,57 +1,49 @@
-Return-Path: <devicetree+bounces-234004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7C22C27A42
-	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 09:55:20 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF2F8C27A73
+	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 10:04:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B777A4E53F1
-	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 08:55:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4EAA94E5D32
+	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 09:04:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5ABA2C11C6;
-	Sat,  1 Nov 2025 08:54:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 259412BE638;
+	Sat,  1 Nov 2025 09:03:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="st74lANo"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="VOCQm3gZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 082752C0F6C;
-	Sat,  1 Nov 2025 08:54:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0D8223AE9A
+	for <devicetree@vger.kernel.org>; Sat,  1 Nov 2025 09:03:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761987251; cv=none; b=VaxL8yeZbtV0U9rNo4agPKcgrNJFjBVsftf1JaR4X6eXYCrD2/on+8LfDm0BykdBVBW396bTQFzJd+HcO9Vdesp83+fUDnA3J1n4PYYx3/lUvICb9ablC/5hm+kJiMBN+NAp0E50TM9QuwxcTUmc0wqL+0Z0iMuCkJ5O9NuEEyI=
+	t=1761987837; cv=none; b=Muz8383R7qIh0uPMmYchG1JFgj2smtblQl5Q75C4uCkoxX1x3O4bBD9zc4Vnii4iT9uabw+E8QaXpffX5mbx9B4S6Zlqj4H19tt+YGYXZfFJikGjwkzGebvZ/9xH4du+WrUYtDrkTocUexqoMxHW5P/j8mHF6Nk5gC7Jom1iJLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761987251; c=relaxed/simple;
-	bh=nBWa0ag7woJY2vPCiQSnDe7vW7z+266sYVbZE0b/SD4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PHPkJa/V9P/K8oypH1z7HUVGbJjNbP6/oghoZJiJ+vYK/lP19+BlIacGDsl+hAPm7gtSUnSiQ7MmVrC9en6t2l6HPLjf260+CeW8kPNv62nl7/WlUSJUOlHB9IevOekqOTA8BVUUqMwFYqEDOViUN/x7Q9YODa7P1D5Ex+XDZvo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=st74lANo; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 14A95C0E96E;
-	Sat,  1 Nov 2025 08:53:48 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id A74576070B;
-	Sat,  1 Nov 2025 08:54:08 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 462651181ABE8;
-	Sat,  1 Nov 2025 09:54:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761987247; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=iTiW6J9ezHzkr5T/PBNfpX9M9qHogdCahO4t6SNr+IY=;
-	b=st74lANo4OlJ/tptXaUC8c9aNVt7911cx5wVdtmRVe4lXOoONU4kYKOcMYktLWPc1FK8+9
-	v6pbAIFwfzzXvu0LqyHv6IY9Keyr9oioqKgKo8dcswjdx9tPBnlYx1tm2TvJ/JnJuXgeLo
-	bnFwVUHhyZh2zdH99yRj3XgYAQPs5gj/U0XytcTUXATlLIyxcPL0zznH/Tmn2ChwncqrU8
-	PQIQVCMi1PzRiuydixHRZFdXde++eqQU3zAxXcchIVlCHTBCxZHx2TP6IwZmz8FsSVKjah
-	IAY+XT+wbQHUoWwaQoHhZI87jb/ia6QgrtWL/bYWoaSN2X026ljm9SxdyAmOKA==
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Date: Sat, 01 Nov 2025 09:53:35 +0100
-Subject: [PATCH v2 7/7] MIPS: mobileye: eyeq5-epm: add two Cadence GEM
- Ethernet PHYs
+	s=arc-20240116; t=1761987837; c=relaxed/simple;
+	bh=BNDOpTBqIHfhN5s3DzIpQb6oNVZm3V416PNj1AzPqUQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=n+3hKN02em1A/R51DmoWDG4QgP8xq8DhigvbklAmi7TIcaAF8lIgFHy5TMxLy7qQuCpH1//NemeAGBOka9L5xBOjVQtPjBr1d3CpoJchfMRspEAfOdUdcdFnd5mtWyQOpi6VxbX2vXKGfXS2otakXUxp/a+Ul0BDz1GoMciRgVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=VOCQm3gZ; arc=none smtp.client-ip=95.215.58.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1761987822;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=9g4umT06lYMRrIWBhnN/oX2rBXZTFT6Aq7ZWIZM3zcc=;
+	b=VOCQm3gZpSHROT2ogm8w86JEYICDHuulZ/v8UhYPtaF++QGfa2DSyFc37YeRojlZ4iqgaT
+	UP8HiPHge1xstoNWZkRwmXL9YNo9uoM8iGe6EtVLy/0/A+IzMgxu4lMHyMPTwgg2O8/RED
+	WKyohW/8Qa61+H2I6aCjfXWX0nH9Hj0=
+From: Ze Huang <huang.ze@linux.dev>
+Subject: [PATCH 0/3] riscv: dts: spacemit: Add USB 3.0 support for K1
+Date: Sat, 01 Nov 2025 17:03:24 +0800
+Message-Id: <20251101-k1-usb3dts-v1-0-dd2660e5740b@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,74 +51,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251101-macb-phy-v2-7-c1519eef16d3@bootlin.com>
-References: <20251101-macb-phy-v2-0-c1519eef16d3@bootlin.com>
-In-Reply-To: <20251101-macb-phy-v2-0-c1519eef16d3@bootlin.com>
-To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
- linux-clk@vger.kernel.org, 
- =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Andrew Lunn <andrew@lunn.ch>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANzMBWkC/yWNwQ6CMBAFf6XZsyUtVQrEGP/DcChlq40C2i3Eh
+ PDvVjjOS97MAoTBI0HNFgg4e/LjkEAeGNiHGe7IfZcYcpGfpFCCPyWfqFVdJO5KzF2rKlfqCtL
+ hHdD57ya7NTsH/EzJGfcRWkPI7dj3PtZsLjJZ8mDl/9sjkdlqNTvvMallJfRRZEoUuhRccnx1G
+ K7Bk6VoQpZEF2jW9QcQGBA1xQAAAA==
+X-Change-ID: 20251030-k1-usb3dts-f8e2fb39f879
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Ze Huang <huang.ze@linux.dev>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761987811; l=1820;
+ i=huang.ze@linux.dev; s=20250705; h=from:subject:message-id;
+ bh=BNDOpTBqIHfhN5s3DzIpQb6oNVZm3V416PNj1AzPqUQ=;
+ b=1byT/ixmKTzrTCZvS/cB4k0sP1v8oeqKfXPzsLpQlo6hJLNh8axUbETazb6yxaD+mnu+bJAvi
+ Q6qCzqKoMAaCg76bUIEgvtCNq0mqC/j7jSlk4wdYilujHQH2FlkgVO2
+X-Developer-Key: i=huang.ze@linux.dev; a=ed25519;
+ pk=Kzc4PMu5PTo8eZZQ5xmTNL9jeXcQ9Wml0cs+vlQpBkg=
+X-Migadu-Flow: FLOW_OUT
 
-The Mobileye EyeQ5 eval board (EPM) embeds two MDIO PHYs.
+This patch series enables the DWC3 USB 3.0 host controller on the
+Spacemit K1 SoC, and enables it for the Banana Pi F3 board.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+To make USB 3.0 work on the K1, we need patches for the USB2 PHY [1],
+ComboPHY [2], and DWC3 [3] driver, also, ensure enabling the following
+configurations:
+
+CONFIG_PHY_SPACEMIT_K1_USB2=y
+CONFIG_PHY_SPACEMIT_K1_PCIE=y
+CONFIG_USB_DWC3=y
+CONFIG_USB_ONBOARD_DEV=y
+
+The series is based on v6.18-rc1.
+
+Link: https://lore.kernel.org/all/20251017-k1-usb2phy-v6-0-7cf9ea2477a1@linux.dev/ [1]
+Link: https://lore.kernel.org/all/20251017190740.306780-1-elder@riscstar.com/ [2]
+Link: https://github.com/torvalds/linux/commit/e0b6dc00c701 [3]
+
+Thanks,
+Ze Huang
+
+Signed-off-by: Ze Huang <huang.ze@linux.dev>
 ---
- arch/mips/boot/dts/mobileye/eyeq5-epm5.dts | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+Ze Huang (3):
+      riscv: dts: spacemit: Add USB2 PHY node for K1
+      riscv: dts: spacemit: Add DWC3 USB 3.0 controller node for K1
+      riscv: dts: spacemit: Enable USB3.0 on BananaPi-F3
 
-diff --git a/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts b/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
-index 9fc1a1b0a81b..babf52731ea6 100644
---- a/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
-+++ b/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
-@@ -29,3 +29,29 @@ temperature-sensor@48 {
- 		label = "U60";
- 	};
- };
-+
-+&macb0 {
-+	phy-mode = "sgmii";
-+	phy-handle = <&macb0_phy>;
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		macb0_phy: ethernet-phy@e {
-+			reg = <0xe>;
-+		};
-+	};
-+};
-+
-+&macb1 {
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&macb1_phy>;
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		macb1_phy: ethernet-phy@e {
-+			reg = <0xe>;
-+		};
-+	};
-+};
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 47 +++++++++++++++++++++++++
+ arch/riscv/boot/dts/spacemit/k1.dtsi            | 32 +++++++++++++++++
+ 2 files changed, 79 insertions(+)
+---
+base-commit: cb6649f6217c0331b885cf787f1d175963e2a1d2
+change-id: 20251030-k1-usb3dts-f8e2fb39f879
+prerequisite-message-id: <20251017190740.306780-1-elder@riscstar.com>
+prerequisite-patch-id: e6c36ae11fd6bb6238b3f256221856869db6958c
+prerequisite-patch-id: b7bf3a95a8baaea88d776db7d9e46ced879187a1
+prerequisite-patch-id: 893145648925a17c16a5de55bd6952f18e8b7d8e
+prerequisite-patch-id: cd96cd9ae2fb4a1f73d34046952dad346823f80d
+prerequisite-patch-id: 0baa531df5c47ffe9354ac3885e89bda9ae9b282
+prerequisite-patch-id: 3beea086bdfd0ce6ffd011a8906319b1ba253c9c
+prerequisite-patch-id: 755e4f791e363ab2f0ac0a4459d0cfd289123800
 
+Best regards,
 -- 
-2.51.1
+Ze Huang <huang.ze@linux.dev>
 
 
