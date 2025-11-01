@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-233980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-233981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A718C277E9
-	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 06:01:02 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23440C27809
+	for <lists+devicetree@lfdr.de>; Sat, 01 Nov 2025 06:02:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36A633AFD8A
-	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 05:00:59 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CD5304E90C0
+	for <lists+devicetree@lfdr.de>; Sat,  1 Nov 2025 05:01:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA6FB23E340;
-	Sat,  1 Nov 2025 05:00:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31D18223DCF;
+	Sat,  1 Nov 2025 05:00:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j8t8Vvgw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aGmNCzlz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 285583BB44
-	for <devicetree@vger.kernel.org>; Sat,  1 Nov 2025 05:00:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC46221ADCB
+	for <devicetree@vger.kernel.org>; Sat,  1 Nov 2025 05:00:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761973251; cv=none; b=Dj6bpc6n7mzijoJMj6An90PYwjrbid1TZVTQlP/x0g/IPPlqNwJ5ORmnCXfA5GZqKAVQojz+qUO9iRvvNx+249kjpokH7nf6JgR3ESp348E+91RqAVg/vlrMWJmMFZkQyxSG6ZRkahiVHTPeGDBASYDGDxJqzvIrmAiDJAs3TDE=
+	t=1761973257; cv=none; b=jrVFphgsho5ADZeDUAlZlBfeTddvdJKWzNI8yrog9JxjizzagbsEo/1qFQUZ+FLH5mrgpf2olyUuXUsZXZoyBvyatJFTrA4ffG6B0XUfntRQtAF84OcOf7a1yNp2RytNAvw+Y/7uQ1PsnQ+w5lIuXbi3kpviB8mGBi2rbPPexys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761973251; c=relaxed/simple;
-	bh=gNkcBk5b3Jhb+g3nkspOg/6VmVpI3bAfh7XCxvUGOGw=;
+	s=arc-20240116; t=1761973257; c=relaxed/simple;
+	bh=16CUY4BHukYrONigdNf6hHwKpWDcA0Nh385BQ5R55XA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=O2cYOfXB+iVIM7Ji5w2YU2pq73ate2CXgyI9QlmX0UlahJTx0ewHDy2uo3wiqci5zHsVmLe6TAH2ffEL3vMKp0F/H2+G0p5DuQGu37+Zm456HkeXUFZgze/X2u5Hu9N1hLbq48TX/6THDZ/wTbZ5vdbLWLu46lr/DyO0RAOs1Pg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j8t8Vvgw; arc=none smtp.client-ip=209.85.216.46
+	 MIME-Version; b=betIHz/ggBqS63N8to3//x3CLnpfDmYjqZbDUGTmKUcxKjKl6zFtnOTtJWwPq0APWaZnXrlVRUJ5kYpb0Dct47a1SzIVDpmYU6uDWA7JAKuYdS+FZ1nE2kUChTdB1PRuRIzTaU4pc96H01ff/aiV3U1jKdfiwaZmM2YdH8WK3Sg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aGmNCzlz; arc=none smtp.client-ip=209.85.210.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-3402942e79cso3969595a91.2
-        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 22:00:50 -0700 (PDT)
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-7a27ab05a2dso2760744b3a.2
+        for <devicetree@vger.kernel.org>; Fri, 31 Oct 2025 22:00:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761973249; x=1762578049; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1761973255; x=1762578055; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=tLxEbqXFOSys1fkuyDgS6YVeyPEnVIaluiwVwN9wD4w=;
-        b=j8t8Vvgw6IaSVm1vJjERIY544aasnMdvOLDj+tcO6IYArWXrWRY/ygSyuyUyMY6wma
-         ciODLO2e+/spbqgo4EMKmnZMO9/f3J2Z4R9oh6qRgMOaN4FxLUThNf+2liBFSxjMMWm1
-         w1nlJIsw4d41EKk/7BhDfOj0MZEdyvCVSKORqPnSmSIPWQKi9BV4OoJIjP81Y1RF/Ct+
-         cYGkuh4e3wevxMUgXk1xNWj3Xm7B1voKPCjF0coUtbomOUhOR5BbOi22phGH1Wf0gHRl
-         oTglC5GsDvo9xgvu9vWtPAEaW9ArMRoTwbHFLEaVpR3gJ0cmMGysQLFt2MLbMBppBtxl
-         khGw==
+        bh=oiw7k5BoI+E1avLBAbhUpCYSAa1PLmht1gV7sVpOsMA=;
+        b=aGmNCzlzq7yYoC2K6jmqxllEEan/sdZdJHhvtVZj1vHUpGCPUv8s29CfFDD2Gs15ny
+         5jVCw+cg9BgI0HMElFeZuhWkVQfGNxJXz0C3wUKyKcrIharSt5dMBdAFAsqAu6/R8515
+         VKn5x6KjmnmMC8+n88SpTnPapc1se7M60tnFUxYmSZEx4wAwLuBnUP1m9xZDdiEqdeRf
+         TO2GC5YI4X1+Kl+xTwODewTtU4NbYkv3q/SiQTWm4PRsg6QsGg3Lt6sxNE1RpG8dzybe
+         Qmtuox+KBCJvy+fPO+y8SkGACl7ObB5ZYz6zhwEcKE3uW62k1IOPYdI+Om33ayLmgBJH
+         wJLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761973249; x=1762578049;
+        d=1e100.net; s=20230601; t=1761973255; x=1762578055;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=tLxEbqXFOSys1fkuyDgS6YVeyPEnVIaluiwVwN9wD4w=;
-        b=I1UlZa960iIJhnNvWUoA5bO4h5uXXOuADI1gDG0ZPfQAyApYVGnLYsk2GugXG0ahDv
-         C9+AYrwAn0Vzmjdv3VTLqCg/ihJMIpi3ytr67evBHO21+fX9QDdp+CnvEAU00K3yl0Za
-         LcDcD3IC0/we0Dp/dD+5COu/Q/mkAWD99YFbGpKA5wguhq/XG0D9l5RGBlpbFTd94+sH
-         JypVQdxiUW8EvpNbAflFI862I61NvLYLo9AnxS3QHqe8KOR52Kv2bdJmV9PYSIIT+vOl
-         uMQKmeFdKS6hLuLG1zoPWYB3LNh++7qh4hAP+5nl/10s7y+IHKRHyWIQGBCxHTs731+g
-         6MQw==
-X-Forwarded-Encrypted: i=1; AJvYcCVgayqoYI60zYeghAcLbSyeGq62HvmsVD8j/yDI/kUDkXtyrj2WC7QFYY08yXqqjOz8fZutUnBe6fh3@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEpyAj77UODuPM5+CFCxinv7tQNjghANB93D0Wuc6mu0O/D63x
-	acrgFviUj+cC6CcEXTMhyE/W/I08gYTnC/De8SfQVFQYVP3OlcLyAMOy
-X-Gm-Gg: ASbGnctXwx/N3RHjmWObMd1RQaktjMF93reZVnBfTaCtDB6qeb0ZicJzAkyExe8YJhR
-	/r8teMfj9PtfQf2YSsin928hWtVawNZILYNjipsOV68ZoWOndQEhOvjzNwU0taRbqa26QpjiyUD
-	LC6Mdbac9Gd84Ef1h6usz6CsEdzHTyACQT0SpkYLZmu7xv8fgGucr/FC4hj07w3zDb412JR/MAx
-	q40gYn0Zs4A4XATcd2vNwX7tgSIVNTDa9gPRl/t6fc22q6LKKPOWlwsk1ypQldkcNxQERY5rfkP
-	MD/it7H0tniLH3qxSOKcMIP4vh+vLe2zDtP107cbiX0Cs6wB44gDGQP6Z37lM8nAOXjp5w6P4vA
-	HcQRl5cxVynPerI8ejmflSyKnqrhvZGG0E/xnRuea+kplNlX1za+LcCsAZcHz84yKycW4+y/bOo
-	C9y8u7U7eJzyaaTVDtPPAUNGn7FuFB3QI=
-X-Google-Smtp-Source: AGHT+IFdN5hHVmgurX//nCd5fuS9Rr9NaSNkMhWsVrS8eB/7eP8n7yZw8P4C3wajjw9mV4bnV50BEw==
-X-Received: by 2002:a17:90b:4d05:b0:33f:ee05:56e1 with SMTP id 98e67ed59e1d1-34082fc42d9mr7584949a91.2.1761973249547;
-        Fri, 31 Oct 2025 22:00:49 -0700 (PDT)
+        bh=oiw7k5BoI+E1avLBAbhUpCYSAa1PLmht1gV7sVpOsMA=;
+        b=DehVpoHPw6JGEznAjH7carajzSRi9ETcVvl8YJgFpq05Ob31OCC0BGnrlgfnVdOgd/
+         08azU+tI6BtyemiIsYIX1VKjKPW1XMHAUBgFnCdEioyleWWZnsSTqNVR80afGMfN0hoM
+         O3ytYISaoujeVvxiKoaIFDmzATvdczqJK939O6zZy60c5m+aEdJAxrF88CLsOLhWY2ze
+         EYq6QJyaKbv/JD5rKy8y57Q/deZw9ddjSbVZHt7rHwlxO0gE6QrtAHPVrSH6FkETNOi7
+         QQN1Y11H793yeaLA+zsZ64qPVHwhVbcpeozJ3oL14qTcdrznFy3oTFCzs6yyCRy72AH/
+         oA9A==
+X-Forwarded-Encrypted: i=1; AJvYcCVysu/gIdMRdWffbSdX/ZjfiCamWCQp79Bc97WnTcMgBs1STYa3ds/JCkXBu+rFpmC4z+1KgGq+cCTg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy1myvM2U7pLs7JcREaPAOV8DvI5nWzeJPGx5T7Bma8pIrVKRIH
+	JWBtOZ5XLhCEA4ysOy8FSU9MiwTTXmnL/UBrFIUh8YfRKpkFFnHFd7Zf
+X-Gm-Gg: ASbGncszV5bcIv6IiaoyBcr1BgVHwyq/LMDLoelMKlpw7lcNc71BZB+fmqiQoiOkxHv
+	VPUvJRHw+wMMXobDyJa5ZaYueR/faLTLUwysTHqISZPQXzhUhQMTq1Kg66V26jHaIYuzeZ+Dkmh
+	eT9tx8q28GJnYq5nFQ6+AeAH2++/ozi/P/SxtGzwOqM5f0EFk5+n/Uij8Asvxf4vpxs+5bs3AVu
+	GNRH43zgyee8Wr2bXkNMvfiZY4XqLh2ruwI1ljZzJa0x7UmGLqne1le6loZwnvVw7zrqABQ2YTX
+	NQIBBhSeoOkjSgEtQN43W4tbyWSyg1lOosMGTeaVA3K/OvfX5Ywu3GImP5VGFGeb74OZpRDkxNv
+	NiR/H8dpSllifxDnT7H4I92/WwLdEQMHv2K0F/vl/FpS30A2p5/A4DkQ/DVVcpn+ZMOIn4NmDAh
+	ef6ObM5J45ANdxg8TLS3wJzevh9X8tklA=
+X-Google-Smtp-Source: AGHT+IFd2bk88eDysEPUx421uqVUQRIoZmTj+xtwyXu5exUwOlKOq6uKKxTjYZHf2N0IRzsbcLrjcg==
+X-Received: by 2002:a05:6a20:549d:b0:2f3:b278:eaa5 with SMTP id adf61e73a8af0-348cd213c93mr8457177637.60.1761973255036;
+        Fri, 31 Oct 2025 22:00:55 -0700 (PDT)
 Received: from iku.. ([2401:4900:1c06:600d:690:cbc4:d4d9:22c2])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b93b8aa3ff1sm3761095a12.14.2025.10.31.22.00.44
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b93b8aa3ff1sm3761095a12.14.2025.10.31.22.00.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Oct 2025 22:00:48 -0700 (PDT)
+        Fri, 31 Oct 2025 22:00:54 -0700 (PDT)
 From: Prabhakar <prabhakar.csengg@gmail.com>
 X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 To: Geert Uytterhoeven <geert+renesas@glider.be>,
@@ -91,9 +91,9 @@ Cc: linux-clk@vger.kernel.org,
 	Biju Das <biju.das.jz@bp.renesas.com>,
 	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
 	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 1/4] dt-bindings: clock: renesas,r9a09g057-cpg: Add USB3.0 core clocks
-Date: Sat,  1 Nov 2025 05:00:31 +0000
-Message-ID: <20251101050034.738807-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 2/4] dt-bindings: clock: renesas,r9a09g056-cpg: Add USB3.0 core clocks
+Date: Sat,  1 Nov 2025 05:00:32 +0000
+Message-ID: <20251101050034.738807-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251101050034.738807-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 References: <20251101050034.738807-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
@@ -107,28 +107,26 @@ Content-Transfer-Encoding: 8bit
 
 From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Add definitions for USB3.0 core clocks in the R9A09G057 CPG DT bindings
+Add definitions for USB3.0 core clocks in the R9A09G056 CPG DT bindings
 header file.
 
 Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 ---
- include/dt-bindings/clock/renesas,r9a09g057-cpg.h | 4 ++++
- 1 file changed, 4 insertions(+)
+ include/dt-bindings/clock/renesas,r9a09g056-cpg.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/include/dt-bindings/clock/renesas,r9a09g057-cpg.h b/include/dt-bindings/clock/renesas,r9a09g057-cpg.h
-index 5346a898ab60..f91d7f72922a 100644
---- a/include/dt-bindings/clock/renesas,r9a09g057-cpg.h
-+++ b/include/dt-bindings/clock/renesas,r9a09g057-cpg.h
-@@ -22,5 +22,9 @@
- #define R9A09G057_GBETH_0_CLK_PTP_REF_I		11
- #define R9A09G057_GBETH_1_CLK_PTP_REF_I		12
- #define R9A09G057_SPI_CLK_SPI			13
-+#define R9A09G057_USB3_0_REF_ALT_CLK_P		14
-+#define R9A09G057_USB3_0_CLKCORE		15
-+#define R9A09G057_USB3_1_REF_ALT_CLK_P		16
-+#define R9A09G057_USB3_1_CLKCORE		17
+diff --git a/include/dt-bindings/clock/renesas,r9a09g056-cpg.h b/include/dt-bindings/clock/renesas,r9a09g056-cpg.h
+index a9af5af9e3a1..234dcf4f0f91 100644
+--- a/include/dt-bindings/clock/renesas,r9a09g056-cpg.h
++++ b/include/dt-bindings/clock/renesas,r9a09g056-cpg.h
+@@ -21,5 +21,7 @@
+ #define R9A09G056_GBETH_0_CLK_PTP_REF_I		10
+ #define R9A09G056_GBETH_1_CLK_PTP_REF_I		11
+ #define R9A09G056_SPI_CLK_SPI			12
++#define R9A09G056_USB3_0_REF_ALT_CLK_P		13
++#define R9A09G056_USB3_0_CLKCORE		14
  
- #endif /* __DT_BINDINGS_CLOCK_RENESAS_R9A09G057_CPG_H__ */
+ #endif /* __DT_BINDINGS_CLOCK_RENESAS_R9A09G056_CPG_H__ */
 -- 
 2.43.0
 
