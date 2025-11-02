@@ -1,135 +1,182 @@
-Return-Path: <devicetree+bounces-234152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F716C29350
-	for <lists+devicetree@lfdr.de>; Sun, 02 Nov 2025 18:15:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 900C8C29368
+	for <lists+devicetree@lfdr.de>; Sun, 02 Nov 2025 18:16:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3ECA83A8C8E
-	for <lists+devicetree@lfdr.de>; Sun,  2 Nov 2025 17:15:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37C633ABF86
+	for <lists+devicetree@lfdr.de>; Sun,  2 Nov 2025 17:15:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F921DED63;
-	Sun,  2 Nov 2025 17:15:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F70C2DC78C;
+	Sun,  2 Nov 2025 17:15:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="UvXRZ7bD"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="quS86mGp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD0BC1DFF7;
-	Sun,  2 Nov 2025 17:15:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67D3A23D7D7;
+	Sun,  2 Nov 2025 17:15:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762103728; cv=none; b=DS0RlE6bB3XzML+udCeB4YB8Xt2BvQqUbHQ53bxa1Gm8FBG6W+BP2R7xD73Ogsyix1GXq1gM7sz3Ffm0gYQSdxXQYEu4B2hkw+62ZJy8k7qlL0M2Yh9Ei4r8MluxKZeAsraZU7w6rC+eUpgp/gpQLIEq/PV75Ir+05eDz8Pijnk=
+	t=1762103736; cv=none; b=rr3k4ou0ossNJtUq5cZUUFCbVR6SZx9+3YPfc6cdshS7Lii5Ddc/2zMF4mIY7//Fvn7teF/agB/rUiuU1MJZPMIL6qfTpNf4CzuUedG2/C1RP0UbLoB2d00euy1D8cMBNY/zaKEUW8sSs8JPcQyB4tYg8iq5njpMB5vf0H1YHlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762103728; c=relaxed/simple;
-	bh=/QhroAsSo0Y2EwqhxEnrjVx8V0/aRjNyFLOtqeiTt94=;
+	s=arc-20240116; t=1762103736; c=relaxed/simple;
+	bh=Trik11Yqm+XRVDcW+Mbo9bwMRBkImhUigihtn3CNMRo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZeifYaAk9vpJIBZbPXiFqyK6P24A910cz+CmW+3KpEHNpGG/A4woT+GAC+Ojb4Y1D+IPulpFnG+rt4biRySf1Oewme+wxoQPWkXSAKAN83ZojL4AgI3wPphYLgwZpStzXLrgk61OJp+vLGVn+vYgMfZ/6PJfnjUo6OIjQhkuXEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=UvXRZ7bD; arc=none smtp.client-ip=80.241.56.161
+	 In-Reply-To:Content-Type; b=r2GEtwGY8cX48027pAEbBDl4+HMd/y937dEXDLOoDWkscX/+u22EuU5nQ7orL41DZcC2lD7l/3uSwIIA8YSGbPgHKt0SLbizJ0yykMUgyOeh6Al0+Cx2Qxcqx8QOAPtp1YmlIFdqKhy9X0s0esZTY+47qQIrQ61dBZF9PC5+yzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=quS86mGp; arc=none smtp.client-ip=80.241.56.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4d01Z20q5Tz9slM;
-	Sun,  2 Nov 2025 18:15:22 +0100 (CET)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4d01Z55FGKz9svb;
+	Sun,  2 Nov 2025 18:15:25 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1762103722;
+	t=1762103725;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=BFpdLMII0EG/uXMQS+E4Vw7nKG+ReHRISfwxssVFI9s=;
-	b=UvXRZ7bDu9O4ZrHV72XvvB6yU3Z5LI+jaMxZyKdMUO3KU2hA46wC+PxOVP9bzqNXvsneUs
-	sl9HWw55Jlu4y11sF+dvaApaLFTp1oQVtMVHy2yA3AZt0K3Kh0b7dCpzsPydXqYbwCjFrU
-	okvozNZIQgwpk/q1LcTaDYx/QIMOxKxcvhul3wifKN2qeUb0cgEI7dduhm6a3fW1k4lVdu
-	A+CW9EgF0cmJ67bNJ8laI/8XlP5xaK4zEybXOCxsVG0R9vukPlju6vxyI3GjM/+iquR91V
-	tuLoIL2I8aQLwgBt+kfOI0MXZc6BrnLQCuGQNOjQLl5zVGs9eoFpMXkaMcS3Ig==
-Message-ID: <500852c9-2cd5-4897-a139-4e93988f5469@mailbox.org>
-Date: Sun, 2 Nov 2025 17:14:05 +0100
+	bh=XFm7eiCIYsEt1LADD+pGz2W73e0ELKXIO4tKK1fzlbU=;
+	b=quS86mGp30ZHlr7CTGngypnx4gV9dzF8e8MJ567F4mkRLGwosDGo2diTDI1SE3L5/Hzz61
+	PFFBtsU7Y/21wRRAOSZ7OjwGebDCj6XIw3Qz2s7J6PCZqoVc9cgy57jOgwAMGIWPGV0yaE
+	t4r0argx5VoTZ8a+0xFCMXyVtWQRXDdmx5kh3P8BYmU6TrOjoE2z54T2NYvEu7GXIZWYQL
+	zbo1t3nBof8VNXvy5mqAMtitXVjQcsmfvtsMx5TPrtUKTI+5+vuH88kMldWrAQmNiur8FE
+	rtBjrV3FxW4kw4zQ4mCV1QwHdT9QuDcX96+oScfd88wxvdAVJIzpVoTaFOexXQ==
+Message-ID: <ad7c080f-38e3-4579-8cd8-148df7769826@mailbox.org>
+Date: Sun, 2 Nov 2025 17:33:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v4 07/14] drm/imx: dc: Add DPR channel support
-To: Liu Ying <victor.liu@nxp.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
+Subject: Re: [PATCH 00/39] Add i.MX95 DPU/DSI/LVDS support
+To: Ying Liu <victor.liu@nxp.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Lucas Stach <l.stach@pengutronix.de>, Peng Fan <peng.fan@nxp.com>,
  Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Dmitry Baryshkov <lumag@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
-References: <20251016-imx8-dc-prefetch-v4-0-dfda347cb3c5@nxp.com>
- <20251016-imx8-dc-prefetch-v4-7-dfda347cb3c5@nxp.com>
- <174bdb5a-b5a8-4856-a0ac-8caaaefde136@mailbox.org>
- <24f99c46-ca5d-43cc-a2eb-a6e5029e9f86@nxp.com>
+ Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+References: <20251011170213.128907-1-marek.vasut@mailbox.org>
+ <174ec43e-4cac-4452-a77b-e2e3b8413d05@nxp.com>
+ <2c4a42eb-8c49-4ba3-baa3-921ec52f730d@mailbox.org>
+ <92d928cc-d9df-4c9c-8571-da39001b91a7@nxp.com>
+ <e0507800-7e86-4fbb-95cb-e64d8cca1e49@mailbox.org>
+ <AM7PR04MB70466BF64A1CD8EB01D2DD9C98F5A@AM7PR04MB7046.eurprd04.prod.outlook.com>
 Content-Language: en-US
 From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <24f99c46-ca5d-43cc-a2eb-a6e5029e9f86@nxp.com>
+In-Reply-To: <AM7PR04MB70466BF64A1CD8EB01D2DD9C98F5A@AM7PR04MB7046.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-META: 3sitdqczazy5k6eyore371b5sdu9hua4
-X-MBO-RS-ID: 505e1783efc7f667bb3
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 7f4bcc52baaa7a7d700
+X-MBO-RS-META: z1oqdk571amguuwo8hkt3n46j3h64r98
 
-On 10/20/25 4:47 AM, Liu Ying wrote:
+On 10/20/25 4:15 AM, Ying Liu wrote:
 
 Hello Liu,
 
-sorry for my late reply.
-
->>> +++ b/drivers/gpu/drm/imx/dc/Kconfig
->>> @@ -1,6 +1,7 @@
->>>    config DRM_IMX8_DC
->>>        tristate "Freescale i.MX8 Display Controller Graphics"
->>>        depends on DRM && COMMON_CLK && OF && (ARCH_MXC || COMPILE_TEST)
->>> +    depends on IMX_SCU
->> Can the SCU dependency be made optional,
+>>>> I wanted to put this whole thing on the list first, before I start splitting it
+>> up.
+>>>>
+>>>> For starters, I think I can send these separately:
+>>>
+>>> Before discussing how to split, a bigger question is that is it fine to
+>>> support both i.MX8qxp DC and i.MX95 DC in the same imx8_dc_drm
+>> module?
+>>> Separate modules look more reasonable to me, considering the fact that
+>>> there are quite a lot difference between the two DCs.
+>>
+>> (maybe I do not quite understand your suggestion with "separate module",
+>> I assume this means entirely duplicate driver, is that correct? I
+>> operate with that assumption in the text below.)
 > 
-> I don't think this can be done.  If you grep 'depends on IMX_SCU' in
-> kernel, you may find a handful of existing dependancies.
-
-Sure, I do not dispute this part.
-
-But the SCU dependency can be contained in a component of this driver, 
-which is not used by MX95, and used only by MX8Q . Then there will be no 
-problem.
-
->> or per-module,
-> 
-> Well, DRM_IMX8_DC(for the imx8_dc_drm module) depends on IMX_SCU just as
-> this patch does.
-
-I assume it shouldn't have to, because the SCU dependency is only 
-relevant for the prefetch engine ?
-
->> or somehow abstracted out (via regmap?),
-> 
-> Like I replied to your i.MX95 DC patch series's cover letter, SCU accesses
-> registers via Cortex-M core instead of Cortex-A core IIUC.  I really don't
-> know how to abstract IMX_SCU out, especially via regmap.
-
-The simplest way would be to use regmap_config .reg_read and .reg_write 
-, if there is no better way.
-
->> so iMX95 support can be added into the driver easily too ?
-> 
-> Like I replied to your i.MX95 DC patch series, I think i.MX95 DC support
-> can be in drivers/gpu/drm/imx/dc, but it should be in a separate module
-> (something like imx95_dc_drm) plus an additional common module(like
+> I'd expect separate modules: the existing imx8_dc_drm(which can be
+> modprobe'd) and something like imx95_dc_drm.  I wouldn't call them
+> *entirely* duplicated drivers since I mentioned common part of the DCs
+> could be wrapped as helpers in an additional module(something like
 > imx_dc_drm_common).
-This design part is something I do not fully understand. Sure, it can be 
-two modules, but in the end, the result would have to be capable of 
-being compiled into single kernel binary if both modules would be =y in 
-Kconfig anyway.
+
+How would this look if everything is built into the kernel ?
+
+>> This series indicates that the functional units in the DC are basically
+>> identical, with the majority of changes being register base addresses of
+>> the whole DC and an odd bit or register offset here and there. Most of
+>> the code can be reused, as can be seen in the first half of the series.
+> 
+> The major differences between the i.MX95 and i.MX8qxp DCs are
+> different components in Display Engines(especially the additional
+> Domain Blend Unit in i.MX95 DC)
+
+This seems to be one component in the whole pipeline, with links going 
+into it. Those links are already in place. Maybe I am not seeing the 
+specialty of this particular DB component ?
+
+> plus i.MX8qxp DC's capability
+> to connect with the prefetch engines(DPRC & PRG).
+
+Isn't the prefetch engine only a bit of register configuration, that can 
+be abstracted out ?
+
+> Both would
+> have significant impact on how we implement the drivers.  We'll
+> certainly end up having different implementations for callbacks to
+> enable/disable CRTCs or update/disable planes.
+
+It doesn't seem they have to be entirely different so far, do they ?
+
+> The sort of minor difference is in Pixel Engine(including Blit Engine)
+> where FethUnit types and numbers are different plus different numbers
+> of Scaler Engine.  I'd expect logics to allocate FetchUnits for planes can be
+> implemented in the imx_dc_drm_common module
+
+This part is fine, but ultimately, it would have to be possible to build 
+both the MX8Q and MX95 drivers into the kernel too. And then there would 
+have to be some logic to deal with that, likely based on driver data, as 
+it is done here.
+
+>> The addition of iMX95 into the iMX8QXP DC also does not seem to be
+>> making the driver in any way more complicated.
+> 
+> Disagree. The addition would introduce quite a few i.MX95 or i.MX8qxp
+> DC specific code branches due to the differences mentioned above.
+
+This does not need to be the case, see the first half of this series ?
+
+> I'd say i.MX95 DC support could be in drivers/gpu/drm/imx/dc, but it
+> needs to be in a separate module like again imx95_dc_drm.
+> 
+> This makes feel that the debate here becomes kind of similar to what
+> we did for single mxsfb module vs  mxsfb + imx_lcdif separate modules...
+
+The mxsfb (the old iMX23 LCDIF) and lcdifv3 (the new iMX8MP/iMXRT LCDIF) 
+are entirely different hardware IPs, the former is from SigmaTel , the 
+later is from somewhere else, right ?
+
+>> What would be the benefit of having duplicate driver for IP that is
+>> basically identical, for i.MX95 ?
+> 
+> Cleaner driver implementation and easier to maintain.  I don’t want
+> to test both i.MX95 and i.MX8qxp platforms when only either
+> i.MX95 DC specific or i.MX8qxp DC specific code is changed.
+> 
+> But again, they won't be entirely duplicated drivers.  Common
+> part could be shared between the drivers with software techniques,
+> like the imx_dc_drm_common module mentioned above.
+Please have a look at the first part of this patchset, there do not seem 
+to be that many new or complex branches.
 
