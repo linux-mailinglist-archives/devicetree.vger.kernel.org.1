@@ -1,143 +1,101 @@
-Return-Path: <devicetree+bounces-234116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BC0DC28F67
-	for <lists+devicetree@lfdr.de>; Sun, 02 Nov 2025 14:09:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54CA3C2901F
+	for <lists+devicetree@lfdr.de>; Sun, 02 Nov 2025 15:15:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C50D23B11D8
-	for <lists+devicetree@lfdr.de>; Sun,  2 Nov 2025 13:09:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BBA673AF70F
+	for <lists+devicetree@lfdr.de>; Sun,  2 Nov 2025 14:15:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 569CD1ACEDF;
-	Sun,  2 Nov 2025 13:09:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D13BD3C465;
+	Sun,  2 Nov 2025 14:15:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WQqncrOL"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="v1dcLZBm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-173.mta0.migadu.com (out-173.mta0.migadu.com [91.218.175.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 259E71DDDD;
-	Sun,  2 Nov 2025 13:09:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB129EEBB
+	for <devicetree@vger.kernel.org>; Sun,  2 Nov 2025 14:15:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762088988; cv=none; b=CG/w9nhYx0fcJdTVl2wa56Z/FlFFMrLffkYNUYRzFsvSpZ+Eu7hyc4uKgGYLqMYntPB7ZKzzOGmVcI223yLfmf7CdcVwgXxJ7YuBUEDalBbmbof/owryru/Vek5iftEqIcAqWaSXtqUuUC2UHxIAa59tBGYbwfobdeEp5MgUUDQ=
+	t=1762092939; cv=none; b=W4SQKA1DSDKbIsLTde616jVMP3I9sEkdp7Vsh8jDFJiDw8paosMEusM15jB1ELVbDy2C02IaxM1dgzZtU35qB0QDEFtXiZySRCk6Ps9wWdOt/5/sF+90bHoQb65fkm2f6tg3k4lxgQPL50Rt2IGTcjH4jXale+/6+4FKIs7sAUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762088988; c=relaxed/simple;
-	bh=JsNDhf+4sb8rTXxkI79UStDqc65YrKO9bboNIQAYcd8=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=G23XpTGdVASZjIs6iJD3WjA03+iWpOW88tfiv2Bso3YoGo8yBrW+c7sp3MRaTgbI2EMuhHGgPmCv9DtgJ9mC/QnUVrmJxSquOPu+zCEmxDM7AIFuxdFqY28GxML5x+EqsnMvouhEtm19yKbQdGAL6K0HFI8HIXmNSEhPXOMD+Os=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WQqncrOL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6412C4CEF7;
-	Sun,  2 Nov 2025 13:09:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762088987;
-	bh=JsNDhf+4sb8rTXxkI79UStDqc65YrKO9bboNIQAYcd8=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
-	b=WQqncrOLfQR2JjAKh9LI6nIQ0Nm8RyfBKSYY0XY1ViSxUoG4bDIQKz7BCAPFNuxYo
-	 37AZpcki5Jg9997/go8g0gPMS1D0AydB16zygbVzdjYkIx6Hcr8p/yj61IQCGp6mZx
-	 TUwk7oJ6HzF4NzDXRUybthVJFsXPIrHXg44ygchSBz4HJTdFo7zC/V0mthPMx8V8cs
-	 cYSNJ1vmaEGgUS8bBvCF35SEmVoG/sL3XFNj/HjTup/56kPtAmMLPe9sYRfwP1tq2n
-	 srd7Ml97o1NrZv90JoPohUvFimC6JylFikVOD8MopGAsH8/d/D0Z+GX/g4hXsfjOBs
-	 qIVOO7cRcWLGg==
-Message-ID: <c8a88007-aaa0-4f8c-bf47-186b41428502@kernel.org>
-Date: Sun, 2 Nov 2025 14:09:42 +0100
+	s=arc-20240116; t=1762092939; c=relaxed/simple;
+	bh=K20hUX7hAsqNGoKfxMIu/x5EaaKLHitvZFPNayiGbtU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gBYywAg5ytBwN+nNDaGrcbpDOAkbtEeervl1pKLNBCj3dYQlRjpLdm/SGkBs8HdhldR0SEGOWFF9XkcedG3+0HFdsLCgQ5qgR89u9DwwxJio22K9DSTsrpAh5O26kr9FhoswxAuDZUV+CW1bf6dSQ+WuSO7ZzwStKgdPiDQ+LEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=v1dcLZBm; arc=none smtp.client-ip=91.218.175.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1762092925;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=t0a5FA8xjlTHeREr5RqpyYIajyObgxI3ZWv5AKR6ZqA=;
+	b=v1dcLZBmh71x5OjSvLsgrJrhn+V6FBCTaN+1tHUWHux/MCQLryXsByju/eUj2mCqzsol7+
+	JlrJKvHywI9Ubr1D7W+f0iAYsE63o2+zCnri5gkyLXO1iDOagm8Gh1Thp2u0iWK4wdhwHR
+	mAb9sLqzgiXRkJF/+Q1TlyuJ47U7SrQ=
+From: Yuntao Wang <yuntao.wang@linux.dev>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Baoquan He <bhe@redhat.com>,
+	Zhen Lei <thunder.leizhen@huawei.com>,
+	Chen Zhou <chenzhou10@huawei.com>,
+	Yuntao Wang <yuntao.wang@linux.dev>
+Subject: [PATCH] of: fdt: Fix the len check in early_init_dt_check_for_usable_mem_range()
+Date: Sun,  2 Nov 2025 22:14:16 +0800
+Message-ID: <20251102141416.160192-1-yuntao.wang@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Sven Peter <sven@kernel.org>
-Subject: Re: [PATCH 1/3] soc: apple: Add hardware tunable support
-To: Janne Grunau <j@jannau.net>
-Cc: Neal Gompa <neal@gompa.dev>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Alyssa Rosenzweig <alyssa@rosenzweig.io>
-References: <20251026-b4-atcphy-v1-0-f81b1225f9c6@kernel.org>
- <20251026-b4-atcphy-v1-1-f81b1225f9c6@kernel.org>
- <20251029192101.GA458701@robin.jannau.net>
-Content-Language: en-US
-In-Reply-To: <20251029192101.GA458701@robin.jannau.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-Hi,
+The len value is in bytes, while `dt_root_addr_cells + dt_root_size_cells`
+is in cells (4 bytes per cell).
 
-On 29.10.25 20:21, Janne Grunau wrote:
-> Hej,
-> 
-> On Sun, Oct 26, 2025 at 01:52:01PM +0000, Sven Peter wrote:
->> Various hardware, like the Type-C PHY or the Thunderbolt/USB4 NHI,
->> present on Apple SoCs need machine-specific tunables passed from our
->> bootloader m1n1 to the device tree. Add generic helpers so that we
->> don't have to duplicate this across multiple drivers.
->>
->> Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
->> Reviewed-by: Neal Gompa <neal@gompa.dev>
->> Signed-off-by: Sven Peter <sven@kernel.org>
+The modulo calculation between them is incorrect, the units must be
+converted first.
 
-[...]
+Fixes: fb319e77a0e7 ("of: fdt: Add memory for devices by DT property "linux,usable-memory-range"")
+Signed-off-by: Yuntao Wang <yuntao.wang@linux.dev>
+---
+ drivers/of/fdt.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
->> +
->> +	tunable = devm_kzalloc(dev,
->> +			       sizeof(*tunable) + sz * sizeof(*tunable->values),
-> 
-> There is a struct_size macro in linux/overflow.h for this calculation.
-> We do not have to care about overflows as as struct property.length
-> remains (signed) int. I would expect there is a much smaller limit for of
-> properties in place anyway. The macro looks nicer though:
-> 
-> struct_size(tunable, values, sz)
-
-Nice, I'll use that!
-
-> 
->> +			       GFP_KERNEL);
->> +	if (!tunable)
->> +		return ERR_PTR(-ENOMEM);
->> +	tunable->sz = sz;
->> +
->> +	for (i = 0, p = NULL; i < tunable->sz; ++i) {
->> +		p = of_prop_next_u32(prop, p, &tunable->values[i].offset);
-> 
-> Does it make sense to add an size argument either here or in
-> apple_tunable_apply() to check that the offset is within the expect MMIO
-> region? Not really important but might catch a bug someday.
-
-I would've usually said this was overkill but given that we just found a 
-bug in our bootloader which caused us to copy random memory as tunables 
-a week or two ago because of a stale fdt node id I'll add some sanity 
-checks here.
-
-> 
->> +		p = of_prop_next_u32(prop, p, &tunable->values[i].mask);
->> +		p = of_prop_next_u32(prop, p, &tunable->values[i].value);
-
-[...]
-
->> +/**
->> + * Apply a previously loaded hardware tunable.
->> + *
->> + * @param regs: MMIO to which the tunable will be applied.
->> + * @param tunable: Pointer to the tunable.
->> + */
->> +void apple_tunable_apply(void __iomem *regs, struct apple_tunable *tunable);
->> +
->> +#endif
-> 
-> Reviewed-by: Janne Grunau <j@jannau.net>
-
-thanks!
-
-
-Sven
-
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index 0edd639898a6..21ddc28a1257 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -852,6 +852,7 @@ void __init early_init_dt_check_for_usable_mem_range(void)
+ 	const __be32 *prop, *endp;
+ 	int len, i;
+ 	unsigned long node = chosen_node_offset;
++	int t_len = (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32);
+ 
+ 	if ((long)node < 0)
+ 		return;
+@@ -859,7 +860,7 @@ void __init early_init_dt_check_for_usable_mem_range(void)
+ 	pr_debug("Looking for usable-memory-range property... ");
+ 
+ 	prop = of_get_flat_dt_prop(node, "linux,usable-memory-range", &len);
+-	if (!prop || (len % (dt_root_addr_cells + dt_root_size_cells)))
++	if (!prop || len % t_len)
+ 		return;
+ 
+ 	endp = prop + (len / sizeof(__be32));
+-- 
+2.51.0
 
 
