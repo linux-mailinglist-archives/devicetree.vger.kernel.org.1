@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-234178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7FF7C29845
-	for <lists+devicetree@lfdr.de>; Sun, 02 Nov 2025 23:17:20 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C185C2984B
+	for <lists+devicetree@lfdr.de>; Sun, 02 Nov 2025 23:17:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4F5204E67B3
-	for <lists+devicetree@lfdr.de>; Sun,  2 Nov 2025 22:17:09 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 910BC4E9C67
+	for <lists+devicetree@lfdr.de>; Sun,  2 Nov 2025 22:17:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FAF7246764;
-	Sun,  2 Nov 2025 22:16:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 688AA22B8B0;
+	Sun,  2 Nov 2025 22:17:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HJWsYRZ8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JxkFtCeU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE802244668
-	for <devicetree@vger.kernel.org>; Sun,  2 Nov 2025 22:16:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA58924C068
+	for <devicetree@vger.kernel.org>; Sun,  2 Nov 2025 22:17:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762121819; cv=none; b=Wb6TjjncWocTuDG0xm61T/xuagB6xg30LFNV9a/8uEhcJ6NjdfKt+bjQEs765yaajPHpCMSlWJQ8EoV2kXz8VXT3ADaZ92BwCX7gMb7Vo6RvQK/I/hFvq5rOrAFGTjVsrQZ1mX+zstti+HV47W8M5NtcNch8GxVuxgMHXi7BcUg=
+	t=1762121825; cv=none; b=Sj6ZJW0/2cRhDIO/uJr40HtQ9EyQfJbvNotBnCmFezLWsbx5U6FY7JcoGv/2eWdd4wCpnHh/zGCromGv3duCIwrljcdwotUxmwop401ifwJISHsZCmL2q4g0NbjR0DjjRku9UWkqcS9IxKdwhVZ64qP6gfXfXZoH+ywr+Fcf8EM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762121819; c=relaxed/simple;
-	bh=PhZLtyuX6rsStPuOx2GzI5uvef40yRsEPWniw+A0HX0=;
+	s=arc-20240116; t=1762121825; c=relaxed/simple;
+	bh=IQsghSGvLe3p8fZkTsq1elt5Nv2/GiuRfy/EmyAJNFo=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RjqBNjRmNPJBJJbbJrssIi+A0Kl8o54bGRZQVJW2/Vt1v5ayNZzJZy1kD58zJWbR05cha7QEQMFx/tQHriPan1mleKclJPey3cxZbm8SmDPN+YEOZGJq6wr8aLJYm+72u9MpStjo35VHX6sESyBHK9ZcTxq9SOqj1vCTF1LwkTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HJWsYRZ8; arc=none smtp.client-ip=209.85.216.41
+	 MIME-Version; b=IlnWrl7x54v5U8duETS+JAzUmPZLyTzZO1Uf5YZDocibMhJj7j1WaAZKtC0+FEI5gKGvRiht9D1AiFVtXeLqU0/G/tiP05XR8E1ZoNu1PlNo9JU7HXD/c61ZoIeDJ/h7COonDkq85p8hFDasw/OelBMOMs2Uqva24qvSLH9aOiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JxkFtCeU; arc=none smtp.client-ip=209.85.214.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-33255011eafso3207758a91.1
-        for <devicetree@vger.kernel.org>; Sun, 02 Nov 2025 14:16:57 -0800 (PST)
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-29599f08202so7422475ad.3
+        for <devicetree@vger.kernel.org>; Sun, 02 Nov 2025 14:17:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762121817; x=1762726617; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1762121823; x=1762726623; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=++a2qLFT2GMKZSkfaoicvFef3e/M9je5Z9y3CGUMY9M=;
-        b=HJWsYRZ8wV+reWfkB/zKBhyOzaA5IIEitvFDrGUlG0CHlGVspNYpXKNSGEGKwQNgIz
-         tGWHYtGOIRcpUDy2pbTXisvkvRUPPh8xpmqIBCcwGoJ8Djh/iUdSfaclohzxReOROa10
-         Bnq4fwanDX0jNFhBktmXaVDNH0la5qJEe2CjpSY7mI7Bv0yjNdHsAWwkt9lfgT4XzuX2
-         cXDv+gmtEKXcEWBH3bWMBzA6BovEPftS2+qcFScnNuthSEGR3BvaCSx5DzjQHc35YcV8
-         tXVn1tJF0gcL69dqdszFgbSuBZrI6iVrjg6wboFNMc9AfZ1HKG25N+uI7ysXLWVPdejN
-         Eumg==
+        bh=47gxy7zp7dlvgIc5dJ/R0rsLAgFmWqzWMMGs9uW3ML0=;
+        b=JxkFtCeU3lMNq9SuwBaNM+UoJA+iU5NBKWt7Ibx5G8oNxWAJ2OxCwYH5RBTR3K9JD2
+         skIHF/K7V5ur/TXSRDoEWBN8ayPpu4YaNqNZjEFy+krpIb1MGlSQSJ951g31dmwgbsFu
+         YRul0PDR9ABc6K4XAb85lbt6aQ9jXH0NIfPgGkPfZutCqBEnJbdZsYR8318XuvSO56/4
+         l0r3s7EAkayC8YznvAbChjarkN2bDaKqsv6WDLcQx25cCHyT/NIaadntTJlrzyO79biX
+         iI2g5atS/EtpHiLZUp2NfoiGx6jK4528bwge0nIpNnRQOy4VTG+OjhziRcVom06bjUWt
+         P1EQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762121817; x=1762726617;
+        d=1e100.net; s=20230601; t=1762121823; x=1762726623;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=++a2qLFT2GMKZSkfaoicvFef3e/M9je5Z9y3CGUMY9M=;
-        b=ALNExl21B1vOD3waEsgqac4j8tE/063qJmvFT9wc1ie3eNf4cgm0v8EGcicPxZ4MVp
-         1wXDdyscd8Z7yMur9mBV7rLK/PtYoncOebOlCTgLmekP6OcsFLcf5QwVs0HaJ0SKAsjo
-         wlvZGI2xH5UHmtOHc2s/IFMAay3yjN4aHrqCUTHkz2FK9C+rjXVYhnCU5ZUS0Z6rU1dG
-         jN4jACXigVTSq0grSkBFSmLy15fjnaaV3ExiTLM3GT3Li7/whujA4xZFImxy1JfAuGoS
-         gvU1PrYn5PQ+UUT86wq1o5GBhE2m688F7JQWqwIkPi4K/A+HYieQZzrqYB/ADpMnNkqj
-         xZdw==
-X-Forwarded-Encrypted: i=1; AJvYcCUM4sCn1QDIqUP/TkMfb0wbD8nblx1ePlsHJdC/KLx8+xSvfN+VMHKU+N1Og9Go04667/M9ODLQCSDZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5MihaR6nNYA4GwlgtDv9kU44oQfHHPGoogNPtHpXaEx4VIW7O
-	571Wxp64VTT67gZ+Q4MDv7DWIdU2YEVCebxwa+7ZGOZuorLgyLLOiVo9
-X-Gm-Gg: ASbGncvUjX5J3Z5x59321kS6AImtB+bFTJf75g31hrUz9pahDKETT8TD2ZF4UU/w1cv
-	KlWnYQYVy0hgPMkPTPri2FVtwEJGfhOmFIBXG85OXEPtPJXD2FoCQyBGnczgOHuB9diApqHlUkB
-	Lw41+xiU92TFp/On5INJA40fjrwPtx5g87pl5IPudjp8xjyUdsMp6LlXD069y3rK3WD3Qea31rw
-	wmVSD8qOlgsU/1wHdUBThzmliPtrEPzJkpkPtMNaEdMbfANJnTagSWUyU5EwWJQfZhvejlyZhpT
-	/nkokyFuZ+ZIHB14gDt7n+dUYeK6qWnBSspvqyrAJOOTsrDoLuxXk75+Gg8cMKWeIICisr9JXrF
-	q/IBIbxd7YWQbSliXAtrzqMnPyyz0Wwub5LutPcKgV+gleDjtZd+DPwozfCaWOPdGFqxiW3wc8J
-	NwVGJbEDu0fvoBg+VuvdN4skE=
-X-Google-Smtp-Source: AGHT+IE/IJ7vHfMPuDFfKJz9U9NU8Ff7jxfU7dFthw7esoi33MHL4uL+OykKom/Ms2RJAZVJxbkMeQ==
-X-Received: by 2002:a17:902:e84f:b0:295:507c:4b80 with SMTP id d9443c01a7336-295507c4c3cmr93301125ad.61.1762121816969;
-        Sun, 02 Nov 2025 14:16:56 -0800 (PST)
+        bh=47gxy7zp7dlvgIc5dJ/R0rsLAgFmWqzWMMGs9uW3ML0=;
+        b=e+P98tpOl5VQh5frIMD89PB9bjcW/LpoaPX88kvoQ/K1EaNYjA6ObcFgCkXRpBaA2I
+         hty5UlXBCx971Ej5fxYD3nh8HKSkd/kbT1kGQznYSwkwJ16qy0K+5sePC7CKIm/xu9TT
+         TqQ6/Qu27oOR6uAFHNvP4ktjazgJCIhgEL61j9AUSSnexCPcBw0m52kIuvDf7bf88+Y9
+         xrxuObioEhSNlyOU3gUMKJFb6V+GenkCBKtXFzxntjpHc4q+bywib8YZHgOZ8tjxWerW
+         vjWix/PvREi6hgZP3ymqsHDccUzU3tTjueVjYoPLLAqSKmVWA/cNvy/VI8uobBs5p/pM
+         k+Pw==
+X-Forwarded-Encrypted: i=1; AJvYcCVvkp56YO7Vy8SIAOQ5i8cEBUxzDmHPpec8rr/JTWolaJw/Q+V7k2ec0xlo6ptewLrY1o7N1N6cSniM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/Ag1H+J+EPjXaWvSLwVc9ESJMmE5MiFFYgEt2uoKiP/4STMPE
+	sYW0C3gzEIyxSFppm2H9wX2NOWNRkjYD/h//DuVJMtW7tMoFl4e2C4M+
+X-Gm-Gg: ASbGncvk6Z/IklIbcwYVDpt6xrpf+xG4XqaQUJ0WOZX0aomde26r5/CgCeX1PyYB48p
+	lZ4ZA/tBh1oobLXtf8pr0Sg+FaPaDoQMDrahZObOl11i32HIMYCXWETTO2agNlhJfGiNSd9iXJD
+	3hxmgAilLinGfrW2UxXEPoevC6tMwO96DisHd8vplzNSktOHYxukgxWkTW4XJEAmk6wZjg3K4A7
+	BmKvMriG9g2D8cxopZgANfEnhKP0MREI3GfxxsJIYGLGvw23HYVO6JwGupFCXBgqR0J5ovF14So
+	5lKicZoQ/spoXN1KEXzHcIg7LW1Euf/IfvKnQUrja9SBcUnvB4Uv9hsvxa9LPDcoXa6pCQGQWxI
+	x8hfEA5RjBuZb701h5MObgUwCfDcCMCO/cgYrHYtG8SwQMhq7OCwdIRTqymnldAerfVbwPQeWEl
+	bQm/7DApcQq/Dn5cJsRt6aFcs=
+X-Google-Smtp-Source: AGHT+IEFC4JM18TyNOFrkGvzBG1fq/R2wBUS8oX8Gf9AFUcfwbHwXBghvsyHwZcbBHBtEeXO2qd8tg==
+X-Received: by 2002:a17:902:db10:b0:295:50cd:e759 with SMTP id d9443c01a7336-29550cded8bmr102841845ad.58.1762121822800;
+        Sun, 02 Nov 2025 14:17:02 -0800 (PST)
 Received: from localhost.localdomain ([2804:14d:4c64:860f:2214:33ff:7c70:4d9b])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-295357a1851sm83362835ad.27.2025.11.02.14.16.52
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-295357a1851sm83362835ad.27.2025.11.02.14.16.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Nov 2025 14:16:56 -0800 (PST)
+        Sun, 02 Nov 2025 14:17:01 -0800 (PST)
 From: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -88,9 +88,9 @@ Cc: ~lkcamp/patches@lists.sr.ht,
 	linux-iio@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH v3 1/2] dt-bindings: iio: proximity: Remove Lidar-lite-v2 from trivial
-Date: Sun,  2 Nov 2025 19:10:26 -0300
-Message-ID: <20251102221643.9966-2-rodrigo.gobbi.7@gmail.com>
+Subject: [PATCH v3 2/2] dt-bindings: iio: proximity: Add Lidar-lite-v2 and v3
+Date: Sun,  2 Nov 2025 19:10:27 -0300
+Message-ID: <20251102221643.9966-3-rodrigo.gobbi.7@gmail.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20251102221643.9966-1-rodrigo.gobbi.7@gmail.com>
 References: <20251102221643.9966-1-rodrigo.gobbi.7@gmail.com>
@@ -102,27 +102,76 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The lidar-lite-v2 IC is not a trivial device because it has a few more
-pins like power-en, mode ctrl and supplies.
+Since v2 is not a trivial device, add it to a dedicated place. The v3 is
+similar to the v2 version, so add it as a fallback to the v2. Both versions
+are already supported by the driver.
 
 Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
 ---
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 --
- 1 file changed, 2 deletions(-)
+ .../proximity/pulsedlight,lidar-lite-v2.yaml  | 54 +++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/proximity/pulsedlight,lidar-lite-v2.yaml
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 2eff6f274302..e344613aa265 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -357,8 +357,6 @@ properties:
-           - onnn,adt7462
-             # 48-Lane, 12-Port PCI Express Gen 2 (5.0 GT/s) Switch
-           - plx,pex8648
--            # Pulsedlight LIDAR range-finding sensor
--          - pulsedlight,lidar-lite-v2
-             # Renesas HS3001 Temperature and Relative Humidity Sensors
-           - renesas,hs3001
-             # Renesas ISL29501 time-of-flight sensor
+diff --git a/Documentation/devicetree/bindings/iio/proximity/pulsedlight,lidar-lite-v2.yaml b/Documentation/devicetree/bindings/iio/proximity/pulsedlight,lidar-lite-v2.yaml
+new file mode 100644
+index 000000000000..21c9239c64dc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/proximity/pulsedlight,lidar-lite-v2.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/proximity/pulsedlight,lidar-lite-v2.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Pulsedlight LIDAR-Lite v2 range-finding sensor
++
++maintainers:
++  - Matt Ranostay <mranostay@gmail.com>
++
++description: |
++  Support for LIDAR_Lite v2 and v3 laser rangefinders. These devices
++  can use a simple I2C communication bus or can operate in a PWM mode using a
++  mode control pin to trigger acquisitions and return the measured distance.
++  It also have a power enable pin, which can be used to shut off the device.
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - grmn,lidar-lite-v3
++          - const: pulsedlight,lidar-lite-v2
++      - const: pulsedlight,lidar-lite-v2
++
++  reg:
++    maxItems: 1
++
++  powerdown-gpios:
++    description: GPIO that can be driven low to shut off power to the device.
++    maxItems: 1
++
++  vdd-supply: true
++
++required:
++  - compatible
++  - reg
++  - vdd-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        lidar@62 {
++            compatible = "grmn,lidar-lite-v3", "pulsedlight,lidar-lite-v2";
++            reg = <0x62>;
++            vdd-supply = <&vdd_5v0>;
++        };
++    };
++...
 -- 
 2.48.1
 
