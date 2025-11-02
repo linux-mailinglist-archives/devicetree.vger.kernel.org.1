@@ -1,153 +1,159 @@
-Return-Path: <devicetree+bounces-234169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8721AC2961C
-	for <lists+devicetree@lfdr.de>; Sun, 02 Nov 2025 21:13:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F628C29641
+	for <lists+devicetree@lfdr.de>; Sun, 02 Nov 2025 21:25:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9E8B94E3C29
-	for <lists+devicetree@lfdr.de>; Sun,  2 Nov 2025 20:12:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EFFC23ADFEE
+	for <lists+devicetree@lfdr.de>; Sun,  2 Nov 2025 20:25:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10EF8218AA0;
-	Sun,  2 Nov 2025 20:12:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C69B1A256B;
+	Sun,  2 Nov 2025 20:25:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZkrogTDT"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UXik7WxN";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="f+3Mihow"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A34043BB4A
-	for <devicetree@vger.kernel.org>; Sun,  2 Nov 2025 20:12:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10E0434D3A4
+	for <devicetree@vger.kernel.org>; Sun,  2 Nov 2025 20:25:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762114367; cv=none; b=sHwe1HLsgFvC5KUI5n8lTxxtU0cCymec1uzPMQWGlpBCTHMBiydJgITK9RbN4HCTSCFd7ye5n3uPgFabvdoQnj5kkzVeuUhDkaJOeKAEoRD96sLBsWvHef1xqxZt2YT9AyP39pPELcUBBvyUB8/Gktm/KR3JPv7Mfhd3TF0IkBQ=
+	t=1762115109; cv=none; b=Soq0LcEYAHBSVe8M0D2r//UOkKNJ8iR0yrES52CZBT/sLM6QF+DuYSzxIFtk5QoieQC+LfLzKh1MaFI7EeTueTUVxleV1/sK67HjGDUjvkvhJMlFbvZY58EhZHWmM7hmVBglDJ+oa+c5fU7ACNomC4WICxK5FR4idEFFAUFRpyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762114367; c=relaxed/simple;
-	bh=vQ70zOQjf6dVyMCSPPI6U5RCv7r28t20uFINZMdYEbw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eJ5kc/RrgbUNEuVPx/dSZrCegKuB8RL2g0RcvwIqBr5ie0OCvzU25VRstFpMCaUC8QZ9DyW3H3TmbUHunmQw/k4/+AgdQHjEnp+0EXinmrSGFJa5i/B0mA3SRHvzg9XC4QxYkiRVDlfFtIQl76EbqAvThQ/FCUGA0kXK5iW25+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZkrogTDT; arc=none smtp.client-ip=209.85.216.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-3408dd56b15so1824362a91.1
-        for <devicetree@vger.kernel.org>; Sun, 02 Nov 2025 12:12:44 -0800 (PST)
+	s=arc-20240116; t=1762115109; c=relaxed/simple;
+	bh=N6H5/yrrglS9GGUXXu0UIjTadrjxIjFbU48PaLb1FkY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qn+oxlAJYLLSGJgv8zlsKONHOn1GISvGgSKn0vl8BKXvX7SYbZmb9gknO74OawajnzF0bZ6M799EPoGZf5x/m4/W8azNXB1gQR+3RCBDn2HGEngJsTG6lF/12NfIEEx7Lk6H2VolF21VZEtEYY/MOLV2LwQQr0zjmFs7rsEGoUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UXik7WxN; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=f+3Mihow; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A2KOiuH1054225
+	for <devicetree@vger.kernel.org>; Sun, 2 Nov 2025 20:25:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=EEG2Iz1LJudMnHX5OCqnescY
+	0Xbxi9uQYfIsRBJgGgY=; b=UXik7WxNrfMiGXzZb2sGx3fburzl4nHJ4Es5i1cX
+	segTefYjXNeT+NrMbsVgIikACSS/kBnZW+EDi4r7qeBg4cjwmzbbCHgv5nIp/f7S
+	ZbADih9mvKIn4IthNIcuF3WvV7Wk69dlLxXX9S0I8PIAXnb7lDVi3IeURdwjmsRv
+	64lSZJ8+9avgDXj5IMq0kFemYgeEYZiXZXn6YSODSquMZI1SxjDYodfE1xzvAKG4
+	nRTVo5tYWZybkumPV2RBmfhMUhqv++Bk7nLjbI9ygWtBZIejCgCEOjFtZrkuG45Y
+	3THcL9E2iWefyC1jpct4IwBVzmLhp5a/jlRHwx2YCMa+Kg==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a5bg9jh8d-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 02 Nov 2025 20:25:07 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4eceefa36d0so109781191cf.1
+        for <devicetree@vger.kernel.org>; Sun, 02 Nov 2025 12:25:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762114364; x=1762719164; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Fqxd8GSbRVyInLqowSB5ULzNB5fuvN606M77nsm3p08=;
-        b=ZkrogTDT8ZnAO/WAVbFOFStqbQj0f82M6BzcYyJSHBI2N9DFyvCXl2x6hipJJQtiGf
-         85cqS0PEXpbNro2dy99ByoJ7/rnww58tYa105G3bjRV3qEiZvcbYZhgj4sK3kFAySgrd
-         mNqy4M2gjumG7sIgEAm0Bg1xQn7GXFEIbpl7AiYXJS432+flqWfOsmv5n8PHO189lR8T
-         7thrU9/q0pNytaBeBowxjKaxXfQdAuaO0Ju/CgEeFr6HYWC6PGInfBcOd/lc+NglbopD
-         rTVljUcSa85zS21k4lE10XoQqK4AtQOef4fnODOMbYgXkOq5Yf+D9cw2qtIACubsBtul
-         NCSw==
+        d=oss.qualcomm.com; s=google; t=1762115106; x=1762719906; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=EEG2Iz1LJudMnHX5OCqnescY0Xbxi9uQYfIsRBJgGgY=;
+        b=f+3MihowWjiKDL2Q+7Zk91B3ocUU51IHW0bOh/DDe1aP4RvF9SSXyMeXQWa8Z/UkHt
+         0BhgHKfPxIn1B5kvHR09FKIQVnr2uezUsFyw9mjlu74z/oyMV8OLBvbUVIvinSiIb6PQ
+         lcdaNRWRBcOGeY7419p3u+bNQbJmFW1pMOKNjHOVpZlheso+bthbL5nkfVSJWtRNyjT2
+         sI8pBgsEjqUkSDnXYC3ha2mApM4qYlEHVX2UXubBGDPU/oVRN9etw4h29VEVWV0BjLJn
+         a9gLE0WeLqLBHgHuucPunYZJuyxZdACSZT2295FalmIo73DvJH+6feMeY8qu+VR71SJ0
+         QZVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762114364; x=1762719164;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Fqxd8GSbRVyInLqowSB5ULzNB5fuvN606M77nsm3p08=;
-        b=BxjmEFnki1mMUgCSk32g/Fwmus9C0lytA6aHxJgQCk/Bj1Why8tUzlWMQl6oG4CcFK
-         oyi4+wtlvlOM0Wb7SmFAzTm6YkbUOm6dbtAeEitqizuHxtEAX/s9i2W0CnZXOCmP4uX1
-         YVDbmygR/9BbsmvlKRIiz+XMHlSc+ELXCFGMZQoTO9rQksg/KaKj/6BN68SaRI0jrpiI
-         ziEyDaM4ba2EbYnMOh6k10T0vA+XzCzO5B9HtKp9SU4zvlMCn9UNvhilYCRgJSctjfrp
-         /peHMbpkY7r7ImhnsxcBEqPUzPizLJN7sAMgrpX1EKsbf+0IgCOmbiVzncut890jfU/l
-         SVGg==
-X-Forwarded-Encrypted: i=1; AJvYcCVwfegUCynNPn7Si0McVX83Npdl4+uqBNUgY6tsdlf9vGm/YcCuujVZJLS8AeX9hORO3IBUScnPWhIC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwxpLHFKcQXqVO5EWYP23VXflSsGH+hBRuYO+f820JMGGMVf/5O
-	c3p+1CdEy500G1JXRM4rf1EfkRjVLOsRebOSUoPyBXIqOcyBveXETLSt0LQ11rqX4gS6PZ7mUSX
-	cFJ0IExPGGwsVRfGHIC6jRIN1M1d8LA==
-X-Gm-Gg: ASbGncuHQOxv5URDe6Zu8pCKg8Xagq/1ABWe6c58J+qK+YeTvwND+/d3Dph8I3bZPpo
-	qkIoJOkOmMVbxaAOEMBiY7tfqT8HQ5/JH8r0QjGsCzAPCX2Z/gUkToIJzW8LrKGUbolJlDePEgH
-	QEZ1ZYV5vF3gu5jr9intaYRebllGJ1wZKBUgeYiOjcDuweot/MGiR0XNiRiEMYek7OnJ4YXbP1J
-	iGfQyVM1JAWnhaZUjZe/JNYPVmfv/ro5GkKIp8n/8xWb0BO0gufMCT2UJcWkVdgv5PKkexVjG+b
-	fI/KvK4ByY7q76kTW4YBCRXEs5Zk
-X-Google-Smtp-Source: AGHT+IHXziArp6Fwc3IW8oTuA21TaRtuWLVaUnoj/Nrt7XJBhwyf4bvwfdqUr10ASbu5qVVj+3mWPLSdt0i0Iz+0gWE=
-X-Received: by 2002:a17:90b:2885:b0:340:e8e9:cc76 with SMTP id
- 98e67ed59e1d1-340e8e9cd0bmr5531518a91.11.1762114363950; Sun, 02 Nov 2025
- 12:12:43 -0800 (PST)
+        d=1e100.net; s=20230601; t=1762115106; x=1762719906;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EEG2Iz1LJudMnHX5OCqnescY0Xbxi9uQYfIsRBJgGgY=;
+        b=nRHKhhGFRd72sU80J6zl/F+QhkKMJvMUAwkMnhktPELgy7CzczAEaL5TRVkV3Trhmi
+         8l9qSbJhOZNvSM52ykRwvCFFykJpUha+9uS2sBjcp+eC+/66XOPUFw6GChyyXsJLDLkt
+         b5U8PmemDVX60XdW//czdqQoPjUzt4Ruabak3xJscVgmVaHxeZ/u6Sx5PEa5TVijmdVw
+         nlVFcysMsRDBks1zaMzzNUTYdGRhkwTfc+t+WsTohVYATdz8pSY5ah+HEeOOvabVcVmQ
+         1G83lNhPQWXYsuDmp3sxzaoRGQRcawjhdkkWeo+2taZu2aMDU8+v1fQYm0/SIlcevSQZ
+         53Rw==
+X-Forwarded-Encrypted: i=1; AJvYcCWsut3I1twmSF21SsQF4UvAebRaNbRK6XfhEe/2wt89JNhc0mib2Rc5w++BFduEMbGbWu2k8Cb0Rp6A@vger.kernel.org
+X-Gm-Message-State: AOJu0YzA1O67h8Og0aeNX/vLxbV+B/jDd/mJlz0DBIQG1gqwY8UM+BRl
+	qKkdYUPadubxeGjaMdtGYtdTsTt9h6ExQ+gnUfLaURtpgKhZxkeGyVOouUlW6m8kUGiAdLe84KW
+	6XzUiUCwxqAg38wAVo7sLXwkhCc7Yo1ungaeVTpWhspONWD9NmhQFcDrcGxHdyToo
+X-Gm-Gg: ASbGncuY2o5HF3XwroWhiLGn+AMZNMqdId2m/MtTQKtE2lnp2J1UGC3XbQyCak7Eu2F
+	xHkTck18hlnhRFt+TwQ7aL4LSK1VmgOjDH9STlroaGzBDZeXWPkwIWtXwIsFSQv1dMMdjWzz6A4
+	doot3pMzB6rPqGGY9Qbp3csyXFFfS/qSZULQJWLMjPeqV8bR1N088SuSzGultpW3nozBmHDl9Qy
+	1tmUHFjlETzJ+Nu1ljuuSkSOcYBYWfQGh13gpetCjg7nPgLwT5EzeuZ1ekpXh9ZwrA1hWzGhOMI
+	MxeG/EOcfR5aGsAPrDWgeFdLxTJCK4Y0eO41+t1iu4Kh7a7YPwl8SHVUmdSodS3vCkQ2aGE8ySA
+	VSEmlEh9ng96E6RbN+V1pBzKTJRIAMEcMSBStTxqdqXffKD+X94fm8aRfvLU7U+d06WinI+nvvZ
+	fec9Q29QocVPja
+X-Received: by 2002:a05:622a:420b:b0:4eb:a1a1:7c0b with SMTP id d75a77b69052e-4ed310c5d61mr139573181cf.78.1762115106155;
+        Sun, 02 Nov 2025 12:25:06 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFb5BWz3i5Ujnzs2gYdSamh2WbZV7R4N5QhulfUp+qcWnmLJlhrUeDTv8ibu172IgyTkjIZOQ==
+X-Received: by 2002:a05:622a:420b:b0:4eb:a1a1:7c0b with SMTP id d75a77b69052e-4ed310c5d61mr139572941cf.78.1762115105713;
+        Sun, 02 Nov 2025 12:25:05 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5941f39c0c3sm2249247e87.42.2025.11.02.12.25.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 02 Nov 2025 12:25:04 -0800 (PST)
+Date: Sun, 2 Nov 2025 22:25:03 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Rename vph-pwr
+ regulator node
+Message-ID: <nlqtcvxwszbi2bwpu23peualujip4d3bv2pehep7kwegf76lad@pxmiji36mw6d>
+References: <20251102-rb3gen2-regulator-sort-v1-1-908879d240be@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250821194710.16043-1-jihed.chaibi.dev@gmail.com>
-In-Reply-To: <20250821194710.16043-1-jihed.chaibi.dev@gmail.com>
-From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-Date: Sun, 2 Nov 2025 21:12:31 +0100
-X-Gm-Features: AWmQ_bnYDJMb8ZNLbIwTQjuhi9qVx6pKfUX_tadjCSJdooWWkHy06CGTs7XIWPE
-Message-ID: <CANBuOYqaLMV3rvdf=YcWTjiqn2A3h0a-QYM77VJvSJtSDSe9pQ@mail.gmail.com>
-Subject: Re: [PATCH v5] dt-bindings: gpio: ti,twl4030: Correct the schema $id path
-To: linus.walleij@linaro.org, brgl@bgdev.pl
-Cc: krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
-	peter.ujfalusi@gmail.com, lee@kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, shuah@kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, aaro.koskinen@iki.fi, 
-	Andreas Kemnade <andreas@kemnade.info>, khilman@baylibre.com, rogerq@kernel.org, 
-	Tony Lindgren <tony@atomide.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251102-rb3gen2-regulator-sort-v1-1-908879d240be@oss.qualcomm.com>
+X-Proofpoint-ORIG-GUID: q7gf0SR9uABWYfbqHL8-3za4JM42FpZ3
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTAyMDE4OCBTYWx0ZWRfX+ecUVafkll78
+ iYhhtTWf5e6ImpR2YAGnK0YKbKPv2CL7txrmfek792iODFMzjj1/dCFEBmyt8WIXZRDuuT8FxpG
+ 0BUbQM2BPd/EEzlUqfgw/SyXAoIRrCB+RaehQvmFxhUmk103EZtliW7Qo6XzJhENL1Wn5yoSbnj
+ oOv5/wC1LjZqwrtgJcaokFXJmWgKGm2IUlb86R1CH9IbcoLr19XHsrTN2E3HGpcWmi5VqnhduZs
+ mkHfFvFDSNinO5FWQKm2hFgUH9ndES4+qxlPBPf+MoJn3nSG62EIluXFWPBaibOxv0k6Wqtb2N7
+ LZGB4LpwFESa/m/cM2Jfb4xnz0jqZo34uPoSZIPh8faAr2PspX1Xt7P953yoKzRpTL7EPsfxHbE
+ yOOgkKr+xrxO4XI31lAoLZ04tSAEQQ==
+X-Proofpoint-GUID: q7gf0SR9uABWYfbqHL8-3za4JM42FpZ3
+X-Authority-Analysis: v=2.4 cv=TaKbdBQh c=1 sm=1 tr=0 ts=6907be23 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=1lonT_InBH0CplU8HdIA:9 a=CjuIK1q_8ugA:10
+ a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-02_02,2025-10-29_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 impostorscore=0 bulkscore=0 adultscore=0 clxscore=1015
+ priorityscore=1501 spamscore=0 suspectscore=0 lowpriorityscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511020188
 
-On Thu, Aug 21, 2025 at 9:47=E2=80=AFPM Jihed Chaibi <jihed.chaibi.dev@gmai=
-l.com> wrote:
->
-> The $id for a binding should match its file path. The ti,twl4030-gpio
-> binding is located in the gpio/ subdirectory but was missing this from
-> its $id.
->
-> Correct the path to follow the standard convention.
->
-> Fixes: 842dcff8e2d6 ("dt-bindings: gpio: Convert ti,twl4030-gpio to DT sc=
-hema")
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
->
+On Sun, Nov 02, 2025 at 11:22:20AM -0600, Bjorn Andersson wrote:
+> When fixed regulators are not named with "regulator-" prefix, they can
+> not be neatly grouped and sorted together.
+> 
+> Rename the vph-pwr-regulator, to facilitate the incoming addition of
+> additional fixed regulators.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
 > ---
-> Changes in v5:
->  - No changes, only added 'Fixes' tag.
->
-> Changes in v4:
->  - No changes.
->  - This patch is split from larger series per maintainer feedback.
->  - v3 link:
->     https://lore.kernel.org/all/20250816021523.167049-1-jihed.chaibi.dev@=
-gmail.com/
->
-> Changes in v3:
->  - This patch was added to the patch series in v3.
-> ---
->  Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml =
-b/Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml
-> index 5e3e199fd..96d50d14c 100644
-> --- a/Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml
-> @@ -1,7 +1,7 @@
->  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->  %YAML 1.2
->  ---
-> -$id: http://devicetree.org/schemas/ti,twl4030-gpio.yaml#
-> +$id: http://devicetree.org/schemas/gpio/ti,twl4030-gpio.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->
->  title: TI TWL4030 GPIO controller
-> --
-> 2.39.5
->
+>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
+> 
 
-Hi Bartosz, Linus,
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-Gentle ping on this fix,
-It was reviewed by Krzysztof a couple of months ago. I wonder if it's
-ready to be picked up.
 
-Cheers,
+-- 
+With best wishes
+Dmitry
 
