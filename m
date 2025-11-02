@@ -1,241 +1,175 @@
-Return-Path: <devicetree+bounces-234108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99F62C28DB7
-	for <lists+devicetree@lfdr.de>; Sun, 02 Nov 2025 11:59:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5456C28DDF
+	for <lists+devicetree@lfdr.de>; Sun, 02 Nov 2025 12:09:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7846C3412DD
-	for <lists+devicetree@lfdr.de>; Sun,  2 Nov 2025 10:58:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2384F1889701
+	for <lists+devicetree@lfdr.de>; Sun,  2 Nov 2025 11:10:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8049E1F03D7;
-	Sun,  2 Nov 2025 10:58:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC78E1E832A;
+	Sun,  2 Nov 2025 11:09:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Gu12e4Ry";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="yKvYyrFg";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="ic5hceXH";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="zjJLpUZo"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="C4n1d71b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08DAF21D5BC
-	for <devicetree@vger.kernel.org>; Sun,  2 Nov 2025 10:58:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1670E2E403
+	for <devicetree@vger.kernel.org>; Sun,  2 Nov 2025 11:09:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762081133; cv=none; b=ebsOm1yEPQy/4TorGXGddzzJkvnYxuWEWXTB/VD7YRN4DFnKeMMPU3fIONb7Vog0PyRhbRJizbaaRzLa+E4rH6VgBCtNyMnAvmD3BuQ3TUPIIzJfv82te39nEnBJzG+mMN4PGsgbytbzFboZhrCi9874tp6uQfuRJTp1TfPFaSI=
+	t=1762081786; cv=none; b=iza9s1XW2CmDi/gQpi0wdh0fEP9BsHgWIyKLVf6HF4YaFRXV7ZMjWGFNyxCu0bHTPdPYv8gyu6E4J0QmAxP3Yjv5NmwIlMy5KxrCoQvpDKanBTsZIkYKQEcHqachLIABx0dgIZ8q9HolyhDsxelaIFlXFu8isOKrfHlybpkJ+RY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762081133; c=relaxed/simple;
-	bh=gSuV9NfvZsiBv2LChBXloeoHlZVcMPF3yM2Mnt7Odps=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BrlDoMRgeNWQXF76KGVgLis37bs3v5VzVrBhkyE6+0jZDbETAm+sfZtk9tnnbBB19v3z8E2yvjWPfl5vNRFjj72lJBvmX0pjSV838n2zH+lvX2GWBYQ5y8c4593jIc+/phYxuCIwzuouukLt3Vx/cxtLYruqZ+ZKHneipcHSsLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=Gu12e4Ry; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=yKvYyrFg; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=ic5hceXH; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=zjJLpUZo; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id E3C63219A1;
-	Sun,  2 Nov 2025 10:58:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1762081129; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ygryKpuel8gUruAmxT7tunoXHxgWnszjIWDtcSkyXgY=;
-	b=Gu12e4Ry+Pcag5JF+IO8aXX0WuYRrmk4kvzlTuUPMwqAOzrnEVqOsREWVgL7TBQq/Or2nT
-	GfPMN5WI7kzzxAzZgyrmPDgaLF3AyU7eWvntl1gvg8pPt38M9jgbQWqmtyXcKlvic2oRGz
-	RScb1UQJx/9v4isNnYjnwAmj84wzyzo=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1762081129;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ygryKpuel8gUruAmxT7tunoXHxgWnszjIWDtcSkyXgY=;
-	b=yKvYyrFg2dtifnKDrHvMlNargw9E7uCo1QCOApxR594EQZBnFmCuyNSgJ+vmJqm6XG62qh
-	EsSa6mULWxS5+/DQ==
-Authentication-Results: smtp-out1.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=ic5hceXH;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=zjJLpUZo
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1762081127; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ygryKpuel8gUruAmxT7tunoXHxgWnszjIWDtcSkyXgY=;
-	b=ic5hceXH/0ta/+C0Tq1Dk9YbRtNQDvlHSmqog+Dxux6lRa/0SjWPhjSn4/Nphi+rTWTois
-	8AwTWk+MGFzMD24e5AGOkPvPagBWPf3fPHtYGv4/cAmwP0FU5ixsdXq/7/cz7c4AmOfa8D
-	YMrrmLIjmld/UAxIOL0xP09tIuQRxuU=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1762081127;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ygryKpuel8gUruAmxT7tunoXHxgWnszjIWDtcSkyXgY=;
-	b=zjJLpUZoyhX7CrHvi6rIX3VZKcLqKfd8kCvaIfiinx5W1Wj+FkYTrMAynK4DfvQzNBkeUC
-	amFVwGhq8qDJbtAA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 44DDA13699;
-	Sun,  2 Nov 2025 10:58:47 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id MNZzDmc5B2mYMgAAD6G6ig
-	(envelope-from <svarbanov@suse.de>); Sun, 02 Nov 2025 10:58:47 +0000
-Message-ID: <39257a41-6719-4daa-a979-a9c2a629ec24@suse.de>
-Date: Sun, 2 Nov 2025 12:58:46 +0200
+	s=arc-20240116; t=1762081786; c=relaxed/simple;
+	bh=2lVVhBbpubNaDFhGqgi+wPk/IWnaTCWLwy0N7I/rbXQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hqP6JjLP8/Z3eT8k5ovFpBUaB9hFDO3FSw6Jr0xbCh0bAy3SHw2AZ/x5SfLglswZnkPk8ZHui4iL1faHvAkaHKVaA3W8ja0A9mzN527cWEJAEM40yNyJfDe1ocq/MwHMDq+VM92q03YAYMQuWTcvUK6wdCNcBLgT2TtxF8FZ2HA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=C4n1d71b; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (82-203-160-149.bb.dnainternet.fi [82.203.160.149])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id DEFCEA98;
+	Sun,  2 Nov 2025 12:07:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1762081671;
+	bh=2lVVhBbpubNaDFhGqgi+wPk/IWnaTCWLwy0N7I/rbXQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=C4n1d71biUOjL5y9lMdwjwzMNigtVVwx/0BGWXY9ruKy7eFJhuqndjTz3rUndX5BX
+	 26Slvi2Ss5TI8vO1uoeB3nHQeCzdwHq9NsguRTrl6mFmo+ASx1uotKqdnbcs7Is/x1
+	 I5JCNgRC/Qj6BWSYaO2I3hvt2kl3mC56B1naAiL0=
+Date: Sun, 2 Nov 2025 13:09:29 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Stanimir Varbanov <svarbanov@suse.de>
+Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	"Ivan T. Ivanov" <iivanov@suse.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Phil Elwell <phil@raspberrypi.com>, Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: broadcom: bcm2712: rpi-5: Add ethernet0 alias
+Message-ID: <20251102110929.GL797@pendragon.ideasonboard.com>
+References: <20251102002901.467-1-laurent.pinchart@ideasonboard.com>
+ <39257a41-6719-4daa-a979-a9c2a629ec24@suse.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: broadcom: bcm2712: rpi-5: Add ethernet0 alias
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
- Andrea della Porta <andrea.porta@suse.com>, Andrew Lunn <andrew@lunn.ch>,
- Conor Dooley <conor+dt@kernel.org>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- "Ivan T. Ivanov" <iivanov@suse.de>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Phil Elwell <phil@raspberrypi.com>,
- Rob Herring <robh@kernel.org>, Stanimir Varbanov <svarbanov@suse.de>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org
-References: <20251102002901.467-1-laurent.pinchart@ideasonboard.com>
-Content-Language: en-US
-From: Stanimir Varbanov <svarbanov@suse.de>
-In-Reply-To: <20251102002901.467-1-laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Level: 
-X-Spam-Flag: NO
-X-Rspamd-Queue-Id: E3C63219A1
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-3.01 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MX_GOOD(-0.01)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	ARC_NA(0.00)[];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[suse.de:+];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	DNSWL_BLOCKED(0.00)[2a07:de40:b281:106:10:150:64:167:received,2a07:de40:b281:104:10:150:64:97:from];
-	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	FROM_EQ_ENVFROM(0.00)[];
-	RCVD_TLS_ALL(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
-	DWL_DNSWL_BLOCKED(0.00)[suse.de:dkim];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,ideasonboard.com:email,suse.de:dkim,suse.de:mid]
-X-Spam-Score: -3.01
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <39257a41-6719-4daa-a979-a9c2a629ec24@suse.de>
 
-Hi Laurent,
-
-Thank you for the patch!
-
-On 11/2/25 2:29 AM, Laurent Pinchart wrote:
-> The RP1 ethernet controller DT node contains a local-mac-address
-> property to pass the MAC address from the boot loader to the kernel. The
-> boot loader does not fill the MAC address as the ethernet0 alias is
-> missing. Add it.
+On Sun, Nov 02, 2025 at 12:58:46PM +0200, Stanimir Varbanov wrote:
+> On 11/2/25 2:29 AM, Laurent Pinchart wrote:
+> > The RP1 ethernet controller DT node contains a local-mac-address
+> > property to pass the MAC address from the boot loader to the kernel. The
+> > boot loader does not fill the MAC address as the ethernet0 alias is
+> > missing. Add it.
+> > 
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > ---
+> >  arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
+> > index 04738bf281eb..fa438ac8c9ef 100644
+> > --- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
+> > +++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
+> > @@ -10,6 +10,7 @@ / {
+> >  	model = "Raspberry Pi 5";
+> >  
+> >  	aliases {
+> > +		ethernet0 = &rp1_eth;
+> >  		serial10 = &uart10;
+> >  	};
+> >  
 > 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts | 1 +
->  1 file changed, 1 insertion(+)
+> Unfortunately this does not compile:
 > 
-> diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
-> index 04738bf281eb..fa438ac8c9ef 100644
+> make[1]: Entering directory '/rpi5/kobj'
+>   GEN     Makefile
+>   DTC     arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb
+>   DTC     arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dtb
+>   DTC     arch/arm64/boot/dts/broadcom/bcm2712-d-rpi-5-b.dtb
+> /linux/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts:12.10-15.4:
+> ERROR (path_references): /aliases: Reference to non-existent node or
+> label "rp1_eth"
+> 
+> ERROR: Input tree has errors, aborting (use -f to force output)
+> make[4]: *** [/linux/scripts/Makefile.dtbs:132:
+> arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dtb] Error 2
+> make[4]: *** Waiting for unfinished jobs....
+> make[3]: *** [/linux/scripts/Makefile.build:556:
+> arch/arm64/boot/dts/broadcom] Error 2
+
+Ah indeed, I've only compiled bcm2712-rpi-5-b.dtb and forgot to test
+bcm2712-rpi-5-b-ovl-rp1.dtb. My bad.
+
+> I've made following fix on top of your patch, but I'm not sure that it
+> is the correct one.
+> 
+> Andrea, could you comment please?
+> 
+> diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
+> b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
+> index bbad90d497fa..734b06ac5ba2 100644
 > --- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
 > +++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
-> @@ -10,6 +10,7 @@ / {
+> @@ -9,8 +9,7 @@ / {
+>  	compatible = "raspberrypi,5-model-b", "brcm,bcm2712";
 >  	model = "Raspberry Pi 5";
->  
->  	aliases {
-> +		ethernet0 = &rp1_eth;
+> 
+> -	aliases {
+> -		ethernet0 = &rp1_eth;
+> +	aliases: aliases {
 >  		serial10 = &uart10;
 >  	};
->  
 
-Unfortunately this does not compile:
+Adding a label to the aliases node is a bit of an uncommon approach.
 
-make[1]: Entering directory '/rpi5/kobj'
-  GEN     Makefile
-  DTC     arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb
-  DTC     arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dtb
-  DTC     arch/arm64/boot/dts/broadcom/bcm2712-d-rpi-5-b.dtb
-/linux/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts:12.10-15.4:
-ERROR (path_references): /aliases: Reference to non-existent node or
-label "rp1_eth"
+> diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+> b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+> index 9f1976f0fd1a..26a99e72d441 100644
+> --- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+> +++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+> @@ -22,6 +22,10 @@ &pcie2 {
+>  	#include "rp1-nexus.dtsi"
+>  };
+> 
+> +&aliases {
+> +	ethernet0 = &rp1_eth;
+> +};
 
-ERROR: Input tree has errors, aborting (use -f to force output)
-make[4]: *** [/linux/scripts/Makefile.dtbs:132:
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dtb] Error 2
-make[4]: *** Waiting for unfinished jobs....
-make[3]: *** [/linux/scripts/Makefile.build:556:
-arch/arm64/boot/dts/broadcom] Error 2
+We could also just do
 
+/ {
+	aliases {
+		ethernet0 = &rp1_eth;
+	};
+};
 
-I've made following fix on top of your patch, but I'm not sure that it
-is the correct one.
+and drop tha aliases node. I'll send a v2.
 
-Andrea, could you comment please?
+There's a side question of how the boot loader should pass the MAC
+address to the kernel when using the RP1 overlay, but I think that can
+be addressed later.
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
-b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
-index bbad90d497fa..734b06ac5ba2 100644
---- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
-@@ -9,8 +9,7 @@ / {
- 	compatible = "raspberrypi,5-model-b", "brcm,bcm2712";
- 	model = "Raspberry Pi 5";
+> +
+>  &rp1_adc {
+>  	vref-supply = <&rp1_vdd_3v3>;
+>  	status = "okay";
 
--	aliases {
--		ethernet0 = &rp1_eth;
-+	aliases: aliases {
- 		serial10 = &uart10;
- 	};
+-- 
+Regards,
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-index 9f1976f0fd1a..26a99e72d441 100644
---- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-@@ -22,6 +22,10 @@ &pcie2 {
- 	#include "rp1-nexus.dtsi"
- };
-
-+&aliases {
-+	ethernet0 = &rp1_eth;
-+};
-+
- &rp1_adc {
- 	vref-supply = <&rp1_vdd_3v3>;
- 	status = "okay";
-
-~Stan
-
+Laurent Pinchart
 
