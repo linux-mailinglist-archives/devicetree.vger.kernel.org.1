@@ -1,284 +1,170 @@
-Return-Path: <devicetree+bounces-234175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68240C29683
-	for <lists+devicetree@lfdr.de>; Sun, 02 Nov 2025 21:29:04 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53A6EC29692
+	for <lists+devicetree@lfdr.de>; Sun, 02 Nov 2025 21:35:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3D2E54EBC99
-	for <lists+devicetree@lfdr.de>; Sun,  2 Nov 2025 20:28:10 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D0CF3346C07
+	for <lists+devicetree@lfdr.de>; Sun,  2 Nov 2025 20:35:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E17C92367B8;
-	Sun,  2 Nov 2025 20:27:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47BC32264CC;
+	Sun,  2 Nov 2025 20:34:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AgsrtHw0"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XhgEr3rr";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="GTaUZbHm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE25C25484B
-	for <devicetree@vger.kernel.org>; Sun,  2 Nov 2025 20:27:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECC4B199EAD
+	for <devicetree@vger.kernel.org>; Sun,  2 Nov 2025 20:34:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762115260; cv=none; b=pjZfKkCKVY0UplQOBnRehXmYLTMUwozmOtssRTAYP9BPEDfRJ8WXmwl4HrMkD+N68k4Q1DTW7JV4c+w+nuzzT/dV/Jw1z6E/HL3gYW71vX87dXG+KLmQtysJqltg1dH3j5lDLax2budNYrLd5WhDMsFrmroixi8n8x3WIHeIJd0=
+	t=1762115695; cv=none; b=P0H49myVAZiQIn6ZV+NsOHAUYlaU2hpaadwQ9RY7NzTKeJSvnOR7sGzHpT9onam6IDVHMbtp7Q0/0RXB8amxMTF0mm3WrJt4gHqUCDmb6zK8Vd9zEbSJikNt4ec9parph7qe6VEXFZ33bEqM8f7aS2o5vxgnJ+3lyoqcXcgaSeo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762115260; c=relaxed/simple;
-	bh=ArSvj5nXGIoLUhxaTwM0e0vrMG9VC4hP4JEZ9NlwLy4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=osfVvWo+3/R8Xb52w+/oem2J1Pe8Jp0JfoPPbHE4IbLD3WMtGW9Fny8vrtwBuWBuVhKSN189L/wRmazTvox9ZTTWaa6A/MWvFLCgHGNhEIp6j0XzS5s1QTY+99kCbmagunNxv+zjp/kEGfPjXiwGJ7fQSogbirVTvpw5Y84qCAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AgsrtHw0; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-47112edf9f7so30719725e9.0
-        for <devicetree@vger.kernel.org>; Sun, 02 Nov 2025 12:27:38 -0800 (PST)
+	s=arc-20240116; t=1762115695; c=relaxed/simple;
+	bh=VgeAkwCeejVu8BwItTn14xHraSVbXgTX+41/0xFrTfw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XhgRk8Hk87eHfiShwIo69Vl3WHQKE1HqgCbki9SCG+ua7FoMEcq+RyCk+owOilftu4BBXPSXo8cmKTkrMwr1YF/t2eqEDR9uT+QP/jsRTd5YvUXpphJMQCBm5oe4tC1nMThSQpYFo+E2UijjKngOXgwz+F5QCTCTawBOxYGLxm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XhgEr3rr; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=GTaUZbHm; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A2JhYpA1167347
+	for <devicetree@vger.kernel.org>; Sun, 2 Nov 2025 20:34:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=V0zYBSXV1Wbg4ICGuc9vdNuB
+	b2yaOaIQEkc4Ki3XvtI=; b=XhgEr3rrjGfOuQ7J0vfAD6Ig5+P65q7kiNW3VD1x
+	KF35EfjXmuNk+bdd5Be/km3q4s0LIcnlDoE6oYP9r2pMtZZ4N0JPtLLTdJBUUUne
+	TUPZTV6S2gW7v6iUhcvW6ZMVA3IEXbJP0iMqPQWlPu94T8goer/L3K1BZcRatq7c
+	RLzG7mQyYcSzELOB6hJtxXBWhD+rxXPI2IOcVSfC9ZzTAk7CWJpdQbZcFcU2cs93
+	LlaZm17CYn9hTaZCVa/5pZC0h1CRhqYaaxYWNNgzvCNpPticmfW4YrLN4tQAJdGV
+	b5vLpp7S0Wbq59HAj4VNxT2judjMReVlHKiKfLeaqaAqZw==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a5977aqbh-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 02 Nov 2025 20:34:51 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4e89f4a502cso123588241cf.2
+        for <devicetree@vger.kernel.org>; Sun, 02 Nov 2025 12:34:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762115257; x=1762720057; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pjBT7bI6FeaMlwLFqK21S9i1STzhdgd24lkDcjg28sI=;
-        b=AgsrtHw007ztDt80nTsmNJj+rGAXj63TC0e8BvfDRi2jhQjJd85gtlaKPLxjWrq/LI
-         Ps1bQNJxRyn6vQ8EVJYEM6IHqzKi/Gr3+zP5azf65lJ/BO+yIrhSLNlRA17uCLjWqjxk
-         IRnn1Pur7tCOB1+GfkyIuTVtuUalhFfM/5bXLGSob3FjkPzpeRglRelp9GPB+nssKaS1
-         GcQdwNi7Dy43tLFnCapISs66lOnoaHhidzA7ctgea7rrLQOerV392NOD/eZ/8DeVhT86
-         hNk7djKycVIGUrvMbLUDVO45g/DMToA6C1PgRp7n18kycW//PveycDBUuBRBnKMzj9cO
-         bYWg==
+        d=oss.qualcomm.com; s=google; t=1762115691; x=1762720491; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=V0zYBSXV1Wbg4ICGuc9vdNuBb2yaOaIQEkc4Ki3XvtI=;
+        b=GTaUZbHmLf19lKTo5Skg8iyub8HFhcjk1o7MSzl1SlFy5HXiJFPVJWShqrrcZXX7n3
+         R1GcUSehIzJOzwFf4hA1+A0af9UctuIY8b26WpwvQz4y+a1HjjK4URFIyiPDjjnnlfa9
+         EHDB7BK/4tXJyhPMCFvig/cYS4vFyVjRXT1URoaYYYTPPmzh3bW+6jDtqti1sQatNGAZ
+         BBKaR96FDeVWRm6O92VPSbV/lwDqiXsZc3TRFHiTEUR/bUv8J19jhKRXsWmkeYTz43E5
+         zFim0cK8mrv5PC74n3qa5/yYhoGA49D6Xth984e5/HkSGMgDPFvw9LIB5gO7CzaYVdxD
+         OCog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762115257; x=1762720057;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pjBT7bI6FeaMlwLFqK21S9i1STzhdgd24lkDcjg28sI=;
-        b=qBmA7a3WpFFbCuDYcIsl2MA0yRd7VBygfzSDGOtCaRmYGWuhTIWokBkVpiSemJs+lV
-         BvrOsOX7Xm1Sq/ObbDrwIhhGbg5voj198GNsyRcJNVciKA7eTqQnNpKcKVhzGXF8/OTa
-         v8AlYGK11H/C9cKSIzgLpyt9kDQNOOAGKXTORzOnXbQGtB8jdHUd0s911SW1Pmpm8qAC
-         i1onroPb94g/WLC9e6xIve3+qww3+hcTZxj7algIpQieu18/45aAwYn6WCv8Im5l0r7N
-         tR90dvcQWD/k04wcolt6Y3BXBLN+Iqknscs1UlUxboTDM0UABzobhj8tAN22ltGYwmvj
-         tZbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXjkesp12NHkcc967+KBYTd/MiQO/WK9y4owOlBLc9E+C3XkODcTaxUpcg/9IerDDZQPgk70yJeeP7h@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaRYJvMkiBnrEGB8nSfESb8bQJED18tOaiCiZV9FnYmgEWYj51
-	27fPeIozjwyGenlFbk/prdbVzfLRTkHGNA2yUaxFeWmf9zZg8AJuF6t0kF3udvHGCwq3k7qjeF8
-	lOygOP0U=
-X-Gm-Gg: ASbGncsxWCjkN6/sXaVIURjcCJu99epfI+viLWBF/2MN06zRIizbyhVl2loTGXFtSLr
-	+d07Yq96VmoKL2sQ95KufCUXN5iGcY4nmObvx/K9DnImGbfijf6YXbGhV5+NcSS+TGb8JvLd2+6
-	9OoOj/uxvzMf0WtH7ldycfWyIkwt0DfeABe6rOBOOGmfJ3YKlv45Ehpoen9eZDRqpXWHpmdPzBN
-	buJlJliZ+xc38PHmTfcb1dFx7d/JtdNYKG87B4rx4aXl/C537Kqpr84mrarCNp/ytrEvAKOvMJX
-	TChhMEOLfG51TyAL8sxVleBFxeFIFqiaqxtgUccodnYZSyJ8Sj7720gzDfxP62lxanz/YCTE7H7
-	bJKXmrpwiyd5fjfIjQKUNcSgFyjrhuOrfJZUOMXqb4N1VVEnI6fvjEMw1vphxhwSGGNg+U1N170
-	pJC+lWTlSP5NPUkSVReY/KqXOvu3eEDHSpGmeG8cPSxg==
-X-Google-Smtp-Source: AGHT+IHclmceGA6xzLYK7AZwfvYGojs4HfrUGxVjb+fGjreUEWAioSECHuNNDZPvqg7GQ77Jc1vnDA==
-X-Received: by 2002:a05:600c:6207:b0:46e:206a:78cc with SMTP id 5b1f17b1804b1-477308be7c3mr112935755e9.28.1762115256976;
-        Sun, 02 Nov 2025 12:27:36 -0800 (PST)
-Received: from gpeter-l.roam.corp.google.com ([145.224.65.248])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4773c374f84sm114664165e9.0.2025.11.02.12.27.33
+        d=1e100.net; s=20230601; t=1762115691; x=1762720491;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=V0zYBSXV1Wbg4ICGuc9vdNuBb2yaOaIQEkc4Ki3XvtI=;
+        b=teb0a75OVQHmFXAovhHZ/l5aGzOiakLTIUJbtad/BmkFQPLIGLRBpD+KyQdDqAtuDd
+         MuSxpT5LbDabIg39xJOSnx52LVRXcOpDE1O46D0ohaRnHuOXtWDSHBW4xTHFSJKZAl+x
+         wgGvRxVpz9umhsGiBRMBFXGZZzn6enz0m4th6HKyfZwhvxWXM7EdVnTkAqu0lFLfZfbb
+         q9e3ukuniDwVXgtfjY8Ag9D8iJiFIfJ6DeX/Q9r2eO9fdFGq0Rye3tvnGamrup6o2Hbj
+         xSheWi61ouLD1/gyTS8XVUYp6REnUceYhjzkjczDrYkt2VzJ4Hwdb7xc9aj2ETx+/s9o
+         hx5A==
+X-Forwarded-Encrypted: i=1; AJvYcCXVfqs87279DEdN1F+mPrXXtX5NY2vpESIudcnh7Zw5/X20kA88xV64hj1jwHYE5slArr36gQ+4/ZjP@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQ3phO0K39irgJm3Qk8ZxQW258nTKH4SomvcbTK8grLwtePwHs
+	R5PXSrHUXp6ex/bcKaXCAM3HN2o4hGpYl20as556TNdQsXw3+w2c0cobncnYZjpyHc6a3dLZnax
+	86/CMfh0qmoiWwR8VRbPEdV0kK4jEgEMsjpET8bC/uTN0h1xLRY3rvi+m/OusDx9B
+X-Gm-Gg: ASbGncvmiRDzUK9hiYWRaEcWfMKqPnZe21SvK1uGU5tM/iJYuZ1DelSRsW416gzxzWj
+	pvwTvUFpEEiMtikyNF+Ohr3YhKSPDMYgr6dTyg3ox/AhVRSm5VuWAqThs6yT21KRPb/Fch1qTS6
+	fCUM9fKRzTu1sGESTMJbCdySzqD6ULKUlkKPWsxFcxiyrpMThyQ3z0nPbq1Yl4YORk/8x6Nn7QL
+	6/9pS/AVxMfGKFuhQrfvkVdNUWJ2qBrv2JGMnuHL4av1NRAhUQQPaxJsVYeRFHBqtLnsRjsmd4O
+	0XmlsuEz++SUyJMXVM6weyouHnBcK912R0AoF+nRTEYNfZQYdsEGEyyRgshXElfACpkJ15Zt+On
+	YDHwJyJ06UfSitTc2/DaMSK/n3pwCg051/b+Kympk97TczFEIkSbL2U/91rqngtCDZ3GqSLRP8s
+	RN94CDC7MfqEKs
+X-Received: by 2002:ac8:5f94:0:b0:4e8:b2df:fe1f with SMTP id d75a77b69052e-4ed30df33aemr149576771cf.28.1762115691152;
+        Sun, 02 Nov 2025 12:34:51 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGYpwKRMbJOanwKK0p/tiAo/hMX92pwn4wJIyK+wbQmMbP7tOcp7BMR6Opqokznp0/88XtYqg==
+X-Received: by 2002:ac8:5f94:0:b0:4e8:b2df:fe1f with SMTP id d75a77b69052e-4ed30df33aemr149576471cf.28.1762115690706;
+        Sun, 02 Nov 2025 12:34:50 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5941f5bc07fsm2295200e87.89.2025.11.02.12.34.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Nov 2025 12:27:35 -0800 (PST)
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Sun, 02 Nov 2025 20:27:17 +0000
-Subject: [PATCH v3 4/4] clk: samsung: gs101: Enable auto_clock_gate mode
- for each gs101 CMU
+        Sun, 02 Nov 2025 12:34:49 -0800 (PST)
+Date: Sun, 2 Nov 2025 22:34:48 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: maud_spierings@hotmail.com
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 2/6] drm/bridge: simple: add the Parade PS185HDM
+ DP-to-HDMI bridge
+Message-ID: <76xhcyzdaka3fuocrr7nz3b4gsyqlgeloellp25t4cidy27yqz@hjqyp6k5ap57>
+References: <20251101-asus_usbc_dp-v1-0-9fd4eb9935e8@hotmail.com>
+ <20251101-asus_usbc_dp-v1-2-9fd4eb9935e8@hotmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251102-automatic-clocks-v3-4-ff10eafe61c8@linaro.org>
-References: <20251102-automatic-clocks-v3-0-ff10eafe61c8@linaro.org>
-In-Reply-To: <20251102-automatic-clocks-v3-0-ff10eafe61c8@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Sam Protsenko <semen.protsenko@linaro.org>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>
-Cc: Will McVicker <willmcvicker@google.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
- kernel-team@android.com, Peter Griffin <peter.griffin@linaro.org>, 
- Krzysztof Kozlowski <krzk@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6237;
- i=peter.griffin@linaro.org; h=from:subject:message-id;
- bh=ArSvj5nXGIoLUhxaTwM0e0vrMG9VC4hP4JEZ9NlwLy4=;
- b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBpB76tfGyRfQkS/Vg9YDiwdRGOaYsOiZdACXdoB
- K8PM1sF53WJAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaQe+rQAKCRDO6LjWAjRy
- uucWD/0RNZPQkDYgBH6LMcJ2iFEd+R6tP0ILXN0GZ828NPV/Q2QPGkoUVdbjo3vu/zAIlqUMB9+
- hnzKKcf7mtvSKpALlgGR9DYR8EOmhCLCduvh5NSC6zp1aG4H9xqtZveKLFo1eMdGlF+Q/ApyBqw
- hCtCP0GulpTQsZDT002zvkMKkR1LBOS9o1cQpfWzgy3aTM/WFiAFM3Bbb8JxUhGRn9krxEpW6/P
- INbBQLsJPkSjQUFkOu9hMnLyBDVtfkzL/oadfrh5E4CMOReLneNAQMErJwNPXvlAcUsdAkwTKmy
- EBcz4iiBzpDhNIQKIH8+5yKsKpLPz1PqClDGyfMnhFYYBG02jUa+wl8iczsigdDyN9lDauLdi56
- dlGQ163DTGy/h2qu+TfW2i1+X5Z31eLuCCZwJRCDoNOf9HpU1g36RIDBZxun6fe6I8M7xcQtlyw
- K3L6ReuliSvVG4uh28gUdmtoCpgeEkG/FaYTr/vaPFfJdt+BHMZxYj+ayb/G7i1L/ML6oFREe46
- vEe98evNnenD4TWa8gcUTE/4/wLvUNvvObQAdsJVzIqmzQFVg5uOJRM/84rtm1FqdEIaigAqWDh
- PPXxlMMT42lcmb5Be8cA9mRJQWTRr6CtRlSR91sqDIUdv/RAhmOqgOvP9XBlQ6x4n6Yzhr0l87S
- GHNr6GQDt5kyvhQ==
-X-Developer-Key: i=peter.griffin@linaro.org; a=openpgp;
- fpr=0EFC8E6F5578750D56B549FCCEE8B8D6023472BA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251101-asus_usbc_dp-v1-2-9fd4eb9935e8@hotmail.com>
+X-Proofpoint-GUID: u6vf0G4Pt9selOh6mEr6Iu7SlOMEMLvw
+X-Proofpoint-ORIG-GUID: u6vf0G4Pt9selOh6mEr6Iu7SlOMEMLvw
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTAyMDE5MCBTYWx0ZWRfX+ACNgeTZeggY
+ k1apeCW1Y9nJe5x9D/f4CgDJK7y1+Xt+wvLHYi9plKxkGkCi7Txv9FRJb2qAicFYiVcGWe4iWA7
+ 8UKgqk//yIHzUcsd7rqmtcV+JXxissGQ2uMdjMAPI5Ag1m1OaYetXJoREhWHGuNkntLTjgifja+
+ JLL1+3vxqEq1cGzHeOekyLxyKK8/grnLxNJXJxlZWtnUfnG0XOw/XdDkAhgXMl8yFqNena1T5Ec
+ /RY1LtbrNqgbWKlcBqETzLw4i7PRCeRsOTHR+r3yIuu+1nY3BraXV9c0eaB3s19V7XuYxpShqET
+ wC6bFTtFN66rloA+fZXiUj+XWl1vJTuVrK6zRgduuL27I+al8ODrUd5HVkblGcPeE49VEnRFcqg
+ 6R5BFK2NNq0dg7iGQoWI3iH4jNQCTg==
+X-Authority-Analysis: v=2.4 cv=WcABqkhX c=1 sm=1 tr=0 ts=6907c06b cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=69EAbJreAAAA:8 a=EUspDBNiAAAA:8 a=DjrArkTPs9SnCZ0heLIA:9 a=CjuIK1q_8ugA:10
+ a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-02_02,2025-10-29_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 lowpriorityscore=0 adultscore=0 priorityscore=1501
+ impostorscore=0 spamscore=0 malwarescore=0 clxscore=1015 suspectscore=0
+ bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511020190
 
-Enable auto clock mode, and define the additional fields which are used
-when this mode is enabled.
+On Sat, Nov 01, 2025 at 01:54:13PM +0100, Maud Spierings via B4 Relay wrote:
+> From: Maud Spierings <maud_spierings@hotmail.com>
+> 
+> The Parade PS185HDM is a transparent Displayport to HDMI bridge.
+> 
+> Signed-off-by: Maud Spierings <maud_spierings@hotmail.com>
+> ---
+>  drivers/gpu/drm/bridge/simple-bridge.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
 
-/sys/kernel/debug/clk/clk_summary now reports approximately 308 running
-clocks and 298 disabled clocks. Prior to this commit 586 clocks were
-running and 17 disabled.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
----
- drivers/clk/samsung/clk-gs101.c | 56 +++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 56 insertions(+)
-
-diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-gs101.c
-index 70b26db9b95ad0b376d23f637c7683fbc8c8c600..68c5ed8f0fe1cac5169313b6ec705f9eec44ff53 100644
---- a/drivers/clk/samsung/clk-gs101.c
-+++ b/drivers/clk/samsung/clk-gs101.c
-@@ -9,6 +9,7 @@
- #include <linux/clk-provider.h>
- #include <linux/mod_devicetable.h>
- #include <linux/of.h>
-+#include <linux/of_address.h>
- #include <linux/platform_device.h>
- 
- #include <dt-bindings/clock/google,gs101.h>
-@@ -26,6 +27,10 @@
- #define CLKS_NR_PERIC0	(CLK_GOUT_PERIC0_SYSREG_PERIC0_PCLK + 1)
- #define CLKS_NR_PERIC1	(CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK + 1)
- 
-+#define GS101_GATE_DBG_OFFSET 0x4000
-+#define GS101_DRCG_EN_OFFSET  0x104
-+#define GS101_MEMCLK_OFFSET   0x108
-+
- /* ---- CMU_TOP ------------------------------------------------------------- */
- 
- /* Register Offset definitions for CMU_TOP (0x1e080000) */
-@@ -1433,6 +1438,9 @@ static const struct samsung_cmu_info top_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_TOP,
- 	.clk_regs		= cmu_top_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(cmu_top_clk_regs),
-+	.auto_clock_gate	= true,
-+	.gate_dbg_offset	= GS101_GATE_DBG_OFFSET,
-+	.option_offset		= CMU_CMU_TOP_CONTROLLER_OPTION,
- };
- 
- static void __init gs101_cmu_top_init(struct device_node *np)
-@@ -1900,6 +1908,11 @@ static const struct samsung_gate_clock apm_gate_clks[] __initconst = {
- 	     CLK_CON_GAT_GOUT_BLK_APM_UID_XIU_DP_APM_IPCLKPORT_ACLK, 21, CLK_IS_CRITICAL, 0),
- };
- 
-+static const unsigned long dcrg_memclk_sysreg[] __initconst = {
-+	GS101_DRCG_EN_OFFSET,
-+	GS101_MEMCLK_OFFSET,
-+};
-+
- static const struct samsung_cmu_info apm_cmu_info __initconst = {
- 	.mux_clks		= apm_mux_clks,
- 	.nr_mux_clks		= ARRAY_SIZE(apm_mux_clks),
-@@ -1912,6 +1925,12 @@ static const struct samsung_cmu_info apm_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_APM,
- 	.clk_regs		= apm_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(apm_clk_regs),
-+	.sysreg_clk_regs	= dcrg_memclk_sysreg,
-+	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_memclk_sysreg),
-+	.auto_clock_gate	= true,
-+	.gate_dbg_offset	= GS101_GATE_DBG_OFFSET,
-+	.drcg_offset		= GS101_DRCG_EN_OFFSET,
-+	.memclk_offset		= GS101_MEMCLK_OFFSET,
- };
- 
- /* ---- CMU_HSI0 ------------------------------------------------------------ */
-@@ -2375,7 +2394,14 @@ static const struct samsung_cmu_info hsi0_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_HSI0,
- 	.clk_regs		= hsi0_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(hsi0_clk_regs),
-+	.sysreg_clk_regs	= dcrg_memclk_sysreg,
-+	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_memclk_sysreg),
- 	.clk_name		= "bus",
-+	.auto_clock_gate        = true,
-+	.gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-+	.option_offset		= HSI0_CMU_HSI0_CONTROLLER_OPTION,
-+	.drcg_offset		= GS101_DRCG_EN_OFFSET,
-+	.memclk_offset		= GS101_MEMCLK_OFFSET,
- };
- 
- /* ---- CMU_HSI2 ------------------------------------------------------------ */
-@@ -2863,7 +2889,14 @@ static const struct samsung_cmu_info hsi2_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_HSI2,
- 	.clk_regs		= cmu_hsi2_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(cmu_hsi2_clk_regs),
-+	.sysreg_clk_regs	= dcrg_memclk_sysreg,
-+	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_memclk_sysreg),
- 	.clk_name		= "bus",
-+	.auto_clock_gate        = true,
-+	.gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-+	.option_offset		= HSI2_CMU_HSI2_CONTROLLER_OPTION,
-+	.drcg_offset		= GS101_DRCG_EN_OFFSET,
-+	.memclk_offset		= GS101_MEMCLK_OFFSET,
- };
- 
- /* ---- CMU_MISC ------------------------------------------------------------ */
-@@ -3423,7 +3456,14 @@ static const struct samsung_cmu_info misc_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_MISC,
- 	.clk_regs		= misc_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(misc_clk_regs),
-+	.sysreg_clk_regs	= dcrg_memclk_sysreg,
-+	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_memclk_sysreg),
- 	.clk_name		= "bus",
-+	.auto_clock_gate	= true,
-+	.gate_dbg_offset	= GS101_GATE_DBG_OFFSET,
-+	.option_offset		= MISC_CMU_MISC_CONTROLLER_OPTION,
-+	.drcg_offset		= GS101_DRCG_EN_OFFSET,
-+	.memclk_offset		= GS101_MEMCLK_OFFSET,
- };
- 
- static void __init gs101_cmu_misc_init(struct device_node *np)
-@@ -4010,6 +4050,10 @@ static const struct samsung_gate_clock peric0_gate_clks[] __initconst = {
- 	     21, 0, 0),
- };
- 
-+static const unsigned long dcrg_sysreg[] __initconst = {
-+	GS101_DRCG_EN_OFFSET,
-+};
-+
- static const struct samsung_cmu_info peric0_cmu_info __initconst = {
- 	.mux_clks		= peric0_mux_clks,
- 	.nr_mux_clks		= ARRAY_SIZE(peric0_mux_clks),
-@@ -4020,7 +4064,13 @@ static const struct samsung_cmu_info peric0_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_PERIC0,
- 	.clk_regs		= peric0_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(peric0_clk_regs),
-+	.sysreg_clk_regs	= dcrg_sysreg,
-+	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_sysreg),
- 	.clk_name		= "bus",
-+	.auto_clock_gate        = true,
-+	.gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-+	.option_offset		= PERIC0_CMU_PERIC0_CONTROLLER_OPTION,
-+	.drcg_offset		= GS101_DRCG_EN_OFFSET,
- };
- 
- /* ---- CMU_PERIC1 ---------------------------------------------------------- */
-@@ -4368,7 +4418,13 @@ static const struct samsung_cmu_info peric1_cmu_info __initconst = {
- 	.nr_clk_ids		= CLKS_NR_PERIC1,
- 	.clk_regs		= peric1_clk_regs,
- 	.nr_clk_regs		= ARRAY_SIZE(peric1_clk_regs),
-+	.sysreg_clk_regs	= dcrg_sysreg,
-+	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_sysreg),
- 	.clk_name		= "bus",
-+	.auto_clock_gate        = true,
-+	.gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-+	.option_offset		= PERIC1_CMU_PERIC1_CONTROLLER_OPTION,
-+	.drcg_offset		= GS101_DRCG_EN_OFFSET,
- };
- 
- /* ---- platform_driver ----------------------------------------------------- */
 
 -- 
-2.51.1.930.gacf6e81ea2-goog
-
+With best wishes
+Dmitry
 
