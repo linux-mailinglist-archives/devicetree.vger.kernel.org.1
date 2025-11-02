@@ -1,175 +1,307 @@
-Return-Path: <devicetree+bounces-234109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5456C28DDF
-	for <lists+devicetree@lfdr.de>; Sun, 02 Nov 2025 12:09:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3B82C28DE5
+	for <lists+devicetree@lfdr.de>; Sun, 02 Nov 2025 12:11:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2384F1889701
-	for <lists+devicetree@lfdr.de>; Sun,  2 Nov 2025 11:10:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5CB913AAD13
+	for <lists+devicetree@lfdr.de>; Sun,  2 Nov 2025 11:11:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC78E1E832A;
-	Sun,  2 Nov 2025 11:09:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B218258CDF;
+	Sun,  2 Nov 2025 11:11:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="C4n1d71b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bEZDxSuM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1670E2E403
-	for <devicetree@vger.kernel.org>; Sun,  2 Nov 2025 11:09:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C6732E403;
+	Sun,  2 Nov 2025 11:11:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762081786; cv=none; b=iza9s1XW2CmDi/gQpi0wdh0fEP9BsHgWIyKLVf6HF4YaFRXV7ZMjWGFNyxCu0bHTPdPYv8gyu6E4J0QmAxP3Yjv5NmwIlMy5KxrCoQvpDKanBTsZIkYKQEcHqachLIABx0dgIZ8q9HolyhDsxelaIFlXFu8isOKrfHlybpkJ+RY=
+	t=1762081862; cv=none; b=m498/jt0/45WvKvJbyTv6uUek+zAjKthSijsVra/t0/L7OMgrgu8sKBpwBNkp0uQ0kLF9gontrDYlck5Yfd+vae4m8tENTBs20BGFzdCcmMGQgLeA6IwNTGtLdmOcBOu5zRx8BtXUK5vo55ZGEtIgsv8EtmuMhOse0fI4amxL4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762081786; c=relaxed/simple;
-	bh=2lVVhBbpubNaDFhGqgi+wPk/IWnaTCWLwy0N7I/rbXQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hqP6JjLP8/Z3eT8k5ovFpBUaB9hFDO3FSw6Jr0xbCh0bAy3SHw2AZ/x5SfLglswZnkPk8ZHui4iL1faHvAkaHKVaA3W8ja0A9mzN527cWEJAEM40yNyJfDe1ocq/MwHMDq+VM92q03YAYMQuWTcvUK6wdCNcBLgT2TtxF8FZ2HA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=C4n1d71b; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (82-203-160-149.bb.dnainternet.fi [82.203.160.149])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id DEFCEA98;
-	Sun,  2 Nov 2025 12:07:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1762081671;
-	bh=2lVVhBbpubNaDFhGqgi+wPk/IWnaTCWLwy0N7I/rbXQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=C4n1d71biUOjL5y9lMdwjwzMNigtVVwx/0BGWXY9ruKy7eFJhuqndjTz3rUndX5BX
-	 26Slvi2Ss5TI8vO1uoeB3nHQeCzdwHq9NsguRTrl6mFmo+ASx1uotKqdnbcs7Is/x1
-	 I5JCNgRC/Qj6BWSYaO2I3hvt2kl3mC56B1naAiL0=
-Date: Sun, 2 Nov 2025 13:09:29 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Stanimir Varbanov <svarbanov@suse.de>
-Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	"Ivan T. Ivanov" <iivanov@suse.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Phil Elwell <phil@raspberrypi.com>, Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: broadcom: bcm2712: rpi-5: Add ethernet0 alias
-Message-ID: <20251102110929.GL797@pendragon.ideasonboard.com>
-References: <20251102002901.467-1-laurent.pinchart@ideasonboard.com>
- <39257a41-6719-4daa-a979-a9c2a629ec24@suse.de>
+	s=arc-20240116; t=1762081862; c=relaxed/simple;
+	bh=BQfiCYyZFSnaVHV0YyL6ihjuyJsWWGMoG9gKybzWqjA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=sBw0JIy9G6dBDKOSynmNPu0GtxEm9OysxRBuihV4mzx9Y+NPSss4ha0CSLn11R9Cod7N/vxLuqouVIyCKpdqfcsoCoLgf6s8FkboQW+FeSuUhtp+iA6I9TzubPas4IBh0f83bh6Pb9tukaUHuu5Zw+MJw+vtm+CGqwN84GL4C+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bEZDxSuM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 991B2C4CEF7;
+	Sun,  2 Nov 2025 11:10:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762081861;
+	bh=BQfiCYyZFSnaVHV0YyL6ihjuyJsWWGMoG9gKybzWqjA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=bEZDxSuMZnGrHPke2belkYU90SnJdsEmj0NWBbuy70YEAKR1n1cknXqS9vxQTw1+P
+	 yKNTslNxwHFQM5d+Bb8t63D52/FwvyoBxoBmeVKHvZ7IIiM2fTkGAPqhfkik/8BNmr
+	 uZs7FOTsAluTMRMkYAZmOfwvtoXQvzr1KkdWVoXD2Cvv7U94xGL/D5YxuHa062PwvZ
+	 UrGoM1o1YhW9xtJ5kYR7bVD5j/SuJkCSatVzQ2JT7J/iLt3OcFuTYHVY0M0BEAWvO8
+	 Y7IARaiXpaPKcK5rDfzq5PQLi2BgWXk2t6Im68kL/hm+/efUpJHTSpEUrtucH1ZIFB
+	 m/MiHL/KnQmIw==
+Date: Sun, 2 Nov 2025 11:10:44 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: <robh@kernel.org>, <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 2/3] iio: amplifiers: adl8113: add driver support
+Message-ID: <20251102111044.65a44c9b@jic23-huawei>
+In-Reply-To: <20251031160405.13286-3-antoniu.miclaus@analog.com>
+References: <20251031160405.13286-1-antoniu.miclaus@analog.com>
+	<20251031160405.13286-3-antoniu.miclaus@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <39257a41-6719-4daa-a979-a9c2a629ec24@suse.de>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sun, Nov 02, 2025 at 12:58:46PM +0200, Stanimir Varbanov wrote:
-> On 11/2/25 2:29 AM, Laurent Pinchart wrote:
-> > The RP1 ethernet controller DT node contains a local-mac-address
-> > property to pass the MAC address from the boot loader to the kernel. The
-> > boot loader does not fill the MAC address as the ethernet0 alias is
-> > missing. Add it.
-> > 
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> >  arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
-> > index 04738bf281eb..fa438ac8c9ef 100644
-> > --- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
-> > +++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
-> > @@ -10,6 +10,7 @@ / {
-> >  	model = "Raspberry Pi 5";
-> >  
-> >  	aliases {
-> > +		ethernet0 = &rp1_eth;
-> >  		serial10 = &uart10;
-> >  	};
-> >  
-> 
-> Unfortunately this does not compile:
-> 
-> make[1]: Entering directory '/rpi5/kobj'
->   GEN     Makefile
->   DTC     arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb
->   DTC     arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dtb
->   DTC     arch/arm64/boot/dts/broadcom/bcm2712-d-rpi-5-b.dtb
-> /linux/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts:12.10-15.4:
-> ERROR (path_references): /aliases: Reference to non-existent node or
-> label "rp1_eth"
-> 
-> ERROR: Input tree has errors, aborting (use -f to force output)
-> make[4]: *** [/linux/scripts/Makefile.dtbs:132:
-> arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dtb] Error 2
-> make[4]: *** Waiting for unfinished jobs....
-> make[3]: *** [/linux/scripts/Makefile.build:556:
-> arch/arm64/boot/dts/broadcom] Error 2
+On Fri, 31 Oct 2025 16:04:04 +0000
+Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
 
-Ah indeed, I've only compiled bcm2712-rpi-5-b.dtb and forgot to test
-bcm2712-rpi-5-b-ovl-rp1.dtb. My bad.
+> Add support for adl8113 10MHz to 12GHz Low Noise Amplifier with
+> 10MHz to 14GHz bypass switches.
 
-> I've made following fix on top of your patch, but I'm not sure that it
-> is the correct one.
-> 
-> Andrea, could you comment please?
-> 
-> diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
-> b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
-> index bbad90d497fa..734b06ac5ba2 100644
-> --- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
-> +++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
-> @@ -9,8 +9,7 @@ / {
->  	compatible = "raspberrypi,5-model-b", "brcm,bcm2712";
->  	model = "Raspberry Pi 5";
-> 
-> -	aliases {
-> -		ethernet0 = &rp1_eth;
-> +	aliases: aliases {
->  		serial10 = &uart10;
->  	};
+This is an unusual device which makes things interesting
+It is kind of a hybrid of a MUX and an amplifier.
 
-Adding a label to the aliases node is a bit of an uncommon approach.
+As such most of the comments are around how we represent that.
+I'd definitely like to get some more opinions on this.
 
-> diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-> b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-> index 9f1976f0fd1a..26a99e72d441 100644
-> --- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-> +++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-> @@ -22,6 +22,10 @@ &pcie2 {
->  	#include "rp1-nexus.dtsi"
->  };
+Jonathan
+
 > 
-> +&aliases {
-> +	ethernet0 = &rp1_eth;
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+
+> diff --git a/drivers/iio/amplifiers/adl8113.c b/drivers/iio/amplifiers/adl8113.c
+> new file mode 100644
+> index 000000000000..4a05c1497913
+> --- /dev/null
+> +++ b/drivers/iio/amplifiers/adl8113.c
+> @@ -0,0 +1,235 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * ADL8113 Low Noise Amplifier with integrated bypass switches
+> + *
+> + * Copyright 2025 Analog Devices Inc.
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+> +#include <linux/kernel.h>
+
+Check closely what you actually use from kernel.h.  Mostly we are moving
+to including more specific headers instead.  It is very rare it makes sense
+to include this from a driver.
+
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/slab.h>
+> +#include <linux/sysfs.h>
+> +
+> +enum adl8113_mode {
+> +	ADL8113_INTERNAL_AMPLIFIER,
+> +	ADL8113_INTERNAL_BYPASS,
+> +	ADL8113_EXTERNAL_BYPASS_A,
+> +	ADL8113_EXTERNAL_BYPASS_B
+
+Add a trailing comma.  Whilst there are only 4 modes there is nothing
+that absolutely says there will never be more, perhaps in a chip variant.
+
+> +};
+> +
+> +struct adl8113_state {
+> +	struct mutex lock; /* protect sensor state */
+Be more specific on what that is.  I think all it actually
+protects is current mode read back racing with setting
+GPIOS before writing it.  That's not a useful race to protect
+as it corresponds to exactly what happens if the read back wins
+the mutex race and then the pins are immediately updated.
+
+If you were reading the gpios back it would make more sense as
+you might see an intermediate state where one gpio had updated
+and not the other..
+
+> +	struct gpio_desc *gpio_va;
+> +	struct gpio_desc *gpio_vb;
+> +	enum adl8113_mode current_mode;
 > +};
 
-We could also just do
+> +
+> +static int adl8113_get_mode(struct iio_dev *indio_dev,
+> +			    const struct iio_chan_spec *chan)
+> +{
+> +	struct adl8113_state *st = iio_priv(indio_dev);
+> +
+> +	return st->current_mode;
+> +}
+> +
+> +static int adl8113_set_mode_enum(struct iio_dev *indio_dev,
+> +				 const struct iio_chan_spec *chan,
+> +				 unsigned int mode)
+> +{
+> +	struct adl8113_state *st = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	if (mode >= ARRAY_SIZE(adl8113_mode_names))
+> +		return -EINVAL;
+> +
+> +	mutex_lock(&st->lock);
+	guard(mutex)(&st->lock);
+	return adl...
 
-/ {
-	aliases {
-		ethernet0 = &rp1_eth;
-	};
-};
-
-and drop tha aliases node. I'll send a v2.
-
-There's a side question of how the boot loader should pass the MAC
-address to the kernel when using the RP1 overlay, but I think that can
-be addressed later.
+> +	ret = adl8113_set_mode(st, mode);
+> +	mutex_unlock(&st->lock);
+> +
+> +	return ret;
+> +}
 
 > +
->  &rp1_adc {
->  	vref-supply = <&rp1_vdd_3v3>;
->  	status = "okay";
+> +static int adl8113_read_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan,
+> +			    int *val, int *val2, long mask)
+> +{
+> +	struct adl8113_state *st = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_HARDWAREGAIN:
+> +		mutex_lock(&st->lock);
 
--- 
-Regards,
+Add scope with {} and use guard so you can do early returns rather
+than having to manually unlock.
 
-Laurent Pinchart
+
+
+> +		switch (st->current_mode) {
+> +		case ADL8113_INTERNAL_AMPLIFIER:
+> +			*val = 14;
+> +			*val2 = 0;
+> +			ret = IIO_VAL_INT_PLUS_MICRO_DB;
+> +			break;
+> +		case ADL8113_INTERNAL_BYPASS:
+> +		case ADL8113_EXTERNAL_BYPASS_A:
+> +		case ADL8113_EXTERNAL_BYPASS_B:
+> +			*val = 0;
+> +			*val2 = 0;
+> +			ret = IIO_VAL_INT_PLUS_MICRO_DB;
+
+Internal bypass is fine, but not the other two. We currently have no way
+to know anything about those paths.
+
+> +			break;
+> +		default:
+> +			ret = -EINVAL;
+> +		}
+> +		mutex_unlock(&st->lock);
+> +		return ret;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static const struct iio_info adl8113_info = {
+> +	.read_raw = adl8113_read_raw,
+> +};
+> +
+> +static int adl8113_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct adl8113_state *st;
+> +	struct iio_dev *indio_dev;
+> +	u32 initial_mode = ADL8113_INTERNAL_AMPLIFIER;
+> +	int ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	st = iio_priv(indio_dev);
+> +	mutex_init(&st->lock);
+
+For new code, prefer
+	ret = devm_mutex_init(dev, &st->lock);
+	if (ret)
+		return ret;
+It's cheap to add and maybe is useful to someone debugging locks.
+
+> +
+> +	st->gpio_va = devm_gpiod_get(dev, "va", GPIOD_OUT_LOW);
+> +	if (IS_ERR(st->gpio_va))
+> +		return dev_err_probe(dev, PTR_ERR(st->gpio_va),
+> +				     "failed to get VA GPIO\n");
+> +
+> +	st->gpio_vb = devm_gpiod_get(dev, "vb", GPIOD_OUT_LOW);
+> +	if (IS_ERR(st->gpio_vb))
+> +		return dev_err_probe(dev, PTR_ERR(st->gpio_vb),
+> +				     "failed to get VB GPIO\n");
+
+I'm not keen on the initial mode thing below, but if we are going to do that
+then we definitely should not transition through another mode on the way there.
+With that gone though this default setting when getting the pins is fine. 
+Or leave them to whatever some earlier setting was by using GPIOD_ASIS
+and querying what that is.
+
+
+> +
+> +	ret = devm_regulator_bulk_get_enable(dev, ARRAY_SIZE(adl8113_supply_names),
+> +					     adl8113_supply_names);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to get and enable supplies\n");
+> +
+> +	device_property_read_u32(dev, "adi,initial-mode", &initial_mode);
+> +	if (initial_mode >= ARRAY_SIZE(adl8113_mode_names))
+> +		return -EINVAL;
+> +
+> +	ret = adl8113_set_mode(st, initial_mode);
+> +	if (ret)
+> +		return ret;
+> +
+> +	indio_dev->info = &adl8113_info;
+> +	indio_dev->name = "adl8113";
+> +	indio_dev->channels = adl8113_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(adl8113_channels);
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +
+> +	ret = devm_iio_device_register(dev, indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	dev_info(dev, "ADL8113 registered, initial mode: %s\n",
+> +		 adl8113_mode_names[initial_mode]);
+
+As per the binding patch, I'm not seeing the reason for a default
+mode.  It wasn't true prior to driver load, so might as well make
+it a userspace problem to set after driver load.
+
+With that gone I'd drop this print to dev_dbg() at most as it's
+noise we don't need.
+
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id adl8113_of_match[] = {
+> +	{ .compatible = "adi,adl8113" },
+> +	{}
+Trivial but for IIO I'm trying to get consistent style where possible and
+that for this stuff is
+	{ }
+
+> +};
+> +MODULE_DEVICE_TABLE(of, adl8113_of_match);
 
