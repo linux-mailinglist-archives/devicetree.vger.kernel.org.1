@@ -1,149 +1,104 @@
-Return-Path: <devicetree+bounces-234183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57216C299C7
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 00:15:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF5B9C29A81
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 00:51:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCB11188DA96
-	for <lists+devicetree@lfdr.de>; Sun,  2 Nov 2025 23:15:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E21A3AD006
+	for <lists+devicetree@lfdr.de>; Sun,  2 Nov 2025 23:51:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E642C23D29A;
-	Sun,  2 Nov 2025 23:14:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="POvKaHNI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 453B41C9DE5;
+	Sun,  2 Nov 2025 23:51:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06A69148850;
-	Sun,  2 Nov 2025 23:14:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+Received: from angie.orcam.me.uk (angie.orcam.me.uk [78.133.224.34])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A774B1C8605;
+	Sun,  2 Nov 2025 23:51:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.133.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762125298; cv=none; b=JNdf0xlo/dwBqLRIFALIjIKb854YZjEzLuKPkG0a2FcSv0i4GHO0gOcstctJXJjRrqeeRwT6bLs0GHfnjwnWSBnmjhUigiZsBW9Nn7LNm118f9GOCIOMJHcB7/1KvEHe7dkhmDoom/Js3erF/xRTYqsFiOtXz1w7oZGjdYT3qek=
+	t=1762127491; cv=none; b=Ua9RBvMLQmVzQnhD7oN/FN0DHKaYdBQfb7OFxrGkteafYKSaE+TIhXtvDnbS5NXAkv6JlnXyjyboX/ZWuKatpQdcxsbnVSoEGhJ0PzvLB+jRJJf30zQ41tXmBsN0eZEAg2fBSOlOjjW9bGgzq9TON0kzXKO7xD40bX6TeXdStoA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762125298; c=relaxed/simple;
-	bh=kUr0faM6nmdPvF981v46JyOf4dm270I/HG8+3rNC3ok=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e/xh9MYSfL30FerEzFlaITG9xcHBUY7z1jtZ66GyTyXmBGPH18ZrB9mpHP7LGZurdyvsLfIxsyL95s3JdmO+XhIKvbJIHwxMjltlBrQWNM0ic8CE421xaIDqvcgkiJrYdQSfiHR3LMMjIT+yd8HxMJQZbPT3YMAuKQ39EX8j+pE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=POvKaHNI; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (82-203-160-149.bb.dnainternet.fi [82.203.160.149])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 326738BE;
-	Mon,  3 Nov 2025 00:13:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1762125182;
-	bh=kUr0faM6nmdPvF981v46JyOf4dm270I/HG8+3rNC3ok=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=POvKaHNIoRGL2MDfaf4h+sVBVTp/25n5QTk44MkrPN+bHGnQkSvs9/xku5f1aIP93
-	 1bW22IONVmWJ4i0tgiSOBzj3GRepC2d7vjbbzqNvK3XBDWyIacsrdCmzImFAxuArkE
-	 7KtorvEnqRRHFJPWiREarPEv37ZxQLecceM0y5rY=
-Date: Mon, 3 Nov 2025 01:14:40 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: "G.N. Zhou" <guoniu.zhou@nxp.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <frank.li@nxp.com>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [EXT] Re: [PATCH v2 2/5] media: nxp: imx8-isi: Simplify code by
- using helper macro
-Message-ID: <20251102231440.GA1933@pendragon.ideasonboard.com>
-References: <20250905-isi_imx93-v2-0-37db5f768c57@nxp.com>
- <20250905-isi_imx93-v2-2-37db5f768c57@nxp.com>
- <20250921221325.GB10540@pendragon.ideasonboard.com>
- <AS8PR04MB9080158655C3EA188BE7FE7AFA12A@AS8PR04MB9080.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1762127491; c=relaxed/simple;
+	bh=3QBJqNiePwTQmv6unGmlEenM/JEk9C6UuRzdmtI8mBE=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=ji5znvkKOt8+RXiL8zs6cSqm1CsMQKygWMxgkHRaxQcbxNMDB/cgx8+63EacjYuhPP9ogecz07paRz8jiBV3Hhz2K+9M2zQWlPt61wnderVEGMyLJs2SqQVcSxRsPhJ1nLDnNySPi13MMHU2NNKZhCFQydAtWT00VNcedIWvAgc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=orcam.me.uk; spf=none smtp.mailfrom=orcam.me.uk; arc=none smtp.client-ip=78.133.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=orcam.me.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=orcam.me.uk
+Received: by angie.orcam.me.uk (Postfix, from userid 500)
+	id DDB6592009D; Mon,  3 Nov 2025 00:51:12 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by angie.orcam.me.uk (Postfix) with ESMTP id CF26F92009B;
+	Sun,  2 Nov 2025 23:51:12 +0000 (GMT)
+Date: Sun, 2 Nov 2025 23:51:12 +0000 (GMT)
+From: "Maciej W. Rozycki" <macro@orcam.me.uk>
+To: Paul Walmsley <pjw@kernel.org>
+cc: Deepak Gupta <debug@rivosinc.com>, Thomas Gleixner <tglx@linutronix.de>, 
+    Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
+    Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
+    "H. Peter Anvin" <hpa@zytor.com>, 
+    Andrew Morton <akpm@linux-foundation.org>, 
+    "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+    Vlastimil Babka <vbabka@suse.cz>, 
+    Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
+    Paul Walmsley <paul.walmsley@sifive.com>, 
+    Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+    Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+    Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+    Christian Brauner <brauner@kernel.org>, 
+    Peter Zijlstra <peterz@infradead.org>, Oleg Nesterov <oleg@redhat.com>, 
+    Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
+    Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, 
+    Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>, 
+    Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+    Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+    =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+    Andreas Hindborg <a.hindborg@kernel.org>, 
+    Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+    Benno Lossin <lossin@kernel.org>, linux-kernel@vger.kernel.org, 
+    linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
+    linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+    linux-arch@vger.kernel.org, linux-doc@vger.kernel.org, 
+    linux-kselftest@vger.kernel.org, alistair.francis@wdc.com, 
+    richard.henderson@linaro.org, jim.shu@sifive.com, andybnac@gmail.com, 
+    kito.cheng@sifive.com, charlie@rivosinc.com, atishp@rivosinc.com, 
+    evan@rivosinc.com, cleger@rivosinc.com, alexghiti@rivosinc.com, 
+    samitolvanen@google.com, broonie@kernel.org, rick.p.edgecombe@intel.com, 
+    rust-for-linux@vger.kernel.org, Zong Li <zong.li@sifive.com>
+Subject: Re: [PATCH v22 10/28] riscv/mm: Implement map_shadow_stack()
+ syscall
+In-Reply-To: <020e2f6e-9c1b-648e-3017-31eb8a89c493@kernel.org>
+Message-ID: <alpine.DEB.2.21.2511022341110.1185@angie.orcam.me.uk>
+References: <20251023-v5_user_cfi_series-v22-0-1935270f7636@rivosinc.com> <20251023-v5_user_cfi_series-v22-10-1935270f7636@rivosinc.com> <020e2f6e-9c1b-648e-3017-31eb8a89c493@kernel.org>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <AS8PR04MB9080158655C3EA188BE7FE7AFA12A@AS8PR04MB9080.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=US-ASCII
 
-On Mon, Sep 22, 2025 at 02:03:44AM +0000, G.N. Zhou wrote:
-> On Monday, September 22, 2025 6:13 AM, Laurent Pinchart wrote:
-> > On Fri, Sep 05, 2025 at 02:55:59PM +0800, Guoniu Zhou wrote:
-> > > Simplify code by using helper macro FIELD_PREP() and GENMASK().
-> > 
-> > I'm not necessarily against this change, but how does it "simplify code"
-> > ? There's no change in the code beside the macros, and they don't look
-> > particularly simpler.
+On Fri, 31 Oct 2025, Paul Walmsley wrote:
+
+> This patch introduces a 'checkpatch.pl --strict' message:
 > 
-> How about the message body change to " Make code more readable and easier to maintain by
-> using the FIELD_PREP and GENMASK(). macro" and title change to "Refine code by using helper macro"?
-> If you agree, I could apply it in next version.
-
-No need to send a new version, I'll update the commit message myself.
-
-> > > No functions changed.
-> > >
-> > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > > Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
-> > > ---
-> > >  drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c | 7 ++++---
-> > >  1 file changed, 4 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
-> > > b/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
-> > > index
-> > >
-> > f69c3b5d478209c083738477edf380e3f280c471..2f5e7299b537d612fb1fe668
-> > 8c1b
-> > > 75bfd2d6049b 100644
-> > > --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
-> > > +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
-> > > @@ -3,6 +3,8 @@
-> > >   * Copyright 2019-2023 NXP
-> > >   */
-> > >
-> > > +#include <linux/bitfield.h>
-> > > +#include <linux/bits.h>
-> > >  #include <linux/regmap.h>
-> > >
-> > >  #include <media/mipi-csi2.h>
-> > > @@ -16,8 +18,7 @@
-> > >  #define GASKET_BASE(n)                               (0x0060 + (n) * 0x30)
-> > >
-> > >  #define GASKET_CTRL                          0x0000
-> > > -#define GASKET_CTRL_DATA_TYPE(dt)            ((dt) << 8)
-> > > -#define GASKET_CTRL_DATA_TYPE_MASK           (0x3f << 8)
-> > > +#define GASKET_CTRL_DATA_TYPE(dt)            FIELD_PREP(GENMASK(13, 8),
-> > (dt))
-> > 
-> > I think you can omit the parentheses around dt here, and around x below.
+> CHECK: Lines should not end with a '('
+> #78: FILE: arch/riscv/kernel/usercfi.c:36:
+> +	asm goto(
 > 
-> Ok, will apply in next version.
-> 
-> > 
-> > >  #define GASKET_CTRL_DUAL_COMP_ENABLE         BIT(1)
-> > >  #define GASKET_CTRL_ENABLE                   BIT(0)
-> > >
-> > > @@ -58,7 +59,7 @@ const struct mxc_gasket_ops mxc_imx8_gasket_ops = {
-> > >   */
-> > >
-> > >  #define DISP_MIX_CAMERA_MUX                     0x30
-> > > -#define DISP_MIX_CAMERA_MUX_DATA_TYPE(x)        (((x) & 0x3f) << 3)
-> > > +#define DISP_MIX_CAMERA_MUX_DATA_TYPE(x)
-> > FIELD_PREP(GENMASK(8, 3), (x))
-> > >  #define DISP_MIX_CAMERA_MUX_GASKET_ENABLE       BIT(16)
-> > >
-> > >  static void mxc_imx93_gasket_enable(struct mxc_isi_dev *isi,
+> I'll fix it up here in the event that v22 goes in, but please do the same 
+> on your side in case a new version is needed.
 
--- 
-Regards,
+ I think this warning is silly for `asm' statements.  It's been common for 
+decades to do this to format multi-line `asm' statements, just because it 
+makes them so much more readable.  We have roughly two thousand instances 
+in our tree already and I would use this style for new code in the parts I 
+maintain as well.
 
-Laurent Pinchart
+ Now having trailing `);' on a separate line is another matter.
+
+  Maciej
 
