@@ -1,257 +1,238 @@
-Return-Path: <devicetree+bounces-234524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6466BC2E31C
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 22:50:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9097CC2E343
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 22:55:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 765A63BD228
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 21:49:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42F283BD019
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 21:55:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3897E2D9ED9;
-	Mon,  3 Nov 2025 21:49:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E8842D5C67;
+	Mon,  3 Nov 2025 21:55:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="dLNcv163"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LA3CfMZz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011062.outbound.protection.outlook.com [40.107.130.62])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1296D2D94AA;
-	Mon,  3 Nov 2025 21:49:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.62
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762206559; cv=fail; b=Gjt3ePx/FrFBQ9TBsmTl/iCOCiXrcLiuXi9DCkpXxkMVgjXfaW/P7z02Lm2zaJPKraalJtx34kl/YUfG/vk+Ug9uKPxLIrXrLruvnwXvNLtdqcOT9pM+QW9HvAgu3avrgN81Ts78OfI9rYPuTQo0MQNP1dv2apt9CdQgKhLwEZs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762206559; c=relaxed/simple;
-	bh=5aNPbmICzuDmt8HqRTvDr2QJitYKq8z3hwoe699hYRU=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=PuJxPrgvpQkHoIlCKyfkTbbgJYDGILhnNXO5S0s7YpKFs9bRKlPEk88HagcWr0gvgi1Vlg0J+qz2SvEcZND1xRMBczFSO44WDXBgOGGZzrbbj4o6EAhYAvt+3TlJ3lGsg8pN8bd9W3mif2Q2EM4tO4Q2iiETiuFxJfxnPDDfeio=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=dLNcv163; arc=fail smtp.client-ip=40.107.130.62
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lD7ut6w9DHmvsK2hTCanOjn9BKmlNLnrXaeQT7pFNdxDnhrviACbqsw46GkD4RTMDx2y4CWfxpd2Nqt8vz1mdW0jgjeP/LaeRh+YyO5ajrsX90j4At7OkZDu5l7VrMpzEgNnBgZ14S3qcpsDtxuX8Bj0w065ffwJIRkPUAXBrcutVm1+7fy5wY0e6oRmWUSyWob+/hG6AlKbXClThG2kUbokB80esO9Qt05WY6dnxpMYBmEGAhX1jrqMHiIRSot/b6GgIkLJQ+eoQALhSO3ZAGqy1GRL9Xkpdr2aF6h/DvyJDlraC+bWvFwHL+eHjq3a9jIrLdkEei/HPDu0lI+Y1w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TTQ+/eoAn+aZqDJLqryvHIkv7HpjCVbKwDoZrK9Vy3o=;
- b=kL0DuuLyYKcbdKMGnmJmyRWVRYCjxsonGUgpd1b2n6wAm6h7LiC62EkmMyJUzwxRCSmSAswIzb9Ze39C9nPcXlTF4qiX7/uKv6IpK2xqJYJuTxEh6QRFCeI+tAHGNMy3hCkAx4McW9G0An7arI5+9lbg6q02GDyfIiJYoBSRNsS02D6dfq4uN3xJLOaHWDP/cihxf1UCW17DAfBOLlN5CM4lwua7lsyU9ozexZELBuORaoNET5IxNXa/N3pNYmSjZQztg/STNTkDz5mL+wMiGGxfrgCB5mhiQI8Bi7RIv95rqX8IAnuEu2z0SuxNDji0LQnY2sjBYsfW6GSMlfljBQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TTQ+/eoAn+aZqDJLqryvHIkv7HpjCVbKwDoZrK9Vy3o=;
- b=dLNcv163tsvo+6XSG2cSAQMU1jgreaTXoYeG5ttui5Q+JK1fetd2oG6orE9PKvnR1suKC0S2DVa32aAg7+/rvg6wSR/oVKpw/o/lTainTrRZYyUNxmTP0K1YCafwzwCSzZhw67gYWJmxAN5OgZ7R7uzFl/OaJVuPRBqjYV6mQ3fGKTADoyThMfFI9DjwCjmoWchy66jMObgjcyTrcf85fe6rgDzfu8kfQHjPOOjpHps+yRkY6JgKA4sWF96l/RJduR90dfaM/gneTj6EFl6d90IDc8j/3CIwWdblmsnsChnGZ47JZ5kvI8tg5SpZ932mO+AwwJwaMfVGN58o/CDy9A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
- by VI0PR04MB11503.eurprd04.prod.outlook.com (2603:10a6:800:2c7::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.16; Mon, 3 Nov
- 2025 21:49:13 +0000
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9275.015; Mon, 3 Nov 2025
- 21:49:13 +0000
-From: Frank Li <Frank.Li@nxp.com>
-Date: Mon, 03 Nov 2025 16:48:33 -0500
-Subject: [PATCH v3 6/6] arm64: dts: imx8dxl-ss-ddr: Add DB (system
- interconnects) pmu support for i.MX8DXL
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251103-qm_dts-v3-6-2bfda8ee14c2@nxp.com>
-References: <20251103-qm_dts-v3-0-2bfda8ee14c2@nxp.com>
-In-Reply-To: <20251103-qm_dts-v3-0-2bfda8ee14c2@nxp.com>
-To: Frank Li <Frank.li@nxp.com>, Xu Yang <xu.yang_2@nxp.com>, 
- Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: Frank Li <frank.li@nxp.com>, linux-arm-kernel@lists.infradead.org, 
- linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, 
- imx@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Frank Li <Frank.Li@nxp.com>, Jacky Bai <ping.bai@nxp.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1762206519; l=2241;
- i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
- bh=PisC1FFnqO8CpYCnMicfreqFJ284Xm7e1m95ZljMa9g=;
- b=+XJWcIqyHi1ifjF9jFRG5RU0oBxiJbsbd4iRbJUeGx18rKqO8b4OdFeDDQd8v0b3SCi669cM5
- +W1eJ5gB815CxwogmJt0Qz+oCXnot5qFqnf4fX9Mr96I5bHF6RbxXhx
-X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
- pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
-X-ClientProxiedBy: SJ0PR13CA0238.namprd13.prod.outlook.com
- (2603:10b6:a03:2c1::33) To PAXSPRMB0053.eurprd04.prod.outlook.com
- (2603:10a6:102:23f::21)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83F922BEC22
+	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 21:55:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762206910; cv=none; b=tFVNY1E4kqt5+XbcXmszsbEZTown2wXdJkRNCC1iO7AX5KuvhhfSW/VBSHOkNkqrF/rqrCr6PvLLOp7x5A7yUFqALToIShIb/K17eewvoTlgidInC1L8qPcRISP6AgislbD8kgiNclpqTo96N2AEiImDWt613rjNqLSUSbDvgZ4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762206910; c=relaxed/simple;
+	bh=PqRD5AA9CQTIV/Fa/oHzoO1tcNy233SlClAbBJUGor4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VejungMqh2IbIcBl4z30hU5jr0uQAnEpWy8eOECsHXWjuM03ULqc/u16iz1FXMgUR8d/ojM6i0X6A1p/G7ZfnW3d+bL93Tv0InRWeaiU3JSHTJMjbbE4Dq+qjwWGobqeoNfwYHydAGuNtb8UFbOZh3attefkYK5FioCzF1eCowY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LA3CfMZz; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-295247a814bso48755155ad.0
+        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 13:55:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762206908; x=1762811708; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=vr0AhTl2tnZbnbuQ/Lyma/KtCDNr4xZVutDV7GzLnVs=;
+        b=LA3CfMZzLrQ6XLQZyRt0GaLcAsm5R8payqzB1LHKzw/LvAirTGwN4Uk0xXe+eT98ls
+         LdRsZaqQxizvYR5AtVDfnMJZVynfKcEQ4HOvllbtXE6udxv1M8IVw/Knvse9wgVaaPHk
+         9yWoKNYJJKiyv8aplUx6t7yqE2b/1Z67GM77uGWRSHW8pFRD29nCIibfoT+um3926l+U
+         ZKBYQdvUba5DPt0ks/7kRanu4kGVh7DnH//mF/1sPGOtMWx+lwCY0F3ZCFBMhGTwEr9z
+         XWPdgzenDumCXjlJi4IpeX4c3crZt5aMJeTljnUR6cAC4E0cwmy4cbfpN8IO009qJse4
+         q6Fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762206908; x=1762811708;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vr0AhTl2tnZbnbuQ/Lyma/KtCDNr4xZVutDV7GzLnVs=;
+        b=sjgP5m3xYs1Ive+QUW5MukyZKNWIYtspHI6vAMOuieamewI0uIUN09NcNlH1aoZQtz
+         GVdnwVHhQr6dmV35bH/OpZOopGVDflb5/DeQzbJnw21k8yRA8v8saZOea9W8nF1kBv8O
+         ZZwwaDQTwroVgK8wxWyzYeunR8AHFXlAroY1iYyMhwlglXRR+lxvEx6qTXfVz8MgAsGC
+         bxVqbO/vFK6Um8dvTwflXVKBsDHr8KuXCtDxL2G0+PKpmS74ScgLvPR1pNSoUpnfHYUz
+         L7XD4weZU9wwhLsQRpCiu5tfOsMydB8jrvhNRw4ptMoxvlI82FQ8CJA63R+nVA+fu+gt
+         6NfA==
+X-Forwarded-Encrypted: i=1; AJvYcCUAexXpRfDarInePIlWGfgJ3iWTjliogsmBUVLaQqJmrZ8A/XTUwNAwPFnHJDe5PU8yBUm4fCuE8VpT@vger.kernel.org
+X-Gm-Message-State: AOJu0YwsTx+earVboW3cg27SCP946doUAC0880YM0iTZH1pB3tZv8zLs
+	qSbKFCnjzywOsrFjW0uXwwDrW6gT143ZV5BJIlwG5TdeQf3kl/Ua5dXNDI4gJc8y
+X-Gm-Gg: ASbGncvEOdQhBKgLqnKNC3CRYKrWVFglcyCdDA1H6X8tZguVG2TZWCLTY39wavfSDsl
+	Tb2M+dgndQAzqZIHfSVLuzXy10Ob7r5UFCr2Qj9uu0gTNzRXa9zJBhQDfSlXYj9jE6eKYg2YRAy
+	qw2HXyRdGUaJbBS5eBrAsPDwGw4Y/v5ZclQKcDam0KL2MOhWWvN1nxN8hNPLbj74XsyA27UrvG7
+	1V5nH5u+LuOvNgku2CeZHTyNkiQZRpX0CtROtG9NgmndT0gVzGJbqf8ix+2/YrDaU5t4lWvXUsK
+	9f4oG+hQJzkYcYZU/x6DBgeNlvrRNME1zT/qPpKowVBT9SxqxvzzjTzrSsjq26XjG/9jrN+QgdJ
+	OJGiUwLshQfbuURs4Vnk71UC3inuJQeemrSd/Tsst7nd1Qenq48eD2iJihsPZAS0oqE7mtcWcUw
+	0bVEpNcDJGjnLYmJSkFUz3
+X-Google-Smtp-Source: AGHT+IGf3rk/ZWnZ4nfGKqzMAbFFNABrHVTEBwI6MOLjfLVcyB9CbUYGpwNMYJDh1R03ToS7kGBkyA==
+X-Received: by 2002:a17:902:f68f:b0:26a:8171:dafa with SMTP id d9443c01a7336-2951a38be8emr209211645ad.21.1762206907635;
+        Mon, 03 Nov 2025 13:55:07 -0800 (PST)
+Received: from localhost ([2804:30c:1653:6900:3b53:af9d:48d6:f107])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-29601a7a882sm1715665ad.109.2025.11.03.13.55.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Nov 2025 13:55:06 -0800 (PST)
+Date: Mon, 3 Nov 2025 18:56:21 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	michael.hennerich@analog.com, nuno.sa@analog.com,
+	eblanc@baylibre.com, andy@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net
+Subject: Re: [PATCH v6 8/8] iio: adc: ad4030: Support common-mode channels
+ with SPI offloading
+Message-ID: <aQklBYl2drPil69Y@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1760984107.git.marcelo.schmitt@analog.com>
+ <3fadbf22973098c4be9e5f0edd8c22b8b9b18ca6.1760984107.git.marcelo.schmitt@analog.com>
+ <20251027140423.61d96e88@jic23-huawei>
+ <aQJY7XizVWbE68ll@debian-BULLSEYE-live-builder-AMD64>
+ <ca6760182b4662c96df6204bae903d8affa6a8e3.camel@gmail.com>
+ <aQisqe5EWARTwpQq@debian-BULLSEYE-live-builder-AMD64>
+ <1c3712b9b5313ed6c9d07c1acbc9b918a4883056.camel@gmail.com>
+ <c365b17c-de18-4718-8d51-fa1d93236d90@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|VI0PR04MB11503:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5b053bae-1b24-4163-abca-08de1b22d3f6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|376014|7416014|52116014|366016|1800799024|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?RFBic0xwNFNxVmNBdk5Qd3orUFNMODYvQ05GeXAxa1AzZ2tkZk5tQ003UGM1?=
- =?utf-8?B?VDc1SEl4Z2Z3MERLTU12SGQxSUtDdFZpQUE4bGZYSTJWRDBUeG9PQ3VnbUlR?=
- =?utf-8?B?S3ZzYmNlOHI1WlJCd1VpY2xhQlJTM290STNGNlIzYmRncnZ2U3h4YWlnQ1Fq?=
- =?utf-8?B?eitxUStqN2s4K21vaDB5bWludlFKNzBnZ1BsUjh3SThZalZ1bVZiY3phUGVw?=
- =?utf-8?B?ODdLQldrUmlkV00ycnFaWTAyYlpnRzVqODd3N2xmSCtYRzdNQTlUSUFDQnVS?=
- =?utf-8?B?L1V6a3huME9yZm96SGJoc3NGS1d0YnlzVzZBOTJ4TlRQcXNwWkNWaDBnYWZT?=
- =?utf-8?B?QzN6T0FIdGZBZFp3L0tMb1B1TU5HNnFGU0ZwY3BNTHNndzA0WWFLY21LN1pS?=
- =?utf-8?B?cTlzN3c3QTZMK2VYeGx5Q2pUNE43dXdLR2N3T2QyTm55amxEbnBLRmVDa0JL?=
- =?utf-8?B?TzZnV0tkcHJmakNtOXVCR3R4Tm9CYmVXNVM3eTJWUWVHamJyc2ttTTFuekZE?=
- =?utf-8?B?QS9WRmxPNlAvNDVrZnNZZFlKK0dicUdYaU56QjhUbENtdTZmZ1Jhajc2MHAv?=
- =?utf-8?B?N001UFY4M05XeUhDaGR2SWR1OG04TWNyUEpBS2tPZGF2RGlUTXdVbXl0NGd4?=
- =?utf-8?B?dW1OWlBEcXRQODRIcGRQUHdjUFAzSWxpUzFiU2F0ajVCTW8vVnlhWk92T2hm?=
- =?utf-8?B?cTI2c0w0dlpjY3dGMFRTakFOTTRodktuVzcyb3RtbkFhcjdDTUtjWERsVTRs?=
- =?utf-8?B?RlVGeTZ4eG9QTXhTd0Z4dXpWTWZiRjJrZnAvNzNRaGdoQXN6OVpEVXZCZVls?=
- =?utf-8?B?dWZ0VEpUTytXVDdDSTUzQ1BkMmk1RWlBMkJubTczOWNKSXVXQkZmMURhRTVH?=
- =?utf-8?B?MFF6NWUrN2MzcGhhMHU0cVJTcUZnRThyY3ZyRytKeks4aCswcFQ1cEl0dTFP?=
- =?utf-8?B?bDFrYWRhKzBDZU4vKzBIbGNrUXViNWdYZXhtcERNU3ZwZkdGcUJOLzZJVlBS?=
- =?utf-8?B?UXR2bGphZTQ5RWZZMzJhQVBtMklGekZvT0hWbVByaUc0Z3ZXNWV2MVpIekZE?=
- =?utf-8?B?UnQ4MHp2WHV4dVhNUVVOcUg3YVZaSDJ4bEdhdk9ielVuejhuTkd3TktBbnVi?=
- =?utf-8?B?b09pNmlQRUtIYlBvQWpnM0ZWMzdWMVJSQmh4bDNJTk9tbFhwRDJ4UUNGMXVM?=
- =?utf-8?B?U0FZQTREMDF6KzRUd1FFMHEydnVvWHRPWUcwMm41dEp1UlMxMEt5VGw1RWR0?=
- =?utf-8?B?L3NlY3lnS3pMSTNaR3U3OEVJNjNYMlVhR2dTanF0aE5OVDllazczcHpxOGR4?=
- =?utf-8?B?WGp3MW9COHdpalR0WmZvc0NqZk56YXd0VHFIRVM5WXRZWmEzYW1xb24wZ3p2?=
- =?utf-8?B?SkVTTEUzSnJjdFhZdXpPVVVzSGJrUUNRejJGWEh3MEZyQnNNK3Y0WElKY1Mx?=
- =?utf-8?B?d1ZxZjdrVXdWRGxCV1gwUGcvaGJncmJ1U3RNTmR5VWlHMS83bnd5bnJYUDZy?=
- =?utf-8?B?aUw1RjNIOFFPNmh1QnlBOEpHaVRjL3dadGVaQ2V5V1VpUzc4bVZGZDFKZ21r?=
- =?utf-8?B?OTYzWnNMY2pGNlhTNHc5aGI0cEk0SWlvZmlJaUxabm4rWk56c2JNTkhsQlZ5?=
- =?utf-8?B?YUltdGhuKzFobGl0bk5iQjVsVUU0cWhLR2lKdHd2VGxDMzdBb3dLNHNlcFNK?=
- =?utf-8?B?Qm5qTkRKejFMUkxNN0ZyemQ0R0Nhd3pVZVpJM1BxQ25SN1dEOXQ3Q0t3SElE?=
- =?utf-8?B?Q2xOMWVTdlA3T2JCL09LNjA5ek5HMjNEMmpFY3Rpam1IcURCOE9mRmpZUXdz?=
- =?utf-8?B?L2tMUXlOWDk4SE56bzZGakhaOGpkbTFFODk3YTNVWDQyUVRMWmJ1dXlJRGxh?=
- =?utf-8?B?M2tZaVVVY3RGVnAzbnVzU2lCblgxcXNXbGpyRHFaYXU1UHpMRlJzMW53Rk5B?=
- =?utf-8?B?WVp1NERONzUvb1BIN0ZRbnRvT0wrN3JBcEtDQ1JvVTJLUERSS0JxTzdUM1h2?=
- =?utf-8?B?WTkxcWRPRnZHdUFMSnhTN01CTEdOYmpka25PYk5xY1B2b2xlbHo2Szl6T2Vm?=
- =?utf-8?B?R3hqYWNIN3pjaTRTblc0cUtiU1pNM01ZZmVUdz09?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(376014)(7416014)(52116014)(366016)(1800799024)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?cFdXMC8xbzVyc1dWcFJLdE5xYjhFMnRlME45NGROWVNCdlp1b0kzL09obUEy?=
- =?utf-8?B?VUgrT3BjdjhyWUlINHRJYm04MVRISkNFQ0hPd0hweEFoZlp1QmxVd2F4RVd2?=
- =?utf-8?B?a1pYYTNDazNlSE1iZEd2bnNhS3FqVGlIQVV1dWVUL1cvMDFvLzZQYy9TZWtM?=
- =?utf-8?B?bytwVm1TbnVzd0VvSk9qcExoZzR6NkdwdG9HOXh5T3NXNmpJWTFQUVRZTDBZ?=
- =?utf-8?B?c1prcmRvWGxBRGxOUG5HRTh1cFFkWGx3elptM29rbWp4NEFQQjdyVlZaZmtr?=
- =?utf-8?B?RmVzOXd0WHhITWxMcG9xeGkrRTZqQmxRbUU2dVQvL2x1QTZzaHJ3bERteEJw?=
- =?utf-8?B?aFhXNjNhQU5iRlJRdWgxTWtZUi84N2Z2OENJRUZ2QzA1d1hFWlpDdEhDTzd1?=
- =?utf-8?B?TjZTdXFLT3E5cEFjN1FjVjNxTmJETWF3dUo2cDJzS1M2OEVTUEpIbThIVUhz?=
- =?utf-8?B?Q2tYMFZTZW5KOFJ1b1Z6Q2NJQnV6cnZ0TVFtUVljcWNJK1QvSFNhbmpBSXdx?=
- =?utf-8?B?bXFBZm9HU0QzcXUrbllJYTBIWkE2VnRnZCtCUFIzRHlKWmhaZENUQ1JrYk05?=
- =?utf-8?B?VTJTK2VySEp5SnA0Wmc4MnpRSTd0U01IK3pSZUYxYlZqR1haSnpsM1pHRm13?=
- =?utf-8?B?VFYvZ0I3NDAwZU00UXAxTzl6K0lNM0d2ZzNZZVZDKzRCejV5UzVJOGQyRHVa?=
- =?utf-8?B?dk82S2Y5SlJtR045QjZPT0dwUjRkcW1ITWZoVnJrZGptVHR3TElGdUdKWnpU?=
- =?utf-8?B?N0dTSFErNnZKSlZkS0RIUWc2L3BxNG8zWjdFVXprR2FXZ05sZ01taVE4RFQ0?=
- =?utf-8?B?NU1vcDczN0dLbmVEeXdocWdIVGF1aFM5Ym4vREtBM3Q2T2hWNGVkdVB6VDNr?=
- =?utf-8?B?WkF6YldMSnRaTk5yNW14YUdOb2w5TmJTRU0yWWd2YmVVZW54ckt5OFBCN1BP?=
- =?utf-8?B?RFl3NFFpVlJEZDRqK2JKMG5zK080R09NbXdCZmpVWjVHYW5LNThabXFialVK?=
- =?utf-8?B?ZkNOU3dYLzZ3bC83b1NaQnNqTVVISjdvVWVHWkVYRXBRejFLREV6RVE3cVBZ?=
- =?utf-8?B?Skk3YXFrRkVLZ3hvYXNmaWhZZGQrOHBsV2xTcUNYeEtxTUJlUHIrUDQ0SkVS?=
- =?utf-8?B?Uy9lK2VzRktMeVovazdSNTdtSjFyRndWVjN0V284aklzZ2lqd3lKQWthODRV?=
- =?utf-8?B?ZjFlL3dheHo3VG4zeEJ4WWRyQWF3Q2NTZW1QblZUZ2JoVGNpSnhieHR1TGJw?=
- =?utf-8?B?ZVRRb01DdUhWclBPaUZmV2Vyb2VQUi9Pdm42R3FlVEF3MTJ4cXE1VEh3bDRE?=
- =?utf-8?B?NGZVdTQzYWRSSTd1WXBqdjJ2a0g2cS9GcGVJR2JWQStRUkZqYmdpM1orbkZv?=
- =?utf-8?B?b3l2amE3QzZFaFRVaTBNNDdvYTdjWEwySzJNNHZqTDVkVmVTd3BNMTJMTjdM?=
- =?utf-8?B?VTlaOVVFS0JXdS9lZHBjRjI4YTMyNWpCSzM2dWxoc3hCcDdzdnhQUVUrV0ZO?=
- =?utf-8?B?SGFVNUN4RERLVHh3dXRzTWJ3RURYWnZnWFBtYWJzaEZxSVl1enExSXhqN3JT?=
- =?utf-8?B?L2hUNFhGaEgwTlMyTDdQK1BjZUp0ZGsrazNQNzJIOGthNCtMWDNsTnh4NFBN?=
- =?utf-8?B?T1pQMUwzekRNMHUvSGZYaktuVlNOV3JjeWNuN0FyS04xMkw3RFAyTnNZZWFT?=
- =?utf-8?B?WTFVOGQ2ZlBFUUs4cVdkdFczemt4M2NCcUFGRk1BcHVaK0hDMldZR2ltaDZy?=
- =?utf-8?B?b3BiNWtySmlEaUk0d1Z0aWlXQjExUW5Xam12VFUwUUJuRkx2UEJmZWVwdjN4?=
- =?utf-8?B?REJLU1JseXVCSXdMa204SWpObGYydVJ6OURSdUh3S3hYdHU3eWVLZjlONDBh?=
- =?utf-8?B?c2RCa2Nwbm1rTEFubnhUUXlZc3FLWE1aMFpxNmJsQTZxb3VYeHYwdDVjTnA2?=
- =?utf-8?B?VC9yVXlPcFdYdWZ3RkE5cDVta0dvcjMzL2lTby9kUkVMY3RCaEJoZmZQT2FN?=
- =?utf-8?B?cWNRYUZJb2hoSHlOMVdKRk13NEVXQW9ibzdPUVA2ZlliaHZ6MUpoa0J5bW1k?=
- =?utf-8?B?Y1E5N1pObHhKcG40aFh3a3lGNXZUT1p0d2Z1UjBIdVJFV3o5ZUw5eE4yNlp4?=
- =?utf-8?Q?+18XNITLvKbKGrnvC5MewfxW4?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5b053bae-1b24-4163-abca-08de1b22d3f6
-X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2025 21:49:13.3641
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cU0LtwTy8Ag0DK2Amk8sja/UTcLjlCxIGCsOUivJP3Cb2FbYutfRQ5X7OTuGx7dY5Ew7sHN1TuA1jKgYq8veZQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB11503
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c365b17c-de18-4718-8d51-fa1d93236d90@baylibre.com>
 
-From: Jacky Bai <ping.bai@nxp.com>
+On 11/03, David Lechner wrote:
+> On 11/3/25 8:30 AM, Nuno Sá wrote:
+> > On Mon, 2025-11-03 at 10:22 -0300, Marcelo Schmitt wrote:
+> >> On 10/30, Nuno Sá wrote:
+> >>> On Wed, 2025-10-29 at 15:11 -0300, Marcelo Schmitt wrote:
+> >>>> On 10/27, Jonathan Cameron wrote:
+> >>>>> On Mon, 20 Oct 2025 16:15:39 -0300
+> >>>>> Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
+> >>>>>
+> >>>>>> AD4030 and similar devices can read common-mode voltage together with
+> >>>>>> ADC sample data. When enabled, common-mode voltage data is provided in a
+> >>>>>> separate IIO channel since it measures something other than the primary
+> >>>>>> ADC input signal and requires separate scaling to convert to voltage
+> >>>>>> units. The initial SPI offload support patch for AD4030 only provided
+> >>>>>> differential channels. Now, extend the AD4030 driver to also provide
+> >>>>>> common-mode IIO channels when setup with SPI offloading capability.
+> >>>>>>
+> >>>>>> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> >>>>>> ---
+> >>>>>> New patch.
+> >>>>>> I hope this works for ADCs with two channels. It's not clear if works as
+> >>>>>> expected with current HDL and single-channel ADCs (like ADAQ4216).
+> >>>>>>
+> >>>>>> The ad4630_fmc HDL project was designed for ADCs with two channels and
+> >>>>>> always streams two data channels to DMA (even when the ADC has only one
+> >>>>>> physical channel). Though, if the ADC has only one physical channel, the
+> >>>>>> data that would come from the second ADC channel comes in as noise and
+> >>>>>> would have to be discarded. Because of that, when using single-channel
+> >>>>>> ADCs, the ADC driver would need to use a special DMA buffer to filter out
+> >>>>>> half of the data that reaches DMA memory. With that, the ADC sample data
+> >>>>>> could be delivered to user space without any noise being added to the IIO
+> >>>>>> buffer. I have implemented a prototype of such specialized buffer
+> >>>>>> (industrialio-buffer-dmaengine-filtered), but it is awful and only worked
+> >>>>>> with CONFIG_IIO_DMA_BUF_MMAP_LEGACY (only present in ADI Linux tree). Usual
+> >>>>>> differential channel data is also affected by the extra 0xFFFFFFFF data
+> >>>>>> pushed to DMA. Though, for the differential channel, it's easier to see it
+> >>>>>> shall work for two-channel ADCs (the sine wave appears "filled" in
+> >>>>>> iio-oscilloscope).
+> >>>>>>
+> >>>>>> So, I sign this, but don't guarantee it to work.
+> >>>>>
+> >>>>> So what's the path to resolve this?  Waiting on HDL changes or not support
+> >>>>> those devices until we have a clean solution?
+> >>>>
+> >>>> Waiting for HDL to get updated I'd say.
+> >>>
+> >>> Agree. We kind of control the IP here so why should we do awful tricks in
+> >>> SW right :)? At the very least I would expect hdl to be capable to discard the
+> >>> data in HW.
+> >>>
+> >>>>
+> >>>>>
+> >>>>> Also, just to check, is this only an issue with the additional stuff this
+> >>>>> patch adds or do we have a problem with SPI offload in general (+ this
+> >>>>> IP) and those single channel devices?
+> >>>>
+> >>>> IMO, one solution would be to update the HDL project for AD4630 and similar ADCs
+> >>>> to not send data from channel 2 to DMA memory when single-channel ADCs are
+> >>>> connected. Another possibility would be to intercept and filter out the extra
+> >>>> data before pushing it to user space. My first attempt of doing that didn't
+> >>>> work out with upstream kernel but I may revisit that.
+> >>>
+> >>> I'm also confused. Is this also an issue with the current series without common mode?
+> >>>
+> >>> If I'm getting things right, one channel ADCs pretty much do not work right now with
+> >>> spi offload?
+> >>
+> >> Yes, that's correct. It kind of works for single-channel ADCs, but half of the
+> >> data we see in user space is valid and the other half is not. For two-channel
+> >> ADCs, everything should be fine.
+> > 
+> > To me that is something that does not work eheheh :).
+Well, yeah, I tend to agree with that 😅
 
-Add DB pmu related nodes. This pmu is in DB (system interconnects).
+> > I mean, going with all this trouble
+> > to sample as fast as we can just so we have to discard (or mask out) half of every sample
+> > in userspace (even though I can imagine we still get better performance vs non offload case).
+> 
+> If we are getting extra data to userspace, then either we aren't creating the
+> SPI message correctly and telling the controller to read too much data or
+> the HDL is broken.
 
-Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-change in v2
-- move clock-db-ipg to imx8dxl.dtsi
----
- arch/arm64/boot/dts/freescale/imx8dxl-ss-ddr.dtsi | 22 ++++++++++++++++++++++
- arch/arm64/boot/dts/freescale/imx8dxl.dtsi        |  7 +++++++
- 2 files changed, 29 insertions(+)
+The current patch set version (v6) only asks for the amount of ADC precision
+bits in each transfer when offloading messages. I can't see how that would work
+but okay, I'll test it with smaller xfer length.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8dxl-ss-ddr.dtsi b/arch/arm64/boot/dts/freescale/imx8dxl-ss-ddr.dtsi
-index 3569abb5bb9befd4d1504e3e2a352c64229533c0..adc6e394dbc5598c50e0e288ee605ac91087d36b 100644
---- a/arch/arm64/boot/dts/freescale/imx8dxl-ss-ddr.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8dxl-ss-ddr.dtsi
-@@ -7,3 +7,25 @@ &ddr_pmu0 {
- 	compatible = "fsl,imx8dxl-ddr-pmu", "fsl,imx8-ddr-pmu";
- 	interrupts = <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
- };
-+
-+&ddr_subsys {
-+	db_pmu0: db-pmu@5ca40000 {
-+		compatible = "fsl,imx8dxl-db-pmu";
-+		reg = <0x5ca40000 0x10000>;
-+		interrupt-parent = <&gic>;
-+		interrupts = <GIC_SPI 338 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&db_pmu0_lpcg IMX_LPCG_CLK_4>, <&db_pmu0_lpcg IMX_LPCG_CLK_0>;
-+		clock-names = "ipg", "cnt";
-+	};
-+
-+	db_pmu0_lpcg: clock-controller@5cae0000 {
-+		compatible = "fsl,imx8qxp-lpcg";
-+		reg = <0x5cae0000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&db_ipg_clk>, <&db_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "perf_lpcg_cnt_clk",
-+				     "perf_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_PERF>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8dxl.dtsi b/arch/arm64/boot/dts/freescale/imx8dxl.dtsi
-index 8d60827822ed1cc6cfb1a9369faaebfd711708d1..5106be2fde6e025cc066b796ba7987d0d9c21bd5 100644
---- a/arch/arm64/boot/dts/freescale/imx8dxl.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8dxl.dtsi
-@@ -236,6 +236,13 @@ xtal24m: clock-xtal24m {
- 		clock-output-names = "xtal_24MHz";
- 	};
- 
-+	db_ipg_clk: clock-db-ipg {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <456000000>;
-+		clock-output-names = "db_ipg_clk";
-+	};
-+
- 	/* sorted in register address */
- 	#include "imx8-ss-cm40.dtsi"
- 	#include "imx8-ss-adma.dtsi"
+> 
+> > 
+> >>
+> >>>
+> >>> If the above is correct I would just not support it for 1 channel ADCs.
+> >>
+> >> Currently, it's just one part that is single-channel (AD4030). If patches 6 and
+> >> 7 were accepted, it would be 3 single-channel parts supported. I can add an `if`
+> >> somewhere to check the number of channel, but it will eventually have to be
+> >> removed when HDL gets fixed.
+> > 
+> > I would probably do the above or maybe we just need to push for an hdl fix or some
+> > final conclusion (like if they cannot fix it for some reason) and act accordingly.
+> > 
+> >>
+> >> Or, if HDL can't be fixed, then we'll need the `if` now and something else
+> >> latter to filter out extra data before pushing to IIO buffers as mentioned
+> >> above. Though, this scenario seems odd to me as I think the HDL wouldn't be 100%
+> >> compatible with single-channel AD4030-like parts. We would be writing code to
+> >> support AD4030 _and_ a peculiar data stream from this specific HDL project?
+> >>
+> >> My suggestion is to apply all patches except patch 8. IMHO, SPI offload
+> >> single-channel ADC support is broken due to HDL IP data stream not being
+> >> compatible with single-channel parts. That's not a Linux driver issue.
+> > 
+> > Well, it's not a SW issue but we are driving the HW and we know it's broken so I
+> > don't see a point in having something that does not work. Given that this is so
+> > connected to the HDL part of it I'm not sure it's fine to ignore that offload does
+> > not work for 1 channel parts. 
+> > 
+> > Anyways, it's odd to me but ultimately if Jonathan is fine with it, I won't object :)
+> > 
+> > 
+> > - Nuno Sá
+> 
+> If single-channel parts currently don't work and two-channel parts need [1] or
+> a hardware descrambler to work with a single data line, then it sounds like we
+> are blocked here until the HDL is improved or [1] is merged.
+> 
+> [1]: https://lore.kernel.org/linux-iio/20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com/
 
--- 
-2.34.1
-
+Ack, I think so.
 
