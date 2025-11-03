@@ -1,64 +1,60 @@
-Return-Path: <devicetree+bounces-234293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BD8EC2AF3F
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 11:15:15 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18CEBC2AF7E
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 11:16:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 878D24EBA13
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 10:15:13 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AC21D348B07
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 10:16:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3BE42FD1B7;
-	Mon,  3 Nov 2025 10:15:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10ECE2FE045;
+	Mon,  3 Nov 2025 10:15:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kJ+MBqKf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hH1Dit0w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFAAD7261E;
-	Mon,  3 Nov 2025 10:15:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1A4E2FD677;
+	Mon,  3 Nov 2025 10:15:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762164910; cv=none; b=M/VimTWNTIHgUHxgj0tgLtaMJZbc9iho4slQnIhXjrrOfGBZBUZirq3M6Ywlew1WhGk18gj1R24yyu4Z28qlaNu/Fc1S5PMk+zSWiaBV+ip53M3B08CRTZFlgFfbGlD9LZCGpcQx41uZBxiU7E2hmdUmC3MCpzeSxfIPUISAIy4=
+	t=1762164953; cv=none; b=UG0kpuPrJLYXs1CWy6BddJOJT/QJD3cOBR+DupfjvUEj0kpuiuVJ7ZGogvefYC+VJcek+Dn8aAlw/XcLP82qdjAXA0nyPWdDhL0hDslwopCTDF5Z3nYOC3Q5VNWD/dyLh8iBNs8pEbz+/2usn8URwuCbtsp4FkERLA9Igxp1asQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762164910; c=relaxed/simple;
-	bh=O4x0jqqxagDU/VftuFhDlptuntE9Kac7vSj33pi2VvQ=;
+	s=arc-20240116; t=1762164953; c=relaxed/simple;
+	bh=dm7oH3nTgvJPBFEPHOn1ekJrOzWA9gbujJ2NtsgHXr4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QQgmO0ESnB/TwDEgTqeiBpb4r4+9eq5AgL8Ynz84btlod3vW87lYR6fDLksdeCL2NYJR7Gd4sjdpjzGKc0n7HNM7TTV6X/jMPhzYrghwokiyjWx/jq8nKYhNMGsHCvJxGgEZwPW98TaCjivdr9hxYTzECd1oPEQ87qo5G6w5dos=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kJ+MBqKf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ECE3C4CEE7;
-	Mon,  3 Nov 2025 10:15:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qzn1ZNCTX17PLzJyBDt28jh+FarONQdvExvWWxH+XPTeG5X5yzcwLtrZstdXoPx+06leV2PH6ibSDRrujVxbOj2Ceurc+l6onq0e2ln8gM86DXwRRVYhIyX5QGjECRCW/n4cgODGGFTiCGGpYnwU4UXWtzE6XLOYoyIwVSRyQVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hH1Dit0w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD967C4CEE7;
+	Mon,  3 Nov 2025 10:15:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762164910;
-	bh=O4x0jqqxagDU/VftuFhDlptuntE9Kac7vSj33pi2VvQ=;
+	s=k20201202; t=1762164953;
+	bh=dm7oH3nTgvJPBFEPHOn1ekJrOzWA9gbujJ2NtsgHXr4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kJ+MBqKfKXeU/teJKJ87gBmtT1H1BpXVfHwO16qP63B5LdGVaJSV+ZjQQmJu9RFK1
-	 7ImrzDBiLUdYKyv/kEzjpwZWhzcEL+29oAWdzzer2uxPpLr5FWTEK2cHSVutB00P0j
-	 aSCJu+fpbOQHw1up1SDyYXhspEpM/WX63O9IfCYozFIpoE1IcIICeg1nYpA24W2/C3
-	 UP+l2hYftcqz7VhZfnGW1e+Pl+yoq752ZwpWFpQPfj8HSGTcwUuhCs9mpFd+DIxZbu
-	 1JRpmWucJkIC7kZRS2gXoGxuCjhqFqvhT7jw6pFD119wN0z1NnpfqtAv7ec98zqTMW
-	 LdKbA99Io3xLw==
-Date: Mon, 3 Nov 2025 15:44:59 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Rob Herring <robh@kernel.org>, 
+	b=hH1Dit0wk9oiesrLwFJAlNmPS6aQvL3139fH7tJ34UCj2WovwcCoi9NLoPf2ixyro
+	 2cRSsoSPwhvmhbgNM3oj989qyG+26Otryd/Z9ZvdhUUM0SYOrkolWmH86RJnwFRcnc
+	 NavM7BTs9daY3y5gvblFMepkEsDBbnEJXfHPeKV9l3KxW9k3FpG+Rx3jg/MoQxYkY+
+	 21XAIXykHIp7FFno9j7elmercX3zpYmZilRJZmGwUkI4/BGNuDKnUAHVyr9+qdRBgS
+	 dmcycU6x/9I7LbITL272PNTxYhUkK88IkzThwCPV7bvsPdJlDh7hIxbQymY1wXFpaE
+	 1PuIrt49nIbnQ==
+Date: Mon, 3 Nov 2025 11:15:50 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Hanjie Lin <hanjie.lin@amlogic.com>, Yue Wang <yue.wang@amlogic.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Andrew Murray <amurray@thegoodpenguin.co.uk>, 
-	Jingoo Han <jingoohan1@gmail.com>, Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, stable+noautosel@kernel.org, 
-	stable@vger.kernel.org, Linnaea Lavia <linnaea-von-lavia@live.com>
-Subject: Re: [PATCH RESEND 0/3] PCI: meson: Fix the parsing of DBI region
-Message-ID: <mwdy2qe2kp6ygwyw7ohjykzwcsi7udzitizmbzk2rfuf4jesnj@gbjmjfuvzkvw>
-References: <20251101-pci-meson-fix-v1-0-c50dcc56ed6a@oss.qualcomm.com>
- <83d07b54-d584-4297-9aae-2a170c0059d4@linaro.org>
+	Alim Akhtar <alim.akhtar@samsung.com>, Peter Griffin <peter.griffin@linaro.org>, 
+	=?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, semen.protsenko@linaro.org, willmcvicker@google.com, 
+	kernel-team@android.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 05/11] soc: samsung: exynos-chipid: introduce
+ match_data->get_chipid_info()
+Message-ID: <20251103-polar-wasp-of-chivalry-9cd93f@kuoka>
+References: <20251031-gs101-chipid-v1-0-d78d1076b210@linaro.org>
+ <20251031-gs101-chipid-v1-5-d78d1076b210@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,65 +63,83 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <83d07b54-d584-4297-9aae-2a170c0059d4@linaro.org>
+In-Reply-To: <20251031-gs101-chipid-v1-5-d78d1076b210@linaro.org>
 
-On Mon, Nov 03, 2025 at 10:50:20AM +0100, Neil Armstrong wrote:
-> On 11/1/25 05:29, Manivannan Sadhasivam wrote:
-> > Hi,
-> > 
-> > This compile tested only series aims to fix the DBI parsing issue repored in
-> > [1]. The issue stems from the fact that the DT and binding described 'dbi'
-> > region as 'elbi' from the start.
-> > 
-> > Now, both binding and DTs are fixed and the driver is reworked to work with both
-> > old and new DTs.
-> > 
-> > Note: The driver patch is OK to be backported till 6.2 where the common resource
-> > parsing code was introduced. But the DTS patch should not be backported. And I'm
-> > not sure about the backporting of the binding.
-> > 
-> > Please test this series on the Meson board with old and new DTs.
+On Fri, Oct 31, 2025 at 12:56:04PM +0000, Tudor Ambarus wrote:
+> Newer SoCs, like GS101, don't have a dedicated Chip ID controller.
+
+This would suggest that these are completely different devices and
+should not be part of the same bindings. Actually bindings also
+suggested this - changing programming model.
+
+> The GS101 Chip ID info is available as part of the OTP controller
+> registers, among other things. For GS101 we will read the Chip ID from
+> the OTP controller using the nvmem API.
 > 
-> Let me try this serie, I'm on a business trip this week so don't expect a full test
-> report until next monday.
+> Extend the match_data with a get_chipid_info() method, to allow nvmem
+> integration.
 > 
-
-Sure. I may post the next iteration, but will not merge the binding/driver
-patches until you confirm.
-
-- Mani
-
-> Neil
+> `struct exynos_chipid_info` is moved to the top of the file to avoid a
+> forward declaration. The structure is extended with pointers to device
+> and regmap to allow current implementation to obtain the regmap in the
+> newly introduced exynos_chipid_get_regmap_chipid_info() method. The
+> nvmem consumer support that will follow won't use the regmap, and
+> instead will use the nvmem API. It will need the pointer to the device
+> to report errors.
 > 
-> > 
-> > - Mani
-> > 
-> > [1] https://lore.kernel.org/linux-pci/DM4PR05MB102707B8CDF84D776C39F22F2C7F0A@DM4PR05MB10270.namprd05.prod.outlook.com/
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > ---
-> > Resending as the git sendemail config got messed up
-> > 
-> > ---
-> > Manivannan Sadhasivam (3):
-> >        dt-bindings: PCI: amlogic: Fix the register name of the DBI region
-> >        arm64: dts: amlogic: Fix the register name of the 'DBI' region
-> >        PCI: meson: Fix parsing the DBI register region
-> > 
-> >   .../devicetree/bindings/pci/amlogic,axg-pcie.yaml      |  6 +++---
-> >   arch/arm64/boot/dts/amlogic/meson-axg.dtsi             |  4 ++--
-> >   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi      |  2 +-
-> >   drivers/pci/controller/dwc/pci-meson.c                 | 18 +++++++++++++++---
-> >   drivers/pci/controller/dwc/pcie-designware.c           | 12 +++++++-----
-> >   5 files changed, 28 insertions(+), 14 deletions(-)
-> > ---
-> > base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
-> > change-id: 20251031-pci-meson-fix-c8b651bc6662
-> > 
-> > Best regards,
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> ---
+>  drivers/soc/samsung/exynos-chipid.c | 35 ++++++++++++++++++++++-------------
+>  1 file changed, 22 insertions(+), 13 deletions(-)
 > 
+> diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/exynos-chipid.c
+> index ab6bdf24a754a0faf974190c1fa1f99735cbef8e..7b1951f28e8d4958ab941af91dab4b0183ceda5f 100644
+> --- a/drivers/soc/samsung/exynos-chipid.c
+> +++ b/drivers/soc/samsung/exynos-chipid.c
+> @@ -26,17 +26,21 @@
+>  
+>  #include "exynos-asv.h"
+>  
+> +struct exynos_chipid_info {
+> +	struct regmap *regmap;
+> +	struct device *dev;
+> +	u32 product_id;
+> +	u32 revision;
+> +};
+> +
+>  struct exynos_chipid_variant {
+> +	int (*get_chipid_info)(const struct exynos_chipid_variant *data,
+> +			       struct exynos_chipid_info *exynos_chipid);
+>  	unsigned int rev_reg;		/* revision register offset */
+>  	unsigned int main_rev_shift;	/* main revision offset in rev_reg */
+>  	unsigned int sub_rev_shift;	/* sub revision offset in rev_reg */
+>  };
+>  
+> -struct exynos_chipid_info {
+> -	u32 product_id;
+> -	u32 revision;
+> -};
+> -
+>  static const struct exynos_soc_id {
+>  	const char *name;
+>  	unsigned int id;
+> @@ -80,13 +84,19 @@ static const char *product_id_to_soc_id(unsigned int product_id)
+>  	return NULL;
+>  }
+>  
+> -static int exynos_chipid_get_chipid_info(struct regmap *regmap,
+> -		const struct exynos_chipid_variant *data,
+> +static int exynos_chipid_get_regmap_chipid_info(const struct exynos_chipid_variant *data,
+>  		struct exynos_chipid_info *exynos_chipid)
+>  {
 
--- 
-மணிவண்ணன் சதாசிவம்
+This function now gets both regmap and chip info, that's too much.
+Probably all ASV and regmap getting should be somehow split/customized
+per variant.
+
+I don't know yet, need to read rest of patches.
+
+Best regards,
+Krzysztof
+
 
