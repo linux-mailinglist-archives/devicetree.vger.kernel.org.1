@@ -1,135 +1,171 @@
-Return-Path: <devicetree+bounces-234506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57592C2DDDB
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 20:16:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C28F5C2DE4E
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 20:25:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0758B3B96DA
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 19:16:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4116C18993E4
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 19:25:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFB7D328619;
-	Mon,  3 Nov 2025 19:15:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C81C292B4B;
+	Mon,  3 Nov 2025 19:24:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ixb4czkH"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FJZTTIfL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11254325496
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 19:14:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5408D347C3;
+	Mon,  3 Nov 2025 19:24:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762197301; cv=none; b=MQuIdy0L37Wrvj/j8rstwROes+T3EA4WSQHn08Bpk6g9wxbPVIc+CPw6OWLtTSAvqldUV9kZgNgyuKQov+VYiVf/HNE5tIgl3teriPZSeoBb+yXuUiIpSPPWL9Bf1TXN/2GN4L2n0XZXMDwjeVbAVw65TXhoi0c+yL4xN/QBHig=
+	t=1762197899; cv=none; b=SYEMTVaJ6EhjG/MIfh8nbiz90qFs30KnHVItC+prw2PUEsLzaDxNGM3GJUkSyxRZBVYankXPPR/5jGG3RNOwpAuniT+Iq3PA9knvJvXpJVAOeY0oy+xm+DnWbqK/qgEjMEc9QTRiHqv53KpGX+tHfWJpYmTkQfcHoCDIdaqaeV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762197301; c=relaxed/simple;
-	bh=2sTVmTa86pv8fJgdD5xjz3zgzXpYVywXrSd1pVhx6YM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nZkg7rpucmPOU55wSvWQG2JnPyebUkVeZOgJPDhlu86QSzjfy/bBD9+64XgCW5KiIeDA8U3E4K8g6VEoBA7oG2Y00hoKtPLEk+hKhG4AoyvJIvpQ745BH6E0tFIW6hmSTjb/mp/mbckjiORrxcI8tEolraskCSBqRkfT+1+1SHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ixb4czkH; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b3d196b7eeeso898096066b.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 11:14:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762197293; x=1762802093; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=swaPnlZ0H028w7OC5FVRDI8/szcqshYIBFL4ftY69C8=;
-        b=Ixb4czkHCp76ittYEZ60gpEpQMoN0MUKFJEh0y/qG/qRr4oCt0gHjh56+u4bzCj9rV
-         d7IUlkOzUVM0D7mamTzdY1kTIoJFCJONBnkqhLa9m+YaDJyWXjTym+o2Zq1inP2VeJjc
-         L7Vw/deuhmRQRP44YJL8c7IsgprjmpbGsJo2HdWGWwhO/auHWaia9owRMq8Y03CKFYOc
-         CVINsRzDV0CYuQjuli5EvJoN5NAnwQ2VcBXRM2mfpjh7lYacJG/kfkWlasbPz6nYzXg1
-         SzxEiOr4OErPXv8t1qgpR0aGmaPbXAbzxttGoqkC+YzO1N4I4OnHE9EXVR4G9esrJgME
-         Cvew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762197293; x=1762802093;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=swaPnlZ0H028w7OC5FVRDI8/szcqshYIBFL4ftY69C8=;
-        b=Mqk41jknamUnKzHLQypKA3tjsKbk6u+sOYN7etoZh1OrVnpwf/8zZfOtVZCtfo2QL1
-         OptIE/xtydOLjBYpgDv/B72j2AoMUYYn4gMa5/GLQ83ytj7jlaKbKyAQPwTj0Z+NArHb
-         bdfYp7CasBwOCKOLyanW1gBE+LQM+tku4PwEL3qw6RXb0IIbgAAQmHtHFoaWCEZyfiQP
-         3f4Et6ZdKLv99AaUuulD9n1uSpnSGk20oCTrq7jN7qe4lY+KdoMEzW/C/yTse7C07B5B
-         geNfHtaKuFPhOW845q8GagqQkE4Npq16EDUE1M2XNU4loVXMrD5k4+GajAZXtnkK8FqK
-         Z0aQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXiSWdME6hdkq37WGviyXpPQ62YpjUnoXV6W+mBuBUjGqVw5m7yQZDpgh5U+mjcpdCk6AcnF9xQ5hTN@vger.kernel.org
-X-Gm-Message-State: AOJu0YzA7+gVspyjiyTT4SuN3AMwaj2r6/zggl5xAW/dbRWPpw383OhD
-	0xWHVdLtWUu6ovnqfD8KGbbZFLo5YPkNS043jRC2v5pFXWX2+dTJKJkfJeohmp0+dVU=
-X-Gm-Gg: ASbGncvBCNbHPpw+tr41nIh4VYE9MNkSGWa6RQgRTmyTSXdk0JLHnCBnuxqTC/SFXvL
-	lIQ9TDfR5SfOQCx4uWaxZtYPNz1p8rezIXOI+oTnJYv7lxioJPzfucvgMMXX4ny8h46ugkqNHdl
-	Cdz15HCkA5jsgk1oOD8LGKM1Fa1QCybG9bj2SNRtBjO7rpn4vGMYlnOsD2L2A6w75+6FrUo/Ams
-	d0L0uTcnbCXT7IhBbxfe7uT/6SIg4G/wAlHVAbLVyeqc/fDg54hdnXhuajPHaYW++rs/xYNeaxL
-	8gohr5s1sjr0yiS2PDdXrefYnkTngxdX0AL640s/wKFecrM0/Zwz1wKqfssoOnFz3UWcnY18zZi
-	UA/2YMNQ1X8zjRvBhaI3qAI51mGiwQDJBI/CK7p+munOUBF82b0mAi9AQjVDihX8N2gBPsNiuF3
-	1zp+nSm2xsPB6K7oUpTaT2TukSTFQbs9GwK8xeHZCF9ZT+pR9spUKs/jd/33e9yMSqSLLsz9E=
-X-Google-Smtp-Source: AGHT+IHiNqxvdvsqsXOblsPDou25GeBmEyZiMxNTIJQm/CkhHutRBIYZb/OdlmtQUhYFXs6N4+W+Ow==
-X-Received: by 2002:a17:907:6d08:b0:b6d:3a00:983a with SMTP id a640c23a62f3a-b70705ea59dmr1451359566b.38.1762197293134;
-        Mon, 03 Nov 2025 11:14:53 -0800 (PST)
-Received: from puffmais2.c.googlers.com (254.48.34.34.bc.googleusercontent.com. [34.34.48.254])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b70b9f29c8asm466765066b.8.2025.11.03.11.14.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Nov 2025 11:14:52 -0800 (PST)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Mon, 03 Nov 2025 19:14:59 +0000
-Subject: [PATCH v3 20/20] regulator: s2mps11: more descriptive gpio
- consumer name
+	s=arc-20240116; t=1762197899; c=relaxed/simple;
+	bh=YT4mXxQdx1Z/PE3Yf/aXEevukAJlGlp/Gs7YbI3nPgs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rs1nnFAfyLv9SnkJvK9DibYZF5fEkSB/lqsKTshLdwFh3kuPpwzW7TmznMijCpBIni8YALICqmtxOreJWt7TAIex+Hh/MaoS/dKlLCu4QutcZRJOJWuMWWGTGK3yafxojRCyrlkH0jsfPtMdLrNYGwudZYdQ1Izw3O3rsb9ORvc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FJZTTIfL; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762197896; x=1793733896;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=YT4mXxQdx1Z/PE3Yf/aXEevukAJlGlp/Gs7YbI3nPgs=;
+  b=FJZTTIfLsIr6OvfNmGZ2PoSbQN4xCvgBwWZL8mLLAc/nkAbPM5qUnBai
+   u7aABQREiXXcSlbPARiTE8ttGY6qMB5TTkQXmXxOyMx0CYO5qkkVSWklx
+   5x1qT6spIu6MBzm6KVVgqQVMWadARwijGIpGuEUvA4pL5USrJma10eu2n
+   jqL9HVHAKzZSoOEbXy2i7+Izl623x8q8tdKSYzdz4vuN1Ev9p9xKhLI4c
+   QDtvoqQOgh62PIKZbuEUcMaaD4pIpEalCxkfmMPRwiIowrT9QaGFC77HL
+   Yzhuv1Z/cH+W00CX/fpPucfgxc8AdaScRsbVbwr12j4vsNC1eFj3A0Q32
+   g==;
+X-CSE-ConnectionGUID: faikKZF7SL6iO2JJOQT4ew==
+X-CSE-MsgGUID: YTccQ5UvRTyhGRYiA7Qc6A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="64321086"
+X-IronPort-AV: E=Sophos;i="6.19,277,1754982000"; 
+   d="scan'208";a="64321086"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2025 11:24:56 -0800
+X-CSE-ConnectionGUID: ts9V3WD0TjuY0nwK8/miog==
+X-CSE-MsgGUID: AcugWwu0TFOcPf0UgpNZ8w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,277,1754982000"; 
+   d="scan'208";a="217588322"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.81])
+  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2025 11:24:53 -0800
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id 6CA30121466;
+	Mon, 03 Nov 2025 21:24:49 +0200 (EET)
+Date: Mon, 3 Nov 2025 21:24:49 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Tarang Raval <tarang.raval@siliconsignals.io>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@xs4all.nl>, Hans de Goede <hansg@kernel.org>,
+	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] media: i2c: add Sony IMX111 CMOS camera sensor
+ driver
+Message-ID: <aQkBgVwi2FS5ve42@kekkonen.localdomain>
+References: <20251030115757.33695-1-clamor95@gmail.com>
+ <20251030115757.33695-3-clamor95@gmail.com>
+ <PN3P287MB182950EC8691183FBFC4EC098BFBA@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
+ <CAPVz0n0Vqi0xg8c=PS3vyFr9YzRC0PtFXyxw9G5yHohS4FKVbQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Message-Id: <20251103-s2mpg1x-regulators-v3-20-b8b96b79e058@linaro.org>
-References: <20251103-s2mpg1x-regulators-v3-0-b8b96b79e058@linaro.org>
-In-Reply-To: <20251103-s2mpg1x-regulators-v3-0-b8b96b79e058@linaro.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Lee Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Peter Griffin <peter.griffin@linaro.org>, 
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
- linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.14.2
+In-Reply-To: <CAPVz0n0Vqi0xg8c=PS3vyFr9YzRC0PtFXyxw9G5yHohS4FKVbQ@mail.gmail.com>
 
-Currently, GPIOs claimed by this driver for external rail control
-all show up with "s2mps11-regulator" as consumer, which is not
-very informative.
+Hi Svyatoslav,
 
-Switch to using the regulator name via desc->name instead, using the
-device name as fallback.
+On Thu, Oct 30, 2025 at 05:13:31PM +0200, Svyatoslav Ryhel wrote:
+> чт, 30 жовт. 2025 р. о 16:55 Tarang Raval <tarang.raval@siliconsignals.io> пише:
+> >
+> > Hi Svyatoslav,
+> >
+> > > Add a v4l2 sub-device driver for the Sony IMX111 image sensor. This is a
+> > > camera sensor using the i2c bus for control and the csi-2 bus for data.
+> > >
+> > > The following features are supported:
+> > > - manual exposure, digital and analog gain control support
+> > > - pixel rate/link freq control support
+> > > - supported resolution up to 3280x2464 for single shot capture
+> > > - supported resolution up to 1920x1080 @ 30fps for video
+> > > - supported bayer order output SGBRG10 and SGBRG8
+> > >
+> > > Camera module seems to be partially compatible with Nokia SMIA but it
+> > > lacks a few registers required for clock calculations and has different
+> > > vendor-specific per-mode configurations which makes it incompatible with
+> > > existing CCS driver.
+> > >
+> > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> >
+> > ---
+> >
+> > > +static int imx111_set_ctrl(struct v4l2_ctrl *ctrl)
+> > > +{
+> > > +   struct imx111 *sensor = ctrl_to_imx111(ctrl);
+> > > +   struct device *dev = regmap_get_device(sensor->regmap);
+> > > +   s64 max;
+> > > +   int ret = 0;
+> > > +
+> > > +   /* Propagate change of current control to all related controls */
+> > > +   switch (ctrl->id) {
+> >
+> > Do we need the switch statement, since only one case is present?
+> > You can use an 'if' instead.
+> >
+> 
+> imx219 and imx319 which are recommended references use switch, and it
+> seems that media maintainters are particularly picky to code style, I
+> have copied it from there.
 
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
----
- drivers/regulator/s2mps11.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+The documentation lists areas where the mentioned drivers serve as good
+examples, it does not say everything in those drivers is done the way it is
+best. Common sense indeed should prevail.
 
-diff --git a/drivers/regulator/s2mps11.c b/drivers/regulator/s2mps11.c
-index f19140e97b9d7a5e7c07cdc5e002de345aad32d9..3e9da15081e680d7660c60270af54ba2a4f8da1d 100644
---- a/drivers/regulator/s2mps11.c
-+++ b/drivers/regulator/s2mps11.c
-@@ -363,7 +363,8 @@ static int s2mps11_of_parse_gpiod(struct device_node *np,
- 	ena_gpiod = fwnode_gpiod_get_index(of_fwnode_handle(np), con_id, 0,
- 					   GPIOD_OUT_HIGH |
- 					   GPIOD_FLAGS_BIT_NONEXCLUSIVE,
--					   "s2mps11-regulator");
-+					   desc->name
-+					   ? : dev_name(config->dev));
- 	if (IS_ERR(ena_gpiod)) {
- 		ret = PTR_ERR(ena_gpiod);
- 
+The reason why we mention these these drivers as examples is that there are
+things that have been notoriously hard to get right (such as runtime PM
+usage in sensor drivers).
+
+...
+
+> > > +static int imx111_initialize(struct imx111 *sensor)
+> > > +{
+> > > +   struct device *dev = regmap_get_device(sensor->regmap);
+> > > +   int ret;
+> >
+> > ret = 0;
+> >
+> 
+> cci_write does not state that ret must be initiated.
+
+It does not explicitly use that wording but the documentation is clear
+enough IMO.
 
 -- 
-2.51.2.997.g839fc31de9-goog
+Kind regards,
 
+Sakari Ailus
 
