@@ -1,179 +1,117 @@
-Return-Path: <devicetree+bounces-234475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73563C2D943
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 19:05:45 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B60ABC2D9B3
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 19:10:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9FEB1898F62
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 18:06:09 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 62DFF34B53D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 18:10:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CADE27B4F5;
-	Mon,  3 Nov 2025 18:05:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D025B31B131;
+	Mon,  3 Nov 2025 18:10:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J9wNou3K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LwB/JXL4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 601BB1F5423
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 18:05:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CDFA2BE7C2;
+	Mon,  3 Nov 2025 18:10:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762193140; cv=none; b=Jy4vSNJms/g3mrbAtODoxd34Mk/6RGRLgCnpcfwO2l6Hm0eH5QOjZa6b+aQL7NQndN1zXoqRUv2CAxdvUKuwALywYY0f5uJO+PTTs+COxIKG5CzSFzxFthR1TuRHKrafvEKH69gCTTV8Pfb6WU0vCTfdd+BZn0K1hICzaY1xb+k=
+	t=1762193440; cv=none; b=YAPjTLnOy/VEjh++hlTB/gA265oY1m2ROX/zLYNiFDJ2MDWTYglhXDYaKsp8/SBvuPoNVeM3fATorH3tq083L+k+K4LGYIcop48czNSQecNh0oOLOTRzW1pnukg6UOnjuBAyn0cCLyMnYjUn2AGPiKmxcqMCDssJvMQ3z6T5AaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762193140; c=relaxed/simple;
-	bh=PISYnyVrW+zygEMF1f2YOQFTzGbLCiScr72QBhAs73I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hYOGR9GiqhpQijOWLAbRmUprKKdLzrj7sJzcPytcpu8H6nyjW3eZ250sfQPwBgLzXyCXvyDnD+YN5j8dCPkW4JtB8fT7BvAojX+EccpM3LRwVRfsKSBtf7ajF+voTjGMo7yeepBu72UXvicybiicG55XNYw31VCyleOPgxs3BAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J9wNou3K; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-378d50e1c82so45200841fa.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 10:05:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762193136; x=1762797936; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=R8aecrmpQ3K9U7oiJGcYa/Rpdn9pxiAVmo61NrsXbt8=;
-        b=J9wNou3KNVNCwbK34zdV0koeNZPam9yEEEyJgENpNXhTaTjtqB2YZlP8QT/TLbMypD
-         M9kMiXsec/O+gCm0vyRuYZOA3zLrKmEQ8TPTiwxMFVgbgeMqHzS0Wd4Y/2V9w5O2th9a
-         +IgdkDIRS+RnBCtPACsmad/jjNo5T4qqM20LKaTOQc6Df3iZ7waOfv4Mk45a/47isCn8
-         jCPuvXTEvVqJpxlPvwRXkcyu0a7ivfPLZtwxTXqEUYarS3mMjeI+Q+Qx29ALf+43rzKu
-         QS3fL+fJNVEs/Cv59Z2cAmY9HAILXeXIKfDFUk1RdWaTS1jQZhF9GvqhPZiiSHClJQ6z
-         Q1Aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762193136; x=1762797936;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=R8aecrmpQ3K9U7oiJGcYa/Rpdn9pxiAVmo61NrsXbt8=;
-        b=nVRlgFy6vboksvCmf1QIjj1ajUmGLTF7/F6jV0ETF138GSrK/1uUwyWRNvWl6uYFdM
-         581+fa+/EIUhIB4+NEr6QytiK3+eO6o+FpSR+UHYSoVNG+Ggul6/Lekueka23J9sxSqC
-         TcsDljyX34NugjT4kMz4FlAWttyqhvGDSh8BD46xhUZG4EPRZnSIqBwsojiIxWU2DZTB
-         4YzKbUVqFsP/yYt+FXp8+D2d8kz7GYkAb8rbWiCaPnM0pGBYXzQmCofDa2iOVbd5Vrwe
-         0mX1zF+b3gWdMUnRJUNA/7j7saqZto29wi8IkTZmHpK5/emS8eSkiAWi2NWmoKwTjnFW
-         dduQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUOkdOdw2HJeAV/lXwyv4Hi7SOisJzqQ5o1/hcgNy6JSX+7qcb6vo+6yTBbKOiQLseUCJoSnareXQ4+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSyy5+9mj1BdN6R34EHXb6ELcjLzZOS6Bqeaw77sHVWgTavpjN
-	lh+X59ZWOCWes/wB140h5kGyjHD3ADlz39j3DxLkhFYy+KwhCe9Pb9m2gEmsJ5upbcxGCQ6XRNi
-	ERZ2t/ZprRXS3zqGgn9ip+MDhom3eAVo=
-X-Gm-Gg: ASbGnct86Y4+cAz0kHVPq4XZJhSWIc/m3Q7Tc14xPb0r2bv/72LxmQCRanxFiG2ZeaX
-	7UraxyrXSxD/SZrhWpMhw6znbqyCKUdFW7+Hfyf1JKFsQOWJrbks08xrg+4XIS+iToLZiMiOKGH
-	DS7+SjerxnbVZOni6T/gc3bbn1GVRUwbyCNR9zIUtLjkejeJKiFtNMuaa5SCCqPmFh6jVEodSAE
-	AUS7m0qPa43XQDtmfGnGfdDaeeQLTWkezJWknczqcP1uQp5dySDfekIo/TqTGrVKIdRBPc=
-X-Google-Smtp-Source: AGHT+IGC7/OpISkWQbMMipKycZQIYQDKL8rXabUx2InfXFTpSjCKCJJBdIGKPmclJe97UZMkkDuX8GDTzhUEQwFUA10=
-X-Received: by 2002:a2e:bc21:0:b0:378:e8d1:117 with SMTP id
- 38308e7fff4ca-37a2626ec92mr31718591fa.11.1762193136204; Mon, 03 Nov 2025
- 10:05:36 -0800 (PST)
+	s=arc-20240116; t=1762193440; c=relaxed/simple;
+	bh=dZ5DzmV8v+EdzX/v24I9P1Dtpu2Lj+7owRynAELiKHQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=RT7c+z7fjofJclUChLdytbRCWzKCrKLaqPD7dkm8li6FLDVbMSUQxKhBY6pMWt0IlXwLhynrNGDZNEuRD2Q+VvB0viBvdegtFkLEi0W3bizPcdkjTLCu9oHOGZtyex+uXoJJr/6DFr6+tauvsZ8vJgCuDxP4NHhbZuTegTtNEpc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LwB/JXL4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03921C4CEE7;
+	Mon,  3 Nov 2025 18:10:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762193440;
+	bh=dZ5DzmV8v+EdzX/v24I9P1Dtpu2Lj+7owRynAELiKHQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=LwB/JXL47a6IAwbTm9xSakkJCGfu82fn/vpMMT6GFWRB6cQ0dL2vEVWxPkGkmN+N/
+	 1EkdRhwDrAHXkytiFeIwv/kWUcnqe1++yX7rQ2xrNS6MoNfcRMuoVUIXLkO546Edak
+	 EGkq79cEE0iemsqGiiDdxOTQZgkTya6f4jriLo0bfK2vQso/PHIHxYRjm1BIMXbLkw
+	 MRYd/0ugIMaWgcmpGmednsEbbBZYJFD4BBdr5HPZvtN/nk7/C/+VSM0f+h1zscxvHE
+	 kuXtZQ32SPf/HLrlhA7hUUtHooqG67Z7hW6Dc/Ez7IRSAiCGEP46p6X0vPqoYkmPaJ
+	 FB1RjwG24qhMQ==
+Date: Mon, 3 Nov 2025 12:10:38 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Geraldo Nascimento <geraldogabriel@gmail.com>
+Cc: linux-rockchip@lists.infradead.org,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Johan Jonker <jbx6244@gmail.com>
+Subject: Re: [RFC PATCH 2/2] PCI: rockchip-host: drop wait on PERST# toggle
+Message-ID: <20251103181038.GA1814635@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251101-tegra194-dc-mmu-v1-0-8401c45d8f13@gmail.com>
- <20251101-tegra194-dc-mmu-v1-1-8401c45d8f13@gmail.com> <CALHNRZ_QrQHCmF7f1z29tAmuNR-=rG1SgYJ1sssK3VXiQqURYg@mail.gmail.com>
- <ehkwvvmvk4mddxtcmne5jrex2rfq4phqsa5zifxdslrpvdl2ir@3zlwejmx5f5f>
-In-Reply-To: <ehkwvvmvk4mddxtcmne5jrex2rfq4phqsa5zifxdslrpvdl2ir@3zlwejmx5f5f>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Mon, 3 Nov 2025 12:05:25 -0600
-X-Gm-Features: AWmQ_bn8e3wfcvjuhO6Vmi4IjMPB_dfMYgSSGbJtskmsQArECnzIC31_RuG-ptw
-Message-ID: <CALHNRZ-rArVkbEaiEVwMevfbu0dgX5P-ooVYTd-3RHvrhOJ5vQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] Revert "arm64: tegra: Disable ISO SMMU for Tegra194"
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d3d0c3a387ff461e62bbd66a0bde654a9a17761e.1762150971.git.geraldogabriel@gmail.com>
 
-On Mon, Nov 3, 2025 at 5:07=E2=80=AFAM Thierry Reding <thierry.reding@gmail=
-.com> wrote:
->
-> On Sat, Nov 01, 2025 at 06:13:26PM -0500, Aaron Kling wrote:
-> > On Sat, Nov 1, 2025 at 6:01=E2=80=AFPM Aaron Kling via B4 Relay
-> > <devnull+webgeek1234.gmail.com@kernel.org> wrote:
-> > >
-> > > From: Aaron Kling <webgeek1234@gmail.com>
-> > >
-> > > This reverts commit ebea268ea583ba4970df425dfef8c8e21d0a4e12.
-> > >
-> > > Mmu is now being enabled for the display controllers.
-> > >
-> > > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> > > ---
-> > >  arch/arm64/boot/dts/nvidia/tegra194.dtsi | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/bo=
-ot/dts/nvidia/tegra194.dtsi
-> > > index 1399342f23e1c4f73b278adc66dfb948fc30d326..854ed6d46aa1d8eedcdfb=
-ae1fdde1374adf40337 100644
-> > > --- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-> > > +++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-> > > @@ -1807,7 +1807,7 @@ iommu@10000000 {
-> > >                         #iommu-cells =3D <1>;
-> > >
-> > >                         nvidia,memory-controller =3D <&mc>;
-> > > -                       status =3D "disabled";
-> > > +                       status =3D "okay";
-> > >                 };
-> > >
-> > >                 smmu: iommu@12000000 {
-> > >
-> > > --
-> > > 2.51.0
-> > >
-> > >
-> >
-> > Question for Jon as the author of the commit being reverted. The
-> > commit message states "we do not have a way to pass frame-buffer
-> > memory from the bootloader to the kernel". If I understand this
-> > correctly, this is talking about seamless handoff. What does this have
-> > to do with enabling mmu on the display controllers? Seamless does not
-> > work on any tegra arch as far as I'm aware, but Tegra194 is the only
-> > one that doesn't have mmu enabled for the dc's. But enabling mmu
-> > allows for better and faster memory allocation. My initial attempts to
-> > enable this didn't work because I tried to attach them to the main mmu
-> > unit, see the related freedesktop issue [0]. After noticing in the
-> > downstream dt that the dc's are on a separate unit, I made it work.
-> > And so far, it seems to work just as well as Tegra186. Then when I was
-> > packaging up the change to submit, I found that this had been
-> > explicitly disabled. But I'm not seeing why. Am I missing some
-> > additional factors?
->
-> This isn't seamless handoff to the Tegra DRM driver for display, but
-> rather to simple-framebuffer. While this does technically work, it also
-> causes a spew of SMMU faults during early boot because the firmware does
-> not properly pass the SMMU mapping information to the kernel.
->
-> In a nutshell what happens is that the firmware sets up the display
-> controller to scan out from a reserved memory region, but it does so
-> without involving the SMMU, so it uses physical addresses directly. When
-> the kernel boots and the SMMU is enabled the continued accesses from
-> display hardware cause SMMU faults (because there is no mapping for the
-> framebuffer addresses).
->
-> That said, we did solve these issues and this may not be happening
-> anymore with the most recent L4T releases, so it may be okay to revert
-> this now. We should find out exactly which release includes all the
-> needed changes so that it can be referenced in the commit message. I
-> want to avoid people running new kernels with an old L4T release and
-> then seeing these errors without any reference as to why that might
-> suddenly happen.
+On Mon, Nov 03, 2025 at 03:27:25AM -0300, Geraldo Nascimento wrote:
+> With this change PCIe will complete link-training with a known quirky
+> device - Samsung OEM PM981a SSD. This is completely against the PCIe
+> spec and yet it works as long as the power regulator for 3v3 PCIe
+> power is not defined as always-on or boot-on.
 
-For reference, I have rolled back my Android usecase to use the L4T
-r32.7.6 bootloaders on T194 for a variety of reasons. So I am using
-cboot as the final bootloader and not edk2 as in L4T r34/r35. I have a
-pending cboot patch to support simple-framebuffer handoff, but haven't
-fully verified it as tegra-drm is currently unable to takeover from
-simplefb like openrm does for t234. But all that to say that since I
-no longer use r35 for t194 I don't have the setup to easily verify
-which point release works here and what doesn't.
+What is against the spec?  In what way is this SSD "known quirky"?  Is
+there a published erratum for it?
 
-Aaron
+Removing this delay might make this SSD work, but if this delay is
+required per PCIe spec, how can we be confident that other devices
+will still work?
+
+Reports of devices that still work is not really enough to move this
+from the "hack that makes one device work" column to the "safe and
+effective for all devices" column.
+
+It's easy to see how *lack* of a delay can break something, but much
+harder to imagine how *removing* a delay can make something work.
+Devices must be able to tolerate pretty much arbitrary delays.
+
+> Signed-off-by: Geraldo Nascimento <geraldogabriel@gmail.com>
+> ---
+>  drivers/pci/controller/pcie-rockchip-host.c | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-rockchip-host.c b/drivers/pci/controller/pcie-rockchip-host.c
+> index ee1822ca01db..6add0faf6dc9 100644
+> --- a/drivers/pci/controller/pcie-rockchip-host.c
+> +++ b/drivers/pci/controller/pcie-rockchip-host.c
+> @@ -314,7 +314,6 @@ static int rockchip_pcie_host_init_port(struct rockchip_pcie *rockchip)
+>  	rockchip_pcie_write(rockchip, PCIE_CLIENT_LINK_TRAIN_ENABLE,
+>  			    PCIE_CLIENT_CONFIG);
+>  
+> -	msleep(PCIE_T_PVPERL_MS);
+>  	gpiod_set_value_cansleep(rockchip->perst_gpio, 1);
+>  
+>  	msleep(PCIE_RESET_CONFIG_WAIT_MS);
+> -- 
+> 2.49.0
+> 
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
