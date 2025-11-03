@@ -1,374 +1,287 @@
-Return-Path: <devicetree+bounces-234454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F493C2CFF4
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 17:10:04 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B769AC2D0D6
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 17:18:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4E5E74E1EB6
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 16:08:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 645EE4E138F
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 16:17:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79C0E313E09;
-	Mon,  3 Nov 2025 16:08:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 170AB286D40;
+	Mon,  3 Nov 2025 16:17:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="tQRQPOTh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76C13285406
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 16:08:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C96DB280CE5;
+	Mon,  3 Nov 2025 16:17:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762186090; cv=none; b=q2PVO6K3zo8XckeSCu2TQzoa2SnVO/g7sGZ6N5JVouOpOW5wS0Q4Iqtv0kqZYuwvW09fbF+PZXL/pqwx63DlUjhZHfJJgdI1cb6baTo5W/AvaN4e1BYxyZsz/JfZuB06Q6G/bGHSWOndWnhCMtRBDwElUb7JAUuKIeYnNaNfmfk=
+	t=1762186652; cv=none; b=j+zoWT6fApA7DlXBmX3hJ5v0NR0a7bZcXS4XoaMuYi/HESLqRrKqCALkcIbuOdcfD8JoXTUkb4bSjffuYKxfMWmFoPhknkt5yotMehI7T+wA0yQV0A4ezwXW9Bm1EvA/dJDf+ObmQ0fTE3KI16IaVDZ4uS7475jZkxyLYo+U7LM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762186090; c=relaxed/simple;
-	bh=SNXEe5LBmkMDqQm2ISLQT67ot3yyfO1YKC2odTYWS7k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jxgmncOIvP/SGQZtJ2V1EO4AxooOuAOEgW+soZGHzbyUwR0LXr1PK35NlmFhYDRGECfEUIWq3YkYODfQy5hxymYP1qERgM/fpQsryar5BXLQioeX5AVzMImYPgloDg1+bJKQdFJY1hnvxHCQXXF9r7KxGrV4MlljwdWT8J62TRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2A2842A6B
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 08:08:00 -0800 (PST)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 969443F694
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 08:08:07 -0800 (PST)
-Date: Mon, 3 Nov 2025 16:07:35 +0000
-From: Liviu Dudau <liviu.dudau@arm.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Steven Price <steven.price@arm.com>,
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Boris Brezillon <boris.brezillon@collabora.com>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Chia-I Wu <olvaffe@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>, kernel@collabora.com,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-hardening@vger.kernel.org,
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH v8 0/5] MT8196 GPU Frequency/Power Control Support
-Message-ID: <aQjTR2OvPBTVbRL0@e110455-lin.cambridge.arm.com>
-References: <20251017-mt8196-gpufreq-v8-0-98fc1cc566a1@collabora.com>
- <CAPDyKFodsAR5bOAST3mPLvSVbe653QS6SdSwHr6kyraQ1cwbhQ@mail.gmail.com>
- <76b35848-8f5e-49a2-ac4a-318945448b9a@arm.com>
- <CAPDyKFpkCivtsV1kuTOp_QG2Ci6HajBAAxQ=0GGoN6VAnaAJrg@mail.gmail.com>
+	s=arc-20240116; t=1762186652; c=relaxed/simple;
+	bh=tU20dHhvzTic1V34oCJnXHvxilHx8SjrMcH9p7oyPPg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=N1SK+UE5urCMhsjFPc4v/bSLM6GYkzGDhv/l9lRqpt8tZtTBWzX81qtskdlbMXHUAmdferGtyufEO9tqXXRRcSRKF1LsEkwwSxo2UNkRrCay/uo3866zR3pwmWHu3MtpnqOPUu1OLgqAj4Z5WWZ6jSv5snLiVHAlmu2NC9gwcfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=tQRQPOTh; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 43F9B22E;
+	Mon,  3 Nov 2025 17:15:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1762186534;
+	bh=tU20dHhvzTic1V34oCJnXHvxilHx8SjrMcH9p7oyPPg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tQRQPOThqW29KOusEVJeufmpzOaCbYCbNbLbWE1NpG84mKLRIWv77MbLFXjZkhVXJ
+	 QDs/t6uzSZDbGhk6r85U8+COeUQjXNnUrpYgcy3MftX22HYkHu8Im67VyQPnFVAIvg
+	 WFufq9+zZbS7jmnGDJ4O+oOSXwHihz1FxnS5mhTk=
+Message-ID: <8c5a4c68-8299-4d8f-96b2-8db232df70fe@ideasonboard.com>
+Date: Mon, 3 Nov 2025 16:17:24 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 03/15] dt-bindings: media: Add bindings for ARM
+ mali-c55
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com,
+ jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com, robh+dt@kernel.org,
+ mchehab@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
+ laurent.pinchart@ideasonboard.com,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20251002-c55-v12-0-3eda2dba9554@ideasonboard.com>
+ <20251002-c55-v12-3-3eda2dba9554@ideasonboard.com>
+ <CA+V-a8sg4c697WTS=wXoWvgc_UCFM3+Qjh1br=rMm4F84NVw-Q@mail.gmail.com>
+Content-Language: en-US
+From: Dan Scally <dan.scally@ideasonboard.com>
+In-Reply-To: <CA+V-a8sg4c697WTS=wXoWvgc_UCFM3+Qjh1br=rMm4F84NVw-Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAPDyKFpkCivtsV1kuTOp_QG2Ci6HajBAAxQ=0GGoN6VAnaAJrg@mail.gmail.com>
 
-On Fri, Oct 24, 2025 at 04:50:15PM +0200, Ulf Hansson wrote:
-> On Fri, 24 Oct 2025 at 15:09, Steven Price <steven.price@arm.com> wrote:
-> >
-> > On 22/10/2025 14:52, Ulf Hansson wrote:
-> > > On Fri, 17 Oct 2025 at 17:32, Nicolas Frattaroli
-> > > <nicolas.frattaroli@collabora.com> wrote:
-> > >>
-> > >> This series introduces two new drivers to accomplish controlling the
-> > >> frequency and power of the Mali GPU on MediaTek MT8196 SoCs.
-> > >>
-> > >> The reason why it's not as straightforward as with other SoCs is that
-> > >> the MT8196 has quite complex glue logic in order to squeeze the maximum
-> > >> amount of performance possible out of the silicon. There's an additional
-> > >> MCU running a specialised firmware, which communicates with the
-> > >> application processor through a mailbox and some reserved memory, and is
-> > >> in charge of controlling the regulators, the PLL clocks, and the power
-> > >> gating of the GPU, all while also being in charge of any DVFS control.
-> > >>
-> > >> This set of drivers is enough to communicate desired OPP index limits to
-> > >> the aforementioned MCU, referred to as "GPUEB" from here on out. The
-> > >> GPUEB is still free to lower the effective frequency if the GPU has no
-> > >> jobs going on at all, even when a higher OPP is set.
-> > >>
-> > >> The power- and frequency control driver, mtk-mfg-pmdomain, is now
-> > >> implemented as a power domain driver, with a set_performance_state
-> > >> operation. It also exposes itself as a clock provider, so that panthor
-> > >> can read the actual achieved DVFS clock rate as per the GPUEB firmware.
-> > >>
-> > >> This power domain approach means that panthor does not need to know
-> > >> about how the frequency control works on this SoC, as the OPP core
-> > >> framework already takes care of it. The only exception is that panthor
-> > >> needs to not register OPPs from DT itself if there already is an OPP
-> > >> table present.
-> > >>
-> > >> The mailbox driver is a fairly bog-standard common mailbox framework
-> > >> driver, just specific to the firmware that runs on the GPUEB. It was
-> > >> merged in v6.18 already.
-> > >>
-> > >> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > >
-> > > This looks good to me!
-> > >
-> > > I can certainly pick up patch2 and patch5, but before I go ahead I
-> > > just wanted to check what is the preferred merging strategy?
-> > >
-> > > The drm/gpu patches can go independently from the pmdomain patches
-> > > others, right? In either case, I can pick this complete series too via
-> > > my pmdomain tree, if that makes sense for everyone. Please let me
-> > > know.
-> >
-> > I'm about to go on holiday, so I'm not about to merge and run ;)
-> > But I'm happy if you want to take the complete series through your tree.
-> 
-> Unfortunately the panthor specific changes didn't apply cleanly on my
-> side. Looks like you have some patches queued already for the panther
-> driver and I guess Nicolas may have based the changes on top of them.
-> 
-> That said, I decided to pick the pmdomain patches, patch 2 and patch 5, thanks!
+Hi Prabhakar
 
-I've pushed the rest of the series through drm-misc-next.
+On 28/10/2025 18:23, Lad, Prabhakar wrote:
+> Hi Daniel,
+> 
+> Thank you for the patch.
+> 
+> On Thu, Oct 2, 2025 at 11:19 AM Daniel Scally
+> <dan.scally@ideasonboard.com> wrote:
+>>
+>> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
+>>
+>> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
+>> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+>> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+>> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+>> ---
+>> Changes in v12:
+>>
+>>          - _Actually_ dropped the arm,inline property mode, having forgotten to
+>>            do so in v11.
+>>
+>> Changes in v11:
+>>
+>>          - Dropped in arm,inline_mode property. This is now identical to the
+>>            reviewed version 8, so I have kept the tags on there.
+>>
+>> Changes in v10:
+>>
+>>          - None
+>>
+>> Changes in v9:
+>>
+>>          - Added the arm,inline_mode property to differentiate between inline and
+>>            memory input configurations
+>>
+>> Changes in v8:
+>>
+>>          - Added the video clock back in. Now that we have actual hardware it's
+>>            clear that it's necessary.
+>>          - Added reset lines
+>>          - Dropped R-bs
+>>
+>> Changes in v7:
+>>
+>>          - None
+>>
+>> Changes in v6:
+>>
+>>          - None
+>>
+>> Changes in v5:
+>>
+>>          - None
+>>
+>> Changes in v4:
+>>
+>>          - Switched to port instead of ports
+>>
+>> Changes in v3:
+>>
+>>          - Dropped the video clock as suggested by Laurent. I didn't retain it
+>>          for the purposes of the refcount since this driver will call .s_stream()
+>>          for the sensor driver which will refcount the clock anyway.
+>>          - Clarified that the port is a parallel input port rather (Sakari)
+>>
+>> Changes in v2:
+>>
+>>          - Added clocks information
+>>          - Fixed the warnings raised by Rob
+>> ---
+>>   .../devicetree/bindings/media/arm,mali-c55.yaml    | 82 ++++++++++++++++++++++
+>>   1 file changed, 82 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/arm,mali-c55.yaml b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..efc88fd2c447e98dd82a1fc1bae234147eb967a8
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
+>> @@ -0,0 +1,82 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/arm,mali-c55.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: ARM Mali-C55 Image Signal Processor
+>> +
+>> +maintainers:
+>> +  - Daniel Scally <dan.scally@ideasonboard.com>
+>> +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: arm,mali-c55
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: ISP Video Clock
+>> +      - description: ISP AXI clock
+>> +      - description: ISP AHB-lite clock
+> As per RZ/V2H HW manual we have reg clock looking at the driver code
+> it does have readl. IVC has reg clock if IVC driver fails are you
+> still able to read/write regs from ISP driver?
+ >
+ > I think we do need to pass reg clock too.
 
-Best regards,
-Liviu
+Yes - but I should clarify that the names are from the arm documentation that we had when we 
+originally developed the ISP driver. The RZ/V2H documentation treats the ISP and IVC as one block 
+that shares 4 clocks and resets, but when we originally developed the ISP driver the platform we 
+used had the ISP implemented as an inline configuration (taking data directly from a csi-2 receiver 
+without an IVC equivalent), and the documentation detailed just the three clocks and resets. The 
+dtsi changes for the RZ/V2H(P) [1] assign clocks 226, 228 and 229 to the ISP which are named 
+reg_aclk, vin_aclk and isp_sclk in the renesas documentation.
+
+The IVC gets pclk, vin_aclk and isp_sclk.
+
+[1] https://lore.kernel.org/linux-renesas-soc/20251010-kakip_dts-v1-1-64f798ad43c9@ideasonboard.com/
+
+> Also for IVC we do have a main clock (which is a system clock).  Can
+> you please educate me on what is the purpose of it. Just curious as we
+> pass to IVC and not ISP.
+
+The IVC uniquely gets the one called "pclk" in renesas documentation, with the description "Input 
+Video Control block register access APB clock".
+
+Thanks
+Dan
 
 > 
-> Kind regards
-> Uffe
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: vclk
+>> +      - const: aclk
+>> +      - const: hclk
+> Not sure if we want to have the same names as IVC or vice versa.
 > 
+>> +
+>> +  resets:
+>> +    items:
+>> +      - description: vclk domain reset
+>> +      - description: aclk domain reset
+>> +      - description: hclk domain reset
+> Same query here, wrt register reset.
 > 
-> >
-> > Thanks,
-> > Steve
-> >
-> > > Kind regards
-> > > Uffe
-> > >
-> > >> ---
-> > >> Changes in v8:
-> > >> - mtk-mfg-pmdomain: remove unused shmem variable that caused a warning
-> > >>   on GCC, but not clang
-> > >> - Link to v7: https://lore.kernel.org/r/20251015-mt8196-gpufreq-v7-0-0a6435da2080@collabora.com
-> > >>
-> > >> Changes in v7:
-> > >> - panthor: rename "t" to "table"
-> > >> - panthor: add code comment explaining why an existing OPP table is
-> > >>   being checked for
-> > >> - mtk-mfg-pmdomain: use GF_REG_MAGIC offset for sake of consistency
-> > >> - mtk-mfg-pmdomain: remove redundant semicolon after mtk_mfg_mt8196_init
-> > >> - mtk-mfg-pmdomain: fix resource leaks on probe failure
-> > >> - mtk-mfg-pmdomain: enable/disable EB clock during MT8196 init, which is
-> > >>   needed for the register read
-> > >> - Rebase onto next-20251014, which drops already merged patches, namely
-> > >>   mailbox driver+bindings, and drops the ASN_HASH patch series
-> > >>   dependency, which was also merged
-> > >> - Link to v6: https://lore.kernel.org/r/20251003-mt8196-gpufreq-v6-0-76498ad61d9e@collabora.com
-> > >>
-> > >> Changes in v6:
-> > >> - mailbox: move buf definition into if condition, as per Chia-I Wu
-> > >> - panthor: remove the redundant NULL checks in panthor_devfreq_get_freq
-> > >> - mtk-mfg-pmdomain: adjust return style consistency
-> > >> - mtk-mfg-pmdomain: add docstring for mtk_mfg_send_ipi to explain it's
-> > >>   blocking
-> > >> - mtk-mfg-pmdomain: use CMD_FIX_DUAL_TARGET_OPPIDX instead of
-> > >>   CMD_FIX_TARGET_OPPIDX.
-> > >> - mtk-mfg-pmdomain: reword code comments to not be in the "we" style
-> > >> - mtk-mfg-pmdomain: shuffle around mbox allocations as per Angelo
-> > >> - mtk-mfg-pmdomain: don't pointlessly turn on EB clock in probe,
-> > >>   reducing the need for a comment explaining the bookkeeping
-> > >> - mtk-mfg-pmdomain: consistently use dev_err_probe and Capitalise first
-> > >>   letter of error string
-> > >> - mtk-mfg-pmdomain: get rid of redundant ret = dev_err_probe assignment
-> > >> - mtk-mfg-pmdomain: reintroduce stack OPP table, choose min(gpu, stack)
-> > >>   when adding frequencies. Fixes gaps in OPP levels where only stack
-> > >>   changed, but gpu had duplicates, which resulted in choosing a too slow
-> > >>   OPP
-> > >> - mtk-mfg-pmdomain: stub round_rate clk op to opt out of CCF always
-> > >>   "rounding" a devfreq rate request to the current rate
-> > >> - Link to v5: https://lore.kernel.org/r/20250929-mt8196-gpufreq-v5-0-3056e5ecf765@collabora.com
-> > >>
-> > >> Changes in v5:
-> > >> - mtk-mfg-pmdomain binding: add memory-regions property, remove shmem
-> > >>   property, as we now correctly describe the shared memory as a regular
-> > >>   memory region
-> > >> - mtk-mfg-pmdomain binding: get rid of redundant |
-> > >> - drop "dt-bindings: sram: Add compatible for
-> > >>   mediatek,mt8196-gpufreq-sram" as part of the move to reserved memory
-> > >> - mtk-mfg-pmdomain: move to using reserved-memory for GPUEB shared
-> > >>   memory
-> > >> - mtk-mfg-pmdomain: demote some types to smaller sizes in struct
-> > >>   mtk_mfg, as per Angelo's suggestions
-> > >> - mtk-mfg-pmdomain: use units.h for Hz-to-KHz
-> > >> - mtk-mfg-pmdomain: change for loop in attach_dev to reduce indentation
-> > >> - mtk-mfg-pmdomain: simplify return in mtk_mfg_power_off
-> > >> - mtk-mfg-pmdomain: move of_device_id after probe
-> > >> - mtk_mfg_pmdomain: map mmio by index
-> > >> - mtk_mfg_pmdomain: add error checking to pm_genpd_init()
-> > >> - mtk_mfg_pmdomain: add remove function
-> > >> - mtk_mfg_pmdomain: remove last_opp member and logic, since OPP core
-> > >>   already does that for us
-> > >> - mtk_mfg_pmdomain: adjust comment in mtk_mfg_set_performance to explain
-> > >>   why we're doing what we're doing
-> > >> - mtk_mfg_pmdomain: call mtk_mfg_set_oppidx in mtk_mfg_power_on with
-> > >>   the performance_state we deferred setting while it was powered off
-> > >> - mtk_mfg_pmdomain: add inline function for PWR_ACK checking, as it's
-> > >>   now used twice with the added remove function
-> > >> - mtk-mfg-pmdomain: add suppress_bind_attrs so people don't play with
-> > >>   that
-> > >> - mtk-mfg-pmdomain: change KConfig from tristate to bool, as module
-> > >>   unloading results in strange likely firmware-induced hardware state
-> > >>   woes in the mali GPU
-> > >> - mtk-mfg-pmdomain: read IPI magic in power_on, don't zero it after
-> > >>   confirming that seemingly had no purpose
-> > >> - mtk-mfg-pmdomain: misc style changes
-> > >> - Link to v4: https://lore.kernel.org/r/20250923-mt8196-gpufreq-v4-0-6cd63ade73d6@collabora.com
-> > >>
-> > >> Changes in v4:
-> > >> - rebase onto next-20250922, which includes Laura Nao's clock patches
-> > >> - refactor mediatek_mfg into a pmdomain driver called "mtk-mfg-pmdomain"
-> > >> - move mt8196-gpufreq binding to the power subdirectory
-> > >> - mali-valhall-csf binding: adjust for power-domains usage
-> > >> - mali-valhall-csf binding: use clocks on mt8196
-> > >> - mailbox: prefix defines with "GPUEB_"
-> > >> - mailbox: get rid of custom of_xlate
-> > >> - mailbox: rename "CLOGGED" to "BLOCKED"
-> > >> - mailbox: adjust send_data comment to include more technical info
-> > >> - mailbox: misc style improvements
-> > >> - panthor: drop "drm/panthor: devfreq: make get_dev_status use
-> > >>   get_cur_freq", as it is now not necessary and makes the code worse
-> > >> - panthor: drop "drm/panthor: devfreq: add pluggable devfreq providers"
-> > >> - panthor: drop "drm/panthor: add no_clocks soc_data member for MT8196",
-> > >>   as we now have clocks courtesy of gpufreq
-> > >> - panthor: check for existing opp table before registering a new one
-> > >> - mtk-mfg-pmdomain: add turbo_below variant data, which marks OPPs below
-> > >>   a certain index as turbo for the OPP subsystem
-> > >> - mtk-mfg-pmdomain: no longer read stack OPPs, as they weren't used
-> > >> - mtk-mfg-pmdomain: get rid of num gpu opp != num stack opp check.
-> > >>   That's the firmware's problem should it ever happen, not ours
-> > >> - mtk-mfg-pmdomain: some small name and whitespace changes on the defines
-> > >> - Link to v3: https://lore.kernel.org/r/20250917-mt8196-gpufreq-v3-0-c4ede4b4399e@collabora.com
-> > >>
-> > >> Changes in v3:
-> > >> - mali-valhall-csf binding: get rid of clocks for MT8196, rebase onto
-> > >>   Chia-I Wu's patch
-> > >> - mt8196-gpufreq binding: rename hw_revision to hw-revision
-> > >> - mt8196-gpufreq binding: rename clocks
-> > >> - mt8196-gpufreq binding: drop pointless label in example
-> > >> - mailbox binding: drop pointless label in example
-> > >> - mailbox: whitespace changes on defines
-> > >> - mailbox: remove rx_buf member from channel struct, use stack buffer
-> > >> - mailbox: check in probe that no rx_len exceeds MBOX_MAX_RX_SIZE
-> > >> - panthor: add no_clocks SoC data patch, also rebase onto Chia-I Wu's
-> > >>   series
-> > >> - panthor: refactor devfreq provider functionality to do allocation and
-> > >>   initialisation of panthor_devfreq struct in panthor in all cases
-> > >> - panthor: drop the patch that moves struct panthor_devfreq to a header
-> > >>   file, as it no longer needs to be exposed to devfreq providers
-> > >> - mediatek_mfg: refactor devfreq provider functionality to decouple it
-> > >>   more from panthor itself
-> > >> - mediatek_mfg: move SRAM magic to a #define
-> > >> - mediatek_mfg: begrudgingly rename member "padding_lol" to "reserved"
-> > >> - mediatek_mfg: use local struct device pointer var in more places
-> > >> - mediatek_mfg: change wording of sleep command failure error message,
-> > >>   but keep the format specifier because I don't want to throw bare
-> > >>   errnos at users
-> > >> - mediatek_mfg: remove unnecessary braces around dev_err EB power off
-> > >>   timeout message
-> > >> - mediatek_mfg: allocate rx_data for channels that expect a response
-> > >> - mediatek_mfg: memcpy the rx buffer from the common mailbox framework
-> > >>   in the rx callback to rx_data, as mssg now points to stack memory
-> > >> - mediatek_mfg: make SRAM clearing message dev_dbg
-> > >> - mediatek_mfg: no longer print physical address of SRAM
-> > >> - mediatek_mfg: expand on the GF_REG_OPP_TABLE_STK comment, toning down
-> > >>   its defeatist attitude in the process
-> > >> - mediatek_mfg: style fixes in mtk_mfg_get_closest_opp_idx
-> > >> - mediatek_mfg: rename clocks and hw-revision reg as per binding
-> > >> - Link to v2: https://lore.kernel.org/r/20250912-mt8196-gpufreq-v2-0-779a8a3729d9@collabora.com
-> > >>
-> > >> Changes in v2:
-> > >> - mali-valhall-csf binding: move from performance-controller to
-> > >>   performance-domains property
-> > >> - mali-valhall-csf binding: fix vendor name oopsie in compatible of if
-> > >>   condition
-> > >> - mt8196-gpufreq binding: move from performance-controller to
-> > >>   performance-domains by adding the cells property
-> > >> - mt8196-gpufreq binding: rename e2_id to hw_revision
-> > >> - mt8196-gpufreq binding: add description that mentions "MediaTek
-> > >>   Flexible Graphics"
-> > >> - mt8196-gpufreq binding: get rid of mailbox channels we're unlikely to
-> > >>   use any time soon, if ever
-> > >> - mt8196-gpufreq binding: change name of mailbox channels to use -
-> > >>   instead of _
-> > >> - mailbox binding: change reg-names to "data" and "ctl"
-> > >> - drm/panthor: mediatek_mfg: rename e2_id to hw_revision
-> > >> - drm/panthor: devfreq: switch from performance-controller to
-> > >>   performance-domains
-> > >> - drm/panthor: devfreq: get rid of the accidental get_cur_freq function
-> > >>   move
-> > >> - mailbox: rename mtk_gpueb_mbox_ch to mtk_gpueb_mbox_chan_desc
-> > >> - mailbox: use smaller types in mtk_gpueb_mbox_chan_desc where possible
-> > >> - mailbox: add per-channel runtime data struct
-> > >> - mailbox: request one threaded IRQ per channel, pass channel struct as
-> > >>   data
-> > >> - mailbox: make num_channels in variant struct u8
-> > >> - mailbox: get rid of no_response, as it was redundant
-> > >> - mailbox: enable and disable clock in mailbox startup/shutdown
-> > >> - mailbox: point con_priv of mailbox framework channel struct to this
-> > >>   driver's channel struct
-> > >> - mailbox: request and free the threaded IRQ in startup/shutdown
-> > >> - mailbox: only clear IRQ bit flag once RX data has been read from MMIO
-> > >> - mailbox: reduce needlessly large receive buffer size
-> > >> - mailbox: handle allocation errors wherever they could pop up
-> > >> - mailbox: style cleanups in mtk_gpueb_mbox_read_rx
-> > >> - mailbox: call platform_get_irq earlier on in probe
-> > >> - mailbox: set drvdata later on in probe
-> > >> - mailbox: ioremap resources by index, not name
-> > >> - mailbox: handle devm_mbox_controller_register errors
-> > >> - mailbox: rename channels to correspond to bindings
-> > >> - mailbox: document a few of the private driver structs to be kind to
-> > >>   the next person who will look at this code
-> > >> - Link to v1: https://lore.kernel.org/r/20250905-mt8196-gpufreq-v1-0-7b6c2d6be221@collabora.com
-> > >>
-> > >> ---
-> > >> Nicolas Frattaroli (5):
-> > >>       dt-bindings: gpu: mali-valhall-csf: add mediatek,mt8196-mali variant
-> > >>       dt-bindings: power: Add MT8196 GPU frequency control binding
-> > >>       drm/panthor: call into devfreq for current frequency
-> > >>       drm/panthor: Use existing OPP table if present
-> > >>       pmdomain: mediatek: Add support for MFlexGraphics
-> > >>
-> > >>  .../bindings/gpu/arm,mali-valhall-csf.yaml         |   37 +-
-> > >>  .../bindings/power/mediatek,mt8196-gpufreq.yaml    |  117 +++
-> > >>  drivers/gpu/drm/panthor/panthor_devfreq.c          |   62 +-
-> > >>  drivers/gpu/drm/panthor/panthor_devfreq.h          |    2 +
-> > >>  drivers/gpu/drm/panthor/panthor_device.h           |    3 -
-> > >>  drivers/gpu/drm/panthor/panthor_drv.c              |    4 +-
-> > >>  drivers/pmdomain/mediatek/Kconfig                  |   16 +
-> > >>  drivers/pmdomain/mediatek/Makefile                 |    1 +
-> > >>  drivers/pmdomain/mediatek/mtk-mfg-pmdomain.c       | 1044 ++++++++++++++++++++
-> > >>  9 files changed, 1268 insertions(+), 18 deletions(-)
-> > >> ---
-> > >> base-commit: 3477f49ff0433a241da12ec9cecf6c9b2bd1c6f8
-> > >> change-id: 20250829-mt8196-gpufreq-a7645670d182
-> > >>
-> > >> Best regards,
-> > >> --
-> > >> Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > >>
-> >
+>> +
+>> +  reset-names:
+>> +    items:
+>> +      - const: vresetn
+>> +      - const: aresetn
+>> +      - const: hresetn
+> ditto naming.
+> 
+>> +
+>> +  port:
+>> +    $ref: /schemas/graph.yaml#/properties/port
+>> +    description: Input parallel video bus
+>> +
+>> +    properties:
+>> +      endpoint:
+>> +        $ref: /schemas/graph.yaml#/properties/endpoint
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
+>> +  - clock-names
+>> +  - port
+> maybe also resets and rest-names should be part of required properties?
+> 
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    mali_c55: isp@400000 {
+> we could drop `mali_c55`
+> 
+>> +      compatible = "arm,mali-c55";
+>> +      reg = <0x400000 0x200000>;
+>> +      clocks = <&clk 0>, <&clk 1>, <&clk 2>;
+>> +      clock-names = "vclk", "aclk", "hclk";
+>> +      resets = <&resets 0>, <&resets 1>, <&resets 2>;
+>> +      reset-names = "vresetn", "aresetn", "hresetn";
+>> +      interrupts = <0>;
+> I would have a non-zero val here.
+> 
+> Cheers,
+> Prabhakar
+> 
+>> +
+>> +      port {
+>> +        isp_in: endpoint {
+>> +            remote-endpoint = <&csi2_rx_out>;
+>> +        };
+>> +      };
+>> +    };
+>> +...
+>>
+>> --
+>> 2.43.0
+>>
+>>
 
--- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
 
