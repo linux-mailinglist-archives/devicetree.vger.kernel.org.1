@@ -1,168 +1,137 @@
-Return-Path: <devicetree+bounces-234242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB6CBC2A875
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 09:18:50 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8B56C2A8D6
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 09:24:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 75F1A4ECCE1
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 08:18:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 12D104EE166
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 08:22:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF222DC328;
-	Mon,  3 Nov 2025 08:18:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB59F2DC796;
+	Mon,  3 Nov 2025 08:22:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BjpmhNnd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GAn5X3v6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06D982DA744
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 08:18:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C2D32DC77B;
+	Mon,  3 Nov 2025 08:22:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762157890; cv=none; b=tDCup2H8BYGcXWlGGm/X8tb7vLNt7X1xrySAfdv9RIOQWAUzNMUQYQglN+92rNTeFsBwaXeI5pzdMLObf5YTzc3jxOAubZ3BYjdjO5+GL4QzNoEjPx8ByTATwPuSGzX/zwrKhRmZtXTpkYgyKGQEnrvrzbWLR89twcY3dmROWYU=
+	t=1762158160; cv=none; b=XFMTD4+GeVAgH1QsxTcAcfm4H8HdNxh/PXXuZZIpMcYkEQX59OO7yTpGPeipF13ixsg4KgbfffLx7mTbYS9Avy+r9QCvQzHtK8UPjxRXnjN4eBqJz9hdOPT8Z1v4bSRKT6jxuDyEEeOT3dTjyx2HtOqSLJMfXoVTwi5dCW6uJw0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762157890; c=relaxed/simple;
-	bh=uiB39ufF+tfDfA88lcPIB5aIdPcR36Hd4plmXFCziCY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RtPL6oxsMsU+YKBjPCyGm3hfeac/DEEcU+0RQNff4nDjVghUL8tuQwuTQPFGplwR7cfkDtK0UupjU4VO/w/8pp10R4airnXqQdoF1YPqJtx43dULpbbBw5yp4uhVwLjYsVbWQAHRMmfnfYZiBp8D1chjDy5OV0D5eRlUSKt9WM8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BjpmhNnd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EFEAC4AF09
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 08:18:09 +0000 (UTC)
+	s=arc-20240116; t=1762158160; c=relaxed/simple;
+	bh=YDv22vyr4bQtUMxYJVP0QlxdmM2loUP8z8C33OqCi/c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KJx+jaegNhdxX53RiZDfiM9GHwzascloa5ErPZvltHMCj+2hknABN+Yckp7eTdGcfnze09YAAMYYmnwW8h9+DoH8ox6CRWqB5ajcXJArz6dbRd60dZ+FrmJtKOAYGR5FR5LpkT2bXI4XaSccoeZbBr3jjG1RWf7ocPwkhRN5wqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GAn5X3v6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFD91C116C6;
+	Mon,  3 Nov 2025 08:22:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762157889;
-	bh=uiB39ufF+tfDfA88lcPIB5aIdPcR36Hd4plmXFCziCY=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=BjpmhNndz0o/8p0z967p+qJ9MKjA4+dEHZu8X5cGQBcdHVYv5knzY7EzVEfqpZbEO
-	 Ym6vGL/gsssOg8VOFbRIxA44HEC6B3epVDvlCfio4HpKJ6cBrCN43JHCQo5AzlaeL9
-	 1nQ3vQw23SZuaRTbnB77vOjLjYhoSuYdLiHT8/YVhDyIWrT0umJ/BJimWapyGWLbU/
-	 da3QnoKVqPgxhck0WetEf18GMsHKcCMLoseYgpQbNS/3jIHLsGYoSDbfedgaN9HtFZ
-	 qFMOT5hAxFzBEKefYBSfQpI57ZX2bbUvsmpg4xiPE+5V0p5xexpUyPEfbCH98tM4BW
-	 5xAl9RIl6n+wA==
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-378d50e1c82so39339541fa.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 00:18:09 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXbfZDtGzwsDgi3JNjOlCvmFdInZ1k9z9WYbx9eJmG9lQHV9tc+XmZvfSSagcTiJZ1mwBj//HVJvDqo@vger.kernel.org
-X-Gm-Message-State: AOJu0YycSp80xQ36dDt44+Whl3O7XuzrzszoZu/vSs5TSlQuq7TXXvCg
-	jHVaL/M2CdAFVTTi2G0N2tiEcCQD4U5chIHKrRL4ANSzgcQ9ExJLBpGpCviNg79JsjFCgqlgkLT
-	Ohd3uB3A6UFGs+YhOp9O3QzhgVCjhuAg=
-X-Google-Smtp-Source: AGHT+IF7S5ZgoTe4rMoUNbVKrfXEzbCDIVxbK+YrADaUheDEsv51KpgQ3fYzrqUCKxtjXhiaKE1ixDKZT692raoR9vk=
-X-Received: by 2002:a05:651c:551:b0:335:44d4:161b with SMTP id
- 38308e7fff4ca-37a18da4e5emr38582791fa.2.1762157888032; Mon, 03 Nov 2025
- 00:18:08 -0800 (PST)
+	s=k20201202; t=1762158160;
+	bh=YDv22vyr4bQtUMxYJVP0QlxdmM2loUP8z8C33OqCi/c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GAn5X3v6uk7dZDnUWBpTMXs8robVOpfEv8DEm7sRhXYQeJ4kgxtySH0fUHDZN6DQe
+	 Hkg+ZlSgOpX8jbyS2yZ8Prlt1tQ/PSlMtRsD9BqjH3751/vwK7yTB6jOSkvTXod8Bt
+	 sDOZzPfAyeebHOza1V8k75yLSz5wKc7MLvapu8g76Bb3P0mIsWQIHABkBAphQJdM/b
+	 +kGDHZinx0rtESxFb/R1m8uysRgr0caPKRQ7X5b9sLwWDFiUb4y4IjVYa71xhQmqCb
+	 xInVB1BlhwiiEp3FLlVbuuvUbpz4plLBNR5E27khbRp0CGRVGu+7rnPX6GOS15Nq7U
+	 DneVXqrGkZkHA==
+Date: Mon, 3 Nov 2025 09:22:38 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>, 
+	Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Simon Horman <horms@kernel.org>, Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Andreas Schirm <andreas.schirm@siemens.com>, Lukas Stockmann <lukas.stockmann@siemens.com>, 
+	Alexander Sverdlin <alexander.sverdlin@siemens.com>, Peter Christen <peter.christen@siemens.com>, 
+	Avinash Jayaraman <ajayaraman@maxlinear.com>, Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>, 
+	Juraj Povazanec <jpovazanec@maxlinear.com>, "Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>, 
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>, "Livia M. Rosu" <lrosu@maxlinear.com>, 
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH net-next v6 06/12] dt-bindings: net: dsa: lantiq,gswip:
+ add MaxLinear RMII refclk output property
+Message-ID: <20251103-festive-aloof-nuthatch-fadd08@kuoka>
+References: <cover.1761938079.git.daniel@makrotopia.org>
+ <c25fdd18373a60eb566f4de85a17279f7ab5518b.1761938079.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CAMj1kXFJCukumMNBmP=Js1EFJrCVcw5_jfxp8SA8Ff1k6j+xXA@mail.gmail.com>
- <DU4PR08MB11151404912A3A7BE565BC3E690C6A@DU4PR08MB11151.eurprd08.prod.outlook.com>
-In-Reply-To: <DU4PR08MB11151404912A3A7BE565BC3E690C6A@DU4PR08MB11151.eurprd08.prod.outlook.com>
-From: Ard Biesheuvel <ardb@kernel.org>
-Date: Mon, 3 Nov 2025 09:17:56 +0100
-X-Gmail-Original-Message-ID: <CAMj1kXGUcnSkoT-X3LNGjMNyQXs9L1iaBzawf2Sps3mMYdizMg@mail.gmail.com>
-X-Gm-Features: AWmQ_bnBXxbzM3w1e33Z6PQlREzwon2I4MFUA40xVxUtFpiXLzMucAy5veRgpK8
-Message-ID: <CAMj1kXGUcnSkoT-X3LNGjMNyQXs9L1iaBzawf2Sps3mMYdizMg@mail.gmail.com>
-Subject: Re: SMBIOS discovery for DT platforms booting without EFI
-To: Samer El-Haj-Mahmoud <Samer.El-Haj-Mahmoud@arm.com>
-Cc: Jose Marinho <Jose.Marinho@arm.com>, Adriana Nicolae <adriana@arista.com>, 
-	Rob Herring <robh@kernel.org>, Ilias Apalodimas <ilias.apalodimas@linaro.org>, 
-	Boot Architecture Mailman List <boot-architecture@lists.linaro.org>, linux-efi <linux-efi@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, Tom Rini <trini@konsulko.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <c25fdd18373a60eb566f4de85a17279f7ab5518b.1761938079.git.daniel@makrotopia.org>
 
-Once Rob accepts the dtschema patch here, it can be used as a
-normative reference.
+On Fri, Oct 31, 2025 at 07:21:30PM +0000, Daniel Golle wrote:
+> Add support for the maxlinear,rmii-refclk-out boolean property on port
+> nodes to configure the RMII reference clock to be an output rather than
+> an input.
+> 
+> This property is only applicable for ports in RMII mode and allows the
+> switch to provide the reference clock for RMII-connected PHYs instead
+> of requiring an external clock source.
+> 
+> This corresponds to the driver changes that read this Device Tree
+> property to configure the RMII clock direction.
+> 
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> Reviewed-by: Alexander Sverdlin <alexander.sverdlin@siemens.com>
+> ---
+> v6:
+>  * switch order of patches, move deviation from
+>    dsa.yaml#/$defs/ethernet-ports to this patch which actually
+>    needs it
 
-https://github.com/devicetree-org/dt-schema/pull/177
+and v5, v4, v3, v2 ? No lore links in the cover letter, incomplete
+changelog.
 
-On Sun, 2 Nov 2025 at 15:48, Samer El-Haj-Mahmoud
-<Samer.El-Haj-Mahmoud@arm.com> wrote:
->
-> Thanks, Ard for the proposal.
->
-> We will work on submitting as a CR to the DMTF SMBIOS working group. It w=
-ould be very helpful if there is a normative reference that defines /chosen=
-/smbios3-entrypoint.
->
-> Thanks,
-> --Samer
->
->
-> [1] https://github.com/devicetree-org/devicetree-specification/releases/t=
-ag/v0.4
->
-> > -----Original Message-----
-> > From: Ard Biesheuvel <ardb@kernel.org>
-> > Sent: Friday, October 31, 2025 8:28 AM
-> > To: Samer El-Haj-Mahmoud <Samer.El-Haj-Mahmoud@arm.com>; Jose
-> > Marinho <Jose.Marinho@arm.com>
-> > Cc: Adriana Nicolae <adriana@arista.com>; Rob Herring <robh@kernel.org>=
-;
-> > Ilias Apalodimas <ilias.apalodimas@linaro.org>; Boot Architecture Mailm=
-an
-> > List <boot-architecture@lists.linaro.org>; linux-efi <linux-efi@vger.ke=
-rnel.org>;
-> > open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
-> > <devicetree@vger.kernel.org>; Tom Rini <trini@konsulko.com>
-> > Subject: SMBIOS discovery for DT platforms booting without EFI
-> >
-> > L.S.,
-> >
-> > Adriana is proposing [0] a method for DT based platforms that boot
-> > without EFI to expose the SMBIOS tables via the /chosen DT node.
-> >
-> > There appears to be consensus between the stakeholders in the u-boot
-> > and linux communities that this is a reasonable thing to do, and it
-> > looks like this is going to be adopted soon.
-> >
-> > Adriana has kindly agreed to contributing the u-boot side
-> > implementation as well, so all the pieces will be there in terms of
-> > code.
-> >
-> > What is lacking is a contribution to the DMTF spec, which currently
-> > only permits the EFI config table method for non-x86 systems. So some
-> > wording should be added to paragraph 5.2.2 (SMBIOS 3.9 [1])
-> >
-> > It currently reads
-> >
-> > On non-UEFI systems, the 64-bit SMBIOS Entry Point structure can be
-> > located by application software by searching for the anchor-string on
-> > paragraph (16-byte) boundaries within the physical memory address
-> > range 000F0000h to 000FFFFFh.
-> >
-> > Given that this makes sense only on x86 systems, I suggest we rephrase
-> > this along the lines of
-> >
-> > On non-UEFI systems, the 64-bit SMBIOS Entry Point structure can be
-> > located by application software
-> > - on x86 systems only, by searching for the anchor-string on paragraph
-> > (16-byte) boundaries within the physical memory address range
-> > 000F0000h to 000FFFFFh,
-> > - on DT based systems, by obtaining the physical memory address of the
-> > structure from the /chosen/smbios3-entrypoint property in the device
-> > tree.
-> >
-> > Maybe Rob can suggest a normative reference to be added to section 2?
-> >
-> > Thanks,
-> > Ard.
-> >
-> >
-> >
-> >
-> > [0]
-> > https://lore.kernel.org/all/CAERbo5z6BzHqQxXdxPxmxE_eDR7GGGbt3A8kB0
-> > gQiWFBE-28Ug@mail.gmail.com/T/#u
-> > [1]
-> > https://www.dmtf.org/sites/default/files/standards/documents/DSP0134_3.
-> > 9.0.pdf
-> IMPORTANT NOTICE: The contents of this email and any attachments are conf=
-idential and may also be privileged. If you are not the intended recipient,=
- please notify the sender immediately and do not disclose the contents to a=
-ny other person, use it for any purpose, or store or copy the information i=
-n any medium. Thank you.
+> 
+>  .../bindings/net/dsa/lantiq,gswip.yaml         | 18 ++++++++++++++++--
+>  1 file changed, 16 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
+> index f3154b19af78..b494f414a3e1 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
+> @@ -6,8 +6,22 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+>  title: Lantiq GSWIP Ethernet switches
+>  
+> -allOf:
+> -  - $ref: dsa.yaml#/$defs/ethernet-ports
+> +$ref: dsa.yaml#
+> +
+> +patternProperties:
+
+patterns follow properties. Please do not introduce your own style, see
+example schema.
+
+> +  "^(ethernet-)?ports$":
+> +    type: object
+> +    patternProperties:
+> +      "^(ethernet-)?port@[0-6]$":
+> +        $ref: dsa-port.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          maxlinear,rmii-refclk-out:
+> +            type: boolean
+> +            description:
+> +              Configure the RMII reference clock to be a clock output
+> +              rather than an input. Only applicable for RMII mode.
+>  
+>  maintainers:
+>    - Hauke Mehrtens <hauke@hauke-m.de>
+> -- 
+> 2.51.2
 
