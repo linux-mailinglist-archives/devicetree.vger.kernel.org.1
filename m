@@ -1,84 +1,83 @@
-Return-Path: <devicetree+bounces-234491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B977CC2DD2D
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 20:15:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1A6FC2DD3C
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 20:15:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 01F754ED28E
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 19:15:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 16F074EE7EB
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 19:15:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 307AF320A30;
-	Mon,  3 Nov 2025 19:14:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8645C322A24;
+	Mon,  3 Nov 2025 19:14:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Th4VRFNF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xTSzM+oh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 262FC29992A
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 19:14:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D51F931E11D
+	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 19:14:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762197289; cv=none; b=BP8DFNrJJrpA/mpbvZNvpXbuO1wmRxTWecLcicJ+KFfmJ7fW7iavDWj5gC2oGgSED7BA7u3IPf1LCB9NqNAeKhoFGObwuGS0uCeKtRbR6ytlgChyTU9fNTxe/uMAnSydRAXOiPskauwjjjb2f+u2hdMyAiNQYqnCFEuxLTjVPN4=
+	t=1762197291; cv=none; b=LRsCF2ISyOApQcUWVgiu7wmYn0q9oGmqx+knLQ/VLRdJdsDWjdQoGbqFqLpunMf187QOjbY8v0nOJrXFV2JGtNQCP2u6iaoBEfGb9DWqx4+2ntCwjpNCdMDMbUbx2+ehxnKK+liyIlm4cA5S8x6Selox9USe0ZuVvJZvmIYWeFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762197289; c=relaxed/simple;
-	bh=WT2dsAzXYVBb9NdPdZeThrS/5TWjahvSwPKAMVOLm+k=;
+	s=arc-20240116; t=1762197291; c=relaxed/simple;
+	bh=9sAYfR8Q8tXsUci19b2cN9NhG0oDMU3Ts7x6dco4kts=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=BqkjG1EzLoij0laDjR7MHTiODi/uQmsuLkpkLP9OB2dZLPXUXXkei0hoYkSvSeMNABJnhwP59eXy47KMxIilnboqhU1FyryAxdBnkSdkH1tBQY4495RSoA2KAZV6qPZDCJqvQiaA8F5VTavOK4fbwOSKyWM2kKeu4Luvv6H9IxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Th4VRFNF; arc=none smtp.client-ip=209.85.218.53
+	 In-Reply-To:To:Cc; b=Decn0Hlp9PunuZTiCsCUS/RocaTNyNq0M6Vimyz4j7shru2+32t4WacxZXHl2NizZyzM3rZoJD3bKLVV6uMdrE1CvAbye5Ks99aB+WkcA6V+talRQlGZcYcMTmhv5MmW3zlyo4KGDmO4HAs9s1Ls7O7bAis6KbhxpDkWrh8awzQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xTSzM+oh; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b715064bed6so111973066b.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 11:14:46 -0800 (PST)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b7200568b13so55949066b.1
+        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 11:14:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762197285; x=1762802085; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1762197286; x=1762802086; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=MHGPwfdrGUrUwEO7k7GuS8nV8/DWovHVstgAXC/1GYE=;
-        b=Th4VRFNF9ke5Pm17QmuZ2MRPKcRCkPFu3xb/LHXta3bIzmAb4Fmw8tKo6xn57+q+EN
-         kusL1GzxEhhR4rZLJKCR5LMFiE1QDKU5ZhUvXvKbAo+MDIJYADY+qFMcAWvHSJxJknMt
-         GMT+/yh4WyegWNqtD3mPbs15XxtmfEc7zZb0Kyyp0jPJBG5G4fgIY9yeiDQPILIkBGpo
-         3P9hTCZspQKIKbmx0nqvzWhdABNcorJ9rjA9Rl9VwnYo7NNp7NnmvSz591/tMZubSX8k
-         U7zyLavv4MB+37eV2yLtMHBUiPKo6FIE8brWIMvzU4CNe88F0jygQxBeTXHeTgMlxvFR
-         QJFA==
+        bh=XdqXlFzErV3w1gdAJhq9NKzHgWAXrtoJ/uLRhjCa4XA=;
+        b=xTSzM+ohMEYLjVTErqnIh7FvLpoFU6entX9fKnuGIB3QKjQDIPeD/FOH2LJaiH0ZaV
+         BCux4aahXTLnOCBQt/93ERoC/s9Zk0VP9aGOGmDVlGXABkVnG7XXCC++EIeefrqwucIf
+         TXB/E9eMqslKThkgftdm9PpZXt3Zq+5KyWabpY8+8ymEIubaYqGm/i9R09EHe2KAkHsf
+         ga7foCJjjKxh5PST+Xs9Qydb6ltes6pUTZXEXUuDV01rxxhmLlRmvWxmUwxJQmEXAje+
+         rRtN5ULJfrfZVA0rjt2mYnhTTlIqNvvk/+ZL3bFiPK2YQlBTNWTm0DX+if3ePi9fBMHW
+         yDVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762197285; x=1762802085;
+        d=1e100.net; s=20230601; t=1762197286; x=1762802086;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=MHGPwfdrGUrUwEO7k7GuS8nV8/DWovHVstgAXC/1GYE=;
-        b=gDbNM1Erw8P59IWbL8CDpvKOcF5LUody7u0+hugY25g+z3TYB7+foOtrdC0bkBEFX9
-         dlFxgQS6LYf+voea4YZ80bzHyhEWA6llIOzZcc74xPA8M/rjrM+kJpIyNK0TX++qzlZt
-         wLCthPuR5H9krZl8SWy0Ksp6I9Ft6VUeSSw8YnsecM0NIEwxlRhR2oasjQaUTm9JT6Nz
-         wciVyThXkyCH3qAnmBUkG27/WlB/eYk9RzKIL0eK9ymJntxYMC0OUaGynQ+rs/2FZRE1
-         b+XkIgimSkJAH3QKD9RQGdw2Gpz/pbEZe12Vn7RcBDLXqkqVHhFkK3El0lHmFk9Uttbj
-         BeRg==
-X-Forwarded-Encrypted: i=1; AJvYcCXbT1FPyIQ9L1xj9YjR2nhFFwle6medNvnHrPfC7KyIfbIFYRJjsJPP50Ew+aFR16w5MyoIafBaRxdZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz4KUG+s1Yt5KF0QdJ766zoC69zxTNkpLAN9te4tSj48TVVddze
-	YUBzsspHagCqHvOFu2jEch8gmbngqjLYpGq3Vb3/ONLGg1ULhidtGGLnL8WVDmViBUg=
-X-Gm-Gg: ASbGncuQjRzyThKhM1/keRnGoogEu0ckNMqWI58Vkz7svozKlcyxCgqy+RQglunJssa
-	pDWYFDD6qVy/85UyrCZ8dyK+G45GUDf6qtS420yF3pFnr9TvGeESUZ86XuB3yWjmyBDciMBeli5
-	TBTEUAyuFwQP4lfTG4FsOgSe+B1e7XLN+4sEEHsdKtG2L6tRBQOTG1pJ1z+Scoi0DkI84G6jdxF
-	0FkrlnafcSTIcmaTjsF71g04xHOuYWotVuwSCJ6JfHb8Kn8q0uOh3Moo0nbwT/tiq+TpL6P/kRc
-	9tMckDGgDYbUAQxftPD8YtCX+4knD/eEObw3CzGV+8ykNo7SdjMqgkC0PXTID576MSSj9jdWnZE
-	0UNHBEPlOGmxudrVv0ggnEiNfY6IAaPA2TsNglF3UEF/eQspOc3XwyxZcfpdyRzMnqKT67DiG08
-	ukPoVciJ1I9HGRBSj82owJWL4Rf80NeDlD1mz+80ZoTnXkMJ4/DnQ3nfYz39EGXWnCio7XajP94
-	JoJh1ag0Q==
-X-Google-Smtp-Source: AGHT+IErKoUS3GpwEuzvpwY/f4z4DJdXi43mFUP7RFgT7Le8+6xbUl3oFknUE11HGTaGzQhPL0D5Jg==
-X-Received: by 2002:a17:907:7f2a:b0:b57:2ffa:f17e with SMTP id a640c23a62f3a-b7070132a9dmr1462021566b.19.1762197285392;
+        bh=XdqXlFzErV3w1gdAJhq9NKzHgWAXrtoJ/uLRhjCa4XA=;
+        b=Z02xXIeAZ/VwIFuJhx9dx6a6XYlbmPullXC2jHsJf8tw83at+wCybbu2UkRJoSMmBi
+         FafCI9DzkQ2YZj9CgkCGxU5LKhlzCXumQ7vAxTT6aDkK/khtpxMqfCG/Fef6N/Cq80gi
+         sH6OvB+cj1Kq8hyeSUM/0+Hmj7/yeugRjUQmN0JZhKs5s4Czy4pK84cQf/mtUXt+2Plf
+         TxoT1RdJYX36Rx45vJ7oz5qQWa3qcz31sf9vC8Xv8Aeo3hcnqahg2hL5vbka5xHUc2p5
+         CbIdUPzHoWx2MeED/HQXU0IlziKvXgUh5uEwfCLdBalWzFn3hGn7aQfd/YEskvgzoqfs
+         TezA==
+X-Forwarded-Encrypted: i=1; AJvYcCWhMfmhQ33/S/8+AUArMbfksSIW4Z654/7Uj8l7RTkADhvaEz+mk94VOomw4EDyAJAYRWy2v6RQA6kf@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBxzCLd6C0NmRjInh9oJVEHtY4wX1EqRvMgcCfWM4rsPFoE4f9
+	CcA+sL3iiPiPV0wsi4VoOD4rmzQd3JCcnDfOBfzYkLS30Beqv8BewUuin1WeHpuYxU4=
+X-Gm-Gg: ASbGncv01/mdHhVLcqb3Ci6mm17EHUYYYTsFOwPhZBKA3n3X0JvY9RQf3mfLivDtbSD
+	XRur0TV8Y/A4tYphZiH3qPNfNG6DmECTjClK/ztDbba75whNZiwHMM4ZdwIvdTcTU+QgZWiznt2
+	GYsht67tWQWQVo+HkLBN1Fr6RfxjX52Ogh7+qxmW9en+eDJy7YkSVCGRiqOwSzMCON5hBvQZQtk
+	ykissVws4bInUt9sjjl2J7mC8leKjQo7yOf0OXe0ZRve4njNHlaE73Oa9vJLGQHYSsEVQZ4f/A0
+	pjNElxxuVP/nxgGuwqiCwekRtm9z3Dp9Hotpii6XGJGtNpUvvY7iDZsfHJ2Glm2ofP+E7yrITun
+	wVzHq1DUPB7i/0+N1PE9e7x4URbqomeMege2fGv0SaXjDIF6VCbxteuQ6vD8ijlQLwQgzqJO06r
+	UOcTkxhDJRF4tXT1ZX2b9j6IEEz7P9QwjJCDjkF/gzHLWLDbWv6S/FxDyNcOm+Cxuwy6Bnmtg=
+X-Google-Smtp-Source: AGHT+IHclgdtV1uDsfGuUcwPrRCIxl9xPHteVOU4tXngK3Zyx/wOSbVCBZtl6qbOcWI1F2xiRNExRA==
+X-Received: by 2002:a17:907:3d10:b0:b55:c30d:c9fc with SMTP id a640c23a62f3a-b70700ad6cbmr1282704366b.11.1762197285873;
         Mon, 03 Nov 2025 11:14:45 -0800 (PST)
 Received: from puffmais2.c.googlers.com (254.48.34.34.bc.googleusercontent.com. [34.34.48.254])
         by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b70b9f29c8asm466765066b.8.2025.11.03.11.14.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Mon, 03 Nov 2025 11:14:45 -0800 (PST)
 From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Mon, 03 Nov 2025 19:14:43 +0000
-Subject: [PATCH v3 04/20] regulator: dt-bindings: add s2mpg11-pmic
- regulators
+Date: Mon, 03 Nov 2025 19:14:44 +0000
+Subject: [PATCH v3 05/20] dt-bindings: mfd: samsung,s2mpg10: Link
+ s2mpg10-pmic to its regulators
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,7 +86,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20251103-s2mpg1x-regulators-v3-4-b8b96b79e058@linaro.org>
+Message-Id: <20251103-s2mpg1x-regulators-v3-5-b8b96b79e058@linaro.org>
 References: <20251103-s2mpg1x-regulators-v3-0-b8b96b79e058@linaro.org>
 In-Reply-To: <20251103-s2mpg1x-regulators-v3-0-b8b96b79e058@linaro.org>
 To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
@@ -103,237 +102,82 @@ Cc: Peter Griffin <peter.griffin@linaro.org>,
  =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
 X-Mailer: b4 0.14.2
 
-The S2MPG11 PMIC is a Power Management IC for mobile applications with
-buck converters, various LDOs, power meters, NTC thermistor inputs, and
-additional GPIO interfaces. It typically complements an S2MPG10 PMIC in
-a main/sub configuration as the sub-PMIC.
+Update the regulators node to link to the correct and expected
+samsung,s2mpg10-pmic regulators binding, in order to describe the
+regulators available on this PMIC.
 
-S2MPG11 has 12 buck, 1 buck-boost, and 15 LDO rails. Several of these
-can either be controlled via software (register writes) or via external
-signals, in particular by:
-    * one out of several input pins connected to a main processor's:
-        *  GPIO pins
-        * other pins that are e.g. firmware- or power-domain-controlled
-          without explicit driver intervention
-    * a combination of input pins and register writes.
+Additionally, describe the supply inputs of the regulator rails, with
+the supply names matching the datasheet.
 
-Control via input pins allows PMIC rails to be controlled by firmware,
-e.g. during standby/suspend, or as part of power domain handling where
-otherwise that would not be possible. Additionally toggling a pin is
-faster than register writes, and it also allows the PMIC to ensure that
-any necessary timing requirements between rails are respected
-automatically if multiple rails are to be enabled or disabled quasi
-simultaneously.
+Note 1: S2MPG10 is typically used as the main-PMIC together with an
+S2MPG11 PMIC in a main/sub configuration, hence the datasheet and the
+binding both suffix the supplies with an 'm'.
 
-While external control via input pins appears to exist on other
-versions of this PMIC, there is more flexibility in this version, in
-particular there is a selection of input pins to choose from for each
-rail (which must therefore be configured accordingly if in use),
-whereas other versions don't have this flexibility.
-
-Add documentation related to the regulator (buck & ldo) parts like
-devicetree definitions, regulator naming patterns, and additional
-properties.
-
-Since S2MPG11 is typically used as the sub-PMIC together with an
-S2MPG10 as the main-PMIC, the datasheet and the binding both suffix the
-rails with an 's'.
+Note 2: The changes are done within an allOf: / if: match, because the
+intention is to add the S2MPG11 PMIC to this binding as well, and doing
+it this way avoids additional churn in those follow-up patches.
 
 Signed-off-by: André Draszik <andre.draszik@linaro.org>
 
 ---
-Note: checkpatch suggests to update MAINTAINERS, but the new file is
-covered already due to using a wildcard.
-
 v3:
-- mention NTC thermistor inputs in commit message
-- drop PCTRLSEL values that can be described using standard properties
-  (Krzysztof), drop useless ones, rename the remaining ones
-- drop maxItems:1 where not needed (Krzysztof)
-- samsung,ext-control-gpios -> enable-gpios (Krzysztof)
-- drop buckboost from 'allOf' limitation - not needed as it has its own
-  specific description
-
-v2:
-- fix commit message typos: s2mp1 -> s2mpg1
-- mention GPIOs in commit message
+- move to new samsung,s2mpg10.yaml file
+- move all patternProperties to top-level
 ---
- .../regulator/samsung,s2mpg11-regulator.yaml       | 136 +++++++++++++++++++++
- .../regulator/samsung,s2mpg10-regulator.h          |  14 +++
- 2 files changed, 150 insertions(+)
+ .../devicetree/bindings/mfd/samsung,s2mpg10.yaml   | 37 ++++++++++++++++++++++
+ 1 file changed, 37 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/regulator/samsung,s2mpg11-regulator.yaml b/Documentation/devicetree/bindings/regulator/samsung,s2mpg11-regulator.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..0080ac23b6c926cdc632903e2b2716c12e8a4991
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/samsung,s2mpg11-regulator.yaml
-@@ -0,0 +1,136 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/samsung,s2mpg11-regulator.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Samsung S2MPG11 Power Management IC regulators
-+
-+maintainers:
-+  - André Draszik <andre.draszik@linaro.org>
-+
-+description: |
-+  This is part of the device tree bindings for the S2MG11 Power Management IC
-+  (PMIC).
-+
-+  The S2MPG11 PMIC provides 12 buck, 1 buck-boost, and 15 LDO regulators.
-+
-+  See also Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml for
-+  additional information and example.
-+
-+definitions:
-+  s2mpg11-ext-control:
-+    properties:
-+      samsung,ext-control:
-+        description: |
-+          These rails can be controlled via one of several possible external
-+          (hardware) signals. If so, this property configures the signal the PMIC
-+          should monitor. The following values generally corresponding to the
-+          respective on-chip pin are valid:
-+            - 0 # S2MPG11_PCTRLSEL_PWREN - PWREN pin
-+            - 1 # S2MPG11_PCTRLSEL_PWREN_MIF - PWREN_MIF pin
-+            - 2 # S2MPG11_PCTRLSEL_AP_ACTIVE_N - ~AP_ACTIVE_N pin
-+            - 3 # S2MPG11_PCTRLSEL_G3D_EN - G3D_EN pin
-+            - 4 # S2MPG11_PCTRLSEL_G3D_EN2 - G3D_EN & ~AP_ACTIVE_N pins
-+            - 5 # S2MPG11_PCTRLSEL_AOC_VDD - AOC_VDD pin
-+            - 6 # S2MPG11_PCTRLSEL_AOC_RET - AOC_RET pin
-+            - 7 # S2MPG11_PCTRLSEL_UFS_EN - UFS_EN pin
-+            - 8 # S2MPG11_PCTRLSEL_LDO13S_EN - VLDO13S_EN pin
-+
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        minimum: 0
-+        maximum: 8
-+
-+      enable-gpios:
-+        description:
-+          For rails where external control is done via a GPIO, this optional
-+          property describes the GPIO line used.
-+
-+    dependentRequired:
-+      enable-gpios: [ "samsung,ext-control" ]
-+
-+properties:
-+  buckboost:
-+    type: object
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
-+    description:
-+      Properties for the buck-boost regulator.
-+
-+    properties:
-+      regulator-ramp-delay: false
-+
+diff --git a/Documentation/devicetree/bindings/mfd/samsung,s2mpg10.yaml b/Documentation/devicetree/bindings/mfd/samsung,s2mpg10.yaml
+index 841b7c8ab556bc6a3d4cc8d5a0c811814d4176be..dc06333a4050af69297ac3cae0628a0fffc3fcc9 100644
+--- a/Documentation/devicetree/bindings/mfd/samsung,s2mpg10.yaml
++++ b/Documentation/devicetree/bindings/mfd/samsung,s2mpg10.yaml
+@@ -38,9 +38,46 @@ properties:
+ 
+   wakeup-source: true
+ 
 +patternProperties:
-+  # 12 bucks
-+  "^buck(([1-9]|10)s|[ad])$":
-+    type: object
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
++  "^vinb([1-9]|10)m-supply$":
 +    description:
-+      Properties for a single buck regulator.
++      Phandle to the power supply for each buck rail of this PMIC. There is a
++      1:1 mapping of supply to rail, e.g. vinb1m-supply supplies buck1m.
 +
-+    allOf:
-+      - $ref: "#/definitions/s2mpg11-ext-control"
++  "^vinl([1-9]|1[0-5])m-supply$":
++    description: |
++      Phandle to the power supply for one or multiple LDO rails of this PMIC.
++      The mapping of supply to rail(s) is as follows:
++        vinl1m - ldo13m
++        vinl2m - ldo15m
++        vinl3m - ldo1m, ldo5m, ldo7m
++        vinl4m - ldo3m, ldo8m
++        vinl5m - ldo16m
++        vinl6m - ldo17m
++        vinl7m - ldo6m, ldo11m, ldo24m, ldo28m
++        vinl8m - ldo12m
++        vinl9m - ldo2m, ldo4m
++        vinl10m - ldo9m, ldo14m, ldo18m, 19m, ldo20m, ldo25m
++        vinl11m - ldo23m, ldo31m
++        vinl12m - ldo29m
++        vinl13m - ldo30m
++        vinl14m - ldo21m
++        vinl15m - ldo10m, ldo22m, ldo26m, ldo27m
 +
-+    properties:
-+      regulator-ramp-delay:
-+        enum: [6250, 12500, 25000]
-+        default: 6250
-+
-+  # 11 standard LDOs
-+  "^ldo([3-79]|1[01245])s$":
-+    type: object
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
-+    description:
-+      Properties for a single LDO regulator.
-+
-+    properties:
-+      regulator-ramp-delay: false
-+
-+  # 2 LDOs with possible external control
-+  "^ldo(8|13)s$":
-+    type: object
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
-+    description:
-+      Properties for single LDO regulator.
-+
-+    allOf:
-+      - $ref: "#/definitions/s2mpg11-ext-control"
-+
-+    properties:
-+      regulator-ramp-delay: false
-+
-+  # 2 LDOs with ramp support and possible external control
-+  "^ldo[12]s$":
-+    type: object
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
-+    description:
-+      Properties for a single LDO regulator.
-+
-+    allOf:
-+      - $ref: "#/definitions/s2mpg11-ext-control"
-+
-+    properties:
-+      regulator-ramp-delay:
-+        enum: [6250, 12500]
-+        default: 6250
-+
-+additionalProperties: false
+ required:
+   - compatible
+   - interrupts
+   - regulators
+ 
+ additionalProperties: false
 +
 +allOf:
-+  # Bucks 4, 6, 7 and 10 can not be controlled externally - above definition
-+  # allows it and we deny it here. This approach reduces repetition.
 +  - if:
-+      anyOf:
-+        - required: [buck4s]
-+        - required: [buck6s]
-+        - required: [buck7s]
-+        - required: [buck10s]
++      properties:
++        compatible:
++          contains:
++            const: samsung,s2mpg10-pmic
 +    then:
-+      patternProperties:
-+        "^buck([467]|10)s$":
-+          properties:
-+            samsung,ext-control: false
-diff --git a/include/dt-bindings/regulator/samsung,s2mpg10-regulator.h b/include/dt-bindings/regulator/samsung,s2mpg10-regulator.h
-index 4a6bf13442f50bb1c475728722eaebd0ec3dcbfa..d9c16bba4d85809df99c2887b8dc61ea1bea5ad1 100644
---- a/include/dt-bindings/regulator/samsung,s2mpg10-regulator.h
-+++ b/include/dt-bindings/regulator/samsung,s2mpg10-regulator.h
-@@ -20,6 +20,10 @@
-  *
-  * ldo20m supports external control, but using a different set of control
-  * signals.
-+ *
-+ * S2MPG11 regulators supporting these are:
-+ * - buck1s .. buck3s buck5s buck8s buck9s bucka buckd
-+ * - ldo1s ldo2s ldo8s ldo13s
-  */
- #define S2MPG10_EXTCTRL_PWREN       0 /* PWREN pin */
- #define S2MPG10_EXTCTRL_PWREN_MIF   1 /* PWREN_MIF pin */
-@@ -36,4 +40,14 @@
- #define S2MPG10_EXTCTRL_LDO20M_EN2  11 /* VLDO20M_EN & LDO20M_SFR */
- #define S2MPG10_EXTCTRL_LDO20M_EN   12 /* VLDO20M_EN pin */
- 
-+#define S2MPG11_EXTCTRL_PWREN       0 /* PWREN pin */
-+#define S2MPG11_EXTCTRL_PWREN_MIF   1 /* PWREN_MIF pin */
-+#define S2MPG11_EXTCTRL_AP_ACTIVE_N 2 /* ~AP_ACTIVE_N pin */
-+#define S2MPG11_EXTCTRL_G3D_EN      3 /* G3D_EN pin */
-+#define S2MPG11_EXTCTRL_G3D_EN2     4 /* G3D_EN & ~AP_ACTIVE_N pins */
-+#define S2MPG11_EXTCTRL_AOC_VDD     5 /* AOC_VDD pin */
-+#define S2MPG11_EXTCTRL_AOC_RET     6 /* AOC_RET pin */
-+#define S2MPG11_EXTCTRL_UFS_EN      7 /* UFS_EN pin */
-+#define S2MPG11_EXTCTRL_LDO13S_EN   8 /* VLDO13S_EN pin */
-+
- #endif /* _DT_BINDINGS_REGULATOR_SAMSUNG_S2MPG10_H */
++      properties:
++        regulators:
++          $ref: /schemas/regulator/samsung,s2mpg10-regulator.yaml
 
 -- 
 2.51.2.997.g839fc31de9-goog
