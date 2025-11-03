@@ -1,90 +1,75 @@
-Return-Path: <devicetree+bounces-234410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A52EC2C895
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 16:01:54 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC2DEC2CAF5
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 16:23:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 490614EFE81
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 14:57:30 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7B33E4F386C
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 15:13:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 533FD3321A3;
-	Mon,  3 Nov 2025 14:51:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A180314B63;
+	Mon,  3 Nov 2025 15:00:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Q4BzEEfE"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="N9Lsjbvl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 788AF3321A8;
-	Mon,  3 Nov 2025 14:51:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB98828506C;
+	Mon,  3 Nov 2025 15:00:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762181497; cv=none; b=jN+uXezoqKFj0emLdBI4cs4983HfK7euacD/AvQ4InTIU8sQ8Oyyxm3SfS16PBxBgR6/ROQkm8y9rc9fMUw2xa1rKajvWedp/rzKgBNzkYB5NfHSEZPv1IdszgFx95bMsWC70gHgT5orc57N/10H5TJNDqJFyDVjilxE11vM/VY=
+	t=1762182054; cv=none; b=swR/3G/A0bMqblZ0j8JckyMDGYSRM9G5xNA494L1/JzhXSnYZljl2mYLqWJPeHOuMN1Htm/4XT7SauepzkBfzRfZ/svr0C/8KvAKgi9qwmlTmpnLGhts8W6HN1DjC0J0o3DTtusScNrZ5lGMkW0407m9njbdg7p1ZI9fPkjC64U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762181497; c=relaxed/simple;
-	bh=G2KqnsuQ5Zzarl98yuoYLfJaqg+1gXkeK1KX3acp8Fk=;
+	s=arc-20240116; t=1762182054; c=relaxed/simple;
+	bh=6RwdVLCfvW/I8UZyHeN/hVkPySSPR4Zt7NQljAFMBJA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eNqGaecyuWec8wYIVvQbIlBXhDFgGu/z2lvjXgNH80gK0Phj2eWuVJ2jEKhToyGW3LDMO9eLQN2IqFP3B8W47hTTlNm5ZIue0jsa2IREGK6MLltWuA78pjLtcabQxBoWRa0LSEvKOwPw4Ng7u9rZJ+2p6CZxr6eRph7y7eEvhGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Q4BzEEfE; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+	 Content-Type:Content-Disposition:In-Reply-To; b=YxXcfS3DQVDiztMMP34bwB9dt3kQwufE0CQVO3IkcqWMqx60qZ64Txpn4vxczmvzPslOYLZEeg8NXC9GG075iFVxxq03yjgywrfbSFdXO9dYD7sJOxf59Fgq3gXeG6fc4wk3CcOlFH/lhbaTEE8RC3ANVonen6ydGFNNgcovXao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=N9Lsjbvl; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762181495; x=1793717495;
+  t=1762182052; x=1793718052;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=G2KqnsuQ5Zzarl98yuoYLfJaqg+1gXkeK1KX3acp8Fk=;
-  b=Q4BzEEfE9h3aaycBHaR0R49d3D8dHCVcUIZlrumblk6ib8dNaNhaReio
-   tfDjRA0QvYBiPZ05AuEzJ1rrZ52uj39hGtAhdzw+XtwwFVkIoqvy4gK8D
-   KGwNo8G3XRKQFOk6r1Fl+T/7rz0Wz5Qv10Bz96hYRks1v4yb5wJmkMjPc
-   DHuIFsV6quza0Oh/FmJWsXdEApINmPAjpuFove0Au8nYbfoy/qjn38ijl
-   s4yuYhOV0wXluB0F+ndKShLsN2khx0ZNEO1pIJ6b1Q+QaG/qWHM5dm3Pd
-   PpdzJzsbhYM4ozjelj+Q78SS8JFsKgfTHx6jD68JMeCytX4iBImMNVJlZ
-   A==;
-X-CSE-ConnectionGUID: apaPngRJR1GI2Qlj4hzL+A==
-X-CSE-MsgGUID: UyoBvm7TSruLKab26y9ruA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="81666331"
+  bh=6RwdVLCfvW/I8UZyHeN/hVkPySSPR4Zt7NQljAFMBJA=;
+  b=N9LsjbvlQqzOY1/hlIXWANdnXLXdCCJUTEKwIlmi7yh+y59moRGa0rDJ
+   cz39HNn+sO4TrlBQ2/iQuHUFqvN1QHf3we+byViOulthEVNDRcONOOl52
+   0h0wB/X3deSXqoS0z28/yIn1JlcK7y5qgAwWaN8xXqibeW3K6e5g6wPIX
+   JzG55OuagjVYduQNks+xYNEtQ6qGHmPQNkAcuQ7VKzk6DfffnfkTA2Cjy
+   rcPJ5crIGM4z4HFfLpsaJrKL0YTMwCsvncwj4496bb3YmCNIuzKjCtWzI
+   mRpWijtE9gcm48AS1ZZQyQ9XTk3RU/mX/nmOGIym7QO6XTaq4f6OScuOA
+   g==;
+X-CSE-ConnectionGUID: knZcKNmfS++0oHCSBatJNg==
+X-CSE-MsgGUID: GYQoA4BTQ7WNPheFsLZIpg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="75368226"
 X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; 
-   d="scan'208";a="81666331"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2025 06:51:35 -0800
-X-CSE-ConnectionGUID: UHG/pcslROie+eo1QdVyhA==
-X-CSE-MsgGUID: sNHlAtf+QX6OTevRICShpQ==
+   d="scan'208";a="75368226"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2025 07:00:52 -0800
+X-CSE-ConnectionGUID: Ijxr1MP2TACwV7q1U6H48A==
+X-CSE-MsgGUID: VheaoV/KQX6UDEVwfnyYow==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; 
-   d="scan'208";a="187607026"
-Received: from smoehrl-linux.amr.corp.intel.com (HELO ashevche-desk.local) ([10.124.220.216])
-  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2025 06:51:31 -0800
-Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1vFvu1-00000005B8f-1G3Y;
-	Mon, 03 Nov 2025 16:51:25 +0200
-Date: Mon, 3 Nov 2025 16:51:24 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Pascal Eberhard <pascal.eberhard@se.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 2/4] iio: adc: Add support for the Renesas RZ/N1 ADC
-Message-ID: <aQjBbBuZkARkGGan@smile.fi.intel.com>
-References: <20251103141834.71677-1-herve.codina@bootlin.com>
- <20251103141834.71677-3-herve.codina@bootlin.com>
+   d="scan'208";a="217707603"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by fmviesa001.fm.intel.com with ESMTP; 03 Nov 2025 07:00:50 -0800
+Date: Mon, 3 Nov 2025 22:46:47 +0800
+From: Xu Yilun <yilun.xu@linux.intel.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Dinh Nguyen <dinguyen@kernel.org>, devicetree@vger.kernel.org,
+	linux-fpga@vger.kernel.org, yilun.xu@intel.com, trix@redhat.com,
+	robh+dt@kernel.org, krzysztof.kozlowskii+dt@linaro.org,
+	conor+dt@kernel.org, michal.simek@amd.com
+Subject: Re: [PATCH] dt-bindings: fpga: update link for Altera's and AMD
+ partial recon
+Message-ID: <aQjAV/fVWManlprT@yilunxu-OptiPlex-7050>
+References: <20251101190848.24271-1-dinguyen@kernel.org>
+ <20251102-ginger-pig-of-lightning-f65ef4@kuoka>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,21 +78,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251103141834.71677-3-herve.codina@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <20251102-ginger-pig-of-lightning-f65ef4@kuoka>
 
-On Mon, Nov 03, 2025 at 03:18:32PM +0100, Herve Codina (Schneider Electric) wrote:
-> The Renesas RZ/N1 ADC controller is the ADC controller available in the
-> Renesas RZ/N1 SoCs family. It can use up to two internal ADC cores (ADC1
-> and ADC2) those internal cores are not directly accessed but are handled
-> through ADC controller virtual channels.
+On Sun, Nov 02, 2025 at 05:41:54PM +0100, Krzysztof Kozlowski wrote:
+> On Sat, Nov 01, 2025 at 02:08:48PM -0500, Dinh Nguyen wrote:
+> > The link is giving the 404 error, so use the correct link for the
+> > documents
+> > 
+> > Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/fpga/fpga-region.yaml | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+Reviewed-by: Xu Yilun <yilun.xu@linux.intel.com>
 
--- 
-With Best Regards,
-Andy Shevchenko
+Applied to for-next, thank.
 
-
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
 
