@@ -1,226 +1,145 @@
-Return-Path: <devicetree+bounces-234314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42F47C2B3B3
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 12:04:29 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2399FC2B3DA
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 12:07:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 31DF14E35E7
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 11:04:28 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7154C345080
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 11:07:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C43B72FFFB9;
-	Mon,  3 Nov 2025 11:04:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 630CF30103C;
+	Mon,  3 Nov 2025 11:07:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g7qj4bp9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="acI4HVvX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com [209.85.214.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D6992FBDF9
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 11:04:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1ACF20E702
+	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 11:06:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762167865; cv=none; b=Jnzk8te3n1HaQxV99FueK5fqGGRWxTCpW41FZD7XvhArLo/qZS48fzzRUqtVJw+yaRZ9da9G0Fwlokd7XAXXuQhwacb9LTCZ6unH/XOiZ1io1pjq4koU+H36FJZoi4D8AY8iHkhc2gY5TX1N3b5l9ldWc0nrO7Mt//6m4oxeC/A=
+	t=1762168020; cv=none; b=CE1fU9D1+5P0Z+wGU36+ZwuwqXw4IbX94BnzFFwbeaiTYhWxnScdrC7DteD/WCfAe/LRE76CXGaM71Fq751ji1SKP+ALociCwqg1zDL1k0kw2RjdkPDnYXE3WzA0KkVA5BbAsdSRDzSoslYnJJMZUgOxiT4nMU9rAs5OEjhkf64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762167865; c=relaxed/simple;
-	bh=YmXJRtzOufvUHPwELRF0zdL2TiwoBzb3Znnmr9vFFPA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=pu6Hbkuu1L3uOFuSFGlnEskSxAKKAT5MjtsdfSIzg+QZXFq4VMqZ0F1+XXAImwKRZQ54KipXnk5JHCm6S1CPIMoC+hi/5VvxD7aXn5WMB9mLkKIflSbLfbgfLc90YNdWduuQiSMY5QrzsDjOXbcDpbprLGsTQOVgifJDtlDaSVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g7qj4bp9; arc=none smtp.client-ip=209.85.128.48
+	s=arc-20240116; t=1762168020; c=relaxed/simple;
+	bh=4K8ff7naWva5QP5+rWneFBDK+QFz923xCqhRcHl62d0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Mg6DAiHBAxJmPKoI9zOACbEp7sVk3JnSCMNVFrvMU9o3IfGOCDKijc3bcRaMJGSGukMKym3T3aIonF3A/GhtRg0bWNuUk781PIuFmCWxaAWPy1ZWXw1Cv4cgcYNevMDlkBWOuKtzrMHIo9+KexJNEbQiHs8sRkNWTR7tF9ULSiU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=acI4HVvX; arc=none smtp.client-ip=209.85.214.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-475de184058so12499305e9.2
-        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 03:04:23 -0800 (PST)
+Received: by mail-pl1-f195.google.com with SMTP id d9443c01a7336-2951a817541so42420935ad.2
+        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 03:06:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762167862; x=1762772662; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=KswR4Jh4x5x2b1p6DA2Aa6YMOayJHkPhM0EO8G3PYyc=;
-        b=g7qj4bp9OZdgxwa6ziAdEvMThqlPTjoThuGJ/5Z4AGK6Q2wRCz/jhtonxBtTsdTzmq
-         zFxNTsoAarkXx1T9N0Mns3YRC/qmu2jy3UyMmSCAWWzUwJj1UdAwH6XfRCU0UOSOAHO+
-         T+aKV5OEFRLLEWx9nDDsR8TNAuLcatUQWddM98UAAtqLsftkKSDyU3bdREp8hTgW1gDO
-         UaVx+6ORQPsmqjO0QFoLW4BlBIG9y6i5ZIwMqzVdq2X+biZ8aXmYFPSO9Skmr/8b7B4/
-         dOXyUPyGprsQmrxVyFzaH7gb2vJTCBFiJarvtQDnX2adUY0tGuCTkeXKH7zFU36WChQ6
-         4ehw==
+        d=gmail.com; s=20230601; t=1762168018; x=1762772818; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=msKPrbmLk4Pe+fn3QzDxAI35yUJEjQv+lopXWiS4lts=;
+        b=acI4HVvXpDlipCGu3tF4pNA8mEaYI1wS8/ybxO6sMKNln0/f7Gj3M5kUfhyGVu8102
+         ABa0zey2hWthYSAA3OcCg7wcrTtW29eQqb/9dZae2Dp5KPdsn3G27R4MTbud2uCbhzgR
+         L0OqhTVA9v2QyG7/eVIekBPQDPMzgvApbmjEJGMW/MI2VGxZzSJBaAwpZq90S5eCjxLH
+         vJymWCOpwDc2FP8R7KKRDQ9fV5oYimwMkNNDJTgNvswhTJNz2lDrozvvzDlnEVn2K6Dg
+         JE1bN1jgtdF/mMnj5Omq440UNL4tT+1BFzmxb155G1QgizwJ7V3BuecGAE84hKKTrCrd
+         8ahQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762167862; x=1762772662;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KswR4Jh4x5x2b1p6DA2Aa6YMOayJHkPhM0EO8G3PYyc=;
-        b=LFveKxk4nsqhv4wcvuSwOCnZlgTEVg2gtUZeu0iTnLZXn32XXq4hukGnyw4JQ5frk0
-         JACDjWq+qSxPM8R0QeeFwcvOeDI4PUcNrksp5+02UkMNA8lLet7B2fL0Llb0avXS8q4P
-         KSNVcXoIPZb1wcCVQk1SMJpxDa3ZBJnQWs3Y0FKRuOpDjrcrOaLk2nUTtKpga517j8GU
-         IXCs+H2YzF2VCAg2Q/YkOqoTu6D1DtQ6GuXB90f437OXe3go0gj7OBtSme4+a9aU4wT/
-         KJu7NIlTqbZR3ZpC2mRRXobrlsy0g5ELrdoQ4Uzh6lLGx8wlpsR97c4GQGV7QvD1fKyL
-         PEaw==
-X-Forwarded-Encrypted: i=1; AJvYcCVliG+vUUeVCcY9OzLNDagapnyqKoYAyBaRrZ/dkbNLdhWCbcBPnYnPz6DijygdI6U7CiOAz+NUoccH@vger.kernel.org
-X-Gm-Message-State: AOJu0YwwUbNBSJ7vePadpiiNrahCsf36/cgyDIDldVs5SaflxcksxkbL
-	APZna1TF9DoxWdBzm7YLnx3dGRaYkVl6RKySRAgyciF7Hmrq6bWE0J+j
-X-Gm-Gg: ASbGncu/ptilNwK1PSTGgRo5fcceA1r3+4oSVgaQyNwSHJdeZal0C1bntrSHJmY0FrP
-	KIqoIc/0zN8TiRewYHaC9KqsXV8G6Uzd2rzctRdHeglTJlLRwzqw74ZUwOR7wppoUdGTAXEXS3M
-	AIs+kVTHSdRc3hnz9e61IXyl6DVPWaiytkDW2CqYz248l3I2bkQrbZqYlRf6mi1cRNRoFzkFn2G
-	ElpzzLJ43leVYBJpiD/YuHUjtUGvOb5Q8xaRR2H+74rsMaS52o6Czjp6+lsQ2tWr76XRigGDzKL
-	LAtAczPEjMXC7JJQMKKqo46N0s9ZJfSRXEgFBgt4PoYeSqLzPsc5V5r71nWbUb7aBzFOCk//2w/
-	OC/I5wgAot6o1LN5SZw3r+c/t1dWLpAolD1g04s4XAkoJ4/XCh9ID02OasfYxQNhMdmhajd1DPk
-	ut26Dmp2AT
-X-Google-Smtp-Source: AGHT+IGRXtPlRCze14TWLiPoffmVUCfzc62R00mariBM2Y0aUT/gJK67BJa3O83yh9SFO9vGANCX2Q==
-X-Received: by 2002:a05:600c:628e:b0:46d:3a07:73cd with SMTP id 5b1f17b1804b1-477346ee158mr99537455e9.23.1762167862299;
-        Mon, 03 Nov 2025 03:04:22 -0800 (PST)
-Received: from [192.168.1.187] ([161.230.67.253])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4773c2e677csm149685925e9.3.2025.11.03.03.04.21
+        d=1e100.net; s=20230601; t=1762168018; x=1762772818;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=msKPrbmLk4Pe+fn3QzDxAI35yUJEjQv+lopXWiS4lts=;
+        b=QXOHGYzGKgXeE5wYnVOI9fpWHZcwO/I3jdarqoF6xPt6mIzQeHQuhhLIHMcqxBFfwo
+         BBg2JEx2uuMNiN620W1yq9s18hUMY8t92tt7HEsPaHOI4DO6DtbyTZWyfbMrLYSTXjqk
+         Rhnn7i8TonQJ9+nKXB9cwRGvc3UBee01H5GeEMLYa/isQxETcr62JXCwxcSh/0oXXC13
+         w2P/8RvFPLeeXmXKneoeoSDIljGeyx0JGub8HM/3L0RrdRV/GA8y9whcC2VDX1X+tWrI
+         y3SLJGc2K/5hkIS2iv5HYCgnQPzvdP8cs6q27FcUHBmVuTxhgFOTLzFzPOxRmFlZ6FT+
+         PC2w==
+X-Forwarded-Encrypted: i=1; AJvYcCVR50X29J/rMWuCrirNmOOK2OCDglmgvsRYAiVxAq4B+61Go65w4h8ayXpW1PXUlxc1mOHD9oB5OFgT@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJ+augM5FejAqhY17jjtm/cfArLaXLuef8UKs75uO+iFoC6ubB
+	1v2Bx36jk1LY12GzlqR6Y0RwDlP2wtBb4H484WJNW9ccN3pjsQ9UcbGf
+X-Gm-Gg: ASbGncvRnlZOSIPU+JNzlqHGbDUnQnm3/qV8PqS2fAmOxjTDuzsiOKNurEIKtOuX+fD
+	jVWOnrmEWJ5+gGj6SWhioVF7mH7Tfm40LeR4z4UvPQ6n6++zzbW3kVquvXbluJ6M/jr6UKQQHOs
+	VEl7+OoTLlDtXOngrM0IGnARFqzGCywFFHA8k6wFZ7Kw+wTNZCXY5t28HQVi3ulpSB1ux4W5psM
+	3ND0yEWxVjJS1m+yBKYjmBgK/21hE6pgEAO1R5JuPXvtrBDd0eEXiJ3NJVdRJIM7ap+Bm+OgQ4Q
+	NLG8jCUOxF4CSvwuxWjZ9Ec3y/e5Z/kYfjK7Z6pZZIFS8mE+3d6y8DCooICrI+EB/+EtZGjk3yh
+	rPm03Xvc7aKH6M0cES+0pwt4lDw1qVRUbdvNeaqo4ijB9i73JdHv1L6xwZ97G/QKKsPZfCc0VFT
+	YqO4/liQvHXqa1DDAI1g==
+X-Google-Smtp-Source: AGHT+IG3q2ScRjcYVlSQKEOGzfSShOd+VCm6j/zTtP/syrwGIinOh8u7Pw68B0XoVDTjaFHiUhDd5Q==
+X-Received: by 2002:a17:902:e74b:b0:269:b30c:c9b8 with SMTP id d9443c01a7336-2951a55923fmr150821025ad.56.1762168018110;
+        Mon, 03 Nov 2025 03:06:58 -0800 (PST)
+Received: from VM-0-14-ubuntu.. ([43.134.26.72])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2955615d720sm84025575ad.65.2025.11.03.03.06.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Nov 2025 03:04:21 -0800 (PST)
-Message-ID: <e56fce0f5e89037cab3889135d150fd4f28b4c31.camel@gmail.com>
-Subject: Re: [PATCH v5 2/2] regulator: max77675: Add MAX77675 regulator
- driver
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Joan Na <joan.na.devcode@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, 	linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Joan Na	 <joan.na@analog.com>
-Date: Mon, 03 Nov 2025 11:04:57 +0000
-In-Reply-To: <aQgXWGzUW720mH+P@HYB-iPCgmhaB8Cy.ad.analog.com>
-References: <20251029023253.150257-1-joan.na@analog.com>
-	 <20251029023253.150257-3-joan.na@analog.com>
-	 <3a9441f01e82dfcbdf146a809ba4a6f9604c63d7.camel@gmail.com>
-	 <aQgXWGzUW720mH+P@HYB-iPCgmhaB8Cy.ad.analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.1 
+        Mon, 03 Nov 2025 03:06:57 -0800 (PST)
+From: Junjie Cao <caojunjie650@gmail.com>
+To: Lee Jones <lee@kernel.org>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Helge Deller <deller@gmx.de>
+Cc: dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-fbdev@vger.kernel.org,
+	Pengyu Luo <mitltlatltl@gmail.com>,
+	Junjie Cao <caojunjie650@gmail.com>
+Subject: [PATCH v2 0/2] backlight: aw99706: Add support for Awinic AW99706 backlight
+Date: Mon,  3 Nov 2025 19:06:46 +0800
+Message-ID: <20251103110648.878325-1-caojunjie650@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Mon, 2025-11-03 at 11:45 +0900, Joan Na wrote:
-> On Wed, Oct 29, 2025 at 09:55:53AM +0000, Nuno S=C3=A1 wrote:
-> > On Wed, 2025-10-29 at 11:32 +0900, Joan-Na-adi wrote:
-> > > From: Joan Na <joan.na@analog.com>
-> > >=20
-> > > Add support for the Maxim Integrated MAX77675 PMIC regulator.
-> > >=20
-> > > The MAX77675 is a compact, highly efficient SIMO (Single Inductor Mul=
-tiple Output)
-> > > power management IC that provides four programmable buck-boost switch=
-ing regulators
-> > > with only one inductor. It supports up to 700mA total output current =
-and operates
-> > > from a single-cell Li-ion battery.
-> > >=20
-> > > An integrated power-up sequencer and I2C interface allow flexible sta=
-rtup
-> > > configuration and runtime control.
-> > >=20
-> > > Signed-off-by: Joan Na <joan.na@analog.com>
-> > > ---
-> >=20
-> > Hi Joan,
-> >=20
-> > Some comments from me...=20
-> >=20
->=20
-> Hello Nuno,
->=20
-> Thank you for taking the time to review.
-> Please refer to my response below.
->=20
+From: Pengyu Luo <mitltlatltl@gmail.com>
 
-...
+Add support for Awinic AW99706 backlight, which can be found in
+tablet and notebook backlight, one case is the Lenovo Legion Y700
+Gen4. This driver refers to the official datasheets and android
+driver, they can be found in [1].
 
-> >=20
->=20
-> > > +
-> > > +static int max77675_apply_config(struct max77675_regulator *maxreg)
-> > > +{
-> > > +	const struct max77675_config *config =3D &maxreg->config;
-> > > +	int ret;
-> > > +
-> > > +	ret =3D max77675_set_en_mode(maxreg, config->en_mode);
-> > > +	if (ret) {
-> > > +		dev_err(maxreg->dev, "Failed to set EN mode: %d\n", ret);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	ret =3D max77675_set_latency_mode(maxreg, config->voltage_change_la=
-tency);
-> > > +	if (ret) {
-> > > +		dev_err(maxreg->dev, "Failed to set latency mode: %d\n", ret);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	ret =3D max77675_set_drv_sbb_strength(maxreg, config->drv_sbb_stren=
-gth);
-> > > +	if (ret) {
-> > > +		dev_err(maxreg->dev, "Failed to set drive strength: %d\n", ret);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	ret =3D max77675_set_dvs_slew_rate(maxreg, config->dvs_slew_rate);
-> > > +	if (ret) {
-> > > +		dev_err(maxreg->dev, "Failed to set DVS slew rate: %d\n", ret);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	ret =3D max77675_set_debounce_time(maxreg, config->debounce_time);
-> > > +	if (ret) {
-> > > +		dev_err(maxreg->dev, "Failed to set EN debounce time: %d\n", ret);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	ret =3D max77675_set_manual_reset_time(maxreg, config->manual_reset=
-_time);
-> > > +	if (ret) {
-> > > +		dev_err(maxreg->dev, "Failed to set manual reset time: %d\n", ret)=
-;
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	ret =3D max77675_set_en_pullup_disable(maxreg, config->en_pullup_di=
-sable);
-> > > +	if (ret) {
-> > > +		dev_err(maxreg->dev, "Failed to set EN pull-up disable: %d\n", ret=
-);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	ret =3D max77675_set_bias_low_power_request(maxreg, config->bias_lo=
-w_power_request);
-> > > +	if (ret) {
-> > > +		dev_err(maxreg->dev, "Failed to set bias low-power request: %d\n",=
- ret);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	ret =3D max77675_set_simo_int_ldo_always_on(maxreg, config->simo_in=
-t_ldo_always_on);
-> > > +	if (ret) {
-> > > +		dev_err(maxreg->dev, "Failed to set SIMO internal LDO always-on: %=
-d\n", ret);
-> > > +		return ret;
-> > > +	}
-> >=20
-> > This seems to called during probe. All the above can be return dev_err_=
-probe()...
-> >=20
->=20
-> I=E2=80=99m thinking of handling it directly where the return value is ch=
-ecked. What are your thoughts?
->=20
-> ret =3D max77675_apply_config(maxreg);
-> =C2=A0=C2=A0=C2=A0 if (ret)
-> =C2=A0=C2=A0=C2=A0=C2=A0	return dev_err_probe(maxreg->dev, ret, "Failed t=
-o apply config\n");
+[1] https://www.awinic.com/en/productDetail/AW99706QNR
 
-Up to you. You'll have less details if you encounter some issue though...
+Signed-off-by: Junjie Cao <caojunjie650@gmail.com>
+---
+base-commit: 72fb0170ef1f45addf726319c52a0562b6913707
+---
+Changes in v2:
+- add handler for max-brightness and default-brightness
+- add properties(max-brightness, default-brightness) (Krzysztof)
+- use proper units for properties (Krzysztof)
+- drop non-fixed properties (Krzysztof)
+- include default values in the aw99706_dt_props table (Daniel)
+- warn when a property value from DT is invalid (Daniel)
+- drop warning when optional properties are missing (Daniel)
+- add a function pointer into the aw99706_dt_props table to handle lookup (Daniel)
+- use a lookup function instead of hardcoding the formula for the iLED max (Daniel)
+- move BL enalbe handler into aw99706_update_brightness (Daniel)
+- Link to v1: https://lore.kernel.org/linux-leds/20251026123923.1531727-3-caojunjie650@gmail.com
 
-- Nuno S=C3=A1
+Junjie Cao (2):
+  dt-bindings: leds: backlight: Add Awinic AW99706 backlight
+  backlight: aw99706: Add support for Awinic AW99706 backlight
 
->=20
+ .../leds/backlight/awinic,aw99706.yaml        | 100 ++++
+ MAINTAINERS                                   |   6 +
+ drivers/video/backlight/Kconfig               |   8 +
+ drivers/video/backlight/Makefile              |   1 +
+ drivers/video/backlight/aw99706.c             | 492 ++++++++++++++++++
+ 5 files changed, 607 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/awinic,aw99706.yaml
+ create mode 100644 drivers/video/backlight/aw99706.c
+
+-- 
+2.51.1.dirty
+
 
