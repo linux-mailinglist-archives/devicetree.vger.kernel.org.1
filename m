@@ -1,119 +1,84 @@
-Return-Path: <devicetree+bounces-234282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3AC9C2AE70
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 11:02:34 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3658C2AE7F
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 11:04:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 582C03A5648
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 10:02:33 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0D209348A16
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 10:04:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C8572FBE0D;
-	Mon,  3 Nov 2025 10:02:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A6972FAC16;
+	Mon,  3 Nov 2025 10:04:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n3JPoNyt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tFM/2cKZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 315EC2FBDE6
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 10:02:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C5822F39A7;
+	Mon,  3 Nov 2025 10:04:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762164151; cv=none; b=j8HOO0soUjzCHDCERX9W1dssrUDjs7Ctb/8LLWbMzqy7n/5U+jm04psDw+BpG4suw+E1BCD1e3Ev3Sgq0IhEKW3/U6FYcBGucFJEfAoVCQhFRKFlklxz3KB7t/8HsU6ZnwTJ+BOyEydortgz5PImsmUhFeRI/ssjKcAXG14Cx0o=
+	t=1762164241; cv=none; b=iAVLbIZDlZTKF3QIodOhlj+Yh7K9zuapeclOH7mcC3qMErnA/4vH6gd9RJq5v8RriuUkkMKk28AjU4+bpv/4B7HFaPvHxIYG8vn3ov3EPsXlYK7KhDo8hOFU+tSYfggjif4VEOhXTiblSZAwWrwKjErMgVd5Go0M8qEWcp0ICiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762164151; c=relaxed/simple;
-	bh=W0zrDmAkZxcdW8N0iwDoYZEJ2E6P0O3vg9i/EhjU7kY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=XYuhVHEQW45Ef3nF7s3I4Df6dKHeds/6JWVvL+3kyeggmM6OVBNDp6KO3TB0zShHjWpOCjeZubdQpxRZZo0X3Hrurmx3eFueX6zeecvGlKq8s57k97fVuX9D9VJWiaw4ecd2eaxp2xOux550LqNiebdHwkxeEfWaYukDXZyQmtU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=n3JPoNyt; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b3f5a6e114dso62810766b.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 02:02:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762164147; x=1762768947; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kk5WeVX3WZidjw/Ohoo4baVD2n02pPZGtcsCU88fulQ=;
-        b=n3JPoNytTryJjNZW/YZhzRHW5SNucl9bGohkFkA2Q1bHwBFBhVvFbf8zDrFS0Hn0ui
-         YkKcK7hYYsnlTwwy/u08LWCR59RwH87Fs/CpUwjHrJiUxs43qmG+o5btr9dXAP12fc+Y
-         Kxdcx8o1/ioHHsv2zKpf4JfiQMFbtjILKDPCIrbk0QwsUYEtHAn07mNckkjWcGp+jCC4
-         exO3s275TbRa9szT5YYF+vLR+PlHAHK8VOlNWyv4EZ4JsPx6awA9HxEq6UVyCyu0TQgr
-         6+576ufbHQfQQJ2GNfN+j0mJ7wyJ345Dh69zibBUMgDV0SsvCXswNZhagrHw22bG0TEW
-         Dxlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762164147; x=1762768947;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kk5WeVX3WZidjw/Ohoo4baVD2n02pPZGtcsCU88fulQ=;
-        b=CBrMkcUg1RhGcoNCxqBG+YXlwCgt8je/WZmGKiPaHgmj9ArExqvK8rVrLTJg3pMgNN
-         EMSf65aUDt9KSIdIP44kHmK+21IyCWcM2pgIuQHo9D/vU7DpFp02FIGv3pZaguzg8BaN
-         x5x2BKIGJJsw58kIroWCScQiiIchkjdCZkTd91oZdUhDqTPFwH0sK3VvdE2FVt5ERhx0
-         B8ZT05gecTxnaiWFmCseZVPAqqgmXMa4y5N9xyFXklwvyR9Tnj6HsD0lPhbrEeDSMTGA
-         fRdtuNbeln+/79VnF+mUHQRAT4CsNFEeyY6spH7cPFg6FHLTmfKrnUBCyMUD254J6PJH
-         aB8A==
-X-Forwarded-Encrypted: i=1; AJvYcCWS8jqwxvDQuJXSpFWPSCCIm2rpzp5rNV0BN4w+5MLhbMjF9u9qHGGeT/cpKRZhusW0OvfPGPGpFe5O@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVNa0CdaJY6S8tszCQlK8V/q7QMxr2yqrsxagyUiGXY/PddPKk
-	k/cG2i9IXWgFGemCXTFASR8fyA39tKprm1OqSTrN26unVCkzf8ItacT0cF3JPg5I03s=
-X-Gm-Gg: ASbGncs/hTEki7m/zjCvzs14zJ0pz14aJYJGZxIh/ZZTjiZSnM5Inb+1aksFYMcQIwR
-	uGm71dIk+iESzHLkeeDNEN2Q5HGqElgrjhPoRnPemROkoYdOv+4UAkUd4Kje54LLNk1hPhcuE32
-	vGsvb2SFo+YYonxPzI8r7AIJX6NrTd/5ZEg2d2c7llaLaH1EkSnVDp9ktNmgoelSinurd/eV8ZZ
-	kYUQwrve4yJHtxkeUiHECVE1XxkN12zlnOj73JU7PaphzjyIP757ddCjp7IGN6lvmDNhxRrcG3W
-	2L0K3XkUC+i2kZwZCUrDuMYtm3jAoFmK9xe95zbt9ZBJlKdPgKghlzOck9DZBMaaa4J7KnluMyM
-	QseSgC9cQ7diK+7lf7uwcfYlT45lSHSRzFM8CJ/aYdI+AQROiwgsyA0s+Iv7NI/f7JupmldJ4N8
-	ZDCmKSijpqoPk/0wWorlpeA9kIvlw=
-X-Google-Smtp-Source: AGHT+IHhQd0Z7HhWjALB9oj1UOU7TBdJPgOnwuPH3RM+AzCngFPe/MvWD8B/RttW7aRFtZ4rAovK8w==
-X-Received: by 2002:a17:907:3e03:b0:b42:1324:797b with SMTP id a640c23a62f3a-b70708ea28bmr632326066b.9.1762164147447;
-        Mon, 03 Nov 2025 02:02:27 -0800 (PST)
-Received: from [127.0.1.1] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b70b1576c5fsm433340966b.43.2025.11.03.02.02.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Nov 2025 02:02:26 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Peter Griffin <peter.griffin@linaro.org>, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, semen.protsenko@linaro.org, 
- willmcvicker@google.com, kernel-team@android.com, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20251031-gs101-chipid-v1-2-d78d1076b210@linaro.org>
+	s=arc-20240116; t=1762164241; c=relaxed/simple;
+	bh=9RzhQqecN6YFsQXxZsZSBnwAFeaFnaljJyT67SZFxMU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ch4ZAr8gAmFHYWSNoyxCvcAcfAYa62X4aQZiUzStl6HfkU38AfBlVvrVfT2K/pKw9fRtCxbGliYF3io6jpQiVnG6QnKwpnCqtSYOFzpp6/Oa+hWqPSwRQxPz8FwD/Wnc4XXOkJ/4ImvtNN0FLu3ud2D0q0I5GToXwfjyJgyy6pw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tFM/2cKZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27298C4CEFD;
+	Mon,  3 Nov 2025 10:03:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762164240;
+	bh=9RzhQqecN6YFsQXxZsZSBnwAFeaFnaljJyT67SZFxMU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tFM/2cKZiOYPgwzPgB45BzAPDDsYfilXWPvAgYafNmVfx7KeFC+R7U67qSY64knv2
+	 E0sRkiZ1NYNk/cCHmB5wQHg1YmfX98q7ZnxokhZenMFarmsorzV1LTt+dkxHdaj2Pi
+	 v/8b/EEjuQBfUxp2wRX4LHctWKzSYK2auuY3gdg+9U1OcI7gZ4m5j66S8AR6fP9Bb7
+	 5IMgdvv6iZPfzQPQ4vqBsmDygl7ZDGDAZxtmAdDA47AW3Td2iC7zthxn6jEeVgBmqD
+	 cmt1Ha+3SMcZDPPb0NUa4Jf+70ofWI2sxKr1MO5+QiXoWNjgFSLci5i70qbMguQk0W
+	 qmLov/yZ5sI2A==
+Date: Mon, 3 Nov 2025 11:03:58 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Peter Griffin <peter.griffin@linaro.org>, 
+	=?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, semen.protsenko@linaro.org, willmcvicker@google.com, 
+	kernel-team@android.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 03/11] soc: samsung: exynos-chipid: use heap allocated
+ driver data
+Message-ID: <20251103-sassy-flashy-panther-6b9b42@kuoka>
 References: <20251031-gs101-chipid-v1-0-d78d1076b210@linaro.org>
- <20251031-gs101-chipid-v1-2-d78d1076b210@linaro.org>
-Subject: Re: (subset) [PATCH 02/11] soc: samsung: exynos-chipid: use a
- local dev variable
-Message-Id: <176216414543.27448.5786220259949366154.b4-ty@linaro.org>
-Date: Mon, 03 Nov 2025 11:02:25 +0100
+ <20251031-gs101-chipid-v1-3-d78d1076b210@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251031-gs101-chipid-v1-3-d78d1076b210@linaro.org>
 
+On Fri, Oct 31, 2025 at 12:56:02PM +0000, Tudor Ambarus wrote:
+> Prepare for GS101 chipid addition, it will requre more driver data. Use
+> heap allocated driver data, it's easily extensible. Together with
 
-On Fri, 31 Oct 2025 12:56:01 +0000, Tudor Ambarus wrote:
-> Use a local variable for struct device to avoid dereferencing.
+Moving from stack to heap does not give you "extensibility". It is
+extensible in current form as well. It allows to use it past probe,
+which probably is what you wanted for some reason.
+
+> the change s/soc_info/exynos_chipid, it better indicates that it is the
+> driver data structure.
 > 
-> 
-
-Applied, thanks!
-
-[02/11] soc: samsung: exynos-chipid: use a local dev variable
-        https://git.kernel.org/krzk/linux/c/bea18c67a0ec75cc602aabc523d726a4626e1341
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Krzysztof
 
 
