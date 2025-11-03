@@ -1,582 +1,374 @@
-Return-Path: <devicetree+bounces-234452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43D78C2CFD0
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 17:08:09 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F493C2CFF4
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 17:10:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6712C188A991
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 16:02:05 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4E5E74E1EB6
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 16:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E4A5315D36;
-	Mon,  3 Nov 2025 16:01:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="ZoY9QC7G"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79C0E313E09;
+	Mon,  3 Nov 2025 16:08:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1F2C314D2C;
-	Mon,  3 Nov 2025 16:01:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76C13285406
+	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 16:08:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762185670; cv=none; b=GEMIfgHlTE8CqfHlahAbmlAtUAe1F+RogKYUo1eWxIWrIyHAgqcT1MGfQOMOPkkLFPZ9EprCLNfFna3PBiYoLr8FU8S4EFRqwrjh+bCzj7QakbTo+/q4umYfTxBLU/bnQUxXErIzK1+G76Ipt2SxPuL30/9fSedHgST15CZF3i4=
+	t=1762186090; cv=none; b=q2PVO6K3zo8XckeSCu2TQzoa2SnVO/g7sGZ6N5JVouOpOW5wS0Q4Iqtv0kqZYuwvW09fbF+PZXL/pqwx63DlUjhZHfJJgdI1cb6baTo5W/AvaN4e1BYxyZsz/JfZuB06Q6G/bGHSWOndWnhCMtRBDwElUb7JAUuKIeYnNaNfmfk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762185670; c=relaxed/simple;
-	bh=Ma0XnDqxVvg0lnbpld5+oAiu3nhkCLpwGdUdaapqrAI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RqfcGvF7QWygXqDdGzMLk62wfrIlwCbIIaed3LcLiQmVTHxNUfO1UI2cOgi5TmCUo/EDxtNdYdpA1zWM7rfqVTvqct9DaAFvlNi6BEMipTfRrn6rbgXoQ2VolzNms9wQgqs/PrDZALwxI+BhzxKDUr3aWouvsHpL829kc5Ps0Ew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ZoY9QC7G; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1762185667; x=1793721667;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Ma0XnDqxVvg0lnbpld5+oAiu3nhkCLpwGdUdaapqrAI=;
-  b=ZoY9QC7GbUGTReTZp25efut42ojVKWQt1wzf3UMGAcCz6kvt1BiGSraC
-   ljs7zUhY3QU69lWVs4Mjj7LTL22qgohKp2h7pEuDCoRM2uRGTU38gXNyY
-   Cj6tHZ9ZPdtFHf7Fy7TfzB96o84+TzgqkzrPbJry1rynPpPo0tEcKGZiO
-   ACtbNfP98bikF70oqD3RszsddIzuDNA9XNyX9n4f0FOB3oJ1Bh95i9ix6
-   34M+3gzIxFshPRTe+zRKw7LSk2agtd4R45jnWnHDeIn6oCvUHGQzl3uXC
-   XAX5lBcDvodzGe+u6jFizvlUW5un+wZGQg1IC9YpNI8UCW5HmvQr8VOWe
-   A==;
-X-CSE-ConnectionGUID: ppzothk7SMW2txU3EdHy0g==
-X-CSE-MsgGUID: u0UvMRHESXy2UPNWhRrF6w==
-X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; 
-   d="scan'208";a="215955469"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2025 09:00:58 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.87.151) by
- chn-vm-ex1.mchp-main.com (10.10.87.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.29; Mon, 3 Nov 2025 09:00:47 -0700
-Received: from Lily.microchip.com (10.10.85.11) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
- Transport; Mon, 3 Nov 2025 09:00:45 -0700
-From: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>
-To: Mark Brown <broonie@kernel.org>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	<linux-riscv@lists.infradead.org>, <linux-spi@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Conor Dooley
-	<conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>,
-	Valentina Fernandez Alanis <valentina.fernandezalanis@microchip.com>, "Cyril
- Jean" <cyril.jean@microchip.com>, Prajna Rajendra Kumar
-	<prajna.rajendrakumar@microchip.com>
-Subject: [PATCH v1 3/3] spi: add support for microchip "soft" spi controller
-Date: Mon, 3 Nov 2025 16:05:15 +0000
-Message-ID: <20251103160515.412706-4-prajna.rajendrakumar@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20251103160515.412706-1-prajna.rajendrakumar@microchip.com>
-References: <20251103160515.412706-1-prajna.rajendrakumar@microchip.com>
+	s=arc-20240116; t=1762186090; c=relaxed/simple;
+	bh=SNXEe5LBmkMDqQm2ISLQT67ot3yyfO1YKC2odTYWS7k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jxgmncOIvP/SGQZtJ2V1EO4AxooOuAOEgW+soZGHzbyUwR0LXr1PK35NlmFhYDRGECfEUIWq3YkYODfQy5hxymYP1qERgM/fpQsryar5BXLQioeX5AVzMImYPgloDg1+bJKQdFJY1hnvxHCQXXF9r7KxGrV4MlljwdWT8J62TRs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2A2842A6B
+	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 08:08:00 -0800 (PST)
+Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 969443F694
+	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 08:08:07 -0800 (PST)
+Date: Mon, 3 Nov 2025 16:07:35 +0000
+From: Liviu Dudau <liviu.dudau@arm.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Steven Price <steven.price@arm.com>,
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Boris Brezillon <boris.brezillon@collabora.com>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Chia-I Wu <olvaffe@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, kernel@collabora.com,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-hardening@vger.kernel.org,
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH v8 0/5] MT8196 GPU Frequency/Power Control Support
+Message-ID: <aQjTR2OvPBTVbRL0@e110455-lin.cambridge.arm.com>
+References: <20251017-mt8196-gpufreq-v8-0-98fc1cc566a1@collabora.com>
+ <CAPDyKFodsAR5bOAST3mPLvSVbe653QS6SdSwHr6kyraQ1cwbhQ@mail.gmail.com>
+ <76b35848-8f5e-49a2-ac4a-318945448b9a@arm.com>
+ <CAPDyKFpkCivtsV1kuTOp_QG2Ci6HajBAAxQ=0GGoN6VAnaAJrg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+In-Reply-To: <CAPDyKFpkCivtsV1kuTOp_QG2Ci6HajBAAxQ=0GGoN6VAnaAJrg@mail.gmail.com>
 
-Introduce driver support for the Microchip FPGA CoreSPI IP.
+On Fri, Oct 24, 2025 at 04:50:15PM +0200, Ulf Hansson wrote:
+> On Fri, 24 Oct 2025 at 15:09, Steven Price <steven.price@arm.com> wrote:
+> >
+> > On 22/10/2025 14:52, Ulf Hansson wrote:
+> > > On Fri, 17 Oct 2025 at 17:32, Nicolas Frattaroli
+> > > <nicolas.frattaroli@collabora.com> wrote:
+> > >>
+> > >> This series introduces two new drivers to accomplish controlling the
+> > >> frequency and power of the Mali GPU on MediaTek MT8196 SoCs.
+> > >>
+> > >> The reason why it's not as straightforward as with other SoCs is that
+> > >> the MT8196 has quite complex glue logic in order to squeeze the maximum
+> > >> amount of performance possible out of the silicon. There's an additional
+> > >> MCU running a specialised firmware, which communicates with the
+> > >> application processor through a mailbox and some reserved memory, and is
+> > >> in charge of controlling the regulators, the PLL clocks, and the power
+> > >> gating of the GPU, all while also being in charge of any DVFS control.
+> > >>
+> > >> This set of drivers is enough to communicate desired OPP index limits to
+> > >> the aforementioned MCU, referred to as "GPUEB" from here on out. The
+> > >> GPUEB is still free to lower the effective frequency if the GPU has no
+> > >> jobs going on at all, even when a higher OPP is set.
+> > >>
+> > >> The power- and frequency control driver, mtk-mfg-pmdomain, is now
+> > >> implemented as a power domain driver, with a set_performance_state
+> > >> operation. It also exposes itself as a clock provider, so that panthor
+> > >> can read the actual achieved DVFS clock rate as per the GPUEB firmware.
+> > >>
+> > >> This power domain approach means that panthor does not need to know
+> > >> about how the frequency control works on this SoC, as the OPP core
+> > >> framework already takes care of it. The only exception is that panthor
+> > >> needs to not register OPPs from DT itself if there already is an OPP
+> > >> table present.
+> > >>
+> > >> The mailbox driver is a fairly bog-standard common mailbox framework
+> > >> driver, just specific to the firmware that runs on the GPUEB. It was
+> > >> merged in v6.18 already.
+> > >>
+> > >> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> > >
+> > > This looks good to me!
+> > >
+> > > I can certainly pick up patch2 and patch5, but before I go ahead I
+> > > just wanted to check what is the preferred merging strategy?
+> > >
+> > > The drm/gpu patches can go independently from the pmdomain patches
+> > > others, right? In either case, I can pick this complete series too via
+> > > my pmdomain tree, if that makes sense for everyone. Please let me
+> > > know.
+> >
+> > I'm about to go on holiday, so I'm not about to merge and run ;)
+> > But I'm happy if you want to take the complete series through your tree.
+> 
+> Unfortunately the panthor specific changes didn't apply cleanly on my
+> side. Looks like you have some patches queued already for the panther
+> driver and I guess Nicolas may have based the changes on top of them.
+> 
+> That said, I decided to pick the pmdomain patches, patch 2 and patch 5, thanks!
 
-This driver supports only the Motorola SPI mode. TI and NSC modes are
-not currently supported.
+I've pushed the rest of the series through drm-misc-next.
 
-Signed-off-by: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>
----
- drivers/spi/Kconfig              |   9 +
- drivers/spi/Makefile             |   1 +
- drivers/spi/spi-microchip-core.c | 443 +++++++++++++++++++++++++++++++
- 3 files changed, 453 insertions(+)
- create mode 100644 drivers/spi/spi-microchip-core.c
+Best regards,
+Liviu
 
-diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-index d53798036076..d24b118f90cd 100644
---- a/drivers/spi/Kconfig
-+++ b/drivers/spi/Kconfig
-@@ -706,6 +706,15 @@ config SPI_MESON_SPIFC
- 	  This enables master mode support for the SPIFC (SPI flash
- 	  controller) available in Amlogic Meson SoCs.
- 
-+config SPI_MICROCHIP_CORE
-+	tristate "Microchip FPGA SPI controllers"
-+	depends on SPI_MASTER
-+	help
-+	  This enables the SPI driver for Microchip FPGA SPI controllers.
-+	  Say Y or M here if you want to use the "soft" controllers on
-+	  PolarFire SoC.
-+	  If built as a module, it will be called spi-microchip-core.
-+
- config SPI_MICROCHIP_CORE_QSPI
- 	tristate "Microchip FPGA QSPI controllers"
- 	depends on SPI_MASTER
-diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-index 1f7c06a3091d..479a88882020 100644
---- a/drivers/spi/Makefile
-+++ b/drivers/spi/Makefile
-@@ -86,6 +86,7 @@ obj-$(CONFIG_SPI_LOONGSON_PLATFORM)	+= spi-loongson-plat.o
- obj-$(CONFIG_SPI_LP8841_RTC)		+= spi-lp8841-rtc.o
- obj-$(CONFIG_SPI_MESON_SPICC)		+= spi-meson-spicc.o
- obj-$(CONFIG_SPI_MESON_SPIFC)		+= spi-meson-spifc.o
-+obj-$(CONFIG_SPI_MICROCHIP_CORE)	+= spi-microchip-core.o
- obj-$(CONFIG_SPI_MICROCHIP_CORE_QSPI)	+= spi-microchip-core-qspi.o
- obj-$(CONFIG_SPI_MPC512x_PSC)		+= spi-mpc512x-psc.o
- obj-$(CONFIG_SPI_MPC52xx_PSC)		+= spi-mpc52xx-psc.o
-diff --git a/drivers/spi/spi-microchip-core.c b/drivers/spi/spi-microchip-core.c
-new file mode 100644
-index 000000000000..8fb919e899b8
---- /dev/null
-+++ b/drivers/spi/spi-microchip-core.c
-@@ -0,0 +1,443 @@
-+// SPDX-License-Identifier: (GPL-2.0)
-+//
-+// Microchip CoreSPI controller driver
-+//
-+// Copyright (c) 2025 Microchip Technology Inc. and its subsidiaries
-+//
-+// Author: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>
-+
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/init.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/spi/spi.h>
-+
-+#define MCHP_CORESPI_MAX_CS				(8)
-+#define MCHP_CORESPI_DEFAULT_FIFO_DEPTH			(4)
-+#define MCHP_CORESPI_DEFAULT_MOTOROLA_MODE		(3)
-+
-+#define MCHP_CORESPI_CONTROL_ENABLE			BIT(0)
-+#define MCHP_CORESPI_CONTROL_MASTER			BIT(1)
-+#define MCHP_CORESPI_CONTROL_TX_DATA_INT		BIT(3)
-+#define MCHP_CORESPI_CONTROL_RX_OVER_INT		BIT(4)
-+#define MCHP_CORESPI_CONTROL_TX_UNDER_INT		BIT(5)
-+#define MCHP_CORESPI_CONTROL_FRAMEURUN			BIT(6)
-+#define MCHP_CORESPI_CONTROL_OENOFF			BIT(7)
-+
-+#define MCHP_CORESPI_STATUS_ACTIVE			BIT(7)
-+#define MCHP_CORESPI_STATUS_SSEL			BIT(6)
-+#define MCHP_CORESPI_STATUS_TXFIFO_UNDERFLOW		BIT(5)
-+#define MCHP_CORESPI_STATUS_RXFIFO_FULL			BIT(4)
-+#define MCHP_CORESPI_STATUS_TXFIFO_FULL			BIT(3)
-+#define MCHP_CORESPI_STATUS_RXFIFO_EMPTY		BIT(2)
-+#define MCHP_CORESPI_STATUS_DONE			BIT(1)
-+#define MCHP_CORESPI_STATUS_FIRSTFRAME			BIT(0)
-+
-+#define MCHP_CORESPI_INT_TXDONE				BIT(0)
-+#define MCHP_CORESPI_INT_RX_CHANNEL_OVERFLOW		BIT(2)
-+#define MCHP_CORESPI_INT_TX_CHANNEL_UNDERRUN		BIT(3)
-+#define MCHP_CORESPI_INT_CMDINT				BIT(4)
-+#define MCHP_CORESPI_INT_SSEND				BIT(5)
-+#define MCHP_CORESPI_INT_DATA_RX			BIT(6)
-+#define MCHP_CORESPI_INT_TXRFM				BIT(7)
-+
-+#define MCHP_CORESPI_CONTROL2_INTEN_TXRFMT		BIT(7)
-+#define MCHP_CORESPI_CONTROL2_INTEN_DATA_RX		BIT(6)
-+#define MCHP_CORESPI_CONTROL2_INTEN_SSEND		BIT(5)
-+#define MCHP_CORESPI_CONTROL2_INTEN_CMD			BIT(4)
-+
-+#define INT_ENABLE_MASK (MCHP_CORESPI_CONTROL_TX_DATA_INT | MCHP_CORESPI_CONTROL_RX_OVER_INT | \
-+			 MCHP_CORESPI_CONTROL_TX_UNDER_INT)
-+
-+#define MCHP_CORESPI_REG_CONTROL			(0x00)
-+#define MCHP_CORESPI_REG_INTCLEAR			(0x04)
-+#define MCHP_CORESPI_REG_RXDATA				(0x08)
-+#define MCHP_CORESPI_REG_TXDATA				(0x0c)
-+#define MCHP_CORESPI_REG_INTMASK			(0X10)
-+#define MCHP_CORESPI_REG_INTRAW				(0X14)
-+#define MCHP_CORESPI_REG_CONTROL2			(0x18)
-+#define MCHP_CORESPI_REG_COMMAND			(0x1c)
-+#define MCHP_CORESPI_REG_STAT				(0x20)
-+#define MCHP_CORESPI_REG_SSEL				(0x24)
-+#define MCHP_CORESPI_REG_TXDATA_LAST			(0X28)
-+#define MCHP_CORESPI_REG_CLK_DIV			(0x2c)
-+
-+struct mchp_corespi {
-+	void __iomem *regs;
-+	struct clk *clk;
-+	const u8 *tx_buf;
-+	u8 *rx_buf;
-+	u32 clk_gen;
-+	int irq;
-+	int tx_len;
-+	int rx_len;
-+	u32 fifo_depth;
-+};
-+
-+static inline void mchp_corespi_disable(struct mchp_corespi *spi)
-+{
-+	u8 control = readb(spi->regs + MCHP_CORESPI_REG_CONTROL);
-+
-+	control &= ~MCHP_CORESPI_CONTROL_ENABLE;
-+
-+	writeb(control, spi->regs + MCHP_CORESPI_REG_CONTROL);
-+}
-+
-+static inline void mchp_corespi_read_fifo(struct mchp_corespi *spi, u32 fifo_max)
-+{
-+	for (int i = 0; i < fifo_max; i++) {
-+		u32 data;
-+
-+		while (readb(spi->regs + MCHP_CORESPI_REG_STAT) &
-+		       MCHP_CORESPI_STATUS_RXFIFO_EMPTY)
-+			;
-+
-+		data = readb(spi->regs + MCHP_CORESPI_REG_RXDATA);
-+
-+		spi->rx_len--;
-+		if (!spi->rx_buf)
-+			continue;
-+
-+		*spi->rx_buf = data;
-+
-+		spi->rx_buf++;
-+	}
-+}
-+
-+static void mchp_corespi_enable_ints(struct mchp_corespi *spi)
-+{
-+	u8 control = readb(spi->regs + MCHP_CORESPI_REG_CONTROL);
-+
-+	control |= INT_ENABLE_MASK;
-+	writeb(control, spi->regs + MCHP_CORESPI_REG_CONTROL);
-+}
-+
-+static void mchp_corespi_disable_ints(struct mchp_corespi *spi)
-+{
-+	u8 control = readb(spi->regs + MCHP_CORESPI_REG_CONTROL);
-+
-+	control &= ~INT_ENABLE_MASK;
-+	writeb(control, spi->regs + MCHP_CORESPI_REG_CONTROL);
-+}
-+
-+static inline void mchp_corespi_write_fifo(struct mchp_corespi *spi, u32 fifo_max)
-+{
-+	int i = 0;
-+
-+	while ((i < fifo_max) &&
-+	       !(readb(spi->regs + MCHP_CORESPI_REG_STAT) &
-+		 MCHP_CORESPI_STATUS_TXFIFO_FULL)) {
-+		u32 word;
-+
-+		word = spi->tx_buf ? *spi->tx_buf : 0xaa;
-+		writeb(word, spi->regs + MCHP_CORESPI_REG_TXDATA);
-+
-+		if (spi->tx_buf)
-+			spi->tx_buf++;
-+
-+		i++;
-+	}
-+
-+	spi->tx_len -= i;
-+}
-+
-+static void mchp_corespi_set_cs(struct spi_device *spi, bool disable)
-+{
-+	struct mchp_corespi *corespi = spi_controller_get_devdata(spi->controller);
-+	u32 reg;
-+
-+	reg = readb(corespi->regs + MCHP_CORESPI_REG_SSEL);
-+	reg &= ~BIT(spi_get_chipselect(spi, 0));
-+	reg |= !disable << spi_get_chipselect(spi, 0);
-+
-+	writeb(reg, corespi->regs + MCHP_CORESPI_REG_SSEL);
-+}
-+
-+static int mchp_corespi_setup(struct spi_device *spi)
-+{
-+	struct mchp_corespi *corespi = spi_controller_get_devdata(spi->controller);
-+	u32 dev_mode = spi->mode & (SPI_CPOL | SPI_CPHA);
-+
-+	if (spi_get_csgpiod(spi, 0))
-+		return 0;
-+
-+	if (spi->mode & (SPI_CS_HIGH)) {
-+		dev_err(&spi->dev, "unable to support active-high CS in Motorola mode\n");
-+		return -EOPNOTSUPP;
-+	}
-+
-+	if (dev_mode & ~spi->controller->mode_bits) {
-+		dev_err(&spi->dev, "incompatible CPOL/CPHA, must match controller's Motorola mode\n");
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static void mchp_corespi_init(struct spi_controller *host, struct mchp_corespi *spi)
-+{
-+	u8 control = readb(spi->regs + MCHP_CORESPI_REG_CONTROL);
-+
-+	/* Master mode changes require core to be disabled.*/
-+	control = (control & ~MCHP_CORESPI_CONTROL_ENABLE) | MCHP_CORESPI_CONTROL_MASTER;
-+
-+	writeb(control, spi->regs + MCHP_CORESPI_REG_CONTROL);
-+
-+	mchp_corespi_enable_ints(spi);
-+
-+	control = readb(spi->regs + MCHP_CORESPI_REG_CONTROL);
-+	control |= MCHP_CORESPI_CONTROL_ENABLE;
-+
-+	writeb(control, spi->regs + MCHP_CORESPI_REG_CONTROL);
-+}
-+
-+static irqreturn_t mchp_corespi_interrupt(int irq, void *dev_id)
-+{
-+	struct spi_controller *host = dev_id;
-+	struct mchp_corespi *spi = spi_controller_get_devdata(host);
-+	u8 intfield = readb(spi->regs + MCHP_CORESPI_REG_INTMASK) & 0xff;
-+	bool finalise = false;
-+
-+	/* Interrupt line may be shared and not for us at all */
-+	if (intfield == 0)
-+		return IRQ_NONE;
-+
-+	if (intfield & MCHP_CORESPI_INT_TXDONE)
-+		writeb(MCHP_CORESPI_INT_TXDONE, spi->regs + MCHP_CORESPI_REG_INTCLEAR);
-+
-+	if (intfield & MCHP_CORESPI_INT_RX_CHANNEL_OVERFLOW) {
-+		writeb(MCHP_CORESPI_INT_RX_CHANNEL_OVERFLOW,
-+		       spi->regs + MCHP_CORESPI_REG_INTCLEAR);
-+		finalise = true;
-+		dev_err(&host->dev,
-+			"RX OVERFLOW: rxlen: %d, txlen: %d\n",
-+			spi->rx_len, spi->tx_len);
-+	}
-+
-+	if (intfield & MCHP_CORESPI_INT_TX_CHANNEL_UNDERRUN) {
-+		writeb(MCHP_CORESPI_INT_TX_CHANNEL_UNDERRUN,
-+		       spi->regs + MCHP_CORESPI_REG_INTCLEAR);
-+		finalise = true;
-+		dev_err(&host->dev,
-+			"TX UNDERFLOW: rxlen: %d, txlen: %d\n",
-+			spi->rx_len, spi->tx_len);
-+	}
-+
-+	if (finalise)
-+		spi_finalize_current_transfer(host);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int mchp_corespi_set_clk_div(struct mchp_corespi *spi,
-+				    unsigned long target_hz)
-+{
-+	unsigned long pclk_hz, spi_hz;
-+	u32 clk_div;
-+
-+	/* Get peripheral clock rate */
-+	pclk_hz = clk_get_rate(spi->clk);
-+	if (!pclk_hz)
-+		return -EINVAL;
-+
-+	/*
-+	 * Calculate clock rate generated by SPI master
-+	 * Formula: SPICLK = PCLK / (2 * (CLK_DIV + 1))
-+	 */
-+	clk_div = DIV_ROUND_UP(pclk_hz, 2 * target_hz) - 1;
-+
-+	if (clk_div > 0xFF)
-+		return -EINVAL;
-+
-+	spi_hz = pclk_hz / (2 * (clk_div + 1));
-+
-+	if (spi_hz > target_hz)
-+		return -EINVAL;
-+
-+	writeb(clk_div, spi->regs + MCHP_CORESPI_REG_CLK_DIV);
-+
-+	return 0;
-+}
-+
-+static int mchp_corespi_transfer_one(struct spi_controller *host,
-+				     struct spi_device *spi_dev,
-+				     struct spi_transfer *xfer)
-+{
-+	struct mchp_corespi *spi = spi_controller_get_devdata(host);
-+	int ret;
-+
-+	ret = mchp_corespi_set_clk_div(spi, (unsigned long)xfer->speed_hz);
-+	if (ret) {
-+		dev_err(&host->dev, "failed to set clock divider for target %u Hz\n",
-+			xfer->speed_hz);
-+		return ret;
-+	}
-+
-+	spi->tx_buf = xfer->tx_buf;
-+	spi->rx_buf = xfer->rx_buf;
-+	spi->tx_len = xfer->len;
-+	spi->rx_len = xfer->len;
-+
-+	while (spi->tx_len) {
-+		int fifo_max = min_t(int, spi->tx_len, spi->fifo_depth);
-+
-+		mchp_corespi_write_fifo(spi, fifo_max);
-+		mchp_corespi_read_fifo(spi, fifo_max);
-+	}
-+
-+	spi_finalize_current_transfer(host);
-+	return 1;
-+}
-+
-+static int mchp_corespi_probe(struct platform_device *pdev)
-+{
-+	struct spi_controller *host;
-+	struct mchp_corespi *spi;
-+	struct resource *res;
-+	const char *protocol;
-+	u32 num_cs, mode, frame_size;
-+	bool assert_ssel;
-+	int ret = 0;
-+
-+	host = devm_spi_alloc_host(&pdev->dev, sizeof(*spi));
-+	if (!host)
-+		return dev_err_probe(&pdev->dev, -ENOMEM,
-+				     "unable to allocate host for SPI controller\n");
-+
-+	platform_set_drvdata(pdev, host);
-+
-+	if (of_property_read_u32(pdev->dev.of_node, "num-cs", &num_cs))
-+		num_cs = MCHP_CORESPI_MAX_CS;
-+
-+	/*
-+	 * Protocol: CFG_MODE
-+	 * CoreSPI can be configured for Motorola, TI or NSC.
-+	 * The current driver supports only Motorola mode.
-+	 */
-+	ret = of_property_read_string(pdev->dev.of_node, "microchip,protocol-configuration",
-+				      &protocol);
-+	if (strcmp(protocol, "motorola") != 0)
-+		return dev_err_probe(&pdev->dev, -EINVAL,
-+				     "CoreSPI: protocol '%s' not supported by this driver\n",
-+				      protocol);
-+
-+	/*
-+	 * Motorola mode (0-3): CFG_MOT_MODE
-+	 * Mode is fixed in the IP configurator.
-+	 */
-+	ret = of_property_read_u32(pdev->dev.of_node, "microchip,motorola-mode", &mode);
-+	if (ret)
-+		mode = MCHP_CORESPI_DEFAULT_MOTOROLA_MODE;
-+	else if (mode > 3)
-+		return dev_err_probe(&pdev->dev, -EINVAL,
-+				     "invalid 'microchip,motorola-mode' value %u\n", mode);
-+
-+	/*
-+	 * Frame size: CFG_FRAME_SIZE
-+	 * The hardware allows frame sizes <= APB data width.
-+	 * However, this driver currently only supports 8-bit frames.
-+	 */
-+	ret = of_property_read_u32(pdev->dev.of_node, "microchip,frame-size", &frame_size);
-+	if (!ret && frame_size != 8)
-+		return dev_err_probe(&pdev->dev, -EINVAL,
-+				     "CoreSPI: frame size %u not supported by this driver\n",
-+				     frame_size);
-+
-+	/*
-+	 * SSEL: CFG_MOT_SSEL
-+	 * CoreSPI deasserts SSEL when the TX FIFO empties.
-+	 * To prevent CS deassertion when TX FIFO drains, the ssel-active property
-+	 * keeps CS asserted for the full SPI transfer.
-+	 */
-+	assert_ssel = of_property_read_bool(pdev->dev.of_node, "microchip,ssel-active");
-+	if (!assert_ssel)
-+		return dev_err_probe(&pdev->dev, -EINVAL,
-+				     "hardware must enable 'microchip,ssel-active' to keep CS asserted for the SPI transfer\n");
-+
-+	spi = spi_controller_get_devdata(host);
-+
-+	host->num_chipselect = num_cs;
-+	host->mode_bits = mode;
-+	host->setup = mchp_corespi_setup;
-+	host->use_gpio_descriptors = true;
-+	host->bits_per_word_mask = SPI_BPW_RANGE_MASK(4, 32);
-+	host->transfer_one = mchp_corespi_transfer_one;
-+	host->set_cs = mchp_corespi_set_cs;
-+	host->dev.of_node = pdev->dev.of_node;
-+
-+	ret = of_property_read_u32(pdev->dev.of_node, "fifo-depth", &spi->fifo_depth);
-+	if (ret)
-+		spi->fifo_depth = MCHP_CORESPI_DEFAULT_FIFO_DEPTH;
-+
-+	spi->regs = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-+	if (IS_ERR(spi->regs))
-+		return PTR_ERR(spi->regs);
-+
-+	spi->irq = platform_get_irq(pdev, 0);
-+	if (spi->irq < 0)
-+		return spi->irq;
-+
-+	ret = devm_request_irq(&pdev->dev, spi->irq, mchp_corespi_interrupt,
-+			       IRQF_SHARED, dev_name(&pdev->dev), host);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret,
-+				     "could not request irq\n");
-+
-+	spi->clk = devm_clk_get_enabled(&pdev->dev, NULL);
-+	if (IS_ERR(spi->clk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(spi->clk),
-+				     "could not get clk\n");
-+
-+	mchp_corespi_init(host, spi);
-+
-+	ret = devm_spi_register_controller(&pdev->dev, host);
-+	if (ret) {
-+		mchp_corespi_disable(spi);
-+		return dev_err_probe(&pdev->dev, ret,
-+				     "unable to register host for CoreSPI controller\n");
-+	}
-+
-+	return 0;
-+}
-+
-+static void mchp_corespi_remove(struct platform_device *pdev)
-+{
-+	struct spi_controller *host = platform_get_drvdata(pdev);
-+	struct mchp_corespi *spi = spi_controller_get_devdata(host);
-+
-+	mchp_corespi_disable_ints(spi);
-+	mchp_corespi_disable(spi);
-+}
-+
-+#define MICROCHIP_SPI_PM_OPS (NULL)
-+
-+/*
-+ * Platform driver data structure
-+ */
-+
-+#if defined(CONFIG_OF)
-+static const struct of_device_id mchp_corespi_dt_ids[] = {
-+	{ .compatible = "microchip,corespi-rtl-v5" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, mchp_corespi_dt_ids);
-+#endif
-+
-+static struct platform_driver mchp_corespi_driver = {
-+	.probe = mchp_corespi_probe,
-+	.driver = {
-+		.name = "microchip-corespi",
-+		.pm = MICROCHIP_SPI_PM_OPS,
-+		.of_match_table = of_match_ptr(mchp_corespi_dt_ids),
-+	},
-+	.remove_new = mchp_corespi_remove,
-+};
-+module_platform_driver(mchp_corespi_driver);
-+MODULE_DESCRIPTION("Microchip CoreSPI controller driver");
-+MODULE_AUTHOR("Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>");
-+MODULE_LICENSE("GPL");
+> 
+> Kind regards
+> Uffe
+> 
+> 
+> >
+> > Thanks,
+> > Steve
+> >
+> > > Kind regards
+> > > Uffe
+> > >
+> > >> ---
+> > >> Changes in v8:
+> > >> - mtk-mfg-pmdomain: remove unused shmem variable that caused a warning
+> > >>   on GCC, but not clang
+> > >> - Link to v7: https://lore.kernel.org/r/20251015-mt8196-gpufreq-v7-0-0a6435da2080@collabora.com
+> > >>
+> > >> Changes in v7:
+> > >> - panthor: rename "t" to "table"
+> > >> - panthor: add code comment explaining why an existing OPP table is
+> > >>   being checked for
+> > >> - mtk-mfg-pmdomain: use GF_REG_MAGIC offset for sake of consistency
+> > >> - mtk-mfg-pmdomain: remove redundant semicolon after mtk_mfg_mt8196_init
+> > >> - mtk-mfg-pmdomain: fix resource leaks on probe failure
+> > >> - mtk-mfg-pmdomain: enable/disable EB clock during MT8196 init, which is
+> > >>   needed for the register read
+> > >> - Rebase onto next-20251014, which drops already merged patches, namely
+> > >>   mailbox driver+bindings, and drops the ASN_HASH patch series
+> > >>   dependency, which was also merged
+> > >> - Link to v6: https://lore.kernel.org/r/20251003-mt8196-gpufreq-v6-0-76498ad61d9e@collabora.com
+> > >>
+> > >> Changes in v6:
+> > >> - mailbox: move buf definition into if condition, as per Chia-I Wu
+> > >> - panthor: remove the redundant NULL checks in panthor_devfreq_get_freq
+> > >> - mtk-mfg-pmdomain: adjust return style consistency
+> > >> - mtk-mfg-pmdomain: add docstring for mtk_mfg_send_ipi to explain it's
+> > >>   blocking
+> > >> - mtk-mfg-pmdomain: use CMD_FIX_DUAL_TARGET_OPPIDX instead of
+> > >>   CMD_FIX_TARGET_OPPIDX.
+> > >> - mtk-mfg-pmdomain: reword code comments to not be in the "we" style
+> > >> - mtk-mfg-pmdomain: shuffle around mbox allocations as per Angelo
+> > >> - mtk-mfg-pmdomain: don't pointlessly turn on EB clock in probe,
+> > >>   reducing the need for a comment explaining the bookkeeping
+> > >> - mtk-mfg-pmdomain: consistently use dev_err_probe and Capitalise first
+> > >>   letter of error string
+> > >> - mtk-mfg-pmdomain: get rid of redundant ret = dev_err_probe assignment
+> > >> - mtk-mfg-pmdomain: reintroduce stack OPP table, choose min(gpu, stack)
+> > >>   when adding frequencies. Fixes gaps in OPP levels where only stack
+> > >>   changed, but gpu had duplicates, which resulted in choosing a too slow
+> > >>   OPP
+> > >> - mtk-mfg-pmdomain: stub round_rate clk op to opt out of CCF always
+> > >>   "rounding" a devfreq rate request to the current rate
+> > >> - Link to v5: https://lore.kernel.org/r/20250929-mt8196-gpufreq-v5-0-3056e5ecf765@collabora.com
+> > >>
+> > >> Changes in v5:
+> > >> - mtk-mfg-pmdomain binding: add memory-regions property, remove shmem
+> > >>   property, as we now correctly describe the shared memory as a regular
+> > >>   memory region
+> > >> - mtk-mfg-pmdomain binding: get rid of redundant |
+> > >> - drop "dt-bindings: sram: Add compatible for
+> > >>   mediatek,mt8196-gpufreq-sram" as part of the move to reserved memory
+> > >> - mtk-mfg-pmdomain: move to using reserved-memory for GPUEB shared
+> > >>   memory
+> > >> - mtk-mfg-pmdomain: demote some types to smaller sizes in struct
+> > >>   mtk_mfg, as per Angelo's suggestions
+> > >> - mtk-mfg-pmdomain: use units.h for Hz-to-KHz
+> > >> - mtk-mfg-pmdomain: change for loop in attach_dev to reduce indentation
+> > >> - mtk-mfg-pmdomain: simplify return in mtk_mfg_power_off
+> > >> - mtk-mfg-pmdomain: move of_device_id after probe
+> > >> - mtk_mfg_pmdomain: map mmio by index
+> > >> - mtk_mfg_pmdomain: add error checking to pm_genpd_init()
+> > >> - mtk_mfg_pmdomain: add remove function
+> > >> - mtk_mfg_pmdomain: remove last_opp member and logic, since OPP core
+> > >>   already does that for us
+> > >> - mtk_mfg_pmdomain: adjust comment in mtk_mfg_set_performance to explain
+> > >>   why we're doing what we're doing
+> > >> - mtk_mfg_pmdomain: call mtk_mfg_set_oppidx in mtk_mfg_power_on with
+> > >>   the performance_state we deferred setting while it was powered off
+> > >> - mtk_mfg_pmdomain: add inline function for PWR_ACK checking, as it's
+> > >>   now used twice with the added remove function
+> > >> - mtk-mfg-pmdomain: add suppress_bind_attrs so people don't play with
+> > >>   that
+> > >> - mtk-mfg-pmdomain: change KConfig from tristate to bool, as module
+> > >>   unloading results in strange likely firmware-induced hardware state
+> > >>   woes in the mali GPU
+> > >> - mtk-mfg-pmdomain: read IPI magic in power_on, don't zero it after
+> > >>   confirming that seemingly had no purpose
+> > >> - mtk-mfg-pmdomain: misc style changes
+> > >> - Link to v4: https://lore.kernel.org/r/20250923-mt8196-gpufreq-v4-0-6cd63ade73d6@collabora.com
+> > >>
+> > >> Changes in v4:
+> > >> - rebase onto next-20250922, which includes Laura Nao's clock patches
+> > >> - refactor mediatek_mfg into a pmdomain driver called "mtk-mfg-pmdomain"
+> > >> - move mt8196-gpufreq binding to the power subdirectory
+> > >> - mali-valhall-csf binding: adjust for power-domains usage
+> > >> - mali-valhall-csf binding: use clocks on mt8196
+> > >> - mailbox: prefix defines with "GPUEB_"
+> > >> - mailbox: get rid of custom of_xlate
+> > >> - mailbox: rename "CLOGGED" to "BLOCKED"
+> > >> - mailbox: adjust send_data comment to include more technical info
+> > >> - mailbox: misc style improvements
+> > >> - panthor: drop "drm/panthor: devfreq: make get_dev_status use
+> > >>   get_cur_freq", as it is now not necessary and makes the code worse
+> > >> - panthor: drop "drm/panthor: devfreq: add pluggable devfreq providers"
+> > >> - panthor: drop "drm/panthor: add no_clocks soc_data member for MT8196",
+> > >>   as we now have clocks courtesy of gpufreq
+> > >> - panthor: check for existing opp table before registering a new one
+> > >> - mtk-mfg-pmdomain: add turbo_below variant data, which marks OPPs below
+> > >>   a certain index as turbo for the OPP subsystem
+> > >> - mtk-mfg-pmdomain: no longer read stack OPPs, as they weren't used
+> > >> - mtk-mfg-pmdomain: get rid of num gpu opp != num stack opp check.
+> > >>   That's the firmware's problem should it ever happen, not ours
+> > >> - mtk-mfg-pmdomain: some small name and whitespace changes on the defines
+> > >> - Link to v3: https://lore.kernel.org/r/20250917-mt8196-gpufreq-v3-0-c4ede4b4399e@collabora.com
+> > >>
+> > >> Changes in v3:
+> > >> - mali-valhall-csf binding: get rid of clocks for MT8196, rebase onto
+> > >>   Chia-I Wu's patch
+> > >> - mt8196-gpufreq binding: rename hw_revision to hw-revision
+> > >> - mt8196-gpufreq binding: rename clocks
+> > >> - mt8196-gpufreq binding: drop pointless label in example
+> > >> - mailbox binding: drop pointless label in example
+> > >> - mailbox: whitespace changes on defines
+> > >> - mailbox: remove rx_buf member from channel struct, use stack buffer
+> > >> - mailbox: check in probe that no rx_len exceeds MBOX_MAX_RX_SIZE
+> > >> - panthor: add no_clocks SoC data patch, also rebase onto Chia-I Wu's
+> > >>   series
+> > >> - panthor: refactor devfreq provider functionality to do allocation and
+> > >>   initialisation of panthor_devfreq struct in panthor in all cases
+> > >> - panthor: drop the patch that moves struct panthor_devfreq to a header
+> > >>   file, as it no longer needs to be exposed to devfreq providers
+> > >> - mediatek_mfg: refactor devfreq provider functionality to decouple it
+> > >>   more from panthor itself
+> > >> - mediatek_mfg: move SRAM magic to a #define
+> > >> - mediatek_mfg: begrudgingly rename member "padding_lol" to "reserved"
+> > >> - mediatek_mfg: use local struct device pointer var in more places
+> > >> - mediatek_mfg: change wording of sleep command failure error message,
+> > >>   but keep the format specifier because I don't want to throw bare
+> > >>   errnos at users
+> > >> - mediatek_mfg: remove unnecessary braces around dev_err EB power off
+> > >>   timeout message
+> > >> - mediatek_mfg: allocate rx_data for channels that expect a response
+> > >> - mediatek_mfg: memcpy the rx buffer from the common mailbox framework
+> > >>   in the rx callback to rx_data, as mssg now points to stack memory
+> > >> - mediatek_mfg: make SRAM clearing message dev_dbg
+> > >> - mediatek_mfg: no longer print physical address of SRAM
+> > >> - mediatek_mfg: expand on the GF_REG_OPP_TABLE_STK comment, toning down
+> > >>   its defeatist attitude in the process
+> > >> - mediatek_mfg: style fixes in mtk_mfg_get_closest_opp_idx
+> > >> - mediatek_mfg: rename clocks and hw-revision reg as per binding
+> > >> - Link to v2: https://lore.kernel.org/r/20250912-mt8196-gpufreq-v2-0-779a8a3729d9@collabora.com
+> > >>
+> > >> Changes in v2:
+> > >> - mali-valhall-csf binding: move from performance-controller to
+> > >>   performance-domains property
+> > >> - mali-valhall-csf binding: fix vendor name oopsie in compatible of if
+> > >>   condition
+> > >> - mt8196-gpufreq binding: move from performance-controller to
+> > >>   performance-domains by adding the cells property
+> > >> - mt8196-gpufreq binding: rename e2_id to hw_revision
+> > >> - mt8196-gpufreq binding: add description that mentions "MediaTek
+> > >>   Flexible Graphics"
+> > >> - mt8196-gpufreq binding: get rid of mailbox channels we're unlikely to
+> > >>   use any time soon, if ever
+> > >> - mt8196-gpufreq binding: change name of mailbox channels to use -
+> > >>   instead of _
+> > >> - mailbox binding: change reg-names to "data" and "ctl"
+> > >> - drm/panthor: mediatek_mfg: rename e2_id to hw_revision
+> > >> - drm/panthor: devfreq: switch from performance-controller to
+> > >>   performance-domains
+> > >> - drm/panthor: devfreq: get rid of the accidental get_cur_freq function
+> > >>   move
+> > >> - mailbox: rename mtk_gpueb_mbox_ch to mtk_gpueb_mbox_chan_desc
+> > >> - mailbox: use smaller types in mtk_gpueb_mbox_chan_desc where possible
+> > >> - mailbox: add per-channel runtime data struct
+> > >> - mailbox: request one threaded IRQ per channel, pass channel struct as
+> > >>   data
+> > >> - mailbox: make num_channels in variant struct u8
+> > >> - mailbox: get rid of no_response, as it was redundant
+> > >> - mailbox: enable and disable clock in mailbox startup/shutdown
+> > >> - mailbox: point con_priv of mailbox framework channel struct to this
+> > >>   driver's channel struct
+> > >> - mailbox: request and free the threaded IRQ in startup/shutdown
+> > >> - mailbox: only clear IRQ bit flag once RX data has been read from MMIO
+> > >> - mailbox: reduce needlessly large receive buffer size
+> > >> - mailbox: handle allocation errors wherever they could pop up
+> > >> - mailbox: style cleanups in mtk_gpueb_mbox_read_rx
+> > >> - mailbox: call platform_get_irq earlier on in probe
+> > >> - mailbox: set drvdata later on in probe
+> > >> - mailbox: ioremap resources by index, not name
+> > >> - mailbox: handle devm_mbox_controller_register errors
+> > >> - mailbox: rename channels to correspond to bindings
+> > >> - mailbox: document a few of the private driver structs to be kind to
+> > >>   the next person who will look at this code
+> > >> - Link to v1: https://lore.kernel.org/r/20250905-mt8196-gpufreq-v1-0-7b6c2d6be221@collabora.com
+> > >>
+> > >> ---
+> > >> Nicolas Frattaroli (5):
+> > >>       dt-bindings: gpu: mali-valhall-csf: add mediatek,mt8196-mali variant
+> > >>       dt-bindings: power: Add MT8196 GPU frequency control binding
+> > >>       drm/panthor: call into devfreq for current frequency
+> > >>       drm/panthor: Use existing OPP table if present
+> > >>       pmdomain: mediatek: Add support for MFlexGraphics
+> > >>
+> > >>  .../bindings/gpu/arm,mali-valhall-csf.yaml         |   37 +-
+> > >>  .../bindings/power/mediatek,mt8196-gpufreq.yaml    |  117 +++
+> > >>  drivers/gpu/drm/panthor/panthor_devfreq.c          |   62 +-
+> > >>  drivers/gpu/drm/panthor/panthor_devfreq.h          |    2 +
+> > >>  drivers/gpu/drm/panthor/panthor_device.h           |    3 -
+> > >>  drivers/gpu/drm/panthor/panthor_drv.c              |    4 +-
+> > >>  drivers/pmdomain/mediatek/Kconfig                  |   16 +
+> > >>  drivers/pmdomain/mediatek/Makefile                 |    1 +
+> > >>  drivers/pmdomain/mediatek/mtk-mfg-pmdomain.c       | 1044 ++++++++++++++++++++
+> > >>  9 files changed, 1268 insertions(+), 18 deletions(-)
+> > >> ---
+> > >> base-commit: 3477f49ff0433a241da12ec9cecf6c9b2bd1c6f8
+> > >> change-id: 20250829-mt8196-gpufreq-a7645670d182
+> > >>
+> > >> Best regards,
+> > >> --
+> > >> Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> > >>
+> >
+
 -- 
-2.25.1
-
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
 
