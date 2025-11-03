@@ -1,63 +1,89 @@
-Return-Path: <devicetree+bounces-234476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B60ABC2D9B3
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 19:10:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 252D1C2D9BF
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 19:11:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 62DFF34B53D
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 18:10:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0295F189A374
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 18:11:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D025B31B131;
-	Mon,  3 Nov 2025 18:10:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BC7331BCA6;
+	Mon,  3 Nov 2025 18:11:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LwB/JXL4"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WzezhX5v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CDFA2BE7C2;
-	Mon,  3 Nov 2025 18:10:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F2F431B832;
+	Mon,  3 Nov 2025 18:11:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762193440; cv=none; b=YAPjTLnOy/VEjh++hlTB/gA265oY1m2ROX/zLYNiFDJ2MDWTYglhXDYaKsp8/SBvuPoNVeM3fATorH3tq083L+k+K4LGYIcop48czNSQecNh0oOLOTRzW1pnukg6UOnjuBAyn0cCLyMnYjUn2AGPiKmxcqMCDssJvMQ3z6T5AaM=
+	t=1762193464; cv=none; b=lKxyCxxCxKn2pbnutKHBcV+3HSjRcM2I11+QamYPfZYCPWb9sINe7jtcfVeh2+Dic3ENGwEIrlFZrO5UBofxwTjpfCJL5zeImPr4+GEybMYis49C7TK+9/Bgawy9wLdGZgaMlbfoGbPgqw/WlKXf/w00lSA0lmFCQjdby/ZQmOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762193440; c=relaxed/simple;
-	bh=dZ5DzmV8v+EdzX/v24I9P1Dtpu2Lj+7owRynAELiKHQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=RT7c+z7fjofJclUChLdytbRCWzKCrKLaqPD7dkm8li6FLDVbMSUQxKhBY6pMWt0IlXwLhynrNGDZNEuRD2Q+VvB0viBvdegtFkLEi0W3bizPcdkjTLCu9oHOGZtyex+uXoJJr/6DFr6+tauvsZ8vJgCuDxP4NHhbZuTegTtNEpc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LwB/JXL4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03921C4CEE7;
-	Mon,  3 Nov 2025 18:10:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762193440;
-	bh=dZ5DzmV8v+EdzX/v24I9P1Dtpu2Lj+7owRynAELiKHQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=LwB/JXL47a6IAwbTm9xSakkJCGfu82fn/vpMMT6GFWRB6cQ0dL2vEVWxPkGkmN+N/
-	 1EkdRhwDrAHXkytiFeIwv/kWUcnqe1++yX7rQ2xrNS6MoNfcRMuoVUIXLkO546Edak
-	 EGkq79cEE0iemsqGiiDdxOTQZgkTya6f4jriLo0bfK2vQso/PHIHxYRjm1BIMXbLkw
-	 MRYd/0ugIMaWgcmpGmednsEbbBZYJFD4BBdr5HPZvtN/nk7/C/+VSM0f+h1zscxvHE
-	 kuXtZQ32SPf/HLrlhA7hUUtHooqG67Z7hW6Dc/Ez7IRSAiCGEP46p6X0vPqoYkmPaJ
-	 FB1RjwG24qhMQ==
-Date: Mon, 3 Nov 2025 12:10:38 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Geraldo Nascimento <geraldogabriel@gmail.com>
-Cc: linux-rockchip@lists.infradead.org,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	s=arc-20240116; t=1762193464; c=relaxed/simple;
+	bh=va05Mvt1eD6PFtFEKUpfUa5jMNLoaEZADG41u4Ql/M4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=h7i/r3mVqUqiPGFAyT0M1Jhca6wH2JtGGbVuA+smuqT8w506PmXcJq7Q4AAlg8MbtgZdYMHMJ79n1qQ0dRrIKr8bI8Pywx8ljItP0A6TMGJo8d3qwM4HzLQw56k54fOgnyl4LedSuAnjckynDJWd9BZ2h83rFGnUxr+mXIEE9C0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WzezhX5v; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762193464; x=1793729464;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=va05Mvt1eD6PFtFEKUpfUa5jMNLoaEZADG41u4Ql/M4=;
+  b=WzezhX5vP4eqjEfEWSedLXcNf5hyRJ3E5f+lKwZG2DVihtGe/nRQrnQK
+   MK+YzyPU+G4gTh3DGNPPm+q9ar3yixOCvYucKSqe5MGA0HBDezw/ICD1S
+   sJ8rEG3l8X70kZfubmaJmD2Gj1Gbs3UF3Th7c/fHsVbhtw3SJa247f5lk
+   s3H3xTUaEkvYS7C46qwJm5GYVBJJCFW67IQuiD70HOCHv2ZZBIamewH3/
+   GRSZgREZcgT34bcMYNN+8aU7g3SXYiM8GyOAFZTM8e1589SDc1DNnJ0wo
+   MkjbU2IUEvuU2yifiaq6SPKooYec90FGPmf0s92YMlVQzlfQapvxY7Bxu
+   g==;
+X-CSE-ConnectionGUID: SzgVStMESbaX/2M/XXaN7Q==
+X-CSE-MsgGUID: 7XdgR2R5TYW4WpSgbspTJg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="64310646"
+X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; 
+   d="scan'208";a="64310646"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2025 10:11:03 -0800
+X-CSE-ConnectionGUID: lYK2nm35QX+me1Q/Ii1pxg==
+X-CSE-MsgGUID: c/gQnkyGRYa3OAlETYavtA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; 
+   d="scan'208";a="187083144"
+Received: from smoehrl-linux.amr.corp.intel.com (HELO ashevche-desk.local) ([10.124.220.216])
+  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2025 10:10:59 -0800
+Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1vFz12-00000005ERt-0H0D;
+	Mon, 03 Nov 2025 20:10:52 +0200
+Date: Mon, 3 Nov 2025 20:10:51 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Johan Jonker <jbx6244@gmail.com>
-Subject: Re: [RFC PATCH 2/2] PCI: rockchip-host: drop wait on PERST# toggle
-Message-ID: <20251103181038.GA1814635@bhelgaas>
+	Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-iio@vger.kernel.org, joshua.yeong@starfivetech.com,
+	devicetree@vger.kernel.org, linux@roeck-us.net,
+	Carlos Song <carlos.song@nxp.com>,
+	Adrian Fluturel <fluturel.adrian@gmail.com>
+Subject: Re: [PATCH v9 6/6] iio: magnetometer: Add mmc5633 sensor
+Message-ID: <aQjwK2IC1NML2w5F@smile.fi.intel.com>
+References: <20251031-i3c_ddr-v9-0-f1e523ebaf78@nxp.com>
+ <20251031-i3c_ddr-v9-6-f1e523ebaf78@nxp.com>
+ <aQhkRmtJMoB7vv8U@smile.fi.intel.com>
+ <aQjQ4jsG6Gc2u3n+@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,52 +92,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d3d0c3a387ff461e62bbd66a0bde654a9a17761e.1762150971.git.geraldogabriel@gmail.com>
+In-Reply-To: <aQjQ4jsG6Gc2u3n+@lizhi-Precision-Tower-5810>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Mon, Nov 03, 2025 at 03:27:25AM -0300, Geraldo Nascimento wrote:
-> With this change PCIe will complete link-training with a known quirky
-> device - Samsung OEM PM981a SSD. This is completely against the PCIe
-> spec and yet it works as long as the power regulator for 3v3 PCIe
-> power is not defined as always-on or boot-on.
+On Mon, Nov 03, 2025 at 10:57:22AM -0500, Frank Li wrote:
+> On Mon, Nov 03, 2025 at 10:13:58AM +0200, Andy Shevchenko wrote:
+> > On Fri, Oct 31, 2025 at 12:39:18PM -0400, Frank Li wrote:
 
-What is against the spec?  In what way is this SSD "known quirky"?  Is
-there a published erratum for it?
+...
 
-Removing this delay might make this SSD work, but if this delay is
-required per PCIe spec, how can we be confident that other devices
-will still work?
-
-Reports of devices that still work is not really enough to move this
-from the "hack that makes one device work" column to the "safe and
-effective for all devices" column.
-
-It's easy to see how *lack* of a delay can break something, but much
-harder to imagine how *removing* a delay can make something work.
-Devices must be able to tolerate pretty much arbitrary delays.
-
-> Signed-off-by: Geraldo Nascimento <geraldogabriel@gmail.com>
-> ---
->  drivers/pci/controller/pcie-rockchip-host.c | 1 -
->  1 file changed, 1 deletion(-)
+> > > - 1 -> ARRAY_SIZE()
+> >
+> > Maybe I missed the answer, but why are the arrays to begin with?
 > 
-> diff --git a/drivers/pci/controller/pcie-rockchip-host.c b/drivers/pci/controller/pcie-rockchip-host.c
-> index ee1822ca01db..6add0faf6dc9 100644
-> --- a/drivers/pci/controller/pcie-rockchip-host.c
-> +++ b/drivers/pci/controller/pcie-rockchip-host.c
-> @@ -314,7 +314,6 @@ static int rockchip_pcie_host_init_port(struct rockchip_pcie *rockchip)
->  	rockchip_pcie_write(rockchip, PCIE_CLIENT_LINK_TRAIN_ENABLE,
->  			    PCIE_CLIENT_CONFIG);
->  
-> -	msleep(PCIE_T_PVPERL_MS);
->  	gpiod_set_value_cansleep(rockchip->perst_gpio, 1);
->  
->  	msleep(PCIE_RESET_CONFIG_WAIT_MS);
-> -- 
-> 2.49.0
+> I3C/I2C transfer API required pass down one array. Keep the same coding
+> style with existed one, like
 > 
-> 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> source/drivers/base/regmap/regmap-i3c.c
+
+I can understand why it's done there (there are read and write and they use
+different amount of items in the arrays). But here in your case IIRC there
+is only one function that uses predefined arrays out of a single entry. So
+I do not see a justification for having an array. OTOH it's not a big deal
+and I leave it to Jonathan to decide.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
