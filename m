@@ -1,288 +1,184 @@
-Return-Path: <devicetree+bounces-234250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83891C2AA10
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 09:49:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E44EC2AA37
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 09:53:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4AB934E4C07
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 08:48:10 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 03D374ED731
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 08:52:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 907572DC348;
-	Mon,  3 Nov 2025 08:48:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3A112E2299;
+	Mon,  3 Nov 2025 08:52:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I+gV+Dyo"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="G07ZWxKE";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HBSWID1D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6125122FDFF;
-	Mon,  3 Nov 2025 08:48:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 732B72836A4
+	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 08:51:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762159687; cv=none; b=EuMjv+wFB+g6m/VAr41aVtfDu3G1rTneDVP5aNXBvf280bTv6Bg6zAzTS8LPTtlk3JglOEpQrVBSSNXQGCTlF3NTIHRc+CN99Mw5+mCnlus3z70HRTJ6KwrkOjoIH313EMkkUSDD5NawNqJrqJ3KNiLpqJrYAk/1Kgc8YMZqxUE=
+	t=1762159920; cv=none; b=W3bjYwOqgIC1sU6b3EQp9CQHniZRT1KlWYlllsVwIu099+qKEfAgZ7HUQpiP11SB4wLhPQFqdGWQF7E6Wb7l3sor/w/23u/cLEH+QxgYzfeO1s0KlOsS1XOkrXQmjHjng2i4qoRi1e24+oiIeXNA4hBN/yrYrN0Xjmb5KNvNMwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762159687; c=relaxed/simple;
-	bh=kSK87Lz187SvEv/ezIlPUnK48XBpFCoU39V9dwZOIyk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SEyW3E/iPyGWVlz3aVOKdhiLtPIFAW2852BbVHB1MeGAoX5gQgRx19kqsA7SVyASzeZKYHcofoT6LKToDXNyiKgd7wVmqgu6Hz1eI62dBV4aSHRAdchWXJHmZ+WsoCGCK0SmovcGqANbRyEsweGdg1LZZVL4184lmUCEsVvEvBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I+gV+Dyo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A97FC4CEE7;
-	Mon,  3 Nov 2025 08:48:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762159684;
-	bh=kSK87Lz187SvEv/ezIlPUnK48XBpFCoU39V9dwZOIyk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=I+gV+DyoFI5X6a/znFETi5APlRLYHVCEylajtMPu7Bv2+/yLCx842AhbEGS8QxMmw
-	 pROVlJ4PoF3+zuGhZzvLR6z3igjVndq3DaGDy0Aef8tmEEULTpVkMlLL38q7nmfXXa
-	 6n9d3wJnnLEKl9j6xVZJ/ttW9mbHoIma9T8GCYCIBqk86/qGS9r0BY/aBLJM9SwK3F
-	 0VVO2aVdRbmUpo9w4Wg0Tgh1S4YUoh5FAJyGml+5jpSZWg9I5guTAAzidNoNcpBial
-	 VdJNtrZ7sYQ3ZCfhQLngyGQ0ok2I2uzU4/5ipwo7Aj5kAHuHO0tGw9ombCqao+476g
-	 F43LRc2NbGdPA==
-Date: Mon, 3 Nov 2025 09:48:02 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: zhangsenchuan@eswincomputing.com
-Cc: bhelgaas@google.com, mani@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, 
-	p.zabel@pengutronix.de, jingoohan1@gmail.com, gustavo.pimentel@synopsys.com, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	christian.bruel@foss.st.com, mayank.rana@oss.qualcomm.com, shradha.t@samsung.com, 
-	krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com, inochiama@gmail.com, 
-	ningyu@eswincomputing.com, linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com, 
-	ouyanghui@eswincomputing.com
-Subject: Re: [PATCH v4 1/2] dt-bindings: PCI: EIC7700: Add Eswin PCIe host
- controller
-Message-ID: <20251103-gentle-precise-bloodhound-ef7136@kuoka>
-References: <20251030082900.1304-1-zhangsenchuan@eswincomputing.com>
- <20251030083057.1324-1-zhangsenchuan@eswincomputing.com>
+	s=arc-20240116; t=1762159920; c=relaxed/simple;
+	bh=HZekR+X1QQ8T+n7KBLJNAnNWovL2r7FAK8kQNXZzh34=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=o6+IJPKdnTdpyUzVD2V7ili3+XBtNZMU7keYzI5GBPbnNrqbYatfQt8ROGL8qY60wXLgSPPSxxO66NaWCtgAlI6r0LbvTzB3sx3HBZ73kBebItaay0LZfG21DUszZFXOTMc5P+TyDZ6bUnTJytoHLOS9DK1x+1D5lymmAA3+DAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=G07ZWxKE; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HBSWID1D; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A381M98692463
+	for <devicetree@vger.kernel.org>; Mon, 3 Nov 2025 08:51:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=c0vqi6jj/b8CbGVumVnkzg
+	xG3KjKbgL/ynWKTJBgytI=; b=G07ZWxKEJdR6yvZAoy96zzRTt1U2QH7asRKYYw
+	lfl/7uruRMFLgT6INo0nTZhp5ZDJLqyE9SHtC9IOMZbhlNCH392Vjanp0Rhj0oYy
+	BYtaGQoeVky2ToDZ8TNrHugUi6RIzo9JMzvBk7FhfKn57sT0v/OzmSP1hnB6b3W8
+	2ba/TgZwLnk8thbKer7gtc1lW1AKPxRNpKojDi+3XmA5Myx8vGlVZDfCKh+Comdm
+	mRzfb3eW0t2w+/MwMJv9W3Y2TbUhtByt2KBGMQLCgPpQsM74jf8ufDOEnMdEJcgP
+	tmANYXG6wGiAZ6uO9XmMxhtlXiwHraG0Et7l4DyS1GdlIsVg==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a5a9vkyyx-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 08:51:58 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2958a134514so12883865ad.2
+        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 00:51:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762159917; x=1762764717; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=c0vqi6jj/b8CbGVumVnkzgxG3KjKbgL/ynWKTJBgytI=;
+        b=HBSWID1D8Wxq081UP/8ANSXHVTM7xRYjaattsjjsAyFEYIdMeHH6VA6PH9DPJBjqFc
+         oHKeY7c8EiGYiRzLHsOPkWK3enIS6bo3bTi46Fg6aCEMwlPdcdH6z8nmnf/Ye5JYpuCf
+         tF+4AiDrwQI8TkW5U2CqmCAl/TxG0hl3y0/3IzlCCBtYECOZvesmLSeyxbSTa993EsY+
+         h3aPezkxo4c8MmxM1B330AaQQr6Sc8ZwyHg4+45vARrVNQi7mRisHdD5gFA6mJQjUjD9
+         R1eo81XMkAycYJJTEFFnR/LEKO9PWwJQmh5mVrmiIMd7fP4zwtNkrjxW0Ui9MrsYwdEy
+         bLvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762159917; x=1762764717;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=c0vqi6jj/b8CbGVumVnkzgxG3KjKbgL/ynWKTJBgytI=;
+        b=o2KNjVeJnSuMED2Yp+ZsPyxohAzdzzPoRq+jR7cN7diFmTP4S+wlX9aEvEzgkSFLqs
+         Nn1kUw+AxY5eCwJEsOCBiy1Bo3F4FMYOTv4kEFJXHDHFhbqGvA1dGoqH9TCfay1f47/7
+         ueHFzs64mO9qWXDUAZyKyrLTSHHppUOQNhNbd1Nz5/OYFVNBqPPQAVcNcT78jWgiJskF
+         Y5tRm/sUsd+HwndbROa9EfpS7BFkK4s2bw50x0jqW47jKjihDeoLcOnBpduZh14Lp7em
+         eIPfmU/8vYbvil1npdPILOjnPj3IwcP74qLyFYhMZrQHCXGu0ja0RW7Hw/o0/wvofKFg
+         ZANg==
+X-Forwarded-Encrypted: i=1; AJvYcCWoytZAzB4vtPKx3f6ZqwI4fMhnpWeC8DfcuAebHWj6WaHjRGqrleCc9UZ1NlRht0XGnmMky+wLKYV6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYVUaras+fU3FVXMRiVqdmqpsKH95ofEjrlwYIZCeIan9dh6GU
+	IRIcx6Oters8ZhBIE63LPLJ7BqFaumDTqZasienxmMeIM4+rrYbcUwN0QC1VvQYZR96WQlT0Dkq
+	wc9I+WsT5w4jSAiiMXeOJx/D/OFgASv5N6n1Q164OmrtJKRq3XPfOzZDTsSXzK9R1
+X-Gm-Gg: ASbGncvUNkeMluXLq4Cc9Lm18dJX2nRRv5ocb9aBVwuREqPSDCIsMivmj7PYXbGBfEX
+	V6fXjShhlXMPHiuhWraDctB0mpRLg7B5hQhxCBNrSWSP5aUfq57Q49Wi0Sm6TcA1hmj85KJMSd3
+	6VFV9Kvnl0qY1qeUWiJba7ImPWYmxjksqqLRxt4XULGpcpypF+60tI97saAfhuGh+EIftBDvCwW
+	Vxwins9gxiR+meZ2qDPvBfdaTi5F2wMmBSiRZOLgHjVZRvLEWt7YFWgnxhXB72Hl9EsGwzdxw7x
+	LAgBLDgQjrwOih8q/P2ZHOUxev81+WPsloQpwFSLs+blT3fXp9tZJX9q7gmIHl6Fx/xNfanlteA
+	dQAM2mCIqrlBlfdr1ADeuNg==
+X-Received: by 2002:a17:903:24f:b0:295:24ab:fb06 with SMTP id d9443c01a7336-29524abfc57mr117895355ad.22.1762159917405;
+        Mon, 03 Nov 2025 00:51:57 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGdFWZ5eL263AhpbzBjcsP/SoG/gFdyoVlX/8S0qnFen85cVcRcaeE00KTs+4TsynF2ykEGmg==
+X-Received: by 2002:a17:903:24f:b0:295:24ab:fb06 with SMTP id d9443c01a7336-29524abfc57mr117895035ad.22.1762159916789;
+        Mon, 03 Nov 2025 00:51:56 -0800 (PST)
+Received: from [169.254.0.7] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-341599676d6sm255142a91.9.2025.11.03.00.51.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Nov 2025 00:51:55 -0800 (PST)
+From: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
+Subject: [PATCH v5 0/2] Add interconnect support for Kaanapali SoC
+Date: Mon, 03 Nov 2025 08:51:17 +0000
+Message-Id: <20251103-knp-interconnect-v5-0-f9929faddb66@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251030083057.1324-1-zhangsenchuan@eswincomputing.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAVtCGkC/22O0Q6CIBiFX8VxHQ4QkrrqPVoXQL/JSlBQV3O+e
+ +jaasubfzv/zvnOmVCEYCGiYzahAKON1rskxC5DplbuBthek0aMMEEOtMR312LregjGOwemx1w
+ aZg5UV5WQKMXaAJV9rsjzJWmtImAdlDP1AmpUTOGPMUA3pMr+665t7H14rXvGYvmu1ZQU5L96L
+ DDBikiuOJOspOLkY8y7QT2Mb5o8HbQwR/7LoRscnjhiL7VWzOgCtjjzPL8BQZPlni0BAAA=
+X-Change-ID: 20250917-knp-interconnect-48c2c91bff58
+To: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTAzMDA4MCBTYWx0ZWRfX2FwBabM2jkCf
+ IuYm2fsQPCAnA2xYXj2gg2IbiiS3ARJILiIHalfCnd67i8p6L6wpB5R2nTa75OnYl3XHqE7IfYZ
+ OjFUP6RaYaCapu+sMxgK6xbNfpF6AYM0HZxNmeZEe8rSzKJuebOW0PfRa5Is3KQ1ciXHanQ59Bh
+ VZfJw9s6XrQloPu4Rks06LG/1No5BeWE5BR0aNJSGaasvlICq4ZHSm3nzEG4feETDqqaxGzIqvX
+ wioCHiANkCgh1v+2BdBIrnMwlTnHRNJCsty0xm59ibEyriTE3wH32U9XIPzKZ+VnsJTcAnN6xVQ
+ KfCLH2GiFHTXlQr21PRMsbCoCk8s/1dUdskH3a62XKKGwghHg7asfj2FAGaSXKTXcffgqHtByVD
+ h2ElQw0/17wI0wFhl5p8ygLUYjoqgg==
+X-Authority-Analysis: v=2.4 cv=c6CmgB9l c=1 sm=1 tr=0 ts=69086d2e cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=NeJqaqV_MRuGqkmvWOwA:9 a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-ORIG-GUID: 5eRHfrrtiellH58fH0e1hnmfm0qJFD3i
+X-Proofpoint-GUID: 5eRHfrrtiellH58fH0e1hnmfm0qJFD3i
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-02_02,2025-10-29_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 clxscore=1015 priorityscore=1501 impostorscore=0
+ lowpriorityscore=0 adultscore=0 bulkscore=0 phishscore=0 spamscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511030080
 
-On Thu, Oct 30, 2025 at 04:30:57PM +0800, zhangsenchuan@eswincomputing.com wrote:
-> From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> 
-> Add Device Tree binding documentation for the Eswin EIC7700 PCIe
-> controller module, the PCIe controller enables the core to correctly
-> initialize and manage the PCIe bus and connected devices.
-> 
-> Signed-off-by: Yu Ning <ningyu@eswincomputing.com>
-> Signed-off-by: Yanghui Ou <ouyanghui@eswincomputing.com>
-> Signed-off-by: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> ---
->  .../bindings/pci/eswin,eic7700-pcie.yaml      | 166 ++++++++++++++++++
->  .../bindings/pci/snps,dw-pcie-common.yaml     |   2 +-
->  2 files changed, 167 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml b/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
-> new file mode 100644
-> index 000000000000..e6c05e3a093a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
-> @@ -0,0 +1,166 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/eswin,eic7700-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Eswin EIC7700 PCIe host controller
-> +
-> +maintainers:
-> +  - Yu Ning <ningyu@eswincomputing.com>
-> +  - Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> +  - Yanghui Ou <ouyanghui@eswincomputing.com>
-> +
-> +description:
-> +  The PCIe controller on EIC7700 SoC.
-> +
-> +properties:
-> +  compatible:
-> +    const: eswin,eic7700-pcie
-> +
-> +  reg:
-> +    maxItems: 3
-> +
-> +  reg-names:
-> +    items:
-> +      - const: dbi
-> +      - const: config
-> +      - const: mgmt
+Add interconnect dt-bindings and driver support for Qualcomm Kaanapali SoC.
 
-That's deprecated. Read its description. That's just elbi.
+Changes since V4:
+  - Updated the SoC name in bindings [Krzysztof]
+  - Link to v4: https://lore.kernel.org/r/20251031-knp-interconnect-v4-0-568bba2cb3e5@oss.qualcomm.com
 
-> +
-> +  ranges:
-> +    maxItems: 3
-> +
-> +  '#interrupt-cells':
-> +    const: 1
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: msi
-> +      - const: inta
-> +      - const: intb
-> +      - const: intc
-> +      - const: intd
+Change since V3:
+  - Removed unused header dependencies from bindings [Bjorn]
+  - Link to v3: https://lore.kernel.org/r/20251030-knp-interconnect-v3-0-a084a4282715@oss.qualcomm.com
 
-Thse are legacy signals. Why are you using legacy?
+Changes since V2:
+  - Removed the dependency on clock header in "qcom,kaanapali-rpmh.yaml"
+    bindings file [Krzysztof]
+  - Corrected the patch revision number.
 
-> +
-> +  interrupt-map:
-> +    maxItems: 4
-> +
-> +  interrupt-map-mask:
-> +    items:
-> +      - const: 0
-> +      - const: 0
-> +      - const: 0
-> +      - const: 7
-> +
-> +  clocks:
-> +    maxItems: 4
-> +
-> +  clock-names:
-> +    items:
-> +      - const: mstr
-> +      - const: dbi
-> +      - const: pclk
+Changes since V1:
+  - Added b4 dependency on the clock patch [Rob]
+  - Updated the Module Description to "Qualcomm Kaanapali NoC driver"
+    [Dmitry]
 
-Deprecated name.
+---
+Raviteja Laggyshetty (2):
+      dt-bindings: interconnect: document the RPMh Network-On-Chip interconnect in Kaanapali SoC
+      interconnect: qcom: add Kaanapali interconnect provider driver
 
-> +      - const: aux
-> +
-> +  resets:
-> +    maxItems: 2
-> +
-> +  reset-names:
-> +    items:
-> +      - const: dbi
-> +      - const: powerup
-
-No such name.
-
-> +
-> +patternProperties:
-> +  "^pcie@":
-> +    type: object
-> +    $ref: /schemas/pci/pci-pci-bridge.yaml#
-> +
-> +    properties:
-> +      reg:
-> +        maxItems: 1
-> +
-> +      num-lanes:
-> +        maximum: 4
-> +
-> +      resets:
-> +        maxItems: 1
-> +
-> +      reset-names:
-> +        items:
-> +          - const: perst
-> +
-> +    required:
-> +      - reg
-> +      - ranges
-> +      - num-lanes
-> +      - resets
-> +      - reset-names
-> +
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - ranges
-> +  - interrupts
-> +  - interrupt-names
-> +  - interrupt-map-mask
-> +  - interrupt-map
-> +  - '#interrupt-cells'
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/snps,dw-pcie.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        pcie@54000000 {
-> +            compatible = "eswin,eic7700-pcie";
-> +            reg = <0x0 0x54000000 0x0 0x4000000>,
-> +                  <0x0 0x40000000 0x0 0x800000>,
-> +                  <0x0 0x50000000 0x0 0x100000>;
-> +            reg-names = "dbi", "config", "mgmt";
-> +            #address-cells = <3>;
-> +            #size-cells = <2>;
-> +            #interrupt-cells = <1>;
-> +            ranges = <0x01000000 0x0 0x40800000 0x0 0x40800000 0x0 0x800000>,
-> +                     <0x02000000 0x0 0x41000000 0x0 0x41000000 0x0 0xf000000>,
-> +                     <0x43000000 0x80 0x00000000 0x80 0x00000000 0x2 0x00000000>;
-> +            bus-range = <0x00 0xff>;
-> +            clocks = <&clock 144>,
-> +                     <&clock 145>,
-> +                     <&clock 146>,
-> +                     <&clock 147>;
-> +            clock-names = "mstr", "dbi", "pclk", "aux";
-> +            resets = <&reset 97>,
-> +                     <&reset 98>;
-> +            reset-names = "dbi", "powerup";
-> +            interrupts = <220>, <179>, <180>, <181>, <182>, <183>, <184>, <185>, <186>;
-> +            interrupt-names = "msi", "inta", "intb", "intc", "intd";
-> +            interrupt-parent = <&plic>;
-> +            interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-> +            interrupt-map = <0x0 0x0 0x0 0x1 &plic 179>,
-> +                            <0x0 0x0 0x0 0x2 &plic 180>,
-> +                            <0x0 0x0 0x0 0x3 &plic 181>,
-> +                            <0x0 0x0 0x0 0x4 &plic 182>;
-> +            device_type = "pci";
-> +            pcie@0 {
-> +                reg = <0x0 0x0 0x0 0x0 0x0>;
-> +                #address-cells = <3>;
-> +                #size-cells = <2>;
-> +                ranges;
-> +                device_type = "pci";
-> +                num-lanes = <4>;
-> +                resets = <&reset 99>;
-> +                reset-names = "perst";
-> +            };
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-> index 34594972d8db..cff52d0026b0 100644
-> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-> @@ -176,7 +176,7 @@ properties:
->              - description: See native 'phy' reset for details
->                enum: [ pciephy, link ]
->              - description: See native 'pwr' reset for details
-> -              enum: [ turnoff ]
-> +              enum: [ turnoff, powerup ]
-
-NAK, you cannot add more deprecated names. Do you understand what
-deprecated/legacy mean?
-
+ .../bindings/interconnect/qcom,kaanapali-rpmh.yaml |  124 ++
+ drivers/interconnect/qcom/Kconfig                  |    9 +
+ drivers/interconnect/qcom/Makefile                 |    2 +
+ drivers/interconnect/qcom/kaanapali.c              | 1868 ++++++++++++++++++++
+ .../dt-bindings/interconnect/qcom,kaanapali-rpmh.h |  149 ++
+ 5 files changed, 2152 insertions(+)
+---
+base-commit: ae2d20002576d2893ecaff25db3d7ef9190ac0b6
+change-id: 20250917-knp-interconnect-48c2c91bff58
 
 Best regards,
-Krzysztof
+-- 
+Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
 
 
