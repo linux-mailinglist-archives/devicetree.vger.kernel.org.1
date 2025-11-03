@@ -1,165 +1,156 @@
-Return-Path: <devicetree+bounces-234219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 594D7C2A56D
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 08:32:32 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E0B4C2A59C
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 08:35:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 06454341154
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 07:32:32 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 164E14E33D4
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 07:34:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F9D529BD87;
-	Mon,  3 Nov 2025 07:32:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H2qcvIs4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E01A2BDC05;
+	Mon,  3 Nov 2025 07:34:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA31927FB35
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 07:32:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A7F029D282
+	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 07:34:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762155147; cv=none; b=i7fV7mRGJqExMFBl/btUGCPHgSCiZahlurU26AntpmDFFGejrEpAz7xvhxk3v10AYXwaLU9nyT111Zyl4MoY0oHH/jTGF5vK6mTQlrbkVuSsdZCq8kYLOSr9yNRcRwyax17RkuwJ+zMuyXi2pcEpNY7TICYzKl4BGaw7AqTjYm0=
+	t=1762155277; cv=none; b=ZPpAHftaCc1z7WqumPX5LzcN50eqnwG/lg0kiWKu437o+TYp7OQCFEGmuLl9seCWJKQMdYk9jKYiKDGviipEgJ23nz+AJtaskF08M0Loo7KqPXcd72tqVtRc6lmrKj9epk4EcFYwdClTVvTbWR+slRlzhJYg1PmkXrcUntHbfm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762155147; c=relaxed/simple;
-	bh=ZNSmTPEj7xoV6MOmkmCB9NrRHBYVMykCy4asOAJDTQg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=imect9j0Ncn0YHZKKkWfclGBc8JqYV+Dq3uqyz2UJf4ec5e7zL40PliCCZ7miuGnM9vlK40wQDXYrfKvL0uwKqjVlpdpBKB0338ExuHrP/2qu5N/N1jMbWf8TnYIFl8fZvCMTJZln9OpIm7dWDBospT9aYf2RUPxyn9K/BGjYQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H2qcvIs4; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-37a38e56dd5so3419281fa.0
-        for <devicetree@vger.kernel.org>; Sun, 02 Nov 2025 23:32:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762155144; x=1762759944; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DaaUEDVSi1zym8/RCHGJWc+jChnQELjhyUR46GKHyw4=;
-        b=H2qcvIs4aNJz+xc1qsMhgVFD2O+MRMWxhmZ6DvpWdAvOATbLRj1QB8i9EOGKJ9DuaG
-         eHhVUPW3YLhCXRwcqmBLODUJvUg58bQXpBAXdwk6xfVLsbb4xJHWm/6N8POqimEH9ion
-         f/8zak4cYZITWNuY/4ZHQvG5cldJLb+dIAk91nqbMy87Kj3DNXfbN6LvTElS02Z5wi/B
-         utkwhyN9eh+RxnKpjmWztL2zYczAjaUuEXtPQNpeY/GpXnN2XY0LDOv8Px+/J86C1vlb
-         vPdLgcqfm4InDYVS7b2uvpXKgc6iKhYZ7mhrPJAeJ6kKlQ69o6W4nNRZ7DfaBNzBMjI5
-         xt9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762155144; x=1762759944;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DaaUEDVSi1zym8/RCHGJWc+jChnQELjhyUR46GKHyw4=;
-        b=FS+7ZqvdreoCUnclVisZ/m8CgrwECcX1GbY5/cEJ53uVRoIptZZfRqXPewSMnJ89wM
-         twP55AeH/DYPr5bF7Z++bKHQqEyJGNUCNemXllCV4fYV+CvdgCB2Ae1nCzAlM3lzKrS/
-         qoq79D4G2nQ7dBYFqtOyh9P2hFMqkDInQ3LfJ9i/P+8PM6BriSebenGsFC6eTw9ZJWUU
-         zleeRwKin3tRCRhur4bIpLH4zZbZxu4uR6zh2mxge4wuEdbKClcjyn1+Ubzr3DSN0t/+
-         E9YFEX3Pxb/2WVtdykEirpQfaJJ6Pw+2bw0S3j/oDWProTCo1xYRscJQtYLpcnWxZocX
-         rnsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVS3pVyqrbw0gCia4ykwFYYILJyniOIEJ6Pmx/2FRdeH/cj6x2A8WWExEyCuFR5fm8/7SUHrPYwpvgc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxj0sdKqY6qhqLT9u5bVCIX3ARe7hE7+4La+YVhUci4Wgevi8nM
-	Ifi/8CRl0ebEKWv8pTgGXRPsH2orqT7eQ47E9tDQU1XfhpckST1KLFVtnNvVbguIotnskgYBL0s
-	Al8j05YUX+/dCxt/cloFeRAGja/SGUGk=
-X-Gm-Gg: ASbGncvxYgl/RZUNlr2D6bP+qta0g+ciN4sdMjRMqtnw+tRyAaTxWFY3HLQHcTQy6yX
-	11+ePMnVuebKevuSCY1nmmUKTTmulR8l4a87z2n4Rfg8Pc03ov6FX2zJEtax89HHa1ENA8jZJPt
-	udCw1Ot6J38LI3dp+G/lymIu5zggXBghdfGiX7SRCvejbZMDTnugqBQQL8KmPOgth4r+zRAd7/v
-	712wdAoaap0e53PkxlOooWt1E3XDgDTlrQdZeQm8MCZ11TVN096SWKbetcWCkxdWWmgtw==
-X-Google-Smtp-Source: AGHT+IG4k1+p/ZVOhwkHMtbxP47toCZzPfmoTR7VNJnn8PaEuHNkJSbLEbbfSA/3JaBOQkl8L2AQgGcDYyL6IRs5bS4=
-X-Received: by 2002:a2e:a90a:0:b0:373:a465:292c with SMTP id
- 38308e7fff4ca-37a18dc179dmr33747461fa.21.1762155143653; Sun, 02 Nov 2025
- 23:32:23 -0800 (PST)
+	s=arc-20240116; t=1762155277; c=relaxed/simple;
+	bh=IboLZbupkxix2FXICklsyuXcnn9K5vNP0z0XeJ33kCU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bZ3X95eQVOyyfVI3/HrojHRBwdp66GFwvKsdet2UY6HmbNHgHWx5n6tSZ6B8Q5fzSzBhYfnol/OQiu30H283T/utqwlDTOAAmMkVazYRjz9pHwkEoGIiFqfkac4LNmeUAkZ/M4kfS2A9cExCn3X60wM7Q+j3VPnGVADk5kaDNkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1vFp4z-0001MA-7R; Mon, 03 Nov 2025 08:34:17 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1vFp4x-006ouR-2B;
+	Mon, 03 Nov 2025 08:34:15 +0100
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1vFp4x-00GZkn-1n;
+	Mon, 03 Nov 2025 08:34:15 +0100
+Date: Mon, 3 Nov 2025 08:34:15 +0100
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Bryan Brattlof <bb@ti.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Andrew Davis <afd@ti.com>, Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Tony Lindgren <tony@atomide.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v7 2/3] arm64: dts: ti: k3-am62l: add initial
+ infrastructure
+Message-ID: <aQha9-oNEQd2Ds7Z@pengutronix.de>
+References: <20251031-am62lx-v7-0-cb426be9d6ee@ti.com>
+ <20251031-am62lx-v7-2-cb426be9d6ee@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251024173830.49211-1-xakep.amatop@gmail.com> <1499f50e-aa4f-454a-b8b5-c9a21bef7f72@collabora.com>
-In-Reply-To: <1499f50e-aa4f-454a-b8b5-c9a21bef7f72@collabora.com>
-From: Mykola Kvach <xakep.amatop@gmail.com>
-Date: Mon, 3 Nov 2025 09:32:12 +0200
-X-Gm-Features: AWmQ_bklMXYT4Ul_3Xqst3SNaatN_W8582juobBsGuz0hO38xKkJv60xkRmG9BY
-Message-ID: <CAGeoDV-+HjpW9CMy5ypsMFDYgYKrV-5zMDGie0=_JyTCo7NF2Q@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: orangepi-5: fix PCIe 3.3V regulator voltage
-To: Michael Riesch <michael.riesch@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Cenk Uluisik <cenk.uluisik@googlemail.com>, Johan Jonker <jbx6244@gmail.com>, 
-	Jimmy Hon <honyuenkwun@gmail.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Muhammed Efe Cetin <efectn@6tel.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251031-am62lx-v7-2-cb426be9d6ee@ti.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Michael,
+On Fri, Oct 31, 2025 at 09:08:05AM -0500, Bryan Brattlof wrote:
+> +	gpio0: gpio@600000 {
+> +		compatible = "ti,am64-gpio", "ti,keystone-gpio";
+> +		reg = <0x00 0x00600000 0x00 0x100>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		interrupt-parent = <&gic500>;
+> +		interrupts = <GIC_SPI 260 IRQ_TYPE_EDGE_RISING>,
+> +			     <GIC_SPI 261 IRQ_TYPE_EDGE_RISING>,
+> +			     <GIC_SPI 262 IRQ_TYPE_EDGE_RISING>,
+> +			     <GIC_SPI 263 IRQ_TYPE_EDGE_RISING>,
+> +			     <GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
+> +			     <GIC_SPI 265 IRQ_TYPE_EDGE_RISING>,
+> +			     <GIC_SPI 266 IRQ_TYPE_EDGE_RISING>,
+> +			     <GIC_SPI 267 IRQ_TYPE_EDGE_RISING>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +		power-domains = <&scmi_pds 34>;
+> +		clocks = <&scmi_clk 140>;
+> +		clock-names = "gpio";
+> +		ti,ngpio = <126>;
+> +		ti,davinci-gpio-unbanked = <0>;
+> +		status = "disabled";
 
-Thank you for the fast response and the review.
+Virtually all boards use GPIOs and a GPIO controller doesn't have any
+external dependencies, so could you enable them by default like done on
+many other SoCs?
 
-On Mon, Oct 27, 2025 at 2:39=E2=80=AFPM Michael Riesch
-<michael.riesch@collabora.com> wrote:
->
-> Hi Mykola,
->
-> Thanks for your patch.
->
-> Cc: Muhammed who is the author of commit b6bc755d806e
->
-> On 10/24/25 19:38, Mykola Kvach wrote:
-> > The vcc3v3_pcie20 fixed regulator powers the PCIe device-side 3.3V
-> > rail for pcie2x1l2 via vpcie3v3-supply. The DTS mistakenly set its
-> > regulator-min/max-microvolt to 1800000. Correct both to 3300000
-> > to match the rail name, the PCIe/M.2 power requirement, and the
-> > actual hardware wiring on Orange Pi 5.
-> >
->
-> I guess a "Fixes" tag is in order here:
->
-> Fixes: b6bc755d806e ("arm64: dts: rockchip: Add Orange Pi 5")
+> +
+> +	target-module@2b300050 {
+> +		compatible = "ti,sysc-omap2", "ti,sysc";
+> +		reg = <0x00 0x2b300050 0x00 0x4>,
+> +		      <0x00 0x2b300054 0x00 0x4>,
+> +		      <0x00 0x2b300058 0x00 0x4>;
+> +		reg-names = "rev", "sysc", "syss";
+> +		ranges = <0x00 0x00 0x2b300000 0x100000>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		power-domains = <&scmi_pds 83>;
+> +		clocks = <&scmi_clk 324>;
+> +		clock-names = "fck";
+> +		ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
+> +				 SYSC_OMAP2_SOFTRESET |
+> +				 SYSC_OMAP2_AUTOIDLE)>;
+> +		ti,sysc-sidle = <SYSC_IDLE_FORCE>,
+> +				<SYSC_IDLE_NO>,
+> +				<SYSC_IDLE_SMART>,
+> +				<SYSC_IDLE_SMART_WKUP>;
+> +		ti,syss-mask = <1>;
+> +		ti,no-reset-on-init;
+> +		status = "disabled";
 
-Thank you for pointing that out. I will add the Fixes tag in v2.
+This node is present on many other TI SoCs, all I have looked at have
+this node enabled by default. I think it makes sense to have this node
+enabled given that it has child nodes like this UART:
 
->
-> And make sure to Cc: <stable@vger.kernel.org>
+> +
+> +		wkup_uart0: serial@0 {
+> +			compatible = "ti,am64-uart", "ti,am654-uart";
+> +			reg = <0x00 0x100>;
+> +			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&scmi_clk 324>;
+> +			assigned-clocks = <&scmi_clk 324>;
+> +			clock-names = "fclk";
+> +			status = "disabled";
+> +		};
 
-Will do.
+Sascha
 
->
-> > Signed-off-by: Mykola Kvach <xakep.amatop@gmail.com>
->
-> The change itself makes sense to me.
->
-> Reviewed-by: Michael Riesch <michael.riesch@collabora.com>
-
-Thanks! I will carry your Reviewed-by in v2 (diff unchanged).
-
-
-Best regards,
-Mykola
-
->
-> Best regards,
-> Michael
->
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts b/arch=
-/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
-> > index ad6d04793b0a..83b9b6645a1e 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
-> > @@ -14,8 +14,8 @@ vcc3v3_pcie20: regulator-vcc3v3-pcie20 {
-> >               gpios =3D <&gpio0 RK_PC5 GPIO_ACTIVE_HIGH>;
-> >               regulator-name =3D "vcc3v3_pcie20";
-> >               regulator-boot-on;
-> > -             regulator-min-microvolt =3D <1800000>;
-> > -             regulator-max-microvolt =3D <1800000>;
-> > +             regulator-min-microvolt =3D <3300000>;
-> > +             regulator-max-microvolt =3D <3300000>;
-> >               startup-delay-us =3D <50000>;
-> >               vin-supply =3D <&vcc5v0_sys>;
-> >       };
->
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
