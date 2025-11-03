@@ -1,269 +1,977 @@
-Return-Path: <devicetree+bounces-234444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FEF8C2CE17
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 16:48:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07CC3C2CE6E
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 16:52:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 646E64F508C
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 15:42:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95821188147B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 15:43:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A40B31815E;
-	Mon,  3 Nov 2025 15:39:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57F3227990C;
+	Mon,  3 Nov 2025 15:41:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="hgQvNtJN"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="EBC3aAGC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013066.outbound.protection.outlook.com [40.107.162.66])
+Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazhn15011023.outbound.protection.outlook.com [52.102.137.23])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D74E71F3B85;
-	Mon,  3 Nov 2025 15:39:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26C672AF1D;
+	Mon,  3 Nov 2025 15:41:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.102.137.23
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762184390; cv=fail; b=cuqAMaZeMsSgVNjPi5/YW0OQdzcyC6oUdgHQUuOYPc5BRn0sr0UvEbWK+ULiCGykfqnhDs/kQvRzq1zN4Q/nk5FHVYEfyuM3j8Zejvl15vxxjOPQsgM+sHyCB6RdpmPfglnM7dpmRM/kLkRE5kA19WvGrUXqawEYuxrQ+pMMYFM=
+	t=1762184506; cv=fail; b=mxI/FipMux/Za5c3tm/1r3zDxMiVG4Cpijx6NtONSvF/lzPFPHwOJHJGCms3jxJcqcApPLWVeoH0pujxqiaylnjvX+dkM/RansRFYyuzc+dQAuEtoTa2smdOSH6F4Th2hpVZBwFlEfKQWoN/i2tmFQBW0W4DC93NnESTeOfjibA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762184390; c=relaxed/simple;
-	bh=NuD6GDr98ghxhoHAgqX+aOg4cBtG4hWNX1uPHOSL038=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=kN9uOFi2Fa0zIWQEOfZBdl74t/MT3eTxNyIvqgDsfoTjAMugwrZSyA+sibjYHhneimtrzyK/kNkAqjMQorjmHZQaqFzwcF/v/U7yoDwwRxPK7XMNiucyvHim7ks7RyE+I8vpgIF6KaqzPZ+EDTAH4932rX/dzFoKDvU267ugZDE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=hgQvNtJN; arc=fail smtp.client-ip=40.107.162.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	s=arc-20240116; t=1762184506; c=relaxed/simple;
+	bh=x1YaCeJweFn3puBtPTqyCZPbLfN1+HUVEYpIe/B1+aI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ZexbaOGZaX1clrw20rzcgkB5n/msVhuNlinKCPVFQ0iM3ZsMiOURi7iNv+YpE/UpdLmjPOfmmoVX0acYIOFRKL8oNsPvFvepcvaj5wg+BsvkcRb9mqwJYh4/PCLMjdPmKVw9Qz0rbKCtG78a3mhCW7BmEhQG3RKhf9fb9g460V4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=EBC3aAGC; arc=fail smtp.client-ip=52.102.137.23
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XXQGrwcDAdNV0o+SvM4an2N+Umoeerqstj3Pt03b+iK97gv1oltIHqa3O5eYi2wtnfVtr8o3jF3Yyucb3bPib1/+rG63NL7lBe9fic2f0QIkXyfLff0cc1FZoBD1TTeGKHxrtvgLo/3+6w5bMdmaXKuLkCBWR0jaJRzIONg3l+MZxMTLYylABc1aURsgPH2ieXhOrhuWgt12WKhZbtDGRXzyNYdRlwTCod6MWNW7CvBcQeYIl2lBMrwkPgp8eZ4M2i1pnfx9RD/ZhliDW6rcrxe361ykLbzggodZ0g47rPUtSHNJgCjTzocCd22G+Q0ZZ877COSBqrV+Ar+JpjPOLg==
+ b=k7YP9jkLwCx1t7zJh3FA5/7ICxN8rxJy5uhG5BN4Sba1oXCA0ezTysj/OHqQvXJl7WGR4HBHfC8aTz915WKQB5hx2unWq4QxnDomuU/TJvceuvvFJbeu01dQiPfv4bjnc0HxvVwfjRwbe2C4TboNSVcnsVcqvYIisZWDGUNZVZuZ5RkLRgrbc6r0hJQ6xXpZaaAbliXC5AfZxPRvsYST1yqK1eNHNWamhXzAGBFfKOdSTAZAKlRk723XsKxnOEYD68Ea2adGDeDWwn5BNVOy6peTHEeYpwHU1mkE+XtHT72d6Am/RiKCujLcxaxk20f/j4QaQYcja3YnClTXos5g9A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9IlLZDhLEZ/3aKAfMUA0MgDfonO+/FhXlRigk1DHXF8=;
- b=CcpB09tAppKDXpGxs7wRR7yY9Zg1hMTtpqm+Sc/aIRClcvtZEenUDSs99ESglks39O+OHoS1RxC2qHXif0BEWapJYvDEsCDk6lfHEw6RdY8o3KqKXH5qyuh2Fn/uecROsAXJRdgiICFwmgd+u2Yme5wfZwlJOsSs4IEjHjStGe1Bi5qORT+e1gPziOWQqTOGuXLB5+CELRtNHRNGkTlEjRGdhYmQIgvfcPRVizFyJ5xWQv0jYMib0we195Sra6wiI4HhMcDHLyC8tb4dUuNz42PnTlX2rmaIWXB5tD9lzkQN0z+fiPqOyA0NCiIVt/7SRRLDaPMEo6qLvNUj8Or4vg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ bh=8jvDVKxQyFUel21kKV6TVRthJRxaSGBIothrscIXNiw=;
+ b=RG0854pPxFyxE8U4QEL8jqiUb4F26MSoC2OQzhi84a1nNsoIOXTFbWPuQTxzQT1UUikuK3e8HdSuOGj8ztT79k86V5i8znacN7ss4MomKTinLyQRsFNr9luoUKw8BrCPAIlI8l4t/Af3TQ+b71o9zeydY6NQYDmA6JaQMSkd3Uj1yLJy/k/uU9wbKVudItXByRtbZyFmfazmZ/yBCIwWutJHvpxh4md7fqUUX4tI5nRdIgy1yThT6y8ThAMpaMQ/dCNAkBG9Jq08GEIi5zSfo2Tp6nFMwDrRjzrJjY5n+6NU5V0yyTQHqoX6yYOj+tD5pTaPXAJvW8jwp8BmgIuySw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.194) smtp.rcpttodomain=couthit.com smtp.mailfrom=ti.com; dmarc=pass
+ (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9IlLZDhLEZ/3aKAfMUA0MgDfonO+/FhXlRigk1DHXF8=;
- b=hgQvNtJNQCKSSeTqH02BxUrUiz7Hws7mcUiCasOxR7uKpTKTjfs0kSMK3PwnjpNOC2XwCKwcI7RTHDizrmv7+TSJcGEusl61/6letMgF5aWbrax5AlqBtgyoOiXBaDs6J8bAclpycrjKHlk+fAbzq4MW4VKthCHkLxih0v2Du3KTI0+M43Ch/Lam2N2Flq+j/PPcirXJUhpqeGD8BZVWTDYt7xKFgE2b2AQowstjRMvCjePrTXuKpqdoNVPsiRWZzl2xVxYgwRLs7ldfdC2V2cLZxdLutAofOTOH77Q4b3h+kVUymqLWByT4bCyHKHfO5A/cqWKCJBIrii0cdiRj5g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
- by GV1PR04MB10349.eurprd04.prod.outlook.com (2603:10a6:150:1c6::20) with
+ bh=8jvDVKxQyFUel21kKV6TVRthJRxaSGBIothrscIXNiw=;
+ b=EBC3aAGC+tEI4AACj45YsDYFEYY4OMEJ/Kc7Ku+gM628+Ascu11Oasqt9AbYV0xqXDXTxYPwE9dMCTFAqmML4yG+eETfbaIC5ArAJS0HeIximCNRId8umJLoRT3O1tV4DNa71e1DQE13miK5dEraAmSA7LY69MahSHV215/0YJk=
+Received: from MN0P223CA0025.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:52b::20)
+ by IA3PR10MB8420.namprd10.prod.outlook.com (2603:10b6:208:579::16) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.15; Mon, 3 Nov
- 2025 15:39:42 +0000
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9275.015; Mon, 3 Nov 2025
- 15:39:42 +0000
-Date: Mon, 3 Nov 2025 10:39:35 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: adrianhoyin.ng@altera.com
-Cc: alexandre.belloni@bootlin.com, wsa+renesas@sang-engineering.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	dinguyen@kernel.org, linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] i3c: dw: Add runtime PM disable quirk for Altera
- Agilex5
-Message-ID: <aQjMt8ba7+7emopP@lizhi-Precision-Tower-5810>
-References: <cover.1762161408.git.adrianhoyin.ng@altera.com>
- <ef57accb1c4e7239d27d04b24fdf412b8cb977b5.1762161408.git.adrianhoyin.ng@altera.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ef57accb1c4e7239d27d04b24fdf412b8cb977b5.1762161408.git.adrianhoyin.ng@altera.com>
-X-ClientProxiedBy: CH0PR03CA0225.namprd03.prod.outlook.com
- (2603:10b6:610:e7::20) To PAXSPRMB0053.eurprd04.prod.outlook.com
- (2603:10a6:102:23f::21)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.16; Mon, 3 Nov
+ 2025 15:41:40 +0000
+Received: from BN2PEPF000044AC.namprd04.prod.outlook.com
+ (2603:10b6:208:52b:cafe::32) by MN0P223CA0025.outlook.office365.com
+ (2603:10b6:208:52b::20) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9275.16 via Frontend Transport; Mon,
+ 3 Nov 2025 15:41:24 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ BN2PEPF000044AC.mail.protection.outlook.com (10.167.243.107) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9298.6 via Frontend Transport; Mon, 3 Nov 2025 15:41:37 +0000
+Received: from DFLE203.ent.ti.com (10.64.6.61) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 3 Nov
+ 2025 09:41:31 -0600
+Received: from DFLE208.ent.ti.com (10.64.6.66) by DFLE203.ent.ti.com
+ (10.64.6.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 3 Nov
+ 2025 09:41:20 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE208.ent.ti.com
+ (10.64.6.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Mon, 3 Nov 2025 09:41:20 -0600
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5A3FfJaM417550;
+	Mon, 3 Nov 2025 09:41:19 -0600
+Message-ID: <89858ed0-58fd-4056-b8af-065c92885a10@ti.com>
+Date: Mon, 3 Nov 2025 09:41:19 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm: dts: ti: Adds support for AM335x and AM437x
+To: Parvathi Pudi <parvathi@couthit.com>, <nm@ti.com>, <vigneshr@ti.com>,
+	<tony@atomide.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <richardcochran@gmail.com>
+CC: <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>, <andrew@lunn.ch>,
+	<danishanwar@ti.com>, <pratheesh@ti.com>, <j-rameshbabu@ti.com>,
+	<praneeth@ti.com>, <srk@ti.com>, <rogerq@ti.com>, <krishna@couthit.com>,
+	<mohan@couthit.com>, <pmohan@couthit.com>, <basharath@couthit.com>, "Murali
+ Karicheri" <m-karicheri2@ti.com>
+References: <20251103124820.1679167-1-parvathi@couthit.com>
+ <20251103124820.1679167-3-parvathi@couthit.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20251103124820.1679167-3-parvathi@couthit.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|GV1PR04MB10349:EE_
-X-MS-Office365-Filtering-Correlation-Id: 73d61b2a-a77c-43cb-5ee9-08de1aef34c8
+X-MS-TrafficTypeDiagnostic: BN2PEPF000044AC:EE_|IA3PR10MB8420:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4c6dba8a-b8ac-4e92-0611-08de1aef79a5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|366016|52116014|7416014|376014|1800799024|38350700014|7053199007;
+	BCL:0;ARA:13230040|7416014|376014|36860700013|34020700016|1800799024|82310400026|7053199007|12100799066;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?E103YdiCN+10UIFYB0X5Zp2S3ad8+RSoRhmH9pSdWumuzd6pzgi3djHNDuxx?=
- =?us-ascii?Q?yaI+TjIf+6HeWmqpjG2tibzBw3qvvEMxs7qIZMp5KKxV5j213ZkDlMXVMROT?=
- =?us-ascii?Q?p+HvV2xoSRy/r5IHbCMk0wMpBtmLyoAwtiGxM8bGZR366SpEMdUgmRxz9AnR?=
- =?us-ascii?Q?qccBYgDW8BP5XRJsGSACeQbwMxnnVHxFT8EtY08m/RtV98SlTKeocv2vwmWB?=
- =?us-ascii?Q?fS28dUbSNbUL/ifXG2fNeTZfreSLwAcx+4V3BqMqIJ1+vk7US9ZqgUCDPofe?=
- =?us-ascii?Q?hBhvi1s+Qdj49ensAoSm7Mkv0UXUR/JYiSeifmb86YjRUvTYOofNLNZ5UsAf?=
- =?us-ascii?Q?V3ktmLsfYjLyKX+FkLarBAOs4VKLRbNXe4E/x62XVvfjvMbMl46b59B5sOwf?=
- =?us-ascii?Q?yJspFneEBY2+5rySt/dP25EtVZQ8D+yMgQ4TFeYtbXML6nzUciYgmfq2LmCw?=
- =?us-ascii?Q?TVyYaokUpSjURrty2M6QYma9XrSSTlhP4QgKG7Hwnc48zFwaeU7SL/SkKtMK?=
- =?us-ascii?Q?lXReqDlnIA1IimzFVkYO4TE65Ei1Pdj3fG5l2tBr0OWg5wczQyy8/NRWx98z?=
- =?us-ascii?Q?/0+95eTHpmgxfJq3zZhpGWC7juqKcq5bTsRZT4uLPSJK08IEEB485Q+/kF9N?=
- =?us-ascii?Q?qG9XojH3STyI7W3pCAUrw3Dk2mqfQv7EPZJRS3yd0DaemwA0iRWA7nSbwYts?=
- =?us-ascii?Q?IoSN2IwN9O8zxkIvIF6Xy5z9B2Wae/myaEk1x5rGvhPCMaEjwgSWFG8DWFDs?=
- =?us-ascii?Q?1SC1VWpmegciqQSsbqrVdpI0B8ZKrZArEfh4QoFg654vXvIRCXNowHzZcbw0?=
- =?us-ascii?Q?bYOub0g6CaNA57N36thN7/RH+CIJMVhXdPtQjKurzOndbtXihAtRDQL0FsNi?=
- =?us-ascii?Q?CfikVRUN7zdBL/ixoPSBWsdZe5hSZ1iZyBoExNm4YtokzcBGNJa+fGUo/eK7?=
- =?us-ascii?Q?Ij/xlcqfCAmM0QNJCId+5UXY5BDU0Xxn+S8/ZDCQetn/TABE0KlCMBu04wrz?=
- =?us-ascii?Q?6V3/Xj+P+CUZVvKsB4/5RfVeEvwD1KoNPUJdnqQQHs7f7PW/iV5is2Mepmwo?=
- =?us-ascii?Q?EKvEaTBy0pvvmcbNxsI8q0Irv35OAJIxwCj6H3b66IofLFIiCm98KQs+gREY?=
- =?us-ascii?Q?frizcOuBAD0qG88t+DzubJea5/9stRpL39fe96Aquhp298taTsCaVZfUJxwX?=
- =?us-ascii?Q?XwmtQ1pubBNu7mOeOX6tCgHgNk9mKc2ndXP+vTlRf1IeR+b8vA3O5miXuUq2?=
- =?us-ascii?Q?RFTfLYeGiKqQm/r05b7hiuYvR9biUKvg9Wq9tLBVz3vRg6k4lpoLd+Pgnpfr?=
- =?us-ascii?Q?0KtB+XXqe+e+6zR7RL/0Vxnhh6dowf53I/m98Ck47cWiOyHKeu9uvSokda0+?=
- =?us-ascii?Q?3ua8X11kTnVXGIWHZWNmBGgJIPxn8p3Sw6wzFknYDpMCUhOByYmwwlJ0H5lg?=
- =?us-ascii?Q?6GdbAiTNFLG57afVnzD+hYt5RAwg5xWf3pmSTIUwizC4LnjNijNCRDdwDxXz?=
- =?us-ascii?Q?Q3toET9vs8nhFF4QSU8B5GDDgOCnKgQHt9DF?=
+	=?utf-8?B?Yk5pS01aMDZCUDBjZUNzSEg4b1h1USt1RXhXWU44YTlEZkdsM2g4OHlLaG56?=
+ =?utf-8?B?Z0VLMFI4Zk5CUnkzMTlEak1ac1M3NmVuYjRQaEVCUzdCQzYzdlZBRnJwWXkr?=
+ =?utf-8?B?TkQ2OUVOajdWNnV0VUZibTlyZHFSQWxiZlVpbUZhOE5IdVB3K1lubE1yZjJv?=
+ =?utf-8?B?TWIvVkIyOHlHWmg1b3VLRlBEazMwL0pZRjJyYmI4T09VNllOd1ZqM2FERjV4?=
+ =?utf-8?B?RVZGMDJmdkFRaE9YZ1EvQld3dmpNb2ZhZGgyRlgwRDdQdnE5c09yYW1vOTlm?=
+ =?utf-8?B?RWVFSkt2RFpMWGJ6TDFlcElYZHA5Rm9UOUdhTWtvQXhvM1BBUTFUSW9LZytx?=
+ =?utf-8?B?eUVKZzZTU1FpRGFEWmt2Wks4Z1IzK2hyWndkVDg0bTVVT2k0MlJpSFhnWTl2?=
+ =?utf-8?B?a2ZIMmRUTjA1SmppelFyWnRCaDF3VXhPOFlvY2xWYURuRDNMNXpiWUx0Yndo?=
+ =?utf-8?B?M1EvYTRaZlM3aUtyZXNnSDdyWThqVUVtZk9yYStiSjRJZVE3Skh5dUI2YndW?=
+ =?utf-8?B?ZkR4TXVzTjNMazlvWmJaWkYyeFNNampNS1BKQmZSWURnYmNZYllvN09SYk9l?=
+ =?utf-8?B?cE15QUFNR0pVU1JDcE9vRk9lQ2gzaFNTSWh5TmlSa1FxM3VGcTI3am9ZQTJR?=
+ =?utf-8?B?bWYxbEc3U2VDZ2V2TUU3ZzhXVm14TzFzQkVNZ3JxVFZzQmpKcmFMVlZrZ3Fs?=
+ =?utf-8?B?ajB3Q0wrbmdZS3pONGtxTFcvRWE2WnlYTE5XSFVmdEpJclJnU0xDN1BjeEVu?=
+ =?utf-8?B?V3pyUU0xSVp3eTdDYUVUVjZ5YW84N042c08zNlJYd05FNmVxUytXNDVxOHo0?=
+ =?utf-8?B?WFR1aG1zTHJSeGpmRUxLV1EyWldhTWl3SXFRcFBPSHpER1RLRlYwU1NNdm13?=
+ =?utf-8?B?VXlVMEZSeHpnYkdMTFd4ZUlmakRDZmhheDlIMG82ckFaM1hFaWFic3pzc0pW?=
+ =?utf-8?B?eHVVbURSRVBHTWt0SDhLb2wzZGpha0VIOWdRMmZkVFd0bHZHS0VCSGxxZVhM?=
+ =?utf-8?B?V2EwSUZZMk9Gczd0UkRWd2J3MVlpa3ByMUdkVVBYbk16MUkzd1NUK01sSG1N?=
+ =?utf-8?B?eUFWWXNMTTFzNlB4MEtyZUoyTEdKcExmMkNsUDNocElJUFVYYm5ZZmZyR3I1?=
+ =?utf-8?B?UDBNVVZMYVFzeG0rNUNoaVM3azZKQjlLcUFJSWluQnlPcEtUVnlYaW5Kc29v?=
+ =?utf-8?B?L09HaFIzVGJWRW0rNjc0OXFJT0VJZ0pzejJJakh3VjVBUWsvWlpSMjBldXZZ?=
+ =?utf-8?B?UndWczhFK3BNQXBiUis4UmUxeFRlU25iTTJxT1lKbU9ReFhaelplMWpLSklW?=
+ =?utf-8?B?cFhkSmFKQWJaOWxYWkRpM2s4Y0Vpc3huN3lQN3hVeXR1WjM4enZwbk1YK2lI?=
+ =?utf-8?B?RTBGczZibnkxbUk3SFBjTThEcXE0QmtmL0VjQjRNYmJUenhQZDEyNG9wSG9P?=
+ =?utf-8?B?TjF3ZFJSWHJCRjhtOVFTaTd5ejNyQnh6b3ZYWXNiUHZrcE9kVjBGazhBQzA3?=
+ =?utf-8?B?L0loSkVBRGo5SFB4VEt4djdPSzlEODBNdnhJS3NqU1hVclNlYTJaSnlnSHJu?=
+ =?utf-8?B?WjdJd0x5b0V5U1RKK25JY0E2c1RuNGcxU0h2VUVzblVPYS9oallabVRwbVM0?=
+ =?utf-8?B?dnVVcXoyK3htTEp6bWlKMzdOL0VucC9OS0IreklxSzBOUEZxbngyaFFqREJP?=
+ =?utf-8?B?YzlyWFRkNkpjMmNEUzdwSEVFbVFMMkZxNkRpQWZnaHRlUGJOZkxxazVzczNn?=
+ =?utf-8?B?M0lGdFJSVE5aekozbEZhZDF6eFVWYTRXVE42RmZUVEpablk1cFdBSno0SHMv?=
+ =?utf-8?B?bzd0NUFpd1pxSUZxTE9qWW5BdjBLUHFrRnlzbUZSTTZUMjRmYnhkdzllTWY1?=
+ =?utf-8?B?M2d5Y09DZlZLYTIwZXZFRC83TlNGMzh6STZ0cDlYVk5ZR0J6Ymg1VzIyMlV2?=
+ =?utf-8?B?VVVrdVhhZEhlSFJRaTBLcGRnZzAwamRyTjBXdDNsWVVXL0k5QThhN28xaGh5?=
+ =?utf-8?B?MCsyVFJNR0pia0YyaHQ3V0tpL2JaU05sYnVnanlnSHdOcFU4amhHalJNc3dh?=
+ =?utf-8?Q?MapMjR?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(52116014)(7416014)(376014)(1800799024)(38350700014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Qd5PAbbh5P1E2+Wok9jRke8QYo/cWzh1KWRXX6xue7bb1ntyrAB4NxH5mSdI?=
- =?us-ascii?Q?Wm4ELC6irj5wGjryStQX+U+kcyFjOqa21O2vW302GCOOTUBsaYSIlBCikz3X?=
- =?us-ascii?Q?pWj9PyPj0FyjqzpXrdQ4j+GU3FOHfRjiaVtqxzwsV9twCqLPwLgPZiKfzR1w?=
- =?us-ascii?Q?1SSGhehGF5lWzbqxrHf/j26JKFrmjbrFX7UPOZEU+QyKolEF8SFbGNQOMxm5?=
- =?us-ascii?Q?GC+rESuFUJ7eA/rZ4p83gcDZWl6Rd7cC+I15yqHerTMEeLVOmcHUfa0AOUo6?=
- =?us-ascii?Q?y8TigbK5lFmUlfaqpW7GN/44pcRC4u1AOA6hkN4+hGZ/4F3MEuzyRUaYGPuQ?=
- =?us-ascii?Q?CDVluymSG4+V/khKSJc9T5pc42IgFg6OycYSQNPPOrnOTbBe/k1egHV7v3U4?=
- =?us-ascii?Q?SeOnpxOToeEecw1G54Q8xyCKsIDEg+H7upDRYotSKmWdKpbe07lj58qkpoVU?=
- =?us-ascii?Q?0nEEbLKxnF7B3Ybbwm3tNAopxBoQFEeFAvY5llu3h0YnadH6kIIBkfFoJUHT?=
- =?us-ascii?Q?NYgXCSixvp4+qBpEbcwiLEtslOLdRtr6Am2h563viKgd935ilwJ89CEBPVCF?=
- =?us-ascii?Q?9LxSJXnoRFnoxc80j108Ef7y0ejQc1vgPKw8M8WaPV2emOuFtGPwqY8dsqEU?=
- =?us-ascii?Q?yccZXNttwkASvUivt1t+8KQ+d6RWMpovkrCNjV/0QHIp1tlqN9sfaZJrSOiZ?=
- =?us-ascii?Q?hP62nt07FMX2/SJUVAcY8j86xTFgcDWyGvQOOPsSEIjWeCTeTiiANImJ0nKK?=
- =?us-ascii?Q?F4lpGaqJl/XmF9rkj6Awtx/BZJCxOVf2lMD7igk5tX7rG7PQ2z019h8i8U8A?=
- =?us-ascii?Q?SUa4TSUU32GWNKCnc/ayKh1uCtMu9XqXedT0bY2nV5v2Igz8hss1AMSONmpQ?=
- =?us-ascii?Q?I0XGm3TCn1JHuX5osIT82dML16ce0ThhBO9x+1g9hE/qsFWu/lcV+IesJaC5?=
- =?us-ascii?Q?KQBWE7So4SUXHhBlanozNG4sfKEZDGfVpGOgXeosOqxZnDTALRrIOrXoOe+3?=
- =?us-ascii?Q?bq3WXsPs96oYDI7fZvf8CsxHdkFqx2lgMaakkXdmZeWjYyduIupd40P3g1XE?=
- =?us-ascii?Q?yPEaKKwSV9XONwmnSG/0xbaZEEdXdkhXQ8BB72PRRaHzhmNgCsyU2Jqf/8fH?=
- =?us-ascii?Q?yNWPYJDw7GugPz+SLRRJ2Mv+NnZXAg07fJSpdpbWNbXf1lyYsarpUZC1KtYN?=
- =?us-ascii?Q?uNKOHic8daktrJnytLdoCuA8mN2Qse9BOjRqaVwUxE0Rb2gDCt+5LqYiPHTk?=
- =?us-ascii?Q?p9dRkA9BDk9Eer2WzQg+alIb9UmVP8qid99pGXLpCzaobFYUtbCiwm5W26Zt?=
- =?us-ascii?Q?D45k6w4+jDGrvAh2SexMkJJO8bYTQWEBPyG9bAIVi1/C3aiZt5Y+4XEbL86g?=
- =?us-ascii?Q?NVuDeDqX6OUqCjkZiIpSxoCo9w8JmFzJ/Otqxqr3wO6V/qTZTJkZrV4IdZdd?=
- =?us-ascii?Q?KEZ1KCNQKzK689MpgLZVkSLUvhHYfPvixhMxqJ8dfDRln/w+wh1sz0eJdVts?=
- =?us-ascii?Q?+B/1hwX0+mjwo834u1TJA30ElapXynGzrJDlCeAK4IpQHx3szzcrVdwFQRWi?=
- =?us-ascii?Q?oxrY+QEz1/rUbkT5ZWpywXsbw7wa2/H2qU7KuGpt?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 73d61b2a-a77c-43cb-5ee9-08de1aef34c8
-X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2025 15:39:42.0758
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(7416014)(376014)(36860700013)(34020700016)(1800799024)(82310400026)(7053199007)(12100799066);DIR:OUT;SFP:1501;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2025 15:41:37.2445
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eu7gSgcA5Z3bQD3MQbsINxC/hId1Cdc4jqqNTRMX6+wfYVnCrVFxzNdz0BTKEDWK3HgnFqyi1dxqqewlyadjqA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10349
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c6dba8a-b8ac-4e92-0611-08de1aef79a5
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN2PEPF000044AC.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR10MB8420
 
-On Mon, Nov 03, 2025 at 05:24:28PM +0800, adrianhoyin.ng@altera.com wrote:
-> From: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
->
-> When running compliance tests on the Altera Agilex5 SoCFPGA platform,
-> it was observed that the I3C bus could enter a hung state when a slave
-> device issues an IBI after the DAA process completes. This occurs
-> because the DesignWare I3C master controller enters runtime suspend
-> once the DAA sequence finishes, causing it to stop driving the SCL
-> line. As a result, the IBI transfer cannot complete, leaving the SDA
-> line stuck low and the bus in a hung state.
->
-> To address this, introduce a new compatible string,
-> "altr,agilex5-dw-i3c-master", that applies a quirk to disable runtime
-> PM for this platform. The quirk keeps the controller enabled by calling
-> pm_runtime_get_noresume() during probe and balancing it with
-> pm_runtime_put_noidle() during remove.
->
-> This ensures that the controller remains active and avoids bus hangs
-> triggered by IBIs while maintaining normal behavior for other platforms.
->
-
-suggest commit message
-
-i3c: dw: Disable runtime PM on Agilex5 to avoid bus hang on IBI
-
-When running compliance tests on the Altera Agilex5 SoCFPGA platform,
-the I3C bus can hang when a slave issues an IBI after the DAA process
-completes. The DesignWare I3C master enters runtime suspend once DAA
-finishes and stops driving SCL, preventing the IBI transfer from
-completing and leaving SDA stuck low.
-
-Add a new compatible string, "altr,agilex5-dw-i3c-master" and apply a quirk
-that keep runtime PM always active on this platform by calling
-pm_runtime_get_noresume() during probe.
-
-Prevent bus hangs triggered by IBIs on Agilex5 while maintaining keep the
-same behavior on other platforms.
-
-
-> Signed-off-by: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+On 11/3/25 6:47 AM, Parvathi Pudi wrote:
+> From: Roger Quadros <rogerq@ti.com>
+> 
+> PRU-ICSS instance consists of two PRU cores along with various
+> peripherals such as the Interrupt Controller (PRU_INTC), the Industrial
+> Ethernet Peripheral(IEP), the Real Time Media Independent Interface
+> controller (MII_RT), and the Enhanced Capture (eCAP) event module.
+> 
+> The TI Sitara AM335x ICE-V2 consists of single PRU-ICSS instance,
+> This patch adds the new device tree source file in-order to use
+> PRU-ICSS instance, along with makefile changes to add the new DTS
+> file for PRUSS.
+> 
+> The TI Sitara AM437x series of devices consists of 2 PRU-ICSS instances
+> (PRU-ICSS0 and PRU-ICSS1). This patch adds the device tree nodes for the
+> PRU-ICSS1 instance to support DUAL-MAC mode of operation. Support for
+> Ethernet over PRU is available only for ICSS1 instance.
+> 
+> am33xx-l4.dtsi, am4372.dtsi - Adds IEP and eCAP peripheral as child nodes
+> of the PRUSS subsystem node.
+> 
+> am335x-icev2-prueth.dts, am437x-idk-evm.dts - Adds PRU-ICSS
+> instance node along with PRU eth port information and corresponding
+> port configuration. It includes interrupt mapping for packet reception,
+> HW timestamp collection, and PRU Ethernet ports in MII mode,
+> 
+> GPIO configuration, boot strapping along with delay configuration for
+> individual PRU Ethernet port and other required nodes.
+> 
+> Signed-off-by: Roger Quadros <rogerq@ti.com>
+> Signed-off-by: Andrew F. Davis <afd@ti.com>
+> Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
+> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
+> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
 > ---
->  drivers/i3c/master/dw-i3c-master.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
->
-> diff --git a/drivers/i3c/master/dw-i3c-master.c b/drivers/i3c/master/dw-i3c-master.c
-> index 9ceedf09c3b6..5913822648ca 100644
-> --- a/drivers/i3c/master/dw-i3c-master.c
-> +++ b/drivers/i3c/master/dw-i3c-master.c
-> @@ -228,6 +228,7 @@
->
->  /* List of quirks */
->  #define AMD_I3C_OD_PP_TIMING		BIT(1)
-> +#define DW_I3C_DISABLE_RUNTIME_PM_QUIRK	BIT(2)
->
->  struct dw_i3c_cmd {
->  	u32 cmd_lo;
-> @@ -1592,6 +1593,10 @@ int dw_i3c_common_probe(struct dw_i3c_master *master,
->
->  	master->quirks = (unsigned long)device_get_match_data(&pdev->dev);
->
-> +	/* Keep controller enabled by preventing runtime suspend */
-> +	if (master->quirks & DW_I3C_DISABLE_RUNTIME_PM_QUIRK)
-> +		pm_runtime_get_noresume(&pdev->dev);
+>   arch/arm/boot/dts/ti/omap/Makefile            |   1 +
+>   .../boot/dts/ti/omap/am335x-icev2-prueth.dts  | 533 ++++++++++++++++++
+>   arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi      |  11 +
+>   arch/arm/boot/dts/ti/omap/am4372.dtsi         |  11 +
+>   arch/arm/boot/dts/ti/omap/am437x-idk-evm.dts  | 137 ++++-
+>   5 files changed, 692 insertions(+), 1 deletion(-)
+>   create mode 100644 arch/arm/boot/dts/ti/omap/am335x-icev2-prueth.dts
+> 
+> diff --git a/arch/arm/boot/dts/ti/omap/Makefile b/arch/arm/boot/dts/ti/omap/Makefile
+> index 1aef60eef671..d06dd31d0bb6 100644
+> --- a/arch/arm/boot/dts/ti/omap/Makefile
+> +++ b/arch/arm/boot/dts/ti/omap/Makefile
+> @@ -100,6 +100,7 @@ dtb-$(CONFIG_SOC_AM33XX) += \
+>   	am335x-evmsk.dtb \
+>   	am335x-guardian.dtb \
+>   	am335x-icev2.dtb \
+> +	am335x-icev2-prueth.dtb \
+
+This new DTB looks to be almost identical to the regular am335x-icev2.dtb, to
+add an optional node to an existing board use DT overlay, do not clone the
+whole board DT just to add a node. Maybe that is how we hacked around this
+in our evil vendor tree back in 2018 but do not take our old hacks and push
+them upstream as-is.
+
+Andrew
+
+>   	am335x-lxm.dtb \
+>   	am335x-moxa-uc-2101.dtb \
+>   	am335x-moxa-uc-8100-me-t.dtb \
+> diff --git a/arch/arm/boot/dts/ti/omap/am335x-icev2-prueth.dts b/arch/arm/boot/dts/ti/omap/am335x-icev2-prueth.dts
+> new file mode 100644
+> index 000000000000..c41c40297b22
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/ti/omap/am335x-icev2-prueth.dts
+> @@ -0,0 +1,533 @@
+> +// SPDX-License-Identifier: GPL-2.0
 > +
->  	INIT_WORK(&master->hj_work, dw_i3c_hj_work);
->  	ret = i3c_master_register(&master->base, &pdev->dev,
->  				  &dw_mipi_i3c_ops, false);
-> @@ -1617,6 +1622,10 @@ void dw_i3c_common_remove(struct dw_i3c_master *master)
->  	cancel_work_sync(&master->hj_work);
->  	i3c_master_unregister(&master->base);
->
-> +	/* Balance pm_runtime_get_noresume() from probe() */
-> +	if (master->quirks & DW_I3C_DISABLE_RUNTIME_PM_QUIRK)
-> +		pm_runtime_put_noidle(master->dev);
+> +/*
+> + * Copyright (C) 2018 Texas Instruments Incorporated - http://www.ti.com/
+> + */
 > +
->  	pm_runtime_disable(master->dev);
->  	pm_runtime_set_suspended(master->dev);
->  	pm_runtime_dont_use_autosuspend(master->dev);
-> @@ -1761,6 +1770,9 @@ static void dw_i3c_shutdown(struct platform_device *pdev)
->
->  static const struct of_device_id dw_i3c_master_of_match[] = {
->  	{ .compatible = "snps,dw-i3c-master-1.00a", },
-> +	{ .compatible = "altr,agilex5-dw-i3c-master",
-> +	  .data = (void *)DW_I3C_DISABLE_RUNTIME_PM_QUIRK,
-> +	},
+> +/*
+> + * AM335x ICE V2 board
+> + * http://www.ti.com/tool/tmdsice3359
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "am33xx.dtsi"
+> +
+> +/ {
+> +	model = "TI AM3359 ICE-V2 - dual PRUETH";
+> +	compatible = "ti,am3359-icev2", "ti,am33xx";
+> +
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		reg = <0x80000000 0x10000000>; /* 256 MB */
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = &uart3;
+> +	};
+> +
+> +	vbat: fixedregulator0 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vbat";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vtt_fixed: fixedregulator1 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vtt";
+> +		regulator-min-microvolt = <1500000>;
+> +		regulator-max-microvolt = <1500000>;
+> +		gpio = <&gpio0 18 GPIO_ACTIVE_HIGH>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		enable-active-high;
+> +	};
+> +
+> +	/* Tricolor status LEDs */
+> +	leds1 {
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&user_leds>;
+> +
+> +		led0 {
+> +			label = "status0:red:cpu0";
+> +			gpios = <&gpio0 17 GPIO_ACTIVE_HIGH>;
+> +			default-state = "off";
+> +			linux,default-trigger = "cpu0";
+> +		};
+> +
+> +		led1 {
+> +			label = "status0:green:usr";
+> +			gpios = <&gpio0 16 GPIO_ACTIVE_HIGH>;
+> +			default-state = "off";
+> +		};
+> +
+> +		led2 {
+> +			label = "status0:yellow:usr";
+> +			gpios = <&gpio3 9 GPIO_ACTIVE_HIGH>;
+> +			default-state = "off";
+> +		};
+> +
+> +		led3 {
+> +			label = "status1:red:mmc0";
+> +			gpios = <&gpio1 30 GPIO_ACTIVE_HIGH>;
+> +			default-state = "off";
+> +			linux,default-trigger = "mmc0";
+> +		};
+> +
+> +		led4 {
+> +			label = "status1:green:usr";
+> +			gpios = <&gpio0 20 GPIO_ACTIVE_HIGH>;
+> +			default-state = "off";
+> +		};
+> +
+> +		led5 {
+> +			label = "status1:yellow:usr";
+> +			gpios = <&gpio0 19 GPIO_ACTIVE_HIGH>;
+> +			default-state = "off";
+> +		};
+> +	};
+> +
+> +	gpio-decoder {
+> +		compatible = "gpio-decoder";
+> +		gpios = <&pca9536 3 GPIO_ACTIVE_HIGH>,
+> +			<&pca9536 2 GPIO_ACTIVE_HIGH>,
+> +			<&pca9536 1 GPIO_ACTIVE_HIGH>,
+> +			<&pca9536 0 GPIO_ACTIVE_HIGH>;
+> +		linux,axis = <0>; /* ABS_X */
+> +		decoder-max-value = <9>;
+> +	};
+> +
+> +	/* Dual-MAC Ethernet application node on PRU-ICSS */
+> +	pruss_eth: pruss-eth {
+> +		compatible = "ti,am3359-prueth";
+> +		ti,prus = <&pru0>, <&pru1>;
+> +		sram = <&ocmcram>;
+> +		ti,mii-rt = <&pruss_mii_rt>;
+> +		ti,iep = <&pruss_iep>;
+> +		ti,ecap = <&pruss_ecap>;
+> +		interrupts = <20 2 2>, <21 3 3>;
+> +		interrupt-names = "rx_hp", "rx_lp";
+> +		interrupt-parent = <&pruss_intc>;
+> +
+> +		pinctrl-0 = <&pruss_eth_default>;
+> +		pinctrl-names = "default";
+> +
+> +		ethernet-ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			pruss_emac0: ethernet-port@0 {
+> +				reg = <0>;
+> +				phy-handle = <&pruss_eth0_phy>;
+> +				phy-mode = "mii";
+> +				interrupts = <20 2 2>, <26 6 6>, <23 6 6>;
+> +				interrupt-names = "rx", "emac_ptp_tx",
+> +						  "hsr_ptp_tx";
+> +				/* Filled in by bootloader */
+> +				local-mac-address = [00 00 00 00 00 00];
+> +			};
+> +
+> +			pruss_emac1: ethernet-port@1 {
+> +				reg = <1>;
+> +				phy-handle = <&pruss_eth1_phy>;
+> +				phy-mode = "mii";
+> +				interrupts = <21 3 3>, <27 9 7>, <24 9 7>;
+> +				interrupt-names = "rx", "emac_ptp_tx",
+> +						  "hsr_ptp_tx";
+> +				/* Filled in by bootloader */
+> +				local-mac-address = [00 00 00 00 00 00];
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&am33xx_pinmux {
+> +    user_leds: user-leds-pins {
+> +		pinctrl-single,pins = <
+> +			/* (J18) gmii1_txd3.gpio0[16] */
+> +			AM33XX_PADCONF(AM335X_PIN_MII1_TXD3, PIN_OUTPUT,
+> +				       MUX_MODE7)
+> +			 /* (K15) gmii1_txd2.gpio0[17] */
+> +			AM33XX_PADCONF(AM335X_PIN_MII1_TXD2, PIN_OUTPUT,
+> +				       MUX_MODE7)
+> +			/* (A15) xdma_event_intr0.gpio0[19] */
+> +			AM33XX_PADCONF(AM335X_PIN_XDMA_EVENT_INTR0, PIN_OUTPUT,
+> +				       MUX_MODE7)
+> +			/* (D14) xdma_event_intr1.gpio0[20] */
+> +			AM33XX_PADCONF(AM335X_PIN_XDMA_EVENT_INTR1, PIN_OUTPUT,
+> +				       MUX_MODE7)
+> +			/* (U9) gpmc_csn1.gpio1[30] */
+> +			AM33XX_PADCONF(AM335X_PIN_GPMC_CSN1, PIN_OUTPUT,
+> +				       MUX_MODE7)
+> +			/* (K18) gmii1_txclk.gpio3[9] */
+> +			AM33XX_PADCONF(AM335X_PIN_MII1_TX_CLK, PIN_OUTPUT,
+> +				       MUX_MODE7)
+> +		>;
+> +	};
+> +
+> +	mmc0_pins_default: mmc0-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM33XX_PADCONF(AM335X_PIN_MMC0_DAT3, PIN_INPUT_PULLUP,
+> +				       MUX_MODE0)
+> +			AM33XX_PADCONF(AM335X_PIN_MMC0_DAT2, PIN_INPUT_PULLUP,
+> +				       MUX_MODE0)
+> +			AM33XX_PADCONF(AM335X_PIN_MMC0_DAT1, PIN_INPUT_PULLUP,
+> +				       MUX_MODE0)
+> +			AM33XX_PADCONF(AM335X_PIN_MMC0_DAT0, PIN_INPUT_PULLUP,
+> +				       MUX_MODE0)
+> +			AM33XX_PADCONF(AM335X_PIN_MMC0_CLK, PIN_INPUT_PULLUP,
+> +				       MUX_MODE0)
+> +			AM33XX_PADCONF(AM335X_PIN_MMC0_CMD, PIN_INPUT_PULLUP,
+> +				       MUX_MODE0)
+> +		>;
+> +	};
+> +
+> +	i2c0_pins_default: i2c0-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM33XX_PADCONF(AM335X_PIN_I2C0_SDA, PIN_INPUT,
+> +				       MUX_MODE0)
+> +			AM33XX_PADCONF(AM335X_PIN_I2C0_SCL, PIN_INPUT,
+> +				       MUX_MODE0)
+> +		>;
+> +	};
+> +
+> +	spi0_pins_default: spi0-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM33XX_PADCONF(AM335X_PIN_SPI0_SCLK, PIN_INPUT_PULLUP,
+> +				       MUX_MODE0)
+> +			AM33XX_PADCONF(AM335X_PIN_SPI0_D0, PIN_INPUT_PULLUP,
+> +				       MUX_MODE0)
+> +			AM33XX_PADCONF(AM335X_PIN_SPI0_D1, PIN_INPUT_PULLUP,
+> +				       MUX_MODE0)
+> +			AM33XX_PADCONF(AM335X_PIN_SPI0_CS0, PIN_INPUT_PULLUP,
+> +				       MUX_MODE0)
+> +			AM33XX_PADCONF(AM335X_PIN_SPI0_CS1, PIN_INPUT_PULLUP,
+> +				       MUX_MODE0)
+> +			/* (B12) mcasp0_aclkr.gpio3[18] */
+> +			AM33XX_PADCONF(AM335X_PIN_MCASP0_ACLKR,
+> +				       PIN_INPUT_PULLUP,
+> +				       MUX_MODE7)
+> +		>;
+> +	};
+> +
+> +	uart3_pins_default: uart3-default-pins {
+> +		pinctrl-single,pins = <
+> +			/* (L17) gmii1_rxd3.uart3_rxd */
+> +			AM33XX_PADCONF(AM335X_PIN_MII1_RXD3, PIN_INPUT_PULLUP,
+> +				       MUX_MODE1)
+> +			/* (L16) gmii1_rxd2.uart3_txd */
+> +			AM33XX_PADCONF(AM335X_PIN_MII1_RXD2, PIN_OUTPUT_PULLUP,
+> +				       MUX_MODE1)
+> +		>;
+> +	};
+> +
+> +	pruss_mdio_default: pruss_mdio_default {
+> +		pinctrl-single,pins = <
+> +			/* gpmc_clk.pr1_mdio_mdclk */
+> +			AM33XX_PADCONF(0x88c, PIN_OUTPUT, MUX_MODE5)
+> +			/* gpmc_csn3.pr1_mdio_data */
+> +			AM33XX_PADCONF(0x888, PIN_INPUT, MUX_MODE5)
+> +			/* gpmc_ben0_cle.gpio2_5 */
+> +			AM33XX_PADCONF(0x89c, PIN_INPUT_PULLUP, MUX_MODE7)
+> +			/* disable CPSW MDIO */
+> +			/* mdio_data.gpio0_0 */
+> +			AM33XX_PADCONF(0x948, PIN_INPUT_PULLUP, MUX_MODE7)
+> +			/* mdio_clk.gpio0_1 */
+> +			AM33XX_PADCONF(0x94c, PIN_INPUT_PULLUP, MUX_MODE7)
+> +		>;
+> +	};
+> +
+> +	pruss_eth_default: pruss_eth_default {
+> +		pinctrl-single,pins = <
+> +			/* dss_data0.pr1_mii_mt0_clk */
+> +			AM33XX_PADCONF(0x8a0, PIN_INPUT,   MUX_MODE2)
+> +			/* dss_data5.pr1_mii0_txd0 */
+> +			AM33XX_PADCONF(0x8b4, PIN_OUTPUT,  MUX_MODE2)
+> +			/* dss_data4.pr1_mii0_txd1 */
+> +			AM33XX_PADCONF(0x8b0, PIN_OUTPUT,  MUX_MODE2)
+> +			/* dss_data3.pr1_mii0_txd2 */
+> +			AM33XX_PADCONF(0x8ac, PIN_OUTPUT,  MUX_MODE2)
+> +			/* dss_data2.pr1_mii0_txd3 */
+> +			AM33XX_PADCONF(0x8a8, PIN_OUTPUT,  MUX_MODE2)
+> +			/* dss_data11.pr1_mii0_rxd0 */
+> +			AM33XX_PADCONF(0x8cc, PIN_INPUT,   MUX_MODE5)
+> +			/* dss_data10.pr1_mii0_rxd1 */
+> +			AM33XX_PADCONF(0x8c8, PIN_INPUT,   MUX_MODE5)
+> +			/* dss_data9.pr1_mii0_rxd2 */
+> +			AM33XX_PADCONF(0x8c4, PIN_INPUT,   MUX_MODE5)
+> +			/* dss_data8.pr1_mii0_rxd3 */
+> +			AM33XX_PADCONF(0x8c0, PIN_INPUT,   MUX_MODE5)
+> +			/* dss_data1.pr1_mii0_txen */
+> +			AM33XX_PADCONF(0x8a4, PIN_OUTPUT,  MUX_MODE2)
+> +			/* dss_data14.pr1_mii_mr0_clk */
+> +			AM33XX_PADCONF(0x8d8, PIN_INPUT,   MUX_MODE5)
+> +			/* dss_data15.pr1_mii0_rxdv */
+> +			AM33XX_PADCONF(0x8dc, PIN_INPUT,   MUX_MODE5)
+> +			/* dss_data13.pr1_mii0_rxer */
+> +			AM33XX_PADCONF(0x8d4, PIN_INPUT,   MUX_MODE5)
+> +			/* dss_data12.pr1_mii0_rxlink */
+> +			AM33XX_PADCONF(0x8d0, PIN_INPUT,   MUX_MODE5)
+> +			/* dss_pclk.pr1_mii0_crs */
+> +			AM33XX_PADCONF(0x8e8, PIN_INPUT,   MUX_MODE2)
+> +
+> +			/* gpmc_a0.pr1_mii_mt1_clk */
+> +			AM33XX_PADCONF(0x840, PIN_INPUT,   MUX_MODE5)
+> +			/* gpmc_a4.pr1_mii1_txd0 */
+> +			AM33XX_PADCONF(0x850, PIN_OUTPUT,  MUX_MODE5)
+> +			/* gpmc_a3.pr1_mii1_txd1 */
+> +			AM33XX_PADCONF(0x84c, PIN_OUTPUT,  MUX_MODE5)
+> +			/* gpmc_a2.pr1_mii1_txd2 */
+> +			AM33XX_PADCONF(0x848, PIN_OUTPUT,  MUX_MODE5)
+> +			/* gpmc_a1.pr1_mii1_txd3 */
+> +			AM33XX_PADCONF(0x844, PIN_OUTPUT,  MUX_MODE5)
+> +			/* gpmc_a8.pr1_mii1_rxd0 */
+> +			AM33XX_PADCONF(0x860, PIN_INPUT,   MUX_MODE5)
+> +			/* gpmc_a7.pr1_mii1_rxd1 */
+> +			AM33XX_PADCONF(0x85c, PIN_INPUT,   MUX_MODE5)
+> +			/* gpmc_a6.pr1_mii1_rxd2 */
+> +			AM33XX_PADCONF(0x858, PIN_INPUT,   MUX_MODE5)
+> +			/* gpmc_a5.pr1_mii1_rxd3 */
+> +			AM33XX_PADCONF(0x854, PIN_INPUT,   MUX_MODE5)
+> +			/* gpmc_wpn.pr1_mii1_txen */
+> +			AM33XX_PADCONF(0x874, PIN_OUTPUT,  MUX_MODE5)
+> +			/* gpmc_a9.pr1_mii_mr1_clk */
+> +			AM33XX_PADCONF(0x864, PIN_INPUT,   MUX_MODE5)
+> +			/* gpmc_a10.pr1_mii1_rxdv */
+> +			AM33XX_PADCONF(0x868, PIN_INPUT,   MUX_MODE5)
+> +			/* gpmc_a11.pr1_mii1_rxer */
+> +			AM33XX_PADCONF(0x86c, PIN_INPUT,   MUX_MODE5)
+> +			/* gpmc_ben1.pr1_mii1_rxlink */
+> +			AM33XX_PADCONF(0x878, PIN_INPUT,   MUX_MODE5)
+> +			/* lcd_ac_bias_en.pr1_mii1_crs */
+> +			AM33XX_PADCONF(0x8ec, PIN_INPUT,   MUX_MODE2)
+> +			/* gpmc_wait0.pr1_mii1_col */
+> +			AM33XX_PADCONF(0x870, PIN_INPUT,   MUX_MODE5)
+> +		>;
+> +	};
+> +
+> +};
+> +
+> +&i2c0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c0_pins_default>;
+> +
+> +	status = "okay";
+> +	clock-frequency = <400000>;
+> +
+> +	tps: power-controller@2d {
+> +		reg = <0x2d>;
+> +	};
+> +
+> +	tpic2810: gpio@60 {
+> +		compatible = "ti,tpic2810";
+> +		reg = <0x60>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +	};
+> +
+> +	pca9536: gpio@41 {
+> +		compatible = "ti,pca9536";
+> +		reg = <0x41>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +	};
+> +
+> +};
+> +
+> +&spi0 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&spi0_pins_default>;
+> +
+> +	sn65hvs882@1 {
+> +		compatible = "pisosr-gpio";
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +
+> +		load-gpios = <&gpio3 18 GPIO_ACTIVE_LOW>;
+> +
+> +		reg = <1>;
+> +		spi-max-frequency = <1000000>;
+> +		spi-cpol;
+> +	};
+> +
+> +	spi_nor: flash@0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		compatible = "winbond, w25q64", "jedec,spi-nor";
+> +		spi-max-frequency = <80000000>;
+> +		m25p,fast-read;
+> +		reg = <0>;
+> +
+> +		partition@0 {
+> +			label = "u-boot-spl";
+> +			reg = <0x0 0x80000>;
+> +			read-only;
+> +		};
+> +
+> +		partition@1 {
+> +			label = "u-boot";
+> +			reg = <0x80000 0x100000>;
+> +			read-only;
+> +		};
+> +
+> +		partition@2 {
+> +			label = "u-boot-env";
+> +			reg = <0x180000 0x20000>;
+> +			read-only;
+> +		};
+> +
+> +		partition@3 {
+> +			label = "misc";
+> +			reg = <0x1A0000 0x660000>;
+> +		};
+> +	};
+> +
+> +};
+> +
+> +&tscadc {
+> +	status = "okay";
+> +	adc {
+> +		ti,adc-channels = <1 2 3 4 5 6 7>;
+> +	};
+> +};
+> +
+> +#include "../../tps65910.dtsi"
+> +
+> +&tps {
+> +	vcc1-supply = <&vbat>;
+> +	vcc2-supply = <&vbat>;
+> +	vcc3-supply = <&vbat>;
+> +	vcc4-supply = <&vbat>;
+> +	vcc5-supply = <&vbat>;
+> +	vcc6-supply = <&vbat>;
+> +	vcc7-supply = <&vbat>;
+> +	vccio-supply = <&vbat>;
+> +
+> +	regulators {
+> +		vrtc_reg: regulator@0 {
+> +			regulator-always-on;
+> +		};
+> +
+> +		vio_reg: regulator@1 {
+> +			regulator-always-on;
+> +		};
+> +
+> +		vdd1_reg: regulator@2 {
+> +			regulator-name = "vdd_mpu";
+> +			regulator-min-microvolt = <912500>;
+> +			regulator-max-microvolt = <1326000>;
+> +			regulator-boot-on;
+> +			regulator-always-on;
+> +		};
+> +
+> +		vdd2_reg: regulator@3 {
+> +			regulator-name = "vdd_core";
+> +			regulator-min-microvolt = <912500>;
+> +			regulator-max-microvolt = <1144000>;
+> +			regulator-boot-on;
+> +			regulator-always-on;
+> +		};
+> +
+> +		vdd3_reg: regulator@4 {
+> +			regulator-always-on;
+> +		};
+> +
+> +		vdig1_reg: regulator@5 {
+> +			regulator-always-on;
+> +		};
+> +
+> +		vdig2_reg: regulator@6 {
+> +			regulator-always-on;
+> +		};
+> +
+> +		vpll_reg: regulator@7 {
+> +			regulator-always-on;
+> +		};
+> +
+> +		vdac_reg: regulator@8 {
+> +			regulator-always-on;
+> +		};
+> +
+> +		vaux1_reg: regulator@9 {
+> +			regulator-always-on;
+> +		};
+> +
+> +		vaux2_reg: regulator@10 {
+> +			regulator-always-on;
+> +		};
+> +
+> +		vaux33_reg: regulator@11 {
+> +			regulator-always-on;
+> +		};
+> +
+> +		vmmc_reg: regulator@12 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <3300000>;
+> +			regulator-always-on;
+> +		};
+> +	};
+> +};
+> +
+> +&mmc1 {
+> +	status = "okay";
+> +	vmmc-supply = <&vmmc_reg>;
+> +	bus-width = <4>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mmc0_pins_default>;
+> +};
+> +
+> +&gpio0_target {
+> +	/* Do not idle the GPIO used for holding the VTT regulator */
+> +	ti,no-reset-on-init;
+> +	ti,no-idle-on-init;
+> +};
+> +
+> +&uart3 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart3_pins_default>;
+> +	status = "okay";
+> +};
+> +
+> +&gpio3 {
+> +	pr1-mii-ctl-hog {
+> +		gpio-hog;
+> +		gpios = <4 GPIO_ACTIVE_HIGH>;
+> +		output-high;
+> +		line-name = "PR1_MII_CTRL";
+> +	};
+> +
+> +	mux-mii-hog {
+> +		gpio-hog;
+> +		gpios = <10 GPIO_ACTIVE_HIGH>;
+> +		/* ETH1 mux: Low for MII-PRU, high for RMII-CPSW */
+> +		output-low;
+> +		line-name = "MUX_MII_CTL1";
+> +	};
+> +};
+> +
+> +&pruss_tm {
+> +	status = "okay";
+> +};
+> +
+> +&pruss_mdio {
+> +	pinctrl-0 = <&pruss_mdio_default>;
+> +	pinctrl-names = "default";
+> +	reset-gpios = <&gpio2 5 GPIO_ACTIVE_LOW>;
+> +	reset-delay-us = <2>; /* PHY datasheet states 1uS min */
+> +	status = "okay";
+> +
+> +	pruss_eth0_phy: ethernet-phy@1 {
+> +		 reg = <1>;
+> +	};
+> +
+> +	pruss_eth1_phy: ethernet-phy@3 {
+> +		 reg = <3>;
+> +	};
+> +};
+> +
+> +&rtc {
+> +	system-power-controller;
+> +};
+> diff --git a/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi b/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
+> index 18ad52e93955..498bda321b75 100644
+> --- a/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
+> +++ b/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
+> @@ -896,6 +896,17 @@ pruss_mii_rt: mii-rt@32000 {
+>   					reg = <0x32000 0x58>;
+>   				};
+>   
+> +				pruss_iep: iep@2e000 {
+> +					compatible = "ti,am3356-icss-iep";
+> +					reg = <0x2e000 0x31c>;
+> +					clocks = <&pruss_iepclk_mux>;
+> +				};
+> +
+> +				pruss_ecap: ecap@30000 {
+> +					compatible = "ti,pruss-ecap";
+> +					reg = <0x30000 0x60>;
+> +				};
+> +
+>   				pruss_intc: interrupt-controller@20000 {
+>   					compatible = "ti,pruss-intc";
+>   					reg = <0x20000 0x2000>;
+> diff --git a/arch/arm/boot/dts/ti/omap/am4372.dtsi b/arch/arm/boot/dts/ti/omap/am4372.dtsi
+> index 0a1df30f2818..7836aca7f954 100644
+> --- a/arch/arm/boot/dts/ti/omap/am4372.dtsi
+> +++ b/arch/arm/boot/dts/ti/omap/am4372.dtsi
+> @@ -477,6 +477,17 @@ pruss1_mii_rt: mii-rt@32000 {
+>   					reg = <0x32000 0x58>;
+>   				};
+>   
+> +				pruss1_iep: iep@2e000 {
+> +					compatible = "ti,am4376-icss-iep";
+> +					reg = <0x2e000 0x31c>;
+> +					clocks = <&pruss1_iepclk_mux>;
+> +				};
+> +
+> +				pruss1_ecap: ecap@30000 {
+> +					compatible = "ti,pruss-ecap";
+> +					reg = <0x30000 0x60>;
+> +				};
+> +
+>   				pruss1_intc: interrupt-controller@20000 {
+>   					compatible = "ti,pruss-intc";
+>   					reg = <0x20000 0x2000>;
+> diff --git a/arch/arm/boot/dts/ti/omap/am437x-idk-evm.dts b/arch/arm/boot/dts/ti/omap/am437x-idk-evm.dts
+> index 826f687c368a..3d755d875a70 100644
+> --- a/arch/arm/boot/dts/ti/omap/am437x-idk-evm.dts
+> +++ b/arch/arm/boot/dts/ti/omap/am437x-idk-evm.dts
+> @@ -168,6 +168,48 @@ led-out7 {
+>   			default-state = "off";
+>   		};
+>   	};
+> +
+> +	/* Dual-MAC Ethernet application node on PRU-ICSS1 */
+> +	pruss1_eth: pruss1-eth {
+> +		compatible = "ti,am4376-prueth";
+> +		ti,prus = <&pru1_0>, <&pru1_1>;
+> +		sram = <&ocmcram>;
+> +		ti,mii-rt = <&pruss1_mii_rt>;
+> +		ti,iep = <&pruss1_iep>;
+> +		ti,ecap = <&pruss1_ecap>;
+> +		interrupts = <20 2 2>, <21 3 3>;
+> +		interrupt-names = "rx_hp", "rx_lp";
+> +		interrupt-parent = <&pruss1_intc>;
+> +
+> +		pinctrl-0 = <&pruss1_eth_default>;
+> +		pinctrl-names = "default";
+> +
+> +		ethernet-ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			pruss1_emac0: ethernet-port@0 {
+> +				reg = <0>;
+> +				phy-handle = <&pruss1_eth0_phy>;
+> +				phy-mode = "mii";
+> +				interrupts = <20 2 2>, <26 6 6>, <23 6 6>;
+> +				interrupt-names = "rx", "emac_ptp_tx",
+> +						  "hsr_ptp_tx";
+> +				/* Filled in by bootloader */
+> +				local-mac-address = [00 00 00 00 00 00];
+> +			};
+> +
+> +			pruss1_emac1: ethernet-port@1 {
+> +				reg = <1>;
+> +				phy-handle = <&pruss1_eth1_phy>;
+> +				phy-mode = "mii";
+> +				interrupts = <21 3 3>, <27 9 5>, <24 9 5>;
+> +				interrupt-names = "rx", "emac_ptp_tx",
+> +						  "hsr_ptp_tx";
+> +				/* Filled in by bootloader */
+> +				local-mac-address = [00 00 00 00 00 00];
+> +			};
+> +		};
+> +	};
+>   };
+>   
+>   &am43xx_pinmux {
+> @@ -303,6 +345,86 @@ AM4372_IOPAD(0x94c, PIN_INPUT_PULLDOWN | MUX_MODE7)
+>   		>;
+>   	};
+>   
+> +	pruss1_mdio_default: pruss1_mdio_default {
+> +		pinctrl-single,pins = <
+> +			/* gpmc_clk.pr1_mdio_mdclk */
+> +			AM4372_IOPAD(0x88c, (PIN_OUTPUT | MUX_MODE5))
+> +			/* xdma_event_intr0.pr1_mdio_data */
+> +			AM4372_IOPAD(0xa70, (PIN_INPUT  | MUX_MODE8))
+> +			/* cam1_data6.gpio4_20 */
+> +			AM4372_IOPAD(0xa00, (PIN_INPUT_PULLUP | MUX_MODE7))
+> +		>;
+> +	};
+> +
+> +	pruss1_eth_default: pruss1_eth_default {
+> +		pinctrl-single,pins = <
+> +			/* dss_data0.pr1_mii_mt0_clk */
+> +			AM4372_IOPAD(0x8a0, (PIN_INPUT  | MUX_MODE2))
+> +			/* dss_data5.pr1_mii0_txd0 */
+> +			AM4372_IOPAD(0x8b4, (PIN_OUTPUT | MUX_MODE2))
+> +			/* dss_data4.pr1_mii0_txd1 */
+> +			AM4372_IOPAD(0x8b0, (PIN_OUTPUT | MUX_MODE2))
+> +			/* dss_data3.pr1_mii0_txd2 */
+> +			AM4372_IOPAD(0x8ac, (PIN_OUTPUT | MUX_MODE2))
+> +			/* dss_data2.pr1_mii0_txd3 */
+> +			AM4372_IOPAD(0x8a8, (PIN_OUTPUT | MUX_MODE2))
+> +			/* dss_data11.pr1_mii0_rxd0 */
+> +			AM4372_IOPAD(0x8cc, (PIN_INPUT  | MUX_MODE5))
+> +			/* dss_data10.pr1_mii0_rxd1 */
+> +			AM4372_IOPAD(0x8c8, (PIN_INPUT  | MUX_MODE5))
+> +			/* dss_data9.pr1_mii0_rxd2 */
+> +			AM4372_IOPAD(0x8c4, (PIN_INPUT  | MUX_MODE5))
+> +			/* dss_data8.pr1_mii0_rxd3 */
+> +			AM4372_IOPAD(0x8c0, (PIN_INPUT  | MUX_MODE5))
+> +			/* dss_data1.pr1_mii0_txen */
+> +			AM4372_IOPAD(0x8a4, (PIN_OUTPUT | MUX_MODE2))
+> +			/* dss_data14.pr1_mii_mr0_clk */
+> +			AM4372_IOPAD(0x8d8, (PIN_INPUT  | MUX_MODE5))
+> +			/* dss_data15.pr1_mii0_rxdv */
+> +			AM4372_IOPAD(0x8dc, (PIN_INPUT  | MUX_MODE5))
+> +			/* dss_data13.pr1_mii0_rxer */
+> +			AM4372_IOPAD(0x8d4, (PIN_INPUT  | MUX_MODE5))
+> +			/* dss_data12.pr1_mii0_rxlink */
+> +			AM4372_IOPAD(0x8d0, (PIN_INPUT  | MUX_MODE5))
+> +			/* gpio5_10.pr1_mii0_crs */
+> +			AM4372_IOPAD(0xa40, (PIN_INPUT  | MUX_MODE5))
+> +			/* gpio5_8.pr1_mii0_col */
+> +			AM4372_IOPAD(0xa38, (PIN_INPUT  | MUX_MODE5))
+> +			/* gpmc_a6.pr1_mii_mt1_clk */
+> +			AM4372_IOPAD(0x858, (PIN_INPUT  | MUX_MODE5))
+> +			/* gpmc_a5.pr1_mii1_txd0 */
+> +			AM4372_IOPAD(0x854, (PIN_OUTPUT | MUX_MODE5))
+> +			/* gpmc_a4.pr1_mii1_txd1 */
+> +			AM4372_IOPAD(0x850, (PIN_OUTPUT | MUX_MODE5))
+> +			/* gpmc_a3.pr1_mii1_txd2 */
+> +			AM4372_IOPAD(0x84c, (PIN_OUTPUT | MUX_MODE5))
+> +			/* gpmc_a2.pr1_mii1_txd3 */
+> +			AM4372_IOPAD(0x848, (PIN_OUTPUT | MUX_MODE5))
+> +			/* gpmc_a11.pr1_mii1_rxd0 */
+> +			AM4372_IOPAD(0x86c, (PIN_INPUT  | MUX_MODE5))
+> +			/* gpmc_a10.pr1_mii1_rxd1 */
+> +			AM4372_IOPAD(0x868, (PIN_INPUT  | MUX_MODE5))
+> +			/* gpmc_a9.pr1_mii1_rxd2 */
+> +			AM4372_IOPAD(0x864, (PIN_INPUT  | MUX_MODE5))
+> +			/* gpmc_a8.pr1_mii1_rxd3 */
+> +			AM4372_IOPAD(0x860, (PIN_INPUT  | MUX_MODE5))
+> +			/* gpmc_a0.pr1_mii1_txen */
+> +			AM4372_IOPAD(0x840, (PIN_OUTPUT | MUX_MODE5))
+> +			/* gpmc_a7.pr1_mii_mr1_clk */
+> +			AM4372_IOPAD(0x85c, (PIN_INPUT  | MUX_MODE5))
+> +			/* gpmc_a1.pr1_mii1_rxdv */
+> +			AM4372_IOPAD(0x844, (PIN_INPUT  | MUX_MODE5))
+> +			/* gpmc_wpn.pr1_mii1_rxer */
+> +			AM4372_IOPAD(0x874, (PIN_INPUT  | MUX_MODE5))
+> +			/* gpio5_13.pr1_mii1_rxlink */
+> +			AM4372_IOPAD(0xa4c, (PIN_INPUT  | MUX_MODE5))
+> +			/* gpio5_11.pr1_mii1_crs */
+> +			AM4372_IOPAD(0xa44, (PIN_INPUT  | MUX_MODE5))
+> +			/* gpmc_be1n.pr1_mii1_col */
+> +			AM4372_IOPAD(0x878, (PIN_INPUT  | MUX_MODE5))
+> +		>;
+> +	};
+> +
+>   	qspi_pins_default: qspi-default-pins {
+>   		pinctrl-single,pins = <
+>   			AM4372_IOPAD(0x87c, PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpmc_csn0.qspi_csn */
+> @@ -539,5 +661,18 @@ opp-100-600000000 {
+>   };
+>   
+>   &pruss1_mdio {
+> -	status = "disabled";
+> +	pinctrl-0 = <&pruss1_mdio_default>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +
+> +	reset-gpios = <&gpio4 20 GPIO_ACTIVE_LOW>;
+> +	reset-delay-us = <2>;	/* PHY datasheet states 1uS min */
+> +
+> +	pruss1_eth0_phy: ethernet-phy@0 {
+> +		reg = <0>;
+> +	};
+> +
+> +	pruss1_eth1_phy: ethernet-phy@1 {
+> +		reg = <1>;
+> +	};
+>   };
 
-use const struct to get better extenable.
-
-struct dw_i3c_drvdata {
-	u32 flags;
-}
-
-const struct dw_i3c_drvdata altr_agilex5_drvdata = {
-	.flags = DW_I3C_DISABLE_RUNTIME_PM_QUIRK,
-};
-
-...
-
-{ .compatible = "altr,agilex5-dw-i3c-master", .data = &altr_agilex5_drvdata, }
-
-Frank
-
-
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, dw_i3c_master_of_match);
-> --
-> 2.49.GIT
->
 
