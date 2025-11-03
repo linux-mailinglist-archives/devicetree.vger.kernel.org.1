@@ -1,160 +1,157 @@
-Return-Path: <devicetree+bounces-234515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3582EC2DFF5
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 21:08:37 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF07AC2E116
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 21:55:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A19523BCCC2
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 20:08:35 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D1F2B4E02CB
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 20:55:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5046C287503;
-	Mon,  3 Nov 2025 20:08:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28E022C15AA;
+	Mon,  3 Nov 2025 20:55:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="ocSImfaj";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="ZIG2rQkx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l2OcNpEm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68E3C29AAF8;
-	Mon,  3 Nov 2025 20:08:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A20872C158A
+	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 20:55:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762200515; cv=none; b=fD0IGpIEC4hkmcYR+SflZf0N36nXqVRn/IsYCfLBpqdahpRXxs5zA/TySUSZB2juEP70IS5+2surpskKV7l4nFD/rpRY0jj8Qjjk72ssyfmP6Xby+ubYmQt2/Lzu3fty0Qqi9kVNPJWsts5r5T2LDAYOQsuSAPprs5VyqSdeWqw=
+	t=1762203352; cv=none; b=qKbmGQx01wKFBVldh03jrRwEJAK0vpn4LYyyLeKQiMmHUirDorntZewRASjl7+B9MtBOJf1NBdEvAuQu9i6H0Zu/kVGHdfkjOAPXgv8cz91lS2nb9RYOFpsEvbdFqwag5kypL10+zm4kMfgW9yWEw5D2+wdH9UKC1sSLgrq5NBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762200515; c=relaxed/simple;
-	bh=LA2az8JRExiPjg51IaLhLUIYa+b5KWnjDgm+dhWo35s=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nSkxd6LuBOHmZMOU8Sn1JLwVwtF+XbG+qYS3lsYDyCONZzz/gtPbxiWk6ROjkH4KMMevPVwR+5+Loz4DzW1nXtea0I/RExJl4L7tTfIARs6soxRxIWZIfH+uzDOL5sWBemaWoK5xkle2/KQCfN3cqeIgysHymmjDlmPVnZglRNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=ocSImfaj; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=ZIG2rQkx; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4d0jMG1mQ1z9tnv;
-	Mon,  3 Nov 2025 21:08:26 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1762200506;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=D1UGhyuVKrdCv+eXNOryeajBu7PyQpDfmqjFM3c0rY8=;
-	b=ocSImfajas+yqNhMn0ZrHsbnseS6yG/WfhoB2ZbBgDbUpUiRqVWzDjUpBEWQHhQEv+fQXu
-	OOGqcg7dtAg5Zm0OlyTJhdueI/rU6TgDt88DrqYM5MD5tne8EroNGDL7vWFClApAZYnxpP
-	ppDWZtdchzsHnuZMpgKVkzmOF8WLg4iYTo9QoHKWnn7G7JVjGvGfNl9TqlGYFlbrdPl5vz
-	F5geJ8GRzE+fGLKhwxqqQ2vvFx05369RLGEeQmUtF6kFmuA9MzbH3D5/Uahhtf890XctK+
-	oDncXQHPXL4dNtjRzSSwW44+NF+XALiI5XEg6kIkojexLYYn6waHZfQ06ahBwg==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=ZIG2rQkx;
-	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::2 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1762200504;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=D1UGhyuVKrdCv+eXNOryeajBu7PyQpDfmqjFM3c0rY8=;
-	b=ZIG2rQkx7zbkb5oC0psPkP97/4jCfqo7iw7n5rjZnnOsNWchnHNZE0yb7nk8liu1W56ji5
-	CNlZRu0G2c1Y0BAZYUxQ2yh66kEzvcIlRFvQWVYxkpxH6mW0OpkwGOco545g3tGlEjzmKh
-	UIfSzp2Vxjw4+0a8yke2PzaKi/9xX13KzU3gWzUDfGz+ZNJd+Bs1QzPn6N2V2WrBbedxpo
-	35fG33mPxoQhMbQmKVffj7A1DTyYufW7rBjjZatGo4oYb+q5Vn58psqRsPts+S5Z5i0JfE
-	SVtKNeHLsIGi5htO5w8TYbomEpoPopUXqJm8PzhPYgH9I90/ajR7TdDUaKlcvg==
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Frank Binns <frank.binns@imgtec.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Matt Coster <matt.coster@imgtec.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-	Rob Herring <robh@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
+	s=arc-20240116; t=1762203352; c=relaxed/simple;
+	bh=MNnc+69lZjEdoLNMNHpdOsL37uDyvF8N6B5j/i2FB1Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lX4xoh9u76r0Fo9uUiJinUlNftRuGLzKmZTmxJ4aZKjjwAIV/cfNTGiWMHa3Ul8OtnsoMtwo3qFgglQ3G6a32QtSo/nTdM+a1Tiym3UAbrspO27lmH3iXukjQieqC9iQ4JyscTN717wDMy9g2Nd9/xz8a9i3ZqL7EE4fRdctqAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l2OcNpEm; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-781206cce18so5218486b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 12:55:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762203350; x=1762808150; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=T1FZmM9cdt+xj6V1Hd+gvwGWqSc0g8vu7TF1E04sPkw=;
+        b=l2OcNpEmACr8JWpNNLwqV0fE5/Q8WdPZcCmzr0WtrcU5TNyxUwI2sVvEQzHJx6cJFG
+         wILCbGqQV/B74yFiIk3mW9cPRH/Ous89Gav/EjTFBbL9YI9P8uz+vOslotKEkmX41Wlu
+         Gta4YSeCoe7pme7MYSHRukmx3nGvlBChhmCSGUpFx+p8+StGb7WN77kWW4urxk6O9wlU
+         +wzlPrTymXjjl0ZF3P0k5+atqbnbwhkUij8gpR0LPN39r7oDqw+J0c6c2ZBI4g71aJzm
+         q3Y6IaW2RahFWb4L+UU+RvI/XvcN/0MrMJM0FJMdQJoQ+F/Y4npEsH8myWIUut6iLYoa
+         nl8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762203350; x=1762808150;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=T1FZmM9cdt+xj6V1Hd+gvwGWqSc0g8vu7TF1E04sPkw=;
+        b=Xuc9q06YsMYGodVm4O8watZpdUzEP+4a/UzXMSLyF4dmvJWHEYjHaGIChoY7HBRM8V
+         QNV89BVOPy2JKDPoH2gRrQZR+qd19IaaqKP8dWg2MAaUw9hH6Fu/u/0bTR/nRPD3xvC8
+         iFkHZAsGBJ6iknGfyqXCZgi1ewLXa7H+DAkAei7CFfMd3Cm98P6npHJJNRCeMThUcVMt
+         hwzqOg+7lbGErkz9/j1HQ7Isr48n7AZSYIT+DUHj7JVLrMBKejxk3u3eE6lQGaMl7G3y
+         2MpCtLTr0mpq+kjWJk9XZcHhiZ95fw7R+JsdeR/9KZiFa39ijn1pvnmBI3t1aOyA51sn
+         357g==
+X-Forwarded-Encrypted: i=1; AJvYcCVGy+zk/K56cS8f8SABZkdNHiX3087abfULg+Q0kd2/0VFsIJd0s34Cx+jCSM9i3MxfUxhl7KNEvBHY@vger.kernel.org
+X-Gm-Message-State: AOJu0YwgmeeZCCcv68ETYIPAnD7bEial2MnT/6gvc1oGXcBU+1Fn7O7D
+	zF0fACHYnxBXZOr/ASZ1e1aKfBuh/GQqp9577B29sVz5/sc/SB7gpJ/8
+X-Gm-Gg: ASbGncu7f1z5VvC/vBLTEpyJ6pYsbu49p7fCxDkK2bnKtMnUFhwCAAP1/cvIpc9kULu
+	IMjoskdBUn5tJOk9fJ3U2+67Cj4h9O9RcbS2GdkBsbTA2aEfIePBtq4IjubO/Xb/ck0RwzExa76
+	2czoOLdhHIcBnF+YqW2M+zCkrcrNWel3hiBl0bjvINeE2lP2X95txF5VjeR0mYgqL0dzYzUzJZd
+	BIsa+FJKAyhWPWHr+Sn1fxGYvnwK9EreOLfHXqJAvtVkDXmR20y8Qa6Mj+0Jp/jbvVTYzC3A96d
+	x218A7zHBSXHvHk6pcKqttuY52Lu7cIGCSVNAf2GVDU769XPmyRPt14eYHeSLqxm6FErvE6dlwJ
+	e5ddtl0l2S6RPBq5TyBFz9DFhzhhZSsrGXgyIrBqkjGhiTpFSeifhyXjdZdAVVQ==
+X-Google-Smtp-Source: AGHT+IGYDVdNgNWocqi7ihWCrOOfROJ4jnfVXq0iLB5L8b6BF6bhkooF51PIKfTJUsi9RRg9FKFduA==
+X-Received: by 2002:a05:6a00:468a:b0:7aa:19a9:566a with SMTP id d2e1a72fcca58-7acbbb5a284mr818412b3a.0.1762203349654;
+        Mon, 03 Nov 2025 12:55:49 -0800 (PST)
+Received: from geday ([2804:7f2:800b:e79::dead:c001])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7acd623e091sm315775b3a.54.2025.11.03.12.55.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Nov 2025 12:55:49 -0800 (PST)
+Date: Mon, 3 Nov 2025 17:55:38 -0300
+From: Geraldo Nascimento <geraldogabriel@gmail.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: linux-rockchip@lists.infradead.org,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: renesas: r8a77965: Add GE7800 GPU node
-Date: Mon,  3 Nov 2025 21:07:36 +0100
-Message-ID: <20251103200800.173440-2-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20251103200800.173440-1-marek.vasut+renesas@mailbox.org>
-References: <20251103200800.173440-1-marek.vasut+renesas@mailbox.org>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Johan Jonker <jbx6244@gmail.com>
+Subject: Re: [RFC PATCH 2/2] PCI: rockchip-host: drop wait on PERST# toggle
+Message-ID: <aQkWysK2XA01lkB8@geday>
+References: <d3d0c3a387ff461e62bbd66a0bde654a9a17761e.1762150971.git.geraldogabriel@gmail.com>
+ <20251103181038.GA1814635@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: ed9673057399781eee0
-X-MBO-RS-META: tmak9nw4q9m9tsmcjdznujh7n18zs63g
-X-Rspamd-Queue-Id: 4d0jMG1mQ1z9tnv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251103181038.GA1814635@bhelgaas>
 
-Describe Imagination Technologies PowerVR Rogue GE7800 BNVC 15.5.1.64
-present in Renesas R-Car R8A77965 M3-N SoC.
+On Mon, Nov 03, 2025 at 12:10:38PM -0600, Bjorn Helgaas wrote:
+> On Mon, Nov 03, 2025 at 03:27:25AM -0300, Geraldo Nascimento wrote:
+> > With this change PCIe will complete link-training with a known quirky
+> > device - Samsung OEM PM981a SSD. This is completely against the PCIe
+> > spec and yet it works as long as the power regulator for 3v3 PCIe
+> > power is not defined as always-on or boot-on.
+> 
+> What is against the spec?  In what way is this SSD "known quirky"?  Is
+> there a published erratum for it?
 
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Frank Binns <frank.binns@imgtec.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>
-Cc: Matt Coster <matt.coster@imgtec.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: "Niklas Söderlund" <niklas.soderlund@ragnatech.se>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: devicetree@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-renesas-soc@vger.kernel.org
----
- arch/arm64/boot/dts/renesas/r8a77965.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+Hi Bjorn!
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a77965.dtsi b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-index 0868b136883c..4e730144e5fd 100644
---- a/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-@@ -2450,6 +2450,23 @@ gic: interrupt-controller@f1010000 {
- 			resets = <&cpg 408>;
- 		};
- 
-+		gpu: gpu@fd000000 {
-+			compatible = "renesas,r8a77965-gpu",
-+				     "img,img-ge7800",
-+				     "img,img-rogue";
-+			reg = <0 0xfd000000 0 0x40000>;
-+			interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_CORE R8A77965_CLK_ZG>,
-+				 <&cpg CPG_CORE R8A77965_CLK_S2D1>,
-+				 <&cpg CPG_MOD 112>;
-+			clock-names = "core", "mem", "sys";
-+			power-domains = <&sysc R8A77965_PD_3DG_A>,
-+					<&sysc R8A77965_PD_3DG_B>;
-+			power-domain-names = "a", "b";
-+			resets = <&cpg 112>;
-+			status = "disabled";
-+		};
-+
- 		pciec0: pcie@fe000000 {
- 			compatible = "renesas,pcie-r8a77965",
- 				     "renesas,pcie-rcar-gen3";
--- 
-2.51.0
+My proposed change itself is against the spec.
 
+This SSD is known to simply not complete initial link-training with
+Rockchip-IP PCIe. This is not officialy documented but based on
+reports across boards (like the Armbian one).
+
+I think it's the other way around though, it's the Rockchip-IP PCIe
+controller that is quirky somehow and doesn't play nice with
+many, many devices.
+
+> 
+> Removing this delay might make this SSD work, but if this delay is
+> required per PCIe spec, how can we be confident that other devices
+> will still work?
+
+We really can't be sure there will be no side-effects to other devices.
+
+> 
+> Reports of devices that still work is not really enough to move this
+> from the "hack that makes one device work" column to the "safe and
+> effective for all devices" column.
+
+I agree, and I knew from the start I would not get encouragements from
+the community relative to this change. Still, it seemed selfish not to
+share the workaround.
+
+> 
+> It's easy to see how *lack* of a delay can break something, but much
+> harder to imagine how *removing* a delay can make something work.
+> Devices must be able to tolerate pretty much arbitrary delays.
+
+That said, the problem of quirky Rockchip-IP PCIe remains. The fact
+that removing the delay makes it work with devices that previously
+did not complete initial link training must at least point to a
+resolution somehow, even if the present change is unacceptable.
+
+I'll continue to hack around this, see if I can pinpoint exactly why
+that delay screws up my initial link training.
+
+Thanks,
+Geraldo Nascimento
 
