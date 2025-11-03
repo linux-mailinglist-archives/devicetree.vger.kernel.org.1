@@ -1,199 +1,136 @@
-Return-Path: <devicetree+bounces-234330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69DADC2B713
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 12:39:45 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10AA8C2B7DF
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 12:47:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B874618875EB
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 11:36:02 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 15ACA4F6865
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 11:41:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C420130215B;
-	Mon,  3 Nov 2025 11:34:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C276A3009C4;
+	Mon,  3 Nov 2025 11:41:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qm1zZ+o+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="haXVNmXG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E33F2FD68C
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 11:34:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94FC321CC55;
+	Mon,  3 Nov 2025 11:41:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762169644; cv=none; b=bPr60G6nSe43uToaoqMU9Z7o8Lhaz5bnniR8Lw8i18EBwdmHcZDH+myX1zXesbHAcYR6SjcTnKuqa/39RGcr8n+vGEf5bi3987CAuPfGEFUqc46wEXnJww1L9abKQYaRGWiNoBeJzggS/hBAvoulXwXrvDdnvULUArBF4ylJXAY=
+	t=1762170085; cv=none; b=gcIjuyjVsyHUKKL5Qs+vupxa/unw8cymxGjfgOmrQeirpf7/uQhckt5vh65i1q5XL63E7JjGnF3hZ1hTluwvaZtiBmii1/N8ClgUe67d+gkze0yYmE+o/A2gIl6RQmtIGewigUOfWeoHL/s0iOd9oTo5QjWcu3Cyh5bMlRRKFfY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762169644; c=relaxed/simple;
-	bh=cuQUH77MkBh0VUBEfQGuQkOtLJDnbqOfJIHSvLF3Blg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=NTh5crxLjaxyuv4/pCIblfBcWaSAwwihr6P5yeN1dMXoLMHvKBhgMdson6GTdDiv5iAduC/nHt7CkoILphaljKPMmeyL6+pExxLMT1I31yOq5aNifuaMCkUXGhoPv/v401o7aeIHJIq++aeRXBgY/jlExrBYIwWJNK/ee9WZMjE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qm1zZ+o+; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-42557c5cedcso2501807f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 03:34:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762169640; x=1762774440; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=vOloNiz/LIv+fxFQ4H8D3qzw660SR91t+vlAvFfeGIo=;
-        b=Qm1zZ+o+uZFKnjRV9heoNFHkbIeApl9qHzONenf88RFQO61+ioJpy0ZW1TqyRCeAM9
-         akUU/2guK4zn97emgosIuPDn/lWcZrfCtxOtaY1mSJU1egvWOtd9l5Wc04AG1j0x+PmW
-         oYe6fSFvbOAFMRqPVy6qTanEnLmNAG/Wm/FCP2pa6qDAhMKT6rcgOhVObVx4H/DIFGzT
-         CX5y0VUC0tMBc/zHbeDeuDWOw/cMO+eUxHspQifuUZX9W287zvRkYAhJgU9yV6DKGF8O
-         MjBHBKe3hemuMv6zaxeB1ZHkgjVwaUA/RoXO1JnbrKHRG7o09fQ60lL2fT9l4u801LGe
-         emTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762169640; x=1762774440;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vOloNiz/LIv+fxFQ4H8D3qzw660SR91t+vlAvFfeGIo=;
-        b=DOloW51+T0TW9SOtYbHyYfrZI9m/rRD3xvz2fJhMTrEWNO4Qz779TR3j6By44ng5X6
-         Rbm21qqfixzIfrqiTQBg3TEmGEmEgKv+wVc0nb54xQNVTdvb1Hb/VlHrwIzia9gPXeE4
-         7CoDp46cTYUyAKgO5aA5CTwPip0ona4+5jQ3hSw7bhZhXhtnC051Py8zPkyB0VOJi7EW
-         xTyHbbMvn17wHQgrDVHWi3FrBJcypKk/i6aqND5EkzbS5CI5o40JN715WT8A0j/U7p5+
-         wzqMmlPHR0MXzZxHY1ifdBfxv/pn5Ymx4StQl8mNML6NguKgPelpTh8Fxz6gME87g7gw
-         /mJA==
-X-Forwarded-Encrypted: i=1; AJvYcCXsxQvCL+DlTPUsryCtS2cq8P5fF6Zy4rmvxgXQ/sLGdW5PwdlvRDeOe+oT9OB+7qhiUoe5MZ7B3zpE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5cAbayzvLQlLveaKMOvhSP6kR2b9faliTm+KwixSeiE+dYH/g
-	d0qKhAEa8KEt4BE7AG6psuyLCoIRFjeDIzA4eW5Ekae/M74itJddHQwy
-X-Gm-Gg: ASbGncvszbJ8NHHXJaU/vfQRQkddJC0Ty0ebjGLOfGYMPWovU8MbBOHoxMOAbupnBq3
-	ejn6bD2UktdyJP20KL5+q1ZPAwtbYm+05biXXY9kguVir5TS2XX6ZZ3mGD5Uyeuet1UHTVCgD4C
-	lfs6D0EzbwrUUPx/D8W6LYAjTt1EfDFClOM97oiVrXqcOq+WBWD32w25CdVQeZo/fU/9rmtDw6h
-	4J9rYseSHQGwB9MHbKn2U+yabR7S2NcCxAGQ3Zlqpa6MwpWwq+R42sRaB63soT1vIYKbREZM4YH
-	1z43cgWGQzvGeXjv0BuM3cR45KwtFthtf97MSZ6r2CcVoUHSJmoGHwBdnDDtsPcpUB3MD2ifF42
-	OmwXo8eU4SVGa3MGmHcJ4Ngn1Mj7VfXlnavFTdIxtnhAAjzAkpq6QXeMkyPWFOXozSpkVZG2yey
-	suXZh88Ikr
-X-Google-Smtp-Source: AGHT+IHEgZpMAanIx/WNbbiJiPaCSI2QOctFxePvc+vMhoOiDgHLLdOJk4neydoG/A7CpeJvkw4SLA==
-X-Received: by 2002:a05:6000:24c7:b0:3ec:de3c:c56 with SMTP id ffacd0b85a97d-429bd68cf3fmr10670694f8f.16.1762169640205;
-        Mon, 03 Nov 2025 03:34:00 -0800 (PST)
-Received: from [192.168.1.187] ([161.230.67.253])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429c13e1d47sm20034750f8f.23.2025.11.03.03.33.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Nov 2025 03:33:59 -0800 (PST)
-Message-ID: <20e485b69419ffd518c7aeb16881df429b0a4873.camel@gmail.com>
-Subject: Re: [PATCH v2 2/4] iio: adc: Add support for the Renesas RZ/N1 ADC
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>,  Wolfram
- Sang <wsa+renesas@sang-engineering.com>, Jonathan Cameron
- <jic23@kernel.org>, David Lechner	 <dlechner@baylibre.com>, Nuno
- =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,  Andy Shevchenko	
- <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Geert
- Uytterhoeven	 <geert+renesas@glider.be>, Magnus Damm
- <magnus.damm@gmail.com>, Liam Girdwood	 <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Pascal Eberhard	
- <pascal.eberhard@se.com>, Miquel Raynal <miquel.raynal@bootlin.com>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>
-Date: Mon, 03 Nov 2025 11:34:35 +0000
-In-Reply-To: <20251029144644.667561-3-herve.codina@bootlin.com>
-References: <20251029144644.667561-1-herve.codina@bootlin.com>
-	 <20251029144644.667561-3-herve.codina@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.1 
+	s=arc-20240116; t=1762170085; c=relaxed/simple;
+	bh=83zk57cNtetxfYb8EbrdA3sau3Z5AXIe3hta2oRve9k=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Jz9b/P0TksAU8/EkSF3TLU3CeGkrkzgxtulN3HpvDeL3t3Ma/CHq8aZGefCzkBwlKAbsJ0SH+u1T5D0eHCtaF0Aj+QUucgiW2shEm0JoeerGbA9sOL84u3DoP4UUv+WNl2fp5AXMqEnDN7gKq5TnDclyr0fYR1iQkYk98gysiEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=haXVNmXG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2831AC4CEE7;
+	Mon,  3 Nov 2025 11:41:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762170085;
+	bh=83zk57cNtetxfYb8EbrdA3sau3Z5AXIe3hta2oRve9k=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
+	b=haXVNmXGZGW+D/M8k3qq8seaVPQHUvd/znza8FIdpOoK3zE20O6uiU6tjM/5lamEx
+	 v7yHWeWUqpGaCJKzSLh5ruy0PdAr5ZVuUqJBZYxjz6lJGAN8BjkDiYF4jD6rv0OzXd
+	 3o5BrsbvWWF3zpYP8o3LwLwFtJ+DcHqM5jsEqY5aQiTE8BTDIqsJGpeCOtvrRNOHqm
+	 GyJVz5HxddleqczfZpL+rrJIfmsgTYQ7a94z76hCzdBQ5/tF5D+sfHTLaR9I85UfVX
+	 IgF02OF8U8FH0gTC2DavMiEGmX8yRNcqFGZAhILPjPCPCmgzlIOx+o7CEHW41w38Sx
+	 hcYA09K63Ix7Q==
+Message-ID: <27b5eef1-f59f-4556-897c-f0cec7689d14@kernel.org>
+Date: Mon, 3 Nov 2025 12:41:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: hverkuil+cisco@kernel.org
+Subject: Re: [PATCH V5 0/4] Add support for TI VIP
+To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>, mchehab@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: sakari.ailus@linux.intel.com, bparrot@ti.com,
+ jai.luthra@ideasonboard.com, dale@farnsworth.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, u-kumar1@ti.com
+References: <20251024094452.549186-1-y-abhilashchandra@ti.com>
+Content-Language: en-US, nl
+In-Reply-To: <20251024094452.549186-1-y-abhilashchandra@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, 2025-10-29 at 15:46 +0100, Herve Codina (Schneider Electric) wrote:
-> The Renesas RZ/N1 ADC controller is the ADC controller available in the
-> Renesas RZ/N1 SoCs family. It can use up to two internal ADC cores (ADC1
-> and ADC2) those internal cores are not directly accessed but are handled
-> through ADC controller virtual channels.
->=20
-> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.co=
-m>
-> ---
+On 24/10/2025 11:44, Yemike Abhilash Chandra wrote:
+> This patch series adds support for the TI VIP. VIP stands for Video
+> Input Port, it can be found on devices such as DRA7xx and provides
+> a parallel interface to a video source such as a sensor or TV decoder.
+> 
+> Each VIP can support two inputs (slices) and a SoC can be configured
+> with a variable number of VIP's. Each slice can support two ports
+> each connected to its own sub-device.
+> 
+> Changelog:
+> Changes in v5:
+> Krzysztof:
+> - Drop VIP node's label from the example in DT bindings
+> - Fix indentation of the example in DT bindings
+> - Get the phandle args directly through syscon call using syscon_regmap_lookup_by_phandle_args()
+> - Use devm_platform_ioremap_resource() instead of platform_get_resource() and devm_ioremap_resource()
+> - Drop struct resource *res from vip shared structure since it is now unused
+> 
+> v4l2-compliance output: https://gist.github.com/Yemike-Abhilash-Chandra/8d68342247da38d6ac59625f8eaf41c2
 
-Not much to add to Andy's review. Looks in good shape... Just one small rem=
-ark
-from me. With it and Andy's stuff addressed:
+v4l2-compliance is too old:
 
-Reviewed-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+v4l2-compliance 1.28.1-5233, 32 bits, 32-bit time_t
+v4l2-compliance SHA: fc15e229d9d3 2024-07-23 19:22:15
 
-> =C2=A0drivers/iio/adc/Kconfig=C2=A0=C2=A0=C2=A0 |=C2=A0 10 +
-> =C2=A0drivers/iio/adc/Makefile=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> =C2=A0drivers/iio/adc/rzn1-adc.c | 493 ++++++++++++++++++++++++++++++++++=
-+++
-> =C2=A03 files changed, 504 insertions(+)
-> =C2=A0create mode 100644 drivers/iio/adc/rzn1-adc.c
->=20
-> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> index 58a14e6833f6..113f6a5c9745 100644
-> --- a/drivers/iio/adc/Kconfig
-> +++ b/drivers/iio/adc/Kconfig
-> @@ -1403,6 +1403,16 @@ config RZG2L_ADC
-> =C2=A0	=C2=A0 To compile this driver as a module, choose M here: the
-> =C2=A0	=C2=A0 module will be called rzg2l_adc.
-> =C2=A0
-> +config RZN1_ADC
-> +	tristate "Renesas RZ/N1 ADC driver"
-> +	depends on ARCH_RZN1 || COMPILE_TEST
-> +	help
-> +	=C2=A0 Say yes here to build support for the ADC found in Renesas
-> +	=C2=A0 RZ/N1 family.
-> +
-> +	=C2=A0 To compile this driver as a module, choose M here: the
-> +	=C2=A0 module will be called rzn1-adc.
-> +
-> =C2=A0config SC27XX_ADC
-> =C2=A0	tristate "Spreadtrum SC27xx series PMICs ADC"
-> =C2=A0	depends on MFD_SC27XX_PMIC || COMPILE_TEST
-> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-> index d008f78dc010..ba7a8a63d070 100644
-> --- a/drivers/iio/adc/Makefile
-> +++ b/drivers/iio/adc/Makefile
-> @@ -123,6 +123,7 @@ obj-$(CONFIG_ROHM_BD79112) +=3D rohm-bd79112.o
-> =C2=A0obj-$(CONFIG_ROHM_BD79124) +=3D rohm-bd79124.o
-> =C2=A0obj-$(CONFIG_ROCKCHIP_SARADC) +=3D rockchip_saradc.o
-> =C2=A0obj-$(CONFIG_RZG2L_ADC) +=3D rzg2l_adc.o
-> +obj-$(CONFIG_RZN1_ADC) +=3D rzn1-adc.o
-> =C2=A0obj-$(CONFIG_SC27XX_ADC) +=3D sc27xx_adc.o
-> =C2=A0obj-$(CONFIG_SD_ADC_MODULATOR) +=3D sd_adc_modulator.o
-> =C2=A0obj-$(CONFIG_SOPHGO_CV1800B_ADC) +=3D sophgo-cv1800b-adc.o
-> diff --git a/drivers/iio/adc/rzn1-adc.c b/drivers/iio/adc/rzn1-adc.c
-> new file mode 100644
-> index 000000000000..52ec13adddef
-> --- /dev/null
-> +++ b/drivers/iio/adc/rzn1-adc.c
-> @@ -0,0 +1,493 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Renesas RZ/N1 ADC driver
-> + *
-> + * Copyright (C) 2025 Schneider-Electric
-> + *
-> + * Author: Herve Codina <herve.codina@bootlin.com>
-> + *
-> + * The RZ/N1 ADC controller can handle channels from its internal ADC1 a=
-nd/or
-> + * ADC2 cores. The driver use ADC1 and/or ADC2 cores depending on the pr=
-esence
-> + * of the related power supplies (AVDD and VREF) description in the devi=
-ce-tree.
-> + */
+It's always best to compile v4l-utils from scratch using the git repo: https://git.linuxtv.org/v4l-utils.git/
 
-...
+v4l2-compliance is continually improved, and also kept in sync with the latest media
+git repo (https://gitlab.freedesktop.org/linux-media/media-committers.git), 'next' branch.
 
->=20
-> +
-> +	platform_set_drvdata(pdev, indio_dev);
-> +
+Since there are kernel messages interleaved with the v4l2-compliance output I
+recommend to write the output to a file and show that.
 
-If I'm not missing nothing, there's no real need to pass in indio_dev. So, =
-why not
-passing rzn1_adc directly and avoid the pointer arithmetic's in the pm call=
-backs?
+There is one failure for 'test Cropping'. If that still occurs with the latest version
+from git, then that needs to be addressed.
 
-- Nuno S=C3=A1
+Regards,
+
+	Hans
+
+> v4l2-compliance output with -s: https://gist.github.com/Yemike-Abhilash-Chandra/1dfa740a34e0e3d77a315b245e61b9ec
+> Test logs: https://gist.github.com/Yemike-Abhilash-Chandra/e44c4504d596f24e7c93a4c0b59f5316
+> DT binding check results: https://gist.github.com/Yemike-Abhilash-Chandra/a7eb1308df2d4a167baeec62bc744335
+> (No errors related to ti,vip.yaml)
+> 
+> Link for v4: https://lore.kernel.org/linux-media/20251015054010.3594423-1-y-abhilashchandra@ti.com/#t
+> 
+> Dale Farnsworth (2):
+>   dt-bindings: media: ti: vpe: Add support for Video Input Port
+>   media: ti: vpe: Add the VIP driver
+> 
+> Yemike Abhilash Chandra (2):
+>   media: ti: vpe: Re-introduce multi-instance and multi-client support
+>   media: ti: vpe: Export vpdma_load_firmware() function
+> 
+>  .../devicetree/bindings/media/ti,vip.yaml     |  152 +
+>  MAINTAINERS                                   |    1 +
+>  drivers/media/platform/ti/Kconfig             |   13 +
+>  drivers/media/platform/ti/vpe/Makefile        |    2 +
+>  drivers/media/platform/ti/vpe/vip.c           | 3731 +++++++++++++++++
+>  drivers/media/platform/ti/vpe/vip.h           |  717 ++++
+>  drivers/media/platform/ti/vpe/vpdma.c         |   51 +-
+>  drivers/media/platform/ti/vpe/vpdma.h         |    6 +
+>  8 files changed, 4672 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/ti,vip.yaml
+>  create mode 100644 drivers/media/platform/ti/vpe/vip.c
+>  create mode 100644 drivers/media/platform/ti/vpe/vip.h
+> 
 
 
