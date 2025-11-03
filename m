@@ -1,265 +1,969 @@
-Return-Path: <devicetree+bounces-234188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A3D4C29D78
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 03:04:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E95FC29E13
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 03:45:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EDC734EC294
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 02:03:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1D783AEF7F
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 02:45:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D0D227CCE0;
-	Mon,  3 Nov 2025 02:03:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C158132117;
+	Mon,  3 Nov 2025 02:45:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="JnTGT0xz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f4tx302o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011026.outbound.protection.outlook.com [52.101.65.26])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2C7C29A2;
-	Mon,  3 Nov 2025 02:03:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.26
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762135419; cv=fail; b=QCB75yzVamFU/5zgVjWCSvB4o2eJGUJ3d3ymNfganlDws4Ivv+u015nRYsNejtVrXhmj/105YB2HkwAhDCTUHkbVQxHEPg4MDWp/HZ3qoiJHPhffDtc5RaKLoHIWXg9BYXSDPs3ov1xVtQMS6RptQ3nM8URmpz5Ld6rc8NXie4w=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762135419; c=relaxed/simple;
-	bh=uDH1Sh3T6PHWq1V5GCTrZZzvMmDyuzymxBBvgPLt0nU=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=jlxvm5tgx/iVs+dbwWyPhHZPoZYq00rhB4gn43+fiGaa7gYnzuVKKTHXacHlqjtU1sIzlA6XCRmMC4Kv1L0OykNQ3t/2CFxvjQnoMtoRmm9RW/SdqsxLDUyhg+ft4SYTIS9bhP998D8xI7l/fYNVuN+CTLcfA9tCMg9t0W9KGlc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=JnTGT0xz; arc=fail smtp.client-ip=52.101.65.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JwZ1ctlprjkmsuSnDYFnUk0WbgcD0agjaR2YIL/tuuzknhcJwjs/TyZKIjkDyGR5AreUwxSXZj6nApmAL4k/MzLbDN8CxabZs1/E0CDN6lajv9uHr4uzE6X9ZexvP39egUtKvJFaCiqafg9rP1QYk7Fguw7Vylpge5qr3qWt8SIKsltnkPPrPGE5m3G/zj1Ata0cO1wIx/gLs7+fLFUqwWRAGGptUS1HbCNaAKBmwZPgdtEZ5V0WKU2TWd8LN9F+OF8svyWQM9QSHTG0gRZExg8KjCZ8yeJph+d2FpLWX+VP+2+jOz/JPqUFVLV8RJd6IzMcEthLWtKqgL4fvnn7GA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uDH1Sh3T6PHWq1V5GCTrZZzvMmDyuzymxBBvgPLt0nU=;
- b=QrfY1Q92asLsP4wUnrICScKcKOSZ4Z95vKU4pBmW1Tov1GB8cpQEfIvrhj2jKGHEz5/XMI10/PQKXyxPHmnuK6b4JZg+5AuIfIIPP3GL124VumThmwTjA7shiN6XFKiMnU0iXCdjZqp34VOBevigv2N610AdOHbesLCZwys4z4uWOGxtG+H04udIM8Qk15XsG3B27XKDeOWLc/JHIgySq19Joqpi3mmma48RUBSP4zpKI2D3hqfXDs6RJsVb+PLYbcrewdRaqZIDyQVLU24UWXBWW9FDOprYmCb2NgkIibMhUrT1KKN41O0//8SIDpmZxJ/jYCE+brrDgcZwfvcDVQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uDH1Sh3T6PHWq1V5GCTrZZzvMmDyuzymxBBvgPLt0nU=;
- b=JnTGT0xzfG3RRtOhjJCAgXtQg7EQru5XQQMiqF8rEhEcMkswhHgSR9CAt7DiLR5fQken1RoNQXB1obJlVX7D+iFEleRZO0oVJC/CMiLOnybVvtrEL+AbDHiShJvM6GYZHWN1OOPmOwN/p+16AQV3fAAIyHJLQzTzugt1GJgnx6QrHxBYocNdUGPmQUZqFFPheEqdvzOL3bpHg/ka9dTvcdBF9F4i58tdAGpkDKO3YvY/Y2sJYsHpHlm8LrqXqeu1/lXQAD5OwKZQzh3SwCY0mxG90fIJ1R+xOiGL4be19NoZ2KP2ZtgVwg/IeWbp8dHpo9npMxHIPr5ylzjAJ4mF9g==
-Received: from AS8PR04MB9080.eurprd04.prod.outlook.com (2603:10a6:20b:447::16)
- by AS8PR04MB8452.eurprd04.prod.outlook.com (2603:10a6:20b:348::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.15; Mon, 3 Nov
- 2025 02:03:33 +0000
-Received: from AS8PR04MB9080.eurprd04.prod.outlook.com
- ([fe80::92c2:2e03:bf99:68eb]) by AS8PR04MB9080.eurprd04.prod.outlook.com
- ([fe80::92c2:2e03:bf99:68eb%6]) with mapi id 15.20.9275.013; Mon, 3 Nov 2025
- 02:03:33 +0000
-From: "G.N. Zhou" <guoniu.zhou@nxp.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-CC: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
-	<festevam@gmail.com>, Frank Li <frank.li@nxp.com>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [EXT] Re: [PATCH v2 2/5] media: nxp: imx8-isi: Simplify code by
- using helper macro
-Thread-Topic: [EXT] Re: [PATCH v2 2/5] media: nxp: imx8-isi: Simplify code by
- using helper macro
-Thread-Index: AQHcHjIzAx8GBuTeC0eoL870oKvfoLSeTYGAgAA8otCAQdZmAIAALxJg
-Date: Mon, 3 Nov 2025 02:03:33 +0000
-Message-ID:
- <AS8PR04MB9080F97658FC324261575C40FAC7A@AS8PR04MB9080.eurprd04.prod.outlook.com>
-References: <20250905-isi_imx93-v2-0-37db5f768c57@nxp.com>
- <20250905-isi_imx93-v2-2-37db5f768c57@nxp.com>
- <20250921221325.GB10540@pendragon.ideasonboard.com>
- <AS8PR04MB9080158655C3EA188BE7FE7AFA12A@AS8PR04MB9080.eurprd04.prod.outlook.com>
- <20251102231440.GA1933@pendragon.ideasonboard.com>
-In-Reply-To: <20251102231440.GA1933@pendragon.ideasonboard.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS8PR04MB9080:EE_|AS8PR04MB8452:EE_
-x-ms-office365-filtering-correlation-id: dc710255-dbd4-4680-8a65-08de1a7d3160
-x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|19092799006|1800799024|7416014|376014|366016|38070700021;
-x-microsoft-antispam-message-info:
- =?utf-8?B?SkhHdVFsT2tsYjlJWUw5S2NnRkg2eU12ZDg5OTUwK3RPTnVNTkQ3L2FvZVhm?=
- =?utf-8?B?clBMUlg2TXdySWl1alVTbUwwanNQcm13UWYxRldMR2lKMUxIZkN2NW83RUhL?=
- =?utf-8?B?M205WDBiZ0RvMURDUjk1ODFCOUR0YU9rVUt2NXQ3bmxPWmpQRFM4QXFsYnBq?=
- =?utf-8?B?ZHVSVVlpeXlDSE5qMnJENWRDdFpvNFdFOGRhaTNDUC9GcWJRejkwVGkvOU56?=
- =?utf-8?B?QlBCOVpvZnRyTzJKNjV3SmZKalFHMms4MzF5ZDlHWHBzQnZLMkprNDBlc2FG?=
- =?utf-8?B?bFJCUTAxaE05Y2FBL2g2eHpCN3M1bXR3RnhSaWNYWk52V01wdzh6TmV6ZkhS?=
- =?utf-8?B?NGQrU0ptbDk3TmlqWGpIdEJ1L2wvWWR1SXQ2NlRDd3hLeXlmOThEWXpicXJQ?=
- =?utf-8?B?eWZZNTk3ZlRVcXAyamY5TkFWeFoyd2ppQ09hRjVxSSsrSXBtSmtUcEdJSlJ5?=
- =?utf-8?B?NUw3SjRPR1FtRDdZdTQvclNBekFxejh4WXJJOGpWQnZSNHBTTk8rcmVtTEtQ?=
- =?utf-8?B?VFZiMWkwVnJjbTFyekZJS1NHK0R2Z3g3aFVyMVhLODdHUDZTWHA2YVptZXY0?=
- =?utf-8?B?OHgwcEk1azI1ZVd1cXNLcWNSZU82d21hd2RnUnZTaFhmNjMya3dDQmhhaHVw?=
- =?utf-8?B?NStuMnJTSUwrSFR2VDRFU1lrWithdWV0TFRRd1dmMElHcDA0UVpIWlFSeFg1?=
- =?utf-8?B?RXg4eElzdGR3TUlIV29kNUNQS3ZpSzcwNFppVS9tWTNPbWpZaVhROXdFQkNL?=
- =?utf-8?B?bWhtWS9YcHJZZXNsT0Yzc0lqc2VRZEVWRTJXK2hIZ1AzR2Jwa2dXdWtHclZv?=
- =?utf-8?B?VGsxYjNiKy82dTV2cEJIdm16UldmdFhBQlhjdDJydXBVdzdZT2xobkFjL3hx?=
- =?utf-8?B?Z3Y1L2RCeVFtTi85MDN6WlJTcUIyUFJ6dy8zNk1wSDNZdmFOTXNRdHdGR0xW?=
- =?utf-8?B?amVOMEdEWElmWCtMUFJFTFdkS3NnSURYOHdFZlNLWktZVWdCemREQnUxdXFF?=
- =?utf-8?B?RmVubmhHa28yZTZaRkQybXVXaXYvV0lBaXpzcE5RV1JTSHhHa3VvNnNSY09p?=
- =?utf-8?B?ekZTYW1rWUkvV0h5VDA5bGppQ2JpVVQ5dVhma0V6L2dRTjZ3WHhmSFF5cEJl?=
- =?utf-8?B?aXluay9rTlp5d3hhaDB2TmJRNmFrQXRVMjd6WHJVelpOWlpqMGo5MlR2VGlQ?=
- =?utf-8?B?RjB1Q3BFWHVuVGc5S2haQjNnWHl1cHEyN3djTEJuT3pBNXlNUitBaUlRcEpi?=
- =?utf-8?B?UVdQWXhNUEQraVNzTTloS0VyeWpOM0lmN1NSdHdscm1uU2d4TzhqbTVhdnJK?=
- =?utf-8?B?Sjlra0t0RkVyeUp6L3ByZHJ5NUF3WGhGTTREOUkvR1ZaRk45WWlCMjJGblVO?=
- =?utf-8?B?TVkzMittaGh2Q2NDZDg0ZzE0dXFPS3hRSmZkQ0VKd3lkbithemc4OXIzZDM0?=
- =?utf-8?B?WDZKWG5MWVlkdG54NHRXY2pRSDFwdGJzeDJDMXA3SDBIVWxRYW5UejZmcVY1?=
- =?utf-8?B?SlZjNXFiMkR3bUJLU1AzaHRWZnF5bWFuQmVMV2FlR051SHltV1g4b04xVVd1?=
- =?utf-8?B?YU53Rk4yNVVYV3JTMXVlbFFWQkhzVnN5b0NtN0FWNjNBcHdmREdpZHhlYnVO?=
- =?utf-8?B?dnN0aGNWUFRpNUNIUG5LRXJYMjIyZXZ4K0grYXBSZEV4VmZoWG9XQitsNzNS?=
- =?utf-8?B?RFdFMU5XRkxsMTVFMUhsR2NZN3RSLzU0SE43cVhSS0dSWXFuN01XOWdmM21X?=
- =?utf-8?B?R2sxQXg2d1lkanREajRaNEZNWFphVk5HTzJXejMyRUpBSjRla2szUll0TFZV?=
- =?utf-8?B?N0pLQUcxMzVqWWI5NUNNUGU5K21aSVVsMi9RVkRuaGFGay9wbkRCNTIvZE0y?=
- =?utf-8?B?elNvSG90eDhTMTBsYUdTbEtKTDhzMW9pcE1SZ29pemNhcWRXVkZoMmZSU2Rq?=
- =?utf-8?B?dzJGKzF1MTE2bFFuRVhjcDFEU3oyY1FDNFBpMjlHRWk1elhmd1BkamQ2Smt1?=
- =?utf-8?B?THBDclEwcnY1MFB3RzBBL1N0djErM0liNDZSS1kwc1puNzRkcSt0alhjZ0tU?=
- =?utf-8?Q?ifBIso?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB9080.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(7416014)(376014)(366016)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?Y3hDMUUwVG1DOVVxbVVDVjlEVmZJQW5DK1BONkdGS1ViQW9DbWdNdG13aHlk?=
- =?utf-8?B?cThRK21scmhkVU9LWi9TMEdISEtXMEdqU1dkK3EwalZFeWo0K3N1V1lxMlRs?=
- =?utf-8?B?ZDhraGFLQ1hZdVZRQ29qUnZPTk9ZeFdyTTgrMEMxTTE4Nnp3SFBPeGl6Rjln?=
- =?utf-8?B?WlBJZVplVC9TYk1ieFhmdVFpcEdDc1krUDU4ZjdXZHIwVXBPUithWUJTWGpX?=
- =?utf-8?B?T1J2T1lPTjF0NG9PSkFGMEorZDR1bE1tK3ZuQ3FLUHFXdWI5ZTNWYTJEYXhF?=
- =?utf-8?B?WGxIUXRONzFsaGtIdFZHVEpvUi9VYjBGb1QveGVJenczN1FiZlpzSUpiNlVR?=
- =?utf-8?B?MWhEb0FPdVF3SDNoblNoL2grdjFxbGcrTkRNc1JsUzg1WGNyWWNCRmVBY3Bo?=
- =?utf-8?B?Zk9vcTBRSlQrSi9td1h0ZlM3b3JuMW9pY1BuNUh1SWkxQ05iVjJJUnhFY2Rh?=
- =?utf-8?B?ajBRRW5SZmVEMFJGWk1XR1JrY3V2TmZJZGNFVHd6c1NHS0cwTXEyN1lnSERz?=
- =?utf-8?B?M3I5amNpdWZEK3dHT1BCNzNhZVl5MFZFTUJkcHJaUVpjOHA2UnhGQVJVZ285?=
- =?utf-8?B?S2dGeFR6bnNyNnZSMVdBUjUrTndHSXRsSDdtTkNCR1p0SnQvNVZpdDdaRUE2?=
- =?utf-8?B?S01JY0EyYStJTk05Rm9BQ05qcWNCbXVtWFNCTUdabDJCREhseC9LRXNIWWtO?=
- =?utf-8?B?RnJGOXgrSjdoWklWRHBQSnFZWUdBVFo3SjBDTXlMSlhRSDVEeFIvRG9RV2Fp?=
- =?utf-8?B?VldUSjNFYWgreENJaGkrVGthMHZoLzJrZkUwTHhRK2tTTDk1NHZIRXJmeVpy?=
- =?utf-8?B?dFhJQ1kwN1FjSllydXZVczh5TUc0ZTh0ZytoV0ZST2xNczVIZnJWYUpTaExm?=
- =?utf-8?B?alRET09xTUIwUDlNOUgyMEVMQW1NbkI3TzdLS3JwaEloMG1HRUhXZEFXZUxX?=
- =?utf-8?B?Rlk3R0ZQay9hT0RnR2hUZk5WK09wK2ZBRWQ3Y09mTU00QnlLUXNTNzNQSENZ?=
- =?utf-8?B?YlUwQVM0WWMwcC8zNjI2SmVTMlBVV0tYYW1rZ2ZVTWs0Q0hJdVkwVFExR1Qy?=
- =?utf-8?B?aG4ycStodXEyVmY5eWpuR3c4Y3NROC81SlZjbmhUQTNZclRQeXUxS3B6YVpK?=
- =?utf-8?B?Y250UmV1QUh2alRZVWQ0dGt3VHRpR0g4T05kZzZLZHVzS3lwNnhzcFVMM0RB?=
- =?utf-8?B?T3NsbExJbVlZQWpxaTZtZ2ZpQm0yaGIrVE55RFZtN0pDK3FsSlZ0VzRLaFJC?=
- =?utf-8?B?c2p2TmwwbnpFMzRXNitMUHY5RDF2U1YrbEpEaFhTTEF6MWN5V1BmWWRPdC8z?=
- =?utf-8?B?ZnhJRzloNVh4TmdOQklMajkvZzlVcG1BQ2duS2F0Y3ZhUEVobHJMUWV0c0Mx?=
- =?utf-8?B?YzFqNDJzamVxV1BzZUNHYlFJdXUvNDNUdGFzM3NNeXRIMlZRN0VLWGw0V0Rl?=
- =?utf-8?B?Vi9BMXdCNHFwUXpRYWh1amlwMlhkWTV2dENTM0hwbm9hZjAwZUFtV2o1a3lH?=
- =?utf-8?B?MnJwUUkwUWNtamM5bk1WUVJxYUdhRjZCNTBSdWF6cDkyMGxEaUhTdmNRR1F6?=
- =?utf-8?B?d1JLMHdBMStEN0xkTGJWVXMxRVRLWEVEbFFnOEl5S1p0NW96cklIZ25VMVV5?=
- =?utf-8?B?WnBxVFp4LzFaL29vemQrYmNQTEhSWFBqVWFpWE42YU1qT2xaTkpTN0xpQVJz?=
- =?utf-8?B?NC9OTCtNMnIveG1JQS9ZRGNEYzRRbSt4ODZkWTlPaklHTXdCanVYQXcrZkFi?=
- =?utf-8?B?eTZJK1NPbE95WFJTTVltM2xEeEs3THRwcmdmeE5iUFJPeWx2eG81Mm9lcW1X?=
- =?utf-8?B?NFcxREltNzR5Yit6OUVwUWdxWUZ1OEk4b0cxVW1pZkpQd01lY1ZubFdDNVNo?=
- =?utf-8?B?QXVLdUY5NjNDVnE2TzJXU3RzRkdzTERIRmRsYWkzZGdZY2FhYlBtaUx6b2RK?=
- =?utf-8?B?citoM2VNd0R2UHMrOXhvTzBlNkJWTzZ2RGpxNVQ2RlBmK2ZYMzh0NGswenk3?=
- =?utf-8?B?TEhoZlIwTXZUZjdsMUZ2Z0JSSFd0VjhnQlJyREVoVFNOcTEycWk0dU03bnlu?=
- =?utf-8?B?VXpCV0xndmtYblJUM0dNUGw0TWF3OE14OGZhcGNWVjQ5TytKb0paeldDdi95?=
- =?utf-8?Q?PGPLXIoE/2aR3U5z1etz7KVYs?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDAF034D3A0
+	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 02:45:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762137955; cv=none; b=GSTD3PGoCiZsi6HRCuwXbXJt+FIII1q482QDojU9PutC8z9DUh0Eq5409b2i9fZ0IPpDbAol7n1sFZNHtWsmRzBqcX+ohBDOEyYEKpf9snNAd1NqttIXsboVi7gTJ2GxWzXpkgP6SlS/4kzRD0tMnhCKu2qsFNElXfjMy17kgAI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762137955; c=relaxed/simple;
+	bh=ze3xsjCCJS9puWJNrWNrf2YFSxZiwdtxv0b9JdmGvjk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KZlTWVJDMDXktOvcsrQV7LRezbuWVSavjLhrEYk4A47TMM3qx+iN2Z/3bCAalLgOq40f0Y8Z1qz36wHU/kjABgbhm56rOYhApFouT2xEDWDAfu4JKTZhsmLUM/IqFKCBZZVzOqcdqm9X2uWukz9i+xX7qpQ5j9Rq7qhscMLk8BU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f4tx302o; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-28e7cd6dbc0so49330195ad.0
+        for <devicetree@vger.kernel.org>; Sun, 02 Nov 2025 18:45:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762137952; x=1762742752; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=omTEbiSFxXslMTU+E/m37CrkMbUjogQ1Vxn2arunudQ=;
+        b=f4tx302oue3mIHpZUK5Xa/Rx1FycZxjanOkL5MMWT3oeJTrg+TCKYATPFo7idEMDX+
+         957d4u/U1fZMdkHZ8FypwOYQgmlI47eLlcCxm3jQ9jdGdqnWHUXVpeqtH+/yi94H5FAv
+         CSOatdaavEXCvtjmvmUt9X+OzhBIgkmfYKzUhM1GdZbnjMUb7Yap8QbvUPAaL5jFWMgW
+         AhJomclTwLYOu3mXYs1YEyqKOA6AgsfW71Im0U6FWRZSf5CVR4G05w06gOG3FT66mGlN
+         FVs83YcT31tZKBSPi1mfKbrpXKutIHdgMpYcAOR7Sf5yzkAuU01H25Njdv+4DVIVpMgF
+         RiAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762137952; x=1762742752;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=omTEbiSFxXslMTU+E/m37CrkMbUjogQ1Vxn2arunudQ=;
+        b=cQBHep0/jNTIkKkvhF5vxqjHj98GUl8bjzTnQhBdZMjnT2dLxVLMqSmDqQL75wy32Y
+         GO00+ylrZNM/QoaLZJ/B+Ev6s9fYt4pG+1mWNTtUHA+3X4XxCzFkuDMNTRMcrfgCftIt
+         NUxo1KYBiFbxXu4y+DbjkdWaFjSbFoHCWbWQtoQN4//6Z5IDxupKFFQr4q61m5lDJgP7
+         Re0G5P13m1Tbe+/RvhTAmmNx6a0aalImApX5U3AgsNO4YOJmhbzNIjbyMgV06Oq+Zoj4
+         cko6fp3RX9VWLuhVS1iMYtJuTLyZQi9XJYcjaJNPBoln7XXYj+wi/bOUzmpSJqFZgQQL
+         fRoA==
+X-Forwarded-Encrypted: i=1; AJvYcCWQLoBZpLbGzNDH0lqMVOaxYCYTAq52lZGOwjnAZXSOBs8vDBgS5t/qA+RvmrzSCTyAL4C1HaPwrg8T@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNl7atX9Gvdhp4OCigskYiYOfdIPjKYLNw4vSThUjyarYnznsp
+	xQ7xC6/lOZh2PBASEfPrWbN1edh2rzyyD4wkcgUADabOEWJlwUOdUV39
+X-Gm-Gg: ASbGncv4Bu5DCVbPZp8vvQe0AgvoxjVnC/9RxcR4/4y0z2FKdngcfHq2jBtbqGiKwTZ
+	WydzVQOXyeJt5+KSqzlnld5cFd+xB9kab9JyR+Um968PWtUGHZWsWPBdDimC/RxNVAuR0Hm5udK
+	W7LTq5KztEjaswx6LjfWLCq9lYwAvqEFoVbeQG/qihLyov1VH9Ybg1X1FXmFgynuGES9DtQTFPu
+	TcMkTnqwQHz1zqFfHJTV16xhDflbiJ5uxzwUEuzIT7tRnJyxR88WjVOTWgMTMSA3ir5mZPXW/dw
+	MCOzbmprZcNi5f1o29zAAKHnWm6DjeN4AMGpIYcULkzP7e8lxuCdME6jScsotTD1hFM5JKnSFjV
+	97wPGzXVd9B5ertZYTgzO2dwOtEA0aPjnvSyOo+cUxMHIZzECHQKIB4GOGwvW98qMUln2plMPyN
+	FBEWkN9wMgy+JuVsc/oLYIo0zI8kPC1GmuM/tElb3j68QPp6pkMQ==
+X-Google-Smtp-Source: AGHT+IHG9Df4sw77NGMLmyAPyEpZKytCcfjQRB4VU1g0t6dvwv9yzIQ08bojaZq/jmaesTSuJVkHEw==
+X-Received: by 2002:a17:903:24f:b0:295:24c3:8b49 with SMTP id d9443c01a7336-29524c38fcdmr134036945ad.46.1762137951930;
+        Sun, 02 Nov 2025 18:45:51 -0800 (PST)
+Received: from HYB-iPCgmhaB8Cy.ad.analog.com ([59.9.235.253])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b93be5ed9e6sm8604521a12.27.2025.11.02.18.45.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 02 Nov 2025 18:45:51 -0800 (PST)
+Date: Mon, 3 Nov 2025 11:45:44 +0900
+From: Joan Na <joan.na.devcode@gmail.com>
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Joan Na <joan.na@analog.com>
+Subject: Re: [PATCH v5 2/2] regulator: max77675: Add MAX77675 regulator driver
+Message-ID: <aQgXWGzUW720mH+P@HYB-iPCgmhaB8Cy.ad.analog.com>
+References: <20251029023253.150257-1-joan.na@analog.com>
+ <20251029023253.150257-3-joan.na@analog.com>
+ <3a9441f01e82dfcbdf146a809ba4a6f9604c63d7.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB9080.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc710255-dbd4-4680-8a65-08de1a7d3160
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Nov 2025 02:03:33.3889
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: pIYTuTRlbGvhOL2GPMY4U4ay4/4PtDlmYeohWjL3l7paYMDbNLEZeMfNntSRyevkGTdw4QliInAGZvnHcaX77A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8452
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3a9441f01e82dfcbdf146a809ba4a6f9604c63d7.camel@gmail.com>
 
-R290IGl0LiBUaGFua3MuDQoNCkJlc3QgUmVnYXJkcw0KRy5OIFpob3UNCg0KDQo+IC0tLS0tT3Jp
-Z2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IExhdXJlbnQgUGluY2hhcnQgPGxhdXJlbnQucGlu
-Y2hhcnRAaWRlYXNvbmJvYXJkLmNvbT4NCj4gU2VudDogTW9uZGF5LCBOb3ZlbWJlciAzLCAyMDI1
-IDc6MTUgQU0NCj4gVG86IEcuTi4gWmhvdSA8Z3Vvbml1Lnpob3VAbnhwLmNvbT4NCj4gQ2M6IE1h
-dXJvIENhcnZhbGhvIENoZWhhYiA8bWNoZWhhYkBrZXJuZWwub3JnPjsgUm9iIEhlcnJpbmcNCj4g
-PHJvYmhAa2VybmVsLm9yZz47IEtyenlzenRvZiBLb3psb3dza2kgPGtyemsrZHRAa2VybmVsLm9y
-Zz47IENvbm9yIERvb2xleQ0KPiA8Y29ub3IrZHRAa2VybmVsLm9yZz47IFNoYXduIEd1byA8c2hh
-d25ndW9Aa2VybmVsLm9yZz47IFNhc2NoYSBIYXVlcg0KPiA8cy5oYXVlckBwZW5ndXRyb25peC5k
-ZT47IFBlbmd1dHJvbml4IEtlcm5lbCBUZWFtDQo+IDxrZXJuZWxAcGVuZ3V0cm9uaXguZGU+OyBG
-YWJpbyBFc3RldmFtIDxmZXN0ZXZhbUBnbWFpbC5jb20+OyBGcmFuayBMaQ0KPiA8ZnJhbmsubGlA
-bnhwLmNvbT47IGxpbnV4LW1lZGlhQHZnZXIua2VybmVsLm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtl
-cm5lbC5vcmc7DQo+IGlteEBsaXN0cy5saW51eC5kZXY7IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMu
-aW5mcmFkZWFkLm9yZzsgbGludXgtDQo+IGtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcNCj4gU3ViamVj
-dDogUmU6IFtFWFRdIFJlOiBbUEFUQ0ggdjIgMi81XSBtZWRpYTogbnhwOiBpbXg4LWlzaTogU2lt
-cGxpZnkgY29kZSBieQ0KPiB1c2luZyBoZWxwZXIgbWFjcm8NCj4gDQo+IENhdXRpb246IFRoaXMg
-aXMgYW4gZXh0ZXJuYWwgZW1haWwuIFBsZWFzZSB0YWtlIGNhcmUgd2hlbiBjbGlja2luZyBsaW5r
-cyBvcg0KPiBvcGVuaW5nIGF0dGFjaG1lbnRzLiBXaGVuIGluIGRvdWJ0LCByZXBvcnQgdGhlIG1l
-c3NhZ2UgdXNpbmcgdGhlICdSZXBvcnQgdGhpcw0KPiBlbWFpbCcgYnV0dG9uDQo+IA0KPiANCj4g
-T24gTW9uLCBTZXAgMjIsIDIwMjUgYXQgMDI6MDM6NDRBTSArMDAwMCwgRy5OLiBaaG91IHdyb3Rl
-Og0KPiA+IE9uIE1vbmRheSwgU2VwdGVtYmVyIDIyLCAyMDI1IDY6MTMgQU0sIExhdXJlbnQgUGlu
-Y2hhcnQgd3JvdGU6DQo+ID4gPiBPbiBGcmksIFNlcCAwNSwgMjAyNSBhdCAwMjo1NTo1OVBNICsw
-ODAwLCBHdW9uaXUgWmhvdSB3cm90ZToNCj4gPiA+ID4gU2ltcGxpZnkgY29kZSBieSB1c2luZyBo
-ZWxwZXIgbWFjcm8gRklFTERfUFJFUCgpIGFuZCBHRU5NQVNLKCkuDQo+ID4gPg0KPiA+ID4gSSdt
-IG5vdCBuZWNlc3NhcmlseSBhZ2FpbnN0IHRoaXMgY2hhbmdlLCBidXQgaG93IGRvZXMgaXQgInNp
-bXBsaWZ5IGNvZGUiDQo+ID4gPiA/IFRoZXJlJ3Mgbm8gY2hhbmdlIGluIHRoZSBjb2RlIGJlc2lk
-ZSB0aGUgbWFjcm9zLCBhbmQgdGhleSBkb24ndA0KPiA+ID4gbG9vayBwYXJ0aWN1bGFybHkgc2lt
-cGxlci4NCj4gPg0KPiA+IEhvdyBhYm91dCB0aGUgbWVzc2FnZSBib2R5IGNoYW5nZSB0byAiIE1h
-a2UgY29kZSBtb3JlIHJlYWRhYmxlIGFuZA0KPiA+IGVhc2llciB0byBtYWludGFpbiBieSB1c2lu
-ZyB0aGUgRklFTERfUFJFUCBhbmQgR0VOTUFTSygpLiBtYWNybyIgYW5kIHRpdGxlDQo+IGNoYW5n
-ZSB0byAiUmVmaW5lIGNvZGUgYnkgdXNpbmcgaGVscGVyIG1hY3JvIj8NCj4gPiBJZiB5b3UgYWdy
-ZWUsIEkgY291bGQgYXBwbHkgaXQgaW4gbmV4dCB2ZXJzaW9uLg0KPiANCj4gTm8gbmVlZCB0byBz
-ZW5kIGEgbmV3IHZlcnNpb24sIEknbGwgdXBkYXRlIHRoZSBjb21taXQgbWVzc2FnZSBteXNlbGYu
-DQo+IA0KPiA+ID4gPiBObyBmdW5jdGlvbnMgY2hhbmdlZC4NCj4gPiA+ID4NCj4gPiA+ID4gUmV2
-aWV3ZWQtYnk6IEZyYW5rIExpIDxGcmFuay5MaUBueHAuY29tPg0KPiA+ID4gPiBTaWduZWQtb2Zm
-LWJ5OiBHdW9uaXUgWmhvdSA8Z3Vvbml1Lnpob3VAbnhwLmNvbT4NCj4gPiA+ID4gLS0tDQo+ID4g
-PiA+ICBkcml2ZXJzL21lZGlhL3BsYXRmb3JtL254cC9pbXg4LWlzaS9pbXg4LWlzaS1nYXNrZXQu
-YyB8IDcgKysrKy0tLQ0KPiA+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwg
-MyBkZWxldGlvbnMoLSkNCj4gPiA+ID4NCj4gPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbWVk
-aWEvcGxhdGZvcm0vbnhwL2lteDgtaXNpL2lteDgtaXNpLWdhc2tldC5jDQo+ID4gPiA+IGIvZHJp
-dmVycy9tZWRpYS9wbGF0Zm9ybS9ueHAvaW14OC1pc2kvaW14OC1pc2ktZ2Fza2V0LmMNCj4gPiA+
-ID4gaW5kZXgNCj4gPiA+ID4NCj4gPiA+DQo+IGY2OWMzYjVkNDc4MjA5YzA4MzczODQ3N2VkZjM4
-MGUzZjI4MGM0NzEuLjJmNWU3Mjk5YjUzN2Q2MTJmYjFmZTY2OA0KPiA+ID4gOGMxYg0KPiA+ID4g
-PiA3NWJmZDJkNjA0OWIgMTAwNjQ0DQo+ID4gPiA+IC0tLSBhL2RyaXZlcnMvbWVkaWEvcGxhdGZv
-cm0vbnhwL2lteDgtaXNpL2lteDgtaXNpLWdhc2tldC5jDQo+ID4gPiA+ICsrKyBiL2RyaXZlcnMv
-bWVkaWEvcGxhdGZvcm0vbnhwL2lteDgtaXNpL2lteDgtaXNpLWdhc2tldC5jDQo+ID4gPiA+IEBA
-IC0zLDYgKzMsOCBAQA0KPiA+ID4gPiAgICogQ29weXJpZ2h0IDIwMTktMjAyMyBOWFANCj4gPiA+
-ID4gICAqLw0KPiA+ID4gPg0KPiA+ID4gPiArI2luY2x1ZGUgPGxpbnV4L2JpdGZpZWxkLmg+DQo+
-ID4gPiA+ICsjaW5jbHVkZSA8bGludXgvYml0cy5oPg0KPiA+ID4gPiAgI2luY2x1ZGUgPGxpbnV4
-L3JlZ21hcC5oPg0KPiA+ID4gPg0KPiA+ID4gPiAgI2luY2x1ZGUgPG1lZGlhL21pcGktY3NpMi5o
-Pg0KPiA+ID4gPiBAQCAtMTYsOCArMTgsNyBAQA0KPiA+ID4gPiAgI2RlZmluZSBHQVNLRVRfQkFT
-RShuKSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAoMHgwMDYwICsgKG4pICogMHgzMCkN
-Cj4gPiA+ID4NCj4gPiA+ID4gICNkZWZpbmUgR0FTS0VUX0NUUkwgICAgICAgICAgICAgICAgICAg
-ICAgICAgIDB4MDAwMA0KPiA+ID4gPiAtI2RlZmluZSBHQVNLRVRfQ1RSTF9EQVRBX1RZUEUoZHQp
-ICAgICAgICAgICAgKChkdCkgPDwgOCkNCj4gPiA+ID4gLSNkZWZpbmUgR0FTS0VUX0NUUkxfREFU
-QV9UWVBFX01BU0sgICAgICAgICAgICgweDNmIDw8IDgpDQo+ID4gPiA+ICsjZGVmaW5lIEdBU0tF
-VF9DVFJMX0RBVEFfVFlQRShkdCkgICAgICAgICAgICBGSUVMRF9QUkVQKEdFTk1BU0soMTMsDQo+
-IDgpLA0KPiA+ID4gKGR0KSkNCj4gPiA+DQo+ID4gPiBJIHRoaW5rIHlvdSBjYW4gb21pdCB0aGUg
-cGFyZW50aGVzZXMgYXJvdW5kIGR0IGhlcmUsIGFuZCBhcm91bmQgeCBiZWxvdy4NCj4gPg0KPiA+
-IE9rLCB3aWxsIGFwcGx5IGluIG5leHQgdmVyc2lvbi4NCj4gPg0KPiA+ID4NCj4gPiA+ID4gICNk
-ZWZpbmUgR0FTS0VUX0NUUkxfRFVBTF9DT01QX0VOQUJMRSAgICAgICAgIEJJVCgxKQ0KPiA+ID4g
-PiAgI2RlZmluZSBHQVNLRVRfQ1RSTF9FTkFCTEUgICAgICAgICAgICAgICAgICAgQklUKDApDQo+
-ID4gPiA+DQo+ID4gPiA+IEBAIC01OCw3ICs1OSw3IEBAIGNvbnN0IHN0cnVjdCBteGNfZ2Fza2V0
-X29wcyBteGNfaW14OF9nYXNrZXRfb3BzDQo+ID0gew0KPiA+ID4gPiAgICovDQo+ID4gPiA+DQo+
-ID4gPiA+ICAjZGVmaW5lIERJU1BfTUlYX0NBTUVSQV9NVVggICAgICAgICAgICAgICAgICAgICAw
-eDMwDQo+ID4gPiA+IC0jZGVmaW5lIERJU1BfTUlYX0NBTUVSQV9NVVhfREFUQV9UWVBFKHgpICAg
-ICAgICAoKCh4KSAmIDB4M2YpIDw8IDMpDQo+ID4gPiA+ICsjZGVmaW5lIERJU1BfTUlYX0NBTUVS
-QV9NVVhfREFUQV9UWVBFKHgpDQo+ID4gPiBGSUVMRF9QUkVQKEdFTk1BU0soOCwgMyksICh4KSkN
-Cj4gPiA+ID4gICNkZWZpbmUgRElTUF9NSVhfQ0FNRVJBX01VWF9HQVNLRVRfRU5BQkxFICAgICAg
-IEJJVCgxNikNCj4gPiA+ID4NCj4gPiA+ID4gIHN0YXRpYyB2b2lkIG14Y19pbXg5M19nYXNrZXRf
-ZW5hYmxlKHN0cnVjdCBteGNfaXNpX2RldiAqaXNpLA0KPiANCj4gLS0NCj4gUmVnYXJkcywNCj4g
-DQo+IExhdXJlbnQgUGluY2hhcnQNCg==
+On Wed, Oct 29, 2025 at 09:55:53AM +0000, Nuno Sá wrote:
+> On Wed, 2025-10-29 at 11:32 +0900, Joan-Na-adi wrote:
+> > From: Joan Na <joan.na@analog.com>
+> > 
+> > Add support for the Maxim Integrated MAX77675 PMIC regulator.
+> > 
+> > The MAX77675 is a compact, highly efficient SIMO (Single Inductor Multiple Output)
+> > power management IC that provides four programmable buck-boost switching regulators
+> > with only one inductor. It supports up to 700mA total output current and operates
+> > from a single-cell Li-ion battery.
+> > 
+> > An integrated power-up sequencer and I2C interface allow flexible startup
+> > configuration and runtime control.
+> > 
+> > Signed-off-by: Joan Na <joan.na@analog.com>
+> > ---
+> 
+> Hi Joan,
+> 
+> Some comments from me... 
+> 
+
+Hello Nuno,
+
+Thank you for taking the time to review.
+Please refer to my response below.
+
+> >  drivers/regulator/Kconfig              |   9 +
+> >  drivers/regulator/Makefile             |   1 +
+> >  drivers/regulator/max77675-regulator.c | 861 +++++++++++++++++++++++++
+> >  drivers/regulator/max77675-regulator.h | 260 ++++++++
+> >  4 files changed, 1131 insertions(+)
+> >  create mode 100644 drivers/regulator/max77675-regulator.c
+> >  create mode 100644 drivers/regulator/max77675-regulator.h
+> > 
+> > diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+> > index d84f3d054c59..93131446e402 100644
+> > --- a/drivers/regulator/Kconfig
+> > +++ b/drivers/regulator/Kconfig
+> > @@ -649,6 +649,15 @@ config REGULATOR_MAX77650
+> >  	  Semiconductor. This device has a SIMO with three independent
+> >  	  power rails and an LDO.
+> > 
+> > +config REGULATOR_MAX77675
+> > +	tristate "Maxim MAX77675 regulator driver"
+> > +	depends on I2C
+> 
+> Looking at your code, I would expected OF to be a dependency as well.
+>
+
+I’ll add OF as a dependency
+
+> > +	select REGMAP_I2C
+> > +	help
+> > +	  This driver controls the Maxim MAX77675 power regulator via I2C.
+> > +	  It supports four programmable buck-boost outputs.
+> > +	  Say Y here to enable the regulator driver
+> > +
+> >  config REGULATOR_MAX77857
+> >  	tristate "ADI MAX77857/MAX77831 regulator support"
+> >  	depends on I2C
+> > diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
+> > index b3101376029d..cdd99669cd24 100644
+> > --- a/drivers/regulator/Makefile
+> > +++ b/drivers/regulator/Makefile
+> > @@ -78,6 +78,7 @@ obj-$(CONFIG_REGULATOR_MAX77503) += max77503-regulator.o
+> >  obj-$(CONFIG_REGULATOR_MAX77541) += max77541-regulator.o
+> >  obj-$(CONFIG_REGULATOR_MAX77620) += max77620-regulator.o
+> >  obj-$(CONFIG_REGULATOR_MAX77650) += max77650-regulator.o
+> > +obj-$(CONFIG_REGULATOR_MAX77675) += max77675-regulator.o
+> >  obj-$(CONFIG_REGULATOR_MAX8649)	+= max8649.o
+> >  obj-$(CONFIG_REGULATOR_MAX8660) += max8660.o
+> >  obj-$(CONFIG_REGULATOR_MAX8893) += max8893.o
+> > diff --git a/drivers/regulator/max77675-regulator.c b/drivers/regulator/max77675-regulator.c
+> > new file mode 100644
+> > index 000000000000..c1281f07fe43
+> > --- /dev/null
+> > +++ b/drivers/regulator/max77675-regulator.c
+> > @@ -0,0 +1,861 @@
+> > +// SPDX-License-Identifier: GPL-2.0-or-later
+> > +/*
+> > + * Copyright (c) 2025 Analog Devices, Inc.
+> > + * ADI regulator driver for MAX77675.
+> > + */
+> > +
+> > +#include <linux/module.h>
+> > +#include <linux/slab.h>
+> > +#include <linux/of.h>
+> > +#include <linux/i2c.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/regulator/driver.h>
+> > +#include <linux/regulator/consumer.h>
+> > +#include <linux/regulator/of_regulator.h>
+> > +#include <linux/bitfield.h>
+> 
+> You're clearly missing (at least) mod_devicetable.h. I know that at least clang allows you to get
+> iwyu,
+>
+
+I will add it.
+
+> > +
+> > +#include "max77675-regulator.h"
+> 
+> Why do we need the header file? Just include everything in the source code unless you expect to
+> share something with another module (which I dunno)?
+> 
+
+I will remove the header file as suggested
+
+> > +
+> > +struct max77675_regulator_pdata {
+> > +	u8   fps_slot;
+> > +	bool fixed_slew_rate;
+> > +};
+> > +
+> 
+> I would get rid of the _pdata suffix. Implies some legacy way of doing things (but kind of a
+> nitpick)
+>
+
+I will rename it to max77675_regulator_sbb_setting.
+
+> > +struct max77675_config {
+> > +	u8   en_mode;
+> > +	u8   voltage_change_latency;
+> > +	u8   drv_sbb_strength;
+> > +	u8   dvs_slew_rate;
+> > +	u8   debounce_time;
+> > +	u8   manual_reset_time;
+> > +	bool en_pullup_disable;
+> > +	bool bias_low_power_request;
+> > +	bool simo_int_ldo_always_on;
+> > +};
+> > +
+> > +struct max77675_regulator {
+> > +	struct device *dev;
+> > +	struct regmap *regmap;
+> > +	struct max77675_config config;
+> > +	struct max77675_regulator_pdata pdata[MAX77675_ID_NUM_MAX];
+> > +};
+> > +
+> > +/**
+> > + * Set latency mode.
+> > + *
+> > + * @param maxreg Pointer to max77675 device structure.
+> > + * @param enable true to enable latency mode, false to disable.
+> > + */
+> > +static int max77675_set_latency_mode(struct max77675_regulator *maxreg, bool enable)
+> > +{
+> > +	return regmap_update_bits(maxreg->regmap, MAX77675_REG_CNFG_SBB_TOP_B,
+> > +				  MAX77675_LAT_MODE_BIT,
+> > +				  FIELD_PREP(MAX77675_LAT_MODE_BIT, enable));
+> > +}
+> > +
+> 
+> I would drop these one liner wrappers. Personally, I don't see a big benefit on it.
+> 
+
+I agree with your point and will remove these one-liner wrappers as suggested
+
+> > +/**
+> > + * Set DVS slew rate mode.
+> > + *
+> > + * @param maxreg Pointer to max77675 device structure.
+> > + * @param enable true to use DVS-controlled slew rate, false for fixed 2mV/us.
+> > + */
+> > +static int max77675_set_dvs_slew_rate(struct max77675_regulator *maxreg, bool enable)
+> > +{
+> > +	return regmap_update_bits(maxreg->regmap, MAX77675_REG_CNFG_SBB_TOP_B,
+> > +				  MAX77675_DVS_SLEW_BIT,
+> > +				  FIELD_PREP(MAX77675_DVS_SLEW_BIT, enable));
+> > +}
+> > +
+> 
+> Ditto for all other places.
+> 
+> ...
+> 
+> > 
+> > +
+> > +/**
+> > + * Set debounce time for EN pin.
+> > + *
+> > + * @param maxreg Pointer to max77675 device structure.
+> > + * @param debounce_30ms true for 30ms, false for 100us
+> > + */
+> > +static int max77675_set_debounce_time(struct max77675_regulator *maxreg, bool debounce_30ms)
+> > +{
+> > +	return regmap_update_bits(maxreg->regmap, MAX77675_REG_CNFG_GLBL_A,
+> > +				  MAX77675_DBEN_EN_BIT,
+> > +				  FIELD_PREP(MAX77675_DBEN_EN_BIT, debounce_30ms));
+> > +}
+> > +
+> > +static int max77675_regulator_get_fps_src(struct max77675_regulator *maxreg, int id)
+> > +{
+> > +	unsigned int reg_addr;
+> > +	unsigned int val;
+> > +	int ret;
+> > +
+> > +	switch (id) {
+> > +	case MAX77675_ID_SBB0:
+> > +		reg_addr = MAX77675_REG_CNFG_SBB0_B;
+> > +		break;
+> > +	case MAX77675_ID_SBB1:
+> > +		reg_addr = MAX77675_REG_CNFG_SBB1_B;
+> > +		break;
+> > +	case MAX77675_ID_SBB2:
+> > +		reg_addr = MAX77675_REG_CNFG_SBB2_B;
+> > +		break;
+> > +	case MAX77675_ID_SBB3:
+> > +		reg_addr = MAX77675_REG_CNFG_SBB3_B;
+> > +		break;
+> > +	default:
+> > +		dev_err(maxreg->dev, "Invalid regulator id: %d\n", id);
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	ret = regmap_read(maxreg->regmap, reg_addr, &val);
+> > +	if (ret < 0) {
+> > +		dev_err(maxreg->dev, "Failed to read FPS source (reg 0x%02x): %d\n",
+> > +			reg_addr, ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	return val & MAX77675_EN_SBB_MASK;
+> 
+> Ok, this works since the mask is 0x7. However, FIELD_GET() would make it more
+> readable and easy to review. I mean, I would not need to go and see the mask value.
+> 
+
+I will change it to "return FIELD_GET(MAX77675_EN_SBB_MASK, val)"
+
+> > +}
+> > +
+> > +static int max77675_regulator_set_fps_src(struct max77675_regulator *maxreg, int id, u8 fps_src)
+> > +{
+> > +	unsigned int reg_addr;
+> > +	int ret;
+> > +
+> > +	switch (id) {
+> > +	case MAX77675_ID_SBB0:
+> > +		reg_addr = MAX77675_REG_CNFG_SBB0_B;
+> > +		break;
+> > +	case MAX77675_ID_SBB1:
+> > +		reg_addr = MAX77675_REG_CNFG_SBB1_B;
+> > +		break;
+> > +	case MAX77675_ID_SBB2:
+> > +		reg_addr = MAX77675_REG_CNFG_SBB2_B;
+> > +		break;
+> > +	case MAX77675_ID_SBB3:
+> > +		reg_addr = MAX77675_REG_CNFG_SBB3_B;
+> > +		break;
+> > +	default:
+> > +		dev_err(maxreg->dev, "Invalid regulator id: %d\n", id);
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	ret = regmap_update_bits(maxreg->regmap, reg_addr,
+> > +				 MAX77675_EN_SBB_MASK, fps_src);
+> > +	if (ret < 0) {
+> > +		dev_err(maxreg->dev, "Failed to set FPS source (reg 0x%02x): %d\n",
+> > +			reg_addr, ret);
+> > +		return ret;
+> > +	}
+> 
+> I would drop the log and just do return regmap_update_bits(). Up to you...
+> 
+
+I will change it
+
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +/**
+> > + * max77675_set_sbb_slew_rate_fixed - Set the slew rate for a specific SBB regulator channel
+> > + *
+> > + * @maxreg: Pointer to the max77675 regulator structure
+> > + * @id: Regulator channel ID (ID_SBB0 ~ ID_SBB3)
+> > + * @fixed: Slew rate value (true = 2mV/us, false = use DVS_SLEW)
+> > + *
+> > + * This function configures the slew rate control source for the specified SBB channel by
+> > + * updating the corresponding bits in the CNFG_SBB_TOP_B register.
+> > + *
+> > + * Return: 0 on success, negative error code on failure (e.g., invalid channel ID).
+> > + */
+> > +static int max77675_set_sbb_slew_rate_fixed(struct max77675_regulator *maxreg, int id, bool
+> > fixed)
+> > +{
+> > +	u8 mask, value;
+> > +	u8 slew_src_ctrl_bit = fixed ? 0 : 1;
+> > +
+> > +	switch (id) {
+> > +	case MAX77675_ID_SBB0:
+> > +		mask = MAX77675_SR_SBB0_BIT;
+> > +		value = FIELD_PREP(MAX77675_SR_SBB0_BIT, slew_src_ctrl_bit);
+> > +		break;
+> > +
+> > +	case MAX77675_ID_SBB1:
+> > +		mask = MAX77675_SR_SBB1_BIT;
+> > +		value = FIELD_PREP(MAX77675_SR_SBB1_BIT, slew_src_ctrl_bit);
+> > +		break;
+> > +
+> > +	case MAX77675_ID_SBB2:
+> > +		mask = MAX77675_SR_SBB2_BIT;
+> > +		value = FIELD_PREP(MAX77675_SR_SBB2_BIT, slew_src_ctrl_bit);
+> > +		break;
+> > +
+> > +	case MAX77675_ID_SBB3:
+> > +		mask = MAX77675_SR_SBB3_BIT;
+> > +		value = FIELD_PREP(MAX77675_SR_SBB3_BIT, slew_src_ctrl_bit);
+> > +		break;
+> > +
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	return regmap_update_bits(maxreg->regmap, MAX77675_REG_CNFG_SBB_TOP_B, mask, value);
+> > +}
+> > +
+> > +static int max77675_init_regulator(struct max77675_regulator *maxreg, int id)
+> > +{
+> > +	struct max77675_regulator_pdata *rpdata = &maxreg->pdata[id];
+> > +	int ret;
+> > +
+> > +	if (rpdata->fps_slot == MAX77675_FPS_DEF) {
+> > +		ret = max77675_regulator_get_fps_src(maxreg, id);
+> > +		if (ret < 0) {
+> > +			dev_err(maxreg->dev, "Failed to read FPS source for ID %d\n", id);
+> > +			return ret;
+> > +		}
+> > +		rpdata->fps_slot = ret;
+> > +	} else {
+> > +		ret = max77675_regulator_set_fps_src(maxreg, id, rpdata->fps_slot);
+> > +		if (ret)
+> > +			dev_warn(maxreg->dev, "Failed to set FPS source for ID %d\n", id);
+> > +	}
+> > +
+> > +	ret = max77675_set_sbb_slew_rate_fixed(maxreg, id, rpdata->fixed_slew_rate);
+> > +	if (ret)
+> > +		dev_warn(maxreg->dev, "Failed to set slew rate for ID %d\n", id);
+> 
+> Do we really want to treat this as a warning (as FPS)? If so, I would expect a proper
+> comment explaining why we can afford it.
+> 
+
+As this could impact proper operation, I’ll make the function return an error.
+
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int max77675_of_parse_cb(struct device_node *np,
+> > +				const struct regulator_desc *desc,
+> > +				struct regulator_config *config)
+> > +{
+> > +	struct max77675_regulator *maxreg = config->driver_data;
+> > +	struct max77675_regulator_pdata *rpdata = &maxreg->pdata[desc->id];
+> > +	u32 pval;
+> > +	int ret;
+> > +
+> > +	/* Parse FPS slot from DT */
+> > +	ret = of_property_read_u32(np, "maxim,fps-slot", &pval);
+> > +	rpdata->fps_slot = (!ret) ? (u8)pval : MAX77675_FPS_DEF;
+> > +
+> 
+> So, can we get any arbitrary value for pval? I see we you have an enum in
+> the bindings so make sure we properly validate it. Same for all other
+> properties. The bindings also have this as a string and here you have a u32?
+> Not going to work. You need of_property_read_string() + match_string().
+
+Thanks, I will change it
+
+> 
+> 
+> Also, "maxim,"? For some time now it's "adi,".
+> 
+
+I will change it
+
+> > +	/* Parse slew rate control source */
+> > +	rpdata->fixed_slew_rate = of_property_read_bool(np, "maxim,fixed-slew-rate");
+> > +
+> > +	/* Apply parsed configuration */
+> > +	return max77675_init_regulator(maxreg, desc->id);
+> > +}
+> > +
+> > +static int max77675_get_error_flags(struct regulator_dev *rdev, unsigned int *flags)
+> > +{
+> > +	struct max77675_regulator *maxreg = rdev_get_drvdata(rdev);
+> > +	unsigned int int_flags;
+> > +	int id = rdev_get_id(rdev);
+> > +	int ret;
+> > +
+> > +	ret = regmap_read(maxreg->regmap, MAX77675_REG_INT_GLBL, &int_flags);
+> > +	if (ret) {
+> > +		dev_err(maxreg->dev, "Failed to read INT_GLBL: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	*flags = 0;
+> > +
+> > +	switch (id) {
+> > +	case MAX77675_ID_SBB0:
+> > +		if (int_flags & MAX77675_INT_SBB0_F_BIT)
+> > +			*flags |= REGULATOR_ERROR_FAIL;
+> > +		break;
+> > +	case MAX77675_ID_SBB1:
+> > +		if (int_flags & MAX77675_INT_SBB1_F_BIT)
+> > +			*flags |= REGULATOR_ERROR_FAIL;
+> > +		break;
+> > +	case MAX77675_ID_SBB2:
+> > +		if (int_flags & MAX77675_INT_SBB2_F_BIT)
+> > +			*flags |= REGULATOR_ERROR_FAIL;
+> > +		break;
+> > +	case MAX77675_ID_SBB3:
+> > +		if (int_flags & MAX77675_INT_SBB3_F_BIT)
+> > +			*flags |= REGULATOR_ERROR_FAIL;
+> > +		break;
+> > +	default:
+> > +		dev_warn(maxreg->dev, "Unsupported regulator ID: %d\n", id);
+> > +		break;
+> 
+> Should not be a warning. Also wonder if it can happen at all?
+> 
+
+Agreed, this case shouldn’t happen. I’ll drop the warning.
+
+> > +	}
+> > +
+> > +	if (int_flags & MAX77675_INT_TJAL2_R_BIT) {
+> > +		/* TJAL2 interrupt: Over-temperature condition (above 120 degree) */
+> > +		*flags |= REGULATOR_ERROR_OVER_TEMP;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct regulator_ops max77675_regulator_ops = {
+> > +	.list_voltage         = regulator_list_voltage_linear,
+> > +	.enable               = regulator_enable_regmap,
+> > +	.disable              = regulator_disable_regmap,
+> > +	.is_enabled           = regulator_is_enabled_regmap,
+> > +	.map_voltage          = regulator_map_voltage_linear,
+> > +	.set_voltage_sel      = regulator_set_voltage_sel_regmap,
+> > +	.get_voltage_sel      = regulator_get_voltage_sel_regmap,
+> > +	.set_active_discharge = regulator_set_active_discharge_regmap,
+> > +	.get_error_flags      = max77675_get_error_flags,
+> > +};
+> > +
+> > +static struct regulator_desc max77675_regulators[MAX77675_ID_NUM_MAX] = {
+> > +	{
+> > +		.name                  = "sbb0",
+> > +		.of_match              = of_match_ptr("sbb0"),
+> > +		.regulators_node       = of_match_ptr("regulators"),
+> 
+> I wonder if we need of_match_ptr() given that the whole thing depends on OF.
+> 
+> ...
+> 
+
+I agree with you. If there are no objections, I will remove it.
+
+> > +
+> > +static int max77675_apply_config(struct max77675_regulator *maxreg)
+> > +{
+> > +	const struct max77675_config *config = &maxreg->config;
+> > +	int ret;
+> > +
+> > +	ret = max77675_set_en_mode(maxreg, config->en_mode);
+> > +	if (ret) {
+> > +		dev_err(maxreg->dev, "Failed to set EN mode: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	ret = max77675_set_latency_mode(maxreg, config->voltage_change_latency);
+> > +	if (ret) {
+> > +		dev_err(maxreg->dev, "Failed to set latency mode: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	ret = max77675_set_drv_sbb_strength(maxreg, config->drv_sbb_strength);
+> > +	if (ret) {
+> > +		dev_err(maxreg->dev, "Failed to set drive strength: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	ret = max77675_set_dvs_slew_rate(maxreg, config->dvs_slew_rate);
+> > +	if (ret) {
+> > +		dev_err(maxreg->dev, "Failed to set DVS slew rate: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	ret = max77675_set_debounce_time(maxreg, config->debounce_time);
+> > +	if (ret) {
+> > +		dev_err(maxreg->dev, "Failed to set EN debounce time: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	ret = max77675_set_manual_reset_time(maxreg, config->manual_reset_time);
+> > +	if (ret) {
+> > +		dev_err(maxreg->dev, "Failed to set manual reset time: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	ret = max77675_set_en_pullup_disable(maxreg, config->en_pullup_disable);
+> > +	if (ret) {
+> > +		dev_err(maxreg->dev, "Failed to set EN pull-up disable: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	ret = max77675_set_bias_low_power_request(maxreg, config->bias_low_power_request);
+> > +	if (ret) {
+> > +		dev_err(maxreg->dev, "Failed to set bias low-power request: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	ret = max77675_set_simo_int_ldo_always_on(maxreg, config->simo_int_ldo_always_on);
+> > +	if (ret) {
+> > +		dev_err(maxreg->dev, "Failed to set SIMO internal LDO always-on: %d\n", ret);
+> > +		return ret;
+> > +	}
+> 
+> This seems to called during probe. All the above can be return dev_err_probe()...
+> 
+
+I’m thinking of handling it directly where the return value is checked. What are your thoughts?
+
+ret = max77675_apply_config(maxreg);
+    if (ret)
+    	return dev_err_probe(maxreg->dev, ret, "Failed to apply config\n");
+
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static u8 max77675_parse_voltage_change_latency(struct device_node *np)
+> > +{
+> > +	u32 val;
+> > +
+> > +	if (!of_property_read_u32(np, "maxim,voltage-change-latency-us", &val)) {
+> > +		switch (val) {
+> > +		case 10:
+> > +			return MAX77675_LOW_LATENCY_MODE;
+> > +		case 100:
+> > +			return MAX77675_HIGH_LATENCY_MODE;
+> > +		default:
+> > +			break;
+> 
+> The above is wrong. You're ignoring invalid values being given and overwrite them
+> with defaults. The pattern is:
+> 
+> val = MAX77675_HIGH_LATENCY_MODE;
+> if (!of_property_read_u32(np, "maxim,voltage-change-latency-us", &val)) {
+> 	...
+> 	default:
+> 		return dev_err_probe(dev, -EINVAL, ...);
+> }
+> 
+> You can also do:
+> 
+> ret = of_property_read_u32(...);
+> /* Not 100% sure if -EINVAL is the error code for a missing property */
+> if (ret && ret != -EINVAL)
+> 	return ret;
+> if (!ret) {
+> 	...
+> }
+> 
+
+I will update the code to set a default value first and handle invalid values by returning an error.
+
+> > +		}
+> > +	}
+> > +
+> > +	/* default: high latency */
+> > +	return MAX77675_HIGH_LATENCY_MODE;
+> > +}
+> > +
+> > +static u8 max77675_parse_en_mode(struct device_node *np)
+> > +{
+> > +	const char *str;
+> > +
+> > +	if (!of_property_read_string(np, "maxim,en-mode", &str)) {
+> > +		if (!strcasecmp(str, "push-button"))
+> > +			return MAX77675_EN_PUSH_BUTTON;
+> > +		else if (!strcasecmp(str, "slide-switch"))
+> > +			return MAX77675_EN_SLIDE_SWITCH;
+> > +		else if (!strcasecmp(str, "logic"))
+> > +			return MAX77675_EN_LOGIC;
+> 
+> redundant else if(). Moreover, this looks like it could use match_string()
+> 
+
+I will update it to use match_string.
+
+> > +	}
+> > +
+> > +	/* default : slide-switch */
+> > +	return MAX77675_EN_SLIDE_SWITCH;
+> > +}
+> > +
+> > +static u8 max77675_parse_manual_reset_time(struct device_node *np)
+> > +{
+> > +	u32 val;
+> > +
+> > +	if (!of_property_read_u32(np, "reset-time-sec", &val)) {
+> > +		switch (val) {
+> > +		case 4:
+> > +			return MAX77675_MRT_4S;
+> > +		case 8:
+> > +			return MAX77675_MRT_8S;
+> > +		case 12:
+> > +			return MAX77675_MRT_12S;
+> > +		case 16:
+> > +			return MAX77675_MRT_16S;
+> > +		default:
+> > +			break;
+> 
+> Ditto.
+> 
+> ...
+> 
+> > +
+> > +static int max77675_parse_config(struct max77675_regulator *maxreg)
+> > +{
+> > +	struct device_node *np = maxreg->dev->of_node;
+> > +	struct max77675_config *config = &maxreg->config;
+> > +	int ret;
+> > +
+> > +	/* EN pin mode: push-button, slide-switch, or logic */
+> > +	config->en_mode = max77675_parse_en_mode(np);
+> > +
+> > +	/* latency mode */
+> > +	config->voltage_change_latency = max77675_parse_voltage_change_latency(np);
+> > +
+> > +	/* drive strength */
+> > +	config->drv_sbb_strength = max77675_parse_drv_sbb_strength(np);
+> > +
+> > +	/* drv slew rate */
+> > +	config->dvs_slew_rate = max77675_parse_dvs_slew_rate(np);
+> > +
+> > +	/* Debounce time for EN pin */
+> > +	config->debounce_time = max77675_parse_debounce_time_us(np);
+> > +
+> > +	/* Manual reset time for EN pin */
+> > +	config->manual_reset_time = max77675_parse_manual_reset_time(np);
+> 
+> Seems to me that all of the above will need some error handling.
+> 
+
+I will update the code to handle errors.
+
+> > +
+> > +	/* Disable internal pull-up resistor on EN pin */
+> > +	config->en_pullup_disable = of_property_read_bool(np, "maxim,en-pullup-disable");
+> > +
+> > +	/* Request low-power mode for main bias */
+> > +	config->bias_low_power_request = of_property_read_bool(np, "maxim,bias-low-power-
+> > request");
+> > +
+> > +	/* Force internal LDO to always supply 1.8V */
+> > +	config->simo_int_ldo_always_on = of_property_read_bool(np, "maxim,simo-int-ldo-always-
+> > on");
+> > +
+> > +	ret = max77675_apply_config(maxreg);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static int max77675_init_event(struct max77675_regulator *maxreg)
+> > +{
+> > +	unsigned int ercflag, int_glbl;
+> > +	int ret;
+> > +
+> > +	ret = regmap_read(maxreg->regmap, MAX77675_REG_ERCF_GLBL, &ercflag);
+> > +	if (ret) {
+> > +		dev_err(maxreg->dev, "Failed to read CID register: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	ret = regmap_read(maxreg->regmap, MAX77675_REG_INT_GLBL, &int_glbl);
+> > +	if (ret) {
+> > +		dev_err(maxreg->dev, "Failed to read INT_GLBL register: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	if (ercflag & MAX77675_SFT_CRST_F_BIT)
+> > +		dev_info(maxreg->dev, "Software Cold Reset Flag is set\n");
+> > +
+> > +	if (ercflag & MAX77675_SFT_OFF_F_BIT)
+> > +		dev_info(maxreg->dev, "Software Off Flag is set\n");
+> > +
+> > +	if (ercflag & MAX77675_MRST_BIT)
+> > +		dev_info(maxreg->dev, "Manual Reset Timer Flag is set\n");
+> > +
+> > +	if (ercflag & MAX77675_UVLO_BIT)
+> > +		dev_info(maxreg->dev, "Undervoltage Lockout Flag is set\n");
+> > +
+> > +	if (ercflag & MAX77675_OVLO_BIT)
+> > +		dev_info(maxreg->dev, "Overvoltage Lockout Flag is set\n");
+> > +
+> > +	if (ercflag & MAX77675_TOVLD_BIT)
+> > +		dev_info(maxreg->dev, "Thermal Overload Flag is set\n");
+> > +
+> > +	if (int_glbl & MAX77675_INT_SBB3_F_BIT)
+> > +		dev_info(maxreg->dev, "SBB3 Channel Fault Interrupt occurred\n");
+> > +
+> > +	if (int_glbl & MAX77675_INT_SBB2_F_BIT)
+> > +		dev_info(maxreg->dev, "SBB2 Channel Fault Interrupt occurred\n");
+> > +
+> > +	if (int_glbl & MAX77675_INT_SBB1_F_BIT)
+> > +		dev_info(maxreg->dev, "SBB1 Channel Fault Interrupt occurred\n");
+> > +
+> > +	if (int_glbl & MAX77675_INT_SBB0_F_BIT)
+> > +		dev_info(maxreg->dev, "SBB0 Channel Fault Interrupt occurred\n");
+> > +
+> > +	if (int_glbl & MAX77675_INT_TJAL2_R_BIT)
+> > +		dev_info(maxreg->dev, "Thermal Alarm 2 Rising Interrupt occurred\n");
+> > +
+> > +	if (int_glbl & MAX77675_INT_TJAL1_R_BIT)
+> > +		dev_info(maxreg->dev, "Thermal Alarm 1 Rising Interrupt occurred\n");
+> > +
+> > +	if (int_glbl & MAX77675_INT_EN_R_BIT)
+> > +		dev_info(maxreg->dev, "nEN Rising Edge Interrupt occurred\n");
+> > +
+> > +	if (int_glbl & MAX77675_INT_EN_F_BIT)
+> > +		dev_info(maxreg->dev, "nEN Falling Edge Interrupt occurred\n");
+> 
+> All of the above looks like dev_dbg() to me.
+> 
+
+I will change it
+
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int max77675_regulator_probe(struct i2c_client *client)
+> > +{
+> > +	struct max77675_regulator *maxreg;
+> > +	struct regulator_config config = {};
+> > +	struct device_node *regulators_np;
+> > +	int i, ret;
+> > +
+> > +	maxreg = devm_kzalloc(&client->dev, sizeof(*maxreg), GFP_KERNEL);
+> > +	if (!maxreg)
+> > +		return -ENOMEM;
+> > +
+> > +	maxreg->dev = &client->dev;
+> > +
+> > +	maxreg->regmap = devm_regmap_init_i2c(client, &max77675_regmap_config);
+> > +	if (IS_ERR(maxreg->regmap))
+> > +		return dev_err_probe(maxreg->dev,
+> > +				     PTR_ERR(maxreg->regmap),
+> > +				     "Failed to init regmap\n");
+> > +
+> > +	ret = max77675_init_event(maxreg);
+> > +	if (ret)
+> > +		return dev_err_probe(maxreg->dev, ret, "Failed to init event\n");
+> > +
+> > +	ret = max77675_parse_config(maxreg);
+> > +	if (ret)
+> > +		return dev_err_probe(maxreg->dev, ret, "Failed to apply config\n");
+> > +
+> > +	config.dev = &client->dev;
+> > +	config.regmap = maxreg->regmap;
+> > +	config.driver_data = maxreg;
+> > +
+> > +	regulators_np = of_get_child_by_name(client->dev.of_node, "regulators");
+> 
+> The above can actually be:
+> 
+> struct device_node *regulators_np __free(device_node) = of_get_child_by_name(...)
+> 
+> and then no need to care about of_node_put(). You need cleanup.h
+> 
+
+Thanks fot letting me know, I will change it
+
+> > +	if (!regulators_np) {
+> > +		dev_err(maxreg->dev, "No 'regulators' subnode found in DT\n");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	for (i = 0; i < MAX77675_ID_NUM_MAX; i++) {
+> > +		const struct regulator_desc *desc = &max77675_regulators[i];
+> > +		struct regulator_dev *rdev;
+> > +
+> > +		config.of_node = of_get_child_by_name(regulators_np, desc->name);
+> > +		if (!config.of_node) {
+> > +			dev_warn(maxreg->dev, "No DT node for regulator %s\n", desc->name);
+> > +			continue;
+> > +		}
+> > +
+> > +		rdev = devm_regulator_register(&client->dev, desc, &config);
+> > +		of_node_put(config.of_node);
+> > +		if (IS_ERR(rdev)) {
+> > +			of_node_put(regulators_np);
+> > +			return dev_err_probe(maxreg->dev, PTR_ERR(rdev),
+> > +				"Failed to register regulator %d (%s): %d\n",
+> > +				i, desc->name, ret);
+> > +		}
+> > +	}
+> > +
+> > +	of_node_put(regulators_np);
+> > +	i2c_set_clientdata(client, maxreg);
+> 
+> I do not see i2c_get_clientdata() anywhere. I suspect you can drop the above.
+>
+
+I will remove it
+
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct i2c_device_id max77675_i2c_id[] = {
+> > +	{ "max77675", 0 },
+> > +	{ }
+> > +};
+> > +MODULE_DEVICE_TABLE(i2c, max77675_i2c_id);
+> > +
+> > +static const struct of_device_id __maybe_unused max77675_of_match[] = {
+> > +	{ .compatible = "maxim,max77675", },
+> > +	{ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, max77675_of_match);
+> > +
+> > +static struct i2c_driver max77675_regulator_driver = {
+> > +	.driver = {
+> > +		.name = "max77675",
+> > +		.of_match_table = of_match_ptr(max77675_of_match),
+> 
+> I guess we can drop of_match_ptr() if we agree that we depend on OF
+> 
+
+I agree with you. If there are no objections, I will remove it.
+
+> > +	},
+> > +	.probe = max77675_regulator_probe,
+> > +	.id_table = max77675_i2c_id,
+> > +};
+> > +
+> > +module_i2c_driver(max77675_regulator_driver);
+> > +
+> > +MODULE_DESCRIPTION("MAX77675 Regulator Driver");
+> > +MODULE_AUTHOR("Joan Na <joan.na@analog.com>");
+> > +MODULE_LICENSE("GPL");
+> > diff --git a/drivers/regulator/max77675-regulator.h b/drivers/regulator/max77675-regulator.h
+> > new file mode 100644
+> > index 000000000000..0aaa30a630ca
+> > --- /dev/null
+> > +++ b/drivers/regulator/max77675-regulator.h
+> 
+> As said, drop the header.
+>
+
+I will drop the header.
+
+> - Nuno Sá
+
+-- 
+Best regards,
+Joan Na
+
 
