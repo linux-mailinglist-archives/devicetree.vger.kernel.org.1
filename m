@@ -1,238 +1,249 @@
-Return-Path: <devicetree+bounces-234525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9097CC2E343
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 22:55:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C839C2E4E2
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 23:46:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42F283BD019
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 21:55:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB5E918960D4
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 22:46:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E8842D5C67;
-	Mon,  3 Nov 2025 21:55:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B23C522B8CB;
+	Mon,  3 Nov 2025 22:46:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LA3CfMZz"
+	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="lXfgnmU+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013030.outbound.protection.outlook.com [40.107.159.30])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83F922BEC22
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 21:55:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762206910; cv=none; b=tFVNY1E4kqt5+XbcXmszsbEZTown2wXdJkRNCC1iO7AX5KuvhhfSW/VBSHOkNkqrF/rqrCr6PvLLOp7x5A7yUFqALToIShIb/K17eewvoTlgidInC1L8qPcRISP6AgislbD8kgiNclpqTo96N2AEiImDWt613rjNqLSUSbDvgZ4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762206910; c=relaxed/simple;
-	bh=PqRD5AA9CQTIV/Fa/oHzoO1tcNy233SlClAbBJUGor4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VejungMqh2IbIcBl4z30hU5jr0uQAnEpWy8eOECsHXWjuM03ULqc/u16iz1FXMgUR8d/ojM6i0X6A1p/G7ZfnW3d+bL93Tv0InRWeaiU3JSHTJMjbbE4Dq+qjwWGobqeoNfwYHydAGuNtb8UFbOZh3attefkYK5FioCzF1eCowY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LA3CfMZz; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-295247a814bso48755155ad.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 13:55:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762206908; x=1762811708; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=vr0AhTl2tnZbnbuQ/Lyma/KtCDNr4xZVutDV7GzLnVs=;
-        b=LA3CfMZzLrQ6XLQZyRt0GaLcAsm5R8payqzB1LHKzw/LvAirTGwN4Uk0xXe+eT98ls
-         LdRsZaqQxizvYR5AtVDfnMJZVynfKcEQ4HOvllbtXE6udxv1M8IVw/Knvse9wgVaaPHk
-         9yWoKNYJJKiyv8aplUx6t7yqE2b/1Z67GM77uGWRSHW8pFRD29nCIibfoT+um3926l+U
-         ZKBYQdvUba5DPt0ks/7kRanu4kGVh7DnH//mF/1sPGOtMWx+lwCY0F3ZCFBMhGTwEr9z
-         XWPdgzenDumCXjlJi4IpeX4c3crZt5aMJeTljnUR6cAC4E0cwmy4cbfpN8IO009qJse4
-         q6Fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762206908; x=1762811708;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vr0AhTl2tnZbnbuQ/Lyma/KtCDNr4xZVutDV7GzLnVs=;
-        b=sjgP5m3xYs1Ive+QUW5MukyZKNWIYtspHI6vAMOuieamewI0uIUN09NcNlH1aoZQtz
-         GVdnwVHhQr6dmV35bH/OpZOopGVDflb5/DeQzbJnw21k8yRA8v8saZOea9W8nF1kBv8O
-         ZZwwaDQTwroVgK8wxWyzYeunR8AHFXlAroY1iYyMhwlglXRR+lxvEx6qTXfVz8MgAsGC
-         bxVqbO/vFK6Um8dvTwflXVKBsDHr8KuXCtDxL2G0+PKpmS74ScgLvPR1pNSoUpnfHYUz
-         L7XD4weZU9wwhLsQRpCiu5tfOsMydB8jrvhNRw4ptMoxvlI82FQ8CJA63R+nVA+fu+gt
-         6NfA==
-X-Forwarded-Encrypted: i=1; AJvYcCUAexXpRfDarInePIlWGfgJ3iWTjliogsmBUVLaQqJmrZ8A/XTUwNAwPFnHJDe5PU8yBUm4fCuE8VpT@vger.kernel.org
-X-Gm-Message-State: AOJu0YwsTx+earVboW3cg27SCP946doUAC0880YM0iTZH1pB3tZv8zLs
-	qSbKFCnjzywOsrFjW0uXwwDrW6gT143ZV5BJIlwG5TdeQf3kl/Ua5dXNDI4gJc8y
-X-Gm-Gg: ASbGncvEOdQhBKgLqnKNC3CRYKrWVFglcyCdDA1H6X8tZguVG2TZWCLTY39wavfSDsl
-	Tb2M+dgndQAzqZIHfSVLuzXy10Ob7r5UFCr2Qj9uu0gTNzRXa9zJBhQDfSlXYj9jE6eKYg2YRAy
-	qw2HXyRdGUaJbBS5eBrAsPDwGw4Y/v5ZclQKcDam0KL2MOhWWvN1nxN8hNPLbj74XsyA27UrvG7
-	1V5nH5u+LuOvNgku2CeZHTyNkiQZRpX0CtROtG9NgmndT0gVzGJbqf8ix+2/YrDaU5t4lWvXUsK
-	9f4oG+hQJzkYcYZU/x6DBgeNlvrRNME1zT/qPpKowVBT9SxqxvzzjTzrSsjq26XjG/9jrN+QgdJ
-	OJGiUwLshQfbuURs4Vnk71UC3inuJQeemrSd/Tsst7nd1Qenq48eD2iJihsPZAS0oqE7mtcWcUw
-	0bVEpNcDJGjnLYmJSkFUz3
-X-Google-Smtp-Source: AGHT+IGf3rk/ZWnZ4nfGKqzMAbFFNABrHVTEBwI6MOLjfLVcyB9CbUYGpwNMYJDh1R03ToS7kGBkyA==
-X-Received: by 2002:a17:902:f68f:b0:26a:8171:dafa with SMTP id d9443c01a7336-2951a38be8emr209211645ad.21.1762206907635;
-        Mon, 03 Nov 2025 13:55:07 -0800 (PST)
-Received: from localhost ([2804:30c:1653:6900:3b53:af9d:48d6:f107])
-        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-29601a7a882sm1715665ad.109.2025.11.03.13.55.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Nov 2025 13:55:06 -0800 (PST)
-Date: Mon, 3 Nov 2025 18:56:21 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	michael.hennerich@analog.com, nuno.sa@analog.com,
-	eblanc@baylibre.com, andy@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net
-Subject: Re: [PATCH v6 8/8] iio: adc: ad4030: Support common-mode channels
- with SPI offloading
-Message-ID: <aQklBYl2drPil69Y@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1760984107.git.marcelo.schmitt@analog.com>
- <3fadbf22973098c4be9e5f0edd8c22b8b9b18ca6.1760984107.git.marcelo.schmitt@analog.com>
- <20251027140423.61d96e88@jic23-huawei>
- <aQJY7XizVWbE68ll@debian-BULLSEYE-live-builder-AMD64>
- <ca6760182b4662c96df6204bae903d8affa6a8e3.camel@gmail.com>
- <aQisqe5EWARTwpQq@debian-BULLSEYE-live-builder-AMD64>
- <1c3712b9b5313ed6c9d07c1acbc9b918a4883056.camel@gmail.com>
- <c365b17c-de18-4718-8d51-fa1d93236d90@baylibre.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 754D121FF5B;
+	Mon,  3 Nov 2025 22:46:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.30
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762209980; cv=fail; b=g5daAnYLffPErmYSqE5w55kt3Hszrbvx3Ki3sR1PTDsPEilBLx4i9EIzwWMK7ZwOaOyEdG4l6aElnG0n6UkCin/Yu2c1I09xg2MvBtYqM7aFipJrlJYfiGy1qc69F7RZw+UYL6hC0gNN0Vq47kmRPbcATJg0MhTCsBn+qPT8KnE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762209980; c=relaxed/simple;
+	bh=gaprnPhR8PUwObVWiTmeayiG3kRiumofAqqwkfcZ47U=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=QsJZJ+AhtiRjXiDaPH+ok/0GklA0Zh6QN/Xy4OKQBbIocszaABBtkkNvJ2mBqqYkis+ftm0QA+XmH+nkqid6NitME2en3sv1HCt6Tecfiws/FPtg4Q9CS4gKoyLNrcyk7x1LzXVsLZk8w1nusSFWGnOz5uyxndQk3Ix0sl4AEa4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b=lXfgnmU+; arc=fail smtp.client-ip=40.107.159.30
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NyHOvv6GfJE5XuwayFlzOpCm9uQreCRwwneLufiKk1dtHdp7XynzDwyImaprHV6121lZQ31f8ub0EX0LPl2Laov2VUee3J21Yo3O4YSCVBg16zxjFRJIVDTwizbbSpzUJbcIw0ATeGPvFu+YcK6I6KqFHdfACd2CeUsTlc5FGlTv8RIMcUR75lbSPN1we83jzegu8iYkhuSLC09PlRKcO4cXPPRd0EH0Yn1A7+5FUr0mQe6AdtzGacgiQCLNgOj3dpxS/BVQj+6p6I2nn7Y1/H98qAdvAsw6V6OF4iTT3v80FZwrosTPRDiU4QS6LzB3jSUx2drHqHnYTkvy6oz5Ww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gaprnPhR8PUwObVWiTmeayiG3kRiumofAqqwkfcZ47U=;
+ b=ZsLE8d8jq8WLZzW46ahfE4wKnyKLLjwvyAIIrIcxwgKNuAQy0fORIVXk2p4pxHT4+rXyHBsIWZBuWKSbTzvt/ax8G+bHTVN0svvsQWIjqS+l5WfTLxQx2XwtPR48PmpJcmc3rUn9uFhcgjt8Pro3IQckdAJXMc5BpzCwuPLoP/eYmpqIP0pznx9qbbHvjss1wWEjqOabDdqydz0gcp09w/r+/2RYBvgpYkScww4fYgGOniABt7XZjzFmFWVPO94MwSBMqvplvdDzBor6Z7xLaMrOhILVhXa0ASl4d4fW1Ajyr5KqJLeYdgSpaM/9WbYu965adYOYv3hXhrOG2xsnWg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
+ dkim=pass header.d=siemens.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gaprnPhR8PUwObVWiTmeayiG3kRiumofAqqwkfcZ47U=;
+ b=lXfgnmU+9lHZn3XYpHaD/O+M2SOjmhmewLgI7LZzrgoy5etnuTKSIlLeb9gpwq9ziF8aMrh9tM7ZrcriybvJDdv510diA1KwzqdpILdhNRzwgdE4cd23JREW6RfpwO6TWYA278cr/yWlKtXLddF8/zFrsJFLyr+wKXRHXwumMv95xmLWTKn6N9bJxDY98Bs2k4m0gkwvmm2KXHrXZsgPk5IqeUei+HLe06vEMsKu5izAtWbQOL74Jd1GKmIqn8zp+ITiAFgUIThfSNQi/ZievUHQuhD0R0mW7u8QQ7BWPMFxWnlp8dtF5y68eX5gqPeg5p8qyPRM5RD0oqDGndkTcQ==
+Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:5b6::22)
+ by GVXPR10MB8198.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:150:113::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.15; Mon, 3 Nov
+ 2025 22:46:13 +0000
+Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::9126:d21d:31c4:1b9f]) by AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::9126:d21d:31c4:1b9f%3]) with mapi id 15.20.9275.013; Mon, 3 Nov 2025
+ 22:46:13 +0000
+From: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>
+To: "daniel@makrotopia.org" <daniel@makrotopia.org>
+CC: "andrew@lunn.ch" <andrew@lunn.ch>, "olteanv@gmail.com"
+	<olteanv@gmail.com>, "robh@kernel.org" <robh@kernel.org>, "lxu@maxlinear.com"
+	<lxu@maxlinear.com>, "john@phrozen.org" <john@phrozen.org>,
+	"davem@davemloft.net" <davem@davemloft.net>, "yweng@maxlinear.com"
+	<yweng@maxlinear.com>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"edumazet@google.com" <edumazet@google.com>, "bxu@maxlinear.com"
+	<bxu@maxlinear.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux@armlinux.org.uk"
+	<linux@armlinux.org.uk>, "fchan@maxlinear.com" <fchan@maxlinear.com>,
+	"pabeni@redhat.com" <pabeni@redhat.com>, "hauke@hauke-m.de"
+	<hauke@hauke-m.de>, "horms@kernel.org" <horms@kernel.org>, "kuba@kernel.org"
+	<kuba@kernel.org>, "ajayaraman@maxlinear.com" <ajayaraman@maxlinear.com>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "netdev@vger.kernel.org"
+	<netdev@vger.kernel.org>, "jpovazanec@maxlinear.com"
+	<jpovazanec@maxlinear.com>
+Subject: Re: [PATCH net-next v5 12/12] net: dsa: add driver for MaxLinear
+ GSW1xx switch family
+Thread-Topic: [PATCH net-next v5 12/12] net: dsa: add driver for MaxLinear
+ GSW1xx switch family
+Thread-Index: AQHcSZCXaB6f1YuNi0uvpiLknDgJsLTbUfIAgAF6cgCABMfIgA==
+Date: Mon, 3 Nov 2025 22:46:12 +0000
+Message-ID: <cf004026f7a44fc924d71e4494ba6622682fbf64.camel@siemens.com>
+References: <cover.1761823194.git.daniel@makrotopia.org>
+	 <229278f2a02ac2b145f425f282f5a84d07475021.1761823194.git.daniel@makrotopia.org>
+	 <3945b89128c71d2d0c9bda3a2d927f3c53b50c87.camel@siemens.com>
+	 <aQUuHjhWSJgYsTEn@makrotopia.org>
+In-Reply-To: <aQUuHjhWSJgYsTEn@makrotopia.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+user-agent: Evolution 3.54.3 (3.54.3-2.fc41) 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siemens.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS8PR10MB6867:EE_|GVXPR10MB8198:EE_
+x-ms-office365-filtering-correlation-id: aa245365-69fa-490d-bef8-08de1b2aca54
+x-ms-exchange-atpmessageproperties: SA
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|366016|1800799024|38070700021;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?SmZaajJ4cXJvMFFZYjY1Um0vV0dkK0dlTlFEUnRlVnd3UFh6STBHYnZZaU42?=
+ =?utf-8?B?TUMrUDBxb0J5T3Q0STVKdjZVK29Va1NpNWYvU01MdVQ5M3NTUjVqTXpRYUdh?=
+ =?utf-8?B?aUR0WGZJNTBTTERLQjBXVUZzV2JQaFcwY05ZaUUzcHFTTm11aU1uMXN1KytE?=
+ =?utf-8?B?OFNZTnhzUHEvdDJpQS9OUzcycjlRRzFHMmtkZVk4b0t0R3UrTHhTZ1pzYjRu?=
+ =?utf-8?B?OWV4dVFwZkt1ZW9QUys1MVkxRVl2TmFWeXZUL21LYzhzbng3UEIxUFlWbzRT?=
+ =?utf-8?B?UURjelU4NFV4NzRmaFVHV3NjeUpCRmZBMG5LYm5vS0YrbmxLRnljY1JPVGMr?=
+ =?utf-8?B?cWpFV1JCMk9KQlNsOGl1RmFiNEZRajBndytPaEI2OE5rQllQeUN3SGNueFRx?=
+ =?utf-8?B?cm1oNnhSdXVqcUdDTjdjcmVoOUtZekFYTkw5RW9XZjV1VFNTeERra1RDTmNn?=
+ =?utf-8?B?MExoOE1FOTJCRmNRSEs2RVRhNjNqTXM1alpyR1pkTVhoMy9oSEZZRVp2MGQ5?=
+ =?utf-8?B?VUxjeHRVNjFDZ1ZGbmIzcUo3TlhWcm5neGhjdzZZQlRJdndKL2d6VFVweGE5?=
+ =?utf-8?B?Ny9VSHhNb2dTNDBjalVFN2pnSDhTS1RxL08ycWh3ZSs0Wm44TDFWTVNOYzdH?=
+ =?utf-8?B?SFBQTytSazJpOVo5OGhHSTR1OFE1UEdMZHFWL2tybDZHVUQxYklodEUwNG5K?=
+ =?utf-8?B?RFh0ZFJQRlBqR0RjV2Q4SUgzTnYvTjJjdzlWUDRUeWdvTDYyVFZ3T3E0bS80?=
+ =?utf-8?B?MlQzOWVMOUh2UEdYRVdxUTFoWGxBdmZQeGhxUHpRKys2ZmZUOXRtZGl6b2tB?=
+ =?utf-8?B?S0E3VWNQM1RaUFh2L3BOMGJVNTIrd3ZMZDRSQUtHbDFRaFJRd29sL253NGpZ?=
+ =?utf-8?B?S0VTWmVmTitmR2Uyek1ZN0JYUzVMblhpbU5wcFFFVTdCdUV0cks4UHZUekJk?=
+ =?utf-8?B?T3FDMElPM2E4YnJrRXdvZ2hyb05CbmZWK21pWUxkWjVPZk1lSXNSM3N2VHo2?=
+ =?utf-8?B?ckxsMWwvbUZjd3VrSVJBdktDKy9qMGNvZzByS1pmeUF0SkVXSVltOTc4NmY0?=
+ =?utf-8?B?MkUzLy9KK29TNnNxQVo0NjFKVTg4UE54Mk1OaDJyQmM1d2VXRzVsSjNvZHhu?=
+ =?utf-8?B?Mm5jTDFaUXpGZk9OMjdwZTNVam5UdUJyOU9qeUtwZVVoZEFDZnpmajRqYUND?=
+ =?utf-8?B?TUhmYTlRRzRwRy9NSk5UUDhqem8vbkMrVmdkeHBKQ25xQmk5VmFaZXNndU83?=
+ =?utf-8?B?K0k3M25URXNqZHdqVi9RWTRhTm5GaVJWdnhGVmZGeVNQK2F3eXFGeDU2c2VP?=
+ =?utf-8?B?ZGFrUlhuejAzZ0tnaEwxNjg4aGlaa1hoYnBjcXVuVG5qOHBwdXlQa2ljbFdD?=
+ =?utf-8?B?QzNhNXVsUUR1ZzdvbWswdGUvZVV3b3lpRlhsUXFENmRweW56cldaT1ltTGRy?=
+ =?utf-8?B?eHc3SUxpQmZOQURQbk1SaU8xWXI0d0NaTnBvYUhVTXlFTDNPNHVSNG80R1R5?=
+ =?utf-8?B?T3Z6NE9mWHJUUk0wNVJoNml2V3pTcnJqUXdub29zQlFrd1pTWXVkQ1hiWjkw?=
+ =?utf-8?B?OUpHYmpKOEhEL2tlWjRyV2FWRWtEdFEzUTdTUFBxYUtnbk8zd3Zud2NuZWt1?=
+ =?utf-8?B?ZHRjK1JhNUE1QVEyRlNoQkJ5ZFArTllxKzZwM0lWOEJzY3R4Nm1jOXVkQmNB?=
+ =?utf-8?B?aGo5bERxbVBWMkNEOVk3bHRyeXVBOEE0Wm42c29aS0Z0UkFJNVpvaU80UnZz?=
+ =?utf-8?B?b29STmhiL3JiUWNOMzArMlh5aVlkRnB1Sm5vQkFkMy9adzh0U0FjdUxTUmFV?=
+ =?utf-8?B?L0l3VDJ3MXd4RHVGTnB6SnpOZktXbTdJS29vZlJZOXpkMFRhTVgyQjM2M3Vs?=
+ =?utf-8?B?SHJrL0EwRWlxeDI3S2ZVSzZYcTFmbWY4QUNjV3EranRta3pLWVlrTnYvTXlF?=
+ =?utf-8?B?U2Jkek4vMmxPd1ZJNUYwNVVQc2U2WnMreXFURDlCcG4vQUhTNWh2MHdXRDFq?=
+ =?utf-8?B?NUp5STFzWDVnPT0=?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?UkNaZGxyK2dIbCtYb2t0dzNRd2V1V3lWMjRVT1ZxQlJabm01T2xVaDZNOVRk?=
+ =?utf-8?B?aXBvTGZJeExrWmJrUEVSRUoyVnJIVTN3azEzUnpDMjBqQjduOCtWT1NMRmY0?=
+ =?utf-8?B?bnBoMmxuclZGeFcxZ2JqajVRdnlrS3JmQWNkT0NTVkwzb041S1pHZ0N6Z2Vx?=
+ =?utf-8?B?enc2eFdXeEdFVVpWK1V4STBkcWs4NG1mQUVCTHRXc1RqZWQ3S2FuNE95dnQ0?=
+ =?utf-8?B?NzVRRG9jcjBhT2tIdXBRYTdyY2RxVkdYSndnRUJxbWcwb0c1MnI3b1JmYkNB?=
+ =?utf-8?B?djdoaG1Cek1keXFZTFhQaTRaOFY4ZmNSL0lpTDBUenBheUowVDdqYUxBSlh2?=
+ =?utf-8?B?M24vQUEyZlkvZjkrY3I0L2FCRWh0UFRtVm43M3BNT1diUjMyV0FVVzluK2du?=
+ =?utf-8?B?eXl1SWN4clE1ZThZVXFiQkk3cFpuUGhvc2dFaVplWG5nRTYzdmVkTnY0aWlW?=
+ =?utf-8?B?VnJLRDZ2ZHlkQ2d1a25ZRlBUOUtEcGNaanViVDZYUnBHVEcwTi9MZHNDRVhG?=
+ =?utf-8?B?blpDakxBS0VVSkh2YjE2bXpid0lkTGd3Y3dlTjZyNmNsWDV3SG9NU0VPREZR?=
+ =?utf-8?B?SkRNYlc1bFNpeDUzQmYrVHVyVTdaZHJrbUxKVEpVa3NIUDZqN0N0c1puSlgz?=
+ =?utf-8?B?NVhlNlZpenI5RFpqbnN5M0ludUhudFc3MmljSGcrbFJiYmhtdzM4b1JucDVF?=
+ =?utf-8?B?MUhsYnBXQU52R0FVVTRIQi84cXRTd0kxRGVBczJOWkhoWlF1S2RsU2l0NWJH?=
+ =?utf-8?B?T1FJMytVQjBGMWlnUmcvWUs2Vy9wZ3N4cG9PTmsvTytFY3BKZjBxYjFOUUZJ?=
+ =?utf-8?B?UE1vYWt6bHlTUm4xOVpCdUU3Y0phUU5RQzJ0WERFL1ptanVyME9mTm1GQzYx?=
+ =?utf-8?B?aWhsY1FWVmxDWFZNZlBicFltVDVCNFV6dkd4cU0rOWx5eHBKUTJwQ3BZa1M1?=
+ =?utf-8?B?cUFiSWk0Mjc0cmNIV2c3N1JJdGdNYWxUc3lZd3RSMlNhVDhybUVGcXl1S0Yv?=
+ =?utf-8?B?M3U2RFBQWkNjNUpITnh5bW5WeWJDK1o0anNadW5ia3k2TE1BM0c3Y1paU013?=
+ =?utf-8?B?ZkVhbHFUaHlFUGFKbGNaUkJwMkxLZW8wWDgvenRGTkQ3RGdhV29DcW9NbW9n?=
+ =?utf-8?B?NjhiV2IyeTFRcUlyMVZxMTNOWU9XdDloS1pUeHp6YWdMZGVSSUZ6cmhUTEZK?=
+ =?utf-8?B?bU1XejkzM2VHcXdYckszVEZheXBCdU1TenNmYW5ZaUFPM0RnMGFFek1xc0NO?=
+ =?utf-8?B?NTh1bGhuVnNLbk1ISmVmbm9HNE5LRFBpRXNkQzZFMDUwVE9RRVZCVG5rajlX?=
+ =?utf-8?B?QklicWVKR1JtTVhSTkZ2NTgvRE9aSTQ4MCt5eVkydndqWFJDSVpWMzRkb3FR?=
+ =?utf-8?B?QW9LTHdkSXYyMFZEOGU5QjhBU1FkSi8yMFlpTm5qQ1FCalRZTFdFNXVwMU5X?=
+ =?utf-8?B?WTVzWVExSFl1eE1qbXVJNURnalczdTBkeUxidTNiRStJYTN6YllPd21vbGRR?=
+ =?utf-8?B?ZldLZ3ZVRUZjWmFYNTdqOFFpOW5seFJGMGNDQ3Y3YXJST3lyaGlDRXJ1dWdU?=
+ =?utf-8?B?Y1B5aHJpOG1JSkdWaVcwTlZONXJpSkkydjZTdis0TUc2c2xWTmZrVzlrSzBJ?=
+ =?utf-8?B?dzBEZFk1NWd3MC9vNUkrR3RjS3JDdW8xTy9wY2kydnp4MWdrMTdOdFJNQ083?=
+ =?utf-8?B?YVJwZE5zVEpXdmg5ZllUSG9CT20xT2NRUlpHb2NTRzFXSkpEWHIxdkMxZzNM?=
+ =?utf-8?B?emszb2xVMTBmanZkejM3YWdtWUZkRnBTcGlxeUpSNC95dStZOE5HL0VmR3g4?=
+ =?utf-8?B?MHRYOWoyUVRUTDFERFpualJyMEF2ZStycXpvK25PWUVWK1RHb1FiNzltM3Ez?=
+ =?utf-8?B?MXlzdzdMMkJ2bXl3dWxWMG41TUlIcTNwWWpyVWlZbXBOcmxhMThnT0ZTdHlz?=
+ =?utf-8?B?Tk5OUWdmdWNkMWQ2djg0SSsvMXFPakVpcEtTaVk2bDhabkUvcUpTNHB6djFI?=
+ =?utf-8?B?ejdseXh5ZGhpNmh4cG10Ui82K3dRWElYZlNMS1dUZEpTanBsT0dRczZjZWVv?=
+ =?utf-8?B?ejdNQjZmK2tUejRpTU1CQkFmZk1UQXJHQVFMbDB5aU11bDRVdVJNZ2NsMlNT?=
+ =?utf-8?B?eXQ0cXhVWGZvcWh3WlFROVFET1hSa1pvUXRFbkdqZHYxZktxdlk5QXBUbHZt?=
+ =?utf-8?Q?igSo7IaIyUQWve5tPoY6TRc=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <5AD97CC2860C0A42A6D222B7CC6CBFEF@EURPRD10.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c365b17c-de18-4718-8d51-fa1d93236d90@baylibre.com>
+X-OriginatorOrg: siemens.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa245365-69fa-490d-bef8-08de1b2aca54
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Nov 2025 22:46:12.9941
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Bzd7r0eD208KabRQEeHXY541SkoEfwWILYAmrC/j2ed2g1Jj5i6y7AcJ9GoNAlckKnwyuqZ7X8gYy7f/cEHuIyWqVcUBVOxLchPI0HR3tXk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR10MB8198
 
-On 11/03, David Lechner wrote:
-> On 11/3/25 8:30 AM, Nuno Sá wrote:
-> > On Mon, 2025-11-03 at 10:22 -0300, Marcelo Schmitt wrote:
-> >> On 10/30, Nuno Sá wrote:
-> >>> On Wed, 2025-10-29 at 15:11 -0300, Marcelo Schmitt wrote:
-> >>>> On 10/27, Jonathan Cameron wrote:
-> >>>>> On Mon, 20 Oct 2025 16:15:39 -0300
-> >>>>> Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
-> >>>>>
-> >>>>>> AD4030 and similar devices can read common-mode voltage together with
-> >>>>>> ADC sample data. When enabled, common-mode voltage data is provided in a
-> >>>>>> separate IIO channel since it measures something other than the primary
-> >>>>>> ADC input signal and requires separate scaling to convert to voltage
-> >>>>>> units. The initial SPI offload support patch for AD4030 only provided
-> >>>>>> differential channels. Now, extend the AD4030 driver to also provide
-> >>>>>> common-mode IIO channels when setup with SPI offloading capability.
-> >>>>>>
-> >>>>>> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> >>>>>> ---
-> >>>>>> New patch.
-> >>>>>> I hope this works for ADCs with two channels. It's not clear if works as
-> >>>>>> expected with current HDL and single-channel ADCs (like ADAQ4216).
-> >>>>>>
-> >>>>>> The ad4630_fmc HDL project was designed for ADCs with two channels and
-> >>>>>> always streams two data channels to DMA (even when the ADC has only one
-> >>>>>> physical channel). Though, if the ADC has only one physical channel, the
-> >>>>>> data that would come from the second ADC channel comes in as noise and
-> >>>>>> would have to be discarded. Because of that, when using single-channel
-> >>>>>> ADCs, the ADC driver would need to use a special DMA buffer to filter out
-> >>>>>> half of the data that reaches DMA memory. With that, the ADC sample data
-> >>>>>> could be delivered to user space without any noise being added to the IIO
-> >>>>>> buffer. I have implemented a prototype of such specialized buffer
-> >>>>>> (industrialio-buffer-dmaengine-filtered), but it is awful and only worked
-> >>>>>> with CONFIG_IIO_DMA_BUF_MMAP_LEGACY (only present in ADI Linux tree). Usual
-> >>>>>> differential channel data is also affected by the extra 0xFFFFFFFF data
-> >>>>>> pushed to DMA. Though, for the differential channel, it's easier to see it
-> >>>>>> shall work for two-channel ADCs (the sine wave appears "filled" in
-> >>>>>> iio-oscilloscope).
-> >>>>>>
-> >>>>>> So, I sign this, but don't guarantee it to work.
-> >>>>>
-> >>>>> So what's the path to resolve this?  Waiting on HDL changes or not support
-> >>>>> those devices until we have a clean solution?
-> >>>>
-> >>>> Waiting for HDL to get updated I'd say.
-> >>>
-> >>> Agree. We kind of control the IP here so why should we do awful tricks in
-> >>> SW right :)? At the very least I would expect hdl to be capable to discard the
-> >>> data in HW.
-> >>>
-> >>>>
-> >>>>>
-> >>>>> Also, just to check, is this only an issue with the additional stuff this
-> >>>>> patch adds or do we have a problem with SPI offload in general (+ this
-> >>>>> IP) and those single channel devices?
-> >>>>
-> >>>> IMO, one solution would be to update the HDL project for AD4630 and similar ADCs
-> >>>> to not send data from channel 2 to DMA memory when single-channel ADCs are
-> >>>> connected. Another possibility would be to intercept and filter out the extra
-> >>>> data before pushing it to user space. My first attempt of doing that didn't
-> >>>> work out with upstream kernel but I may revisit that.
-> >>>
-> >>> I'm also confused. Is this also an issue with the current series without common mode?
-> >>>
-> >>> If I'm getting things right, one channel ADCs pretty much do not work right now with
-> >>> spi offload?
-> >>
-> >> Yes, that's correct. It kind of works for single-channel ADCs, but half of the
-> >> data we see in user space is valid and the other half is not. For two-channel
-> >> ADCs, everything should be fine.
-> > 
-> > To me that is something that does not work eheheh :).
-Well, yeah, I tend to agree with that 😅
-
-> > I mean, going with all this trouble
-> > to sample as fast as we can just so we have to discard (or mask out) half of every sample
-> > in userspace (even though I can imagine we still get better performance vs non offload case).
-> 
-> If we are getting extra data to userspace, then either we aren't creating the
-> SPI message correctly and telling the controller to read too much data or
-> the HDL is broken.
-
-The current patch set version (v6) only asks for the amount of ADC precision
-bits in each transfer when offloading messages. I can't see how that would work
-but okay, I'll test it with smaller xfer length.
-
-> 
-> > 
-> >>
-> >>>
-> >>> If the above is correct I would just not support it for 1 channel ADCs.
-> >>
-> >> Currently, it's just one part that is single-channel (AD4030). If patches 6 and
-> >> 7 were accepted, it would be 3 single-channel parts supported. I can add an `if`
-> >> somewhere to check the number of channel, but it will eventually have to be
-> >> removed when HDL gets fixed.
-> > 
-> > I would probably do the above or maybe we just need to push for an hdl fix or some
-> > final conclusion (like if they cannot fix it for some reason) and act accordingly.
-> > 
-> >>
-> >> Or, if HDL can't be fixed, then we'll need the `if` now and something else
-> >> latter to filter out extra data before pushing to IIO buffers as mentioned
-> >> above. Though, this scenario seems odd to me as I think the HDL wouldn't be 100%
-> >> compatible with single-channel AD4030-like parts. We would be writing code to
-> >> support AD4030 _and_ a peculiar data stream from this specific HDL project?
-> >>
-> >> My suggestion is to apply all patches except patch 8. IMHO, SPI offload
-> >> single-channel ADC support is broken due to HDL IP data stream not being
-> >> compatible with single-channel parts. That's not a Linux driver issue.
-> > 
-> > Well, it's not a SW issue but we are driving the HW and we know it's broken so I
-> > don't see a point in having something that does not work. Given that this is so
-> > connected to the HDL part of it I'm not sure it's fine to ignore that offload does
-> > not work for 1 channel parts. 
-> > 
-> > Anyways, it's odd to me but ultimately if Jonathan is fine with it, I won't object :)
-> > 
-> > 
-> > - Nuno Sá
-> 
-> If single-channel parts currently don't work and two-channel parts need [1] or
-> a hardware descrambler to work with a single data line, then it sounds like we
-> are blocked here until the HDL is improved or [1] is merged.
-> 
-> [1]: https://lore.kernel.org/linux-iio/20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com/
-
-Ack, I think so.
+SGkgRGFuaWVsLA0KDQpPbiBGcmksIDIwMjUtMTAtMzEgYXQgMjE6NDYgKzAwMDAsIERhbmllbCBH
+b2xsZSB3cm90ZToNCj4gT24gVGh1LCBPY3QgMzAsIDIwMjUgYXQgMTE6MTE6MzhQTSArMDAwMCwg
+U3ZlcmRsaW4sIEFsZXhhbmRlciB3cm90ZToNCj4gPiBbLi4uXQ0KPiA+IEZvciBzb21lIHJlYXNv
+biB3aXRoIGJvdGggdjQgYW5kIHY1IEkgY2FuIHJlbGlhYmx5IHJlcHJvZHVjZSB0aGUgZm9sbG93
+aW5nDQo+ID4gd2FybmluZyAoQVNTRVJUX1JUTkwoKSkgYXQgdGhlIHZlcnkgYmVnaW5uaW5nIG9m
+DQo+ID4gZHJpdmVycy9uZXQvZHNhL2xvY2FsX3Rlcm1pbmF0aW9uLnNoIHNlbGZ0ZXN0Og0KPiA+
+IA0KPiA+IFJUTkw6IGFzc2VydGlvbiBmYWlsZWQgYXQgZ2l0L25ldC9jb3JlL2Rldi5jICg5NDgw
+KQ0KPiA+IFdBUk5JTkc6IENQVTogMSBQSUQ6IDUyOSBhdCBnaXQvbmV0L2NvcmUvZGV2LmM6OTQ4
+MCBfX2Rldl9zZXRfcHJvbWlzY3VpdHkrMHgxNzQvMHgxODgNCj4gPiBDUFU6IDEgVUlEOiA5OTYg
+UElEOiA1MjkgQ29tbTogc3lzdGVtZC1yZXNvbHZlIFRhaW50ZWQ6IEfCoMKgwqDCoMKgwqDCoMKg
+wqDCoCBPwqDCoMKgwqDCoMKgwqAgNi4xOC4wLXJjMitnaXRlOTA3OTMwMDA5NGQgIzEgUFJFRU1Q
+VCANCj4gPiBwc3RhdGU6IDYwMDAwMDA1IChuWkN2IGRhaWYgLVBBTiAtVUFPIC1UQ08gLURJVCAt
+U1NCUyBCVFlQRT0tLSkNCj4gPiBwYyA6IF9fZGV2X3NldF9wcm9taXNjdWl0eSsweDE3NC8weDE4
+OA0KPiA+IGxyIDogX19kZXZfc2V0X3Byb21pc2N1aXR5KzB4MTc0LzB4MTg4DQo+ID4gQ2FsbCB0
+cmFjZToNCj4gPiDCoCBfX2Rldl9zZXRfcHJvbWlzY3VpdHkrMHgxNzQvMHgxODggKFApDQo+ID4g
+wqAgX19kZXZfc2V0X3J4X21vZGUrMHhhMC8weGIwDQo+ID4gwqAgZGV2X21jX2RlbCsweDk0LzB4
+YzANCj4gPiDCoCBpZ21wNl9ncm91cF9kcm9wcGVkKzB4MTI0LzB4NDEwDQo+ID4gwqAgX19pcHY2
+X2Rldl9tY19kZWMrMHgxMDgvMHgxNjgNCj4gPiDCoCBfX2lwdjZfc29ja19tY19kcm9wKzB4NjQv
+MHgxODgNCj4gPiDCoCBpcHY2X3NvY2tfbWNfZHJvcCsweDE0MC8weDE3MA0KPiA+IMKgIGRvX2lw
+djZfc2V0c29ja29wdCsweDE0MDgvMHgxODI4DQo+ID4gwqAgaXB2Nl9zZXRzb2Nrb3B0KzB4NjQv
+MHhmOA0KPiA+IMKgIHVkcHY2X3NldHNvY2tvcHQrMHgyOC8weDU4DQo+ID4gwqAgc29ja19jb21t
+b25fc2V0c29ja29wdCsweDI0LzB4MzgNCj4gPiDCoCBkb19zb2NrX3NldHNvY2tvcHQrMHg3OC8w
+eDE1OA0KPiA+IMKgIF9fc3lzX3NldHNvY2tvcHQrMHg4OC8weDExMA0KPiA+IMKgIF9fYXJtNjRf
+c3lzX3NldHNvY2tvcHQrMHgzMC8weDQ4DQo+ID4gwqAgaW52b2tlX3N5c2NhbGwrMHg1MC8weDEy
+MA0KPiA+IMKgIGVsMF9zdmNfY29tbW9uLmNvbnN0cHJvcC4wKzB4YzgvMHhmMA0KPiA+IMKgIGRv
+X2VsMF9zdmMrMHgyNC8weDM4DQo+ID4gwqAgZWwwX3N2YysweDUwLzB4MmIwDQo+ID4gwqAgZWww
+dF82NF9zeW5jX2hhbmRsZXIrMHhhMC8weGU4DQo+ID4gwqAgZWwwdF82NF9zeW5jKzB4MTk4LzB4
+MWEwDQo+ID4gDQo+ID4gKHRlc3Rpbmcgd2l0aCBHU1cxNDUpDQo+ID4gSSdtIG5vdCBzdXJlIHRo
+b3VnaCwgaWYgaXQncyByZWxhdGVkIHRvIHRoZSBnc3cxeHggY29kZSwgYW02NS1jcHN3LW51c3Mg
+ZHJpdmVyDQo+ID4gb24gbXkgQ1BVIHBvcnQgb3IgaWYgaXQncyBhIGZyZXNoIHJlZ3Jlc3Npb24g
+aW4gbmV0LW5leHQuLi4NCj4gPiANCj4gPiBJIGNhbiBzZWUgdGhlIGFib3ZlIHNwbGF0IGlmIEkg
+YXBwbHkgdGhlIHBhdGNoc2V0IG9udG8gYmZlNjJkYjU0MjJiMWE1ZjI1NzUyYmQwODc3YTA5N2Q0
+MzZkODc2ZA0KPiA+IGJ1dCBub3Qgd2l0aCBvbGRlciBwYXRjaHNldCBvbiB0b3Agb2YgZTkwNTc2
+ODI5Y2U0N2E0NjgzODY4NTE1MzQ5NGJjMTJjZDFiYzMzMy4NCj4gPiANCj4gPiBJJ2xsIHRyeSB0
+byBiaXNlY3QgdGhlIHVuZGVybHlpbmcgbmV0LW5leHQuLi4NCj4gDQo+IERpZCB5b3UgdHJ5IHRv
+IHJlYmFzZSB0aGUgcGF0Y2hlcyBuZWNlc3NhcnkgZm9yIHRoZSBHU1cxNDUgb24gdG9wIG9mIHRo
+ZQ0KPiBsYXN0IGtub3duLXRvLXdvcmsgbmV0LW5leHQgY29tbWl0Pw0KPiANCj4gQWxzbyBub3Rl
+IHRoYXQgSSd2ZSBzdWNjZXNzZnVsbHkgdGVzdGVkIGxvY2FsX3Rlcm1pbmF0aW9uLnNoIG9uIHRv
+cA0KPiBvZiBlYTdkMGQ2MGViYzliZGRmM2FkNzY4NTU3ZGZhMTQ5NWJjMDMyYmY2LCBidXQgdXNp
+bmcgdGhlIG1vZGlmaWVkDQo+IFJhc3BiZXJyeVBpIDRCIHByb3ZpZGVkIGJ5IE1heExpbmVhciwg
+c28gdGhlcmUgb2J2aW91c2x5IGlzIGEgZGlmZmVyZW50DQo+IEV0aGVybmV0IGRyaXZlciBvbiB0
+aGUgQ1BVIHBvcnQuLi4NCg0KSSdsbCBuZWVkIHRvIGZvbGxvdyB1cCBvbiB0aGlzLi4uIEl0IHR1
+cm5lZCBvdXQgdG8gYmUgbm90IHRoYXQgcmVsaWFibGUNCnJlcHJvZHVjaWJsZSwgc28gbXkgYmlz
+ZWN0IGxlZCBtZSB0byBub3doZXJlLg0KDQpJIGRvbid0IHRoaW5rIHRoaXMgaXMgcmVsYXRlZCB0
+byBHU1cxNDUgY29kZSAoZXZlbiB0aG91Z2ggaXQncyBiZWluZyB0cmlnZ2VyZWQNCmJ5IEdTVzE0
+NSBwb3J0IGdvaW5nIGRvd24pLCBvbmx5IGNvcmUgY29kZSBzZWVtcyB0byBiZSBpbnZvbHZlZCBo
+ZXJlLi4uDQpBbmQgSSBzZWUgcXVpdGUgc29tZSBSVE5MIGhhdmUgYmVlbiBkcm9wcGVkIGluIHRo
+ZSBuZXQtbmV4dC4uLg0KDQotLSANCkFsZXhhbmRlciBTdmVyZGxpbg0KU2llbWVucyBBRw0Kd3d3
+LnNpZW1lbnMuY29tDQo=
 
