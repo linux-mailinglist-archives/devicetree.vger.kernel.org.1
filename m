@@ -1,134 +1,277 @@
-Return-Path: <devicetree+bounces-234395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2677BC2C3E1
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 14:48:42 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CC73C2C417
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 14:53:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 650DB3AFE5F
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 13:41:18 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AB25F4EE5B2
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 13:48:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ACF3301708;
-	Mon,  3 Nov 2025 13:41:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F1B8272E63;
+	Mon,  3 Nov 2025 13:48:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="HOGlu+YF"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PfKEM+nu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2391C2DA77E;
-	Mon,  3 Nov 2025 13:41:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DE7C1B85F8;
+	Mon,  3 Nov 2025 13:48:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762177275; cv=none; b=csOEPTe7c/l73OMtZ3SeZ8+F5R14wWRdjiklG967PYFA4IdLwxARTTcASyZONlleAqPCvR2PPvcN6mkduuuHPWoJ2wSHw012uQkbigpcdOCnsAmgH0Fk/NyAG9Poy7ETIJg/bhf3QRZs9YEC3UECfoovjGK3wMUu3sM/qzdftW0=
+	t=1762177711; cv=none; b=aAFcvbPjo8c+3uW6SLV1PAAG26NMY2DcQQqlOKzBDsvnwp+847+mMaYOwED5+dkX47WJPqgzdO+31EXI01hVr3WXNw1OGVLPWVZ2jlbYdIbmfpyfQaBWU8jU6+C4zYefr5kgTytND3hJ2tCJEXeArgEVZcs91zSEDWz/0caiEe4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762177275; c=relaxed/simple;
-	bh=xNvAHzc/ZbWwIrRbPnxFzUiYiwh87HyVAdIpXGZfoLE=;
+	s=arc-20240116; t=1762177711; c=relaxed/simple;
+	bh=/eMBTgNJH8/Xgm8LgLzir6GKHePQ75zTAgJlicmNsfQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fgy9gd/E1BiEC27zGmlhwE2y79Ct4A54YvBj4To47ZQiieuWjrsBX5Tmxlw2mQ/dvUV3GTn8M+z3xrxQglD/QVasH+BTT6rBlRbAzqupfou8iZ5OT5hB0X4okGCiY0vRL2kwHJNsZmIGty0+k5u78qUqDZ4HPciIXYhGbUtzQZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=HOGlu+YF; arc=none smtp.client-ip=65.109.113.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id BF52940E01CD;
-	Mon,  3 Nov 2025 13:41:09 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
-	header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
-	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id M-5mD1RyBWtB; Mon,  3 Nov 2025 13:41:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-	t=1762177264; bh=GbYczoBSYFJ2a7y6WVUbqvm56JGqfF/fxI6kZKdT9Mc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HOGlu+YF+9++OK+K5VXjZejvirvdFdjbI4VXdONk40BPvl42X9WLtG8ajTCr/4v5w
-	 kGo8hd6hbZE+wSgxx9K/ynxQg3O6XT9Q7luFyLpppI0XYo+mgdziqUB93kb7hXfBy8
-	 Qeisd1m8mP+KXUEAuhDO07FJ1PWaxX9oBPDjfnCNDUTteEJ7PJ+3z6+vWybvhAWtju
-	 Ayq8QtXLWzBDvGoIFXXOtZioR7/7l0ZpesEGusEL0zRshdAS5RRsA/MuBWzCisXrdh
-	 X++plqE37zhumIheUdDtlODh0VBYj6lWfZnr/T9YeyP6xuq7yaIyGsWrPHlHiaTcPR
-	 tVJsXz4ma3QcINfN20fh6YI03CO0UO807ycccShKoDAw5P+sM/weYZU6TD0NuA+U6I
-	 EAAaEjNyoC6hByFbhUYyf+sIUchGNaI3rlt9/V+F5ZXKbbFpbY3xT37NOGCBmm94nY
-	 zOgg1+26fdTA/V+BGLlEOIE2lTWMiOoTei6BcUN3/NE87mY8Jf73zuWoNySNjEnjMG
-	 UGQrWjOJMnzkE3dY2EX/sAhsP4RtC0W22hyjRNyzsA4PtfzUdnVWkb+jgPOA7E0aBY
-	 Rtgn3biQCd1zycSdkMaESnwGVrGlsjtF686NN4jCDzOmAjUNUaYd+kFsgGaTV8mCmx
-	 lzp2v9F1fAdE2eRTMtNaOdCo=
-Received: from zn.tnic (pd9530da1.dip0.t-ipconnect.de [217.83.13.161])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id 7937D40E01FA;
-	Mon,  3 Nov 2025 13:40:43 +0000 (UTC)
-Date: Mon, 3 Nov 2025 14:40:37 +0100
-From: Borislav Petkov <bp@alien8.de>
-To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
-	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
-	Michael Kelley <mhklinux@outlook.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Saurabh Sengar <ssengar@linux.microsoft.com>,
-	Chris Oo <cho@microsoft.com>, "Kirill A. Shutemov" <kas@kernel.org>,
-	linux-hyperv@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Ricardo Neri <ricardo.neri@intel.com>,
-	"Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-	Yunhong Jiang <yunhong.jiang@linux.intel.com>
-Subject: Re: [PATCH v6 02/10] x86/acpi: Move acpi_wakeup_cpu() and helpers to
- smpwakeup.c
-Message-ID: <20251103134037.GOaQiw1Y6Iu_ENu6ww@fat_crate.local>
-References: <20251016-rneri-wakeup-mailbox-v6-0-40435fb9305e@linux.intel.com>
- <20251016-rneri-wakeup-mailbox-v6-2-40435fb9305e@linux.intel.com>
- <20251027141835.GYaP9_O1C3cms6msfv@fat_crate.local>
- <20251027205816.GB14161@ranerica-svr.sc.intel.com>
- <20251029111358.GDaQH29lURT0p_WWsb@fat_crate.local>
- <20251030054350.GA17477@ranerica-svr.sc.intel.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=HO+YHf9yxgBc4CFzuWDNasie7TJcia+89cBdVIUi3yGVPeBWc2ElQGSOIIZVMSrQR4rEaNRlEM2+6XsvCZXFHJmWKWvs1TQ0dLL9SzLuWVSivxwoTQuFG30YSBGhNMezbBOntfORanSRSceqkdVWcfb6XXU0UMoWZliVyd5qwWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PfKEM+nu; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762177710; x=1793713710;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/eMBTgNJH8/Xgm8LgLzir6GKHePQ75zTAgJlicmNsfQ=;
+  b=PfKEM+nu+M8xX0XhsZTDlirRsJ/b98gD+zl4l4Ua2LqOy4FMbStJVhi1
+   hNsfrvBk3Db0FgIdqnwy7/ZiIj/cPwNs+mTfnfOnEPv5Ur1tj5xdO4z1E
+   W+ioF8MPbtYHSUJplv4esVl+6358Pp5s/ZP4IZ3gYY3AQWIRbu2ZbndBZ
+   VbHUGdLjiobwByI25VIvV6n6rLVF6bEVJqsXX9TudQQhXvwa3XL3W2Jb5
+   AUE4o5qptrkE+jhjQ7Vq2Lo9pkJbfq4qX10vmmn4oghnBhKQyDClxNaDx
+   DOsvDoGZZMwJo3BtMNDB89/DB01YhXUF1t8Sqfk3ocTlKs/rzlTx3eXxj
+   Q==;
+X-CSE-ConnectionGUID: Z7PcJOtYSheuPUmLhHKO7A==
+X-CSE-MsgGUID: fA9Dm99cRbSTIqjgaicLEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="75699958"
+X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; 
+   d="scan'208";a="75699958"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2025 05:48:29 -0800
+X-CSE-ConnectionGUID: JFm5J5b9STC09kNJqEZ1eA==
+X-CSE-MsgGUID: J32ocSpgR2yn1eLsQx1Tpg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; 
+   d="scan'208";a="186110382"
+Received: from aschofie-mobl2.amr.corp.intel.com (HELO kuha.fi.intel.com) ([10.124.220.222])
+  by orviesa006.jf.intel.com with SMTP; 03 Nov 2025 05:48:11 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 03 Nov 2025 15:48:09 +0200
+Date: Mon, 3 Nov 2025 15:48:09 +0200
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Chaoyi Chen <kernel@airkyi.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Yubing Zhang <yubing.zhang@rock-chips.com>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Amit Sunil Dhamne <amitsd@google.com>,
+	Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
+	Diederik de Haas <didi.debian@cknow.org>,
+	Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v8 03/10] drm/bridge: Implement generic USB Type-C DP HPD
+ bridge
+Message-ID: <aQiymTFVU7UpcJ1p@kuha.fi.intel.com>
+References: <20251029071435.88-1-kernel@airkyi.com>
+ <20251029071435.88-4-kernel@airkyi.com>
+ <rzozpbqmymdczerh3iijxxtz3xnsznoku7w2mquikwv6u5osvo@7h43hwc2fpzm>
+ <eca9d5bd-23bd-4c1d-b2f2-c0c32f14177f@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251030054350.GA17477@ranerica-svr.sc.intel.com>
+In-Reply-To: <eca9d5bd-23bd-4c1d-b2f2-c0c32f14177f@rock-chips.com>
 
-On Wed, Oct 29, 2025 at 10:43:50PM -0700, Ricardo Neri wrote:
-> I did not want to enable the whole of ACPI code as I need a tiny portion of it.
-> Then yes, saving memory and having a smaller binary were considerations.
+> > > diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
+> > > index a250afd8d662..17257b223a28 100644
+> > > --- a/drivers/gpu/drm/bridge/Kconfig
+> > > +++ b/drivers/gpu/drm/bridge/Kconfig
+> > > @@ -23,13 +23,16 @@ config DRM_AUX_BRIDGE
+> > >   	  build bridges chain.
+> > >   config DRM_AUX_HPD_BRIDGE
+> > > -	tristate
+> > > +	tristate "AUX HPD bridge support"
+> > Why? No, this is supposed to be selected by other drivers. Users don't
+> > know an wouldn't know what is this.
 > 
-> The only dependency that ACPI_MADT_WAKEUP has on ACPI is the code to read and
-> parse the ACPI table that enumerates the mailbox. (There are a couple of
-> declarations for CPU offlining that need tweaking if I want ACPI_MADT_WAKEUP to
-> not depend on ACPI at all).
+> In v7, I implemented an additional module for selecting this option. But
+> Heikki believes that it would be better to merge the two modules into one.
+
+Like I said before, I was merely curious why not just squash the
+support into that AUX_PD_HPD_BRIDGE. If that does not make sense, then
+so be it - make it a "Display Interface Bridge" driver like you
+originally proposed.
+
+> > >   	depends on DRM_BRIDGE && OF
+> > >   	select AUXILIARY_BUS
+> > >   	help
+> > >   	  Simple bridge that terminates the bridge chain and provides HPD
+> > >   	  support.
+> > > +	  Specifically, if you want a default Type-C DisplayPort HPD bridge for
+> > > +	  each port of the Type-C controller, say Y here.
+> > > +
+> > >   menu "Display Interface Bridges"
+> > >   	depends on DRM && DRM_BRIDGE
+> > > diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
+> > > index c7dc03182e59..2998937444bc 100644
+> > > --- a/drivers/gpu/drm/bridge/Makefile
+> > > +++ b/drivers/gpu/drm/bridge/Makefile
+> > > @@ -1,6 +1,12 @@
+> > >   # SPDX-License-Identifier: GPL-2.0
+> > >   obj-$(CONFIG_DRM_AUX_BRIDGE) += aux-bridge.o
+> > > -obj-$(CONFIG_DRM_AUX_HPD_BRIDGE) += aux-hpd-bridge.o
+> > > +
+> > > +hpd-bridge-y := aux-hpd-bridge.o
+> > > +ifneq ($(CONFIG_TYPEC),)
+> > > +hpd-bridge-y += aux-hpd-typec-dp-bridge.o
+> > > +endif
+> > > +obj-$(CONFIG_DRM_AUX_HPD_BRIDGE) += hpd-bridge.o
+> > > +
+> > >   obj-$(CONFIG_DRM_CHIPONE_ICN6211) += chipone-icn6211.o
+> > >   obj-$(CONFIG_DRM_CHRONTEL_CH7033) += chrontel-ch7033.o
+> > >   obj-$(CONFIG_DRM_CROS_EC_ANX7688) += cros-ec-anx7688.o
+> > > diff --git a/drivers/gpu/drm/bridge/aux-hpd-bridge.c b/drivers/gpu/drm/bridge/aux-hpd-bridge.c
+> > > index 2e9c702c7087..11ad6dc776c7 100644
+> > > --- a/drivers/gpu/drm/bridge/aux-hpd-bridge.c
+> > > +++ b/drivers/gpu/drm/bridge/aux-hpd-bridge.c
+> > > @@ -12,6 +12,8 @@
+> > >   #include <drm/drm_bridge.h>
+> > >   #include <drm/bridge/aux-bridge.h>
+> > > +#include "aux-hpd-bridge.h"
+> > > +
+> > >   static DEFINE_IDA(drm_aux_hpd_bridge_ida);
+> > >   struct drm_aux_hpd_bridge_data {
+> > > @@ -204,7 +206,26 @@ static struct auxiliary_driver drm_aux_hpd_bridge_drv = {
+> > >   	.id_table = drm_aux_hpd_bridge_table,
+> > >   	.probe = drm_aux_hpd_bridge_probe,
+> > >   };
+> > > -module_auxiliary_driver(drm_aux_hpd_bridge_drv);
+> > > +
+> > > +static int drm_aux_hpd_bridge_mod_init(void)
+> > > +{
+> > > +	int ret;
+> > > +
+> > > +	ret = auxiliary_driver_register(&drm_aux_hpd_bridge_drv);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	return drm_aux_hpd_typec_dp_bridge_init();
+> > > +}
+> > > +
+> > > +static void drm_aux_hpd_bridge_mod_exit(void)
+> > > +{
+> > > +	drm_aux_hpd_typec_dp_bridge_exit();
+> > > +	auxiliary_driver_unregister(&drm_aux_hpd_bridge_drv);
+> > > +}
+> > > +
+> > > +module_init(drm_aux_hpd_bridge_mod_init);
+> > > +module_exit(drm_aux_hpd_bridge_mod_exit);
+> > >   MODULE_AUTHOR("Dmitry Baryshkov <dmitry.baryshkov@linaro.org>");
+> > >   MODULE_DESCRIPTION("DRM HPD bridge");
+> > > diff --git a/drivers/gpu/drm/bridge/aux-hpd-bridge.h b/drivers/gpu/drm/bridge/aux-hpd-bridge.h
+> > > new file mode 100644
+> > > index 000000000000..69364731c2f1
+> > > --- /dev/null
+> > > +++ b/drivers/gpu/drm/bridge/aux-hpd-bridge.h
+> > > @@ -0,0 +1,13 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0-only */
+> > > +#ifndef AUX_HPD_BRIDGE_H
+> > > +#define AUX_HPD_BRIDGE_H
+> > > +
+> > > +#if IS_REACHABLE(CONFIG_TYPEC)
+> > > +int drm_aux_hpd_typec_dp_bridge_init(void);
+> > > +void drm_aux_hpd_typec_dp_bridge_exit(void);
+> > > +#else
+> > > +static inline int drm_aux_hpd_typec_dp_bridge_init(void) { return 0; }
+> > > +static inline void drm_aux_hpd_typec_dp_bridge_exit(void) { }
+> > > +#endif /* IS_REACHABLE(CONFIG_TYPEC) */
+> > > +
+> > > +#endif /* AUX_HPD_BRIDGE_H */
+> > > diff --git a/drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c b/drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
+> > > new file mode 100644
+> > > index 000000000000..6f2a1fca0fc5
+> > > --- /dev/null
+> > > +++ b/drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
+> > > @@ -0,0 +1,47 @@
+> > > +// SPDX-License-Identifier: GPL-2.0+
+> > > +#include <linux/of.h>
+> > > +#include <linux/usb/typec_altmode.h>
+> > > +#include <linux/usb/typec_dp.h>
+> > > +#include <linux/usb/typec_notify.h>
+> > > +
+> > > +#include <drm/bridge/aux-bridge.h>
+> > > +
+> > > +#include "aux-hpd-bridge.h"
+> > > +
+> > > +#if IS_REACHABLE(CONFIG_TYPEC)
+> > > +static int drm_typec_bus_event(struct notifier_block *nb,
+> > > +			       unsigned long action, void *data)
+> > > +{
+> > This feels like this should be a part of the Type-C subsystem rather
+> > than DRM.
 > 
-> The DeviceTree firmware only needs the code to wake CPUs up. That is the code
-> I am carving out.
-> 
-> Having said that, vmlinux and bzImage increase by 4% if I enable ACPI.
+> In v7, this used to be a part of the Type-C subsystem. I'm not sure what
+> Heikki thinks about this.
 
-So, is it a concern or not? I cannot understand from the above whether you
-care about 4% or not.
+Your original proposal of making the entire TYPEC subsystem depend on
+DRM is _not_ going to happen. In general, if I've now understood this
+correctly, this thing probable should be a "display interface bridge
+driver", similar to what you proposed in the previous version.
 
-If you do, I guess you can make a piece of ACPI code available through another
-Kconfig option but keep it in the ACPI hierarchy.
+Note also that you could make it selected automatically, so there is
+no need for user selectable option if that's the preference. Kconfig
+and Makefile gives you options on how to do that. For example, maybe
+this Kconfig works (or does not, but something like it will):
 
-Because no matter how you look at it, it is ACPI code which is trying to be
-generic and failing at that.
+diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
+index a250afd8d662..7487024ba2ce 100644
+--- a/drivers/gpu/drm/bridge/Kconfig
++++ b/drivers/gpu/drm/bridge/Kconfig
+@@ -30,6 +30,15 @@ config DRM_AUX_HPD_BRIDGE
+          Simple bridge that terminates the bridge chain and provides HPD
+          support.
+ 
++if DRM_AUX_HPD_BRIDGE
++
++config DRM_AUX_HPD_TYPEC_BRIDGE
++       tristate
++       depends on TYPEC || !TYPEC
++       default TYPEC
++
++endif /* DRM_AUX_HPD_BRIDGE */
++
+ menu "Display Interface Bridges"
+        depends on DRM && DRM_BRIDGE
+ 
 
-Unless you scrub it completely and make it a generic thing which is used by
-ACPI too.
 
-Which would be a separate patchset.
-
-Thx.
+thanks,
 
 -- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+heikki
 
