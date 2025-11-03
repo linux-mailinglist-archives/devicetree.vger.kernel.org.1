@@ -1,200 +1,154 @@
-Return-Path: <devicetree+bounces-234436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6797BC2CD4D
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 16:43:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C127EC2CDA8
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 16:45:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E28784F57E9
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 15:37:00 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6C74E4F3107
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 15:39:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1ACB314B95;
-	Mon,  3 Nov 2025 15:32:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 149881F181F;
+	Mon,  3 Nov 2025 15:34:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iHW1bptP"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="CesO5XO4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D2DD314A73
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 15:32:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69B3B1E3DED;
+	Mon,  3 Nov 2025 15:34:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762183926; cv=none; b=N76xXncn0ExKRkmL7johK5sjs3/NDlSnoaXow/mMQOzaJVDEy8OQIvrpdwy8bv0ang8Ti5Z0mjZco3k5Oj4SoCDmU7rEQvx9UK9PjdxlwytgnjGZIARUcmECb9lNyyHsKhwZ4LY+LDuEslOop7mNMbBqXHdBR10igXIdhUAItyA=
+	t=1762184078; cv=none; b=UYR64Oe1lJgNJTgVJ/Vhp3RXkzSD6SsvGzeajR9n0jarg0714F9sFdifZFme1Egpby1oTYZ9r3z/Uww97mh0Ac0UzVWgrmc8TdIBBnQwCGT/QpgfHf3HWNIyw+69hAMwwGIHoEd5VPZUlaxMyDFoSw18ixd2CKECwloYjYQhBsg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762183926; c=relaxed/simple;
-	bh=ldTrccz1k3zG5hsrIjcrfaT0TLAHWdfHQVOzowj7t4c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=omZEYyrlRlUjQ8TxEEA2giHgNYA7Y4h/lucT5ETbUT2OoqL1r74Ezv8S73mARUaPH5NNfFbODJVyj23FUBtoxjvShBlJusxWpQN9eLiL0rn0rHTPulqDtSDUrM8FtWlPybP6TbHb5eSQL+nh94UDMVdzEcZQTsVSSHboeMiTNfk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iHW1bptP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4ABE2C4AF0B
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 15:32:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762183926;
-	bh=ldTrccz1k3zG5hsrIjcrfaT0TLAHWdfHQVOzowj7t4c=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=iHW1bptPTj7YcLVlF7Jt/biFtxge9HcXhz/k8iwgSRk/ELpPj3CQsOZfDkVDGZIKw
-	 hcZQmD2WevfvmzZ/Bm5vb0i4IuE5nVtL1YZSdx54qMvtdERFNOSBveIqySY/k6oGko
-	 tObBC9oSBAxW3d7IsW49ZRTQmQTKbvhtbHYHK8jXdMkRRfDBVWoQ1R64vYJlwMHYGI
-	 BPSbJ4rWBbeOentQ4m30iNFTt6+253ob5ivrwEshGQAwU3Fr8hGzdN87mX76fkQLTU
-	 oixZZVPgoVYXHSHrWAzm2BmdfGQhIQuaqgdvvTkC0tM34+RAPoH9RuYOG8TmpeNa/Z
-	 jvb9zkgpBlHrg==
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-591eb980286so4399740e87.2
-        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 07:32:06 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV6vqjUkhBbMXugpQvMQrThVWRz6N5dMXHNd+egpyVLX3qMxPX5YNST6u17L7PBZK4T0vdxRyCP8uYl@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVNtMVQQemzpnTy770IIHGKaEVL3IvvtRxsOoY+XsKMlzyX31K
-	FL1gBjbt7uSIKPYruQT/v40k3h+OvcEofe1b8pvuiwfkdtZ41LEEWFHnGiUrH6HFRczHbHsRMvh
-	BBBucDs+9Spl20bHqApTOkRy3WEZs1w0=
-X-Google-Smtp-Source: AGHT+IGuWwcsHwoNWGeiPIp0twN/5zmHhQZ8LukItMA7GwGypBE7eupUKitovFzPUZOvSlsivgqP0/+UP9fA+PX7v6c=
-X-Received: by 2002:a05:6512:1102:b0:594:18cf:14ba with SMTP id
- 2adb3069b0e04-5941d549648mr3516863e87.46.1762183924565; Mon, 03 Nov 2025
- 07:32:04 -0800 (PST)
+	s=arc-20240116; t=1762184078; c=relaxed/simple;
+	bh=lysJftpz+IO4ZKExVW7pj1W42TMJiZpVuJsy6nHQIK8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TCQlz4bY9D44VzUKtlxLvtcTN7kiAwFr6DZPtyZdicV0GTY4gNnkzv29KSqreoYLPFnL6B3CGBLIk7DijlMuESfXvyhpNz3lITdkPnN1ITSAJUjFrX3syP/UkIcwm5lUGRjCzrnm0mOZ1CKRChTKszh7aRR13P+nX6JZ0CmZXdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=CesO5XO4; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 051E4C73;
+	Mon,  3 Nov 2025 16:32:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1762183960;
+	bh=lysJftpz+IO4ZKExVW7pj1W42TMJiZpVuJsy6nHQIK8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CesO5XO4lfEF9mRUECys9JUjPdwDrlM3JXuqcf86n3XNE7QOsrTLG2OaRFZkWKoMA
+	 i/pIEY3T4EV0FvO5kHRuY6KQA1ftzBBWCIjdn4Kufu1uwvrKMAC1kuCiBryA/tGTVB
+	 TFZ2ruhfrU0KtlnDXNlkFPHBEz5kr8T5eRoP128A=
+Message-ID: <1b60470f-c93e-4681-aab4-fdbda2057407@ideasonboard.com>
+Date: Mon, 3 Nov 2025 15:34:30 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251021112013.2710903-1-andre.przywara@arm.com> <20251021112013.2710903-2-andre.przywara@arm.com>
-In-Reply-To: <20251021112013.2710903-2-andre.przywara@arm.com>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Mon, 3 Nov 2025 23:31:52 +0800
-X-Gmail-Original-Message-ID: <CAGb2v657XU2wnhNHCgpLnXQrRkVBu1v5SNLUhnXcbj3RfCBN7g@mail.gmail.com>
-X-Gm-Features: AWmQ_bnVIYEAzXsQB-a8g3OFWbeWjAuTTfVmtcOlhHp2hFHoVPwHRCT0lX6q-_g
-Message-ID: <CAGb2v657XU2wnhNHCgpLnXQrRkVBu1v5SNLUhnXcbj3RfCBN7g@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: mfd: x-powers,axp152: Document AXP318W
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Samuel Holland <samuel@sholland.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Yixun Lan <dlan@gentoo.org>, devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: renesas: r9a09g057h48-kakip: Enable eth0
+To: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+ Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20251010-kakip_eth0-v1-1-0d8fdcbceb9a@ideasonboard.com>
+ <CAMuHMdWZD1m6t8MnYTA83RV=h9G9o6M3KSZjO32rRjOpz6px+w@mail.gmail.com>
+ <bcdc9a86-bda1-4646-9ccc-1dc00a710b44@ideasonboard.com>
+ <CAMuHMdUDuuXncX4sbd6oa+8KcS8x+1Sp-ahmvyh8fRdQt1GqKA@mail.gmail.com>
+ <8b984f13-0498-4cc6-a64e-e2b6b147c346@ideasonboard.com>
+ <CABMQnV+z=8-ORRGTjxM=6iP+6+qbJa-N_C0csi8K53wpFwLp_A@mail.gmail.com>
+ <CABMQnVJu-rVHSYcSU271sVeVvuHN=+h8YOAMkDXW--MWfxguuA@mail.gmail.com>
+ <9a9b2fc0-81ca-445c-981c-104d7ed9043c@ideasonboard.com>
+ <CABMQnV+bR1bteABAWOS_tYd3LZqg190tE-=_kqzZYe95fTQttg@mail.gmail.com>
+Content-Language: en-US
+From: Dan Scally <dan.scally@ideasonboard.com>
+In-Reply-To: <CABMQnV+bR1bteABAWOS_tYd3LZqg190tE-=_kqzZYe95fTQttg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tue, Oct 21, 2025 at 7:20=E2=80=AFPM Andre Przywara <andre.przywara@arm.=
-com> wrote:
->
-> The X-Powers AXP318W is a PMIC used on some newer Allwinner devices.
-> Among a large number of both DCDC and LDO regulators it features the usua=
-l
-> ADC/IRQ/power key parts.
-> Like other recent PMICs, it lacks the DC/DC converter PWM frequency contr=
-ol
-> register, that rate is fixed here (1.5MHz on DCDC1, 3 MHz on the others).
->
-> Add the new compatible string, and add that to the list of PMICs without
-> the PWM frequency property.
-> Also add more input supply properties, for the split DCDC and ALDO
-> supplies.
-> The PMIC features *two* switched outputs, hanging of DCDC1, and the
-> manual calls them swout1 and swout2, so follow suit here and add those
-> names to the pattern for matching the node names.
->
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  .../bindings/mfd/x-powers,axp152.yaml         | 28 ++++++++++++++++++-
->  1 file changed, 27 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml b=
-/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-> index 45f015d63df16..1bed19fc91ec4 100644
-> --- a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-> @@ -83,6 +83,7 @@ allOf:
->            contains:
->              enum:
->                - x-powers,axp313a
-> +              - x-powers,axp318w
->                - x-powers,axp323
->                - x-powers,axp15060
->                - x-powers,axp717
-> @@ -102,6 +103,7 @@ properties:
->            - x-powers,axp221
->            - x-powers,axp223
->            - x-powers,axp313a
-> +          - x-powers,axp318w
->            - x-powers,axp323
->            - x-powers,axp717
->            - x-powers,axp803
-> @@ -156,10 +158,18 @@ properties:
->      description: >
->        DCDC1 power supply node, if present.
->
-> +  vin19-supply:
-> +    description: >
-> +      Combined DCDC1/DCDC9 power supply node, if present.
-> +
->    vin2-supply:
->      description: >
->        DCDC2 power supply node, if present.
->
-> +  vin23-supply:
-> +    description: >
-> +      Combined DCDC2/DCDC3 power supply node, if present.
-> +
->    vin3-supply:
->      description: >
->        DCDC3 power supply node, if present.
-> @@ -168,6 +178,10 @@ properties:
->      description: >
->        DCDC4 power supply node, if present.
->
-> +  vin45-supply:
-> +    description: >
-> +      Combined DCDC4/DCDC5 power supply node, if present.
-> +
->    vin5-supply:
->      description: >
->        DCDC5 power supply node, if present.
-> @@ -176,6 +190,10 @@ properties:
->      description: >
->        DCDC6 power supply node, if present.
->
-> +  vin678-supply:
-> +    description: >
-> +      Combined DCDC6/DCDC7/DCDC8 power supply node, if present.
-> +
->    vin7-supply:
->      description: >
->        DCDC7 power supply node, if present.
-> @@ -220,6 +238,14 @@ properties:
->      description: >
->        ALDO* power supply node, if present.
->
-> +  aldo156in-supply:
-> +    description: >
-> +      ALDO* power supply node, if present.
-> +
-> +  aldo234in-supply:
-> +    description: >
-> +      ALDO* power supply node, if present.
-> +
->    bldoin-supply:
->      description: >
->        BLDO* power supply node, if present.
-> @@ -277,7 +303,7 @@ properties:
->            Defines the work frequency of DC-DC in kHz.
->
->      patternProperties:
-> -      "^(([a-f])?ldo[0-9]|dcdc[0-7a-e]|ldo(_|-)io(0|1)|(dc1)?sw|rtc(_|-)=
-ldo|cpusldo|drivevbus|dc5ldo|boost)$":
-> +      "^(([a-f])?ldo[0-9]|dcdc[0-7a-e]|ldo(_|-)io(0|1)|(dc1)?sw|swout[1-=
-9]|rtc(_|-)ldo|cpusldo|drivevbus|dc5ldo|boost)$":
+Hello Nobuhiro
 
-This and the ever growing list of *-supply properties makes me wonder
-whether we should expand the conditional blocks to enforce which names
-are valid for whichever models. That could be done later though.
+On 01/11/2025 07:20, Nobuhiro Iwamatsu wrote:
+> Hi Dan,
+> 
+> 2025年10月28日(火) 19:56 Dan Scally <dan.scally@ideasonboard.com>:
+>>
+>> Good morning Nobuhiro - thanks for your comments
+>>
+>> On 26/10/2025 03:54, Nobuhiro Iwamatsu wrote:
+>>> Hi all,
+>>>
+>>> 2025年10月26日(日) 10:06 Nobuhiro Iwamatsu <iwamatsu@nigauri.org>:
+>>>
+>>>
+>>>>>
+>>>>> Indeed, I couldn't find it anywhere either so resorted to phytool.
+>>>>>
+>>>>>>
+>>>>>> Which PHY is actually mounted on the board you have?
+>>>>>> Can you inspect it visually?
+>>>>>
+>>>>> It says LAN8830, plus a couple of other strings.
+>>>>>
+>>>>
+>>>> Yes, this board has a LAN9930 chip.
+>>
+>> Sorry; is that a typo? Should that be LAN8830?
+> 
+> Sorry, it is typo, LAN8830 is correct.
+> 
+>>
+>>>> Since this chip's PHY_ID is 0x22165X, I believe the PHY driver needs
+>>>> to be modified.
+>>>
+>>> I have confirmed that this IC is supported by micrel.c, not microchip.c.
+>>
+>> Excuse my ignorance; I have no experience with phys really. The driver that claims the phy is indeed
+>> micrel.c, and with the phy id set to 0x00221652 it's picked up as "Microchip LAN8841 Gigabit PHY".
+>> When I take a look at that the PHY_ID_LAN8841 (0x00551650) and MICREL_PHY_ID_MASK (0x00fffff0) seem
+>> like they're appropriate already. What needs to be modified?
+>>
+> 
+> Sorry for not explaining well.
+> We need to update compatible from ethernet-phy-id0022.1640 to
+> ethernet-phy-id0022.1650".
+> Because this chip's ID is 0055165X.
 
-Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
+Ack - ok, thanks very much!
 
->          $ref: /schemas/regulator/regulator.yaml#
->          type: object
->          unevaluatedProperties: false
+Dan
+
+> 
+> --- a/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
+> @@ -70,7 +70,7 @@ &eth0 {
+> 
+>   &mdio0 {
+>          phy3: ethernet-phy@3 {
+> -               compatible = "ethernet-phy-id0022.1640",
+> "ethernet-phy-ieee802.3-c22";
+> +               compatible = "ethernet-phy-id0022.1650",
+> "ethernet-phy-ieee802.3-c22";
+>                  reg = <3>;
+>                  rxc-skew-psec = <0>;
+>                  txc-skew-psec = <0>;
+> 
+> Best regards,
+>    Nobuhiro
+> 
+> 
+> 
+> 
+> 
 > --
-> 2.25.1
->
+> Nobuhiro Iwamatsu
+>     iwamatsu at {nigauri.org / debian.org / kernel.org}
+>     GPG ID: 32247FBB40AD1FA6
+
 
