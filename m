@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-234272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B8BCC2ACED
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 10:41:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 419EEC2ACF0
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 10:41:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13D333B8062
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 09:39:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6ABA1891091
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 09:42:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E14BF2F0C58;
-	Mon,  3 Nov 2025 09:39:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 705C92F2613;
+	Mon,  3 Nov 2025 09:41:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aWxrWply"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mN+kLgdN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B54B62EFDA5;
-	Mon,  3 Nov 2025 09:39:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25D262EFDBB;
+	Mon,  3 Nov 2025 09:41:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762162772; cv=none; b=iMII1LkGnB3Tj/KAieVeApag01Vx9uppGRy6P6gjnXVuAHeMhiSeRN13gN5FWt7Np28x/i5GIM8MT99oKfEBPYdADkoYum3LadM5YKBvRzSv0abPDd+/fHYlw/6UZIqf9gYS9p34yekGKb6dHpn7UhyoaJXk8Q4KnRx6O2G+TyA=
+	t=1762162903; cv=none; b=fMwTj7AAL3eCn+Lh4Qc9NZKubRd9FvFv50MSGswyI8GhNw+MSg8LIO4IzkDh1eyE/XI89T/cqlG6KMho28KUCVpM6qaXsaMhpTMBuG6qCEtkUsUSBmeSweu+JUrvSVu6Lg6mb0fF9OsLHTZ++oOwObzYi6OLOS7UiXd5C/+Eg9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762162772; c=relaxed/simple;
-	bh=74xTa1alepkXuLAJggdVWdu19FLOXxI8tg4rxRqpq10=;
+	s=arc-20240116; t=1762162903; c=relaxed/simple;
+	bh=8gK5j7Hv3paRWGmWznTyKoeIXmyc+VmCy3aM/L3TTSs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dh4Z6S0PqZ/zz7rsOEUFHsFmQ4yrpwnAtRN6iF1fP1qplJpOt4bADSZmXYklCyVxRP3oHva7Fy16prngUmCwvGBfiX+blcf+zN2kyp18hLIzC/3YsviWIG4iFAJrs3qCwgxMg/jYwVSkRon1GZoBZ3cNixwfwKvoNETC3AuU9uc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aWxrWply; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3542C4CEFD;
-	Mon,  3 Nov 2025 09:39:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=E3hLzYC/+h6be9FBecrs0V6Z8w/VKIvVcE9/1cjeeFFgpNLT1ztzEsd5b8cfv3ZIgNcCWV8degjhFiRMLHa+IuOQ7vJeGGFben4+0IYTx5O17DEym3uJDIuA+ewcTLbzEUR9FL/e9m/r1yIBBA7+PlmC4uX/zSivj65hsJXxri4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mN+kLgdN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28452C4CEE7;
+	Mon,  3 Nov 2025 09:41:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762162772;
-	bh=74xTa1alepkXuLAJggdVWdu19FLOXxI8tg4rxRqpq10=;
+	s=k20201202; t=1762162902;
+	bh=8gK5j7Hv3paRWGmWznTyKoeIXmyc+VmCy3aM/L3TTSs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aWxrWply1t/qhJLrulY0PUa6pjoYucGLbqzRzXOYHGA7T2aNuhDZgBWJyTPk+KgbF
-	 YL5RaPIgr3MwZHw+7/KFDKWYNaJlnECOhrwvH5xoVIqkcXafleWxGaDAPT/E5YFUNZ
-	 DYBI4IukWOwTI+ATD91xP1V3n5IS+Vi0/K/GAjN860CoLntKpLd71X4E5Fi4G/Nqa0
-	 46wtYNsfddKPkHt8f4LCSFrucRsmOQPYgPOs0i898jRRyUIUu38ziU5v30xaVcvLyL
-	 TW8bWqQOXx78nB1+A8crUEmN2ciaXtN7MbpLzFHh43oeOlkdjb3+vRWRwqqSPGzpIi
-	 VORLel3UFeyhQ==
-Date: Mon, 3 Nov 2025 10:39:29 +0100
+	b=mN+kLgdN/IlFgRwDuxyePznZM9KxTK4XQxaS7KEnQUWbLGJDBLYHYQcWjZicvIXwT
+	 MrAQ1Xtj/qvXNDRqIZ2WSvasOL/rcevsH73NgmCEJrcCG0WflgNX4n3G9duyJ9huv6
+	 OjnPYEjd52FLmf62HUYuhp3ss5EDEaXORmSQq1fa5kOMkVoSA0k1+LZ3+Jp9aNRDsO
+	 fSjG57EhkEW2wCG54zGxNcjhf2le/DRUc0w7evopDQjRy9i4gVNla5yBIStGbndJ+H
+	 eLe6sduFPAwDxfkw9XdhhDEoQCn4EZxA07EH39rBXlF5QUISp+LYmrTzWYV8sZGvGg
+	 d+rUtEOvIVy6Q==
+Date: Mon, 3 Nov 2025 10:41:40 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Cyril Chao <Cyril.Chao@mediatek.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v3 09/10] ASoC: dt-bindings: mediatek,mt8189-nau8825: add
- mt8189-nau8825 document
-Message-ID: <20251103-handsome-fractal-stoat-8b82ca@kuoka>
-References: <20251031073216.8662-1-Cyril.Chao@mediatek.com>
- <20251031073216.8662-10-Cyril.Chao@mediatek.com>
+To: Peter Griffin <peter.griffin@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, =?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Sam Protsenko <semen.protsenko@linaro.org>, 
+	Sylwester Nawrocki <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	Will McVicker <willmcvicker@google.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	kernel-team@android.com
+Subject: Re: [PATCH v3 1/4] dt-bindings: clock: google,gs101-clock: add
+ samsung,sysreg property as required
+Message-ID: <20251103-smoky-rustling-bloodhound-7590ce@kuoka>
+References: <20251102-automatic-clocks-v3-0-ff10eafe61c8@linaro.org>
+ <20251102-automatic-clocks-v3-1-ff10eafe61c8@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,76 +66,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251031073216.8662-10-Cyril.Chao@mediatek.com>
+In-Reply-To: <20251102-automatic-clocks-v3-1-ff10eafe61c8@linaro.org>
 
-On Fri, Oct 31, 2025 at 03:32:03PM +0800, Cyril Chao wrote:
-> +  mediatek,platform:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: The phandle of MT8189 ASoC platform.
-> +
-> +patternProperties:
-> +  "^dai-link-[0-9]+$":
-> +    type: object
-> +    description:
-> +      Container for dai-link level properties and CODEC sub-nodes.
+On Sun, Nov 02, 2025 at 08:27:14PM +0000, Peter Griffin wrote:
+> Each CMU (with the exception of cmu_top) has a corresponding sysreg bank
+> that contains the BUSCOMPONENT_DRCG_EN and MEMCLK registers.
+> 
+> If present these registers need to be initialised 
 
-<placeholder (see further)>
 
-> +
-> +    properties:
-> +      link-name:
-> +        description:
-> +          This property corresponds to the name of the BE dai-link to which
-> +          we are going to update parameters in this node.
-> +        enum:
-> +          - TDM_DPTX_BE
-> +          - I2SOUT0_BE
-> +          - I2SIN0_BE
-> +          - I2SOUT1_BE
-> +
-> +      codec:
-> +        description: Holds subnode which indicates codec dai.
-> +        type: object
-> +        additionalProperties: false
-> +
-> +        properties:
-> +          sound-dai:
-> +            minItems: 1
-> +            maxItems: 2
-> +        required:
-> +          - sound-dai
-> +
-> +      dai-format:
-> +        description: audio format.
-> +        enum:
-> +          - i2s
-> +          - right_j
-> +          - left_j
-> +          - dsp_a
-> +          - dsp_b
-> +
-> +      mediatek,clk-provider:
-> +        $ref: /schemas/types.yaml#/definitions/string
-> +        description: Indicates dai-link clock master.
-> +        enum:
-> +          - cpu
-> +          - codec
-> +
-> +    additionalProperties: false
+... for what exactly? What would happen if this was not initialized?
+What is the exact justification for ABI break - wasn't this working
+before? Or new feature will not work (thus no ABI break allowed)?
 
-If there is going to be a new version please move this one above to
-earlier place - after "description:", to the placeholder place (but of
-course keep indentation level, just ordering).
+You need to provide rationale and "driver needs to do something" is not
+enough, because everything could be justified that way.
 
-Also
-A nit, subject: drop second/last, redundant "document". The
-"dt-bindings" prefix is already stating that this is documentation.
-See also:
-https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-
-No need to resend just for that.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> in the clock driver.
+> Update the bindings documentation so that all CMUs (with the exception of
+> gs101-cmu-top) have samsung,sysreg as a required property.
+> 
+> Additionally update the DT example to included the correct CMU size as
+> registers in that region are used for auto clock mode.
 
 Best regards,
 Krzysztof
