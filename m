@@ -1,83 +1,83 @@
-Return-Path: <devicetree+bounces-234420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A605C2CBB8
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 16:30:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8F6EC2CE41
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 16:49:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DC8DA4F43B2
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 15:23:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DEB7E463C07
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 15:23:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D294B3271E3;
-	Mon,  3 Nov 2025 15:15:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93C4F327210;
+	Mon,  3 Nov 2025 15:15:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="x0GPdNYK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nkbXxNjy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 925433254A3
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 15:15:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B039326D5F
+	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 15:15:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762182905; cv=none; b=Jh7bKMLDs3/kgHv93mOsyV7SBCYCGWDVcPwUFlMoB5E5eXokU9cZDli7UjOSiyenXrJy3ZewcPBPNU1BHSTgIehkzywheNDnPyRiOus6jWadWpF7fjEPus0Pfcro652P9MVqUwEkZ+LeF0zq4HZ4LHMebG7UadbR08PRsxacMJQ=
+	t=1762182907; cv=none; b=oRyW+mpS8OqJi+9H81cfVDArQNjcBeUkPkrHbf5CP5dRdygGvJ4yNeBVrK5Gfy5w9KWuwpm4+CE8TuqLbOB9nMqBIJ3eo4ufhuQ/xHNe0AOCBlJnNXNwrYzaL9JInFLaKSPyheVpHToDr3PWANp3zKEZfXEus/jtxnvlUkSUMZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762182905; c=relaxed/simple;
-	bh=/60XDylYZWmdnR0P2d/DcuaJof1BraTXpvQ8ONRUuPw=;
+	s=arc-20240116; t=1762182907; c=relaxed/simple;
+	bh=ebhFwk1A+stuafBc1xiTkv9rAh5xmlwxW8L4Te/AXXk=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=i2XYqFrjVN/ZOgYtqpydA8usNHIC4DsFFc0VOZOPF2tM556W4L4booPCMWxCncZFSPRjGOERT6Rcb9JX+NB1HOvc8gVFzHsQuMMFgCnCMloVv3caPzAi1U3mMFgYCyjoiVKloKOx9FaWEjJs663nQgtOQYOu3ijnORidvCywtS4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=x0GPdNYK; arc=none smtp.client-ip=209.85.218.41
+	 In-Reply-To:To:Cc; b=JZP2RRYxwXcnogGaMH4gWhc+inu/Y7jy8mie2pDMPNNGHlFEWf94R7q4xR1m31l29mnbgp4r/c4KVurbH5kqxXiUf7d/kxo6k6Nz9XKMwcRwPMdVvqLW5rrQ4mQxFLKkTKBQ0jbBM6JRAWAAYa/OVqeLU3Fbd7qJgXaeU3mLbKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nkbXxNjy; arc=none smtp.client-ip=209.85.218.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b70b0f3ce18so12117866b.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 07:15:03 -0800 (PST)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-b70ca7d1e9eso11016566b.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 07:15:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762182901; x=1762787701; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1762182903; x=1762787703; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=V5y9WY5tQdT+mTRk6q/vwazJuvaGoNd7k2enU0ndko0=;
-        b=x0GPdNYKA6ekn/EydkHn1fGbJzo7+HcQEFfekLlzYnVcrwf438/9u30qkrt02yoqnH
-         JniqeI+qGjoPs2pUDFiuWckq/eaHPB+wfsxmMgKWs03U4l8T4KfFnGMlc9U1tVfedlQd
-         W9IXUkAnaBSjyBo68qVBHMggtr1JLo75rbJhpmEdnwRdwvGKXvJppbX+85V60p04Y/JN
-         ibRw4Xs9J1Iv3lfX8e/7J3a8X6X0I0LWLsHUG0yTVnKI56Sh56lFkIf3zhX7uemc823H
-         30Ng+bxk+OQgIeeoYQOXwjU7JkxQKeiAnMxEjsXvhikuofhpMhooWP8R8xzIG2IBXP9B
-         iNOw==
+        bh=Bi08syHZ3YpmBy75TyhPcic3H1G70rE6+4Jz6VE3HGk=;
+        b=nkbXxNjy9HgchVaEK86vjIIi0e0zbcIg5ogCsrv6+Cc2UcB1cgqfKe0JP7nK6H7iOe
+         On5DV+2Kw0uAo6H9Umwgwc1ugpG9I8cLWjaOF7tbuzKdrVvmnctN8VZHjJZARgOJOhvZ
+         KiYKInbp4P/O32yyk+cP+ePy/3jLKh0j9XfBPRVH5QdrHoYnoBor4vzdgaRIshKn0NbL
+         oJF5sasRilJBtXg7iItIrQ2vSt+/RSHDqweGjEjlEBY9O+7nDhdHCGf+T/ayVQplMwRk
+         LVwwnytbFJpRqgFsnO6dE2OD4WeqlMbbl0FO6CO+uT1FV55T4rItOkZdtRFiXcIe2vBN
+         WPVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762182901; x=1762787701;
+        d=1e100.net; s=20230601; t=1762182903; x=1762787703;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=V5y9WY5tQdT+mTRk6q/vwazJuvaGoNd7k2enU0ndko0=;
-        b=guNyUQSkCDbAYTC+C3dEUi9n93HIw5/n7STsSooD+dP7PSNtnwoOa/fpcqQ2uevBh3
-         Z9lxPk73oAxtrj5sTZVurG5XK6KYREAygLkDbjvDEzJpONPdbi8gz3US015z66xXjMpA
-         ecKR3Rv1boE5xHpaVf3SGNOE1pdJ+AkYTST/OO4fElhjNR0pq5jd8VTYv7QPQ/EB7eAW
-         sH6E5ns5KB0Ts4ZNM2YnURahJaDGzsIKQ71LYHvjezKo8TCaLeewDLMD5Iz4/g1HLAH3
-         2qcPC7djvbAv/w56eE2jBXr9jIOAWd8p4LrtNqmAhlsHWWbARoY4zMJOrsKmXf1VQSbG
-         myOA==
-X-Forwarded-Encrypted: i=1; AJvYcCXgKDz84pW/ZZ0oz1t3j4wtdvF2wD4gSmDAoo6pszJupx9tTKWhAh+eZlzB84D2jg9OoMu2hgnCAiVZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YygQT71wGevUCxlxiWUbHtrYDCH26E4KZ6mj528MB0sZF00mjBR
-	H4E9dwyhFw/o5RnTmq9BeYJ4O4/JygRJtuITEi15fPtFigrHxy46E9hcrO0ixuaSRfsWorl3JjZ
-	EAsip
-X-Gm-Gg: ASbGncsZZGBfiVKTJh6LHvTmipiOfVCCvrxtv8oAUG15trodf6xZq0d5/D/SD2AXBZw
-	D6mMtB1p7fqjqNFWycs7DCiXJEPV6gnN4+on/CmvzxRZTtY+W/mpBm7b1SLWEBDtWFLjsnICAeL
-	DQTxgeXteTqjkmSSmHEMaUlx7wu1EfeXfjqKMeHDgq75SWbzDRAyRWz8lTwfE2rZIyFOGzLXNRA
-	yAPGHpXdLjmEe2CnvG7mkFFCZZHAMdRVqEWdjsU1xIn+Kf9S0PZ8y/SF6MI1dQK+om2yYHeLnsy
-	g7hE9idpx9v9ovzKApVdikDUHjgprGzXajILiD4hoXooEba3Qe1e6vk+VdawfFQEbeMOc+XGw3z
-	PCN0+JvlcQ9vS/gs+UuYNDFO87qdBVy4suvwjc3WR+P3tbddRnaenHckQxXAL0WnatmtMj6YSJa
-	HpsZ5yjbQ5APlI3WTujgTIK1e1JX8=
-X-Google-Smtp-Source: AGHT+IFJHh3FKRAF1jF0s4svcp3lNkn71MV19ZjNiPSionIE4cVq7X8wjL7Nnnyk+krA5RRXBPNYEw==
-X-Received: by 2002:a17:907:d27:b0:b2b:c145:ab8a with SMTP id a640c23a62f3a-b7070129066mr765668466b.3.1762182901327;
-        Mon, 03 Nov 2025 07:15:01 -0800 (PST)
+        bh=Bi08syHZ3YpmBy75TyhPcic3H1G70rE6+4Jz6VE3HGk=;
+        b=eLfKNcH1VmWlKG+lyuqjtN1bIvmnso5OLYfwF5lc/pyIyqSMfCkK+x2kIh6Sq2R1YB
+         txkLYnKaQsRSu0Gc7w17LkrHoFAKBxom0iC8tCVjsyMLWKwq5I/V5fNprGs5y4I8z8l/
+         UuBLmQZVAAW2ix3FTfOsn+aROWB38VUtMbE0w9CnrnaK+UT76WjTWqpIl/vjdwNDdMjt
+         corcaZCXmISHd28V7C3uSC2Cis1Yk8btK6T/zbm2bczQlDmhNk3wQxOwOPrEhg3+e2sB
+         h2bnL9Tc3M8zoQMENi8GavawvcqrF2uQK2IjdFzEGErqC1+Z/ouknv8j9XEFoz/8pG8R
+         xg4A==
+X-Forwarded-Encrypted: i=1; AJvYcCVg/RmkZZso1fB1hW4KyWRij1jXjzpk9/ir9XS5JpYatHDtp9nB0pIZHFqk4HxMpFqF8to1Q8MXfVl1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6p3d7SkakJ3YEVjY5X5auqwUD+79a+U9tyrHG278G9xTUAozl
+	ue70Ef1mvUKBsG8pAGErMXLFkmcBz+Q0aWJY3bq2z2M80YELti641CBJsdp3hhajdMTLJFYNtMV
+	0OS1K
+X-Gm-Gg: ASbGncs/w6XHISxokG6MzpkwOjYGw7HsneFepZLk+n6MQiurCO8dI5AAfs9PNM5vfK3
+	Ke7oizDckfepKzo9KYsSvx+VFaP58w48iJ1ZiW81t3wVrRzf8OdanZ+QclmDjiqBX71jH3SnJNP
+	0L3HK9x5TNt2/uXedCAvV6cOSkctGA0uPQAoHF5F0R31Mg6k3/RCzLMlix6X/4EoVsUJqz1bsJ/
+	RPYxyzcUawSlsBYMoUT8Z+vSbrZeq3pcNYoMi5suyG72XVSV0HncK7dTZPuH38mrBL9MkE7ze+Y
+	+GUYwXvEdprakMyvTmGzXVHnAehyC2JFB/jHGq09OT9x8pHKbz5j5MsTgQ46+sFuSS9xIUD55SU
+	COcIvL/vdefyM8vy8TTW3ppiuJ13S6XjurvKtYyN/d6We8knL7PW5SFbA11aP7Nvlwweo8AKTfm
+	SYh0kEsQTxvIleYhqt
+X-Google-Smtp-Source: AGHT+IGtocCy63qnSLfMJVVArR2dbi4Cz6gXTnyicwhP/3CN4gsoRWGxXCqtF6kgYnr+w5cSsXhWfw==
+X-Received: by 2002:a17:907:3e0c:b0:b6d:6d44:d255 with SMTP id a640c23a62f3a-b70700af393mr733413266b.1.1762182902899;
+        Mon, 03 Nov 2025 07:15:02 -0800 (PST)
 Received: from [127.0.1.1] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7077975dfdsm1045203066b.13.2025.11.03.07.14.59
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7077975dfdsm1045203066b.13.2025.11.03.07.15.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Nov 2025 07:15:00 -0800 (PST)
+        Mon, 03 Nov 2025 07:15:02 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Mon, 03 Nov 2025 16:14:42 +0100
-Subject: [PATCH 02/12] dt-bindings: PCI: qcom,pcie-sdx55: Move SDX55 to
+Date: Mon, 03 Nov 2025 16:14:43 +0100
+Subject: [PATCH 03/12] dt-bindings: PCI: qcom,pcie-sdm845: Move SDM845 to
  dedicated schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -87,7 +87,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251103-dt-bindings-pci-qcom-v1-2-c0f6041abf9b@linaro.org>
+Message-Id: <20251103-dt-bindings-pci-qcom-v1-3-c0f6041abf9b@linaro.org>
 References: <20251103-dt-bindings-pci-qcom-v1-0-c0f6041abf9b@linaro.org>
 In-Reply-To: <20251103-dt-bindings-pci-qcom-v1-0-c0f6041abf9b@linaro.org>
 To: Bjorn Helgaas <bhelgaas@google.com>, 
@@ -100,52 +100,52 @@ Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8180;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=9758;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=/60XDylYZWmdnR0P2d/DcuaJof1BraTXpvQ8ONRUuPw=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpCMbli7YOvEoPh2fPW6hwnE/uFbR+3GgG4k2Gc
- UAGU3qVsx+JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaQjG5QAKCRDBN2bmhouD
- 1/pFD/wJx5AuZ0PaUyR/KGOCXyzj4ZOAyViem39CZki7OWxKv0lIvS5iRRvrJHj0pnbMm/5QN76
- JnCMqJ6r8UJ6Zu2V2VG/dFPLoIC1uk7wl0yvkIexYn3+KMklHsrPtGwIq45ET43+pCxcQg01Tvk
- w0P7xfNrVQhM2ybsA5RXQLncTw4kzxjGBPKqVfHU7f7hvWJ/TDP/yjLtR6q+IgLXSHSNhtynZsn
- XFOU6hkuSK5aBCr3DM2wdRffvoN0dUqhwWIYC8NhWP0/V+d8oBsZwqL6U7yoYVYTzb4E62RWHoV
- Oq/xyHyLWjSllWMsTbGZ9lXzn9rs2XDc7JpQ43e0uWSfKiBvcv/dBzYxExeqRTef5AjOZHc7N8e
- GBdhOqzOFHjgw9dml4kGCC746sNWVeNF48Hw0NvLYWoOpnEJkQ44ohOz41/blBPz+PqbLuVClxw
- 5vTdkO0q6JfzY3hv6FM9IO8WpRB451pyrbkTll1kfHqbSPm2IwTBuuPidckA4vqoIXLrmJPWOm1
- Vb3WSXfo4QTq3YV38LWwT2JUbxew1qWIX0iAiVI3QGLz9QFh9DDHgmesFinYdvMHnF7Qqn0YQCL
- nfznNrnrumtX5hiSCUFdIquTVrt8kdth1O/Xkpl3xcElUfuMIhX4dMh5k7f7POw0MOjVzTolkwD
- NEKx1o8IRXYNJ4w==
+ bh=ebhFwk1A+stuafBc1xiTkv9rAh5xmlwxW8L4Te/AXXk=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpCMbmbi7l97iwOeqpi65bEi2LNPWMWugEsVGxM
+ DhgAAIinnuJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaQjG5gAKCRDBN2bmhouD
+ 18cID/4iSI0uqmVsWFFt33YB7p6bBQKn21YtAOmf1xp7/gCXDnhttm7bMKBWERns4mDmJAkoE5k
+ f3U5KS07E1WblUhHvS2kJOd+XNIsyb+WhhgYLkM44P0mGbTUqIydzcbMSfRd6qMLflq+prGCzEv
+ ilO9RElvS7MEVGx26MCrbuHdjxfmmCvBAdcvTlMOdE+c1WcxqqPQkRu2LcTHnMIIYDSETDqY0z6
+ lrR698GelIQHWF/up6MW8Z2VzX3bqoff/yrrAiWQCR8/vMaUqQ588vE719SYai8p3cMgLT7wOKg
+ hsGa6vrIMHIE5Wo1HN7ct8U71gd7yNkNVKwQA76JPGdzK0hd2cUmMwgc7a6Eh1t/KZ+Ac3jLybY
+ 1BSAY7AwAwmCNeAQ62SvEhbz5bmOnfqXIqt28mO4ZzBZk1vws2KPdkwtd+Pd13X3EhqHDZqBpS4
+ BxN9rhysu8iGDhuk79hWqJsCRyYlcMNyJWFYfDKU0pvavWY2IKn07392BXZ6LKuigyq6yYvn3CU
+ wF2mZlP5/b3mi7xpIMnU1vdDRn9Svimggt2BQrl5gY4nnfC4x0e2RXCmSJSLDIyfOM5mq1RIi02
+ NUYZIFJi4HcdTDm6ZtHMLkGKhfFqW82j7/LO11TL7wwNBhMrEd4O2Y4X42WdVyKxduTN7E7SWA6
+ KS8j8FtGQOCFTVg==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Move SDX55 PCIe devices from qcom,pcie.yaml binding to a dedicated file
+Move SDM845 PCIe devices from qcom,pcie.yaml binding to a dedicated file
 to make reviewing and maintenance easier.
 
 New schema is equivalent to the old one with few changes:
  - Adding a required compatible, which is actually redundant.
  - Drop the really obvious comments next to clock/reg/reset-names items.
- - Adding interrupts based on the DTS, which were missing in the
-   all-in-one binding.
+ - Expecting eight MSI interrupts and one global, instead of only one,
+   which was incomplete hardware description.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/pci/qcom,pcie-sdx55.yaml   | 172 +++++++++++++++++++++
- .../devicetree/bindings/pci/qcom,pcie.yaml         |  48 ------
- 2 files changed, 172 insertions(+), 48 deletions(-)
+ .../devicetree/bindings/pci/qcom,pcie-sdm845.yaml  | 190 +++++++++++++++++++++
+ .../devicetree/bindings/pci/qcom,pcie.yaml         |  46 -----
+ 2 files changed, 190 insertions(+), 46 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sdx55.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sdx55.yaml
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sdm845.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sdm845.yaml
 new file mode 100644
-index 000000000000..7f6fd81e7ed0
+index 000000000000..1ec9e4f3ff57
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sdx55.yaml
-@@ -0,0 +1,172 @@
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sdm845.yaml
+@@ -0,0 +1,190 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/pci/qcom,pcie-sdx55.yaml#
++$id: http://devicetree.org/schemas/pci/qcom,pcie-sdm845.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Qualcomm SDX55 PCI Express Root Complex
++title: Qualcomm SDM845 PCI Express Root Complex
 +
 +maintainers:
 +  - Bjorn Andersson <andersson@kernel.org>
@@ -154,26 +154,27 @@ index 000000000000..7f6fd81e7ed0
 +properties:
 +  compatible:
 +    enum:
-+      - qcom,pcie-sdx55
++      - qcom,pcie-sdm845
 +
 +  reg:
-+    minItems: 5
-+    maxItems: 6
++    minItems: 4
++    maxItems: 5
 +
 +  reg-names:
-+    minItems: 5
++    minItems: 4
 +    items:
 +      - const: parf
 +      - const: dbi
 +      - const: elbi
-+      - const: atu
 +      - const: config
 +      - const: mhi
 +
 +  clocks:
-+    maxItems: 7
++    minItems: 7
++    maxItems: 8
 +
 +  clock-names:
++    minItems: 7
 +    items:
 +      - const: pipe
 +      - const: aux
@@ -181,21 +182,25 @@ index 000000000000..7f6fd81e7ed0
 +      - const: bus_master # Master AXI clock
 +      - const: bus_slave # Slave AXI clock
 +      - const: slave_q2a
-+      - const: sleep
++      - enum: [ ref, tbu ]
++      - const: tbu
 +
 +  interrupts:
-+    maxItems: 8
++    minItems: 8
++    maxItems: 9
 +
 +  interrupt-names:
++    minItems: 8
 +    items:
-+      - const: msi
++      - const: msi0
++      - const: msi1
 +      - const: msi2
 +      - const: msi3
 +      - const: msi4
 +      - const: msi5
 +      - const: msi6
 +      - const: msi7
-+      - const: msi8
++      - const: global
 +
 +  resets:
 +    maxItems: 1
@@ -216,165 +221,175 @@ index 000000000000..7f6fd81e7ed0
 +
 +examples:
 +  - |
-+    #include <dt-bindings/clock/qcom,gcc-sdx55.h>
++    #include <dt-bindings/clock/qcom,gcc-sdm845.h>
 +    #include <dt-bindings/gpio/gpio.h>
 +    #include <dt-bindings/interrupt-controller/arm-gic.h>
 +
-+    pcie@1c00000 {
-+        compatible = "qcom,pcie-sdx55";
-+        reg = <0x01c00000 0x3000>,
-+              <0x40000000 0xf1d>,
-+              <0x40000f20 0xc8>,
-+              <0x40001000 0x1000>,
-+              <0x40100000 0x100000>;
-+        reg-names = "parf",
-+                    "dbi",
-+                    "elbi",
-+                    "atu",
-+                    "config";
-+        ranges = <0x01000000 0x0 0x00000000 0x40200000 0x0 0x100000>,
-+                 <0x02000000 0x0 0x40300000 0x40300000 0x0 0x3fd00000>;
-+
-+        device_type = "pci";
-+        linux,pci-domain = <0>;
-+        bus-range = <0x00 0xff>;
-+        num-lanes = <1>;
-+
-+        #address-cells = <3>;
++    soc {
++        #address-cells = <2>;
 +        #size-cells = <2>;
 +
-+        interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "msi",
-+                          "msi2",
-+                          "msi3",
-+                          "msi4",
-+                          "msi5",
-+                          "msi6",
-+                          "msi7",
-+                          "msi8";
-+        #interrupt-cells = <1>;
-+        interrupt-map-mask = <0 0 0 0x7>;
-+        interrupt-map = <0 0 0 1 &intc GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
-+                        <0 0 0 2 &intc GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
-+                        <0 0 0 3 &intc GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
-+                        <0 0 0 4 &intc GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
++        pcie@1c00000 {
++            compatible = "qcom,pcie-sdm845";
++            reg = <0x0 0x01c00000 0x0 0x2000>,
++                  <0x0 0x60000000 0x0 0xf1d>,
++                  <0x0 0x60000f20 0x0 0xa8>,
++                  <0x0 0x60100000 0x0 0x100000>,
++                  <0x0 0x01c07000 0x0 0x1000>;
++            reg-names = "parf", "dbi", "elbi", "config", "mhi";
++            ranges = <0x01000000 0x0 0x00000000 0x0 0x60200000 0x0 0x100000>,
++                     <0x02000000 0x0 0x60300000 0x0 0x60300000 0x0 0xd00000>;
 +
-+        clocks = <&gcc GCC_PCIE_PIPE_CLK>,
-+                 <&gcc GCC_PCIE_AUX_CLK>,
-+                 <&gcc GCC_PCIE_CFG_AHB_CLK>,
-+                 <&gcc GCC_PCIE_MSTR_AXI_CLK>,
-+                 <&gcc GCC_PCIE_SLV_AXI_CLK>,
-+                 <&gcc GCC_PCIE_SLV_Q2A_AXI_CLK>,
-+                 <&gcc GCC_PCIE_SLEEP_CLK>;
-+        clock-names = "pipe",
-+                      "aux",
-+                      "cfg",
-+                      "bus_master",
-+                      "bus_slave",
-+                      "slave_q2a",
-+                      "sleep";
-+
-+        assigned-clocks = <&gcc GCC_PCIE_AUX_CLK>;
-+        assigned-clock-rates = <19200000>;
-+
-+        iommu-map = <0x0 &apps_smmu 0x0200 0x1>,
-+                    <0x100 &apps_smmu 0x0201 0x1>,
-+                    <0x200 &apps_smmu 0x0202 0x1>,
-+                    <0x300 &apps_smmu 0x0203 0x1>,
-+                    <0x400 &apps_smmu 0x0204 0x1>;
-+
-+        power-domains = <&gcc PCIE_GDSC>;
-+
-+        phys = <&pcie_phy>;
-+        phy-names = "pciephy";
-+
-+        resets = <&gcc GCC_PCIE_BCR>;
-+        reset-names = "pci";
-+
-+        perst-gpios = <&tlmm 57 GPIO_ACTIVE_LOW>;
-+        wake-gpios = <&tlmm 53 GPIO_ACTIVE_HIGH>;
-+
-+        pcie@0 {
 +            device_type = "pci";
-+            reg = <0x0 0x0 0x0 0x0 0x0>;
-+            bus-range = <0x01 0xff>;
++            linux,pci-domain = <0>;
++            bus-range = <0x00 0xff>;
++            num-lanes = <1>;
 +
 +            #address-cells = <3>;
 +            #size-cells = <2>;
-+            ranges;
++
++            clocks = <&gcc GCC_PCIE_0_PIPE_CLK>,
++                     <&gcc GCC_PCIE_0_AUX_CLK>,
++                     <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
++                     <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
++                     <&gcc GCC_PCIE_0_SLV_AXI_CLK>,
++                     <&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>,
++                     <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>;
++            clock-names = "pipe",
++                          "aux",
++                          "cfg",
++                          "bus_master",
++                          "bus_slave",
++                          "slave_q2a",
++                          "tbu";
++
++            interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
++            interrupt-names = "msi0",
++                              "msi1",
++                              "msi2",
++                              "msi3",
++                              "msi4",
++                              "msi5",
++                              "msi6",
++                              "msi7",
++                              "global";
++            #interrupt-cells = <1>;
++            interrupt-map-mask = <0 0 0 0x7>;
++            interrupt-map = <0 0 0 1 &intc 0 0 GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
++                            <0 0 0 2 &intc 0 0 GIC_SPI 150 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
++                            <0 0 0 3 &intc 0 0 GIC_SPI 151 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
++                            <0 0 0 4 &intc 0 0 GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
++
++            iommu-map = <0x0 &apps_smmu 0x1c10 0x1>,
++                        <0x100 &apps_smmu 0x1c11 0x1>,
++                        <0x200 &apps_smmu 0x1c12 0x1>,
++                        <0x300 &apps_smmu 0x1c13 0x1>,
++                        <0x400 &apps_smmu 0x1c14 0x1>,
++                        <0x500 &apps_smmu 0x1c15 0x1>,
++                        <0x600 &apps_smmu 0x1c16 0x1>,
++                        <0x700 &apps_smmu 0x1c17 0x1>,
++                        <0x800 &apps_smmu 0x1c18 0x1>,
++                        <0x900 &apps_smmu 0x1c19 0x1>,
++                        <0xa00 &apps_smmu 0x1c1a 0x1>,
++                        <0xb00 &apps_smmu 0x1c1b 0x1>,
++                        <0xc00 &apps_smmu 0x1c1c 0x1>,
++                        <0xd00 &apps_smmu 0x1c1d 0x1>,
++                        <0xe00 &apps_smmu 0x1c1e 0x1>,
++                        <0xf00 &apps_smmu 0x1c1f 0x1>;
++
++            power-domains = <&gcc PCIE_0_GDSC>;
++
++            phys = <&pcie0_phy>;
++            phy-names = "pciephy";
++
++            resets = <&gcc GCC_PCIE_0_BCR>;
++            reset-names = "pci";
++
++            perst-gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
++            wake-gpios = <&tlmm 134 GPIO_ACTIVE_HIGH>;
++
++            vddpe-3v3-supply = <&pcie0_3p3v_dual>;
++
++            pcie@0 {
++                device_type = "pci";
++                reg = <0x0 0x0 0x0 0x0 0x0>;
++                bus-range = <0x01 0xff>;
++
++                #address-cells = <3>;
++                #size-cells = <2>;
++                ranges;
++            };
 +        };
 +    };
 diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-index 0e1808105a81..de6439a45ef4 100644
+index de6439a45ef4..68cae47c2ef6 100644
 --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
 +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-@@ -31,7 +31,6 @@ properties:
+@@ -30,7 +30,6 @@ properties:
+           - qcom,pcie-ipq9574
            - qcom,pcie-msm8996
            - qcom,pcie-qcs404
-           - qcom,pcie-sdm845
--          - qcom,pcie-sdx55
+-          - qcom,pcie-sdm845
        - items:
            - enum:
                - qcom,pcie-ipq5332
-@@ -210,27 +209,6 @@ allOf:
-             - const: config # PCIe configuration space
-             - const: mhi # MHI registers
- 
--  - if:
--      properties:
--        compatible:
--          contains:
--            enum:
--              - qcom,pcie-sdx55
--    then:
--      properties:
--        reg:
--          minItems: 5
--          maxItems: 6
--        reg-names:
--          minItems: 5
--          items:
--            - const: parf # Qualcomm specific registers
--            - const: dbi # DesignWare PCIe registers
--            - const: elbi # External local bus interface registers
--            - const: atu # ATU address space
--            - const: config # PCIe configuration space
--            - const: mhi # MHI registers
--
-   - if:
+@@ -194,7 +193,6 @@ allOf:
+             enum:
+               - qcom,pcie-apq8084
+               - qcom,pcie-msm8996
+-              - qcom,pcie-sdm845
+     then:
        properties:
-         compatible:
-@@ -579,32 +557,6 @@ allOf:
-           items:
-             - const: pci # PCIe core reset
+         reg:
+@@ -514,49 +512,6 @@ allOf:
+             - const: pwr # PWR reset
+             - const: ahb # AHB reset
  
 -  - if:
 -      properties:
 -        compatible:
 -          contains:
 -            enum:
--              - qcom,pcie-sdx55
+-              - qcom,pcie-sdm845
 -    then:
+-      oneOf:
+-          # Unfortunately the "optional" ref clock is used in the middle of the list
+-        - properties:
+-            clocks:
+-              minItems: 8
+-              maxItems: 8
+-            clock-names:
+-              items:
+-                - const: pipe # PIPE clock
+-                - const: aux # Auxiliary clock
+-                - const: cfg # Configuration clock
+-                - const: bus_master # Master AXI clock
+-                - const: bus_slave # Slave AXI clock
+-                - const: slave_q2a # Slave Q2A clock
+-                - const: ref # REFERENCE clock
+-                - const: tbu # PCIe TBU clock
+-        - properties:
+-            clocks:
+-              minItems: 7
+-              maxItems: 7
+-            clock-names:
+-              items:
+-                - const: pipe # PIPE clock
+-                - const: aux # Auxiliary clock
+-                - const: cfg # Configuration clock
+-                - const: bus_master # Master AXI clock
+-                - const: bus_slave # Slave AXI clock
+-                - const: slave_q2a # Slave Q2A clock
+-                - const: tbu # PCIe TBU clock
 -      properties:
--        clocks:
--          minItems: 7
--          maxItems: 7
--        clock-names:
--          items:
--            - const: pipe # PIPE clock
--            - const: aux # Auxiliary clock
--            - const: cfg # Configuration clock
--            - const: bus_master # Master AXI clock
--            - const: bus_slave # Slave AXI clock
--            - const: slave_q2a # Slave Q2A clock
--            - const: sleep # PCIe Sleep clock
 -        resets:
 -          maxItems: 1
 -        reset-names:
@@ -384,6 +399,14 @@ index 0e1808105a81..de6439a45ef4 100644
    - if:
        not:
          properties:
+@@ -598,7 +553,6 @@ allOf:
+               - qcom,pcie-ipq8074-gen3
+               - qcom,pcie-msm8996
+               - qcom,pcie-msm8998
+-              - qcom,pcie-sdm845
+     then:
+       oneOf:
+         - properties:
 
 -- 
 2.48.1
