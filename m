@@ -1,311 +1,218 @@
-Return-Path: <devicetree+bounces-234460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F603C2D346
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 17:42:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63E47C2D3F1
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 17:50:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DEB2D3A7F18
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 16:30:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 696534272E6
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 16:35:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41C093191A4;
-	Mon,  3 Nov 2025 16:30:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCD70319851;
+	Mon,  3 Nov 2025 16:35:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="F4kAPPtc"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="aZUqIWOR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CY3PR05CU001.outbound.protection.outlook.com (mail-westcentralusazon11013053.outbound.protection.outlook.com [40.93.201.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0578631815E
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 16:30:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762187412; cv=none; b=LuBjlzTLorS15+Lfmjubg19S8nX5eGQiucQniUV2FLtBW42Tu7Dr/giS0AZIBVWk/MEIwfWqST/RaVqQtDw9LcN9t5rmGAwc5QTCCnafFELxbDn/WSU6DB9+0giVj73fBr9hnGkPMsnujnXwrfx0tTFOtpVXiqmy/nf6DRP1IUI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762187412; c=relaxed/simple;
-	bh=bEvIZ6b3ZPoI56NZVv/yoSC/UVLKTxOb/khDUfqNXZA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VZVKQcmClWhXn3UWJyNJ/o2QS+3sjInYy2WhJxLGxl87DkZ9A38F81WVvTjglXakwMZQx2mLRKwXHsnrG/NPxJ1uAW6koU9EOHgxT/mMu8WSS2kwKCfrJMFZVgtHhBoeOvt9O1JrGCO7z2Zz1qcCDSpVoFo8Aq/fMwLDrIN63CU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=F4kAPPtc; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-475dab5a5acso21294595e9.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 08:30:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1762187408; x=1762792208; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=84F0QgR4+jds+lqPjKDSBSqClUiU/2oz/AngUspSNH8=;
-        b=F4kAPPtcZZVu3wZgcaCHUtPsottZ6u5GzyBptAODlIGAnm6CnH8jVIRrOuWQQhFnMa
-         QMwF2YkaQbr7Ueoos65dmmiVbIAiWoHhovBuJtX87K7P6salpJ4umMAuQnoKQwmDKJrQ
-         Q+e1h9Lz5t2GBN+zV5niKSJMRype73Dfc20Fi89W7AL4zRfpOwcXwBsLxLukaFDdHVPU
-         aNlarHPqZ18b0cchO1o7jyP9gfnTpuxsJjslNYHo83/O3UmMOds/HqnOlysK32c2VhLJ
-         x5Zu2Rbiq4Xb/qUlSZ4IoxBwsz05zqNLTHPWJf4Om2J1HZVT2WSd9aAU+zitlHijKgeX
-         Hs3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762187408; x=1762792208;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=84F0QgR4+jds+lqPjKDSBSqClUiU/2oz/AngUspSNH8=;
-        b=h9HXvIBSwnxO4jxE6MQX+68GOxDLf6PIwOK65uFTZo2RKrbXvhtTuaq9TauA0/dHA6
-         YD3xIwWZzNSaM0x1OYqOkORFil4rs5qAa4JKNPvrXIjotiQzdusYk7owrnqLJ+cLx+Ok
-         jklY+5SjTUkCnlNTb1erPid/pS7zs3zG0AzyANSuPc0C1UYwgS8IampKV8x/FMlz8yPP
-         3rcH9pcD1NkF8/Va6FmiCtjLui07l9xoEOkC1kF3cAPJym42V6ueefGRJrUGIJzUBGk3
-         GaNadYB8bJ1J3ZTB2fe3fO3wdOd6b+q1YixLaXrv8auTWTcMSxd+pQ3WhQalrwsur2y9
-         1XLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXkHH5EM8WnIAaWc9n/jcI36+VWt3iDbyiG8pXjBSQ8b6M3yS3dYI8ImYE8Z7lFP93/XYPinTIGIeXK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+khCj5aRsy5TZCe5DhD8tLb21Dnhdcw5mWHbOUt2+JjGiv+9z
-	OiJQZStSzpi328zayhIGt5L+hYxUjbWSqVg+45hVdcZn/0+VptlRrsbDblgHjBL3Fkc=
-X-Gm-Gg: ASbGncs8jDVUh07KKcd1RjtdtwxuzhM8LXm1CgcPxlNoGPmfV7xd6u+0QWBHqlmPm1d
-	jOPm2E25gdzPpCg6JyOqpvpCEQ1gUlstGPGDr4XCtIx8BF+xrMWGCkrsnVNhu5WvrcquxaLbm8d
-	yYZuFPDs5J7X5V+u+GPch6cd/Hl+wSj4Ix6eVjYRIikNhZN23j62435HaKRW6NWaElRGrvtUxmp
-	FI+eDEWnXgNuq5BwPQlk2f031arsV2eCprZGORQosI4DepYrqjBWsABtNj+hSfk9F5wT9a83bmx
-	8mFipY7l6Qmn1OmHX39j5F66nKEVVdlzYmuzhZHaQJIoyh6K3RoOKssrr1WQg39G5cnpf/TmatH
-	6t4VFtME7cr63tcZBJvXYsn8jMbIQRi2j2hijEc/yXIjqxl8MVUyyLkeNIJx82++dhr0eGpbdGc
-	sWrSJ5ap0mCFX8I9mM2CSR4GE/cFEipJTDwdaXsS/xL3dRwHFGHY1q2go1yhgIUBLKTFtvLw==
-X-Google-Smtp-Source: AGHT+IF/kGs5jea5FahI1rZFZGhV1Eh4Fy1sLd4uiFaXvIWVe3vieePJLCoPtu7DkEqIeKjkJL2wCg==
-X-Received: by 2002:a05:600c:83ce:b0:471:989:9d85 with SMTP id 5b1f17b1804b1-47730871fa6mr144953305e9.19.1762187406607;
-        Mon, 03 Nov 2025 08:30:06 -0800 (PST)
-Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429d1061efasm9781324f8f.24.2025.11.03.08.30.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Nov 2025 08:30:05 -0800 (PST)
-Date: Mon, 3 Nov 2025 16:31:35 +0000
-From: Daniel Thompson <daniel@riscstar.com>
-To: Junjie Cao <caojunjie650@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-fbdev@vger.kernel.org, Pengyu Luo <mitltlatltl@gmail.com>
-Subject: Re: [PATCH v2 2/2] backlight: aw99706: Add support for Awinic
- AW99706 backlight
-Message-ID: <aQjY5_uEaTv4_L2s@aspen.lan>
-References: <20251103110648.878325-1-caojunjie650@gmail.com>
- <20251103110648.878325-3-caojunjie650@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6E1F2737F2;
+	Mon,  3 Nov 2025 16:35:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.201.53
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762187732; cv=fail; b=Z8VanTghnTz1gaSx0w5/cfk+AalspuXlX5dScDOkL11OQS6cSQsj1pQ99dsiq6JKt6NqyZ7BziX0ZIXQ1hFqOcyqU+e6ysfGjNPKvKpBjh3LIWdMN0W3AufJZEnVW6t0HV1GjUHUcEMXZGXlT2cfvbh3r4njARcGpi3Z6mK1J4s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762187732; c=relaxed/simple;
+	bh=qKEz7vMAnVCWxXpjT2AlImtgBgsCRJlcG8s274CSXRQ=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=n+czR5kEoR/zFE9REgq2RRolOIBP/XW1QwiddD6TvMG18ChjbcUfcrKryeiPJandwPQMn0sWET09z9j6aLlDJxqhH+D8SLycaNiVsxJv2JwhnK2xWE9GgRKs8JWU2BAEdomztc7o6PhoCQLPgtF5kYEdmLIOHICJQDJ4L8OsNG4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=aZUqIWOR; arc=fail smtp.client-ip=40.93.201.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=onjDtkvJ9yYmSzkP3Mv0g0OMjns12gpHJXhAtM4/NSmZwY7N5Eh+im9ylvXVD9l4uljgDvS6NiDLeMBAmeJydNJ33/iUyIFNuWSuBYZGamQLQHSKahly25bLR8Vx94oM3tfL9iFFUREZKNqbGk93+QwTaY59zvgsVwSI+QvaNKd+PJGmcKOmxvBX4wp7gvqmQ3IojVAWpq5plg03H4rQFrSZj29C2dSCEHl2Y3FPLVbcJSAglkc38HaWt056IfO/ZHO7FxKkv8sxzM8LbRVUI3iv8/bVyfwAmQaKoe3tX+kVBReAXQRgfKlthJSgup1T3AF3ddqqSMmBwdQqinLZ4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qKEz7vMAnVCWxXpjT2AlImtgBgsCRJlcG8s274CSXRQ=;
+ b=Fc63OTJ2qjfQ+WGLfzqi6F+lU1Tl69hk82GiFLdj4ZtriBcVHyuBXxfwLbztJXkg2kQhxXFLIuPVic8JxuWIoV8jeDPJadmdSm74iLN5c8uqtLUyJZnY0SYLX4BIWAzkIAgBPV5PEZVnt4YWa95B5GVawuS2uIpcCI+CJgI0jthjngwRlE7iXBIyXx8r8sW++aS9mxv436QVgCvx834yqkW3eC3s0RuW3xAlHG7w93jqzCbwc27ZWtniTcH67o009gSDhfaeUqiGwxYp4LerbnxXLWRUl6ct+whVuIk/4XnV6heT4yXMSL9Gw2ZADA98cvMvB6diRLsd8urmWYfmSQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qKEz7vMAnVCWxXpjT2AlImtgBgsCRJlcG8s274CSXRQ=;
+ b=aZUqIWORyvl3EA1JuWJQBwAnCA47p4C0Csc3AE8aCULD/WtIxdZxdRyhSrQJBm3oxnCNqPsqm5wdzuiK8hzXa/dfsvp9q3v5JiP1ksC6bNNsQKi8IlEvkp2HLi6LMAmyIIsGPxICAswaOFFAJWtfNA1jonLGwideNFcxrFitrWl6UNsKNNy+PAj+kneJeTfvA2IicakFoPGYgs/U9hnaKyKIDmlWHKZCxggWkBueSG+OFhdsfEP4RzNLYlgdkZ6bp/+3OTCifqq7o+8d8YCA3Qq8rZjcoTUQbD6gBHiPWe85oaNgGlV7PQuq3v/AOY0VlQNSuX6weM+8iBXMSP7JZw==
+Received: from PH7PR11MB6005.namprd11.prod.outlook.com (2603:10b6:510:1e0::19)
+ by SJ2PR11MB7714.namprd11.prod.outlook.com (2603:10b6:a03:4fd::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.16; Mon, 3 Nov
+ 2025 16:35:28 +0000
+Received: from PH7PR11MB6005.namprd11.prod.outlook.com
+ ([fe80::4f64:b0b5:4ed2:39ae]) by PH7PR11MB6005.namprd11.prod.outlook.com
+ ([fe80::4f64:b0b5:4ed2:39ae%2]) with mapi id 15.20.9275.015; Mon, 3 Nov 2025
+ 16:35:28 +0000
+From: <Marius.Cristea@microchip.com>
+To: <conor@kernel.org>
+CC: <corbet@lwn.net>, <linux@roeck-us.net>, <linux-hwmon@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <robh@kernel.org>,
+	<linux-kernel@vger.kernel.org>, <krzk+dt@kernel.org>,
+	<linux-doc@vger.kernel.org>, <conor+dt@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: temperature: add support for
+ EMC1812
+Thread-Topic: [PATCH 1/2] dt-bindings: hwmon: temperature: add support for
+ EMC1812
+Thread-Index: AQHcSOvuSU54UCbZykSapGgq8cbqPLTZcQKAgAe83QA=
+Date: Mon, 3 Nov 2025 16:35:27 +0000
+Message-ID: <c844428aa8d57d870b8cb55ce37d6359e3142585.camel@microchip.com>
+References: <20251029-hw_mon-emc1812-v1-0-be4fd8af016a@microchip.com>
+	 <20251029-hw_mon-emc1812-v1-1-be4fd8af016a@microchip.com>
+	 <20251029-blaspheme-stinking-91b73a8ab778@spud>
+In-Reply-To: <20251029-blaspheme-stinking-91b73a8ab778@spud>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR11MB6005:EE_|SJ2PR11MB7714:EE_
+x-ms-office365-filtering-correlation-id: cef77a10-f834-49fa-4ea1-08de1af6ff39
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|366016|1800799024|38070700021;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?amcvSFM4R3dGR2JkYjZWTzlzSFF4eU5WSlpIWUxDMU4wa3VuVlpHSkFESkZn?=
+ =?utf-8?B?NUtkYTVLWHFjdGtjd0hlWFkxdGY1aXg0T2FUcHdyWGhnbFRnamRubEdlQ3Y2?=
+ =?utf-8?B?anhxM0MzV2R1SVE0UnBQeDZaajVyT1E1eDk3d2pnSFBqOVZoQW9DdHVFTUt6?=
+ =?utf-8?B?MmlnWWI1bkpDSkFKV0ZKNTFYODRCUGFmYnV6a0I5NHM3TnlDN3N0c08zVDlH?=
+ =?utf-8?B?N0tYSDJRWVJCVkdON0pnNXljd2pqUHBTcjA4K3dJd3A1RmkzQms1SCtLRzlG?=
+ =?utf-8?B?OXlFcUJicVZ3cVl2bXV6NStRWHB2RzRES3JYMVFlMGZRaXR2VkMzM0dhVVIr?=
+ =?utf-8?B?Tm13VHJKM2J6TXVzaVVmdDRJc1FvOWY2MTN2WlRsaGthQlJVczJjS1FLV3BJ?=
+ =?utf-8?B?K3ZJRVluNXhSTVVNRG5lZng3ZlJKd3h5cUc3K252bzRjSmsrM3pzZmNKcWs3?=
+ =?utf-8?B?WitXZGc1SUJUVVZtUmxRaUZqRlVBK0tXV2dGZ0Y4RXVBeWtzSS8rSDMyWG5Y?=
+ =?utf-8?B?Y1dtaDlQZklRNDBkUFNib2c4RFBNQ2FIRnNWK1pFMHRPUWV4aGR4R2FYeldR?=
+ =?utf-8?B?TCtUejFSM0IyYVBjL3dvSytqRlYrMmlkM3VIZ0RUUnlQdFI2Tmdka2dsY2Uy?=
+ =?utf-8?B?ZWgvVGU3YTY1Y2pheGlWcW84L3JTUWJZaE1xN0Z2dUk3Tkk1NUt4enRaRVA5?=
+ =?utf-8?B?UzFEV05HZ3lJbUZhVk4ySUFsVG9wSzhLMnc4bEQ2aWhyZmMreHRKUSt0UUI4?=
+ =?utf-8?B?UzhQRFRTYlkwQ1pXUHdKSW1WbjV2NXlBSDhUS1VVZWRkVEVrMEZxa0FUbmFy?=
+ =?utf-8?B?RFduWUlld2NHUStTSFcyRGJwaUpMRHg5VXVEeEU5QnQ1M2pCcWp2Y1BSR05M?=
+ =?utf-8?B?dlJSNjVaVG1SUWRXeG5GMHprbDNZanNWOWZUbFpkam5WL0JTck14a2N4TlBW?=
+ =?utf-8?B?cHRWTlowbDZxUjVPaXRva2w2WE1WbjVyMlMrczEwd09xWDJ2NjdEcG9EdWxP?=
+ =?utf-8?B?UWoxK2xvQVpVelRzTnpEc3RXQWpaWTlMaU5RL3kwaHRmOUw0WVRWYjhYQUpC?=
+ =?utf-8?B?N3REUndiL0V0OVR6TlFjTlRtMkljQUpSRS91cGl1djJsdSs5Z1FPbGNWRzRO?=
+ =?utf-8?B?MjMxL1o1bVJQNi9MSTNic1J1Q0NtbUtGUWNiZ1VnaWszOHZ2M2M4ZExDNTli?=
+ =?utf-8?B?azZBeG1KNlRVWHppWjJUcXZIS1IrZ1oyUHhMRlpncUNQZUtwZ296T0pQdHo3?=
+ =?utf-8?B?VHlXeWFsWnhLTVIycGYwRE9PNmNickd5TkJLUzNHZ210SUJDcFJ3TnBVMVov?=
+ =?utf-8?B?ZXBPY1FCbzcxNE1CZkwxdytvZzZCalFNYlBpK3hxZmFtYlowM0xnUllobWUy?=
+ =?utf-8?B?alRJa1JwVVZTaTBsTHB2MlgwZlZYbkVHbmMvNWVCQ3k1Qkg5eTB0cXhVNE9k?=
+ =?utf-8?B?WmhkTSt2Z3BFTW5aaGVROG1rTXB5QmV4a2tYR2JEdDNqempxeW02dXF5dXAz?=
+ =?utf-8?B?andvVUhTb3RUQ3k3ZDFvVVhvTWxwWTlTRU90bnY5bXNoMVdkMm1wUkxtM2RQ?=
+ =?utf-8?B?OGFqSzk5UDVETEIyL3o5WnZCTEt4dmUwR1FtZWcveHVGL0U2b1RHWUdYRkNH?=
+ =?utf-8?B?M0k3V0Q2UUpNSzc0MFd1Y1BxS3Rsd2NmWXg2Z2NHSytkZVJ6M1ozeEc0aEFN?=
+ =?utf-8?B?dk8wWUE4ZGZYTHo0c0lLamRLQVdoelBacktoMFRXZ1hhM1kyL3U5WEtKaWh4?=
+ =?utf-8?B?UVpjNk45UVM4ZUl3Z2h4SG80RVdWRkpicUZ3eFc2TUEvWXVscUV6Y2hzcHJG?=
+ =?utf-8?B?dkhkYXAzS0RYY0Evek1rRVJQYXp0SitYQnNGWHRBOTZ2ckRzbHVXN1RBOXFu?=
+ =?utf-8?B?LzUyclh1SFhrK0trVjY3Rm5TWGpCOWRDOFlETEF1L2d1UXNvcERlUWdTNzJO?=
+ =?utf-8?B?ZUR3WHY0dTFLTmkxTEEvRFZTbnhYN3FIRDVkNUE0MmduVU5vWEtqdkNXWXdr?=
+ =?utf-8?B?ek1KaUVaQ3dYQk55MjBBUCtoQ2k2OTdUekh4Q1dTeEltVy83czJTS3RuUUk2?=
+ =?utf-8?Q?drjtqy?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR11MB6005.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?N1hma3FLZlpUd3N3cGpwRFpjVDYyek84UTdUclBpVVB0WXg5MU5iL0lyS1FN?=
+ =?utf-8?B?Z013aVQ5UmgzZ3dPQU9MY2QvNFZpaExqdHpSc1RVRFNTUWJpRDg4SlRRU204?=
+ =?utf-8?B?NC94eDBKbkl6KytSR2NjRUs0ak9DRk16ZWlRWjZ2ZExhemJwTVdhNG1ubHcw?=
+ =?utf-8?B?RVkyc3I3TU05aXlKRm5yMkhGbnVtUVQ4NWI0eUdScVE5cDF1Y21ON3d0MXpr?=
+ =?utf-8?B?T0NpVzhKS1dSbkN2VWoxSHdjTkZjL2NhOFJWVHFuYk8zSVd5SDZQS2tJbjFG?=
+ =?utf-8?B?MlR0dVZJVXV0OTgvVmxHWnp3VU5ZYUN6d0hHOUk2ejhuTmYyRUQ5d0g0TDdX?=
+ =?utf-8?B?L1hYaVUxV0hvV2JsbGI1L3djZUM4Qm10dmEvSFF5VXRNd3hIZWxKeW1CS3Nl?=
+ =?utf-8?B?ajh6Q2ovT2UxSUZkQThycHkwMzA4QXM2VHMvTDVWSVdEKyszdUUrTG95YkZV?=
+ =?utf-8?B?Z2pNUW8wdzc2a21sb1RNZG1BYzdGdld6dmlnL3ZpODRoMENXUVM0TkRQZFhV?=
+ =?utf-8?B?ZCs2WExtck1hckw4SGNnSllvdGpEQ1F6TzE2bzZHaEkwRnBEQ0dPT1AxYTZk?=
+ =?utf-8?B?cFdyWnp5T1hGeUJHUHVkUXdGZ2VPanhMZkR0RmsrSWk1cmVUS2YwQmJHUzFY?=
+ =?utf-8?B?UVU1WVl0cGRNTE8xaGxWcHhvQ1V6bWJiWHZyeDNDZmFmRnA4aXRUVWZHYWFJ?=
+ =?utf-8?B?T21VcDR5R2JUbDdYWXpJRElZenFiSDV1Q2RHN0RzbU5uUUcwSTZ1RjFrZVFs?=
+ =?utf-8?B?cTArMFRaeGpLdUJUZDNpTGx3a0ZVTnF5UHJwaDQ4dkc1bGVER2Q4Kys0cVp5?=
+ =?utf-8?B?azhpcjgxTUFEZVVBcFBJS1R2ck02VjF0ZGRMVE54MktDcFBrc0h1c2gyS1Nn?=
+ =?utf-8?B?cFFLSWQ5NUNhcWNIaUJTcnUrWnkrOElraTJNV01jU2dlOWRIdCs4bENqRURy?=
+ =?utf-8?B?SllVNStpNDVnVnMwNDBldVA0MXN3V0xiU2MrV3o1SFllODRMWWdZdytQOGxw?=
+ =?utf-8?B?dFpvRFZwa1JqTUc5UXJLRzB3MUs4OVQySFZwZVdhc1lqVDRuQXNiVGZ4UzlM?=
+ =?utf-8?B?UjBsMno4YVhXVUNuU2lYemdJNVhYT2hOaDRIOEZDSUJJM3ZycXNhL2p3ZnpM?=
+ =?utf-8?B?ektmS1N4QzBPRndVd2RyZERIcU8xN0JyT2J1WUFIbHFERzVmbGlEbTF6SUFn?=
+ =?utf-8?B?WDA0N0NJb2ZHdmV0MWdadW03UG4zb0k3VTB0YWx6bytEUktaWndMZm5CNUpL?=
+ =?utf-8?B?SXAvWTB1T3I4ZC9pdEdaZDVvQ2h4MFQ0MVFkL3ZVTjZTU0NCeHR3OTQwVWdS?=
+ =?utf-8?B?Yjc2OFFEZjRHZFpaMlloUlZ4a1ZsWnE4clF3TTVzUHdFemM4MFJkWWh3bnU0?=
+ =?utf-8?B?VGk0ZW8xSXdSKzc0UnVBWTdLZklHaXZWbDBSRFNsSkd0bVh1NjRCNkRvYWh1?=
+ =?utf-8?B?NWNMa0pnWk9qMHk5MXBLLzVRcnUrQm15bStLeGJBTFd5NGJQSkJiYmdHYVhn?=
+ =?utf-8?B?b2NaaU10MktnYWJkQ0k3ZWVnOXJvTkNWZUtLWUlQZ05kVVZvOEpvaHZDOSt2?=
+ =?utf-8?B?ZmEzWmFNQnh2WnhtdHNOWWcrejhiVDAxdjB4dlhoT3FwZXpFYUZkU1BqcVI0?=
+ =?utf-8?B?eTFxOWJJTnFXb09VenA4YW9GQ3Q2aGRqdjcvV3N3VHpCUXlnTFBJMkp1MTNl?=
+ =?utf-8?B?TTZOM1c1d1pjMGNldXU4Q1FBQ1NUT1N0SGNTL1dnVm03d0poemVCS0UxYXUv?=
+ =?utf-8?B?a25TcFc2TE5oTEloWjlKR1MvMmREQno3bnZBSWxkZ0I3S1dUTXpLMkVEY25o?=
+ =?utf-8?B?d0ZseUt2dGVONUZ1cDZ4cy8zRCtqVEZLQ2o4N3lRUFlOemxCSHNTTVdJMEhL?=
+ =?utf-8?B?c2FkQTVhTi8zOWVLREJVU2c2RU0vZVlyNDM3VGNQQStscWhKWlhWUEJjS3pR?=
+ =?utf-8?B?aHUyam9yc29xMVJkTXU1U2s1TUQycnNpbTlGVkRNaDh6bjcrVFJWZGNuOEZN?=
+ =?utf-8?B?c291dWxJVU1zQ2JvckU4NTJ2S090R0lmQlpNTHpLdWt0NGw0Z3BPQmtoM0Jt?=
+ =?utf-8?B?RzJRb3ZDUkVpUHNnMUNISTFMOGVtNHA0MDVIdEg4bTFYd3c4L1FBbnV2WjJM?=
+ =?utf-8?B?ODJHdGg1eWdzMTB4dnQyczFHeE96cDV4cW9OcVRTRHR2WEV6TXk3QkpROHYv?=
+ =?utf-8?B?eGc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <6E3172326694B441B60A03A1919B3D14@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251103110648.878325-3-caojunjie650@gmail.com>
+X-OriginatorOrg: microchip.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6005.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cef77a10-f834-49fa-4ea1-08de1af6ff39
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Nov 2025 16:35:27.8743
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: o9myj98l8ulzHYLoLDFmJOSzAVjU6IbE68BuDs3f0ocM6UfIngXaH32WtYMpZiD62y4wMFPih1CRQ8xfrgc48x6UR9b/PFu/jchSTTyuh6Q=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7714
 
-On Mon, Nov 03, 2025 at 07:06:48PM +0800, Junjie Cao wrote:
-> From: Pengyu Luo <mitltlatltl@gmail.com>
->
-> Add support for Awinic AW99706 backlight, which can be found in
-> tablet and notebook backlight, one case is the Lenovo Legion Y700
-> Gen4. This driver refers to the official datasheets and android
-> driver, they can be found in [1].
->
-> [1] https://www.awinic.com/en/productDetail/AW99706QNR
->
-> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
-> Signed-off-by: Junjie Cao <caojunjie650@gmail.com>
-> ---
-> Changes in v2:
-> - add handler for max-brightness and default-brightness
-> - use proper units for properties (Krzysztof)
-> - drop non-fixed properties (Krzysztof)
-> - include default values in the aw99706_dt_props table (Daniel)
-> - warn when a property value from DT is invalid (Daniel)
-> - drop warning when optional properties are missing (Daniel)
-> - add a function pointer into the aw99706_dt_props table to handle lookup (Daniel)
-> - use a lookup function instead of hardcoding the formula for the iLED max (Daniel)
-> - move BL enalbe handler into aw99706_update_brightness (Daniel)
-> - Link to v1: https://lore.kernel.org/linux-leds/20251026123923.1531727-3-caojunjie650@gmail.com
-
-Thanks for the changes.
-
-I'm afraid I don't like encoding the `shift` in the DT properties table.
-Caching something that is so easy to recalculate makes no sense to me.
-See below:
-
-
-> +struct aw99706_dt_prop {
-> +	const char * const name;
-> +	int (*lookup)(const struct aw99706_dt_prop *prop, u32 dt_val, u8 *val);
-> +	const u32 * const lookup_tbl;
-> +	u8 tbl_size;
-> +	u8 reg;
-> +	u8 mask;
-> +	u8 shift;
-
-There should bee no need to record `shift` here. It's just a
-duplicating information already held in `mask`.
-
-
-> +	u32 def_val;
-> +};
-> +
-> +static int aw99706_dt_property_lookup(const struct aw99706_dt_prop *prop,
-> +				      u32 dt_val, u8 *val)
-> +{
-> +	int i;
-> +
-> +	if (!prop->lookup_tbl) {
-> +		*val = dt_val;
-> +		return 0;
-> +	}
-> +
-> +	for (i = 0; i < prop->tbl_size; i++)
-> +		if (prop->lookup_tbl[i] == dt_val)
-> +			break;
-> +
-> +	*val = i;
-> +
-> +	return i == prop->tbl_size ? -1 : 0;
-> +}
-> +
-> +#define MIN_ILED_MAX	5000
-> +#define MAX_ILED_MAX	50000
-> +#define STEP_ILED_MAX	500
-> +
-> +static int
-> +aw99706_dt_property_iled_max_convert(const struct aw99706_dt_prop *prop,
-> +				     u32 dt_val, u8 *val)
-> +{
-> +	if (dt_val > MAX_ILED_MAX || dt_val < MIN_ILED_MAX)
-> +		return -1;
-> +
-> +	*val = (dt_val - MIN_ILED_MAX) / STEP_ILED_MAX;
-> +
-> +	return (dt_val - MIN_ILED_MAX) % STEP_ILED_MAX;
-> +}
-> +
-> +static const struct aw99706_dt_prop aw99706_dt_props[] = {
-> +	{
-> +		"awinic,dim-mode", aw99706_dt_property_lookup,
-> +		NULL, 0,
-> +		AW99706_CFG0_REG,
-> +		AW99706_DIM_MODE_MASK, __builtin_ctz(AW99706_DIM_MODE_MASK),
-
-These __builtin_ctz() calls shouldn't be in the lookup table (if they
-are not in the lookup table then can never be inconsistant with the
-mask).
-
-
-> +		1,
-> +	},
-<snip>
-> +	{
-> +		"awinic,ramp-ctl", aw99706_dt_property_lookup,
-> +		NULL, 0,
-> +		AW99706_CFG6_REG,
-> +		AW99706_RAMP_CTL_MASK, __builtin_ctz(AW99706_RAMP_CTL_MASK),
-> +		2,
-> +	},
-> +};
-> +
-> +struct reg_init_data {
-> +	u8 reg;
-> +	u8 mask;
-> +	u8 val;
-> +};
-> +
-> +static struct reg_init_data reg_init_tbl[ARRAY_SIZE(aw99706_dt_props)];
-> +
-> +static void aw99706_dt_parse(struct aw99706_device *aw,
-> +			     struct backlight_properties *bl_props)
-> +{
-> +	const struct aw99706_dt_prop *prop;
-> +	u32 dt_val;
-> +	int ret, i;
-> +	u8 val;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(aw99706_dt_props); i++) {
-> +		prop = &aw99706_dt_props[i];
-> +		ret = device_property_read_u32(aw->dev, prop->name, &dt_val);
-> +		if (ret < 0)
-> +			dt_val = prop->def_val;
-> +
-> +		if (prop->lookup(prop, dt_val, &val)) {
-> +			dev_warn(aw->dev, "invalid value %d for property %s, using default value %d\n",
-> +				 dt_val, prop->name, prop->def_val);
-> +
-> +			prop->lookup(prop, prop->def_val, &val);
-> +		}
-> +
-> +		reg_init_tbl[i].reg = prop->reg;
-> +		reg_init_tbl[i].mask = prop->mask;
-> +		reg_init_tbl[i].val = val << prop->shift;
-
-Can't you just use FIELD_PREP() to set val (either here or at the point
-the init table is consumed)? That why there's no ffs() or clz() at all.
-
-
-> +	}
-> +
-> +	aw->init_tbl = reg_init_tbl;
-> +	aw->init_tbl_size = ARRAY_SIZE(reg_init_tbl);
-
-Copying a pointer to a single instance static data buffer into a
-dynamically allocated data structure isn't right.
-
-You should include the init table as part of `struct aw99706_device`.
-
-
-> +
-> +	bl_props->brightness = AW99706_MAX_BRT_LVL >> 1;
-> +	bl_props->max_brightness = AW99706_MAX_BRT_LVL;
-> +	device_property_read_u32(aw->dev, "default-brightness",
-> +				 &bl_props->brightness);
-> +	device_property_read_u32(aw->dev, "max-brightness",
-> +				 &bl_props->max_brightness);
-> +
-> +	if (bl_props->max_brightness > AW99706_MAX_BRT_LVL)
-> +		bl_props->max_brightness = AW99706_MAX_BRT_LVL;
-> +
-> +	if (bl_props->brightness > bl_props->max_brightness)
-> +		bl_props->brightness = bl_props->max_brightness;
-> +}
-> +
-> +static int aw99706_hw_init(struct aw99706_device *aw)
-> +{
-> +	int ret, i;
-> +
-> +	gpiod_set_value_cansleep(aw->hwen_gpio, 1);
-> +
-> +	for (i = 0; i < aw->init_tbl_size; i++) {
-> +		ret = aw99706_i2c_update_bits(aw, aw->init_tbl[i].reg,
-> +					      aw->init_tbl[i].mask,
-> +					      aw->init_tbl[i].val);
-> +		if (ret < 0) {
-> +			dev_err(aw->dev, "Failed to write init data %d\n", ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int aw99706_bl_enable(struct aw99706_device *aw, bool en)
-> +{
-> +	int ret;
-> +	u8 val;
-> +
-> +	FIELD_MODIFY(AW99706_BACKLIGHT_EN_MASK, &val, en);
-
-This should use FIELD_PREP() not FIELD_MODIFY();
-
-
-> +	ret = aw99706_i2c_update_bits(aw, AW99706_CFGD_REG,
-> +				      AW99706_BACKLIGHT_EN_MASK, val);
-> +	if (ret)
-> +		dev_err(aw->dev, "Failed to enable backlight!\n");
-> +
-> +	return ret;
-> +}
-
-
-Daniel.
+SGkgQ29ub3IsDQoNCk9uIFdlZCwgMjAyNS0xMC0yOSBhdCAxODoyNSArMDAwMCwgQ29ub3IgRG9v
+bGV5IHdyb3RlOg0KPiBPbiBXZWQsIE9jdCAyOSwgMjAyNSBhdCAwNTo1MDo1OFBNICswMjAwLCBN
+YXJpdXMgQ3Jpc3RlYSB3cm90ZToNCj4gPiBUaGlzIGlzIHRoZSBkZXZpY2V0cmVlIHNjaGVtYSBm
+b3IgTWljcm9jaGlwIEVNQzE4MTIvMTMvMTQvMTUvMzMNCj4gPiBNdWx0aWNoYW5uZWwgTG93LVZv
+bHRhZ2UgUmVtb3RlIERpb2RlIFNlbnNvciBGYW1pbHkuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1i
+eTogTWFyaXVzIENyaXN0ZWEgPG1hcml1cy5jcmlzdGVhQG1pY3JvY2hpcC5jb20+DQo+ID4gLS0t
+DQo+ID4gwqAuLi4vYmluZGluZ3MvaHdtb24vbWljcm9jaGlwLGVtYzE4MTIueWFtbMKgwqDCoMKg
+wqDCoMKgwqDCoCB8IDE3Ng0KPiA+ICsrKysrKysrKysrKysrKysrKysrKw0KPiA+IMKgTUFJTlRB
+SU5FUlPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgwqAgNiArDQo+ID4gwqAyIGZpbGVzIGNoYW5n
+ZWQsIDE4MiBpbnNlcnRpb25zKCspDQo+ID4gDQo+IA0KDQouLi4NCj4gWW91IHNob3VsZCBiZSBh
+YmxlIHRvIGp1c3QgbW92ZSB0aGlzIGludG8gaW50ZXJydXB0czoNCj4gwqAgaW50ZXJydXB0czoN
+Cj4gwqDCoMKgIGl0ZW1zOg0KPiDCoMKgwqDCoMKgIC0gZGVzY3JpcHRpb246DQo+IMKgwqDCoMKg
+wqDCoMKgwqDCoCBhbGVydC10aGVybTIgYXNzZXJ0cyB3aGVuIGEgZGlvZGUgdGVtcGVyYXR1cmUg
+ZXhjZWVkcyB0aGUNCj4gQUxFUlQNCj4gwqDCoMKgwqDCoMKgwqDCoMKgIHRocmVzaG9sZC4NCj4g
+wqDCoMKgwqDCoCAtIGRlc2NyaXB0aW9uOg0KPiDCoMKgwqDCoMKgwqDCoMKgwqAgdGhlcm0tYWRk
+ciBhc3NlcnRzIGxvdyB3aGVuIHRoZSBoYXJkd2FyZS1zZXQgVEhFUk0gbGltaXQNCj4gdGhyZXNo
+b2xkIGlzDQo+IMKgwqDCoMKgwqDCoMKgwqDCoCBleGNlZWRlZCBieSBvbmUgb2YgdGhlIHRlbXBl
+cmF0dXJlIHNlbnNvcnMuDQo+IA0KPiA+ICvCoMKgwqAgaXRlbXM6DQo+ID4gK8KgwqDCoMKgwqAg
+LSBjb25zdDogYWxlcnQtdGhlcm0yDQo+ID4gK8KgwqDCoMKgwqAgLSBjb25zdDogdGhlcm0tYWRk
+cg0KPiANCj4gQWxzbywgc2hvdWxkIHRoaXMgYW5kIGludGVycnVwdHMgaGF2ZSBtaW5JdGVtczog
+MT8gQXJlIGJvdGggYWN0dWFsbHkNCj4gcmVxdWlyZWQ/IENhbiB5b3UgaGF2ZSB0aGVybS1hZGRy
+IHdpdGhvdXQgYWxlcnQtdGhlcm0yPw0KPiANCg0KUmlnaHQgbm93IHRoZSBkcml2ZXIgZG9lc24n
+dCBzdXBwb3J0IGFueSBpbnRlcnJ1cHRzLCBidXQgaXQgbWF5IHN1cHBvcnQNCmluIGZ1dHVyZS4g
+VGhlICJhbGVydC10aGVybTIiIGlzIGEgbWFza2FibGUgaW50ZXJydXB0IGFuZCB0aGUgInRoZXJt
+LQ0KYWRkciIgY2FuJ3QgYmUgbWFza2VkIGFuZCBpcyAiYWx3YXlzIGVuYWJsZWQiIGludG8gdGhl
+IGNoaXAuDQoNCkkgZGlkbid0IHVzZSAibWluSXRlbXM6IDEiIGJlY2F1c2UgSSB3YW50ZWQgdG8g
+bGVhdmUgdG8gdGhlIHVzZXIgdGhlDQpkZWNpc2lvbiBpZiBoZSBuZWVkcyBhbnkgaW50ZXJydXB0
+cyBpbnRvIHRoZWlyIHN5c3RlbQ0KDQoNCj4gcHctYm90OiBjaGFuZ2VzLXJlcXVlc3RlZA0KPiAN
+Cj4gQ2hlZXJzLA0KPiBDb25vci4NCj4gDQo+ID4gKw0KPiA+ICvCoCAiI2FkZHJlc3MtY2VsbHMi
+Og0KPiA+ICvCoMKgwqAgY29uc3Q6IDENCj4gPiArDQo+ID4gK8KgICIjc2l6ZS1jZWxscyI6DQo+
+ID4gK8KgwqDCoCBjb25zdDogMA0KPiA+ICsNCg0KVGhhbmtzLA0KTWFyaXVzDQo=
 
