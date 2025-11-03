@@ -1,336 +1,311 @@
-Return-Path: <devicetree+bounces-234459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20A6DC2D2CB
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 17:37:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F603C2D346
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 17:42:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 993F7461F98
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 16:28:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DEB2D3A7F18
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 16:30:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B3773164A0;
-	Mon,  3 Nov 2025 16:28:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41C093191A4;
+	Mon,  3 Nov 2025 16:30:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="utaKonUx"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="F4kAPPtc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA1F83019D6
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 16:28:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0578631815E
+	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 16:30:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762187318; cv=none; b=Rats9yqbti4wXi9M77whQtbxGwzzCioy8YXLwC7FI8+9sX3ZpeIbMJ1GMHVYGe4+onyeXb0eKSdXzDkrabcFjdCqiDtWKpYuNN+fqtivF6YQALxsqfe9cxQMAegepzUbhDIUYJzipZ+LQd7pFUwreDKj8C9wqo2fJFYD6Ahf6mM=
+	t=1762187412; cv=none; b=LuBjlzTLorS15+Lfmjubg19S8nX5eGQiucQniUV2FLtBW42Tu7Dr/giS0AZIBVWk/MEIwfWqST/RaVqQtDw9LcN9t5rmGAwc5QTCCnafFELxbDn/WSU6DB9+0giVj73fBr9hnGkPMsnujnXwrfx0tTFOtpVXiqmy/nf6DRP1IUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762187318; c=relaxed/simple;
-	bh=kDQK0tWCaUtfY/gG/35h4LlsYBz6zej1PGAS1i3xiWo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SnXSfnrrDNIriWWZPKP2+XSV63al8JxDTZreLlPzmslX1MNX42PHfP/R57p3jW/NWuZ85uqVz45DwvrrkjsPwUu9GaaQzTypLMgaNqq6TkbT6XwHOP3WRSQPzAJRrRtmWh647PH+VkQgH96JzgHgsFtt4im7L9gRnqALJEWRHsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=utaKonUx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 885E3C113D0
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 16:28:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762187317;
-	bh=kDQK0tWCaUtfY/gG/35h4LlsYBz6zej1PGAS1i3xiWo=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=utaKonUxy/85t1kOpEY0ubm+fmvIXgKGDwwaAXdF2j5c7g2Rvn3Fe6P1PJrNLg0Ph
-	 BCkNh6LZC5eGCsRdh+5J47Ge8WRAVJJ3Yl4geurR3jygwGygrQBDY/t4YzXunj6y8h
-	 tgCnOf3T3QESGFbCFZTqDH4+XwSYdMp+oAkA4QUybwrsX5KlvpeuJmpycLlmhmfLU5
-	 ZyAqhH/dGJf8nCj6KDfbxJ/9vGd+Nop7OTLzC8nH+hLW3P6VYRTFzNQRiiitWZttCE
-	 AfolvP2eO3QxqJQ3eiRYTPI71LIZmgaIT090MtX+c0JLSUTVeY4MkSPXnb1BP2tCt1
-	 /3lGJF15i+3yg==
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-378e8d10494so48292261fa.2
-        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 08:28:37 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV+VavzuWtRm09m7haJFquhzI2wkGNciju7sxKujK1o3pZgvIkPyJmn5I1TD7zS9Wg9ezcHjUwlk1jN@vger.kernel.org
-X-Gm-Message-State: AOJu0YxcO9IdUnWLgrJcLRaQfB6UvGjIaZJW28+X3OnLC75cyMY9mbqr
-	JmzaSw9p8pu0fgulQkFYwtFgCEOIXeezl5pDtKWaEA4VkVE0Qvx1x+0nRoCMEmqYBjSDdyzLmV7
-	r8TEWugBvUFP/aH2Oz6utJY2FRJHhIEM=
-X-Google-Smtp-Source: AGHT+IEJw3ZDPZnMpT7G5gC3dsRUQ0QBWfYVrDtBIFys4f9z3gARwYMbMmV/c59TFAss1io4XgNidT6RU3Za8tDoZwE=
-X-Received: by 2002:a05:651c:198d:b0:37a:29b5:e62c with SMTP id
- 38308e7fff4ca-37a29b5ea04mr22389251fa.5.1762187315858; Mon, 03 Nov 2025
- 08:28:35 -0800 (PST)
+	s=arc-20240116; t=1762187412; c=relaxed/simple;
+	bh=bEvIZ6b3ZPoI56NZVv/yoSC/UVLKTxOb/khDUfqNXZA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VZVKQcmClWhXn3UWJyNJ/o2QS+3sjInYy2WhJxLGxl87DkZ9A38F81WVvTjglXakwMZQx2mLRKwXHsnrG/NPxJ1uAW6koU9EOHgxT/mMu8WSS2kwKCfrJMFZVgtHhBoeOvt9O1JrGCO7z2Zz1qcCDSpVoFo8Aq/fMwLDrIN63CU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=F4kAPPtc; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-475dab5a5acso21294595e9.0
+        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 08:30:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1762187408; x=1762792208; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=84F0QgR4+jds+lqPjKDSBSqClUiU/2oz/AngUspSNH8=;
+        b=F4kAPPtcZZVu3wZgcaCHUtPsottZ6u5GzyBptAODlIGAnm6CnH8jVIRrOuWQQhFnMa
+         QMwF2YkaQbr7Ueoos65dmmiVbIAiWoHhovBuJtX87K7P6salpJ4umMAuQnoKQwmDKJrQ
+         Q+e1h9Lz5t2GBN+zV5niKSJMRype73Dfc20Fi89W7AL4zRfpOwcXwBsLxLukaFDdHVPU
+         aNlarHPqZ18b0cchO1o7jyP9gfnTpuxsJjslNYHo83/O3UmMOds/HqnOlysK32c2VhLJ
+         x5Zu2Rbiq4Xb/qUlSZ4IoxBwsz05zqNLTHPWJf4Om2J1HZVT2WSd9aAU+zitlHijKgeX
+         Hs3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762187408; x=1762792208;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=84F0QgR4+jds+lqPjKDSBSqClUiU/2oz/AngUspSNH8=;
+        b=h9HXvIBSwnxO4jxE6MQX+68GOxDLf6PIwOK65uFTZo2RKrbXvhtTuaq9TauA0/dHA6
+         YD3xIwWZzNSaM0x1OYqOkORFil4rs5qAa4JKNPvrXIjotiQzdusYk7owrnqLJ+cLx+Ok
+         jklY+5SjTUkCnlNTb1erPid/pS7zs3zG0AzyANSuPc0C1UYwgS8IampKV8x/FMlz8yPP
+         3rcH9pcD1NkF8/Va6FmiCtjLui07l9xoEOkC1kF3cAPJym42V6ueefGRJrUGIJzUBGk3
+         GaNadYB8bJ1J3ZTB2fe3fO3wdOd6b+q1YixLaXrv8auTWTcMSxd+pQ3WhQalrwsur2y9
+         1XLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXkHH5EM8WnIAaWc9n/jcI36+VWt3iDbyiG8pXjBSQ8b6M3yS3dYI8ImYE8Z7lFP93/XYPinTIGIeXK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+khCj5aRsy5TZCe5DhD8tLb21Dnhdcw5mWHbOUt2+JjGiv+9z
+	OiJQZStSzpi328zayhIGt5L+hYxUjbWSqVg+45hVdcZn/0+VptlRrsbDblgHjBL3Fkc=
+X-Gm-Gg: ASbGncs8jDVUh07KKcd1RjtdtwxuzhM8LXm1CgcPxlNoGPmfV7xd6u+0QWBHqlmPm1d
+	jOPm2E25gdzPpCg6JyOqpvpCEQ1gUlstGPGDr4XCtIx8BF+xrMWGCkrsnVNhu5WvrcquxaLbm8d
+	yYZuFPDs5J7X5V+u+GPch6cd/Hl+wSj4Ix6eVjYRIikNhZN23j62435HaKRW6NWaElRGrvtUxmp
+	FI+eDEWnXgNuq5BwPQlk2f031arsV2eCprZGORQosI4DepYrqjBWsABtNj+hSfk9F5wT9a83bmx
+	8mFipY7l6Qmn1OmHX39j5F66nKEVVdlzYmuzhZHaQJIoyh6K3RoOKssrr1WQg39G5cnpf/TmatH
+	6t4VFtME7cr63tcZBJvXYsn8jMbIQRi2j2hijEc/yXIjqxl8MVUyyLkeNIJx82++dhr0eGpbdGc
+	sWrSJ5ap0mCFX8I9mM2CSR4GE/cFEipJTDwdaXsS/xL3dRwHFGHY1q2go1yhgIUBLKTFtvLw==
+X-Google-Smtp-Source: AGHT+IF/kGs5jea5FahI1rZFZGhV1Eh4Fy1sLd4uiFaXvIWVe3vieePJLCoPtu7DkEqIeKjkJL2wCg==
+X-Received: by 2002:a05:600c:83ce:b0:471:989:9d85 with SMTP id 5b1f17b1804b1-47730871fa6mr144953305e9.19.1762187406607;
+        Mon, 03 Nov 2025 08:30:06 -0800 (PST)
+Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429d1061efasm9781324f8f.24.2025.11.03.08.30.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Nov 2025 08:30:05 -0800 (PST)
+Date: Mon, 3 Nov 2025 16:31:35 +0000
+From: Daniel Thompson <daniel@riscstar.com>
+To: Junjie Cao <caojunjie650@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
+	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-fbdev@vger.kernel.org, Pengyu Luo <mitltlatltl@gmail.com>
+Subject: Re: [PATCH v2 2/2] backlight: aw99706: Add support for Awinic
+ AW99706 backlight
+Message-ID: <aQjY5_uEaTv4_L2s@aspen.lan>
+References: <20251103110648.878325-1-caojunjie650@gmail.com>
+ <20251103110648.878325-3-caojunjie650@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251021112013.2710903-1-andre.przywara@arm.com>
- <20251021112013.2710903-4-andre.przywara@arm.com> <20251022001420-GYA1522542@gentoo.org>
-In-Reply-To: <20251022001420-GYA1522542@gentoo.org>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Tue, 4 Nov 2025 00:28:22 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66_KdBqcN95mUNRfc99XQpCtzFS95ZbQHf+23fz=KS3Fw@mail.gmail.com>
-X-Gm-Features: AWmQ_blX9ENYCANsCL_UZyz3OhgNWAwqItq2RjR0rojS-yYywilcuTafker68VU
-Message-ID: <CAGb2v66_KdBqcN95mUNRfc99XQpCtzFS95ZbQHf+23fz=KS3Fw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] regulator: axp20x: add support for the AXP318W
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Andre Przywara <andre.przywara@arm.com>, Lee Jones <lee@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Samuel Holland <samuel@sholland.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251103110648.878325-3-caojunjie650@gmail.com>
 
-On Wed, Oct 22, 2025 at 8:14=E2=80=AFAM Yixun Lan <dlan@gentoo.org> wrote:
+On Mon, Nov 03, 2025 at 07:06:48PM +0800, Junjie Cao wrote:
+> From: Pengyu Luo <mitltlatltl@gmail.com>
 >
-> Hi Andre,
+> Add support for Awinic AW99706 backlight, which can be found in
+> tablet and notebook backlight, one case is the Lenovo Legion Y700
+> Gen4. This driver refers to the official datasheets and android
+> driver, they can be found in [1].
 >
-> On 12:20 Tue 21 Oct     , Andre Przywara wrote:
-> > The X-Powers AXP318W is a typical PMIC from X-Powers, featuring nine
-> > DC/DC converters and 28 LDOs, on the regulator side.
-> >
-> > Describe the chip's voltage settings and switch registers, how the
-> > voltages are encoded, and connect this to the MFD device via its
-> > regulator ID.
-> > We use just "318" for the internal identifiers, for easier typing and
-> > less churn. If something else other than the "AXP318W" shows up, that's
-> > an easy change, externally visible strings carry the additional letter
-> > already.
-> >
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >  drivers/regulator/axp20x-regulator.c | 170 ++++++++++++++++++++++++++-
-> >  include/linux/mfd/axp20x.h           |  43 +++++++
-> >  2 files changed, 211 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/a=
-xp20x-regulator.c
-> > index da891415efc0b..1576bf4178f8f 100644
-> > --- a/drivers/regulator/axp20x-regulator.c
-> > +++ b/drivers/regulator/axp20x-regulator.c
-> > @@ -138,6 +138,15 @@
-> >  #define AXP313A_DCDC_V_OUT_MASK              GENMASK(6, 0)
-> >  #define AXP313A_LDO_V_OUT_MASK               GENMASK(4, 0)
-> >
-> > +#define AXP318_DCDC1_V_OUT_MASK              GENMASK(4, 0)
-> > +#define AXP318_DCDC2_V_OUT_MASK              GENMASK(6, 0)
-> > +#define AXP318_LDO_V_OUT_MASK                GENMASK(4, 0)
-> > +#define AXP318_ELDO_V_OUT_MASK               GENMASK(5, 0)
-> > +#define AXP318_DCDC2_NUM_VOLTAGES    88
-> > +#define AXP318_DCDC6_NUM_VOLTAGES    128
-> > +#define AXP318_DCDC7_NUM_VOLTAGES    103
-> > +#define AXP318_DCDC8_NUM_VOLTAGES    119
-> > +
-> >  #define AXP717_DCDC1_NUM_VOLTAGES    88
-> >  #define AXP717_DCDC2_NUM_VOLTAGES    107
-> >  #define AXP717_DCDC3_NUM_VOLTAGES    103
-> > @@ -765,6 +774,155 @@ static const struct regulator_desc axp313a_regula=
-tors[] =3D {
-> >       AXP_DESC_FIXED(AXP313A, RTC_LDO, "rtc-ldo", "vin1", 1800),
-> >  };
-> >
-> > +static const struct linear_range axp318_dcdc2_ranges[] =3D {
-> > +     REGULATOR_LINEAR_RANGE(500000,   0, 70, 10000),
-> > +     REGULATOR_LINEAR_RANGE(1220000, 71, 87, 20000),
-> > +};
-> > +
-> ..
-> > +static const struct linear_range axp318_dcdc6_ranges[] =3D {
-> > +     REGULATOR_LINEAR_RANGE(500000,    0,  70,  10000),
-> > +     REGULATOR_LINEAR_RANGE(1220000,  71,  87,  20000),
-> > +     REGULATOR_LINEAR_RANGE(1800000,  88, 118,  20000),
-> > +     REGULATOR_LINEAR_RANGE(2440000, 119, 127,  40000),
-> > +};
-> > +
-> > +static const struct linear_range axp318_dcdc7_ranges[] =3D {
-> > +     REGULATOR_LINEAR_RANGE(500000,   0,  70, 10000),
-> > +     REGULATOR_LINEAR_RANGE(1220000, 71, 102, 20000),
-> > +};
-> > +
-> > +static const struct linear_range axp318_dcdc8_ranges[] =3D {
-> > +     REGULATOR_LINEAR_RANGE(500000,    0,  70,  10000),
-> > +     REGULATOR_LINEAR_RANGE(1220000,  71, 102,  20000),
-> > +     REGULATOR_LINEAR_RANGE(1900000, 103, 118, 100000),
-> > +};
+> [1] https://www.awinic.com/en/productDetail/AW99706QNR
 >
-> In the AXP318W datasheet, it says:
-> section 7.1 DCDC/LCO desgin
->  8. DCDC6/7/8/9 only able to tune at two voltage ranges which are
->  <1.54v and >1.54v, the tuning voltage should not step cross 1.54v
->  (I translate the original doc into english)
->
-> so, with this restricition, should we split the range into two?
-> one is dcdc6_lo_range, another dcdc6_hi_range
->
-> or what do you think?
+> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+> Signed-off-by: Junjie Cao <caojunjie650@gmail.com>
+> ---
+> Changes in v2:
+> - add handler for max-brightness and default-brightness
+> - use proper units for properties (Krzysztof)
+> - drop non-fixed properties (Krzysztof)
+> - include default values in the aw99706_dt_props table (Daniel)
+> - warn when a property value from DT is invalid (Daniel)
+> - drop warning when optional properties are missing (Daniel)
+> - add a function pointer into the aw99706_dt_props table to handle lookup (Daniel)
+> - use a lookup function instead of hardcoding the formula for the iLED max (Daniel)
+> - move BL enalbe handler into aw99706_update_brightness (Daniel)
+> - Link to v1: https://lore.kernel.org/linux-leds/20251026123923.1531727-3-caojunjie650@gmail.com
 
-I understand it like this:
+Thanks for the changes.
 
-DCDC2~9 support DVM or dynamic voltage scaling management. Not sure
-what the actual thing is, but it at least it provides controlled
-ramp rate. So the change of the voltage while the regulator is on
-shall not cross the 1.54v boundary; however it is fine to set any
-voltage when the regulator is off.
-
-Maybe without DVM the voltage would just jump over and even potentially
-overshoot. We would need an oscilloscope to check the actual behavior
-though.
-
-So perhaps it would be better to enable DVM by default for all capable
-ones, and model in the ramp delay as well? Andre?
-
-As for not crossing 1.54v, I think you can just wrap the current
-.set_voltage helper with a check that fails when the regulator is
-on and it is crossing?
-
-> > +
-> > +static const struct regulator_desc axp318_regulators[] =3D {
-> > +     AXP_DESC(AXP318, DCDC1, "dcdc1", "vin19", 1000, 3400, 100,
-> > +              AXP318_DCDC1_CONTROL, AXP318_DCDC1_V_OUT_MASK,
-> > +              AXP318_DCDC_OUTPUT_CONTROL1, BIT(0)),
-> > +     AXP_DESC_RANGES(AXP318, DCDC2, "dcdc2", "vin23",
-> > +                     axp318_dcdc2_ranges, AXP318_DCDC2_NUM_VOLTAGES,
-> > +                     AXP318_DCDC2_CONTROL, AXP318_DCDC2_V_OUT_MASK,
-> > +                     AXP318_DCDC_OUTPUT_CONTROL1, BIT(1)),
-> > +     AXP_DESC_RANGES(AXP318, DCDC3, "dcdc3", "vin23",
-> > +                     axp318_dcdc2_ranges, AXP318_DCDC2_NUM_VOLTAGES,
-> > +                     AXP318_DCDC3_CONTROL, AXP318_DCDC2_V_OUT_MASK,
-> > +                     AXP318_DCDC_OUTPUT_CONTROL1, BIT(2)),
-> > +     AXP_DESC_RANGES(AXP318, DCDC4, "dcdc4", "vin45",
-> > +                     axp318_dcdc2_ranges, AXP318_DCDC2_NUM_VOLTAGES,
-> > +                     AXP318_DCDC4_CONTROL, AXP318_DCDC2_V_OUT_MASK,
-> > +                     AXP318_DCDC_OUTPUT_CONTROL1, BIT(3)),
-> > +     AXP_DESC_RANGES(AXP318, DCDC5, "dcdc5", "vin45",
-> > +                     axp318_dcdc2_ranges, AXP318_DCDC2_NUM_VOLTAGES,
-> > +                     AXP318_DCDC5_CONTROL, AXP318_DCDC2_V_OUT_MASK,
-> > +                     AXP318_DCDC_OUTPUT_CONTROL1, BIT(4)),
-> > +     AXP_DESC_RANGES(AXP318, DCDC6, "dcdc6", "vin678",
-> > +                     axp318_dcdc6_ranges, AXP318_DCDC6_NUM_VOLTAGES,
-> > +                     AXP318_DCDC6_CONTROL, AXP318_DCDC2_V_OUT_MASK,
-> > +                     AXP318_DCDC_OUTPUT_CONTROL1, BIT(5)),
-> > +     AXP_DESC_RANGES(AXP318, DCDC7, "dcdc7", "vin678",
-> > +                     axp318_dcdc7_ranges, AXP318_DCDC7_NUM_VOLTAGES,
-> > +                     AXP318_DCDC7_CONTROL, AXP318_DCDC2_V_OUT_MASK,
-> > +                     AXP318_DCDC_OUTPUT_CONTROL1, BIT(6)),
-> > +     AXP_DESC_RANGES(AXP318, DCDC8, "dcdc8", "vin678",
-> > +                     axp318_dcdc8_ranges, AXP318_DCDC8_NUM_VOLTAGES,
-> > +                     AXP318_DCDC8_CONTROL, AXP318_DCDC2_V_OUT_MASK,
-> > +                     AXP318_DCDC_OUTPUT_CONTROL1, BIT(7)),
-> > +     AXP_DESC_RANGES(AXP318, DCDC9, "dcdc9", "vin19",
-> > +                     axp318_dcdc8_ranges, AXP318_DCDC8_NUM_VOLTAGES,
-> > +                     AXP318_DCDC9_CONTROL, AXP318_DCDC2_V_OUT_MASK,
-> > +                     AXP318_DCDC_OUTPUT_CONTROL2, BIT(0)),
-> > +     AXP_DESC_SW(AXP318, SWOUT1, "swout1", NULL,
-> > +                 AXP318_DCDC_OUTPUT_CONTROL2, BIT(3)),
-> > +     AXP_DESC_SW(AXP318, SWOUT2, "swout2", NULL,
-> > +                 AXP318_DCDC_OUTPUT_CONTROL2, BIT(4)),
-> > +     AXP_DESC(AXP318, ALDO1, "aldo1", "aldo156in", 500, 3400, 100,
-> > +              AXP318_ALDO1_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL1, BIT(0)),
-> > +     AXP_DESC(AXP318, ALDO2, "aldo2", "aldo234in", 500, 3400, 100,
-> > +              AXP318_ALDO2_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL1, BIT(1)),
-> > +     AXP_DESC(AXP318, ALDO3, "aldo3", "aldo234in", 500, 3400, 100,
-> > +              AXP318_ALDO3_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL1, BIT(2)),
-> > +     AXP_DESC(AXP318, ALDO4, "aldo4", "aldo234in", 500, 3400, 100,
-> > +              AXP318_ALDO4_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL1, BIT(3)),
-> > +     AXP_DESC(AXP318, ALDO5, "aldo5", "aldo156in", 500, 3400, 100,
-> > +              AXP318_ALDO5_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL1, BIT(4)),
-> > +     AXP_DESC(AXP318, ALDO6, "aldo6", "aldo156in", 500, 3400, 100,
-> > +              AXP318_ALDO6_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL1, BIT(5)),
-> > +     AXP_DESC(AXP318, BLDO1, "bldo1", "bldoin", 500, 3400, 100,
-> > +              AXP318_BLDO1_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL1, BIT(6)),
-> > +     AXP_DESC(AXP318, BLDO2, "bldo2", "bldoin", 500, 3400, 100,
-> > +              AXP318_BLDO2_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL1, BIT(7)),
-> > +     AXP_DESC(AXP318, BLDO3, "bldo3", "bldoin", 500, 3400, 100,
-> > +              AXP318_BLDO3_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL2, BIT(0)),
-> > +     AXP_DESC(AXP318, BLDO4, "bldo4", "bldoin", 500, 3400, 100,
-> > +              AXP318_BLDO4_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL2, BIT(1)),
-> > +     AXP_DESC(AXP318, BLDO5, "bldo5", "bldoin", 500, 3400, 100,
-> > +              AXP318_BLDO5_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL2, BIT(2)),
-> > +     AXP_DESC(AXP318, CLDO1, "cldo1", "cldoin", 500, 3400, 100,
-> > +              AXP318_CLDO1_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL2, BIT(3)),
-> > +     AXP_DESC(AXP318, CLDO2, "cldo2", "cldoin", 500, 3400, 100,
-> > +              AXP318_CLDO2_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL2, BIT(4)),
-> > +     AXP_DESC(AXP318, CLDO3, "cldo3", "cldoin", 500, 3400, 100,
-> > +              AXP318_CLDO3_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL2, BIT(5)),
-> > +     AXP_DESC(AXP318, CLDO4, "cldo4", "cldoin", 500, 3400, 100,
-> > +              AXP318_CLDO4_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL2, BIT(6)),
-> > +     AXP_DESC(AXP318, CLDO5, "cldo5", "cldoin", 500, 3400, 100,
-> > +              AXP318_CLDO5_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL2, BIT(7)),
-> > +     AXP_DESC(AXP318, DLDO1, "dldo1", "dldoin", 500, 3400, 100,
-> > +              AXP318_DLDO1_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL3, BIT(0)),
-> > +     AXP_DESC(AXP318, DLDO2, "dldo2", "dldoin", 500, 3400, 100,
-> > +              AXP318_DLDO2_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL3, BIT(1)),
-> > +     AXP_DESC(AXP318, DLDO3, "dldo3", "dldoin", 500, 3400, 100,
-> > +              AXP318_DLDO3_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL3, BIT(2)),
-> > +     AXP_DESC(AXP318, DLDO4, "dldo4", "dldoin", 500, 3400, 100,
-> > +              AXP318_DLDO4_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL3, BIT(3)),
-> > +     AXP_DESC(AXP318, DLDO5, "dldo5", "dldoin", 500, 3400, 100,
-> > +              AXP318_DLDO5_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL3, BIT(4)),
-> > +     AXP_DESC(AXP318, DLDO6, "dldo6", "dldoin", 500, 3400, 100,
-> > +              AXP318_DLDO6_CONTROL, AXP318_LDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL3, BIT(5)),
-> ..
-> > +     AXP_DESC(AXP318, ELDO1, "eldo1", "eldoin", 500, 1500, 25,
-> > +              AXP318_ELDO1_CONTROL, AXP318_ELDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL3, BIT(6)),
-> > +     AXP_DESC(AXP318, ELDO2, "eldo2", "eldoin", 500, 1500, 25,
-> > +              AXP318_ELDO2_CONTROL, AXP318_ELDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL3, BIT(7)),
-> > +     AXP_DESC(AXP318, ELDO3, "eldo3", "eldoin", 500, 1500, 25,
-> > +              AXP318_ELDO3_CONTROL, AXP318_ELDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL4, BIT(0)),
-> > +     AXP_DESC(AXP318, ELDO4, "eldo4", "eldoin", 500, 1500, 25,
-> > +              AXP318_ELDO4_CONTROL, AXP318_ELDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL4, BIT(1)),
-> > +     AXP_DESC(AXP318, ELDO5, "eldo5", "eldoin", 500, 1500, 25,
-> > +              AXP318_ELDO5_CONTROL, AXP318_ELDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL4, BIT(2)),
-> > +     AXP_DESC(AXP318, ELDO6, "eldo6", "eldoin", 500, 1500, 25,
-> > +              AXP318_ELDO6_CONTROL, AXP318_ELDO_V_OUT_MASK,
-> > +              AXP318_LDO_OUTPUT_CONTROL4, BIT(3)),
->
-> also, in section 7.1 DCDC/LCO desgin
->  3. ELDOIN can use DCDC's output as the voltage input, once in this case,
->  the LDO (output?) config voltage should lower than DCDC input voltage.
->
-> Note: ELDOIN can use PS(Power Supply, should be equal to DCIN) or DCDC as=
- input
->
-> in case of Radxa A7A (A733) board, it use DCDC9 as ELDOIN,
-> Should we do something in the driver level? or leave up to user
-
-That's up to the designer. They should be aware of any restrictions.
-Like, it doesn't make sense to set a voltage higher than the supply
-for an LDO...
-
-There's two options here. First, a wrapper for the .set_voltage callback
-(again) that checks the requested voltage against the supply voltage,
-and returns something like -EINVAL if that check fails.
-
-Second, we could set the .min_dropout_uV field. That would make the core
-try to raise the supply voltage to satisfy the minimum dropout voltage
-constraint.
-
-Both require knowing the actual minimum dropout value, which doesn't seem
-to be provided in the datasheet.
+I'm afraid I don't like encoding the `shift` in the DT properties table.
+Caching something that is so easy to recalculate makes no sense to me.
+See below:
 
 
-ChenYu
+> +struct aw99706_dt_prop {
+> +	const char * const name;
+> +	int (*lookup)(const struct aw99706_dt_prop *prop, u32 dt_val, u8 *val);
+> +	const u32 * const lookup_tbl;
+> +	u8 tbl_size;
+> +	u8 reg;
+> +	u8 mask;
+> +	u8 shift;
+
+There should bee no need to record `shift` here. It's just a
+duplicating information already held in `mask`.
+
+
+> +	u32 def_val;
+> +};
+> +
+> +static int aw99706_dt_property_lookup(const struct aw99706_dt_prop *prop,
+> +				      u32 dt_val, u8 *val)
+> +{
+> +	int i;
+> +
+> +	if (!prop->lookup_tbl) {
+> +		*val = dt_val;
+> +		return 0;
+> +	}
+> +
+> +	for (i = 0; i < prop->tbl_size; i++)
+> +		if (prop->lookup_tbl[i] == dt_val)
+> +			break;
+> +
+> +	*val = i;
+> +
+> +	return i == prop->tbl_size ? -1 : 0;
+> +}
+> +
+> +#define MIN_ILED_MAX	5000
+> +#define MAX_ILED_MAX	50000
+> +#define STEP_ILED_MAX	500
+> +
+> +static int
+> +aw99706_dt_property_iled_max_convert(const struct aw99706_dt_prop *prop,
+> +				     u32 dt_val, u8 *val)
+> +{
+> +	if (dt_val > MAX_ILED_MAX || dt_val < MIN_ILED_MAX)
+> +		return -1;
+> +
+> +	*val = (dt_val - MIN_ILED_MAX) / STEP_ILED_MAX;
+> +
+> +	return (dt_val - MIN_ILED_MAX) % STEP_ILED_MAX;
+> +}
+> +
+> +static const struct aw99706_dt_prop aw99706_dt_props[] = {
+> +	{
+> +		"awinic,dim-mode", aw99706_dt_property_lookup,
+> +		NULL, 0,
+> +		AW99706_CFG0_REG,
+> +		AW99706_DIM_MODE_MASK, __builtin_ctz(AW99706_DIM_MODE_MASK),
+
+These __builtin_ctz() calls shouldn't be in the lookup table (if they
+are not in the lookup table then can never be inconsistant with the
+mask).
+
+
+> +		1,
+> +	},
+<snip>
+> +	{
+> +		"awinic,ramp-ctl", aw99706_dt_property_lookup,
+> +		NULL, 0,
+> +		AW99706_CFG6_REG,
+> +		AW99706_RAMP_CTL_MASK, __builtin_ctz(AW99706_RAMP_CTL_MASK),
+> +		2,
+> +	},
+> +};
+> +
+> +struct reg_init_data {
+> +	u8 reg;
+> +	u8 mask;
+> +	u8 val;
+> +};
+> +
+> +static struct reg_init_data reg_init_tbl[ARRAY_SIZE(aw99706_dt_props)];
+> +
+> +static void aw99706_dt_parse(struct aw99706_device *aw,
+> +			     struct backlight_properties *bl_props)
+> +{
+> +	const struct aw99706_dt_prop *prop;
+> +	u32 dt_val;
+> +	int ret, i;
+> +	u8 val;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(aw99706_dt_props); i++) {
+> +		prop = &aw99706_dt_props[i];
+> +		ret = device_property_read_u32(aw->dev, prop->name, &dt_val);
+> +		if (ret < 0)
+> +			dt_val = prop->def_val;
+> +
+> +		if (prop->lookup(prop, dt_val, &val)) {
+> +			dev_warn(aw->dev, "invalid value %d for property %s, using default value %d\n",
+> +				 dt_val, prop->name, prop->def_val);
+> +
+> +			prop->lookup(prop, prop->def_val, &val);
+> +		}
+> +
+> +		reg_init_tbl[i].reg = prop->reg;
+> +		reg_init_tbl[i].mask = prop->mask;
+> +		reg_init_tbl[i].val = val << prop->shift;
+
+Can't you just use FIELD_PREP() to set val (either here or at the point
+the init table is consumed)? That why there's no ffs() or clz() at all.
+
+
+> +	}
+> +
+> +	aw->init_tbl = reg_init_tbl;
+> +	aw->init_tbl_size = ARRAY_SIZE(reg_init_tbl);
+
+Copying a pointer to a single instance static data buffer into a
+dynamically allocated data structure isn't right.
+
+You should include the init table as part of `struct aw99706_device`.
+
+
+> +
+> +	bl_props->brightness = AW99706_MAX_BRT_LVL >> 1;
+> +	bl_props->max_brightness = AW99706_MAX_BRT_LVL;
+> +	device_property_read_u32(aw->dev, "default-brightness",
+> +				 &bl_props->brightness);
+> +	device_property_read_u32(aw->dev, "max-brightness",
+> +				 &bl_props->max_brightness);
+> +
+> +	if (bl_props->max_brightness > AW99706_MAX_BRT_LVL)
+> +		bl_props->max_brightness = AW99706_MAX_BRT_LVL;
+> +
+> +	if (bl_props->brightness > bl_props->max_brightness)
+> +		bl_props->brightness = bl_props->max_brightness;
+> +}
+> +
+> +static int aw99706_hw_init(struct aw99706_device *aw)
+> +{
+> +	int ret, i;
+> +
+> +	gpiod_set_value_cansleep(aw->hwen_gpio, 1);
+> +
+> +	for (i = 0; i < aw->init_tbl_size; i++) {
+> +		ret = aw99706_i2c_update_bits(aw, aw->init_tbl[i].reg,
+> +					      aw->init_tbl[i].mask,
+> +					      aw->init_tbl[i].val);
+> +		if (ret < 0) {
+> +			dev_err(aw->dev, "Failed to write init data %d\n", ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int aw99706_bl_enable(struct aw99706_device *aw, bool en)
+> +{
+> +	int ret;
+> +	u8 val;
+> +
+> +	FIELD_MODIFY(AW99706_BACKLIGHT_EN_MASK, &val, en);
+
+This should use FIELD_PREP() not FIELD_MODIFY();
+
+
+> +	ret = aw99706_i2c_update_bits(aw, AW99706_CFGD_REG,
+> +				      AW99706_BACKLIGHT_EN_MASK, val);
+> +	if (ret)
+> +		dev_err(aw->dev, "Failed to enable backlight!\n");
+> +
+> +	return ret;
+> +}
+
+
+Daniel.
 
