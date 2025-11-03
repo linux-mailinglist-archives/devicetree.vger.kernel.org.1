@@ -1,188 +1,134 @@
-Return-Path: <devicetree+bounces-234196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AA2AC29EB3
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 04:07:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD6E6C29F67
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 04:29:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9EE704ECE60
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 03:06:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CA8A3AEFAA
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 03:29:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF01428DEE9;
-	Mon,  3 Nov 2025 03:05:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B01328A704;
+	Mon,  3 Nov 2025 03:29:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IlvnYkkq"
+	dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="M3gfTRHI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com [205.220.165.32])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BB772877F2
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 03:05:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A65172877F2;
+	Mon,  3 Nov 2025 03:29:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.165.32
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762139154; cv=none; b=L3ujgyPuO2p30y6TYbyb8bCo91mJkeLi1HfH1A5S5+bxlg4MknaCv5JCkWl2EM/8aLSbFKxHAkThEpPlCHVTHENH8hnCSCIYmgcEnGuZygj1ui2t3wttKc9A2ebw2EzrgYmzpx4PWVPFgSK8gG59VeFe1BjAjGvnp3NZ2ieLOks=
+	t=1762140567; cv=none; b=MipA6IRqmMnYHM+qluY7o6zwVopLqJXkkEiixlhP2es0GUibM9uArbAPWqwt+aEvwi8DsjOzA5cPuXgiNIQuOlt6G0kbURoubgyUaDPRV/ORsLTVbp87oTufb45F2eEM7agrYzTGREBnl8lx4JgltdUkhe4pnirPdvfnO8uQ6sI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762139154; c=relaxed/simple;
-	bh=rxp/NrNnXrKf8e0GBNNTRnLO6fRnsXQEhl3HcuPYlQ0=;
+	s=arc-20240116; t=1762140567; c=relaxed/simple;
+	bh=zpycrsUMNzTebiN1tnAQRjsi/DtYH677l3bvR9KCA4A=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Rj3ylmAvItUJmA62GTqd2i7p9G04CQ68pPpIJIJauLu0GwJH/PIVPDjXmDoUK1PgxpG7/0fNtj/JMfAAggli/AmMFPxrCIn+1bfjxlBdE0GQ3KB0/N8QjBnf6qwS+vT/zYWw1DHctfAFomTlDvq+Lg5iQMkD7n5p8r34DA68bEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IlvnYkkq; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-7aace33b75bso557022b3a.1
-        for <devicetree@vger.kernel.org>; Sun, 02 Nov 2025 19:05:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762139153; x=1762743953; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xpMkuoemEQ8nHGHR+sKpMED/PEl2v5+7S85Qkm8JY+4=;
-        b=IlvnYkkqhNhe7zCxj4W/bFhvxGOJTm9KOXl42VVB2UwOorfnYlPO2YMYkUzAljsfUs
-         fIRepEdk/YiVgxmz5Yuw6JtQvo/d6gpZl5AMV5EgGPLKgU57sKwpRMuypTGXlPE8mZcQ
-         EhmUKfDzg02VjCa3/6Dyg9t7ASmyXSfV5iyzVKqqe+EvOFNtA8uRuOJs5UEdzBgX6J4I
-         AiyA/AsxrVM3B8sI6ZTgQ0kSHXpweaMJHg/L1dghofKsjY8ifaScy/WYtyPemaMeNBwq
-         nZ951iR1H9MY4HhBI2V3vu2kFbNvRAvG9KgQuuYGMRr1VgsLBvao66q0c4azgpmYSO3B
-         GK/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762139153; x=1762743953;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xpMkuoemEQ8nHGHR+sKpMED/PEl2v5+7S85Qkm8JY+4=;
-        b=UH8exzXAM2MXQOMBi0HrFku7sk7DaneHcvRU4R5dELioBSaITQ0uigt7jDYXZeB5BT
-         yIrAg3guCxHUIybQqBn9YCYBVtp9JW1Sp4klqzp4lA+ZAOz/cSGwFRNhuWWSrBTOfWN3
-         FuKODmDCCG/AVTkYDIxD+AAHzmyZ9/5CfXD7V/VBhrbcqfp3e48knfsfJz/00wyLi73j
-         iyJgsQFLzsWh+U7k4jByCQ1y+cwOaHpxZsb/434NwQsw8ABUQFtOZU6RR1Qe462AXTw2
-         Hbi6si5fpg2TFB7RUPaSHknkCCpPm/VLY0joCY+T6/xqma6w+j7ZMuhxCK9Uyq3k/BKN
-         CiRg==
-X-Forwarded-Encrypted: i=1; AJvYcCVFWiXq0jhW1MHr7BYrtZeDjI9lQtmnjHl0EGrJguP81btt5s11infc1WR6WdZPKWzlxQgVbIUA/zaF@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx08laNIyz3vpNV9Sg64DSCI5LSsQaZbSD7dy8pTyGA/kOmIkDm
-	7D7FACLJ9KrGBqU4iI6O5u0f9YRnTRSchjFgkkWx6uyIpMHlh9fu1clx
-X-Gm-Gg: ASbGncs8O9Imp+f3KypMiBNEeQkd4A6ptb+d1QuYePOJJGD4aEMWGl+CWat9uaq/+MZ
-	4PwW0DSAXwLsC9ZQkOb/GjgVtoK7qN2O+PQ0PTuX6gWcKA/SEWH1lqsdt8Ox13QbwJkeGUza0Vv
-	rtxQ0Jn38J8sViE+M53pXjAeRlECMhn65QiYcI1fg+3k3vT+7SuUt6Bfi543f9rvv/YKot2Vs8u
-	tVBS1MN4W2TGjHb23sljCI6G2yavkbFtSPs6IaXRutqTX+aoJYumtwhWO9u0BYnwSR5WCb41sLG
-	CHzRi9TLlDPTPyQnOAdqtAK50V8q3O/75nlEq0lvsEAyyOEZORKTI7ZtUWlC8brPgCPnnSrvSij
-	Tl5cysGfzGni7YePnKyapBG8ixm+XjssDqj1R9MCw7IhGnuDEq3nohWQPEEj+/KqHpr40Ngi7G+
-	4=
-X-Google-Smtp-Source: AGHT+IHPm4B46oBMKEiDtF1pRQ9fXhJATCw1b8SJYuGAuFOpbmfcoaiK6106eJ2qyIrf/kfq6Jj0wQ==
-X-Received: by 2002:a05:6a00:2196:b0:7ab:4fce:fa34 with SMTP id d2e1a72fcca58-7ab4fcf3eccmr1842539b3a.1.1762139152609;
-        Sun, 02 Nov 2025 19:05:52 -0800 (PST)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a7d897c632sm9343229b3a.10.2025.11.02.19.05.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Nov 2025 19:05:52 -0800 (PST)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Han Gao <rabenda.cn@gmail.com>,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Vivian Wang <wangruikang@iscas.ac.cn>,
-	Yao Zi <ziyao@disroot.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	sophgo@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: [PATCH v6 3/3] net: stmmac: dwmac-sophgo: Add phy interface filter
-Date: Mon,  3 Nov 2025 11:05:26 +0800
-Message-ID: <20251103030526.1092365-4-inochiama@gmail.com>
-X-Mailer: git-send-email 2.51.2
-In-Reply-To: <20251103030526.1092365-1-inochiama@gmail.com>
-References: <20251103030526.1092365-1-inochiama@gmail.com>
+	 MIME-Version:Content-Type; b=gDJfyvkxMjVTy0sEg43MKN/CtHQ/02abJiszeXMy30hPf1kDt/BhogzPI9S4cmYXdUoKa/T4O0ybC9iRsKp2nOt+YmBF86pwj675eWMJ9d9a0x61tdigExpFxDJPfQ0W+pZEYPLetloSHQIK5f+2+Xh9x2wtN1q9wvwCU/dg75o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com; spf=pass smtp.mailfrom=oracle.com; dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b=M3gfTRHI; arc=none smtp.client-ip=205.220.165.32
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oracle.com
+Received: from pps.filterd (m0333521.ppops.net [127.0.0.1])
+	by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5A33F5eZ010921;
+	Mon, 3 Nov 2025 03:29:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=
+	corp-2025-04-25; bh=Qgly8A/dLXmhgP+e15Z2m3GsTokIMedwfFkWKwDr3I4=; b=
+	M3gfTRHI5wh+jgcRJWUFc+cTCH7nXJ7gcwWSk7AeJq+p0HzUqIeWw9vVd4xSqGzQ
+	5t2vj7NvOJ+NhBoh4pHYByYr1fMbJrP7eRXKBd4X9+qfxH2uzNfo4SK0y6KZbPEY
+	h6WekWVbUo5psKT1SYk9/GMPe79GC/MK4Y3XOiiaoOJI+nYBQZ4SXxFaVj1PS9HJ
+	zBUywbM1+8aBVwSHZ2QO9kodSLwx0nX1rVl/zOFjvdtzaXXm7nZaZvCwbalYmlzB
+	UizQxeevRDehv1pFvGnEEt27OH0AE48bfXN+zTHMDk6D38r+xMiaIMYVtvRPvx19
+	u+RhMaa+NRLpDlHQd0VNBQ==
+Received: from phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta01.appoci.oracle.com [138.1.114.2])
+	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 4a6mahg0kv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 03 Nov 2025 03:29:13 +0000 (GMT)
+Received: from pps.filterd (phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+	by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (8.18.1.2/8.18.1.2) with ESMTP id 5A2MXj0F016143;
+	Mon, 3 Nov 2025 03:29:13 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id 4a58n7av7q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 03 Nov 2025 03:29:13 +0000
+Received: from phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5A33TCcp011931;
+	Mon, 3 Nov 2025 03:29:12 GMT
+Received: from ca-mkp2.ca.oracle.com.com (mpeterse-ol9.allregionaliads.osdevelopmeniad.oraclevcn.com [100.100.251.135])
+	by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTP id 4a58n7av6s-1;
+	Mon, 03 Nov 2025 03:29:12 +0000
+From: "Martin K. Petersen" <martin.petersen@oracle.com>
+To: James.Bottomley@HansenPartnership.com, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, pedrom.sousa@synopsys.com,
+        Ajay Neeli <ajay.neeli@amd.com>
+Cc: "Martin K . Petersen" <martin.petersen@oracle.com>,
+        alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org, git@amd.com,
+        michal.simek@amd.com, srinivas.goud@amd.com,
+        radhey.shyam.pandey@amd.com
+Subject: Re: [PATCH v2 0/4] ufs: Add support for AMD Versal Gen2 UFS
+Date: Sun,  2 Nov 2025 22:29:06 -0500
+Message-ID: <176213716989.2123602.10337247781222345446.b4-ty@oracle.com>
+X-Mailer: git-send-email 2.51.1
+In-Reply-To: <20251021113003.13650-1-ajay.neeli@amd.com>
+References: <20251021113003.13650-1-ajay.neeli@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-02_02,2025-10-29_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 mlxscore=0 suspectscore=0
+ mlxlogscore=725 malwarescore=0 spamscore=0 adultscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2510240000
+ definitions=main-2511030029
+X-Proofpoint-ORIG-GUID: ZUXgNiq0VfNQJ13CVzwDbVsz-Rdys7LA
+X-Proofpoint-GUID: ZUXgNiq0VfNQJ13CVzwDbVsz-Rdys7LA
+X-Authority-Analysis: v=2.4 cv=Fa46BZ+6 c=1 sm=1 tr=0 ts=69082189 cx=c_pps
+ a=XiAAW1AwiKB2Y8Wsi+sD2Q==:117 a=XiAAW1AwiKB2Y8Wsi+sD2Q==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=pQfcJMmlV1QRne_P_tYA:9 a=QEXdDO2ut3YA:10
+ a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTAzMDAyOCBTYWx0ZWRfX6fsmS+TQkWDp
+ SlPsJh5SGp3+rbEFBValRe/R4S/JVviOnLwMQcwOfudhSzBL8No3tnaY0z4Ttp8uBYQRpwXGv4M
+ DIbOockExooMWdbqlzyhE6v0aMgAfrrRFVWtivySEwFNcasXEk8X6qxoz35Sc29ZonSjv+g6vp5
+ rwRzSbuSpN7m9N1RdSQ/E7M7zQodIegJfwGpJuNo3RfzZLlv6vft4zc6xvCarAb4jx/iKsNgFib
+ TSu0By3Iqw2nfEBTRcUTO92UVB5LhrfYnRO707AFNTJtnwJxVKFK6BlTPJ9imNePkS2DT3f3SQv
+ 1Vx8sgIOtpRUG6th7XV6qr256hbErSE85lYGTRaE/ThLVd+2Oy1XCw/VCeVKqameRwxjqEE37dh
+ 8GEGf+AppHoA7cQlw5wfxsOdThfh+Q==
 
-As the SG2042 has an internal rx delay, the delay should be removed
-when initializing the mac, otherwise the phy will be misconfigurated.
+On Tue, 21 Oct 2025 16:59:59 +0530, Ajay Neeli wrote:
 
-Fixes: 543009e2d4cd ("net: stmmac: dwmac-sophgo: Add support for Sophgo SG2042 SoC")
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-Tested-by: Han Gao <rabenda.cn@gmail.com>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
----
- .../ethernet/stmicro/stmmac/dwmac-sophgo.c    | 20 ++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
+> This patch series adds support for the UFS driver on the AMD Versal Gen 2 SoC.
+> It includes:
+> - Device tree bindings and driver implementation.
+> - Secure read support for the secure retrieval of UFS calibration values.
+> 
+> The UFS host driver is based upon the Synopsis DesignWare (DWC) UFS architecture,
+> utilizing the existing UFSHCD_DWC and UFSHCD_PLATFORM drivers.
+> 
+> [...]
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c
-index 3b7947a7a7ba..fcdda2401968 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sophgo.c
-@@ -7,11 +7,16 @@
- 
- #include <linux/clk.h>
- #include <linux/module.h>
-+#include <linux/property.h>
- #include <linux/mod_devicetable.h>
- #include <linux/platform_device.h>
- 
- #include "stmmac_platform.h"
- 
-+struct sophgo_dwmac_data {
-+	bool has_internal_rx_delay;
-+};
-+
- static int sophgo_sg2044_dwmac_init(struct platform_device *pdev,
- 				    struct plat_stmmacenet_data *plat_dat,
- 				    struct stmmac_resources *stmmac_res)
-@@ -32,6 +37,7 @@ static int sophgo_sg2044_dwmac_init(struct platform_device *pdev,
- static int sophgo_dwmac_probe(struct platform_device *pdev)
- {
- 	struct plat_stmmacenet_data *plat_dat;
-+	const struct sophgo_dwmac_data *data;
- 	struct stmmac_resources stmmac_res;
- 	struct device *dev = &pdev->dev;
- 	int ret;
-@@ -50,11 +56,23 @@ static int sophgo_dwmac_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
-+	data = device_get_match_data(&pdev->dev);
-+	if (data && data->has_internal_rx_delay) {
-+		plat_dat->phy_interface = phy_fix_phy_mode_for_mac_delays(plat_dat->phy_interface,
-+									  false, true);
-+		if (plat_dat->phy_interface == PHY_INTERFACE_MODE_NA)
-+			return -EINVAL;
-+	}
-+
- 	return stmmac_dvr_probe(dev, plat_dat, &stmmac_res);
- }
- 
-+static const struct sophgo_dwmac_data sg2042_dwmac_data = {
-+	.has_internal_rx_delay = true,
-+};
-+
- static const struct of_device_id sophgo_dwmac_match[] = {
--	{ .compatible = "sophgo,sg2042-dwmac" },
-+	{ .compatible = "sophgo,sg2042-dwmac", .data = &sg2042_dwmac_data },
- 	{ .compatible = "sophgo,sg2044-dwmac" },
- 	{ /* sentinel */ }
- };
+Applied to 6.19/scsi-queue, thanks!
+
+[1/4] dt-bindings: ufs: amd-versal2: Add UFS Host Controller for AMD Versal Gen 2 SoC
+      https://git.kernel.org/mkp/scsi/c/754c6f539eff
+[2/4] firmware: xilinx: Add support for secure read/write ioctl interface
+      https://git.kernel.org/mkp/scsi/c/00b3e8480be7
+[3/4] firmware: xilinx: Add APIs for UFS PHY initialization
+      https://git.kernel.org/mkp/scsi/c/0e4d26f79a74
+[4/4] ufs: amd-versal2: Add UFS support for AMD Versal Gen 2 SoC
+      https://git.kernel.org/mkp/scsi/c/769b8b2ffded
+
 -- 
-2.51.2
-
+Martin K. Petersen
 
