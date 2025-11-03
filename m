@@ -1,352 +1,173 @@
-Return-Path: <devicetree+bounces-234647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BF98C2F888
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 07:59:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEE4AC30254
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 10:04:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 532E34E0FEA
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 06:59:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7F50462928
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 08:57:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DBAD2ECD2E;
-	Tue,  4 Nov 2025 06:59:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD3062BE7B1;
+	Tue,  4 Nov 2025 08:56:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="nrKcMDzp"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="biwWVva3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012068.outbound.protection.outlook.com [52.101.66.68])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 638728F7D;
-	Tue,  4 Nov 2025 06:59:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.68
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762239594; cv=fail; b=taYrgBHS9bYBVN36MpzLssfSjykARZal4TX4LYG4kr2KXwVto/bkXaNUPM4tRGJoPb3+glx67Ifz5ZtpngzQuv5O2oNEHZz+Z9pAasRc+H6GMIWh6NieDeBohBj3fs0foh8PFtDgmTRSGbqxCli/vtxkXxSNUyuUllZ3FGJqqcE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762239594; c=relaxed/simple;
-	bh=z9nFe1pyy+EsMWRDarA+QuMFBL/796RU3JqsiqWDr10=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=s8k31BIt5kvtDRbkS8TfKrdqzDoySAGuCmtSC+LRvimF6KzYwQNGI8nRZp0rPZODOxal+tzf6iHS7ZZ0tPRgIO5v09XmI7PYIY6VQ9WxG3juAEpjMUNMbV3iN5lo0PBUr+8X3A2KhwdyNO/9E2bTcoy1vrT2Jn26GirM9gpLN0c=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=nrKcMDzp; arc=fail smtp.client-ip=52.101.66.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oPiKNQ2cjGtCEeJRAxYa900o8mZTeNufgymf+yPCZ6CtDFf2TyQhUYGjPIEepOWfg6C3aHxQCl+3Tbxb7jgmzzImZMY9TxcBySE+S3xWePn94cGPxdTDVXwEfWaqrpPoNUy5YaOXPz9MD8JK1LgFJTcrQvMD1KEs7PM6Uns8B52shGMGaz4WA/6xawg93sRCI/F/xeUmzxAcMfqoLINk+H63UH0IxwZu8Vxag9uhO7ky42bOCFvc6kRmTI75xKtUXrM6ouB3cKyj0C9LqZlCn3iXXyJyiS89QXhWucHPXNvTnb4moeOAegG4UNHtRRAsZoMWEQxSJCypOyUM54rk0w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SvDmqrx0n0T68fhN/GktJWGCFwTPwUq/bZqvOIxWGxc=;
- b=fecuweEkpiqn9pPCgA74RIOX77Ys9iliTdP75rOiExcmxeGn2yO/HbzSLusvRJfq+9nb0hF7kUNn8F35hx+U5fnLjFLrZ+DtO7LIMlYLeZb9X+1j0gwlME10UWd0wqSZhQJbdLsoGYsrLAk3iLCWcHgXjpl3hD3gxfiZITFuIxtzQn2yOQOmRMWUJ/ZNlH4Vch9P4ohqK/sDwqRCwrdF8Vwp2eQVcUdWmLpocdKfe0scepJfrIB9G+IuhOXb4T6mEBJiEfSmmnbCTZmBo4S8Pq+if/M+4IzmLkUq9FQ0kQHIM2ogjFa2RPMskTR8uQQ74K+x3m70av0d4Dre2tWI+w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SvDmqrx0n0T68fhN/GktJWGCFwTPwUq/bZqvOIxWGxc=;
- b=nrKcMDzpnpoBbikcF7gIxg+DARyA/vrQNnDBsuL5WcvehjAoXrmP36Gl1cxu2xb3E623dlGn9GJu/fI4FO8fE2BNX/C+xJWsVq3vPFyb87xmuLC8XgVbgsl8XroA86qPP8ACzcqcLZbQxaEc7IPRnNw7qIFY5Hrg8bNofajZj70V5mmjxnMKCQdxI5cbcY2RA1OPIpj+2RJ7OvYh0bR01sBLflgZgcokyVS8RkTCTVkR9LxMNztk1UFMjmI28OrlRmFrwh5kcQIbEpSr+r8PawD0VKYzthPgpkYjwPZHVznnyscvkSkwAqAj2gz1kdAecEdlds9u3+VxyUi5xFICHQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by AS8PR04MB7880.eurprd04.prod.outlook.com (2603:10a6:20b:2a5::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.18; Tue, 4 Nov
- 2025 06:59:48 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64%6]) with mapi id 15.20.9253.017; Tue, 4 Nov 2025
- 06:59:48 +0000
-Message-ID: <7e67c129-bf1f-4a4c-9aaf-a260d5481926@nxp.com>
-Date: Tue, 4 Nov 2025 15:00:15 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/39] Add i.MX95 DPU/DSI/LVDS support
-To: Marek Vasut <marek.vasut@mailbox.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Cc: Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Lucas Stach <l.stach@pengutronix.de>, Peng Fan <peng.fan@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
-References: <20251011170213.128907-1-marek.vasut@mailbox.org>
- <174ec43e-4cac-4452-a77b-e2e3b8413d05@nxp.com>
- <2c4a42eb-8c49-4ba3-baa3-921ec52f730d@mailbox.org>
- <92d928cc-d9df-4c9c-8571-da39001b91a7@nxp.com>
- <e0507800-7e86-4fbb-95cb-e64d8cca1e49@mailbox.org>
- <AM7PR04MB70466BF64A1CD8EB01D2DD9C98F5A@AM7PR04MB7046.eurprd04.prod.outlook.com>
- <ad7c080f-38e3-4579-8cd8-148df7769826@mailbox.org>
-From: Liu Ying <victor.liu@nxp.com>
-Content-Language: en-US
-In-Reply-To: <ad7c080f-38e3-4579-8cd8-148df7769826@mailbox.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SI1PR02CA0040.apcprd02.prod.outlook.com
- (2603:1096:4:1f6::7) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E124D29D27A;
+	Tue,  4 Nov 2025 08:56:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762246591; cv=none; b=TwwCb27da/GM2JvxCzF0/kG1yLozwjkC+ZoXNhKZEdemEPiD3/FrXCElSy/OVyCFTL8XVpNqR2EsveB3XxrIxzB6t3FlZT+Y1K8s+gEB8Ce9tP9EQiwh/6bLtVMwmCWsva6pgn/vRy7rlRNa5TJAxhrwwy6DSLhbk+OCj15CYoI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762246591; c=relaxed/simple;
+	bh=RGEXb1jvx5eNAWaVzEXgdcBVuRQZ/Fof4ebyLkKZUvY=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=JAWSmaDTSfY4LvyTvX28PIJCzbqNcGoPEGeH5+521Ll7r5sNUbc/eOXLjfUjZ+HB/qfLbdTMNNrhjZnGUUyfzAlaMFmHCncqDOrbZ6vbxaQWj5/Dzj8J0uhIEnnD/gUL87n4pM9umWSQmKda6MvO++usorWhES7yOrjDYd+EeZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=biwWVva3; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1762246589; x=1793782589;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=RGEXb1jvx5eNAWaVzEXgdcBVuRQZ/Fof4ebyLkKZUvY=;
+  b=biwWVva3V8zmfbnIBLEPnjJ6R/0lwS25BCP6V/lARi5cWSwZAhQ6A1qW
+   +TSqloolUwAYRAmHgNIgSFITxZ1byzfLcVX7d/rGecajZMjZS1TLVmGCY
+   t3vKGNJvklehUHRHzCsajhjNHjXPeXOyc4MkgJVPmAw8gBoFzGAMy6MXa
+   ysDacrI4pY0RMj8aAAXcD8nurcVzpYPvs6RbIz2P+69CW8pPC/f4c6uYd
+   V0MMpqBsAglNRDfbkPbubJVKBjWZpJGcWgPbKwzLkFlFijSJbGBsuUHYu
+   Cmc7j3x7rUCdrqmHBcgtvLEiNSgpgR9VJOu7eS6PcjHWyaSQHWj8DXedE
+   A==;
+X-CSE-ConnectionGUID: ah0thdEYRoWg7Z9edIgL+Q==
+X-CSE-MsgGUID: v7hDKFhWQLqfb+ojoUk0Sg==
+X-IronPort-AV: E=Sophos;i="6.19,278,1754982000"; 
+   d="scan'208";a="48018750"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2025 01:56:28 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.87.151) by
+ chn-vm-ex2.mchp-main.com (10.10.87.31) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.29; Tue, 4 Nov 2025 01:55:48 -0700
+Received: from [127.0.1.1] (10.10.85.11) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Tue, 4 Nov 2025 01:55:46 -0700
+From: Ariana Lazar <ariana.lazar@microchip.com>
+Subject: [PATCH v2 0/2] Adding support for Microchip MCP47FEB02
+Date: Mon, 3 Nov 2025 17:50:28 +0200
+Message-ID: <20251103-mcp47feb02-v2-0-8c37741bd97a@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AS8PR04MB7880:EE_
-X-MS-Office365-Filtering-Correlation-Id: 10964880-919a-4f43-895c-08de1b6fbe69
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|376014|7416014|19092799006|1800799024|366016;
-X-Microsoft-Antispam-Message-Info:
- =?utf-8?B?OTJxV0ZCRDNVU3IrS05nM0IyUHNzTVJCUGh6RHFuTmpkTXYyTHZXYm04aXQ3?=
- =?utf-8?B?aUM4dVJYc0Z4ekdQek9OclVvNGlNMnRpMTYwZ3YxT2F1NmNnMEtTZmVIa1c2?=
- =?utf-8?B?NHI1NEVSVU5XcjBYR01URHRCeWhlNVBuUWo5UHBzTmp3T1V6SEE4RmJuSTFF?=
- =?utf-8?B?alpJYjBWMm9JWEw5WXFsRGNyS0VsdHlrRGZ1NzhoMUNBZnBpeEg4NlNpdms0?=
- =?utf-8?B?Z21NK0dMYmNOMnlBZ2NpaVlvOW52SWJiaVdibTVLaXZ6M1pKRG5vSTBrS2x5?=
- =?utf-8?B?MkxMa0ZIN1NDMmpTZk5WOHhzMzY0bGdDY1g0QzIybmpWUjQycTgxMHJSYURn?=
- =?utf-8?B?MGlZU3BRRzZyNElKSk52RkY1RmNsNHdvU2FRK1lJOVRRM0lIWU5UNXZNb241?=
- =?utf-8?B?dTk1NmNGeVAvekNxZnlCR1VmVklLUW84WUdPeWVZYTFpSll1VmlESFZUOEQx?=
- =?utf-8?B?TUR3U3FCOHhZZkpDRGNBUVp1YjV0MzgvLzNTZllxNGt5SmxQakx0UkhxRUVi?=
- =?utf-8?B?a2JYaHgyOEVuaEdQUFhBSVYzU1kwUlNFdzFWcU1kNmNnYUxxaGJEMGV4SCto?=
- =?utf-8?B?aHNkUmliL0RFcHk3N1A3YmY4NjVwNGNQK2FuQnFkbWQ3NkRicStyOVcwNmxx?=
- =?utf-8?B?QWFDLzZrR0xNZTlwdEpxcXEzVG11MGZ4N1d0eUFsNllBNkIwY1RsRTFQemZZ?=
- =?utf-8?B?VDBjc3Vmcnl1Ky9VMkVFUXBOaGN4Y1dUbDFmU0xwamczM1lubkJlWkxUemNa?=
- =?utf-8?B?M0EyU2tqN0dsTnRCcWVxY2tLYUR6OTBlaW41NFVmUjRBYVF2S1RzczF0MW0v?=
- =?utf-8?B?WWxhMkVQb25wUTIwUEFWUCsrdGZZN0E2cDRTQkhoalM1SDBiNUsveXNqQ3c3?=
- =?utf-8?B?NjZmY3gxakR1Ky85dDhST25KNkphRUJUeDlDQnlBRjlNbWtaQTRNUS9tOS9q?=
- =?utf-8?B?R1VDU2ZkRkxBVDAvRnQzSERmSzRGdjdoUk5wWnpWdDVFaUV0UVplKzM2OGk4?=
- =?utf-8?B?NENMeVNxYkRUZlZXajJaRlY0UFF3WmtKaEx2N2t6WGNkRXZIcTVTZ2pYRy9F?=
- =?utf-8?B?QU1aS2dYeXBiV24vUndmOFk1R2E5ZGUzS1BrL0xPbXNBdkV2Nmw1MVF5bWVL?=
- =?utf-8?B?TVo2MkNrZ2UwQi9wTDNTWFo1TmRjZXNwOG1pZ2dRa1RaVzhRRFJzMklDcHN0?=
- =?utf-8?B?dGdYb2pWSk1QVk4raDNRT0diUUVsN045bTVHVVdTV0pxSDQ2Y0ZORFppNGFN?=
- =?utf-8?B?b3RZSVdQMU9pa2FNMVphNWZvblpEVnQ0cFBxOFlzSmZCTGZaMFB1NTFrNTE1?=
- =?utf-8?B?MllTdVA1cG4rU3ZCdVR4Z2VHV2U1VDg3RCtxMm12eFNCR3k5TEs1UkR5T0Jt?=
- =?utf-8?B?bWkxcGhmRmpwM2FqQ1hjcWZZcXk0T2gzYklqcGhkM2RwVjdsMlBBdGptcmxU?=
- =?utf-8?B?SmlFNmZjdTZTVXhwZmtlRkVnMkFuWWh5MStaSzBkaWZOUy9rOS9laDZvcHEx?=
- =?utf-8?B?K3JKV0tYL3hkQUx3U2VMUDkwTGw2NC83SVdCV3VnWUJZZXNlQlZSajRPMS80?=
- =?utf-8?B?Z2FRa2xVdFZuTmJHNHRpYkF1TVk0c3NlWmJTNjlFTGJDbUlyNFBrYnFaR0ZJ?=
- =?utf-8?B?ZWN5SzBPVklhaERwQ2drRk1QeXBGai9hK0R5ckFRV0d0RWdaVWtMRXZSQmZv?=
- =?utf-8?B?eCs3QndSaE1HME5ZalVVdHRjZjZtQTdQemgwVEtSQmFtZ1lqdGE2U3RPeEsr?=
- =?utf-8?B?NmlURmFIYXQ0OUE2ME1xR3MrMWlNdDZ4enNpQ2N4VHVMVzJsSWY1d0dEYkQ1?=
- =?utf-8?B?SmRZUm5MSEs0VWhLNStGbjZZclUyNmNwbDB2NEhBUUVzVVVldnQremNQdGxJ?=
- =?utf-8?B?SDR0TW5VZHZraGtFeFhac3Y0NGg2VHlGUlFIYkNUanMvTHFNOE5PR1VYZ3hK?=
- =?utf-8?Q?a13DEpXgbBjtjWMSPtOFqrx6rwY4benn?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(19092799006)(1800799024)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?MjQrcG1pRG03bmJSVWdKRC9qUlNnSnd1T3J0S0p3RkRkWDdOak5DRFl0ZVV3?=
- =?utf-8?B?bjd4TllrUERlbUlKUUVhWlFSTHgzc0EvMGh3SHlNQ09CdVo0MlU4T1Y4d2ZT?=
- =?utf-8?B?WDNwMGZuUldOZnFRa3FxZWR0SkU3bkVJWDlZbWUrcVkrZnlhWEdzV0xyOGNs?=
- =?utf-8?B?RUZPTE9PbkR5VzRXU2svbEdXdkx1VUJYVWZGS1dnMUZQWWlDVVE2b1dLbndL?=
- =?utf-8?B?ZEUxNi9HdkJqazhqcDhlZnhEclh3Y1FoK0NacnRydE9vQnlHK1BTTTBOUDk4?=
- =?utf-8?B?L1BwaVFKenM1VUMrQlVJaUplZEdGaVNiSm5CNk9ER2VEeTloU3Y1cjh5MUh6?=
- =?utf-8?B?TjlCb2hGaC96WlVtRzZsbmRLQUczQkdSS0szS3JldXkvSnlER0dydkJNb1Zy?=
- =?utf-8?B?Q3pRbXJMZ00wRlJLSGtNbE1wdmdZUW5kQThaWUI2UUJnUjBQRjY3QkRyMjRS?=
- =?utf-8?B?SnYxcWRRNE50QlRkNG16T0ZVUXgxN25JbVpkTHVmMmREbHM4TlppaXQ1QTdw?=
- =?utf-8?B?ZFpRelRTQ0ZTdHluSlc3Mi9XMXA1WmlXM2JhckhCQVRTZHVYTFVESmtmcXQ1?=
- =?utf-8?B?VktraFhmNFpqSFNpNVNMM2xSbWZCdGRkaTZISXEvdUE3UmsvNWM1aUxaMTd2?=
- =?utf-8?B?aUZYdG1MRkJITzB3MUZIRTRVTDZ0amNnMGxSNXk5dkhQWW4rVmhpencyRS83?=
- =?utf-8?B?R3JwUU1FaEtQYndpdkU0ZWNIL0lyQzhUc2NkSDc5MXFtRVpZdWdpU1owY2tH?=
- =?utf-8?B?ckxQc3NWWVp0RUNWWnkwM2Vzd3ZFMzlyK01CTHAvOTVHQXNuczZpQUlmeDFv?=
- =?utf-8?B?eXVETENVNGdGZmRVREFud2RiWENGdjVqeUM5ZTBteW4wRkRScGJwcWtSMy9I?=
- =?utf-8?B?c3dOVVFkbVVGdENRUWgrV3lkOVYwL1RjTUtVVXVZcTZCOWlaOXdEckl0NHJn?=
- =?utf-8?B?bkljZHVyUTB0Rkg0QmtxZUFJQnV2cWVFWUM3SWlSUXdpN1BFSndWckNjem5Y?=
- =?utf-8?B?RTFmODhuUU50Z0hFVEtjQVgwbDI3NXErdnpMQTMrZG1taytsTGd4L3pGMENF?=
- =?utf-8?B?YVlyQmt5WmhZRFB2aWg0bWphMHc4bHNpVkY2bkw3OFUxZ1ZRcHhtcDFWZTcz?=
- =?utf-8?B?VEw3eTNNMlJLOWRrYlYwOVAvTU5IcWNFZGJoekRvU25XTWRWUVl4NWVpZGdX?=
- =?utf-8?B?dHlTaFJXeTYyQmtYSzloY09UUjhSWGY3UWttOWFaOSt3UFZycW1RTVUrK2h5?=
- =?utf-8?B?VlR2RVRhWTZoYlBtaGpURnNNL2U1SzVDRmlJZDd3bStkRzkwT09NcmwzWllX?=
- =?utf-8?B?dHpIMVpDbVNiMnJTdVl0T3ZQSER1SnY0MTJseHJRU1RGRTk0ZFhwa3lHaE00?=
- =?utf-8?B?Q3lUODZHRCtpU1Z6SzBiVjNMVU5xUGFMMHdlcTZzSlNPWmpHTWVEcUtzdFpQ?=
- =?utf-8?B?bGc2OFNCZCtpRFdZeGlKRG9QUm5qd3RKQnpMMGJ2K21JZnV3bENScDgzYXgw?=
- =?utf-8?B?RnhTNUIraUVlM1c3djRhWlJJNE1BUlhPTFIxNlNjcDRQUzRjeFNXa1J6K2J1?=
- =?utf-8?B?bW52NmJRWVFrVXFZUlZ6WVZGTUpPVy9NTjBCTGJ4ZGhCeCtEbUJydXVLaUZJ?=
- =?utf-8?B?dGN3T1JQSzE3ODBNcmY4SzJ5WmtXM3dyV3RJSDZ1OTJDZlR3WTBpUHhDTUl4?=
- =?utf-8?B?bStMVUh4Qkk2OFBBTi9qSlZxK3l6TnR0aW1NZEw0QmtZaFA0SHJFWFQzeElq?=
- =?utf-8?B?NE9QanJIU0ZnUXZnbHhBbk5OUDQ5V0haT2hOdGZLdFJmc0pJbkhLbjRpK1kr?=
- =?utf-8?B?b1NvSWxPTndiazRoMHhDNlNBUUxNUWIraXVVektaQjY2cmxLeGV3ZEFDb05Q?=
- =?utf-8?B?NjR2OVV2RXNqQmJ2aE45Zk9TR09IUFFaaWtYMExTemR2V2d6QkJNcWpvY3lh?=
- =?utf-8?B?M3ZiMXZrelEwMXA3L0JIWkRnc3YzMDRwZVdKL3hWdnJ4YlFndUJ5bElQQk1H?=
- =?utf-8?B?RS92MUpEUzBXamxFKzM3QjdnZElaeGJ2Wm9yQ1d2NEZzeFpxUk8xbDZ0VDN4?=
- =?utf-8?B?QnpRK1krckd0bllKbjRSSldtaXdQSjJ1ZEVIaXZhdWhFNDJlcmx6TFBkeWs0?=
- =?utf-8?Q?mghh05AEK2fLz1nFjlVMxyAkJ?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10964880-919a-4f43-895c-08de1b6fbe69
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2025 06:59:48.4813
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: olZ7NiGYEqrZ4y4m+iBQfQRpZeKTApQiNVrMDJQF6IHxnRjjSVX42oYSTygveuDchVCcU5HqNbcqY/fPyMr5LA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7880
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAETPCGkC/03MQQ6CMBCF4auQWVtTBmqBlfcwLMo42FlASWuIh
+ nB3K25c/i953waJo3CCrtgg8ipJwpwDTwWQd/ODldxzA2o0ukGjJlpqO/KgUVUlWdsY6xhbyIc
+ l8iivA7v1ub2kZ4jvw17L7/pjWsR/Zi2VVvpCQ+3Iuaq210koBvKynClM0O/7/gHdstSWqAAAA
+ A==
+X-Change-ID: 20250825-mcp47feb02-31c77857ae29
+To: Ariana Lazar <ariana.lazar@microchip.com>, Jonathan Cameron
+	<jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
+	=?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, Andy Shevchenko
+	<andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1762185039; l=3623;
+ i=ariana.lazar@microchip.com; s=20250825; h=from:subject:message-id;
+ bh=RGEXb1jvx5eNAWaVzEXgdcBVuRQZ/Fof4ebyLkKZUvY=;
+ b=npDCpr+p/vK53/5hLovZz3M3cNY1oIGt/NJj4n8s/gkufd3bPrA3ucT38OG6GTmn7cdxmRqzl
+ w3qaLmdoVPqABN2wXSIoTWmZo18uNjj5WSyqspgQJzjCNwdbSq6SxrD
+X-Developer-Key: i=ariana.lazar@microchip.com; a=ed25519;
+ pk=jmvf1fSxcnzZmXfITM3L94IwutM+wqA1POQHiYyD6Dk=
 
-On 11/02/2025, Marek Vasut wrote:
-> On 10/20/25 4:15 AM, Ying Liu wrote:
-> 
-> Hello Liu,
+Adding support for Microchip MCP47F(E/V)B(0/1/2)1, MCP47F(E/V)B(0/1/2)2,
+MCP47F(E/V)B(0/1/2)4 and MCP47F(E/V)B(0/1/2)8 series of buffered voltage
+output Digital-to-Analog converters with an I2C Interface. This driver
+covers the following part numbers:
+ - With nonvolatile memory:
+   - MCP47FEB01, MCP47FEB11, MCP47FEB21, MCP47FEB02, MCP47FEB12
+   - MCP47FEB22, MCP47FVB01, MCP47FVB11, MCP47FVB21, MCP47FVB02
+ - With volatile memory:	 
+   - MCP47FVB12, MCP47FVB02, MCP47FVB12, MCP47FVB22, MCP47FVB04
+   - MCP47FVB14, MCP47FVB24, MCP47FVB04, MCP47FVB08, MCP47FVB18
+   - MCP47FVB28, MCP47FEB04, MCP47FEB14 and MCP47FEB24
 
-Hello Marek,
+The families support up to 8 output channels. The devices can be 8-bit,
+10-bit and 12-bit resolution.
 
-> 
->>>>> I wanted to put this whole thing on the list first, before I start splitting it
->>> up.
->>>>>
->>>>> For starters, I think I can send these separately:
->>>>
->>>> Before discussing how to split, a bigger question is that is it fine to
->>>> support both i.MX8qxp DC and i.MX95 DC in the same imx8_dc_drm
->>> module?
->>>> Separate modules look more reasonable to me, considering the fact that
->>>> there are quite a lot difference between the two DCs.
->>>
->>> (maybe I do not quite understand your suggestion with "separate module",
->>> I assume this means entirely duplicate driver, is that correct? I
->>> operate with that assumption in the text below.)
->>
->> I'd expect separate modules: the existing imx8_dc_drm(which can be
->> modprobe'd) and something like imx95_dc_drm.  I wouldn't call them
->> *entirely* duplicated drivers since I mentioned common part of the DCs
->> could be wrapped as helpers in an additional module(something like
->> imx_dc_drm_common).
-> 
-> How would this look if everything is built into the kernel ?
+---
+Changes in v2:
+v2:
+- fix review comments device tree binding:
+    corrected the use of patternProperties and enum with an array of
+      channel numbers instead of minimum/maximum
+    gave more specific names to the labels of the channels
+    removed '|' from where it was unneccesarry
+    removed unneccesarry setting of attributes to true
 
-Something like imx8qm_ldb, imx8qxp_ldb and imx_ldb_helper modules -
-DRM_IMX8QM_LDB and DRM_IMX8QXP_LDB select DRM_IMX_LDB_HELPER.
+- fix review comments driver:
+    replaced custom write function with regmap_update_bits.
+    added read_flag_mask field to regmap_config struct and shifted all
+       register addresses with 3 bits in order to correctly apply R/W
+       command mask
+    changed cache_type field of regmap_config structs to REGCACHE_MAPLE
+    added val_format_endian field to regmap_config struct as
+       REGMAP_ENDIAN_BIG
+    kept in powerdown_mode last value written to register before reloading
+       the driver
+    created defines for magic bits used in probe function
+    removed unneccesarry channel enabled checks
+    added in parse_fw initialization of reg with 0, check for valid
+    reg number after reading it from devicetree and nonzero num_channels
+    initialized vref_mv, vref1_mv, vdd_mv
+    replaced CH_0, ... CH_7 masks with DAC_CTRL_BITS(ch) and  G_0, ... G_7
+      with DAC_GAIN_BIT(ch)
+    corrected write_powerdown function to write normal operation into
+      specific bit mask from power-down register when a channel exits
+      power-down mode.
+    added const pointer to info in data struct
+    deleted device_property_present checks for vref, vref1. Read vref1 only
+      if have_ext_vref1 is present in features
+    protected write operations with mutex using scoped_guard or guard
+    refactored probe function by creating 2 setup functions,
+      mcp47feb02_init_ctrl_regs and mcp47feb02_init_ch_scales.
+    corrected info/debug messages where it was specified
+    used devm_iio_device_register and deleted remove() function
+    in write_raw only update struct data if regmap write succeeds
 
-Note you may make CONFIG_DRM_IMX8QM_LDB=y and CONFIG_DRM_IMX8QXP_LDB=m with
-CONFIG_DRM_IMX_LDB_HELPER=y.
+v1:
+- first version committed to review
+- Link to v1: https://lore.kernel.org/r/20250922-mcp47feb02-v1-0-06cb4acaa347@microchip.com
 
-> 
->>> This series indicates that the functional units in the DC are basically
->>> identical, with the majority of changes being register base addresses of
->>> the whole DC and an odd bit or register offset here and there. Most of
->>> the code can be reused, as can be seen in the first half of the series.
->>
->> The major differences between the i.MX95 and i.MX8qxp DCs are
->> different components in Display Engines(especially the additional
->> Domain Blend Unit in i.MX95 DC)
-> 
-> This seems to be one component in the whole pipeline,
+Signed-off-by: Ariana Lazar <ariana.lazar@microchip.com>
 
-Yes, DB is i.MX95 DC component, but not in i.MX8qxp DC.
+---
+Ariana Lazar (2):
+      dt-bindings: iio: dac: adding support for Microchip MCP47FEB02
+      iio: dac: adding support for Microchip MCP47FEB02
 
-> with links going into it. Those links are already in place.
+ .../bindings/iio/dac/microchip,mcp47feb02.yaml     |  302 +++++
+ MAINTAINERS                                        |    7 +
+ drivers/iio/dac/Kconfig                            |   16 +
+ drivers/iio/dac/Makefile                           |    1 +
+ drivers/iio/dac/mcp47feb02.c                       | 1233 ++++++++++++++++++++
+ 5 files changed, 1559 insertions(+)
+---
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+change-id: 20250825-mcp47feb02-31c77857ae29
 
-DB's inputs are not configurable.  They are ED0/1/4/5, going into DB0/1's
-primary and secondary inputs.   So, DB is nothing to do with LINK_ID_xxx.
-
-> Maybe I am not seeing the specialty of this particular DB component ?
-
-I commented on patch 1 earlier:
--8<-
-Add more description about the unit according to i.MX95 DC IP spec:
-The unit operates in four modes:
-- Primary mode: The primary input is used for output.
-- Secondary mode: The secondary input is used for output.
-- Blend mode: Primary and secondary inputs are blended, according to the
-              programmed blending functions.
-- SidebySide mode: Primary and secondary streams are projected side by side,
-                   i.e., primary video on the left side and secondary on the
-		   right.
--8<-
-
-The four modes make DB really special.
-
-> 
->> plus i.MX8qxp DC's capability
->> to connect with the prefetch engines(DPRC & PRG).
-> 
-> Isn't the prefetch engine only a bit of register configuration,
-
-Yes, but maybe more - See my prefetch engine patches, there are quite a few
-logics implemented(especailly in CRTC driver) to make sure proper sequence
-to enable or disable prefetch engine.
-
-> that can be abstracted out ?
-
-How to abstract that out?
-
-> 
->> Both would
->> have significant impact on how we implement the drivers.  We'll
->> certainly end up having different implementations for callbacks to
->> enable/disable CRTCs or update/disable planes.
-> 
-> It doesn't seem they have to be entirely different so far, do they ?
-
-Well, if you add really limited features, say just primary planes
-without prefetch engine support, then I'd say they are not entirely
-different.  But if you consider to add prefetch engine, overlay planes
-and those HW differences(especially DB), they are.
-
-> 
->> The sort of minor difference is in Pixel Engine(including Blit Engine)
->> where FethUnit types and numbers are different plus different numbers
->> of Scaler Engine.  I'd expect logics to allocate FetchUnits for planes can be
->> implemented in the imx_dc_drm_common module
-> 
-> This part is fine, but ultimately, it would have to be possible to build
-> both the MX8Q and MX95 drivers into the kernel too. And then there would
-> have to be some logic to deal with that, likely based on driver data, as
-> it is done here.
-> 
->>> The addition of iMX95 into the iMX8QXP DC also does not seem to be
->>> making the driver in any way more complicated.
->>
->> Disagree. The addition would introduce quite a few i.MX95 or i.MX8qxp
->> DC specific code branches due to the differences mentioned above.
-> 
-> This does not need to be the case, see the first half of this series ?
-
-The first half kind of handles difference for some shared i.MX95 & i.MX8QXP
-DC components.  I'd expect the common part can be put into imx_dc_drm_common
-module.   The CRTC and plane drivers in the second half would really be
-quite different.
-
-> 
->> I'd say i.MX95 DC support could be in drivers/gpu/drm/imx/dc, but it
->> needs to be in a separate module like again imx95_dc_drm.
->>
->> This makes feel that the debate here becomes kind of similar to what
->> we did for single mxsfb module vs  mxsfb + imx_lcdif separate modules...
-> 
-> The mxsfb (the old iMX23 LCDIF) and lcdifv3 (the new iMX8MP/iMXRT LCDIF)
-> are entirely different hardware IPs, the former is from SigmaTel , the
-> later is from somewhere else, right ?
-
-Well, I'd say they shared some HW IP logics.  I bet quite a few registers
-are shared.  After all, you the one who tried to support both i.MX23 LCDIF
-and i.MX8MP LCDIFv3 in one single mxsfb module in the first place :-P
-But now it ends up with mxsfb + imx_lcdif separate modules.
-
-> 
->>> What would be the benefit of having duplicate driver for IP that is
->>> basically identical, for i.MX95 ?
->>
->> Cleaner driver implementation and easier to maintain.  I don’t want
->> to test both i.MX95 and i.MX8qxp platforms when only either
->> i.MX95 DC specific or i.MX8qxp DC specific code is changed.
->>
->> But again, they won't be entirely duplicated drivers.  Common
->> part could be shared between the drivers with software techniques,
->> like the imx_dc_drm_common module mentioned above.
-> Please have a look at the first part of this patchset, there do not
-> seem to be that many new or complex branches.
-
-Like I said above, I'd expect the common part of the first halp can be
-put into imx_dc_drm_common module.
-
+Best regards,
 -- 
-Regards,
-Liu Ying
+Ariana Lazar <ariana.lazar@microchip.com>
+
 
