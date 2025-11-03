@@ -1,223 +1,146 @@
-Return-Path: <devicetree+bounces-234377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2231C2BC4C
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 13:45:09 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEBC3C2BD8B
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 13:55:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7385D34B912
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 12:43:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BAD384E5BDC
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 12:48:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66985313E03;
-	Mon,  3 Nov 2025 12:40:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F92630146E;
+	Mon,  3 Nov 2025 12:48:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="068+1gBs"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="2tFdT9lH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from server.couthit.com (server.couthit.com [162.240.164.96])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46760313267
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 12:40:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9D6A2D8360;
+	Mon,  3 Nov 2025 12:48:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762173623; cv=none; b=cw3oqM04KzDdm66mEfHAnKC+vM5F6vZO80yfWbrvXYj3MZFhB/cpAKUaHQqbMxxtIUn2h0ijwRCa3/9La3BUREwj9EBuoELFDowVymqd3vkFxQY1ggdBxaRrJGFNv99+qvi8eCG5J7Df/EvbCi6kKIMDRi0rFCvEf3jgFlYMBy4=
+	t=1762174131; cv=none; b=Iytb0X4vytTuF9wegRsiIkRQaIeF1fQpM+YXwfP5C8OKxN7EnpUdiGoLR6Z2AyESeQQjWpPq8vC5flPE84gHsRPlAb7r22LTtSuUXxbcVfHf/1c3+zln7WKVgxHgdwIJfxEEVKLxC54+3xK3YiAoJFtfJ89avLR6wJSRdseA1EA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762173623; c=relaxed/simple;
-	bh=PBPbTiaRFBCUflC//sGsNqP/r7El5dOHwJAilCXJgpw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XRilk6wpU8SdVGnrMQM+JTe+9u+vvuRP4FNGfRVD6JBCDqkmSW9vmJ0F8ZwmOPwCHbUf47UTkjq0Jrddcc+uduTUs8qEIgNlt3agk6igsqb4vjBN0izKnVKvI9f03A6vmdh20/UbIx2XsIjnN+lOJALX6eCooJdz4AFU5Hr4JE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=068+1gBs; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-b3d196b7eeeso839347266b.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 04:40:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1762173619; x=1762778419; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aEOzYQjb3bYzTT0+rBoXJ8LwprKU2LjyQuBHnHtCHRU=;
-        b=068+1gBssx8bdhH2Xu1b+rj46RtEeOuYzvSj0QnYJzzleFOkZpHz3ps3imJ6CimtWg
-         cHbPzylroVhx0JvGLIuxh74tkC661hmvE+1NvqrxxNxQ7ItxPIsO6gYY1HQhOw1laSeD
-         uMW/58laUXu1jzI6xKcqmd2YDt0pI+YwDVjJvAPXInkQ/MFrbvjMd9OLufhrD1OAslNx
-         pgebytlYqTZdABEqXyYm8nzL3oZdJNtatvqIbZRdgTAVuEbbvHPTgm/h5aWmQWdXbR4X
-         M2I/JebDVLrShQsHEc3bCRCz7+csg2b48oX8TlL4/CcU11MLcr0gwmTDSOGMUu6NjqgD
-         ZbmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762173619; x=1762778419;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aEOzYQjb3bYzTT0+rBoXJ8LwprKU2LjyQuBHnHtCHRU=;
-        b=B0CFv/PT0iCCXWyx2tComkdxNqCDhr6NAnbc6k3PcNVvkEy15509v0C+pbxnq2vskK
-         fd6b7QS1tvK40bzJc6Kp1LzgEYpexaO6X6Cd9Bk4t0g5l12no/Pqv6JkWLwDSJk/CY2q
-         f8OPYq0s2MYDAJCif9rqXhP1HiY/y0Qbrmy1xH5x+my/m/2LYNWl/KfcGPRoKxdd5zCH
-         ZDhFpDOfltU1eODCaE7Xl+JJatA6/f92TgtTSIf/vRhidw4ENwKWJkGWa87tlLZq49ce
-         uXGoNx90KFz8zdb4CsDQTNicimFlcqr6tV149LZ5ObHwIRsqVs2po1LZjJxX5M2BAG0g
-         0o3w==
-X-Forwarded-Encrypted: i=1; AJvYcCXeZLYBMbt0eO4N8EM/spNb7/GSG5Y58usyrd0HHgbhHNg3MIlSnCMUNcuW10Y78xwnx5OkPJx4BPF3@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKuYa5UEQtr8xwksGlK/dgJiarwxEanWXj9O50WX7VlkhJ8OCE
-	yBwZP9Y4St6X8uGHC6+C+lInzSS8xEi8b4VLmaLUIIC4kh09Ukf+p+IWkDubxFo4XqM=
-X-Gm-Gg: ASbGncsBQJOYm9kCxvT0UJcOqLJXMbycHblICZNjSvIeyAx4Hz4KM03xoi0VrvyM10M
-	k0ocrZowe6E/NSx/SrKJ3cnqgHgawFaXWiMT2HP1LY3xcbsj4zuk3iE8Lhdu+qEKzeWhr3GAGEI
-	wmSgDfJfK/XwH/uVRuekRcmvY+SiBU452TLrDlylXvjo2r/NX5yZcxFg4XNiL0N6P8n+7pk+QZY
-	Bc8ge7JH6dy0jKFrI3pCUC/dFNRkUDJJ9F4WcBy4s7jgJdmjcCC9sMu+yXNq4IwAzGzm4ulfAUC
-	u//Ew6IUpPHdAUGn0n7zxBqVeNYSuNhC7IWiW2ciSW6v5mjFKTiWhQF0gOdcDSqqd8KtSrcHeb8
-	c1J880/MxwJ5qe67Gdj6pb02vHiPAVJnADedH0J0aFWThfgAPU0tqtougPps1L5Zecg/q5ExGaW
-	HkWdq+0g==
-X-Google-Smtp-Source: AGHT+IHn0eJ3Tu256jIPX9/GzApN5tFapxvyPCs9nNGcBmAd/Kc3dyXibpeRl/PQ7VLIbeGw643Wbg==
-X-Received: by 2002:a17:907:d94:b0:b6d:3fc9:e60c with SMTP id a640c23a62f3a-b707016b28cmr1301623866b.20.1762173619542;
-        Mon, 03 Nov 2025 04:40:19 -0800 (PST)
-Received: from localhost ([2001:4090:a247:830a:fe22:a8:f29a:a5c3])
-        by smtp.gmail.com with UTF8SMTPSA id a640c23a62f3a-b707bf79e72sm1007193366b.51.2025.11.03.04.40.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Nov 2025 04:40:19 -0800 (PST)
-From: "Markus Schneider-Pargmann (TI.com)" <msp@baylibre.com>
-Date: Mon, 03 Nov 2025 13:39:33 +0100
-Subject: [PATCH v5 6/6] arm64: dts: ti: k3-am62p5-sk: Set wakeup-source
- system-states
+	s=arc-20240116; t=1762174131; c=relaxed/simple;
+	bh=IdboKY1PXrAGO4syzkQNEAjYzB+o+QEgylf92LdeBrI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kQf4TmDUtUAATcqBUnzY0AUNDBt6gSKuugOQ0j62ze9RhRuuqQqAsaCO1CCwjMXJWUY0uXSTKA5RonB85XBgxs41uEapgwGusYXasRgmjiOxLhfJLBM4Q26VEqrMnWgNy/XID4vnQGAolRvVJ9MWL74FWy/c8OpjhBUv3CWrRmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=2tFdT9lH; arc=none smtp.client-ip=162.240.164.96
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
+	; s=default; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject
+	:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=Nxcpn3Hue00ov8/8RT06Ws2hq4Ob1LXYSYCqOo+CjUY=; b=2tFdT9lHy2ok+cgcrmkWs3jB8F
+	jE4Isj+ka+TpLW+yweBh8xOAqS5epzOkHAjveR/lVHYI0CzFbZanZefWzhgPgxGccIbTDx1aJPk5n
+	fmvTkmnRgD9aMVq8iVwx1+ARgZxor6BBVv3EO+cxvVrFqDILmToIcB78KbREbzjc8+Uf5CBFTLxyX
+	rCru5wc6S2BasR6gc62cHpdY/rgfjjKBElgAzF5OAVO5MeXtkVFWdDGZGlzWxPRtqrHTjAM58JAdI
+	aMUIWPGQr/+O5Z8mBtEKV90/bQFulmJ57FH51a0wDtGUQKKL4/7HJB4hXFaqzgds6fCeKqTmWmced
+	5O1Ds9cQ==;
+Received: from [122.175.9.182] (port=21157 helo=cypher.couthit.local)
+	by server.couthit.com with esmtpa (Exim 4.98.1)
+	(envelope-from <parvathi@couthit.com>)
+	id 1vFtzK-00000006SBs-1h7P;
+	Mon, 03 Nov 2025 07:48:46 -0500
+From: Parvathi Pudi <parvathi@couthit.com>
+To: nm@ti.com,
+	vigneshr@ti.com,
+	tony@atomide.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	richardcochran@gmail.com
+Cc: linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	andrew@lunn.ch,
+	danishanwar@ti.com,
+	pratheesh@ti.com,
+	j-rameshbabu@ti.com,
+	praneeth@ti.com,
+	srk@ti.com,
+	rogerq@ti.com,
+	krishna@couthit.com,
+	mohan@couthit.com,
+	pmohan@couthit.com,
+	basharath@couthit.com,
+	parvathi@couthit.com
+Subject: [PATCH v2 0/2] Add support for ICSSM Ethernet on AM57x, AM437x, and AM335x
+Date: Mon,  3 Nov 2025 18:17:22 +0530
+Message-ID: <20251103124820.1679167-1-parvathi@couthit.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251103-topic-am62-dt-partialio-v6-15-v5-6-b8d9ff5f2742@baylibre.com>
-References: <20251103-topic-am62-dt-partialio-v6-15-v5-0-b8d9ff5f2742@baylibre.com>
-In-Reply-To: <20251103-topic-am62-dt-partialio-v6-15-v5-0-b8d9ff5f2742@baylibre.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Vishal Mahaveer <vishalm@ti.com>, 
- Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, 
- Sebin Francis <sebin.francis@ti.com>, Kendall Willis <k-willis@ti.com>, 
- Akashdeep Kaur <a-kaur@ti.com>, 
- "Markus Schneider-Pargmann (TI.com)" <msp@baylibre.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3421; i=msp@baylibre.com;
- h=from:subject:message-id; bh=PBPbTiaRFBCUflC//sGsNqP/r7El5dOHwJAilCXJgpw=;
- b=owGbwMvMwCXWejAsc4KoVzDjabUkhkyORYtTeNIY98i/fH75983651w+v7YdE53D9Z4567Xyu
- 13NmQJaHaUsDGJcDLJiiiydiaFp/+V3HktetGwzzBxWJpAhDFycAjCRlJUM/1NnpeWGFTKo3uHZ
- xPzwi9CJnOJze+z3TdAWCdbaUNR2oYORoYcxYY0F21Kr/dO+ta16ZfTm+IE5akd279pXcCDge/X
- 0JGYA
-X-Developer-Key: i=msp@baylibre.com; a=openpgp;
- fpr=BADD88DB889FDC3E8A3D5FE612FA6A01E0A45B41
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.couthit.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - couthit.com
+X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: parvathi@couthit.com
+X-Authenticated-Sender: server.couthit.com: parvathi@couthit.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-The CANUART pins of mcu_mcan0, mcu_mcan1, mcu_uart0 and wkup_uart0 are
-powered during Partial-IO and I/O Only + DDR and are capable of waking
-up the system in these states. Specify the states in which these units
-can do a wakeup on this board.
+Hi,
 
-Note that the UARTs are not capable of wakeup in Partial-IO because of
-of a UART mux on the board not being powered during Partial-IO.
+This series adds support for ICSSM Ethernet on Texas Instruments AM57x,
+AM437x and AM335x platforms.
 
-Add pincontrol definitions for mcu_mcan0 and mcu_mcan1 for wakeup from
-Partial-IO. Add these as wakeup pinctrl entries for both devices.
+The AM57x and AM437x IDKs support two PRU-ICSS instances, each consisting
+of two PRU cores, with each PRU-ICSS instance capable of handling two
+Ethernet ports. For the AM57x platforms, the PRU-ICSS2 node has been added
+to the am57xx-idk-common.dtsi, while for the AM437x platform, the PRU-ICSS1
+node has been added to the am437x-idk-evm.dts.
 
-Signed-off-by: Markus Schneider-Pargmann (TI.com) <msp@baylibre.com>
----
- arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 69 +++++++++++++++++++++++++++++++++
- 1 file changed, 69 insertions(+)
+The AM335x ICE features a single PRU-ICSS instance. A new device tree source
+file, am335x-icev2-prueth.dts, has been introduced to define the PRU-ICSS node
+for the AM335x platform.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-index a064a632680ec69dba9dbe591fd49caeb9ac1111..caa2f7d97aca8a48d3f165362601ebdf41d0b2e6 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-@@ -716,12 +716,52 @@ AM62PX_MCU_IOPAD(0x028, PIN_OUTPUT, 0)	/* (D7) WKUP_UART0_TXD */
- 		>;
- 		bootph-all;
- 	};
-+
-+	mcu_mcan0_tx_pins_default: mcu-mcan0-tx-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x034, PIN_OUTPUT, 0) /* (D6) MCU_MCAN0_TX */
-+		>;
-+	};
-+
-+	mcu_mcan0_rx_pins_default: mcu-mcan0-rx-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x038, PIN_INPUT, 0) /* (B3) MCU_MCAN0_RX */
-+		>;
-+	};
-+
-+	mcu_mcan0_rx_pins_wakeup: mcu-mcan0-rx-wakeup-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x038, PIN_INPUT | PIN_WKUP_EN, 0) /* (B3) MCU_MCAN0_RX */
-+		>;
-+	};
-+
-+	mcu_mcan1_tx_pins_default: mcu-mcan1-tx-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x03c, PIN_OUTPUT, 0) /* (E5) MCU_MCAN1_TX */
-+		>;
-+	};
-+
-+	mcu_mcan1_rx_pins_default: mcu-mcan1-rx-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x040, PIN_INPUT, 0) /* (D4) MCU_MCAN1_RX */
-+		>;
-+	};
-+
-+	mcu_mcan1_rx_pins_wakeup: mcu-mcan1-rx-wakeup-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_MCU_IOPAD(0x040, PIN_INPUT | PIN_WKUP_EN, 0) /* (D4) MCU_MCAN1_RX */
-+		>;
-+	};
- };
- 
- &wkup_uart0 {
- 	/* WKUP UART0 is used by DM firmware */
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&wkup_uart0_pins_default>;
-+	wakeup-source = <&system_io_ddr>,
-+			<&system_deep_sleep>,
-+			<&system_mcu_only>,
-+			<&system_standby>;
- 	status = "reserved";
- 	bootph-all;
- };
-@@ -763,4 +803,33 @@ &epwm1 {
- 	status = "okay";
- };
- 
-+&mcu_mcan0 {
-+	pinctrl-names = "default", "wakeup";
-+	pinctrl-0 = <&mcu_mcan0_tx_pins_default>, <&mcu_mcan0_rx_pins_default>;
-+	pinctrl-1 = <&mcu_mcan0_tx_pins_default>, <&mcu_mcan0_rx_pins_wakeup>;
-+	wakeup-source = <&system_partial_io>,
-+			<&system_io_ddr>,
-+			<&system_deep_sleep>,
-+			<&system_mcu_only>,
-+			<&system_standby>;
-+};
-+
-+&mcu_mcan1 {
-+	pinctrl-names = "default", "wakeup";
-+	pinctrl-0 = <&mcu_mcan1_tx_pins_default>, <&mcu_mcan1_rx_pins_default>;
-+	pinctrl-1 = <&mcu_mcan1_tx_pins_default>, <&mcu_mcan1_rx_pins_wakeup>;
-+	wakeup-source = <&system_partial_io>,
-+			<&system_io_ddr>,
-+			<&system_deep_sleep>,
-+			<&system_mcu_only>,
-+			<&system_standby>;
-+};
-+
-+&mcu_uart0 {
-+	wakeup-source = <&system_io_ddr>,
-+			<&system_deep_sleep>,
-+			<&system_mcu_only>,
-+			<&system_standby>;
-+};
-+
- #include "k3-am62p-ti-ipc-firmware.dtsi"
+This is v2 of the patch series [v1]. It addresses comments made on [v1].
+This series is based on the latest next-20251103 linux-next.
+
+Changes from v1 to v2 :
+
+*) Addressed Andrew Lunn's comment on patch 1 of the series.
+*) Addressed MD Danish Anwar comment on patch 1 of the series.
+*) Rebased the series on latest linux-next.
+
+[v1] https://lore.kernel.org/all/20251013125401.1435486-1-parvathi@couthit.com/
+
+Thanks and Regards,
+Parvathi.
+
+Roger Quadros (2):
+  arm: dts: ti: Adds device tree nodes for PRU Cores, IEP and eCAP
+    modules of PRU-ICSS2 Instance.
+  arm: dts: ti: Adds support for AM335x and AM437x
+
+ arch/arm/boot/dts/ti/omap/Makefile            |   1 +
+ .../boot/dts/ti/omap/am335x-icev2-prueth.dts  | 533 ++++++++++++++++++
+ arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi      |  11 +
+ arch/arm/boot/dts/ti/omap/am4372.dtsi         |  11 +
+ arch/arm/boot/dts/ti/omap/am437x-idk-evm.dts  | 137 ++++-
+ arch/arm/boot/dts/ti/omap/am57-pruss.dtsi     |  11 +
+ arch/arm/boot/dts/ti/omap/am571x-idk.dts      |   8 +-
+ arch/arm/boot/dts/ti/omap/am572x-idk.dts      |  10 +-
+ arch/arm/boot/dts/ti/omap/am574x-idk.dts      |  10 +-
+ .../boot/dts/ti/omap/am57xx-idk-common.dtsi   |  61 ++
+ 10 files changed, 783 insertions(+), 10 deletions(-)
+ create mode 100644 arch/arm/boot/dts/ti/omap/am335x-icev2-prueth.dts
 
 -- 
-2.51.0
+2.43.0
 
 
