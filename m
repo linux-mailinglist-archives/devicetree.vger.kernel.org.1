@@ -1,39 +1,56 @@
-Return-Path: <devicetree+bounces-234458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 209B4C2D1C2
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 17:27:01 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3463EC2D18B
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 17:24:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFCC8188F729
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 16:25:41 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ED7A74F2D5B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 16:22:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23D493168EA;
-	Mon,  3 Nov 2025 16:25:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A6A23203B2;
+	Mon,  3 Nov 2025 16:20:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="NOI08/Hj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rmisp-mx-out1.tele.net (rmisp-mx-out1.tele.net [194.208.23.36])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE8E83164D9;
-	Mon,  3 Nov 2025 16:25:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.208.23.36
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B10A031DD99;
+	Mon,  3 Nov 2025 16:20:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762187106; cv=none; b=N+HJipXy/78UzHDQf0xElA2CO5SvpOtWKe3Ed4rEkpuX2YEzE0iU+bqicfpHc7O4VSyfV1C234n/kO8/8qBc9eZlypvhAuswYk0Nsvnt2vatL//8Hff5UmCsud/wUSRtevUO5KI+OqMvNI1aVfOA8VM2NAkRg1YfIS0NlswUY5w=
+	t=1762186818; cv=none; b=dQYIh9UYCkMUBpmZWVOLbsRA/ffL8L/sPMCcjNrFtNuut8d2cpJeVpnyNrkBs485Mb0JPpgZgSePCvuJ6xPriFp8lhxQfFs7mpWtTlc6D19aCnAESACDd7IesNwuDkuHBSWT/yZ36EnuhEJoKT1Fz2aDfZ4vUG5Mkn307XAL87M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762187106; c=relaxed/simple;
-	bh=ttAPdy4/JmO4ihisprisHBEG2ZNFvg/ddXNogR5EIO4=;
+	s=arc-20240116; t=1762186818; c=relaxed/simple;
+	bh=RxnzT6MDNu6xaMxu3F1Q8cBBjNRBmAKRhhu8JsfkkHI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=awL8JLuc8xyfzeW99S2dg0hC3TecYGsCMfoyqsfwDwO+xYHJTFJvQ7wwr/7Zjq2NI3phM0uGxjdP/Ef9JWqehHDmmkrZWWyYYGzkyd8qZalyaqUWEKf/mDLeJW7O4B4XgHXIWcPnbXCB3bZv1YEs8d10X8117WOc+LQrixcN1GE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=fail smtp.mailfrom=emfend.at; arc=none smtp.client-ip=194.208.23.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=emfend.at
-Received: from [192.168.0.207] (194-208-208-245.tele.net [194.208.208.245])
-	by rmisp-mx-out1.tele.net (Postfix) with ESMTPA id 5430310DE9C4;
-	Mon,  3 Nov 2025 17:19:47 +0100 (CET)
-Message-ID: <a7c2b507-90e8-4b0b-92d6-5b232e7ba22f@emfend.at>
-Date: Mon, 3 Nov 2025 17:19:47 +0100
+	 In-Reply-To:Content-Type; b=MTIc3ZQr6JE1s5CAhwXgqhTAS/iIYoyofnU4HdC5YWaY3cQBDCNjIptuB7jKxs5IWsas9sAZSZ9Cf1/hETPvyCqVVEdlvylrt/FCyWdHMJEVrm4WNVbe0gSylishzkdjcIa8lTvbDRVVOoQ1r1hWJoxMNW9z6ODMqxCingX2wY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=NOI08/Hj; arc=none smtp.client-ip=212.227.17.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1762186790; x=1762791590; i=wahrenst@gmx.net;
+	bh=RxnzT6MDNu6xaMxu3F1Q8cBBjNRBmAKRhhu8JsfkkHI=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=NOI08/HjrNKbFD39ht7utILbpPpnRKZh3cW5+XZFmQumZAKBFdTPQWULqqzC6M7d
+	 FnA8DPmLVWRVGQVGaTnLTQSn8EBlIUF3Z0m6z8v/r1jXnaQAhREX6sFextOZbIrUz
+	 tXQqZio3LUYJoKkwDKkngcxNdQGYMxO0hY5gtczjxHwkIifa4ONNu/qcqn1w3TgW3
+	 Paql7tfzxEFeofPiofL1rub6+zkvZMMY0boXCMD/HhKYrlJbOvYwQJQkb/zKK/gxY
+	 WxPOmdLzXre/Csqx1xrLRZh2KFTi3gy9iM8TQvJ035V1SeCL8Dll4N9+o9BHCyT7c
+	 5VyPoffJWz5/OJsnjQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.156] ([91.41.217.223]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1M5fIQ-1vIh6y1z4s-001CVD; Mon, 03
+ Nov 2025 17:19:50 +0100
+Message-ID: <6de1bcfa-a924-4172-81ec-0384d7360014@gmx.net>
+Date: Mon, 3 Nov 2025 17:19:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,140 +58,134 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] media: i2c: add Himax HM1246 image sensor driver
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@kernel.org>,
- Hans de Goede <hansg@kernel.org>, Ricardo Ribalda <ribalda@chromium.org>,
- =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
- Tarang Raval <tarang.raval@siliconsignals.io>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
- Sylvain Petinot <sylvain.petinot@foss.st.com>,
- Dongcheng Yan <dongcheng.yan@intel.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Alan Stern <stern@rowland.harvard.edu>,
- Jingjing Xiong <jingjing.xiong@intel.com>,
- Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
- Mehdi Djait <mehdi.djait@linux.intel.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Hao Yao <hao.yao@intel.com>,
- bsp-development.geo@leica-geosystems.com
-References: <20251017-hm1246-v4-0-e3388ea2f08c@emfend.at>
- <20251017-hm1246-v4-2-e3388ea2f08c@emfend.at>
- <aPec0SRvDlqtVKIJ@kekkonen.localdomain>
- <6e7a63b1-6aee-4b4f-9fb9-2f2df92782b4@emfend.at>
- <85df7f30-e9ac-422e-8ab5-7c6b82774aaf@emfend.at>
- <aQiL111bKgKE6M22@kekkonen.localdomain>
-Content-Language: de-DE
-From: Matthias Fend <matthias.fend@emfend.at>
-In-Reply-To: <aQiL111bKgKE6M22@kekkonen.localdomain>
+Subject: Re: RPi 4 deferred probe timeout of V3D PM domain
+To: Mark Brown <broonie@kernel.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
+ bcm-kernel-feedback-list@broadcom.com, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>, Melissa Wen <mwen@igalia.com>,
+ =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Maxime Ripard <mripard@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ kernel-dev@igalia.com, kernel-list@raspberrypi.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ "open list:GENERIC PM DOMAINS" <linux-pm@vger.kernel.org>
+References: <10a4ef77-0e70-4ef2-b1df-535b476d256d@sirena.org.uk>
+ <ecd75fd5-3131-4d10-ae3d-b6f608d9622a@gmx.net>
+ <25e500c2-3dc1-476c-b6c1-ac4098a0501d@sirena.org.uk>
+ <d6b14388-e0ab-44f0-b4d9-78adf74c2a7f@gmx.net>
+ <d88f6420-5013-4856-99d6-da28f79bd7a5@sirena.org.uk>
+ <CGME20251030191426eucas1p29ce063b538b60e4a998bcd32f925267c@eucas1p2.samsung.com>
+ <043f1702-52fc-4a83-82f7-683a26851623@gmx.net>
+ <b02c8890-4568-4afe-8628-10b77e79bf44@samsung.com>
+ <3c171b6b-f8f5-4192-a3a3-da453a900316@sirena.org.uk>
+ <aff4e3de-6dde-475b-9df0-3d7d6ad5d740@samsung.com>
+ <77bbe008-427b-4491-a191-15be5e40e708@sirena.org.uk>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+In-Reply-To: <77bbe008-427b-4491-a191-15be5e40e708@sirena.org.uk>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:GSZCYLeBwwQ1q4+BR102xGRkjcHoh7FKy0bdyzvFEbYzjFUI7Kc
+ MZyz9fRszdnbPcWpHlfWbPmH/nGwvm7+sLrtYx/V5kRCHx+YLheulNbC6GRFuN/mqJWhfzm
+ 8IQMkGqXvlZ+t/3pcILTJj+kFv4keqd0XQK76cMNhy1cgeMsOai2hjeYJfNdIdVgHgJIwVB
+ 9BiifTnz6+xXeze33QKSw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:I6VEA0ye/s4=;aJOD8vNMqM4O8hcNv2lWtWQ0b9j
+ 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
+ ScC2ET3HPpjUqjliYSSNyE3L20=
 
-Hi Sakari,
+Am 31.10.25 um 15:37 schrieb Mark Brown:
+> On Fri, Oct 31, 2025 at 02:54:15PM +0100, Marek Szyprowski wrote:
+>> On 31.10.2025 13:39, Mark Brown wrote:
+>>> Or the GPU driver should be moved to a module to match the clock.
+>> V3D already is being built as a module in ARM64's defconfig. The proble=
+m
+>> is in CONFIG_BCM2835_POWER driver (defaults to 'y'), which depends on
+>> resources provided by CONFIG_CLK_RASPBERRYPI (defaults to 'm'). IMHO
+>> both of them should be built-in and this will solve this issue.
+> Ah, yes so it is - I agree.
+If no one objects, I would prepare a corresponding patch for=20
+arm64/defconfig.
 
-Am 03.11.2025 um 12:02 schrieb Sakari Ailus:
-> Hi Matthias,
-> 
-> Thanks for the ping.
-> 
-> On Mon, Nov 03, 2025 at 07:54:52AM +0100, Matthias Fend wrote:
->> Hi Sakari,
->>
->> Am 23.10.2025 um 11:00 schrieb Matthias Fend:
->>> Hi Sakari,
->>>
->>> thanks a lot for your feedback.
->>
->> I had two follow-up questions regarding your feedback, but I suspect they
->> got lost in all the code. I've cleaned up this mail a bit to make the
->> questions more visible.
->>
->>>>> +
->>>>> +static int hm1246_update_controls(struct hm1246 *hm1246,
->>>>> +                  const struct hm1246_mode *mode)
->>>>> +{
->>>>> +    s64 pixel_rate, exposure_max, vblank, hblank;
->>>>> +    int ret;
->>>>> +
->>>>> +    ret = __v4l2_ctrl_s_ctrl(hm1246->link_freq_ctrl, mode-
->>>>>> link_freq_index);
->>>>
->>>> Does this do something? There's only a single link frequency value (and
->>>> index) supported.
->>>
->>> You're right. Even though hm1246_update_controls() isn't exactly wrong,
->>> I could currently remove this function completely. The sensor supports
->>> various modes (which result in different clock rates), and I've already
->>> started implementing more of them. With multiple modes the controls need
->>> to be updated. However, since there were still some internal sensor
->>> issues to be addressed and I haven't been able to fully test them, I've
->>> decided to use only the presumably most common RAW mode for now.
->>>
->>> Should I remove the function now and add it back once more modes are
->>> implemented?
-> 
-> I think it'd be better to postpone adding this. I think you'll need further
-> logic to support this and it'd be better to review this in conjunction with
-> the additional features.
-
-Okay, then I will remove hm1246_update_controls() for now.
-
-> 
->>>
->> ...
->>>>> +static int hm1246_parse_fwnode(struct hm1246 *hm1246)
->>>>> +{
->>>>> +    struct fwnode_handle *endpoint;
->>>>> +    struct v4l2_fwnode_endpoint bus_cfg = {
->>>>> +        .bus_type = V4L2_MBUS_PARALLEL,
->>>>> +    };
->>>>> +    int ret;
->>>>> +
->>>>> +    endpoint =
->>>>> fwnode_graph_get_endpoint_by_id(dev_fwnode(hm1246- >dev), 0,
->>>>> +                           0,
->>>>> +                           FWNODE_GRAPH_ENDPOINT_NEXT);
->>>>> +    if (!endpoint)
->>>>> +        return dev_err_probe(hm1246->dev, -EINVAL,
->>>>> +                     "missing endpoint node\n");
->>>>> +
->>>>> +    ret = v4l2_fwnode_endpoint_parse(endpoint, &bus_cfg);
->>>>
->>>> What about validating the link frequencies? You can use
->>>> v4l2_link_freq_to_bitmap(), too.
->>>
->>> I was under the impression that for sensors with a parallel interface,
->>> no frequency information is provided in the device tree (because there's
->>> no need for it). Since there are no frequency entries, they can't be
->>> verified.
->>>
->>> Am I wrong, or did you perhaps mean something else?
-> 
-> The current documentation
-> <URL:https://hverkuil.home.xs4all.nl/spec/driver-api/camera-sensor.html>
-> doesn't distinguish CSI-2 and parallel interfaces in this respect. It's a
-> good idea to ensure a safe frequency is used as the driver works the same
-> way in all cases, whether or not using one is mandatory.
-
-If I understand correctly, this means that in the bindings, the port 
-property 'link-frequencies' should be marked as 'required', and the port 
-in the example node should be extended with the line 'link-frequencies = 
-/bits/ 64 <42174000>;'.
-Then, during probe, it can be checked with v4l2_link_freq_to_bitmap() 
-whether the link frequency entered in the device tree is supported (this 
-also requires switching to v4l2_fwnode_endpoint_alloc_parse).
-
-Does this describe the desired change?
-
-Thanks for your help!
-  ~Matthias
-
-> 
-
+Best regards
 
