@@ -1,258 +1,179 @@
-Return-Path: <devicetree+bounces-234474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B0D4C2D836
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 18:44:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73563C2D943
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 19:05:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A0F842293A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 17:40:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9FEB1898F62
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 18:06:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4487E31A815;
-	Mon,  3 Nov 2025 17:40:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CADE27B4F5;
+	Mon,  3 Nov 2025 18:05:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HNXd2oOy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J9wNou3K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 201C53191D9
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 17:40:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 601BB1F5423
+	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 18:05:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762191650; cv=none; b=Wv9/0sN6v5lveuqclE2Z/ST0LoUGrhbLVt4vOgBoFltiquSnrOEYmrYELFapjoWL/hebkPiXN2CR/W1CKtu35eOnpRLyHkj7WRf4eNqxXDNfHzwXDnlz0XPH2BRRb2mI84xR9Mwk/QNpPFcOWibSzKcd0ukorvqDECm9M1Goge4=
+	t=1762193140; cv=none; b=Jy4vSNJms/g3mrbAtODoxd34Mk/6RGRLgCnpcfwO2l6Hm0eH5QOjZa6b+aQL7NQndN1zXoqRUv2CAxdvUKuwALywYY0f5uJO+PTTs+COxIKG5CzSFzxFthR1TuRHKrafvEKH69gCTTV8Pfb6WU0vCTfdd+BZn0K1hICzaY1xb+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762191650; c=relaxed/simple;
-	bh=bAC+I9yHYiPTep/W58Jpx44UyXtlzHsX0xnfav+6hxE=;
+	s=arc-20240116; t=1762193140; c=relaxed/simple;
+	bh=PISYnyVrW+zygEMF1f2YOQFTzGbLCiScr72QBhAs73I=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=K5BECdG4RfTcaPGTORfRj/EUdHXcaZgsqYue0xHRAa5Zfr1i8LUPRJoVETZaqPj68JXrXOaE9LvLm7LMaqWrLl4mWxxMhXKV7u12uIOO8Z2c2ysfQQpvaKyZFWJEdgH3TDsVEgtzWEPa0KCAdJt0hEftn6QsqTumdubw6UvzjK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HNXd2oOy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA6F9C4CEFD
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 17:40:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762191649;
-	bh=bAC+I9yHYiPTep/W58Jpx44UyXtlzHsX0xnfav+6hxE=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=HNXd2oOyPwdxCg9OopUp1c+JGxDgCMJ3EO1V/5/5vF+EopC8BDIY+H1YmxUmu7qSV
-	 74Q9zRcbzJzu8aHfYeKP7UPNeYeu6eHw5T9atdj82zwn0froApdCd4ch2au3vEsXpd
-	 rj3QxmQKD6lQ1k5wnoZK99V3xu1HTtsBCJzkMEPOk4qGBvgjMDG54W5851vpfieNAw
-	 IUJmQ3ZHIq0+WcACoW6rIck/nLuKqcOoDrm5Jp6/lG2ckdVK6ah4DTYiixGCZlSPrF
-	 FYwtp1HDOQWoOjEX3servcLNLBt4V5vf1opZbMOYMGoWs3+Rukc08FKftPaC1fU8Ch
-	 olHM5YTmqcgMg==
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-378d54f657fso44524341fa.2
-        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 09:40:49 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX8Uws7R5PKifx8JCdOWUmWPnpYVy7HxCWzYqvxjrhmj684GWcWXu9bEIs/lD4vTFf5Xr0pDYq2ZAE7@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvgbRPR940sk37wA3U4cQO25a3zmgDvA0CYaKi4torC1H1EKZF
-	9Poq+KawrEcYyxbi1H5HGWxFZ+D7w6KAJ3X/1C/94gkRsKR0riGkibnQGfROqktNFHZoM1GPMNe
-	1TzF17SveXC/awEeG6n8gMl/8SeKIwf4=
-X-Google-Smtp-Source: AGHT+IEc88SO6nneu3mvccJA8ezZBwOU2YjkaaiL7uhb80v1EC13ZDp7lMH56bUG79DqRoPd94c85myfP2EF56tTjdc=
-X-Received: by 2002:a2e:be8a:0:b0:37a:2b71:482e with SMTP id
- 38308e7fff4ca-37a2b714a58mr22345201fa.24.1762191648173; Mon, 03 Nov 2025
- 09:40:48 -0800 (PST)
+	 To:Cc:Content-Type; b=hYOGR9GiqhpQijOWLAbRmUprKKdLzrj7sJzcPytcpu8H6nyjW3eZ250sfQPwBgLzXyCXvyDnD+YN5j8dCPkW4JtB8fT7BvAojX+EccpM3LRwVRfsKSBtf7ajF+voTjGMo7yeepBu72UXvicybiicG55XNYw31VCyleOPgxs3BAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J9wNou3K; arc=none smtp.client-ip=209.85.208.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-378d50e1c82so45200841fa.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 10:05:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762193136; x=1762797936; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=R8aecrmpQ3K9U7oiJGcYa/Rpdn9pxiAVmo61NrsXbt8=;
+        b=J9wNou3KNVNCwbK34zdV0koeNZPam9yEEEyJgENpNXhTaTjtqB2YZlP8QT/TLbMypD
+         M9kMiXsec/O+gCm0vyRuYZOA3zLrKmEQ8TPTiwxMFVgbgeMqHzS0Wd4Y/2V9w5O2th9a
+         +IgdkDIRS+RnBCtPACsmad/jjNo5T4qqM20LKaTOQc6Df3iZ7waOfv4Mk45a/47isCn8
+         jCPuvXTEvVqJpxlPvwRXkcyu0a7ivfPLZtwxTXqEUYarS3mMjeI+Q+Qx29ALf+43rzKu
+         QS3fL+fJNVEs/Cv59Z2cAmY9HAILXeXIKfDFUk1RdWaTS1jQZhF9GvqhPZiiSHClJQ6z
+         Q1Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762193136; x=1762797936;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=R8aecrmpQ3K9U7oiJGcYa/Rpdn9pxiAVmo61NrsXbt8=;
+        b=nVRlgFy6vboksvCmf1QIjj1ajUmGLTF7/F6jV0ETF138GSrK/1uUwyWRNvWl6uYFdM
+         581+fa+/EIUhIB4+NEr6QytiK3+eO6o+FpSR+UHYSoVNG+Ggul6/Lekueka23J9sxSqC
+         TcsDljyX34NugjT4kMz4FlAWttyqhvGDSh8BD46xhUZG4EPRZnSIqBwsojiIxWU2DZTB
+         4YzKbUVqFsP/yYt+FXp8+D2d8kz7GYkAb8rbWiCaPnM0pGBYXzQmCofDa2iOVbd5Vrwe
+         0mX1zF+b3gWdMUnRJUNA/7j7saqZto29wi8IkTZmHpK5/emS8eSkiAWi2NWmoKwTjnFW
+         dduQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUOkdOdw2HJeAV/lXwyv4Hi7SOisJzqQ5o1/hcgNy6JSX+7qcb6vo+6yTBbKOiQLseUCJoSnareXQ4+@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSyy5+9mj1BdN6R34EHXb6ELcjLzZOS6Bqeaw77sHVWgTavpjN
+	lh+X59ZWOCWes/wB140h5kGyjHD3ADlz39j3DxLkhFYy+KwhCe9Pb9m2gEmsJ5upbcxGCQ6XRNi
+	ERZ2t/ZprRXS3zqGgn9ip+MDhom3eAVo=
+X-Gm-Gg: ASbGnct86Y4+cAz0kHVPq4XZJhSWIc/m3Q7Tc14xPb0r2bv/72LxmQCRanxFiG2ZeaX
+	7UraxyrXSxD/SZrhWpMhw6znbqyCKUdFW7+Hfyf1JKFsQOWJrbks08xrg+4XIS+iToLZiMiOKGH
+	DS7+SjerxnbVZOni6T/gc3bbn1GVRUwbyCNR9zIUtLjkejeJKiFtNMuaa5SCCqPmFh6jVEodSAE
+	AUS7m0qPa43XQDtmfGnGfdDaeeQLTWkezJWknczqcP1uQp5dySDfekIo/TqTGrVKIdRBPc=
+X-Google-Smtp-Source: AGHT+IGC7/OpISkWQbMMipKycZQIYQDKL8rXabUx2InfXFTpSjCKCJJBdIGKPmclJe97UZMkkDuX8GDTzhUEQwFUA10=
+X-Received: by 2002:a2e:bc21:0:b0:378:e8d1:117 with SMTP id
+ 38308e7fff4ca-37a2626ec92mr31718591fa.11.1762193136204; Mon, 03 Nov 2025
+ 10:05:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250919000020.16969-1-andre.przywara@arm.com> <20250919000020.16969-3-andre.przywara@arm.com>
-In-Reply-To: <20250919000020.16969-3-andre.przywara@arm.com>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Tue, 4 Nov 2025 01:40:34 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67v9fXC-11WAy0-VjJVVz3BVtvbBKiEQu1VVBay6RyFTw@mail.gmail.com>
-X-Gm-Features: AWmQ_bnG9nI8bojm5LxU6ZA-iDlt8LXyt_CZ5Wum2wbzIMhk62qrTul3kat7W-4
-Message-ID: <CAGb2v67v9fXC-11WAy0-VjJVVz3BVtvbBKiEQu1VVBay6RyFTw@mail.gmail.com>
-Subject: Re: [RFC PATCH 2/5] mfd: axp20x: Refactor axp20x_is_polyphase_slave()
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, 
-	linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Mikhail Kalashnikov <iuncuim@gmail.com>
+References: <20251101-tegra194-dc-mmu-v1-0-8401c45d8f13@gmail.com>
+ <20251101-tegra194-dc-mmu-v1-1-8401c45d8f13@gmail.com> <CALHNRZ_QrQHCmF7f1z29tAmuNR-=rG1SgYJ1sssK3VXiQqURYg@mail.gmail.com>
+ <ehkwvvmvk4mddxtcmne5jrex2rfq4phqsa5zifxdslrpvdl2ir@3zlwejmx5f5f>
+In-Reply-To: <ehkwvvmvk4mddxtcmne5jrex2rfq4phqsa5zifxdslrpvdl2ir@3zlwejmx5f5f>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Mon, 3 Nov 2025 12:05:25 -0600
+X-Gm-Features: AWmQ_bn8e3wfcvjuhO6Vmi4IjMPB_dfMYgSSGbJtskmsQArECnzIC31_RuG-ptw
+Message-ID: <CALHNRZ-rArVkbEaiEVwMevfbu0dgX5P-ooVYTd-3RHvrhOJ5vQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] Revert "arm64: tegra: Disable ISO SMMU for Tegra194"
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 19, 2025 at 8:01=E2=80=AFAM Andre Przywara <andre.przywara@arm.=
-com> wrote:
+On Mon, Nov 3, 2025 at 5:07=E2=80=AFAM Thierry Reding <thierry.reding@gmail=
+.com> wrote:
 >
-> Some X-Powers AXP PMICs allow to combine certain DC/DC rails together in
-> a multi-phase fashion. So far we don't actively program those
-> connections, but we detect the existing setup, and prevent the connected
-> regulators from being re-programmed or turned off.
+> On Sat, Nov 01, 2025 at 06:13:26PM -0500, Aaron Kling wrote:
+> > On Sat, Nov 1, 2025 at 6:01=E2=80=AFPM Aaron Kling via B4 Relay
+> > <devnull+webgeek1234.gmail.com@kernel.org> wrote:
+> > >
+> > > From: Aaron Kling <webgeek1234@gmail.com>
+> > >
+> > > This reverts commit ebea268ea583ba4970df425dfef8c8e21d0a4e12.
+> > >
+> > > Mmu is now being enabled for the display controllers.
+> > >
+> > > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> > > ---
+> > >  arch/arm64/boot/dts/nvidia/tegra194.dtsi | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/bo=
+ot/dts/nvidia/tegra194.dtsi
+> > > index 1399342f23e1c4f73b278adc66dfb948fc30d326..854ed6d46aa1d8eedcdfb=
+ae1fdde1374adf40337 100644
+> > > --- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+> > > +++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+> > > @@ -1807,7 +1807,7 @@ iommu@10000000 {
+> > >                         #iommu-cells =3D <1>;
+> > >
+> > >                         nvidia,memory-controller =3D <&mc>;
+> > > -                       status =3D "disabled";
+> > > +                       status =3D "okay";
+> > >                 };
+> > >
+> > >                 smmu: iommu@12000000 {
+> > >
+> > > --
+> > > 2.51.0
+> > >
+> > >
+> >
+> > Question for Jon as the author of the commit being reverted. The
+> > commit message states "we do not have a way to pass frame-buffer
+> > memory from the bootloader to the kernel". If I understand this
+> > correctly, this is talking about seamless handoff. What does this have
+> > to do with enabling mmu on the display controllers? Seamless does not
+> > work on any tegra arch as far as I'm aware, but Tegra194 is the only
+> > one that doesn't have mmu enabled for the dc's. But enabling mmu
+> > allows for better and faster memory allocation. My initial attempts to
+> > enable this didn't work because I tried to attach them to the main mmu
+> > unit, see the related freedesktop issue [0]. After noticing in the
+> > downstream dt that the dc's are on a separate unit, I made it work.
+> > And so far, it seems to work just as well as Tegra186. Then when I was
+> > packaging up the change to submit, I found that this had been
+> > explicitly disabled. But I'm not seeing why. Am I missing some
+> > additional factors?
+>
+> This isn't seamless handoff to the Tegra DRM driver for display, but
+> rather to simple-framebuffer. While this does technically work, it also
+> causes a spew of SMMU faults during early boot because the firmware does
+> not properly pass the SMMU mapping information to the kernel.
+>
+> In a nutshell what happens is that the firmware sets up the display
+> controller to scan out from a reserved memory region, but it does so
+> without involving the SMMU, so it uses physical addresses directly. When
+> the kernel boots and the SMMU is enabled the continued accesses from
+> display hardware cause SMMU faults (because there is no mapping for the
+> framebuffer addresses).
+>
+> That said, we did solve these issues and this may not be happening
+> anymore with the most recent L4T releases, so it may be okay to revert
+> this now. We should find out exactly which release includes all the
+> needed changes so that it can be referenced in the commit message. I
+> want to avoid people running new kernels with an old L4T release and
+> then seeing these errors without any reference as to why that might
+> suddenly happen.
 
-This last part is a bit incorrect. We simply don't register the secondary
-phases as separate regulators anymore. The hardware ignores any changes
-to their independent configuration (I assume, since otherwise the hardware
-would be really hard to program...).
+For reference, I have rolled back my Android usecase to use the L4T
+r32.7.6 bootloaders on T194 for a variety of reasons. So I am using
+cboot as the final bootloader and not edk2 as in L4T r34/r35. I have a
+pending cboot patch to support simple-framebuffer handoff, but haven't
+fully verified it as tegra-drm is currently unable to takeover from
+simplefb like openrm does for t234. But all that to say that since I
+no longer use r35 for t194 I don't have the setup to easily verify
+which point release works here and what doesn't.
 
-
-> At the moment this is
-> done in a switch/case construct, listing the known regulator pairs for
-> those PMICs supported.
->
-> To get rid of this ever growing code section, create a data structure
-> that describes the relationship, and have generic code that iterates
-> over the entries and checks for matches.
->
-> This not only cleans that function up and makes extensions much simpler,
-> but also allows to reuse this information for the upcoming programming
-> of those poly-phase setups.
->
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  drivers/regulator/axp20x-regulator.c | 91 ++++++++++++++--------------
->  1 file changed, 45 insertions(+), 46 deletions(-)
->
-> diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/axp=
-20x-regulator.c
-> index da891415efc0b..19c9a98d1835a 100644
-> --- a/drivers/regulator/axp20x-regulator.c
-> +++ b/drivers/regulator/axp20x-regulator.c
-> @@ -1481,70 +1481,69 @@ static int axp20x_set_dcdc_workmode(struct regula=
-tor_dev *rdev, int id, u32 work
->         return regmap_update_bits(rdev->regmap, reg, mask, workmode);
->  }
->
-> +struct dualphase_regulator {
-> +       int axp_id;
-> +       int reg1, reg2;
-
-We don't care about the primary phase. The point is to make the secondary
-phases disappear from the kernel's view.
-
-reg1 should be part of the next patch, where you actually care.
-
-> +       unsigned int polyphase_reg;
-> +       unsigned int bitmask;
-> +} dualphase_regulators[] =3D {
-> +       { AXP323_ID, AXP313A_DCDC1, AXP313A_DCDC2,
-> +               AXP323_DCDC_MODE_CTRL2, BIT(1), },
-> +       { AXP803_ID, AXP803_DCDC2, AXP803_DCDC3, AXP803_POLYPHASE_CTRL,
-> +               AXP803_DCDC23_POLYPHASE_DUAL, },
-> +       { AXP803_ID, AXP803_DCDC5, AXP803_DCDC6, AXP803_POLYPHASE_CTRL,
-> +               AXP803_DCDC56_POLYPHASE_DUAL, },
-> +       /* AXP806's DCDC-A/B/C is a tri-phase regulator */
-
-TODO: ?
-
-ChenYu
-
-> +       { AXP806_ID, AXP806_DCDCD, AXP806_DCDCE, AXP806_DCDC_MODE_CTRL2,
-> +               AXP806_DCDCDE_POLYPHASE_DUAL, },
-> +       { AXP813_ID, AXP803_DCDC2, AXP803_DCDC3, AXP803_POLYPHASE_CTRL,
-> +               AXP803_DCDC23_POLYPHASE_DUAL, },
-> +       { AXP813_ID, AXP803_DCDC5, AXP803_DCDC6, AXP803_POLYPHASE_CTRL,
-> +               AXP803_DCDC56_POLYPHASE_DUAL, },
-> +       { AXP15060_ID, AXP15060_DCDC2, AXP15060_DCDC3, AXP15060_DCDC_MODE=
-_CTRL1,
-> +               AXP15060_DCDC23_POLYPHASE_DUAL_MASK, },
-> +       { AXP15060_ID, AXP15060_DCDC4, AXP15060_DCDC6, AXP15060_DCDC_MODE=
-_CTRL1,
-> +               AXP15060_DCDC46_POLYPHASE_DUAL_MASK, },
-> +};
-> +
->  /*
->   * This function checks whether a regulator is part of a poly-phase
->   * output setup based on the registers settings. Returns true if it is.
->   */
->  static bool axp20x_is_polyphase_slave(struct axp20x_dev *axp20x, int id)
->  {
-> +       struct dualphase_regulator *dpreg;
->         u32 reg =3D 0;
-> +       int i;
->
-> -       /*
-> -        * Currently in our supported AXP variants, only AXP803, AXP806,
-> -        * AXP813 and AXP15060 have polyphase regulators.
-> -        */
-> -       switch (axp20x->variant) {
-> -       case AXP803_ID:
-> -       case AXP813_ID:
-> -               regmap_read(axp20x->regmap, AXP803_POLYPHASE_CTRL, &reg);
-> +       for (i =3D 0; i < ARRAY_SIZE(dualphase_regulators); i++) {
-> +               dpreg =3D &dualphase_regulators[i];
->
-> -               switch (id) {
-> -               case AXP803_DCDC3:
-> -                       return !!(reg & AXP803_DCDC23_POLYPHASE_DUAL);
-> -               case AXP803_DCDC6:
-> -                       return !!(reg & AXP803_DCDC56_POLYPHASE_DUAL);
-> +               if (axp20x->variant !=3D dpreg->axp_id)
-> +                       continue;
-> +               /* Is this the second regulator from a dual-phase pair? *=
-/
-> +               if (id =3D=3D dpreg->reg2) {
-> +                       regmap_read(axp20x->regmap, dpreg->polyphase_reg,=
- &reg);
-> +
-> +                       return !!(reg & dpreg->bitmask);
->                 }
-> -               break;
-> +       }
->
-> -       case AXP806_ID:
-> +       /*
-> +        * DCDC-A/B/C can be configured either as a dual-phase (A+B) or
-> +        * as a triple-phase regulator (A+B+C), but not in any other
-> +        * combination. Treat this as a special case here.
-> +        */
-> +       if (axp20x->variant =3D=3D AXP806_ID) {
->                 regmap_read(axp20x->regmap, AXP806_DCDC_MODE_CTRL2, &reg)=
-;
-> -
-> -               switch (id) {
-> -               case AXP806_DCDCB:
-> +               if (id =3D=3D AXP806_DCDCB)
->                         return (((reg & AXP806_DCDCABC_POLYPHASE_MASK) =
-=3D=3D
->                                 AXP806_DCDCAB_POLYPHASE_DUAL) ||
->                                 ((reg & AXP806_DCDCABC_POLYPHASE_MASK) =
-=3D=3D
->                                 AXP806_DCDCABC_POLYPHASE_TRI));
-> -               case AXP806_DCDCC:
-> +               if (id =3D=3D AXP806_DCDCC)
->                         return ((reg & AXP806_DCDCABC_POLYPHASE_MASK) =3D=
-=3D
->                                 AXP806_DCDCABC_POLYPHASE_TRI);
-> -               case AXP806_DCDCE:
-> -                       return !!(reg & AXP806_DCDCDE_POLYPHASE_DUAL);
-> -               }
-> -               break;
-> -
-> -       case AXP15060_ID:
-> -               regmap_read(axp20x->regmap, AXP15060_DCDC_MODE_CTRL1, &re=
-g);
-> -
-> -               switch (id) {
-> -               case AXP15060_DCDC3:
-> -                       return !!(reg & AXP15060_DCDC23_POLYPHASE_DUAL_MA=
-SK);
-> -               case AXP15060_DCDC6:
-> -                       return !!(reg & AXP15060_DCDC46_POLYPHASE_DUAL_MA=
-SK);
-> -               }
-> -               break;
-> -
-> -       case AXP323_ID:
-> -               regmap_read(axp20x->regmap, AXP323_DCDC_MODE_CTRL2, &reg)=
-;
-> -
-> -               switch (id) {
-> -               case AXP313A_DCDC2:
-> -                       return !!(reg & BIT(1));
-> -               }
-> -               break;
-> -
-> -       default:
-> -               return false;
->         }
->
->         return false;
-> --
-> 2.46.4
->
+Aaron
 
