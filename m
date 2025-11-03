@@ -1,133 +1,104 @@
-Return-Path: <devicetree+bounces-234248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56394C2A986
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 09:41:10 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58282C2AA25
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 09:50:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4027188CBA4
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 08:41:34 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 05F514E4CE6
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 08:49:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3D132E0925;
-	Mon,  3 Nov 2025 08:41:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D81062E1C4E;
+	Mon,  3 Nov 2025 08:49:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iWIQ6qIs"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="kB+jhMCM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 472E92DFA39;
-	Mon,  3 Nov 2025 08:41:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAF202DC348;
+	Mon,  3 Nov 2025 08:49:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762159265; cv=none; b=Xzci/zQUpadM5SsUiLcA3F4LWsRhldKRE46GlE/ohWgwtsgW2658msdMAULaa+QzYHNdRSWb/+iN3Z4KEE63mxjZFBFd6qdtsxiPS0tSBayUBv0g/rtrigUc8PuZwyx64Cm2cMgkoTibm8Ib/iGvu1dCsDnTQDfEenJcnSKZ0LI=
+	t=1762159786; cv=none; b=jeg6FReZOqw+f0s0X6QmTWTjyqJR+jmHfm/Low5PYOrS+GiPs3SNrYBkOTt8xu4GoXJYDuoN4LjyybIbFiDg8Xe6rbKdB4Q/Vji7TCQFyPrm9FfKBik6LlbzMEvvYMPSoWHZnVhiWxC2W1Nz12gPOjd4Hbmo5/1CeGjXneCo5KQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762159265; c=relaxed/simple;
-	bh=v+GhSFMVaW/Lfg8/fIiRNwYwGsUSOMGi1AXYxUkQrxU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Gfwqpo2DVlJpa7g2HsvCypuViUi1XJLls7OdP5Fc+8CJfeIfv0e6WJbDI18MEwcuiHkQtWTWGyP4GQELBAtrexlIkm4jjx4M5Q3M5hmIwUkdfXngh2EADTuOyqIErFQWqcwrFOSKASyF83fWL2h2vsvPqNXOklwCY5VJeucNeI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iWIQ6qIs; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 17B93C0D79F;
-	Mon,  3 Nov 2025 08:40:33 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C7E4F60628;
-	Mon,  3 Nov 2025 08:40:53 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 23F7A11818002;
-	Mon,  3 Nov 2025 09:40:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1762159252; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=OdBSKKFuFhKbNuvtZatqu6kaGrQLICACn7lyjwcUeMg=;
-	b=iWIQ6qIsThvjONMtKyRFIt3RRi6l8dYaN4kZtEpF0WxdZTR7zGXHa3A3SoAxpgiYwhng1C
-	zo2hxlhOeOIb85bpal78IjolPGrbtnhMf2GTaOtON4SFmj2JNEwTdhhikSLHT8y9Vdw5pv
-	PGiWyZayoE1KrFgQsZhXz5nqIV76pBGQ8b8xJ76M3McS23COAjPQu2EtNEeGG/Y9zwpRNq
-	g9l+LJDWDxoiA7qLF+F93yPnQWhTEwvv/B1gMSc6SWwqI7FSB0SrI3CR5JZdfOpIGSeo7I
-	GXAnVbrl6Vm6a//OWA6mPtDG2QKiil4G6Ce/v9nokrQP0Y5ZxZU1SzYSk1dnMA==
-Date: Mon, 3 Nov 2025 09:40:45 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Jonathan Cameron
- <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven
- <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Pascal Eberhard
- <pascal.eberhard@se.com>, Miquel Raynal <miquel.raynal@bootlin.com>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 2/4] iio: adc: Add support for the Renesas RZ/N1 ADC
-Message-ID: <20251103094045.73a061ea@bootlin.com>
-In-Reply-To: <aQMpHDwCqcrNrnT9@smile.fi.intel.com>
-References: <20251029144644.667561-1-herve.codina@bootlin.com>
-	<20251029144644.667561-3-herve.codina@bootlin.com>
-	<aQMpHDwCqcrNrnT9@smile.fi.intel.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1762159786; c=relaxed/simple;
+	bh=8tuJsROwI2VzZ5xr0xXLp3Zh781ZfsXiSloTIPD4CrM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=M4v9DBaJpz65OGLPHNxJZIRqDUddv+aNw8YGIi5/hKpt9TTsP0g29jD27E7xKJWul2kV+uTxoRwcZmAFtBZGEkrqReJFPKBSPeBSUxqVsQZwhKp8R6JMPfbKdnN/TiS9stahbh/z5CwcoCHYgXdMoM11Lp70IbjqqLmZUCBNY+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=kB+jhMCM; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1762159427;
+	bh=8tuJsROwI2VzZ5xr0xXLp3Zh781ZfsXiSloTIPD4CrM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kB+jhMCM1GHi+MeyUo5A2D2Nl2Zaj4w0rJ0MtcoWUiZRrLwlQXY18GUWmUIdC6Qtz
+	 Hm/2tah1AkhRImWrzcwBH9eWu8zkbl6eoxm70yGutoNNZlNjJCGFifITnFUw3mT2Nc
+	 wvb59Iqh937c9S4bPXnwsRXxFoFpIxLcxdkjc7b7uCuWLmtQQ69tzgsoc9IPU5ye2s
+	 XppA6l5hCm/mMApe2zwkPeLlLikVgqeG3BBy5A5U6I3IUXSSaq8es3RhhKEeGctTIM
+	 XTtMgYmMybm2OXIsUt3yIYx9aU3EgPTJ0RcA5cEgcIIKJ96gyL1PExd9QVNV+8UQzQ
+	 1z2HMVD+If0Ng==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id ECECB17E090D;
+	Mon,  3 Nov 2025 09:43:45 +0100 (CET)
+Message-ID: <75a89547-6f21-4f89-8091-375e7013c26d@collabora.com>
+Date: Mon, 3 Nov 2025 09:43:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 08/15] dt-bindings: net: mediatek,net: Correct bindings
+ for MT7981
+To: Sjoerd Simons <sjoerd@collabora.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Ryder Lee <ryder.lee@mediatek.com>, Jianjun Wang
+ <jianjun.wang@mediatek.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Lee Jones <lee@kernel.org>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-pci@vger.kernel.org,
+ linux-phy@lists.infradead.org, netdev@vger.kernel.org,
+ Daniel Golle <daniel@makrotopia.org>, Bryan Hinton <bryan@bryanhinton.com>
+References: <20251101-openwrt-one-network-v2-0-2a162b9eea91@collabora.com>
+ <20251101-openwrt-one-network-v2-8-2a162b9eea91@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20251101-openwrt-one-network-v2-8-2a162b9eea91@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Andy,
-
-On Thu, 30 Oct 2025 11:00:12 +0200
-Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
-
-...
+Il 01/11/25 14:32, Sjoerd Simons ha scritto:
+> Different SoCs have different numbers of Wireless Ethernet
+> Dispatch (WED) units:
+> - MT7981: Has 1 WED unit
+> - MT7986: Has 2 WED units
+> - MT7988: Has 2 WED units
 > 
-> > +	ret = devm_regulator_get_enable_optional(dev, avdd_name);
-> > +	if (ret < 0) {
-> > +		if (ret != -ENODEV)
-> > +			return dev_err_probe(dev, ret,
-> > +					     "Failed to get '%s' regulator\n",
-> > +					     avdd_name);
-> > +		return 0;
-> > +	}  
+> Update the binding to reflect these hardware differences. The MT7981
+> also uses infracfg for PHY switching, so allow that property.
 > 
-> 	if (ret == -ENODEV)
-> 		return dev_err_probe(); // takes less LoCs
-> 	if (ret < 0) // do we need ' < 0' part?
-> 		return 0;
-> 
+> Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
 
-Well, I need to abort on error returned by devm_regulator_get_enable_optional()
-but I need also to filter out the ENODEV error.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-ENODEV, returned by devm_regulator_get_enable_optional(), means that the
-regulator is not present. This should not be seen as an error by the caller.
-Indeed, the regulator is not present and so, the related ADC core will not
-be used. This is not an error from the caller perspective.
-
-The code you proposed is not correct regarding this point.
-
-Instead of my original code, I can propose the following:
-	if (ret < 0) {
-		if (ret == -ENODEV)
-			return 0;
-
-		return dev_err_probe(dev, ret,
-				     "Failed to get '%s' regulator\n",
-				     avdd_name);
-	}
-
-What do you think about it?
-
-For other comments you have sent, I agree with them and I will take them into
-account in the next iteration.
-
-Best regards,
-Hervé
 
 
