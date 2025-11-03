@@ -1,94 +1,69 @@
-Return-Path: <devicetree+bounces-234319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 967D3C2B471
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 12:19:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0365FC2B752
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 12:42:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4E8E3AFE75
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 11:18:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9AC63A85F8
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 11:38:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E5DC3016E4;
-	Mon,  3 Nov 2025 11:18:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X6209kcr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13F983019B5;
+	Mon,  3 Nov 2025 11:38:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail.actia.se (mail.actia.se [212.181.117.226])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A66B2EA723
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 11:18:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6751A2ECD34;
+	Mon,  3 Nov 2025 11:38:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.181.117.226
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762168691; cv=none; b=WdpDTMxT8e7t5BpNuI3ltanyhtKEZTk89CyMrFloA1A6qnwim3ItCcqE+efv9gKnUqjMzQc8d2kMYPk/xFY61XtHIXqn4V+IFLbjT2g5MH8UMKrObv4ADjMYDweg/8Ke37LxLnn/n/o8X5kSjoiLH784CyCxXUpsRMyuAa8BT90=
+	t=1762169890; cv=none; b=pw3avdkEBRndeNwYteq/jNgGPHtLvacLzhJj+Y8v76fVjL7rvNqwc+jjHf0knP3xty2R3Q8hvpBHknTfuXcnHmAP5VPigpkv9Yy/AxP94HuH43edLvr5s7PN7mQ8i1H+KyfC1E0fujMduij5OPitMKhiVHQ3XyGBXHkulFrFqfY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762168691; c=relaxed/simple;
-	bh=60lDMBL2oNpdxDCfZ/zaAoqSFSwNxdJ9b1c9SZ6HPGc=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=hKgjFY+rInzc/hnn0Cu7D6wV9M6NyG0xlNfE3chW22bRXTUJiJBaxV1CMpnNfQWez4cVbyhYZp5BA+oHBDGXfj3KJ0g2LKObgUrAnqeiIaRccM5VVMyqBq7j+Vy0i4EaEW9yYS2or4bUAM+euDWt68h0bah6JlHQCacFZcawN9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X6209kcr; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-471191ac79dso48196715e9.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 03:18:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762168687; x=1762773487; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=H6G1U+3shNA1F9Kl+gGDGcY4sTpab/foYa+z2DPImsw=;
-        b=X6209kcr5D55B9vEUyNCd+qG2YGOfxR7ZUdl+d9J6fsrtDNNpJw5vG+OophBv0kAvG
-         aKPBx4e2Oo0VkVbgGyS5SBIs/BdJ+143XkMpBdxyae2hKpmtcF2On0AFOv/L3QF09rMT
-         ROars0OFJIteG7kju2RZV3j0vXT8aAEDq6eX7NoPCLChBMcwFgCkvozgWGoKUxt8NYNc
-         xZ2Psiceu+kYfWUpKSXvI1aVNe27TwPXfBRscaxWzUGz6SUXQ8TJgSrUaNPWLOHTNXFM
-         UCKwzeIwvCescPx0s1bnJaJUinTEEO7XCZFfQpJ/oZarJqmiUjKCJgUdc0apRJIIOKtg
-         HBOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762168687; x=1762773487;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=H6G1U+3shNA1F9Kl+gGDGcY4sTpab/foYa+z2DPImsw=;
-        b=e9PXCLgSoqTYdhklRRhfxUi0GKs0senpAYgveIWlQPzJY5kE5tZFzVhGlXpj+lwUBl
-         syl4UJQHkzZnVA1KkIPzw9wsLE0m4pPdYiNMwyxw34o02N443aGoOIAJzY8O2s158jGR
-         e3rbqcK1sj1IhQF7IgY9Uu03ewPwXwdKo+OCOSicnwJ9iHPD73+bhaSvkSgG+ciE81/x
-         EbbCd5oyfAPVmJB4moQ3Y38GJApCfvX2ZtSUgsdAYvaaxMhiVqwJ/omQc3QWG3us7KpR
-         5kdWdOCaAQzUGSEO6/WxCPLHwKzTpxpR4FWwP44x1bf5ef1gOPl1Rgdv5wYOYhpZKFVe
-         /eyw==
-X-Forwarded-Encrypted: i=1; AJvYcCU3U9mR1yAYnWOw6tcJyMDT+MN65hXo+FQDXYmC1BKJwofQZJWX2sEAa4rMCPWAQCWMIluC6DYwLLRI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZfHENPQuFAAxBNApxZFbtWMH/2/iPHCxe9AKjYyGdMXoMUkg6
-	dgW+Fs2r9eujeKoxifdohtl6LpG+pA353FmQxSGAjdyPHlwSWEpXIzs6
-X-Gm-Gg: ASbGnculEbLq0soOvNnF4uvW7Tp0+UGVGaG1PrFbVqyUSzMkN952neQxaN/MT9Gu5bj
-	gvggawO8IHsXo9FTszdviLIM3fELZTO087JZF6YVxKP2EbMKC1lVIY/kmgp6pOIjJ+QDmDIT5nW
-	jQi2E/KjnZXZLkKdA6AFj6Jvwfl/EKe9yyG+RLuHGE7pyW1nCJkq9DYb92y0eUF8JCNT6rI/ETq
-	r3uTt8x7ekrNY5EbkIQkRlqMgq5A7cX134d7IEyIZkRaFMJl1Vi8U6asC3V9ihmoDuECgYf1p0J
-	H++5/shbry2hy8TDPDGjRSwk90kB30N0EQTUHDmOGCki6Wv3Faihzq4lXtz8Zseyl4BtN8M/YcT
-	rB1edyeFWojsAGWzxNmBZN/UDJ9Fk+a3waRcp9ooR7apcf/9aU61Db/+CMOElbjVDHtr7M7N5Js
-	fBqSt3Ixk9u5FskpgxDsM=
-X-Google-Smtp-Source: AGHT+IH6i0PkBRAZb8K1KRO55KHAWOtXj4yQJQGAO0NKO2FQdbsbSicqPiEU9u6kw13j3FaaQD7dzg==
-X-Received: by 2002:a05:600d:4393:b0:46e:32a5:bd8d with SMTP id 5b1f17b1804b1-477331db3ccmr69867085e9.3.1762168687127;
-        Mon, 03 Nov 2025 03:18:07 -0800 (PST)
-Received: from [192.168.1.187] ([161.230.67.253])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4773c583d91sm150548485e9.17.2025.11.03.03.18.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Nov 2025 03:18:06 -0800 (PST)
-Message-ID: <a1577c7ce81d039f47e189e130295b76447b05c2.camel@gmail.com>
-Subject: Re: [PATCH 2/2] gpio: adg1712: add driver support
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>, Linus Walleij	
- <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Rob
- Herring	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley	 <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org
-Date: Mon, 03 Nov 2025 11:18:42 +0000
-In-Reply-To: <20251031160710.13343-3-antoniu.miclaus@analog.com>
-References: <20251031160710.13343-1-antoniu.miclaus@analog.com>
-	 <20251031160710.13343-3-antoniu.miclaus@analog.com>
-Content-Type: text/plain; charset="UTF-8"
+	s=arc-20240116; t=1762169890; c=relaxed/simple;
+	bh=exqkU2W4405iLdMUWHXw5BM2kfwhHK0Qe+hJF0tu1AA=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=Q80UFmlHHAqdLDSe8MLhyxeOZF7qxlAPidujA0J4oBqNXc8oIYozlWnaRupYD5qCo1uvh8hYLP/C9dFsYPCmIGq/wSC8BeI9eWJQ2vmXv3kG1ohFQWuKyOFiWtkDj9rj6U1ylfo3klGXx4obRCUP+0n55dEgRZ/9J/dqXieGcIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=actia.se; spf=pass smtp.mailfrom=actia.se; arc=none smtp.client-ip=212.181.117.226
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=actia.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=actia.se
+Received: from S036ANL.actianordic.se (10.12.31.117) by S036ANL.actianordic.se
+ (10.12.31.117) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.61; Mon, 3 Nov
+ 2025 12:22:55 +0100
+Received: from S036ANL.actianordic.se ([fe80::e13e:1feb:4ea6:ec69]) by
+ S036ANL.actianordic.se ([fe80::e13e:1feb:4ea6:ec69%3]) with mapi id
+ 15.01.2507.061; Mon, 3 Nov 2025 12:22:55 +0100
+From: John Ernberg <john.ernberg@actia.se>
+To: Frank Li <Frank.Li@nxp.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, "Sascha
+ Hauer" <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 02/12] arm64: dts: imx8qxp: add readonly for ocotp
+Thread-Topic: [PATCH 02/12] arm64: dts: imx8qxp: add readonly for ocotp
+Thread-Index: AQHcTLQz74YmS54d7E+9okQ8t4TKIA==
+Date: Mon, 3 Nov 2025 11:22:55 +0000
+Message-ID: <aQiQiIaVH3TTVLHV@w447anl.localdomain>
+References: <20251029-8qxp_dts-v1-0-cf61b7e5fc78@nxp.com>
+ <20251029-8qxp_dts-v1-2-cf61b7e5fc78@nxp.com>
+In-Reply-To: <20251029-8qxp_dts-v1-2-cf61b7e5fc78@nxp.com>
+Accept-Language: en-US, sv-SE
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-esetresult: clean, is OK
+x-esetid: 37303A2955B14451667462
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <BAFE1A0430C1E4479033CF0A8528C49B@actia.se>
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,223 +71,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-On Fri, 2025-10-31 at 16:07 +0000, Antoniu Miclaus wrote:
-> Add driver support for the ADG1712, which contains four independent
-> single-pole/single-throw (SPST) switches and operates with a
-> low-voltage single supply range from +1.08V to +5.5V or a low-voltage
-> dual supply range from =C2=B11.08V to =C2=B12.75V.
+Hi Frank,
+
+On Wed, Oct 29, 2025 at 03:54:38PM -0400, Frank Li wrote:
+> Add readonly for ocotp because i.MX8QXP only support program fuse by scu.
+
+This is not true? The driver supports writing the fuses via the SCFW API,
+and we are using this way to populate the MAC fuses.
+
+Best regards // John Ernberg
 >=20
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
-> =C2=A0drivers/gpio/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0=C2=A0 9 +++
-> =C2=A0drivers/gpio/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=
-=C2=A0 1 +
-> =C2=A0drivers/gpio/gpio-adg1712.c | 146 +++++++++++++++++++++++++++++++++=
-+++
-> =C2=A03 files changed, 156 insertions(+)
-> =C2=A0create mode 100644 drivers/gpio/gpio-adg1712.c
+>  arch/arm64/boot/dts/freescale/imx8qxp.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
 >=20
-> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-> index 7ee3afbc2b05..3fac05823eae 100644
-> --- a/drivers/gpio/Kconfig
-> +++ b/drivers/gpio/Kconfig
-> @@ -157,6 +157,15 @@ config GPIO_74XX_MMIO
-> =C2=A0	=C2=A0=C2=A0=C2=A0 8 bits:	74244 (Input), 74273 (Output)
-> =C2=A0	=C2=A0=C2=A0=C2=A0 16 bits:	741624 (Input), 7416374 (Output)
-> =C2=A0
-> +config GPIO_ADG1712
-> +	tristate "Analog Devices ADG1712 quad SPST switch GPIO driver"
-> +	depends on GPIOLIB
-> +	help
-> +	=C2=A0 GPIO driver for Analog Devices ADG1712 quad single-pole,
-> +	=C2=A0 single-throw (SPST) switch. The driver provides a GPIO controlle=
-r
-> +	=C2=A0 interface where each GPIO line controls one of the four independ=
-ent
-> +	=C2=A0 analog switches on the ADG1712.
-> +
-> =C2=A0config GPIO_ALTERA
-> =C2=A0	tristate "Altera GPIO"
-> =C2=A0	select GPIOLIB_IRQCHIP
-> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-> index ec296fa14bfd..9043d2d07a15 100644
-> --- a/drivers/gpio/Makefile
-> +++ b/drivers/gpio/Makefile
-> @@ -28,6 +28,7 @@ obj-$(CONFIG_GPIO_104_IDI_48)		+=3D gpio-104-idi-48.o
-> =C2=A0obj-$(CONFIG_GPIO_104_IDIO_16)		+=3D gpio-104-idio-16.o
-> =C2=A0obj-$(CONFIG_GPIO_74X164)		+=3D gpio-74x164.o
-> =C2=A0obj-$(CONFIG_GPIO_74XX_MMIO)		+=3D gpio-74xx-mmio.o
-> +obj-$(CONFIG_GPIO_ADG1712)		+=3D gpio-adg1712.o
-> =C2=A0obj-$(CONFIG_GPIO_ADNP)			+=3D gpio-adnp.o
-> =C2=A0obj-$(CONFIG_GPIO_ADP5520)		+=3D gpio-adp5520.o
-> =C2=A0obj-$(CONFIG_GPIO_ADP5585)		+=3D gpio-adp5585.o
-> diff --git a/drivers/gpio/gpio-adg1712.c b/drivers/gpio/gpio-adg1712.c
-> new file mode 100644
-> index 000000000000..f8d3481ac9d0
-> --- /dev/null
-> +++ b/drivers/gpio/gpio-adg1712.c
-> @@ -0,0 +1,146 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Analog Devices ADG1712 quad SPST switch GPIO driver
-> + *
-> + * Copyright 2025 Analog Devices Inc.
-> + *
-> + * Author: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> + */
-> +
-> +#include <linux/err.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/gpio/driver.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +
-> +#define ADG1712_NUM_GPIOS	4
-> +
-> +struct adg1712 {
-> +	struct gpio_chip chip;
-> +	struct gpio_desc *switch_gpios[ADG1712_NUM_GPIOS];
-> +};
-> +
-> +static int adg1712_get_direction(struct gpio_chip *chip, unsigned int of=
-fset)
-> +{
-> +	return GPIO_LINE_DIRECTION_OUT;
-> +}
-> +
-> +static int adg1712_direction_input(struct gpio_chip *chip, unsigned int =
-offset)
-> +{
-> +	return -EINVAL;
-> +}
-
-Did not checked gpiolib for this but do we need the above given that we alw=
-ays
-return GPIO_LINE_DIRECTION_OUT?
-
-> +
-> +static int adg1712_direction_output(struct gpio_chip *chip, unsigned int=
- offset,
-> +				=C2=A0=C2=A0=C2=A0 int value)
-> +{
-> +	struct adg1712 *adg1712 =3D gpiochip_get_data(chip);
-> +
-> +	if (offset >=3D ADG1712_NUM_GPIOS)
-> +		return -EINVAL;
-
-I don't think above can happen.
-
-> +
-> +	gpiod_set_value_cansleep(adg1712->switch_gpios[offset], value);
-
-return gpiod_set_value_cansleep().
-
-> +	return 0;
-> +}
-> +
-> +static int adg1712_set(struct gpio_chip *chip, unsigned int offset, int =
-value)
-> +{
-> +	struct adg1712 *adg1712 =3D gpiochip_get_data(chip);
-> +
-> +	if (offset >=3D ADG1712_NUM_GPIOS)
-> +		return -EINVAL;
-
-Ditto
-
-> +
-> +	gpiod_set_value_cansleep(adg1712->switch_gpios[offset], value);
-> +	return 0;
-> +}
-> +
-> +static int adg1712_get(struct gpio_chip *chip, unsigned int offset)
-> +{
-> +	struct adg1712 *adg1712 =3D gpiochip_get_data(chip);
-> +
-> +	if (offset >=3D ADG1712_NUM_GPIOS)
-> +		return -EINVAL;
-> +
-> +	return gpiod_get_value_cansleep(adg1712->switch_gpios[offset]);
-> +}
-> +
-> +static int adg1712_set_multiple(struct gpio_chip *chip, unsigned long *m=
-ask,
-> +				 unsigned long *bits)
-> +{
-> +	struct adg1712 *adg1712 =3D gpiochip_get_data(chip);
-> +	int i;
-> +
-> +	for_each_set_bit(i, mask, ADG1712_NUM_GPIOS) {
-> +		gpiod_set_value_cansleep(adg1712->switch_gpios[i],
-> +					 test_bit(i, bits));
-
-Error handling.
-
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct gpio_chip adg1712_gpio_chip =3D {
-> +	.label			=3D "adg1712",
-> +	.owner			=3D THIS_MODULE,
-> +	.get_direction		=3D adg1712_get_direction,
-> +	.direction_input	=3D adg1712_direction_input,
-> +	.direction_output	=3D adg1712_direction_output,
-> +	.get			=3D adg1712_get,
-> +	.set			=3D adg1712_set,
-> +	.set_multiple		=3D adg1712_set_multiple,
-> +	.base			=3D -1,
-> +	.ngpio			=3D ADG1712_NUM_GPIOS,
-> +	.can_sleep		=3D true,
-> +};
-> +
-> +static int adg1712_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev =3D &pdev->dev;
-> +	struct adg1712 *adg1712;
-> +	int ret, i;
-> +	char gpio_name[16];
-> +
-> +	adg1712 =3D devm_kzalloc(dev, sizeof(*adg1712), GFP_KERNEL);
-> +	if (!adg1712)
-> +		return -ENOMEM;
-> +
-> +	adg1712->chip =3D adg1712_gpio_chip;
-> +	adg1712->chip.parent =3D dev;
-> +
-> +	for (i =3D 0; i < ADG1712_NUM_GPIOS; i++) {
-> +		snprintf(gpio_name, sizeof(gpio_name), "switch%d", i + 1);
-
-Just a suggestion. Instead of the snprintf(), you could have a const array =
-of
-strings and just go over it. Not a big deal to me though. You could also
-consider devm_gpiod_get_array()
-
-> +		adg1712->switch_gpios[i] =3D devm_gpiod_get(dev, gpio_name,
-> +							=C2=A0 GPIOD_OUT_LOW);
-
-Should we make assumptions on the initial value? Not sure if GPIO_ASIS woul=
-d
-make sense here.
-
-> +		if (IS_ERR(adg1712->switch_gpios[i]))
-> +			return dev_err_probe(dev, PTR_ERR(adg1712->switch_gpios[i]),
-> +					=C2=A0=C2=A0=C2=A0=C2=A0 "failed to get %s gpio\n", gpio_name);
-> +	}
-> +
-> +	ret =3D devm_gpiochip_add_data(dev, &adg1712->chip, adg1712);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to add gpio chip\n");
-> +
-> +	dev_info(dev, "ADG1712 %u-GPIO expander registered\n",
-> +		 adg1712->chip.ngpio);
-
-Drop the above or turn it into dev_dbg()
-
-- Nuno S=C3=A1
+> diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot=
+/dts/freescale/imx8qxp.dtsi
+> index def6de8d579d40919e4bf7f88e119611ae4cb69a..cc82cc319159c2558400fa641=
+570cddd3ad3083d 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+> @@ -234,6 +234,7 @@ ocotp: ocotp {
+>  			compatible =3D "fsl,imx8qxp-scu-ocotp";
+>  			#address-cells =3D <1>;
+>  			#size-cells =3D <1>;
+> +			read-only;
+> =20
+>  			fec_mac0: mac@2c4 {
+>  				reg =3D <0x2c4 6>;
+>=20
+> --=20
+> 2.34.1
 >=20
 
