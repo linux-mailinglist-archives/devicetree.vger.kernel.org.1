@@ -1,104 +1,120 @@
-Return-Path: <devicetree+bounces-234415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC2DEC2CAF5
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 16:23:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EE5DC2CDFC
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 16:48:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7B33E4F386C
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 15:13:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85B693BCC25
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 15:14:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A180314B63;
-	Mon,  3 Nov 2025 15:00:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="N9Lsjbvl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A5B3332EC1;
+	Mon,  3 Nov 2025 14:52:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB98828506C;
-	Mon,  3 Nov 2025 15:00:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92B50332EC8
+	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 14:52:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762182054; cv=none; b=swR/3G/A0bMqblZ0j8JckyMDGYSRM9G5xNA494L1/JzhXSnYZljl2mYLqWJPeHOuMN1Htm/4XT7SauepzkBfzRfZ/svr0C/8KvAKgi9qwmlTmpnLGhts8W6HN1DjC0J0o3DTtusScNrZ5lGMkW0407m9njbdg7p1ZI9fPkjC64U=
+	t=1762181529; cv=none; b=pVdaGGms8A4R9vticWeX+CIoOGj4W4ajEWNvR+/scnLkhIcZ5YDM5VNSYTagf2zBHhfLYhhMWf4sOuqKgfb+26xD/wCNgwMSCbmPpFX4aHbAvzy+U4VjlngwlJLiA34/aElS+8OavKwe20epiVT3evOnwSCvBAU0QHphYDnqvYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762182054; c=relaxed/simple;
-	bh=6RwdVLCfvW/I8UZyHeN/hVkPySSPR4Zt7NQljAFMBJA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YxXcfS3DQVDiztMMP34bwB9dt3kQwufE0CQVO3IkcqWMqx60qZ64Txpn4vxczmvzPslOYLZEeg8NXC9GG075iFVxxq03yjgywrfbSFdXO9dYD7sJOxf59Fgq3gXeG6fc4wk3CcOlFH/lhbaTEE8RC3ANVonen6ydGFNNgcovXao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=N9Lsjbvl; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762182052; x=1793718052;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=6RwdVLCfvW/I8UZyHeN/hVkPySSPR4Zt7NQljAFMBJA=;
-  b=N9LsjbvlQqzOY1/hlIXWANdnXLXdCCJUTEKwIlmi7yh+y59moRGa0rDJ
-   cz39HNn+sO4TrlBQ2/iQuHUFqvN1QHf3we+byViOulthEVNDRcONOOl52
-   0h0wB/X3deSXqoS0z28/yIn1JlcK7y5qgAwWaN8xXqibeW3K6e5g6wPIX
-   JzG55OuagjVYduQNks+xYNEtQ6qGHmPQNkAcuQ7VKzk6DfffnfkTA2Cjy
-   rcPJ5crIGM4z4HFfLpsaJrKL0YTMwCsvncwj4496bb3YmCNIuzKjCtWzI
-   mRpWijtE9gcm48AS1ZZQyQ9XTk3RU/mX/nmOGIym7QO6XTaq4f6OScuOA
-   g==;
-X-CSE-ConnectionGUID: knZcKNmfS++0oHCSBatJNg==
-X-CSE-MsgGUID: GYQoA4BTQ7WNPheFsLZIpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="75368226"
-X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; 
-   d="scan'208";a="75368226"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2025 07:00:52 -0800
-X-CSE-ConnectionGUID: Ijxr1MP2TACwV7q1U6H48A==
-X-CSE-MsgGUID: VheaoV/KQX6UDEVwfnyYow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,276,1754982000"; 
-   d="scan'208";a="217707603"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by fmviesa001.fm.intel.com with ESMTP; 03 Nov 2025 07:00:50 -0800
-Date: Mon, 3 Nov 2025 22:46:47 +0800
-From: Xu Yilun <yilun.xu@linux.intel.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Dinh Nguyen <dinguyen@kernel.org>, devicetree@vger.kernel.org,
-	linux-fpga@vger.kernel.org, yilun.xu@intel.com, trix@redhat.com,
-	robh+dt@kernel.org, krzysztof.kozlowskii+dt@linaro.org,
-	conor+dt@kernel.org, michal.simek@amd.com
-Subject: Re: [PATCH] dt-bindings: fpga: update link for Altera's and AMD
- partial recon
-Message-ID: <aQjAV/fVWManlprT@yilunxu-OptiPlex-7050>
-References: <20251101190848.24271-1-dinguyen@kernel.org>
- <20251102-ginger-pig-of-lightning-f65ef4@kuoka>
+	s=arc-20240116; t=1762181529; c=relaxed/simple;
+	bh=kyZFo/IEic/pNMA3pRq7OzAQup7CQuPdzl24uLGrwEo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PqS+IhahzJ7Qr49k47MPrl60H9EY/NX0XuQKHvflRvg5twiaeouQKBeZTNu7cuBdkGtTX8xlL3Q1kC1ACZtHHWkenI8V+5EM/Ax29lM7dnG01n8L8rAb786iwmSPT4aJermqQQS0RsEzAVodOtBlDE8uRb//HBk8ZsXs47yb6VU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-54a7bf06edfso1522429e0c.0
+        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 06:52:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762181526; x=1762786326;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/yZuUM0vSJzTDMkCs4SIwBgC08R7t/skmrEIOYPMpKA=;
+        b=s/Ic1PkrL6FO7tDjzcK3XJfXculmZ6vprNsBP3FO1EWRO23ILlRjXAKlFm82YiT14S
+         PPUdQOfB37im+iwJiaxBnL68/sDkBT4IMXD/EFbg2t3Kkkj3NM6NrGNPmM+9hf9ZKnLQ
+         TB+JJt53wwCiG8/lobRiCWPDKgkxeFCZh4FAV8oqEBBNIfHP92Ar/0WJCcJQuTGz87iw
+         taB8mwuUyIXr5s2nwMASO93W6YAgwdW6selN9NlWRkTI2HMKjM0UrcmJ/eK+b/Up0OK9
+         DrIkBvzQWzwNIyU6GT75KX34QOUm0SiaFW9s/ad5ISjyR71OzhelqnJuhIrYOnDXsWyn
+         KYVA==
+X-Forwarded-Encrypted: i=1; AJvYcCV9/Ay9pD31xS3fM2RmTsRjWOZV0F/CT6edeI8Tt2XEqwGY3yasjHDhZTqYwIDmEEJ8nKUyNbCX97Dj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2bBHqzJfOeVfQvOZbUHwHyplj59ggik1goI0GMXTrjHBrrcrP
+	Jv3h1PV3O60Uiw/Cmwj0aLKYCZktV7MuMb5l8AaywSjHJu9B+HIHAzIg6nl+ptek
+X-Gm-Gg: ASbGncs2BXqt3oP8BtSabztoa1uwYd28tXpOnmEOXqneisOJMSEOJz8J+HpQdIdxyCJ
+	Jkl77T81UScwjWauTnZ1vqsXPyuRLigpcMKeUCLfa81YANQpz8PZCeicmo17kNP3Le9ne8UV2Ez
+	64clQENwCFrQnyH45vYvSIqjVl2kFO6uafXTUEON2P90qIBYFkMvxeuKngnxxqHgR09y5zBDzc0
+	TWv4gqrubGhdIxR/IT7UC0jmxaY5WtTziNw1lizivTs8GAA2RYbTbBYiASdz2RqDF427IXaWkLV
+	Na3tAM1dz+tg3Dl4IvbRyLyDr76isyMi4Hl4NcfLeynV9Bza11Sso2YXuqOx9jeJwudeViotu4U
+	YhPUICUD6WSn6Do0Zm4jI9uojL/n4PnBJncMqjXo6RgGqdbPEQIt9tdY7AzmKIdhV1HyDp4nKi5
+	U6bNvNQCDrXAGMJle6ovNY/u/lN6NsDFttLULls0pEiD5Urnwy
+X-Google-Smtp-Source: AGHT+IHcnf45nKkRUI9bZ1zCJ0d2cs014iaFkaQ4UlZ+hjGZrsdgzY4STaiPR5zrhgFR1wQiz+koUg==
+X-Received: by 2002:a05:6102:6d0:b0:5db:3311:947c with SMTP id ada2fe7eead31-5dbb124fa86mr4443817137.17.1762181526072;
+        Mon, 03 Nov 2025 06:52:06 -0800 (PST)
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-93542a4a8c5sm178103241.7.2025.11.03.06.52.05
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Nov 2025 06:52:05 -0800 (PST)
+Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-932dfe14b2eso4212910241.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 06:52:05 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUg5Lk9Z4CbL4Huji146uot7xsoK+BfZcmWywlA6ypB6QmJTOx05EWIss2q9CjHbtkSPMLo66A6KpQu@vger.kernel.org
+X-Received: by 2002:a05:6102:588d:b0:5db:c9cd:673d with SMTP id
+ ada2fe7eead31-5dbc9cd6b9amr1394207137.26.1762181525198; Mon, 03 Nov 2025
+ 06:52:05 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251102-ginger-pig-of-lightning-f65ef4@kuoka>
+References: <20251102141733.160640-1-yuntao.wang@linux.dev>
+In-Reply-To: <20251102141733.160640-1-yuntao.wang@linux.dev>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 3 Nov 2025 15:51:53 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW0mLsZmJsWmQEaN=g-kRMMVHaBpRZmQW1VFRqyDvK6UQ@mail.gmail.com>
+X-Gm-Features: AWmQ_blF-HrJJFZ6UawjIZOL5JF9-1QW9wszE5S3sxv-Mq_PqjGG7F9PQMoMuHo
+Message-ID: <CAMuHMdW0mLsZmJsWmQEaN=g-kRMMVHaBpRZmQW1VFRqyDvK6UQ@mail.gmail.com>
+Subject: Re: [PATCH] of: fdt: Fix the len check in early_init_dt_check_for_elfcorehdr()
+To: Yuntao Wang <yuntao.wang@linux.dev>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Content-Type: text/plain; charset="UTF-8"
 
-On Sun, Nov 02, 2025 at 05:41:54PM +0100, Krzysztof Kozlowski wrote:
-> On Sat, Nov 01, 2025 at 02:08:48PM -0500, Dinh Nguyen wrote:
-> > The link is giving the 404 error, so use the correct link for the
-> > documents
-> > 
-> > Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/fpga/fpga-region.yaml | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi Yuntaoi,
 
-Reviewed-by: Xu Yilun <yilun.xu@linux.intel.com>
+On Sun, 2 Nov 2025 at 15:18, Yuntao Wang <yuntao.wang@linux.dev> wrote:
+> The len value is in bytes, while `dt_root_addr_cells + dt_root_size_cells`
+> is in cells (4 bytes per cell).
+>
+> Comparing them directly is incorrect. Convert units before comparison.
 
-Applied to for-next, thank.
+Thanks for your patch!
 
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+> Fixes: f7e7ce93aac1 ("of: fdt: Add generic support for handling elf core headers property")
+
+My commit consolidated existing code, so you may want to add
+Fixes: e62aaeac426ab1dd ("arm64: kdump: provide /proc/vmcore file")
+so code in v5.14 and older will be fixed by stable backports, too.
+
+> Signed-off-by: Yuntao Wang <yuntao.wang@linux.dev>
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
