@@ -1,188 +1,318 @@
-Return-Path: <devicetree+bounces-234328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81427C2B6B3
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 12:37:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 967D3C2B471
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 12:19:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37CEC3BA66A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 11:34:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4E8E3AFE75
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 11:18:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74E2C3054DD;
-	Mon,  3 Nov 2025 11:30:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E5DC3016E4;
+	Mon,  3 Nov 2025 11:18:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="FxDwCxq/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X6209kcr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.couthit.com (server.couthit.com [162.240.164.96])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97A4C3054CE;
-	Mon,  3 Nov 2025 11:30:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A66B2EA723
+	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 11:18:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762169408; cv=none; b=dE3HKoRDKDX210XAh0I+MkoYuIP5zL91NKBBqthcd8QfzVv/IquGDe2xXOksPxTiboekSVBwu+D6kF9QpK8q9BsFdtGaxyGFwqmYcCyhQCu2lbvlZA6ky16RlueZCHVK4YBIXDD6NR8y3SNs+VZMgqrM3pHKmQFO7DiPyGYjAQc=
+	t=1762168691; cv=none; b=WdpDTMxT8e7t5BpNuI3ltanyhtKEZTk89CyMrFloA1A6qnwim3ItCcqE+efv9gKnUqjMzQc8d2kMYPk/xFY61XtHIXqn4V+IFLbjT2g5MH8UMKrObv4ADjMYDweg/8Ke37LxLnn/n/o8X5kSjoiLH784CyCxXUpsRMyuAa8BT90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762169408; c=relaxed/simple;
-	bh=hjqkskP7rEKOpC0HAWlWuk9UR+qmbWyNfX49a8doCqI=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=k6sOHmnm56FI/KaHJ7AwvvZpCxU0T7i3D/N+3gMOclWXghx0CdfVt4hCWt4v65IzIKy5NGs/pxXLhmjryWHYHq/tOE2IGhcpQcIjblS+t8CqcsILa7fPmeeqzcNUSkqa6RwKuhOpBpZqeFbbKp4xPABzCF5Hdsa6p8JnoEHhwVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=FxDwCxq/; arc=none smtp.client-ip=162.240.164.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=pO1e3BxesOLdXFEMiUspsLON2Xgnazr0oTkpXmKAlXc=; b=FxDwCxq/M161NLrVbAViDNd8lQ
-	2j9qnONIOgOVEimJgVCyJbB1vse1/oEIP5AWFuE8ZycmGTQw5B43b+PGAVsOJTcMZhO23oEaAQwhZ
-	k07V3tshvT8pQyDdkaOK7DGSCC7BQSEKgS9XrV0qfsmK4kYhEHWUP7IjUZOsQgRPQ/GXIM7Byw5BI
-	E8HbXLvPLRo/5kL7E8yF1TgK5rxEinLcwa9uyCQbo4NZSTyz6ALv4Y2jxvBTUpU1OCcN1UhKgFzF2
-	QGfZ+czSAR4V2yBFWm1SQi/OhpdII0jhWNByO0kmu90W8OyifHI4y2PMLfwRoO27ULhPOBSi2b8Ip
-	iqAADrxg==;
-Received: from [122.175.9.182] (port=20643 helo=zimbra.couthit.local)
-	by server.couthit.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <parvathi@couthit.com>)
-	id 1vFsQO-00000006Pzf-2Y0s;
-	Mon, 03 Nov 2025 06:08:37 -0500
-Received: from zimbra.couthit.local (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTPS id 7A72F1784032;
-	Mon,  3 Nov 2025 16:38:31 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id 65CF21781F6A;
-	Mon,  3 Nov 2025 16:38:31 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
-	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id hg8Tri1-CFlx; Mon,  3 Nov 2025 16:38:31 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id 3EC801781698;
-	Mon,  3 Nov 2025 16:38:31 +0530 (IST)
-Date: Mon, 3 Nov 2025 16:38:31 +0530 (IST)
-From: Parvathi Pudi <parvathi@couthit.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: tony <tony@atomide.com>, robh <robh@kernel.org>, 
-	krzk+dt <krzk+dt@kernel.org>, conor+dt <conor+dt@kernel.org>, 
-	richardcochran <richardcochran@gmail.com>, 
-	linux-omap <linux-omap@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	netdev <netdev@vger.kernel.org>, danishanwar <danishanwar@ti.com>, 
-	pratheesh <pratheesh@ti.com>, Prajith Jayarajan <prajith@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
-	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
-	krishna <krishna@couthit.com>, mohan <mohan@couthit.com>, 
-	pmohan <pmohan@couthit.com>, basharath <basharath@couthit.com>, 
-	afd <afd@ti.com>, m-karicheri2 <m-karicheri2@ti.com>
-Message-ID: <1460283559.152037.1762168111145.JavaMail.zimbra@couthit.local>
-In-Reply-To: <1064878067.81811.1760534965853.JavaMail.zimbra@couthit.local>
-References: <20251013125401.1435486-1-parvathi@couthit.com> <20251013125401.1435486-2-parvathi@couthit.com> <8cfc5ece-6c2e-48d9-a65c-3edbcc9edc39@lunn.ch> <1064878067.81811.1760534965853.JavaMail.zimbra@couthit.local>
-Subject: Re: [PATCH 1/2] arm: dts: ti: Adds device tree nodes for PRU Cores,
- IEP and eCAP modules of PRU-ICSS2 Instance.
+	s=arc-20240116; t=1762168691; c=relaxed/simple;
+	bh=60lDMBL2oNpdxDCfZ/zaAoqSFSwNxdJ9b1c9SZ6HPGc=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=hKgjFY+rInzc/hnn0Cu7D6wV9M6NyG0xlNfE3chW22bRXTUJiJBaxV1CMpnNfQWez4cVbyhYZp5BA+oHBDGXfj3KJ0g2LKObgUrAnqeiIaRccM5VVMyqBq7j+Vy0i4EaEW9yYS2or4bUAM+euDWt68h0bah6JlHQCacFZcawN9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X6209kcr; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-471191ac79dso48196715e9.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 03:18:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762168687; x=1762773487; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=H6G1U+3shNA1F9Kl+gGDGcY4sTpab/foYa+z2DPImsw=;
+        b=X6209kcr5D55B9vEUyNCd+qG2YGOfxR7ZUdl+d9J6fsrtDNNpJw5vG+OophBv0kAvG
+         aKPBx4e2Oo0VkVbgGyS5SBIs/BdJ+143XkMpBdxyae2hKpmtcF2On0AFOv/L3QF09rMT
+         ROars0OFJIteG7kju2RZV3j0vXT8aAEDq6eX7NoPCLChBMcwFgCkvozgWGoKUxt8NYNc
+         xZ2Psiceu+kYfWUpKSXvI1aVNe27TwPXfBRscaxWzUGz6SUXQ8TJgSrUaNPWLOHTNXFM
+         UCKwzeIwvCescPx0s1bnJaJUinTEEO7XCZFfQpJ/oZarJqmiUjKCJgUdc0apRJIIOKtg
+         HBOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762168687; x=1762773487;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=H6G1U+3shNA1F9Kl+gGDGcY4sTpab/foYa+z2DPImsw=;
+        b=e9PXCLgSoqTYdhklRRhfxUi0GKs0senpAYgveIWlQPzJY5kE5tZFzVhGlXpj+lwUBl
+         syl4UJQHkzZnVA1KkIPzw9wsLE0m4pPdYiNMwyxw34o02N443aGoOIAJzY8O2s158jGR
+         e3rbqcK1sj1IhQF7IgY9Uu03ewPwXwdKo+OCOSicnwJ9iHPD73+bhaSvkSgG+ciE81/x
+         EbbCd5oyfAPVmJB4moQ3Y38GJApCfvX2ZtSUgsdAYvaaxMhiVqwJ/omQc3QWG3us7KpR
+         5kdWdOCaAQzUGSEO6/WxCPLHwKzTpxpR4FWwP44x1bf5ef1gOPl1Rgdv5wYOYhpZKFVe
+         /eyw==
+X-Forwarded-Encrypted: i=1; AJvYcCU3U9mR1yAYnWOw6tcJyMDT+MN65hXo+FQDXYmC1BKJwofQZJWX2sEAa4rMCPWAQCWMIluC6DYwLLRI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZfHENPQuFAAxBNApxZFbtWMH/2/iPHCxe9AKjYyGdMXoMUkg6
+	dgW+Fs2r9eujeKoxifdohtl6LpG+pA353FmQxSGAjdyPHlwSWEpXIzs6
+X-Gm-Gg: ASbGnculEbLq0soOvNnF4uvW7Tp0+UGVGaG1PrFbVqyUSzMkN952neQxaN/MT9Gu5bj
+	gvggawO8IHsXo9FTszdviLIM3fELZTO087JZF6YVxKP2EbMKC1lVIY/kmgp6pOIjJ+QDmDIT5nW
+	jQi2E/KjnZXZLkKdA6AFj6Jvwfl/EKe9yyG+RLuHGE7pyW1nCJkq9DYb92y0eUF8JCNT6rI/ETq
+	r3uTt8x7ekrNY5EbkIQkRlqMgq5A7cX134d7IEyIZkRaFMJl1Vi8U6asC3V9ihmoDuECgYf1p0J
+	H++5/shbry2hy8TDPDGjRSwk90kB30N0EQTUHDmOGCki6Wv3Faihzq4lXtz8Zseyl4BtN8M/YcT
+	rB1edyeFWojsAGWzxNmBZN/UDJ9Fk+a3waRcp9ooR7apcf/9aU61Db/+CMOElbjVDHtr7M7N5Js
+	fBqSt3Ixk9u5FskpgxDsM=
+X-Google-Smtp-Source: AGHT+IH6i0PkBRAZb8K1KRO55KHAWOtXj4yQJQGAO0NKO2FQdbsbSicqPiEU9u6kw13j3FaaQD7dzg==
+X-Received: by 2002:a05:600d:4393:b0:46e:32a5:bd8d with SMTP id 5b1f17b1804b1-477331db3ccmr69867085e9.3.1762168687127;
+        Mon, 03 Nov 2025 03:18:07 -0800 (PST)
+Received: from [192.168.1.187] ([161.230.67.253])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4773c583d91sm150548485e9.17.2025.11.03.03.18.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Nov 2025 03:18:06 -0800 (PST)
+Message-ID: <a1577c7ce81d039f47e189e130295b76447b05c2.camel@gmail.com>
+Subject: Re: [PATCH 2/2] gpio: adg1712: add driver support
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>, Linus Walleij	
+ <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Rob
+ Herring	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley	 <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org
+Date: Mon, 03 Nov 2025 11:18:42 +0000
+In-Reply-To: <20251031160710.13343-3-antoniu.miclaus@analog.com>
+References: <20251031160710.13343-1-antoniu.miclaus@analog.com>
+	 <20251031160710.13343-3-antoniu.miclaus@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - GC141 (Mac)/8.8.15_GA_3968)
-Thread-Topic: Adds device tree nodes for PRU Cores, IEP and eCAP modules of PRU-ICSS2 Instance.
-Thread-Index: E3LIn1f4mOg6FaK5tJjNCk6cQUoE5cdujhE/
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.couthit.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.couthit.com: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 
-Hi,
+On Fri, 2025-10-31 at 16:07 +0000, Antoniu Miclaus wrote:
+> Add driver support for the ADG1712, which contains four independent
+> single-pole/single-throw (SPST) switches and operates with a
+> low-voltage single supply range from +1.08V to +5.5V or a low-voltage
+> dual supply range from =C2=B11.08V to =C2=B12.75V.
+>=20
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+> =C2=A0drivers/gpio/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0=C2=A0 9 +++
+> =C2=A0drivers/gpio/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=
+=C2=A0 1 +
+> =C2=A0drivers/gpio/gpio-adg1712.c | 146 +++++++++++++++++++++++++++++++++=
++++
+> =C2=A03 files changed, 156 insertions(+)
+> =C2=A0create mode 100644 drivers/gpio/gpio-adg1712.c
+>=20
+> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+> index 7ee3afbc2b05..3fac05823eae 100644
+> --- a/drivers/gpio/Kconfig
+> +++ b/drivers/gpio/Kconfig
+> @@ -157,6 +157,15 @@ config GPIO_74XX_MMIO
+> =C2=A0	=C2=A0=C2=A0=C2=A0 8 bits:	74244 (Input), 74273 (Output)
+> =C2=A0	=C2=A0=C2=A0=C2=A0 16 bits:	741624 (Input), 7416374 (Output)
+> =C2=A0
+> +config GPIO_ADG1712
+> +	tristate "Analog Devices ADG1712 quad SPST switch GPIO driver"
+> +	depends on GPIOLIB
+> +	help
+> +	=C2=A0 GPIO driver for Analog Devices ADG1712 quad single-pole,
+> +	=C2=A0 single-throw (SPST) switch. The driver provides a GPIO controlle=
+r
+> +	=C2=A0 interface where each GPIO line controls one of the four independ=
+ent
+> +	=C2=A0 analog switches on the ADG1712.
+> +
+> =C2=A0config GPIO_ALTERA
+> =C2=A0	tristate "Altera GPIO"
+> =C2=A0	select GPIOLIB_IRQCHIP
+> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
+> index ec296fa14bfd..9043d2d07a15 100644
+> --- a/drivers/gpio/Makefile
+> +++ b/drivers/gpio/Makefile
+> @@ -28,6 +28,7 @@ obj-$(CONFIG_GPIO_104_IDI_48)		+=3D gpio-104-idi-48.o
+> =C2=A0obj-$(CONFIG_GPIO_104_IDIO_16)		+=3D gpio-104-idio-16.o
+> =C2=A0obj-$(CONFIG_GPIO_74X164)		+=3D gpio-74x164.o
+> =C2=A0obj-$(CONFIG_GPIO_74XX_MMIO)		+=3D gpio-74xx-mmio.o
+> +obj-$(CONFIG_GPIO_ADG1712)		+=3D gpio-adg1712.o
+> =C2=A0obj-$(CONFIG_GPIO_ADNP)			+=3D gpio-adnp.o
+> =C2=A0obj-$(CONFIG_GPIO_ADP5520)		+=3D gpio-adp5520.o
+> =C2=A0obj-$(CONFIG_GPIO_ADP5585)		+=3D gpio-adp5585.o
+> diff --git a/drivers/gpio/gpio-adg1712.c b/drivers/gpio/gpio-adg1712.c
+> new file mode 100644
+> index 000000000000..f8d3481ac9d0
+> --- /dev/null
+> +++ b/drivers/gpio/gpio-adg1712.c
+> @@ -0,0 +1,146 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Analog Devices ADG1712 quad SPST switch GPIO driver
+> + *
+> + * Copyright 2025 Analog Devices Inc.
+> + *
+> + * Author: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> + */
+> +
+> +#include <linux/err.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/gpio/driver.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +
+> +#define ADG1712_NUM_GPIOS	4
+> +
+> +struct adg1712 {
+> +	struct gpio_chip chip;
+> +	struct gpio_desc *switch_gpios[ADG1712_NUM_GPIOS];
+> +};
+> +
+> +static int adg1712_get_direction(struct gpio_chip *chip, unsigned int of=
+fset)
+> +{
+> +	return GPIO_LINE_DIRECTION_OUT;
+> +}
+> +
+> +static int adg1712_direction_input(struct gpio_chip *chip, unsigned int =
+offset)
+> +{
+> +	return -EINVAL;
+> +}
 
->>> +				interrupt-names = "rx", "emac_ptp_tx",
->>> +								"hsr_ptp_tx";
->> 
->> Something looks wrong with the indentation here. The same happens in
->> at least one other place.
->> 
-> 
-> we will correct the indentation of the interrupt-names property to properly
-> align the continuation line as shown below.
-> 
-> interrupt-names = "rx", "emac_ptp_tx",
->                  "hsr_ptp_tx";
-> 
-> We will make sure to address this in all the applicable places and include
-> this fix in the next version.
-> 
-> 
->>> +&pruss2_mdio {
->>> +	status = "okay";
->>> +	pruss2_eth0_phy: ethernet-phy@0 {
->>> +		reg = <0>;
->>> +		interrupt-parent = <&gpio3>;
->>> +		interrupts = <30 IRQ_TYPE_EDGE_FALLING>;
->>> +	};
->>> +
->>> +	pruss2_eth1_phy: ethernet-phy@1 {
->>> +		reg = <1>;
->>> +		interrupt-parent = <&gpio3>;
->>> +		interrupts = <31 IRQ_TYPE_EDGE_FALLING>;
->>> +	};
->> 
->> 
->> PHY interrupts are 99% level, not edge, because they represent an
->> interrupt controller in the PHY, and you need to clear all the
->> interrupts in the controller before it deasserts the interrupt pin.
->> 
->>    Andrew
-> 
-> 
-> Sure, we will check and come back with more details on this.
-> 
-> 
+Did not checked gpiolib for this but do we need the above given that we alw=
+ays
+return GPIO_LINE_DIRECTION_OUT?
 
-We have reviewed and analysed the code, and confirmed that level
-low can be used for the PHY interrupt, which seems to be a better
-option than using the edge falling.
+> +
+> +static int adg1712_direction_output(struct gpio_chip *chip, unsigned int=
+ offset,
+> +				=C2=A0=C2=A0=C2=A0 int value)
+> +{
+> +	struct adg1712 *adg1712 =3D gpiochip_get_data(chip);
+> +
+> +	if (offset >=3D ADG1712_NUM_GPIOS)
+> +		return -EINVAL;
 
-As shown below, the current interrupt configuration reflects a
-level-triggered setup:
+I don't think above can happen.
 
-root@am57xx-evm:~# cat /proc/interrupts
-           CPU0       CPU1    
-163:          2          0 48057000.gpio  30 Level     4b2b2400.mdio:00
-164:          2          0 48057000.gpio  31 Level     4b2b2400.mdio:01
+> +
+> +	gpiod_set_value_cansleep(adg1712->switch_gpios[offset], value);
 
-We can see the IRQ has been changed to Level and the count is incremented
-for every link event.
+return gpiod_set_value_cansleep().
 
-We will update the interrupt type to IRQ_TYPE_LEVEL_LOW as shown below and
-share the next version.
+> +	return 0;
+> +}
+> +
+> +static int adg1712_set(struct gpio_chip *chip, unsigned int offset, int =
+value)
+> +{
+> +	struct adg1712 *adg1712 =3D gpiochip_get_data(chip);
+> +
+> +	if (offset >=3D ADG1712_NUM_GPIOS)
+> +		return -EINVAL;
 
-+&pruss2_mdio {
-+       status = "okay";
-+       pruss2_eth0_phy: ethernet-phy@0 {
-+               reg = <0>;
-+               interrupt-parent = <&gpio3>;
-+               interrupts = <30 IRQ_TYPE_LEVEL_LOW>;
-+       };
-+
-+       pruss2_eth1_phy: ethernet-phy@1 {
-+               reg = <1>;
-+               interrupt-parent = <&gpio3>;
-+               interrupts = <31 IRQ_TYPE_LEVEL_LOW>;
-+       };
-+};
+Ditto
 
+> +
+> +	gpiod_set_value_cansleep(adg1712->switch_gpios[offset], value);
+> +	return 0;
+> +}
+> +
+> +static int adg1712_get(struct gpio_chip *chip, unsigned int offset)
+> +{
+> +	struct adg1712 *adg1712 =3D gpiochip_get_data(chip);
+> +
+> +	if (offset >=3D ADG1712_NUM_GPIOS)
+> +		return -EINVAL;
+> +
+> +	return gpiod_get_value_cansleep(adg1712->switch_gpios[offset]);
+> +}
+> +
+> +static int adg1712_set_multiple(struct gpio_chip *chip, unsigned long *m=
+ask,
+> +				 unsigned long *bits)
+> +{
+> +	struct adg1712 *adg1712 =3D gpiochip_get_data(chip);
+> +	int i;
+> +
+> +	for_each_set_bit(i, mask, ADG1712_NUM_GPIOS) {
+> +		gpiod_set_value_cansleep(adg1712->switch_gpios[i],
+> +					 test_bit(i, bits));
 
-Thanks and Regards,
-Parvathi.
+Error handling.
+
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct gpio_chip adg1712_gpio_chip =3D {
+> +	.label			=3D "adg1712",
+> +	.owner			=3D THIS_MODULE,
+> +	.get_direction		=3D adg1712_get_direction,
+> +	.direction_input	=3D adg1712_direction_input,
+> +	.direction_output	=3D adg1712_direction_output,
+> +	.get			=3D adg1712_get,
+> +	.set			=3D adg1712_set,
+> +	.set_multiple		=3D adg1712_set_multiple,
+> +	.base			=3D -1,
+> +	.ngpio			=3D ADG1712_NUM_GPIOS,
+> +	.can_sleep		=3D true,
+> +};
+> +
+> +static int adg1712_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct adg1712 *adg1712;
+> +	int ret, i;
+> +	char gpio_name[16];
+> +
+> +	adg1712 =3D devm_kzalloc(dev, sizeof(*adg1712), GFP_KERNEL);
+> +	if (!adg1712)
+> +		return -ENOMEM;
+> +
+> +	adg1712->chip =3D adg1712_gpio_chip;
+> +	adg1712->chip.parent =3D dev;
+> +
+> +	for (i =3D 0; i < ADG1712_NUM_GPIOS; i++) {
+> +		snprintf(gpio_name, sizeof(gpio_name), "switch%d", i + 1);
+
+Just a suggestion. Instead of the snprintf(), you could have a const array =
+of
+strings and just go over it. Not a big deal to me though. You could also
+consider devm_gpiod_get_array()
+
+> +		adg1712->switch_gpios[i] =3D devm_gpiod_get(dev, gpio_name,
+> +							=C2=A0 GPIOD_OUT_LOW);
+
+Should we make assumptions on the initial value? Not sure if GPIO_ASIS woul=
+d
+make sense here.
+
+> +		if (IS_ERR(adg1712->switch_gpios[i]))
+> +			return dev_err_probe(dev, PTR_ERR(adg1712->switch_gpios[i]),
+> +					=C2=A0=C2=A0=C2=A0=C2=A0 "failed to get %s gpio\n", gpio_name);
+> +	}
+> +
+> +	ret =3D devm_gpiochip_add_data(dev, &adg1712->chip, adg1712);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to add gpio chip\n");
+> +
+> +	dev_info(dev, "ADG1712 %u-GPIO expander registered\n",
+> +		 adg1712->chip.ngpio);
+
+Drop the above or turn it into dev_dbg()
+
+- Nuno S=C3=A1
+>=20
 
