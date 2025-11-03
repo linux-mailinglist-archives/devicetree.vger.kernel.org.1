@@ -1,127 +1,123 @@
-Return-Path: <devicetree+bounces-234236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC71FC2A7CA
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 09:08:13 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 925CBC2A82F
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 09:14:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A3FD64ED577
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 08:04:29 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 123FE4E1B97
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 08:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6121F2D77F7;
-	Mon,  3 Nov 2025 08:04:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4C712D77FF;
+	Mon,  3 Nov 2025 08:14:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q8jc/hNM"
+	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="oNyzKVTn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F88A2C15BE;
-	Mon,  3 Nov 2025 08:04:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD3D828DF07;
+	Mon,  3 Nov 2025 08:13:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762157067; cv=none; b=AfwWcagBtR8DoHEZ8YnA/nx/xraRtGnFOu1KEpOiBFqjQSi62JCOj+5U4Y5e+YOXssJCfr8PxXqwKRzWBimJoEgSrs8iG1XxD4YCnMyEXHEN4vCxZfSIoVo+MewfAHKNHkwl/MeWXqLF25gG3UcoplDLN9enPKyjliMxlgRjzo0=
+	t=1762157643; cv=none; b=DfFUf6j4PvxzFDzCWWgF4zQau/cnmnTsaDWFJ/1Rk/+TJgCLLq1CY/+9Q2R33J2zFD94jGL60bzgQFJrK+s9xhnmeGIwGCIblmOfd8fvGDhxK5asl6xgswlDfj+Wt7KJLgizfLOBAIRDIVYlkNDLZys3SuMAhSHesK1vmUtvAUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762157067; c=relaxed/simple;
-	bh=0J+C4BCtEzKhbJ9yq4lhYsu0jy9dLTS37v+/MOax5ws=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BbFUeGt9iJlI3PXwC4Lo7BkcQ7Yy0OhckUuIS9JIwA9vjOrzm47hoY4r+jU/xFvMb7SQkw3AIGodwtde0Yn/I179SMGw1hfh4tUsvBASWv9S6ZD/Weo8pLO3Go0iqQS02EbBHoHXA1Sld0zvGHpUtMmmLzzlXcJD9Dx6HZX8mrw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q8jc/hNM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89A6CC4CEFD;
-	Mon,  3 Nov 2025 08:04:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762157066;
-	bh=0J+C4BCtEzKhbJ9yq4lhYsu0jy9dLTS37v+/MOax5ws=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Q8jc/hNMNqKvAvZ2SpHSnkusjFPGvYaOxRkShqmBKyeMqBujEN/l0s5tQZpTvgwyE
-	 YgFwDbiR9SUpLfz96ZPKj2CL2Vt5GWTUa1e2ZdanyRbDfJEBZdM6/z+910PW3KOoU2
-	 bTEo4mLYyG8nzNCnHwK12YT9hthHXMoXFXsVV5QPaJ0wohmR6/5kyZYNXiKrN40BGE
-	 vFWNSbZ0e5XyQ2MeWnbqLHnkCU2RmT7mYeG8TFfxHPEK+ilijGUayTUyN5I+4y1vk/
-	 XHzK+x6BvXFil2Q5XKAmFbjutW48sZ3PclDKZPyaY5NKeSgjWUnk+oBkF0cX52XEu6
-	 1itm7vYNO5HRw==
-Message-ID: <d30dc192-e37d-49d6-97c7-26e90a7ae6f9@kernel.org>
-Date: Mon, 3 Nov 2025 09:04:21 +0100
+	s=arc-20240116; t=1762157643; c=relaxed/simple;
+	bh=54n85ZwyayArP7yhougQewaTm0CQee0hnxz3GHcV5Cg=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=PqfEUKf4mxuLuyYMB/uN0MXmuGJSpI+WCtB6dayKio5HD0jxqIR+9+xD4fl8MVatdH6f4LpzllnnNazt4ETeEwJfay2z5+F6EjwAPL6hHQrx24BasDd3010kEcVc6lpYblFN8nuu4UKZY3lU2cXkmCDKu4cAAYHYkS5ejcqvSgQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=oNyzKVTn; arc=none smtp.client-ip=193.68.50.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
+Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
+	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id E81CAA0A96;
+	Mon,  3 Nov 2025 09:13:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:from:from:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=mail; bh=gw0/qyfr1zOYI5nSB/iu
+	m7AsYKgJjol2bq0uNTSmVDo=; b=oNyzKVTndUf6k4MmwLMb9UdLqY3qOueDGlmA
+	iAX37ynu3OZJab5CFUdMPhwsfkpXkXbOjUWCqOFZRVsDfvAACCTdhC4c5FXS09Gj
+	h+gVgxj0c5y8iMPFrdD9GJyil/+V+BQYRcsBdq9x8C0QVztbhRbbbvycZV0ygGpF
+	y16UXT+suwjmftg3ItVDXLGsFWltnMf9+8N5QcL5/ABlTZj0FMUFaXGMPIRh/MDS
+	QV8fDzZNdljuujhy9SC6e4HbMe80m/d0LFj4pciU8/eqRKKogSROnL4DA8eHLYw7
+	renehLdWFzvyccBD2W1aPSJpaNKibGC0R4WEuvXw91STG9yc3U1sMfPhZt51vf5u
+	y1Zt0m26ZehAt9KvrJxhwHNi0l04kvrxMw+xuIzUUad5rhOUrCo0Hux+pWC8rKjr
+	ZBI2VONAzieF66uKbgf/TXqeKLJbpw9uyW8fa4OiqPIpayZoUrpeoeQSU7s9k4aV
+	/cY6dGL4O/eS2sb4ZwbQt9N42wJ7iwJ5QCClzGwgzAMNK9SEAenCj3/wZOVI0ZKN
+	3KQ2mg57r4htDM1Kevb0yTmcf8XjsQy1MAYunu+ekjvdTPiOSAh6yGanBl1+GKFM
+	RokppcrenaqVqyGcg2xpgbr6gg9P0oQ3VaztgLLWZFjhe8Z34TkcGaLkwwNc/hdV
+	iL5MD00=
+From: Buday Csaba <buday.csaba@prolan.hu>
+To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, "David S. Miller"
+	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
+	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+CC: Buday Csaba <buday.csaba@prolan.hu>
+Subject: [PATCH v2 1/1] dt-bindings: net: ethernet-phy: clarify when compatible must specify PHY ID
+Date: Mon, 3 Nov 2025 09:13:42 +0100
+Message-ID: <64c52d1a726944a68a308355433e8ef0f82c4240.1762157515.git.buday.csaba@prolan.hu>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <b8613028fb2f7f69e2fa5e658bd2840c790935d4.1761898321.git.buday.csaba@prolan.hu>
+References: <b8613028fb2f7f69e2fa5e658bd2840c790935d4.1761898321.git.buday.csaba@prolan.hu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] dt-bindings: iio: proximity: Add Lidar-lite-v2 and
- v3
-To: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>, robh@kernel.org,
- krzk+dt@kernel.org, jic23@kernel.org, dlechner@baylibre.com,
- nuno.sa@analog.com, andy@kernel.org, conor+dt@kernel.org,
- mranostay@gmail.com, wbg@kernel.org
-Cc: ~lkcamp/patches@lists.sr.ht, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251102221643.9966-1-rodrigo.gobbi.7@gmail.com>
- <20251102221643.9966-3-rodrigo.gobbi.7@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251102221643.9966-3-rodrigo.gobbi.7@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1762157629;VERSION=8001;MC=2379286761;ID=111644;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
+X-ESET-Antispam: OK
+X-EsetResult: clean, is OK
+X-EsetId: 37303A2998FD515F66756A
 
-On 02/11/2025 23:10, Rodrigo Gobbi wrote:
-> Since v2 is not a trivial device, add it to a dedicated place. The v3 is
+Change PHY ID description in ethernet-phy.yaml to clarify that a
+PHY ID is required (may -> must) when the PHY requires special
+initialization sequence.
 
-What is v2 and v3? This patchset is v3, don't refer to it in the commit
-msg. If you speak about devices then make it obvious. How anyone going
-through `git log` can figure out what is v2. Your patch mentions some v2
-and v3 but these are different companies, so somehow completely
-different products?
+Link: https://lore.kernel.org/netdev/20251026212026.GA2959311-robh@kernel.org/
+Link: https://lore.kernel.org/netdev/aQIZvDt5gooZSTcp@debianbuilder/
+
+Signed-off-by: Buday Csaba <buday.csaba@prolan.hu>
+---
+V1 -> V2: Changed wording on maintainer request.
+---
+ .../devicetree/bindings/net/ethernet-phy.yaml          | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+index 2ec2d9fda..bb4c49fc5 100644
+--- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
++++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+@@ -35,9 +35,13 @@ properties:
+         description: PHYs that implement IEEE802.3 clause 45
+       - pattern: "^ethernet-phy-id[a-f0-9]{4}\\.[a-f0-9]{4}$"
+         description:
+-          If the PHY reports an incorrect ID (or none at all) then the
+-          compatible list may contain an entry with the correct PHY ID
+-          in the above form.
++          PHYs contain identification registers. These will be read to
++          identify the PHY. If the PHY reports an incorrect ID, or the
++          PHY requires a specific initialization sequence (like a
++          particular order of clocks, resets, power supplies), in
++          order to be able to read the ID registers, then the
++          compatible list must contain an entry with the correct PHY
++          ID in the above form.
+           The first group of digits is the 16 bit Phy Identifier 1
+           register, this is the chip vendor OUI bits 3:18. The
+           second group of digits is the Phy Identifier 2 register,
+
+base-commit: 0d0eb186421d0886ac466008235f6d9eedaf918e
+-- 
+2.39.5
 
 
-> similar to the v2 version, so add it as a fallback to the v2. Both versions
-> are already supported by the driver.
-
-Best regards,
-Krzysztof
 
