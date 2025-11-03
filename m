@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-234462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E86CBC2D340
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 17:42:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5D3FC2D415
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 17:51:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 814081897DB4
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 16:43:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58EA11899C2D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 16:50:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 513193191D9;
-	Mon,  3 Nov 2025 16:42:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19BAB31A57E;
+	Mon,  3 Nov 2025 16:50:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="LUMGZJcv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UeUb1BK1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f196.google.com (mail-il1-f196.google.com [209.85.166.196])
+Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6231C3191A7
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 16:42:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74BBF3191D1
+	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 16:50:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762188150; cv=none; b=Lkrh1Rs9MowE5E4BT2XXYwK1iB8MBl86rV8DQPO4ntR+3r3bGByEzysKjmLcPsb8RElfJdnuR8t4No8QDfvJhrW7F34lzktvjJnOJ3ncqtwMi7fLZ4uvz7JUGvfs6beHcyHlWIzrOUzMwGF6KMv4MG/fvNY8Wq1+EQ8B7USGzOs=
+	t=1762188607; cv=none; b=A5YyruzRXSsRAdHQG5OeoBDI7duS9V7ouetOp3Q/fawElcsgZA8V4XfrEQegIyK5SoUz/C1HV/dGzknuieht0u1Ear/0pw8ZLDT1UQRaU0AHjs0JWNkcGAonDkqr7PPj5mXzawl2dk2sRsY7Gpy9UOi2BdIGFv9RkOfYCd7+yTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762188150; c=relaxed/simple;
-	bh=OcaI3qwgeTCF0BR+/oUJ3XCKZ1BAXfflSEB1AM9BxUo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jk12eztRmBuVVWN9kkMn45W7y5gLIiC38HVeroui+lo/3t0ZuLPYBR1zfdCUnTdgyh0BqpbshVbiQlYmwqnhSHSGhTYbUwSTHfN4AS7BeMll+IOlG5S5Xhvn7ZpaVS6EApaN+tq1cU24T9uAOx1PbRim9PToFJgL6leLA5BgND8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=LUMGZJcv; arc=none smtp.client-ip=209.85.166.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f196.google.com with SMTP id e9e14a558f8ab-43326c748d5so6568075ab.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 08:42:28 -0800 (PST)
+	s=arc-20240116; t=1762188607; c=relaxed/simple;
+	bh=ko7lB3r9pVr9dkY2BmFRFzraWZf018hcoS0HId+I4M0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=dc2TqcTWURqhYoL2UH7gJM+Hn3VtE5QpIIS6tv4wNEW2pjftZgVuOFxhNjAaOwYf8QnhvWolFIpZc/LcnGxcZiHXKfkkPpBJ3GnIBTbkfkQ0r/R4LI5N0y+HnFd6D2FupLQOFh2NuX1ESq6D4DB1ilpB3BDg5rMe1m4T2lQou4Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UeUb1BK1; arc=none smtp.client-ip=209.85.219.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f46.google.com with SMTP id 6a1803df08f44-88057f5d041so12297476d6.1
+        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 08:50:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1762188147; x=1762792947; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1762188603; x=1762793403; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GHeoDcWtrtw4Kqs9i7E9yy2tKQ26ZOwu5ohkUo50ijM=;
-        b=LUMGZJcvYHB/ArPfDS6VkpidsCPOQkpUlqp5pfcS1zS31//7Gi1OVZt+udAvPCi36P
-         be1c8XkF1FWzaRXVWdXDV0XgI7jf7On9pRLrd49SyqHENeMe5lugWD6VGE4Cjgh8moTV
-         PAq2+RNms5vqY6bj881XTXl7ado/tgfjZn7QyP1FaTyKw8tO3CCsNC9oIr+axWIr4zmo
-         W71je95IVLzv8OeyTQ568tdHll/jDHiFuuWxuDvTf4cvU7RCTxilm69UDC8MQ1eVJsxI
-         Iy+XfYzuZXT9Q/aVLAJUhAG8g8FPkfc80lMdoXHtqeVtwhdwbbm2EjhFu7M+q3wIKGNn
-         Jvfw==
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=zJCa++upS3Lwr+ZLn+k/k89isaF3M2n4b8YOGE+2huU=;
+        b=UeUb1BK1WAnhvzAKtkI7B4IPTqQrNNExqAL9jJcWgda822sALW7i59fyVKRZubNluB
+         3I4csk150vyMZ0OQnpZksrNsQAKgZyon0u3Wevr4mVxveb8nm8qJeIkJd4fA2p+ov3jv
+         P5fncmTjhHVGeiL7dYpH9SA/TVJ2z6R4GSbeYYbt9RdFNtG0NQQWfPIkVgCT9lm5t8Ud
+         sds4bfGzAJYVUolHkK6QK7Q33NbnyjHy+O3LV/jAfJFgI1Ivn8AzLY8ZV5YhIq07moLV
+         HLYisbwbl/n9Ys2UOzLwsdYlliBW9LUUTzCzEIiKf29OWtcVe4NpIH4CW3zz+4Vql5Q0
+         PKlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762188147; x=1762792947;
+        d=1e100.net; s=20230601; t=1762188603; x=1762793403;
         h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :references:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GHeoDcWtrtw4Kqs9i7E9yy2tKQ26ZOwu5ohkUo50ijM=;
-        b=k95CYHj1B0sAJKJJ2DLptQ8d6ono2ouPbgMpTFo0crb/qeTUAx//sFHoo3TLrdwQDQ
-         +QcR2xeZmY8o/ZwhvNkNM4WafFRSJKrl5Pj2rhosQd+msjL/ZntLBZxJd8tzSto5EBIx
-         u4irbaOuNkVD6kehRERPUBmcHSCmghQ8O0LGS/HXbAMK79+qp8+kLHVsDlUA87OSuG+i
-         U787qKVvIEMViX4uRcvq2UKiawItUTtIUfjmpo2sXlj8b8J393n1/z7IHDinA07Q2Em9
-         9t7N/I5SMnY1RsWeZDK/u5O3SuGtJBY5HkrfBucmy+9KXJK21eRTCnOKPF1QYSjszQC/
-         NFtA==
-X-Forwarded-Encrypted: i=1; AJvYcCWCweLigLQdH0/YFlL6OU4LhpIL+Qn6iM4npfwRtJytmRMeeqhdZOBFXa1zKjd/pytyG3H3yJmpAQ5R@vger.kernel.org
-X-Gm-Message-State: AOJu0YzncNzHGZn0X/Vo/h1Sb/36DTwa8wJsJ1A5uGM/8K/sbi2oql2z
-	+N519ZXZJm5A0QJoN+dzcQkxv8SXSiH0PptwU9cr2ESRlPWQ8ZT544BsxVtf5mG2qRA=
-X-Gm-Gg: ASbGncu7/nS/ot5izgtv4rHJMyRSH4oibIsmqclx8JbNijp7zbAsNf4NDkwZ5tMK/RT
-	8stnqluQGScX5K9pZDQK5oEkHGeAecejkuCGZzFkWQgdEbl8ks22RYIXG/ehmzPSdH6PbSjO8Xi
-	Wz8Yg8hqQTa3NJbgXhw/3s41yC7px5L3sz+CocNtUYUZYNdfqKizlAkLPTHE47e5nkDDoytKKeC
-	5f8WtdVmn/TL2vtDlXIfljFeP1dg9Ff0xF65ftjWQwU6s3ICjaZc+ihWZRxpkfOw9P62wvftwmM
-	nFO3K1RIw09nTnCRTsxGEtrDSbSNwu8gaq96O+wpcHjyTkXObKg26MTIoCWwnd9xnCjV8am35l1
-	o7sTsTuubeQ0wOPCteGtsJzA4+qz904syIDOu93Rxov5Fic1PdDt/kud05IRGXzq8j4NbB7EurR
-	0WKa+wbHnHOMSTNZMQRI1eYU3FHEcK5G+IbrtRos7v
-X-Google-Smtp-Source: AGHT+IHkHY4VTZ7p5OKjtOgXuNnn4x75Ilvl4YEJ6q5B/6x6J8/6eBwuDTFeeDgt2AKvux4z5rFo4g==
-X-Received: by 2002:a05:6e02:4603:b0:433:229c:351c with SMTP id e9e14a558f8ab-433377fbe1emr622165ab.1.1762188147419;
-        Mon, 03 Nov 2025 08:42:27 -0800 (PST)
-Received: from [172.22.22.234] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-5b7226f55edsm334467173.59.2025.11.03.08.42.24
+        bh=zJCa++upS3Lwr+ZLn+k/k89isaF3M2n4b8YOGE+2huU=;
+        b=tOGYvdW0Bw8dNAiL3AM/DODoXI27HOHkMilwYU9nQLgnqDd/gDsLmnXWOtJcXWB95s
+         AhSGwExIQ3tjHczTWyhwRc3+tmCRNRpiBHPU+gA2oA5XZYpl8RRAkyneJYGZe69ZsdJa
+         v2KwVepca8axSckuZTjnin+bOt1+2xBQv4DSOuKHuaJkYjttNtMCbHN2wzTChNhX3eFU
+         X5whMwgcoJhMZxZoHdFM1fytCFtDzFT0lp8U32xuIT1tVRoiihyRCJ52UEuZOi1el8RD
+         UQE31cgPOV1d6zZn0sCeAoaFBVsOfJOOegqQyOnrqOzZff1n9JqDjMQM6A4WSlp1ANkT
+         qBsA==
+X-Forwarded-Encrypted: i=1; AJvYcCWJkGxUDSVtY7G2Q4q9YiyPYy6xphTfHrArgju6Npf5FooH3/8K3sH4emtC3UBjNRDdDu7JDMVxJFg7@vger.kernel.org
+X-Gm-Message-State: AOJu0YxO/mS7XBpdqENI8lvlzFysIBUc6FSYFNz5Dkm0o2LnNKAieSEW
+	N6lap7RUgbLG3Y4HkNDAJlx5b8eWX48GLJoMa0Qi9RuTaP1bsAHKPSi7
+X-Gm-Gg: ASbGnctiwLetaW0UMsYGYXAGvi3pTBvu5fs9gWeR5vGZzyuKONzpcwAP0d6+Zrl0i0v
+	JOUBi1UG7GWZbQZMfBWGHfTPWhMYXPRw/Eq4Ge8QWNMcMHPc5OszO81DqOWeoUtFfGJiR3qrmp3
+	666cu1gZ/m20yC8vRccymxXJAHvg0QWxETkSuXm/IyDPmaxLOv0ypJuyTZjVbLR7X2Q1OuxVctl
+	VuHNl4zvXgaGQLrkIuxGXVEpt3z+TNL5+BrKXqMTzpJu/hvtCH78c3NRXNP1kotbWiKEOZ9JGJX
+	gcYsgwrQJzZzkTUy6rjnt5zkn4KTPcIVg8+O+O7iXIAIiaUQ9aNFW14A5X8EeUFsUgFXfHujNtX
+	vW7ZFBegmo10l3J4zKqeM75M7eXG8R7HsAr7MKXld0D1g50VtjWCNlM7Ufm8M/EREUXDZP5P1QL
+	7i1+WJc8TIkF3r92ehMmWZLPZ4rWM=
+X-Google-Smtp-Source: AGHT+IFni8jZUvZP39hkL45Jl+M1HXL8vO6F1udbgLnU65rMefyg3UKyqfPWUZEunlxBVuwBiSpv6w==
+X-Received: by 2002:ad4:5944:0:b0:7d2:e1e6:f79f with SMTP id 6a1803df08f44-8802f4c82e8mr219322526d6.47.1762188603195;
+        Mon, 03 Nov 2025 08:50:03 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-88060ded862sm4878056d6.25.2025.11.03.08.49.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Nov 2025 08:42:26 -0800 (PST)
-Message-ID: <35da84ab-5104-4fee-a7ea-4f3d42f7344a@riscstar.com>
-Date: Mon, 3 Nov 2025 10:42:23 -0600
+        Mon, 03 Nov 2025 08:49:59 -0800 (PST)
+Message-ID: <6edb4435-e641-454a-9722-70b25c775151@gmail.com>
+Date: Mon, 3 Nov 2025 08:49:56 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,121 +83,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/7] Introduce SpacemiT K1 PCIe phy and host controller
-To: Manivannan Sadhasivam <mani@kernel.org>,
- Aurelien Jarno <aurelien@aurel32.net>
-Cc: Johannes Erdfelt <johannes@erdfelt.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, bhelgaas@google.com,
- lpieralisi@kernel.org, kwilczynski@kernel.org, vkoul@kernel.org,
- kishon@kernel.org, dlan@gentoo.org, guodong@riscstar.com, pjw@kernel.org,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
- p.zabel@pengutronix.de, christian.bruel@foss.st.com, shradha.t@samsung.com,
- krishna.chundru@oss.qualcomm.com, qiang.yu@oss.qualcomm.com,
- namcao@linutronix.de, thippeswamy.havalige@amd.com, inochiama@gmail.com,
- devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-phy@lists.infradead.org, spacemit@lists.linux.dev,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251013153526.2276556-1-elder@riscstar.com>
- <aPEhvFD8TzVtqE2n@aurel32.net>
- <92ee253f-bf6a-481a-acc2-daf26d268395@riscstar.com>
- <aQEElhSCRNqaPf8m@aurel32.net> <20251028184250.GM15521@sventech.com>
- <82848c80-15e0-4c0e-a3f6-821a7f4778a5@riscstar.com>
- <20251028204832.GN15521@sventech.com>
- <5kwbaj2eqr4imcaoh6otqo7huuraqhodxh4dbwc33vqpi5j5yq@ueufnqetrg2m>
- <aQOlMcI9jTdd7QNb@aurel32.net>
- <ywr66wfkfay3xse77mb7ddbga5nced4yg7dapiybj3p2yp2an2@7zsaj5one5in>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <ywr66wfkfay3xse77mb7ddbga5nced4yg7dapiybj3p2yp2an2@7zsaj5one5in>
+Subject: Re: [PATCH v2 1/1] dt-bindings: net: ethernet-phy: clarify when
+ compatible must specify PHY ID
+To: Buday Csaba <buday.csaba@prolan.hu>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <b8613028fb2f7f69e2fa5e658bd2840c790935d4.1761898321.git.buday.csaba@prolan.hu>
+ <64c52d1a726944a68a308355433e8ef0f82c4240.1762157515.git.buday.csaba@prolan.hu>
+Content-Language: en-US, fr-FR
+From: Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <64c52d1a726944a68a308355433e8ef0f82c4240.1762157515.git.buday.csaba@prolan.hu>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 10/31/25 1:10 AM, Manivannan Sadhasivam wrote:
-> On Thu, Oct 30, 2025 at 06:49:37PM +0100, Aurelien Jarno wrote:
->> Hi Mani,
->>
->> On 2025-10-30 22:11, Manivannan Sadhasivam wrote:
->>> + Aurelien
->>>
->>> On Tue, Oct 28, 2025 at 01:48:32PM -0700, Johannes Erdfelt wrote:
->>>> On Tue, Oct 28, 2025, Alex Elder <elder@riscstar.com> wrote:
->>>>> On 10/28/25 1:42 PM, Johannes Erdfelt wrote:
->>>>>> I have been testing this patchset recently as well, but on an Orange Pi
->>>>>> RV2 board instead (and an extra RV2 specific patch to enable power to
->>>>>> the M.2 slot).
->>>>>>
->>>>>> I ran into the same symptoms you had ("QID 0 timeout" after about 60
->>>>>> seconds). However, I'm using an Intel 600p. I can confirm my NVME drive
->>>>>> seems to work fine with the "pcie_aspm=off" workaround as well.
->>>>>
->>>>> I don't see this problem, and haven't tried to reproduce it yet.
->>>>>
->>>>> Mani told me I needed to add these lines to ensure the "runtime
->>>>> PM hierarchy of PCIe chain" won't be "broken":
->>>>>
->>>>> 	pm_runtime_set_active()
->>>>> 	pm_runtime_no_callbacks()
->>>>> 	devm_pm_runtime_enable()
->>>>>
->>>>> Just out of curiosity, could you try with those lines added
->>>>> just before these assignments in k1_pcie_probe()?
->>>>>
->>>>> 	k1->pci.dev = dev;
->>>>> 	k1->pci.ops = &k1_pcie_ops;
->>>>> 	dw_pcie_cap_set(&k1->pci, REQ_RES);
->>>>>
->>>>> I doubt it will fix what you're seeing, but at the moment I'm
->>>>> working on something else.
->>>>
->>>> Unfortunately there is no difference with the runtime PM hierarchy
->>>> additions.
->>>>
->>>
->>> These are not supposed to fix the issues you were facing. I discussed with Alex
->>> offline and figured out that L1 works fine on his BPI-F3 board with a NVMe SSD.
->>>
->>> And I believe, Aurelien is also using that same board, but with different
->>> SSDs. But what is puzzling me is, L1 is breaking Aurelien's setup with 3 SSDs
->>> from different vendors. It apparently works fine on Alex's setup. So it somehow
->>> confirms that Root Port supports and behaves correctly with L1. But at the same
->>> time, I cannot just say without evidence that L1 is broken on all these SSDs
->>> that you and Aurelien tested with.
-
-Aurelien, can you please confirm that your reports are with the BPI-F3
-board?  I believe you identified the three SSDs that were failing.  I
-am considering buying one of those models to see if I can reproduce
-the problem and troubleshoot it.
-
->> It could be that we have different revision of the BPI-F3 board, it's
->> not impossible that I got an early-ish version. That said I just
->> visually checked the PCB against the schematics, and the devices on the
->> CLKREQN line appear to be installed.
->>
+On 11/3/25 00:13, Buday Csaba wrote:
+> Change PHY ID description in ethernet-phy.yaml to clarify that a
+> PHY ID is required (may -> must) when the PHY requires special
+> initialization sequence.
 > 
-> CLKREQ# is only needed for L1 PM Substates (L1.1 and L1.2). In other ASPM states
-> (L0s and L1), REFCLK is supposed to be ON. So those don't need CLKREQ# assertion
-> by the endpoint.
+> Link: https://lore.kernel.org/netdev/20251026212026.GA2959311-robh@kernel.org/
+> Link: https://lore.kernel.org/netdev/aQIZvDt5gooZSTcp@debianbuilder/
 > 
-> The L1 issue you are facing could be due to the board routing issue also. I'm
-> just speculating here.
-> 
->> If someone has contacts to check what changes have been done between the
->> different board revision, that could help. Or same if there are
->> different revisions of the SpacemiT K1 chip.
->>
-> 
-> I hope Alex can get this information.
+> Signed-off-by: Buday Csaba <buday.csaba@prolan.hu>
 
-I have sent a message to SpacemiT to explain that these issues are
-being reported, and asking for any useful information about the
-BPI-F3 (including whether there are different versions, or different
-versions of firmware, and how someone can identify what they have).
-
-Thanks.
-
-					-Alex
-
-> - Mani
-> 
-
+Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+-- 
+Florian
 
