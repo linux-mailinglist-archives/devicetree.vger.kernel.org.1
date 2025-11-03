@@ -1,139 +1,157 @@
-Return-Path: <devicetree+bounces-234465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39F60C2D48D
-	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 17:55:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A49EC2D572
+	for <lists+devicetree@lfdr.de>; Mon, 03 Nov 2025 18:04:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9685418867FA
-	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 16:55:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 215C71887D77
+	for <lists+devicetree@lfdr.de>; Mon,  3 Nov 2025 17:02:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE4E3164CE;
-	Mon,  3 Nov 2025 16:55:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58EDB31C59B;
+	Mon,  3 Nov 2025 17:00:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V8T8z27A"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D69JAPRU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C85EC305068
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 16:55:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80BF631BCB3
+	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 17:00:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762188906; cv=none; b=q/O+hgnmt4LYUllO60uSN1PZVeuDwPGE/mLEWV4QItgjbaZUdVyvvG6j+qW4+PD/bMaByzWwt95SgE/lboV8/XnmhowLBxI3/meTAXgYUgJzz/kWMI/ra6aSyNiFjWU7Udt68KgWTQHuXJWaPU1rtAmD/eY6PmPh9DOP0EB2k+g=
+	t=1762189228; cv=none; b=ZOb4iZTcN5aAEmfYGIoMUnUCwstQn9oPmPxtyVDlPryLNpKXrfMf5KH5fQ87nH32Bg/y1ndrTVvqCEfxLqF85YVHxXRF4en3mNuxRvHTn0bIxHAu1BKH9VvogIivWO3kMhX/AmrSzvjyEjBJ2IDlB1Pz6RDJb58zI4YxwilBzxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762188906; c=relaxed/simple;
-	bh=FB2fXq8qI+orZjzBe0HcJfqm2snf0R2VlXVim7tZELw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BfA1eMzgOKPvfngRWrJ/dmQ5yH42krOKi9uDsvKYT5LJnT2PGYgwlIv6bG/79NF5r88a8CFrtwE72QLoPXkAvQ+WJWj6RNxyDlNZO+77xUhdkTbFP6hphpafgVDKeOpdMmZgh8ELoX6ulG1/WxfphTy/Z993uWawtsjY+/tjO2c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V8T8z27A; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9728C116C6
-	for <devicetree@vger.kernel.org>; Mon,  3 Nov 2025 16:55:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762188906;
-	bh=FB2fXq8qI+orZjzBe0HcJfqm2snf0R2VlXVim7tZELw=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=V8T8z27AnnpKBHtEhbnLDbFPHsZv8GVbqVqel+E7gHixQpbcLsAGvizl0NGG/6Zca
-	 6QYROpgCQ/+zudxsE+xz0EbzXO////Q1l6Q8VoeYg0Zwz/0p2LsF0r+0qFF0zLy0tT
-	 hURdxC4U/GUEcPZSm7OGpe7j0bO2lIwAT8nD/Fx7zWos68UsxMacU2lpeh1wTmo2wh
-	 UH5UUAKvnCnIuXSgsDAS8PUKouAvkxPaMfFCJo0x1jqKqFE0RF5TqT4KkVAcgfxmMH
-	 lIFEFOV6U2czbw6qc6pP1XNhS5Ng+uRsacHhwnmaLAxHDPfK4sSAF+H8OKuq2eGUv9
-	 DCo31S/MaCWsw==
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-37a3d86b773so6594141fa.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 08:55:06 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUuzdPqZCjUYVaf4LCoddpb6EXWPCDzjR/wz1Mq3cRvHlgUGkzhji03jkrJD3flva5tu06mx3aBYHwz@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKoxAsy4b4rBnaayXRQ46OF4elsuIbij4mWg5PePcKTb0uf6wi
-	5bxQuBuAE3s9oPFnN4acwkYrp5ddpBmdvQ5d8x+yygDNXzvZppyqMXAUpMrReIJAM8B0GWeqTJ2
-	QEE+WmudQhicISoqH9elNhi/tDrKjs8Y=
-X-Google-Smtp-Source: AGHT+IESVT3wAxoqTzkJuv5v/0MWqydt3AjfMt93Ut8gKxHv8FnfFvByHx9A2eJ3N9us2Sxn3tsMRc12U585mB1Rp1E=
-X-Received: by 2002:a2e:a542:0:b0:37a:2fa7:53af with SMTP id
- 38308e7fff4ca-37a2fa75c90mr19439061fa.40.1762188905042; Mon, 03 Nov 2025
- 08:55:05 -0800 (PST)
+	s=arc-20240116; t=1762189228; c=relaxed/simple;
+	bh=eDMngs17dgbpDGMncsMV59kp9bJ9LsOsJv1AKcqo4oA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cz6ToVTG6YwNT00bd4siQh5VkQpjG+PD3vyN8qFF8pohGGK1CTrpECYObvGRiRJxS5lbLAsU6z7ARf6OQEMXroj/cQNwVAVH41R35+IHnbnaEGfoFsENvve7+jR/I912AI+6AW/xkb9tgkt8aorHIFV8b1N2s6iMepaDZu7mxmk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D69JAPRU; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-47721293fd3so25388305e9.1
+        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 09:00:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1762189224; x=1762794024; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=e8+SCTcWg0iEZ5Ozc/rYo37su+YkvO2pg3K/UcQo9S0=;
+        b=D69JAPRUGqGkhFpL8pK3uQO+DkrZWS2Rje2RL3faVoO4Kpd8TtqxkzEK/5H3QHFAj/
+         o7RX9BcN8MxAo70Su7ezh8IcwAj2PzC0R9jzEKiYTiMA5l7FHozKiSODdGzHH/iO26Dl
+         m3iT0Ytvli49we0woJKNRZ+mD2Yk/fsQaUTo+jkdFwtOl3GAwXUlzuOk0BkJWoQNbZqr
+         86f52n9c+/L0FRhD3x7xLyLKSzGmZJrQar8WZnJTAGX/wlmQMrtNlh3HqEmkGOhbnIy8
+         IrLVz7uRZXKA+1CD3Oj9HDeHX6SrTGWIXG/NVgSI+NIhgfBe+yckQG0PtbDu71u5cVFu
+         giAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762189224; x=1762794024;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=e8+SCTcWg0iEZ5Ozc/rYo37su+YkvO2pg3K/UcQo9S0=;
+        b=TUiiN1Rdp9xpeb1cF4gVmRVNS4aMtwyMLnLRc2beS5Fpi23t4XcWnVUD+O6jiNBUqG
+         nOFzMPuDsOXnn6hvKuA6jFU1AFQLbmofb8UhG3c5pB3rljfl1D0xVp9Qkds5rvL3/aha
+         bQ841/80n6OJUbcUa7E7CW/UgOofgFPFb/WbFOSaol7KQmJxyzhzZ2w6bqzb2UxMcJT6
+         zEJ1XK4xCxe+/dC7eVPweCcWTs/Dz6ega60k6xmgNb84QYbce7Z9ZxKLlRDbKDZjjc1Q
+         fVFu/3IAOPUafRcvHi3gYkeywcZLN0Dq39j+u/W6XrYvUozvUuJaFKE9YJWXyTOUxXNQ
+         iQSw==
+X-Forwarded-Encrypted: i=1; AJvYcCXSyNmEheExnsQTSA3SnGy+zuWyjn2jrPI42R0DA2PaAjVQKhN5T6vc8tBqocyAq3dTaQQOJWtxqTp/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxbQVcZmdmV1yPJ04pwrXTpwPHWEdoNSdRNTNlA6nQuv0nFOWd9
+	ta3EF0Cr+N7KiTegxDfZ+7VUXO7VmSq9rZOG28LvLPgL9uboTtfGZxRV3aIwZ2DjPF0=
+X-Gm-Gg: ASbGncvGYXVySsQG/7Ox2Sm9hxBdHTG9l6pw82XFxJWaoephjogSMRwPXCOdfNovdmP
+	C6U5FBDR2BYm2UG6kOTHY48aPagZY52I0AZzqPPJTF2T6U5Zv+ZNplWwqjgMHNGkvBR7oyDWDul
+	0Fcv08cHrzaewV0vyMm+azPXOMlaf13Mzsr2jRtgQF3wOlJYvdR8URqA+IArt7768+49trOjOW6
+	JPzxN0bgE1GrWrBxQMiNINHcl/Pn+VKciVFPPrYczFXZZNZtJqmzsD2rWIgR15pAMLFSIQT3d3P
+	5zo96pBTDZvEj2lbLXjPsa/nR5wD8A90Rih21Xd0BQNKTy4F0mMwo9cFB/UApPjSDAn/FU4kRvR
+	w6uihdgAV+h7tthuC01H6wvicHp6ALoF4MMv+Zgu7GN7M+0qtPXDNEm3soiSo/pSqCDyMJdeR0D
+	lLNE9/9kw=
+X-Google-Smtp-Source: AGHT+IELaFHSzBiO9AXPyBzLS0c7LY682782xN/+qHy88yBVFrN1pt7Y6DspDHfXPEXO6vZLrDUSeg==
+X-Received: by 2002:a05:600c:548f:b0:477:25c0:798c with SMTP id 5b1f17b1804b1-47754c46ac2mr951505e9.20.1762189224236;
+        Mon, 03 Nov 2025 09:00:24 -0800 (PST)
+Received: from linaro.org ([86.121.7.169])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429ce80df16sm10787228f8f.2.2025.11.03.09.00.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Nov 2025 09:00:23 -0800 (PST)
+Date: Mon, 3 Nov 2025 19:00:21 +0200
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+Subject: Re: [PATCH 23/24] arm64: dts: qcom: glymur: Add USB support
+Message-ID: <bfi6mobf77gevht5em4kzp4lylvcrxttfyptm77itqqhz6sskq@jq7w5jvjncou>
+References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
+ <20250925-v3_glymur_introduction-v1-23-24b601bbecc0@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251021112013.2710903-1-andre.przywara@arm.com> <20251021112013.2710903-4-andre.przywara@arm.com>
-In-Reply-To: <20251021112013.2710903-4-andre.przywara@arm.com>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Tue, 4 Nov 2025 00:54:51 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67UFUAKz7tWV1b2YtANBU7a9b4KRb1SOOs=bxM4DBPwPw@mail.gmail.com>
-X-Gm-Features: AWmQ_blnI_C9_pjIZuBaEa3hzNHzRXpxHHoK0mpW9iYhv4eDs7c4vEasNevGFmo
-Message-ID: <CAGb2v67UFUAKz7tWV1b2YtANBU7a9b4KRb1SOOs=bxM4DBPwPw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] regulator: axp20x: add support for the AXP318W
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Samuel Holland <samuel@sholland.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Yixun Lan <dlan@gentoo.org>, devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250925-v3_glymur_introduction-v1-23-24b601bbecc0@oss.qualcomm.com>
 
-On Tue, Oct 21, 2025 at 7:20=E2=80=AFPM Andre Przywara <andre.przywara@arm.=
-com> wrote:
->
-> The X-Powers AXP318W is a typical PMIC from X-Powers, featuring nine
-> DC/DC converters and 28 LDOs, on the regulator side.
->
-> Describe the chip's voltage settings and switch registers, how the
-> voltages are encoded, and connect this to the MFD device via its
-> regulator ID.
-> We use just "318" for the internal identifiers, for easier typing and
-> less churn. If something else other than the "AXP318W" shows up, that's
-> an easy change, externally visible strings carry the additional letter
-> already.
->
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+On 25-09-25 12:02:31, Pankaj Patil wrote:
+> From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+> 
+> The Glymur USB system contains 3 USB type C ports, and 1 USB multiport
+> controller.  This encompasses 5 SS USB QMP PHYs (3 combo and 2 uni) and 5
+> M31 eUSB2 PHYs.  The controllers are SNPS DWC3 based, and will use the
+> flattened DWC3 QCOM design.
+> 
+> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
 > ---
->  drivers/regulator/axp20x-regulator.c | 170 ++++++++++++++++++++++++++-
->  include/linux/mfd/axp20x.h           |  43 +++++++
->  2 files changed, 211 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/axp=
-20x-regulator.c
-> index da891415efc0b..1576bf4178f8f 100644
-> --- a/drivers/regulator/axp20x-regulator.c
-> +++ b/drivers/regulator/axp20x-regulator.c
-> @@ -138,6 +138,15 @@
->  #define AXP313A_DCDC_V_OUT_MASK                GENMASK(6, 0)
->  #define AXP313A_LDO_V_OUT_MASK         GENMASK(4, 0)
->
-> +#define AXP318_DCDC1_V_OUT_MASK                GENMASK(4, 0)
-> +#define AXP318_DCDC2_V_OUT_MASK                GENMASK(6, 0)
-> +#define AXP318_LDO_V_OUT_MASK          GENMASK(4, 0)
-> +#define AXP318_ELDO_V_OUT_MASK         GENMASK(5, 0)
-
-> +#define AXP318_DCDC2_NUM_VOLTAGES      88
-> +#define AXP318_DCDC6_NUM_VOLTAGES      128
-> +#define AXP318_DCDC7_NUM_VOLTAGES      103
-> +#define AXP318_DCDC8_NUM_VOLTAGES      119
-
-Upon closer inspection of the helper code, these aren't actually needed.
-My bad for introducing this unused field in the first place.
+>  arch/arm64/boot/dts/qcom/glymur-crd.dts | 243 ++++++++++++++
+>  arch/arm64/boot/dts/qcom/glymur.dtsi    | 569 ++++++++++++++++++++++++++++++++
+>  2 files changed, 812 insertions(+)
+> 
 
 [...]
 
-> +       AXP_DESC(AXP318, ELDO4, "eldo4", "eldoin", 500, 1500, 25,
-> +                AXP318_ELDO4_CONTROL, AXP318_ELDO_V_OUT_MASK,
-> +                AXP318_LDO_OUTPUT_CONTROL4, BIT(1)),
-> +       AXP_DESC(AXP318, ELDO5, "eldo5", "eldoin", 500, 1500, 25,
-> +                AXP318_ELDO5_CONTROL, AXP318_ELDO_V_OUT_MASK,
-> +                AXP318_LDO_OUTPUT_CONTROL4, BIT(2)),
+> diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
+> index 8a563d55bdd4902222039946dd75eaf4d3a4895b..c48d3a70820e551822c5322761528159da127ca6 100644
+> --- a/arch/arm64/boot/dts/qcom/glymur.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
 
-eldo4 and eldo5 support operating in switch mode. We can model that as
-a bypass mode control. See the *bypass* fields in regulator_desc and
-regulator_set_bypass_regmap() / regulator_get_bypass_regmap().
+[...]
 
-The rest check out. But also see my other reply regarding the 1.54v
-threshold.
+> +
+> +		usb_1_ss1_hsphy: phy@fdd000  {
+> +			compatible = "qcom,glymur-m31-eusb2-phy",
+> +				     "qcom,sm8750-m31-eusb2-phy";
+> +
+> +			reg = <0 0x00fdd000 0 0x29c>;
+> +			#phy-cells = <0>;
+> +
+> +			resets = <&gcc GCC_QUSB2PHY_SEC_BCR>;
+> +
+> +			status = "disabled";
+> +		};
+> +
+> +		usb_1_ss1_qmpphy: phy@fde000 {
+> +			compatible = "qcom,glymur-qmp-usb3-dp-phy";
+> +			reg = <0 0x00fde000 0 0x8000>;
+> +
+> +			clocks = <&gcc GCC_USB3_SEC_PHY_AUX_CLK>,
+> +				 <&rpmhcc RPMH_CXO_CLK>,
+> +				 <&gcc GCC_USB3_SEC_PHY_COM_AUX_CLK>,
+> +				 <&gcc GCC_USB3_SEC_PHY_PIPE_CLK>,
+> +				 <&tcsrcc TCSR_USB4_1_CLKREF_EN>;
 
+So I think this clock is actually needed, but I think it should
+replace the RPMG_CXO_CLK above and then no need for "clkref" below.
 
-Thanks
-ChenYu
+The reason this works is because the bi_tcxo is already the parent of
+this ref clock.
+
+I did something similar on x1e just now:
+https://lore.kernel.org/all/20251103-dts-qcom-x1e80100-fix-combo-ref-clks-v1-1-f395ec3cb7e8@linaro.org/
+
+Still don't get why the SS0 doesn't have/need such a ref clock.
+On both hamoa and glymur.
 
