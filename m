@@ -1,234 +1,107 @@
-Return-Path: <devicetree+bounces-234616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8A02C2F470
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 05:14:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A646C2F4CE
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 05:26:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0F35D4E9A35
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 04:14:11 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 10F494E2198
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 04:26:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EEEE2836B1;
-	Tue,  4 Nov 2025 04:14:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6733E23AE87;
+	Tue,  4 Nov 2025 04:26:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="bJv0ERNO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CVMMnhjC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com (mail-eastusazhn15012019.outbound.protection.outlook.com [52.102.137.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E13FB27E1A1;
-	Tue,  4 Nov 2025 04:14:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.102.137.19
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762229650; cv=fail; b=oySpPRbdyEO4HjvJ0DoSnUkB/wnhuorGV9PpJ/NzbaRDexxGpIQxjyXdXTOwe1S189Xn+GcN4YDWXC8Gw/WV1ftDu7IhLyzaHxL6xkO/WydTnl9CDBcSjmTM/RVtx6QdDF7dSpX9zKV5wSXvkbTmoFCarZT1h5Mq9zI3j5FyZtg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762229650; c=relaxed/simple;
-	bh=sBLguI3nxFOho3JEnG876EzVwBwGMkufSW4I42zn2yw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=b/xOuLwhagZbVlezh95FTYlHgd5PEXl0LcXlYdpsiIrc2wMcvLfoJWVn9nTGV+4UO/iOrw45gkm5q9rbQZbs/iKVURvTRvyGM5DAU7PrFwdikrYNQaI5BlB6vZq3W5SGdz603bpZu5wxK8h29YMPOcNsMeYWBZZ3Y6TgvL7MoLQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=bJv0ERNO; arc=fail smtp.client-ip=52.102.137.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Qe31BSodsK1cMfmk3wdOrEE6sOD6QYlwfcdpTsE2iE/1Int0kvCXQusxrjvLLA3Apaa7KdM5ibbBEInuPDiaZprMqywQGcUheLNqeJsW0Xywm//HkuPoezj+iFWeOUSj9xR/D2vtekV5t2WovC26Fv52K4NwhnGbMqOhukZnceza7Yig9EiTvUrGr3csxLHnW/5Avk6+gNlQ89eJwzz/cm64fSBM9lgOh3k979tYGgPv47QRNDK3mv5cNDpDfRAFiGYx/AK2tI64BYpcOQ4zugsUDolWd8E50kbRU05bVRRQWyDb/6mXHd9LHgkKvx4BaO7S2HqJDzaLMrDoZSPMeA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Zc0SfSHveOOe8rfGYUvmwfbZStxc9/SSLzfI2xd/N2w=;
- b=DV97xuUyeUwFMyYufnNJQbbVIR2c4ejhTbu5Bv73HXNcon1eGLIbxmDc3fVS3UpfZEqelB3O8naVOBXu+KUnvBuA56nLFc+1WLcA7vaCII+gEuQpIthFi+WZ827coU9heSfcxD1TrpdWu9YfScv3ClOkYk8vQKBj6UDw7+nREN6elcKnkknVeB3Mid5fhm5ZJyskau642LnR5Gm2naMASx59r1yxXP96qFWXxWtd7BjD+ZD1NwPYcs0dqpH36Eq6okEbsoXqVgzMaakH/7wDNoCBrSIkImmL2TzKHughPRznKLHht+Q/Pz9E9bFSugJ6wfilXJMrdF+RXO5Vo0lIDw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=google.com smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Zc0SfSHveOOe8rfGYUvmwfbZStxc9/SSLzfI2xd/N2w=;
- b=bJv0ERNO8syUucjYOb0a+hXzZU4hoVeIu4akShiJyhea9Ysdp4/glU4L1P8VNT16A8htz8N/2nat9LTcNJUBQ/r/2uJ1/+y86ZIXr0R+k8uXWOSBnAGXwIjJJh2WgxAnQKEeFXgo03LsWZQxB+QQseYhal72Qj0xDmTEwU8jMV0=
-Received: from MN2PR20CA0012.namprd20.prod.outlook.com (2603:10b6:208:e8::25)
- by PH7PR10MB6252.namprd10.prod.outlook.com (2603:10b6:510:210::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.15; Tue, 4 Nov
- 2025 04:14:04 +0000
-Received: from BL02EPF0001A100.namprd03.prod.outlook.com
- (2603:10b6:208:e8:cafe::fc) by MN2PR20CA0012.outlook.office365.com
- (2603:10b6:208:e8::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9275.16 via Frontend Transport; Tue,
- 4 Nov 2025 04:14:04 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- BL02EPF0001A100.mail.protection.outlook.com (10.167.242.107) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9298.6 via Frontend Transport; Tue, 4 Nov 2025 04:14:02 +0000
-Received: from DFLE210.ent.ti.com (10.64.6.68) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 3 Nov
- 2025 22:13:59 -0600
-Received: from DFLE213.ent.ti.com (10.64.6.71) by DFLE210.ent.ti.com
- (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 3 Nov
- 2025 22:13:59 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE213.ent.ti.com
- (10.64.6.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 3 Nov 2025 22:13:59 -0600
-Received: from lelvem-mr05.itg.ti.com ([10.250.165.138])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5A44DgBU1277888;
-	Mon, 3 Nov 2025 22:13:51 -0600
-From: Baojun Xu <baojun.xu@ti.com>
-To: <broonie@kernel.org>, <tiwai@suse.de>
-CC: <andriy.shevchenko@linux.intel.com>, <13916275206@139.com>,
-	<shenghao-ding@ti.com>, <baojun.xu@ti.com>, <linux-sound@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <lgirdwood@gmail.com>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<k-yi@ti.com>, <henry.lo@ti.com>, <robinchen@ti.com>, <jesse-ji@ti.com>,
-	<will-wang@ti.com>, <jim.shil@goertek.com>, <toastcheng@google.com>,
-	<chinkaiting@google.com>
-Subject: [PATCH v1 2/2] ASoC: dt-bindings: ti,tas2781: Add TAS5822 support
-Date: Tue, 4 Nov 2025 12:13:13 +0800
-Message-ID: <20251104041314.792-2-baojun.xu@ti.com>
-X-Mailer: git-send-email 2.43.0.windows.1
-In-Reply-To: <20251104041314.792-1-baojun.xu@ti.com>
-References: <20251104041314.792-1-baojun.xu@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34A094400;
+	Tue,  4 Nov 2025 04:26:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762230370; cv=none; b=DjNIWMnG+tpseY4JHGl9t61N3MDw2cKH5oGtRvBb8uLSGHrFRyA9nNE8Ys/coU7CbeV4leJzL0TkXH/9ron1XoLrhrCTF2VIAR09HV+WG+7uv+HaH5TJ3a4Sxn5qZQ23b/FWeje0lTxjroxUhia4ShYnaMHzE75gBT6byWP0Pms=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762230370; c=relaxed/simple;
+	bh=AYF8e0rVqm3kzb3CWlf4llatfsXDOM6GS+Lq4uaXF9I=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=AlBKz3Fd3JTJGlM1pRMSPmJqda5NR8DA2Mx3WoyjZiwJB5T5D7Rk9ks0U/54nCiNKshWjdKhzbi3xtpXwjeTihwlrTslA/ZS9HPHFEa2yynWeE4V4Kf9yFbAbJnPsV1PrgWjI8CkjsZgxzZvdSFgwav6dbG0Xn8am8m92lNcEHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CVMMnhjC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A672C4CEF7;
+	Tue,  4 Nov 2025 04:26:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762230369;
+	bh=AYF8e0rVqm3kzb3CWlf4llatfsXDOM6GS+Lq4uaXF9I=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=CVMMnhjCHVtTZXQLtF+yyOBA1woW3BAykCaH5ME6OKermXeaIzsy3RnlyFG/TZxk0
+	 oBbwUG8AeD1fyiX7hrv1pc9+FVESa3iSe71Bu11xbM7RrnYRqsbJwVMYrU3/vSHqFI
+	 kTG2Dmbwmv1z/REb2rt5y+qkl3EQG9oavuH1ebSME5NQkUY74WuoCujifq3YI+jj7F
+	 2RiPl2wIDo7qXPThneq7o+Y2zuiytC8HWHwwLQIMg3LwiFcRAZxx42f+sxVE9P3TnU
+	 nFXvA87wbJbzU99k7WU/R0fd10OtvvvGykQoHFa1n3VP8XrnOTl2PDZlEAGqle7OcW
+	 9nu+K+3EUjtYA==
+Date: Mon, 03 Nov 2025 22:26:08 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A100:EE_|PH7PR10MB6252:EE_
-X-MS-Office365-Filtering-Correlation-Id: 74ec1b43-9667-4539-bbd6-08de1b589678
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|82310400026|36860700013|34020700016|1800799024|12100799066;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?18cUIbMg0piKhcImkzZknABlHl+YVLUj/C/HO5HXtuRxQfUwLAoljqfbJTxF?=
- =?us-ascii?Q?XBP8a3pKpW97N9Q21kKPK0tLuHRBzAsek8J8k541r8oNvfZ4CzBE61JhCzgz?=
- =?us-ascii?Q?dDUoM92gdcXWCTgTMfqcKbH4XlufvbiV2/EkWwIYPgSlaKwwJNapZMC2gL2w?=
- =?us-ascii?Q?8zEy6iBva7GQCG9PIlGu+K848FI4EZd8NHxlhoci6giVzpeytaeK2HwRflbp?=
- =?us-ascii?Q?yeoQnw25P9gvdjZ1yowrcXPcAXiD8P+DiV3S6WB3KasrKmcYDCt3MVHbAHy0?=
- =?us-ascii?Q?bwccUIdVbHwlJMK+p8tfAfKY9IqcIBWzkmlhtExZEyvUqTxut6lkgAfJUHFw?=
- =?us-ascii?Q?kfhKdUwRVa4Ud74LQNcd3LkiByek0gwi1r3BsvYDn3+iR0TkichGbUTI6ZLn?=
- =?us-ascii?Q?fnVv8Ena4nH5TCNaqvvkcQwQFtf2bxnCt2NR9WZLLl2t0Yb4QAEcT8qYstfN?=
- =?us-ascii?Q?9DqkfrxWe+xn2rcCKOnDVpf2Z0/eBO0aDTxzwoI9p02Uc3ediiL6d1rxj22r?=
- =?us-ascii?Q?sb0RfZuGR+t4Ul3dCQWSG80/pauLggxbdAdL7PdkO1KezOcScEVKqmNHa7wC?=
- =?us-ascii?Q?MFXNm+hJZroOowSfuDdgYifC0KTaD/sfkbkTdUJl8/bVr4q32TDu2P/fANNJ?=
- =?us-ascii?Q?9/pqC8/swpTVOXGW8r7x1yjMB33LezA2eQ3cTO4JFEhGho5LkT3SLz/XZ7Hk?=
- =?us-ascii?Q?3wpx6sCDSRbokpPdGA8pT/lbTq12hf69Gq2u1y78pkm5EZvSAPBCuvgXPwu8?=
- =?us-ascii?Q?OyArBPM1yvt7SUFd5KcMwieIooMOwbuCI0iXoyAKT9yU22I5YYlkaMedB8JT?=
- =?us-ascii?Q?ewXmmSBXiBsymrO5W/0HgAzhco2tp8SZTAc2f7GPmKL5ZChJtSQsn9kPJMcd?=
- =?us-ascii?Q?Cww5ob76PQLrCdvIzCbxxH+jAI86HC2rZtUiKtDbde/ic3n9sUohdp+1WfFT?=
- =?us-ascii?Q?SdmC1yWzDunuEMLuz275mrlT7ybHIWeeNVHtukAOwaUYfIWGHgQYwtNEp0nA?=
- =?us-ascii?Q?zn0/uNWXsPyOre+V8sJoI7NW0OE6t3jmwiqA0EUMuywy6isdh5che3DFJuW3?=
- =?us-ascii?Q?p6D1ts9j6XqNISqbblkv6XNAM4WvPWnEAVINfxvnd9WYl7fFNBTu3WVd867f?=
- =?us-ascii?Q?8UzxaSCpmUUUiuWUR32/+MQMC5xqP0hFcoYgld2msBb163beHrENt+v14Ggy?=
- =?us-ascii?Q?6fh2s8CWpOqvooQjTZsLhLDO+18VpSohA3aPbG7onDRumrK4MhugsZD2tjrb?=
- =?us-ascii?Q?timi+aXqHRk2pkEbByPE5O/bQ0bUEw0i1the28Dh3hPjBZlG31eQzKQGpKHc?=
- =?us-ascii?Q?3zfrs0oAra5iXtpAMSYdMmltzIUqmNya8TmZwi1PedcORQmZmIBP+EFST27D?=
- =?us-ascii?Q?v5bciNCUfNHEyZ43313ITIZcHKjYmMEobfmd3iXIK3UjBVLWOBS+T9g4lHBc?=
- =?us-ascii?Q?KmWh2DpFrLH2oUIvk+1qptikGJA0O8PYZkIKQOb2pufBluan05yvbTaxVeXW?=
- =?us-ascii?Q?85Rqn1vvV0o5e14jU1DWexroh3xry6SfTrpEVovN2sL8ZpSepbVL69BkxSKE?=
- =?us-ascii?Q?o9T1cJXCCRbODTtNT+Y=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(7416014)(376014)(82310400026)(36860700013)(34020700016)(1800799024)(12100799066);DIR:OUT;SFP:1501;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2025 04:14:02.7582
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 74ec1b43-9667-4539-bbd6-08de1b589678
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BL02EPF0001A100.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR10MB6252
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org, 
+ linux-spi@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ imx@lists.linux.dev, devicetree@vger.kernel.org, Han Xu <han.xu@nxp.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Haibo Chen <haibo.chen@nxp.com>
+In-Reply-To: <20251104-xspi-v1-1-1502847ade40@nxp.com>
+References: <20251104-xspi-v1-0-1502847ade40@nxp.com>
+ <20251104-xspi-v1-1-1502847ade40@nxp.com>
+Message-Id: <176223036803.847185.12615558425940080887.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: spi: Document imx94 xspi
 
-TAS5822 is in same family with TAS58XX.
 
-Signed-off-by: Baojun Xu <baojun.xu@ti.com>
----
- .../devicetree/bindings/sound/ti,tas2781.yaml | 27 ++++++++++++++++---
- 1 file changed, 23 insertions(+), 4 deletions(-)
+On Tue, 04 Nov 2025 11:07:36 +0800, Haibo Chen wrote:
+> Document imx94 xspi that supports interface to serial flash
+> supporting following features:
+> 
+> - Single-bit SPI, Dual SPI, Quad SPI and Octal SPI.
+> - Single Data Rate or Double Data Rate modes.
+> - Direct memory mapping of all AHB memory accesses to the
+>   chip system memory space.
+> - Multi-master AHB accesses with priority.
+> 
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> ---
+>  .../devicetree/bindings/spi/spi-nxp-xspi.yaml      | 84 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  8 +++
+>  2 files changed, 92 insertions(+)
+> 
 
-diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-index 7f84f506013c..f0bb5faf55c8 100644
---- a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-+++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-@@ -24,10 +24,10 @@ description: |
-   Instruments Smart Amp speaker protection algorithm. The
-   integrated speaker voltage and current sense provides for real time
-   monitoring of loudspeaker behavior.
--  The TAS5802/TAS5815/TAS5825/TAS5827/TAS5828 is a stereo, digital input
--  Class-D audio amplifier optimized for efficiently driving high peak
--  power into small loudspeakers. An integrated on-chip DSP supports
--  Texas Instruments Smart Amp speaker protection algorithm.
-+  The TAS5802/TAS5815/TAS5822/TAS5825/TAS5827/TAS5828 is a stereo,
-+  digital input Class-D audio amplifier optimized for efficiently driving
-+  high peak power into small loudspeakers. An integrated on-chip DSP
-+  supports Texas Instruments Smart Amp speaker protection algorithm.
- 
-   Specifications about the audio amplifier can be found at:
-     https://www.ti.com/lit/gpn/tas2120
-@@ -36,6 +36,7 @@ description: |
-     https://www.ti.com/lit/gpn/tas2572
-     https://www.ti.com/lit/gpn/tas2781
-     https://www.ti.com/lit/gpn/tas5815
-+    https://www.ti.com/lit/gpn/tas5822m
-     https://www.ti.com/lit/gpn/tas5825m
-     https://www.ti.com/lit/gpn/tas5827
-     https://www.ti.com/lit/gpn/tas5828m
-@@ -74,6 +75,9 @@ properties:
-       ti,tas5815: 30-W, Digital Input, Stereo, Closed-loop Class-D Audio
-       Amplifier with 96 kHz Enhanced Processing
- 
-+      ti,tas5822: 35-W, Digital Input, Stereo, Closed-Loop Class-D Audio
-+      Amplifier with 96 kHz Enhanced Processing
-+
-       ti,tas5825: 38-W Stereo, Inductor-Less, Digital Input, Closed-Loop 4.5V
-       to 26.4V Class-D Audio Amplifier with 192-kHz Extended Audio Processing.
- 
-@@ -94,6 +98,7 @@ properties:
-               - ti,tas2572
-               - ti,tas5802
-               - ti,tas5815
-+              - ti,tas5822
-               - ti,tas5825
-               - ti,tas5827
-               - ti,tas5828
-@@ -207,6 +212,20 @@ allOf:
-             minimum: 0x54
-             maximum: 0x57
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,tas5822
-+    then:
-+      properties:
-+        reg:
-+          maxItems: 4
-+          items:
-+            minimum: 0x2c
-+            maximum: 0x2f
-+
-   - if:
-       properties:
-         compatible:
--- 
-2.25.1
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/spi/spi-nxp-xspi.example.dtb: /example-0/soc/spi@42b90000: failed to match any schema with compatible: ['nxp,imx943-xspi']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251104-xspi-v1-1-1502847ade40@nxp.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
