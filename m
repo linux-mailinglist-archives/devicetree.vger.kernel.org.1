@@ -1,61 +1,70 @@
-Return-Path: <devicetree+bounces-234550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B175DC2EE49
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 02:55:13 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4F99C2EE55
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 02:55:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DD813B7E73
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 01:55:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A91DA4E53CC
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 01:55:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F2DC23EA8B;
-	Tue,  4 Nov 2025 01:54:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03E45246793;
+	Tue,  4 Nov 2025 01:54:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C2TXhMk4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Iw5gBglO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0357223E23C;
-	Tue,  4 Nov 2025 01:54:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6786245019;
+	Tue,  4 Nov 2025 01:54:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762221290; cv=none; b=XNpLNUHxHpNelZBRWJBLdStk+RzWBe+ZEyrZhv8vty3h6XogN2fgrF++arVsOHn/KJyTObjG8AeZdYpozo7dh8S+bcy57a58QjXitqASBC2Y/uiqZmI4DkbV/JLkEaJknzmh/YkcbPAGcepJ1oWO91B6q4zgKdUyUwPrMpntdoQ=
+	t=1762221291; cv=none; b=dXKpIAPthXGnTJ+2NJZ5AlgYuhDFhXwLsTMixd3pWnkW84lrm3zCjXE6bkcLU+tnDAMPQt5FZlipP6DTCCOy8IsUhy+lj96e92N4meqmyX48k+vv8x0lKmeT+vHgup9qAIElZ5PfPht9d7nEfTotVcSYuzJlZ/yk0JbMypdcJYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762221290; c=relaxed/simple;
-	bh=8FIBRaWo2y3qLnQKSIxXDNvqE2Ltb2MI0B+CQ3lAMOY=;
+	s=arc-20240116; t=1762221291; c=relaxed/simple;
+	bh=gKUL+8Ptu4jH1CeENsJt01k4NTTpT6BEfmtzAkitn/c=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZL+qV4PeBsrvnlIcC54tV4D+vBhdNXcyWMPawS/u71HlMMfSyz5Geff03/eErKfReK2G8MWz7O83/FzqI806SAk02eYZVILe0vhGnSpDZM3IvT2UVDsvAKIE8YspA1J/Sni5mdmGrPUbsrppxEOWOStVdSTfBuTpoPM+RFHnVNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C2TXhMk4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4F8FC19421;
-	Tue,  4 Nov 2025 01:54:48 +0000 (UTC)
+	 MIME-Version:Content-Type; b=WMAsxTjO8TRixdaxQbfCCiihRPqFoz7OKI37B1a9AegiV1CK2IBpZw2GM30t/s+oFhA2BnQGbxqcInZ1IorERb+HOKI4EX7ZXpZJH94QCavcl+NR+7DO/CDgY6KOI9c/XH4SeLkS+hW4dI/euILbULRwUcrmhI8yeZg8Qmxecbo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Iw5gBglO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40C26C4CEFD;
+	Tue,  4 Nov 2025 01:54:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762221289;
-	bh=8FIBRaWo2y3qLnQKSIxXDNvqE2Ltb2MI0B+CQ3lAMOY=;
+	s=k20201202; t=1762221291;
+	bh=gKUL+8Ptu4jH1CeENsJt01k4NTTpT6BEfmtzAkitn/c=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=C2TXhMk46qojaU7uRGh7Telw8cTNkIYOY2z3uhPcCM2DnB9k5Cy1iLFtq80SPkEpP
-	 0MbQb23T1t6BkcYV38l9hZjHoDmCb/IIR1Vzzf4hocB4TXVMbL3xZ7mH+Hd9zuyTb9
-	 Hz8Jv5XWAtsVjpqmV0TRxmCb1c+xVbWV1v4r9QG1NOe1wYTrRMyqGFM0sxczosVZTB
-	 VpwCe4iyjJtprZXr1s+dUd1kYiEnYfik7jszg4QRrF+7OEQmnX0ZtnARKO5SV0Mtwq
-	 j113c2L0xoEuCZYuuxin3Ma7LayXjiXGHmaxcjdj+00XReB4cwP6sHsREmAV1NfPso
-	 HW8kxJuLSJatg==
+	b=Iw5gBglOBPxTFpiqMwUPSIono3rugFs+B7D+gMvBjMh7BoSe46Cc4/mTlLSBy9KxP
+	 Aj+QGrJ1mNXSWNwsbgomDfJPBf/dhN9cKq9NSPM5LH+okuGoV3Tpg3cc5lyZ2GlC+l
+	 4y5kJGH8fNG5CvLC0EF0sgAUk2R+ZKSC7tERZ+d0/b3bzi376K9WvURm8vgmDGnSRC
+	 25gmNyfEn5Etjwc1EnnAhF/RJ4iyOLwta+9/r1ykmAtiQtVpDDGOCdGjgeROXALHLq
+	 AUXlZfLQYFRVonhuXBJWmC0DF8mX1U3pu/l+VoIedFbnaV8mAN26QA1TYKZQ1IENhc
+	 gSu8pLnSM2fPg==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Komal Bajaj <komal.bajaj@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org,
+	jingyi.wang@oss.qualcomm.com,
+	Taniya Das <taniya.das@oss.qualcomm.com>
+Cc: aiqun.yu@oss.qualcomm.com,
+	Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+	Imran Shaik <imran.shaik@oss.qualcomm.com>,
+	Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
+	linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] Add Qualcomm QCS6490 SoC to socinfo
-Date: Mon,  3 Nov 2025 19:58:15 -0600
-Message-ID: <176222149539.1132260.15372306128869633795.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: (subset) [PATCH v2 0/6] Add support for Clock controllers for Kaanapali
+Date: Mon,  3 Nov 2025 19:58:17 -0600
+Message-ID: <176222149552.1132260.12639291385565534252.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251103-qcs6490_soc_id-v1-0-c139dd1e32c8@oss.qualcomm.com>
-References: <20251103-qcs6490_soc_id-v1-0-c139dd1e32c8@oss.qualcomm.com>
+In-Reply-To: <20251030-gcc_kaanapali-v2-v2-0-a774a587af6f@oss.qualcomm.com>
+References: <20251030-gcc_kaanapali-v2-v2-0-a774a587af6f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,17 +75,39 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Mon, 03 Nov 2025 16:53:09 +0530, Komal Bajaj wrote:
-> Add SoC ID for QCS6490 to socinfo.
+On Thu, 30 Oct 2025 16:39:03 +0530, Taniya Das wrote:
+> Add support for Global clock controller(GCC), TCSR and the RPMH clock
+> controller for the Qualcomm Kaanapali SoC.
 > 
+> Kaanapali(Snapdragon SoC from Qualcomm):
+> https://www.qualcomm.com/products/mobile/snapdragon/smartphones/snapdragon-8-series-mobile-platforms/snapdragon-8-elite-gen-5
 > 
+> Changes in v2:
+>   - Update the commit message for all dt-bindings to incorporate
+>     "SoC/platform" inplace of drivers [Krzysztof]
+>   - Add RB tag from [Krzysztof] for dt-bindings
+>   - Split the TCSRCC to a new driver instead of reusing the SM8750
+>     driver with offset updates [Dmitry]
+>   - Update the new RPMH clocks to use 'clkN' convention [Dmitry]
+>   - Add RB tag from [Dmitry] for GCC
+>   - This series does not have any strict PLL code dependencies [Bjorn], thus
+>     drop them and will be added in the Multimedia clock controller
+>     series. Drop the following patches.
+> 	- Update the PLL support for cal_l
+> 	- Add support for controlling Pongo EKO_T PLL
+> 	- Add support for controlling Rivian PLL
+>   - Link to v1: https://lore.kernel.org/lkml/20250924-knp-clk-v1-0-29b02b818782@oss.qualcomm.com/
+> 
+> [...]
 
 Applied, thanks!
 
-[1/2] dt-bindings: arm: qcom,ids: Add SoC ID for QCS6490
-      commit: 98c92de40f6ab05452f8919cc2ff800ade5dd9a3
-[2/2] soc: qcom: socinfo: Add SoC ID for QCS6490
-      commit: 40360803622c180747096aa2f165a02fef3628a5
+[1/6] dt-bindings: clock: qcom-rpmhcc: Add RPMHCC for Kaanapali
+      commit: 15c320b286a128131193ad270d7aac23bba4c219
+[2/6] dt-bindings: clock: qcom: Document the Kaanapali TCSR Clock Controller
+      commit: 395e0e794f9a485d9a5d6af062f096b97beecc11
+[3/6] dt-bindings: clock: qcom: Add Kaanapali Global clock controller
+      commit: 342d2a607450f256105781d29aa6300921c6152e
 
 Best regards,
 -- 
