@@ -1,65 +1,61 @@
-Return-Path: <devicetree+bounces-234695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5407BC2FC52
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 09:11:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB2E5C2FCDA
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 09:19:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CB97189BFBA
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 08:12:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA1143B3415
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 08:18:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B129331065A;
-	Tue,  4 Nov 2025 08:11:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19D91313537;
+	Tue,  4 Nov 2025 08:17:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SkUR6Kzh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HWy+lEK5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B81130506E;
-	Tue,  4 Nov 2025 08:11:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC844311952;
+	Tue,  4 Nov 2025 08:17:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762243892; cv=none; b=RxLokX0G6fSraOTi/VE1xgP3yaOhkUENTG84AMy/m1gky8EiFP0RDitxY4eQx/GOti054/eiSZ8V2B5EzTGpQs/qzHXu3bwLFobkSvwTe0izIy2CwFkWV9nzl12/k8ysMQDR/pfZu/FvPDxRv5JzbZB+66H/jB0N7IySKOv9ZoU=
+	t=1762244221; cv=none; b=jmWER1ebw2bKjbu3Go6ECoWnub941g/W9NcSU+N+gdIJJUEV8Vq6l4OWKOrHXP0D6yUqTLw3TUk2qorQ794IARBKCVVUjOVvEm4OMoaly1tXtRlbN5SGjrn2PR/F600rLl2vlQ/UvLbduLTCakriOnN8PEXEeIJN0FxkL/Qg5ZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762243892; c=relaxed/simple;
-	bh=7RaiFs9v/UL4cLzP1EGbRyUA5ARrzGlW5oFQNrU+8sY=;
+	s=arc-20240116; t=1762244221; c=relaxed/simple;
+	bh=Yk7ThFaaDtJlPY8rrxE8kyU1OXkaJMR1gUk6ZatLi28=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KOp8oju9UzE8TkozbXyhuRrzZjT8eBd8V9T+hZEJvD7WvelT0nJj3F7lTE5ymlH9iGQzXi3jisuPDE4BxqhQa2n+flt1uVKwlHWy+nWNISfTgYcXNHDKBuzuWTk0IRic8waUooOK7klaZNfrem6zRjqCpgOGzxB4H+7SL0HRWLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SkUR6Kzh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 533A9C4CEF8;
-	Tue,  4 Nov 2025 08:11:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Wkewh0aw6pRV05yvPyQoOx9PyvKCAWOXazpmOvfcRW1mg8AtruunlyrKVvL+dqsQTbsLF1c5dUHAlmWpHmx1IE4lwdme0E+4ddcxnWMSb8wnxKdamKxkJc3H6QAmFPtnRRtvEKN9pU+XYTd5KEsk8G02oA5iK0NgzWrT6CIhwyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HWy+lEK5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAAAFC4CEF7;
+	Tue,  4 Nov 2025 08:16:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762243891;
-	bh=7RaiFs9v/UL4cLzP1EGbRyUA5ARrzGlW5oFQNrU+8sY=;
+	s=k20201202; t=1762244220;
+	bh=Yk7ThFaaDtJlPY8rrxE8kyU1OXkaJMR1gUk6ZatLi28=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SkUR6Kzh0jg86uh6A+ix+nKwo2M1QuE0rK1jCJe8c791dEjYlYv3u15FTVPMp+KyA
-	 HbKc2L6m2Gv5eZBNnw610BhHBWelvWdB3GDuqYAvkHIuiPg00y8p86TLNDn0VtCiOO
-	 JUYzuwdWdV57XtU9PVrDaREvtJkYdJkNijX/u55jU2A+8+QI98uVKMV7NaLC8h5EZ8
-	 U8SzKHBLfXwaBpjm2DKwQL9RyWC/eEhmuPBixz+36rqb3kJJy4/CSIl4MS3LlvMURk
-	 OQASdotusXDlYR4MiIOV6TlQhU3gIAlbeuGdhblUrvrmuu6+ePCJxoz3emrjycgSrW
-	 2M+Er/tzmDWxg==
-Date: Tue, 4 Nov 2025 09:11:29 +0100
+	b=HWy+lEK5fDUblCRFLVWdlkyTzUmubwMD5MR+UP6UGgbJCKkIglo/2i0IRA+lHI4dC
+	 Y7uzpQO5K3qm7icWdUPfl/Yrx5ApA59d0sCl3u1muNCj7GUvHCxuTOOZRLfbA3sJwK
+	 u4I431SFI4ZcpF7t//mGWvS2VnfEh4oIzuTIm+uCLriqq4u+4fDTCEstgHCoJw5gvx
+	 twAxfQoQ7k72Vp20qTjNvCfIxu7FkBGO2C0TWE5mgRCyqEVCrLiMGAtkZYG5+7MMtE
+	 sN1GXCK9qggAZvXSqfDe+E5iyVqTAc005I+/APQPXJYXV/NCGP+1MU7efcMZ6unHv3
+	 SBUabvJG9BI2Q==
+Date: Tue, 4 Nov 2025 09:16:57 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Peter Griffin <peter.griffin@linaro.org>
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
 Cc: Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, =?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Sam Protsenko <semen.protsenko@linaro.org>, 
-	Sylwester Nawrocki <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	Will McVicker <willmcvicker@google.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	kernel-team@android.com
-Subject: Re: [PATCH v3 1/4] dt-bindings: clock: google,gs101-clock: add
- samsung,sysreg property as required
-Message-ID: <20251104-enthusiastic-cream-gibbon-0e7b88@kuoka>
-References: <20251102-automatic-clocks-v3-0-ff10eafe61c8@linaro.org>
- <20251102-automatic-clocks-v3-1-ff10eafe61c8@linaro.org>
- <20251103-smoky-rustling-bloodhound-7590ce@kuoka>
- <CADrjBPpjX_qSehbNkaAG03f=whs09qFzzgNiY3sztk7v0QeCFw@mail.gmail.com>
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Robert Marko <robimarko@gmail.com>, Das Srinagesh <quic_gurus@quicinc.com>, 
+	aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, 
+	yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: soc: qcom: Add qcom,kaanapali-imem
+ compatible
+Message-ID: <20251104-glaring-rebel-pillbug-a467ca@kuoka>
+References: <20251102-knp-soc-binding-v3-0-11255ec4a535@oss.qualcomm.com>
+ <20251102-knp-soc-binding-v3-1-11255ec4a535@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,61 +64,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CADrjBPpjX_qSehbNkaAG03f=whs09qFzzgNiY3sztk7v0QeCFw@mail.gmail.com>
+In-Reply-To: <20251102-knp-soc-binding-v3-1-11255ec4a535@oss.qualcomm.com>
 
-On Mon, Nov 03, 2025 at 01:49:53PM +0000, Peter Griffin wrote:
-> Hi Krzysztof,
-> 
-> Thanks for the review feedback!
-> 
-> On Mon, 3 Nov 2025 at 09:41, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >
-> > On Sun, Nov 02, 2025 at 08:27:14PM +0000, Peter Griffin wrote:
-> > > Each CMU (with the exception of cmu_top) has a corresponding sysreg bank
-> > > that contains the BUSCOMPONENT_DRCG_EN and MEMCLK registers.
-> > >
-> > > If present these registers need to be initialised
-> >
-> >
-> > ... for what exactly? What would happen if this was not initialized?
-> 
-> The BUSCOMPONENT_DRCG_EN register enables dynamic root clock gating of
-> bus components. So it is related to the automatic clock gating feature
-> that is being enabled in this series. Things still work without
-> initializing this register, but the bus components won't be
-> automatically clock gated leading to increased dynamic power
-> consumption. Similarly the memclk register enables/disables sram clock
-> gate. Up until now we've not been initializing the registers as
-> everything from Linux PoV has been in manual clock gating mode and
-> until starting to implement this I wasn't aware there were some clock
-> related registers in the corresponding sysreg. Additionally with
-> Andre's work enabling power domains it has become clear we should be
-> saving/restoring these two sysreg clock registers when the power
-> domain is turned off and on.
-> 
-> > What is the exact justification for ABI break - wasn't this working
-> > before? Or new feature will not work (thus no ABI break allowed)?
-> 
-> No, automatic clocks and dynamic root clock gating were not working
-> prior to this series. Currently power domains and system wide
-> suspend/resume aren't enabled upstream either. As we work on enabling
-> these features we are finding some things that in an ideal world we
-> would have known about earlier. Unfortunately it's not so obvious just
-> from studying the downstream code either as they rely heavily on
-> CAL-IF layer that has peeks/pokes all over the memory map especially
-> for power/clock related functionality.
-> 
-> Whilst it is technically an ABI break, I've tried to implement it in a
-> backwards compatible way (i.e. an old DT without the samsung,sysreg
-> phandle specified) will just fallback to the current behavior of not
-> initializing these registers. Things will still work to the extent
-> they did prior to this series. With a new DT the registers will be
-> initialized, and dynamic power consumption will be better.
+On Sun, Nov 02, 2025 at 11:25:06PM -0800, Jingyi Wang wrote:
+> Document qcom,kaanapali-imem compatible. Kaanapali IMEM is not a syscon or
+> simple-mfd, also "reboot reason" is not required on Kaanapali like some
 
-So explain that this is needed for proper and complete power management
-solution on this SoC, however that is not an ABI break because Linux
-driver will be stil backwards compatible.
+I do not see correlation. Something is not a syscon, so you add a new
+generic compatible? No.
 
+> other platforms. So define a common "qcom,imem" binding and fallback to it.
+
+You did not define fallback to it!
+
+...
+
+> +      - items:
+> +          - enum:
+> +              - qcom,kaanapali-imem
+> +          - const: qcom,imem
+
+I do not understand what this generic compatible is supposed to express,
+not explained in commit msg. Considering this wasn't before, it is a
+major and really undesired change. It also makes no sesne. There was no
+generic compatible before but "if not syscon" now this must have generic
+compatible, what?
+
+NAK
 
 Best regards,
 Krzysztof
