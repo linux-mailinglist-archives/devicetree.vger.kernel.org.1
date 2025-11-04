@@ -1,288 +1,124 @@
-Return-Path: <devicetree+bounces-234951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9294BC32C7A
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 20:28:22 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDB33C32CB1
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 20:33:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E30281885DF2
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 19:28:46 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BEE554EFA4F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 19:31:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB8E22D0617;
-	Tue,  4 Nov 2025 19:28:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 211532C11C6;
+	Tue,  4 Nov 2025 19:31:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="lvdCeUEz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c+M40Ynf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012023.outbound.protection.outlook.com [52.101.66.23])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DDEA21ABC9;
-	Tue,  4 Nov 2025 19:28:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.23
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762284497; cv=fail; b=lIzjI0kFFPp0pWBMPTlN3yAE7XqBRLREOdgMMB1jlYrGulTac8PR+zEHsQ/DagaqBuQOP3f4wJ6OKGaGh3z8cYfRh5569Ldw6I2DTUcxWf203RiP3S9lugopB/Q+eW0sqjIlpURYh9a/hyxsoPiiHzKD1zvGcTC96Z+aqXDOMp0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762284497; c=relaxed/simple;
-	bh=/nOkU0Qt0d4resfDReaZj9LjUVmkK3u+CUIifbHm3mk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=cbpS72mnJk1rlr+HrnHAv1JRsqcHjlZp1kP4Ma9RowHCJ+WeG4lLV2j+qJQ1Se1FBm158C1Wi2h65+XUmI1yGhSYBxQ1QD0RWSKbBO1Idd0+8Xn33xkL0ujhS6XF6YDzl8sVXDfJZBV27bWAZIOB3iV/0wrgPxtXmiRO8x61Qbg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=lvdCeUEz; arc=fail smtp.client-ip=52.101.66.23
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qHnKs7yxERQjQvVXx0q320D6Yx11MQSxengSWb04a+9lpn2E5NK4EyE1rM1BnhbG5K3Q1ugFup9SMg3U+2h2pNK9/e2Gi719vfn5Ese+8vI1Q7v0gtZ3jCeca68khpBhYVgotvAcClrW+KH/yWAGVlWmM88VaNFsG46OuqhD09axui1cSTHb4QSVRKVkFy9wXfDiUDQNhGqOeClpXmmNSLhgdxhKizWm9QKdP1H7ybiut9qYj1Bgp9CEdTXdb92+FqPhICNvRvKyxokX+xj1ulpa6uPPRCm5uCCpQG21UVSXA5Vxn46jD217porUa8W1MmvobvLAfWHpzNKLsWJ4GQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1C9ISv1vp5ZH5J2U1FrEzCsnx8pbGaT29BdYUFl6cBA=;
- b=RT88caONocWNzUP/Yay5eHAEsodYswDnaRDDR2HdAyzrUKbBVq+F6BozXukkZeAtv+huqCVD91xrQbTPDtmU6cFaPWygJusXj5LCw1N6JQGSwwj6pKqVmnYv0q/VzinEcDfYUnlJ0ZwdKPKW06ope0/+vGhiG87s9DR8D/9TF0I21n2gUh/SG3i3HdvUOqpVTln+k7GNCbsLUaC7HTRJrmW3es80yMR2Xsxd6ww13pUJEFgE1JTTPR0zkHlkp4yUY5FcGgYTfh9DrifajREygSF1Mvk3o+kFPPW8W16ocT8mrBYGleKTrt5rkP5HDj6NRQNol2yQfIAxvX3KvRHjcQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1C9ISv1vp5ZH5J2U1FrEzCsnx8pbGaT29BdYUFl6cBA=;
- b=lvdCeUEzQ5HxW+lXbFakHrM5n0DVGbYNc2ptsBrEjsHEaXfG0bsGjmwjR+SBGRKEM3UcdpeCnOeI0FxYx2Z9lcckX00KtAIqC4HjIm08i8P60/3lpqkkY97M3Ai9HYTNgWcAo6Zb0kOd6XtQpwGJfEiTfwSwsEV0DpXgX7VfmaL45NsoQV7gxv++98jypWkwvR/52h8rQHh2RlB/ZKjJLOsTUQCBw8NS3JwhPtFIJCX1NsXGiLhj3HUqGlfovihNE44AmcWNVQn1x0i5oTvvCSXBTzX6hlV2D/QE2FwotgHup+BhjLe/ZXGxah8zIMmtasG8iaW2yscD7+5K5m2M7g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
- by GVXPR04MB10684.eurprd04.prod.outlook.com (2603:10a6:150:218::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.16; Tue, 4 Nov
- 2025 19:28:12 +0000
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9298.006; Tue, 4 Nov 2025
- 19:28:12 +0000
-Date: Tue, 4 Nov 2025 14:28:04 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: adrianhoyin.ng@altera.com
-Cc: alexandre.belloni@bootlin.com, wsa+renesas@sang-engineering.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	dinguyen@kernel.org, linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] i3c: dw: Add support for Device NACK Retry count
-Message-ID: <aQpTxBGY8vbAQBmI@lizhi-Precision-Tower-5810>
-References: <cover.1762245890.git.adrianhoyin.ng@altera.com>
- <0098b646e37db167958505afc4ba040ceb511f66.1762245890.git.adrianhoyin.ng@altera.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0098b646e37db167958505afc4ba040ceb511f66.1762245890.git.adrianhoyin.ng@altera.com>
-X-ClientProxiedBy: BYAPR06CA0062.namprd06.prod.outlook.com
- (2603:10b6:a03:14b::39) To PAXSPRMB0053.eurprd04.prod.outlook.com
- (2603:10a6:102:23f::21)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD0DD23183F;
+	Tue,  4 Nov 2025 19:31:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762284678; cv=none; b=CnSkonHj+wGyhHRj2Xeg+6ALfGyVSLLd6gmqY7PDzgazu+gy3suPD0foYM3KY7CVDpR8Pzg1lhQGwgjGDaUUDmF4TUlnZ6GXPJmZ2QyKDVzR3PntVp+DSYVqkXnY8fRO04Eo0Uc6D65Ua3gB128HrE4xHSz/FkJ5VGoFHU4Mb08=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762284678; c=relaxed/simple;
+	bh=bv5RrLvyhbRRTVmzsWpNHNTYrpGvKzpe/nqRzbjAMOc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=uTNXtKZ6sgVsmkXyCp63aqeAgU8sIkQrdzc/GEaJpuWXIKv76cwu2Yq7wKZUkPJ6AYLXvJvUNOqL+LYrHYRQN6PDDf3YNlP1ifgkQznNzjuF5yNV2Ru5W7ufm/N2ek0jZ1hC0IF2DcUwU6dVM0t69TDofCFBr+NemG8xLzPg3CQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c+M40Ynf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD05FC116B1;
+	Tue,  4 Nov 2025 19:31:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762284677;
+	bh=bv5RrLvyhbRRTVmzsWpNHNTYrpGvKzpe/nqRzbjAMOc=;
+	h=From:Subject:Date:To:Cc:From;
+	b=c+M40YnfD7beibvpnLx5x7JTJxsI8UKfWeerqy+wnhCGnuIEEdKuAPbMRrmL14vG7
+	 OP5Z8LhbKV6qlXKCmk/umHqs2ez0wm6y99i+x+3EE8JpbkXhTr14Lc6PZYNTbaQecI
+	 7U1is6qB+I4HGST8GzSf0pZIKBGMbda5tDdOmPNHr8H+gntvMRIX9oQngYiEvGYZz/
+	 ScJEhzNnsDL/NDqU63Mt3U8z7f6wYjzLXSuybWHK81ljSvq4Zlq6OJ6TAXpb2gnSPH
+	 1uy+xh8BIcofnCeXYt3SuC3AqYaxjFkrJwyTENJo73bWBCt0SxHd2b0BE8/SwC53JT
+	 zeFXGRBL7tLew==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Subject: [PATCH 0/5] Define VDD_MXC for SC8280XP
+Date: Tue, 04 Nov 2025 20:31:05 +0100
+Message-Id: <20251104-topic-8280_mxc-v1-0-df545af0ef94@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|GVXPR04MB10684:EE_
-X-MS-Office365-Filtering-Correlation-Id: f7ce0352-56d7-46aa-2792-08de1bd84b36
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|7416014|52116014|376014|366016|1800799024|38350700014|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?iarM2FL1dbqTiTmQTyl3x1oP72Sz0vBT9vLKiL9EdY+B0kTOXs3AeBtkc0dv?=
- =?us-ascii?Q?f62LfncgCKR6Fs/eWaSZTTE2jcGcVwNqxhiKTrGTYjCU11ZOYWGRA780ZJsa?=
- =?us-ascii?Q?JEMAwK1+C400SAcexFK+1m7mFzuoWl8bO2OQzoCrY70t7CJXJHVAfmHu0mjX?=
- =?us-ascii?Q?MgqxPBSDjgMlElqi8ksInes96qrXSouqr95Q9QnYQNahqIJqppPoU1uz9lUS?=
- =?us-ascii?Q?9yDmB8Rl6dStWZmGYxEzS+5e18NFRJki09ksW5QhfA0gFL/HmDKsa7cvrrZ0?=
- =?us-ascii?Q?QJZFmuiEIw6H9gbwWLUTxgXg+nJOKJzza7NK7hzQlxha9SnYMQ4dLlFwiVci?=
- =?us-ascii?Q?W9GIEtHACh3CGlhput84WjMaCu/n2BReT7TzhEKlt9T4nOFwnE6y/GZ2EV6I?=
- =?us-ascii?Q?MsWbCNgcnAc730gNj/D12EO30pWhEyvq6CF4dIiT3NpAR0EwWfzb9yFZcwJh?=
- =?us-ascii?Q?ALHXqkn1OGAAO+jINZX85yFaAgpGU99jiIE4A5rpTHfovT31GTSQoU4V80nS?=
- =?us-ascii?Q?5Jc1pbiOolJ7OgnkyPHyj38uAm64f4Ol9DIu0NJGx3tyv4h6fgf5iNJV8KFE?=
- =?us-ascii?Q?+0XnPiKT79ccppBNGTYs6ILNI+mWx7ctBye2z9aLlM4pvK2r76bDAMstb9RT?=
- =?us-ascii?Q?y39GvxhdwhfN5jVwq31ClZEx3cyhYSoKnR321LYoAs1KhOdwb4f59jACQGHM?=
- =?us-ascii?Q?CdkBa0QZAjW1Ka3dv0JmEETl6KrNWtxQkMJX6YsMlppZMbZzOWWUrAL1OMni?=
- =?us-ascii?Q?Q3HXl9tzkSriWHf/v2SCn0+/pFM9106Gga4eO12iOT/aNRou9HoSWP9R6iLD?=
- =?us-ascii?Q?wNWRIrDSy8BL+i1SRhQh9EZuvpPdQIGl+T1OUTuqfvfgsjKRwc6yeJ6HxknR?=
- =?us-ascii?Q?IcHzNgVqRIbtm+IwhJ3F5DW7rD4BUwlLoyUQIptpsnGRm9YOsxs0NQFpk/8v?=
- =?us-ascii?Q?cdJwy3C78rPaKalKs7EyOPy0gJ9QfJ0MFICFLDoV91SfKILVWZcZpuVEuF2V?=
- =?us-ascii?Q?yjVPmWcYp+ktllHIhs9H0xwyX5LdsUrZ6180X9T4dnvWOWZLCTRjc+MX+qTS?=
- =?us-ascii?Q?OJublQQYmdQ0bp1rJhpFDJlP+ckVdgi4xfpy55BbNpD3luf9INgsj1PiT3RK?=
- =?us-ascii?Q?cd4JuczpIVAlOF0VmNXc+nmkLrIu13+LWh2hwQsBGPn+rAoh8JfrKbuWNt7a?=
- =?us-ascii?Q?qnsaeJibIZH7VGNzP2HD269wzjD9WZzmlYv/GYGy9qDDgQxTvApaNEYjSH9H?=
- =?us-ascii?Q?dUl9JoTrVBrztelvggx5DENGN89Ht/A84vQ4FzdSGoXgFSOurRTh3Qlxs/0B?=
- =?us-ascii?Q?fpPdwq2URDY6b70dw9fjWcUy/gTMxtNTrQuoWJA6d/Fft5zp/g7v8dOx9fUF?=
- =?us-ascii?Q?biAyq7xMzyY+7iNmd/4aVUEyC7HZ14aigx3cPuawLVJhN956n1GGwS0u8Gmx?=
- =?us-ascii?Q?6IRaAUsoL5MUeAq1kkkwc8VhMSLgZB6634dhJeMBCaPh3LL8ESQvwNeAWkzF?=
- =?us-ascii?Q?EdzZJ2y2TTbevLg/DI/iVjt9HPrp0JuCHQHo?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(52116014)(376014)(366016)(1800799024)(38350700014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?37S0c5648HxjmdNQcLi8IZOCCJu21w17sNzs9MvRjkDwm1Yv8RZeG5DbyAA7?=
- =?us-ascii?Q?RWNor1beaAct5wwCmypOpS2TxCPi87Kw6fhmXXszD6QwfeC60g5KWkEW6MEF?=
- =?us-ascii?Q?Up5rsOOvhqhUe9zaGO6ib+kagHHHMSuTUV6uEzd2Qv2yNzGIFDTS6MeJkjT3?=
- =?us-ascii?Q?0u++5NGDIOTBLHb41RbvVd07UcjrnPR9EOtbdFbiFJobkDpBAXje35R30Soi?=
- =?us-ascii?Q?e31h1s7EyKStZEkysrABG2MOEWahhlpxsac1yxkZWl0nEfemgC5yEyv1AoB6?=
- =?us-ascii?Q?FHHylBXs89EdduGDCe6J3hf6B3WsfGbRHuUzU34BA2wwnsRXo6fov+tG/byZ?=
- =?us-ascii?Q?0juh+r9LNBKB5k8JQidQQfJfF1aRl17yw+RkO73JN5LTXjmow2AWhhwgXEHs?=
- =?us-ascii?Q?PUd7sWWN5B16s4AdpLoH5nQBPkCkZGok3txWhbI00cw5Mo2IABKuuLnD5HZ1?=
- =?us-ascii?Q?BIBye7eDMwJDt9h4m1HMlm3cZ7cgvteilS1LNugkkKkIy7B8vZgewMjAh8MN?=
- =?us-ascii?Q?UM08FKTrNBQrPFGhu58+Z+hLcz79yDFdoqqsQrKmGomFA6v5C56oqZVH9gUa?=
- =?us-ascii?Q?51OqRWa7Q3W6Rrs2365AxQLUp8GPHf69wKY34lBbC+7IxiXXUKuWi2hTwmQE?=
- =?us-ascii?Q?VZ3XeZF1tBrQOQupLv1EE6W8qzMHVLumebNrtWZRCRxx1Dea0HHU+FVLluC7?=
- =?us-ascii?Q?0ayOc3o/lHKUpfTXu6CxrZMuF3TL9I+rj9L3WANOBmWrl0Zi6EhNKe2WGOQ8?=
- =?us-ascii?Q?9rhaHq8PwHqSQI0V3L3mze4eiwxgXD+Tza3xIO19nMB/gRr6cSLerAMssHGs?=
- =?us-ascii?Q?3rqlPBzQYM9Cp2XxlFoXurSFYj3SWcpOaXqmogU9P2DD8ROP/z60LXTqYxrv?=
- =?us-ascii?Q?NWanZ8LUTp7EXHlFBPO8WA0gTzq0GzxpNq42IP5pS94ya4abrvOMp7V46Gu5?=
- =?us-ascii?Q?dmlvr1E/xyo1CGbmVAEme1K0V+77bI6LJTOJniBt4P7u4T6QNq+/VcGF4Ww/?=
- =?us-ascii?Q?TCzaOWj/zU3hTAZaAvFf+yaXJ+vDFVz3C30ycikaCrEKMJE9F4zs45Npe2kY?=
- =?us-ascii?Q?ruK9nGJ8wuTI2tifmDPPGJxFKzqCj4JRECHKnAhkzd4gJD9LuY6q2yS8wZuu?=
- =?us-ascii?Q?YMXQY2rvjjlA1EDHP9sj36QJuJHV9hhwY+XW62Mz0KWuQ6cnK2mfEChiXqzF?=
- =?us-ascii?Q?o216Gt3pSl/MeHV9KLtX4KmBmHtLtxgaRbgmk1t5O21c43TrAMvY+1brUmZN?=
- =?us-ascii?Q?SrFJbagsvl5vlYtBuD0/c2suoxGzfpZiIqFFj/C1QcAK0Lh9cbduprfbsy4O?=
- =?us-ascii?Q?mJsIboUinWkR2DKVyDVOqoCH4eZjiJdqXlBNdXrS8pw+1rHKPAYtqhdqzu8T?=
- =?us-ascii?Q?TQw7e1kK7F7flsfVB4ON3tiBPtlFxWZO3dE9rzU53ZhC/XkSBY1CcjjCzz3j?=
- =?us-ascii?Q?4ZuCxxoQs9kmWShClGj3qcgN4NsB9I5My2IPn7PMx1A6nU+PXZBb89toOOW+?=
- =?us-ascii?Q?vsUhifKUSuhPWEDFnwq/w60hf0jyAlFpW+SILWAt+3kcrv3rDroTe7X+S0aj?=
- =?us-ascii?Q?5aPJPrr9bkzgoj6MCqsO2unLRstj3+rsTTa3GP7Q?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f7ce0352-56d7-46aa-2792-08de1bd84b36
-X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2025 19:28:12.3420
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dOUpDeMdM8PwUgZ5HTmtoEZPPIye5RksQVgCMTQld46Z4C+mKxWIo5uTZ3/R1zhlq6AgdzZIrNDlUT9FHdp25A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10684
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHlUCmkC/x3MSwqAMAwA0atI1haSqlC9iohIGjULP7QiQvHuF
+ pdvMZMgSlCJ0BUJgtwa9dgzqCyA12lfxKjPBou2IcLaXMepbJx1OG4PG2kte+KKkBBydAaZ9fm
+ H/fC+H75OoqtgAAAA
+X-Change-ID: 20251104-topic-8280_mxc-e92cd1c31010
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Johan Hovold <johan+linaro@kernel.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Taniya Das <quic_tdas@quicinc.com>, 
+ Imran Shaik <quic_imrashai@quicinc.com>, 
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+ Jagadeesh Kona <quic_jkona@quicinc.com>, 
+ Ulf Hansson <ulf.hansson@linaro.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-remoteproc@vger.kernel.org, linux-clk@vger.kernel.org, 
+ linux-pm@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1762284668; l=1567;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=bv5RrLvyhbRRTVmzsWpNHNTYrpGvKzpe/nqRzbjAMOc=;
+ b=H5Hd0okQAulEy5VeWlV8Ukx2Eq3uQdliujWHUP28jquv7CdJcQSVW5tPKUZqcsIBq/Oc0n+VX
+ g4PRdGKoPoZDtMDG/DJ8gVlJ+7R3S7koWQx/xzhvi9gc0dNm/ZJgGt2
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-On Tue, Nov 04, 2025 at 04:51:10PM +0800, adrianhoyin.ng@altera.com wrote:
-> From: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
->
-> Some I3C slave devices may temporarily NACK transactions while they are
-> busy or not ready to respond. To improve bus reliability, the DesignWare
-> I3C controller provides a mechanism to automatically retry a transaction
-> when a device issues a NACK.
->
-> Add support for configuring the Device NACK Retry count in the Synopsys
-> DesignWare I3C master driver. The retry count is obtained from the
-> 'snps,dev-nack-retry-cnt' device tree property and written into the
-> Device Address Table (DAT) entry for each I3C device.
+This has somehow been omitted, leading to potentially stale votes.
+On the flip side, the domain will now be powered off, which will
+uncover any omissions we've made in the DTs so far.
 
-Most like it should come from sys/debugfs interface. Or just fixed value
-should be enough.
+Reasonably tested on an x13s without pd_ignore_unused (camera still
+works).
 
-Frank
->
-> If the property is not defined, the driver defaults to zero retries.
-> This behavior is consistent across both Device Tree and ACPI-based
-> systems, where the value is only applied if the corresponding property
-> is explicitly provided.
->
-> The value is clamped to a maximum of 3 (hardware-defined limit), and a
-> warning is issued if a higher value is specified.
->
-> Signed-off-by: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
-> ---
->  drivers/i3c/master/dw-i3c-master.c | 34 ++++++++++++++++++++++++++++++
->  drivers/i3c/master/dw-i3c-master.h |  1 +
->  2 files changed, 35 insertions(+)
->
-> diff --git a/drivers/i3c/master/dw-i3c-master.c b/drivers/i3c/master/dw-i3c-master.c
-> index 9ceedf09c3b6..12ee4c4afedf 100644
-> --- a/drivers/i3c/master/dw-i3c-master.c
-> +++ b/drivers/i3c/master/dw-i3c-master.c
-> @@ -204,8 +204,10 @@
->  #define EXTENDED_CAPABILITY		0xe8
->  #define SLAVE_CONFIG			0xec
->
-> +#define DW_I3C_DEV_NACK_RETRY_CNT_MAX	0x3
->  #define DEV_ADDR_TABLE_IBI_MDB		BIT(12)
->  #define DEV_ADDR_TABLE_SIR_REJECT	BIT(13)
-> +#define DEV_ADDR_TABLE_DEV_NACK_RETRY_CNT(x)	(((x) << 29) & GENMASK(30, 29))
->  #define DEV_ADDR_TABLE_LEGACY_I2C_DEV	BIT(31)
->  #define DEV_ADDR_TABLE_DYNAMIC_ADDR(x)	(((x) << 16) & GENMASK(23, 16))
->  #define DEV_ADDR_TABLE_STATIC_ADDR(x)	((x) & GENMASK(6, 0))
-> @@ -989,6 +991,7 @@ static int dw_i3c_master_reattach_i3c_dev(struct i3c_dev_desc *dev,
->  	struct i3c_master_controller *m = i3c_dev_get_master(dev);
->  	struct dw_i3c_master *master = to_dw_i3c_master(m);
->  	int pos;
-> +	u32 reg;
->
->  	pos = dw_i3c_master_get_free_pos(master);
->
-> @@ -1009,6 +1012,15 @@ static int dw_i3c_master_reattach_i3c_dev(struct i3c_dev_desc *dev,
->  	       master->regs +
->  	       DEV_ADDR_TABLE_LOC(master->datstartaddr, data->index));
->
-> +	if (master->dev_nack_retry_cnt) {
-> +		reg = readl(master->regs +
-> +			DEV_ADDR_TABLE_LOC(master->datstartaddr, data->index));
-> +		reg |= DEV_ADDR_TABLE_DEV_NACK_RETRY_CNT(master->dev_nack_retry_cnt) |
-> +				DEV_ADDR_TABLE_SIR_REJECT;
-> +		writel(reg, master->regs +
-> +			DEV_ADDR_TABLE_LOC(master->datstartaddr, data->index));
-> +	}
-> +
->  	master->devs[data->index].addr = dev->info.dyn_addr;
->
->  	return 0;
-> @@ -1020,6 +1032,7 @@ static int dw_i3c_master_attach_i3c_dev(struct i3c_dev_desc *dev)
->  	struct dw_i3c_master *master = to_dw_i3c_master(m);
->  	struct dw_i3c_i2c_dev_data *data;
->  	int pos;
-> +	u32 reg;
->
->  	pos = dw_i3c_master_get_free_pos(master);
->  	if (pos < 0)
-> @@ -1038,6 +1051,15 @@ static int dw_i3c_master_attach_i3c_dev(struct i3c_dev_desc *dev)
->  	       master->regs +
->  	       DEV_ADDR_TABLE_LOC(master->datstartaddr, data->index));
->
-> +	if (master->dev_nack_retry_cnt) {
-> +		reg = readl(master->regs +
-> +			DEV_ADDR_TABLE_LOC(master->datstartaddr, data->index));
-> +		reg |= DEV_ADDR_TABLE_DEV_NACK_RETRY_CNT(master->dev_nack_retry_cnt) |
-> +				DEV_ADDR_TABLE_SIR_REJECT;
-> +		writel(reg, master->regs +
-> +			DEV_ADDR_TABLE_LOC(master->datstartaddr, data->index));
-> +	}
-> +
->  	return 0;
->  }
->
-> @@ -1592,6 +1614,18 @@ int dw_i3c_common_probe(struct dw_i3c_master *master,
->
->  	master->quirks = (unsigned long)device_get_match_data(&pdev->dev);
->
-> +	ret = device_property_read_u32(&pdev->dev, "snps,dev-nack-retry-cnt",
-> +				       &master->dev_nack_retry_cnt);
-> +	if (ret) {
-> +		master->dev_nack_retry_cnt = 0;
-> +	} else if (master->dev_nack_retry_cnt > DW_I3C_DEV_NACK_RETRY_CNT_MAX) {
-> +		dev_warn(&pdev->dev,
-> +			 "dev_nack_retry_cnt (%u) exceeds max (%u), clamping to %u\n",
-> +			 master->dev_nack_retry_cnt, DW_I3C_DEV_NACK_RETRY_CNT_MAX,
-> +			 DW_I3C_DEV_NACK_RETRY_CNT_MAX);
-> +		master->dev_nack_retry_cnt = DW_I3C_DEV_NACK_RETRY_CNT_MAX;
-> +	}
-> +
->  	INIT_WORK(&master->hj_work, dw_i3c_hj_work);
->  	ret = i3c_master_register(&master->base, &pdev->dev,
->  				  &dw_mipi_i3c_ops, false);
-> diff --git a/drivers/i3c/master/dw-i3c-master.h b/drivers/i3c/master/dw-i3c-master.h
-> index c5cb695c16ab..45fc1774724a 100644
-> --- a/drivers/i3c/master/dw-i3c-master.h
-> +++ b/drivers/i3c/master/dw-i3c-master.h
-> @@ -51,6 +51,7 @@ struct dw_i3c_master {
->  	u32 i2c_fm_timing;
->  	u32 i2c_fmp_timing;
->  	u32 quirks;
-> +	u32 dev_nack_retry_cnt;
->  	/*
->  	 * Per-device hardware data, used to manage the device address table
->  	 * (DAT)
-> --
-> 2.49.GIT
->
+Video (not upstream right now) will also need this connection.
+
+This series defines VDD_MXC and wires it up to consumers.
+
+pmdomain patches extracted from:
+https://lore.kernel.org/linux-arm-msm/20250728-topic-gpucc_power_plumbing-v1-0-09c2480fe3e6@oss.qualcomm.com
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+---
+Konrad Dybcio (5):
+      dt-bindings: power: qcom,rpmpd: Add SC8280XP_MXC_AO
+      dt-bindings: remoteproc: qcom,sc8280xp-pas: Fix CDSP power desc
+      dt-bindings: clock: qcom: Allow MXC on SC8280XP CAMCC
+      pmdomain: qcom: rpmhpd: Add MXC to SC8280XP
+      arm64: dts: qcom: sc8280xp: Add missing VDD_MXC links
+
+ .../bindings/clock/qcom,sa8775p-camcc.yaml         | 13 -------------
+ .../bindings/clock/qcom,sm8450-camcc.yaml          |  2 ++
+ .../bindings/remoteproc/qcom,sc8280xp-pas.yaml     |  4 ++++
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi             | 22 ++++++++++++++++------
+ drivers/pmdomain/qcom/rpmhpd.c                     |  4 ++++
+ include/dt-bindings/power/qcom,rpmhpd.h            |  1 +
+ 6 files changed, 27 insertions(+), 19 deletions(-)
+---
+base-commit: 17490bd0527f59d841168457b245581f314b5fa0
+change-id: 20251104-topic-8280_mxc-e92cd1c31010
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+
 
