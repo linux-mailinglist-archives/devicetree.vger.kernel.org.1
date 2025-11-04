@@ -1,161 +1,290 @@
-Return-Path: <devicetree+bounces-234731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFCE6C30230
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 10:03:35 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EC96C3012D
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 09:54:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADF863A5C92
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 08:56:59 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9AF5134DE5A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 08:54:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8121260588;
-	Tue,  4 Nov 2025 08:54:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDB03311C2C;
+	Tue,  4 Nov 2025 08:52:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G1XoNgwg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AAC5261B78
-	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 08:54:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 354B9306B0D
+	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 08:52:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762246477; cv=none; b=VKNthO0mcrUgXrc3nAA2agxQuF/NTti1vRIbtmBCuMey5JFXZ5iCWOGjifliDYZgblhIQFP5HBV/bBa69mTM0tGdPzunxuNgddjFW2UMtbu1bpfzxxWNSKHX9asZyHJEbw+d3+iECq5xsTZyi+JUOy3f9lUn08gnnnlhBPE+Aw4=
+	t=1762246379; cv=none; b=SCSu5mQ53pGB9mAiyCsYV3w/syvQnIJDn8HOqg2/saYlquwA82aHEsS3kmiucnPe41kpyg0TRsYBv8rEShisAf5+IfdXDUxSw132G4w5ZOyEK1Um1V+Niqm8U+5aZLYIORv5py4Oym8TTmNstQVctZIh8PtaBq6Yw8joTGFv8qU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762246477; c=relaxed/simple;
-	bh=zEDqpi0DIhsRS0o+OWMI8pdvUhbkKiO55WU+zH69LCw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FCkfQlL5VbwtSlrNLTVg5lPW9wKXDy+78KXRfzEs5kEd0QqZ2ARAYszBSNnAAK4YXUq8OnEPYDb59w74d19musMLqQFghWZ4HhOSKJ/RK1Lm19BHse7lg7lIZNJrWCsNcutBZNuS+R1hJgZBpJACeMr+g+F3eGBcaksU2QNaizs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
-Received: from secure.fukaumi.org ([10.0.0.2])
-	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 5A48qYtt028441;
-	Tue, 4 Nov 2025 17:52:34 +0900
-From: FUKAUMI Naoki <naoki@radxa.com>
-To: heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        sebastian.reichel@collabora.com, nicolas.frattaroli@collabora.com,
-        quentin.schulz@cherry.de, jbx6244@gmail.com, didi.debian@cknow.org,
-        damon.ding@rock-chips.com, cristian.ciocaltea@collabora.com,
-        detlev.casanova@collabora.com, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, FUKAUMI Naoki <naoki@radxa.com>
-Subject: [PATCH v3] arm64: dts: rockchip: Fix USB Type-C host mode for Radxa ROCK 5B+/5T
-Date: Tue,  4 Nov 2025 08:52:27 +0000
-Message-ID: <20251104085227.820-1-naoki@radxa.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1762246379; c=relaxed/simple;
+	bh=2rMHlQ1WtmYv1cT3KfGLFdZenWascCkIbV7yKzG2Frw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Ld4+hwMbmC2wipfY5eROK5RoKJmO6fLfn0Tsd1BLvHCFKgzr8dq/hQ6YSrxxpBkXUrDF+uvLDGg2DsAnIRU0EHdYp9Gx4yu5JlqJlui50o3n6NJA2i9yOK/H/ib/L52UJyX+jPbVC7r2zXL+xY/vzSqehF6jp1J12QupdMVoufI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G1XoNgwg; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-294e5852bf6so8184805ad.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 00:52:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762246377; x=1762851177; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JHJIK8+oaXWJkBBbD+h4XXw0wc94Hg7Tu0T3cHygSwk=;
+        b=G1XoNgwgqqvxW+Q6ug7nLKpu3RTpub5P5SbSxpAaP+MTs+vLhZK6Hqun1JPHPx6M0D
+         ng1bHU1tF968UAIyrmlQeHxpH8315/xZLvymTUqeUlehJZd0Dq+JHUYBCdyKiIHVVEZ8
+         IcfDvy/skLFmizJ0HJuB7JkC7aIhf8IwvSYmf7T+g3RYbcaqYIr3gbK5euocCug51d+F
+         8SMx2SOwTGUGmc3GlgIllAzdojdLMIfQcUjxoUqjrcPrNrK5qKJTQkxZze4Vs6jtdVCS
+         3Gc/yLTO5pFVt+BZKxhXNOwscyaUNZEjknKTA1c8wncYZj3AYr4hd66E2r6Dv82ykUfz
+         ONdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762246377; x=1762851177;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JHJIK8+oaXWJkBBbD+h4XXw0wc94Hg7Tu0T3cHygSwk=;
+        b=pWVt4VtUFgZa2RpIqIcgHBZlBRqk6sr/s/F3XFZp/jbRiWLEPwwMHITQcgcqNI89wN
+         Ua9xQOGtbPmYPZvztNOT05/OjOcOSfkm29Sqk+AjbjQJ+OhwKwbG6pmmOiYZXtJKvzDq
+         WqDm2bBUxDturB1DtnXHnr3r+CVJk9A72x7HZKAlYfhL4GlU1D2hLg3Z9XVeih510Pgd
+         ffzG1ckD37UYuYCrm53r0CjRsWu/DE9YnH6pIliK50m5icAaeNsfIB1r5RuAbi21xGnK
+         zSrwG5cbp6u7XJO0WAKqfp2T64SYtMABT0W7oJR7YfvBA8/8ed/Pxk9sWxjjByXxHeuI
+         gGMw==
+X-Forwarded-Encrypted: i=1; AJvYcCUwlA435L07W4BaIYv6I+UrF7jzNSSd7BFcDylchI/AfIYSDo9/hdVhFikgPbjUTXWVwi8HXqZHV+b2@vger.kernel.org
+X-Gm-Message-State: AOJu0YwgVLTeMV4oVwufjHD+Ui04DiqTGaIyyCWoDe49PibTMCvfhttZ
+	DhmzKNcG8poSswzXS07twThfzREytXdSVz4oXfk5HFpbhO4X1CwLHo9xeO8fsyBA
+X-Gm-Gg: ASbGncvQ1sUIY9tgBtta9jHlOU72oHc/NWFtjkwk20mj8zmGyqF511o5HX+vVc01nY6
+	hbrqzZTCIFE637jQY1UVjA4JqDVS0aagCRR33yYV8xhEKfXxUcllrZcq/nQMeCkpaA9Z+b9lH+1
+	hkxLYnhHJe3v98AwGzorRfX+QYEIirICKpQxZx9HdicJOqZ5g5XSVaLV7VRoj7xljDyGPt4IXks
+	9kuwN7QQAkiUnwX9Z1dUoErgJES9ecIhxtJGZpmf+2BOxPa4YJtXscLjHO4FbeJrCJ9ODKFP6et
+	Gdg+wAwxNzDanfl40jcsiF2lMwo6VleC6jj5wHgCcnJAlfV/chyoamjAu1tm2kwBNZdQroFBGuQ
+	WBKRY0VuE14vbmo6KOY+n17+TjSxlrvByP1WtCPgFV4j2ZEv4U4W0AvqaraWib8vnwln0CBnspu
+	MPoczPzLZ5Ceu6ftwg2jti6lsImoy0C2/VN1/kOp1New==
+X-Google-Smtp-Source: AGHT+IH2t1B9DQS3NrSrgg/yHCdfBQnUffNx5XgA6o/NzrzTv4ZYh+rhCpt79HNN4moszBGMYKYYZw==
+X-Received: by 2002:a17:902:e889:b0:296:53b:fcd3 with SMTP id d9443c01a7336-296053bfe03mr10444545ad.9.1762246377353;
+        Tue, 04 Nov 2025 00:52:57 -0800 (PST)
+Received: from [127.0.1.1] ([2406:7400:10c:9fcf:2909:749f:36f6:6b85])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29601a609c8sm18155155ad.92.2025.11.04.00.52.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Nov 2025 00:52:56 -0800 (PST)
+From: Ranganath V N <vnranganath.20@gmail.com>
+Date: Tue, 04 Nov 2025 14:22:50 +0530
+Subject: [PATCH v6] ASoC: dt-bindings: ti,pcm1862: convert to dtschema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251104-dtbs-v6-1-61d5afa31fde@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAOG+CWkC/13PQQrCMBCF4atI1kYyM2k0rryHuEinSQ2olUaKI
+ r27aakQunxDvh/yFcn30Sdx3HxF74eYYvfIw2w3gq/u0XoZm7wFKqxAIcjmVSdJjiAYa1kbEPn
+ ps/chvufM+ZL3NaZX13/m6gDTdRUYQILUlhicw4pqPrV3F2877u5iCgxYIrMgzIgbqvdADg8Hv
+ 0ZUIrsgyoiYwSAiMOIa6QKRWpCeUAiBJgRg16gq0f9PVUbeQ8OqxuC0KtE4jj/1s5N2bAEAAA=
+ =
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, skhan@linuxfoundation.org, 
+ david.hunter.linux@gmail.com, khalid@kernel.org, 
+ linux-kernel-mentees@lists.linuxfoundation.org, 
+ Ranganath V N <vnranganath.20@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1762246373; l=5252;
+ i=vnranganath.20@gmail.com; s=20250816; h=from:subject:message-id;
+ bh=2rMHlQ1WtmYv1cT3KfGLFdZenWascCkIbV7yKzG2Frw=;
+ b=ipXerRqWnjaK7oEEls/rfgAdyD/nxcQbl/o+dgdIHQ302NAPpKWX4WMvkbilPBABzJLtNB5ks
+ z7I4qWhxcLXD85A99mublEOWTs0u8iP+HlNhskKdkE+7ix1Bo/doj7D
+X-Developer-Key: i=vnranganath.20@gmail.com; a=ed25519;
+ pk=7mxHFYWOcIJ5Ls8etzgLkcB0M8/hxmOh8pH6Mce5Z1A=
 
-The Radxa ROCK 5B+/5T USB Type-C port supports Dual Role Data and
-should also act as a host. However, currently, when acting as a host,
-only self-powered devices work.
+convert the Texas Instruments PCM186x Universal audio ADC bindings
+to DT schema.
+Added the #sound-dai-cells as per the framework.
 
-Since the ROCK 5B+ supports Dual Role Power, set the power-role
-property to "dual" and the try-power-role property to "sink". (along
-with related properties)
-
-The ROCK 5T should only support the "source" power-role.
-
-This allows the port to act as a host, supply power to the port, and
-allow bus-powered devices to work.
-
-Note that on the ROCK 5T, with this patch applied, it has been
-observed that some bus-powered devices do not work correctly. Also,
-it has been observed that after connecting a device (and the data-role
-switches to host), connecting a host device does not switch the
-data-role back to the device role. These issues should be addressed
-separately.
-
-Note that there is a separate known issue where USB 3.0 SuperSpeed
-devices do not work when oriented in reverse. This issue should also be
-addressed separately. (USB 2.0/1.1 devices work in both orientations)
-
-Fixes: 67b2c15d8fb3c ("arm64: dts: rockchip: add USB-C support for ROCK 5B/5B+/5T")
-Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+Signed-off-by: Ranganath V N <vnranganath.20@gmail.com>
 ---
+Convert the Texas Instruments PCM186x audio ADC bindings to DT schema.
+---
+Changes in v6:
+- Corrected the Subject Asoc->ASoC, dt_bindings -> dt-bindings and ti,pcm186x -> ti,pcm1862
+- Updated the commit message.
+- added the missed Description from the old binding.
+- Link to v5: https://lore.kernel.org/r/20251031-dtbs-v5-1-ee1dc0b2fa40@gmail.com
+
+Changes in v5:
+- Resolved previous patch warnings/errors
+- dtschema/dtc warnings/errors:
+- /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/ti,pcm1862.yaml: 
+- $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
+- 	 $id: http://devicetree.org/schemas/sound/ti,pcm186x.yaml
+- 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/ti,pcm1862.yaml
+- Link to v4: https://lore.kernel.org/r/20251030-dtbs-v4-1-3fff32221119@gmail.com
+
+Changes in v4:
+- Corrected subject dt_bindings:sound to Asoc: dt_bindings:
+- Corrected the filename to match one of the compitables in the file 
+- ti,pcm186x.yaml to ti,pcm1862.yaml
+- Link to v3: https://lore.kernel.org/r/20251029-dtbs-v3-1-3cc162221c22@gmail.com
+
 Changes in v3:
-- Use power-role = "source" for ROCK 5T
-Changes in v2:
-- Refine commit message
-- Use board-specific dts to describe (try-)power-role
----
- arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi | 4 ++--
- arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus.dts    | 5 +++++
- arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts         | 4 ++++
- arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts         | 4 ++++
- 4 files changed, 15 insertions(+), 2 deletions(-)
+- Unicode FEFF character was present in the begining of the file,
+- Removed unicode character.
+- Link to v2: https://lore.kernel.org/r/20251026-dtbs-v2-1-cd3b713a288e@gmail.com
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
-index 3bbe78810ec6f..7aac77dfc5f16 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
-@@ -331,12 +331,12 @@ usb_con: connector {
- 			data-role = "dual";
- 			/* fusb302 supports PD Rev 2.0 Ver 1.2 */
- 			pd-revision = /bits/ 8 <0x2 0x0 0x1 0x2>;
--			power-role = "sink";
--			try-power-role = "sink";
- 			op-sink-microwatt = <1000000>;
- 			sink-pdos =
- 				<PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>,
- 				<PDO_VAR(5000, 20000, 5000)>;
-+			source-pdos =
-+				<PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
- 
- 			altmodes {
- 				displayport {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus.dts
-index 5e984a44120e4..07a840d9b3859 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus.dts
-@@ -110,6 +110,11 @@ vcc5v0_host_en: vcc5v0-host-en {
- 	};
- };
- 
-+&usb_con {
-+	power-role = "dual";
-+	try-power-role = "sink";
-+};
+Changes in v2:
+- Fixes as per the reviews suggested for the v1.
+- Link to v1: https://lore.kernel.org/r/20251021-dtbs-v1-1-493c1aa253bc@gmail.com
+---
+ .../devicetree/bindings/sound/pcm186x.txt          | 42 ------------
+ .../devicetree/bindings/sound/ti,pcm1862.yaml      | 76 ++++++++++++++++++++++
+ 2 files changed, 76 insertions(+), 42 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/sound/pcm186x.txt b/Documentation/devicetree/bindings/sound/pcm186x.txt
+deleted file mode 100644
+index 1087f4855980..000000000000
+--- a/Documentation/devicetree/bindings/sound/pcm186x.txt
++++ /dev/null
+@@ -1,42 +0,0 @@
+-Texas Instruments PCM186x Universal Audio ADC
+-
+-These devices support both I2C and SPI (configured with pin strapping
+-on the board).
+-
+-Required properties:
+-
+- - compatible : "ti,pcm1862",
+-                "ti,pcm1863",
+-                "ti,pcm1864",
+-                "ti,pcm1865"
+-
+- - reg : The I2C address of the device for I2C, the chip select
+-         number for SPI.
+-
+- - avdd-supply: Analog core power supply (3.3v)
+- - dvdd-supply: Digital core power supply
+- - iovdd-supply: Digital IO power supply
+-        See regulator/regulator.txt for more information
+-
+-CODEC input pins:
+- * VINL1
+- * VINR1
+- * VINL2
+- * VINR2
+- * VINL3
+- * VINR3
+- * VINL4
+- * VINR4
+-
+-The pins can be used in referring sound node's audio-routing property.
+-
+-Example:
+-
+-	pcm186x: audio-codec@4a {
+-		compatible = "ti,pcm1865";
+-		reg = <0x4a>;
+-
+-		avdd-supply = <&reg_3v3_analog>;
+-		dvdd-supply = <&reg_3v3>;
+-		iovdd-supply = <&reg_1v8>;
+-	};
+diff --git a/Documentation/devicetree/bindings/sound/ti,pcm1862.yaml b/Documentation/devicetree/bindings/sound/ti,pcm1862.yaml
+new file mode 100644
+index 000000000000..0f0e254a2420
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/ti,pcm1862.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/ti,pcm1862.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- &usbdp_phy0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&usbc_sbu_dc>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index 8ef01010d985b..da13dafcbc823 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -49,6 +49,10 @@ vcc5v0_host_en: vcc5v0-host-en {
- 	};
- };
- 
-+&usb_con {
-+	power-role = "sink";
-+};
++title: Texas Instruments PCM186x Universal Audio ADC
 +
- &usbdp_phy0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&usbc_sbu_dc>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
-index c1763835f53d4..0dd90c744380b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
-@@ -130,6 +130,10 @@ usbc_sbu_dc: usbc-sbu-dc {
- 	};
- };
- 
-+&usb_con {
-+	power-role = "source";
-+};
++maintainers:
++  - Ranganath V N <vnranganath.20@gmail.com>
 +
- &usbdp_phy0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&usbc_sbu_dc>;
++description: |
++  The Texas Instruments PCM186x family are multi-channel audio ADCs
++  that support both I2C and SPI control interfaces, selected by
++  pin strapping. These devices include on-chip programmable gain
++  amplifiers and support differential or single-ended analog inputs.
++
++  CODEC input pins:
++    * VINL1
++    * VINR1
++    * VINL2
++    * VINR2
++    * VINL3
++    * VINR3
++    * VINL4
++    * VINR4
++
++  The pins can be used in referring sound node's audio-routing property.
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - ti,pcm1862
++      - ti,pcm1863
++      - ti,pcm1864
++      - ti,pcm1865
++
++  reg:
++    maxItems: 1
++
++  avdd-supply: true
++
++  dvdd-supply: true
++
++  iovdd-supply: true
++
++  '#sound-dai-cells':
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - avdd-supply
++  - dvdd-supply
++  - iovdd-supply
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        audio-codec@4a {
++            compatible = "ti,pcm1865";
++            reg = <0x4a>;
++
++            avdd-supply = <&reg_3v3_analog>;
++            dvdd-supply = <&reg_3v3>;
++            iovdd-supply = <&reg_1v8>;
++        };
++    };
+
+---
+base-commit: 211ddde0823f1442e4ad052a2f30f050145ccada
+change-id: 20251021-dtbs-3a31f699c461
+
+Best regards,
 -- 
-2.43.0
+Ranganath V N <vnranganath.20@gmail.com>
 
 
