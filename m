@@ -1,167 +1,185 @@
-Return-Path: <devicetree+bounces-234599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 153C1C2F296
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 04:24:46 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3E4CC2F1C0
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 04:14:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D6ECB4E3A11
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 03:24:44 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6ED8F34CCAA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 03:14:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A40427AC5C;
-	Tue,  4 Nov 2025 03:24:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3BE426E709;
+	Tue,  4 Nov 2025 03:14:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="iqV0hYj2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tV2zmPgx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24F7027979A;
-	Tue,  4 Nov 2025 03:24:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9681D26CE1E;
+	Tue,  4 Nov 2025 03:14:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762226682; cv=none; b=UfOrc1dBqpo/kmWpmzuyyav9QyBXexEvv8MgG5eTBRErZhZmzA8xnQen6W3DnhKXR39dNiqtJatgYH6Mf07qUo1NkBdhu2U5BnkzMZfOo2txEx+CBQhoYOEBn3LBo4i3hzC+inZfvljotTo4w7Oy4X6VyZnTKc1qaI1k4SzAD0k=
+	t=1762226047; cv=none; b=n/RXWUFzmugQ7VMyZymiqsAAlf5AJg0wMey7TkUEwpR9AEAxhY9/rw2I2LBm8/PjQXVuvQgxexKSCd1KYTBA5gVeIL65AHfdsGCU53ihL6h/60jQU7WVOBuc0h58BAraqcQ+2ovZ2es8z6pWm54aaooobytx6z8uyZiq+3T5A0k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762226682; c=relaxed/simple;
-	bh=M6PpePf9rqbW0gfYWvlDlyMbzAzo7pUvt7c7zeyuB70=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=hOouz8BIsQOg2HZamtlA0pnGk5IypPgSf+EAmiz7Mhi0j2QBLBq+Gv8jZFHPKP3AxnQ1RpgksIMfre/fZl/ym7g/5PP4pBMt8tLyQxaCsBbk7DnvuFCLWiSJhZ872oxlxCwZLDuP09fvN3K2H0s5bRlL8QGg19ykAyfrfM0nUmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=iqV0hYj2; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4d0trk2FMPz9tVW;
-	Tue,  4 Nov 2025 04:16:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1762226166;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=W3Yvr+8SuCRl1RyLn6jlwMKcKglGO98thwWD/+BwJt4=;
-	b=iqV0hYj2Q72Ncj+92jd5v1lUMpboNz0h376t9aKLhWCGluIdqUDvsm7MD9tMRjQVdc211A
-	+FHB3OF1H9T83U3ClVJ96UG4xk0YsDNt21t3Rx7ne8ocohjgbUaTSz3/a25xIa1M4avbTt
-	RXDvZh5bYXEzTpZ7cL0JswNBbQT510/M7z0eYvbdsjuheAhBng48A+fvR5AXuTDVCUBEbO
-	o+wSKjN5hmyB9R7wH1unsPqoH3c2lhuISyXZPAvM4El3MYp3Sb5DN9wfFIwtCqXZzJdOj9
-	eYrmrIrYMsWYyxZeCFwA7ZLfgR7bj+eAFmsZr+DaO5OM+FtIA8fN0nTkkYV2eQ==
-Message-ID: <827cc330-4c0f-4495-9507-71c5e3e20319@mailbox.org>
-Date: Tue, 4 Nov 2025 04:15:30 +0100
+	s=arc-20240116; t=1762226047; c=relaxed/simple;
+	bh=DZHl0ihOnYFAm39ypxruvP9nWML/cZJvezdTfGlkdTE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W7nLQNrrg55z0JVb8OppuwCu4fSTAoqjHvROzrzoSVAIbcoS/uJlXjYfLDDYCmr5o3jee18jeyGh/cadleu5mj7gl5L00jQk9kd4oEH9RvWctbEKF+gc1/CdTLYVUAN7kFEeh+NneVisYspcS8gvYqXwQAx+lAhUaX/YMN7jPeI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tV2zmPgx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19943C4CEFD;
+	Tue,  4 Nov 2025 03:14:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762226047;
+	bh=DZHl0ihOnYFAm39ypxruvP9nWML/cZJvezdTfGlkdTE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tV2zmPgxCUJA40QvtrbYs30bR0R5PHqo/F3aFnwmf/uTMS8nxwcZRuYYf+YAf7kOS
+	 8qX0MZNmn65lqkNVYLeFftWGXGme+nxIxzQJq3ZeXX46ZIj2+1KS/Q2fA5o5tG59BS
+	 97afXom9Tu1mnqweMcHxleVT4QlAimh4vYr/ZjaihEkEJLEmmAO+LO+lb4iyHYeC3E
+	 ReBoXbo2OcpvIB7UD6DKkXYBlXoK6/7VeUteZ88tm03cp2F4ALx49dZvn3BcdOf2NB
+	 Ztf0WCYRcYZufG0TLOC0UEbmbLb12G3VhpdkIx70FcpneOQrlNpbi5esZW+uPpqYed
+	 xOAQSbmBDoUHA==
+Date: Mon, 3 Nov 2025 21:17:39 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Robert Marko <robimarko@gmail.com>, 
+	Das Srinagesh <quic_gurus@quicinc.com>, aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, 
+	trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: soc: qcom: Add qcom,kaanapali-imem
+ compatible
+Message-ID: <5t6v2wn56v7i253pzm5ytgysma2s5szggh6y42gghnsbx6iap7@sbfvnhxsmgjs>
+References: <20251102-knp-soc-binding-v3-0-11255ec4a535@oss.qualcomm.com>
+ <20251102-knp-soc-binding-v3-1-11255ec4a535@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Marek Vasut <marek.vasut@mailbox.org>
-Subject: Re: [PATCH v2] drm/imx: dc-plane: Add more RGB swizzling options
-To: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org
-Cc: Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Lucas Stach <l.stach@pengutronix.de>, Peng Fan <peng.fan@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org
-References: <20251102162359.49263-1-marek.vasut@mailbox.org>
- <9f77105f-4754-4a39-848d-c1f92e4f47d9@nxp.com>
-Content-Language: en-US
-In-Reply-To: <9f77105f-4754-4a39-848d-c1f92e4f47d9@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: b3bbd08b7a8ac968fec
-X-MBO-RS-META: 8uaszncsrawcdjqi8nogujxfksywtpsi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251102-knp-soc-binding-v3-1-11255ec4a535@oss.qualcomm.com>
 
-On 11/4/25 4:09 AM, Liu Ying wrote:
-> On 11/3/25 00:23, Marek Vasut wrote:
->> Add additional buffer format swizzling options beyond XR24, the
->> hardware is capable of sampling other formats, fill them in.
->>
->> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
->> ---
->> Cc: Abel Vesa <abelvesa@kernel.org>
->> Cc: Conor Dooley <conor+dt@kernel.org>
->> Cc: Fabio Estevam <festevam@gmail.com>
->> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
->> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
->> Cc: Liu Ying <victor.liu@nxp.com>
->> Cc: Lucas Stach <l.stach@pengutronix.de>
->> Cc: Peng Fan <peng.fan@nxp.com>
->> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
->> Cc: Rob Herring <robh@kernel.org>
->> Cc: Shawn Guo <shawnguo@kernel.org>
->> Cc: Thomas Zimmermann <tzimmermann@suse.de>
->> Cc: devicetree@vger.kernel.org
->> Cc: dri-devel@lists.freedesktop.org
->> Cc: imx@lists.linux.dev
->> Cc: linux-arm-kernel@lists.infradead.org
->> Cc: linux-clk@vger.kernel.org
->> ---
->> V2: - Adjust commit subject
->>      - Drop the alpha formats for now, add RGB888/BGR888 to dc_plane_formats[]
->> ---
->>   drivers/gpu/drm/imx/dc/dc-fu.c    | 24 ++++++++++++++++++++++++
->>   drivers/gpu/drm/imx/dc/dc-plane.c |  6 ++++++
->>   2 files changed, 30 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/imx/dc/dc-fu.c b/drivers/gpu/drm/imx/dc/dc-fu.c
->> index 1d8f74babef8a..b4a3f8c58cbb0 100644
->> --- a/drivers/gpu/drm/imx/dc/dc-fu.c
->> +++ b/drivers/gpu/drm/imx/dc/dc-fu.c
->> @@ -65,6 +65,30 @@ static const struct dc_fu_pixel_format pixel_formats[] = {
->>   		DRM_FORMAT_XRGB8888,
->>   		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(0),
->>   		R_SHIFT(16) | G_SHIFT(8)  | B_SHIFT(0)  | A_SHIFT(0),
->> +	}, {
->> +		DRM_FORMAT_XBGR8888,
->> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(0),
->> +		R_SHIFT(0)  | G_SHIFT(8)  | B_SHIFT(16) | A_SHIFT(0),
->> +	}, {
->> +		DRM_FORMAT_RGBX8888,
->> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(0),
->> +		R_SHIFT(24) | G_SHIFT(16) | B_SHIFT(8)  | A_SHIFT(0),
->> +	}, {
->> +		DRM_FORMAT_BGRX8888,
->> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(0),
->> +		R_SHIFT(8)  | G_SHIFT(16) | B_SHIFT(24) | A_SHIFT(0),
->> +	}, {
->> +		DRM_FORMAT_RGB888,
->> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(0),
->> +		R_SHIFT(16) | G_SHIFT(8)  | B_SHIFT(0)  | A_SHIFT(0),
->> +	}, {
->> +		DRM_FORMAT_BGR888,
->> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(0),
->> +		R_SHIFT(0)  | G_SHIFT(8)  | B_SHIFT(16) | A_SHIFT(0),
->> +	}, {
->> +		DRM_FORMAT_RGB565,
->> +		R_BITS(5)   | G_BITS(6)   | B_BITS(5)   | A_BITS(0),
->> +		R_SHIFT(11) | G_SHIFT(5)  | B_SHIFT(0)  | A_SHIFT(0),
->>   	},
->>   };
->>   
->> diff --git a/drivers/gpu/drm/imx/dc/dc-plane.c b/drivers/gpu/drm/imx/dc/dc-plane.c
->> index e40d5d66c5c1f..4fd58afef16bb 100644
->> --- a/drivers/gpu/drm/imx/dc/dc-plane.c
->> +++ b/drivers/gpu/drm/imx/dc/dc-plane.c
->> @@ -33,6 +33,12 @@ do {									\
->>   
->>   static const uint32_t dc_plane_formats[] = {
->>   	DRM_FORMAT_XRGB8888,
->> +	DRM_FORMAT_XBGR8888,
->> +	DRM_FORMAT_RGBX8888,
->> +	DRM_FORMAT_BGRX8888,
->> +	DRM_FORMAT_RGB888,
->> +	DRM_FORMAT_BGR888,
+On Sun, Nov 02, 2025 at 11:25:06PM -0800, Jingyi Wang wrote:
+> Document qcom,kaanapali-imem compatible. Kaanapali IMEM is not a syscon or
+> simple-mfd, also "reboot reason" is not required on Kaanapali like some
+> other platforms. So define a common "qcom,imem" binding and fallback to it.
+> Currently there is no requirement for any specific implementation for the
+> "qcom,imem". Its child node "qcom,pil-reloc-info" has no implementation
+> dependency on IMEM.
+
+I think this could have captured the discussion leading up to this
+result a bit better, and the fact that this isn't unique to Kaanapali.
+
+But I won't insist on a rewrite.
+
 > 
-> Can you please drop the above two formats, as I said in v1 comment that it
-> would the driver a lot more complicated when prefetch engines are added?
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
 
-Can you elaborate on that ? RGB888 is not packed and should be similar 
-to RGBX8888, what kind of problem with prefetch would this cause ?
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+
+Regards,
+Bjorn
+
+> ---
+>  .../devicetree/bindings/sram/qcom,imem.yaml        | 77 ++++++++++++----------
+>  1 file changed, 41 insertions(+), 36 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+> index 6a627c57ae2f..09278b21acf4 100644
+> --- a/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+> +++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+> @@ -15,42 +15,47 @@ description:
+>  
+>  properties:
+>    compatible:
+> -    items:
+> -      - enum:
+> -          - qcom,apq8064-imem
+> -          - qcom,ipq5424-imem
+> -          - qcom,msm8226-imem
+> -          - qcom,msm8974-imem
+> -          - qcom,msm8976-imem
+> -          - qcom,qcs404-imem
+> -          - qcom,qcs615-imem
+> -          - qcom,qcs8300-imem
+> -          - qcom,qdu1000-imem
+> -          - qcom,sa8775p-imem
+> -          - qcom,sar2130p-imem
+> -          - qcom,sc7180-imem
+> -          - qcom,sc7280-imem
+> -          - qcom,sc8280xp-imem
+> -          - qcom,sdm630-imem
+> -          - qcom,sdm845-imem
+> -          - qcom,sdx55-imem
+> -          - qcom,sdx65-imem
+> -          - qcom,sdx75-imem
+> -          - qcom,sm6115-imem
+> -          - qcom,sm6125-imem
+> -          - qcom,sm6350-imem
+> -          - qcom,sm6375-imem
+> -          - qcom,sm7150-imem
+> -          - qcom,sm8150-imem
+> -          - qcom,sm8250-imem
+> -          - qcom,sm8350-imem
+> -          - qcom,sm8450-imem
+> -          - qcom,sm8550-imem
+> -          - qcom,sm8650-imem
+> -          - qcom,sm8750-imem
+> -          - qcom,x1e80100-imem
+> -      - const: syscon
+> -      - const: simple-mfd
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - qcom,apq8064-imem
+> +              - qcom,ipq5424-imem
+> +              - qcom,msm8226-imem
+> +              - qcom,msm8974-imem
+> +              - qcom,msm8976-imem
+> +              - qcom,qcs404-imem
+> +              - qcom,qcs615-imem
+> +              - qcom,qcs8300-imem
+> +              - qcom,qdu1000-imem
+> +              - qcom,sa8775p-imem
+> +              - qcom,sar2130p-imem
+> +              - qcom,sc7180-imem
+> +              - qcom,sc7280-imem
+> +              - qcom,sc8280xp-imem
+> +              - qcom,sdm630-imem
+> +              - qcom,sdm845-imem
+> +              - qcom,sdx55-imem
+> +              - qcom,sdx65-imem
+> +              - qcom,sdx75-imem
+> +              - qcom,sm6115-imem
+> +              - qcom,sm6125-imem
+> +              - qcom,sm6350-imem
+> +              - qcom,sm6375-imem
+> +              - qcom,sm7150-imem
+> +              - qcom,sm8150-imem
+> +              - qcom,sm8250-imem
+> +              - qcom,sm8350-imem
+> +              - qcom,sm8450-imem
+> +              - qcom,sm8550-imem
+> +              - qcom,sm8650-imem
+> +              - qcom,sm8750-imem
+> +              - qcom,x1e80100-imem
+> +          - const: syscon
+> +          - const: simple-mfd
+> +      - items:
+> +          - enum:
+> +              - qcom,kaanapali-imem
+> +          - const: qcom,imem
+>  
+>    reg:
+>      maxItems: 1
+> 
+> -- 
+> 2.25.1
+> 
 
