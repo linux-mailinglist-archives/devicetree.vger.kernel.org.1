@@ -1,161 +1,139 @@
-Return-Path: <devicetree+bounces-234776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89E21C30953
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 11:48:25 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28525C309BF
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 11:54:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D9D314E7584
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 10:47:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6824F4F7A46
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 10:50:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C5382D77E2;
-	Tue,  4 Nov 2025 10:47:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 285CD2D8DA4;
+	Tue,  4 Nov 2025 10:49:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Lefwm9rx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o+qO87oL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f49.google.com (mail-yx1-f49.google.com [74.125.224.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A686923A9B3;
-	Tue,  4 Nov 2025 10:47:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FC112D9481
+	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 10:49:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762253229; cv=none; b=SMQxF6emDaJaAfEx+zozdqooTCkrxEFVLRfFprfKrsw1w0FrvcVW3XCbwsAVKEDLKAwPtxUMA5I8zUGoW/6FkuiquwMiIFW9NijdDmpgWBzGTrusoUmMIN8khmG0aWjtD4usNO857zTR5p6gPnxX0cFbIUhdKhqzBMSmda8lr2c=
+	t=1762253382; cv=none; b=MCYwDJsxsNZNz8V4dJGyk+fNCAnNnxyZ3U2T/ZnkIcSGgkGl9Eg07q0UK8soKazav7xZ2mIvBsf41YzlVc4AUNhhqf/NWAYbkWxClbVpx7Ufd0U6Xvs6bSIw9UOP3RZxj5hGPOE7ycPuisJwK2MRJuD5NWiFzMAfMS1bqSawC48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762253229; c=relaxed/simple;
-	bh=Kharzk8Yq5v+lRMrbK1AuFwTe0p9vJlwG/MZ3zvjizc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qokcoINmIu8O5nQUqOVB9IowwmdUDmgNdwUW1ZbS4DFVzq0IWAdQOcLNTKOqC2a2dLISKPfs2Qb4vJdoOGa+rvH8jkHRWa2QPY6nVRz9LtB6s+m0CqIKG+XWwJEO0cnGeEl98Tfiow7M7W5tp+S2A6Q+3UeUs+943G+ID6SaUR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Lefwm9rx; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762253228; x=1793789228;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Kharzk8Yq5v+lRMrbK1AuFwTe0p9vJlwG/MZ3zvjizc=;
-  b=Lefwm9rxKi8T+Undo5C+Di6bVFEeFeBsboMRnk6W+qOpHQFaXAcfe+Cf
-   dPAGZvogUvSO1LcmXZVb9SShLArgG7BSLAUBItvZfTuak1uCHGFs7lxgt
-   I97mZCBvny5O+uALxEkc9VxL3Y0AF5UYIx2yDn/ftCY7FwUd8Ufs5FeOh
-   xj0lnq9XZlgPSSX01CHvrvRcjT9/Jmw2pj+D2YPvRKXjtmBdUtU8PVpYO
-   JF0IJ7Mn0i36bZ6KQuQ3IQmBNbWFNtGq5+3FOPWOoloKAoWuiGzlWrrAB
-   3jEwGG13aba/nm4PLdPVdfor9OMP26Dg81jPcCk8HWmDfQpos/1FsjPVT
-   Q==;
-X-CSE-ConnectionGUID: B9QZdu93RlWVXmfW+uyJRg==
-X-CSE-MsgGUID: D6qZlkRFSZKQio5Y6VNFyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="75694739"
-X-IronPort-AV: E=Sophos;i="6.19,278,1754982000"; 
-   d="scan'208";a="75694739"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2025 02:47:07 -0800
-X-CSE-ConnectionGUID: AjkO+0FaTHOXLZw+Eu21rw==
-X-CSE-MsgGUID: ugC9TNPSSpe7wM/pKh3CmA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,278,1754982000"; 
-   d="scan'208";a="191434864"
-Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
-  by fmviesa005.fm.intel.com with ESMTP; 04 Nov 2025 02:47:02 -0800
-Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vGEZ2-000RI8-1r;
-	Tue, 04 Nov 2025 10:47:00 +0000
-Date: Tue, 4 Nov 2025 18:46:03 +0800
-From: kernel test robot <lkp@intel.com>
-To: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>, robin.murphy@arm.com,
-	will@kernel.org, joro@8bytes.org, robh@kernel.org,
-	dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com,
-	bjorn.andersson@oss.qualcomm.com, bod@kernel.org,
-	conor+dt@kernel.org, krzk+dt@kernel.org, saravanak@google.com,
-	prakash.gupta@oss.qualcomm.com, vikash.garodia@oss.qualcomm.com
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
-Subject: Re: [PATCH 5/6] of: add infra to parse iommu-map per IOMMU cell count
-Message-ID: <202511041853.IxYgvWlc-lkp@intel.com>
-References: <74d4ddf90c0fb485fda1feec5116dc38e5fd23cf.1762235099.git.charan.kalla@oss.qualcomm.com>
+	s=arc-20240116; t=1762253382; c=relaxed/simple;
+	bh=ak9HRSabsPSc2sAYhp/DgmsudFPRzOz/MW27WLeWYw4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gSPKj54bDNZ9Jyh8C/ACSdIqSLxbGUtOc0J45Qwm332k7C3uE6nzUdmc+oLU+BB4at0A/dkFRMvwY+WSpArLKvjPW6d3hP2FjfZBI2AH1+vuSvpjfyYJ0o5ghiD5HDm4Vl8F/RHmasFrpCFRreDhP8Tmd0pT0066clNakNSwX7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o+qO87oL; arc=none smtp.client-ip=74.125.224.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yx1-f49.google.com with SMTP id 956f58d0204a3-63fc8c337f2so558788d50.0
+        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 02:49:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1762253379; x=1762858179; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ak9HRSabsPSc2sAYhp/DgmsudFPRzOz/MW27WLeWYw4=;
+        b=o+qO87oLjqt1HGXCIT4G0ktzVOXrDixA1IfDAkhH8tKdcYu8J/FZgETOWz7u86zZcf
+         eey/jBIFshN5cltJ8pU4Gddp0f3/yLDIvZJNFKWWCh1ryqBiMtud0/QEuKwNAzv/lmaD
+         roVZD/SMxZgWvHZHk5sGceJG0dMvtXwWeZu1DZ0+P/WNyP4azho7/BnyNwYxlQIDs3f1
+         YYXLe2xWD+g2Mvd33nlfAkZEu8qhpOUw6akene0TqCxEfmAjMq8X1YZevYK5atHeFIR6
+         AX98O9A6FOlGDbCbiLCaxFwngFaxQfOHNZhWcbFT0SO9FVlJURbAONLbtj9bMJCdkbg+
+         gZqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762253379; x=1762858179;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ak9HRSabsPSc2sAYhp/DgmsudFPRzOz/MW27WLeWYw4=;
+        b=jsoR1FDeenM0+l3asE/R0CwAFXk48etUs2Zd2DrzgQm3iKU1IdK+W/sEs/KAjm+Pb2
+         b53k82LFpcY79WiXezk1N44BFW4m8Xn6F6iIf8hv10STxKaP2+eda8ZaB+z6+AoOCTxi
+         x7ZWZQuvs9zimMYa71zIf4xR00CuoPqQI5bfHWUheILjxydJWZfIQvAnj/vDjrDqY2Nf
+         x9/Ab3CCstXz2Wg3NkpCW93rH9Dok7di4NAwdC0GmSnna8rpVidQq1nft7xqHurl3lIc
+         bA1D6ZQqnLJVRhqvBzxVaGRHOar0P8Vm68fYe3Eayncu+KJ2BNszlUIs54cJ6F5fj4Io
+         qUyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUHFi5Nm5SuQB/cJ3G5Wnbsp5ZzdzROkqCbgW+Pt7LjXMloD1Umr4zOmylVIdGIsR4fUHWu29NlHYAI@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFaONIYXPVA3elCGfHGbmzl6NBEf/ErSLGqNc2gFbSKqlKMo4a
+	9L+mmrm35dIcAZwwQWdwovkhaN1CDe9THguwDm3y0Mz+BSbAcPFsOtHOqMtcTNlEF8rgbcxWUkh
+	qDi7YTmfFtwWHILFuZd7TTdndRDBweSwk2n+cCckKNg==
+X-Gm-Gg: ASbGncswexnToNpA1wLrGSRgzKDzoa59Buyo4TgdYHiWOWWqr2L00FdOkNEefJ55EHA
+	0X9EKNnxPxbHp80QctWd4EvfQE79EsQruvgduBTn2o+QRBzeMSVg8j28GP6d5Yh45sy8KB0pmFO
+	GZTUypvq+J5Yq8PXGCL0qkXicduqzpmlmmMMjmTsKDdE/r8gjQCHlEhDoBcuFaM1PV0rx45ZVqt
+	KLLw9yVSexsWsFiaYhmlLKQYTxhwzGZDHJ+lgo8Q+pRyPjrzwNbRQkEQnj2
+X-Google-Smtp-Source: AGHT+IFkRk12Uz8wpzuhpMIHhTXXbZyl3DIW8r7FnluskO/7yYtfMjAEvExmUGloPG75YUmDMmv3zjusyYiPuTnpWEU=
+X-Received: by 2002:a05:690c:6ac8:b0:786:68da:3f4b with SMTP id
+ 00721157ae682-78668da4023mr149747947b3.31.1762253379370; Tue, 04 Nov 2025
+ 02:49:39 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <74d4ddf90c0fb485fda1feec5116dc38e5fd23cf.1762235099.git.charan.kalla@oss.qualcomm.com>
+References: <20251028061345.3885632-1-gary.yang@cixtech.com>
+ <CACRpkdYdQa4=4JvBWJcRv0X_A0PnkQpZQQ8NTPzF0ntdt9qX=A@mail.gmail.com> <PUZPR06MB5887C2D161EA5CB13A41462EEFFAA@PUZPR06MB5887.apcprd06.prod.outlook.com>
+In-Reply-To: <PUZPR06MB5887C2D161EA5CB13A41462EEFFAA@PUZPR06MB5887.apcprd06.prod.outlook.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 4 Nov 2025 11:49:20 +0100
+X-Gm-Features: AWmQ_bk_lIuQg0K_Adlxvvq0mVAjsPYqUJ9ljmVmC85MrC3marOjlEWPUkD0cB0
+Message-ID: <CACRpkdZtQkbGnQtb3DZf1XOVpbZgnBbqZD3kxEuCCAS4Pm3AGA@mail.gmail.com>
+Subject: Re: [PATCH] Pinctrl: core: export pinctrl_provide_dummies() to fix
+ build error
+To: Gary Yang <gary.yang@cixtech.com>
+Cc: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	cix-kernel-upstream <cix-kernel-upstream@cixtech.com>, 
+	"sfr@canb.auug.org.au" <sfr@canb.auug.org.au>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Charan,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.18-rc4 next-20251103]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Charan-Teja-Kalla/of-create-a-wrapper-for-of_map_id/20251104-170223
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/74d4ddf90c0fb485fda1feec5116dc38e5fd23cf.1762235099.git.charan.kalla%40oss.qualcomm.com
-patch subject: [PATCH 5/6] of: add infra to parse iommu-map per IOMMU cell count
-config: loongarch-allnoconfig (https://download.01.org/0day-ci/archive/20251104/202511041853.IxYgvWlc-lkp@intel.com/config)
-compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project d2625a438020ad35330cda29c3def102c1687b1b)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251104/202511041853.IxYgvWlc-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511041853.IxYgvWlc-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/of/base.c:2127:6: warning: variable 'legacy_iommu_cells' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-    2127 |         if (map_len % 4 != 0)
-         |             ^~~~~~~~~~~~~~~~
-   drivers/of/base.c:2130:9: note: uninitialized use occurs here
-    2130 |         return legacy_iommu_cells ? : of_iommu_map_id_actual_cell_count(map, map_len, cells);
-         |                ^~~~~~~~~~~~~~~~~~
-   drivers/of/base.c:2127:2: note: remove the 'if' if its condition is always true
-    2127 |         if (map_len % 4 != 0)
-         |         ^~~~~~~~~~~~~~~~~~~~~
-    2128 |                 legacy_iommu_cells = of_iommu_map_id_legacy_cell_count(map, map_len);
-   drivers/of/base.c:2125:24: note: initialize the variable 'legacy_iommu_cells' to silence this warning
-    2125 |         u32 legacy_iommu_cells;
-         |                               ^
-         |                                = 0
-   1 warning generated.
+On Wed, Oct 29, 2025 at 4:35=E2=80=AFAM Gary Yang <gary.yang@cixtech.com> w=
+rote:
 
 
-vim +2127 drivers/of/base.c
+> Generally a device may has two states: default state and sleep state. The=
+y are included in DTS file.
+> So DTS has two nodes, one is for default state, and the other is for slee=
+p state. When the device works, select
+> default state, but select sleep state when the system enters str.
 
-c74d6f4acf99ef Charan Teja Kalla 2025-11-04  2110  
-c74d6f4acf99ef Charan Teja Kalla 2025-11-04  2111  /**
-c74d6f4acf99ef Charan Teja Kalla 2025-11-04  2112   * of_iommu_map_id_cell_count - Determine the cell count for iommu-map parsing.
-c74d6f4acf99ef Charan Teja Kalla 2025-11-04  2113   *
-c74d6f4acf99ef Charan Teja Kalla 2025-11-04  2114   * @map: pointer to the iommu-map property that needs to be translated.
-c74d6f4acf99ef Charan Teja Kalla 2025-11-04  2115   * @map_len: length of @map in bytes.
-c74d6f4acf99ef Charan Teja Kalla 2025-11-04  2116   *
-c74d6f4acf99ef Charan Teja Kalla 2025-11-04  2117   * Use #iommu-cells property while parsing iommu-map. Detect and use legacy
-c74d6f4acf99ef Charan Teja Kalla 2025-11-04  2118   * case where iommu-map is parsed as if cells = 1.
-c74d6f4acf99ef Charan Teja Kalla 2025-11-04  2119   *
-c74d6f4acf99ef Charan Teja Kalla 2025-11-04  2120   * Return: number of cells that the caller should be considered while parsing
-c74d6f4acf99ef Charan Teja Kalla 2025-11-04  2121   * the @map. It is > 0 for success, 0 for failure.
-c74d6f4acf99ef Charan Teja Kalla 2025-11-04  2122   */
-5288ad2aeeeb41 Charan Teja Kalla 2025-11-04  2123  static int of_iommu_map_id_cell_count(const __be32 *map, int map_len, u32 cells)
-c74d6f4acf99ef Charan Teja Kalla 2025-11-04  2124  {
-5288ad2aeeeb41 Charan Teja Kalla 2025-11-04  2125  	u32 legacy_iommu_cells;
-5288ad2aeeeb41 Charan Teja Kalla 2025-11-04  2126  
-c74d6f4acf99ef Charan Teja Kalla 2025-11-04 @2127  	if (map_len % 4 != 0)
-5288ad2aeeeb41 Charan Teja Kalla 2025-11-04  2128  		legacy_iommu_cells = of_iommu_map_id_legacy_cell_count(map, map_len);
-c74d6f4acf99ef Charan Teja Kalla 2025-11-04  2129  
-5288ad2aeeeb41 Charan Teja Kalla 2025-11-04  2130  	return legacy_iommu_cells ? : of_iommu_map_id_actual_cell_count(map, map_len, cells);
-c74d6f4acf99ef Charan Teja Kalla 2025-11-04  2131  }
-c74d6f4acf99ef Charan Teja Kalla 2025-11-04  2132  
+What is "str"? stand-by-retention? (Sorry for my ignorance.)
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> There is two pinctrl controllers on CIX sky1. One is used under S0 state,=
+ and the other is used under S0 and S5 state.
+> When enter str, the system enter S3 state and S0 domain power off. So the=
+ pinctrl controller under S0 state is also off.
+> The settings for sleep state are loft and make no sense.
+>
+> But if we remove these settings, the pinctrl can't find sleep state and c=
+an't change state when system enter str.
+> When resume pinctrl, pinctrl core may think state is still the same as be=
+fore. So the settings can't be applied
+> as expected.
+
+Aha!
+
+> To avoid write these unused settings in DTS file, we have to use pinctrl_=
+provide_dummies() interface.
+> Do you agree our schemes? What's your opinion? Please give us some sugges=
+tions. Thanks
+
+I think it's fine to use the pinctrl dummies, I will draft a patch and
+send so you can ACK it.
+
+It's fun to get the whole picture of how this works on CIX silicon,
+it's a new way of doing
+things with two different pin controllers so I haven't seen this before!
+
+Yours,
+Linus Walleij
 
