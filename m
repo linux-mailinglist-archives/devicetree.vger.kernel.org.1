@@ -1,131 +1,190 @@
-Return-Path: <devicetree+bounces-234785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EFEFC30B62
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 12:23:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E977C30CDF
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 12:44:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3CC0A34DD88
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 11:23:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F14661889C04
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 11:44:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F77C2E62DC;
-	Tue,  4 Nov 2025 11:23:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 497272EA14E;
+	Tue,  4 Nov 2025 11:44:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EgYpEGXy"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dAFmWsLU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E69AF2C0F7E;
-	Tue,  4 Nov 2025 11:23:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 939EB2E8B97;
+	Tue,  4 Nov 2025 11:44:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762255436; cv=none; b=hqISX/MCO+5oig97EFenJIzOnM+cl4T+50yQwy18cn4IewTJR72HQmzpLf4XQmptZcm+SYKzUIxjH7tDfNGWyK9PtidUG975luXBsuLt0KXTCi7ohxUYn/6jPeCoVnLR61EYh2u/5OAOoE2clDMtrBioFu+BkD2Gcko1nm8DhXE=
+	t=1762256663; cv=none; b=LFPu7hUs2vaTECfQHTG/klgEPNFcJ1aoe9dIUR7oodEDOZFdS41JFByyNMd9Rgvl8CRL85Jr4TXmUIL5lc6bjX4YrN47BH7Utt33Bsxmdx+U0iPumVvfM+rlCSaG0iHAmVT7eKQw+FeNL9w/K2oM4aU6cCtGRhi6gys8+rY5kx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762255436; c=relaxed/simple;
-	bh=HhTVtV4rEohbmJ8Omo+NT88w6Is5yQozSY2c2wbVNKI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HQNSDkN6SCGkpmBEwpbMx3/nLvLVllgXs1u272t+4PjALDK/3f4KRJnyNfvcQv9OegQs0/XDLgeYrFcBKUI95Jp3XZ0sEHBVtl1ZOuF0gOEW7mtUtJT3pWPIpO+BmimxMOg3LYirJrxhg7stn0qLL4f/O/SPQ8In30Zf14Bg+4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EgYpEGXy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A87AC116B1;
-	Tue,  4 Nov 2025 11:23:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762255435;
-	bh=HhTVtV4rEohbmJ8Omo+NT88w6Is5yQozSY2c2wbVNKI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EgYpEGXy/xHY4SfNKGNUN/yedaOO2FcuYbdiyefrF+gdJsKs9bne+OU33pf4BHRoe
-	 +jG28RiH52Wt9vASp2n4hzFiMstmxLRByY8Oy+SAubgdEZelFeXtAyr4i4xztucwO3
-	 VrJ5V0Prd62IlY0RKv5T3viDxGenzK9o7nn9/v3cR6mbbvX72vM97BWSPGKvUtH8M4
-	 NZxwu+1SNscjf4XvnhtrIoWYZzGXc3LqhpIiUEOqAJUtoS3TJfi2f0VKDmuT3oTjuZ
-	 7YwQHAKxa+iX4uUoTC1DsdKIDqxI7UyHtwWZVbKXOGYS+Cqqg3guozcRjF04j2dtR2
-	 nlnmIfWtpubew==
-Date: Tue, 4 Nov 2025 12:23:52 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Martyn Welch <martyn.welch@collabora.com>, kernel@collabora.com, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>, linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] pwm: rz-mtu3: Share parent device node to MTU3 PWM
-Message-ID: <sauwnl3nyyzgyop2qskjrczjgoog4jnjkkhwjf4ofwrthatvzk@2a5rb3vsf75z>
-References: <20251009162445.701589-1-martyn.welch@collabora.com>
- <7uuuqhmkmmucmeeo5fybzld62rybyq6fjxwqqnxqr6eufis2ze@xfc2owdzfcs5>
- <b041fde6-afea-4233-b00b-4e8cbb294c4a@kernel.org>
+	s=arc-20240116; t=1762256663; c=relaxed/simple;
+	bh=4rZsjNC6UlUC0yg8wsAE8aFzjI+3CFMp/Ph8ugfw4aU=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=GwLaWx2jQ5fF2rc317eIM6U4zh4Gzm73b+pNWTmWcxsgL+XFzzgxaw5diBwQzzGLZGqLZZVlxJLW7mXkcOTDe1V6dBq9N/L+w+vVZbpEsn+MHxsTujp3tcF5uyRonT8/waRS6CyyI+P+wBu8RfCHk4VbeW5mhLKFhn8yAB92sTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=qti.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dAFmWsLU; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=qti.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A48giGt1655300;
+	Tue, 4 Nov 2025 11:43:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:date:from:message-id:subject:to; s=qcppdkim1; bh=5/S4v6r8YL5E
+	hQw/DbiTYL7kr5Q9P8FFX0xAbok2OBM=; b=dAFmWsLUqjUQeZgXivMyWc7EY5fi
+	uuPFelNEH6uvwC2+ehBlFVC3huOazFC5BXsP9OT3xN82QF808VdfaQ7J1tnUmGrf
+	oiEXUGbCwGg6sZt7wESeaqlj+B+Xze/8xmAQ3hheh9iR/6mZVR995NGMVNULMfYx
+	vioq8t+Gm7EhbjeL7TCV7QI9hrbDxLq994mqWUDKxMTh25L9t3Q3h1FpO8d4IJM0
+	ea0kJvETOXG7YgpYvadDgOexxZB0WXfWwCQhBZuJmq86/8bsBuwLzEh5DoX71lxj
+	8KaE9whJzb55njAEOdFl9R1zTKfm9ld9m6LR8+JTtbyJ0w+x05zbFQ62Iw==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a70f1jsem-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 04 Nov 2025 11:43:35 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 5A4BhWpd013471;
+	Tue, 4 Nov 2025 11:43:32 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4a5b9mg9yy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Tue, 04 Nov 2025 11:43:32 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5A4BhW28013456;
+	Tue, 4 Nov 2025 11:43:32 GMT
+Received: from hu-maiyas-hyd.qualcomm.com (hu-riteshk-hyd.qualcomm.com [10.147.241.247])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 5A4BhVXi013451;
+	Tue, 04 Nov 2025 11:43:32 +0000
+Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 2314801)
+	id EF65F5001D5; Tue,  4 Nov 2025 17:13:30 +0530 (+0530)
+From: Ritesh Kumar <riteshk@qti.qualcomm.com>
+To: robin.clark@oss.qualcomm.com, lumag@kernel.org, abhinav.kumar@linux.dev,
+        jessica.zhang@oss.qualcomm.com, sean@poorly.run,
+        marijn.suijten@somainline.org, maarten.lankhorst@linux.intel.com,
+        mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+        simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, quic_mahap@quicinc.com, andersson@kernel.org,
+        konradybcio@kernel.org, mani@kernel.org,
+        James.Bottomley@HansenPartnership.com, martin.petersen@oracle.com,
+        vkoul@kernel.org, kishon@kernel.org,
+        cros-qcom-dts-watchers@chromium.org
+Cc: Ritesh Kumar <riteshk@qti.qualcomm.com>, linux-phy@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
+        quic_vproddut@quicinc.com
+Subject: [PATCH v3 0/2] Add edp reference clock for lemans
+Date: Tue,  4 Nov 2025 17:13:25 +0530
+Message-Id: <20251104114327.27842-1-riteshk@qti.qualcomm.com>
+X-Mailer: git-send-email 2.17.1
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=JLQ2csKb c=1 sm=1 tr=0 ts=6909e6e8 cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8
+ a=COk6AnOGAAAA:8 a=VVwWfd7dDLNrxvkr-osA:9 a=cvBusfyB2V15izCimMoJ:22
+ a=TjNXssC_j7lpFel5tvFf:22 a=nl4s5V0KI7Kw-pW0DWrs:22 a=pHzHmUro8NiASowvMSCR:22
+ a=xoEH_sTeL_Rfw54TyV31:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA0MDA5NiBTYWx0ZWRfX12/8YyVIsgPX
+ uFQT35IZo9zXIs3YD8WodGSgRqhxWPaKIVUaSdobhYh8dx7pzy9v4EQALNpkz1DliMiI+4NxYKR
+ jjXWzl6Du5lEz6meI9/dGIn4o2rycAXN+MPa8IevMhtMhoKFutoNsIFTVfP0WUsphpREq88VqSL
+ qy27ZKK+hfw9f+cc9yjKF9BPrKcnRM9H24piv29QHER+wQ7mXmzjqkNMWQpCSxUXJ40ZwJwaLVl
+ YD1GcjyHWXM/nmL+UhmAb3PiN7LJbpt8Yv+axMdGDQ19+KR9Arxe0ElrTN1TFaH71rC8cC0fy7r
+ NEKmoRmdACXYDJ7pkGhbUxdQz9tvBPE2SxSqoojV//J0uvapYb5RWReWr2LCn1lV56vp0ljOZPv
+ Di6TqtH6rjqdyZDQEcH1cgBWiIXceA==
+X-Proofpoint-ORIG-GUID: XuAHXMLLp2ATSv8CImM8lPt7CqiaUJpW
+X-Proofpoint-GUID: XuAHXMLLp2ATSv8CImM8lPt7CqiaUJpW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-03_06,2025-11-03_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 bulkscore=0 phishscore=0 adultscore=0 malwarescore=0
+ clxscore=1011 priorityscore=1501 impostorscore=0 spamscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511040096
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="qlmq2cdaierwkwwb"
-Content-Disposition: inline
-In-Reply-To: <b041fde6-afea-4233-b00b-4e8cbb294c4a@kernel.org>
 
+On lemans chipset, edp reference clock is being voted by ufs mem phy
+(ufs_mem_phy: phy@1d87000). But after commit 77d2fa54a945
+("scsi: ufs: qcom : Refactor phy_power_on/off calls") edp reference
+clock is getting turned off, leading to below phy poweron failure on
+lemans edp phy.
 
---qlmq2cdaierwkwwb
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH] pwm: rz-mtu3: Share parent device node to MTU3 PWM
-MIME-Version: 1.0
+[   19.830220] phy phy-aec2a00.phy.10: phy poweron failed --> -110
+[   19.842112] mdss_0_disp_cc_mdss_dptx0_link_clk status stuck at 'off'
+[   19.842131] WARNING: CPU: 2 PID: 371 at drivers/clk/qcom/clk-branch.c:87 clk_branch_toggle+0x174/0x18c
+[   19.984356] Hardware name: Qualcomm QCS9100 Ride (DT)
+[   19.989548] pstate: 604000c5 (nZCv daIF +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[   19.996697] pc : clk_branch_toggle+0x174/0x18c
+[   20.001267] lr : clk_branch_toggle+0x174/0x18c
+[   20.005833] sp : ffff8000863ebbc0
+[   20.009251] x29: ffff8000863ebbd0 x28: 0000000000000000 x27: 0000000000000000
+[   20.016579] x26: 0000000000000000 x25: 0000000000000000 x24: 0000000000000001
+[   20.023915] x23: ffff0000c53de980 x22: 0000000000000001 x21: ffffb4b57fd8d710
+[   20.031245] x20: ffffb4b5bb238b88 x19: 0000000000000000 x18: ffffffffffff7198
+[   20.038584] x17: 0000000000000014 x16: ffffb4b5bb1e2330 x15: 0000000000000048
+[   20.045926] x14: 0000000000000000 x13: ffffb4b5bd386a48 x12: 0000000000000dfb
+[   20.053263] x11: 00000000000004a9 x10: ffffb4b5bd3e5a20 x9 : ffffb4b5bd386a48
+[   20.060600] x8 : 00000000ffffefff x7 : ffffb4b5bd3dea48 x6 : 00000000000004a9
+[   20.067934] x5 : ffff000eb7d38408 x4 : 40000000fffff4a9 x3 : ffff4b58fb2b7000
+[   20.075269] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff000ec4fc3480
+[   20.082601] Call trace:
+[   20.085127]  clk_branch_toggle+0x174/0x18c (P)
+[   20.089705]  clk_branch2_enable+0x1c/0x28
+[   20.093829]  clk_core_enable+0x6c/0xac
+[   20.097687]  clk_enable+0x2c/0x4c
+[   20.101104]  clk_bulk_enable+0x4c/0xd8
+[   20.104964]  msm_dp_ctrl_enable_mainlink_clocks+0x184/0x24c [msm]
+[   20.111294]  msm_dp_ctrl_on_link+0xb0/0x400 [msm]
+[   20.116178]  msm_dp_display_process_hpd_high+0x110/0x190 [msm]
+[   20.122209]  msm_dp_hpd_plug_handle.isra.0+0xac/0x1c4 [msm]
+[   20.127983]  hpd_event_thread+0x320/0x5cc [msm]
+[   20.132680]  kthread+0x12c/0x204
+[   20.136011]  ret_from_fork+0x10/0x20
+[   20.139699] ---[ end trace 0000000000000000 ]---
+[   20.144489] Failed to enable clk 'ctrl_link': -16
+[   20.149340] [drm:msm_dp_ctrl_enable_mainlink_clocks [msm]] *ERROR* Unable to start link clocks. ret=-16
 
-Hello,
+This series adds support for voting the clock from lemans edp phy driver.
 
-On Tue, Oct 21, 2025 at 12:47:52PM +0200, Krzysztof Kozlowski wrote:
-> On 21/10/2025 12:19, Uwe Kleine-K=F6nig wrote:
-> >> diff --git a/drivers/pwm/pwm-rz-mtu3.c b/drivers/pwm/pwm-rz-mtu3.c
-> >> index ab39bd37edafc..5825875fa0128 100644
-> >> --- a/drivers/pwm/pwm-rz-mtu3.c
-> >> +++ b/drivers/pwm/pwm-rz-mtu3.c
-> >> @@ -523,6 +523,12 @@ static int rz_mtu3_pwm_probe(struct platform_devi=
-ce *pdev)
-> >>  	if (ret < 0)
-> >>  		return ret;
-> >> =20
-> >> +	/*
-> >> +	 * There is only one DT node, get it from the parent MFD device, so
-> >> +	 * that the PWM channels can be referenced via phandles
-> >> +	 */
-> >> +	dev->of_node =3D dev->parent->of_node;
-> >> +
-> >=20
-> > I (very quickly) talked to Krzysztof about this. He said that
-> > of_node_get() should probably be used here. I wonder if
-> > device_add_of_node() is the right function to use (which uses
-> > of_node_get(), also handles fwnode and implements some safeguards).
->=20
->=20
-> I am not so sure about device_add_of_node(). You do not need to
-> get_device(), because reference is already hold. Although setting
-> dev->fwnode might make sense... But, not that important I think, works
-> with me.
+---
+This series is dependent on below series:
+https://lore.kernel.org/all/20251030-phy-qcom-edp-add-missing-refclk-v5-0-fce8c76f855a@linaro.org/
 
-Note that device_add_of_node() only holds the get_device() reference
-temporarily as it calls put_device() before returning. So that's only to
-assert that the device doesn't disappear in-flight. That "locking" might
-not be needed here, but it also doesn't do any harm (apart from a minor
-runtime overhead).
+Change in v3:
+- Rebase to latest linux-next and latest version 5 of dependency.
+- Squash both DT binding patches together. [Dmitry, Rob]
+- Add dt-binding change in sorted order. [Dmitry]
+- Update commit message of bindings patch to give more detail of the problem. [Bjorn]
+- Update commit message of devicetree patch and add Fixes tag. [Dmitry]
+- Link to v1: https://lore.kernel.org/all/20251013104806.6599-1-quic_riteshk@quicinc.com/
 
-Best regards
-Uwe
+Change in v2:
+- Rebase on top of dependent series. [Krzysztof]
+- Remove duplicate patches and make changes limited to lemans.
+- Link to v1: https://lore.kernel.org/all/20251009071127.26026-1-quic_riteshk@quicinc.com/
 
---qlmq2cdaierwkwwb
-Content-Type: application/pgp-signature; name="signature.asc"
+---
+Ritesh Kumar (3):
+  dt-bindings: phy: qcom-edp: Add missing clock for sa8775p
+  dt-bindings: display/msm: qcom,sa8775p-mdss: update edp phy example
+  arm64: dts: qcom: lemans: Add edp reference clock for edp phy
 
------BEGIN PGP SIGNATURE-----
+ .../bindings/display/msm/qcom,sa8775p-mdss.yaml      |  6 ++++--
+ .../devicetree/bindings/phy/qcom,edp-phy.yaml        |  1 +
+ arch/arm64/boot/dts/qcom/lemans.dtsi                 | 12 ++++++++----
+ 3 files changed, 13 insertions(+), 6 deletions(-)
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmkJ4kUACgkQj4D7WH0S
-/k6VVAgAhshI0+vwCsZuCJkq7CmD+INgvTz5OUo9fDsQeK4PqZpbbOh6Evv7K2u+
-L4ZOQ95qNb7AMkm9ePyHD170SyrogcXF1/sZYk/dK0Exs3sjuCpzTdBbKdEeRXQk
-tSJTIxV5vPwxoMzKgVLqVqK78rKfdRPvd440AqJsqz5dZ9adhcVZYU3k2lRKK58g
-bab779DEBXvwkD1F2KolI1aVHvNW4fto/SeFGsLS6NhO44knmTMp4IRS6vpK55Q3
-vMwkZi9DjEUy0TZo+Zfuj0Woeif1WpqQnw15nl7cpXcFHzVs3aq2jWYrtf3YgP0F
-/TKqoDZosIff4g9Q4on28r3C83Clxw==
-=7UKB
------END PGP SIGNATURE-----
+-- 
+2.17.1
 
---qlmq2cdaierwkwwb--
 
