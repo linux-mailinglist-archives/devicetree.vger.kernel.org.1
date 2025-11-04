@@ -1,130 +1,139 @@
-Return-Path: <devicetree+bounces-234890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43B64C31D57
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 16:28:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 691EBC31D99
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 16:33:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A633F189BBCC
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 15:28:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1C833A9808
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 15:32:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C19226056A;
-	Tue,  4 Nov 2025 15:27:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73B3B26F29B;
+	Tue,  4 Nov 2025 15:32:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MZ0uJvDe"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aUBGzRZo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1C752566D3;
-	Tue,  4 Nov 2025 15:27:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7B5B246BD2;
+	Tue,  4 Nov 2025 15:32:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762270074; cv=none; b=ZPGfgtxHDFqCF8RSxvRD3PhCzFfuhZ1p4yD1BPVRUpr9QhaCYrNOhHr3cJ+X0sYrxcEBDobRXpPRq+bkl0nfhfrhlB16zLhHkysW81y7ydPZhN3ASePRPJjmggfP2RYXQi1fPo7sPxjy5fy856Lt6bC4BsKciE7CcVJCT//FBaU=
+	t=1762270349; cv=none; b=s6G1CLh9qF36LE1c2EcZ8Np3yVlQibD/Puoe7R8qTqyTyf5a3eZ0u8C1nHbCgtF9HznwCU/zvPCVUIaKHnJLcfViHnJEff1R3sOWXKfNB4Qgsi1YJFg3SD1mgd1EqXuX8GsTCaPWhpY4uHHCbCvY7VpdnIpc+8ffju6qHIwzBgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762270074; c=relaxed/simple;
-	bh=ZAOzcn+Y24e5q259yuXAm+6c2vpGYmPp9EQN94tzMzw=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=KnYCW4nsKKmi1NNhThEUimP5oaMyXMYMo/kiL3OIHE7PxAZLxsPJrwIxNgUXDjvPWgxBT549VQTCgS4gzknElplYCH4srrkW6n10n5PRuN56fq7q+qgQxu6A9skpibf787vuuhFVbYjqiTdUOFWI3IVpdeJEca8d3HFrFd8ZrpM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MZ0uJvDe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A00CC116C6;
-	Tue,  4 Nov 2025 15:27:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762270073;
-	bh=ZAOzcn+Y24e5q259yuXAm+6c2vpGYmPp9EQN94tzMzw=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=MZ0uJvDesJeSlvWhBkhwz71q6x3yiKQT/CFDtGUdvrtydeFDablFzi3+dIlTT79+n
-	 nGwQM6tE9sOsmnB0QtrAnRmNv0rmkeN2NHCH3ohJYnb5hutlND0QyQFzee5aFMaBYa
-	 LjkUPgwuNj0+XWV3Y48VutUuGu3CrqiMxEi0nGOpQMox6XlRsqE+Va0hKzaR6e7jou
-	 a+5+kVNE9FQJVk3byho55M1a3IvmYw+pKyF1UtRN3wnYIngQ48hbinp0bQmIS/YcXj
-	 fZnUjb6qcGPhXJg1KyH6eMuuLFkSIylgp1rO/d18ybZwj8mITjBEKsMEnV+OecJR8w
-	 30Go5VSu3jd6g==
-Date: Tue, 04 Nov 2025 09:27:51 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1762270349; c=relaxed/simple;
+	bh=s/kB+iSurW7zoiDDtbH95+4Fk8pV2slaHdvSG1EPNCE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FvEhG7MPMVDVBi4oEEEDqjApVX2ptD7y9QL7Iyrnd5dFsAg2WHTwA46WWJV3zf+q6RhGrYlkvnyBDv+rmxlYUM9VbD6k/a1nLbx+srBwjhdAZbYCv1C8dnoidCKF4zFjKiDrsLiBtuejCg30chvqOLEflks7CqyefMZV1f5NdTw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aUBGzRZo; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762270348; x=1793806348;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=s/kB+iSurW7zoiDDtbH95+4Fk8pV2slaHdvSG1EPNCE=;
+  b=aUBGzRZoOS4mK51a3wN9RNSplnIMHI3csJDwA4b/uuypR19acYbsdiAi
+   aXgeA7UokPxecefqqQoqbR2K1059+7eZp6x/y9hjyFCpWemxJ8p3lalVL
+   4fPBGn4ZdSjC9kI3Rppagz4nv/yd2J2Pa04NVoV7yDN9ESQJH18K5/ra3
+   bURpy9yzXpfAt6ghdft+buto2kl1N8m7MIlBLyxtXW53hbNohdejHg0f/
+   Fpq7uIpgrqUJ35YZCe3CRz/xttnnDLJRab7r2WO+ORld2VQsqMvy8JEda
+   3GEsHjH/lWFyPiY0QmBQOyKVVBI8mJ+OeY0PS9cj5dGYcKJhfNqgeqZPJ
+   w==;
+X-CSE-ConnectionGUID: Ce+gXQ2RRVOuMFCeOLT3Kg==
+X-CSE-MsgGUID: A+n45//QT32v2U5iHht6QA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="64063965"
+X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; 
+   d="scan'208";a="64063965"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2025 07:32:27 -0800
+X-CSE-ConnectionGUID: pBo2mrM5T42UlzXUvw/0yQ==
+X-CSE-MsgGUID: j+rctOb1RECHOKpGmNsLGw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; 
+   d="scan'208";a="187339081"
+Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
+  by orviesa008.jf.intel.com with ESMTP; 04 Nov 2025 07:32:24 -0800
+Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vGJ0W-000RXo-0f;
+	Tue, 04 Nov 2025 15:31:56 +0000
+Date: Tue, 4 Nov 2025 23:29:58 +0800
+From: kernel test robot <lkp@intel.com>
+To: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>,
+	Mark Brown <broonie@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	linux-riscv@lists.infradead.org, linux-spi@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Valentina Fernandez Alanis <valentina.fernandezalanis@microchip.com>,
+	Cyril Jean <cyril.jean@microchip.com>,
+	Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>
+Subject: Re: [PATCH v1 1/3] spi: microchip: rename driver file and internal
+ identifiers
+Message-ID: <202511042322.bDgHrd9d-lkp@intel.com>
+References: <20251103160515.412706-2-prajna.rajendrakumar@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Magnus Damm <magnus.damm@gmail.com>, dri-devel@lists.freedesktop.org, 
- Maxime Ripard <mripard@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>, 
- linux-renesas-soc@vger.kernel.org, David Airlie <airlied@gmail.com>, 
- =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
- Matt Coster <matt.coster@imgtec.com>, Frank Binns <frank.binns@imgtec.com>, 
- linux-arm-kernel@lists.infradead.org
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20251104135716.12497-2-marek.vasut+renesas@mailbox.org>
-References: <20251104135716.12497-1-marek.vasut+renesas@mailbox.org>
- <20251104135716.12497-2-marek.vasut+renesas@mailbox.org>
-Message-Id: <176227007159.2279193.11820331773038712744.robh@kernel.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: gpu: img,powervr-rogue: Document
- GE7800 GPU in Renesas R-Car M3-N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251103160515.412706-2-prajna.rajendrakumar@microchip.com>
+
+Hi Prajna,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on broonie-spi/for-next]
+[also build test ERROR on linus/master v6.18-rc4 next-20251104]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Prajna-Rajendra-Kumar/spi-microchip-rename-driver-file-and-internal-identifiers/20251104-001544
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+patch link:    https://lore.kernel.org/r/20251103160515.412706-2-prajna.rajendrakumar%40microchip.com
+patch subject: [PATCH v1 1/3] spi: microchip: rename driver file and internal identifiers
+config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20251104/202511042322.bDgHrd9d-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project d2625a438020ad35330cda29c3def102c1687b1b)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251104/202511042322.bDgHrd9d-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511042322.bDgHrd9d-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/spi/spi-mpfs.c:620:3: error: field designator 'remove_new' does not refer to any field in type 'struct platform_driver'
+     620 |         .remove_new = mpfs_spi_remove,
+         |         ~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 error generated.
 
 
-On Tue, 04 Nov 2025 14:56:06 +0100, Marek Vasut wrote:
-> Document Imagination Technologies PowerVR Rogue GE7800 BNVC 15.5.1.64
-> present in Renesas R-Car R8A77965 M3-N SoC.
-> 
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Frank Binns <frank.binns@imgtec.com>
-> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Magnus Damm <magnus.damm@gmail.com>
-> Cc: Matt Coster <matt.coster@imgtec.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: "Niklas Söderlund" <niklas.soderlund@ragnatech.se>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: devicetree@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-renesas-soc@vger.kernel.org
-> ---
-> V2: Add RB from Geert and Krzysztof
-> ---
->  .../devicetree/bindings/gpu/img,powervr-rogue.yaml          | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
+vim +620 drivers/spi/spi-mpfs.c
 
-My bot found errors running 'make dt_binding_check' on your patch:
+   612	
+   613	static struct platform_driver mpfs_spi_driver = {
+   614		.probe = mpfs_spi_probe,
+   615		.driver = {
+   616			.name = "microchip-spi",
+   617			.pm = MICROCHIP_SPI_PM_OPS,
+   618			.of_match_table = of_match_ptr(mpfs_spi_dt_ids),
+   619		},
+ > 620		.remove_new = mpfs_spi_remove,
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml:107:1: [warning] too many blank lines (2 > 1) (empty-lines)
-
-dtschema/dtc warnings/errors:
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251104135716.12497-2-marek.vasut+renesas@mailbox.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
