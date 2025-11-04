@@ -1,179 +1,148 @@
-Return-Path: <devicetree+bounces-234656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37FCAC2F9F8
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 08:30:48 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 838A0C2FA22
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 08:34:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C0153BBF55
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 07:30:41 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4273A4E6A96
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 07:34:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA8023074A0;
-	Tue,  4 Nov 2025 07:30:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s/H7G7Nj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F322C307AE9;
+	Tue,  4 Nov 2025 07:34:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75768307492;
-	Tue,  4 Nov 2025 07:30:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from sgoci-sdnproxy-4.icoremail.net (sgoci-sdnproxy-4.icoremail.net [129.150.39.64])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 096BE3074A0;
+	Tue,  4 Nov 2025 07:34:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.150.39.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762241439; cv=none; b=c0uMDCSMk3cEhc+5zHzmLbSbpWbL30FNo3bTYI1YbWOros6vTSnNeDYiSjvnGVT/hvyi5H3MXkADIaQHfF3kJpbYgqvmzjnzMUDgrEHQrKqkHbQdW7iz3kZiDAO1hXbgVK0TH54eNIaw64m9oU/YsSx/O3vIziV481GokK85s4Q=
+	t=1762241658; cv=none; b=UX0a649fzXy7Oqd98uWhPG4muCl6xPpAp1foJ09I5jW+4i/+Ku41SUjYNtFGBW0NcHc3M5aSScuoanoazwZLNUz6NOUMCP9ekg2hzq4gC1OWrHKv4qBYjpAUVzpiOPvSjrKNEwzzRCTWK3n6WghO/myLJiE+KKu8M2RtwuT1evQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762241439; c=relaxed/simple;
-	bh=FYc4ZiYYxtHCsGxHWLiNUb6waNPfZYfSpHrij9pfVEk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hWVklON0dN1YlYkuqd1vePH9gfJyuO88DtoobbicGQ3WU++kag5Uh3KjBN4mCHLaVD3Q/7HsqReR9mN4hXXii09kFmQv5mlYPbUH/s30VpMKznfr0+AZhtYp1Fys1Ys2Ps9xsOVLMvylHY37uU9ASkUAPfo1Pxvmj/gjn98WI3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s/H7G7Nj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70578C4CEF8;
-	Tue,  4 Nov 2025 07:30:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762241439;
-	bh=FYc4ZiYYxtHCsGxHWLiNUb6waNPfZYfSpHrij9pfVEk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=s/H7G7NjSKeDBXViihoB12JOvfdrQyfO9//RG4Fm2gg9EbHG9idT0lmSQh5ADXkJo
-	 2y2zORuy9FCw8haXVlB7XLXPsqFC+xITKnIYzQTMSikav0oNeKdSJjFSujtKm4q1lL
-	 0xoKs2ga1cRQyLAYt+mIQKmrZg6Dhval/huZyZtp8CMWyhLkxTNqGPhNo+77GuHEyf
-	 A29e8eRMzwJIXwjLufiRFlb7qwNB6RPHp1B2vIFHajr0bGu//2gXPfs6D30bLnJkKK
-	 qEH5wZxi8dLqknBz9ixCq1FyTjtO77PQenNM1Ly48x5YqxHvVB2iNep6aCvLjNG8TO
-	 NQlvC3isX123g==
-Date: Tue, 4 Nov 2025 08:30:36 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Junjie Cao <caojunjie650@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>, 
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org, Pengyu Luo <mitltlatltl@gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: leds: backlight: Add Awinic AW99706
- backlight
-Message-ID: <20251104-dancing-panda-of-patience-49bcc7@kuoka>
-References: <20251103110648.878325-1-caojunjie650@gmail.com>
- <20251103110648.878325-2-caojunjie650@gmail.com>
+	s=arc-20240116; t=1762241658; c=relaxed/simple;
+	bh=3M5g02GMT8gIsSyLWIEsXjrXCwaBqARzDUov8wR/+jI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=IH6x/a3kDu+p80VUjZ2AW2zp08YXoHfBHig+ygnwE2KzqfeQHFggBxaNMpdCF5nEk1DSGFRsmWzxitkyHUEEt/5y3iuwVYflkq/HxhlC6W/+jWhrrF+lmGBsJyvEUDHLBBZjrQdwRiU8tc9T6oLB9AoWXiz8v+nP7+HfTtYqpz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=129.150.39.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005182LT.eswin.cn (unknown [10.12.96.155])
+	by app1 (Coremail) with SMTP id TAJkCgD3_ms2rAlpBb4iAA--.8731S2;
+	Tue, 04 Nov 2025 15:33:12 +0800 (CST)
+From: weishangjuan@eswincomputing.com
+To: devicetree@vger.kernel.org,
+	andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	lizhi2@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	Shangjuan Wei <weishangjuan@eswincomputing.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH net-next v2] dt-bindings: ethernet: eswin: fix yaml schema issues
+Date: Tue,  4 Nov 2025 15:33:05 +0800
+Message-Id: <20251104073305.299-1-weishangjuan@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251103110648.878325-2-caojunjie650@gmail.com>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgD3_ms2rAlpBb4iAA--.8731S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxAFy7tryrWw4fWw15GFy7Awb_yoW5Xr43pa
+	s7G39xJF1fZr17Xa18t3W8KF1rJanrCF13GrnrXw1fXwn0q3y0q3WayryrGa4UCrWxZFWU
+	WFy5CayFyrWUA3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRkwIhUUUUU=
+X-CM-SenderInfo: pzhl2xxdqjy31dq6v25zlqu0xpsx3x1qjou0bp/
 
-On Mon, Nov 03, 2025 at 07:06:47PM +0800, Junjie Cao wrote:
-> From: Pengyu Luo <mitltlatltl@gmail.com>
-> 
-> Add Awinic AW99706 backlight binding documentation.
-> 
-> Signed-off-by: Junjie Cao <caojunjie650@gmail.com>
+From: Shangjuan Wei <weishangjuan@eswincomputing.com>
 
-Messed DCO chain. This wasn't here, so you must have altered v1 to add
-some weird change.
+eswin,hsp-sp-csr attribute is one phandle with multiple arguments,
+so the syntax should be in the form of:
+ items:
+   - items:
+       - description: ...
+       - description: ...
+       - description: ...
+       - description: ...
 
-This is a blocker, please read carefully submitting patches and DCO.
+To align with the description of the 'eswin-sp-csr'
+attribute in the mmc,usb modules, the description
+of the 'eswin,hsp-sp-csr' attribute has been modified.
 
-> ---
-> Changes in v2:
-> - use proper units for properties (Krzysztof)
-> - drop non-fixed properties (Krzysztof)
-> - add properties(max-brightness, default-brightness) (Krzysztof)
-> - Link to v1: https://lore.kernel.org/linux-leds/20251026123923.1531727-2-caojunjie650@gmail.com
+Fixes: 888bd0eca93c ("dt-bindings: ethernet: eswin: Document for EIC7700 SoC")
+Reported-by: Rob Herring (Arm) <robh@kernel.org>
+Closes: https://lore.kernel.org/all/176096011380.22917.1988679321096076522.robh@kernel.org/
+Signed-off-by: Shangjuan Wei <weishangjuan@eswincomputing.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-...
+---
+Changes in v2:
+  - Simplified problem description
+  - Add a space after the commit ID
+  - Add subject prefix
+  - Link to v1:
+    https://lore.kernel.org/all/20251030085001.191-1-weishangjuan@eswincomputing.com/
+---
+ .../bindings/net/eswin,eic7700-eth.yaml       | 20 ++++++++++---------
+ 1 file changed, 11 insertions(+), 9 deletions(-)
 
-> +  awinic,dim-mode:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: >
-> +      Select dimming mode of the device.
-> +        0 = Bypass mode.
-> +        1 = DC mode.
-> +        2 = MIX mode(PWM at low brightness and DC at high brightness).
-> +        3 = MIX-26k mode(MIX mode with different PWM frequency).
-> +    enum: [ 0, 1, 2, 3 ]
-> +    default: 1
-> +
-> +  awinic,sw-freq-hz:
-> +    description: Boost switching frequency in Hz.
-> +    enum: [ 300000, 400000, 500000, 600000, 660000, 750000, 850000, 1000000, 1200000, 1330000, 1500000, 1700000 ]
+diff --git a/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
+index 9ddbfe219ae2..91e8cd1db67b 100644
+--- a/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
++++ b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
+@@ -69,17 +69,19 @@ properties:
+     enum: [0, 200, 600, 1200, 1600, 1800, 2000, 2200, 2400]
 
-Please wrap code according to the preferred limit expressed in Kernel
-coding style (checkpatch is not a coding style description, but only a
-tool).
+   eswin,hsp-sp-csr:
++    description:
++      HSP CSR is to control and get status of different high-speed peripherals
++      (such as Ethernet, USB, SATA, etc.) via register, which can tune
++      board-level's parameters of PHY, etc.
+     $ref: /schemas/types.yaml#/definitions/phandle-array
+     items:
+-      - description: Phandle to HSP(High-Speed Peripheral) device
+-      - description: Offset of phy control register for internal
+-                     or external clock selection
+-      - description: Offset of AXI clock controller Low-Power request
+-                     register
+-      - description: Offset of register controlling TX/RX clock delay
+-    description: |
+-      High-Speed Peripheral device needed to configure clock selection,
+-      clock low-power mode and clock delay.
++      - items:
++          - description: Phandle to HSP(High-Speed Peripheral) device
++          - description: Offset of phy control register for internal
++                         or external clock selection
++          - description: Offset of AXI clock controller Low-Power request
++                         register
++          - description: Offset of register controlling TX/RX clock delay
 
-> +    default: 750000
-> +
-> +  awinic,sw-ilmt-microamp:
-> +    description: Switching current limitation in uA.
-> +    enum: [ 1500000, 2000000, 2500000, 3000000 ]
-> +    default: 3000000
-> +
-> +  awinic,iled-max-microamp:
-> +    description: Maximum LED current setting in uA.
-> +    minimum: 5000
-> +    maximum: 50000
-> +    multipleOf: 500
-> +    default: 20000
-> +
-> +  awinic,uvlo-thres-microvolt:
-> +    description: UVLO(Under Voltage Lock Out) in uV.
-> +    enum: [ 2200000, 5000000 ]
-> +    default: 2200000
-> +
-> +  awinic,ramp-ctl:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: >
-> +      Select ramp control and filter of the device.
-> +        0 = Fade in/fade out.
-> +        1 = Light filter.
-> +        2 = Medium filter.
-> +        3 = Heavy filter.
-> +    enum: [ 0, 1, 2, 3 ]
-> +    default: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - enable-gpios
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        aw99706@76 {
+ required:
+   - compatible
+--
+2.17.1
 
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-If you cannot find a name matching your device, please check in kernel
-sources for similar cases or you can grow the spec (via pull request to
-DT spec repo).
-
-> +            compatible = "awinic,aw99706";
-> +            reg = <0x76>;
-> +            enable-gpios = <&tlmm 88 GPIO_ACTIVE_HIGH>;
-> +            default-brightness = <2047>;
-> +            max-brightness = <4095>;
-> +            awinic,dim-mode = <1>;
-> +            awinic,sw-freq-hz = <750000>;
-> +            awinic,sw-ilmt-microamp = <3000000>;
-> +            awinic,uvlo-thres-microvolt = <2200000>;
-> +            awinic,iled-max-microamp = <20000>;
-> +            awinic,ramp-ctl = <2>;
-> +        };
-> +    };
-> +
-> +...
-> -- 
-> 2.51.1.dirty
-> 
 
