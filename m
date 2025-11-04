@@ -1,115 +1,135 @@
-Return-Path: <devicetree+bounces-234738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A349C302A2
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 10:08:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 785EDC302A5
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 10:08:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA93D3A7336
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 09:02:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 497D13A50BE
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 09:03:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 562862BE635;
-	Tue,  4 Nov 2025 09:02:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 408E72951A7;
+	Tue,  4 Nov 2025 09:02:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CulIV939"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62CBA5D8F0
-	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 09:02:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 187FA26ED3F;
+	Tue,  4 Nov 2025 09:02:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762246933; cv=none; b=A2NEU/T4a8ZkG2p4JmrDuZzteAvvVcGOtrOvqChiVtNLuXjkF0U9IkFhk4Cpy9iwRVa1rNvGSHE1EY5BJQiLOn50dIe+iV0GUCFOGzLYY91NXuHNDK20Bt8t3nD3dWA2RFudLOn3ZQ3ikl8YbRdEnh+UVnYT7IGTU+mQ2Danwrw=
+	t=1762246978; cv=none; b=dVd6aum6O6zuwg+f6FrdaaC1tIqH4NYPrF7X4egFjqMEYtZDM2lLQ5E6RQYGEzshQwMUZ7CvhBXsi1FkAMnSyAgBYxlAhOA9kPtCe8V0zoqY/EqrW+vVmh9xcLrmXRXUFE+/uFIxHaFm+svE10vkBnXDDDTE4Y8JRhMsdFI36OM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762246933; c=relaxed/simple;
-	bh=Bs6qu82kza3J6Kn5aAW34CDe1TfQ63KLMwuu3FVhd1k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OqxGPti7KVdp/1YMpQOHxtCEfrxtpAIVOQ3/lJsakWHpMgh38tyr13InoBmsT8JSZ1AeFVaJ6mupm+NLSHSfip2L1EAsylgtMak/0NxXSjmUhnY+Le3dfCMiRzuZ0a+nb94bshd1M466ncOLTiHqv7wLtaEsOqe6sEFgzo5rhG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-5dbd8bb36fcso2002140137.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 01:02:10 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762246929; x=1762851729;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=H67jLGC2+nP+gJvVX0MRHo5Sws7Lcd+OKCPJPF9TIMI=;
-        b=bqngJIL3+znXkd372K2GCcd5FYxsU2wqQzIIRkDraA9dq1KMxsIQJaV7dE0RK2M8Vo
-         dYs1EcMs8LCALv+pPwhAHjA3Sa9pPiUT6GVOI09EZJaArNtNebuLkc1Jc95ezm7J9TXw
-         qT4Qp7llcGc7wFLSVtKtLFsoUHXYRsS8fo68CCpRxbe54C7wlovbeaOJKBtNPizM0ucd
-         +/tO2EYTCbvSMk6x5RIEsW4NjRbcCL4/z9i13gO5RTLs7iQD2a6gF+sVqUGneyRBCwVQ
-         FksotmCp5SDQcBLXjkwVrgpwYYBpfVkP5rf66JeMliIx1M37I0xbKxEOEv2bHv5PnKpx
-         WHjA==
-X-Forwarded-Encrypted: i=1; AJvYcCUqKfrekH6Xf3JrG2HSCaZt97o6rWX5iXBoM2ezynyNW5h6KDl9dEfNABNM6YfPas/9P0upDQTMAro/@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPZuqGps4Nat4XyPwYIvehBo35R9XXk/oSPmwuwHKGK4VR/NIA
-	1nFdOWannJVqY25v8P05KO/LdxYh+w4/HbnN2K9qlTtlbAgeMZ2Wv4bTFaIKDrs8
-X-Gm-Gg: ASbGnctaG9TbX397CXTNOjve9bbPvjbodz1kz6chh3dJUJQA+k41v04+srY7lSmy1mO
-	aqhN+R3Wrgd/OdBgTxh/f9IvDWWgS/QSwd2WaJFvuYWjDNqaG8QZtJCFcpmBPZrYdchr7h/1J2v
-	8sGorKdCodyfHommxTf/2LQ+MyNT04iER9VuWZgTpxo/YdF3BJvN04iokIHHj4dSi1e5MW2yR7s
-	KmIDXU5jBp0d8aJRGSsuSTz7zeOefCzh3ytlL0udnQF1/XRjOzS+kUL/azq8DUxFAs9Gx8Pj31w
-	/oaqBQEJ1jG3oMhQfjzbf0W1Ym2Iknb+WeeJSDZEGl71txcJ62Q6ERStYTznJ5DYMFFRmiYT5ab
-	2Nf21z5pNy8FDi4+DWuJD5IfUZAetuxbiXH851Z34dcnfmfQx0D5Fj5tuyyp68nmWw/4rXryvSb
-	3NOYYnwSllAxSFYPiEuR+RNBacIJsBYpdImjVw3A==
-X-Google-Smtp-Source: AGHT+IEDDPtP50hy/WjfutP4oe1IiA3bF9SziZR7RBGmpLV8CMuKb93cz5gyGJ+2KKgvuGmX2EM9Vw==
-X-Received: by 2002:a05:6102:1445:10b0:5db:f8c7:5aae with SMTP id ada2fe7eead31-5dbf8c75f17mr600616137.17.1762246928944;
-        Tue, 04 Nov 2025 01:02:08 -0800 (PST)
-Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-93542b31d18sm913770241.11.2025.11.04.01.02.08
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Nov 2025 01:02:08 -0800 (PST)
-Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-5dbde7f4341so1679562137.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 01:02:08 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXaChG+Zxyn0GE8D7T3SYBci+HXocjrDFDlAM3CZeiQ7gKQfalplt6bY+mM8nhDkfHNcH/78ouQDIvR@vger.kernel.org
-X-Received: by 2002:a05:6102:442c:b0:5b8:e08f:eb38 with SMTP id
- ada2fe7eead31-5dbf7d63c3bmr753205137.14.1762246928045; Tue, 04 Nov 2025
- 01:02:08 -0800 (PST)
+	s=arc-20240116; t=1762246978; c=relaxed/simple;
+	bh=53Mc+ibSoFToGMkfZP2uwXEi9OqWETP+e71l+jDdWUw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=KUlCg/ewLgX7y7bwciGHRTHlGR0Djf8mBDHjp0AeXXcjq3MZ+IjuanAcKEarQiCqD1L5KPsLMiHUZcZnJSjGFIgVHzNF6oG9o9dRTZZgAbSPbK2VNfaVD9i1SZzKvjA2fHrKj/5R7f8k9CccFe13RgbTVoIr7994ix3U2FiWN7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CulIV939; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DD84C4CEF8;
+	Tue,  4 Nov 2025 09:02:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762246977;
+	bh=53Mc+ibSoFToGMkfZP2uwXEi9OqWETP+e71l+jDdWUw=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=CulIV939gkzyzFiPHxofOW1bPcLtp00z0QADfNDB4vtUBllfts1IgvSwodljMtWPj
+	 mAeBmggy2DJuztXJslIWnRRkZXjm21icVn0+yIW6LCPBb/IOHibS9YamaEZxM66Qkw
+	 mR+nwUHBR862SVrA8LDeg5N2hNMGkqp8HGOdewXdmi/GBuf2qM6xbIjIEgIUgZUiUH
+	 mIfzwXRBWuJ/PQcTtUrRQuy8r18xif3jnCKNI8gV/Vk7xzlXN7uVnNL/2SW4vQrcgR
+	 TghvdlA0Yv28rfFH73XQkDB3nxFsL58sePOcTVuvmiursvPVvpg1oZpSkn463iRmsQ
+	 p+MHBu8+kYhIQ==
+Message-ID: <b11f90b0-cc1c-4372-b71a-30d34fe0be8c@kernel.org>
+Date: Tue, 4 Nov 2025 10:02:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251103200800.173440-1-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20251103200800.173440-1-marek.vasut+renesas@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 4 Nov 2025 10:01:56 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUoVrMCcN0yY6BNrgXxFFPP-uJSAssZVrSWBSPtTr9DwQ@mail.gmail.com>
-X-Gm-Features: AWmQ_bnnwTsbga4_ceAKrw3IqMNP5c9B4ptZmLIuqnx7fLogJkKsw0-FT6vmR8I
-Message-ID: <CAMuHMdUoVrMCcN0yY6BNrgXxFFPP-uJSAssZVrSWBSPtTr9DwQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: gpu: img,powervr-rogue: Document GE7800
- GPU in Renesas R-Car M3-N
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
-	David Airlie <airlied@gmail.com>, Frank Binns <frank.binns@imgtec.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Magnus Damm <magnus.damm@gmail.com>, Matt Coster <matt.coster@imgtec.com>, 
-	Maxime Ripard <mripard@kernel.org>, =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
-	Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: i3c: Add snps,dev-nack-retry-cnt
+ property to Synopsys I3C master
+To: adrianhoyin.ng@altera.com, alexandre.belloni@bootlin.com,
+ Frank.Li@nxp.com, wsa+renesas@sang-engineering.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, dinguyen@kernel.org,
+ linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <cover.1762245890.git.adrianhoyin.ng@altera.com>
+ <9c16c22f67858e24fe7c3a7184537cb5c2c1a85c.1762245890.git.adrianhoyin.ng@altera.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <9c16c22f67858e24fe7c3a7184537cb5c2c1a85c.1762245890.git.adrianhoyin.ng@altera.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, 3 Nov 2025 at 21:08, Marek Vasut
-<marek.vasut+renesas@mailbox.org> wrote:
-> Document Imagination Technologies PowerVR Rogue GE7800 BNVC 15.5.1.64
-> present in Renesas R-Car R8A77965 M3-N SoC.
->
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+On 04/11/2025 09:51, adrianhoyin.ng@altera.com wrote:
+> From: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+> 
+> Add a new optional property 'snps,dev-nack-retry-cnt' to the Synopsys
+> DesignWare I3C master device tree binding. This property allows
+> configuration of the Device NACK Retry count, which determines how many
+> times the controller retries a transaction when a slave device responds
+> with NACK.
+> 
+> Valid values range from 0 to 3, with a default of 0
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Don't explain us the binding. We can read the source code. You miss
+rationale what hardware aspect you are solving, why we should accept this.
 
-Gr{oetje,eeting}s,
+> 
+> Signed-off-by: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
 
-                        Geert
+No, because:
+1. Not a board property,
+2. Most likely deducible from the compatible,
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
 
