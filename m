@@ -1,168 +1,131 @@
-Return-Path: <devicetree+bounces-234714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9AF2C300DD
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 09:51:40 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDF70C30090
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 09:48:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A284B427B21
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 08:44:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 252DF4F5474
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 08:44:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F39731D392;
-	Tue,  4 Nov 2025 08:41:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAA8C31283E;
+	Tue,  4 Nov 2025 08:41:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="JJndxSo/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OBWxgRDT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4A9F306B37;
-	Tue,  4 Nov 2025 08:41:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BBDE3064B5;
+	Tue,  4 Nov 2025 08:41:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762245718; cv=none; b=LyJedHzM8quA4CDZBu/I4K4FNBnDCo0Vy+NzvMsA98AMoyHhq11Tbh0G2iTV6qz5rBBOFPWbfz8ESY+kV0aPxbgXLYb6Oq7jF+CSBPIccvouC3MaT4dq/XjMl8MjilmqVqSrfW9f/EO67kOikQuqUJk4LQAEXb7oK7KAGKpKcGk=
+	t=1762245663; cv=none; b=JxIf/Klt/jXBlbdyJCq7U8LgFeZ1LtsSF5AelXc4NBs34SVDgC2b5tL7nu2Em2g8i86nisa77HNl3p1XkV6v7qcS77DlV5Ly5eQfrLjxyKndML6uIMxZdDHMFhmebqwhVkdWX/r149in9CdeuULtdipgWao5VB3lR06gUCTZYy0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762245718; c=relaxed/simple;
-	bh=purqrqfkmeNjHQsl8PGKaLr5sce14i7I1X0t6grKmRE=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W6+0//4UUgD1jpYooeDEDkzfTa0Ctw/k30rs1UfyS+AxcikTatQZy7liJjDzjCubRvWBeqwKRIUarSF6kwlAIXIg3CPktI6sgY5/5sfCRXJW/QB5I0SMZji7BGIfEZIXiHHCxdHLDN3Po6WYu39dBGntVNviuEewiNBYpQZu4qk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=JJndxSo/; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1762245716; x=1793781716;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=purqrqfkmeNjHQsl8PGKaLr5sce14i7I1X0t6grKmRE=;
-  b=JJndxSo/Jbv9chcr/MWWsqgrFvkje+0i2hTjJHWbHBIX0JWjoyWVJfC6
-   YPurGJYhgiwu8S6vv6Nfqs6CTEmCRdChAhEbbX9fSGSSUdu+fa3eEc1r/
-   sRlnP1iWe+5VbbLZ494p/7FRVONmLm3DVfq3UEFwhaBcnCyvFA8ULqWDn
-   GOe7Te1ZughGtnhtM7oTX3Jr3MdIICo/aJ+0zgT01S02lnm9zASppzNYK
-   hrUY6q0IcD8uFhU2C0Ta9vQZP6Ue5AizARKsFofioVrfmVof8WDKYRJbU
-   G9nj1t8hRDmgxtxpde1sTnfYctqan7ktfsxAiKqbPJZYNioFYUqBWttO9
-   g==;
-X-CSE-ConnectionGUID: UM+sI3xNSuSueVWnZFHkVw==
-X-CSE-MsgGUID: mbc01x2RR+e0T7CjDOussw==
-X-IronPort-AV: E=Sophos;i="6.19,278,1754982000"; 
-   d="asc'?scan'208";a="48018374"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2025 01:41:55 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.87.71) by
- chn-vm-ex2.mchp-main.com (10.10.87.31) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.29; Tue, 4 Nov 2025 01:41:24 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.58 via Frontend
- Transport; Tue, 4 Nov 2025 01:41:22 -0700
-Date: Tue, 4 Nov 2025 08:39:39 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: <Marius.Cristea@microchip.com>
-CC: <conor@kernel.org>, <corbet@lwn.net>, <linux@roeck-us.net>,
-	<linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<robh@kernel.org>, <linux-kernel@vger.kernel.org>, <krzk+dt@kernel.org>,
-	<linux-doc@vger.kernel.org>, <conor+dt@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: temperature: add support for
- EMC1812
-Message-ID: <20251104-displace-pretense-9efca7fd0796@wendy>
-References: <20251029-hw_mon-emc1812-v1-0-be4fd8af016a@microchip.com>
- <20251029-hw_mon-emc1812-v1-1-be4fd8af016a@microchip.com>
- <20251029-blaspheme-stinking-91b73a8ab778@spud>
- <c844428aa8d57d870b8cb55ce37d6359e3142585.camel@microchip.com>
+	s=arc-20240116; t=1762245663; c=relaxed/simple;
+	bh=248yfAVCE6Is99Uqr3zuHrLU56C2hO7InmzAX7dOJSA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jChHjd2m9rodBmsVQwrq/+zzRjUepgy5DcdRm8z06KgOk077wIHn+ZNQExiusvqMk3UCn8pV0fI7TT8vqAbD+KLwFUTmwu1VfIbaJ4yrkaVkfJPhVyGz7sA1egDtLcJBX/xdRpIMsCRdcQMwD3fja04I/RrdjzcBA+bLn5z32/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OBWxgRDT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F552C4CEF7;
+	Tue,  4 Nov 2025 08:40:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762245662;
+	bh=248yfAVCE6Is99Uqr3zuHrLU56C2hO7InmzAX7dOJSA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OBWxgRDTW9K+F4VZPOU2tno3RCynWKZH2e+IK4J6E3VhaJ579FBEXBSHnwbyWbeef
+	 ToLX7fFKYN08u8PatvBjOiYO857Gc9WWh1JYXncC3qXqqlxSVCrsEjhjuE2hh+7ghQ
+	 KcC9spvgCeIB8/52qc/F8xNr55h5VjeP9qNYJ90+Y1n31sPpOCBE/ddbxGWBTB3g+e
+	 YvRV52znsQdNhaCsxP+s48dAYKDU6ho2k7DPNUzFYYC5GP9ALEH8UEXLEE6PtciuDL
+	 OkpnfPk/C5sLqEWKPBkiWXlQY03YfcFFcHk2uIrU/lh666G5xXf4R++EbcPBAgcPJW
+	 qtDoEMLDA+cYg==
+Message-ID: <b54dea9b-6937-4942-922e-d125317592ab@kernel.org>
+Date: Tue, 4 Nov 2025 09:40:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="/AVkAT3sA6d22eia"
-Content-Disposition: inline
-In-Reply-To: <c844428aa8d57d870b8cb55ce37d6359e3142585.camel@microchip.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 13/20] regulator: s2mps11: place constants on right
+ side of comparison tests
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Peter Griffin <peter.griffin@linaro.org>,
+ Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+ linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20251103-s2mpg1x-regulators-v3-0-b8b96b79e058@linaro.org>
+ <20251103-s2mpg1x-regulators-v3-13-b8b96b79e058@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251103-s2mpg1x-regulators-v3-13-b8b96b79e058@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
---/AVkAT3sA6d22eia
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Nov 03, 2025 at 04:35:27PM +0000, Marius.Cristea@microchip.com wrot=
-e:
-> Hi Conor,
->=20
-> On Wed, 2025-10-29 at 18:25 +0000, Conor Dooley wrote:
-> > On Wed, Oct 29, 2025 at 05:50:58PM +0200, Marius Cristea wrote:
-> > > This is the devicetree schema for Microchip EMC1812/13/14/15/33
-> > > Multichannel Low-Voltage Remote Diode Sensor Family.
-> > >=20
-> > > Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
-> > > ---
-> > > =A0.../bindings/hwmon/microchip,emc1812.yaml=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0 | 176
-> > > +++++++++++++++++++++
-> > > =A0MAINTAINERS=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 |=A0=A0 6 +
-> > > =A02 files changed, 182 insertions(+)
-> > >=20
-> >=20
->=20
-> ...
-> > You should be able to just move this into interrupts:
-> > =A0 interrupts:
-> > =A0=A0=A0 items:
-> > =A0=A0=A0=A0=A0 - description:
-> > =A0=A0=A0=A0=A0=A0=A0=A0=A0 alert-therm2 asserts when a diode temperatu=
-re exceeds the
-> > ALERT
-> > =A0=A0=A0=A0=A0=A0=A0=A0=A0 threshold.
-> > =A0=A0=A0=A0=A0 - description:
-> > =A0=A0=A0=A0=A0=A0=A0=A0=A0 therm-addr asserts low when the hardware-se=
-t THERM limit
-> > threshold is
-> > =A0=A0=A0=A0=A0=A0=A0=A0=A0 exceeded by one of the temperature sensors.
-> >=20
-> > > +=A0=A0=A0 items:
-> > > +=A0=A0=A0=A0=A0 - const: alert-therm2
-> > > +=A0=A0=A0=A0=A0 - const: therm-addr
-> >=20
-> > Also, should this and interrupts have minItems: 1? Are both actually
-> > required? Can you have therm-addr without alert-therm2?
-> >=20
->=20
-> Right now the driver doesn't support any interrupts, but it may support
-> in future. The "alert-therm2" is a maskable interrupt and the "therm-
-> addr" can't be masked and is "always enabled" into the chip.
->=20
-> I didn't use "minItems: 1" because I wanted to leave to the user the
-> decision if he needs any interrupts into their system
-
-Unfortunately, this doesn't work the way you expected. If you don't set
-minItems: 1, then anyone who wants to use an interrupt must use both.
-
-If someone that would connect therm-addr would always also connect
-alert-therm2, then minItems: 1 is enough to add. If someone might want to
-use therm-addr but not use alter-therm2, then this needs to be changed
-to permit these in any order. You can do that by adding the names as an
-enum, eg
-items:
- - enum: [ foo, bar]
- - bar
+On 03/11/2025 20:14, André Draszik wrote:
+> For the lines being changed, checkpatch reports:
+> 
+>     WARNING: Comparisons should place the constant on the right side of the test
+> 
+> Update the code accordingly.
+> 
+> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> 
 
 
---/AVkAT3sA6d22eia
-Content-Type: application/pgp-signature; name="signature.asc"
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQm7xgAKCRB4tDGHoIJi
-0qzwAP9rzTZh+YSsUM1T+ZHciOGT5L48rZNWNccs8J4qtoMlvAEApRwHpACBMctm
-Mk4QHnFon5IRCmT2BU8GZYlnlDRTDQ0=
-=lZcD
------END PGP SIGNATURE-----
-
---/AVkAT3sA6d22eia--
+Best regards,
+Krzysztof
 
