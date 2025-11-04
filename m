@@ -1,298 +1,232 @@
-Return-Path: <devicetree+bounces-234771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4901C30883
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 11:35:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 080FFC308A7
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 11:36:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B87BA4E12EE
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 10:35:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D420B3AA05A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 10:36:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CBB223DF6;
-	Tue,  4 Nov 2025 10:35:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E28AB29C339;
+	Tue,  4 Nov 2025 10:36:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VAXgJBqV"
+	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="G0XGdpW+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11023128.outbound.protection.outlook.com [40.107.162.128])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27EC313AD05
-	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 10:35:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762252507; cv=none; b=FjmBXux3C1CAOPmQIsVccRqLiLnlQ3dHHCYD+kJGWJPRjevwUgTx+9+u3pbnDaNGiirX4yGAaYPpAbXCGPm+QFTkDK95320NlyEMJOmY3trLHXstGDtUlb+rUF7Z6NEzJBVtv/eFVJz08lSf4E65VmMIH+ennxZ1pNThu5xl0ak=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762252507; c=relaxed/simple;
-	bh=xVTUdynUwOEfXOlM6iD7wg5Aog37SJxR0DlPuRS1e6E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=t3IpIq/8aEyQzu7oXp8vcPAv2qI5PmE5TT/uGP2QtSuP6u0AmA+yLuPWYZpvFP9md7BbbjMatluFz9GjpvDYr2PvKr7e93D9XzPzA9ZOWnIxDj+JqrY5O17r1NuDVFZjGDjTRMXiBqNt70Y7VZ2GD0uIK7Q9BqBb3zXbsbw1l3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VAXgJBqV; arc=none smtp.client-ip=209.85.215.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-b67cd5d88ddso393018a12.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 02:35:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762252505; x=1762857305; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=S1ADCCgwMEU/f2OqLSByXu6fQ7rnsCgcBrI977wEgzQ=;
-        b=VAXgJBqV9xcXWSjEYK1T+dxbraXkXa214NO/d5zSkgKFJagQgXmydt/MmSkDptb6GZ
-         nTKVyYV8dEjp4zD3bowRr/PNTTQNHRrDO5wlbbAc3x6Pa4axj6M9/PltyG1kmAuNQfY8
-         +Y5dtvV0AZgRyX+bUdk0mSlxZ9a/LbZwL7GyEq/JSYiC2r1ezlIqIN8wLHmaY2QK4Ivp
-         1IJiAwo8Y96Dna5rW6cv9Dfd9hOWnE2nTuEN37vQaNzkV7dvxqO1j8CMxB7KFiH48+XO
-         HV/fQLmOiDrVMK4wIlHR7/so1Vd2WI+8dPzKnr4Z4lKtsIC4YAiXhVdfhCm1CEeq2DQH
-         Sqow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762252505; x=1762857305;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=S1ADCCgwMEU/f2OqLSByXu6fQ7rnsCgcBrI977wEgzQ=;
-        b=Wh6ecbr3YqKBnP0EmWMhu+Lm96JjU5Y6fmR5UQ4kFfKgduX0UuZrllrM+bXDO3HDKE
-         ICpAKsB32/9cikLO4qnQcQ+CZanRDe6j8mgDBpyX7nhPPLiA5yXCVKuzgLBckJ+wWZFj
-         Xbk0Dei4ouWNXTBEVotbCSCQ5OFLyMY33bQCsyE7ult6apCEVvyqJ+4ZL2t+PvP9cuxR
-         GkU7J53VYcSBOgXtV3OlgiRwr/gyCliLEiapV406+sxxXsah/fPlnveiuNfiWuwDK2a3
-         uN26HadMGsve/QMegsXRSHTtXyvKw7DP+VeeBZNSLstWoraC0pLToYn5tUGs+pT0nkeg
-         hu8A==
-X-Forwarded-Encrypted: i=1; AJvYcCXhux35cD3l1/KcJNEpgz5ym0y+ZHr/T8ya5G4pXa5AJvqSMH6Ku1DGPXpapoRee9joeTvAMumgWtJv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxtRMA0LRIX3GSPwvv0I7Jgi0mmyRVLy828cg3jjGV8Tuq3Ei/p
-	eNxxkrt7PnVaAe/IDWK7dMktmHuSYPSTr54sCLq8y8Kn2zgGs0d+h64SJUmQAyae
-X-Gm-Gg: ASbGncsszRplW+sxgqECk3hvXxnTI6YfeA3z5P2d+ElsJOvZrP3DGW4yaiHLC7YaGty
-	qALGHml6Di9qPrs1auhZFmycSBBx02g3l5yehBmoPIysjaQPtz+hCO1gGp36pI5uehFHZXLSQo1
-	pduDvbERuLWra66UMh4Nxl6jnk4sGh940VtWeRqVW/Wnx5qOtPJKkslb9qL5L2y8IV3fnl+DjAi
-	+V+7lIwqU1bS5pDBXKolCTxkmTI6wqjqytdVDZA1IDZ41xYDWBA3pbDLocLdM0JCkvryvhioBp+
-	nr7XNV1p0ZJbaen/ribwoedEQ+K1u9JI81FlJwTecwAbSO/XawLeTKW+i7ESO+Eri8Z/5ABHpBf
-	ZVWviyHFf0n984/aakGAXY4dT+SwOd6n49sNuDJQmcknPsEEClPi/hgdL3Pz0naIiti/E7Dg8HL
-	M90M2/4xAfQHqWzQtnjrhriCvW0MtCuSpmUTrsCqrOgA==
-X-Google-Smtp-Source: AGHT+IFsh7k9STXZYBzLquZcu0MKMS+wH6vwL5dwBse+AQsFd2xiBPwyq+sQRgoRibmDakJEyHIc0Q==
-X-Received: by 2002:a05:6a21:1519:b0:345:3ef1:b477 with SMTP id adf61e73a8af0-348cd4123f2mr11280556637.6.1762252505088;
-        Tue, 04 Nov 2025 02:35:05 -0800 (PST)
-Received: from [127.0.1.1] ([2406:7400:10c:9fcf:2909:749f:36f6:6b85])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-ba1f2a80459sm1952010a12.15.2025.11.04.02.35.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Nov 2025 02:35:04 -0800 (PST)
-From: Ranganath V N <vnranganath.20@gmail.com>
-Date: Tue, 04 Nov 2025 16:04:58 +0530
-Subject: [PATCH v7] ASoC: dt-bindings: ti,pcm1862: convert to dtschema
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F6EB2BFC7B
+	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 10:36:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.128
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762252571; cv=fail; b=M40TN+JxETblo5lKYwNQZBnFz+WCevEoz8Z6uO20J4sUb/fu0Hz6NHZIZ/BYRs1+lnIXaGkw/yJHAVs+r+lzyXXo3sHkEUrgE+sebJAh1cm/tuNNSgLRmBIJpj8bd0OHoJTg6UAjFEWhfvE3iTgtOJ6xe80/JzlUF1f8VSgiqrU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762252571; c=relaxed/simple;
+	bh=yLB4Fjh16dBoigdKX2odUP5bsqPiII+h0S83H0OSvD4=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=l85gsyBTX4DbDn17fhE/KBnZeclNq607z5LCN4N9k5wt85K5dbp0mCYZyNW0exHZ7U0NnqMTpyf6uI0rSOs+s5CMRoa3cCP26nbXu41t3TtgbN8lsABGGTRFvZXxOoy+2d43Qqd7WiHzEyfnKHXvwO+Ska4IZGkcUowmwP5ijww=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=G0XGdpW+; arc=fail smtp.client-ip=40.107.162.128
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xXCePKbhQZrD+VT60azVA14/aPbnKSx5ew0V68uS112RrI7pvIQDtityT5VGkZYrwL+T8cbEzFS9SPQMjKtAi6f+sdeFmoKmhDdeFKHqXg35QudijSyZAgCy0xtmSCVR0uVNP7fKUHdtQj1Mn7eXoDIZYI8JK3k5rwPK23V6VjWIGsapMKqpFdMDM/XfFi+iOosxIkrePxUJ8G9BARBUPyinJ0dpADHasWeUuXZBaYSDwNw4KzntnWXzqvV5WcA9FoVN0GNuJduLmhSrBYd9jWz9kVR7phV84hViLtRAoi2VO0dgaENjjCBuzOtI0n+TM4vAoRiR8hmGhnrujikbyg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Lhf/NeZeiwiSQ6JttG03ZJD9elhnrvAYaUczWdgTqus=;
+ b=foBhXbjTykJCv58yEoOFD1Dv2hdrge3jNlszfPnhANzwx2B4aUKOi9ej9POCqXvCBZZW6zuKaXNIOL120TSCGS03P2yt4/mvso5RMyxpnrWpmo7m+yrO8T6puPQZkQOm2TZHxtQeHg0v4AH0F1y4p22RNRAFiCY+QLaGP64VBhxErzj+DOhci8BNCDPwlFVX4sFNqwfuK7FA/pyhGgCSeQE7FaPYsuJNcD1Grif9PtbzBHHG/bqS+h04VGuGgjeOArEM0SevuyO1tYm9ryK+OMvrF6sojNiiwLgPyv3/JsxrdeD0I5RBfp3fzVokl0F9dUD4qvExK347PmEQhxfJsA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=phytec.de; dmarc=pass action=none header.from=phytec.de;
+ dkim=pass header.d=phytec.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Lhf/NeZeiwiSQ6JttG03ZJD9elhnrvAYaUczWdgTqus=;
+ b=G0XGdpW+iC/Rjuujw7T3W2SeymjNmIDLiwc7prWIH9WK0KOIMW4zlTmkb/m8yZrd1Ig6oEn5BfwlUpYQ/LbZuVF/zuyVZOBl9gy7uoy6nPjbmXmN0cIzaCvoMm826W2jDU7VNvfEwTPJAtpNGL0GKpUaPdUDw0q0exJfuJ3Mm8/AycHvoDIGt1G4hInfl5bj0v+pzOO7Vt3fVG2XNI0X+TNl23YtsYCHJ46HcpWRChWPC14ytfVMCLk8zsHHchlxCrUhD0VN9rXLwDiBfaARObpUfIzIAKCbJ/uUp5GrmZlq8yxledCYgeBVS/OKgBxpETgu3Ru8mreDJkQXtXtYGQ==
+Received: from AS8P195MB2410.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:63b::15)
+ by PAXP195MB1293.EURP195.PROD.OUTLOOK.COM (2603:10a6:102:1af::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.15; Tue, 4 Nov
+ 2025 10:36:01 +0000
+Received: from AS8P195MB2410.EURP195.PROD.OUTLOOK.COM
+ ([fe80::6155:696d:3d01:e892]) by AS8P195MB2410.EURP195.PROD.OUTLOOK.COM
+ ([fe80::6155:696d:3d01:e892%6]) with mapi id 15.20.9275.015; Tue, 4 Nov 2025
+ 10:36:01 +0000
+From: Janine Hagemann <J.Hagemann@phytec.de>
+To: Jan Remmet <J.Remmet@phytec.de>, Teresa Remmet <T.Remmet@phytec.de>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: AW: [PATCH v3 0/6] arm64: dts: imx8mm-phyboard-polis: cleanup and
+ additional display
+Thread-Topic: [PATCH v3 0/6] arm64: dts: imx8mm-phyboard-polis: cleanup and
+ additional display
+Thread-Index: AQHcR+lWTVt3wYASd0C3+ciKzpLyjbTiXcwA
+Date: Tue, 4 Nov 2025 10:36:00 +0000
+Message-ID: <bac1cb2139a17bb583528ac56f9c16e1cbfffea4.camel@phytec.de>
+References:
+ <20251028-wip-j-remmet-phytec-de-bspimx8m-3801_peb-av-10_with_ac209-v3-0-9b98f29a6bb9@phytec.de>
+In-Reply-To:
+ <20251028-wip-j-remmet-phytec-de-bspimx8m-3801_peb-av-10_with_ac209-v3-0-9b98f29a6bb9@phytec.de>
+Accept-Language: de-DE, en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=phytec.de;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS8P195MB2410:EE_|PAXP195MB1293:EE_
+x-ms-office365-filtering-correlation-id: 74392096-5f47-437d-4789-08de1b8df2bf
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|7416014|376014|1800799024|38070700021|4053099003;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?fNr/xdhWpea1PVc883eCSsnzmZR6oAL0YWvyKulmRmlAHmYH0r6vWo8a5ebO?=
+ =?us-ascii?Q?yD5YGQ5OyW4nrjOrH+v4498+kcQggrk2mXeA/LizG0gNzL2vCVlfL/9a9IlX?=
+ =?us-ascii?Q?hTMzH0kkrYXROfT46SSUz/XX+NL33Esj3hfkC6ngOEQeYAT6cen42V/Jjyju?=
+ =?us-ascii?Q?aOtRE/ZKy1pn7fVTPK2T5Urr3sG2TPlv2tqpahGlCJv3HkLKc9Hqa/KzYPTF?=
+ =?us-ascii?Q?dEllkuhfU67meGJRk8IVWpDouicxP5qI4DD1EceKcHhh+NGnYF8cUQSQUNQv?=
+ =?us-ascii?Q?kH3UJ97b8+cZSms3scvIb8/AxLsQDj2P5u1IVsJr1m+4H6STv0m9PP3NJHMm?=
+ =?us-ascii?Q?JpkhGve5tx/1759Vnomfn91o+QASkEjVWuTQxBlPJ20ibTIZFjh8HMhNFd9A?=
+ =?us-ascii?Q?xaNKIhO98vtdx8GuQEtUI5e4uL3SjvTkw8WS6gI92MrSyV77tiROpx3FYUv5?=
+ =?us-ascii?Q?kJnCWQ4KWhChm7BWWiA+UoIIcyAb55VWoG6PX9h+6r8T5xOqH00QSzPaZRzP?=
+ =?us-ascii?Q?WUgnFJW56KSKbpPnk2LfQlGvKLJEpRLN2CSoUMXngYyzDXgpXqaap6jI4V+n?=
+ =?us-ascii?Q?nM7ImThSUdUXbvf+/s3UJ+nJWgraLTMrOqBCs7OEWTOBiQXKG3Ktcz7YjD8X?=
+ =?us-ascii?Q?TFaV9s3tXI3MyrwSlSZ5pweDnGED7RE/hYg3yNMssQ+4OYiIkksTgGvXNyTw?=
+ =?us-ascii?Q?7F9d3RnsLEs1CJZWzANLfL0GkuWGRNTGU8RfF8xwm6Ko7fSqbMICqx7Y952d?=
+ =?us-ascii?Q?eIHJVb0TRJWTu+Z0MT4GA4N71MiGjp85V7uWmRv8mWpsJ2CvuMab6OxALwZ3?=
+ =?us-ascii?Q?ZrSq0AYmogTdTwMIozazki4BnG4EEzJ3uak5anY2YR4DkYK4tv5K+o/QiXKp?=
+ =?us-ascii?Q?cJZbYOsVaXko+inn1ZxFXPG/qRUwCWcCPv5hcMfFJtedkCH+YCjUO/o2lOZF?=
+ =?us-ascii?Q?pzrTA2+tz4r9Qz7tKtNx3+RU6CvfS4G3om9fAUOyiScrjiUKDg+emc9qjcjK?=
+ =?us-ascii?Q?WJgdEdDxynm0RsAuPbBeM5UEphZlrWv4zofOulrTWGyFkGOKV04q4hzdz4FH?=
+ =?us-ascii?Q?4qaccWWD1s6OmyArzTttx1r0BWpthBuGPOas+F3FUUugHtmp5qhiSMeDr/IC?=
+ =?us-ascii?Q?iHn2jgzv4wQ5jOote1ij5JAOMbJXwMlxax1bkoUYzLhpM+rRhokS759EaX0a?=
+ =?us-ascii?Q?RfF65whe/4FsAagJVH78YSfISYUT+cCsM7FPcgFUEralcC7G28765MBUFqtT?=
+ =?us-ascii?Q?FcKbMO+3I/I+4R6R9aiC?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8P195MB2410.EURP195.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(38070700021)(4053099003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?L2sJdsDtWPKtEVuxlZ5sOjSXzQc4HL4mXDj5kgLjWM3uK7xKDTRMmN8BlpXG?=
+ =?us-ascii?Q?x1Ew9SSPYpW2y0OmQCeycCfAgaJz9ZahGWTt5xzoE84akxOFloXGlpY7Seic?=
+ =?us-ascii?Q?lTCGDgPCZP8l8Bl7MEAlc8H7lZ+5oIB/L4lSqaXauuWWuDkUO8VaACAJ4Oq8?=
+ =?us-ascii?Q?NiTsW/VOuuX7KcOM83QqvCbgKLEXo1MNT2t19B187P/u4hJZaDrl62sKiBlE?=
+ =?us-ascii?Q?txiw7nM1tNb6NEfeBQ7zOmTOWptQeOfP2gKYaDxPJYwEWd9AFH95P9lHajD1?=
+ =?us-ascii?Q?g/weQdjkYWWhbRcxrh+Ok+OtISXxoSbTfZ/7jdB8dYS0gZa6oEaczN3bRUzP?=
+ =?us-ascii?Q?kIWtjwBw0uq8sPoBdKWoBM/NxmuDWLAfXZiR5gkf6PIvmGUdXtBLbHk0l8sU?=
+ =?us-ascii?Q?ufMVQ/Qzw0TIUNg5MGtAl6PG1skTn1aNlvyqayhf+vZGzzllRUUBALUt97Q6?=
+ =?us-ascii?Q?ISb6TEqdAom5mytvvR3GE0/t+96IDW5wU56o8AVbqDRdJIsSaTirK0j3CMgI?=
+ =?us-ascii?Q?vUB/yvgzE4VRefNbULtCclEV6x5ups0Lqk1iDfj+a1qdAFnXZ7pjE1Vg0buW?=
+ =?us-ascii?Q?5jjSaAkA2Tg7Y9C5DUOKZI70kzu3Ih6aryyro4v4QoUAR5enuACdcH+pTl9x?=
+ =?us-ascii?Q?suJOnJxx097XAOXklGDVJK/6M3a8kQUHq0pvOyya9A2Id+4AdPqVHauYRqbU?=
+ =?us-ascii?Q?FoxJ3illmbP/8j20Q04WUT8qZvgd1aS/RFim+rlS2PVvehj+Nkd7VQ71MIKd?=
+ =?us-ascii?Q?KFpl+Sdd7VXeqosOxu3Q6VsAin6G2MNefbSoFE8suubzd/uS9m+RVafzZbfv?=
+ =?us-ascii?Q?P8nw/Xr3ZpQD5hT5CqEq3qblcYMjbNk+L0wpF9EDkbSEddI9DE69jVC9Woo1?=
+ =?us-ascii?Q?Ap1ZgHS7eGNpd48TFj++p7BJTJOqSFulG0tzo7p2AuUZhyVDC59sfSyym83h?=
+ =?us-ascii?Q?R3Brs0/tTKxOe4X/POsC2HB/rdk/bqVrpeTVo9QQ7Akv4NZR5oUHpDrJbrKb?=
+ =?us-ascii?Q?KY7+jOaOTaUdswwBQMmK/eLljexbfXtslMC6t5p2yqgvm7td1x3oMrbr0lfV?=
+ =?us-ascii?Q?jedk5PaSaPZJRr53ghs5tcO6xbSB0hG3eA28lIjPsDa+0MuSUI1xKfwFhw+I?=
+ =?us-ascii?Q?f0ibcLtjfOfgkBxAfuGTS7o646oDDVfcsVzXiODDYPwAfmW1AkEepKq4Iibj?=
+ =?us-ascii?Q?zezZ/gOh7tBZIs4LuiKXPGYKHryEoUFpBED8h6b5/U81cIg6TyxUPccYl4ro?=
+ =?us-ascii?Q?PW9G+iOUtjiH/qoFE0rnoNpMOOR6vbCz5NOWygH7iFav5dqP0WEhFKr09tJF?=
+ =?us-ascii?Q?+/OK9LdQJpR0ur5a1GMiPvlyVQy1SCIio5GzEr35ujhMRLalmJ+3L38RinPe?=
+ =?us-ascii?Q?E30pJ1P2zWVSL5NYg5sbozAUgWyQzpk/k+kAgS/c/42MLcFO3MHtJP9iZoiv?=
+ =?us-ascii?Q?hF9NApY67EC05gzb5FcjOWsGQtaHbMaVbU+oCij3qEE9sO8nBeYZjH2LSE4m?=
+ =?us-ascii?Q?DOz/kB0y1JCR6JVgeQogStYSd6QUqyYEBP1CQUchBvMDCkoOXyTtfE5kPZJG?=
+ =?us-ascii?Q?C1xvlmsyfOrCdlhb+Aw=3D?=
+Content-Type: multipart/mixed;
+	boundary="_002_bac1cb2139a17bb583528ac56f9c16e1cbfffea4camelphytecde_"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251104-dtbs-v7-1-224aacb09671@gmail.com>
-X-B4-Tracking: v=1; b=H4sIANHWCWkC/13QwW7DIAwG4FepOI8J20DLTnuPaQdioEVamylUU
- asq7z6oMi3j+Fv+fsl+iBKnHIt42z3EFOdc8nipYf+yE3zyl2OUOdQsUKEBhSDDdSiSPEGyzrG
- 2IOrq9xRTvj1rPj5rPuVyHaf7s3WGNu0KZpAgtSMG79HQwO/Hs89frzyeRSuYcYvsirAiDjTsg
- TweDrFHtEVuRVQRMYNFRGDEHukNIrUi3VBKiRoCcD0yW/R7k6koRgisBkxeqx7ZPwRKr8hWZCE
- Yn9pPw7+blmX5AfBnhLuhAQAA
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, skhan@linuxfoundation.org, 
- david.hunter.linux@gmail.com, khalid@kernel.org, 
- linux-kernel-mentees@lists.linuxfoundation.org, 
- Ranganath V N <vnranganath.20@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1762252501; l=5567;
- i=vnranganath.20@gmail.com; s=20250816; h=from:subject:message-id;
- bh=xVTUdynUwOEfXOlM6iD7wg5Aog37SJxR0DlPuRS1e6E=;
- b=geYToZPDBy5tyXIRvlqHX9s3GXu8IEe6Ozo1EFpJWtgfnErpCnfgBIcsITPv7ZI6sTwYACG7s
- Hwp/JaY/W4cA6BMHrhALuvo3E+m04WWneC7t62yWM6Ur2v9LU9ApuwA
-X-Developer-Key: i=vnranganath.20@gmail.com; a=ed25519;
- pk=7mxHFYWOcIJ5Ls8etzgLkcB0M8/hxmOh8pH6Mce5Z1A=
+X-OriginatorOrg: phytec.de
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8P195MB2410.EURP195.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 74392096-5f47-437d-4789-08de1b8df2bf
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Nov 2025 10:36:00.9802
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e609157c-80e2-446d-9be3-9c99c2399d29
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: KmZ93ilfYStzTVDK9ANo415CJIirOdJGXBwL3sDRS7U6H3OmEdu4ut1YQObqDyRbRQBPK7C9rom77BQNh329qw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXP195MB1293
 
-convert the Texas Instruments PCM186x Universal audio ADC bindings
-to DT schema.
+--_002_bac1cb2139a17bb583528ac56f9c16e1cbfffea4camelphytecde_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-The PCM186x codec provides a single digital audio interface. Therefore
-this binding adds a reference to dai-common.yaml and defines
-'#sound-dai-cells = 0".
 
-Signed-off-by: Ranganath V N <vnranganath.20@gmail.com>
----
-Convert the Texas Instruments PCM186x audio ADC bindings to DT schema.
----
-Changes in v7:
-- Commit message as a junstification to add the '#sound-dai-cells' 
-  to the new binding.(Krzysztof)
-- Link to v6: https://lore.kernel.org/r/20251104-dtbs-v6-1-61d5afa31fde@gmail.com
+--_002_bac1cb2139a17bb583528ac56f9c16e1cbfffea4camelphytecde_
+Content-Type: text/markdown; name="ATT00001"
+Content-Description: ATT00001
+Content-Disposition: attachment; filename="ATT00001"; size=2865;
+	creation-date="Tue, 04 Nov 2025 10:36:00 GMT";
+	modification-date="Tue, 04 Nov 2025 10:36:00 GMT"
+Content-ID: <46668B6B02A1604FA6CE4F3D1D7B3002@EURP195.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
 
-Changes in v6:
-- Corrected the Subject Asoc->ASoC, dt_bindings -> dt-bindings and ti,pcm186x -> ti,pcm1862
-- Updated the commit message.
-- added the missed Description from the old binding.
-- Link to v5: https://lore.kernel.org/r/20251031-dtbs-v5-1-ee1dc0b2fa40@gmail.com
+ICAKCgogIAoKVm9uOiBKYW4gUmVtbWV0IDxqLnJlbW1ldEBwaHl0ZWMuZGU+ICAKR2VzZW5kZXQ6
+IERpZW5zdGFnLCAyOC4gT2t0b2JlciAyMDI1IDA5OjU4ICAKQW46IFRlcmVzYSBSZW1tZXQgPHQu
+cmVtbWV0QHBoeXRlYy5kZT47IEphbmluZSBIYWdlbWFubiA8ai5oYWdlbWFubkBwaHl0ZWMuZGU+
+OyBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3JnPjsgS3J6eXN6dG9mIEtvemxvd3NraSA8a3J6
+aytkdEBrZXJuZWwub3JnPjsgQ29ub3IgRG9vbGV5IDxjb25vcitkdEBrZXJuZWwub3JnPjsgU2hh
+d24gR3VvIDxzaGF3bmd1b0BrZXJuZWwub3JnPjsgU2FzY2hhIEhhdWVyIDxzLmhhdWVyQHBlbmd1
+dHJvbml4LmRlPjsgUGVuZ3V0cm9uaXggS2VybmVsIFRlYW0gPGtlcm5lbEBwZW5ndXRyb25peC5k
+ZT47IEZhYmlvIEVzdGV2YW0gPGZlc3RldmFtQGdtYWlsLmNvbT4gIApDYzogZGV2aWNldHJlZUB2
+Z2VyLmtlcm5lbC5vcmcgPGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnPjsgaW14QGxpc3RzLmxp
+bnV4LmRldiA8aW14QGxpc3RzLmxpbnV4LmRldj47IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5m
+cmFkZWFkLm9yZyA8bGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnPiAgCkJldHJl
+ZmY6IFtQQVRDSCB2MyAwLzZdIGFybTY0OiBkdHM6IGlteDhtbS1waHlib2FyZC1wb2xpczogY2xl
+YW51cCBhbmQgYWRkaXRpb25hbCBkaXNwbGF5ICAKwqAgIAogIApUaGlzIHBhdGNoIHN0YWNrcyBy
+ZXdvcmsgdGhlIGhhbmRsaW5nIG9mIHRoZSBwZWItYXYtMTAgZGF1Z2h0ZXJib2FyZC4gIApVcGRh
+dGUgbGljZW5zZS4gIApNb3ZlIG1pcGkgYnJpZGdlIGNvbmZpZ3VyYXRpb24gdG8gc29tLiAgCkFs
+bG93IHBlYi1hdi0xMCBhcyBhdWRpbyBvbmx5IG92ZXJsYXkuICAKQWRkIHR3byBkaXNwbGF5IG92
+ZXJsYXlzIGZvciBFVE1MMTAxMEczRFJBIGFuZCBQSDEyODgwMFQwMC4gIAogIApTaWduZWQtb2Zm
+LWJ5OiBKYW4gUmVtbWV0IDxqLnJlbW1ldEBwaHl0ZWMuZGU+ICAKCkFja2VkLWJ5OiBKYW5pbmUg
+SGFnZW1hbm4gPGouaGFnZW1hbm5AcGh5dGVjLmRlPgotLS0gIApDaGFuZ2VzIGluIHYzOiAgCi0g
+cmViYXNlZCBvbnRvIHNoYXduZ3VvL2Zvci1uZXh0ICAKLSBhZGQgQWNrZWQtYnkgIAotIExpbmsg
+dG8gdjI6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL3IvMjAyNTEwMDctd2lwLWotcmVtbWV0LXBo
+eXRlYy1kZS1ic3BpbXg4bS0zODAxX3BlYi1hdi0xMF93aXRoX2FjMjA5LXYyLTAtN2U1ZGU2MmM3
+OWJmQHBoeXRlYy5kZSAgCiAgCkNoYW5nZXMgaW4gdjI6ICAKLSBhZGQgU2lnbmVkLW9mZi1ieSB0
+byBwYXRjaDYgIAotIExpbmsgdG8gdjE6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL3IvMjAyNTA5
+MzAtd2lwLWotcmVtbWV0LXBoeXRlYy1kZS1ic3BpbXg4bS0zODAxX3BlYi1hdi0xMF93aXRoX2Fj
+MjA5LXYxLTAtZDVkMDNjY2JmY2ExQHBoeXRlYy5kZSAgCiAgCi0tLSAgCkphbiBSZW1tZXQgKDUp
+OiAgCsKgwqDCoMKgwqAgYXJtNjQ6IGR0czogaW14OG1tLXBoeWJvYXJkLXBvbGlzOiBVc2UgR1BM
+LTIuMC1vci1sYXRlciBPUiBNSVQgIArCoMKgwqDCoMKgIGFybTY0OiBkdHM6IGlteDhtbS1waHli
+b2FyZC1wb2xpczogbW92ZSBtaXBpIGJyaWRnZSB0byBzb20gIArCoMKgwqDCoMKgIGFybTY0OiBk
+dHM6IGlteDhtbS1waHlib2FyZC1wb2xpcy1wZWItYXYtMTA6IHJlb3JkZXIgcHJvcGVydGllcyB0
+byBtYXRjaCBkdHMgY29kaW5nIHN0eWxlICAKwqDCoMKgwqDCoCBhcm02NDogZHRzOiBpbXg4bW0t
+cGh5Ym9hcmQtcG9saXMtcGViLWF2LTEwOiBzcGxpdCBkaXNwbGF5IGNvbmZpZ3VyYXRpb24gIArC
+oMKgwqDCoMKgIGFybTY0OiBkdHM6IGlteDhtbS1waHlib2FyZC1wb2xpcy1wZWItYXYtMTAtcGgx
+Mjg4MDB0MDA2ICAKICAKVGVyZXNhIFJlbW1ldCAoMSk6ICAKwqDCoMKgwqDCoCBhcm02NDogZHRz
+OiBpbXg4bW0tcGh5Ym9hcmQtcG9saXMtcGViLWF2LTEwOiBGaXggYXVkaW8gY29kZWMgcmVzZXQg
+cGluIGN0bCAgCiAgCsKgYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvTWFrZWZpbGXCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgwqAgNiArICAKwqAuLi44bW0tcGh5Ym9hcmQtcG9saXMt
+cGViLWF2LTEwLWV0bWwxMDEwZzNkcmEuZHRzbyB8wqAgNDQgKysrKyAgCsKgLi4ueDhtbS1waHli
+b2FyZC1wb2xpcy1wZWItYXYtMTAtcGgxMjg4MDB0MDA2LmR0c28gfMKgIDQ0ICsrKysgIArCoC4u
+Li9mcmVlc2NhbGUvaW14OG1tLXBoeWJvYXJkLXBvbGlzLXBlYi1hdi0xMC5kdHNpIHwgMTg5ICsr
+KysrKysrKysrKysrKysrICAKwqAuLi4vZnJlZXNjYWxlL2lteDhtbS1waHlib2FyZC1wb2xpcy1w
+ZWItYXYtMTAuZHRzbyB8IDIzNCArLS0tLS0tLS0tLS0tLS0tLS0tLS0gIArCoC4uLi9pbXg4bW0t
+cGh5Ym9hcmQtcG9saXMtcGViLWV2YWwtMDEuZHRzb8KgwqDCoMKgwqDCoMKgwqAgfMKgwqAgMyAr
+LSAgCsKgLi4uL2R0cy9mcmVlc2NhbGUvaW14OG1tLXBoeWJvYXJkLXBvbGlzLXJkay5kdHPCoMKg
+wqAgfMKgwqAgMyArLSAgCsKgLi4uL2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bW0tcGh5Y29yZS1z
+b20uZHRzacKgwqDCoMKgIHzCoCAyOCArKy0gIArCoDggZmlsZXMgY2hhbmdlZCwgMzEzIGluc2Vy
+dGlvbnMoKyksIDIzOCBkZWxldGlvbnMoLSkgIAotLS0gIApiYXNlLWNvbW1pdDogYjYxOTM4ZTg5
+MTBjNWRjMGVlY2FmMzE5ZmYxMmQ2N2EzNWUzOWQ5ZiAgCmNoYW5nZS1pZDogMjAyNTA5MjUtd2lw
+LWotcmVtbWV0LXBoeXRlYy1kZS1ic3BpbXg4bS0zODAxX3BlYi1hdi0xMF93aXRoX2FjMjA5LWVm
+MTA4MTJhMmQ4ZCAgCiAgCkJlc3QgcmVnYXJkcywgIAotLSAgCkphbiBSZW1tZXQgPGoucmVtbWV0
+QHBoeXRlYy5kZT4gIAoK
 
-Changes in v5:
-- Resolved previous patch warnings/errors
-- dtschema/dtc warnings/errors:
-- /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/ti,pcm1862.yaml: 
-- $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
-- 	 $id: http://devicetree.org/schemas/sound/ti,pcm186x.yaml
-- 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/ti,pcm1862.yaml
-- Link to v4: https://lore.kernel.org/r/20251030-dtbs-v4-1-3fff32221119@gmail.com
-
-Changes in v4:
-- Corrected subject dt_bindings:sound to Asoc: dt_bindings:
-- Corrected the filename to match one of the compitables in the file 
-- ti,pcm186x.yaml to ti,pcm1862.yaml
-- Link to v3: https://lore.kernel.org/r/20251029-dtbs-v3-1-3cc162221c22@gmail.com
-
-Changes in v3:
-- Unicode FEFF character was present in the begining of the file,
-- Removed unicode character.
-- Link to v2: https://lore.kernel.org/r/20251026-dtbs-v2-1-cd3b713a288e@gmail.com
-
-Changes in v2:
-- Fixes as per the reviews suggested for the v1.
-- Link to v1: https://lore.kernel.org/r/20251021-dtbs-v1-1-493c1aa253bc@gmail.com
----
- .../devicetree/bindings/sound/pcm186x.txt          | 42 ------------
- .../devicetree/bindings/sound/ti,pcm1862.yaml      | 76 ++++++++++++++++++++++
- 2 files changed, 76 insertions(+), 42 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/sound/pcm186x.txt b/Documentation/devicetree/bindings/sound/pcm186x.txt
-deleted file mode 100644
-index 1087f4855980..000000000000
---- a/Documentation/devicetree/bindings/sound/pcm186x.txt
-+++ /dev/null
-@@ -1,42 +0,0 @@
--Texas Instruments PCM186x Universal Audio ADC
--
--These devices support both I2C and SPI (configured with pin strapping
--on the board).
--
--Required properties:
--
-- - compatible : "ti,pcm1862",
--                "ti,pcm1863",
--                "ti,pcm1864",
--                "ti,pcm1865"
--
-- - reg : The I2C address of the device for I2C, the chip select
--         number for SPI.
--
-- - avdd-supply: Analog core power supply (3.3v)
-- - dvdd-supply: Digital core power supply
-- - iovdd-supply: Digital IO power supply
--        See regulator/regulator.txt for more information
--
--CODEC input pins:
-- * VINL1
-- * VINR1
-- * VINL2
-- * VINR2
-- * VINL3
-- * VINR3
-- * VINL4
-- * VINR4
--
--The pins can be used in referring sound node's audio-routing property.
--
--Example:
--
--	pcm186x: audio-codec@4a {
--		compatible = "ti,pcm1865";
--		reg = <0x4a>;
--
--		avdd-supply = <&reg_3v3_analog>;
--		dvdd-supply = <&reg_3v3>;
--		iovdd-supply = <&reg_1v8>;
--	};
-diff --git a/Documentation/devicetree/bindings/sound/ti,pcm1862.yaml b/Documentation/devicetree/bindings/sound/ti,pcm1862.yaml
-new file mode 100644
-index 000000000000..0f0e254a2420
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,pcm1862.yaml
-@@ -0,0 +1,76 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,pcm1862.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments PCM186x Universal Audio ADC
-+
-+maintainers:
-+  - Ranganath V N <vnranganath.20@gmail.com>
-+
-+description: |
-+  The Texas Instruments PCM186x family are multi-channel audio ADCs
-+  that support both I2C and SPI control interfaces, selected by
-+  pin strapping. These devices include on-chip programmable gain
-+  amplifiers and support differential or single-ended analog inputs.
-+
-+  CODEC input pins:
-+    * VINL1
-+    * VINR1
-+    * VINL2
-+    * VINR2
-+    * VINL3
-+    * VINR3
-+    * VINL4
-+    * VINR4
-+
-+  The pins can be used in referring sound node's audio-routing property.
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,pcm1862
-+      - ti,pcm1863
-+      - ti,pcm1864
-+      - ti,pcm1865
-+
-+  reg:
-+    maxItems: 1
-+
-+  avdd-supply: true
-+
-+  dvdd-supply: true
-+
-+  iovdd-supply: true
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - avdd-supply
-+  - dvdd-supply
-+  - iovdd-supply
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        audio-codec@4a {
-+            compatible = "ti,pcm1865";
-+            reg = <0x4a>;
-+
-+            avdd-supply = <&reg_3v3_analog>;
-+            dvdd-supply = <&reg_3v3>;
-+            iovdd-supply = <&reg_1v8>;
-+        };
-+    };
-
----
-base-commit: 211ddde0823f1442e4ad052a2f30f050145ccada
-change-id: 20251021-dtbs-3a31f699c461
-
-Best regards,
--- 
-Ranganath V N <vnranganath.20@gmail.com>
-
+--_002_bac1cb2139a17bb583528ac56f9c16e1cbfffea4camelphytecde_--
 
