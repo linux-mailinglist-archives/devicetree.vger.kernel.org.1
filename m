@@ -1,135 +1,131 @@
-Return-Path: <devicetree+bounces-234713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E265C300A5
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 09:49:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0363C30133
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 09:54:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E71354FB829
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 08:44:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75CE93A514A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 08:48:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8803731282A;
-	Tue,  4 Nov 2025 08:41:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EEE523A58E;
+	Tue,  4 Nov 2025 08:48:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rdc8MYdy"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="CRfjG70T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 580A9306B37;
-	Tue,  4 Nov 2025 08:41:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E31B19D8AC;
+	Tue,  4 Nov 2025 08:48:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762245709; cv=none; b=YUmP4JvKx6Yc5GZGz8ESnxWeyokz46eepJAFFRq727x27odX+IuYU5IM9G9sBWHwFyGmIlwtcDU8p9nr7Sz43gjxbmUC77eTW/gPxcYAWStSGN5Sieut2b+UyrWOgTRID4m2z5HtfAfsJmLKJb9/+8HXFzsKOVhfeVNTu4sg7ro=
+	t=1762246115; cv=none; b=k476AkwnXK8guNIAh55vz5zGMkg6isHFg+DwJpV8HZ6RgZJwtbYoVosS7KnORnhm1ylpROqmuiqiJg67Jr4x8Xd7Mcb1MfkjgwhuUTNrTmg8xHSgYRgh+DXC0YjJPf33DBfk3AsZTaPO+gzyuWcdlgTsOuxXmSQ3ynsScd6EOsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762245709; c=relaxed/simple;
-	bh=Ffn+Aw7Dhw6H34a6oOdiITBMV7CWiVr0amkxCEh89Xs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WCTC2mNoUbweuJ9Ya/9S4tXzJ6xurPSAufIiZlLzEbQELAFDPPrpBYk4zH0dkFNbd1n/+DRq5vAI7ZFK69PMhSB5SkHTGURm1tLo7ZFA4PWJhP1BX0J2RgCZkw56DCyllXLWbx3HRN80uuLG80KVnqUdWOKoyxgZKEIFrP0PBAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rdc8MYdy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 587F2C4CEF7;
-	Tue,  4 Nov 2025 08:41:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762245707;
-	bh=Ffn+Aw7Dhw6H34a6oOdiITBMV7CWiVr0amkxCEh89Xs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rdc8MYdyS5EGkHcOmmXyUlh/K2bwwH//mInId6YJow/VWcWFAZgkLP64h3TZlieS/
-	 rDqoOdSmcIR+y1D7An7jF8rOvsHgOP+526aK5GOyRwDnmh4MI9+NwE6x9IXifw3uZ5
-	 q7uPyJFkIZyPPPOXtGGFMTcT7kn3yD71SwvBjA+zzSeGYrxqSZzISCs2EJKoJHVYho
-	 uOKrOkT8fwxFX1d+MdoJjfHe7u0lGb0rHrq7fri1sVEYTSmAgDzqnxZQnuDDboezfr
-	 wEwy0q7ic7QsAA8HYIQeZ3CBJ4E3VvQIeytZ00EmLqMOdCChH7H7/4/2bXcTLP4juO
-	 IUXlUkEANdlxQ==
-Message-ID: <f7feb6a8-6ec3-4f82-8b38-dbddc17f2350@kernel.org>
-Date: Tue, 4 Nov 2025 09:41:42 +0100
+	s=arc-20240116; t=1762246115; c=relaxed/simple;
+	bh=TTQr+0R+W0AqrqEoPVc7J5rpzXqWM5mmludeeFcg23Q=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iOY9o9mLz4JOzz7ZZjDUMdYqyrPDbX6hBDctpPS2RbEGpW5Rn0xzuFFM7GMRzYy/bsJH13O30Vq6AGRySAzozfc94bpoT341cLAiNq7PTUuGefYX34v9JNY/pDZKibqEf/b02CqVPBdY4KLOD6HZ6KTx22pbcOU3mIVlDcuexc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=CRfjG70T; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1762246113; x=1793782113;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=TTQr+0R+W0AqrqEoPVc7J5rpzXqWM5mmludeeFcg23Q=;
+  b=CRfjG70T87nhOWhBnujwtl4Tr8CIn6mB1JaPRIHtRV6gRhDYVrIKB0BW
+   W6Snxzd44blysaWuC5TyZX6V9lQy3opqoI+6YmPNTqyv3bwlcL6XYNJZd
+   TleipxmD/OJ92FvfCbItyWkwoWJkxqx+seIHiUI5jeOQdFzw7HsTByHGZ
+   VO7c6KHpBPsqAOWruC57CZ4CbJPll4hkB7rB5JSy83SjbhT8wTq7X4WcF
+   TvYBeWmbeq0xXrPTdRkWzWqmUgEeEBDR1j5kBvm9oumt23Iv+0Mo3//rv
+   dIBVB+dbl+9s445olZx0mnKhXvbWYjZtBaL+LifHFlU2gP9Brl0nEA3E4
+   w==;
+X-CSE-ConnectionGUID: cuBV7z19QNieLgsXxlf1Vg==
+X-CSE-MsgGUID: AMkxw+pPTB+e2XdkMflsTQ==
+X-IronPort-AV: E=Sophos;i="6.19,278,1754982000"; 
+   d="asc'?scan'208";a="215994660"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2025 01:48:32 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
+ chn-vm-ex3.mchp-main.com (10.10.87.32) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.29; Tue, 4 Nov 2025 01:48:08 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.58 via Frontend
+ Transport; Tue, 4 Nov 2025 01:48:06 -0700
+Date: Tue, 4 Nov 2025 08:46:23 +0000
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>
+CC: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, <linux-riscv@lists.infradead.org>,
+	<linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, Daire McNamara <daire.mcnamara@microchip.com>,
+	Valentina Fernandez Alanis <valentina.fernandezalanis@microchip.com>, "Cyril
+ Jean" <cyril.jean@microchip.com>
+Subject: Re: [PATCH v1 1/3] spi: microchip: rename driver file and internal
+ identifiers
+Message-ID: <20251104-paralyze-creature-d2ab0ce2566a@wendy>
+References: <20251103160515.412706-1-prajna.rajendrakumar@microchip.com>
+ <20251103160515.412706-2-prajna.rajendrakumar@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 12/20] regulator: s2mps11: use dev_err_probe() where
- appropriate
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Peter Griffin <peter.griffin@linaro.org>,
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
- linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20251103-s2mpg1x-regulators-v3-0-b8b96b79e058@linaro.org>
- <20251103-s2mpg1x-regulators-v3-12-b8b96b79e058@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251103-s2mpg1x-regulators-v3-12-b8b96b79e058@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="dbyOFFU7ujEIU9/Y"
+Content-Disposition: inline
+In-Reply-To: <20251103160515.412706-2-prajna.rajendrakumar@microchip.com>
 
-On 03/11/2025 20:14, André Draszik wrote:
-> dev_err_probe() exists to simplify code and harmonise error messages,
-> there's no reason not to use it here.
-> 
-> While at it, harmonise some error messages to add regulator name and ID
-> like in other messages in this driver, and update messages to be more
-> similar to other child-drivers of this PMIC (e.g. RTC).
-> 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
-> ---
->  drivers/regulator/s2mps11.c | 29 ++++++++++++++---------------
->  1 file changed, 14 insertions(+), 15 deletions(-)
+--dbyOFFU7ujEIU9/Y
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Nov 03, 2025 at 04:05:13PM +0000, Prajna Rajendra Kumar wrote:
+> The spi-microchip-core.c driver provides support for the Microchip
+> PolarFire SoC (MPFS) "hard" SPI controller. It was originally named
+> "core" with the expectation that it might also cover Microchip's
+> CoreSPI "soft" IP, but that never materialized.
+>=20
+> The CoreSPI IP cannot be supported by this driver because its register
+> layout differs substantially from the MPFS SPI controller. In practice
+> most of the code would need to be replaced to handle those differences
+> so keeping the drivers separate is the simpler approach.
+>=20
+> The file and internal symbols are renamed to reflect MPFS support and
+> to free up "spi-microchip-core.c" for CoreSPI driver.
+>=20
+> Fixes: 9ac8d17694b6 ("spi: add support for microchip fpga spi controllers=
+")
+> Signed-off-by: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>
 
+Renaming the driver from spi-mpfs to spi-microchip-core was my mistake,
+based on the knowledge that the coreSPI IP is what had been hardened and
+use in the mpfs device. I didn't expect that the register layout had
+been changed so dramatically between the two, when all other "hardened" IP
+just added extra bits in registers or whole new registers.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Best regards,
-Krzysztof
+--dbyOFFU7ujEIU9/Y
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQm9XwAKCRB4tDGHoIJi
+0mN6AP9OaCb3FGGYqtgk+5W1t+1MWt58dVr1qbwzn5K6+yOO9gD8Cf6jDATNSvyc
+0SnFN+sA0OZ52EDvffH7yuSTGCJV3gs=
+=cXn0
+-----END PGP SIGNATURE-----
+
+--dbyOFFU7ujEIU9/Y--
 
