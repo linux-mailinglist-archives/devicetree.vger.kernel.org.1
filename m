@@ -1,60 +1,57 @@
-Return-Path: <devicetree+bounces-234927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 507E5C324E2
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 18:22:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99D1FC324F9
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 18:23:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 945CB3ACD0C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 17:22:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 260483A4E8B
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 17:23:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A1343396EE;
-	Tue,  4 Nov 2025 17:21:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 022A8338925;
+	Tue,  4 Nov 2025 17:23:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O09p6ApL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HaetDQwr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 427C3337104;
-	Tue,  4 Nov 2025 17:21:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8BFB338587;
+	Tue,  4 Nov 2025 17:23:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762276904; cv=none; b=L2gbK1oW0sPHfjn1WeYH1ZIFFHHbhim54toZthwRx9XimHwFS46u45amc7EKvQi3zgJ+oTiEePcj0qGAuakviqN/qGoIJCT3j26JFhJ43efctM6aUofgpmo+IAVyUibrYXBjB2C4boMLiUUqNPmTNB+jySbqnhjLdJDEZKnK2ew=
+	t=1762276996; cv=none; b=jkGKTc0aX+92D3Wc4J9NrlSn41TdMmIHJ0I7gaLzlx3SvNVFhYxIOuzWBNYARAfCiWrT3AgwVFC5uSmrH86U0mCBw+TIFvC3k2f9nGGPBcXV3zAwlpNBLFJbslxr5Vna4MYoJup9cXF1f0g6U0TXHsYRhSq48IlZaIPQDeNymIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762276904; c=relaxed/simple;
-	bh=8EJ06/xu+MF3npKBmkZkcX4nKJgZvz6INMbxir4/Xe4=;
+	s=arc-20240116; t=1762276996; c=relaxed/simple;
+	bh=E5LlO3nuIGMGzEZzuymHEqptWv1aueAZNyEcApu+pa0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ahjA5JA0fpHBRoPSDz+xlx7RdJJ7woFHQfZtaB7oB9LsxY/kajPAsgz6X1SwndRSlcT6aVY9HRLzmTV2qF1adshp+4BeMqk5JAaNS387Us4t1/VQuuHOdMhkFfW1yn32NwdfC9xWFm69mCIQ9BqJfAxxDvc3usIByknIHx8X3Rs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O09p6ApL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C666FC4CEF8;
-	Tue,  4 Nov 2025 17:21:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=DJb9ihIzbRlD78M8MXVCPHjFNP2AQDDWm4nw2VlhZQSKEXrAme2FwRowRExzJGZN2uCmoGPJC1eddcKahPj9V/RHPDJCKoYDbueNoultolY3Gq+VZNAiMjqMU1MLzvvrTjKk+iEMiiJV+0Zpaew4Brexhp5n6Kp9viKTEmRZ6rA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HaetDQwr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E99B8C4CEF7;
+	Tue,  4 Nov 2025 17:23:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762276903;
-	bh=8EJ06/xu+MF3npKBmkZkcX4nKJgZvz6INMbxir4/Xe4=;
+	s=k20201202; t=1762276996;
+	bh=E5LlO3nuIGMGzEZzuymHEqptWv1aueAZNyEcApu+pa0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O09p6ApLebmrl/aHzF6TcAoaXfhDCrzMISaQ5q8vGfdY8Bd6AIySyugt1StuAtiar
-	 ozDRdquvT8cnFImmxDdKkLTu08IgDACEku9FuBDOfWnqsrVwDaq4S016OwF2C4P8Dx
-	 Fve71DPcsTCjSmGb0ZQszdeS3QxPKwBTpvRIeGwgNNaMJEZlmBzmjiGTQd+lGutRe3
-	 3eu26Fs9ShJx51vYDGf58SqAjHdICcA0pF01t6Gxd2kZwEivF2ZyFdVJ555Fj7rx+T
-	 WuYKQXsdojm6sHUUbGlPmeG9garKVVzsMsj+ppOuaOgr7KlPZgCltdQYcUUNlO9O6T
-	 orin7P94k+zxw==
-Date: Tue, 4 Nov 2025 17:21:39 +0000
+	b=HaetDQwrl/7Fkot0PU9d+nSTeVzFdfuXVDZmdtpJpJVeBaaA0klVmA1eENrt1+e+5
+	 TvhgjKUbjrZtovhEDg0p/Am7ivqIXvS57RaliFTnO9C2HOAGLORQ+0s4yJ1549qzi5
+	 gnwahsmhyujkKSeMLxE7Jq6+mB8ZvHH3Eqy2gdJKkij38H6iV88jCabEwF+N90TP+d
+	 nkBwS/85Hd9v0+6QjTt5T3ckOMj14HwnAD/nWS9HVhCHfN326C9iagieA4W0sQaU1i
+	 OHNav7/x0N7m+JDB2QKDKumsi6pntWjK6Fai4t3GiS1oW6jXuTiAMboyPolY1CBmjo
+	 4EbUobAL5zV1w==
+Date: Tue, 4 Nov 2025 17:23:11 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Gatien Chevallier <gatien.chevallier@foss.st.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: bus: add stm32mp21 RIFSC compatible
-Message-ID: <20251104-cycling-paralyses-8e99cda7944c@spud>
-References: <20251104-rifsc_debugfs-v1-0-7ebdfbf8d33f@foss.st.com>
- <20251104-rifsc_debugfs-v1-1-7ebdfbf8d33f@foss.st.com>
+To: Billy Tsai <billy_tsai@aspeedtech.com>
+Cc: linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: hwmon: Add AST2700 compatible
+Message-ID: <20251104-grumbling-document-6483add9415e@spud>
+References: <20251104055112.2679087-1-billy_tsai@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,36 +59,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Ja5NuCERZEEhWodx"
+	protocol="application/pgp-signature"; boundary="EAVUn09jG7fwpxUy"
 Content-Disposition: inline
-In-Reply-To: <20251104-rifsc_debugfs-v1-1-7ebdfbf8d33f@foss.st.com>
+In-Reply-To: <20251104055112.2679087-1-billy_tsai@aspeedtech.com>
 
 
---Ja5NuCERZEEhWodx
+--EAVUn09jG7fwpxUy
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 04, 2025 at 02:54:10PM +0100, Gatien Chevallier wrote:
-> The STM32MP21x platforms have a slightly different RIFSC. While its
-> core functionalities are similar, the wiring is not the same. Hence,
-> declare a new compatible.
+On Tue, Nov 04, 2025 at 01:51:11PM +0800, Billy Tsai wrote:
+> Adds support for the AST2700 PWM/Tach controller by extending the
+> compatible string enumeration in the device tree binding.
 >=20
-> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+> The AST2700 PWM/Tach hardware is compatible with the existing binding
+> schema and requires no additional properties or modifications beyond
+> the new compatible string.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+With this commit message, I expected there to be a fallback compatible.
+Why isn't one used?
 
---Ja5NuCERZEEhWodx
+>=20
+> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+> ---
+>  Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.y=
+aml b/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
+> index 9e5ed901ae54..d6ff4182085e 100644
+> --- a/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
+> @@ -20,6 +20,7 @@ properties:
+>    compatible:
+>      enum:
+>        - aspeed,ast2600-pwm-tach
+> +      - aspeed,ast2700-pwm-tach
+> =20
+>    reg:
+>      maxItems: 1
+> --=20
+> 2.25.1
+>=20
+
+--EAVUn09jG7fwpxUy
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQo2IwAKCRB4tDGHoIJi
-0sdCAP9L1bHKFI2Qo75eH5i+O1mmMlb2f4QGSM0NNzMxwNGoRwEA6NFzMMoR4anc
-eHAn0FSEmUesoeTP9grmuAiPkOVScAw=
-=8oy3
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQo2fwAKCRB4tDGHoIJi
+0sYTAQDbftqnYaV1ZmhlGS+OCOMPY79jqcr4MOlskykoteVUhgD6AqEmQ/T3y0h7
+Z5h+xKS/iDZ9j7HhE/bIphciTJDIMgQ=
+=uT06
 -----END PGP SIGNATURE-----
 
---Ja5NuCERZEEhWodx--
+--EAVUn09jG7fwpxUy--
 
