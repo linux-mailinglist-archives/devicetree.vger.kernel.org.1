@@ -1,94 +1,91 @@
-Return-Path: <devicetree+bounces-234998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EFFAC33562
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 00:08:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15A94C3356E
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 00:08:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C5F6E4EB285
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 23:07:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BE88C4F3160
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 23:07:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECD3F34678F;
-	Tue,  4 Nov 2025 23:07:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAA47346E48;
+	Tue,  4 Nov 2025 23:07:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="nPXEu8nd"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Nf3h5MV3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EBFB2D372D
-	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 23:06:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F2C033F8B7
+	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 23:07:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762297620; cv=none; b=a6kkRuSJGN2tMWe/9YwtYbPzkSapyWfAeCZGjtgG1ubCncQh97H2+OF3ME3hvvSEQZopagWLNjNajqb1N+7EqtCAt89azmDmzFs3Wau+OJI/o6QOU7QueDNsYpC7hmJIjGugxKEfRXPaPX/uUKxJm7SvHlI+zyReCuyRFkmKWPI=
+	t=1762297621; cv=none; b=f94qbTfuBkKouwzUGrcDWO7g5+uySewvYO6pwP9V8qV8Ru8Wmip0Y5AcEwd9PlMMOtmuDARE/EuQ4O5NgXz167GPG2naacwEf9lexs43BuB96YAvxd01e0wr7eJEbzX2BmnhPY+PDA0P2TSKGqWzxN4jzOMwgdfV+NFmLpG0MlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762297620; c=relaxed/simple;
-	bh=RR3IPbYec2NOPFOIfkwk6RSLhVYO7F2PV0hm2oD/GxE=;
+	s=arc-20240116; t=1762297621; c=relaxed/simple;
+	bh=CsY4m5s2RMJkD3lvjeOF++mv47u/HIAkSzDbG5YyYFA=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=SBEr29G4QxaOGTkFgAizty94CbaJg2L08YQcp9Xq39HnJGPNT9a9jS6IUNwXzagyp8LwNmcHHMk5APzz+9163LzZ1ssJzX9YNHXSsJjd8cRz7D+b75F0MJnZ7vEqm7NKHnJyKOSijq7pE+5vvuMUkftxZLnDlnv9W+H7psJ0sBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=nPXEu8nd; arc=none smtp.client-ip=209.85.214.180
+	 MIME-Version:Content-Type; b=SFKha+WCmkSG+R17hludWFfkQsBJ8LgD/vj4SOpk63IXhtVZ31ci71Du1fxY4+IoY8RcmypSWk/7+XOvGnXOnUd1/J7IeEuw3HWv8gr1gh87sqmK5nsu3KUsMCu4Ur+wDt56S2/l/k+XVU5PiTyjIci6gdNU+cjh++5UWodHihg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Nf3h5MV3; arc=none smtp.client-ip=209.85.210.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2955623e6faso37198175ad.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 15:06:58 -0800 (PST)
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-7a23208a0c2so4882446b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 15:07:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1762297618; x=1762902418; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1762297619; x=1762902419; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=n13/8FCJMUqNvbLnkNEFU7zB6WHrbLEegcRPJ27Wm7s=;
-        b=nPXEu8nd/TGAzoYXzj1GRLQrphpOHueP72dOh8mZvMFxuik1h1Ix0FijzCdM5C5Q3j
-         MoDCSQaPGGHb100NAcVYbWQjMIa9+YWi6TsBDqZwfZULML/FxasfP4A5nT+QuuSM8KRs
-         7JnkgRdTHlQ+sP9VkvdlF+kmOqjaUu6BuBO9OABsVgfMCZP6uYmOfkECEXa+kYh8ghWt
-         hK5Stl3nPqyc5gMZVgoPMzgTngSnAlN06yFGeDExDooFar+kGpZsbi4DB24Ov0U8Sb/4
-         H+MvGm23oiLfPuicJGF1rNxw41XoNNQKkaUwhjWHVFXWfzm57SGzvyPwSq0+cNddp2S+
-         VZFQ==
+        bh=C7rOk2SljDe8T4aO8i0PRNva7QDAcRd0Lww0kxlgSZQ=;
+        b=Nf3h5MV3kq0+e7RI2TRSY/yX09WXLgN5TtiF3py68fUPDEfoNlXrgqlNGhhPl0Mr1Y
+         1kZv/1dvM8+f6I8/yjDAgpDLJdNqO+hP0OJ+OazFUnStjli5WLaQOyaStql/UIhwvLhN
+         k/OdXiVBOJRIuxqFr/SD8iepocR4ZlHrIT9o6c3JJ3VT7iYnoMWDfcz7/pDSM1Lnm3rN
+         9/0BoBzb3wh74v7q1HV0OokX80JZzSijACcrBU0o3/0D0H1qhufR3ErOQ4afJcH2sMoZ
+         vCHsJM1vsBMLuQP/dPF3CpvYrSKwHVtjh0a1tAL5PiqEA14EZYrE+JiZUD+lSmqEzzuQ
+         aOCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762297618; x=1762902418;
+        d=1e100.net; s=20230601; t=1762297619; x=1762902419;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=n13/8FCJMUqNvbLnkNEFU7zB6WHrbLEegcRPJ27Wm7s=;
-        b=tESNW9Y1x56jUxtkx9TAidD+EYeP0vLUFdxxUA/+GpeV4tqpBXhT4G5cNT7epXg0Xo
-         jasNowPBk6oNXDimvKXCWS0yyBnGnmOCbYo6o6mEpvrTgIBEaw6KTQVCa7tYQTvhDhop
-         p3WIf+T1hd/N35fw7Edt/ivOx039hZ9e2RCqL0vTmP0+NEnFq66QpO/f1Zszsv1xc3ie
-         DFo3q4F8EyruuzlYpG3uEEPbl6UBWfnF1PGFJTEBdry3k4hT46XdG7viKRV8WaxXRAN3
-         mdAmjwPmiiQpbBiE8VlJVF6SnW0JZoLnHoXFqFuAiMzTihfYaXFPYmLQ4Efm37JCDztD
-         ldPw==
-X-Forwarded-Encrypted: i=1; AJvYcCXqRAk8GI6El50WV3a2mfkWkGgRKr14MF1Z4StjQU2ohgOIjeichUcp0T8I8D2qZqCeWChb01lrHH2E@vger.kernel.org
-X-Gm-Message-State: AOJu0YxH+g6+6faMXiQBzjCEh1PxxjmCNedBmO6FDtKlqnh/iEIz2/ZE
-	8Rxze+H7Uu4qhRzscK2lW/xIkctcoy01rfeanfVWftTYjMqWyqV8DG5fFMhx5B1sg5uk0W4Z0rw
-	WSQ83
-X-Gm-Gg: ASbGncuWOJdHqLwDP+UeZo/PaHhf2IgbP7m3KL2sjd3XyJ/+CL8mYHS1cHlFrMqCyQO
-	6ixd2Dq4qcZtkFXOgXRT5r695pma+ARUKD0cTMsLbclMKJetnG8zI7tvM4hBI2iuJF9dG0jh7fc
-	Y8fXPC9SqoTVeIYR3rqzQ7brXGjSGup7LImzuk8zs3AN8fSXF0MaFQFUcDvVpwvHQ4o0ZHiW5Y+
-	9liVl3aDW0I5q7Hws9aBPOYM+s6ce556CIiQGup1caz45hLbDr8FD7C+7ePQIZLCQtbbmS49LUb
-	ghxvADGf2AQjaNGjCBlxgXzXG+3+p0nGE/8E06IoHeEiRKxwrGx6KScwiL/eJPDReO7mzrWzpik
-	KRloMDkq/BrdIYzev1mW3BJn5tnUxSQdIurgEBO02VaBNT6ImlfvlFo/aRb5rjwmgcJeGGAZzlk
-	grshlGrjJw
-X-Google-Smtp-Source: AGHT+IEM+rk86HbN5JMS/+ymFnH1v9sQbDzBl1J+ZxaCCcuJJxl/HfOqx30JVy/lEf/aP5T0291XcA==
-X-Received: by 2002:a17:903:1ac8:b0:295:7454:34fd with SMTP id d9443c01a7336-2962ae4cc84mr16715675ad.39.1762297618499;
-        Tue, 04 Nov 2025 15:06:58 -0800 (PST)
+        bh=C7rOk2SljDe8T4aO8i0PRNva7QDAcRd0Lww0kxlgSZQ=;
+        b=f6uNNFSxZxYhw8AEX7sI1ywvy6jnoi3RHzmowKz3pP8jaXi5zCDwaz7KY3LPYfPZK6
+         yFA45MEZxh8GGnOoOOknkfPvkmkdaga/FdqidkHqr+HhXfOP29HMQ6xfB8ReQlRnDNEK
+         HD9rT9DOb+Q6BvUB1Royz+R16LFFQ8Yy8z3UzfannAVrDZFvmqbxzJLumD7260DeVOL7
+         89g9Fs9ti5Tn581Mt7KGVh16w8QNIT0sS4WXM3Ju9aYoybJAKDJpbOfYK3bXKKkhgAHP
+         lMzguAbsxeX32WhzcoH+YKTBIPK+80GXQAdJzybn1Swf5EONF9sNWFAiTNDzKTuUOvvr
+         ZqmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVssz3oEA35pYgymtv4MFuy6MxAG+bfHcStUNKOYsq+qMI2XMl8l17GPc0Jpe++kZc8Z2gRvq6K+4BJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxV89OC2RhShKUrPwnd1wtuMdszxPW2hQ3ilEHvm29SJ7kLRUYv
+	ozhPBLeR/Zb/9NqHLInve3byVLUGn2k/AuqgQDagUpHfckS/c50cuY1t9pWvFcoTKZo=
+X-Gm-Gg: ASbGncs4ZUilp+KWte//oGvIB0ibWW4q3/CIxTyQj2G++ezL+7psSjZ0djgUWRevo2/
+	dBX6vQ317fC38fg7dItbcepK125aLwptwFe6Gxzzkrg2w4CgmkQ+QVjXL4rraM456FFmNcDvKjW
+	MDiuvJdSV99TV4wJ6Li1nlFUJy1DZ19qZitdA6ItrtpDNcRwvS/qkN3MWIzvq+1NCt1t/c3deDq
+	CoLO2ncMtrJzsbyw67Dq0Tu1HVUUH4PyszSu/Dw2SWqcMYnfPFCjb9XTnu7W7lTKOFqmd3hDojh
+	uHoZi8ST2MKUuUkBW03U8i+LcNyoD09A9rmMtpge+OJv600OoB8mldzIsZmltj5sJcAk+8ofyHH
+	n135q8luKOdrF79+6uYkUU3eYNt9Yc0EaRbO2OsxyO5L7MVr8RJ7GR17g3JA5aGURtPBYi02f7A
+	==
+X-Google-Smtp-Source: AGHT+IGLYp80GBLpwoYMtkxAs/l4LiwUD9QsWZrdQvRIeBfncu8inTEVtgBSRIphFP4oV2r+3SM7DQ==
+X-Received: by 2002:a05:6a00:2d92:b0:7a1:68b2:5341 with SMTP id d2e1a72fcca58-7ae1d250dfemr1114563b3a.11.1762297619593;
+        Tue, 04 Nov 2025 15:06:59 -0800 (PST)
 Received: from localhost ([71.212.208.158])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29601a5751fsm39372745ad.82.2025.11.04.15.06.57
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7acd5774c21sm4156649b3a.43.2025.11.04.15.06.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Nov 2025 15:06:57 -0800 (PST)
+        Tue, 04 Nov 2025 15:06:59 -0800 (PST)
 From: Kevin Hilman <khilman@baylibre.com>
-To: Aaro Koskinen <aaro.koskinen@iki.fi>, 
- Andreas Kemnade <andreas@kemnade.info>, Roger Quadros <rogerq@kernel.org>, 
- Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux@ew.tq-group.com
-In-Reply-To: <20250826140853.2570528-1-alexander.stein@ew.tq-group.com>
-References: <20250826140853.2570528-1-alexander.stein@ew.tq-group.com>
-Subject: Re: [PATCH 0/4] TQMa335x support
-Message-Id: <176229761756.2840692.8952270327048836062.b4-ty@baylibre.com>
-Date: Tue, 04 Nov 2025 15:06:57 -0800
+To: andreas@kemnade.info, Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Cc: lee@kernel.org, krzk+dt@kernel.org, tony@atomide.com, robh@kernel.org, 
+ conor+dt@kernel.org, ukleinek@kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
+ linux-omap@vger.kernel.org
+In-Reply-To: <20250914192516.164629-1-jihed.chaibi.dev@gmail.com>
+References: <20250914192516.164629-1-jihed.chaibi.dev@gmail.com>
+Subject: Re: (subset) [PATCH v8 0/3] dt-bindings: mfd: twl: Consolidate and
+ fix TI TWL family bindings
+Message-Id: <176229761865.2840692.9613824843684430886.b4-ty@baylibre.com>
+Date: Tue, 04 Nov 2025 15:06:58 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,26 +97,24 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-56183
 
 
-On Tue, 26 Aug 2025 16:08:46 +0200, Alexander Stein wrote:
-> this series adds support for the TQMa335x[L] series, as socket [1] and LGA [2]
-> variant. The device tree can be used for both variants, so there is a common
-> compatible.
+On Sun, 14 Sep 2025 21:25:13 +0200, Jihed Chaibi wrote:
+> Following extensive maintainer feedback, this patch implements the
+> "define then disable" pattern. All possible child nodes are now defined
+> at the top level. Conditional if/then blocks are used to explicitly
+> disallow sub-modules that are not present on specific chip variants.
 > 
-> Best regards,
-> Alexander
+> This refactoring also moves pre-existing sub-node definitions
+> (e.g. madc, pwrbutton, gpadc, etc.) out of the conditional blocks
+> to the top level, following the new pattern.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/4] dt-bindings: omap: add AM335x-based TQMa335x SOM and MBa335x board
-      commit: 6cf18454d7caf5a56776f6011ab9c6bca823c7e7
-[2/4] ARM: dts: omap: AM33xx: add cpu label
-      commit: c579ced456db4b95c55491574788c03618cf88d1
-[3/4] ARM: dts: omap: Add support for TQMa335x/MBa335x
-      commit: 5267fcd180b170d39cd2017f62e332a26311534a
-[4/4] MAINTAINERS: Add entry for TQ-Systems AM335 device trees
-      commit: c8763978aa4f72ededff3adfafd5e35661862168
+[2/3] ARM: dts: omap3: beagle-xm: Correct obsolete TWL4030 power compatible
+      commit: f7f3bc18300a230e0f1bfb17fc8889435c1e47f5
+[3/3] ARM: dts: omap3: n900: Correct obsolete TWL4030 power compatible
+      commit: 3862123e9b56663c7a3e4a308e6e65bffe44f646
 
 Best regards,
 -- 
