@@ -1,116 +1,134 @@
-Return-Path: <devicetree+bounces-234717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05F1EC30199
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 09:59:04 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B2C8C300B7
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 09:49:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5B553B4E99
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 08:51:49 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BF03B34D744
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 08:49:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A2512BCF41;
-	Tue,  4 Nov 2025 08:50:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 821DB23F412;
+	Tue,  4 Nov 2025 08:49:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="lDIjHd+r"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="0l18l1Ec"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2BF424886A;
-	Tue,  4 Nov 2025 08:50:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E37419D8AC
+	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 08:49:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762246256; cv=none; b=dmtpERo2SJxZaPnVtGCZwYtNkR38zbuJsekGL/bBcfeFZjsqyr/JQG7wimvQryDIQlrG7ImlNVBxHEMd0Zorf7r0RrRQPPbdhjMbUKvrWBazOHmINY6D6raJE/eKeM8/h0z2vXkZG0FgbTjxgWLTzek4lvh2nMKSFUkc7n0uZ3Q=
+	t=1762246188; cv=none; b=VSMr/qe7HQu/jI9RTTspZyTV48JGu4WJXAn8y5+ql70FczfGddjvbD4S7JtgP4/NRiE0YYlJoaW9JKG89lFmzFF+fAFOdCb6eBhgi7hYAILBIuQ0gGm0Q/psjLHu3PWXTVARumTYv2+bnKLeDnBxRVqoEdEzmypNcgwNURBqApc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762246256; c=relaxed/simple;
-	bh=UQDCjwioHc+CBKu9bQI9yHzGAmAxgJEyxRIyI6V9LfM=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q3v46DNXhLoh1xWBWeq3eFCnBEldVjomBWBHtBixkJP2cJkXLLrO6zQnBZTNk8v8mxK3xWa8fIXwwadL5+zjGGPxLwwOyf89NAVWqnlzx9gxilwOSF3yrS6At5R2dsFlsc7lXKsFKBDPsiun9U9PFJke1citJCm1N93ib4EsRug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=lDIjHd+r; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1762246254; x=1793782254;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UQDCjwioHc+CBKu9bQI9yHzGAmAxgJEyxRIyI6V9LfM=;
-  b=lDIjHd+r6bKcuWh0gwCzb5BvyjqkhsUSLgXHGmOmdmdI1A1VdlemgWuS
-   AhsToQSs5WmKbQGvM2T982Nwka5RfBDqbXL+ilDOCSYj/bOSHz75pCqZZ
-   IBBn8ojeN6vXZgkjNIAhRmd+/hEW3yBVF4XgNbXxUg3NLv7I64OMkEyib
-   8Lzm0K48wFHq9mXvcZKeb5DpmjQH2eSl6HJG3KKP1WEnxzG9/ReM6Q/EG
-   XDCjkp4spfK48XzWnYfDbSne4UxfjCt4B8F7I16gvHNV0nlIMVZMa5bW8
-   I97By2HBtbnWQnDj9ki6YLI2lRUxzosO21RgHXCnV5Gb3CAONEOU8yXEU
-   Q==;
-X-CSE-ConnectionGUID: 5k+cQZ2HQAygUastOXmusg==
-X-CSE-MsgGUID: HlMcvepoQAyxwiqc7ny3WQ==
-X-IronPort-AV: E=Sophos;i="6.19,278,1754982000"; 
-   d="asc'?scan'208";a="49160518"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2025 01:50:53 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.87.71) by
- chn-vm-ex1.mchp-main.com (10.10.87.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.29; Tue, 4 Nov 2025 01:50:40 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.58 via Frontend
- Transport; Tue, 4 Nov 2025 01:50:38 -0700
-Date: Tue, 4 Nov 2025 08:48:55 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>
-CC: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, <linux-riscv@lists.infradead.org>,
-	<linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, Daire McNamara <daire.mcnamara@microchip.com>,
-	Valentina Fernandez Alanis <valentina.fernandezalanis@microchip.com>, "Cyril
- Jean" <cyril.jean@microchip.com>
-Subject: Re: [PATCH v1 2/3] spi: dt-binding: document Microchip CoreSPI
-Message-ID: <20251104-ground-cosponsor-83409ccea3f0@wendy>
-References: <20251103160515.412706-1-prajna.rajendrakumar@microchip.com>
- <20251103160515.412706-3-prajna.rajendrakumar@microchip.com>
+	s=arc-20240116; t=1762246188; c=relaxed/simple;
+	bh=wefYREvfSzi6Mbcb6iAa8IMRp2PZxdz6gU89b2qus8U=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=LVol5IlMWaulwNQz+sDrUbzBNvAGAXnc7imdaj0CFkQhkHIPJ+AZRGZ5ujzryRfIKltaJ40dooFUiXqsYvw9I/0rIFNFWaEC6El5SWmOK2yHEeKwwn8vt5ci3u4AsxcvWZZgepQsEbQu6Z2uFiFxXuUcM5VPjBSx8oLDm4IKB3I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=0l18l1Ec; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id AB65CC0E604;
+	Tue,  4 Nov 2025 08:49:23 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 873B5606EF;
+	Tue,  4 Nov 2025 08:49:44 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2B3E110B50978;
+	Tue,  4 Nov 2025 09:49:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1762246183; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=+tnp7G3ycwRnFF38hQrrWjWXR0KKwEMtXOrxp4e42tw=;
+	b=0l18l1EcsipvNaABsQ4OBR3pQhYZjQlb/sgy9nI/k3hijfsR0CbIIjE1gdyaJUb0Pe0mLX
+	fOrlQbZ+I9IkAqQK8psRVPIyZ+mO1/FGxGDzOsGNfRpRzzQhHWz8wPIvlW1RIre658qLEW
+	5Ybapx3Yly8nvatPJBzrEUckVxQGX8NCKtA+uL+zxU//Tp1J8lFMLoegWHwmC5XdvqotNf
+	XDiAFVyqTRRUlNI2i9l8TmhPUUzwPsUbKtYn+DYBPMgMwGzvdPQQUALNN6Y8DGfzEaSRny
+	ti73SUEEWACLJPMtc3fkJroYNyJ6tQ17aaTnnK0P9T9YXxssJC1YpdujjxxXhQ==
+Date: Tue, 4 Nov 2025 09:49:37 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Jessica Zhang <jessica.zhang@oss.qualcomm.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/3] drm/panel: Add support for the Leadtek LTK08QV25BYL
+ panel
+Message-ID: <20251104094937.042afc40@bootlin.com>
+In-Reply-To: <c47fc9bd-c041-4fc7-b08d-8f15622f4fba@linaro.org>
+References: <20251021073408.195959-1-herve.codina@bootlin.com>
+	<20251021073408.195959-3-herve.codina@bootlin.com>
+	<c47fc9bd-c041-4fc7-b08d-8f15622f4fba@linaro.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="2/B7q90WIyt1Y5JN"
-Content-Disposition: inline
-In-Reply-To: <20251103160515.412706-3-prajna.rajendrakumar@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
---2/B7q90WIyt1Y5JN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Neil,
 
-On Mon, Nov 03, 2025 at 04:05:14PM +0000, Prajna Rajendra Kumar wrote:
-> Add device tree bindings for Microchip's CoreSPI controller.
->=20
-> CoreSPI is a "soft" IP core intended for FPGA implementations. Its
-> configurations are set in Libero. These properties represent
-> non-discoverable configurations determined by Verilog parameters to the
-> IP.
->=20
-> Signed-off-by: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>
+On Wed, 29 Oct 2025 21:45:24 +0100
+Neil Armstrong <neil.armstrong@linaro.org> wrote:
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+...
 
---2/B7q90WIyt1Y5JN
-Content-Type: application/pgp-signature; name="signature.asc"
+> > +
+> > +static const struct drm_display_mode ltk028qv25byl_mode = {
+> > +	.hdisplay       = 240,
+> > +	.hsync_start    = 240 + 120,
+> > +	.hsync_end      = 240 + 120 + 4,
+> > +	.htotal         = 240 + 120 + 4 + 120,
+> > +	.vdisplay       = 320,
+> > +	.vsync_start    = 320 + 8,
+> > +	.vsync_end      = 320 + 8 + 2,
+> > +	.vtotal         = 320 + 8 + 2 + 6,
+> > +	.clock          = 10000000 / 1000,  
+> 
+> Usually we calculate the clock from the mode parameters, won't it work here ?
+> 
 
------BEGIN PGP SIGNATURE-----
+The panel has an internal oscillator an the data transfer need to be sync with
+this oscillator.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQm99wAKCRB4tDGHoIJi
-0tBHAP9rYYtl2NuaGODKf5vCQUDwJqqxQ7MM9ujFyrKJn11ZqwD8DhBMykUFFOS3
-ywi/TIV7uDWo4vi1SO5ItGH2opA16gk=
-=inU1
------END PGP SIGNATURE-----
+10M pixel per sec is the value set by the vendor.
+I tried to use a value based on other mode parameters such as
+  (240 + 120 + 4 + 120) * (320 + 8 + 2 + 6) * 60 / 1000
 
---2/B7q90WIyt1Y5JN--
+and it didn't work. I also tried ' ... * 90 / 1000) and ' ... * 100 / 1000)
+without better results.
+
+I can add a comment if you want in the next iteration to spot the value:
+--- 8< ---
+	.clock          = 10000000 / 1000,  /* 10 Mbps, internal panel oscillator */
+--- 8< ---
+
+Let me know.
+
+
+...
+
+> > +	ctx->iovcc = devm_regulator_get(dev, "iovcc");
+> > +	if (IS_ERR(ctx->iovcc))
+> > +		return dev_err_probe(dev, PTR_ERR(ctx->iovcc),
+> > +				     "Failed to get iovcc regulator\n");  
+> 
+> Can you switch to devm_regulator_bulk_get_const() ?
+
+Yes, I will do that in the next iteration.
+
+Best regards,
+Hervé
 
