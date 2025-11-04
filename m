@@ -1,101 +1,96 @@
-Return-Path: <devicetree+bounces-234868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8838DC31A2E
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 15:53:40 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04F1CC31B43
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 16:04:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C1C79349E58
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 14:53:39 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9A4B94FD040
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 14:58:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0827A32ED52;
-	Tue,  4 Nov 2025 14:53:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E43E332ED52;
+	Tue,  4 Nov 2025 14:56:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fQzm5Yks";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="IEQyT2xd"
+	dkim=pass (2048-bit key) header.d=beims.me header.i=@beims.me header.b="nFRzSInh";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="INg0Fv5F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from fout-b4-smtp.messagingengine.com (fout-b4-smtp.messagingengine.com [202.12.124.147])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F9B832E75A
-	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 14:53:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 107B032E752;
+	Tue,  4 Nov 2025 14:56:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.147
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762268016; cv=none; b=Onue2wWU40HmvRL2WKZkM5N9I/n5mPq/xJcHyJCUcGP16OhRlRz9azc5bQLlAEYU1dk+jZtTFm6AeD32CeMkvolrIF7qy2L/2on26YWr2ZgUZOPoEz90kP/YdqoSDmxDab0DDbOQnytWPRoRnrzOrbxFuJuZIjDM3Oh4NujDZDE=
+	t=1762268219; cv=none; b=VBLB5M7qWxASLxJovvQdcyywKsWnp6cicsGL+Muw1JbmA2tyK3y5uJ6ztg/gCV37JIcL+/lBa3XqL3FZfS24E60zoOuPLyoThma+SnPu4Eao9HbmF9y4w4pDmKjYrSnD40ZXSR1r0DPiFC5alT2+2pBOEsl3ttj8DATxVl5pIJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762268016; c=relaxed/simple;
-	bh=cHB74vdMdM/PyE60x2eafaIirCM8GUdqD0rzzIoXHxU=;
+	s=arc-20240116; t=1762268219; c=relaxed/simple;
+	bh=eHxg8ZsRjH/BRZAiuRt7eW0oNlsFTsrzYRWmF67yJtg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V0THQMMk9Augz5tcBiJ94S+HgYxQ0bH50MZ+eXVfv1zE2P1pXK0P9+v9gso9inisfz7eHN8IoyJW4YUXeuGQldUv0VewG8MwadHnfuP++8+JQKo98hYKghIbTqcKckKrv2gk2OPzJMz3YRTnjoMyTJk/eCpsZ0d0HhuMVdrsFgY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fQzm5Yks; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=IEQyT2xd; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A4CgUU21912755
-	for <devicetree@vger.kernel.org>; Tue, 4 Nov 2025 14:53:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	cHB74vdMdM/PyE60x2eafaIirCM8GUdqD0rzzIoXHxU=; b=fQzm5YkssjMO5gmp
-	vSJVG0C0vDf82X/6QzblspP/83xyP61oXVkHDvtZEspedwRNgP4Krj9FfMf7fjG7
-	NnGBKLl5n0y5gSmwCkOgXZAbk5cDOsblnwgLFH0CPaWoMAMIra1XviIlbDYfIpgh
-	nZL7QIclDrJp3FW6gulLOJ6lb9h6XspSoX9ZQZJ0IrtZEOpPKh3K5h1I8JT48S9V
-	XnQLBnc+EdBgyVP88ElXJmgOjIJX7qELQ1D3CZD9PoEgzgDOpj+9CrNlEARnDj0Q
-	qWQ+jQIm2P/SUz6SPeXEE17COvsiDmpY3MchiT2Tk2SzwNl21yEDgNYS0Ta/8pf9
-	TdY7Vw==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a70exk8u8-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 14:53:34 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8a223d563a3so189900685a.3
-        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 06:53:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762268013; x=1762872813; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cHB74vdMdM/PyE60x2eafaIirCM8GUdqD0rzzIoXHxU=;
-        b=IEQyT2xdNH/79CoEYPwH1r7aTxJ5+P7xuiJFA8erUpdS7Jot2Pd6P1ZmHlNEZuObKV
-         lBwYC0LmTuAJI3MSXOzvmneqCS0651VX7c9SuL9wJs0tYAWjF1IW6DQNRf2dgYgBAfWx
-         4mqBqGM6C3NO/AWR59qhG+lfZtgh7JwvGfSwpNrKNIhT3CuCtcGHOM4KxmtO0qJ9REcG
-         LRV5Szlw7dkSa3nB1pTxEwgE0F3jzIYpPx0H7pJEt2xw2SRIhE6RhGFytkTu0gWbHFAU
-         WRX1/D1Rs22GcFb+lky6IGuMWx21PKqcxvPVYD1xNeg/tXm6FtGCTqxbTN3XbrStPwlG
-         MURQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762268013; x=1762872813;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cHB74vdMdM/PyE60x2eafaIirCM8GUdqD0rzzIoXHxU=;
-        b=EFQKsgdnu373XOBv22FmextlAFHU9jwbImYx04UZXWxwRTQN8aHssYXvNHXhbNH6kb
-         HK1FQd5M/krTY9WcudRaSkFT5jtfIXpG24Rq5KsOZrXGi+/TGlJclwSSvTaDm/ST19fz
-         NpUrbHOyVfu2+K+WZVVe3TeGJtFuvHBha9u+0oce8GpUrU9hKNwIR0unqX4oTLdPNZIB
-         Uy8t2m0ZmIzWGEZaQQaeg32Pp++WVwXQ/03XNsaHcLWTSVYEidjpLl8200d2Ulwa/ySP
-         lNhHcefuSnXZYcEjfmwr4FQxxhW9IU/j8SjyYyLVGy7FjFPqn5s45a1DsCxDUFW3LFD6
-         zjlg==
-X-Forwarded-Encrypted: i=1; AJvYcCWiofoxpFfgti3fAmVSZXVTWu4SrGWnJgzLtJFAUznHAEpSIK+hiTrXfbUIJ40s9potGeEh0g5+cPo4@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGic9z7cyZL/JrqejDkU/ApSkfDwgvQkn1pUpW1N8ubpaVNogS
-	Qh8Bzln8zaFuRImpGQ8z8gPstRUo6SHHEforXLBOPriZGhzYX/xHNs5dBJHAnMOrq4CqnoB42fL
-	2D/L32ilJXvCqwS/U3HdRfjwf5pVx0jQ+vbneBYGltA2QflKmatPFSB+Sm4aKtjOw
-X-Gm-Gg: ASbGnctnV6+DlfRYQSG84XwPZ+vfnfRqHFeHPk+e1tI51+2khM/fJbCRQ6zTTMua/nS
-	CasQ7U4AkH7eJdELYkvp8GZwsGKn8e2nKlDNfz6lzHjW2NR9UcysBl0TrSRCfRDUpOI/7plJ8yZ
-	VylvcMiQ2bbcUidmbDMwSlRK/YpEy36LSXTDmPRKqztVw0cwNKwKAQp3v+AhxmKhcQJMyyFea6f
-	GOn/WTK5dlfLqi3ZJ9kg1T2wdoImtCKfUHWCpc7OvScL2bZFFrU601FFRmUxxaBBDYR9Q9o/f2L
-	8q7EIMqqtIChOdI/RtE2ifJT7CS3CviBQPGPn30VQppKYGEX+zwgGIkU2Ijo7j3yLbo9brJymBX
-	BNDoChfa8o1AO/hTdLzSM30oG35TAJ1KpiSzfemInLyrqu7vopZ8PPxV0
-X-Received: by 2002:a05:620a:31c6:b0:8b2:1f8d:f11d with SMTP id af79cd13be357-8b21f8df1c5mr31645885a.2.1762268013399;
-        Tue, 04 Nov 2025 06:53:33 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFjbaCJNTd4JCMzhcP2fE6bDyiUfjuyPQRBF0MYao4qLk7yxcTazmOZsoPR2sao5ZTs0uBycg==
-X-Received: by 2002:a05:620a:31c6:b0:8b2:1f8d:f11d with SMTP id af79cd13be357-8b21f8df1c5mr31642385a.2.1762268012756;
-        Tue, 04 Nov 2025 06:53:32 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b723fe3b899sm228701566b.66.2025.11.04.06.53.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Nov 2025 06:53:32 -0800 (PST)
-Message-ID: <6ce3c769-f733-4e0f-a4f7-7b1b39ba3c3d@oss.qualcomm.com>
-Date: Tue, 4 Nov 2025 15:53:30 +0100
+	 In-Reply-To:Content-Type; b=WAHqqe+eKZginhRRhWg7hbtNOwQdOV2BqVGrELuvzSpAd+yd6AqUvgeveaFddAgupPpKdTmcW7LwzXzeqR5bWwUqI9P+xxnb4GbkmwzGVOGdrtBRxNTqCVWQQEOswyVvtEKzZAmwPlj6xFTBsdqY8VV4gFjufyboteeDWlgL160=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=beims.me; spf=pass smtp.mailfrom=beims.me; dkim=pass (2048-bit key) header.d=beims.me header.i=@beims.me header.b=nFRzSInh; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=INg0Fv5F; arc=none smtp.client-ip=202.12.124.147
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=beims.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=beims.me
+Received: from phl-compute-07.internal (phl-compute-07.internal [10.202.2.47])
+	by mailfout.stl.internal (Postfix) with ESMTP id 717C91D003C4;
+	Tue,  4 Nov 2025 09:56:55 -0500 (EST)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-07.internal (MEProxy); Tue, 04 Nov 2025 09:56:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=beims.me; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1762268215;
+	 x=1762354615; bh=ScOHtHoNH0OZnUklGMPQKXt2S33rJYO0/8ZwF3X5VgQ=; b=
+	nFRzSInhPyp5FiUMkm4+73BQ2sx4JN7LuLUgRRwjkvS95Weh39rUIx4vJq9HaGB0
+	U8wYHU+a5fMwZNQODV2786yBjdmH212vRxjDrsb2AWtbx7uT9jMkPpsf634NZJyz
+	j3YaOWDS9fvR8WnDRWC8pm3xUbeFpslFPdhQbRcXyjkLqcR7Ua5ExsP0vtEyiG0d
+	hIEA89qEb0EtSmqEOwnlMdKByRaaUsUoaUICPmWV1v5Xn4LqwKjS9sBsCCR2YPog
+	o+BYb46beomSSQf9LlmIrPPnAzpdIm7k88XYHjWpo7P99qKmJruJaQDeERMCh+XK
+	xws7uFhxcY89HIB6UcgLjQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1762268215; x=
+	1762354615; bh=ScOHtHoNH0OZnUklGMPQKXt2S33rJYO0/8ZwF3X5VgQ=; b=I
+	Ng0Fv5FLlxoLQEQbstoUPDBMUMn/02OaVxQkOTocO0uqaHHhg/sQ7KmdYi6RneyJ
+	DgbWPaztGLPPw+2NKXscUsPrsMfzwirl98yYbiMTxv/3tDl5+dwXeQjjnXzuYQqO
+	f5b7cLxsCUEBPPADU2OqH7qyncsnCUCmDc9+kdEz/1E75EByZjuY6ClMVvhouy3r
+	w5HlKyHVbcmgQtvy8mp0X/4QlYJQNmaMArpIoT9GuRKqH0Bk0IfGEB6Xfww91m2J
+	RNXvJRI8FRtp2o0maJOaDGNkA2ysNAGcKfjCXG97uQP1Ux3hylJo6Bd8iNtfIy0m
+	uXr6WLJjEfKTh1PuMmXeg==
+X-ME-Sender: <xms:NhQKaei8KvjT3Y_rEv1iEHiL4ImkOxHBPMR7vtyszwssp044HhGeuA>
+    <xme:NhQKabZeq6Yn25HMvg7avs0djhi2UUx0Er65oRPdjvDJrjE9KIklQSofpazs6B6LV
+    ENxyh0Y1bmno2kiW_o7-9rEY30ExUMJ6vV1VzUhsRJ5Yp-ICtv6LTaR>
+X-ME-Received: <xmr:NhQKaahoklQacy1o6qMdXLFaHkUn8fpBWL_dZaskzZYwoQ6eisImoB8FLDorA7t34PpE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddukedufedvucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhepkfffgggfuffvvehfhfgjtgfgsehtkeertddtvdejnecuhfhrohhmpeftrghfrggv
+    lhcuuegvihhmshcuoehrrghfrggvlhessggvihhmshdrmhgvqeenucggtffrrghtthgvrh
+    hnpedutdfgjeeitddtkedthffhvdevteefgedutdefhfelueeiledviefhffefudelffen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehrrghfrg
+    gvlhessggvihhmshdrmhgvpdhnsggprhgtphhtthhopedugedpmhhouggvpehsmhhtphho
+    uhhtpdhrtghpthhtohepghgvvghrtheslhhinhhugidqmheikehkrdhorhhgpdhrtghpth
+    htohepsggvnhdrughoohhkshestghouggvthhhihhnkhdrtghordhukhdprhgtphhtthho
+    pegrnhgurhgvfidonhgvthguvghvsehluhhnnhdrtghhpdhrtghpthhtohepuggrvhgvmh
+    esuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegvughumhgriigvthesghhoohhg
+    lhgvrdgtohhmpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtth
+    hopehprggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtohepkhhriihkodguthes
+    khgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdroh
+    hrgh
+X-ME-Proxy: <xmx:NhQKaVaUcj4gbWGCBPLWqlGn9olVt0LpeAZZskJVgElax_sHv6pEXg>
+    <xmx:NhQKaYMMHYgJgOChfgtXupkJHipD3JLfkhU5UoRoLn9Jw6Mbi0876Q>
+    <xmx:NhQKaeYpx0suDXFA19CHwOWhptHG-tRrCH2QjWlGH0pKfXXQdETRuw>
+    <xmx:NhQKaQWApNvYfW2j9ZGT26WLoX-WxVMFrAdbM5UFGKcrLeNyXeYctA>
+    <xmx:NxQKaewaOcKDcPqsh6gftyar4iAplbMuE9EgYfyz_uuJoZJRXZ24VBn1>
+Feedback-ID: idc214666:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 4 Nov 2025 09:56:51 -0500 (EST)
+Message-ID: <b7d039b1-7554-47bb-93f4-98d2b08a5882@beims.me>
+Date: Tue, 4 Nov 2025 11:56:49 -0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,133 +98,158 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/6] arm64: dts: qcom: r0q: add touchscreen support
-To: Ghatto <ghatto404@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251014044135.177210-1-ghatto404@gmail.com>
- <20251014044135.177210-4-ghatto404@gmail.com>
- <e114504e-4bdd-46b9-b708-8eebc3075163@oss.qualcomm.com>
- <CAMQHOhfjsi1L+3j3TrcjEjPp3xkn94KOdsrVZvJCyUDFBBSeqg@mail.gmail.com>
- <d06a254f-bf54-4bdf-bd09-3ee5e5b31bad@oss.qualcomm.com>
- <CAMQHOhe=WYhtsjHMcRnJOi8UhnNNBfveTWRGSZ_bg24gFysAEw@mail.gmail.com>
- <8bd5486f-38a9-4104-8d09-234f642b45fe@oss.qualcomm.com>
- <CAMQHOheTkKC8NcRrPxKZdB_h0SJGNJVMd4NUD7TE4becPouWyQ@mail.gmail.com>
- <73d30994-3ec3-41bc-9b07-638d4173dfe6@oss.qualcomm.com>
- <7C2DF8E1-D84C-428C-B064-3D8CA16FEA29@gmail.com>
- <7e5f753d-a26d-40fb-9cde-ec17eff85c27@oss.qualcomm.com>
- <E9C95D16-18DB-4AE9-8C50-BE3481A25FB3@gmail.com>
- <a04742f3-8a1b-4d69-acd9-5d8dbd5a8886@oss.qualcomm.com>
- <CAMQHOhdmf5TvF3bA4QcTdBY+A2ao1_bDXPPya5aiOjHJ0yLqbQ@mail.gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <CAMQHOhdmf5TvF3bA4QcTdBY+A2ao1_bDXPPya5aiOjHJ0yLqbQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH] [RFC] dt-bindings: net: micrel: Convert to json-schema
+Content-Language: pt-BR
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Ben Dooks <ben.dooks@codethink.co.uk>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ Rafael Beims <rafael.beims@toradex.com>, Rob Herring <robh@kernel.org>
+References: <943cb31d01d0da3a63911326e24fbf9b328f7206.1731580776.git.geert+renesas@glider.be>
+ <20241115150210.GA2680735-robh@kernel.org>
+ <CAMuHMdV01hv-riCFEBD024pX6jL37C6hp7Cjjy1rtaUnrhvK3w@mail.gmail.com>
+From: Rafael Beims <rafael@beims.me>
+In-Reply-To: <CAMuHMdV01hv-riCFEBD024pX6jL37C6hp7Cjjy1rtaUnrhvK3w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=APHuRV3Y c=1 sm=1 tr=0 ts=690a136e cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=NEAV23lmAAAA:8 a=fGO4tVQLAAAA:8 a=EUspDBNiAAAA:8
- a=WALcMRDYb64__XNgrWQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-GUID: A4BZ96OO9Vi8KwyNRJjUONllUm6_Irg-
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA0MDEyNCBTYWx0ZWRfXz+2xj+z2qzW/
- Fc+O/27PdV8oCrjCVOIgApZJtJufM+1zvng/0XEvaaL6Mwpw9aPtAn3s8DMqvTqOcAsDQKTHym4
- utXRiS091OuqqQpQyvutanIhJSAGPjSXWBx5sRZJosKdKQrz7EgZ6Pyk62gg8xc7KDCQD/4v5Kq
- 6U66a+wIKffugfdXHSg/6hihnAQkoNSUU9ikr3VNosImU1p8DfUljZfY/guq8k9pTFyf1DaVne1
- 6PMUYZ4ETNFSjI5DXNLH3XMSwFS2CvvdZ/BFTGArBye3o5dw9lKdkyUavw2wfu6RXHg2pI1iv2t
- DFzbTASAjw8UufiGgwPoIIRFXlNUm6z3NWIRh0xAcGmU11LPscAcPXKWnIAz5mAXesdoP0QTsTj
- WxhPl3l0lEe7ZOAu3klYbxxpY7R1kg==
-X-Proofpoint-ORIG-GUID: A4BZ96OO9Vi8KwyNRJjUONllUm6_Irg-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-04_01,2025-11-03_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 clxscore=1015 impostorscore=0 priorityscore=1501 phishscore=0
- suspectscore=0 adultscore=0 bulkscore=0 spamscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511040124
 
-On 10/31/25 10:06 PM, Ghatto wrote:
-> On Wed, Oct 29, 2025 at 6:50 AM Konrad Dybcio
-> <konrad.dybcio@oss.qualcomm.com> wrote:
->>
->> On 10/27/25 7:32 PM, Eric Gonçalves wrote:
+Hello Gert,
+
+On 11/18/24 07:39, Geert Uytterhoeven wrote:
+> Hi Rob,
+>
+> On Fri, Nov 15, 2024 at 4:02 PM Rob Herring <robh@kernel.org> wrote:
+>> On Thu, Nov 14, 2024 at 11:42:50AM +0100, Geert Uytterhoeven wrote:
+>>> Convert the Micrel PHY Device Tree binding documentation to json-schema.
 >>>
+>>> Add a simple example.
 >>>
->>> On October 20, 2025 9:18:18 AM GMT-03:00, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
->>>> On 10/17/25 8:22 PM, Eric Gonçalves wrote:
->>>>>
->>>>>
->>>>> On October 17, 2025 5:20:43 AM GMT-03:00, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
->>>>>> On 10/16/25 10:08 PM, Ghatto wrote:
->>>>>>> On Thu, Oct 16, 2025 at 6:06 AM Konrad Dybcio
->>>>>>> <konrad.dybcio@oss.qualcomm.com> wrote:
->>>>>>>>
->>>>>>>>
->>>>>>>>
->>>>>>>> On 10/14/25 9:04 PM, Ghatto wrote:
->>>>>>>>> On Tue, Oct 14, 2025 at 11:18 AM Konrad Dybcio
->>>>>>>>> <konrad.dybcio@oss.qualcomm.com> wrote:
->>>>>>>>>>
->>>>>>>>>> On 10/14/25 5:10 PM, Ghatto wrote:
->>>>>>>>>>> On Tue, Oct 14, 2025 at 7:01 AM Konrad Dybcio
->>>>>>>>>>> <konrad.dybcio@oss.qualcomm.com> wrote:
->>>>>>>>>>>>
->>>>>>>>>>>> On 10/14/25 6:41 AM, Eric Gonçalves wrote:
->>>>>>>>>>>>> Enable the ST-Microelectronics FTS2BA61Y touchscreen. This patch
->>>>>>>>>>>>> depends on "Input: add support for the STM FTS2BA61Y touchscreen".
->>>>>>>>>>>>
->>>>>>>>>>>> The second sentence doesn't really make sense to be included in
->>>>>>>>>>>> the git log
->>>>>>>>>>> I'll keep it to the cover letter then
->>>>>>>>>>>>
->>>>>>>>>>>>> The device has an issue where SPI 8 (the bus which the touchscreen is
->>>>>>>>>>>>> connected to) is not working properly right now, so
->>>>>>>>>>>>> spi-gpio is used instead.
->>>>>>>>>>>>
->>>>>>>>>>>> Some Samsung devices used to use spi/i2c-gpio intentionally, also
->>>>>>>>>>>> on downstream. I'm assuming this isn't the case for r0q.
->>>>>>>>>>> It isn't, the device uses fts2ba61y on the spi8 bus - I hosted the
->>>>>>>>>>> DT at https://github.com/ghatt-o/ss_experiments/blob/main/r0q.dts if you
->>>>>>>>>>> want to take a look.
->>>>>>>>>>>>
->>>>>>>>>>>> Did you enable gpi_dma1, qupv3_id_1 before spi8, when testing
->>>>>>>>>>> The driver probes, but it fails to recognize the touchscreen device
->>>>>>>>>>
->>>>>>>>>> Could you post a complete dmesg and the precise DT diff you used?
->>>>>>>>> https://pastebin.com/QkYa8nMp (android dmesg) mainline dmesg doesn't have
->>>>>>>>
->>>>>>>> The link has expired 🙁
->>>>>>> https://pastebin.com/s4abJS9M shouldn't expire now!
->>>>>>
->>>>>> And yet it did!
->>>>>>
->>>>>> Feel free to just attach it to your message.. the list may bounce
->>>>>> it, but it will still reach the To/Cc recipients
->>>>> Attached the dmesg.txt file.
->>>>
->>>> I'm interested in what happens early when the SPI hosts are programmed,
->>>> whether there's any additional debug messages.
->>>>
->>>> If your log buffer is overrunning, you can add log_buf_len=8M to your
->>>> cmdline (which will make the buffer 8MiB long)
->>> Is it that big of a deal though? spi-gpio
->>> works just fine for touchscreen.
+>>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>>> ---
+>>> Notes:
+>>>    1. I specified Ben Dooks as the maintainer, as he wrote the original
+>>>       bindings. Ben, are you OK with that?
+>>>    2. This schema is never applied, as there is no compatible value or
+>>>       select statement. Adding
+>>>
+>>>        select:
+>>>          properties:
+>>>            $nodename:
+>>>              pattern: "^ethernet-phy(@[a-f0-9]+)?$"
+>>>
+>>>          required:
+>>>            - $nodename
+>>>
+>>>       and changing
+>>>
+>>>        -unevaluatedProperties: false
+>>>        +additionalProperties: true
+>>>
+>>>       would fix that, and is mostly harmless, except for possible
+>>>       conflicts with other Ethernet PHYs having more than one clock, or
+>>>       using different clock-names.
+>>>       Documentation/devicetree/bindings/net/qca,ar803x.yaml has the same
+>>>       issue.
+>>>       Is there a proper way to handle this?  Are there other options than
+>>>       mandating specific compatible values for Ethernet PHYs?
+>> The proper way is simply, if you need to describe your phy in DT, it
+>> needs a compatible string. MDIO phys are not special.
+> So that's gonna be a bunch of "ethernet-phy-id0022.*" values,
+> especially as the least significant nibble is the revision number...
+>
+>> We really need to split ethernet-phy.yaml into common properties and a
+>> specific schema for the compatibles it contains so that we can change
+>> 'additionalProperties: true'. That's one reason why all these properties
+>> and typos didn't get flagged.
 >>
->> It's like using CPU rendering even though your computer has a GPU in it..
-> Yeah, but CPU rendering is slow, while the touchscreen
-> on spi-gpio is just as fast as it is on Android.
+>> If you don't want to retro-actively add a compatible, you can also do
+>> something like this:
+>>
+>> select:
+>>    anyOf:
+>>      - required: ['micrel,led-mode']
+>>      - required: ['micrel,rmii-reference-clock-select-25-mhz']
+>>      - required: ['micrel,fiber-mode']
+>>      - required: ['coma-mode-gpios']
+>>
+>> That doesn't catch every case nor if you have a typo in the property
+>> names.
+> Indeed.
+>
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/net/micrel,phy.yaml
+>>> +  micrel,rmii-reference-clock-select-25-mhz:
+>>> +    description: |
+>>> +      RMII Reference Clock Select bit selects 25 MHz mode
+>>> +
+>>> +      Setting the RMII Reference Clock Select bit enables 25 MHz rather
+>>> +      than 50 MHz clock mode.
+>>> +
+>>> +      Note that this option in only needed for certain PHY revisions with a
+>>> +      non-standard, inverted function of this configuration bit.
+>>> +      Specifically, a clock reference ("rmii-ref" below) is always needed to
+>>> +      actually select a mode.
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 1
+>>> +
+>>> +  clock-names:
+>>> +    const: rmii-ref
+>>> +    description: |
+>>> +      supported clocks:
+>>> +        - KSZ8021, KSZ8031, KSZ8081, KSZ8091: "rmii-ref": The RMII reference
+>>> +          input clock. Used to determine the XI input clock.
+>> Don't repeat the clock name in the description.
+> Actually I kept it on purpose, as the driver treats the "rmii-ref" clock
+> differently than any other (unnamed) clock.  Obviously I failed to
+> relay that information, so I should enhance the description ;-)
+>
+>>> +  coma-mode-gpios:
+>>> +    description: |
+>>> +      If present the given gpio will be deasserted when the PHY is probed.
+>>> +
+>>> +      Some PHYs have a COMA mode input pin which puts the PHY into
+>>> +      isolate and power-down mode. On some boards this input is connected
+>>> +      to a GPIO of the SoC.
+>>> +
+>>> +      Supported on the LAN8814.
+>> Another reason to add compatible. You have per device properties.
+> So I have to increase my datasheet library first, to discover all
+> the PHY IDs.
+>
+> Gr{oetje,eeting}s,
+>
+>                          Geert
 
-Sure it works, but your battery would like to have a word with you..
->> Plus we don't expect the upstream driver to have such odd issues, so I'd
->> really like to get to the bottom of it
-> I don't think the log buffer is overrunning, where can I find the SPI host logs?
+I would like to add a new property to the micrel dt-bindings. I 
+understand that
+the conversion to json-schema has to be finished before new properties 
+are added.
 
-It clearly is, since it doesn't start with 0.0000000
+You had this patch posted a while back, and reading the feedback, I'm 
+not sure how to proceed.
+It seems that forcing the use of compatible strings could be a bit 
+risky. At least the "micrel,led-mode"
+is used in many device-trees. If I understand the requirement correctly, 
+it means we would have to find out
+the exact PHY model that every one of these boards uses to not create a 
+breaking change.
+Other flags like "micrel,rmii-reference-clock-select-25-mhz" or 
+"coma-mode-gpios" are more contained
+and should be easier, but there would still be some risk to do this 
+change without testing on actual hardware.
+I couldn't find any use of the "micrel,fiber-mode"  flag in current 
+device trees.
 
-Konrad
+Did you find other issues that prevented you from moving forward with 
+this? Is my thinking correct regarding
+this, or am I missing something?
+
+I appreciate any insight you could give me on this,
+
+Rafael
+
 
