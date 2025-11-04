@@ -1,291 +1,438 @@
-Return-Path: <devicetree+bounces-234763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56C3EC307BD
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 11:24:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34FB6C307E1
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 11:25:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4CD774E1599
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 10:24:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91BE6189A12D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 10:26:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43864314B86;
-	Tue,  4 Nov 2025 10:24:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79175315D4E;
+	Tue,  4 Nov 2025 10:25:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="gRF93W3l"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="N5zN7B1r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8F6152F88;
-	Tue,  4 Nov 2025 10:24:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F23F52F88;
+	Tue,  4 Nov 2025 10:25:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762251869; cv=none; b=OcRRzaRXCjeK8nt/giMS7dxAmDy2AV1x6O2kkp4JFBd0JlXFEQ/BTewy3J1tU944AOnswYKq8Gu6JS73yij8miRrMKOImz6rwjRbhYAS/uGej9e+N2tR9hkm2iHD2+P5uqXXJC7nvgnC3r8Xcur/4A0C7OlbP8XVZw17CAYIiGc=
+	t=1762251931; cv=none; b=XMJPQw9R762d5PZHlLQBGGArQlGvLdEZAYymRKfJigsok22IOTBfoG30ho8RQZxkOEHISi86LSPpTCfdNJmGoocQPV25emBDdJzLesOo0sQqou35YIkLP6eiOdZaWiW29UEdzwOketavcIGC4mICoMkryBfeymACGX3Zfq+BZcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762251869; c=relaxed/simple;
-	bh=lRdGiHbw4UD0ciFa8bbOF/H+kh0F6+4HpI8oB1t7WBI=;
+	s=arc-20240116; t=1762251931; c=relaxed/simple;
+	bh=kakEUcQSOtzSBqF6N8EkgPMI1HGiwG5u5+sMJW43HSU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tlg6Sm3ww1zzhlGh1qqnImF1kCEENzF5ybqm1M0kwoO3YIo6C1dFsZTDocdre5vjsW/FonOaIfz//9iWgnOkuJiofHvsIHpoQSUkAOUn1XD0bPQZT2uSsyaKF3WlBEuD8ebVWYyLscXviodDVCeb9xqNBKW2SuIRRCsiSyWxlOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=gRF93W3l; arc=none smtp.client-ip=217.92.40.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3228B14839C7;
-	Tue,  4 Nov 2025 11:24:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
-	t=1762251856; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=dBPVZv8ZAjPrctbt7IeOOktebaSybrHF8X5GDqBvhPw=;
-	b=gRF93W3lpRdwy25l5NWJ3tEGdnnvKife1be96721Lgu80iB8DwHlcXqZpFoeRsIh8V1Qrr
-	gfzismOMmeOhcydzxRLlUHHDSpRRyv1+2MvyDTQaDp4Pw5tQPBIAsaNeLpKbFvkRFi2sKE
-	zKdY+NgcIduDDOWphmLh+mFvo3RXLVSsa3yKbQd9eBExN622o+NyzK4ytb9rLp6L/ByE9Q
-	0I7hnZCZyU5oAOXb0uixzeS90BP36vcb30lb/cLcj61DyIQT7cZd7h6fp9GRD87+Eoqdgc
-	RMtkAMEgsy8igmm2iiUDNHjIK9z3EgtyR9lLhqwl/QaDxo6bJRuC0pQ8tKGa6w==
-Date: Tue, 4 Nov 2025 11:24:05 +0100
-From: Alexander Dahl <ada@thorsis.com>
-To: Josua Mayer <josua@solid-run.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Jon Nettleton <jon@solid-run.com>,
-	Mikhail Anikin <mikhail.anikin@solid-run.com>,
-	Yazan Shhady <yazan.shhady@solid-run.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>
-Subject: Re: [PATCH 08/10] arm64: dts: add description for solidrun imx8mp
- hummingboard-iiot
-Message-ID: <20251104-sandal-playset-6f4ad0665c7b@thorsis.com>
-Mail-Followup-To: Josua Mayer <josua@solid-run.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=KyprsmuKPSJTuedgd6Yna81hlOJqvTmPZ3T0NNYDNR2IwEZNAc7Shk/7K1rkTKR6uGRHy/LUJGrGPCejAOBDFnyI7z8kX6WWGFr5ytC60GpqV384s+43mxRWWnK3lJdoOraei3sfprXHhw10biEciSOPqT8VSQenpBpvG4OroAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=N5zN7B1r; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762251929; x=1793787929;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=kakEUcQSOtzSBqF6N8EkgPMI1HGiwG5u5+sMJW43HSU=;
+  b=N5zN7B1rjvguu4Jfqh183T6Yuw8aZjA+xKU8q0EuTpQIgVGOU4OSrVay
+   JaNtYzb3Lml7jRBhHN1WapPLv5onuT/DIjIrCZrFdXO0DgtEZYOYxsxyq
+   kh3VYA1rfoJWG3O9k7ASdciD5+dcIkr0YP22qWQGA9zkU86a9nGdF083C
+   BpBiFqBmhXX+7NJUEN0yLYp2eklUxtrbBfynG/tv2iFLTiDvnQ0aACySd
+   KKzrF69u77/4TfLIk3co9HIcgXQmY2C+dZ1IkffEpYEE1vhij+3qIJ7BW
+   vfyoP0kFvbqAQMJnI8ISSSr32YYhSmaQutGRD/vytlCGGdUD5XRs7/7l+
+   w==;
+X-CSE-ConnectionGUID: 896XM151S/az/ZzjcrQnyw==
+X-CSE-MsgGUID: HoXCuAlZTHOcqbU4E/Ip8A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="64270962"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
+   d="scan'208";a="64270962"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2025 02:25:28 -0800
+X-CSE-ConnectionGUID: w0ll2e/FTpWP11qlctlusg==
+X-CSE-MsgGUID: izSN3QAdTeiOK2z0KyRO1Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,278,1754982000"; 
+   d="scan'208";a="186979462"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.245.146])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2025 02:25:26 -0800
+Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1vGEE7-00000005QnX-2aZO;
+	Tue, 04 Nov 2025 12:25:23 +0200
+Date: Tue, 4 Nov 2025 12:25:23 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Ariana Lazar <ariana.lazar@microchip.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Jon Nettleton <jon@solid-run.com>,
-	Mikhail Anikin <mikhail.anikin@solid-run.com>,
-	Yazan Shhady <yazan.shhady@solid-run.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>
-References: <20251027-imx8mp-hb-iiot-v1-0-683f86357818@solid-run.com>
- <20251027-imx8mp-hb-iiot-v1-8-683f86357818@solid-run.com>
- <2c54b7b7-4eb4-44a0-8025-8da16a28efd4@solid-run.com>
- <20251029-jittery-ambiguity-14e03ad2f0df@thorsis.com>
- <054eecb5-1296-4c41-ae86-1779abe0360c@solid-run.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] iio: dac: adding support for Microchip MCP47FEB02
+Message-ID: <aQnUk4Inip8QQz6u@smile.fi.intel.com>
+References: <20251103-mcp47feb02-v2-0-8c37741bd97a@microchip.com>
+ <20251103-mcp47feb02-v2-2-8c37741bd97a@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <054eecb5-1296-4c41-ae86-1779abe0360c@solid-run.com>
-User-Agent: Mutt/2.2.12 (2023-09-09)
-X-Last-TLS-Session-Version: TLSv1.3
+In-Reply-To: <20251103-mcp47feb02-v2-2-8c37741bd97a@microchip.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Hello Josua,
-
-Am Thu, Oct 30, 2025 at 04:44:40PM +0000 schrieb Josua Mayer:
-> Hi Alex,
+On Mon, Nov 03, 2025 at 05:50:30PM +0200, Ariana Lazar wrote:
+> This is the iio driver for Microchip MCP47F(E/V)B(0/1/2)1,
+> MCP47F(E/V)B(0/1/2)2, MCP47F(E/V)B(0/1/2)4 and MCP47F(E/V)B(0/1/2)8 series
+> of buffered voltage output Digital-to-Analog Converters with nonvolatile or
+> volatile memory and an I2C Interface.
 > 
-> Am 29.10.25 um 10:23 schrieb Alexander Dahl:
-> > Hello Josua,
-> >
-> > Am Tue, Oct 28, 2025 at 12:24:36PM +0000 schrieb Josua Mayer:
-> >> Am 27.10.25 um 18:48 schrieb Josua Mayer:
-> >>
-> >>> Add description for the SolidRun i.MX8MP HummingBoard IIoT.
-> >>> The board is a new design around the i.MX8MP System on Module, not
-> >>> sharing much with previous HummingBoards.
-> >>>
-> >>> It comes with some common features:
-> >>> - 3x USB-3.0 Type A connector
-> >>> - 2x 1Gbps RJ45 Ethernet
-> >>> - USB Type-C Console Port
-> >>> - microSD connector
-> >>> - RTC with backup battery
-> >>> - RGB Status LED
-> >>> - 1x M.2 M-Key connector with PCI-E Gen. 3 x1
-> >>> - 1x M.2 B-Key connector with USB-2.0/3.0 + SIM card holder
-> >>> - 1x LVDS Display Connector
-> >>> - 1x DSI Display Connector
-> >>> - GPIO header
-> >>> - 2x RS232/RS485 ports (configurable)
-> >>> - 2x CAN
-> >>>
-> >>> In addition there is a board-to-board expansion connector to support
-> >>> custom daughter boards with access to SPI, a range of GPIOs and -
-> >>> notably - CAN and UART. Both 2x CAN and 2x UART can be muxed either
-> >>> to this b2b connector, or a termianl block connector on the base board.
-> >>>
-> >>> The routing choice for UART and CAN is expressed through gpio
-> >>> mux-controllers in DT and can be changed by applying dtb addons.
-> >>>
-> >>> Four dtb addons are provided:
-> >>>
-> >>> - dsi panel Winstar WJ70N3TYJHMNG0
-> >>> - lvds panel Winstar WF70A8SYJHLNGA
-> >>> - RS485 on UART port "A" (default rs232)
-> >>> - RS485 on UART port "B" (default rs232)
-> >>>
-> >>> Signed-off-by: Josua Mayer <josua@solid-run.com>
-> >>> ---
-> >>>  arch/arm64/boot/dts/freescale/Makefile             |   6 +
-> >>>  ...hummingboard-iiot-panel-dsi-WJ70N3TYJHMNG0.dtso |  70 ++
-> >>>  ...ummingboard-iiot-panel-lvds-WF70A8SYJHLNGA.dtso | 105 +++
-> >>>  .../imx8mp-hummingboard-iiot-rs485-a.dtso          |  18 +
-> >>>  .../imx8mp-hummingboard-iiot-rs485-b.dtso          |  18 +
-> >>>  .../dts/freescale/imx8mp-hummingboard-iiot.dts     | 710 +++++++++++++++++++++
-> >>>  6 files changed, 927 insertions(+)
-> >> cut
-> >>> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot.dts b/arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot.dts
-> >>> new file mode 100644
-> >>> index 0000000000000..2e4cb676bc9da
-> >>> --- /dev/null
-> >>> +++ b/arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot.dts
-> >> cut
-> >>> +	led-controller@30 {
-> >>> +		compatible = "ti,lp5562";
-> >>> +		reg = <0x30>;
-> >>> +		/* use internal clock, could use external generated by rtc */
-> >>> +		clock-mode = /bits/ 8 <1>;
-> >>> +		#address-cells = <1>;
-> >>> +		#size-cells = <0>;
-> >>> +
-> >>> +		multi-led@0 {
-> >>> +			reg = <0x0>;
-> >>> +			color = <LED_COLOR_ID_RGB>;
-> >>> +			#address-cells = <1>;
-> >>> +			#size-cells = <0>;
-> >>> +
-> >>> +			led@0 {
-> >>> +				reg = <0x0>;
-> >>> +				color = <LED_COLOR_ID_RED>;
-> >>> +				led-cur = /bits/ 8 <0x32>;
-> >>> +				max-cur = /bits/ 8 <0x64>;
-> >>> +			};
-> >>> +
-> >>> +			led@1 {
-> >>> +				reg = <0x1>;
-> >>> +				color = <LED_COLOR_ID_GREEN>;
-> >>> +				led-cur = /bits/ 8 <0x19>;
-> >>> +				max-cur = /bits/ 8 <0x32>;
-> >>> +			};
-> >>> +
-> >>> +			led@2 {
-> >>> +				reg = <0x2>;
-> >>> +				color = <LED_COLOR_ID_BLUE>;
-> >>> +				led-cur = /bits/ 8 <0x19>;
-> >>> +				max-cur = /bits/ 8 <0x32>;
-> >>> +			};
-> >>> +		};
-> >>> +
-> >>> +		led@3 {
-> >>> +			reg = <3>;
-> >>> +			chan-name = "D8";
-> >> chan-name gives the led the name D6 in sysfs.
-> >>
-> >> The bindings do not allow however setting chan-name on
-> >> the multi-led, and it has an auto-generated name in sysfs.
-> >>
-> >> Am I missing something? Can multi-leds have a custom name?
-> > The sysfs names are auto-generated based on the attributes "color",
-> > "function", and "label" with the last being discouraged for new
-> > designs.
-> Thank you for reminding me of this one!
-> > If the "ti,lp5562" driver does nothing special,you could
-> > add "function" to the multi-led node and see if that fits your needs.
-> The board is not a complete product by itself so we have not chosen
-> a specific function for each led.
-> Therefore only color and label are actually applicable.
-
-In such cases I use a generic function and the enumerator,
-something like this (in this case for a different led driver):
-
-    led_11_red: led-0 {
-            function = LED_FUNCTION_INDICATOR;
-            function-enumerator = <0>;
-            color = <LED_COLOR_ID_RED>;
-            gpios = <&pioC 18 GPIO_ACTIVE_HIGH>;
-    };
-
-…
-
-    led_13_red: led-2 {
-            function = LED_FUNCTION_INDICATOR;
-            function-enumerator = <1>;
-            color = <LED_COLOR_ID_RED>;
-            gpios = <&pioC 20 GPIO_ACTIVE_HIGH>;
-    };
-
-This gives stable sysfs paths like this:
-
-  /sys/class/leds/red:indicator-0
-  /sys/class/leds/red:indicator-1
-
-Of course only with a LED driver supporting that automatic naming
-scheme.
-
-> After testing on v6.18-rc1 I can state that leds-lp5562 driver does
-> something special - function and label properties do not have any
-> impact on the names in sysfs.
+> The families support up to 8 output channels.
 > 
-> However I could set label on both LEDs regardless?
+> The devices can be 8-bit, 10-bit and 12-bit.
 
-When using the 'label' attribute, color and function attributes are
-more or less informational only, because label determines the sysfs
-path.  Someone could change the leds-lp5562 driver to behave like the
-other drivers, but then I would advise to explicitly set label in this
-case, so you won't end up with changed sysfs paths after the driver is
-changed.
+...
 
-Not sure if this helps you.  Sorry.
+> +config MCP47FEB02
+> +	tristate "MCP47F(E/V)B|(0/1/2)(1/2/4/8)DAC driver"
 
-Greets
-Alex
+This is unreadable cryptic title. Make it more human-readable, like:
 
-> 
-> >
-> > Adding linux-leds to Cc, because this is a LED related question.
-> >
-> > Greets
-> > Alex
-> >
-> >> In v6.6 leds-lp5562 driver if I set in each multi-led led@[0-2] sub-node
-> >> chan-name to the same string "D7" - then the sysfs name becomes D7.
-> >>
-> >>> +			color = <LED_COLOR_ID_GREEN>;
-> >>> +			led-cur = /bits/ 8 <0x19>;
-> >>> +			max-cur = /bits/ 8 <0x64>;
-> >>> +		};
-> >>> +	};
+"Microchip MCP47F family of DAC driver"
+
+> +	depends on I2C
+> +	help
+> +          Say yes here if you want to build a driver for the Microchip
+
+Too many spaces, see how it's done elsewhere.
+
+> +          MCP47FEB01, MCP47FEB11, MCP47FEB21, MCP47FEB02, MCP47FEB12,
+> +          MCP47FEB22, MCP47FVB01, MCP47FVB11, MCP47FVB21, MCP47FVB02,
+> +          MCP47FVB12, MCP47FVB02, MCP47FVB12, MCP47FVB22, MCP47FVB04,
+> +          MCP47FVB14, MCP47FVB24, MCP47FVB04, MCP47FVB08, MCP47FVB18,
+> +          MCP47FVB28, MCP47FEB04, MCP47FEB14 and MCP47FEB24 having up to 8
+
+This is also unreadable, please split to groups (by family species and/or bits)
+and sort each group accordingly, like
+
+	  - E-group (8-bit): MCP47FEB01, MCP47FEB11, MCP47FEB21
+	  - E-group (10-bit): MCP47FEB02, MCP47FEB12, MCP47FEB22
+	  ...
+
+Note, I put a hypothetical text there, I haven't check this for the correctness!
+
+> +          channels, 8-bit, 10-bit or 12-bit digital-to-analog converter (DAC)
+> +          with I2C interface.
+> +
+> +          To compile this driver as a module, choose M here: the module
+> +          will be called mcp47feb02.
+
+...
+
+> + * Datasheet for MCP47FEBXX can be found here:
+> + * https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/20005375A.pdf
+> + *
+> + * Datasheet for MCP47FVBXX can be found here:
+> + * https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/20005405A.pdf
+> + *
+> + * Datasheet for MCP47FXBX4/8 can be found here:
+> + * https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/MCP47FXBX48-Data-Sheet-DS200006368A.pdf
+
+Avoid duplicating information, so far it can be just listed as
+
+ * Datasheet links:
+ * 
+ * [MCP47FEBxx] https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/20005375A.pdf
+ * [MCP47FVBxx] https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/20005405A.pdf
+ * [MCP47FxBx4/8] https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/MCP47FXBX48-Data-Sheet-DS200006368A.pdf
+
+(also note xx instead of XX).
+
+Or propose a better style.
+
+...
+
+> +#include <linux/bits.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/mutex.h>
+> +#include <linux/property.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+
+Missing includes. E.g., for 'bool', for 'ARRAY_SIZE()', for 'guard()()'.
+Follow IWYU (Include What You Use) principle.
+
+...
+
+> +#define MCP47FEB02_DAC0_REG_ADDR			(0x00 << 3)
+
+I assume it's the similar case as for below 0x10-0x17 range. Perhaps do both as
+a macro with a parameter?
+
+> +#define MCP47FEB02_VREF_REG_ADDR			(0x08 << 3)
+> +#define MCP47FEB02_POWER_DOWN_REG_ADDR			(0x09 << 3)
+> +#define MCP47FEB02_GAIN_BIT_STATUS_REG_ADDR		(0x0A << 3)
+> +#define MCP47FEB02_WIPERLOCK_STATUS_REG_ADDR		(0x0B << 3)
+> +
+> +#define MCP47FEB02_NV_DAC0_REG_ADDR			(0x10 << 3)
+> +#define MCP47FEB02_NV_DAC1_REG_ADDR			(0x11 << 3)
+> +#define MCP47FEB02_NV_DAC2_REG_ADDR			(0x12 << 3)
+> +#define MCP47FEB02_NV_DAC3_REG_ADDR			(0x13 << 3)
+> +#define MCP47FEB02_NV_DAC4_REG_ADDR			(0x14 << 3)
+> +#define MCP47FEB02_NV_DAC5_REG_ADDR			(0x15 << 3)
+> +#define MCP47FEB02_NV_DAC6_REG_ADDR			(0x16 << 3)
+> +#define MCP47FEB02_NV_DAC7_REG_ADDR			(0x17 << 3)
+> +#define MCP47FEB02_NV_VREF_REG_ADDR			(0x18 << 3)
+> +#define MCP47FEB02_NV_POWER_DOWN_REG_ADDR		(0x19 << 3)
+> +#define MCP47FEB02_NV_GAIN_BIT_I2C_SLAVE_REG_ADDR	(0x1A << 3)
+
+Drop this << 3 part, just do it at run-time. Or embed them, by providing
+shifted values. Also, there is special formats for regmap, perhaps that's what
+you wanted to begin with? *Yes, it might need some code to be added into
+drivers/base/regmap.c.
+
+...
+
+> +#define MCP47FEB02_INTERNAL_BAND_GAP_MV			2440
+
+_MV --> _mV
+
+...
+
+> +#define MCP47FEB02_DELAY_1_MS				1000
+
+Drop '_1' and use (1 * USEC_PER_MSEC) as value.
+
+But looking at the code this makes the definition useless, just use values
+directly there.
+
+...
+
+> +struct mcp47feb02_features {
+> +	const char	*name;
+> +	unsigned int	phys_channels;
+> +	unsigned int	resolution;
+> +	bool have_ext_vref1;
+> +	bool have_eeprom;
+
+Inconsistent style. Be consistent.
+
+> +};
+
+...
+
+> +struct mcp47feb02_channel_data {
+> +	enum vref_mode ref_mode;
+> +	u8 powerdown_mode;
+> +	bool use_2x_gain;
+> +	bool powerdown;
+> +	u16 dac_data;
+
+Have you ran `pahole`? Please do, and amend the data types accordingly.
+
+> +};
+
+...
+
+> +struct mcp47feb02_data {
+> +	struct mcp47feb02_channel_data chdata[MCP47FEBXX_MAX_CH];
+> +	int scale_1[MCP47FEB02_MAX_VALS_SCALES_CH];
+> +	int scale[MCP47FEB02_MAX_VALS_SCALES_CH];
+> +	const struct mcp47feb02_features *info;
+> +	const char *labels[MCP47FEBXX_MAX_CH];
+> +	unsigned long active_channels_mask;
+
+> +	struct i2c_client *client;
+> +	struct regmap *regmap;
+
+Why both are needed?
+
+> +	bool vref1_buffered;
+> +	bool vref_buffered;
+> +	u16 phys_channels;
+> +	struct mutex lock; /* synchronize access to driver's state members */
+> +	bool use_vref1;
+> +	bool use_vref;
+> +};
+
+...
+
+> +static ssize_t mcp47feb02_store_eeprom(struct device *dev, struct device_attribute *attr,
+> +				       const char *buf, size_t len)
+> +{
+> +	struct mcp47feb02_data *data = iio_priv(dev_to_iio_dev(dev));
+> +	int ret, i, val, val1, eewa_val;
+
+Do you expect i to hold the signed value?
+
+> +	bool state;
+> +
+> +	ret = kstrtobool(buf, &state);
+
+> +	if (ret < 0)
+
+Why ' < 0'?
+
+> +		return ret;
+> +
+> +	if (!state)
+> +		return 0;
+> +
+> +	/*
+> +	 * Verify DAC Wiper and DAC Configuratioin are unlocked. If both are disabled,
+> +	 * writing to EEPROM is available.
+> +	 */
+> +	ret = regmap_read(data->regmap, MCP47FEB02_WIPERLOCK_STATUS_REG_ADDR, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (val)  {
+> +		dev_err(dev, "DAC Wiper and DAC Configuration not are unlocked.\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	for_each_set_bit(i, &data->active_channels_mask, data->phys_channels) {
+> +		ret = mcp47feb02_write_to_eeprom(data, i << 3, data->chdata[i].dac_data);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	ret = regmap_read(data->regmap, MCP47FEB02_VREF_REG_ADDR, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = mcp47feb02_write_to_eeprom(data, MCP47FEB02_NV_VREF_REG_ADDR, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_read(data->regmap, MCP47FEB02_POWER_DOWN_REG_ADDR, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = mcp47feb02_write_to_eeprom(data, MCP47FEB02_NV_POWER_DOWN_REG_ADDR, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_read_poll_timeout(data->regmap, MCP47FEB02_GAIN_BIT_STATUS_REG_ADDR, eewa_val,
+> +				       !(eewa_val & MCP47FEB02_GAIN_BIT_STATUS_EEWA_MASK),
+> +				       MCP47FEB02_DELAY_1_MS, MCP47FEB02_DELAY_1_MS * 5);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_read(data->regmap, MCP47FEB02_NV_GAIN_BIT_I2C_SLAVE_REG_ADDR, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_read(data->regmap, MCP47FEB02_GAIN_BIT_STATUS_REG_ADDR, &val1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = mcp47feb02_write_to_eeprom(data, MCP47FEB02_NV_GAIN_BIT_I2C_SLAVE_REG_ADDR,
+> +					 (val1 & MCP47FEB02_VOLATILE_GAIN_BIT_MASK) |
+> +					 (val & MCP47FEB02_NV_I2C_SLAVE_ADDR_MASK));
+> +	if (ret)
+> +		return ret;
+> +
+> +	return len;
+> +}
+> +
+
+Blank line should go after IIO_DEVICE_ATTR()...
+
+> +static IIO_DEVICE_ATTR(store_eeprom, 0200, NULL, mcp47feb02_store_eeprom, 0);
+
+...here, also Why not IIO_DEVICE_ATTR_WO()?
+
+> +static struct attribute *mcp47feb02_attributes[] = {
+> +	&iio_dev_attr_store_eeprom.dev_attr.attr,
+> +	NULL
+> +};
+
+...
+
+> +static int mcp47feb02_suspend(struct device *dev)
+> +{
+> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> +	struct mcp47feb02_data *data = iio_priv(indio_dev);
+> +	int ret, ch;
+
+Why ch is signed?
+
+> +	u8 pd_mode;
+> +
+> +	guard(mutex)(&data->lock);
+> +
+> +	for_each_set_bit(ch, &data->active_channels_mask, data->phys_channels) {
+> +		data->chdata[ch].powerdown = true;
+> +		pd_mode = data->chdata[ch].powerdown_mode + 1;
+
+> +		regmap_update_bits(data->regmap, MCP47FEB02_POWER_DOWN_REG_ADDR,
+> +				   DAC_CTRL_MASK(ch), DAC_CTRL_VAL(ch, pd_mode));
+
+Missed error check.
+
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret = regmap_write(data->regmap, ch << 3, data->chdata[ch].dac_data);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+
+I stopped here, I think it's already warrants a new version.
+
+...
+
+> +	tmp = (s64)vref_mv * 1000000LL >> data->info->resolution;
+
+vref_mV
+MICRO, MEGA, ... from units.h
+
+> +	value_int = div_s64_rem(tmp, 1000000LL, &value_micro);
+
+...
+
+> +		set_bit(reg, &data->active_channels_mask);
+
+Is the atomic op required here?
+
+...
+
+> +		if (fwnode_property_present(child, "label"))
+
+Useless check as you don't handle an error code from below anyway (means
+optional property).
+
+> +			fwnode_property_read_string(child, "label", &data->labels[reg]);
+
+...
+
+May you split this to add the main functionality with the subset of the
+supported chips and add, for example, FxBx later in a separate patch?
+This will help a lot with reviewing and pushing your patches forward.
+Note, considering my comments above I don't think this will make v6.19-rc1,
+so you have plenty of time to polish this and maybe even split more.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
