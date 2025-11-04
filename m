@@ -1,268 +1,180 @@
-Return-Path: <devicetree+bounces-234545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D65D0C2ECDE
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 02:38:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63F78C2ECA8
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 02:37:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 787DE18830BD
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 01:35:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 382BF18991AD
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 01:34:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 278AD212B0A;
-	Tue,  4 Nov 2025 01:34:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BB8E1E9919;
+	Tue,  4 Nov 2025 01:33:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="AuKMie6X"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gzkbed+2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m15574.qiye.163.com (mail-m15574.qiye.163.com [101.71.155.74])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DF8A205E26;
-	Tue,  4 Nov 2025 01:34:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.74
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FA6814F9D6;
+	Tue,  4 Nov 2025 01:33:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762220048; cv=none; b=jqaXd3cmNIvAYZhDNDqRueczVmjfCDMzzbIom8Uj+1qu/jfoV0jkK8dPy4V+/nH7nEiI8d0g3yIDM5o+Bt7UWjAwMy9UZlahwWRchSUQ1wu1JpZegJy5lSwUNI6FAiO6CdjWrDDXgdoOTfnsKTpINT1DCI2B7sgvIynUjj0QovI=
+	t=1762220027; cv=none; b=O1yUqa7MGgrvVbOaOwLOEk/fT39eraJaOS4WH20qeHxEzfHOivErc0YxUKIDwP1bZTa4RdTVoB+j3qIKjXlNZH5GjjFllGKTVHdjiU6GUs8vT54W6+liMCVfFAkyyDzXGRQhtTeg+ASVGnxMqToRxSoj+Lv13fUYkC82L7qBYAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762220048; c=relaxed/simple;
-	bh=rgl9Zs7ByPI5yY+eCCZowYqAFE2GJdIo1h/jU6ZN1Uk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WdMTo47qvAF+Ef4ihpfX57ni13KTe40a6hZ0aFkK45sh9sDi+DFWzKz717m2uFuxJU+aY+sgn1eo646S+WMCQHBLWe+KXaL1DKc3BSV5eKuXsShmlm14mF8+f/XrVeQWGMQt24iw2PSL5fv5Kzb4XiFlTy4q40rLCUuJz9JWS50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=AuKMie6X; arc=none smtp.client-ip=101.71.155.74
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.149] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 2840cd1f4;
-	Tue, 4 Nov 2025 09:18:35 +0800 (GMT+08:00)
-Message-ID: <7fb7e578-b97d-4ea5-a8af-33199563d834@rock-chips.com>
-Date: Tue, 4 Nov 2025 09:18:33 +0800
+	s=arc-20240116; t=1762220027; c=relaxed/simple;
+	bh=ZJ9B2/N6e28f7yAJcSHDnM45xVYlWBWvFBo0o9MsapA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dJzKnUQgLqc91ybutJgbBFf62rnLl2MkvrIu+80Leaeu9iDpxTj2o1P5KaSH1o00n1o0YAHjsY0ClnQCmdvzYkXJHRVxS6gpAHILPbtF6hoWMYvaD/vsPfBANKOzYmfJoAAsTmS+Zv9nU2dCArwUXpEtUKDH1YsajAevkKCvEEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gzkbed+2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E646CC4CEE7;
+	Tue,  4 Nov 2025 01:33:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762220027;
+	bh=ZJ9B2/N6e28f7yAJcSHDnM45xVYlWBWvFBo0o9MsapA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=gzkbed+2smBl+x5TUuI7wk+dj1JnE/B6qlL7H5Bx59AEDp5Qv7DAXVGJnw9euMLiU
+	 97mzUny+63T6VzIlV97uZOOR+608te0e4OkUYp1OCIkk8zjJqgN8+uvBm6bHRwSMyl
+	 q+1ml7euH5RlYvs1iRnSVq7sH6MRswoF+8M7LtWw7v2/RDMRAcOqv5+q2MmDew8kr5
+	 4O1RAtaROspN49/6OO5RV/m7tnmn+E9sEGVkswdKAPiQAXc+P/69P+zo4sVM1fw3N1
+	 /YDtdv1wId6lljOCMShTSTAgGjphpqQrPmRxvUgEEZOER5hcOeMiSRT/h9MyczjCuC
+	 XkJhUnpk3jLeA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D500CCCFA05;
+	Tue,  4 Nov 2025 01:33:46 +0000 (UTC)
+From: Xiangxu Yin via B4 Relay <devnull+xiangxu.yin.oss.qualcomm.com@kernel.org>
+Subject: [PATCH v7 0/4] Add DisplayPort support to QCS615 devicetree
+Date: Tue, 04 Nov 2025 09:33:22 +0800
+Message-Id: <20251104-add-displayport-support-to-qcs615-devicetree-v7-0-e51669170a6f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 03/10] drm/bridge: Implement generic USB Type-C DP HPD
- bridge
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Chaoyi Chen <kernel@airkyi.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Yubing Zhang <yubing.zhang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>,
- Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
- Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-References: <20251029071435.88-1-kernel@airkyi.com>
- <20251029071435.88-4-kernel@airkyi.com>
- <rzozpbqmymdczerh3iijxxtz3xnsznoku7w2mquikwv6u5osvo@7h43hwc2fpzm>
- <eca9d5bd-23bd-4c1d-b2f2-c0c32f14177f@rock-chips.com>
- <aQiymTFVU7UpcJ1p@kuha.fi.intel.com>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <aQiymTFVU7UpcJ1p@kuha.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9a4c71c26b03abkunm130d5e00ad8ac3
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGUxJHlZCQk5KS09MHxpMSklWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE
-	5VSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=AuKMie6XasD4Ngz32l1vJN8MYJB3Q/ibq1sswvGRbMIkyPTR7zzbtimzXPHmxbP/bkGpQZbAOxK+Ojkz38e9UGsxnPhHyh8hEMd1ysID0NaZV31oqLPgpYK9A8fiLwUsQ9bSXv2Psd5G5LAHaF052M4swaypeBxEzuuYoRhmnOw=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=wIQSa2jEFJAsHLJt6tSAavwwKal+P7ObcOZRQSB3xAQ=;
-	h=date:mime-version:subject:message-id:from;
+X-B4-Tracking: v=1; b=H4sIAOZXCWkC/6XS327CIBQG8FcxvR4GKAUxy+J7LLugcNhIrFSoz
+ Yzx3Xeo+2Mye+F21R6afL8c+p2qDClArtaLU5VgDDnEHQ7qYVHZN7N7BRIczhWnvGGUCWKcIy7
+ kfmuOfUwDyYd+eg6R7G2WrCEOYywMCYCANcZJrgz1psLIPoEP7xP3/ILzW8hDTMdJH1k5LZBgn
+ NH7oJERSij3K2E0t0K0m/0h2LCzSxu7qlAj/4r/wx4jx3jGqXZeCScY3cScl/uD2WJ892PU/zF
+ qNJQAq2VrVkyIGUNcG82dhkDDGG7blVAUtJsxmiuDszuNBg3NPfV164XUfsaQ18a9dyXRsKJmU
+ qvGOQo3jPOlbwmwCTkMl9JVHeRsplavF48Fp5rJC94TG3dDitstpG/eR3zvkKflBzHinKTQtg7
+ v/jf6VDp+Q+Bydr2S/7kffhtw7MiocDtnG3DGWGl5extqTQZSTsKwXugVr0tBqVYKdz9/AIhao
+ dDZAwAA
+X-Change-ID: 20251014-add-displayport-support-to-qcs615-devicetree-ecaad627a0fa
+To: Rob Clark <robin.clark@oss.qualcomm.com>, 
+ Dmitry Baryshkov <lumag@kernel.org>, 
+ Abhinav Kumar <abhinav.kumar@linux.dev>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, fange.zhang@oss.qualcomm.com, 
+ yongxing.mou@oss.qualcomm.com, li.liu@oss.qualcomm.com, 
+ Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1762220024; l=4414;
+ i=xiangxu.yin@oss.qualcomm.com; s=20241125; h=from:subject:message-id;
+ bh=ZJ9B2/N6e28f7yAJcSHDnM45xVYlWBWvFBo0o9MsapA=;
+ b=1no4OoRCeAj1XZEAM1Rf/AKayx7f4eoz+CzjLj60g+GbI/dH+aHjR9zSbO/CP55nKaksF1QaK
+ 9D3mi1VEeo0DTczx9zh2Z8qaDz3FqtGMaT12IeJUE9VY2Ej4TKYbA1Y
+X-Developer-Key: i=xiangxu.yin@oss.qualcomm.com; a=ed25519;
+ pk=F1TwipJzpywfbt3n/RPi4l/A4AVF+QC89XzCHgZYaOc=
+X-Endpoint-Received: by B4 Relay for xiangxu.yin@oss.qualcomm.com/20241125
+ with auth_id=542
+X-Original-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+Reply-To: xiangxu.yin@oss.qualcomm.com
 
-On 11/3/2025 9:48 PM, Heikki Krogerus wrote:
+This series enables DisplayPort functionality on QCS615 platforms.
+It introduces the required bindings, updates SM6150 dtsi for DP controller
+and QMP USB3-DP PHY, and enables DP on the QCS615 Ride board with
+connector and link configuration.
 
->>>> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
->>>> index a250afd8d662..17257b223a28 100644
->>>> --- a/drivers/gpu/drm/bridge/Kconfig
->>>> +++ b/drivers/gpu/drm/bridge/Kconfig
->>>> @@ -23,13 +23,16 @@ config DRM_AUX_BRIDGE
->>>>    	  build bridges chain.
->>>>    config DRM_AUX_HPD_BRIDGE
->>>> -	tristate
->>>> +	tristate "AUX HPD bridge support"
->>> Why? No, this is supposed to be selected by other drivers. Users don't
->>> know an wouldn't know what is this.
->> In v7, I implemented an additional module for selecting this option. But
->> Heikki believes that it would be better to merge the two modules into one.
-> Like I said before, I was merely curious why not just squash the
-> support into that AUX_PD_HPD_BRIDGE. If that does not make sense, then
-> so be it - make it a "Display Interface Bridge" driver like you
-> originally proposed.
+Depends-on:
+https://lore.kernel.org/all/20250916-add-dp-controller-support-for-sm6150-v3-1-dd60ebbd101e@oss.qualcomm.com/
+https://lore.kernel.org/all/20250926-add-displayport-support-for-qcs615-platform-v7-1-dc5edaac6c2b@oss.qualcomm.com/
 
-Yes, it is.
+Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+---
+Changes in v7:
+- Update schema to validate SM6150 DP node using `compatible: contains` [Rob]
+- Refine commit message for clarity and guideline compliance [Dmitry]
+- Fix subject prefix and drop redundant SoC suffix in title [Bjorn]
+- Rebase dtsi changes on latest talos.dtsi for alignment
+- Link to v6: https://lore.kernel.org/r/20251024-add-displayport-support-to-qcs615-devicetree-v6-0-c4316975dd0e@oss.qualcomm.com
 
+Changes in v6:
+- Removed useless remote-endpoint addition from previous version. [Dmitry]
+- Fix indentation and blank lines in dt-binding example.
+- Fix OPP values to correct clock rates in dt-binding example.
+- Fix blank lines between the last property and the following subnode [Konrad]
+- Link to v5: https://lore.kernel.org/r/20251021-add-displayport-support-to-qcs615-devicetree-v5-0-92f0f3bf469f@oss.qualcomm.com
 
->>>>    	depends on DRM_BRIDGE && OF
->>>>    	select AUXILIARY_BUS
->>>>    	help
->>>>    	  Simple bridge that terminates the bridge chain and provides HPD
->>>>    	  support.
->>>> +	  Specifically, if you want a default Type-C DisplayPort HPD bridge for
->>>> +	  each port of the Type-C controller, say Y here.
->>>> +
->>>>    menu "Display Interface Bridges"
->>>>    	depends on DRM && DRM_BRIDGE
->>>> diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
->>>> index c7dc03182e59..2998937444bc 100644
->>>> --- a/drivers/gpu/drm/bridge/Makefile
->>>> +++ b/drivers/gpu/drm/bridge/Makefile
->>>> @@ -1,6 +1,12 @@
->>>>    # SPDX-License-Identifier: GPL-2.0
->>>>    obj-$(CONFIG_DRM_AUX_BRIDGE) += aux-bridge.o
->>>> -obj-$(CONFIG_DRM_AUX_HPD_BRIDGE) += aux-hpd-bridge.o
->>>> +
->>>> +hpd-bridge-y := aux-hpd-bridge.o
->>>> +ifneq ($(CONFIG_TYPEC),)
->>>> +hpd-bridge-y += aux-hpd-typec-dp-bridge.o
->>>> +endif
->>>> +obj-$(CONFIG_DRM_AUX_HPD_BRIDGE) += hpd-bridge.o
->>>> +
->>>>    obj-$(CONFIG_DRM_CHIPONE_ICN6211) += chipone-icn6211.o
->>>>    obj-$(CONFIG_DRM_CHRONTEL_CH7033) += chrontel-ch7033.o
->>>>    obj-$(CONFIG_DRM_CROS_EC_ANX7688) += cros-ec-anx7688.o
->>>> diff --git a/drivers/gpu/drm/bridge/aux-hpd-bridge.c b/drivers/gpu/drm/bridge/aux-hpd-bridge.c
->>>> index 2e9c702c7087..11ad6dc776c7 100644
->>>> --- a/drivers/gpu/drm/bridge/aux-hpd-bridge.c
->>>> +++ b/drivers/gpu/drm/bridge/aux-hpd-bridge.c
->>>> @@ -12,6 +12,8 @@
->>>>    #include <drm/drm_bridge.h>
->>>>    #include <drm/bridge/aux-bridge.h>
->>>> +#include "aux-hpd-bridge.h"
->>>> +
->>>>    static DEFINE_IDA(drm_aux_hpd_bridge_ida);
->>>>    struct drm_aux_hpd_bridge_data {
->>>> @@ -204,7 +206,26 @@ static struct auxiliary_driver drm_aux_hpd_bridge_drv = {
->>>>    	.id_table = drm_aux_hpd_bridge_table,
->>>>    	.probe = drm_aux_hpd_bridge_probe,
->>>>    };
->>>> -module_auxiliary_driver(drm_aux_hpd_bridge_drv);
->>>> +
->>>> +static int drm_aux_hpd_bridge_mod_init(void)
->>>> +{
->>>> +	int ret;
->>>> +
->>>> +	ret = auxiliary_driver_register(&drm_aux_hpd_bridge_drv);
->>>> +	if (ret)
->>>> +		return ret;
->>>> +
->>>> +	return drm_aux_hpd_typec_dp_bridge_init();
->>>> +}
->>>> +
->>>> +static void drm_aux_hpd_bridge_mod_exit(void)
->>>> +{
->>>> +	drm_aux_hpd_typec_dp_bridge_exit();
->>>> +	auxiliary_driver_unregister(&drm_aux_hpd_bridge_drv);
->>>> +}
->>>> +
->>>> +module_init(drm_aux_hpd_bridge_mod_init);
->>>> +module_exit(drm_aux_hpd_bridge_mod_exit);
->>>>    MODULE_AUTHOR("Dmitry Baryshkov <dmitry.baryshkov@linaro.org>");
->>>>    MODULE_DESCRIPTION("DRM HPD bridge");
->>>> diff --git a/drivers/gpu/drm/bridge/aux-hpd-bridge.h b/drivers/gpu/drm/bridge/aux-hpd-bridge.h
->>>> new file mode 100644
->>>> index 000000000000..69364731c2f1
->>>> --- /dev/null
->>>> +++ b/drivers/gpu/drm/bridge/aux-hpd-bridge.h
->>>> @@ -0,0 +1,13 @@
->>>> +/* SPDX-License-Identifier: GPL-2.0-only */
->>>> +#ifndef AUX_HPD_BRIDGE_H
->>>> +#define AUX_HPD_BRIDGE_H
->>>> +
->>>> +#if IS_REACHABLE(CONFIG_TYPEC)
->>>> +int drm_aux_hpd_typec_dp_bridge_init(void);
->>>> +void drm_aux_hpd_typec_dp_bridge_exit(void);
->>>> +#else
->>>> +static inline int drm_aux_hpd_typec_dp_bridge_init(void) { return 0; }
->>>> +static inline void drm_aux_hpd_typec_dp_bridge_exit(void) { }
->>>> +#endif /* IS_REACHABLE(CONFIG_TYPEC) */
->>>> +
->>>> +#endif /* AUX_HPD_BRIDGE_H */
->>>> diff --git a/drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c b/drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
->>>> new file mode 100644
->>>> index 000000000000..6f2a1fca0fc5
->>>> --- /dev/null
->>>> +++ b/drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
->>>> @@ -0,0 +1,47 @@
->>>> +// SPDX-License-Identifier: GPL-2.0+
->>>> +#include <linux/of.h>
->>>> +#include <linux/usb/typec_altmode.h>
->>>> +#include <linux/usb/typec_dp.h>
->>>> +#include <linux/usb/typec_notify.h>
->>>> +
->>>> +#include <drm/bridge/aux-bridge.h>
->>>> +
->>>> +#include "aux-hpd-bridge.h"
->>>> +
->>>> +#if IS_REACHABLE(CONFIG_TYPEC)
->>>> +static int drm_typec_bus_event(struct notifier_block *nb,
->>>> +			       unsigned long action, void *data)
->>>> +{
->>> This feels like this should be a part of the Type-C subsystem rather
->>> than DRM.
->> In v7, this used to be a part of the Type-C subsystem. I'm not sure what
->> Heikki thinks about this.
-> Your original proposal of making the entire TYPEC subsystem depend on
-> DRM is _not_ going to happen. In general, if I've now understood this
-> correctly, this thing probable should be a "display interface bridge
-> driver", similar to what you proposed in the previous version.
->
-> Note also that you could make it selected automatically, so there is
-> no need for user selectable option if that's the preference. Kconfig
-> and Makefile gives you options on how to do that. For example, maybe
-> this Kconfig works (or does not, but something like it will):
->
-> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-> index a250afd8d662..7487024ba2ce 100644
-> --- a/drivers/gpu/drm/bridge/Kconfig
-> +++ b/drivers/gpu/drm/bridge/Kconfig
-> @@ -30,6 +30,15 @@ config DRM_AUX_HPD_BRIDGE
->            Simple bridge that terminates the bridge chain and provides HPD
->            support.
->   
-> +if DRM_AUX_HPD_BRIDGE
-> +
-> +config DRM_AUX_HPD_TYPEC_BRIDGE
-> +       tristate
-> +       depends on TYPEC || !TYPEC
-> +       default TYPEC
-> +
-> +endif /* DRM_AUX_HPD_BRIDGE */
-> +
->   menu "Display Interface Bridges"
->          depends on DRM && DRM_BRIDGE
+Changes in v5:
+- Update commit message and fix example indentation in binding
+- Update order in dtsi includes [Krzysztof]
+- Link to v4: https://lore.kernel.org/r/20251015-add-displayport-support-to-qcs615-devicetree-v4-0-aa2cb8470e9d@oss.qualcomm.com
 
-Thank you for your code. I think both of your points make sense. So choosing the approach you mentioned now (similar to v7) might be a reasonable compromise.
+Changes in v4:
+- Update commit message to reflect data-lanes changes.
+- Link to v3: https://lore.kernel.org/r/20251014-add-displayport-support-to-qcs615-devicetree-v3-0-74ec96ba8144@oss.qualcomm.com
 
+Changes in v3:
+- Move data-lanes from board DTS to SoC DTS [Dmitry]
+- Add missing assigned-clock PIXEL1_CLK_SRC [Dmitry]
+- Update subject prefix to qcom: qcs615-ride: for DTS patch [Konrad]
+- Link to v2: https://lore.kernel.org/r/20251014-add-displayport-support-to-qcs615-devicetree-v2-0-1209df74d410@oss.qualcomm.com
 
+Changes in v2:
+- Update register padding and ordering [Dmitry]
+- Rebase the series on the latest driver
+- Link to v1: https://lore.kernel.org/all/20241210-add-displayport-support-to-qcs615-devicetree-v1-0-02f84a92c44b@quicinc.com/
 
->   
->
->
-> thanks,
->
+---
+Xiangxu Yin (4):
+      dt-bindings: display: msm: sm6150-mdss: Add DisplayPort controller
+      dt-bindings: display: msm: sm6150-mdss: Fix example indentation and OPP values
+      arm64: dts: qcom: talos: Add DisplayPort and QMP USB3-DP PHY
+      arm64: dts: qcom: qcs615-ride: Enable DisplayPort
+
+ .../bindings/display/msm/qcom,sm6150-mdss.yaml     |  40 ++++---
+ arch/arm64/boot/dts/qcom/qcs615-ride.dts           |  30 ++++++
+ arch/arm64/boot/dts/qcom/talos.dtsi                | 115 ++++++++++++++++++++-
+ 3 files changed, 168 insertions(+), 17 deletions(-)
+---
+base-commit: 9823120909776bbca58a3c55ef1f27d49283c1f3
+change-id: 20251014-add-displayport-support-to-qcs615-devicetree-ecaad627a0fa
+prerequisite-message-id: <20250916-add-dp-controller-support-for-sm6150-v3-1-dd60ebbd101e@oss.qualcomm.com>
+prerequisite-patch-id: eb07ea58347e77ee18fb6dade040affb0ab68954
+prerequisite-message-id: <20250926-add-displayport-support-for-qcs615-platform-v7-0-dc5edaac6c2b@oss.qualcomm.com>
+prerequisite-patch-id: 8c6c905df7ee55a92a4e52362c8fa7cd9742de04
+prerequisite-patch-id: 0dba0fafd032bbd6cd117175f61efd1e56ae9228
+prerequisite-patch-id: d954b18774cfc0cfdb23de09aab3c56cefb8e1ea
+prerequisite-patch-id: 13f2d2efbcee6337001b5f8519a6da9a41d05276
+prerequisite-patch-id: 3a7144645ede23ccc7d54420e5a32e5bfa3bb776
+prerequisite-patch-id: b3ea55e92953c1526eaf7c5c21d939a5f8502711
+prerequisite-patch-id: 977189ef7cecbe7237175a8ef611fffb814193b0
+prerequisite-patch-id: 3a12c1b4f00eb1d074e51d586f2dae3a44de0613
+prerequisite-patch-id: 7f80e93057c1fd088ac6b4b0652cdfe2ea221cd5
+prerequisite-patch-id: 8b29d292717782982e4450a509f4428fe6e895f2
+prerequisite-patch-id: 621c3ba6bcf5b5782a5264faed72fdadfd47c630
+prerequisite-patch-id: 9c63f2c5bb39527e3031b2d168e3c9419441e8df
+prerequisite-patch-id: 364f6a7d8f4e1bc79a8f236b8d5a2425ffd225fe
+prerequisite-patch-id: eb09ea48625b5c0d39ffb37babe7d8c32a4b3122
+
+Best regards,
 -- 
-Best,
-Chaoyi
+Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+
 
 
