@@ -1,122 +1,163 @@
-Return-Path: <devicetree+bounces-234889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24531C31D42
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 16:26:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 222D3C31B4F
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 16:04:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9BFFA4EFE8F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 15:21:33 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B33F24FD2E5
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 14:58:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05EB1256C70;
-	Tue,  4 Nov 2025 15:21:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC043314D9;
+	Tue,  4 Nov 2025 14:57:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="AMQBiX6x";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="DNTl9Vzb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pj3CBwWq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC76C2566E2;
-	Tue,  4 Nov 2025 15:21:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D0BD330D3B
+	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 14:57:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762269691; cv=none; b=Hei4jCmpQTONpfO8CgSWR0Xw8sIxdvQ/NnAgAGgrzm74npWMQ/+6Ln9oU4/+wGv4cKjjShD9kUHAq4m9MXl6WN9NkDId76+9l/sr/41dfql8vW4qUm54Fs07Llro/Xajnbk+3yN8EDXzS5BdHXnVoqQ3qPdMnlSKxYXJvKbbL1g=
+	t=1762268239; cv=none; b=nrqgSp15jc1OqZnKXy4v+piljzGf3mupRaH3MTv79Tl0QwGhpsUH6LpDiA+mEqEW6yNdv3NYn2Zi5K6XufTd/rBb2GoITvCtTLTYNLW4MSIqk0/tsnXADx23yBa/Vxe2XUcduuCMIKuWoCRWEzvvULIIycD6D6tZB8C5/FhSmo8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762269691; c=relaxed/simple;
-	bh=hAwQ+RV6pwUUPD+i9r5PmVExxMNB0uXYamh90bxbKiI=;
+	s=arc-20240116; t=1762268239; c=relaxed/simple;
+	bh=YM94J44mVWcHhHobHQ4Mu8GD2TcuHc2SnC7RSVcg7t0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OkKHHXv9RboW9lw7E86exOjtrycMi639e/XJkHpNzVWrcPck4/ARQ4/+hhnYBxEAZXviXcZwA22DvfFgJiSzaucI6Y7c7wZmdA/VMOmseRZChJQMhow4qvOhStdSn/lskOeIj4IPVrxA0XCtYuTR08j/u96ZYSqmDy0tnL7Tef4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=AMQBiX6x; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=DNTl9Vzb; arc=none smtp.client-ip=80.241.56.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4d1BxY5y00z9tsS;
-	Tue,  4 Nov 2025 16:21:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1762269681;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Iyw2a6XGrVsDBi+ogcdblT77R4F5a2qgkSqZJ6Q4CEk=;
-	b=AMQBiX6xFZmcOncbHcyQ7z5bWygUWTzLAQc9ScI5DoR8WB2yM7OVRybP4riyHquQeTzRrd
-	mnNWOFAeyEOX1wrRHd0J9ZNlnghIuLmwFmQJNdNlftDV7nye3dGWJzAvqtrMy/igEDDSh8
-	7awOjrvcYo5jGPEamJZq4VTs2p7qxIhk8VZyspINdyhWvhFDPzZsrxne9aQ52giWq26bP9
-	aDkfm2DFbHBirF8aJq+rqeOm5eMzQYR42D+6DN4rvHFmb49lJMDPblJxCmiZUidac2pGQO
-	yerbz7/AttZb+yUXo9KK70V6eSfeQ5iJpes4ltktGO0iSSIFN3xtzawuy1BJ1g==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=DNTl9Vzb;
-	spf=pass (outgoing_mbo_mout: domain of marek.vasut@mailbox.org designates 2001:67c:2050:b231:465::2 as permitted sender) smtp.mailfrom=marek.vasut@mailbox.org
-Message-ID: <d37adc12-4ba8-4f0d-aa9a-9071e153917f@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1762269679;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Iyw2a6XGrVsDBi+ogcdblT77R4F5a2qgkSqZJ6Q4CEk=;
-	b=DNTl9VzbnMDKEG5USWEmX8/muXmK0aVd1LEOgDS+SbEUWHnql/Ft1diJV4ig6Z0VoDwoQ/
-	D0HWfETWpmc6NcmUeWfhyHV56Ls2or9E35CX9vQFRMp4AV190d703EuO8BPHB3bApp4I4y
-	77HD78UA849bddwVTApTilR5PJ6bNsFwZlhzhHVOfEqTMLiJpf7rXTgWTbta+bvAmyIrcH
-	NivudVHkKiKDhbBVwkt9Ojh2sMk1RjobQU6HnyCtqfvuUe2UVSDmUXvyU/dwHpPydvnAx2
-	jk8COqU7wpQd8fwJL7/oa7DVwGVfwh1yWXTP+PZuaVNmJcFLOHcKB8jyIchnXQ==
-Date: Tue, 4 Nov 2025 15:23:08 +0100
+	 In-Reply-To:Content-Type; b=IuJAXFgf+ka7sjK9076KMK1ypvkOVh29qRl7kZACzhdyv68prqQCEpluDkWdYYu+VnBYbGIf/GT9zn8xyS2OPzNcs/uQONQ0iJoeIlawAgG6wfEY4V1k8sXadIvqx44Ko2ZOjh1cUo8GPSCSaqPdhNhn/0P168z7lxiQ1+NFDWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Pj3CBwWq; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b7200568b13so221390966b.1
+        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 06:57:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762268236; x=1762873036; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oyKbMiTwK9ssL83pTrppNaRv02OKweXOu6raB/LyaoI=;
+        b=Pj3CBwWqdXm9CV7IUdAk32FimDANuwWamQGEUMadzodQbMrAWxrL7llx+CC6635hWl
+         KKmxhFK336jgKFrL/yAt7fB+sRSE6eMekV6HvoCNiO42bZgiG6cYM5YUJUe8LPcS/Ah6
+         SN1ENZSsXAjS7UVz3d8gMA7oofoBIqGsz3eQINJDedvs9cpxGspiCc9RFEMO8CZrr9ls
+         b/o895/vRwcv4MRnSmlpFUaeAKIqhsAOa7/Peu2ENztVnCqiqkwddjfQ7DvD6+Y/l35L
+         59RQfVC+Qx9p85SL0eldIvIfR8qPw83blN0Ao3+wPSadbb/UsTbq9NSCJDhim+WKjyYq
+         X0OQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762268236; x=1762873036;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oyKbMiTwK9ssL83pTrppNaRv02OKweXOu6raB/LyaoI=;
+        b=lMjlwftGLr+e2hmM6lBkDJx1a0Y9fNM8WOpA5dywk8Pq+bab9gaDjWChAjEaAKGLn3
+         mwJGFtAQd97zYAxYeT4QkCyGLXTcUYoER1WRw0ZYekCxnGLSK4K8UNtapqjbMZo0dK56
+         eNNAmX7s1tsicYaxpqn8Dysr/vurMw7GgjyCZs1iqjL4KSXdwpXJxlFAuZX9RWiJTG6o
+         7jytP9zp3lxDGprtB7pSfS1SJFYobPI9/erDtQ4STjcdQ9UsnXZwWh1x85x0pA7ZQSxc
+         mbO7JLjtrsiHNHSP0yphA0F3gtY/9ZsvYoJ2f1x0KJbNOLfRhXehC+sUQNfL3uyAJ3PK
+         Lrzw==
+X-Forwarded-Encrypted: i=1; AJvYcCW2bhrOySXTpKcKLL3HNsxk1LYkIb8VZMKfKsC/M1T6i/i2ZiW2UX1HAP2Xr6ZCmFQx+nLVRIgI3lJc@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTYNQZPhCYIvGjEqBN5V+Jzpp/nyemfZq0MEff16/sa7Dd4QOh
+	nWYuYUjBjA46jecWpyR2LZYlwbG4wtthTJ7jpQ6AXvTu8wOyebBJAzvH
+X-Gm-Gg: ASbGnctDo8RW+9tEniTbTn3M3cQ+J4R7XXcejDxVhbbshfW0XstDRylU5J8wxcL5HjS
+	K9Y/GMJbyIoQQtunHPJBaQhfw7YmqLP5msgmN8rDEfgK6dx2k9/TgMgszu9EAyTHarP0GRnY+F+
+	BCH1NfyFVBJhMd2f98WuChMY8EnrxRQKrCwPhjFsIxJV8Cy0nwNbe7JOpZviKWlx5BzZB4dLAwx
+	qskOuV9faMEDvd0eONIKzkEC6iCNzxr1fo1dm6+XRwOInoYV3HgUWo4rGq7k6wDfU9HIfQNK/l+
+	MmMHjUtl5ywEcZ0kBnlRro5DWuY2Y3QQp6vQmr9N0vj4Z69fWsFjFchA0zphbnW6wt7szHq+MQY
+	qIRdLRb0YG4petpV6k7n2H1N59kEUWhyEqRJChBawJ/rbmBi+0tArtOPzuDRUz+RaKPRwABLn4/
+	j1NLxbtke7wd/7g2pCsBaa10QoAQ7IjRL3CEWmLcR6Iq7icwKiLhO0WYLMHq5PEqvxVEm9trBbj
+	6Y=
+X-Google-Smtp-Source: AGHT+IF8nsL2Azg7aLrnmFrqf3kuPfRfWtRwF10OY8p++CIvPXZPVi67htZBs2fu0OkHWY7YqQjy0Q==
+X-Received: by 2002:a17:907:9618:b0:b71:1164:6a8b with SMTP id a640c23a62f3a-b7111648675mr762408166b.7.1762268236193;
+        Tue, 04 Nov 2025 06:57:16 -0800 (PST)
+Received: from ?IPV6:2001:9e8:f13f:9101:4d8b:ecf0:8996:ebbe? ([2001:9e8:f13f:9101:4d8b:ecf0:8996:ebbe])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b723d3a3f96sm229430866b.13.2025.11.04.06.57.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Nov 2025 06:57:15 -0800 (PST)
+Message-ID: <59b5eac8-3380-4fb4-a13d-9e4b32b403c4@gmail.com>
+Date: Tue, 4 Nov 2025 15:57:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 2/3] dt-bindings: gpu: img,powervr-rogue: Document
- GE7800 GPU in Renesas R-Car M3-N
-To: Matt Coster <Matt.Coster@imgtec.com>,
- Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Frank Binns <Frank.Binns@imgtec.com>,
- Alessio Belle <Alessio.Belle@imgtec.com>,
- Alexandru Dadu <Alexandru.Dadu@imgtec.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
- Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-References: <20251104135716.12497-1-marek.vasut+renesas@mailbox.org>
- <20251104135716.12497-2-marek.vasut+renesas@mailbox.org>
- <5e2ea623-1e41-4cf3-a81e-2ab7d288c013@imgtec.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] gpio: add gpio-line-mux driver
 Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <5e2ea623-1e41-4cf3-a81e-2ab7d288c013@imgtec.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Thomas Richard <thomas.richard@bootlin.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Peter Rosin <peda@axentia.se>,
+ Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251026231754.2368904-1-jelonek.jonas@gmail.com>
+ <20251026231754.2368904-3-jelonek.jonas@gmail.com>
+ <50646b88-5746-4665-8085-09e394aa291f@bootlin.com>
+From: Jonas Jelonek <jelonek.jonas@gmail.com>
+In-Reply-To: <50646b88-5746-4665-8085-09e394aa291f@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-MBO-RS-META: fy383rnxybucsoo939z786g6im7yf389
-X-MBO-RS-ID: 3280eb3815e7cec32ef
-X-Rspamd-Queue-Id: 4d1BxY5y00z9tsS
 
-On 11/4/25 3:06 PM, Matt Coster wrote:
-> On 04/11/2025 13:56, Marek Vasut wrote:
->> Document Imagination Technologies PowerVR Rogue GE7800 BNVC 15.5.1.64
->> present in Renesas R-Car R8A77965 M3-N SoC.
->>
->> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> 
-> Reviewed-by: Matt Coster <matt.coster@imgtec.com>
-> 
-> I'll take this and P1 via drm-misc-next later today.
-Thank you
+Hi Thomas,
+
+
+On 28.10.25 10:45, Thomas Richard wrote:
+> On 10/27/25 12:17 AM, Jonas Jelonek wrote:
+>> +
+>> +	struct mutex lock;
+>> +
+>> +	struct gpio_desc *shared_gpio;
+>> +	/* dynamically sized, must be last */
+>> +	unsigned int gpio_mux_states[];
+>> +};
+>> +
+>> +DEFINE_GUARD(gpio_lmux, struct gpio_lmux *, mutex_lock(&_T->lock), mutex_unlock(&_T->lock))
+>> +
+>> +static int gpio_lmux_gpio_get(struct gpio_chip *gc, unsigned int offset)
+>> +{
+>> +	struct gpio_lmux *glm = (struct gpio_lmux *)gpiochip_get_data(gc);
+>> +	int ret;
+>> +
+>> +	if (offset > gc->ngpio)
+>> +		return -EINVAL;
+>> +
+>> +	guard(gpio_lmux)(glm);
+>> +
+>> +	ret = mux_control_select(glm->mux, glm->gpio_mux_states[offset]);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	ret = gpiod_get_raw_value_cansleep(glm->shared_gpio);
+> Why ignoring ACTIVE_LOW status ?
+
+I think this would be rather error-prone and doesn't make sense to me. The
+consumer of this driver should decide about whether it uses ACTIVE_HIGH or
+ACTIVE_LOW for each one of the virtual GPIOs separately. This should then be
+applied as if this was a real GPIO. Following the ACTIVE_* that is given in
+the 'shared-gpio' property then would interfere again.
+
+> [...]
+>
+
+Thanks for all the suggested simplifications, I'll incorporate them.
+
+> The advantage of the forwarder is that it handles if the shared GPIO is
+> sleeping or not.
+> But I think the forwarder shall have ngpio, not 1. You will have to add
+> ngpio times the same GPIO desc. Also unsupported operations shall be unset.
+> So I don't really know if it shall be used in this case.
+
+I agree. As Peter mentioned, I need to use "can_sleep" anyway because of the mux.
+So there's not really an argument left to use the forwarder.
+
+> Best Regards,
+>
+> Thomas
+
+Best regards,
+Jonas
 
