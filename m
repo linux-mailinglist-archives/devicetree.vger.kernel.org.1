@@ -1,143 +1,232 @@
-Return-Path: <devicetree+bounces-234913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96B79C31FF2
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 17:15:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A202EC320BD
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 17:26:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 343CA4F5C1B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 16:13:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B80153B5040
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 16:25:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 636A032D445;
-	Tue,  4 Nov 2025 16:13:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 953A43314CC;
+	Tue,  4 Nov 2025 16:25:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="hjj6ITSa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qndf1bQy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4888329E7B
-	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 16:13:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6422A32E75C;
+	Tue,  4 Nov 2025 16:25:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762272788; cv=none; b=YIG5pPr5hHmh3bqo4dDCiM/KIVrGYrZJ3aZD/Jmrf/tqyR1m1Or9mWsrDcJpFm5WEUkCERVc6iLS+iPSgzIt1yNn+sofh0LsisMI+NLKrPMRSm+aRSrAHUPdPnasnnxDqlmCSuz1jzM3s9eo1V4SK8DrT8FWpPPy805lWFL1Wys=
+	t=1762273530; cv=none; b=YF6MSobBkWlp9EfKbz0LCchdaJ0mOyfmN0Z2NxMUO7kXiQIVxbOTvtLSGkbGBgifdJP1z6zrd/8Qtt+UfLJFPMJxOC2HXkVkoRjCHLpIm/D+E0m6yzQmuikQTJJJqB/qs8En8JsoJE1r5ZjAxo8hye7hePDT1r8dkdtGW/QqQaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762272788; c=relaxed/simple;
-	bh=EhPNKWXcOC4wz99nX7zOq9HMTheZCFEjaub0QmjufR4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=mC7iMUtIYW+ruYqMuskezIsfd1tPZOoLazwvsymBEIg+wxLnfZ3j9Ter19yecHScn4hHZFjIf+JqG3vYWEeQvM6TEeJFaYyERYupUdC8ElK95IQsbRmzigqMW5LVJQKKmTlE/XEj6j7KDvGRPLBidV4q+9lGqk5QCsZUUDN3tyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=hjj6ITSa; arc=none smtp.client-ip=209.85.222.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-8a074e50b41so748217885a.3
-        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 08:13:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1762272786; x=1762877586; darn=vger.kernel.org;
-        h=mime-version:user-agent:references:in-reply-to:date:cc:to:from
-         :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=EhPNKWXcOC4wz99nX7zOq9HMTheZCFEjaub0QmjufR4=;
-        b=hjj6ITSa/YOUi20xu9/v5AesgSRzMLg19sEFsNeWD+6eZOnZbenW4dDrPX9dw7Cw0h
-         RKkUQUoT7ZTZrxrVCCeQX5COtii25xMDmSKduAA9hCqaqCROe1Btwf+Ipn8xlL+wW7pn
-         XRYjGZCYkfWmDiQytCI7fifHaVK7PFuaWlBAo8l5CCbwkoLRsbPPxY1FbGFe9OJPJhc3
-         Sr65bse4QY3lpnovgYoE2Mh/71sSCRVGh/Qx2mjmxzZd4J3qU1YUh5ZRMc9nE0QPWHm4
-         KVZNQQ+kS+adR9GaC8yPCWSWlpVmAK/ktG/P1GM744mI+EeqoXMwbkpWeF45OKn64QM4
-         mRBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762272786; x=1762877586;
-        h=mime-version:user-agent:references:in-reply-to:date:cc:to:from
-         :subject:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EhPNKWXcOC4wz99nX7zOq9HMTheZCFEjaub0QmjufR4=;
-        b=vZFKD5iI79VnQiBCSrDGViz+3zPBcf+wb4TSqJ3yHw3CZgFw3jOjUDDcatXEyAb+N1
-         P7sI61o2BMNDKu2II6S/z4YojgA+88hGdjWIbmVUzAw6MUNEhOtnlRz+1vctNIS5TiMA
-         Oy2wlgt/ekMTH59J+Nnqu359vKtyXNhh3/pwOGEs1lRq+xBc4DmRopb9Iygm+r5jDdaI
-         0Aepg01y0o8gKGDnHPNYCzeqSDX/yqfo4NjpTdsv4M9TA+biThrgmgrUCrM070O8S/yu
-         RNaUsq6Z5IK30o1VSsMh9tsI7MsaKrVn97XCdMQg+jIvV1KOkBm6IlpgZpDkOQ+DMJKv
-         FTcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWd8Fqkib2W2vFsDOMA+DPaExcyoAVSoFQ1x06qqe8mWZhugaH0wLA8XP11u/xO9nTerLJVogPH6x+b@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5GLySpn68BakC3HyCn2aeTF3rJ2hkaVbId5DCj1hMR1dhoXjZ
-	wgRKZBrNUEZhJaXF2KlNx5+u4pucqbzpHSqF219/rGoRWkPucrTrPeMBzDefk970nbM=
-X-Gm-Gg: ASbGncvYu9MrimHd3gPzOMalXwQgzSiTHb20kJYLeZmePzFeXeDv39vgm1xTW9U4jtt
-	YGkDghCGYwCKiXACDSllXzPsK7e6gnN+IwA8eqxRiF37QgK745CqZCFH9fEzfRJuQU9MOLMmVxJ
-	dmm7UVIimcbM8XAMPCoSVvPs1qqPdYePlQSzwXEJwy0e1Z2WB1hr8JrbwPrHUNN3wQ4kYykuRwE
-	CVOEriZTyUNdbq8XfuTFrxfI0GocZxjSo2Rxweqne6ZK+NDdfnIplKna9daLLMJ48A3956TH/+z
-	kbyQwlzxMab5/4YfBrHBFf2KPJ08mz0wynl2LIApQ2o+E2l15VeyqP+qzANJJ1SFdgpyYT7jgZA
-	lkjfRX12NTCE9uzpfmkLwIHHGxQC3vHubVZPK2uOhQYRq0G6JgJ8MtVRISOkubdY5cK9SqET2ph
-	2LDT8kLcLEivbiGolr
-X-Google-Smtp-Source: AGHT+IHJNxRdepwmA70rIxH7CleHW+ih2OcQNUmhfvzupPYK5yYekte9k/E/acCX6TG/uH9ZccgQuw==
-X-Received: by 2002:a05:620a:d8b:b0:8a1:eac9:a84d with SMTP id af79cd13be357-8b220b7f57dmr20914885a.44.1762272782998;
-        Tue, 04 Nov 2025 08:13:02 -0800 (PST)
-Received: from ?IPv6:2606:6d00:17:ebd3::5ac? ([2606:6d00:17:ebd3::5ac])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8b0f51ecd3fsm216022085a.11.2025.11.04.08.13.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Nov 2025 08:13:02 -0800 (PST)
-Message-ID: <b6e6881197dc4c83e43ef5eb1f20c2bf1887d395.camel@ndufresne.ca>
-Subject: Re: [PATCH 0/3] Add Amlogic stateless H.264 video decoder for S4
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Zhentao Guo <zhentao.guo@amlogic.com>, Neil Armstrong	
- <neil.armstrong@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley	 <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet	 <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org
-Date: Tue, 04 Nov 2025 11:13:01 -0500
-In-Reply-To: <540d98ea-114c-43bc-94c0-e944b5613d74@amlogic.com>
-References: <20251027-b4-s4-vdec-upstream-v1-0-620401813b5d@amlogic.com>
-	 <b976b442-7d07-4fef-b851-ccd14661a233@linaro.org>
-	 <540d98ea-114c-43bc-94c0-e944b5613d74@amlogic.com>
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-kJqvtTvIehm+17QzwcKF"
-User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
+	s=arc-20240116; t=1762273530; c=relaxed/simple;
+	bh=N/y0vwdR2mvftDnxV9APUaI+FV7/j0wxDHQCrEz8YsE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CoASd4TQhOvZC8qqF/IqbPmBxpnBEjlY8lkinzQ54SY7j3KslQNOyvNhA5wt7nS1MRG6tttski+WAfwA0+hSiBtkASV7lKWooDrgRNVO65hC66iaZdoRpWx7sps8o9aYYw30aY4UeziFHytDFry86dUdmd/KN+gb2i8TUmAs2ac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qndf1bQy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C334C4CEF7;
+	Tue,  4 Nov 2025 16:25:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762273529;
+	bh=N/y0vwdR2mvftDnxV9APUaI+FV7/j0wxDHQCrEz8YsE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qndf1bQywT5cTntWFWsZlLPbAJy1mRvEzxQdBq4h4Ngz6r2vb3jTgD5AaxWucD5Wi
+	 gPS3x013FeabjTJbWjLHA/JTO5gEcp9twS5uiToPWxieCSkwz1N0KxaT3tPo3JWnKO
+	 5TcZsYNoL6lC+QqBd69vbEv0YCo774OaFc4BY21a/2NN8A2zKtR0czpkvfdDjzlHky
+	 j8Ca7vQG7ix+NOMTJb03GqWL7cIaRzuOH9v1FPt1TZmv0WNS/2hrQHtfGMnI7MdQfT
+	 yxO3iEpJCNEY/icPbW2LGcvyDZ4QySDxUlcqaDObtLyN451Cgh1Z11pDVAjmvwGUW1
+	 5DVXQN2KvCbvw==
+Message-ID: <66b2d9bc-c8cd-4517-aeaf-25a2de6c46ef@kernel.org>
+Date: Tue, 4 Nov 2025 16:25:26 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 00/14] Peripheral Image Loader support for Qualcomm
+ SoCs running Linux host at EL2
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <gh1Ap54xdQJqBEHQnzjGUqQsyHQgLp5ggPTjje49OhydkkjnXH2xrFWPcAwSsov_yLqCo2DRqh0F_y9aM3opOw==@protonmail.internalid>
+ <20251104-kvm_rproc_v6-v6-0-7017b0adc24e@oss.qualcomm.com>
+From: Bryan O'Donoghue <bod@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20251104-kvm_rproc_v6-v6-0-7017b0adc24e@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+On 04/11/2025 07:35, Mukesh Ojha wrote:
+> In May 2025, we discussed the challenges at Linaro Connect 2025 [1]
+> related to Secure PAS remoteproc enablement when Linux is running at EL2
+> for Qualcomm SoCs.
+> 
+> [1] https://resources.linaro.org/en/resource/sF8jXifdb9V1mUefdbfafa
+> 
+> Below, is the summary of the discussion.
+> 
+> Qualcomm is working to enable remote processors on the SA8775p SoC with
+> a Linux host running at EL2. In doing so, it has encountered several
+> challenges related to how the remoteproc framework is handled when Linux
+> runs at EL1.
+> 
+> One of the main challenges arises from differences in how IOMMU
+> translation is currently managed on SoCs running the Qualcomm EL2
+> hypervisor (QHEE), where IOMMU translation for any device is entirely
+> owned by the hypervisor. Additionally, the firmware for remote
+> processors does not contain a resource table, which would typically
+> include the necessary IOMMU configuration settings.
+> 
+> Qualcomm SoCs running with QHEE (EL2) have been utilizing the Peripheral
+> Authentication Service (PAS) from TrustZone (TZ) firmware to securely
+> authenticate and reset remote processors via a single SMC call,
+> _auth_and_reset_. This call is first trapped by QHEE, which then invokes
+> TZ for authentication. Once authentication is complete, the call returns
+> to QHEE, which sets up the IOMMU translation scheme for the remote
+> processors and subsequently brings them out of reset. The design of the
+> Qualcomm EL2 hypervisor dictates that the Linux host OS running at EL1
+> is not permitted to configure IOMMU translation for remote processors,
+> and only a single-stage translation is configured.
+> 
+> To make the remote processor bring-up (PAS) sequence
+> hypervisor-independent, the auth_and_reset SMC call is now handled
+> entirely by TZ. However, the issue of IOMMU configuration remains
+> unresolved, for example a scenario, when KVM host at EL2 has no
+> knowledge of the remote processors’ IOMMU settings.  This is being
+> addressed by overlaying the IOMMU properties when the SoC runs a Linux
+> host at EL2. SMC call is being provided from the TrustZone firmware to
+> retrieve the resource table for a given subsystem.
+> 
+> There are also remote processors such as those for video, camera, and
+> graphics that do not use the remoteproc framework to manage their
+> lifecycle. Instead, they rely on the Qualcomm PAS service to
+> authenticate their firmware. These processors also need to be brought
+> out of reset when Linux is running at EL2. The client drivers for these
+> processors use the MDT loader function to load and authenticate
+> firmware. Similar to the Qualcomm remoteproc PAS driver, they also need
+> to retrieve the resource table, create a shared memory bridge
+> (shmbridge), and map the resources before bringing the processors out of
+> reset.
+> 
+> It is based on next-20251103 and tested on SA8775p which is now called
+> Lemans IOT platform and does not addresses DMA problem discussed at
+> [1] which is future scope of the series.
+> 
+> Changes in v6: https://lore.kernel.org/lkml/20251013-kvm_rprocv5-v5-0-d609ed766061@oss.qualcomm.com/
+>   - Added comments made by Bryan to save some cycles and added in 2/14
+>     which could change patch order.
+>   - Renamed qcom_scm_pas_context_init to devm_qcom_scm_pas_context_init()
+>   - Replaced devm_kzalloc with kzalloc for output_rt in scm function as
+>     remoteproc framework does not usage devm_ api for resource table
+>     pointer which is cause mem-abort issue start/stop test.
+>   - Removed union usage and redundant code from qcom_scm_pas_prep_and_init_image().
+> 
+> Changes in v5: https://lore.kernel.org/lkml/20251007-kvm_rprocv4_next-20251007-v4-0-de841623af3c@oss.qualcomm.com/
+>   - Replaced minitems with maxitems.
+>   - Addressed comments made by Bryan, Mani and Konrad.
+>   - Fixed some of highlighted issues in v4.
+>   - Added a new patch which removes qcom_mdt_pas_init() from exported
+>     symbol list.
+>   - Slight change in  v4's 5/12, so that it does use qcom_mdt_pas_load()
+>     directly while it should use in the commit where it gets introduced.
+>     Hence, reordered the patches a bit like v4 5/12 comes early before
+>     4/12.
+> 
+> Changes in v4: https://lore.kernel.org/lkml/20250921-kvm_rproc_pas-v3-0-458f09647920@oss.qualcomm.com/
+>   - Fixed kernel robot warning/errors.
+>   - Reworded some of the commit log, code comment as per suggestion from Bryan.
+>   - Added support of gpdsp0 and gpdsp1 and disabled iris node.
+>   - Add R-b tag to some of the reviewed patches.
+>   - Rename struct qcom_scm_pas_cxt to qcom_scm_pas_context.
+> 
+> Changes in v3: https://lore.kernel.org/lkml/20250819165447.4149674-1-mukesh.ojha@oss.qualcomm.com/
+>   - Dropped video subsystem enablement for now, could add it in future
+>     or on a separate series.
 
---=-kJqvtTvIehm+17QzwcKF
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+I specifically think it is the wrong thing to do, to drop video 
+enablement from this series.
 
-Hi,
+Its just papering over the cracks. The right thing to do is to have the 
+technical disucssion and agree a way forward, not to drop things that 
+feel too contentious.
 
-Le mardi 28 octobre 2025 =C3=A0 19:47 +0800, Zhentao Guo a =C3=A9crit=C2=A0=
-:
-> Ran 54/135 tests successfully
->=20
-> - 52 test vectors failed due to interlaced or mbaff clips: The Amlogic=
-=20
-> stateless
-> =C2=A0=C2=A0 decoder driver only support bitstreams with frame_mbs_only_f=
-lags =3D=3D 1.
-> =C2=A0=C2=A0 Test Vectors:
+What's really so contentious about
 
-Is there plan to support it ? Most of the legacy content, and why users wan=
-ts
-H.264 around is to handle interlaced content. Its also not really optional =
-in
-the ITU conformance spec.
+video-firmware {
+	iommu data here
+};
 
-regards,
-Nicolas
+As has been done with ChromeOS on venus thus far ?
 
---=-kJqvtTvIehm+17QzwcKF
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+All that has to be made is a case for it.
 
------BEGIN PGP SIGNATURE-----
+>   - Addressed most of the suggestion from Stephen and Bryan like some
+>     remoteproc code checking resource table presence or right error
+>     code propagation above the layer.
+>   - Added leman-el2 overlay file.
+>   - Added missed iommus binding which was missed last series.
+>   - Separated qcom_mdt_pas_load() patch and its usage.
+>   - Patch numbering got changed compared to last version
+> 
+> Changes in v2: https://lore.kernel.org/lkml/20241004212359.2263502-1-quic_mojha@quicinc.com/
+>   - A lot has changed from the V1 and a fresh look would be preferred.
+>   - Removed approach where device tree contain devmem resources in
+>     remoteproc node.
+>   - SHMbridge need to created for both carveout and metadata memory
+>     shared to TZ in a new way.
+>   - Now, resource table would be given by SMC call which need to mapped
+>     along with carveout before triggering _auth_and_reset_.
+>   - IOMMU properties need to be added to firmware devices tree node when Linux
+>     control IOMMU.
+> 
+> ---
+> Mukesh Ojha (14):
+>        dt-bindings: remoteproc: qcom,pas: Add iommus property
+>        firmware: qcom_scm: Remove redundant piece of code
+>        firmware: qcom_scm: Rename peripheral as pas_id
+>        firmware: qcom_scm: Introduce PAS context initialization helper function
+>        remoteproc: pas: Replace metadata context with PAS context structure
+>        soc: qcom: mdtloader: Add PAS context aware qcom_mdt_pas_load() function
+>        soc: qcom: mdtloader: Remove qcom_mdt_pas_init() from exported symbols
+>        firmware: qcom_scm: Add a prep version of auth_and_reset function
+>        firmware: qcom_scm: Simplify qcom_scm_pas_init_image()
+>        firmware: qcom_scm: Add SHM bridge handling for PAS when running without QHEE
+>        firmware: qcom_scm: Add qcom_scm_pas_get_rsc_table() to get resource table
+>        remoteproc: pas: Extend parse_fw callback to fetch resources via SMC call
+>        remoteproc: qcom: pas: Enable Secure PAS support with IOMMU managed by Linux
+>        arm64: dts: qcom: Add EL2 overlay for Lemans
+> 
+>   .../bindings/remoteproc/qcom,pas-common.yaml       |   3 +
+>   arch/arm64/boot/dts/qcom/Makefile                  |  10 +
+>   arch/arm64/boot/dts/qcom/lemans-el2.dtso           |  41 +++
+>   drivers/firmware/qcom/qcom_scm.c                   | 387 ++++++++++++++++++---
+>   drivers/firmware/qcom/qcom_scm.h                   |   1 +
+>   drivers/remoteproc/qcom_q6v5_pas.c                 | 166 +++++++--
+>   drivers/soc/qcom/mdt_loader.c                      |  43 ++-
+>   include/linux/firmware/qcom/qcom_scm.h             |  30 +-
+>   include/linux/soc/qcom/mdt_loader.h                |  22 +-
+>   9 files changed, 593 insertions(+), 110 deletions(-)
+> ---
+> base-commit: 9823120909776bbca58a3c55ef1f27d49283c1f3
+> change-id: 20251104-kvm_rproc_v6-6329e4d594fe
+> 
+> Best regards,
+> --
+> -Mukesh Ojha
+> 
+> 
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaQomDQAKCRDZQZRRKWBy
-9G86AP9s4PfT2ZOEc7H8CSULI0fPz0RdFYmemyQn3wCh76IcygD6A5aq+z1GM0Eb
-LOyvHiMpTuu/yzDSHPEMnVL2wN653Qc=
-=yfQW
------END PGP SIGNATURE-----
-
---=-kJqvtTvIehm+17QzwcKF--
 
