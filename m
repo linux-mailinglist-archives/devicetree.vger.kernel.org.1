@@ -1,118 +1,211 @@
-Return-Path: <devicetree+bounces-234591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E638DC2F242
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 04:19:04 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D70CC2F184
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 04:11:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 22A924F668D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 03:16:15 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D799134CB3A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 03:11:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6275426CE2C;
-	Tue,  4 Nov 2025 03:16:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0459426F2B0;
+	Tue,  4 Nov 2025 03:11:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="bz/Sz5G8"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CrUlzhX/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99F5714EC73;
-	Tue,  4 Nov 2025 03:16:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 356E726CE1E;
+	Tue,  4 Nov 2025 03:10:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762226167; cv=none; b=JiXWntX/S1qMgiez/xY2fQ5KEVZbzHvEsO7Q3NHEnOKly6gRGw3w8vRA40iVcCpdV3eJk9iXFPhZyrUGXiEN9xUuLgGIFWEL9gADG7sqH+JkLqAdpwqxU80DaYoKsntUjN3rykQUHRr7tXscjD6HEJcUE4RHQGR9+6qvGtC3WsA=
+	t=1762225859; cv=none; b=oJ28KoVMx2asUEytzLD0tkbWA7BBZyx44v1nEozFVswXZz/hqaqiX8x5gvTbnyNmFEJLwkQ47RoPUKpuEqGOoxjZQYcDWxM4KGKuf6AF1A+bAYbbiYpwkVawfffOLqmdk+28CkTXltPQC9tMwRWx+d4pxhCFZ1AH2ErP+tqbD8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762226167; c=relaxed/simple;
-	bh=Q4F/VQo9TKI8YMJ3QZZtO+J4F74Qfj3BEcr40NIyu+Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SRUZ0zXXRr9FwE0CSuhAoL8Av7FIeTCsr7tlN9XeaB7DLVqbeNNH/BtMfIeqhZZAHPEUYlCOytQ62g2LXrHqYqnqMB9XLBeLvSvFxFkHAQ/EQkCd8OhkwLY9rb0z+pSf09uryb7vRY9MivJRiYr087ptpb18VS1nvkZMLV4Gb0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=bz/Sz5G8; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4d0trb68f1z9tp6;
-	Tue,  4 Nov 2025 04:15:59 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1762226159;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/LVRVU1wb4ki3KWvhjOwWIYph+e4orXiwLs8iLuRhYs=;
-	b=bz/Sz5G8bDTmcs8MxDKW4GltYYSQcPT2kwltLV72ozxSYKorHJ6pdUKASScZlcbdRoFCM2
-	+7Jeezt4eCpWWGH3Qb4y2RGeYLhwPKOlEL2QJ/jSua12nB+hF4SgfY2UW7QCY0NGNglDgd
-	yIAItR7wjisn+gU69yYQaJYsOCS4gwJOStdU3IEWLPzRCu+ALZsOlWi5a9yFgUBC6oRHz4
-	LdylWetW3JFdrmXR6WVwlaz0impWKUT4Lsn04B96gBH1p53vhSDXKRkUaZqrqhSLehXQSL
-	n4xVKjRpMZdTgdg5ublAxVhue9ALk4uIxmX2cTeWiwiY4qtW53gOZIN6AoYg4w==
-Message-ID: <3064e20f-92c8-4e3b-82bc-ef949f312826@mailbox.org>
-Date: Tue, 4 Nov 2025 04:07:26 +0100
+	s=arc-20240116; t=1762225859; c=relaxed/simple;
+	bh=nasp7obvVZx/zW5fYzUXJMKnK906v8ptyaXO0ca9Boo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R/8Ds2IZkpeW355e4RnL3nU3z32zpsJe2vmEDsfbrdCG3yildwiJPoKEq+6SoaLmNxXow5g87Q/xq561x/hPC6xbkfYl4OpgBPVPlHyHtSJdsZ9k8DAvnOrpA7sT43utJEb9TsxIKHCZI/CN71WbLqHqWxBrjLHVT1/a06orJ9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CrUlzhX/; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762225858; x=1793761858;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=nasp7obvVZx/zW5fYzUXJMKnK906v8ptyaXO0ca9Boo=;
+  b=CrUlzhX/GuJIaQrf2CTe2mhhhOd7ZY7YSf+6yv3FbWOjaUhNhpppJiKa
+   g4T6a9PnFg1zB3y9iqWgYOSbWpO9gP4NSQ+/D6J/VPIdhNzEjeluCEmFp
+   sN5RHVHk4VwAW0OdNX+NBjjCGqaF+c+mFWm0XaWoIc+QbbrRykLPFlLo8
+   K+eEzN62xnpgkI9r61tbEPJYiKMLaOhdlIlqK4T5iluRjXKPYXe++q5lv
+   bBdBRsohCqSqb/4X9MiwdBqA0DqkES21iOByFhaYaoyhRf93n4Tre+fyc
+   0foTjlrM8xxhnpMYw+7PER6hwb23/bMKMJP1SfWCkygl4uA1WHQWH9s5d
+   g==;
+X-CSE-ConnectionGUID: qKnCv5ZYR32SvkvHZUoXUw==
+X-CSE-MsgGUID: yDL9LG48Tdy7PPp0HjEZlw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="67967486"
+X-IronPort-AV: E=Sophos;i="6.19,278,1754982000"; 
+   d="scan'208";a="67967486"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2025 19:10:57 -0800
+X-CSE-ConnectionGUID: Klu5rGQySFOcoXjRl282jw==
+X-CSE-MsgGUID: oH3aw8ubRJiFJiwtRMte1w==
+X-ExtLoop1: 1
+Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
+  by fmviesa003.fm.intel.com with ESMTP; 03 Nov 2025 19:10:53 -0800
+Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vG7RZ-000QnM-34;
+	Tue, 04 Nov 2025 03:10:50 +0000
+Date: Tue, 4 Nov 2025 11:07:35 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jacky Chou <jacky_chou@aspeedtech.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Po-Yu Chuang <ratbert@faraday-tech.com>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, taoren@meta.com,
+	Jacky Chou <jacky_chou@aspeedtech.com>
+Subject: Re: [PATCH net-next v3 4/4] net: ftgmac100: Add RGMII delay support
+ for AST2600
+Message-ID: <202511041023.QGAHaAZ3-lkp@intel.com>
+References: <20251103-rgmii_delay_2600-v3-4-e2af2656f7d7@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH] drm/bridge: fsl-ldb: Parse register offsets from DT
-To: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org
-Cc: Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Lucas Stach <l.stach@pengutronix.de>, Peng Fan <peng.fan@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org
-References: <20251017154029.105099-1-marek.vasut@mailbox.org>
- <dc4b1b65-542f-4bd2-bd91-af3fe4223b63@nxp.com>
- <55d44163-4f37-462f-b860-c862cb5ada5a@mailbox.org>
- <b65d9221-bdb3-4e69-beed-6b7646c5d5eb@nxp.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <b65d9221-bdb3-4e69-beed-6b7646c5d5eb@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: 2b6b09f05eb987a5cbe
-X-MBO-RS-META: m56ydbxsgw89ewsit8a191x7o38ki4um
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251103-rgmii_delay_2600-v3-4-e2af2656f7d7@aspeedtech.com>
 
-On 11/4/25 3:26 AM, Liu Ying wrote:
+Hi Jacky,
 
-Hello Liu,
+kernel test robot noticed the following build warnings:
 
->>>> +++ b/drivers/gpu/drm/bridge/fsl-ldb.c
->>>> @@ -61,24 +61,16 @@ enum fsl_ldb_devtype {
->>>>    };
->>>>      struct fsl_ldb_devdata {
->>>> -    u32 ldb_ctrl;
->>>> -    u32 lvds_ctrl;
->>>>        bool lvds_en_bit;
->>>>        bool single_ctrl_reg;
->>>
->>> single_ctrl_reg can be dropped then, as it can be expressed by failing to
->>> get the second register.
->>>
->>> Furthermore, with this done, lvds_en_bit is the only member left and hence
->>> struct fsl_ldb_devdata can also be dropped, as IIRC there is no need to
->>> use a structure for device data with only a flag.
->> I plan to add more bits into the driver match data when adding the MX95,
->> so I would like to retain these instead of removing them and the adding
->> them back.
-> 
-> i.MX95 LDB supports two LVDS channels.  Two DRM bridges are needed in single
-> or separate LDB mode, while one DRM bridge is needed in split LDB mode.
+[auto build test WARNING on 01cc760632b875c4ad0d8fec0b0c01896b8a36d4]
 
-What do you refer to by "split LDB mode" , some interleaving or some 
-such thing ?
+url:    https://github.com/intel-lab-lkp/linux/commits/Jacky-Chou/dt-bindings-net-ftgmac100-Add-delay-properties-for-AST2600/20251103-154258
+base:   01cc760632b875c4ad0d8fec0b0c01896b8a36d4
+patch link:    https://lore.kernel.org/r/20251103-rgmii_delay_2600-v3-4-e2af2656f7d7%40aspeedtech.com
+patch subject: [PATCH net-next v3 4/4] net: ftgmac100: Add RGMII delay support for AST2600
+config: arm-defconfig (https://download.01.org/0day-ci/archive/20251104/202511041023.QGAHaAZ3-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project d2625a438020ad35330cda29c3def102c1687b1b)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251104/202511041023.QGAHaAZ3-lkp@intel.com/reproduce)
 
-> Also, each channel connects to a standalone LVDS PHY.  All these could make
-> it intrusive to support i.MX95 LDB in fsl-ldb.c.  Maybe, we could discuss
-> about this later, but IMO this patch should remove struct fsl_ldb_devdata.
-> It doesn't hurt if we really need to add it back.
-OK. The current integration seems to be working fine. Which exact case 
-are you concerned about, do you have an example ?
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511041023.QGAHaAZ3-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/net/ethernet/faraday/ftgmac100.c:1865:13: warning: variable 'rgmii_delay_unit' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+    1865 |         } else if (of_device_is_compatible(np, "aspeed,ast2600-mac23")) {
+         |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/net/ethernet/faraday/ftgmac100.c:1870:53: note: uninitialized use occurs here
+    1870 |         rgmii_tx_delay = DIV_ROUND_CLOSEST(rgmii_tx_delay, rgmii_delay_unit);
+         |                                                            ^~~~~~~~~~~~~~~~
+   drivers/net/ethernet/faraday/ftgmac100.c:1865:9: note: remove the 'if' if its condition is always true
+    1865 |         } else if (of_device_is_compatible(np, "aspeed,ast2600-mac23")) {
+         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/net/ethernet/faraday/ftgmac100.c:1844:22: note: initialize the variable 'rgmii_delay_unit' to silence this warning
+    1844 |         u32 rgmii_delay_unit;
+         |                             ^
+         |                              = 0
+   1 warning generated.
+
+
+vim +1865 drivers/net/ethernet/faraday/ftgmac100.c
+
+  1838	
+  1839	static int ftgmac100_set_ast2600_rgmii_delay(struct platform_device *pdev,
+  1840						     u32 rgmii_tx_delay,
+  1841						     u32 rgmii_rx_delay)
+  1842	{
+  1843		struct device_node *np = pdev->dev.of_node;
+  1844		u32 rgmii_delay_unit;
+  1845		struct regmap *scu;
+  1846		int dly_mask;
+  1847		int dly_reg;
+  1848		int id;
+  1849	
+  1850		scu = syscon_regmap_lookup_by_phandle(np, "scu");
+  1851		if (IS_ERR(scu)) {
+  1852			dev_err(&pdev->dev, "failed to get scu");
+  1853			return PTR_ERR(scu);
+  1854		}
+  1855	
+  1856		id = of_alias_get_id(np, "ethernet");
+  1857		if (id < 0 || id > 3) {
+  1858			dev_err(&pdev->dev, "get wrong alise id %d\n", id);
+  1859			return -EINVAL;
+  1860		}
+  1861	
+  1862		if (of_device_is_compatible(np, "aspeed,ast2600-mac01")) {
+  1863			dly_reg = AST2600_MAC01_CLK_DLY;
+  1864			rgmii_delay_unit = AST2600_MAC01_CLK_DLY_UNIT;
+> 1865		} else if (of_device_is_compatible(np, "aspeed,ast2600-mac23")) {
+  1866			dly_reg = AST2600_MAC23_CLK_DLY;
+  1867			rgmii_delay_unit = AST2600_MAC23_CLK_DLY_UNIT;
+  1868		}
+  1869	
+  1870		rgmii_tx_delay = DIV_ROUND_CLOSEST(rgmii_tx_delay, rgmii_delay_unit);
+  1871		if (rgmii_tx_delay >= 32) {
+  1872			dev_err(&pdev->dev,
+  1873				"The index %u of TX delay setting is out of range\n",
+  1874				rgmii_tx_delay);
+  1875			return -EINVAL;
+  1876		}
+  1877	
+  1878		rgmii_rx_delay = DIV_ROUND_CLOSEST(rgmii_rx_delay, rgmii_delay_unit);
+  1879		if (rgmii_rx_delay >= 32) {
+  1880			dev_err(&pdev->dev,
+  1881				"The index %u of RX delay setting is out of range\n",
+  1882				rgmii_rx_delay);
+  1883			return -EINVAL;
+  1884		}
+  1885	
+  1886		/* Due to the hardware design reason, for MAC23 on AST2600, the zero
+  1887		 * delay ns on RX is configured by setting value 0x1a.
+  1888		 * List as below:
+  1889		 * 0x1a -> 0   ns, 0x1b -> 0.25 ns, ... , 0x1f -> 1.25 ns,
+  1890		 * 0x00 -> 1.5 ns, 0x01 -> 1.75 ns, ... , 0x19 -> 7.75 ns, 0x1a -> 0 ns
+  1891		 */
+  1892		if (of_device_is_compatible(np, "aspeed,ast2600-mac23"))
+  1893			rgmii_rx_delay = (AST2600_MAC23_RX_DLY_0_NS + rgmii_rx_delay) &
+  1894					 AST2600_MAC_TX_RX_DLY_MASK;
+  1895	
+  1896		if (id == 0 || id == 2) {
+  1897			dly_mask = ASPEED_MAC0_2_TX_DLY | ASPEED_MAC0_2_RX_DLY;
+  1898			rgmii_tx_delay = FIELD_PREP(ASPEED_MAC0_2_TX_DLY, rgmii_tx_delay);
+  1899			rgmii_rx_delay = FIELD_PREP(ASPEED_MAC0_2_RX_DLY, rgmii_rx_delay);
+  1900		} else {
+  1901			dly_mask = ASPEED_MAC1_3_TX_DLY | ASPEED_MAC1_3_RX_DLY;
+  1902			rgmii_tx_delay = FIELD_PREP(ASPEED_MAC1_3_TX_DLY, rgmii_tx_delay);
+  1903			rgmii_rx_delay = FIELD_PREP(ASPEED_MAC1_3_RX_DLY, rgmii_rx_delay);
+  1904		}
+  1905	
+  1906		regmap_update_bits(scu, dly_reg, dly_mask, rgmii_tx_delay | rgmii_rx_delay);
+  1907	
+  1908		return 0;
+  1909	}
+  1910	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
