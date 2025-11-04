@@ -1,199 +1,229 @@
-Return-Path: <devicetree+bounces-234804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BE75C30F96
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 13:25:52 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49B1CC30FD2
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 13:31:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 501091895C5C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 12:24:46 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2CA944E398F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 12:31:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A12682E889C;
-	Tue,  4 Nov 2025 12:24:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AD8C14E2E2;
+	Tue,  4 Nov 2025 12:31:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KQutNc31"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="bBkgrlBl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f65.google.com (mail-ej1-f65.google.com [209.85.218.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CO1PR03CU002.outbound.protection.outlook.com (mail-westus2azon11010036.outbound.protection.outlook.com [52.101.46.36])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD5052D3221
-	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 12:24:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.65
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762259055; cv=none; b=kYht4G1VM8bVP4gGU/YUK5BZ0ge/UlQ4Kra8qzgUZHsbIu2x3ysC5ofD0YhHp4ritynZ04WZOjTnAktb/guddU+/8ZVBfUB4vqEYgtDq2F/SRJwVrpidCoERwUrvh5REZ5mRs6cDhvo9acT70FGJP6EGoaes9JHXMYa/T6e0NcQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762259055; c=relaxed/simple;
-	bh=4G4WmsNqNizyWK3nhkV2waDHR6+qEIhH3Gbq1UFjq7k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EAl5mjF/ejADF/Gjt9N4crWEBmNhWH0jZ79UN9Mw24n5DSUx8MJUCNIIKgcnxqVRihpH5wXCo2mtvCCBVpBpJQQl9gB4z2/mO0XWE1r0wXpCEn9FRXYfksRIyieYu8+lI+6Gm7df/QhkUXc3pDm0uq4b8OGjxs64UC/Nmx9LSXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KQutNc31; arc=none smtp.client-ip=209.85.218.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f65.google.com with SMTP id a640c23a62f3a-b5a8184144dso760610666b.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 04:24:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762259052; x=1762863852; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8w9oB3T8XUJgBGc+hBaim4B4JguaWQfKbWBDqClypRw=;
-        b=KQutNc31ZFNIt7trjML1B6+ICKFTlx6hKjVrRTkwjs10Wu/IMqdhP5kmYHeDnt2A4W
-         uCaDl7Ge7UL9TMX9HZZKPbsrhPm1UygeaYjGKwiy0N0AoJ/mHD7aczntUFpL6+0wby1z
-         LaiBurl2htcuaQ+v8tNWqhHfJTxsz4Swbmtjdg0sIMkhgDzxjuV7tAtzhPpUVo5ewwRt
-         UniK7m+/o1kvYur85i9ySkYViaeh70z9TgleXn+XAu1+LioF+ENSgcWpobLKacdVpfY/
-         27yK8APNxomBtU9rlWhg9oardPjl+thVom/SPDOX7kbypCQrjpFoKFIxrrbTXWpuvyck
-         RHKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762259052; x=1762863852;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8w9oB3T8XUJgBGc+hBaim4B4JguaWQfKbWBDqClypRw=;
-        b=Po41YtrBTeRpjC7X1p6wnmHqwlMKVoWZVUZgoymylH+OOdwq0Lm5ESAOvlNy7Rir4N
-         e7uS+NIeTNqm5z9dbbQNk9ko2Z0XK1uZeZSDJRETm7M043vrzMPmlaQU2+N8wSBbIFQm
-         lsq5V1R6/YpMyrLVPkJzrkn0EFfusm3Wxih7wtc20++O4F01inplbvA+NWYJTSTVDTHl
-         gk/u3zrK4HMkaorHtZqE7j1TNk9qpZOVwifqyrp+88nZkvyb8fc7YLwHN9Ckf9XkwuAV
-         wjQZhhqkrrEh0xUEAYkizH0kzs6HHEqoVyZo7k3liRrafG8DoFqy2GCKTSOZjOCrmBr+
-         72FQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX9KMz6zoct6X/Pn7+C5lPo/8+P0KJgy2jmooV2LjsWpdXXlqkHXQl7dnW19bL8EaBmQ62RfG3WqrFX@vger.kernel.org
-X-Gm-Message-State: AOJu0YwrxHFxGvnwcQRw4PwVc4yiEJzdEZ6Yi6D5/Yyar4cDk3u983Qa
-	2UxiW7jPDRiFso6I61z7nGwzHOKynOpGmeE5h1RkX4O4WMFbq37ix9wBh0loThfg+Dmt2zz6O0Y
-	tE3f5GD/IceFee9+bPNVUsrRJtcMVFhI=
-X-Gm-Gg: ASbGncs6T/TXgkLhSwPN6WfF3p7gmVPUdAKf+De51k2uwj4wtvP9J1KG8QCT7LN8d0p
-	J/RUCwdQW7DltuSUIm2VAT0Mhi5UpWcgCIIvn7umnLNcBAHBFEkFFy9iEnbPV3uwhkql2ei/+q+
-	NExl29/jzLkWND8zHQ6ovWCJCuAFjLQaiOramu6puO2lhvKHY4NCvVnpLqG+opRqqbx6kevYLpA
-	xt2w5PkGr+Kk3lijRsn3Jb9QtEgZARW/dKIslr0/IcfSfwZrlxu1z5KEZDW
-X-Google-Smtp-Source: AGHT+IG6ud+xpKAMBlMA5WdjCGVGxS6YVcNlLSwDSmnLLrN6CJtwEsTAMY7TqC8k7Rf1nkyRUDIwFwQ7kTSNndxnDeE=
-X-Received: by 2002:a17:907:97c5:b0:b71:5079:9702 with SMTP id
- a640c23a62f3a-b715079aed8mr550597766b.21.1762259051951; Tue, 04 Nov 2025
- 04:24:11 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4585C1A275;
+	Tue,  4 Nov 2025 12:31:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.46.36
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762259479; cv=fail; b=s020mS3yqCkOefpAkD1rQGmRzKRvm6tY09+OdgXDzlyeNICvD11hKUaaST8KNCYR+LMc9IWB3oE5/mXfr6vvwiTu+8Z4O0LO4JLr29bx/cIxVex9hoHEQButhtZO982Wo2a1uQ/1DAHiNPmbN91ThUhlBykmPPdVpOX4MsL2Om8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762259479; c=relaxed/simple;
+	bh=XW/Nz9OQh81RDU7qfYbPX4Kf+SpQN1svGYgxsUsZRfU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=T1SSuxNECw6/orZDYYI7+ffkhabZw8DaAxW/mqawme/lhZQ09BwDC+6+gHyXRWG77DUNp5j1ZTOP4CALKZRjoPMbjLPVGmwZJpWGugYEH2jEl9PQz7WFwld4rlm0DHkeJrS0jpFR2aOVkZbfvC4DHYCOuwIZMRywqkak3m5iwrk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=bBkgrlBl; arc=fail smtp.client-ip=52.101.46.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qNFq9PQ8JnJmSDTC0r7vr2o77594EODH8u7d3JDcPdcwRMgHoFoBP15LGBHRlcoP+ns1m6Tuc+6xDKQUrsPBj5hGD2Tf5UlZOCS0F0SZzSIiz2CfGE3wO2SE2yGejNrW1uk3yNAn2tStA0OSd+puvwXTOQUhroGRyEWIlZo34l+up0/+FgHJwWOG7gfMkHDWD5xmr5QFtfHJUs7rVpgOCntfn3MVsBv5Kociezd8JhLh3m57VWvy+3dzPThdqBgp9P2DWT/vEY0IQd7hZCEwCwzsHt19CMkr0+2xBabzPf+A3rZgI7+1pyCPE5LLeb0cKliGMYlDLsH4LRjitUpyEQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WiVUUG53v5owb+IvoGi1anZofUOSRdEsdktvuEF9lFk=;
+ b=G8TPzj5DRJbb+Lw2OHH8/BTmX7Rd8skIEfsQjDYXV3xu559/DW9RAk87K+tO0iVHEx9hbEX8VlNErN7lFmQqDHgutxWu6aNlGCSRWHqgIhl3yJu57GqBW7e7m1KQ68ExHAaYHdRVz58UJQjOzc3EeBeYRpwo9yRu96WcjsE2mbGYNkk1x2XyyH0FoJmXDFvEGUu5gbdPPW9mlueiLSwadMmeGDS9eMfLNBdY7ncaQqC6a13IZ4rgklF30xMn2SYWpskDUAxb/1FLRVqL3IJXkjCM1Epe9Fpb1eQLcTghvvPAnp4sTNGuYtMirpzxVTpWOtHJD1hQaR/aKDM+BSqxug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WiVUUG53v5owb+IvoGi1anZofUOSRdEsdktvuEF9lFk=;
+ b=bBkgrlBlT9xxjnrM0W1SFp1vGcP6CnPzn0cz89vpbqAq5yH8ME97J5aNFFHf4LID9l/xE4pjRF6DBEkFAtW2COLpp3rzMZQzB7kdSOVdHqT56Goc0GyaC7sEHSWsrvlscLKTlX+ZHvrw8iICigSGh9goWz+GlL+lUd5ueAz+JUw=
+Received: from SJ0PR05CA0027.namprd05.prod.outlook.com (2603:10b6:a03:33b::32)
+ by MW4PR10MB6486.namprd10.prod.outlook.com (2603:10b6:303:213::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.16; Tue, 4 Nov
+ 2025 12:31:14 +0000
+Received: from SJ1PEPF00002310.namprd03.prod.outlook.com
+ (2603:10b6:a03:33b:cafe::b2) by SJ0PR05CA0027.outlook.office365.com
+ (2603:10b6:a03:33b::32) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9298.7 via Frontend Transport; Tue, 4
+ Nov 2025 12:31:03 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ SJ1PEPF00002310.mail.protection.outlook.com (10.167.242.164) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9298.6 via Frontend Transport; Tue, 4 Nov 2025 12:31:12 +0000
+Received: from DFLE204.ent.ti.com (10.64.6.62) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 4 Nov
+ 2025 06:31:03 -0600
+Received: from DFLE206.ent.ti.com (10.64.6.64) by DFLE204.ent.ti.com
+ (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 4 Nov
+ 2025 06:31:03 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE206.ent.ti.com
+ (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 4 Nov 2025 06:31:03 -0600
+Received: from [172.24.233.14] (shark.dhcp.ti.com [172.24.233.14])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5A4CUwni1903997;
+	Tue, 4 Nov 2025 06:30:59 -0600
+Message-ID: <6de227bc-af06-491a-97f2-800b7523ea42@ti.com>
+Date: Tue, 4 Nov 2025 18:00:58 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251103110648.878325-1-caojunjie650@gmail.com>
- <20251103110648.878325-3-caojunjie650@gmail.com> <20251104-attractive-dragonfly-of-perspective-0d52d6@kuoka>
-In-Reply-To: <20251104-attractive-dragonfly-of-perspective-0d52d6@kuoka>
-From: Junjie Cao <caojunjie650@gmail.com>
-Date: Tue, 4 Nov 2025 20:22:32 +0800
-X-Gm-Features: AWmQ_blg6GhTdK5EC6AuU-36Dga5TQMKLH2FNjAQ7Rr6vjrvigIa3A71HhVneEs
-Message-ID: <CAK6c68j2j536UEgq36RAuAv7HGW9VTUS-s32+1YDshqK+gTfzw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] backlight: aw99706: Add support for Awinic AW99706 backlight
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>, 
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-fbdev@vger.kernel.org, Pengyu Luo <mitltlatltl@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 6/6] clk: scmi: Add i.MX95 OEM extension support for
+ SCMI clock driver
+To: Peng Fan <peng.fan@nxp.com>, Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Sudeep
+ Holla" <sudeep.holla@arm.com>, Cristian Marussi <cristian.marussi@arm.com>,
+	Brian Masney <bmasney@redhat.com>, Vignesh R <vigneshr@ti.com>
+CC: Dan Carpenter <dan.carpenter@linaro.org>, Geert Uytterhoeven
+	<geert@linux-m68k.org>, <linux-kernel@vger.kernel.org>,
+	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<arm-scmi@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20251009-clk-ssc-v5-1-v5-0-d6447d76171e@nxp.com>
+ <20251009-clk-ssc-v5-1-v5-6-d6447d76171e@nxp.com>
+Content-Language: en-US
+From: Sebin Francis <sebin.francis@ti.com>
+In-Reply-To: <20251009-clk-ssc-v5-1-v5-6-d6447d76171e@nxp.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002310:EE_|MW4PR10MB6486:EE_
+X-MS-Office365-Filtering-Correlation-Id: 38c19717-11c4-4be0-de74-08de1b9e0a7a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|36860700013|34020700016|1800799024|82310400026|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?cWlHMVpabVhIWnR0Umw5bjlRNkxoalBaTi92clZMQVYrakRIZXRvZzBTc1cv?=
+ =?utf-8?B?S2REOEtEZHc2a05WQkFVZ01GOG9lL3htWUlZUHZ4RUh5RU5RSzQ1ZzVIR29N?=
+ =?utf-8?B?Nmt3V1p1VS9mRW5hUXV5Q1hWbVdYQmZBRkdjMEh6d1pHcVhTYTVLaklWKzhB?=
+ =?utf-8?B?WndBbGhZWXdsUHVITEtYZ3J1VldyMktzMnQyMGFrdktKbGFuUWVsMmFpTzk2?=
+ =?utf-8?B?b2Jna1dmbnlzSlJZRUJ4RE5MTFBIQWw5WUhVa0w3WjBjQ3ZaWkZOcTVqSy93?=
+ =?utf-8?B?K09tVk1ESmlJemZ5QkNVWWRrL2pVa3gyU0VBZzYvMEpVNjN3ZGk4ckdmTUlr?=
+ =?utf-8?B?Si9JcTBkTDh0QmI4cm9FNUVtYVIvUHM1LzFicHdRYU94bnRJelFxQ0ZVUG9D?=
+ =?utf-8?B?a0lNQTBRS21ncW9XK2haSFJnM3hnWGZWdzNYWEdkNkdVVklWaXJrZ05xd0hl?=
+ =?utf-8?B?aG5Cb2drM0l0K0RmemtxdjJRalFJTG9XSzEwZzgyalp3Rm1HOE5raHRpaWdB?=
+ =?utf-8?B?QlpLaFFpbG1ua0RmbmZESHdOOEsxc0gvbUdlY3huT0JFbTNzMlo1ZldKMjg0?=
+ =?utf-8?B?cHVSdU50bWdsalZRRWdielBjUHcrWU9UM2ZoRXB3eFpYUTlCc0VxR2Y2RkRH?=
+ =?utf-8?B?dVZwajBkQ3RMblRVa3d3SjJENTRJOWZ6ZTlENjBRdjVJdFl1SzhIL0tTUk1t?=
+ =?utf-8?B?K1RtbGdmOGkrRTNEVlVpM0lzbUpKYURyd0pBNGprYXhBMmRzN3l3bk5hZkRz?=
+ =?utf-8?B?K3dBbWYvSThoUFl3UlNIZFRycHFzUlQyZ2IrU3Zmb0l1VmlCR2h1T0JJSE80?=
+ =?utf-8?B?KytCeWlXVjlRTllMcHlWVXZLaXVGWXFBVGdwS2U1bUNGVndVMTFYbkJWbUJy?=
+ =?utf-8?B?WGo3Q1BBUUhGayszZUxRQmQ3NXVYWmFobytNQXNZOUVlVzVPNVFOTDIrd1dr?=
+ =?utf-8?B?OFlOaklSL1VXdDZZd0tkNmRYdHYwZ0lFOWFsRGRxY3BDMitDVnY3Z2NEQ3RL?=
+ =?utf-8?B?dTVLTTNCTEYzRDZiRDZBR3BodENyTUpVckxtY05OSm83OVVKQ2RXUjhPay80?=
+ =?utf-8?B?TVhQNGcxckRYSHAvcVFTWE9TMW1JMEViTDhRMmMrUnkrRHpybGxBZmhlUTFY?=
+ =?utf-8?B?bGJoMDIxdEhLYmVpQ0dQTXM5dnZRK2dVSllCMkJtUkhDWm1rMWJpUVI1MDh0?=
+ =?utf-8?B?R3JRTEV1RjFxZ3ZOYUhQUkgrR3RicjBSWmxRditDbEJhQ0NkZlRkeVl5RWlV?=
+ =?utf-8?B?WkZRZFRpRjkwb3lkakxxSXhaSDRjMnF6S1VJYnNkbzYxRDE0cmNENXhmeTdL?=
+ =?utf-8?B?RkN0cWpjS2dSL3RHaWJLOWtIRWtWRWk4ai9hQ2NIdEh5TzdQMTFCM2tEcHc2?=
+ =?utf-8?B?eitPSzA0K1NlUXRXMGhEWmt4Nkc0d0hsN3JOTUIwMVFTZ1JIaXBla0dwbEJC?=
+ =?utf-8?B?UGNEYWtnOStZRG1hS1RUb3RzOTlQOG0rbDlPVGl5d1ZldDhTZjhOSkFtdzBH?=
+ =?utf-8?B?K213UGZ6d3QzRzdkUWFVQXlKMG93VXN3dFI2SkVtQ05mK1RvNG9yQ3Rha2dL?=
+ =?utf-8?B?MGkwbUJmRGtvWFlIS0wzcXB5NklmTDQ4VTREazZYQVV5WElGNjZEZTY0OS9t?=
+ =?utf-8?B?WURRY1BXNTduZTNHaW4xMnNNcnFtdlk2bElWWG9PSXJoQlIrbzUvV0VyeHE4?=
+ =?utf-8?B?QnNVQW13RUViYm50b0RlM2NucVNma2xrNUZtaVZROHJHZThPUXNYRmY3OHRs?=
+ =?utf-8?B?SVFkWXlBN3JjYlFhT0t4aUZhZ0cyODE2RHU3N084VW9TSWc0cGlBd3oxL0Vh?=
+ =?utf-8?B?SmpIOURGeEhaRFhGbDJxSnpiTkRGTTdwYy9hV1BOSXdtMHNYclNqOGw2SStW?=
+ =?utf-8?B?ZFV1T0txZCs5M2dWRmVweTlKS2JLR2dWQS9tbUtQMDczRDhrMVR5OGNvSHky?=
+ =?utf-8?B?eVpjOHhXTVljakxReUJtODdTWlZMK1JNVzFYUVlkeWNseVRIUHpON3RKTUds?=
+ =?utf-8?B?bW5RRTVuUm9xZzBPcXpKV1F2RVdoNGJVMDhpNm5oVC9DWjY1dEpOcWZBN2Q4?=
+ =?utf-8?B?SUJxcnowd1QzNWVhamlVSG9JdC96b2hnZ3g5QSsvTHhwZnVoV09QNEpOekZz?=
+ =?utf-8?Q?yPnTdPYk7UI4yniJlIN2Gfll/?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(7416014)(36860700013)(34020700016)(1800799024)(82310400026)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2025 12:31:12.6883
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 38c19717-11c4-4be0-de74-08de1b9e0a7a
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF00002310.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR10MB6486
 
-On Tue, Nov 4, 2025 at 3:36=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On Mon, Nov 03, 2025 at 07:06:48PM +0800, Junjie Cao wrote:
-> > +struct reg_init_data;
-> > +
-> > +struct aw99706_device {
-> > +     struct i2c_client *client;
-> > +     struct device *dev;
-> > +     struct regmap *regmap;
-> > +     struct backlight_device *bl_dev;
-> > +     struct gpio_desc *hwen_gpio;
-> > +     struct reg_init_data *init_tbl;
-> > +     int init_tbl_size;
-> > +     bool bl_enable;
-> > +};
-> > +
-> > +enum reg_access {
-> > +     REG_NONE_ACCESS =3D 0,
-> > +     REG_RD_ACCESS   =3D 1,
-> > +     REG_WR_ACCESS   =3D 2,
-> > +};
-> > +
-> > +const u8 aw99706_regs[AW99706_REG_MAX + 1] =3D {
->
-> Why isn't this static?
->
+Hi Peng,
 
-That was an oversight on my part. It will be static.
+On 09/10/25 09:18, Peng Fan wrote:
+>   - Introduce 'clk-scmi-oem.c' to support vendor-specific OEM extensions
+>     for the SCMI clock driver, allows clean integration of vendor-specific
+>     features without impacting the core SCMI clock driver logic.
+>   - Extend 'clk-scmi.h' with 'scmi_clk_oem' structure and related declarations.
+>   - Initialize OEM extensions via 'scmi_clk_oem_init()'.
+>   - Support querying OEM-specific features and setting spread spectrum.
+>   - Pass 'scmi_device' to 'scmi_clk_ops_select()' for OEM data access.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-> > +     [AW99706_CFG0_REG]              =3D REG_RD_ACCESS | REG_WR_ACCESS=
-,
-> > +     [AW99706_CFG1_REG]              =3D REG_RD_ACCESS | REG_WR_ACCESS=
-,
-> > +     [AW99706_CFG2_REG]              =3D REG_RD_ACCESS | REG_WR_ACCESS=
-,
-> > +     [AW99706_CFG3_REG]              =3D REG_RD_ACCESS | REG_WR_ACCESS=
-,
-> > +     [AW99706_CFG4_REG]              =3D REG_RD_ACCESS | REG_WR_ACCESS=
-,
-> > +     [AW99706_CFG5_REG]              =3D REG_RD_ACCESS | REG_WR_ACCESS=
-,
-> > +     [AW99706_CFG6_REG]              =3D REG_RD_ACCESS | REG_WR_ACCESS=
-,
-> > +     [AW99706_CFG7_REG]              =3D REG_RD_ACCESS | REG_WR_ACCESS=
-,
-> > +     [AW99706_CFG8_REG]              =3D REG_RD_ACCESS | REG_WR_ACCESS=
-,
-> > +     [AW99706_CFG9_REG]              =3D REG_RD_ACCESS | REG_WR_ACCESS=
-,
-> > +     [AW99706_CFGA_REG]              =3D REG_RD_ACCESS | REG_WR_ACCESS=
-,
-> > +     [AW99706_CFGB_REG]              =3D REG_RD_ACCESS | REG_WR_ACCESS=
-,
-> > +     [AW99706_CFGC_REG]              =3D REG_RD_ACCESS | REG_WR_ACCESS=
-,
-> > +     [AW99706_CFGD_REG]              =3D REG_RD_ACCESS | REG_WR_ACCESS=
-,
-> > +     [AW99706_FLAG_REG]              =3D REG_RD_ACCESS,
-> > +     [AW99706_CHIPID_REG]            =3D REG_RD_ACCESS,
-> > +     [AW99706_LED_OPEN_FLAG_REG]     =3D REG_RD_ACCESS,
-> > +     [AW99706_LED_SHORT_FLAG_REG]    =3D REG_RD_ACCESS,
-> > +
-> > +     /*
-> > +      * Write bit is dropped here, writing BIT(0) to MTPLDOSEL will un=
-lock
-> > +      * Multi-time Programmable (MTP).
-> > +      */
-> > +     [AW99706_MTPLDOSEL_REG]         =3D REG_RD_ACCESS,
-> > +     [AW99706_MTPRUN_REG]            =3D REG_NONE_ACCESS,
-> > +};
-> > +
->
-> ...
->
-> > +     aw =3D devm_kzalloc(dev, sizeof(*aw), GFP_KERNEL);
-> > +     if (!aw)
-> > +             return -ENOMEM;
-> > +
-> > +     aw->client =3D client;
-> > +     aw->dev =3D dev;
-> > +     i2c_set_clientdata(client, aw);
-> > +
-> > +     aw->regmap =3D devm_regmap_init_i2c(client, &aw99706_regmap_confi=
-g);
-> > +     if (IS_ERR(aw->regmap))
-> > +             return dev_err_probe(dev, PTR_ERR(aw->regmap),
-> > +                                  "Failed to init regmap\n");
-> > +
-> > +     ret =3D aw99706_chip_id_read(aw);
-> > +     if (ret !=3D AW99706_ID)
-> > +             return dev_err_probe(dev, ret,
-> > +                                  "Failed to validate chip id\n")
->
-> Why are you exiting the probe with a positive value like 4 or 8? This
-> makes no sense. Registers do not coontain Linux return codes.
->
+Thanks for the patch. I only have a minor comment, otherwise the patch 
+looks good.
 
-Thanks for pointing this out. Using -ENODEV makes more sense. I will do
-it in the next version.
+[...]
 
-Regards,
-Junjie
+> +
+> +int scmi_clk_oem_init(struct scmi_device *sdev)
+> +{
+> +	const struct scmi_handle *handle = sdev->handle;
+> +	int i, size = ARRAY_SIZE(info);
+> +
+> +	for (i = 0; i < size; i++) {
+> +		if (strcmp(handle->version->vendor_id, SCMI_IMX_VENDOR) ||
+> +		    strcmp(handle->version->sub_vendor_id, SCMI_IMX_SUBVENDOR))
+> +			continue;
+> +		if (info[i].compatible &&
+> +		    !of_machine_is_compatible(info[i].compatible))
+> +			continue;
+> +
+> +		break;
+> +	}
+> +
+> +	if (i < size)
+> +		dev_set_drvdata(&sdev->dev, (void *)info[i].data);
+> +
+> +	return 0;
+> +}
+
+This above logic is tailor made for IMX is it possible to make it generic?
+
+> diff --git a/drivers/clk/clk-scmi.c b/drivers/clk/clk-scmi.c
+> index bf85924d61985eb9e596419349eb883e3817de73..1ed2091e3d4a951c8662db4c94dee4b9c98b8326 100644
+> --- a/drivers/clk/clk-scmi.c
+> +++ b/drivers/clk/clk-scmi.c
+> @@ -14,6 +14,8 @@
+>   #include <linux/scmi_protocol.h>
+>   #include <asm/div64.h>
+>   
+> +#include "clk-scmi.h"
+
+[...]
+
+
+Thanks
+Sebin
 
