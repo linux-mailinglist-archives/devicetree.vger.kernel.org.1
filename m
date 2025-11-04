@@ -1,507 +1,116 @@
-Return-Path: <devicetree+bounces-234829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5620C3127D
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 14:13:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4179C312AD
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 14:15:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 502801895949
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 13:12:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 468DE1881CCC
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 13:15:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFAA43161A2;
-	Tue,  4 Nov 2025 13:09:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ED092FAC03;
+	Tue,  4 Nov 2025 13:14:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="VqzyAvWl"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BbHSiTHQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72BB13128CB
-	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 13:09:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 408F12F7AB4;
+	Tue,  4 Nov 2025 13:14:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762261794; cv=none; b=VuM6la370FiMIwZQvq2lSEgGtQCYJLYvmwGmeN1ljxaGCHlmx87cUGfkW7yWIf0NJKSvOflW8Or1adhFs0yQ5mmQCCxThe1NIjBprAoH3rV11I38SvbBqsqXy976UEAK6HOJXVD8H4StTfCH+vvvDPRh6NnZT5hpqYqEzO3EE6w=
+	t=1762262099; cv=none; b=SoWlLHs1LtDmTt9MraH7TAO7DsNaVw3K2qghTsiK02zP81coDAulj5vZgwNiUhAKz9Eg45WCzV4uHjEV1StPCarPwj5BFviUpEcGLu5v4j6PD9GXOuk1yafZfrowDd8G8xjV28DoxsTQwMFefzmkV4n0KQdjppZn/E3T0i86vzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762261794; c=relaxed/simple;
-	bh=gEzNn/jOktAUjBhwkJimsV4dFL+5O/s4EfBdKgdkB0Q=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nxEAVyj4Tz0NQYn1f/Vr7rimZQlZ1fyu4FePBEayOKZA5S7QQDXapM9YdoF98Xp1DR996vc279a3jYz44GEojBLqaS8qA+o/utH2SUQFyi1jyvQZdL0NSRDJnhU3eqPHUaUuB3ZbyN2ENjqefYAKtC7aXjCTwVYzR0UW03yuJtc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=VqzyAvWl; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3ece1102998so3721152f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 05:09:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1762261788; x=1762866588; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RYc8z4PcZ9T49QURApQLtXvrbC8JQdZPwHKl+MXpn3g=;
-        b=VqzyAvWldIiENzjKi7fEAbnLRaL8oIQSYKK1QDnOmHEYk0N+Y3qHVJxNKNURuV3MMB
-         NfOijLdjQpAFidhQ5nvqF0acovQBe9YRta88QopfhkYawyzXsq3kdiaAh1l3SqfKSAvD
-         tVlqYfkGVo9WXhtqzmwMn5WIjHsfLA9tJGaBePLJrgX4GWLzU14aNr9wgu1azggqApyv
-         QkWl64I2Rm1qekw+ZEToVhEi306a1Ek+sHhyMYVTgxH1+BZy8z6lHMHNiyy73QHkq0ND
-         2pe5NORJZaZ+76Oga2dFWMFyMAp5ouAI76LGKF63L2is0q7T4y98hDpsOuPabDEFvXut
-         U5pg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762261788; x=1762866588;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RYc8z4PcZ9T49QURApQLtXvrbC8JQdZPwHKl+MXpn3g=;
-        b=pnVeJbXdAzpvFcxuHDlCsDvqOJT3bsUIGbPPeW1ECcfVAm+Q3+9qLmY2Az6ZC8+2Hk
-         euqzBvUfDYm98XoA8EizuqaI5nfnHrA6F52YUCit1/ZcU2Dq+xCDHW4ra5r587o2NpTU
-         jodZN7+siwfi1R53awiDM0SciWRfTjCInNn1joLqd+fWuwIa+JzdReGDiGQehmeoTM72
-         ln6bB9rW5n5IBTrNZK9srNI7HqaT5sUMkWT8v0Bv6l0QDorYsBeCynZLZH1wZdEc2HUk
-         yCim/aa47zEPWUQoRsoSWksCRayBxHflQDfYYDTy8QCMDy2/hePXzL5KcN7WkR3UCh0k
-         8WdA==
-X-Forwarded-Encrypted: i=1; AJvYcCWzPqKGPE/FhgOSijcTL3fHSFjsVhBtFGUuZhUVum8CXN+UD0rOmDn4kldLfEdiPN1quASt7xOnluCj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwtVl5oPIIxZh2fXadeNgXJwioRAWgQ0JKyfT5iSgCk6ZLXw762
-	gDXJakNRkPt9tsMxqEHsu8bQN1+GT9q0RKs+kVz9L5YmSLjxETmzzoPj5A+9wwJhCX0=
-X-Gm-Gg: ASbGncvCN/JToq+PN/vNzgW+czt5Tf94p0+9T9r+W1H+eRb4Ms1hMawStdn5B7lLmSj
-	Q9ygdJryFRiRzWTryC7/0xP4eRLT3iShVu8cTIIiZoGyt/p7OqTcI/sOV8yKzL1tSziXPrFqyY4
-	iLDn/3S8XH0ISqy9/WQJ9IlGBTLZ4vYX3Q5OEzR1YZcUjBukHBJ9j0gvDkh0EBKF1FH9WLy/WlD
-	GVE5gVPIkDYolvvImRZjRhWnnDUM7dau9KSLrppLpGyavi1+IP6aCAt7ldx3CyMDvG2vGrJV3Y7
-	Im5RmGJ4VOaYdV86HNoAaEqqdnuce2vQQyuiLxh1JxgLCX3cvAN+oLsTLhWrOXu3hhmT80ExgUZ
-	q8y7cZi++a+vtol3QMS8bSxo0wZMQndmG3OZUgxZMX9cbyPHkSnqxLbpG+OcavSaiNMtvnA==
-X-Google-Smtp-Source: AGHT+IHPpON6LYi1/Q8aXjFmURJbxcrY+l8z8FiJePOjNwnG1FKRukzxqD0pp8zNbhw6M6VPHhOkIg==
-X-Received: by 2002:a05:6000:26d2:b0:429:c5db:f50f with SMTP id ffacd0b85a97d-429c5dbf6a0mr11233740f8f.29.1762261787616;
-        Tue, 04 Nov 2025 05:09:47 -0800 (PST)
-Received: from [127.0.1.1] ([2a01:cb1d:dc:7e00:9ea1:7ab7:4748:cae3])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429dc18efd3sm4554431f8f.5.2025.11.04.05.09.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Nov 2025 05:09:44 -0800 (PST)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Tue, 04 Nov 2025 14:08:59 +0100
-Subject: [PATCH v4 8/8] net: stmmac: qcom-ethqos: add support for sa8255p
+	s=arc-20240116; t=1762262099; c=relaxed/simple;
+	bh=ZEU8FvkHiwIhUuKOfPNCnyWW5StZUux0a+VENGL9yng=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p36CiOCpXIwSb1dkmaXvwdSMVQI2aJ6eMVq5xUO3DLAqU0NamhU/QcR7L6H43BI3vPUh6W9I9Xbm7nE88RlzLprzDbOOIju3KrrAWls7CHuzlrVTEa0bYGCqo+h7InkhoBNsSvCdKdWSXFheZp4rQz0cCRWR0MU1U4zxHeqgW9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BbHSiTHQ; arc=none smtp.client-ip=198.175.65.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762262098; x=1793798098;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ZEU8FvkHiwIhUuKOfPNCnyWW5StZUux0a+VENGL9yng=;
+  b=BbHSiTHQYe36haAvJDcOd7Ktqea1vFzmEtPZYfBfAO0sHj5a0a8ThMSR
+   +fG1JCtUd047GaTf3kPGU9byjSRTfU5hnTEYlEbVxGONPXbIEE6M5jV6H
+   AeElgIqjERMlensbxRp+F+kc1BOPOFMKdHdK8Jmjat53BuZeFY1jypoXu
+   r27YiuxUbF0ium4lxpNzV1UOaFTOP1JdB00FcBkxatOEAfXzjq6bBFKzH
+   a+9WS07tcAFwDKGF/FAz5r8dQUzO514+LbC2alxCo0XCJ0fw5od9xR+ll
+   GcCkmMNFr8LY4h2oe00Q9RJFFk7gDc5PtEopO1wfYb8mJ29rQcg8T6gyc
+   Q==;
+X-CSE-ConnectionGUID: Gth/IuAfTa63wc2DXda0sQ==
+X-CSE-MsgGUID: 3X1yerdcSnyF+OYY+7Q9IA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="74648188"
+X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; 
+   d="scan'208";a="74648188"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2025 05:14:57 -0800
+X-CSE-ConnectionGUID: dCqmaljzTcyrDLfwN0qA1Q==
+X-CSE-MsgGUID: jRDMMh8+RIOlcOj7+nYusg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; 
+   d="scan'208";a="186833101"
+Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
+  by fmviesa007.fm.intel.com with ESMTP; 04 Nov 2025 05:14:54 -0800
+Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vGGrl-000RQC-2H;
+	Tue, 04 Nov 2025 13:14:41 +0000
+Date: Tue, 4 Nov 2025 21:13:07 +0800
+From: kernel test robot <lkp@intel.com>
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>, andersson@kernel.org,
+	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, sre@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+	Loic Poulain <loic.poulain@oss.qualcomm.com>
+Subject: Re: [PATCH 4/5] firmware: qcom: scm: Support for EDL reboot mode
+Message-ID: <202511042044.FqeSCxnF-lkp@intel.com>
+References: <20251103182006.1158383-5-loic.poulain@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251104-qcom-sa8255p-emac-v4-8-f76660087cea@linaro.org>
-References: <20251104-qcom-sa8255p-emac-v4-0-f76660087cea@linaro.org>
-In-Reply-To: <20251104-qcom-sa8255p-emac-v4-0-f76660087cea@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Richard Cochran <richardcochran@gmail.com>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Vinod Koul <vkoul@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
- Jose Abreu <joabreu@synopsys.com>, Chen-Yu Tsai <wens@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- Matthew Gerlach <matthew.gerlach@altera.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Keguang Zhang <keguang.zhang@gmail.com>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Jan Petrous <jan.petrous@oss.nxp.com>, 
- s32@nxp.com, Romain Gantois <romain.gantois@bootlin.com>, 
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
- Heiko Stuebner <heiko@sntech.de>, Chen Wang <unicorn_wang@outlook.com>, 
- Inochi Amaoto <inochiama@gmail.com>, Emil Renner Berthing <kernel@esmil.dk>, 
- Minda Chen <minda.chen@starfivetech.com>, Drew Fustini <fustini@kernel.org>, 
- Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
- Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>, 
- Shuang Liang <liangshuang@eswincomputing.com>, 
- Zhi Li <lizhi2@eswincomputing.com>, 
- Shangjuan Wei <weishangjuan@eswincomputing.com>, 
- "G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>, 
- Clark Wang <xiaoning.wang@nxp.com>, Linux Team <linux-imx@nxp.com>, 
- Frank Li <Frank.Li@nxp.com>, David Wu <david.wu@rock-chips.com>, 
- Samin Guo <samin.guo@starfivetech.com>, 
- Christophe Roullier <christophe.roullier@foss.st.com>, 
- Swathi K S <swathi.ks@samsung.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, 
- Drew Fustini <dfustini@tenstorrent.com>, linux-sunxi@lists.linux.dev, 
- linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org, 
- imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org, 
- linux-rockchip@lists.infradead.org, sophgo@lists.linux.dev, 
- linux-riscv@lists.infradead.org, 
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=10753;
- i=bartosz.golaszewski@linaro.org; h=from:subject:message-id;
- bh=kH82UvTkPA4Owu7n7V2nTB+oPAmR25mANNr93utn74g=;
- b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBpCfruh2gxdJgmTj0+zkkuyG+w1M/56xqsarn41
- ZPBYWNIMjSJAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCaQn67gAKCRARpy6gFHHX
- cpVyD/9ixuat3AHDNJC0PRiJjI8ZBWoFYNK/GFnKGpGV8mOyZ5RhoCXvb4J0XxCRz2iT82+Uypr
- 6q7xVZOjreOOIh4AG/HaRxse/Kxf1I9mX9n7a+AHRs8bWm1D3gA7lMwsIBIWpjIU0augIyfnfv5
- LV0F81QwFLiqfSlt9xEW7GW/b81xrKeQhHd03uJPfnWJvxMeif9h7W4cz50cup4Tnpt2FcHMgYi
- 87taXwWIl19DKQaTpkNh+/cjPDBJpQm/nGOM0DDLt3tGbXK2HMGRZmvo61I+Z9UnzonFleCTzsm
- hPGn+Om6M+wVvSJL3T8+iSEmTd5bEc8V+fG8zVghoU41QJ3RqKh9DwhlfA8XOECUGUm3+5uXUU2
- qQYgktGE2BgGqrrQUKlWqckXbAbARIqPpBZrGplyhXDZ7fv4xSOzTKAHrWIRsmSKETMaG2mcXhG
- Hvkvz3ZNWRzRmZDD/9W3WM/+fDq+tVQ3agdy7NlzXByyBYA6N/dAa2IM1JEKpBUYAGBfSoLpWzn
- gAA6WBPYiTrPEU8iLAyfgMSy/XoxjIriTBnhWWwAewPhtKghcFCdGUAAZClSE90dXutgvWi3CUy
- iXU472N6z9/ZyUHsOSkq2TqXcftMJQZCT7j6itABU18ESw6vDKLSYyDmbdmJ8sbNxPhPES4G4ff
- b6NU77t5VkvaKRQ==
-X-Developer-Key: i=bartosz.golaszewski@linaro.org; a=openpgp;
- fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251103182006.1158383-5-loic.poulain@oss.qualcomm.com>
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Hi Loic,
 
-Extend the driver to support a new model - sa8255p. Unlike the
-previously supported variants, this one's power management is done in
-the firmware using SCMI. This is modeled in linux using power domains so
-add support for them.
+kernel test robot noticed the following build errors:
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- .../ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c    | 230 ++++++++++++++++++---
- 1 file changed, 201 insertions(+), 29 deletions(-)
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on sre-power-supply/for-next linus/master v6.18-rc4 next-20251104]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-index 446f06b591a0b70992c7a431b56cf88c1b6718fd..d2922b4fb4bad1bb8dd77f1feaa7a260b97f0ae8 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-@@ -7,6 +7,8 @@
- #include <linux/platform_device.h>
- #include <linux/phy.h>
- #include <linux/phy/phy.h>
-+#include <linux/pm_opp.h>
-+#include <linux/pm_domain.h>
- 
- #include "stmmac.h"
- #include "stmmac_platform.h"
-@@ -81,6 +83,13 @@
- 
- #define SGMII_10M_RX_CLK_DVDR			0x31
- 
-+enum ethqos_pd_selector {
-+	ETHQOS_PD_CORE = 0,
-+	ETHQOS_PD_MDIO,
-+	ETHQOS_PD_SERDES,
-+	ETHQOS_NUM_PDS,
-+};
-+
- struct ethqos_emac_por {
- 	unsigned int offset;
- 	unsigned int value;
-@@ -98,6 +107,9 @@ struct ethqos_emac_driver_data {
- 
- struct ethqos_emac_pm_data {
- 	const char *link_clk_name;
-+	bool use_domains;
-+	struct dev_pm_domain_attach_data pd;
-+	unsigned int clk_ptp_rate;
- };
- 
- struct ethqos_emac_match_data {
-@@ -111,13 +123,20 @@ struct ethqos_emac_pm_ctx {
- 	struct phy *serdes_phy;
- };
- 
-+struct ethqos_emac_pd_ctx {
-+	struct dev_pm_domain_list *pd_list;
-+};
-+
- struct qcom_ethqos {
- 	struct platform_device *pdev;
- 	void __iomem *rgmii_base;
- 	void __iomem *mac_base;
- 	int (*configure_func)(struct qcom_ethqos *ethqos, int speed);
- 
--	struct ethqos_emac_pm_ctx pm;
-+	union {
-+		struct ethqos_emac_pm_ctx pm;
-+		struct ethqos_emac_pd_ctx pd;
-+	};
- 	phy_interface_t phy_mode;
- 	int serdes_speed;
- 	int (*set_serdes_speed)(struct qcom_ethqos *ethqos);
-@@ -330,6 +349,25 @@ static const struct ethqos_emac_match_data emac_sa8775p_data = {
- 	.pm_data = &emac_sa8775p_pm_data,
- };
- 
-+static const char * const emac_sa8255p_pd_names[] = {
-+	"core", "mdio", "serdes"
-+};
-+
-+static const struct ethqos_emac_pm_data emac_sa8255p_pm_data = {
-+	.pd = {
-+		.pd_flags = PD_FLAG_NO_DEV_LINK,
-+		.pd_names = emac_sa8255p_pd_names,
-+		.num_pd_names = ETHQOS_NUM_PDS,
-+	},
-+	.use_domains = true,
-+	.clk_ptp_rate = 230400000,
-+};
-+
-+static const struct ethqos_emac_match_data emac_sa8255p_data = {
-+	.drv_data = &emac_v4_0_0_data,
-+	.pm_data = &emac_sa8255p_pm_data,
-+};
-+
- static int ethqos_dll_configure(struct qcom_ethqos *ethqos)
- {
- 	struct device *dev = &ethqos->pdev->dev;
-@@ -411,6 +449,28 @@ static int ethqos_dll_configure(struct qcom_ethqos *ethqos)
- 	return 0;
- }
- 
-+static int qcom_ethqos_domain_on(struct qcom_ethqos *ethqos,
-+				 enum ethqos_pd_selector sel)
-+{
-+	struct device *dev = ethqos->pd.pd_list->pd_devs[sel];
-+	int ret;
-+
-+	ret = pm_runtime_resume_and_get(dev);
-+	if (ret < 0)
-+		dev_err(&ethqos->pdev->dev,
-+			"Failed to enable the power domain for %s\n",
-+			dev_name(dev));
-+	return ret;
-+}
-+
-+static void qcom_ethqos_domain_off(struct qcom_ethqos *ethqos,
-+				   enum ethqos_pd_selector sel)
-+{
-+	struct device *dev = ethqos->pd.pd_list->pd_devs[sel];
-+
-+	pm_runtime_put_sync(dev);
-+}
-+
- static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos, int speed)
- {
- 	struct device *dev = &ethqos->pdev->dev;
-@@ -646,6 +706,13 @@ static int ethqos_set_serdes_speed_phy(struct qcom_ethqos *ethqos)
- 	return phy_set_speed(ethqos->pm.serdes_phy, ethqos->serdes_speed);
- }
- 
-+static int ethqos_set_serdes_speed_pd(struct qcom_ethqos *ethqos)
-+{
-+	struct device *dev = ethqos->pd.pd_list->pd_devs[ETHQOS_PD_SERDES];
-+
-+	return dev_pm_opp_set_level(dev, ethqos->serdes_speed);
-+}
-+
- static void ethqos_set_serdes_speed(struct qcom_ethqos *ethqos, int speed)
- {
- 	if (ethqos->serdes_speed != speed) {
-@@ -737,6 +804,27 @@ static void qcom_ethqos_serdes_powerdown(struct net_device *ndev, void *priv)
- 	phy_exit(ethqos->pm.serdes_phy);
- }
- 
-+static int qcom_ethqos_pd_serdes_powerup(struct net_device *ndev, void *priv)
-+{
-+	struct qcom_ethqos *ethqos = priv;
-+	struct device *dev = ethqos->pd.pd_list->pd_devs[ETHQOS_PD_SERDES];
-+	int ret;
-+
-+	ret = qcom_ethqos_domain_on(ethqos, ETHQOS_PD_SERDES);
-+	if (ret < 0)
-+		return ret;
-+
-+	return dev_pm_opp_set_level(dev, ethqos->serdes_speed);
-+}
-+
-+static void qcom_ethqos_pd_serdes_powerdown(struct net_device *ndev, void *priv)
-+{
-+	struct qcom_ethqos *ethqos = priv;
-+
-+	/* TODO set level */
-+	qcom_ethqos_domain_off(ethqos, ETHQOS_PD_SERDES);
-+}
-+
- static int ethqos_clks_config(void *priv, bool enabled)
- {
- 	struct qcom_ethqos *ethqos = priv;
-@@ -769,6 +857,61 @@ static void ethqos_clks_disable(void *data)
- 	ethqos_clks_config(ethqos, false);
- }
- 
-+static int ethqos_pd_clks_config(void *priv, bool enabled)
-+{
-+	struct qcom_ethqos *ethqos = priv;
-+	int ret = 0;
-+
-+	if (enabled) {
-+		ret = qcom_ethqos_domain_on(ethqos, ETHQOS_PD_MDIO);
-+		if (ret < 0) {
-+			dev_err(&ethqos->pdev->dev,
-+				"Failed to enable the MDIO power domain\n");
-+			return ret;
-+		}
-+
-+		ethqos_set_func_clk_en(ethqos);
-+	} else {
-+		qcom_ethqos_domain_off(ethqos, ETHQOS_PD_MDIO);
-+	}
-+
-+	return ret;
-+}
-+
-+static int qcom_ethqos_pd_init(struct platform_device *pdev, void *priv)
-+{
-+	struct qcom_ethqos *ethqos = priv;
-+	int ret;
-+
-+	/*
-+	 * Enable functional clock to prevent DMA reset after timeout due
-+	 * to no PHY clock being enabled after the hardware block has been
-+	 * power cycled. The actual configuration will be adjusted once
-+	 * ethqos_fix_mac_speed() is called.
-+	 */
-+	ethqos_set_func_clk_en(ethqos);
-+
-+	ret = qcom_ethqos_domain_on(ethqos, ETHQOS_PD_CORE);
-+	if (ret)
-+		return ret;
-+
-+	ret = qcom_ethqos_domain_on(ethqos, ETHQOS_PD_MDIO);
-+	if (ret) {
-+		qcom_ethqos_domain_off(ethqos, ETHQOS_PD_CORE);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static void qcom_ethqos_pd_exit(struct platform_device *pdev, void *data)
-+{
-+	struct qcom_ethqos *ethqos = data;
-+
-+	qcom_ethqos_domain_off(ethqos, ETHQOS_PD_MDIO);
-+	qcom_ethqos_domain_off(ethqos, ETHQOS_PD_CORE);
-+}
-+
- static void ethqos_ptp_clk_freq_config(struct stmmac_priv *priv)
- {
- 	struct plat_stmmacenet_data *plat_dat = priv->plat;
-@@ -809,8 +952,6 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
- 				     "dt configuration failed\n");
- 	}
- 
--	plat_dat->clks_config = ethqos_clks_config;
--
- 	ethqos = devm_kzalloc(dev, sizeof(*ethqos), GFP_KERNEL);
- 	if (!ethqos)
- 		return -ENOMEM;
-@@ -852,28 +993,63 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
- 	ethqos->rgmii_config_loopback_en = drv_data->rgmii_config_loopback_en;
- 	ethqos->has_emac_ge_3 = drv_data->has_emac_ge_3;
- 	ethqos->needs_sgmii_loopback = drv_data->needs_sgmii_loopback;
--
--	ethqos->pm.link_clk = devm_clk_get(dev, clk_name);
--	if (IS_ERR(ethqos->pm.link_clk))
--		return dev_err_probe(dev, PTR_ERR(ethqos->pm.link_clk),
--				     "Failed to get link_clk\n");
--
--	ret = ethqos_clks_config(ethqos, true);
--	if (ret)
--		return ret;
--
--	ret = devm_add_action_or_reset(dev, ethqos_clks_disable, ethqos);
--	if (ret)
--		return ret;
--
--	ethqos->pm.serdes_phy = devm_phy_optional_get(dev, "serdes");
--	if (IS_ERR(ethqos->pm.serdes_phy))
--		return dev_err_probe(dev, PTR_ERR(ethqos->pm.serdes_phy),
--				     "Failed to get serdes phy\n");
--
--	ethqos->set_serdes_speed = ethqos_set_serdes_speed_phy;
- 	ethqos->serdes_speed = SPEED_1000;
--	ethqos_update_link_clk(ethqos, SPEED_1000);
-+
-+	if (pm_data && pm_data->use_domains) {
-+		ethqos->set_serdes_speed = ethqos_set_serdes_speed_pd;
-+
-+		ret = devm_pm_domain_attach_list(dev, &pm_data->pd,
-+						 &ethqos->pd.pd_list);
-+		if (ret < 0)
-+			return dev_err_probe(dev, ret, "Failed to attach power domains\n");
-+
-+		plat_dat->clks_config = ethqos_pd_clks_config;
-+		plat_dat->serdes_powerup = qcom_ethqos_pd_serdes_powerup;
-+		plat_dat->serdes_powerdown = qcom_ethqos_pd_serdes_powerdown;
-+		plat_dat->exit = qcom_ethqos_pd_exit;
-+		plat_dat->init = qcom_ethqos_pd_init;
-+		plat_dat->clk_ptp_rate = pm_data->clk_ptp_rate;
-+
-+		ret = qcom_ethqos_pd_init(pdev, ethqos);
-+		if (ret)
-+			return ret;
-+
-+		ret = qcom_ethqos_domain_on(ethqos, ETHQOS_PD_SERDES);
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					     "Failed to enable the serdes power domain\n");
-+	} else {
-+		ethqos->set_serdes_speed = ethqos_set_serdes_speed_phy;
-+
-+		ethqos->pm.link_clk = devm_clk_get(dev, clk_name);
-+		if (IS_ERR(ethqos->pm.link_clk))
-+			return dev_err_probe(dev, PTR_ERR(ethqos->pm.link_clk),
-+					     "Failed to get link_clk\n");
-+
-+		ret = ethqos_clks_config(ethqos, true);
-+		if (ret)
-+			return ret;
-+
-+		ret = devm_add_action_or_reset(dev, ethqos_clks_disable, ethqos);
-+		if (ret)
-+			return ret;
-+
-+		ethqos->pm.serdes_phy = devm_phy_optional_get(dev, "serdes");
-+		if (IS_ERR(ethqos->pm.serdes_phy))
-+			return dev_err_probe(dev, PTR_ERR(ethqos->pm.serdes_phy),
-+					     "Failed to get serdes phy\n");
-+
-+		ethqos_update_link_clk(ethqos, SPEED_1000);
-+
-+		plat_dat->clks_config = ethqos_clks_config;
-+		plat_dat->ptp_clk_freq_config = ethqos_ptp_clk_freq_config;
-+
-+		if (ethqos->pm.serdes_phy) {
-+			plat_dat->serdes_powerup = qcom_ethqos_serdes_powerup;
-+			plat_dat->serdes_powerdown  = qcom_ethqos_serdes_powerdown;
-+		}
-+	}
-+
- 	ethqos_set_func_clk_en(ethqos);
- 
- 	plat_dat->bsp_priv = ethqos;
-@@ -891,11 +1067,6 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
- 	if (drv_data->dma_addr_width)
- 		plat_dat->host_dma_width = drv_data->dma_addr_width;
- 
--	if (ethqos->pm.serdes_phy) {
--		plat_dat->serdes_powerup = qcom_ethqos_serdes_powerup;
--		plat_dat->serdes_powerdown  = qcom_ethqos_serdes_powerdown;
--	}
--
- 	/* Enable TSO on queue0 and enable TBS on rest of the queues */
- 	for (i = 1; i < plat_dat->tx_queues_to_use; i++)
- 		plat_dat->tx_queues_cfg[i].tbs_en = 1;
-@@ -905,6 +1076,7 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
- 
- static const struct of_device_id qcom_ethqos_match[] = {
- 	{ .compatible = "qcom,qcs404-ethqos", .data = &emac_qcs404_data},
-+	{ .compatible = "qcom,sa8255p-ethqos", .data = &emac_sa8255p_data},
- 	{ .compatible = "qcom,sa8775p-ethqos", .data = &emac_sa8775p_data},
- 	{ .compatible = "qcom,sc8280xp-ethqos", .data = &emac_sc8280xp_data},
- 	{ .compatible = "qcom,sm8150-ethqos", .data = &emac_sm8150_data},
+url:    https://github.com/intel-lab-lkp/linux/commits/Loic-Poulain/dt-bindings-power-reset-qcom-pon-Document-qcom-warm-reset/20251104-022140
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20251103182006.1158383-5-loic.poulain%40oss.qualcomm.com
+patch subject: [PATCH 4/5] firmware: qcom: scm: Support for EDL reboot mode
+config: arm64-randconfig-003-20251104 (https://download.01.org/0day-ci/archive/20251104/202511042044.FqeSCxnF-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 13.4.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251104/202511042044.FqeSCxnF-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511042044.FqeSCxnF-lkp@intel.com/
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+>> ERROR: modpost: "devm_reboot_mode_register" [drivers/firmware/qcom/qcom-scm.ko] undefined!
 
 -- 
-2.51.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
