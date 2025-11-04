@@ -1,251 +1,199 @@
-Return-Path: <devicetree+bounces-234761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED5B5C30787
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 11:21:30 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08C3DC307A8
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 11:24:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 935D63AB9A0
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 10:21:29 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6C3724E3877
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 10:23:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3741F314D04;
-	Tue,  4 Nov 2025 10:21:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BD61314B68;
+	Tue,  4 Nov 2025 10:23:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="i+Ef7W2B"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="RZNJVbTo";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="G1UdCRh3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f65.google.com (mail-ej1-f65.google.com [209.85.218.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A94B314B68
-	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 10:21:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFDF92D541E
+	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 10:23:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762251666; cv=none; b=Z4s03mVIKtKi3ZmGeC+RUkGHKUzcke67u38j9dLl/PEnGIpDCfSxA3c+TXC1BCewUvklic5AwKmWuNluqz80hQO87G9Mi5hxgvB0brWCngrfnkxRXL235KCKQ2jNkgHaLVUh9MnIr3e07/En08/EKJX6+WGg4QflqaigG7hB76I=
+	t=1762251832; cv=none; b=EdYouKhk1C40GRKncHmqjTpBwACF2fDyCsISRgM+8M1cvI+W1rMJc+chFFvVcogbYX/HHi6KA9Cxb8fHaGdqlJIv1FGsW477w5rHlzfLm8c7V+nJfLhoU4sXUu4Gh3a9mAK2C8tAu63p6JRa6ykrj1aym4hT5lqS2v/ee6ECu9o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762251666; c=relaxed/simple;
-	bh=5J988xgzUoKhpnIV8wJJmIThAQtBkhT8F7us5dAtIOI=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=McmAPyBknIMaBYq0Joq7bVKT4oQLb7gbkTKmez7RoQW0GSX1r4eiQ7dtPN98DR3hiNwFzrRN2zjAl6h1ww8NeDWLgtTnElwvwbqUCOLlpn+j7jcdoLAi3+tYuux7kn63/Jrntz1P7tfRQcjapa8eildt6NQ2JC18lhhV2FJbT88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=i+Ef7W2B; arc=none smtp.client-ip=209.85.218.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f65.google.com with SMTP id a640c23a62f3a-b3b3a6f4dd4so982252466b.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 02:21:02 -0800 (PST)
+	s=arc-20240116; t=1762251832; c=relaxed/simple;
+	bh=q9qMwtZAW3c5DEh62FrkMbn/ep1+A9tNPWjOVBB6hts=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YAmMGEmrM2gTjp8DcgwBFtqtJZbaGo0CTkAwiQvAyBa14/7vzA0odvMoMqQAVW9rfIzOwI7WFjGKLrshFE9ANws06aMOU2zLytYJ5LVRt2I/jyt3tZVGL3X50NrI2gdNPqclLnBjOwny54l6f/aJF5AKrYT+O/b93R/3V9F3YEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RZNJVbTo; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=G1UdCRh3; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A48gItl1540080
+	for <devicetree@vger.kernel.org>; Tue, 4 Nov 2025 10:23:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	g0wnieTQYd6PlV/O1fzaIWKTEzufNimegl24CUN+lIQ=; b=RZNJVbTo/qH9HL5l
+	HY7kiVKnn9eV2jhZ0ZrAiu2WiY2kZd/yJmPYdK+EvnnrZd+hbtvu3aNMTPIdsXGz
+	7PsXYQlTVOJ7JJzrg2q955vwYdDTDfKTh1fFGrwXs+P0RMKu+gWtsrk2DOXooPm+
+	Z0ZznG+TPLAR9kGVo/6f+Q8XhmcOvGcCFqsUO7YYs1WzzbcDPcuSufddKllid9Gs
+	tGsO8BMMaQDhR2Mu+aenzM0dZOVBeEErzB6usmrDVJg0BjlAfZRvFyZhHTE3uW+p
+	1ollgjg/FeVeM0EVdJu0UKzF1hQ/2Cok+b0ophxfx9YV5oTsD68ZgdCaUsqW0kXk
+	BN01Ig==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a78eqs9s7-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 10:23:49 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-88050708ac2so66512326d6.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 02:23:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1762251661; x=1762856461; darn=vger.kernel.org;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+        d=oss.qualcomm.com; s=google; t=1762251829; x=1762856629; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6/RFo3UdyJ5uBJavOLzu9OBwxixnA2BpiywkHJoYEzQ=;
-        b=i+Ef7W2BajNHzs21IFAtNFyykvGoKg3sW9vTirYNJizgQSaEkLdQxJGQ6VrF19CuwK
-         OV7ttoJIDL+1szbTbGBp/wKU5QbpBR18iGndfdGNLDKdY8ftp3Xs/Zda10uClHHIiHOv
-         mHQSRYK9vwqIQ+yDmy2MCiTk3cZpoBq7bzD8L+isd+tIkZg8VbCXf3+aw/JeRQeuEDZc
-         MMElD66FDHO/GEQUXqABAvAMrT/RStIMdVswU2KYia1BeexFHcy1HmK13fcZG94TReAF
-         zJ0AxP8STtZHmt84zMUHcBQmfAjTg0+k/ExKm5kB+fKtZAOMj5i37uO7Bp/L7ILyB9tt
-         df9Q==
+        bh=g0wnieTQYd6PlV/O1fzaIWKTEzufNimegl24CUN+lIQ=;
+        b=G1UdCRh3riyrCSm04DTRvbfI3g/Q1Nd3AskmqEHY+SNSnXnW+hDgOG7KeGNXNytC0N
+         hfw6JyRDFfjUaPnBkZqcnZiAgzhEAMCCN3uB5tbo9e7kBt9s/WkIXmBk/x3pON46yaLJ
+         q/42mXbmBjjescTunYORv+VIPTEBd2fg10IgPc4k9fnGb4geuxC4vP5juM6GmWPHjp/c
+         GlR3V3FAsTC7WtiHhEINfVh88A66jZiBOjDwFxk0WUIhu4AoZzQCC58MM6U+aNoyuAgk
+         Av5dqYlCpRCAV52oqVyyMBhVhEWhFSSx9/CwvtFsCQUVYNIFx8drdvMhg3kvC7yAysX6
+         OJww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762251661; x=1762856461;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=6/RFo3UdyJ5uBJavOLzu9OBwxixnA2BpiywkHJoYEzQ=;
-        b=jshUqdpeu09d5Cg4g0u/rD8PcJHuM3TgtxzDjo2LCJwpM7e62TkcorylLR+CyuN+d7
-         nSbjbfcwlTrWtrglzmqUnhVtmSSTjfbdRq6uqV1gWHrMiUWpANkf5Y9h3Vka5qQSEiTL
-         UVvOeR36MSw9FyyWr93DNfUPflXQHXqmqs/NVugMCCPk7vi0VrpqKgedupKFVKgv6gWd
-         Y4Ug27IKKljojTfQyph9WOcQ9lYaYBgbe8JSwSQ4nnHUBuSd1RGsixdoPq56QF8Ir3B1
-         8w61UhtXg13hFy2nM0Ct3/nOWr/uKAYRiYzxBh7avCAKCa64inrt/WCQf2TtrzhdHDfm
-         96LA==
-X-Forwarded-Encrypted: i=1; AJvYcCVprq5eVH5ZhNW/uJ5WGdBIXfoEeAotF0nBeDR6bdSZLQkAJwR7fx87PYGZK0jD80oY7izR8TIDNrse@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaDnYwQ0xnKDfIyFrSV+ybrwT3nXHRS9l0A89/UmOUy0vpR5zs
-	gzSF6zTNtbGU15CmRB8jcQ/Kz22PM3UMn6RQYqNdAXbVtP/IsvxTMEXp0rt85YjurRA=
-X-Gm-Gg: ASbGnctRG7EWRwiUbzakU9B7MM8GMen0CuXvV8NJKqljWxoVIkTkeoyg5gLXVe2tBh+
-	4vRLRb/IG5zerlYyEvFBcdcx7ickP+e/ops4tUHBvvtp2QPysgc90QCtQc0OcjEmALPVTR2Ci07
-	XmkeOzHjPxtB+jqH2w6DJ+BjsS825s4fmdex3zXEHFHWG4o5fYFPsELmuSq/5xI9NOSXeNrimP7
-	XZ9j3YiYvV7H4D24tppYlBWpOkkS1sQwJzH82wHO3XgYCaL8et/oxXF2BOcO7eXTPuM2rbcGYLn
-	0vZXXzeJmNB5gOiZPagc76dBKHNGaAV31BPe0viuSF6+CW5Pl7t4zncXAHeFpKaBw1l1JhWaxfS
-	sfi8++Luor9RXQbsGvtbNrjriwrc9ykGMGLe3MZXCtBqN5JbFQCTh931XM4XlAhpbfIla9KW1Bp
-	ooQUaHE5DAHlcANDuwoGmTNTizQ/pWfM7daJEJ3GrQJKPaTQ==
-X-Google-Smtp-Source: AGHT+IFEjC7oZkjOCH8J2UshvPQf+tsl/dOaxiMblcsbQfzjgzuRO+SX63ddsnmaYogAi/EotKBWQg==
-X-Received: by 2002:a17:907:7e8d:b0:b6f:198e:c348 with SMTP id a640c23a62f3a-b7070630cfcmr1768373266b.46.1762251661432;
-        Tue, 04 Nov 2025 02:21:01 -0800 (PST)
-Received: from localhost (144-178-202-139.static.ef-service.nl. [144.178.202.139])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b723d3a378asm170655866b.5.2025.11.04.02.20.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Nov 2025 02:21:01 -0800 (PST)
+        d=1e100.net; s=20230601; t=1762251829; x=1762856629;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=g0wnieTQYd6PlV/O1fzaIWKTEzufNimegl24CUN+lIQ=;
+        b=fJXo5/mpBOBhLJhG828n0rLw5zIpJXxEr9BuLFlUrxQlWTTnI3IvyVmPibMMoGzwDk
+         oqTa+Iycsb7HOEOql9XF37ssr0roQlmwyiHQmE09ZOqQIrRz1lxQJIP4s6mYYOMP7nL/
+         jQFvVDkkP3kwaspgnCHIY4masUHRGeCq3f2Dy0l65nIfBNNblnirXbLyqFwywm5AVs3K
+         /xWhikn9NwE2hS57qBXHH07eCBizHZBp0ajRBqyRcsU+OTou2+hnuvlkE+fCUI+4sKlh
+         Nqh6avkZg8adqrkrydad4R2iWPVi9cWq+/jtWJZtFIRb6Yd0FDtmuiSGcojmCPAPLbLB
+         RPlw==
+X-Forwarded-Encrypted: i=1; AJvYcCVFZJzYn+9HFaxZ+bI9TZFTigxGAGYbpNan9Hqb0LEIfu9yoCtTaKl1vJIgc7dSvAM5pqvBQYix+7Oe@vger.kernel.org
+X-Gm-Message-State: AOJu0YwOvK9b3B2wie7q4w6f0EJywGjlLeeYqFuPWAprcefDp3vP6BUB
+	aNK3tHfNKr4TvZTFtqUwB034fKAwdCsjDdMpUrbjyt3/gAH6fuwEndcRrPVaGE/nYd+rVKdSPei
+	3kEHAU8rI+tlIDg+/lLIq5oVE0Xn+WAl4jV8GbEanD09Mnol9A9txazmIwl3QCTGGdjI63/+OfA
+	z9a7C8ihu3NS9X3AALS/LAOyIkRPINrE806vPoHxw=
+X-Gm-Gg: ASbGnct8/dix+APjc5vYuPIPrxUUVpLijy/KQ3EUdYvUoULXgMK9hpSww5RTXtWVGTb
+	mHGZxW9Qh9EwrWeNuMp41Rk8B9maBfUF+ZPVoE4wYasN9tInancptPtP4RoKSGdOoBX7ksD3Pm2
+	6u/fF4NFM5zmcPyoZsXO9EFqlPrWU3c4sa51iQ4H0YiFtKMTHCGJ/gSCrgedFnOm+MB+75/w04d
+	0k+AOmhz16fol/oJWbzMwGCvQgmLK6I4IbIgYFYMdXgSw==
+X-Received: by 2002:a05:6214:55c4:b0:880:5edf:d0fc with SMTP id 6a1803df08f44-8805edfd4b8mr53734046d6.44.1762251828955;
+        Tue, 04 Nov 2025 02:23:48 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFr0sEwyaZTxY8f2vag+J7tTIiWriKsoGBuIGWjz3ofTb3smc77gquWEYnErheDN7hvnseToMwJKSJE12/vppk=
+X-Received: by 2002:a05:6214:55c4:b0:880:5edf:d0fc with SMTP id
+ 6a1803df08f44-8805edfd4b8mr53733796d6.44.1762251828526; Tue, 04 Nov 2025
+ 02:23:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20251103182006.1158383-1-loic.poulain@oss.qualcomm.com>
+ <20251103182006.1158383-6-loic.poulain@oss.qualcomm.com> <z3uy3kx6qx7tcca3psfocrlkrrtumlqyzivrstyxfhbp6lkxti@eeolpv64365x>
+In-Reply-To: <z3uy3kx6qx7tcca3psfocrlkrrtumlqyzivrstyxfhbp6lkxti@eeolpv64365x>
+From: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Date: Tue, 4 Nov 2025 11:23:36 +0100
+X-Gm-Features: AWmQ_ble8Tl0B0RAqyd55cThaECsBG5SDXp953QxAOWK8e0Ojn_seswjTiNG6sc
+Message-ID: <CAFEp6-2N33RQ8fTPDqx5qvbfALPBNbkLBcvGuX1v-9CYUDw9vg@mail.gmail.com>
+Subject: Re: [PATCH 5/5] arm64: dts: qcom: qrb2210-rb1: Add support for EDL reboot
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, sre@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 04 Nov 2025 11:20:58 +0100
-Message-Id: <DDZU2RL00UD8.39GS3LN0SW7YA@fairphone.com>
-To: "Vladimir Zapolskiy" <vladimir.zapolskiy@linaro.org>, "Mauro Carvalho
- Chehab" <mchehab@kernel.org>, "Sakari Ailus"
- <sakari.ailus@linux.intel.com>, "Hans Verkuil" <hverkuil@kernel.org>, "Hans
- de Goede" <hansg@kernel.org>
-Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: media: i2c: Add Samsung S5KJN1
- image sensor
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20251023025356.2421327-1-vladimir.zapolskiy@linaro.org>
- <20251023025356.2421327-2-vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20251023025356.2421327-2-vladimir.zapolskiy@linaro.org>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA0MDA4NSBTYWx0ZWRfXyb01QmxCdhKn
+ 0azqqfyYT2gVxtwXhilrJZIaT0LVDxcGHLIZ1B7utaYca3Bvo7z35krjO/+WCpktF0wfrp3U+pI
+ 1tcatjqBlNJLXwxsdsi9gS0Wtfd6WLuiulbzo6dcremOWRouwN+6VUM5F9Yn1TVxxjFO3JzW+/A
+ IrQuFYmPpitqzsEtiVaXpds73BucnlJc49N2yjQVJERKmCfkEJ10V7RXdzYJnryUzb8lIMihtSI
+ 2XRclZbfhbiRgj2G2JPsKG6qknP+odJw0KyGcB3JxzO2lB1fbdHdeI7ncT8JJ9bXMahSKCsza8k
+ al0Ls6N9oW8Hh57uXPuhTgoN2KzQzklx8PLcg3bnwMfm5KmTbNbLdNrbcASRXYx20fzzw4KAsHB
+ bmqSi8SdWlE11Y32RzV4hk6tKmqh0g==
+X-Authority-Analysis: v=2.4 cv=fofRpV4f c=1 sm=1 tr=0 ts=6909d435 cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
+ a=FaJMSaSSDYtpzwamVtwA:9 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
+X-Proofpoint-ORIG-GUID: l_Le92fciq_VC1K5Y0Zpfjsaqv-VwtWe
+X-Proofpoint-GUID: l_Le92fciq_VC1K5Y0Zpfjsaqv-VwtWe
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-03_06,2025-11-03_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 suspectscore=0 clxscore=1015 adultscore=0 priorityscore=1501
+ malwarescore=0 impostorscore=0 lowpriorityscore=0 phishscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511040085
 
-Hi Vladimir,
-
-On Thu Oct 23, 2025 at 4:53 AM CEST, Vladimir Zapolskiy wrote:
-> Add device tree bindings documentation for Samsung S5KJN1 image sensor.
-
-Awesome that you're working on upstreaming support for this sensor!
-
-This sensor is used for the front camera on the Fairphone 5 so I'll give
-it a try sometime soon. So far I've been using my own version of the
-driver in my tree.
-
-Some comments below.
-
+On Tue, Nov 4, 2025 at 3:20=E2=80=AFAM Dmitry Baryshkov
+<dmitry.baryshkov@oss.qualcomm.com> wrote:
 >
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
->  .../bindings/media/i2c/samsung,s5kjn1.yaml    | 103 ++++++++++++++++++
->  1 file changed, 103 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/samsung,s=
-5kjn1.yaml
+> On Mon, Nov 03, 2025 at 07:20:06PM +0100, Loic Poulain wrote:
+> > EDL reboot mode can be configured via qcom-scm, enabling the platform
+> > to enter Emergency Download Mode for recovery purposes. Additionally,
+> > we enable PMIC-driven warm reset as the RB1 platform's PSCI interface
+> > lacks support for warm reset.
+> >
+> > Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/pm4125.dtsi     | 2 +-
+> >  arch/arm64/boot/dts/qcom/qrb2210-rb1.dts | 9 +++++++++
+> >  2 files changed, 10 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/pm4125.dtsi b/arch/arm64/boot/dts=
+/qcom/pm4125.dtsi
+> > index cf8c822e80ce..5d84a3250481 100644
+> > --- a/arch/arm64/boot/dts/qcom/pm4125.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/pm4125.dtsi
+> > @@ -15,7 +15,7 @@ pmic@0 {
+> >               #address-cells =3D <1>;
+> >               #size-cells =3D <0>;
+> >
+> > -             pon@800 {
+> > +             pon: pon@800 {
+> >                       compatible =3D "qcom,pm8916-pon";
+> >                       reg =3D <0x800>;
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts b/arch/arm64/boot=
+/dts/qcom/qrb2210-rb1.dts
+> > index b2e0fc5501c1..70c6c929bbd3 100644
+> > --- a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
+> > +++ b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
+> > @@ -322,6 +322,10 @@ &pm4125_vbus {
+> >       status =3D "okay";
+> >  };
+> >
+> > +&pon {
+> > +     qcom,warm-reset;
+> > +};
+> > +
+> >  &qupv3_id_0 {
+> >       status =3D "okay";
+> >  };
+> > @@ -510,6 +514,11 @@ pm4125_l22: l22 {
+> >       };
+> >  };
+> >
+> > +&scm {
+> > +     qcom,dload-mode =3D <&tcsr_regs 0x13000>;
+> > +     mode-edl =3D <0x1>;
 >
-> diff --git a/Documentation/devicetree/bindings/media/i2c/samsung,s5kjn1.y=
-aml b/Documentation/devicetree/bindings/media/i2c/samsung,s5kjn1.yaml
-> new file mode 100644
-> index 000000000000..f0cc0209b5f0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/samsung,s5kjn1.yaml
-> @@ -0,0 +1,103 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/samsung,s5kjn1.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Samsung S5KJN1 Image Sensor
-> +
-> +description:
-> +  Samsung S5KJN1 (ISOCELL JN1) image sensor is a 50MP image sensor.
-> +  The sensor is controlled over a serial camera control bus protocol,
-> +  the widest supported output image frame size is 8160x6144 at 10 frames
-> +  per second rate, data output format is RAW10 transferred over 4-lane
-> +  MIPI D-PHY interface.
-> +
-> +maintainers:
-> +  - Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> +
-> +allOf:
-> +  - $ref: /schemas/media/video-interface-devices.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: samsung,s5kjn1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description: MCLK supply clock.
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    description: Active low GPIO connected to RESET pad of the sensor.
-> +    maxItems: 1
-> +
-> +  afvdd-supply:
-> +    description: Autofocus voltage supply, 2.8-3.0 volts.
+> Why are these a part of the board DT file rather than the SoC DT? I'd
+> assume that at least dload-mode is generic to all devices.
 
-This is not part of the S5KJN1 though? If you have a VCM for the lens of
-the S5KJN1, this is a separate DT node?
+There=E2=80=99s no strong reason, it=E2=80=99s firmware-dependent (ROM/XBL)=
+. But
+indeed, this behavior appears to be common across all QCM2290-based
+boards as far as I know. I=E2=80=99ll address it in version 2.
 
-> +
-> +  avdd-supply:
-> +    description: Analogue voltage supply, 2.8 volts.
-
-The datasheet calls this VDDA
-
-> +
-> +  dovdd-supply:
-> +    description: Digital I/O voltage supply, 1.8 volts.
-
-The datasheet calls this VDDIO
-
-> +
-> +  dvdd-supply:
-> +    description: Digital core voltage supply, 1.05 volts.
-
-The datasheet calls this VDDD
-
-Regards
-Luca
-
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          data-lanes:
-> +            items:
-> +              - const: 1
-> +              - const: 2
-> +              - const: 3
-> +              - const: 4
-> +
-> +        required:
-> +          - link-frequencies
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - port
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +      #include <dt-bindings/gpio/gpio.h>
-> +
-> +      i2c {
-> +          #address-cells =3D <1>;
-> +          #size-cells =3D <0>;
-> +
-> +          camera@56 {
-> +              compatible =3D "samsung,s5kjn1";
-> +              reg =3D <0x56>;
-> +              clocks =3D <&camera_mclk 0>;
-> +              assigned-clocks =3D <&camera_mclk 0>;
-> +              assigned-clock-rates =3D <24000000>;
-> +              reset-gpios =3D <&gpio1 10 GPIO_ACTIVE_LOW>;
-> +              avdd-supply =3D <&vreg_2p8>;
-> +              dovdd-supply =3D <&vreg_1p8>;
-> +              dvdd-supply =3D <&vreg_1p05>;
-> +
-> +              port {
-> +                  endpoint {
-> +                      link-frequencies =3D /bits/ 64 <700000000>;
-> +                      remote-endpoint =3D <&mipi_csi2_ep>;
-> +                  };
-> +              };
-> +          };
-> +      };
-> +...
-
+Thanks,
+Loic
 
