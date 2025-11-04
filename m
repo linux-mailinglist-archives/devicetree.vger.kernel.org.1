@@ -1,278 +1,231 @@
-Return-Path: <devicetree+bounces-234622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42320C2F551
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 06:04:07 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85883C2F5AE
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 06:14:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E19D189BF33
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 05:04:31 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 37B744E4276
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 05:14:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA94028642D;
-	Tue,  4 Nov 2025 05:04:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 562B92BEFF9;
+	Tue,  4 Nov 2025 05:14:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="I78XV9mk";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="SV5Ad4HU"
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="XxE4bMk5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022080.outbound.protection.outlook.com [52.101.126.80])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 000ED1DFF0
-	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 05:04:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762232642; cv=none; b=stZV4UItrptR7oKqdq6JZ7HLntbJLI8nM4uDzmoKxadEwFL6GKEpNgVfIrKql+3OcjlkQsHQOki0nAEAg+mXU1xeIa8gHN2Pue4xfqAxoJ0CEpFScFjED/vjpYYHwCiKU47xk8VdgJzTevE2/1QjWGBonzXD4k9+x4NNiJy2iEQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762232642; c=relaxed/simple;
-	bh=7ahORK56Ji+xG3X89Vnujuhts7WNYej9lQCD0HUx3QQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WwJBOcXlZoAV3l/3N/g3OwkGYkcuEXHNbMoDoBW4M4OhyxzjvJd6r6OznqZ2RzT7MxhEvjkMs4SFJzwRVaBjA0ZMDvdBJVuL7QHByzodkhquwJkBXJ9MHDw9GZ4e0aOnLzMTmDgl2v5i3OkYwMvb3lj3jB5nZ6AlETcMz9SozbM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=I78XV9mk; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=SV5Ad4HU; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A42vIYI3595021
-	for <devicetree@vger.kernel.org>; Tue, 4 Nov 2025 05:04:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=1lcbXDQCbFGlQ1qumczHxP0u
-	BwOAwPqDfJc9RgHWN7Q=; b=I78XV9mknreU+VPqdvJZhXARFXwLPyzdskoZgal1
-	IDmo90cjvNmLwLgBNGwsO7j0F6ogiXgxbIAQX040z1oMFF+oYHUKiHHIx/Iff2ak
-	Wtv48k+BEtU9GHM+UHq8OCaYLABx0XqeW1D4eDbeFeMYoag2QA58JwiPA2ogEFqn
-	ZFJJduvGj3xZCSBxNvk/S4+f2fXCDQC6zi8Gw3UeCWKmB3DEpI7GQe9DR/9hI9zL
-	Y/hpINGnlrLKiaJrgrVj2akLIXR8FAsiHDzVVrlmbnxzSIMvFZWO3AjvBkj2vdOT
-	55zzx/7uA84x1Dc3FiSaNf/MK8S/x1rXuq6hAp1A6YvaZw==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a70exhprj-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 05:04:00 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-29598910dd2so47479435ad.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 21:04:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762232639; x=1762837439; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1lcbXDQCbFGlQ1qumczHxP0uBwOAwPqDfJc9RgHWN7Q=;
-        b=SV5Ad4HUoU9w8kN57ksZ9iYwhZ8ahNo/4P6my8wXay8SFKDuY+18096PeEc6JiPIIb
-         MTGDqljVHAAPnSmRHzMkV8yfyhe6W5XGeW6bYXhSGZ6cvIKRlSWGCp6FvqgjDsPMcoqx
-         u3xOyo5jX2+0bsyU9JukWyASYKGNWsPwisV9ek7x4NkWGPUjgRuuwMLSXXm+KAI3AXSo
-         zWBQiiwN/oWIYOQF0vruWK1pCK1/Ir8moYd2IhWmy/8FT0ui9CyfCXghM+OP+7dLMpFo
-         8tZfKgjeEo9i+fRrfJ8ezLzb34SeJal8l184qBE9nkU09prT6TJDh1Qn5GnNKJXW4jCn
-         /GDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762232639; x=1762837439;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1lcbXDQCbFGlQ1qumczHxP0uBwOAwPqDfJc9RgHWN7Q=;
-        b=gJzswS1j+32w+i2rUcu3YAuDvU73oEEFewW7MrZF8Bbx/JJX1UmD2Cp6iVZYaACx88
-         Z93Z08GQoWEqaVBvvadwj2rcnEN5XYzqnvKk1f823AX/4eUe+xEakRmEilWX4WR4UXBf
-         q1Lnx/qNL5CCHBASn5qeLzm7jmf4ql0V/LtnMEYwzOXnN4Udklry9vKuyYCrGqpPcWX0
-         8IpG6JTul9B6R2pd3xU8cPNmdv4Hm+fyy7aGTKjY5Hpbh9VlxcxX5vgZ+hpn+phUVadc
-         GWTjqizLgdhOUKszJ9wwR83l7kFJYwfTAhVAnWJR6H80BvXiP85kd6Q7/XraFvSzSFlF
-         7XqA==
-X-Forwarded-Encrypted: i=1; AJvYcCXRNvct9/wq9sre+jyEfvNEBYo0tjQX6h+nFMfT5SQdqQ3NfvNyz3xHzLxZM40ZTdLa8xvTB5r6TKXq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0UTpQRTszhT/O2RMI/e71J6fQ66NIwUrZvQdIwy6GmVfjTLNK
-	4DB1U4KIsIIsWyEoxL4qNgAMssQSPazCb9ZDgsjvCISZFgX+TAUMn/ny3b2tTOnYarnVeeIwvVt
-	B01TDkDrZkFoVhix/WmTCMeW9WDX16ypQnNIU0ckTQzC1j7/vXxTw3Asni75PYVrs
-X-Gm-Gg: ASbGnctEKi6JoOZC168j7NpfpJURD7h3k+5LyFwAfLL7Kepr170f8NNv2xMfEX+v25G
-	5xyYlotn5m1nBTgROrwvoGn03WVGRZyOwo25Hi815qD0+9TGeu0ZvY9U0f66YVVZip4Os0ULjdY
-	BFGliWvVUX2lUaCqHnKcl3CW6qqihwo5vNHcZ1LgiWG67b1obv7j3aF64mulgtYbSMpfOhN6rrK
-	+ZDCYK9X0mDiYGY+lovWae1DdMSDRj+9B3W/LYQ9d9Q1IVeosY53H4swkyU8i/iddQ7G5CSUnHN
-	lBEnd/SarWEClSD40zMFCOQraDzVlEX7GMqWLiZYwJEptw2piGwOPAP824SBA16LLNiclkvT4Gm
-	7UFF2oPcmNkukchDjUHZbDxJ+sxAkxWGf
-X-Received: by 2002:a17:902:ea0e:b0:273:ab5f:a507 with SMTP id d9443c01a7336-2951a3e6136mr219334905ad.21.1762232639453;
-        Mon, 03 Nov 2025 21:03:59 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFXmDw/J8solbX98U9JGXASqPQ7jI05mi4jRrsOQx95DzTgD/uBh8QIFNA96fGs16AgEAxB7A==
-X-Received: by 2002:a17:902:ea0e:b0:273:ab5f:a507 with SMTP id d9443c01a7336-2951a3e6136mr219334525ad.21.1762232638744;
-        Mon, 03 Nov 2025 21:03:58 -0800 (PST)
-Received: from hu-pkondeti-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29601998671sm10391285ad.35.2025.11.03.21.03.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Nov 2025 21:03:58 -0800 (PST)
-Date: Tue, 4 Nov 2025 10:33:52 +0530
-From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
-        Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH v4 1/2] soc: qcom: smem: Register gunyah watchdog device
-Message-ID: <2ef1d795-5cdd-4465-9333-16a02207a806@quicinc.com>
-References: <20251031-gunyah_watchdog-v4-0-7abb1ee11315@oss.qualcomm.com>
- <20251031-gunyah_watchdog-v4-1-7abb1ee11315@oss.qualcomm.com>
- <nnq34bfbbi3satxiqzaouy5pgi3obyqp76avh2ipyqxx6w67td@e7eqehjq7iww>
- <40a6395e-26f6-4bad-88af-d89479b6fc28@oss.qualcomm.com>
- <abicharluq6bm7gbngkbdc2hobcfifcmazh7oukcoufsrpcpse@ml2wccwe6s7i>
- <599188b5-cd2e-4667-a91d-04cbdd62cecb@quicinc.com>
- <ykg7mwgncmvdap6xzyhmgxu6ur62zzfk5nd3tqrkivugn4w474@rkazrlhwbhtj>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5617F242D79;
+	Tue,  4 Nov 2025 05:14:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.80
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762233288; cv=fail; b=jdaJdDAH4Z0Of6PKz2nkqOQUJwAm7OdnvGbls7GnP+Tg7/4brC1q/kyCSxHdI+jvb7wjlIsqxf5+NFuP7+z0sqB151xbw+wGx+RIwuM876jY50UG5HkuNFBUZ2DRYHfGwOFKXa5iuXXPzYHZkdDVzLaSzkk/9fzXQhGjwEUeT7Y=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762233288; c=relaxed/simple;
+	bh=4gPwaXf4zByzET+2FEcYwpxtN5xevzhLVYo9gOuDK20=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=G/81ZQRnEw1UnBiUIFsd3bxJKLRfy1gE6BdhxeCx+GpIeCbTP3Ru6PUQ9GGJfw4bNJvuvUs7Mbv8auSaFMtWVrN507pa56CNEM1F0IU7r8NtQy/rXwNjrQYpR5DZW2bs9VC1hTlIG4Kc7/gZQ9fCPh7PFsSwJ9QRfIj+Ha6LS3I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=XxE4bMk5; arc=fail smtp.client-ip=52.101.126.80
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jfI1Z+MdUJPD9Si3VSuVyYEio/k2TCZwaa+9ATVoFkbu06lf2Qu01GyKMtPM+vDvQ+kTDmbHUWNWB+rBZ6yHL/D6gpYbjlsZYONvakKnUegDaOJRerQFowsJ6YvCp6fhRixSAfaGi+9u7dWMnmVHG2ueL9tUuE0N8U80nPJh95DYghZTsD/7QGWN8UvwGHqzyscibC+StiiwiK0gEEc00pyNdeetzjHdahbFJ7IkuZEqYDS/CPm/mxV2soQYF8nhl3VN09HN7FJTSBjYQ8wD4KTQv1PO+LBlmnYNwdo+7lnWK/gzLPBWcNNX8NmygvtJTrm38L2i6s/ooaudJTOpwg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=alGgbI5dM7B5IcKcUfvIpMf+FKLOanNqVnIOlOEdg+E=;
+ b=XHCilZb14R+P7XkM2T/th4k1qOAYWb+BN04rmFRFAFnW+vu7qVt+FTysq6e5o9m2yVvhlaelSwxk2CIS3QAsIxKeekUsPxT3DQrkT/5mvuFlNlI11CzmZxvUdkT1HA0E5prPzeCIcZ9RMpuXhovZrxyOWHehslt0H+1GvVNxRuNlNfoQf7WmfybZV9OGWDAdj0lLRK485EagrLPIEu3CO+x8BHFpEDIc9FXj03diqfw/WpuYgBrrCA7fxq/V+MB29qEfOpBG67Lnb3Rq5XKvH/0uAH6zOARJFRY+JS8Bwz6H/Q+Cr89dT6eBpjqTxTh4mZ5hoSUurvezLXINwHKiPg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=alGgbI5dM7B5IcKcUfvIpMf+FKLOanNqVnIOlOEdg+E=;
+ b=XxE4bMk5zwwl+CPFnp+jbRW0q4bC3f3mf8Z4llZuwUz5Spq6OeAZb63CVwgSEPwe7zqSRs8f1YGIFc3UioVKvDCNcSswsZBGwOhEYhPSAI3oSG7S7vWOqtmv4aheyiGSR5A2EdOJOlfX5X4M+T6xmUBQiUrqMGpKy+LSB9xGVRvIiF7gfbqMaJy1X4NFaMxSj64w7gNKRLcLR1amXibg6kuBM9IVWI5FOm50awCP43EtZ4sm72s8G4L/eJA3xdMTpgCMVbC0u98+mMN99TPmKGqITGdaijt+9i4wGk8Ph+4aP0U6vTPhfwePDpXc8v3DX9XBJwinY5uS56Nm4duZ+A==
+Received: from SEYPR06MB5134.apcprd06.prod.outlook.com (2603:1096:101:5a::12)
+ by KL1PR0601MB5655.apcprd06.prod.outlook.com (2603:1096:820:bf::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.15; Tue, 4 Nov
+ 2025 05:14:42 +0000
+Received: from SEYPR06MB5134.apcprd06.prod.outlook.com
+ ([fe80::6b58:6014:be6e:2f28]) by SEYPR06MB5134.apcprd06.prod.outlook.com
+ ([fe80::6b58:6014:be6e:2f28%6]) with mapi id 15.20.9275.015; Tue, 4 Nov 2025
+ 05:14:41 +0000
+From: Jacky Chou <jacky_chou@aspeedtech.com>
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Po-Yu Chuang <ratbert@faraday-tech.com>, Joel Stanley
+	<joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>, "taoren@meta.com" <taoren@meta.com>
+Subject: [PATCH net-next v3 1/4] dt-bindings: net: ftgmac100: Add delay
+ properties for AST2600
+Thread-Topic: [PATCH net-next v3 1/4] dt-bindings: net: ftgmac100: Add delay
+ properties for AST2600
+Thread-Index: AQHcTJUB+TmCwKSgIEaeQsrh+oaRd7ThzyYAgAAnFuA=
+Date: Tue, 4 Nov 2025 05:14:41 +0000
+Message-ID:
+ <SEYPR06MB5134AB242733717317AAEDEA9DC4A@SEYPR06MB5134.apcprd06.prod.outlook.com>
+References: <20251103-rgmii_delay_2600-v3-0-e2af2656f7d7@aspeedtech.com>
+ <20251103-rgmii_delay_2600-v3-1-e2af2656f7d7@aspeedtech.com>
+ <2424e7e9-8eef-43f4-88aa-054413ca63fe@lunn.ch>
+In-Reply-To: <2424e7e9-8eef-43f4-88aa-054413ca63fe@lunn.ch>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SEYPR06MB5134:EE_|KL1PR0601MB5655:EE_
+x-ms-office365-filtering-correlation-id: 8ffa7e87-ea86-4d40-d721-08de1b610f80
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|376014|7416014|366016|38070700021;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?THUAc97zVaHxnxhjYAtLlYfzC5pw+mdw1BBxotRmK2auyVnNEQe5PX4TF9/X?=
+ =?us-ascii?Q?CJtGpj/OzzudNmouRnYdJKs728qiTyojkf4TJYan8WcTjW+ZmsBeevG1ZUJR?=
+ =?us-ascii?Q?WTxovsZkDOBKvCzFwHj6Y8ho3tqRUf6quOX1R75fNEQutSFulnIQGIKF6Xg9?=
+ =?us-ascii?Q?vxjDxqPHCDFBQb94Py2OAe/GJDH6U0f+ovQc4AtSzK+U97B5XciV/ti/bC0/?=
+ =?us-ascii?Q?fbXRfzIJMhK+/8bI7EA07QCdnOj+pBACXCgge4YOSWqkJkOwDSXhSW3AOxoV?=
+ =?us-ascii?Q?zI7SkVgdyXc/PSdyslSu7Vt9giHG/vaNLYWL7Q6iMf8yoI2iIdefSlg9XhT9?=
+ =?us-ascii?Q?IpZXmVUBYJR84rMbeaFL1pgnrVaTahDupNT6k+2UdUKLz3rfrLC+d8YWNFJc?=
+ =?us-ascii?Q?MdT9J4iuo27wjuVqaYP0WWSKR1OdtK2zxvSbKOpNO6uSg6SIrZfEnq/xon7R?=
+ =?us-ascii?Q?n2aoQPJSAheakrewqk5lOqlFnM4QeIlL5kvy0u19L8wQRIAcUs67qA/Kgi/2?=
+ =?us-ascii?Q?xk/NPyTu+q7hfII4DlECKwnO5lr1U7tCEg2RDLCOTLJ3fAIvDlU9WwDj6WSI?=
+ =?us-ascii?Q?NFxWvVuqg4BFb71dGIna1v+pm4UOFR/qH5Kae/wwzeT1cvCiaQgX6nNFKgum?=
+ =?us-ascii?Q?4sk+hNs2SC+eQ2MMEOH1gV+OMLEbWAQGjXIUw9NhTfwa0O3aLVY07t2WDN1i?=
+ =?us-ascii?Q?tbyjYxgmpSaDb6F+4iVybC664JE6RP54QVlGeQP2m9hIq1+D/2KF142hqHrm?=
+ =?us-ascii?Q?rV0dOfDT4svPqcAbJwYE/ONzWE4IShp7uNTt32LCBWXEPkfDPOGZsJJD6riY?=
+ =?us-ascii?Q?Y+1bVcgSulRfOd24ZcNVd8i0fGk46D5+P5odr05nUxQtIxpYCsM6QJ+a+b2j?=
+ =?us-ascii?Q?jmvLjn2Pz4HZ2LyRzFMq3kwTCsIuZdOGl9HSyOWy/3E6p0M5scPPUfnbS3Qi?=
+ =?us-ascii?Q?f2kB/RvngWsEewSl+CVM1kgi6M/Jg3ZMRsr47mmKRux2HvcCPz+s4NufiPpj?=
+ =?us-ascii?Q?aq24rLe9DY6E6azi8mBmRDNVSouDIDwP0RuSEXjmtAO0Xf91+opdRSFy6IAV?=
+ =?us-ascii?Q?xHg25Ru2ttm0UXh9hxqbprBiPlzj+JOxCfJTi1S0oQy0AeiZ3sabdHs/vJZq?=
+ =?us-ascii?Q?l71wk7/41t01QA7nosH3gIiqaUChfMNH4sqjTumUKM8X1xkYZNFMgJ0532Or?=
+ =?us-ascii?Q?E0r7KJ1MX7jNJcU/Xaz4XWTiiShOzqoykxpWGjiKFB8CWOyX/5D+vFw5kQ3b?=
+ =?us-ascii?Q?11VlXaSm+zGnojwMh6p4RsvFgW7VyfArOfutpEzmUk8vUbyRs+Br+aC/8fRA?=
+ =?us-ascii?Q?5FSwdIU+6X5s3MsSbYR3n284IC/wWlpdT4/Rk8BhvHIveU2QSGaS9hoOOfMB?=
+ =?us-ascii?Q?vumoMmZqIZKQfyv6FNN65Rij6SKBdSgob0qEmvf9kw6nCTOVzsrHU/sVDE14?=
+ =?us-ascii?Q?dEbz1iJlSuLJ/Ydri3E9WBMtHE+r1srZy9n86zwp6neANKihSzSULwanaWgw?=
+ =?us-ascii?Q?4IrnkWJDADjgCV+9O/XBT7O4FZ30tgSvk33m?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR06MB5134.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(38070700021);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?yMF5+YiOdt7FFrK2qryqR5MrPKeP3hi9Hht+kHFL4OnHK2RBtNmBdVbg1PbH?=
+ =?us-ascii?Q?n43vjw9jOe319fvE1lT6g4mU2mYx3j51BhzB6558UlaBL8CdbbGhdpaLJ9ww?=
+ =?us-ascii?Q?RjORjGFHxBR2jBE0eSzqw8bg3x1tFCPZDs06wPocX3SZRC71hAzjrNVjVnMm?=
+ =?us-ascii?Q?b6HhX0FvDXy5JRf6X0yzuf6kSCsp5lGMfP3UYR2rUH/92bKN7h6QGI35mwEs?=
+ =?us-ascii?Q?uZzV7TRraUSdATLr9nBhjDXPrxrPgw663vSfDGnecxqOCpsPLmpzz6OoFVVA?=
+ =?us-ascii?Q?D8YMQCbqyOxFt9M4mK82WpfIYIY522a7x6Q+2fGTtOb3wx6c+wtjNpI/8q2m?=
+ =?us-ascii?Q?PY8e9zkSueL/Av2ZUw7EFBGFI4ckPMmiruV4Y1xRdYTQqBvGusmz3gtgBvq9?=
+ =?us-ascii?Q?RCN3HXcXBDOXWhcHsQtnpIHAwF1jCdoTekNCXkB5eXhOLXQpyh2fKPe2iCsJ?=
+ =?us-ascii?Q?E6T2Nv3xgue1pfxm4+ZjywImjgW23agp24xi9lFCxZWZD7NIVEtRiuK4YzC6?=
+ =?us-ascii?Q?0wwX3gkXpdBmMfTAJ2oBbeP3JTTX0RAd8MN0cwNem8ffIvmxTo6bl8y6nnyj?=
+ =?us-ascii?Q?k8vpfYWJDPQoxsdiP/fFCAt0ojt2XZnav123AUAAhyte010wRbqJad2Hsh4o?=
+ =?us-ascii?Q?caTGEcMDug6wQV8n4d7f10UIlv6eGpGYNNNpW8VR7agId5QVAALaOAsFMUJ0?=
+ =?us-ascii?Q?yzOiFAlEui+fTDD/7XvXhdqiap2y6OaJYxVglyA0IEGpjITRhOsrUA92mgCa?=
+ =?us-ascii?Q?8oz0HYZ4Uo541dFQQfrQxs4M9sPESArD/cSGe1cElR+R2nyWNJMTwJY64ZAT?=
+ =?us-ascii?Q?oHAlizrSAvUnHoM2o6FvMSXEl9FcmTAcXChdbF7p8EFRVoPK8W23hAZpONQQ?=
+ =?us-ascii?Q?JuwMM7T65jmzsE8ijdRKsRPuOa0JXw7ciYc6ZdBH5AXbRJDRFGzmaODqxACZ?=
+ =?us-ascii?Q?YiaqqJZiv4pKNmjxXa+d2NcD2aGjnRwjDwkcTwuiEl4vfWquhQzJJbZvuXME?=
+ =?us-ascii?Q?Dok2G7zzRw7ArLRI8psIfTS9JuX9t3ibC5aGuc3v8VZ3wkWtrjlfsxcbdRK7?=
+ =?us-ascii?Q?tv2Bp/97fc4R8JQ3nPB0jnejEtZOi8HgakZNY+p8VuxXAENtetTaUEZq0EDG?=
+ =?us-ascii?Q?aHpR9bClFt5W2tTUROpfvCMUPA7ibwjrUlTJFUXBEyc9SejC3WbSM+1ExPCn?=
+ =?us-ascii?Q?/kmwCHOgDKLC3q0FfoE6JgOhyZhOA7Pg7aciC/U6fsHak9iB0qpjZZLB0cok?=
+ =?us-ascii?Q?/aj91NFGXExGhizrU5l0EjxSNbT9tllfWRtDP+e74UZKV4XdQDwvGi9n4DFJ?=
+ =?us-ascii?Q?cl6xZo/uDQlpINmPd/zqou4bieoahg1YH8GKuuBuDWIfKCIzEuaYmYDtCuPn?=
+ =?us-ascii?Q?oFKD1/Q8euPlUsWT2A7Ji2+sE7OBVXOQ1W01onHdnZaPr0F9nNmdjIMwHaDm?=
+ =?us-ascii?Q?ONV1frfAahXXuRJ89b/x6kxCuJD+ApnbHPkU5MpWQpd/I97KRlflZuGfOr2z?=
+ =?us-ascii?Q?O5EA72N/exAYwWchjLR35gXUJ5sHnIOlA5sH91pq32P0oVI2j7Dq9WvYgv3P?=
+ =?us-ascii?Q?KV2SYT1LmiX0cUn3AiVHsarRYDpSKYB+j+pJbhUA?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ykg7mwgncmvdap6xzyhmgxu6ur62zzfk5nd3tqrkivugn4w474@rkazrlhwbhtj>
-X-Authority-Analysis: v=2.4 cv=APHuRV3Y c=1 sm=1 tr=0 ts=69098940 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=kj9zAlcOel0A:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=yMhMjlubAAAA:8 a=EUspDBNiAAAA:8
- a=NmRg-prKhgx6galY42cA:9 a=CjuIK1q_8ugA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-GUID: 0A9TsNalPcN9vbkNdDrY1YGOB0nDoIKS
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA0MDAzOSBTYWx0ZWRfX+nzn/vJS1veG
- dQiUIR4gvIKHxF3bKeRbQQ3hCzBuedvWN3d1x0Y85qJ9wOtHilkdX8C+l8/2T3JVohejxWHnaYQ
- bwLKlLgLJrVPlJWI4+ofod8fQ3d4MF/ELQKMqNxENzA4Nn4yL7uDPD/bgqqmJ5aO9Pb2S1Y4Iym
- Po1/+zy/pLRNPpg50Ov14IdUNNIPmcxBDuvTBmsw2qlAlZoCEPuu6nJoWWZQXEmCs+/dXdhjr81
- R+tdE6D5zC5bGWRdmBlqVFrw5nU3F4tI+GAuqrUasLwCeI0A9m0J+Rkqn70lyuwHqOQRWv9k8jJ
- f3urSUqnhl7lQt5yZq2NIDe1DKLc+OQPfcM55vS5EHGjZb8Wm73Lz+e+6Xw1MvVUmtyUQFd7fSA
- 9+tSoLjVMif1MgsJO8B2nQ1t9CfP0g==
-X-Proofpoint-ORIG-GUID: 0A9TsNalPcN9vbkNdDrY1YGOB0nDoIKS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-03_06,2025-11-03_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 clxscore=1015 impostorscore=0 priorityscore=1501 phishscore=0
- suspectscore=0 adultscore=0 bulkscore=0 spamscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511040039
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SEYPR06MB5134.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8ffa7e87-ea86-4d40-d721-08de1b610f80
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Nov 2025 05:14:41.8786
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: xgv6r9MfkqGCgFZ9tRXGxXYTmNZKEq0UOi557YXY8hkHOJ6Omuy7QTaJ8ntloSTHC1HcxUXKIo1PFgruuilKc8hkZYV16069st2Dwb0lPPM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0601MB5655
 
-On Mon, Nov 03, 2025 at 09:52:25PM -0600, Bjorn Andersson wrote:
-> On Tue, Nov 04, 2025 at 09:00:27AM +0530, Pavan Kondeti wrote:
-> > On Mon, Nov 03, 2025 at 07:01:51PM -0600, Bjorn Andersson wrote:
-> > > On Mon, Nov 03, 2025 at 04:03:44PM +0530, Hrishabh Rajput wrote:
-> > > > 
-> > > > On 11/2/2025 12:15 AM, Bjorn Andersson wrote:
-> > > > > On Fri, Oct 31, 2025 at 10:18:13AM +0000, Hrishabh Rajput via B4 Relay wrote:
-> > > > > > From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-> > > > > > 
-> > > > > > To restrict gunyah watchdog initialization to Qualcomm platforms,
-> > > > > > register the watchdog device in the SMEM driver.
-> > > > > > 
-> > > > > > When Gunyah is not present or Gunyah emulates MMIO-based
-> > > > > > watchdog, we expect Qualcomm watchdog or ARM SBSA watchdog device to be
-> > > > > > present in the devicetree. If none of these device nodes are detected,
-> > > > > > we register the SMC-based Gunyah watchdog device.
-> > > > > > 
-> > > > > > Signed-off-by: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-> > > > > > ---
-> > > > > >   drivers/soc/qcom/smem.c | 37 +++++++++++++++++++++++++++++++++++++
-> > > > > >   1 file changed, 37 insertions(+)
-> > > > > > 
-> > > > > > diff --git a/drivers/soc/qcom/smem.c b/drivers/soc/qcom/smem.c
-> > > > > > index cf425930539e..40e4749fab02 100644
-> > > > > > --- a/drivers/soc/qcom/smem.c
-> > > > > > +++ b/drivers/soc/qcom/smem.c
-> > > > > > @@ -1118,6 +1118,34 @@ static int qcom_smem_resolve_mem(struct qcom_smem *smem, const char *name,
-> > > > > >   	return 0;
-> > > > > >   }
-> > > > > > +static int register_gunyah_wdt_device(void)
-> > > > > > +{
-> > > > > > +	struct platform_device *gunyah_wdt_dev;
-> > > > > > +	struct device_node *np;
-> > > > > > +
-> > > > > > +	/*
-> > > > > > +	 * When Gunyah is not present or Gunyah is emulating a memory-mapped
-> > > > > > +	 * watchdog, either of Qualcomm watchdog or ARM SBSA watchdog will be
-> > > > > > +	 * present. Skip initialization of SMC-based Gunyah watchdog if that is
-> > > > > > +	 * the case.
-> > > > > E.g. qcom-apq8064.dtsi doesn't define either qcom,kpss-wdt, nor
-> > > > > arm,sbsa-gwdt, does that imply that it implements the Gunyah watchdog?
-> > > > 
-> > > > 
-> > > > It doesn't implement Gunyah watchdog. For platforms like these we've kept a
-> > > > STATUS SMC call in the gunyah_wdt_probe().
-> > > > 
-> > > 
-> > > I think it would be good to make that call before registering the
-> > > platform driver.
-> > 
-> > Did you mean platform device here? Becase we don't want the gunayh-wdt
-> > module to do anything other than registering the platform driver on
-> > platforms other than qcom.
-> > 
-> 
-> Yes, device, not driver.
-> 
-> So in SCM driver (I think that's a better match than SMEM), do a:
->   if (are_we_running_under_gunyah())
->     platform_device_register(gunya-wdt);
-> 
-> The Gunyah WDT _driver_ should based on that be autoloaded by the
-> platform:gunyah-wdt alias.
+Hi Andrew,
 
-Thanks for the clarification.
+Thank you for your reply.
 
-> 
-> > > 
-> > > > The SMC Call is expected to fail on platforms which do not have support for
-> > > > SMC based Gunyah watchdog, which in turn will fail the probe.
-> > > > 
-> > > 
-> > > Perhaps I'm missing something, just looked quickly and it's been a while
-> > > since I looked at this code, but you're making a HVC (or SMC) call with
-> > > the function:
-> > > 
-> > >   ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL, ARM_SMCCC_SMC_32, ARM_SMCCC_OWNER_VENDOR_HYP, 6)
-> > > 
-> > > which doesn't look unique to Gunyah in my eyes.
-> > > 
-> > > If I read correctly, the ARM_SMCCC_SMC_32 is the only bit (literally)
-> > > that differentiates this from being a __vgic_v3_get_gic_config() call in
-> > > KVM, just as an example.
-> > > 
-> > 
-> > Yes, you are right. This SMCC falls under ARM_SMCCC_OWNER_VENDOR_HYP
-> > space, so it would behave differently on different hypervisors.
-> > 
-> > Please let me know what you think about this **defensive** approach.
-> > 
-> > - Move the Gunyah platform device registration to SCM driver.
-> > - Checks to be done before registering the device
-> >   - Make ARM_SMCCC_VENDOR_HYP_CALL_UID_FUNC_ID SMC [1] to verify that we are
-> >     running under gunyah
-> >   - check for the other wdt devices like kpss, sbsa in dT
-> > 
-> > ARM_SMCCC_VENDOR_HYP_CALL_UID_FUNC_ID SMC will not be supported by all
-> > versions of Gunyah, but atleast it would confirm the definitive presence
-> > of Gunyah.
-> > 
-> 
-> Yes, this looks good.
-> 
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: aspeed,ast2600-mac01
+> > +    then:
+> > +      properties:
+> > +        rx-internal-delay-ps:
+> > +          minimum: 0
+> > +          maximum: 1395
+> > +          multipleOf: 45
+>=20
+> I would add a default: 0
+>=20
 
-Thanks, I think QCM SCM driver hosting this would be a good idea.
+Agreed.
+I will add it in next version.
 
-> I presume if we determine that Gunyah is present, and we haven't put
-> sbsa wdt in place (e.g. during bringup) Gunyah and Gunyah WDT will
-> handle the outcome gracefully...
-> 
-Yes, we are told Gunyah support SMCC based WDT even if it emulates
-SBSA. Most importantly, we have STATUS SMC in gunyah-wdt probe before
-registering the watchdog device.
+> > +        tx-internal-delay-ps:
+> > +          minimum: 0
+> > +          maximum: 1395
+> > +          multipleOf: 45
+>=20
+> and also here.
+>=20
 
-The following two patches which merged recently will make the above
-implementation simpler. Providing them here for the reference material
-for v5.
+Agreed.
 
-- arm_smccc_hypervisor_has_uuid() API addition from
-https://lore.kernel.org/all/20250428210742.435282-2-romank@linux.microsoft.com/
-Please note that recent commit make this API available for SMC conduit
-as well.
+> > +      required:
+> > +        - scu
+> > +        - rx-internal-delay-ps
+> > +        - tx-internal-delay-ps
+>=20
+> and then these are not required, but optional.
+>=20
 
-- qcom_scm_qtee_init() example from 
-https://lore.kernel.org/all/20250911-qcom-tee-using-tee-ss-without-mem-obj-v12-2-17f07a942b8d@oss.qualcomm.com/
+Configure the tx/rx delay in the scu register.
+At least, the scu handle must be required.
+
+Here I have one question.
+In v3 patches series, if the ftgmac driver cannot find one of=20
+tx-internal-delay-ps and rx-internal-delay-ps, it will return error in prob=
+e=20
+stage.
+If here is optional, does it means that just add warning and not return err=
+or when
+lack one of them and use the default to configure? Or not configure tx/rx d=
+elay just
+return success in probe stage?
 
 Thanks,
-Pavan
+Jacky
 
