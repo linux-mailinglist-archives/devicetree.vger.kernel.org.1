@@ -1,163 +1,95 @@
-Return-Path: <devicetree+bounces-234930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69DD0C32583
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 18:31:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2325C32580
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 18:30:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C899C18C768F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 17:25:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8894D3BA3FB
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 17:27:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1658D337BB5;
-	Tue,  4 Nov 2025 17:25:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9A25339B38;
+	Tue,  4 Nov 2025 17:27:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LbRGfxV9";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="c8/6Tcsz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VfFudseX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81A993314D9
-	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 17:25:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA3EC332EDA;
+	Tue,  4 Nov 2025 17:27:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762277115; cv=none; b=ldBQZPEiOQYDSZX77ryQIeEZ9lUvMTQYqLQGXvYex0/72c1ycvNZ61srULTn3IQvi/zZRonQlrcg2D3O6VsfH0kqAaBqeN/FK3UyX7bf5Oj3rrHYn7hEevAg5+rAMqmb/YQKoLmm5ZxEfu4DP4bKtpQxWMgl/nDM04bVlkZ+9rU=
+	t=1762277230; cv=none; b=Bk/YF/ytCTvdowwmPklyzRdaKNeYUcFmeJrQBnqqAIpbM9AXSZBOBEglULsDnVqNH3F3D8XneLYnTCDIHvJUAndvBpCqY56jG4feulP4JPqGX7f/fFHSXplbElywGf+6z//ODCaIpwMMwMOaYWF4nanNgJBU7N56U1tSQKTc+P0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762277115; c=relaxed/simple;
-	bh=nnjUB7LL5+SU4kruAo+s/uJqZUqYb9G1b28dkS2e//8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J052x1+J2lpFQLoAqU6gc/rQIoxNqGpXHxzE9G5+ZqwB+ad2xXmdf/BoBd6J89ulBC+kEd8kxQKUxk8BpJUctALY0kHUUJLUT+TvgMttE3Mp/CKBURQuXH8IyZI4caFmQFNLpDb2KglYDvs2SrXQMQnJFBYX6/zcpbDSEiVhf+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LbRGfxV9; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=c8/6Tcsz; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A4Gg3SD2677446
-	for <devicetree@vger.kernel.org>; Tue, 4 Nov 2025 17:25:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	XqomMh4cXtCMhqeRVoWkhlqju9FTNhESCKlR4nUZAiE=; b=LbRGfxV9m3rOEpez
-	zwqGcxrskCA4S+0x66f5+tbJp9QbP1R6m3zHNhiEhhUOJGrJ84ccRuBuur0md/5x
-	fkeLSoCa7s6EALNryjMiFt8oRGSRnx40ak9aiwkQVQxJ2xtwrd/JUmfXmUlOWfXC
-	HzwNWd01jgEFOwD6eVVkqzRbpT/AxwcrtV8B14qzlbjYgp3nfZ+dAG2zeGk/ZXTz
-	srYI0OOUx1oua1CIHnV7gJUjhWi2CRblLoe6ANYxT/Va50gde9E6mT4/OroTrvfD
-	FmlmtDv/EVJrcf79Qv5ysS00ML+gDZTD3AvZ7Lf9g78XWx55Ch54MiYSlyMhrJHU
-	7QKtaA==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a7ketghma-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 17:25:12 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4ed6317be8cso3087701cf.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 09:25:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762277111; x=1762881911; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XqomMh4cXtCMhqeRVoWkhlqju9FTNhESCKlR4nUZAiE=;
-        b=c8/6Tcszz5THkRbDFlfNMcgmDxY9jCuWUZ+MgVADWY0rB7i1hxtjkDzZDq72RIC5/o
-         gb+qr0hFNjELZp5TkVIFhGrOfL+ctZ4437udqDipm+H/8B/wqb3GbGADmopLGzTXPuo1
-         AWSs/kGx/Lm/sNBaa5jvMvcO/uPlh4TDSTfzd9ekkDilkJpdBfTQRkKCvBlUgwWocZO6
-         hi17w9dbPffodOQ20bWQC1rNB+Q6tZJ19E9zaEzPDZLMG7mjP8zi/CMvwu24pQgZZqbj
-         mbVeUlWKs/gflmPw1kEoGPXIjEsSPt2taJQzN5Fy3AcJKXkdRPTeuFJmfbW+jqSCCEbH
-         H2hQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762277111; x=1762881911;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XqomMh4cXtCMhqeRVoWkhlqju9FTNhESCKlR4nUZAiE=;
-        b=Nd22GC+ZoFcBe8i3HcPcHhDj6Ae9fRMG620fiH7YXcLvOQRYRVSEKVDWqjcW8WOqRL
-         1fRndwR7YBuaBF8PuLxIbRFLFeAc3wDYhLTHLw2HEGqo70/zAGAPAKdU9l7Ppiyjsx/2
-         lNa6if44v+eFbk4xRBNUCoiBvsUL6xaudsa4KM8v5aWCUyibHmvTe4BB25tS3yJj2jCR
-         3F4RtGcnZ73xC5rSjD/IWv1GteZW4DFE/PcJGCDYbT5c2kS86i85vwsto0mSW+pYHXB9
-         Q+D7iN9dbFlOAB5RI/qTN5clqp6ya4R2qZQCEf2RMBH8JBQceUfyhs5cbIM3gKTd6gXK
-         ydQg==
-X-Forwarded-Encrypted: i=1; AJvYcCVfOyhDjzmgaogRJofBxdcEce/Aso39d4VSHYbFQgokbhGQawvi5khJTJbek73w2m6vTGG7Ad9NHhJe@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNwcqen4ASDKp2SllRqWfGQdauAJ2Ur9WhN9EV8NhVZO3e93G6
-	PnODLMOl7mQXF7bMqAvNcGaCVnE8oVQzU4k/JU+/KloZMNb2a8l6psNGRqjRVQyZW82tjhJ61Jw
-	UnAkNfBPm6PV0fRIgRAHtsYhsppv5/dLjq6uVv92pFXbsfJKvvBnGjaBuNj0rwbhl
-X-Gm-Gg: ASbGncsrHqqgJOpqC60qcuZGMfjMEvcS2rqQUPVY1woSS0pry5fSKEBNNkQGDOm/sYQ
-	ZHc9MhGbJAMASQvtoRH+T/42Nuadq36Kpc+MjXGeg50OGcp8U75GPkMkYum7KT0E+palp8GKICM
-	IW06uXWQVbKsTlSxM7yZPNIjVXQFBrwG4kOZGlpqov1NsI9ZA5zgWCN8xdfEJk6DYEzn2ZKPoGu
-	bqwcU7ZSzUqJe9jwd4kOjfrW4BdbUWihz8UwuiOV10yaw/Q+QxlBZ9wjxG5+rnkNg/LVIQfuKeH
-	tAGtTqs/9hLqSP1CJ+yf44iopu7SKbRry0LTJnz9xgN/4iq9vkwRcuykgf9kEqiHzz2axLvXX95
-	36zEARLdrhyzCskHTrtqoWIykTetfxanpLj0rwsYCdpMVP7FYAxy614lb
-X-Received: by 2002:a05:622a:50:b0:4ec:f123:230a with SMTP id d75a77b69052e-4ed725d82bdmr3092891cf.13.1762277111526;
-        Tue, 04 Nov 2025 09:25:11 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IG0AZ0NEqJyAxkO9tPQooyXaYVFUIJ/Dkxa/d3F8NW2e4gkuIPHPgeyXln246n3SP6taM5GUA==
-X-Received: by 2002:a05:622a:50:b0:4ec:f123:230a with SMTP id d75a77b69052e-4ed725d82bdmr3092491cf.13.1762277111059;
-        Tue, 04 Nov 2025 09:25:11 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7240540d7csm257218666b.71.2025.11.04.09.25.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Nov 2025 09:25:10 -0800 (PST)
-Message-ID: <8103d16f-6b03-474a-83bb-b2e8ba9b9cbf@oss.qualcomm.com>
-Date: Tue, 4 Nov 2025 18:25:07 +0100
+	s=arc-20240116; t=1762277230; c=relaxed/simple;
+	bh=U8gCXzMP81VDx7R5ep9+IFwmOaF4/VygryrFvlTNjwY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rQzwfaRKxR8NsOeMP4j5LuVQP2wgjAJoXeDSaLaNY9sz21/j796F0n1Ndk7w3U+3jqTHqiy0z1H0eRcF23B9/HYZt7EsMOYcJvH8a6ABzjbT2u9tqfm8EHrD/qAijA8NhJ8j2cp18CymTp/E9QMsAf1grWA1/Cw8k+h/LPJpDM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VfFudseX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11C5EC4CEF7;
+	Tue,  4 Nov 2025 17:27:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762277230;
+	bh=U8gCXzMP81VDx7R5ep9+IFwmOaF4/VygryrFvlTNjwY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VfFudseX+rtxOxkRHqjYGLLdJtjEiVIvpYtTH3FBW48o/J+u411kyaESBzlG1bFPD
+	 ZqffpcO4NvRprHHDBfp9vShI3l7k8UUw2/G2Qb/63nCEGAfHVkhlMzxUK7Wg54A8Td
+	 1aoztV/BM1kdWZK5ztl7n59Pwn6R842BbofJpkE+ulGOG9CykzGWRnR/3f+6M4rN7j
+	 H6QUsdilCe25HmOkKZYaXHFZBQo/zwwrmzuuaXW1oNaJxgWhEQAO89S6m05cioBWxQ
+	 goQuDj527MA3woO9IHO+PMWyHdBlpjdDp4yLfCXRGdx9k4PGEKWhIgf7BNOHdvPgc1
+	 Vc9RVqvJLdZEA==
+Date: Tue, 4 Nov 2025 17:27:04 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Hans Verkuil <hverkuil@kernel.org>, linux-media@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH] media: dt-bindings: media: renesas,fcp: Allow three
+ clocks for RZ/V2N SoC
+Message-ID: <20251104-eleven-limb-39d0b4bcb78e@spud>
+References: <20251103194554.54313-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 03/14] firmware: qcom_scm: Rename peripheral as pas_id
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-References: <20251104-kvm_rproc_v6-v6-0-7017b0adc24e@oss.qualcomm.com>
- <20251104-kvm_rproc_v6-v6-3-7017b0adc24e@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251104-kvm_rproc_v6-v6-3-7017b0adc24e@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA0MDE0NSBTYWx0ZWRfX7BKklUX6y4bi
- NLgRygDlHTdhvF8k6U8MYlu2OoZn45U/swl5O2d2IUJyuBSMxl2Mnx9kJO9iV6Vvdv2VTXct76S
- UkqZc9ZwqpY+j+hmKvYUHjcofGIRKc2GnLxBcHGUK0XmBRq+OkyLx4dfdksxVgo5Oj7/DbBlobb
- oEqdz+yNGvEJlp6J9/ofC1hgqQVu4znxuQRrtGsvXR1eXjSE4e+b1z8SyHEtXYzQT2O9DIoVh+5
- E9NSdC/tijYTqlhGhZg+B3brphhE0UWZIxW+494nHyuxODfvi7xf3dCJ7/2n6CZywX5tlsPpg03
- rYSg6ychZZA2qieDEGOyEAc01bZK6+//nlfA8vsZ7okIvCSz88JX7gnJ+vR47Aw5d32OqcuxWyV
- esYjftyh2cQOC42gv0DG/dlRcL4SzA==
-X-Proofpoint-GUID: dkpzik6oZUpVOqLt6TJpYXBLPHYNpzpX
-X-Authority-Analysis: v=2.4 cv=IdSKmGqa c=1 sm=1 tr=0 ts=690a36f8 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
- a=1x7xYhVcW7TDj72elYYA:9 a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: dkpzik6oZUpVOqLt6TJpYXBLPHYNpzpX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-04_02,2025-11-03_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 phishscore=0 clxscore=1015 adultscore=0 priorityscore=1501
- lowpriorityscore=0 bulkscore=0 impostorscore=0 suspectscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511040145
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="UBnscqNXjA3VEOyP"
+Content-Disposition: inline
+In-Reply-To: <20251103194554.54313-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On 11/4/25 8:35 AM, Mukesh Ojha wrote:
-> Peripheral and pas_id refers to unique id for a subsystem and used only
-> when peripheral authentication service from secure world is utilized.
-> 
-> Lets rename peripheral to pas_id to reflect closer to its meaning.
-> 
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-> ---
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+--UBnscqNXjA3VEOyP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Konrad
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
+
+--UBnscqNXjA3VEOyP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQo3aAAKCRB4tDGHoIJi
+0o9lAQCHvnP/J1jGIRXDva9+95p4of7VdbZ4JlOqPrBfJ/kTZgEA5MOPfTaDdBdJ
+j+ed3xjEbyFXw9mUHZ4PNwx7ZhCN2gM=
+=rflB
+-----END PGP SIGNATURE-----
+
+--UBnscqNXjA3VEOyP--
 
