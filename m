@@ -1,82 +1,83 @@
-Return-Path: <devicetree+bounces-234871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDA0BC31ACB
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 16:00:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FBD7C31AF8
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 16:01:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C7D2134A7AF
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 15:00:32 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 03F9A34A8C0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 15:01:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E36C3346A9;
-	Tue,  4 Nov 2025 14:58:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D8D6335553;
+	Tue,  4 Nov 2025 14:58:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NH3KqUC4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RYmW0PZi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B711233469C
-	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 14:58:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E476335556
+	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 14:58:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762268310; cv=none; b=eGdlf7tofhqyPsYw9NMerbHaq6DwhU3xhrwKqOTafRLa3ZMwZ1+KbBFBH8Q6FIr4jWZ2FvEEWMercf8Eb1VHwuBVhmQK9C/zBIt0faWRWhbxgjXynXu/2ywYFZ1lyfJ32lJ44SeLMKAm75OBgzWt1qi2fW+PT3oABVs5krc532M=
+	t=1762268313; cv=none; b=qP48JLhCsOqchT8jnTDzOlXPBmT6SsrGmzgfotrMa79kxuaYTEssQ14nm5n5BCKKxGcG+EJ8CtIHZOHsWL3AJ2j+KDPqpxDC2SIhK5d5DDJEV+5s/+G/9A1DX/rP5Fo3YTP06fJbNEUXv2fTo7yT2vcqbYZwMxxFRq2fK1mmpGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762268310; c=relaxed/simple;
-	bh=jofWWnwmoG4Nrm+u2R6rEX8xNv7yEnOjBBXdOGfBxTY=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=tB+DLKVbhMgH7LCynjpcptggwWNYaE7brrIB+ShEHJT5w72OO0v/jrkKtwRfjkztKRzYWFuVSbolCY9n9rlP9dgjuypk6tH/wmecQ4NphbZT3TN72QHlFHBCqElsmqF8TrEKDKsA528yXyd6oegYjnHP7Ji9fMtbv8p37czVU/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NH3KqUC4; arc=none smtp.client-ip=209.85.208.50
+	s=arc-20240116; t=1762268313; c=relaxed/simple;
+	bh=W9g+YJ6BtshhuZpzIE3hQJ772deNaUpm9Z9F4iVdSVk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=U+0HpEcJwdYaV4E+QrmKI3xEx7Rw4Bhoxlrx7kFCZNMAFigx2u25kotXHu1c8gp7iKS/EfedRO6GG+uUwTVEU8k4XYDY+mzdO2KsDaJqKYxYuJPcLYvA5hndpGpqqlEUzVv3ab7EpUFY0rd3ehijNcaSBPlxVNmVJhegsoiOsOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RYmW0PZi; arc=none smtp.client-ip=209.85.208.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-640f0f82da9so916768a12.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 06:58:26 -0800 (PST)
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-64074f01a6eso9221553a12.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 06:58:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762268305; x=1762873105; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4pEYynqLlf97tqquz7gBzDn5fbpmeV4yt44zAz5u1qM=;
-        b=NH3KqUC4M5jMP9sD0dDu3QZfAqYyRwTUrw2F0b7M8T3N1likkpBoRiPByQfMTbX+fx
-         iQZ5bNrzTeqk9+DbNb4m/7efA6EcrkW9MiSSWHdQ73FEsJzspwFNsEnY7JsawFnoYibK
-         4ISwSW+wSJW78DOYpG6V2avuFGY+mcNM5qJ0RzsqfzmQgprDBNBWPfnziBYKfdMhlU5t
-         c8x3jn6nI3EqpF+qhe/KULm+L2IOQ8ragVRy9Xp+gZqKa3jHVkm4E61Y4N0l9TImSbrF
-         qpzaFYWS/XgpUAjICj1fAJNkBSAxLxpivbyLrSNsw2GNjCdKPS1UGhz3OpCsflW2kxMi
-         etOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762268305; x=1762873105;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=gmail.com; s=20230601; t=1762268308; x=1762873108; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=4pEYynqLlf97tqquz7gBzDn5fbpmeV4yt44zAz5u1qM=;
-        b=rsZ7j/sNIMAtUm1pAbLfvKAtYZpUNi3LIKYiAnthV1071vDXR8mCV0A9zd25/IqhIV
-         RI619WlJ+ev52FhoJC9HL1qLPFu9Md60Z6i+leDJss48QVSfa65X6h3RwdhoV5ggzZ9A
-         ml7mw48XV1d40er06/QaRRhKDlCxhkJvkprPC6mdMzmzcAZWsao4WB/tJcJVQltJ+Q1W
-         h2B+5HkK3hCP5jtA9OW+YWrKXHyvGYcaKazmXJna/v01fZPMJLl7k7q7/qXOBySEPFi8
-         kQ1wpcPFQObJ+sAujM7mpDxONnGJPRBUJ3mImj2xtOn4H1AuTDrp4MAxNq+5YOSUjNzl
-         tKCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV+KkxhCW6YnDJ/pNuHCOHMT18nUqh7HSZHU3NOhxp+sfdlhNHY5wk+1gqXxdpYDFcVc993d8iqkvTE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8CnxInKDt8BawkSZRJzmATudXZhzx+Y9xt9zrIHx/Og0GEBRD
-	AX/qHZHc2to1zUI4lxvy2ESP38ZU8ApzA7fWmiD/A4zOIMRkEDKoYuMG
-X-Gm-Gg: ASbGncspA7LiXFvUgg61CynWi2TqeTcqz/WUQn01h2SvpO+dB3Maq98sa0Ut7r5M8it
-	J20PfVQ4jdxGQtQGmjIyXiufK+mpoSScL5M6alSmp/BSa7jappAQmAdK0Vr1yVWs+dzptp7mp1a
-	ltbdP54JcnzmP7ItXjn0dMvyf5gmJ++JGWU7ELPdueD53igGWZ/CEfwI/lLUvNpnZqQph9W5/4Z
-	ydxmEJmExc5mdGDJFAEalQ6XvJMGs2XVxmSMwHzcN2GVNrXaNmwuSTwzDlZ/swQvpHdLoOmRJQS
-	tE53D1RxULCWUqqHG4uHAkzwKz3QwKKod4giTAcV9Nza8S8TALKFXXy32TKiFv1MgBu1AR0RqoS
-	SABmXavTcqWf1EY7tOPY0dPbWgh5GSmfW+CUj0M3EG+kJjn2G++Gl4/YqouOPsG5gcMcb2DwErZ
-	/tswk5/wUylPMlkVkyXA13Rgee/3Cjt0RaHRxK8lUc/UwqJC8=
-X-Google-Smtp-Source: AGHT+IFCrq3nCnD3LeMjo88kUj+iYOsaxz83hK9DRyJQvnnXwEepxp0u4Czy8i8uiy1jj1mUE1acXQ==
-X-Received: by 2002:a05:6402:5114:b0:640:f041:c7c6 with SMTP id 4fb4d7f45d1cf-640f041ca48mr1477907a12.21.1762268304776;
-        Tue, 04 Nov 2025 06:58:24 -0800 (PST)
+        bh=8yDoZvnl9i2PCVqQpO58zWzoD91W2IfT5tAZBQV3TwY=;
+        b=RYmW0PZiAx88z+3Xj/OA9RvHi5JsqA6OHbwOkDW/JlNii+V+/M/CfZh7gyOGClZnm0
+         pAu7tf3Qy549y4XfixE8BYUb51gOrok4NnXl9jlb1tmtzvDiU8y8aUgPs7nv1HnTE5dN
+         edR7LP9Lt4qD2L9O0fvQCx6+729fcTdVVaWtsWvw0INl0o9nSz/qKAm4jWlxd2vIMh4M
+         /a8wUguHUpq3Dxiwyi6vkNGq8HL8/OLzZmroIaRK0O6lY93Skn0LamGOd6YlZk3KXFpQ
+         DhPnEgFq4vHMxQmse3S8pn2RSaZEI6PFuRr1uFpXa6TnYJnNqlfq71PFHJgVhemOVWT/
+         3+aQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762268308; x=1762873108;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8yDoZvnl9i2PCVqQpO58zWzoD91W2IfT5tAZBQV3TwY=;
+        b=Mg6qQtE+tHibWnb7Iqb88/7a3rGd0xR10BwlgnB46B3dl/CfTCFQ2h/Egv3yMe/IjV
+         1XbB11AKyG1ZxlMgvYp7svjF6e/sqNUA7K68xKyajzzhArr6BEtGPJVZ9UNQXHD68CIC
+         T9eJ10bXd4GAhHbH+JMGkxj6jBM/rG1RNpBMXd7nuM0QALtJCrYcHd8BrsVKiiqMs+f/
+         nceh3z4VrM+xnvRoGgvLCqIREF/S6dPjOdMbgFetMTqyXJxFt6oJjrK7CN01o/UbL4Qb
+         v5kpxXd4StVtyGv4JVTnlTakgSo/yakR7Os2tW9o9+nXyoWXejRGCyojAkECz8h3zIsE
+         RA6A==
+X-Forwarded-Encrypted: i=1; AJvYcCUUiA9A5h/G9FFAHejNDGCBTyTCsj1bb6B8uZO1qZSB+rWQf6hibEgwRJe5hAmHKIFd/xYELVQJKIe2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy37BT7lggC9zY2P3aBcRGj/yNL7rX2WBSXwUblmZ9PizVH7UPs
+	PZsnWB8/B0ToLHOLn3xwjIA3JJenqJZddFAoyLmeMy/ARBNtK9H6A/KI
+X-Gm-Gg: ASbGnctO5ZNJLcYxD71fF72ZLMrFLWKRROjVQjdL8jK5j0FrVfBLYywabNBBUB+/m0w
+	ow4D0E83bmsJtC4/5yumlMpUYbvSt3qqV2cxAXgXQSjZQgBqB6vW8YhicgLp90iuOlZuPQ4/MJu
+	XQDL+Na05y/M+FKRi4M4QAc9xP1LHEatoi2KwZh0QeZo/7n/3ISK4dtdgw7tx3wybOAoafz3fG7
+	eT595DY+4Y5IQGUwxVPqKf47vKpEeeO7G8ujgUuNV65lx8DZi/NMTBt6tZ24Q0YMyO78tWtV0MS
+	lA1Jnc81DsMqgCtsG18Cmhl48IfODd1IZjCHOHoRVGZJm0MsGg15ZfbvHv4KJ6xsgDF3aNtiHpl
+	+EqE6wE2kKLaniSnTlpLRwh0BaMw96dSz3W33U8hsogzFrbh63YWMNI2YErdLz2MLxvhLqGuLDi
+	dzNNqJeoucSOOMg533uIVbkhfkHxJHvWBF12G1p6rHPPJqUoY=
+X-Google-Smtp-Source: AGHT+IFs9W8O44jy0to+HH8P36ANszj/+KkeaTelvysxmEQV/qsf42k3TLW8rGxbLiSoMryUWBJ0BQ==
+X-Received: by 2002:a05:6402:26d1:b0:638:3f72:1266 with SMTP id 4fb4d7f45d1cf-64076fa052amr16212580a12.16.1762268308065;
+        Tue, 04 Nov 2025 06:58:28 -0800 (PST)
 Received: from tablet.my.domain (83.21.17.47.ipv4.supernova.orange.pl. [83.21.17.47])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-640e6a7fcd7sm2288874a12.37.2025.11.04.06.58.23
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-640e6a7fcd7sm2288874a12.37.2025.11.04.06.58.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Nov 2025 06:58:24 -0800 (PST)
+        Tue, 04 Nov 2025 06:58:27 -0800 (PST)
 From: Artur Weber <aweber.kernel@gmail.com>
-Subject: [PATCH RESEND v7 0/7] clk: bcm: kona: Add bus clock support, bus
- clocks for BCM21664/BCM281xx
-Date: Tue, 04 Nov 2025 15:58:18 +0100
-Message-Id: <20251104-kona-bus-clock-v7-0-071002062659@gmail.com>
+Date: Tue, 04 Nov 2025 15:58:20 +0100
+Subject: [PATCH RESEND v7 2/7] dt-bindings: clock: brcm,kona-ccu: Drop
+ CLOCK_COUNT defines from DT headers
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,6 +86,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20251104-kona-bus-clock-v7-2-071002062659@gmail.com>
+References: <20251104-kona-bus-clock-v7-0-071002062659@gmail.com>
+In-Reply-To: <20251104-kona-bus-clock-v7-0-071002062659@gmail.com>
 To: Michael Turquette <mturquette@baylibre.com>, 
  Stephen Boyd <sboyd@kernel.org>, 
  Florian Fainelli <florian.fainelli@broadcom.com>, 
@@ -97,96 +101,116 @@ Cc: Alex Elder <elder@kernel.org>,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  ~postmarketos/upstreaming@lists.sr.ht, linux-arm-kernel@lists.infradead.org, 
  phone-devel@vger.kernel.org, Artur Weber <aweber.kernel@gmail.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Alex Elder <elder@riscstar.com>
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3090;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2725;
  i=aweber.kernel@gmail.com; h=from:subject:message-id;
- bh=jofWWnwmoG4Nrm+u2R6rEX8xNv7yEnOjBBXdOGfBxTY=;
- b=owEBbQKS/ZANAwAKAbO7+KEToFFoAcsmYgBpChSNG1jE7pGayE9k2YeIEYEceIZhdRQbjRVvf
- c+4M2DM7p2JAjMEAAEKAB0WIQTmYwAOrB3szWrSiQ2zu/ihE6BRaAUCaQoUjQAKCRCzu/ihE6BR
- aDg2EACPQfLq3G9R87y8E6cISkzuRCn0I42CEz+TaLiFTXrXAIRNojHo/LdGDTz/kRnGRi0WpYn
- 0cCm5clirUWqzMJ9c+ifTT6OOs6412rzwPIZfBrDikH/jQDNQml0N2BMkws4yT5Q0D7chgtzgzt
- jpDz6oIHJ6kIv50ZEewPZn+/ufxFnmIn6JCElW8WN6/NBT/01FTbafOUzNqikpZw82IvP3qH0HQ
- 7sNz7f79BaBFE88LN03h0eze5i0AQ4FoYyQfLUs2zJtFWinTfzglhfRxgAWO34meuiSt5M0O/lQ
- h+xQhlR4mQ+5QiwOjikfQUuzhUlipswVgraOCfbgq4gchs8wTMr9leseDbZQPGL+pqEhjOtGKEQ
- sfbHEC34K7ycd3gUUm/H5rojBylUXJ9avCQWCDXaFDqqD0RAbxnsiWYoTbgjCNExH6WaLCDwyRb
- X5fkDnPxnWO9RGifbFG3kgCYqqZDQFEDMFxUbdlKAWTzgLAzaIQRH8PvbSf0u9cNw3I8gI+s9lT
- vHWI6tgOesxEfXfHSQrxTmV3QQyieWoCLfsB/B3a5+qxZF0or/1FVG31aJaubgFGTnJCSGCoz4M
- UPKMvKuyAg54i6hS4MK0LiCPzwI83mbS8RyIhBrSZTFSO7OpzVGORzx2zT7ceRHBvdpfrcXODts
- 7i3OXHOAZld/E6Q==
+ bh=W9g+YJ6BtshhuZpzIE3hQJ772deNaUpm9Z9F4iVdSVk=;
+ b=owEBbQKS/ZANAwAKAbO7+KEToFFoAcsmYgBpChSNyhoRHcTk8Z6URFMUuRgH1NYbfHNCN3nuz
+ TT5s4TYN/mJAjMEAAEKAB0WIQTmYwAOrB3szWrSiQ2zu/ihE6BRaAUCaQoUjQAKCRCzu/ihE6BR
+ aBZ8D/9GVrJnnbshf40Fq7EmWfKlSWadlwmZGigXl4snbvnPs6gFtD53934e9ydLgHRjv8u2HF6
+ v3RetY0M1wonst8EpeN0+FuNakSthGOt128Yc+TgylDcybfRojzqe5x5QgzXnKnd17rLN4PRzZk
+ b0uo3WfdvbegZCL6sTFjVIRc0186+231PoH/YXcwJEM32ltp/EKPAB3j26sIfQ6Fx7NJLkHbFhm
+ F0YXJrGbjLkV8KYRV3xHTdDNTqZ7w/HZ2VZh69brnZptYURDhXlRehZR6/iZq5Qjt9dc1sKvh7o
+ zTjZNyJy0LOeaxee4dnnGR5EqhiFycYqxrz1mXeb511qqn5qqrY6iq2ZAtSoF0gdcnkpkTpR6F1
+ UzEJ3AVHAD8zoRwTv6u/EZ/pVyedM5nW0h2xCEx0tBZsGBjyRdPBrrZs4FHx03p8Glbo/dE+X/Q
+ Islzg5UV4NnsdWM1pfAzZNzp1+frZq7Yz1BGpKUos9oGDmN+7qeiLqf7zQfmOsUa+EQLvevVbc/
+ epSm5KUSSDLiBoNrTzmlXBjIwLFppBBuKazNuQTwja4J4ic23JMayyaGURMTtslUOr5+V8J0gkE
+ DRJCYzq9mp2tk/wJmUWZ7jYqJfO+y3+JvxR7ZGYT5mLfLscGKy1XEiRu7tcjejTqLhGeskURnWB
+ dpxZ04FL3Fn47qg==
 X-Developer-Key: i=aweber.kernel@gmail.com; a=openpgp;
  fpr=E663000EAC1DECCD6AD2890DB3BBF8A113A05168
 
-This patchset does the following:
+The CLOCK_COUNT defines are not used by device trees, only by the clock
+driver. Keeping them in the DT binding header is frowned upon.
 
-- Introduce support for bus clocks. These are fairly similar to
-  peripheral clocks, but only implement policy, gate and hyst.
+Since they're being moved to the clock driver directly, drop these defines
+from the dt-bindings header and only keep clock IDs.
 
-- Add matching bus clocks for BCM21664 and BCM281xx peripheral clocks
-  and update device tree bindings to match.
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
 Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 ---
-Changes in v7:
-- Drop DTS patches to make merging into the clock tree easier. They will be re-sent
-  in a subsequent patchset.
-- Link to v6: https://lore.kernel.org/r/20250813-kona-bus-clock-v6-0-f5a63d4920a4@gmail.com
-
-Changes in v6:
-- Rebase on v6.16
-- Make kona_bus_clk_ops const, add a new commit to make kona_peri_clk_ops const as well
-- Link to v5: https://lore.kernel.org/r/20250430-kona-bus-clock-v5-0-46766b28b93a@gmail.com/
-
-Changes in v5:
-- Pick up Reviewed-by trailer from Krzysztof on patch 3
-- Rebase on v6.14
-- No code changes since v4
-- Link to v4: https://lore.kernel.org/r/20250318-kona-bus-clock-v4-0-f54416e8328f@gmail.com
-
-Changes in v4:
-- Rename moved CLOCK_COUNT defines to CLK_COUNT to avoid redefinition
-- Squash BCM21664/BCM281xx bus clock DT bindings commits together
-- Link to v3: https://lore.kernel.org/r/20250308-kona-bus-clock-v3-0-d6fb5bfc3b67@gmail.com
-
 Changes in v3:
-- Fix DT schema example in BCM281xx bus clock bindings
-- Move CLOCK_COUNT defines from dt-bindings header to the driver
-- Fix BCM21664 UARTBx_APB IDs being out of order compared to clock
-  driver
-- Link to v2: https://lore.kernel.org/r/20250303-kona-bus-clock-v2-0-a363c6a6b798@gmail.com
-
-Changes in v2:
-- Drop prerequisite clock patch
-- Move clock/bcm21664.h dt-bindings header change to dt-bindings patch
-- Add BCM281xx bus clocks
-- Link to v1: https://lore.kernel.org/r/20250216-kona-bus-clock-v1-0-e8779d77a6f2@gmail.com
-
+- Add this commit
 ---
-Artur Weber (7):
-      clk: bcm: kona: Move CLOCK_COUNT defines into the driver
-      dt-bindings: clock: brcm,kona-ccu: Drop CLOCK_COUNT defines from DT headers
-      dt-bindings: clock: brcm,kona-ccu: Add BCM21664 and BCM281xx bus clocks
-      clk: bcm: kona: Make kona_peri_clk_ops const
-      clk: bcm: kona: Add support for bus clocks
-      clk: bcm21664: Add corresponding bus clocks for peripheral clocks
-      clk: bcm281xx: Add corresponding bus clocks for peripheral clocks
+ include/dt-bindings/clock/bcm21664.h | 4 ----
+ include/dt-bindings/clock/bcm281xx.h | 5 -----
+ 2 files changed, 9 deletions(-)
 
- .../devicetree/bindings/clock/brcm,kona-ccu.yaml   |  49 ++++++-
- drivers/clk/bcm/clk-bcm21664.c                     |  99 ++++++++++++++-
- drivers/clk/bcm/clk-bcm281xx.c                     | 141 ++++++++++++++++++++-
- drivers/clk/bcm/clk-kona-setup.c                   | 116 +++++++++++++++++
- drivers/clk/bcm/clk-kona.c                         |  64 +++++++++-
- drivers/clk/bcm/clk-kona.h                         |  14 +-
- include/dt-bindings/clock/bcm21664.h               |  17 ++-
- include/dt-bindings/clock/bcm281xx.h               |  24 +++-
- 8 files changed, 499 insertions(+), 25 deletions(-)
----
-base-commit: 038d61fd642278bab63ee8ef722c50d10ab01e8f
-change-id: 20250212-kona-bus-clock-4297eefae940
+diff --git a/include/dt-bindings/clock/bcm21664.h b/include/dt-bindings/clock/bcm21664.h
+index 7c7492742f3d..7a380a51848c 100644
+--- a/include/dt-bindings/clock/bcm21664.h
++++ b/include/dt-bindings/clock/bcm21664.h
+@@ -21,12 +21,10 @@
+ /* root CCU clock ids */
+ 
+ #define BCM21664_ROOT_CCU_FRAC_1M		0
+-#define BCM21664_ROOT_CCU_CLOCK_COUNT		1
+ 
+ /* aon CCU clock ids */
+ 
+ #define BCM21664_AON_CCU_HUB_TIMER		0
+-#define BCM21664_AON_CCU_CLOCK_COUNT		1
+ 
+ /* master CCU clock ids */
+ 
+@@ -38,7 +36,6 @@
+ #define BCM21664_MASTER_CCU_SDIO2_SLEEP		5
+ #define BCM21664_MASTER_CCU_SDIO3_SLEEP		6
+ #define BCM21664_MASTER_CCU_SDIO4_SLEEP		7
+-#define BCM21664_MASTER_CCU_CLOCK_COUNT		8
+ 
+ /* slave CCU clock ids */
+ 
+@@ -49,6 +46,5 @@
+ #define BCM21664_SLAVE_CCU_BSC2			4
+ #define BCM21664_SLAVE_CCU_BSC3			5
+ #define BCM21664_SLAVE_CCU_BSC4			6
+-#define BCM21664_SLAVE_CCU_CLOCK_COUNT		7
+ 
+ #endif /* _CLOCK_BCM21664_H */
+diff --git a/include/dt-bindings/clock/bcm281xx.h b/include/dt-bindings/clock/bcm281xx.h
+index d74ca42112e7..0c7a7e10cb42 100644
+--- a/include/dt-bindings/clock/bcm281xx.h
++++ b/include/dt-bindings/clock/bcm281xx.h
+@@ -27,19 +27,16 @@
+ /* root CCU clock ids */
+ 
+ #define BCM281XX_ROOT_CCU_FRAC_1M		0
+-#define BCM281XX_ROOT_CCU_CLOCK_COUNT		1
+ 
+ /* aon CCU clock ids */
+ 
+ #define BCM281XX_AON_CCU_HUB_TIMER		0
+ #define BCM281XX_AON_CCU_PMU_BSC		1
+ #define BCM281XX_AON_CCU_PMU_BSC_VAR		2
+-#define BCM281XX_AON_CCU_CLOCK_COUNT		3
+ 
+ /* hub CCU clock ids */
+ 
+ #define BCM281XX_HUB_CCU_TMON_1M		0
+-#define BCM281XX_HUB_CCU_CLOCK_COUNT		1
+ 
+ /* master CCU clock ids */
+ 
+@@ -50,7 +47,6 @@
+ #define BCM281XX_MASTER_CCU_USB_IC		4
+ #define BCM281XX_MASTER_CCU_HSIC2_48M		5
+ #define BCM281XX_MASTER_CCU_HSIC2_12M		6
+-#define BCM281XX_MASTER_CCU_CLOCK_COUNT		7
+ 
+ /* slave CCU clock ids */
+ 
+@@ -64,6 +60,5 @@
+ #define BCM281XX_SLAVE_CCU_BSC2			7
+ #define BCM281XX_SLAVE_CCU_BSC3			8
+ #define BCM281XX_SLAVE_CCU_PWM			9
+-#define BCM281XX_SLAVE_CCU_CLOCK_COUNT		10
+ 
+ #endif /* _CLOCK_BCM281XX_H */
 
-Best regards,
 -- 
-Artur Weber <aweber.kernel@gmail.com>
+2.51.1
 
 
