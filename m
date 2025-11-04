@@ -1,173 +1,134 @@
-Return-Path: <devicetree+bounces-234881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75B84C31CA2
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 16:15:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80A17C31C45
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 16:12:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6C5B84FD3AE
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 15:05:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D62323AF9B7
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 15:07:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E22A13321B9;
-	Tue,  4 Nov 2025 15:02:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEE9E221F0A;
+	Tue,  4 Nov 2025 15:07:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dgNfDg2f"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EywpkVeG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B73F632F764;
-	Tue,  4 Nov 2025 15:02:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FC3C1A9F83
+	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 15:06:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762268553; cv=none; b=RCk3duZD3aZ0JTHVrFKd3sqLwUf/AVtqqbJR5OFiGJ5d04fZN1JLR4NgKcTd61GxvJ3UJHFvZS3zDu/Ho2bflkzNQQmT2VaQaQDSZm0RVPzdFPYDF2GVVFoe5+7zsAuWQGiBIBWBc9h63e+D8Fhv99jZJ1oNl3A93YOidzDhAA0=
+	t=1762268820; cv=none; b=ZYdJy7+cXKkE0Y1WbOv9ojbyG7XS6qC2CyDF3Cp7u4V8A7i2dee6q5I/2+6eH4YgIm7fo/ksAw1iCozeEgJURxcMfeZpX7bjm7OLefubIZtIj0S4Z9dofwAS9svJOUgXrdLjVKIcdnOzqXMGetz4FwGVx/bRTrC5fl4L+M9srnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762268553; c=relaxed/simple;
-	bh=MadU7Wv2vfsfU9rqxO2fTQYHoMOiOoJoCOKIT1cZTLU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K6QaFyHKzEgqnqmDpvLSo7uP5+wbz+x2vAqcUK4ixY4RiOPQ+D3S+HChsit9KuDSu+OAT4wa5zlsT0fRIinoSVSXUuG28m15MW9pwn6/kKprh8M4IlnydKB/SpaKvn4VYcTY9byrcKFF39Wzkt0K1TVdxZcVOimkfidpErw1AKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dgNfDg2f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6DCBC4CEF7;
-	Tue,  4 Nov 2025 15:02:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762268553;
-	bh=MadU7Wv2vfsfU9rqxO2fTQYHoMOiOoJoCOKIT1cZTLU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dgNfDg2fnXX0TptesTHXdDR4JOXlDtK18bxuZ7ClkWYJuSD4ljAzkBLuEgYZ3apdw
-	 evFm7tNP9CKuq0Wv3j1w5kvBaqWKFzyKQOczGvuK6glxKTzmYFjXDOsYBvf7ORqzzt
-	 oUNj5to1+jkhjT5lahTx/xFGw1Y/v2GNaTxxYgcJBSeWkGA0m98fCl0gI7H09U4Upn
-	 nLhsxOt9/T10PgNZFxOsYaAnfLTW1P/4Z0mbv8BEUvDN7lAQZ6h5VuZn9XP9hWNF2e
-	 lcSGuL1o3PTlc+bA/SnKE5IOpyCSHAcGHc5MCKWxvJeE2exkT01CLEelrIrbpeXMZS
-	 nwTyXpC5bhgRQ==
-Message-ID: <8f6189b0-24ac-4e24-9db5-c6f4d1bfb26a@kernel.org>
-Date: Tue, 4 Nov 2025 16:02:27 +0100
+	s=arc-20240116; t=1762268820; c=relaxed/simple;
+	bh=p5LFmwEX6fbf6gDhCZzGUh0cp3wC6wAYcyXldsJFIIg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=F4Q4ptov1Kr/arNX+Asr3fXX3uIXXB6wXzZVwceHqnOfcGv0mYzAlGsk+EQjDblT/y0DgO4iUqnf5N+HC79i7+oZJT2TYQfXpjonCPFlP+kyIU3XUHBK2xuk4INOd0aKyogqDoxZv+/jal2x9pxxz6A48xGdwFDknA6YPelWMFY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EywpkVeG; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-640860f97b5so4855670a12.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 07:06:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762268817; x=1762873617; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5mpUIW6+CyzXZCjIETW1X/eFRIiBeTonduLxFWGZK/o=;
+        b=EywpkVeGojPWKfwinjWNU8CQw/sSxWBgwCoGqZOYEUDcuUZO66DM4aXSI1nJhmg9wJ
+         W4Y4s4nk5I8wYsexYrGqV0c3MnDPNhBYRoic0JiP6EFedQXXgWvVxvdvdbq3JW24Cqti
+         gSd6tgAEmAe9OLZ1ozHVhQS1KehtyXqlzlLZz3HwodgzqbOxfjKhEmgMvY/lqjseabZy
+         noXJXOUTYWHPASCs3F4xuOD6/SB+Oeh0lJbLlYTUKn4GLmuVi8sGvIgxDjqs29QtWNfB
+         HorT/wWoWHPtEXscvk2am5ifl4H0ObxsBo8IUNpvieUFuVIWlRJAKvLW8UPor7pDpXui
+         eriA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762268817; x=1762873617;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5mpUIW6+CyzXZCjIETW1X/eFRIiBeTonduLxFWGZK/o=;
+        b=hilE8BDaDNt05xM5Y1FA4sm2R3Wky8P+N54JL/eFFzoOcP3dsUm1X9ktFHD2kJz55Q
+         o3Y8zVtrhzZ7v1QlwVwyVarviZrGyr6dFfhegOwITB8kDfFMXVEW9f7bdGyA0Qam20mr
+         4L900b8OfpsUApVL5c9R9XZqvMKjxaNL6HHWaVVv3zQcXKKixEpyvwsd7Xm78H0QNil9
+         qJF7uGFc/8BGf8SyOkL3x8S5z0QKUrTG8uWqCV7o9w5L9qKyqkpQlGx6RYCeEqmglWK0
+         fNfRG0jJavZ6wNGc2CsCk3qzhM+15re2fhOksCxskrB49LsGcWhXDjHy9fMxJH4uTc3N
+         yQpA==
+X-Forwarded-Encrypted: i=1; AJvYcCWWJDvI4X42MPanoa3wBxMW1B1mDIxfRG4EYwIUp0GTG1ORr3ca2eSpY/ktdApGfK5reiYcoA9USeLn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy55i1OK6LdHTVCKP8pTuYF7OTe687EGbSgwmshYoGR0dLO7nyM
+	J/kNn707XzDqImSIAHjPSQFxKLr/cJ3iVxETuRFNQDC1mIs7S92uTL1k
+X-Gm-Gg: ASbGncvijaOK4EY11pp4gKJdujbWh+ewp2OLzUjGpcjfvR7W9KaYGEnThlsphRN8Dsr
+	juT5iYcBSgun6L+YRx0fVUTztK6u/beXOAf2374qq53w9WNXK61UQK9AtpY6o830ZJVNasyTQ0A
+	uAHKTBmzPZWV2nA651OC17FcDYVU1N34WDg1t+L60eHtdqm7LQHtJyDozgasI8aJjDz9UWFu7oE
+	1OWlFXY0qfdnUVO5Pf0QzMfqKtx5e4uUxjBsG0ZFM5Zpj8AUstbomJyY8wUCC2P9ps11MQdsOp+
+	vfRR4gslC3qVFzE+OBuLW75KyIvfj9h0LlN5SoazZXIYTV0H7/069kxSnVNmz10fswMdxg9qRuy
+	1sF3lm8x0OiLxXOTpG6QzH6MXu5yQawnB0akGbSBZV546d28lUUh5C/HBpCpgvdNwrj3Tkh4+nC
+	/nbSET/QZiJMcY6Z39GjMhwGXNbA==
+X-Google-Smtp-Source: AGHT+IHpPTJa2+j0h+Cs4K2bC2PC8wb2EuNR51cOnJgsXf5x4woRyQv45qLS4utiEScOeGGzpAw/cg==
+X-Received: by 2002:a05:6402:50c8:b0:63c:4537:75c0 with SMTP id 4fb4d7f45d1cf-640770823a5mr12779586a12.38.1762268817213;
+        Tue, 04 Nov 2025 07:06:57 -0800 (PST)
+Received: from SMW024614.wbi.nxp.com ([128.77.115.157])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-640e6805da3sm2342014a12.15.2025.11.04.07.06.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Nov 2025 07:06:55 -0800 (PST)
+From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Daniel Baluta <daniel.baluta@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] Switch to using AIPSTZ5 on i.MX8MP
+Date: Tue,  4 Nov 2025 07:06:09 -0800
+Message-ID: <20251104150612.1874-1-laurentiumihalcea111@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: soc: qcom: Add qcom,kaanapali-imem
- compatible
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Robert Marko <robimarko@gmail.com>,
- Das Srinagesh <quic_gurus@quicinc.com>, aiqun.yu@oss.qualcomm.com,
- tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
- yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251102-knp-soc-binding-v3-0-11255ec4a535@oss.qualcomm.com>
- <20251102-knp-soc-binding-v3-1-11255ec4a535@oss.qualcomm.com>
- <20251104-glaring-rebel-pillbug-a467ca@kuoka>
- <790ca394-cee2-412b-97d8-c6416b843010@oss.qualcomm.com>
- <b6717831-1840-4b9a-aade-ab2248e3f75d@kernel.org>
- <9ee07db9-508e-4c08-8f79-6ccfd9b646ab@oss.qualcomm.com>
- <6af33c1b-5b95-4efc-b429-5bfb9ee7caeb@kernel.org>
- <8cf870a8-706d-4514-a87a-a69b64521ab5@oss.qualcomm.com>
- <f539b21b-cfe8-4055-9620-4d5d8d108098@kernel.org>
- <9d80b581-5d3f-4b95-91e7-c73c113b0976@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <9d80b581-5d3f-4b95-91e7-c73c113b0976@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 04/11/2025 15:58, Konrad Dybcio wrote:
-> On 11/4/25 3:52 PM, Krzysztof Kozlowski wrote:
->> On 04/11/2025 15:38, Konrad Dybcio wrote:
->>> On 11/4/25 3:37 PM, Krzysztof Kozlowski wrote:
->>>> On 04/11/2025 15:35, Konrad Dybcio wrote:
->>>>> On 11/4/25 3:26 PM, Krzysztof Kozlowski wrote:
->>>>>> This I got, but nothing here explains why you need generic compatible.
->>>>>> To re-iterate: there was no generic compatible before, now there is.
->>>>>> Writing bindings and numerous reviews from DT maintainers ask not to use
->>>>>> generic compatibles.
->>>>>
->>>>> OK so let's not worry about a generic compatible. IMEM exists since
->>>>> MSM8974 and it only had major hw updates with SM8550. They don't
->>>>> impact the software interface though, so qcom,msm8974-imem is OK.
->>>>>
->>>>> There's a separate control/status register address space for each
->>>>> instance of this IP (usually far apart from the actual SRAM pool),
->>>>> which Linux doesn't have to care about.
->>>>
->>>> Just use qcom,kaanapali-imem - that's the first device here without syscons.
->>>
->>> So we don't want to move the existing ones over?
->>
->> This was never discussed and this patch did not do it. You cannot move
->> them, that's ABI.
-> 
-> I see, I implicitly assumed this would be a sweeping change.
-> 
-> So should the Kaanapali submitters simply send a version of this
-> patch with:
-> 
-> - oneOf:
->   - const: qcom,kaanapali-imem
->   - items:
->     # existing big list
-> 
-> ?
-> 
-> I'm not a huge fan of using kaanapali as the fallback-going-forward
-> since it's literally the newest platform on the shelves (or perhaps
-> not even on the shelves yet..) so it's going to look funny when
-> someone comes up with support for another 2013 soc.. but perhaps
-> that's just how things are supposed to be
+From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
+This series is a combination of the previously dropped patches from [1]
+and the config-related patch from [2]. This enables the usage of AIPSTZ5
+on i.MX8MP-based platforms.
 
-Yes. Feel free to choose other fully compatible device as the fallback,
-like you mentioned in previous email, I proposed Kaanapali as the easiest.
+[1]: https://lore.kernel.org/lkml/20250610160152.1113930-1-laurentiumihalcea111@gmail.com/
+[2]: https://lore.kernel.org/lkml/20250707234628.164151-1-laurentiumihalcea111@gmail.com/
 
-Best regards,
-Krzysztof
+---
+Changes in v2:
+
+* squash patch 3 into patch 4.
+* rewrite commit message of patch 1 to state that this driver is used
+  for the IMX8MP-EVK board.
+* rewrite commit message of patch 2 to (hopefully) better describe
+  why we need this change.
+* link to v1: https://lore.kernel.org/lkml/20250821105634.1893-1-laurentiumihalcea111@gmail.com/
+---
+
+Laurentiu Mihalcea (3):
+  arm64: defconfig: enable i.MX AIPSTZ driver
+  arm64: dts: imx8mp: convert 'aips5' to 'aipstz5'
+  arm64: dts: imx8mp: make 'dsp' node depend on 'aips5'
+
+ arch/arm64/boot/dts/freescale/imx8mp-aipstz.h | 33 +++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     | 16 ++++++---
+ arch/arm64/configs/defconfig                  |  1 +
+ 3 files changed, 46 insertions(+), 4 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aipstz.h
+
+-- 
+2.43.0
+
 
