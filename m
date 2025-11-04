@@ -1,168 +1,172 @@
-Return-Path: <devicetree+bounces-234852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E8DAC3173F
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 15:16:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 939F3C31842
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 15:29:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3EC2C4F7044
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 14:15:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 934983ABDBD
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 14:26:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F39D246BC6;
-	Tue,  4 Nov 2025 14:15:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94D9C324B39;
+	Tue,  4 Nov 2025 14:26:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="pg0Z0YP0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GajqFWEr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93A3532E751;
-	Tue,  4 Nov 2025 14:15:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64C292EBDCB;
+	Tue,  4 Nov 2025 14:26:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762265724; cv=none; b=JSPGuJM49aThhN8KGZheXevb3GFWYXRv3mO+0TY8K/4cErhgxc6cmO7xyVCmV/G/4W5QLqvs9NArt5p0qXhYg+adiups86t8frq/DK64KnOKFQ2qPu8ibGfAceO79bJe+uTioMr2aQXNEPjhHdY25wU7euIPIt44/RbHh7iqaRA=
+	t=1762266370; cv=none; b=dcerps4983KtvKW/N6944LDIeek33jL7QbULoH9dhFonP2NTeI9a+o/yOL7FeyVop+Dxo8CW4Utd4a62LhxAF6ZclMYtHb7rfty4un5a/dZ7Q45xGulXWfqImIowKIlMv2JSHUtExIgGuurwonxCae5+ZodvFPr4Sk9VX/0BpXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762265724; c=relaxed/simple;
-	bh=KnqKqeuMjAyZCXPcE917JkaJkCoN8vo1ZqYO/COHYQ4=;
-	h=From:Content-Type:Date:Cc:To:MIME-Version:Message-ID:Subject; b=MrtsROYJE1WlAOeIfiHz0qlRAHwagMtMq5dlacYS/QmBgEoCsfXyEOaIolnvT95dy7/SMr5EbY+mck2fBI3Eli33JUsLiz6JQ+hikxNcNT+tbQ4uyjM4jNFWVlxUMEN9zgpRHaasDRUVq637vwrgbFPmxJR+HzMoXAiWY8kPHf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=pg0Z0YP0; arc=none smtp.client-ip=142.132.176.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id B2F1840E58;
-	Tue,  4 Nov 2025 15:15:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
-	t=1762265711; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding; bh=heBDAPe+EDP5KXVqXGrOUdIPLJKmXSTtMeNmnTa/byk=;
-	b=pg0Z0YP0QZayfNRkiCt/zw6yQFA/WqH8GvYryOee+PIB88s0zimfnARzt22TdPatiC0rFg
-	42zBenoFfidM+Z4KmnS6SYyaQgL8bPZdxYQZx0fYPPvBmGW/gPAMngncn2fnFRhbKW1zID
-	EtZ8jFKNgDaqvKz+NCa5pD8dJXOa8Hd6FXK4J+MlqtS1VH9a9hfCx8wXgF8wZXPk7NczjU
-	RJSwNhRPRkwxAnqs8y4CqcWNYqJw8E2JjP1iCGbqcrtiaI2fRStA7UBzQ3iULaMBGmhqnN
-	A4R3r4SOZekPxEivrkEnalx11C995xVVQgIPhg1rpIqnA7GJgBTmcRdMTnCH6w==
-From: "Dragan Simic" <dsimic@manjaro.org>
-Content-Type: text/plain; charset="utf-8"
-Date: Tue, 04 Nov 2025 15:15:10 +0100
-Cc: "Heiko Stuebner" <heiko@sntech.de>, "Alexey Charkov" <alchark@gmail.com>, conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, robh@kernel.org
-To: "Hugh Cole-Baker" <sigmaris@gmail.com>
+	s=arc-20240116; t=1762266370; c=relaxed/simple;
+	bh=8/pICxOi6wsmpEPfhRShty6JhC0Ysu9IAZRq8awAsWI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fakT0HGjTFkFwDKLyLuMPfSbctrsWNuVlq4gUsPz/EN8Oei1p59NX1In3K6tukQXPOC2+oQmkpIH2gvi8clEzLJ/1XLK53VMX8+G+QIo5A34e3CkuGP84H8qtMD5mXv4T6DCqWUZGMxV377IWacbOaTE4FmNMG38Gsmu6HAL9Qo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GajqFWEr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D977C4CEF7;
+	Tue,  4 Nov 2025 14:26:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762266368;
+	bh=8/pICxOi6wsmpEPfhRShty6JhC0Ysu9IAZRq8awAsWI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=GajqFWErKv5jv64ubYOvWw+U+rkMGY6OKEaj79rzbH56wpR/icFei7lm1LqHkTnCk
+	 wP36yqtdNRO1unv5LHZ95fj6C8F2ky5sJPh0iPssTGSIilMUQZ7ks5SmvY6z67jygd
+	 S44lNwn8uolq5zHzJrqlbyAm7cMUNGFMXMTV8h5ktlJsYp/EXWRl0QlHGbh+/7r3Aw
+	 72yc1CTy2hDfnmce/Pby1A5FP3PZ7CbUOnaVe2DaE24UdyDx3ABnW9JYa7LPSIygse
+	 6KHT3Xv2U/ZfBudsp3zycd0jfi7HQOc0Wa0O0xPsM5c1l8ReH5shJQfTaKMiCjyQL7
+	 Cx+LpKRcVwrXA==
+Message-ID: <b6717831-1840-4b9a-aade-ab2248e3f75d@kernel.org>
+Date: Tue, 4 Nov 2025 15:26:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <232be108-ea84-2808-77b9-ff46d2b8baf7@manjaro.org>
-Subject: =?utf-8?q?Re=3A?= [PATCH] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
- =?utf-8?q?_rockchip=3A?= pwm-fan overlay for NanoPC-T6
-User-Agent: SOGoMail 5.12.3
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: None
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: soc: qcom: Add qcom,kaanapali-imem
+ compatible
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Robert Marko <robimarko@gmail.com>,
+ Das Srinagesh <quic_gurus@quicinc.com>, aiqun.yu@oss.qualcomm.com,
+ tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+ yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251102-knp-soc-binding-v3-0-11255ec4a535@oss.qualcomm.com>
+ <20251102-knp-soc-binding-v3-1-11255ec4a535@oss.qualcomm.com>
+ <20251104-glaring-rebel-pillbug-a467ca@kuoka>
+ <790ca394-cee2-412b-97d8-c6416b843010@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <790ca394-cee2-412b-97d8-c6416b843010@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-(Resending because the original message ended up on some spam lists,
-seemingly as a result of some UTF-8 characters in the subject.)
+On 04/11/2025 13:32, Konrad Dybcio wrote:
+> On 11/4/25 9:16 AM, Krzysztof Kozlowski wrote:
+>> On Sun, Nov 02, 2025 at 11:25:06PM -0800, Jingyi Wang wrote:
+>>> Document qcom,kaanapali-imem compatible. Kaanapali IMEM is not a syscon or
+>>> simple-mfd, also "reboot reason" is not required on Kaanapali like some
+>>
+>> I do not see correlation. Something is not a syscon, so you add a new
+>> generic compatible? No.
+>>
+>>> other platforms. So define a common "qcom,imem" binding and fallback to it.
+>>
+>> You did not define fallback to it!
+>>
+>> ...
+>>
+>>> +      - items:
+>>> +          - enum:
+>>> +              - qcom,kaanapali-imem
+>>> +          - const: qcom,imem
+>>
+>> I do not understand what this generic compatible is supposed to express,
+>> not explained in commit msg. Considering this wasn't before, it is a
+>> major and really undesired change. It also makes no sesne. There was no
+>> generic compatible before but "if not syscon" now this must have generic
+>> compatible, what?
+> 
+> So IMEM (or SYSTEM_IMEM more specifically as opposed to BOOT_IMEM which
+> you can take your guesses what it's used for) is to the best of our
+> understanding just a piece of SRAM that's accessible by multiple
+> processors/subsystems on the SoC.
+> 
+> A smaller region within it ("shared IMEM") is a little bit of a dumping
+> ground for various (incl. runtime) configuration and debug magic data
+> and that's usually what Linux is concerned with.
+> 
+> IMEM is currently described as a simple-mfd+syscon, which it is clearly
+> not. The former, as we've established in the past, was used as a hack to
+> have something call of_platform_populate().
+> 
+> I think that in turn is only necessary for the old arm32 DTs which have
+> a syscon-reboot-mode node under IMEM (and I think that's where the syscon
+> compatible comes from).
+> 
+> Should we make the switch to mmio-sram and settle this discussion?
+> It would probably require convincing the sram maintainer to add that
+> of_platform_populate() call in its probe func and making syscon-reboot
+> not depend on a syscon (not like it's very hard)
 
-Hello Hugh,
+This I got, but nothing here explains why you need generic compatible.
+To re-iterate: there was no generic compatible before, now there is.
+Writing bindings and numerous reviews from DT maintainers ask not to use
+generic compatibles.
 
-On Saturday, November 01, 2025 14:14 CET, Hugh Cole-Baker <sigmaris@gma=
-il.com> wrote:
-> On 01/11/2025 11:44, Heiko Stuebner wrote:
-> > Personally, I'm more on the less complication side.
-> >=20
-> > I.e. if there is an actual fan-connector on the board we should des=
-cribe
-> > it as such.
-> >=20
-> > Overlays I see for things where you attach hats to generic pin head=
-ers
-> > to create specific functionality on top of a generic interface.
-> >=20
-> > But if the board itself has an actual fan header, it should be desc=
-ribed
-> > as such. Because that then =5Fis=5F the standard use of that.
->=20
-> The board does have a fan connector, just no fan by default. But anyw=
-ay,
-> since it sounds like the preferred approach I'll send a v2 which puts=
- the
-> fan into the base board .dts.
->=20
-> Dragan, you mentioned there's no need for more than 2 trip points - i=
-f
-> I remove the trip points between "SoC is warm, start fan at slow spee=
-d"
-> and "SoC is v. hot, run fan at full speed" is the OS/kernel expected =
-to
-> interpolate between those 2 trip points (if you have a link to docs o=
-r
-> code about this it'd be interesting, I couldn't find anything in the
-> dt-bindings)?
-
-True, that isn't described in the bindings, because it basically
-doesn't belong there.  Thus, the most specific description of the
-associated cooling stuff, as provided by the bindings, is the
-following excerpt from Documentation/devicetree/bindings/thermal/
-thermal-zones.yaml:
-
-  209 cooling-device:
-  210   $ref: /schemas/types.yaml#/definitions/phandle-array
-  211   description:
-  212     A list of cooling device phandles along with the minimum
-  213     and maximum cooling state specifiers for each cooling
-  214     device. Using the THERMAL=5FNO=5FLIMIT (-1UL) constant in the
-  215     cooling-device phandle limit specifier lets the framework
-  216     use the minimum and maximum cooling state for that cooling
-  217     device automatically.
-
-That's where the cooling hardware description ends, so that's also
-where the associated binding ends.  Everything else belongs to the
-thermal governors, because they actually decide on how to best use
-the available cooling features.
-
-For example, the chain of events may look like this:
-
-  (1) The rockchip=5Fthermal=5Falarm=5Firq=5Fthread() function, defined=
- in
-      drivers/thermal/rockchip=5Fthermal.c, gets triggered by TSADC
-      within the parameters of DT-defined "active" trip types
-
-  (2) It calls the thermal=5Fzone=5Fdevice=5Fupdate() function defined
-      in drivers/thermal/thermal=5Fcore.c
-
-  (3) This ends up calling the step=5Fwise=5Fmanage() function that's
-      defined in drivers/thermal/gov=5Fstep=5Fwise.c, which handles
-      the previously triggered "active" trip
-
-  (4) This calls the drivers/thermal/gov=5Fstep=5Fwise.c's locally
-      defined thermal=5Fzone=5Ftrip=5Fupdate() and get=5Ftarget=5Fstate=
-()
-      functions, which end up ramping the fan speed up and down
-      as needed, while respecting the upper and lower limits
-      defined through the "cooling-device" DT map properties,
-      which correspond to the "cooling-levels" defined in the
-      DT fan property
-
-Here's also an excerpt from drivers/thermal/gov=5Fstep=5Fwise.c, which
-confirms all this and explains it a bit further:
-
-  113  /*
-  114   * Throttling Logic: Use the trend of the thermal zone to thrott=
-le.
-  115   * If the thermal zone is 'heating up', throttle all of the cool=
-ing
-  116   * devices associated with each trip point by one step. If the z=
-one
-  117   * is 'cooling down', it brings back the performance of the devi=
-ces
-  118   * by one step.
-  119   */
-
-With all that in mind, the fan will ramp its speed up and down
-nicely, according to the current temperature, with no need for
-having multiple manually defined steps.
-
-The intended benefit of having the two usual, distinct "active"
-thermal trips and cooling maps is to lower the fan-induced noise
-a bit while not affecting the cooling much.  This is all visible
-in rk3399-rockpro64.dtsi, for example.
-
+Best regards,
+Krzysztof
 
