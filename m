@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-234926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AAF4C324C3
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 18:20:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 507E5C324E2
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 18:22:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 274A73A4081
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 17:20:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 945CB3ACD0C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 17:22:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA4A7337BB8;
-	Tue,  4 Nov 2025 17:20:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A1343396EE;
+	Tue,  4 Nov 2025 17:21:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wiyp6CfS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O09p6ApL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4254F3271EF;
-	Tue,  4 Nov 2025 17:20:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 427C3337104;
+	Tue,  4 Nov 2025 17:21:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762276840; cv=none; b=VGRrly0/cfYxY16GpH7SMeXAVhTNQ72bfesaO1WAhGVnH6FE/VOet0dFAYTrYNLzS7S0wCqR3iUkayXMeaiiJqE/O+krfCKi8POhEDiAjGpbRrkfDOEamg+oAo+Tom4qNfgz1BYAdhIeA3qcKToCzBaA2PXR3BrJTTNfU2IsksI=
+	t=1762276904; cv=none; b=L2gbK1oW0sPHfjn1WeYH1ZIFFHHbhim54toZthwRx9XimHwFS46u45amc7EKvQi3zgJ+oTiEePcj0qGAuakviqN/qGoIJCT3j26JFhJ43efctM6aUofgpmo+IAVyUibrYXBjB2C4boMLiUUqNPmTNB+jySbqnhjLdJDEZKnK2ew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762276840; c=relaxed/simple;
-	bh=jmu6OyWnBMfKHX6Zj0i7cFQhUadJ2xlzy+K+HbdcDLs=;
+	s=arc-20240116; t=1762276904; c=relaxed/simple;
+	bh=8EJ06/xu+MF3npKBmkZkcX4nKJgZvz6INMbxir4/Xe4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jVHaSUmRAjrLw0zTUqOMy2/wLIfIN5nJ1QaXXYlvUw2uT++LhIC17bv6SadVAs2yW/PyDCL3drSeTxCbLUUpxBaa4SsPcwlZBPNc67irNb9bZ196TGmllwc8+FUhnjI6/f8dfx447DhY3qxfJoLsoDaMZKzQ2owFbz9wTSkTNKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wiyp6CfS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3005FC4CEF7;
-	Tue,  4 Nov 2025 17:20:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ahjA5JA0fpHBRoPSDz+xlx7RdJJ7woFHQfZtaB7oB9LsxY/kajPAsgz6X1SwndRSlcT6aVY9HRLzmTV2qF1adshp+4BeMqk5JAaNS387Us4t1/VQuuHOdMhkFfW1yn32NwdfC9xWFm69mCIQ9BqJfAxxDvc3usIByknIHx8X3Rs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O09p6ApL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C666FC4CEF8;
+	Tue,  4 Nov 2025 17:21:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762276839;
-	bh=jmu6OyWnBMfKHX6Zj0i7cFQhUadJ2xlzy+K+HbdcDLs=;
+	s=k20201202; t=1762276903;
+	bh=8EJ06/xu+MF3npKBmkZkcX4nKJgZvz6INMbxir4/Xe4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Wiyp6CfSiFTBpq0MyIPe5kAEf43OVKzhCk9j1lClY2xTc3246kr3Ek4gwZ3x67gcY
-	 pUaFKlViKPZ1Sa6BSvDg9MkcxnFSqOK4NWlAJAX7f1gBwF6gMN9d1GRUe+YzmVMnBe
-	 JjyPzbyrEwIWdV8mxoPR77le5GCDewlixY26QlpQYx0sRQLPVTOH1y9OjT9BA13UdK
-	 luHRPBLLpl5fZxvs2z/vPhVonz9jVN5LEJkk3J/mww3kAbA+cIGrdmvibcRbeAHZn8
-	 K3gTxcvRuRwt00jjq7GdIm2AAoi/yd64MhuKTn7SDM30V2SsM7QryoU0+XlI2r9uil
-	 znvBTyN1ZYxwg==
-Date: Tue, 4 Nov 2025 17:20:34 +0000
+	b=O09p6ApLebmrl/aHzF6TcAoaXfhDCrzMISaQ5q8vGfdY8Bd6AIySyugt1StuAtiar
+	 ozDRdquvT8cnFImmxDdKkLTu08IgDACEku9FuBDOfWnqsrVwDaq4S016OwF2C4P8Dx
+	 Fve71DPcsTCjSmGb0ZQszdeS3QxPKwBTpvRIeGwgNNaMJEZlmBzmjiGTQd+lGutRe3
+	 3eu26Fs9ShJx51vYDGf58SqAjHdICcA0pF01t6Gxd2kZwEivF2ZyFdVJ555Fj7rx+T
+	 WuYKQXsdojm6sHUUbGlPmeG9garKVVzsMsj+ppOuaOgr7KlPZgCltdQYcUUNlO9O6T
+	 orin7P94k+zxw==
+Date: Tue, 4 Nov 2025 17:21:39 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Gatien Chevallier <gatien.chevallier@foss.st.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: Re: [PATCH v1 1/3] dt-bindings: arm: ti: add Toradex Aquila AM69
-Message-ID: <20251104-spiny-tumbling-87cb4d754be6@spud>
-References: <20251104144915.60445-1-francesco@dolcini.it>
- <20251104145240.61219-1-francesco@dolcini.it>
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: bus: add stm32mp21 RIFSC compatible
+Message-ID: <20251104-cycling-paralyses-8e99cda7944c@spud>
+References: <20251104-rifsc_debugfs-v1-0-7ebdfbf8d33f@foss.st.com>
+ <20251104-rifsc_debugfs-v1-1-7ebdfbf8d33f@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,44 +62,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="X2GGlsUyBYvruX+g"
+	protocol="application/pgp-signature"; boundary="Ja5NuCERZEEhWodx"
 Content-Disposition: inline
-In-Reply-To: <20251104145240.61219-1-francesco@dolcini.it>
+In-Reply-To: <20251104-rifsc_debugfs-v1-1-7ebdfbf8d33f@foss.st.com>
 
 
---X2GGlsUyBYvruX+g
-Content-Type: text/plain; charset=iso-8859-1
+--Ja5NuCERZEEhWodx
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 04, 2025 at 03:52:35PM +0100, Francesco Dolcini wrote:
-> From: Jo=E3o Paulo Gon=E7alves <joao.goncalves@toradex.com>
+On Tue, Nov 04, 2025 at 02:54:10PM +0100, Gatien Chevallier wrote:
+> The STM32MP21x platforms have a slightly different RIFSC. While its
+> core functionalities are similar, the wiring is not the same. Hence,
+> declare a new compatible.
 >=20
-> Add DT compatible strings for the Toradex Aquila AM69 SoM and its
-> supported carrier boards: the Aquila Development Board and the Clover
-> carrier board.
->=20
-> Link: https://www.toradex.com/computer-on-modules/aquila-arm-family/ti-am=
-69
-> Link: https://www.toradex.com/products/carrier-board/aquila-development-b=
-oard-kit
-> Link: https://www.toradex.com/products/carrier-board/clover
-> Signed-off-by: Jo=E3o Paulo Gon=E7alves <joao.goncalves@toradex.com>
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 pw-bot: not-applicable
 
---X2GGlsUyBYvruX+g
+--Ja5NuCERZEEhWodx
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQo13gAKCRB4tDGHoIJi
-0sxkAP4+vHqzJhRKRiGqUGCwTfOBg6kzrwpHR4sIHF8nStqKFAD8Cym+92y4xamh
-7UzbMTgSKxHrqRwnyTHjSSTQQTOHtw8=
-=oY/v
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQo2IwAKCRB4tDGHoIJi
+0sdCAP9L1bHKFI2Qo75eH5i+O1mmMlb2f4QGSM0NNzMxwNGoRwEA6NFzMMoR4anc
+eHAn0FSEmUesoeTP9grmuAiPkOVScAw=
+=8oy3
 -----END PGP SIGNATURE-----
 
---X2GGlsUyBYvruX+g--
+--Ja5NuCERZEEhWodx--
 
