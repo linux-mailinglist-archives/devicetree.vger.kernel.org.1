@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-234701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86553C2FE64
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 09:32:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 788CDC2FE7C
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 09:33:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99AA81882A1D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 08:27:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C7481889757
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 08:27:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3F6D3112D3;
-	Tue,  4 Nov 2025 08:22:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A71131329E;
+	Tue,  4 Nov 2025 08:23:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZPbwNonw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j7xPuPhq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A0612248A8;
-	Tue,  4 Nov 2025 08:22:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54E4A311596;
+	Tue,  4 Nov 2025 08:23:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762244556; cv=none; b=PPJSEuV9TkeNkaFLUqrwl+r5VC2jPRSo1zo+ZfRKqRMB29D5LqXzgN95W/5a0P8Ak0tG3ranhHnfg+HQ++DXFjE9AadBbd8CfgXxMb6t/i3WYLvNhgVKxZnw/3XFzky6qm7EQR83pIoddpoAevKhRpCkgQYPQ2WMcEcLeuVa2h8=
+	t=1762244633; cv=none; b=ncBIsv0JqJ4NtlwNhFVUjrD/LnGSy2/e1B1H5Vkcd6EwQA1Tz5XADPRV/CZPUYx+HLshTEN/348AhIZsOuJNMdAeO+SUsD/Xh2MwIzVMheZ/AAsg9HYn6oVkGF5XCkxClnNo8tevMyZ8ShEhB/R5v+NGUTbpAMDx569wGq+QEUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762244556; c=relaxed/simple;
-	bh=ReIHYoZ0hfuPqjEQELfx5zZWt5YlSXlsiSnCN8jUknA=;
+	s=arc-20240116; t=1762244633; c=relaxed/simple;
+	bh=eKJUNYg3k9kAkrM1K2ms5vRzV9lqnBJj9YdqG9NsI/Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pdgeG9Uge1wt9ffKVLYMfIgrV3T+gvqUrNC13+rpytMYAxc22CR+0jDRNz474JFoMejqvqOP219xitU+jQGyxzkSeRZs5vaMmNg2kPR2NP1QddIZuwoxEWjAh3I+BjOgg4JPBx/HbK1tB2OmiZi3XCnRskTR+CbdUAs4gj+PoWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZPbwNonw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D539C4CEF7;
-	Tue,  4 Nov 2025 08:22:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IY+CqHXiQckS/6xDyAJA73+MKfRspQYmHjEOUKAofC4HvIiXXQWcUGDMnU/raTbxYZlCR2g5AbNAI2X3PvTbkjXTyXvf4iCSdt3+nmEaqLqJeVZq4wMDvwdKjTFYPRD72vaU2IIeTkXx2VtNo+vAPfhB2ZjlydxEBw/2h/vXhQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j7xPuPhq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53442C4CEF7;
+	Tue,  4 Nov 2025 08:23:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762244556;
-	bh=ReIHYoZ0hfuPqjEQELfx5zZWt5YlSXlsiSnCN8jUknA=;
+	s=k20201202; t=1762244631;
+	bh=eKJUNYg3k9kAkrM1K2ms5vRzV9lqnBJj9YdqG9NsI/Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZPbwNonw93eAJJvAlPi5vo8zgVf76U06SpHwN8KcdItl2PD2A2gaGXwc6ZjgWx4uS
-	 wb801lM9uqwgMc0JomOoA+VmFd+G2mvXpEZ7ddbT+wQyqcrhMHOEgeV27krAw5KbxX
-	 2KU2rKAJO6ZuWiiPrrm3YwlXeVMwGrBbz+YyXho3rjEu3tuVIIx0UkuFxytgLmMNz2
-	 kyB0Gott5qFfuh3RI6jNeECSOkrtWGvlhrjJPzyTzGSjBJPfqEWZi8NYgsp60vA8P9
-	 U6ERelUNMVbVP8VMRNGL/KQAVcDzR6CzGYZf6c80bCUP5jdkTwl8Sozrpz1aOogxMg
-	 OjSVmzxjry5xw==
-Date: Tue, 4 Nov 2025 09:22:34 +0100
+	b=j7xPuPhqwQgc1yr+DO7h4WkCGNei9+hjF1Durdj40HMkGetEt2MlQf1UwAtmR/OdP
+	 0Z0fed1MgnO0sqfaZ08FG5I9RpRfyLFByqVk4NhbwWOzDxC1xGCShg9d/2w67ynwTU
+	 fAHfpCUZ7elvCf9gS9g9TdjZyrFSlydFrcMazhxmqu8wmNkLDpeta9BThCMfTJ9n+1
+	 AP+FUi8Nwzm2+LjkB6M+oP7HjD78qo4TboLvFaYCxOboDq+g2gCVAgu0l5//MbMm68
+	 OGIql1KTzpd5dBQ67isXeSb/vVcfQTdbnCmMNrghRIR51IZeBGrCKwiwsK5knMcSr7
+	 XNoAtlHGa9dSw==
+Date: Tue, 4 Nov 2025 09:23:49 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Peter Shen <sjg168@gmail.com>
 Cc: Andrew Jeffery <andrew@codeconstruct.com.au>, 
@@ -49,11 +49,11 @@ Cc: Andrew Jeffery <andrew@codeconstruct.com.au>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
 	peter.shen@amd.com
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: aspeed: Add compatible for
- Facebook Anacapa BMC
-Message-ID: <20251104-mellow-denim-dogfish-4affdb@kuoka>
+Subject: Re: [PATCH v3 2/2] ARM: dts: aspeed: Add Device Tree for Facebook
+ Anacapa BMC
+Message-ID: <20251104-fantastic-merciful-giraffe-0cbf87@kuoka>
 References: <20251103093320.1392256-1-peter.shen@amd.com>
- <20251103093320.1392256-2-peter.shen@amd.com>
+ <20251103093320.1392256-3-peter.shen@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,16 +62,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251103093320.1392256-2-peter.shen@amd.com>
+In-Reply-To: <20251103093320.1392256-3-peter.shen@amd.com>
 
-On Mon, Nov 03, 2025 at 05:33:19PM +0800, Peter Shen wrote:
-> This patch adds the compatible string for the Facebook Anacapa BMC
-> which uses an Aspeed AST2600 SoC. This is required before adding
-> the board's device tree source file.
+On Mon, Nov 03, 2025 at 05:33:20PM +0800, Peter Shen wrote:
+> Add the initial device tree source file for the Facebook Anacapa BMC
+> platform, based on the Aspeed AST2600 SoC.
+> 
+> This device tree configures the platform-specific peripherals and
+> aliases for OpenBMC usage.
 > 
 > Signed-off-by: Peter Shen <peter.shen@amd.com>
 
-Still broken email/DCO chain. Run checkpatch BEFORE you send, not after.
+Broken DCO, see submitting patches and checkpatch.
 
 Best regards,
 Krzysztof
