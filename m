@@ -1,666 +1,548 @@
-Return-Path: <devicetree+bounces-234634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00DE6C2F74C
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 07:40:00 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D72E0C2F75E
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 07:42:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7DA53B836A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 06:39:59 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BCD6C4E5CEE
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 06:42:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3623627B4F5;
-	Tue,  4 Nov 2025 06:39:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4BE827FD7D;
+	Tue,  4 Nov 2025 06:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="OfTE9DS0"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mkJRlasC";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="dPNSv+hs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011039.outbound.protection.outlook.com [52.101.70.39])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 290432BD03;
-	Tue,  4 Nov 2025 06:39:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.39
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762238397; cv=fail; b=WW3UfhpfIlGFI7tLYp1Kfu7xOr2qwW+r78AZ+v3qowoh/7MEeUmQPEd0XYDgYlM67PSBWxjkOQDguYz7a2Kwcib+mxXMBw/OPF0RdVeb/nCnxb5AUueKkI+MReM1mRKZKxz5gpznEgy+UyQy6ZhevIdtdZ5ztzF3h94QqhQ29l0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762238397; c=relaxed/simple;
-	bh=29nmZoi/XiLOmuZxNi1KoAR9dtHKNHsKZBVx97Tpla0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=HiecRsaCHBfIHvcatY5AwVO0+rIxWoOW+aHdvmaOcX9uvMkDDo91cEiSg2vcYTj8UeFqrYQVBD8sO1CirlA8QglH6PD5zquD5nrDJH3GxrbS28kxRKrWD0bJeOwkpsSHCqlusAPfFvSygO7FP0pqK9TkFKQajsyrUfV0Iq80oNA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=OfTE9DS0; arc=fail smtp.client-ip=52.101.70.39
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=X6+SAARATriZBG8gvUGmSJs2mDUeC8JUq3aSkGQCaR4fMxVzSzE0rS+YLm3oe5xfPJB/APcgqkXma/Qtc6WQArkekRNCw3/iguhIjwIGgXYiOk9M+1Ggyy93AMgLxPaZ2v56wApPKzfgyZ9c6SKnNmjBTE3vSPWp+Xga8m9tMvEIhDM02fsxeQeWhkBtfUiJknDKeKeeGnN4ElCiuMMOfqu5jmqKsb/pX0v6/PO27j53pT8uRqP0LZ9gka9Ulu26iFQTToWM7cr+xlu4MuNiOiRhO/05lHm0HCAbf8zEtEct/utYu2RN9gNbSu4aYr7xNf3Q4t+Iyx+RLYZbTkhwSg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ACz1dhmQycq7qv7ROuyb/VjQaJwtouTfv7uA8eX3Qw4=;
- b=KH2+duD4YQpC+eHQIp2bBshUCV3OkRTH6nghJx4R7DzSB4LJA9Ugq0vXMUr9DUIzXSnM0KNxWK/rKA1SYWLxAtm0iXNGa1Hq+Pkx9Hr+U2ipUzuh8rcNMpuc5In2ajzo8jf3HrVJa90fMY02KupYf4RyVPKguf5p0umh//nhG1kNSoQAjTwHshEYxAHcm1aUYhstZJbPrR/hvToED+CGV8V3hecMuSrdm40eJ2oXDIMPpjrkB2usmiAksfu7bdo3RZKQSkYuitGhED0WjIblFOsUTgiMJJXWjdogEiQKDZUSlZ5POqyaq0AhFJxrImZjbeRKH4aSZNzca5So3cdk6w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ACz1dhmQycq7qv7ROuyb/VjQaJwtouTfv7uA8eX3Qw4=;
- b=OfTE9DS0lwrLj8YlAd8rskmzBMaT6lJItSD10opaYJYd8SXWuhJCeitK0o/DDqa6xFdlE828RSWUn7tKCYLLNz0qDzuu4ziuL32p8Ad1ovbFo+5ghTICZQxoq+l0avynp2Giu53GDnwdQK/j5Ifjb2UV172k6xv9nNzdDFK7p1D4OLXHIjGkXukoMcoq66emR34M4YJTsS8+JvMDIqlkMtPeJbCvs8JfSOwv2dIKHMTvbt/LrpU14I51aLwreIhSEVOuKAh5KvicX/WWo+9N6KXknYpHePDEWH2SGj3tasgRv0nPxqNRc393cNPuaDBHrv1A0kmNSA+F52igfVZlXg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB8829.eurprd04.prod.outlook.com (2603:10a6:102:20c::17)
- by PA4PR04MB7950.eurprd04.prod.outlook.com (2603:10a6:102:c6::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.16; Tue, 4 Nov
- 2025 06:39:51 +0000
-Received: from PAXPR04MB8829.eurprd04.prod.outlook.com
- ([fe80::cdc5:713a:9592:f7ad]) by PAXPR04MB8829.eurprd04.prod.outlook.com
- ([fe80::cdc5:713a:9592:f7ad%7]) with mapi id 15.20.9275.015; Tue, 4 Nov 2025
- 06:39:51 +0000
-Date: Tue, 4 Nov 2025 14:33:08 +0800
-From: Xu Yang <xu.yang_2@nxp.com>
-To: Namhyung Kim <namhyung@kernel.org>
-Cc: Frank Li <Frank.li@nxp.com>, Will Deacon <will@kernel.org>, 
-	Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	John Garry <john.g.garry@oracle.com>, James Clark <james.clark@linaro.org>, 
-	Mike Leach <mike.leach@linaro.org>, Leo Yan <leo.yan@linux.dev>, 
-	Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
-	Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>, 
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>, 
-	Adrian Hunter <adrian.hunter@intel.com>, linux-arm-kernel@lists.infradead.org, 
-	linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v2 3/5] perf vendor events arm64:: Add i.MX94 DDR
- Performance Monitor metrics
-Message-ID: <wlziowwtfqbhzsltffm4l3pxntev3lgjan44wfixztnk3gw5d7@z2selm5eczsq>
-References: <20250821-imx94-ddr-pmu-v2-0-052c6420605d@nxp.com>
- <20250821-imx94-ddr-pmu-v2-3-052c6420605d@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250821-imx94-ddr-pmu-v2-3-052c6420605d@nxp.com>
-X-ClientProxiedBy: AS4P195CA0013.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:20b:5e2::16) To PAXPR04MB8829.eurprd04.prod.outlook.com
- (2603:10a6:102:20c::17)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C4A385C4A
+	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 06:41:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762238518; cv=none; b=ZI24uV6w1vReNLjNZ7vrJwAUT3eGJAt5bi1R8pAgn5UGAniDygI/GJyv6VlpZNBG97l6v4h/RKa8lmZkl6k0UfZDd78vb01/MPY2tqCeRpsxzvLQdJLvrSFuJruxetBPGrz2FFv8M+1XsjeQwA/pE1DMzos5ePRYR7S3L3bXIQ4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762238518; c=relaxed/simple;
+	bh=z3fLbBj9/JXOknVd2UVpf/apEyQAeIC3Rg2T9U1f0NM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=knL3utRnoH/OvsHsnO9b7osUp1HHyncu/qgwcwDmPdpPkAn7vODAiYydENdD3yurf4eSDYdu1G5RdD5lFyn7r/nTUHtTkNgZcZ0sEBHz4/hc3vw9h+h/17y6cyBigVSfi03VgCdHJpE6JHfP08WcopyT05fK9HSHji4sN6uMJE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mkJRlasC; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dPNSv+hs; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A46QPWh1192051
+	for <devicetree@vger.kernel.org>; Tue, 4 Nov 2025 06:41:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=ibEwJwxRJUdRY1eR4hz3JT
+	7HtcnamXz9ZfIAYm73UCI=; b=mkJRlasCMb5aqPK4kb+KTOb1KOrxIilShCrkAT
+	YmoH6r1BoLzt6vA3GD8o9adML8ck/fxCpTXfA6bhPvhvv59k8kLghKrjF+QzaQsw
+	OY7CSdPz1jgvDWPyVgT7D0ifWV3vSO40F0WSQhlk7dnq43jGGZuGdJQQky1fG2vM
+	+Ept8f2bYuBjRq0zIIL0S9vol5Dzq59wESzxFZQeSBnXNnA211oflgCnYOcCIIRs
+	OV3PRzNCsR0pd9xopLIWUGkpxN3DY1fehki5HPcDNX/NPpEqsxOkCNKW8cWS5Z23
+	IxG35LSW68ukz2WG6PgfCFlQbO4oP3ad27S5nYe5yTlnDCwg==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a7c7jg1ex-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 06:41:55 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-3418c17d21dso21012a91.2
+        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 22:41:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762238514; x=1762843314; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ibEwJwxRJUdRY1eR4hz3JT7HtcnamXz9ZfIAYm73UCI=;
+        b=dPNSv+hsj0J9HWEqwq2ACDpB+GfWIGW0eveXOaBJwfB1rIAT2siRIvDWf9rG1+oLzG
+         yv0cz0b/9FfPDlaPgRJwE5jDH+dx4/LHo593UmRv1uWNDXzFfvjzw8yyRZJ9NnECiX92
+         TXj58pjhkVsMpMkyGrPVX97yklfNKRxIsJ+3nnSCBrfl9HZSC2WtKu/bEbonwwD5YWOX
+         QxVn0dxiSDls0vkMwombc5QgSZ61fb8p39eIrfjDKKXjwjBniKiE4iXk5lHjcXfyS07o
+         R45OvQNPc/u+whlqeolj8h/Gkdfv41ROoufVZRDYTPextUNGlLsvtokyE+gOhIqq1C1U
+         q94A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762238514; x=1762843314;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ibEwJwxRJUdRY1eR4hz3JT7HtcnamXz9ZfIAYm73UCI=;
+        b=YbZDqQ9hEhu+ld4JUYRfi0wL2/aTQLSDud3b/U+9kGABWbaRZdLCjd0oJHrF238HE9
+         awZquMqvkS9B9nwWUqpoMOGeLIYKkHTzbvNnKw+Yw0YQTgxM5QyxGRZA/zVXXO/XhwL+
+         PlBRwR+fcBNREBM+OoCc8icyDiL5aZ6QP5kmPf0VG0yenxhjgEVer6ESE7xqgZOEVGCp
+         S3TjFE7orJ72RTw/gkBLzfkpf+37e+bl48XJiq2CCvzHK1h2P1NogGKna8oc6xT+VCzU
+         lpcn3j4uE7HdLsL9ezhh5JmD0icj3C7E8j8qCZVGyD5VDxWYpDJoc7W2JGtMRvlEjMWN
+         /uDA==
+X-Forwarded-Encrypted: i=1; AJvYcCV5a45uVprv1//OGEUsll7gaLRim687M2QTB20Xt79nA9LmvwD5tOGl/TuujO6XAUZ0fxbSPDJE9nK4@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyb+83zxUMeyTzjdZuHDpRR8URr+Ld0boQC3WBHELmTJlmd74c4
+	CHlbSjE7b7XYAOcJipw5lzd0S80ss8bgKAzutIqsp2beY0Of5ehCRwtCgrr1K1f/BlPhanoiQtT
+	4T3tcZCrLqgl2pa6wayCY3gNXJu+z+1rZBz77QsO61qoDbSnRvbJreyUvfNXhmLjf
+X-Gm-Gg: ASbGncueQ7H92klI9vJri+DA/aJY4HqyaBHR5/+Q96UwnKNjCRJIGoxiceVGwV9XiIH
+	WHaJsjQn2ytR2wUUwwzciT0JKFv6MKJRUIBYSSkYJW239d8OIk1ZGn3pLL5g+KK/2hy+34xEcqk
+	8ld1HuRGHQEoQGZBemIrrt8ZJWF9k1jG4ysV1GbXTlNQBjEuV5Y0Zs3pIwDvvnrdjyfsqNH96BR
+	9bxK+1uZFkFWlatNrjVgMQuxrY/49Z4c9KXBqkrtDQvFTmY5Egfh8Ry3pvlelmdVqHWaQbpmqjl
+	uueyv9XF3UEkANgjNBqJntgML6CY29Lq4a3cvsHyYg8BWsMQ4VQtKc2qQQei6/D3MCMW4skzsjP
+	HsiLqne+lT3If0Fq/5ZXXRHCXFuaS6ojVq3LytHlAFpczduH81SJeFA==
+X-Received: by 2002:a17:90b:2789:b0:341:88ba:bdda with SMTP id 98e67ed59e1d1-34188babf0emr408687a91.31.1762238513948;
+        Mon, 03 Nov 2025 22:41:53 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGBKvCkpW9aHNOj9emv5P1GELGKEfol3zMzYWEVGCEYS1Bh6AYCS0DUS3V9u6Ui+sDCp/uJsQ==
+X-Received: by 2002:a17:90b:2789:b0:341:88ba:bdda with SMTP id 98e67ed59e1d1-34188babf0emr408656a91.31.1762238513257;
+        Mon, 03 Nov 2025 22:41:53 -0800 (PST)
+Received: from hu-songchai-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34159a0780dsm3294791a91.16.2025.11.03.22.41.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Nov 2025 22:41:52 -0800 (PST)
+From: Songwei Chai <songwei.chai@oss.qualcomm.com>
+To: andersson@kernel.org, alexander.shishkin@linux.intel.com,
+        kernel@oss.qualcomm.com, mike.leach@linaro.org, suzuki.poulose@arm.com
+Cc: Songwei Chai <songwei.chai@oss.qualcomm.com>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        coresight@lists.linaro.org, devicetree@vger.kernel.org
+Subject: [PATCH v7 0/7] Provides support for Trigger Generation Unit
+Date: Mon,  3 Nov 2025 22:40:36 -0800
+Message-Id: <20251104064043.88972-1-songwei.chai@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8829:EE_|PA4PR04MB7950:EE_
-X-MS-Office365-Filtering-Correlation-Id: c19e42e5-a6ab-467f-eb8f-08de1b6cf488
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|366016|376014|7416014|52116014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?fEIYfGbBMHhTVhZP9v+FWy/T0X0aW5YEmIQQKItp5s/r8IAxmTePCY92QAyT?=
- =?us-ascii?Q?D7fhT2eYpgoxdCsclKStXp5LA0YhPcfCVlCuDOj2oAmuRmXV1IqZWHLJ49Ge?=
- =?us-ascii?Q?6kkdvaEl/1Y35BiI1YQDh2KeMnLLigcwJ0+Kau85rEaxwFYRc4OJkG5fJbjH?=
- =?us-ascii?Q?hU9ZP4CdonppwSKjxmycSzAHGhgz2UKfZXtiIV7lJujthZNh9O07G2YlnjDb?=
- =?us-ascii?Q?nW2LHqkDmNJ9CuL2qTBynVB5ZRv07Fsx2/28Oh6ZanstlbPC+ErYJQeQkjaX?=
- =?us-ascii?Q?yl3D0bdab0HRt/WdsnXSkd1H50YIRTgB9t+DE6oOso5tfCL0TH/CL1FvsTTB?=
- =?us-ascii?Q?b0Y6ceEMsDBi3BM1xPXFGAV6uF5chciqjMMp7tmxTcIq0MRStqvENS2yJ3kx?=
- =?us-ascii?Q?xVFJot59rQMhLerowv440W7tY3ivJFH6lSp3jPza02SQ5Kf+n5z4jt6J4FfS?=
- =?us-ascii?Q?8rWGCvCJQv0fp1iM/hYDbPn9syAt8i4wCqGqbANKamJ6+voTzKO8XfcT6YZy?=
- =?us-ascii?Q?55w/V21ctL1K9wNRMvQAE7fkQabpTKyg7p5/7FjC6lqto3Sr3sS1JKo9y25v?=
- =?us-ascii?Q?oyLGlXWwUXq8VLo36grc5raRW+HaNdNYxz9fwrSl1NpeK0aLw3ZkjHejVAVs?=
- =?us-ascii?Q?F9GI6H+OC3UhhQ2Ld/xwizEYXDPuJnXWkNf7OldTEZPZe9M0E/HRSN/CZWwT?=
- =?us-ascii?Q?rg1M04bDCARsAOZq1J/erqwVDuE1b54A/T1S0QutKRo1OMPPg3qRDYUFb4k1?=
- =?us-ascii?Q?QIW9AObugrFscOk7viIYuYWCvP3a+vmH6vPjoujdJDCAkvrR6BMTG8kYfU/8?=
- =?us-ascii?Q?nd2WX7FsAjOL9oVYsQYIrO9W6Nest1SRZxpX9Iq0PXJb5klNBuS2buGn+uWX?=
- =?us-ascii?Q?Y+1/I0ITfVwMPj8UVLZrTr3A9Nwb/GdQMAzEtOOJ1Ta46gaOEI6/GRrMBTqD?=
- =?us-ascii?Q?nEDrQkyXnO+D9l+qqYzWgYP7hYOsytCl2ujdepyg+mj71M5fbsuglXfQLmBP?=
- =?us-ascii?Q?9Te6gFkh4k9HDSenK/JoNL2NLtctpagb40QibLRL1wCVl3T0olP0TVXTiF4X?=
- =?us-ascii?Q?LIkKwGG5QRvqoH06VMc0Zor92IGWuqm4iKkAILT8f/l5c5/cX5oWz1bUOVWD?=
- =?us-ascii?Q?uRzdQUU2C+6b+neamXIUxs+4ce/LYLzS2B+MTifl4Kv2j8NP1HyLCJ4DVPpb?=
- =?us-ascii?Q?Yj+VEMBGtmcwTfF4G9pGCyg+cvPNznuUEo8H+NQteOTVcCxIxp9ID+C8vS++?=
- =?us-ascii?Q?W8vdUAOwesBsYmAMWAKQcMz7sjbz+aAfh/vCixZIFPmKbGKSX7p8S7TEabSN?=
- =?us-ascii?Q?4P+vf2AQXTn3jonJP6mWVDYyqP7IErctRFwZJEaymiW+oB6+vtl0ga0+QE5D?=
- =?us-ascii?Q?VTxlyS4Z3u6k4OvGqDUF2GtRGZm3I9AU1YnsLUq+WffH/x1NErn4rgWfsGCv?=
- =?us-ascii?Q?tEfnPJcBtNeLaoG+H8VelovVfmFtH1Epm6Hu4q6MILgwFoZsPXwai/pfPAGI?=
- =?us-ascii?Q?XlBRZE53uwY5EdBl+ZGPl3GVBOTHpTISRMTC?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8829.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(376014)(7416014)(52116014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?4dyZkkP1KRBzPWyJOIBMfq+DsSe3mDSShNcIZcqiqfDe2lPugzPvlqhlbQt1?=
- =?us-ascii?Q?MfepNOsxVfTRoDI9YCw9NRtRM7jfwntMQdKrRYBpKwgl9RDLw06cb6rAldnk?=
- =?us-ascii?Q?W27VAcaPgVqaTZfos60WfqxKRV/TSQlfOMcebmKe10OrvSbHnzzjCn/aSIJ4?=
- =?us-ascii?Q?MpyAe3xANwlny9e/zjnPUrOrF+VrkHsYuwYxIz3bbB6mzoIyHTfM9f6uAB6q?=
- =?us-ascii?Q?1Wij2mrIag5IlNvGVyjoxhd1FszIilKtB96cG1D7gjO1NlDr+tiCeJGO03Yl?=
- =?us-ascii?Q?QeX4BY561VeQqqUYV4if5jvPpfoR0GNhpCwUEZYHeEEz81oqnyORoU7NBIkC?=
- =?us-ascii?Q?1jfXanA/a8JqH4WFWVPysT1gw1VYbgY0Tb+rs674m0sk6fugnmRv0TYCmUGQ?=
- =?us-ascii?Q?+rCkfyzgQFdwGcNEse3iLNCQ3biU5osB7d7i9nCYiPBY/7D+amEQNZ3Jahn4?=
- =?us-ascii?Q?CI94mPflX7NIs+5GYCfghuzY8amDKubfUxvxqssTeP98Tcuo2NNxF0IrzVre?=
- =?us-ascii?Q?zJT/tlVpnftUR6vNSILcsvXksYngB/VxtsDdot1uo/CO+h1yIrMKlBQEFrL5?=
- =?us-ascii?Q?TGqh508LKoQuZ4QI+FigacrKGkTnz0D1bKtfYMuaJPioIF1blPMEZapxx+Ja?=
- =?us-ascii?Q?c126TdoAcTErjPI8KkBRddtzh7yOlVUQZqWAAZc8FGr2g5BfJYZNlg2hRvJv?=
- =?us-ascii?Q?AfUP0MhgsbtAbnPntPn6OW/QxlINWx3XUPJ0peRV3tjzc0+9+rQG0XzQm1da?=
- =?us-ascii?Q?YWjuk8BZsj9iVWjRmCfNKKw9UDfUQW37v3jSJKq+vjGhsykWP86NCHPG5tf9?=
- =?us-ascii?Q?6bBnsYVYL13quaAg8rW8sPdTLXRKTb9I2zvi2bLBesknF9VpKsrMnbM+lE9s?=
- =?us-ascii?Q?2f/9m3LKF2CaZ45wJk3SITpNTjDXD3cikEowhV03vpWpKnye7FuBtD4/U7JT?=
- =?us-ascii?Q?NFCK9schxiysWVXxfEbYJKsztG7u88lxHGcsW+42t2v3xl58NiLNlEJgNssy?=
- =?us-ascii?Q?T4QBbV2qVMq2o7tZmj7tDxGp39uIjT3n/ojAXkQKp9jL6Y6n+Q1Bvs4V3C8p?=
- =?us-ascii?Q?forGbtX1YEcoBsocHIP1HcshSQXFDlpd7fBVLzcLe6mgA8KiTlzotvokmT2T?=
- =?us-ascii?Q?t3wD9sGl9Vt5fMH/LpPDi1jMrWngQCx9enRrJen2Ob5NPyglSDVdqm4fb3/3?=
- =?us-ascii?Q?ZCAM/Mz3eZTU9P6wl0OHGEphSvqljYexhQiPgxd7kFa2SyG0xYp5TchPLikz?=
- =?us-ascii?Q?KCXkstoHTRmz1Tr8TBvUAtP3hEcmz25jIzvY+HEOH8kcX9fC3K8PeWdxG8Z6?=
- =?us-ascii?Q?Fu9lE8wnz5PAjomAOUvbXWtvX7mtA2tj0AwqR+v8mgPwabzjzwAFrgLGJbgo?=
- =?us-ascii?Q?2eqIitSOn23Fc9CkDUKA+v1tB6TbdLZ83spGnL0RCRxsEqsmiEwAsP3X/0vz?=
- =?us-ascii?Q?7qLhZ6jeSxnwZm9N+YodrniMIuoUZC5GMGkPqO1+6NoP/mDSdSFD0Oa1edFC?=
- =?us-ascii?Q?lCqgMYvlCSYUkJcrklc/WZ4MkT1lJ5doEFZlz7uF+xuBp8FFtChGklkc4aQo?=
- =?us-ascii?Q?sgvHRCeD/nceyVWWV+TdS0C3ISJePrNyxmaYeO3b?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c19e42e5-a6ab-467f-eb8f-08de1b6cf488
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8829.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2025 06:39:51.0585
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kNQDtx+3r73BmoloByxq33tzPH8Z2bdgjGjkJOvOMN3ErL4H4Rc9y2ykAruqrFRLDswUJR/ScbYJdfKs79JRxg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7950
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA0MDA1MyBTYWx0ZWRfX5IZHJyHFBEqR
+ YHBvqX41dVFW9Xzd1UnRr7/FJdNDK4KLBolxGOGihC/U8MPJVVVuWYwg21z3tyqOijQY+eJy4So
+ 4AUTDblvr0lDlZNa0lo5TLgT4ur1B8UYaq9AIhY5TSWUVXbvZFtMJrPZPlHL169k7wN97pYmr7R
+ BCGQe63r423LBAEqJ/O9MA8gMwpEs7BhIvoQczr/E8tCxeZH8JbEbqMZo0hSFiMv7qXd2yNP9R7
+ wdH5eh0imG+xVkBEg6MpHFgIfnyEhpGMc+/z0bkrFVTTHnYtYUlznFGkSJpXUyDDD8v3j6PXiK2
+ BtFhfd7EVZWFS4Umk8GNOAplVY+dkwtijHnqKoLcVcVfvwB1A2IORG4nR/uwTNtVabDabAHDq13
+ CsuJNbhbeEHsn6CpymA2W+14C7a+WQ==
+X-Proofpoint-ORIG-GUID: G5pDRG3BXyvPXnOzUtH3kJcTt24gOYUo
+X-Proofpoint-GUID: G5pDRG3BXyvPXnOzUtH3kJcTt24gOYUo
+X-Authority-Analysis: v=2.4 cv=DvNbOW/+ c=1 sm=1 tr=0 ts=6909a033 cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8
+ a=COk6AnOGAAAA:8 a=Y4MViknzB6XciWjnlzcA:9 a=8KGQzfimsMkVHzi2:21
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-03_06,2025-11-03_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 impostorscore=0 malwarescore=0 phishscore=0 bulkscore=0
+ lowpriorityscore=0 priorityscore=1501 adultscore=0 suspectscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511040053
 
-Hi Namhyung,
+We propose creating a new qcom directory under drivers/hwtracing
+to host this TGU driver, as well as additional Qualcomm-specific
+hwtracing drivers that we plan to submit in the coming months.
+This structure will help organize vendor-specific implementations
+and facilitate future development and maintenance.
 
-Could you please take this one?
+Feedback from the community on this proposal is highly appreciated.
 
-Thanks,
-Xu Yang
+- Why we are proposing this:
 
-On Thu, Aug 21, 2025 at 07:01:51PM +0800, Xu Yang wrote:
-> Add JSON metrics for i.MX94 DDR Performance Monitor.
-> 
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> 
-> ---
-> Changes in v2:
->  - add Rb tag
-> ---
->  .../arch/arm64/freescale/imx94/sys/ddrc.json       |   9 +
->  .../arch/arm64/freescale/imx94/sys/metrics.json    | 450 +++++++++++++++++++++
->  2 files changed, 459 insertions(+)
-> 
-> diff --git a/tools/perf/pmu-events/arch/arm64/freescale/imx94/sys/ddrc.json b/tools/perf/pmu-events/arch/arm64/freescale/imx94/sys/ddrc.json
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..aa7b58721dc7e23dc9d9905a79e0c1778b7bbf11
-> --- /dev/null
-> +++ b/tools/perf/pmu-events/arch/arm64/freescale/imx94/sys/ddrc.json
-> @@ -0,0 +1,9 @@
-> +[
-> +   {
-> +           "BriefDescription": "ddr cycles event",
-> +           "EventCode": "0x00",
-> +           "EventName": "imx94_ddr.cycles",
-> +           "Unit": "imx9_ddr",
-> +           "Compat": "imx94"
-> +   }
-> +]
-> diff --git a/tools/perf/pmu-events/arch/arm64/freescale/imx94/sys/metrics.json b/tools/perf/pmu-events/arch/arm64/freescale/imx94/sys/metrics.json
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..629f1f52761e2210ef43a9cbba175871817e1230
-> --- /dev/null
-> +++ b/tools/perf/pmu-events/arch/arm64/freescale/imx94/sys/metrics.json
-> @@ -0,0 +1,450 @@
-> +[
-> +	{
-> +		"BriefDescription": "bandwidth usage for lpddr5 evk board",
-> +		"MetricName": "imx94_bandwidth_usage.lpddr5",
-> +		"MetricExpr": "(( imx9_ddr0@eddrtq_pm_rd_beat_filt0\\,axi_mask\\=0x000\\,axi_id\\=0x000@ + imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x000\\,axi_id\\=0x000@ ) * 32 / duration_time) / (4266 * 1000000 * 4)",
-> +		"ScaleUnit": "1e2%",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bandwidth usage for lpddr4 evk board",
-> +		"MetricName": "imx94_bandwidth_usage.lpddr4",
-> +		"MetricExpr": "(( imx9_ddr0@eddrtq_pm_rd_beat_filt0\\,axi_mask\\=0x000\\,axi_id\\=0x000@ + imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x000\\,axi_id\\=0x000@ ) * 32 / duration_time) / (4266 * 1000000 * 4)",
-> +		"ScaleUnit": "1e2%",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of all masters read from ddr",
-> +		"MetricName": "imx94_ddr_read.all",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt0\\,axi_mask\\=0x000\\,axi_id\\=0x000@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of all masters write to ddr",
-> +		"MetricName": "imx94_ddr_write.all",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x000\\,axi_id\\=0x000@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of all a55 read from ddr",
-> +		"MetricName": "imx94_ddr_read.a55_all",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt1\\,axi_mask\\=0x3fc\\,axi_id\\=0x000@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of all a55 write from ddr",
-> +		"MetricName": "imx94_ddr_write.a55_all",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x3fc\\,axi_id\\=0x000@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of a55 core 0 read from ddr",
-> +		"MetricName": "imx94_ddr_read.a55_0",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt2\\,axi_mask\\=0x3ff\\,axi_id\\=0x000@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of a55 core 0 write to ddr",
-> +		"MetricName": "imx94_ddr_write.a55_0",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x3ff\\,axi_id\\=0x000@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of a55 core 1 read from ddr",
-> +		"MetricName": "imx94_ddr_read.a55_1",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt0\\,axi_mask\\=0x00f\\,axi_id\\=0x001@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of a55 core 1 write to ddr",
-> +		"MetricName": "imx94_ddr_write.a55_1",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x00f\\,axi_id\\=0x001@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of a55 core 2 read from ddr",
-> +		"MetricName": "imx94_ddr_read.a55_2",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt1\\,axi_mask\\=0x00f\\,axi_id\\=0x002@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of a55 core 2 write to ddr",
-> +		"MetricName": "imx94_ddr_write.a55_2",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x00f\\,axi_id\\=0x002@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of a55 core 3 read from ddr",
-> +		"MetricName": "imx94_ddr_read.a55_3",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt2\\,axi_mask\\=0x00f\\,axi_id\\=0x003@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of a55 core 3 write to ddr",
-> +		"MetricName": "imx94_ddr_write.a55_3",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x00f\\,axi_id\\=0x003@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of m7 core1 read from ddr",
-> +		"MetricName": "imx94_ddr_read.m7_1",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt0\\,axi_mask\\=0x00f\\,axi_id\\=0x004@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of m7 core1 write to ddr",
-> +		"MetricName": "imx94_ddr_write.m7_1",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x00f\\,axi_id\\=0x004@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of m33 core1 (in netc) read from ddr",
-> +		"MetricName": "imx94_ddr_read.m33_1",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt1\\,axi_mask\\=0x00f\\,axi_id\\=0x005@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of m33 core1 (in netc) write to ddr",
-> +		"MetricName": "imx94_ddr_write.m33_1",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x00f\\,axi_id\\=0x005@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of pcie2 read from ddr",
-> +		"MetricName": "imx94_ddr_read.pcie2",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt2\\,axi_mask\\=0x00f\\,axi_id\\=0x006@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of pcie2 write to ddr",
-> +		"MetricName": "imx94_ddr_write.pcie2",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x00f\\,axi_id\\=0x006@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of Cortex-A DSU L3 evicted/ACP transactions read from ddr",
-> +		"MetricName": "imx94_ddr_read.cortex_a_dsu",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt0\\,axi_mask\\=0x00f\\,axi_id\\=0x007@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of Cortex-A DSU L3 evicted/ACP transactions write to ddr",
-> +		"MetricName": "imx94_ddr_write.cortex_a_dsu",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x00f\\,axi_id\\=0x007@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of m33 core0 read from ddr",
-> +		"MetricName": "imx94_ddr_read.m33_0",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt1\\,axi_mask\\=0x00f\\,axi_id\\=0x008@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of m33 core0 write to ddr",
-> +		"MetricName": "imx94_ddr_write.m33_0",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x00f\\,axi_id\\=0x008@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of m7 core0 read from ddr",
-> +		"MetricName": "imx94_ddr_read.m7_0",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt2\\,axi_mask\\=0x00f\\,axi_id\\=0x009@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of m7 core0 write to ddr",
-> +		"MetricName": "imx94_ddr_write.m7_0",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x00f\\,axi_id\\=0x009@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of sentinel read from ddr",
-> +		"MetricName": "imx94_ddr_read.sentinel",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt0\\,axi_mask\\=0x00f\\,axi_id\\=0x00a@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of sentinel write to ddr",
-> +		"MetricName": "imx94_ddr_write.sentinel",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x00f\\,axi_id\\=0x00a@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of edma1 read from ddr",
-> +		"MetricName": "imx94_ddr_read.edma1",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt1\\,axi_mask\\=0x00f\\,axi_id\\=0x00b@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of edma1 write to ddr",
-> +		"MetricName": "imx94_ddr_write.edma1",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x00f\\,axi_id\\=0x00b@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of edma2 read from ddr",
-> +		"MetricName": "imx94_ddr_read.edma2",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt2\\,axi_mask\\=0x00f\\,axi_id\\=0x00c@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of edma2 write to ddr",
-> +		"MetricName": "imx94_ddr_write.edma2",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x00f\\,axi_id\\=0x00c@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of netc read from ddr",
-> +		"MetricName": "imx94_ddr_read.netc",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt0\\,axi_mask\\=0x00f\\,axi_id\\=0x00d@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of netc write to ddr",
-> +		"MetricName": "imx94_ddr_write.netc",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x00f\\,axi_id\\=0x00d@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of aonmix read from ddr",
-> +		"MetricName": "imx94_ddr_read.aonmix",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt2\\,axi_mask\\=0x00f\\,axi_id\\=0x00f@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of aonmix write to ddr",
-> +		"MetricName": "imx94_ddr_write.aonmix",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x00f\\,axi_id\\=0x00f@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of npumix read from ddr",
-> +		"MetricName": "imx94_ddr_read.npumix",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt0\\,axi_mask\\=0x3f0\\,axi_id\\=0x010@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of npumix write to ddr",
-> +		"MetricName": "imx94_ddr_write.npumix",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x3f0\\,axi_id\\=0x010@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of usdhc1 read from ddr",
-> +		"MetricName": "imx94_ddr_read.usdhc1",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt1\\,axi_mask\\=0x3f0\\,axi_id\\=0x0b0@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of usdhc1 write to ddr",
-> +		"MetricName": "imx94_ddr_write.usdhc1",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x3f0\\,axi_id\\=0x0b0@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of usdhc2 read from ddr",
-> +		"MetricName": "imx94_ddr_read.usdhc2",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt2\\,axi_mask\\=0x3f0\\,axi_id\\=0x0c0@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of usdhc2 write to ddr",
-> +		"MetricName": "imx94_ddr_write.usdhc2",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x3f0\\,axi_id\\=0x0c0@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of usdhc3 read from ddr",
-> +		"MetricName": "imx94_ddr_read.usdhc3",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt0\\,axi_mask\\=0x3f0\\,axi_id\\=0x0d0@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of usdhc3 write to ddr",
-> +		"MetricName": "imx94_ddr_write.usdhc3",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x3f0\\,axi_id\\=0x0d0@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of xspi read from ddr",
-> +		"MetricName": "imx94_ddr_read.xspi",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt2\\,axi_mask\\=0x3f0\\,axi_id\\=0x0f0@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of xspi write to ddr",
-> +		"MetricName": "imx94_ddr_write.xspi",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x3f0\\,axi_id\\=0x0f0@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of pcie1 read from ddr",
-> +		"MetricName": "imx94_ddr_read.pcie1",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt0\\,axi_mask\\=0x3f0\\,axi_id\\=0x100@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of pcie1 write to ddr",
-> +		"MetricName": "imx94_ddr_write.pcie1",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x3f0\\,axi_id\\=0x100@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of usb1 read from ddr",
-> +		"MetricName": "imx94_ddr_read.usb1",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt1\\,axi_mask\\=0x3f0\\,axi_id\\=0x140@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of usb1 write to ddr",
-> +		"MetricName": "imx94_ddr_write.usb1",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x3f0\\,axi_id\\=0x140@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of usb2 read from ddr",
-> +		"MetricName": "imx94_ddr_read.usb2",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt2\\,axi_mask\\=0x3f0\\,axi_id\\=0x150@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of usb2 write to ddr",
-> +		"MetricName": "imx94_ddr_write.usb2",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x3f0\\,axi_id\\=0x150@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of pxp read from ddr",
-> +		"MetricName": "imx94_ddr_read.pxp",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt0\\,axi_mask\\=0x3f0\\,axi_id\\=0x2a0@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of pxp write to ddr",
-> +		"MetricName": "imx94_ddr_write.pxp",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x3f0\\,axi_id\\=0x2a0@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of dcif read from ddr",
-> +		"MetricName": "imx94_ddr_read.dcif",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_rd_beat_filt1\\,axi_mask\\=0x3f0\\,axi_id\\=0x2b0@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	},
-> +	{
-> +		"BriefDescription": "bytes of dcif write to ddr",
-> +		"MetricName": "imx94_ddr_write.dcif",
-> +		"MetricExpr": "( imx9_ddr0@eddrtq_pm_wr_beat_filt\\,axi_mask\\=0x3f0\\,axi_id\\=0x2b0@ ) * 32",
-> +		"ScaleUnit": "9.765625e-4KB",
-> +		"Unit": "imx9_ddr",
-> +		"Compat": "imx94"
-> +	}
-> +]
-> 
-> -- 
-> 2.34.1
-> 
+TGU has the ability to monitor signal conditions and trigger debug-related
+actions, serving as a programmable hardware component that enhances system
+trace and debug capabilities. Placing it under drivers/hwtracing aligns with
+its function as a trace generation utility.
+
+We previously attempted to push this driver to drivers/hwtracing/coresight,
+but did not receive support from the maintainers of the CoreSight subsystem.
+The reason provided was: “This component is primarily a part of the
+Qualcomm proprietary QPMDA subsystem, and is capable of operating
+independently from the CoreSight hardware trace generation system.”
+
+Chat history : https://lore.kernel.org/all/CAJ9a7ViKxHThyZfFFDV_FkNRimk4uo1NrMtQ-kcaj1qO4ZcGnA@mail.gmail.com/
+
+Given this, we have been considering whether it would be appropriate
+to create a dedicated drivers/hwtracing/qcom directory for
+Qualcomm-related hwtracing drivers. This would follow the precedent set
+by Intel, which maintains its own directory at drivers/hwtracing/intel_th.
+We believe this structure would significantly facilitate
+future submissions of related Qualcomm drivers.
+
+- Maintenance of drivers/hwtracing/qcom:
+
+Bjorn, who maintains linux-arm-msm, will be the maintainer of this
+directory — we’ve discussed this with him and he’s aware that his task
+list may grow accordingly. Additionally, Qualcomm engineers familiar with
+the debug hardware — such as [Tingwei Zhang, Jinlong Mao, Songwei Chai],
+will be available to review incoming patches and support ongoing
+development.
+
+- Detail for TGU:
+
+This component can be utilized to sense a plurality of signals and
+create a trigger into the CTI or generate interrupts to processors
+once the input signal meets the conditions. We can treat the TGU’s
+workflow as a flowsheet, it has some “steps” regions for customization.
+In each step region, we can set the signals that we want with priority
+in priority_group, set the conditions in each step via condition_decode,
+and set the resultant action by condition_select. Meanwhile,
+some TGUs (not all) also provide timer/counter functionality.
+Based on the characteristics described above, we consider the TGU as a
+helper in the CoreSight subsystem. Its master device is the TPDM, which
+can transmit signals from other subsystems, and we reuse the existing
+ports mechanism to link the TPDM to the connected TGU.
+
+Here is a detailed example to explain how to use the TGU:
+
+In this example, the TGU is configured to use 2 conditions, 2 steps, and
+the timer. The goal is to look for one of two patterns which are generated
+from TPDM, giving priority to one, and then generate a trigger once the
+timer reaches a certain value. In other words, two conditions are used
+for the first step to look for the two patterns, where the one with the
+highest priority is used in the first condition. Then, in the second step,
+the timer is enabled and set to be compared to the given value at each
+clock cycle. These steps are better shown below.
+    
+              |-----------------|
+              |                 |
+              |       TPDM      |
+              |                 |
+              |-----------------|
+                       |
+                       |
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ------
+    |                  |                                                 |
+    |                  |                          |--------------------| |
+    |    |---- --->    |                          |  Go to next steps  | |
+    |    |             |                |--- ---> |  Enable timer      | |
+    |    |             v                |         |                    | |
+    |    |    |-----------------|       |         |--------------------| |
+    |    |    |                 |  Yes  |                    |           |
+    |    |    |   inputs==0xB   | ----->|                    | <-------- |
+    |    |    |                 |       |                    |      No | |
+    | No |    |-----------------|       |                    v         | |
+    |    |             |                |          |-----------------| | |
+    |    |             |                |          |                 | | |
+    |    |             |                |          |      timer>=3   |-- |
+    |    |             v                |          |                 |   |
+    |    |    |-----------------|       |          |-----------------|   |
+    |    |    |                 |  Yes  |                    |           |
+    |    |--- |   inputs==0xA   | ----->|                    | Yes       |
+    |         |                 |                            |           |
+    |         |-----------------|                            v           |
+    |                                              |-----------------|   |
+    |                                              |                 |   |
+    |                                              |      Trigger    |   |
+    |                                              |                 |   |
+    |                                              |-----------------|   |
+    |  TGU                                                   |           |
+    |--- --- --- --- --- --- --- --- --- --- --- --- --- --- |--- --- -- |
+                                                             |
+                                                             v
+                                                    |-----------------|
+                                                    |The controllers  |
+                                                    |which will use   |
+                                                    |triggers further |
+                                                    |-----------------|
+
+steps:
+    1. Reset TGU /*it will disable tgu and reset dataset*/
+    - echo 1 > /sys/bus/coresight/devices/<tgu-name>/reset_tgu
+
+    2. Set the pattern match for priority0 to 0xA = 0b1010 and for
+       priority 1 to 0xB = 0b1011.
+    - echo 0x11113232 > /sys/bus/coresight/devices/<tgu-name>/step0_priority0/reg0
+    - echo 0x11113233 > /sys/bus/coresight/devices/<tgu-name>/step0_priority1/reg0
+
+    Note:
+        Bit distribution diagram for each priority register
+    |-------------------------------------------------------------------|
+    |   Bits          |       Field Nam   |    Description              |
+    |-------------------------------------------------------------------|
+    |                 |                   | 00 = bypass for OR output   |
+    |     29:28       |   SEL_BIT7_TYPE2  | 01 = bypass for AND output  |
+    |                 |                   | 10 = sense input '0' is true|
+    |                 |                   | 11 = sense input '1' is true|
+    |-------------------------------------------------------------------|
+    |                 |                   | 00 = bypass for OR output   |
+    |     25:24       |   SEL_BIT6_TYPE2  | 01 = bypass for AND output  |
+    |                 |                   | 10 = sense input '0' is true|
+    |                 |                   | 11 = sense input '1' is true|
+    |-------------------------------------------------------------------|
+    |                 |                   | 00 = bypass for OR output   |
+    |     21:20       |   SEL_BIT5_TYPE2  | 01 = bypass for AND output  |
+    |                 |                   | 10 = sense input '0' is true|
+    |                 |                   | 11 = sense input '1' is true|
+    |-------------------------------------------------------------------|
+    |                 |                   | 00 = bypass for OR output   |
+    |     17:16       |   SEL_BIT4_TYPE2  | 01 = bypass for AND output  |
+    |                 |                   | 10 = sense input '0' is true|
+    |                 |                   | 11 = sense input '1' is true|
+    |-------------------------------------------------------------------|
+    |                 |                   | 00 = bypass for OR output   |
+    |     13:12       |   SEL_BIT3_TYPE2  | 01 = bypass for AND output  |
+    |                 |                   | 10 = sense input '0' is true|
+    |                 |                   | 11 = sense input '1' is true|
+    |-------------------------------------------------------------------|
+    |                 |                   | 00 = bypass for OR output   |
+    |      9:8        |   SEL_BIT2_TYPE2  | 01 = bypass for AND output  |
+    |                 |                   | 10 = sense input '0' is true|
+    |                 |                   | 11 = sense input '1' is true|
+    |-------------------------------------------------------------------|
+    |                 |                   | 00 = bypass for OR output   |
+    |      5:4        |  SEL_BIT1_TYPE2   | 01 = bypass for AND output  |
+    |                 |                   | 10 = sense input '0' is true|
+    |                 |                   | 11 = sense input '1' is true|
+    |-------------------------------------------------------------------|
+    |                 |                   | 00 = bypass for OR output   |
+    |      1:0        |  SEL_BIT0_TYPE2   | 01 = bypass for AND output  |
+    |                 |                   | 10 = sense input '0' is true|
+    |                 |                   | 11 = sense input '1' is true|
+    |-------------------------------------------------------------------|
+    These bits are used to identify the signals we want to sense, with
+    a maximum signal number of 140. For example, to sense the signal
+    0xA (binary 1010), we set the value of bits 0 to 13 to 3232, which
+    represents 1010. The remaining bits are set to 1, as we want to use
+    AND gate to summarize all the signals we want to sense here. For
+    rising or falling edge detection of any input to the priority, set
+    the remaining bits to 0 to use an OR gate.
+
+    3. look for the pattern for priority_i i=0,1.
+    - echo 0x3 > /sys/bus/coresight/devices/<tgu-name>/step0_condition_decode/reg0
+    - echo 0x30 > /sys/bus/coresight/devices/<tgu-name>/step0_condition_decode/reg1
+
+    |-------------------------------------------------------------------------------|
+    |   Bits          |    Field Nam        |            Description                |
+    |-------------------------------------------------------------------------------|
+    |                 |                     |For each decoded condition, this       |
+    |      24         |       NOT           |inverts the output. If the condition   |
+    |                 |                     |decodes to true, and the NOT field     |
+    |                 |                     |is '1', then the output is NOT true.   |
+    |-------------------------------------------------------------------------------|
+    |                 |                     |When '1' the output from the associated|
+    |      21         |  BC0_COMP_ACTIVE    |comparator will be actively included in|
+    |                 |                     |the decoding of this particular        |
+    |                 |                     |condition.                             |
+    |-------------------------------------------------------------------------------|
+    |                 |                     |When '1' the output from the associated|
+    |                 |                     |comparator will need to be 1 to affect |
+    |      20         |   BC0_COMP_HIGH     |the decoding of this condition.        |
+    |                 |                     |Conversely, a '0' here requires a '0'  |
+    |                 |                     |from the comparator                    |
+    |-------------------------------------------------------------------------------|
+    |                 |                     |When '1' the output from the associated|
+    |      17         |                     |comparator will be actively included in|
+    |                 |  TC0_COMP_ACTIVE    |the decoding of this particular        |
+    |                 |                     |condition.                             |
+    |-------------------------------------------------------------------------------|
+    |                 |                     |When '1' the output from the associated|
+    |                 |                     |comparator will need to be 1 to affect |
+    |      16         |  TC0_COMP_HIGH      |the decoding of this particular        |
+    |                 |                     |condition.Conversely, a 0 here         |
+    |                 |                     |requires a '0' from the comparator     |
+    |-------------------------------------------------------------------------------|
+    |                 |                     |When '1' the output from Priority_n    |
+    |                 |                     |OR logic will be actively              |
+    |     4n+3        | Priority_n_OR_ACTIVE|included in the decoding of            |
+    |                 |    (n=0,1,2,3)      |this particular condition.             |
+    |                 |                     |                                       |
+    |-------------------------------------------------------------------------------|
+    |                 |                     |When '1' the output from Priority_n    |
+    |                 |                     |will need to be '1' to affect the      |
+    |     4n+2        |  Priority_n_OR_HIGH |decoding of this particular            |
+    |                 |    (n=0,1,2,3)      |condition. Conversely, a '0' here      |
+    |                 |                     |requires a '0' from Priority_n OR logic|
+    |-------------------------------------------------------------------------------|
+    |                 |                     |When '1' the output from Priority_n    |
+    |                 |                     |AND logic will be actively             |
+    |     4n+1        |Priority_n_AND_ACTIVE|included in the decoding of this       |
+    |                 |  (n=0,1,2,3)        |particular condition.                  |
+    |                 |                     |                                       |
+    |-------------------------------------------------------------------------------|
+    |                 |                     |When '1' the output from Priority_n    |
+    |                 |                     |AND logic will need to be '1' to       |
+    |      4n         | Priority_n_AND_HIGH |affect the decoding of this            |
+    |                 |   (n=0,1,2,3)       |particular condition. Conversely,      |
+    |                 |                     |a '0' here requires a '0' from         |
+    |                 |                     |Priority_n AND logic.                  |
+    |-------------------------------------------------------------------------------|
+    Since we use `priority_0` and `priority_1` with an AND output in step 2, we set `0x3`
+    and `0x30` here to activate them.
+
+    4. Set NEXT_STEP = 1 and TC0_ENABLE = 1 so that when the conditions
+       are met then the next step will be step 1 and the timer will be enabled.
+    - echo 0x20008 > /sys/bus/coresight/devices/<tgu-name>/step0_condition_select/reg0
+    - echo 0x20008 > /sys/bus/coresight/devices/<tgu-name>/step0_condition_select/reg1
+
+    |-----------------------------------------------------------------------------|
+    |   Bits          |       Field Nam   |            Description                |
+    |-----------------------------------------------------------------------------|
+    |                 |                   |This field defines the next step the   |
+    |    18:17        |     NEXT_STEP     |TGU will 'goto' for the associated     |
+    |                 |                   |Condition and Step.                    |
+    |-----------------------------------------------------------------------------|
+    |                 |                   |For each possible output trigger       |
+    |    13           |     TRIGGER       |available, set a '1' if you want       |
+    |                 |                   |the trigger to go active for the       |
+    |                 |                   |associated condition and Step.         |
+    |-----------------------------------------------------------------------------|
+    |                 |                   |This will cause BC0 to increment if the|
+    |    9            |     BC0_INC       |associated Condition is decoded for    |
+    |                 |                   |this step.                             |
+    |-----------------------------------------------------------------------------|
+    |                 |                   |This will cause BC0 to decrement if the|
+    |    8            |     BC0_DEC       |associated Condition is decoded for    |
+    |                 |                   |this step.                             |
+    |-----------------------------------------------------------------------------|
+    |                 |                   |This will clear BC0 count value to 0 if|
+    |    7            |     BC0_CLEAR     |the associated Condition is decoded    |
+    |                 |                   |for this step.                         |
+    |-----------------------------------------------------------------------------|
+    |                 |                   |This will cause TC0 to increment until |
+    |    3            |     TC0_ENABLE    |paused or cleared if the associated    |
+    |                 |                   |Condition is decoded for this step.    |
+    |-----------------------------------------------------------------------------|
+    |                 |                   |This will cause TC0 to pause until     |
+    |    2            |     TC0_PAUSE     |enabled if the associated Condition    |
+    |                 |                   |is decoded for this step.              |
+    |-----------------------------------------------------------------------------|
+    |                 |                   |This will clear TC0 count value to 0   |
+    |    1            |     TC0_CLEAR     |if the associated Condition is         |
+    |                 |                   |decoded for this step.                 |
+    |-----------------------------------------------------------------------------|
+    |                 |                   |This will set the done signal to the   |
+    |    0            |     DONE          |TGU FSM if the associated Condition    |
+    |                 |                   |is decoded for this step.              |
+    |-----------------------------------------------------------------------------|
+    Based on the distribution diagram, we set `0x20008` for `priority0` and `priority1` to
+    achieve "jump to step 1 and enable TC0" once the signal is sensed.
+
+    5. activate the timer comparison for this step.
+    -  echo 0x30000  > /sys/bus/coresight/devices/<tgu-name>/step1_condition_decode/reg0
+
+    |-------------------------------------------------------------------------------|
+    |                 |                     |When '1' the output from the associated|
+    |      17         |                     |comparator will be actively included in|
+    |                 |  TC0_COMP_ACTIVE    |the decoding of this particular        |
+    |                 |                     |condition.                             |
+    |-------------------------------------------------------------------------------|
+    |                 |                     |When '1' the output from the associated|
+    |                 |                     |comparator will need to be 1 to affect |
+    |      16         |  TC0_COMP_HIGH      |the decoding of this particular        |
+    |                 |                     |condition.Conversely, a 0 here         |
+    |                 |                     |requires a '0' from the comparator     |
+    |-------------------------------------------------------------------------------|
+    Accroding to the decode distribution diagram , we give 0x30000 here to set 16th&17th bit
+    to enable timer comparison.
+
+    6. Set the NEXT_STEP = 0 and TC0_PAUSE = 1 and TC0_CLEAR = 1 once the timer
+       has reached the given value.
+    - echo 0x6 > /sys/bus/coresight/devices/<tgu-name>/step1_condition_select/reg0
+
+    7. Enable Trigger 0 for TGU when the condition 0 is met in step1,
+       i.e. when the timer reaches 3.
+    - echo 0x2000 > /sys/bus/coresight/devices/<tgu-name>/step1_condition_select/default
+
+    Note:
+        1. 'default' register allows for establishing the resultant action for
+        the default condition
+
+        2. Trigger:For each possible output trigger available from
+        the Design document, there are three triggers: interrupts, CTI,
+        and Cross-TGU mapping.All three triggers can occur, but
+        the choice of which trigger to use depends on the user's
+        needs.
+
+    8. Compare the timer to 3 in step 1.
+    - echo 0x3 > /sys/bus/coresight/devices/<tgu-name>/step1_timer/reg0
+
+    9. enale tgu
+    - echo 1 > /sys/bus/coresight/devices/<tgu-name>/enable_tgu
+---
+Link to V6: https://lore.kernel.org/all/20250709104114.22240-1-songchai@qti.qualcomm.com/
+
+Changes in V7:
+- Move the TGU code location from 'drivers/hwtracing/coresight/' to 'drivers/hwtracing/qcom/'.
+- Rename the spinlock used in the code from 'spinlock' to 'lock'.
+- Perform the 'calculate_array_location' separately, instead of doing it within the function.
+- Update the sender email address.
+---
+Link to V5: https://lore.kernel.org/all/20250529081949.26493-1-quic_songchai@quicinc.com/
+
+Changes in V6:
+- Replace spinlock with guard(spinlock) in tgu_enable.
+- Remove redundant blank line.
+- Update publish date and contact member's name in "sysfs-bus-coresight-devices-tgu".
+---
+Link to V4: https://patchwork.kernel.org/project/linux-arm-msm/cover/20250423101054.954066-1-quic_songchai@quicinc.com/
+
+Changes in V5:
+- Update publish date and kernel_version in "sysfs-bus-coresight-devices-tgu"
+---
+Link to V3: https://lore.kernel.org/all/20250227092640.2666894-1-quic_songchai@quicinc.com/
+
+Changes in V4:
+- Add changlog in coverletter.
+- Correct 'year' in Copyright in patch1.
+- Correct port mechansim description in patch1.
+- Remove 'tgu-steps','tgu-regs','tgu-conditions','tgu-timer-counters' from dt-binding
+and set them through reading DEVID register as per Mike's suggestion.
+- Modify tgu_disable func to make it have single return point in patch2 as per
+Mike's suggestion.
+- Use sysfs_emit in enable_tgu_show func in ptach2.
+- Remove redundant judgement in enable_tgu_store in patch2.
+- Correct typo in description in patch3.
+- Set default ret as SYSFS_GROUP_INVISIBLE, and returnret at end in pacth3 as
+per Mike's suggestion.
+- Remove tgu_dataset_ro definition in patch3
+- Use #define constants with explanations of what they are rather than
+arbitrary magic numbers in patch3 and patch4.
+- Check -EINVAL before using 'calculate_array_location()' in array in patch4.
+- Add 'default' in 'tgu_dataset_show''s switch part in patch4.
+- Document the value needed to initiate the reset in pacth7.
+- Check "value" in 'reset_tgu_store' and bail out with an error code if 0 in patch7.
+- Remove dev_dbg in 'reset_tgu_store' in patch7.
+---
+Link to V2: https://lore.kernel.org/all/20241010073917.16023-1-quic_songchai@quicinc.com/
+
+Changes in V3:
+- Correct typo and format in dt-binding in patch1
+- Rebase to the latest kernel version
+---
+Link to V1: https://lore.kernel.org/all/20240830092311.14400-1-quic_songchai@quicinc.com/
+
+Changes in V2:
+ - Use real name instead of login name,
+ - Correct typo and format in dt-binding and code.
+ - Bring order in tgu_prob(declarations with and without assignments) as per
+Krzysztof's suggestion.
+ - Add module device table in patch2.
+ - Set const for tgu_common_grp and tgu_ids in patch2.
+ - Initialize 'data' in tgu_ids to fix the warning in pacth2.
+---
+
+Songwei Chai (7):
+  dt-bindings: arm: Add support for Qualcomm TGU trace
+  qcom-tgu: Add TGU driver
+  qcom-tgu: Add signal priority support
+  qcom-tgu: Add TGU decode support
+  qcom-tgu: Add support to configure next action
+  qcom-tgu: Add timer/counter functionality for TGU
+  qcom-tgu: Add reset node to initialize
+
+ .../testing/sysfs-bus-coresight-devices-tgu   |  51 ++
+ .../devicetree/bindings/arm/qcom,tgu.yaml     |  82 ++
+ drivers/Makefile                              |   1 +
+ drivers/hwtracing/Kconfig                     |   2 +
+ drivers/hwtracing/qcom/Kconfig                |  18 +
+ drivers/hwtracing/qcom/Makefile               |   3 +
+ drivers/hwtracing/qcom/tgu.c                  | 737 ++++++++++++++++++
+ drivers/hwtracing/qcom/tgu.h                  | 252 ++++++
+ 8 files changed, 1146 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-coresight-devices-tgu
+ create mode 100644 Documentation/devicetree/bindings/arm/qcom,tgu.yaml
+ create mode 100644 drivers/hwtracing/qcom/Kconfig
+ create mode 100644 drivers/hwtracing/qcom/Makefile
+ create mode 100644 drivers/hwtracing/qcom/tgu.c
+ create mode 100644 drivers/hwtracing/qcom/tgu.h
+
+-- 
+2.34.1
+
 
