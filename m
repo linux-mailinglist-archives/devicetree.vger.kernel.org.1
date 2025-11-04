@@ -1,224 +1,1101 @@
-Return-Path: <devicetree+bounces-234565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB1CDC2EF6B
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 03:26:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EDDFC2EF71
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 03:27:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C2C4189831D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 02:26:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 811243AB1A9
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 02:27:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62B4223EA8D;
-	Tue,  4 Nov 2025 02:26:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 640EA23F429;
+	Tue,  4 Nov 2025 02:27:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="TRQeVesB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BSKU8eeM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013066.outbound.protection.outlook.com [52.101.72.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 452571DB13A;
-	Tue,  4 Nov 2025 02:26:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.66
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762223176; cv=fail; b=qBUZ6VIWdgq08g5pINqJdAyZs918gVdFHYeA/twGCd4hYxsfWMbXUwtskdJojspJU4oAQ6Q+3rCBQI1hZcBDAY7scbRaVBqwf3mCDO9G29z6DUgdBvQYcDlRRV7+BKcg1Ez164HX3JQDgxLzk8/bzbp8NIkJ49ZYDEb89DqCe0E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762223176; c=relaxed/simple;
-	bh=fdsW4zDeRBHO/gpWkz7NSEP7mfmXGmtcesZIi9lFtT4=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=nnAp4eJhx+fB7+apojP/qTfMT+MmrD8TzyiulA2MmzZ1t9mdD09du9HBhD8cUf9fHrHc24Mj59Rd9Mb9VdCQew2fNHPmpR/NnNDNVhNW2C2T58+9/hu8TW2Vuxv0Ajv1sQOMZcpxaiMYgrNxJoEpJ1tWDG99j34H4dmI1INBOx0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=TRQeVesB; arc=fail smtp.client-ip=52.101.72.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ypUvXxSm+ujsGALPcRDXdmM/hKVBrOBxVBob+a4I1lhXJzLM+qphvNRPCF5zsBoEvotYfGF9MxaaMmXl3FFBO774nZSn4DFGEJsWquAcVngqXRrXB4wAaY2C9ACPpI6vDAzEZiycnJdSFOH9Nu4k9AmZ98CFsyqZIYNdFNKxMqcyVKfbVrBSARiOZR6p5KEaYi2+XzHE3EHOWCScz/bZPWkYZ5BBHPOtACS4lsS5zw27Q/+cvIM5IE004gHrNU3ALDsJYFPb8gQ1AX2w5Q0Mdecq+qDB7SDeCSufy2uMdGBfRGpWLkGkxvPV1E4a/LoHnxsZR/KdjWcSq3oZAecy0g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4vC0h4JnCfT/BdBqI3sBn0Eh0FDKHpY7Hd+ZiDbJzq8=;
- b=TW2g6ShSVWDFqB9jTEE7J2xNyYr2EZMWGPqecQZHXZ/gh4PGYw5ArCjiHucmvLwSAI6A8xa5CkpY1KrK5tbKL7DK3R2g4m0uRyWmK5KpQZsiMzJ+zUZZ6tktDm9UqB6wAqwxGv8bV3RmIxUZIf/JB3JLegcSNMEmp72h53IJiOgxLtn51PRu5UAm9KUtq7DSZvz1GJjlrznBwh6hFR4TmfEFwEiwHd49FBeEZJ6PIFukuuJnSD/sf2NG53eKTAi7quyFf/noTDcKy44rTKgCIN4jcLejEq5Tjs2LwGs7y/G8Ln1TfUXQMohdZdq9rzOJqdvMU/SbwXIu899FO4pcbQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4vC0h4JnCfT/BdBqI3sBn0Eh0FDKHpY7Hd+ZiDbJzq8=;
- b=TRQeVesBaQSm3DYet2pS/hV5jm+7DE1EY1A6gL4Qw4E/uJOCgAn75P8MllkNYcvON9kmNTvg9hCI6hlQtsHsxHEJh9t8s50COezkNKDh/iRMxcSyGhw2TXshqIc3l+zlA4ZbQJoZDoRwL6ZlGWK5wNHQj2syXIu3kN6BkhhUp5LoBMopkIpvRvuHSS0a//YWWGs5s/pSh+GrYLj7kORf4EtaIH2lGRwKNtLKzutjU/KU+JLabLp3CdqISqDtjquZ1TDdvRuzPwSPp3teAvoSbCdi4wzh79htre1On1C/nNNAG6vhXihXQwaOlyMrhbhcT+m+TFfkxiuH9duETsfN3w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by GVXPR04MB10355.eurprd04.prod.outlook.com (2603:10a6:150:1db::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.15; Tue, 4 Nov
- 2025 02:26:11 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64%6]) with mapi id 15.20.9253.017; Tue, 4 Nov 2025
- 02:26:10 +0000
-Message-ID: <b65d9221-bdb3-4e69-beed-6b7646c5d5eb@nxp.com>
-Date: Tue, 4 Nov 2025 10:26:37 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/bridge: fsl-ldb: Parse register offsets from DT
-To: Marek Vasut <marek.vasut@mailbox.org>, dri-devel@lists.freedesktop.org
-Cc: Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Lucas Stach <l.stach@pengutronix.de>, Peng Fan <peng.fan@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org
-References: <20251017154029.105099-1-marek.vasut@mailbox.org>
- <dc4b1b65-542f-4bd2-bd91-af3fe4223b63@nxp.com>
- <55d44163-4f37-462f-b860-c862cb5ada5a@mailbox.org>
-From: Liu Ying <victor.liu@nxp.com>
-Content-Language: en-US
-In-Reply-To: <55d44163-4f37-462f-b860-c862cb5ada5a@mailbox.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2PR01CA0042.apcprd01.prod.exchangelabs.com
- (2603:1096:4:193::23) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7C9C23EA8D
+	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 02:27:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762223234; cv=none; b=ErRu6soTrBc9pVqagaFVNYuByNQwpm7tDzRPogX6CwDQc4/rj6CI08iH/IIptHhXwWMv/UO1xey6RP9QPyHSGWv6vSgQH2yuZLgRk3NHk94JELsUXz6P+IVTCoDpe1eAGZ5bKC4wo5Eqled80TOyvF3skg3PsqQQhprsNAJvgtw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762223234; c=relaxed/simple;
+	bh=J5CTR0KJE85vwJpFIu88hcabeTK9tFHGBH29DgsP7pQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Po+C1aBB5XrG4V5IDns8q96W/KNL+RGfXKTAwc1qL/coGBKC8k3KPhB7dmqKbL6lpy7oSTBzDEbmphcFepYJzMSX+SzqjHJbtKmMeX0drXHVNW1RWlmVOpeMUMNOblREgI03k8w053LQIRL+VpcXHiO+1D4/6SinZBeWvCQL1L8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BSKU8eeM; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-34003f73a05so5728894a91.1
+        for <devicetree@vger.kernel.org>; Mon, 03 Nov 2025 18:27:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762223230; x=1762828030; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=R705EYqyWLbfIosGnpm5IR0jYDwQ/KKTnNHDbSEtzBE=;
+        b=BSKU8eeMit9CCn6MMw91LsKGjOjl9ORdMH9q/7MSZ/0qQLO3hLqb6vr6VG2XA1KuHv
+         ltd6SZHw90J3zsRYhWZySb0OdPZUxmTB0h7G+Uw8jqDw5QMDb1YYVYf3oHPaKVIdUbb2
+         88foIEB80xMWgNBFOSAHDHevMHI/SNqA021J55f91OI5yeStW0TB4DFYH8PMTK7vFMrz
+         Y1L5uJx4AnQkPnBhxpaTtj00KisEf6Rgehh/DNxzUetWixXxE8zt1ilaiG8Ns95xwAp1
+         1Wmh0jz4yXqW2XV0MksdrXobyOeB17p+0x+xcp8HIEdksZJN7Bg2nrT31vXFnG4VTRh+
+         oZog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762223230; x=1762828030;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=R705EYqyWLbfIosGnpm5IR0jYDwQ/KKTnNHDbSEtzBE=;
+        b=H8R9cY3kxdTwkKesvrpUZlfLCyv6Kv12n8M7hbkG87OOAzAqEZRHpugS/S+WiRiaVL
+         r3PHMrvrgbw1Fl/0GUmogTUN7abBhdNpJhySL7sCvstxnQWkDC3GnFVnxD4b48nkkxpZ
+         4uKWPt88xnP6fWPWPKpQwtks4RG8KsDhEcX2Nf+f4GouX2ikLGq+pDrzLGOIRnTn3Wls
+         LaYmids3FsXB16tjUZ2AwMl9465gBSar0EhT02s/3r7rnl5oSMQeNQ+Sg7W2/Ua8abPB
+         mMF73HYRqdWUxUpLKTw4ZkGqnmZ2hVHpR6WYxt1GRxyBZ7DvICqh9SnvZarnx42yKV4S
+         l34w==
+X-Forwarded-Encrypted: i=1; AJvYcCXaALKWZN7R/O1CgF1FQm2SVKgB51dngK7FrsM0p3ScshMCCMYF2h5/Tle4C1aG0Pfcnb8d50sMbtKm@vger.kernel.org
+X-Gm-Message-State: AOJu0YzzFw/gYGHZ4xbvI1Yldq0/4reXOjL4cQN2yNd8ve3Z3u13Mh6R
+	ONC5vrDv+hNkP3WaLG9Pj23uPXdQddexSeTACwLNPOXhHLxa2GugPhvE
+X-Gm-Gg: ASbGncuSUsPOpDjw5RimFXBAoByJzxHo2mftpmLnQVLYIGCrBjg7dBHN+oosZ4576OY
+	wqjF2pxArnsPKKoPcNNYZBgSjXP+2s4txZZma3D7RWz76uae4KJ7STzoFmHPr7wczHBs0eyT8yk
+	mSvl3Nu4bjD4L299djj/4VD6PnE9ZXjXs0ilLEvy/mfEmStLEoJlAlKIAcjj+ebGylkqoTtePEK
+	e6QHeif7yRAPquaWXh2Sgta8i39Ir1OLbGgTpofEPJGsfwz1RVxa3Jz6XV4rQ5RRNOHfLz8m3u2
+	4Zeiw5qmKh1EmleiMClCMRU2E1IG6h6FrKw2NlIOdyrDHI0rYukrgSptJ42vsMtJRq+lpgBaaDx
+	4Kcn8cR0Ule8QblXbBar/iUZsrLZLUHep7hLsv3lJbpAGaVDR0vSMivNrAUGEVYvb0tTAPjmJGc
+	Y586UOUqe1se8t310590gp7IX2qROHwQQgvMsx7+vIP+2DMgwv
+X-Google-Smtp-Source: AGHT+IHvEdQlCceYQm+iD9DjaT/ROhRCF5MI+ckhZLYuepYL45kdlymwiXKDkUiS/Zec4WyzRSTW1A==
+X-Received: by 2002:a17:90b:2dc1:b0:340:e103:bfd4 with SMTP id 98e67ed59e1d1-3417185c471mr2027933a91.2.1762223229822;
+        Mon, 03 Nov 2025 18:27:09 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3417d1fd921sm330722a91.4.2025.11.03.18.27.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Nov 2025 18:27:09 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <3fa87e01-626c-4255-a57c-1c196d51ef4d@roeck-us.net>
+Date: Mon, 3 Nov 2025 18:27:07 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|GVXPR04MB10355:EE_
-X-MS-Office365-Filtering-Correlation-Id: 853b5f21-6543-49a1-32bf-08de1b4984a3
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|1800799024|366016|7416014|376014|19092799006;
-X-Microsoft-Antispam-Message-Info:
- =?utf-8?B?RDVqZW1pZks1S3M3MUhHWnVGR1JqREJqbDMyQVdjeEZDdDZ2TzN4QVNJeGt6?=
- =?utf-8?B?ekttMy9hSmF6SFN5TlFsY21BM0xmaWlTUFNwV1ZRcTBrZDFTWld2ZlhQZmVV?=
- =?utf-8?B?cFFvTWFDNCt6QzJHMzhCTkUwU3FEcHIwY1dMTjBwT2haU3p5Y1BwcitLaUlQ?=
- =?utf-8?B?UmZPV2FFNjR1WThoeUlXUkZBcjRiZ2U4biswVytQSUs2UHAwWFpMYlNSTkRT?=
- =?utf-8?B?T0pDV1kvbnpDcmI0VTdvUjRnU3ZxaGNadjNDN0FWT0JMeDRkNkVLRWJ2SWtk?=
- =?utf-8?B?bGVCUHBsWUJseWE4TWF5TFdySWpTOURmZHBjQ01pSzJIMVA4U2g2aG4yRDJG?=
- =?utf-8?B?all3eklwYlNNZHdZaTNPUmNVK3RjcVVRWWZMeGVEUitnQjNsY1FkSzJnZUZM?=
- =?utf-8?B?VlA5SmkxMmw1OTQyWHMzN3N0UnNjVHpMaUpjWHVTWGloOENCcmZLVitwd1Rk?=
- =?utf-8?B?MUI0UGdPWEliNUErMFc1RkhIdVErL05lSHBod3FhSmVqU0FBYzBjdFVvWWtk?=
- =?utf-8?B?dGJMQXM5cVFWcjQ2ZFNTR3p6dzIwNlkzVlljSk8xeUxzNnNEMHFES0FwcUg5?=
- =?utf-8?B?TG9CTGszMzducm03L1JBKzh4OEJVSmtuUFJOS0tQc0p1RUNmejBFc3ZpM2tp?=
- =?utf-8?B?YzBaMUVzSjJLV0xHVkNtMTZ1K3M3emlTY0l1VHljOTR2bnFwU3M5SFdjOFVs?=
- =?utf-8?B?OUtCOURFWUhhQ3p0UGozMStPUXlhTTU0UUdnc0x4M0hPZlZGZnBiYXd2RWFl?=
- =?utf-8?B?Q3cvV25PTVhSaXNQWUJZWnQ5Mmd0WHVCOFo5Q1FLaGlxSVZYQnRibzcvVUJF?=
- =?utf-8?B?OVplTllFQ3JJdFVMM3NTbDFyZHpoa3dIMmg4cWdKUHRKV3NGN3BQUE51dWlB?=
- =?utf-8?B?N3JBb2tsR0cvVkxsdkhnb2M2dEVjMVhCcVV6U3M1REF2d3hlYWlLaUVPVzI3?=
- =?utf-8?B?dEdyZUt3NTVHTEZmWSthWXdqNTQ2QTZnU1BrK0MvK04zUUVkeDlnSG5Sa3Mz?=
- =?utf-8?B?Wi96SGl5TXZxTWZrSUFZWnZ4YlN4bStNdVJ2K2k3N3ArSHRvdjljR25ZYWRo?=
- =?utf-8?B?SHphZVM4RmdrbTR6NmRCMGJ2OWtqOWsrQW8walZFYU1DSDF0YklLYUZWT2hD?=
- =?utf-8?B?MnlCUG1DK0MzclRuQlZRdnhFNDNtRzkvRGdSTFllbVA0cHJLNDh1T0hCSkY5?=
- =?utf-8?B?OUV4VU1BZnA1ZnRVamxqdGRpcmxZZ21IR2Y0VUpYdXhjamVQZ0JGM0FPUVF3?=
- =?utf-8?B?TjlHbzl0cDJDNzdkNk40MHlPd1VqejRFWUhyOC9xRmtTQTNHekVKcWZQQUE4?=
- =?utf-8?B?MlpZNGdENVVWUnNKeG9zb0lkWkE5cUxtVlhkby91TVpWVU1lSEkvdG8rY2Vx?=
- =?utf-8?B?QjZLbGNDUWpnMWlSRHNKOFpiZ3ZYQ3pEV3lreUVkcVhoTVJNQWEvSGhvUjVr?=
- =?utf-8?B?WTFVV2ZYWm8zWmR4K3h2N1JlUnhPd2kzZGJWSFNiUVdlSFZSMVJQVDYzbmFJ?=
- =?utf-8?B?QVN4MFp2OVFuSkVlTTFRSGJ2N2ZMTWhJTXRMUHViOVNhbGt0WDJIY3M5TG5n?=
- =?utf-8?B?eExpTmpTUVVqSDBSSVArY3ZrWEZGRXlsbjFXZWErY1N0R1pxWXpSZlhjbjNY?=
- =?utf-8?B?UjY0VUNoQlZreUFJL0E0MitHSkV5dDJZRFNQNnBiSjZrZHBlRnFvaGRVQWJj?=
- =?utf-8?B?ZGVSenhuQ0tIdUtyS0krMXdkU1lZU2JmNFE5WHk5TTF2R0RMQnlpVzVTYVBK?=
- =?utf-8?B?eGF5L0pReTI1SzlHRFhxc2I2Y3NGbkkvYUp6Mk13YzNocUNZSFFZU2lPOUNr?=
- =?utf-8?B?RFJvYkJ5b3hTeFczc1VjTFJKQVZFdjkvMCtUZGRGNTFrMFoxOS84a1hISVc4?=
- =?utf-8?B?UmpXSy9BcFFzTEhuVzg4cmxiU0FtWUhEM2hrRFZWL0thS3JjeFJMTi9Bbmtl?=
- =?utf-8?Q?s9MKCW74tbjYvBl2F0Yifh2FA2L5j9Wk?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(19092799006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?NlpGa0UvdmhZMGsrdkZoK3ZPNkh6UEk3b29kYzR6SkovcEVoenNoR1o1SUNL?=
- =?utf-8?B?Tk9ZdHQ5SUFIUUQwbi8wWE9PN3phT1JyYWlyOXRoMlRpeWNEVUpQbVRsdGhm?=
- =?utf-8?B?cjluVVhmeUgrQkdRczJZenBBc295LzB0RWU5U05yd1RRdG0wcHI5SlMwd2Z2?=
- =?utf-8?B?cUgzVWNSUXRlN2NQZm1NWHpwN3JSdEhBeXlrSFRMNnh5dTRRN2M0OEhlT0hN?=
- =?utf-8?B?MnVIY21YS2wvODRUc2VMQjV4YXpRYm5DWXI1OEFCSFRKWjZOd0FVU0xQUkVX?=
- =?utf-8?B?SjZ0RUNWcnp2V0VGOUhvNU9yN0hENzJDTHdGM0FEYStvS0kwS3N4MFgvQmND?=
- =?utf-8?B?ekdqeHY2YWo0My83cmVETTJ5YWJOb1FhdEVzZU44MW53K2NyT1N0SmJabkJ2?=
- =?utf-8?B?aXU2WktGOFVCQXUzaDl0NktVTFZaMitJMHhIQXI3dHozTGVweDREaVJoTGJE?=
- =?utf-8?B?UjBpem12MENiSzVlVCtHeUJxN1pxb204TVB5OVFDSHlld2RzWjJxanZxcU9w?=
- =?utf-8?B?b2FrVll3bFJqelVGNit6VTRXUkNTOVg0RTdFWEQxYmtqSklhb2Y3elpvSVZs?=
- =?utf-8?B?YUF0ZVlrZ0E3cEVmY1gzU3crY1A3WDMzVVFVWHRSNm8rN1l1bmp6R3Q0NlN2?=
- =?utf-8?B?SkNObjF2UUh2aVBFRW4wbEFMY1ZXNmdVZ3hpZVhXTGZmZVNzT25UbFg1TG94?=
- =?utf-8?B?MWExVHdSVklQWjZ0VnNlRmdmc3JLQzh3V21qcDZkR2ozbU5tZ0J6QUhpa082?=
- =?utf-8?B?ZEJ6TjFqWHhFaTl5NkhaZ2VJbXlHQ0RIVFJHNnpzWVlVSEdpc1hlQk81cklS?=
- =?utf-8?B?WlFGRXZ6WmVjYmNUUURwK1Y5SE9MWUozYWU3ZDFhUm04V1FHbHhRQkxINzRk?=
- =?utf-8?B?bzEwclZGaE5IY2hUVlNMQ0FGMW5CTXA2dnk1TFNBT1V2a2xXbFk2U2tlOXZP?=
- =?utf-8?B?TEp3bjBHU2lEYnRacm5PaFFJTWwwWStaSUsweUVoLzhBZmRoczNaMzhVSmdv?=
- =?utf-8?B?eTAwQUlhd1o2RTNUTWplZndYSU82ZTIxSk4zeFdQblJTd25QT1R5Y21SRTFs?=
- =?utf-8?B?M0hlTFVyellMTjYzU1VWN0ZKb0ZsUnFDNU0rRWM0bEVKcVh4U2VodlZpTE5u?=
- =?utf-8?B?REhzTEE5eUxaM0MyTXR5cTliaVZJWHV0OXBOL21jeWtqU2RzQ2RIOFpsMDNi?=
- =?utf-8?B?cWttblBlRWpoOXlEMSt2eDlhRFQ2eU1yeFVCQlpLbmRxU3QrWjlhUnNOd1R2?=
- =?utf-8?B?TUkrQVBaTlBBdGJsSVBRaU92RHBpQ0tmTEZGZ2FDNmluM05SRXhKY0psSFlo?=
- =?utf-8?B?Y0tMUERIQ2FXUzR2Uy8vYTRKc1htSDhwbyt4ZFVGMVovV2ZCNi9PMWF6Rkx1?=
- =?utf-8?B?TjhIemRKL0Fzc2F5Ym41YTdWY2RQVVhzQzh0dHV3TkVRUEJlZXlGOUtGaWt2?=
- =?utf-8?B?YWRKUk05VTg3bE45VG40TGNhTXNEUm5QZmo0L1JydXVLendoY3MvUjRyZHow?=
- =?utf-8?B?ZkZ3eG5DNGxLbzRaSmRmUXV3TkM2YVl6YnZ0N2NNOElSTFcrM3ZGT202cGQx?=
- =?utf-8?B?OVIzSUdHNFV6TXd6SDBhOEdwUnJaSlhlZXNua2J2SHdmYXltcDkydHBpQWFY?=
- =?utf-8?B?aERwMEZ5MVhQSG9IUk5Ld1BTdloxeTZpdnJ6RFIxWVlDNEw1ZktvaElERzVy?=
- =?utf-8?B?U3VxcWJVaTFZbDkvZ2djQ1dHRTlxTFk1bHUycDdpZkRZZWtESStFdDFjUUVn?=
- =?utf-8?B?eldQNldyaWdNbXUyTlo2cDVGekdWR2FqcUpWRDdxUVk3ek5SVDhsTzlXekh5?=
- =?utf-8?B?MHpHNFBqemNTa0tzVGdlUkhtTHFGblZTZWlQNTkyczV5Q1FENmI0eTJ1SDB6?=
- =?utf-8?B?RUJSMUdNT2pWYzBzOFo5NUlhS0UyUWVOR2tLUVQwT0lVeWY3a0VBN0M3dCtR?=
- =?utf-8?B?dUVndVNtTU9IbTR0ckFZTENEbkNMZnlzTGZ2Tjg3aUgvS1VxV1lLOFNXYmQr?=
- =?utf-8?B?dG4zZlZkZzZrWlFXZzdDNUMzTCt2V0lHUEdhU2tqeFpqRGsvQjdFMWhMbGFX?=
- =?utf-8?B?cEhJSTJadVRpdzZza2NZbGczZTRuK2tZMlI0UzZVazdMRUo3RG8xQlk4UEk5?=
- =?utf-8?Q?0oYAy67OIJDlB2wPK1hTZxG7j?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 853b5f21-6543-49a1-32bf-08de1b4984a3
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2025 02:26:10.7528
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rnCoIP2VtwKMn7QRwmK28vKZh4k805lCBFB3k/UTL/VOznoZiIcmhLLHcSp+y7dusv4rtytRQiozniBCjqEEvg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10355
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] hwmon: Add TSC1641 I2C power monitor driver
+To: Igor Reznichenko <igor@reznichenko.net>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net
+Cc: david.hunter.linux@gmail.com, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-kernel@vger.kernel.org, skhan@linuxfoundation.org
+References: <20251104003320.1120514-1-igor@reznichenko.net>
+ <20251104003320.1120514-3-igor@reznichenko.net>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20251104003320.1120514-3-igor@reznichenko.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 11/02/2025, Marek Vasut wrote:
-> On 10/20/25 8:21 AM, Liu Ying wrote:
+On 11/3/25 16:33, Igor Reznichenko wrote:
+> Add a driver for the ST Microelectronics TSC1641 16-bit high-precision
+> power monitor. The driver supports reading bus voltage, current, power,
+> and temperature. Sysfs attributes are exposed for shunt resistor and
+> update interval. The driver integrates with the hwmon subsystem and
+> supports optional ALERT pin polarity configuration.
 > 
-> Hello Liu,
-
-Hello Marek,
-
+> Signed-off-by: Igor Reznichenko <igor@reznichenko.net>
+> ---
+>   Documentation/hwmon/index.rst   |   1 +
+>   Documentation/hwmon/tsc1641.rst |  87 ++++
+>   drivers/hwmon/Kconfig           |  12 +
+>   drivers/hwmon/Makefile          |   1 +
+>   drivers/hwmon/tsc1641.c         | 748 ++++++++++++++++++++++++++++++++
+>   5 files changed, 849 insertions(+)
+>   create mode 100644 Documentation/hwmon/tsc1641.rst
+>   create mode 100644 drivers/hwmon/tsc1641.c
 > 
->>> +++ b/drivers/gpu/drm/bridge/fsl-ldb.c
->>> @@ -61,24 +61,16 @@ enum fsl_ldb_devtype {
->>>   };
->>>     struct fsl_ldb_devdata {
->>> -    u32 ldb_ctrl;
->>> -    u32 lvds_ctrl;
->>>       bool lvds_en_bit;
->>>       bool single_ctrl_reg;
->>
->> single_ctrl_reg can be dropped then, as it can be expressed by failing to
->> get the second register.
->>
->> Furthermore, with this done, lvds_en_bit is the only member left and hence
->> struct fsl_ldb_devdata can also be dropped, as IIRC there is no need to
->> use a structure for device data with only a flag.
-> I plan to add more bits into the driver match data when adding the MX95,
-> so I would like to retain these instead of removing them and the adding
-> them back.
+> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+> index 51a5bdf75b08..4fb9f91f83b3 100644
+> --- a/Documentation/hwmon/index.rst
+> +++ b/Documentation/hwmon/index.rst
+> @@ -253,6 +253,7 @@ Hardware Monitoring Kernel Drivers
+>      tps40422
+>      tps53679
+>      tps546d24
+> +   tsc1641
+>      twl4030-madc-hwmon
+>      ucd9000
+>      ucd9200
+> diff --git a/Documentation/hwmon/tsc1641.rst b/Documentation/hwmon/tsc1641.rst
+> new file mode 100644
+> index 000000000000..425e25f7a7d1
+> --- /dev/null
+> +++ b/Documentation/hwmon/tsc1641.rst
+> @@ -0,0 +1,87 @@
+> +.. SPDX-License-Identifier: GPL-2.0-only
+> +
+> +Kernel driver tsc1641
+> +=====================
+> +
+> +Supported chips:
+> +
+> +  * ST TSC1641
+> +
+> +    Prefix: 'tsc1641'
+> +
+> +    Addresses scanned: -
+> +
+> +    Datasheet:
+> +	https://www.st.com/resource/en/datasheet/tsc1641.pdf
+> +
+> +Author:
+> +	- Igor Reznichenko <igor@reznichenko.net>
+> +
+> +
+> +Description
+> +-----------
+> +
+> +The TSC1641 is a high-precision current, voltage, power, and temperature
+> +monitoring analog front-end (AFE). It monitors bidirectional current into a
+> +shunt resistor and load voltage up to 60 V in a synchronized way. Digital bus
+> +interface is I2C/SMbus. The TSC1641 allows the assertion of several alerts
+> +regarding the voltage, current, power and temperature.
+> +
+> +Usage Notes
+> +-----------
+> +
+> +The TSC1641 driver requires the value of the external shunt resistor to
+> +correctly compute current and power measurements. The resistor value, in
+> +micro-ohms, should be provided either through the device tree property
+> +"shunt-resistor-micro-ohms" or via writable sysfs attribute "shunt_resistor".
+> +Please refer to the Documentation/devicetree/bindings/hwmon/st,tsc1641.yaml
+> +for bindings if the device tree is used.
+> +
+> +Supported range of shunt resistor values is from 100 uOhm to 655.35 mOhm, in
+> +10 uOhm steps.
+> +When selecting the value keep in mind device maximum DC power measurement is
+> +1600W. See datasheet p.22 for ST recommendations on selecting shunt value.
+> +
+> +If the shunt resistor value is not specified in the device tree, the driver
+> +initializes it to 1000 uOhm by default. Users may configure the correct shunt
+> +resistor value at runtime by writing to the "shunt_resistor" sysfs attribute.
+> +
+> +The driver only supports continuous operating mode.
+> +Measurement ranges:
+> +
+> +================ ===============================================================
+> +Current          Bidirectional, dependent on shunt
+> +Bus voltage      0-60V
+> +Maximum DC power 1600W
+> +Temperature      -40C to +125C
+> +================ ===============================================================
+> +
+> +Sysfs entries
+> +-------------
+> +
+> +==================== ===========================================================
+> +in0_input            bus voltage (mV)
+> +in0_max              bus voltage max alarm limit (mV)
+> +in0_max_alarm        bus voltage max alarm limit exceeded
+> +in0_min              bus voltage min alarm limit (mV)
+> +in0_min_alarm        bus voltage min alarm limit exceeded
+> +
+> +curr1_input          current measurement (mA)
+> +curr1_max            current max alarm limit (mA)
+> +curr1_max_alarm      current max alarm limit exceeded
+> +curr1_min            current min alarm limit (mA)
+> +curr1_min_alarm      current min alarm limit exceeded
+> +
+> +power1_input         power measurement (uW)
+> +power1_max           power max alarm limit (uW)
+> +power1_max_alarm     power max alarm limit exceeded
+> +
+> +shunt_resistor       shunt resistor value (uOhms)
+> +
+> +temp1_input          temperature measurement (mdegC)
+> +temp1_max            temperature max alarm limit (mdegC)
+> +temp1_max_alarm      temperature max alarm limit exceeded
+> +
+> +update_interval      data conversion time (1 - 33ms), longer conversion time
+> +                     corresponds to higher effective resolution in bits
+> +==================== ===========================================================
+> \ No newline at end of file
+> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+> index 2760feb9f83b..b9d7b02932a6 100644
+> --- a/drivers/hwmon/Kconfig
+> +++ b/drivers/hwmon/Kconfig
+> @@ -2434,6 +2434,18 @@ config SENSORS_TMP513
+>   	  This driver can also be built as a module. If so, the module
+>   	  will be called tmp513.
+>   
+> +config SENSORS_TSC1641
+> +	tristate "ST Microelectronics TSC1641 Power Monitor"
+> +	depends on I2C
+> +	select REGMAP_I2C
+> +	help
+> +	  If you say yes here you get support for TSC1641 power  monitor chip.
+> +	  The TSC1641 driver is configured for the default configuration of
+> +	  the part except temperature is enabled by default.
+> +
+> +	  This driver can also be built as a module. If so, the module
+> +	  will be called tsc1641.
+> +
+>   config SENSORS_VEXPRESS
+>   	tristate "Versatile Express"
+>   	depends on VEXPRESS_CONFIG
+> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
+> index 73b2abdcc6dd..a8de5bc69f2a 100644
+> --- a/drivers/hwmon/Makefile
+> +++ b/drivers/hwmon/Makefile
+> @@ -233,6 +233,7 @@ obj-$(CONFIG_SENSORS_TMP401)	+= tmp401.o
+>   obj-$(CONFIG_SENSORS_TMP421)	+= tmp421.o
+>   obj-$(CONFIG_SENSORS_TMP464)	+= tmp464.o
+>   obj-$(CONFIG_SENSORS_TMP513)	+= tmp513.o
+> +obj-$(CONFIG_SENSORS_TSC1641)	+= tsc1641.o
+>   obj-$(CONFIG_SENSORS_VEXPRESS)	+= vexpress-hwmon.o
+>   obj-$(CONFIG_SENSORS_VIA_CPUTEMP)+= via-cputemp.o
+>   obj-$(CONFIG_SENSORS_VIA686A)	+= via686a.o
+> diff --git a/drivers/hwmon/tsc1641.c b/drivers/hwmon/tsc1641.c
+> new file mode 100644
+> index 000000000000..b241206b07ac
+> --- /dev/null
+> +++ b/drivers/hwmon/tsc1641.c
+> @@ -0,0 +1,748 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Driver for ST Microelectronics TSC1641 I2C power monitor
+> + *
+> + * 60 V, 16-bit high-precision power monitor with I2C and MIPI I3C interface
+> + * Datasheet: https://www.st.com/resource/en/datasheet/tsc1641.pdf
+> + *
+> + * Copyright (C) 2025 Igor Reznichenko <igor@reznichenko.net>
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/hwmon.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +#include <linux/sysfs.h>
+> +#include <linux/util_macros.h>
+> +
+> +/* I2C registers */
+> +#define TSC1641_CONFIG		0x00
+> +#define TSC1641_SHUNT_VOLTAGE	0x01
+> +#define TSC1641_LOAD_VOLTAGE	0x02
+> +#define TSC1641_POWER		0x03
+> +#define TSC1641_CURRENT		0x04
+> +#define TSC1641_TEMP		0x05
+> +#define TSC1641_MASK		0x06
+> +#define TSC1641_FLAG		0x07
+> +#define TSC1641_RSHUNT		0x08 /* Shunt resistance */
+> +#define TSC1641_SOL		0x09
+> +#define TSC1641_SUL		0x0A
+> +#define TSC1641_LOL		0x0B
+> +#define TSC1641_LUL		0x0C
+> +#define TSC1641_POL		0x0D
+> +#define TSC1641_TOL		0x0E
+> +#define TSC1641_MANUF_ID	0xFE /* 0x0006 */
+> +#define TSC1641_DIE_ID		0xFF /* 0x1000 */
+> +#define TSC1641_MAX_REG		0xFF
+> +
+> +#define TSC1641_RSHUNT_DEFAULT	1000   /* 1mOhm */
+> +#define TSC1641_CONFIG_DEFAULT	0x003F /* Default mode and temperature sensor */
+> +#define TSC1641_MASK_DEFAULT	0xFC00 /* Unmask all alerts */
+> +
+> +/* Bit mask for conversion time in the configuration register */
+> +#define TSC1641_CONV_TIME_MASK	GENMASK(7, 4)
+> +
+> +#define TSC1641_CONV_TIME_DEFAULT	1024
+> +#define TSC1641_MIN_UPDATE_INTERVAL	1024
+> +
+> +/* LSB value of different registers */
+> +#define TSC1641_VLOAD_LSB_MVOLT		2
+> +#define TSC1641_POWER_LSB_UWATT		25000
+> +#define TSC1641_VSHUNT_LSB_NVOLT	2500 /* Use nanovolts to make it integer */
+> +#define TSC1641_RSHUNT_LSB_UOHM		10
+> +#define TSC1641_TEMP_LSB_MDEGC		500
+> +
+> +/* Limits based on datasheet */
+> +#define TSC1641_RSHUNT_MIN_UOHM		100
+> +#define TSC1641_RSHUNT_MAX_UOHM		655350
+> +
+> +#define TSC1641_ALERT_POL_MASK		BIT(1)
+> +#define TSC1641_ALERT_LATCH_EN_MASK	BIT(0)
+> +
+> +/* Flags indicating alerts in TSC1641_FLAG register*/
+> +#define TSC1641_SAT_FLAG		BIT(13)
+> +#define TSC1641_SHUNT_OV_FLAG		BIT(6)
+> +#define TSC1641_SHUNT_UV_FLAG		BIT(5)
+> +#define TSC1641_LOAD_OV_FLAG		BIT(4)
+> +#define TSC1641_LOAD_UV_FLAG		BIT(3)
+> +#define TSC1641_POWER_OVER_FLAG		BIT(2)
+> +#define TSC1641_TEMP_OVER_FLAG		BIT(1)
+> +
+> +static bool tsc1641_writeable_reg(struct device *dev, unsigned int reg)
+> +{
+> +	switch (reg) {
+> +	case TSC1641_CONFIG:
+> +	case TSC1641_MASK:
+> +	case TSC1641_RSHUNT:
+> +	case TSC1641_SOL:
+> +	case TSC1641_SUL:
+> +	case TSC1641_LOL:
+> +	case TSC1641_LUL:
+> +	case TSC1641_POL:
+> +	case TSC1641_TOL:
+> +		return true;
+> +	default:
+> +		return false;
+> +	}
+> +}
+> +
+> +static bool tsc1641_volatile_reg(struct device *dev, unsigned int reg)
+> +{
+> +	switch (reg) {
+> +	case TSC1641_SHUNT_VOLTAGE:
+> +	case TSC1641_LOAD_VOLTAGE:
+> +	case TSC1641_POWER:
+> +	case TSC1641_CURRENT:
+> +	case TSC1641_TEMP:
+> +	case TSC1641_FLAG:
+> +	case TSC1641_MANUF_ID:
+> +	case TSC1641_DIE_ID:
+> +		return true;
+> +	default:
+> +		return false;
+> +	}
+> +}
+> +
+> +static const struct regmap_config tsc1641_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 16,
+> +	.use_single_write = true,
+> +	.use_single_read = true,
+> +	.max_register = TSC1641_MAX_REG,
+> +	.cache_type = REGCACHE_MAPLE,
+> +	.volatile_reg = tsc1641_volatile_reg,
+> +	.writeable_reg = tsc1641_writeable_reg,
+> +};
+> +
+> +struct tsc1641_data {
+> +	long rshunt_uohm;
+> +	long current_lsb_ua;
+> +	struct regmap *regmap;
+> +};
+> +
+> +/*
+> + * Upper limit due to chip 16-bit shunt register, lower limit to
+> + * prevent current and power registers overflow
+> + */
+> +static inline int tsc1641_validate_shunt(u32 val)
+> +{
+> +	if (val < TSC1641_RSHUNT_MIN_UOHM || val > TSC1641_RSHUNT_MAX_UOHM)
+> +		return -EINVAL;
+> +	return 0;
+> +}
+> +
+> +static int tsc1641_set_shunt(struct tsc1641_data *data, u32 val)
+> +{
+> +	struct regmap *regmap = data->regmap;
+> +	long rshunt_reg;
+> +
+> +	if (tsc1641_validate_shunt(val) < 0)
+> +		return -EINVAL;
+> +
 
-i.MX95 LDB supports two LVDS channels.  Two DRM bridges are needed in single
-or separate LDB mode, while one DRM bridge is needed in split LDB mode.
-Also, each channel connects to a standalone LVDS PHY.  All these could make
-it intrusive to support i.MX95 LDB in fsl-ldb.c.  Maybe, we could discuss
-about this later, but IMO this patch should remove struct fsl_ldb_devdata.
-It doesn't hurt if we really need to add it back.
+This is validated twice if called from tsc1641_init().
 
-> 
-> The rest is fixed in V2, thanks !
+Here:
+	TSC1641_RSHUNT_MIN_UOHM <= val <= TSC1641_RSHUNT_MAX_UOHM
 
--- 
-Regards,
-Liu Ying
+> +	/* RSHUNT register LSB is 10uOhm so need to divide further */
+> +	rshunt_reg = DIV_ROUND_CLOSEST(val, TSC1641_RSHUNT_LSB_UOHM);
+
+	rshunt_reg >= (TSC1641_RSHUNT_MIN_UOHM / TSC1641_RSHUNT_LSB_UOHM)
+		   >= 10
+		   <= (TSC1641_RSHUNT_MAX_UOHM / TSC1641_RSHUNT_LSB_UOHM)
+		   <= 655350 / 10 == 65535
+
+> +	/*
+> +	 * Clamp value to the nearest multiple of TSC1641_RSHUNT_LSB_UOHM
+> +	 * in case shunt value provided was not a multiple
+> +	 */
+> +	data->rshunt_uohm = rshunt_reg * TSC1641_RSHUNT_LSB_UOHM;
+
+	rshunt_reg >= 10 * TSC1641_RSHUNT_LSB_UOHM
+		   >= 10 * 10 == 100
+		   <= 65535 * 10 == 655350
+
+> +	data->current_lsb_ua = DIV_ROUND_CLOSEST(TSC1641_VSHUNT_LSB_NVOLT * 1000,
+> +						 data->rshunt_uohm);
+
+	current_lsb_us >= TSC1641_VSHUNT_LSB_NVOLT * 1000 / 655350
+		       >= 2500 * 1000 / 655350
+		       >= 3.81 ~= 4
+
+So current_lsb_us will never be 0, and the WARN_ONCE above is unnecessary.
+
+If you don't trust the calculations (or they are wrong ;-), add
+
+	if (!data->current_lsb_ua)
+		return -EINVAL;
+
+but please drop the WARN_ONCE() above.
+
+> +
+> +	return regmap_write(regmap, TSC1641_RSHUNT, rshunt_reg);
+> +}
+> +
+> +/*
+> + * Conversion times in uS, value in CONFIG[CT3:CT0] corresponds to index in this array
+> + * See "Table 14. CT3 to CT0: conversion time" in:
+> + * https://www.st.com/resource/en/datasheet/tsc1641.pdf
+> + */
+> +static const int tsc1641_conv_times[] = { 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768 };
+> +
+> +static int tsc1641_reg_to_upd_interval(u16 config)
+> +{
+> +	int idx = FIELD_GET(TSC1641_CONV_TIME_MASK, config);
+> +
+> +	idx = clamp_val(idx, 0, ARRAY_SIZE(tsc1641_conv_times) - 1);
+> +	int conv_time = tsc1641_conv_times[idx];
+> +
+> +	/* Don't support sub-millisecond update interval as it's not supported in hwmon */
+> +	conv_time = max(conv_time, TSC1641_MIN_UPDATE_INTERVAL);
+> +	/* Return nearest value in milliseconds */
+> +	return DIV_ROUND_CLOSEST(conv_time, 1000);
+> +}
+> +
+> +static u16 tsc1641_upd_interval_to_reg(long interval)
+> +{
+> +	/* Supported interval is 1ms - 33ms */
+> +	interval = clamp_val(interval, 1, 33);
+> +
+> +	int conv = interval * 1000;
+> +	int conv_bits = find_closest(conv, tsc1641_conv_times,
+> +				     ARRAY_SIZE(tsc1641_conv_times));
+> +
+> +	return FIELD_PREP(TSC1641_CONV_TIME_MASK, conv_bits);
+> +}
+> +
+> +static int tsc1641_chip_write(struct device *dev, u32 attr, long val)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +
+> +	switch (attr) {
+> +	case hwmon_chip_update_interval:
+> +		return regmap_update_bits(data->regmap, TSC1641_CONFIG,
+> +					  TSC1641_CONV_TIME_MASK,
+> +					  tsc1641_upd_interval_to_reg(val));
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static int tsc1641_chip_read(struct device *dev, u32 attr, long *val)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	u32 regval;
+> +	int ret;
+> +
+> +	switch (attr) {
+> +	case hwmon_chip_update_interval:
+> +		ret = regmap_read(data->regmap, TSC1641_CONFIG, &regval);
+> +		if (ret)
+> +			return ret;
+> +
+> +		*val = tsc1641_reg_to_upd_interval(regval);
+> +		return 0;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static int tsc1641_flag_read(struct regmap *regmap, u32 flag, long *val)
+> +{
+> +	unsigned int regval;
+> +	int ret;
+> +
+> +	ret = regmap_read_bypassed(regmap, TSC1641_FLAG, &regval);
+> +	if (ret)
+> +		return ret;
+> +
+> +	*val = !!(regval & flag);
+> +	return 0;
+> +}
+> +
+> +static int tsc1641_in_read(struct device *dev, u32 attr, long *val)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	struct regmap *regmap = data->regmap;
+> +	unsigned int regval;
+> +	int ret, reg;
+> +	long sat_flag;
+> +
+> +	switch (attr) {
+> +	case hwmon_in_input:
+> +		reg = TSC1641_LOAD_VOLTAGE;
+> +		break;
+> +	case hwmon_in_min:
+> +		reg = TSC1641_LUL;
+> +		break;
+> +	case hwmon_in_max:
+> +		reg = TSC1641_LOL;
+> +		break;
+> +	case hwmon_in_min_alarm:
+> +		return tsc1641_flag_read(regmap, TSC1641_LOAD_UV_FLAG, val);
+> +	case hwmon_in_max_alarm:
+> +		return tsc1641_flag_read(regmap, TSC1641_LOAD_OV_FLAG, val);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	ret = regmap_read(regmap, reg, &regval);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Check if load voltage is out of range */
+> +	if (reg == TSC1641_LOAD_VOLTAGE) {
+> +		/* Register is 15-bit max */
+> +		if (regval & 0x8000)
+> +			return -ENODATA;
+> +
+> +		ret  = tsc1641_flag_read(regmap, TSC1641_SAT_FLAG, &sat_flag);
+> +		if (ret)
+> +			return ret;
+> +		/* Out of range conditions per datasheet */
+> +		if (sat_flag && (regval == 0x7FFF || !regval))
+> +			return -ENODATA;
+> +	}
+> +
+> +	*val = regval * TSC1641_VLOAD_LSB_MVOLT;
+> +	return 0;
+> +}
+> +
+> +/* Chip supports bidirectional (positive or negative) current */
+> +static int tsc1641_curr_read(struct device *dev, u32 attr, long *val)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	struct regmap *regmap = data->regmap;
+> +	int regval;
+> +	int ret, reg;
+> +	long sat_flag;
+> +
+> +	/* Current limits are the shunt under/over voltage limits */
+> +	switch (attr) {
+> +	case hwmon_curr_input:
+> +		reg = TSC1641_CURRENT;
+> +		break;
+> +	case hwmon_curr_min:
+> +		reg = TSC1641_SUL;
+> +		break;
+> +	case hwmon_curr_max:
+> +		reg = TSC1641_SOL;
+> +		break;
+> +	case hwmon_curr_min_alarm:
+> +		return tsc1641_flag_read(regmap, TSC1641_SHUNT_UV_FLAG, val);
+> +	case hwmon_curr_max_alarm:
+> +		return tsc1641_flag_read(regmap, TSC1641_SHUNT_OV_FLAG, val);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +	/*
+> +	 * Current uses shunt voltage, so check if it's out of range.
+> +	 * We report current register in sysfs to stay consistent with internal
+> +	 * power calculations which use current register values
+> +	 */
+> +	if (reg == TSC1641_CURRENT) {
+> +		ret = regmap_read(regmap, TSC1641_SHUNT_VOLTAGE, &regval);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret = tsc1641_flag_read(regmap, TSC1641_SAT_FLAG, &sat_flag);
+> +		if (ret)
+> +			return ret;
+> +
+> +		if (sat_flag && (regval == 0x7FFF || regval == 0x8000))
+> +			return -ENODATA;
+> +	}
+> +
+> +	ret = regmap_read(regmap, reg, &regval);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Current in milliamps, signed */
+> +	*val = DIV_ROUND_CLOSEST((s16)regval * data->current_lsb_ua, 1000);
+> +	return 0;
+> +}
+> +
+> +static int tsc1641_power_read(struct device *dev, u32 attr, long *val)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	struct regmap *regmap = data->regmap;
+> +	unsigned int regval;
+> +	int ret, reg;
+> +
+> +	switch (attr) {
+> +	case hwmon_power_input:
+> +		reg = TSC1641_POWER;
+> +		break;
+> +	case hwmon_power_max:
+> +		reg = TSC1641_POL;
+> +		break;
+> +	case hwmon_power_max_alarm:
+> +		return tsc1641_flag_read(regmap, TSC1641_POWER_OVER_FLAG, val);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	ret = regmap_read(regmap, reg, &regval);
+> +	if (ret)
+> +		return ret;
+> +
+> +	*val = regval * TSC1641_POWER_LSB_UWATT;
+> +	return 0;
+> +}
+> +
+> +static int tsc1641_temp_read(struct device *dev, u32 attr, long *val)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	struct regmap *regmap = data->regmap;
+> +	unsigned int regval;
+> +	int ret, reg;
+> +
+> +	switch (attr) {
+> +	case hwmon_temp_input:
+> +		reg = TSC1641_TEMP;
+> +		break;
+> +	case hwmon_temp_max:
+> +		reg = TSC1641_TOL;
+> +		break;
+> +	case hwmon_temp_max_alarm:
+> +		return tsc1641_flag_read(regmap, TSC1641_TEMP_OVER_FLAG, val);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	ret = regmap_read(regmap, reg, &regval);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* 0x8000 means that TEMP measurement not enabled */
+> +	if (reg == TSC1641_TEMP && regval == 0x8000)
+> +		return -ENODATA;
+> +
+> +	/* Both temperature and limit registers are signed */
+> +	*val = (s16)regval * TSC1641_TEMP_LSB_MDEGC;
+> +	return 0;
+> +}
+> +
+> +static int tsc1641_in_write(struct device *dev, u32 attr, long val)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	struct regmap *regmap = data->regmap;
+> +	unsigned int regval;
+> +	int reg;
+> +
+> +	switch (attr) {
+> +	case hwmon_in_min:
+> +		reg = TSC1641_LUL;
+> +		break;
+> +	case hwmon_in_max:
+> +		reg = TSC1641_LOL;
+> +		break;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +	/* Clamp to full register range */
+> +	val = clamp_val(val, 0, TSC1641_VLOAD_LSB_MVOLT * USHRT_MAX);
+> +	regval = DIV_ROUND_CLOSEST(val, TSC1641_VLOAD_LSB_MVOLT);
+> +
+> +	return regmap_write(regmap, reg, regval);
+> +}
+> +
+> +static int tsc1641_curr_write(struct device *dev, u32 attr, long val)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	struct regmap *regmap = data->regmap;
+> +	int reg, regval;
+> +
+> +	switch (attr) {
+> +	case hwmon_curr_min:
+> +		reg = TSC1641_SUL;
+> +		break;
+> +	case hwmon_curr_max:
+> +		reg = TSC1641_SOL;
+> +		break;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	/* Should never happen if init was ok */
+> +	if (WARN_ON_ONCE(!data->current_lsb_ua))
+> +		return -EINVAL;
+> +
+
+The code should make sure that this never happens, making this check
+unnecessary. Also see above.
+
+> +	/* Convert val in milliamps to register */
+> +	regval = DIV_ROUND_CLOSEST(val * 1000, data->current_lsb_ua);
+
+curr1_min: Suspected underflow: [min=-81920, read 0, written -9223372036854775808]
+curr1_max: Suspected underflow: [min=-81920, read 0, written -9223372036854775808]
+
+You'll need to clamp 'val' first before multiplying it.
+
+
+> +	/*
+> +	 * Prevent signed 16-bit overflow.
+> +	 * Integer arithmetic and shunt scaling can quantize values near 0x7FFF/0x8000,
+> +	 * so reading and writing back may not preserve the exact original register value.
+> +	 */
+> +	regval = clamp_val(regval, SHRT_MIN, SHRT_MAX);
+> +	/* SUL and SOL registers are signed */
+> +	return regmap_write(regmap, reg, regval & 0xFFFF);
+> +}
+> +
+> +static int tsc1641_power_write(struct device *dev, u32 attr, long val)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	struct regmap *regmap = data->regmap;
+> +	unsigned int regval;
+> +
+> +	switch (attr) {
+> +	case hwmon_power_max:
+> +		/* Clamp to full register range */
+> +		val = clamp_val(val, 0, TSC1641_POWER_LSB_UWATT * USHRT_MAX);
+> +		regval = DIV_ROUND_CLOSEST(val, TSC1641_POWER_LSB_UWATT);
+> +		return regmap_write(regmap, TSC1641_POL, regval);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static int tsc1641_temp_write(struct device *dev, u32 attr, long val)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	struct regmap *regmap = data->regmap;
+> +	int regval;
+> +
+> +	switch (attr) {
+> +	case hwmon_temp_max:
+> +		/* Clamp to full register range */
+> +		val = clamp_val(val, TSC1641_TEMP_LSB_MDEGC * SHRT_MIN,
+> +				TSC1641_TEMP_LSB_MDEGC * SHRT_MAX);
+> +		regval = DIV_ROUND_CLOSEST(val, TSC1641_TEMP_LSB_MDEGC);
+> +		/* TOL register is signed */
+> +		return regmap_write(regmap, TSC1641_TOL, regval & 0xFFFF);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static umode_t tsc1641_is_visible(const void *data, enum hwmon_sensor_types type,
+> +				  u32 attr, int channel)
+> +{
+> +	switch (type) {
+> +	case hwmon_chip:
+> +		switch (attr) {
+> +		case hwmon_chip_update_interval:
+> +			return 0644;
+> +		default:
+> +			break;
+> +		}
+> +		break;
+> +	case hwmon_in:
+> +		switch (attr) {
+> +		case hwmon_in_input:
+> +			return 0444;
+> +		case hwmon_in_min:
+> +		case hwmon_in_max:
+> +			return 0644;
+> +		case hwmon_in_min_alarm:
+> +		case hwmon_in_max_alarm:
+> +			return 0444;
+> +		default:
+> +			break;
+> +		}
+> +		break;
+> +	case hwmon_curr:
+> +		switch (attr) {
+> +		case hwmon_curr_input:
+> +			return 0444;
+> +		case hwmon_curr_min:
+> +		case hwmon_curr_max:
+> +			return 0644;
+> +		case hwmon_curr_min_alarm:
+> +		case hwmon_curr_max_alarm:
+> +			return 0444;
+> +		default:
+> +			break;
+> +		}
+> +		break;
+> +	case hwmon_power:
+> +		switch (attr) {
+> +		case hwmon_power_input:
+> +			return 0444;
+> +		case hwmon_power_max:
+> +			return 0644;
+> +		case hwmon_power_max_alarm:
+> +			return 0444;
+> +		default:
+> +			break;
+> +		}
+> +		break;
+> +	case hwmon_temp:
+> +		switch (attr) {
+> +		case hwmon_temp_input:
+> +			return 0444;
+> +		case hwmon_temp_max:
+> +			return 0644;
+> +		case hwmon_temp_max_alarm:
+> +			return 0444;
+> +		default:
+> +			break;
+> +		}
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +	return 0;
+> +}
+> +
+> +static int tsc1641_read(struct device *dev, enum hwmon_sensor_types type,
+> +			u32 attr, int channel, long *val)
+> +{
+> +	switch (type) {
+> +	case hwmon_chip:
+> +		return tsc1641_chip_read(dev, attr, val);
+> +	case hwmon_in:
+> +		return tsc1641_in_read(dev, attr, val);
+> +	case hwmon_curr:
+> +		return tsc1641_curr_read(dev, attr, val);
+> +	case hwmon_power:
+> +		return tsc1641_power_read(dev, attr, val);
+> +	case hwmon_temp:
+> +		return tsc1641_temp_read(dev, attr, val);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static int tsc1641_write(struct device *dev, enum hwmon_sensor_types type,
+> +			 u32 attr, int channel, long val)
+> +{
+> +	switch (type) {
+> +	case hwmon_chip:
+> +		return tsc1641_chip_write(dev, attr, val);
+> +	case hwmon_in:
+> +		return tsc1641_in_write(dev, attr, val);
+> +	case hwmon_curr:
+> +		return tsc1641_curr_write(dev, attr, val);
+> +	case hwmon_power:
+> +		return tsc1641_power_write(dev, attr, val);
+> +	case hwmon_temp:
+> +		return tsc1641_temp_write(dev, attr, val);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static const struct hwmon_channel_info * const tsc1641_info[] = {
+> +	HWMON_CHANNEL_INFO(chip,
+> +			   HWMON_C_UPDATE_INTERVAL),
+> +	HWMON_CHANNEL_INFO(in,
+> +			   HWMON_I_INPUT | HWMON_I_MAX | HWMON_I_MAX_ALARM |
+> +			   HWMON_I_MIN | HWMON_I_MIN_ALARM),
+> +	HWMON_CHANNEL_INFO(curr,
+> +			   HWMON_C_INPUT | HWMON_C_MAX | HWMON_C_MAX_ALARM |
+> +			   HWMON_C_MIN | HWMON_C_MIN_ALARM),
+> +	HWMON_CHANNEL_INFO(power,
+> +			   HWMON_P_INPUT | HWMON_P_MAX | HWMON_P_MAX_ALARM),
+> +	HWMON_CHANNEL_INFO(temp,
+> +			   HWMON_T_INPUT | HWMON_T_MAX | HWMON_T_MAX_ALARM),
+> +	NULL
+> +};
+> +
+> +static ssize_t shunt_resistor_show(struct device *dev,
+> +				   struct device_attribute *da, char *buf)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +
+> +	return sysfs_emit(buf, "%li\n", data->rshunt_uohm);
+> +}
+> +
+> +static ssize_t shunt_resistor_store(struct device *dev,
+> +				    struct device_attribute *da,
+> +				    const char *buf, size_t count)
+> +{
+> +	struct tsc1641_data *data = dev_get_drvdata(dev);
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	ret = kstrtouint(buf, 10, &val);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = tsc1641_set_shunt(data, val);
+> +	if (ret < 0)
+> +		return ret;
+> +	return count;
+> +}
+> +
+> +static const struct hwmon_ops tsc1641_hwmon_ops = {
+> +	.is_visible = tsc1641_is_visible,
+> +	.read = tsc1641_read,
+> +	.write = tsc1641_write,
+> +};
+> +
+> +static const struct hwmon_chip_info tsc1641_chip_info = {
+> +	.ops = &tsc1641_hwmon_ops,
+> +	.info = tsc1641_info,
+> +};
+> +
+> +static DEVICE_ATTR_RW(shunt_resistor);
+> +
+> +/* Shunt resistor value is exposed via sysfs attribute */
+> +static struct attribute *tsc1641_attrs[] = {
+> +	&dev_attr_shunt_resistor.attr,
+> +	NULL,
+> +};
+> +ATTRIBUTE_GROUPS(tsc1641);
+> +
+> +static int tsc1641_init(struct device *dev, struct tsc1641_data *data)
+> +{
+> +	struct regmap *regmap = data->regmap;
+> +	bool active_high;
+> +	u32 shunt;
+> +	int ret;
+> +
+> +	if (device_property_read_u32(dev, "shunt-resistor-micro-ohms", &shunt) < 0)
+> +		shunt = TSC1641_RSHUNT_DEFAULT;
+> +
+> +	if (tsc1641_validate_shunt(shunt) < 0) {
+> +		dev_err(dev, "invalid shunt resistor value %u\n", shunt);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = tsc1641_set_shunt(data, shunt);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = regmap_write(regmap, TSC1641_CONFIG, TSC1641_CONFIG_DEFAULT);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	active_high = device_property_read_bool(dev, "st,alert-polarity-active-high");
+> +
+> +	return regmap_write(regmap, TSC1641_MASK, TSC1641_MASK_DEFAULT |
+> +			    FIELD_PREP(TSC1641_ALERT_POL_MASK, active_high));
+> +}
+> +
+> +static int tsc1641_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct tsc1641_data *data;
+> +	struct device *hwmon_dev;
+> +	int ret;
+> +
+> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	data->regmap = devm_regmap_init_i2c(client, &tsc1641_regmap_config);
+> +	if (IS_ERR(data->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(data->regmap),
+> +				     "failed to allocate register map\n");
+> +
+> +	ret = tsc1641_init(dev, data);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to configure device\n");
+> +
+> +	hwmon_dev = devm_hwmon_device_register_with_info(dev, client->name,
+> +							 data, &tsc1641_chip_info, tsc1641_groups);
+> +	if (IS_ERR(hwmon_dev))
+> +		return PTR_ERR(hwmon_dev);
+> +
+> +	dev_info(dev, "power monitor %s (Rshunt = %li uOhm)\n",
+> +		 client->name, data->rshunt_uohm);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct i2c_device_id tsc1641_id[] = {
+> +	{ "tsc1641", 0 },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, tsc1641_id);
+> +
+> +static const struct of_device_id __maybe_unused tsc1641_of_match[] = {
+> +	{ .compatible = "st,tsc1641" },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, tsc1641_of_match);
+> +
+> +static struct i2c_driver tsc1641_driver = {
+> +	.driver = {
+> +		.name = "tsc1641",
+> +		.of_match_table = of_match_ptr(tsc1641_of_match),
+> +	},
+> +	.probe = tsc1641_probe,
+> +	.id_table = tsc1641_id,
+> +};
+> +
+> +module_i2c_driver(tsc1641_driver);
+> +
+> +MODULE_AUTHOR("Igor Reznichenko <igor@reznichenko.net>");
+> +MODULE_DESCRIPTION("tsc1641 driver");
+> +MODULE_LICENSE("GPL");
+
 
