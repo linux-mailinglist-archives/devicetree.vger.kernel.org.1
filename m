@@ -1,334 +1,174 @@
-Return-Path: <devicetree+bounces-234969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE2D2C32FF4
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 22:01:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F203C3303D
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 22:20:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADD6318C3BFF
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 21:01:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFEF7421608
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 21:20:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ACD82FBE0A;
-	Tue,  4 Nov 2025 21:00:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC53F2EDD75;
+	Tue,  4 Nov 2025 21:19:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fo1mnkhe"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ltHTTeem";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Cn79UR0t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B5572DF145
-	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 21:00:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EAC52E7BB5
+	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 21:19:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762290035; cv=none; b=S4fQ4b3bzkMIEnYlrv0rjILQ/UGF9nVCiAk8toruhjHG1xHl84hX2CwvTWWS4G4d2EBLRYlj89FFwMe41D4r8CDZBgb289qG89OFTqMvwEs4RLofra9Gj9s7rC385+/4wC4c+dv9/mNdnQFus9Qq55Jk9vPf2vO+pA2+ksLPzWI=
+	t=1762291199; cv=none; b=OAJ60FejTS1eBkl8SXb6QiYPwM1nqu5afHdoXpZEIZToRgBEQLCU8HPx1C/ooMJq6FOIvWAjuduZE6yk4QfC1T8CC0cqWmFgm9zUY1BwvzrQ1bgSOJdOG57t0LYSqaMOnqjEvOPiFOQ75PXCRXJrtIOk4CNGffUJapXBlfiecG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762290035; c=relaxed/simple;
-	bh=GskfKVaPLqQ/vCmRCVQyHxD0lSp9G/moBVGUDvRGe0k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=cOzzbSKem5p12vLZvLSCg1qhAv/krtuJVGU5bPpWlfj4jk1HkRoLKqvp7zOhT0wzS8ENx8eJtQ+teq9qh9JMnvB21uEcUqpD+YGB846myzQdcLu+TqTiM7/4pyc5Ja+rMJgGSbdfRpGKGxqajeX8YlKSMWxuf5ddqyMuxuWxnU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fo1mnkhe; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-640ca678745so4254357a12.2
-        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 13:00:33 -0800 (PST)
+	s=arc-20240116; t=1762291199; c=relaxed/simple;
+	bh=O1h+4JCwzsGbtVqSYlNfNaUKue0RFvzI1fkR5b3AGJ0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=s0mBRvpkOOetFN7qzV+/XRcxWjrBetOCKCkXgw3QAQzcy6wysrLcAwwy72Tp6p92F8AOagQy6rPbVa4lEZCBgESG3N3Nx92aHFAt/A2qxe8lBDYCfeWAl8F673fqyhY2JeSoHtCNOp3HD6vjI+4Pk+Q50i46SElGpQH9gdcfgXo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ltHTTeem; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Cn79UR0t; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A4KgqSY2980083
+	for <devicetree@vger.kernel.org>; Tue, 4 Nov 2025 21:19:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	7ao1xhpFX+XOQkTW5iWtSuLDLy82w90QS7hnNgJ443Y=; b=ltHTTeem1oFN2AJD
+	kR3jNKjD/90nAmVh2kC2q0TP99FT1NPjXnZFKebJO53T6b0xTc7qrS0CZLm6vByY
+	3XvSRWo4Z7mdDF7SpOHFQEhNAqhAWSf+BwqPURV1os4TWUf9PuRrtEAeR95yeTh9
+	Cvn/mj96ZpjVZ9YFfAi2s1NN5UoqUnL5poPRukS1KqC+3lYbtt+sulPXuEtYPJFw
+	gKG0dk/yPk4Y3LFpJw4+0tDC5eo0wrUjMXHqOsgKVSQpdJ9ogKmNkbpmkxm/L34N
+	acWki8IVprGTZWbaAt7Ocd/7qnd1swUMoK75uhDxW0vGTu+fASX/3arKd1SgUvdF
+	OEtEow==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a7hbjsjf2-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 21:19:56 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-88031bf5a43so56481086d6.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 13:19:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762290031; x=1762894831; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=oss.qualcomm.com; s=google; t=1762291195; x=1762895995; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8Z3otzeim6Fx/klRMW+iz5WyDhYisYpULPID5Kk4CcY=;
-        b=Fo1mnkheEz8F9UVbkH+mwlNwhw+UrWrUsRuUgMlgm6aMO2fQ1OGue1xuYTNSE6SgwG
-         r7jonZ8+KwIcwgswSKC3/rmOmJ8GykunIB9T6FXDjpXqxSWaBIBDc+lDEMd7O5R/E6p7
-         rqsNQwi+GwAjLrgghV8e2tY+DmdhtLMk3Ypyztu1snHlaFcjUA6s6ll7KHmmDQKhlIBl
-         TKASx90m9ZAXcgYDx5h/KS94+Y/sN56inTpJrYCjxe/A23fzJOQ/Yls71XHGKbwOtrS0
-         fiQHLDPOuHFPdGlchwhJonLzdpMZKHwAStvnLbpoLTO71AC3ZZQP1GEmmCAmHt3mvSL0
-         iwcQ==
+        bh=7ao1xhpFX+XOQkTW5iWtSuLDLy82w90QS7hnNgJ443Y=;
+        b=Cn79UR0tUL4+GIw/V47ndi+mzP3E54Y/p9IBNoVC0tc+SS3GrtaztIxVvRvAkgWQKO
+         0fRxStemD1H7L3fFvQfv+ZLAGcGLV7+jgaPwD4wajCx/DLmJcmq0147+L4DqnYLIDOB/
+         wMXbWaz0kFviF5UZDiDrSrXXo5zWJuyTosa+jW2SSFYP2jDxsO03yLqfmVgoe0WWysds
+         D9xXMBtI7IH6fzogkPdQ9JQqSN3Bz/MmsO0gIyljdzd+FHB5bddJe1FHHaQYX1X9hNnA
+         w6pODoaH56OGoGVZhRdvLHFpFKutwE+uchlr7Pxb129vMF3j3YVNvZHDDe0gnlLXotbw
+         7sPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762290031; x=1762894831;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1762291195; x=1762895995;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8Z3otzeim6Fx/klRMW+iz5WyDhYisYpULPID5Kk4CcY=;
-        b=udgQ5NcO5tvVtlMcHcpueiqWt+hMyrcvxLnv3BryhrAFB6Ywjy0+hjVP1+XJmhGGKu
-         MG7tgHNAiKdEQq8gEJ6vXpZu+nR9oVaaXOkE5MXr/+V4tggwCumnq2r4Liyejsn8+K7t
-         k4X8x1xi5Tv4NIyJgZjb4a4ZcwilZts9dZoQCI1h7BjWUQ9wjZeBCHE+pBpJ8h14WjhP
-         RbTwj8Btpg1MZq6/JDymI7xni/v15DwWP7KR256HTkHGwOY6D6WNC6UMRWGybVG9ZMQb
-         Yb8VZQfevpz+kFHrSneuKQqcxxzylcrQ/Can+2TGsqoNScJYdUJJai/xfZh8Ww2XhK52
-         Oung==
-X-Forwarded-Encrypted: i=1; AJvYcCXXHBOCTDULdJ6Dir8MuTm7FLb+2ygbhe49C6BZsrX3fMGBPez5Z3w5pTVANqISYxbLu5EhR2zEZBjI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZdhgRUHU9d7NDKS5g4aZpReeX6Xwi0a+YSPRKGkKvcvIcBWyy
-	WtrEVWC/Zbb58C1/j0C5ki+VfrzC2/m/r+ocVz5goCuIKIPbC2SZCmJC
-X-Gm-Gg: ASbGncuQJOVclyeFtgBQJx8YlXZ4uj7WilhgjHZR0O8+DGp0J1hArfsL6EmM5X2dSKN
-	8VKlJOfrac8uynWOlMttbe2pqpjOflK+7gCwBDO18ZYxc9IEgUA0mH25iEQHHw+lxKw3WM8owDz
-	8RTcvIvukwb8GhWby+ML3pA2pZ0PPARNgNKXRmlh4EFZKQ0n0pVnFnf+GR1imxIB3xduU5AoNh6
-	lByWC9wLKdbL8KacjnkEdtNCErmarUZN/OAAViKo09hGKViEW2K9srysyGWU2NkAIoQOp1Mqdj+
-	TbaQjGrCHAUh6e2GKRoK310BVwDuUxknad43TxA2h3yQqvyPd+ShUDYliGntb9plscoy+wBnI6W
-	g5/oYwtNv+392yXWIrA5nRuo1cLvpEHTDYPcBxGrzMrGYenXTTQYIrtUOuI2Mv1QdvDHNxUystP
-	RKuJzZFo29EFp9+Q==
-X-Google-Smtp-Source: AGHT+IH5nziiExB9aZmDZ+ym3aHM5MBr8CbYq4Ikkfou+I40LHj7J5IwIjAsXB09UiDpcCtUSu4GiA==
-X-Received: by 2002:a05:6402:13cb:b0:640:9ce9:a8e6 with SMTP id 4fb4d7f45d1cf-641058a22c3mr527333a12.4.1762290031318;
-        Tue, 04 Nov 2025 13:00:31 -0800 (PST)
-Received: from builder.. ([2001:9e8:f13f:9116:be24:11ff:fe30:5d85])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-640e6a70b5bsm2990017a12.26.2025.11.04.13.00.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Nov 2025 13:00:31 -0800 (PST)
-From: Jonas Jelonek <jelonek.jonas@gmail.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Peter Rosin <peda@axentia.se>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Thomas Richard <thomas.richard@bootlin.com>,
-	Jonas Jelonek <jelonek.jonas@gmail.com>
-Subject: [PATCH v3 2/2] gpio: add gpio-line-mux driver
-Date: Tue,  4 Nov 2025 21:00:21 +0000
-Message-ID: <20251104210021.247476-3-jelonek.jonas@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20251104210021.247476-1-jelonek.jonas@gmail.com>
-References: <20251104210021.247476-1-jelonek.jonas@gmail.com>
+        bh=7ao1xhpFX+XOQkTW5iWtSuLDLy82w90QS7hnNgJ443Y=;
+        b=sPKWsLBqkINIW4tOSkHMdP3WEnKulCTgku7VJdF7OSQmil8Ziy2xJ6TYO4SRFKJOi4
+         tEqadkYcozO/hP5ANShmPTV6+Z7QXQcl1GJWZm9Mj6Md6EBQNuUPaMJTn2KUyUIQOkVt
+         OdUu//Qs7PMmWAKjdjeuevNtFhvv7/y+PeOjFiWSH1yB/65g+2Y4yklcKebeW5VNbrvc
+         319DnZnR9U2Dui/BjoliStRbI5ItF50RXJqVbMseaTauD3rblSpt7nSfaNcXdLOVIn2R
+         5c/EQlp2vUgeuKLDQ9tQbdF+gNnoZDOABqfC3i8bviXOLikVtW2b4eXFxm/mEPd4DPdG
+         rZnA==
+X-Forwarded-Encrypted: i=1; AJvYcCU0mN9cd8J1WGw84TQyPK2dijkDa0IXTt8taCziSv6yu3+M4WVNyC5ASDS2Ru3CiwsSVeK3nmfc/koi@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrXEtDhUla0h0PdZlATBi6cbdZnuIgHp6riiQVLik9i8erMPQn
+	F/vsX7SyaO6ngIzyUqXIGW+6UK9CwXzsQFMKKTN4O67E0pTceiADEsGixp46Q6VzdhYVYcePmcc
+	BmlVuZ4kl1NSbo9AyNJnmEOfKmFh5Zk3vGGzkVIpwv+2bjj4LFhh0OO9bZV+Dj3AW6m6rLpUWgD
+	IF+EVH1k95JujfpWINGM4ADD5obZskrgv2gH95BG4=
+X-Gm-Gg: ASbGnctTIc5UycpMOMiPmiCsJ9wqivrx7yZizq7R/DMbP3NwKK+mY1BAUrbrLh3bn4F
+	8e/a9sBPxQy/UakNd7ZRlZrvRlsK1jzYOCeu+FLEGAG/n3AOGL8xGBF4jI438YdFDYgf1y8fyYs
+	caNE+2vJo8rBzJmV8uCp1x0WVtXxYBuMLm9zGI2FQgyusr3N6e6oJKpiZGBRI0LfoLyeMOfpN4F
+	+B2rBvsJ+80nkQwoA==
+X-Received: by 2002:ad4:5e86:0:b0:880:54eb:f66d with SMTP id 6a1803df08f44-880710ef566mr19875256d6.30.1762291195339;
+        Tue, 04 Nov 2025 13:19:55 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGAtr5fi63eLSJNqRxiTEwYKcD63XOKrJwVcoRoTpEaTOJBhc0VY5rc0qTciRzV6XQYN449ljhx84vZ76s+rbU=
+X-Received: by 2002:ad4:5e86:0:b0:880:54eb:f66d with SMTP id
+ 6a1803df08f44-880710ef566mr19874716d6.30.1762291194661; Tue, 04 Nov 2025
+ 13:19:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20251103182006.1158383-1-loic.poulain@oss.qualcomm.com>
+ <20251103182006.1158383-4-loic.poulain@oss.qualcomm.com> <aqoxdaq72prkeqwxmmohlmbpx7icuc32sej7did6vt6rzrgfib@bvmt7ppkvloc>
+In-Reply-To: <aqoxdaq72prkeqwxmmohlmbpx7icuc32sej7did6vt6rzrgfib@bvmt7ppkvloc>
+From: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Date: Tue, 4 Nov 2025 22:19:43 +0100
+X-Gm-Features: AWmQ_bmEwhQu5qGTjy7kyV-oJxAIA4QXEdTlLapG7ZT_EYYjiAQKe5I_bkwPYHA
+Message-ID: <CAFEp6-2GGA2gvBKfO0fZemVmJmjQpTQEJ0vLfEewfhHKOYQGSQ@mail.gmail.com>
+Subject: Re: [PATCH 3/5] dt-bindings: firmware: qcom,scm: Document reboot mode
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, sre@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Authority-Analysis: v=2.4 cv=Uv5u9uwB c=1 sm=1 tr=0 ts=690a6dfc cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=--1CKO6TaCenDoQP3NYA:9 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
+X-Proofpoint-ORIG-GUID: YQbZe4TB1KlubMxMwBsPWiXRY9LL_v4D
+X-Proofpoint-GUID: YQbZe4TB1KlubMxMwBsPWiXRY9LL_v4D
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA0MDE3OSBTYWx0ZWRfXzPFzHqoTdSDO
+ G4PPDdnbfJie7bMMzwcGeDFX+mjqKIk0QAjowJJNEjFjQF+x34Bu7AdnaVuMcTg8pA3T5QFDH6x
+ 13B8bqnE+NthHWNhVeHt8IDEzZaxS1NHP8itBNYyAqHU/CO66pwc9IyHWr97lPM78x95kvHSrfS
+ K1s5Lqnm82F1KzXL89xX+CnIUndPqeVygoKt/SCTKlsqgNcIEXxBaWaP27fryks5LSzn4N5sSNW
+ 1RgpnJQAGFaJpDpTr3SedILTj+TV3QoWS/a4NCkcQ4l3GYUzdNlbiphrr1OVU0QulcMo4WiPGf7
+ e8tjOzZrS0BhzydDIUwZVIWVCPivloK2jW7mgDpGaoN4561gDJP4YJ7zuMtuhYL8Q5xtJ5aWBSj
+ mseV7qZLjt7BtPG8d73sFGGs5xGVxw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-04_03,2025-11-03_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 impostorscore=0 priorityscore=1501 lowpriorityscore=0
+ bulkscore=0 spamscore=0 clxscore=1015 adultscore=0 phishscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511040179
 
-Add a new driver which provides a 1-to-many mapping for a single real
-GPIO using a multiplexer. Each virtual GPIO corresponds to a multiplexer
-state which, if set for the multiplexer, connects the real GPIO to the
-corresponding virtual GPIO.
+On Tue, Nov 4, 2025 at 3:12=E2=80=AFAM Bjorn Andersson <andersson@kernel.or=
+g> wrote:
+>
+> On Mon, Nov 03, 2025 at 07:20:04PM +0100, Loic Poulain wrote:
+> > SCM can be used to support reboot mode such as Emergency Recovery Mode.
+>
+> "such as"? Do we have any other useful bits in here?
 
-This can help in various usecases. One practical case is the special
-hardware design of the Realtek-based XS1930-10 switch from Zyxel. It
-features two SFP+ ports/cages whose signals are wired to directly to the
-switch SoC. Although Realtek SoCs are short on GPIOs, there are usually
-enough the fit the SFP signals without any hacks.
+ I heard we may have different EDL modes supported like USB or SD
+based EDL, but I don't know much about the details.
 
-However, Zyxel did some weird design and connected RX_LOS, MOD_ABS and
-TX_FAULT of one SFP cage onto a single GPIO line controlled by a
-multiplexer (the same for the other SFP cage). The single multiplexer
-controls the lines for both SFP and depending on the state, the
-designated 'signal GPIO lines' are connected to one of the three SFP
-signals.
+>
+> >
+> > Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> > ---
+> >  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b=
+/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> > index b913192219e4..c8bb7dacd900 100644
+> > --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> > +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> > @@ -121,6 +121,10 @@ properties:
+> >            - description: offset of the download mode control register
+> >      description: TCSR hardware block
+> >
+> > +patternProperties:
+> > +  "^mode-.*$":
+>
+> I'd only ever expect mode-edl =3D <1>. Do we have additional modes that
+> warrant the generic nature of this?
 
-Because the SFP core/driver doesn't support multiplexer but needs single
-GPIOs for each of the signals, this driver fills the gap between both.
-It registers a gpio_chip, provides multiple virtual GPIOs and sets the
-backing multiplexer accordingly.
+We may extend this to mode-ramdump if it makes sense, but as of now
+it's indeed only edl, will fix it.
 
-Due to several practical issues, this is input-only and doesn't support
-IRQs.
-
-Signed-off-by: Jonas Jelonek <jelonek.jonas@gmail.com>
----
- MAINTAINERS                  |   6 ++
- drivers/gpio/Kconfig         |   9 +++
- drivers/gpio/Makefile        |   1 +
- drivers/gpio/gpio-line-mux.c | 137 +++++++++++++++++++++++++++++++++++
- 4 files changed, 153 insertions(+)
- create mode 100644 drivers/gpio/gpio-line-mux.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3da2c26a796b..66f8706d9b4b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10653,6 +10653,12 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/leds/irled/gpio-ir-tx.yaml
- F:	drivers/media/rc/gpio-ir-tx.c
- 
-+GPIO LINE MUX
-+M:	Jonas Jelonek <jelonek.jonas@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/gpio/gpio-line-mux.yaml
-+F:	drivers/gpio/gpio-line-mux.c
-+
- GPIO MOCKUP DRIVER
- M:	Bamvor Jian Zhang <bamv2005@gmail.com>
- L:	linux-gpio@vger.kernel.org
-diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-index ce237398fa00..5f8082ae99cc 100644
---- a/drivers/gpio/Kconfig
-+++ b/drivers/gpio/Kconfig
-@@ -1986,6 +1986,15 @@ config GPIO_LATCH
- 	  Say yes here to enable a driver for GPIO multiplexers based on latches
- 	  connected to other GPIOs.
- 
-+config GPIO_LINE_MUX
-+	tristate "GPIO line mux driver"
-+	depends on OF_GPIO
-+	select MULTIPLEXER
-+	help
-+	  Say Y here to support the GPIO line mux, which can provide virtual
-+	  GPIOs backed by a shared real GPIO and a multiplexer in a 1-to-many
-+	  fashion.
-+
- config GPIO_MOCKUP
- 	tristate "GPIO Testing Driver (DEPRECATED)"
- 	select IRQ_SIM
-diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-index ee260a0809d3..6caee52b0356 100644
---- a/drivers/gpio/Makefile
-+++ b/drivers/gpio/Makefile
-@@ -89,6 +89,7 @@ obj-$(CONFIG_GPIO_IXP4XX)		+= gpio-ixp4xx.o
- obj-$(CONFIG_GPIO_JANZ_TTL)		+= gpio-janz-ttl.o
- obj-$(CONFIG_GPIO_KEMPLD)		+= gpio-kempld.o
- obj-$(CONFIG_GPIO_LATCH)		+= gpio-latch.o
-+obj-$(CONFIG_GPIO_LINE_MUX)		+= gpio-line-mux.o
- obj-$(CONFIG_GPIO_LJCA) 		+= gpio-ljca.o
- obj-$(CONFIG_GPIO_LOGICVC)		+= gpio-logicvc.o
- obj-$(CONFIG_GPIO_LOONGSON1)		+= gpio-loongson1.o
-diff --git a/drivers/gpio/gpio-line-mux.c b/drivers/gpio/gpio-line-mux.c
-new file mode 100644
-index 000000000000..3a9fe899c041
---- /dev/null
-+++ b/drivers/gpio/gpio-line-mux.c
-@@ -0,0 +1,137 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * GPIO line mux which acts as virtual gpiochip and provides a 1-to-many
-+ * mapping between virtual GPIOs and a real GPIO + multiplexer.
-+ *
-+ * Copyright (c) 2025 Jonas Jelonek <jelonek.jonas@gmail.com>
-+ */
-+
-+#include <linux/gpio/consumer.h>
-+#include <linux/gpio/driver.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/mutex.h>
-+#include <linux/mux/consumer.h>
-+#include <linux/mux/driver.h>
-+#include <linux/platform_device.h>
-+
-+#define MUX_SELECT_DELAY_US	100
-+
-+struct gpio_lmux {
-+	struct gpio_chip gc;
-+	struct mux_control *mux;
-+	struct mutex lock;
-+
-+	struct gpio_desc *shared_gpio;
-+	/* dynamically sized, must be last */
-+	unsigned int gpio_mux_states[];
-+};
-+
-+DEFINE_GUARD(gpio_lmux, struct gpio_lmux *, mutex_lock(&_T->lock), mutex_unlock(&_T->lock))
-+
-+static int gpio_lmux_gpio_get(struct gpio_chip *gc, unsigned int offset)
-+{
-+	struct gpio_lmux *glm = (struct gpio_lmux *)gpiochip_get_data(gc);
-+	int ret;
-+
-+	if (offset > gc->ngpio)
-+		return -EINVAL;
-+
-+	guard(gpio_lmux)(glm);
-+
-+	ret = mux_control_select_delay(glm->mux, glm->gpio_mux_states[offset],
-+				       MUX_SELECT_DELAY_US);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = gpiod_get_raw_value_cansleep(glm->shared_gpio);
-+	mux_control_deselect(glm->mux);
-+	return ret;
-+}
-+
-+static int gpio_lmux_gpio_set(struct gpio_chip *gc, unsigned int offset,
-+			      int value)
-+{
-+	return -EOPNOTSUPP;
-+}
-+
-+static int gpio_lmux_gpio_get_direction(struct gpio_chip *gc,
-+					unsigned int offset)
-+{
-+	return GPIO_LINE_DIRECTION_IN;
-+}
-+
-+static int gpio_lmux_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct gpio_lmux *glm;
-+	unsigned int ngpio;
-+	size_t size;
-+	int ret;
-+
-+	ngpio = device_property_count_u32(dev, "gpio-line-mux-states");
-+	if (!ngpio)
-+		return -EINVAL;
-+
-+	size = struct_size(glm, gpio_mux_states, ngpio);
-+	glm = devm_kzalloc(dev, size, GFP_KERNEL);
-+	if (!glm)
-+		return -ENOMEM;
-+
-+	mutex_init(&glm->lock);
-+
-+	glm->gc.base = -1;
-+	glm->gc.can_sleep = true;
-+	glm->gc.fwnode = dev_fwnode(dev);
-+	glm->gc.label = dev_name(dev);
-+	glm->gc.ngpio = ngpio;
-+	glm->gc.owner = THIS_MODULE;
-+	glm->gc.parent = dev;
-+
-+	glm->gc.get = gpio_lmux_gpio_get;
-+	glm->gc.set = gpio_lmux_gpio_set;
-+	glm->gc.get_direction = gpio_lmux_gpio_get_direction;
-+
-+	glm->mux = devm_mux_control_get(dev, NULL);
-+	if (IS_ERR(glm->mux))
-+		return dev_err_probe(dev, PTR_ERR(glm->mux),
-+				     "could not get mux controller\n");
-+
-+	glm->shared_gpio = devm_gpiod_get(dev, "shared", GPIOD_ASIS);
-+	if (IS_ERR(glm->shared_gpio))
-+		return dev_err_probe(dev, PTR_ERR(glm->shared_gpio),
-+				     "could not get shared-gpio\n");
-+
-+	ret = gpiod_direction_input(glm->shared_gpio);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "could not set shared gpio as input\n");
-+
-+	ret = device_property_read_u32_array(dev, "gpio-line-mux-states",
-+					     &glm->gpio_mux_states[0], ngpio);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "could not get mux states\n");
-+
-+	ret = devm_gpiochip_add_data(dev, &glm->gc, glm);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to add gpiochip\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id gpio_lmux_of_match[] = {
-+	{ .compatible = "gpio-line-mux" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, gpio_lmux_of_match);
-+
-+static struct platform_driver gpio_lmux_driver = {
-+	.driver = {
-+		.name = "gpio-line-mux",
-+		.of_match_table = gpio_lmux_of_match,
-+	},
-+	.probe = gpio_lmux_probe,
-+};
-+module_platform_driver(gpio_lmux_driver);
-+
-+MODULE_AUTHOR("Jonas Jelonek <jelonek.jonas@gmail.com>");
-+MODULE_DESCRIPTION("GPIO line mux driver");
-+MODULE_LICENSE("GPL");
--- 
-2.48.1
-
+Regards,
+Loic
 
