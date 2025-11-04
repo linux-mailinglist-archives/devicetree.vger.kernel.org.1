@@ -1,162 +1,156 @@
-Return-Path: <devicetree+bounces-234544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AA41C2ECC6
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 02:37:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6C70C2EE1C
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 02:51:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18C2E189BE2E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 01:34:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96E523B268F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 01:51:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D34E822D7B0;
-	Tue,  4 Nov 2025 01:33:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 669D223EA83;
+	Tue,  4 Nov 2025 01:50:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e6Klvi7r"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="ukJVPvGh";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Nz0/zpV2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A55EC22A1E1;
-	Tue,  4 Nov 2025 01:33:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCB54237180;
+	Tue,  4 Nov 2025 01:50:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762220028; cv=none; b=Rq1uFghCuheSe7e5LBq0G9WZHhA9NQ1XJ+m/Z+CT3oSY59r2EjEyOHQU+IBqW789Dq8rkMeYhoSKzYGg51KWsLxPHGe0d+3cEYKgBnITGCRBH5966z9uxZMQ89THQombx0QJXrpWN07ter0TQqcXPsJK8OfhilX/2HmdgaswTsQ=
+	t=1762221042; cv=none; b=e/jfTQDIDtsfWu9LRHsazT0YBASGM7+O1yzsHu4ZiSyUewhTeEEBNU7iLGpgYU8E7MlWG4xp5fM3k9+zL8g+OZlsM9L/rNghs9RuE9P1CRtU718WvF/AoGytIaOosjBtWuvUphLX5wbgk0c9fhOtje4z1PU+BKlgzOKlorceOnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762220028; c=relaxed/simple;
-	bh=dKK/EqIbC7RXoHraufPxWjhKrP9sGcj1RRvh9auQVQk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=pWCd14YLWvKTvj8LmxjJ3FU/a+9DNehkYwlXJD1zJAPyVOhjUXNDwq7Mnaud7Pfo1wXggqyJAdspBo7nQpGLHnsyllVh+jmc2G9KObFFqTOk9AiRKYLsbj+WOdlknw4KzEuPOqqcDhVSy52cEsXC0BHxX0MLV9Y8Teinph1pDlY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e6Klvi7r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2D49AC2BC9E;
-	Tue,  4 Nov 2025 01:33:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762220027;
-	bh=dKK/EqIbC7RXoHraufPxWjhKrP9sGcj1RRvh9auQVQk=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=e6Klvi7roYXtebOvJjNGRSPopYcOrO98WYA8Oo1llRlfIW1r9e6NT+QU/k8cj1vcw
-	 4GOdtZa8ZxcrKH/RH6zzNyDb6K0RESRemL2LF2mg8SSmPnkwtbmkLwG/7kAv+b4PGQ
-	 2h5ZHG95cRhU8Sns3wHkzpl9ZsyRBnIJA52GZTwh0Md4FmbK4rDiRxqTaCZnGTLJq6
-	 Ky/uMl2Mdj0UXBWN9J4a8JYcMg0sawRdnFC+P/h0S52dtmmPAvI6w9MIg8aLveDtdt
-	 POuRxxwFNHt3DklWQ1c+ivaeuX7mGUslsYQkxzdb9Zxqrte62E3+5Ik4tPP+RQq16x
-	 Bmrxlmm+6vepw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2538ECCFA06;
-	Tue,  4 Nov 2025 01:33:47 +0000 (UTC)
-From: Xiangxu Yin via B4 Relay <devnull+xiangxu.yin.oss.qualcomm.com@kernel.org>
-Date: Tue, 04 Nov 2025 09:33:26 +0800
-Subject: [PATCH v7 4/4] arm64: dts: qcom: qcs615-ride: Enable DisplayPort
+	s=arc-20240116; t=1762221042; c=relaxed/simple;
+	bh=SAgtMFsubG/8VFAlFqC1sgnxtzgYTVufuKhUVFsu2ts=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=d8n9Sv2Kf5ATihS9JYWCi1n3bxH505ABzxrOfUeLtUcYNDDBEumgp2RO99Fg2iCHjL1av5RRZNzZrHQ8/ClIv7ZLVQ8ji1Hpc1dYQrroxvkrjZ5dnlcmQq4d8E5Q7PsJbdHDgUqg1qjQx3r161sf9Ofw5sRq1lrJ+jjI08qm3CM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=ukJVPvGh; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Nz0/zpV2; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4d0ry56v23z9srX;
+	Tue,  4 Nov 2025 02:50:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1762221038;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=vUDHSpaYhTM0MBeAOADgsVN/8YIxpgXSREgpli9VDxQ=;
+	b=ukJVPvGh+jPAzd2bTJM3eVvURU44gCZP64EThJ2NRe4oMxdWMz2Rbsn/MjNztsTKjVWYEx
+	oDzzNfVo4WxMvt+WUAy35xZT8ABUEAZcdysCVTnZbnHWTgemkbqKtBVgAs33cLBlvyh8B7
+	BLRqHb90xE3HuF0abJZNO8L+ec3n/6P2M1nxzXe/zRW6VgaJLGAHqxQ9e8jb3t8ihvUvym
+	opB5SI4auDxm3szd9iUCYAMZYn9oWYQT41kTYaMxyuzeYM05nplqqsVX85gOA939JUN5IB
+	ZcLHUlv/NM0kQiznvblVcfj6JvUBaHWpKcEXRptPcL/q8YsPzKcDGpufiai8PQ==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b="Nz0/zpV2";
+	spf=pass (outgoing_mbo_mout: domain of marek.vasut@mailbox.org designates 2001:67c:2050:b231:465::202 as permitted sender) smtp.mailfrom=marek.vasut@mailbox.org
+From: Marek Vasut <marek.vasut@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1762221036;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=vUDHSpaYhTM0MBeAOADgsVN/8YIxpgXSREgpli9VDxQ=;
+	b=Nz0/zpV2VQ8MgfMYtlSwdN3MtmMNXbZWWCs7Na3VxwDqQWNNUzmsvSWzkY0PXgOZElGZKK
+	1eoqvJspPTAUyEzoFv8U3HIzTzo/bKbiBiLIen/eUZ5xNdZ4viALN1Ow9f/jlkkGFkMtKL
+	tYpWtT8E1emmoWDmSSQXYcFMfB/EETCat25k0HKnJYit80h3wwogHn7AbgNOxQDoS5W/AE
+	Ylw0F/K7EoVfg+RlVhBd8wetjya0e4gv25dHH+CWqR8alt2X0gXQadlKTNRR/TTExT85zn
+	DHI8SWyozPIY2azVYU5ZRtgnQ4lE0gVFSCmdRw1anCBde25I5TUZSqWjgMY4vA==
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marek.vasut@mailbox.org>,
+	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	kernel@dh-electronics.com,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mp: Add missing LED enumerators for DH electronics i.MX8M Plus DHCOM on PDK2
+Date: Tue,  4 Nov 2025 02:50:13 +0100
+Message-ID: <20251104015031.219863-1-marek.vasut@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251104-add-displayport-support-to-qcs615-devicetree-v7-4-e51669170a6f@oss.qualcomm.com>
-References: <20251104-add-displayport-support-to-qcs615-devicetree-v7-0-e51669170a6f@oss.qualcomm.com>
-In-Reply-To: <20251104-add-displayport-support-to-qcs615-devicetree-v7-0-e51669170a6f@oss.qualcomm.com>
-To: Rob Clark <robin.clark@oss.qualcomm.com>, 
- Dmitry Baryshkov <lumag@kernel.org>, 
- Abhinav Kumar <abhinav.kumar@linux.dev>, 
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, fange.zhang@oss.qualcomm.com, 
- yongxing.mou@oss.qualcomm.com, li.liu@oss.qualcomm.com, 
- Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1762220025; l=1609;
- i=xiangxu.yin@oss.qualcomm.com; s=20241125; h=from:subject:message-id;
- bh=UefwVFw5JL4lAwuEgs1CevP0v8Ntkh5qwaIuq5AJOpU=;
- b=vWo74HSLzDxGqV9nALtuOvNxJ4/G6KqBt8qKUbQ0evnO2cCkUudGnXfRgqCXmmitkHWsywbpJ
- cQdzLxao6hwC55cLwalIAZrLlQOdiEDXToatSwUMs193Eq5xlaFBkja
-X-Developer-Key: i=xiangxu.yin@oss.qualcomm.com; a=ed25519;
- pk=F1TwipJzpywfbt3n/RPi4l/A4AVF+QC89XzCHgZYaOc=
-X-Endpoint-Received: by B4 Relay for xiangxu.yin@oss.qualcomm.com/20241125
- with auth_id=542
-X-Original-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-Reply-To: xiangxu.yin@oss.qualcomm.com
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: d7f6xkzgu6my1hhenurh89d46ohba76d
+X-MBO-RS-ID: b536646df4ffa1c32ed
+X-Rspamd-Queue-Id: 4d0ry56v23z9srX
 
-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+The LED enumerators are missing, which prevents the LEDs from being
+accurately told apart by label. Fill in the enumerators the same way
+they are already present on PDK3.
 
-Add DP connector node and configure MDSS DisplayPort controller for
-QCS615 Ride platform. Include PHY supply settings to support DP output.
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
 ---
- arch/arm64/boot/dts/qcom/qcs615-ride.dts | 30 ++++++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: imx@lists.linux.dev
+Cc: kernel@dh-electronics.com
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+---
+ arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-index be67eb173046f9e4ac58157f282c3af41e53d374..5a24c19c415e3fa92e3b543ed48b2fcd6b20c6ca 100644
---- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-@@ -39,6 +39,20 @@ xo_board_clk: xo-board-clk {
- 		};
- 	};
- 
-+	dp0-connector {
-+		compatible = "dp-connector";
-+		label = "DP0";
-+		type = "mini";
-+
-+		hpd-gpios = <&io_expander 8 GPIO_ACTIVE_HIGH>;
-+
-+		port {
-+			dp0_connector_in: endpoint {
-+				remote-endpoint = <&mdss_dp0_out>;
-+			};
-+		};
-+	};
-+
- 	dp-dsi0-connector {
- 		compatible = "dp-connector";
- 		label = "DSI0";
-@@ -423,6 +437,15 @@ &mdss {
- 	status = "okay";
- };
- 
-+&mdss_dp0 {
-+	status = "okay";
-+};
-+
-+&mdss_dp0_out {
-+	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000>;
-+	remote-endpoint = <&dp0_connector_in>;
-+};
-+
- &mdss_dsi0 {
- 	vdda-supply = <&vreg_l11a>;
- 	status = "okay";
-@@ -624,6 +647,13 @@ &usb_qmpphy {
- 	status = "okay";
- };
- 
-+&usb_qmpphy_2 {
-+	vdda-phy-supply = <&vreg_l5a>;
-+	vdda-pll-supply = <&vreg_l12a>;
-+
-+	status = "okay";
-+};
-+
- &usb_1 {
- 	status = "okay";
- };
-
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts
+index ebdf13e97b4e2..3d18c964a22cd 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts
+@@ -88,6 +88,7 @@ led-0 {
+ 			color = <LED_COLOR_ID_GREEN>;
+ 			default-state = "off";
+ 			function = LED_FUNCTION_INDICATOR;
++			function-enumerator = <0>;
+ 			gpios = <&gpio5 22 GPIO_ACTIVE_HIGH>; /* GPIO E */
+ 			pinctrl-0 = <&pinctrl_dhcom_e>;
+ 			pinctrl-names = "default";
+@@ -97,6 +98,7 @@ led-1 {
+ 			color = <LED_COLOR_ID_GREEN>;
+ 			default-state = "off";
+ 			function = LED_FUNCTION_INDICATOR;
++			function-enumerator = <1>;
+ 			gpios = <&gpio5 23 GPIO_ACTIVE_HIGH>; /* GPIO F */
+ 			pinctrl-0 = <&pinctrl_dhcom_f>;
+ 			pinctrl-names = "default";
+@@ -106,6 +108,7 @@ led-2 {
+ 			color = <LED_COLOR_ID_GREEN>;
+ 			default-state = "off";
+ 			function = LED_FUNCTION_INDICATOR;
++			function-enumerator = <2>;
+ 			gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>; /* GPIO H */
+ 			pinctrl-0 = <&pinctrl_dhcom_h>;
+ 			pinctrl-names = "default";
+@@ -115,6 +118,7 @@ led-3 {
+ 			color = <LED_COLOR_ID_GREEN>;
+ 			default-state = "off";
+ 			function = LED_FUNCTION_INDICATOR;
++			function-enumerator = <3>;
+ 			gpios = <&gpio1 5 GPIO_ACTIVE_HIGH>; /* GPIO I */
+ 			pinctrl-0 = <&pinctrl_dhcom_i>;
+ 			pinctrl-names = "default";
 -- 
-2.34.1
-
+2.51.0
 
 
