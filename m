@@ -1,53 +1,80 @@
-Return-Path: <devicetree+bounces-234770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DCA3C30844
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 11:32:14 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4901C30883
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 11:35:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A0F8E34B394
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 10:32:08 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B87BA4E12EE
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 10:35:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0164A2D6E44;
-	Tue,  4 Nov 2025 10:31:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CBB223DF6;
+	Tue,  4 Nov 2025 10:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QX55q6g4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VAXgJBqV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DA2229B764;
-	Tue,  4 Nov 2025 10:31:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27EC313AD05
+	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 10:35:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762252318; cv=none; b=jt1JwaNe3g9Oa+Tho2QSpgA4fkgCbPBMWCKp/Wzj8IuzKMwRlyJXkFJxgKB89nYDsh4GktYbFzQkNedL2Fv1H0vjqZGacqZfc48GlbGc8Z78rxIz/TCqQcg8I+ABK9TbHOFoDNVeq11gepAgEVZ2b65+ZSAy1R7rJ5R1C6/kNPM=
+	t=1762252507; cv=none; b=FjmBXux3C1CAOPmQIsVccRqLiLnlQ3dHHCYD+kJGWJPRjevwUgTx+9+u3pbnDaNGiirX4yGAaYPpAbXCGPm+QFTkDK95320NlyEMJOmY3trLHXstGDtUlb+rUF7Z6NEzJBVtv/eFVJz08lSf4E65VmMIH+ennxZ1pNThu5xl0ak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762252318; c=relaxed/simple;
-	bh=/sgfffdSRRmcW5toVNMLUyf/7aYFE2dmpzfbz+UI0ms=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dBe1MSbTymcCifqrOT6eNnC1OU2uJmuhGATKSA1YOyqrPY4nUHXwEim19jE9FeVU0WhrYDRQhdlPhq7i2n7XUP9iElW+44JlqVXP9ZxZDqm3JGa6jzXBHVvlxsAbJQSfqxBhzHXIhFmLejse+rYsXoDKdikr9V417VBDPR5CAC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QX55q6g4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 18353C19421;
-	Tue,  4 Nov 2025 10:31:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762252318;
-	bh=/sgfffdSRRmcW5toVNMLUyf/7aYFE2dmpzfbz+UI0ms=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=QX55q6g4YEzgbsFs5ryXogQuECv2QLRFxn2377rcSCHi4lUJAAb1nxepbbNApB/iK
-	 O4FDjhvNcA04Q/4hTVOpvN0cZWe/xSCF0c3/W4ivNRdWmKLxcd9uxUlB7wA8YhmRgu
-	 cQTrbaLy1rQEzNa8K3pRdaXojiLlcMS1QQYWuL43tXVf6sO8IZNKNEXqn3wR/EqEQo
-	 vBwsfG+LYquTkXBRYb4GaiAC+e64nX51ppaItrEq7FlhoY4k8+SFXy29nk9cTUfyNc
-	 ANgMwVL8c4/K+RCbKgrhocuV168mZpbAtFLtvkQf5Kivc+F3OzozJ8Qx5xzXUloZFf
-	 jsvC+eUVY4ubg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0C89DCCFA04;
-	Tue,  4 Nov 2025 10:31:58 +0000 (UTC)
-From: =?utf-8?q?Nuno_S=C3=A1_via_B4_Relay?= <devnull+nuno.sa.analog.com@kernel.org>
-Date: Tue, 04 Nov 2025 10:32:30 +0000
-Subject: [PATCH v3 3/3] gpio: gpio-ltc4283: Add support for the LTC4283
- Swap Controller
+	s=arc-20240116; t=1762252507; c=relaxed/simple;
+	bh=xVTUdynUwOEfXOlM6iD7wg5Aog37SJxR0DlPuRS1e6E=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=t3IpIq/8aEyQzu7oXp8vcPAv2qI5PmE5TT/uGP2QtSuP6u0AmA+yLuPWYZpvFP9md7BbbjMatluFz9GjpvDYr2PvKr7e93D9XzPzA9ZOWnIxDj+JqrY5O17r1NuDVFZjGDjTRMXiBqNt70Y7VZ2GD0uIK7Q9BqBb3zXbsbw1l3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VAXgJBqV; arc=none smtp.client-ip=209.85.215.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-b67cd5d88ddso393018a12.0
+        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 02:35:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762252505; x=1762857305; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=S1ADCCgwMEU/f2OqLSByXu6fQ7rnsCgcBrI977wEgzQ=;
+        b=VAXgJBqV9xcXWSjEYK1T+dxbraXkXa214NO/d5zSkgKFJagQgXmydt/MmSkDptb6GZ
+         nTKVyYV8dEjp4zD3bowRr/PNTTQNHRrDO5wlbbAc3x6Pa4axj6M9/PltyG1kmAuNQfY8
+         +Y5dtvV0AZgRyX+bUdk0mSlxZ9a/LbZwL7GyEq/JSYiC2r1ezlIqIN8wLHmaY2QK4Ivp
+         1IJiAwo8Y96Dna5rW6cv9Dfd9hOWnE2nTuEN37vQaNzkV7dvxqO1j8CMxB7KFiH48+XO
+         HV/fQLmOiDrVMK4wIlHR7/so1Vd2WI+8dPzKnr4Z4lKtsIC4YAiXhVdfhCm1CEeq2DQH
+         Sqow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762252505; x=1762857305;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=S1ADCCgwMEU/f2OqLSByXu6fQ7rnsCgcBrI977wEgzQ=;
+        b=Wh6ecbr3YqKBnP0EmWMhu+Lm96JjU5Y6fmR5UQ4kFfKgduX0UuZrllrM+bXDO3HDKE
+         ICpAKsB32/9cikLO4qnQcQ+CZanRDe6j8mgDBpyX7nhPPLiA5yXCVKuzgLBckJ+wWZFj
+         Xbk0Dei4ouWNXTBEVotbCSCQ5OFLyMY33bQCsyE7ult6apCEVvyqJ+4ZL2t+PvP9cuxR
+         GkU7J53VYcSBOgXtV3OlgiRwr/gyCliLEiapV406+sxxXsah/fPlnveiuNfiWuwDK2a3
+         uN26HadMGsve/QMegsXRSHTtXyvKw7DP+VeeBZNSLstWoraC0pLToYn5tUGs+pT0nkeg
+         hu8A==
+X-Forwarded-Encrypted: i=1; AJvYcCXhux35cD3l1/KcJNEpgz5ym0y+ZHr/T8ya5G4pXa5AJvqSMH6Ku1DGPXpapoRee9joeTvAMumgWtJv@vger.kernel.org
+X-Gm-Message-State: AOJu0YxtRMA0LRIX3GSPwvv0I7Jgi0mmyRVLy828cg3jjGV8Tuq3Ei/p
+	eNxxkrt7PnVaAe/IDWK7dMktmHuSYPSTr54sCLq8y8Kn2zgGs0d+h64SJUmQAyae
+X-Gm-Gg: ASbGncsszRplW+sxgqECk3hvXxnTI6YfeA3z5P2d+ElsJOvZrP3DGW4yaiHLC7YaGty
+	qALGHml6Di9qPrs1auhZFmycSBBx02g3l5yehBmoPIysjaQPtz+hCO1gGp36pI5uehFHZXLSQo1
+	pduDvbERuLWra66UMh4Nxl6jnk4sGh940VtWeRqVW/Wnx5qOtPJKkslb9qL5L2y8IV3fnl+DjAi
+	+V+7lIwqU1bS5pDBXKolCTxkmTI6wqjqytdVDZA1IDZ41xYDWBA3pbDLocLdM0JCkvryvhioBp+
+	nr7XNV1p0ZJbaen/ribwoedEQ+K1u9JI81FlJwTecwAbSO/XawLeTKW+i7ESO+Eri8Z/5ABHpBf
+	ZVWviyHFf0n984/aakGAXY4dT+SwOd6n49sNuDJQmcknPsEEClPi/hgdL3Pz0naIiti/E7Dg8HL
+	M90M2/4xAfQHqWzQtnjrhriCvW0MtCuSpmUTrsCqrOgA==
+X-Google-Smtp-Source: AGHT+IFsh7k9STXZYBzLquZcu0MKMS+wH6vwL5dwBse+AQsFd2xiBPwyq+sQRgoRibmDakJEyHIc0Q==
+X-Received: by 2002:a05:6a21:1519:b0:345:3ef1:b477 with SMTP id adf61e73a8af0-348cd4123f2mr11280556637.6.1762252505088;
+        Tue, 04 Nov 2025 02:35:05 -0800 (PST)
+Received: from [127.0.1.1] ([2406:7400:10c:9fcf:2909:749f:36f6:6b85])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-ba1f2a80459sm1952010a12.15.2025.11.04.02.35.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Nov 2025 02:35:04 -0800 (PST)
+From: Ranganath V N <vnranganath.20@gmail.com>
+Date: Tue, 04 Nov 2025 16:04:58 +0530
+Subject: [PATCH v7] ASoC: dt-bindings: ti,pcm1862: convert to dtschema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,326 +82,217 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251104-ltc4283-support-v3-3-4bea496f791d@analog.com>
-References: <20251104-ltc4283-support-v3-0-4bea496f791d@analog.com>
-In-Reply-To: <20251104-ltc4283-support-v3-0-4bea496f791d@analog.com>
-To: linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>, 
- Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1762252353; l=8593;
- i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
- bh=mbLCBTQfDPEA2unaLfoqPc6YrZTZIYDvsKRnPzay1N4=;
- b=0WnPB2F00Yr4o1olDM4+FjIWaXWkO1BVz5j6TnxiQOmer5cphh0Q0BYcpCNqmMZ+pncMvp1S/
- oRPY2gkBz1CDkf+m7t2M1rx6te4oo/vfVoGY/eH2tImpye90MRIAZTl
-X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
- pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
-X-Endpoint-Received: by B4 Relay for nuno.sa@analog.com/20231116 with
- auth_id=100
-X-Original-From: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
-Reply-To: nuno.sa@analog.com
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251104-dtbs-v7-1-224aacb09671@gmail.com>
+X-B4-Tracking: v=1; b=H4sIANHWCWkC/13QwW7DIAwG4FepOI8J20DLTnuPaQdioEVamylUU
+ asq7z6oMi3j+Fv+fsl+iBKnHIt42z3EFOdc8nipYf+yE3zyl2OUOdQsUKEBhSDDdSiSPEGyzrG
+ 2IOrq9xRTvj1rPj5rPuVyHaf7s3WGNu0KZpAgtSMG79HQwO/Hs89frzyeRSuYcYvsirAiDjTsg
+ TweDrFHtEVuRVQRMYNFRGDEHukNIrUi3VBKiRoCcD0yW/R7k6koRgisBkxeqx7ZPwRKr8hWZCE
+ Yn9pPw7+blmX5AfBnhLuhAQAA
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, skhan@linuxfoundation.org, 
+ david.hunter.linux@gmail.com, khalid@kernel.org, 
+ linux-kernel-mentees@lists.linuxfoundation.org, 
+ Ranganath V N <vnranganath.20@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1762252501; l=5567;
+ i=vnranganath.20@gmail.com; s=20250816; h=from:subject:message-id;
+ bh=xVTUdynUwOEfXOlM6iD7wg5Aog37SJxR0DlPuRS1e6E=;
+ b=geYToZPDBy5tyXIRvlqHX9s3GXu8IEe6Ozo1EFpJWtgfnErpCnfgBIcsITPv7ZI6sTwYACG7s
+ Hwp/JaY/W4cA6BMHrhALuvo3E+m04WWneC7t62yWM6Ur2v9LU9ApuwA
+X-Developer-Key: i=vnranganath.20@gmail.com; a=ed25519;
+ pk=7mxHFYWOcIJ5Ls8etzgLkcB0M8/hxmOh8pH6Mce5Z1A=
 
-From: Nuno Sá <nuno.sa@analog.com>
+convert the Texas Instruments PCM186x Universal audio ADC bindings
+to DT schema.
 
-The LTC4283 device has up to 8 pins that can be configured as GPIOs.
+The PCM186x codec provides a single digital audio interface. Therefore
+this binding adds a reference to dai-common.yaml and defines
+'#sound-dai-cells = 0".
 
-Note that PGIO pins are not set as GPIOs by default so if they are
-configured to be used as GPIOs we need to make sure to initialize them
-to a sane default. They are set as inputs by default.
-
-Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+Signed-off-by: Ranganath V N <vnranganath.20@gmail.com>
 ---
- MAINTAINERS                 |   2 +
- drivers/gpio/Kconfig        |  15 +++
- drivers/gpio/Makefile       |   1 +
- drivers/gpio/gpio-ltc4283.c | 217 ++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 235 insertions(+)
+Convert the Texas Instruments PCM186x audio ADC bindings to DT schema.
+---
+Changes in v7:
+- Commit message as a junstification to add the '#sound-dai-cells' 
+  to the new binding.(Krzysztof)
+- Link to v6: https://lore.kernel.org/r/20251104-dtbs-v6-1-61d5afa31fde@gmail.com
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d02fdf0a0593..76a659408c8c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14757,9 +14757,11 @@ F:	drivers/hwmon/ltc4282.c
- 
- LTC4283 HARDWARE MONITOR AND GPIO DRIVER
- M:	Nuno Sá <nuno.sa@analog.com>
-+L:	linux-gpio@vger.kernel.org
- L:	linux-hwmon@vger.kernel.org
- S:	Supported
- F:	Documentation/devicetree/bindings/hwmon/adi,ltc4283.yaml
-+F:	drivers/gpio/gpio-ltc4283.c
- F:	drivers/hwmon/ltc4283.c
- 
- LTC4286 HARDWARE MONITOR DRIVER
-diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-index 7ee3afbc2b05..58610f77a75e 100644
---- a/drivers/gpio/Kconfig
-+++ b/drivers/gpio/Kconfig
-@@ -1741,6 +1741,21 @@ config GPIO_WM8994
- 
- endmenu
- 
-+menu "AUXBUS GPIO expanders"
-+	depends on AUXILIARY_BUS
-+
-+config GPIO_LTC4283
-+	tristate "Analog Devices LTC4283 GPIO support"
-+	depends on SENSORS_LTC4283
-+	help
-+	  If you say yes here you want the GPIO function available in Analog
-+	  Devices LTC4283 Negative Voltage Hot Swap Controller.
-+
-+	  This driver can also be built as a module. If so, the module will
-+	  be called gpio-ltc4283.
-+
-+endmenu
-+
- menu "PCI GPIO expanders"
- 	depends on PCI
- 
-diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-index ec296fa14bfd..b6550944ed78 100644
---- a/drivers/gpio/Makefile
-+++ b/drivers/gpio/Makefile
-@@ -99,6 +99,7 @@ obj-$(CONFIG_GPIO_LP873X)		+= gpio-lp873x.o
- obj-$(CONFIG_GPIO_LP87565)		+= gpio-lp87565.o
- obj-$(CONFIG_GPIO_LPC18XX)		+= gpio-lpc18xx.o
- obj-$(CONFIG_GPIO_LPC32XX)		+= gpio-lpc32xx.o
-+obj-$(CONFIG_GPIO_LTC4283)		+= gpio-ltc4283.o
- obj-$(CONFIG_GPIO_MACSMC)		+= gpio-macsmc.o
- obj-$(CONFIG_GPIO_MADERA)		+= gpio-madera.o
- obj-$(CONFIG_GPIO_MAX3191X)		+= gpio-max3191x.o
-diff --git a/drivers/gpio/gpio-ltc4283.c b/drivers/gpio/gpio-ltc4283.c
+Changes in v6:
+- Corrected the Subject Asoc->ASoC, dt_bindings -> dt-bindings and ti,pcm186x -> ti,pcm1862
+- Updated the commit message.
+- added the missed Description from the old binding.
+- Link to v5: https://lore.kernel.org/r/20251031-dtbs-v5-1-ee1dc0b2fa40@gmail.com
+
+Changes in v5:
+- Resolved previous patch warnings/errors
+- dtschema/dtc warnings/errors:
+- /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/ti,pcm1862.yaml: 
+- $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
+- 	 $id: http://devicetree.org/schemas/sound/ti,pcm186x.yaml
+- 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/ti,pcm1862.yaml
+- Link to v4: https://lore.kernel.org/r/20251030-dtbs-v4-1-3fff32221119@gmail.com
+
+Changes in v4:
+- Corrected subject dt_bindings:sound to Asoc: dt_bindings:
+- Corrected the filename to match one of the compitables in the file 
+- ti,pcm186x.yaml to ti,pcm1862.yaml
+- Link to v3: https://lore.kernel.org/r/20251029-dtbs-v3-1-3cc162221c22@gmail.com
+
+Changes in v3:
+- Unicode FEFF character was present in the begining of the file,
+- Removed unicode character.
+- Link to v2: https://lore.kernel.org/r/20251026-dtbs-v2-1-cd3b713a288e@gmail.com
+
+Changes in v2:
+- Fixes as per the reviews suggested for the v1.
+- Link to v1: https://lore.kernel.org/r/20251021-dtbs-v1-1-493c1aa253bc@gmail.com
+---
+ .../devicetree/bindings/sound/pcm186x.txt          | 42 ------------
+ .../devicetree/bindings/sound/ti,pcm1862.yaml      | 76 ++++++++++++++++++++++
+ 2 files changed, 76 insertions(+), 42 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/sound/pcm186x.txt b/Documentation/devicetree/bindings/sound/pcm186x.txt
+deleted file mode 100644
+index 1087f4855980..000000000000
+--- a/Documentation/devicetree/bindings/sound/pcm186x.txt
++++ /dev/null
+@@ -1,42 +0,0 @@
+-Texas Instruments PCM186x Universal Audio ADC
+-
+-These devices support both I2C and SPI (configured with pin strapping
+-on the board).
+-
+-Required properties:
+-
+- - compatible : "ti,pcm1862",
+-                "ti,pcm1863",
+-                "ti,pcm1864",
+-                "ti,pcm1865"
+-
+- - reg : The I2C address of the device for I2C, the chip select
+-         number for SPI.
+-
+- - avdd-supply: Analog core power supply (3.3v)
+- - dvdd-supply: Digital core power supply
+- - iovdd-supply: Digital IO power supply
+-        See regulator/regulator.txt for more information
+-
+-CODEC input pins:
+- * VINL1
+- * VINR1
+- * VINL2
+- * VINR2
+- * VINL3
+- * VINR3
+- * VINL4
+- * VINR4
+-
+-The pins can be used in referring sound node's audio-routing property.
+-
+-Example:
+-
+-	pcm186x: audio-codec@4a {
+-		compatible = "ti,pcm1865";
+-		reg = <0x4a>;
+-
+-		avdd-supply = <&reg_3v3_analog>;
+-		dvdd-supply = <&reg_3v3>;
+-		iovdd-supply = <&reg_1v8>;
+-	};
+diff --git a/Documentation/devicetree/bindings/sound/ti,pcm1862.yaml b/Documentation/devicetree/bindings/sound/ti,pcm1862.yaml
 new file mode 100644
-index 000000000000..885af67146a8
+index 000000000000..0f0e254a2420
 --- /dev/null
-+++ b/drivers/gpio/gpio-ltc4283.c
-@@ -0,0 +1,217 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Analog Devices LTC4283 GPIO driver
-+ *
-+ * Copyright 2025 Analog Devices Inc.
-+ */
-+#include <linux/auxiliary_bus.h>
-+#include <linux/bitmap.h>
-+#include <linux/bits.h>
-+#include <linux/device.h>
-+#include <linux/gpio/driver.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/regmap.h>
++++ b/Documentation/devicetree/bindings/sound/ti,pcm1862.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/ti,pcm1862.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#define LTC4283_PINS_MAX			8
-+#define LTC4283_PGIOX_START_NR			4
-+#define LTC4283_INPUT_STATUS			0x02
-+#define LTC4283_PGIO_CONFIG			0x10
-+#define   LTC4283_PGIO_CFG_MASK(pin) \
-+	GENMASK(((pin) - LTC4283_PGIOX_START_NR) * 2 + 1, (((pin) - LTC4283_PGIOX_START_NR) * 2))
-+#define LTC4283_PGIO_CONFIG_2			0x11
++title: Texas Instruments PCM186x Universal Audio ADC
 +
-+#define LTC42823_ADIO_CONFIG			0x12
-+/* starts at bit 4 */
-+#define   LTC4283_ADIOX_CONFIG_MASK(pin)	BIT((pin) + 4)
-+#define LTC4283_PGIO_DIR_IN			3
-+#define LTC4283_PGIO_DIR_OUT			2
++maintainers:
++  - Ranganath V N <vnranganath.20@gmail.com>
 +
-+/* Non-constant mask variant of FIELD_GET() and FIELD_PREP() */
-+#define field_get(_mask, _reg)	(((_reg) & (_mask)) >> (ffs(_mask) - 1))
-+#define field_prep(_mask, _val)	(((_val) << (ffs(_mask) - 1)) & (_mask))
++description: |
++  The Texas Instruments PCM186x family are multi-channel audio ADCs
++  that support both I2C and SPI control interfaces, selected by
++  pin strapping. These devices include on-chip programmable gain
++  amplifiers and support differential or single-ended analog inputs.
 +
-+struct ltc4283_gpio {
-+	struct gpio_chip gpio_chip;
-+	struct regmap *regmap;
-+};
++  CODEC input pins:
++    * VINL1
++    * VINR1
++    * VINL2
++    * VINR2
++    * VINL3
++    * VINR3
++    * VINL4
++    * VINR4
 +
-+static int ltc4283_pgio_get_direction(const struct ltc4283_gpio *st, unsigned int off)
-+{
-+	unsigned int val;
-+	int ret;
++  The pins can be used in referring sound node's audio-routing property.
 +
-+	ret = regmap_read(st->regmap, LTC4283_PGIO_CONFIG, &val);
-+	if (ret)
-+		return ret;
++allOf:
++  - $ref: dai-common.yaml#
 +
-+	val = field_get(LTC4283_PGIO_CFG_MASK(off), val);
-+	if (val == LTC4283_PGIO_DIR_IN)
-+		return GPIO_LINE_DIRECTION_IN;
++properties:
++  compatible:
++    enum:
++      - ti,pcm1862
++      - ti,pcm1863
++      - ti,pcm1864
++      - ti,pcm1865
 +
-+	return GPIO_LINE_DIRECTION_OUT;
-+}
++  reg:
++    maxItems: 1
 +
-+static int ltc4283_gpio_get_direction(struct gpio_chip *gc, unsigned int off)
-+{
-+	struct ltc4283_gpio *st = gpiochip_get_data(gc);
-+	unsigned int val;
-+	int ret;
++  avdd-supply: true
 +
-+	if (off >= LTC4283_PGIOX_START_NR)
-+		return ltc4283_pgio_get_direction(st, off);
++  dvdd-supply: true
 +
-+	ret = regmap_read(st->regmap, LTC42823_ADIO_CONFIG, &val);
-+	if (ret)
-+		return ret;
++  iovdd-supply: true
 +
-+	if (val & LTC4283_ADIOX_CONFIG_MASK(off))
-+		return GPIO_LINE_DIRECTION_IN;
++  '#sound-dai-cells':
++    const: 0
 +
-+	return GPIO_LINE_DIRECTION_OUT;
-+}
++required:
++  - compatible
++  - reg
++  - avdd-supply
++  - dvdd-supply
++  - iovdd-supply
 +
-+static int ltc4283_gpio_direction_set(const struct ltc4283_gpio *st,
-+				      unsigned int off, bool input)
-+{
-+	if (off >= LTC4283_PGIOX_START_NR) {
-+		unsigned int val = LTC4283_PGIO_DIR_OUT;
++unevaluatedProperties: false
 +
-+		if (input)
-+			val = LTC4283_PGIO_DIR_IN;
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
 +
-+		val = field_prep(LTC4283_PGIO_CFG_MASK(off), val);
-+		return regmap_update_bits(st->regmap, LTC4283_PGIO_CONFIG,
-+					  LTC4283_PGIO_CFG_MASK(off), val);
-+	}
++        audio-codec@4a {
++            compatible = "ti,pcm1865";
++            reg = <0x4a>;
 +
-+	return regmap_update_bits(st->regmap, LTC42823_ADIO_CONFIG,
-+				  LTC4283_ADIOX_CONFIG_MASK(off),
-+				  field_prep(LTC4283_ADIOX_CONFIG_MASK(off), input));
-+}
-+
-+static int __ltc4283_gpio_set_value(const struct ltc4283_gpio *st,
-+				    unsigned int off, int val)
-+{
-+	u32 reg = off < LTC4283_PGIOX_START_NR ? LTC42823_ADIO_CONFIG : LTC4283_PGIO_CONFIG_2;
-+
-+	return regmap_update_bits(st->regmap, reg, BIT(off),
-+				  field_prep(BIT(off), !!val));
-+}
-+
-+static int ltc4283_gpio_direction_input(struct gpio_chip *gc, unsigned int off)
-+{
-+	struct ltc4283_gpio *st = gpiochip_get_data(gc);
-+
-+	return ltc4283_gpio_direction_set(st, off, true);
-+}
-+
-+static int ltc4283_gpio_direction_output(struct gpio_chip *gc, unsigned int off, int val)
-+{
-+	struct ltc4283_gpio *st = gpiochip_get_data(gc);
-+	int ret;
-+
-+	ret = ltc4283_gpio_direction_set(st, off, false);
-+	if (ret)
-+		return ret;
-+
-+	return __ltc4283_gpio_set_value(st, off, val);
-+}
-+
-+static int ltc4283_gpio_get_value(struct gpio_chip *gc, unsigned int off)
-+{
-+	struct ltc4283_gpio *st = gpiochip_get_data(gc);
-+	unsigned int val, reg;
-+	int ret, dir;
-+
-+	dir = ltc4283_gpio_get_direction(gc, off);
-+	if (dir < 0)
-+		return dir;
-+
-+	if (dir == GPIO_LINE_DIRECTION_IN) {
-+		ret = regmap_read(st->regmap, LTC4283_INPUT_STATUS, &val);
-+		if (ret)
-+			return ret;
-+
-+		/* ADIO1 is at bit 3. */
-+		if (off < LTC4283_PGIOX_START_NR)
-+			return !!(val & BIT(3 - off));
-+
-+		/* PGIO1 is at bit 7. */
-+		return !!(val & BIT(7 - (off - LTC4283_PGIOX_START_NR)));
-+	}
-+
-+	if (off < LTC4283_PGIOX_START_NR)
-+		reg = LTC42823_ADIO_CONFIG;
-+	else
-+		reg = LTC4283_PGIO_CONFIG_2;
-+
-+	ret = regmap_read(st->regmap, reg, &val);
-+	if (ret)
-+		return ret;
-+
-+	return !!(val & BIT(off));
-+}
-+
-+static int ltc4283_gpio_set_value(struct gpio_chip *gc, unsigned int off, int val)
-+{
-+	struct ltc4283_gpio *st = gpiochip_get_data(gc);
-+
-+	return __ltc4283_gpio_set_value(st, off, val);
-+}
-+
-+static int ltc4283_init_valid_mask(struct gpio_chip *gc, unsigned long *valid_mask,
-+				   unsigned int ngpios)
-+{
-+	unsigned long *mask = dev_get_platdata(gc->parent);
-+
-+	bitmap_copy(valid_mask, mask, ngpios);
-+	return 0;
-+}
-+
-+static int ltc4283_gpio_probe(struct auxiliary_device *adev,
-+			      const struct auxiliary_device_id *id)
-+{
-+	struct device *dev = &adev->dev;
-+	struct ltc4283_gpio *st;
-+	struct gpio_chip *gc;
-+
-+	st = devm_kzalloc(dev, sizeof(*st), GFP_KERNEL);
-+	if (!st)
-+		return -ENOMEM;
-+
-+	st->regmap = dev_get_regmap(dev->parent, NULL);
-+
-+	gc = &st->gpio_chip;
-+	gc->parent = dev;
-+	gc->get_direction = ltc4283_gpio_get_direction;
-+	gc->direction_input = ltc4283_gpio_direction_input;
-+	gc->direction_output = ltc4283_gpio_direction_output;
-+	gc->get = ltc4283_gpio_get_value;
-+	gc->set = ltc4283_gpio_set_value;
-+	gc->init_valid_mask = ltc4283_init_valid_mask;
-+	gc->can_sleep = true;
-+
-+	gc->base = -1;
-+	gc->ngpio = LTC4283_PINS_MAX;
-+	gc->label = adev->name;
-+	gc->owner = THIS_MODULE;
-+
-+	return devm_gpiochip_add_data(dev, &st->gpio_chip, st);
-+}
-+
-+static const struct auxiliary_device_id ltc4283_aux_id_table[] = {
-+	{ "ltc4283.gpio" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(auxiliary, ltc4283_aux_id_table);
-+
-+static struct auxiliary_driver ltc4283_gpio_driver = {
-+	.probe = ltc4283_gpio_probe,
-+	.id_table = ltc4283_aux_id_table,
-+};
-+module_auxiliary_driver(ltc4283_gpio_driver);
-+
-+MODULE_AUTHOR("Nuno Sá <nuno.sa@analog.com>");
-+MODULE_DESCRIPTION("GPIO LTC4283 Driver");
-+MODULE_LICENSE("GPL");
++            avdd-supply = <&reg_3v3_analog>;
++            dvdd-supply = <&reg_3v3>;
++            iovdd-supply = <&reg_1v8>;
++        };
++    };
 
+---
+base-commit: 211ddde0823f1442e4ad052a2f30f050145ccada
+change-id: 20251021-dtbs-3a31f699c461
+
+Best regards,
 -- 
-2.51.0
-
+Ranganath V N <vnranganath.20@gmail.com>
 
 
