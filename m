@@ -1,61 +1,58 @@
-Return-Path: <devicetree+bounces-234749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A51FC3055C
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 10:48:19 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 817E8C30571
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 10:49:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1B83B4F5009
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 09:46:50 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0658F4EA1D0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 09:48:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DE43313277;
-	Tue,  4 Nov 2025 09:46:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 267BA2D2384;
+	Tue,  4 Nov 2025 09:48:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mJE/Lf2f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d3XSkXR4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC8B2286D4E;
-	Tue,  4 Nov 2025 09:46:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F21732609DC;
+	Tue,  4 Nov 2025 09:48:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762249601; cv=none; b=ZCzcJ9Azovmnz928nIZ9WP/BgBVK1tAGyn4ukmYC1KqdJJMdrx+DM0K0lL3/CBgnr3H/fUVxLbLrXubmZkMzDnPmMAK4i3aWE4AS2Y4fb5d+2DYYiCpGzmX17OB/vZ+mQ4vXpL8dpAsbnWK9qn9DsEypEzAVGVArkuJoouAnveQ=
+	t=1762249706; cv=none; b=nU49ncf/P5ve6/u21z3obsNg9OeGQe0GzwUXeuVZGIobYZJgeUzsv1VVkPrHOuFl2lcoPWXKKNKGaGsYiwMc9/+x+OXT1YsZkB6eAKpLYhOwy49p30DLtOT8pqBYs1T5dbqaVkj02uxiKKUJvwFWhC45YZXEa9hBJY9MB4GEzoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762249601; c=relaxed/simple;
-	bh=B4ED1wtbwLhjzL1U0d7PpG/habL9q4jA4agx5VuZN+M=;
+	s=arc-20240116; t=1762249706; c=relaxed/simple;
+	bh=rNXMP1/Hko+o4OWzwDhh+mj82xmLeVK3HHnr4LfDfSA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZdSq8VKavBG3SVv456RwcVWc2dBOHBX669H+1Z/ateUSoLtJQ6HoNaGlxZY7iQeziju2BsPmZAZG2bedJd8sWyvJJpE+YImOoFzpXok6O6PTH3rIglVWaqjEHZNENs3mMZN7kD42mvPkHvymUsqDJ9lfMmOutE3wreSTYs2cDD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mJE/Lf2f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9CC4C4CEF7;
-	Tue,  4 Nov 2025 09:46:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tgVPT1muqAF8NF6TVov0xuy9PITJKqYr/eNCG5kjHhvPEyjYUbAhM5mS8K0Kqdglfyq08YvxQrhm2T4WmaSdBsDfP/G7Z4OXBRKco2tBVYupZ8tjbWaXuV6CaMs2dK60Nc6HAEV/htmNOQJbHJn7kLRl8yXVFg67byVjLZeqOl4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d3XSkXR4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D70B6C116D0;
+	Tue,  4 Nov 2025 09:48:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762249601;
-	bh=B4ED1wtbwLhjzL1U0d7PpG/habL9q4jA4agx5VuZN+M=;
+	s=k20201202; t=1762249705;
+	bh=rNXMP1/Hko+o4OWzwDhh+mj82xmLeVK3HHnr4LfDfSA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mJE/Lf2fHgGyU8+d3u4OcGQrrBQ7eQpEZ2BpyR36PJ16PrqhzDdM6qyfL0mECrBOM
-	 8PzF2+9aeRN5DcD2DBmsEtbj2Orrh8xFyAS3nFn9eSLyXaONII/H4a2pxsQT8Z9v7Y
-	 HevREWHrubiN1aiVLPGcM7HYljCG2PzHQO9zNf8BQQ6GUDqPgLW1yoZmFLdJtNEfGU
-	 ekp6gKX+e3CBsCLII4ISimfTDlFlqu3FdGoBs6fUcJtIxLAAlduomuBh+eO1DOrjeT
-	 lIfet0CFg7H5Ornu9G3JNG1mZqq9HM8GEJEMhoARKSqjXGwf3UAP9KxQwreULUmTWO
-	 l+/KpEvn6Z/4Q==
-Date: Tue, 4 Nov 2025 10:46:38 +0100
+	b=d3XSkXR4WOkSdOCwNMOj39t8EgXefMv15pKUK9QiThOz3fcduKReXhQOQEWTHuvXK
+	 wwme7DVa/wp1SFiEDQPJ22NAlxDpCt3Hk0rBv2HykxTv7RIykvm+4+/nSgmKoU9aFe
+	 XmXO/ykRfq0RRB+YZqhOi9U2Sv5OARoPPDS8NHyezZuyMsFkouUcFcBa1wPD+zUQOh
+	 0Y4IhIJigONxyatzN/NnlucYgQoipDX98tcr2kE5K70LgKFlcWUrvayWDvJuD9esvj
+	 UJULvfQW/WIDQReQr+8t6EXgIw0GD8gIA/36bvjW0Gh/jB0MGkI4JBYTLUT2WCgOT9
+	 10yCX+dlDTiIw==
+Date: Tue, 4 Nov 2025 10:48:22 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: =?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
-	Will McVicker <willmcvicker@google.com>, kernel-team@android.com, linux-kernel@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v3 07/20] dt-bindings: firmware: google,gs101-acpm-ipc:
- update PMIC examples
-Message-ID: <20251104-impetuous-nuthatch-of-chivalry-abffbd@kuoka>
-References: <20251103-s2mpg1x-regulators-v3-0-b8b96b79e058@linaro.org>
- <20251103-s2mpg1x-regulators-v3-7-b8b96b79e058@linaro.org>
+To: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+Cc: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mahesh Rao <mahesh.rao@altera.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>, Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: firmware: svc: Add IOMMU support for
+ Agilex5
+Message-ID: <20251104-bipedal-sheep-of-advertising-08450c@kuoka>
+References: <cover.1762135710.git.khairul.anuar.romli@altera.com>
+ <ca75b88a64412274d415e17d4aef6dd018ac7167.1762135710.git.khairul.anuar.romli@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,49 +61,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20251103-s2mpg1x-regulators-v3-7-b8b96b79e058@linaro.org>
+In-Reply-To: <ca75b88a64412274d415e17d4aef6dd018ac7167.1762135710.git.khairul.anuar.romli@altera.com>
 
-On Mon, Nov 03, 2025 at 07:14:46PM +0000, Andr=C3=A9 Draszik wrote:
-> In a typical system using the Samsung S2MPG10 PMIC, an S2MPG11 is used
-> as a sub-PMIC.
+On Tue, Nov 04, 2025 at 07:39:27AM +0800, Khairul Anuar Romli wrote:
+> In Agilex5, the TBU (Translation Buffer Unit) can now operate in non-secure
+> mode, enabling Linux to utilize it through the IOMMU framework. This allows
+> improved memory management capabilities in non-secure environments. With
+> Agilex5 lifting this restriction, we are now extending the device tree
+> bindings to support IOMMU for the Agilex5 SVC.
+> 
+> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+> Reviewed-by: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+> Reviewed-by: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
 
-Subject: add S2MPG11 secondary PMIC
+Two reviews but...
 
->=20
-> The interface for both is the ACPM firmware protocol, so update the
-> example here to describe the connection for both.
->=20
-> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> ---
->  .../bindings/firmware/google,gs101-acpm-ipc.yaml   | 40 ++++++++++++++++=
-++++--
->  1 file changed, 37 insertions(+), 3 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/firmware/google,gs101-acpm=
--ipc.yaml b/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ip=
-c.yaml
-> index 4a1e3e3c0505aad6669cadf9b7b58aa4c7f284cb..c25e155926e5f44bd74f195cd=
-bff3672c7499f8e 100644
-> --- a/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.ya=
-ml
-> +++ b/Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.ya=
-ml
-> @@ -45,6 +45,15 @@ properties:
->        compatible:
->          const: samsung,s2mpg10-pmic
-> =20
-> +  pmic2:
+>  
+> -required:
+> -  - compatible
+> -  - method
+> -  - memory-region
+> +allOf:
+> +  - required:
+> +      - compatible
+> +      - method
+> +      - memory-region
 
-pmic-2
+... none told you this is not the correct syntax / style?
 
-> +    description: Child node describing the sub PMIC.
-> +    type: object
-> +    additionalProperties: true
-> +
-> +    properties:
-> +      compatible:
-> +        const: samsung,s2mpg11-pmic
+Were these reviews really happening? What exactly was reviewed here?
 
 Best regards,
 Krzysztof
