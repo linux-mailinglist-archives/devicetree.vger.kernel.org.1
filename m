@@ -1,255 +1,192 @@
-Return-Path: <devicetree+bounces-234869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04F1CC31B43
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 16:04:31 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDA0BC31ACB
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 16:00:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9A4B94FD040
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 14:58:08 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C7D2134A7AF
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 15:00:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E43E332ED52;
-	Tue,  4 Nov 2025 14:56:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E36C3346A9;
+	Tue,  4 Nov 2025 14:58:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beims.me header.i=@beims.me header.b="nFRzSInh";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="INg0Fv5F"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NH3KqUC4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-b4-smtp.messagingengine.com (fout-b4-smtp.messagingengine.com [202.12.124.147])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 107B032E752;
-	Tue,  4 Nov 2025 14:56:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.147
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B711233469C
+	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 14:58:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762268219; cv=none; b=VBLB5M7qWxASLxJovvQdcyywKsWnp6cicsGL+Muw1JbmA2tyK3y5uJ6ztg/gCV37JIcL+/lBa3XqL3FZfS24E60zoOuPLyoThma+SnPu4Eao9HbmF9y4w4pDmKjYrSnD40ZXSR1r0DPiFC5alT2+2pBOEsl3ttj8DATxVl5pIJA=
+	t=1762268310; cv=none; b=eGdlf7tofhqyPsYw9NMerbHaq6DwhU3xhrwKqOTafRLa3ZMwZ1+KbBFBH8Q6FIr4jWZ2FvEEWMercf8Eb1VHwuBVhmQK9C/zBIt0faWRWhbxgjXynXu/2ywYFZ1lyfJ32lJ44SeLMKAm75OBgzWt1qi2fW+PT3oABVs5krc532M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762268219; c=relaxed/simple;
-	bh=eHxg8ZsRjH/BRZAiuRt7eW0oNlsFTsrzYRWmF67yJtg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WAHqqe+eKZginhRRhWg7hbtNOwQdOV2BqVGrELuvzSpAd+yd6AqUvgeveaFddAgupPpKdTmcW7LwzXzeqR5bWwUqI9P+xxnb4GbkmwzGVOGdrtBRxNTqCVWQQEOswyVvtEKzZAmwPlj6xFTBsdqY8VV4gFjufyboteeDWlgL160=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=beims.me; spf=pass smtp.mailfrom=beims.me; dkim=pass (2048-bit key) header.d=beims.me header.i=@beims.me header.b=nFRzSInh; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=INg0Fv5F; arc=none smtp.client-ip=202.12.124.147
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=beims.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=beims.me
-Received: from phl-compute-07.internal (phl-compute-07.internal [10.202.2.47])
-	by mailfout.stl.internal (Postfix) with ESMTP id 717C91D003C4;
-	Tue,  4 Nov 2025 09:56:55 -0500 (EST)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-07.internal (MEProxy); Tue, 04 Nov 2025 09:56:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=beims.me; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1762268215;
-	 x=1762354615; bh=ScOHtHoNH0OZnUklGMPQKXt2S33rJYO0/8ZwF3X5VgQ=; b=
-	nFRzSInhPyp5FiUMkm4+73BQ2sx4JN7LuLUgRRwjkvS95Weh39rUIx4vJq9HaGB0
-	U8wYHU+a5fMwZNQODV2786yBjdmH212vRxjDrsb2AWtbx7uT9jMkPpsf634NZJyz
-	j3YaOWDS9fvR8WnDRWC8pm3xUbeFpslFPdhQbRcXyjkLqcR7Ua5ExsP0vtEyiG0d
-	hIEA89qEb0EtSmqEOwnlMdKByRaaUsUoaUICPmWV1v5Xn4LqwKjS9sBsCCR2YPog
-	o+BYb46beomSSQf9LlmIrPPnAzpdIm7k88XYHjWpo7P99qKmJruJaQDeERMCh+XK
-	xws7uFhxcY89HIB6UcgLjQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1762268215; x=
-	1762354615; bh=ScOHtHoNH0OZnUklGMPQKXt2S33rJYO0/8ZwF3X5VgQ=; b=I
-	Ng0Fv5FLlxoLQEQbstoUPDBMUMn/02OaVxQkOTocO0uqaHHhg/sQ7KmdYi6RneyJ
-	DgbWPaztGLPPw+2NKXscUsPrsMfzwirl98yYbiMTxv/3tDl5+dwXeQjjnXzuYQqO
-	f5b7cLxsCUEBPPADU2OqH7qyncsnCUCmDc9+kdEz/1E75EByZjuY6ClMVvhouy3r
-	w5HlKyHVbcmgQtvy8mp0X/4QlYJQNmaMArpIoT9GuRKqH0Bk0IfGEB6Xfww91m2J
-	RNXvJRI8FRtp2o0maJOaDGNkA2ysNAGcKfjCXG97uQP1Ux3hylJo6Bd8iNtfIy0m
-	uXr6WLJjEfKTh1PuMmXeg==
-X-ME-Sender: <xms:NhQKaei8KvjT3Y_rEv1iEHiL4ImkOxHBPMR7vtyszwssp044HhGeuA>
-    <xme:NhQKabZeq6Yn25HMvg7avs0djhi2UUx0Er65oRPdjvDJrjE9KIklQSofpazs6B6LV
-    ENxyh0Y1bmno2kiW_o7-9rEY30ExUMJ6vV1VzUhsRJ5Yp-ICtv6LTaR>
-X-ME-Received: <xmr:NhQKaahoklQacy1o6qMdXLFaHkUn8fpBWL_dZaskzZYwoQ6eisImoB8FLDorA7t34PpE>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddukedufedvucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhepkfffgggfuffvvehfhfgjtgfgsehtkeertddtvdejnecuhfhrohhmpeftrghfrggv
-    lhcuuegvihhmshcuoehrrghfrggvlhessggvihhmshdrmhgvqeenucggtffrrghtthgvrh
-    hnpedutdfgjeeitddtkedthffhvdevteefgedutdefhfelueeiledviefhffefudelffen
-    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehrrghfrg
-    gvlhessggvihhmshdrmhgvpdhnsggprhgtphhtthhopedugedpmhhouggvpehsmhhtphho
-    uhhtpdhrtghpthhtohepghgvvghrtheslhhinhhugidqmheikehkrdhorhhgpdhrtghpth
-    htohepsggvnhdrughoohhkshestghouggvthhhihhnkhdrtghordhukhdprhgtphhtthho
-    pegrnhgurhgvfidonhgvthguvghvsehluhhnnhdrtghhpdhrtghpthhtohepuggrvhgvmh
-    esuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegvughumhgriigvthesghhoohhg
-    lhgvrdgtohhmpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtth
-    hopehprggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtohepkhhriihkodguthes
-    khgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdroh
-    hrgh
-X-ME-Proxy: <xmx:NhQKaVaUcj4gbWGCBPLWqlGn9olVt0LpeAZZskJVgElax_sHv6pEXg>
-    <xmx:NhQKaYMMHYgJgOChfgtXupkJHipD3JLfkhU5UoRoLn9Jw6Mbi0876Q>
-    <xmx:NhQKaeYpx0suDXFA19CHwOWhptHG-tRrCH2QjWlGH0pKfXXQdETRuw>
-    <xmx:NhQKaQWApNvYfW2j9ZGT26WLoX-WxVMFrAdbM5UFGKcrLeNyXeYctA>
-    <xmx:NxQKaewaOcKDcPqsh6gftyar4iAplbMuE9EgYfyz_uuJoZJRXZ24VBn1>
-Feedback-ID: idc214666:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 4 Nov 2025 09:56:51 -0500 (EST)
-Message-ID: <b7d039b1-7554-47bb-93f4-98d2b08a5882@beims.me>
-Date: Tue, 4 Nov 2025 11:56:49 -0300
+	s=arc-20240116; t=1762268310; c=relaxed/simple;
+	bh=jofWWnwmoG4Nrm+u2R6rEX8xNv7yEnOjBBXdOGfBxTY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=tB+DLKVbhMgH7LCynjpcptggwWNYaE7brrIB+ShEHJT5w72OO0v/jrkKtwRfjkztKRzYWFuVSbolCY9n9rlP9dgjuypk6tH/wmecQ4NphbZT3TN72QHlFHBCqElsmqF8TrEKDKsA528yXyd6oegYjnHP7Ji9fMtbv8p37czVU/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NH3KqUC4; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-640f0f82da9so916768a12.1
+        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 06:58:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762268305; x=1762873105; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4pEYynqLlf97tqquz7gBzDn5fbpmeV4yt44zAz5u1qM=;
+        b=NH3KqUC4M5jMP9sD0dDu3QZfAqYyRwTUrw2F0b7M8T3N1likkpBoRiPByQfMTbX+fx
+         iQZ5bNrzTeqk9+DbNb4m/7efA6EcrkW9MiSSWHdQ73FEsJzspwFNsEnY7JsawFnoYibK
+         4ISwSW+wSJW78DOYpG6V2avuFGY+mcNM5qJ0RzsqfzmQgprDBNBWPfnziBYKfdMhlU5t
+         c8x3jn6nI3EqpF+qhe/KULm+L2IOQ8ragVRy9Xp+gZqKa3jHVkm4E61Y4N0l9TImSbrF
+         qpzaFYWS/XgpUAjICj1fAJNkBSAxLxpivbyLrSNsw2GNjCdKPS1UGhz3OpCsflW2kxMi
+         etOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762268305; x=1762873105;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4pEYynqLlf97tqquz7gBzDn5fbpmeV4yt44zAz5u1qM=;
+        b=rsZ7j/sNIMAtUm1pAbLfvKAtYZpUNi3LIKYiAnthV1071vDXR8mCV0A9zd25/IqhIV
+         RI619WlJ+ev52FhoJC9HL1qLPFu9Md60Z6i+leDJss48QVSfa65X6h3RwdhoV5ggzZ9A
+         ml7mw48XV1d40er06/QaRRhKDlCxhkJvkprPC6mdMzmzcAZWsao4WB/tJcJVQltJ+Q1W
+         h2B+5HkK3hCP5jtA9OW+YWrKXHyvGYcaKazmXJna/v01fZPMJLl7k7q7/qXOBySEPFi8
+         kQ1wpcPFQObJ+sAujM7mpDxONnGJPRBUJ3mImj2xtOn4H1AuTDrp4MAxNq+5YOSUjNzl
+         tKCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV+KkxhCW6YnDJ/pNuHCOHMT18nUqh7HSZHU3NOhxp+sfdlhNHY5wk+1gqXxdpYDFcVc993d8iqkvTE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8CnxInKDt8BawkSZRJzmATudXZhzx+Y9xt9zrIHx/Og0GEBRD
+	AX/qHZHc2to1zUI4lxvy2ESP38ZU8ApzA7fWmiD/A4zOIMRkEDKoYuMG
+X-Gm-Gg: ASbGncspA7LiXFvUgg61CynWi2TqeTcqz/WUQn01h2SvpO+dB3Maq98sa0Ut7r5M8it
+	J20PfVQ4jdxGQtQGmjIyXiufK+mpoSScL5M6alSmp/BSa7jappAQmAdK0Vr1yVWs+dzptp7mp1a
+	ltbdP54JcnzmP7ItXjn0dMvyf5gmJ++JGWU7ELPdueD53igGWZ/CEfwI/lLUvNpnZqQph9W5/4Z
+	ydxmEJmExc5mdGDJFAEalQ6XvJMGs2XVxmSMwHzcN2GVNrXaNmwuSTwzDlZ/swQvpHdLoOmRJQS
+	tE53D1RxULCWUqqHG4uHAkzwKz3QwKKod4giTAcV9Nza8S8TALKFXXy32TKiFv1MgBu1AR0RqoS
+	SABmXavTcqWf1EY7tOPY0dPbWgh5GSmfW+CUj0M3EG+kJjn2G++Gl4/YqouOPsG5gcMcb2DwErZ
+	/tswk5/wUylPMlkVkyXA13Rgee/3Cjt0RaHRxK8lUc/UwqJC8=
+X-Google-Smtp-Source: AGHT+IFCrq3nCnD3LeMjo88kUj+iYOsaxz83hK9DRyJQvnnXwEepxp0u4Czy8i8uiy1jj1mUE1acXQ==
+X-Received: by 2002:a05:6402:5114:b0:640:f041:c7c6 with SMTP id 4fb4d7f45d1cf-640f041ca48mr1477907a12.21.1762268304776;
+        Tue, 04 Nov 2025 06:58:24 -0800 (PST)
+Received: from tablet.my.domain (83.21.17.47.ipv4.supernova.orange.pl. [83.21.17.47])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-640e6a7fcd7sm2288874a12.37.2025.11.04.06.58.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Nov 2025 06:58:24 -0800 (PST)
+From: Artur Weber <aweber.kernel@gmail.com>
+Subject: [PATCH RESEND v7 0/7] clk: bcm: kona: Add bus clock support, bus
+ clocks for BCM21664/BCM281xx
+Date: Tue, 04 Nov 2025 15:58:18 +0100
+Message-Id: <20251104-kona-bus-clock-v7-0-071002062659@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] [RFC] dt-bindings: net: micrel: Convert to json-schema
-Content-Language: pt-BR
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Ben Dooks <ben.dooks@codethink.co.uk>, Andrew Lunn
- <andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- Rafael Beims <rafael.beims@toradex.com>, Rob Herring <robh@kernel.org>
-References: <943cb31d01d0da3a63911326e24fbf9b328f7206.1731580776.git.geert+renesas@glider.be>
- <20241115150210.GA2680735-robh@kernel.org>
- <CAMuHMdV01hv-riCFEBD024pX6jL37C6hp7Cjjy1rtaUnrhvK3w@mail.gmail.com>
-From: Rafael Beims <rafael@beims.me>
-In-Reply-To: <CAMuHMdV01hv-riCFEBD024pX6jL37C6hp7Cjjy1rtaUnrhvK3w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Alex Elder <elder@kernel.org>, 
+ Stanislav Jakubek <stano.jakubek@gmail.com>, linux-clk@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, linux-arm-kernel@lists.infradead.org, 
+ phone-devel@vger.kernel.org, Artur Weber <aweber.kernel@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Alex Elder <elder@riscstar.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3090;
+ i=aweber.kernel@gmail.com; h=from:subject:message-id;
+ bh=jofWWnwmoG4Nrm+u2R6rEX8xNv7yEnOjBBXdOGfBxTY=;
+ b=owEBbQKS/ZANAwAKAbO7+KEToFFoAcsmYgBpChSNG1jE7pGayE9k2YeIEYEceIZhdRQbjRVvf
+ c+4M2DM7p2JAjMEAAEKAB0WIQTmYwAOrB3szWrSiQ2zu/ihE6BRaAUCaQoUjQAKCRCzu/ihE6BR
+ aDg2EACPQfLq3G9R87y8E6cISkzuRCn0I42CEz+TaLiFTXrXAIRNojHo/LdGDTz/kRnGRi0WpYn
+ 0cCm5clirUWqzMJ9c+ifTT6OOs6412rzwPIZfBrDikH/jQDNQml0N2BMkws4yT5Q0D7chgtzgzt
+ jpDz6oIHJ6kIv50ZEewPZn+/ufxFnmIn6JCElW8WN6/NBT/01FTbafOUzNqikpZw82IvP3qH0HQ
+ 7sNz7f79BaBFE88LN03h0eze5i0AQ4FoYyQfLUs2zJtFWinTfzglhfRxgAWO34meuiSt5M0O/lQ
+ h+xQhlR4mQ+5QiwOjikfQUuzhUlipswVgraOCfbgq4gchs8wTMr9leseDbZQPGL+pqEhjOtGKEQ
+ sfbHEC34K7ycd3gUUm/H5rojBylUXJ9avCQWCDXaFDqqD0RAbxnsiWYoTbgjCNExH6WaLCDwyRb
+ X5fkDnPxnWO9RGifbFG3kgCYqqZDQFEDMFxUbdlKAWTzgLAzaIQRH8PvbSf0u9cNw3I8gI+s9lT
+ vHWI6tgOesxEfXfHSQrxTmV3QQyieWoCLfsB/B3a5+qxZF0or/1FVG31aJaubgFGTnJCSGCoz4M
+ UPKMvKuyAg54i6hS4MK0LiCPzwI83mbS8RyIhBrSZTFSO7OpzVGORzx2zT7ceRHBvdpfrcXODts
+ 7i3OXHOAZld/E6Q==
+X-Developer-Key: i=aweber.kernel@gmail.com; a=openpgp;
+ fpr=E663000EAC1DECCD6AD2890DB3BBF8A113A05168
 
-Hello Gert,
+This patchset does the following:
 
-On 11/18/24 07:39, Geert Uytterhoeven wrote:
-> Hi Rob,
->
-> On Fri, Nov 15, 2024 at 4:02 PM Rob Herring <robh@kernel.org> wrote:
->> On Thu, Nov 14, 2024 at 11:42:50AM +0100, Geert Uytterhoeven wrote:
->>> Convert the Micrel PHY Device Tree binding documentation to json-schema.
->>>
->>> Add a simple example.
->>>
->>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
->>> ---
->>> Notes:
->>>    1. I specified Ben Dooks as the maintainer, as he wrote the original
->>>       bindings. Ben, are you OK with that?
->>>    2. This schema is never applied, as there is no compatible value or
->>>       select statement. Adding
->>>
->>>        select:
->>>          properties:
->>>            $nodename:
->>>              pattern: "^ethernet-phy(@[a-f0-9]+)?$"
->>>
->>>          required:
->>>            - $nodename
->>>
->>>       and changing
->>>
->>>        -unevaluatedProperties: false
->>>        +additionalProperties: true
->>>
->>>       would fix that, and is mostly harmless, except for possible
->>>       conflicts with other Ethernet PHYs having more than one clock, or
->>>       using different clock-names.
->>>       Documentation/devicetree/bindings/net/qca,ar803x.yaml has the same
->>>       issue.
->>>       Is there a proper way to handle this?  Are there other options than
->>>       mandating specific compatible values for Ethernet PHYs?
->> The proper way is simply, if you need to describe your phy in DT, it
->> needs a compatible string. MDIO phys are not special.
-> So that's gonna be a bunch of "ethernet-phy-id0022.*" values,
-> especially as the least significant nibble is the revision number...
->
->> We really need to split ethernet-phy.yaml into common properties and a
->> specific schema for the compatibles it contains so that we can change
->> 'additionalProperties: true'. That's one reason why all these properties
->> and typos didn't get flagged.
->>
->> If you don't want to retro-actively add a compatible, you can also do
->> something like this:
->>
->> select:
->>    anyOf:
->>      - required: ['micrel,led-mode']
->>      - required: ['micrel,rmii-reference-clock-select-25-mhz']
->>      - required: ['micrel,fiber-mode']
->>      - required: ['coma-mode-gpios']
->>
->> That doesn't catch every case nor if you have a typo in the property
->> names.
-> Indeed.
->
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/net/micrel,phy.yaml
->>> +  micrel,rmii-reference-clock-select-25-mhz:
->>> +    description: |
->>> +      RMII Reference Clock Select bit selects 25 MHz mode
->>> +
->>> +      Setting the RMII Reference Clock Select bit enables 25 MHz rather
->>> +      than 50 MHz clock mode.
->>> +
->>> +      Note that this option in only needed for certain PHY revisions with a
->>> +      non-standard, inverted function of this configuration bit.
->>> +      Specifically, a clock reference ("rmii-ref" below) is always needed to
->>> +      actually select a mode.
->>> +
->>> +  clocks:
->>> +    maxItems: 1
->>> +
->>> +  clock-names:
->>> +    const: rmii-ref
->>> +    description: |
->>> +      supported clocks:
->>> +        - KSZ8021, KSZ8031, KSZ8081, KSZ8091: "rmii-ref": The RMII reference
->>> +          input clock. Used to determine the XI input clock.
->> Don't repeat the clock name in the description.
-> Actually I kept it on purpose, as the driver treats the "rmii-ref" clock
-> differently than any other (unnamed) clock.  Obviously I failed to
-> relay that information, so I should enhance the description ;-)
->
->>> +  coma-mode-gpios:
->>> +    description: |
->>> +      If present the given gpio will be deasserted when the PHY is probed.
->>> +
->>> +      Some PHYs have a COMA mode input pin which puts the PHY into
->>> +      isolate and power-down mode. On some boards this input is connected
->>> +      to a GPIO of the SoC.
->>> +
->>> +      Supported on the LAN8814.
->> Another reason to add compatible. You have per device properties.
-> So I have to increase my datasheet library first, to discover all
-> the PHY IDs.
->
-> Gr{oetje,eeting}s,
->
->                          Geert
+- Introduce support for bus clocks. These are fairly similar to
+  peripheral clocks, but only implement policy, gate and hyst.
 
-I would like to add a new property to the micrel dt-bindings. I 
-understand that
-the conversion to json-schema has to be finished before new properties 
-are added.
+- Add matching bus clocks for BCM21664 and BCM281xx peripheral clocks
+  and update device tree bindings to match.
 
-You had this patch posted a while back, and reading the feedback, I'm 
-not sure how to proceed.
-It seems that forcing the use of compatible strings could be a bit 
-risky. At least the "micrel,led-mode"
-is used in many device-trees. If I understand the requirement correctly, 
-it means we would have to find out
-the exact PHY model that every one of these boards uses to not create a 
-breaking change.
-Other flags like "micrel,rmii-reference-clock-select-25-mhz" or 
-"coma-mode-gpios" are more contained
-and should be easier, but there would still be some risk to do this 
-change without testing on actual hardware.
-I couldn't find any use of the "micrel,fiber-mode"  flag in current 
-device trees.
+Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+---
+Changes in v7:
+- Drop DTS patches to make merging into the clock tree easier. They will be re-sent
+  in a subsequent patchset.
+- Link to v6: https://lore.kernel.org/r/20250813-kona-bus-clock-v6-0-f5a63d4920a4@gmail.com
 
-Did you find other issues that prevented you from moving forward with 
-this? Is my thinking correct regarding
-this, or am I missing something?
+Changes in v6:
+- Rebase on v6.16
+- Make kona_bus_clk_ops const, add a new commit to make kona_peri_clk_ops const as well
+- Link to v5: https://lore.kernel.org/r/20250430-kona-bus-clock-v5-0-46766b28b93a@gmail.com/
 
-I appreciate any insight you could give me on this,
+Changes in v5:
+- Pick up Reviewed-by trailer from Krzysztof on patch 3
+- Rebase on v6.14
+- No code changes since v4
+- Link to v4: https://lore.kernel.org/r/20250318-kona-bus-clock-v4-0-f54416e8328f@gmail.com
 
-Rafael
+Changes in v4:
+- Rename moved CLOCK_COUNT defines to CLK_COUNT to avoid redefinition
+- Squash BCM21664/BCM281xx bus clock DT bindings commits together
+- Link to v3: https://lore.kernel.org/r/20250308-kona-bus-clock-v3-0-d6fb5bfc3b67@gmail.com
+
+Changes in v3:
+- Fix DT schema example in BCM281xx bus clock bindings
+- Move CLOCK_COUNT defines from dt-bindings header to the driver
+- Fix BCM21664 UARTBx_APB IDs being out of order compared to clock
+  driver
+- Link to v2: https://lore.kernel.org/r/20250303-kona-bus-clock-v2-0-a363c6a6b798@gmail.com
+
+Changes in v2:
+- Drop prerequisite clock patch
+- Move clock/bcm21664.h dt-bindings header change to dt-bindings patch
+- Add BCM281xx bus clocks
+- Link to v1: https://lore.kernel.org/r/20250216-kona-bus-clock-v1-0-e8779d77a6f2@gmail.com
+
+---
+Artur Weber (7):
+      clk: bcm: kona: Move CLOCK_COUNT defines into the driver
+      dt-bindings: clock: brcm,kona-ccu: Drop CLOCK_COUNT defines from DT headers
+      dt-bindings: clock: brcm,kona-ccu: Add BCM21664 and BCM281xx bus clocks
+      clk: bcm: kona: Make kona_peri_clk_ops const
+      clk: bcm: kona: Add support for bus clocks
+      clk: bcm21664: Add corresponding bus clocks for peripheral clocks
+      clk: bcm281xx: Add corresponding bus clocks for peripheral clocks
+
+ .../devicetree/bindings/clock/brcm,kona-ccu.yaml   |  49 ++++++-
+ drivers/clk/bcm/clk-bcm21664.c                     |  99 ++++++++++++++-
+ drivers/clk/bcm/clk-bcm281xx.c                     | 141 ++++++++++++++++++++-
+ drivers/clk/bcm/clk-kona-setup.c                   | 116 +++++++++++++++++
+ drivers/clk/bcm/clk-kona.c                         |  64 +++++++++-
+ drivers/clk/bcm/clk-kona.h                         |  14 +-
+ include/dt-bindings/clock/bcm21664.h               |  17 ++-
+ include/dt-bindings/clock/bcm281xx.h               |  24 +++-
+ 8 files changed, 499 insertions(+), 25 deletions(-)
+---
+base-commit: 038d61fd642278bab63ee8ef722c50d10ab01e8f
+change-id: 20250212-kona-bus-clock-4297eefae940
+
+Best regards,
+-- 
+Artur Weber <aweber.kernel@gmail.com>
 
 
