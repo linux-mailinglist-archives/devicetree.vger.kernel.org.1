@@ -1,58 +1,68 @@
-Return-Path: <devicetree+bounces-234612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FF7FC2F37D
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 04:58:47 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1CC9C2F407
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 05:08:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC0BA3BE5EA
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 03:58:45 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 999A734C924
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 04:08:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5FAB29E11D;
-	Tue,  4 Nov 2025 03:58:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 640A9261B80;
+	Tue,  4 Nov 2025 04:08:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rgGGo5hS"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="cECTuwET"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6C882BB1D;
-	Tue,  4 Nov 2025 03:58:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD39B1F95C;
+	Tue,  4 Nov 2025 04:08:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762228721; cv=none; b=Xaxscu+AMhyWfUq7dfqLBSP7zwJ5szTKN10aGtnBB9MxoGr3EAVEiqPodzAYRqWeJ5K/pyOqezhfgWJgoiPE73gwVhQG7s8S0TT1AX93M6k3KVpIVG412KTCORxXkbctBRDvYIq8t/zjNe513qUWkKGWZvcC6v25c3LwTjpwPME=
+	t=1762229295; cv=none; b=a509WspACE3RC25jq6HqAPYQ62Vooqc6436ZisCW0DazOi21pzH4iw7dFsp7u8dvKBf8LPX4ApUUuB8VJQ0gy7ksWP2td83nnWedAxsr8xxgy93nVTaOr7DmiRjHVrjwZL2LP4xdyFtWp30CelBZ97f1aT5aABdIIxxfj1UyfSI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762228721; c=relaxed/simple;
-	bh=+Ki3E1HMECV/Re8mxC5wCaHUywU4kqrtJf6FJykpzRQ=;
+	s=arc-20240116; t=1762229295; c=relaxed/simple;
+	bh=dgOQMuFGjDFbalkAxkKTOWiF8CT+szoF7qOEtnFgN0A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gOtqmhJG8kAb+RMcXbnkfAoZmqUqDMoklcONWAHSlEwcfM3SuMzRwmYxus3w76I1wUC1lnhic7vVTyofAf4734cV0liputmyc2DnZFBk5blbq0dFMxyxg7xrGtL9NSTqwLbE73xo3SlbfY/APWv4vR4dANoL7tN6eLHlYTDx0Do=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rgGGo5hS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C9B3C4CEF7;
-	Tue,  4 Nov 2025 03:58:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762228721;
-	bh=+Ki3E1HMECV/Re8mxC5wCaHUywU4kqrtJf6FJykpzRQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rgGGo5hS1XO6eeJm2hBGkjhgah9Uj5zRun9awk1n3jj+V6UVMi6VJyUC7T4XPS+zP
-	 FbfLZoK+KunZ1NLOZtOI1BV/FPbMAojcgXfnTTed/y8gTyp56fTqmatD8e6RB+mC7u
-	 7SieDUCeM/zoAvXetPmqQ8/1HeEKSeg6qojLVpUtVHH0J1vtu+tBR+ILWmJrnTZP0V
-	 AKYu9d4O8O35GXLRj8sIKfcfbMa4GcLcLkrKXbsbJwNEZb8G/MhqwGh3I8hVyM0lrq
-	 facjVHJT/O7ijUd9F8kV9oZIFHCieaQcCmf2ycKUROcYSJ3pEHmmhog44nW+jqMQaS
-	 UYduoQg3NvKPQ==
-Date: Mon, 3 Nov 2025 22:02:13 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: "Aiqun(Maria) Yu" <aiqun.yu@oss.qualcomm.com>
-Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>, Lee Jones <lee@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, 
-	yijie.yang@oss.qualcomm.com
-Subject: Re: [PATCH] dt-bindings: mfd: qcom,tcsr: Add compatible for Kaanapali
-Message-ID: <l4mb5pi7kz7uuq6o3eueoxl2ngt2sdd6dv3kyudw6i54co5v5h@w6ya2nuas322>
-References: <20250924-knp-mfd-v1-1-6c8a98760e95@oss.qualcomm.com>
- <b623c7f6-f28f-49ba-b6f6-25084117a6b3@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=du8D//dEgfO4uIaASpWwger9auNEATU6JbNNz9McO+7UQZJRdUeJREATFM6nC5LEd8UosAyr1f5FMntNH0tGQGK30bwFsmvT861qqZdwo7hryB9LtcAVlCflr0VcUqr8Mvt25Z+8WRsekQxxzfhFP8uASjKINlNus3dPNl9Bhp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=cECTuwET; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=SCzuRbK010iCV7uM5d9o/fnRKEhVAKqhq5VkVQV9Jb0=; b=cECTuwETLawdqhDEoiTBQY82TY
+	RbZpkUtyzgw/JFQbrm9aQInyZbVWJaQl77CLk6CrImMO1gufct+nZJgh5ZGrI5nSviqcRr1JL//iZ
+	kGR3rYoFHiYAZBGa5H5AITadeGMJw8s06U05kxtiWYiu8JeV03/BMQa+1Xe6VjqCming=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vG8Ks-00Cqya-Cq; Tue, 04 Nov 2025 05:07:58 +0100
+Date: Tue, 4 Nov 2025 05:07:58 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Po-Yu Chuang <ratbert@faraday-tech.com>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, taoren@meta.com
+Subject: Re: [PATCH net-next v3 1/4] dt-bindings: net: ftgmac100: Add delay
+ properties for AST2600
+Message-ID: <cf5a3144-7b5e-479b-bfd8-3447f5f567ab@lunn.ch>
+References: <20251103-rgmii_delay_2600-v3-0-e2af2656f7d7@aspeedtech.com>
+ <20251103-rgmii_delay_2600-v3-1-e2af2656f7d7@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,58 +71,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b623c7f6-f28f-49ba-b6f6-25084117a6b3@oss.qualcomm.com>
+In-Reply-To: <20251103-rgmii_delay_2600-v3-1-e2af2656f7d7@aspeedtech.com>
 
-On Tue, Nov 04, 2025 at 11:34:25AM +0800, Aiqun(Maria) Yu wrote:
-> On 9/25/2025 7:23 AM, Jingyi Wang wrote:
-> > Document the qcom,tcsr-kaanapali compatible, tcsr will provide various
-> > control and status functions for their peripherals.
-> > 
-> > Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> > ---
-> >  Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-> > index 14ae3f00ef7e..ae55b0a70766 100644
-> > --- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-> > @@ -48,6 +48,7 @@ properties:
-> >            - qcom,tcsr-ipq8064
-> >            - qcom,tcsr-ipq8074
-> >            - qcom,tcsr-ipq9574
-> > +          - qcom,tcsr-kaanapali
+On Mon, Nov 03, 2025 at 03:39:16PM +0800, Jacky Chou wrote:
+> Create the new compatibles to identify AST2600 MAC0/1 and MAC3/4.
+> Add conditional schema constraints for Aspeed AST2600 MAC controllers:
+> - For "aspeed,ast2600-mac01", require rx/tx-internal-delay-ps properties
+>   with 45ps step.
+> - For "aspeed,ast2600-mac23", require rx/tx-internal-delay-ps properties
+>   with 250ps step.
+> - Both require the "scu" property.
+> Other compatible values remain unrestricted.
 > 
-> It looks good to me. Glymur didn't have this functionality verified yet.
-
-You spelled Reviewed-by: Aiqun Yu <..> wrong.
-
-> Remind for review.
-
-No need for that, reviewers will review when they have time.
-
+> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
+> ---
+>  .../devicetree/bindings/net/faraday,ftgmac100.yaml | 50 ++++++++++++++++++++++
+>  1 file changed, 50 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml b/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
+> index d14410018bcf..de646e7e3bca 100644
+> --- a/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
+> +++ b/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
+> @@ -19,6 +19,12 @@ properties:
+>                - aspeed,ast2500-mac
+>                - aspeed,ast2600-mac
 
-But that said, most modern additions to this binding follow the common
-format of qcom,<soc>-<block>.
+I don't know if it is possible, but it would be good to mark
+aspeed,ast2600-mac as deprecated.
 
-So I would prefer this to be qcom,kaanapali-tcsr.
+I also think some comments would be good, explaining how
+aspeed,ast2600-mac01 and aspeed,ast2600-mac23 differ from
+aspeed,ast2600-mac, and why you should use them.
 
-Regards,
-Bjorn
-
-> >            - qcom,tcsr-mdm9615
-> >            - qcom,tcsr-msm8226
-> >            - qcom,tcsr-msm8660
-> > 
-> > ---
-> > base-commit: ae2d20002576d2893ecaff25db3d7ef9190ac0b6
-> > change-id: 20250917-knp-mfd-4dd3c81e6b9b
-> > 
-> > Best regards,
-> 
-> 
-> -- 
-> Thx and BRs,
-> Aiqun(Maria) Yu
+	Andrew
 
