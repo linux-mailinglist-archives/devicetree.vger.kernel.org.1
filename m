@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-234848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D26BC316D0
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 15:09:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4058C31721
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 15:15:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29876422C42
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 14:06:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FF22463AB4
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 14:08:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96FC332BF54;
-	Tue,  4 Nov 2025 14:06:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1024532D0C2;
+	Tue,  4 Nov 2025 14:08:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CCqQMJ7K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ssAiLQj4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D11732B9B4;
-	Tue,  4 Nov 2025 14:06:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D968F32C938;
+	Tue,  4 Nov 2025 14:08:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762265192; cv=none; b=L0DxAKRR43xUNt3xICKmLyrkrebPYWBt2YLUhurscucVADI1uDpZ+OmmTy1wEzywVaLMGKSIddreNDCZ0PaU0JTHJg3CE0kp9iTd+El7jboSQgF1Srphuhe96aKP+gcrUzQVSToIguQ9k5XO0HepUCeoApxCSQOB52s4n9/mNAU=
+	t=1762265297; cv=none; b=O9El+pWltpHI0AplEX/n1hYaorWPfaho7wDNooZXiZxsCfMAekQGzHpAdGG0T8hFPaoBXiHnDmM+lRLW7/y0MVj1E3DulxSgPxFmi7JMrw7mMfdADbXDOvruRZYO1/IWbLDEGUBqt9akjDK+6nPNy7EVXEy+5O+XRlSRVA8AhRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762265192; c=relaxed/simple;
-	bh=t+bos1qh5fT48v/WeQY3yu0tKhQYMh0Nl1CYYmz793o=;
+	s=arc-20240116; t=1762265297; c=relaxed/simple;
+	bh=km5HhGYSo6FRkzKszxfXFnfrq6gipQ7IS2uIeGouPDA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nu1ZQwnLu7qDMxKxw5avxPVXBODRddN3wQY0vK7EhhNHLnrwqswiuyOqXo6mva87YUCEzwFBTY7vh9b/Z/LhXPNmtXAIaRa001rqiaXRi70g1e8NrYaZzuYs7+/tbD92LviqxEtq5r/WxFMvb4NIovVfC+kT3oSQgaTCo6MsSPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CCqQMJ7K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAAFDC116C6;
-	Tue,  4 Nov 2025 14:06:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=R25P+EZo7nuFNLdHiW9kPG3o9e+grRx1JovbTU8RyFtNs5C+07qon3VpJgDa6J1jQr6w2TD9wu5voUacOo4dPgJQD1XCn0ZR0XlRSaCghw4feLGhMvhsA7EIBnM2B5750Us77nJJCX7UJtHPRS4XjRx0i0gVpIZ3x32JviFDKxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ssAiLQj4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9E2FC16AAE;
+	Tue,  4 Nov 2025 14:08:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762265192;
-	bh=t+bos1qh5fT48v/WeQY3yu0tKhQYMh0Nl1CYYmz793o=;
+	s=k20201202; t=1762265296;
+	bh=km5HhGYSo6FRkzKszxfXFnfrq6gipQ7IS2uIeGouPDA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CCqQMJ7KT+vPcII2clkArOHKGWTj0q+SaX8/jpqMaOGsxmF3WLmxjPuGGpqfPkjfs
-	 4ZLmzNq5clpZzIFr34q0NbqYFpyLvdMnGcnNnz+j5N600K7nVKzynEhhPnax2rtAn/
-	 ASlzAAet5hqaede0cwmTPUwH1Dk0OhRs0TNp8apsfrZehoBjUnLWi84RECvi9eO+0d
-	 zYGK7qnVx9ZiAaQRxLWq7GYYL9/zRIRoliWQAj36f8AQ49eTTq8QYWagbryWyj2IRV
-	 TgZ4YQdjPSyZe/J8LadiQnqMYF/XWKBuuXljjhODUA8k5e8PilfLpLsOqgN4Vmf3j0
-	 QE2SthRbdaGHQ==
-Date: Tue, 4 Nov 2025 15:06:29 +0100
+	b=ssAiLQj4E8QKaQZ+fRzYuAxvL0qUwOfvgGTr4jZv4eRdP+ck7R3GhmSYOWKdkp/Td
+	 FrFUUVtcoViSgkIt7iRQ6TxHPzQvI0i7Es/LZB9SnXNn0kDY04s30N3J2YZlXEy08Y
+	 uj89UTsw3yUyylTZtsyGYst7PctiVk85m4Fgbmj/DR/3/gWGRSLHoG8dlJqQfXVIyA
+	 eifWuIEeyoEqv2D6JWW2Vg6Lzg5x66Y6KmJFlxd62+i20MPPGlqwyDHRFEJWQtChnJ
+	 WyXqWnBwdh7TBmhu9WMRyagDwIHXkWFVe2XRtS0QAPTR4SAsD4B+oDtSPcFL3aWL+X
+	 L9jZ02B4OLEJQ==
+Date: Tue, 4 Nov 2025 15:08:13 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ye Zhang <ye.zhang@rock-chips.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, tao.huang@rock-chips.com
-Subject: Re: [PATCH v1 1/3] dt-bindings: pinctrl: Add rk3506 pinctrl support
-Message-ID: <20251104-successful-smilodon-of-symmetry-3ecddf@kuoka>
-References: <20251104021223.2375116-1-ye.zhang@rock-chips.com>
- <20251104021223.2375116-2-ye.zhang@rock-chips.com>
+To: Baojun Xu <baojun.xu@ti.com>
+Cc: broonie@kernel.org, tiwai@suse.de, andriy.shevchenko@linux.intel.com, 
+	13916275206@139.com, shenghao-ding@ti.com, linux-sound@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, k-yi@ti.com, henry.lo@ti.com, 
+	robinchen@ti.com, jesse-ji@ti.com, will-wang@ti.com, jim.shil@goertek.com, 
+	toastcheng@google.com, chinkaiting@google.com
+Subject: Re: [PATCH v1 2/2] ASoC: dt-bindings: ti,tas2781: Add TAS5822 support
+Message-ID: <20251104-gay-skilled-giraffe-dacafa@kuoka>
+References: <20251104041314.792-1-baojun.xu@ti.com>
+ <20251104041314.792-2-baojun.xu@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,17 +62,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251104021223.2375116-2-ye.zhang@rock-chips.com>
+In-Reply-To: <20251104041314.792-2-baojun.xu@ti.com>
 
-On Tue, Nov 04, 2025 at 10:12:21AM +0800, Ye Zhang wrote:
-> Add the compatible string for the rk3506 SoC.
+On Tue, Nov 04, 2025 at 12:13:13PM +0800, Baojun Xu wrote:
+> TAS5822 is in same family with TAS58XX.
 > 
-> Signed-off-by: Ye Zhang <ye.zhang@rock-chips.com>
+> Signed-off-by: Baojun Xu <baojun.xu@ti.com>
 > ---
->  Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/sound/ti,tas2781.yaml | 27 ++++++++++++++++---
+>  1 file changed, 23 insertions(+), 4 deletions(-)
+> 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
