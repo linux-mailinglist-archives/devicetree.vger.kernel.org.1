@@ -1,161 +1,158 @@
-Return-Path: <devicetree+bounces-234970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9FF1C33031
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 22:19:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB2F7C33260
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 23:16:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3410C18C3740
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 21:20:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 996F93B5101
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 22:16:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7E632E7F0A;
-	Tue,  4 Nov 2025 21:19:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29A232D0C7A;
+	Tue,  4 Nov 2025 22:16:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qZw2V5wm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LyZncVkn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DD6923A9AE;
-	Tue,  4 Nov 2025 21:19:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB71F199931;
+	Tue,  4 Nov 2025 22:16:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762291192; cv=none; b=lzM06JmKKyiQqrSTkQX3e1cYRaeFc8jIgZDeVNLCcyNUH+iBTZgeiRZRTwcjr7EsWVObRFkQInEsuzO2lwgRMjIhZL9k08TQUQL+NnSZDd2U+QIC3H3GOP5l9zVYimBLAlU/NFmfoDv6UxK5RT2oVxybXcA2kNYqWttOAMeK6cY=
+	t=1762294575; cv=none; b=eB4aeT4Kwld5laZtvK5A0CnBuiUcOtAijE56JM5tiFEMNVRm7ty7edhHVd2PusZ4pLgHJJNCgWRf4f87EGIcHlN3xBjJ8enqeTw5wQH9liDil+81U5FFIOE8INN8++ndhYv+QKmtMX2O17Z/iKobzKtB+ZSvCIqPIYYsuX6fEaU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762291192; c=relaxed/simple;
-	bh=v+uO1hmDDwfrKUN43sgBzv3BYJCFsycp3kZmyNUQIbk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=rWkpgtcNWs5jc7Mv8i+gryzEELfeugy4+U7a8BrcMJ15nh1jPMU7Hm090N1LzphCC14fRHrIKDxSlN1hixih7ug2vYsElKLQEVhqk78rt5cRnxT/+3NunLsfWxVLpFk2n0KLi1gzjfAeSuSeXhJXFQndgnAJQugT0FFgQ2Tx1hU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qZw2V5wm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DB98C4CEF7;
-	Tue,  4 Nov 2025 21:19:50 +0000 (UTC)
+	s=arc-20240116; t=1762294575; c=relaxed/simple;
+	bh=PMJI57pPFLnWADx4D5rtUwHi6yehpBQw9oto6JRqah0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dEqp+/UPf7OkBixCRNXOloQ3CG0Ebit9S7CZ2tQrG6kERuDluv+ODR8M8b/wcun8s1fpYtWtug9/U9szIVt35MbXd6vD+hHc54B9i/JZjoYgdhGByZ5JMg9m+6wlEt/4sEya7v34yJp4sszllZLE6JS9LHO6yjWDdCnVbkzdJ6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LyZncVkn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 77641C4CEF8;
+	Tue,  4 Nov 2025 22:16:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762291192;
-	bh=v+uO1hmDDwfrKUN43sgBzv3BYJCFsycp3kZmyNUQIbk=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=qZw2V5wm3hRir6bcBV/YH7d+TnoKzr9AIdhx3n3P/uBczmtRWGusEYW+Ss1m/KU+8
-	 QlJdxh9ZoyYXvZUbX6J+fgXhYukm6tnVg+JF59na+60uoG3VQhV9fVsF4jgd8+bz2H
-	 p4fvisIrfLJFFsK5BjAocnRmMMyuMo4yTjouQ3PTwJBTdjpnzKqDU4Nuy7MHjYI8F2
-	 Ep9SVhp5rT2lxSd54I63kvO5lWtJS5zArWnAr33k8gu/AjjN/bncJli1atFlaScnCs
-	 AkqjzqUk3H5dBKbgc2bHFjhVjWTDbCkOrMiKH7AJT4JI6sc31xrTW9VgWKgY+PQ9h8
-	 VtrPXL/y4kUYQ==
-Message-ID: <c9c9722b-ad7a-4a4c-85b7-410829dec957@kernel.org>
-Date: Tue, 4 Nov 2025 15:19:47 -0600
+	s=k20201202; t=1762294574;
+	bh=PMJI57pPFLnWADx4D5rtUwHi6yehpBQw9oto6JRqah0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=LyZncVknhUCw0m4emfG5lprqrjnnWjuY6IjiAT1bJgihIgb7UYvGp9C+9l3viV2qn
+	 e+RQMt2OgBEanH93WYOjvkTXJaWiibaPRMFr07BaQZ8ZhlR94YQZTu767LYfG1QrK0
+	 Tk0CB8SpK5c4vxOnDvTbgsr+hKBa1YrFX2nqOcQw//RlzKjxQZY2eeTFl9mgfDqfCk
+	 aGUY7r2c5yVeQXgnHOUbW8ftO2z20z05fCDP0DN+mn1oB7zhk6lwe8VyH4bIu87VJV
+	 9Em1QmxDC4yYEjuIs8WZw5M2CubC9D/ysoJ4t0kaAm8apRIGKCG9mLVCq5JiI/Uymj
+	 WFR9pkrafjTeQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5CD39CCFA07;
+	Tue,  4 Nov 2025 22:16:14 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Subject: [PATCH 00/12] Make Samsung SOFEF00 DDIC and panel work
+Date: Tue, 04 Nov 2025 23:16:08 +0100
+Message-Id: <20251104-sofef00-rebuild-v1-0-dfcfa17eb176@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: socfpga: agilex5: Add SMMU-V3-PMCG nodes
-To: adrianhoyin.ng@altera.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <fd13839ae0d1d67f77b4cce8641bc241005797c2.1760426064.git.adrianhoyin.ng@altera.com>
- <1192765d18a1dd0886e2c5a7435dc0af922996ce.1760426064.git.adrianhoyin.ng@altera.com>
-Content-Language: en-US
-From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <1192765d18a1dd0886e2c5a7435dc0af922996ce.1760426064.git.adrianhoyin.ng@altera.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACh7CmkC/22Oy4oCMRBFf6Wp9QQq76R/ZXCRTqo0oPZM0oog/
+ rtBNy5cngvncO/QqVXqME93aHStva7nAfJngnxI5z2JWgaDQmWlRCP6ysSIotFyqcci0GTOjlw
+ gL2FYf4243l7F392bG/1fRnh7j7CkTiKvp1Pd5kk5FWxAHxMXckU7n0mXRQadvSkhGZ2Qgmb4P
+ DS0cQej8qIfa6E2cq1R3kTRxkQMxpdo56v8bmnRHWnO6oZScLQWl6AU0zAc7B6PJ2+1YGAVAQA
+ A
+X-Change-ID: 20251104-sofef00-rebuild-04cfc6e68e71
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Casey Connolly <casey.connolly@linaro.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ phone-devel@vger.kernel.org, David Heidelberg <david@ixit.cz>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2701; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=PMJI57pPFLnWADx4D5rtUwHi6yehpBQw9oto6JRqah0=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpCnsrxoAimsOkpxj4oSSZ6MFZZOoxCgpdgJRR4
+ M5DBQ9mDOGJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaQp7KwAKCRBgAj/E00kg
+ cqbkD/4zeuTVk0oTgR7ncgLAK4OcDWd+0qy4jEBq/xz83o4LxkkXSFp/PJX8WsA6z2//9PK87Zw
+ gLUT1inO7eXQGtvxU/Oq+1lu3GqMn1NmfKlmAOvJEanzR/jAF1mJYHshlp/oDOoYmuRvYxkkxQD
+ zOKjgMIC4OldFy0e+6PPvWTwIZbP5Q+CRxfoqmlB3GxeC07JbuMudoby3Cy5QETK8c3S4H7L0Bu
+ M86AxsfeurNoiR7MGr3Z4/U6rsiHmbwXd+L7cnuSBh4wWmEKE012WQTtlD3yKmZvlYzNu8ikeb0
+ U5S078YoGEf6JKZBtT4auYoq5wpV7OmUskB76AnEGq4RizDGieRyqd5jJyOSOnypGivlwlNoQep
+ TivgQpupnoBoDj+OD+u6V8tFAsdxFTJ05Rmb0Wnoq/zQUkiE62P8nDuMJanYGw6JpnjofQDhwEX
+ 0M21ZNRixERwbtQBReCq7jDXGxoJpGJbg+r2jWnt78MTJPUDqZiMFtO4UPfc7w7kw/njWUU9aN9
+ 8M7hXMiE/4Ul7cXm46ZQhI339P5Yn8T63TZu9+25J2V9S6Oi3qdVJuJiQIYbg1bluGAqgABHYNL
+ /pCVDEh2jTlIkpoZm7wwQqZxLCsu3L0l9MWjG0xFijqXfh6DxZQ82pq6LglmsgjtJkFfgVXxOmr
+ 6hmn0fDMGPBNGJA==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
+
+This DDIC is essential for panels used in OnePlus 6 and Pixel 3a XL
+(SDC variant). With proper support, all downstream patches in
+sdm845-mainline and sdm670-mainline can be dropped.
+
+The mainline driver was broken so far, and with my recent introduction
+of S6E3FC2X01 driver, I had to "break it even more" due to OnePlus 6
+common device-tree changes which defined all the regulators and
+corrected properties.
+
+At this moment the first version of the patchset will not include
+Pixel 3a XL (SDC) as no testers yet volunteered.
+
+The code, including the Pixel 3a XL enhancement can be found at
+  https://gitlab.com/dhxx/linux/-/tree/b4/sofef00-rebuild
+
+Due to some unknown issues with -next-20251103 - 04, the code is based
+on few previous patchsets and v6.18-rc4 (or later).
+
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+Casey Connolly (2):
+      drm/panel: sofef00: Add prepare_prev_first flag to drm_panel
+      drm/panel: sofef00: Initialise at 50% brightness
+
+David Heidelberg (10):
+      dt-bindings: panel: Add Samsung SOFEF00 DDIC with panel
+      arch: arm64: qcom: sdm845-enchilada: Specify panel name within the compatible
+      drm/panel: sofef00: Clean up panel description after s6e3fc2x01 removal
+      drm/panel: sofef00: Handle all regulators
+      drm/panel: sofef00: Split sending commands to the enable/disable functions
+      drm/panel: sofef00: Introduce page macro
+      drm/panel: sofef00: Name of compatible should correspond to the panel used
+      drm/panel: sofef00: Simplify get_modes
+      drm/panel: sofef00: Mark the LPM mode always-on
+      drm/panel: sofef00: Non-continuous mode and video burst are supported
+
+ .../bindings/display/panel/panel-simple-dsi.yaml   |  25 +----
+ .../bindings/display/panel/samsung,sofef00.yaml    |  83 ++++++++++++++++
+ .../boot/dts/qcom/sdm845-oneplus-enchilada.dts     |   4 +-
+ drivers/gpu/drm/panel/Kconfig                      |   7 +-
+ drivers/gpu/drm/panel/panel-samsung-sofef00.c      | 104 +++++++++++++--------
+ 5 files changed, 160 insertions(+), 63 deletions(-)
+---
+base-commit: 262858079afde6d367ce3db183c74d8a43a0e83f
+change-id: 20251104-sofef00-rebuild-04cfc6e68e71
+prerequisite-change-id: 20250927-slider-correct-d34490847d95:v1
+prerequisite-patch-id: 5584af5fec387ca2bf83150e39199d93b2af6f41
+prerequisite-change-id: 20250923-s6e3fc2x01-f9550b822fe5:v6
+prerequisite-patch-id: 042e90baee2aea539d39b398ff8a9c9a73a5a248
+prerequisite-patch-id: 0da92dde66527977eb82c542c2b5e0478e011f16
+prerequisite-patch-id: 8ba3d908464e146d4db16b3a562481928753c9b2
+prerequisite-patch-id: 0945cccdc88d640192cf56148e9b661657e11e45
+
+Best regards,
+-- 
+David Heidelberg <david@ixit.cz>
 
 
-
-On 10/14/25 21:12, adrianhoyin.ng@altera.com wrote:
-> From: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
-> 
-> Add SMMU-V3 Performance Monitoring Counter Group (PMCG) nodes for
-> Agilex5 to support SMMU performance event monitoring.
-> 
-> Signed-off-by: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
-> ---
->   .../arm64/boot/dts/intel/socfpga_agilex5.dtsi | 62 +++++++++++++++++++
->   1 file changed, 62 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-> index 19f55a02bd56..633eab69e1c9 100644
-> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-> @@ -151,6 +151,12 @@ usbphy0: usbphy {
->   		compatible = "usb-nop-xceiv";
->   	};
->   
-> +	pmu0: pmu {
-> +		compatible = "arm,armv8-pmuv3";
-> +		interrupt-parent = <&intc>;
-> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +
->   	soc: soc@0 {
->   		compatible = "simple-bus";
->   		ranges = <0 0 0 0xffffffff>;
-> @@ -840,5 +846,61 @@ queue7 {
->   				};
->   			};
->   		};
-> +
-> +		pmu0_tcu: pmu@16002000 {
-> +			compatible = "arm,smmu-v3-pmcg";
-> +			reg = <0x16002000 0x1000>,
-> +				<0x16022000 0x1000>;
-> +			interrupt-parent = <&intc>;
-> +			interrupts = <GIC_SPI 136 IRQ_TYPE_EDGE_RISING>;
-> +		};
-> +
-> +		pmu0_tbu0: pmu@16042000 {
-> +			compatible = "arm,smmu-v3-pmcg";
-> +			reg = <0x16042000 0x1000>,
-> +				<0x16052000 0x1000>;
-> +			interrupt-parent = <&intc>;
-> +			interrupts = <GIC_SPI 138 IRQ_TYPE_EDGE_RISING>;
-> +		};
-> +
-> +		pmu0_tbu1: pmu@16062000 {
-> +			compatible = "arm,smmu-v3-pmcg";
-> +			reg = <0x16062000 0x1000>,
-> +				<0x16072000 0x1000>;
-> +			interrupt-parent = <&intc>;
-> +			interrupts = <GIC_SPI 140 IRQ_TYPE_EDGE_RISING>;
-> +		};
-> +
-> +		pmu0_tbu2: pmu@16082000 {
-> +			compatible = "arm,smmu-v3-pmcg";
-> +			reg = <0x16082000 0x1000>,
-> +				<0x16092000 0x1000>;
-> +			interrupt-parent = <&intc>;
-> +			interrupts = <GIC_SPI 142 IRQ_TYPE_EDGE_RISING>;
-> +		};
-> +
-> +		pmu0_tbu3: pmu@160a2000 {
-> +			compatible = "arm,smmu-v3-pmcg";
-> +			reg = <0x160A2000 0x1000>,
-> +				<0x160B2000 0x1000>;
-> +			interrupt-parent = <&intc>;
-> +			interrupts = <GIC_SPI 144 IRQ_TYPE_EDGE_RISING>;
-> +		};
-> +
-> +		pmu0_tbu4: pmu@160c2000 {
-> +			compatible = "arm,smmu-v3-pmcg";
-> +			reg = <0x160C2000 0x1000>,
-> +				<0x160D2000 0x1000>;
-> +			interrupt-parent = <&intc>;
-> +			interrupts = <GIC_SPI 146 IRQ_TYPE_EDGE_RISING>;
-> +		};
-> +
-> +		pmu0_tbu5: pmu@160e2000 {
-> +			compatible = "arm,smmu-v3-pmcg";
-> +			reg = <0x160E2000 0x1000>,
-> +				<0x160F2000 0x1000>;
-> +			interrupt-parent = <&intc>;
-> +			interrupts = <GIC_SPI 150 IRQ_TYPE_EDGE_RISING>;
-> +		};
->   	};
->   };
-
-Applied!
-
-Thanks,
-Dinh
 
