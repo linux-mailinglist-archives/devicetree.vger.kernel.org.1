@@ -1,891 +1,1592 @@
-Return-Path: <devicetree+bounces-234911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13B29C31EC3
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 16:50:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CECDC31F20
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 16:55:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CBA018C41D3
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 15:49:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0ADDF189456E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 15:54:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F2A832340D;
-	Tue,  4 Nov 2025 15:47:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5409127815E;
+	Tue,  4 Nov 2025 15:54:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="lwqT8yi+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R24L2FBR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013014.outbound.protection.outlook.com [40.107.159.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3FE727FD59;
-	Tue,  4 Nov 2025 15:47:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762271267; cv=fail; b=VawBV2r18DMRaAyJudBxmAKIH78eWUrf/2+DBUh9mys6XR6GiSZ2qkcT0AkzWe7b+9Ij4cDrbV6fuPTSL41VNQm/p6JTe9wqfWhGGY8IlLkZgNYAbbRqH0nxOQZ8Ywe/1QA3z9E7Ot1Tf8B30+qGxR+AqdKyGaAgQlG2SCPnhTY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762271267; c=relaxed/simple;
-	bh=ffXg0kwStfghFn7Jx0IwhaYuYuN9+ZAr+/1/R/oYPUM=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=N04PJH+T03b/rIQjQvOyAcCPPW+xnD3RczbXh6jW63LQXC5uucgFswPR1WastAppayAeMG4xiu/b67HWD25NPuMxuM55GgbO3rKOCxFmITm/bz/2s2dcb173xuiXizZhiFq+9Gva705dpnBNbbM69sJFxMF4Y9wQVyrS1RJEgsM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=lwqT8yi+; arc=fail smtp.client-ip=40.107.159.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rH5AYD3pah/7GA8rcO/13Fn1QDFMggtNUX4erB45S9jV41X79ZBBuj8/MBLZpBF578WO/gxv0oB//azOYeBzSVe3GCaWW3U3YWStNRkuOw3iolHh5b+CghHgceZm7hFlYXyGznEkrAr1BgTWCzKYgt5ITyl+8hVuPHghMWkTD8r77xtyk9Q5xGFNcyTx/4nAzqzrXaaysP4Nk0m/BFGC7b6CvzWGF2Jqf8zagZkzg1BgzS/4V3M3UYi2PdP64DZzJkpfUSi/bwlXiAyc5b52yoOlwyBtr/INmlhOWlqCOyzOd324urLGR2fWlfJbC3eAyxawgKtVGGSeeVvMPV8Bkg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bqaAhxElLqpLLrKB8jdV3IwOmcE/reDMeRVDShYuFos=;
- b=gXmbtd8d7Cpy3jQWhqTwWtHPnb/Ksc2gdH7MkosUBlothQ+OcpzRHodFUsvE5y0AOl61ceIaqSqzUIc1xhtCorJ8K0aGhGfsoBRiD8mfI0dN3Wx33nk0rweLandgmHt9tiqrGVBSpaHunX53WyL0FF3oBujTa89LlVaJ/RF+kjjMLt8NJ1dELuklFbb1+DRwZHDC6H9M+SFDj843+0px7CedRTIIPP/V0qTziWDaKIDUM635pHxeob7A4IfnUr20rEIT1dP6Sy4T4wvf/aZ5qEVlBN3yMsqqFYh+oMFzgpIfmvIhI/HDzotBQ4Gl/s6ppWxtfj7y2ouTpbxEPS4Qqg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bqaAhxElLqpLLrKB8jdV3IwOmcE/reDMeRVDShYuFos=;
- b=lwqT8yi+q0cg7aS6IDzaRqknQdOv1X8hFacasN/O4T+bJyCz7ScH5aoqX4k1QKld9qU6IeK0u7xloyTNs9hb80iPyUjTq4RU2QlIdIa4wsj22HCox9MOOEyJyZOqgSi6CYOw21+wpHpazycWNaaW9YV1w0VinsZnf3eyXMRQ3M16JxmzN00pTIiJAg/1WL9l78Nid0CIdnuo5ZbVpjsAbD7yEC6jhjtFd1+PX40b142/ZhkKEG41L/WYcV3VQ07k3v5DC2644krtvtntMpAO4uviXDeow9CjCT6osgm9SEfr6QEU8V48wahTWj/1AEg37miQWLirB9i+tW9NFjyDWg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
- by GV2PR04MB11834.eurprd04.prod.outlook.com (2603:10a6:150:2d5::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.7; Tue, 4 Nov
- 2025 15:47:41 +0000
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9298.006; Tue, 4 Nov 2025
- 15:47:41 +0000
-From: Frank Li <Frank.Li@nxp.com>
-Date: Tue, 04 Nov 2025 10:46:44 -0500
-Subject: [PATCH v10 6/6] iio: magnetometer: Add mmc5633 sensor
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251104-i3c_ddr-v10-6-e3e4cbc17034@nxp.com>
-References: <20251104-i3c_ddr-v10-0-e3e4cbc17034@nxp.com>
-In-Reply-To: <20251104-i3c_ddr-v10-0-e3e4cbc17034@nxp.com>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Miquel Raynal <miquel.raynal@bootlin.com>, 
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-iio@vger.kernel.org, 
- joshua.yeong@starfivetech.com, devicetree@vger.kernel.org, 
- linux@roeck-us.net, Frank Li <Frank.Li@nxp.com>, 
- Carlos Song <carlos.song@nxp.com>, 
- Adrian Fluturel <fluturel.adrian@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1762271233; l=19369;
- i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
- bh=ffXg0kwStfghFn7Jx0IwhaYuYuN9+ZAr+/1/R/oYPUM=;
- b=DGiij4cLGTfaZfFHnCGfpOHbe4zO5hNArJDOqHiDg9W3BkDAps7T7ORG0BCBp1O0fRWj2506W
- aovoPOiMi23C0uXDCCsg3G6xtsRJMBrBW/bSTEcm7n2IE9MUiNI8H6Y
-X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
- pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
-X-ClientProxiedBy: PH8PR15CA0017.namprd15.prod.outlook.com
- (2603:10b6:510:2d2::7) To PAXSPRMB0053.eurprd04.prod.outlook.com
- (2603:10a6:102:23f::21)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1620B274FFD;
+	Tue,  4 Nov 2025 15:54:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762271648; cv=none; b=JrYIFaaKatP27z9saTId47Y5fROdQdbncGjH8dd5+VZRa01ZafUMgIKTQBGrN92Ni80vBJERL0D9SBUpsDuTKV52ctNjpZdyijVQtHgGH0jegBb8lKyXQ4xKVsymjH0kOxV1ta792uqb6/eT5LSfTqlFau05VoK+VCjr9rRFJdY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762271648; c=relaxed/simple;
+	bh=fsrA+ZOVl9rRa0XzkusdnWgkV7UYeE6rLc7fPmNDJ4s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RpnSFFvB9XzKwozMVej28G9OY+edgZ40VsfTNQMw9cjePtGV6oVvHkAJzEh+yzqCJyNbuDXRVaxvxo07Czk2E+fpqcLu67+ezC6SQZFj3YW5hzKIeakuRt97M/xaKsRZn2sq5aWNvbwv7aJugzCnRn2lNMHa3fyTVN9oAmITfyE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R24L2FBR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4118C116B1;
+	Tue,  4 Nov 2025 15:54:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762271646;
+	bh=fsrA+ZOVl9rRa0XzkusdnWgkV7UYeE6rLc7fPmNDJ4s=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=R24L2FBRxuMBJhf/IRGUAqSYgwWEr4/YcV0YRxIFzBjwnl9axln0LlPzJXGiEyDaY
+	 e6j6d/cuNT+4zGdzaqgLTjtlJbkVLR4sA6PjxOLkP0NhQlOk8tYHFrur+PuQQucod0
+	 S7VIqJOETHN/YYiXW2PfOpRNUvTYFSQiAVE1lr4DKGs3W9RUj0/5/eRtWgdd0KlLy/
+	 jN0GnCHWhBcyirFc1LSXkm2sRR5yKLYExw+fpwEC1MZPmfUd8DrYg0Nle2amsxAc4n
+	 UnFUDgY9QxBJoJ/tu1UA8uw5DVJVVU5G8mFYstCp2yZ29GWT5cHyHkq3MzC4MZADd6
+	 O6/okobPRUHjQ==
+Message-ID: <aa8d9d2a-a778-49b9-ad66-05bf31065856@kernel.org>
+Date: Tue, 4 Nov 2025 15:53:57 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|GV2PR04MB11834:EE_
-X-MS-Office365-Filtering-Correlation-Id: dc21f2c2-9423-4d8c-5a10-08de1bb97d15
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|19092799006|376014|7416014|52116014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?dkdwVHdYYTF6aFpHa3drMm1CWFJKRmoxd29MY05nVFhYRXZZRHlxWDJTM0Jk?=
- =?utf-8?B?a09ka2JSUHh4K3k5a1F5R2FscHZBS3llL2ZIR2tVbFNxaEtKQ0RRRDBmaHVS?=
- =?utf-8?B?Uk1HYTh4c3p1cCtlUHg0dENCZUpkMndqTDNlWU16azF0L3lxQzZEZUZscGRo?=
- =?utf-8?B?RTQydWlDQ0lGOW9pTm9RN29hRzhjL1NFOVJZSFpKdDkvYnl4b0dDcHdtUWxQ?=
- =?utf-8?B?WGNrZ0lwK0d2eThmb2hmR3FuZGRYVWcvTEN5c0Z5RzlYWUFBSmlLblpSbGl6?=
- =?utf-8?B?SVRwTGV1ZWZHYmFJbkhrYlpkTjhCQTIxdVhJUUJLdnI0Ni9UTzFaVks5WjZO?=
- =?utf-8?B?TEpBYlBDS1BKbjAwcTlhZndLcU1yL3MwNWxhS1B2M1dNZ2lQQjBiK2VzZXd3?=
- =?utf-8?B?MzVIc1l6T0hPUTJlN01iK0txelhsQnRxVXJiSGpPZXFQSDlZdFR1SUp4dVlw?=
- =?utf-8?B?NDlxVTBwMzdFbi83Lzl1Y2gyd1RRVmxRbE5uOEo3WklqSVpOQi95RVhRSUE2?=
- =?utf-8?B?UFB6MVpKVGhzSGxmMEZZTkpXNDQ0b2FRUDBHcXJKNnhEcXVGbC8wc09yUVBp?=
- =?utf-8?B?ZFQ5VHB6aWtnb3o1NG0vazV5VUwxcmJpU3VueUtBdm14emZzZjZmVHRjVmRI?=
- =?utf-8?B?azFLeVlDcjVpOHRzQmRiclBTd2NaVGlNbUQ0ckluRjlWcXBHSWdkd0xPeFV0?=
- =?utf-8?B?dW82MFYxVlZLc3Z1NGZkTW5xcEVlSk0rbzVJM01IZ1VQTGt6bkVkRDJ1NWJK?=
- =?utf-8?B?eTBpZHdnTkxkVjR6QytzVzd1ZmYwT25qa0VncU51RjRhWnM5d2VmSlRSaHVo?=
- =?utf-8?B?Rm5WVTNFcG1Jem9IQzBSSlpUenVCaXlEQm5oM2t1aHB5cHg4Z3J4ZzhkM1Ay?=
- =?utf-8?B?Z2c0UmtIcGhVNGlnaXAzM29QYitNUndwa1VVUDNTZzloRm8wcmZ2TW5JU05T?=
- =?utf-8?B?c2ZHQjg2NGFOTFVGN3RIOXBCcVBVYkk5cFJMRkRHMCtnemRKbjZ6YUhaRys3?=
- =?utf-8?B?d1BjeStIVFk5N0R2OTRCMTc2TmlPcHNmcWhJUzZKbHZkeitaYXR6dHpEMWxj?=
- =?utf-8?B?UGhtZWRUS0lnUmxrTmVxUTl5enlPeVc3WEFTNDlBTXV1YXZydW96R1F0RG85?=
- =?utf-8?B?VVpTeTBHNHFFeUV2RUwvSUZmYlllWWdEL2djcURXSjdwdyt5MWk5Mk42V0pp?=
- =?utf-8?B?MFRUOWNacjVIVU9BVDBGakdUUk1yeFI3ZjZZK0ViTjBtc1BJc0RnUXQrdmNO?=
- =?utf-8?B?V2ZjdFVPdm9sUHNPbDE3MmdwOCtmNGVNVzB2L21iUUZvMlM1a05oZXBYSFNI?=
- =?utf-8?B?SG1FNkI3bFZOeW1JMlRSTTVJcG1oVHQ3MlZtdE9CSWlEVmlQT3ExRXlEaHdY?=
- =?utf-8?B?U1VXY2ErYjUyUlFsWHBtdHd5eC9uRVpWa3lQczN5aVZWOVgxOVlka2EyZUF3?=
- =?utf-8?B?N21EN1dmN3dCTUdNVVhwdUlWekQwMVUrMnU0bHN1ZitMcEhLdFhoeVg2dW1o?=
- =?utf-8?B?RTBYOWpRblNCem9WQy8xZU5RRi84eEZRU2xsVDJvOVR0KzkycjVJM1BtbXor?=
- =?utf-8?B?RVV1bDQvaTJTaG41a0hBOFJCb0FJOWVmTDVFdWxxaTBmQjJhOU94YTYxZWR3?=
- =?utf-8?B?OHJuYVNlSWxxaVNURHhIa3d5eUxEdURseTJwcE50SHVML1VGaTBkWkQvV2xP?=
- =?utf-8?B?dzNQTGtkN3FHeXNJUDdLaDJjUjR6ZkllYVFUTVJIMWVLT1JQdVp2TjczTFpz?=
- =?utf-8?B?NG1vVCt3TWVmSTBQS0hxNSt2OUpaYjJ4VnpjMDNST1phMFBRQWRKUE9uekxr?=
- =?utf-8?B?bHgzM0J4cDI5NlZKOFZvT2kxcHRKOVNOeUF2T0lvbU84QUV0M1dPaUdiRGRG?=
- =?utf-8?B?V0gzQVpIa1NWWnp5TFRGNFhCR3BkS3ltOFBhY2tSazl1dFVML0ZHbWpsK0ZJ?=
- =?utf-8?B?aGx3dENuTTFPYXRRQ2wxWjBmYkQ2RXN2dGZNeHNXK0srMVhYaWlYR0FMVUhJ?=
- =?utf-8?B?ZC9MTy82VTNWWEpsMHVWWWhLMGd6SjNmbjBKemFRWDNtc3BjM2x2UzA5bExL?=
- =?utf-8?Q?NyaQLn?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(376014)(7416014)(52116014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?OGNCcVZISmdIOCtkaDRBcWFETS9JRmxzMEVWbGo5R3B6QWprazRqMEtyNC9s?=
- =?utf-8?B?RDhWTjhUcm1BOStKTi80YTdkdmNrRHlvbGdQK2F3a0RhNVNsalhhWVBtekl0?=
- =?utf-8?B?ZTVwN1dCV1QvekV4SUJ4cThRZWF1amlXc3Z2Nk5YMERGT1RCVGdKR2hzbWlQ?=
- =?utf-8?B?RXUvTE5XZXVtQndUMzBxc3d3Q1JhUEdQeGVhN2pYM3RYM3lIMlprOXNEdysz?=
- =?utf-8?B?cmRTbmdqQkZzcjc1TmJ3T3U5QkxlR1pjMTU3SVpOMTBNN1kvWXlsanI1M0JZ?=
- =?utf-8?B?U1pndHc4N2RRZHAzNFJLR3p1d3JQcWZIZ1AzUHpXUEE1WkhWclFHRXFFaWVt?=
- =?utf-8?B?MG1mOVB1RW82SmEwYWd4S2JjUndoRkw3cThmYkphTlVxa1VLTlJFcm1jSGpW?=
- =?utf-8?B?ZGJJalNRTzIvZFNUQ1BHRUIrc0RDSHI5ZVpCWG90dmdMZkVhcVBYbHNMTzlx?=
- =?utf-8?B?WERYRUErVmtYa3ZOZXRxcjJJTjhyY250MjJiUjVzWXpwS3NrY2ZyS3N6T3lX?=
- =?utf-8?B?M3NhMG03THlSSEFBNXE0OWNkU2UrUkthb2FpOFVIOVd1WTVQTStHT0ZyVGY1?=
- =?utf-8?B?WURYaVVvOWozZDN6VVVLbVVqcTd0d3lqTG94QUJUNDdXMkoxZGgxU3JBWUoz?=
- =?utf-8?B?OFBiTkRNOFZHdHpJQ0dYeU5tcytJbDVScWtXWXRmVlQ3dEQwQ2tKUkY5RUFa?=
- =?utf-8?B?UWd3RVVMNitFdUp3dGMvREhnN3E1Y0V5b1ZORXhTR25GSUlCTUttU0JFd1pW?=
- =?utf-8?B?T2ZKMytwbFdtMEJOZzdad1RmQkJrYmYzQW5IZU5NTUJjSllidE9PbWlEc1BZ?=
- =?utf-8?B?ZHp1VXFyQUZyUDd6QjhKdDJCK01FaEk3RnZTK3JPNDJrc3h0dWJWOGlVVjJ5?=
- =?utf-8?B?T1ROSk5BMUoybFJXUThkV0dxS2VlWWw2WGtCbXZVSHhGWmQyZ2FjTU1Qd3lJ?=
- =?utf-8?B?WVZKNnIwdTgvSDkvWmo2TXo2YmZUUERDMzlVeTdBa2diU2lMdC84cm9yZjBX?=
- =?utf-8?B?UGN6eXJUSTJDWUFIYW1STjJaaUp5WXN1S1hYTk80bjhYMEVyQ1lOSXk3aVZu?=
- =?utf-8?B?RFBzcUVDL2tWUzgwWTVneGVsRkNrNHlYZzB4bmZqK2Q2N0k0NWhvaFhGeEZV?=
- =?utf-8?B?T1RTMmZEMzZENTFIQk9nMWdvWG1QdmFFZ240b0ZlN0dEZHpZL0RoM1ZaNWF3?=
- =?utf-8?B?NFFVVzNETTNkcS9vYXc3L3h2bDRpSGVqbkFDUHUrUFRORVdUajJhWU0raW9W?=
- =?utf-8?B?R0JTNnpWNldzVUFWTkNQWE01M2l1dGNWL3RxZ2JoOHhxZEM4NnBYejNHcUFm?=
- =?utf-8?B?TkJSNFpJR0pBbVFER09HVlFtWmhEaWZrcFhIdGc4K1dWVnd1SkdRRHdaQmdk?=
- =?utf-8?B?d1lwRjFWZTIvV0QvbVIxTXJlTW9tMm41RVBJR05DdzhTY2hLSVlqakxTMlpr?=
- =?utf-8?B?ZURiWld0NFBlUWpHTm1Cc1N6cG1HeU05T1ZLVkVTc21EbFo3NkhRZVd5WEJw?=
- =?utf-8?B?QTVPYnpJbXcybkpJby9wNUZmYzQ3SDR5dUZxeUREOEhhN3M4ZHdNeWFBd1Z2?=
- =?utf-8?B?aGpqcG43azhkOXUwbGhsVW8xa01EeFErRDJPVXM5dTZ0Y2JiNCtaVWgwSWhq?=
- =?utf-8?B?bk9sK1FVc2tXYnBQZTZ3Z1NQcndzb3NPMmhFU1FyM1FEQkpjaEVXcnhSNitT?=
- =?utf-8?B?OC9idUozZHo0R0tCVG5BektoNU5peTNoMHdWSEYrRXNmcE5xMjFRK01IY25o?=
- =?utf-8?B?cVRydXorU3M4SjNiTkFrZmVmNHpjS251TjlXSXBXV1FwOFQ4K2FYWjl1aSs4?=
- =?utf-8?B?eVRoSGlGVjFTLzdhcTdyY0pvTGRSdTZJc2FiL0VSZjV5eFRNQXNZaG1HVFEx?=
- =?utf-8?B?Y09YSjloSXZyb0FEcFVLNUZxa2I0K2s5ZlIrMTlZVS83R2w3Rk5zZ0hZaTFE?=
- =?utf-8?B?ZFJMaTdJM1AyZDZyRTFxMmthRnA1cEpubmE2WVRlUTRPNVlrZmpWOG5jU09p?=
- =?utf-8?B?RFFZQlFCNUp6V1pJc0Yzczc1cTUwYlNsTGtxT2NmcDIwaFlUZGVma1JMdExj?=
- =?utf-8?B?WmREYnlBS1dhUmpveVl0bDRuVm1seHhNcEdWQ2RnQlhwY2g1eTIySFlnVXBv?=
- =?utf-8?Q?i474=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc21f2c2-9423-4d8c-5a10-08de1bb97d15
-X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2025 15:47:41.6951
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gmE7+mOx44vaoXc7OHyP5XGBWLM6+RZ9mwx1fjImlP9iPLY4UBxuXaEa4p9kPLMjqgru2sZiWxqb10lMy7Vt6g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR04MB11834
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] media: i2c: add Samsung S5KJN1 image sensor device
+ driver
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Hans Verkuil <hverkuil@kernel.org>, Hans de Goede <hansg@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20251023025356.2421327-1-vladimir.zapolskiy@linaro.org>
+ <zGlVBFnnqOaXjobqCKcCVXYYwfZwwxelX8G9ocxVagSkLPFzqtDmjtLwg0mzjc4dcn845hPm_6UPjBNb6Eza2Q==@protonmail.internalid>
+ <20251023025356.2421327-3-vladimir.zapolskiy@linaro.org>
+From: Bryan O'Donoghue <bod@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20251023025356.2421327-3-vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add mmc5633 sensor basic support.
-- Support read 20 bits X/Y/Z magnetic.
-- Support I3C HDR mode to send start measurememt command.
-- Support I3C HDR mode to read all sensors data by one command.
+On 23/10/2025 03:53, Vladimir Zapolskiy wrote:
+> Samsung S5KJN1 is a 50MP image sensor, it produces Bayer GRBG (2x2)
+> frames in RAW10 output format, the maximum supported output resolution
+> is 8160x6144 at 10 frames per second rate.
 
-Co-developed-by: Carlos Song <carlos.song@nxp.com>
-Signed-off-by: Carlos Song <carlos.song@nxp.com>
-Co-developed-by: Adrian Fluturel <fluturel.adrian@gmail.com>
-Signed-off-by: Adrian Fluturel <fluturel.adrian@gmail.com>
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
+"rate" is redundant here.
+> 
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> ---
+>   MAINTAINERS                |    8 +
+>   drivers/media/i2c/Kconfig  |   10 +
+>   drivers/media/i2c/Makefile |    1 +
+>   drivers/media/i2c/s5kjn1.c | 1407 ++++++++++++++++++++++++++++++++++++
+>   4 files changed, 1426 insertions(+)
+>   create mode 100644 drivers/media/i2c/s5kjn1.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 545a4776795e..b7c64427c303 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -22874,6 +22874,14 @@ L:	linux-media@vger.kernel.org
+>   S:	Supported
+>   F:	drivers/media/i2c/s5k5baf.c
+> 
+> +SAMSUNG S5KJN1 CAMERA DRIVER
+> +M:	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> +L:	linux-media@vger.kernel.org
+> +S:	Maintained
+> +T:	git git://linuxtv.org/media_tree.git
+> +F:	Documentation/devicetree/bindings/media/i2c/samsung,s5kjn1.yaml
+> +F:	drivers/media/i2c/s5kjn1.c
+> +
+>   SAMSUNG S5P Security SubSystem (SSS) DRIVER
+>   M:	Krzysztof Kozlowski <krzk@kernel.org>
+>   M:	Vladimir Zapolskiy <vz@mleia.com>
+> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+> index cdd7ba5da0d5..ec90f58ef698 100644
+> --- a/drivers/media/i2c/Kconfig
+> +++ b/drivers/media/i2c/Kconfig
+> @@ -745,6 +745,16 @@ config VIDEO_S5K6A3
+>   	  This is a V4L2 sensor driver for Samsung S5K6A3 raw
+>   	  camera sensor.
+> 
+> +config VIDEO_S5KJN1
+> +	tristate "Samsung S5KJN1 sensor support"
+> +	select V4L2_CCI_I2C
+> +	help
+> +	  This is a V4L2 sensor driver for Samsung S5KJN1 50MP raw
+> +	  camera sensor.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called s5kjn1.
+> +
+>   config VIDEO_VD55G1
+>   	tristate "ST VD55G1 sensor support"
+>   	select V4L2_CCI_I2C
+> diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
+> index 57cdd8dc96f6..b7f5c3f020e8 100644
+> --- a/drivers/media/i2c/Makefile
+> +++ b/drivers/media/i2c/Makefile
+> @@ -126,6 +126,7 @@ obj-$(CONFIG_VIDEO_RJ54N1) += rj54n1cb0c.o
+>   obj-$(CONFIG_VIDEO_S5C73M3) += s5c73m3/
+>   obj-$(CONFIG_VIDEO_S5K5BAF) += s5k5baf.o
+>   obj-$(CONFIG_VIDEO_S5K6A3) += s5k6a3.o
+> +obj-$(CONFIG_VIDEO_S5KJN1) += s5kjn1.o
+>   obj-$(CONFIG_VIDEO_SAA6588) += saa6588.o
+>   obj-$(CONFIG_VIDEO_SAA6752HS) += saa6752hs.o
+>   obj-$(CONFIG_VIDEO_SAA7110) += saa7110.o
+> diff --git a/drivers/media/i2c/s5kjn1.c b/drivers/media/i2c/s5kjn1.c
+> new file mode 100644
+> index 000000000000..9e2ac3d695ae
+> --- /dev/null
+> +++ b/drivers/media/i2c/s5kjn1.c
+> @@ -0,0 +1,1407 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +// Copyright (c) 2025 Linaro Ltd
+> +
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/units.h>
+> +#include <media/v4l2-cci.h>
+> +#include <media/v4l2-ctrls.h>
+> +#include <media/v4l2-device.h>
+> +#include <media/v4l2-fwnode.h>
+> +
+> +#define S5KJN1_LINK_FREQ_700MHZ		(700ULL * HZ_PER_MHZ)
+> +#define S5KJN1_MCLK_FREQ_24MHZ		(24 * HZ_PER_MHZ)
+> +#define S5KJN1_DATA_LANES		4
+> +
+> +/* Register map is similar to MIPI CCS compliant camera sensors */
+> +#define S5KJN1_REG_CHIP_ID		CCI_REG16(0x0000)
+> +#define S5KJN1_CHIP_ID			0x38e1
+> +
+> +#define S5KJN1_REG_CTRL_MODE		CCI_REG8(0x0100)
+> +#define S5KJN1_MODE_STREAMING		BIT(0)
+> +
+> +#define S5KJN1_REG_ORIENTATION		CCI_REG8(0x0101)
+> +#define S5KJN1_VFLIP			BIT(1)
+> +#define S5KJN1_HFLIP			BIT(0)
+> +
+> +#define S5KJN1_REG_EXPOSURE		CCI_REG16(0x0202)
+> +#define S5KJN1_EXPOSURE_MIN		8
+> +#define S5KJN1_EXPOSURE_STEP		1
+> +
+> +#define S5KJN1_REG_AGAIN		CCI_REG16(0x0204)
+> +#define S5KJN1_AGAIN_MIN		1
+> +#define S5KJN1_AGAIN_MAX		64
+> +#define S5KJN1_AGAIN_STEP		1
+> +#define S5KJN1_AGAIN_DEFAULT		6
+> +#define S5KJN1_AGAIN_SHIFT		5
+> +
+> +#define S5KJN1_REG_VTS			CCI_REG16(0x0340)
+> +#define S5KJN1_VTS_MAX			0xffff
+> +
+> +#define S5KJN1_REG_HTS			CCI_REG16(0x0342)
+> +#define S5KJN1_REG_X_ADDR_START		CCI_REG16(0x0344)
+> +#define S5KJN1_REG_Y_ADDR_START		CCI_REG16(0x0346)
+> +#define S5KJN1_REG_X_ADDR_END		CCI_REG16(0x0348)
+> +#define S5KJN1_REG_Y_ADDR_END		CCI_REG16(0x034a)
+> +#define S5KJN1_REG_X_OUTPUT_SIZE	CCI_REG16(0x034c)
+> +#define S5KJN1_REG_Y_OUTPUT_SIZE	CCI_REG16(0x034e)
+> +
+> +#define S5KJN1_REG_TEST_PATTERN		CCI_REG16(0x0600)
+> +
+> +#define to_s5kjn1(_sd)			container_of(_sd, struct s5kjn1, sd)
+> +
+> +static const s64 s5kjn1_link_freq_menu[] = {
+> +	S5KJN1_LINK_FREQ_700MHZ,
+> +};
+> +
+> +/* List of supported formats to cover horizontal and vertical flip controls */
+> +static const u32 s5kjn1_mbus_formats[] = {
+> +	MEDIA_BUS_FMT_SGRBG10_1X10,	MEDIA_BUS_FMT_SRGGB10_1X10,
+> +	MEDIA_BUS_FMT_SBGGR10_1X10,	MEDIA_BUS_FMT_SGBRG10_1X10,
+> +};
+> +
+> +struct s5kjn1_reg_list {
+> +	const struct cci_reg_sequence *regs;
+> +	unsigned int num_regs;
+> +};
+> +
+> +struct s5kjn1_mode {
+> +	u32 width;			/* Frame width in pixels */
+> +	u32 height;			/* Frame height in pixels */
+> +	u32 hts;			/* Horizontal timing size */
+> +	u32 vts;			/* Default vertical timing size */
+> +	u32 exposure;			/* Default exposure value */
+> +	u32 exposure_margin;		/* Exposure margin */
+> +
+> +	const struct s5kjn1_reg_list reg_list;	/* Sensor register setting */
+> +};
+> +
+> +static const char * const s5kjn1_test_pattern_menu[] = {
+> +	"Disabled",
+> +	"Solid color",
+> +	"Color bars",
+> +	"Fade to grey color bars",
+> +	"PN9",
+> +};
+> +
+> +static const char * const s5kjn1_supply_names[] = {
+> +	"afvdd",	/* Autofocus power */
+> +	"avdd",		/* Analog power */
+> +	"dovdd",	/* Digital I/O power */
+> +	"dvdd",		/* Digital core power */
+> +};
+> +
+> +struct s5kjn1 {
+> +	struct device *dev;
+> +	struct regmap *regmap;
+> +	struct clk *mclk;
+> +	struct gpio_desc *reset_gpio;
+> +	struct regulator_bulk_data supplies[ARRAY_SIZE(s5kjn1_supply_names)];
+> +
+> +	struct v4l2_subdev sd;
+> +	struct media_pad pad;
+> +
+> +	struct v4l2_ctrl_handler ctrl_handler;
+> +	struct v4l2_ctrl *link_freq;
+> +	struct v4l2_ctrl *pixel_rate;
+> +	struct v4l2_ctrl *hblank;
+> +	struct v4l2_ctrl *vblank;
+> +	struct v4l2_ctrl *exposure;
+> +	struct v4l2_ctrl *vflip;
+> +	struct v4l2_ctrl *hflip;
+> +
+> +	const struct s5kjn1_mode *mode;
+> +};
+> +
+> +static const struct cci_reg_sequence init_array_setting[] = {
+> +	{ CCI_REG16(0x6028), 0x2400 },
+> +	{ CCI_REG16(0x602a), 0x1354 },
+> +	{ CCI_REG16(0x6f12), 0x0100 },
+> +	{ CCI_REG16(0x6f12), 0x7017 },
+> +	{ CCI_REG16(0x602a), 0x13b2 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x1236 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x1a0a },
+> +	{ CCI_REG16(0x6f12), 0x4c0a },
+> +	{ CCI_REG16(0x602a), 0x2210 },
+> +	{ CCI_REG16(0x6f12), 0x3401 },
+> +	{ CCI_REG16(0x602a), 0x2176 },
+> +	{ CCI_REG16(0x6f12), 0x6400 },
+> +	{ CCI_REG16(0x602a), 0x222e },
+> +	{ CCI_REG16(0x6f12), 0x0001 },
+> +	{ CCI_REG16(0x602a), 0x06b6 },
+> +	{ CCI_REG16(0x6f12), 0x0a00 },
+> +	{ CCI_REG16(0x602a), 0x06bc },
+> +	{ CCI_REG16(0x6f12), 0x1001 },
+> +	{ CCI_REG16(0x602a), 0x2140 },
+> +	{ CCI_REG16(0x6f12), 0x0101 },
+> +	{ CCI_REG16(0x602a), 0x1a0e },
+> +	{ CCI_REG16(0x6f12), 0x9600 },
+> +	{ CCI_REG16(0x6028), 0x4000 },
+> +	{ CCI_REG16(0xf44e), 0x0011 },
+> +	{ CCI_REG16(0xf44c), 0x0b0b },
+> +	{ CCI_REG16(0xf44a), 0x0006 },
+> +	{ CCI_REG16(0x0118), 0x0002 },
+> +	{ CCI_REG16(0x011a), 0x0001 },
+> +};
+> +
+> +static const struct cci_reg_sequence s5kjn1_4080x3072_30fps_mode[] = {
+> +	{ CCI_REG16(0x6028), 0x2400 },
+> +	{ CCI_REG16(0x602a), 0x1a28 },
+> +	{ CCI_REG16(0x6f12), 0x4c00 },
+> +	{ CCI_REG16(0x602a), 0x065a },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x139e },
+> +	{ CCI_REG16(0x6f12), 0x0100 },
+> +	{ CCI_REG16(0x602a), 0x139c },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x13a0 },
+> +	{ CCI_REG16(0x6f12), 0x0a00 },
+> +	{ CCI_REG16(0x6f12), 0x0120 },
+> +	{ CCI_REG16(0x602a), 0x2072 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x1a64 },
+> +	{ CCI_REG16(0x6f12), 0x0301 },
+> +	{ CCI_REG16(0x6f12), 0xff00 },
+> +	{ CCI_REG16(0x602a), 0x19e6 },
+> +	{ CCI_REG16(0x6f12), 0x0200 },
+> +	{ CCI_REG16(0x602a), 0x1a30 },
+> +	{ CCI_REG16(0x6f12), 0x3401 },
+> +	{ CCI_REG16(0x602a), 0x19fc },
+> +	{ CCI_REG16(0x6f12), 0x0b00 },
+> +	{ CCI_REG16(0x602a), 0x19f4 },
+> +	{ CCI_REG16(0x6f12), 0x0606 },
+> +	{ CCI_REG16(0x602a), 0x19f8 },
+> +	{ CCI_REG16(0x6f12), 0x1010 },
+> +	{ CCI_REG16(0x602a), 0x1b26 },
+> +	{ CCI_REG16(0x6f12), 0x6f80 },
+> +	{ CCI_REG16(0x6f12), 0xa060 },
+> +	{ CCI_REG16(0x602a), 0x1a3c },
+> +	{ CCI_REG16(0x6f12), 0x6207 },
+> +	{ CCI_REG16(0x602a), 0x1a48 },
+> +	{ CCI_REG16(0x6f12), 0x6207 },
+> +	{ CCI_REG16(0x602a), 0x1444 },
+> +	{ CCI_REG16(0x6f12), 0x2000 },
+> +	{ CCI_REG16(0x6f12), 0x2000 },
+> +	{ CCI_REG16(0x602a), 0x144c },
+> +	{ CCI_REG16(0x6f12), 0x3f00 },
+> +	{ CCI_REG16(0x6f12), 0x3f00 },
+> +	{ CCI_REG16(0x602a), 0x7f6c },
+> +	{ CCI_REG16(0x6f12), 0x0100 },
+> +	{ CCI_REG16(0x6f12), 0x2f00 },
+> +	{ CCI_REG16(0x6f12), 0xfa00 },
+> +	{ CCI_REG16(0x6f12), 0x2400 },
+> +	{ CCI_REG16(0x6f12), 0xe500 },
+> +	{ CCI_REG16(0x602a), 0x0650 },
+> +	{ CCI_REG16(0x6f12), 0x0600 },
+> +	{ CCI_REG16(0x602a), 0x0654 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x1a46 },
+> +	{ CCI_REG16(0x6f12), 0x8a00 },
+> +	{ CCI_REG16(0x602a), 0x1a52 },
+> +	{ CCI_REG16(0x6f12), 0xbf00 },
+> +	{ CCI_REG16(0x602a), 0x0674 },
+> +	{ CCI_REG16(0x6f12), 0x0500 },
+> +	{ CCI_REG16(0x6f12), 0x0500 },
+> +	{ CCI_REG16(0x6f12), 0x0500 },
+> +	{ CCI_REG16(0x6f12), 0x0500 },
+> +	{ CCI_REG16(0x602a), 0x0668 },
+> +	{ CCI_REG16(0x6f12), 0x0800 },
+> +	{ CCI_REG16(0x6f12), 0x0800 },
+> +	{ CCI_REG16(0x6f12), 0x0800 },
+> +	{ CCI_REG16(0x6f12), 0x0800 },
+> +	{ CCI_REG16(0x602a), 0x0684 },
+> +	{ CCI_REG16(0x6f12), 0x4001 },
+> +	{ CCI_REG16(0x602a), 0x0688 },
+> +	{ CCI_REG16(0x6f12), 0x4001 },
+> +	{ CCI_REG16(0x602a), 0x147c },
+> +	{ CCI_REG16(0x6f12), 0x1000 },
+> +	{ CCI_REG16(0x602a), 0x1480 },
+> +	{ CCI_REG16(0x6f12), 0x1000 },
+> +	{ CCI_REG16(0x602a), 0x19f6 },
+> +	{ CCI_REG16(0x6f12), 0x0904 },
+> +	{ CCI_REG16(0x602a), 0x0812 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x1a02 },
+> +	{ CCI_REG16(0x6f12), 0x1800 },
+> +	{ CCI_REG16(0x602a), 0x2148 },
+> +	{ CCI_REG16(0x6f12), 0x0100 },
+> +	{ CCI_REG16(0x602a), 0x2042 },
+> +	{ CCI_REG16(0x6f12), 0x1a00 },
+> +	{ CCI_REG16(0x602a), 0x0874 },
+> +	{ CCI_REG16(0x6f12), 0x0100 },
+> +	{ CCI_REG16(0x602a), 0x09c0 },
+> +	{ CCI_REG16(0x6f12), 0x2008 },
+> +	{ CCI_REG16(0x602a), 0x09c4 },
+> +	{ CCI_REG16(0x6f12), 0x2000 },
+> +	{ CCI_REG16(0x602a), 0x19fe },
+> +	{ CCI_REG16(0x6f12), 0x0e1c },
+> +	{ CCI_REG16(0x602a), 0x4d92 },
+> +	{ CCI_REG16(0x6f12), 0x0100 },
+> +	{ CCI_REG16(0x602a), 0x84c8 },
+> +	{ CCI_REG16(0x6f12), 0x0100 },
+> +	{ CCI_REG16(0x602a), 0x4d94 },
+> +	{ CCI_REG16(0x6f12), 0x0005 },
+> +	{ CCI_REG16(0x6f12), 0x000a },
+> +	{ CCI_REG16(0x6f12), 0x0010 },
+> +	{ CCI_REG16(0x6f12), 0x0810 },
+> +	{ CCI_REG16(0x6f12), 0x000a },
+> +	{ CCI_REG16(0x6f12), 0x0040 },
+> +	{ CCI_REG16(0x6f12), 0x0810 },
+> +	{ CCI_REG16(0x6f12), 0x0810 },
+> +	{ CCI_REG16(0x6f12), 0x8002 },
+> +	{ CCI_REG16(0x6f12), 0xfd03 },
+> +	{ CCI_REG16(0x6f12), 0x0010 },
+> +	{ CCI_REG16(0x6f12), 0x1510 },
+> +	{ CCI_REG16(0x602a), 0x3570 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x3574 },
+> +	{ CCI_REG16(0x6f12), 0x1201 },
+> +	{ CCI_REG16(0x602a), 0x21e4 },
+> +	{ CCI_REG16(0x6f12), 0x0400 },
+> +	{ CCI_REG16(0x602a), 0x21ec },
+> +	{ CCI_REG16(0x6f12), 0x1f04 },
+> +	{ CCI_REG16(0x602a), 0x2080 },
+> +	{ CCI_REG16(0x6f12), 0x0101 },
+> +	{ CCI_REG16(0x6f12), 0xff00 },
+> +	{ CCI_REG16(0x6f12), 0x7f01 },
+> +	{ CCI_REG16(0x6f12), 0x0001 },
+> +	{ CCI_REG16(0x6f12), 0x8001 },
+> +	{ CCI_REG16(0x6f12), 0xd244 },
+> +	{ CCI_REG16(0x6f12), 0xd244 },
+> +	{ CCI_REG16(0x6f12), 0x14f4 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x20ba },
+> +	{ CCI_REG16(0x6f12), 0x141c },
+> +	{ CCI_REG16(0x6f12), 0x111c },
+> +	{ CCI_REG16(0x6f12), 0x54f4 },
+> +	{ CCI_REG16(0x602a), 0x120e },
+> +	{ CCI_REG16(0x6f12), 0x1000 },
+> +	{ CCI_REG16(0x602a), 0x212e },
+> +	{ CCI_REG16(0x6f12), 0x0200 },
+> +	{ CCI_REG16(0x602a), 0x13ae },
+> +	{ CCI_REG16(0x6f12), 0x0101 },
+> +	{ CCI_REG16(0x602a), 0x0718 },
+> +	{ CCI_REG16(0x6f12), 0x0001 },
+> +	{ CCI_REG16(0x602a), 0x0710 },
+> +	{ CCI_REG16(0x6f12), 0x0002 },
+> +	{ CCI_REG16(0x6f12), 0x0804 },
+> +	{ CCI_REG16(0x6f12), 0x0100 },
+> +	{ CCI_REG16(0x602a), 0x1b5c },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x0786 },
+> +	{ CCI_REG16(0x6f12), 0x7701 },
+> +	{ CCI_REG16(0x602a), 0x2022 },
+> +	{ CCI_REG16(0x6f12), 0x0500 },
+> +	{ CCI_REG16(0x6f12), 0x0500 },
+> +	{ CCI_REG16(0x602a), 0x1360 },
+> +	{ CCI_REG16(0x6f12), 0x0100 },
+> +	{ CCI_REG16(0x602a), 0x1376 },
+> +	{ CCI_REG16(0x6f12), 0x0100 },
+> +	{ CCI_REG16(0x6f12), 0x6038 },
+> +	{ CCI_REG16(0x6f12), 0x7038 },
+> +	{ CCI_REG16(0x6f12), 0x8038 },
+> +	{ CCI_REG16(0x602a), 0x1386 },
+> +	{ CCI_REG16(0x6f12), 0x0b00 },
+> +	{ CCI_REG16(0x602a), 0x06fa },
+> +	{ CCI_REG16(0x6f12), 0x1000 },
+> +	{ CCI_REG16(0x602a), 0x4a94 },
+> +	{ CCI_REG16(0x6f12), 0x0900 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0300 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0300 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0900 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x0a76 },
+> +	{ CCI_REG16(0x6f12), 0x1000 },
+> +	{ CCI_REG16(0x602a), 0x0aee },
+> +	{ CCI_REG16(0x6f12), 0x1000 },
+> +	{ CCI_REG16(0x602a), 0x0b66 },
+> +	{ CCI_REG16(0x6f12), 0x1000 },
+> +	{ CCI_REG16(0x602a), 0x0bde },
+> +	{ CCI_REG16(0x6f12), 0x1000 },
+> +	{ CCI_REG16(0x602a), 0x0be8 },
+> +	{ CCI_REG16(0x6f12), 0x3000 },
+> +	{ CCI_REG16(0x6f12), 0x3000 },
+> +	{ CCI_REG16(0x602a), 0x0c56 },
+> +	{ CCI_REG16(0x6f12), 0x1000 },
+> +	{ CCI_REG16(0x602a), 0x0c60 },
+> +	{ CCI_REG16(0x6f12), 0x3000 },
+> +	{ CCI_REG16(0x6f12), 0x3000 },
+> +	{ CCI_REG16(0x602a), 0x0cb6 },
+> +	{ CCI_REG16(0x6f12), 0x0100 },
+> +	{ CCI_REG16(0x602a), 0x0cf2 },
+> +	{ CCI_REG16(0x6f12), 0x0001 },
+> +	{ CCI_REG16(0x602a), 0x0cf0 },
+> +	{ CCI_REG16(0x6f12), 0x0101 },
+> +	{ CCI_REG16(0x602a), 0x11b8 },
+> +	{ CCI_REG16(0x6f12), 0x0100 },
+> +	{ CCI_REG16(0x602a), 0x11f6 },
+> +	{ CCI_REG16(0x6f12), 0x0020 },
+> +	{ CCI_REG16(0x602a), 0x4a74 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0xd8ff },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0xd8ff },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x218e },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x2268 },
+> +	{ CCI_REG16(0x6f12), 0xf279 },
+> +	{ CCI_REG16(0x602a), 0x5006 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x500e },
+> +	{ CCI_REG16(0x6f12), 0x0100 },
+> +	{ CCI_REG16(0x602a), 0x4e70 },
+> +	{ CCI_REG16(0x6f12), 0x2062 },
+> +	{ CCI_REG16(0x6f12), 0x5501 },
+> +	{ CCI_REG16(0x602a), 0x06dc },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6028), 0x4000 },
+> +	{ CCI_REG16(0xf46a), 0xae80 },
+> +	{ S5KJN1_REG_X_ADDR_START,  0x0000 },
+> +	{ S5KJN1_REG_Y_ADDR_START,  0x0000 },
+> +	{ S5KJN1_REG_X_ADDR_END,    0x1fff },
+> +	{ S5KJN1_REG_Y_ADDR_END,    0x181f },
+> +	{ S5KJN1_REG_X_OUTPUT_SIZE, 0x0ff0 },
+> +	{ S5KJN1_REG_Y_OUTPUT_SIZE, 0x0c00 },
+> +	{ CCI_REG16(0x0350), 0x0008 },
+> +	{ CCI_REG16(0x0352), 0x0008 },
+> +	{ CCI_REG16(0x0900), 0x0122 },
+> +	{ CCI_REG16(0x0380), 0x0002 },
+> +	{ CCI_REG16(0x0382), 0x0002 },
+> +	{ CCI_REG16(0x0384), 0x0002 },
+> +	{ CCI_REG16(0x0386), 0x0002 },
+> +	{ CCI_REG16(0x0110), 0x1002 },
+> +	{ CCI_REG16(0x0114), 0x0301 },
+> +	{ CCI_REG16(0x0116), 0x3000 },
+> +
+> +	/* Clock settings */
+> +	{ CCI_REG16(0x0136), 0x1800 },
+> +	{ CCI_REG16(0x013e), 0x0000 },
+> +	{ CCI_REG16(0x0300), 0x0006 },
+> +	{ CCI_REG16(0x0302), 0x0001 },
+> +	{ CCI_REG16(0x0304), 0x0004 },
+> +	{ CCI_REG16(0x0306), 0x008c },
+> +	{ CCI_REG16(0x0308), 0x0008 },
+> +	{ CCI_REG16(0x030a), 0x0001 },
+> +	{ CCI_REG16(0x030c), 0x0000 },
+> +	{ CCI_REG16(0x030e), 0x0004 },
+> +	{ CCI_REG16(0x0310), 0x0092 },
+> +	{ CCI_REG16(0x0312), 0x0000 },
+> +
+> +	{ CCI_REG16(0x080e), 0x0000 },
+> +	{ S5KJN1_REG_VTS,    0x10c0 },
+> +	{ S5KJN1_REG_HTS,    0x1100 },
+> +	{ CCI_REG16(0x0702), 0x0000 },
+> +	{ S5KJN1_REG_EXPOSURE, 0x0100 },
+> +	{ CCI_REG16(0x0200), 0x0100 },
+> +	{ CCI_REG16(0x0d00), 0x0101 },
+> +	{ CCI_REG16(0x0d02), 0x0101 },
+> +	{ CCI_REG16(0x0d04), 0x0102 },
+> +	{ CCI_REG16(0x6226), 0x0000 },
+> +	{ CCI_REG16(0x0816), 0x1c00 },
+> +};
+> +
+> +static const struct cci_reg_sequence s5kjn1_8160x6144_10fps_mode[] = {
+> +	{ CCI_REG16(0x6028), 0x2400 },
+> +	{ CCI_REG16(0x602a), 0x1a28 },
+> +	{ CCI_REG16(0x6f12), 0x4c00 },
+> +	{ CCI_REG16(0x602a), 0x065a },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x139e },
+> +	{ CCI_REG16(0x6f12), 0x0400 },
+> +	{ CCI_REG16(0x602a), 0x139c },
+> +	{ CCI_REG16(0x6f12), 0x0100 },
+> +	{ CCI_REG16(0x602a), 0x13a0 },
+> +	{ CCI_REG16(0x6f12), 0x0500 },
+> +	{ CCI_REG16(0x6f12), 0x0120 },
+> +	{ CCI_REG16(0x602a), 0x2072 },
+> +	{ CCI_REG16(0x6f12), 0x0101 },
+> +	{ CCI_REG16(0x602a), 0x1a64 },
+> +	{ CCI_REG16(0x6f12), 0x0001 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x19e6 },
+> +	{ CCI_REG16(0x6f12), 0x0200 },
+> +	{ CCI_REG16(0x602a), 0x1a30 },
+> +	{ CCI_REG16(0x6f12), 0x3403 },
+> +	{ CCI_REG16(0x602a), 0x19fc },
+> +	{ CCI_REG16(0x6f12), 0x0700 },
+> +	{ CCI_REG16(0x602a), 0x19f4 },
+> +	{ CCI_REG16(0x6f12), 0x0707 },
+> +	{ CCI_REG16(0x602a), 0x19f8 },
+> +	{ CCI_REG16(0x6f12), 0x0b0b },
+> +	{ CCI_REG16(0x602a), 0x1b26 },
+> +	{ CCI_REG16(0x6f12), 0x6f80 },
+> +	{ CCI_REG16(0x6f12), 0xa060 },
+> +	{ CCI_REG16(0x602a), 0x1a3c },
+> +	{ CCI_REG16(0x6f12), 0x8207 },
+> +	{ CCI_REG16(0x602a), 0x1a48 },
+> +	{ CCI_REG16(0x6f12), 0x8207 },
+> +	{ CCI_REG16(0x602a), 0x1444 },
+> +	{ CCI_REG16(0x6f12), 0x2000 },
+> +	{ CCI_REG16(0x6f12), 0x2000 },
+> +	{ CCI_REG16(0x602a), 0x144c },
+> +	{ CCI_REG16(0x6f12), 0x3f00 },
+> +	{ CCI_REG16(0x6f12), 0x3f00 },
+> +	{ CCI_REG16(0x602a), 0x7f6c },
+> +	{ CCI_REG16(0x6f12), 0x0100 },
+> +	{ CCI_REG16(0x6f12), 0x2f00 },
+> +	{ CCI_REG16(0x6f12), 0xfa00 },
+> +	{ CCI_REG16(0x6f12), 0x2400 },
+> +	{ CCI_REG16(0x6f12), 0xe500 },
+> +	{ CCI_REG16(0x602a), 0x0650 },
+> +	{ CCI_REG16(0x6f12), 0x0600 },
+> +	{ CCI_REG16(0x602a), 0x0654 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x1a46 },
+> +	{ CCI_REG16(0x6f12), 0x8500 },
+> +	{ CCI_REG16(0x602a), 0x1a52 },
+> +	{ CCI_REG16(0x6f12), 0x9800 },
+> +	{ CCI_REG16(0x602a), 0x0674 },
+> +	{ CCI_REG16(0x6f12), 0x0500 },
+> +	{ CCI_REG16(0x6f12), 0x0500 },
+> +	{ CCI_REG16(0x6f12), 0x0500 },
+> +	{ CCI_REG16(0x6f12), 0x0500 },
+> +	{ CCI_REG16(0x602a), 0x0668 },
+> +	{ CCI_REG16(0x6f12), 0x0800 },
+> +	{ CCI_REG16(0x6f12), 0x0800 },
+> +	{ CCI_REG16(0x6f12), 0x0800 },
+> +	{ CCI_REG16(0x6f12), 0x0800 },
+> +	{ CCI_REG16(0x602a), 0x0684 },
+> +	{ CCI_REG16(0x6f12), 0x4001 },
+> +	{ CCI_REG16(0x602a), 0x0688 },
+> +	{ CCI_REG16(0x6f12), 0x4001 },
+> +	{ CCI_REG16(0x602a), 0x147c },
+> +	{ CCI_REG16(0x6f12), 0x0400 },
+> +	{ CCI_REG16(0x602a), 0x1480 },
+> +	{ CCI_REG16(0x6f12), 0x0400 },
+> +	{ CCI_REG16(0x602a), 0x19f6 },
+> +	{ CCI_REG16(0x6f12), 0x0404 },
+> +	{ CCI_REG16(0x602a), 0x0812 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x1a02 },
+> +	{ CCI_REG16(0x6f12), 0x1800 },
+> +	{ CCI_REG16(0x602a), 0x2148 },
+> +	{ CCI_REG16(0x6f12), 0x0100 },
+> +	{ CCI_REG16(0x602a), 0x2042 },
+> +	{ CCI_REG16(0x6f12), 0x1a00 },
+> +	{ CCI_REG16(0x602a), 0x0874 },
+> +	{ CCI_REG16(0x6f12), 0x0106 },
+> +	{ CCI_REG16(0x602a), 0x09c0 },
+> +	{ CCI_REG16(0x6f12), 0x4000 },
+> +	{ CCI_REG16(0x602a), 0x09c4 },
+> +	{ CCI_REG16(0x6f12), 0x4000 },
+> +	{ CCI_REG16(0x602a), 0x19fe },
+> +	{ CCI_REG16(0x6f12), 0x0c1c },
+> +	{ CCI_REG16(0x602a), 0x4d92 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x84c8 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x4d94 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x3570 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x3574 },
+> +	{ CCI_REG16(0x6f12), 0x7306 },
+> +	{ CCI_REG16(0x602a), 0x21e4 },
+> +	{ CCI_REG16(0x6f12), 0x0400 },
+> +	{ CCI_REG16(0x602a), 0x21ec },
+> +	{ CCI_REG16(0x6f12), 0x6902 },
+> +	{ CCI_REG16(0x602a), 0x2080 },
+> +	{ CCI_REG16(0x6f12), 0x0100 },
+> +	{ CCI_REG16(0x6f12), 0xff00 },
+> +	{ CCI_REG16(0x6f12), 0x0002 },
+> +	{ CCI_REG16(0x6f12), 0x0001 },
+> +	{ CCI_REG16(0x6f12), 0x0002 },
+> +	{ CCI_REG16(0x6f12), 0xd244 },
+> +	{ CCI_REG16(0x6f12), 0xd244 },
+> +	{ CCI_REG16(0x6f12), 0x14f4 },
+> +	{ CCI_REG16(0x6f12), 0x101c },
+> +	{ CCI_REG16(0x6f12), 0x0d1c },
+> +	{ CCI_REG16(0x6f12), 0x54f4 },
+> +	{ CCI_REG16(0x602a), 0x20ba },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x120e },
+> +	{ CCI_REG16(0x6f12), 0x1000 },
+> +	{ CCI_REG16(0x602a), 0x212e },
+> +	{ CCI_REG16(0x6f12), 0x0200 },
+> +	{ CCI_REG16(0x602a), 0x13ae },
+> +	{ CCI_REG16(0x6f12), 0x0100 },
+> +	{ CCI_REG16(0x602a), 0x0718 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x0710 },
+> +	{ CCI_REG16(0x6f12), 0x0010 },
+> +	{ CCI_REG16(0x6f12), 0x0201 },
+> +	{ CCI_REG16(0x6f12), 0x0800 },
+> +	{ CCI_REG16(0x602a), 0x1b5c },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x0786 },
+> +	{ CCI_REG16(0x6f12), 0x1401 },
+> +	{ CCI_REG16(0x602a), 0x2022 },
+> +	{ CCI_REG16(0x6f12), 0x0500 },
+> +	{ CCI_REG16(0x6f12), 0x0500 },
+> +	{ CCI_REG16(0x602a), 0x1360 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x1376 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x6038 },
+> +	{ CCI_REG16(0x6f12), 0x7038 },
+> +	{ CCI_REG16(0x6f12), 0x8038 },
+> +	{ CCI_REG16(0x602a), 0x1386 },
+> +	{ CCI_REG16(0x6f12), 0x0b00 },
+> +	{ CCI_REG16(0x602a), 0x06fa },
+> +	{ CCI_REG16(0x6f12), 0x1000 },
+> +	{ CCI_REG16(0x602a), 0x4a94 },
+> +	{ CCI_REG16(0x6f12), 0x0400 },
+> +	{ CCI_REG16(0x6f12), 0x0400 },
+> +	{ CCI_REG16(0x6f12), 0x0400 },
+> +	{ CCI_REG16(0x6f12), 0x0400 },
+> +	{ CCI_REG16(0x6f12), 0x0800 },
+> +	{ CCI_REG16(0x6f12), 0x0800 },
+> +	{ CCI_REG16(0x6f12), 0x0800 },
+> +	{ CCI_REG16(0x6f12), 0x0800 },
+> +	{ CCI_REG16(0x6f12), 0x0400 },
+> +	{ CCI_REG16(0x6f12), 0x0400 },
+> +	{ CCI_REG16(0x6f12), 0x0400 },
+> +	{ CCI_REG16(0x6f12), 0x0400 },
+> +	{ CCI_REG16(0x6f12), 0x0800 },
+> +	{ CCI_REG16(0x6f12), 0x0800 },
+> +	{ CCI_REG16(0x6f12), 0x0800 },
+> +	{ CCI_REG16(0x6f12), 0x0800 },
+> +	{ CCI_REG16(0x602a), 0x0a76 },
+> +	{ CCI_REG16(0x6f12), 0x1000 },
+> +	{ CCI_REG16(0x602a), 0x0aee },
+> +	{ CCI_REG16(0x6f12), 0x1000 },
+> +	{ CCI_REG16(0x602a), 0x0b66 },
+> +	{ CCI_REG16(0x6f12), 0x1000 },
+> +	{ CCI_REG16(0x602a), 0x0bde },
+> +	{ CCI_REG16(0x6f12), 0x1000 },
+> +	{ CCI_REG16(0x602a), 0x0be8 },
+> +	{ CCI_REG16(0x6f12), 0x5000 },
+> +	{ CCI_REG16(0x6f12), 0x5000 },
+> +	{ CCI_REG16(0x602a), 0x0c56 },
+> +	{ CCI_REG16(0x6f12), 0x1000 },
+> +	{ CCI_REG16(0x602a), 0x0c60 },
+> +	{ CCI_REG16(0x6f12), 0x5000 },
+> +	{ CCI_REG16(0x6f12), 0x5000 },
+> +	{ CCI_REG16(0x602a), 0x0cb6 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x0cf2 },
+> +	{ CCI_REG16(0x6f12), 0x0001 },
+> +	{ CCI_REG16(0x602a), 0x0cf0 },
+> +	{ CCI_REG16(0x6f12), 0x0101 },
+> +	{ CCI_REG16(0x602a), 0x11b8 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x11f6 },
+> +	{ CCI_REG16(0x6f12), 0x0010 },
+> +	{ CCI_REG16(0x602a), 0x4a74 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x218e },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x2268 },
+> +	{ CCI_REG16(0x6f12), 0xf279 },
+> +	{ CCI_REG16(0x602a), 0x5006 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x602a), 0x500e },
+> +	{ CCI_REG16(0x6f12), 0x0100 },
+> +	{ CCI_REG16(0x602a), 0x4e70 },
+> +	{ CCI_REG16(0x6f12), 0x2062 },
+> +	{ CCI_REG16(0x6f12), 0x5501 },
+> +	{ CCI_REG16(0x602a), 0x06dc },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6f12), 0x0000 },
+> +	{ CCI_REG16(0x6028), 0x4000 },
+> +	{ CCI_REG16(0xf46a), 0xae80 },
+> +	{ S5KJN1_REG_X_ADDR_START,  0x0000 },
+> +	{ S5KJN1_REG_Y_ADDR_START,  0x0000 },
+> +	{ S5KJN1_REG_X_ADDR_END,    0x1fff },
+> +	{ S5KJN1_REG_Y_ADDR_END,    0x181f },
+> +	{ S5KJN1_REG_X_OUTPUT_SIZE, 0x1fe0 },
+> +	{ S5KJN1_REG_Y_OUTPUT_SIZE, 0x1800 },
+> +	{ CCI_REG16(0x0350), 0x0010 },
+> +	{ CCI_REG16(0x0352), 0x0010 },
+> +	{ CCI_REG16(0x0900), 0x0111 },
+> +	{ CCI_REG16(0x0380), 0x0001 },
+> +	{ CCI_REG16(0x0382), 0x0001 },
+> +	{ CCI_REG16(0x0384), 0x0001 },
+> +	{ CCI_REG16(0x0386), 0x0001 },
+> +	{ CCI_REG16(0x0110), 0x1002 },
+> +	{ CCI_REG16(0x0114), 0x0300 },
+> +	{ CCI_REG16(0x0116), 0x3000 },
+> +
+> +	/* Clock settings */
+> +	{ CCI_REG16(0x0136), 0x1800 },
+> +	{ CCI_REG16(0x013e), 0x0000 },
+> +	{ CCI_REG16(0x0300), 0x0006 },
+> +	{ CCI_REG16(0x0302), 0x0001 },
+> +	{ CCI_REG16(0x0304), 0x0004 },
+> +	{ CCI_REG16(0x0306), 0x008c },
+> +	{ CCI_REG16(0x0308), 0x0008 },
+> +	{ CCI_REG16(0x030a), 0x0001 },
+> +	{ CCI_REG16(0x030c), 0x0000 },
+> +	{ CCI_REG16(0x030e), 0x0004 },
+> +	{ CCI_REG16(0x0310), 0x0074 },
+> +	{ CCI_REG16(0x0312), 0x0000 },
+> +
+> +	{ CCI_REG16(0x080e), 0x0000 },
+> +	{ S5KJN1_REG_VTS,    0x1900 },
+> +	{ S5KJN1_REG_HTS,    0x21f0 },
+> +	{ CCI_REG16(0x0702), 0x0000 },
+> +	{ S5KJN1_REG_EXPOSURE, 0x0100 },
+> +	{ CCI_REG16(0x0200), 0x0100 },
+> +	{ CCI_REG16(0x0d00), 0x0100 },
+> +	{ CCI_REG16(0x0d02), 0x0001 },
+> +	{ CCI_REG16(0x0d04), 0x0002 },
+> +	{ CCI_REG16(0x6226), 0x0000 },
+> +};
+> +
+> +static const struct s5kjn1_mode s5kjn1_supported_modes[] = {
+> +	{
+> +		.width = 4080,
+> +		.height = 3072,
+> +		.hts = 4352,
+> +		.vts = 4288,
+> +		.exposure = 3840,
+> +		.exposure_margin = 22,
+> +		.reg_list = {
+> +			.regs = s5kjn1_4080x3072_30fps_mode,
+> +			.num_regs = ARRAY_SIZE(s5kjn1_4080x3072_30fps_mode),
+> +		},
+> +	},
+> +	{
+> +		.width = 8160,
+> +		.height = 6144,
+> +		.hts = 8688,
+> +		.vts = 6400,
+> +		.exposure = 6144,
+> +		.exposure_margin = 44,
+> +		.reg_list = {
+> +			.regs = s5kjn1_8160x6144_10fps_mode,
+> +			.num_regs = ARRAY_SIZE(s5kjn1_8160x6144_10fps_mode),
+> +		},
+> +	},
+> +};
+> +
+> +static int s5kjn1_set_ctrl(struct v4l2_ctrl *ctrl)
+> +{
+> +	struct s5kjn1 *s5kjn1 = container_of(ctrl->handler, struct s5kjn1,
+> +					     ctrl_handler);
+> +	const struct s5kjn1_mode *mode = s5kjn1->mode;
+> +	s64 exposure_max;
+> +	int ret;
+> +
+> +	/* Propagate change of current control to all related controls */
+> +	switch (ctrl->id) {
+> +	case V4L2_CID_VBLANK:
+> +		/* Update max exposure while meeting expected vblanking */
+> +		exposure_max = mode->height + ctrl->val - mode->exposure_margin;
+> +		__v4l2_ctrl_modify_range(s5kjn1->exposure,
+> +					 s5kjn1->exposure->minimum,
+> +					 exposure_max,
+> +					 s5kjn1->exposure->step,
+> +					 s5kjn1->exposure->default_value);
+> +		break;
+> +	}
+> +
+> +	/* V4L2 controls are applied, when sensor is powered up for streaming */
+> +	if (!pm_runtime_get_if_active(s5kjn1->dev))
+> +		return 0;
+> +
+> +	switch (ctrl->id) {
+> +	case V4L2_CID_ANALOGUE_GAIN:
+> +		ret = cci_write(s5kjn1->regmap, S5KJN1_REG_AGAIN,
+> +				ctrl->val << S5KJN1_AGAIN_SHIFT, NULL);
+> +		break;
+> +	case V4L2_CID_EXPOSURE:
+> +		ret = cci_write(s5kjn1->regmap, S5KJN1_REG_EXPOSURE,
+> +				ctrl->val, NULL);
+> +		break;
+> +	case V4L2_CID_VBLANK:
+> +		ret = cci_write(s5kjn1->regmap, S5KJN1_REG_VTS,
+> +				ctrl->val + mode->height, NULL);
+> +		break;
+> +	case V4L2_CID_VFLIP:
+> +	case V4L2_CID_HFLIP:
+> +		ret = cci_write(s5kjn1->regmap, S5KJN1_REG_ORIENTATION,
+> +				(s5kjn1->vflip->val ? S5KJN1_VFLIP : 0) |
+> +				(s5kjn1->hflip->val ? S5KJN1_HFLIP : 0), NULL);
+> +		break;
+> +	case V4L2_CID_TEST_PATTERN:
+> +		ret = cci_write(s5kjn1->regmap, S5KJN1_REG_TEST_PATTERN,
+> +				ctrl->val, NULL);
+> +		break;
+> +	default:
+> +		ret = -EINVAL;
+> +		break;
+> +	}
+> +
+> +	pm_runtime_put(s5kjn1->dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct v4l2_ctrl_ops s5kjn1_ctrl_ops = {
+> +	.s_ctrl = s5kjn1_set_ctrl,
+> +};
+> +
+> +static inline u64 s5kjn1_freq_to_pixel_rate(const u64 freq)
+> +{
+> +	return div_u64(freq * 2 * S5KJN1_DATA_LANES, 10);
+> +}
+> +
+> +static int s5kjn1_init_controls(struct s5kjn1 *s5kjn1)
+> +{
+> +	struct v4l2_ctrl_handler *ctrl_hdlr = &s5kjn1->ctrl_handler;
+> +	const struct s5kjn1_mode *mode = s5kjn1->mode;
+> +	s64 pixel_rate, hblank, vblank, exposure_max;
+> +	struct v4l2_fwnode_device_properties props;
+> +	int ret;
+> +
+> +	v4l2_ctrl_handler_init(ctrl_hdlr, 9);
+> +
+> +	s5kjn1->link_freq = v4l2_ctrl_new_int_menu(ctrl_hdlr, &s5kjn1_ctrl_ops,
+> +					V4L2_CID_LINK_FREQ,
+> +					ARRAY_SIZE(s5kjn1_link_freq_menu) - 1,
+> +					0, s5kjn1_link_freq_menu);
+> +	if (s5kjn1->link_freq)
+> +		s5kjn1->link_freq->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+> +
+> +	pixel_rate = s5kjn1_freq_to_pixel_rate(s5kjn1_link_freq_menu[0]);
+> +	s5kjn1->pixel_rate = v4l2_ctrl_new_std(ctrl_hdlr, &s5kjn1_ctrl_ops,
+> +					       V4L2_CID_PIXEL_RATE,
+> +					       0, pixel_rate, 1, pixel_rate);
+> +
+> +	hblank = mode->hts - mode->width;
+> +	s5kjn1->hblank = v4l2_ctrl_new_std(ctrl_hdlr, &s5kjn1_ctrl_ops,
+> +					   V4L2_CID_HBLANK, hblank,
+> +					   hblank, 1, hblank);
+> +	if (s5kjn1->hblank)
+> +		s5kjn1->hblank->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+> +
+> +	vblank = mode->vts - mode->height;
+> +	s5kjn1->vblank = v4l2_ctrl_new_std(ctrl_hdlr, &s5kjn1_ctrl_ops,
+> +					   V4L2_CID_VBLANK, vblank,
+> +					   S5KJN1_VTS_MAX - mode->height, 1,
+> +					   vblank);
+> +
+> +	v4l2_ctrl_new_std(ctrl_hdlr, &s5kjn1_ctrl_ops, V4L2_CID_ANALOGUE_GAIN,
+> +			  S5KJN1_AGAIN_MIN, S5KJN1_AGAIN_MAX,
+> +			  S5KJN1_AGAIN_STEP, S5KJN1_AGAIN_DEFAULT);
+> +
+> +	exposure_max = mode->vts - mode->exposure_margin;
+> +	s5kjn1->exposure = v4l2_ctrl_new_std(ctrl_hdlr, &s5kjn1_ctrl_ops,
+> +					     V4L2_CID_EXPOSURE,
+> +					     S5KJN1_EXPOSURE_MIN,
+> +					     exposure_max,
+> +					     S5KJN1_EXPOSURE_STEP,
+> +					     mode->exposure);
+> +
+> +	v4l2_ctrl_new_std_menu_items(ctrl_hdlr, &s5kjn1_ctrl_ops,
+> +				     V4L2_CID_TEST_PATTERN,
+> +				     ARRAY_SIZE(s5kjn1_test_pattern_menu) - 1,
+> +				     0, 0, s5kjn1_test_pattern_menu);
+> +
+> +	s5kjn1->hflip = v4l2_ctrl_new_std(ctrl_hdlr, &s5kjn1_ctrl_ops,
+> +					  V4L2_CID_HFLIP, 0, 1, 1, 0);
+> +	if (s5kjn1->hflip)
+> +		s5kjn1->hflip->flags |= V4L2_CTRL_FLAG_MODIFY_LAYOUT;
+> +
+> +	s5kjn1->vflip = v4l2_ctrl_new_std(ctrl_hdlr, &s5kjn1_ctrl_ops,
+> +					  V4L2_CID_VFLIP, 0, 1, 1, 0);
+> +	if (s5kjn1->vflip)
+> +		s5kjn1->vflip->flags |= V4L2_CTRL_FLAG_MODIFY_LAYOUT;
+> +
+> +	ret = v4l2_fwnode_device_parse(s5kjn1->dev, &props);
+> +	if (ret)
+> +		goto error_free_hdlr;
+> +
+> +	ret = v4l2_ctrl_new_fwnode_properties(ctrl_hdlr, &s5kjn1_ctrl_ops,
+> +					      &props);
+> +	if (ret)
+> +		goto error_free_hdlr;
+> +
+> +	s5kjn1->sd.ctrl_handler = ctrl_hdlr;
+> +
+> +	return 0;
+> +
+> +error_free_hdlr:
+> +	v4l2_ctrl_handler_free(ctrl_hdlr);
+> +
+> +	return ret;
+> +}
+> +
+> +static int s5kjn1_enable_streams(struct v4l2_subdev *sd,
+> +				 struct v4l2_subdev_state *state, u32 pad,
+> +				 u64 streams_mask)
+> +{
+> +	struct s5kjn1 *s5kjn1 = to_s5kjn1(sd);
+> +	const struct s5kjn1_reg_list *reg_list = &s5kjn1->mode->reg_list;
+> +	int ret;
+> +
+> +	ret = pm_runtime_resume_and_get(s5kjn1->dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Page pointer */
+> +	cci_write(s5kjn1->regmap, CCI_REG16(0x6028), 0x4000, &ret);
+
+\n
+
+> +	/* Set version */
+> +	cci_write(s5kjn1->regmap, CCI_REG16(0x0000), 0x0003, &ret);
+> +	cci_write(s5kjn1->regmap, CCI_REG16(0x0000), S5KJN1_CHIP_ID, &ret);
+> +	cci_write(s5kjn1->regmap, CCI_REG16(0x001e), 0x0007, &ret);
+> +	cci_write(s5kjn1->regmap, CCI_REG16(0x6028), 0x4000, &ret);
+> +	cci_write(s5kjn1->regmap, CCI_REG16(0x6010), 0x0001, &ret);
+> +	if (ret)
+> +		goto error;
+> +
+> +	usleep_range(5 * USEC_PER_MSEC, 6 * USEC_PER_MSEC);
+> +
+> +	cci_write(s5kjn1->regmap, CCI_REG16(0x6226), 0x0001, &ret);
+> +	if (ret)
+> +		goto error;
+> +
+> +	usleep_range(10 * USEC_PER_MSEC, 11 * USEC_PER_MSEC);
+> +
+> +	/* Sensor init settings */
+> +	cci_multi_reg_write(s5kjn1->regmap, init_array_setting,
+> +			    ARRAY_SIZE(init_array_setting), &ret);
+> +	cci_multi_reg_write(s5kjn1->regmap, reg_list->regs,
+> +			    reg_list->num_regs, &ret);
+> +	if (ret)
+> +		goto error;
+> +
+> +	ret = __v4l2_ctrl_handler_setup(s5kjn1->sd.ctrl_handler);
+> +
+> +	cci_write(s5kjn1->regmap, S5KJN1_REG_CTRL_MODE,
+> +		  S5KJN1_MODE_STREAMING, &ret);
+> +	if (ret)
+> +		goto error;
+> +
+> +	return 0;
+> +
+> +error:
+> +	dev_err(s5kjn1->dev, "failed to start streaming: %d\n", ret);
+> +	pm_runtime_put_autosuspend(s5kjn1->dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static int s5kjn1_disable_streams(struct v4l2_subdev *sd,
+> +				  struct v4l2_subdev_state *state, u32 pad,
+> +				  u64 streams_mask)
+> +{
+> +	struct s5kjn1 *s5kjn1 = to_s5kjn1(sd);
+> +	int ret;
+> +
+> +	ret = cci_write(s5kjn1->regmap, S5KJN1_REG_CTRL_MODE, 0x0, NULL);
+> +	if (ret)
+> +		dev_err(s5kjn1->dev, "failed to stop streaming: %d\n", ret);
+> +
+> +	pm_runtime_put_autosuspend(s5kjn1->dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static u32 s5kjn1_get_format_code(struct s5kjn1 *s5kjn1)
+> +{
+> +	unsigned int i;
+> +
+> +	i = (s5kjn1->vflip->val ? 2 : 0) | (s5kjn1->hflip->val ? 1 : 0);
+> +
+> +	return s5kjn1_mbus_formats[i];
+> +}
+> +
+> +static void s5kjn1_update_pad_format(struct s5kjn1 *s5kjn1,
+> +				     const struct s5kjn1_mode *mode,
+> +				     struct v4l2_mbus_framefmt *fmt)
+> +{
+> +	fmt->code = s5kjn1_get_format_code(s5kjn1);
+> +	fmt->width = mode->width;
+> +	fmt->height = mode->height;
+> +	fmt->field = V4L2_FIELD_NONE;
+> +	fmt->colorspace = V4L2_COLORSPACE_SRGB;
+> +	fmt->ycbcr_enc = V4L2_YCBCR_ENC_DEFAULT;
+> +	fmt->quantization = V4L2_QUANTIZATION_FULL_RANGE;
+> +	fmt->xfer_func = V4L2_XFER_FUNC_NONE;
+> +}
+> +
+> +static int s5kjn1_set_pad_format(struct v4l2_subdev *sd,
+> +				 struct v4l2_subdev_state *state,
+> +				 struct v4l2_subdev_format *fmt)
+> +{
+> +	struct s5kjn1 *s5kjn1 = to_s5kjn1(sd);
+> +	s64 hblank, vblank, exposure_max;
+> +	const struct s5kjn1_mode *mode;
+> +
+> +	mode = v4l2_find_nearest_size(s5kjn1_supported_modes,
+> +				      ARRAY_SIZE(s5kjn1_supported_modes),
+> +				      width, height,
+> +				      fmt->format.width, fmt->format.height);
+> +
+> +	s5kjn1_update_pad_format(s5kjn1, mode, &fmt->format);
+> +
+> +	/* Format code could be updated with respect to flip controls */
+> +	if (fmt->which == V4L2_SUBDEV_FORMAT_TRY || s5kjn1->mode == mode)
+> +		goto set_format;
+> +
+> +	/* Update limits and set FPS and exposure to default values */
+> +	hblank = mode->hts - mode->width;
+> +	__v4l2_ctrl_modify_range(s5kjn1->hblank, hblank, hblank, 1, hblank);
+> +
+> +	vblank = mode->vts - mode->height;
+> +	__v4l2_ctrl_modify_range(s5kjn1->vblank, vblank,
+> +				 S5KJN1_VTS_MAX - mode->height, 1, vblank);
+> +	__v4l2_ctrl_s_ctrl(s5kjn1->vblank, vblank);
+> +
+> +	exposure_max = mode->vts - mode->exposure_margin;
+> +	__v4l2_ctrl_modify_range(s5kjn1->exposure, S5KJN1_EXPOSURE_MIN,
+> +				 exposure_max, S5KJN1_EXPOSURE_STEP,
+> +				 mode->exposure);
+> +	__v4l2_ctrl_s_ctrl(s5kjn1->exposure, mode->exposure);
+> +
+> +	if (s5kjn1->sd.ctrl_handler->error)
+> +		return s5kjn1->sd.ctrl_handler->error;
+> +
+> +	s5kjn1->mode = mode;
+> +
+> +set_format:
+> +	*v4l2_subdev_state_get_format(state, 0) = fmt->format;
+> +
+> +	return 0;
+> +}
+> +
+> +static int s5kjn1_enum_mbus_code(struct v4l2_subdev *sd,
+> +				 struct v4l2_subdev_state *sd_state,
+> +				 struct v4l2_subdev_mbus_code_enum *code)
+> +{
+> +	struct s5kjn1 *s5kjn1 = to_s5kjn1(sd);
+> +
+> +	/* Media bus code index is constant, but code formats are not */
+> +	if (code->index > 0)
+> +		return -EINVAL;
+> +
+> +	code->code = s5kjn1_get_format_code(s5kjn1);
+> +
+> +	return 0;
+> +}
+> +
+> +static int s5kjn1_enum_frame_size(struct v4l2_subdev *sd,
+> +				  struct v4l2_subdev_state *sd_state,
+> +				  struct v4l2_subdev_frame_size_enum *fse)
+> +{
+> +	struct s5kjn1 *s5kjn1 = to_s5kjn1(sd);
+> +
+> +	if (fse->index >= ARRAY_SIZE(s5kjn1_supported_modes))
+> +		return -EINVAL;
+> +
+> +	if (fse->code != s5kjn1_get_format_code(s5kjn1))
+> +		return -EINVAL;
+> +
+> +	fse->min_width = s5kjn1_supported_modes[fse->index].width;
+> +	fse->max_width = fse->min_width;
+> +	fse->min_height = s5kjn1_supported_modes[fse->index].height;
+> +	fse->max_height = fse->min_height;
+> +
+> +	return 0;
+> +}
+> +
+> +static int s5kjn1_get_selection(struct v4l2_subdev *sd,
+> +				struct v4l2_subdev_state *sd_state,
+> +				struct v4l2_subdev_selection *sel)
+> +{
+> +	struct s5kjn1 *s5kjn1 = to_s5kjn1(sd);
+> +
+> +	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE)
+> +		return -EINVAL;
+> +
+> +	switch (sel->target) {
+> +	case V4L2_SEL_TGT_CROP:
+> +	case V4L2_SEL_TGT_CROP_BOUNDS:
+> +		sel->r.left = 0;
+> +		sel->r.top = 0;
+> +		sel->r.width = s5kjn1->mode->width;
+> +		sel->r.height = s5kjn1->mode->width;
+> +		return 0;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int s5kjn1_init_state(struct v4l2_subdev *sd,
+> +			     struct v4l2_subdev_state *state)
+> +{
+> +	struct s5kjn1 *s5kjn1 = to_s5kjn1(sd);
+> +	struct v4l2_subdev_format fmt = {
+> +		.which = V4L2_SUBDEV_FORMAT_TRY,
+> +		.pad = 0,
+> +		.format = {
+> +			/* Media bus code depends on current flip controls */
+> +			.width = s5kjn1->mode->width,
+> +			.height = s5kjn1->mode->height,
+> +		},
+> +	};
+> +
+> +	s5kjn1_set_pad_format(sd, state, &fmt);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct v4l2_subdev_video_ops s5kjn1_video_ops = {
+> +	.s_stream = v4l2_subdev_s_stream_helper,
+> +};
+> +
+> +static const struct v4l2_subdev_pad_ops s5kjn1_pad_ops = {
+> +	.set_fmt = s5kjn1_set_pad_format,
+> +	.get_fmt = v4l2_subdev_get_fmt,
+> +	.get_selection = s5kjn1_get_selection,
+> +	.enum_mbus_code = s5kjn1_enum_mbus_code,
+> +	.enum_frame_size = s5kjn1_enum_frame_size,
+> +	.enable_streams = s5kjn1_enable_streams,
+> +	.disable_streams = s5kjn1_disable_streams,
+> +};
+> +
+> +static const struct v4l2_subdev_ops s5kjn1_subdev_ops = {
+> +	.video = &s5kjn1_video_ops,
+> +	.pad = &s5kjn1_pad_ops,
+> +};
+> +
+> +static const struct v4l2_subdev_internal_ops s5kjn1_internal_ops = {
+> +	.init_state = s5kjn1_init_state,
+> +};
+> +
+> +static const struct media_entity_operations s5kjn1_subdev_entity_ops = {
+> +	.link_validate = v4l2_subdev_link_validate,
+> +};
+> +
+> +static int s5kjn1_identify_sensor(struct s5kjn1 *s5kjn1)
+> +{
+> +	u64 val;
+> +	int ret;
+> +
+> +	ret = cci_read(s5kjn1->regmap, S5KJN1_REG_CHIP_ID, &val, NULL);
+> +	if (ret) {
+> +		dev_err(s5kjn1->dev, "failed to read chip id: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	if (val != S5KJN1_CHIP_ID) {
+> +		dev_err(s5kjn1->dev, "chip id mismatch: %x!=%llx\n",
+> +			S5KJN1_CHIP_ID, val);
+> +		return -ENODEV;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int s5kjn1_check_hwcfg(struct s5kjn1 *s5kjn1)
+> +{
+> +	struct fwnode_handle *fwnode = dev_fwnode(s5kjn1->dev), *ep;
+> +	struct v4l2_fwnode_endpoint bus_cfg = {
+> +		.bus_type = V4L2_MBUS_CSI2_DPHY,
+> +	};
+> +	unsigned long freq_bitmap;
+> +	int ret;
+> +
+> +	if (!fwnode)
+> +		return -ENODEV;
+> +
+> +	ep = fwnode_graph_get_next_endpoint(fwnode, NULL);
+> +	if (!ep)
+> +		return -EINVAL;
+> +
+> +	ret = v4l2_fwnode_endpoint_alloc_parse(ep, &bus_cfg);
+> +	fwnode_handle_put(ep);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (bus_cfg.bus.mipi_csi2.num_data_lanes &&
+
+Is !bus_cfg.bus.mipi_csi2.num_data_lanes a valid case ?
+
+I don't think this check makes sense.
+
+> +	    bus_cfg.bus.mipi_csi2.num_data_lanes != S5KJN1_DATA_LANES) {
+> +		dev_err(s5kjn1->dev, "Invalid number of data lanes: %u\n",
+> +			bus_cfg.bus.mipi_csi2.num_data_lanes);
+> +		ret = -EINVAL;
+> +		goto endpoint_free;
+> +	}
+> +
+> +	ret = v4l2_link_freq_to_bitmap(s5kjn1->dev, bus_cfg.link_frequencies,
+> +				       bus_cfg.nr_of_link_frequencies,
+> +				       s5kjn1_link_freq_menu,
+> +				       ARRAY_SIZE(s5kjn1_link_freq_menu),
+> +				       &freq_bitmap);
+> +
+> +endpoint_free:
+> +	v4l2_fwnode_endpoint_free(&bus_cfg);
+> +
+> +	return ret;
+> +}
+> +
+> +static int s5kjn1_power_on(struct device *dev)
+> +{
+> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+> +	struct s5kjn1 *s5kjn1 = to_s5kjn1(sd);
+> +	int ret;
+> +
+> +	ret = regulator_bulk_enable(ARRAY_SIZE(s5kjn1_supply_names),
+> +				    s5kjn1->supplies);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = clk_prepare_enable(s5kjn1->mclk);
+> +	if (ret)
+> +		goto disable_regulators;
+> +
+> +	gpiod_set_value_cansleep(s5kjn1->reset_gpio, 0);
+
+Since the gpio is optional you should only do this if reset_gpio is valid.
+
+> +	usleep_range(10 * USEC_PER_MSEC, 15 * USEC_PER_MSEC);
+
+This seems like a long time for a chip to come out of reset 10 to 15 
+milliseconds.
+
+
+Also what about
+
+- Asset reset
+- Delay
+- Release reset
+- Delay
+
+The timing sequence diagram in the spec should enumerate this process 
+with timings.
+
+> +
+> +	return 0;
+> +
+> +disable_regulators:
+> +	regulator_bulk_disable(ARRAY_SIZE(s5kjn1_supply_names),
+> +			       s5kjn1->supplies);
+> +
+> +	return ret;
+> +}
+> +
+> +static int s5kjn1_power_off(struct device *dev)
+> +{
+> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+> +	struct s5kjn1 *s5kjn1 = to_s5kjn1(sd);
+> +
+> +	gpiod_set_value_cansleep(s5kjn1->reset_gpio, 1);
+
+As noted the reset_gpio is optional so you shouldn't unconditionally 
+waggle it.
+
+> +
+> +	clk_disable_unprepare(s5kjn1->mclk);
+> +
+> +	regulator_bulk_disable(ARRAY_SIZE(s5kjn1_supply_names),
+> +			       s5kjn1->supplies);
+> +
+> +	return 0;
+> +}
+> +
+> +static int s5kjn1_probe(struct i2c_client *client)
+> +{
+> +	struct s5kjn1 *s5kjn1;
+> +	unsigned long freq;
+> +	unsigned int i;
+> +	int ret;
+> +
+> +	s5kjn1 = devm_kzalloc(&client->dev, sizeof(*s5kjn1), GFP_KERNEL);
+> +	if (!s5kjn1)
+> +		return -ENOMEM;
+> +
+> +	s5kjn1->dev = &client->dev;
+> +	v4l2_i2c_subdev_init(&s5kjn1->sd, client, &s5kjn1_subdev_ops);
+> +
+> +	s5kjn1->regmap = devm_cci_regmap_init_i2c(client, 16);
+> +	if (IS_ERR(s5kjn1->regmap))
+> +		return dev_err_probe(s5kjn1->dev, PTR_ERR(s5kjn1->regmap),
+> +				     "failed to init CCI\n");
+> +
+> +	s5kjn1->mclk = devm_v4l2_sensor_clk_get(s5kjn1->dev, NULL);
+> +	if (IS_ERR(s5kjn1->mclk))
+> +		return dev_err_probe(s5kjn1->dev, PTR_ERR(s5kjn1->mclk),
+> +				     "failed to get MCLK clock\n");
+> +
+> +	freq = clk_get_rate(s5kjn1->mclk);
+> +	if (freq != S5KJN1_MCLK_FREQ_24MHZ)
+> +		return dev_err_probe(s5kjn1->dev, -EINVAL,
+> +				     "MCLK clock frequency %lu is not supported\n",
+> +				     freq);
+> +
+> +	ret = s5kjn1_check_hwcfg(s5kjn1);
+> +	if (ret)
+> +		return dev_err_probe(s5kjn1->dev, ret,
+> +				     "failed to check HW configuration\n");
+> +
+> +	s5kjn1->reset_gpio = devm_gpiod_get_optional(s5kjn1->dev, "reset",
+> +						     GPIOD_OUT_HIGH);
+> +	if (IS_ERR(s5kjn1->reset_gpio))
+> +		return dev_err_probe(s5kjn1->dev, PTR_ERR(s5kjn1->reset_gpio),
+> +				     "cannot get reset GPIO\n");
+> +
+> +	for (i = 0; i < ARRAY_SIZE(s5kjn1_supply_names); i++)
+> +		s5kjn1->supplies[i].supply = s5kjn1_supply_names[i];
+> +
+> +	ret = devm_regulator_bulk_get(s5kjn1->dev,
+> +				      ARRAY_SIZE(s5kjn1_supply_names),
+> +				      s5kjn1->supplies);
+> +	if (ret)
+> +		return dev_err_probe(s5kjn1->dev, ret,
+> +				     "failed to get supply regulators\n");
+> +
+> +	/* The sensor must be powered on to read the CHIP_ID register */
+> +	ret = s5kjn1_power_on(s5kjn1->dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = s5kjn1_identify_sensor(s5kjn1);
+> +	if (ret) {
+> +		dev_err_probe(s5kjn1->dev, ret, "failed to find sensor\n");
+> +		goto power_off;
+> +	}
+> +
+> +	s5kjn1->mode = &s5kjn1_supported_modes[0];
+> +	ret = s5kjn1_init_controls(s5kjn1);
+> +	if (ret) {
+> +		dev_err_probe(s5kjn1->dev, ret, "failed to init controls\n");
+> +		goto power_off;
+> +	}
+> +
+> +	s5kjn1->sd.state_lock = s5kjn1->ctrl_handler.lock;
+> +	s5kjn1->sd.internal_ops = &s5kjn1_internal_ops;
+> +	s5kjn1->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+> +	s5kjn1->sd.entity.ops = &s5kjn1_subdev_entity_ops;
+> +	s5kjn1->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
+> +	s5kjn1->pad.flags = MEDIA_PAD_FL_SOURCE;
+> +
+> +	ret = media_entity_pads_init(&s5kjn1->sd.entity, 1, &s5kjn1->pad);
+> +	if (ret) {
+> +		dev_err_probe(s5kjn1->dev, ret,
+> +			      "failed to init media entity pads\n");
+> +		goto v4l2_ctrl_handler_free;
+> +	}
+> +
+> +	ret = v4l2_subdev_init_finalize(&s5kjn1->sd);
+> +	if (ret < 0) {
+> +		dev_err_probe(s5kjn1->dev, ret,
+> +			      "failed to init media entity pads\n");
+> +		goto media_entity_cleanup;
+> +	}
+> +
+> +	pm_runtime_set_active(s5kjn1->dev);
+> +	pm_runtime_enable(s5kjn1->dev);
+> +
+> +	ret = v4l2_async_register_subdev_sensor(&s5kjn1->sd);
+> +	if (ret < 0) {
+> +		dev_err_probe(s5kjn1->dev, ret,
+> +			      "failed to register V4L2 subdev\n");
+> +		goto subdev_cleanup;
+> +	}
+> +
+> +	pm_runtime_set_autosuspend_delay(s5kjn1->dev, 1000);
+> +	pm_runtime_use_autosuspend(s5kjn1->dev);
+> +	pm_runtime_idle(s5kjn1->dev);
+> +
+> +	return 0;
+> +
+> +subdev_cleanup:
+> +	v4l2_subdev_cleanup(&s5kjn1->sd);
+> +	pm_runtime_disable(s5kjn1->dev);
+> +	pm_runtime_set_suspended(s5kjn1->dev);
+> +
+> +media_entity_cleanup:
+> +	media_entity_cleanup(&s5kjn1->sd.entity);
+> +
+> +v4l2_ctrl_handler_free:
+> +	v4l2_ctrl_handler_free(s5kjn1->sd.ctrl_handler);
+> +
+> +power_off:
+> +	s5kjn1_power_off(s5kjn1->dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static void s5kjn1_remove(struct i2c_client *client)
+> +{
+> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> +	struct s5kjn1 *s5kjn1 = to_s5kjn1(sd);
+> +
+> +	v4l2_async_unregister_subdev(sd);
+> +	v4l2_subdev_cleanup(sd);
+> +	media_entity_cleanup(&sd->entity);
+> +	v4l2_ctrl_handler_free(sd->ctrl_handler);
+> +	pm_runtime_disable(s5kjn1->dev);
+> +
+> +	if (!pm_runtime_status_suspended(s5kjn1->dev)) {
+> +		s5kjn1_power_off(s5kjn1->dev);
+> +		pm_runtime_set_suspended(s5kjn1->dev);
+> +	}
+> +}
+> +
+> +static const struct dev_pm_ops s5kjn1_pm_ops = {
+> +	SET_RUNTIME_PM_OPS(s5kjn1_power_off, s5kjn1_power_on, NULL)
+> +};
+> +
+> +static const struct of_device_id s5kjn1_of_match[] = {
+> +	{ .compatible = "samsung,s5kjn1" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, s5kjn1_of_match);
+> +
+> +static struct i2c_driver s5kjn1_i2c_driver = {
+> +	.driver = {
+> +		.name = "s5kjn1",
+> +		.pm = &s5kjn1_pm_ops,
+> +		.of_match_table = s5kjn1_of_match,
+> +	},
+> +	.probe = s5kjn1_probe,
+> +	.remove = s5kjn1_remove,
+> +};
+> +
+> +module_i2c_driver(s5kjn1_i2c_driver);
+> +
+> +MODULE_AUTHOR("Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>");
+> +MODULE_DESCRIPTION("Samsung S5KJN1 image sensor driver");
+> +MODULE_LICENSE("GPL");
+> --
+> 2.49.0
+> 
+> 
+
+Other than that LGTM, please cc me on v4.
+
 ---
-change in v10
-- align datasheet register name
-- remove reduntant regmap_attach_dev()
-- add missed \n at error message
-- move *regmap to first member.
-
-Changes in v9
-- add time.h
-- remove dev from mmc5633_data
-- remove struct {val, val2}
-- regmap return value check use if (ret) ...
-- 1 -> ARRAY_SIZE()
-- use guard() replace scoped_guard()
-- use regmap stored dev
-- i3c device use bus assigned name.
-- use devm_kasprintf() to combine friend name with device ID from i3c bus
-  and it will avoid build warning to discard const return from dev_name().
-
-Change in v7
-- add missed *.h file
-- remove reduntant empty line
-- add comments about delay 1us after SET
-- use USEC_PER_MSEC for timeout value
-
-Change in v6:
-- remove acpi part
-- return 0 for success path at mmc5633_write_raw
-
-Change in V4
-- use { 1, 2000 }
-- Add _US for timeout
-- Use GEN_MASK for MMC5633_CTRL1_BW_MASK
-- Use { } for terminator.
-- remove !!
-- fix mix tab and space
-- add mmc5603 (merge https://lore.kernel.org/all/20251003000731.22927-1-fluturel.adrian@gmail.com/)
-- add tempature measure support
-
-Change in v3
-- remove mmc5633_hw_set
-- make -> Make
-- change indention for mmc5633_samp_freq
-- use u8 arrary to handle dword data
-- get_unaligned_be16() to get raw data
-- add helper function to check if i3c support hdr
-- use read_avail() callback
-
-change in v2
-- new patch
----
- drivers/iio/magnetometer/Kconfig   |  12 +
- drivers/iio/magnetometer/Makefile  |   1 +
- drivers/iio/magnetometer/mmc5633.c | 588 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 601 insertions(+)
-
-diff --git a/drivers/iio/magnetometer/Kconfig b/drivers/iio/magnetometer/Kconfig
-index 81b812a29044e2b0b9ff84889c21aa3ebc20be35..cfb74a4a083630678a1db1132a14264de451a31a 100644
---- a/drivers/iio/magnetometer/Kconfig
-+++ b/drivers/iio/magnetometer/Kconfig
-@@ -139,6 +139,18 @@ config MMC35240
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called mmc35240.
- 
-+config MMC5633
-+	tristate "MEMSIC MMC5633 3-axis magnetic sensor"
-+	select REGMAP_I2C
-+	select REGMAP_I3C
-+	depends on I2C || I3C
-+	help
-+	  Say yes here to build support for the MEMSIC MMC5633 3-axis
-+	  magnetic sensor.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called mmc5633
-+
- config IIO_ST_MAGN_3AXIS
- 	tristate "STMicroelectronics magnetometers 3-Axis Driver"
- 	depends on (I2C || SPI_MASTER) && SYSFS
-diff --git a/drivers/iio/magnetometer/Makefile b/drivers/iio/magnetometer/Makefile
-index dfe970fcacb8664b293af84893f7d3e3e8d7bf7e..5bd227f8c1204bdd8b8a43da180833eedca1457b 100644
---- a/drivers/iio/magnetometer/Makefile
-+++ b/drivers/iio/magnetometer/Makefile
-@@ -15,6 +15,7 @@ obj-$(CONFIG_BMC150_MAGN_SPI) += bmc150_magn_spi.o
- obj-$(CONFIG_MAG3110)	+= mag3110.o
- obj-$(CONFIG_HID_SENSOR_MAGNETOMETER_3D) += hid-sensor-magn-3d.o
- obj-$(CONFIG_MMC35240)	+= mmc35240.o
-+obj-$(CONFIG_MMC5633)	+= mmc5633.o
- 
- obj-$(CONFIG_IIO_ST_MAGN_3AXIS) += st_magn.o
- st_magn-y := st_magn_core.o
-diff --git a/drivers/iio/magnetometer/mmc5633.c b/drivers/iio/magnetometer/mmc5633.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..1bae6ffe3f18315ce079cb08c2286653cf71c9a4
---- /dev/null
-+++ b/drivers/iio/magnetometer/mmc5633.c
-@@ -0,0 +1,588 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * MMC5633 - MEMSIC 3-axis Magnetic Sensor
-+ *
-+ * Copyright (c) 2015, Intel Corporation.
-+ * Copyright (c) 2025, NXP
-+ *
-+ * IIO driver for MMC5633, base on mmc35240.c
-+ */
-+
-+#include <linux/array_size.h>
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/cleanup.h>
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/dev_printk.h>
-+#include <linux/err.h>
-+#include <linux/errno.h>
-+#include <linux/i2c.h>
-+#include <linux/i3c/device.h>
-+#include <linux/iio/iio.h>
-+#include <linux/iio/sysfs.h>
-+#include <linux/init.h>
-+#include <linux/iopoll.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/mutex.h>
-+#include <linux/pm.h>
-+#include <linux/regmap.h>
-+#include <linux/time.h>
-+#include <linux/types.h>
-+#include <linux/unaligned.h>
-+
-+#define MMC5633_REG_XOUT0	0x00
-+#define MMC5633_REG_XOUT1	0x01
-+#define MMC5633_REG_YOUT0	0x02
-+#define MMC5633_REG_YOUT1	0x03
-+#define MMC5633_REG_ZOUT0	0x04
-+#define MMC5633_REG_ZOUT1	0x05
-+#define MMC5633_REG_XOUT2	0x06
-+#define MMC5633_REG_YOUT2	0x07
-+#define MMC5633_REG_ZOUT2	0x08
-+#define MMC5633_REG_TOUT	0x09
-+
-+#define MMC5633_REG_STATUS1	0x18
-+#define MMC5633_REG_STATUS0	0x19
-+#define MMC5633_REG_CTRL0	0x1b
-+#define MMC5633_REG_CTRL1	0x1c
-+#define MMC5633_REG_CTRL2	0x1d
-+
-+#define MMC5633_REG_ID		0x39
-+
-+#define MMC5633_STATUS1_MEAS_T_DONE_BIT	BIT(7)
-+#define MMC5633_STATUS1_MEAS_M_DONE_BIT	BIT(6)
-+
-+#define MMC5633_CTRL0_CMM_FREQ_EN	BIT(7)
-+#define MMC5633_CTRL0_AUTO_ST_EN	BIT(6)
-+#define MMC5633_CTRL0_AUTO_SR_EN	BIT(5)
-+#define MMC5633_CTRL0_RESET		BIT(4)
-+#define MMC5633_CTRL0_SET		BIT(3)
-+#define MMC5633_CTRL0_MEAS_T		BIT(1)
-+#define MMC5633_CTRL0_MEAS_M		BIT(0)
-+
-+#define MMC5633_CTRL1_BW_MASK		GENMASK(1, 0)
-+
-+#define MMC5633_WAIT_SET_RESET_US	(1 * USEC_PER_MSEC)
-+
-+#define MMC5633_HDR_CTRL0_MEAS_M	0x01
-+#define MMC5633_HDR_CTRL0_MEAS_T	0x03
-+#define MMC5633_HDR_CTRL0_SET		0x05
-+#define MMC5633_HDR_CTRL0_RESET		0x07
-+
-+enum mmc5633_axis {
-+	MMC5633_AXIS_X,
-+	MMC5633_AXIS_Y,
-+	MMC5633_AXIS_Z,
-+	MMC5633_TEMPERATURE,
-+};
-+
-+struct mmc5633_data {
-+	struct regmap *regmap;
-+	struct i3c_device *i3cdev;
-+	struct mutex mutex; /* protect to finish one whole measurement */
-+};
-+
-+int mmc5633_samp_freq[][2] = {
-+	{ 1, 200000 },
-+	{ 2, 0 },
-+	{ 3, 500000 },
-+	{ 6, 600000 },
-+};
-+
-+#define MMC5633_CHANNEL(_axis) { \
-+	.type = IIO_MAGN, \
-+	.modified = 1, \
-+	.channel2 = IIO_MOD_ ## _axis, \
-+	.address = MMC5633_AXIS_ ## _axis, \
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW), \
-+	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SAMP_FREQ) | \
-+				    BIT(IIO_CHAN_INFO_SCALE), \
-+}
-+
-+static const struct iio_chan_spec mmc5633_channels[] = {
-+	MMC5633_CHANNEL(X),
-+	MMC5633_CHANNEL(Y),
-+	MMC5633_CHANNEL(Z),
-+	{
-+		.type = IIO_TEMP,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_SCALE) |
-+				      BIT(IIO_CHAN_INFO_OFFSET),
-+		.address = MMC5633_TEMPERATURE,
-+	},
-+};
-+
-+static int mmc5633_get_samp_freq_index(struct mmc5633_data *data,
-+				       int val, int val2)
-+{
-+	unsigned int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(mmc5633_samp_freq); i++)
-+		if (mmc5633_samp_freq[i][0] == val &&
-+		    mmc5633_samp_freq[i][1] == val2)
-+			return i;
-+	return -EINVAL;
-+}
-+
-+static int mmc5633_init(struct mmc5633_data *data)
-+{
-+	unsigned int reg_id;
-+	int ret;
-+
-+	ret = regmap_read(data->regmap, MMC5633_REG_ID, &reg_id);
-+	if (ret)
-+		return dev_err_probe(regmap_get_device(data->regmap), ret,
-+				     "Error reading product id\n");
-+
-+	/*
-+	 * Make sure we restore sensor characteristics, by doing
-+	 * a SET/RESET sequence, the axis polarity being naturally
-+	 * aligned after RESET.
-+	 */
-+	ret = regmap_write(data->regmap, MMC5633_REG_CTRL0, MMC5633_CTRL0_SET);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Minimum time interval between SET or RESET to other operations is
-+	 * 1ms according to Operating Timing Diagram in datasheet.
-+	 */
-+	fsleep(MMC5633_WAIT_SET_RESET_US);
-+
-+	ret = regmap_write(data->regmap, MMC5633_REG_CTRL0, MMC5633_CTRL0_RESET);
-+	if (ret)
-+		return ret;
-+
-+	/* set default sampling frequency */
-+	return regmap_update_bits(data->regmap, MMC5633_REG_CTRL1,
-+				  MMC5633_CTRL1_BW_MASK,
-+				  FIELD_PREP(MMC5633_CTRL1_BW_MASK, 0));
-+}
-+
-+static int mmc5633_take_measurement(struct mmc5633_data *data, int address)
-+{
-+	unsigned int reg_status;
-+	int ret;
-+	int val;
-+
-+	val = (address == MMC5633_TEMPERATURE) ? MMC5633_CTRL0_MEAS_T : MMC5633_CTRL0_MEAS_M;
-+	ret = regmap_write(data->regmap, MMC5633_REG_CTRL0, val);
-+	if (ret < 0)
-+		return ret;
-+
-+	val = (address == MMC5633_TEMPERATURE) ?
-+	      MMC5633_STATUS1_MEAS_T_DONE_BIT : MMC5633_STATUS1_MEAS_M_DONE_BIT;
-+	ret = regmap_read_poll_timeout(data->regmap, MMC5633_REG_STATUS1, reg_status,
-+				       reg_status & val,
-+				       10 * USEC_PER_MSEC,
-+				       100 * 10 * USEC_PER_MSEC);
-+	if (ret) {
-+		dev_err(regmap_get_device(data->regmap), "data not ready\n");
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static bool mmc5633_is_support_hdr(struct mmc5633_data *data)
-+{
-+	if (!data->i3cdev)
-+		return false;
-+
-+	return i3c_device_get_supported_xfer_mode(data->i3cdev) & BIT(I3C_HDR_DDR);
-+}
-+
-+static int mmc5633_read_measurement(struct mmc5633_data *data, int address, void *buf, size_t sz)
-+{
-+	struct device *dev = regmap_get_device(data->regmap);
-+	u8 data_cmd[2], status[2];
-+	int ret, val, ready;
-+
-+	if (mmc5633_is_support_hdr(data)) {
-+		struct i3c_xfer xfers_wr_cmd[] = {
-+			{
-+				.cmd = 0x3b,
-+				.len = 2,
-+				.data.out = data_cmd,
-+			}
-+		};
-+		struct i3c_xfer xfers_rd_sta_cmd[] = {
-+			{
-+				.cmd = 0x23 | BIT(7), /* RDSTA CMD */
-+				.len = 2,
-+				.data.in = status,
-+			},
-+		};
-+		struct i3c_xfer xfers_rd_data_cmd[] = {
-+			{
-+				.cmd = 0x22 | BIT(7), /* RDLONG CMD */
-+				.len = sz,
-+				.data.in = buf,
-+			},
-+		};
-+
-+		data_cmd[0] = 0;
-+		data_cmd[1] = (address == MMC5633_TEMPERATURE) ?
-+			      MMC5633_HDR_CTRL0_MEAS_T : MMC5633_HDR_CTRL0_MEAS_M;
-+
-+		ret = i3c_device_do_xfers(data->i3cdev, xfers_wr_cmd,
-+					  ARRAY_SIZE(xfers_wr_cmd), I3C_HDR_DDR);
-+		if (ret < 0)
-+			return ret;
-+
-+		ready = (address == MMC5633_TEMPERATURE) ?
-+			MMC5633_STATUS1_MEAS_T_DONE_BIT : MMC5633_STATUS1_MEAS_M_DONE_BIT;
-+		ret = read_poll_timeout(i3c_device_do_xfers, val,
-+					val ||
-+					status[0] & ready,
-+					10 * USEC_PER_MSEC,
-+					100 * 10 * USEC_PER_MSEC, 0,
-+					data->i3cdev, xfers_rd_sta_cmd,
-+					ARRAY_SIZE(xfers_rd_sta_cmd), I3C_HDR_DDR);
-+		if (ret) {
-+			dev_err(dev, "data not ready\n");
-+			return ret;
-+		}
-+		if (val) {
-+			dev_err(dev, "i3c transfer error\n");
-+			return val;
-+		}
-+		return i3c_device_do_xfers(data->i3cdev, xfers_rd_data_cmd,
-+					   ARRAY_SIZE(xfers_rd_data_cmd), I3C_HDR_DDR);
-+	}
-+
-+	/* Fallback to use SDR/I2C mode */
-+	ret = mmc5633_take_measurement(data, address);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (address == MMC5633_TEMPERATURE)
-+		/*
-+		 * Put tempeature to last byte of buff to align HDR case.
-+		 * I3C will early terminate data read if previous data is not
-+		 * available.
-+		 */
-+		return regmap_bulk_read(data->regmap, MMC5633_REG_TOUT, buf + sz - 1, 1);
-+
-+	return regmap_bulk_read(data->regmap, MMC5633_REG_XOUT0, buf, sz);
-+}
-+
-+/* X,Y,Z 3 channels, each channel has 3 byte and TEMP */
-+#define MMC5633_ALL_SIZE (3 * 3 + 1)
-+
-+static int mmc5633_get_raw(struct mmc5633_data *data, int index, unsigned char *buf, int *val)
-+{
-+	if (index == MMC5633_TEMPERATURE) {
-+		*val = buf[MMC5633_ALL_SIZE - 1];
-+		return 0;
-+	}
-+	/*
-+	 * X[19..12] X[11..4] Y[19..12] Y[11..4] Z[19..12] Z[11..4] X[3..0] Y[3..0] Z[3..0]
-+	 */
-+	*val = get_unaligned_be16(buf + 2 * index) << 4;
-+	*val |= buf[index + 6] >> 4;
-+
-+	return 0;
-+}
-+
-+static int mmc5633_read_raw(struct iio_dev *indio_dev,
-+			    struct iio_chan_spec const *chan, int *val,
-+			    int *val2, long mask)
-+{
-+	struct mmc5633_data *data = iio_priv(indio_dev);
-+	char buf[MMC5633_ALL_SIZE];
-+	unsigned int reg, i;
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		scoped_guard(mutex, &data->mutex) {
-+			ret = mmc5633_read_measurement(data, chan->address, buf, MMC5633_ALL_SIZE);
-+			if (ret < 0)
-+				return ret;
-+		}
-+
-+		ret = mmc5633_get_raw(data, chan->address, buf, val);
-+		if (ret < 0)
-+			return ret;
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SCALE:
-+		if (chan->type == IIO_MAGN) {
-+			*val = 0;
-+			*val2 = 62500;
-+		} else {
-+			*val = 0;
-+			*val2 = 800000000; /* 0.8C */
-+		}
-+		return IIO_VAL_INT_PLUS_NANO;
-+	case IIO_CHAN_INFO_OFFSET:
-+		if (chan->type == IIO_TEMP) {
-+			*val = -75;
-+			return IIO_VAL_INT;
-+		}
-+		return -EINVAL;
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		scoped_guard(mutex, &data->mutex) {
-+			ret = regmap_read(data->regmap, MMC5633_REG_CTRL1, &reg);
-+			if (ret < 0)
-+				return ret;
-+		}
-+
-+		i = FIELD_GET(MMC5633_CTRL1_BW_MASK, reg);
-+		if (i >= ARRAY_SIZE(mmc5633_samp_freq))
-+			return -EINVAL;
-+
-+		*val = mmc5633_samp_freq[i][0];
-+		*val2 = mmc5633_samp_freq[i][1];
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int mmc5633_write_raw(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan, int val,
-+			     int val2, long mask)
-+{
-+	struct mmc5633_data *data = iio_priv(indio_dev);
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		ret = mmc5633_get_samp_freq_index(data, val, val2);
-+		if (ret < 0)
-+			return ret;
-+
-+		guard(mutex)(&data->mutex);
-+
-+		return regmap_update_bits(data->regmap, MMC5633_REG_CTRL1,
-+					  MMC5633_CTRL1_BW_MASK,
-+					  FIELD_PREP(MMC5633_CTRL1_BW_MASK, ret));
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int mmc5633_read_avail(struct iio_dev *indio_dev,
-+			      struct iio_chan_spec const *chan,
-+			      const int **vals,
-+			      int *type,
-+			      int *length,
-+			      long mask)
-+{
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		*vals = (const int *)mmc5633_samp_freq;
-+		*length = ARRAY_SIZE(mmc5633_samp_freq) * 2;
-+		*type = IIO_VAL_INT_PLUS_MICRO;
-+		return IIO_AVAIL_LIST;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info mmc5633_info = {
-+	.read_raw	= mmc5633_read_raw,
-+	.write_raw	= mmc5633_write_raw,
-+	.read_avail	= mmc5633_read_avail,
-+};
-+
-+static bool mmc5633_is_writeable_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case MMC5633_REG_CTRL0:
-+	case MMC5633_REG_CTRL1:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static bool mmc5633_is_readable_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case MMC5633_REG_XOUT0:
-+	case MMC5633_REG_XOUT1:
-+	case MMC5633_REG_YOUT0:
-+	case MMC5633_REG_YOUT1:
-+	case MMC5633_REG_ZOUT0:
-+	case MMC5633_REG_ZOUT1:
-+	case MMC5633_REG_XOUT2:
-+	case MMC5633_REG_YOUT2:
-+	case MMC5633_REG_ZOUT2:
-+	case MMC5633_REG_TOUT:
-+	case MMC5633_REG_STATUS1:
-+	case MMC5633_REG_ID:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static bool mmc5633_is_volatile_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case MMC5633_REG_CTRL0:
-+	case MMC5633_REG_CTRL1:
-+		return false;
-+	default:
-+		return true;
-+	}
-+}
-+
-+static const struct reg_default mmc5633_reg_defaults[] = {
-+	{ MMC5633_REG_CTRL0,  0x00 },
-+	{ MMC5633_REG_CTRL1,  0x00 },
-+};
-+
-+static const struct regmap_config mmc5633_regmap_config = {
-+	.name = "mmc5633_regmap",
-+
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+
-+	.max_register = MMC5633_REG_ID,
-+	.cache_type = REGCACHE_MAPLE,
-+
-+	.writeable_reg = mmc5633_is_writeable_reg,
-+	.readable_reg = mmc5633_is_readable_reg,
-+	.volatile_reg = mmc5633_is_volatile_reg,
-+
-+	.reg_defaults = mmc5633_reg_defaults,
-+	.num_reg_defaults = ARRAY_SIZE(mmc5633_reg_defaults),
-+};
-+
-+static int mmc5633_common_probe(struct regmap *regmap, char *name,
-+				struct i3c_device *i3cdev)
-+{
-+	struct device *dev = regmap_get_device(regmap);
-+	struct mmc5633_data *data;
-+	struct iio_dev *indio_dev;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	data = iio_priv(indio_dev);
-+
-+	data->regmap = regmap;
-+	data->i3cdev = i3cdev;
-+
-+	ret = devm_mutex_init(dev, &data->mutex);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->info = &mmc5633_info;
-+	indio_dev->name = name;
-+	indio_dev->channels = mmc5633_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(mmc5633_channels);
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+
-+	ret = mmc5633_init(data);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "mmc5633 chip init failed\n");
-+
-+	return devm_iio_device_register(dev, indio_dev);
-+}
-+
-+static int mmc5633_suspend(struct device *dev)
-+{
-+	struct regmap *regmap = dev_get_regmap(dev, NULL);
-+
-+	regcache_cache_only(regmap, true);
-+
-+	return 0;
-+}
-+
-+static int mmc5633_resume(struct device *dev)
-+{
-+	struct regmap *regmap = dev_get_regmap(dev, NULL);
-+	int ret;
-+
-+	regcache_mark_dirty(regmap);
-+	ret = regcache_sync_region(regmap, MMC5633_REG_CTRL0, MMC5633_REG_CTRL1);
-+	if (ret)
-+		dev_err(dev, "Failed to restore control registers\n");
-+
-+	regcache_cache_only(regmap, false);
-+
-+	return 0;
-+}
-+
-+static int mmc5633_i2c_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct regmap *regmap;
-+
-+	regmap = devm_regmap_init_i2c(client, &mmc5633_regmap_config);
-+	if (IS_ERR(regmap))
-+		return dev_err_probe(dev, PTR_ERR(regmap), "regmap init failed\n");
-+
-+	return mmc5633_common_probe(regmap, client->name, NULL);
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(mmc5633_pm_ops, mmc5633_suspend, mmc5633_resume);
-+
-+static const struct of_device_id mmc5633_of_match[] = {
-+	{ .compatible = "memsic,mmc5603" },
-+	{ .compatible = "memsic,mmc5633" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, mmc5633_of_match);
-+
-+static const struct i2c_device_id mmc5633_i2c_id[] = {
-+	{ "mmc5603" },
-+	{ "mmc5633" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, mmc5633_i2c_id);
-+
-+static struct i2c_driver mmc5633_i2c_driver = {
-+	.driver = {
-+		.name = "mmc5633_i2c",
-+		.of_match_table = mmc5633_of_match,
-+		.pm = pm_sleep_ptr(&mmc5633_pm_ops),
-+	},
-+	.probe = mmc5633_i2c_probe,
-+	.id_table =  mmc5633_i2c_id,
-+};
-+
-+static const struct i3c_device_id mmc5633_i3c_ids[] = {
-+	I3C_DEVICE(0x0251, 0x0000, NULL),
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i3c, mmc5633_i3c_ids);
-+
-+static int mmc5633_i3c_probe(struct i3c_device *i3cdev)
-+{
-+	struct device *dev = i3cdev_to_dev(i3cdev);
-+	struct regmap *regmap;
-+	char *name;
-+
-+	name = devm_kasprintf(dev, GFP_KERNEL, "mmc5633(%s)", dev_name(dev));
-+	if (!name)
-+		return -ENOMEM;
-+
-+	regmap = devm_regmap_init_i3c(i3cdev, &mmc5633_regmap_config);
-+	if (IS_ERR(regmap))
-+		return dev_err_probe(dev, PTR_ERR(regmap),
-+				     "Failed to register i3c regmap\n");
-+
-+	return mmc5633_common_probe(regmap, name, i3cdev);
-+}
-+
-+static struct i3c_driver mmc5633_i3c_driver = {
-+	.driver = {
-+		.name = "mmc5633_i3c",
-+	},
-+	.probe = mmc5633_i3c_probe,
-+	.id_table = mmc5633_i3c_ids,
-+};
-+module_i3c_i2c_driver(mmc5633_i3c_driver, &mmc5633_i2c_driver)
-+
-+MODULE_AUTHOR("Frank Li <Frank.li@nxp.com>");
-+MODULE_DESCRIPTION("MEMSIC MMC5633 magnetic sensor driver");
-+MODULE_LICENSE("GPL");
-
--- 
-2.34.1
+bod
 
 
