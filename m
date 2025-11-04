@@ -1,247 +1,152 @@
-Return-Path: <devicetree+bounces-234757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F1FEC3066F
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 11:03:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18DECC306C6
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 11:07:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BABD134BF5A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 10:03:09 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0064C34DE56
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 10:07:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 104862D23BD;
-	Tue,  4 Nov 2025 10:03:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51966303A28;
+	Tue,  4 Nov 2025 10:07:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y95QAXwx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WSpO8AuT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7CB627E04C;
-	Tue,  4 Nov 2025 10:03:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2587D2D2391;
+	Tue,  4 Nov 2025 10:07:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762250585; cv=none; b=eRYxOEN+ZBH5FWeXVr5wQmQM3p+aGXHOk0zVAIyoBq8Opq34S/c3OSdSLUdc2xvcR1XMTisa8RhKrz5qPMVdy1/vTHHJyFhjVLXWRAbnh/tnnfDfiPKTI90e3Yv4gyVzasd1hPFZL2Y1FfwrQJFLLqKMi4PEueH1wEY/cKbhxVI=
+	t=1762250840; cv=none; b=SfmUvq7G4A+ZK6Eg/dF4zj+o8uydnEIQqOQZg2yDL5OpOQVC3pVgBbZ9JnGmoIi5hGoXwfpSEvpvJiUngY1Y/39yvlq6/Ua/uClte/Hwt3qX4w86XdIOjqAYEPoMvijVdp9ON7buzKA8zGXtEQSkiGDwf5rHj9roFS4rcSDVx6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762250585; c=relaxed/simple;
-	bh=2DvZOttmCMGhJVjRPtQmLNf9Cv5+1jUn6WqdwCDUNJI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XlZHwjWNF6luxIcakDizAxemCZ/ftZoFFGn/qI6yqk9evZIjDTM8xC4PeoONWadIP8aHtIlaMbDYEa0+KUKr0lrUBKvm5bmlJI+ThbB0uIFhJKhPWYcnQ9bBGFmo67UCqMi/zwztJp3F9EzCHW6DBJ4u84uR29V4b7TgGOieY20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y95QAXwx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C7F4C4CEF7;
-	Tue,  4 Nov 2025 10:03:02 +0000 (UTC)
+	s=arc-20240116; t=1762250840; c=relaxed/simple;
+	bh=3Jptzh9Uj7umyxrc9ceVJFGE0YUwYq1+WJmJ1aF5Eig=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=boApfGboFuX/yMUeT+Dy53ySq2mzacbwmDBwlnDj1ofHza6k2a3JEww8U1FspxvxKwxrjtuHtvdvGzh5DDBV2EN4NFTEz59vrOsJxOKZwI+k+l0wlJdN1oacRPc40ABMsuizDYRlF4SB+rEqUH8BWaUwanj7iIIJfjLwko2bO+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WSpO8AuT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A3A4C4CEF7;
+	Tue,  4 Nov 2025 10:07:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762250583;
-	bh=2DvZOttmCMGhJVjRPtQmLNf9Cv5+1jUn6WqdwCDUNJI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Y95QAXwx8mvpXm4IYCFvCUCKCQ5y4h4Mklc00Tmy25wZ83n7/bSXYXzRXJAIK68Mg
-	 kTFbicgW4b7aQp4kcY4qT+WUb3C+XJutOPY/INDaDxl7mVAmVffoM+pyI2TtGA/cA3
-	 0hYovc7OopGw1yWhwDapBsCXvOlBstR0+VqJKHkOraF7dBC1vnzIvqUVRy9gJtiN39
-	 OQCuqPLpFOWgLBjiKu1AGFdM0hc4a6kFB5JChVYRhBSSMCjtCSpDHu4iMCbCficebs
-	 gANKCfLy56LYExl0+IGSqqSKuiddZQ/4irYmbtg4mLozeWyqBNeYbUGmm4Pkz3WqyF
-	 LwXtFxFVOKoRw==
-Date: Tue, 4 Nov 2025 11:03:01 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Charan Pedumuru <charan.pedumuru@gmail.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Stefan Agner <stefan@agner.ch>, Lucas Stach <dev@lynxeye.de>, 
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mtd: nvidia,tegra20-nand: convert to DT
- schema
-Message-ID: <20251104-prompt-rampant-cat-30fd9a@kuoka>
-References: <20251030-nvidia-nand-v1-1-7614e1428292@gmail.com>
+	s=k20201202; t=1762250840;
+	bh=3Jptzh9Uj7umyxrc9ceVJFGE0YUwYq1+WJmJ1aF5Eig=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WSpO8AuTCzUiN6ptHVMldKwq9N0p8LJR+Qthnhl0NxP+tjmpWl56XKBbV9UI/KbW7
+	 YHpMqbLDSVbBfL6pmg1x35IX1EOcV7bCAVg5a+23TjAV0jl7p++snnnnc2LJkRVsDE
+	 hQ0UoIh72+eP1VhvrsmkX1QysyKtnxbracm8BszjjXt2DPD7I+/ZnrOOPDnCXWpkGn
+	 f3019tuv96DhxrBffBbYq1EllhsTnA3fnODTsoUl1r3vnShuGqYXh/dcks3g7i4Hqx
+	 Ixmc1y9heZ4RDRTN3LHMNKwvWeVASp6X2ZkncVh0JMH6SN45NbpFpvIELQ99walpxd
+	 sJHlYv5QsTaAg==
+Message-ID: <9ae116a5-ede1-427f-bdff-70f1a204a7d6@kernel.org>
+Date: Tue, 4 Nov 2025 11:07:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251030-nvidia-nand-v1-1-7614e1428292@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v3 1/4] dt-bindings: net: ftgmac100: Add delay
+ properties for AST2600
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Po-Yu Chuang <ratbert@faraday-tech.com>,
+ Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+ "taoren@meta.com" <taoren@meta.com>
+References: <20251103-rgmii_delay_2600-v3-0-e2af2656f7d7@aspeedtech.com>
+ <20251103-rgmii_delay_2600-v3-1-e2af2656f7d7@aspeedtech.com>
+ <20251104-victorious-crab-of-recreation-d10bf4@kuoka>
+ <SEYPR06MB5134B91F5796311498D87BE29DC4A@SEYPR06MB5134.apcprd06.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <SEYPR06MB5134B91F5796311498D87BE29DC4A@SEYPR06MB5134.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Oct 30, 2025 at 06:47:25PM +0000, Charan Pedumuru wrote:
-> Convert NVIDIA Tegra NAND Flash Controller binding to YAML format.
-> Changes during Conversion:
-> - Define new properties `power-domains` and `operating-points-v2`
->   to resolve errors generated by `dtb_check`.
-
-instead - because existing in-tree DTS uses them.
-
-> - Add the `#address-cells` and `#size-cells` properties to the parent
->   node to fix errors reported by `dt_check`, and include these properties
-
-What is dt_check? Aren't you adding them because other schema requires
-them? Then say that (and which schema...).
-
-
->   in the `required` section, as they are not mentioned in the text binding.
+On 04/11/2025 10:54, Jacky Chou wrote:
+> Hi Krzysztof
 > 
-> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
-> ---
->  .../bindings/mtd/nvidia,tegra20-nand.yaml          | 157 +++++++++++++++++++++
->  .../bindings/mtd/nvidia-tegra20-nand.txt           |  64 ---------
->  2 files changed, 157 insertions(+), 64 deletions(-)
+> Thank you for your reply.
 > 
-> diff --git a/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml b/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml
-> new file mode 100644
-> index 000000000000..67b3c45566db
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml
-> @@ -0,0 +1,157 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mtd/nvidia,tegra20-nand.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Tegra NAND Flash Controller
-> +
-> +maintainers:
-> +  - Jonathan Hunter <jonathanh@nvidia.com>
-> +
-> +description:
-> +  Device tree bindings for the NVIDIA Tegra NAND Flash Controller (NFC).
+>>> Create the new compatibles to identify AST2600 MAC0/1 and MAC3/4.
+>>> Add conditional schema constraints for Aspeed AST2600 MAC controllers:
+>>> - For "aspeed,ast2600-mac01", require rx/tx-internal-delay-ps properties
+>>>   with 45ps step.
+>>> - For "aspeed,ast2600-mac23", require rx/tx-internal-delay-ps properties
+>>>   with 250ps step.
+>>
+>> That difference does not justify different compatibles. Basically you said they
+>> have same programming model, just different hardware characteristics, so
+>> same compatible.
+>>
+> 
+> This change was originally based on feedback from a previous review discussion.
+> At that time, another reviewer suggested introducing separate compatibles for 
+> MAC0/1 and MAC2/3 on AST2600, since the delay characteristics differ and they 
+> might not be fully compatible.
 
-Drop sentencem completely redundant. Title already said that.
 
-> +  The controller supports a single NAND chip with specific properties.
-
-What is/are "specific properties"? Can properties be unspecific?
-
-> +
-> +properties:
-> +  compatible:
-> +    const: nvidia,tegra20-nand
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: nand
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    items:
-> +      - const: nand
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  operating-points-v2:
-> +    maxItems: 1
-> +
-> +patternProperties:
-> +  "^nand@[0-5]$":
-
-Keep consistent quotes, either ' or "
-
-> +    type: object
-> +    description: Individual NAND chip connected to the NAND controller
-> +    properties:
-> +      reg:
-> +        maxItems: 1
-> +
-> +      nand-ecc-mode:
-> +        description:
-> +          Operation mode of the NAND ECC, currently only hardware
-> +          mode supported
-> +        const: hw
-> +
-> +      nand-ecc-algo:
-> +        description: Algorithm for NAND ECC when using hw ECC mode
-> +        enum:
-> +          - rs
-> +          - bch
-> +
-> +      nand-bus-width:
-> +        description: Width of the NAND flash bus in bits
-> +        enum: [8, 16]
-> +        default: 8
-> +
-> +      nand-on-flash-bbt:
-> +        description: Use an on-flash bad block table to track bad blocks
-> +        type: boolean
-> +
-> +      nand-ecc-maximize:
-
-Why are you duplicating all these properties from nand schema?
-
-> +        description:
-> +          Maximize ECC strength for the NAND chip, overriding
-> +          default strength selection
-> +        type: boolean
-> +
-> +      nand-ecc-strength:
-> +        description: Number of bits to correct per ECC step (512 bytes)
-> +        enum: [4, 6, 8, 14, 16]
-> +
-> +      nand-is-boot-medium:
-> +        description: Ensures ECC strengths are compatible with the boot ROM
-> +        type: boolean
-> +
-> +      wp-gpios:
-> +        description: GPIO specifier for the write protect pin
-> +        maxItems: 1
-> +
-> +      '#address-cells':
-> +        const: 1
-> +
-> +      '#size-cells':
-> +        const: 1
-> +
-> +    patternProperties:
-> +      "^partition@[0-9a-f]+$":
-> +        $ref: /schemas/mtd/mtd.yaml#
-> +        description:
-> +          Optional MTD partitions for the NAND chip, as defined in mtd.yaml
-> +
-> +    required:
-> +      - reg
-> +
-> +    unevaluatedProperties: false
-
-So this should tell you that you miss proper ref
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +
-> +unevaluatedProperties: false
-
-Same here. Why do you use unevaluatedProperties if there is no ref?
-Please open other bindings to understand how MTD binding should be
-written.
+Your commit msg does not provide enough of rationale for that.
+Difference in DTS properties is rather a counter argument for having
+separate compatibles. That's why you have these properties - to mark the
+difference.
 
 Best regards,
 Krzysztof
-
 
