@@ -1,116 +1,200 @@
-Return-Path: <devicetree+bounces-234830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4179C312AD
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 14:15:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40CE7C312D7
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 14:16:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 468DE1881CCC
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 13:15:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CDC218827F6
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 13:16:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ED092FAC03;
-	Tue,  4 Nov 2025 13:14:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B19231BC88;
+	Tue,  4 Nov 2025 13:16:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BbHSiTHQ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CGmhIGZJ";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="FdTOZNsn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 408F12F7AB4;
-	Tue,  4 Nov 2025 13:14:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C237931A564
+	for <devicetree@vger.kernel.org>; Tue,  4 Nov 2025 13:16:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762262099; cv=none; b=SoWlLHs1LtDmTt9MraH7TAO7DsNaVw3K2qghTsiK02zP81coDAulj5vZgwNiUhAKz9Eg45WCzV4uHjEV1StPCarPwj5BFviUpEcGLu5v4j6PD9GXOuk1yafZfrowDd8G8xjV28DoxsTQwMFefzmkV4n0KQdjppZn/E3T0i86vzw=
+	t=1762262187; cv=none; b=mwV5xWWfp6upqktsatmnRWJAvQ0qFTgUwFDVsBYQYrrbmWW23+g5yBKCafWvAdKLCiGuTgL+Bkenu8ZxLcFRU8ETOdv91Drf2GMqcbcMgys4iL3npm12JK3POjMGa0ArLQ0m1Wo2of0SyV7jr1pAoCQF6W8Kmom++WsppP8GWsY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762262099; c=relaxed/simple;
-	bh=ZEU8FvkHiwIhUuKOfPNCnyWW5StZUux0a+VENGL9yng=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p36CiOCpXIwSb1dkmaXvwdSMVQI2aJ6eMVq5xUO3DLAqU0NamhU/QcR7L6H43BI3vPUh6W9I9Xbm7nE88RlzLprzDbOOIju3KrrAWls7CHuzlrVTEa0bYGCqo+h7InkhoBNsSvCdKdWSXFheZp4rQz0cCRWR0MU1U4zxHeqgW9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BbHSiTHQ; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762262098; x=1793798098;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ZEU8FvkHiwIhUuKOfPNCnyWW5StZUux0a+VENGL9yng=;
-  b=BbHSiTHQYe36haAvJDcOd7Ktqea1vFzmEtPZYfBfAO0sHj5a0a8ThMSR
-   +fG1JCtUd047GaTf3kPGU9byjSRTfU5hnTEYlEbVxGONPXbIEE6M5jV6H
-   AeElgIqjERMlensbxRp+F+kc1BOPOFMKdHdK8Jmjat53BuZeFY1jypoXu
-   r27YiuxUbF0ium4lxpNzV1UOaFTOP1JdB00FcBkxatOEAfXzjq6bBFKzH
-   a+9WS07tcAFwDKGF/FAz5r8dQUzO514+LbC2alxCo0XCJ0fw5od9xR+ll
-   GcCkmMNFr8LY4h2oe00Q9RJFFk7gDc5PtEopO1wfYb8mJ29rQcg8T6gyc
-   Q==;
-X-CSE-ConnectionGUID: Gth/IuAfTa63wc2DXda0sQ==
-X-CSE-MsgGUID: 3X1yerdcSnyF+OYY+7Q9IA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11602"; a="74648188"
-X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; 
-   d="scan'208";a="74648188"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2025 05:14:57 -0800
-X-CSE-ConnectionGUID: dCqmaljzTcyrDLfwN0qA1Q==
-X-CSE-MsgGUID: jRDMMh8+RIOlcOj7+nYusg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,279,1754982000"; 
-   d="scan'208";a="186833101"
-Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
-  by fmviesa007.fm.intel.com with ESMTP; 04 Nov 2025 05:14:54 -0800
-Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vGGrl-000RQC-2H;
-	Tue, 04 Nov 2025 13:14:41 +0000
-Date: Tue, 4 Nov 2025 21:13:07 +0800
-From: kernel test robot <lkp@intel.com>
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>, andersson@kernel.org,
-	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, sre@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-	Loic Poulain <loic.poulain@oss.qualcomm.com>
-Subject: Re: [PATCH 4/5] firmware: qcom: scm: Support for EDL reboot mode
-Message-ID: <202511042044.FqeSCxnF-lkp@intel.com>
-References: <20251103182006.1158383-5-loic.poulain@oss.qualcomm.com>
+	s=arc-20240116; t=1762262187; c=relaxed/simple;
+	bh=dahnfKSQZXYULZ5tpN1l5CdbLbc02qJ3aJMjuy8fydc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NC2qsL7YdEcfIyn82aE7cLolbU1Dk78lqcXPGeTxXJv/ivFbF34BhV4qTBpbXqtA2LzhYvbqVVTwVWHwsEWXijyD62unEBplXYsFJcIE8PKeQVKhCGPBviJujkKA/jGDeyCL8oVxKRPfnfx47EZh3H/XoO2Ql6rrZJWlfHk4pfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CGmhIGZJ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=FdTOZNsn; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A4Cftil1912068
+	for <devicetree@vger.kernel.org>; Tue, 4 Nov 2025 13:16:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	tCkbvOaLp4lIGumAdGTHtAA0z022CSMFZ6B3cK81eBA=; b=CGmhIGZJf928EuFa
+	YjJDL73yAMsOTF9bxfON1lMw8XS6GO9aOAg2GY5bokJm1oThIcZlDXaHWL5783qv
+	sevzARvJpmeroMqwQDcD/ybRd2IU3OUtGiIunE7EOvWHG1QRUy27OH5zxb2/dOBC
+	NZiJI7ULK26ZihycpczXb6BzXb9dp546RRiDF/QkxNU9he+lNPYJl0yyD5ejpHk3
+	6FJdQD+Z76HIV553LjTUggT3mER5e2mhDTwmWHXshm5a5oUP9DykTCDrjdNNT8YK
+	8i8rPMdcMyCpwyvKKeSOfUJZSX2ULhoGVQG0YUBH94Xbc6iXLoDQs//L3GjvSBKM
+	5yXuJw==
+Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a70exk0cr-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 13:16:24 +0000 (GMT)
+Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-b55283ff3fcso3841649a12.3
+        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 05:16:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762262184; x=1762866984; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tCkbvOaLp4lIGumAdGTHtAA0z022CSMFZ6B3cK81eBA=;
+        b=FdTOZNsn00/p1kYx86iwQv9F9hAsvGYtaociYuvyuG68ZVHRGh7DLhNnrNc9tjh4lL
+         kPxxWKW1qDOJW01XqV0i6IXb5CmtHJ2k+V2rQSFjPRc+CNsAyD8HstG0f8Y/4ldbHmJF
+         tgpxvZmOYZuL5vB0n2kFjQ0y9b2XaJYBro/Lp6n3KUs5isAgAls2RQZXWJ5cWkivrdS+
+         akb1pJo56ReMQkoC9rgCYENmjYijt0iEL2qM25n9peqXJ45Ic5uQ76xGDbmrGanw1Qjq
+         z98kpkk0Y1k6CMvLvhorwGKcF9DT0MfF/7H9URwy7dErxO9pVrPbzEHPttWMd1ZMZVWq
+         kWtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762262184; x=1762866984;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tCkbvOaLp4lIGumAdGTHtAA0z022CSMFZ6B3cK81eBA=;
+        b=KfEOUQ6RzVvystoEpuLoD9U8Uhyx+/6dtmBBDjL6yBMC8W0c5RVtMzCAgjTMDzaZz3
+         TS5foKV8DjbIpJ/ql1B14Rj5QpCYXh4B4NjzftLl8kHP9F23Xw7b8WcNRugKaZ78RAt3
+         zpPqEFLlamaytYldBE5gLaB5jsQ1Q8fgvyHk9lyqBAGyKnTsvH6YkWk9ibYefQT6oP6M
+         AEXXhjGXN6OE1of8kHzYaUqtyE5EYGxbSk5hrDoIp+Szbctp/h02lc0xNc0AtgjUf+oM
+         2aEMJbx5Tw5Dh+d4dLLMHnRpohifwdfcpTMuMFHvVtUe0quEyiL+UtCl4LXJPun4ni+Z
+         WgxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXGy5dKTzQ7LMw2o0PPbSfYJLtWyFOO4Hli9psTEavtUK3oWHTM2NxQsaJIrfMg0CqB/bF69YHGj7ar@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzmo0hVe4TW/jk92oiggKxa3y8qgpsgIUs7F3ibgunyUfs8q2BV
+	rI2aHFhbIcqDlVVjPnlzRFziftpycUOr/Hz6fbFarWoLLehSfz/lH7k5ZOPz33tvoDn6pE5DwQR
+	gN64yQFyxzLhvKDn3NishSwubacxRxhwPT4Gm0wG6HBlXGhxuLi6nzzys6b+s4Hcd
+X-Gm-Gg: ASbGncu0AT832oAi4LkWnL1OOCi8izoKcqrg8Sdxsr/aEvHqwmMH+wYF4kEIazN5tm0
+	qZQdKJm5215QPcCik+3LKgZUsqbTHay2tHPqjisOdi1aaVqn8kHSfu/fUW5Q5det9lU1D4gJmoR
+	qizqLU5/af/vQZaTiMMe4WWEzYba+tkQmPvaT0yPy3acxz4H/6nPYOEGFIbQSPpE1qORT/CB4np
+	nUEujhIp79j/V53xqO5V7ojX/u03eB6Kd6m6AOGTjTeJfNwXs962flChW6MG8yQdB3hJ/44f854
+	itiCLBNI0QO1XfNXfNCatZxrGl1Xj5a4TqZWtG8Ctdi5BJmumK3q/w/ZMC/ndL8bbNDCrvIIeQv
+	iktkaNDkKfbFFyaK34rNJ9XKvpVZN5czOgZszixyuysw=
+X-Received: by 2002:a05:6a20:12c7:b0:334:9fbb:35c3 with SMTP id adf61e73a8af0-348cbfc36e5mr20524451637.46.1762262183500;
+        Tue, 04 Nov 2025 05:16:23 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFJ96wFJAi6EOKorEp/J4xzwntMqgifOhvphrTFuhOkUboj24jia9QeZ94B+cMWoPmdjudC8w==
+X-Received: by 2002:a05:6a20:12c7:b0:334:9fbb:35c3 with SMTP id adf61e73a8af0-348cbfc36e5mr20524417637.46.1762262182906;
+        Tue, 04 Nov 2025 05:16:22 -0800 (PST)
+Received: from [192.168.1.9] ([122.164.83.168])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-ba1f18315bfsm2412021a12.5.2025.11.04.05.16.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Nov 2025 05:16:22 -0800 (PST)
+Message-ID: <b81cdd25-3da7-4dd2-b69b-2f7b131f9610@oss.qualcomm.com>
+Date: Tue, 4 Nov 2025 18:46:17 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251103182006.1158383-5-loic.poulain@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: sram: qcom,imem: drop the IPQ5424 compatible
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251015-ipq5424-imem-v1-1-ee1c1476c1b6@oss.qualcomm.com>
+ <20251021-quaint-hopping-tuna-0dade2@kuoka>
+ <cfb94b1a-7ad0-4067-a08b-2af358edb768@oss.qualcomm.com>
+ <45a74411-32a0-4a28-a738-9f44d66c0de3@oss.qualcomm.com>
+Content-Language: en-US
+From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+In-Reply-To: <45a74411-32a0-4a28-a738-9f44d66c0de3@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=APHuRV3Y c=1 sm=1 tr=0 ts=6909fca8 cx=c_pps
+ a=rz3CxIlbcmazkYymdCej/Q==:117 a=8axTHWJ9fAdUHyy7aoPncQ==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=NEAV23lmAAAA:8 a=EUspDBNiAAAA:8
+ a=_CKE_32nWIW8_9EVYHUA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=bFCP_H2QrGi7Okbo017w:22
+X-Proofpoint-GUID: vX9ksakkUYVjkuw7752AQSmfSg58i08i
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA0MDEwOSBTYWx0ZWRfXzGnsvp6GYFbf
+ w1jN25J157NPJXvA1xjMuppRpSZCwZItihSgLySRsEaTXrcgAWbTk4Y+Q9GjGr4+oY98fQwgxae
+ GHlA3ZqJ/zWE3nI/hwjTzvVMULbKxz9K1nDWJ8luDGXKEZnjp+Pr/ew3/1p736nsbTUweKGXK6Y
+ iRA2cxBjDxac7QDmNcZ4yleXT0Gh1M14zN9i11T/l2wEDbj3cIyAtD5Z/C/7eKVWaT35HCWWwYJ
+ ZI98PEGzWdm1bAW2kXFq6h8SRyGMd7MxqyIlnUy1/PHnsBSt1BfGSTze98hg98gHOnY54uBq32t
+ b6HBsgr02GKJ6X2nBm9FF3RgCpDF2r0wmBs6l4nKlril9r/rTFoswljC0PREaTJAUvFZwiECyx+
+ 9Vw0SMuvMrNkHPNy9lTUnWwOhqqjOA==
+X-Proofpoint-ORIG-GUID: vX9ksakkUYVjkuw7752AQSmfSg58i08i
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-04_01,2025-11-03_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 clxscore=1015 impostorscore=0 priorityscore=1501 phishscore=0
+ suspectscore=0 adultscore=0 bulkscore=0 spamscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511040109
 
-Hi Loic,
 
-kernel test robot noticed the following build errors:
+On 11/4/2025 6:18 PM, Konrad Dybcio wrote:
+> On 10/27/25 5:59 AM, Kathiravan Thirumoorthy wrote:
+>> On 10/21/2025 12:32 PM, Krzysztof Kozlowski wrote:
+>>> On Wed, Oct 15, 2025 at 11:46:58AM +0530, Kathiravan Thirumoorthy wrote:
+>>>> Based on the recent discussion in the linux-arm-msm list[1], it is not
+>>>> appropriate to define the IMEM (On-Chip SRAM) as syscon or MFD. Since
+>>>> there are no consumers of this compatible, drop it and move to
+>>>> mmio-sram.
+>>>>
+>>>> While at it, add a comment to not to extend the list and move towards
+>>>> mmio-sram.
+>>>>
+>>>> [1] https://lore.kernel.org/linux-arm-msm/e4c5ecc3-fd97-4b13-a057-bb1a3b7f9207@kernel.org/
+>>>>
+>>>> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+>>>> ---
+>>>>    Documentation/devicetree/bindings/sram/qcom,imem.yaml | 3 +--
+>>>>    1 file changed, 1 insertion(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>>>> index 6a627c57ae2fecdbb81cae710f6fb5e48156b1f5..3147f3634a531514a670e714f3878e5375db7285 100644
+>>>> --- a/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>>>> +++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>>>> @@ -14,11 +14,10 @@ description:
+>>>>      transactions.
+>>>>      properties:
+>>>> -  compatible:
+>>>> +  compatible: # Don't grow this list. Please use mmio-sram if possible
+>>>>        items:
+>>>>          - enum:
+>>>>              - qcom,apq8064-imem
+>>>> -          - qcom,ipq5424-imem
+>>> And where is qcom,ipq5424-imem added? This is supposed to be one patch.
+>>
+>> Kindly excuse for the delay in the response as I was out of work.
+>>
+>> This is supposed to be added in the sram.yaml binding, but I haven't completed that yet. Between Konrad has done some rework [1] on removing the imem.yaml and combined with sram.yaml (in his dev tree). So I hope it will be taken care along with that.
+>>
+>> Konrad, Can you help to share the plan on when the patches will be posted for review? It will be helpful for reviving my other series[2] and obviously yours too :)
+>>
+>> [1] https://github.com/quic-kdybcio/linux/commits/topic/imem_sram/
+>>
+>> [2] https://lore.kernel.org/linux-arm-msm/20250610-wdt_reset_reason-v5-0-2d2835160ab5@oss.qualcomm.com/#t
+> Let's get an answer on the Kaanapali thread and go from there
+>
+> https://lore.kernel.org/linux-arm-msm/176222838026.1146775.13955186005277266199.b4-ty@kernel.org/T/#mb3284a3a0bc3a9cda9cc6c0fb9433e8c2dddea2f
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on sre-power-supply/for-next linus/master v6.18-rc4 next-20251104]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Loic-Poulain/dt-bindings-power-reset-qcom-pon-Document-qcom-warm-reset/20251104-022140
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20251103182006.1158383-5-loic.poulain%40oss.qualcomm.com
-patch subject: [PATCH 4/5] firmware: qcom: scm: Support for EDL reboot mode
-config: arm64-randconfig-003-20251104 (https://download.01.org/0day-ci/archive/20251104/202511042044.FqeSCxnF-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 13.4.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251104/202511042044.FqeSCxnF-lkp@intel.com/reproduce)
+Yeah, I'm also waiting for the conclusion on the thread.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511042044.FqeSCxnF-lkp@intel.com/
 
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
->> ERROR: modpost: "devm_reboot_mode_register" [drivers/firmware/qcom/qcom-scm.ko] undefined!
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>
+> Konrad
 
