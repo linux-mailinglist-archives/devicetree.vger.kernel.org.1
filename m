@@ -1,149 +1,224 @@
-Return-Path: <devicetree+bounces-234562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-234565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C054BC2EF20
-	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 03:19:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB1CDC2EF6B
+	for <lists+devicetree@lfdr.de>; Tue, 04 Nov 2025 03:26:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6BC63BA94A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 02:18:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C2C4189831D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Nov 2025 02:26:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8673523B62C;
-	Tue,  4 Nov 2025 02:18:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62B4223EA8D;
+	Tue,  4 Nov 2025 02:26:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="adjU0mbr"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="TRQeVesB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013066.outbound.protection.outlook.com [52.101.72.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C5601DE4DC;
-	Tue,  4 Nov 2025 02:18:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762222718; cv=none; b=LB2Ro2NblBqtntsNAPejlNtu8eWUQ7D7aNCYihVbAdLunw/MyD6zru6m683XuuZVUgfV24TnqXuaosb/xV7aiHyL8nT8T4+YiQcS2bg7piUqw39Ot9Z0ngjqGHgY2zMi3t43UOCiol3fr1ieiLRkgUq5neAAHBWWvQmde1vUwDE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762222718; c=relaxed/simple;
-	bh=FGOnnk3YAcN/+bFQPXCqXStUWdrCxyOR6xZUcaTRVdU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SGiknEe1sGymOfXOxK8dgraYIaN3e4OmdJhFWSCA9kjwnVenx8HVKdWUKkciLgdSgx5zF8Amj+1yzraYmMQmrxelbGKRy2AFZXRSskaWGd4i4KL0jZCS3WQqNdDpxOoA/+t1Mf8QTia2/xWSHxkDkFSDTYf2s1h56ZIY2sFxi3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=adjU0mbr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C071C4CEE7;
-	Tue,  4 Nov 2025 02:18:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762222718;
-	bh=FGOnnk3YAcN/+bFQPXCqXStUWdrCxyOR6xZUcaTRVdU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=adjU0mbr7wBKoKUfGhBlXyq4/dxlm9fA6gJ/5DEhKXIm98Obu4VC3O5Gob3Lb/wCA
-	 BoSJbBPVrAt0/ZByTqmjobZusCYYsQnCUUSjNA9JERNIVCPZtt1f2DIAYFTyz3jn4a
-	 TQti+ZdiouG9S8HmIFHyEm8ulNhJ9TapDid+BTKuDbafs/XyijvTrUDCYSMoWvg7kG
-	 f7ZMx8DmFJVM6X/4SUMjNv+Rnizk9zgv6d/WlH4VWe5cXL4Io5FW7GW04IaGlUBh6R
-	 Vc4RPq3W0JdjPitUViIZJ/0nsVI5r3ECCmcM6UbuTfKdDR0hEQHMVhNDOMl51mj7Xf
-	 BoXsUXwc4WTYA==
-Date: Mon, 3 Nov 2025 20:22:10 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, sre@kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH 4/5] firmware: qcom: scm: Support for EDL reboot mode
-Message-ID: <t5igalcp5zoxmqzt4p4fcipssjth7zifctj7ta4tkp3uxkvglc@gsdzioqth7zh>
-References: <20251103182006.1158383-1-loic.poulain@oss.qualcomm.com>
- <20251103182006.1158383-5-loic.poulain@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 452571DB13A;
+	Tue,  4 Nov 2025 02:26:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.66
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762223176; cv=fail; b=qBUZ6VIWdgq08g5pINqJdAyZs918gVdFHYeA/twGCd4hYxsfWMbXUwtskdJojspJU4oAQ6Q+3rCBQI1hZcBDAY7scbRaVBqwf3mCDO9G29z6DUgdBvQYcDlRRV7+BKcg1Ez164HX3JQDgxLzk8/bzbp8NIkJ49ZYDEb89DqCe0E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762223176; c=relaxed/simple;
+	bh=fdsW4zDeRBHO/gpWkz7NSEP7mfmXGmtcesZIi9lFtT4=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=nnAp4eJhx+fB7+apojP/qTfMT+MmrD8TzyiulA2MmzZ1t9mdD09du9HBhD8cUf9fHrHc24Mj59Rd9Mb9VdCQew2fNHPmpR/NnNDNVhNW2C2T58+9/hu8TW2Vuxv0Ajv1sQOMZcpxaiMYgrNxJoEpJ1tWDG99j34H4dmI1INBOx0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=TRQeVesB; arc=fail smtp.client-ip=52.101.72.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ypUvXxSm+ujsGALPcRDXdmM/hKVBrOBxVBob+a4I1lhXJzLM+qphvNRPCF5zsBoEvotYfGF9MxaaMmXl3FFBO774nZSn4DFGEJsWquAcVngqXRrXB4wAaY2C9ACPpI6vDAzEZiycnJdSFOH9Nu4k9AmZ98CFsyqZIYNdFNKxMqcyVKfbVrBSARiOZR6p5KEaYi2+XzHE3EHOWCScz/bZPWkYZ5BBHPOtACS4lsS5zw27Q/+cvIM5IE004gHrNU3ALDsJYFPb8gQ1AX2w5Q0Mdecq+qDB7SDeCSufy2uMdGBfRGpWLkGkxvPV1E4a/LoHnxsZR/KdjWcSq3oZAecy0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4vC0h4JnCfT/BdBqI3sBn0Eh0FDKHpY7Hd+ZiDbJzq8=;
+ b=TW2g6ShSVWDFqB9jTEE7J2xNyYr2EZMWGPqecQZHXZ/gh4PGYw5ArCjiHucmvLwSAI6A8xa5CkpY1KrK5tbKL7DK3R2g4m0uRyWmK5KpQZsiMzJ+zUZZ6tktDm9UqB6wAqwxGv8bV3RmIxUZIf/JB3JLegcSNMEmp72h53IJiOgxLtn51PRu5UAm9KUtq7DSZvz1GJjlrznBwh6hFR4TmfEFwEiwHd49FBeEZJ6PIFukuuJnSD/sf2NG53eKTAi7quyFf/noTDcKy44rTKgCIN4jcLejEq5Tjs2LwGs7y/G8Ln1TfUXQMohdZdq9rzOJqdvMU/SbwXIu899FO4pcbQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4vC0h4JnCfT/BdBqI3sBn0Eh0FDKHpY7Hd+ZiDbJzq8=;
+ b=TRQeVesBaQSm3DYet2pS/hV5jm+7DE1EY1A6gL4Qw4E/uJOCgAn75P8MllkNYcvON9kmNTvg9hCI6hlQtsHsxHEJh9t8s50COezkNKDh/iRMxcSyGhw2TXshqIc3l+zlA4ZbQJoZDoRwL6ZlGWK5wNHQj2syXIu3kN6BkhhUp5LoBMopkIpvRvuHSS0a//YWWGs5s/pSh+GrYLj7kORf4EtaIH2lGRwKNtLKzutjU/KU+JLabLp3CdqISqDtjquZ1TDdvRuzPwSPp3teAvoSbCdi4wzh79htre1On1C/nNNAG6vhXihXQwaOlyMrhbhcT+m+TFfkxiuH9duETsfN3w==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by GVXPR04MB10355.eurprd04.prod.outlook.com (2603:10a6:150:1db::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.15; Tue, 4 Nov
+ 2025 02:26:11 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::4609:64af:8a4b:fd64]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::4609:64af:8a4b:fd64%6]) with mapi id 15.20.9253.017; Tue, 4 Nov 2025
+ 02:26:10 +0000
+Message-ID: <b65d9221-bdb3-4e69-beed-6b7646c5d5eb@nxp.com>
+Date: Tue, 4 Nov 2025 10:26:37 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/bridge: fsl-ldb: Parse register offsets from DT
+To: Marek Vasut <marek.vasut@mailbox.org>, dri-devel@lists.freedesktop.org
+Cc: Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Lucas Stach <l.stach@pengutronix.de>, Peng Fan <peng.fan@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org
+References: <20251017154029.105099-1-marek.vasut@mailbox.org>
+ <dc4b1b65-542f-4bd2-bd91-af3fe4223b63@nxp.com>
+ <55d44163-4f37-462f-b860-c862cb5ada5a@mailbox.org>
+From: Liu Ying <victor.liu@nxp.com>
+Content-Language: en-US
+In-Reply-To: <55d44163-4f37-462f-b860-c862cb5ada5a@mailbox.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2PR01CA0042.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::23) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251103182006.1158383-5-loic.poulain@oss.qualcomm.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|GVXPR04MB10355:EE_
+X-MS-Office365-Filtering-Correlation-Id: 853b5f21-6543-49a1-32bf-08de1b4984a3
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|1800799024|366016|7416014|376014|19092799006;
+X-Microsoft-Antispam-Message-Info:
+ =?utf-8?B?RDVqZW1pZks1S3M3MUhHWnVGR1JqREJqbDMyQVdjeEZDdDZ2TzN4QVNJeGt6?=
+ =?utf-8?B?ekttMy9hSmF6SFN5TlFsY21BM0xmaWlTUFNwV1ZRcTBrZDFTWld2ZlhQZmVV?=
+ =?utf-8?B?cFFvTWFDNCt6QzJHMzhCTkUwU3FEcHIwY1dMTjBwT2haU3p5Y1BwcitLaUlQ?=
+ =?utf-8?B?UmZPV2FFNjR1WThoeUlXUkZBcjRiZ2U4biswVytQSUs2UHAwWFpMYlNSTkRT?=
+ =?utf-8?B?T0pDV1kvbnpDcmI0VTdvUjRnU3ZxaGNadjNDN0FWT0JMeDRkNkVLRWJ2SWtk?=
+ =?utf-8?B?bGVCUHBsWUJseWE4TWF5TFdySWpTOURmZHBjQ01pSzJIMVA4U2g2aG4yRDJG?=
+ =?utf-8?B?all3eklwYlNNZHdZaTNPUmNVK3RjcVVRWWZMeGVEUitnQjNsY1FkSzJnZUZM?=
+ =?utf-8?B?VlA5SmkxMmw1OTQyWHMzN3N0UnNjVHpMaUpjWHVTWGloOENCcmZLVitwd1Rk?=
+ =?utf-8?B?MUI0UGdPWEliNUErMFc1RkhIdVErL05lSHBod3FhSmVqU0FBYzBjdFVvWWtk?=
+ =?utf-8?B?dGJMQXM5cVFWcjQ2ZFNTR3p6dzIwNlkzVlljSk8xeUxzNnNEMHFES0FwcUg5?=
+ =?utf-8?B?TG9CTGszMzducm03L1JBKzh4OEJVSmtuUFJOS0tQc0p1RUNmejBFc3ZpM2tp?=
+ =?utf-8?B?YzBaMUVzSjJLV0xHVkNtMTZ1K3M3emlTY0l1VHljOTR2bnFwU3M5SFdjOFVs?=
+ =?utf-8?B?OUtCOURFWUhhQ3p0UGozMStPUXlhTTU0UUdnc0x4M0hPZlZGZnBiYXd2RWFl?=
+ =?utf-8?B?Q3cvV25PTVhSaXNQWUJZWnQ5Mmd0WHVCOFo5Q1FLaGlxSVZYQnRibzcvVUJF?=
+ =?utf-8?B?OVplTllFQ3JJdFVMM3NTbDFyZHpoa3dIMmg4cWdKUHRKV3NGN3BQUE51dWlB?=
+ =?utf-8?B?N3JBb2tsR0cvVkxsdkhnb2M2dEVjMVhCcVV6U3M1REF2d3hlYWlLaUVPVzI3?=
+ =?utf-8?B?dEdyZUt3NTVHTEZmWSthWXdqNTQ2QTZnU1BrK0MvK04zUUVkeDlnSG5Sa3Mz?=
+ =?utf-8?B?Wi96SGl5TXZxTWZrSUFZWnZ4YlN4bStNdVJ2K2k3N3ArSHRvdjljR25ZYWRo?=
+ =?utf-8?B?SHphZVM4RmdrbTR6NmRCMGJ2OWtqOWsrQW8walZFYU1DSDF0YklLYUZWT2hD?=
+ =?utf-8?B?MnlCUG1DK0MzclRuQlZRdnhFNDNtRzkvRGdSTFllbVA0cHJLNDh1T0hCSkY5?=
+ =?utf-8?B?OUV4VU1BZnA1ZnRVamxqdGRpcmxZZ21IR2Y0VUpYdXhjamVQZ0JGM0FPUVF3?=
+ =?utf-8?B?TjlHbzl0cDJDNzdkNk40MHlPd1VqejRFWUhyOC9xRmtTQTNHekVKcWZQQUE4?=
+ =?utf-8?B?MlpZNGdENVVWUnNKeG9zb0lkWkE5cUxtVlhkby91TVpWVU1lSEkvdG8rY2Vx?=
+ =?utf-8?B?QjZLbGNDUWpnMWlSRHNKOFpiZ3ZYQ3pEV3lreUVkcVhoTVJNQWEvSGhvUjVr?=
+ =?utf-8?B?WTFVV2ZYWm8zWmR4K3h2N1JlUnhPd2kzZGJWSFNiUVdlSFZSMVJQVDYzbmFJ?=
+ =?utf-8?B?QVN4MFp2OVFuSkVlTTFRSGJ2N2ZMTWhJTXRMUHViOVNhbGt0WDJIY3M5TG5n?=
+ =?utf-8?B?eExpTmpTUVVqSDBSSVArY3ZrWEZGRXlsbjFXZWErY1N0R1pxWXpSZlhjbjNY?=
+ =?utf-8?B?UjY0VUNoQlZreUFJL0E0MitHSkV5dDJZRFNQNnBiSjZrZHBlRnFvaGRVQWJj?=
+ =?utf-8?B?ZGVSenhuQ0tIdUtyS0krMXdkU1lZU2JmNFE5WHk5TTF2R0RMQnlpVzVTYVBK?=
+ =?utf-8?B?eGF5L0pReTI1SzlHRFhxc2I2Y3NGbkkvYUp6Mk13YzNocUNZSFFZU2lPOUNr?=
+ =?utf-8?B?RFJvYkJ5b3hTeFczc1VjTFJKQVZFdjkvMCtUZGRGNTFrMFoxOS84a1hISVc4?=
+ =?utf-8?B?UmpXSy9BcFFzTEhuVzg4cmxiU0FtWUhEM2hrRFZWL0thS3JjeFJMTi9Bbmtl?=
+ =?utf-8?Q?s9MKCW74tbjYvBl2F0Yifh2FA2L5j9Wk?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(19092799006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?utf-8?B?NlpGa0UvdmhZMGsrdkZoK3ZPNkh6UEk3b29kYzR6SkovcEVoenNoR1o1SUNL?=
+ =?utf-8?B?Tk9ZdHQ5SUFIUUQwbi8wWE9PN3phT1JyYWlyOXRoMlRpeWNEVUpQbVRsdGhm?=
+ =?utf-8?B?cjluVVhmeUgrQkdRczJZenBBc295LzB0RWU5U05yd1RRdG0wcHI5SlMwd2Z2?=
+ =?utf-8?B?cUgzVWNSUXRlN2NQZm1NWHpwN3JSdEhBeXlrSFRMNnh5dTRRN2M0OEhlT0hN?=
+ =?utf-8?B?MnVIY21YS2wvODRUc2VMQjV4YXpRYm5DWXI1OEFCSFRKWjZOd0FVU0xQUkVX?=
+ =?utf-8?B?SjZ0RUNWcnp2V0VGOUhvNU9yN0hENzJDTHdGM0FEYStvS0kwS3N4MFgvQmND?=
+ =?utf-8?B?ekdqeHY2YWo0My83cmVETTJ5YWJOb1FhdEVzZU44MW53K2NyT1N0SmJabkJ2?=
+ =?utf-8?B?aXU2WktGOFVCQXUzaDl0NktVTFZaMitJMHhIQXI3dHozTGVweDREaVJoTGJE?=
+ =?utf-8?B?UjBpem12MENiSzVlVCtHeUJxN1pxb204TVB5OVFDSHlld2RzWjJxanZxcU9w?=
+ =?utf-8?B?b2FrVll3bFJqelVGNit6VTRXUkNTOVg0RTdFWEQxYmtqSklhb2Y3elpvSVZs?=
+ =?utf-8?B?YUF0ZVlrZ0E3cEVmY1gzU3crY1A3WDMzVVFVWHRSNm8rN1l1bmp6R3Q0NlN2?=
+ =?utf-8?B?SkNObjF2UUh2aVBFRW4wbEFMY1ZXNmdVZ3hpZVhXTGZmZVNzT25UbFg1TG94?=
+ =?utf-8?B?MWExVHdSVklQWjZ0VnNlRmdmc3JLQzh3V21qcDZkR2ozbU5tZ0J6QUhpa082?=
+ =?utf-8?B?ZEJ6TjFqWHhFaTl5NkhaZ2VJbXlHQ0RIVFJHNnpzWVlVSEdpc1hlQk81cklS?=
+ =?utf-8?B?WlFGRXZ6WmVjYmNUUURwK1Y5SE9MWUozYWU3ZDFhUm04V1FHbHhRQkxINzRk?=
+ =?utf-8?B?bzEwclZGaE5IY2hUVlNMQ0FGMW5CTXA2dnk1TFNBT1V2a2xXbFk2U2tlOXZP?=
+ =?utf-8?B?TEp3bjBHU2lEYnRacm5PaFFJTWwwWStaSUsweUVoLzhBZmRoczNaMzhVSmdv?=
+ =?utf-8?B?eTAwQUlhd1o2RTNUTWplZndYSU82ZTIxSk4zeFdQblJTd25QT1R5Y21SRTFs?=
+ =?utf-8?B?M0hlTFVyellMTjYzU1VWN0ZKb0ZsUnFDNU0rRWM0bEVKcVh4U2VodlZpTE5u?=
+ =?utf-8?B?REhzTEE5eUxaM0MyTXR5cTliaVZJWHV0OXBOL21jeWtqU2RzQ2RIOFpsMDNi?=
+ =?utf-8?B?cWttblBlRWpoOXlEMSt2eDlhRFQ2eU1yeFVCQlpLbmRxU3QrWjlhUnNOd1R2?=
+ =?utf-8?B?TUkrQVBaTlBBdGJsSVBRaU92RHBpQ0tmTEZGZ2FDNmluM05SRXhKY0psSFlo?=
+ =?utf-8?B?Y0tMUERIQ2FXUzR2Uy8vYTRKc1htSDhwbyt4ZFVGMVovV2ZCNi9PMWF6Rkx1?=
+ =?utf-8?B?TjhIemRKL0Fzc2F5Ym41YTdWY2RQVVhzQzh0dHV3TkVRUEJlZXlGOUtGaWt2?=
+ =?utf-8?B?YWRKUk05VTg3bE45VG40TGNhTXNEUm5QZmo0L1JydXVLendoY3MvUjRyZHow?=
+ =?utf-8?B?ZkZ3eG5DNGxLbzRaSmRmUXV3TkM2YVl6YnZ0N2NNOElSTFcrM3ZGT202cGQx?=
+ =?utf-8?B?OVIzSUdHNFV6TXd6SDBhOEdwUnJaSlhlZXNua2J2SHdmYXltcDkydHBpQWFY?=
+ =?utf-8?B?aERwMEZ5MVhQSG9IUk5Ld1BTdloxeTZpdnJ6RFIxWVlDNEw1ZktvaElERzVy?=
+ =?utf-8?B?U3VxcWJVaTFZbDkvZ2djQ1dHRTlxTFk1bHUycDdpZkRZZWtESStFdDFjUUVn?=
+ =?utf-8?B?eldQNldyaWdNbXUyTlo2cDVGekdWR2FqcUpWRDdxUVk3ek5SVDhsTzlXekh5?=
+ =?utf-8?B?MHpHNFBqemNTa0tzVGdlUkhtTHFGblZTZWlQNTkyczV5Q1FENmI0eTJ1SDB6?=
+ =?utf-8?B?RUJSMUdNT2pWYzBzOFo5NUlhS0UyUWVOR2tLUVQwT0lVeWY3a0VBN0M3dCtR?=
+ =?utf-8?B?dUVndVNtTU9IbTR0ckFZTENEbkNMZnlzTGZ2Tjg3aUgvS1VxV1lLOFNXYmQr?=
+ =?utf-8?B?dG4zZlZkZzZrWlFXZzdDNUMzTCt2V0lHUEdhU2tqeFpqRGsvQjdFMWhMbGFX?=
+ =?utf-8?B?cEhJSTJadVRpdzZza2NZbGczZTRuK2tZMlI0UzZVazdMRUo3RG8xQlk4UEk5?=
+ =?utf-8?Q?0oYAy67OIJDlB2wPK1hTZxG7j?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 853b5f21-6543-49a1-32bf-08de1b4984a3
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2025 02:26:10.7528
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rnCoIP2VtwKMn7QRwmK28vKZh4k805lCBFB3k/UTL/VOznoZiIcmhLLHcSp+y7dusv4rtytRQiozniBCjqEEvg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10355
 
-On Mon, Nov 03, 2025 at 07:20:05PM +0100, Loic Poulain wrote:
-> When the dload register is specified, it can also be used to boot the
-> platform into Emergency Download Mode (EDL). This mode is implemented
-> by the primary ROM bootloader and provides a recovery mechanism.
+On 11/02/2025, Marek Vasut wrote:
+> On 10/20/25 8:21 AM, Liu Ying wrote:
 > 
-> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> ---
->  drivers/firmware/qcom/qcom_scm.c | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
+> Hello Liu,
+
+Hello Marek,
+
 > 
-> diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
-> index 26cd0458aacd..e697ef14619f 100644
-> --- a/drivers/firmware/qcom/qcom_scm.c
-> +++ b/drivers/firmware/qcom/qcom_scm.c
-> @@ -26,6 +26,7 @@
->  #include <linux/of_platform.h>
->  #include <linux/of_reserved_mem.h>
->  #include <linux/platform_device.h>
-> +#include <linux/reboot-mode.h>
->  #include <linux/reset-controller.h>
->  #include <linux/sizes.h>
->  #include <linux/types.h>
-> @@ -43,6 +44,7 @@ struct qcom_scm {
->  	struct icc_path *path;
->  	struct completion waitq_comp;
->  	struct reset_controller_dev reset;
-> +	struct reboot_mode_driver reboot_mode;
->  
->  	/* control access to the interconnect path */
->  	struct mutex scm_bw_lock;
-> @@ -130,6 +132,8 @@ static const u8 qcom_scm_cpu_warm_bits[QCOM_SCM_BOOT_MAX_CPUS] = {
->  #define QCOM_DLOAD_MINIDUMP	2
->  #define QCOM_DLOAD_BOTHDUMP	3
->  
-> +#define QCOM_EDL_MASK		BIT(0)
-> +
->  static const char * const qcom_scm_convention_names[] = {
->  	[SMC_CONVENTION_UNKNOWN] = "unknown",
->  	[SMC_CONVENTION_ARM_32] = "smc arm 32",
-> @@ -2206,6 +2210,18 @@ static const struct kernel_param_ops download_mode_param_ops = {
->  	.set = set_download_mode,
->  };
->  
-> +static int qcom_scm_reboot_mode_write(struct reboot_mode_driver *reboot,
-> +				      unsigned int magic)
-> +{
-> +	struct qcom_scm *scm = container_of(reboot, struct qcom_scm, reboot_mode);
-> +	int ret = -EOPNOTSUPP;
-> +
-> +	if (scm->dload_mode_addr)
-> +		ret = qcom_scm_io_rmw(scm->dload_mode_addr, QCOM_EDL_MASK, magic);
-> +
-> +	return ret;
-> +}
-> +
->  module_param_cb(download_mode, &download_mode_param_ops, NULL, 0644);
->  MODULE_PARM_DESC(download_mode, "download mode: off/0/N for no dump mode, full/on/1/Y for full dump mode, mini for minidump mode and full,mini for both full and minidump mode together are acceptable values");
->  
-> @@ -2251,6 +2267,12 @@ static int qcom_scm_probe(struct platform_device *pdev)
->  	if (ret)
->  		return ret;
->  
-> +	scm->reboot_mode.dev = &pdev->dev;
-> +	scm->reboot_mode.write = qcom_scm_reboot_mode_write;
-> +	ret = devm_reboot_mode_register(&pdev->dev, &scm->reboot_mode);
-> +	if (ret)
-> +		return ret;
+>>> +++ b/drivers/gpu/drm/bridge/fsl-ldb.c
+>>> @@ -61,24 +61,16 @@ enum fsl_ldb_devtype {
+>>>   };
+>>>     struct fsl_ldb_devdata {
+>>> -    u32 ldb_ctrl;
+>>> -    u32 lvds_ctrl;
+>>>       bool lvds_en_bit;
+>>>       bool single_ctrl_reg;
+>>
+>> single_ctrl_reg can be dropped then, as it can be expressed by failing to
+>> get the second register.
+>>
+>> Furthermore, with this done, lvds_en_bit is the only member left and hence
+>> struct fsl_ldb_devdata can also be dropped, as IIRC there is no need to
+>> use a structure for device data with only a flag.
+> I plan to add more bits into the driver match data when adding the MX95,
+> so I would like to retain these instead of removing them and the adding
+> them back.
 
-I think it would be sufficient with a dev_err() here. You're loosing the
-ability to set the "edl" bit but you don't break the whole system - e.g.
-in the event that you're making a typo in your mode definition.
+i.MX95 LDB supports two LVDS channels.  Two DRM bridges are needed in single
+or separate LDB mode, while one DRM bridge is needed in split LDB mode.
+Also, each channel connects to a standalone LVDS PHY.  All these could make
+it intrusive to support i.MX95 LDB in fsl-ldb.c.  Maybe, we could discuss
+about this later, but IMO this patch should remove struct fsl_ldb_devdata.
+It doesn't hurt if we really need to add it back.
 
+> 
+> The rest is fixed in V2, thanks !
 
-Other than that, I think this looks good.
-
+-- 
 Regards,
-Bjorn
-
-> +
->  	/* vote for max clk rate for highest performance */
->  	ret = clk_set_rate(scm->core_clk, INT_MAX);
->  	if (ret)
-> -- 
-> 2.34.1
-> 
+Liu Ying
 
