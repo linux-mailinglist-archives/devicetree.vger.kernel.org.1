@@ -1,426 +1,176 @@
-Return-Path: <devicetree+bounces-235332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B279C3725B
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 18:41:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82ED0C36FEA
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 18:14:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E36766366E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 17:05:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C63F318C3A0B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 17:06:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 329FA33C53B;
-	Wed,  5 Nov 2025 16:59:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E342E33DEEE;
+	Wed,  5 Nov 2025 17:03:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Pv4jYy4I";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="CyyjwFBZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rmisp-mx-out1.tele.net (rmisp-mx-out1.tele.net [194.208.23.36])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B1EE33C51B;
-	Wed,  5 Nov 2025 16:59:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.208.23.36
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1EC334C3F
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 17:03:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762361973; cv=none; b=Dg8QOhv30St73ZzflcrGRk/VUzhShQ49ijHc5ULxg7sTGKzJa2g9Z0H5Qdtw6d6lWbLPUPnbohKla41twUL7jlqhqy21sLSO6roLlM7duPQrvzHVCbVrdCd1TMJFApCzOV6wciV5+gJpL9RXyzFZktu5FQEPQO1OAVHhu597qy8=
+	t=1762362182; cv=none; b=Srn7wfCBiNTYekEhdbYHzG6KCPWSsPAVHr7og1/rSfBYymwvlytUHyk9JxFZ2ajlQViVUQyHyKUAalIzRAot0SGHa4xrlBYeZLBBOF+Idzb01WQ3KpiywLlerDSICJvjU9USJt6AFro16rpcVuaRE+Hh1VqGeEA10BY0QUhlok8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762361973; c=relaxed/simple;
-	bh=TXoVAzG7Y7AL/yBbd47OJsY3ZR6swOismhW35Qxufa4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=klIDuUWIPwh6HwVEKopnoC0DFm4mVg7vJxXOvIzwvBUFUmhtj2NMx4VLa53TO6bYLkILFyVtIEN5mulr4/nAXVVP8t2ugQdckJq6/YHWvIpXZfNzqPai36HIC1+sooCaXycwMAWwKgJPWswEewOM6xFHUc6edbH/5/RUq4IJEj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=fail smtp.mailfrom=emfend.at; arc=none smtp.client-ip=194.208.23.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=emfend.at
-Received: from [192.168.0.207] (194-208-208-245.tele.net [194.208.208.245])
-	by rmisp-mx-out1.tele.net (Postfix) with ESMTPA id B1D2310DE9D1;
-	Wed,  5 Nov 2025 17:59:20 +0100 (CET)
-Message-ID: <69d3396a-98a4-4f19-b2c9-de66a6b29b1d@emfend.at>
-Date: Wed, 5 Nov 2025 17:59:20 +0100
+	s=arc-20240116; t=1762362182; c=relaxed/simple;
+	bh=yp/bnWLHfETEVmldtVZrLCIHTQ/Vp3q+ORHES0tz+Uo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z1fVLH7As72iTEuEfYlH6E/re6EzoLSk1y9qRBQturASgY6N2K/ORA2yq+8LGgtySzH4p+0gGOefigAgkrkQylulWfgGq3pBCdVjfsZ9W05a1SZhdMmbR19eyYPlMXoHeG6DhagpunNZWilyStUhx+sXIjvCh2Frpur7uheg9lo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Pv4jYy4I; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=CyyjwFBZ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A5DOYhj4011469
+	for <devicetree@vger.kernel.org>; Wed, 5 Nov 2025 17:02:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=qyYx+66r12SMj/Ysz7zSUgAk
+	oAonFWXlCXbOfXMij+Y=; b=Pv4jYy4I3b11wSUZ2im4uhyPzm/y+/stDpujl6ae
+	SiNWLdcpi7Q11oQzcyjYzdYjIyNIV9TfBlxMNfiQJ1m+PJN5mUZoWSts3JG93ksJ
+	UBkjQ64EkRdw/TMWyHM8bKnHGJJoYMkvYhUUNBWWf2IlinCVSQ6AgGl9KTH/WLF7
+	F96b115k6lQXgRqyxp0hHDslt+Jl/+fl++2atmkU2kQFupy8OXAjI0Z1EvWZQprn
+	Ktq5855P0EPs5kZjpDbjJP6/SRlwqS5jEsZDAK9b3EtlPjmjjn2M5EPrG6ALcTzN
+	sOINubAo76eS/2Ob0dRw+m7S7oEbjs/Ltq6M46oKW84i0w==
+Received: from mail-yx1-f71.google.com (mail-yx1-f71.google.com [74.125.224.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a7ynwsyx7-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 17:02:59 +0000 (GMT)
+Received: by mail-yx1-f71.google.com with SMTP id 956f58d0204a3-63f55de5312so104785d50.2
+        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 09:02:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762362179; x=1762966979; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=qyYx+66r12SMj/Ysz7zSUgAkoAonFWXlCXbOfXMij+Y=;
+        b=CyyjwFBZR8CJgkYbX9pRCeQMX0RvebEVsZ3DH/vNCsUr068EOIC6CYNQBW2htbfQX0
+         OTmYjeAY45MsNeGFHexNF2Qoq26YYm4RuHLQLyvTEnSHgykRTsSzJ0TVnKN1760nY1ek
+         tYoav20WxbomSu7nuSZ5xkQGmcKFO4A47oIcyJGp0VT32RFyET+t4wQgmkJlhfnfrl/R
+         6fgwufYKQBTg4VJ0P5CAM+z4KNW+dSqsTqfZa+ns87ZUzrUkvoGw5/d4lQfBD3Oc8sRI
+         hJlUw7jJKjXm1zNkR0BX5uhLZn6bGCTLYn/WSqBUbbWpCfozuMA6cInpPfY6TLeIo7uj
+         HQiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762362179; x=1762966979;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qyYx+66r12SMj/Ysz7zSUgAkoAonFWXlCXbOfXMij+Y=;
+        b=TUf89eRI/tH8h/weIzwpRmZhqW4q1qOvyibbtpPNlPrT2bhfKNYZl8h91xkQVI5UAN
+         8SjNFH/PBHvCYXUjvTJzxbsKHd/Sd/8v6QO799/7C2eWBXabzvyz5+az9pyMlCtycHec
+         lMLVPYQzf+TyZQSwciHi3BfuwEJ9n7exOUxaEuhQOadQpcort8UxymC0Ra1DxkqDhaX7
+         OcD4sGzDqghkYhQ1pXmbjlETw08/cRIm8/DnR6kkBy4wrqFx/zqnHd8ZxTBsFjv30xyy
+         6uYW5bwctyDi/N3j31ztpQWsdgrarb772UMAljS7YgP6uAJx42E2APoW+qYQ1qVXQ03C
+         JHkg==
+X-Forwarded-Encrypted: i=1; AJvYcCU6aImX/ap2BewfUxLTz00otrKC8BzfnrWLsVkEactLesLGckHnjPQIvaJ8qgw/VECFc2WHmfwhFdR2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzGAbt5FmURQMwDpGV61JpYWTEqCkpVqGPspikBRSYjche/p18N
+	Ufs1gFsHEjhrBgiL6rGJ/XUuLmJ7t3BT0BE3ufIng7K8VwuZiDxiM3hMLgQU2+xQpeRNGPYQ0th
+	HWiFy74tv63jvF7Z8UKqkDLJ+/E5NltXodu1axUZ7BLP/J2KoQ1Vbhx5sBUoCBfQi
+X-Gm-Gg: ASbGncvkohUdhIE0+OnPfM0/4KsORo3zV4aFlKQ+mFwIWO+NLL9ybK5mjb2a2oZGVM0
+	s5GKzeMLk4emBM1fSu9gvm9KUqGbeosmYuMLnWhSFVbjsShuH8fp90yvA6v5mO6j0n4tJFOrjBe
+	1LoDOWmSYl7lZHudc5BenisES2Z0rfjswrukQmPGt8Q9nZT9W5XStEiCbCQvWWrOFO/m2sv8dgg
+	FDStub4vXa+vh3pX16MS9PtBy8K2Dg1Ziai0PTVZ/Q90EpGSOl/TwIlBs2O0UBX3EKRpgDfslSV
+	2UaGfsQctJoxMPdtNlRm8yal3blwRYhpIfuB1pmtOEtWP3yed/rYqkVKUchGHlQ29KX1/Py3wbU
+	3BAnGWU8b3N+1KyJYtPzKw7iiWtaEe6X9OO4zkgCatF+xUYwXilujlJbcmpTpg1jt++iyoKg/V5
+	RTFE0EdEGCYDRO
+X-Received: by 2002:a05:690e:c43:b0:63e:3099:fe7c with SMTP id 956f58d0204a3-63fd34c50f5mr3160689d50.16.1762362179175;
+        Wed, 05 Nov 2025 09:02:59 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFTAmyohmCTXGVTToGXMGdUogTSBLrIX4kz1aq4q66xM2USJqaQ352zw9xnhAw2RV1nJjCJjw==
+X-Received: by 2002:a05:690e:c43:b0:63e:3099:fe7c with SMTP id 956f58d0204a3-63fd34c50f5mr3160583d50.16.1762362178181;
+        Wed, 05 Nov 2025 09:02:58 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-594492b411esm34691e87.105.2025.11.05.09.02.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Nov 2025 09:02:57 -0800 (PST)
+Date: Wed, 5 Nov 2025 19:02:55 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+Cc: Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Connor Abbott <cwabbott0@gmail.com>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Gaurav Kohli <quic_gkohli@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v7 2/5] arm64: dts: qcom: sa8775p: Add gpu and gmu nodes
+Message-ID: <motuct5ezykbkta2wz7ek2vwnfaamphrl7b2wpv2bvu7qnnbmc@4j4aurlva4iw>
+References: <20251105-a663-gpu-support-v7-0-1bcf7f151125@oss.qualcomm.com>
+ <20251105-a663-gpu-support-v7-2-1bcf7f151125@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] media: i2c: add Himax HM1246 image sensor driver
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@kernel.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Hans de Goede
- <hansg@kernel.org>, Ricardo Ribalda <ribalda@chromium.org>,
- =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
- Tarang Raval <tarang.raval@siliconsignals.io>,
- Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
- Sylvain Petinot <sylvain.petinot@foss.st.com>,
- Dongcheng Yan <dongcheng.yan@intel.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Alan Stern <stern@rowland.harvard.edu>,
- Jingjing Xiong <jingjing.xiong@intel.com>,
- Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
- Mehdi Djait <mehdi.djait@linux.intel.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Hao Yao <hao.yao@intel.com>,
- bsp-development.geo@leica-geosystems.com
-References: <20251104-hm1246-v5-0-97c8f25b5419@emfend.at>
- <20251104-hm1246-v5-2-97c8f25b5419@emfend.at>
- <aQn_lguAdP-ZwCzK@smile.fi.intel.com>
-Content-Language: de-DE
-From: Matthias Fend <matthias.fend@emfend.at>
-In-Reply-To: <aQn_lguAdP-ZwCzK@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251105-a663-gpu-support-v7-2-1bcf7f151125@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA1MDEzMiBTYWx0ZWRfX+KKhcZDmLq4o
+ Q4/Kgy6bkO+KaZ4G6ky5DAPjLX6CpwOLe30UL2c+QGCeQG57QWflieiv6eAmmeYI2LWo+KOFB3t
+ enJi/S6AB41+b9/VbXSavyc0+ykSrJJRvAxMW7C1vO+tYxkv6XD9XCUhwgREh9fCgg4Q2kGxs1/
+ gVsegLJCBwqB2S8HGpCch/3+y2ojMpJKyaQYOx+3YZQueHHrxXH2vfml/ul4uSNtwPPBtB4Slh4
+ HWJA2hwcR6VHG8SQcafAXiB882b1wXDR7hAGjyYwovoj2RZpAns4IFFrMuYTTNo15cIFcewCzlL
+ H2ojzDMyYUS72EuiAULilMHg7/qJGg4qXLJV42VirZ6AHSdff4KsZOjfucfVhwaJcwYHYOt/osp
+ 9Fr251g+DNpVBK9cliLrZOCPmIL7FA==
+X-Proofpoint-ORIG-GUID: 0cBmEcy-VlkZLgxP5H_OvwNnvuKEj3--
+X-Proofpoint-GUID: 0cBmEcy-VlkZLgxP5H_OvwNnvuKEj3--
+X-Authority-Analysis: v=2.4 cv=IpETsb/g c=1 sm=1 tr=0 ts=690b8343 cx=c_pps
+ a=ngMg22mHWrP7m7pwYf9JkA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=UQAiW8fk4jwks4S4FoYA:9
+ a=CjuIK1q_8ugA:10 a=yHXA93iunegOHmWoMUFd:22 a=TjNXssC_j7lpFel5tvFf:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-05_06,2025-11-03_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 clxscore=1015 adultscore=0 priorityscore=1501 bulkscore=0
+ suspectscore=0 lowpriorityscore=0 spamscore=0 impostorscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511050132
 
-Hi Andy,
-
-thank you for your feedback and suggestions for improvement.
-I have some questions about a few points.
-
-Am 04.11.2025 um 14:28 schrieb Andy Shevchenko:
-> On Tue, Nov 04, 2025 at 11:31:34AM +0100, Matthias Fend wrote:
->> Add a V4L2 sub-device driver for Himax HM1246 image sensor.
->>
->> The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
->> array size of 1296 x 976. It is programmable through an I2C interface and
->> connected via parallel bus.
->>
->> The sensor has an internal ISP with a complete image processing pipeline
->> including control loops. However, this driver uses the sensor in raw mode
->> and the entire ISP is bypassed.
+On Wed, Nov 05, 2025 at 10:15:46PM +0530, Akhil P Oommen wrote:
+> From: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
 > 
-> ...
-> 
->> +#include <linux/clk.h>
->> +#include <linux/delay.h>
->> +#include <linux/gpio.h>
->> +#include <linux/i2c.h>
->> +#include <linux/module.h>
->> +#include <linux/pm_runtime.h>
->> +#include <linux/units.h>
-> 
-> This block is semi-random.
-> First of all, no new code must use gpio.h, use the proper one.
-> Second, many are missing, e.g., bits.h, regmap.h, types.h.
-> Please, follow IWYU principle (Include What You Use).
+> Add gpu and gmu nodes for sa8775p chipset. Also, add the speedbin
+> qfprom node and wire it up with GPU node.
 
-I've noticed that you've already modified the include statements in many 
-source files. I assume you've automated this somehow. May I ask how you 
-did that, or is there a reliable process for verifying the include 
-statements?
-
-...
+Technically the subject should be updated to use 'lemans:' instead of
+'sa8775p:'
 
 > 
->> +static int hm1246_cci_write_pll(struct hm1246 *hm1246, u8 pll1, u8 pll2,
->> +				u8 pll3)
->> +{
->> +	const struct cci_reg_sequence pll_regs[] = {
+> Signed-off-by: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/lemans.dtsi | 119 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 119 insertions(+)
 > 
-> static ?
-> 
->> +		{ HM1246_PLL1CFG_REG, pll1 },
->> +		{ HM1246_PLL2CFG_REG, pll2 },
->> +		{ HM1246_PLL3CFG_REG, pll3 },
->> +		{ HM1246_SBC_CTRL_REG, HM1246_SBC_CTRL_PLL_EN },
->> +	};
-> 
-> I would even move it outside the function. Note, static const maybe located in
-> ro memory while w/o static it's just a guarantee that compiler doesn't change
-> the values. Hence there is no guarantee it will be in ro memory.
 
-The sequence is initialized with values ​​from the arguments, which are 
-not constant. Therefore, the sequence cannot be put into a `ro` section.
-
-> 
->> +	return cci_multi_reg_write(hm1246->regmap, pll_regs,
->> +				   ARRAY_SIZE(pll_regs), NULL);
->> +}
->> +
->> +static int hm1246_pll_check_locked(struct hm1246 *hm1246)
->> +{
->> +	u64 boot_ref2;
->> +	int ret;
->> +
->> +	ret = cci_read(hm1246->regmap, HM1246_SBC_BOOT_REF2_REG, &boot_ref2,
->> +		       NULL);
-> 
-> Despite being longer 80 I still would put it on one line. It will increase readability.
-> 
-> 	ret = cci_read(hm1246->regmap, HM1246_SBC_BOOT_REF2_REG, &boot_ref2, NULL);
-> 
-> Another option is to define local regmap:
-> 
-> 	struct regmap *map = hm1246->regmap;
-> 	...
-> 	ret = cci_read(map, HM1246_SBC_BOOT_REF2_REG, &boot_ref2, NULL);
-> 
-> which will be most readable and satisfy 80 limit.
-
-Doing things differently is kind of a dilemma.
-Compliance with the 80-line limit is required, and local variables that 
-are only used once are also undesirable.
-The unsightly line break seems to be the most acceptable option, right?
-Or rename the local variable to 'bref2'.
-
-> 
-> 
->> +	if (ret)
->> +		return ret;
->> +
->> +	return (boot_ref2 & HM1246_SBC_BOOT_REF2_PLL_LOCK) ? 0 : -EIO;
-> 
-> Think about similar improvements elsewhere in this driver.
-> 
->> +}
-> 
-> ...
-> 
->> +	/* PLL lock time: tpll typ. 100us */
-> 
-> It's not a variable name, use proper English.
-
-I think you refer to "tpll typ."? I intentionally wanted to use the same 
-symbols as in the datasheet. I also used them for the other delays:
-
-/*
-  * XSHUTDOWN to crystal clock oscillation:  tcrystal typ.  650us
-  * Sample bootstrap pin:                    tsample  max. 2000us
-  * Built in self test:                      tbist    max. 3000us
-  */
-
-Is this acceptable from this perspective?
-> 
->> +	fsleep(200);
-> 
-> ...
-> 
->> +static int hm1246_cci_write_test_pattern(struct hm1246 *hm1246, u8 mode, u16 r,
->> +					 u16 g, u16 b)
-> 
-> Use logical split.
-> 
-> static int hm1246_cci_write_test_pattern(struct hm1246 *hm1246, u8 mode,
-> 					 u16 r, u16 g, u16 b)
-> 
-> This applies to other similar places in the code.
-> 
-> ...
-> 
->> +static int hm1246_test_pattern(struct hm1246 *hm1246, u32 index)
->> +{
->> +	const u16 RGBMIN = 0x0, RGBMAX = 0x3ff;
-> 
-> 0 is enough (no need 0x).
-> 
-> 
-> So, the MAX is 10-bit, Can we use rather (BIT(10) - 1) to show this?
-
-Sure, I can write it that way too, even though the hexadecimal number 
-seems easier for me to read.
-
-> 
->> +	const struct tp {
->> +		int pattern;
->> +		u16 r, g, b;
->> +	} tps[] = {
->> +		/* 0 - Disabled */
-> 
-> Instead of indices in the comment, make the code robust
-> 
->> +		{ .pattern = 0, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
-> 
-> 		[0] = { .pattern = 0, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
-> 
-> It even fit 80 characters.
-> 
->> +		/* 1 - Checkboard pattern */
->> +		{ .pattern = 0, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
->> +		/* 2 - Ramp */
->> +		{ .pattern = 1, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
->> +		/* 3 - Moving ones */
->> +		{ .pattern = 2, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
->> +		/* 4 - Blending color bars */
->> +		{ .pattern = 3, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
->> +		/* 5 - Color bars */
->> +		{ .pattern = 4, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
->> +		/* 6 - Solid white */
->> +		{ .pattern = 15, .r = RGBMAX, .g = RGBMAX, .b = RGBMAX },
->> +		/* 7 - Solid black */
->> +		{ .pattern = 15, .r = RGBMIN, .g = RGBMIN, .b = RGBMIN },
->> +		/* 8 - Solid red */
->> +		{ .pattern = 15, .r = RGBMAX, .g = RGBMIN, .b = RGBMIN },
->> +		/* 9 - Solid green */
->> +		{ .pattern = 15, .r = RGBMIN, .g = RGBMAX, .b = RGBMIN },
->> +		/* 10- Solid blue */
->> +		{ .pattern = 15, .r = RGBMIN, .g = RGBMIN, .b = RGBMAX },
->> +	};
->> +	u8 mode;
->> +
->> +	if (index >= ARRAY_SIZE(tps))
->> +		return -EINVAL;
->> +
->> +	mode = HM1246_TEST_PATTERN_MODE_MODE(tps[index].pattern);
->> +	if (index)
->> +		mode |= HM1246_TEST_PATTERN_MODE_ENABLE;
->> +
->> +	return hm1246_cci_write_test_pattern(hm1246, mode, tps[index].r,
->> +					     tps[index].g, tps[index].b);
->> +}
-> 
-> ...
-> 
->> +static int hm1246_set_ctrl(struct v4l2_ctrl *ctrl)
->> +{
->> +	struct hm1246 *hm1246 = container_of_const(ctrl->handler, struct hm1246,
->> +						   ctrls);
-> 
-> Why _const()?
-> Why not split it between lines like:
-> 
-> 	struct hm1246 *hm1246 =
-> 		container_of_const(ctrl->handler, struct hm1246, ctrls);
-> 
->> +	struct v4l2_subdev_state *state;
->> +	const struct v4l2_mbus_framefmt *format;
->> +	u32 val;
->> +	bool needs_cmu_update = true;
->> +	int ret = 0;
->> +
->> +	state = v4l2_subdev_get_locked_active_state(&hm1246->sd);
->> +	format = v4l2_subdev_state_get_format(state, 0);
->> +
->> +	if (ctrl->id == V4L2_CID_VBLANK) {
->> +		s64 exposure_max;
->> +
->> +		exposure_max =
->> +			format->height + ctrl->val - HM1246_COARSE_INTG_MARGIN;
->> +		ret = __v4l2_ctrl_modify_range(hm1246->exposure_ctrl,
->> +					       hm1246->exposure_ctrl->minimum,
->> +					       exposure_max,
->> +					       hm1246->exposure_ctrl->step,
->> +					       exposure_max);
->> +
->> +		if (ret) {
->> +			dev_err(hm1246->dev, "exposure ctrl range update failed\n");
->> +			return ret;
->> +		}
->> +	}
-> 
->> +	if (!pm_runtime_get_if_active(hm1246->dev))
->> +		return 0;
-> 
-> Use ACQUIRE() and return directly where it makes sense.
-
-That would indeed be a great solution. However, I haven't found any 
-guard definitions for pm_runtime_get_if_active and therefore don't know 
-how to adapt this functionality (increase usage only if already enabled) 
-to use ACQUIRE.
-Any clue on this?
-
-> 
->> +	switch (ctrl->id) {
->> +	case V4L2_CID_EXPOSURE:
->> +		cci_write(hm1246->regmap, HM1246_COARSE_INTG_REG, ctrl->val,
->> +			  &ret);
->> +		break;
->> +
->> +	case V4L2_CID_ANALOGUE_GAIN:
->> +		cci_write(hm1246->regmap, HM1246_ANALOG_GLOBAL_GAIN_REG,
->> +			  ctrl->val, &ret);
->> +		break;
->> +
->> +	case V4L2_CID_VBLANK:
->> +		val = format->height + ctrl->val;
->> +		cci_write(hm1246->regmap, HM1246_FRAME_LENGTH_LINES_REG, val,
->> +			  &ret);
->> +		break;
->> +
->> +	case V4L2_CID_HFLIP:
->> +	case V4L2_CID_VFLIP:
->> +		val = 0;
->> +		if (hm1246->hflip_ctrl->val)
->> +			val |= HM1246_IMAGE_ORIENTATION_HFLIP;
->> +		if (hm1246->vflip_ctrl->val)
->> +			val |= HM1246_IMAGE_ORIENTATION_VFLIP;
->> +
->> +		cci_write(hm1246->regmap, HM1246_IMAGE_ORIENTATION_REG, val,
->> +			  &ret);
->> +		break;
->> +
->> +	case V4L2_CID_TEST_PATTERN:
->> +		ret = hm1246_test_pattern(hm1246, ctrl->val);
->> +		needs_cmu_update = false;
-> 
-> Like here, and you won't need needs_cmu_update anymore.
-> 
->> +		break;
->> +
->> +	default:
->> +		ret = -EINVAL;
->> +		needs_cmu_update = false;
->> +		break;
->> +	}
->> +
->> +	if (needs_cmu_update)
->> +		cci_write(hm1246->regmap, HM1246_CMU_UPDATE_REG, 0, &ret);
->> +
->> +	pm_runtime_put(hm1246->dev);
->> +
->> +	return ret;
->> +}
-> 
-> ...
-> 
->> +static int hm1246_identify_module(struct hm1246 *hm1246)
-> 
-> This is a singleton function, right?
-> 
-> Check what once.h (or even once_lite.h) provides for you for such a case,
-> and drop unneeded "identified" variable.
-
-As I understand it, the ONCE macros create a static variable in the 
-driver module. This means the function would only be called once in 
-total, but the function should be called once per device.
-Therefore, I don't think that's an option here.
-
-> 
->> +{
->> +	u64 model_id;
->> +	int ret;
->> +
->> +	if (hm1246->identified)
->> +		return 0;
->> +
->> +	ret = cci_read(hm1246->regmap, HM1246_MODEL_ID_REG, &model_id, NULL);
->> +	if (ret)
->> +		return ret;
->> +
->> +	if (model_id != HM1246_MODEL_ID) {
->> +		dev_err(hm1246->dev, "model id mismatch: 0x%llx!=0x%x\n",
->> +			model_id, HM1246_MODEL_ID);
->> +		return -ENXIO;
->> +	}
->> +
->> +	hm1246->identified = true;
->> +
->> +	return 0;
->> +}
-> 
-> ...
-> 
->> +static int __maybe_unused hm1246_g_register(struct v4l2_subdev *sd,
->> +					    struct v4l2_dbg_register *reg)
-> 
-> If v4l2.h doesn't provide a ptr_*() macro for these cases, I recommend to add and drop these __maybe_unused.
-
-I'm not aware of anything like that.
-Currently, it's common practice to use '#ifdef CONFIG_VIDEO_ADV_DEBUG', 
-and a macro that would simplify that would probably be worthwhile.
-But I think that's for something outside the scope of this patch.
-
-Thanks
-  ~Matthias
-
+-- 
+With best wishes
+Dmitry
 
