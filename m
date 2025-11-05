@@ -1,125 +1,109 @@
-Return-Path: <devicetree+bounces-235257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EFDCC3649F
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 16:19:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70EE5C36629
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 16:39:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 44E614FEF2B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 15:12:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 698BE6402E1
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 15:23:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84023333432;
-	Wed,  5 Nov 2025 15:11:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="e+oL1EAo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7581B33508D;
+	Wed,  5 Nov 2025 15:16:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43D07332917;
-	Wed,  5 Nov 2025 15:11:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F33B8335080
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 15:16:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762355471; cv=none; b=mPzyc9DC73KPh/T6MY1HLOe6BcTxdxVcaPNw//PdP9JZiHwBuDtIOXKIXSzN1qKndXm1Hj1yJWIy7S964ICBArPMYfap+bNAOo9G2w7Bvx2Rr4Sk4FLxeT7Xv89pBi0j873moTspZx4Vm/Pl09AhwfSMS/QwoSH9XVqWKPxMKjU=
+	t=1762355786; cv=none; b=VPeNaFbZ+2xmtJumn/j04uGfafj51PJbJrkybkWhCLoXsbtonEWs9C8JtLktCYK02ofZS/E/mjI5wQlzZczJ9sZoaY0xk8Yv0kvO+IWWCaKr7XMByRq+F8uTdohP+TIoWKNVzsfCkSNlcvXheENeMR9UHNnatPc2AAZKkPxTegg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762355471; c=relaxed/simple;
-	bh=MfZhBVTlFRrSk30PCYslzy6b+4QV03SpIdNGJxCgc2E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ioeJpPBdFTaB994Om6n6rYlXZzrmVwBMFTcR1JK+Aoowz9MkaDTz+2ZsqyxhkB2qKx+Xt7aAtDd6Ov7vKh9QCh/oZLDSvaaF5iby3IW2EtgvM/slrvv0fPFp9T9B2PlmJ0HubwfbWE2A5FscS9MiV2Wyi0E92T2lypyylERMkwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=e+oL1EAo; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762355469; x=1793891469;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=MfZhBVTlFRrSk30PCYslzy6b+4QV03SpIdNGJxCgc2E=;
-  b=e+oL1EAoV/UAYkMqBcrxX+aQ6jzTIKquEVeK4e4mUe9DCzQxCccuUkFc
-   2+hxBis6wJHhyPzSaN64IkABCwgSXiCrRh1WGpz1N4Hnrxj14SArZe2wa
-   ys1LWJjS8Kngfl+h3hDGwP0wzuFoysZENXSI7mRZ1S5kZGYazWo4cIymn
-   YeohGO14Bi/7NA6tlthdUkef7I4YVMSoO7RiARWwMkV1pqGkAgArD1+0N
-   SqpLsiRTuoscrNDIRc+d9Mv/BN9cF/2yCNFh4t7aqAN22uC5gHV00z5J1
-   wu70s1fU5fv+p8ET37HzHZLfSkME3Hz+f4Yd3pjIjyu1pMxPZ2Oiaw3iG
-   A==;
-X-CSE-ConnectionGUID: 1C9T4QUMR9KcvYCbr2w1Tg==
-X-CSE-MsgGUID: tb87mGoPQKugwYWJlkjeZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="64386929"
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; 
-   d="scan'208";a="64386929"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2025 07:11:09 -0800
-X-CSE-ConnectionGUID: JzDi8kVsSz26hXCiHF1DFQ==
-X-CSE-MsgGUID: lmj9NxLWR2S6UzIHjuhhrw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; 
-   d="scan'208";a="187774857"
-Received: from ldmartin-desk2.corp.intel.com (HELO ashevche-desk.local) ([10.124.221.135])
-  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2025 07:11:05 -0800
-Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1vGfA4-00000005oyc-3rDG;
-	Wed, 05 Nov 2025 17:11:00 +0200
-Date: Wed, 5 Nov 2025 17:11:00 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Michael.Hennerich@analog.com,
-	ramona.gradinariu@analog.com, antoniu.miclaus@analog.com,
-	jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Subject: Re: [PATCH 2/2] iio: accel: adxl380: add support for ADXL318 and
- ADXL319
-Message-ID: <aQtpBGJ0WyWbsQ1Q@smile.fi.intel.com>
-References: <2b8fc2ea006d06660c83f1e9e1ccfc865803dafb.1762281527.git.Jonathan.Santos@analog.com>
- <7d990c72acca31b2fe6c7685fd13ef5284c7646f.1762281527.git.Jonathan.Santos@analog.com>
+	s=arc-20240116; t=1762355786; c=relaxed/simple;
+	bh=t7kyvdcWGBvgbAjLqvJfui1li//+LFeswgZfjMXv0AY=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=PX0Gpyn67QA+ic08cNZUUPj3ZzmYUBUJIM8yDDseniOINDhGQfCJa/15NIVKMdRaZOz7si0/Blh2yNUTXW6MtnmH6qn+SE/+V7yJosdUft6gd/2+oFrADqL2lzjLohNcZedTd7jxrWvDYYiqOEhYYu/n+5Qn78KkeMYhhRDuI+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1vGfF4-0001py-5l; Wed, 05 Nov 2025 16:16:10 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1vGfF3-007Dc2-1v;
+	Wed, 05 Nov 2025 16:16:09 +0100
+Received: from pza by lupine with local (Exim 4.98.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1vGfF3-00000000BfY-25BY;
+	Wed, 05 Nov 2025 16:16:09 +0100
+Message-ID: <9baa4aa8c3e5b15cc23b6915ae1466fdeba75291.camel@pengutronix.de>
+Subject: Re: [PATCH v4 1/8] reset: imx8mp-audiomix: Fix bad mask values
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>, Abel Vesa	
+ <abelvesa@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Stephen
+ Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley	 <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Fabio
+ Estevam	 <festevam@gmail.com>, Daniel Baluta <daniel.baluta@nxp.com>,
+ Shengjiu Wang	 <shengjiu.wang@nxp.com>, Frank Li <Frank.Li@nxp.com>
+Cc: linux-clk@vger.kernel.org, imx@lists.linux.dev,
+ devicetree@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org,  Pengutronix Kernel Team	
+ <kernel@pengutronix.de>
+Date: Wed, 05 Nov 2025 16:16:09 +0100
+In-Reply-To: <20251104120301.913-2-laurentiumihalcea111@gmail.com>
+References: <20251104120301.913-1-laurentiumihalcea111@gmail.com>
+	 <20251104120301.913-2-laurentiumihalcea111@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7d990c72acca31b2fe6c7685fd13ef5284c7646f.1762281527.git.Jonathan.Santos@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Wed, Nov 05, 2025 at 09:40:34AM -0300, Jonathan Santos wrote:
-> The ADXL318 and ADXL319 are low noise density, low power, 3-axis
-> accelerometers based on ADXL380 and ADXL382, respectively. The main
-> difference between the new parts and the existing ones are the absence
-> of interrupts and events like tap detection, activity/inactivity, and
-> free-fall detection.
-> 
-> Other differences in the new parts are fewer power modes, basically
-> allowing only idle and measurement modes, and the removal of the 12-bit
-> SAR ADC path for the 3-axis signals (known as lower signal chain),
-> being excluisive for the temperature sensor in the ADXL318/319.
+On Di, 2025-11-04 at 04:02 -0800, Laurentiu Mihalcea wrote:
+> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>=20
+> As per the i.MX8MP TRM, section 14.2 "AUDIO_BLK_CTRL", table 14.2.3.1.1
+> "memory map", the definition of the EARC control register shows that the
+> EARC controller software reset is controlled via bit 0, while the EARC PH=
+Y
+> software reset is controlled via bit 1.
+>=20
+> This means that the current definitions of IMX8MP_AUDIOMIX_EARC_RESET_MAS=
+K
+> and IMX8MP_AUDIOMIX_EARC_PHY_RESET_MASK are wrong since their values woul=
+d
+> imply that the EARC controller software reset is controlled via bit 1 and
+> the EARC PHY software reset is controlled via bit 2. Fix them.
+>=20
+> Fixes: a83bc87cd30a ("reset: imx8mp-audiomix: Prepare the code for more r=
+eset bits")
+> Cc: stable@vger.kernel.org
+> Reviewed-by: Shengjiu Wang <shengjiu.wang@gmail.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
-...
+Applied patch 1 to reset/fixes, thanks!
 
-> struct adxl380_chip_info {
+[1/8] reset: imx8mp-audiomix: Fix bad mask values
+      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3D997c06330fd5
 
->  	const int samp_freq_tbl[3];
->  	const int temp_offset;
->  	const u16 chip_id;
-> +	const struct iio_info *info;
-> +	const bool has_low_power;
->  };
-
-You can save a few bytes here. Please, run `pahole` to see ways to improve
-the layout.
-
-Other than that, LGTM,
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+regards
+Philipp
 
