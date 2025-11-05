@@ -1,137 +1,144 @@
-Return-Path: <devicetree+bounces-235235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58603C35E23
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 14:42:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18727C35EDA
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 14:53:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D2E73A4FF9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 13:41:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E9113B034D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 13:51:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40D98314A62;
-	Wed,  5 Nov 2025 13:41:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D041F324B39;
+	Wed,  5 Nov 2025 13:51:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="XJqh+z8A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F0D73148B2
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 13:41:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26F6831D370
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 13:51:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762350089; cv=none; b=K1myx1fWnUk3djD41dSE0LwaNxNbm2fnaY/D8wzV/uzBAuHD2zckhMBNtUS13F49a5N3Xxm9SX3JAvGOvBCM+v5jg7DBfsU6oDAVS3nMWoWSrrwKC4uNc5LiOMUE7kwhatdIzagsiecvk7ysb6VsSQHri0gHv+9PyVK7lNaBVeg=
+	t=1762350689; cv=none; b=er+c+fXl9YBQcgnw4+aXDszTVYokc0ESj9LQM6NdIBtOUHmvh9rwcb6LiqRz5EWSMIaJeOQRnm5qyPOBHCXDNhkKuHbMZcPU5Tab+EaPwRFucPgt5sBn8DPFaMoAvn9kDxL+utYbDLt6nNyUTMZIAOY01irTzi632z/CG6S2pV4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762350089; c=relaxed/simple;
-	bh=bfdALSr3deXmp0lyQVG7MZh3VjiMH/EzHy4oWwL56vc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B36ehI5IL/N/QS/FXX5U3fnpF/utdhax/sxMJ4DpqpIFk9Jyz/6LWU0Ghy+LIssN/Hz+2UbaLujZk7iOYNYapO7m6OLBVYSYJ9n4ZHNfgqTrYyi5F7UxzGAJmKIxfL7SnIjztdbeMkLAesG4LKXYbBV4sGx3SLfJZpejESodyEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id 8B40C21195;
-	Wed,  5 Nov 2025 13:41:20 +0000 (UTC)
-Authentication-Results: smtp-out1.suse.de;
-	none
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 89B98132DD;
-	Wed,  5 Nov 2025 13:41:19 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id HUsfH/9TC2liHAAAD6G6ig
-	(envelope-from <svarbanov@suse.de>); Wed, 05 Nov 2025 13:41:19 +0000
-Message-ID: <dc641a92-51bb-4740-8aec-e6fd1ef988fa@suse.de>
-Date: Wed, 5 Nov 2025 15:41:18 +0200
+	s=arc-20240116; t=1762350689; c=relaxed/simple;
+	bh=zP41Rmpn5mMZPXrAIAfE+G59N4Vqeo9bSbuVW5Vwl9E=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=eZQUc+o2Nhc+CHJDPgSXebghkn7nvR8VrqUc9K3GEHdtmyoTT3C/w3PTQk3MV1/gqNbMPJNSrUHyCa+U3H1qosSrtF6rSvUcWjr6wHbt4txKp7nh+Ndd/Sxoq1ZSDxJ2yA1aKEDb7cmrwrTf9Ynesu31S8P449mcvVQ4CAfju7k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=XJqh+z8A; arc=none smtp.client-ip=209.85.222.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
+Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-8b145496cc1so240380885a.1
+        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 05:51:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1762350687; x=1762955487; darn=vger.kernel.org;
+        h=mime-version:user-agent:references:in-reply-to:date:cc:to:from
+         :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=zP41Rmpn5mMZPXrAIAfE+G59N4Vqeo9bSbuVW5Vwl9E=;
+        b=XJqh+z8AprQdeWWVaS5BDhVHZbvRwsTpw2yaxVcGPy6Lszbpc/xb9PpgQcV6iRzHmh
+         fC8gQDMzQ4cEyFcyhWYriJVTBDdTPRbvgKVQNFDzKQohrK2TBn1VBBTN803zsn89uYuk
+         FEJq7AEiiNoyyMLmTpVUonDMasiPOSsAvhSLc1obGNu90ZmZIizzy7pto1qPB3hW5ASv
+         9DLMewKqSwaXHbdVzAY5FyMiECtdNuY0O9b5WqkrSmG3LPa9oo+MayM5XsBKi1q/EgWk
+         0CVSlnEDGJIl5l9FOnQG3CYHsz5pm5t3GiQTZqlFcEJKUUri+hb6FwETuhL8/1JuGLT3
+         pXdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762350687; x=1762955487;
+        h=mime-version:user-agent:references:in-reply-to:date:cc:to:from
+         :subject:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zP41Rmpn5mMZPXrAIAfE+G59N4Vqeo9bSbuVW5Vwl9E=;
+        b=WVsv0zW0NNw2IryOWFqAKk/3KdLmee5H9PZrl5NiJlhAkXU2IofoQAMfw5Rl67yZsS
+         x6G6+D5gg2d0pQvQr0bt8K+gJe5Kbd67EvppPA0W92LTr9UEKrkl3EqWYO0yfGnS04ZH
+         +BbD+MSWanPBBBhKqOgdkzxOT7B+AouHzSm+4abX4YdkrbA5d3HaID4+yXBN7NBFXa6k
+         Qf084qlB4amojkn9kHkGUkBZ2tfl+qGf2q2DBSsjPsomQFLNNvmjuBCfXvoHclQzwlyV
+         Ry2mjFiaQR9zNQWGg06Y7+8drNjBktBhh2etBi95jLEp7qzlQnYaqmdLTvmZazk0gKA9
+         cTDA==
+X-Forwarded-Encrypted: i=1; AJvYcCXQDCgou3pF/GTJuMLCAXaaxV3CaPwzUDnKwIq9wQmv/MOCifAa6jw/Tunbm2bpZL5LJHb69EbQH5Ur@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuLQkuMsVoWz6TM1xUVaL/k/YHFjFU/CKZGV01ObPBbXMvpf6L
+	IQ80RKnO87TGsYII7sdemRYVwoGx5t3KZ0DCB5WIhkOoLodymNV7DwerUkXE01nfovU=
+X-Gm-Gg: ASbGncs0CmDjxOzMYEzvFEon2igBzcz5SIpIWW44zcHqC2FVCoL6mfp3wnSKsNbVjpg
+	wZROYXznhUNK4j1vDi2TF1VW3KjsGTJMzA2sdZgVlOtBDyaFqc0n6XjqCkv8UHcGhv8ZqO4D4Kd
+	xWAz2fJk/ChnwtBTn3jBjaTBEZq+cwricqoZROpB6Kcav2deYRm4MbTB0Pi6PpN4cB0ufe6dqgI
+	wuWHkPHYqobDVtwnUKFNv5ihuLSWIBsp/BtLcYby9oAD7UQ7s5clNX/5EyE6Zlg+KPSJdt2LPeO
+	M+3y8PA3LXuuKE/3OSCfFEuLBZTsPqHaoBuQcgobK/kKFJb+4TkcBgFMtWm0lFu34yuh9PmrcgP
+	EhiLBP1arwzhwl+72oR3A2xCmb0RnKJu66K8OkD5b2rH4TdcG2fGmK2iDZr2KIFijrhCCzuVTH9
+	ZWnMWc8w==
+X-Google-Smtp-Source: AGHT+IHjDb17WJE5ovnji+ZuOA/1CxRvnHlgllSFFQ/L3BHsKI5wbhqVXzK9pnt8K5pFCIhkgw4W3A==
+X-Received: by 2002:a05:620a:4045:b0:8b0:f8c4:a5fe with SMTP id af79cd13be357-8b220c001f8mr430100785a.89.1762350686452;
+        Wed, 05 Nov 2025 05:51:26 -0800 (PST)
+Received: from ?IPv6:2606:6d00:11:ef24::c41? ([2606:6d00:11:ef24::c41])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8b0f5413f43sm432543785a.8.2025.11.05.05.51.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Nov 2025 05:51:25 -0800 (PST)
+Message-ID: <6d046cef20dcef4eb14aba6fa89e30d303f6a1b5.camel@ndufresne.ca>
+Subject: Re: [PATCH 0/3] Add Amlogic stateless H.264 video decoder for S4
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Zhentao Guo <zhentao.guo@amlogic.com>, Neil Armstrong	
+ <neil.armstrong@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley	 <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet	 <jbrunet@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org
+Date: Wed, 05 Nov 2025 08:51:23 -0500
+In-Reply-To: <174ef722-99f0-440d-8eee-5dca086e13f0@amlogic.com>
+References: <20251027-b4-s4-vdec-upstream-v1-0-620401813b5d@amlogic.com>
+	 <b976b442-7d07-4fef-b851-ccd14661a233@linaro.org>
+	 <540d98ea-114c-43bc-94c0-e944b5613d74@amlogic.com>
+	 <b6e6881197dc4c83e43ef5eb1f20c2bf1887d395.camel@ndufresne.ca>
+	 <174ef722-99f0-440d-8eee-5dca086e13f0@amlogic.com>
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-2cG765y6sSQkAAGLj2Ko"
+User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/4] Add watchdog support for bcm2712
-To: Ulf Hansson <ulf.hansson@linaro.org>,
- Stanimir Varbanov <svarbanov@suse.de>,
- Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, linux-pm@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>, Lee Jones <lee@kernel.org>,
- Willow Cunningham <willow.e.cunningham@gmail.com>,
- Stefan Wahren <wahrenst@gmx.net>, Saenz Julienne <nsaenz@kernel.org>,
- Andrea della Porta <andrea.porta@suse.com>,
- Phil Elwell <phil@raspberrypi.com>, Jonathan Bell
- <jonathan@raspberrypi.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>
-References: <20251031183309.1163384-1-svarbanov@suse.de>
- <CAPDyKFqHizQKSDCuPopNBWtt1mNCNuWegv9c=PcXEEVaUaP3cw@mail.gmail.com>
-Content-Language: en-US
-From: Stanimir Varbanov <svarbanov@suse.de>
-In-Reply-To: <CAPDyKFqHizQKSDCuPopNBWtt1mNCNuWegv9c=PcXEEVaUaP3cw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Pre-Result: action=no action;
-	module=replies;
-	Message is reply to one we originated
-X-Rspamd-Queue-Id: 8B40C21195
-X-Rspamd-Pre-Result: action=no action;
-	module=replies;
-	Message is reply to one we originated
-X-Rspamd-Action: no action
-X-Spam-Flag: NO
-X-Spam-Score: -4.00
-X-Spam-Level: 
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-4.00 / 50.00];
-	REPLY(-4.00)[];
-	TAGGED_RCPT(0.00)[dt]
+
+
+--=-2cG765y6sSQkAAGLj2Ko
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-On 11/5/25 2:52 PM, Ulf Hansson wrote:
-> On Fri, 31 Oct 2025 at 19:33, Stanimir Varbanov <svarbanov@suse.de> wrote:
->>
->> Hello,
->>
->> Changes since v2:
->>  * 2/4 - Use maxItems instead of wrong minItems in else clause (Conor).
->>
->> Comments are welcome!
->>
->> regards,
->> ~Stan
->>
->> Stanimir Varbanov (4):
->>   pmdomain: bcm: bcm2835-power: Prepare to support BCM2712
->>   dt-bindings: soc: bcm: Add bcm2712 compatible
->>   mfd: bcm2835-pm: Add support for BCM2712
->>   arm64: dts: broadcom: bcm2712: Add watchdog DT node
->>
->>  .../bindings/soc/bcm/brcm,bcm2835-pm.yaml     | 38 ++++++++++++++++---
->>  arch/arm64/boot/dts/broadcom/bcm2712.dtsi     |  9 +++++
->>  drivers/mfd/bcm2835-pm.c                      |  1 +
->>  drivers/pmdomain/bcm/bcm2835-power.c          | 17 +++++++--
->>  4 files changed, 55 insertions(+), 10 deletions(-)
->>
->> --
->> 2.47.0
->>
-> 
-> Patch 1->3 applied for next, thanks!
-> 
-> Note the dt patch (patch2) is also available on the immutable dt branch.
+Le mercredi 05 novembre 2025 =C3=A0 17:26 +0800, Zhentao Guo a =C3=A9crit=
+=C2=A0:
+>=20
+> =E5=9C=A8 2025/11/5 0:13, Nicolas Dufresne =E5=86=99=E9=81=93:
+> > [You don't often get email from nicolas@ndufresne.ca. Learn why this is
+> > important at https://aka.ms/LearnAboutSenderIdentification=C2=A0]
+> >=20
+> > [ EXTERNAL EMAIL ]
+>=20
+> Yes, we plan to support the interlaced and mbaff streams in the=20
+> following stages. The decoder hardware can support interlaced/mbaff.
 
-Ulf, Florian, Conor, thank you for the help!
+Perfect, let's focus on the core for now then, I have additional feedback f=
+or
+you on top of Neil's review, hopefully I can get these ready this week.
 
-~Stan
+regards,
+Nicolas
 
+--=-2cG765y6sSQkAAGLj2Ko
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaQtWXAAKCRDZQZRRKWBy
+9C7bAP9Qs1rNKbRgDkazxpbW2p5TVrPLZK8wjWZLZUY+/CCltwD+LgR3cm+8x2UQ
+D82jlWcSVIKc5R+xySP7dgFgB+WISQU=
+=2auc
+-----END PGP SIGNATURE-----
+
+--=-2cG765y6sSQkAAGLj2Ko--
 
