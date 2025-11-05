@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-235308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEBE3C36A1A
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 17:18:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 265A1C36A59
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 17:21:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A258364168F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 16:05:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F34991A432ED
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 16:06:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80732334C3F;
-	Wed,  5 Nov 2025 16:05:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 183213358C9;
+	Wed,  5 Nov 2025 16:05:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TFAWsg/V"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dXz+q+n0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E859333755
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 16:05:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53090334C3D
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 16:05:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762358725; cv=none; b=IiBuowch2U2wH1h5vwqxB9jsASdPcna4twty74sRnFkT0gwgXeaHWOy4BvFWULIV21o76TT72wvVJIjMM9UeIINRMF2RbGQDS7P9hrhzakkSM33ZnidcGbrmPPfCCsbHh73YHIDHkd5aBdFY3pO4t4mV3+3B1ATeJvOSfx9fnsY=
+	t=1762358727; cv=none; b=bgYMvt/WeFCTJI8MK5OqJy45lDYrP6nTZkbtbSPkuCJznz4Arh5t0EUgyCfvzBRADsGFUTjdIUb7GKcudRCTA0QbDPfrmafGof3BfF8hYkzy56uh28dOE0Gc1t8FRF4UCK54QQJ+K6EEyrREZSZCri1CRt6vrVY72Kjl6ZQQAUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762358725; c=relaxed/simple;
-	bh=YtqP+iwcKtMakzXgLk3UQKPhw4kYFhpKvW8eLwW3czU=;
+	s=arc-20240116; t=1762358727; c=relaxed/simple;
+	bh=aFlIqj8cX1NQ0lCzxiSyrrlu00dbSVu+NizVPVqZ+Sg=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=fhOZ5wlSCbMOY8pczANXSEqWSkXCZVJT0mji/8EvszBIOu0hi15eEeu0REFYZeTfiDAmMgZv8gFhd3t3izuE7P2FfBTk51XCTcQhb+BbcJ45nbOgu+7nfdE8R34MuQxur69OUYScX8EfW3rVPRJNx5Rr6saC4M5sH56yWW++xhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TFAWsg/V; arc=none smtp.client-ip=209.85.128.50
+	 MIME-Version; b=EgT7CUMJ3cWc8KsLN1VeQu0bHHLkGf/+NDqc+ZyYbmWrUOByVIeQPg+DpT3dBCI3flZ2nSQO9xUSH09/ixhQupbt+qjEsPDlpzG+WcmwbySxYJFkhofLTqs3GthwSp5kSSOivMVdjvFRJS3VPx1VtB3b7zbIWTBsL47Bl4HPyiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dXz+q+n0; arc=none smtp.client-ip=209.85.221.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-47756a07b34so10214915e9.2
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 08:05:23 -0800 (PST)
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-429c7e0282dso3935586f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 08:05:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762358722; x=1762963522; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1762358724; x=1762963524; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gi36H1hNTl6bMN6Cd06JLPD8tUQzuyL6UKpqqUX8AXU=;
-        b=TFAWsg/VlGcwdgZk9J3z6itMaDzN7cG4Oq0Yh2d03K85t8XD04mkyaB73VCju148Re
-         ZHmSoC2k7AxSaaa2wMoB1LEEdiCRUbKJAVJq2PAXjptso5ixrpInPIEgHzWja3GcjEyc
-         lytuCs3A7fDbb2qNGkvESQlFpqwnrFGEwY39Pg4Z2o0KLmSfV+bR4T3mjy1JR40uiJmL
-         n+mrCo0yWJf8faK411ZcGuk8ytByaGNAb234bFvaTRIq0MGgR4d7oxC5rEB08St/um/N
-         mWZUscj1QpY7nYMJtjT32tvENaUgMP2AWMqz2GO/8daqQHAdhXu+6qwoTGmZ5YCwHKRn
-         r6fg==
+        bh=pg1s0jiPxmjQzUA2OkWwvLk1yS9N8UGQ6BwkSG5FxaE=;
+        b=dXz+q+n0DxOPhgM/XkuYZB3w8sJ4DA/fN3Cnti4cCIrUxqGofaR29kvvIwJxNv1gJe
+         IJLr3zS0iQhBZO1/MpwNj5eBe9yWPVd9ZmC48uKccJWEFRwoFXlcJWJUKqodxjP6MrBX
+         7NCUZmVp+rYY4to0DT39er3Xr4pJ5rdKldYzj0O2SuJlz9eemAD93JPS6WR2Z1xFXbOc
+         Pvg1wM6lgjc2J2AhFK8Vy0nuOA8it79K0JPcdWpbLwi1kU87p15YiqFfouHJgfbVlDc/
+         qm717sSMshmQ9/DGe5KMqJLRSzPiWV5WC9ULMQiLCwWbNIM563Y48EtiPlO+5ng892K9
+         KyBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762358722; x=1762963522;
+        d=1e100.net; s=20230601; t=1762358724; x=1762963524;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gi36H1hNTl6bMN6Cd06JLPD8tUQzuyL6UKpqqUX8AXU=;
-        b=C+LzPxIS0LlImhBgBLQF7qAWAuKlQdnLodtep2OwHpt2ZWDa/gczcsjbLToDtNWvTd
-         yiG3dSbTCnzXGXDx/oJ2GrBSipTEhfGnR72VLdz3ilSnHAq1PTBfv1ZJJEcZANKFw2Ml
-         ndf/nHECc4Kr6feHTFxxkfHjmrFU/Oze81Gr+Fada+H0KOYu58DgZUc60u6l1st8A0x6
-         olRWY6FFnagVPGKuYXkkGxpF+hPvdAlTVqFGmSo46HjMxsEhYaCXs856YOp0+2NeMS4c
-         QU10uJ0akL1TmIvVIO0eAoB3aN3KWMnF9bA8aIxsIr+B5U+ytbLxJTdbFFIgymhYAEer
-         t++A==
-X-Forwarded-Encrypted: i=1; AJvYcCUF3gUOVlFSRTNE49Jqm6w6d5ZRWfgjREhmVaQ1bJvs6T4ph6vox5Ouej6IyQ1Z+8Ha/EHQG6Mbhj+M@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFhv9VFrk02MhcoU477/0wv5E1uunENrlmtUCFOPNZBSiHvADL
-	Pm2/Ee+x6u9Y8ttbwxjl//aU1YWNlQ3NMgQGcyx9Aurk0/1xxsvRWNYU
-X-Gm-Gg: ASbGnct/ctjk8ggpRPIt9j68DJmprC4x1tXCZeXUf+YT2cViyguonYjVf/z4CWNlyxi
-	0gIRPqI2S35buqVIlPoO3UqxjotMnBZsjDNumN3IbNdcyfPzQ2hk4+PWh04cDBztS0AGBqdht0/
-	nyCXI7kNPHdlas94TmZVRIUflq1/tJmSCLKZmj9O5Q93eImn/b6AUhGxZ5Qf5Z7iHahrQaXrAxN
-	QU5OegZVUIGR9ZO/aFU2uAAE7xPRE7oFkMNv5tNkou+SUJmDOqHpcEbAUD5tIH6gNCRGWg//CvP
-	CCn+tREmtuC+8l29uejzEfDZ/BXYO/uT1oSWet0QELPZrefU0jAQ3Dyr8znoXbcmqoThfqdOAAs
-	WvWnhf7cbx1mAKT8o5jpdE5i+s28Aem+zL22KdT9pBsIZ40wbf1p/viMbGuDVtPfTnpa5ojRHr8
-	6xy/7j9yVjSoix9/YejRXhOqiSjG2ir6BGkYDlqFSEH6ak6RsSlZJAwmv/8VH14AEqIr3D
-X-Google-Smtp-Source: AGHT+IFIw63y8/HMqfwqpMpvegHOj8/fyBrBB9+zxkNIj4mos1HOvCMf9iyNT5somnO7vFbCIP2bew==
-X-Received: by 2002:a05:600c:a00c:b0:471:115e:87bd with SMTP id 5b1f17b1804b1-4775ce14b0bmr27807925e9.26.1762358721509;
-        Wed, 05 Nov 2025 08:05:21 -0800 (PST)
+        bh=pg1s0jiPxmjQzUA2OkWwvLk1yS9N8UGQ6BwkSG5FxaE=;
+        b=o32kRR95rvrXEw2acZShUb+DK/CXU9dICu4GTM5GaTUFygIbAu2DhonWb0uiXhjcYq
+         OIv3gCLf28qhXHisQcvBCiJGxB/+iYirwtm66eLqp4xEPlff3LpBNAxFPBetjLp0wN2J
+         k/m0kgdb3E+744/+HDgVcmG1WCf4ajOgL9wzwROX3fhbTEyvQ8o12p5m8meQyraJ05AA
+         alHo8L7UcpDMC8z2zuQeDgBEJQ+yKheIW2a8tC1/QsWNZvVxGIq1Z1ko8DEFmD9tqret
+         wj919ulQ1uR51D+e6XrikllphT/25pO0P1GOFlfjGl1rLZ131bTOFz5EBPjSycA1peJB
+         ubdA==
+X-Forwarded-Encrypted: i=1; AJvYcCWCsoUh5/ipBUuwj3W7pU+VLYNfgbVUz+Eou9kbI79ooXuJCY5/CewhAdAzj5YC210nBRTubn3AlLin@vger.kernel.org
+X-Gm-Message-State: AOJu0YwX4vn4dpYeONEi+44aWxzq44k4VbFAYjhy/TEZBKVNjUNeoChl
+	BRYN67KoiWRBwxFzmdi7zfl51R5rU4CRMEIYdkK4YjrJVqSbcvS4/vc+++vzJg==
+X-Gm-Gg: ASbGncu8bPDh+A8dPMnj9YZOuC3/Yah7tNjCmFJ+9YFgPU+jv2//pH9bulE7mkhKwHz
+	MIHrqRAP04Hrbw2oLayApKFJJPDqlrSzRnmS2erisY7Ax+BcYK5l3Dm9FwA2RJ6tGOLmzgDeYhq
+	hMb/OaWlyfclmZXalwRQ9/8RdAM6TsQF1HHspwUTe1jSv/KQc+ysRrYTHsdLYTBAL82XXvmCRMx
+	jQJ8VdkkkUovpZLrcqALuNsX0SPtW7tNQXEfsL3/SwoAT2MPTY7nr8L2p2jOMOORTLSgtZPBUz2
+	1MPKkJ/6zxQRpD7Dy3rI2IPk0Et6g4+q2H880PJoISLJY3+6EYbb4fnFo+IMGX7ae/h1TJleNdo
+	2CDd7lwWwHwWGOs4vvR4gUnX23djHbaOVoZPS5u8sCRlPqxgHrgS2tC7h+iChzfXK+UJ7Fa1zQJ
+	sxdUk6Y0BfFgd+2OLcnwgHX5bPYNhXHkbNdwW09anzLZ+Q2zHebMxJ/RD26iC3CexwjIEr
+X-Google-Smtp-Source: AGHT+IGRfnGJjlSWk/FWsJUYLJaIiQePxFopFGsacT+cjTxMYpRK3/QdhNesPFcIhQfYEBrJSv7gug==
+X-Received: by 2002:a05:6000:2387:b0:427:151:3db6 with SMTP id ffacd0b85a97d-429e32f48bcmr3510510f8f.24.1762358723585;
+        Wed, 05 Nov 2025 08:05:23 -0800 (PST)
 Received: from localhost (p200300e41f274600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f27:4600:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4775cdc96edsm55240185e9.6.2025.11.05.08.05.20
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429dc1fbd1csm11372505f8f.38.2025.11.05.08.05.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Nov 2025 08:05:20 -0800 (PST)
+        Wed, 05 Nov 2025 08:05:22 -0800 (PST)
 From: Thierry Reding <thierry.reding@gmail.com>
 To: Thierry Reding <thierry.reding@gmail.com>,
 	Krzysztof Kozlowski <krzk@kernel.org>
@@ -82,9 +82,9 @@ Cc: Rob Herring <robh@kernel.org>,
 	Jon Hunter <jonathanh@nvidia.com>,
 	linux-tegra@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH 1/3] dt-bindings: memory: tegra: Document DBB clock for Tegra264
-Date: Wed,  5 Nov 2025 17:05:11 +0100
-Message-ID: <20251105160513.2638408-2-thierry.reding@gmail.com>
+Subject: [PATCH 2/3] memory: tegra: Add support for DBB clock on Tegra264
+Date: Wed,  5 Nov 2025 17:05:12 +0100
+Message-ID: <20251105160513.2638408-3-thierry.reding@gmail.com>
 X-Mailer: git-send-email 2.51.2
 In-Reply-To: <20251105160513.2638408-1-thierry.reding@gmail.com>
 References: <20251105160513.2638408-1-thierry.reding@gmail.com>
@@ -98,66 +98,47 @@ Content-Transfer-Encoding: 8bit
 
 From: Thierry Reding <treding@nvidia.com>
 
-Accesses to external memory are routed through the data backbone (DBB)
-on Tegra264. A separate clock feeds this path and needs to be enabled
-whenever an IP block makes an access to external memory. The external
-memory controller driver is the best place to control this clock since
-it knows how many devices are actively accessing memory.
+The DBB clock is needed by many IP blocks in order to access system
+memory via the data backbone. The memory controller and external memory
+controllers are the central place where these accesses are managed, so
+make sure that the clock can be controlled from the corresponding
+driver.
 
-Document the presence of this clock on Tegra264 only.
+Note that not all drivers fully register bandwidth requests, and hence
+the EMC driver doesn't have enough information to know when it's safe to
+switch the clock off, so for now it will be kept on permanently.
 
 Signed-off-by: Thierry Reding <treding@nvidia.com>
 ---
- .../memory-controllers/nvidia,tegra186-mc.yaml        | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ drivers/memory/tegra/tegra186-emc.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
-index b901f1b3e0fc..f0448d9ea1ba 100644
---- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
-@@ -92,10 +92,12 @@ patternProperties:
-       clocks:
-         items:
-           - description: external memory clock
-+          - description: data backbone clock
+diff --git a/drivers/memory/tegra/tegra186-emc.c b/drivers/memory/tegra/tegra186-emc.c
+index 74be09968baa..7a26d8830172 100644
+--- a/drivers/memory/tegra/tegra186-emc.c
++++ b/drivers/memory/tegra/tegra186-emc.c
+@@ -33,6 +33,7 @@ struct tegra186_emc {
+ 	struct tegra_bpmp *bpmp;
+ 	struct device *dev;
+ 	struct clk *clk;
++	struct clk *clk_dbb;
  
-       clock-names:
-         items:
-           - const: emc
-+          - const: dbb
+ 	struct tegra186_emc_dvfs *dvfs;
+ 	unsigned int num_dvfs;
+@@ -452,6 +453,13 @@ static int tegra186_emc_probe(struct platform_device *pdev)
+ 		return dev_err_probe(&pdev->dev, PTR_ERR(emc->clk),
+ 				     "failed to get EMC clock\n");
  
-       "#interconnect-cells":
-         const: 0
-@@ -115,6 +117,9 @@ patternProperties:
-             reg:
-               maxItems: 1
- 
-+            clocks:
-+              maxItems: 1
++	emc->clk_dbb = devm_clk_get_optional_enabled(&pdev->dev, "dbb");
++	if (IS_ERR(emc->clk_dbb)) {
++		err = PTR_ERR(emc->clk_dbb);
++		dev_err(&pdev->dev, "failed to get DBB clock: %d\n", err);
++		goto put_bpmp;
++	}
 +
-       - if:
-           properties:
-             compatible:
-@@ -124,6 +129,9 @@ patternProperties:
-             reg:
-               minItems: 2
+ 	platform_set_drvdata(pdev, emc);
+ 	emc->dev = &pdev->dev;
  
-+            clocks:
-+              maxItems: 1
-+
-       - if:
-           properties:
-             compatible:
-@@ -133,6 +141,9 @@ patternProperties:
-             reg:
-               minItems: 2
- 
-+            clocks:
-+              maxItems: 1
-+
-       - if:
-           properties:
-             compatible:
 -- 
 2.51.2
 
