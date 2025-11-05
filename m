@@ -1,51 +1,107 @@
-Return-Path: <devicetree+bounces-235030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51257C33FB0
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 06:18:46 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34C88C33FF6
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 06:47:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8908F189D8EC
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 05:19:10 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0D4414E2BFF
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 05:47:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14FAB261B9F;
-	Wed,  5 Nov 2025 05:18:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA28626CE2D;
+	Wed,  5 Nov 2025 05:47:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EwdU8bPp";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gLGJfhs4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89A6324888A
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 05:18:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19DC41F4615
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 05:47:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762319923; cv=none; b=PP5dmUd+D1P3OymnCjbYobvoDiGa9rEBGjQEqIP/59ORASGAAioE8dFmgzdRZh3GRdXG7RtAJAYP0jUmoIXJLxCJgvmoPl3uGcwiGE86qEB1l0sIpVFQFjuqt/BaoDNjAp65jpAJPTHig4S0cTRlS6Pzja1QPJVzui4DBrOGmAI=
+	t=1762321629; cv=none; b=dSuImSp9gDDwhWjotlb0jYFtE8Ewo1okMT4a9Sc27R6v9lY2UGODSuGk2TpZohbTCDTKjgV+YCXq/2/bi1L/WBTo9/XfV1/3RE6iH/lOwpx70uFs4ufy7odF5KkCtY14YcWlOyPcBkBxSJ3KFk3TEA4p6bEDs/pSiWcUK+M1OjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762319923; c=relaxed/simple;
-	bh=CihgcZsFOg5g5s7UU983EfN60ijKQ349a2bW3RhDYwY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=W0QEQlTf7F3Jx0ipROroOMSvT0TGiNd9HwliYVfLzfecQuupBevRRFo8F2JHn+Kax52qrjTHbpyAHsEup/6sfmHd/e4aBl1ZU7tJTb6khPhpx1PLcrDi6ez9eZNV2l/omStyKDD2kYYmDY0hqi0/EipAcZnfi3BthHZnAPbf5bo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
-Received: from secure.fukaumi.org ([10.0.0.2])
-	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 5A55DfSu031533;
-	Wed, 5 Nov 2025 14:13:49 +0900
-From: FUKAUMI Naoki <naoki@radxa.com>
-To: heiko@sntech.de
-Cc: joseph.kogut@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, jonas@kwiboo.se, kever.yang@rock-chips.com,
-        i@next.chainsx.cn, honyuenkwun@gmail.com, quentin.schulz@cherry.de,
-        dsimic@manjaro.org, pbrobinson@gmail.com, amadeus@jmu.edu.cn,
-        jbx6244@gmail.com, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, FUKAUMI Naoki <naoki@radxa.com>
-Subject: [PATCH v6 3/3] arm64: dts: rockchip: Add Radxa CM5 IO Board
-Date: Wed,  5 Nov 2025 05:13:35 +0000
-Message-ID: <20251105051335.17652-4-naoki@radxa.com>
+	s=arc-20240116; t=1762321629; c=relaxed/simple;
+	bh=8nQ5sw6au/GXcvKkhMPHNjA11MU04f/w4R2BKCtYs5g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=M6x9N3QSzCx0VmKFmk1yIEgHRtWBW4/xMl64oMxEd3swiPa0NydcsGsGSZADIp8CAaWp/5bFKaSEqOFaOKBTG/ij0dFHo+g0YKAVxePGpK6zbF3rtyJskf3unQU1CBobLgxKtXPHOf9y134jBUTRr6somAq+sdEE/mR0J+lTXcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EwdU8bPp; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gLGJfhs4; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A54YZTU4056175
+	for <devicetree@vger.kernel.org>; Wed, 5 Nov 2025 05:47:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=QNbkeSHSadGd92B2YVOcrLu0e7BSImxzf++
+	QWKYHrRE=; b=EwdU8bPpfsiiSF8XytJcBTYV3ZZ+L+8PQKKnKSBSjfjOjRIsd3w
+	2EQHVbVbkXqBJ1WcTqjEV8OGPEgNU1zxN8zN9R6nCuziz+3izrYFizIB2youVrQV
+	d24XZQ+lIFmZw+8qHW34iXspZDiRZKQfSG0PbWEn/SP2hZ7v5iBtCgM1I6tCgnMO
+	lAOTwit+dAszpXYfzoL/3yXFhb//dGGgTReudt45wu+q927TuEaQZDOCQbc3i8Cn
+	/yPURQwLR/76LM8+GN1k6XIBnBsPCaDBHFy9u8RNp4cUh+oSGEFjQQu/n2n0mmkq
+	iRiDqIodDowhfc81e4LVQNMYuWiEk0IU0SA==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a7yp604j6-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 05:47:06 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-76e2ea9366aso6183519b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 21:47:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762321626; x=1762926426; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QNbkeSHSadGd92B2YVOcrLu0e7BSImxzf++QWKYHrRE=;
+        b=gLGJfhs4HI9uEf2oBp7i1qcV39Ligs2PAppN9fuJB4iabvDELPNw5jONhmdHNc46+z
+         ySUEDLgaU1K9kezc3rbz/NSUaQkMaXhYFxLWaaHnZu+Ix1/73mlutoTVRNxP0CQUnVEr
+         0woyPq/b0CVI+qgQ4CS4x/2qFZK41e6u77VbMtwr5X7ZlRgG/la60l4U43Bj2T9I6r7w
+         4nQNXsAxM1fucJ054vV0HkHtdMaJH7gw/9n1KkTZ3TxA2sBivOpJMctF0L59lHrkmCcN
+         DrzZOEhSVxBzipZNVMeqYg7KkYasMJrdwP3sY4A/BdE+qerMPmlDXTDHmQA/WlJbFIyD
+         224w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762321626; x=1762926426;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QNbkeSHSadGd92B2YVOcrLu0e7BSImxzf++QWKYHrRE=;
+        b=mTf0Y1WM2O2fC+U2ltHuuz6heRB6p00P/8BNwdfUHYb5mCnT6Gg1BIzNrHfxHALcFv
+         hxO6/WFVxcpaBtwTk08SO+qQfH7ht9svJbm8PUswgImIJ6LKyjnMai8DDqZgx5XcalX8
+         8d0wNTKgflzIud1Ki7F41fColxWIdFMM8PBjNXVRHEgkq53ygAL9+pGWlxY165iMQY05
+         JY6AVzylGctVVFLMQZSTUZbioJOD/kh6WaVz8m40P/mObhgweDaqh4Ntrlh+/dwp+9Ng
+         SgURYHtiEcpogdjXG+Oed74yvGe3K+wH6Wvd2LLZcAP3mc0DS1tRMyeSAu/qrNveNMlu
+         UAoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUGZCcTqgd8FUFlm6jtpHyZ6VgxbVw9oyB3U1lZsm0S+jtibmeF2v2wC1QeuZrFzQHFG668Tp6AG9FP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxql3h26JPhoPfMjxSbz14NjknXEKow7j34qKqB2ZPVi54rKxHr
+	l3EG5GwsnjOhWijkTmlfI/Kxx+SsZA6WNj597FWYFXbtX9hnttolyz3NKfwOjVm9DpP2u7Qqx8i
+	eyXCnecsugDVU2Kbv0vbsdWvEgYkTfmmDwtOrfPCUQ6r5Q5JJ+k4DlZw9dXqaCjHJ
+X-Gm-Gg: ASbGnctZf3At3+KF4bGfoj/3oSZbvGUkUs1XkQd6k8enrN2VvHUvouj6jymcX/0Fs+H
+	52HBohc//EzDbu3nIRfHJWdYgBF0TJcGD8byLZqV6vt+U0MpLczM3ElC/IdR/5P2PcsZGSmd1rF
+	4QokXcpj7G/Si6qt+ZzTTNW5HbYXyR1UZeh8/NS+E63XlXEb0hJ6wYfohVD8hApIoQzf2fUqVj4
+	f9xKMGFIzG3ejeIa2nNvuADwY4MSPH+TwnzZCP+cH5A+tJrCYJi6gwFjcHgVapYHtk4HOtc4Nhb
+	DzCWYJyuF2ZCFFZmxyw7OBS5q61G1oGoNYxL1yGaQzS4QfnyZbZwHiX3o7vxNF73JMfpGdU3s5F
+	NQSugkvJ/QqdVXS3IcPwJ5w==
+X-Received: by 2002:a05:6a00:2d92:b0:77e:8130:fda with SMTP id d2e1a72fcca58-7ae1d15ca00mr2384087b3a.13.1762321625861;
+        Tue, 04 Nov 2025 21:47:05 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG9adJ5eEPMWUOJsXqU6ZqN9gmTNY50VHdUrdL0y71kKiIzS5M/mDieGlRYKGM+p+efcyZ5JA==
+X-Received: by 2002:a05:6a00:2d92:b0:77e:8130:fda with SMTP id d2e1a72fcca58-7ae1d15ca00mr2384052b3a.13.1762321625379;
+        Tue, 04 Nov 2025 21:47:05 -0800 (PST)
+Received: from cse-cd04-lnx.qualcomm.com ([114.94.8.21])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7acd079276asm5001369b3a.0.2025.11.04.21.47.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Nov 2025 21:47:04 -0800 (PST)
+From: Xueyao An <xueyao.an@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1] arm64: dts: qcom: HAMOA-IOT-SOM: Unreserve GPIOs blocking SPI11 access
+Date: Wed,  5 Nov 2025 13:45:47 +0800
+Message-ID: <20251105054548.2347569-1-xueyao.an@oss.qualcomm.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251105051335.17652-1-naoki@radxa.com>
-References: <20251105051335.17652-1-naoki@radxa.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,555 +109,53 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: d7_HwMCk9dCzT3uN_2RFlIa6hsGyZsHY
+X-Proofpoint-ORIG-GUID: d7_HwMCk9dCzT3uN_2RFlIa6hsGyZsHY
+X-Authority-Analysis: v=2.4 cv=TsrrRTXh c=1 sm=1 tr=0 ts=690ae4da cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=Uz3yg00KUFJ2y2WijEJ4bw==:17
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=uYweBXC_siuRksOLPw8A:9 a=zZCYzV9kfG8A:10
+ a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA1MDAzOSBTYWx0ZWRfX98XEIimOkCxY
+ JDg1J+zIgCvRbCYc1Agfxx6zh8qzcBYMMHwLBkjLxn+TKd+kmuQFPH+tUF2fSrQeIcMuRqtO3fq
+ 8SZysAf6PS7SFhY2xeAATnwBoyqy8kigbohZh2N63vRwl/VkFSkobwFogJynyM96JSn75XRfwo1
+ cai8GSmhkMrPGZVMMg0QVddnNRtdL2XVqBO1gAwswlMuX/WUv1aDZxYBpac9+yEBi22z8F35G4i
+ AYer39WLqRm0aVYlM3wFrljLzpYrIvyO2Xd1+hFKzIq+oZBtZWPGmaS0CLgmA2qjZiFHsh0lc+3
+ 0dllmCc2SSu7bK8zhP3gcNN2enqJHaflrMXVwuAvbG4UU+GOjklyRRWyYr0XsXGkO5TfQEQuFk+
+ 1LGz9/isTzydnw/dgwVot5WEvXY5bA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-05_02,2025-11-03_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 spamscore=0 phishscore=0 priorityscore=1501 lowpriorityscore=0
+ bulkscore=0 impostorscore=0 adultscore=0 clxscore=1011 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511050039
 
-The Radxa CM5 IO Board is an application board for the Radxa CM5.
+GPIOs 44-47 were previously reserved, preventing Linux from accessing
+SPI11 (qupv1_se3). Since there is no TZ use case for these pins on Linux,
+they can be safely unreserved. Removing them from the reserved list
+resolves the SPI11 access issue for Linux.
 
-Specification:
-- 1x HDMI TX
-- 2x MIPI DSI
-- 2x MIPI CSI
-- 1x USB 3.0 Type-A port
-- 1x USB 3.0 Type-C port (supports DisplayPort Alt mode)
-- 2x USB 2.0 Type-A ports
-- 1x Gigabit Ethernet (supports PoE with add-on PoE HAT)
-- 1x microSD card slot
-- 1x Fan header
-- 1x M.2 E Key slot
-- 1x Headphone jack with microphone input
-- 40-pin GPIO header
-- RTC and battery holder
-- 12V 5525 DC jack
-
-Link: https://dl.radxa.com/cm5/io_board_v2200/radxa_cm5_io_board_v2200_schematic.pdf
-Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
+Signed-off-by: Xueyao An <xueyao.an@oss.qualcomm.com>
 ---
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../dts/rockchip/rk3588s-radxa-cm5-io.dts     | 503 ++++++++++++++++++
- 2 files changed, 504 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dts
+ arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 4cd8ef607f55c..61790f41c57ba 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -205,6 +205,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-nanopi-r6c.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-odroid-m2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5b.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-radxa-cm5-io.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-roc-pc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5c.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dts b/arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dts
-new file mode 100644
-index 0000000000000..12fa8ba83212a
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dts
-@@ -0,0 +1,503 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2025 Radxa Computer (Shenzhen) Co., Ltd.
-+ * Copyright (c) 2025 Joseph Kogut <joseph.kogut@gmail.com>
-+ */
-+
-+/*
-+ * CM5 IO Board schematic
-+ * https://dl.radxa.com/cm5/io_board_v2200/radxa_cm5_io_board_v2200_schematic.pdf
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/pwm/pwm.h>
-+#include <dt-bindings/soc/rockchip,vop2.h>
-+#include <dt-bindings/usb/pd.h>
-+#include "rk3588s-radxa-cm5.dtsi"
-+
-+/ {
-+	model = "Radxa CM5 IO Board";
-+	compatible = "radxa,cm5-io", "radxa,cm5", "rockchip,rk3588s";
-+
-+	aliases {
-+		mmc1 = &sdmmc;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+
-+	fan: fan {
-+		compatible = "pwm-fan";
-+		#cooling-cells = <2>;
-+		cooling-levels = <0 64 128 192 255>;
-+		fan-supply = <&vcc5v0_sys>;
-+		pwms = <&pwm11 0 60000 0>;
-+	};
-+
-+	hdmi0-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi0_con_in: endpoint {
-+				remote-endpoint = <&hdmi0_out_con>;
-+			};
-+		};
-+	};
-+
-+	keys-1 {
-+		compatible = "adc-keys";
-+		io-channels = <&saradc 1>;
-+		io-channel-names = "buttons";
-+		keyup-threshold-microvolt = <1800000>;
-+		poll-interval = <100>;
-+
-+		button-1 {
-+			label = "Recovery";
-+			linux,code = <KEY_VENDOR>;
-+			press-threshold-microvolt = <0>;
-+		};
-+	};
-+
-+	vcc12v_dcin: regulator-12v0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc12v_dcin";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+	};
-+
-+	vcc3v3_wf: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio1 RK_PD3 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_pwr_en>;
-+		regulator-name = "vcc3v3_wf";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc_sysin: regulator-4v0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_sysin";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <4000000>;
-+		regulator-max-microvolt = <4000000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc5v0_sys: vcc5v0_usb: regulator-5v0-0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc12v_dcin>;
-+	};
-+
-+	vcc5v0_usb1: regulator-5v0-1 {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio1 RK_PA0 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usb_host_pwren_h>;
-+		regulator-name = "vcc5v0_usb1";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc5v0_usb>;
-+	};
-+
-+	vbus5v0_typec: regulator-5v0-2 {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio0 RK_PD5 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&typec5v_pwren_h>;
-+		regulator-name = "vbus5v0_typec";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	rfkill-bt {
-+		compatible = "rfkill-gpio";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&host_wake_bt_h>;
-+		radio-type = "bluetooth";
-+		shutdown-gpios = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	rfkill-wlan {
-+		compatible = "rfkill-gpio";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bt_reg_on_h>;
-+		radio-type = "wlan";
-+		shutdown-gpios = <&gpio0 RK_PD4 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sound {
-+		compatible = "audio-graph-card";
-+		label = "rk3588-es8316";
-+		dais = <&i2s0_8ch_p0>;
-+		routing = "MIC2", "Mic Jack",
-+			  "Headphones", "HPOL",
-+			  "Headphones", "HPOR";
-+		widgets = "Microphone", "Mic Jack",
-+			  "Headphone", "Headphones";
-+	};
-+};
-+
-+&combphy0_ps {
-+	status = "okay";
-+};
-+
-+&combphy2_psu {
-+	phy-supply = <&vcc5v0_usb1>;
-+	status = "okay";
-+};
-+
-+&gmac1 {
-+	status = "okay";
-+};
-+
-+&hdmi0 {
-+	status = "okay";
-+};
-+
-+&hdmi0_in {
-+	hdmi0_in_vp0: endpoint {
-+		remote-endpoint = <&vp0_out_hdmi0>;
-+	};
-+};
-+
-+&hdmi0_out {
-+	hdmi0_out_con: endpoint {
-+		remote-endpoint = <&hdmi0_con_in>;
-+	};
-+};
-+
-+&hdmi0_sound {
-+	status = "okay";
-+};
-+
-+&hdptxphy0 {
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c6m3_xfer>;
-+	status = "okay";
-+
-+	usb-typec@22 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PC4 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&cc_int0_l>;
-+		vbus-supply = <&vbus5v0_typec>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			data-role = "dual";
-+			label = "USB-C";
-+			/* fusb302 supports PD Rev 2.0 Ver 1.2 */
-+			pd-revision = /bits/ 8 <0x2 0x0 0x1 0x2>;
-+			power-role = "source";
-+			source-pdos =
-+				<PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					usbc0_hs: endpoint {
-+						remote-endpoint = <&usb_host0_xhci_to_usbc0>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					usbc0_ss: endpoint {
-+						remote-endpoint = <&usbdp_phy0_ss>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					usbc0_sbu: endpoint {
-+						remote-endpoint = <&usbdp_phy0_sbu>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+
-+	rtc@51 {
-+		compatible = "haoyu,hym8563";
-+		reg = <0x51>;
-+		#clock-cells = <0>;
-+		clock-output-names = "rtc_32k_in";
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&rtc_int_l>;
-+		wakeup-source;
-+	};
-+};
-+
-+&i2c8 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c8m2_xfer>;
-+	status = "okay";
-+
-+	audio-codec@11 {
-+		compatible = "everest,es8316";
-+		reg = <0x11>;
-+		assigned-clocks = <&cru I2S0_8CH_MCLKOUT>;
-+		assigned-clock-rates = <12288000>;
-+		clocks = <&cru I2S0_8CH_MCLKOUT>;
-+		clock-names = "mclk";
-+		#sound-dai-cells = <0>;
-+
-+		port {
-+			es8316_p0_0: endpoint {
-+				remote-endpoint = <&i2s0_8ch_p0_0>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2s0_8ch {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2s0_lrck
-+		     &i2s0_mclk
-+		     &i2s0_sclk
-+		     &i2s0_sdi0
-+		     &i2s0_sdo0>;
-+	status = "okay";
-+
-+	i2s0_8ch_p0: port {
-+		i2s0_8ch_p0_0: endpoint {
-+			dai-format = "i2s";
-+			mclk-fs = <256>;
-+			remote-endpoint = <&es8316_p0_0>;
-+		};
-+	};
-+};
-+
-+&i2s5_8ch {
-+	status = "okay";
-+};
-+
-+&package_thermal {
-+	polling-delay = <1000>;
-+
-+	trips {
-+		package_fan0: package-fan0 {
-+			hysteresis = <2000>;
-+			temperature = <55000>;
-+			type = "active";
-+		};
-+
-+		package_fan1: package-fan1 {
-+			hysteresis = <2000>;
-+			temperature = <65000>;
-+			type = "active";
-+		};
-+	};
-+
-+	cooling-maps {
-+		map0 {
-+			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
-+			trip = <&package_fan0>;
-+		};
-+
-+		map1 {
-+			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
-+			trip = <&package_fan1>;
-+		};
-+	};
-+};
-+
-+&pcie2x1l2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie20x1_2_perstn_m0>;
-+	reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_wf>;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	pcie {
-+		pcie20x1_2_perstn_m0: pcie20x1-2-perstn-m0 {
-+			rockchip,pins = <3 RK_PD1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		wifi_pwr_en: wifi-pwr-en {
-+			rockchip,pins = <1 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	rfkill {
-+		bt_reg_on_h: bt-reg-on-h {
-+			rockchip,pins = <0 RK_PD4 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+
-+		host_wake_bt_h: host-wake-bt-h {
-+			rockchip,pins = <0 RK_PC6 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+
-+	rtc {
-+		rtc_int_l: rtc-int-l {
-+			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	usb {
-+		cc_int0_l: cc-int0-l {
-+			rockchip,pins = <0 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		usb_host_pwren_h: usb-host-pwren-h {
-+			rockchip,pins = <1 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		usbc_sbu_dc: usbc-sbu-dc {
-+			rockchip,pins = <3 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>,
-+					<3 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		typec5v_pwren_h: typec5v-pwren-h {
-+			rockchip,pins = <0 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&pwm11 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm11m3_pins>;
-+	status = "okay";
-+};
-+
-+&sdmmc {
-+	bus-width = <4>;
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
-+	disable-wp;
-+	no-sdio;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc_bus4 &sdmmc_clk &sdmmc_cmd>;
-+	sd-uhs-sdr104;
-+	vmmc-supply = <&vcc_3v3_s3>;
-+	vqmmc-supply = <&vccio_sd_s0>;
-+	status = "okay";
-+};
-+
-+&u2phy0 {
-+	status = "okay";
-+};
-+
-+&u2phy0_otg {
-+	status = "okay";
-+};
-+
-+&u2phy2 {
-+	status = "okay";
-+};
-+
-+&u2phy2_host {
-+	phy-supply = <&vcc5v0_usb1>;
-+	status = "okay";
-+};
-+
-+&u2phy3 {
-+	status = "okay";
-+};
-+
-+&u2phy3_host {
-+	phy-supply = <&vcc5v0_usb1>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart2m0_xfer>;
-+	status = "okay";
-+};
-+
-+&usb_host0_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host0_xhci {
-+	usb-role-switch;
-+	status = "okay";
-+
-+	port {
-+		usb_host0_xhci_to_usbc0: endpoint {
-+			remote-endpoint = <&usbc0_hs>;
-+		};
-+	};
-+};
-+
-+&usb_host1_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ohci {
-+	status = "okay";
-+};
-+
-+&usb_host2_xhci {
-+	status = "okay";
-+};
-+
-+&usbdp_phy0 {
-+	mode-switch;
-+	orientation-switch;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&usbc_sbu_dc>;
-+	sbu1-dc-gpios = <&gpio3 RK_PC4 GPIO_ACTIVE_HIGH>;
-+	sbu2-dc-gpios = <&gpio3 RK_PD4 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		usbdp_phy0_ss: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&usbc0_ss>;
-+		};
-+
-+		usbdp_phy0_sbu: endpoint@1 {
-+			reg = <1>;
-+			remote-endpoint = <&usbc0_sbu>;
-+		};
-+	};
-+};
-+
-+&vp0 {
-+	vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
-+		remote-endpoint = <&hdmi0_in_vp0>;
-+	};
-+};
+diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi b/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi
+index 1aead50b8920..107ea8045f55 100644
+--- a/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi
++++ b/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi
+@@ -451,8 +451,7 @@ &remoteproc_cdsp {
+ };
+ 
+ &tlmm {
+-	gpio-reserved-ranges = <34 2>, /* TPM LP & INT */
+-			       <44 4>; /* SPI (TPM) */
++	gpio-reserved-ranges = <34 2>; /* TPM LP & INT */
+ 
+ 	pcie4_default: pcie4-default-state {
+ 		clkreq-n-pins {
 -- 
 2.43.0
 
