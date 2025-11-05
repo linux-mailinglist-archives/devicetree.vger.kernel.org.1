@@ -1,149 +1,138 @@
-Return-Path: <devicetree+bounces-235397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29A58C37D20
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 22:03:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A289C37FCD
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 22:25:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78CFA3B39C0
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 21:02:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A4284237E8
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 21:16:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE6C934404F;
-	Wed,  5 Nov 2025 21:02:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B80534DCC0;
+	Wed,  5 Nov 2025 21:08:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b4BjCydZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XAJuJWkg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80FA1126C02;
-	Wed,  5 Nov 2025 21:02:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82185334C0C
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 21:08:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762376559; cv=none; b=J1d3dM73+v1/RfnwW4CdOldNLIb2E2ebhpIfkFh0yJO/OmYJ4maWvqxa2ZOyU4yjOaB7qvc6WlveFUwo4498SdhhTg4bAsXFVDwLgSj+H6ue4p/77DrSobSf0emmitsA5UzbwelXiKI5plHqm9M22oCnyKG3BHnmdr6ldvQ+7jo=
+	t=1762376906; cv=none; b=Oqy3EIYS9NpIANlS9yi/aGjM/xfVnd4nRZpmlEl6HW1OuiJIerKTMARydD/rM+Ab7KdRD2B5FCNzz7DiMTAKfDMG9ppKaP0cRqgfBs07s1O1cLiX/vsCS8h2vVsKjafapk+DBdBHBNY7pDIeTDTx3/aRBn5mB7Y8zLiEo2UWqiY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762376559; c=relaxed/simple;
-	bh=PHTEON9TcQhnC9OleIc8NvCsR/EC26hDv4zm9fkb9jU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T1uSnTwqQM/2QgcGyHdcIsY7vSUt+en33rk56zaKhxJ1LwPhTU41zgbnXX2IFLkcyrLgHmESku6qqq+0nKZDzkZrqIEuyG4nwGMx3RVwqB/toZU0aJ0hgIsJGV9QwfQxvG2cAb1e/kTIih3LrMFRCaA4YKKaiq2r0Uv/1aq1u3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b4BjCydZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E4E5C4CEF5;
-	Wed,  5 Nov 2025 21:02:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762376559;
-	bh=PHTEON9TcQhnC9OleIc8NvCsR/EC26hDv4zm9fkb9jU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=b4BjCydZhpH5JjUBb0lzOk2L4z6UX/9gVRodjb+PoJptbilhFbXfEfJzK4S9xmAR3
-	 Lfd4KJJDt2xxAtVuk/7Jkl8uv40hIh9WZQAN/RBcs2ugLPpQPSTuV4b/lRNgGy3yqJ
-	 Cuo8L+DxcbaIrW9hMqr+GW3CDj62zVvix0jPD4i3jgopgbzH63PCxGwpC0qQM0TNp1
-	 +z0mXqdvo0vC6CJaNr4W5HOMTNAcEYGJifNb1V2p8qNEZagHDsGHRA1oL+3T5hFnAH
-	 wFIiW3Izi7e1xYcVH88+O0bnLgki3Ork1cG0oEWqsH48/Z5qXj7PfcgtBfmTmnEy5/
-	 psypcDZoQ6KtQ==
-Date: Wed, 5 Nov 2025 15:06:20 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Cc: "Aiqun(Maria) Yu" <aiqun.yu@oss.qualcomm.com>, 
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com
-Subject: Re: [PATCH] dt-bindings: mfd: qcom,tcsr: Add compatible for Kaanapali
-Message-ID: <f2q7a7r7quq6pplcn3kklwrhdc6hxa5zvc7osygshtyurwyvi4@t5iyragt7irh>
-References: <20250924-knp-mfd-v1-1-6c8a98760e95@oss.qualcomm.com>
- <b623c7f6-f28f-49ba-b6f6-25084117a6b3@oss.qualcomm.com>
- <l4mb5pi7kz7uuq6o3eueoxl2ngt2sdd6dv3kyudw6i54co5v5h@w6ya2nuas322>
- <ad00835e-bc20-4f97-aba6-e1b4f5e97191@oss.qualcomm.com>
+	s=arc-20240116; t=1762376906; c=relaxed/simple;
+	bh=o/RZEnpXdcF408S2TqM/xZXCKDcyIyuFC63UXSw1n2Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=H3rOl+9qGcuO3Fshj57K2DMDRAdeEKZ6ZYOpptx+TIEAyOl87/BpkuMRDrOgy1szUyiGhasOXQuLnaSCzv7d+cWUeLJjWFNe+tbxzKRnibrMbxcd/UBoxsVqKWBLhPzwisvgKHcuUk5USD2+Ag1rNAEGyVGddj/O4UUyghR3Xmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XAJuJWkg; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-afcb7ae6ed0so46811366b.3
+        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 13:08:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762376902; x=1762981702; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4/N5rROtcnxc6d5f0IUPrUWxw9x/K7/M9hcGw0GwgYE=;
+        b=XAJuJWkgUrJwcnWeMDuDTvpQmQScdINsOCDxLTVO8hGAUyDvHSajWbchsHCs0yTHzz
+         D17W/yAg3vBpnI3MktwVR6dD02Q1dwe6EC1NF1W74hEBRL7Dp46gqD1KxT8CoKYOvJdb
+         fd2udH9MdwyIgcoQJrL92upIppadbANc8ZOwRbyj7+4tI8gCtrP36PQfcoSbrZ29sr2U
+         cIHHgd5ULuodLk+GaiH5DU/kzkR92TSpYkvTpJdKCwc0zU3CsyqygKYufXW+y7PjHQ6k
+         CMm7GCqu52WEF13cYduKlutJ/6QM6LGqAMooq3IL4rAd+CMiZNK0mpzMnZ2KnTdrQR7M
+         AB/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762376902; x=1762981702;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4/N5rROtcnxc6d5f0IUPrUWxw9x/K7/M9hcGw0GwgYE=;
+        b=rgFUBqf3qC/NwPZwDaCPwOHFOU52v9amzYiYL5yV58EOQnc0zrGyEONncb9Xnpo8pS
+         Nx+j0uQ2JvoiGkn+TadUfBd+H7q48xB6HQ0gC5Fx/EHTwWoNcGZL4lHTOMU2Xng8LQVR
+         BxvmCaWvwSjF5JgH45PYvtokF07bKo6MfNrPIx0xBkUTiS2bDPmRrM+qjvcwOtAzseO0
+         EM8kB4j7PecjmwuaTpqPhOFXXb9I0tweaEMqcJ4shxSeO82QJImzqTT823e57HobtbzM
+         lxr+zc5dhsdudly4XY5fwSY1sog+XB0FO+hLYlDHJHKTPtS1hmnd3vX3mboznC80rTf0
+         Jy9A==
+X-Gm-Message-State: AOJu0Yyh15vJ1H52ECW/rEd5YGoC9pCuaX98IJ4rypN9T52M2l1zyd2l
+	22CyiNCJ8Mq8zoJmAcDv+LaAoXc5pCJlVWEbF5VwR4LtgakyyWjSdpjccnhEauvce+c=
+X-Gm-Gg: ASbGnctI+xYXTlE8iFZMLSBPzmvumQyquiDDOFYGZ0HEGRXGBS3PZ88WKhMdEJL4dPi
+	DMzRm9VU+fu1DKFWnCvdwwmLs1Xy712h0UOwVWklr4sfwtwiAmMyyc6VhhbhL5OWEyFLmfL/m69
+	9NR8aK+n1EeDcOLpkhidGV8OWT+Y42BuuPy9Kxffzx0uk+cxvF0IqMtp1RPdzpZ7kEpids1xg3R
+	Gn9SBekb3fk+jj+O+VkDLWHA7hUCRwxIDD4/x1+evajdGL/oVctLc+SeHhuh1hOJRSeHAHPcHls
+	kzU0a+nJgqLBjQ9aoQWxYNyKJohFeCQWF5L2mCAekI0kjNmRljIQNqwaKdy+ZtPp9yp/vsGmguQ
+	NIBPGAKbIivT1rPgs4cGZ8atQpLcqAmqNesM0sX4m5NSLuknhIlAF2f+D7f+Dk31wKvX375mUGu
+	qmafKLibCibXH6mb+gTYnvIQpwWEYF7vlqghkoxSnXHur3sA==
+X-Google-Smtp-Source: AGHT+IEQN8LEBzg2FibdPs1zW7myIBbg1Dg3RX0BLIHipmkT0F6MtRX6Fdv53CQhOLloh0SQE8k81g==
+X-Received: by 2002:a17:907:968c:b0:b72:5983:db0a with SMTP id a640c23a62f3a-b7265297e0amr437027566b.15.1762376902297;
+        Wed, 05 Nov 2025 13:08:22 -0800 (PST)
+Received: from HomePC (89-67-214-154.dynamic.play.pl. [89.67.214.154])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b728937cc8dsm54005766b.17.2025.11.05.13.08.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Nov 2025 13:08:21 -0800 (PST)
+From: Andrey Leonchikov <andreil499@gmail.com>
+To: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Cc: Andrey Leonchikov <andreil499@gmail.com>,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de
+Subject: [PATCH] arm64: dts: rockchip: Fix USB power enable pin for BTT CB2 and Pi2
+Date: Wed,  5 Nov 2025 22:07:33 +0100
+Message-ID: <20251105210741.850031-1-andreil499@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ad00835e-bc20-4f97-aba6-e1b4f5e97191@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Nov 04, 2025 at 01:35:01PM +0800, Jingyi Wang wrote:
-> 
-> 
-> On 11/4/2025 12:02 PM, Bjorn Andersson wrote:
-> > On Tue, Nov 04, 2025 at 11:34:25AM +0800, Aiqun(Maria) Yu wrote:
-> >> On 9/25/2025 7:23 AM, Jingyi Wang wrote:
-> >>> Document the qcom,tcsr-kaanapali compatible, tcsr will provide various
-> >>> control and status functions for their peripherals.
-> >>>
-> >>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> >>> ---
-> >>>  Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
-> >>>  1 file changed, 1 insertion(+)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-> >>> index 14ae3f00ef7e..ae55b0a70766 100644
-> >>> --- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-> >>> +++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-> >>> @@ -48,6 +48,7 @@ properties:
-> >>>            - qcom,tcsr-ipq8064
-> >>>            - qcom,tcsr-ipq8074
-> >>>            - qcom,tcsr-ipq9574
-> >>> +          - qcom,tcsr-kaanapali
-> >>
-> >> It looks good to me. Glymur didn't have this functionality verified yet.
-> > 
-> > You spelled Reviewed-by: Aiqun Yu <..> wrong.
-> > 
-> >> Remind for review.
-> > 
-> > No need for that, reviewers will review when they have time.
-> > 
-> >>
-> 
-> Hi Bjorn,
-> 
-> > 
-> > But that said, most modern additions to this binding follow the common
-> > format of qcom,<soc>-<block>.
-> > 
-> > So I would prefer this to be qcom,kaanapali-tcsr.
-> > 
-> > Regards,
-> > Bjorn
-> > 
-> 
-> qcom,tcsr-kaanapali is used to distinguish with binding for GCC:
-> https://lore.kernel.org/all/20251030-gcc_kaanapali-v2-v2-2-a774a587af6f@oss.qualcomm.com/
-> 
 
-So, qcom,kaanapali-tcsr is the clock controller region of TCSR and
-qcom,tcsr-kaanapali is the non-clock controller region of TCSR?
+ Fix typo into regulator GPIO definition. With current
+ definition - USB powered off. Valid definition can be found on "pinctrl"
+ section:
+ 		vcc5v0_usb2t_en: vcc5v0-usb2t-en {
+ 				rockchip,pins = <3 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
+ 				 		};
 
-Sorry for not understanding that earlier, but this doesn't work for me.
+ 		vcc5v0_usb2b_en: vcc5v0-usb2b-en {
+ 			rockchip,pins = <4 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
 
-It's a bit of a lie that TCSR_MUTEX is a separate node in devicetree,
-but it's always an nice chunk of 256K in the beginning (or end in some
-cases?) of TCSR. But for the rest, there should be a single tcsr node in
-DeviceTree and that one node should be a syscon and a clock controller.
+Fixes: bfbc663d2733a ("arm64: dts: rockchip: Add BigTreeTech CB2 and Pi2")
+Signed-off-by: Andrey Leonchikov <andreil499@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Regards,
-Bjorn
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi
+index f74590af7e33..b6cf03a7ba66 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi
+@@ -187,7 +187,7 @@ vcc5v0_usb: regulator-vcc5v0-usb {
+ 	vcc5v0_usb2b: regulator-vcc5v0-usb2b {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+-		gpio = <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;
++		gpio = <&gpio4 RK_PC4 GPIO_ACTIVE_HIGH>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&vcc5v0_usb2b_en>;
+ 		regulator-name = "vcc5v0_usb2b";
+@@ -199,7 +199,7 @@ vcc5v0_usb2b: regulator-vcc5v0-usb2b {
+ 	vcc5v0_usb2t: regulator-vcc5v0-usb2t {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+-		gpios = <&gpio0 RK_PD5 GPIO_ACTIVE_HIGH>;
++		gpios = <&gpio3 RK_PD5 GPIO_ACTIVE_HIGH>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&vcc5v0_usb2t_en>;
+ 		regulator-name = "vcc5v0_usb2t";
+-- 
+2.51.0
 
-> Thanks,
-> Jingyi
-> 
-> >>>            - qcom,tcsr-mdm9615
-> >>>            - qcom,tcsr-msm8226
-> >>>            - qcom,tcsr-msm8660
-> >>>
-> >>> ---
-> >>> base-commit: ae2d20002576d2893ecaff25db3d7ef9190ac0b6
-> >>> change-id: 20250917-knp-mfd-4dd3c81e6b9b
-> >>>
-> >>> Best regards,
-> >>
-> >>
-> >> -- 
-> >> Thx and BRs,
-> >> Aiqun(Maria) Yu
-> 
 
