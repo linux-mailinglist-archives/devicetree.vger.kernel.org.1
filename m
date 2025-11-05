@@ -1,211 +1,157 @@
-Return-Path: <devicetree+bounces-235212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6162DC3594D
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 13:16:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECC00C3595A
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 13:19:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C886956257F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 12:16:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E040189FDDD
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 12:19:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BC2223315A;
-	Wed,  5 Nov 2025 12:15:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1784313E0C;
+	Wed,  5 Nov 2025 12:19:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tyt8YziP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgeu1.qq.com (smtpbgeu1.qq.com [52.59.177.22])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B8F3314A95
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 12:15:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.59.177.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7703B312815;
+	Wed,  5 Nov 2025 12:19:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762344957; cv=none; b=UlW52C15ZLrf5B2DVVK/Y2M786ykqHCfzIFmjEBsUukAqZTlt8livc9Z9zf960N+QisP41mO0iOUIz3cJIT2ByvD9P3oY9pTQRBCT9ecBIADnzd8TYgvvMntxTIW2NWFvlGF32BV1F3LxiMJHOXeBl86vtDW/rUUAnLHo8appeI=
+	t=1762345153; cv=none; b=gai7qmyiWTRbKU8pzIPGdw6u5B1JDayA/nCEBUrWmp6iGa4qGb4VnX2VPYSPm/2wFiGhbyrcDr+VSYB6sc8ZXpEmpPsCQmWoh8eGY2noYq2yHSW7Ko61gaywAtcrM9giQRsRNKf6NkJYqFsXml8T3LL3o5mRjAVcs0uy7y9kVYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762344957; c=relaxed/simple;
-	bh=T3flDCZ1nO5lEsqK2xHs5e9LVOOvqYeZR1qkkNS+cwI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eovEqHec7mqTNIguYb+K1iHnwlTI1/9YohwdnN/DmUMo5oX7phOrAHJG/HHpOAmsYQwPzgUDu0blQh2ipiz4xMFWk0OESbyWdSpOOOrDbVgYCqDN+hobJNl76agyun9PXt8gu+Zbqu2lsTLg2eOJ/LOjs1iGVDsHeP+VMmEAAVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=52.59.177.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip3t1762344914tdef61ad0
-X-QQ-Originating-IP: djTh7QdjVUWcRiYAoapKXHkUKbuN+SCdDaSf47CEMDk=
-Received: from [IPV6:240f:10b:7440:1:a426:813: ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 05 Nov 2025 20:15:11 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 14550206470937993937
-Message-ID: <199E172C8E20ED38+71169242-5525-4d60-9e37-a03ad172d639@radxa.com>
-Date: Wed, 5 Nov 2025 21:15:11 +0900
+	s=arc-20240116; t=1762345153; c=relaxed/simple;
+	bh=WpEVUOYe+o0ODCJcitnI3R656IlVO6R4iBigsvtbubg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=GVlEYQ5EG4smnyLeE1WXayDqJm4GktFXY39cIkBodZf0JjaoqRPinVFMczIrPJK9InslqudwV4X+JMM++naG7aMZb1VtXA8UlCL0iPgqTwEK+0XdQmoo0xwoYJVbeQiss0mHATljF3UV6lRfIP4NwYKgXNqxktJ4xBBc/2nhMKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tyt8YziP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CB250C4CEFB;
+	Wed,  5 Nov 2025 12:19:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762345152;
+	bh=WpEVUOYe+o0ODCJcitnI3R656IlVO6R4iBigsvtbubg=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=tyt8YziP88ZbFQ1oRBb7U2mkHwTICJ5gryp1Su4+QrBXgLzZsnZK+SrRdSVRI39EE
+	 bXVkn1id1UK7DphpAPVOUP9fyMT7WskopkSx0zw3fmVgLAqXmslfGhwYSo9nX76NzV
+	 +5cTNhPqN3mmomHMW2bY7ZaylGV6WmrqTzS5FU307xsIoKKGWhpcd9sk2iU4u+A4c1
+	 G3qW7R5GR0JR5y/r83AYzVSZePkvoBv+HDZpXXMhJClZt3HABlYwE01FxvIRwQIo5W
+	 CWWX7wDSa+TzJ7ENaFK3P5gN9RV8fng+BvlG/97pSseC/e4aKH2YhwpclNyyUAgj+o
+	 qPfZvvMzXPdPQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B4019CCFA0D;
+	Wed,  5 Nov 2025 12:19:12 +0000 (UTC)
+From: Prasad Kumpatla via B4 Relay <devnull+prasad.kumpatla.oss.qualcomm.com@kernel.org>
+Date: Wed, 05 Nov 2025 17:49:10 +0530
+Subject: [PATCH v4] dt-bindings: soundwire: qcom: Add SoundWire v2.2.0
+ compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/3] Add Radxa CM5 and IO Board
-To: heiko@sntech.de
-Cc: joseph.kogut@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jonas@kwiboo.se, kever.yang@rock-chips.com,
- honyuenkwun@gmail.com, quentin.schulz@cherry.de, dsimic@manjaro.org,
- pbrobinson@gmail.com, amadeus@jmu.edu.cn, jbx6244@gmail.com,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20251105051335.17652-1-naoki@radxa.com>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20251105051335.17652-1-naoki@radxa.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
-X-QQ-XMAILINFO: MmpliBmRb3iCHYrXm7eQLJWfFr1jEsFKfQN3Z7lLxnps6rfFZJxAD4EI
-	o8mBN6UFu3NvWGr1Yp8hmyHKnb0zV40reabVMbEhDMZtA+brbtQFzZrpc+pGcm6ctfRzpkD
-	4+AXxJqwsM0XBVNNFsjlRV8WCJivFE8MUCxspTpEh75jWssyJpb9MgCLrA053zyCJgjUoxk
-	xVDGpI6yRigVcWIik/AWtXemVeiTpV8FIN2Su+wKRLAbJJoom6xGSTGhMFQs1/UMvYLLtBl
-	swT8fVI/84Sz1uwMXo4fK8YU3+zf/2TZv5u5gXbT49AVBNf7NcHdB/Bh/y0K/EwtpvDLq4r
-	07Ot07gc7yuRbBBNc4xkd0z+Sy9SlKc+3vlvTZChctv0fDjNKf9tl6XfbIxbdOUn9BUAQLh
-	lNr6EQ0EQNtfCQb2PakE9Pu6hv65Z+EuPTYWtquUbG/XyPlN7c9zvS6n2ARpZFerDXrP+ve
-	1/pr2SiEjpWL8GsC9SaEio28iOplhHFYMk7PVVGnfCJ41NgUTYaPSoHPVqR2n8j62Hs6jHy
-	XnX9VZlLPp5zilmiWm/KQ/g4piAV8xHUa5Nq3z7K87FVl/pqoy8NKQh9aDzfRlHGW8oyACE
-	CJPlkD2k2P/LsRWdns2H6rNw8rfZGXmcGbaPAHx5CvBhHFtjAQ9xYpmWvWLAJtEAsOZY7Z9
-	SmwYjQwm6bU9cvlf03W11gnRMHZFLr9vhEh/vkFlwx1fZENyYwKXU17yjdixW1jmYsYfsLJ
-	7iFa4bvzvZoBq8cLoGElmCBUURio8DdjoGPlh4rHDegwocwtKK98BWTzwbY/9eXXrU7XHa2
-	cc/3BYGkmMq/GwjVKJS4alf7RyQ7ynKD55cNNJxBTln8LCS16C1YIt1ZYtv8CzMy0x2+jX+
-	DDsWQQzj0VhciXBoLF6ibOGr8qxyR6xp0THTKuAWWeXnYOdRWIlhkHy86ax4GArv7XAy23x
-	tFRkQsUONHHqzKnuo7XtHef2jggZIK/VdToC4lFo3JYYv1uBxuobCXUYDyOV2icbtuqjlQR
-	3Y/zPkYOG1mbLepV/rNOcUcnyoHA3QnMjH0Y58vuiEUr9nnKkKUMO7+CIo184=
-X-QQ-XMRINFO: M/715EihBoGSf6IYSX1iLFg=
-X-QQ-RECHKSPAM: 0
+Message-Id: <20251105-knp-audio-v2-v4-1-ae0953f02b44@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAL1AC2kC/03MQQ6DIBCF4auYWXcIIGrtqvdoupgAVqIIBTVNj
+ Hcv6aqbl3yL9x+QbXI2w606INndZReWAnWpQI+0vCw6UwySy0ZwoXBaItJmXMBdYk911zVSGy0
+ aKJeY7OA+v9zjWTyk4HEdk6W/CO+FqlulWC37VvIrCoyJMhk2bT7SOtM95MzeG806eM/KwHl+A
+ YQekP6qAAAA
+X-Change-ID: 20251014-knp-audio-v2-9a37752cdc15
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Srinivas Kandagatla <srini@kernel.org>
+Cc: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Jingyi Wang <jingyi.wang@oss.qualcomm.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1762345151; l=2851;
+ i=prasad.kumpatla@oss.qualcomm.com; s=20251104; h=from:subject:message-id;
+ bh=c0O8eohmd+tIOQmYmE+msxYJGTgpEFCpk9Tc3tlijMA=;
+ b=ocgeixzvp6gml7lZDN8J/V00Hjhfw8/FNaA5PabRQ4bj1gT3/E+VAps1m5rUg83WZLThayGL4
+ jBRU6e7qN64DakcZMi5lNphdjqayfbOVmzC3JU2famuZ0IrrA5FI9z1
+X-Developer-Key: i=prasad.kumpatla@oss.qualcomm.com; a=ed25519;
+ pk=XN9tL2ispFX+irMtnM7RxBH6rj+awD6oEjXmk0YJodY=
+X-Endpoint-Received: by B4 Relay for
+ prasad.kumpatla@oss.qualcomm.com/20251104 with auth_id=560
+X-Original-From: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+Reply-To: prasad.kumpatla@oss.qualcomm.com
 
-I'd like to clarify the situation regarding the v6 patch series I submitted.
+From: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
 
-The original device tree work for the Radxa CM5 and IO Board was 
-authored by Joseph Kogut. I took over the responsibility of getting it 
-upstreamed with his agreement.
+Add qcom,soundwire-v2.2.0 to the list of supported Qualcomm
+SoundWire controller versions. This version falls back to
+qcom,soundwire-v2.0.0 if not explicitly handled by the driver.
 
-However, I now understand that I should have preserved the original 
-Signed-off-by chain (and DCO) in the v6 series. This was my oversight.
+Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+---
+Add audio support for Kaanapali MTP boards. Introduces supporting
+dependencies required to enable audio functionality on MTP platforms.
+These changes have been validated on Kaanapali MTP hardware.
 
-To correct this, I would prefer for Joseph to post the patches himself, 
-which will not include my Signed-off-by.
+Changes in [v4]:
+	- Dropped merged patches.
+	- Link to v3: https://lore.kernel.org/linux-arm-msm/20251015-knp-audio-v2-v3-0-e0e3e4167d87@oss.qualcomm.com/
 
-My apologies for the confusion this caused. Thank you for pointing this out.
+Changes in [v3]:
+	- Correct SoB chain, comments from Krzysztof.
+	- Link to v2: https://lore.kernel.org/linux-arm-msm/20251009143644.3296208-1-prasad.kumpatla@oss.qualcomm.com/
 
-Best regards,
+Changes in [v2]:
+	- Addressed compilation issue for lpass version check patch.
+	- Sorted compatible string in machine driver.
+	- Link to v1: https://lore.kernel.org/linux-arm-msm/20250924-knp-audio-v1-0-5afa926b567c@oss.qualcomm.com/
+
+Konrad Dybcio (1):
+  ASoC: codecs: va-macro: Rework version checking
+
+Prasad Kumpatla (4):
+  ASoC: dt-bindings: qcom,sm8250: Add kaanapali sound card
+  ASoC: qcom: sc8280xp: Add support for Kaanapali
+  dt-bindings: soundwire: qcom: Add SoundWire v2.2.0 compatible
+  ASoC: dt-bindings: qcom: Add Kaanapali LPASS macro codecs
+
+ .../bindings/sound/qcom,lpass-rx-macro.yaml   |  1 +
+ .../bindings/sound/qcom,lpass-tx-macro.yaml   |  1 +
+ .../bindings/sound/qcom,lpass-va-macro.yaml   |  1 +
+ .../bindings/sound/qcom,lpass-wsa-macro.yaml  |  1 +
+ .../bindings/sound/qcom,sm8250.yaml           |  1 +
+ .../bindings/soundwire/qcom,soundwire.yaml    |  1 +
+ sound/soc/codecs/lpass-va-macro.c             | 90 +++++++++++++------
+ sound/soc/qcom/sc8280xp.c                     |  1 +
+ 8 files changed, 70 insertions(+), 27 deletions(-)
 
 --
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
+2.34.1
+---
+ Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-On 11/5/25 14:13, FUKAUMI Naoki wrote:
-> This patch series add support for the Radxa CM5 SoM and IO Board.
-> 
-> Changes in v6:
-> (Patch 1/3)
-> - Fix description; "Radxa CM5" is the correct name
-> (Patch 2/3)
-> - Fix #include(s)
-> - Include rk3588s.dtsi
-> - Move alias for gmac1 from io board dts
-> - Add Maskrom key
-> - Add pinctrl-* for led-0
-> - Add vcc_1v1_nldo_s3 regulator for pmic
-> - Move gmac1 (except status) from io board dts
-> - Fix phy-supply for gmac1
-> - Fix compatible for vdd_cpu_big1_s0 regulator
-> - Add eeprom on i2c0
-> - Add vdd_npu_s0 regulator for rknn
-> - Fix compatible for rgmii_phy1
-> - Add pinctrl-* and reset-* for rgmii_phy1
-> - Add domain-supply for pd_npu
-> - Add rknn_*
-> - Add saradc
-> - Fix properties in sdhci
-> - Move pmic from io board dts
-> - Fix vcc*-supply for pmic
-> - Add regulators in pmic
-> - Add tsadc
-> - Move vop(_mmu) from io board dts
-> - Trivial changes (labels, names, etc)
-> (Patch 3/3)
-> - Fix #include(s)
-> - Remove #include "rk3588s.dtsi"
-> - Fix model
-> - Add fan
-> - Add Recovery key
-> - Add pinctrl-* for vcc3v3_wf
-> - Add vcc_sysin regulator
-> - Add pinctrl-* for vbus5v0_typec
-> - Add rfkill-bt and rfkill-wlan for M.2 module
-> - Add sound for es8316
-> - Add phy-supply for combphy2_psu
-> - Fix power-role to "source" for fusb302
-> - Add rtc for hym8536
-> - Add audio-codec on i2c8 for es8316
-> - Add i2s0_8ch for es8316
-> - Add package_thermal for fan
-> - Add pinctrl-* for pcie2x1l2
-> - Add pwm11 for fan
-> - Fix properties in sdmmmc
-> - Add phy-supply for u2phy2_host and u2phy3_host
-> - Remove usb_host0_ohci
-> - Add pinctrl-* for usbdp_phy0
-> - Trivial changes (labels, names, etc)
-> 
-> Changes in v5:
-> (Patch 2/3, per Jimmy)
-> - Alias eMMC to mmc0
-> - Remove unused sdio alias
-> - Move gmac, hdmi0 nodes to carrier board dts
-> (Patch 3/3, per Jimmy)
-> - Enable hdmi0_sound and i2s5_8ch
-> - Remove redundant enablement of sdhci
-> - Enable usb_host2_xhci
-> 
-> - Tested HDMI audio
-> 
-> Changes in v4:
-> - Fixed XHCI initialization bug by changing try-power-role from source
->    to sink
-> 
-> Changes in v3:
-> - Addressed YAML syntax error in dt binding (per Rob)
-> - Fixed whitespace issue in dts reported by checkpatch.pl
-> - Split base SoM and carrier board into separate patches
-> - Added further details about the SoM and carrier to the commit
->    messages
-> 
-> Changes in v2:
-> - Added copyright header and data sheet links
-> - Removed non-existent property
-> - Sorted alphabetically
-> - Removed errant whitespace
-> - Moved status to the end of each node
-> - Removed pinctrl-names property from leds (indicated by CHECK_DTBS)
-> - Removed delays from gmac with internal delay
-> 
-> Link: https://lore.kernel.org/r/20250617-rk3588s-cm5-io-dts-upstream-v5-0-8d96854a5bbd@gmail.com
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
-> ---
-> I have communicated with Joseph privately and taken ownership of
-> moving this forward, with his blessing. All bugs belong to me.
-> ---
-> FUKAUMI Naoki (3):
->    dt-bindings: arm: rockchip: Add Radxa CM5 IO Board
->    arm64: dts: rockchip: Add Radxa CM5
->    arm64: dts: rockchip: Add Radxa CM5 IO Board
-> 
->   .../devicetree/bindings/arm/rockchip.yaml     |   7 +
->   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->   .../dts/rockchip/rk3588s-radxa-cm5-io.dts     | 503 +++++++++++++++
->   .../boot/dts/rockchip/rk3588s-radxa-cm5.dtsi  | 602 ++++++++++++++++++
->   4 files changed, 1113 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dts
->   create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5.dtsi
+diff --git a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
+index 95d947fda6a7..1c4b0bdbb044 100644
+--- a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
++++ b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
+@@ -26,6 +26,7 @@ properties:
+       - items:
+           - enum:
+               - qcom,soundwire-v2.1.0
++              - qcom,soundwire-v2.2.0
+           - const: qcom,soundwire-v2.0.0
+ 
+   reg:
+
+---
+base-commit: 2b763d4652393c90eaa771a5164502ec9dd965ae
+change-id: 20251014-knp-audio-v2-9a37752cdc15
+
+Best regards,
+-- 
+Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
 
 
 
