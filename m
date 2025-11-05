@@ -1,159 +1,117 @@
-Return-Path: <devicetree+bounces-235355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F5F3C373F8
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 19:07:41 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A87DC37407
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 19:10:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 022304E496B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 18:04:38 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4DC8F4E03AC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 18:10:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ADAF3164C1;
-	Wed,  5 Nov 2025 18:04:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB2DE31327D;
+	Wed,  5 Nov 2025 18:10:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="vVMTH8oh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R4+j0tuZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D1F12D9481
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 18:03:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1425285CB2
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 18:10:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762365845; cv=none; b=LDrvD11E2gY3NXyqBwwOPUJXFceP90ypY7vj3cfLEdQo28x83P5RPLe6GTb4RrdqDuWzf5QNTw04XQ1+9I00m2pb/icg9ZI+/HrOUXX9b9LAieSoy+YXeaWwK1bx2bpuZRqrPftQ+nI7ERWKUIbbqgYkX2OqadrSAi3NCFOIFh8=
+	t=1762366247; cv=none; b=TDxI5fZFGJSv+/WyMTHZHL9X2vXrRIUYnP4U8iKsdt+kPxySzOg7m2FDkmAdqJbsaPzOGOv+6FAbXbbp/c5IfjRfd0xO1ixGRxTRZveBmq2gzmeeRR1hRiTXBteuKZvTolEqmslUMdHu4Rm+pkeiDohvQCoB+x4ptsn9eYH6wZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762365845; c=relaxed/simple;
-	bh=Ug4epuCkcaJAg+e8KIyZD2/iemxtXmnOnHGjOrCEs/o=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=umvvs5rIlnR4aubVj1rBIJ6F5nikdDKZSDtogA1ZlK5l99rWkyV+5y/t/jJas1oyo81VkQdzkOIag3erJ5s4MqwPbcFiXTmi9D9HIcwf83ZJnJJbHeiZvWNqOLNd9n1c7PMNUjA3Ko41S74wIM9WRy0CjXg6yiZg3y3juK5SbhY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=vVMTH8oh; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id DD735C0E639;
-	Wed,  5 Nov 2025 18:03:35 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id A597E60693;
-	Wed,  5 Nov 2025 18:03:56 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B833410B510C2;
-	Wed,  5 Nov 2025 19:03:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1762365835; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=FCxsKgZxhNgnJkvj/KGRREoRR8EGeTXpZ8jT6eg79s4=;
-	b=vVMTH8ohHbUDKCAY5bjisKQTkA5E7XO7aW5dd5QnefShbzI9TBfbfer0ecT2S47DQwHrk5
-	ocCj35krYsCkye6YFFj6xLJ+WP1uNrYBY0Fe0lBr7p8+AF0Ai1lkzetCQFaV2UOuKI3TKM
-	n90TQy49xvU3plCaFhv4lmVSFeI0EOyUpv0wqv2HkAGFLiwmTVw+dG9C6XpBg/PxhE5h34
-	/2w62xT5eU9HLv3N4Iy4hdHByhGz6phq74ak7WZI2a8AkNBcPqoqF1NyYe2FpvCRePQGHa
-	hkZl8u3GOYy2zs/p8h2JCbNB6dHcXA0M+PbQZn6aBzZ9gsfEyNRhfqCKOWWWMg==
+	s=arc-20240116; t=1762366247; c=relaxed/simple;
+	bh=W2cvOAGe+F2dK5gNaDfMR5O2dctaqwiIHM84AdagJ10=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=c/WgIxqoKRMikl12/MFmthuwyuSmA9BD8r6iMmb8J7XT53tMTHExo0HRuflcZNFFiWY7rjmfmWSQkUNSc5SS01BTlOKFU8MIiqHJHFQ+mF9cIeaRsbzZYqKq+sIlfZhEIvMHyx1mX1e824Ih2ijtxLSjdQVT/l/gJNW5/+YN7Rg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R4+j0tuZ; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-429c48e05aeso93706f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 10:10:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762366244; x=1762971044; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W2cvOAGe+F2dK5gNaDfMR5O2dctaqwiIHM84AdagJ10=;
+        b=R4+j0tuZQDr4L2wuhjQnW+rCtAwCYiimlbxWB6LUk4VjVOexfxQ1yLFTH3BXg6mlX4
+         /qbeqSwAgXceWMjJBC0fVPmH3H4au3xw+uvaE4uxDixGdABDg3jT14X+iiP5Ju3Fvz6c
+         /kmGsvFy9J3au9NjjNEmx25n5jWKiedzxQ3ah/iuGAIEuZiWqxc/BsiIP+q8OF2Gik0s
+         b8fVDjyfyQLPeRWNR7s9Q1mOH4SJ00PovfhXhLojhwE07U08YGjH9hPB7GmznYHzVO3t
+         IHCTs4gy6b7QEKAVEjU45sX53OOdIbeCS5947PKiOLCR1AywAhzR2VUfjvzW4VjnC6Mj
+         tpsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762366244; x=1762971044;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=W2cvOAGe+F2dK5gNaDfMR5O2dctaqwiIHM84AdagJ10=;
+        b=apWJCwwvBcjCLmHSytXV1Mzrrrfdb0GmJ9CoVBNRczVzBA3stdGVFkaoZPVmh/uF8a
+         oe7wKFMxBKr8kQuU85gkCAvrjcDczDu6vB27M3qu8HPNFNHLxPeUuHrpob2J8a9NLf0Y
+         Cw3rCRXCjnhGEBIrbGbcw3CTiK/iAdVTnQ7PHyXCxZ3Sju1WI9Erolhu1WhzSoWw293s
+         kj8s5XM5mU4ICyezcUrzJHKMBFND+mm0Olm3U4YPNDtEZMSYMyE514NW8zoe1r1dy3il
+         w82lVfAdLoT0sX2ZIqzWGZoV/B8JD4bKol2o1CoJIjn5lv8mp4gmoTC0YYIEnsbWXzeJ
+         j4UQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXF1jpzsncg3TeVvvRwZ/13WSpU8eaLu4vnugHYRqcyitmyMP0Q67Cka8JQBQeb10ui3fmuMjmMazW7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxnsp8mCYcsJwnkl+bQJn1JpyB7+xj23iVogpM5fvfs3NvhnWIg
+	lqZ60QmjKTr+BQ2pMPNRJ7q9C6fnaXjCu2eOXquLgkrjur+PvHbWI1pdeQa6cG7Zacvfj94JUzS
+	ceFzq0Z19sv4ZjdC/4iEoDMN0BV3qk8A=
+X-Gm-Gg: ASbGncuridtqsvXmgMvNFa2akfuW8mYC/U3fMBtHWFjkgEojpT60ByvRTBIJBk8Hdt1
+	X2zzVY9ws0ZAmEm2pBz78ZhPChOR/z/ux4BE+aO80HXwJxzdVZgB6W22LTSr+d2o10g7IWeQhbC
+	d3dYMx8Pi/OacmoAEjsJnLwg4bBYSx5n+Tl36oRYNVafSvI61l10QUODknmfd9IlhxLvB6gAX3H
+	W9ujczqqiaH0oMjTfMS32pFoXjeGvrB9BtMHztL9e+8xixvO403g45R7kf4VOibO/mKi3LygrGF
+	uZFpLr6zKYGBPyxp
+X-Google-Smtp-Source: AGHT+IHBmNlJkVLW6W6vGyUKNDzuqwk9Tw/WLnn+OuOsgLY/0gfYST0CKvsNHbzGWWqOz26EQLad8Ac0ymabkNq+nc8=
+X-Received: by 2002:a05:6000:1786:b0:407:d776:4434 with SMTP id
+ ffacd0b85a97d-429eb1cf7aamr290281f8f.30.1762366243993; Wed, 05 Nov 2025
+ 10:10:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20251105051335.17652-1-naoki@radxa.com>
+In-Reply-To: <20251105051335.17652-1-naoki@radxa.com>
+From: Jimmy Hon <honyuenkwun@gmail.com>
+Date: Wed, 5 Nov 2025 12:10:32 -0600
+X-Gm-Features: AWmQ_bljnAguIYhdQMB55wotSkNGIpoYSWPuR_oG99N-Bkij5kJqZb1rkeRzrBU
+Message-ID: <CALWfF7JsB-i4tgbPfMzrH92dCO-=EMkt7yY16dKzEPE-4RC58A@mail.gmail.com>
+Subject: Re: [PATCH v6 0/3] Add Radxa CM5 and IO Board
+To: FUKAUMI Naoki <naoki@radxa.com>
+Cc: heiko@sntech.de, joseph.kogut@gmail.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, jonas@kwiboo.se, 
+	kever.yang@rock-chips.com, i@next.chainsx.cn, quentin.schulz@cherry.de, 
+	dsimic@manjaro.org, pbrobinson@gmail.com, amadeus@jmu.edu.cn, 
+	jbx6244@gmail.com, devicetree@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 05 Nov 2025 19:03:50 +0100
-Message-Id: <DE0YJPERKME9.2CYGFAPULFMZV@bootlin.com>
-Cc: "Abel Vesa" <abelvesa@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Fabio Estevam" <festevam@gmail.com>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Laurent Pinchart"
- <Laurent.pinchart@ideasonboard.com>, "Liu Ying" <victor.liu@nxp.com>,
- "Lucas Stach" <l.stach@pengutronix.de>, "Peng Fan" <peng.fan@nxp.com>,
- "Pengutronix Kernel Team" <kernel@pengutronix.de>, "Rob Herring"
- <robh@kernel.org>, "Shawn Guo" <shawnguo@kernel.org>, "Thomas Zimmermann"
- <tzimmermann@suse.de>, <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
- <linux-arm-kernel@lists.infradead.org>, <linux-clk@vger.kernel.org>
-Subject: Re: [PATCH v2] drm/bridge: fsl-ldb: Parse register offsets from DT
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-To: "Marek Vasut" <marek.vasut@mailbox.org>,
- <dri-devel@lists.freedesktop.org>, "Laurentiu Palcu"
- <laurentiu.palcu@oss.nxp.com>
-X-Mailer: aerc 0.20.1
-References: <20251102170257.65491-1-marek.vasut@mailbox.org>
- <DDZ6KCUVYB55.330X4X5ETRXR3@bootlin.com>
- <25cd3b11-8417-44d3-af28-fa73419c713b@mailbox.org>
-In-Reply-To: <25cd3b11-8417-44d3-af28-fa73419c713b@mailbox.org>
-X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Marek,
-
-On Tue Nov 4, 2025 at 12:08 AM CET, Marek Vasut wrote:
-> On 11/3/25 4:55 PM, Luca Ceresoli wrote:
+On Tue, Nov 4, 2025 at 11:14=E2=80=AFPM FUKAUMI Naoki <naoki@radxa.com> wro=
+te:
 >
-> Hello Luca,
+> This patch series add support for the Radxa CM5 SoM and IO Board.
 >
->> On Sun Nov 2, 2025 at 6:02 PM CET, Marek Vasut wrote:
->>> The DT binding for this bridge describe register offsets for the LDB,
->>> parse the register offsets from DT instead of hard-coding them in the
->>> driver. No functional change.
->>>
->>> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
->>
->> I was initially a bit skeptical because normally register offsets are
->> derived from the compatible string, not from device tree. But then I
->> realized this is about the LDB which has its two registers in the
->> MEDIA_BLK. This means all in all this looks somewhat like an integration
->> aspect (the LDB component uses two resources of the MEDIA_CLK component)
->> and your patch mekse sense.
->>
->> So my only remark is that the above may be in the commit message, to mak=
-e
->> the "why" clear from the beginning. It took a bit of research for me to
->> find out.
->
-> Actually, the LDB was always meant to parse the 'reg' offsets out of the
-> DT, it then went somewhat ... wrong ... and we ended up with hard-coded
-> reg<->compatible mapping. It was never intended to be that way. That is
-> all there is to it, there isn't any deeper reason behind it.
->
-> What would you add into the commit message ?
+> Changes in v6:
+> (Patch 1/3)
+> - Fix description; "Radxa CM5" is the correct name
+> (Patch 2/3)
+> - Fix #include(s)
+> - Include rk3588s.dtsi
+> - Move alias for gmac1 from io board dts
 
-The above paragraph is a good draft of what I woudl add.
+I'm curious why the alias was moved to the SoM? If the carrier board
+does not enable the gmac1, shouldn't we leave out the alias?
+i.e. for the handheld without RJ45 jack [1], it wouldn't want the alias, ri=
+ght?
 
->> [0] https://lore.kernel.org/dri-devel/20251103-dcif-upstreaming-v6-3-76f=
-cecfda919@oss.nxp.com/
->>
->>> @@ -309,6 +302,27 @@ static int fsl_ldb_probe(struct platform_device *p=
-dev)
->>>   	fsl_ldb->dev =3D &pdev->dev;
->>>   	fsl_ldb->bridge.of_node =3D dev->of_node;
->>>
->>> +	/* No "reg-names" property likely means single-register LDB */
->>
->> Uh? If it is "likely" it means we are not sure this code is not introduc=
-ing
->> regressions, and that would be bad.
->
-> I can drop the 'likely' part.
+[1] https://github.com/StonedEdge/Retro-Lite-CM5
 
-If you are sure it's not "likely" but "sure", then OK. However it all
-depends on the bindings, which leads to the below question.
-
->>> +	idx =3D of_property_match_string(dev->of_node, "reg-names", "ldb");
->>> +	if (idx < 0) {
->>> +		fsl_ldb->single_ctrl_reg =3D true;
->>> +		idx =3D 0;
->>> +	}
->>
->>  From the bindings I understand that having two 'reg' values and no
->> 'reg-names' at all is legal. Your patch implies differently. Who's right
->> here?
-> I think if you have two two reg values, you should have reg-names , so
-> the binding should be updated ?
-
-If the bindings are unclear or ambiguous (or wrong) then they should be
-fixed in the first place. With bad bindings we can either have a bad but
-compliant implementation or a good but non-compliant implementation.
-
-Best regards,
-Luca
-
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Jimmy
 
