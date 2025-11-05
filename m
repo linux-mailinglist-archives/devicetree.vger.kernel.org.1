@@ -1,201 +1,114 @@
-Return-Path: <devicetree+bounces-235266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51377C3672E
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 16:47:12 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E33EEC365EE
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 16:38:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16B9C6268CB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 15:36:37 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B05A15023B2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 15:28:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03ECB331A44;
-	Wed,  5 Nov 2025 15:35:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0551F331A59;
+	Wed,  5 Nov 2025 15:24:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b="M+bB92fH"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="svs3Hkn3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from uho.ysoft.cz (uho.ysoft.cz [81.19.3.130])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E53742D46DB;
-	Wed,  5 Nov 2025 15:35:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=81.19.3.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25B0D33507E;
+	Wed,  5 Nov 2025 15:24:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762356946; cv=none; b=h9BBZpS2gB9XJ5RUPfC7MBRT54q/9WJEBCp57k0oGmltagP4wK00IruIcQCxiDctXrG/OGotKBpAgeRP+J9wLvle1hGk4j/3zbAjd3UdYYnVJrOGEUiGXZ0t7kTIU8xHS1VUvrgLt+mW6NAiutTHzbdOM9LHCPDqCRnhqqw8dq4=
+	t=1762356244; cv=none; b=Nq85WHwKQvXscApRmrMeACNbNCgMY91lSLsbfC9W7AYNuEo83Esdk9OQDV3DScxI3pOIOyPrPLxFhFNjbJWnL+bZ3u4uyvmZMRdyADvzbOA/yE6/zMYhFduWWSFFk/DkwZG3bpc6AXu7kqYFxORfhsGITBNMQgDUPS+MZROvNOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762356946; c=relaxed/simple;
-	bh=AHMxABvZnlpYTNFvSrA6D7GexRGotM5oB2fFzJuuqBY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fWjx+CzkJjGcMWIleaPTX4gYy19tmoixdUR0KhjdRXcpgn6b/sUIzShI1uocCz7IEQlGXngwPJdfwgn1jhioaUZ5ZZRTFBHl1CTmubj54c2eGuMXFg4IqEUyOxcI7Xy4DzSaU33gfqMCUZjLIUDzfBKXd7vs8exXy98t+IdvvhU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com; spf=pass smtp.mailfrom=ysoft.com; dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b=M+bB92fH; arc=none smtp.client-ip=81.19.3.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ysoft.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
-	s=20160406-ysoft-com; t=1762356410;
-	bh=8WXhsTsO/J0Z7EVRJucBcIkmUQ6VEPYVZ7BqTfVRhGs=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=M+bB92fHU8kMUn3S3+k3cqJQ28dRjbyvz9BrECwQ6yLD97LUCVknqKgGCtMTP5ZHD
-	 oDLcq724qv0E4FgT+yPXOw4MXQ8XOznFYpvSB+mcAtBjIbImMyxk4X/sYzeRHJOLDF
-	 SJOzer5LLVWrlWfpqKU2GblpCiG83kOSjinDhjPk=
-Received: from vokac-nb.ysoft.local (unknown [10.1.8.111])
-	by uho.ysoft.cz (Postfix) with ESMTP id A78BCA03C4;
-	Wed,  5 Nov 2025 16:26:50 +0100 (CET)
-From: =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
-To: Shawn Guo <shawnguo@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
-Subject: [PATCH 2/2] ARM: dts: imx6dl-yapp4: Model the RGB LED as a single multi-led part
-Date: Wed,  5 Nov 2025 16:25:54 +0100
-Message-ID: <20251105152555.1992513-2-michal.vokac@ysoft.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251105152555.1992513-1-michal.vokac@ysoft.com>
-References: <20251105152555.1992513-1-michal.vokac@ysoft.com>
+	s=arc-20240116; t=1762356244; c=relaxed/simple;
+	bh=GXwbdQaFXRPyLyOFxOAe1jK4fHdG0pnAJ3StTbZyCww=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=K3dRfsppCdib3lrAYM5jHUXmp+03jivt62AahoXi+bh/4mhJxn1Z48v7ZTHLRImA3+4QQS72bdUf7dPuB9nd1YghwuuubEXyOWbe6t5rAf/wO1bpMSzcYqhSuW33iuZkwmN/RXeAoRwABNg+heMhWAvikaTZSQcmCcXm47IDkRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=svs3Hkn3; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1762356243; x=1793892243;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=GXwbdQaFXRPyLyOFxOAe1jK4fHdG0pnAJ3StTbZyCww=;
+  b=svs3Hkn3voUC1oR26UrouQU5sC6XbD7riw5rHWsM3llQ9h7+waWIMNzm
+   agbajOY0AAC1818/8zdX289bclUs4XCQMsKzpKzlW7BVJESba9D98Ncs/
+   M4IDCM2pOrm0K+/ktZJBzaSer4BUe/gBmhcuWViV5mHZ/BTDXjc12fZCh
+   bKmMz9rWXFtajt+XqObjwptIt33ea5FdLNCJmaGu9FA5xzcT4nveDs7PJ
+   9f94NfkmQKf6NaZx4TTGjcI0AxBL1stdtf+E8PoqHEY3DTSnRgoPibyFe
+   IKbt7mATm9mp+UmgWEyQ+d1P0ItcloZIaE27NCmELJlYttFTMXqRsEHZL
+   g==;
+X-CSE-ConnectionGUID: uJ3OEhFsR7KdS3mVaaXYNA==
+X-CSE-MsgGUID: u5K7xTi8TYyqLlRpBNBwow==
+X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; 
+   d="scan'208";a="49225714"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2025 08:24:02 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
+ chn-vm-ex2.mchp-main.com (10.10.87.31) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.29; Wed, 5 Nov 2025 08:23:49 -0700
+Received: from Lily.microchip.com (10.10.85.11) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Wed, 5 Nov 2025 08:23:47 -0700
+From: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>
+To: Mark Brown <broonie@kernel.org>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	<linux-riscv@lists.infradead.org>, <linux-spi@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Conor Dooley
+	<conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>,
+	Valentina Fernandez Alanis <valentina.fernandezalanis@microchip.com>, "Cyril
+ Jean" <cyril.jean@microchip.com>, Prajna Rajendra Kumar
+	<prajna.rajendrakumar@microchip.com>
+Subject: [PATCH v2 0/3] Add support for Microchip CoreSPI Controller
+Date: Wed, 5 Nov 2025 15:28:20 +0000
+Message-ID: <20251105152823.730422-1-prajna.rajendrakumar@microchip.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Describe the RGB LED indicator according to the reality - it is a single
-part containing all the three R,G and B LEDs in one package.
-With this description the chan-name property becomes useless, remove it.
+This patch series adds support for the Microchip FPGA CoreSPI "soft" IP 
+and documents its device tree bindings.
 
-issue: HWOS-816
+As preparation, the existing Microchip SPI driver is renamed to clearly
+indicate that it supports only the Microchip PolarFire SoC "hard" controller.
+Although it was originally named with the expectation that it might also
+cover the FPGA CoreSPI "soft" IP, the register layouts differ significantly, 
+so separate drivers are required.
 
-Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
----
- .../boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi | 44 ++++++++++---------
- .../dts/nxp/imx/imx6dl-yapp43-common.dtsi     | 44 ++++++++++---------
- 2 files changed, 48 insertions(+), 40 deletions(-)
+changes in v2
+--------------
+- Moved compatible strings into an enum and kept alphabetical order
+- Replaced .remove_new callback with .remove
+- Dropped unused variable reported by kernel test robot 
+- Updated CoreSPI drivers commit message to include the 8-bit frame size restriction
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi
-index 8bc6376d0dc1..4a5736526927 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi
-@@ -279,28 +279,32 @@ leds: led-controller@30 {
- 		#size-cells = <0>;
- 		status = "disabled";
- 
--		led@0 {
--			chan-name = "R";
--			led-cur = /bits/ 8 <0x20>;
--			max-cur = /bits/ 8 <0x60>;
--			reg = <0>;
--			color = <LED_COLOR_ID_RED>;
--		};
-+		multi-led@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			color = <LED_COLOR_ID_RGB>;
-+			function = LED_FUNCTION_INDICATOR;
-+
-+			led@0 {
-+				led-cur = /bits/ 8 <0x20>;
-+				max-cur = /bits/ 8 <0x60>;
-+				reg = <0>;
-+				color = <LED_COLOR_ID_RED>;
-+			};
- 
--		led@1 {
--			chan-name = "G";
--			led-cur = /bits/ 8 <0x20>;
--			max-cur = /bits/ 8 <0x60>;
--			reg = <1>;
--			color = <LED_COLOR_ID_GREEN>;
--		};
-+			led@1 {
-+				led-cur = /bits/ 8 <0x20>;
-+				max-cur = /bits/ 8 <0x60>;
-+				reg = <1>;
-+				color = <LED_COLOR_ID_GREEN>;
-+			};
- 
--		led@2 {
--			chan-name = "B";
--			led-cur = /bits/ 8 <0x20>;
--			max-cur = /bits/ 8 <0x60>;
--			reg = <2>;
--			color = <LED_COLOR_ID_BLUE>;
-+			led@2 {
-+				led-cur = /bits/ 8 <0x20>;
-+				max-cur = /bits/ 8 <0x60>;
-+				reg = <2>;
-+				color = <LED_COLOR_ID_BLUE>;
-+			};
- 		};
- 	};
- 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp43-common.dtsi b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp43-common.dtsi
-index 6f9bd163ffbe..6e49e1ccf6fc 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp43-common.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp43-common.dtsi
-@@ -278,28 +278,32 @@ leds: led-controller@30 {
- 		#size-cells = <0>;
- 		status = "disabled";
- 
--		led@0 {
--			chan-name = "R";
--			led-cur = /bits/ 8 <0x6e>;
--			max-cur = /bits/ 8 <0xc8>;
--			reg = <0>;
--			color = <LED_COLOR_ID_RED>;
--		};
-+		multi-led@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			color = <LED_COLOR_ID_RGB>;
-+			function = LED_FUNCTION_INDICATOR;
-+
-+			led@0 {
-+				led-cur = /bits/ 8 <0x6e>;
-+				max-cur = /bits/ 8 <0xc8>;
-+				reg = <0>;
-+				color = <LED_COLOR_ID_RED>;
-+			};
- 
--		led@1 {
--			chan-name = "G";
--			led-cur = /bits/ 8 <0xbe>;
--			max-cur = /bits/ 8 <0xc8>;
--			reg = <1>;
--			color = <LED_COLOR_ID_GREEN>;
--		};
-+			led@1 {
-+				led-cur = /bits/ 8 <0xbe>;
-+				max-cur = /bits/ 8 <0xc8>;
-+				reg = <1>;
-+				color = <LED_COLOR_ID_GREEN>;
-+			};
- 
--		led@2 {
--			chan-name = "B";
--			led-cur = /bits/ 8 <0xbe>;
--			max-cur = /bits/ 8 <0xc8>;
--			reg = <2>;
--			color = <LED_COLOR_ID_BLUE>;
-+			led@2 {
-+				led-cur = /bits/ 8 <0xbe>;
-+				max-cur = /bits/ 8 <0xc8>;
-+				reg = <2>;
-+				color = <LED_COLOR_ID_BLUE>;
-+			};
- 		};
- 	};
- 
+Prajna Rajendra Kumar (3):
+  spi: microchip: rename driver file and internal identifiers
+  spi: dt-binding: document Microchip CoreSPI
+  spi: add support for microchip "soft" spi controller
+
+ .../bindings/spi/microchip,mpfs-spi.yaml      |  70 +-
+ drivers/spi/Kconfig                           |  12 +-
+ drivers/spi/Makefile                          |   1 +
+ drivers/spi/spi-microchip-core.c              | 581 ++++++----------
+ drivers/spi/spi-mpfs.c                        | 626 ++++++++++++++++++
+ 5 files changed, 905 insertions(+), 385 deletions(-)
+ create mode 100644 drivers/spi/spi-mpfs.c
+
 -- 
-2.43.0
+2.25.1
 
 
