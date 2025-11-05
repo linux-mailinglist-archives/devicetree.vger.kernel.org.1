@@ -1,188 +1,217 @@
-Return-Path: <devicetree+bounces-235168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A918AC3512A
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 11:18:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 470E1C35160
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 11:27:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 467E418C8046
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 10:18:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 694131890170
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 10:27:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 160412FFFBE;
-	Wed,  5 Nov 2025 10:18:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ACAB3019D6;
+	Wed,  5 Nov 2025 10:26:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="i6wiBcXu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 423A62FFF8D
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 10:18:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AF023019C7;
+	Wed,  5 Nov 2025 10:26:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762337899; cv=none; b=bbytHu8tBdb8KR2td+QETkFiS/i0yTtX7Z1/eGqkPlXNstAuSaWvJGP5YkCcxvKmr5tUjPOZuHp9duMbjtlQMIluPFuaaEksjfPhdBFOomslAlsOQKoEA7P2a3LH0AvBebGYpQpS/oLik7lvuASps7fHxX6iPReHy0isHx1W4Ak=
+	t=1762338413; cv=none; b=Ns6P1KLarR1S/U/OJ7EYE0yI3Ni/EnsP4pv9k0zkyykmmVxHweTQlmsFiL4s8CsRNYpvc92fRJ+Ks5RoBewWookKxuN6KmhQ5gdA8qieHwFfDeWpeNR50eM2P1RB7IMJ52uX1DugYgxo4vlrL6i86FWi9vx9A3KTH9r//mQ+Q3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762337899; c=relaxed/simple;
-	bh=w4Q3tSFMoR02WDdtF03wIIwXMyl+pJLqWG4iANl0i4A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WALComAt9a02S8gFlC2+Xb6DfhTO4uLzYTnA/Lq9LWKlERejIzdtUVcAUfnJQrbYbRJN6F0ZUxcH3GCITZTjzMseRFgYtRFK22ArWtgaL84eDx6lYIH/5NDMO8kC8fSQ+x4/N9adj/HG62cFHMoKJSwpi/I/UgJQddNX79kPnlo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-640bd9039fbso5404210a12.2
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 02:18:17 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762337896; x=1762942696;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O+nitTwb5WJ+EUmnDTJjRK0YITVPRlucFpEPdRpx4NY=;
-        b=LYBhXi2GTsFkwd2fQFqeKvaBNfjLyml2SLOD+V07fxEBywzMazDriVINtb6oM6sY4o
-         6nB0OmVckBE/Cj/jT1M9faY/vc2flwdETswlkkphdHbtkcH4W6aIIC8mph3aiyixNq+k
-         jqNi5fuHNjlcwtF8roR58WNEg4hr9Eae3OKzTWSXY0DmVmD/fvZ+3Iu+w40YvPv8AdBM
-         pj73GUATM11hKA6o7Qx2Dr9a/1kQYgv1dS+hX9Qsgey1pMHjNsE1rv+qlTQ8PFkOzTIa
-         omfBLeSAsP8ZEnyELxY8P2/Ax3ob5OC9MlzHhtMzr86HXZQg+DJhKpfoAEfeHYyp6/nb
-         aTBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW4yp0lXT+eM/w+95lZbrvCPIo5H9GbVz4wi5j75mguKaBj84yCK/7N3XPJRSXqRPSR7gUpkqES4wPA@vger.kernel.org
-X-Gm-Message-State: AOJu0YybR4qXg9N02kEnl9MGHlk4xP3HBHPP1AFdH3V61cWCejewmckb
-	z0gC/NgXGiXbQjGE6NNcqj/Lf1Ec1J0nzS1hUcUDsAllifDkFk4U9PtN
-X-Gm-Gg: ASbGnctIjwyhFt30Qm0Yz1cQcnkg+OkidhsbA7b3tfzIEP6W3wsxN26C2Ohv6MczKDW
-	gjFZXWJCTWk4RXeC0yDHtOj+Qu5RLivFDqWG+3hEWtUFiliAyYDKSwQyEd7wpoJtFWerzYA8RLD
-	KevIhRNQpr+eenVrRaODrwhhcDYr2e5pLlb6PCpVL8wNdVjFOqxFbqYXqj8BSooa03rlEU6mhTA
-	6Fdk4JO2hrR21KKFjz5h4IqYwoMrfC6hzsG6sg6mVgEECSV2mWMNiPmjSgGMnwUy0wLwmKOUMHY
-	3XDiQiblwb4OlUgBckQICdcwHAQq0i6pOuHWmbHzVWY1KNyQjgRht5PGhW7hPqlrp/MLwytUBuq
-	uzQcXrEwTbb47T4OXGGzt8XHhqz6W76vW5Q4iMKWNZYugvg4LiMb42BIgzN1whB5+y58=
-X-Google-Smtp-Source: AGHT+IGMOyHdTrU7e4XzICZCye2rZuaFGN3pfPJ6kDUtI82R9LpfHeUzLCsG0FSLtDRWmVaLyRXkdA==
-X-Received: by 2002:a05:6402:5351:20b0:63e:6d38:865 with SMTP id 4fb4d7f45d1cf-64105b7a684mr1701971a12.36.1762337895297;
-        Wed, 05 Nov 2025 02:18:15 -0800 (PST)
-Received: from gmail.com ([2a03:2880:30ff:74::])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-640ebbdc7cesm3763441a12.35.2025.11.05.02.18.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Nov 2025 02:18:14 -0800 (PST)
-Date: Wed, 5 Nov 2025 02:18:11 -0800
-From: Breno Leitao <leitao@debian.org>
-To: Pratyush Yadav <pratyush@kernel.org>
-Cc: Changyuan Lyu <changyuanl@google.com>, rppt@kernel.org, 
-	akpm@linux-foundation.org, linux-kernel@vger.kernel.org, anthony.yznaga@oracle.com, 
-	arnd@arndb.de, ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de, 
-	catalin.marinas@arm.com, corbet@lwn.net, dave.hansen@linux.intel.com, 
-	devicetree@vger.kernel.org, dwmw2@infradead.org, ebiederm@xmission.com, graf@amazon.com, 
-	hpa@zytor.com, jgowans@amazon.com, kexec@lists.infradead.org, krzk@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org, linux-mm@kvack.org, luto@kernel.org, 
-	mark.rutland@arm.com, mingo@redhat.com, pasha.tatashin@soleen.com, pbonzini@redhat.com, 
-	peterz@infradead.org, robh@kernel.org, rostedt@goodmis.org, saravanak@google.com, 
-	skinsburskii@linux.microsoft.com, tglx@linutronix.de, thomas.lendacky@amd.com, will@kernel.org, 
-	x86@kernel.org
-Subject: Re: [PATCH v8 01/17] memblock: add MEMBLOCK_RSRV_KERN flag
-Message-ID: <c2nrxby4atq75o5yhwdpoikyso42tzimwn2bnl7fk54wuwdqax@i6kdssez3kfj>
-References: <20250509074635.3187114-1-changyuanl@google.com>
- <20250509074635.3187114-2-changyuanl@google.com>
- <ef6wfr72set5wa5el3wbbu4yd5tnc4p2rhtjpb5kpmncv3xs5d@i3c5v3ciioi3>
- <mafs0wm4yluej.fsf@kernel.org>
- <mafs0h5w2lpqu.fsf@kernel.org>
- <2ege2jfbevtunhxsnutbzde7cqwgu5qbj4bbuw2umw7ke7ogcn@5wtskk4exzsi>
- <mafs0cy6pljci.fsf@kernel.org>
+	s=arc-20240116; t=1762338413; c=relaxed/simple;
+	bh=eRRdklshI7mD/jKpP/+UY9Ouf/OPJc0IOGMFoHTVdHA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=DR9jYCBP61QebxL2BC99u7BRELs8VcA8X1rDOVEpu8sJHiTjN48yY9TVyb2NxvTxkrSnRRB/TAT6q4hBD8k8Kga1LxZFLn6/pZ49u2FI9YWA25/7nEJ4TIOa863ZFe7o9j4pVcM7Yl+u7/D21yaT/rmjDE6Ggjp75YgmbG1ZcDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=i6wiBcXu; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1762338411; x=1793874411;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=eRRdklshI7mD/jKpP/+UY9Ouf/OPJc0IOGMFoHTVdHA=;
+  b=i6wiBcXuFLTnpllMQA88Am4iOhe/SxYV7yTkLk6CahzmTc0vsJ3tTTIT
+   on1dN6B0iPa3H+XG6+VOC/MsRgePqqVhczTBe+s5/U4Mg3pavn+ZC4FlD
+   UFctHRxc1TtgyndNsZ5MYgs6ve0lfbMUCSLpYh7RlJxhIszcqtS06X+I7
+   q6EJFi1P9mkA7G99CoqScs/Qdrr8NR3+zk8sBDW5jokefE21mEq5BULpy
+   VUtgGEBLNrzhbFr//DupIoCiO0dAFU7/pitLO92QPl/F6nGKKQ6iEwxsl
+   bBND7lN64+OXgsRiPzm7richbvKqvw7KLAlB2VqvD1Px3Ju+lRatv7tc8
+   g==;
+X-CSE-ConnectionGUID: OcFlDweQSNGA3u0TNJi5vQ==
+X-CSE-MsgGUID: 4B/jomYMRXmUwg7fOqOGBQ==
+X-IronPort-AV: E=Sophos;i="6.19,281,1754982000"; 
+   d="scan'208";a="48709554"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2025 03:26:50 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
+ chn-vm-ex1.mchp-main.com (10.10.87.30) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.29; Wed, 5 Nov 2025 03:26:10 -0700
+Received: from wendy.microchip.com (10.10.85.11) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Wed, 5 Nov 2025 03:26:09 -0700
+From: Conor Dooley <conor.dooley@microchip.com>
+To: <linux-riscv@lists.infradead.org>
+CC: <conor@kernel.org>, <conor.dooley@microchip.com>, Daire McNamara
+	<daire.mcnamara@microchip.com>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: [[PATCH RESEND] v1] riscv: dts: microchip: enable qspi adc/mmc-spi-slot on BeagleV Fire
+Date: Wed, 5 Nov 2025 10:24:24 +0000
+Message-ID: <20251105-unrobed-agility-c9c242a5b344@wendy>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <mafs0cy6pljci.fsf@kernel.org>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2906; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=eRRdklshI7mD/jKpP/+UY9Ouf/OPJc0IOGMFoHTVdHA=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDJncqjf2qklP935wTaBKfOLd0+nxzKnHGWx+nH98yj6VrYR3 wZmfHaUsDGIcDLJiiiyJt/tapNb/cdnh3PMWZg4rE8gQBi5OAZjIIn1Ghp7ABXXsv2o2PeqrfHrk8D 67m7XzX0VumvImz6NSfMZxxWsMPxkLz4T9+hpldPN4dra47tGEKtXCLEf3GSkNx6cLBO+RZwIA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Hello Pratyush,
+The BeagleV Fire has an SD card slot and an ADC connected to the QSPI
+controller.
 
-On Tue, Oct 14, 2025 at 03:10:37PM +0200, Pratyush Yadav wrote:
-> On Tue, Oct 14 2025, Breno Leitao wrote:
-> > On Mon, Oct 13, 2025 at 06:40:09PM +0200, Pratyush Yadav wrote:
-> >> On Mon, Oct 13 2025, Pratyush Yadav wrote:
-> >> >
-> >> > I suppose this would be useful. I think enabling memblock debug prints
-> >> > would also be helpful (using the "memblock=debug" commandline parameter)
-> >> > if it doesn't impact your production environment too much.
-> >> 
-> >> Actually, I think "memblock=debug" is going to be the more useful thing
-> >> since it would also show what function allocated the overlapping range
-> >> and the flags it was allocated with.
-> >> 
-> >> On my qemu VM with KVM, this results in around 70 prints from memblock.
-> >> So it adds a bit of extra prints but nothing that should be too
-> >> disrupting I think. Plus, only at boot so the worst thing you get is
-> >> slightly slower boot times.
-> >
-> > Unfortunately this issue is happening on production systems, and I don't
-> > have an easy way to reproduce it _yet_.
-> >
-> > At the same time, "memblock=debug" has two problems:
-> >
-> >  1) It slows the boot time as you suggested. Boot time at large
-> >     environments is SUPER critical and time sensitive. It is a bit
-> >     weird, but it is common for machines in production to kexec
-> >     _thousands_ of times, and kexecing is considered downtime.
-> 
-> I don't know if it would make a real enough difference on boot times,
-> only that it should theoretically affect it, mainly if you are using
-> serial for dmesg logs. Anyway, that's your production environment so you
-> know best.
-> 
-> >
-> >     This would be useful if I find some hosts getting this issue, and
-> >     then I can easily enable the extra information to collect what
-> >     I need, but, this didn't pan out because the hosts I got
-> >     `memblock=debug` didn't collaborate.
-> >
-> >  2) "memblock=debug" is verbose for all cases, which also not necessary
-> >     the desired behaviour. I am more interested in only being verbose
-> >     when there is a known problem.
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
 
-I am still interested in this problem, and I finally found a host that
-constantly reproduce the issue and I was able to get `memblock=debug`
-cmdline. I am running 6.18-rc4 with some debug options enabled.
+I believe this got sent a long time ago, but somehow I lost it.
 
-	DMA-API: exceeded 7 overlapping mappings of cacheline 0x0000000006d6e400
-	WARNING: CPU: 58 PID: 828 at kernel/dma/debug.c:463 add_dma_entry+0x2e4/0x330
-	pc : add_dma_entry+0x2e4/0x330
-	lr : add_dma_entry+0x2e4/0x330
-	sp : ffff8000b036f7f0
-	x29: ffff8000b036f800 x28: 0000000000000001 x27: 0000000000000008
-	x26: ffff8000835f7fb8 x25: ffff8000835f7000 x24: ffff8000835f7ee0
-	x23: 0000000000000000 x22: 0000000006d6e400 x21: 0000000000000000
-	x20: 0000000006d6e400 x19: ffff0003f70c1100 x18: 00000000ffffffff
-	x17: ffff80008019a2d8 x16: ffff80008019a08c x15: 0000000000000000
-	x14: 0000000000000000 x13: 0000000000000820 x12: ffff00011faeaf00
-	x11: 0000000000000000 x10: ffff8000834633d8 x9 : ffff8000801979d4
-	x8 : 00000000fffeffff x7 : ffff8000834633d8 x6 : 0000000000000000
-	x5 : 00000000000bfff4 x4 : 0000000000000000 x3 : ffff0001075eb7c0
-	x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff0001075eb7c0
-	Call trace:
-	add_dma_entry+0x2e4/0x330 (P)
-	debug_dma_map_phys+0xc4/0xf0
-	dma_map_phys (/home/leit/Devel/upstream/./include/linux/dma-direct.h:138 /home/leit/Devel/upstream/kernel/dma/direct.h:102 /home/leit/Devel/upstream/kernel/dma/mapping.c:169)
-	dma_map_page_attrs (/home/leit/Devel/upstream/kernel/dma/mapping.c:387)
-	blk_dma_map_direct.isra.0 (/home/leit/Devel/upstream/block/blk-mq-dma.c:102)
-	blk_dma_map_iter_start (/home/leit/Devel/upstream/block/blk-mq-dma.c:123 /home/leit/Devel/upstream/block/blk-mq-dma.c:196)
-	blk_rq_dma_map_iter_start (/home/leit/Devel/upstream/block/blk-mq-dma.c:228)
-	nvme_prep_rq+0xb8/0x9b8
-	nvme_queue_rq+0x44/0x1b0
-	blk_mq_dispatch_rq_list (/home/leit/Devel/upstream/block/blk-mq.c:2129)
-	__blk_mq_sched_dispatch_requests (/home/leit/Devel/upstream/block/blk-mq-sched.c:314)
-	blk_mq_sched_dispatch_requests (/home/leit/Devel/upstream/block/blk-mq-sched.c:329)
-	blk_mq_run_work_fn (/home/leit/Devel/upstream/block/blk-mq.c:219 /home/leit/Devel/upstream/block/blk-mq.c:231)
-	process_one_work (/home/leit/Devel/upstream/kernel/workqueue.c:991 /home/leit/Devel/upstream/kernel/workqueue.c:3213)
-	worker_thread (/home/leit/Devel/upstream/./include/linux/list.h:163 /home/leit/Devel/upstream/./include/linux/list.h:191 /home/leit/Devel/upstream/./include/linux/list.h:319 /home/leit/Devel/upstream/kernel/workqueue.c:1153 /home/leit/Devel/upstream/kernel/workqueue.c:1205 /home/leit/Devel/upstream/kernel/workqueue.c:3426)
-	kthread (/home/leit/Devel/upstream/kernel/kthread.c:386 /home/leit/Devel/upstream/kernel/kthread.c:457)
-	ret_from_fork (/home/leit/Devel/upstream/entry.S:861)
+CC: Conor Dooley <conor.dooley@microchip.com>
+CC: Daire McNamara <daire.mcnamara@microchip.com>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: linux-riscv@lists.infradead.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+---
+ .../boot/dts/microchip/mpfs-beaglev-fire.dts  | 96 +++++++++++++++++++
+ 1 file changed, 96 insertions(+)
 
+diff --git a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
+index 55e30f3636df..f44ad8e6f4e4 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
++++ b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
+@@ -79,6 +79,26 @@ imx219_vddl: fixedregulator-2 {
+ 
+ };
+ 
++&gpio0 {
++	interrupts = <13>, <14>, <15>, <16>,
++		     <17>, <18>, <19>, <20>,
++		     <21>, <22>, <23>, <24>,
++		     <25>, <26>;
++	ngpios = <14>;
++	status = "okay";
++};
++
++&gpio1 {
++	interrupts = <27>, <28>, <29>, <30>,
++		     <31>, <32>, <33>, <34>,
++		     <35>, <36>, <37>, <38>,
++		     <39>, <40>, <41>, <42>,
++		     <43>, <44>, <45>, <46>,
++		     <47>, <48>, <49>, <50>;
++	ngpios = <24>;
++	status = "okay";
++};
++
+ &gpio2 {
+ 	interrupts = <53>, <53>, <53>, <53>,
+ 		     <53>, <53>, <53>, <53>,
+@@ -199,6 +219,82 @@ &spi1 {
+ 	status = "okay";
+ };
+ 
++&qspi {
++	status = "okay";
++	cs-gpios = <&gpio1 17 GPIO_ACTIVE_LOW>, <&gpio0 12 GPIO_ACTIVE_LOW>;
++	num-cs = <2>;
++
++	adc@0 {
++		compatible = "microchip,mcp3464r";
++		reg = <0>; /* CE0 */
++		spi-cpol;
++		spi-cpha;
++		spi-max-frequency = <5000000>;
++		microchip,hw-device-address = <1>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++		status = "okay";
++
++		channel@0 {
++			/* CH0 to AGND */
++			reg = <0>;
++			label = "CH0";
++		};
++
++		channel@1 {
++			/* CH1 to AGND */
++			reg = <1>;
++			label = "CH1";
++		};
++
++		channel@2 {
++			/* CH2 to AGND */
++			reg = <2>;
++			label = "CH2";
++		};
++
++		channel@3 {
++			/* CH3 to AGND */
++			reg = <3>;
++			label = "CH3";
++		};
++
++		channel@4 {
++			/* CH4 to AGND */
++			reg = <4>;
++			label = "CH4";
++		};
++
++		channel@5 {
++			/* CH5 to AGND */
++			reg = <5>;
++			label = "CH5";
++		};
++
++		channel@6 {
++			/* CH6 to AGND */
++			reg = <6>;
++			label = "CH6";
++		};
++
++		channel@7 {
++			/* CH7 is connected to AGND */
++			reg = <7>;
++			label = "CH7";
++		};
++	};
++
++	mmc@1 {
++		compatible = "mmc-spi-slot";
++		reg = <1>;
++		gpios = <&gpio2 31 1>;
++		voltage-ranges = <3300 3300>;
++		spi-max-frequency = <5000000>;
++		disable-wp;
++	};
++};
++
++
+ &syscontroller {
+ 	microchip,bitstream-flash = <&sys_ctrl_flash>;
+ 	status = "okay";
+-- 
+2.51.0
 
-Looking at memblock debug logs, I haven't seen anything related to
-0x0000000006d6e400.
-
-I got the output of `dmesg | grep memblock` in, in case you are curious:
-
-	https://github.com/leitao/debug/blob/main/pastebin/memblock/dmesg_grep_memblock.txt
-
-Thanks
---breno
 
