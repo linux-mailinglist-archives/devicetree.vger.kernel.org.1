@@ -1,110 +1,109 @@
-Return-Path: <devicetree+bounces-235120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 023DBC34B9C
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 10:16:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A4EAC34BA9
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 10:17:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C06918C4ECA
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 09:15:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5461718830F2
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 09:15:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9110A2FB601;
-	Wed,  5 Nov 2025 09:14:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88E392FD1CB;
+	Wed,  5 Nov 2025 09:14:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pH7cu0yH"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Z//sTn5c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 543BE2F7AB4;
-	Wed,  5 Nov 2025 09:14:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89B242FB978;
+	Wed,  5 Nov 2025 09:14:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762334064; cv=none; b=N5kv3DR+PXpEEVwz0FZGVHOAlMTDTIrBU0iHbXHf4vawp6oUQO3myBUX7heFsdRXXYakll7a3K2JSjEdCMzo1dzFdngZW2x85wApVzTwvCMISXYfyR8ZyY7ZdzXEoj0NKigpFjg8RBzrBRCGscFHp6OG9jL3bchBqCHQgsjskE8=
+	t=1762334077; cv=none; b=KaJZDCE8PNIyvLutYcbSnCAkyvur0xY0figTi2Iw6eu0V3Xve3Em1ICKCUALNu7XAR/G5kt160FM9WLSsA3TYvjRNWM6hmqizJZxJF7o7tH4v00MD/EJEa5H7um0RzkQw0/tOTamsq2LVP8cjP1jPqY+VeMPqAti67LoKD1HLzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762334064; c=relaxed/simple;
-	bh=KwmEx9hgVk7y+RSTS2QImEXQ30/Rh4I9Ht/dNmvoaNI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=isoOnzstEqf6s1L5cdl/LQNpdIcP4DxV5LfqyQZ0JBxC3fLYdBit/Zu1TzqB1bB0/XSEeWZEaaCjVBE2X+oFgCQD1Dw6bKmOafHnoVzfb9N/SWEQqd2ZtRmLw6ukMG/5hwDYTuUPsqG4wcFUy6dEv+vePZTQJl/x/f5smRx7mOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pH7cu0yH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52BBCC4CEF8;
-	Wed,  5 Nov 2025 09:14:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762334063;
-	bh=KwmEx9hgVk7y+RSTS2QImEXQ30/Rh4I9Ht/dNmvoaNI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pH7cu0yHXFCgGt/0ca4SBMfZGTNDILeOA0KZMzEsw4w+vZj60tTfcxwaYWfKrwu3w
-	 o7J1IPVKRIdWcEBAZSy/fj8XR3vKj2Hu9atKHPZUXmsS3655T9txDKldlerftBkxNA
-	 8amFqn5ek/xXu6qOJuS8XsPTqzFH7AwCIMGCXdvGpn0Pqz+q9PMRD2xf9kFvhFFv8A
-	 2GKm8Hm4v8/Nnh9pmVXUzvFD6JMXXBrVjnDBjvTNt50KX4ZRa1Q2WD1/F1jBIUdCxh
-	 FJDEWEvqtokO1UTT+PmsVKu4AYcEr14JwL9Y+fowwcjRFKaDJ/1WMs4Ek1Lh0bP8E7
-	 ihgx6P3BrvcFw==
-Date: Wed, 5 Nov 2025 10:14:21 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Johan Hovold <johan+linaro@kernel.org>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Manivannan Sadhasivam <mani@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Taniya Das <quic_tdas@quicinc.com>, 
-	Imran Shaik <quic_imrashai@quicinc.com>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
-	Jagadeesh Kona <quic_jkona@quicinc.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH 2/5] dt-bindings: remoteproc: qcom,sc8280xp-pas: Fix CDSP
- power desc
-Message-ID: <20251105-dramatic-denim-kangaroo-cef9ed@kuoka>
-References: <20251104-topic-8280_mxc-v1-0-df545af0ef94@oss.qualcomm.com>
- <20251104-topic-8280_mxc-v1-2-df545af0ef94@oss.qualcomm.com>
+	s=arc-20240116; t=1762334077; c=relaxed/simple;
+	bh=qWtgovMFKiTMTHDBfS7Kxt4dQ9VFI2F4oQIKhJkL1jY=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=jCyz09IuWclzItj5fjTgeyXA2fpy8Cvw5EEC9iBXr5UrQNM5Xny8ZpSsDx8+ppnGTvSvHiY6WxT9cnrhuOi70Md/Ip4X6ph5A5Esb38P39Z08xciKJWtEw4fPKg8FIYVP0oWj7ftnNlJGoEyfeENUpXOLXvb2n+MXM8tRS1mTEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Z//sTn5c; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1762334073;
+	bh=qWtgovMFKiTMTHDBfS7Kxt4dQ9VFI2F4oQIKhJkL1jY=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Z//sTn5cgHw750Qw6GxY5XREnvUNETEmFkS3svN8Y+59h7+pZt88kiAHz/G47pffY
+	 QWaL2k7AHtjnpXrcMuvUJqv1R2UfglFDV0dt7hIV43tH2gG/gmimBSOhOYSf1rhc4D
+	 dR065+SV4njc+oxNiFXJ8noBKGMa0MWKU/IO+E4/0VN23bslViMB7F4DT2pR7ETsyk
+	 mJOD9Tvt8Ypt4kfd1WeubJp/2wjUTpX3cq2+JFCe3yKG8JztHPrn5IOOjw0Aaq9Onb
+	 vxUjSm7DB7XyxM9sLF2A+aMrod/lsSZGURl17/u7pyApgFa9CJKTOtX5AoJPeI+1jL
+	 IZUUIETtm/gSg==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id C2B6A17E128C;
+	Wed,  5 Nov 2025 10:14:32 +0100 (CET)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, 
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Jason-JH Lin <jason-jh.lin@mediatek.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
+ Nicolas Dufresne <nicolas@ndufresne.ca>, Nancy Lin <nancy.lin@mediatek.com>, 
+ Singo Chang <singo.chang@mediatek.com>, 
+ Paul-PL Chen <paul-pl.chen@mediatek.com>, Moudy Ho <moudy.ho@mediatek.com>, 
+ Xiandong Wang <xiandong.wang@mediatek.com>, 
+ Sirius Wang <sirius.wang@mediatek.com>, Fei Shao <fshao@chromium.org>, 
+ Chen-yu Tsai <wenst@chromium.org>, 
+ Project_Global_Chrome_Upstream_Group@mediatek.com, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org, 
+ Jason-jh Lin <jason-jh.lin@mediatek.corp-partner.google.com>
+In-Reply-To: <20251031155838.1650833-1-jason-jh.lin@mediatek.com>
+References: <20251031155838.1650833-1-jason-jh.lin@mediatek.com>
+Subject: Re: (subset) [PATCH 0/9] Add GCE support for MT8196 (series 1/4)
+Message-Id: <176233407273.17051.14832672768529226895.b4-ty@collabora.com>
+Date: Wed, 05 Nov 2025 10:14:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251104-topic-8280_mxc-v1-2-df545af0ef94@oss.qualcomm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
 
-On Tue, Nov 04, 2025 at 08:31:07PM +0100, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+On Fri, 31 Oct 2025 23:56:28 +0800, Jason-JH Lin wrote:
+> From: Jason-jh Lin <jason-jh.lin@mediatek.corp-partner.google.com>
 > 
-> The power requirements for the CDSP instances on SC8280XP aren't fully
-> described, with only one of the three present. Fix that.
+> This series adds initial support for the MediaTek MT8196 GCE in the CMDQ
+> driver, including related API changes for new hardware requirements.
 > 
-> Fixes: ee651cd1e944 ("dt-bindings: remoteproc: qcom: pas: Add sc8280xp adsp and nsp pair")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> ---
->  Documentation/devicetree/bindings/remoteproc/qcom,sc8280xp-pas.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+> Series application order:
+>   1. [Fixes] Refine DMA address handling for the command buffer
+>   - https://lore.kernel.org/all/20251022171847.379470-1-jason-jh.lin@mediatek.com/
+>   2. [Series 1/4] Add GCE support for MT8196 and update CMDQ APIs (this series)
+>   3. [Series 2/4] Migrate subsystems to new CMDQ APIs
+>   4. [Series 3/4] Remove shift_pa from CMDQ jump functions
+>   5. [Series 4/4] Remove deprecated CMDQ APIs
 > 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc8280xp-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc8280xp-pas.yaml
-> index 96d53baf6e00..5dbda3a55047 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sc8280xp-pas.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc8280xp-pas.yaml
-> @@ -91,9 +91,13 @@ allOf:
->          power-domains:
->            items:
->              - description: NSP power domain
-> +            - description: CX power domain
-> +            - description: MXC power domain
->          power-domain-names:
->            items:
->              - const: nsp
-> +            - const: cx
-> +            - const: mxc
+> [...]
 
-Heh, so if this was described since beginning entire binding would fit
-100% into qcom,sm8550-pas.yaml, instead having this now in different
-file because of different order. Not great. :(
+Applied to v6.18-next/dts64, thanks!
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+[1/9] arm64: dts: mediatek: Add GCE header for MT8196
+      commit: 355531a5ffd9e26f4d87ab34015c679e32d60e3c
 
-Best regards,
-Krzysztof
+Cheers,
+Angelo
+
 
 
