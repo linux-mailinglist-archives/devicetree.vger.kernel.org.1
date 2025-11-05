@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-235102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 863DCC349BE
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 09:55:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85387C3499A
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 09:54:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 529524FCB1E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 08:51:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E84418C8F32
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 08:52:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96E412E7BC2;
-	Wed,  5 Nov 2025 08:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED7A32DFA24;
+	Wed,  5 Nov 2025 08:51:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jJSPmQEY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oTAj8Sd+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 638D72E7650;
-	Wed,  5 Nov 2025 08:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5ED22DC346;
+	Wed,  5 Nov 2025 08:51:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762332599; cv=none; b=FWxRObC92DsMVPbtE/W9/yU0lSDnOs4QPTmg0VpqsqJ43e2zGLA1pRRHBGPRAZ75AtSWnHhtvyfcnFA4IMutWuOOCIaItzRxSDjHwnNkkKkb2fdBVg6Xb50rzCkSNUYm/PWfc2LcCFxquxIjxtPPwOZf7vyVA2LVRAmKutq5ERA=
+	t=1762332666; cv=none; b=s4yopiCjOl8/KkakPxo7ousiPASCWVnMmCNhDcZX0I+uzNIm4jP7yBzvczoBmVfQeCV8mCKNBy9eoVYrsnLWjA6IHE6Z5yZt3wfZZM/9hYIc7l/67/YVt/jYaiDo7JUMagzPHruohRjiwqKbcKOWfrDxsY+VZDIyTAb8TDu+H0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762332599; c=relaxed/simple;
-	bh=2Y1w6bkA2Q5H1e/6/2oG37f+BVtHYYjkIoM1/5dBfiQ=;
+	s=arc-20240116; t=1762332666; c=relaxed/simple;
+	bh=bqAeZIBrgDEYsoUKavOSuZR1RUcIXXU179muk25cQ8o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jJsOIFJ5V7kGeTJxihS7OccFKEeTP4ewlq+1JwPgP4Tms3gFg5bUbVkBf3T2emROE9OSSBSTsIoTt9bApPMQHDGQqZ5pTKYKoIU6ZA2l6YxNMS+vGa1jv9S87oLxS+swwG+INvJj63TPW3WmyuZhWwQ+DRxhpEkYpR8QydvHLrg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jJSPmQEY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EFCBC4CEF8;
-	Wed,  5 Nov 2025 08:49:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JWQ68+W2wPVeSioAV8sOJBVR1uEpwFHSuDsqsyGK7aOqCHdwGdZ/+58pCWUSLeGh4/p7IC601VpH5EheLYP9/FH44/ov8HVSObDAVy7/3fiptW4CXgupsBZYTgCv7UHjYTHjoVsvbS3x4QnlbOx5e8pJMHG0P/6UDS1ARFXYeG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oTAj8Sd+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2245CC116B1;
+	Wed,  5 Nov 2025 08:51:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762332598;
-	bh=2Y1w6bkA2Q5H1e/6/2oG37f+BVtHYYjkIoM1/5dBfiQ=;
+	s=k20201202; t=1762332666;
+	bh=bqAeZIBrgDEYsoUKavOSuZR1RUcIXXU179muk25cQ8o=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jJSPmQEYTzfQYPTiek+jRvogb/YBMztLwwi7hhdfdJlXd556tHxFp+VkmjCAfIh41
-	 f6Iah2WW4+4Orano4Wim+FwboOprywWhW2OefKKctrEhFFuEVa3APLSatzvawLcIeD
-	 P0EZnPODL+7kWzrUaV/s++lRMQAr1KMn3JNxDRVkFOi9Ko7sz9Bd8zidiQSsabIfYO
-	 EBx5VpgB7kQqFkRxNOnVUFoD5//NgbaFVVIjic4oqVMLySYmHmf3rbsJxg3tzzzxhh
-	 k3dum8VVKQIKdMVrZrL+wbmXFjW3I2CPMOPIS6LTkkzt4YjKph3tQSGRWfeSd17q3p
-	 Jcy2tEad3dcrw==
-Date: Wed, 5 Nov 2025 09:49:56 +0100
+	b=oTAj8Sd+o5/noh9v7+A1raHbMoeBVWhksX+j/sOANpEjwXXNmjkcAaEOYSlUnQAn1
+	 nQ1/vHYYeYmU47XRl9IjnoGnH351Ly1OsR/MaNHnK9V1VxyKFON1gN4iz77h5hkg5p
+	 n0Se9zuxuAXAkJBP1/Qy1QqI9R6hrPa4pEMOSqMAFLNnZ5QmlCxVQ5ZiqbTIfP+fiq
+	 i4U2wZuqQsu/fPzsngCeDq9XGoelwp78rHpuMmB1uheuV8+n9IwlyWlRwXE77D/qMy
+	 d/nDTA9bUkWsaiXRL1sOqAf0daUWd6h6Q1WQNLGl+MshSK1s6icSY5ChD/2SrMl4B4
+	 LPIEtizFPyiDg==
+Date: Wed, 5 Nov 2025 09:51:04 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Guoniu Zhou <guoniu.zhou@oss.nxp.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Guoniu Zhou <guoniu.zhou@nxp.com>
-Subject: Re: [PATCH v3 1/3] media: dt-bindings: nxp,imx8-isi: Add i.MX95 ISI
- compatible string
-Message-ID: <20251105-fancy-practical-saluki-1a6ec8@kuoka>
-References: <20251105-isi_imx95-v3-0-3987533cca1c@nxp.com>
- <20251105-isi_imx95-v3-1-3987533cca1c@nxp.com>
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, 
+	Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, 
+	Frank Binns <frank.binns@imgtec.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Magnus Damm <magnus.damm@gmail.com>, Matt Coster <matt.coster@imgtec.com>, 
+	Maxime Ripard <mripard@kernel.org>, 
+	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: gpu: img,powervr-rogue: Keep lists
+ sorted alphabetically
+Message-ID: <20251105-robust-aquamarine-tench-c71fd3@kuoka>
+References: <20251104135716.12497-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,19 +65,12 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251105-isi_imx95-v3-1-3987533cca1c@nxp.com>
+In-Reply-To: <20251104135716.12497-1-marek.vasut+renesas@mailbox.org>
 
-On Wed, Nov 05, 2025 at 01:55:10PM +0800, Guoniu Zhou wrote:
-> From: Guoniu Zhou <guoniu.zhou@nxp.com>
+On Tue, Nov 04, 2025 at 02:56:05PM +0100, Marek Vasut wrote:
+> Sort the enum: list alphabetically. No functional change.
 > 
-> The ISI module on i.MX95 supports up to eight channels and four link
-> sources to obtain the image data for processing in its pipelines. It
-> can process up to eight image sources at the same time.
-> 
-> Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
-> ---
->  .../devicetree/bindings/media/nxp,imx8-isi.yaml    | 27 +++++++++++++++++++++-
->  1 file changed, 26 insertions(+), 1 deletion(-)
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
