@@ -1,212 +1,175 @@
-Return-Path: <devicetree+bounces-235209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D5BCC358B9
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 12:59:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F5F9C3591D
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 13:12:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 727941882D13
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 12:00:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17A111891853
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 12:12:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1AAA31283A;
-	Wed,  5 Nov 2025 11:59:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E85E3313E2D;
+	Wed,  5 Nov 2025 12:11:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TosDpwPb"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EBgt27An";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="kNS0e2iy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 168E92FDC40
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 11:59:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C61A313526
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 12:11:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762343973; cv=none; b=mW+sV3yX3kNyBdUUbLyd/E1mhif5cNcwvMp1V23/KsSX0lE+BtjLnicEZOZXBsb7FBZS8ba+YHARFzTstm8JGD/VYjJfvkD3ivjCdAe75vT6ife80XgRaFmf3Gf0IkmdquRTj/EEwFJTtJ2lNkZ2r9kcvmPM63EeNSToMwKXO4A=
+	t=1762344714; cv=none; b=hlUI3x3I7asPIeKzT5LnQktBUjaOAuCHpHwMll5cWPcM4v5QVFyuQgFJIx5TT+8/PlycQEDBqEyegwpZ5Xn14yGC//N9zvR2X4WlQfq3Tvok2kKfQWb8yygql2DlTGIEDWCLYrSkrclNDsPBohgPBcO+TacHPl0f5XpMX+0t9gA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762343973; c=relaxed/simple;
-	bh=6+3jnfjqn43oyAtQe2q78IhrxJm5fdTl7F8JDNsbcgg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PWtOLcQ9WEXTaohLZ/xj4uc2M9Totvb1fN2+ls3oNiZ0OCOoEQIIQMK7PKOrqVs6IEt7pou/75oPvtQc8v5Qq6wRMRdErf5C2y7GLfXjY1nqMpcjLMd+tLBEwIzp/YZQJZq71sV3/pMRhiYupytr52hctgZ+RXqOj17I5E/oGKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TosDpwPb; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-640c1fda178so4973998a12.1
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 03:59:31 -0800 (PST)
+	s=arc-20240116; t=1762344714; c=relaxed/simple;
+	bh=wz5ENZt5Ic8O9QlHYo2XewF50GZ2Oa7k4QWZhPiExVw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iEl3cMVGLwUSEIX8h2UKAmgTk05soB2gPO/7XzDZL6Tt4sCjmt2csQJRX+y9Kn0TS58pMJJUkOrdsyEUoIjMCV/pQN4qCApX69kmAULTUbgiOb4zXUl+S81JUgfyn2RmpwfCkJ/rr+NHr73SOBIIbOIGIMJOf5pAici72ld+GC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EBgt27An; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=kNS0e2iy; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A57u6P03165204
+	for <devicetree@vger.kernel.org>; Wed, 5 Nov 2025 12:11:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=snsQD4l2AXcjWmxN/fszbJ7h
+	2kOikH95rE3CwRz2zUM=; b=EBgt27AnuOFLD3tZKyOpo6xD83u9A03VmGfBkMds
+	lb4PiRYRzac2NJUvXa25gcwayfM/C83TuN60XmLEvyvKWPb2RnxBWFVfmkAJvjc4
+	IUzvWYXBTaE5fvYx1WplcRSpt2ajYXpCQtvuGYakjmSqw4Ct7cS9dWTA9iPgrsni
+	plxpBkZ+XqA1YbobP4Ez1BIiNFmpwJ5vF84rpnN/Iy6iAlUPD9+Bbqhl57qvKe0t
+	Gmf4VZSy+E0KqIwbt8qVP8wFpIksJPSQJStcFGwGqKRUz0NZR3OUohHptKpVtxmD
+	MGYVGPJIzmsEgR5KIPmxdDujDOY4D2mmAbF0gW2bKlU9JQ==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a7ketkgjr-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 12:11:51 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-29598910dd2so77779095ad.1
+        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 04:11:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762343970; x=1762948770; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZGA4yt8JGp+St6is/Io1asPfAbg43aJnzQEEcQdlRFo=;
-        b=TosDpwPbqkLe/8dQSzaeZK1VpZ1JqDNj/D/gsLCgU8zAW/z8q3ghRezuEz47BnrSdB
-         a3VrAOvVrRXtPFF/BUW8sNARqzk4Tmfj83//vBAFWRB/tGh94Zu7EwzbcLE0Wqs+oGBH
-         P+gUaSC8RjmnCYl5/QhXNsNWARIdOfHGM+W9De8T3xUFMzgTO87P5NXkXWaOEXeWsxF/
-         ociG1Dg6QUtlBKcXqkn6pKHJypdpYTxuZlm+cKm6B2Y4qO23viexKpOhWtBkl11h9sMB
-         /ddYlnjHZqEwUosQO8yikybqyzPxb0fiqB47SkDSPnDnX5jn48qzPc/xizzwCXfnGrcN
-         71HQ==
+        d=oss.qualcomm.com; s=google; t=1762344710; x=1762949510; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=snsQD4l2AXcjWmxN/fszbJ7h2kOikH95rE3CwRz2zUM=;
+        b=kNS0e2iyLPJILv4WOTvoqqEIboxEAPzlRtaof97PaPohmV/PP4hzg/s/K5QW7hbTTx
+         gA00I/P+1TKttzsc9l4/RENApWMH3aF6q+xgR1akN0c8oUgSFxK7Qt4iBOlOEb4WFzrl
+         tqIMWHwr70pX5Eu+T07HI523izbkY7ieN7iWuYaYFYB3DBjvltMIQ8wlxUs91Yr8Lyja
+         2N0Cn2tTlcTFA6H3ONy33SreQmdn+P4V2RYPp5qEW8rv1vGit9tRu5+Ijo372WhiaeFE
+         rEtBIFlJErQQ1bFut1q+pvHwdqWU5fOmwqwKSyywo8xnFRrfnXY/YVI8kRbNYlUVYMDb
+         cTgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762343970; x=1762948770;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZGA4yt8JGp+St6is/Io1asPfAbg43aJnzQEEcQdlRFo=;
-        b=RtTm16Lol+cYNxiflWt9dVW03J7yfQhGjA0Ie4JOS0g+p81XVNmkK54zmtaqohwatk
-         zL+pmOsk2l0dyU0B7P4su3VUlSwqw6cyITOSFl8RbcKwlcc00b4UzhQxT3HfQC+7A53S
-         NN+XaT+YddPT0axCO+UeC5/m7qY7w5wfrRAxXshtR43IsXQ5BIezwRByADBKJfy4Dn1C
-         EimnGpFrGxjPRK2St5Tu2BfUKoEE9KUe5cbDC8rSzgZc0F1+cJbVgPqFQbmxKZioeg/P
-         n5x9KoxQlKNKxWe8b9eeqqFyzcRWpck12fMfnJn2HeuALBt+/rk0FBblslA33VMIrB6M
-         hEpA==
-X-Forwarded-Encrypted: i=1; AJvYcCXUeaGAAnQpjQiJQTL37Wt2OmriS0nzERo69ep0q5kCP34DCozhl0wH8ix8PnVOkxtd6lU49qKaZlFs@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1nOjJ5HPTJx5Wij18lJY8ECDgnnz84Ov0ZNZ0PJamX7mRh4bE
-	Wmek835G9+281pVfDO5rPOt0flf70IKyP1nqQ/ByyiCIneRlZn3TAbE4vluhag4EET1TJjX/OVY
-	zFPbdN5HxILotH1blojJJ4A9h7xOy7Vg=
-X-Gm-Gg: ASbGncvFj+Ld0kQom/L0a7ZFTK4GuUkxUkeg8+sFzL9rOyFi0Q2+BvwwXu1XJcVZX1t
-	8K9SglOmLrxaW98H2BPj1HskGPENVTb1Mt0NK77HDL9/3uHQlJpD0it/V8q3KHVxEBS98uudwSb
-	KveRVgoqG0Pin6N76sT8OXkLTI6GmAXyr7AVmKAjDHJRTxhhfco8xLoRXcnBZ3FFM0R1o1LvOM9
-	+Px+51LE+rTo0IPNHEeLeEFe07JUg1lmtrMFDrFe9slok/ObrGMZeFMwLA=
-X-Google-Smtp-Source: AGHT+IHz+PW+hI6DHk/+yycP53/owJKFK51FLmbG3Xn9iePHYqTjIDevvgVm2fd1OHm0B5cu1KiyF7i4XCTMNvcSxeY=
-X-Received: by 2002:a05:6402:50c8:b0:63c:1e15:b9fb with SMTP id
- 4fb4d7f45d1cf-64105a4c967mr2540436a12.22.1762343970155; Wed, 05 Nov 2025
- 03:59:30 -0800 (PST)
+        d=1e100.net; s=20230601; t=1762344710; x=1762949510;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=snsQD4l2AXcjWmxN/fszbJ7h2kOikH95rE3CwRz2zUM=;
+        b=PPAhCI6ezWYaUFFFewRjuI8pYi9W7JQPgdftOLBHrWTTUkJrIKR/GO4bJZwuXEUbhG
+         zquXIJNJeE5uL0d2Z/YEnO+DFe2mBkaLzID8r+W2LPIRI7+eD41tOIAYbxvYM4si+FMt
+         uUuV1O72ih+q3BC8ldkFbhxYTqFPi5blPBRO8cQEX4Nx7Q8hJsJHih3anYduEWjE1xCj
+         +Vcz4iiFHdIGgEuinhY20NJL7PgW9fgeD8IiHamtO7ulNRjz9BxgzNAQ1bYpqjO61EcD
+         uz7g9OiB0f4lcPoNuOq+0Z14IA5lt8GVLolP2n+rMr702N73/BEO0REbg9NmFYfzOeKd
+         cDPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVx4KnjkWerjvnTWI9NHqcY4qqEsaFI7fE7VTcTUDHfsg7VR5ux4aRNgIaqBuoR/Lq5vyA8icW9TaUp@vger.kernel.org
+X-Gm-Message-State: AOJu0YxlKzqII2CiFEnYjEWnN+4lvj6jFBoeKl4ke8NFN/Ch2d324dGT
+	Cz2CCoAFELUujkrzTooUZZMY5e4kbZqqoRpsBtKGlqhNTIDwzui1E8eZVGpS6+hlaaESIbWFiKC
+	2sydSElu6TWyGlALfB9L+bWeQ1APWE21X07VhRSYJ1mWRZ+8VYwWQy/jZMnsq0AQM
+X-Gm-Gg: ASbGnctnxmddwxpygSuX4cOGfCCYs5Gsl8u5GUMRk1Z6AdhodYiL4pNbuHNDPOjkO+d
+	mzoS5dZcLWvEj3uX0/7PkTJPtjQYMMdj2qTwMoG4Rjnb8JK3fO6xY6KX0SASPZUj6kjKB33IB0u
+	elXwN9ob47NgN24hlL3gbc/QKDqbPdu+v7S+4k9LnSLuM4B2rR+YODMVPIuu+1dwnLwvWVzCFGF
+	8zy9LI1wADgHa9hpALI/hbYQyhiIe9dgVzg2DsSSpELQFwi5a8wcQx0foQ6cmtmAhC+l69/WjxU
+	/TnoahOBB9VhghUYOcARn1+YLWr1lgqITirgd6+k8obuYB21IqP5DPcqzBICVARcg3BIbwUX9Ic
+	/5PKpEZ7Az/PrkBACoxEfVdVOxmPR+FVt
+X-Received: by 2002:a17:903:244d:b0:296:3f23:b939 with SMTP id d9443c01a7336-2963f23bebbmr12373315ad.42.1762344710494;
+        Wed, 05 Nov 2025 04:11:50 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHiEWa0ffKN5nZV90leH7AWVaVvhnOx2CMq8Af0ffJqTrfJblGjM9mAfQcc/g0CeJMjYVL/Ig==
+X-Received: by 2002:a17:903:244d:b0:296:3f23:b939 with SMTP id d9443c01a7336-2963f23bebbmr12372795ad.42.1762344709954;
+        Wed, 05 Nov 2025 04:11:49 -0800 (PST)
+Received: from hu-pkondeti-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29601a60ef0sm59997125ad.83.2025.11.05.04.11.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Nov 2025 04:11:49 -0800 (PST)
+Date: Wed, 5 Nov 2025 17:41:43 +0530
+From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
+To: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: Re: [PATCH v4 1/2] soc: qcom: smem: Register gunyah watchdog device
+Message-ID: <729d0806-0f92-45a3-ae36-307513f8b808@quicinc.com>
+References: <20251031-gunyah_watchdog-v4-0-7abb1ee11315@oss.qualcomm.com>
+ <20251031-gunyah_watchdog-v4-1-7abb1ee11315@oss.qualcomm.com>
+ <nnq34bfbbi3satxiqzaouy5pgi3obyqp76avh2ipyqxx6w67td@e7eqehjq7iww>
+ <40a6395e-26f6-4bad-88af-d89479b6fc28@oss.qualcomm.com>
+ <abicharluq6bm7gbngkbdc2hobcfifcmazh7oukcoufsrpcpse@ml2wccwe6s7i>
+ <599188b5-cd2e-4667-a91d-04cbdd62cecb@quicinc.com>
+ <ykg7mwgncmvdap6xzyhmgxu6ur62zzfk5nd3tqrkivugn4w474@rkazrlhwbhtj>
+ <2ef1d795-5cdd-4465-9333-16a02207a806@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251017073954.130710-1-cnsztl@gmail.com> <08911ae2-fef3-432d-a236-d820c9cb67ac@gmail.com>
- <5af928c4-4b6e-489c-ad39-26cef3dd7473@gmail.com> <10751338.nUPlyArG6x@phil> <e52de2b5-bf10-ce0e-66b7-66b1c46525f3@manjaro.org>
-In-Reply-To: <e52de2b5-bf10-ce0e-66b7-66b1c46525f3@manjaro.org>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Wed, 5 Nov 2025 17:29:12 +0530
-X-Gm-Features: AWmQ_bkTo815Ekf1XKwqKW52Tftmcvjv3vglHmEOmCXrknL0gcm_NsK2eBkal2U
-Message-ID: <CANAwSgRXwozYr8sYtV8RRb1jJAb=9VNPfsLGMmW=f38XV-u=MQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: fix eMMC corruption on NanoPC-T6
- with A3A444 chips
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Heiko Stuebner <heiko@sntech.de>, Shawn Lin <shawn.lin@rock-chips.com>, 
-	Tianling Shen <cnsztl@gmail.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Grzegorz Sterniczuk <grzegorz@sternicz.uk>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jianfeng Liu <liujianfeng1994@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2ef1d795-5cdd-4465-9333-16a02207a806@quicinc.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA1MDA5MiBTYWx0ZWRfX6lCQXVp8aulL
+ XM2Nab006GSuKBu9nQFreRvpkVN8me1KGzfDKE8sd5fXrZwzGzsDbp+3/OnqWiGZN2zuOga9D+R
+ 9KFp08MHznxY3lCYQOUfCT/bsFdjzfKBliWBbKLfAr4Y+WvVkua87ebyHkUC8KScyaoB2fBlFqQ
+ FO7MXUFnN+TRwcl/ZKzsLIk5Xh0uH7ouvNZ/0UaZ+icpHyXonPF1PrDkUuARnAuUEiQh2JrXGp+
+ T+GwhDExZMx8nJ6TwUhQbmWfDrdBBqW1ypvJEV/w2EUAUPylMgI92pi7nRzl9q5LgiPjxfjjPKM
+ J3zfZ+bJ7OVUmXXZHrH5xmKYxVQJV3VDnNPPHnu+ghU+e0PEXh1mDEK1FWT5K2/zHex2pAwrSlo
+ uUfbmc+InXBaPsOt30XCRxDatWfLhw==
+X-Proofpoint-GUID: M6lqmqAp8NjH4TEDLCanHbxzWX6-qQV-
+X-Authority-Analysis: v=2.4 cv=IdSKmGqa c=1 sm=1 tr=0 ts=690b3f08 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=kj9zAlcOel0A:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=v0qggLAlYnFivbKH520A:9 a=CjuIK1q_8ugA:10
+ a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-ORIG-GUID: M6lqmqAp8NjH4TEDLCanHbxzWX6-qQV-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-05_04,2025-11-03_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 phishscore=0 clxscore=1015 adultscore=0 priorityscore=1501
+ lowpriorityscore=0 bulkscore=0 impostorscore=0 suspectscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511050092
 
-Hi All,
+On Tue, Nov 04, 2025 at 10:33:52AM +0530, Pavan Kondeti wrote:
+> 
+> > I presume if we determine that Gunyah is present, and we haven't put
+> > sbsa wdt in place (e.g. during bringup) Gunyah and Gunyah WDT will
+> > handle the outcome gracefully...
+> > 
+> Yes, we are told Gunyah support SMCC based WDT even if it emulates
+> SBSA. Most importantly, we have STATUS SMC in gunyah-wdt probe before
+> registering the watchdog device.
+> 
 
-On Sat, 1 Nov 2025 at 18:21, Dragan Simic <dsimic@manjaro.org> wrote:
->
-> Hello Heiko,
->
-> On Saturday, November 01, 2025 12:54 CET, Heiko Stuebner <heiko@sntech.de=
-> wrote:
-> > Am Montag, 27. Oktober 2025, 18:34:25 Mitteleurop=C3=A4ische Normalzeit=
- schrieb Tianling Shen:
-> > > On 2025/10/20 12:44, Tianling Shen wrote:
-> > > > On 2025/10/20 9:53, Shawn Lin wrote:
-> > > >> On 2025/10/17 Friday 15:39, Tianling Shen wrote:
-> > > >>> From: Grzegorz Sterniczuk <grzegorz@sternicz.uk>
-> > > >>>
-> > > >>> Some NanoPC-T6 boards with A3A444 eMMC chips experience I/O error=
-s and
-> > > >>> corruption when using HS400 mode. Downgrade to HS200 mode to ensu=
-re
-> > > >>> stable operation.
-> > > >>
-> > > >> May I ask you to test another patch I just posted to see if it fix=
-es
-> > > >> your issue?
-> > > >>
-> > > >> https://patchwork.kernel.org/project/linux-mmc/
-> > > >> patch/1760924981-52339-1- git-send-email-shawn.lin@rock-chips.com/
-> > > >
-> > > > Thank you for the patch! I will ask my friend to test it but he use=
-s
-> > > > this board as a home router, so it may take a few days or weeks to
-> > > > report the result.
-> > >
-> > > Hi all, sorry for the late. My friend has tested this patch and it wo=
-rks
-> > > fine after 50 times dd operation. A big thanks to Shawn!
-> >
-> > So I guess, we don't need the patch reducing the speed anymore, right?
->
-> Exactly, the approach of lowering the speed of eMMC to improve
-> its reliability is no longer needed, thanks to Shawn correcting
-> the DLL_STRBIN_TAPNUM_DEFAULT value in the above-linked patch.
->
-> We just need to test does HS400 work on the ROCK 5 ITX reliably
-> as well, so the previous lowering to HS200 in commit b36402e4a077
-> ("arm64: dts: rockchip: slow down emmc freq for rock 5 itx", 2025-
-> 02-28) could be reverted as no longer needed.
->
-> > > And hi Jianfeng, I found you made a similiar patch[1] for the ROCK 5 =
-ITX
-> > > board to lower down the mmc speed, could you please check if this pat=
-ch
-> > > also fixes your issue?
-> > >
-> > > [1] https://lore.kernel.org/linux-rockchip/20250228143341.70244-1-liu=
-jianfeng1994@gmail.com/
-> > >
-> > > >>> Signed-off-by: Grzegorz Sterniczuk <grzegorz@sternicz.uk>
-> > > >>> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
-> > > >>> ---
-> > > >>>   arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 3 +--
-> > > >>>   1 file changed, 1 insertion(+), 2 deletions(-)
-> > > >>>
-> > > >>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b=
-/
-> > > >>> arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-> > > >>> index fafeabe9adf9..5f63f38f7326 100644
-> > > >>> --- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-> > > >>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-> > > >>> @@ -717,8 +717,7 @@ &sdhci {
-> > > >>>       no-sd;
-> > > >>>       non-removable;
-> > > >>>       max-frequency =3D <200000000>;
-> > > >>> -    mmc-hs400-1_8v;
-> > > >>> -    mmc-hs400-enhanced-strobe;
-> > > >>> +    mmc-hs200-1_8v;
-> > > >>>       status =3D "okay";
-> > > >>>   };
->
-You can also try this patch, which enables stober in the eMMC controller..
+Thanks Bjorn for asking this question. I have tested this scenario on
+Kaanapali. Since the initial platform support patches have added
+watchdog device, I don't see gunyah-wdt platform device created. When I
+removed the node, I see gunyah-wdt platform device is created and the
+driver is probed successfully.
 
-diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c
-b/drivers/mmc/host/sdhci-of-dwcmshc.c
-index eebd45389956..62c9faf8ec85 100644
---- a/drivers/mmc/host/sdhci-of-dwcmshc.c
-+++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
-@@ -77,6 +77,10 @@
- #define CV18XX_RETRY_TUNING_MAX                        50
+Since this patch checks the device node presence via
+of_find_compatible_node(), it does not cover the case where the node is
+present but marked as disabled/reserved etc. I think it would be good
+to add of_device_is_available() check as well to cover this case.
 
- /* Rockchip specific Registers */
-+#define DWCMSHC_EMMC_CTRL              0x52c
-+#define  EMMC_CTRL_CARD_IS_EMMC        BIT(0)
-+#define  EMMC_CTRL_ENH_STROBE_ENABLE   BIT(8)
-+
- #define DWCMSHC_EMMC_DLL_CTRL          0x800
- #define DWCMSHC_EMMC_DLL_RXCLK         0x804
- #define DWCMSHC_EMMC_DLL_TXCLK         0x808
-@@ -660,6 +664,12 @@ static void dwcmshc_rk3568_set_clock(struct
-sdhci_host *host, unsigned int clock
-                        DLL_CMDOUT_TAPNUM_90_DEGREES |
-                        DLL_CMDOUT_TAPNUM_FROM_SW;
-                sdhci_writel(host, extra, DECMSHC_EMMC_DLL_CMDOUT);
-+
-+               extra =3D sdhci_readl(host, DWCMSHC_EMMC_CTRL);
-+               if (extra & EMMC_CTRL_CARD_IS_EMMC) {
-+                       extra |=3D EMMC_CTRL_ENH_STROBE_ENABLE;
-+                       sdhci_writel(host, extra, DWCMSHC_EMMC_CTRL);
-+               }
-        }
-
-        extra =3D DWCMSHC_EMMC_DLL_DLYENA |
-
-Thamks
--Anand
+Thanks,
+Pavan
 
