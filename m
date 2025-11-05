@@ -1,138 +1,170 @@
-Return-Path: <devicetree+bounces-235398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A289C37FCD
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 22:25:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69E68C37FBB
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 22:24:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A4284237E8
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 21:16:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C1B3D18978FC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 21:19:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B80534DCC0;
-	Wed,  5 Nov 2025 21:08:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E21022C11D1;
+	Wed,  5 Nov 2025 21:18:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XAJuJWkg"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="FYYWj5Er"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82185334C0C
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 21:08:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB65A23F424;
+	Wed,  5 Nov 2025 21:18:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762376906; cv=none; b=Oqy3EIYS9NpIANlS9yi/aGjM/xfVnd4nRZpmlEl6HW1OuiJIerKTMARydD/rM+Ab7KdRD2B5FCNzz7DiMTAKfDMG9ppKaP0cRqgfBs07s1O1cLiX/vsCS8h2vVsKjafapk+DBdBHBNY7pDIeTDTx3/aRBn5mB7Y8zLiEo2UWqiY=
+	t=1762377518; cv=none; b=TrKMSWY3ddRrbjfsp3aItcVNASoCsA+c+GjtueEstBvS0t2qXd6FDXEf+ef5ekSDVc9HKvlIB1jd1anabnNBxj/HNmQh5wrH+TXwRYp1P8os/JmAlEowhoa3RZUHn1b21+iDo4nxpH9J+KyoZZaxjLYHYX9eDxTE8DbVhk4vWco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762376906; c=relaxed/simple;
-	bh=o/RZEnpXdcF408S2TqM/xZXCKDcyIyuFC63UXSw1n2Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=H3rOl+9qGcuO3Fshj57K2DMDRAdeEKZ6ZYOpptx+TIEAyOl87/BpkuMRDrOgy1szUyiGhasOXQuLnaSCzv7d+cWUeLJjWFNe+tbxzKRnibrMbxcd/UBoxsVqKWBLhPzwisvgKHcuUk5USD2+Ag1rNAEGyVGddj/O4UUyghR3Xmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XAJuJWkg; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-afcb7ae6ed0so46811366b.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 13:08:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762376902; x=1762981702; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4/N5rROtcnxc6d5f0IUPrUWxw9x/K7/M9hcGw0GwgYE=;
-        b=XAJuJWkgUrJwcnWeMDuDTvpQmQScdINsOCDxLTVO8hGAUyDvHSajWbchsHCs0yTHzz
-         D17W/yAg3vBpnI3MktwVR6dD02Q1dwe6EC1NF1W74hEBRL7Dp46gqD1KxT8CoKYOvJdb
-         fd2udH9MdwyIgcoQJrL92upIppadbANc8ZOwRbyj7+4tI8gCtrP36PQfcoSbrZ29sr2U
-         cIHHgd5ULuodLk+GaiH5DU/kzkR92TSpYkvTpJdKCwc0zU3CsyqygKYufXW+y7PjHQ6k
-         CMm7GCqu52WEF13cYduKlutJ/6QM6LGqAMooq3IL4rAd+CMiZNK0mpzMnZ2KnTdrQR7M
-         AB/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762376902; x=1762981702;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4/N5rROtcnxc6d5f0IUPrUWxw9x/K7/M9hcGw0GwgYE=;
-        b=rgFUBqf3qC/NwPZwDaCPwOHFOU52v9amzYiYL5yV58EOQnc0zrGyEONncb9Xnpo8pS
-         Nx+j0uQ2JvoiGkn+TadUfBd+H7q48xB6HQ0gC5Fx/EHTwWoNcGZL4lHTOMU2Xng8LQVR
-         BxvmCaWvwSjF5JgH45PYvtokF07bKo6MfNrPIx0xBkUTiS2bDPmRrM+qjvcwOtAzseO0
-         EM8kB4j7PecjmwuaTpqPhOFXXb9I0tweaEMqcJ4shxSeO82QJImzqTT823e57HobtbzM
-         lxr+zc5dhsdudly4XY5fwSY1sog+XB0FO+hLYlDHJHKTPtS1hmnd3vX3mboznC80rTf0
-         Jy9A==
-X-Gm-Message-State: AOJu0Yyh15vJ1H52ECW/rEd5YGoC9pCuaX98IJ4rypN9T52M2l1zyd2l
-	22CyiNCJ8Mq8zoJmAcDv+LaAoXc5pCJlVWEbF5VwR4LtgakyyWjSdpjccnhEauvce+c=
-X-Gm-Gg: ASbGnctI+xYXTlE8iFZMLSBPzmvumQyquiDDOFYGZ0HEGRXGBS3PZ88WKhMdEJL4dPi
-	DMzRm9VU+fu1DKFWnCvdwwmLs1Xy712h0UOwVWklr4sfwtwiAmMyyc6VhhbhL5OWEyFLmfL/m69
-	9NR8aK+n1EeDcOLpkhidGV8OWT+Y42BuuPy9Kxffzx0uk+cxvF0IqMtp1RPdzpZ7kEpids1xg3R
-	Gn9SBekb3fk+jj+O+VkDLWHA7hUCRwxIDD4/x1+evajdGL/oVctLc+SeHhuh1hOJRSeHAHPcHls
-	kzU0a+nJgqLBjQ9aoQWxYNyKJohFeCQWF5L2mCAekI0kjNmRljIQNqwaKdy+ZtPp9yp/vsGmguQ
-	NIBPGAKbIivT1rPgs4cGZ8atQpLcqAmqNesM0sX4m5NSLuknhIlAF2f+D7f+Dk31wKvX375mUGu
-	qmafKLibCibXH6mb+gTYnvIQpwWEYF7vlqghkoxSnXHur3sA==
-X-Google-Smtp-Source: AGHT+IEQN8LEBzg2FibdPs1zW7myIBbg1Dg3RX0BLIHipmkT0F6MtRX6Fdv53CQhOLloh0SQE8k81g==
-X-Received: by 2002:a17:907:968c:b0:b72:5983:db0a with SMTP id a640c23a62f3a-b7265297e0amr437027566b.15.1762376902297;
-        Wed, 05 Nov 2025 13:08:22 -0800 (PST)
-Received: from HomePC (89-67-214-154.dynamic.play.pl. [89.67.214.154])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b728937cc8dsm54005766b.17.2025.11.05.13.08.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Nov 2025 13:08:21 -0800 (PST)
-From: Andrey Leonchikov <andreil499@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Cc: Andrey Leonchikov <andreil499@gmail.com>,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de
-Subject: [PATCH] arm64: dts: rockchip: Fix USB power enable pin for BTT CB2 and Pi2
-Date: Wed,  5 Nov 2025 22:07:33 +0100
-Message-ID: <20251105210741.850031-1-andreil499@gmail.com>
-X-Mailer: git-send-email 2.51.0
+	s=arc-20240116; t=1762377518; c=relaxed/simple;
+	bh=/ng5O2dKBBjx/PoMHfml7fIWlsGEdTjPoLQQq68Vk1w=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=JlZ3h1E+yV55PKTj+S7/umBnGMuqND9FCaUUGyEEJvLiNEykMwjqkShBHZoQQRDwqlpkCvpSx5574iw52kb2DqF0tNfWvdbbBHTEDHau+eUC9KeDsMDKA4pvGO+yvkE2HuhnHr0cd5AQFmaw801TtUV683VEC5RZONOwjiEJh/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=FYYWj5Er; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1762377515;
+	bh=/ng5O2dKBBjx/PoMHfml7fIWlsGEdTjPoLQQq68Vk1w=;
+	h=From:Subject:Date:To:Cc:From;
+	b=FYYWj5ErKAQWBH2zuGZaHzNU61uViaX++wuDgl6qi3m3uq/JVL8lRCK2QpXOCeVXQ
+	 cK6bH0vpEageL4dR1k+JzkdBvT3UDR3JFEKn+jOJ+c+YwUlXUL8nDJEUHqzZ0r+mRA
+	 oB3wh+vHFKV76nODd5F3Ycl+IOrvH+whHccdpoEReZww8gZWhwCqanfyL6UxsEAODV
+	 rkM2Kxf+JQAbXgTHiJjAE8L2l00CXVt9ql3g8xaZmkaivTwHEk+yolMSL+dbsZ27vg
+	 OhJ+uySIkR+3pqqAgKBENCEXgrY9ThTbJGfaPWzJwryQDqYT6RrZ4FqOKyzNEaq180
+	 AnSWhk/d0T2gA==
+Received: from beast.luon.net (unknown [IPv6:2a10:3781:2531::8])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sjoerd)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id DFEF017E04D6;
+	Wed,  5 Nov 2025 22:18:34 +0100 (CET)
+Received: by beast.luon.net (Postfix, from userid 1000)
+	id 8C1DE10F352D9; Wed, 05 Nov 2025 22:18:34 +0100 (CET)
+From: Sjoerd Simons <sjoerd@collabora.com>
+Subject: [PATCH v3 00/13] arm64: dts: mediatek: Add Openwrt One AP
+ functionality
+Date: Wed, 05 Nov 2025 22:17:55 +0100
+Message-Id: <20251105-openwrt-one-network-v3-0-008e2cab38d1@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAO/C2kC/x3MSwqAMAwA0atI1gba+gG9irjQGjUIqaSignh3i
+ 8u3mHkgkjJFaLMHlE6OHCShyDPw6yALIU/J4IyrrLE1hp3k0gODEAodV9ANSzP6ZvB2dJWHVO5
+ KM9//tevf9wNgNip4ZQAAAA==
+X-Change-ID: 20251016-openwrt-one-network-40bc9ac1b25c
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Ryder Lee <ryder.lee@mediatek.com>, 
+ Jianjun Wang <jianjun.wang@mediatek.com>, 
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, 
+ Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, linux-pci@vger.kernel.org, 
+ linux-phy@lists.infradead.org, netdev@vger.kernel.org, 
+ Daniel Golle <daniel@makrotopia.org>, Bryan Hinton <bryan@bryanhinton.com>, 
+ Sjoerd Simons <sjoerd@collabora.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
 
+Significant changes in V3:
+  * Drop patches that were picked up
+  * Re-order patches so changes that don't require dt binding changes
+    come first (Requested by Angelo)
+  * Specify drive power directly rather then using MTK_DRIVE_...
+  * Simply mediatek,net binding changes to avoid accidental changes to
+    other compatibles then mediatek,mt7981-eth
+Significant changes in V2:
+  * https://lore.kernel.org/lkml/20251016-openwrt-one-network-v1-0-de259719b6f2@collabora.com/
+  * Only introduce labels in mt7981b.dtsi when required
+  * Switch Airoha EN8811H phy irq to level rather then edge triggered
+  * Move uart0 pinctrl from board dts to soc dtsi
+  * Only overwrite constraints with non-default values in MT7981 bindings
+  * Make SPI NOR nvmem cell labels more meaningfull
+  * Seperate fixing and disable-by-default for the mt7981 in seperate
+    patches
 
- Fix typo into regulator GPIO definition. With current
- definition - USB powered off. Valid definition can be found on "pinctrl"
- section:
- 		vcc5v0_usb2t_en: vcc5v0-usb2t-en {
- 				rockchip,pins = <3 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
- 				 		};
+This series add various peripherals to the Openwrt One, to make it
+actually useful an access point:
 
- 		vcc5v0_usb2b_en: vcc5v0-usb2b-en {
- 			rockchip,pins = <4 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
+* Pcie express (tested with nvme storage)
+* Wired network interfaces
+* Wireless network interfaces (2.4g, 5ghz wifi)
+* Status leds
+* SPI NOR for factory data
 
-Fixes: bfbc663d2733a ("arm64: dts: rockchip: Add BigTreeTech CB2 and Pi2")
-Signed-off-by: Andrey Leonchikov <andreil499@gmail.com>
+Unsurprisingly the series is a mix of dt binding updates, extensions of
+the mt7981b and the openwrt one dtb. All driver support required is
+already available.
+
+Sadly during testing i've found various quirks requiring kernel
+arguments. Documenting those here both as note to self and making it
+easier for others to test :)
+
+* fw_devlink=permissive: the nvmem fixed-layout doesn't create a layout
+  device, so doesn't trigger fw_devlink
+* clk_ignore_unused: Needed when building CONFIG_NET_MEDIATEK_SOC as a
+  module. If the ethernet related clocks (gp1/gp2) get disabled the
+  mac ends up in a weird state causing it not to function correctly.
+* pcie_aspm: ASPM is forced to enabled in 6.18-rc1, unfortunately
+  enabling ASPM L1.1 ends up triggering unrecoverable AERs.
+
+Patches are against the mediatek trees for-next branch
+
+Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Sjoerd Simons (13):
+      arm64: dts: mediatek: mt7981b-openwrt-one: Enable SPI NOR
+      arm64: dts: mediatek: mt7981b-openwrt-one: Enable software leds
+      dt-bindings: mfd: syscon: Add mt7981-topmisc
+      dt-bindings: PCI: mediatek-gen3: Add MT7981 PCIe compatible
+      dt-bindings: phy: mediatek,tphy: Add support for MT7981
+      arm64: dts: mediatek: mt7981b: Add PCIe and USB support
+      arm64: dts: mediatek: mt7981b-openwrt-one: Enable PCIe and USB
+      dt-bindings: net: mediatek,net: Correct bindings for MT7981
+      arm64: dts: mediatek: mt7981b: Add Ethernet and WiFi offload support
+      arm64: dts: mediatek: mt7981b-openwrt-one: Enable Ethernet
+      arm64: dts: mediatek: mt7981b: Disable wifi by default
+      arm64: dts: mediatek: mt7981b: Add wifi memory region
+      arm64: dts: mediatek: mt7981b-openwrt-one: Enable wifi
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi
-index f74590af7e33..b6cf03a7ba66 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi
-@@ -187,7 +187,7 @@ vcc5v0_usb: regulator-vcc5v0-usb {
- 	vcc5v0_usb2b: regulator-vcc5v0-usb2b {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
--		gpio = <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;
-+		gpio = <&gpio4 RK_PC4 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&vcc5v0_usb2b_en>;
- 		regulator-name = "vcc5v0_usb2b";
-@@ -199,7 +199,7 @@ vcc5v0_usb2b: regulator-vcc5v0-usb2b {
- 	vcc5v0_usb2t: regulator-vcc5v0-usb2t {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
--		gpios = <&gpio0 RK_PD5 GPIO_ACTIVE_HIGH>;
-+		gpios = <&gpio3 RK_PD5 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&vcc5v0_usb2t_en>;
- 		regulator-name = "vcc5v0_usb2t";
+ Documentation/devicetree/bindings/mfd/syscon.yaml  |   1 +
+ .../devicetree/bindings/net/mediatek,net.yaml      |   6 +-
+ .../bindings/pci/mediatek-pcie-gen3.yaml           |   1 +
+ .../devicetree/bindings/phy/mediatek,tphy.yaml     |   1 +
+ .../boot/dts/mediatek/mt7981b-openwrt-one.dts      | 263 +++++++++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt7981b.dtsi          | 226 +++++++++++++++++-
+ 6 files changed, 492 insertions(+), 6 deletions(-)
+---
+base-commit: d7d7ac9af8cb72e3e3816ae9da3d9ee1bdfa4f9b
+change-id: 20251016-openwrt-one-network-40bc9ac1b25c
+
+Best regards,
 -- 
-2.51.0
+Sjoerd Simons <sjoerd@collabora.com>
 
 
