@@ -1,98 +1,59 @@
-Return-Path: <devicetree+bounces-235174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78AB8C351ED
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 11:37:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85717C3526E
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 11:43:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 873DB4EC309
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 10:37:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EEE13B52A3
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 10:42:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AF6B306B39;
-	Wed,  5 Nov 2025 10:36:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cl9moNAX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04C523054E9;
+	Wed,  5 Nov 2025 10:42:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E2FD305056
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 10:36:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ACB32FC87E;
+	Wed,  5 Nov 2025 10:42:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762338978; cv=none; b=ujiejuDAjyaiAbu9P3O/4v1T8n4MJU8L2nvidgG/JJDky4PWvx+SGZ0+8bHKUSygjIwT1rkmICn7ztgFNi/AL5G9e9G+iRco8TPNeLSp4qNkWFOjDqGSqogKIwBuAbP6rZg+Wbi+KMPmGKETkZJIGVyhX6QvxE3O/1b7HQ9mAvg=
+	t=1762339360; cv=none; b=RtG6j0ZpHKeSgm0T1sbtVib9ciK2QSlnffcE1LvZ9RB4x1vJgqHFAwE2SHyNfUV/ovjhrrbN6HrQQKXHDC6ROV2JChtH1THOpJ43gmo8rkBeAHYc4/ivfO/zYTw5cGyhqkQ2BNTxn29HiD3CDnVzNXZba0ljQy9R1/mP+awWdgE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762338978; c=relaxed/simple;
-	bh=KDesIfsn2xu6U2CtUzSWMng87iI1n+RYPUP8WaYWAoM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WuznbGBVTQTKkh+IPPnc8iyGsG+gXedXC8hXxeBoQwGnDwZOKVwxI1Wq8lCjsb3Wmn6gzJw9qLPN+0I1pecGpLdtd1hXpvwkwUYkYgaTK1lq1FnfZDdRHX3OkO4+wbJWxm0BmxDX6msrBRieHLAxaPp+ICG8HVpaMqsUlA60icw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cl9moNAX; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-afcb7ae6ed0so1173526966b.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 02:36:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762338974; x=1762943774; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TiWeWU99+P2OBlwtwLukYVoiHCgrNeTiK3bQO2+aHuQ=;
-        b=Cl9moNAXDHNcQpfGIGCc2uow2sveCRVmKwVvl6zBGUGEQu3vMqpWsqmQ4IUmWnOYam
-         s9tWS7yICph/WKP2fx+AwlLgWoUNH+mqvPlJUmVJkt7AXvuXTyzL/TVo4h5YMu7GTvKe
-         J70ZcwHWULdCTl9fAHuSxdlIanWqB01RcvLqfamNgNIRB0inzkQpEbPgE3ZGIQsz6Vjc
-         1MkcZAlm6O9ZxuYgMFgxpo8cW0Lt1eQrcr5nGmriIH6+dUTmAAtev/6I3h+6FszmD9y+
-         8s7CwlmoQPh9t4vMgQItxjXk/C/xWY5J5zi0bVSSJ2U2DcvVSFvo1aoJ3HTXxqKkUe0V
-         YO1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762338974; x=1762943774;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TiWeWU99+P2OBlwtwLukYVoiHCgrNeTiK3bQO2+aHuQ=;
-        b=Od2ZgoqzkchkGQDX6xSoTcsDkkjhiQ5WycOqSi+3xJ2gVNQ5vQ0Y9SpmT5Hph1MIBI
-         K3Ma70q5GZYoVALMOVzydwfcs7hX3SVX6l3rnYrTH2nRW7TY6Tk6hQ4MkzBsmtA6TIy4
-         13w5CUuA39/D6nj/Hbg+wucKsZSZFyiF2nUA2PBbG3A5yTDA3gH10uIqBr4v3FR0i13C
-         tgFpWRLxyN2PWHo7/ZbKKLeU/eVD1XN6CR3u4/K7zUXdR3+dx6B3UutspMEKQgY3TEcq
-         P5zzedfCIGAwUbv3s7pcDFej6fWGg4u9PzPTZUrOhlLQs08/9NFmSsno+Xn+lt28cE6F
-         PrcA==
-X-Forwarded-Encrypted: i=1; AJvYcCV0Mo/43bVZl4tr+asC7nKFrXmAVsQMeevXGghMNNcvyWbxHTLKFCW1wXUe2AzTMdzDVhtYyVjbF4ED@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzj5+bq+ST6I6V/WL6XMi9wMrnMHrdZQ24K9HZTCp5p/MHCEGbj
-	cnNAIK1FhyzjT5dm2ncmC924h42NytHNNueXEVb1QIo8lwa+Eaxf1X73
-X-Gm-Gg: ASbGncv1Ea+B8xbxj1sgTQi6BPN4Wu2pZh6ZQ275IIWoe9NDvasqf4CqU7iL1UI5b7s
-	Wa1ykEkKPbWvK8mY0r48xw7lPvk9s+H/aJb4gsrUhekkeA6MAnFDcSofw5fFcqTIKmc9EfDTdno
-	vPjLUPcnncXi8AKFWt0fFKSXqKZNeyctQsXSM/C7xsBLvmSST7OpDr7wJyUW0Wuend9kM4u10oL
-	omjvWYB5mjU38bTjHRwvVQoDJEtI9swhSwRWtf834Dl7jolH5bqurKCx/rsP+3WP+jw/IJXS0ez
-	f90NHPXE/g9KWFgl9QpMbe0HBIOUCJzDfXCyyFaKrR5m9ewZ+Kh+eK+hM40bchYrE8Wj5Tg5JVa
-	unIly9gGit+/mTCdlqcWF8g3KUwiNvfgLI9xQ1nKB4gcr2jB1Zoc4/JD8VxDNY+aHV1fdRYIO/4
-	7pkq4=
-X-Google-Smtp-Source: AGHT+IEM16NafFW2nC97ok9XEm+53qMVZBe4OIJxe3eLowZZOL6gKamZMEdrt0F28He7dGEhTIoj1g==
-X-Received: by 2002:a17:907:6e89:b0:b70:b1e1:8294 with SMTP id a640c23a62f3a-b7265156582mr234675166b.4.1762338974287;
-        Wed, 05 Nov 2025 02:36:14 -0800 (PST)
-Received: from builder.. ([2001:9e8:f106:5b16:be24:11ff:fe30:5d85])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7270b56f18sm83426066b.33.2025.11.05.02.36.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Nov 2025 02:36:14 -0800 (PST)
-From: Jonas Jelonek <jelonek.jonas@gmail.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
+	s=arc-20240116; t=1762339360; c=relaxed/simple;
+	bh=qWYGY9jSWRV4WPylypVIGcofAeidLvHQeKwWxtvV6dU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DG6/FPLaEshmu3QbomSR25WQFHCCfdPykvVuB/9Sb5QALc5SDZvJ7aCdEHT+gItt3H7nCs27HCQWTZX87MWUya9eN0lYqzXg+v8aNeD3ciN/JR823cBFSZvBEeW17rzNpoTIIPn07Z7lV7/MNwxgqdhieo3dGtoBDHWhv7zpq5Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-CSE-ConnectionGUID: qGeiEhQiS1C4SoqEKw4xjw==
+X-CSE-MsgGUID: M8ZeluIfShO80g0V1CXzDA==
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 05 Nov 2025 19:42:36 +0900
+Received: from demon-pc.localdomain (unknown [10.226.93.82])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 0EB074001DCB;
+	Wed,  5 Nov 2025 19:42:31 +0900 (JST)
+From: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Mark Brown <broonie@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Peter Rosin <peda@axentia.se>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: linux-gpio@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-spi@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Thomas Richard <thomas.richard@bootlin.com>,
-	Jonas Jelonek <jelonek.jonas@gmail.com>
-Subject: [PATCH v4 2/2] gpio: add gpio-line-mux driver
-Date: Wed,  5 Nov 2025 10:36:06 +0000
-Message-ID: <20251105103607.393353-3-jelonek.jonas@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20251105103607.393353-1-jelonek.jonas@gmail.com>
-References: <20251105103607.393353-1-jelonek.jonas@gmail.com>
+	linux-clk@vger.kernel.org,
+	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Subject: [PATCH v3 00/14] Add RSPI support for RZ/T2H and RZ/N2H
+Date: Wed,  5 Nov 2025 12:41:37 +0200
+Message-ID: <20251105104151.1489281-1-cosmin-gabriel.tanislav.xa@renesas.com>
+X-Mailer: git-send-email 2.51.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,226 +62,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add a new driver which provides a 1-to-many mapping for a single real
-GPIO using a multiplexer. Each virtual GPIO corresponds to a multiplexer
-state which, if set for the multiplexer, connects the real GPIO to the
-corresponding virtual GPIO.
+Compared to the previously supported RZ/V2H, the Renesas RZ/T2H
+(R9A09G077) and RZ/N2H (R9A09G087) SoCs have a smaller FIFO, no resets,
+and only two clocks: PCLKSPIn and PCLK. PCLKSPIn, being the clock from
+which the SPI transfer clock is generated, is the equivalent of the TCLK
+from V2H. They also support generating the SPI transfer clock from PCLK.
 
-This can help in various usecases. One practical case is the special
-hardware design of the Realtek-based XS1930-10 switch from Zyxel. It
-features two SFP+ ports/cages whose signals are wired directly to the
-switch SoC. Although Realtek SoCs are short on GPIOs, there are usually
-enough the fit the SFP signals without any hacks.
+V3:
+ * no changes
 
-However, Zyxel did some weird design and connected RX_LOS, MOD_ABS and
-TX_FAULT of one SFP cage onto a single GPIO line controlled by a
-multiplexer (the same for the other SFP cage). The single multiplexer
-controls the lines for both SFP and depending on the state, the
-designated 'signal GPIO lines' are connected to one of the three SFP
-signals.
+V2:
+ * fix missing unwind goto quit_resets
+ * add resets: false and reset-names: false
 
-Because the SFP core/driver doesn't support multiplexer but needs single
-GPIOs for each of the signals, this driver fills the gap between both.
-It registers a gpio_chip, provides multiple virtual GPIOs and sets the
-backing multiplexer accordingly.
+Cosmin Tanislav (14):
+  clk: renesas: r9a09g077: add SPI module clocks
+  spi: rzv2h-rspi: make resets optional
+  spi: rzv2h-rspi: make FIFO size chip-specific
+  spi: rzv2h-rspi: make clocks chip-specific
+  spi: rzv2h-rspi: move register writes out of rzv2h_rspi_setup_clock()
+  spi: rzv2h-rspi: avoid recomputing transfer frequency
+  spi: rzv2h-rspi: make transfer clock rate finding chip-specific
+  spi: rzv2h-rspi: add support for using PCLK for transfer clock
+  spi: rzv2h-rspi: add support for variable transfer clock
+  spi: rzv2h-rspi: add support for loopback mode
+  dt-bindings: spi: renesas,rzv2h-rspi: document RZ/T2H and RZ/N2H
+  spi: rzv2h-rspi: add support for RZ/T2H and RZ/N2H
+  arm64: dts: renesas: r9a09g077: Add SPIs support
+  arm64: dts: renesas: r9a09g087: Add SPIs support
 
-Due to several practical issues, this is input-only and doesn't support
-IRQs.
+ .../bindings/spi/renesas,rzv2h-rspi.yaml      |  65 +++-
+ arch/arm64/boot/dts/renesas/r9a09g077.dtsi    |  72 ++++
+ arch/arm64/boot/dts/renesas/r9a09g087.dtsi    |  72 ++++
+ drivers/clk/renesas/r9a09g077-cpg.c           |  22 ++
+ drivers/spi/spi-rzv2h-rspi.c                  | 339 +++++++++++++++---
+ 5 files changed, 501 insertions(+), 69 deletions(-)
 
-Signed-off-by: Jonas Jelonek <jelonek.jonas@gmail.com>
----
- MAINTAINERS                  |   6 ++
- drivers/gpio/Kconfig         |   9 +++
- drivers/gpio/Makefile        |   1 +
- drivers/gpio/gpio-line-mux.c | 129 +++++++++++++++++++++++++++++++++++
- 4 files changed, 145 insertions(+)
- create mode 100644 drivers/gpio/gpio-line-mux.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3da2c26a796b..66f8706d9b4b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10653,6 +10653,12 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/leds/irled/gpio-ir-tx.yaml
- F:	drivers/media/rc/gpio-ir-tx.c
- 
-+GPIO LINE MUX
-+M:	Jonas Jelonek <jelonek.jonas@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/gpio/gpio-line-mux.yaml
-+F:	drivers/gpio/gpio-line-mux.c
-+
- GPIO MOCKUP DRIVER
- M:	Bamvor Jian Zhang <bamv2005@gmail.com>
- L:	linux-gpio@vger.kernel.org
-diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-index ce237398fa00..5f8082ae99cc 100644
---- a/drivers/gpio/Kconfig
-+++ b/drivers/gpio/Kconfig
-@@ -1986,6 +1986,15 @@ config GPIO_LATCH
- 	  Say yes here to enable a driver for GPIO multiplexers based on latches
- 	  connected to other GPIOs.
- 
-+config GPIO_LINE_MUX
-+	tristate "GPIO line mux driver"
-+	depends on OF_GPIO
-+	select MULTIPLEXER
-+	help
-+	  Say Y here to support the GPIO line mux, which can provide virtual
-+	  GPIOs backed by a shared real GPIO and a multiplexer in a 1-to-many
-+	  fashion.
-+
- config GPIO_MOCKUP
- 	tristate "GPIO Testing Driver (DEPRECATED)"
- 	select IRQ_SIM
-diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-index ee260a0809d3..6caee52b0356 100644
---- a/drivers/gpio/Makefile
-+++ b/drivers/gpio/Makefile
-@@ -89,6 +89,7 @@ obj-$(CONFIG_GPIO_IXP4XX)		+= gpio-ixp4xx.o
- obj-$(CONFIG_GPIO_JANZ_TTL)		+= gpio-janz-ttl.o
- obj-$(CONFIG_GPIO_KEMPLD)		+= gpio-kempld.o
- obj-$(CONFIG_GPIO_LATCH)		+= gpio-latch.o
-+obj-$(CONFIG_GPIO_LINE_MUX)		+= gpio-line-mux.o
- obj-$(CONFIG_GPIO_LJCA) 		+= gpio-ljca.o
- obj-$(CONFIG_GPIO_LOGICVC)		+= gpio-logicvc.o
- obj-$(CONFIG_GPIO_LOONGSON1)		+= gpio-loongson1.o
-diff --git a/drivers/gpio/gpio-line-mux.c b/drivers/gpio/gpio-line-mux.c
-new file mode 100644
-index 000000000000..50e351d212b8
---- /dev/null
-+++ b/drivers/gpio/gpio-line-mux.c
-@@ -0,0 +1,129 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * GPIO line mux which acts as virtual gpiochip and provides a 1-to-many
-+ * mapping between virtual GPIOs and a real GPIO + multiplexer.
-+ *
-+ * Copyright (c) 2025 Jonas Jelonek <jelonek.jonas@gmail.com>
-+ */
-+
-+#include <linux/gpio/consumer.h>
-+#include <linux/gpio/driver.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/mutex.h>
-+#include <linux/mux/consumer.h>
-+#include <linux/platform_device.h>
-+
-+#define MUX_SELECT_DELAY_US	100
-+
-+struct gpio_lmux {
-+	struct gpio_chip gc;
-+	struct mux_control *mux;
-+
-+	struct gpio_desc *shared_gpio;
-+	/* dynamically sized, must be last */
-+	unsigned int gpio_mux_states[];
-+};
-+
-+static int gpio_lmux_gpio_get(struct gpio_chip *gc, unsigned int offset)
-+{
-+	struct gpio_lmux *glm = gpiochip_get_data(gc);
-+	int ret;
-+
-+	if (offset > gc->ngpio)
-+		return -EINVAL;
-+
-+	ret = mux_control_select_delay(glm->mux, glm->gpio_mux_states[offset],
-+				       MUX_SELECT_DELAY_US);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = gpiod_get_raw_value_cansleep(glm->shared_gpio);
-+	mux_control_deselect(glm->mux);
-+	return ret;
-+}
-+
-+static int gpio_lmux_gpio_set(struct gpio_chip *gc, unsigned int offset,
-+			      int value)
-+{
-+	return -EOPNOTSUPP;
-+}
-+
-+static int gpio_lmux_gpio_get_direction(struct gpio_chip *gc,
-+					unsigned int offset)
-+{
-+	return GPIO_LINE_DIRECTION_IN;
-+}
-+
-+static int gpio_lmux_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct gpio_lmux *glm;
-+	unsigned int ngpio;
-+	size_t size;
-+	int ret;
-+
-+	ngpio = device_property_count_u32(dev, "gpio-line-mux-states");
-+	if (!ngpio)
-+		return -EINVAL;
-+
-+	size = struct_size(glm, gpio_mux_states, ngpio);
-+	glm = devm_kzalloc(dev, size, GFP_KERNEL);
-+	if (!glm)
-+		return -ENOMEM;
-+
-+	glm->gc.base = -1;
-+	glm->gc.can_sleep = true;
-+	glm->gc.fwnode = dev_fwnode(dev);
-+	glm->gc.label = dev_name(dev);
-+	glm->gc.ngpio = ngpio;
-+	glm->gc.owner = THIS_MODULE;
-+	glm->gc.parent = dev;
-+
-+	glm->gc.get = gpio_lmux_gpio_get;
-+	glm->gc.set = gpio_lmux_gpio_set;
-+	glm->gc.get_direction = gpio_lmux_gpio_get_direction;
-+
-+	glm->mux = devm_mux_control_get(dev, NULL);
-+	if (IS_ERR(glm->mux))
-+		return dev_err_probe(dev, PTR_ERR(glm->mux),
-+				     "could not get mux controller\n");
-+
-+	glm->shared_gpio = devm_gpiod_get(dev, "shared", GPIOD_ASIS);
-+	if (IS_ERR(glm->shared_gpio))
-+		return dev_err_probe(dev, PTR_ERR(glm->shared_gpio),
-+				     "could not get shared-gpio\n");
-+
-+	ret = gpiod_direction_input(glm->shared_gpio);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "could not set shared gpio as input\n");
-+
-+	ret = device_property_read_u32_array(dev, "gpio-line-mux-states",
-+					     &glm->gpio_mux_states[0], ngpio);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "could not get mux states\n");
-+
-+	ret = devm_gpiochip_add_data(dev, &glm->gc, glm);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to add gpiochip\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id gpio_lmux_of_match[] = {
-+	{ .compatible = "gpio-line-mux" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, gpio_lmux_of_match);
-+
-+static struct platform_driver gpio_lmux_driver = {
-+	.driver = {
-+		.name = "gpio-line-mux",
-+		.of_match_table = gpio_lmux_of_match,
-+	},
-+	.probe = gpio_lmux_probe,
-+};
-+module_platform_driver(gpio_lmux_driver);
-+
-+MODULE_AUTHOR("Jonas Jelonek <jelonek.jonas@gmail.com>");
-+MODULE_DESCRIPTION("GPIO line mux driver");
-+MODULE_LICENSE("GPL");
 -- 
-2.48.1
+2.51.2
 
 
