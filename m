@@ -1,117 +1,91 @@
-Return-Path: <devicetree+bounces-235424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6561DC385E6
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 00:30:47 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA693C3860A
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 00:33:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 892533B3B33
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 23:28:41 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DAEC54EC13C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 23:33:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2755C2BEC2A;
-	Wed,  5 Nov 2025 23:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C2E52D0631;
+	Wed,  5 Nov 2025 23:33:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="X9MfwtgB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg154.qq.com (smtpbg154.qq.com [15.184.224.54])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C4AF3B7A8
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 23:28:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.224.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A62BAF50F;
+	Wed,  5 Nov 2025 23:32:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762385320; cv=none; b=WnAIPYsmus4sMlQ5hMsoTlqOuVJ0R83WApURIzE16qrckOqFdmb1k5yXdfV3c0vms7t4/sl9WKXMJEQqWrKAUtpgoBxcjIpRFayTHI2PdravRn14dlG6YgS+O6vxYabTGnTcIORHdVZA0H/B1DCvILXSUiaLDd9u4kxW+mlcLjQ=
+	t=1762385580; cv=none; b=iSJn+clmj5yAMYGcBlW1q6uj64rVABopgaLYvvdU8B2pp/dfRNWxFQx0CKDQ0VJLdiJxN7VdPAVaKWgI4mjsdgP2wzZ2HLusMevYJlwdCcnjf7y3a2a/eXzT4vYKHiyvt3tG4BBi7uYRhzQobSEmhEJNkGJ2VYacqQHh/ULSEys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762385320; c=relaxed/simple;
-	bh=R78U5SY7Hg9RhI8v/PjGYYFMbDqiKlquVHynEp+dwHU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NUh7xTFVCTXP3JUg8eJls9W1V2zZ9+SrgRowVunI+0Z7beL4IcS3Z2Li9uc3UML8tUVcIcC6GU0gWKezx0S6J0TEiXRzHe2T7uQJHCEPzp+dW1g5U2tHTQLW1JoB0TjRh66A7883wu+M5teJLFyvva5IWpUUtcXIvGCjv7b2pa4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=15.184.224.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip2t1762385281t50722702
-X-QQ-Originating-IP: JXDVC4wEduH/5I2geYS1F/YtQWPEEEzaPCj7cEdTzmY=
-Received: from [IPV6:240f:10b:7440:1:4c9d:dff9 ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 06 Nov 2025 07:27:58 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 12189542009970870665
-Message-ID: <7A636B2C51748041+9013a190-a997-4006-a136-20d18db85763@radxa.com>
-Date: Thu, 6 Nov 2025 08:27:58 +0900
+	s=arc-20240116; t=1762385580; c=relaxed/simple;
+	bh=XcirDM9lnRl9E23E0J7h37hYguMJdaUhrh7WCPETToo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=j6U1kMLlSVVcO5THVhosne2JPEUq/4CQWxT3OMcbZ3ZVkYVbUUh/nrJ6B7cXLWsyx92O3Ss8Cc1EoHIjTY+C9QzuI5BGPfA/tgnWJuv/QGKbjnN9VKDTQIM3tgEZ7wPT5zoFd1dxCHBOxUMsgLrMEHmEMf0eIeByb0CRUDil37k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=X9MfwtgB; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4d21p906j6z9tQ8;
+	Thu,  6 Nov 2025 00:32:49 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1762385569;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=UhjuXbnLPG7g8iLkmYybKKB6VGouxI2hx4THyw+BwkI=;
+	b=X9MfwtgBORoHUchTfERdV9vm9kRcjEZSgBSNZcTfOTiUNevhmfuGq30ormGP+3QOo/A4We
+	iGxq44zl0JzSzKWVWwK33PLnMkOXTCzTr4FZ+HNLWCFifYnnlB9Xch1Z60YxcOim6BBR55
+	xJ9K5WsmrRgiLjLaFikuuZ29PVU7BWroPI2NEAej7wLfvNdyuQPFvHcTzeSImHzAWEQwyV
+	ZfedZKDasNLfVsW5wMIy290y9qbj9NcHjIUy5NhkZFO8WJXIkEq/vS/h2v+k+oaWRRsYHA
+	4CK8FBQ3TxQRkniLtTNxW+aaHtGPQmtAzeTXr4IobrZ+1qHizKttEIo/RagtMw==
+Message-ID: <1c954c7c-e975-41fe-8af5-6e5517bae96d@mailbox.org>
+Date: Thu, 6 Nov 2025 00:31:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/3] Add Radxa CM5 and IO Board
-To: Jimmy Hon <honyuenkwun@gmail.com>
-Cc: heiko@sntech.de, joseph.kogut@gmail.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, jonas@kwiboo.se,
- kever.yang@rock-chips.com, quentin.schulz@cherry.de, dsimic@manjaro.org,
- pbrobinson@gmail.com, amadeus@jmu.edu.cn, jbx6244@gmail.com,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20251105051335.17652-1-naoki@radxa.com>
- <CALWfF7JsB-i4tgbPfMzrH92dCO-=EMkt7yY16dKzEPE-4RC58A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: gpu: img,powervr-rogue: Document GE7800
+ GPU in Renesas R-Car V3U
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
+ <niklas.soderlund+renesas@ragnatech.se>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Frank Binns <frank.binns@imgtec.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Magnus Damm <magnus.damm@gmail.com>, Matt Coster <matt.coster@imgtec.com>,
+ Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+ Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org
+References: <20251105232737.1933437-1-niklas.soderlund+renesas@ragnatech.se>
+ <20251105232737.1933437-2-niklas.soderlund+renesas@ragnatech.se>
 Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <CALWfF7JsB-i4tgbPfMzrH92dCO-=EMkt7yY16dKzEPE-4RC58A@mail.gmail.com>
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <20251105232737.1933437-2-niklas.soderlund+renesas@ragnatech.se>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
-X-QQ-XMAILINFO: NG6XnjqajcORz9xDI79hrDUbAKYagxKkQiqj8V4XdLxmPd01t8s2NTlo
-	Q+4Bi2PE9DhhvI0Q6tngMLpRV5Qk24m+TmyFZpPrGZWpgxpp9ojV0nQ5xQim8hXuIOCzmsG
-	Bu1YpyxzdUGHgGEzBIuxheUH9OcYsdETOCOvA/LRGYNPm57kPEu8FfMt07JAenfvHOTJjhu
-	BamYgsxNsKFSuuJq1nOx97CaCg0cr3g+uxhPXF3NUtQNKPoWH1dK4QFo9JydPoTFMAby1mR
-	1ywSstQOGMTWpuF6iTqPESVL01Ulo+yjgxxB3NZU38/TcHeAh2f0LgVR8V3/u2QWsjhnUF4
-	aOd20nlup9Ra2JougT7XWv5MwGjkTUX4VEjCQbc4W6g0GqDKsnTmT2v88ffssnUeyMDnJyd
-	Vw4sTwq+Y8nWHcpe8Z6SQ/SFYQ5YxxcqvvuEaOH2uIz1eur7HFMiDPGxGq/IpFJqO30nu3O
-	zdvDtmGfHm/sHydd1NK0n3/cwDbwZezjYdxSHUJ73zuSTvH9GokWZDO2hHN1xUeQSJkjWz0
-	WeeXl6a9GKMufYfVEqjq6Zdx8FFD6HQHovF2FchDfPM41YRRUgGXrd60ewakoc4PbxOIVSE
-	LZIVGGLYsInTuIxrXkq7XcKRdinjgScIBS9ABNiWZP0vhFwZOErZ5IazEq95Q8Ux3Ezq3h9
-	uZfsulCm9y3erUNe3BkCyJouUEL+NigD7jfazahSTiHVgt+f2Ca3AuZteXaw1EvS1ps24DS
-	AbgeRSBNXVqaCoFSUcLOYUB9tHX/M/ywNgzV54YdV0bbr7k1R1MOAERWLK28tKx3rayLlyP
-	/suoBm1uRJUHk08NKZOxtiItV/xzUS2vfcZ/ENbX6N4YyXMHDiPUY9BNJQJeTBG4iKRg8B4
-	Ne4H6KMPOHsvrCYRB8dZ2B42Pq3jW67ovMhG9TuSS5x68rDX38uuv5vCd2IyQT3ZT5knQXa
-	VGdDydnnASMTZcDLPSAHJOvnrtFLGNitXGrwhM4BosvOGB9NtDGGsq27pxaEZ+3YA/l5nwE
-	Qx6kciEQx4iVwt8AP5cfmG1qMEDlw=
-X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
-X-QQ-RECHKSPAM: 0
+X-MBO-RS-META: fhkup4t3667wd5uw7hq3k8fmmzqjfsh7
+X-MBO-RS-ID: 09589ff907d9f8a2b19
 
-Hi Jimmy,
-
-On 11/6/25 03:10, Jimmy Hon wrote:
-> On Tue, Nov 4, 2025 at 11:14 PM FUKAUMI Naoki <naoki@radxa.com> wrote:
->>
->> This patch series add support for the Radxa CM5 SoM and IO Board.
->>
->> Changes in v6:
->> (Patch 1/3)
->> - Fix description; "Radxa CM5" is the correct name
->> (Patch 2/3)
->> - Fix #include(s)
->> - Include rk3588s.dtsi
->> - Move alias for gmac1 from io board dts
+On 11/6/25 12:27 AM, Niklas Söderlund wrote:
+> Document Imagination Technologies PowerVR Rogue GE7800 BNVC 15.5.1.64
+> present in Renesas R-Car R8A779A0 V3U SoC.
 > 
-> I'm curious why the alias was moved to the SoM? If the carrier board
-> does not enable the gmac1, shouldn't we leave out the alias?
-> i.e. for the handheld without RJ45 jack [1], it wouldn't want the alias, right?
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
-Indeed.
-
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-> [1] https://github.com/StonedEdge/Retro-Lite-CM5
-> 
-> Jimmy
-> 
-
-
+Reviewed-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
