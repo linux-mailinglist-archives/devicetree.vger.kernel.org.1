@@ -1,55 +1,82 @@
-Return-Path: <devicetree+bounces-235230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8E7EC35D63
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 14:27:47 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B159FC35D81
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 14:30:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8DBFC4F9F5F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 13:26:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5C2844E9701
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 13:28:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E20A314A83;
-	Wed,  5 Nov 2025 13:26:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B916831E0F2;
+	Wed,  5 Nov 2025 13:28:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YL7Kibw+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kgc+qPbc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DAF62E88B3;
-	Wed,  5 Nov 2025 13:26:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0509A3164A8
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 13:28:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762349212; cv=none; b=Nnptg7VDLdONCuPIIm0tyBurCxsDZVR8pvZoe7dUSfikEIyNCI9EcrWRPsQk2m6ooVV9d8J5MxfPPuetJhATpo0WpvL1PoEcxMrcN0As6SGaHyUCGTLeg3+k8wQsGtmUvi1OZqcS8lvFug5/UffHcsDNifKGs7Y+J5cXCGANefc=
+	t=1762349290; cv=none; b=B4REvaVg23cYsITETCeaW28JzQQUVAag9priT5my1xisMuXFfy9NCuBQoQJvRtdPD3KxrO0i5Slm3cz5TW6DMihDE2ElJHQZItmZq4bo3yf+qP01SjF8HcaAXIDWhI1psxqTzhjqbg0xD8BL9feZnJna1Hj8fer97R/bvqAfWCA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762349212; c=relaxed/simple;
-	bh=IHY6rytRQpqzPhB2aiYR+C+4jwVndLV36Pc4ex8HYhs=;
+	s=arc-20240116; t=1762349290; c=relaxed/simple;
+	bh=4Rvz086RQXFSFc6WQEGb0sqvVLV8SfpNGQ9nWE5laec=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d5PgJfz2gVt0UyXxUDuPkun1fBB+ZhMyjVbJD3+0tC8LqmZnNNthT6fmKHRlNiPJuiRCOd5O8PP5My2UrYmcsLXe9GEwLRbAAcMsBm4/1TC6AEDdrFg4LQImazkNP3wSAxYUYczlrC0KU/3z3k2E+yiTsuqdoNoVqdl90KRtIN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YL7Kibw+; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 7F3481A18B5;
-	Wed,  5 Nov 2025 13:26:46 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 5483860693;
-	Wed,  5 Nov 2025 13:26:46 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AFF1C102F1EE5;
-	Wed,  5 Nov 2025 14:26:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1762349205; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=uifLZp4U9pUGvLsbQU1oTJDlQ22nTkkVAsDheTV04iY=;
-	b=YL7Kibw+BnpbXzqfm8VIkUr1qfC80eLiaXq695de/aSgs1/ct4ycRtw8ZL2nzEMDeFLvVo
-	rZrlMevg47Q4XjUAIh/ljxfQPEGosNcd/0fPzsCdnauF4qw2pf6akyxrZUVcgVi9irKG3f
-	l3KrgjWDHoQ/NEUVkiKaNS75pbaDeQFTqeAnUZAeiHV7g5y9+hOKuPJ3H4WklzINbyGr1w
-	RvKwbVLUrv1HDNT9YLADSKW7TRt2cCHJLTmomXl0cy3JbRbk2GSUTgtbiDZkQqOOCAeWGN
-	kKL90Q7U0snJqLEh0eiNYttF9q0j+wxzR0fju2ywQqAIml3NsnP2EpbPYjgXEw==
-Message-ID: <b3a4e2b3-f360-4dee-815b-cee3b9095074@bootlin.com>
-Date: Wed, 5 Nov 2025 14:26:42 +0100
+	 In-Reply-To:Content-Type; b=ZeDAehJFQlDmslNausL8E93y0lDNucChJiYmZBi+OQ6u7Fxm41jNKq6BRStxyV0lygxqMvuhup2S53kf1h+mrivJX54/p/fGpH+xDGQ/NWWcQLRqH5pwS1Pj1dOSD1ridSdnMtu25ng1DjF5RvdY/ip6Sq2ko3vxQbVX40235vE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kgc+qPbc; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-63bdfd73e6eso1569216a12.0
+        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 05:28:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762349287; x=1762954087; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4Rvz086RQXFSFc6WQEGb0sqvVLV8SfpNGQ9nWE5laec=;
+        b=kgc+qPbckYzyL3k6IH2RAOVIr2rEVjeC5niFND+OR430MaIO3i3O7TbQfPoA+flMOk
+         l7xaM8RxxOF3wDjAYRimZTnvvvzilX7LqUkrOl4Kvxi+a/L8GomFZLBe2VJ2uFuemUff
+         8gqo1bFU/RxXv/5k0vpjN6UtK/yY7TgoKGnp6J/KGoXIQpjRJpSFxwuRyyVFUh11K3JH
+         kqOc06QVRtA1TnVQGS0rj39xHC1rA1/ZPX96hWxAqhxhRWG1AcNGL87f0TM7H8vceUFQ
+         ePMRoTvVm0xUl2GXsdEh28hZibF5ZZBNTWARE3ZisPFpVbgIAXRkbY36IBcZs3K1fPDa
+         QWzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762349287; x=1762954087;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4Rvz086RQXFSFc6WQEGb0sqvVLV8SfpNGQ9nWE5laec=;
+        b=VdQezlzfmurSqtKOSRr3B7wogCs+aD6629hhONpjNRgENfYE/cjReVstTfqUceLIE4
+         xgW/o8nA2UZH9HFyXMheEaBivIxokvh+wA5mdTEspNih0wr/Ym4VHRCRpxoyrB0wh+JS
+         NlT7ka2VBA8gTmxbU6CqR38/3hCm3Gz1R/OiVhwfWSzEQM4MFJWUPYw+t1tpQhGKdOH6
+         +HdjgMcIM0Q2CVqyQjBK/URvdrckwhEEgDyUl9zc9KsdKnFKFfL2j9EqJoZ6HnlXCOPy
+         ISxo+9tHLaCBrvFMhNHeNtz+oVrvbdKgHh9QBh7NXY7YBUsWKkeQ4CULh0SWItHq7/0I
+         YaDA==
+X-Forwarded-Encrypted: i=1; AJvYcCVD7M0FM9fpLYbs0O6eBFnbU6OWTuUvJzqtc7asDZt9y/Ie9FnzctRyD1QFepfZOvuW3ftGNAiLv5D3@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYRBBtzuDSaKg3BmgnOUeki5or2UVrk88+qK2fx4FNWT3nFKlk
+	C2ENqK7h6r1+yIK5zL2xGN0BcWg5ya7O4RfKRlPeKtYRwKtNp23bQJPj
+X-Gm-Gg: ASbGncu0+aOf6iXx1rm5dOcQ/7ZNZEXEC7bUW87isaTL6JweJXSvgbfENoCY3OFGTP3
+	a/2x85+CV/UJ6TGMEidoQbT+xYgu3iysuB1vFKeHtEYRwkGrFdno94rCujMcTcK3dKuUueL/coI
+	s5qUiPagbVNTKgFxnnKH7P5sWHaPFGTZGpbLGSBzyCTZ/3ZFDc2FMx0HrcfvTvRLO+kOA7cxzf0
+	IkNzGoWTqsH9ANzxiMcsu1WElBRv1lmaftSw9ujIZRbfBDKaXB8cxaSwulcyXow8m76j0JYzxet
+	2b3ASiikr/SVyIO2AMLDE6xF5VG4GzAdizzkKFBkf1RT5q/+r03E55tG70XQ0NhxVw4A0TMwm2J
+	ne03hoMjgpY5M9wWA2mIl+l6otCCET958G7XsQfR/w5go46VoPfBa+GCQ4srpUOrTCmuul4QwdQ
+	b1Kwz1OdnWbmndQMJri5rixb2zb4au1jdBNrEZLROjW4u9BAxPKVREHdcEH39/EsY9+a6365NX7
+	Io=
+X-Google-Smtp-Source: AGHT+IFM721P9Xgz9zOF328JaoanXeTi0/muw8L0qkZo/yHkrkZLPf6InYFepquvkNdtMAFB74Ux6w==
+X-Received: by 2002:a17:907:3c8d:b0:b70:b9b6:9a94 with SMTP id a640c23a62f3a-b726323d57bmr352421566b.23.1762349287068;
+        Wed, 05 Nov 2025 05:28:07 -0800 (PST)
+Received: from ?IPV6:2001:9e8:f106:5b01:5cbf:5078:e623:8643? ([2001:9e8:f106:5b01:5cbf:5078:e623:8643])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b723f6e26d1sm478254466b.35.2025.11.05.05.28.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Nov 2025 05:28:06 -0800 (PST)
+Message-ID: <3897d941-4cc2-4332-90fe-f575eadc6e48@gmail.com>
+Date: Wed, 5 Nov 2025 14:28:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,61 +85,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v4 2/2] gpio: add gpio-line-mux driver
-To: Jonas Jelonek <jelonek.jonas@gmail.com>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+Content-Language: en-US
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Peter Rosin <peda@axentia.se>,
- Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
+ Geert Uytterhoeven <geert+renesas@glider.be>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Thomas Richard <thomas.richard@bootlin.com>
 References: <20251105103607.393353-1-jelonek.jonas@gmail.com>
  <20251105103607.393353-3-jelonek.jonas@gmail.com>
-Content-Language: en-US
-From: Thomas Richard <thomas.richard@bootlin.com>
-In-Reply-To: <20251105103607.393353-3-jelonek.jonas@gmail.com>
+ <CAMRc=MdQLN5s+MpkLUF2Ggc4vYo30zOXrA=8qkGmXvu7N3JjeA@mail.gmail.com>
+From: Jonas Jelonek <jelonek.jonas@gmail.com>
+In-Reply-To: <CAMRc=MdQLN5s+MpkLUF2Ggc4vYo30zOXrA=8qkGmXvu7N3JjeA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
 
-On 11/5/25 11:36 AM, Jonas Jelonek wrote:
-> Add a new driver which provides a 1-to-many mapping for a single real
-> GPIO using a multiplexer. Each virtual GPIO corresponds to a multiplexer
-> state which, if set for the multiplexer, connects the real GPIO to the
-> corresponding virtual GPIO.
-> 
-> This can help in various usecases. One practical case is the special
-> hardware design of the Realtek-based XS1930-10 switch from Zyxel. It
-> features two SFP+ ports/cages whose signals are wired directly to the
-> switch SoC. Although Realtek SoCs are short on GPIOs, there are usually
-> enough the fit the SFP signals without any hacks.
-> 
-> However, Zyxel did some weird design and connected RX_LOS, MOD_ABS and
-> TX_FAULT of one SFP cage onto a single GPIO line controlled by a
-> multiplexer (the same for the other SFP cage). The single multiplexer
-> controls the lines for both SFP and depending on the state, the
-> designated 'signal GPIO lines' are connected to one of the three SFP
-> signals.
-> 
-> Because the SFP core/driver doesn't support multiplexer but needs single
-> GPIOs for each of the signals, this driver fills the gap between both.
-> It registers a gpio_chip, provides multiple virtual GPIOs and sets the
-> backing multiplexer accordingly.
-> 
-> Due to several practical issues, this is input-only and doesn't support
-> IRQs.
-> 
-> Signed-off-by: Jonas Jelonek <jelonek.jonas@gmail.com>
-> ---
->  MAINTAINERS                  |   6 ++
->  drivers/gpio/Kconfig         |   9 +++
->  drivers/gpio/Makefile        |   1 +
->  drivers/gpio/gpio-line-mux.c | 129 +++++++++++++++++++++++++++++++++++
->  4 files changed, 145 insertions(+)
->  create mode 100644 drivers/gpio/gpio-line-mux.c
-> 
-Reviewed-by: Thomas Richard <thomas.richard@bootlin.com>
+Hi Bartosz,
 
-Best Regards,
-Thomas
+On 05.11.25 14:15, Bartosz Golaszewski wrote:
+> Hi Jonas!
+>
+> This looks good, I'm ready to queue it but I'm afraid the consumer
+> label "shared" will logically conflict with the work I'm doing on the
+> shared GPIO support[1] as the shared GPIOs will appear as proxy
+> devices containing the name "shared". Do you see any problem with
+> changing the label to "gpio-mux"? I can even change it myself when
+> applying.
+
+Sorry for the noise, I misunderstood your text a bit. It's just about the label.
+I'm fine with this and you can adjust it. Thanks!
+
+> Bartosz
+>
+> [1] https://lore.kernel.org/all/20251029-gpio-shared-v3-0-71c568acf47c@linaro.org/
+
+Best,
+Jonas
 
