@@ -1,127 +1,117 @@
-Return-Path: <devicetree+bounces-235358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6B5FC374C0
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 19:28:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5E5BC3759E
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 19:37:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BF4664E6851
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 18:28:03 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 607224F19D7
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 18:36:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC7D7284686;
-	Wed,  5 Nov 2025 18:27:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 255D32FD7BE;
+	Wed,  5 Nov 2025 18:33:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EYLfREVI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nMYmejB+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0223C27E056
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 18:27:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E60D82749DF;
+	Wed,  5 Nov 2025 18:33:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762367238; cv=none; b=FmxENp+U4wXoM0CFLZFHxY2qGeg4zjmuS/ZGDhX25xRFxgNhFHcNSvWJ+LxLZveBuTlK5NccYtQfJU+cYFvui/zasCjuy9ieTKZ8sKPwuC/ar5MMC5vtt+flbqgeEMk2nO9+en/YhFS5/XSsC9Hu71R6tlN/uBmpaKcSgctUQhM=
+	t=1762367637; cv=none; b=E65DdY3gDahmITL1XXt40MFVQI2L55um21QVNz1GGp7kqrpC8iTu4VEuxlkWKrouDATY60W1zJEORpph4Ov9KNujh91JrNB9szCFZ0u3ujYoVEbw9A9b2L2LJ9o8oKYPReXvqHRmRo32c0+GUFwr4pTbH1XOiCvzbH4ywu+Mvso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762367238; c=relaxed/simple;
-	bh=vRBmQB7LGLKabaHHO2oUNoRw1Zqt7X2Bf22UV35XKe4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bjj9/mblkRsFFcFpLASt5Qp5cqXioP/FPts1yynTURMt1bWnRFtZtaPXrPEtHU7S9RbjKuoGkzc5uTTysg53zO6DmAlhE/EUfy4GbUUSY8ft8j7abmnMJ4bkeeH6EqUmuH8/h7QeAWvOSsKXdcWqi18UDjmz7+hvwzp/r7Xr4zI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EYLfREVI; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-42557c5cedcso112932f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 10:27:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762367235; x=1762972035; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Bbc91cmnOIWb40sR8vO2a7ivblSQNbbG7kvBVDDJucU=;
-        b=EYLfREVIgzSjjhRk4eW2dL7l+iygIMepOgtVZqPb8rTK3her47SCHEOdD4MdB61H6X
-         tf+GE9jfsVrmyAT/x1qq+9vOZSTJj/Xlm49B03U6KsmQhvG9S+gSThg4TN8bWUWqMNow
-         t6T7VWG5fgx5ghVxdqbN85eW7aF/QBoszJ8HsXjdTdhA1pXKwOlKQveVANEyYTPmb620
-         q1Kf19bNYRJE+Y9NKyqZUNEZtsUWk6Dz8rgjzF+ueLvNKOYsSuj+zZ2y31B550CPQ2QC
-         O2IuetGiGnqfDgjB6afPOlJYFsqF6b2z5OeRHF3CTyZxL9mm6C2fCVy2B8Doev6ZEDVR
-         mqVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762367235; x=1762972035;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Bbc91cmnOIWb40sR8vO2a7ivblSQNbbG7kvBVDDJucU=;
-        b=PSyXp5ht5qLt+uotfh03QO6xqDhmPAiTrC7GYTbh0lC3zEvlEqIbCYZksGjnEbVatt
-         N2BY5tGnglc1PpwJooA1abIdqb1Bpw9J9YwiKZZHTbDRAgH8Whbb/eTpw2y9xx1A1c4V
-         eROx9+iL/POK4KU3YFSoLM3Hf+UXMAnqACgeIifpj59wUEHVGyWzIR6OGbaiCm+iyTxp
-         8NBQAvUfGnVif5VwgqHjgaV+/n0O66PNvlCPmhggyu1phO5LuRPe41bs3q5Zry3BmtlQ
-         lnGLo/NcCyFT6qIFAodWxywkhLMmmgctUApxh/jsJ7PXxwrcvhO+RJttDSNj2LNiZ4wp
-         +8cg==
-X-Forwarded-Encrypted: i=1; AJvYcCWOk4hofVqN+cIsgm4Ydg2I51Pnu7Becg0AkAIWGmLKAQ0PajJh+sEhRUyThKghqf/aFucXb2hHCfdU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7156b9+AazVCvt5mfjg5P9h+K+d9QR8V4vQYCOGR083/llzZ1
-	KpBouYF/mVLtT91iDNMtDkoycbHwvxgWiTPWj0vY4cvI3Y4q/HKJPSV+22CWhhW5VID6lKLxwP9
-	9VQZMBrqWI3wdxJYA8rmb8Eq0n4Y5b6w=
-X-Gm-Gg: ASbGncs0n1h/nS1e2LmVWpFcoQ0hqbVnjW8sbV87cpRvniwFPt3F8FhEeLJuVOoexvY
-	KAp2poLptTUaoVtbIdWkFkHDQS1H795srfKMDR7E6BgxdzhJC8pz0PZzI1IwXeDof56jL3nXYtu
-	MH4tSVnSsKSrRRfyn5ztkQKNbtnuCHLpeJ2T3vYOQ6V4K2C06v/PoKAzIkr27YUj5csTzO4cWys
-	v1CEU9Q4k/iJEWm6uIH1pOiDNGbkA7qyupzLyRMayy2YRmeaKoweXCNM8DuwpH6gzTEyF5Q/Ab2
-	491/ON554Y3KJp249xzN/5X7XBY=
-X-Google-Smtp-Source: AGHT+IEWTBghlpzGR140MV37zalzZx95XG9FR6209AD+bKFmXcVea8c+q4MylVOG3MhHL2cMabNwPshiwbP0KAaGMiQ=
-X-Received: by 2002:a05:6000:3111:b0:429:c450:8fad with SMTP id
- ffacd0b85a97d-429e3311ab5mr3772138f8f.53.1762367234998; Wed, 05 Nov 2025
- 10:27:14 -0800 (PST)
+	s=arc-20240116; t=1762367637; c=relaxed/simple;
+	bh=VqJ/IL8uu6HWDCb5Th4A/p6/Q7MW/MOdOkxfXjuZ508=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HuA6Vd6jZNqfR5y6M6826hhe0vRBM4qx802V09cY1kB3+tKicoY0nyJDKhtRm13wRbnJBh2lDkeIFSNzzYyQvq5Rbc0RAbqM8e9yY5vBeb0tetkar/YQeEPTbGfBH6E3aujXKjCZpMg6YtBMIhZENgCvD4Ra3leQUKAMhvCWraE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nMYmejB+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D94CCC4CEF5;
+	Wed,  5 Nov 2025 18:33:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762367636;
+	bh=VqJ/IL8uu6HWDCb5Th4A/p6/Q7MW/MOdOkxfXjuZ508=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nMYmejB+OHlG15Yqp+E5CyvGnWcmKcmGDM6ePgcearwJ2eVrXQmfnJfwsQk24Qk17
+	 w3To2pmXOBfxST4oYDr25BgcQrf7x18OjilkteWtk7dnrwFxZxRMrOoKpI4YwJ2Cpm
+	 aVt3YTWrJhTN/XOqq9Wcnes0yAYam3vth8FT4Q4lZX9j6uLRQ7jyGwo9kKZq7rVubF
+	 Kx9ciUb2S4O3yKINr1yKjjRcAJfgSh3G4LamjzCa8JM/3GHd2NJkJxNXoihN5SVOOA
+	 Wsvcw7yG9TJL4lwjVr7kRR1i88Ihxvaqvz9jyvGS4FReOVzTsidb1aPJZTsm2/+0JH
+	 pPcwCKxoVW63Q==
+Date: Wed, 5 Nov 2025 18:33:51 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Ovidiu Panait <ovidiu.panait.rb@renesas.com>,
+	claudiu.beznea.uj@bp.renesas.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be,
+	magnus.damm@gmail.com, p.zabel@pengutronix.de,
+	linux-rtc@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: rtc: renesas,rz-rtca3: Add RZ/V2H
+ support
+Message-ID: <20251105-gradually-commode-0b5269ec0aa5@spud>
+References: <20251103121848.6539-1-ovidiu.panait.rb@renesas.com>
+ <20251103121848.6539-2-ovidiu.panait.rb@renesas.com>
+ <20251104-magnitude-deodorant-be607e3ff4be@spud>
+ <2025110420204948103c2f@mail.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251105051335.17652-1-naoki@radxa.com> <20251105051335.17652-4-naoki@radxa.com>
-In-Reply-To: <20251105051335.17652-4-naoki@radxa.com>
-From: Jimmy Hon <honyuenkwun@gmail.com>
-Date: Wed, 5 Nov 2025 12:27:03 -0600
-X-Gm-Features: AWmQ_bnhAYEPFNfM6TJ98WM-ObxtabU9d1JG0HBHmZ60SB08IL3ZfsQM0e0yhic
-Message-ID: <CALWfF7KyTfpXSyjVQaFzqtn6KyDxuyZOBpPR8y-jf6sduNxq5A@mail.gmail.com>
-Subject: Re: [PATCH v6 3/3] arm64: dts: rockchip: Add Radxa CM5 IO Board
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: heiko@sntech.de, joseph.kogut@gmail.com, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, jonas@kwiboo.se, 
-	kever.yang@rock-chips.com, i@next.chainsx.cn, quentin.schulz@cherry.de, 
-	dsimic@manjaro.org, pbrobinson@gmail.com, amadeus@jmu.edu.cn, 
-	jbx6244@gmail.com, devicetree@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="wjGAGSw+cWS2iRHG"
+Content-Disposition: inline
+In-Reply-To: <2025110420204948103c2f@mail.local>
+
+
+--wjGAGSw+cWS2iRHG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 4, 2025 at 11:14=E2=80=AFPM FUKAUMI Naoki <naoki@radxa.com> wro=
-te:
->
-> The Radxa CM5 IO Board is an application board for the Radxa CM5.
->
-> Specification:
+On Tue, Nov 04, 2025 at 09:20:49PM +0100, Alexandre Belloni wrote:
+> On 04/11/2025 17:28:27+0000, Conor Dooley wrote:
+> > On Mon, Nov 03, 2025 at 12:18:45PM +0000, Ovidiu Panait wrote:
+> > > The Renesas RZ/V2H RTC IP is based on the same RTCA3 IP as RZ/G3S
+> > > (r9a08g045), with the following differences:
+> > > - It lacks the time capture functionality
+> > > - The maximum supported periodic interrupt frequency is 128Hz instead
+> > >   of 256Hz
+> > > - It requires two reset lines instead of one
+> > >=20
+> > > Add new compatible string "renesas,r9a09g057-rtca3" for RZ/V2H and up=
+date
+> > > the binding accordingly:
+> > > - Allow "resets" to contain one or two entries depending on the SoC.
+> > > - Add "reset-names" property, but make it required only for RZ/V2H.
+> > >=20
+> > > Signed-off-by: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
+> > > +        reset-names:
+> > > +          items:
+> > > +            - const: rtc
+> > > +            - const: rtc_rtest
+> >=20
+> > If you respin, just make this second one rtest.
+>=20
+> I already applied it as it had your ack but I can still change it
 
-> - 1x microSD card slot
+It's fine.
 
-[ snip ]
+--wjGAGSw+cWS2iRHG
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +
-> +&sdmmc {
-> +       bus-width =3D <4>;
-> +       cap-mmc-highspeed;
-> +       cap-sd-highspeed;
-> +       cd-gpios =3D <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
-> +       disable-wp;
-> +       no-sdio;
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&sdmmc_bus4 &sdmmc_clk &sdmmc_cmd>;
-> +       sd-uhs-sdr104;
-> +       vmmc-supply =3D <&vcc_3v3_s3>;
-> +       vqmmc-supply =3D <&vccio_sd_s0>;
-> +       status =3D "okay";
-> +};
+-----BEGIN PGP SIGNATURE-----
 
-When used as a TF slot, shouldn't there be a "no-mmc" also?
-That's how the Rock 5A, 5B, and 5C were defined.
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQuYiwAKCRB4tDGHoIJi
+0pV5AQCMb1whhgz4XaSwKDaQRvxE4X1649f5YLbH3+at2WuUkQD/SvrJ/V092Ypk
+DdpJUfwHoVXCJjEgMy3WdDZ5BXNHbAQ=
+=6z5D
+-----END PGP SIGNATURE-----
 
-Jimmy
+--wjGAGSw+cWS2iRHG--
 
