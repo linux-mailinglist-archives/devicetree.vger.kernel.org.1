@@ -1,166 +1,117 @@
-Return-Path: <devicetree+bounces-235423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D76FC385E0
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 00:30:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6561DC385E6
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 00:30:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 143773B2239
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 23:28:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 892533B3B33
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 23:28:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5D9B2BEC2A;
-	Wed,  5 Nov 2025 23:28:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="GhhawuCM";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="zzHlfmaU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2755C2BEC2A;
+	Wed,  5 Nov 2025 23:28:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a3-smtp.messagingengine.com (fhigh-a3-smtp.messagingengine.com [103.168.172.154])
+Received: from smtpbg154.qq.com (smtpbg154.qq.com [15.184.224.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02F752F5A12;
-	Wed,  5 Nov 2025 23:28:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.154
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C4AF3B7A8
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 23:28:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.224.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762385296; cv=none; b=scFePl3cGRQrAL6YGu08evvgLPWwxqjcKbNvfJs8eaiSpFWnBLvI11DB/YwnRwodBvLZ3RqWQc0mz5HPSS18s3ze4sX7vTDYdq6IeLZbOZ1uxGIzTVq9KiAsyz3S16Fz0YwjdpRr/vPvOxmEXeCRMISe6NYV5mLoHDzXqiobZas=
+	t=1762385320; cv=none; b=WnAIPYsmus4sMlQ5hMsoTlqOuVJ0R83WApURIzE16qrckOqFdmb1k5yXdfV3c0vms7t4/sl9WKXMJEQqWrKAUtpgoBxcjIpRFayTHI2PdravRn14dlG6YgS+O6vxYabTGnTcIORHdVZA0H/B1DCvILXSUiaLDd9u4kxW+mlcLjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762385296; c=relaxed/simple;
-	bh=x4IdkbZKPTudvVQ9l3u0cmDNSVc64xKKIGC6Pv/R1yU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VZdtPYkQIBCUGkuKVn6sjpj9UOWehSkPqgy/zDPqk+ZTg9wm+9r3d1Uk8MeqDL/4WoSMxguj7uVUS3kP3JRyzWXs4mhmmdzS3Gh7qlY8Kxe67not8XYs72Z1JAZvQBk0LSdwXJVnQUJfsPxsQVU2Br8nVEV1MnBgjk4cwaQesEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=GhhawuCM; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=zzHlfmaU; arc=none smtp.client-ip=103.168.172.154
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id 20183140017C;
-	Wed,  5 Nov 2025 18:28:14 -0500 (EST)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-01.internal (MEProxy); Wed, 05 Nov 2025 18:28:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1762385294;
-	 x=1762471694; bh=oLpSACM42kKGdY/za8vwcdVsmh3G8zwjlfQ5ciPS7+8=; b=
-	GhhawuCMg8pDIshHE1UEn/VIMct4ODFpulNTBWlWKZgot24bQ/N6kTfiRj/A+Z0u
-	bvo9RjwZ73v5gdN7XgMvu9i82iiXUEiB5tlFqb/Mjw0gaPxJbNbqy/yB8cm0XyMI
-	AyVOp25ewlY0qJjEyiewiwArfThv6JwxlukGU8bAiXtKgpDk6PGwlISZs2mSeiNK
-	7ewwBYFjuMVSyoP+Qk5XbNIpNqy/BpXPIgOqrFyy0DY3XczguD5oQb2VZGzME7c8
-	DxyxnPDRPOxP4fBbFvm4ozv82a19xGBfr4tWT0goYC4Rpx/RAjAMp5SSMrh4+M1q
-	7C8ctC7HTlHtjYRFwADmTg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1762385294; x=
-	1762471694; bh=oLpSACM42kKGdY/za8vwcdVsmh3G8zwjlfQ5ciPS7+8=; b=z
-	zHlfmaUhQWtV9xbhAStdEzcZkdXP7E8WJlqoNeI/RwIXG+n29k5jqAqp4t7oqE3D
-	eTjF4D42M/IQVm0G60Mt2q68x4n9PVkrwoSs9A16akhR8/GIWelUDXhPpRojoMDM
-	UsCgLyHy/+BC9CeYDNIIUyoCaisQF0EcahBuoOIrJpoJXDoSuuu+K5YJmjRzhVU6
-	HV9nXg+/5Oixa0cjWFQz15VtpvQTcDIn9sW9bz4dprlt17PtB1DtBZrlO1cgVdCj
-	RqycKEvafyjblwhwiIdlBnYAtdOrMgv3Cq/o223tN8qKk34vPnEPSChMBsNgY3Ou
-	4hd7WobkOtdJO4BJkqYsw==
-X-ME-Sender: <xms:jd0LaWP4Hs33h8ZCsMzvwQrVUI0A7o1gP1RqJcq-7UFiMnwICXAuDQ>
-    <xme:jd0LaRR-HqxfiF0IaNAVk-WxAM_tTNFlTVkGtpkawVmQzI4P1KjoA-AeqgBDvUzdl
-    z6Y1aON0BZAJgPrE0WBYt8UWkKKqx245Ta0OYkWq6kXK0MxVsm2vQE>
-X-ME-Received: <xmr:jd0Lae5Ip_puYiS1dF37mu5WP0Ftwz-zlPncE3ZIR-LQPY58WUblIoY_Dhi58ikDvFG6Obmm5JFUgaxxvo8yClmE>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddukeehvddvucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhephffvvefufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpefpihhklhgr
-    shcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvsh
-    grshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeehiefgueevuedt
-    fefhheegkeevtdelueeukeevfeduhefhhfejfffggeffleefgeenucevlhhushhtvghruf
-    hiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggvrhhl
-    uhhnugesrhgrghhnrghtvggthhdrshgvpdhnsggprhgtphhtthhopedujedpmhhouggvpe
-    hsmhhtphhouhhtpdhrtghpthhtohepmhgrrhgvkhdrvhgrshhuthdorhgvnhgvshgrshes
-    mhgrihhlsghogidrohhrghdprhgtphhtthhopehgvggvrhhtodhrvghnvghsrghssehglh
-    hiuggvrhdrsggvpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdp
-    rhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpthhtohepfhhrrg
-    hnkhdrsghinhhnshesihhmghhtvggtrdgtohhmpdhrtghpthhtohepkhhriihkodguthes
-    khgvrhhnvghlrdhorhhgpdhrtghpthhtohepmhgrrghrthgvnhdrlhgrnhhkhhhorhhsth
-    eslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopehmrghgnhhushdruggrmhhm
-    sehgmhgrihhlrdgtohhmpdhrtghpthhtohepmhgrthhtrdgtohhsthgvrhesihhmghhtvg
-    gtrdgtohhm
-X-ME-Proxy: <xmx:jd0LaT2gbO0o_tlmLGfIp2KjbisJzE-OEXmNFKTYjFYZBxwi-kwwMA>
-    <xmx:jd0LaTmkVBA6lCCPwtcZvsg2vOetFA7oh_FOl9wTUGnzYmD3Hc64Kw>
-    <xmx:jd0LaRj7xvSvBtS8Qxh1kvkhxGu01sdGeH2Nnq9FJ1f8JX2SGWPr1A>
-    <xmx:jd0LaQQsMFWIqaWZiyLXbHU41H1FUfAIrcSOPlEIKLLDJWmAveQ-eQ>
-    <xmx:jt0LaQQ88JB3UPcMPAElGrnGxawl_6xhjkXMZTNrDgI_r8nQzU1sdnFr>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 5 Nov 2025 18:28:13 -0500 (EST)
-From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Frank Binns <frank.binns@imgtec.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Matt Coster <matt.coster@imgtec.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-renesas-soc@vger.kernel.org
-Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Subject: [PATCH 2/2] arm64: dts: renesas: r8a779a0: Add GE7800 GPU node
-Date: Thu,  6 Nov 2025 00:27:37 +0100
-Message-ID: <20251105232737.1933437-3-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.51.1
-In-Reply-To: <20251105232737.1933437-1-niklas.soderlund+renesas@ragnatech.se>
-References: <20251105232737.1933437-1-niklas.soderlund+renesas@ragnatech.se>
+	s=arc-20240116; t=1762385320; c=relaxed/simple;
+	bh=R78U5SY7Hg9RhI8v/PjGYYFMbDqiKlquVHynEp+dwHU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NUh7xTFVCTXP3JUg8eJls9W1V2zZ9+SrgRowVunI+0Z7beL4IcS3Z2Li9uc3UML8tUVcIcC6GU0gWKezx0S6J0TEiXRzHe2T7uQJHCEPzp+dW1g5U2tHTQLW1JoB0TjRh66A7883wu+M5teJLFyvva5IWpUUtcXIvGCjv7b2pa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=15.184.224.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: zesmtpip2t1762385281t50722702
+X-QQ-Originating-IP: JXDVC4wEduH/5I2geYS1F/YtQWPEEEzaPCj7cEdTzmY=
+Received: from [IPV6:240f:10b:7440:1:4c9d:dff9 ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 06 Nov 2025 07:27:58 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 12189542009970870665
+Message-ID: <7A636B2C51748041+9013a190-a997-4006-a136-20d18db85763@radxa.com>
+Date: Thu, 6 Nov 2025 08:27:58 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 0/3] Add Radxa CM5 and IO Board
+To: Jimmy Hon <honyuenkwun@gmail.com>
+Cc: heiko@sntech.de, joseph.kogut@gmail.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, jonas@kwiboo.se,
+ kever.yang@rock-chips.com, quentin.schulz@cherry.de, dsimic@manjaro.org,
+ pbrobinson@gmail.com, amadeus@jmu.edu.cn, jbx6244@gmail.com,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20251105051335.17652-1-naoki@radxa.com>
+ <CALWfF7JsB-i4tgbPfMzrH92dCO-=EMkt7yY16dKzEPE-4RC58A@mail.gmail.com>
+Content-Language: en-US
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <CALWfF7JsB-i4tgbPfMzrH92dCO-=EMkt7yY16dKzEPE-4RC58A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
+X-QQ-XMAILINFO: NG6XnjqajcORz9xDI79hrDUbAKYagxKkQiqj8V4XdLxmPd01t8s2NTlo
+	Q+4Bi2PE9DhhvI0Q6tngMLpRV5Qk24m+TmyFZpPrGZWpgxpp9ojV0nQ5xQim8hXuIOCzmsG
+	Bu1YpyxzdUGHgGEzBIuxheUH9OcYsdETOCOvA/LRGYNPm57kPEu8FfMt07JAenfvHOTJjhu
+	BamYgsxNsKFSuuJq1nOx97CaCg0cr3g+uxhPXF3NUtQNKPoWH1dK4QFo9JydPoTFMAby1mR
+	1ywSstQOGMTWpuF6iTqPESVL01Ulo+yjgxxB3NZU38/TcHeAh2f0LgVR8V3/u2QWsjhnUF4
+	aOd20nlup9Ra2JougT7XWv5MwGjkTUX4VEjCQbc4W6g0GqDKsnTmT2v88ffssnUeyMDnJyd
+	Vw4sTwq+Y8nWHcpe8Z6SQ/SFYQ5YxxcqvvuEaOH2uIz1eur7HFMiDPGxGq/IpFJqO30nu3O
+	zdvDtmGfHm/sHydd1NK0n3/cwDbwZezjYdxSHUJ73zuSTvH9GokWZDO2hHN1xUeQSJkjWz0
+	WeeXl6a9GKMufYfVEqjq6Zdx8FFD6HQHovF2FchDfPM41YRRUgGXrd60ewakoc4PbxOIVSE
+	LZIVGGLYsInTuIxrXkq7XcKRdinjgScIBS9ABNiWZP0vhFwZOErZ5IazEq95Q8Ux3Ezq3h9
+	uZfsulCm9y3erUNe3BkCyJouUEL+NigD7jfazahSTiHVgt+f2Ca3AuZteXaw1EvS1ps24DS
+	AbgeRSBNXVqaCoFSUcLOYUB9tHX/M/ywNgzV54YdV0bbr7k1R1MOAERWLK28tKx3rayLlyP
+	/suoBm1uRJUHk08NKZOxtiItV/xzUS2vfcZ/ENbX6N4YyXMHDiPUY9BNJQJeTBG4iKRg8B4
+	Ne4H6KMPOHsvrCYRB8dZ2B42Pq3jW67ovMhG9TuSS5x68rDX38uuv5vCd2IyQT3ZT5knQXa
+	VGdDydnnASMTZcDLPSAHJOvnrtFLGNitXGrwhM4BosvOGB9NtDGGsq27pxaEZ+3YA/l5nwE
+	Qx6kciEQx4iVwt8AP5cfmG1qMEDlw=
+X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
+X-QQ-RECHKSPAM: 0
 
-Describe Imagination Technologies PowerVR Rogue GE7800 BNVC 15.5.1.64
-present in Renesas R-Car R8A779A0 V3U SoC.
+Hi Jimmy,
 
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
----
- arch/arm64/boot/dts/renesas/r8a779a0.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+On 11/6/25 03:10, Jimmy Hon wrote:
+> On Tue, Nov 4, 2025 at 11:14 PM FUKAUMI Naoki <naoki@radxa.com> wrote:
+>>
+>> This patch series add support for the Radxa CM5 SoM and IO Board.
+>>
+>> Changes in v6:
+>> (Patch 1/3)
+>> - Fix description; "Radxa CM5" is the correct name
+>> (Patch 2/3)
+>> - Fix #include(s)
+>> - Include rk3588s.dtsi
+>> - Move alias for gmac1 from io board dts
+> 
+> I'm curious why the alias was moved to the SoM? If the carrier board
+> does not enable the gmac1, shouldn't we leave out the alias?
+> i.e. for the handheld without RJ45 jack [1], it wouldn't want the alias, right?
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-index b08865841476..aa347b699340 100644
---- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-@@ -338,6 +338,23 @@ cmt3: timer@e6148000 {
- 			status = "disabled";
- 		};
- 
-+		gsx: gsx@fd000000 {
-+			compatible = "renesas,r8a779a0-gpu",
-+				     "img,img-ge7800",
-+				     "img,img-rogue";
-+			reg = <0 0xfd000000 0 0x40000>;
-+			interrupts = <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_CORE R8A779A0_CLK_ZG>,
-+				 <&cpg CPG_CORE R8A779A0_CLK_S3D1>,
-+				 <&cpg CPG_MOD 0>;
-+			clock-names = "core", "mem", "sys";
-+			power-domains = <&sysc R8A779A0_PD_3DG_A>,
-+					<&sysc R8A779A0_PD_3DG_B>;
-+			power-domain-names = "a", "b";
-+			resets = <&cpg 0>;
-+			status = "disabled";
-+		};
-+
- 		cpg: clock-controller@e6150000 {
- 			compatible = "renesas,r8a779a0-cpg-mssr";
- 			reg = <0 0xe6150000 0 0x4000>;
--- 
-2.51.1
+Indeed.
+
+Best regards,
+
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
+
+> [1] https://github.com/StonedEdge/Retro-Lite-CM5
+> 
+> Jimmy
+> 
+
 
 
