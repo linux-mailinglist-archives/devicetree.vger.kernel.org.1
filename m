@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-235058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06567C3427B
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 08:09:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A79ACC34320
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 08:17:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A7E61892F87
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 07:08:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FF1C3B6542
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 07:17:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CF132C324F;
-	Wed,  5 Nov 2025 07:08:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556252C0F97;
+	Wed,  5 Nov 2025 07:17:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hXksx/Al"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S/QBF14b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 778231A23B9
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 07:08:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2037C34D3B9;
+	Wed,  5 Nov 2025 07:17:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762326511; cv=none; b=mG927x07lFAMQhPWWSmimJQO27l+Z5JsAZig/mX40B809H5ZXjWbPEQU6PQ9CW9Ds/jdNjsz/5izvfhBs41Md5z0rbwapa+0eDO83JtwqwhDW1irzcKso13oq1bzF7ZH9ywLqDSwWEuy/6pK5hYg8o8dMaEM4HlafvSPNikvLbM=
+	t=1762327040; cv=none; b=ea13nFYrBnbbH+aIXG+MSWYRd4nSfNpLArkeIBmEHMT7TbEMXzhAE8Xx3vnXgQUVSvC8/pmlvVgKE7Z7M7OYVjKtYPCtWhwer32uy+jDURL31dXskw1ml4uac5Lt2JyhVj3Qcg7XjwOJHTG3A94XuvXxep/IhGeHvhRNY+hKdFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762326511; c=relaxed/simple;
-	bh=/bnAwCa8Ekuq0ig0pkOxuuA2qYPQIuOUrwpsrr87Tag=;
+	s=arc-20240116; t=1762327040; c=relaxed/simple;
+	bh=M7tMkYTWiCdwe38qzTslPdBkq5O8fsXakxhQCCBfrlQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a7bivK5XydHEAwgjRxIUxTjB+QZgohGkK/cLDWeuPTne5ZPf9gnUr+V/7rtHIDJ13RQHCc95Abf87R8arrdL+YXpHQwz+rF81aEfMXhQma0M4c6+lH65Mr1pINVC5d0L/dy1xwuKX2TZBPsyYNJVxQ6MRHQ9xnkVYNDZdQ6uolU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hXksx/Al; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55A8CC4CEF8;
-	Wed,  5 Nov 2025 07:08:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Wi5P5xUDgJAq4tfCq9ZQShn5SNA1ZZwWcRCr2o7ZgOBzxT1N9ThbhsNQiUHwisTPKPDXocTp6Xl/ynpuNoqsKMMMbUwhSzG7GuZtgUmCBB9eiwjq2Bri3Eacq9YgYM0QP/gR/5mTxa6PHiT8OVciPd+OwEv8rMfNMepdG7bonJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S/QBF14b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADC3FC116B1;
+	Wed,  5 Nov 2025 07:17:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762326511;
-	bh=/bnAwCa8Ekuq0ig0pkOxuuA2qYPQIuOUrwpsrr87Tag=;
+	s=k20201202; t=1762327039;
+	bh=M7tMkYTWiCdwe38qzTslPdBkq5O8fsXakxhQCCBfrlQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hXksx/Al7l4Yw67tTkqinLn0HR/Go/9MsyA/+qo20TPyvEDA3RPGggvRW0vuFObca
-	 3zGfEiDh1i+H1YdRbA/0e/aJs9VSiReLPpLZrhq1NLk6/N+10MK6PZVquhc3AKciaQ
-	 4irZyDC+HRIob5e6JXXECI2hZwWgudsxDkz+JkGKIVZ93c+AxgYehtMzzNZim0ti/L
-	 NpU0hwx5tWZEBGFz99uQDpNsqeBF6NMR7YeA0oOy56M7V1ijqchonJp46xH4quwegD
-	 R7dGRmZswpsJx13OZ9GRAQZEF+J2xhOibQAgvUse8aEOeNv7W+JCaxRLGQo7ai3QlD
-	 IShnU2iIf1TVQ==
-Message-ID: <93deab54-bd5e-433e-acbc-13f6ead47f43@kernel.org>
-Date: Wed, 5 Nov 2025 08:08:25 +0100
+	b=S/QBF14bPtG+sof0XDN3JtbP4h682cMYVM3j2Z7cO3uPvNMMfoPOplisB7ovgpZlH
+	 p+imlmHWGCVaYwf4e+XqpCUk6ydxgRo0jeWm2nzSvS0wGNpipNlodsx67pUvZWIQV8
+	 vAMYLWrdfX9JWhKOlQRdk0SH6aSX2uQM47+cV0FoVOab/4fodi6940VdvaR86u30VV
+	 K10va7d4bPdmY2A75tYqvZFsv80oX1X+bFX6nQ33O98DxZ/dlselz/8UiXLd0GqYvV
+	 f+257t07fqH+vImtGktLMZ0dw8wyEoak9gGhNAVrIBbGb8EOSFH4M/tdqxqkW+QIRP
+	 HVUvmZ9SFxBcg==
+Message-ID: <0608ca9b-083c-4929-a4e5-7d76b2590637@kernel.org>
+Date: Wed, 5 Nov 2025 08:17:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/3] dt-bindings: arm: rockchip: Add Radxa CM5 IO Board
-To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
-Cc: joseph.kogut@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jonas@kwiboo.se, kever.yang@rock-chips.com,
- i@next.chainsx.cn, honyuenkwun@gmail.com, quentin.schulz@cherry.de,
- dsimic@manjaro.org, pbrobinson@gmail.com, amadeus@jmu.edu.cn,
- jbx6244@gmail.com, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20251105051335.17652-1-naoki@radxa.com>
- <20251105051335.17652-2-naoki@radxa.com>
- <ce6e6369-a7e4-4a35-80f8-70ef41c3b877@kernel.org>
- <A6C1199E2A0D3F37+f3fe0fd5-4ca5-4d3d-bc1d-45f46b48f89b@radxa.com>
+Subject: Re: [PATCH v6 01/14] dt-bindings: remoteproc: qcom,pas: Add iommus
+ property
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <20251104-kvm_rproc_v6-v6-0-7017b0adc24e@oss.qualcomm.com>
+ <20251104-kvm_rproc_v6-v6-1-7017b0adc24e@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,39 +108,28 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <A6C1199E2A0D3F37+f3fe0fd5-4ca5-4d3d-bc1d-45f46b48f89b@radxa.com>
+In-Reply-To: <20251104-kvm_rproc_v6-v6-1-7017b0adc24e@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/11/2025 07:57, FUKAUMI Naoki wrote:
-> On 11/5/25 15:43, Krzysztof Kozlowski wrote:
->> On 05/11/2025 06:13, FUKAUMI Naoki wrote:
->>> Add device tree binding documentation for the Radxa CM5 IO Board.
->>>
->>> Link: https://dl.radxa.com/cm5/radxa_cm5_product_brief.pdf
->>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->>> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
->>
->> Wrong DCO chain.
->>
->>> ---
->>>   Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
->>
->> NAK, you just stolen ownership of an already posted patch.
-> 
-> Read "Changes in v6" and patches; my patches are not the same as v5.
-> Your reply is totally inappropriate.
+On 04/11/2025 08:35, Mukesh Ojha wrote:
+> Most Qualcomm platforms feature Gunyah hypervisor which handles IOMMU
 
-Inappropriate is taking authorship of someone's patch, because we all
-expect to preserve the original authorship. That's not only basic
-decency but actually a standard.
+I don't think that's true. Washn't Gunyah something new? Like since
+SM8550? Look how many Qualcomm platforms we have in the arm/qcom.yaml
+bindings - for sure most of them are not post SM8550.
 
-Additionally, read Joseph's reply that he wants to continue the work:
-https://lore.kernel.org/all/CAMWSM7iHtAxewW4JkRqRsifVnccqeFviaCgeOyprKDr92FOurg@mail.gmail.com/
+> configuration for remote processor and when it is not present, the
+> operating system must perform these configurations instead and for that
+> firmware stream should be presented to the operating system. Hence, add
+> iommus property as optional property for PAS supported devices.
 
-You clearly do not understand how to continue with someone's work.
+So which platforms actually need to do this?
 
-It is still a NAK.
+I really do not understand why you are adding this to SDX55 and several
+others.
+
+
 
 Best regards,
 Krzysztof
