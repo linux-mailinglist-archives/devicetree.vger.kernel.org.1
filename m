@@ -1,154 +1,103 @@
-Return-Path: <devicetree+bounces-235203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEBB9C356CB
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 12:44:28 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77D1FC35727
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 12:47:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DACD560DB5
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 11:40:16 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7FDB44FE103
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 11:44:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1A213126A0;
-	Wed,  5 Nov 2025 11:39:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8E8A3126DB;
+	Wed,  5 Nov 2025 11:44:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CJSB51PU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IenRHymy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E9CF31065B
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 11:39:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E6412C08B0;
+	Wed,  5 Nov 2025 11:44:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762342791; cv=none; b=JGH0acBX7f4LMwLZ2iRgI98e3DohZnFmDYRQlLilTrXjnlAflOChh2HmuDz8qsM40g/e6+ECpsscIytZhKawAfGfxmis8Avbr27RLW9lXwXorZ7d1hCaIGToqD2Qesy9QL2zg3NOeL4WcNJnXmKn2qn4grCciv/a+4t4czZrrtU=
+	t=1762343042; cv=none; b=CRURYxoZnncMkGP+G8mZ0fXKN3RJxdYCvid6sHgSCxaPArtXbvPr5ceLdzHvYFrbbdP10pb6ZUXrg8GcAeCuhsJfEUdQTwPjY9e5oSqr4XEBUYjdRAZGg0mnhsozG/+irQQGyzRCWpAERLYCq7DgIl5cf9fxkqp+DxMZer4GC9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762342791; c=relaxed/simple;
-	bh=XJnQ8QAutR/Qjzuilm6RbMyIh+omr6OWVKRLZO5Bnf0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nF6FRBjAkh2XJJ8nh7aNjp40ueprsy65i7v62F5P/BFSTPo7bsw02S6XtPj+lcaXC0LmuJ0svtNdtTNJLc7sdqOdOIRlVGoSycY+2EZh4LPiOHKt98YBIbMcV/1xQ/Y5RjAJ6f79+pOsqfafAEkIqGvYI0LVwjXKHsixl1NCWdI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CJSB51PU; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5942e61f001so2715673e87.1
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 03:39:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762342788; x=1762947588; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XFKcDBz895P+pKkilzGMv1j9zQS86el4sifmVfoozzk=;
-        b=CJSB51PUDDIAmXELEChvDo2y27eoe70faA3tbu/iPSRxcznGwDxA4bNg143HX2AY7h
-         6OGa2qZJ2ps5r2LR1uY1uPFiEIH8H8zrwlbmo85b25eyoE02XpPno5Hq12P7LuhwCk1O
-         AzhOd7dtEH/zdfXb7nbzaeQzyYAaewr51fx1+H5AjY8W3Kl0BOuLD5SXeR+Vmn2DTv18
-         xNqJivuHGk0slJeCzmZ6txTYQKgfh9wlTNrQiIKp6MkBqkBELvDcax2vGsyZL/Yhiyyo
-         0UwyKme0BrLCsAaEIC4WGuYf9doozejNTg8izdiv+LZvpkWMA7oSxGmH3YAIz9thlykp
-         fWDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762342788; x=1762947588;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XFKcDBz895P+pKkilzGMv1j9zQS86el4sifmVfoozzk=;
-        b=c0OuMSs8coYoAcfujQbZrU2YCl9hYqnm3kYVkEjVp1knD0OOvaNc6OUiHg0JCFyXQo
-         lYIneqJkqYTCqG7SDg0o/47WZ5RA0Tnds9JkUdeNg8we9V9FmevDcxhBY4zj0znlvar1
-         pK4NMUE5AT99OhbXd+LSMuxcpgVeLq9GFSYFDdg+mB0IEvPbwY/1H3TlEwsFneVdGDqr
-         DXTb3ohOWpEXEgFAkU4p6ZVaksvMSSinEyiz/jRS57RQX9hi26F9uAe+Kh1MHI6EFF4L
-         ghU4fdXyDboaYIgbmmJj1J3DStNBBW7CcrH4qQ1nEkTmwqdP7RTphQfwf9VtWlr7aEUe
-         h8EQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWd1y785pkIynYLwpSdzNHSeWONuISeiDMtj0qViStULIZse65YWrkJaEWyrRhcZWnEqWkaTNn2LCcr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2uB0f0YfVJ0Uwqte5xuwoUVzITzjCiAT08QJb66AjtICkaiJ3
-	yhFWm3ZDvVfJImVIhGlA4je/3YTexeD7QAJckF8cZGtesOL+xUEEUXHe
-X-Gm-Gg: ASbGncvhVZMH/j0OBtl0oTPcmydJRL0fiYvNDBfA9EyJ34W92hPrmDFNGPAVpDCvfb0
-	eVL/RbHlSTjeZiOgyGyByCZcvBlsafvmZOYTFdxuarTP6niKsBquM+5e54UDOu72OjTuFq7Edqu
-	iu3ahwJwLilUapqwoAe7Il0rUjm6DlXr7Ch5aZgELYTCd6C2hRq0Gf69exWljc5E0MwPwppX8CE
-	PZ6qd9HsIBSBSJ6OAFOnduzMKcZsWwxFYuz9/gO3CgoJ1sz7K/QKYuVIpt7/n+ScVP4ZJRHZSap
-	LqkXL4tKz2O7hPCRItq8eRBkjG1cUhN3xudPSDDo+BuzEHUfRtk/f7xPX3O0AqCKjo8qDXnglyt
-	PEy7Lypj9GlyR5xVHEFCQOhVsLrAqdzXCJavHcQW5AZoEQ0x8BKMQG9CGYDrUIP15L79UsjRSbz
-	Htbug3ZQ4Lsex89Vj+e/C9LHaKTPbyDgB1aXp/tFtoHnUyQF3ahJL71UQpdw==
-X-Google-Smtp-Source: AGHT+IGG31UsLd4o1FDm3BbiPL0QtqwK8nPiQHx1dRUKJ4gb8AV+HvnhJfY8a3mxdgTF9YlyblMwPQ==
-X-Received: by 2002:a05:6512:1395:b0:592:f8aa:c06 with SMTP id 2adb3069b0e04-5943d7f3f74mr1019404e87.57.1762342787278;
-        Wed, 05 Nov 2025 03:39:47 -0800 (PST)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5943443992fsm1652172e87.60.2025.11.05.03.39.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Nov 2025 03:39:46 -0800 (PST)
-Message-ID: <aa55cba7-1f7a-4c44-a101-cb991387fa55@gmail.com>
-Date: Wed, 5 Nov 2025 13:39:45 +0200
+	s=arc-20240116; t=1762343042; c=relaxed/simple;
+	bh=lsKdS2/RgYDLurMVzKpoUTZ9hMpJVA/+yKedZERoEbQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=PFPNrwJaGyHxWBKwxsDbUVIwE2lhNBIDAxMJF6kF7LFSxf5u8nJEHKqejNpzRUURWXNv4bezbiOwjhvlPbftAvaXlOhSsnAD1FPRIAfeJ4is2HCskZjEu5Tpe5vRsIoJ8ABlzdyCjm10OgiGhzJvp+9XQ6CTCK4nMw740/RWXKM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IenRHymy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6F1CC116D0;
+	Wed,  5 Nov 2025 11:43:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762343042;
+	bh=lsKdS2/RgYDLurMVzKpoUTZ9hMpJVA/+yKedZERoEbQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=IenRHymyvP37MS9PUGM89sMnSa0qyGoNDa9zPAZIIGmn1lqiSyvPgT7iIfkAr6fVc
+	 JWGlgCA8v4pR1bvpXfdhpJBfoKvzOAxciBDVPdT1HzH2Jwb4xHAgsU0mXVluXSda0N
+	 9m9BR2KQ2dXr00cb1umLf24Qy6izc5u4jz0vUvyrW05et1ZKdebh8UhaZUtljEYLvU
+	 dAUa8b7YKwrV642IBPx0ZstVFwa+6T7w+oRzFWd2+KbFMnx5sQqexJp+6iznqe1zgr
+	 TMgL0C51WadetlSnQ2XSwo/Y4S/3jzN1YppSzqRw43IKff1et0lX+ZRSI6HL+ZQTY5
+	 2wJvHCpzVD0hQ==
+From: Mark Brown <broonie@kernel.org>
+To: tiwai@suse.de, Baojun Xu <baojun.xu@ti.com>
+Cc: andriy.shevchenko@linux.intel.com, 13916275206@139.com, 
+ shenghao-ding@ti.com, linux-sound@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, lgirdwood@gmail.com, robh@kernel.org, 
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+ k-yi@ti.com, henry.lo@ti.com, robinchen@ti.com, jesse-ji@ti.com, 
+ will-wang@ti.com, jim.shil@goertek.com, toastcheng@google.com, 
+ chinkaiting@google.com
+In-Reply-To: <20251104041314.792-1-baojun.xu@ti.com>
+References: <20251104041314.792-1-baojun.xu@ti.com>
+Subject: Re: [PATCH v1 1/2] ASoC: tas2781: Add tas5822 support
+Message-Id: <176234303679.2251668.8971844792881190697.b4-ty@kernel.org>
+Date: Wed, 05 Nov 2025 11:43:56 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 05/16] dt-bindings: mfd: ROHM BD72720
-To: "Rob Herring (Arm)" <robh@kernel.org>,
- Matti Vaittinen <matti.vaittinen@linux.dev>
-Cc: Stephen Boyd <sboyd@kernel.org>, linux-pm@vger.kernel.org,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-clk@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, linux-rtc@vger.kernel.org,
- linux-gpio@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>,
- devicetree@vger.kernel.org,
- Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Pavel Machek <pavel@kernel.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Mark Brown <broonie@kernel.org>,
- Andreas Kemnade <andreas@kemnade.info>, linux-kernel@vger.kernel.org,
- linux-leds@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>
-References: <cover.1762327887.git.mazziesaccount@gmail.com>
- <4c7ea0c83f4bb4af65439a9b8951d50ee705d22c.1762327887.git.mazziesaccount@gmail.com>
- <176233321210.143104.455177775703669783.robh@kernel.org>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <176233321210.143104.455177775703669783.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-a6db3
 
-On 05/11/2025 11:00, Rob Herring (Arm) wrote:
+On Tue, 04 Nov 2025 12:13:12 +0800, Baojun Xu wrote:
+> TAS5822 has on-chip DSP without current/voltage feedback.
 > 
-> On Wed, 05 Nov 2025 09:37:05 +0200, Matti Vaittinen wrote:
->> From: Matti Vaittinen <mazziesaccount@gmail.com>
->>
->> The ROHM BD72720 is a power management IC integrating regulators, GPIOs,
->> charger, LEDs, RTC and a clock gate.
->>
->> Add dt-binding doc for ROHM BD72720.
->>
->> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
->>
->> ---
->> Revision history:
->>   v2 => v3:
->>   - Styling
->>   - Document all pin functions
->>   - use pattern-properties
->>   - re-use existing Rsense binding
->>   - correct the example
->>
->>   RFCv1 => v2:
->>   - Typofixes
->> ---
->>   .../bindings/mfd/rohm,bd72720-pmic.yaml       | 273 ++++++++++++++++++
->>   1 file changed, 273 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd72720-pmic.yaml
->>
 > 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/rohm,bd72720-pmic.yaml: Unresolvable reference: /schemas/regulator/rohm,bd77270-regulator.yaml
 
-Not sure how this slipped through. I'll fix this in next version. Thanks.
+Applied to
 
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-~~ When things go utterly wrong vim users can always type :help! ~~
+Thanks!
+
+[1/2] ASoC: tas2781: Add tas5822 support
+      commit: ecaba8b7990d8c6d8ba097cd4499b3b92d9df6ea
+[2/2] ASoC: dt-bindings: ti,tas2781: Add TAS5822 support
+      commit: c4e68959af66df525d71db619ffe44af9178bb22
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
