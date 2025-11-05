@@ -1,87 +1,102 @@
-Return-Path: <devicetree+bounces-235214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70D25C35A6D
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 13:29:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58760C35A7F
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 13:30:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A332F467FF6
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 12:28:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E010618C3138
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 12:31:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53E6D314A74;
-	Wed,  5 Nov 2025 12:28:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 077FD2C08CB;
+	Wed,  5 Nov 2025 12:30:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aO/3M89k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sgoci-sdnproxy-4.icoremail.net (sgoci-sdnproxy-4.icoremail.net [129.150.39.64])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3234311973;
-	Wed,  5 Nov 2025 12:28:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.150.39.64
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1DF321146C;
+	Wed,  5 Nov 2025 12:30:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762345697; cv=none; b=IQ1eoGeYJIG6DHGgIRIU2ufak8TDnAGdrVYMyX1qvx/O4UcXu+ETCW+HaSJMX9/XNK562v1yHIJJYwOYfdqM2Ju5kCVO9mabo7P9zRUi6o6YQHjMtK0RQHCJBl102ekXK/7GaqXlocyHeKBifcPruJryBE6rCwoVUivy7OBO5QQ=
+	t=1762345843; cv=none; b=HRpXhJ/48veJucddFuSZLTcppaiSBCHMR8YRnABwRpa6KSGY4sqjnhgL5GiBgXfCmIXp1V5HGwnjYdUvtU4Ged2oXJ/k4gardnuCX9iD4XQxqX0J2NmAbM0apgMxYzZcsGITOBxbPuUUn52qzofoCUo30hcZ8nJHR6Qna0bsnoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762345697; c=relaxed/simple;
-	bh=Qf5CgmG7ZPRyVEAKwk6zM9m0tOrb33Q0+BoB1g2wOb4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=o5Mg4FNPwSK/DsRG9tHdjSiXGIcHshJMS6hjdZJEs29Vgd3ztb9hCTczuzYW7YX4spqkkeRMO976Ig/H7e8MsCtZKliEHzxf77mfEv+MZezbozV5Dm7yJzv7pwSYvcyLxgoRaInO/oihcY9Majv088nn+Y73DcCAgXiyykF8bxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=129.150.39.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from caohang$eswincomputing.com ( [10.127.112.153] ) by
- ajax-webmail-app1 (Coremail) ; Wed, 5 Nov 2025 20:27:50 +0800 (GMT+08:00)
-Date: Wed, 5 Nov 2025 20:27:50 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: "Hang Cao" <caohang@eswincomputing.com>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>, Thinh.Nguyen@synopsys.com
-Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, p.zabel@pengutronix.de,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
-	"Senchuan Zhang" <zhangsenchuan@eswincomputing.com>
-Subject: Re: Re: [PATCH v5 2/2] usb: dwc3: eic7700: Add EIC7700 USB driver
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <76ec3e26-a38c-4643-aaab-7806cc39bd89@kernel.org>
-References: <20251104065045.1464-1-caohang@eswincomputing.com>
- <20251104065226.1513-1-caohang@eswincomputing.com>
- <76ec3e26-a38c-4643-aaab-7806cc39bd89@kernel.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1762345843; c=relaxed/simple;
+	bh=sOca8qlDfIBDsxvVAIy7C2EdJfQ9Z0/Cd6qn0qL0vGA=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=l+T5uJYZh1K1sort/oBSAXReLj4TlUlo22HwP1Nx2kcYR02dSk2usBExQOsommzmO2a6v7Fu5sBSIniLRcSfPHRJcrKXCag+x4Plr9049lfynZthMnHEKxdoHDvJMSIhIGwxVox62DRoJ4C1MYBtwGNQRnOR1A5JxbL9BEkkg94=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aO/3M89k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E4F9C4CEFB;
+	Wed,  5 Nov 2025 12:30:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762345843;
+	bh=sOca8qlDfIBDsxvVAIy7C2EdJfQ9Z0/Cd6qn0qL0vGA=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=aO/3M89k+D6Jfli9zFpP/uHdguxuGFk9TJ4fhmXgVR6oXi1V7UqFQ0N8eeZsXACWi
+	 ACGLD5bTZ2vlUaztBCPptZFADukmoXcsaFTcBbZiiV57G/KUvIH29XWZPIfNK1/prG
+	 agPGjb8hiZf0Kfz99IIKsgKOGYDIJAzhzEfI3yhU+3O8BdsuomK3CSTRl7t5TtF6t5
+	 4J+6EFwuTAWZlJtdiZSPQyTWOTEvWtaAqoIsWHocA0UGZRkAh57lFfD9Wrz7f/jJ1O
+	 L2DWX9zWYCF83Lqih5a08c8BUoopZfutNpsOKslICZ6TWsGobmem9nvrWQdmjkLF3S
+	 4iA354oZx9ZnA==
+Date: Wed, 05 Nov 2025 06:30:41 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <9e50dfa.f63.19a53fcd7ec.Coremail.caohang@eswincomputing.com>
-X-Coremail-Locale: en_US
-X-CM-TRANSID:TAJkCgAXH2zHQgtpDpAuAA--.1301W
-X-CM-SenderInfo: xfdrxt1qj6v25zlqu0xpsx3x1qjou0bp/1tbiAQEREGkKKoAeZAAA
-	sy
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ conor+dt@kernel.org, cy.huang@realtek.com, afaerber@suse.de, 
+ linux-arm-kernel@lists.infradead.org, james.tai@realtek.com, 
+ linux-realtek-soc@lists.infradead.org, stanley_chang@realtek.com, 
+ krzk+dt@kernel.org, lee@kernel.org
+To: Yu-Chun Lin <eleanor.lin@realtek.com>
+In-Reply-To: <20251105104452.6336-3-eleanor.lin@realtek.com>
+References: <20251105104452.6336-1-eleanor.lin@realtek.com>
+ <20251105104452.6336-3-eleanor.lin@realtek.com>
+Message-Id: <176234584170.562648.2189277623860888038.robh@kernel.org>
+Subject: Re: [PATCH 2/3] dt-bindings: mfd: Add Realtek ISO system
+ controller
 
-SGksIEtyenlzenRvZiBhbmQgVGhpbmg6Cj4gCj4gPiArCj4gPiAgc3RhdGljIGludCBkd2MzX2dl
-bmVyaWNfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikKPiA+ICB7Cj4gPiAgCWNv
-bnN0IHN0cnVjdCBkd2MzX3Byb3BlcnRpZXMgKnByb3BlcnRpZXM7Cj4gPiBAQCAtODMsNiArMTE5
-LDEyIEBAIHN0YXRpYyBpbnQgZHdjM19nZW5lcmljX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZp
-Y2UgKnBkZXYpCj4gPiAgCWVsc2UKPiA+ICAJCXByb2JlX2RhdGEucHJvcGVydGllcyA9IERXQzNf
-REVGQVVMVF9QUk9QRVJUSUVTOwo+ID4gIAo+ID4gKwlpZiAob2ZfZGV2aWNlX2lzX2NvbXBhdGli
-bGUoZGV2LT5vZl9ub2RlLCAiZXN3aW4sZWljNzcwMC1kd2MzIikpIHsKPiAKPiBObywgeW91IGhh
-dmUgZHJpdmVyIG1hdGNoIGRhdGEgZm9yIHRoYXQuCj4gCldlIGltcGxlbWVudGVkIGl0IHdpdGgg
-ZHJpdmVyIG1hdGNoIGRhdGEgaW4gdjQgcGF0Y2guCmh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2Fs
-bC8yMDI1MTAxNjIyMjcxMy5kMnN1dGM3dHlmMmlkYmt2QHN5bm9wc3lzLmNvbS8KCkhvd2V2ZXIs
-IFRoaW5oIHN1Z2dlc3RlZCB1c2luZyBkaXJlY3QgZnVuY3Rpb24gY2FsbHMgaW5zdGVhZCwgbm90
-aW5nwqAKdGhhdCB0aGlzIGlzIGEgZnVuY3Rpb24gY2FsbCByYXRoZXIgdGhhbiBkYXRhLsKgCldl
-IGFyZSBub3Qgc3VyZSBpZiB3ZeKAmXZlIGZ1bGx5IHVuZGVyc3Rvb2QgaGlzIGZlZWRiYWNrIGNv
-cnJlY3RseS4KCk91ciBkcml2ZXIgcmVxdWlyZXMgc3BlY2lhbCBoYW5kbGluZyBmb3IgVVNCIGJ1
-cyBpbml0aWFsaXphdGlvbiwgd2hpY2ggZG9lcyAKaW52b2x2ZSBmdW5jdGlvbiBjYWxscy4KClNv
-IHdl4oCZZCByZWFsbHkgYXBwcmVjaWF0ZSBpdCBpZiB5b3UgYW5kIFRoaW5oIGNvdWxkIHNoYXJl
-IGZ1cnRoZXIgdGhvdWdodHPCoApvbiB3aGljaCBhcHByb2FjaCB3b3VsZCBiZSBtb3JlIHN1aXRh
-YmxlIGZvciBvdXIgZHJpdmVy4oCZcyBuZWVkcy4KCgpCZXN0IHJlZ2FyZHMsCkhhbmcgQ2FvCg==
+
+On Wed, 05 Nov 2025 18:44:51 +0800, Yu-Chun Lin wrote:
+> Add DT binding schema for Realtek system controller.
+> 
+> Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+> ---
+>  .../bindings/mfd/realtek,iso-system.yaml      | 65 +++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/realtek,iso-system.yaml
+> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/arm/realtek.yaml:76:1: [warning] too many blank lines (2 > 1) (empty-lines)
+
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251105104452.6336-3-eleanor.lin@realtek.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
