@@ -1,170 +1,110 @@
-Return-Path: <devicetree+bounces-235348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82A51C37297
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 18:45:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77766C372DF
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 18:48:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 76E9650720B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 17:30:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E8AE6E1DF9
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 17:31:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B302233858E;
-	Wed,  5 Nov 2025 17:29:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B15C531D757;
+	Wed,  5 Nov 2025 17:31:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jm/UliUf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4949336ED1;
-	Wed,  5 Nov 2025 17:29:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 892652FE078;
+	Wed,  5 Nov 2025 17:31:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762363742; cv=none; b=BElujoyeYZhbPSHx26UoNzHrigXbJJPZrkuMNrW+JSmPyQrzglhXUdDsis8CfCxsG0g0Ji/Sl0AU8s1kZo9qo9wsnJsRLeqPSjgfNLTwByvWtf66YfIZ1OKHOGKkz2Q1+Y/5vPxBqMBcHeRi2U4j9MskGaCt0XupdlBSm/oNos8=
+	t=1762363893; cv=none; b=HQH28c2Og+UYzmUfehKMHb3KDWFB2I4Fg1FeTai9UjMfo47AJzsMs4ul5e0z2G1hkC/eRatyTM8kamy2ynbWjnim9IoWhLsCuALW4Dt0rEao5J+zSYpqlCJ+Wf5R4Y4oHP0DViGIDf8jnGqIWaYqRXzlwjC51YAiyXJIZ/jIMdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762363742; c=relaxed/simple;
-	bh=k2ZM3DJwll1Max1svThLctb3ZOnNVY45eztnrBFDlek=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I0qmxhiHC1cb+4BOuX5q3o9ILt4k185Lv1QFQ0mxnp7QYkDgPMQgqOdjabt7fSI2+/wqrF+PB6XUTpOAyb7y1iU9fIfmYeLeMensxyCiv0Q6HIAiGSkYW/2eSCbfEhki0xXk75XZyLPv3qr6SSGcK/mZXtTp+maluu0th2sYhno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 61199169C;
-	Wed,  5 Nov 2025 09:28:52 -0800 (PST)
-Received: from [10.57.86.139] (unknown [10.57.86.139])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F09593F63F;
-	Wed,  5 Nov 2025 09:28:54 -0800 (PST)
-Message-ID: <0319bdf5-0a46-40fc-93f8-30d74cf6475a@arm.com>
-Date: Wed, 5 Nov 2025 17:28:51 +0000
+	s=arc-20240116; t=1762363893; c=relaxed/simple;
+	bh=BQadIILiFQFCy78dge1MDVJpO7lOTvap1pifY0b9pFM=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=rxRx1JbnkcqqNwHaX/+PJ7leSLA7oSfY+WJi1VgTmUeQ8qPWPgDyNKEaWYYoM7U61TKi9q+C5PARkpsW3dKrti5rTbjQ2sh/e1JSP4TOVAc6SS44lOEBtTy7NNFF4Nw/Izn0zyFwKP2v3RnNTbGw2MNubSvCSdFj0FmjZbzIR6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jm/UliUf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1072C4CEF5;
+	Wed,  5 Nov 2025 17:31:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762363893;
+	bh=BQadIILiFQFCy78dge1MDVJpO7lOTvap1pifY0b9pFM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=jm/UliUfXfTK5raK09LkYUutiQVNZTYpFR/hXDjBOmdzcO3SkLil9xx/ZK/D0YFDo
+	 iUb98+a0qbi1Sf5CF4+ZUdkjlVJmbdz2LBatxOLBvB4Ld67Rx34OdughevgzOO+jIR
+	 cRiENgGGCr1PLigWS5WNjnu/lSpkwOyaTDgFb+kEsllfom8xiPjtIFrULVWEE6HDGq
+	 2YhWvpusdXK5iRwLfDQ8YGSQjLtQY6Ti1Vq75C4fMTJImccrsk8+unrPdjcHYw0mTZ
+	 XnSXDXqBf0EgmGKXkn6p+ua8ow7FjeVske0g0qyfNHMZLIuj49X2ZsFZvGyuMEitgz
+	 yKzOtCihDx5bw==
+Date: Wed, 05 Nov 2025 11:31:31 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/6] of: iommu-map parsing for multi-cell IOMMU
-To: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>, will@kernel.org,
- joro@8bytes.org, robh@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
- konrad.dybcio@oss.qualcomm.com, bjorn.andersson@oss.qualcomm.com,
- bod@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
- saravanak@google.com, prakash.gupta@oss.qualcomm.com,
- vikash.garodia@oss.qualcomm.com
-Cc: iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <cover.1762235099.git.charan.kalla@oss.qualcomm.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <cover.1762235099.git.charan.kalla@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Jon Hunter <jonathanh@nvidia.com>, 
+ devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
+ linux-tegra@vger.kernel.org
+To: Thierry Reding <thierry.reding@gmail.com>
+In-Reply-To: <20251105160513.2638408-2-thierry.reding@gmail.com>
+References: <20251105160513.2638408-1-thierry.reding@gmail.com>
+ <20251105160513.2638408-2-thierry.reding@gmail.com>
+Message-Id: <176236389129.1455984.6215917313928055462.robh@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: memory: tegra: Document DBB clock for
+ Tegra264
 
-On 2025-11-04 8:50 am, Charan Teja Kalla wrote:
-> The iommu-map property has been defined for the PCIe usecase and has
-> been hardcoded to assume single cell for IOMMU specification, ignoring
-> the #iommu-cells completely. Since the initial definition the iommu-maps
-> property has been reused for other usecases and we can no longer assume
-> that the single IOMMU cell properly describes the necessary IOMMU
-> streams. Expand the iommu-map to take #iommu-cells into account, while
-> keeping the compatibility with the existing DTs, which assume single
-> argument.
-> 
-> Unlike single iommu-cell, it is complex to establish a linear relation
-> between input 'id' and output specifier for multi iommu-cells. To handle
-> such cases, rely on arch-specific drivers called through
-> of_iommu_xlate() from of_iommu layer, aswell it is expected the 'len'
-> passed is always 1. In the of_iommu layer, the below relation is
-> established before calling into vendor specific driver:
-> 
-> a) For platform devices, 'rid' defined in the iommu-map tuple indicates
-> a function, through a bit position, which is compared against passed
-> input 'id' that represents a bitmap of functions represented by the
-> device.
-> 
-> b) For others, 'rid' is compared against the input 'id' as an integer
-> value.
-> 
-> Thus the final representation when #iommu-cells=n is going to be,
-> iommu-map = <rid/functionid IOMMU_phandle cell0 .. celln len>;, where
-> len = 1.
-> 
-> The RFC for this patch set is found at [2].
-> 
-> The other motivation for this patchset is the below usecase.
-> USECASE [1]:
-> ------------
-> Video IP, 32bit, have 2 hardware sub blocks(or can be called as
-> functions) called as pixel and nonpixel blocks, that does decode and
-> encode of the video stream. These logical blocks are configured to
-> generate different stream IDs.
-> 
-> With the classical approach of representing all sids with iommus= end up
-> in using a single translation context limited to the 4GB. There are
-> video usecases which needs larger IOVA space, like higher concurrent
-> video sessions(eg: 32 session and 192MB per session) where 4GB of IOVA
-> is not sufficient.
-> 
-> For this case, each functionality is represented in the firmware(device
-> tree) by the 'rid' field of the iommu-map property and the video driver
-> creates sub platform devices for each of this functionality and call
-> into IOMMU configuration. Each rid(function id) in the dt property
-> indicates the bit that can be associated by the driver passed input id.
-> 
-> Example:
-> iommu {
-> 	#iommu-cells = 2;
-> };
-> 
-> video-codec@foobar {
-> 	compatible = "qcom,video";
-> 	iommus = <&apps_smmu 0x1234 0xca>;
-> 	iommu-map= <0x1 &iommu 0x1940 0x0 0x1>,
->                 <0x1 &iommu 0x1941 0x0 0x1>,
->                 <0x2 &iommu 0x1942 0x0 0x1>,
->                 <0x4 &iommu 0x1943 0x0 0x1>,
->                 <0x4 &iommu 0x1944 0x0 0x1>;
-> };
-> 
-> video-driver:
-> #define PIXEL_FUNC	   (1)
-> #define NON_PIXEL_FUNC	   (2)
-> #define SECURE_FUNC	   (4)
-> 
-> case1: All these functionalities requires individual contexts.
-> Create 3 subdevices for each of this function and call
-> of_dma_configure_id(..,id), id = 0x1, 0x2, 0x4.
-> 
-> Case2: Secure and non-secure functionalities require individual
-> contexts. Create 2 subdevices and call of_dma_configure_id(..,id), id =
-> 0x3(bitmap of pixel and non-pixel), 0x4 (secure).
-> 
-> Credits: to Dmitry for thorough discussions on the RFC patch and major
-> help in getting the consenus on this approach, to Konrad & Bjorn for
-> offline discussions and reviews, to Robin for his inputs on IOMMU front,
-> to Bod, Rob and Krzysztof for all valuable inputs.
-> 
-> [1] https://lore.kernel.org/all/20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com/
-> [2] https://lore.kernel.org/all/20250928171718.436440-1-charan.kalla@oss.qualcomm.com/#r
-> 
-> Charan Teja Kalla (6):
->    of: create a wrapper for of_map_id()
->    of: introduce wrapper function to query the cell count
->    of: parse #<name>-cells property to get the cell count
->    of: detect and handle legacy iommu-map parsing
->    of: add infra to parse iommu-map per IOMMU cell count
->    of: use correct iommu-map parsing logic from of_iommu layer
-> 
->   drivers/iommu/of_iommu.c |  59 +++++++--
->   drivers/of/base.c        | 269 +++++++++++++++++++++++++++++++++++----
->   include/linux/of.h       |  19 +++
->   3 files changed, 314 insertions(+), 33 deletions(-)
 
-Hmm, I did actually have a quick go at this the other week too, and 
-while I though it was a bit clunky, it was still significantly simpler 
-than this seems to be...
+On Wed, 05 Nov 2025 17:05:11 +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> Accesses to external memory are routed through the data backbone (DBB)
+> on Tegra264. A separate clock feeds this path and needs to be enabled
+> whenever an IP block makes an access to external memory. The external
+> memory controller driver is the best place to control this clock since
+> it knows how many devices are actively accessing memory.
+> 
+> Document the presence of this clock on Tegra264 only.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+>  .../memory-controllers/nvidia,tegra186-mc.yaml        | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
 
-FWIW: https://gitlab.arm.com/linux-arm/linux-rm/-/commits/iommu-map - I 
-can give it some polish and testing to post properly if you like.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Thanks,
-Robin.
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.example.dtb: memory-controller@2c00000 (nvidia,tegra186-mc): external-memory-controller@2c60000:clock-names: ['emc'] is too short
+	from schema $id: http://devicetree.org/schemas/memory-controllers/nvidia,tegra186-mc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.example.dtb: memory-controller@2c00000 (nvidia,tegra186-mc): external-memory-controller@2c60000:clocks: [[4294967295, 58]] is too short
+	from schema $id: http://devicetree.org/schemas/memory-controllers/nvidia,tegra186-mc.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251105160513.2638408-2-thierry.reding@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
