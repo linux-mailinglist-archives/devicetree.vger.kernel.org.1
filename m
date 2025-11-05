@@ -1,127 +1,197 @@
-Return-Path: <devicetree+bounces-235111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24C53C34AA0
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 10:04:29 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08CABC34B81
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 10:15:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20D675628FC
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 09:00:41 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 403354F87E9
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 09:12:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C543E2F28FC;
-	Wed,  5 Nov 2025 09:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57BBE2F8BC3;
+	Wed,  5 Nov 2025 09:12:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qQSpMrp5"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="TtlfyECi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m3294.qiye.163.com (mail-m3294.qiye.163.com [220.197.32.94])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C2042F1FF6;
-	Wed,  5 Nov 2025 09:00:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F42E2F7AB4;
+	Wed,  5 Nov 2025 09:12:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.94
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762333217; cv=none; b=l54zp86arSGkjCC7mt+WbaO2FZW9BDGC/5MCmOVgQSIGBonUdf/IPv6WxMg71wvd+UML6DPTBX626oQqxYuc9un37403EvKZ1bIOSOaSfCm5ZSvpPz0i++a5IiLlS3/fT2qjcbt1eFbxkGy2OhZXQvlK00UY/WNehYjZssJa2DQ=
+	t=1762333930; cv=none; b=eAVjKfwvVwaPFWHZ9bETL3rvUfPBCYKhFEgu6uTJ7SohEjhnXrVN8++wcuDyDw5J0HOuTA9wUnsmK791MpHf+BnKp5TlaLaopOkE+WXGVcpTLs35TwAMhGouIQYQ3UW3awiNjpjNFQZc9kaX124VdzHZmScqzenaoC5+9LCEY/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762333217; c=relaxed/simple;
-	bh=mALZctJs/9dp1bCogwM4mpUTnfClhw7K46Gj7Mnbab4=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=sSa7q+Y8oX0YYNZFAJsQAUCwUFfsKjMDQEQgPCwxzX39WIqXlGetQpVIRxsfGiyMav+zxBHzwYv8BGbSFxGHhuziDZLpUKk8fgBGS/vqashRGtNfxDSrjPzClEJ7Rmu8gWEJ/2wOr5fYvrWrXNKnlO2KrzAqnqLxOORqAszB3Vw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qQSpMrp5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C117C116B1;
-	Wed,  5 Nov 2025 09:00:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762333217;
-	bh=mALZctJs/9dp1bCogwM4mpUTnfClhw7K46Gj7Mnbab4=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=qQSpMrp5d8GejVnUMCtTUq+S+CG7Fiy+dV9P8kLzL52NrEgebzlTCImpwXC0FVBK/
-	 HZw6zZhvbi878frUBVJJAxMGpZIxejTFy0G5t7ebsJ7uRGoJ5PqqgRg9hBdvwZwTzY
-	 9UXXwNmxqtCkYuRuqdd1MbHA+RUF/x3ww2zSLO7Kz6yEZQ8LzfPb6Bnn17TWs4mXgJ
-	 y6psk5nuzGdNb2h5b5M7kEo+uUo7LONkzzjfMg4obPCT6fxidMc3CX/KkKnMnjJAWj
-	 axrZg6zaQ7VU3KSl7t2dMYEL61fBRnNz+gAMlwlO1tz0rguRjaL2IbElUAHYwrK/MV
-	 jdzFugz98u//Q==
-Date: Wed, 05 Nov 2025 03:00:15 -0600
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=arc-20240116; t=1762333930; c=relaxed/simple;
+	bh=0i+uoQvcddlDfWvyR5yGQnnkzSaSeW45XPci/cVl/vA=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=j1V7US0DpDcvHqbUvItxNbJguzrth4fQWE3eXxiCIzhBNWzlv0YJ2gDn+/fuNAK1WDqGCSSFSz8g/1y3+xHPE1LsgmJwCKfLGpzE7NsuEQwAzs1VvzWj9wqaPG+NYINw1orJKR5WcmzBVPgCXNbYJk/yBU7limSzPoIjYlUscTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=TtlfyECi; arc=none smtp.client-ip=220.197.32.94
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.129] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 2879b25b7;
+	Wed, 5 Nov 2025 16:56:37 +0800 (GMT+08:00)
+Message-ID: <67b605b0-7046-448a-bc9b-d3ac56333809@rock-chips.com>
+Date: Wed, 5 Nov 2025 16:56:36 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>, linux-pm@vger.kernel.org, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- linux-clk@vger.kernel.org, Matti Vaittinen <mazziesaccount@gmail.com>, 
- Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
- Lee Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
- linux-rtc@vger.kernel.org, linux-gpio@vger.kernel.org, 
- Michael Turquette <mturquette@baylibre.com>, devicetree@vger.kernel.org, 
- Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Pavel Machek <pavel@kernel.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, Mark Brown <broonie@kernel.org>, 
- Andreas Kemnade <andreas@kemnade.info>, linux-kernel@vger.kernel.org, 
- linux-leds@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Matti Vaittinen <matti.vaittinen@linux.dev>
-In-Reply-To: <4c7ea0c83f4bb4af65439a9b8951d50ee705d22c.1762327887.git.mazziesaccount@gmail.com>
-References: <cover.1762327887.git.mazziesaccount@gmail.com>
- <4c7ea0c83f4bb4af65439a9b8951d50ee705d22c.1762327887.git.mazziesaccount@gmail.com>
-Message-Id: <176233321210.143104.455177775703669783.robh@kernel.org>
-Subject: Re: [PATCH v3 05/16] dt-bindings: mfd: ROHM BD72720
+User-Agent: Mozilla Thunderbird
+Cc: shawn.lin@rock-chips.com, Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>,
+ linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Johan Jonker <jbx6244@gmail.com>,
+ linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: align bindings to PCIe spec
+To: Geraldo Nascimento <geraldogabriel@gmail.com>
+References: <4b5ffcccfef2a61838aa563521672a171acb27b2.1762321976.git.geraldogabriel@gmail.com>
+ <ba120577-42da-424d-8102-9d085c1494c8@rock-chips.com>
+ <aQsIXcQzeYop6a0B@geday>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <aQsIXcQzeYop6a0B@geday>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9a533b783109cckunmc8d35d74ceaecc
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQx9ITVYeTElJGBkZTklCTB5WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=TtlfyECiKclZk4FcAtw4aOhBtS/6otJUxxK+rAlXHPyEBcTD1Hd+1B6FhZ5RcW1dRr8TZ7OS/MXNgEhhSBtlHTYmY7dJpqJ/fBNYu1jEWRl5T8x236EefqlPHoh1GsqivMeI8Y4gCRslOhyb2IGJqfYP5GIf3hccAsYL8uh4Yjg=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=CS//WAipPfjSfjlGPO7nyoViLe54hOkmqQ/3rPaesvk=;
+	h=date:mime-version:subject:message-id:from;
+
+在 2025/11/05 星期三 16:18, Geraldo Nascimento 写道:
+> On Wed, Nov 05, 2025 at 02:35:28PM +0800, Shawn Lin wrote:
+>> Hi Geraldo,
+>>
+>> 在 2025/11/05 星期三 13:55, Geraldo Nascimento 写道:
+>>> The PERST# side-band signal is defined by PCIe spec as an open-drain
+>>
+>> I couldn't find any clue that says PERST# is an open-drain signal. Could
+>> you quote it from PCI Express Card Electromechanical Specification?
+>>
+>>> active-low signal that depends on a pull-up resistor to keep the
+>>> signal high when deasserted. Align bindings to the spec.
+>>
+>> This is not true from my POV. An open-drain PCIe side-band  signal
+>> is used for both of EP and RC to achieve some special work-flow, like
+>> CLKREQ# for L1ss, etc. Since both ends could control it. But PERST# is a
+>> fundamental reset signal driven by RC which should be in sure state,
+>> high or low, has nothing to do with open-drain.
+>>
+>>>
+>>> Note that the relevant driver hacks the active-low signal as
+>>> active-high and switches the normal polarity of PERST#
+>>> assertion/deassertion, 1 and 0 in that order, and instead uses
+>>> 0 to signal low (assertion) and 1 to signal deassertion.
+>>>
+>>> Incidentally, this change makes hardware that refused to work
+>>> with the Rockchip-IP PCIe core working for me, which was the
+>>> object of many fool's errands.
+>>>
+>>> Signed-off-by: Geraldo Nascimento <geraldogabriel@gmail.com>
+>>> ---
+>>>    arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi | 8 ++++++--
+>>>    1 file changed, 6 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi b/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi
+>>> index aa70776e898a..8dcb03708145 100644
+>>> --- a/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi
+>>> +++ b/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi
+>>> @@ -383,9 +383,9 @@ &pcie_phy {
+>>>    };
+>>>    
+>>>    &pcie0 {
+>>> -	ep-gpios = <&gpio0 RK_PB4 GPIO_ACTIVE_HIGH>;
+>>> +	ep-gpios = <&gpio0 RK_PB4 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>>
+>> So my biggest guess is we don't need this change at all.
+>> gpio0b4 is used as gpio function, the problem you faced is that it
+>> didn't set gpio0b4 as pull-up, because the defaut state is pull-down.
+>>
+>> Maybe the drive current of this IO is too weak, making it unable to
+>> fully drive high in the pull-down state? If that's the case, can you see
+>> a half-level signal on the oscilloscope?
+>>
+>>>    	num-lanes = <4>;
+>>> -	pinctrl-0 = <&pcie_clkreqnb_cpm>;
+>>> +	pinctrl-0 = <&pcie_clkreqnb_cpm>, <&pcie_perst>;
+>>>    	pinctrl-names = "default";
+>>>    	vpcie0v9-supply = <&vcca_0v9>;	/* VCC_0V9_S0 */
+>>>    	vpcie1v8-supply = <&vcca_1v8>;	/* VCC_1V8_S0 */
+>>> @@ -408,6 +408,10 @@ pcie {
+>>>    		pcie_pwr: pcie-pwr {
+>>>    			rockchip,pins = <4 RK_PD4 RK_FUNC_GPIO &pcfg_pull_up>;
+>>>    		};
+>>> +		pcie_perst: pcie-perst {
+>>> +			rockchip,pins = <0 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>;
+>>> +		};
+>>> +
+>>>    	};
+>>>    
+>>>    	pmic {
+>>
+> 
+> Hi Shawn, glad to hear from you.
+> 
+> Perhaps the following change is better? It resolves the issue
+> without the added complication of open drain. After you questioned
+> if open drain is actually part of the spec, I remembered that
+> GPIO_OPEN_DRAIN is actually (GPIO_SINGLE_ENDED | GPIO_LINE_OPEN_DRAIN)
+> so I decided to test with just GPIO_SINGLE_ENDED and it works.
 
 
-On Wed, 05 Nov 2025 09:37:05 +0200, Matti Vaittinen wrote:
-> From: Matti Vaittinen <mazziesaccount@gmail.com>
+Does that work for you too?
+
+&pcie0 {
+	ep-gpios = <&gpio0 RK_PB4 GPIO_ACTIVE_HIGH>;
+  	num-lanes = <4>;
+-	pinctrl-0 = <&pcie_clkreqnb_cpm>;
++	pinctrl-0 = <&pcie_clkreqnb_cpm>, <&pcie_perst>;
+  	pinctrl-names = "default";
+  	vpcie0v9-supply = <&vcca_0v9>;	/* VCC_0V9_S0 */
+  	vpcie1v8-supply = <&vcca_1v8>;	/* VCC_1V8_S0 */
+@@ -408,6 +408,10 @@ pcie {
+  		pcie_pwr: pcie-pwr {
+  			rockchip,pins = <4 RK_PD4 RK_FUNC_GPIO &pcfg_pull_up>;
+  		};
++		pcie_perst: pcie-perst {
++			rockchip,pins = <0 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>;
++		};
++
+  	};
+
 > 
-> The ROHM BD72720 is a power management IC integrating regulators, GPIOs,
-> charger, LEDs, RTC and a clock gate.
-> 
-> Add dt-binding doc for ROHM BD72720.
-> 
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> Thanks,
+> Geraldo Nascimento
 > 
 > ---
-> Revision history:
->  v2 => v3:
->  - Styling
->  - Document all pin functions
->  - use pattern-properties
->  - re-use existing Rsense binding
->  - correct the example
 > 
->  RFCv1 => v2:
->  - Typofixes
-> ---
->  .../bindings/mfd/rohm,bd72720-pmic.yaml       | 273 ++++++++++++++++++
->  1 file changed, 273 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd72720-pmic.yaml
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi b/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi
+> index aa70776e898a..b3d19dce539f 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi
+> @@ -383,7 +383,7 @@ &pcie_phy {
+>   };
+>   
+>   &pcie0 {
+> -	ep-gpios = <&gpio0 RK_PB4 GPIO_ACTIVE_HIGH>;
+> +	ep-gpios = <&gpio0 RK_PB4 (GPIO_ACTIVE_HIGH | GPIO_SINGLE_ENDED)>;
+>   	num-lanes = <4>;
+>   	pinctrl-0 = <&pcie_clkreqnb_cpm>;
+>   	pinctrl-names = "default";
 > 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/rohm,bd72720-pmic.yaml: Unresolvable reference: /schemas/regulator/rohm,bd77270-regulator.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/rohm,bd72720-pmic.example.dtb: pmic@4b (rohm,bd71828): 'rohm,pin-dvs0', 'rohm,pin-dvs1', 'rohm,pin-exten0', 'rohm,pin-exten1', 'rohm,pin-fault_b' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/mfd/rohm,bd71828-pmic.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/4c7ea0c83f4bb4af65439a9b8951d50ee705d22c.1762327887.git.mazziesaccount@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
