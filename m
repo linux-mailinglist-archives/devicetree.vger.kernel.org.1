@@ -1,125 +1,188 @@
-Return-Path: <devicetree+bounces-235166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A18B7C35112
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 11:18:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A918AC3512A
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 11:18:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D99233ABEB3
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 10:16:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 467E418C8046
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 10:18:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B7BD2FFF89;
-	Wed,  5 Nov 2025 10:16:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mbU0x/kM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 160412FFFBE;
+	Wed,  5 Nov 2025 10:18:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE08B2FF65E
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 10:16:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 423A62FFF8D
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 10:18:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762337785; cv=none; b=ExONo0lj/1iv6XiM5QQCHy7Zv+bpgEx3J98uaTHAtXVAot4mP7yyhaFTUFgsQECqugWYmq3IowDAT7sgTqc04k/nKfumrvxmo1tkLSs3KUEgLBP5l89sVSG8hSTY/g4+jRs3yRY5f5XIQO7z663xwpsy7n9uzRSi2DSixCo2w9M=
+	t=1762337899; cv=none; b=bbytHu8tBdb8KR2td+QETkFiS/i0yTtX7Z1/eGqkPlXNstAuSaWvJGP5YkCcxvKmr5tUjPOZuHp9duMbjtlQMIluPFuaaEksjfPhdBFOomslAlsOQKoEA7P2a3LH0AvBebGYpQpS/oLik7lvuASps7fHxX6iPReHy0isHx1W4Ak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762337785; c=relaxed/simple;
-	bh=o8q8eHDOchVGcfDlePXk+hD6Np8WGRhU4jrr7Ucvbcg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=s4dr4kMzei4yRXY2ruB8EN888eW7NUhiUtKkbJ7BBXyxiFnM1DtcSqgIYQ7Wcb0P59bt+cAOtONEdR3JoU19+5lzVlxlGNwoxkOxpjCDG0Oe6GkJAYC7BcXF7ILt87mMJlM1gyTJ4pQV48vAhUfsPwlnZAb+/5t6f00t0DsXqFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mbU0x/kM; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1762337899; c=relaxed/simple;
+	bh=w4Q3tSFMoR02WDdtF03wIIwXMyl+pJLqWG4iANl0i4A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WALComAt9a02S8gFlC2+Xb6DfhTO4uLzYTnA/Lq9LWKlERejIzdtUVcAUfnJQrbYbRJN6F0ZUxcH3GCITZTjzMseRFgYtRFK22ArWtgaL84eDx6lYIH/5NDMO8kC8fSQ+x4/N9adj/HG62cFHMoKJSwpi/I/UgJQddNX79kPnlo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3f99ac9acc4so5670078f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 02:16:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762337782; x=1762942582; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=o8q8eHDOchVGcfDlePXk+hD6Np8WGRhU4jrr7Ucvbcg=;
-        b=mbU0x/kMB1aySzc0xzuEM5FuSE1snAnaK11Z2damf3P85NbMgCZdPa5UzmFYVRRegG
-         th9L0SAbRWbwMoSbSjn+bSd4+PXZydLiBhklusF5fjFTzMmFUkZ3oVPnx+19zqNo5aMl
-         JX5fbq6k3vaBuS24JBljGn8tGVdrReOMnfTgI26CxMqZTaMo0bXOcugppjMLSrkaijU9
-         G+VW9EaiTMyvEmZOeu+bj11+t1uKDEd2eIJbNdKyrs002m/QeQsxMjb61ID9dgbjH5et
-         PioEQPCP9pN01dzuAdzzyKo/aajNCU4KU5NOz/1P2s/J95hpGqaploBtJWMG5umacdC2
-         LnJw==
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-640bd9039fbso5404210a12.2
+        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 02:18:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762337782; x=1762942582;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=o8q8eHDOchVGcfDlePXk+hD6Np8WGRhU4jrr7Ucvbcg=;
-        b=QAMiItM5vNYjqyNc5qfkqq5XpxzoROKNEDd/W5JczD7oyC8p8uKTt39/F6jdXsB2zO
-         5HM9lGfe9EV2Zv3yGI2XRpWFGme/aaUrhOhYOd7MQL6jGkMkXg4w5MuSh7cBcWism14c
-         6R7uILyf9IjQwBtsQhDqqpHJrxoRUizc/K98182CmvivwMli14tl8EFWGyGvpmjUZY1M
-         5Ya9H5jRRGkG+NfydUFH2HdANNzP/ltNDDiBpiYM7kalYkvFFiRUo99mPoHePcTQNQ0i
-         FKoH/QWRUWtIY+q9gk74w70g4mJfjzVTr/NcC6rtCuJEbGeLaROWrfT0Lf1k7ysOxpLc
-         O6Aw==
-X-Forwarded-Encrypted: i=1; AJvYcCU6pnY9IJNTrQMpob1+ouFCP9B9RxVSmu1RiX1tJuZJw/YnodAPoqbWwsX8E0pZaDcgfQkTQx2/COYi@vger.kernel.org
-X-Gm-Message-State: AOJu0YzG+vCnxNfCLufqH1F/Fin21GraWHnIVwOqilpDliisjZrN3LJZ
-	uQuGD9c3eZltYkajBLQFj3mrVW73D7niDfGIzzFbGiqmI9ONj5E/hR0s
-X-Gm-Gg: ASbGncsict9vgRbbayYkND/gVphodq4SyLmZqr2YtVmKypC4yw25UA+bc7tioxDHhht
-	KzLap+2wVOdeBairdY5J9c43N30GYZZ72hPV+8ZFrgvCnLdFNgaIwc1zkXG7sn29dNH2pngsaJ+
-	qPdFNI6PI67On/96q9z42tZH5148pJSRn3skn3Jj7RBI6ES6qtwulBYiYGInhb8z2Gizu0nKrEe
-	GHXLxYa3EUpPDsD8XPybv6jXhVc9jG+USN+WKqpktPUFWn2nYrig1DqFH4kfgTg+xzeStx98K6P
-	w+YYEETAnQIemAdQLJDlS1IRmmI90wg2dyOEmDNBzyeD+h3vGweUynUZpNb5a3yvUKWgRxB62a6
-	Me3WKhD3rzyaSN+RY7mSI9Iie57pAUIy45CwI5zY21t8epXfJrNhtiYuJriImGmE+S+23Me3a6M
-	4XLcz7xAOy
-X-Google-Smtp-Source: AGHT+IEcYoNlOVReU2YdkRKw+el9w65GlaEGkVjAXyNIxaDkcpqgMt83AXD2Voio5N3cYobsRku+Vw==
-X-Received: by 2002:a05:6000:26c1:b0:426:d81f:483c with SMTP id ffacd0b85a97d-429e33088ddmr2183737f8f.33.1762337781952;
-        Wed, 05 Nov 2025 02:16:21 -0800 (PST)
-Received: from [192.168.1.187] ([161.230.67.253])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429dc1fbd1csm9667564f8f.38.2025.11.05.02.16.21
+        d=1e100.net; s=20230601; t=1762337896; x=1762942696;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=O+nitTwb5WJ+EUmnDTJjRK0YITVPRlucFpEPdRpx4NY=;
+        b=LYBhXi2GTsFkwd2fQFqeKvaBNfjLyml2SLOD+V07fxEBywzMazDriVINtb6oM6sY4o
+         6nB0OmVckBE/Cj/jT1M9faY/vc2flwdETswlkkphdHbtkcH4W6aIIC8mph3aiyixNq+k
+         jqNi5fuHNjlcwtF8roR58WNEg4hr9Eae3OKzTWSXY0DmVmD/fvZ+3Iu+w40YvPv8AdBM
+         pj73GUATM11hKA6o7Qx2Dr9a/1kQYgv1dS+hX9Qsgey1pMHjNsE1rv+qlTQ8PFkOzTIa
+         omfBLeSAsP8ZEnyELxY8P2/Ax3ob5OC9MlzHhtMzr86HXZQg+DJhKpfoAEfeHYyp6/nb
+         aTBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW4yp0lXT+eM/w+95lZbrvCPIo5H9GbVz4wi5j75mguKaBj84yCK/7N3XPJRSXqRPSR7gUpkqES4wPA@vger.kernel.org
+X-Gm-Message-State: AOJu0YybR4qXg9N02kEnl9MGHlk4xP3HBHPP1AFdH3V61cWCejewmckb
+	z0gC/NgXGiXbQjGE6NNcqj/Lf1Ec1J0nzS1hUcUDsAllifDkFk4U9PtN
+X-Gm-Gg: ASbGnctIjwyhFt30Qm0Yz1cQcnkg+OkidhsbA7b3tfzIEP6W3wsxN26C2Ohv6MczKDW
+	gjFZXWJCTWk4RXeC0yDHtOj+Qu5RLivFDqWG+3hEWtUFiliAyYDKSwQyEd7wpoJtFWerzYA8RLD
+	KevIhRNQpr+eenVrRaODrwhhcDYr2e5pLlb6PCpVL8wNdVjFOqxFbqYXqj8BSooa03rlEU6mhTA
+	6Fdk4JO2hrR21KKFjz5h4IqYwoMrfC6hzsG6sg6mVgEECSV2mWMNiPmjSgGMnwUy0wLwmKOUMHY
+	3XDiQiblwb4OlUgBckQICdcwHAQq0i6pOuHWmbHzVWY1KNyQjgRht5PGhW7hPqlrp/MLwytUBuq
+	uzQcXrEwTbb47T4OXGGzt8XHhqz6W76vW5Q4iMKWNZYugvg4LiMb42BIgzN1whB5+y58=
+X-Google-Smtp-Source: AGHT+IGMOyHdTrU7e4XzICZCye2rZuaFGN3pfPJ6kDUtI82R9LpfHeUzLCsG0FSLtDRWmVaLyRXkdA==
+X-Received: by 2002:a05:6402:5351:20b0:63e:6d38:865 with SMTP id 4fb4d7f45d1cf-64105b7a684mr1701971a12.36.1762337895297;
+        Wed, 05 Nov 2025 02:18:15 -0800 (PST)
+Received: from gmail.com ([2a03:2880:30ff:74::])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-640ebbdc7cesm3763441a12.35.2025.11.05.02.18.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Nov 2025 02:16:21 -0800 (PST)
-Message-ID: <039e8f13b876928ca331a5f698aa6c7ca2a5ec5d.camel@gmail.com>
-Subject: Re: [PATCH v4 00/12] iio: dac: ad5446: Refactor and add support for
- AD5542
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>, nuno.sa@analog.com
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Michael Hennerich
-	 <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, David
- Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>,
- Lars-Peter Clausen	 <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>
-Date: Wed, 05 Nov 2025 10:16:57 +0000
-In-Reply-To: <aQpGVYlOcYkSuIRo@smile.fi.intel.com>
-References: <20251104-dev-add-ad5542-v4-0-6fe35458bf8c@analog.com>
-	 <aQpGVYlOcYkSuIRo@smile.fi.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.1 
+        Wed, 05 Nov 2025 02:18:14 -0800 (PST)
+Date: Wed, 5 Nov 2025 02:18:11 -0800
+From: Breno Leitao <leitao@debian.org>
+To: Pratyush Yadav <pratyush@kernel.org>
+Cc: Changyuan Lyu <changyuanl@google.com>, rppt@kernel.org, 
+	akpm@linux-foundation.org, linux-kernel@vger.kernel.org, anthony.yznaga@oracle.com, 
+	arnd@arndb.de, ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de, 
+	catalin.marinas@arm.com, corbet@lwn.net, dave.hansen@linux.intel.com, 
+	devicetree@vger.kernel.org, dwmw2@infradead.org, ebiederm@xmission.com, graf@amazon.com, 
+	hpa@zytor.com, jgowans@amazon.com, kexec@lists.infradead.org, krzk@kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org, linux-mm@kvack.org, luto@kernel.org, 
+	mark.rutland@arm.com, mingo@redhat.com, pasha.tatashin@soleen.com, pbonzini@redhat.com, 
+	peterz@infradead.org, robh@kernel.org, rostedt@goodmis.org, saravanak@google.com, 
+	skinsburskii@linux.microsoft.com, tglx@linutronix.de, thomas.lendacky@amd.com, will@kernel.org, 
+	x86@kernel.org
+Subject: Re: [PATCH v8 01/17] memblock: add MEMBLOCK_RSRV_KERN flag
+Message-ID: <c2nrxby4atq75o5yhwdpoikyso42tzimwn2bnl7fk54wuwdqax@i6kdssez3kfj>
+References: <20250509074635.3187114-1-changyuanl@google.com>
+ <20250509074635.3187114-2-changyuanl@google.com>
+ <ef6wfr72set5wa5el3wbbu4yd5tnc4p2rhtjpb5kpmncv3xs5d@i3c5v3ciioi3>
+ <mafs0wm4yluej.fsf@kernel.org>
+ <mafs0h5w2lpqu.fsf@kernel.org>
+ <2ege2jfbevtunhxsnutbzde7cqwgu5qbj4bbuw2umw7ke7ogcn@5wtskk4exzsi>
+ <mafs0cy6pljci.fsf@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <mafs0cy6pljci.fsf@kernel.org>
 
-On Tue, 2025-11-04 at 20:30 +0200, Andy Shevchenko wrote:
-> On Tue, Nov 04, 2025 at 03:35:05PM +0000, Nuno S=C3=A1 via B4 Relay wrote=
-:
-> > Alright, what was suposed to be a simple one liner patch ended up being
-> > a full refactor (modernization) of the whole thing :). I think the
-> > changes are anyways fairly simple so hopefully nothing was broken.
-> >=20
-> > I'm also aware of the checkpatch failure in Patch 7 ("iio: dac: ad5446:
-> > Separate I2C/SPI into different drivers") but I'm really not seeing the
-> > added value of adding the kconfig help text to the core symbol.=20
->=20
-> I don't see any major issue with the series, just a bunch of minor nit-pi=
-cks.
-> FWIW,
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
->=20
+Hello Pratyush,
 
-Thanks!
+On Tue, Oct 14, 2025 at 03:10:37PM +0200, Pratyush Yadav wrote:
+> On Tue, Oct 14 2025, Breno Leitao wrote:
+> > On Mon, Oct 13, 2025 at 06:40:09PM +0200, Pratyush Yadav wrote:
+> >> On Mon, Oct 13 2025, Pratyush Yadav wrote:
+> >> >
+> >> > I suppose this would be useful. I think enabling memblock debug prints
+> >> > would also be helpful (using the "memblock=debug" commandline parameter)
+> >> > if it doesn't impact your production environment too much.
+> >> 
+> >> Actually, I think "memblock=debug" is going to be the more useful thing
+> >> since it would also show what function allocated the overlapping range
+> >> and the flags it was allocated with.
+> >> 
+> >> On my qemu VM with KVM, this results in around 70 prints from memblock.
+> >> So it adds a bit of extra prints but nothing that should be too
+> >> disrupting I think. Plus, only at boot so the worst thing you get is
+> >> slightly slower boot times.
+> >
+> > Unfortunately this issue is happening on production systems, and I don't
+> > have an easy way to reproduce it _yet_.
+> >
+> > At the same time, "memblock=debug" has two problems:
+> >
+> >  1) It slows the boot time as you suggested. Boot time at large
+> >     environments is SUPER critical and time sensitive. It is a bit
+> >     weird, but it is common for machines in production to kexec
+> >     _thousands_ of times, and kexecing is considered downtime.
+> 
+> I don't know if it would make a real enough difference on boot times,
+> only that it should theoretically affect it, mainly if you are using
+> serial for dmesg logs. Anyway, that's your production environment so you
+> know best.
+> 
+> >
+> >     This would be useful if I find some hosts getting this issue, and
+> >     then I can easily enable the extra information to collect what
+> >     I need, but, this didn't pan out because the hosts I got
+> >     `memblock=debug` didn't collaborate.
+> >
+> >  2) "memblock=debug" is verbose for all cases, which also not necessary
+> >     the desired behaviour. I am more interested in only being verbose
+> >     when there is a known problem.
 
-If I do need to re-spin, I might get some (or all) of the nit-picks include=
-d.
+I am still interested in this problem, and I finally found a host that
+constantly reproduce the issue and I was able to get `memblock=debug`
+cmdline. I am running 6.18-rc4 with some debug options enabled.
 
-- Nuno S=C3=A1
+	DMA-API: exceeded 7 overlapping mappings of cacheline 0x0000000006d6e400
+	WARNING: CPU: 58 PID: 828 at kernel/dma/debug.c:463 add_dma_entry+0x2e4/0x330
+	pc : add_dma_entry+0x2e4/0x330
+	lr : add_dma_entry+0x2e4/0x330
+	sp : ffff8000b036f7f0
+	x29: ffff8000b036f800 x28: 0000000000000001 x27: 0000000000000008
+	x26: ffff8000835f7fb8 x25: ffff8000835f7000 x24: ffff8000835f7ee0
+	x23: 0000000000000000 x22: 0000000006d6e400 x21: 0000000000000000
+	x20: 0000000006d6e400 x19: ffff0003f70c1100 x18: 00000000ffffffff
+	x17: ffff80008019a2d8 x16: ffff80008019a08c x15: 0000000000000000
+	x14: 0000000000000000 x13: 0000000000000820 x12: ffff00011faeaf00
+	x11: 0000000000000000 x10: ffff8000834633d8 x9 : ffff8000801979d4
+	x8 : 00000000fffeffff x7 : ffff8000834633d8 x6 : 0000000000000000
+	x5 : 00000000000bfff4 x4 : 0000000000000000 x3 : ffff0001075eb7c0
+	x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff0001075eb7c0
+	Call trace:
+	add_dma_entry+0x2e4/0x330 (P)
+	debug_dma_map_phys+0xc4/0xf0
+	dma_map_phys (/home/leit/Devel/upstream/./include/linux/dma-direct.h:138 /home/leit/Devel/upstream/kernel/dma/direct.h:102 /home/leit/Devel/upstream/kernel/dma/mapping.c:169)
+	dma_map_page_attrs (/home/leit/Devel/upstream/kernel/dma/mapping.c:387)
+	blk_dma_map_direct.isra.0 (/home/leit/Devel/upstream/block/blk-mq-dma.c:102)
+	blk_dma_map_iter_start (/home/leit/Devel/upstream/block/blk-mq-dma.c:123 /home/leit/Devel/upstream/block/blk-mq-dma.c:196)
+	blk_rq_dma_map_iter_start (/home/leit/Devel/upstream/block/blk-mq-dma.c:228)
+	nvme_prep_rq+0xb8/0x9b8
+	nvme_queue_rq+0x44/0x1b0
+	blk_mq_dispatch_rq_list (/home/leit/Devel/upstream/block/blk-mq.c:2129)
+	__blk_mq_sched_dispatch_requests (/home/leit/Devel/upstream/block/blk-mq-sched.c:314)
+	blk_mq_sched_dispatch_requests (/home/leit/Devel/upstream/block/blk-mq-sched.c:329)
+	blk_mq_run_work_fn (/home/leit/Devel/upstream/block/blk-mq.c:219 /home/leit/Devel/upstream/block/blk-mq.c:231)
+	process_one_work (/home/leit/Devel/upstream/kernel/workqueue.c:991 /home/leit/Devel/upstream/kernel/workqueue.c:3213)
+	worker_thread (/home/leit/Devel/upstream/./include/linux/list.h:163 /home/leit/Devel/upstream/./include/linux/list.h:191 /home/leit/Devel/upstream/./include/linux/list.h:319 /home/leit/Devel/upstream/kernel/workqueue.c:1153 /home/leit/Devel/upstream/kernel/workqueue.c:1205 /home/leit/Devel/upstream/kernel/workqueue.c:3426)
+	kthread (/home/leit/Devel/upstream/kernel/kthread.c:386 /home/leit/Devel/upstream/kernel/kthread.c:457)
+	ret_from_fork (/home/leit/Devel/upstream/entry.S:861)
+
+
+Looking at memblock debug logs, I haven't seen anything related to
+0x0000000006d6e400.
+
+I got the output of `dmesg | grep memblock` in, in case you are curious:
+
+	https://github.com/leitao/debug/blob/main/pastebin/memblock/dmesg_grep_memblock.txt
+
+Thanks
+--breno
 
