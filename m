@@ -1,148 +1,240 @@
-Return-Path: <devicetree+bounces-235037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 247EAC3405D
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 06:56:15 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3A1FC34047
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 06:55:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FBEC423F02
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 05:55:57 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D6D0D4E1FAC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 05:55:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4144274B42;
-	Wed,  5 Nov 2025 05:55:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C05C0286D55;
+	Wed,  5 Nov 2025 05:54:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S4gylcHA"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="VAm5NSzO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010006.outbound.protection.outlook.com [52.101.84.6])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A39E327FB0E
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 05:55:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762322128; cv=none; b=mkDNJeBylKviYV336Cysti516oLXWtxEdfd/Htl8MIWoUBVytThShwby0zjxR8sjXRgwhGPP9VdFpgVWDvKT6+DL30NRcNTVyb2lNNSXvsGzOdX+fbaCKXRqRViWEI2ReBLjraGEpD6uq8dKsc+fZMM/hhOAZV33ZeXPg2iG90g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762322128; c=relaxed/simple;
-	bh=e6KW0tVVBZqqo+yCeocl+kVIywhldeYMYDweLh5i3ag=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=AqEsexscZyIr09ggvZbqQ8kECi7EXr8NB7u35a0a3x4Jo8ejoz/iCHcMcfh5pLHBYkaY8duPnnGDz+B7aNQBgNit/lXsJOA5PB91rutv9QAYkfpT96dWyMvTqlzPc4Cr8F8lfJOGyVc7UtaOS4ZfrM0fJrmnXmOV9m1U3iSXuVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S4gylcHA; arc=none smtp.client-ip=209.85.210.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-7c6cc366884so328871a34.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 21:55:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762322124; x=1762926924; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Fwi0DrEUoNTIOaZJZRTu2PMBRWvJKCPWH2oh77N1gps=;
-        b=S4gylcHA/mBnaGO9HJN4RM31KWMQG58fQgvZtWX1t15DREJc0kWIAsuobkKk4ppsn7
-         Lkm5s3tgWeYILeakLYup/6pFrQg7g92YuvOxI4CjIeJ7sRtgA9vyjzOL+95VQfzjnbhf
-         4hrKH4ZZNh++CR9I3XLKTYbQGIgnMB4optKopJdlBfdVNC5zyB53ErcPA0eKB2ZalkKh
-         jKpwe0JPfBqdpVlf+vPkRxjGcs3G0Fh1ndppHzN6KzgNN78gE6xTjc4P/tJ7Iv6DPOFH
-         zQe/vfgfEqFQYbLLz37hZowLS0LxF0XzzvjkTty4ak7GmGRRzGs36mpBzSdJYlhoNg9H
-         w8yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762322124; x=1762926924;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Fwi0DrEUoNTIOaZJZRTu2PMBRWvJKCPWH2oh77N1gps=;
-        b=oMG/zpVNrGVrxmSQKmFNNdUPU8855H5qS6lXqo4PCZidVAXAQINPXvd7UQVOe4kyrV
-         72vvY+LO3gOkhPn/iOwAlYyLYGhsz/2g3DItqrvfkUcD867ZJC55Wrh/UyRJazRlmW+E
-         O8tXl5MC9vRIAdmOO2M8CS1bsXvKF6nOy5tAGBgI9tqZjLuWNGc8Lzpa9AT/ayILXgdf
-         RBLoiFhb2uGEWUT/lm0eh69DtUmieQw+bOiYejkU2gUS5mbLOMlK5TObZyyqdczPsg3V
-         wZCtkH5svL4MX09XIcH03iD4WgHRjrs2r2CcEt6nnxL2S7OJdHSu4tlAlKA+5Xx5aW6L
-         okpA==
-X-Forwarded-Encrypted: i=1; AJvYcCVUGdZnqS+/aZyvvg8UdhGcA+Y/TfmhN7ajtHg1H0F66gkll/PRBaRdn8Oc99jjr5i1nGructcDgajn@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmqbUBUDQfvmg+moKaEzMBNyEOlV4z7uzcEn6gD3OO1VqEpQCW
-	N5mM1fWNdlNj/3f3DNnh1/sf0rHq5nlL+3l0rAfTVHT7HkRozbjS8e4b
-X-Gm-Gg: ASbGncssNhW3skT0bF71fcZ4Ikzi2OSqC8AaiY7mzxJBB3OxJuvX6NmebsWhVzS5WDU
-	hd07lC/NTuW8CpAOjGNJLDa0Y+jjkWVdI7z1P9ZsH+PErj/FNNp8lLM0Mlf5fjR+mU6TOCIyWfA
-	TAD5i/hitivx4ZC9A4uJcAjXCQoNPsRCtbdh8L/cvLg95gkikF9kDTdjEcCLegj/CRplbIZjh0A
-	FH0vK4W0r8yKF0chTkQQPfzI1CcQBe2YFsJVlM+fzowqkIrHyePlEoV0l7DuFVDztVQFqTZjoFR
-	ENrlde1M1hhXn7+Ju4fk1TTuZEZ7tyGv/BNohkOmbVHURQCpShOqgY2SvES4XLfrsfT8hmgRyC0
-	/UfT7lUvCKF9AuBSiFuajxwC3Wb/kxsDOMWg6AVg3xomDzUvtOmc15PHeg8b1SFo=
-X-Google-Smtp-Source: AGHT+IFEVR0qbygzze5iBfiTi1hOIxTOUWBa+aFthKdgTb9tcWOqhz0feyJ/iBoBrEyZdPQs0msfOg==
-X-Received: by 2002:a05:6830:63cb:b0:79e:69fa:6bcb with SMTP id 46e09a7af769-7c6d140f2e0mr1585902a34.13.1762322124566;
-        Tue, 04 Nov 2025 21:55:24 -0800 (PST)
-Received: from geday ([2804:7f2:800b:2cb7::dead:c001])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c6c2448c76sm1714476a34.2.2025.11.04.21.55.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Nov 2025 21:55:23 -0800 (PST)
-Date: Wed, 5 Nov 2025 02:55:10 -0300
-From: Geraldo Nascimento <geraldogabriel@gmail.com>
-To: linux-rockchip@lists.infradead.org
-Cc: Shawn Lin <shawn.lin@rock-chips.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Johan Jonker <jbx6244@gmail.com>,
-	Geraldo Nascimento <geraldogabriel@gmail.com>
-Subject: [PATCH] arm64: dts: rockchip: align bindings to PCIe spec
-Message-ID: <4b5ffcccfef2a61838aa563521672a171acb27b2.1762321976.git.geraldogabriel@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A00F5286881;
+	Wed,  5 Nov 2025 05:54:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.6
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762322099; cv=fail; b=ohaBt5ARA4982M7PVlIjHbggDvygSil0DLfciNAgX0hs7RUikfZMb8u5MsLLkXDc2a3Op60lt7Vchzyj4f7YR0ZPR0OF+2O/1t5HzgnI/hj/nW4FxYpQ0A4LliIseWsKA/Ea59MAWwYmZDAqkxWpJ2JSS9LkrMA4TrZE77+1l4A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762322099; c=relaxed/simple;
+	bh=YqgQGGQ3WFhyrOrhM4MoAM75fyTvcH7JjT1DmQs4voM=;
+	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
+	 To:Cc:MIME-Version; b=CG5mPtWMmJT3XlSw8qHGA/HPiGUlLu1CHH/6+gWPay0v88MLTxiL2bLg/t/hca7IU3YSEEy62RdhNxupBjFsWGKF96qpe/T2OOHBJC4gsKz2/h6rGu4BxOFLAEFiGRiJHC/WFDQm0bQk2sJJ3wLqt2qGiBpXYWcGTCgB9g/8Ca4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=VAm5NSzO; arc=fail smtp.client-ip=52.101.84.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GVNk982Cmgp5MoWMIv/PymVU7yJvQj36if4zgBhoX8j4XwYpJmNXb7yarBkxP8U9AsGVHffd9gwlRU4SjtudXIt1nHuQKvXI+G8oXi+arbm55fINnmBHBroh+fYm3pWDef7PZmJaGK7hqITh4X3HLAO+z7fgIXTpr4WC0BZZwbtRyzN6diu6a8R7ZN6RzV90fydWx2eVE23x9juzyg81EqIcrGsJDYiE1f9yCRp6NBULhn+LMxAQHzPm0x1nuvU+b7IylK6CXJ/bWxU3ujAsBwBAngGPjn5VAjcueGxgUDWnppsw4mih3Thq8AW5mL5K6PzQnTyHZZbf+tHSNDr9Rw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GoztExghkHCqGkPqcooLTMr1ggnDhPrl3Hb86U+80HI=;
+ b=g/p6xKUhmKQshi1Vmt28ek53xUNqZYH10dRxTfpzlnfnDLkGIYrWtb8pLZwDgg/sCmkPF8LfJ4MqnF9NsQE55lA4EtTV2SkV00negbrSKn168L+xFrkiQRdC/9kWK6ZgSagcd6grcSrWrecVPrGRM59bOFbcz4gn9owxylsBGEhrEVuq/E0MnGdVINKxJlAZmk658YNGecHChKQU9X8Vlsd/6tsGQ4uqKYChqc3U4Q2Tex3gix1cSRSSvICLbHVqtEmTcHSetwDymsxMl0ULuuL/fIosTsWWVmqsAk3rYpZXeta+dKU/M0/TZXvaHb3+Q69R1rhHbmejcSVE3d+Uug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GoztExghkHCqGkPqcooLTMr1ggnDhPrl3Hb86U+80HI=;
+ b=VAm5NSzOPklR6x489JLho5mEE/QN6aCF7YaqsZXLpssZmBn0bfxzh0X93698QH5vblcxA2+Mqrqt8Gy6N3OoTmYVQp6Jf7x2uoyYG9xQVzrEhd5Gb4A8rSH4sRL65M8zkJxFgFuGB15cYBOENc7hjGhfVTGmzqUNv0bBdcxdFnIY6Odft+KwfvF9GVLm4F21ac43oxi6fw1og9CkLj9u+pK+tBJOJ9JMLjWdU5ZsNMA1EghiwZBd8p1wldYcXXre3kElfrSjT9av9pecppJIhfs8daqwVxynL7l1pPdnXdjxfvQQ9jgcwBovWECH7WqNZH1jf8upiDxvi7egbdu+Qg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AS8PR04MB9080.eurprd04.prod.outlook.com (2603:10a6:20b:447::16)
+ by AM8PR04MB8002.eurprd04.prod.outlook.com (2603:10a6:20b:247::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.8; Wed, 5 Nov
+ 2025 05:54:53 +0000
+Received: from AS8PR04MB9080.eurprd04.prod.outlook.com
+ ([fe80::92c2:2e03:bf99:68eb]) by AS8PR04MB9080.eurprd04.prod.outlook.com
+ ([fe80::92c2:2e03:bf99:68eb%6]) with mapi id 15.20.9275.015; Wed, 5 Nov 2025
+ 05:54:53 +0000
+From: Guoniu Zhou <guoniu.zhou@oss.nxp.com>
+Date: Wed, 05 Nov 2025 13:55:11 +0800
+Subject: [PATCH v3 2/3] media: nxp: imx8-isi: Keep the default value for
+ BLANK_PXL field
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251105-isi_imx95-v3-2-3987533cca1c@nxp.com>
+References: <20251105-isi_imx95-v3-0-3987533cca1c@nxp.com>
+In-Reply-To: <20251105-isi_imx95-v3-0-3987533cca1c@nxp.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Guoniu Zhou <guoniu.zhou@nxp.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1762322131; l=1885;
+ i=guoniu.zhou@nxp.com; s=20250815; h=from:subject:message-id;
+ bh=UI24isGZ2rZx/LL+s59Zl48MTTdH4ur1WhcJ2jDXedo=;
+ b=zq8IljmwjLCHBrtGCawQMRXkoHPaRxJoNz6sMT4Ert6o+eL50xOrbeFUl+rFPmxV3BzgL9Mdv
+ FM24Ttt6Ol7CTE7U7DnHk745nKXw/bYVfEejhpawZIRJ+oPXxm8jwnM
+X-Developer-Key: i=guoniu.zhou@nxp.com; a=ed25519;
+ pk=MM+/XICg5S78/gs+f9wtGP6yIvkyjTdZwfaxXeu5rlo=
+X-ClientProxiedBy: SI2PR01CA0019.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:192::12) To AS8PR04MB9080.eurprd04.prod.outlook.com
+ (2603:10a6:20b:447::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB9080:EE_|AM8PR04MB8002:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9fbe5b42-5816-4ab5-17c4-08de1c2fd768
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|19092799006|1800799024|376014|366016|7416014|52116014|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+ =?utf-8?B?QnNQb0tsTWkwUk1LNlZQakUvWU5rZjU4cklGTlNGT0dXN0Rwckl6T1ZwRHFa?=
+ =?utf-8?B?ZzRuc0ZKUXhCY1hta3BnSVhoNWpVOU9EejhDb3ZHbEVIcDliTnFDdGhkc3pu?=
+ =?utf-8?B?eFBvVXBlRExXTExqK3YvWks2UUV2TUZNYVNPZVlhQ1k1ZmZaa0k1ZEx5YndN?=
+ =?utf-8?B?K25uRlI5bGtXUytDd05udnAvSW8yc3pDZlhwcWQyYUJqd3ZIVjZDOStBUE15?=
+ =?utf-8?B?TkJOc05zRWwyUCswaGRVL2FVS1FDM3AwMU0vVFFablJyb0xScWFiVlpSVUp0?=
+ =?utf-8?B?Y29PM2V0N2FRdHJmZEZMV28ydmhEeC9nTkk0bkZwQTBzVXNuREhkbGNnNmFK?=
+ =?utf-8?B?QUF3OG5mNE10bGlqaHB6VTc4Ync4YVNIZWRjcDVaWlRRMTZNUy9JWnFDU0ZP?=
+ =?utf-8?B?OGY3bTBBc3dPd2l6T3A1bE5KTXBlWTBhUzFzcjQ1VkNVc2t4UjNSelRaYW40?=
+ =?utf-8?B?bFd1bjlUUTh5S1h6QVM2YmlkSjhWZWZVSzFlT0xiNE43UWszSi9scW5ENjhx?=
+ =?utf-8?B?SmxQZ3JvWDF4ZkRDR0l3V01pQTNZYWpneWRPOFlXb09sQ0hYYkVyNzM0N0oz?=
+ =?utf-8?B?QWxqU25qR05qQXJ6Q0VmcUVGaDdoRGpUZDVHTzEreUlDWFh6TjB3TWZ1NWhv?=
+ =?utf-8?B?WDhVUlFrMVR6UmxJZm5RWm92dDhhdXBrS3FISDhzYnhtVHAwYTdwZmJ2NFdw?=
+ =?utf-8?B?aWtDSnR6N2FHRTRkMXZTb1gycjRrUXZOYWlPUmNHR2ZZbUdva2p2QjhQUGRa?=
+ =?utf-8?B?QXh0VXFsajcvQU13U1JEZnJ2TFFZRWlEUmw0QkxKQkJLOGJaYkpiRENOT0FS?=
+ =?utf-8?B?K25OQWdFWm5lblpqUFIwVGFjU21nRVhTbXQzQTFNVHRDVWIrc2ZYWlVxK2ov?=
+ =?utf-8?B?V2tHTFJkd29KdldCODBSRnVDaDVmMjdOemJBMEF5ZHhnektYRFNOMU9MWUFS?=
+ =?utf-8?B?WnlyOHgxcDBEd2JSRm9hazBQb1JGM3g1TTQ1VCt4V0pBRzVmY1MxQXhlb09O?=
+ =?utf-8?B?eW9wMzYwUXBFNXBvN0JmSFlOdUlON2tnTEdkSGhoL1YvaVpOaGRFMVlTaDY5?=
+ =?utf-8?B?M21CN2FJNmlsaUtOSDV4MVlCUTZ4ekZWL3Npc1F1bG5TbnFLR0VTMFBtamIx?=
+ =?utf-8?B?bWRSclZGK1NiaEQwYVE0alRaUFZhSmFvQy9YbE9XN2NxenJhVjFTWm10U1BQ?=
+ =?utf-8?B?QmhabkxjRk9KanE0b0pQMkl1Y2g4b1c3bnNjM1g5cHZGbnBpUjZ3R0d5RDBL?=
+ =?utf-8?B?elgrOUxZMmxGQWNyS1E5ZWJFUkZ3M2ZtdEpKcTNoditOdDhPSDduNFZteC9h?=
+ =?utf-8?B?d2xtTm14cXBvZEdMWXIra21hd0EvMElIbm9QNklHaTdNSHdMYUpiZlBDRkta?=
+ =?utf-8?B?ZEVBNzdlM1Q4R25NcTdNZ2VjSm5vSTJxdjNTd0hJUFdLY003SWJaYVUyZms0?=
+ =?utf-8?B?NFhhSlhrS085SzFaUUFDYks2U2NaWWZndGRyWFhveFFUczNlWDE0S0hFRU5K?=
+ =?utf-8?B?Q2JjejVVR3FDc2hwUGxDdXp5R1cwcGF3ZDRPbTlNZU9PcXc4bWRjek1PRDEw?=
+ =?utf-8?B?cjRBdXBlSjRYaXZSU3ZCOG5UeUhBa2xvVjUxTStiSHNEenVTaE10WTRYZDdZ?=
+ =?utf-8?B?eW5JVG1ObWhUVVJ6OGsxZXlHVnFhZUYzTkhKMmdoWkRCU3lUcnV2RTg5ZjZE?=
+ =?utf-8?B?Z2sya2xSZWNRbjJGQlZHWWg1TmU0ajNVRWhZUnlOUStlNlpueldiV3A4T0U4?=
+ =?utf-8?B?K2dSRHdHVGhNTWVsNlBXaEFhV3RXWEhhY0JKbFFhdisyOXJHcjAyMmtGcE45?=
+ =?utf-8?B?TFhuc0RZNHRCVnhESXVtbWNqRGxHbGI0cU1IVFlaZVhVWFE5SlBLNm1HRUo0?=
+ =?utf-8?B?S1h2Y1FLL2E0YVAyRjZHd2dDdFBLdXBlV2lJWkxEK2gyaHVVM3ZteGxCTDB6?=
+ =?utf-8?B?eVVrUHR6VHFKTThOdGVGbU1CR3VkV05uQStUMG85RWIreHVuK29pNHlCUUJD?=
+ =?utf-8?B?LzRCdUt1Z2tlK2pJNm5xbUlkV1gxN0ttZFFtZmdOV2hieHJWQUdyNG5vdC9r?=
+ =?utf-8?B?bEMvenJUNkkxQVFrTmVxTW1jVWUzdEJYTFF1QT09?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB9080.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(376014)(366016)(7416014)(52116014)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?utf-8?B?UVNjaUY1MUtHZVYra20xOU1oMG9kQVh0Mkc3d2xFWDBMUjR4RjRrdmF2QVpS?=
+ =?utf-8?B?Qm9HVFhvMlJHUGVrK3MyU04xM3ZGaUxnR3Y2TitBak1DNXdnVW9LdFRHZ21E?=
+ =?utf-8?B?Z3lFOG1IRXZJd1REbm5oODJtSUU3UTMvMFZrd1pxc3hDdnBsOENLUndxVkJU?=
+ =?utf-8?B?b1FyZm9aZnYwNGRGZ200NzFnVnJLRkRvTDBoU3RDNllIczBJT1dsV2t3clJj?=
+ =?utf-8?B?SG9WRkhDVWg3SThwZXpoV2NtSHA3VkR1Qkg4NHg5bDkyeUJDbjBOUkxYYW95?=
+ =?utf-8?B?VUFIL2FtaXBqNiszRXFMSnpuWGw4YUN1TENIa2R6a2R2RlBvK3JTb1hrRlF6?=
+ =?utf-8?B?dkxaaDVHMDJEcG5OQzZpbHFUTnIxakxoeGRJdURjYllwWTI4U2tnS0pKa2sr?=
+ =?utf-8?B?WnVoalBGN014Qk42M3ZwK2JwNGExcmNtekFRNVg3TlA1U21mbUJxTHcvWFNw?=
+ =?utf-8?B?enhBYlp2ay9HcThSSnc5OVNublpUaGFTZmU1cjRZVUhSaUQwdk1LS0IyS203?=
+ =?utf-8?B?OXpTL1RFUEU5Nkp4bi96SzUyV2Z6TlFxRjVZOHB1ZUtZeHA4QUFBZUVYaFFU?=
+ =?utf-8?B?ZDIvMitZOFFLVDdTbUhFQnI3S0dZSVhrZVFwMmRVV3ZVLzZBMnh1ZnVYMEl4?=
+ =?utf-8?B?UmtMOHRDN2cvVkp4K0JjcDdRSXZ2Q3RRY1VNZFI1ZjdZQVliVC8zY2grRFha?=
+ =?utf-8?B?S0Q1Z2U5MXVyWkhQb1cwZjJUVS8xK1ovYTRxWi9jQzQrd2FKaU9kVFMxYnVZ?=
+ =?utf-8?B?Y2tCS0JLWGRMZ2RyQ3VBMjc0UFZ4MXkrclppTWhUaVo3OWdhTGpJRGgraFVu?=
+ =?utf-8?B?UjdZZkZmUkViZXhJU0NUdEJsNThRTURiaDlFMnR1aTVqeDA1MGpPcFNGakVC?=
+ =?utf-8?B?c21iMnlqZDFwZWpFOHRpQjBzbWRhNVQ3eWgvaDRWQW5kUzBMVHZVcEhUNEJT?=
+ =?utf-8?B?VHNjbGZSTEJhbHUwTTEyUFAyWDJjN3IrTmdmWnNPL3FaVTljTkptYmdIQjZT?=
+ =?utf-8?B?VGFRV2NCa09UeGE1OUwxNmUxQytlNkVYcUg2UDVPamN6dUFEUDlvK1QrYlV1?=
+ =?utf-8?B?N0s5Qm5kK2dieWptSCtyUTFQTlNjYnhyc2xZdjlVOTMzYTl1S3BzRCtsWTk5?=
+ =?utf-8?B?MDVWQWxmZmpwVTA2VndlKy9jOFg2dU8rdk9XWGN4SE43THduTW5xVUV3NFRE?=
+ =?utf-8?B?R2l1U0Y4VmkrR1VMN3NUWVFkYUdzRVdEQTZNMmVxMGZzalhOOEdPREk4bXF6?=
+ =?utf-8?B?VTlldjd6U2FYb2orUUlFUTBoaWhLZEpwVEd6WHo4cHZtendoNXFrVitPRDhj?=
+ =?utf-8?B?MzFWMUpZZmliMXNDTFZDSFhibytQZm1KUXpVSVlteWtPVWRWc3dFQUNObTJX?=
+ =?utf-8?B?azlGbkwremJMYit5NDBxOHpDZ1dUV1ljTlRKRDg3SGpRQnRUV2RmRUkyWE1U?=
+ =?utf-8?B?TWtsaFRDTDk4OGNGc285MW5kMGpIei9WcUEzSTM3a1hzekZTR0cyeHloU09D?=
+ =?utf-8?B?UTZUbzhnWkVmbWtkQ0hUS1BWY1NaMGhPdG9YQVJISjRleUV0RDY0Zzk0RnFu?=
+ =?utf-8?B?dXluU0RJT1FrR1lxaUk5enhkVlg2dU8xZkJqcktmaHJ0aXc5Uys1K3p2bWNS?=
+ =?utf-8?B?b0tScFRtWHpQNGp4TUxZb0JCWkgrZHFPMHBMWmM4bG1iWGRmZUxsQ1BIUmRC?=
+ =?utf-8?B?MkJ4TjM1Wk9DejJleVBnUTF1NW82OGgwZVUwWGpKZkNyM0xGUHlmMnowZkRk?=
+ =?utf-8?B?dDRNM0sxQnYzZ2NSWndGclJlQXA0MnFKSGhleER0amlMU1E4K2NEZVNqMkFh?=
+ =?utf-8?B?YURZWHFVbTBRb3NHWlA5VXllMk5XTG9CRC8zRHprVzIzN2JYNkhUcUJyQmll?=
+ =?utf-8?B?d3ozd1hWV1NhZXdDeEZRVWFhYTM4TG9JL2U3V29kb3BMWXJ3aUYzeU1tajU1?=
+ =?utf-8?B?K0IvWXNDME9PM0FDVmN1Z1ljQWQ1UWxGTWVpQkNwdlBwcERKMm9haVNzUG1E?=
+ =?utf-8?B?RFo3Zm1RalBDTmZxUzFCTVVZSXBvMXFuSUFtNGpMOTMwckI4UENSZy8reVgv?=
+ =?utf-8?B?ZWtjbWpadFlxUEF6a085L0NCTWNSTDc4Q3NNbUxFWW8yYlRnNlhkaDdwdXBt?=
+ =?utf-8?Q?u3ZLqcsb/qF5L6Zuss2Cp8D9k?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9fbe5b42-5816-4ab5-17c4-08de1c2fd768
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB9080.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Nov 2025 05:54:53.7517
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eERuATfQHPii/ZLlLHtsD8VGizGNadD23P8h1HGwR27Q68Eht+9dBlTCXDfPb7bu50J4U/8uPcr8l9cb4fX0Xw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB8002
 
-The PERST# side-band signal is defined by PCIe spec as an open-drain
-active-low signal that depends on a pull-up resistor to keep the
-signal high when deasserted. Align bindings to the spec.
+From: Guoniu Zhou <guoniu.zhou@nxp.com>
 
-Note that the relevant driver hacks the active-low signal as
-active-high and switches the normal polarity of PERST#
-assertion/deassertion, 1 and 0 in that order, and instead uses
-0 to signal low (assertion) and 1 to signal deassertion.
+The field BLANK_PXL provides the value of the blank pixel to be inserted
+in the image in case an overflow error occurs in the output buffers of
+the channel. Its default value is 0xff, so no need to set again.
 
-Incidentally, this change makes hardware that refused to work
-with the Rockchip-IP PCIe core working for me, which was the
-object of many fool's errands.
+Besides, the field only exist in i.MX8QM/XP ISI version. Other versions
+like i.MX 8M series, remove the field since it won't send data to AXI bus
+when overflow error occurs and mark BLANK_PXL as reserved. i.MX9 series
+use it for other purposes.
 
-Signed-off-by: Geraldo Nascimento <geraldogabriel@gmail.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ drivers/media/platform/nxp/imx8-isi/imx8-isi-hw.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi b/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi
-index aa70776e898a..8dcb03708145 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi
-@@ -383,9 +383,9 @@ &pcie_phy {
- };
+diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-hw.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-hw.c
+index 9225a7ac1c3ee7e42e64983982eb4b6c27e356fe..0187d4ab97e8e28fca9013f6864a094e08f2c570 100644
+--- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-hw.c
++++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-hw.c
+@@ -309,8 +309,8 @@ static void mxc_isi_channel_set_control(struct mxc_isi_pipe *pipe,
  
- &pcie0 {
--	ep-gpios = <&gpio0 RK_PB4 GPIO_ACTIVE_HIGH>;
-+	ep-gpios = <&gpio0 RK_PB4 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	num-lanes = <4>;
--	pinctrl-0 = <&pcie_clkreqnb_cpm>;
-+	pinctrl-0 = <&pcie_clkreqnb_cpm>, <&pcie_perst>;
- 	pinctrl-names = "default";
- 	vpcie0v9-supply = <&vcca_0v9>;	/* VCC_0V9_S0 */
- 	vpcie1v8-supply = <&vcca_1v8>;	/* VCC_1V8_S0 */
-@@ -408,6 +408,10 @@ pcie {
- 		pcie_pwr: pcie-pwr {
- 			rockchip,pins = <4 RK_PD4 RK_FUNC_GPIO &pcfg_pull_up>;
- 		};
-+		pcie_perst: pcie-perst {
-+			rockchip,pins = <0 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+
- 	};
+ 	val = mxc_isi_read(pipe, CHNL_CTRL);
+ 	val &= ~(CHNL_CTRL_CHNL_BYPASS | CHNL_CTRL_CHAIN_BUF_MASK |
+-		 CHNL_CTRL_BLANK_PXL_MASK | CHNL_CTRL_SRC_TYPE_MASK |
+-		 CHNL_CTRL_MIPI_VC_ID_MASK | CHNL_CTRL_SRC_INPUT_MASK);
++		 CHNL_CTRL_SRC_TYPE_MASK | CHNL_CTRL_MIPI_VC_ID_MASK |
++		 CHNL_CTRL_SRC_INPUT_MASK);
  
- 	pmic {
+ 	/*
+ 	 * If no scaling or color space conversion is needed, bypass the
+@@ -323,8 +323,6 @@ static void mxc_isi_channel_set_control(struct mxc_isi_pipe *pipe,
+ 	if (pipe->chained)
+ 		val |= CHNL_CTRL_CHAIN_BUF(CHNL_CTRL_CHAIN_BUF_2_CHAIN);
+ 
+-	val |= CHNL_CTRL_BLANK_PXL(0xff);
+-
+ 	/* Input source (including VC configuration for CSI-2) */
+ 	if (input == MXC_ISI_INPUT_MEM) {
+ 		/*
+
 -- 
-2.49.0
+2.34.1
 
 
