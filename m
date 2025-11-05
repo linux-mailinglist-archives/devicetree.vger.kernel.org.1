@@ -1,185 +1,206 @@
-Return-Path: <devicetree+bounces-235200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B665C354B7
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 12:10:04 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D72FC354DE
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 12:14:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E05418C1EBD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 11:10:27 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CAE354F5242
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 11:13:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DEFA30E0D8;
-	Wed,  5 Nov 2025 11:09:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 849AC30F550;
+	Wed,  5 Nov 2025 11:13:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LhZcKs5x";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ALI6BUMZ"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="UUeMFiI2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ACC730BF7D
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 11:09:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F3ED30F539
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 11:13:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762340998; cv=none; b=TU7iYl6hYrqqxkmON6SPlb6oRL61N1fBuFL6oO2tJUhxjxLX/jGGR5pfq16tmRgZ0SnNKSHGJOPbm8367FOKpFm4/bruqsdq24dmaX5RsiS4SQru72VxT84c9LeqLz20uC8REzqdtzoEtKhDKyBXd+5+PYVegf9bEoCLAHBF1Fk=
+	t=1762341198; cv=none; b=fWVSmmPrjssaOk9joU/eb2F63E4WYIX/3Daig0nW4AgWFDuBsPS+DBNTffjsvdVW1/rABoNUJYHtQ3sgjPxeJvPMV7gx43AUP8BNRB9e6fr6Qbj3AU8T1Nt7LCqRC4Z0UObvYaSrNEPkodDOuFxz20jP09S3TO5ZXf7Sc1c0M+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762340998; c=relaxed/simple;
-	bh=ZwvDVSI1zx4JT1ANDds+QA8nPLF0exfSM4yWnHi1FVY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r0iPnN6aNrDGLzNvEm4iRO5veM8Gplql3XrZb0+kjE4RyrHqUHPoPV1U2US/HogSZb0s0X0qYpnacLZC/G7Ytrbz8Zd0Riees8zDL0Jgeo/tlPQ5JkpfMbd/wq6vD8ImAdbQFWZ/s1QXeLRxJKf+d9VHEgeKSPk8YNizJnIHm6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LhZcKs5x; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ALI6BUMZ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A54Yd9Q4056246
-	for <devicetree@vger.kernel.org>; Wed, 5 Nov 2025 11:09:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0tH5XZ93hy8sXj0+utUXHuQm3iN9TCJLOBOzCtJoRBA=; b=LhZcKs5xOnCd3ppZ
-	wkiRndIMyHGmXYpc+3rRfi1SNRjqF6mrp58mkmDRt3lupKol9wkfqSKZaQbN1kYy
-	BoZvE1RzCkmTiyB4KEUhLsm+NjLxvGMYpfna6gdI+kT34khahdTU1lK9q8iGo0Uf
-	VRUNZzZoyS1j10kpvRqHtc+Nx0LhrDcgQrblWdi/aN48vpQ9bcUmgU3rgtV3vCMw
-	m1/fiGipb5y64iLOA7VsyiNWs/SkqmRfDg01IeaAI7w5znq2KilA+Y6UNskx5YL3
-	WQbZXMYUIenYg2TvHv67x2p1DimSSooCj20fhB0IU2YOlEEu/FIj7ubpHnGl29Oz
-	RpuABw==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a7yp610x7-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 11:09:55 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8b1f633955cso44582585a.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 03:09:55 -0800 (PST)
+	s=arc-20240116; t=1762341198; c=relaxed/simple;
+	bh=y+ju+eJvK8HzYCUKH5EbHPD0aKHBQeN8wwLP+uV2/K4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hvDN6oha8L5WsAM+2awbAU5QplV3DUsl72w6idgydsu2Amh38NvQ2lUBzVGrUgHJpVauWqyTk8fcOA2T49/DmKtJdPkOXxPQ/pV+1FT+AkErErAMdMEgtQxzakXyawjoWo5GcmkrFHnsWvTttQg2f12zpTrK6qJquADyLt/b3Xw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=UUeMFiI2; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-59052926cf9so7162590e87.1
+        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 03:13:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762340995; x=1762945795; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0tH5XZ93hy8sXj0+utUXHuQm3iN9TCJLOBOzCtJoRBA=;
-        b=ALI6BUMZoXiyr6fVNQJNKzcCgUodxEEXqFn3ctf7Iv+UaDtHu92BRrVj9rsR+kVvLi
-         We8asoK7iWh35+U2TXQ2mL07Ys8JCeIgPTzWB/lTLs36lM6f5I2yn+gPSIyd+rsoOwId
-         amtu1JA6+xrgR81pr099yyjvrchBVUCBx4A93S1kNt0DEVB++eHNxGxBIi4aicG/slq7
-         F0X7Jc76DaRMxEVjHQiGVtKcsPv/asvqtEbtTuUckV6uvMpG16Lqvqih4Y5QPTBGNXlF
-         2/cR7l4YDwJ0wbW77WhbwnbVcOTPRJXxj7LPaKm4MwaFoRjp1V26MykZi8E+InDr0Q/a
-         8A8w==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1762341194; x=1762945994; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JG51Hq++miK2Fex6Vfp0eKhsrvnsMhGhZv9+TnKZ4f0=;
+        b=UUeMFiI2K5GitHqS5G/wlBFiXfsai5SRWNT+vI2Il+ujcLP3UZL3Ex4OxynSZjquvg
+         bFvotS5qWWENEqHC9U4hWBSUJ9At+oaH1xxmzG6ECxtxkKwTd4ez5B1J4Qbje+a9ena4
+         8AWXrIJLBCb2eOZQsf6EiTiUj9j+9Es6hpi/LbA6ZPylstxcEF1XOHn+QlXvUuoAl0Y5
+         Xc0ofzcJrHRV1a1gusnDvUG3Lz+E7Lu1N8d/NU4JMLOK2TFjG+W3UN0nJru5s3gVTQec
+         usdh5YzGOQ5y6glkWkh6M0RqBNqRjWPAZlTVZiFDKTnHIq736ND1N0IrD7WbNfBRySko
+         VFlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762340995; x=1762945795;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0tH5XZ93hy8sXj0+utUXHuQm3iN9TCJLOBOzCtJoRBA=;
-        b=gbM6Qg/csb4wY8/KcphsT1uNBQa1QuLYB7z27Toe4yu2rFUNWWnIeQO//t/8LlRzHs
-         Uz4KFTT/hn1tjsNw/3GdGV5ekX0Iba76iORDFfD5Q6clzjmjHhinRdaEm/x4kp/T8OL4
-         lPs/1NbMYFBydK9o7JpkfIedWtN06uocA6VyupM4mjLiyQtdxAFDP8K68bzZtVPqYSck
-         kt/Xl9d2nT+Qq3GUrqPefs/Ux3AaPXvsaudpoxuPd/89Nj6/FZoIX3NdVoq3x/Jb07gh
-         ER9NH+UgE4V+Lq7Ojg1w9AWI3/D8ztgD64MgIO+YWLJ9+UHZkcdwQkda9mzIC5NWxQaW
-         hqRw==
-X-Forwarded-Encrypted: i=1; AJvYcCUL/ZnCe8rmgKAVdXuqR9UwK5c0oexz9a3vqv9HLvl97Wi4db75A79s4jP9+132KyChyQrd+BFUH1aX@vger.kernel.org
-X-Gm-Message-State: AOJu0YztW/96RwdiPngcaJE/c4DqxvSnbCDYBs0GvmyP1wzu3Z8oimih
-	WkInBBbf7xDUKjxvVLWOwiCSUi3NdCdBmcHqK211XcB9wSB/4pEG1U8N0NuT1ZJBKUxpOYAZRzF
-	w1smgzyIQ0qOdEwSc5vzBy2rrhQYx3/lk2ZibeTE31J4LT4Bj4KfghSNgQ6JHrg/K
-X-Gm-Gg: ASbGncunVfxRfPx40t48sBjM1ljwKXgd6vnzW1S7sg2CcRv3mGUletnLPLn1bFnS8+T
-	WxyM7/OLFckt5d3fd6ucxpu0L8SxfNScchEecYleViQQIGjIJ+3LGPj7n7TJwYbHGxgxZdWOvwI
-	t7eCyuVzjs6+ISGJFOn1ukCWeSSl+QW6QAQ/YhCpoU/XMx37YiXeuJ9iYuXSgQ7txBX5FDDg05L
-	iDiNtvYNqehqm3aCDw4i2tbPyUucu5uHHrqoKaxJZjRJLuyLbeFGn8qGZleNV8xky5COZmZx7ia
-	nPca52sRpFnUDwd6Na/i13osdvBE1oV5tDJyJzSvmlFYt8pucJWmHF0uL1qjoBZFUz4/YCEkUxh
-	K+ylz2g1uLvpjYnli91zfJKJRENcCjNbhUSoxZJqfxQCbLB9ySP5bvGtG
-X-Received: by 2002:a05:622a:18a6:b0:4ed:1869:6c05 with SMTP id d75a77b69052e-4ed72338594mr24630591cf.5.1762340994789;
-        Wed, 05 Nov 2025 03:09:54 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHrCfI0cYdylTfSH44+2MJ+p0GI1ii+6uTsfxuQd2W1YncRj4eophcDOjK1NGj5VeTLzOTJ/Q==
-X-Received: by 2002:a05:622a:18a6:b0:4ed:1869:6c05 with SMTP id d75a77b69052e-4ed72338594mr24630411cf.5.1762340994360;
-        Wed, 05 Nov 2025 03:09:54 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b723db0f1besm458938766b.31.2025.11.05.03.09.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Nov 2025 03:09:53 -0800 (PST)
-Message-ID: <c2b91dd0-1b0c-43bc-ad3e-5e4b136c75c9@oss.qualcomm.com>
-Date: Wed, 5 Nov 2025 12:09:52 +0100
+        d=1e100.net; s=20230601; t=1762341194; x=1762945994;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JG51Hq++miK2Fex6Vfp0eKhsrvnsMhGhZv9+TnKZ4f0=;
+        b=hp8G2Ihl6APkwTswCrLv2+DM93SRzmxAy70B8I/GQv1dmlfxJMBibOiGs2huAIUZ1z
+         LZCRQKuH3dP74eoSu6VXZLJBj4OfLyWm/F/powXmPi9jqmnUR39sbBUsp0jHAE1R5wu0
+         O7y3x5uKEwv+fBiZr3kVWmqTyHTAcf92vcXzWo0BWk24yD3DVR39UTHI2FgjF7Y7odj/
+         jCp/H8doW8k2IuLU87+eRriiQlkQAEfwoRG7MQzxnuiHS8QVnq3aK79b7v9+hmZ6mRfq
+         3r1cFf3FfckPaLu/PlDgjqAUyACQYL7PRfyeTWlbfgt5pZWEXzJ6MvfEi4ciblj9Vq/t
+         jqxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWH2gX8gRYs8CZ6idaQiXDYoKCoQ+o90PxaNAd8wthmJX/mCvoHpsFzGrwNkpLYb1sZGGyBXbumzynF@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdZggwYeGcwSfRv0YB0PJnxAVNzWpeTE94dO86Gj1haJUodNYy
+	ko7iuj+5Xitq3aMVREIRL9gjDfNgdtX3zrv+IMGHJbIs5bcJoLdNGuuUtoDsK+VzD5eP9Ow//PL
+	kZo8SZKaPID4B9HiyrldnFlmNH07JxD1QPtV9zgt3nA==
+X-Gm-Gg: ASbGnct1vY7jnFRW7bWnur7F1oMTb+c8wV4Sarfh5ifV27bkemnZHQxNTSlfZWv+agb
+	AV74gxAbfEH+YB6SSHg3pECVKB5fcnjpDwNSKK+/mDMcjjEB6MnWxgAo+HyZQBoV4/ta8qjfRiL
+	nEq7dzm+/l+Enk5WpBzCQiWYiwyqBPgHhOpuvoEJ3yekeVnRQ8NbI5SCxGIu0HUdY13eV6eiizS
+	LnIpR9Van5nnfBcgXUWQpW2X436CX/ZD71n0IHhFNB8BYL2Ar51WjA+SpqibXMwlqh5MGIkLqBs
+	C5/WDRwS8i9vqUxm
+X-Google-Smtp-Source: AGHT+IHDSaXviCfITtg/FMcF5Bu77Gbwi/aiVMbNVLeu3JkIbzZIrWvYPYHyWiNt0LQo+iniDeT7EH+k0eJ0DFliQVI=
+X-Received: by 2002:a05:6512:61a1:b0:563:2efc:dea7 with SMTP id
+ 2adb3069b0e04-5943d7c9126mr1005125e87.34.1762341193497; Wed, 05 Nov 2025
+ 03:13:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] arm64: dts: qcom: talos-evk: Add support for
- QCS615 talos evk board
-To: Tessolve Upstream <tessolveupstream@gmail.com>, andersson@kernel.org,
-        konradybcio@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20251104125126.1006400-1-tessolveupstream@gmail.com>
- <20251104125126.1006400-3-tessolveupstream@gmail.com>
- <27f51013-9276-4e41-b57d-fb0baaec5bc6@oss.qualcomm.com>
- <4e3b01fa-174b-4de3-a5ef-67f51f0b2033@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <4e3b01fa-174b-4de3-a5ef-67f51f0b2033@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: CXgARPBUjGUez6CReKegqY59F6vwMeBt
-X-Proofpoint-ORIG-GUID: CXgARPBUjGUez6CReKegqY59F6vwMeBt
-X-Authority-Analysis: v=2.4 cv=TsrrRTXh c=1 sm=1 tr=0 ts=690b3083 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=qJVbOpFieQqE12gzr-oA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA1MDA4MyBTYWx0ZWRfXwvxMB+2XQ8mT
- 4cqMGRmHacmCRmnyYXS1lfvwE/6VhfMK/MR0kTWfze/ofgldtLS1xX2SjCQQ4rXPRAq+XUr1se0
- tjS1jBFXBtXEOlEzQbKmD7qTErqAhevMcv/tduW1r+UdIOJ8c90SE/qayp/T71YN2jvrNOoN8z6
- epAeEyBFFKCEXuG94bwDA1jotIPD3JR5Ssh1X8k/NmiJct2T1MK5fVIep5V09qIGJy8zFvIHlpR
- cwtlGzZv9ep+i84zjEHrnR7ArvuK6IRD1ycD4v7RPU7kNivKE5Vk/1lQIWSG9RkgfQMFir20g0M
- QCQbOY8XMvmw/NbnJAW9uleGbNrsclCOULfFKeQK6CWSd+uEfKT60XHPn04Wd9AGMijIlCaWJry
- PFzTZsZ3YmbWBGXldC8cBUyP1wxEzA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-05_04,2025-11-03_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 spamscore=0 phishscore=0 priorityscore=1501 lowpriorityscore=0
- bulkscore=0 impostorscore=0 adultscore=0 clxscore=1015 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511050083
+References: <20251104-ltc4283-support-v3-0-4bea496f791d@analog.com> <20251104-ltc4283-support-v3-3-4bea496f791d@analog.com>
+In-Reply-To: <20251104-ltc4283-support-v3-3-4bea496f791d@analog.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Wed, 5 Nov 2025 12:13:02 +0100
+X-Gm-Features: AWmQ_bmQd858eXoItm7LwqkIZXbCZS2AkKpBWiMVEPi0lh3UwpYTx2HZMgJHzUk
+Message-ID: <CAMRc=MeWyDOFfUnX8eV9+9tykinB+Hd9duf-v+UOCvcYKt9g9Q@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] gpio: gpio-ltc4283: Add support for the LTC4283
+ Swap Controller
+To: nuno.sa@analog.com
+Cc: linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>, 
+	Linus Walleij <linus.walleij@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/5/25 11:01 AM, Tessolve Upstream wrote:
-> 
-> 
-> On 04/11/25 19:57, Konrad Dybcio wrote:
->> On 11/4/25 1:51 PM, Sudarshan Shetty wrote:
->>> Introduce the device tree support for the QCS615-based talos-evk
->>> platform, which follows the SMARC (Smart Mobility ARChitecture)
->>> standard. The platform is composed of two main hardware
->>> components: the talos-evk-som and the talos-evk carrier board.
->>
->> How is the carrier board a separate entity from the "talos-evk.dts"?
-> 
-> The talos-evk platform follows a modular SoM + carrier design.
-> In our current implementation:
-> talos-evk-som.dtsi — describes SoM-specific components.
-> talos-evk-cb.dtsi — represents the carrier board and includes the
-> SoM file, adding carrier-specific interfaces (micro SD, power button etc.).
-> talos-evk.dts — includes both the SoM and CB DTSIs and enables HDMI 
-> display configuration.
-> talos-evk-lvds.dts — also includes both the SoM and CB DTSIs but enables 
-> LVDS instead of HDMI.
-> 
-> HDMI and LVDS share the same DSI output and cannot be used simultaneously.
-> Therefore, we provide separate top-level DTS files (talos-evk.dts for HDMI
-> and talos-evk-lvds.dts for LVDS), while keeping common board
-> logic in talos-evk-cb.dtsi.
-> 
-> Hence, layer looks as below:
-> 
-> talos-evk-som.dtsi
-> ├── talos-evk-cb.dtsi (includes som)
-> │    ├── talos-evk.dts (HDMI)
-> │    └── talos-evk-lvds.dts (LVDS)
-> 
-> This ensures modularity, and properly models mutually exclusive display
-> configurations.
+On Tue, Nov 4, 2025 at 11:31=E2=80=AFAM Nuno S=C3=A1 via B4 Relay
+<devnull+nuno.sa.analog.com@kernel.org> wrote:
+>
+> From: Nuno S=C3=A1 <nuno.sa@analog.com>
+>
+> The LTC4283 device has up to 8 pins that can be configured as GPIOs.
+>
+> Note that PGIO pins are not set as GPIOs by default so if they are
+> configured to be used as GPIOs we need to make sure to initialize them
+> to a sane default. They are set as inputs by default.
+>
+> Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+> ---
+>  MAINTAINERS                 |   2 +
+>  drivers/gpio/Kconfig        |  15 +++
+>  drivers/gpio/Makefile       |   1 +
+>  drivers/gpio/gpio-ltc4283.c | 217 ++++++++++++++++++++++++++++++++++++++=
+++++++
+>  4 files changed, 235 insertions(+)
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index d02fdf0a0593..76a659408c8c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14757,9 +14757,11 @@ F:     drivers/hwmon/ltc4282.c
+>
+>  LTC4283 HARDWARE MONITOR AND GPIO DRIVER
+>  M:     Nuno S=C3=A1 <nuno.sa@analog.com>
+> +L:     linux-gpio@vger.kernel.org
+>  L:     linux-hwmon@vger.kernel.org
+>  S:     Supported
+>  F:     Documentation/devicetree/bindings/hwmon/adi,ltc4283.yaml
+> +F:     drivers/gpio/gpio-ltc4283.c
+>  F:     drivers/hwmon/ltc4283.c
+>
+>  LTC4286 HARDWARE MONITOR DRIVER
+> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+> index 7ee3afbc2b05..58610f77a75e 100644
+> --- a/drivers/gpio/Kconfig
+> +++ b/drivers/gpio/Kconfig
+> @@ -1741,6 +1741,21 @@ config GPIO_WM8994
+>
+>  endmenu
+>
+> +menu "AUXBUS GPIO expanders"
+> +       depends on AUXILIARY_BUS
+> +
 
-And are both the LVDS display and HDMI converter on separate add-in boards?
+Please call the section "Auxiliary Bus GPIO drivers"
 
-Konrad
+It's not very clear what "AUXBUS" is.
+
+> +config GPIO_LTC4283
+> +       tristate "Analog Devices LTC4283 GPIO support"
+> +       depends on SENSORS_LTC4283
+> +       help
+> +         If you say yes here you want the GPIO function available in Ana=
+log
+> +         Devices LTC4283 Negative Voltage Hot Swap Controller.
+> +
+> +         This driver can also be built as a module. If so, the module wi=
+ll
+> +         be called gpio-ltc4283.
+> +
+> +endmenu
+> +
+>  menu "PCI GPIO expanders"
+>         depends on PCI
+>
+> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
+> index ec296fa14bfd..b6550944ed78 100644
+> --- a/drivers/gpio/Makefile
+> +++ b/drivers/gpio/Makefile
+> @@ -99,6 +99,7 @@ obj-$(CONFIG_GPIO_LP873X)             +=3D gpio-lp873x.=
+o
+>  obj-$(CONFIG_GPIO_LP87565)             +=3D gpio-lp87565.o
+>  obj-$(CONFIG_GPIO_LPC18XX)             +=3D gpio-lpc18xx.o
+>  obj-$(CONFIG_GPIO_LPC32XX)             +=3D gpio-lpc32xx.o
+> +obj-$(CONFIG_GPIO_LTC4283)             +=3D gpio-ltc4283.o
+>  obj-$(CONFIG_GPIO_MACSMC)              +=3D gpio-macsmc.o
+>  obj-$(CONFIG_GPIO_MADERA)              +=3D gpio-madera.o
+>  obj-$(CONFIG_GPIO_MAX3191X)            +=3D gpio-max3191x.o
+> diff --git a/drivers/gpio/gpio-ltc4283.c b/drivers/gpio/gpio-ltc4283.c
+> new file mode 100644
+> index 000000000000..885af67146a8
+> --- /dev/null
+> +++ b/drivers/gpio/gpio-ltc4283.c
+> @@ -0,0 +1,217 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Analog Devices LTC4283 GPIO driver
+> + *
+> + * Copyright 2025 Analog Devices Inc.
+> + */
+
+Add a newline.
+
+> +#include <linux/auxiliary_bus.h>
+> +#include <linux/bitmap.h>
+> +#include <linux/bits.h>
+> +#include <linux/device.h>
+> +#include <linux/gpio/driver.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+
+In ASCII '_' sorts before 'u'.
+
+With that fixed:
+
+Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
