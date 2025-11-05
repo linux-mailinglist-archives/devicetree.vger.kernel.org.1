@@ -1,255 +1,162 @@
-Return-Path: <devicetree+bounces-235414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A91AC38196
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 22:50:30 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97688C382B1
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 23:18:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C3153A68E1
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 21:45:11 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C55904F0CC3
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 22:18:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FC3C1E0DE8;
-	Wed,  5 Nov 2025 21:45:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2080D2F12C8;
+	Wed,  5 Nov 2025 22:18:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Mwd51ZFq";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="X+H35vH8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ayjMRaPz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67A0C2749E0
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 21:45:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C89C82EFDA2
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 22:18:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762379109; cv=none; b=Pc8bkrb4a6n6awZHDNPUmNH0VcU9IHHfc4nLO1LGKq3IY3qkoGI2SH6c9BrUNu6fKzCscX6AZGDFwykIywtJzUS8CHuckLLmBLgMTgoJkqgnXK4PcDY0Tj2BiUx0sTHq7OA2oh+QncxA75NZulLPq/oPz4TB87hsgRVNEueTqHI=
+	t=1762381095; cv=none; b=OgfNxnF2MaRPoyMWHSZWxWz5Ho9oJw54EhrVtW704OMcILop5OLda5SS6Wxc3xjGuHCcw2l17MzpzGTO2MH4KCenUatB4r2+bbLQM1O4xTG+r2xKkc8OJckWxAipB2rh8QqU0vIvvlGDG0xmnW/S2Eei/BXAtv8/ArBHZsyhKpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762379109; c=relaxed/simple;
-	bh=sTpvEH7MtMYQ441h2hg3yomOuLMbsslLNNuXcPZ8oPA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tOSzEz3OwSXL5eINVU6ovWUhGEPSXCfj6ms1DDIqDh+1WA+J7VlRnEbdburxBEIksgGjXcxPE3QP1GD/YTwOUESEB080/DoGtO23UycigBUSbgaiyBDiHBOdJqjoNPRQg0cYwHsp6CgfaKtWlZhmngXNWnXcRVqOuXKPvZzAWNs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Mwd51ZFq; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=X+H35vH8; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A5KFDEI1689574
-	for <devicetree@vger.kernel.org>; Wed, 5 Nov 2025 21:45:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	d510Wyf9q4AIKtlBHb+XTDxyOHGNm5yfHON6dl5a5HE=; b=Mwd51ZFqBoaL8Bkc
-	7Jpfo/6YbJLtj1eXBUGOf+hL5XkLONMs5nrx8Np2MkKpCMsv9VS7SYFeQsQjqcgs
-	CXR0+3+fyCmA7ju8A9wm2Lfw0KSuFPLo5Vu72bz/KO7szgtUXvCksv2oY4b4ddrd
-	pvMO/C1AauxvK2U45jMe4J581cXGE1mNJsytlTpELv0KmTjglbWoiCnCkSvnzaG1
-	P4PogAs/qMSjxOIz4F80PFOC/Yo9Y7fOs9sgvcsWoGuBPGn76m2v266geGMJgYXK
-	+garMy1vlr2/qpzuNZKdxQp1eWB6RSXuwTI01UzdBjl1RyW/gYys78Ww9MV1FcwH
-	LJNRfg==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a88pj98nq-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 21:45:06 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4e88ddf3cd0so4501441cf.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 13:45:06 -0800 (PST)
+	s=arc-20240116; t=1762381095; c=relaxed/simple;
+	bh=FgSHmdWK8fD86bwRD+NZMD0W0N6z+nayNo+9iUVv+Ak=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ok8eYwt2yVK5pPlKQO+KqFQ/MmHkRvFHn0r+8LWdcWkWcDV2+Pb7E+NN/R4pSyoFvRzMjwvtxBIQoaeh54gEh8x5QDIr8HWMWt3/j+PAvOkrYfBv0SdrGdofBv3netOamjmE8sKUmf1dTFKpZTxZ3lWGjyvRxZuScm0A2VYIKXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ayjMRaPz; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-340cccf6956so269821a91.0
+        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 14:18:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762379105; x=1762983905; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=d510Wyf9q4AIKtlBHb+XTDxyOHGNm5yfHON6dl5a5HE=;
-        b=X+H35vH8T4w5FRXECc1QLWe0MGTb6JFKEJi11AEerZcx9RwlVsdDLGpSCbcVNXEbVz
-         Bb1WW7wjEWn48xqMLIfjVslQEfie0zKEFrJiX9aVECzlhHUUjS9z+g4wAOGhL0XwU+Yz
-         CGj2vB2ficYmME019bWodrzuQz57rE8ibGAyF4o2iajZBpbqL65aR92T7YJ5sO1cRFAz
-         /6tXwjIHFmHSiD0GDx5QvKR8FBSa6c1OeS/S4lBamWZvBKDVgFWMWzO4hV/A+Mw7sazD
-         MxFxv3wj7B0hHTZphQ7YMSadWXfLnk8VF0hSYoBrs7l7JYbKs4NBqPtJ5gnuG5C49xKl
-         2pDA==
+        d=gmail.com; s=20230601; t=1762381092; x=1762985892; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Im7C/yPVX9MxQ3wIFuOi8MGfdZ4IZni92LwvcWpKIGs=;
+        b=ayjMRaPzv1xu7dmY/OaJsI/1A7EsC3QCEOV7CGR0Bg6ZTRXjC7dBZa0y6B9KjqsQrU
+         1+2wZr+jYdfRCNMS+zbe1nRoorC9EztQ+ppXTe2gX0tkfhV1LaDZ4nTd0xAI5MPmro0R
+         4eiPeOOs1vNV23BdWGi9+Sd9OTX/ja7ja24wvfvquPmjXw0cvft5biFO1yAEpwZ1CLTs
+         LHoHKSBzNNRFmYXnJKfQOyFF9GVqpA6xpfGG/ZKGMdZaCOhdR5VWAgTHu262I7Zqu0S1
+         QkX93ekiQZyUe+h9akbySFOP2AXbRaLbF6CNBMOBSgUlyH2JSj4OOqimdEXf2kU3uP04
+         BFpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762379105; x=1762983905;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=d510Wyf9q4AIKtlBHb+XTDxyOHGNm5yfHON6dl5a5HE=;
-        b=nPC4sEwJx8V+8mcLrjgSPv8GQfhJY27SSCRwuxPujDuC8brLeVevmFz5VWR7OMTIPO
-         nMambzzcYdz5lS+V858aE9cGGoFSTKV03hjou92j+uwvSk9/7Fgn19kEzZ300owJIaKF
-         2qpRkvjoCeviDs4neawSBOXMG+xCxWOn+tNrxVkPRKpi5QBHvT1pn2VlkVLntuuXVAmX
-         Z2mQm1c0VlZOy7/Sa1UAbOqsSWdKKaShD2KVBtQ/MFUBrvZVv934t4CIViLmjq8D7wgZ
-         ryfjy47krOS5g4VecborW0tmiwhPZ3DGa69ek+BuyI7ZNvpbZLGqPj7eU9cVgjH8yrHW
-         Y0kA==
-X-Forwarded-Encrypted: i=1; AJvYcCWpFvbqq2rXp+ks3Htpk+nKmeJPiA+/Mk8pMNQAAI0qylakEIQUXk4V3bBXM6D8PiV2qGimYKWWk1H/@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywkawc4OgDMrR1aDQz8XDNqU7OZL/LoPp7Tm4uBpf5ITQOoS2Ev
-	hFMIgrMe4wYrG3mqL630Lo0io41Hio3YlfmpOgOHxBXdGp2SdHfukrMCUFs3BTRbpNpahbP/yxZ
-	7JMLthPyCgnSuQAfHcCI0rxGIg7l5wv2DOo9abe6vxWmNKrDZGKu7nPHnRG6mBupOkkQqN6bGQs
-	W1JYZ+yPfMTW7oBKVGqd6g5d0IGNyyonmTO9PMhPE=
-X-Gm-Gg: ASbGncvUjbTRPXA4VXPRz1J9AnZuB/j4nq+XHySHL++vFiNRvspiQlcYWyAugNJNZJj
-	uvwnTyehcjOqQuC8QA5Y1S+l0p9qHYtUpm9l+p64KxVLnzNTDkqMZVop1MbWON+p6tmZN3fFnlI
-	aLfwwG13Uu3dOwrMlOBKWq7K0oSoiRzJJa8mhoh3yCVOLIk+ngzvc45qfnmWzMnYOseA9H4fL6F
-	fdMvnTYPvtf8xvx
-X-Received: by 2002:a05:622a:250f:b0:4e8:8c61:9541 with SMTP id d75a77b69052e-4ed72333ca7mr74105211cf.15.1762379105393;
-        Wed, 05 Nov 2025 13:45:05 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFaI1ZzQY8wIv5ErLg/yOX3vvhB1oIeyOrna6TahfJhs8U5kaqahfMijiajL20qAT+T+bTQzZ83az4hjZX+b84=
-X-Received: by 2002:a05:622a:250f:b0:4e8:8c61:9541 with SMTP id
- d75a77b69052e-4ed72333ca7mr74104741cf.15.1762379104947; Wed, 05 Nov 2025
- 13:45:04 -0800 (PST)
+        d=1e100.net; s=20230601; t=1762381092; x=1762985892;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Im7C/yPVX9MxQ3wIFuOi8MGfdZ4IZni92LwvcWpKIGs=;
+        b=XwVoSqR596l4FYAsoZwb3Bi0HdG3PQpruLmI42bYXNNcr0wDrxYtRmlRsrajpXiGtY
+         JL1zUcNi3r1gL9u8NyUY/zaeHnGM6TjZ5R2gv25Ns+az2o7AOju93zaotRHog1MlLI/H
+         ZMu+3qMizfcNvAP1RwwJzpEfV4hc/1nPmOHgYdy3UBqrCCp4pYSR28AN4ZszbSJXenbl
+         G511zB8w3+ZEWp6xN6XxlQ/ORvPy0PeLwikD8D5LZ3f7qCAJDv82bsUpe4EhcAhDJC0M
+         LWPstkBCxiuOai0AycEVROlPlkCxGX6A27Mg10W71V5oe7VvNK64nkmmBLuQWpoIyT0h
+         38/g==
+X-Forwarded-Encrypted: i=1; AJvYcCV1xVZm+iXw4MWSpj74utBo7xgnUhGsC8SxWm3H9xBOfW4JPbYnhBnqEktSCjdl5gnTowZoxKEdBJhV@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx140U599Qg2zKBckgNu2+z1MJB6eRCxedITJapxyv+mFrmfb/o
+	p9pem7wjySM5SO/bbbT1jeA8Hu9QWcgkt78OO15vpd9ooul+C/T5JnCS
+X-Gm-Gg: ASbGncvZbUvRgEtZTlBcK081icjlyrXn0SkU9f1DbyGG+L1Q48SJ4EISPsRK76FkVeQ
+	lo+62hvl733TA9mDA5KwuteJZGUqr+uqITbUf5QXTC3AsTyvwZoYDt3wgGglxKX81vy4aBxgxVP
+	qlFAtfPMXou6JjBdCxSZ/t7+Eyxk2MyH7QjR9QUSw+QTU4tkiCrU2sLM0UTpkM8yN9lJURhFIUb
+	ej0tr5DSYn03XyCdFEYEGAyTMktDYvCIMcQMPXFrxhdxBuCink6/YjFUKjATaAfu8z0otO4lGkP
+	VEYLXo1u7CY6YsAGnfOo3mV0xD45vfS1dVrTC6VaMqSWE6N2G6RjU1bRan9etyLfMIkBdX5OJ8q
+	FroNSQqCG1gGax7y0112SLIRlEii2DZZyJDKh5OjidGWv0gROanlDs0c3HONNQJ+tQSNmUsEdKU
+	50JLWyLK5qWYb9BD8PwPBvcKUEwTtg17x0hnBLgEi/WNgEFhUkuzju
+X-Google-Smtp-Source: AGHT+IGMYKxUc+yFWPCSR1IktVa+NNpsyxMZ4O/wnRPrxacZqCnZibSpr1AmWZE5WIphsK5cnjwcSA==
+X-Received: by 2002:a17:90b:5250:b0:340:c179:3666 with SMTP id 98e67ed59e1d1-341a6c1e314mr6059131a91.8.1762381092040;
+        Wed, 05 Nov 2025 14:18:12 -0800 (PST)
+Received: from google.com ([2a00:79e0:2ebe:8:35dd:7def:e1d1:adfe])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-341d05c982dsm238658a91.20.2025.11.05.14.18.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Nov 2025 14:18:11 -0800 (PST)
+Date: Wed, 5 Nov 2025 14:18:08 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: akemnade@kernel.org
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andreas Kemnade <andreas@kemnade.info>, Tony Lindgren <tony@atomide.com>, 
+	Kevin Hilman <khilman@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-input@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] Input: twl4030 - add TWL603x power button
+Message-ID: <tyx4vvapd4pca6e236rcjkbxecor5kderzoinbwyuecdclzcix@jgksmvfioc4x>
+References: <20251105-twl6030-button-v3-0-9b37eb2b0989@kernel.org>
+ <20251105-twl6030-button-v3-2-9b37eb2b0989@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251103182006.1158383-1-loic.poulain@oss.qualcomm.com>
- <20251103182006.1158383-3-loic.poulain@oss.qualcomm.com> <740b9e7c-59bc-4a35-a268-526d92db372c@oss.qualcomm.com>
- <CAFEp6-12qN0=cv5=tPeVq3bVDLkaQDHLLCVQY4dtCTSvx+dPOQ@mail.gmail.com> <c1269f38-ab90-40d1-b5d3-39f546829d6c@oss.qualcomm.com>
-In-Reply-To: <c1269f38-ab90-40d1-b5d3-39f546829d6c@oss.qualcomm.com>
-From: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Date: Wed, 5 Nov 2025 22:44:53 +0100
-X-Gm-Features: AWmQ_blKZDvJVEdUC2MqtJTQo81_2u9Bgl_-8p4Aiib23NEgqjzvd8wNzge29C0
-Message-ID: <CAFEp6-1+inMhsgjSqAZ+UDBMuNc9DA-jXFyqB=gkvYpSzW9Ukg@mail.gmail.com>
-Subject: Re: [PATCH 2/5] power: reset: qcom-pon: Add support for WARM reset
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: krzk+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
-        robh@kernel.org, conor+dt@kernel.org, sre@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-GUID: CqDxOgPVRWnnumHQ7rr6sL0BXBEzpfZq
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA1MDE3MSBTYWx0ZWRfX+yiANIH8cWGT
- d6HW9laAmAl3AkZwoLblve1rjpnLUvG7ooSWCf50EE4zCdhZEnMZp/Z92dj/gyNsTqyo7wH4Eea
- 46e2LSSymSoSWNO6uMlVHPf6gHT3jTRTU4CGsX+42/pbHTT0+0cqv6I7yclP8QD+3+YCfY7nSyi
- gShsnKWID0CPqUzyG6pkMq9BWWOBx75H7aYxv2yUEyvOuqDHE978w+xuXgqYvGc+hzuMcihHpkB
- j+Ej1paKocZaRtcPDboFEa14nNJeuk8PvKMkexA3g/7MabRcndv0qoK6Nto56rF1GKvYM3WSc9W
- 28J1sknLrm7HduhlXKWyf561P9DvSPYwDY8lgdAxth3fIJXEZ0TZz/8uIlsvcsDRflB7OZEJJl3
- v+vyDyjCbiZV2q/IKJSDiSfFY4Preg==
-X-Proofpoint-ORIG-GUID: CqDxOgPVRWnnumHQ7rr6sL0BXBEzpfZq
-X-Authority-Analysis: v=2.4 cv=ZODaWH7b c=1 sm=1 tr=0 ts=690bc562 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=NEAV23lmAAAA:8 a=EUspDBNiAAAA:8
- a=tqTozfVIN-WULQYvaOEA:9 a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-05_08,2025-11-03_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 suspectscore=0 phishscore=0 spamscore=0 clxscore=1015
- impostorscore=0 malwarescore=0 lowpriorityscore=0 priorityscore=1501
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511050171
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251105-twl6030-button-v3-2-9b37eb2b0989@kernel.org>
 
-Hi Konrad,
+Hi Andreas,
 
-On Tue, Nov 4, 2025 at 4:20=E2=80=AFPM Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
-> On 11/4/25 4:01 PM, Loic Poulain wrote:
-> > Hi Konrad, Krzysztof,
-> >
-> > On Tue, Nov 4, 2025 at 12:50=E2=80=AFPM Konrad Dybcio
-> > <konrad.dybcio@oss.qualcomm.com> wrote:
-> >>
-> >> On 11/3/25 7:20 PM, Loic Poulain wrote:
-> >>> This mechanism can be used when firmware lacks proper warm-reset hand=
-ling,
-> >>> for example, when the PSCI SYSTEM_RESET2 function is not implemented.
-> >>> It enables the warm reset functionality via the PMIC.
-> >>>
-> >>> This fallback is only enabled if qcom,warm-reset property is present.
-> >>>
-> >>> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> >>> ---
-> >>>  drivers/power/reset/qcom-pon.c | 47 ++++++++++++++++++++++++++++++++=
-++
-> >>>  1 file changed, 47 insertions(+)
-> >>>
-> >>> diff --git a/drivers/power/reset/qcom-pon.c b/drivers/power/reset/qco=
-m-pon.c
-> >>> index 7e108982a582..684e9fe9987d 100644
-> >>> --- a/drivers/power/reset/qcom-pon.c
-> >>> +++ b/drivers/power/reset/qcom-pon.c
-> >>> @@ -19,12 +19,20 @@
-> >>>
-> >>>  #define NO_REASON_SHIFT                      0
-> >>>
-> >>> +#define PON_SW_RESET_S2_CTL                          0x62
-> >>> +#define              PON_SW_RESET_S2_CTL_WARM_RST    0x01
-> >>> +#define PON_SW_RESET_S2_CTL2                         0x63
-> >>> +#define              PON_SW_RESET_S2_CTL2_RST_EN     BIT(7)
-> >>> +#define PON_SW_RESET_GO                                      0x64
-> >>> +#define              PON_SW_RESET_GO_MAGIC           0xa5
-> >>
-> >> Going back to msm8974 where the SPMI arbiter first showed up, these
-> >> values are all seemingly valid, so I think we can drop the dt property=
-.
-> >> The restart reasons are set in stone too, and you can find more of the=
-m
-> >> in the register description.
-> >
-> > Yes, but this should only apply when the platform firmware does not
-> > support warm reset via PSCI, right?
-> > Making it unconditional would override the PSCI implementation even
-> > when warm reset is supported.
-> >
-> > The point is that psci_sys_reset() executes a cold reset if warm
-> > reset isn=E2=80=99t available. Therefore, our PMIC reboot notifier must=
- have a
-> > higher priority than the PSCI handler.
-> >
-> > So maybe the alternative could be to introduce an additional reboot
-> > handler in psci, with the lowest priority, so that warm reset can have
-> > a chance to run either from the psci main reboot handler or from the
-> > PMIC reboot handler before falling back to cold reset?
-> > [PSCI-handler]->[other-handlers]->[PSCI-cold-reset-fallback-handler]
->
-> This seems like a common enough problem, perhaps the framework could
-> accept EOPNOTSUPP or similar and try to delegate further, coming back
-> with a normal restart or so, if unsupported. Trying to make a special
-> contract between qcom-pon and psci silently will be very fragile
-> otherwise.
+On Wed, Nov 05, 2025 at 08:52:36PM +0100, akemnade@kernel.org wrote:
+> From: Andreas Kemnade <andreas@kemnade.info>
+> 
+> Like the TWL4030, these PMICs also have a power button feature, so extend
+> the TWL4030 power button driver. As the irqchip of the TWL6030 mfd driver
+> does not provide mask, unmask finctions, do it manually.
+> 
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> ---
+>  drivers/input/misc/twl4030-pwrbutton.c | 61 +++++++++++++++++++++++++++++++---
+>  1 file changed, 57 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/input/misc/twl4030-pwrbutton.c b/drivers/input/misc/twl4030-pwrbutton.c
+> index f85cc289c053..b72fba9a1b2c 100644
+> --- a/drivers/input/misc/twl4030-pwrbutton.c
+> +++ b/drivers/input/misc/twl4030-pwrbutton.c
+> @@ -25,22 +25,40 @@
+>  #include <linux/kernel.h>
+>  #include <linux/errno.h>
+>  #include <linux/input.h>
+> +#include <linux/bits.h>
 
-I tested the following, as described above:
-https://github.com/loicpoulain/linux/commit/5c34ea54e1a21ff1192c3c341877b24=
-eff5f80b4
-The only special 'contract' is the handler priority.
-If you can elaborate on another/better approach, that would be helpful.
+Move to the top of includes please.
 
->
-> >> That said, we're circumventing PS_HOLD this way - is that intended?
-> >
-> > Well, we don=E2=80=99t have direct control over PS_HOLD since it=E2=80=
-=99s managed by
-> > the firmware in our case. That=E2=80=99s why I considered using the PMI=
-C
-> > software reset as an effective way to achieve this warm reset.
->
-> Hm, so is there no longer a way to assert it by writing to PMIC
-> registers?
+>  #include <linux/interrupt.h>
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/mfd/twl.h>
+>  
+> -#define PWR_PWRON_IRQ (1 << 0)
+> +#define PWR_PWRON_IRQ BIT(0)
+>  
+> -#define STS_HW_CONDITIONS 0xf
+> +#define STS_HW_CONDITIONS_4030 0xf
+> +#define STS_HW_CONDITIONS_6030 0x2
 
-PS_HOLD is a SoC signal, and we can maybe assert it via the
-MPM_PS_HOLD register through the msm-poweroff driver if needed (well,
-if access is allowed from a non-secure world).
-However, this would also require coordination with the PMIC driver to
-select the correct PS_HOLD action (shutdown, cold reset, warm reset).
-For that reason, I=E2=80=99d prefer to keep PS_HOLD based logic abstracted =
-by PSCI.
-Using the SW_RST PMIC register allows us to perform a reset without
-additional signal handling.
+Probably no need for these defines, just use numbers in structure
+instances.
 
-> >> And do we need to take any special care where there's more than one
-> >> PMIC onboard to make sure that the SoC gets properly reset?
-> >
-> > Good point, this likely only matters if the other PMIC reboot handler
-> > performs the same type of reset and their actions overlap.
->
-> I think there used to be some logic in the older days where Linux would
-> manually go over all PMICs with a PON and send a reset to them. Maybe
-> that's too old for this platform though.
->
-> Konrad
->
-> > In that case, I may need to remove the mdelay from this handler.
-> > Additionally, if we adopt the PSCI change discussed above, the system
-> > will fall back to a cold reset when a PMIC-based reset isn=E2=80=99t po=
-ssible.
+> +
+> +struct twl_pwrbutton_chipdata {
+> +	u8 status_reg;
+> +	bool need_manual_irq;
+> +};
+> +
+> +static const struct twl_pwrbutton_chipdata twl4030_chipdata = {
+> +	STS_HW_CONDITIONS_4030,
+> +	false,
 
-Regards,
-Loic
+I am a big fan of named initializers, so maybe
+
+	.status_reg = 0x0f,
+	.need_manual_irq = false,
+
+?
+
+Otherwise looks good.
+
+Thanks.
+
+-- 
+Dmitry
 
