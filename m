@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-235040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAC95C34109
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 07:36:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E96CC3412A
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 07:43:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8CE9D4E75FA
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 06:36:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11B6B42703D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 06:42:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3703271470;
-	Wed,  5 Nov 2025 06:36:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 570692BE02B;
+	Wed,  5 Nov 2025 06:42:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ciKBTREZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TbA+GQyW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D40266B72;
-	Wed,  5 Nov 2025 06:36:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CDE915853B;
+	Wed,  5 Nov 2025 06:42:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762324574; cv=none; b=rMAOUdZOrgTqxtUyYS+7B7sW8Q00TECR9/qdbKRgPM13lpslZbzYGXcXalWGLUd0e9Y4jC8jX/1IU9MZ2g0ygHSI6V4IvonSeryteBV6HXYnJykFvq9T+MAPA3L4Ll9EcnAVy9nXOFIVwW+mzzbtNmflaDzoc21uO3J1FciZY2E=
+	t=1762324942; cv=none; b=ixjmQ9DboSY13aeUlA5UXT4bdbwfByZvnsh7ZlJJ9T+x24zYoIXPSPU1Pj2D2RwzQwmO4jK+KcxM54rLVMQdT6I1PWWohQdh7t9Wb6l1qYMkMWQfTGiWuJZdodDxXaI3SBVa8d8wIF2BzHkKbykv7W4r9rPlVXLRb8+Yw3I4bow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762324574; c=relaxed/simple;
-	bh=cyiUtBMf0HVK7nta4KCI5/6yhs0aN0/f1yRIycEVfeE=;
+	s=arc-20240116; t=1762324942; c=relaxed/simple;
+	bh=/cn+9zgpUfR12ceWKWCoZD8GejWPU8RoUUhMMvORYqA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jQ81Rhq8PSHUETdpVZStz/F5qI4rRNhPrP9jhVPXYG+T9m4cE9betJab+1wYItNJD8Tsca2AlaG8yxtFyarj8k/pw3SFtzxnMpmCahxZ0yGy9XYf4sHrRj+f/anTEHDbhnuj8Y4Z3gqzo1wKFCfc4OFvSAmYfsTFseKrb84Cykw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ciKBTREZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 363C4C4CEF8;
-	Wed,  5 Nov 2025 06:36:10 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kZZlQtiRYOmxCFPrSv2IZ6LtOrAV0eHl/I5lCoALedl9iNC9LrZdjAGVT7MupirtUr3LGQUC3fICKJTYVrW/NgAJf7wJ/5JyDg7u1lUBUFJYiQVZz5zt3Zzg4kYZEj5UGtH6Ct0kIhmmXSFxbvNZgRNTxMxVluG2Kl+eNhwcecI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TbA+GQyW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABA39C4CEF8;
+	Wed,  5 Nov 2025 06:42:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762324573;
-	bh=cyiUtBMf0HVK7nta4KCI5/6yhs0aN0/f1yRIycEVfeE=;
+	s=k20201202; t=1762324942;
+	bh=/cn+9zgpUfR12ceWKWCoZD8GejWPU8RoUUhMMvORYqA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ciKBTREZ5bs98apzuR0e1OEKOkhwJJg/YRyZEThRF8K5pXzGx5ScMrxwZINOK9hmm
-	 85gderGg7s9AzQiSW19lp1c8lIYxPI9x4qLqXUm9ZbGIhPSqgmljvpTaNgWs2RWPfh
-	 yis4KDlrpogHI7B43C63tCkC6l/+7Pq00x0vZ3y3BgYC/LqE0r6A5F+UdzqMJq4vtY
-	 6dD8sHXzj/WJCkiWGMhnM3Zv/uRFrU2RSvVUngmdiG2VjSLolN2M8q8R0YPcs69rWr
-	 xNPdO0L6VPd8MfMxHX6Y2aye6oQkR/9+WJMwzil2DC/0eGQhO2vBUP6wEPohmj0kQF
-	 6a3i5fjeERILQ==
-Message-ID: <08ecbe3a-258b-4d02-b4cb-bb767e013d68@kernel.org>
-Date: Wed, 5 Nov 2025 07:36:08 +0100
+	b=TbA+GQyWG9u/P7Lrj0NI3U3hIzIZ36iEz2JdUn/Hf+Fh5oubdOKnsroijhkQ3Ponw
+	 5fYCu6S30lSqzSecqNT4/0DioqNkOHPbkYsCA3uVK5qiCShLRydQdfxIEnVrEiLsf2
+	 SewNYBysewgA6IFx7YWdumTx/DL1lWjphDIZEqMmnpk6SHXAbxAB4DxY4Leo+GNHZp
+	 k2Ius99LLV1PZUlYkuXtl8uqD/KweVnYy0xPisLOr70VSZnjuTdwXo9F5fS7zcWRTM
+	 4hjnsqDjUBkiBbuh5gcefeonODGfb6azec7q4Iy1tV9sNTIoKgl62+oB3H4xNdHRVm
+	 4kiF6+UADp7dA==
+Message-ID: <86939056-7617-4730-9464-f7ecbd0e4537@kernel.org>
+Date: Wed, 5 Nov 2025 07:42:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] arm64: defconfig: enable i.MX AIPSTZ driver
-To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Daniel Baluta <daniel.baluta@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251104150612.1874-1-laurentiumihalcea111@gmail.com>
- <20251104150612.1874-2-laurentiumihalcea111@gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: arm: rockchip: Add Radxa CM5 IO board
+To: FUKAUMI Naoki <naoki@radxa.com>, Joseph Kogut <joseph.kogut@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Steve deRosier <derosier@cal-sierra.com>
+References: <174735136138.1544989.11909422896170025756.robh@kernel.org>
+ <20250528221823.2974653-1-joseph.kogut@gmail.com>
+ <20250528221823.2974653-2-joseph.kogut@gmail.com>
+ <20250529-impressive-real-monkey-a7818b@kuoka>
+ <6443BD03B4C4F1FE+d20c3903-e2dc-4c2b-8f6e-fac38f242898@radxa.com>
+ <2f4e7f94-2921-493c-94fa-45749a060bc0@kernel.org>
+ <870075785A1ED2B9+6fb5238e-dc57-406b-acf9-b88b237d8e5b@radxa.com>
+ <f12bc562-b5bb-4bdd-b274-23582df8f2d4@kernel.org>
+ <E04572034CE4DC35+005c7dd7-cb2f-4f82-9889-ac14733a7647@radxa.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,32 +111,25 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251104150612.1874-2-laurentiumihalcea111@gmail.com>
+In-Reply-To: <E04572034CE4DC35+005c7dd7-cb2f-4f82-9889-ac14733a7647@radxa.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/11/2025 16:06, Laurentiu Mihalcea wrote:
-> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+On 05/11/2025 02:37, FUKAUMI Naoki wrote:
+> Hi Krzysztof
 > 
-> Enable the i.MX AIPSTZ driver, which is used for i.MX8MP-based boards such
-> as NXP's IMX8MP-EVK.
+> On 10/28/25 19:41, Krzysztof Kozlowski wrote:
+>> On 28/10/2025 10:44, FUKAUMI Naoki wrote:
+>>> Hi Joseph
+>>>
+>>> Your patch seems to be NAKed.
+>>> I will submit new patch soon.
+>>
+>> Sorry, what? Don't hijack other people's work.
 > 
-> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> ---
->  arch/arm64/configs/defconfig | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index 03d89f29e7c1..ae5d32ea9fc3 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -271,6 +271,7 @@ CONFIG_GOOGLE_FIRMWARE=y
->  CONFIG_GOOGLE_CBMEM=m
->  CONFIG_GOOGLE_COREBOOT_TABLE=m
->  CONFIG_EFI_CAPSULE_LOADER=y
-> +CONFIG_IMX_AIPSTZ=y
+> I have Joseph's permission to post my patch.
 
-This should be a module.
+This patch is correct, so you taking and hijacking it is not acceptable.
 
 Best regards,
 Krzysztof
