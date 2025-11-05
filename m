@@ -1,135 +1,135 @@
-Return-Path: <devicetree+bounces-235180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AD31C352E0
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 11:45:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1B70C35395
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 11:51:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D66EE19224D9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 10:44:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60BCA425511
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 10:47:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 097D9306B3F;
-	Wed,  5 Nov 2025 10:43:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D9D03081B1;
+	Wed,  5 Nov 2025 10:47:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nrOpLL/4"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="oeoo5pLy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3E3730749E;
-	Wed,  5 Nov 2025 10:43:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 747013009FC;
+	Wed,  5 Nov 2025 10:47:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762339403; cv=none; b=g0sKmoGd4DffB3GYCM8G4zwcsTaqju26zTMVPTwSh6gr7QYnFLpmL2K377p9JrZsARIRMqGTiB/c2jHW2zinOTwkkxJzJm61BHx+V2/newQuU6mr59M5/XG8CHxTrm5KJTYol2oG8Bzd4qz65p9t+8m6w2dy4rOEyWVAxgE5DBM=
+	t=1762339657; cv=none; b=Bb6ajk9twpOG1e92A2AevWRCKtCvB+JWeJ6l6VkI2CVbBLiAakof/V0Sk7Ymrys6O+B2NgCho0fWLmlWw9z5urFgPXx+vaC4zZ1cXLRLZIGM8AXqDQNMbAbOTTR9DcMi9xsR9rlqNz2GkLWGOrpNVDfNn4yjlInff/uYl5/sh2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762339403; c=relaxed/simple;
-	bh=xiagzVBevityIRA/xHOUPEL9BTQxWFUSQ4DwL3QsZ6Q=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=j7CIJzX09lbhmrRd+LYt7iaCc5RbnK09qKtaMNIE3a1R6Vt1Hn+zBO1jZFSqlxcb7dsFjcd/Ws5QG0ZHiqTQAJlVdmLTGcK21Z5zL4y0HuYZArD8RUuv7LFqXA1llhkpxfAazudgcK5gKqGUrAPR8o/2Etpu2nghQbu+x5RWkhk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nrOpLL/4; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762339402; x=1793875402;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=xiagzVBevityIRA/xHOUPEL9BTQxWFUSQ4DwL3QsZ6Q=;
-  b=nrOpLL/4oiNd3t28fNB+NYuXQZ36XWCXpxGTA+qSfVGJIyYONm21waDA
-   KJQU4vjTPIJDQ5MhA5TsN2uO7wpBi48CysiuvEycjdY4aRv+K9nKm0L0J
-   f/eekroL87SG9FtzPgNB1WlVq8fWJPyGzaP8Gl58X9XdNZjaaL/VgieO9
-   zCB6RSfo2XR/VWkgyT7yF8H9SCEAzeHENT7zTRnNGErl91ooGEX5y3yd9
-   N5xfnf6c1oFw3l64GZjq4w27yewlVs6aQaeCgS6qHPn6WAuD86hlr0MEc
-   +iJVxBxeW9NWq8NuohU8NHM0XP/X1ITqIuTl15dDk+6eWKTHTtlLCUYvK
-   Q==;
-X-CSE-ConnectionGUID: phepiw9WR2KHMuCfaOhrkA==
-X-CSE-MsgGUID: aimTRDd5Q0aWtOcFPoCKew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="81852624"
-X-IronPort-AV: E=Sophos;i="6.19,281,1754982000"; 
-   d="scan'208";a="81852624"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2025 02:43:21 -0800
-X-CSE-ConnectionGUID: Isd4eBPLRcKDgK5YT6ErMw==
-X-CSE-MsgGUID: OiLDIX16S4G9aa1KuMyt+A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,281,1754982000"; 
-   d="scan'208";a="218203072"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.252])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2025 02:43:12 -0800
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Wed, 5 Nov 2025 12:43:09 +0200 (EET)
-To: Niklas Cassel <cassel@kernel.org>
-cc: Vincent Guittot <vincent.guittot@linaro.org>, 
-    Bjorn Helgaas <helgaas@kernel.org>, chester62515@gmail.com, 
-    mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com, s32@nxp.com, 
-    bhelgaas@google.com, jingoohan1@gmail.com, lpieralisi@kernel.org, 
-    kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org, 
-    krzk+dt@kernel.org, conor+dt@kernel.org, Ionut.Vicovan@nxp.com, 
-    larisa.grigore@nxp.com, Ghennadi.Procopciuc@nxp.com, 
-    ciprianmarian.costea@nxp.com, bogdan.hamciuc@nxp.com, Frank.li@nxp.com, 
-    linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
-    devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
-    imx@lists.linux.dev
-Subject: Re: [PATCH 3/4 v3] PCI: s32g: Add initial PCIe support (RC)
-In-Reply-To: <aQsmtKsTEmf7e7Sd@ryzen>
-Message-ID: <bf3b2d2a-ce3e-87af-4154-abd022c6a3b4@linux.intel.com>
-References: <20251022174309.1180931-4-vincent.guittot@linaro.org> <20251022190402.GA1262472@bhelgaas> <CAKfTPtCtHquxtK=Zx2WSNm15MmqeUXO8XXi8FkS4EpuP80PP7g@mail.gmail.com> <aQsmtKsTEmf7e7Sd@ryzen>
+	s=arc-20240116; t=1762339657; c=relaxed/simple;
+	bh=qKWyyW5kB5XfI7vrhh0GHwmmVlzRPghkdvaUyXa6bxk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=H6ERSlZZgn0Pdb2+AaNm2s/fMgZlL2fEzaQSkMwGyxmSynqe02gW6YtW6wrsaGebGdk4svTYrxGpLAF7Y8aK+0dsmuTszEy3R7iTAl2x9G79Vx2I6NsLJ7W5Rst4aUGQ+Cpz/Ql12Z7XLhuEUy7uYRCu2FSDXgIgocCLXTIzi4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=oeoo5pLy; arc=none smtp.client-ip=211.75.126.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5A5AirLlB984686, This message is accepted by code: ctloc85258
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
+	t=1762339493; bh=sSn/B8MLi6vUnr2qxjw+AgTuuZRK9O5yBQVrq5+ToBk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:
+	 Content-Transfer-Encoding:Content-Type;
+	b=oeoo5pLygaTa9wWUlip+08ccQCWZdylr8A6y7OCtm+uCgWaoiG4edYaS6tzmSuCL6
+	 4VSo1Btd8ku1hCizITcXmniBjpw2K//ttEkwqgDrNokMffuVHWYdGmOebaTycNhT6e
+	 957Mrr2iOrQ2HLyJrPN/xXmi9Ophzy0eZ20ByI97vFbkIjgu4j2rvDl/80VvVmxISB
+	 YuDKr4cahetvhrw3N54cLWowYq53zWNaB7jLiH1ZydZL9mkbo9SMpCnuLptNJWhCwY
+	 WtLXWmHQR1e/XhKleXnwY7rAzIxwe58GkxHbktWNt31bftvPNDV1GhNtbde5XR0Pnn
+	 k8OUwRsO/CKRA==
+Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
+	by rtits2.realtek.com.tw (8.15.2/3.13/5.93) with ESMTPS id 5A5AirLlB984686
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 5 Nov 2025 18:44:53 +0800
+Received: from RTKEXHMBS01.realtek.com.tw (172.21.6.40) by
+ RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.27; Wed, 5 Nov 2025 18:44:53 +0800
+Received: from RTKEXHMBS04.realtek.com.tw (10.21.1.54) by
+ RTKEXHMBS01.realtek.com.tw (172.21.6.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.27; Wed, 5 Nov 2025 18:44:52 +0800
+Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS04.realtek.com.tw
+ (10.21.1.54) with Microsoft SMTP Server id 15.2.1544.27 via Frontend
+ Transport; Wed, 5 Nov 2025 18:44:52 +0800
+From: Yu-Chun Lin <eleanor.lin@realtek.com>
+To: <afaerber@suse.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <lee@kernel.org>, <james.tai@realtek.com>
+CC: <linux-arm-kernel@lists.infradead.org>,
+        <linux-realtek-soc@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <cy.huang@realtek.com>,
+        <stanley_chang@realtek.com>, <eleanor.lin@realtek.com>
+Subject: [PATCH 0/3] arm64: dts: Add support for Kent SoC family
+Date: Wed, 5 Nov 2025 18:44:49 +0800
+Message-ID: <20251105104452.6336-1-eleanor.lin@realtek.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Wed, 5 Nov 2025, Niklas Cassel wrote:
+Hello,
 
-> On Fri, Oct 24, 2025 at 08:50:46AM +0200, Vincent Guittot wrote:
-> > On Wed, 22 Oct 2025 at 21:04, Bjorn Helgaas <helgaas@kernel.org> wrote:
-> > > > +     dw_pcie_dbi_ro_wr_en(pci);
-> > > > +
-> > > > +     val = dw_pcie_readl_dbi(pci, PCIE_PORT_FORCE);
-> > > > +     val |= PORT_FORCE_DO_DESKEW_FOR_SRIS;
-> > > > +     dw_pcie_writel_dbi(pci, PCIE_PORT_FORCE, val);
-> > > > +
-> > > > +     /*
-> > > > +      * Set max payload supported, 256 bytes and
-> > > > +      * relaxed ordering.
-> > > > +      */
-> > > > +     val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
-> > > > +     val &= ~(PCI_EXP_DEVCTL_RELAX_EN |
-> > > > +              PCI_EXP_DEVCTL_PAYLOAD |
-> > > > +              PCI_EXP_DEVCTL_READRQ);
-> > > > +     val |= PCI_EXP_DEVCTL_RELAX_EN |
-> > > > +            PCI_EXP_DEVCTL_PAYLOAD_256B |
-> > > > +            PCI_EXP_DEVCTL_READRQ_256B;
-> > > > +     dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
-> > >
-> > > MPS and relaxed ordering should be configured by the PCI core.  Is
-> > > there some s32g-specific restriction about these?
-> > 
-> > I will check with the team why they did that
-> 
-> Most likely, the reason is that, the PCI core does not set the MPS to the
-> maximum supported MPS for the root port.
+This patch series adds initial Device Tree support for Realtek's Kent SoC
+family, including the RTD1501S, RTD1861B, and RTD1920S variants with their
+respective evaluation boards.
 
-PCI core set/doesn't set MPS based on config. Perhaps try with 
-CONFIG_PCIE_BUS_PERFORMANCE.
+The series includes:
 
-> So without that change, the port will use use 128B instead of 256B.
-> 
-> I assume that you should be able to drop (at least the MPS part) if this
-> change gets accepted:
-> https://lore.kernel.org/linux-pci/20251104165125.174168-1-18255117159@163.com/
-> 
-> 
-> Kind regards,
-> Niklas
-> 
+1. Adds compatible strings for the Kent family.
+2. Add new DT bindings for the Realtek ISO system controller.
+3. Add Device Tree files for the Kent SoC, TD1501S Phantom EVB (8GB), RTD1861B
+ Krypton EVB (8GB), and RTD1920S Smallville EVB (4GB).
+
+The patches have been validated with 'make dtbs_check' and
+'dt_binding_check' to ensure compliance with DT schema and successful
+compilation.
+
+Comments and feedback are welcome!
+
+regards,
+Yu-Chun Lin
+
+Yu-Chun Lin (3):
+  dt-bindings: arm: realtek: Add Kent Soc family compatibles
+  dt-bindings: mfd: Add Realtek ISO system controller
+  arm64: dts: realtek: Add Kent SoC and EVB device trees
+
+ .../devicetree/bindings/arm/realtek.yaml      |  43 +++--
+ .../bindings/mfd/realtek,iso-system.yaml      |  65 +++++++
+ arch/arm64/boot/dts/realtek/Makefile          |   5 +
+ arch/arm64/boot/dts/realtek/kent.dtsi         | 179 ++++++++++++++++++
+ arch/arm64/boot/dts/realtek/rtd1501.dtsi      |  13 ++
+ .../boot/dts/realtek/rtd1501s-phantom-8gb.dts |  26 +++
+ .../boot/dts/realtek/rtd1501s-phantom.dtsi    | 135 +++++++++++++
+ arch/arm64/boot/dts/realtek/rtd1861.dtsi      |  13 ++
+ .../boot/dts/realtek/rtd1861b-krypton-8gb.dts |  26 +++
+ .../boot/dts/realtek/rtd1861b-krypton.dtsi    |  79 ++++++++
+ arch/arm64/boot/dts/realtek/rtd1920.dtsi      |  13 ++
+ .../dts/realtek/rtd1920s-smallville-4gb.dts   |  24 +++
+ .../boot/dts/realtek/rtd1920s-smallville.dtsi | 145 ++++++++++++++
+ 13 files changed, 754 insertions(+), 12 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/realtek,iso-system.yaml
+ create mode 100644 arch/arm64/boot/dts/realtek/kent.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1501.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1501s-phantom-8gb.dts
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1501s-phantom.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1861.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1861b-krypton-8gb.dts
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1861b-krypton.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1920.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1920s-smallville-4gb.dts
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1920s-smallville.dtsi
 
 -- 
- i.
+2.34.1
 
 
