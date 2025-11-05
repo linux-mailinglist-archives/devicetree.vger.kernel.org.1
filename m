@@ -1,262 +1,156 @@
-Return-Path: <devicetree+bounces-235233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 791DBC35DD2
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 14:37:33 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62BEAC35DED
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 14:39:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D35943BA2C4
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 13:36:31 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ED9294E4FC7
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 13:37:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E92E315D22;
-	Wed,  5 Nov 2025 13:36:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF3F2322A00;
+	Wed,  5 Nov 2025 13:37:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dD3NYHnC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h2/OVbem"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8677B313E14
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 13:36:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53DA42F363B
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 13:37:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762349789; cv=none; b=uSwbuNcUL3SZLRK9Mr2cqbZv4ZAKIP3OQXfJOJucnzyCRrIQGg9YjCSH6WkdACsZxwFIQYoJVR18UQGYZQKzUE8F/vUg17p4IjFqIcJmr58bBf5tsbNomoGlkYIDzBum8ArDEhPgZ2YuCVXc6lu8BbsodovQTT3lRaFgckM1h3Q=
+	t=1762349860; cv=none; b=B6yQyfhR8+BKp2GJ4+ZKUc8891rgkX8U9hsw/R5ebbc/frmrg1CzrALZDn+i0n5iViPQPlRMRSzu9fG5X1lQILFHOXJBDjet4zSqHJzRe+0uK5R780T6Vrv/xlEZp8cXEiVUjHxg1Ec3f9wMqNXsrCjXa09io6XyRCkgHdmaYVA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762349789; c=relaxed/simple;
-	bh=N3LAI2VKe6lufJcVbjoPrMgXDFUHRU7jaI2Qd1R+9YY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bVll3MEhO/3LS4epGskh3b03EOH1K2sUo2YMWp5SgxGK18xNSBbqETaN+V0c6M2P7JVdkvHWhHgw18eRmicXfF0bJ1l7p81QcCxoV1yhiCbuftetcsJJ94E462eV1yxfQRs1HVCca/AWwMLUlW9fhp7DVhBZC4WXDoi10Ffx+8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dD3NYHnC; arc=none smtp.client-ip=209.85.221.43
+	s=arc-20240116; t=1762349860; c=relaxed/simple;
+	bh=7dfbJe450Lh2RXqkUUITEMSQluOo/ousxB6R6ebDm5I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BD0F+/rgsjslrcaVkLyyd4rTqDdN8ZCikZQAE5+v8Mw0VJ9aPF85SGPziUGfU/ppG7HoHnT69mM50XVvJ3t4tWf+RnIGSLYmjY6gmM0SzenHK0BcRh8FAvmv6aeRkZVcJPGzLd9umLdNUkYxFDqh5lVAvdZRSJKM6qP1XbkZqeA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h2/OVbem; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-429bcddad32so4221526f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 05:36:27 -0800 (PST)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4775a52e045so4975405e9.3
+        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 05:37:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762349786; x=1762954586; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iL8OVjWdHUzrhq3ZN/d9whcVawdUbvhGs+dukUNE9D4=;
-        b=dD3NYHnCuevkcLyFTCGKmf+TDHzNV68dYko3xhMX/EobSI1OFNx4C/Vu2pYLBvxdrP
-         NBWmNUtqkwrwM2PMduHJZsM6hH5Plo7OY5aXc71F3SuGPo00dzQKZCpdD8GpStTurRW0
-         12NlJb9/J5msPLiVDpXfuC3SgwQrVeyMi1Pk12Qo9D2Xs6OFWvh07OROGOvNc6ZGkXPS
-         wLSuKCKdvzAFsmlfGsSBKiHmt6z0uNc/JNtye0D/o0preNGGis+nnk+dArIeWfI72HKJ
-         q4k5/thyAryJZR0cw/VlNmHGoZwTB3A8ZEqG9QpuGGtZdlD+tAt6lvQuzrdDTZqD5uD/
-         Da0A==
+        d=gmail.com; s=20230601; t=1762349858; x=1762954658; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=meMfOGtlg3RqGUre2thA2pbsV29ZdRKeS73vMYZgshw=;
+        b=h2/OVbemE6yoOSQpzhwEt5jkQXlRA+VahZAiCffU5u93sQBMmBWiLZyWA+KtsozJE6
+         iU3/teYPYhnik9kIqeru+gGcoH8QmRge/JOLfekjxToK5gyFpnTIxI1m6TxyLTwAjlLu
+         Ybnoc4FTTMdHoboAqUBa59BnLXurl/47++CMZUuRm2j/+i0GwD8X3ma01kDNj4nmvEtx
+         9NchkKFglksteTQI/JhCfwzzKMCLGeVb7/76Hy/v1aNXhcv0nOuBjQu03s5Y/2rBA1ce
+         TtVgr/F2TepXGTLefsfiohoz2O5B/15siZ55QKyDloKVV/A5Hza0B/habdyXCWXKV3LF
+         ZpMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762349786; x=1762954586;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iL8OVjWdHUzrhq3ZN/d9whcVawdUbvhGs+dukUNE9D4=;
-        b=HwZxPLGw1tCSQcC2JCqB7lwWcbIJdnU7eL7sDM/FjkNUq9cuyQ5/xCwKcueUQItiaW
-         gaCj4mKejmIfKM5vIOgNQyibpqL7Owle/++C9Mnj5n9oYpnziD2YKlV3FKEBWeCp5zF5
-         XObAdXEzcpEKUXq1sncLEdHuRWOaOrdoUQSGAZSGqeU32lWN1nj10VldxRow6+qh+7FD
-         LUjLrcyBpKZscUYbNSlcTqfU+W8NbXA7DBcQjov0qrm4nbj4UkphQPeS1i7p+jBu3cNj
-         uz3rJgExr+R7wv0lHHpGdfi4GLuqX5FZx22Q8iNcM2KpxccxCz9020vJgHjeKByDN+C+
-         O+6g==
-X-Forwarded-Encrypted: i=1; AJvYcCVxqk37bDQWAX3nZOCLbevL10SYBKK1BE/QVRR6eGB3zVJgntahqPIu9P8cu3gZS5MvPzCCisczjjP7@vger.kernel.org
-X-Gm-Message-State: AOJu0YziqOjIUn4Sp7S0AaiAQaUnNtifHEq5uq+C4e/u6SHSaBs3ZsV5
-	zw/3gjRpWEPOM3rzQrM8iv9b0QzMRDvy6Ay1AS4/ZorVfetc1jp3VG2sNwJ7/4taSJ1aFxcO1rm
-	02RuBNPJRnyNRv14OIKmRb988+g4sVZE=
-X-Gm-Gg: ASbGncssu9jhzjqWYAmZ9VVmOO7odWLs6cs4fcKek134Kxj0eBHUFVc+3Ygr+Q1/1hG
-	cKp5DKUrXXXKqt6WMOBVwdKAnStmAj2O/wFt+rN3l08ZkckbeYG3HalUp7XgA3+/ydMs2Kgu8pW
-	rsHFkRCrslAW4LaGp+XiGy7JEh3cXFDxERV/yCk5ONRm4wM6C1kf4UG3zYZu5Hmdu2hIWJtpi4O
-	Go+V0+U70h+kHG3XTIMK1c0w7jBfMbWk0TYdQWCypQViBJvXRyQoneCMleYeeEVr8rAYHI=
-X-Google-Smtp-Source: AGHT+IEFGUCq5pOwZYnXFWPhWJEW8IG4enihXYQYe3+bMQEFYIeVw6QpuN6H25Eqsp92tVyTuPD9IkJCxAS5BCgQOew=
-X-Received: by 2002:a05:6000:22ca:b0:3e9:3b91:e846 with SMTP id
- ffacd0b85a97d-429e32c8357mr2860369f8f.10.1762349785766; Wed, 05 Nov 2025
- 05:36:25 -0800 (PST)
+        d=1e100.net; s=20230601; t=1762349858; x=1762954658;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=meMfOGtlg3RqGUre2thA2pbsV29ZdRKeS73vMYZgshw=;
+        b=lJMSctEMMk7OiKs08uxXPBWErh2h4vn2l3hlkXFQ/aAl4OvXxPYmhxFr1qm+3kjqky
+         bY8rFvJVn8rPwiauKyhhEEQrrCOR3qpUap7ddePRzgMBxquY6AwzsvLgeM04+/78ye98
+         whxbqqEbzlarqNDKR6JGijLJFQpF2NvPaB9fit8DJVBNigsTRjM4GSpbeuLXVW2KENJo
+         kYe5SkmcAUgowyxk58ckWAM/qmCKJF3mqLEZdMlrjzETr2/iWzQJfdYdh0gQUblwsukp
+         Ww5NuB4Tjd8mDEnKHW+j0iWD4JcNNlByJPTeU6VBon9oX40vw0o2RRpHsD+5Co5VL3wL
+         VsJA==
+X-Forwarded-Encrypted: i=1; AJvYcCWQ/LZjnRqOgFCVHsyTSoTW0CBVkX1X/GS2XRZT89Os3UdtBPqgLZVsyU1SqTCcWQJdXVqP5KZDWDhE@vger.kernel.org
+X-Gm-Message-State: AOJu0YwE8EPxmprsls3f+kKEnuo/xPS61Vr7vevlM6A/Q4e0BII+XYfS
+	zC+ohQmso7KJj9nvlv+oQwuCpXB0GCtrjbbgaXthRDXbS+itLc71rexd
+X-Gm-Gg: ASbGncslJMJ9n/Xfr3vbEsa2deLE2hxgraSkPaI0dex9ZXbs7EvbHeAMqQ0momn51VD
+	li+AfKYLzggv09WrMb6fSpFu9Fc4LTK6kToPRBHOfzKatv1gNwkqqZd7HxK+Znk7nB7L57PRZn+
+	vR5tblVv1cze+k5MtZyn4HtQRcylS37kz4YDo/sM+E91wpxFCHIZdl0yWPtSEmL+kP3MbRwI0AS
+	QPSBmYYw9/O+WvLqAfzedAgkruVnkm3lPnuF+tdQyL1wEKj5149A5ND77bsMoF2kPI3BjCYoon2
+	Dah+mfWdnYKKbNNecmQ7uGLj4vGVl49KH4s5drLp/C6OidTlUzrzplHND/Qx0JUYIpZh1qGKOmn
+	fyrDJJZ5nwxF24XMoEBtaMGwSVWQTv7irAG4l3O1hyAZQ7ytf88oeAFqoF2uU/a2OWBSc3yf3vx
+	BBPed08mil7F3VSRKOQ5FhyWRt7DeOn0/GCs4zvvPLrAuO/dHrpQaeKQ6+hyvBNI8=
+X-Google-Smtp-Source: AGHT+IE23qUEC3bPnkrd6XaYOcV61wad6I2xgT35I52FO8qjaOdi2P07+Ns4nuWyu1lEoEUP3cZyNQ==
+X-Received: by 2002:a05:600c:5403:b0:46e:3f75:da49 with SMTP id 5b1f17b1804b1-4775ce4fcc8mr25716655e9.37.1762349857489;
+        Wed, 05 Nov 2025 05:37:37 -0800 (PST)
+Received: from orome (p200300e41f274600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f27:4600:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4775cdee770sm51496845e9.16.2025.11.05.05.37.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Nov 2025 05:37:35 -0800 (PST)
+Date: Wed, 5 Nov 2025 14:37:33 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Niklas Cassel <cassel@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Vidya Sagar <vidyas@nvidia.com>, 
+	Vedant Deshpande <vedantd@nvidia.com>, Shin'ichiro Kawasaki <shinichiro.kawasaki@wdc.com>, 
+	Thierry Reding <treding@nvidia.com>, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v3] arm64: tegra: Add pinctrl definitions for pcie-ep
+ nodes
+Message-ID: <cvbvbshg4asz4ddrtsotsjc5srouwktirpxbhsjdmlxfzklytd@7sav35bkcmm3>
+References: <20251009142253.2563075-2-cassel@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251002-c55-v12-0-3eda2dba9554@ideasonboard.com>
- <20251002-c55-v12-3-3eda2dba9554@ideasonboard.com> <CA+V-a8sg4c697WTS=wXoWvgc_UCFM3+Qjh1br=rMm4F84NVw-Q@mail.gmail.com>
- <8c5a4c68-8299-4d8f-96b2-8db232df70fe@ideasonboard.com>
-In-Reply-To: <8c5a4c68-8299-4d8f-96b2-8db232df70fe@ideasonboard.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 5 Nov 2025 13:35:59 +0000
-X-Gm-Features: AWmQ_bkQ07gnEJ1TplADVmVgYPnAor3xF3-AhJKu46RGz6HGiG28aqTfQRb9Z0M
-Message-ID: <CA+V-a8vey1y0QAxk7vYNHzPHrOrQ4uTpjf4LCb9wSRRCT3v3Qg@mail.gmail.com>
-Subject: Re: [PATCH v12 03/15] dt-bindings: media: Add bindings for ARM mali-c55
-To: Dan Scally <dan.scally@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com, 
-	jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com, robh+dt@kernel.org, 
-	mchehab@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com, 
-	laurent.pinchart@ideasonboard.com, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="tbqrtx74fq7nlswr"
+Content-Disposition: inline
+In-Reply-To: <20251009142253.2563075-2-cassel@kernel.org>
+
+
+--tbqrtx74fq7nlswr
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3] arm64: tegra: Add pinctrl definitions for pcie-ep
+ nodes
+MIME-Version: 1.0
 
-Hi Dan,
+On Thu, Oct 09, 2025 at 04:22:54PM +0200, Niklas Cassel wrote:
+> When the PCIe controller is running in endpoint mode, the controller
+> initialization is triggered by a PERST# (PCIe reset) GPIO deassertion.
+>=20
+> The driver has configured an IRQ to trigger when the PERST# GPIO changes
+> state. Without the pinctrl definition, we do not get an IRQ when PERST#
+> is deasserted, so the PCIe controller never gets initialized.
+>=20
+> Add the missing definitions, so that the controller actually gets
+> initialized.
+>=20
+> Fixes: ec142c44b026 ("arm64: tegra: Add P2U and PCIe controller nodes to =
+Tegra234 DT")
+> Fixes: 0580286d0d22 ("arm64: tegra: Add Tegra234 PCIe C4 EP definition")
+> Signed-off-by: Niklas Cassel <cassel@kernel.org>
+> ---
+> Changes since v2:
+> -Add pinctrl definitions to all pcie-ep nodes, not just C4 controller.
+>=20
+>  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 57 ++++++++++++++++++++++++
+>  1 file changed, 57 insertions(+)
 
-On Mon, Nov 3, 2025 at 4:17=E2=80=AFPM Dan Scally <dan.scally@ideasonboard.=
-com> wrote:
->
-> Hi Prabhakar
->
-> On 28/10/2025 18:23, Lad, Prabhakar wrote:
-> > Hi Daniel,
-> >
-> > Thank you for the patch.
-> >
-> > On Thu, Oct 2, 2025 at 11:19=E2=80=AFAM Daniel Scally
-> > <dan.scally@ideasonboard.com> wrote:
-> >>
-> >> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
-> >>
-> >> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
-> >> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> >> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> >> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
-> >> ---
-> >> Changes in v12:
-> >>
-> >>          - _Actually_ dropped the arm,inline property mode, having for=
-gotten to
-> >>            do so in v11.
-> >>
-> >> Changes in v11:
-> >>
-> >>          - Dropped in arm,inline_mode property. This is now identical =
-to the
-> >>            reviewed version 8, so I have kept the tags on there.
-> >>
-> >> Changes in v10:
-> >>
-> >>          - None
-> >>
-> >> Changes in v9:
-> >>
-> >>          - Added the arm,inline_mode property to differentiate between=
- inline and
-> >>            memory input configurations
-> >>
-> >> Changes in v8:
-> >>
-> >>          - Added the video clock back in. Now that we have actual hard=
-ware it's
-> >>            clear that it's necessary.
-> >>          - Added reset lines
-> >>          - Dropped R-bs
-> >>
-> >> Changes in v7:
-> >>
-> >>          - None
-> >>
-> >> Changes in v6:
-> >>
-> >>          - None
-> >>
-> >> Changes in v5:
-> >>
-> >>          - None
-> >>
-> >> Changes in v4:
-> >>
-> >>          - Switched to port instead of ports
-> >>
-> >> Changes in v3:
-> >>
-> >>          - Dropped the video clock as suggested by Laurent. I didn't r=
-etain it
-> >>          for the purposes of the refcount since this driver will call =
-.s_stream()
-> >>          for the sensor driver which will refcount the clock anyway.
-> >>          - Clarified that the port is a parallel input port rather (Sa=
-kari)
-> >>
-> >> Changes in v2:
-> >>
-> >>          - Added clocks information
-> >>          - Fixed the warnings raised by Rob
-> >> ---
-> >>   .../devicetree/bindings/media/arm,mali-c55.yaml    | 82 ++++++++++++=
-++++++++++
-> >>   1 file changed, 82 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/media/arm,mali-c55.yaml=
- b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
-> >> new file mode 100644
-> >> index 0000000000000000000000000000000000000000..efc88fd2c447e98dd82a1f=
-c1bae234147eb967a8
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
-> >> @@ -0,0 +1,82 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/media/arm,mali-c55.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: ARM Mali-C55 Image Signal Processor
-> >> +
-> >> +maintainers:
-> >> +  - Daniel Scally <dan.scally@ideasonboard.com>
-> >> +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    const: arm,mali-c55
-> >> +
-> >> +  reg:
-> >> +    maxItems: 1
-> >> +
-> >> +  interrupts:
-> >> +    maxItems: 1
-> >> +
-> >> +  clocks:
-> >> +    items:
-> >> +      - description: ISP Video Clock
-> >> +      - description: ISP AXI clock
-> >> +      - description: ISP AHB-lite clock
-> > As per RZ/V2H HW manual we have reg clock looking at the driver code
-> > it does have readl. IVC has reg clock if IVC driver fails are you
-> > still able to read/write regs from ISP driver?
->  >
->  > I think we do need to pass reg clock too.
->
-> Yes - but I should clarify that the names are from the arm documentation =
-that we had when we
-> originally developed the ISP driver. The RZ/V2H documentation treats the =
-ISP and IVC as one block
-> that shares 4 clocks and resets, but when we originally developed the ISP=
- driver the platform we
-> used had the ISP implemented as an inline configuration (taking data dire=
-ctly from a csi-2 receiver
-> without an IVC equivalent), and the documentation detailed just the three=
- clocks and resets. The
-> dtsi changes for the RZ/V2H(P) [1] assign clocks 226, 228 and 229 to the =
-ISP which are named
-> reg_aclk, vin_aclk and isp_sclk in the renesas documentation.
->
-> The IVC gets pclk, vin_aclk and isp_sclk.
->
-> [1] https://lore.kernel.org/linux-renesas-soc/20251010-kakip_dts-v1-1-64f=
-798ad43c9@ideasonboard.com/
->
-Thanks for the info.
+Applied thanks. I did add blank lines between the blocks since that's
+what I prefer. I hope you don't mind.
 
-> > Also for IVC we do have a main clock (which is a system clock).  Can
-> > you please educate me on what is the purpose of it. Just curious as we
-> > pass to IVC and not ISP.
->
-> The IVC uniquely gets the one called "pclk" in renesas documentation, wit=
-h the description "Input
-> Video Control block register access APB clock".
->
-Got you.
+Thierry
 
-Cheers,
-Prabhakar
+--tbqrtx74fq7nlswr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmkLUxoACgkQ3SOs138+
+s6EYLRAAsc49pnk+to7vxy6pYRF4Zvh/tQxeBksFwe+GpnDL44/4X3ki63GnDHqd
+DYT8MFP4eBp5uDU8MOMfwGq5GyMwRFgQWgOiybT4PyJNkU5amkV3u8lnl9d4fHFD
+r9N0jzQDKND7FqpbMdaa83alnnYj/D7yZ/i/cAbAEo40VTmaB8vCzsXB2WYyXOwr
+Ee4hVB0WmstsNvyr1Mtb5tNQ4I8hetm/wLqP0kUVBbjebvJvggHtWdK/ERZ/YRwJ
+Py9uU+cO9Vgccun4xvkvXTz5Z3E1V0Y2BBgcMsD3BwJwERpuJPbzdZlKKThZbzW4
+L6lfn9exwo+oH8okRh2ORRgILlSwM25ght8Is0u9vGDLN1r9hEttMgyD2EjS5WMu
+Q8SwxAwN2k8MrwXkk90GIlJdhq325FKomxAtt6ZzkTOlY8esM7fiAQn08xgVe53u
+dUXpDLB3x64ao5JrzvrUwGoz/bUjMCNQMdxkUIN5N5pStkTFuzMVsjrRMfMDbGAJ
+z/L6ayVQ1nRHrDwERjkjInllxnu+HJ+gvz2YtzXb0kuaaKmVJ+gji6PakO63edLu
+svregK0vypfir3CVCqoxLMBZpj2Z/J+W0SpwqgmUo5/UniY7JvJAW5DfcYawfsqw
+/wMG+ep8IOBI3r2myZFVQ4OtrZdObqdtu1kk2EqAeP9xQgQ+sfE=
+=DTt9
+-----END PGP SIGNATURE-----
+
+--tbqrtx74fq7nlswr--
 
