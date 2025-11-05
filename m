@@ -1,141 +1,124 @@
-Return-Path: <devicetree+bounces-235419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 160A3C38544
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 00:18:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76853C38550
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 00:19:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9162934FDA8
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 23:18:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1094B18961FA
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 23:19:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51B572F5A1C;
-	Wed,  5 Nov 2025 23:18:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79FB726ED3F;
+	Wed,  5 Nov 2025 23:19:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="I/OLZibq";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="NINpg2lG"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="S10OBdYa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a8-smtp.messagingengine.com (fout-a8-smtp.messagingengine.com [103.168.172.151])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C1122F533B;
-	Wed,  5 Nov 2025 23:18:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A3A522D9ED
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 23:19:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762384707; cv=none; b=lbAiKWsZ6vZSiu2pTvAvJ47LbVbEeNkxurqDVnbgr/BzULb84MYrbP5Q7YGXZ6Zja6Gw9qdXqHRhG7mtMrmD+posaCpn+LFLqA+ycdTqPIDZQf9r3kAb76HjEHD0FYk8Z1oeNv3F7wnmRAC1JxoPpa/9b4vckx8+uOkxX0go1oU=
+	t=1762384746; cv=none; b=btLOloj4ULx4HfbyLQe55pbhxFv696g8P9tWE685V/x8u/VYawb0oDJOw1vgKJHLZ57WdtHNM/QpKTNp2NM4XEUlg3KuAdl/bZ6z+BDg1FcCOCrVXjvXFhF2m1dp1/dDS+B2kBsC5kMb36z2+waeyA0+y02l62SaxdrM+Hwf7wI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762384707; c=relaxed/simple;
-	bh=VBxJGzUIs0zvPeG/KIgXvl/V4XXjvzSMYuw/cRZMSjk=;
+	s=arc-20240116; t=1762384746; c=relaxed/simple;
+	bh=bal1pm0MBHW5CVxN9rxC/2Jag2FEa4gaFfEjB8A+0UM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qLXAZHGPideZusuU4++k64YqXvhCsxK/Hj8GqqVLFkFvarLUL1ipp1akKeirpk7ZWmUjQthek8n4HaAR4LrdowVPZmcBxZAc8h89pJ2cycZuJ0QRbnNDuT7ZjMgQfcPMs+nmWB3N7lw27JyCf9UGuDzVdgYizJUiqIrvRjiMVec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=I/OLZibq; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=NINpg2lG; arc=none smtp.client-ip=103.168.172.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-03.internal (phl-compute-03.internal [10.202.2.43])
-	by mailfout.phl.internal (Postfix) with ESMTP id D3343EC0176;
-	Wed,  5 Nov 2025 18:18:24 -0500 (EST)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-03.internal (MEProxy); Wed, 05 Nov 2025 18:18:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1762384704;
-	 x=1762471104; bh=7jaQjpSsB8lMJo/M0U6io98IEjwBYyqHBM3EcAH4An4=; b=
-	I/OLZibq3PkueWmzaenBo5o1xv4E1FTGgb1tytZss3AXl0mGNBZvxFUpbxgMnj2n
-	nNdzditXCzk8KB2xsIevh3ZwA8+g7yqVrJYAbo/QiU0UpZ9VOmBOf/rXQauWPtHz
-	DWe/GSjjn0kXwTBvJfK2wRsnAKquO+zj+9LUVfnxMSKpGfUbP0+PMAefNFY+4J6L
-	VHdCg5AJpO+NFsxvCyUTY7YyCAofJKrLBQYP1oYhpUwHeu9JX7PpFza6+vbiSSKu
-	d61Gk+Wy/FgifnPdkb9tnXhvJD2XjkdjCQL8M+T/S6YnLCrmJKeow4lnVpbgjdIT
-	MCzoE2hNdK44CO/NGXeEMQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1762384704; x=
-	1762471104; bh=7jaQjpSsB8lMJo/M0U6io98IEjwBYyqHBM3EcAH4An4=; b=N
-	INpg2lG0j9veOyilmbxiA7D/4rOEBENflG1ay6bEbcQUHjt8OqixGd8Fw7D3RPUr
-	Bmw6Y+4VdtG3wGr7kaqDm2B6WO95qEsyNBPQaoLTHQM2iKfD71Rcxx5psviiIyjd
-	RcdXKnGQkjZ9j+Cr+fTw/oXaiQL+6ul8Se0xOWCBnUzP62rRvsGTKeT3Hc7asvF0
-	AlaLHVRTc+0xCXAZgR0PsDqapdJp2PTyLBWWQLi2PW/LbDcukuG6u7sDXXikZ0kY
-	2AClLkVsYrvU9AEgVBXkutatNOggCEBhBly03gMNcRBtsoGgg/VJS2iL5IPOH9U4
-	IJG+DC3IA4wQFty3dZ0pQ==
-X-ME-Sender: <xms:QNsLaZ1w8qO9drc5y0hzUTlFE6Q_d6mpiuqbIfchDIzk3QTMZlajAw>
-    <xme:QNsLaWF4JW9TqO4IKW5qnsx23uJHBy6L9zmYCPqANyjCYwNQ6FNqrI0QubXj7nweO
-    a0pILuDSZPe7mFqnED7E_fCJ6UirjPETCdajjhUhJMuhyZPFdeOqKI>
-X-ME-Received: <xmr:QNsLaUvQR6jEPcfdT1hdOB3hRMpPW41OnWfS7CijFg63qDNnH3sBzcJ2SIaAA77FvqdHr6jFs2OLZuFsTikXVIp3>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddukeehvddtucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhephffvvefufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpefpihhklhgr
-    shcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvsh
-    grshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeehiefgueevuedt
-    fefhheegkeevtdelueeukeevfeduhefhhfejfffggeffleefgeenucevlhhushhtvghruf
-    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggvrhhl
-    uhhnugesrhgrghhnrghtvggthhdrshgvpdhnsggprhgtphhtthhopedutddpmhhouggvpe
-    hsmhhtphhouhhtpdhrtghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhlihguvghr
-    rdgsvgdprhgtphhtthhopehmthhurhhquhgvthhtvgessggrhihlihgsrhgvrdgtohhmpd
-    hrtghpthhtohepshgsohihugeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghh
-    sehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdroh
-    hrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthht
-    oheplhhinhhugidqrhgvnhgvshgrshdqshhotgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-    dprhgtphhtthhopehlihhnuhigqdgtlhhksehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhr
-    tghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:QNsLaZoiTf2LUU77lbNOtsGdfUNUrRpmGecuFQfyZ8vcNJnZ2SX5wA>
-    <xmx:QNsLabXZYCItTGQ2IHU_8SXlZy3c4RaHFW8cDUTfAJitNhyfNRvQww>
-    <xmx:QNsLaR3WKbIR4_ZUXssKNJobh4clEYuEdLj3MjA-RADazobj0s86iA>
-    <xmx:QNsLaQt8OPL82ENC1UjVfnSEU3ZaJ_B7PF-yzyrXYrA1MjM62-CgAg>
-    <xmx:QNsLaSx5uMdnEAWy_xCAlwTZycVS9AeQX6DO4817TG_7NDupbsx51KpD>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 5 Nov 2025 18:18:24 -0500 (EST)
-From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Subject: [PATCH 2/2] clk: renesas: r8a779a0: Add 3dge module clock
-Date: Thu,  6 Nov 2025 00:18:15 +0100
-Message-ID: <20251105231815.1927239-3-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.51.1
-In-Reply-To: <20251105231815.1927239-1-niklas.soderlund+renesas@ragnatech.se>
-References: <20251105231815.1927239-1-niklas.soderlund+renesas@ragnatech.se>
+	 MIME-Version:Content-Type; b=Gs6W/8Mwt1qekJeQogMMmdK5nTfA31jf+g2Alq9WP/C6ShE1RqofAnleJC42UT+MztT9NVRrRcwkwwL/QC4/DJwndkZfoxdxUAn3YvahZ5KAc3noXjWGCA8u4QxK9eZSKEwg+lGmbIn38zNq3s0dTLQpihunVqqojpm0Ekcd6Lo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=S10OBdYa; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=Mo3Jh0qgHnKE+W0ZE0CQCiRi83Cv3SN4TvlOGOO9etk=; b=S10OBdYaBKmpmCEL+9+EPKNuc4
+	xPCJjtCzUsi4xBVeWmppP5DhhTgeLLrmmd8ShKYFNmmgBB/77b78788erVAUe/YZurkGvnQ+AoRwS
+	RftlgHnkEvBD6ZfGM3GxDxLkEPncmMLyZ8138AyVyONb3J6USSn/vgQAZIYmj4th0jTi5eGie7nNx
+	VkzqyzHSHo/2yOYxfk8kg6+OwccYLSXmcRe6UzT28xZ0zj6O048L8hC+oVtLk24b88aGgx+n0NL9J
+	rFB4bt9JUB8rI9bCG64nud157k1yPo70Ii6vEJK+/uhchQ3k4q/p8XZjmMg44SRAsgGm1ZsQt5WFm
+	vgWtvonQ==;
+Received: from i53875bde.versanet.de ([83.135.91.222] helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1vGmmD-0001CL-9o; Thu, 06 Nov 2025 00:18:53 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: linux-rockchip@lists.infradead.org, Chris Morgan <macroalpha82@gmail.com>
+Cc: devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
+ damon.ding@rock-chips.com, jbx6244@gmail.com, conor+dt@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, Chris Morgan <macromorgan@hotmail.com>
+Subject:
+ Re: [PATCH 4/5] arm64: dts: rockchip: Enable HS400 for Indiedroid Nova
+Date: Thu, 06 Nov 2025 00:18:51 +0100
+Message-ID: <2864346.mvXUDI8C0e@phil>
+In-Reply-To: <20251105205708.732125-5-macroalpha82@gmail.com>
+References:
+ <20251105205708.732125-1-macroalpha82@gmail.com>
+ <20251105205708.732125-5-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-Describe the 3DGE module clock needed to operate the PowerVR GPU.
+Am Mittwoch, 5. November 2025, 21:57:07 Mitteleurop=C3=A4ische Normalzeit s=
+chrieb Chris Morgan:
+> From: Chris Morgan <macromorgan@hotmail.com>
+>=20
+> Once the DLL_STRBIN_TAPNUM_DEFAULT is set to the correct value [1], the
+> workaround to ensure stable eMMC operation is no longer needed. I
+> have observed testing this that hdparm went from:
+> "Timing buffered disk reads: 502 MB in  3.00 seconds =3D 167.14 MB/sec"
+> to the following:
+> "Timing buffered disk reads: 832 MB in  3.00 seconds =3D 277.32 MB/sec"
+>=20
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/c=
+ommit/drivers/mmc/host/sdhci-of-dwcmshc.c?id=3Da28352cf2d2f8380e7aca8cb6168=
+2396dca7a991
+>=20
+> Fixes: 3900160e164b ("arm64: dts: rockchip: Add Indiedroid Nova board")
 
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
----
- drivers/clk/renesas/r8a779a0-cpg-mssr.c | 1 +
- 1 file changed, 1 insertion(+)
+This needs the patch you linked to, to actually work, so I'll drop
+the fixes tag when applying, because this should likely not be
+backported to older kernels.
 
-diff --git a/drivers/clk/renesas/r8a779a0-cpg-mssr.c b/drivers/clk/renesas/r8a779a0-cpg-mssr.c
-index a35110349769..c77b9b6977ec 100644
---- a/drivers/clk/renesas/r8a779a0-cpg-mssr.c
-+++ b/drivers/clk/renesas/r8a779a0-cpg-mssr.c
-@@ -144,6 +144,7 @@ static const struct cpg_core_clk r8a779a0_core_clks[] __initconst = {
- };
- 
- static const struct mssr_mod_clk r8a779a0_mod_clks[] __initconst = {
-+	DEF_MOD("3dge",		  0,	R8A779A0_CLK_ZG),
- 	DEF_MOD("isp0",		 16,	R8A779A0_CLK_S1D1),
- 	DEF_MOD("isp1",		 17,	R8A779A0_CLK_S1D1),
- 	DEF_MOD("isp2",		 18,	R8A779A0_CLK_S1D1),
--- 
-2.51.1
+Same reasoning for patch 5.
+
+
+Heiko
+
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts b/a=
+rch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
+> index 62c8c8f68713..0796ba6d2504 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
+> @@ -561,10 +561,10 @@ &saradc {
+>  	status =3D "okay";
+>  };
+> =20
+> -/* HS400 modes seemed to cause io errors. */
+>  &sdhci {
+>  	bus-width =3D <8>;
+> -	no-mmc-hs400;
+> +	mmc-hs400-1_8v;
+> +	mmc-hs400-enhanced-strobe;
+>  	no-sd;
+>  	no-sdio;
+>  	non-removable;
+>=20
+
+
+
 
 
