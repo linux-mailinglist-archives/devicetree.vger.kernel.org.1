@@ -1,101 +1,48 @@
-Return-Path: <devicetree+bounces-235198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DB62C35478
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 12:02:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1A67C35490
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 12:04:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 241E134A1BE
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 11:02:49 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 55DE834987D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 11:04:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493CA30F7ED;
-	Wed,  5 Nov 2025 11:02:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DB6530F53E;
+	Wed,  5 Nov 2025 11:04:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LUk7ZYPx";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DhrXVnYK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="exmjBR9/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC8D530F533
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 11:02:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEA8830AAC2;
+	Wed,  5 Nov 2025 11:04:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762340562; cv=none; b=Iq32tS80qRd7ZpIS4hDvi0iEWnnsKsH9yuWswQLIPbak0P2Vo62bMCTLb5dj/iukF2GCLCFFZ5GCgtHJfHDUA0tQs59BZvvVU42zdfh1AkjI7774SP+aBjocsgVOPIcVzqHXZmVDtf2I69ZgCPHDjIRj61O6lBxbUZA4688VbIY=
+	t=1762340683; cv=none; b=L62eIxQXRs93xZOp/eSkuMyLNbNf90N51DoVt95zvmr8/w5sEE7gEdU27MWgEkF+5xBHaQ+L+lqVqBC31a6EjizHYpcw08C0GYFRLosv+Zk8h05ZxE/BKXPsrtfOhP7vd5M3qgftWqKmlwBzfVPPilxl4tGZaKcHayK8ERdgK/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762340562; c=relaxed/simple;
-	bh=JyPp9KCYnthpWeUJqK159HmdzMb7RVz9NZ0LYCLk9dA=;
+	s=arc-20240116; t=1762340683; c=relaxed/simple;
+	bh=mbWo9Mk4kGS5Mb8/GLBUBRNx4+Pv9osUt56v0VveUlA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QUC2/eYsVdYGn/jZEEvdz8UehtCblYYEORIvIrVRAC24Z5HiMEhM+JnXY9mPl/P1RWiiIq4pbwlK4Ifox8+9U7R3MyNW3XhuWMoWNT1TmMUs6jxa8H95inI7AMAYKtwmPYoRPxCuTMRfROt6vNFdxbxEKbPwegzkNuctSkibo74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LUk7ZYPx; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DhrXVnYK; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A5865xD2904648
-	for <devicetree@vger.kernel.org>; Wed, 5 Nov 2025 11:02:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	cMehhhiS9nybtpsp6nbbPZsPsdC76f71DKdx7y8PZ2I=; b=LUk7ZYPx+kmvcJb4
-	wae2r2tTTME7y+86bKZASPhTOxe5mKsslxPQQniTjcE2YEMC9PlLzyVQGhMpb8YN
-	+uEzLQ7b/5ArhbeQy1/2PD2YTiP69ceTmdIkSp8sz33ebCWmfDwvC0wnsl9oyhzg
-	6JeVxwCoFLIxd8HAZDZzpuPx2bPdh8dxnsWxdmG9jZBOqgC/CBoEXfaTCRXKZjfb
-	eul3FM3QId/o9qdwE2BKt7X36W0U5vNNpSgDIWyUNJvnxYRA2nd9VkRtMZo14eyw
-	vsIVpvAc0iYr/BtlvZIexhgrZmc32j4vP9macHtxXcqv1bSDLeNOBIQbEu61RcUU
-	a0tB8Q==
-Received: from mail-vs1-f70.google.com (mail-vs1-f70.google.com [209.85.217.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a7mbbu1au-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 11:02:39 +0000 (GMT)
-Received: by mail-vs1-f70.google.com with SMTP id ada2fe7eead31-5db05410a79so638775137.1
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 03:02:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762340558; x=1762945358; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cMehhhiS9nybtpsp6nbbPZsPsdC76f71DKdx7y8PZ2I=;
-        b=DhrXVnYKN6whB9xOy3DmTmnJAg3GSfz+qvMXrKOyJ+8ApZfzGqcxjjsfyHfw/y1MZe
-         GMN5Eh41/GVQezFvv2rEOVNb/MwRTLRqX1g0hv3jpY4XSw5CgDZEuLZqw82nUFCfBnPh
-         lYiqdlcxNYlNzivUOFUImAQJaPTYDPYf3tAmsHqwCnrO/DMYYg3lByx6nYv8qUSb87aj
-         y0kVFlzVZ3DAOu8TG4T57BME/n9LdzFUkyFsthCZ/iNvqTNuVn+n8bmkvtHMqPQGLxqQ
-         MCYYz1R0au5R+5NY37W2fHjCYVTLgBI2whb+VFlyJ5TSmHDH6OsOKyb1akDYQSa6WsUH
-         2izw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762340558; x=1762945358;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cMehhhiS9nybtpsp6nbbPZsPsdC76f71DKdx7y8PZ2I=;
-        b=nSZfjBfREeTQkY+/a+ru6E/M5ODzX+3KZHxb+XlmXh5MCGvILpk8j5I+oZwp8N85HE
-         CuLMXDiHa929I67JHmwZNuKmty7alEE1EZWqd4/8fIT14bclbw/uedAO/MwL8KkMXr5l
-         WAAPgLl9UTWF4R5/CKHfoErQQ21he9FUo2zwpcHvRKFWjY10wTNwk8vTmqSnSTWMoOAH
-         ZInxSYSfkp2Zt9YjsDG5yrSH9LZWeE7FpLgsUoPi5Kk9yQ89Z4ZObXT7WDyD9nklXq6L
-         nNiwwfgq89WVO/fHJlzV41MnsxH/56Ax4EdR0OSaixnY6XA9cC8tqZy9K8phTeGRk0T7
-         NSRA==
-X-Forwarded-Encrypted: i=1; AJvYcCWuFmNYWQ22S3dEVaCp5PL4HVXeHpiGciyOYUuc/EovzVv4Z96IB/rRzzdxBbRGoIdukX3ICXoGXryU@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLPlw2J1xspyOPt9jZxZ9h25xk1nsZfKb/gIww/lnXAiVnIEqR
-	81F1DZhAodcggFm8BDg09Zj6MoLsD02Fu6cvxyLGXe5N3L0cDNea+GlXuMU3JnLSBixvV2Ysh/t
-	n5XZezOBu4MbrRNuK6syxaPtB0tU8JXqqDb5V2rDNLQoensl7/3va+lEvCr2TDOHV
-X-Gm-Gg: ASbGncvYUSJrG88qn6pQklOtRKG3ct+k8e4zhYgaemXuNODC37cBBSsACruPY+o5r+a
-	SBqrImB7PWkRSisKbKemKC8RjT97ojUfNTyafSadNomb2M3GAtupfGegs06Dedv7S0GvVyymr/w
-	ILs/CyyKjqFSD2Ek3LYFfcgprE3fPmF4r7WALv9NrJZzO08QPj37ipUSICZlEfs4Cyy/sBtHjaY
-	iFvgzP33q1U/MuRxAd9nPFCyVg19eGwVxjJJJMjBxUttPRUyQJPoHY4TIQq2BtWCbkyz4QT3ZDw
-	z2hSZ81FZ+PNr6OAEemFTWvFJWv5gRHNnAdzt6bfSg8jkZpSWDWu9AB7vuQOMPSo+SqUqIdmjV1
-	OmUI2joBfPg9wfozeFaJUJKJ1ws212zcTS+jCplcwrGM1Tz4PbEwG9LDY
-X-Received: by 2002:a05:6122:e005:20b0:559:5ac3:4451 with SMTP id 71dfb90a1353d-55986364f8emr344836e0c.3.1762340558353;
-        Wed, 05 Nov 2025 03:02:38 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IESU12qH+Px3/WZaGSBLZjSXFZOo4eg2UqbetAoBXWf3Muv4D8gi1IQrPyHIRpaxiR3PVGOoQ==
-X-Received: by 2002:a05:6122:e005:20b0:559:5ac3:4451 with SMTP id 71dfb90a1353d-55986364f8emr344818e0c.3.1762340557848;
-        Wed, 05 Nov 2025 03:02:37 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b727ebaa351sm30419366b.55.2025.11.05.03.02.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Nov 2025 03:02:35 -0800 (PST)
-Message-ID: <7f7179b7-73a0-40f3-b921-888b3e21537c@oss.qualcomm.com>
-Date: Wed, 5 Nov 2025 12:02:30 +0100
+	 In-Reply-To:Content-Type; b=XJzO1BhaXRvvuIK0/DMj4RwUD15UznpqdRRBh5NmJzE4pfVwEx8s0TiQLj6Vqn77y0cUzHXG91mB/d9eJsfwdiq6K8GZptClDyrJYfYJ9wN8VTabrG2YrTfit98cONEGiWavHGOIlHUZmK0XxUeA7j/1ImSNtrrsa/Ig3vId8LQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=exmjBR9/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 731D8C4CEF8;
+	Wed,  5 Nov 2025 11:04:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762340682;
+	bh=mbWo9Mk4kGS5Mb8/GLBUBRNx4+Pv9osUt56v0VveUlA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=exmjBR9/2OeIiA17lbXcHtroB6zMOxHtKAjkqf5bH92oO93IrpDPofQFPpNj+PO4/
+	 sswckaQ9lP/sfrMlxYPn5Np9bOkEtWSbId6kMqRwURznC1i+wEPPh2kzU73nMx05Bm
+	 4m01084K8gC9N/KJxNs2vN57mmJW2f3V7HbwoP52meZPUkAnX+fMyJJnX2lTes9RXz
+	 adRXHciCFlpaZKs1Zr7t21Qi/q4bbHalCUfUFE3/c/Valw603WrQmyhH+YqsOVsIZJ
+	 i4At7dwLgffkgfIRgDQXRtSpNGjHMY+Ckh46mKhKFW+UmaUp8UjYcx3O3SpvIdp6Ko
+	 Hphl/9r/1f1Uw==
+Message-ID: <14b19124-ab99-4ee4-89c9-81e724c4b5bb@kernel.org>
+Date: Wed, 5 Nov 2025 12:04:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,101 +50,452 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] arm64: dts: qcom: sc8280xp: Add missing VDD_MXC links
-To: Imran Shaik <imran.shaik@oss.qualcomm.com>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Ulf Hansson
- <ulf.hansson@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
-References: <20251104-topic-8280_mxc-v1-0-df545af0ef94@oss.qualcomm.com>
- <20251104-topic-8280_mxc-v1-5-df545af0ef94@oss.qualcomm.com>
- <1e464f5d-f4ed-4ee5-b966-fc7de586340a@oss.qualcomm.com>
+Subject: Re: [PATCH 3/3] arm64: dts: realtek: Add Kent SoC and EVB device
+ trees
+To: Yu-Chun Lin <eleanor.lin@realtek.com>, afaerber@suse.de, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, lee@kernel.org,
+ james.tai@realtek.com
+Cc: linux-arm-kernel@lists.infradead.org,
+ linux-realtek-soc@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, cy.huang@realtek.com, stanley_chang@realtek.com
+References: <20251105104452.6336-1-eleanor.lin@realtek.com>
+ <20251105104452.6336-4-eleanor.lin@realtek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <1e464f5d-f4ed-4ee5-b966-fc7de586340a@oss.qualcomm.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251105104452.6336-4-eleanor.lin@realtek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: PpLcI1jawsv8zi7fyCMbuRyPKtRsqDMA
-X-Proofpoint-GUID: PpLcI1jawsv8zi7fyCMbuRyPKtRsqDMA
-X-Authority-Analysis: v=2.4 cv=MK1tWcZl c=1 sm=1 tr=0 ts=690b2ecf cx=c_pps
- a=N1BjEkVkxJi3uNfLdpvX3g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=aElX1GfIA-y7BHMLUgcA:9
- a=NqO74GWdXPXpGKcKHaDJD/ajO6k=:19 a=QEXdDO2ut3YA:10 a=crWF4MFLhNY0qMRaF8an:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA1MDA4MiBTYWx0ZWRfX6rw8e8ehEIW0
- SlzJu7lTmkJBxEUWd/YYZAQx7dQgavOswK1zdjEx+SmfXnpWxO0DLuwox+CJRJCbXrpNe1qfUAC
- P+nHsZQcjeqn5WUMZLzK3J+TIxLRfJN0QKtKnq+PCbmpoF7ZITcqArPLtOEIM8IhHtE3M18b1Tn
- kPaX1bqYKLN2gOZJoAhlwit7BOIlZhdtmA945+wUZqNNf1TwEbyzylmjREiGeZG4XSsAw9sTuNQ
- J+PTYzLeI6/Xeeehst13bgDk5B0V/qiAs0f21i8o5f/IdDFJ0fOgTuQFwagRGNakvgucTXWlTXa
- GgdQqjClNGmg2CcS3dUPasHXM6eVmfQo+/8qk6WoLrlpZ8hxnIVQDupzFAmUW1kVQJMP0ulMMQR
- wHF1PQQYO2WkqYBB0S4zAX/mbm7Mng==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-05_04,2025-11-03_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 impostorscore=0 phishscore=0 priorityscore=1501
- lowpriorityscore=0 adultscore=0 bulkscore=0 clxscore=1015 spamscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511050082
 
-On 11/5/25 10:21 AM, Imran Shaik wrote:
+On 05/11/2025 11:44, Yu-Chun Lin wrote:
+> Add Device Tree hierarchy for Realtek Kent SoC family:
 > 
+> - kent.dtsi: base SoC layer
+> - rtd<variant>.dtsi: SoC variant layer
+> - rtd<variant>-<board>.dtsi: board layer
+> - rtd<variant>-<board>-<config>.dts: board configuration layer
 > 
-> On 11/5/2025 1:01 AM, Konrad Dybcio wrote:
->> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->>
->> To make sure that power rail is voted for, wire it up to its consumers.
->>
->> Fixes: 9bd07f2c558f ("arm64: dts: qcom: sc8280xp: Add in CAMCC for sc8280xp")
->> Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->> ---
->>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 22 ++++++++++++++++------
->>  1 file changed, 16 insertions(+), 6 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
->> index 5334adebf278..643a61cc91b4 100644
->> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
->> @@ -4586,8 +4586,10 @@ camcc: clock-controller@ad00000 {
->>  				 <&rpmhcc RPMH_CXO_CLK>,
->>  				 <&rpmhcc RPMH_CXO_CLK_A>,
->>  				 <&sleep_clk>;
->> -			power-domains = <&rpmhpd SC8280XP_MMCX>;
->> -			required-opps = <&rpmhpd_opp_low_svs>;
->> +			power-domains = <&rpmhpd SC8280XP_MMCX>,
->> +					<&rpmhpd SC8280XP_MXC>;
+> Include RTD1501S Phantom EVB (8GB), RTD1861B Krypton EVB (8GB), and
+> RTD1920S Smallville EVB (4GB).
 > 
-> I see that none of the CAMCC PLLs/clocks are on MXC rail on SC8280XP target.
-> So, MXC support is not required for CAMCC.
+> Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+> ---
+>  arch/arm64/boot/dts/realtek/Makefile          |   5 +
+>  arch/arm64/boot/dts/realtek/kent.dtsi         | 179 ++++++++++++++++++
+>  arch/arm64/boot/dts/realtek/rtd1501.dtsi      |  13 ++
+>  .../boot/dts/realtek/rtd1501s-phantom-8gb.dts |  26 +++
+>  .../boot/dts/realtek/rtd1501s-phantom.dtsi    | 135 +++++++++++++
+>  arch/arm64/boot/dts/realtek/rtd1861.dtsi      |  13 ++
+>  .../boot/dts/realtek/rtd1861b-krypton-8gb.dts |  26 +++
+>  .../boot/dts/realtek/rtd1861b-krypton.dtsi    |  79 ++++++++
+>  arch/arm64/boot/dts/realtek/rtd1920.dtsi      |  13 ++
+>  .../dts/realtek/rtd1920s-smallville-4gb.dts   |  24 +++
+>  .../boot/dts/realtek/rtd1920s-smallville.dtsi | 145 ++++++++++++++
+>  11 files changed, 658 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/realtek/kent.dtsi
+>  create mode 100644 arch/arm64/boot/dts/realtek/rtd1501.dtsi
+>  create mode 100644 arch/arm64/boot/dts/realtek/rtd1501s-phantom-8gb.dts
+>  create mode 100644 arch/arm64/boot/dts/realtek/rtd1501s-phantom.dtsi
+>  create mode 100644 arch/arm64/boot/dts/realtek/rtd1861.dtsi
+>  create mode 100644 arch/arm64/boot/dts/realtek/rtd1861b-krypton-8gb.dts
+>  create mode 100644 arch/arm64/boot/dts/realtek/rtd1861b-krypton.dtsi
+>  create mode 100644 arch/arm64/boot/dts/realtek/rtd1920.dtsi
+>  create mode 100644 arch/arm64/boot/dts/realtek/rtd1920s-smallville-4gb.dts
+>  create mode 100644 arch/arm64/boot/dts/realtek/rtd1920s-smallville.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/realtek/Makefile b/arch/arm64/boot/dts/realtek/Makefile
+> index ef8d8fcbaa05..0ef0596681ad 100644
+> --- a/arch/arm64/boot/dts/realtek/Makefile
+> +++ b/arch/arm64/boot/dts/realtek/Makefile
+> @@ -13,3 +13,8 @@ dtb-$(CONFIG_ARCH_REALTEK) += rtd1395-bpi-m4.dtb
+>  dtb-$(CONFIG_ARCH_REALTEK) += rtd1395-lionskin.dtb
+>  
+>  dtb-$(CONFIG_ARCH_REALTEK) += rtd1619-mjolnir.dtb
+> +
+> +dtb-$(CONFIG_ARCH_REALTEK) += rtd1501s-phantom-8gb.dtb
+> +dtb-$(CONFIG_ARCH_REALTEK) += rtd1861b-krypton-8gb.dtb
+> +dtb-$(CONFIG_ARCH_REALTEK) += rtd1920s-smallville-4gb.dtb
 
-Hm, to the extent that camss is supported upstream, I could indeed
-boot without pd_ignore_unused and the camera actually kept working..
+Keep things still ordered alphabetically.
 
-I see in docs that there are links between MXC and various IPs within
-camera so I'm a little confused. Would you know more?
+> +
+> diff --git a/arch/arm64/boot/dts/realtek/kent.dtsi b/arch/arm64/boot/dts/realtek/kent.dtsi
+> new file mode 100644
+> index 000000000000..6af3efa0bda4
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/realtek/kent.dtsi
+> @@ -0,0 +1,179 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+> +/*
+> + * Realtek Kent SoC family
+> + *
+> + * Copyright (c) 2024 Realtek Semiconductor Corp.
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +/ {
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +	};
+> +
+> +	arch_timer: arch-timer {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+If you cannot find a name matching your device, please check in kernel
+sources for similar cases or you can grow the spec (via pull request to
+DT spec repo).
+
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI  9 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a78";
+> +			reg = <0x0>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2_0>;
+> +			dynamic-power-coefficient = <454>;
+> +			#cooling-cells = <2>;
+> +
+> +			l2_0: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-line-size = <64>;
+> +				cache-sets = <256>;
+> +				cache-size = <0x40000>;
+> +				cache-unified;
+> +				next-level-cache = <&l3>;
+> +			};
+> +		};
+> +
+> +		cpu1: cpu@100 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a78";
+> +			reg = <0x100>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2_1>;
+> +			dynamic-power-coefficient = <454>;
+> +			#cooling-cells = <2>;
+> +
+> +			l2_1: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-line-size = <64>;
+> +				cache-sets = <256>;
+> +				cache-size = <0x40000>;
+> +				cache-unified;
+> +				next-level-cache = <&l3>;
+> +			};
+> +		};
+> +
+> +		cpu2: cpu@200 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a78";
+> +			reg = <0x200>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2_2>;
+> +			dynamic-power-coefficient = <454>;
+> +			#cooling-cells = <2>;
+> +
+> +			l2_2: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-line-size = <64>;
+> +				cache-sets = <256>;
+> +				cache-size = <0x40000>;
+> +				cache-unified;
+> +				next-level-cache = <&l3>;
+> +			};
+> +		};
+> +
+> +		cpu3: cpu@300 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a78";
+> +			reg = <0x300>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2_3>;
+> +			dynamic-power-coefficient = <454>;
+> +			#cooling-cells = <2>;
+> +
+> +			l2_3: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-line-size = <64>;
+> +				cache-sets = <256>;
+> +				cache-size = <0x40000>;
+> +				cache-unified;
+> +				next-level-cache = <&l3>;
+> +			};
+> +		};
+> +
+> +		l3: l3-cache {
+> +			compatible = "cache";
+> +			cache-level = <3>;
+> +			cache-line-size = <64>;
+> +			cache-sets = <512>;
+> +			cache-size = <0x00200000>;
+> +			cache-unified;
+> +		};
+> +	};
+> +
+> +	psci: psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+> +	};
+> +
+> +	soc@0 {
+> +		compatible = "simple-bus";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x00000000 0x00000000 0x00000000 0x00040000>, /* boot code */
+> +			 <0x98000000 0x00000000 0x98000000 0x00ef0000>, /* reg-bus */
+> +			 <0xa0000000 0x00000000 0xa0000000 0x10000000>, /* PCIE */
+> +			 <0xff000000 0x00000000 0xff000000 0x00200000>; /* GIC */
+> +
+> +		rbus: reg-bus@98000000 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+If you cannot find a name matching your device, please check in kernel
+sources for similar cases or you can grow the spec (via pull request to
+DT spec repo).
 
 
-I wasn't able to test venus because it locks up either way..
+> +			compatible = "simple-bus";
+> +			reg = <0x98000000 0x00ef0000>;
 
-Konrad
+This means it is not a simple-bus.
+
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0x00000000 0x98000000 0x00ef0000>,
+> +				 <0xa0000000 0xa0000000 0x10000000>; /* PCIE */
+> +
+> +			iso: syscon@7000 {
+> +				compatible = "realtek,iso-system", "syscon", "simple-mfd";
+> +				reg = <0x7000 0x1000>;
+> +				#address-cells = <1>;
+> +				#size-cells = <1>;
+> +				ranges = <0x0 0x7000 0x1000>;
+
+Please follow DTS coding style.
+
+> +				reg-io-width = <4>;
+No children. You must post complete picture here.
+
+> +			};
+> +		};
+> +
+> +		gic: interrupt-controller@ff100000 {
+> +			compatible = "arm,gic-v3";
+> +			reg = <0xff100000 0x10000>,
+> +			      <0xff140000 0x80000>;
+> +			interrupt-controller;
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +			#address-cells = <1>;
+> +			#interrupt-cells = <3>;
+> +			#size-cells = <1>;
+> +		};
+> +	};
+> +};
+> +
+> +&iso {
+
+What are you overriding? There is no inclusion of other DTSI here.
+
+> +	uart0: serial@800 {
+> +		compatible = "snps,dw-apb-uart";
+> +		reg = <0x800 0x100>;
+> +		clock-frequency = <432000000>;
+> +		interrupts = <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>;
+> +		reg-io-width = <4>;
+> +		reg-shift = <2>;
+> +		status = "disabled";
+> +	};
+> +};
+> +
+> diff --git a/arch/arm64/boot/dts/realtek/rtd1501.dtsi b/arch/arm64/boot/dts/realtek/rtd1501.dtsi
+> new file mode 100644
+> index 000000000000..1df5d9843505
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/realtek/rtd1501.dtsi
+> @@ -0,0 +1,13 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+> +/*
+> + * Realtek RTD1501 SoC
+> + *
+> + * Copyright (c) 2024 Realtek Semiconductor Corp.
+> + */
+> +
+> +#include "kent.dtsi"
+> +
+> +&uart0 {
+> +	status = "okay";
+> +};
+> +
+> diff --git a/arch/arm64/boot/dts/realtek/rtd1501s-phantom-8gb.dts b/arch/arm64/boot/dts/realtek/rtd1501s-phantom-8gb.dts
+> new file mode 100644
+> index 000000000000..b0e03f3731e2
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/realtek/rtd1501s-phantom-8gb.dts
+> @@ -0,0 +1,26 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+> +/*
+> + * Realtek RTD1501S Phantom EVB
+> + *
+> + * Copyright (c) 2024 Realtek Semiconductor Corp.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "rtd1501s-phantom.dtsi"
+> +
+> +/ {
+> +	compatible = "realtek,phantom", "realtek,rtd1501s";
+> +	model = "Realtek Phantom EVB Chromium (8GB)";
+> +
+> +	memory: memory@40000 {
+
+Drop unused label.
+
+> +		device_type = "memory";
+> +		reg = <0x00000000 0x00050000 0x00000000 0x7ffb0000>,
+
+0x0, don't inflate this.
+
+> +		      <0x00000000 0x8a100000 0x00000000 0x0def0000>,
+> +		      <0x00000000 0x98700000 0x00000000 0x07900000>,
+> +		      <0x00000000 0xa0600000 0x00000000 0x5ea00000>,
+> +		      <0x00000001 0x00000000 0x00000000 0xa0000000>,
+
+<0x1 0x00000000 0x0 0xa0000000>,
+
+> +		      <0x00000001 0xa0600000 0x00000000 0x5fa00000>;
+> +	};
+> +};
+> +
+> diff --git a/arch/arm64/boot/dts/realtek/rtd1501s-phantom.dtsi b/arch/arm64/boot/dts/realtek/rtd1501s-phantom.dtsi
+> new file mode 100644
+> index 000000000000..bf1e499addf9
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/realtek/rtd1501s-phantom.dtsi
+> @@ -0,0 +1,135 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+> +/*
+> + * Realtek RTD1501S Phantom EVB
+> + *
+> + * Copyright (c) 2024 Realtek Semiconductor Corp.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/thermal/thermal.h>
+> +#include "rtd1501.dtsi"
+> +
+> +/ {
+> +	chosen {
+> +		bootargs = "earlycon=uart8250,mmio32,0x98007800
+> +			    console=ttyS0,460800 8250.nr_uarts=2 init=/init
+> +			    loglevel=8 max_loop=64 loop.max_part=7
+> +			    firmware_class.path=/vendor/firmware/,/vendor/av_fw";
+
+NAK, drop all bootargs. None of above are suitable for mainline. Don't
+post all this android or custom initramfs stuff.
+
+> +		stdout-path = "serial0:460800n8";
+
+And you already even have here console!
+
+> +	};
+> +
+> +	reserved_memory: reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		linux,cma {
+> +			compatible = "shared-dma-pool";
+> +			alignment = <0x0 0x00400000>;
+> +			alloc-ranges = <0x0 0x00000000 0x0 0x20000000>;
+> +			size = <0x0 0x02000000>;
+> +			reusable;
+> +			linux,cma-default;
+> +		};
+> +	};
+> +
+> +	cpu_opps: opp-table-cpu {
+> +		compatible = "operating-points-v2";
+> +		opp-shared;
+> +
+> +		opp800: opp-800000000 {
+> +			opp-hz = /bits/ 64 <800000000>;
+> +			opp-microvolt = <830000 830000 1100000>;
+> +			status = "okay";
+
+Why? Where did you disable it?
+
+...
+
+Best regards,
+Krzysztof
 
