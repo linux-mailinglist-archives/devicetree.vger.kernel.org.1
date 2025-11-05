@@ -1,157 +1,87 @@
-Return-Path: <devicetree+bounces-235213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECC00C3595A
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 13:19:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70D25C35A6D
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 13:29:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E040189FDDD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 12:19:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A332F467FF6
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 12:28:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1784313E0C;
-	Wed,  5 Nov 2025 12:19:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tyt8YziP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53E6D314A74;
+	Wed,  5 Nov 2025 12:28:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7703B312815;
-	Wed,  5 Nov 2025 12:19:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from sgoci-sdnproxy-4.icoremail.net (sgoci-sdnproxy-4.icoremail.net [129.150.39.64])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3234311973;
+	Wed,  5 Nov 2025 12:28:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.150.39.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762345153; cv=none; b=gai7qmyiWTRbKU8pzIPGdw6u5B1JDayA/nCEBUrWmp6iGa4qGb4VnX2VPYSPm/2wFiGhbyrcDr+VSYB6sc8ZXpEmpPsCQmWoh8eGY2noYq2yHSW7Ko61gaywAtcrM9giQRsRNKf6NkJYqFsXml8T3LL3o5mRjAVcs0uy7y9kVYo=
+	t=1762345697; cv=none; b=IQ1eoGeYJIG6DHGgIRIU2ufak8TDnAGdrVYMyX1qvx/O4UcXu+ETCW+HaSJMX9/XNK562v1yHIJJYwOYfdqM2Ju5kCVO9mabo7P9zRUi6o6YQHjMtK0RQHCJBl102ekXK/7GaqXlocyHeKBifcPruJryBE6rCwoVUivy7OBO5QQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762345153; c=relaxed/simple;
-	bh=WpEVUOYe+o0ODCJcitnI3R656IlVO6R4iBigsvtbubg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=GVlEYQ5EG4smnyLeE1WXayDqJm4GktFXY39cIkBodZf0JjaoqRPinVFMczIrPJK9InslqudwV4X+JMM++naG7aMZb1VtXA8UlCL0iPgqTwEK+0XdQmoo0xwoYJVbeQiss0mHATljF3UV6lRfIP4NwYKgXNqxktJ4xBBc/2nhMKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tyt8YziP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id CB250C4CEFB;
-	Wed,  5 Nov 2025 12:19:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762345152;
-	bh=WpEVUOYe+o0ODCJcitnI3R656IlVO6R4iBigsvtbubg=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=tyt8YziP88ZbFQ1oRBb7U2mkHwTICJ5gryp1Su4+QrBXgLzZsnZK+SrRdSVRI39EE
-	 bXVkn1id1UK7DphpAPVOUP9fyMT7WskopkSx0zw3fmVgLAqXmslfGhwYSo9nX76NzV
-	 +5cTNhPqN3mmomHMW2bY7ZaylGV6WmrqTzS5FU307xsIoKKGWhpcd9sk2iU4u+A4c1
-	 G3qW7R5GR0JR5y/r83AYzVSZePkvoBv+HDZpXXMhJClZt3HABlYwE01FxvIRwQIo5W
-	 CWWX7wDSa+TzJ7ENaFK3P5gN9RV8fng+BvlG/97pSseC/e4aKH2YhwpclNyyUAgj+o
-	 qPfZvvMzXPdPQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B4019CCFA0D;
-	Wed,  5 Nov 2025 12:19:12 +0000 (UTC)
-From: Prasad Kumpatla via B4 Relay <devnull+prasad.kumpatla.oss.qualcomm.com@kernel.org>
-Date: Wed, 05 Nov 2025 17:49:10 +0530
-Subject: [PATCH v4] dt-bindings: soundwire: qcom: Add SoundWire v2.2.0
- compatible
+	s=arc-20240116; t=1762345697; c=relaxed/simple;
+	bh=Qf5CgmG7ZPRyVEAKwk6zM9m0tOrb33Q0+BoB1g2wOb4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=o5Mg4FNPwSK/DsRG9tHdjSiXGIcHshJMS6hjdZJEs29Vgd3ztb9hCTczuzYW7YX4spqkkeRMO976Ig/H7e8MsCtZKliEHzxf77mfEv+MZezbozV5Dm7yJzv7pwSYvcyLxgoRaInO/oihcY9Majv088nn+Y73DcCAgXiyykF8bxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=129.150.39.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from caohang$eswincomputing.com ( [10.127.112.153] ) by
+ ajax-webmail-app1 (Coremail) ; Wed, 5 Nov 2025 20:27:50 +0800 (GMT+08:00)
+Date: Wed, 5 Nov 2025 20:27:50 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: "Hang Cao" <caohang@eswincomputing.com>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>, Thinh.Nguyen@synopsys.com
+Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, p.zabel@pengutronix.de,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
+	"Senchuan Zhang" <zhangsenchuan@eswincomputing.com>
+Subject: Re: Re: [PATCH v5 2/2] usb: dwc3: eic7700: Add EIC7700 USB driver
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
+ 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
+ mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
+In-Reply-To: <76ec3e26-a38c-4643-aaab-7806cc39bd89@kernel.org>
+References: <20251104065045.1464-1-caohang@eswincomputing.com>
+ <20251104065226.1513-1-caohang@eswincomputing.com>
+ <76ec3e26-a38c-4643-aaab-7806cc39bd89@kernel.org>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251105-knp-audio-v2-v4-1-ae0953f02b44@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIAL1AC2kC/03MQQ6DIBCF4auYWXcIIGrtqvdoupgAVqIIBTVNj
- Hcv6aqbl3yL9x+QbXI2w606INndZReWAnWpQI+0vCw6UwySy0ZwoXBaItJmXMBdYk911zVSGy0
- aKJeY7OA+v9zjWTyk4HEdk6W/CO+FqlulWC37VvIrCoyJMhk2bT7SOtM95MzeG806eM/KwHl+A
- YQekP6qAAAA
-X-Change-ID: 20251014-knp-audio-v2-9a37752cdc15
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Srinivas Kandagatla <srini@kernel.org>
-Cc: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Jingyi Wang <jingyi.wang@oss.qualcomm.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1762345151; l=2851;
- i=prasad.kumpatla@oss.qualcomm.com; s=20251104; h=from:subject:message-id;
- bh=c0O8eohmd+tIOQmYmE+msxYJGTgpEFCpk9Tc3tlijMA=;
- b=ocgeixzvp6gml7lZDN8J/V00Hjhfw8/FNaA5PabRQ4bj1gT3/E+VAps1m5rUg83WZLThayGL4
- jBRU6e7qN64DakcZMi5lNphdjqayfbOVmzC3JU2famuZ0IrrA5FI9z1
-X-Developer-Key: i=prasad.kumpatla@oss.qualcomm.com; a=ed25519;
- pk=XN9tL2ispFX+irMtnM7RxBH6rj+awD6oEjXmk0YJodY=
-X-Endpoint-Received: by B4 Relay for
- prasad.kumpatla@oss.qualcomm.com/20251104 with auth_id=560
-X-Original-From: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
-Reply-To: prasad.kumpatla@oss.qualcomm.com
+Message-ID: <9e50dfa.f63.19a53fcd7ec.Coremail.caohang@eswincomputing.com>
+X-Coremail-Locale: en_US
+X-CM-TRANSID:TAJkCgAXH2zHQgtpDpAuAA--.1301W
+X-CM-SenderInfo: xfdrxt1qj6v25zlqu0xpsx3x1qjou0bp/1tbiAQEREGkKKoAeZAAA
+	sy
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
+	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+	daVFxhVjvjDU=
 
-From: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
-
-Add qcom,soundwire-v2.2.0 to the list of supported Qualcomm
-SoundWire controller versions. This version falls back to
-qcom,soundwire-v2.0.0 if not explicitly handled by the driver.
-
-Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
----
-Add audio support for Kaanapali MTP boards. Introduces supporting
-dependencies required to enable audio functionality on MTP platforms.
-These changes have been validated on Kaanapali MTP hardware.
-
-Changes in [v4]:
-	- Dropped merged patches.
-	- Link to v3: https://lore.kernel.org/linux-arm-msm/20251015-knp-audio-v2-v3-0-e0e3e4167d87@oss.qualcomm.com/
-
-Changes in [v3]:
-	- Correct SoB chain, comments from Krzysztof.
-	- Link to v2: https://lore.kernel.org/linux-arm-msm/20251009143644.3296208-1-prasad.kumpatla@oss.qualcomm.com/
-
-Changes in [v2]:
-	- Addressed compilation issue for lpass version check patch.
-	- Sorted compatible string in machine driver.
-	- Link to v1: https://lore.kernel.org/linux-arm-msm/20250924-knp-audio-v1-0-5afa926b567c@oss.qualcomm.com/
-
-Konrad Dybcio (1):
-  ASoC: codecs: va-macro: Rework version checking
-
-Prasad Kumpatla (4):
-  ASoC: dt-bindings: qcom,sm8250: Add kaanapali sound card
-  ASoC: qcom: sc8280xp: Add support for Kaanapali
-  dt-bindings: soundwire: qcom: Add SoundWire v2.2.0 compatible
-  ASoC: dt-bindings: qcom: Add Kaanapali LPASS macro codecs
-
- .../bindings/sound/qcom,lpass-rx-macro.yaml   |  1 +
- .../bindings/sound/qcom,lpass-tx-macro.yaml   |  1 +
- .../bindings/sound/qcom,lpass-va-macro.yaml   |  1 +
- .../bindings/sound/qcom,lpass-wsa-macro.yaml  |  1 +
- .../bindings/sound/qcom,sm8250.yaml           |  1 +
- .../bindings/soundwire/qcom,soundwire.yaml    |  1 +
- sound/soc/codecs/lpass-va-macro.c             | 90 +++++++++++++------
- sound/soc/qcom/sc8280xp.c                     |  1 +
- 8 files changed, 70 insertions(+), 27 deletions(-)
-
---
-2.34.1
----
- Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
-index 95d947fda6a7..1c4b0bdbb044 100644
---- a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
-+++ b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
-@@ -26,6 +26,7 @@ properties:
-       - items:
-           - enum:
-               - qcom,soundwire-v2.1.0
-+              - qcom,soundwire-v2.2.0
-           - const: qcom,soundwire-v2.0.0
- 
-   reg:
-
----
-base-commit: 2b763d4652393c90eaa771a5164502ec9dd965ae
-change-id: 20251014-knp-audio-v2-9a37752cdc15
-
-Best regards,
--- 
-Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
-
+SGksIEtyenlzenRvZiBhbmQgVGhpbmg6Cj4gCj4gPiArCj4gPiAgc3RhdGljIGludCBkd2MzX2dl
+bmVyaWNfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikKPiA+ICB7Cj4gPiAgCWNv
+bnN0IHN0cnVjdCBkd2MzX3Byb3BlcnRpZXMgKnByb3BlcnRpZXM7Cj4gPiBAQCAtODMsNiArMTE5
+LDEyIEBAIHN0YXRpYyBpbnQgZHdjM19nZW5lcmljX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZp
+Y2UgKnBkZXYpCj4gPiAgCWVsc2UKPiA+ICAJCXByb2JlX2RhdGEucHJvcGVydGllcyA9IERXQzNf
+REVGQVVMVF9QUk9QRVJUSUVTOwo+ID4gIAo+ID4gKwlpZiAob2ZfZGV2aWNlX2lzX2NvbXBhdGli
+bGUoZGV2LT5vZl9ub2RlLCAiZXN3aW4sZWljNzcwMC1kd2MzIikpIHsKPiAKPiBObywgeW91IGhh
+dmUgZHJpdmVyIG1hdGNoIGRhdGEgZm9yIHRoYXQuCj4gCldlIGltcGxlbWVudGVkIGl0IHdpdGgg
+ZHJpdmVyIG1hdGNoIGRhdGEgaW4gdjQgcGF0Y2guCmh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2Fs
+bC8yMDI1MTAxNjIyMjcxMy5kMnN1dGM3dHlmMmlkYmt2QHN5bm9wc3lzLmNvbS8KCkhvd2V2ZXIs
+IFRoaW5oIHN1Z2dlc3RlZCB1c2luZyBkaXJlY3QgZnVuY3Rpb24gY2FsbHMgaW5zdGVhZCwgbm90
+aW5nwqAKdGhhdCB0aGlzIGlzIGEgZnVuY3Rpb24gY2FsbCByYXRoZXIgdGhhbiBkYXRhLsKgCldl
+IGFyZSBub3Qgc3VyZSBpZiB3ZeKAmXZlIGZ1bGx5IHVuZGVyc3Rvb2QgaGlzIGZlZWRiYWNrIGNv
+cnJlY3RseS4KCk91ciBkcml2ZXIgcmVxdWlyZXMgc3BlY2lhbCBoYW5kbGluZyBmb3IgVVNCIGJ1
+cyBpbml0aWFsaXphdGlvbiwgd2hpY2ggZG9lcyAKaW52b2x2ZSBmdW5jdGlvbiBjYWxscy4KClNv
+IHdl4oCZZCByZWFsbHkgYXBwcmVjaWF0ZSBpdCBpZiB5b3UgYW5kIFRoaW5oIGNvdWxkIHNoYXJl
+IGZ1cnRoZXIgdGhvdWdodHPCoApvbiB3aGljaCBhcHByb2FjaCB3b3VsZCBiZSBtb3JlIHN1aXRh
+YmxlIGZvciBvdXIgZHJpdmVy4oCZcyBuZWVkcy4KCgpCZXN0IHJlZ2FyZHMsCkhhbmcgQ2FvCg==
 
 
