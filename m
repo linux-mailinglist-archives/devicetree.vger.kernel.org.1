@@ -1,291 +1,159 @@
-Return-Path: <devicetree+bounces-235354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71AAFC373A8
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 18:59:18 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F5F3C373F8
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 19:07:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C6EF1A20B47
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 17:57:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 022304E496B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 18:04:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4999F338590;
-	Wed,  5 Nov 2025 17:56:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ADAF3164C1;
+	Wed,  5 Nov 2025 18:04:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fXQohAJU"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="vVMTH8oh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12DBC338912;
-	Wed,  5 Nov 2025 17:56:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D1F12D9481
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 18:03:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762365417; cv=none; b=c33kW1CurMvLDU023In3NwSLf6KwZ3slC3memIqag8XcxKoaGQ2fbsCGj/q9b/Xh71uSLRzajc64r2SNPq+SXApn/w6sPFJ3ryQSEPh28tVNe6uNoaLEufPVNHItzxC4O1swlFqFV9+frnNWxFH7ZFJk1S0cvkk0TV/KCf5Ifa0=
+	t=1762365845; cv=none; b=LDrvD11E2gY3NXyqBwwOPUJXFceP90ypY7vj3cfLEdQo28x83P5RPLe6GTb4RrdqDuWzf5QNTw04XQ1+9I00m2pb/icg9ZI+/HrOUXX9b9LAieSoy+YXeaWwK1bx2bpuZRqrPftQ+nI7ERWKUIbbqgYkX2OqadrSAi3NCFOIFh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762365417; c=relaxed/simple;
-	bh=mdjCpaLHOnfBMY0V32LZXfaf4sqf252MebKl/iKpt3A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LrYXzun+7E4X65vfvvEeNYIH7F3A/e/WtsNQUPi7rvcmwAb/mbEmQ6aNOihVh3G/gRsbX3NoY5KLduxB4tFi22ezhAuTCq26Y+kkmIfmG/iS9kM1xyY/9CH6q/NuLBHH1cZrimzJICb+mENTxxpTLGJZC+ueMk1l3l+zVvY/tZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fXQohAJU; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762365414; x=1793901414;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=mdjCpaLHOnfBMY0V32LZXfaf4sqf252MebKl/iKpt3A=;
-  b=fXQohAJUD045szFOgS66ibiSKxYR/NgKcfS7RdvFV7+kMBd4y2KLFT66
-   JLtp2jGx4VetLY7CLeWdUXNcxBSdWFjVal6ChFLUXG2opHiqmKqeetSOJ
-   kru/PPlF+d8QKTQs2lAPAoCQOMrPSSECS+Rqb/oQT6u7wXiNyIyP+dGDC
-   UeB1S/kitrdhNwWeoT02/yzLMovZae8UhlZ0mt/iE9GxwEG2vZykRzXr1
-   I9t2JD364V5dQqVL8E5meDTTcP21y+j1w61thhXn5GKAplEPORtiPEuVh
-   dEkviyl/hHaLuiAAgoiUSkdanNrnIsGZykgLi8pL6X5LXuQUJUr8t2vdY
-   w==;
-X-CSE-ConnectionGUID: oXz+8R0cQIOtZmLlRkhxKA==
-X-CSE-MsgGUID: yR4iMjLBR4StekwoSPXaxw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="64523530"
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; 
-   d="scan'208";a="64523530"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2025 09:56:52 -0800
-X-CSE-ConnectionGUID: RflwgjiTRRCjkUs4o6QVow==
-X-CSE-MsgGUID: a2Dr2VHfSdydemmugokb7g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,282,1754982000"; 
-   d="scan'208";a="187187998"
-Received: from ldmartin-desk2.corp.intel.com (HELO ashevche-desk.local) ([10.124.221.135])
-  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2025 09:56:47 -0800
-Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1vGhkN-00000005rTL-39rZ;
-	Wed, 05 Nov 2025 19:56:39 +0200
-Date: Wed, 5 Nov 2025 19:56:38 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Matthias Fend <matthias.fend@emfend.at>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Hans de Goede <hansg@kernel.org>,
-	Ricardo Ribalda <ribalda@chromium.org>,
-	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
-	Tarang Raval <tarang.raval@siliconsignals.io>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Dongcheng Yan <dongcheng.yan@intel.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Alan Stern <stern@rowland.harvard.edu>,
-	Jingjing Xiong <jingjing.xiong@intel.com>,
-	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
-	Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Hao Yao <hao.yao@intel.com>,
-	bsp-development.geo@leica-geosystems.com
-Subject: Re: [PATCH v5 2/2] media: i2c: add Himax HM1246 image sensor driver
-Message-ID: <aQuP1uNRP7vOiYKT@smile.fi.intel.com>
-References: <20251104-hm1246-v5-0-97c8f25b5419@emfend.at>
- <20251104-hm1246-v5-2-97c8f25b5419@emfend.at>
- <aQn_lguAdP-ZwCzK@smile.fi.intel.com>
- <69d3396a-98a4-4f19-b2c9-de66a6b29b1d@emfend.at>
+	s=arc-20240116; t=1762365845; c=relaxed/simple;
+	bh=Ug4epuCkcaJAg+e8KIyZD2/iemxtXmnOnHGjOrCEs/o=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=umvvs5rIlnR4aubVj1rBIJ6F5nikdDKZSDtogA1ZlK5l99rWkyV+5y/t/jJas1oyo81VkQdzkOIag3erJ5s4MqwPbcFiXTmi9D9HIcwf83ZJnJJbHeiZvWNqOLNd9n1c7PMNUjA3Ko41S74wIM9WRy0CjXg6yiZg3y3juK5SbhY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=vVMTH8oh; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id DD735C0E639;
+	Wed,  5 Nov 2025 18:03:35 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id A597E60693;
+	Wed,  5 Nov 2025 18:03:56 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B833410B510C2;
+	Wed,  5 Nov 2025 19:03:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1762365835; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=FCxsKgZxhNgnJkvj/KGRREoRR8EGeTXpZ8jT6eg79s4=;
+	b=vVMTH8ohHbUDKCAY5bjisKQTkA5E7XO7aW5dd5QnefShbzI9TBfbfer0ecT2S47DQwHrk5
+	ocCj35krYsCkye6YFFj6xLJ+WP1uNrYBY0Fe0lBr7p8+AF0Ai1lkzetCQFaV2UOuKI3TKM
+	n90TQy49xvU3plCaFhv4lmVSFeI0EOyUpv0wqv2HkAGFLiwmTVw+dG9C6XpBg/PxhE5h34
+	/2w62xT5eU9HLv3N4Iy4hdHByhGz6phq74ak7WZI2a8AkNBcPqoqF1NyYe2FpvCRePQGHa
+	hkZl8u3GOYy2zs/p8h2JCbNB6dHcXA0M+PbQZn6aBzZ9gsfEyNRhfqCKOWWWMg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <69d3396a-98a4-4f19-b2c9-de66a6b29b1d@emfend.at>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 05 Nov 2025 19:03:50 +0100
+Message-Id: <DE0YJPERKME9.2CYGFAPULFMZV@bootlin.com>
+Cc: "Abel Vesa" <abelvesa@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Fabio Estevam" <festevam@gmail.com>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Laurent Pinchart"
+ <Laurent.pinchart@ideasonboard.com>, "Liu Ying" <victor.liu@nxp.com>,
+ "Lucas Stach" <l.stach@pengutronix.de>, "Peng Fan" <peng.fan@nxp.com>,
+ "Pengutronix Kernel Team" <kernel@pengutronix.de>, "Rob Herring"
+ <robh@kernel.org>, "Shawn Guo" <shawnguo@kernel.org>, "Thomas Zimmermann"
+ <tzimmermann@suse.de>, <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v2] drm/bridge: fsl-ldb: Parse register offsets from DT
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+To: "Marek Vasut" <marek.vasut@mailbox.org>,
+ <dri-devel@lists.freedesktop.org>, "Laurentiu Palcu"
+ <laurentiu.palcu@oss.nxp.com>
+X-Mailer: aerc 0.20.1
+References: <20251102170257.65491-1-marek.vasut@mailbox.org>
+ <DDZ6KCUVYB55.330X4X5ETRXR3@bootlin.com>
+ <25cd3b11-8417-44d3-af28-fa73419c713b@mailbox.org>
+In-Reply-To: <25cd3b11-8417-44d3-af28-fa73419c713b@mailbox.org>
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed, Nov 05, 2025 at 05:59:20PM +0100, Matthias Fend wrote:
-> Am 04.11.2025 um 14:28 schrieb Andy Shevchenko:
-> > On Tue, Nov 04, 2025 at 11:31:34AM +0100, Matthias Fend wrote:
+Hi Marek,
 
-...
+On Tue Nov 4, 2025 at 12:08 AM CET, Marek Vasut wrote:
+> On 11/3/25 4:55 PM, Luca Ceresoli wrote:
+>
+> Hello Luca,
+>
+>> On Sun Nov 2, 2025 at 6:02 PM CET, Marek Vasut wrote:
+>>> The DT binding for this bridge describe register offsets for the LDB,
+>>> parse the register offsets from DT instead of hard-coding them in the
+>>> driver. No functional change.
+>>>
+>>> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
+>>
+>> I was initially a bit skeptical because normally register offsets are
+>> derived from the compatible string, not from device tree. But then I
+>> realized this is about the LDB which has its two registers in the
+>> MEDIA_BLK. This means all in all this looks somewhat like an integration
+>> aspect (the LDB component uses two resources of the MEDIA_CLK component)
+>> and your patch mekse sense.
+>>
+>> So my only remark is that the above may be in the commit message, to mak=
+e
+>> the "why" clear from the beginning. It took a bit of research for me to
+>> find out.
+>
+> Actually, the LDB was always meant to parse the 'reg' offsets out of the
+> DT, it then went somewhat ... wrong ... and we ended up with hard-coded
+> reg<->compatible mapping. It was never intended to be that way. That is
+> all there is to it, there isn't any deeper reason behind it.
+>
+> What would you add into the commit message ?
 
-> > > +#include <linux/clk.h>
-> > > +#include <linux/delay.h>
-> > > +#include <linux/gpio.h>
-> > > +#include <linux/i2c.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/pm_runtime.h>
-> > > +#include <linux/units.h>
-> > 
-> > This block is semi-random.
-> > First of all, no new code must use gpio.h, use the proper one.
-> > Second, many are missing, e.g., bits.h, regmap.h, types.h.
-> > Please, follow IWYU principle (Include What You Use).
-> 
-> I've noticed that you've already modified the include statements in many
-> source files. I assume you've automated this somehow. May I ask how you did
-> that, or is there a reliable process for verifying the include statements?
+The above paragraph is a good draft of what I woudl add.
 
-No automation is available so far (the iwyu tool needs a lot of tuning for
-Linux kernel). I did it by simply reading the code. Since you are the author
-you should know how to fill the inclusions much better than me.
+>> [0] https://lore.kernel.org/dri-devel/20251103-dcif-upstreaming-v6-3-76f=
+cecfda919@oss.nxp.com/
+>>
+>>> @@ -309,6 +302,27 @@ static int fsl_ldb_probe(struct platform_device *p=
+dev)
+>>>   	fsl_ldb->dev =3D &pdev->dev;
+>>>   	fsl_ldb->bridge.of_node =3D dev->of_node;
+>>>
+>>> +	/* No "reg-names" property likely means single-register LDB */
+>>
+>> Uh? If it is "likely" it means we are not sure this code is not introduc=
+ing
+>> regressions, and that would be bad.
+>
+> I can drop the 'likely' part.
 
-...
+If you are sure it's not "likely" but "sure", then OK. However it all
+depends on the bindings, which leads to the below question.
 
-> > > +	const struct cci_reg_sequence pll_regs[] = {
-> > 
-> > static ?
-> > 
-> > > +		{ HM1246_PLL1CFG_REG, pll1 },
-> > > +		{ HM1246_PLL2CFG_REG, pll2 },
-> > > +		{ HM1246_PLL3CFG_REG, pll3 },
-> > > +		{ HM1246_SBC_CTRL_REG, HM1246_SBC_CTRL_PLL_EN },
-> > > +	};
-> > 
-> > I would even move it outside the function. Note, static const maybe located in
-> > ro memory while w/o static it's just a guarantee that compiler doesn't change
-> > the values. Hence there is no guarantee it will be in ro memory.
-> 
-> The sequence is initialized with values ​​from the arguments, which are not
-> constant. Therefore, the sequence cannot be put into a `ro` section.
+>>> +	idx =3D of_property_match_string(dev->of_node, "reg-names", "ldb");
+>>> +	if (idx < 0) {
+>>> +		fsl_ldb->single_ctrl_reg =3D true;
+>>> +		idx =3D 0;
+>>> +	}
+>>
+>>  From the bindings I understand that having two 'reg' values and no
+>> 'reg-names' at all is legal. Your patch implies differently. Who's right
+>> here?
+> I think if you have two two reg values, you should have reg-names , so
+> the binding should be updated ?
 
-Ah, indeed, you are right. It can, but it will be an intermediate (unnecessary)
-step.
+If the bindings are unclear or ambiguous (or wrong) then they should be
+fixed in the first place. With bad bindings we can either have a bad but
+compliant implementation or a good but non-compliant implementation.
 
-...
+Best regards,
+Luca
 
-> > > +static int hm1246_pll_check_locked(struct hm1246 *hm1246)
-> > > +{
-> > > +	u64 boot_ref2;
-> > > +	int ret;
-> > > +
-> > > +	ret = cci_read(hm1246->regmap, HM1246_SBC_BOOT_REF2_REG, &boot_ref2,
-> > > +		       NULL);
-> > 
-> > Despite being longer 80 I still would put it on one line. It will increase readability.
-> > 
-> > 	ret = cci_read(hm1246->regmap, HM1246_SBC_BOOT_REF2_REG, &boot_ref2, NULL);
-> > 
-> > Another option is to define local regmap:
-> > 
-> > 	struct regmap *map = hm1246->regmap;
-> > 	...
-> > 	ret = cci_read(map, HM1246_SBC_BOOT_REF2_REG, &boot_ref2, NULL);
-> > 
-> > which will be most readable and satisfy 80 limit.
-> 
-> Doing things differently is kind of a dilemma.
-> Compliance with the 80-line limit is required, and local variables that are
-> only used once are also undesirable.
-
-Why? If it increases readability than it _is_ desirable change.
-
-> The unsightly line break seems to be the most acceptable option, right?
-> Or rename the local variable to 'bref2'.
-
-Making variable cryptic wouldn't help readability.
-
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	return (boot_ref2 & HM1246_SBC_BOOT_REF2_PLL_LOCK) ? 0 : -EIO;
-> > 
-> > Think about similar improvements elsewhere in this driver.
-> > 
-> > > +}
-
-...
-
-> > > +	/* PLL lock time: tpll typ. 100us */
-> > 
-> > It's not a variable name, use proper English.
-> 
-> I think you refer to "tpll typ."? I intentionally wanted to use the same
-> symbols as in the datasheet. I also used them for the other delays:
-> 
-> /*
->  * XSHUTDOWN to crystal clock oscillation:  tcrystal typ.  650us
->  * Sample bootstrap pin:                    tsample  max. 2000us
->  * Built in self test:                      tbist    max. 3000us
->  */
-> 
-> Is this acceptable from this perspective?
-
-This is unfortunate. When it goes with max/min is much more understandable than
-standalone. Try to find a compromise. Datasheet is not a golden standard, it's
-just good to have something close enough to it, but it doesn't mean we have to
-follow it _literally_.
-
-> > > +	fsleep(200);
-
-...
-
-> > > +	const u16 RGBMIN = 0x0, RGBMAX = 0x3ff;
-> > 
-> > 0 is enough (no need 0x).
-> > 
-> > So, the MAX is 10-bit, Can we use rather (BIT(10) - 1) to show this?
-> 
-> Sure, I can write it that way too, even though the hexadecimal number seems
-> easier for me to read.
-
-The hexadecimal sometimes too abstract and writing the same in a slightly
-different form may give a useful additional information.
-
-...
-
-> > > +	if (!pm_runtime_get_if_active(hm1246->dev))
-> > > +		return 0;
-> > 
-> > Use ACQUIRE() and return directly where it makes sense.
-> 
-> That would indeed be a great solution. However, I haven't found any guard
-> definitions for pm_runtime_get_if_active and therefore don't know how to
-> adapt this functionality (increase usage only if already enabled) to use
-> ACQUIRE.
-> Any clue on this?
-
-Add a patch to add this conditional guard to pm_runtime.h.
-
-...
-
-> > > +static int hm1246_identify_module(struct hm1246 *hm1246)
-> > 
-> > This is a singleton function, right?
-> > 
-> > Check what once.h (or even once_lite.h) provides for you for such a case,
-> > and drop unneeded "identified" variable.
-> 
-> As I understand it, the ONCE macros create a static variable in the driver
-> module. This means the function would only be called once in total, but the
-> function should be called once per device.
-> Therefore, I don't think that's an option here.
-
-Good point.
-
-...
-
-> > > +static int __maybe_unused hm1246_g_register(struct v4l2_subdev *sd,
-> > > +					    struct v4l2_dbg_register *reg)
-> > 
-> > If v4l2.h doesn't provide a ptr_*() macro for these cases, I recommend to add and drop these __maybe_unused.
-> 
-> I'm not aware of anything like that.
-> Currently, it's common practice to use '#ifdef CONFIG_VIDEO_ADV_DEBUG', and
-> a macro that would simplify that would probably be worthwhile.
-> But I think that's for something outside the scope of this patch.
-
-This one may be out of scope, so up to you. But just note that using
-__maybe_unused is discouraged.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
