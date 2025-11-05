@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-235395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E62D0C37D02
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 21:59:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD8D0C37D05
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 21:59:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6D03F34FE33
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 20:59:53 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5AE9634FE38
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 20:59:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE5A0325717;
-	Wed,  5 Nov 2025 20:59:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D26692D9EC4;
+	Wed,  5 Nov 2025 20:59:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RkG0OeBW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AMKUB+3W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EC962D9784
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 20:59:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54B7A2D9784
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 20:59:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762376388; cv=none; b=shp6+f39Chvx+TNY/XfIdxMBgC1QmBTPifaT6ZXdjJolEg7OYbCf0BUvNXvqQfcGWw++Ut0zIS12UTSubkKCp07Wfe3IH2FVI4EIPj6lYfs+qW3n4ytQpGjfixih3jiXPlcWm57Zb7P5tOW2EjfjI1pt6CVL8X72c8ue08NALcY=
+	t=1762376390; cv=none; b=ldcyNuiA+0H0pPYnESgR8Rxu3zKGiYLMhLbiTlDVf+C2VYDG4ymGm0Lxg691fAwForjTTvW1r0waxT0nzpnepKO8VxH2gazyF0H4APLfQGr4P+rvIWjBC1if/2bleYmXhF2B/uPM2dUElXps9u7K+G1nSCJln7p33xn/EDoTCn0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762376388; c=relaxed/simple;
-	bh=avrss4Q81E7HsjBuBHdyOLKRz06kSibbq4tl8aToHlE=;
+	s=arc-20240116; t=1762376390; c=relaxed/simple;
+	bh=MuYy0V9exkQaYWSobtlVQfh7qInLLMXRSurHjEg6AEE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YZQbG/dOfqdUXeymeGSTuF4r/rCWMs/JR+z8Kf700cHc8Ez8paK1U/oYkG1ZaSaRgIh5/LAGLv9I1G/qfSNDU7ihtwZl6cwsBNnm4OJT2brRnfZD05+i5Dk+/CgwXkrRtPdwb6wYAABd7nBJhPbLWNf5E62bynpxx01aVdc3VzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RkG0OeBW; arc=none smtp.client-ip=209.85.167.174
+	 MIME-Version; b=TX88td2Sd8N5tQwRDnXxNwJly/OntrUl8BBl2NcJo6S9Lc/aRxqXDs8/5PefLidGM/ms6vw0SCusD6uyJVl5vEsSTXwGj3plE7znKw/JhlDjILFEmhXmn7ba8yoTV+UMh0BY2iwYt7XIfEG8vseSD8BvvMYwJBjHAVxkzSRFIa8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AMKUB+3W; arc=none smtp.client-ip=209.85.161.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-44fffff5f73so138784b6e.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 12:59:47 -0800 (PST)
+Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-656b4094e4eso38827eaf.3
+        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 12:59:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762376386; x=1762981186; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1762376387; x=1762981187; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IHzHI/uEJWBs7AX9PfC4NKomIzirQWA2bAmoXS/UXLU=;
-        b=RkG0OeBWRwFF2H/kAIZmf+yWukHm60fjkXkjMjc+8nvbFL8ZzifXrSGArTa6glMANj
-         fU6fiHt/9/juh2YXKq/1C+AslmVA5PhgpYuTq0dcA0KAjS/Wt7Kr6JL5dRRGbNKWR+zv
-         p0Kf6WbNWJcenUMsCZtdBYfBBJDfTRAY7GfwmID5Kg04AtKzv2HZ8rO6HDDZaq8AlEbu
-         Xd98RdbIGvE5/6lip9B7xNquMCUpvXIs9/xxfQ8tto/kyMA1MQP3wq1GPbywJ0tQvaZI
-         lb39ds32rarzAAHoGPihU6/+XVKhghRmMJUijjgFtWujZkL0I3gpColgPf17g0yMDz2C
-         Y3vw==
+        bh=N22dGVtS/3pOfQFih0jmM+cFj7E1JVHpsRdCDkBqmL4=;
+        b=AMKUB+3W80XTU7sxgGJEmhodY413zniRyhXQbSrFOu2/EO2yd2b85HtSlJs5GlGBpZ
+         loMqaAT6Ii0LoQBzVQZi/QaEyuGtfYTmuLJcPRc2rKGof9gM2cHYcYD8vkmlKYeUzVaB
+         2gThnh9s7UdJjCxBCvZWD3PpoNR80XZIAhaegEyJbtwFyk1oEvL+LZ2cUt7v/uNzeCQ9
+         Cj3OXpshkE/FqzZvoKvI6hEH0XVCaV1LU8IH8RhX2GsiKBFORhriDFZAnusJWcFnytRe
+         PYHMVLhpMYKcGgy07S6OmezChozUaYXeBn4SfFOe/ye2+AxxoOlKdFYLl1JsP8VGD0d9
+         6EYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762376386; x=1762981186;
+        d=1e100.net; s=20230601; t=1762376387; x=1762981187;
         h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=IHzHI/uEJWBs7AX9PfC4NKomIzirQWA2bAmoXS/UXLU=;
-        b=SAERR4qtaUorC/n3CI2sm33tuwqZO3Fu3RX7ZcnV1TbjmW5F9DqRz4GgaOsezpnede
-         0oF/lADCwV7wKY+4Pj/rqCV4wdVAe9FF9u7SL2ZxVZ8Tk5z8//Dc9Gdk0JpewIY3U1bL
-         nrUxIbWtoaGZLVojfmQEob7ZbIP5K0mOSfouhDMjNQdHqsqVxxurucm8Z16dPcysVzi6
-         plbadIt3eiqXZvLiJG6mvB8TZXYOZCPidTpphlIRnw6iT5BJ22PVJwCkmvr9Pyalq9++
-         3AqyDArl8c04SUOWJx/Bpm+PQ08EVnHYDA3zuqGORPZ9aASvSwr/urW28SqcwC4jWBdm
-         9zhA==
-X-Gm-Message-State: AOJu0YzOR3U+Jgi+SplwCr3iCfvgdIJ/KPXh63gWzsgkS28gi+Ym5M10
-	E0XS/q3Xygq2SRblL33aOHxppMsFuv0JuOHgIEUc0BaCc4//u1DWiYk1woYBpQ==
-X-Gm-Gg: ASbGncscaGp/4WWj3SrSYiqcqF/kG6/X1NqEhszqZTfwIOc79QjIxv7UxhxUdyukJ2a
-	/ahFVfF5oIIT0Ca4phwxxeqrc87pJ1Qx5vHj2OI4ugl09VOd1fdO2q9t3LDkpOC0fouEpVrWTdV
-	eP9/doEbz2cm8nhRaGVG6gtGMA+u0s452Lm8GR4b3yPppIB7ajU36EOKPTQ8umAI62gX1w9M83F
-	X/OhSQqx1NV68iHj4RdGiuFESzXSZvqrjvf2RE3Qu4fXiEmZy4wo7HgNy1qWhoQkTFOniz61uJg
-	8sv+P9Iq0IQc32LP9BgMt0aCmBWVw+H5H3vOhgvGxx9n+73SHiG8M5vrcIAaJAhBsssu8/LINtv
-	GIQxqk/Rjltp35c/hsvuRXr4ZWgqhZVhQ7lEuPUDrYbZJsGmWPOYCao2Pv5Lfp0TU22J+1P60dw
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=N22dGVtS/3pOfQFih0jmM+cFj7E1JVHpsRdCDkBqmL4=;
+        b=v74ajGd/sZ3+AxYceSP1TkPXQsjb48EX8yP7KP2+jASMLcTB0yiW7cJR4eOkvzRdW6
+         1zOjdC2vxpUbAycNFF6oeSYeWWt+qUo2aEh+SSFC/6PTOJYXBWvObv5GNjEzW61Nx16s
+         EJU5suuEn/vlUX3cDoj4AcIURLRa+J8MNgYnf87EZgDkNqZAUM9mMKkv72dNZ3Rz182m
+         C2F4GPsnR1NOgThuV4sxrVAG3WamvOUrlMVp7ffk0hxoY5rNPTsf4zUh7hdGuj4alyof
+         0J/hewlEWc6eDG0gUVMLe8397ajjBPGmBIFVibeCDyju2luCEjQZ7Rjd7Tvmk6VefUtb
+         NXkw==
+X-Gm-Message-State: AOJu0YzzBeaxoMUUFYfxXk39hdI4oZIdLN9w+gU5uZiZoKlczjWM/txQ
+	gYmUegFJd38+PULU3xmZgI21wVfQnkkbvnOOzIABtMvxywsHNlnBuu+1
+X-Gm-Gg: ASbGnctnzQhF7DCa2DZrMBgRFeUN6qlK3iqmbjSBfEoFFDpyoYHrkkvwtTWhNMytKDH
+	pIxGUflocFvHh8b1Wk909X77JqxIwmyg9iA5e1b+royPjlyxq+N954tHRC9RMYyXrGPBEthrHSl
+	uWydkywvwoROM5L67+Y6b5mmUs3JAbpJ+Ze7Wa0KwiX1wXzY94KNX+flugLBBznotm4uQxkCxIs
+	WJpTh3V/bknxE0GTrldFFc9iMAL2di3i0o9U+/fpz3+Ap1XQHgwzTDqppXumxO9X9WkYbzOkDhY
+	weNI9TUmsFcCOsDjwUJNQC+ezuOBJ72hupPBL+h9EV2O1BSkQT+g16cVds/v5NmVY7ur0OTt7s7
+	Ww7goPh/mRDqyGQSNCPT4J94EUKN8GDWIfPHTJzX8oaoKwaHbA9NMUpHEV9B3MY2DY1W31+7iMQ
 	==
-X-Google-Smtp-Source: AGHT+IEw6Z2KswJK/Wj3uHzNkx7VsaaMTAmqZCJn8LGeyHLIWeo9iromgRnJ+e9P0NB7mBJPx221zg==
-X-Received: by 2002:a05:6808:3095:b0:44d:a5cd:e803 with SMTP id 5614622812f47-44fffd46258mr432083b6e.20.1762376386393;
-        Wed, 05 Nov 2025 12:59:46 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEWz824Eyik5jV6bGE+8iMtXIfPNIwn3pxabNdKpRbpIMMD1Sw3cT1AACv65t3yhikmRX0kMQ==
+X-Received: by 2002:a05:6820:188a:b0:653:63d2:22c4 with SMTP id 006d021491bc7-656bb509200mr1869080eaf.0.1762376387402;
+        Wed, 05 Nov 2025 12:59:47 -0800 (PST)
 Received: from localhost.localdomain ([2600:1700:fb0:1bc0::54])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-656c5713288sm160312eaf.5.2025.11.05.12.59.45
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-656c5713288sm160312eaf.5.2025.11.05.12.59.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Nov 2025 12:59:45 -0800 (PST)
+        Wed, 05 Nov 2025 12:59:46 -0800 (PST)
 From: Chris Morgan <macroalpha82@gmail.com>
 To: linux-rockchip@lists.infradead.org
 Cc: devicetree@vger.kernel.org,
@@ -84,9 +84,9 @@ Cc: devicetree@vger.kernel.org,
 	krzk+dt@kernel.org,
 	robh@kernel.org,
 	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 4/5] arm64: dts: rockchip: Enable HS400 for Indiedroid Nova
-Date: Wed,  5 Nov 2025 14:57:07 -0600
-Message-ID: <20251105205708.732125-5-macroalpha82@gmail.com>
+Subject: [PATCH 5/5] arm64: dts: rockchip: Fix DMA for Indiedroid Nova Bluetooth
+Date: Wed,  5 Nov 2025 14:57:08 -0600
+Message-ID: <20251105205708.732125-6-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251105205708.732125-1-macroalpha82@gmail.com>
 References: <20251105205708.732125-1-macroalpha82@gmail.com>
@@ -100,38 +100,35 @@ Content-Transfer-Encoding: 8bit
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Once the DLL_STRBIN_TAPNUM_DEFAULT is set to the correct value [1], the
-workaround to ensure stable eMMC operation is no longer needed. I
-have observed testing this that hdparm went from:
-"Timing buffered disk reads: 502 MB in  3.00 seconds = 167.14 MB/sec"
-to the following:
-"Timing buffered disk reads: 832 MB in  3.00 seconds = 277.32 MB/sec"
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/drivers/mmc/host/sdhci-of-dwcmshc.c?id=a28352cf2d2f8380e7aca8cb61682396dca7a991
+When the device was first added, there was a problem with the bluetooth
+controller that manifested when DMA was enabled for the underlying UART
+interface. At some point in the intervening time the problem appears to
+have been resolved. Add the UART rx and tx channels back to re-enable
+UART.
 
 Fixes: 3900160e164b ("arm64: dts: rockchip: Add Indiedroid Nova board")
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts | 3 ---
+ 1 file changed, 3 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-index 62c8c8f68713..0796ba6d2504 100644
+index 0796ba6d2504..dee053afc6b6 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-@@ -561,10 +561,10 @@ &saradc {
+@@ -944,12 +944,9 @@ &uart2 {
  	status = "okay";
  };
  
--/* HS400 modes seemed to cause io errors. */
- &sdhci {
- 	bus-width = <8>;
--	no-mmc-hs400;
-+	mmc-hs400-1_8v;
-+	mmc-hs400-enhanced-strobe;
- 	no-sd;
- 	no-sdio;
- 	non-removable;
+-/* DMA seems to interfere with bluetooth device normal operation. */
+ &uart9 {
+ 	pinctrl-0 = <&uart9m2_xfer>, <&uart9m2_ctsn>, <&uart9m2_rtsn>;
+ 	pinctrl-names = "default";
+-	/delete-property/ dma-names;
+-	/delete-property/ dmas;
+ 	uart-has-rtscts;
+ 	status = "okay";
+ 
 -- 
 2.43.0
 
