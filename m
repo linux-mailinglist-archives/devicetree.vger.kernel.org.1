@@ -1,127 +1,163 @@
-Return-Path: <devicetree+bounces-235026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55806C33E99
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 05:03:04 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A1D6C33FAA
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 06:18:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 444764ED419
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 04:02:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5C52D4E39B7
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 05:18:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B267524503F;
-	Wed,  5 Nov 2025 04:02:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="eRNmz8V+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97A0D254B19;
+	Wed,  5 Nov 2025 05:18:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com [205.220.177.32])
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AF571F5437;
-	Wed,  5 Nov 2025 04:02:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.177.32
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DC8221D3D2
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 05:18:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762315368; cv=none; b=sC0iNKO14ByTdhnoXq+f9Q1WUZkCkSnB8/L1k0kUfBj1osZs1ZqQFzO2Oh1urEfDTH4pXt8q+xqrSDJ070K85yBzqnzAAnjnLgvZeNgn2NXYJ3nzrSvTyUhnu94ckaxqxiA5Oz/Z67Z2gkMoN0/JKWFeVpxCQiQD//y/0z5t6oQ=
+	t=1762319921; cv=none; b=hcjOhuMTTRqFM9imWm8wgPViaqNw5rqiZwHkzpi8HXsP2J8jwzojXe9Am/CXFIH90ObyefmI6xkOI2lIfC9KRWOunuMh+8WjM2rZEqWfO6PC2cLOKT6z0zL43gesjR9XxfhLHMyCH0u5mrSqFb3NLoBhW/9roKeHWu3384Q3frc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762315368; c=relaxed/simple;
-	bh=jqf3fkA6oX0rwGlsrVbUrrG09tiatuuy3zH4FgSa0dE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=umyhUyd1qjnE4ArPNzP8sHcmRP8HBsGF7TUnug7MGyelyXiFuYgihyEnQdcjLtfd63zDfDVG7Fy4LXdbe1Cx8YDmXr57zLSVA9KOQe+zuxSfKoGy6lG0Zkzyi45pewFR4f1irUZLGBjuAg0L4dPcCy92CXICsvMTfrjkYRSrgFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com; spf=pass smtp.mailfrom=oracle.com; dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b=eRNmz8V+; arc=none smtp.client-ip=205.220.177.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oracle.com
-Received: from pps.filterd (m0333520.ppops.net [127.0.0.1])
-	by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5A53GHPb022581;
-	Wed, 5 Nov 2025 04:02:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	corp-2025-04-25; bh=YsH5r/6vzUJZtwJSh4laP2CRaInCJhfRCw+nEMpXmAE=; b=
-	eRNmz8V+0wX2p5FgaNbOxo00KhVqq1gHlRmxlqb3zqjm9QNZ4FD/U6Qesc2EaGBX
-	XtLNinPDiyA4p4a+7oSTIjhespG4pAoA6DwDlAl5frJNSxLQjnkVj3pPLq+Fs9tR
-	tuZWGKWt0rLNN2xoLrLgNj1XkXR0DpkFMYvJlO19oBKltbAQa8mWgqRkE6AC0mlT
-	ZQehWWNOMN5aVmOyiemakDaWMSljpmbYr147zPAr7jNddUm7/QS2CENI7lcXosXv
-	3T7M0lm6sdRU88oWuTvC8BJ7Y7MeuL5B3cDJ78a7KMGwyijUphEWNgrw2DLu0ilt
-	T0fsKwkMheSX0utflxaxug==
-Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta02.appoci.oracle.com [147.154.18.20])
-	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 4a7xhdg201-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 05 Nov 2025 04:02:28 +0000 (GMT)
-Received: from pps.filterd (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2) with ESMTP id 5A524FLm024893;
-	Wed, 5 Nov 2025 04:02:28 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 4a58ne15j1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 05 Nov 2025 04:02:28 +0000
-Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5A542Pro005395;
-	Wed, 5 Nov 2025 04:02:27 GMT
-Received: from ca-mkp2.ca.oracle.com.com (mpeterse-ol9.allregionaliads.osdevelopmeniad.oraclevcn.com [100.100.251.135])
-	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id 4a58ne15gy-6;
-	Wed, 05 Nov 2025 04:02:27 +0000
-From: "Martin K. Petersen" <martin.petersen@oracle.com>
-To: linux-scsi@vger.kernel.org, peter.wang@mediatek.com
-Cc: "Martin K . Petersen" <martin.petersen@oracle.com>,
-        alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
-        robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, jejb@linux.ibm.com, lgirdwood@gmail.com,
-        broonie@kernel.org, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, wenst@chromium.org,
-        michael@walle.cc, conor.dooley@microchip.com, chu.stanley@gmail.com,
-        chun-hung.wu@mediatek.com, alice.chao@mediatek.com,
-        naomi.chu@mediatek.com, ed.tsai@mediatek.com
-Subject: Re: [PATCH v1] dt-bindings: ufs: mediatek,ufs: Update maintainer information in mediatek,ufs.yaml
-Date: Tue,  4 Nov 2025 23:02:20 -0500
-Message-ID: <176231440764.2306382.16356889887368434971.b4-ty@oracle.com>
-X-Mailer: git-send-email 2.51.1
-In-Reply-To: <20251031122008.1517549-1-peter.wang@mediatek.com>
-References: <20251031122008.1517549-1-peter.wang@mediatek.com>
+	s=arc-20240116; t=1762319921; c=relaxed/simple;
+	bh=sqivD5Cd4GhDHBwOLMdGJL3A6bBx4LcvdQ8hFvRMNv4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GpxsT4RU8AeEkggsmxRhzHXCipjcVJkVBK88FUJZLm0LzXKsG/X4CJLHFDpV7LwQvEAamKS8lgCD84DR1rgbbvpmveNiLLdVOMm/BghYr22Ftgd4Cv7FZgEoNLRvgJg9GcQ1+zx8Z2ioFgVM1B2aGj2OvUMzYsHU3K/jNKwoAz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 5A55DfSr031533;
+	Wed, 5 Nov 2025 14:13:42 +0900
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: heiko@sntech.de
+Cc: joseph.kogut@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, jonas@kwiboo.se, kever.yang@rock-chips.com,
+        i@next.chainsx.cn, honyuenkwun@gmail.com, quentin.schulz@cherry.de,
+        dsimic@manjaro.org, pbrobinson@gmail.com, amadeus@jmu.edu.cn,
+        jbx6244@gmail.com, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, FUKAUMI Naoki <naoki@radxa.com>
+Subject: [PATCH v6 0/3] Add Radxa CM5 and IO Board
+Date: Wed,  5 Nov 2025 05:13:32 +0000
+Message-ID: <20251105051335.17652-1-naoki@radxa.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-05_02,2025-11-03_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 mlxscore=0 bulkscore=0
- malwarescore=0 adultscore=0 spamscore=0 mlxlogscore=921 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2510240000
- definitions=main-2511050024
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA1MDAxOSBTYWx0ZWRfX+uE1GIt984Gq
- 4/GHMEsw9maJTT375X+rmpBf5mLpXxua/eTTSKpNLnEGcmns2VLHp2v9fHVEKAuCzVnrZEIhCAm
- 9erOZPx6vRi8KgbnS5iMXT7ojITDj7WqJIhCMqjRDbhxvkl48Ketl+YjXTZBbJXi1NvKBWfROxS
- R9+x+365zLpzU0Kc9H3sN5IOs7RnKfkXkSPm8gphNh+OWhLvU8Xzi3R4WlKDRSTnpm6rXQzx/UN
- WBNqsTx46cDHbk9eLm/CevyLK+0U696VVxkQgeaFv0RP/zgIWVtLUV5dGpyNwtBNrkAA6tYoyIK
- 5sl+8AiW5T7FuuQEdusv+qDnDi3IxTt7kEF+yilQJt4fhSJus6YP+qnGHDLYG8UxJTHd/qVC/kL
- 6MqSTyfIHUsbn3KOwsKN3RhLYgVVuP4P3bp8Df7TMnj4uqM9uXs=
-X-Authority-Analysis: v=2.4 cv=ZpDg6t7G c=1 sm=1 tr=0 ts=690acc54 b=1 cx=c_pps
- a=e1sVV491RgrpLwSTMOnk8w==:117 a=e1sVV491RgrpLwSTMOnk8w==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=mpaa-ttXAAAA:8 a=8d0GUG1h20LVvl_VnrYA:9 a=QEXdDO2ut3YA:10
- cc=ntf awl=host:13657
-X-Proofpoint-ORIG-GUID: HuzLGcL3yYhgijfTvd2LcY2rHs5jwfRD
-X-Proofpoint-GUID: HuzLGcL3yYhgijfTvd2LcY2rHs5jwfRD
 
-On Fri, 31 Oct 2025 20:19:12 +0800, peter.wang@mediatek.com wrote:
+This patch series add support for the Radxa CM5 SoM and IO Board.
 
-> Replace Stanley Chu with me and Chaotian in the maintainers field,
-> since his email address is no longer active.
-> 
-> 
+Changes in v6:
+(Patch 1/3)
+- Fix description; "Radxa CM5" is the correct name
+(Patch 2/3)
+- Fix #include(s)
+- Include rk3588s.dtsi
+- Move alias for gmac1 from io board dts
+- Add Maskrom key
+- Add pinctrl-* for led-0
+- Add vcc_1v1_nldo_s3 regulator for pmic
+- Move gmac1 (except status) from io board dts
+- Fix phy-supply for gmac1
+- Fix compatible for vdd_cpu_big1_s0 regulator
+- Add eeprom on i2c0
+- Add vdd_npu_s0 regulator for rknn
+- Fix compatible for rgmii_phy1
+- Add pinctrl-* and reset-* for rgmii_phy1
+- Add domain-supply for pd_npu
+- Add rknn_*
+- Add saradc
+- Fix properties in sdhci
+- Move pmic from io board dts
+- Fix vcc*-supply for pmic
+- Add regulators in pmic
+- Add tsadc
+- Move vop(_mmu) from io board dts
+- Trivial changes (labels, names, etc)
+(Patch 3/3)
+- Fix #include(s)
+- Remove #include "rk3588s.dtsi"
+- Fix model
+- Add fan
+- Add Recovery key
+- Add pinctrl-* for vcc3v3_wf
+- Add vcc_sysin regulator
+- Add pinctrl-* for vbus5v0_typec
+- Add rfkill-bt and rfkill-wlan for M.2 module
+- Add sound for es8316
+- Add phy-supply for combphy2_psu
+- Fix power-role to "source" for fusb302
+- Add rtc for hym8536
+- Add audio-codec on i2c8 for es8316
+- Add i2s0_8ch for es8316
+- Add package_thermal for fan
+- Add pinctrl-* for pcie2x1l2
+- Add pwm11 for fan
+- Fix properties in sdmmmc
+- Add phy-supply for u2phy2_host and u2phy3_host
+- Remove usb_host0_ohci
+- Add pinctrl-* for usbdp_phy0
+- Trivial changes (labels, names, etc)
 
-Applied to 6.19/scsi-queue, thanks!
+Changes in v5:
+(Patch 2/3, per Jimmy)
+- Alias eMMC to mmc0
+- Remove unused sdio alias
+- Move gmac, hdmi0 nodes to carrier board dts
+(Patch 3/3, per Jimmy)
+- Enable hdmi0_sound and i2s5_8ch
+- Remove redundant enablement of sdhci
+- Enable usb_host2_xhci
 
-[1/1] dt-bindings: ufs: mediatek,ufs: Update maintainer information in mediatek,ufs.yaml
-      https://git.kernel.org/mkp/scsi/c/480ca7954664
+- Tested HDMI audio
+
+Changes in v4:
+- Fixed XHCI initialization bug by changing try-power-role from source
+  to sink
+
+Changes in v3:
+- Addressed YAML syntax error in dt binding (per Rob)
+- Fixed whitespace issue in dts reported by checkpatch.pl
+- Split base SoM and carrier board into separate patches
+- Added further details about the SoM and carrier to the commit
+  messages
+
+Changes in v2:
+- Added copyright header and data sheet links
+- Removed non-existent property
+- Sorted alphabetically
+- Removed errant whitespace
+- Moved status to the end of each node
+- Removed pinctrl-names property from leds (indicated by CHECK_DTBS)
+- Removed delays from gmac with internal delay
+
+Link: https://lore.kernel.org/r/20250617-rk3588s-cm5-io-dts-upstream-v5-0-8d96854a5bbd@gmail.com
+Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
+---
+I have communicated with Joseph privately and taken ownership of
+moving this forward, with his blessing. All bugs belong to me.
+---
+FUKAUMI Naoki (3):
+  dt-bindings: arm: rockchip: Add Radxa CM5 IO Board
+  arm64: dts: rockchip: Add Radxa CM5
+  arm64: dts: rockchip: Add Radxa CM5 IO Board
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   7 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../dts/rockchip/rk3588s-radxa-cm5-io.dts     | 503 +++++++++++++++
+ .../boot/dts/rockchip/rk3588s-radxa-cm5.dtsi  | 602 ++++++++++++++++++
+ 4 files changed, 1113 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5.dtsi
 
 -- 
-Martin K. Petersen
+2.43.0
+
 
