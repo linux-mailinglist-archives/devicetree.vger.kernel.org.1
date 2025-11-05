@@ -1,110 +1,144 @@
-Return-Path: <devicetree+bounces-235349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77766C372DF
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 18:48:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57271C37321
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 18:51:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E8AE6E1DF9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 17:31:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D8A8662484
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 17:35:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B15C531D757;
-	Wed,  5 Nov 2025 17:31:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jm/UliUf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A63632D0C6;
+	Wed,  5 Nov 2025 17:35:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 892652FE078;
-	Wed,  5 Nov 2025 17:31:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D12B62F28FC;
+	Wed,  5 Nov 2025 17:35:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762363893; cv=none; b=HQH28c2Og+UYzmUfehKMHb3KDWFB2I4Fg1FeTai9UjMfo47AJzsMs4ul5e0z2G1hkC/eRatyTM8kamy2ynbWjnim9IoWhLsCuALW4Dt0rEao5J+zSYpqlCJ+Wf5R4Y4oHP0DViGIDf8jnGqIWaYqRXzlwjC51YAiyXJIZ/jIMdo=
+	t=1762364114; cv=none; b=Y6ldt25QIadwG3T6KCP/qr4UArkA6iDqQN5u2mO+VUgEEUEYsBjx1zH74wzQjaORE44kdtq3efHhcCw1pvJ9KtXMQnNFPWpwnNNWvFVT/68nRjik1nUJlS0v6/MFGD6ja3SvBP8eZNQgXo710JKnhsiPkFqEAokjKJ+xs1ss2i4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762363893; c=relaxed/simple;
-	bh=BQadIILiFQFCy78dge1MDVJpO7lOTvap1pifY0b9pFM=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=rxRx1JbnkcqqNwHaX/+PJ7leSLA7oSfY+WJi1VgTmUeQ8qPWPgDyNKEaWYYoM7U61TKi9q+C5PARkpsW3dKrti5rTbjQ2sh/e1JSP4TOVAc6SS44lOEBtTy7NNFF4Nw/Izn0zyFwKP2v3RnNTbGw2MNubSvCSdFj0FmjZbzIR6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jm/UliUf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1072C4CEF5;
-	Wed,  5 Nov 2025 17:31:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762363893;
-	bh=BQadIILiFQFCy78dge1MDVJpO7lOTvap1pifY0b9pFM=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=jm/UliUfXfTK5raK09LkYUutiQVNZTYpFR/hXDjBOmdzcO3SkLil9xx/ZK/D0YFDo
-	 iUb98+a0qbi1Sf5CF4+ZUdkjlVJmbdz2LBatxOLBvB4Ld67Rx34OdughevgzOO+jIR
-	 cRiENgGGCr1PLigWS5WNjnu/lSpkwOyaTDgFb+kEsllfom8xiPjtIFrULVWEE6HDGq
-	 2YhWvpusdXK5iRwLfDQ8YGSQjLtQY6Ti1Vq75C4fMTJImccrsk8+unrPdjcHYw0mTZ
-	 XnSXDXqBf0EgmGKXkn6p+ua8ow7FjeVske0g0qyfNHMZLIuj49X2ZsFZvGyuMEitgz
-	 yKzOtCihDx5bw==
-Date: Wed, 05 Nov 2025 11:31:31 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1762364114; c=relaxed/simple;
+	bh=DTXNROkRA31SpKmGKo/09BWRmLOT/RvGrF6DmXSpWgg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jl3YhYcuwbc0/gEPrIyh4t5+RXZI3Zfkqywf+tyGDo+MtgrWDn7FyPYR2RZOZPzcnN9sqYCLWwCwnwWcaWFkVScHoCPFiDGPO6M7ERNyuYP4sEZQe64VAfIqxrPgoGZIzWBZelRaZqnB1aAhUkqdw7jWr1flw0SuTu36w/vVaIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 25725169C;
+	Wed,  5 Nov 2025 09:35:03 -0800 (PST)
+Received: from [10.57.86.139] (unknown [10.57.86.139])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DBB8E3F63F;
+	Wed,  5 Nov 2025 09:35:06 -0800 (PST)
+Message-ID: <44010837-65c6-437e-aede-7b45f69b6758@arm.com>
+Date: Wed, 5 Nov 2025 17:35:03 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, Jon Hunter <jonathanh@nvidia.com>, 
- devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
- linux-tegra@vger.kernel.org
-To: Thierry Reding <thierry.reding@gmail.com>
-In-Reply-To: <20251105160513.2638408-2-thierry.reding@gmail.com>
-References: <20251105160513.2638408-1-thierry.reding@gmail.com>
- <20251105160513.2638408-2-thierry.reding@gmail.com>
-Message-Id: <176236389129.1455984.6215917313928055462.robh@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: memory: tegra: Document DBB clock for
- Tegra264
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/6] of: introduce wrapper function to query the cell
+ count
+To: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>, will@kernel.org,
+ joro@8bytes.org, robh@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
+ konrad.dybcio@oss.qualcomm.com, bjorn.andersson@oss.qualcomm.com,
+ bod@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+ saravanak@google.com, prakash.gupta@oss.qualcomm.com,
+ vikash.garodia@oss.qualcomm.com
+Cc: iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <cover.1762235099.git.charan.kalla@oss.qualcomm.com>
+ <47bdcf06aacc1fec791577ffd4a4a94034a4d3ed.1762235099.git.charan.kalla@oss.qualcomm.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <47bdcf06aacc1fec791577ffd4a4a94034a4d3ed.1762235099.git.charan.kalla@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-On Wed, 05 Nov 2025 17:05:11 +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
+On 2025-11-04 8:51 am, Charan Teja Kalla wrote:
+> Introduce the wrapper function, of_map_id_cell_count(), to query the
+> actual cell count that need to be considered by the of_map_id() when
+> used for translating the <property>-map entries. Accordingly make sure
+> of_map_id_or_funcid() operates on this returned cell count.
 > 
-> Accesses to external memory are routed through the data backbone (DBB)
-> on Tegra264. A separate clock feeds this path and needs to be enabled
-> whenever an IP block makes an access to external memory. The external
-> memory controller driver is the best place to control this clock since
-> it knows how many devices are actively accessing memory.
+> This wrapper function returns cell count as 1 thus no functional
+> changes.
 > 
-> Document the presence of this clock on Tegra264 only.
+> The subsequent patches improve the logic in wrapper function to detect
+> the proper cell count.
 > 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> Signed-off-by: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
 > ---
->  .../memory-controllers/nvidia,tegra186-mc.yaml        | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+>   drivers/of/base.c | 19 ++++++++++++++++---
+>   1 file changed, 16 insertions(+), 3 deletions(-)
 > 
+> diff --git a/drivers/of/base.c b/drivers/of/base.c
+> index ac6b726cd5e3..5e76abcc7940 100644
+> --- a/drivers/of/base.c
+> +++ b/drivers/of/base.c
+> @@ -2045,6 +2045,12 @@ int of_find_last_cache_level(unsigned int cpu)
+>   	return cache_level;
+>   }
+>   
+> +static int of_map_id_cell_count(const __be32 *map, const char *map_name,
+> +				int map_len)
+> +{
+> +	return 1;
+> +}
+> +
+>   /*
+>    * Look at the documentation of of_map_id.
+>    */
+> @@ -2053,6 +2059,7 @@ static int of_map_id_or_funcid(const struct device_node *np, u32 id,
+>   		struct device_node **target, u32 *id_out)
+>   {
+>   	u32 map_mask, masked_id;
+> +	u32 cell_count, total_cells;
+>   	int map_len;
+>   	const __be32 *map = NULL;
+>   
+> @@ -2068,7 +2075,13 @@ static int of_map_id_or_funcid(const struct device_node *np, u32 id,
+>   		return 0;
+>   	}
+>   
+> -	if (!map_len || map_len % (4 * sizeof(*map))) {
+> +	cell_count = of_map_id_cell_count(map, map_name, map_len);
 
-My bot found errors running 'make dt_binding_check' on your patch:
+This doesn't work. The output cell count for any given entry depends on 
+whatever phandle *that* entry maps to - it can't be assumed to be 
+constant for the whole map.
 
-yamllint warnings/errors:
+Thanks,
+Robin.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.example.dtb: memory-controller@2c00000 (nvidia,tegra186-mc): external-memory-controller@2c60000:clock-names: ['emc'] is too short
-	from schema $id: http://devicetree.org/schemas/memory-controllers/nvidia,tegra186-mc.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.example.dtb: memory-controller@2c00000 (nvidia,tegra186-mc): external-memory-controller@2c60000:clocks: [[4294967295, 58]] is too short
-	from schema $id: http://devicetree.org/schemas/memory-controllers/nvidia,tegra186-mc.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251105160513.2638408-2-thierry.reding@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+> +	if (!cell_count)
+> +		return -EINVAL;
+> +
+> +	total_cells = 2 + cell_count + 1;
+> +
+> +	if (!map_len || map_len % (total_cells * sizeof(*map))) {
+>   		pr_err("%pOF: Error: Bad %s length: %d\n", np,
+>   			map_name, map_len);
+>   		return -EINVAL;
+> @@ -2085,12 +2098,12 @@ static int of_map_id_or_funcid(const struct device_node *np, u32 id,
+>   		of_property_read_u32(np, map_mask_name, &map_mask);
+>   
+>   	masked_id = map_mask & id;
+> -	for ( ; map_len > 0; map_len -= 4 * sizeof(*map), map += 4) {
+> +	for ( ; map_len > 0; map_len -= total_cells * sizeof(*map), map += total_cells) {
+>   		struct device_node *phandle_node;
+>   		u32 id_base = be32_to_cpup(map + 0);
+>   		u32 phandle = be32_to_cpup(map + 1);
+>   		u32 out_base = be32_to_cpup(map + 2);
+> -		u32 id_len = be32_to_cpup(map + 3);
+> +		u32 id_len = be32_to_cpup(map + total_cells - 1);
+>   
+>   		if (id_base & ~map_mask) {
+>   			pr_err("%pOF: Invalid %s translation - %s-mask (0x%x) ignores id-base (0x%x)\n",
 
 
