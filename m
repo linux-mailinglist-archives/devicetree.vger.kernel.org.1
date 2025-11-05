@@ -1,161 +1,135 @@
-Return-Path: <devicetree+bounces-235190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D6C5C352DA
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 11:45:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AD31C352E0
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 11:45:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7CC184F3E4C
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 10:45:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D66EE19224D9
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 10:44:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9344130C624;
-	Wed,  5 Nov 2025 10:44:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 097D9306B3F;
+	Wed,  5 Nov 2025 10:43:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nrOpLL/4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E21D309DA5;
-	Wed,  5 Nov 2025 10:44:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3E3730749E;
+	Wed,  5 Nov 2025 10:43:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762339459; cv=none; b=NFDCaYKc6PyaMWObaP9cveqj3ZkDkzxr4YTv4NEFwf8VGdY3XOIGmhDtGVaqgJfbmZRLRLvfY/+z3KUbFX31Z0PusFzpRIe6srjim352sHmuJ5y+dHdxxCDTpJ1Sz9kAPcrA/RNzVqg+1/XbpUnC5SzI1SvD4ZdTHpMq7D/74xg=
+	t=1762339403; cv=none; b=g0sKmoGd4DffB3GYCM8G4zwcsTaqju26zTMVPTwSh6gr7QYnFLpmL2K377p9JrZsARIRMqGTiB/c2jHW2zinOTwkkxJzJm61BHx+V2/newQuU6mr59M5/XG8CHxTrm5KJTYol2oG8Bzd4qz65p9t+8m6w2dy4rOEyWVAxgE5DBM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762339459; c=relaxed/simple;
-	bh=NV+kxczdklyaqUqzxTzGJ5qDBsNZChgauWrrrIEhPwk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Uvwg9Z2M6WiL33QVjTovXVFX2fFCjZX0X7NNsMwj/kgLeF9sNB6cNL5+YgOsQCtFbibyzzGr9VzzsosiFRs4oqYy/q7VisAa1+qkmBFWh3CNEgPwSMVZdS5cba94/uIvB0QWLHEgXWraIm3HjGzxPnt4xRWcwoGggNe6OBih2n0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-CSE-ConnectionGUID: S6j4jrq4Q/C3x58KVLsbWQ==
-X-CSE-MsgGUID: RAbtu4jCTvaI0IxR15qZbg==
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 05 Nov 2025 19:44:16 +0900
-Received: from demon-pc.localdomain (unknown [10.226.93.82])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 0375A4001DCB;
-	Wed,  5 Nov 2025 19:44:11 +0900 (JST)
-From: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-spi@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Subject: [PATCH v3 14/14] arm64: dts: renesas: r9a09g087: Add SPIs support
-Date: Wed,  5 Nov 2025 12:41:51 +0200
-Message-ID: <20251105104151.1489281-15-cosmin-gabriel.tanislav.xa@renesas.com>
-X-Mailer: git-send-email 2.51.2
-In-Reply-To: <20251105104151.1489281-1-cosmin-gabriel.tanislav.xa@renesas.com>
-References: <20251105104151.1489281-1-cosmin-gabriel.tanislav.xa@renesas.com>
+	s=arc-20240116; t=1762339403; c=relaxed/simple;
+	bh=xiagzVBevityIRA/xHOUPEL9BTQxWFUSQ4DwL3QsZ6Q=;
+	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=j7CIJzX09lbhmrRd+LYt7iaCc5RbnK09qKtaMNIE3a1R6Vt1Hn+zBO1jZFSqlxcb7dsFjcd/Ws5QG0ZHiqTQAJlVdmLTGcK21Z5zL4y0HuYZArD8RUuv7LFqXA1llhkpxfAazudgcK5gKqGUrAPR8o/2Etpu2nghQbu+x5RWkhk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nrOpLL/4; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762339402; x=1793875402;
+  h=from:date:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=xiagzVBevityIRA/xHOUPEL9BTQxWFUSQ4DwL3QsZ6Q=;
+  b=nrOpLL/4oiNd3t28fNB+NYuXQZ36XWCXpxGTA+qSfVGJIyYONm21waDA
+   KJQU4vjTPIJDQ5MhA5TsN2uO7wpBi48CysiuvEycjdY4aRv+K9nKm0L0J
+   f/eekroL87SG9FtzPgNB1WlVq8fWJPyGzaP8Gl58X9XdNZjaaL/VgieO9
+   zCB6RSfo2XR/VWkgyT7yF8H9SCEAzeHENT7zTRnNGErl91ooGEX5y3yd9
+   N5xfnf6c1oFw3l64GZjq4w27yewlVs6aQaeCgS6qHPn6WAuD86hlr0MEc
+   +iJVxBxeW9NWq8NuohU8NHM0XP/X1ITqIuTl15dDk+6eWKTHTtlLCUYvK
+   Q==;
+X-CSE-ConnectionGUID: phepiw9WR2KHMuCfaOhrkA==
+X-CSE-MsgGUID: aimTRDd5Q0aWtOcFPoCKew==
+X-IronPort-AV: E=McAfee;i="6800,10657,11603"; a="81852624"
+X-IronPort-AV: E=Sophos;i="6.19,281,1754982000"; 
+   d="scan'208";a="81852624"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2025 02:43:21 -0800
+X-CSE-ConnectionGUID: Isd4eBPLRcKDgK5YT6ErMw==
+X-CSE-MsgGUID: OiLDIX16S4G9aa1KuMyt+A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,281,1754982000"; 
+   d="scan'208";a="218203072"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.252])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2025 02:43:12 -0800
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Wed, 5 Nov 2025 12:43:09 +0200 (EET)
+To: Niklas Cassel <cassel@kernel.org>
+cc: Vincent Guittot <vincent.guittot@linaro.org>, 
+    Bjorn Helgaas <helgaas@kernel.org>, chester62515@gmail.com, 
+    mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com, s32@nxp.com, 
+    bhelgaas@google.com, jingoohan1@gmail.com, lpieralisi@kernel.org, 
+    kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org, 
+    krzk+dt@kernel.org, conor+dt@kernel.org, Ionut.Vicovan@nxp.com, 
+    larisa.grigore@nxp.com, Ghennadi.Procopciuc@nxp.com, 
+    ciprianmarian.costea@nxp.com, bogdan.hamciuc@nxp.com, Frank.li@nxp.com, 
+    linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
+    devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
+    imx@lists.linux.dev
+Subject: Re: [PATCH 3/4 v3] PCI: s32g: Add initial PCIe support (RC)
+In-Reply-To: <aQsmtKsTEmf7e7Sd@ryzen>
+Message-ID: <bf3b2d2a-ce3e-87af-4154-abd022c6a3b4@linux.intel.com>
+References: <20251022174309.1180931-4-vincent.guittot@linaro.org> <20251022190402.GA1262472@bhelgaas> <CAKfTPtCtHquxtK=Zx2WSNm15MmqeUXO8XXi8FkS4EpuP80PP7g@mail.gmail.com> <aQsmtKsTEmf7e7Sd@ryzen>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
 
-Add support for the four SPI peripherals on the Renesas RZ/N2H Soc.
+On Wed, 5 Nov 2025, Niklas Cassel wrote:
 
-Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a09g087.dtsi | 72 ++++++++++++++++++++++
- 1 file changed, 72 insertions(+)
+> On Fri, Oct 24, 2025 at 08:50:46AM +0200, Vincent Guittot wrote:
+> > On Wed, 22 Oct 2025 at 21:04, Bjorn Helgaas <helgaas@kernel.org> wrote:
+> > > > +     dw_pcie_dbi_ro_wr_en(pci);
+> > > > +
+> > > > +     val = dw_pcie_readl_dbi(pci, PCIE_PORT_FORCE);
+> > > > +     val |= PORT_FORCE_DO_DESKEW_FOR_SRIS;
+> > > > +     dw_pcie_writel_dbi(pci, PCIE_PORT_FORCE, val);
+> > > > +
+> > > > +     /*
+> > > > +      * Set max payload supported, 256 bytes and
+> > > > +      * relaxed ordering.
+> > > > +      */
+> > > > +     val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
+> > > > +     val &= ~(PCI_EXP_DEVCTL_RELAX_EN |
+> > > > +              PCI_EXP_DEVCTL_PAYLOAD |
+> > > > +              PCI_EXP_DEVCTL_READRQ);
+> > > > +     val |= PCI_EXP_DEVCTL_RELAX_EN |
+> > > > +            PCI_EXP_DEVCTL_PAYLOAD_256B |
+> > > > +            PCI_EXP_DEVCTL_READRQ_256B;
+> > > > +     dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
+> > >
+> > > MPS and relaxed ordering should be configured by the PCI core.  Is
+> > > there some s32g-specific restriction about these?
+> > 
+> > I will check with the team why they did that
+> 
+> Most likely, the reason is that, the PCI core does not set the MPS to the
+> maximum supported MPS for the root port.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g087.dtsi b/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
-index db117b6f75a1..a19349dc8e53 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
-@@ -188,6 +188,78 @@ sci5: serial@81005000 {
- 			status = "disabled";
- 		};
- 
-+		rspi0: spi@80007000 {
-+			compatible = "renesas,r9a09g087-rspi", "renesas,r9a09g077-rspi";
-+			reg = <0x0 0x80007000 0x0 0x400>;
-+			interrupts = <GIC_SPI 636 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 637 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 638 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 634 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 635 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "idle", "error", "end", "rx", "tx";
-+			clocks = <&cpg CPG_CORE R9A09G087_CLK_PCLKM>,
-+				 <&cpg CPG_MOD 104>;
-+			clock-names = "pclk", "pclkspi";
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		rspi1: spi@80007400 {
-+			compatible = "renesas,r9a09g087-rspi", "renesas,r9a09g077-rspi";
-+			reg = <0x0 0x80007400 0x0 0x400>;
-+			interrupts = <GIC_SPI 641 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 642 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 643 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 639 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 640 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "idle", "error", "end", "rx", "tx";
-+			clocks = <&cpg CPG_CORE R9A09G087_CLK_PCLKM>,
-+				 <&cpg CPG_MOD 105>;
-+			clock-names = "pclk", "pclkspi";
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		rspi2: spi@80007800 {
-+			compatible = "renesas,r9a09g087-rspi", "renesas,r9a09g077-rspi";
-+			reg = <0x0 0x80007800 0x0 0x400>;
-+			interrupts = <GIC_SPI 646 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 647 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 648 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 644 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 645 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "idle", "error", "end", "rx", "tx";
-+			clocks = <&cpg CPG_CORE R9A09G087_CLK_PCLKM>,
-+				 <&cpg CPG_MOD 106>;
-+			clock-names = "pclk", "pclkspi";
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		rspi3: spi@81007000 {
-+			compatible = "renesas,r9a09g087-rspi", "renesas,r9a09g077-rspi";
-+			reg = <0x0 0x81007000 0x0 0x400>;
-+			interrupts = <GIC_SPI 651 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 652 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 653 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 649 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 650 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "idle", "error", "end", "rx", "tx";
-+			clocks = <&cpg CPG_CORE R9A09G087_CLK_PCLKM>,
-+				 <&cpg CPG_MOD 602>;
-+			clock-names = "pclk", "pclkspi";
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		wdt0: watchdog@80082000 {
- 			compatible = "renesas,r9a09g087-wdt", "renesas,r9a09g077-wdt";
- 			reg = <0 0x80082000 0 0x400>,
+PCI core set/doesn't set MPS based on config. Perhaps try with 
+CONFIG_PCIE_BUS_PERFORMANCE.
+
+> So without that change, the port will use use 128B instead of 256B.
+> 
+> I assume that you should be able to drop (at least the MPS part) if this
+> change gets accepted:
+> https://lore.kernel.org/linux-pci/20251104165125.174168-1-18255117159@163.com/
+> 
+> 
+> Kind regards,
+> Niklas
+> 
+
 -- 
-2.51.2
+ i.
 
 
