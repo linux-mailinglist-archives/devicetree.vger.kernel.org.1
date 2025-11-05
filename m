@@ -1,175 +1,233 @@
-Return-Path: <devicetree+bounces-235211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F5F9C3591D
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 13:12:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9378DC35914
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 13:12:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17A111891853
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 12:12:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAA283ADC63
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 12:11:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E85E3313E2D;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 167E92FFDFB;
 	Wed,  5 Nov 2025 12:11:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EBgt27An";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="kNS0e2iy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="boEzyyTq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C61A313526
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 12:11:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F029D310762
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 12:11:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762344714; cv=none; b=hlUI3x3I7asPIeKzT5LnQktBUjaOAuCHpHwMll5cWPcM4v5QVFyuQgFJIx5TT+8/PlycQEDBqEyegwpZ5Xn14yGC//N9zvR2X4WlQfq3Tvok2kKfQWb8yygql2DlTGIEDWCLYrSkrclNDsPBohgPBcO+TacHPl0f5XpMX+0t9gA=
+	t=1762344713; cv=none; b=i0AR0M/tmRIZCED/HqsgYBcdRi2kJSdgLaQdT90FveLUxcPmm96dmkerRAXpycRuzGapsRCxhxXVHNQa53NuKEVfzSOVaBTfEaWqzABCbYO5ePn3YdXiDvJOmZSfgp+E+D1JUWqNazyruf6ND3yOI42sjFlJ4/Z3A9jcuUCEa+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762344714; c=relaxed/simple;
-	bh=wz5ENZt5Ic8O9QlHYo2XewF50GZ2Oa7k4QWZhPiExVw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iEl3cMVGLwUSEIX8h2UKAmgTk05soB2gPO/7XzDZL6Tt4sCjmt2csQJRX+y9Kn0TS58pMJJUkOrdsyEUoIjMCV/pQN4qCApX69kmAULTUbgiOb4zXUl+S81JUgfyn2RmpwfCkJ/rr+NHr73SOBIIbOIGIMJOf5pAici72ld+GC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EBgt27An; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=kNS0e2iy; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A57u6P03165204
-	for <devicetree@vger.kernel.org>; Wed, 5 Nov 2025 12:11:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=snsQD4l2AXcjWmxN/fszbJ7h
-	2kOikH95rE3CwRz2zUM=; b=EBgt27AnuOFLD3tZKyOpo6xD83u9A03VmGfBkMds
-	lb4PiRYRzac2NJUvXa25gcwayfM/C83TuN60XmLEvyvKWPb2RnxBWFVfmkAJvjc4
-	IUzvWYXBTaE5fvYx1WplcRSpt2ajYXpCQtvuGYakjmSqw4Ct7cS9dWTA9iPgrsni
-	plxpBkZ+XqA1YbobP4Ez1BIiNFmpwJ5vF84rpnN/Iy6iAlUPD9+Bbqhl57qvKe0t
-	Gmf4VZSy+E0KqIwbt8qVP8wFpIksJPSQJStcFGwGqKRUz0NZR3OUohHptKpVtxmD
-	MGYVGPJIzmsEgR5KIPmxdDujDOY4D2mmAbF0gW2bKlU9JQ==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a7ketkgjr-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 12:11:51 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-29598910dd2so77779095ad.1
+	s=arc-20240116; t=1762344713; c=relaxed/simple;
+	bh=zaKNP8iv58DKJqCIt8itiElCUyIyiBazXKQF3KfbDRA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=sIazQG2RCp4c7hkPGPpHbW17j52oidGc+bGmC+/Nj+NlJcjjMcVENIteCxKAp4Ag3ZuHcHLL2j1a3fDk+h7T50Cl/nzMDYWJShxoTgf7SZ6+M8gUyDWcr3IJBkRX91HaQ9GDATqo5oK/8fS6wx3mYzipi0NFv5iaStD0Vcuh/2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=boEzyyTq; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-429ce7e79f8so2613674f8f.0
         for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 04:11:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762344710; x=1762949510; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=snsQD4l2AXcjWmxN/fszbJ7h2kOikH95rE3CwRz2zUM=;
-        b=kNS0e2iyLPJILv4WOTvoqqEIboxEAPzlRtaof97PaPohmV/PP4hzg/s/K5QW7hbTTx
-         gA00I/P+1TKttzsc9l4/RENApWMH3aF6q+xgR1akN0c8oUgSFxK7Qt4iBOlOEb4WFzrl
-         tqIMWHwr70pX5Eu+T07HI523izbkY7ieN7iWuYaYFYB3DBjvltMIQ8wlxUs91Yr8Lyja
-         2N0Cn2tTlcTFA6H3ONy33SreQmdn+P4V2RYPp5qEW8rv1vGit9tRu5+Ijo372WhiaeFE
-         rEtBIFlJErQQ1bFut1q+pvHwdqWU5fOmwqwKSyywo8xnFRrfnXY/YVI8kRbNYlUVYMDb
-         cTgw==
+        d=gmail.com; s=20230601; t=1762344710; x=1762949510; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=zaKNP8iv58DKJqCIt8itiElCUyIyiBazXKQF3KfbDRA=;
+        b=boEzyyTqpAZF/bPKGSk/zxOfT8CkhaAW966/80p03JBCY/e91vECfZrmztREqiyNq0
+         K40y0bnq8rlosvDP2Kc7KEARfNu/pg40VlPyzSxz5mtu8YXhpRjJHqaGvuZ33wcgBoa/
+         E8UJ1Yh9S2hA1H9Tqe6HF27pGXmKqqH/3j0rKYqor5dlvprKYAEo2TrOY/RQzzgUyCto
+         xtpNz9zSyNnrXSoyfZNV5vaWx+Iyn1koUCDLId8MYwi1RN0EWPPOU0i9FF9WVaI1fx0f
+         uwPKtMffsSiuZTHBgVpSZIlsmvnuBSy6IwKpnbtbxRiHlKXDZYu4Q1mkDHjUoSqRY6iS
+         X4Hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1762344710; x=1762949510;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=snsQD4l2AXcjWmxN/fszbJ7h2kOikH95rE3CwRz2zUM=;
-        b=PPAhCI6ezWYaUFFFewRjuI8pYi9W7JQPgdftOLBHrWTTUkJrIKR/GO4bJZwuXEUbhG
-         zquXIJNJeE5uL0d2Z/YEnO+DFe2mBkaLzID8r+W2LPIRI7+eD41tOIAYbxvYM4si+FMt
-         uUuV1O72ih+q3BC8ldkFbhxYTqFPi5blPBRO8cQEX4Nx7Q8hJsJHih3anYduEWjE1xCj
-         +Vcz4iiFHdIGgEuinhY20NJL7PgW9fgeD8IiHamtO7ulNRjz9BxgzNAQ1bYpqjO61EcD
-         uz7g9OiB0f4lcPoNuOq+0Z14IA5lt8GVLolP2n+rMr702N73/BEO0REbg9NmFYfzOeKd
-         cDPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVx4KnjkWerjvnTWI9NHqcY4qqEsaFI7fE7VTcTUDHfsg7VR5ux4aRNgIaqBuoR/Lq5vyA8icW9TaUp@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlKzqII2CiFEnYjEWnN+4lvj6jFBoeKl4ke8NFN/Ch2d324dGT
-	Cz2CCoAFELUujkrzTooUZZMY5e4kbZqqoRpsBtKGlqhNTIDwzui1E8eZVGpS6+hlaaESIbWFiKC
-	2sydSElu6TWyGlALfB9L+bWeQ1APWE21X07VhRSYJ1mWRZ+8VYwWQy/jZMnsq0AQM
-X-Gm-Gg: ASbGnctnxmddwxpygSuX4cOGfCCYs5Gsl8u5GUMRk1Z6AdhodYiL4pNbuHNDPOjkO+d
-	mzoS5dZcLWvEj3uX0/7PkTJPtjQYMMdj2qTwMoG4Rjnb8JK3fO6xY6KX0SASPZUj6kjKB33IB0u
-	elXwN9ob47NgN24hlL3gbc/QKDqbPdu+v7S+4k9LnSLuM4B2rR+YODMVPIuu+1dwnLwvWVzCFGF
-	8zy9LI1wADgHa9hpALI/hbYQyhiIe9dgVzg2DsSSpELQFwi5a8wcQx0foQ6cmtmAhC+l69/WjxU
-	/TnoahOBB9VhghUYOcARn1+YLWr1lgqITirgd6+k8obuYB21IqP5DPcqzBICVARcg3BIbwUX9Ic
-	/5PKpEZ7Az/PrkBACoxEfVdVOxmPR+FVt
-X-Received: by 2002:a17:903:244d:b0:296:3f23:b939 with SMTP id d9443c01a7336-2963f23bebbmr12373315ad.42.1762344710494;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zaKNP8iv58DKJqCIt8itiElCUyIyiBazXKQF3KfbDRA=;
+        b=vy4IBL/ZHI4Te7U2Q+1buCm+myDe/Sc+/Aor+33TnWeKaQsro6fCSwtX2rXhCFAylR
+         WCCiTEswjBvaC+vDihOZ8242SNfBSnS+Md5R1gEogKDTPFKD/+Y58OjTTkIBw0p8Fk0z
+         6vQf+mx3SHi+WJPet6/Y5JSQVijfSsOrnmOd8S7R8Yyokr9JUz7isp0ZGM05iZjzIxr3
+         oGop6J4aOsR9DVboehjdHlpGbaPRKkCUwDBEae+pRd1Yfa3/52xC+EuINH121IFj7CoN
+         OiEnsxzcRfBGzgpcNdJia3/yIBViAu2d5aFe7DWudN4QR0KpY4CBPzpYuX4dJE9ugJM3
+         AEuA==
+X-Forwarded-Encrypted: i=1; AJvYcCWyyLJwIqv9WZ9m9Yng9KPuN5Z0/pTEibjdUvHDYDBHK4eTa533tMU2ZwHChIPypphchlppEEFA9OIE@vger.kernel.org
+X-Gm-Message-State: AOJu0YyxdDPGXqt4iBGuyARSMob5ErGmTa/J86zVjMsSSx/CTaJrN+wX
+	KrDvlOAQsDic3SvJUbM1FVJHzIYMuU7CsALa2jwjWU4rPf25z+rASfEl
+X-Gm-Gg: ASbGncuosRjphaZSsGQcLaxjfdMqfhJHyEB1Fe4q4rLMZp4RjXicdMiUaTvOvCOAL4O
+	0pI1dZnfttEuwa4nh196cwdQK2xPPgqE17V51ybj01Or1pMKnt6szqAadGihsR7kcKhkZSG5A5G
+	uwon9RJMfOi5K76IOkz4FXZbJArJZZefh91umHurRleiDVDGHwFbZ5eJGI/jy/MmeVgAHxCRDIy
+	0mG4xeS6dScEf++rSJDqclOlxjlNlMjg+FPmQNgze/I3pPaJdtBnXYpc4g1HD0waLTsQ72R7fFs
+	EQ/9CWFEEmmZhe9C/z1sKkE4ueCRZI2haG5TdbFEflm72DJzsRoe7x0v17/h9TlNG+2KnIjGss0
+	CvZgBUgQqDq/3sFyZztvFLC4ihiizxnymqtcjkoJ2BiAEK8NJFnmMULT8ii/fvUlci1jjW3Hj4n
+	NAi9jVGW6M6DJVqDx1fyU=
+X-Google-Smtp-Source: AGHT+IG+PF6m1EhB7XL6OLeHfppwXzSzNI2WS3nGxmt5X3XJGlkjuHUrbhfSK6MiWla0TyRg594cWg==
+X-Received: by 2002:a05:6000:220e:b0:425:825d:2c64 with SMTP id ffacd0b85a97d-429e32e6bfamr2400691f8f.17.1762344710071;
         Wed, 05 Nov 2025 04:11:50 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHiEWa0ffKN5nZV90leH7AWVaVvhnOx2CMq8Af0ffJqTrfJblGjM9mAfQcc/g0CeJMjYVL/Ig==
-X-Received: by 2002:a17:903:244d:b0:296:3f23:b939 with SMTP id d9443c01a7336-2963f23bebbmr12372795ad.42.1762344709954;
-        Wed, 05 Nov 2025 04:11:49 -0800 (PST)
-Received: from hu-pkondeti-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29601a60ef0sm59997125ad.83.2025.11.05.04.11.45
+Received: from [192.168.1.187] ([161.230.67.253])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429dc1a850fsm10379544f8f.20.2025.11.05.04.11.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Wed, 05 Nov 2025 04:11:49 -0800 (PST)
-Date: Wed, 5 Nov 2025 17:41:43 +0530
-From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
-To: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH v4 1/2] soc: qcom: smem: Register gunyah watchdog device
-Message-ID: <729d0806-0f92-45a3-ae36-307513f8b808@quicinc.com>
-References: <20251031-gunyah_watchdog-v4-0-7abb1ee11315@oss.qualcomm.com>
- <20251031-gunyah_watchdog-v4-1-7abb1ee11315@oss.qualcomm.com>
- <nnq34bfbbi3satxiqzaouy5pgi3obyqp76avh2ipyqxx6w67td@e7eqehjq7iww>
- <40a6395e-26f6-4bad-88af-d89479b6fc28@oss.qualcomm.com>
- <abicharluq6bm7gbngkbdc2hobcfifcmazh7oukcoufsrpcpse@ml2wccwe6s7i>
- <599188b5-cd2e-4667-a91d-04cbdd62cecb@quicinc.com>
- <ykg7mwgncmvdap6xzyhmgxu6ur62zzfk5nd3tqrkivugn4w474@rkazrlhwbhtj>
- <2ef1d795-5cdd-4465-9333-16a02207a806@quicinc.com>
+Message-ID: <be118b069b451e96ec689e49d714b0b0452afebd.camel@gmail.com>
+Subject: Re: [PATCH v3 3/3] gpio: gpio-ltc4283: Add support for the LTC4283
+ Swap Controller
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Bartosz Golaszewski <brgl@bgdev.pl>, nuno.sa@analog.com
+Cc: linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jean Delvare
+	 <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet
+	 <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 05 Nov 2025 12:12:25 +0000
+In-Reply-To: <CAMRc=MeWyDOFfUnX8eV9+9tykinB+Hd9duf-v+UOCvcYKt9g9Q@mail.gmail.com>
+References: <20251104-ltc4283-support-v3-0-4bea496f791d@analog.com>
+	 <20251104-ltc4283-support-v3-3-4bea496f791d@analog.com>
+	 <CAMRc=MeWyDOFfUnX8eV9+9tykinB+Hd9duf-v+UOCvcYKt9g9Q@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2ef1d795-5cdd-4465-9333-16a02207a806@quicinc.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA1MDA5MiBTYWx0ZWRfX6lCQXVp8aulL
- XM2Nab006GSuKBu9nQFreRvpkVN8me1KGzfDKE8sd5fXrZwzGzsDbp+3/OnqWiGZN2zuOga9D+R
- 9KFp08MHznxY3lCYQOUfCT/bsFdjzfKBliWBbKLfAr4Y+WvVkua87ebyHkUC8KScyaoB2fBlFqQ
- FO7MXUFnN+TRwcl/ZKzsLIk5Xh0uH7ouvNZ/0UaZ+icpHyXonPF1PrDkUuARnAuUEiQh2JrXGp+
- T+GwhDExZMx8nJ6TwUhQbmWfDrdBBqW1ypvJEV/w2EUAUPylMgI92pi7nRzl9q5LgiPjxfjjPKM
- J3zfZ+bJ7OVUmXXZHrH5xmKYxVQJV3VDnNPPHnu+ghU+e0PEXh1mDEK1FWT5K2/zHex2pAwrSlo
- uUfbmc+InXBaPsOt30XCRxDatWfLhw==
-X-Proofpoint-GUID: M6lqmqAp8NjH4TEDLCanHbxzWX6-qQV-
-X-Authority-Analysis: v=2.4 cv=IdSKmGqa c=1 sm=1 tr=0 ts=690b3f08 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=kj9zAlcOel0A:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=v0qggLAlYnFivbKH520A:9 a=CjuIK1q_8ugA:10
- a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-ORIG-GUID: M6lqmqAp8NjH4TEDLCanHbxzWX6-qQV-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-05_04,2025-11-03_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 phishscore=0 clxscore=1015 adultscore=0 priorityscore=1501
- lowpriorityscore=0 bulkscore=0 impostorscore=0 suspectscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511050092
 
-On Tue, Nov 04, 2025 at 10:33:52AM +0530, Pavan Kondeti wrote:
-> 
-> > I presume if we determine that Gunyah is present, and we haven't put
-> > sbsa wdt in place (e.g. during bringup) Gunyah and Gunyah WDT will
-> > handle the outcome gracefully...
-> > 
-> Yes, we are told Gunyah support SMCC based WDT even if it emulates
-> SBSA. Most importantly, we have STATUS SMC in gunyah-wdt probe before
-> registering the watchdog device.
-> 
+On Wed, 2025-11-05 at 12:13 +0100, Bartosz Golaszewski wrote:
+> On Tue, Nov 4, 2025 at 11:31=E2=80=AFAM Nuno S=C3=A1 via B4 Relay
+> <devnull+nuno.sa.analog.com@kernel.org> wrote:
+> >=20
+> > From: Nuno S=C3=A1 <nuno.sa@analog.com>
+> >=20
+> > The LTC4283 device has up to 8 pins that can be configured as GPIOs.
+> >=20
+> > Note that PGIO pins are not set as GPIOs by default so if they are
+> > configured to be used as GPIOs we need to make sure to initialize them
+> > to a sane default. They are set as inputs by default.
+> >=20
+> > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+> > ---
+> > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +
+> > =C2=A0drivers/gpio/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 15 +++
+> > =C2=A0drivers/gpio/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=
+=C2=A0 1 +
+> > =C2=A0drivers/gpio/gpio-ltc4283.c | 217 +++++++++++++++++++++++++++++++=
++++++++++++++
+> > =C2=A04 files changed, 235 insertions(+)
+> >=20
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index d02fdf0a0593..76a659408c8c 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -14757,9 +14757,11 @@ F:=C2=A0=C2=A0=C2=A0=C2=A0 drivers/hwmon/ltc42=
+82.c
+> >=20
+> > =C2=A0LTC4283 HARDWARE MONITOR AND GPIO DRIVER
+> > =C2=A0M:=C2=A0=C2=A0=C2=A0=C2=A0 Nuno S=C3=A1 <nuno.sa@analog.com>
+> > +L:=C2=A0=C2=A0=C2=A0=C2=A0 linux-gpio@vger.kernel.org
+> > =C2=A0L:=C2=A0=C2=A0=C2=A0=C2=A0 linux-hwmon@vger.kernel.org
+> > =C2=A0S:=C2=A0=C2=A0=C2=A0=C2=A0 Supported
+> > =C2=A0F:=C2=A0=C2=A0=C2=A0=C2=A0 Documentation/devicetree/bindings/hwmo=
+n/adi,ltc4283.yaml
+> > +F:=C2=A0=C2=A0=C2=A0=C2=A0 drivers/gpio/gpio-ltc4283.c
+> > =C2=A0F:=C2=A0=C2=A0=C2=A0=C2=A0 drivers/hwmon/ltc4283.c
+> >=20
+> > =C2=A0LTC4286 HARDWARE MONITOR DRIVER
+> > diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+> > index 7ee3afbc2b05..58610f77a75e 100644
+> > --- a/drivers/gpio/Kconfig
+> > +++ b/drivers/gpio/Kconfig
+> > @@ -1741,6 +1741,21 @@ config GPIO_WM8994
+> >=20
+> > =C2=A0endmenu
+> >=20
+> > +menu "AUXBUS GPIO expanders"
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 depends on AUXILIARY_BUS
+> > +
+>=20
+> Please call the section "Auxiliary Bus GPIO drivers"
+>=20
+> It's not very clear what "AUXBUS" is.
+>=20
+> > +config GPIO_LTC4283
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tristate "Analog Devices LTC4283 =
+GPIO support"
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 depends on SENSORS_LTC4283
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 help
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 If you say yes here y=
+ou want the GPIO function available in Analog
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Devices LTC4283 Negat=
+ive Voltage Hot Swap Controller.
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 This driver can also =
+be built as a module. If so, the module will
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 be called gpio-ltc428=
+3.
+> > +
+> > +endmenu
+> > +
+> > =C2=A0menu "PCI GPIO expanders"
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 depends on PCI
+> >=20
+> > diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
+> > index ec296fa14bfd..b6550944ed78 100644
+> > --- a/drivers/gpio/Makefile
+> > +++ b/drivers/gpio/Makefile
+> > @@ -99,6 +99,7 @@ obj-$(CONFIG_GPIO_LP873X)=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=3D gpio-lp873x.o
+> > =C2=A0obj-$(CONFIG_GPIO_LP87565)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=3D gpio-lp87565.o
+> > =C2=A0obj-$(CONFIG_GPIO_LPC18XX)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=3D gpio-lpc18xx.o
+> > =C2=A0obj-$(CONFIG_GPIO_LPC32XX)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=3D gpio-lpc32xx.o
+> > +obj-$(CONFIG_GPIO_LTC4283)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=3D gpio-ltc4283.o
+> > =C2=A0obj-$(CONFIG_GPIO_MACSMC)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=3D gpio-macsmc.o
+> > =C2=A0obj-$(CONFIG_GPIO_MADERA)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=3D gpio-madera.o
+> > =C2=A0obj-$(CONFIG_GPIO_MAX3191X)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=3D gpio-max3191x.o
+> > diff --git a/drivers/gpio/gpio-ltc4283.c b/drivers/gpio/gpio-ltc4283.c
+> > new file mode 100644
+> > index 000000000000..885af67146a8
+> > --- /dev/null
+> > +++ b/drivers/gpio/gpio-ltc4283.c
+> > @@ -0,0 +1,217 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Analog Devices LTC4283 GPIO driver
+> > + *
+> > + * Copyright 2025 Analog Devices Inc.
+> > + */
+>=20
+> Add a newline.
+>=20
+> > +#include <linux/auxiliary_bus.h>
+> > +#include <linux/bitmap.h>
+> > +#include <linux/bits.h>
+> > +#include <linux/device.h>
+> > +#include <linux/gpio/driver.h>
+> > +#include <linux/module.h>
+> > +#include <linux/mod_devicetable.h>
+>=20
+> In ASCII '_' sorts before 'u'.
+>=20
+> With that fixed:
+>=20
+> Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Thanks Bjorn for asking this question. I have tested this scenario on
-Kaanapali. Since the initial platform support patches have added
-watchdog device, I don't see gunyah-wdt platform device created. When I
-removed the node, I see gunyah-wdt platform device is created and the
-driver is probed successfully.
+Thx, will change it on v4
 
-Since this patch checks the device node presence via
-of_find_compatible_node(), it does not cover the case where the node is
-present but marked as disabled/reserved etc. I think it would be good
-to add of_device_is_available() check as well to cover this case.
+- Nuno S=C3=A1
 
-Thanks,
-Pavan
 
