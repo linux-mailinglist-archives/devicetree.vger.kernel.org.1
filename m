@@ -1,140 +1,81 @@
-Return-Path: <devicetree+bounces-235084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7EDBC34551
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 08:47:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 814D8C345A2
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 08:51:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0305D189F02F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 07:42:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C563518C0E37
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 07:49:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B9A42D9EC5;
-	Wed,  5 Nov 2025 07:40:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E2A72D7DD9;
+	Wed,  5 Nov 2025 07:49:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="r31i5Gve"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cr5bOEnC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 379CC2D7D2A
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 07:40:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0968B2D7D2E;
+	Wed,  5 Nov 2025 07:49:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762328415; cv=none; b=drcNmln4CDtK761PZ/H6K6p7dY/4ckxMSm0XFhTEOE+10O29+RMfy8MHer/ejwWB8B1MA9ZA5f5xlO8Bz/Pqfy5kAj8fNHLiRD4PhhoL6L/8hHNF3qBglrltiMNYQMoqwaxf7pnLRJG+/4SrNXgYvob5+udAXp2PRSlVRZJTMMY=
+	t=1762328944; cv=none; b=iZMUZEG5XPCX/KKL3hWOnbhXcohM6PgPTdlGCj+R0ArHFrToZ/Fsgre4jgd2IijM6oGniTjtsYZzW8FyF7JX9BlHIpO0KMaQmZ9WmcPkvhhzhGZ2nZek3vOxrZdMqtBT/XekqcWeXhiFIKY96kvGUhEV+vTLrtFh5XTjRukvjas=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762328415; c=relaxed/simple;
-	bh=Z0uASi8PcTDWf1TumgK+cdwX9qQWmS8KYQN6ISGAmv4=;
+	s=arc-20240116; t=1762328944; c=relaxed/simple;
+	bh=xCQ8qfR2KgLeEPbc/DYOmaDRKzViHmxTQ/CO8dMUAXk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WJmij9cerle2YHiZaYU4Bs7v+4Yn0NKvGcc3aoERfcQ5Bg0A0+Dw9zkHzX0j96yHYz+6v6kXyl3KCOclJ+2hQB8TpxO+qI5nd5tFBw3Z2ECLT8+kiwMGYyclZ/FDjDL7T6Y7hhNS/9HC8Caosus6t0ygpuKM9qAVTXGP2KJB3Vo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=r31i5Gve; arc=none smtp.client-ip=91.218.175.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Date: Wed, 5 Nov 2025 09:40:04 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1762328412; h=from:from:reply-to:reply-to:subject:subject:date:date:
-	 message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-	 content-type:content-type:in-reply-to:in-reply-to:  references:references;
-	bh=m1cOocHUftuQ47GkJi/NADdDpPsLrFoaUKm3zQQvVJU=;
-	b=r31i5GvetOTbZ20uX5MaLc4NRprRoUt86+uBEt/XAtkwQ4VBSqNWPnE/Wgjr81xT07adz0
-	KJ7n0UOuRIIt0pQC08OSAYrQtctvzft+KtN3aPvPFYAZy04tcWGztLMRiDRwS+IQn7CfAQ
-	FO8eXjm5rsncBA+ObBPP8g6vL/tFcEM=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Matti Vaittinen <matti.vaittinen@linux.dev>
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-rtc@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH v3 16/16] MAINTAINERS: Add ROHM BD72720 PMIC
-Message-ID: <8960636b76cf5b166345f6253080ad2bf627f8cf.1762327887.git.mazziesaccount@gmail.com>
-Reply-To: Matti Vaittinen <mazziesaccount@gmail.com>
-References: <cover.1762327887.git.mazziesaccount@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=CzwGdwh5Bj90ArzZXMiGifOvBhUOnhmjC2/8RaTXI+nho4V3pMFDoMi8RY/h0csRmihfj0LYAzDmN8NDvOSjr5w51Ln7KEgK0UiDC/oxgQa7YARDyPg/n1CvY60A5dptDLUkY4/JygoyvU0iIoqj9tuckpCQG6pddSMM07sXNnI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cr5bOEnC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11290C116B1;
+	Wed,  5 Nov 2025 07:49:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762328942;
+	bh=xCQ8qfR2KgLeEPbc/DYOmaDRKzViHmxTQ/CO8dMUAXk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cr5bOEnC326afXGJki8yAreexH0F/CEDIWkRMy2+iyAjrRAdGqTFiA2VIu/Uf2zdZ
+	 qEm27wpBeTazf3jTh9CFnGy38meeGGre9gKElxKp/hTh1+anvRWMAHpQs50ZHSNwzK
+	 6LfEMdtR69e4oiAfdW/3QGPCVdja51QDw3srKfp0aVUeqdLSSeJyB/GL4rnRU6EXmb
+	 a3eejQhAndCfxYz9ummeOWsMgO+beFpxnmYIVB9TJufbE2gPojB6BO9Y3cW56Rnef7
+	 9vSSBM66h9skM6jURzGp4iy1bfFZBeqt4GJ+5XWMTkFSo+Ky9qq08/dk/kgZFGci+C
+	 Jpy8MQ5cBSDFw==
+Date: Wed, 5 Nov 2025 08:49:00 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Songwei Chai <songwei.chai@oss.qualcomm.com>
+Cc: andersson@kernel.org, alexander.shishkin@linux.intel.com, 
+	kernel@oss.qualcomm.com, mike.leach@linaro.org, suzuki.poulose@arm.com, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, coresight@lists.linaro.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 1/7] dt-bindings: arm: Add support for Qualcomm TGU
+ trace
+Message-ID: <20251105-industrious-oxpecker-of-valor-af17fa@kuoka>
+References: <20251104064043.88972-1-songwei.chai@oss.qualcomm.com>
+ <20251104064043.88972-2-songwei.chai@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Cu24W2IAGUupYf+8"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <cover.1762327887.git.mazziesaccount@gmail.com>
-X-Migadu-Flow: FLOW_OUT
+In-Reply-To: <20251104064043.88972-2-songwei.chai@oss.qualcomm.com>
 
+On Mon, Nov 03, 2025 at 10:40:37PM -0800, Songwei Chai wrote:
+> The Trigger Generation Unit (TGU) is designed to detect patterns or
+> sequences within a specific region of the System on Chip (SoC). Once
+> configured and activated, it monitors sense inputs and can detect a
+> pre-programmed state or sequence across clock cycles, subsequently
+> producing a trigger.
+> 
 
---Cu24W2IAGUupYf+8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I do not understand: You got review which you ignored and then you
+removed pieces of this code to make it incorrect. Go back to previous
+versions so you won't waste our time re-doing review.
 
-=46rom: Matti Vaittinen <mazziesaccount@gmail.com>
+Best regards,
+Krzysztof
 
-Add the ROHM BD72720 PMIC driver files to be maintained by undersigned.
-
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-
----
-Revision history:
- RFCv1 =3D>:
- - No changes
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index fe01aa31c58b..7e3c1eac7cda 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -22353,6 +22353,7 @@ S:	Supported
- F:	drivers/clk/clk-bd718x7.c
- F:	drivers/gpio/gpio-bd71815.c
- F:	drivers/gpio/gpio-bd71828.c
-+F:	drivers/gpio/gpio-bd72720.c
- F:	drivers/mfd/rohm-bd71828.c
- F:	drivers/mfd/rohm-bd718x7.c
- F:	drivers/mfd/rohm-bd9576.c
-@@ -22369,6 +22370,7 @@ F:	drivers/watchdog/bd96801_wdt.c
- F:	include/linux/mfd/rohm-bd71815.h
- F:	include/linux/mfd/rohm-bd71828.h
- F:	include/linux/mfd/rohm-bd718x7.h
-+F:	include/linux/mfd/rohm-bd72720.h
- F:	include/linux/mfd/rohm-bd957x.h
- F:	include/linux/mfd/rohm-bd96801.h
- F:	include/linux/mfd/rohm-bd96802.h
---=20
-2.51.0
-
-
---Cu24W2IAGUupYf+8
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmkK/1QACgkQeFA3/03a
-ocXEqAf+K7N/dvIRrJrtWp5nqEEX2gLFmBy5pRdTr3NEdtkqh73A32fHJv+n8ab/
-cvhaMTOyrLW9pORjcAThv3EDnTxEUk/S2JOIDEdJmur/8ocL/9PNvDqTZMeLbgxk
-X6XE5y7AJ6xmXjZK1WAQqiI2ohi8FwC3cjVPa0Q9iCF2SBqhgZl90tGXMNLXRGLj
-fsxKJaeKIkwZeokIgombeKt/sj6o5JtFE8txG2neSHdI5p1feo5mUxOB3cwCQpz1
-djp5PGxqz+VXKoN+tXSccZ6GY5+XB3Uipk581aT3LHeyEMPPiuItlEYvrWHpE1jJ
-fs94gHU2JNiwQu3LsU3oxLoGLBwaig==
-=vy7/
------END PGP SIGNATURE-----
-
---Cu24W2IAGUupYf+8--
 
