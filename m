@@ -1,156 +1,137 @@
-Return-Path: <devicetree+bounces-235234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62BEAC35DED
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 14:39:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58603C35E23
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 14:42:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ED9294E4FC7
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 13:37:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D2E73A4FF9
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 13:41:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF3F2322A00;
-	Wed,  5 Nov 2025 13:37:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h2/OVbem"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40D98314A62;
+	Wed,  5 Nov 2025 13:41:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53DA42F363B
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 13:37:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F0D73148B2
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 13:41:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762349860; cv=none; b=B6yQyfhR8+BKp2GJ4+ZKUc8891rgkX8U9hsw/R5ebbc/frmrg1CzrALZDn+i0n5iViPQPlRMRSzu9fG5X1lQILFHOXJBDjet4zSqHJzRe+0uK5R780T6Vrv/xlEZp8cXEiVUjHxg1Ec3f9wMqNXsrCjXa09io6XyRCkgHdmaYVA=
+	t=1762350089; cv=none; b=K1myx1fWnUk3djD41dSE0LwaNxNbm2fnaY/D8wzV/uzBAuHD2zckhMBNtUS13F49a5N3Xxm9SX3JAvGOvBCM+v5jg7DBfsU6oDAVS3nMWoWSrrwKC4uNc5LiOMUE7kwhatdIzagsiecvk7ysb6VsSQHri0gHv+9PyVK7lNaBVeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762349860; c=relaxed/simple;
-	bh=7dfbJe450Lh2RXqkUUITEMSQluOo/ousxB6R6ebDm5I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BD0F+/rgsjslrcaVkLyyd4rTqDdN8ZCikZQAE5+v8Mw0VJ9aPF85SGPziUGfU/ppG7HoHnT69mM50XVvJ3t4tWf+RnIGSLYmjY6gmM0SzenHK0BcRh8FAvmv6aeRkZVcJPGzLd9umLdNUkYxFDqh5lVAvdZRSJKM6qP1XbkZqeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h2/OVbem; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4775a52e045so4975405e9.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 05:37:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762349858; x=1762954658; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=meMfOGtlg3RqGUre2thA2pbsV29ZdRKeS73vMYZgshw=;
-        b=h2/OVbemE6yoOSQpzhwEt5jkQXlRA+VahZAiCffU5u93sQBMmBWiLZyWA+KtsozJE6
-         iU3/teYPYhnik9kIqeru+gGcoH8QmRge/JOLfekjxToK5gyFpnTIxI1m6TxyLTwAjlLu
-         Ybnoc4FTTMdHoboAqUBa59BnLXurl/47++CMZUuRm2j/+i0GwD8X3ma01kDNj4nmvEtx
-         9NchkKFglksteTQI/JhCfwzzKMCLGeVb7/76Hy/v1aNXhcv0nOuBjQu03s5Y/2rBA1ce
-         TtVgr/F2TepXGTLefsfiohoz2O5B/15siZ55QKyDloKVV/A5Hza0B/habdyXCWXKV3LF
-         ZpMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762349858; x=1762954658;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=meMfOGtlg3RqGUre2thA2pbsV29ZdRKeS73vMYZgshw=;
-        b=lJMSctEMMk7OiKs08uxXPBWErh2h4vn2l3hlkXFQ/aAl4OvXxPYmhxFr1qm+3kjqky
-         bY8rFvJVn8rPwiauKyhhEEQrrCOR3qpUap7ddePRzgMBxquY6AwzsvLgeM04+/78ye98
-         whxbqqEbzlarqNDKR6JGijLJFQpF2NvPaB9fit8DJVBNigsTRjM4GSpbeuLXVW2KENJo
-         kYe5SkmcAUgowyxk58ckWAM/qmCKJF3mqLEZdMlrjzETr2/iWzQJfdYdh0gQUblwsukp
-         Ww5NuB4Tjd8mDEnKHW+j0iWD4JcNNlByJPTeU6VBon9oX40vw0o2RRpHsD+5Co5VL3wL
-         VsJA==
-X-Forwarded-Encrypted: i=1; AJvYcCWQ/LZjnRqOgFCVHsyTSoTW0CBVkX1X/GS2XRZT89Os3UdtBPqgLZVsyU1SqTCcWQJdXVqP5KZDWDhE@vger.kernel.org
-X-Gm-Message-State: AOJu0YwE8EPxmprsls3f+kKEnuo/xPS61Vr7vevlM6A/Q4e0BII+XYfS
-	zC+ohQmso7KJj9nvlv+oQwuCpXB0GCtrjbbgaXthRDXbS+itLc71rexd
-X-Gm-Gg: ASbGncslJMJ9n/Xfr3vbEsa2deLE2hxgraSkPaI0dex9ZXbs7EvbHeAMqQ0momn51VD
-	li+AfKYLzggv09WrMb6fSpFu9Fc4LTK6kToPRBHOfzKatv1gNwkqqZd7HxK+Znk7nB7L57PRZn+
-	vR5tblVv1cze+k5MtZyn4HtQRcylS37kz4YDo/sM+E91wpxFCHIZdl0yWPtSEmL+kP3MbRwI0AS
-	QPSBmYYw9/O+WvLqAfzedAgkruVnkm3lPnuF+tdQyL1wEKj5149A5ND77bsMoF2kPI3BjCYoon2
-	Dah+mfWdnYKKbNNecmQ7uGLj4vGVl49KH4s5drLp/C6OidTlUzrzplHND/Qx0JUYIpZh1qGKOmn
-	fyrDJJZ5nwxF24XMoEBtaMGwSVWQTv7irAG4l3O1hyAZQ7ytf88oeAFqoF2uU/a2OWBSc3yf3vx
-	BBPed08mil7F3VSRKOQ5FhyWRt7DeOn0/GCs4zvvPLrAuO/dHrpQaeKQ6+hyvBNI8=
-X-Google-Smtp-Source: AGHT+IE23qUEC3bPnkrd6XaYOcV61wad6I2xgT35I52FO8qjaOdi2P07+Ns4nuWyu1lEoEUP3cZyNQ==
-X-Received: by 2002:a05:600c:5403:b0:46e:3f75:da49 with SMTP id 5b1f17b1804b1-4775ce4fcc8mr25716655e9.37.1762349857489;
-        Wed, 05 Nov 2025 05:37:37 -0800 (PST)
-Received: from orome (p200300e41f274600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f27:4600:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4775cdee770sm51496845e9.16.2025.11.05.05.37.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Nov 2025 05:37:35 -0800 (PST)
-Date: Wed, 5 Nov 2025 14:37:33 +0100
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Niklas Cassel <cassel@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Vidya Sagar <vidyas@nvidia.com>, 
-	Vedant Deshpande <vedantd@nvidia.com>, Shin'ichiro Kawasaki <shinichiro.kawasaki@wdc.com>, 
-	Thierry Reding <treding@nvidia.com>, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v3] arm64: tegra: Add pinctrl definitions for pcie-ep
- nodes
-Message-ID: <cvbvbshg4asz4ddrtsotsjc5srouwktirpxbhsjdmlxfzklytd@7sav35bkcmm3>
-References: <20251009142253.2563075-2-cassel@kernel.org>
+	s=arc-20240116; t=1762350089; c=relaxed/simple;
+	bh=bfdALSr3deXmp0lyQVG7MZh3VjiMH/EzHy4oWwL56vc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=B36ehI5IL/N/QS/FXX5U3fnpF/utdhax/sxMJ4DpqpIFk9Jyz/6LWU0Ghy+LIssN/Hz+2UbaLujZk7iOYNYapO7m6OLBVYSYJ9n4ZHNfgqTrYyi5F7UxzGAJmKIxfL7SnIjztdbeMkLAesG4LKXYbBV4sGx3SLfJZpejESodyEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; arc=none smtp.client-ip=195.135.223.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 8B40C21195;
+	Wed,  5 Nov 2025 13:41:20 +0000 (UTC)
+Authentication-Results: smtp-out1.suse.de;
+	none
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 89B98132DD;
+	Wed,  5 Nov 2025 13:41:19 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id HUsfH/9TC2liHAAAD6G6ig
+	(envelope-from <svarbanov@suse.de>); Wed, 05 Nov 2025 13:41:19 +0000
+Message-ID: <dc641a92-51bb-4740-8aec-e6fd1ef988fa@suse.de>
+Date: Wed, 5 Nov 2025 15:41:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="tbqrtx74fq7nlswr"
-Content-Disposition: inline
-In-Reply-To: <20251009142253.2563075-2-cassel@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/4] Add watchdog support for bcm2712
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+ Stanimir Varbanov <svarbanov@suse.de>,
+ Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, linux-pm@vger.kernel.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>, Lee Jones <lee@kernel.org>,
+ Willow Cunningham <willow.e.cunningham@gmail.com>,
+ Stefan Wahren <wahrenst@gmx.net>, Saenz Julienne <nsaenz@kernel.org>,
+ Andrea della Porta <andrea.porta@suse.com>,
+ Phil Elwell <phil@raspberrypi.com>, Jonathan Bell
+ <jonathan@raspberrypi.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>
+References: <20251031183309.1163384-1-svarbanov@suse.de>
+ <CAPDyKFqHizQKSDCuPopNBWtt1mNCNuWegv9c=PcXEEVaUaP3cw@mail.gmail.com>
+Content-Language: en-US
+From: Stanimir Varbanov <svarbanov@suse.de>
+In-Reply-To: <CAPDyKFqHizQKSDCuPopNBWtt1mNCNuWegv9c=PcXEEVaUaP3cw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Pre-Result: action=no action;
+	module=replies;
+	Message is reply to one we originated
+X-Rspamd-Queue-Id: 8B40C21195
+X-Rspamd-Pre-Result: action=no action;
+	module=replies;
+	Message is reply to one we originated
+X-Rspamd-Action: no action
+X-Spam-Flag: NO
+X-Spam-Score: -4.00
+X-Spam-Level: 
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Spamd-Result: default: False [-4.00 / 50.00];
+	REPLY(-4.00)[];
+	TAGGED_RCPT(0.00)[dt]
 
+Hi,
 
---tbqrtx74fq7nlswr
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3] arm64: tegra: Add pinctrl definitions for pcie-ep
- nodes
-MIME-Version: 1.0
+On 11/5/25 2:52 PM, Ulf Hansson wrote:
+> On Fri, 31 Oct 2025 at 19:33, Stanimir Varbanov <svarbanov@suse.de> wrote:
+>>
+>> Hello,
+>>
+>> Changes since v2:
+>>  * 2/4 - Use maxItems instead of wrong minItems in else clause (Conor).
+>>
+>> Comments are welcome!
+>>
+>> regards,
+>> ~Stan
+>>
+>> Stanimir Varbanov (4):
+>>   pmdomain: bcm: bcm2835-power: Prepare to support BCM2712
+>>   dt-bindings: soc: bcm: Add bcm2712 compatible
+>>   mfd: bcm2835-pm: Add support for BCM2712
+>>   arm64: dts: broadcom: bcm2712: Add watchdog DT node
+>>
+>>  .../bindings/soc/bcm/brcm,bcm2835-pm.yaml     | 38 ++++++++++++++++---
+>>  arch/arm64/boot/dts/broadcom/bcm2712.dtsi     |  9 +++++
+>>  drivers/mfd/bcm2835-pm.c                      |  1 +
+>>  drivers/pmdomain/bcm/bcm2835-power.c          | 17 +++++++--
+>>  4 files changed, 55 insertions(+), 10 deletions(-)
+>>
+>> --
+>> 2.47.0
+>>
+> 
+> Patch 1->3 applied for next, thanks!
+> 
+> Note the dt patch (patch2) is also available on the immutable dt branch.
 
-On Thu, Oct 09, 2025 at 04:22:54PM +0200, Niklas Cassel wrote:
-> When the PCIe controller is running in endpoint mode, the controller
-> initialization is triggered by a PERST# (PCIe reset) GPIO deassertion.
->=20
-> The driver has configured an IRQ to trigger when the PERST# GPIO changes
-> state. Without the pinctrl definition, we do not get an IRQ when PERST#
-> is deasserted, so the PCIe controller never gets initialized.
->=20
-> Add the missing definitions, so that the controller actually gets
-> initialized.
->=20
-> Fixes: ec142c44b026 ("arm64: tegra: Add P2U and PCIe controller nodes to =
-Tegra234 DT")
-> Fixes: 0580286d0d22 ("arm64: tegra: Add Tegra234 PCIe C4 EP definition")
-> Signed-off-by: Niklas Cassel <cassel@kernel.org>
-> ---
-> Changes since v2:
-> -Add pinctrl definitions to all pcie-ep nodes, not just C4 controller.
->=20
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 57 ++++++++++++++++++++++++
->  1 file changed, 57 insertions(+)
+Ulf, Florian, Conor, thank you for the help!
 
-Applied thanks. I did add blank lines between the blocks since that's
-what I prefer. I hope you don't mind.
+~Stan
 
-Thierry
-
---tbqrtx74fq7nlswr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmkLUxoACgkQ3SOs138+
-s6EYLRAAsc49pnk+to7vxy6pYRF4Zvh/tQxeBksFwe+GpnDL44/4X3ki63GnDHqd
-DYT8MFP4eBp5uDU8MOMfwGq5GyMwRFgQWgOiybT4PyJNkU5amkV3u8lnl9d4fHFD
-r9N0jzQDKND7FqpbMdaa83alnnYj/D7yZ/i/cAbAEo40VTmaB8vCzsXB2WYyXOwr
-Ee4hVB0WmstsNvyr1Mtb5tNQ4I8hetm/wLqP0kUVBbjebvJvggHtWdK/ERZ/YRwJ
-Py9uU+cO9Vgccun4xvkvXTz5Z3E1V0Y2BBgcMsD3BwJwERpuJPbzdZlKKThZbzW4
-L6lfn9exwo+oH8okRh2ORRgILlSwM25ght8Is0u9vGDLN1r9hEttMgyD2EjS5WMu
-Q8SwxAwN2k8MrwXkk90GIlJdhq325FKomxAtt6ZzkTOlY8esM7fiAQn08xgVe53u
-dUXpDLB3x64ao5JrzvrUwGoz/bUjMCNQMdxkUIN5N5pStkTFuzMVsjrRMfMDbGAJ
-z/L6ayVQ1nRHrDwERjkjInllxnu+HJ+gvz2YtzXb0kuaaKmVJ+gji6PakO63edLu
-svregK0vypfir3CVCqoxLMBZpj2Z/J+W0SpwqgmUo5/UniY7JvJAW5DfcYawfsqw
-/wMG+ep8IOBI3r2myZFVQ4OtrZdObqdtu1kk2EqAeP9xQgQ+sfE=
-=DTt9
------END PGP SIGNATURE-----
-
---tbqrtx74fq7nlswr--
 
