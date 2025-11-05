@@ -1,81 +1,55 @@
-Return-Path: <devicetree+bounces-235221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB940C35B6F
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 13:54:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC08CC35B7E
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 13:55:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2AB9A567872
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 12:53:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24555566C38
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 12:55:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32D843161AB;
-	Wed,  5 Nov 2025 12:53:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3242315D5E;
+	Wed,  5 Nov 2025 12:55:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KArQGNRX"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="IyFHUqzQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A74D5315D5E
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 12:53:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F1C5313E04;
+	Wed,  5 Nov 2025 12:55:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762347220; cv=none; b=kII5zPOm3QKkHBZBab75PC53+4v4Eul9eJZMLBYhL/a9b5rmFWoi+yXytCc9SieRfnT2/U28RNlnnPRvcWfMuqh+KT6Vs1Wj1N1kufWckQYzNa9jmrPLlOWJT83S2/C4g0UvjMoCO1/592zicB9CpKLAXONpA3SAFzc6ILBp0B8=
+	t=1762347350; cv=none; b=ONIVdr1GqzNOdeNgy8gJb62UyaK5LB0pVthZgcT9YrIKIUWfCIC+KJJuQaNvTLs3sI+hPlfJ9DbVc6BUQ7MwgrlY8keizP3GMixydDnxl+B3zaW+m0/NyP+M+JgYsXhSallB/8wuN2a5tbLwTmkIqeUiZwb0xU1AmtDVHtcvUmI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762347220; c=relaxed/simple;
-	bh=ZiOZviqEvKwWICEdXoSPzWBNXEjcvi0xyNucmUY2loE=;
+	s=arc-20240116; t=1762347350; c=relaxed/simple;
+	bh=i/cNt7Yk+QN3eCsujqgkzXWMVipa6Kw/x/Xo6I7/S+Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XYq0MAub310Cbss+JuuvvPrYF+DAi33kizKwZkbb1nOKRe21L97CvP1fX/RrnEiR3EHADUUQdp8R3NSXQGIQLHisyshECfULIwJSc6nOD2hev4kLWeoEETdbDlnWQJmD2WQC3NTERRIEYWbg5PG+8HRQQi35ThywnZ0CcVftlfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KArQGNRX; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-29516a36affso52911125ad.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 04:53:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762347218; x=1762952018; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uXTWMvD9XNNtJ+0IuDLHxEJ/55opUg4uFPpMppU+ANg=;
-        b=KArQGNRXOG8tTdX09tWTtDS+mm7ac+fS47hwdIhp4xmx/ZWWA9yhUGx0Wr3Ct1LkLh
-         Xm93xZ0l6gJ7csUAW8USuqkXecEc+ickdD7+djOHqFqcA9U2apJQuucF6kHxheNtbxKm
-         amhNkEbAeQOUZNwiFHhn4WVjz/HNiq+mQvqalkyMqBuIqcj12jbAGChKq1ssMr+tD3RB
-         wbVdGbzso5hCcyh9aljtLdnPgV7MpiYFYkrbkGDXpvVXH+3AkFrJidan7CCtVFuhxAAJ
-         O/pwGkpsGEca+N/UMmDrJBd4SMKrmC2cKM51u3j0kHlOH7ec66TjmC/E8gcgVKkqqibN
-         +eYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762347218; x=1762952018;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uXTWMvD9XNNtJ+0IuDLHxEJ/55opUg4uFPpMppU+ANg=;
-        b=Ya5qsdC7nYjgHEKlGsZeZERlfM6si11scEK2nMXdZOq+Y7NMw00gJjA5qRs2HF+w5T
-         IcAzg31QOURWlcWrZvT/I7azF++g3hw3eFc8RrvpNNOEV49lHCDMWfTg/KN+9lN6wuDO
-         OMlRRf7hBw7LInmrkHubJT4/FaV3lW+t5zuC32lZxWJgqr8noz/IPK//PK0Ax+HXQAbu
-         A393ojOl+0G4DFQjOpAj4v/x/YtE/FM6Jk8PQD1OBog3kKH+wroYA5+M8HGjIzTlrT+E
-         AKuWg9DqvydXinoDA9gltPMSas7El4mZe2eOayAKpVZPZcmamUQLI4H4zm3yC+hbEqUZ
-         er/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCV+VRdtiT3omNgfa+Rs09WNslWElsAOZ0/QkmVOCmDrSWBQcYTcNI2hJQpblmBc9DCZbgZWBNvRw8ly@vger.kernel.org
-X-Gm-Message-State: AOJu0YyiATUA3Y5laIOemfZ+FY/bVw+h5B2i+L207sBsasOlTYiWghqF
-	BhD7623uJkC9dbktk6ObrBt1eHx9srfhuDX1lXpqpdfShIEHTiQrKHnm
-X-Gm-Gg: ASbGnctyMvs1cIFc/koXRhIeGZZR5nUCWa6ALlZ3AVliB8WSGYd7FK2P4KUMkiyBelS
-	qOmYNcWdmnqLAQ4wh/NCuhswyzLr5dlDDbh2NuoSRaLw3nCp0qISjKbCrbAVGfoLoSwHUA+FE3G
-	WoWinzKLjUgYIehaIjcaTIElVJ6B0KTQXHO330az6FvC6BT416oRBXhtOn6EH+Vgj0ZsAS12o91
-	Q22z5XEjDu6TubsAYiIMzbgBBbcYr96dzlDsG4H2Ciff06hzi2wAtw7oLsehLySm9kBkHuhQg9w
-	mE+fz4YLsUK9KiG+dYXnoZxccMCqdsw9kuPeqmCEMhkFpJduvLEzM1BaR0AheF7FkyNsZVIQz9I
-	tlvyCvBBhGPSjFD7ZV8t27HjCLipYgZu7g3ZXfPQ33FMN6/SkNWLBr5tqy0lzG9A+5m7xReLbvz
-	z8ORauIfnImkBH
-X-Google-Smtp-Source: AGHT+IHDL9eiMgzkVlgRWTri8WIsiKSHk1G9FSbzFFFh7VWfcOfgAFDPdxNgUrmGjQyDZbwKIMBq/Q==
-X-Received: by 2002:a17:902:da88:b0:27d:6f37:7b66 with SMTP id d9443c01a7336-2962adb9263mr50059675ad.47.1762347217742;
-        Wed, 05 Nov 2025 04:53:37 -0800 (PST)
-Received: from [172.17.49.162] ([103.218.174.2])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-341a689ad7fsm2938352a91.2.2025.11.05.04.53.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Nov 2025 04:53:37 -0800 (PST)
-Message-ID: <1e13b14a-83eb-4ab3-b5e3-4721a6026b65@gmail.com>
-Date: Wed, 5 Nov 2025 18:23:32 +0530
+	 In-Reply-To:Content-Type; b=noyFAzK2x7qQ7arKP6G1yZxSjcY2nPoM2WSLA/k9MD0d0tC+o5XDhnUZ2/+g9Dhek/oWT6d5wt+cfqmMa9s+OXwPD2UlnRipkjVNNRY/nv517SMXNUVNE1Wm2Zql1qv0k9IALGI0YCdUfhpqJTHcdsGzZ/YWhsDTysMRqdBouag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=IyFHUqzQ; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1762347344;
+	bh=i/cNt7Yk+QN3eCsujqgkzXWMVipa6Kw/x/Xo6I7/S+Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=IyFHUqzQukf9MkRS3j1CsJ1aiI3Itk+yMzpmmOYLOcuxqaFNVslIDiscH4UVAYShj
+	 beeKpA21X1jG5eJE4oAG4z10uIqFsTve2CE0pDFRgnnKVFkWHW64dCY116bKeW/0HN
+	 t7ER3b1j44cQBju5uvWqB05Othdjui8L2AD0fGFo6vT4sva9K7/T8O/9X3b/snwD4L
+	 8w6QxTsSkv93AbQm/4PsXqIW14R0UWuNSHTIbKg+7q+C4p6zKlI8c+dY7gmZJl1JLp
+	 NnS+XfAwP8E1E//3lerWUyjbG9YGoHtxSknTFQBnf346QHTFSL6oZdIzfSoS0jHqKO
+	 j5I81RkaCEogg==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9276E17E0927;
+	Wed,  5 Nov 2025 13:55:43 +0100 (CET)
+Message-ID: <017b2ebb-e6b0-40a2-a6e6-47ced8909f55@collabora.com>
+Date: Wed, 5 Nov 2025 13:55:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,75 +57,515 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] arm64: dts: qcom: talos-evk: Add support for
- QCS615 talos evk board
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org,
- konradybcio@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251104125126.1006400-1-tessolveupstream@gmail.com>
- <20251104125126.1006400-3-tessolveupstream@gmail.com>
- <27f51013-9276-4e41-b57d-fb0baaec5bc6@oss.qualcomm.com>
- <4e3b01fa-174b-4de3-a5ef-67f51f0b2033@gmail.com>
- <c2b91dd0-1b0c-43bc-ad3e-5e4b136c75c9@oss.qualcomm.com>
+Subject: Re: [PATCH v1 4/6] arm64: dts: mt7988: Add devicetree for BananaPi R4
+ Pro
+To: Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+ Sean Wang <sean.wang@mediatek.com>, Daniel Golle <daniel@makrotopia.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20251027132817.212534-1-linux@fw-web.de>
+ <20251027132817.212534-5-linux@fw-web.de>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Tessolve Upstream <tessolveupstream@gmail.com>
-In-Reply-To: <c2b91dd0-1b0c-43bc-ad3e-5e4b136c75c9@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251027132817.212534-5-linux@fw-web.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-
-On 05/11/25 16:39, Konrad Dybcio wrote:
-> On 11/5/25 11:01 AM, Tessolve Upstream wrote:
->>
->>
->> On 04/11/25 19:57, Konrad Dybcio wrote:
->>> On 11/4/25 1:51 PM, Sudarshan Shetty wrote:
->>>> Introduce the device tree support for the QCS615-based talos-evk
->>>> platform, which follows the SMARC (Smart Mobility ARChitecture)
->>>> standard. The platform is composed of two main hardware
->>>> components: the talos-evk-som and the talos-evk carrier board.
->>>
->>> How is the carrier board a separate entity from the "talos-evk.dts"?
->>
->> The talos-evk platform follows a modular SoM + carrier design.
->> In our current implementation:
->> talos-evk-som.dtsi — describes SoM-specific components.
->> talos-evk-cb.dtsi — represents the carrier board and includes the
->> SoM file, adding carrier-specific interfaces (micro SD, power button etc.).
->> talos-evk.dts — includes both the SoM and CB DTSIs and enables HDMI 
->> display configuration.
->> talos-evk-lvds.dts — also includes both the SoM and CB DTSIs but enables 
->> LVDS instead of HDMI.
->>
->> HDMI and LVDS share the same DSI output and cannot be used simultaneously.
->> Therefore, we provide separate top-level DTS files (talos-evk.dts for HDMI
->> and talos-evk-lvds.dts for LVDS), while keeping common board
->> logic in talos-evk-cb.dtsi.
->>
->> Hence, layer looks as below:
->>
->> talos-evk-som.dtsi
->> ├── talos-evk-cb.dtsi (includes som)
->> │    ├── talos-evk.dts (HDMI)
->> │    └── talos-evk-lvds.dts (LVDS)
->>
->> This ensures modularity, and properly models mutually exclusive display
->> configurations.
+Il 27/10/25 14:28, Frank Wunderlich ha scritto:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> And are both the LVDS display and HDMI converter on separate add-in boards?
+> Add devicetree for Bpi-R4-Pro.
+
+Thanks for this!
+
+Overall, this looks good - there are just a few small things to fix, but hey,
+I bet you're getting this upstream as early as v2 :-D
+
 > 
-Both HDMI and LVDS interfaces are present on the same carrier board, 
-but they share the same DSI output from the SoM.
+> BananaPi R4 Pro is a MT7988A based board which exists in 2 different
+> hardware versions:
+> 
+> - 4E: 4 GB RAM and using internal 2.5G Phy for WAN-Combo
+> - 8X: 8 GB RAM and 2x Aeonsemi AS21010P 10G phys
+> 
+> common parts:
+> 
+> - MediaTek MT7988A Quad-core Arm Corex-A73,1.8GHz processor
+> - 8GB eMMC flash
+> - 256MB SPI-NAND Flash
+> - Micro SD card slot
+> - 1x 10G SFP+ WAN
+> - 1x 10G SFP+ LAN
+> - 4x 2.5G RJ45 LAN (MxL86252C)
+> - 1x 1G RJ45 LAN (MT7988 internal switch)
+> - 2x miniPCIe slots with PCIe3.0 2lane interface for Wi-Fi NIC
+> - 2x M.2 M-KEY slots with PCIe3.0 1lane interface for NVME SSD
+> - 3x M.2 B-KEY slots with USB3.2 for 5G Module (PCIe shared with key-m)
+> - 1x USB3.2 slot
+> - 1x USB2.0 slot
+> - 1x USB TypeC Debug Console
+> - 2x13 PIN Header for expanding application
+> 
+> https://docs.banana-pi.org/en/BPI-R4_Pro/BananaPi_BPI-R4_Pro
+> 
+> The PCIe is per default in key-m state and can be changed to key-b with
+> the pcie-overlays.
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> ---
+>   arch/arm64/boot/dts/mediatek/Makefile         |   4 +
+>   .../mt7988a-bananapi-bpi-r4-pro-4e.dts        |  16 +
+>   .../mt7988a-bananapi-bpi-r4-pro-8x.dts        |  16 +
+>   .../mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi | 559 ++++++++++++++++++
+>   4 files changed, 595 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+> index a4df4c21399e..8640e5f32d4b 100644
+> --- a/arch/arm64/boot/dts/mediatek/Makefile
+> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+> @@ -24,6 +24,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986b-rfb.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-2g5.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-emmc.dtbo
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-4e.dtb
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-8x.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-sd.dtbo
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8167-pumpkin.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm.dtb
+> @@ -111,4 +113,6 @@ DTC_FLAGS_mt7986a-bananapi-bpi-r3 := -@
+>   DTC_FLAGS_mt7986a-bananapi-bpi-r3-mini := -@
+>   DTC_FLAGS_mt7988a-bananapi-bpi-r4 := -@
+>   DTC_FLAGS_mt7988a-bananapi-bpi-r4-2g5 := -@
+> +DTC_FLAGS_mt7988a-bananapi-bpi-r4-pro-4e := -@
+> +DTC_FLAGS_mt7988a-bananapi-bpi-r4-pro-8x := -@
+>   DTC_FLAGS_mt8395-radxa-nio-12l := -@
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts
+> new file mode 100644
+> index 000000000000..c7ea6e88c4f4
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts
+> @@ -0,0 +1,16 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2025 MediaTek Inc.
+> + * Author: Frank Wunderlich <frank-w@public-files.de>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "mt7988a-bananapi-bpi-r4-pro.dtsi"
+> +
+> +/ {
+> +	model = "Bananapi BPI-R4";
+> +	compatible = "bananapi,bpi-r4-pro-4e",
+> +		     "bananapi,bpi-r4-pro",
+> +		     "mediatek,mt7988a";
+> +};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts
+> new file mode 100644
+> index 000000000000..c9a0e69e9dd5
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts
+> @@ -0,0 +1,16 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2025 MediaTek Inc.
+> + * Author: Frank Wunderlich <frank-w@public-files.de>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "mt7988a-bananapi-bpi-r4-pro.dtsi"
+> +
+> +/ {
+> +	model = "Bananapi BPI-R4";
+> +	compatible = "bananapi,bpi-r4-pro-8x",
+> +		     "bananapi,bpi-r4-pro",
+> +		     "mediatek,mt7988a";
+> +};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi
+> new file mode 100644
+> index 000000000000..44406e23c042
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi
+> @@ -0,0 +1,559 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2025 MediaTek Inc.
+> + * Author: Sam.Shih <sam.shih@mediatek.com>
+> + * Author: Frank Wunderlich <frank-w@public-files.de>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "mt7988a.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/regulator/richtek,rt5190a-regulator.h>
+> +
+> +/*
+> + * ----------------------------------- Bananapi Bpi R4 Pro PINs ---------------------------------
+> + * |    | Function                               | Function                                |    |
+> + * |----|----------------------------------------|-----------------------------------------|----|
+> + * | 1  | 3V3                                    | 5V                                      | 2  |
+> + * | 3  | GPIO18/I2C_1_SDA                       | 5V                                      | 4  |
+> + * | 5  | GPIO17/I2C_1_SCL                       | GND                                     | 6  |
+> + * | 7  | GPIO62/JTAG_JTRST_N/PWM6/I2P5G_LED1_P0 | GPIO59/JTAG_JTDO/UART2_TX/GBE_LED1_P1   | 8  |
+> + * | 9  | GND                                    | GPIO58/JTAG_JTDI/UART2_RX/GBE_LED1_P0   | 10 |
+> + * | 11 | GPIO81/UART1_TXD                       | GPIO51/PCM_CLK_I2S_BCLK                 | 12 |
+> + * | 13 | GPIO80/UART1_RXD                       | GND                                     | 14 |
+> + * | 15 | GPIO50/PCM_FS_I2S_LRCK                 | GPIO61/JTAG_JTCLK/UART2_RTS/GBE_LED1_P3 | 16 |
+> + * | 17 | 3v3                                    | GPIO60/JTAG_JTMS/UART2_CTS/GBE_LED1_P2  | 18 |
+> + * | 19 | GPIO30/SPI1_MOSI                       | GND                                     | 20 |
+> + * | 21 | GPIO29/SPI1_MISO                       | GPIO53/PCM_DTX_I2S_DOUT                 | 22 |
+> + * | 23 | GPIO31/SPI1_CLK                        | GPIO28/SPI1_CSB                         | 24 |
+> + * | 25 | GND                                    | GPIO52/PCM_DRX_I2S_DIN                  | 26 |
+> + * |----|----------------------------------------|-----------------------------------------|----|
+> + */
 
-The hardware requires physical reconfiguration (resistor changes)
-to select either the ADV7535 HDMI path or the LVDS bridge path.
+Nice! Is this a "raspberry pi header" thingy?
 
-Because they cannot be used simultaneously and represent different hardware
-configurations, we provide two separate DTS files — one for HDMI and 
-one for LVDS — while keeping the common carrier definitions in talos-evk-cb.dtsi.
-> Konrad
+Let's say that the header is called "CON89" on the schematics (if unsure, you
+should find that name by looking at the PCB), so a better title would be:
 
+* ------------------------------------- CON89 Pi header pins 
+-----------------------------------
+
+Also this relates to PIO, right? You could move that as a pio node comment,
+either before or inside of your PIO overrides.
+After all, this comment is mapping "header pin number" to "PIO pin number" ;-)
+
+> +
+> +/ {
+> +	aliases {
+> +		ethernet0 = &gmac0;
+> +		i2c0 = &i2c0;
+> +		i2c1 = &i2c1;
+> +		i2c2 = &i2c2;
+> +		/* PCA9548 (0-0070) provides 4 i2c channels */
+> +		i2c3 = &imux0;
+> +		i2c4 = &imux1_sfp1;
+> +		i2c5 = &imux2_sfp2;
+> +		i2c6 = &imux3_wifi;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = &serial0;
+> +		bootargs = "console=ttyS0,115200n1 \
+> +			    earlycon=uart8250,mmio32,0x11000000";
+
+No, don't use bootargs - besides, earlycon is supposed to be for development
+purposes only, and it *has to* be unnecessary after development, on upstreamed
+devicetrees.
+> +	};
+> +
+> +	fan: pwm-fan {
+> +		compatible = "pwm-fan";
+> +		/* cooling level (0, 1, 2, 3) : (0% duty, 30% duty, 50% duty, 100% duty) */
+> +		cooling-levels = <0 80 128 255>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pwm0_pins>;
+> +		pwms = <&pwm 0 50000>;
+> +		#cooling-cells = <2>;
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +
+> +		button-reset {
+> +			label = "reset";
+> +			linux,code = <KEY_RESTART>;
+> +			gpios = <&pio 13 GPIO_ACTIVE_LOW>;
+
+Please treat the linux,code property as a vendor property. Means...
+
+label =
+gpios =
+linux,code =
+
+> +		};
+> +
+> +		button-wps {
+> +			label = "WPS";
+> +			linux,code = <KEY_WPS_BUTTON>;
+> +			gpios = <&pio 14 GPIO_ACTIVE_LOW>;
+> +		};
+> +	};
+> +
+> +	gpio-leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led_red: sys-led-red {
+> +			color = <LED_COLOR_ID_RED>;
+> +			gpios = <&pca9555 15 GPIO_ACTIVE_HIGH>;
+> +			default-state = "on";
+> +		};
+> +
+> +		led_blue: sys-led-blue {
+> +			color = <LED_COLOR_ID_BLUE>;
+> +			gpios = <&pca9555 14 GPIO_ACTIVE_HIGH>;
+> +			default-state = "on";
+> +		};
+> +	};
+> +
+> +	reg_1p8v: regulator-1p8v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "fixed-1.8V";
+
+Have you got the board schematics?
+
+If so, can you please change the regulator-name to the one from the schematics?
+
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+> +	reg_3p3v: regulator-3p3v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "fixed-3.3V";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+> +	/* SFP1 cage (LAN) */
+> +	sfp1: sfp1 {
+> +		compatible = "sff,sfp";
+> +		i2c-bus = <&imux1_sfp1>;
+> +		los-gpios = <&pio 70 GPIO_ACTIVE_HIGH>;//change4
+> +		mod-def0-gpios = <&pio 69 GPIO_ACTIVE_LOW>; //change3
+> +		tx-disable-gpios = <&pio 21 GPIO_ACTIVE_HIGH>; //change1
+
+What does "change4", "change3", "change1" even mean?
+
+Please remove.
+
+> +		maximum-power-milliwatt = <3000>;
+> +	};
+> +
+> +	/* SFP2 cage (WAN) */
+> +	sfp2: sfp2 {
+> +		compatible = "sff,sfp";
+> +		i2c-bus = <&imux2_sfp2>;
+> +		los-gpios = <&pio 2 GPIO_ACTIVE_HIGH>;
+> +		mod-def0-gpios = <&pio 1 GPIO_ACTIVE_LOW>;
+> +		tx-disable-gpios = <&pio 0 GPIO_ACTIVE_HIGH>;
+> +		maximum-power-milliwatt = <3000>;
+> +	};
+> +};
+> +
+
+..snip..
+
+> +
+> +&gmac0 {
+> +	status = "okay";
+> +};
+> +
+> +&gsw_phy0 {
+> +	pinctrl-names = "gbe-led";
+> +	pinctrl-0 = <&gbe0_led0_pins>;
+> +};
+> +
+> +&gsw_phy0_led0 {
+> +	status = "okay";
+> +	color = <LED_COLOR_ID_YELLOW>;
+
+color first, status last
+
+> +};
+> +
+
+..snip..
+
+> +
+> +&i2c1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c1_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c2_1_pins>;
+> +	status = "okay";
+> +
+> +	pca9545: i2c-mux@70 {
+> +		reg = <0x70>;
+> +		compatible = "nxp,pca9545";
+
+compatible goes first. Check dts-coding-style.rst.
+
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		imux0: i2c@0 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0>;
+
+reg goes first.
+
+> +
+> +			pca9555: i2c-gpio-expander@20 {
+> +				compatible = "nxp,pca9555";
+
+reg after compatible please
+
+> +				gpio-controller;
+> +				#gpio-cells = <2>;
+> +				reg = <0x20>;
+> +			};
+> +
+> +			rtc@51 {
+> +				compatible = "nxp,pcf8563";
+> +				reg = <0x51>;
+> +			};
+> +
+> +			eeprom@57 {
+> +				compatible = "atmel,24c02";
+> +				reg = <0x57>;
+> +				address-width = <8>;
+> +				pagesize = <8>;
+> +				size = <256>;
+> +			};
+> +		};
+> +
+> +		imux1_sfp1: i2c@1 {
+
+reg first, cells later;
+
+reg = <1>;
+#address-cells = <1>;
+#size-cells = <0>;
+
+here and everywhere else.
+
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <1>;
+> +		};
+> +
+> +		imux2_sfp2: i2c@2 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <2>;
+> +		};
+> +
+> +		imux3_wifi: i2c@3 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <3>;
+> +		};
+> +	};
+> +};
+> +
+> +&int_2p5g_phy {
+> +	status = "disabled";
+> +};
+> +
+> +/* mPCIe SIM2 (11300000) */
+> +&pcie0 {
+> +	status = "okay";
+> +};
+> +
+> +/* mPCIe (11310000 near leds) SIM3 */
+> +&pcie1 {
+> +	status = "okay";
+> +};
+> +
+> +/* M.2 (11280000) 1L0 key-m SSD1 CN13 / key-b SIM1 CN15 */
+> +&pcie2 {
+> +	status = "okay";
+> +};
+> +
+> +/* M.2 (11290000) 1L1 key-m SSD2 CN14 / key-b SIM2 CN18 */
+> +&pcie3 {
+> +	status = "okay";
+> +};
+> +
+> +&pio {
+
+--snip..
+
+> +
+> +	mmc0_pins_sdcard: mmc0-sdcard-pins {
+> +		mux {
+> +			function = "flash";
+> +			groups = "sdcard";
+> +		};
+> +	};
+> +
+> +	// 1L0 0=key-b (CN15), 1=key-m (CN13)
+
+Please fix the comments
+/* 1L0 0=key-b (CN15), 1=key-m (CN13) */
+
+> +	pcie-2-hog {
+> +		gpio-hog;
+> +		gpios = <79 GPIO_ACTIVE_HIGH>;
+> +		output-high;
+> +	};
+
+Extra space here please, and
+
+> +	// 1L1 0=key-b (CN18), 1=key-m (CN14)
+
+/* 1L1 0=key-b (CN18), 1=key-m (CN14) */
+
+> +	pcie-3-hog {
+> +		gpio-hog;
+> +		gpios = <63 GPIO_ACTIVE_HIGH>;
+> +		output-high;
+> +	};
+> +
+> +	pwm0_pins: pwm0-pins {
+> +		mux {
+> +			groups = "pwm0";
+> +			function = "pwm";
+> +		};
+> +	};
+> +
+> +	spi0_flash_pins: spi0-flash-pins {
+> +		mux {
+> +			function = "spi";
+> +			groups = "spi0", "spi0_wp_hold";
+> +		};
+> +	};
+> +};
+> +
+
+..snip..
+
+> +
+> +/* back USB */
+> +&ssusb0 {
+> +	/* Use U2P only instead of both U3P/U2P due to U3P serdes shared with pcie2 */
+> +	phys = <&xphyu2port0 PHY_TYPE_USB2>;
+> +	mediatek,u3p-dis-msk = <1>;
+> +	/delete-property/ mediatek,p0_speed_fixup;
+
+Where's that property defined, even?
+Am I blind, or it's nowhere to be found (in any dtsi)?
+
+(no, seriously, I'm not sarcastic :P)
+
+> +	status = "okay";
+> +};
+> +
+
+Cheers,
+Angelo
 
