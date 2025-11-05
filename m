@@ -1,211 +1,156 @@
-Return-Path: <devicetree+bounces-235009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 636EFC3395A
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 02:05:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF388C33996
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 02:12:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 471574E372B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 01:05:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 467A118C5653
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 01:12:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF2C81DF75B;
-	Wed,  5 Nov 2025 01:05:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09CAD279DCD;
+	Wed,  5 Nov 2025 01:10:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HAe9xfjD";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="S+QHBiu5"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="FjlXP0Ye"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BDC522D4F6
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 01:05:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E5D926CE3A;
+	Wed,  5 Nov 2025 01:10:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762304720; cv=none; b=StOJG67RUD4pQkDW+pewQO1e1C/YnXvWU+BPmqCy8zw0AktHiv8vEyUcvRSO+D+VTOUS4F8rDzZhENSfmbQKYlbXzgQM1dWHEo0l3CgCG6ijaYQ/Xmexod7g3JqeecLhiHNQxNftnNcEpiU0JbGG261o88t4PKpk7aHAj00Nfsw=
+	t=1762305047; cv=none; b=mQiloUwUIcVUl1uiAJMr9qQlhvb95HRgEoF8vn83s7M5t1yQxrYJ0mjYs+hEJmFiP7yU3OlNm5nyuPDAGZ3VOqUbE9uFiGsKC6RZ3p4xcjZdL14Fb1WF0xeqA15Q5l+S0vtSQ2wpDZ7yxe3QNe5YJRIcjshdR6JZ/EvEyMh/cx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762304720; c=relaxed/simple;
-	bh=rJtYVnNy7gj+m3wBMg5oFKaq644ysYMWoHfp47xDheU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZBui7SM145PZEZjPpz9uJrxLfM/AV8uRkUvRQEBO3f34czdz5nsfBqpmUAmdr2NJ82Iy39sKBIwZFG7r/klV+aELFJ2rFc+5GuICycyX2gw6U1fkNZW/V/7u+mwjxYteBVf0nDUHB88W61sd36cQRTmXxyhd0taOKLX+ZM3uD5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HAe9xfjD; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=S+QHBiu5; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A4Kh4o62929952
-	for <devicetree@vger.kernel.org>; Wed, 5 Nov 2025 01:05:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UKB3wyWvpcPr7K0yIT6UZfC+SjpvEvAQpR2nzIL2AxA=; b=HAe9xfjDP1B+Igrf
-	87XNDwPyr8F8I16Gx7x9bzHay5IWPo2hYvhmVaD396GTtsPb+BUIg2Yr+DkCS8FK
-	9U+T0zOvs73Wb69XyRaPPX0wLR/Ta4t/vJxRlfaQJ0n396B6qln+bPKKcogbDzfi
-	f76C7wvFu1PZtk1qGRiOliABbQDXRCMvLoT5BuKEPBr+ESMOksLvirKbreUJ3i1D
-	pP1wfd0WSTn9pFX2wW637jlywr9iCFnUbDHTMC3I4+UhE7dl2zcV3yselKb6aDnT
-	e3OjcZou9TbstJHI+8I/wzATRS51R+ZTPf8m/izRp0cdZEaJ+S231V5qw8lHyODc
-	1m3+GQ==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a7me5shj3-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 01:05:18 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4e8984d8833so167827771cf.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Nov 2025 17:05:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762304717; x=1762909517; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=UKB3wyWvpcPr7K0yIT6UZfC+SjpvEvAQpR2nzIL2AxA=;
-        b=S+QHBiu5QPOSijwSILiNvOmtCNsua3KZ+yYEt4ZNIfzl+lv1HFUwd7iuOkY3d8c6xb
-         FzwXI+CfVI1dl0bpnNrF9LvdJesjLlnwimu5j09BzUxQKc8uj2PMB+gWD4G2vt7745LI
-         OniB7oPylTScCF/XOJ8FXkeyZunmmsyFCb1RlPiOqOEboWihaong3eDSv3sMiSO7tap6
-         rx+MnXHoWviCDNZSieU/0/inj5705QKq99hcu8FXON7mso95qQe3K/JezyC+pmVt/v9K
-         0JtSf0RhW227+DFZpz1GCnE6DXJaFzfr9InqpFwbyZhiva2KjlAK7aqANn/6nFebscKb
-         UNow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762304717; x=1762909517;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UKB3wyWvpcPr7K0yIT6UZfC+SjpvEvAQpR2nzIL2AxA=;
-        b=G9p/1/kkjq8ZWZIVIl++eVU64Z+TdMt0ND6ymqnDA24wN2lsRS9myujqGeBZYCWDmM
-         wj8avGlNcFjdLjihl8aLZ1aZsfrxV9K+UKpWvKKHq2y6H/FVcROiJ9P6m/3kFN/MczBD
-         K/d9uQkrc05wu0gTVNuS0XWFW8bU80Gv7BN3c5AVgvvsrohuE7fsaMserLuO9FvTFM40
-         qchlMncbyFdbYWADft7yiFpRAmaJclUcMoY9fDJEhUeD7zGT1D4WkH1jqmTTNTKLk9i0
-         oGh08GeugpoL7OiTc21uLoMM1TXAo2qjvK85BXokcqK7ZSrPMl2or88ozxFWs5CAdV7j
-         Zk7g==
-X-Forwarded-Encrypted: i=1; AJvYcCWkCx07dvjnDcCFgFpmtGja5FBeuA/0jcB2bXa+anscp369GgTBoVhULgDxTFv9SqPTCbFH97W+J47Y@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOqxcrEr5vqV8Wtv+Yebkg+iBzB5SBtvspOWF3LH/2VPuz+Sv8
-	P+4T0qgywfFJ7kGTqo4G3jJVbIrKlNKxW5veaoG7Mr/CVHCnpuXkaivzMsfgyq9S9EK+wkghZPu
-	LlOgtuSnE5tpNhgrIh4vFrKwzBT6I5VwFCvoHYNeGlHAJmdnXxsT2qkh3fZFizPEqgdfnqla0
-X-Gm-Gg: ASbGncs69I4XoLjzT9KLRwurTR/8vQ24SjDAsyZB7xo4LnqUThqSGGQkBam3crhVG8o
-	VYe2Gkk9X/jB60fJhkyJNcHO3NRa2G+0lMGUBXvnJ7ahVC+xogmwn9OMc6y1bOhqG3EsenA/cUf
-	FLDb4253by7Z3VBq4yoK3VUYsnlt6Tzr9aF+4IqmPyBGXX+WyC18HieX/q6+cdwd7hhFMz13CQ7
-	fVfuIwtTXnUgP34IJgsE5qY5V7R/F4izGvWJLUnfIkyhlslA1uzDrH3cuFOJ54qTIoMCcOsLCz3
-	VsiVm17/Iv0EC4rB85v9JVYbyUEdyxcXAlUhbsMpp5pXrSjrQuI6ZF1fuLSt1IFvPt2+uI1V/RB
-	wJuW85vHTwvyWE3jL+JyT9tP+BYO7J4VWSvAgX4As/Y5f1Bh6O1cJj99y7yqrw7qfWM3D6jCuPp
-	UOR5qwFfh09OXF
-X-Received: by 2002:a05:622a:13cd:b0:4d2:4df8:4cb5 with SMTP id d75a77b69052e-4ed723769ebmr20660311cf.4.1762304716828;
-        Tue, 04 Nov 2025 17:05:16 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IF7Pr3olhiTuSINhpQDsTtR+kYGQ/VuHjHNLQdRp69Wwe2b5u1dtEzPf+NBtNigm3oiU9boaA==
-X-Received: by 2002:a05:622a:13cd:b0:4d2:4df8:4cb5 with SMTP id d75a77b69052e-4ed723769ebmr20660041cf.4.1762304716391;
-        Tue, 04 Nov 2025 17:05:16 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37a414a0ddasm10514441fa.8.2025.11.04.17.05.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Nov 2025 17:05:15 -0800 (PST)
-Date: Wed, 5 Nov 2025 03:05:14 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Sudarshan Shetty <tessolveupstream@gmail.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 0/2] Add Qualcomm Technologies, Inc. Talos EVK SMARC
- support
-Message-ID: <xq4jidiffovpg3armhlzrzxloug4irumlycyyvmfaugajbtq4t@cutuj5736ayo>
-References: <20251104125126.1006400-1-tessolveupstream@gmail.com>
+	s=arc-20240116; t=1762305047; c=relaxed/simple;
+	bh=VryhGGcbzk2d/iHnsA2ib3+gX9kmoD9gOA+GFMs5c2A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Xg6/AH8TybnMUbyKB3kkBFvlwu5htq2DmOvZNaBzBrtyRYb7It2eAvaTt4QJfOyobrOch/eQxE1PTJoNTkxho7tdRSE2jnlKmWpLv1pxL3SfU/eZ+XnVAt+p4+irUMgjBTsCXv9aU5BJToAjS+9cI70GDUX2tqmiGCeSNeDo8x0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=FjlXP0Ye; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from [100.65.32.195] (unknown [20.236.11.102])
+	by linux.microsoft.com (Postfix) with ESMTPSA id D1A3A20120A5;
+	Tue,  4 Nov 2025 17:10:39 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com D1A3A20120A5
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1762305040;
+	bh=Bwg81lUU1BiqKdd1asgtMAjvCLTY6UnLRcAdJpu4tY0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FjlXP0Ye6cr+xh/cJ+FFKecYrdLIegSug2GASdWm92EXyyjuVxyLJJusdFY7mSzry
+	 m95+3be2hTfO8bMSbnR/2tQ+4i3+hU1wk/9Zi6ODU0+TDHAqxexryW7L8rT37xGPVV
+	 hCbQkQkogvmJriN9YPGvpwj+psCj6D2Nc3gB80ew=
+Message-ID: <f6c01c55-8930-459a-baa5-1465c5047b3e@linux.microsoft.com>
+Date: Tue, 4 Nov 2025 17:10:40 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: microsoft: Add vmbus
+ message-connection-id property
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: apais@microsoft.com, cho@microsoft.com, conor+dt@kernel.org,
+ decui@microsoft.com, devicetree@vger.kernel.org, haiyangz@microsoft.com,
+ hargar@microsoft.com, krzk+dt@kernel.org, kys@microsoft.com,
+ linux-hyperv@vger.kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org,
+ ssengar@linux.microsoft.com, wei.liu@kernel.org
+References: <6d3b5d1e-de1b-4d3b-ba14-7029c51b8e05@kernel.org>
+ <1753395133-26061-1-git-send-email-hargar@linux.microsoft.com>
+ <94d3e709-8c8b-40cb-a829-92c2012b4e0a@kernel.org>
+Content-Language: en-US
+From: Hardik Garg <hargar@linux.microsoft.com>
+In-Reply-To: <94d3e709-8c8b-40cb-a829-92c2012b4e0a@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251104125126.1006400-1-tessolveupstream@gmail.com>
-X-Proofpoint-GUID: Dnds9hfbUzP7kNc0vRMW_bwyzyvd_b6C
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA1MDAwNyBTYWx0ZWRfXxZ0Aj781VhUc
- /O1BbaZ2xFXFD2IQOqi/wqgVbC5SUM3U7zH3ItE118TLQ8gTKoFDaHPyOjSrvFr4/IHIfgXbmwA
- ssNscXB76cmnO8kqcUfoGDhI2ZWsfzQI6QPWejffkCgDBRbpTKLkmxs/qeUqyQm0vwRrcj5zVE5
- gzxes9yq7u8yv+hKNUow3viyUoaiq52u6H778UsqZDGtT5M7nTi5zQl64j/ovU4VarsLI2inp00
- s03NuAhHl0fwFY1pzOQ/vfYp5yT9U+Y/qA0bW/HwQuT7QnaDBsBiA+e6KdObHujKgNkokx+bGDZ
- THRm4ZGMJDd/+ynWKF2HqfF2c98Iyh5+VTDX0TogVlWz4SFJnv26JoXtxKy4C/wGkzjMB85h5ey
- rJq6VxoR/RzOMyzped4+nS7Je3sHgA==
-X-Proofpoint-ORIG-GUID: Dnds9hfbUzP7kNc0vRMW_bwyzyvd_b6C
-X-Authority-Analysis: v=2.4 cv=IpsTsb/g c=1 sm=1 tr=0 ts=690aa2ce cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=COHdNaOoP-U2MmXgnREA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-05_01,2025-11-03_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 lowpriorityscore=0 bulkscore=0 clxscore=1015
- malwarescore=0 adultscore=0 suspectscore=0 impostorscore=0 phishscore=0
- spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511050007
 
-On Tue, Nov 04, 2025 at 06:21:24PM +0530, Sudarshan Shetty wrote:
-> Hi all,
-> 
-> This patch series adds device tree binding and board support for the
-> Qualcomm Technologies, Inc. Talos EVK SMARC platform based on the
-> QCS615 SoC.
-> 
-> The first patch introduces the DT binding entry for the Talos EVK
-> SMARC board, and the second patch adds the corresponding DTS
-> files for the platform.
-> 
-> Note:
-> USB(usb_1_dwc3) supports host-only mode based on the switch SW1 on
-> the SoM, which is purely a hardware controlled as USB-ID and USB-VBUS
-> is not connected the switching cannot be handled from SW.
-> Hence from SW Host-only mode is supported on Linux boot up.
-> 
-> Changes in v5:
->  - Updated commit message. (suggested by Krzysztof)
->  - Introduced generic node name for can, dp, hdmi-bridge. (suggested by
->    Krzysztof)
->  - Introduced talos-evk-cb.dtsi, which has common carrier board
->    interfaces.
 
-Common between what?
 
->  - No functional change in bindings file.
+On 7/25/2025 12:32 AM, Krzysztof Kozlowski wrote:
+> On 25/07/2025 00:12, Hardik Garg wrote:
+>>> Then all guests can use the same value, 0, making this property redundant.
+>>
+>> No, they cannot use the same value. The protocol requires different connection IDs for different communication paths.
+>> For example, a guest communicating with a VTL0 control plane uses a different connection ID than one communicating with
+>> a VTL2 control plane. The host specifies this value based on the guest's configuration, and there is no other discovery
+>> method available to determine the correct connection ID.
 > 
-> Changes in v4:
->  - Updated product name to full form per Krzysztof’s feedback in
->    dt-binding comment.
->  - Hook up the ADV7535 DSI-to-HDMI bridge to base DTS file.
->  - Add DP connector node and MDSS DisplayPort controller.
->  - Added USB note in the cover letter for maintainers' awareness.
-> 
-> Changes in v3:
->  - Addressed comments from Dmitry regarding USB1 `dr_mode` and 
->    added a DTS comment.
->  - No functional change in bindings file.
-> 
-> Changes in v2:
->  - Renamed compatible to "qcom,talos-evk" (suggested by Dmitry/Bjorn)
->  - Merged enum entry with existing `qcs615-ride` block (Krzysztof)
->  - Fixed subject and commit message to use imperative mood.
-> 
-> Thanks,
-> Sudarshan
-> 
-> Sudarshan Shetty (2):
->   dt-bindings: arm: qcom: talos-evk: Add QCS615 Talos EVK SMARC platform
->   arm64: dts: qcom: talos-evk: Add support for QCS615 talos evk board
-> 
->  .../devicetree/bindings/arm/qcom.yaml         |   1 +
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  arch/arm64/boot/dts/qcom/talos-evk-cb.dtsi    |  56 +++
->  arch/arm64/boot/dts/qcom/talos-evk-som.dtsi   | 442 ++++++++++++++++++
->  arch/arm64/boot/dts/qcom/talos-evk.dts        |  87 ++++
->  5 files changed, 587 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk-cb.dtsi
->  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk-som.dtsi
->  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk.dts
-> 
-> -- 
-> 2.34.1
+> You completely removed entire thread and discussion making it difficult
+> to connect to one of 100 or more discussions I am doing.
 > 
 
--- 
-With best wishes
-Dmitry
+Apologies for the very late reply — I realize it’s been a few months
+since your last feedback. I wanted to take time to revisit the design
+and explore possible alternatives to avoid introducing the connection-id
+property in the Device Tree. After evaluating the available mechanisms,
+unfortunately there isn’t a viable alternative for passing this
+information from the host to the guest in the current Hyper-V architecture.
+
+To address your earlier comments in detail:
+
+The connection-id is not an arbitrary or per-guest runtime configuration
+parameter — it is a hardware-level identifier that specifies which
+Hyper-V message port (or mailbox slot) the guest should use to
+communicate with the VMBus control plane. Historically, VMBus always
+used a single, fixed connection ID. However, with the introduction of
+Virtual Trust Level 2 (VTL2) support, the control plane can now reside
+in a different trust level, requiring the guest to communicate through a
+different message port. This connection-id is determined by the
+hypervisor based on the status of VMBus relay. From the guest’s
+perspective, it is completely static for the lifetime of that VM
+instance — it never changes at runtime. Once the kernel boots, it must
+read this value to establish communication with the correct VMBus
+control plane. There is currently no system API, or discoverable
+interface that allows the guest to determine this value dynamically.
+
+> 
+> The guest should not care about the value. Otherwise what if guests
+> decides to ignore your DT property and start using other value? Sniffing
+> other guests traffic? Causing conflicts or denial of service?
+> 
+
+Regarding security and isolation:
+
+Each guest has a private hypervisor mailbox and cannot access any other
+guest’s communication path. Using an incorrect connection ID does not
+allow eavesdropping or cause interference — it only results in failed
+VMBus initialization because the host drops messages sent to an
+unexpected port. Thus, exposing the correct connection ID to the guest
+is safe and necessary for correct initialization.
+
+> If different values are important for the host, then all guests should
+> use whatever 0 which will map to different values on host by other means
+> of your protocol.
+> 
+
+Using a fixed value such as 0 for all guests would not work, because the
+Hyper-V host differentiates between multiple control-plane contexts (for
+example, VTL0 vs VTL2) using distinct connection IDs. The guest must use
+the value assigned by the host, as there is no implicit mapping or
+negotiation protocol to determine it otherwise.
+
+In summary:
+The connection-id is a static hardware configuration detail provided by
+the host before boot, not a runtime variable. It is required for correct
+message routing between the guest’s VMBus driver and the appropriate
+control plane. There is no existing API or firmware interface that can
+expose this information. Each guest has a dedicated, isolated mailbox,
+so security is preserved. If you still feel that Device Tree is not the
+right mechanism, I’m open to discussing alternative approaches that
+could convey this information from the host to the guest early during
+boot — though based on the current architecture, I have not found a
+suitable one yet.
+
+Thank you again for your time, patience, and for your detailed feedback.
+I’ll make sure my next submission keeps full context and follows proper
+wrapping and quoting conventions.
+
+
+
+Thanks,
+Hardik
+
+
 
