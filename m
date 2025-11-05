@@ -1,187 +1,129 @@
-Return-Path: <devicetree+bounces-235096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5759DC347DE
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 09:34:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34175C347F7
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 09:36:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAB333AC4E4
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 08:34:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E73C53ABA75
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 08:36:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D86628D836;
-	Wed,  5 Nov 2025 08:34:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C07E299954;
+	Wed,  5 Nov 2025 08:36:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HzgDD2lB";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="g0JYG3/B"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="YL63JHzD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx-relay177-hz1.antispameurope.com (mx-relay177-hz1.antispameurope.com [94.100.133.59])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD9EC222575
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 08:34:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762331654; cv=none; b=kfQqQ5z1/r/T8AGWDcJyBmyutSx3LGywhNL79G4c5qclW6DN4zZyGI/Dynj6S6EzVE3ncJ7BYQXbgjkMZwaib2Xl0wmU8VJVFQT2uVyHg37YoYFjR1VxVrZLvj9Hig2RUhOR37zL3p6e55WjBez2J6bUWbmgd5keqasT5O9kl4E=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762331654; c=relaxed/simple;
-	bh=NnSGWr6f8UUqIioqQVhV6tQa6JDXAIcMsUZ3hBk7+NY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bw+o9RlGLmsnQcUa/vkJZH9J7TqieR0dFKD5EvnWth3E7cBA7vSz4F3cG7dRVgaucvkpXtYwZtx4Pd6C8S8AIjOqap3pKvjGozOH6tV4pJe2C2uqKjNf53hntw2nDkkMUERhjpDM6IDRf5taTND+dydTxAxZI0sCU1aEw3jMH+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HzgDD2lB; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=g0JYG3/B; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A54YbsU4056204
-	for <devicetree@vger.kernel.org>; Wed, 5 Nov 2025 08:34:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=V6iVgv0dpsKodB/pMhacMSwm
-	+tuxtOcBfpnB1qtn41U=; b=HzgDD2lBl5Tg+YPWoiAXMH9rR1OKO3jYigTuzOlr
-	r1gUcKtZT+o/MrXzkj5CqlWYeTtzKUmrX+2rCBwipD9xHR2OmhH2ZarAjGZjOGTp
-	yZYpHdaW7ogzwf3Ls5oHYC/b5R7s8xMSBbHW6r0OoM/JYYB3K4mfFnX2xG4Lc7Pc
-	imClJodQB9gBaHRBwdWKC6ZZc55daBGI5cMIoHXPB6fvvpyevgttXJSHNquUpDeN
-	bQ/nAPuAnzCNkudkha94l0KgCYXUC/ZRleJ5GCBvUI+RNuktTmdpaacep/nJD0T9
-	c62MZBPKjLvcISbIyIBFsRhSc+FkGNhdDqkf59NWfAkj+g==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a7yp60jv7-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 08:34:11 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2958c80fcabso87008145ad.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 00:34:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762331651; x=1762936451; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=V6iVgv0dpsKodB/pMhacMSwm+tuxtOcBfpnB1qtn41U=;
-        b=g0JYG3/Blm8OKImWXmf4ksU97cFuN7DFiu3ZuK9fL8hE0ZCPQOVdqEL4bu3y36fFl0
-         DLuTAzQvV4A3aldxQ2dUb2EH9xT/2z6Md33+65/royP5gvlH+5LVjpLOPDtU0mShvgoi
-         cgeetmwaBDJvoK6DoUdDE0sWrK7RMgwWjDTKk8DUok7Tw1FW3RBd20H9xrzitkq8Pmry
-         nsY+fVxortpjbmTYfiScHn22cDJ4ZePFt4+GaBfG/PsORa6DypHd8Q/m35ZWN5wGIWs8
-         HBtuHGbIzkYJh5vDnTEUo4feBOu/gY8VUjamm9LjSSgMyKgd8OB4zo0YsK6W124Hrz7/
-         NmSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762331651; x=1762936451;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=V6iVgv0dpsKodB/pMhacMSwm+tuxtOcBfpnB1qtn41U=;
-        b=Dbf6eX7BzOnhS++SdnQZHPoJy5CMDRc0b0ASnTUpZCyCfw1/dxkXSoBkUJgT8R4H0E
-         xCEv/CqVyMnuezydJOWhjPP7ATYKIO9sn8Qol2dNBwwW/cyco2Z0zWNQGk4e7NpV68Ii
-         dVph+aqVar5/0IoxBkB3lCHKM2aIZSExr9JWwwB2baeFsHadPBWD4B9lrDT1zlnc2Bf0
-         n5fiXSt6UH5XeTLOXV5E4AjUF4YySZ2i0qMI7SpaCvisvenn9Ec3cOszwO+3FvxpM0Jl
-         LzBZ2AogpzXOlPZIHUeWK9aZyztW/FAkPyp2VvikWd82dmiTRB8elTAzouEGTioGM6KW
-         pVLg==
-X-Forwarded-Encrypted: i=1; AJvYcCXQapB1J2MdWSChCzsadCIw680PPj0CM1TwgcmMe2QUT9x+bcZeE0yyk350++b0RClCj+gbQrswmT8a@vger.kernel.org
-X-Gm-Message-State: AOJu0YyL5eOrlPOdg+tC+QM2gvR5qKVDNNvnen8y89upoxBJ2JZcETWR
-	0mweO/C5aXUhIvDECnLMRtUpQ9fnJ4thWrH7z4+lrOOFusqUKfpU7qsF5TNqzNYqSXwvFUVOPX/
-	195mLYfFK1/rrHDbOYAFZCzpM/2+e7CTLiWVM+/YId3fQUicI2oTEMGPXCv0+vzzl
-X-Gm-Gg: ASbGncs50EAQtZnB95Q44Kpk47oLTO7jt2zwtzawarmZJuzY7wvLL5ZstCrE5vztyYb
-	yIQBeBfwArXkufXFbZ12ZUpgDtMRXTV2BqUevAfpuoNEL5z+ghJr+gw39Lh5AuGRm1FkOxRwFAv
-	Mei89mBYbwhdD69TFMRx95pfZtKcGlelURkThTV4/xOKoVjJQc7M0Xh8HCJsKlSTFB5XQifH9hX
-	26Hak6+cXUI3As3noSbpSMQW4SmIvBrv4XULLqVsLtJlxh0v7D/eu+AwsofDRHAY/epc8JXAFv0
-	fpXSOA2kkwJQwljg+zullhRKelYwQx16+9tbnnoHbMYZBqXG9p6huqXDsJnLbwKW9ctHIJJpLI6
-	g8hwMrAA00zaDdgC8U9A5SmCVtg==
-X-Received: by 2002:a17:903:41cd:b0:292:39b4:e785 with SMTP id d9443c01a7336-2962ad3e9dbmr40217095ad.26.1762331650519;
-        Wed, 05 Nov 2025 00:34:10 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFFXBpcvRc2G6A4wtVDwU7gPC/Ps+J02LrDaCzleFH1Q7ZBJHgDfbVxaStU2V7miFCNWmuTLA==
-X-Received: by 2002:a17:903:41cd:b0:292:39b4:e785 with SMTP id d9443c01a7336-2962ad3e9dbmr40216745ad.26.1762331649932;
-        Wed, 05 Nov 2025 00:34:09 -0800 (PST)
-Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29601a5ff69sm52309015ad.93.2025.11.05.00.34.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Nov 2025 00:34:09 -0800 (PST)
-Date: Wed, 5 Nov 2025 14:04:02 +0530
-From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Subject: Re: [PATCH v6 01/14] dt-bindings: remoteproc: qcom,pas: Add iommus
- property
-Message-ID: <20251105083402.dvm2w7ezp7spgtz6@hu-mojha-hyd.qualcomm.com>
-References: <20251104-kvm_rproc_v6-v6-0-7017b0adc24e@oss.qualcomm.com>
- <20251104-kvm_rproc_v6-v6-1-7017b0adc24e@oss.qualcomm.com>
- <0608ca9b-083c-4929-a4e5-7d76b2590637@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F2DC222575
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 08:36:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.133.59
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762331767; cv=pass; b=kl91Z5XPYz+2LMRzFYhIbhaI7goPBjgxTFh+FAxINoGTe874zc5InTM25oT2hUlcTBDgrmW/9Zt2joVJT9jvKldIfnrXLPPN9xDeOYQXBSLdI81WHSP/VbijBZ1dSTXpWDwp2plEiQlM3M5WfVDAeEvPXvnXvJv3SltUS505BTI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762331767; c=relaxed/simple;
+	bh=97ZxDtQ0n1JfB9JvPKPCcMdcLdBgllBUufOXYGcroo8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Swfyz24FgnJLnSz32Vj2YTKPHO15IHKPSJIsapU3mnkKpfYjxjKLOCsO5Khlc+I75IVilK8MC3jm0rXBXsGymX4saEWEf6YNUCHVIqOzODrBOn7B8dCyg3XYBG7FKMrAGiQbgyoU2cXYzh/W8tHOQArUR4KcBJhocLzCdLYn9y0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=YL63JHzD; arc=pass smtp.client-ip=94.100.133.59
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+ARC-Authentication-Results: i=1; mx-gate177-hz1.hornetsecurity.com 1;
+ spf=pass reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
+ smtp.mailfrom=ew.tq-group.com smtp.helo=smtp-out01-hz1.hornetsecurity.com;
+ dmarc=pass header.from=ew.tq-group.com orig.disposition=pass
+ARC-Message-Signature: a=rsa-sha256;
+ bh=M69bDo94SwBC5FFrocC4elBa/SG32/tKazGnJ/ycIZk=; c=relaxed/relaxed;
+ d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
+ t=1762331677;
+ b=XXU/6cvqS3cVtiluc92wKGTAiqoJAjkBQW7fFI699VmshoswBl6r9fDDyalTlZF71ReC3c4W
+ JaPygAnsZJtpN4rdLNxyFMnuOJofriDO5j2FI8dItQrtmdiIDE4+jn6/llNub4HgfxgW6JjpbYs
+ pFdNqfH+2k0mT0m+BIdlC+bcL4oKsx0nCtRvtETk3dpx71sw8UQznbQhJkgDnFwBBu2GUqQEvT4
+ eRLOt1Rc1dyXyBgELKZWvqVrhQOc1rkrPTjWkIEkfv/AtDhsziGCq4g/D0DM2UrOT+QLhSwk61f
+ bBsJ2uAQqvfhWPrPM1wkpeI+JdVDr2smuKZUrL/yexUtA==
+ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
+ t=1762331677;
+ b=gHmZWyPfGnzYa4KTEGlTgNCUOFHKoBF2I/iM7/fZuZOfNOBbV8IQaJylvX+A2Vo4kDsK4Xtr
+ /HdjpnJzTGSPuOI+J8iOFDos6DJ170wtCKklxaV3zBhBxCVBr0JzbwbXQZUyUK6muzdM1wuXK9w
+ LpsxB5s4RgkvLAEB+VNd2k2GwpYEUUFHMXl3iczsoGVMIagGqw2m+e1IEsgS1TppXsXsf/xVDcv
+ JxtMCFoycXNpBxpaF1GbYOtElIuTdBlw1kUc1LaL4DFzlAqokOcOnN/l4FPfLlQjP8EvX1fxpWT
+ jaQ3ddj/TD2pvDPv+GZIPU8WdSxQIcf5dtFqXHcwhSpBQ==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay177-hz1.antispameurope.com;
+ Wed, 05 Nov 2025 09:34:37 +0100
+Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
+	(Authenticated sender: alexander.stein@ew.tq-group.com)
+	by smtp-out01-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 7D195A4118E;
+	Wed,  5 Nov 2025 09:34:28 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Tony Lindgren <tony@atomide.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Matthias Schiffer <matthias.schiffer@tq-group.com>,
+	Kevin Hilman <khilman@baylibre.com>
+Cc: linux@ew.tq-group.com,
+	linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] ARM: dts: omap: am335x-tqma335x/mba335x: Fix MicIn routing
+Date: Wed,  5 Nov 2025 09:34:20 +0100
+Message-ID: <20251105083422.1010825-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0608ca9b-083c-4929-a4e5-7d76b2590637@kernel.org>
-X-Proofpoint-GUID: SAFZmJsrwUvD0x2jvXHbDh5kzpFqQyNa
-X-Proofpoint-ORIG-GUID: SAFZmJsrwUvD0x2jvXHbDh5kzpFqQyNa
-X-Authority-Analysis: v=2.4 cv=TsrrRTXh c=1 sm=1 tr=0 ts=690b0c03 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=kj9zAlcOel0A:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=NS1sl2V-mFnim50cphAA:9 a=CjuIK1q_8ugA:10
- a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA1MDA2MiBTYWx0ZWRfXzD0j/xt2KdOt
- 8H/dGTrJVAKiXXQaNGjlz06tW263hCkV1U9fvBg03e/ZTumKgZMJcOPEeyLAB1PcEjbSDV94vf7
- UBrkhVFaEiCWf+zUKebmDUcZ3jbed1LhPpFQ4Q/2LMj/GbxF/KJznb3ffrdu3Uw/aVvunj+RLOT
- 0yUgHIO3r8oItsMlqS5gVW70neDGUWhgnD2bRMe9tlf6/jbcB0t66CQlZ1+D2K1V6X+t/RHxYfA
- YCpXHoYxDw+St9//Nd/Yxba/X4XP16hkuZlHLrhtZxmcXcJjkMyDHLW2aytjZTvgqqDCQh0waSU
- tchazOatHZMaMXfRFGE69ND9U0X1rG7K0qebKnii+cB1LnP/gHomlVu6yrwrtuForqpuFwiwLtU
- 5Jlt/Wom57CvLle9SuERlALxQ5HoVQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-05_03,2025-11-03_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 spamscore=0 phishscore=0 priorityscore=1501 lowpriorityscore=0
- bulkscore=0 impostorscore=0 adultscore=0 clxscore=1015 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511050062
+Content-Transfer-Encoding: 8bit
+X-cloud-security-sender:alexander.stein@ew.tq-group.com
+X-cloud-security-recipient:devicetree@vger.kernel.org
+X-cloud-security-crypt: load encryption module
+X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
+X-cloud-security-Mailarchivtype:outbound
+X-cloud-security-Virusscan:CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay177-hz1.antispameurope.com with 4d1dsd0w8hz3kgK6
+X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
+X-cloud-security-Digest:ee6cc2dae69e292d8830ae36f3bfe5c5
+X-cloud-security:scantime:2.208
+DKIM-Signature: a=rsa-sha256;
+ bh=M69bDo94SwBC5FFrocC4elBa/SG32/tKazGnJ/ycIZk=; c=relaxed/relaxed;
+ d=ew.tq-group.com;
+ h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
+ t=1762331677; v=1;
+ b=YL63JHzDJ8vlTbots8pC1O89BHM4YzIMjkJZXO1XQpcpcLqEoJDY8hDITv6jxD2XsXkYsq11
+ RPc2VlB8URkxNNdss5czqY1lRc1fJqEH8WxwoM1vWGdVXJXRVZZTKvdzXoKrJMZ4mdGcqxzupD5
+ fMrK+8fWG8BEsalRhe9dGK9tO79229f3D046eGnW1JYPDOLPw59SG3szaR2AREl5kyvRfLhoUQP
+ XbKok6xbCevO5QOkdCfFp+VatQUD4DxErE49s6jaWqxQSgbEwQHIrt8HKfjqTv3or1phxgHIbPZ
+ 9i5rjGmXhgZ/kKgIAFHM1w7Iwj1mAXjiL5C1l8JsZ/ucA==
 
-On Wed, Nov 05, 2025 at 08:17:14AM +0100, Krzysztof Kozlowski wrote:
-> On 04/11/2025 08:35, Mukesh Ojha wrote:
-> > Most Qualcomm platforms feature Gunyah hypervisor which handles IOMMU
-> 
-> I don't think that's true. Washn't Gunyah something new? Like since
-> SM8550? Look how many Qualcomm platforms we have in the arm/qcom.yaml
-> bindings - for sure most of them are not post SM8550.
+'Mic Jack' is connected to IN3_L and 'Mic Bias' is connected to 'Mic Jack'
+Adjust routing accordingly.
 
+Fixes: 5267fcd180b1 ("ARM: dts: omap: Add support for TQMa335x/MBa335x")
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ arch/arm/boot/dts/ti/omap/am335x-mba335x.dts | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-I should have rephrased it, thanks 
-
-"Qualcomm platform which feature QHEE based hypervisor or a module in Gunyah
- ... "
-
-> 
-> > configuration for remote processor and when it is not present, the
-> > operating system must perform these configurations instead and for that
-> > firmware stream should be presented to the operating system. Hence, add
-> > iommus property as optional property for PAS supported devices.
-> 
-> So which platforms actually need to do this?
-
-As I said above, almost every platform which features QHEE or Gunyah
-hypervisor that support PAS based remoteproc subsystem should have this.
-
-> 
-> I really do not understand why you are adding this to SDX55 and several
-> others.
-
-Firmware IOMMU context bank was always managed by QHEE hypervisor or
-Gunyah it is more of never mentioned schema in PAS schema. So, even
-SDX55 should have these as optional.
-
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-
+diff --git a/arch/arm/boot/dts/ti/omap/am335x-mba335x.dts b/arch/arm/boot/dts/ti/omap/am335x-mba335x.dts
+index e51a8a17e74c9..84dd35aeb1143 100644
+--- a/arch/arm/boot/dts/ti/omap/am335x-mba335x.dts
++++ b/arch/arm/boot/dts/ti/omap/am335x-mba335x.dts
+@@ -81,7 +81,8 @@ sound {
+ 			"Headphone Jack",	"HPR",
+ 			"Line Out",		"LOL",
+ 			"Line Out",		"LOR",
+-			"Mic Jack",		"IN3_L",
++			"IN3_L",		"Mic Jack",
++			"Mic Jack",		"Mic Bias",
+ 			"Line In",		"IN1_L",
+ 			"Line In",		"IN1_R";
+ 		simple-audio-card,format = "i2s";
 -- 
--Mukesh Ojha
+2.43.0
+
 
