@@ -1,140 +1,170 @@
-Return-Path: <devicetree+bounces-235347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1A7DC37264
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 18:42:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82A51C37297
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 18:45:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3DAC44FFBAC
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 17:29:01 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 76E9650720B
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 17:30:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 868D93385A0;
-	Wed,  5 Nov 2025 17:28:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="IVu3H3vk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B302233858E;
+	Wed,  5 Nov 2025 17:29:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C827D238D5A;
-	Wed,  5 Nov 2025 17:28:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4949336ED1;
+	Wed,  5 Nov 2025 17:29:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762363690; cv=none; b=u2fovLkmc5oxe6T3M2L/GfTAsNM+kG1zV8DunqH00CS+PkCL4KrpiSfMgVWNMbZ1KR0rGHRAzaG+Ui++Pb2Xm8wzRI3bAmU8axh2562Xvq2716N3p9snpuV8DWVPdcAVzPDtor+DJytWuUxJUIQS9j5DXqtfFvnuBkTZTZJoJ4I=
+	t=1762363742; cv=none; b=BElujoyeYZhbPSHx26UoNzHrigXbJJPZrkuMNrW+JSmPyQrzglhXUdDsis8CfCxsG0g0Ji/Sl0AU8s1kZo9qo9wsnJsRLeqPSjgfNLTwByvWtf66YfIZ1OKHOGKkz2Q1+Y/5vPxBqMBcHeRi2U4j9MskGaCt0XupdlBSm/oNos8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762363690; c=relaxed/simple;
-	bh=A9meDTqC5tJJ9U1Z7d2WJ+ZnrwYNX1upajzsMqtt0GA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tESJeHkDohGpgfdkibCa5nuYMad7uWNm6HmsUJed1cvOdJc1af5trJZ2HaEeJabqZoHfx+uUCsCrZTG6bRnVb5ZdM9VyZBTCXFiqpYg6qS1t4DtGnd+yjOZH4UKkiJcGOZaJmscRK960poJW0RR6FjqfVMIxewS2u2YvemIp3G4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=IVu3H3vk; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (82-203-161-95.bb.dnainternet.fi [82.203.161.95])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 91ED17E0;
-	Wed,  5 Nov 2025 18:26:12 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1762363573;
-	bh=A9meDTqC5tJJ9U1Z7d2WJ+ZnrwYNX1upajzsMqtt0GA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IVu3H3vkW9ImWiDmVZWXQk25mP1UZAc5e0AIFNxJj8bJ+jylfadg6y1p31lKqCBdJ
-	 DkKyukRbSJQyviLKV0480hplT/mE0jZ1CX7PSmqg13Op9pJtuOSy27QUe6d0nNeLd4
-	 /G2ArQYKft0dqux/Xct+HTMnxAkqwbdvmcWrEXa0=
-Date: Wed, 5 Nov 2025 19:28:03 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Guoniu Zhou <guoniu.zhou@oss.nxp.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Guoniu Zhou <guoniu.zhou@nxp.com>
-Subject: Re: [PATCH v3 3/3] media: nxp: imx8-isi: Add ISI support for i.MX95
-Message-ID: <20251105172803.GD6046@pendragon.ideasonboard.com>
-References: <20251105-isi_imx95-v3-0-3987533cca1c@nxp.com>
- <20251105-isi_imx95-v3-3-3987533cca1c@nxp.com>
+	s=arc-20240116; t=1762363742; c=relaxed/simple;
+	bh=k2ZM3DJwll1Max1svThLctb3ZOnNVY45eztnrBFDlek=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=I0qmxhiHC1cb+4BOuX5q3o9ILt4k185Lv1QFQ0mxnp7QYkDgPMQgqOdjabt7fSI2+/wqrF+PB6XUTpOAyb7y1iU9fIfmYeLeMensxyCiv0Q6HIAiGSkYW/2eSCbfEhki0xXk75XZyLPv3qr6SSGcK/mZXtTp+maluu0th2sYhno=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 61199169C;
+	Wed,  5 Nov 2025 09:28:52 -0800 (PST)
+Received: from [10.57.86.139] (unknown [10.57.86.139])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F09593F63F;
+	Wed,  5 Nov 2025 09:28:54 -0800 (PST)
+Message-ID: <0319bdf5-0a46-40fc-93f8-30d74cf6475a@arm.com>
+Date: Wed, 5 Nov 2025 17:28:51 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251105-isi_imx95-v3-3-3987533cca1c@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/6] of: iommu-map parsing for multi-cell IOMMU
+To: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>, will@kernel.org,
+ joro@8bytes.org, robh@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
+ konrad.dybcio@oss.qualcomm.com, bjorn.andersson@oss.qualcomm.com,
+ bod@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+ saravanak@google.com, prakash.gupta@oss.qualcomm.com,
+ vikash.garodia@oss.qualcomm.com
+Cc: iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <cover.1762235099.git.charan.kalla@oss.qualcomm.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <cover.1762235099.git.charan.kalla@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Nov 05, 2025 at 01:55:12PM +0800, Guoniu Zhou wrote:
-> From: Guoniu Zhou <guoniu.zhou@nxp.com>
+On 2025-11-04 8:50 am, Charan Teja Kalla wrote:
+> The iommu-map property has been defined for the PCIe usecase and has
+> been hardcoded to assume single cell for IOMMU specification, ignoring
+> the #iommu-cells completely. Since the initial definition the iommu-maps
+> property has been reused for other usecases and we can no longer assume
+> that the single IOMMU cell properly describes the necessary IOMMU
+> streams. Expand the iommu-map to take #iommu-cells into account, while
+> keeping the compatibility with the existing DTs, which assume single
+> argument.
 > 
-> The ISI module on i.MX95 supports up to eight channels and four link
-> sources to obtain the image data for processing in its pipelines. It
-> can process up to eight image sources at the same time.
+> Unlike single iommu-cell, it is complex to establish a linear relation
+> between input 'id' and output specifier for multi iommu-cells. To handle
+> such cases, rely on arch-specific drivers called through
+> of_iommu_xlate() from of_iommu layer, aswell it is expected the 'len'
+> passed is always 1. In the of_iommu layer, the below relation is
+> established before calling into vendor specific driver:
 > 
-> Add ISI basic functions support for i.MX95.
+> a) For platform devices, 'rid' defined in the iommu-map tuple indicates
+> a function, through a bit position, which is compared against passed
+> input 'id' that represents a bitmap of functions represented by the
+> device.
 > 
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-I will take this series in my tree and include it in my next pull
-request.
-
-> ---
->  drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c | 12 ++++++++++++
->  drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h |  1 +
->  2 files changed, 13 insertions(+)
+> b) For others, 'rid' is compared against the input 'id' as an integer
+> value.
 > 
-> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> index adc8d9960bf0df87d4e475661a3439beaf5ce9f6..cf609320f19e91c9c0f57634fabd62e0ff65123b 100644
-> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> @@ -337,6 +337,17 @@ static const struct mxc_isi_plat_data mxc_imx93_data = {
->  	.has_36bit_dma		= false,
->  };
->  
-> +static const struct mxc_isi_plat_data mxc_imx95_data = {
-> +	.model			= MXC_ISI_IMX95,
-> +	.num_ports		= 4,
-> +	.num_channels		= 8,
-> +	.reg_offset		= 0x10000,
-> +	.ier_reg		= &mxc_imx8_isi_ier_v2,
-> +	.set_thd		= &mxc_imx8_isi_thd_v1,
-> +	.buf_active_reverse	= true,
-> +	.has_36bit_dma		= true,
-> +};
-> +
->  static const struct mxc_isi_plat_data mxc_imx8qm_data = {
->  	.model			= MXC_ISI_IMX8QM,
->  	.num_ports		= 5,
-> @@ -548,6 +559,7 @@ static const struct of_device_id mxc_isi_of_match[] = {
->  	{ .compatible = "fsl,imx8qxp-isi", .data = &mxc_imx8qxp_data },
->  	{ .compatible = "fsl,imx8ulp-isi", .data = &mxc_imx8ulp_data },
->  	{ .compatible = "fsl,imx93-isi", .data = &mxc_imx93_data },
-> +	{ .compatible = "fsl,imx95-isi", .data = &mxc_imx95_data },
->  	{ /* sentinel */ },
->  };
->  MODULE_DEVICE_TABLE(of, mxc_isi_of_match);
-> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> index e84af5127e4e7938e55e31b7063bee5e2cd4cb11..e52c7fc334b0f5624ade600914c275e7539290b4 100644
-> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> @@ -161,6 +161,7 @@ enum model {
->  	MXC_ISI_IMX8QXP,
->  	MXC_ISI_IMX8ULP,
->  	MXC_ISI_IMX93,
-> +	MXC_ISI_IMX95,
->  };
->  
->  struct mxc_isi_plat_data {
+> Thus the final representation when #iommu-cells=n is going to be,
+> iommu-map = <rid/functionid IOMMU_phandle cell0 .. celln len>;, where
+> len = 1.
+> 
+> The RFC for this patch set is found at [2].
+> 
+> The other motivation for this patchset is the below usecase.
+> USECASE [1]:
+> ------------
+> Video IP, 32bit, have 2 hardware sub blocks(or can be called as
+> functions) called as pixel and nonpixel blocks, that does decode and
+> encode of the video stream. These logical blocks are configured to
+> generate different stream IDs.
+> 
+> With the classical approach of representing all sids with iommus= end up
+> in using a single translation context limited to the 4GB. There are
+> video usecases which needs larger IOVA space, like higher concurrent
+> video sessions(eg: 32 session and 192MB per session) where 4GB of IOVA
+> is not sufficient.
+> 
+> For this case, each functionality is represented in the firmware(device
+> tree) by the 'rid' field of the iommu-map property and the video driver
+> creates sub platform devices for each of this functionality and call
+> into IOMMU configuration. Each rid(function id) in the dt property
+> indicates the bit that can be associated by the driver passed input id.
+> 
+> Example:
+> iommu {
+> 	#iommu-cells = 2;
+> };
+> 
+> video-codec@foobar {
+> 	compatible = "qcom,video";
+> 	iommus = <&apps_smmu 0x1234 0xca>;
+> 	iommu-map= <0x1 &iommu 0x1940 0x0 0x1>,
+>                 <0x1 &iommu 0x1941 0x0 0x1>,
+>                 <0x2 &iommu 0x1942 0x0 0x1>,
+>                 <0x4 &iommu 0x1943 0x0 0x1>,
+>                 <0x4 &iommu 0x1944 0x0 0x1>;
+> };
+> 
+> video-driver:
+> #define PIXEL_FUNC	   (1)
+> #define NON_PIXEL_FUNC	   (2)
+> #define SECURE_FUNC	   (4)
+> 
+> case1: All these functionalities requires individual contexts.
+> Create 3 subdevices for each of this function and call
+> of_dma_configure_id(..,id), id = 0x1, 0x2, 0x4.
+> 
+> Case2: Secure and non-secure functionalities require individual
+> contexts. Create 2 subdevices and call of_dma_configure_id(..,id), id =
+> 0x3(bitmap of pixel and non-pixel), 0x4 (secure).
+> 
+> Credits: to Dmitry for thorough discussions on the RFC patch and major
+> help in getting the consenus on this approach, to Konrad & Bjorn for
+> offline discussions and reviews, to Robin for his inputs on IOMMU front,
+> to Bod, Rob and Krzysztof for all valuable inputs.
+> 
+> [1] https://lore.kernel.org/all/20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com/
+> [2] https://lore.kernel.org/all/20250928171718.436440-1-charan.kalla@oss.qualcomm.com/#r
+> 
+> Charan Teja Kalla (6):
+>    of: create a wrapper for of_map_id()
+>    of: introduce wrapper function to query the cell count
+>    of: parse #<name>-cells property to get the cell count
+>    of: detect and handle legacy iommu-map parsing
+>    of: add infra to parse iommu-map per IOMMU cell count
+>    of: use correct iommu-map parsing logic from of_iommu layer
+> 
+>   drivers/iommu/of_iommu.c |  59 +++++++--
+>   drivers/of/base.c        | 269 +++++++++++++++++++++++++++++++++++----
+>   include/linux/of.h       |  19 +++
+>   3 files changed, 314 insertions(+), 33 deletions(-)
 
--- 
-Regards,
+Hmm, I did actually have a quick go at this the other week too, and 
+while I though it was a bit clunky, it was still significantly simpler 
+than this seems to be...
 
-Laurent Pinchart
+FWIW: https://gitlab.arm.com/linux-arm/linux-rm/-/commits/iommu-map - I 
+can give it some polish and testing to post properly if you like.
+
+Thanks,
+Robin.
 
