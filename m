@@ -1,117 +1,267 @@
-Return-Path: <devicetree+bounces-235359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5E5BC3759E
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 19:37:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1E91C375C2
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 19:41:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 607224F19D7
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 18:36:42 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1B3124E3AAF
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 18:41:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 255D32FD7BE;
-	Wed,  5 Nov 2025 18:33:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nMYmejB+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A9102848A7;
+	Wed,  5 Nov 2025 18:40:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E60D82749DF;
-	Wed,  5 Nov 2025 18:33:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0DED2475E3;
+	Wed,  5 Nov 2025 18:40:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762367637; cv=none; b=E65DdY3gDahmITL1XXt40MFVQI2L55um21QVNz1GGp7kqrpC8iTu4VEuxlkWKrouDATY60W1zJEORpph4Ov9KNujh91JrNB9szCFZ0u3ujYoVEbw9A9b2L2LJ9o8oKYPReXvqHRmRo32c0+GUFwr4pTbH1XOiCvzbH4ywu+Mvso=
+	t=1762368057; cv=none; b=djX5qrZMxrZOprWpHGZEXGqgTJdvrXE9szp83bsbSZduEBLbdtQXYxsPDzYhhf4TIGJKKwqsOMKcy08BVlycuLK3eN9mz5ZbvhEy9wWjyVfbi8WqdvPOdB/UiXPn9DEv/FyEHV4m2cZCNstWzOMLY2l1OuDoRtU0qL8UTxJOgW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762367637; c=relaxed/simple;
-	bh=VqJ/IL8uu6HWDCb5Th4A/p6/Q7MW/MOdOkxfXjuZ508=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HuA6Vd6jZNqfR5y6M6826hhe0vRBM4qx802V09cY1kB3+tKicoY0nyJDKhtRm13wRbnJBh2lDkeIFSNzzYyQvq5Rbc0RAbqM8e9yY5vBeb0tetkar/YQeEPTbGfBH6E3aujXKjCZpMg6YtBMIhZENgCvD4Ra3leQUKAMhvCWraE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nMYmejB+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D94CCC4CEF5;
-	Wed,  5 Nov 2025 18:33:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762367636;
-	bh=VqJ/IL8uu6HWDCb5Th4A/p6/Q7MW/MOdOkxfXjuZ508=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nMYmejB+OHlG15Yqp+E5CyvGnWcmKcmGDM6ePgcearwJ2eVrXQmfnJfwsQk24Qk17
-	 w3To2pmXOBfxST4oYDr25BgcQrf7x18OjilkteWtk7dnrwFxZxRMrOoKpI4YwJ2Cpm
-	 aVt3YTWrJhTN/XOqq9Wcnes0yAYam3vth8FT4Q4lZX9j6uLRQ7jyGwo9kKZq7rVubF
-	 Kx9ciUb2S4O3yKINr1yKjjRcAJfgSh3G4LamjzCa8JM/3GHd2NJkJxNXoihN5SVOOA
-	 Wsvcw7yG9TJL4lwjVr7kRR1i88Ihxvaqvz9jyvGS4FReOVzTsidb1aPJZTsm2/+0JH
-	 pPcwCKxoVW63Q==
-Date: Wed, 5 Nov 2025 18:33:51 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Ovidiu Panait <ovidiu.panait.rb@renesas.com>,
-	claudiu.beznea.uj@bp.renesas.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be,
-	magnus.damm@gmail.com, p.zabel@pengutronix.de,
-	linux-rtc@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: rtc: renesas,rz-rtca3: Add RZ/V2H
- support
-Message-ID: <20251105-gradually-commode-0b5269ec0aa5@spud>
-References: <20251103121848.6539-1-ovidiu.panait.rb@renesas.com>
- <20251103121848.6539-2-ovidiu.panait.rb@renesas.com>
- <20251104-magnitude-deodorant-be607e3ff4be@spud>
- <2025110420204948103c2f@mail.local>
+	s=arc-20240116; t=1762368057; c=relaxed/simple;
+	bh=nBjAQk/r/QCsdzkfYv155Dqw/UgNpwwufGrLsdVHe/E=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=diPJ6ktkU/iSCNHmRG75cVL6yBMZl74+7OfgDAGgDnbzDlk/nXiyuJ526rUxa1HKpnAWScSWFBF8j6mDgxg5qAttp9lLOzbtV1nLmBMNyBeo6qMSBIEhg7k1f7ztSdIzo8WUfVG3ndqkvH8YBEXd9VnfOlV1DmBTuD2sfGTR/M0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTPS id 4d1vJt4YJ7zJ4683;
+	Thu,  6 Nov 2025 02:40:30 +0800 (CST)
+Received: from dubpeml100005.china.huawei.com (unknown [7.214.146.113])
+	by mail.maildlp.com (Postfix) with ESMTPS id 2B8AB140370;
+	Thu,  6 Nov 2025 02:40:52 +0800 (CST)
+Received: from localhost (10.203.177.15) by dubpeml100005.china.huawei.com
+ (7.214.146.113) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Wed, 5 Nov
+ 2025 18:40:51 +0000
+Date: Wed, 5 Nov 2025 18:40:50 +0000
+From: Jonathan Cameron <jonathan.cameron@huawei.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+CC: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	<kernel@pengutronix.de>, <linux-kernel@vger.kernel.org>,
+	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>, Andy Shevchenko
+	<andy.shevchenko@gmail.com>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Subject: Re: [PATCH v1 1/2] bindings: iio: adc: Add bindings for TI
+ ADS131M0x ADCs
+Message-ID: <20251105184050.000016f0@huawei.com>
+In-Reply-To: <20251105143814.1807444-2-o.rempel@pengutronix.de>
+References: <20251105143814.1807444-1-o.rempel@pengutronix.de>
+	<20251105143814.1807444-2-o.rempel@pengutronix.de>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wjGAGSw+cWS2iRHG"
-Content-Disposition: inline
-In-Reply-To: <2025110420204948103c2f@mail.local>
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml500011.china.huawei.com (7.191.174.215) To
+ dubpeml100005.china.huawei.com (7.214.146.113)
+
+On Wed, 5 Nov 2025 15:38:13 +0100
+Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+
+> Add device tree bindings documentation for the Texas Instruments
+> ADS131M0x analog-to-digital converters. This family includes the ADS131M02,
+> ADS131M03, ADS131M04, ADS131M06, and ADS131M08 variants.
+Hi Olkesij,
+
+Add a clear statement of difference between them that means we can't
+use a single fallback compatible. You kind of state it in the binding
+(number of channels) but having it here explicitly makes for easier review.
 
 
---wjGAGSw+cWS2iRHG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+>  .../bindings/iio/adc/ti,ads131m08.yaml        | 162 ++++++++++++++++++
+>  1 file changed, 162 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads131m08.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads131m08.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads131m08.yaml
+> new file mode 100644
+> index 000000000000..193ac84c41cd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads131m08.yaml
+> @@ -0,0 +1,162 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/ti,ads131m08.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments ADS131M0x 2-, 3-, 4-, 6- and 8-Channel ADCs
+> +
+> +maintainers:
+> +  - Oleksij Rempel <o.rempel@pengutronix.de>
+> +
+> +description: |
+> +  The ADS131M0x are a family of multichannel, simultaneous sampling,
+> +  24-bit, delta-sigma, analog-to-digital converters (ADCs) with a
+> +  built-in programmable gain amplifier (PGA) and internal reference.
+> +  Communication with the ADC chip is via SPI.
+> +
+> +  Datasheets:
+> +  - ADS131M08: https://www.ti.com/lit/ds/symlink/ads131m08.pdf
+> +  - ADS131M06: https://www.ti.com/lit/ds/symlink/ads131m06.pdf
+> +  - ADS131M04: https://www.ti.com/lit/ds/symlink/ads131m04.pdf
+> +  - ADS131M03: https://www.ti.com/lit/ds/symlink/ads131m03.pdf
+> +  - ADS131M02: https://www.ti.com/lit/ds/symlink/ads131m02.pdf
+Trivial but seems a little odd to have these in reverse order of the compatibles.
 
-On Tue, Nov 04, 2025 at 09:20:49PM +0100, Alexandre Belloni wrote:
-> On 04/11/2025 17:28:27+0000, Conor Dooley wrote:
-> > On Mon, Nov 03, 2025 at 12:18:45PM +0000, Ovidiu Panait wrote:
-> > > The Renesas RZ/V2H RTC IP is based on the same RTCA3 IP as RZ/G3S
-> > > (r9a08g045), with the following differences:
-> > > - It lacks the time capture functionality
-> > > - The maximum supported periodic interrupt frequency is 128Hz instead
-> > >   of 256Hz
-> > > - It requires two reset lines instead of one
-> > >=20
-> > > Add new compatible string "renesas,r9a09g057-rtca3" for RZ/V2H and up=
-date
-> > > the binding accordingly:
-> > > - Allow "resets" to contain one or two entries depending on the SoC.
-> > > - Add "reset-names" property, but make it required only for RZ/V2H.
-> > >=20
-> > > Signed-off-by: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
-> > > +        reset-names:
-> > > +          items:
-> > > +            - const: rtc
-> > > +            - const: rtc_rtest
-> >=20
-> > If you respin, just make this second one rtest.
->=20
-> I already applied it as it had your ack but I can still change it
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,ads131m02
+> +      - ti,ads131m03
+> +      - ti,ads131m04
+> +      - ti,ads131m06
+> +      - ti,ads131m08
+> +
+> +  reg:
+> +    description: SPI chip select number.
+> +
+> +  clocks:
+> +    description:
+> +      Phandle to the external clock source required by the ADC's CLKIN pin.
+> +      The datasheet recommends specific frequencies based on the desired power
+> +      mode (e.g., 8.192 MHz for High-Resolution mode).
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
 
-It's fine.
+There should be some supplies here.
+Looks like REFIN is optional but AVDD and DVDD are required.
 
---wjGAGSw+cWS2iRHG
-Content-Type: application/pgp-signature; name="signature.asc"
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +patternProperties:
+> +  "^channel@([0-7])$":
+> +    type: object
+> +    $ref: /schemas/iio/adc/adc.yaml#
+> +    description: |
 
------BEGIN PGP SIGNATURE-----
+No need for | on this one as I don't think formatting needs to be controlled.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQuYiwAKCRB4tDGHoIJi
-0pV5AQCMb1whhgz4XaSwKDaQRvxE4X1649f5YLbH3+at2WuUkQD/SvrJ/V092Ypk
-DdpJUfwHoVXCJjEgMy3WdDZ5BXNHbAQ=
-=6z5D
------END PGP SIGNATURE-----
+> +      Properties for a single ADC channel. The maximum valid channel number
+> +      depends on the specific compatible string used (e.g., 0-1 for ads131m02,
+> +      0-7 for ads131m08).
+> +
+> +    properties:
+> +      reg:
+> +        description: The channel index (0-7).
+> +        minimum: 0
+> +        maximum: 7 # Max channels on ADS131M08
+> +
+> +      label: true
+> +
+> +    required:
+> +      - reg
+> +
+> +    unevaluatedProperties: false
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: ti,ads131m02
+> +    then:
+> +      patternProperties:
+> +        "^channel@[0-7]$":
+> +          properties:
+> +            reg:
+> +              maximum: 1
+> +        "^channel@([2-7])$": false
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: ti,ads131m03
+> +    then:
+> +      patternProperties:
+> +        "^channel@[0-7]$":
+> +          properties:
+> +            reg:
+> +              maximum: 2
+> +        "^channel@([3-7])$": false
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: ti,ads131m04
+> +    then:
+> +      patternProperties:
+> +        "^channel@[0-7]$":
+> +          properties:
+> +            reg:
+> +              maximum: 3
+> +        "^channel@([4-7])$": false
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: ti,ads131m06
+> +    then:
+> +      patternProperties:
+> +        "^channel@[0-7]$":
+> +          properties:
+> +            reg:
+> +              maximum: 5
+> +        "^channel@([6-7])$": false
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/stm32mp1-clks.h>
+> +
+> +    spi1 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        adc@0 {
+> +            compatible = "ti,ads131m02";
+> +            reg = <0>;
+> +            spi-max-frequency = <8000000>;
+> +
+> +            clocks = <&rcc CK_MCO2>;
+> +
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            channel@0 {
+> +                reg = <0>;
+> +                label = "input_voltage";
+> +            };
+> +
+> +            channel@1 {
+> +                reg = <1>;
+> +                label = "input_current";
+> +            };
+> +        };
+> +    };
 
---wjGAGSw+cWS2iRHG--
 
