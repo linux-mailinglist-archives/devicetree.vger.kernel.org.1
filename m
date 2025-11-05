@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-235044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FB6CC34148
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 07:45:24 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C5C4C34151
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 07:47:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C25CC18C14CB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 06:45:48 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CD2FB34B1EC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 06:47:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AD5E2C027A;
-	Wed,  5 Nov 2025 06:45:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45BA428695;
+	Wed,  5 Nov 2025 06:46:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FOYCYXvf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="at86bZVv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75C6F26059D
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 06:45:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20B022C0F79
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 06:46:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762325120; cv=none; b=uu7Alz9KAaEhh3kdtjtt1UFQeWi/+njgFNzz+CzGFxIKsNoNqURxeZ947DP4CijsYi7GlWQUCT7Wn9QKxSZLczBL3vCld/DhjLS4HV7Yn4Bh3iUu36bGHSlxzHfmZJ0o6/Hj3hZ+jfY54wcOnk65Mc3iJNTIntkctHbnUKhSIko=
+	t=1762325218; cv=none; b=W0Bn+QGbCSPx5gXw4rBOmjiXeyCGLMVQWX0AAt/+7wIj+ez2SGSUwo6c7aB5uhqppSWq83I7zTwQi9h8kSzFMD+X6dTepBJbhVx7ZQebuVsKGSHhkKEVh74zHBylw5m9tyYNfqMwbPOeM8YQ1UDU0HT/HtrhIQt14Zi4OV8r8wI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762325120; c=relaxed/simple;
-	bh=3GmbPll0R5WKwoCFjF708QexyRmGRrLyMVvhZJK0Vbs=;
+	s=arc-20240116; t=1762325218; c=relaxed/simple;
+	bh=nz95uy5FwL7nRobK5o5iCitFmuQhOEFIhIPYRykeazw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ajMj+28woEH/76LdUc6Rr9R8YX4ejzMKNPdJc7Xs2PRwIvUtCmy4+xg7NOvsMvqlZqmx0ZTivyxUzVyM0pgzhPisgqSaxr5VyXCtt5MMhXvmL2ApBC7Ui2eawGlFc6JxteePoQxnS9gheYrTxh5G7nVg7Sg4VnJ2fh+YGl0U7iE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FOYCYXvf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EAFCC4CEFB;
-	Wed,  5 Nov 2025 06:45:16 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=CrrGq1oJIILjPuJoOSxjCbCulKSH+v7wFwm+J4kfWbsgUYAQrywUKo7dHWDRv8FYT9I5ah+I1vSn6H0NSX7fTFyCxDD2i78K1GxjCekqKn86ZggWcd5qEGkgmiicrnFBPwvXz1vQj9exQJ0NY9Wh9n7Rad/AREL8x1AiW7ERyqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=at86bZVv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 168D7C4CEF8;
+	Wed,  5 Nov 2025 06:46:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762325120;
-	bh=3GmbPll0R5WKwoCFjF708QexyRmGRrLyMVvhZJK0Vbs=;
+	s=k20201202; t=1762325217;
+	bh=nz95uy5FwL7nRobK5o5iCitFmuQhOEFIhIPYRykeazw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FOYCYXvfMlydPL341JVlapOcZywoyQ4ayt0SUiaHkek2B4NgT1P1hxbvVAyF4MLCn
-	 04kwoOKjzcyCIf1tn9v7Q7WJ3AeQoJggvzCS/xukAa+wGFoOQqKsnHymtHKGVRwIlV
-	 bOn1mgWxXqJjKHoUuCj3E1ChxMa3ImrIUbOi3NlfwauDdSfJyfr/VwzXwX9uIO9JBC
-	 Ax5MEu1+G2rHnWmJuMkTW0df6yh3QSD32W5YDBg3yKxIs8edw5j3KceGLQcq+udWOP
-	 vE1sXL0IhazQh9KQPmsBSoC3XOJDq5kMAyg2MXBJUrS0dLmp5TfNBAoQ4INLKv4Y+B
-	 LoR8mvN4txkFA==
-Message-ID: <f2f0e888-253a-4b4c-b7f7-da35e7fa5532@kernel.org>
-Date: Wed, 5 Nov 2025 07:45:14 +0100
+	b=at86bZVv8u/i2XPzvdc38wb9U0hTT00J/kr7yg2IhOYiuDgSL5h5Z9hdynusN5Eo7
+	 /KNvE3M0Qrh6GDn3zAdfOXIOvEaVPlIKEfZ4n2BZDLSWfP7/ZOH21tzmZldi85TCcg
+	 jJc4TgJWEPpnKbRYGMz5NZg+on/WeQqAoeX6wQs59yfwRhGl/+VIc5G1Ip+1HUqCxB
+	 jLh5cJYXFSYq5NZVsZnawe7MRt5QK7XVandCEyPwYr0t/VLrJ1vqrIsO093giQ5OIg
+	 K4Oy8Y03HBtOjL+sehBPxsNe7SUrwTkC3KPszk7E2oXgzwbjMgdPMQldmDGSOzmwV6
+	 oiGN2wmaYuZNw==
+Message-ID: <d84d8f14-bc97-46c2-ad72-82d530af2b75@kernel.org>
+Date: Wed, 5 Nov 2025 07:46:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/3] arm64: dts: rockchip: Add Radxa CM5
+Subject: Re: [PATCH v6 3/3] arm64: dts: rockchip: Add Radxa CM5 IO Board
 To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
 Cc: joseph.kogut@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
  conor+dt@kernel.org, jonas@kwiboo.se, kever.yang@rock-chips.com,
@@ -59,7 +59,7 @@ Cc: joseph.kogut@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
  jbx6244@gmail.com, devicetree@vger.kernel.org,
  linux-rockchip@lists.infradead.org
 References: <20251105051335.17652-1-naoki@radxa.com>
- <20251105051335.17652-3-naoki@radxa.com>
+ <20251105051335.17652-4-naoki@radxa.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,31 +105,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251105051335.17652-3-naoki@radxa.com>
+In-Reply-To: <20251105051335.17652-4-naoki@radxa.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 05/11/2025 06:13, FUKAUMI Naoki wrote:
-> The Radxa CM5 is a high performance embedded SoM based on the Rockchip
-> RK3588S2 SoC.
+> The Radxa CM5 IO Board is an application board for the Radxa CM5.
 > 
 > Specification:
-> - Quad-core Cortex-A76 and quad-core Cortex-A55 CPU
-> - Mali-G610 MP4 GPU
-> - 6TOPS NPU
-> - Up to 32GB LPDDR4x RAM
-> - Up to 128GB on-board eMMC
-> - On-board Gigabit Ethernet PHY
-> - RK806-1 PMIC
+> - 1x HDMI TX
+> - 2x MIPI DSI
+> - 2x MIPI CSI
+> - 1x USB 3.0 Type-A port
+> - 1x USB 3.0 Type-C port (supports DisplayPort Alt mode)
+> - 2x USB 2.0 Type-A ports
+> - 1x Gigabit Ethernet (supports PoE with add-on PoE HAT)
+> - 1x microSD card slot
+> - 1x Fan header
+> - 1x M.2 E Key slot
+> - 1x Headphone jack with microphone input
+> - 40-pin GPIO header
+> - RTC and battery holder
+> - 12V 5525 DC jack
 > 
-> Link: https://dl.radxa.com/cm5/v2210/radxa_cm5_v2210_schematic.pdf
+> Link: https://dl.radxa.com/cm5/io_board_v2200/radxa_cm5_io_board_v2200_schematic.pdf
 > Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
 > Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
 
 
-NAK, wrong DCO chain and not attributed true authorship.
-
-Stop taking other people's work. This was already posted.
+Wrong here as well - incorrect author. You cannot just take other
+people's work like that!
 
 Best regards,
 Krzysztof
