@@ -1,174 +1,154 @@
-Return-Path: <devicetree+bounces-235364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CF2BC378AC
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 20:49:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B99E1C379CF
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 21:03:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 820843B4FEA
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 19:49:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D4383BDB7F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 19:59:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6051E343210;
-	Wed,  5 Nov 2025 19:49:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 386503446D1;
+	Wed,  5 Nov 2025 19:59:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XiJxh+nS"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="xTYs1Z8j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90933342CB6
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 19:49:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBD70320CD1;
+	Wed,  5 Nov 2025 19:59:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762372191; cv=none; b=cuKynpd/ts+RsB5/Kdj4iSKXTbBX4W5qZVBs3Fb3+Ropmouo/WSvLMtSYM+06fVN0sBgXwizf72xzTGcH3HS/uhNl3QWI2qWUWCwM+d2a0ovAf4yvCGasETlTBk5PcRKpn2pC2VI+xCVKo+r6/f+ddnlFZxvkQNi5zhCXkHfEfc=
+	t=1762372764; cv=none; b=B4FSbjv3Oe48SthJHKUKZhTlYRXgjAdCzbSom9Zkjj6dq+Fve0oYD27i+h1VAzAZE3IyYgDezNFgl7BpiiXiIyYfi6KTbgUoxPE8VLv/lzUMrsD4qChHc4f3cqaGnxsoMAAEVHj51/iN00plHMxtgB9UdHdTsWRkUQjkAOkemYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762372191; c=relaxed/simple;
-	bh=Qn3ey+tGjMWZVlyisbgTj7dDw5cJIWX584klbJqpra4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G8NeKQckuDC+UvLj9y0zWGcjadWtfqRrLF/PDbrvbCQ3ln4YnRFPh0Mwixux3AytfLKwflli8KKfn4Gw9z84+0iOPO/OYNM0WmJu4UZqmMbFb6OZm6q9la/ikLshxJksJcZfBlskMr3CmtYm80Qn8vCxLYcuK/1dFHZeU4Lt5UI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XiJxh+nS; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-477632d45c9so166875e9.2
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 11:49:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762372188; x=1762976988; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=MvyrGUvJyh5x1Y73UqVq7sR5SMe0YxpMsmxupXaTnGc=;
-        b=XiJxh+nSqu8d1jhHi1XHlS9SFg1615KDsML8SPKMP+I7CJo+bIFPuLLF5fR/bHWeOF
-         qrLaRG1CfGqdUqiNGwGyyFh9X6NdrFsuDjmtq20apF7HvEob8zpLKB7dO0+wG9mRaNUl
-         9kfUzJQL4it/zRZ3GWH7X0TSI7m2ZtHHZZR0KqL4YE5VJ9yBIvg1wnwWx00Xn9dmPwWk
-         CY1w5LFXxegycUBwky/v0kALz+VK5VLFlT3J0j01jNHdYH0Jh7oRjKr2Yy6Z+TO7bMOy
-         /ujr9YURgsrxSkEuqedfYHwzH3BjFeHcpdGcGqpyXG8iutwB8kMp8n3I/uoDtkbLF/Uw
-         raHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762372188; x=1762976988;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MvyrGUvJyh5x1Y73UqVq7sR5SMe0YxpMsmxupXaTnGc=;
-        b=Cc3YjeCJt2GfVtVyE3T85KYB2Wx+xWamyEl2yKYX75JXG6wcDdEvvT6MJXSd83tg99
-         LsXsfFwqX8gaG8uxHuNOFNNpy+bGS4Agqu1fUSsCHfdnk3JtWtq9gTTx++x+1Oo4tiAz
-         CpMmKWOrCd9KCnLF0nk9KffPAn7vn8DyZfWra0VleH1RKLAiIEECKnKOad4vkO0anr/e
-         8YAJ2Do0gM/pVhmcj2NwOi2aXiKbeHpFnhokgfN1C9i3d2EPEbx7R0WJKt3T25Mi9XE9
-         GJgfh/ZliIIBMDKPO0/tRjJzSstt6jNMU1vN1EK0nvsVnHpMVEtS93piySaoli2AXtp9
-         sG2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUq6neCtbpdl7aa4fa0qVup4vBGFF4Pexm3YvphwRVdF4lFaZZ7eLwwxM8tOcpco6DVn5XW+azTbo5+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyn+7Vp7QAuplADFDlBgtyLZEc/G9WqoXtnWBKwL2gbFBSKvJeK
-	dHmovgzNtaMjHt2shqcpXNgw8b+tM+QnvhXcnt6KIlhtbFMgmU3iz6drBTvZsg==
-X-Gm-Gg: ASbGncuCxsf9xrtYGTM/V4yN0Pbr1a6dTKgqG/wqiLwpTXLDkiLS3ZWUqMSgAHSUqFA
-	8mG+e3NfXqKZ7VgZxgSKSPQwG0H7ktJ1HG4SGkXBT/xX/YQG40PE8FCF1rWbuZd4rgAu51h50b5
-	GjjP02/DzlqpsXS/H711hKYE8qYD7ithQoaXssKaq4BXZfbP39+Zha2i/HYZ+GoBQl6CxIJyKXp
-	Tt0PCM/EiPoWek7lQqikDEi/aB9eA11AFjAtYbQ51lY7DhgnvOi7G4f2KIx5+hPYMZc6pQMasbQ
-	xd76Ezd5R5kGTZmHXUeb2xktUX2IAI9n8Pet2xslKklqcRZH/+EXkauuyPKgZNN54NaU3e8DzpJ
-	qGi1Q2PFe0FB6PV+9cfJvl831LrgxvQHifL5pT0Pinm0v6hrJNHwGWjFrhh9RjF/hgs9c+4g33w
-	TmltDBD6KseYkf7DREFo3yjKQmUDHAIgaQHcP22jsGVE2q+pFmUo/dvFLR28YtCzM=
-X-Google-Smtp-Source: AGHT+IE/wSOJh964hsRl51P6BCrH1urX7lyRtls65YxyHli+/HhkrEEnHnqcio2fY8WWADS8haI6QQ==
-X-Received: by 2002:a05:600c:46ce:b0:475:dbb5:23a2 with SMTP id 5b1f17b1804b1-4775cdc8e4fmr34171475e9.16.1762372187615;
-        Wed, 05 Nov 2025 11:49:47 -0800 (PST)
-Received: from orome (p200300e41f274600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f27:4600:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477558dd04bsm52402155e9.1.2025.11.05.11.49.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Nov 2025 11:49:46 -0800 (PST)
-Date: Wed, 5 Nov 2025 20:49:44 +0100
-From: Thierry Reding <thierry.reding@gmail.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, Jon Hunter <jonathanh@nvidia.com>, 
-	devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
-	linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: memory: tegra: Document DBB clock for
- Tegra264
-Message-ID: <i37vfuritqx5vs2wds4euomyt27dkcmzvvosphxd633aq7sis4@bsjn5yv4pq45>
-References: <20251105160513.2638408-1-thierry.reding@gmail.com>
- <20251105160513.2638408-2-thierry.reding@gmail.com>
- <176236389129.1455984.6215917313928055462.robh@kernel.org>
+	s=arc-20240116; t=1762372764; c=relaxed/simple;
+	bh=hhTWL807dgjqF+hcdbkl/5iAPXjQhCBQIpD0yAJ1Jr4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dk5M7GMcg7UAJ9+IdMc+gfbOfMQkDVrfNOBkViP20upk1vSSaRCVi8bKT+GzU/gASDOdsaxG2fWcQJpvUzxeKpD/DatHOGzV0LZCWNQ7Tgtd0XMC8Z8PY/F0Gtlx/rrmjeaiEw6KR+efpXzXIGO269vAvMwXVX/qnf+Z+QahFsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=xTYs1Z8j; arc=none smtp.client-ip=134.0.28.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbulk.masterlogin.de (unknown [192.168.10.85])
+	by mxout4.routing.net (Postfix) with ESMTP id C59E1100877;
+	Wed,  5 Nov 2025 19:50:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=routing; t=1762372246;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=g2Ea0DWfLKHagtb+f2EQs/oSvtV0KXKnH9D3lP+qtqk=;
+	b=xTYs1Z8jGMhlYKjYZQ2WnHMLz+Tmqzj0EF8hZELlrO8PIzmRT04cW9lps9/jyWKMEPrJDY
+	phLmJmthaXRFro8YH9nDbUxRqpxcAwDW5zfOVJYzmy9Zo8tL+iY3EeerVw5hO3sBP2/u2k
+	9tazsIXtvHaDyv3S1vaFEyxvbP1+928=
+Received: from frank-u24.. (fttx-pool-194.15.81.38.bambit.de [194.15.81.38])
+	by mxbulk.masterlogin.de (Postfix) with ESMTPSA id 8E2581226DD;
+	Wed,  5 Nov 2025 19:50:45 +0000 (UTC)
+From: Frank Wunderlich <linux@fw-web.de>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v2 0/5] Add Bananapi R4 Pro support
+Date: Wed,  5 Nov 2025 20:50:00 +0100
+Message-ID: <20251105195007.199229-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ich3dhap6fs3b6m2"
-Content-Disposition: inline
-In-Reply-To: <176236389129.1455984.6215917313928055462.robh@kernel.org>
+Content-Transfer-Encoding: 8bit
 
+From: Frank Wunderlich <frank-w@public-files.de>
 
---ich3dhap6fs3b6m2
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 1/3] dt-bindings: memory: tegra: Document DBB clock for
- Tegra264
-MIME-Version: 1.0
+BananaPi R4 Pro is a MT7988A based board which exists in 2 different
+hardware versions:
 
-On Wed, Nov 05, 2025 at 11:31:31AM -0600, Rob Herring (Arm) wrote:
->=20
-> On Wed, 05 Nov 2025 17:05:11 +0100, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > Accesses to external memory are routed through the data backbone (DBB)
-> > on Tegra264. A separate clock feeds this path and needs to be enabled
-> > whenever an IP block makes an access to external memory. The external
-> > memory controller driver is the best place to control this clock since
-> > it knows how many devices are actively accessing memory.
-> >=20
-> > Document the presence of this clock on Tegra264 only.
-> >=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> >  .../memory-controllers/nvidia,tegra186-mc.yaml        | 11 +++++++++++
-> >  1 file changed, 11 insertions(+)
-> >=20
->=20
-> My bot found errors running 'make dt_binding_check' on your patch:
->=20
-> yamllint warnings/errors:
->=20
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/m=
-emory-controllers/nvidia,tegra186-mc.example.dtb: memory-controller@2c00000=
- (nvidia,tegra186-mc): external-memory-controller@2c60000:clock-names: ['em=
-c'] is too short
-> 	from schema $id: http://devicetree.org/schemas/memory-controllers/nvidia=
-,tegra186-mc.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/m=
-emory-controllers/nvidia,tegra186-mc.example.dtb: memory-controller@2c00000=
- (nvidia,tegra186-mc): external-memory-controller@2c60000:clocks: [[4294967=
-295, 58]] is too short
-> 	from schema $id: http://devicetree.org/schemas/memory-controllers/nvidia=
-,tegra186-mc.yaml
+- 4E: 4 GB RAM and using internal 2.5G Phy for WAN-Combo
+- 8X: 8 GB RAM and 2x Aeonsemi AS21010P 10G phys
 
-Ugh... looks like I used the wrong hash in the format-patch command and
-didn't notice that I sent out an old version of the patch that's missing
-the minItems for clocks and clock-names.
+common parts:
 
-I'll send out the correct version, sorry for the noise.
+- MediaTek MT7988A Quad-core Arm Corex-A73,1.8GHz processor
+- 8GB eMMC flash
+- 256MB SPI-NAND Flash
+- Micro SD card slot
+- 1x 10G SFP+ WAN
+- 1x 10G SFP+ LAN
+- 4x 2.5G RJ45 LAN (MxL86252C)
+- 1x 1G RJ45 LAN (MT7988 internal switch)
+- 2x miniPCIe slots with PCIe3.0 2lane interface for Wi-Fi NIC
+- 2x M.2 M-KEY slots with PCIe3.0 1lane interface for NVME SSD
+- 3x M.2 B-KEY slots with USB3.2 for 5G Module (PCIe shared with key-m)
+- 1x USB3.2 slot
+- 1x USB2.0 slot
+- 1x USB TypeC Debug Console
+- 2x13 PIN Header for expanding application
 
-Thierry
+official product information:
+https://docs.banana-pi.org/en/BPI-R4_Pro/BananaPi_BPI-R4_Pro
 
---ich3dhap6fs3b6m2
-Content-Type: application/pgp-signature; name="signature.asc"
+The PCIe is per default in key-m state and can be changed to key-b with
+the pcie-overlays.
 
------BEGIN PGP SIGNATURE-----
+changes:
+v2:
+- dropped "dt-bindings: arm: mediatek: add BPI-R4 Pro board" which was
+  applied from v1
+- added new patch "disable 2.5G phy and enable at board layer"
+- squashed "mt7988a: Add label for ssusb0" to r4pro dts commit
+- some updates after angelos review to the r4pro dts commit
+  - fixed buck4 and ldo displayed voltage (cannot be controlled by software)
+    to match schematic
+  - reorder fan after eth node (alphanumeric)
+  - reorder spi-tx after spi-rx (alphanumeric)
+  - follow reg first, then others also for spi-nand partitions
+  - drop 2pg5 phy disabling node (due to new patch disabling by default)
+  - change order of pinctrl (first number than names)
+  - fix commit prefix (mediatek was missing)
 
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmkLqlgACgkQ3SOs138+
-s6FvhA/+JjAdSF6J+xyphE5ibJBXmjrqp9zOBE52ZjEg0CRywTgZ4ojsS+lDxq8/
-QdJOmxNbHxwJWrmhZSEm5oaJ169TirEx4XY/vRlOpZdOaWZTBLUwVjx02nDP6o00
-z7jQ3oPx06i0la68sxrFY7xE88QefW5ukuEcOpEWrs5jcsJCP/HuV4zhAXHPCZQ5
-BBVqX/d6S8ugVwR0EGzuEMEM8PAUEn9zu8wJpvLlAbwHMZ/sOMwh32Sv279qokm0
-FRgMSIPgZIy8qTt0veYagCS51x39AJRybyqlFvkd0beImhKpqPcuPyDGNNDJFZP2
-Tf7rS0vXSMmUnDCTixpQJBRZ05gKvY8gn3mYH/pkdDJ3Wml7swKXyrq4g97klfwW
-x3s3M8A89NyUFtrq2biWTuM52m9Mm5qk2CB6JLd6NVZdEW1gWVKJFZhei1FWhqK0
-Nl/bXKP0INNofg3LSlezhLu38zDGvOYDy7q/OOhuRKwPky2MbcfHasfSgDTbIUgq
-lZABtmf5MycsJD252WViFaqydCTRmyQFMsQKuCWRIjvezfiN41xLy4Z6WxD80kqo
-+jUM7OQdHQpz2PSh5vcr3R8Fa5Bddqmpz2gYgbhWct0IzlOP3DU9QtYbfVmp7AMv
-DgrkrpprCHMrBh4aq9/murXAgoeWN7PW34YuIXTgcaH1Qj03ZYc=
-=vmRC
------END PGP SIGNATURE-----
+Frank Wunderlich (5):
+  dt-bindings: pinctrl: mt7988: allow gpio-hogs
+  arm64: dts: mediatek: mt7988: disable 2.5G phy and enable at board
+    layer
+  arm64: dts: mediatek: mt7988: Add devicetree for BananaPi R4 Pro
+  arm64: dts: mediatek: mt7988a-bpi-r4-pro: add PCIe overlays
+  arm64: dts: mediatek: mt7988a-bpi-r4pro: Add mmc overlays
 
---ich3dhap6fs3b6m2--
+ .../pinctrl/mediatek,mt7988-pinctrl.yaml      |   5 +
+ arch/arm64/boot/dts/mediatek/Makefile         |   8 +
+ .../mediatek/mt7988a-bananapi-bpi-r4-2g5.dts  |   1 +
+ .../mt7988a-bananapi-bpi-r4-pro-4e.dts        |  16 +
+ .../mt7988a-bananapi-bpi-r4-pro-8x.dts        |  16 +
+ .../mt7988a-bananapi-bpi-r4-pro-cn15.dtso     |  20 +
+ .../mt7988a-bananapi-bpi-r4-pro-cn18.dtso     |  20 +
+ .../mt7988a-bananapi-bpi-r4-pro-emmc.dtso     |  33 ++
+ .../mt7988a-bananapi-bpi-r4-pro-sd.dtso       |  31 +
+ .../mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi | 534 ++++++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt7988a.dtsi     |   3 +-
+ 11 files changed, 686 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-cn15.dtso
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-cn18.dtso
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-emmc.dtso
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-sd.dtso
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi
+
+-- 
+2.43.0
+
 
