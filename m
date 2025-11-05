@@ -1,102 +1,127 @@
-Return-Path: <devicetree+bounces-235215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58760C35A7F
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 13:30:52 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42B5FC35A9A
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 13:34:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E010618C3138
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 12:31:16 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 243404EADCA
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 12:34:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 077FD2C08CB;
-	Wed,  5 Nov 2025 12:30:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aO/3M89k"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D856B314D11;
+	Wed,  5 Nov 2025 12:34:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1DF321146C;
-	Wed,  5 Nov 2025 12:30:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDB7A313295
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 12:34:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762345843; cv=none; b=HRpXhJ/48veJucddFuSZLTcppaiSBCHMR8YRnABwRpa6KSGY4sqjnhgL5GiBgXfCmIXp1V5HGwnjYdUvtU4Ged2oXJ/k4gardnuCX9iD4XQxqX0J2NmAbM0apgMxYzZcsGITOBxbPuUUn52qzofoCUo30hcZ8nJHR6Qna0bsnoI=
+	t=1762346051; cv=none; b=MpQj5M1zaak+viafeYySWkJ8XX0En+CWlZYPVw3VmUA5aaltsoUbC4BRmpB54cfQB3ByBTJCdC7rbXbiVvf0ynjRmw889H+Y/XUvQ4bgG0DOO9ygVw6Ccm3OBAq5O1g7833fnNP9ZUTvfDa9pNh5I9n8e0xGThvExydelKVpZzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762345843; c=relaxed/simple;
-	bh=sOca8qlDfIBDsxvVAIy7C2EdJfQ9Z0/Cd6qn0qL0vGA=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=l+T5uJYZh1K1sort/oBSAXReLj4TlUlo22HwP1Nx2kcYR02dSk2usBExQOsommzmO2a6v7Fu5sBSIniLRcSfPHRJcrKXCag+x4Plr9049lfynZthMnHEKxdoHDvJMSIhIGwxVox62DRoJ4C1MYBtwGNQRnOR1A5JxbL9BEkkg94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aO/3M89k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E4F9C4CEFB;
-	Wed,  5 Nov 2025 12:30:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762345843;
-	bh=sOca8qlDfIBDsxvVAIy7C2EdJfQ9Z0/Cd6qn0qL0vGA=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=aO/3M89k+D6Jfli9zFpP/uHdguxuGFk9TJ4fhmXgVR6oXi1V7UqFQ0N8eeZsXACWi
-	 ACGLD5bTZ2vlUaztBCPptZFADukmoXcsaFTcBbZiiV57G/KUvIH29XWZPIfNK1/prG
-	 agPGjb8hiZf0Kfz99IIKsgKOGYDIJAzhzEfI3yhU+3O8BdsuomK3CSTRl7t5TtF6t5
-	 4J+6EFwuTAWZlJtdiZSPQyTWOTEvWtaAqoIsWHocA0UGZRkAh57lFfD9Wrz7f/jJ1O
-	 L2DWX9zWYCF83Lqih5a08c8BUoopZfutNpsOKslICZ6TWsGobmem9nvrWQdmjkLF3S
-	 4iA354oZx9ZnA==
-Date: Wed, 05 Nov 2025 06:30:41 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1762346051; c=relaxed/simple;
+	bh=gCn5g/zKNokWUSs7zi6RB7++8iJp66x+WsOsStoRHpA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=b33jPAVWVqe0ZmTe+t5cApEYz/vgfDFHUVe3t3o8x8OluDx6T3HigVtIT/najY/8F6yStahQuNoC58KmIwdmgvVzNIlEE9NLcklLuIL118bEsqiTcIafaQJcB+UQ/ijmRJ9wf9P/7TsYACo9bhxXMErILyLjdokzYdE+hBU8ud4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vGci5-0002pr-I7; Wed, 05 Nov 2025 13:33:57 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vGci4-007C4y-3B;
+	Wed, 05 Nov 2025 13:33:57 +0100
+Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id A4A534984AD;
+	Wed, 05 Nov 2025 12:33:56 +0000 (UTC)
+Date: Wed, 5 Nov 2025 13:33:54 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Sascha Hauer <s.hauer@pengutronix.de>, Stephen Boyd <sboyd@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, kernel@pengutronix.de, Linus Walleij <linus.walleij@linaro.org>, 
+	linux-gpio@vger.kernel.org, Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>
+Subject: Re: [PATCH v7 0/2] clk: add support for TI CDCE6214
+Message-ID: <20251105-faithful-carmine-bat-257e39-mkl@pengutronix.de>
+References: <20251001-clk-cdce6214-v7-0-5f8b44da95a5@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- conor+dt@kernel.org, cy.huang@realtek.com, afaerber@suse.de, 
- linux-arm-kernel@lists.infradead.org, james.tai@realtek.com, 
- linux-realtek-soc@lists.infradead.org, stanley_chang@realtek.com, 
- krzk+dt@kernel.org, lee@kernel.org
-To: Yu-Chun Lin <eleanor.lin@realtek.com>
-In-Reply-To: <20251105104452.6336-3-eleanor.lin@realtek.com>
-References: <20251105104452.6336-1-eleanor.lin@realtek.com>
- <20251105104452.6336-3-eleanor.lin@realtek.com>
-Message-Id: <176234584170.562648.2189277623860888038.robh@kernel.org>
-Subject: Re: [PATCH 2/3] dt-bindings: mfd: Add Realtek ISO system
- controller
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="zkha7kfojqx7pggw"
+Content-Disposition: inline
+In-Reply-To: <20251001-clk-cdce6214-v7-0-5f8b44da95a5@pengutronix.de>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
-On Wed, 05 Nov 2025 18:44:51 +0800, Yu-Chun Lin wrote:
-> Add DT binding schema for Realtek system controller.
-> 
-> Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
-> ---
->  .../bindings/mfd/realtek,iso-system.yaml      | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/realtek,iso-system.yaml
-> 
+--zkha7kfojqx7pggw
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v7 0/2] clk: add support for TI CDCE6214
+MIME-Version: 1.0
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On 01.10.2025 10:12:52, Sascha Hauer wrote:
+> The CDCE6214 is a Ultra-Low Power Clock Generator With One PLL, Four
+> Differential Outputs, Two Inputs, and Internal EEPROM.
+>
+> This series adds a common clk framework driver for this chip along with
+> the dt-bindings document. The cdce6214 needs several pins to be
+> configured for different input/output modes which are abstracted with a
+> pinctrl driver.
+>
+> In v5 I tried to split up the patch into a non controversial part (to be
+> applied) and a part which needs more discussion (to be applied later).
+> That was not very well received, so I merged it back in v6. I didn't
+> mention that explicitly in v6, so doing it now.
+>
+> v7 contains only small changes, mostly binding updates requested by Rob.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/arm/realtek.yaml:76:1: [warning] too many blank lines (2 > 1) (empty-lines)
+Stephen, can you have a look at this driver?
 
-dtschema/dtc warnings/errors:
+regards,
+Marc
 
-doc reference errors (make refcheckdocs):
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251105104452.6336-3-eleanor.lin@realtek.com
+--zkha7kfojqx7pggw
+Content-Type: application/pgp-signature; name="signature.asc"
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+-----BEGIN PGP SIGNATURE-----
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmkLRC0ACgkQDHRl3/mQ
+kZxqYggAnHJDddCzeqWgG147r7JWWDFTfHfEFiDVWIp0YDRhKWDG65s68wtn+abi
+iz8fl/ZgilSA0arzB+3KuOd0o9Oq+TWoQnQSvzizXTWEC2h3om6ftKTQyKaeLTJ9
+s4ytynRL5yOsWmfzfCzK//uzdtSl0f6G8QcN/xCIwJBFktfKgSDM6slvTcFjLkkR
+6B3dUaef+cKmo+tWEsUSV2zUXhz/xT6kM/mvDUQXQ4s8Qy+J5PE3dj1/pM0bk4u4
+3o/7KM7LRYR9xc3b7E9vqxqjwh86ywI/pHo+hZhSMzoEunEKqPU84O4U4hgGsCQ3
+kJwhpH4C46uYjsjss6luSJ1tqbi00w==
+=9R3o
+-----END PGP SIGNATURE-----
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--zkha7kfojqx7pggw--
 
