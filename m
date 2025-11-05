@@ -1,244 +1,150 @@
-Return-Path: <devicetree+bounces-235226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13D00C35C30
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 14:07:56 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A640C35C96
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 14:16:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F4CF1A21B8C
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 13:08:11 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DCF484E77ED
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 13:16:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59D843168F1;
-	Wed,  5 Nov 2025 13:07:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A562314D25;
+	Wed,  5 Nov 2025 13:16:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="a7FUgNbP";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Up+Vr16P"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="F0816Rwq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B224F18A921
-	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 13:07:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F0AD27146A
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 13:16:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762348061; cv=none; b=N5CqzrtjwGbBxDcYH6nx9SX9o4kOBSjW8ADXC0gAKE84JdOQcdC+rBQooMx+7Uk9YvH2+LbudXYCpsTB/1PmFGxDGgIkmjO0cbF0+OPy5sc460BW3NipJbjtBjL8zrhhGu4cpO1mln0ulAO3WF/rdiyv0zdpF4yn9mWbaP047I0=
+	t=1762348567; cv=none; b=LrE3di3BdnmcO1bt//addFBuclem2/puKHRIbT9NLu2x5HixtpT3bE8zPYRSsWeE2pZdr7g6QGajFInDWk1tyDBMuWsFwefLi8I9OSXhdmaOedpXJ260ZEYZForHYkgkLJG0o8b0ajwQNEYaAJqyb5Vk1cR8E9V+uxhUIf7X6NM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762348061; c=relaxed/simple;
-	bh=klRtdEIvbZyJbNGYRtKdKDSRIVBFJV55P0Mt9NI5eL4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Mg6Um2IBGxuO3ds7oKqJTmgbUar3j7Jl9i48d9mn45M2Frv1MtfO+h2Y+e/sEhTljKUCSTK1Qdg810KoepwHMqvFWQe+ow6p013N/vB4+WbNaElaj+LkbCt4LhRlLOkfC6B7KWn4q1RJ2c145My/CTlV51c8WUmOGoCiWBtqAAU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=a7FUgNbP; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Up+Vr16P; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A5B31tb655017
-	for <devicetree@vger.kernel.org>; Wed, 5 Nov 2025 13:07:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=lJyMqcmOenueo7aEWDedVgPx
-	9iT9e9a7v7fXA+XT7mQ=; b=a7FUgNbPvgP57arFwM221RcL0UYGY43A5q4vxHph
-	4o7lN7XsdXHRpmD/ciLIZpclP/kabdfIhuQbVqqaGbaIgfc0nZ5xNU2xiKC+CRWq
-	T1tNBLHlMNE5QKLCiUDvuPY1Q3eNJ4yfMGarbKu/HWZnGTREU/xfY0CcEbMQsZKW
-	LVvkR+Vb7kKbjXhKAoD5WQLI2F/nBr6oBwsO8Su43Axf+Aw4kq0Zbo7vH0AwJfy3
-	wOxB55yXN7pKB4rgbxXn7Sz8OyRIjq+Qfvzv2hOR0pKVOw3OblOdV4584D5mQQDm
-	oLFXPNfwTPfz5iPspjbjvhEtcYGDGC+8NJiL90uj7jFJkQ==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a85c8g9hs-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 13:07:38 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2954d676f9dso36161615ad.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 05:07:38 -0800 (PST)
+	s=arc-20240116; t=1762348567; c=relaxed/simple;
+	bh=kSRvFGBBGQKAULKkzsB+rTsc3xCVTewdlEyuIAYxeqU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BiZBVbTsyjRr4g7hZ74wcUmBp5rzsOQcp5wwz8qm9ATVE/+fKtq4r+v9aFUoaR9zz17JT/ke531qd86/Jo1dkt1SCXfn40Qoo4nz42SQCeF7o8kbAzpfgxGCG//ZRFShclrc6FjPPCU6pge6UxbWakQdSgslhJnwbu4GgoLDeIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=F0816Rwq; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-59431cce798so3104503e87.1
+        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 05:16:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762348057; x=1762952857; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=lJyMqcmOenueo7aEWDedVgPx9iT9e9a7v7fXA+XT7mQ=;
-        b=Up+Vr16PE5ZtTV6ElQ6JZBrZP9tHrLUxmKaGIlPlnU/YIhCnZ3Tq7EJUO0wYDcZ8H5
-         CESRxIA2K2G6u00RP1uTJUu19FsSbxbenB4lfTIGsxMEor6XXNiNJbOOuX3J0OEyWWbh
-         oa4WiHzDtiu94CwUrbPZPYx75UdW85vc/Hw/hAgLHBK/GbAPRdeKz78Bpz9UfhaV2YIf
-         Ix/aVR8jKX+h9N71wl5JJuu2XF2HZQGKhnY1IZe4mx29mm79hA9ZLv/jKnm5+TcteNnX
-         u0WVRNQKWYiUhJaOfic6I7HHwDJ8WxDx2BB9y+IykyD6bY9xAjZ0qvM2l9EP9Xn5YiTw
-         cWrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762348057; x=1762952857;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1762348562; x=1762953362; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lJyMqcmOenueo7aEWDedVgPx9iT9e9a7v7fXA+XT7mQ=;
-        b=GkYJTTQoYqVqhtEjH3UwHDBHOvUV1+GnZs1Hq3DTCcSuAYeet+CwOc9gsK6OECpkbV
-         ZEku1C+K9mFi0AgoND1CqXJHV74LLc+pnI6HV3BwTdk8u48JpUeqYztGE7mUiQryZaYF
-         z4PUlYZyt/g5dcGbqV3202qodJqcbXdDAB7JMRM781P3wcNJ8XCFHCZ2QPz8xgCPuj+5
-         qK8b1q6p/1GhG/+uK1+KoogN3L1HQHEKBkFDTeBo5WpWFXflnaslG9qbjI6khzy2nV2f
-         ydWWoG0aJZoAeUqwMlG0JpnYWHRbfRFVlbp1a/EDVn7Pz9gsIU2wAPhmdT83WZ+U8pMT
-         6Bwg==
-X-Forwarded-Encrypted: i=1; AJvYcCUDdOO5nKSCTxeO3psGSjcEC7kfSnLmsyhdd6mJrEy3lLKP1ld8ZWHf7WGtvowVE9gKVUrnlPGQhlyU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy78VwzIkxomAPRoaSasCcKYleRbGGnZsUiVCauQymlBfn/3dZP
-	k6uOegNSI+AfY+ApgBAOp/Qk+E3hsVPHe0FoQkzMqdD9ay4lAk33wEWVA9er7W1Oqq1Tk0qLWYm
-	2cuv3PAIBNms24m8Db6wbiuGPjT4JLfo3WZ2Fk6qgKjwdA+rqGECHs+VtHDrqHr2t
-X-Gm-Gg: ASbGncsEM4RPfG3xb3mbK+B2VEBBD1oYSB1S6W34bLM+nPBKMcKDUZiuIluA8//olxn
-	n0QcuEhNn1LwkGFfH6GKEYkIME3KaQnn2KLxdvTj7+ELmDslktOCasKtXel3IJlojDR+j2BDrV4
-	nKAkYTdlj2stB7oyo7C28QzrS2QjbcxVbIbSFCGlu+qXlHHK7WXhvpFq5OvrcqcyFkxZT3V2hNP
-	dzzEkyZKB281B8JrT/h0iVyaPfIT63eh4ig8CJB2wPx5CvrLJyhZ+7PQKRdP7cnHIYKUaJYpH+7
-	g90qPh8Mqgv0FccL6bJwDv6Ief7BWQCg9aHwGvt1KP/D/feIcUNf+e1FYSJPqRs7PW/ahmDFmAi
-	K51LcnEvjJj4h2K6lTzH2UhKNbY3T4iuTmJBE6ZF4dlQPJguCrRWFT0Fr457O
-X-Received: by 2002:a17:903:3d0f:b0:295:bba:9734 with SMTP id d9443c01a7336-2962addacc0mr44990965ad.24.1762348057091;
-        Wed, 05 Nov 2025 05:07:37 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGi1VhR989ZZ4vIFZKd8TvIl4G60NTKKZtU1PCrjwDE+njM+qU3IIPJ08T9iXL1mcYzd4JdAQ==
-X-Received: by 2002:a17:903:3d0f:b0:295:bba:9734 with SMTP id d9443c01a7336-2962addacc0mr44990395ad.24.1762348056531;
-        Wed, 05 Nov 2025 05:07:36 -0800 (PST)
-Received: from hu-kamalw-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29601a5d174sm61765875ad.77.2025.11.05.05.07.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Nov 2025 05:07:35 -0800 (PST)
-Date: Wed, 5 Nov 2025 18:37:30 +0530
-From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-        Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: soc: qcom: qcom,pmic-glink: Add
- Kaanapali and Glymur compatibles
-Message-ID: <20251105130730.pr5j63wfseaa6ubr@hu-kamalw-hyd.qualcomm.com>
-References: <20251027212250.3847537-1-anjelique.melendez@oss.qualcomm.com>
- <20251027212250.3847537-2-anjelique.melendez@oss.qualcomm.com>
- <20251028-private-chirpy-earthworm-6fccfe@kuoka>
- <4cb41e69-fb32-4331-a989-529b5af0081c@kernel.org>
- <xg6x7vulzjtiqnzu2g3k4phhi3og537cwu2quwqgdlpcxoggwt@pqmfsvsumt2g>
+        bh=fBqjzWg/zXa/4S7O+GQN+wAbF8EhqKSL/0KruKQHZ2I=;
+        b=F0816RwqhEdMTAXIGhhCg5eNTs/+CQrT6Y7uGBydoTeoTc74Yb8CyCRIlP98AklyL9
+         0bq3a7RPImEgRpNNpFtq0cSorpvvXz5JTKocUXRQxSy1YyicoGoH76TjZXUlCVD3nWye
+         ekTpNe1uzhwh9i8DpD4g2lmHkPoD14ZxvJUq7LD5Qi2U+CP713QrTNS0Sod1Z0rGbIb7
+         IVdQeQvb9NT6jkMZo53VGfKoVChgY7NoVOcRwVylYtE3XD9hYQ+wBzRo2hkMcovnIaGY
+         zTGnueqN5uhM3/O643Uke1AmlyG+cb1qJonJXTRPtwhaywQEiQdRnhDLfErP6FM06PTH
+         PTNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762348562; x=1762953362;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fBqjzWg/zXa/4S7O+GQN+wAbF8EhqKSL/0KruKQHZ2I=;
+        b=ZH443qIO1IDPT/+LCUVliIc9xF1n4OHwCzHShXba8gOq8X58gyjblkKAZ6Xj17Wsu1
+         UB770wEQqKxYUdveTu39wqNgngeNcvPuUsCnrBdNdGSuCxbH9jBBSEsCGTDdnOSyHmw6
+         ZLQuq6bCtsKcbPKqTj1o7lIQqf19Q7sccUyHf7pZnUD+L/+I/U5mBH+RclGGrFCfFQf+
+         bKJN3j8OqKjieoAp0IsC8whjGlLy7p/M1Q9qkAzeAEhJQBhIbeIIQlqG2kYdgF9FBBUc
+         C09J1OUir1UTKh04tuKOERcETFkcEEbX8K9AhMuXbEFqz0ap+LCKhXTbbLyS541pRByV
+         lPlg==
+X-Forwarded-Encrypted: i=1; AJvYcCUe5UsgNr6mZEn8g2EVzMRESx6MZrqKA6VDMjy5X0Yues+1ty9D6kBxJumwgw66xVsgm6ckiCK5IZq/@vger.kernel.org
+X-Gm-Message-State: AOJu0YyNm7jy56nqcu15gJemf3A8ZAA/V+Z4Usqns31Uv2T33SCjtiVd
+	df4H36yMQcZn7Tj2z1e0+tRNMIUzwZjv4mIU6piy5veOp3/+GpT7XAjwudBjRlepQ1ofns3iMcS
+	UtAuem7KqA6jaqJ4+Zknj03CvN81slHQ2xyyNgt3cMQ==
+X-Gm-Gg: ASbGnctoNUsrMzjWDoPB6u8hTF9T94WdRGwSnp6AYsPIhBQkd9XI6qUU0UgeMulv4xD
+	JbsVfYPahuR1WetSiR3kwuVY3e8AfdK7eyUi7JgtVbpTYI/oRnRHlQcbOCDMLTjV7spXG15ICKJ
+	KYfycgDiAiKBLzvQbQ7AgKjoQc92AFHrQRJJvuy9h6IslPGI2vFMLm/h4y7vXaE2QtT1YE47J0Z
+	/9fdXEw/oP717vNInvNQNP2NdUdjwO0rPFLAti0mR0bnmU2Yuicot6zmPWuDjRPftZXbsYZn6lC
+	A/z9RR4ueCrESPck
+X-Google-Smtp-Source: AGHT+IFzvw8EAiJ1AtQtHhnkTf9GQZd1bbxP1QFz1p5Ls9+5+KfIoHsa3IeiIjfuKZ2962zqcsqWhaJynFcQACVzbhk=
+X-Received: by 2002:a05:6512:3c86:b0:594:27fb:e80f with SMTP id
+ 2adb3069b0e04-5943d7cbaf4mr1093090e87.37.1762348562289; Wed, 05 Nov 2025
+ 05:16:02 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <xg6x7vulzjtiqnzu2g3k4phhi3og537cwu2quwqgdlpcxoggwt@pqmfsvsumt2g>
-X-Proofpoint-ORIG-GUID: AFTkRmas_R2sOOygh7N6jCAFEEXiTc1Z
-X-Proofpoint-GUID: AFTkRmas_R2sOOygh7N6jCAFEEXiTc1Z
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA1MDA5OSBTYWx0ZWRfX+Gu1mAMEZWfl
- 14gZEQJ/B3yyeTRoJNWY0Inyk3CpYknZ8+CufGCwVBlA6JFmZcL5rvM1/yHV2hOpzVsQdCXMhTY
- D4F6R+bJCzpb1rmNuBJFu4FmB9kmTc/oYcj2078BYDuMvwUYHEOHVOz5Tt+/U6fLPSgSBX9Bw5D
- Uxs9lwbWfSTEPkE6rtOjaDrTRAzPTVm9+bSwKwK8Z63fDYdHWZdjgEyUz28K9iuJgyG4sfL5sBn
- e0o0qHXUEbNa6HMlRnkRGAXKXk+SgenJ1oxvb301CWdaEXfIOmVhreMIru47baTxLSTUWWZpbdp
- 3VKXHGERWB3Ns8Spc4xypiQZT1I/xWwAtgosx9K8ye3GBmulqdi6XY/ij5CQ6SGpRNwaxWGSy32
- N13lXFV3PpF5XrdBKqkojAzjmRXhFA==
-X-Authority-Analysis: v=2.4 cv=apS/yCZV c=1 sm=1 tr=0 ts=690b4c1a cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=kj9zAlcOel0A:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=xrU_pXCrs3kvcMV52VkA:9
- a=CjuIK1q_8ugA:10 a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-05_05,2025-11-03_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 suspectscore=0 spamscore=0 malwarescore=0
- lowpriorityscore=0 adultscore=0 bulkscore=0 phishscore=0 clxscore=1015
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511050099
+References: <20251105103607.393353-1-jelonek.jonas@gmail.com> <20251105103607.393353-3-jelonek.jonas@gmail.com>
+In-Reply-To: <20251105103607.393353-3-jelonek.jonas@gmail.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Wed, 5 Nov 2025 14:15:50 +0100
+X-Gm-Features: AWmQ_bm2m0RNHt-e4OYqIt-BH3glQr-rrVxitK8MhlbSJhT2MTMEHnAhJC-zLrA
+Message-ID: <CAMRc=MdQLN5s+MpkLUF2Ggc4vYo30zOXrA=8qkGmXvu7N3JjeA@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] gpio: add gpio-line-mux driver
+To: Jonas Jelonek <jelonek.jonas@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Peter Rosin <peda@axentia.se>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Thomas Richard <thomas.richard@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 28, 2025 at 09:14:10AM -0500, Bjorn Andersson wrote:
-> On Tue, Oct 28, 2025 at 09:36:09AM +0100, Krzysztof Kozlowski wrote:
-> > On 28/10/2025 09:29, Krzysztof Kozlowski wrote:
-> > > On Mon, Oct 27, 2025 at 02:22:49PM -0700, Anjelique Melendez wrote:
-> > >> Document the Kaanapali and Glymur compatibles used to describe the PMIC
-> > >> glink on each platform.
-> > >> Kaanapali will have the same battery supply properties as sm8550 platforms
-> > >> so define qcom,sm8550-pmic-glink as fallback for Kaanapali.
-> > >> Glymur will have the same battery supply properties as x1e80100 platforms
-> > >> so define qcom,x1e80100-pmic-glink as fallback for Glymur.
-> > > 
-> > > What does it mean "battery supply properties"? Binding does not define
-> > > them, so both paragraphs do not help me understanding the logic behind
-> > > such choice at all.
-> > > 
-> > > What are you describing in this binding? Battery properties? No, battery
-> > > properties go to the monitored-battery, right? So maybe you describe SW
-> > > interface...
-> > 
-> > Or maybe you describe the device that it is different? >
-> > >>
-> > >> Signed-off-by: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
-> > >> ---
-> > >>  .../devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml      | 7 +++++++
-> > >>  1 file changed, 7 insertions(+)
-> > >>
-> > >> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
-> > >> index 7085bf88afab..c57022109419 100644
-> > >> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
-> > >> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
-> > >> @@ -37,12 +37,19 @@ properties:
-> > >>            - const: qcom,pmic-glink
-> > >>        - items:
-> > >>            - enum:
-> > >> +              - qcom,kaanapali-pmic-glink
-> > >>                - qcom,milos-pmic-glink
-> > >>                - qcom,sm8650-pmic-glink
-> > >>                - qcom,sm8750-pmic-glink
-> > > 
-> > > Why qcom,kaanapali-pmic-glink is not compatible with
-> > > qcom,sm8750-pmic-glink? If Glymur is compatible with previous
-> > > generation, I would expect that here too.
-> > 
-> > And again to re-iterate:
-> > 
-> > If X1E is compatible with SM8550 AND:
-> > SM8750 is compatible with SM8550 THEN
-> > WHY Glymur is compatible with previous generation but Kaanapali is not
-> > compatible with previous generation?
-> > 
-> 
-> There are effectively two different implementations of the pmic glink
-> firmware (in particular the interface); one designed for Windows
-> products and one designed for Android products.
-> 
-> Then for each implementation there's incremental additions over the
-> years.
-> 
-> 
-> By not accounting for this in the fallback compatibles, we're relying on
-> a growing list of "specific compatibles" in qcom_battmgr_of_variants[].
-> 
-> In addition to this, we have the addition of USB4/TBT support in Hamoa.
-> 
-> Enter Glymur and Kaanapali, the implementation has moved to SoCCP, so we
-> should no longer do the PDR stuff.
-> 
-> 
-> IMHO this binding should have fallbacks for the major "versions",
-> mobile, and compute. But perhaps even for compute/usb4, mobile/soccp and
-> compute/usb4/soccp?
+On Wed, Nov 5, 2025 at 11:36=E2=80=AFAM Jonas Jelonek <jelonek.jonas@gmail.=
+com> wrote:
+>
+> Add a new driver which provides a 1-to-many mapping for a single real
+> GPIO using a multiplexer. Each virtual GPIO corresponds to a multiplexer
+> state which, if set for the multiplexer, connects the real GPIO to the
+> corresponding virtual GPIO.
+>
+> This can help in various usecases. One practical case is the special
+> hardware design of the Realtek-based XS1930-10 switch from Zyxel. It
+> features two SFP+ ports/cages whose signals are wired directly to the
+> switch SoC. Although Realtek SoCs are short on GPIOs, there are usually
+> enough the fit the SFP signals without any hacks.
+>
+> However, Zyxel did some weird design and connected RX_LOS, MOD_ABS and
+> TX_FAULT of one SFP cage onto a single GPIO line controlled by a
+> multiplexer (the same for the other SFP cage). The single multiplexer
+> controls the lines for both SFP and depending on the state, the
+> designated 'signal GPIO lines' are connected to one of the three SFP
+> signals.
+>
+> Because the SFP core/driver doesn't support multiplexer but needs single
+> GPIOs for each of the signals, this driver fills the gap between both.
+> It registers a gpio_chip, provides multiple virtual GPIOs and sets the
+> backing multiplexer accordingly.
+>
+> Due to several practical issues, this is input-only and doesn't support
+> IRQs.
+>
+> Signed-off-by: Jonas Jelonek <jelonek.jonas@gmail.com>
+> ---
 
-Thanks! this makes sense. Then should we do this way..
-- We do not touch the existing "ADSP based mobile/compute" items
-- Add 2 new items for SoCCP based targets for - MOBILE-SoCCP & COMPUTE-SoCCP
-like below?
+[snip]
 
-      - items:
-          - enum:
-              - qcom,milos-pmic-glink
-              - qcom,sm8650-pmic-glink
-              - qcom,sm8750-pmic-glink
-              - qcom,x1e80100-pmic-glink
-          - const: qcom,sm8550-pmic-glink
-          - const: qcom,pmic-glink
-+     - items:
-+         - enum:
-+             - qcom,kaanapali-pmic-glink       /* MOBILE - SoCCP for pmicglink No PDR */
-+         - const: qcom,sm8550-pmic-glink       /* battmgr - mobile    */
-+         - const: qcom,pmic-glink
-+     - items:
-+         - enum:
-+            - qcom,glymur-pmic-glink          /* COMPUTE - SoCCP */
-+         - const: qcom,kaanapali-pmic-glink    /* pmic-glink (SoCCP/ No PDR) */
-+         - const: qcom,x1e80100-pmic-glink     /* battmgr - Compute    */
-+         - const: qcom,sm8550-pmic-glink       /* ucsi */
-+         - const: qcom,pmic-glink
+> +
+> +       glm->mux =3D devm_mux_control_get(dev, NULL);
+> +       if (IS_ERR(glm->mux))
+> +               return dev_err_probe(dev, PTR_ERR(glm->mux),
+> +                                    "could not get mux controller\n");
+> +
+> +       glm->shared_gpio =3D devm_gpiod_get(dev, "shared", GPIOD_ASIS);
 
-Regards,
-Kamal
+Hi Jonas!
+
+This looks good, I'm ready to queue it but I'm afraid the consumer
+label "shared" will logically conflict with the work I'm doing on the
+shared GPIO support[1] as the shared GPIOs will appear as proxy
+devices containing the name "shared". Do you see any problem with
+changing the label to "gpio-mux"? I can even change it myself when
+applying.
+
+Bartosz
+
+[1] https://lore.kernel.org/all/20251029-gpio-shared-v3-0-71c568acf47c@lina=
+ro.org/
 
