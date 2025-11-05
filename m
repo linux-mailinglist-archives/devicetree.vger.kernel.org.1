@@ -1,966 +1,174 @@
-Return-Path: <devicetree+bounces-235363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5654FC377EC
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 20:34:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CF2BC378AC
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 20:49:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BC0118C77C9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 19:34:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 820843B4FEA
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 19:49:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FF2E340A7F;
-	Wed,  5 Nov 2025 19:34:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6051E343210;
+	Wed,  5 Nov 2025 19:49:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XiJxh+nS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD72B34217C;
-	Wed,  5 Nov 2025 19:34:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90933342CB6
+	for <devicetree@vger.kernel.org>; Wed,  5 Nov 2025 19:49:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762371254; cv=none; b=AqQvu8RaFRmYg0MpFbtmM1RV1Y6ulJr8Dl3vqFbn5ho90RBnm40zru/I6OPJmeXL8x68pe2MUSJRedVLqzCPvbLGNzt3CvVUcEbRifs7Ai6RfqtWBBbJ38p6wLBt7m9DADBmQ0QCA6r09cdHboqSIMHE+Ibkptv8C0avxTdTKfo=
+	t=1762372191; cv=none; b=cuKynpd/ts+RsB5/Kdj4iSKXTbBX4W5qZVBs3Fb3+Ropmouo/WSvLMtSYM+06fVN0sBgXwizf72xzTGcH3HS/uhNl3QWI2qWUWCwM+d2a0ovAf4yvCGasETlTBk5PcRKpn2pC2VI+xCVKo+r6/f+ddnlFZxvkQNi5zhCXkHfEfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762371254; c=relaxed/simple;
-	bh=J/KAxoGK17iIaiAlXrD98N4ca3o6DuDjfIxl6h49p1I=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=l9Vr5n6RhulohjyuBrulTyzgE82MiyCC/qyNZYSXZVd/sQ2DYW4aXpWRcYgcO+PpxkyP4XVvraHxukOcVv5rHwQ/viqvzHR87jx3Cq/3yZbKyZdxc6C+Tb01SyOGPsOlXjEPr82GPBp0FimxrXGf2fIqHGjF11l7y3/qGiYWaXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.216])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTPS id 4d1wVc17V2zHnGh0;
-	Thu,  6 Nov 2025 03:34:00 +0800 (CST)
-Received: from dubpeml100005.china.huawei.com (unknown [7.214.146.113])
-	by mail.maildlp.com (Postfix) with ESMTPS id 03D02140370;
-	Thu,  6 Nov 2025 03:34:06 +0800 (CST)
-Received: from localhost (10.203.177.15) by dubpeml100005.china.huawei.com
- (7.214.146.113) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Wed, 5 Nov
- 2025 19:34:05 +0000
-Date: Wed, 5 Nov 2025 19:34:03 +0000
-From: Jonathan Cameron <jonathan.cameron@huawei.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-CC: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	David Jander <david@protonic.nl>, <kernel@pengutronix.de>,
-	<linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, Andy Shevchenko <andy.shevchenko@gmail.com>,
-	David Lechner <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=
-	<nuno.sa@analog.com>
-Subject: Re: [PATCH v1 2/2] iio: adc: Add TI ADS131M0x ADC driver
-Message-ID: <20251105193403.000026fe@huawei.com>
-In-Reply-To: <20251105143814.1807444-3-o.rempel@pengutronix.de>
-References: <20251105143814.1807444-1-o.rempel@pengutronix.de>
-	<20251105143814.1807444-3-o.rempel@pengutronix.de>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1762372191; c=relaxed/simple;
+	bh=Qn3ey+tGjMWZVlyisbgTj7dDw5cJIWX584klbJqpra4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=G8NeKQckuDC+UvLj9y0zWGcjadWtfqRrLF/PDbrvbCQ3ln4YnRFPh0Mwixux3AytfLKwflli8KKfn4Gw9z84+0iOPO/OYNM0WmJu4UZqmMbFb6OZm6q9la/ikLshxJksJcZfBlskMr3CmtYm80Qn8vCxLYcuK/1dFHZeU4Lt5UI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XiJxh+nS; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-477632d45c9so166875e9.2
+        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 11:49:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762372188; x=1762976988; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=MvyrGUvJyh5x1Y73UqVq7sR5SMe0YxpMsmxupXaTnGc=;
+        b=XiJxh+nSqu8d1jhHi1XHlS9SFg1615KDsML8SPKMP+I7CJo+bIFPuLLF5fR/bHWeOF
+         qrLaRG1CfGqdUqiNGwGyyFh9X6NdrFsuDjmtq20apF7HvEob8zpLKB7dO0+wG9mRaNUl
+         9kfUzJQL4it/zRZ3GWH7X0TSI7m2ZtHHZZR0KqL4YE5VJ9yBIvg1wnwWx00Xn9dmPwWk
+         CY1w5LFXxegycUBwky/v0kALz+VK5VLFlT3J0j01jNHdYH0Jh7oRjKr2Yy6Z+TO7bMOy
+         /ujr9YURgsrxSkEuqedfYHwzH3BjFeHcpdGcGqpyXG8iutwB8kMp8n3I/uoDtkbLF/Uw
+         raHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762372188; x=1762976988;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MvyrGUvJyh5x1Y73UqVq7sR5SMe0YxpMsmxupXaTnGc=;
+        b=Cc3YjeCJt2GfVtVyE3T85KYB2Wx+xWamyEl2yKYX75JXG6wcDdEvvT6MJXSd83tg99
+         LsXsfFwqX8gaG8uxHuNOFNNpy+bGS4Agqu1fUSsCHfdnk3JtWtq9gTTx++x+1Oo4tiAz
+         CpMmKWOrCd9KCnLF0nk9KffPAn7vn8DyZfWra0VleH1RKLAiIEECKnKOad4vkO0anr/e
+         8YAJ2Do0gM/pVhmcj2NwOi2aXiKbeHpFnhokgfN1C9i3d2EPEbx7R0WJKt3T25Mi9XE9
+         GJgfh/ZliIIBMDKPO0/tRjJzSstt6jNMU1vN1EK0nvsVnHpMVEtS93piySaoli2AXtp9
+         sG2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUq6neCtbpdl7aa4fa0qVup4vBGFF4Pexm3YvphwRVdF4lFaZZ7eLwwxM8tOcpco6DVn5XW+azTbo5+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyn+7Vp7QAuplADFDlBgtyLZEc/G9WqoXtnWBKwL2gbFBSKvJeK
+	dHmovgzNtaMjHt2shqcpXNgw8b+tM+QnvhXcnt6KIlhtbFMgmU3iz6drBTvZsg==
+X-Gm-Gg: ASbGncuCxsf9xrtYGTM/V4yN0Pbr1a6dTKgqG/wqiLwpTXLDkiLS3ZWUqMSgAHSUqFA
+	8mG+e3NfXqKZ7VgZxgSKSPQwG0H7ktJ1HG4SGkXBT/xX/YQG40PE8FCF1rWbuZd4rgAu51h50b5
+	GjjP02/DzlqpsXS/H711hKYE8qYD7ithQoaXssKaq4BXZfbP39+Zha2i/HYZ+GoBQl6CxIJyKXp
+	Tt0PCM/EiPoWek7lQqikDEi/aB9eA11AFjAtYbQ51lY7DhgnvOi7G4f2KIx5+hPYMZc6pQMasbQ
+	xd76Ezd5R5kGTZmHXUeb2xktUX2IAI9n8Pet2xslKklqcRZH/+EXkauuyPKgZNN54NaU3e8DzpJ
+	qGi1Q2PFe0FB6PV+9cfJvl831LrgxvQHifL5pT0Pinm0v6hrJNHwGWjFrhh9RjF/hgs9c+4g33w
+	TmltDBD6KseYkf7DREFo3yjKQmUDHAIgaQHcP22jsGVE2q+pFmUo/dvFLR28YtCzM=
+X-Google-Smtp-Source: AGHT+IE/wSOJh964hsRl51P6BCrH1urX7lyRtls65YxyHli+/HhkrEEnHnqcio2fY8WWADS8haI6QQ==
+X-Received: by 2002:a05:600c:46ce:b0:475:dbb5:23a2 with SMTP id 5b1f17b1804b1-4775cdc8e4fmr34171475e9.16.1762372187615;
+        Wed, 05 Nov 2025 11:49:47 -0800 (PST)
+Received: from orome (p200300e41f274600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f27:4600:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477558dd04bsm52402155e9.1.2025.11.05.11.49.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Nov 2025 11:49:46 -0800 (PST)
+Date: Wed, 5 Nov 2025 20:49:44 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Jon Hunter <jonathanh@nvidia.com>, 
+	devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
+	linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: memory: tegra: Document DBB clock for
+ Tegra264
+Message-ID: <i37vfuritqx5vs2wds4euomyt27dkcmzvvosphxd633aq7sis4@bsjn5yv4pq45>
+References: <20251105160513.2638408-1-thierry.reding@gmail.com>
+ <20251105160513.2638408-2-thierry.reding@gmail.com>
+ <176236389129.1455984.6215917313928055462.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100009.china.huawei.com (7.191.174.83) To
- dubpeml100005.china.huawei.com (7.214.146.113)
-
-On Wed, 5 Nov 2025 15:38:14 +0100
-Oleksij Rempel <o.rempel@pengutronix.de> wrote:
-
-> From: David Jander <david@protonic.nl>
-> 
-> Add a new IIO ADC driver for Texas Instruments ADS131M0x devices
-> (ADS131M02/03/04/06/08). These are 24-bit, up to 64 kSPS, simultaneous-
-> sampling delta-sigma ADCs accessed via SPI.
-> 
-> Highlights:
-> - Supports 2/3/4/6/8-channel variants with per-channel RAW and SCALE.
-> - Implements device-required full-duplex fixed-frame transfers.
-> - Handles both input and output CRC; uses a non-reflected CCITT (0x1021)
->   implementation because the generic crc_ccitt helper is incompatible.
-> 
-> Note: Despite the almost identical name, this hardware is not
-> compatible with the ADS131E0x series handled by
-> drivers/iio/adc/ti-ads131e08.c.
-> 
-> Signed-off-by: David Jander <david@protonic.nl>
-> Co-developed-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-
-Hi Oleksij, David,
-
-Various comments inline.
-
-Jonathan
-
-> diff --git a/drivers/iio/adc/ti-ads131m0x.c b/drivers/iio/adc/ti-ads131m0x.c
-> new file mode 100644
-> index 000000000000..d40aacc129ba
-> --- /dev/null
-> +++ b/drivers/iio/adc/ti-ads131m0x.c
-> @@ -0,0 +1,886 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Driver for Texas Instruments ADS131M0x family ADC chips.
-> + *
-> + * Copyright (C) 2024 Protonic Holland
-> + * Copyright (C) 2025 Oleksij Rempel <kernel@pengutronix.de>, Pengutronix
-> + *
-> + * Primary Datasheet Reference (used for citations):
-> + * ADS131M08 8-Channel, Simultaneously-Sampling, 24-Bit, Delta-Sigma ADC
-> + * Document SBAS950B, Revised February 2021
-> + * https://www.ti.com/lit/ds/symlink/ads131m08.pdf
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/err.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-
-I guess here for of_match_ptr() which I suggest you drop. Then this include
-isn't needed.
-
-> +#include <linux/property.h>
-> +#include <linux/spi/spi.h>
-> +
-> +/* Max channels supported by the largest variant in the family (ADS131M08) */
-> +#define ADS131M_MAX_CHANNELS		8
-> +
-> +/* ADS131M08 tolerates up to 25 MHz SCLK.
-> + */
-> +#define ADS131M_MAX_SCLK_HZ		25000000
-> +
-> +/* Section 6.7, t_REGACQ (min time after reset) is 5us */
-> +#define ADS131M_RESET_DELAY_US		10
-> +
-> +/*
-> + * SPI Frame word count calculation.
-> + * Frame = N channel words + 1 response word + 1 CRC word.
-> + * Word size depends on WLENGTH bits in MODE register (Default 24-bit).
-> + */
-> +#define ADS131M_FRAME_WSIZE(nch)	(nch + 2)
-Similar to case below ((nch) + 2) prefererd.
-
-> +/*
-> + * Index calculation for the start byte of channel 'x' data within the RX buffer.
-> + * Assumes 24-bit words (3 bytes per word).
-> + * The received frame starts with the response word (e.g., STATUS register
-> + * content when NULL command was sent), followed by data for channels 0 to N-1,
-> + * and finally the output CRC word.
-> + * Response = index 0..2, Chan0 = index 3..5, Chan1 = index 6..8, ...
-> + * Index for ChanX = 3 (response) + x * 3 (channel data size).
-> + */
-> +#define ADS131M_CHANNEL_INDEX(x)	(x * 3 + 3)
-((x) * 3 + 3)
-to avoid having to check carefully for odd things being passed as x and
-precedence issues that might result.
-
-
-
-> +enum ads131m_device_id {
-> +	ADS131M08_ID,
-> +	ADS131M06_ID,
-> +	ADS131M04_ID,
-> +	ADS131M03_ID,
-> +	ADS131M02_ID,
-reverse order.
-> +};
-> +
-> +struct ads131m_priv {
-> +	struct spi_device *spi;
-> +	struct clk *clk;
-> +	struct mutex lock;
-
-Lock should have a commment describing what data it protects.
-Looks like internal state during rmw sequences. Maybe other stuff?
-
-> +	u8 num_channels;
-> +	const struct ads131m_configuration *config;
-> +	u8 tx_buffer[ADS131M_FRAME_BSIZE(ADS131M_MAX_CHANNELS)]
-> +		__aligned(IIO_DMA_MINALIGN);
-> +	u8 rx_buffer[ADS131M_FRAME_BSIZE(ADS131M_MAX_CHANNELS)]
-> +		__aligned(IIO_DMA_MINALIGN);
-> +	struct spi_transfer xfer[1];
-> +	struct spi_message msg;
-> +	unsigned int gain[ADS131M_MAX_CHANNELS];
-> +};
-
-> +
-> +/**
-> + * ads131m_tx_frame_unlocked - Sends a command frame with Input CRC
-> + * @priv: Device private data structure.
-> + * @command: The 16-bit command to send (e.g., NULL, RREG, RESET).
-> + *
-> + * Assumes the mutex lock is held.
-> + * This function sends a command in Word 0, and its calculated 16-bit
-> + * CRC in Word 1, as required when Input CRC is enabled.
-> + *
-> + * Return: 0 on success, or a negative error code from spi_sync.
-> + */
-> +static int ads131m_tx_frame_unlocked(struct ads131m_priv *priv, u32 command)
-> +{
-> +	int ret;
-> +	u16 crc;
-> +
-> +	/*
-> +	 * Zero the entire TX buffer to send a valid frame.
-
-Single line comments where it fits give shorter overall driver
-and more on a screen at time (important for those of us who have
-less than perfect eyesight!)
-
-> +	 */
-> +	memset(priv->tx_buffer, 0, ADS131M_FRAME_BSIZE(priv->num_channels));
-> +
-> +	/*
-> +	 * Word 0: 16-bit command, MSB-aligned in 24-bit word.
-> +	 */
-> +	put_unaligned_be24(command << 8, &priv->tx_buffer[0]);
-Similar to below. Smells like it should be a 16bit write to the correct location.
-
-> +
-> +	/*
-> +	 * Word 1: Input CRC
-> +	 * Calculated over the 3 bytes of Word 0.
-> +	 */
-> +	crc = ads131m_crc_calculate(priv->tx_buffer, 3);
-> +	put_unaligned_be24(crc << 8, &priv->tx_buffer[3]);
-likewise.
-
-> +
-> +	return spi_sync(priv->spi, &priv->msg);
-> +}
-> +
-> +/**
-> + * ads131m_rx_frame_unlocked - Receives a full SPI data frame.
-> + * @priv: Device private data structure.
-> + *
-> + * This function sends a NULL command (with its CRC) to clock out a
-> + * full SPI frame from the device (e.g., response + channel data + CRC).
-> + *
-> + * Assumes the mutex lock is held.
-
-Can use a lockdep assert to make this explicit in code and drop
-the comment.
-
-> + *
-> + * Return: 0 on success, or a negative error code from spi_sync.
-> + */
-> +static int ads131m_rx_frame_unlocked(struct ads131m_priv *priv)
-> +{
-> +	return ads131m_tx_frame_unlocked(priv, ADS131M_CMD_NULL);
-> +}
-> +
-> +/**
-> + * ads131m_check_status_crc_err - Checks for an Input CRC error.
-> + * @priv: Device private data structure.
-> + *
-> + * Sends a NULL command to fetch the STATUS register and checks the
-> + * CRC_ERR bit. This is used to verify the integrity of the previous
-> + * command (like RREG or WREG).
-> + *
-> + * Context: This function assumes the mutex 'lock' is held.
-> + * Return: 0 on success, -EIO if CRC_ERR bit is set.
-> + */
-> +static int ads131m_check_status_crc_err(struct ads131m_priv *priv)
-> +{
-> +	int ret;
-> +	u16 status;
-> +
-> +	ret = ads131m_rx_frame_unlocked(priv);
-> +	if (ret < 0) {
-> +		dev_err(&priv->spi->dev, "SPI error on STATUS read for CRC check\n");
-
-Local dev variable useful here.
-
-> +		return ret;
-> +	}
-> +
-> +	status = get_unaligned_be16(&priv->rx_buffer[0]);
-> +	if (status & ADS131M_STATUS_CRC_ERR) {
-> +		dev_err(&priv->spi->dev, "Previous input CRC error, STATUS=0x%04x\n",
-> +			status);
-> +		return -EIO;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +/**
-> + * ads131m_write_reg_unlocked - Writes a single register and verifies the ACK.
-> + * @priv: Device private data structure.
-> + * @reg: The 8-bit register address.
-> + * @val: The 16-bit value to write.
-> + *
-> + * This function performs the full 3-cycle WREG operation with Input CRC:
-> + * 1. (Cycle 1) Sends WREG command, data, and its calculated CRC.
-> + * 2. (Cycle 2) Sends NULL+CRC to retrieve the response from Cycle 1.
-> + * 3. Verifies the response is the correct ACK for the WREG.
-> + * 4. (Cycle 3) Sends NULL+CRC to retrieve STATUS and check for CRC_ERR.
-> + *
-> + * Assumes the mutex lock is held.
-> + *
-> + * Return: 0 on success, or a negative error code.
-> + */
-> +static int ads131m_write_reg_unlocked(struct ads131m_priv *priv, u8 reg,
-> +				      u16 val)
-> +{
-> +	u16 command, expected_ack, response, crc;
-> +	int ret;
-> +
-> +	command = ADS131M_CMD_WREG(reg, 0); /* n=0 for 1 register */
-n = 0
-> +	/*
-> +	 * Per Table 8-11, WREG response is: 010a aaaa ammm mmmm
-> +	 * For 1 reg (n=0 -> m=0): 010a aaaa a000 0000 = 0x4000 | (reg << 7)
-
-n = 0 -> m = 0
-Slightly long line is fine.
-I'd format all these comments along those lines.
-
-
-> +	 */
-> +	expected_ack = 0x4000 | (reg << 7);
-> +
-> +	/*
-> +	 * Cycle 1: Send WREG Command + Data + Input CRC
-> +	 */
-> +
-> +	/* Zero the entire TX buffer */
-> +	memset(priv->tx_buffer, 0, ADS131M_FRAME_BSIZE(priv->num_channels));
-> +
-> +	/* Word 0: WREG command, 1 reg (n=0), MSB-aligned */
-> +	put_unaligned_be24(command << 8, &priv->tx_buffer[0]);
-That shift makes me thing this is better represented as
-	put_unaligned_be16(command, &priv->tx_buffer[0]);
-	//gap but it's zero so no problem.
-	put_unaligned_be16(val, &priv->tx_buffer[3]);
-	//gap here as well, also zero currently.
-> +
-> +	/* Word 1: Data, MSB-aligned */
-The msb aligned seems obvious.
-> +	put_unaligned_be24(val << 8, &priv->tx_buffer[3]);
-> +
-> +	/*
-> +	 * Word 2: Input CRC
-> +	 * Calculated over Word 0 (Cmd) and Word 1 (Data).
-> +	 */
-> +	crc = ads131m_crc_calculate(priv->tx_buffer, 6);
-> +	put_unaligned_be24(crc << 8, &priv->tx_buffer[6]);
-	put_unaligned_be16(crc, &priv->tx_buffer[6]);
-and another gap after this.
-
-> +
-> +	/* We ignore the RX buffer (it's from the *previous* command) */
-Prefer imperative for documentation.
-	/* Ignore the RX buffer  ...
-
-> +	ret = spi_sync(priv->spi, &priv->msg);
-> +
-
-Drop this blank line.
-
-> +	if (ret < 0) {
-> +		dev_err(&priv->spi->dev, "SPI error on WREG (cycle 1)\n");
-
-Worth a local variable for this function.
-	struct device *dev = &priv->spi->dev;
-
-> +		goto write_err;
-> +	}
-> +
-> +	/*
-> +	 * Cycle 2: Send NULL Command to get the WREG response
-> +	 */
-> +	ret = ads131m_rx_frame_unlocked(priv);
-> +	if (ret < 0) {
-> +		dev_err(&priv->spi->dev, "SPI error on WREG ACK (cycle 2)\n");
-> +		goto write_err;
-> +	}
-> +
-> +	/*
-> +	 * Response is in the first 2 bytes of the RX buffer
-> +	 * (MSB-aligned 16-bit response)
-> +	 */
-> +	response = get_unaligned_be16(&priv->rx_buffer[0]);
-> +
-> +	if (response != expected_ack) {
-> +		dev_err(&priv->spi->dev,
-> +			"WREG(0x%02x) failed, expected ACK 0x%04x, got 0x%04x\n",
-> +			reg, expected_ack, response);
-> +		ret = -EIO;
-> +		/*
-> +		 * Don't unlock yet, still need to do Cycle 3 to clear
-> +		 * any potential CRC_ERR flag from this failed command.
-> +		 */
-> +	} else {
-> +		dev_dbg(&priv->spi->dev, "WREG(0x%02x) ACK 0x%04x OK\n",
-> +			reg, response);
-> +	}
-> +
-> +	/*
-> +	 * Cycle 3: Check STATUS for Input CRC error.
-> +	 * This is necessary even if ACK was wrong, to clear the CRC_ERR flag.
-> +	 */
-> +	if (ads131m_check_status_crc_err(priv) < 0)
-> +		ret = -EIO;
-> +
-> +write_err:
-As below. Early return preferred. It's easier to read in simple functions like
-this as we can immediately see no cleanup is happening in those error paths
-(so nothing to check!)
-
-> +	return ret;
-> +}
-> +
-> +/**
-> + * ads131m_read_reg_unlocked - Reads a single register from the device.
-> + * @priv: Device private data structure.
-> + * @reg: The 8-bit register address.
-> + * @val: Pointer to store the 16-bit register value.
-> + *
-> + * This function performs the full 3-cycle RREG operation with Input CRC:
-> + * 1. (Cycle 1) Sends the RREG command + Input CRC.
-> + * 2. (Cycle 2) Sends NULL+CRC to retrieve the register data.
-> + * 3. (Cycle 3) Sends NULL+CRC to retrieve STATUS and check for CRC_ERR.
-> + *
-> + * Assumes the mutex lock is held.
-> + *
-> + * Return: 0 on success, or a negative error code.
-> + */
-> +static int ads131m_read_reg_unlocked(struct ads131m_priv *priv, u8 reg, u16 *val)
-> +{
-> +	u16 command;
-> +	int ret;
-> +
-> +	command = ADS131M_CMD_RREG(reg, 0); /* n=0 for 1 register */
-n = 0
-Might as well keep comments to kernel coding style too as helps readability.
-
-> +
-> +	/*
-> +	 * Cycle 1: Send RREG Command + Input CRC
-> +	 * We ignore the RX buffer (it's from the previous command).
-> +	 */
-> +	ret = ads131m_tx_frame_unlocked(priv, command);
-> +	if (ret < 0) {
-> +		dev_err(&priv->spi->dev, "SPI error on RREG (cycle 1)\n");
-> +		goto read_err;
-> +	}
-> +
-> +	/*
-> +	 * Cycle 2: Send NULL Command to get the register data
-> +	 */
-> +	ret = ads131m_rx_frame_unlocked(priv);
-> +	if (ret < 0) {
-> +		dev_err(&priv->spi->dev, "SPI error on RREG data (cycle 2)\n");
-> +		goto read_err;
-> +	}
-> +
-> +	/*
-> +	 * Per datasheet, for a single reg read, the response is the data.
-> +	 * It's in the first 2 bytes of the RX buffer (MSB-aligned 16-bit).
-> +	 */
-> +	*val = get_unaligned_be16(&priv->rx_buffer[0]);
-> +
-> +	dev_dbg(&priv->spi->dev, "RREG(0x%02x) = 0x%04x\n", reg, *val);
-> +
-> +	/*
-> +	 * Cycle 3: Check STATUS for Input CRC error.
-> +	 * The RREG command does not execute if CRC is bad, but we read
-> +	 * STATUS anyway to clear the flag in case it was set.
-> +	 */
-> +	if (ads131m_check_status_crc_err(priv) < 0)
-> +		ret = -EIO;
-> +
-> +read_err:
-> +	return ret;
-
-Return early on error and drop this (or at least make it return 0 always)
-
-> +}
-> +
-> +/**
-> + * ads131m_rmw_reg - Reads, modifies, and writes a single register.
-> + * @priv: Device private data structure.
-> + * @reg: The 8-bit register address.
-> + * @clear: Bitmask of bits to clear.
-> + * @set: Bitmask of bits to set.
-> + *
-> + * This function performs an atomic read-modify-write operation on a register.
-> + * It reads the register, applies the clear and set masks, and writes
-> + * the new value back if it has changed.
-> + *
-> + * Context: This function handles its own mutex locking
-> + *
-> + * Return: 0 on success, or a negative error code.
-> + */
-> +static int ads131m_rmw_reg(struct ads131m_priv *priv, u8 reg, u16 clear,
-> +			   u16 set)
-> +{
-> +	u16 old_val, new_val;
-> +	int ret = 0;
-Always set before use - don't init.
-> +
-> +	mutex_lock(&priv->lock);
-
-As below. Use guard() and early returns on error.
-
-
-> +
-> +	ret = ads131m_read_reg_unlocked(priv, reg, &old_val);
-> +	if (ret < 0)
-> +		goto rmw_unlock;
-> +
-> +	new_val = (old_val & ~clear) | set;
-> +
-> +	if (new_val == old_val)
-> +		goto rmw_unlock;
-> +
-> +	ret = ads131m_write_reg_unlocked(priv, reg, new_val);
-> +
-> +rmw_unlock:
-> +	mutex_unlock(&priv->lock);
-> +	return ret;
-> +}
-
-> +
-> +/**
-> + * ads131m_adc_read - Reads channel data, checks input and output CRCs.
-> + * @priv: Device private data structure.
-> + * @channel: The channel number to read.
-> + * @val: Pointer to store the raw 24-bit value.
-> + *
-> + * This function sends a NULL command (with Input CRC) to retrieve data.
-> + * It checks the received STATUS word for any Input CRC errors from the
-> + * previous command, and then verifies the Output CRC of the current
-> + * data frame.
-> + *
-> + * Return: 0 on success, or a negative error code.
-> + */
-> +static int ads131m_adc_read(struct ads131m_priv *priv, u8 channel, s32 *val)
-> +{
-> +	int ret;
-> +	u8 *buf;
-> +	u16 status;
-> +
-> +	mutex_lock(&priv->lock);
-
-guard(mutex)(&priv->lock); Then no need to unlock in any paths.
-
-> +
-> +	/* Send NULL command + Input CRC, and receive data frame */
-> +	ret = ads131m_rx_frame_unlocked(priv);
-> +	if (ret < 0) {
-> +		mutex_unlock(&priv->lock);
-> +		return ret;
-> +	}
-> +
-> +	/*
-> +	 * Check STATUS word (Word 0) for an Input CRC Error from the
-> +	 * previous SPI frame.
-> +	 */
-> +	status = get_unaligned_be16(&priv->rx_buffer[0]);
-> +	if (status & ADS131M_STATUS_CRC_ERR) {
-> +		dev_err_ratelimited(&priv->spi->dev,
-> +				    "Previous input CRC Error reported in STATUS (0x%04x)\n",
-> +				    status);
-> +	}
-> +
-> +	/*
-> +	 * Validate the output CRC on the current data frame to ensure
-> +	 * data integrity.
-> +	 */
-> +	ret = ads131m_verify_output_crc(priv);
-> +	if (ret < 0) {
-> +		mutex_unlock(&priv->lock);
-> +		return ret;
-> +	}
-> +
-> +	buf = &priv->rx_buffer[ADS131M_CHANNEL_INDEX(channel)];
-> +	*val = sign_extend32(get_unaligned_be24(buf), 23);
-> +
-> +	mutex_unlock(&priv->lock);
-> +
-> +	return 0;
-> +}
-
-
-> +
-> +static const struct ads131m_configuration ads131m_config[] = {
-> +	[ADS131M08_ID] = {
-We used to do this enum and array approach a lot, but it doesn't scale
-particularly well and leaves an enum around people tend to abuse to
-do thing sin code that belong as data.
-
-As such, modern preference in IIO is separate named structures
-static const struct ads131m_configuration ads131m08_config = {
-};
-
-etc
-
-> +		.channels = ads131m08_channels,
-> +		.num_channels = ARRAY_SIZE(ads131m08_channels),
-> +		.reset_ack = 0xFF28,
-> +	},
-> +	[ADS131M06_ID] = {
-> +		.channels = ads131m06_channels,
-> +		.num_channels = ARRAY_SIZE(ads131m06_channels),
-> +		.reset_ack = 0xFF26,
-> +	},
-> +	[ADS131M04_ID] = {
-> +		.channels = ads131m04_channels,
-> +		.num_channels = ARRAY_SIZE(ads131m04_channels),
-> +		.reset_ack = 0xFF24,
-> +	},
-> +	[ADS131M03_ID] = {
-> +		.channels = ads131m03_channels,
-> +		.num_channels = ARRAY_SIZE(ads131m03_channels),
-> +		.reset_ack = 0xFF23,
-> +	},
-> +	[ADS131M02_ID] = {
-> +		.channels = ads131m02_channels,
-> +		.num_channels = ARRAY_SIZE(ads131m02_channels),
-> +		.reset_ack = 0xFF22,
-> +	},
-> +};
-
-> +/*
-> + * Prepares the reusable SPI message structure for a full-duplex transfer.
-> + * The ADS131M requires sending a command frame while simultaneously
-> + * receiving the response/data frame from the previous command cycle.
-> + *
-> + * This message is optimized for the primary data acquisition workflow:
-> + * sending a single-word command (like NULL) and receiving a full data
-> + * frame (Response + N*Channels + CRC).
-> + *
-> + * This pre-configured message is NOT suitable for variable-length SPI
-> + * transactions (e.g., multi-word WREG or multi-response RREG),
-> + * which would require a separate, dynamically-sized spi_message.
-> + */
-> +static void ads131m_prepare_message(struct ads131m_priv *priv)
-> +{
-> +	priv->xfer[0].tx_buf = &priv->tx_buffer[0];
-> +	priv->xfer[0].rx_buf = &priv->rx_buffer[0];
-> +	priv->xfer[0].len = ADS131M_FRAME_BSIZE(priv->num_channels);
-> +	spi_message_init_with_transfers(&priv->msg, &priv->xfer[0], 1);
-
-Consider doing devm_spi_optimize_message() to reduce the overheads of
-this particular message further.
-
-> +}
-
-> +
-> +/**
-> + * ads131m_soft_reset - Issues a software RESET and verifies ACK.
-> + * @priv: Device private data structure.
-> + *
-> + * This function sends a RESET command (with Input CRC), waits t_REGACQ,
-> + * reads back the RESET ACK, and then sends a final NULL to check for
-> + * any input CRC errors.
-> + *
-> + * Return: 0 on success, or a negative error code.
-> + */
-> +static int ads131m_soft_reset(struct ads131m_priv *priv)
-> +{
-> +	struct spi_device *spi = priv->spi;
-> +	u16 response;
-> +	int ret;
-> +	u16 expected_ack = priv->config->reset_ack;
-Pick a consistent ordering for declarations when there is no dependency
-between them. I'm not spotting one here. Something like reverse xmas tree
-is easy to follow.
-
-> +
-> +	mutex_lock(&priv->lock);
-
-Include cleanup.h and
-	guard(mutex)(&priv->lock);
-then no need for got he got err_unlock or any manual unlocking.
-
-> +	dev_dbg(&spi->dev, "Sending RESET command\n");
-
-Probably not appropriate to keep this level of debug print in a
-production driver.
-
-> +	ret = ads131m_tx_frame_unlocked(priv, ADS131M_CMD_RESET);
-> +	if (ret < 0) {
-> +		dev_err(&spi->dev, "Failed to send RESET command\n");
-> +		goto err_unlock;
-
-Only in probe so
-		return dev_err_probe() is appropriate even in here.
-same for all other cases in this function.
-
-> +	}
-> +
-> +	/* Wait t_REGACQ (5us) for device to be ready after reset */
-> +	usleep_range(ADS131M_RESET_DELAY_US, ADS131M_RESET_DELAY_US + 5);
-
-fsleep(). That provides a standard 'slack' on a sleep like this.
-
-> +
-> +	/* Cycle 2: Send NULL+CRC to retrieve the response to the RESET */
-> +	dev_dbg(&spi->dev, "Reading RESET ACK\n");
-> +	ret = ads131m_rx_frame_unlocked(priv);
-> +	if (ret < 0) {
-> +		dev_err(&spi->dev, "Failed to read RESET ACK\n");
-> +		goto err_unlock;
-> +	}
-> +
-> +	response = get_unaligned_be16(&priv->rx_buffer[0]);
-> +
-> +	/* Check against the device-specific ACK value */
-> +	if (response != expected_ack) {
-> +		dev_warn(&spi->dev, "RESET ACK mismatch, got 0x%04x, expected 0x%04x\n",
-> +			 response, expected_ack);
-> +		ret = -EIO;
-> +		goto err_unlock;
-> +	}
-> +
-> +	/* Cycle 3: Check STATUS for Input CRC error on the RESET command. */
-> +	if (ads131m_check_status_crc_err(priv) < 0)
-> +		ret = -EIO;
-> +
-> +err_unlock:
-> +	mutex_unlock(&priv->lock);
-> +	return ret;
-> +}
-> +
-> +/**
-> + * ads131m_hw_init - Initialize the ADC hardware.
-> + * @priv: Device private data structure.
-> + *
-> + * This function performs the hardware-specific initialization sequence:
-> + * 1. Enables the main clock.
-> + * 2. Issues a software RESET command to clear FIFOs and defaults.
-> + * 3. Configures the MODE register to clear RESET, set CCITT CRC,
-> + * and enable Input CRC checking.
-> + *
-> + * Return: 0 on success, or a negative error code.
-> + */
-> +static int ads131m_hw_init(struct ads131m_priv *priv)
-> +{
-> +	struct spi_device *spi = priv->spi;
-> +	u16 clear_mask, set_mask;
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(priv->clk);
-> +	if (ret) {
-> +		dev_err(&spi->dev, "clk enable failed: %d\n", ret);
-> +		return ret;
-> +	}
-> +	ret = devm_add_action_or_reset(&spi->dev, ads131m_clk_disable_unprepare,
-> +				       priv->clk);
-
-As Marc pointed out just use the enabled form when getting the clock
-in the first place.
-
-> +	if (ret) {
-> +		clk_disable_unprepare(priv->clk);
-> +		return ret;
-> +	}
-> +
-> +	/*
-> +	 * Issue a software RESET to ensure device is in a known state.
-> +	 * This clears the 2-deep FIFO and resets all registers to default.
-> +	 */
-> +	ret = ads131m_soft_reset(priv);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/*
-> +	 * The RESET command sets all registers to default, which means:
-> +	 * 1. The RESET bit (Bit 10) in MODE is set to '1'.
-> +	 * 2. The CRC_TYPE bit (Bit 11) in MODE is '0' (CCITT).
-> +	 * 3. The RX_CRC_EN bit (Bit 12) in MODE is '0' (Disabled).
-> +	 *
-> +	 * We must:
-> +	 * 1. Clear the RESET bit.
-> +	 * 2. Enable Input CRC (RX_CRC_EN).
-> +	 * 3. Explicitly clear the ANSI CRC bit (for certainty).
-> +	 */
-> +	clear_mask = ADS131M_MODE_CRC_TYPE_ANSI | ADS131M_MODE_RESET_FLAG;
-> +	set_mask = ADS131M_MODE_RX_CRC_EN;
-> +
-> +	ret = ads131m_rmw_reg(priv, ADS131M_REG_MODE, clear_mask, set_mask);
-
-As below - I'd pass the iio_dev around to avoid need to duplicate any data
-that is in there in priv.
-
-> +	if (ret < 0) {
-> +		dev_err(&spi->dev, "Failed to configure MODE register\n");
-> +		return ret;
-Only called in probe, so 
-		return dev_err_probe()
-
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int ads131m_probe(struct spi_device *spi)
-> +{
-> +	const struct ads131m_configuration *config;
-> +	struct iio_dev *indio_dev;
-> +	struct ads131m_priv *priv;
-> +	int ret;
-> +
-> +	spi->mode = SPI_MODE_1;
-
-Should come from the firmware, not be specified in driver.
-cpha should be set in the dt binding.
-
-> +	spi->bits_per_word = 8;
-IIRC that's the default.
-
-> +
-> +	if (!spi->max_speed_hz || spi->max_speed_hz > ADS131M_MAX_SCLK_HZ)
-> +		spi->max_speed_hz = ADS131M_MAX_SCLK_HZ;
-
-If this isn't variable, normal assumption is it is a problem for firmware
-so drivers tend to not enforce max frequencies.
-> +
-> +	ret = spi_setup(spi);
-> +	if (ret < 0) {
-> +		dev_err(&spi->dev, "Error in spi setup\n");
-> +		return ret;
-
-return dev_err_probe();
-
-> +	}
-> +
-> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*priv));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	priv = iio_priv(indio_dev);
-> +	priv->spi = spi;
-> +
-> +	indio_dev->name = spi_get_device_id(spi)->name;
-
-Put the string in your config structure.  This path tends to end up
-fragile as it depends on exactly how the firmware match was done.
-
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->info = &ads131m_info;
-> +
-> +	config = device_get_match_data(&spi->dev);
-> +	if (!config) {
-> +		const struct spi_device_id *id;
-> +
-> +		id = spi_get_device_id(spi);
-> +		if (!id)
-> +			return -ENODEV;
-> +
-> +		config = (const void *)id->driver_data;
-
-spi_get_device_match_data()
-
-> +	}
-> +	priv->config = config;
-> +
-> +	indio_dev->channels = config->channels;
-> +	indio_dev->num_channels = config->num_channels;
-> +	priv->num_channels = config->num_channels;
-
-Why do you need another copy?  I'd just pass indio_dev
-into the functions that need this and use iio_priv() to get to
-the prv structure.
-
-> +
-> +	/* Get the external clock source connected to the CLKIN pin */
-> +	priv->clk = devm_clk_get(&spi->dev, NULL);
-> +	if (IS_ERR(priv->clk)) {
-> +		ret = PTR_ERR(priv->clk);
-> +		dev_err(&spi->dev, "clk get failed: %d\n", ret);
-> +		return ret;
-
-		return dev_err_probe();
-
-For all error reporting in probe.  Pretty prints the error value and
-gives shorter code.  Also possible this particular call might defer
-if the clock chip driver hasn't probed yet.
-
-
-> +	}
-> +
-> +	mutex_init(&priv->lock);
-	ret = devm_mutex_init(&priv->lock);
-	if (ret)
-		return ret;
-
-Very small advantage for debug, but also now easy to do so we might as well.
-
-> +	/* Setup the reusable SPI message structure */
-Seems fairly obvious from function name. Probably drop this comment.
-
-> +	ads131m_prepare_message(priv);
-> +
-> +	/*
-> +	 * Perform all hardware-specific initialization.
-> +	 */
-
-The function name feels sufficient to convey that it is hardware init
-so drop the comment.
-
-> +	ret = ads131m_hw_init(priv);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return devm_iio_device_register(&spi->dev, indio_dev);
-> +}
-> +
-> +static const struct of_device_id ads131m_of_match[] = {
-> +	{ .compatible = "ti,ads131m08", .data = &ads131m_config[ADS131M08_ID] },
-As below, reverse the ordering.
-
-> +	{ .compatible = "ti,ads131m06", .data = &ads131m_config[ADS131M06_ID] },
-> +	{ .compatible = "ti,ads131m04", .data = &ads131m_config[ADS131M04_ID] },
-> +	{ .compatible = "ti,ads131m03", .data = &ads131m_config[ADS131M03_ID] },
-> +	{ .compatible = "ti,ads131m02", .data = &ads131m_config[ADS131M02_ID] },
-> +	{ /* sentinel */ },
-	{ }
-So no comma the sentinel.
-> +};
-> +MODULE_DEVICE_TABLE(of, ads131m_of_match);
-> +
-> +static const struct spi_device_id ads131m_id[] = {
-> +	{ "ads131m08", (kernel_ulong_t)&ads131m_config[ADS131M08_ID] },
-
-Normally do these in opposite order. Doesn't really matter but nice to have
-a universal style so I'd prefer it that way up.
-
-> +	{ "ads131m06", (kernel_ulong_t)&ads131m_config[ADS131M06_ID] },
-> +	{ "ads131m04", (kernel_ulong_t)&ads131m_config[ADS131M04_ID] },
-> +	{ "ads131m03", (kernel_ulong_t)&ads131m_config[ADS131M03_ID] },
-> +	{ "ads131m02", (kernel_ulong_t)&ads131m_config[ADS131M02_ID] },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(spi, ads131m_id);
-> +
-> +static struct spi_driver ads131m_driver = {
-> +	.driver = {
-> +		.name = "ads131m0x",
-> +		.of_match_table = of_match_ptr(ads131m_of_match),
-
-Drop of_match_ptr(). It prevents other types of firmware - e.g. the
-magic ACPI ID that says use the dt binding, from working and provide
-no real benefit.
-
-> +	},
-> +	.probe = ads131m_probe,
-> +	.id_table = ads131m_id,
-> +};
-> +module_spi_driver(ads131m_driver);
-> +
-> +MODULE_AUTHOR("David Jander <david@protonic.nl>");
-> +MODULE_DESCRIPTION("Texas Instruments ADS131M0x ADC driver");
-> +MODULE_LICENSE("GPL");
-
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ich3dhap6fs3b6m2"
+Content-Disposition: inline
+In-Reply-To: <176236389129.1455984.6215917313928055462.robh@kernel.org>
+
+
+--ich3dhap6fs3b6m2
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 1/3] dt-bindings: memory: tegra: Document DBB clock for
+ Tegra264
+MIME-Version: 1.0
+
+On Wed, Nov 05, 2025 at 11:31:31AM -0600, Rob Herring (Arm) wrote:
+>=20
+> On Wed, 05 Nov 2025 17:05:11 +0100, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> >=20
+> > Accesses to external memory are routed through the data backbone (DBB)
+> > on Tegra264. A separate clock feeds this path and needs to be enabled
+> > whenever an IP block makes an access to external memory. The external
+> > memory controller driver is the best place to control this clock since
+> > it knows how many devices are actively accessing memory.
+> >=20
+> > Document the presence of this clock on Tegra264 only.
+> >=20
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> >  .../memory-controllers/nvidia,tegra186-mc.yaml        | 11 +++++++++++
+> >  1 file changed, 11 insertions(+)
+> >=20
+>=20
+> My bot found errors running 'make dt_binding_check' on your patch:
+>=20
+> yamllint warnings/errors:
+>=20
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/m=
+emory-controllers/nvidia,tegra186-mc.example.dtb: memory-controller@2c00000=
+ (nvidia,tegra186-mc): external-memory-controller@2c60000:clock-names: ['em=
+c'] is too short
+> 	from schema $id: http://devicetree.org/schemas/memory-controllers/nvidia=
+,tegra186-mc.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/m=
+emory-controllers/nvidia,tegra186-mc.example.dtb: memory-controller@2c00000=
+ (nvidia,tegra186-mc): external-memory-controller@2c60000:clocks: [[4294967=
+295, 58]] is too short
+> 	from schema $id: http://devicetree.org/schemas/memory-controllers/nvidia=
+,tegra186-mc.yaml
+
+Ugh... looks like I used the wrong hash in the format-patch command and
+didn't notice that I sent out an old version of the patch that's missing
+the minItems for clocks and clock-names.
+
+I'll send out the correct version, sorry for the noise.
+
+Thierry
+
+--ich3dhap6fs3b6m2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmkLqlgACgkQ3SOs138+
+s6FvhA/+JjAdSF6J+xyphE5ibJBXmjrqp9zOBE52ZjEg0CRywTgZ4ojsS+lDxq8/
+QdJOmxNbHxwJWrmhZSEm5oaJ169TirEx4XY/vRlOpZdOaWZTBLUwVjx02nDP6o00
+z7jQ3oPx06i0la68sxrFY7xE88QefW5ukuEcOpEWrs5jcsJCP/HuV4zhAXHPCZQ5
+BBVqX/d6S8ugVwR0EGzuEMEM8PAUEn9zu8wJpvLlAbwHMZ/sOMwh32Sv279qokm0
+FRgMSIPgZIy8qTt0veYagCS51x39AJRybyqlFvkd0beImhKpqPcuPyDGNNDJFZP2
+Tf7rS0vXSMmUnDCTixpQJBRZ05gKvY8gn3mYH/pkdDJ3Wml7swKXyrq4g97klfwW
+x3s3M8A89NyUFtrq2biWTuM52m9Mm5qk2CB6JLd6NVZdEW1gWVKJFZhei1FWhqK0
+Nl/bXKP0INNofg3LSlezhLu38zDGvOYDy7q/OOhuRKwPky2MbcfHasfSgDTbIUgq
+lZABtmf5MycsJD252WViFaqydCTRmyQFMsQKuCWRIjvezfiN41xLy4Z6WxD80kqo
++jUM7OQdHQpz2PSh5vcr3R8Fa5Bddqmpz2gYgbhWct0IzlOP3DU9QtYbfVmp7AMv
+DgrkrpprCHMrBh4aq9/murXAgoeWN7PW34YuIXTgcaH1Qj03ZYc=
+=vmRC
+-----END PGP SIGNATURE-----
+
+--ich3dhap6fs3b6m2--
 
