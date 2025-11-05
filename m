@@ -1,184 +1,111 @@
-Return-Path: <devicetree+bounces-235368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EAF8C378D0
-	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 20:51:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED9EFC378E2
+	for <lists+devicetree@lfdr.de>; Wed, 05 Nov 2025 20:52:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AF3AC4E7C38
-	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 19:51:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 850811880681
+	for <lists+devicetree@lfdr.de>; Wed,  5 Nov 2025 19:53:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DF993446DD;
-	Wed,  5 Nov 2025 19:50:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 605F034403F;
+	Wed,  5 Nov 2025 19:52:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="C5Av/8bT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rTJv6PKw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout1.routing.net (mxout1.routing.net [134.0.28.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62860344040;
-	Wed,  5 Nov 2025 19:50:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DBA6344030;
+	Wed,  5 Nov 2025 19:52:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762372257; cv=none; b=l40fnozqklQceajIvF8T/c5ncfKlyQURT8dxbdJmEvaMR/67vF+KF5B197xWtv76T1Htg2aVDzku+PEpkLrGQjB0YvtKhGPE5q94tsPG0S6F613G1EoBZhC6d9A1m4RvhHST8UVHMLmnZOCyRL8FLafZc37HTJYbnzWpTEP/BWA=
+	t=1762372369; cv=none; b=E+vv7fL5yI2R5vxvW/70GOrErltdYklkCHcRGcoccSLg0L5k67/1iG6KifNt8ENO+vC3Kw1pBSXJ3WAb+KYnbePHm6nH/XaZiyfHLZ2xe8Y83IsnMUxPWIFrhdV/872jYy5IhIWSvkxwMglfuTNyoPSTBb+XCiobh1GWyjdYolw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762372257; c=relaxed/simple;
-	bh=WSWEPEVlnXW5j9fG2/KzHiue4plCV0w15ej7p1hwTQc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=LF7DIqy5/9SQV6qtvgtvvVobqniTYpr/wVEUSDZbQkjTdT7Gk5tp/iP3+IRgbnMH4+wYT29QLKyI5WBQ0e76zoSmSfABOgi7Xdg61MTgudHBbYv0TVJnGh2jsc3BPGXgWRHN29lbSq0fsTdn5lPISGAJAd2qrNiTeFJWKDA+mNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=C5Av/8bT; arc=none smtp.client-ip=134.0.28.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbulk.masterlogin.de (unknown [192.168.10.85])
-	by mxout1.routing.net (Postfix) with ESMTP id 0A716402AA;
-	Wed,  5 Nov 2025 19:50:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=routing; t=1762372247;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=VysT7Mn8NKFGdQhAHI7tG5Xcp6xnNIZ6sTmQJxUySJc=;
-	b=C5Av/8bTMuZnmpXeHeDhb7bh7BFAEyvDbnBvzqRgL7pLDuA2i0NlzJpOAghizqIVihdRrc
-	RXpinIa/SW9kY4IJ0ykUApxKhBYrRMbFpVLBPHodg7621tI7WR1/CXd1RdKFb17B7O+HWw
-	iA03QC8RKaGSOBkOUfmNF8oA1jSH46o=
-Received: from frank-u24.. (fttx-pool-194.15.81.38.bambit.de [194.15.81.38])
-	by mxbulk.masterlogin.de (Postfix) with ESMTPSA id CCDB7122700;
-	Wed,  5 Nov 2025 19:50:46 +0000 (UTC)
-From: Frank Wunderlich <linux@fw-web.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 5/5] arm64: dts: mediatek: mt7988a-bpi-r4pro: Add mmc overlays
-Date: Wed,  5 Nov 2025 20:50:05 +0100
-Message-ID: <20251105195007.199229-6-linux@fw-web.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251105195007.199229-1-linux@fw-web.de>
-References: <20251105195007.199229-1-linux@fw-web.de>
+	s=arc-20240116; t=1762372369; c=relaxed/simple;
+	bh=2Gd4bL1SBDUivBOmoFrzqDCjyb7m9dtwkO2F4EvzbII=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Wah82bv4x0VJLlSLkOG9GlybxpQu8xeVXEjL6LL/WRNl4M5q9wyiyFvRImKiVI+AEgoU6xUtFomSinb6yJKVJTaCJXcDSodNt4ZJMKebRyf9/H7YjLAH7Rq7k2OWxK/wpA/5wqbFOPItFJf2IXIGP3/4/WOWQDchKbtHJUVnquI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rTJv6PKw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0259AC4CEF5;
+	Wed,  5 Nov 2025 19:52:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762372368;
+	bh=2Gd4bL1SBDUivBOmoFrzqDCjyb7m9dtwkO2F4EvzbII=;
+	h=From:Subject:Date:To:Cc:From;
+	b=rTJv6PKwb5YInAQVdLAEHkhSo1VCLYTmmgXIMD1TQAj5HME6ygowiTUlxzQSoYCU9
+	 4XmZZhTB/5ooBhqK8vv9YKrvK9HLS4ElznROmhVwnM1vBgrk/CEomVz/WXvTVoqq8g
+	 E+GWemsGv5veZIaAlvbNteYMlsDDa/1Q4q7PfclA79CZioKiUuC8QQ4Rrx6/4Fl+fZ
+	 Y5G7Fw/qun+GywvDgv+PMJeTTDS3RXQWExmIOAquZvWM0vykWbL+3qVkPgYbMFlk+Z
+	 WXx7rVTJcNDcWMTjOiYU8bCpep3Iou35rHN1fBAouVp9kmMO/ecqBC42kgsdOr5KYB
+	 2c8Tf7mFv3cyQ==
+From: akemnade@kernel.org
+Subject: [PATCH v3 0/3] mfd: twl603x: add power button
+Date: Wed, 05 Nov 2025 20:52:34 +0100
+Message-Id: <20251105-twl6030-button-v3-0-9b37eb2b0989@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAKrC2kC/3XMSwrCMBSF4a2UjI3cPGscuQ9x0Me1DUoiSYxK6
+ d5NO1LE4Tnw/ROJGCxGsq8mEjDbaL0rQ2wq0o2NG5DavmzCgSsGHGh6XDUIoO09Je/oTvS1Mi1
+ oQE0KugU82+caPJ7KHm1MPrzWfmbL+zeVGQVqBEotZdOZWh4uGBxetz4MZGll/uHFr+fFg9FK9
+ KAa3rIvP8/zGwsFepjtAAAA
+X-Change-ID: 20251020-twl6030-button-83d759b060e6
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andreas Kemnade <andreas@kemnade.info>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Tony Lindgren <tony@atomide.com>, Kevin Hilman <khilman@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-input@vger.kernel.org, linux-omap@vger.kernel.org, 
+ Andreas Kemnade <akemnade@kernel.org>
+X-Mailer: b4 0.15-dev-a6db3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1211; i=akemnade@kernel.org;
+ h=from:subject:message-id; bh=2Gd4bL1SBDUivBOmoFrzqDCjyb7m9dtwkO2F4EvzbII=;
+ b=owGbwMvMwCUm/rzkS6lq2x3G02pJDJncq7lcra5m10m8UFa0mCV/IWJBPrNKo5+UTfESO1PZs
+ 3LrXz3tKGVhEONikBVTZPllreD2SeVZbvDUCHuYOaxMIEMYuDgFYCISXxkZtv7j77dlDvvAvXZn
+ gNURrm/n54kuNp/iN53HcVmA96sj3Az/1PPNnJpnnDxRJ7Fizcfi5I2SAbO/NXItrN01dfoD11O
+ fWQA=
+X-Developer-Key: i=akemnade@kernel.org; a=openpgp;
+ fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
 
-From: Frank Wunderlich <frank-w@public-files.de>
+Like the TWL4030, the TWL603x also has a power button feature,
+so extend the TWL4030 power button driver to support TWL603x.
 
-Add MMC overlays for BPI-R4 Pro.
-
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+Signed-off-by: Andreas Kemnade <akemnade@kernel.org>
 ---
- arch/arm64/boot/dts/mediatek/Makefile         |  2 ++
- .../mt7988a-bananapi-bpi-r4-pro-emmc.dtso     | 33 +++++++++++++++++++
- .../mt7988a-bananapi-bpi-r4-pro-sd.dtso       | 31 +++++++++++++++++
- 3 files changed, 66 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-emmc.dtso
- create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-sd.dtso
+Changes in v3:
+- static definition of chipdata
+- stricter rules in common part of binding
+- Link to v2: https://lore.kernel.org/r/20251030-twl6030-button-v2-0-09653d05a2b1@kernel.org
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 8e99f6e33b25..776b9274e8fa 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -28,6 +28,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-4e.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-8x.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-cn15.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-cn18.dtbo
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-emmc.dtbo
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-sd.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-sd.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8167-pumpkin.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-emmc.dtso b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-emmc.dtso
-new file mode 100644
-index 000000000000..5ed2f0a6bd66
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-emmc.dtso
-@@ -0,0 +1,33 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2021 MediaTek Inc.
-+ * Author: Frank Wunderlich <frank-w@public-files.de>
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+/ {
-+	compatible = "bananapi,bpi-r4-pro", "mediatek,mt7988a";
-+};
-+
-+&{/soc/mmc@11230000} {
-+	pinctrl-names = "default", "state_uhs";
-+	pinctrl-0 = <&mmc0_pins_emmc_51>;
-+	pinctrl-1 = <&mmc0_pins_emmc_51>;
-+	bus-width = <8>;
-+	max-frequency = <200000000>;
-+	cap-mmc-highspeed;
-+	mmc-hs200-1_8v;
-+	mmc-hs400-1_8v;
-+	hs400-ds-delay = <0x12814>;
-+	vqmmc-supply = <&reg_1p8v>;
-+	vmmc-supply = <&reg_3p3v>;
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+};
-+
-diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-sd.dtso b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-sd.dtso
-new file mode 100644
-index 000000000000..1ec1a9fbd8ba
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-sd.dtso
-@@ -0,0 +1,31 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2023 MediaTek Inc.
-+ * Author: Frank Wunderlich <frank-w@public-files.de>
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	compatible = "bananapi,bpi-r4-pro", "mediatek,mt7988a";
-+};
-+
-+&{/soc/mmc@11230000} {
-+	pinctrl-names = "default", "state_uhs";
-+	pinctrl-0 = <&mmc0_pins_sdcard>;
-+	pinctrl-1 = <&mmc0_pins_sdcard>;
-+	cd-gpios = <&pio 12 GPIO_ACTIVE_LOW>;
-+	bus-width = <4>;
-+	max-frequency = <48000000>;
-+	cap-sd-highspeed;
-+	vmmc-supply = <&reg_3p3v>;
-+	vqmmc-supply = <&reg_3p3v>;
-+	no-mmc;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+};
-+
--- 
-2.43.0
+Changes in v2:
+- integrate driver into existing TWL4030 driver
+- improve commit messages
+- Link to v1: https://lore.kernel.org/r/20251020-twl6030-button-v1-0-93e4644ac974@kernel.org
+
+---
+Andreas Kemnade (3):
+      dt-bindings: mfd: twl: enable power button also for twl603x
+      Input: twl4030 - add TWL603x power button
+      ARM: dts: ti/omap: omap4-epson-embt2ws: add powerbutton
+
+ Documentation/devicetree/bindings/mfd/ti,twl.yaml | 40 ++++++++++++---
+ arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts |  5 ++
+ drivers/input/misc/twl4030-pwrbutton.c            | 61 +++++++++++++++++++++--
+ 3 files changed, 96 insertions(+), 10 deletions(-)
+---
+base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
+change-id: 20251020-twl6030-button-83d759b060e6
+
+Best regards,
+--  
+Andreas Kemnade <akemnade@kernel.org>
 
 
