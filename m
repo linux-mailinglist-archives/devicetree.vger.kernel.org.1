@@ -1,287 +1,141 @@
-Return-Path: <devicetree+bounces-235732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 015E5C3C109
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 16:33:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A186EC3C136
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 16:34:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9ED31AA7BD7
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 15:31:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2DAF51AA7DDA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 15:32:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82AF52727ED;
-	Thu,  6 Nov 2025 15:31:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEC5D29B8DC;
+	Thu,  6 Nov 2025 15:31:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XSTpOU3h";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="OyeZ+Lyt"
+	dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b="OdOBHfbu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD7302236FD
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 15:31:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F74629827E
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 15:31:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762443074; cv=none; b=GkR4jNssraQois3jkRARJgivXs6MuOQ8s/3vd/netTTVlt2lu5cmrmDfL9HhEj2lcym91jJC5Hgqnqe8IX5H4MaeZ1iz+Wy28vc26HxC1/hsQN2+FC9Jm8TnXHNmKMZokYpOYdZe9HdmdnJPoYmbR68vlRBLocQ4ANEkbxG4aZU=
+	t=1762443087; cv=none; b=celEUaseDU5FhPPgWCkavMcxKr78wepu5+6Our8lg5490K5HnS6NtTGbGWoeBkgHX76ZmDMyYXuqFOaKShyXclrMSInKffPiPobs5dMdhFaMWhf3pVu/0FDNexIjVjd54Nh1zLEJipP2aUJKa9TqQdhsj1qKVWdxEeqWo2SBI18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762443074; c=relaxed/simple;
-	bh=d0f2bwoEjV6DeTx6fkmoJqsBnaW11PpPaYDMEC9kOpw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sil/N0g2TMUpIqhnRYjPzmhhyNC9s7ioY8tRxOfa6VGGXUSbwA8Vn5/4rDg3Mj4Cdu3hH1SBOe9fWS5PmLcQAWiCj/h6hPNkPFMk3Fvg7tzDONIAOzSsOjT70Htt+QIOoKlIRJDLkayFBrLTSpj+WF/HK4lB20n1ZidoTyM1DA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XSTpOU3h; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OyeZ+Lyt; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A6BinZ54018483
-	for <devicetree@vger.kernel.org>; Thu, 6 Nov 2025 15:31:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	EO+nd39qsWV2EUlkl0SmdHZLP9GsrFgkZZtOwLjvreA=; b=XSTpOU3hTSbP/MX0
-	R8F9gqG9GGfbRzTTCeEfKZ01iQJerygV9Wt96XVJOac5UE3CX1+98jpXWSNvMBJ8
-	nDfD9PXd1l8q4rnXLLSCbJrRI+si4dbIS9KpQM64hAHLr+6o1gOd6SJPwsipPV2K
-	pvtfWNGPQ4/2VhFmYY3LHB1j+yc5H/hQP6ToG5kWeqZtj40nd9icVceClumaI6c6
-	/BTg3/cagqXYk1K1XYImS0uPsBAG7GE4X9r3PLfvYIjd6OrHi1f6C+5/ZEwSPuWm
-	wL/dcCp5BsLnVWa2hPuPsLB8oqIc4KDFSixICzyT31veI4iL0TBrsG+y9yMKb2oG
-	b6RqQA==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a8u2urnbp-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 15:31:11 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b55735710f0so752891a12.2
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 07:31:11 -0800 (PST)
+	s=arc-20240116; t=1762443087; c=relaxed/simple;
+	bh=q7sHWixTWPakJjpCcPxaoq8AAo162rx3AhfF7uVu25c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AFzhJLO63T0DA256X0zc8z50vkEWzM6u2bn6yeAs0F+XYtAYWc6yVHJzBwGM+Rx+0wBLU4UMHefyYxcGZyFXCTZ97wSVwArAarungyHHdXNEY7VFysidEi7BmKDftaCiLavz4V4awjZprEPzG4+hadxnNmPfHqVCz/v+xwg1LsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=arduino.cc; spf=pass smtp.mailfrom=arduino.cc; dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b=OdOBHfbu; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=arduino.cc
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arduino.cc
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-4298b49f103so458721f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 07:31:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762443071; x=1763047871; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EO+nd39qsWV2EUlkl0SmdHZLP9GsrFgkZZtOwLjvreA=;
-        b=OyeZ+Lyt2heOLcif2dIY+Rf1U1F5ihzI2OBZeSJtWYNCzwvnYLYfUSrO0tZBPlED3P
-         cy9sBvz5Nbky4z0Mo5rXdaFFWImGRt+cGrhBZmr2TqyCWpuNU9LzfXb/0DmZ9/xlUXwE
-         lu7G42xGyKxsqlZweWWCVtpWbKsJAHIFS1isxIcaCeNoMX77NvKSyTsC2NavGJsE57hK
-         iR06Zm6C/5jKC8QO93q/NPZ6NR9LPDnTpkekxowQcG51EcgGm7L1PJkZsyzE/Vxh1KdK
-         I4qYSW4QYbPmAu9EymZE3sARfFSk+mdzbSMAW+9P5kXF8i+OYTaNLTk+j10dxPWvawtE
-         TaWA==
+        d=arduino.cc; s=google; t=1762443083; x=1763047883; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yiPq/j8AAJTo8QumL7Ou0ccmUXufOZkM5RLHegjZVMs=;
+        b=OdOBHfbueRgB62YMyO/xKfh2Zf+yMHwDrCxlE6ZShHQdhZuWQ+n15KOGbvk9ITW06D
+         dVs6oN2MurfkC2rWyFo4uH1t2CBIsqJfl2SOQ1XRs7Z+kukQxdL1/zT7M15GG/YjdUe2
+         rv0467B33Xhgc8vcR/we4HLVvNo1TL/ytPIYw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762443071; x=1763047871;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EO+nd39qsWV2EUlkl0SmdHZLP9GsrFgkZZtOwLjvreA=;
-        b=bg15NKzK6WPG3hAQhpeeRdnZVnD0DLW9ghe4c+cmSU1vIByCkUy2GF5RhpMVsx3sw2
-         PagjfcVNbVd0N6U0YxnXRBqXPpzUWnDOV2LASXUmyJCQMXNMbaHvexT0UXTPmtL+MXrk
-         wBD2srUoBS3GnJJexVe68M8gC2X+81tYcbX5ZNK5Q7OgAZlcalI5XMnp9V6dWLeWntGe
-         TMJwUyxakVXjoO9WknK+95xT36VAFlWa+HB4S0rxhdxaQaFJr6Z/u7e3GOfyHJ2jzcLb
-         uO8NnNS2nwDv1v20tdBWT7vaiOxT/x+ZFNMDKzGz6VGw9cnl7rRfOQ00+sVhqrZE5Tjw
-         yakg==
-X-Forwarded-Encrypted: i=1; AJvYcCXc7uzaL6IU2Asu7pRM/EpixZ+t92tlWnB9fJM5NnUUH5593X3oGQ88E667MSncBSU3c4VNeigGlwDQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKmhWg/paFkIgQyPZLjtz3JRVG5bFDAohgU8gcQdMe9CIO1PFX
-	sQDMCzcNS1lIfgHyxurycqG+Kq6m23euks4JWTskThxXiKB+023cIuBiZaLRVyi8Y4rVdLmLq+O
-	TQ8urQJt7MS9lErJ/laxTsAYdectfMWnMwATvD5eWYMTLQiCbwlTV9FRLTHOYZVAB
-X-Gm-Gg: ASbGncsArJZyOYJJYkOFZRaWB4QF74eCDXXaoLhLvUWySWvk8bzl6PCqx6JYXLHXQjM
-	N+2VQ9t+ez2LsdGZhdnPPSNCAgc8OUEcq04YxrCAyaQ/Tmn9Z7GM2vj1fcA/iJcH13m56uSqgWl
-	aRixhdiujAEOjwhuM9e0DerzcOuD1zBOCvI3H1Hu0ruRxTfrgJcqvQAZds5xtb+DM9iMUgwOvbI
-	3HEdntPp28vwKppJLX4ARMP5ydXP4iRp08ebY+DrQuWx/8ZL6cAWwRbdc7i9dzFy1OYyn7tKjhi
-	8NTwEBBu/dzAZ9dIRHcjGP9gbEccgC+IgmNAaknU26DmRle1dW6LbN+m2hmtret15a94ntA4hdO
-	NQbwIviXiQU0fZyN+taLNRJuUHABayh6ngg==
-X-Received: by 2002:a05:6a21:3d84:b0:34f:bf12:8e27 with SMTP id adf61e73a8af0-34fbf128ea8mr8971373637.13.1762443071060;
-        Thu, 06 Nov 2025 07:31:11 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFOUzd1uTbvbHMqzgt2Y+kkpQNb+36amLdPBWT1pIua+eKBDxydfZowU9JJoXxPJtX6EG/QJQ==
-X-Received: by 2002:a05:6a21:3d84:b0:34f:bf12:8e27 with SMTP id adf61e73a8af0-34fbf128ea8mr8971308637.13.1762443070469;
-        Thu, 06 Nov 2025 07:31:10 -0800 (PST)
-Received: from [192.168.1.3] ([182.65.157.163])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7af82205b11sm3147569b3a.45.2025.11.06.07.31.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Nov 2025 07:31:10 -0800 (PST)
-Message-ID: <9bd003e0-4600-4b5f-97d7-efefe687f358@oss.qualcomm.com>
-Date: Thu, 6 Nov 2025 21:01:03 +0530
+        d=1e100.net; s=20230601; t=1762443083; x=1763047883;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yiPq/j8AAJTo8QumL7Ou0ccmUXufOZkM5RLHegjZVMs=;
+        b=R4QL3LigktsN+F4/ydSCsBiocp56pcUaJlVKCjnr+kIKJON7mhyfR9S5JbGfIaOKsI
+         DyPj9o5V4CjhHBBhEXkk33JcyFMrAi+6dKjJ+2qUMFQTL5Eh6QXRq8kQkMi8LIiyGrNt
+         xu3iEva1if+im6bXMTjs/kg6j5wNiHUv1rbls4kNHsXGPvp5xsBd9ljZZbhObatMPL+h
+         FaID/N1Yo1Le38ucvHic6gnwfWeA8r3JJxH64UKXdfDtywDIw6XgcoPl76hVWlvvQ31K
+         tTc7rGeTg30uthsWU7wfMjEo02A5XxkCyCjI9kcCpQfDhFsW+cA7vXpjQRNoPPlzSjpJ
+         N+1g==
+X-Forwarded-Encrypted: i=1; AJvYcCVqkz0OUy7RG0NXfesUyBHq5fjs5rRddXeCpyQ9JQPc6RFYSyoSnQMVhCBE4RoNnaMapbjA++mkYmYq@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnHEJhvc7Qqwn5jNEyjQiRBxis66RPGG8F/XDO80xySWArosUF
+	hrYyNsh0xbhOwTpO6ifOM3kjXdif5r1aM59uQ7qgkHlmNFZZXUt6jk4Lz6z7Qjeubl8=
+X-Gm-Gg: ASbGncudoptWIDnsWawn0KkeYqs76OU81mssfLRlEs18Wu0hHDOIe/4a7LuXeIsPMbc
+	+25Nvd0oNaIaEK85EfLsFKFL26y1dmjLFwFogElxyrEjf6ROA5zI0x7VQSNheq6BZFnMT4L4K5p
+	51sQFOqKgg7x2Fo6S1eHS8wQ4tVimSqAAfsR/dyf182HLyoUMRn+U3bBV8GGPZr9tcO+5/H6KRp
+	THB1DH29YoEkgfbAkO4QgqxrMknpbUYh49dqIikdspmW559G2xxSbQ2tklKFkxWn20w/gFzU/MO
+	ThjDj+RR9oKwQlYYkpOwwLMh26D8Zcdvq3xwybrx+1sY68oaME7UWTanMj/YjsoTQBv9CXfzHmC
+	H7yC6a16gFSHecVqEnGkOQfm06aJ11ARTyzyQfckfmYnyfqQNEwe/g8hJFQLWJvGaBbMxCGCARs
+	jZDhzEIjNnN7vOKuTK6o6d9MZk
+X-Google-Smtp-Source: AGHT+IEDkfl3qHSikpIA1Fyk7Grp63BtfKWcdxvISif02sG/ljkZgpwjNMkZU5Sn7DWLfr/nw/w+YQ==
+X-Received: by 2002:a05:6000:2c07:b0:429:66bf:1475 with SMTP id ffacd0b85a97d-429e32c6cb6mr6521748f8f.3.1762443083270;
+        Thu, 06 Nov 2025 07:31:23 -0800 (PST)
+Received: from riccardo-work (public.toolboxoffice.it. [213.215.163.27])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429eb49a079sm5966719f8f.32.2025.11.06.07.31.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Nov 2025 07:31:22 -0800 (PST)
+From: Riccardo Mereu <r.mereu.kernel@arduino.cc>
+X-Google-Original-From: Riccardo Mereu <r.mereu@arduino.cc>
+To: andersson@kernel.org,
+	konradybcio@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	broonie@kernel.org
+Cc: linux@roeck-us.net,
+	Jonathan.Cameron@huawei.com,
+	wenswang@yeah.net,
+	naresh.solanki@9elements.com,
+	michal.simek@amd.com,
+	nuno.sa@analog.com,
+	chou.cosmo@gmail.com,
+	grantpeltier93@gmail.com,
+	eajames@linux.ibm.com,
+	farouk.bouabid@cherry.de,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-spi@vger.kernel.org,
+	mm.facchin@arduino.cc,
+	Riccardo Mereu <r.mereu@arduino.cc>
+Subject: [PATCH 0/5] arm64: qcom: add support for Arduino UnoQ SBC
+Date: Thu,  6 Nov 2025 16:31:14 +0100
+Message-ID: <20251106153119.266840-1-r.mereu@arduino.cc>
+X-Mailer: git-send-email 2.51.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] usb: typec: hd3ss3220: Enable VBUS based on ID pin
- state
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20251102164819.2798754-1-krishna.kurapati@oss.qualcomm.com>
- <20251102164819.2798754-3-krishna.kurapati@oss.qualcomm.com>
- <aQxyfjYosVd_kPKC@kuha.fi.intel.com>
-Content-Language: en-US
-From: Krishna Kurapati PSSNV <krishna.kurapati@oss.qualcomm.com>
-In-Reply-To: <aQxyfjYosVd_kPKC@kuha.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=Wv4m8Nfv c=1 sm=1 tr=0 ts=690cbf3f cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=fO48qRZoIuIFQjWVjTpNpw==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=YkpnwElOSCd70Td7CIoA:9
- a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA2MDEyMiBTYWx0ZWRfX/3vtVe0LrqMa
- ltyxpcG1DSDJWp7MDf6/cKTNHEKWniePxDPyYOouF5JzTrkd0ym9IgcnqVu7D+cEYvxIMkA1VJC
- 3tn5tjbiziVKKUbMAXplr1E4zlopBBzuL8oj1lj+oQVvtVDH0ebzNEgvDaTVnqChfHGjdg5U35F
- aQIGC/RASxsfzn1SCN8Q3LR0SJyHN/Jx937wJU6ge2f6ItO8Veu0Jvmjazv1frsb3drd7d3bq82
- 0Igcr8WTp6R/R8ZBzq6jruzOXFozszcLHfL1tTtQvAiKoSPueNJvnx16cHlMsG83W6qdouC4Zgf
- y6aovnXgTGIfuQkM9svp13eAJ5JJkR5kR2+z8WwB9t3jHCVFE9tJ9xGbDgNQQXmbaxesWnNsKC0
- QHawf36NZ1/866hxwYfnN+TtSbN8OQ==
-X-Proofpoint-GUID: ZpqwjyfVPKVNWPxGPogmaza9lIkwZnJ7
-X-Proofpoint-ORIG-GUID: ZpqwjyfVPKVNWPxGPogmaza9lIkwZnJ7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-06_03,2025-11-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 lowpriorityscore=0 suspectscore=0 priorityscore=1501
- phishscore=0 spamscore=0 malwarescore=0 bulkscore=0 impostorscore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511060122
+Content-Transfer-Encoding: 8bit
 
+This patch series adds support for Arduino UnoQ single board computer. 
+UnoQ combines Qualcomm QRB2210 microprocessor and STMicroelectronics 
+STM32U585 microcontroller.
 
+In some files we decided to keep UnoQ code name as "imola".
 
-On 11/6/2025 3:35 PM, Heikki Krogerus wrote:
-> Hi Krishna,
-> 
-> Sun, Nov 02, 2025 at 10:18:19PM +0530, Krishna Kurapati kirjoitti:
->> There is a ID pin present on HD3SS3220 controller that can be routed
->> to SoC. As per the datasheet:
->>
->> "Upon detecting a UFP device, HD3SS3220 will keep ID pin high if VBUS is
->> not at VSafe0V. Once VBUS is at VSafe0V, the HD3SS3220 will assert ID pin
->> low. This is done to enforce Type-C requirement that VBUS must be at
->> VSafe0V before re-enabling VBUS"
->>
->> Add support to read the ID pin state and enable VBUS accordingly.
->>
->> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
->> ---
->>   drivers/usb/typec/hd3ss3220.c | 72 +++++++++++++++++++++++++++++++++++
->>   1 file changed, 72 insertions(+)
->>
->> diff --git a/drivers/usb/typec/hd3ss3220.c b/drivers/usb/typec/hd3ss3220.c
->> index 3ecc688dda82..75fbda42eaf4 100644
->> --- a/drivers/usb/typec/hd3ss3220.c
->> +++ b/drivers/usb/typec/hd3ss3220.c
->> @@ -15,6 +15,9 @@
->>   #include <linux/usb/typec.h>
->>   #include <linux/delay.h>
->>   #include <linux/workqueue.h>
->> +#include <linux/gpio/consumer.h>
->> +#include <linux/regulator/consumer.h>
->> +#include <linux/of_graph.h>
->>   
->>   #define HD3SS3220_REG_CN_STAT		0x08
->>   #define HD3SS3220_REG_CN_STAT_CTRL	0x09
->> @@ -54,6 +57,11 @@ struct hd3ss3220 {
->>   	struct delayed_work output_poll_work;
->>   	enum usb_role role_state;
->>   	bool poll;
->> +
->> +	struct gpio_desc *id_gpiod;
->> +	int id_irq;
->> +
->> +	struct regulator *vbus;
->>   };
->>   
->>   static int hd3ss3220_set_power_opmode(struct hd3ss3220 *hd3ss3220, int power_opmode)
->> @@ -319,6 +327,44 @@ static const struct regmap_config config = {
->>   	.max_register = 0x0A,
->>   };
->>   
->> +static irqreturn_t hd3ss3220_id_isr(int irq, void *dev_id)
->> +{
->> +	struct hd3ss3220 *hd3ss3220 = dev_id;
->> +	int ret;
->> +	int id;
->> +
->> +	if (!hd3ss3220->vbus)
->> +		return IRQ_HANDLED;
-> 
-> If you don't need this routine unless there is a vbus regulator, then
-> don't register it at all if there is no vbus regulator.
-> 
+As this platform has a microcontroller connected to the microprocessor
+we needed a dedicated spidev and to add uart2 to qcm2290.dtsi file; both
+are used as interfaces between microprocessor and microcontroller.
 
-Will move vbus check before id retrieval in probe and ignore retrieval 
-of ID if vbus is absent.
+Some GPIOs on the JMISC connector have been defined but not used in
+qrb2210-arduino-imola.dts; this is meant to facilitate carrier dtbo
+development for users.
 
->> +	id = hd3ss3220->id_gpiod ? gpiod_get_value_cansleep(hd3ss3220->id_gpiod) : 1;
-> 
-> You still don't need to check for hd3ss3220->id_gpiod - this function
-> will not get called unless it's there.
-> 
->          if (gpiod_get_value_cansleep(hd3ss3220->id_gpiod))
->                  ret = regulator_disable(hd3ss3220->vbus);
->          else
->                  ret = regulator_enable(hd3ss3220->vbus);
-> 
+Riccardo Mereu (5):
+  dt-binding: trivial-devices: add arduino spi mcu interface
+  drivers: spi: spidev: add compatible for arduino spi mcu interface
+  dt-binding: arm: qcom: add arduino unoq codename
+  arm64: dts: qcom: qcm2290: add uart2 node
+  arm64: dts: qcom: unoq: add dts for arduino unoq
 
-ACK.
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ .../devicetree/bindings/trivial-devices.yaml  |   2 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ arch/arm64/boot/dts/qcom/qcm2290.dtsi         |  24 +
+ .../boot/dts/qcom/qrb2210-arduino-imola.dts   | 467 ++++++++++++++++++
+ drivers/spi/spidev.c                          |   2 +
+ 6 files changed, 497 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts
 
-> Note:
-> 
-> If you are concerned that the reference to the id_gpiod may be
-> released before this routine is unregistered, then that condition will
-> not help. The hd3ss3220->id_gpiod member is _not_ NULL after the
-> reference is released.
-> 
-> If you need a specific order in which the references are released,
-> then you can't use the resource management (devm_*) to automate things
-> for you.
+-- 
+2.51.2
 
-There is no specific order. So the id part I can keep it intact except 
-for checking presence of ID pin in interrupt handler.
-
-> 
->> +	if (!id) {
->> +		ret = regulator_enable(hd3ss3220->vbus);
->> +		if (ret)
->> +			dev_err(hd3ss3220->dev, "enable vbus regulator failed\n");
->> +	} else {
->> +		regulator_disable(hd3ss3220->vbus);
->> +	}
->> +
->> +	return IRQ_HANDLED;
->> +}
->> +
->> +static int hd3ss3220_get_vbus_supply(struct hd3ss3220 *hd3ss3220,
->> +				     struct fwnode_handle *connector)
->> +{
->> +	int ret  = 0;
->> +
->> +	hd3ss3220->vbus = devm_of_regulator_get_optional(hd3ss3220->dev,
->> +							 to_of_node(connector),
->> +							 "vbus");
->> +	if (PTR_ERR(hd3ss3220->vbus) == -ENODEV)
->> +		hd3ss3220->vbus = NULL;
->> +	else if (IS_ERR(hd3ss3220->vbus))
->> +		ret = PTR_ERR(hd3ss3220->vbus);
-> 
-> So the regulator API's optional functions return -ENODEV instead of NULL :(
-> In any case, don't double assign the member. Use local variable.
-> 
->          struct regulator *vbus;
-> 
->          vbus = devm_of_regulator_get_optional(...
->          if (IS_ERR(vbus) && vbus != ERR_PTR(-ENODEV))
->                  return PTR_ERR(vbus);
-> 
->          hd3ss3220->vbus = vbus;
->          return 0;
-> 
-> I don't think you need this function - just do that in the probe function.
-> 
-
-ACK.
-
-Regards,
-Krishna,
 
