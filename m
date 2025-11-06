@@ -1,197 +1,174 @@
-Return-Path: <devicetree+bounces-235473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23D14C3930A
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 06:51:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EE9CC393AC
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 07:14:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F30C34E3585
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 05:51:00 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D92064F910D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 06:13:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08074285074;
-	Thu,  6 Nov 2025 05:50:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 192632DE6F7;
+	Thu,  6 Nov 2025 06:13:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jtU5ldrv"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="bFjxqH2y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DDB31AA7BF
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 05:50:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7D1C2DC335;
+	Thu,  6 Nov 2025 06:13:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762408257; cv=none; b=YbxJrZOpV/CXN5QlFI6+jX3oyQ13L5qkLtQyr9U9lLbIb8INWP/PYW7WcXFdPZ95sv3LjMP5LajpofSc8ChCl0XEmZ5UJ/bfiqZZD4QjOdvlpIg7t901T1wFXSB8qsWEzqJ4VTQwCVxOMJb/hjaeoKe9x3YzxbRH8mihvQ1GeH8=
+	t=1762409616; cv=none; b=EGuTHuzaVmIjT/MK5OA2xj1lPizTmbVZ4ivX56pnmOHCX/NFnnfm2Jrcd2kTdS1HTZB7tQxQkH3SAqyQmZkJA7uTEluZD8c9NK1LrAkEJf/+gEp7tXPKA3LHjoPAcRmevdnZygvUDk5BWsWz6MUsaGRPbgX+QomCbMVf8NuawSA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762408257; c=relaxed/simple;
-	bh=uvXmgwQHlQMTY9J3PYHlP7jhkpgHL79hx4AJE2k/CM0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Js0fcRFleOPd7wk9ra4OubpzPcMookyp+YuvOALokgr7IbPMucFctx/R0LQ2d/RYJ+ytD/NBGmzdu9a0nnUlEsT7kgtCAEJxQpcwxpueQybWaNw2Yyj7hb3QxH1cggv6UbafXTycP32uc8jewINHP5jZcy0Nfl01udqdDcMOruo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jtU5ldrv; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-429ce7e79f8so429267f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 21:50:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762408254; x=1763013054; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vPKmSfTx8K0cqrwmwnrzxozj3n4nbRAjUCx0YnQt1aA=;
-        b=jtU5ldrvX/90oPuVkYaZtKtWm5EgpG2zNHsSw2q/3pe3dkJbOK1F6nEigl8EKeE8Ku
-         IG1Kp7DQXPsHpP/Jr7NoE4DlngClzFTIVqdroOX7ppoozASnC37ajjrqj7/C8ps5ET/T
-         AbOMhYiD059bHw/bu3hKla4FNM3gokLNquB0iapDYG14Cf35R0NP+bcuduNjJ+nJAYUR
-         +M+C00Gm6fVRixlezJC72HE4gaPv5qNoY+5oMepIyz7+F3CNYXG4rhHSt1xEgFYaTws/
-         fLPwCCkx1RnKkqcN7+CiLzC6v1yHBRe4SEt8D4XW3BMEWigQ6GvBI9XlsVnjnZTXB4jz
-         BG6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762408254; x=1763013054;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vPKmSfTx8K0cqrwmwnrzxozj3n4nbRAjUCx0YnQt1aA=;
-        b=BbnxMA6fSQm0Ubw+graQEKAAoLrpPPUZcmYYGUU70QcK0TE4aQSnv3AgisCT+qwbFm
-         bdFnDy1bIh6yd5P6+eLOjKitVyQhh9xtqHheiADSh4a7i2+y+BnNFVz4XHhZpIHSnjwe
-         kPcy85j39erd4rctGMD2IOJA3i9geCm4N9bExZyFfxGaMExflFm+Ncb496WILWqb6v2K
-         Hfw3FXkBMG8eDFXdL6NQ+E29tN7mNzs5YmJTyeNuAzwGJ4UomnVrvdPqklTQ/827uuTL
-         rH/hDT/g68r6IRd68pjG+mwQIuCh7BAyynKF2jMUHgnUROHwX/3avnif78W4WSn5P/JC
-         Elng==
-X-Forwarded-Encrypted: i=1; AJvYcCUMduDG9ekyhlZztRdCT32IQe9+SPNsOIuGHDpiTSvCpUVK0so/Itxjz2MiJe0M06KfXctOf4U3Axp7@vger.kernel.org
-X-Gm-Message-State: AOJu0YxtMSH9Y4P9lCbBxpQpap3O0q37Vio0/E2pjwvxJk9bm5V3YQZc
-	w0339ECiPz0YyGieyKSe8b9FEqO8HPWXUb3CsbddDIzz56alCeLQnITBdxpCVcqgPUHaualI40w
-	xrSkKJzkpM6WUFCx9nhI5mk4427HHOz4=
-X-Gm-Gg: ASbGnctllvdmD7NCIVRA37LsjKlxTOzcdAkMfNFzjjAzipWu6kRKnzl+jMGqeIXfLSE
-	urQnMB3x/I+zTm8alGmSIYWNjBOi3XxzZCGHI8H5zVsTBg3qYE2zR6UXzWrhxiP0I2HaP6Ee3oQ
-	i19eehjnsLIuC+2O2x1Y7Efskt4f2MRagXtoG6n0mL5jsUYmGdq7ubHj8NhR5cBjDKPITjq50Tf
-	7AXc9GFC4slVazdJoGqEifgANsEOPTfwNWDjhWwn09IxYj4/L4vOg21kGjn6KuPjFeRVFHHNJhf
-	BZpSLU5iHnkofQazeVKJ4VoXDfQ=
-X-Google-Smtp-Source: AGHT+IHtZz8UHpe0WQ4tt4mV3lotZ3d8lT0N5bfyU8SBB0ZGuRnJSTKMX3xBt/yJtCIC/0ntusZ1jJoTprx1MXSrOLo=
-X-Received: by 2002:a05:6000:2c13:b0:427:23a:c339 with SMTP id
- ffacd0b85a97d-429e32e4905mr5081484f8f.14.1762408254395; Wed, 05 Nov 2025
- 21:50:54 -0800 (PST)
+	s=arc-20240116; t=1762409616; c=relaxed/simple;
+	bh=BXZoes8qb+ddWqRUmHuSTiecVSfbN/OJb4lUAm+Wmp0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KAieFNYkb3iZai4K+KdR7zkC+ixereKgyED69JtQS9C2lloFjJqznfn6/vAvYJ29Dt14HfFtdtCyuk/+EtT8AU4S8B0mxuY1Dcvq4CxVHA0d21WeViPVpZJu0Tf/gYDOGj4CuCbpkvPSFplCjkno9ghbx+UvuioD42i7DV4E0Ic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=bFjxqH2y; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: b5d45636bad711f08ac0a938fc7cd336-20251106
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=NfzLEn4Dx7zjpsyLCO2muoknZUAztMUcfKYh7NswnrQ=;
+	b=bFjxqH2yIzqEB/WhhiL2GYO7tminlBqX5HJn01QRPWBSykCJAPh0kvrXg8g4Cq1tpCStRuOE77s1z8LrFukVmcdQXuFyJuv3VTdXCTyOtf5uGx6DtStyv+goAj9oSZo+BmJ8xVsZNyZHSFtRgTm1ORri2c7YFcBT+K4WbV1TcTE=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.6,REQID:86ab3d51-33d5-4d97-96dd-f168668cc3d5,IP:0,UR
+	L:0,TC:0,Content:0,EDM:-20,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-20
+X-CID-META: VersionHash:a9d874c,CLOUDID:e06e196b-d4bd-4ab9-8221-0049857cc502,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|888|898,TC:-5,Content:0|15|5
+	0,EDM:1,IP:nil,URL:99|1,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,
+	OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: b5d45636bad711f08ac0a938fc7cd336-20251106
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
+	(envelope-from <kyrie.wu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1786610002; Thu, 06 Nov 2025 14:13:27 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Thu, 6 Nov 2025 14:13:26 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1748.26 via Frontend Transport; Thu, 6 Nov 2025 14:13:25 +0800
+From: Kyrie Wu <kyrie.wu@mediatek.com>
+To: Tiffany Lin <tiffany.lin@mediatek.com>, Andrew-CT Chen
+	<andrew-ct.chen@mediatek.com>, Yunfei Dong <yunfei.dong@mediatek.com>, "Mauro
+ Carvalho Chehab" <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Kyrie Wu <kyrie.wu@mediatek.com>,
+	Hans Verkuil <hverkuil@xs4all.nl>, Nicolas Dufresne
+	<nicolas.dufresne@collabora.com>, Nathan Hebert <nhebert@chromium.org>, "Arnd
+ Bergmann" <arnd@arndb.de>, Irui Wang <irui.wang@mediatek.com>, George Sun
+	<george.sun@mediatek.com>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	Yilong Zhou <yilong.zhou@mediatek.com>
+CC: Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz
+	<andrzejtp2010@gmail.com>
+Subject: [PATCH v5 0/8] Enable video decoder & encoder for MT8189
+Date: Thu, 6 Nov 2025 14:13:15 +0800
+Message-ID: <20251106061323.2193-1-kyrie.wu@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251105051335.17652-1-naoki@radxa.com> <20251105051335.17652-4-naoki@radxa.com>
- <CALWfF7KyTfpXSyjVQaFzqtn6KyDxuyZOBpPR8y-jf6sduNxq5A@mail.gmail.com>
- <1EE1A1D9D7C100DA+1b365782-98c4-4ee0-ab96-920990841903@radxa.com>
- <35ff8e6f-dd2b-d909-70c7-b19240e32ccf@manjaro.org> <CALWfF7K3zNxSsXVpW8pLc_xWi793HG99OvbshtP-0=764JmPKw@mail.gmail.com>
- <57F9C541303D73B3+4c84cba4-8378-4b65-8065-46e28217694b@radxa.com>
-In-Reply-To: <57F9C541303D73B3+4c84cba4-8378-4b65-8065-46e28217694b@radxa.com>
-From: Jimmy Hon <honyuenkwun@gmail.com>
-Date: Wed, 5 Nov 2025 23:50:42 -0600
-X-Gm-Features: AWmQ_bkSpVkHOQiLYG36Mon49brrv3a8L4bWpzGiRvNTICwmFZynFK2gL6Np574
-Message-ID: <CALWfF7+0_MOhUNNSekYB4P5xrsgevz_ZvcX883iyCt94K6h7OQ@mail.gmail.com>
-Subject: Re: [PATCH v6 3/3] arm64: dts: rockchip: Add Radxa CM5 IO Board
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: Dragan Simic <dsimic@manjaro.org>, heiko@sntech.de, joseph.kogut@gmail.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, jonas@kwiboo.se, 
-	kever.yang@rock-chips.com, quentin.schulz@cherry.de, pbrobinson@gmail.com, 
-	amadeus@jmu.edu.cn, jbx6244@gmail.com, devicetree@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On Wed, Nov 5, 2025 at 11:09=E2=80=AFPM FUKAUMI Naoki <naoki@radxa.com> wro=
-te:
->
-> Hi Jimmy,
->
-> On 11/6/25 13:53, Jimmy Hon wrote:
-> > On Wed, Nov 5, 2025 at 9:31=E2=80=AFPM Dragan Simic <dsimic@manjaro.org=
-> wrote:
-> >
-> > [ snip ]
-> >
-> >>
-> >> With all that in mind, we should specify "no-mmc" here, because
-> >> we're describing a microSD slot, instead of describing some hybrid
-> >> MMC/microSD slot.  That also explains why the adapter sold by Radxa
-> >> is described as not to be used with microSD card slots on SBCs.  I'd
-> >> also like to hear is this adapter/eMMC chip combo recognized by the
-> >> kernel when "no-mmc" is specified; it should fail.
-> >>
-> >> Actually, not specifying "no-mmc" here may result in some unforeseen
-> >> issues with some (or perhaps many?) microSD cards, because the MMC
-> >> drivers will treat them as MMC-capable devices and try to initialize
-> >> them as such, which may cause all kinds of issues.  In fact, I'm not
-> >> really sure that the MMC drivers are actually implemented in a way
-> >> that avoids all possible issues with the storage controllers that
-> >> are capable of both SD and MMC modes when neither of "no-sd" and
-> >> "no-mmc" is specified in their DT nodes.
-> >
-> > Hybrid MMC and SD slots are pretty normal on USB card readers. So it's
-> > normal for the host controller to figure out what kind of card is in
-> > the slot.
-> > https://uditagarwal.in/understanding-sd-sdio-and-mmc-interface/
-> >
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/comm=
-it/?id=3D6ae3e537eab9f560b516b001eb89f0cd568bdced
-> > was the commit that introduced the device tree properties. By the
-> > wording of the commit message, these device tree properties are used
-> > to indicate to the driver if the host controller hardware is capable
-> > of MMC initialization or SD initialization.
-> >
-> > Since the host controller in the RK3588 is capable of all the modes,
-> > these properties do not need to be specified.
-> >
-> > Since Radxa has the eMMC to uSD adapter, it makes sense Radxa would
-> > want to configure their microSD card slot on their boards to be a
-> > hybrid SD/MMC slot.
-> >
-> > Now, the more fun question is if the adapter can handle eMMC HS200
-> > using the 4-bit bus?
->
-> I added
->   mmc-hs200-1_8v;
->
-> I got
->
-> [  226.099510] mmc_host mmc1: Bus speed (slot 0) =3D 400000Hz (slot req
-> 400000Hz, actual 400000HZ div =3D 0)
-> [  226.546246] mmc_host mmc1: Bus speed (slot 0) =3D 49500000Hz (slot req
-> 52000000Hz, actual 49500000HZ div =3D 0)
-> [  226.546371] mmc_host mmc1: Bus speed (slot 0) =3D 198000000Hz (slot re=
-q
-> 200000000Hz, actual 198000000HZ div =3D 0)
-> [  226.656853] dwmmc_rockchip fe2c0000.mmc: Successfully tuned phase to 7=
-6
-> [  226.657011] mmc1: error -110 whilst initialising MMC card
-> [  226.671469] mmc_host mmc1: Bus speed (slot 0) =3D 300000Hz (slot req
-> 300000Hz, actual 300000HZ div =3D 0)
-> [  226.793733] mmc1: switch to bus width 4 failed
-> [  226.798915] mmc1: mmc_select_hs200 failed, error -110
-> [  226.799390] mmc1: error -110 whilst initialising MMC card
-> [  226.811549] mmc_host mmc1: Bus speed (slot 0) =3D 200000Hz (slot req
-> 200000Hz, actual 200000HZ div =3D 0)
-> [  226.947518] mmc1: switch to bus width 4 failed
-> [  226.954978] mmc1: mmc_select_hs200 failed, error -110
-> [  226.955454] mmc1: error -110 whilst initialising MMC card
->
-> I don't know if this is board-dependent.
+This series have the follow changing:
+Firstly add mt8189 video decoder compatible, profile and level to support
+MT8189 kernel driver.
+Secondly fix some bugs, including vp 4K profile2 and media device node
+number bug.
+Lastly, add mt8189 video encoder compatible.
 
-I was hoping for too much.
+This series has been tested with MT8189 tast test.
+Encoding and decoding worked for this chip.
 
-In the "RK3588 Datasheet", under the "eMMC Interface", it specifically
-lists support for HS400. However, for the "SD/MMC Interface", it only
-mentions "SD3.0, MMC ver4.51", so the more performant eMMC modes are
-not available on that interface.
+Patches 1-2 Add decoder compatible.
+Patches 3 Add profile and level supporting.
+Patches 4 Add core-only VP9 decoding supporting.
+Patches 5-6 fix some bugs.
+Patches 7-8 Adds encoder compatible.
 
-Jimmy
+---
+H264 test results:
+./fluster.py run -d GStreamer-H.264-V4L2SL-Gst1.0 -j2 -t 90
+    JVT-AVC_V1	Ran 96/135 tests successfully
 
->
-> Best regards,
->
-> --
-> FUKAUMI Naoki
-> Radxa Computer (Shenzhen) Co., Ltd.
->
-> > Jimmy
-> >
->
->
+VP9 test results:
+./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0 -j2 -t 90
+	VP9-TEST-VECTORS	Ran 276/305 tests successfully
+
+v4l2-compliance test results:
+Compliance test for mtk-vcodec-enc device /dev/video2:
+Total for mtk-vcodec-enc device /dev/video2: 47, Succeeded: 46, Failed: 1, Warnings: 0
+Compliance test for mtk-vcodec-dec device /dev/video3:
+Total for mtk-vcodec-dec device /dev/video3: 48, Succeeded: 48, Failed: 0, Warnings: 0
+
+scp upstream link:
+https://patchwork.kernel.org/project/linux-mediatek/patch/20250811015922.32680-1-huayu.zong@mediatek.com/
+dtsi upstream link:
+https://lore.kernel.org/linux-mediatek/20251030134541.784011-12-jh.hsu@mediatek.com/T/#m847e35de0a5b18fac0ca0624a8559d84964ad5c7
+
+Changes compared with v4:
+--update H264 & vp9 fluster test results
+--update vp9 single core decoder prob size setting and commit messages
+
+Changes compared with v3:
+--add reviewer to commit messages
+--Rebased on top of the latest media tree
+
+Changes compared with v2:
+--add H264 fluster test results
+--reorder compatible string for dt-bindings
+
+Changes compared with v1:
+--add v4l2-compliance test results
+--add scp upstream link
+--add HW difference discriptions for dt-bindings commit messages
+
+This series patches dependent on:
+[1]
+https://patchwork.linuxtv.org/project/linux-media/cover/20250510075357.11761-1-yunfei.dong@mediatek.com/
+[2]
+https://patchwork.linuxtv.org/project/linux-media/cover/20250814085642.17343-1-kyrie.wu@mediatek.com/
+
+Kyrie Wu (8):
+  dt-bindings: media: mediatek: decoder: Add MT8189
+    mediatek,vcodec-decoder
+  media: mediatek: vcodec: add decoder compatible to support MT8189
+  media: mediatek: vcodec: add profile and level supporting for MT8189
+  media: mediatek: vcodec: Add single core VP9 decoding support for
+    MT8189
+  media: mediatek: vcodec: fix vp9 4096x2176 fail for profile2
+  media: mediatek: vcodec: fix media device node number
+  dt-bindings: media: Add MT8189 mediatek,vcodec-encoder
+  media: mediatek: encoder: Add MT8189 encoder compatible data
+
+ .../media/mediatek,vcodec-encoder.yaml        |  2 +
+ .../media/mediatek,vcodec-subdev-decoder.yaml |  5 +-
+ .../vcodec/decoder/mtk_vcodec_dec_drv.c       |  9 +++-
+ .../vcodec/decoder/mtk_vcodec_dec_drv.h       |  1 +
+ .../vcodec/decoder/mtk_vcodec_dec_stateless.c |  4 ++
+ .../vcodec/decoder/vdec/vdec_vp9_req_lat_if.c | 48 ++++++++++++++-----
+ .../vcodec/encoder/mtk_vcodec_enc_drv.c       | 14 ++++++
+ 7 files changed, 68 insertions(+), 15 deletions(-)
+
+-- 
+2.45.2
+
 
