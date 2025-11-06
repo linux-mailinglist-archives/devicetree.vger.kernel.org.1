@@ -1,189 +1,134 @@
-Return-Path: <devicetree+bounces-235739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08E9EC3C274
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 16:47:10 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22861C3C29B
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 16:48:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 736C23A1F4B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 15:41:43 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CC88F4E4DFE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 15:48:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2FB8325492;
-	Thu,  6 Nov 2025 15:40:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3C9930DEAC;
+	Thu,  6 Nov 2025 15:48:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="h1DmG993"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="vnxDit2v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0DE0308F1D;
-	Thu,  6 Nov 2025 15:40:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56949302179
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 15:48:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762443651; cv=none; b=BT0JCJd0HViTNchG/I723FrZ7A2SsL6PePv3qtoFO6AQ9pUO/qHfFifnpYOpH6k3ZIoNY8VHidWLImO9Kkb4QsJukLKWGvXB65fAe7zGKE+IbPBSUc/MvRY0/4skKASC2tl6ygfR1yJFRV7OlCybXbTX+cR73ePQZyqt9rI/vs0=
+	t=1762444114; cv=none; b=QMe0PxnC7z96GvAvPqXxfAMfoixTnugYOXN9IZHsrEyH9jFSUqwLtZlF9jhOxK7cS2xl0pFdt5T0njW9NdRKzq4YyRrAP2y3ETJS1Drdn9JJgOrrR7ha/r2X8OrOY1PW80HuuZsAdc6d8qUrm1gD886AUoCEf423rb1u50Poens=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762443651; c=relaxed/simple;
-	bh=nB8ihh8drVNc7jO6z5A16olh0Vuvr2Vz6ehNqJSTkdM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=onV6Gm+zTNc4LceUdyg4zZ0t9DN++KqymVW16gnxHBLfGTljATlflmm7weSTBqkjG3ZVieln9GcaQRx0tI23cmKhrs7RwGgKqeN34E2DiIeWFDEV/7ZIgn98cAFexkNr3vGE4uifS0qlCdo+R3TdIBCc9qDUP9oTDbcrwrm+UOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=h1DmG993; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 260841A18D4;
-	Thu,  6 Nov 2025 15:40:47 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id EC1C26068C;
-	Thu,  6 Nov 2025 15:40:46 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 203D9102F2297;
-	Thu,  6 Nov 2025 16:40:41 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1762443646; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=zTpK1778ZPo0Zk1DH+IDXFuxbwb9kJMouXvCPWR5ZLc=;
-	b=h1DmG9933broA7Ryh6sUIlcQfMGsC5AMkucLe4vzFliajP4VR/8eA9dyR/oom0t9NmufoD
-	dNINLKVE6EUvqV9xhYonVQu1bVQOEzoJJTlMRkE3wzG+izuoyet4ZLMGwf3Tlp5eLxKCjx
-	L6GZ9gD+cw6L8y4wT+2Dgb1JPaRBMmK/ZUtgHF0AExEpWjifZeoJWdapiumboBuAc21sMT
-	ULK9ZojkEAlGaHjGC+FcSAibdLw2ldvaVi+6OyAiT4XE04H2LEZRYHrcUfu3nbaibslc68
-	eYztXvvDRhQai4ue1InuYjN4V1VtwMBbglRdUO0JpvAmycmtveHPKBuLytCW3Q==
-From: =?UTF-8?B?QmVub8OudA==?= Monin <benoit.monin@bootlin.com>
-To: Mika Westerberg <mika.westerberg@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jarkko Nikula <jarkko.nikula@linux.intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Jan Dabros <jsd@semihalf.com>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Gregory CLEMENT <gregory.clement@bootlin.com>,
- =?UTF-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- Dmitry Guzman <dmitry.guzman@mobileye.com>, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rt-devel@lists.linux.dev
-Subject:
- Re: [PATCH v2 5/5] i2c: designware: Support of controller with
- IC_EMPTYFIFO_HOLD_MASTER disabled
-Date: Thu, 06 Nov 2025 16:40:40 +0100
-Message-ID: <2047821.56niFO833r@benoit.monin>
-In-Reply-To: <20251103104330.GG2912318@black.igk.intel.com>
-References:
- <20251031-i2c-dw-v2-0-90416874fcc0@bootlin.com>
- <20251031-i2c-dw-v2-5-90416874fcc0@bootlin.com>
- <20251103104330.GG2912318@black.igk.intel.com>
+	s=arc-20240116; t=1762444114; c=relaxed/simple;
+	bh=IzsySpkujMcR4WoEBmC55L6jaGwoKuDh9CSfvagLBlM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YLe7O341TkQAdxf1lG2dCtXE2blWBKR7/BnguqqW760vUgcUrp+mSLOXLuUvMHkHSMbakBuEe7ScVsuayYL9FkR+626kiENWdMmkxQuOlWmtvr+wRdZ+0Ok+A4JC/aVx3TVi0pblfW1TJ5tLnnF5K817LIe+Sw3+xcvdEhvTsuQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=vnxDit2v; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-7ade456b6abso1054990b3a.3
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 07:48:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1762444112; x=1763048912; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=97N5NFxuu/uCytVCp353kHzM6K2Dbd7TnX+o0fzl0i0=;
+        b=vnxDit2vauZQMJwZ2ytrCOVucQuUZyaX3P9jn9+sZGDLDkFHL61/EcEYrZunmkgqPo
+         sfmeGvdn4+APinTvn5Z4sHdp2F4XCh2kLIdd3q3Y/SojuLAwfTkakZjYJbfoQBY4YtWj
+         R19eO6GqGUfkTjzt1gSwoUa7YkVeEgPGQ+krmgF6Gp+3ndvjQtHECwBLOjSpNMAI4sS7
+         O7k7L8OFkp8JZ8qsp1J1j3/IeRk9OnEy5O0zd6Y4j9Ko+cc+fOaPuiOYPx1g4yJbk03t
+         /05SY0vuqfiu2h4ppZBoBLeNa6F0uYpZXZQdwudojfoC9s3gU/aIwdaOkMs8E0+xaoD9
+         rc5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762444112; x=1763048912;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=97N5NFxuu/uCytVCp353kHzM6K2Dbd7TnX+o0fzl0i0=;
+        b=Pxe3BjMwwpOMnuNZy5TlSvTwlFoqe/gI+bKFKokMmLVG/LlAMdoJ61lHxQMNxR0Vqi
+         6kiEkTj164gavRQywUC5yjK5Bt5rQ0A9dvjzIoFwQVasGUDwJkxva4lQ3hWnAl/EkJaw
+         8jx+K3b5is8Qfs3FGcSKYnALqiLx/roXtlML//rph+l3ITMucyXzAcNSH7IHspH2A4ct
+         77FQQAib4MVm5IeK8LqIvNX7pbJH7s2+vluQvL+CqcmmQT60eicbniQbvHF7u+oKfNKd
+         99wnjeQgqkSOjaVGA2De40kD/xIF5RXSfpyPEl0EChKBmaZ3HmNWCuv6JnjASAPf2d6H
+         D2YA==
+X-Forwarded-Encrypted: i=1; AJvYcCWT98HMXYmmc209HIjCmjrSew3QWE+z7dOD5UXejxDOugbIx/iP3zcaW3aaxc5CMQfFAeXXnnztT/dx@vger.kernel.org
+X-Gm-Message-State: AOJu0YypMuKQ/FFYLIdQuPhSmFjIG9xQG5oO2JuWDcembfehJzD/3SOJ
+	YajIEUe5SR9LLDAGrtrVRQbNOpA+jrt63UmmL7Qhn6Tv6aK77We1EU1DqqNFPaHVVLsgsA67ARl
+	bGSwcFdErUmHDfRo/8N6pkJQjkKJuQhtry25/q25i+w==
+X-Gm-Gg: ASbGnctELz7wlRDnm8Uf188F6ORVyr/WkmcoQ5+xWTLNazdQ766v57/MoknKgAktjb+
+	6qlkh9/CGguNEs48A0iPebz9hNfYTiqMunHFV8oGLM9BqRJEl9cveDQi6Bp+/zxvPuLimgM6xS/
+	LBVsU0RLOcWVjV+H00mKUa6lEUdQVAvBMbKBTuvHT/90o5Una2Yruh+7l0C0QmNm+3tl3EedvCo
+	Bz8sb7L6IXIR4+8IdmROQXeuCeofks5hEoTevuIVkZhXk6KD8WNeBgWA4RpoWxNBo3+YRTAbuiE
+	kkOb4718vbwNzKvbjL+kMdgtgg==
+X-Google-Smtp-Source: AGHT+IGkyMxFIxYqEfsxkoeH8/+bnCDt9rf3tx5Zv59yWcveQKoUxGPzEJY1muHMLt5mGF2Rg9TIu+z/TPDNf8xk2Uk=
+X-Received: by 2002:a05:6a20:7488:b0:34f:ec32:6a4b with SMTP id
+ adf61e73a8af0-35229d68476mr26916637.32.1762444112518; Thu, 06 Nov 2025
+ 07:48:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20251105-pci-m2-v1-0-84b5f1f1e5e8@oss.qualcomm.com>
+ <20251105-pci-m2-v1-4-84b5f1f1e5e8@oss.qualcomm.com> <CAMRc=McB4Zk8WuSPL=7+7kX4RJbdFBNReWZyiFnH8vfVx3DxAg@mail.gmail.com>
+ <tc2r2mme4wtre7vb7xj22vz55pks4fbdabyl62mgutyhcjxnlx@qn4jvx3jqhie>
+ <CAMRc=McDYL_B+hFtLekevtB2XpUkaMN1dsDNeefvR+ppj4whFg@mail.gmail.com> <5wbwpr7ivnvpttacyl7b5fsexfda2uvoqau7yaaxuavskka4z6@vvntbnakzrjb>
+In-Reply-To: <5wbwpr7ivnvpttacyl7b5fsexfda2uvoqau7yaaxuavskka4z6@vvntbnakzrjb>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Thu, 6 Nov 2025 16:48:18 +0100
+X-Gm-Features: AWmQ_bkhQdbMkrAQ_h-vWt-L8tplAxdm964sVXmj6JsL9Vun-srDl-nRdBMs44k
+Message-ID: <CAMRc=MfCQgMd-7QczbnRuBAvXnhJ5QyUzRswECfKC3NbQ=rArg@mail.gmail.com>
+Subject: Re: [PATCH 4/4] power: sequencing: Add the Power Sequencing driver
+ for the PCIe M.2 connectors
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Mika,
+On Thu, Nov 6, 2025 at 3:32=E2=80=AFPM Manivannan Sadhasivam <mani@kernel.o=
+rg> wrote:
+>
+> >
+> > To answer your question: sure, there is nothing wrong with having a
+> > default match callback but first: I'd like to see more than one user
+> > before we generalize it, and second: it still needs some logic. What
+> > is the relationship between the firmware nodes of dev and pwrseq here
+> > exactly?
+> >
+>
+> The 'dev' belongs to the PCIe Root Port node where the graph port is defi=
+ned:
+>
+> &pcie6_port0 {
+>         ...
+>         port {
+>                 pcie6a_port0_ep: endpoint {
+>                         remote-endpoint =3D <&m2_pcie_ep>;
+>                 };
+>         };
+> };
+>
+> So I have to do remote-endpoint lookup from the pwrseq and compare the of=
+_node
+> of the parent with 'dev->of_node', I believe. If so, this looks like a co=
+mmon
+> pattern.
+>
 
-On Monday, 3 November 2025 at 11:43:30 CET, Mika Westerberg wrote:
-> On Fri, Oct 31, 2025 at 03:35:43PM +0100, Beno=C3=AEt Monin wrote:
-[...]
-> > +/*
-> > + * Return true if the message needs an explicit RESTART before being s=
-ent.
-> > + * Without an explicit RESTART, two consecutive messages in the same d=
-irection
-> > + * will be merged into a single transfer.
-> > + * The adapter always emits a RESTART when the direction changes.
-> > + */
-> > +static inline bool i2c_dw_msg_need_restart(struct i2c_msg msgs[], int =
-idx)
->=20
-> This can take const parameters.
->=20
-Agreed.
+Sounds right. I would still keep it in this driver until we have at
+least a second user that wants to do the same thing.
 
-> > +{
->=20
-> Please move the dev->flags & NO_EMPTYFIFO_HOLD_MASTER here too.
->=20
-Agreed.
-
-> > +	/* No need for a RESTART on the first message */
-> > +	if (idx =3D=3D 0)
-> > +		return false;
->=20
-> That's
->=20
-> 	if (!idx)=20
->=20
-Ack.
-
-> But why not pass the actual message instead of the index?
->=20
-Because we need the direction of the previous message and if we are checking
-the first message. Passing the array of messages and the index of the
-message to check give us the info we need to perform the check.
-
-> > +
-> > +	return (msgs[idx - 1].flags & I2C_M_RD) =3D=3D (msgs[idx].flags & I2C=
-_M_RD);
->=20
-> You don't need the outer parens.
->=20
-> > +}
-> > +
-> >  static int
-> >  i2c_dw_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[], int num)
-> >  {
-> > @@ -918,6 +958,17 @@ i2c_dw_xfer(struct i2c_adapter *adap, struct i2c_m=
-sg msgs[], int num)
-> >  				goto done;
-> >  			}
-> > =20
-> > +			/*
-> > +			 * Make sure we don't need explicit RESTART for
-> > +			 * controllers that cannot emit them.
-> > +			 */
-> > +			if (dev->flags & NO_EMPTYFIFO_HOLD_MASTER &&
-> > +			    i2c_dw_msg_need_restart(msg, cnt - 1)) {
-> > +				dev_err(dev->dev, "cannot emit RESTART\n");
-> > +				ret =3D -EINVAL;
-> > +				goto done;
-> > +			}
-> > +
-> >  			if ((msg[cnt - 1].flags & I2C_M_STOP) ||
-> >  			    (msg + cnt =3D=3D msgs + num))
-> >  				break;
-> > diff --git a/drivers/i2c/busses/i2c-designware-platdrv.c b/drivers/i2c/=
-busses/i2c-designware-platdrv.c
-> > index d7d764f7554d..4aad3dc51fbc 100644
-> > --- a/drivers/i2c/busses/i2c-designware-platdrv.c
-> > +++ b/drivers/i2c/busses/i2c-designware-platdrv.c
-> > @@ -346,6 +346,7 @@ static void dw_i2c_plat_remove(struct platform_devi=
-ce *pdev)
-> > =20
-> >  static const struct of_device_id dw_i2c_of_match[] =3D {
-> >  	{ .compatible =3D "baikal,bt1-sys-i2c", .data =3D (void *)MODEL_BAIKA=
-L_BT1 },
-> > +	{ .compatible =3D "mobileye,eyeq6lplus-i2c", .data =3D (void *)NO_EMP=
-TYFIFO_HOLD_MASTER },
-> >  	{ .compatible =3D "mscc,ocelot-i2c", .data =3D (void *)MODEL_MSCC_OCE=
-LOT },
-> >  	{ .compatible =3D "snps,designware-i2c" },
-> >  	{}
-> >=20
->=20
-
-
-Best regards,
-=2D-=20
-Beno=C3=AEt Monin, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
-
-
+Bartosz
 
