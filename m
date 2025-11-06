@@ -1,108 +1,94 @@
-Return-Path: <devicetree+bounces-235634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D20CCC3AE7F
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 13:36:05 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C45B4C3AEA0
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 13:38:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 065FF3ACACB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 12:34:33 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D02B24E37BC
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 12:38:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 239B830F931;
-	Thu,  6 Nov 2025 12:34:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 691E932B9B8;
+	Thu,  6 Nov 2025 12:38:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CPviaEw6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VDLURHzO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E80E732B997;
-	Thu,  6 Nov 2025 12:34:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35EA332B9AA;
+	Thu,  6 Nov 2025 12:38:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762432470; cv=none; b=ux/HwkujXXvKD/XAgIOLZrpyPy7WdX37pbMz4mm9UFP6rEAR8R220EIT5OJOWZWbdhN4gkDR1Twi/9Ws0LCQU2DGYQaMdeEPtHk5GxODebrx0yR3kxuxe8viox0o+eqrwp/PN2PHkzMfp7o+4dw9GgJU1cO0YPnLmqlL3yW3ITo=
+	t=1762432715; cv=none; b=ZCcC6rcRjT+B5EREIE6s7hFyP8rD/uf4tYiyN4yrcsnJsry5BLNfRY7mggJuVJsRgEXqgGo6iu0mWrkhA9Nj31S5jOKXIYqJEgbrFZwcHH3Tv3TsWQwe8gkV/kxEv0w5EuZMabjlSr+IFxCI5LR9TH3pMGASmEslpm1en8BhR2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762432470; c=relaxed/simple;
-	bh=8lhmA5QvBE+pEK2Dtua8z+UjGJ7SB6l3wwlrOuIyqVo=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=g33qFq24GenEIUgHbZb3+j8hPb2fhruFfvzW+kTD678SMHO201GwLzsJdinHVUW3cxMVgHB3ay0MZSC6A5VxPw+HTrvj6vr+dIbRKcYTmTxl9vhHZxXOjaV2NTGjEdHwzt7/cCPI3H2rGpGkq4aee3bcNTe5rrLUNlRoR2pBFjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CPviaEw6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 260E5C4CEFB;
-	Thu,  6 Nov 2025 12:34:29 +0000 (UTC)
+	s=arc-20240116; t=1762432715; c=relaxed/simple;
+	bh=j7l1faYDgiI5rdvtFtW/C9APjJ+R5Y/cEE6wcGabBnw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u8465l99quANdNRszOglbn7npXpp8CVNR+5v3Xhj3WNVrBaDGeAgx0Gig/isS9By0w73YIauaqp5Kw8znZ9MVKcSBJ2VWB750f8KjTKxm/lEt2QRKC+u1708JA2KkPmcxlK2JWLK8i7ttffGufAq6UEGCh2F64YaOQUCRRIKBnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VDLURHzO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1FD3C4CEFB;
+	Thu,  6 Nov 2025 12:38:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762432469;
-	bh=8lhmA5QvBE+pEK2Dtua8z+UjGJ7SB6l3wwlrOuIyqVo=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=CPviaEw6+0KLPztHfnqqcXZ9c7V7vz3rEk5SFwqe3sCZKR2QTynTxBXU2Xku/Dps9
-	 YjJSolC4NGAzlYdA6urJXlZOHgHgg5JmotGPbjgUtV6HEKmqPwnpdcwcI0CA2SP3TR
-	 Pdk4cX9th7HcgQQTRQ4+pIsfopupJJdHAK0OSpVL8su/xG6th5XWGTE87nF21bpLt2
-	 oVzrxompTkhYkqLocpB4LUyF3s+LhDtndX9UWu3KoUp3nsqVjkKXKHWkiIgtqumGFG
-	 feYIWZdR/sdbg1tCE9H9ni/y6IUvvpfe6whzhJXkjVffEbAAkezLcbMG7TY5biH9j0
-	 IovX9VoTIdSmA==
-Date: Thu, 06 Nov 2025 06:34:27 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1762432714;
+	bh=j7l1faYDgiI5rdvtFtW/C9APjJ+R5Y/cEE6wcGabBnw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VDLURHzOR018PiJbhLxzTGW6Qlkzr6lEpYHw3gOT5vbVXx9km5LTaZuntiZvFv1jY
+	 yuOe/vedJRPfPQEwt8w33+NZSW5PkCREGsfysQkDRxizm4jHnDtHG0xXRoysjcojR1
+	 ff6sDJMFf1VZc3XY8lT57Wy7EnjeMLUIj76UoH7A5rZArpdasX95Txvnoj/geEARHd
+	 QBTKvnBlZ1a9N//4/VAhuM4WyUmIZITapljdgaEHcBj1b7xnvgVIKTxyx1dqeC/Lac
+	 u8SaFHCexMTFU4pFyAx0bzJtPZGLImKljiiHbTkSNxhcezfozK5DVALtux3JhsjKH2
+	 u0HruD9kqyvyw==
+Date: Thu, 6 Nov 2025 18:08:21 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: andersson@kernel.org, robh@kernel.org, 
+	manivannan.sadhasivam@linaro.org, krzk@kernel.org, helgaas@kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, lpieralisi@kernel.org, kw@linux.com, 
+	conor+dt@kernel.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree-spec@vger.kernel.org, quic_vbadigan@quicinc.com
+Subject: Re: [PATCH] schemas: pci: Document PCIe T_POWER_ON
+Message-ID: <7v5bmbke37qy7e5qns7j7sjlcutdu53nbutgfo6tn47qkojxjy@phwcchh5gs5q>
+References: <20251106113951.844312-1-krishna.chundru@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linmin@eswincomputing.com, linux-kernel@vger.kernel.org, 
- ningyu@eswincomputing.com, conor+dt@kernel.org, devicetree@vger.kernel.org, 
- Thinh.Nguyen@synopsys.com, p.zabel@pengutronix.de, 
- linux-usb@vger.kernel.org, krzk+dt@kernel.org, 
- Senchuan Zhang <zhangsenchuan@eswincomputing.com>, 
- gregkh@linuxfoundation.org, pinkesh.vaghela@einfochips.com
-To: caohang@eswincomputing.com
-In-Reply-To: <20251106105029.1400-1-caohang@eswincomputing.com>
-References: <20251106104938.1386-1-caohang@eswincomputing.com>
- <20251106105029.1400-1-caohang@eswincomputing.com>
-Message-Id: <176243246752.3577633.13564791742117028696.robh@kernel.org>
-Subject: Re: [PATCH v6 1/2] dt-bindings: usb: Add ESWIN EIC7700 USB
- controller
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251106113951.844312-1-krishna.chundru@oss.qualcomm.com>
 
+On Thu, Nov 06, 2025 at 05:09:51PM +0530, Krishna Chaitanya Chundru wrote:
+> From PCIe r6, sec 5.5.4 & sec 5.5.5 T POWER_ON is the minimum amount
 
-On Thu, 06 Nov 2025 18:50:29 +0800, caohang@eswincomputing.com wrote:
-> From: Hang Cao <caohang@eswincomputing.com>
+T_POWER_ON
+
+You should provide reference to the Table 5-11, where T_POWER_ON is described.
+
+> of time
+
+"(in us)"
+
+> that each component must wait in L1.2.Exit after sampling CLKREQ#
+> asserted before actively driving the interface to ensure no device is ever
+> actively driving into an unpowered component and these values are based on
+> the components and AC coupling capacitors used in the connection linking
+> the two components.
 > 
-> Add Device Tree binding documentation for the ESWIN EIC7700
-> usb controller module.
-> 
-> Signed-off-by: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> Signed-off-by: Hang Cao <caohang@eswincomputing.com>
-> ---
->  .../bindings/usb/eswin,eic7700-usb.yaml       | 94 +++++++++++++++++++
->  1 file changed, 94 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/eswin,eic7700-usb.yaml
+> Certain controllers may need to program this before enumeration, such
+> controllers can use this property to program it.
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+I'd remove this statement and just mention that this property should be used to
+indicate the T_POWER_ON for each Root Port.
 
-yamllint warnings/errors:
+- Mani
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/eswin,eic7700-eth.example.dtb: ethernet@50400000 (eswin,eic7700-qos-eth): eswin,hsp-sp-csr: [[4294967295, 256], [264, 280]] is too short
-	from schema $id: http://devicetree.org/schemas/net/eswin,eic7700-eth.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251106105029.1400-1-caohang@eswincomputing.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
