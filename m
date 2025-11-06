@@ -1,272 +1,281 @@
-Return-Path: <devicetree+bounces-235811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ED1FC3D1CB
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 19:49:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74A56C3D231
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 20:06:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1232A3BDBF5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 18:49:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1E1C1885CF9
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 19:06:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0395B2D9789;
-	Thu,  6 Nov 2025 18:49:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72A972DCBE6;
+	Thu,  6 Nov 2025 19:06:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="KUNi74DC";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="WXiWl6hP"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="FQtfPdRB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a4-smtp.messagingengine.com (fout-a4-smtp.messagingengine.com [103.168.172.147])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8689E23817D;
-	Thu,  6 Nov 2025 18:49:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.147
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C182D246BC7;
+	Thu,  6 Nov 2025 19:05:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762454975; cv=none; b=g5HX+BR39cmgQclaQBrBFFdTPxTg1PDbWKI+k6d+fDsemtTA2MgykTEncb4QajTe4uVOqDtDitRUj/RIfHbdTrtYLFoM/aGVzl9f4lvTdn7Eqhi7+EWBe2vQwCLMhVs0eZR6YhWYnACIizd58iY8/O9DvXx3xP6ivXkHp7vrkCY=
+	t=1762455963; cv=none; b=fjKKmAlhBQJECN6JtGhy4JAK43OxJgPzc3TSzS2I9/BpAmv+RZMYEwvDGoiaAWHq2qXoNXUMHy3aGB+3NtRA8F1HQhU2jkI1r2KfdZBb3ReRzBY70/V/rllRYOtT7Vn03Ae5HnDDwEKKDzmm4yfHQAlfXynOH+5RPyCp+B6uFaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762454975; c=relaxed/simple;
-	bh=P/v2puJTeFOS4Cx7G7AjYjc04y9VfRr4XRP9UV+JjN4=;
+	s=arc-20240116; t=1762455963; c=relaxed/simple;
+	bh=EGr5ADH3WdxhvthOZ0dh2EE7Glu6ClTmA+bHRUkMJjg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PnREMS3hRxHFano2SWGzlHc88KCDi5uelR46crnSuT9igoAkGzGikEn703x1nUariTNf8PQ918eWIXwFt/UAJS8ICay4TOsJymi1Yswk3G4oQ/B3sBaqd4kNlMmeeYPwBVHbGqHm/Ijvq2wPXaYfW4Wmt6ASJa2DIVJ2/lUlJsw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=KUNi74DC; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=WXiWl6hP; arc=none smtp.client-ip=103.168.172.147
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-03.internal (phl-compute-03.internal [10.202.2.43])
-	by mailfout.phl.internal (Postfix) with ESMTP id 7D484EC0294;
-	Thu,  6 Nov 2025 13:49:32 -0500 (EST)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-03.internal (MEProxy); Thu, 06 Nov 2025 13:49:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1762454972;
-	 x=1762541372; bh=3cDr0QtwUEUjzMnC5ZAIYokuX0/jaaVt0uuSfNP4Tkg=; b=
-	KUNi74DCyt5ngXutgWBeTfW15X5i50IQYpsd9Vrq56EphDF70ILKf+RlSPj4qqRc
-	IwKWBTFT4Qonn/GnvLM8VF7p6ge06mxqbNPDUD4QaYhZfbRFzjEdgvAffFFgLc0q
-	cwMPq1DqzesgroJNDaD6eFJs6+4wb38vMahle8KvxDMcT3aA0Vkbu5isTSkCIw0A
-	dY1sqRBV46F6bIQ4mhLQB/3VmEVdJpwI1ojmGUBZ4tJMUgm3hkLxqN933j+Mz0Gl
-	RISLSOcgeEP/zYS2ghJ8cXX2xnMROf1IP/AetXmE+G9vz1988cK+/wPIkAF3Awex
-	zuE1ZYZ4w1gMMtjpFVt13w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1762454972; x=
-	1762541372; bh=3cDr0QtwUEUjzMnC5ZAIYokuX0/jaaVt0uuSfNP4Tkg=; b=W
-	XiWl6hPKV9aGFEI4ji8aylfXPQ1RNkHZjenLyVZlIrHZ26++U4sEb0LA5HU+5Fh2
-	oJouFjsHWFUYs3fK2ArlS5/MmQvx6etI4cieqnaUv40YEHsC3bda5echfXNPmgZT
-	brCJFcr+qyAzHMZBbfZZS62AOretbi1jstSy9SdJERFhcjo8bmfoTTy9VMkjM2Tc
-	Wbj+5r7fBr1Jvh9sd9ausD7BzhC+Qb3ugnPSn4UX/o7Ue2VkbC+ciy4F8Fg1OG7o
-	P2PtVo1gM9QXLxvtxdwHInnL+PacU/X8FNneaxR6+X71FaFis491NHeHlBE0MGlW
-	hfUyLKf2bpac5FcoPbvmw==
-X-ME-Sender: <xms:u-0MafPWQsTP_zlHIul8NRS1GcD8FwLFsgaw8V3IRdNJr-8n0cu5Cg>
-    <xme:u-0MaStzwByYbrv69mDe4sLJZ8wzd9TeIIahxqdz4YgH4iyy_GXQ1aKYtLMWM3YbS
-    0rEye1sN31DdevVv0A8RLi8eBcX2FatzisaUxvBPn8bLFPgBDLBXg>
-X-ME-Received: <xmr:u-0Mac_KrOUCx1fpv1enSDegooE1cvgOzPQEIC_I-TwAMYrYdhSSUunLb_hxdYaqR5sd7aZpqsV_AK-WII4rokw_3cDvZgY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddukeejheegucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpefpihhklhgr
-    shcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvsh
-    grshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeffkefgudekgefh
-    hfejtedviedtgeetieekffeiudfhgeevteejvedtffdvkefftdenucffohhmrghinhepkh
-    gvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghi
-    lhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrghssehrrghgnh
-    grthgvtghhrdhsvgdpnhgspghrtghpthhtohepudekpdhmohguvgepshhmthhpohhuthdp
-    rhgtphhtthhopehmrghtthdrtghoshhtvghrsehimhhgthgvtgdrtghomhdprhgtphhtth
-    hopehmrghrvghkrdhvrghsuhhtodhrvghnvghsrghssehmrghilhgsohigrdhorhhgpdhr
-    tghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhlihguvghrrdgsvgdprhgtphhtth
-    hopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghirhhlihgv
-    ugesghhmrghilhdrtghomhdprhgtphhtthhopehfrhgrnhhkrdgsihhnnhhssehimhhgth
-    gvtgdrtghomhdprhgtphhtthhopegrlhgvshhsihhordgsvghllhgvsehimhhgthgvtgdr
-    tghomhdprhgtphhtthhopegrlhgvgigrnhgurhhurdgurgguuhesihhmghhtvggtrdgtoh
-    hmpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:u-0MaWHrtuPHdKc8pfye-AYKUnTIJ2Izh8K-LDrXpNb-m23a78X21Q>
-    <xmx:u-0MabQdfgNsXYZbF4yIc2Kb2ICly05SxfUSWn-vMpoukJDPhQIjsQ>
-    <xmx:u-0MaUsUSUm5DH8ssKhY7Bp-3gGOXjiZfsemKxKTojRC6b5W__9qEg>
-    <xmx:u-0MaYAPI7FmII9cboxsgHHTWRiTIhIsi8fLfcTon8zoxRCX_rBaiA>
-    <xmx:vO0MaV03Ogz1Hw4L_bCT90F8PIld3CeYI5KQiotOcy2i3JurT_isaXdo>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 6 Nov 2025 13:49:30 -0500 (EST)
-Date: Thu, 6 Nov 2025 19:49:28 +0100
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Matt Coster <Matt.Coster@imgtec.com>
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Frank Binns <Frank.Binns@imgtec.com>,
-	Alessio Belle <Alessio.Belle@imgtec.com>,
-	Alexandru Dadu <Alexandru.Dadu@imgtec.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=hiOXA6cC4PLCSmOXPh6cIp3xtCxikj47VF+PLCv7R45ZyqN4cceirHMHVo9xFwHBDGGDJz7qAu87KFM+ABVUGf7lyoMYd8DoidezuGoq4tz15xWGOlXIPEmf8tEK7x/DuLqhWZ5FsaAQpXLwzMJZo5CohtgYGsJeFuw66OTp+FY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=FQtfPdRB; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=VTVwOrLx1UbE0Vl3BjsmOsYDPFhlnrm5D/cBlveQU0c=; b=FQtfPdRBFzpQkercfXOel4CHob
+	PBuWKc3onbvnRWQTgjNel017mgzQ6E+kJ208LhMfDe66dPD/pSKlOr7DK+fIgfNm9h+iMNAefwM89
+	qBlj12ogwElccciqMkbAl4fnSQUM7sOdPJJRtpGO3maEG+KF8n0wzoX6VwyCvfuurGFc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vH5Is-00D9Ej-Cl; Thu, 06 Nov 2025 20:05:50 +0100
+Date: Thu, 6 Nov 2025 20:05:50 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Shenwei Wang <shenwei.wang@nxp.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a779a0: Add GE7800 GPU node
-Message-ID: <20251106184928.GF3684509@ragnatech.se>
-References: <20251105232737.1933437-1-niklas.soderlund+renesas@ragnatech.se>
- <20251105232737.1933437-3-niklas.soderlund+renesas@ragnatech.se>
- <c1c5a3ee-f5c9-46e4-8095-104d25d4621c@imgtec.com>
- <20251106103904.GD3684509@ragnatech.se>
- <e0373514-04ea-418c-a721-d694b816fa56@imgtec.com>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-imx@nxp.com
+Subject: Re: [PATCH v5 3/5] docs: staging: gpio-rpmsg: gpio over rpmsg bus
+Message-ID: <9fd8ccd9-560a-43b4-a48d-f7a3eaa07eb1@lunn.ch>
+References: <20251104203315.85706-1-shenwei.wang@nxp.com>
+ <20251104203315.85706-4-shenwei.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e0373514-04ea-418c-a721-d694b816fa56@imgtec.com>
+In-Reply-To: <20251104203315.85706-4-shenwei.wang@nxp.com>
 
-Hi Matt,
-
-On 2025-11-06 13:04:19 +0000, Matt Coster wrote:
-> Hi Niklas,
+On Tue, Nov 04, 2025 at 02:33:13PM -0600, Shenwei Wang wrote:
+> Describes the gpio rpmsg transport protocol over the rpmsg bus between
+> the cores.
 > 
-> On 06/11/2025 10:39, Niklas Söderlund wrote:
-> > Hi Matt,
-> > 
-> > Thanks for your feedback.
-> > 
-> > On 2025-11-06 10:19:13 +0000, Matt Coster wrote:
-> >> Hi Niklas,
-> >>
-> >> On 05/11/2025 23:27, Niklas Söderlund wrote:
-> >>> Describe Imagination Technologies PowerVR Rogue GE7800 BNVC 15.5.1.64
-> >>> present in Renesas R-Car R8A779A0 V3U SoC.
-> >>>
-> >>> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> >>> ---
-> >>>  arch/arm64/boot/dts/renesas/r8a779a0.dtsi | 17 +++++++++++++++++
-> >>>  1 file changed, 17 insertions(+)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> >>> index b08865841476..aa347b699340 100644
-> >>> --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> >>> +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> >>> @@ -338,6 +338,23 @@ cmt3: timer@e6148000 {
-> >>>  			status = "disabled";
-> >>>  		};
-> >>>  
-> >>> +		gsx: gsx@fd000000 {
-> >>
-> >> Why gsx? Marek's equivalent patch for r8a77965-gpu[1] used gpu (as we do
-> >> for every dt so far).
-> > 
-> > Wops, will fix.
-> > 
-> >>
-> >>> +			compatible = "renesas,r8a779a0-gpu",
-> >>> +				     "img,img-ge7800",
-> >>> +				     "img,img-rogue";
-> >>> +			reg = <0 0xfd000000 0 0x40000>;
-> >>> +			interrupts = <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
-> >>> +			clocks = <&cpg CPG_CORE R8A779A0_CLK_ZG>,
-> >>> +				 <&cpg CPG_CORE R8A779A0_CLK_S3D1>,
-> >>> +				 <&cpg CPG_MOD 0>;
-> >>
-> >> I don't have access to a TRM for V3U (it's too new apparently, despite
-> >> already being obsolete), but I believe the GPU integration should be
-> >> similar to the M3N in [1]. In that case, the TRM (v2.40, fig 23.3) shows
-> >> S2D1 and 112 in place of S3D1 and 0 – are these definitely correct? The
-> >> 0 especially feels wrong (see also 8A.2.1.2 MSTPSR1).
-> > 
-> > Yea the V3U doc I have is not the latest. The diagram in the GPU chapter 
-> > list the same as you say here (S2D1 and 112), however the diagram seems 
-> > to just be a copy-past of the Gen3 document. Looking elsewhere in the 
-> > document I see:
-> > 
-> > - In the clock chapter the GPU is list as MSTP0 and not MSTP112.  
-> >   Comparing with the Gen3 doc this looks correct so MSTP0 is good IMHO.
+> Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
+> ---
+>  Documentation/staging/gpio-rpmsg.rst | 202 +++++++++++++++++++++++++++
+>  Documentation/staging/index.rst      |   1 +
+>  2 files changed, 203 insertions(+)
+>  create mode 100644 Documentation/staging/gpio-rpmsg.rst
 > 
-> Sounds reasonable. Just to cross-reference that, does 3DGE appear in the
-> 0-bit row of the table under the register definition of MSTPSR0? I see
-> from renesas-cpg-mssr.c that these registers have moved for gen4 though,
-> so this could be a blind alley.
+> diff --git a/Documentation/staging/gpio-rpmsg.rst b/Documentation/staging/gpio-rpmsg.rst
+> new file mode 100644
+> index 000000000000..ad6207a3093f
+> --- /dev/null
+> +++ b/Documentation/staging/gpio-rpmsg.rst
+> @@ -0,0 +1,202 @@
+> +.. SPDX-License-Identifier: GPL-2.0-or-later
+> +
+> +GPIO RPMSG Protocol
+> +===================
+> +
+> +The GPIO RPMSG transport protocol is used for communication and interaction
+> +with GPIO controllers located on remote cores on the RPMSG bus.
+> +
+> +Message Format
+> +--------------
+> +
+> +The RPMSG message consists of a 14-byte packet with the following layout:
+> +
+> +.. code-block:: none
+> +
+> +   +-----+------+------+-----+-----+------------+-----+-----+-----+----+
+> +   |0x00 |0x01  |0x02  |0x03 |0x04 |0x05..0x09  |0x0A |0x0B |0x0C |0x0D|
+> +   |cate |major |minor |type |cmd  |reserved[5] |line |port |  data    |
+> +   +-----+------+------+-----+-----+------------+-----+-----+-----+----+
+> +
+> +- **Cate (Category field)**: Indicates the category of the message, such as GPIO, I2C, PMIC, AUDIO, etc.
 
-It do appear on the 0-bit row of MSTPSR0. But on V3U the bit is called 
-RGX not 3DGE as in Gen3.
+We know it is a GPIO message, this document is titled "GPIO RPMSG
+Protocol". So i don't see the need for cate. I can however understand
+that your device does support multiple functions, but to make this
+generic, it would be better if each function had its own channel.
 
-> 
-> A similar thought – is a new entry in r8a779a0_mod_clks (defined in
-> r8a779a0-cpg-mssr.c) required? The equivalent table for r8a77965 has a
-> "3dge" entry at 112.
+> +
+> +  Defined categories:
+> +
+> +  - 1: RPMSG_LIFECYCLE
+> +  - 2: RPMSG_PMIC
+> +  - 3: RPMSG_AUDIO
+> +  - 4: RPMSG_KEY
+> +  - 5: RPMSG_GPIO
+> +  - 6: RPMSG_RTC
+> +  - 7: RPMSG_SENSOR
+> +  - 8: RPMSG_AUTO
+> +  - 9: RPMSG_CATEGORY
+> +  - A: RPMSG_PWM
+> +  - B: RPMSG_UART
+> +
+> +- **Major**: Major version number.
+> +
+> +- **Minor**: Minor version number.
 
-Yes. Both for MSTP112 module clock and the ZG core clock. Patches 
-posted. Will try to do the v2 of that series at the same time as the 
-fixes for this one.
+What is the purpose of Major and Minor? What values are valid. What
+should happen if an invalid value is passed?
 
-https://lore.kernel.org/linux-renesas-soc/20251105231815.1927239-1-niklas.soderlund%2Brenesas@ragnatech.se/
+What you should think about is, if you gave this specification to
+somebody else, could they implement it? 
 
-> 
-> > 
-> > - The V3U don't have a S2D1 clock... but the GPU chapter lists it in the 
-> >   (assumed) copy-pasted diagram...  What I did was track which clocks 
-> >   where S2D1 on Gen3 and compared that to what those IP where using on 
-> >   V3U. The overlap was the DU and that uses S3D1 on V3U so I just 
-> >   followed that.
-> 
-> There's a top-level clock diagram near the top of the CPG chapter in the
-> TRM I have (fig 8.1d for M3N) that annotates S2D1 as being an AXI-bus
-> clock.
+> +
+> +- **Type (Message Type)**: For the GPIO category, can be one of:
+> +
+> +  - 0: GPIO_RPMSG_SETUP
+> +  - 1: GPIO_RPMSG_REPLY
+> +  - 2: GPIO_RPMSG_NOTIFY
 
-I see the M3-N S2D1 clock in the Gen3 doc.
+Is _SETUP always from Linux to the firmware? Is a setup always
+followed by a _REPLY? Do you need to wait for the _REPLY before
+sending the next _SETUP? If there is no _REPLY within X seconds, should
+Linux retry? Can an _NOTIFY arrive between a _SETUP and a _REPLY?
 
-> Is there a similar annotation on S3D1 for V3U in your TRM? If
-> not, I'm happy to just follow your logic and ack this patch :)
+> +
+> +- **Cmd**: Command code, used for GPIO_RPMSG_SETUP messages.
+> +
+> +- **reserved[5]**: Reserved bytes.
 
-I do not see the S3D1 in the same diagram for V3U, only S3. I do however 
-see S3D1 a few pages below in the table below the diagram. In the Gen3 
-doc that would be the equivalent of table Table 8.2d.
+Why are these in the middle. It is more normal to have reserved bytes
+at the end.
 
-> 
-> Cheers,
-> Matt
-> 
-> > 
-> >>
-> >>> +			clock-names = "core", "mem", "sys";
-> >>> +			power-domains = <&sysc R8A779A0_PD_3DG_A>,
-> >>> +					<&sysc R8A779A0_PD_3DG_B>;
-> >>> +			power-domain-names = "a", "b";
-> >>> +			resets = <&cpg 0>;
-> >>
-> >> Same 0 concern as above.
-> >>
-> >> Cheers,
-> >> Matt
-> >>
-> >> [1]: https://lore.kernel.org/r/20251104135716.12497-3-marek.vasut+renesas@mailbox.org/ 
-> >>
-> >>> +			status = "disabled";
-> >>> +		};
-> >>> +
-> >>>  		cpg: clock-controller@e6150000 {
-> >>>  			compatible = "renesas,r8a779a0-cpg-mssr";
-> >>>  			reg = <0 0xe6150000 0 0x4000>;
-> >>
-> >> -- 
-> >> Matt Coster
-> >> E: matt.coster@imgtec.com
-> 
-> -- 
-> Matt Coster
-> E: matt.coster@imgtec.com
+You should also specify these bytes should be set to 0. If you don't
+it will be hard to use them in the future, because they will contain
+42, or some other random values.
 
+Is there a relationship between major:minor and reserved?
 
+> +
+> +- **line**: The GPIO line index.
+> +
+> +- **port**: The GPIO controller index.
 
+data? 
 
--- 
-Kind Regards,
-Niklas Söderlund
+> +GPIO Commands
+> +-------------
+
+This is a GPIO specification, so i would only expect GPIO commands...
+
+> +
+> +Commands are specified in the **Cmd** field for **GPIO_RPMSG_SETUP** (Type=0) messages.
+> +
+> +GPIO_RPMSG_INPUT_INIT (Cmd=0)
+> +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> +
+> +**Request:**
+> +
+> +.. code-block:: none
+> +
+> +   +-----+-----+-----+-----+-----+-----------+-----+-----+-----+----+
+> +   |0x00 |0x01 |0x02 |0x03 |0x04 |0x05..0x09 |0x0A |0x0B |0x0C |0x0D|
+> +   | 5   | 1   | 0   | 0   | 0   |  0        |line |port | val | wk |
+> +   +-----+-----+-----+-----+-----+-----------+-----+-----+-----+----+
+> +
+> +- **val**: Interrupt trigger type.
+> +
+> +  - 0: Interrupt disabled
+> +  - 1: Rising edge trigger
+> +  - 2: Falling edge trigger
+> +  - 3: Both edge trigger
+> +  - 4: Low level trigger
+> +  - 5: High level trigger
+> +
+> +- **wk**: Wakeup enable.
+> +
+> +  - 0: Disable wakeup from GPIO
+> +  - 1: Enable wakeup from GPIO
+
+What do you mean by wakeup? 
+
+> +
+> +**Reply:**
+> +
+> +.. code-block:: none
+> +
+> +   +-----+-----+-----+-----+-----+-----------+-----+-----+-----+----+
+> +   |0x00 |0x01 |0x02 |0x03 |0x04 |0x05..0x09 |0x0A |0x0B |0x0C |0x0D|
+> +   | 5   | 1   | 0   | 1   | 1   |  0        |line |port | err | 0  |
+> +   +-----+-----+-----+-----+-----+-----------+-----+-----+-----+----+
+> +
+> +- **err**: Error code from the remote core.
+> +
+> +  - 0: Success
+> +  - 1: General error (early remote software only returns this unclassified error)
+> +  - 2: Not supported
+> +  - 3: Resource not available
+> +  - 4: Resource busy
+> +  - 5: Parameter error
+
+It would be good to give some examples of when these should be used.
+
+Say the hardware does not support both edges. Is that 2? Why would a
+resource be busy? How is busy different to not available?
+
+> +
+> +GPIO_RPMSG_OUTPUT_INIT (Cmd=1)
+> +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> +
+> +**Request:**
+> +
+> +.. code-block:: none
+> +
+> +   +-----+-----+-----+-----+-----+-----------+-----+-----+-----+----+
+> +   |0x00 |0x01 |0x02 |0x03 |0x04 |0x05..0x09 |0x0A |0x0B |0x0C |0x0D|
+> +   | 5   | 1   | 0   | 0   | 1   |  0        |line |port | val | 0  |
+> +   +-----+-----+-----+-----+-----+-----------+-----+-----+-----+----+
+> +
+> +- **val**: Output level.
+> +
+> +  - 0: Low
+> +  - 1: High
+
+Maybe make a comment about the order. Some GPIO controllers suffer from
+glitches when you swap them from input to output. While it is an
+input, you first need to set the output value, and then configure the
+pin for output. 
+
+> +Notification Message
+> +--------------------
+> +
+> +Notifications are sent with **Type=2 (GPIO_RPMSG_NOTIFY)**:
+> +
+> +.. code-block:: none
+> +
+> +   +-----+-----+-----+-----+-----+-----------+-----+-----+-----+----+
+> +   |0x00 |0x01 |0x02 |0x03 |0x04 |0x05..0x09 |0x0A |0x0B |0x0C |0x0D|
+> +   | 5   | 1   | 0   | 2   | 0   |  0        |line |port | 0   | 0  |
+> +   +-----+-----+-----+-----+-----+-----------+-----+-----+-----+----+
+> +
+> +- **line**: The GPIO line index.
+> +- **port**: The GPIO controller index.
+
+There is no need to acknowledge the notification? How do level
+interrupts work?
+
+	Andrew
 
