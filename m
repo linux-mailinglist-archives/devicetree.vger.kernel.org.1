@@ -1,198 +1,209 @@
-Return-Path: <devicetree+bounces-235453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17DE2C38DDE
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 03:28:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC800C38E32
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 03:40:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8321C188F17F
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 02:28:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C87EC3B9C33
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 02:39:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D458829A1;
-	Thu,  6 Nov 2025 02:28:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9A52239567;
+	Thu,  6 Nov 2025 02:39:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gfyB/A77";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="GhhCgoDm"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="dSmWP9lw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EC6E21E0BB
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 02:28:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9625E224AEF
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 02:39:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762396105; cv=none; b=Ce/SHmaC+Tv/+H15Qzio+eSkUtitiJ0/bY3Ex/yUVOeFH4uUocDhAo/pccsk7l8XPZmsJXAbLB0AiF/38oOqNhVWV6AAjmKNiCVkA3yaKinnhc8fvp1eUrPOTnBC7uJKmicGENmdJ2kiBW+9OnTuk1MaOrsQWTjzbtE1YRa04ms=
+	t=1762396776; cv=none; b=Tg7uwuXh1dUXKJ47s58VmrKWvkOzAnyOJ9Hy87qP6JYrqu5nVE6rFcKZVboxlLSB0ELz1qph7rROMu2ugMIAPR2pTpdkP6sf6NOipRcnlWaW5PWSuHBSP4S8M54hg4byDMrzIgC2puLBv7YqC2sKRj+V0wN30alv/Xex5ijfMr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762396105; c=relaxed/simple;
-	bh=GppWJtjpbN5o228a2iWBX91xQ4Ag/G226eBhUZOyZFA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ecQ/Sk/6t0TvPl0ZWij+gXilVI4ufvUgnJOpFlYW+7p0vfKTn1LtA8pFLAO+MiZqn85lZSzXfMNCqfZcMKkzgc5AKm20fvVbTwoJBNxuGsxVhFDZRq4y3eCUSWseOFf7ddQbbwcX5V0atP59qY6E0jxtvR7OKHKr32OBjz4G+zY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gfyB/A77; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=GhhCgoDm; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A5KFDf71689574
-	for <devicetree@vger.kernel.org>; Thu, 6 Nov 2025 02:28:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	V4HjvNLFnxwD9vnohYLriZQRWeU4vT3slKHfceRLugE=; b=gfyB/A77rdK/rR7m
-	G2HiP9vbY+4yxLE7NYhgk1Q9EuTipDXeJtvD79eWwY4UkIGJ1eg258D1Zvn4xopY
-	CiolNFceVi/lGFB+C3IGRHkNE3CWFztKV1aMLsiAdgW9dbkFiKyKmkRkyKgMIBd8
-	1BT1boIZMVhxaSNBU235uiqwNRsro1+6WEUa1/ZL+Va721krqCi57+5UzfPngPS8
-	QOXINlPwxahekH//93wrncoD+Jbf35SE+uMW0tZOntLuugnnRgiR9goRHOcsw4Ke
-	hw2xTOqdFYymOaKZgcRHHJS4sLYdMs7kQwFoOSrrf8yCIreyEllzPXEjZVf3+TNy
-	zTedqA==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a88pj9xq6-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 02:28:23 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-294df925293so5582615ad.2
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 18:28:23 -0800 (PST)
+	s=arc-20240116; t=1762396776; c=relaxed/simple;
+	bh=8nMHKixdk8Eg3L25o5gBG9d2JmKTyF3seoQc5DhhPLA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sdgia5Rp0WljrJYksOrxvU4dAWWaSPuMaKOXzujUAJYn5LuIRx/8a1TDpWvu9A8U2o3Vud9eK6m0AJ6tpPL50pRQ+drJRa3FNU7EjnuOUk4zqpcyS3qgxfuTvBc4Y7bFBBN2qx76NyzqrTHGmZnpaYK5bdKOHisWStrWOOwplR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=dSmWP9lw; arc=none smtp.client-ip=209.85.219.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-8804650ca32so5738146d6.0
+        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 18:39:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762396103; x=1763000903; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=V4HjvNLFnxwD9vnohYLriZQRWeU4vT3slKHfceRLugE=;
-        b=GhhCgoDmuVIGr/V56kB8veDRdN7I4g0p5xFXZUaU4DqJjCpkRY8tlfv7ZLGpH4Girj
-         s2A3DrMzp1gIY0KPbO33df4eNrW+3aItFH1T5j7USGnbihVWaA0N66K3CkwWh/Lv9NCl
-         hB1dSMYSiamX1RoCTuGICUWQhDuEDsGtCEhBKlZHvaFFHbmdep6h6PZu/B5xq+HpSbAZ
-         9nQCixee8zVY/0hcHMQbfbn//aKmaXAz5vCHfJFl4ElQ3JO2B1qN1uImrkZwEOQmrusL
-         ZhsDlrym8KBJ5Nc5rVa7IreqbyUFFJ2W6QvhxThYeSRPuaYrvr9ZpWO95emoG0Sbgk8T
-         cm5A==
+        d=google.com; s=20230601; t=1762396773; x=1763001573; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2eNR0gXNmIUmw89GQXgujHZG/9SWMVHpsfLzK4O6o7I=;
+        b=dSmWP9lw2cEUYNS6YfT3N/Hvdf6/hiplOMEZLQuyu+/jb+okczgC2LBp9wHT8kygTK
+         kq92pgyTK9OUY5gJ2G0Aq3ioKjzFG3MzgcNpZVARsfIkm/qn18k2gP0usclMDeo1VpCq
+         E8KnYZ20zPgMqyDeBXqqx5A5jJ7N0Pc4lNE+eHY07OputKisRieuT1ZcxlnstF9pt4S3
+         wv1UlFn84748cUQHiH+/MlQghJczwoE2MnKHQjZcQFXmvGeykZG7XZyCLbDmjDI0G5Hm
+         Pjcqy8nlhiWgiqTQWqwg1SlZBIcT+UfuHwhLBwIMA3A/TasmUJMhaq9uweMB6osQykvd
+         JrKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762396103; x=1763000903;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=V4HjvNLFnxwD9vnohYLriZQRWeU4vT3slKHfceRLugE=;
-        b=l/ZOajZaPfP4djv+A4qeDUxwCtDfPKRUKBvsdXfb5RqsB+OSM44FJE3vCjbtvLLSYh
-         Kk1VJlGCk5uD15+i2YF+J2INEuYndnJjexvpCG7Wk4kTpv5ms0EC5uwuMhLxstHKHe6Y
-         1d/SyMFUH5iAAMRaKZ6pMc++BgAuA+BDJS/Vnp/oVAdG81KrByvPsIZqqkmjra79FK3U
-         YSrplCHRLG1KZoJpqb3XaHK6eZ8mJMmRjSynQudsLtkL3SdK+zpqN8FxR3SC45NMDtZa
-         9cNFo4UWI/pJW6LXJixqlEVybmqadtExEKtV9aX/ptTDQf8YUrnhGUyf5Vp+4l3JTx1l
-         ITlQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUBY/bV2qT1yYS7E0nNNzeyKuIJrfzZHTFqGrgjtr5NWatnYCaaMjDfKkQZeQ5SgM5/0k29d1DrlYxP@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5WK6zQkFLO870h3rlg/U0PeCblTwQ+5HDTf8JcVPN2AVKkUAN
-	/VzthUjVUWw05RAxHQOS39tackN8AKQhOkZ1EpOm8U3nT7toX98AOxI5xv/FBi6hcqMRh5Na0io
-	BuvZf+beF34ax0yu9CG4wTqXJ8hJXjxJj1/uk6d3AqRW2g6HqJotzePUVpaxkfiMS
-X-Gm-Gg: ASbGncsbg8Wa3Z/z/3z3PzQk316ZwV0ovhXUlen2dRRoH18zsnLxPwt2XPrYLMIpFZ4
-	vsgSjQHwmjCVEQifymn3qfxKpytPg2HuVxzWhijUDL91nDHYLPRH/9O6xMWUUgWtkJCi0lxO3p0
-	2cHh6RxQDSA2Qpt/QFAqoR+6UHm1eJ3ZY2YY0OwVZWonLK/vdwCfRNQVau7MJ5rLaMI8VflDspo
-	SqwhmV0hqztEpY13nku1rjBL7JiYEJeJU69EweX1TS1bKjtKpaIKLPUAV2r3l+JpfJTa3wPvw0t
-	gQhQN8dd8PsFw2vsthXJwOcJLt9BIvubhILHmLtSm3xUyiOEpnhsmGMn3cSmf1TDI7F5PIHcP5A
-	QJbOMXjfvgMNheWotCN1abOh6C2RYmGT6vjqf1cOtwzS+hpdJFhpUbcCYgcciqNVV/EDm8w==
-X-Received: by 2002:a17:902:c40d:b0:295:fe17:83e with SMTP id d9443c01a7336-2962ad1c9a2mr79751875ad.19.1762396102779;
-        Wed, 05 Nov 2025 18:28:22 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IF1oBFOtqzUwUW+AAZsojfog5/ufDjnphy5RrmbFpT6Iop14NvlZgmut0SAAChl4RXD+SpEwA==
-X-Received: by 2002:a17:902:c40d:b0:295:fe17:83e with SMTP id d9443c01a7336-2962ad1c9a2mr79751515ad.19.1762396102308;
-        Wed, 05 Nov 2025 18:28:22 -0800 (PST)
-Received: from [10.133.33.81] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-296509682b4sm9362535ad.12.2025.11.05.18.28.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Nov 2025 18:28:21 -0800 (PST)
-Message-ID: <47c055ae-c3da-4a9a-8a09-b567b1a80628@oss.qualcomm.com>
-Date: Thu, 6 Nov 2025 10:24:46 +0800
+        d=1e100.net; s=20230601; t=1762396773; x=1763001573;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2eNR0gXNmIUmw89GQXgujHZG/9SWMVHpsfLzK4O6o7I=;
+        b=Yv7zV/yyZzcUg0pD77tJY6ZlHTY4ba4wTsGHO5xHd2ItogULrcWIoSBn1j+QQBEdnl
+         sDSPNhn7YV7lkRTmgpNq6P5dlI2aqB3V2Oz72ayNrwfrJ5H/T4fm3kh1jc79UBpprJ/r
+         j0CTCJWymLHPO00Jd1O0GWfh92vVjCFE6tDURnuUHqxtxYZEx+zt1bsASOIg7O9aHBiB
+         rd5USnKSodsOmGTyvpb5Tg44bAHqpzGrbbaHASBhAcH52WxHp8tgowrm1vVHifT2ZhsC
+         kut5kFJaiG/6yqfpX9sy3o+AmgF3ZjbD3H8Vo+Cocphy+7rWMs1S1djlaFPB/38dwZGV
+         YWEw==
+X-Forwarded-Encrypted: i=1; AJvYcCVJp3fYxZKIYSoLed5CHKL+uqEd4YiSheUyOgE8Y782Rog7HRPlLzUWGA2lA8JcJqFyDrnF0P2N1ISX@vger.kernel.org
+X-Gm-Message-State: AOJu0YwkHdM1TkemUsSuiB4ScuNs1SVg/ozVYxI9RN5yYeia0gRigEuZ
+	ujKGzIcNSbVYPr4nq93Mkv8xxhl8zekX134mxZIHtFAUvoeAgvy2WoInwyv0yT+bBdhUrbDTcX1
+	JPgjYym0mslJeD3pHlN9FkjyQ/bx/yAxbyjjbasKK
+X-Gm-Gg: ASbGncuLZVec66XqWwEHbGOClsYzY1KlotMlpapE5krMd0gqFrPptd6WETJo+fbrZTg
+	lCVF1CMVT1FVBIF0r/m9k7KWaujxaGb5Erht3Pye4mnQHBHfjdEUKQ53fOw1Q/uKAly0UR5c5lI
+	lpKNIuDhP3iCi6ryVpcp9F3Y71wbuO767Il9au/xg/ykA/LwWD6yGncUTxIDIu+Kju6DxpxrNaA
+	nPabmeLE8EcchBaS5BlmX9qKKlZVTyILqGJs6jpVU8Hg6I1k/cW1iEAkBji
+X-Google-Smtp-Source: AGHT+IGJuTr7VhSikUdL+mJyzKmkBgWLGxAfoFqQyzKGSsZmlf2Gkc/1quZmoJrqJlupKDcyB0Th/ppvrz0DqNyO9kE=
+X-Received: by 2002:a05:6214:1312:b0:880:2f75:c525 with SMTP id
+ 6a1803df08f44-88071197e64mr79530726d6.25.1762396773064; Wed, 05 Nov 2025
+ 18:39:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/7] dt-bindings: arm: Add support for Qualcomm TGU
- trace
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: andersson@kernel.org, alexander.shishkin@linux.intel.com,
-        kernel@oss.qualcomm.com, mike.leach@linaro.org, suzuki.poulose@arm.com,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, coresight@lists.linaro.org,
-        devicetree@vger.kernel.org
-References: <20251104064043.88972-1-songwei.chai@oss.qualcomm.com>
- <20251104064043.88972-2-songwei.chai@oss.qualcomm.com>
- <20251105-industrious-oxpecker-of-valor-af17fa@kuoka>
- <746b292f-fc3a-43a8-89b1-76f61ccc0630@oss.qualcomm.com>
- <7ba7e32b-f00a-4f77-88da-047126a8c3f9@kernel.org>
- <b9e7f8ba-a629-4316-a6dd-d765ed0037ee@oss.qualcomm.com>
- <17c3ee70-66e3-418f-8c79-926c8a139d16@kernel.org>
-Content-Language: en-US
-From: Songwei Chai <songwei.chai@oss.qualcomm.com>
-In-Reply-To: <17c3ee70-66e3-418f-8c79-926c8a139d16@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: MZlRZXCGc63MVnSrDb0kM5duk2JqYc0N
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA2MDAxOCBTYWx0ZWRfX3kr+/s1XPtui
- F4JWvzOrTRJjpZSJ2iWtxoYYl6gIYHn4zDUgtZXEzAGaqzIkUOD6ZuTYjPDbemVK6br96d5ALco
- zD5mYgNXDb36Gq6xkYZCoYYjMDh2wy4J6FYEsQWkVvWHUcS2+44F0obJ10ClwXwwJqNc8yUteOR
- QK6SmOMdKcLOINoLvvmlVzMWZJC6kG4Hl9oiKpcArzMITxlJWAJ1obMOR4DFlNRrjlQ3SszxJux
- OfVILMyAqDYQXcNq9BNv41yVt1jsWBI7si6V6Vt8oUnP0dFikjxtHa1jUN4I4DdzvJDA3WaywI1
- OELR0kUYSz/fyQYIWX1OF8zk5GeEg4VYOxnu8F5OWiOD3Qm0CBu0T755rgQGwASd5F1+fGdq0ER
- gv+xog6CY70JkixXkDS+oPZ/rSEbYg==
-X-Proofpoint-ORIG-GUID: MZlRZXCGc63MVnSrDb0kM5duk2JqYc0N
-X-Authority-Analysis: v=2.4 cv=ZODaWH7b c=1 sm=1 tr=0 ts=690c07c7 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=k5NQ7owp_J2c5NZ3w_0A:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-05_09,2025-11-03_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 suspectscore=0 phishscore=0 spamscore=0 clxscore=1015
- impostorscore=0 malwarescore=0 lowpriorityscore=0 priorityscore=1501
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511060018
+References: <20251017233459.2409975-1-royluo@google.com> <20251017233459.2409975-3-royluo@google.com>
+ <20251030011659.bmgdry3wwf4kgjwv@synopsys.com> <CA+zupgxPYXCqew1548uwGx7=9u0b5oCwaXfP7F=FmqMR7a5bDw@mail.gmail.com>
+ <20251104020713.orax7rk6qhko5p4m@synopsys.com> <CA+zupgy4qO9X=R7KqEru5kr7tYhgdw=9Z70sLNKj5DTS_J7KZw@mail.gmail.com>
+ <20251106003830.v22dnomurtqmqc2y@synopsys.com>
+In-Reply-To: <20251106003830.v22dnomurtqmqc2y@synopsys.com>
+From: Roy Luo <royluo@google.com>
+Date: Thu, 6 Nov 2025 10:38:56 +0800
+X-Gm-Features: AWmQ_bkphrNIx4CfxBiTp-P4PkFughKyJrDHinuM5icObzFEnLxeXlpmyW-7ie4
+Message-ID: <CA+zupgzNRG3vAukQe89bTJ_EaC2A=o+_pY6QoVOdRfXu8BJOAg@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] usb: dwc3: Add Google Tensor SoC DWC3 glue driver
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Peter Griffin <peter.griffin@linaro.org>, 
+	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Joy Chakraborty <joychakr@google.com>, 
+	Naveen Kumar <mnkumar@google.com>, Badhri Jagan Sridharan <badhri@google.com>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Nov 6, 2025 at 8:38=E2=80=AFAM Thinh Nguyen <Thinh.Nguyen@synopsys.=
+com> wrote:
+>
+> On Tue, Nov 04, 2025, Roy Luo wrote:
+> > On Tue, Nov 4, 2025 at 10:07=E2=80=AFAM Thinh Nguyen <Thinh.Nguyen@syno=
+psys.com> wrote:
+> > >
+> > > On Fri, Oct 31, 2025, Roy Luo wrote:
+> > > > On Wed, Oct 29, 2025 at 6:35=E2=80=AFPM Thinh Nguyen <Thinh.Nguyen@=
+synopsys.com> wrote:
+> > >
+> > > In dwc3_google_suspend(), looks like is_hibernation is set after you
+> > > enable pme irq, probably very unlikely, but can the interrupt be
+> > > asserted then? If so, will there be another interrupt asserted?
+> > > Otherwise the current logic may think it was spurious interrupt a mis=
+s
+> > > an event.
+> >
+> > The pme interrupt can only be asserted after controller is in
+> > hibernation, that is, after the usb psw dom is turned off and
+> > the dwc3_google_usb_psw_pd_notifier() callback is
+> > completed. So no, the interrupt won't fire before is_hibernation
+> > is set.
+>
+> Thanks for the confirmation.
+>
+>
+> <snip>
+>
+>
+> > > > >
+> > > > > I'm still trying to wrap my head around how usb_top_pd, usb_psw_p=
+d, and
+> > > > > the google->dev are working together in the glue here, particular=
+ly why
+> > > > > usb_top_pd is needed. It seems usb_top_pd shouldn't be handled by=
+ this
+> > > > > glued? Do you do anything except setting wakeup-capable?
+> > > > >
+> > > > > BR,
+> > > > > Thinh
+> > > >
+> > > > To provide more context, the underlying usb power domain has 3 powe=
+r
+> > > > states: Full Power, Power Gated, Off. The usb_top_pd and usb_psw_pd
+> > > > are the logical power domains to represent the 3 power states.
+> > > > - Full Power:     usb_psw_pd ON,   usb_top_p ON.
+> > > > - Power Gated: usb_psw_pd OFF, usb_top_p ON.
+> > > > - Off:                 usb_psw_pd OFF, usb_top_p OFF.
+> > > >
+> > > > To enter hibernation, the usb power domain must enter Power Gated
+> > > > state. To achieve this, this glue driver holds a handle to usb_top_=
+pd
+> > > > and would cast a vote to keep it ON when attempting to enter
+> > > > hibernation. In addition, the usb_psw_pd runtime PM is directly tie=
+d
+> > > > to google->dev so that usb_psw_pd would be OFF when google->dev
+> > > > suspends. Together, the usb power domain would reach Power Gated
+> > > > state when device suspends.
+> > > >
+> > > > I hope this information helps.
+> > > >
+> > >
+> > > Yes. This is very helpful.
+> > >
+> > > So, while the glue driver is bound, usb_top_pd is always ON? Even whe=
+n
+> > > xhci driver is not bound or when in device mode?
+> >
+> > Since usb_top_pd is the parent power domain of usb_psw_pd, and
+> > usb_psw_pd RPM is directly tied to glue device, usb_top_pd would
+> > be ON when glue device is active (because usb_psw_pd is ON)
+> > and would be OFF when glue device suspends in non-hibernation
+> > scenarios (because usb_psw_pd is OFF). In hibernation scenario,
+> > a vote is casted for usb_top_pd to keep it on even when the
+> > glue device is suspended and usb_psw_pd is OFF.
+> >
+> > To your question, usb_top_pd is not always ON because it would be
+> > turned off when the glue device suspends in non-hibernation scenario.
+> > When in device mode and provided dwc3 dev is active, usb_top_pd
+> > would be ON because its child usb_psw_pd is ON.
+> >
+>
+> Thanks for the clarification and bearing with my questions.
+>
+> If there's no device connected, do you role-switch back to default mode?
+> Often I see that the role-switch is defaulted to peripheral and switch
+> to default mode if there's no connection.
 
+Yes, the default mode would be peripheral and it would switch
+to peripheral mode if there's no connection.
 
-On 11/5/2025 5:06 PM, Krzysztof Kozlowski wrote:
-> On 05/11/2025 09:49, Songwei Chai wrote:
-> 
->> Once again, I apologize for not including these modifications in the
->> changelog.
->>
->>> All qcom coresight bindings are called coresight and I do not see reason
->>> why this is being changed.
->>
->> The reason for removing the |coresight| keywords is that this patch
->> series was not
->>
->> accepted by the maintainers of the Coresight subsystem (as explained in
->> the cover letter).
->>
->> Therefore, we decided to make it a Qualcomm-specific driver.
-> 
-> Use standard email paragraphs
-> 
-> not
-> 
-> broken
-> 
-> by
-> 
-> two lines each.
-> 
-> Anyway, above discussion explains nothing about compatible. I might be
-> missing something, so please quote here Mike the part where he asks to
-> *change the compatible and hardware name*. Please quote EXACTLY that part.
+>
+> I want to check the case where the device may wakeup by connection but
+> cannot because it is not in host mode. Do you have a separate
+> TCPC/connector that can wakeup the system on attachment?
 
-  "this component is primarily a part of the qualcom proprietary QPMDA
-  subsystem, and is capable of operating independently from the
-  CoreSight hardware trace generation system." -- From Mike
+Yes, there's a separate TCPC/connector to trigger a role
+switch when there's an incoming connection.
 
-While he didn't explicitly ask to "change the compatible and hardware 
-name", from his above remark, i think he doesn't consider this component 
-to be part of the coresight subsystem as it can operate independently.
+Regards,
+Roy Luo
 
-That's why, in the latest version of the binding, i've removed the 
-coresight keyword from the compatible.
-
-> 
-> Best regards,
-> Krzysztof
-
+>
+> BR,
+> Thinh
 
