@@ -1,102 +1,102 @@
-Return-Path: <devicetree+bounces-235848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5911C3D67F
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 21:50:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3A35C3D695
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 21:51:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AE823ADE25
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 20:50:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C13F3B4884
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 20:50:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15CF12F7ABB;
-	Thu,  6 Nov 2025 20:50:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C6852FFDCC;
+	Thu,  6 Nov 2025 20:50:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="djKPG81Z";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QFprsZEa"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XtOdaP1z";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="GbUtg4ai"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2095C2E06EF
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 20:50:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1D452FB612
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 20:50:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762462238; cv=none; b=ZpHJmgZ9as2QFYX4DEzt7/WBm4FXkTqeatjYdGFPSC8EUIGhG1c/RLA1OMQSiesMf+VOlTdFWVLZ8elGOeep/8Jf8CEZFEbB0ZcWURA6bwCApt6TStJ2Q78RZTExfBbD+Kq+1WzRdWyA3df3iGiT97xsaBGMXWGdFZ5Nq6SSQLw=
+	t=1762462243; cv=none; b=LSRPXkPbU3l3b7rZMJJInJ4gowVGQh4nqOZDSYPM87oJe680H+4SPrqiRBwxXh+4xnow24scxyCQ5+LF+GrdIoTICyRAMxFhhH6eb06CJ2GPYstUOGOHfN1j+ag1yXcVeUIr5p0nAtGpr/rg56ALfGf1QzeWtCXWzzxJXKXSuUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762462238; c=relaxed/simple;
-	bh=CRh11Rsf15Om/Y67Lme+KbVkzWIKZDh/ze2zOIQG2eM=;
+	s=arc-20240116; t=1762462243; c=relaxed/simple;
+	bh=b0JC/QgVlb4XEDG4RFGS7AL+H2pQv9eCGoSbRQd2CRY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nut/svzxWLaf9qSJENoV/JZ/1HbghdTGRSB9SC7+tFTazymzNOe9y84HedID02vKGyX7ztRtca3/pq/WXCwSC1gUSRsmdIzWCF1mvJhAIE5KNVwmowFu0WhSvDj4ZRVpIg0ZJdU3GVC8bbpYX3Ov61V4LXTsG3ep2PjuX55ackg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=djKPG81Z; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QFprsZEa; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:To:Cc; b=OJMAf6uZIEW2JmTvOEg9KAXyxn4RQZ696dQOHfDiraDNticEsNxmIm+IfrdwQYcIvf3lxkSEjazZsVrG4Q1uybXaJMG2WA7sfecEqrrpQvbm9lB2xf5LVW8W2Q39WuoCDrB5xu6uiNzcwaYeptZhYa6rF+PH8z8CeFTiTS0lILo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XtOdaP1z; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=GbUtg4ai; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
 Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A6ICknI2326475
-	for <devicetree@vger.kernel.org>; Thu, 6 Nov 2025 20:50:35 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A6HJxus2326626
+	for <devicetree@vger.kernel.org>; Thu, 6 Nov 2025 20:50:40 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	JccV+6IyOO556Zmn4rJDwpip4whsdVZr5T4fwf4mOp4=; b=djKPG81Zw2HGUt5x
-	xRkW32n/AygXo2dQvHVlzYahr9ecWmIU0DzYSxAW87He1Ut3/qQbmv5oqVb4ymXy
-	Jxe2QjABvKrAGeK6fsygR9EE3MwwkXcoAJa5De5BpE4wHt1cnEsvEpXWlMY1Csyh
-	NYFEcdozX6HbEHdlv8JU55EDiO3vSi4sLV0cHqeFbHFwSRw2nsTfMdhvIu1ahbmu
-	yungMHMlft7HUJcBhySlB/YZeIRGxS2Yg0FCSMDk9s+2rGZzTgcQSHAt/Sa3/YUA
-	aq4Thhly7YMdq0VcIsMzvoCcgvxsbedAQh/NSGrfXR+J8L4Z9ePZtkY+NPTykNXY
-	vV2/ng==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a8h0v3ehx-1
+	kDesZG6/CED7jpvXL9qrzM0XoMxGJBuAq541n0vQcxU=; b=XtOdaP1ze6xKX7i0
+	eBD5QWTU9T3sjzWofXLkxcJ+ApO0ZPmgQ0PGELA4dS+vYNfTqMX5OjinCX8JqUAq
+	mRXuD+eEqs043Qbq3hBLlIJGpu4NYoxJB9Mhz3nbQyTEpBWoGg60aBBIdLCzkzHy
+	IDHHzV1wh2n3g4faKIR/RsohZQLZD8wjeKD23Gq85mIdObkaTibXu19wN2N7ezSY
+	7d8mreGji8iJe54hzB2Y7XI9qNJUgr8Hfq1xHmSWyucWYytERjyW+rZ1/cZbix4A
+	1IoaxaSHcyQLwLyScyaPiv/G3K6gI0xjIuavXd7gaBCzDQHKzS6BkQu8ZxKlKZdX
+	LBMBqg==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a8h0v3ejp-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 20:50:34 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b55283ff3fcso33966a12.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 12:50:34 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 20:50:40 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-29598910dd2so1007585ad.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 12:50:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762462234; x=1763067034; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1762462240; x=1763067040; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=JccV+6IyOO556Zmn4rJDwpip4whsdVZr5T4fwf4mOp4=;
-        b=QFprsZEaCoPrW9Vv03+kbwbhEx6Y2mwnkkfnxWFb6OLw7qwHS6cLkTYnExh84ByioE
-         f06ehLKN/JKKeqptnuKWAw1qbohbvMZ0k0ARyz2bMU9fWJEPcJ4h1//tFqYbpdb71yg1
-         Lanu6zaxNgVNE8jFshjkroaLthpsD5KpqBoF0mHR5f2Yuebuamft6tstWHL5NAouBi5f
-         XSePrfFJf4kcjsJ1ZONbiCjLYY18ij3ht5vtCjYUBSvMTH1LfMvZkzDwSmeXj5i2lvZ0
-         3rMQ1h3+3OKsA1S6Ql/yiITikHurjnsjbo41AiEGu9xETXn4HB2rEWZcGcGzwH+FTxWJ
-         /VDA==
+        bh=kDesZG6/CED7jpvXL9qrzM0XoMxGJBuAq541n0vQcxU=;
+        b=GbUtg4aiXAqn1vAm0vTr2JuwO+aLf5Ot7S7pQJ18F5gX/XtxDMZM4bjJD9buDQ3eHz
+         /n9KjHZGmxuFmIfsxFNF01L5t139Y5GxF/LqNCrQ3G12zuFmkSMqGU6K43NwzwS22WMk
+         +5N+boA2ljHJMVhCt4/EykOatIsMtxO1FUbgfxAdFo1sORy2VIl4T5ejF8ANd4D2qtgg
+         S2Crv89qyqENLlvT6x0ao8xJmDDLrPzmpoFZU8ZXd+S4WBSzuwg9MD/9XWidcBwyqd4u
+         stP8CEFa/S9MY2DhQ5wKzCPrKcUCF9zGVjNUayyKRLTX2xcd+FYsgtPaOQAYNYgxGuV3
+         3P2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762462234; x=1763067034;
+        d=1e100.net; s=20230601; t=1762462240; x=1763067040;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=JccV+6IyOO556Zmn4rJDwpip4whsdVZr5T4fwf4mOp4=;
-        b=GzVGWGogyxVXImtlUdVtNr6iWxHI+AgMBs+C3JWOKvOlkWfpltr1Tt+Y15rNORMfvM
-         EynYvpse2yM9L2YQ7f2G1cQTp6YJW3hxJZLieqJJmB6LU7R41ZxjrjuHPhjKRzq/UKi1
-         nKX9o6+aCxfIfEeOsp/RGiPUpGeCqPZ656iSrRTrmhXOEjZSHF+0mhbCe43x59pC27lN
-         dHEWsrlI8MnJ0II3vgPXglDGVLEms4DmkOhYU9IJh6slO20inIoXN9ITdfJSAZ23W/JL
-         tOdiAXUQ/n1DmxzpDMH0jgwuxe0L9JFHddXYZuIQqj3LQx9uYwg5p5xO8qU0xzVksHyh
-         6pdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWG4Uvfv2Bd3VXBPapeOsc+XxH76ZO30ni3SjM3BvEaCDIpwvgBBUC8REzzq+29sQve2odgYKvtpppD@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGj7kb4QngIc1juIQbLMG9Ickax3O19lMeXYFC8bzafkrdVhtv
-	nBe7OoOhaWFgZvZ2jOWdQyNN7+smDIK0EwYsHDa6wkbQ5G3K6rSZ47Ue7jygafrE/xC8PypZayq
-	vhkwfYEbC5/03jdS68VTN98f/y6GnIN1oq1f+PylBiHXgbsScyiwYQur5rqv2HaSP
-X-Gm-Gg: ASbGncsbXtEoNQQXvcJFy8YNad4msXWcRNJTrajgaaHSrwS955a43TpqNwu1xjAAhyj
-	jY6xqDRHR7SAepLxAoU+inn4LJh7k/Zr3caIS+WZq7lhoVusssC+dNZHk3WNL7dIpgVYYr3fsMt
-	JjeXzzpnVqBQ3Fd3ngPPGWv5sIK5EA4nPOd2J+lYb8zoEGRPMllwN89Ug9MRbncXesHo7G7aqFn
-	XMnWKpBuM2bvWHTpQKgI1/ufBU7DBM+97mUXijdjF78cf+Eh5Cjden7HPBT0hi5/U5VK48H740h
-	11JHnFoMKbKPsgeA6fxuX8U7/bcAhCh1X8oa6VAkMgqYrjjaOmbK437TNkXApXpwhecmJE/QvN+
-	K/0hXmrS80673kYchj1nwuJM=
-X-Received: by 2002:a17:902:d2c6:b0:26d:58d6:3fb2 with SMTP id d9443c01a7336-297c03d2afcmr8690415ad.12.1762462233772;
-        Thu, 06 Nov 2025 12:50:33 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGI4M5cydDllEsH9fKhOAtl1iSSmzikjwrQnCMOcAHr1ZicT407HG8U/vmH0KHy4xUnBpNL4g==
-X-Received: by 2002:a17:902:d2c6:b0:26d:58d6:3fb2 with SMTP id d9443c01a7336-297c03d2afcmr8690125ad.12.1762462233198;
-        Thu, 06 Nov 2025 12:50:33 -0800 (PST)
+        bh=kDesZG6/CED7jpvXL9qrzM0XoMxGJBuAq541n0vQcxU=;
+        b=sCkyupQMEgtIzR9nuFNu7/51lkJ4CT7cBhgNSNCSv7U5XmlgAHkYgjul5ZVjw8p6Ff
+         iDdI+F+hYYnq+zQJdxM32Nz2f9LmgY0P3+UDG+rw6KZVsfNImehMgpm55dZoneBsvjIp
+         y62axK8KjKli3WR1yRjdfm3qtAPQJdNyJgLU4fXw24DlWHu8sR0jtrdMZpyJ+wH8BaU9
+         VZrbyA9vV+SrRpSSeSCHsvPR2R58eI5KNWcJeuxNhKMC0Djr1AbY7Hu9g2NiEjm95cZw
+         4gPCPLcHMj6JDQM+6/T3TKT954U49PrxD7I40XodUeYdc4RBVXEljulmHQxKny+zC/22
+         ajbA==
+X-Forwarded-Encrypted: i=1; AJvYcCUMLzUC26L6kpk+/F0zsvET0XVP53wx4s7YZ+jDx6th2m6ToS8/UGOiozkmaHJ+bZCdkyzBIdhLbyXH@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWotASR0qG9bZc3T73Tkuh/7UoV5UwLodNUDhrLcNfRjiOpQPx
+	xx9VWRCILOjHhU8mvHd0rLDZ3bjPt1VW/Vu3aSVvRTP32wnokPe+zMiuwqZmBHRDCyC2M5ypPNJ
+	TTwXx4QCwlrYTJjXmpjpTj+wQUFZF4md5L7U+Y9aL/tw+zD9Kc9NaG/NbkukXzuhapRr+C4mW
+X-Gm-Gg: ASbGncuepo2EGGZh/GpSYQ21SA71srgHGkog/5nH0Mz1ekYavj/kVLtn4TC30vBw2Vt
+	hHp3Vtd/WZIGLUsnT1tqUDFPjg/MmQvfsvLnlXbwOJsV7SpxFNjYWoAMyrBxebNAyNAdicXIEK5
+	p+6uPxjPbhbbZrtQvCe0MVBolMld3Hoo4KsAXADhWvq6RuZvRslZZWFs0UkQFIHHT/J028LpPFC
+	XnWedAnaoGLy8bjVaGAk+GY2/PKk9ZWlQNg8anzbM48vBI4cOyvbi6Qu8EC6Rru70HSWFqitNfO
+	+TuOBEaHTEMe8chLJphSP+grr9Hb2VQwVLTCZPnqemRcPo0cxRPMBcx9Ud9oxecFuIVB3aHD+j7
+	KxCNKSAMHhbdzFJqVtBH2I4E=
+X-Received: by 2002:a17:903:388c:b0:269:b30c:c9b8 with SMTP id d9443c01a7336-297c048bd5dmr11176995ad.56.1762462239687;
+        Thu, 06 Nov 2025 12:50:39 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGyqMq8oXPm8KMRuVdssx8T94PXld7l7/+iih8jTurPLCDECgsDxR6DM0VmHaPkbu7+iLvRXA==
+X-Received: by 2002:a17:903:388c:b0:269:b30c:c9b8 with SMTP id d9443c01a7336-297c048bd5dmr11176685ad.56.1762462239212;
+        Thu, 06 Nov 2025 12:50:39 -0800 (PST)
 Received: from hu-akhilpo-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29651042c24sm37408815ad.50.2025.11.06.12.50.26
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29651042c24sm37408815ad.50.2025.11.06.12.50.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Nov 2025 12:50:32 -0800 (PST)
+        Thu, 06 Nov 2025 12:50:38 -0800 (PST)
 From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Date: Fri, 07 Nov 2025 02:20:06 +0530
-Subject: [PATCH v2 1/6] drm/msm/a6xx: Add support for Adreno 612
+Date: Fri, 07 Nov 2025 02:20:07 +0530
+Subject: [PATCH v2 2/6] dt-bindings: display/msm: gpu: Document A612 GPU
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -105,7 +105,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251107-qcs615-spin-2-v2-1-a2d7c4fbf6e6@oss.qualcomm.com>
+Message-Id: <20251107-qcs615-spin-2-v2-2-a2d7c4fbf6e6@oss.qualcomm.com>
 References: <20251107-qcs615-spin-2-v2-0-a2d7c4fbf6e6@oss.qualcomm.com>
 In-Reply-To: <20251107-qcs615-spin-2-v2-0-a2d7c4fbf6e6@oss.qualcomm.com>
 To: Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
@@ -124,31 +124,29 @@ To: Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
 Cc: Dan Carpenter <dan.carpenter@linaro.org>, linux-arm-msm@vger.kernel.org,
         dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Akhil P Oommen <akhilpo@oss.qualcomm.com>,
-        Jie Zhang <quic_jiezh@quicinc.com>
+        Akhil P Oommen <akhilpo@oss.qualcomm.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1762462219; l=11518;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1762462219; l=1701;
  i=akhilpo@oss.qualcomm.com; s=20240726; h=from:subject:message-id;
- bh=vHpWpzMQqLB4QHVoGDlvrj+UXwxIE9eSTGI302gk+yg=;
- b=OjLXZnh9gt3Hl1SOGZAo5uVA7Is1TJvOKuvGNZFojN7TzWsgvUxvopKgtStHQl2cmeI1BzOxa
- VFesv8pn0UoDwxFUsQxz329J5+M8J/r4Y+BPgheXG4Wd2UM0UkZTdMG
+ bh=b0JC/QgVlb4XEDG4RFGS7AL+H2pQv9eCGoSbRQd2CRY=;
+ b=IKm+r3bn2wtvdU7Ru1WSakT8tsBkihaAlI1fqDLfI5tHULp8KMfKJydUyzPZSO1P/88hnE2Kw
+ n3DkKJtDyIrD8yP8C6E86emtqqvf092kuBf5b9O/wH4WNLv5DoyJMho
 X-Developer-Key: i=akhilpo@oss.qualcomm.com; a=ed25519;
  pk=lmVtttSHmAUYFnJsQHX80IIRmYmXA4+CzpGcWOOsfKA=
-X-Proofpoint-ORIG-GUID: 6vcjjbe9JXyDWpTl_awjjQ9ArUrKSmcA
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA2MDE2OSBTYWx0ZWRfXz9f19CFz/F9+
- owXjk8m9BjJRNXTZRj/6ZfMtlsGvnwHBU3jZyqHHlFMKpo693aZYSSXalQbB/Rb3I7cdmIJjdi1
- 3vhWvXJ9+ytYP3jjdyh5JHfB6/eYQV6tWvdVbrRhH4T2FI4hxEcQBv/4CUCdZNADCXIcWummjKL
- g4wpkWOv/o/IrPlTVVZ5SlIye0PqJOhkD+PUZqbctDImrXT60Cz1EVqba9SRZBPpvw+EbB+lWEO
- qytcOIAj0PKR1TX8b2ZPteyLkM4iHfNRpPzmVryVBDC1o3whEJcU5U3rUsSr4534w+RYh5aunn2
- vjplSqmgIqyEEIdabhresmtLJjrDmHTuUdPkYSuDRJDa2gRr73riTBnQAdBDY7OQjJ4GbMtPMcB
- o1YmlO56y8vgxYMnZ1SysegC4oCjvw==
-X-Proofpoint-GUID: 6vcjjbe9JXyDWpTl_awjjQ9ArUrKSmcA
-X-Authority-Analysis: v=2.4 cv=PoyergM3 c=1 sm=1 tr=0 ts=690d0a1a cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+X-Proofpoint-ORIG-GUID: oj0REmfwzWty6LyENuUZUuGTWg32UVDc
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA2MDE2OSBTYWx0ZWRfX5BFhUU9tRChz
+ g02MKAS5F0oV6HhfGfCxwy6KJYV2zOezOrSnwEkB6T24cxQ9R+jk2ag2oiMFUU91fBKSAI8WRYv
+ g1RcWGpnF3CPPqd27AOxxokGbVDptpt4GdO5MozdE6pcGI4rb+akZI1JOECF2mb3GqiZTrwcHUR
+ 52ejwi+Y/5l09LN9rRL9is5pWizHTjdQuquFO4BgxCtvvFbKtfMQ9zVXgulVmm/iOOvoKoxhk5s
+ N87gvA2D5XNQCbqSK8HelAeoTa+15pGzPjFu1wAilgDZ3/3Enx98vLqFp0syPvJKBInAurj7ePM
+ i/LrgkC0IYRK3WWb4BwcEBoc32k0lUiVFMW6M+mkVrstiLaYFc+2v5iN942WF+26EGAHIjMG1cY
+ MXoaSDrQuKDUB4sUayITlNqEG5CrLA==
+X-Proofpoint-GUID: oj0REmfwzWty6LyENuUZUuGTWg32UVDc
+X-Authority-Analysis: v=2.4 cv=PoyergM3 c=1 sm=1 tr=0 ts=690d0a20 cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
  a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
- a=sS_TVDJU5kuvE9dQCNkA:9 a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
- a=TjNXssC_j7lpFel5tvFf:22
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=SkoZtctDx9gcCqASqUMA:9
+ a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-11-06_04,2025-11-06_01,2025-10-01_01
@@ -158,324 +156,70 @@ X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511060169
 
-From: Jie Zhang <quic_jiezh@quicinc.com>
+A612 GPU has a new IP called RGMU (Reduced Graphics Management Unit)
+which replaces GMU. But it doesn't do clock or voltage scaling. So we
+need the gpu core clock in the GPU node along with the power domain to
+do clock and voltage scaling from the kernel. Update the bindings to
+describe this GPU.
 
-Add support for Adreno 612 GPU found in SM6150/QCS615 chipsets.
-A612 falls under ADRENO_6XX_GEN1 family and is a cut down version
-of A615 GPU.
-
-A612 has a new IP called Reduced Graphics Management Unit or RGMU
-which is a small state machine which helps to toggle GX GDSC
-(connected to CX rail) to implement IFPC feature. It doesn't support
-any other features of a full fledged GMU like clock control, resource
-voting to rpmh etc. So we need linux clock driver support like other
-gmu-wrapper implementations to control gpu core clock and gpu GX gdsc.
-This patch skips RGMU core initialization and act more like a
-gmu-wrapper case.
-
-Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
 Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
 ---
- drivers/gpu/drm/msm/adreno/a6xx_catalog.c   | 16 ++++++++++
- drivers/gpu/drm/msm/adreno/a6xx_gmu.c       | 23 ++++++++++++++-
- drivers/gpu/drm/msm/adreno/a6xx_gpu.c       | 45 +++++++++++++++++++++++------
- drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c |  3 +-
- drivers/gpu/drm/msm/adreno/adreno_gpu.c     |  1 +
- drivers/gpu/drm/msm/adreno/adreno_gpu.h     | 16 ++++++++--
- 6 files changed, 90 insertions(+), 14 deletions(-)
+ .../devicetree/bindings/display/msm/gpu.yaml       | 32 ++++++++++++++++++++--
+ 1 file changed, 30 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
-index 44df6410bce1..5db01fa2ed44 100644
---- a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
-+++ b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
-@@ -705,6 +705,22 @@ static const struct adreno_info a6xx_gpus[] = {
- 			{ 157, 3 },
- 			{ 127, 4 },
- 		),
-+	}, {
-+		.chip_ids = ADRENO_CHIP_IDS(0x06010200),
-+		.family = ADRENO_6XX_GEN1,
-+		.fw = {
-+			[ADRENO_FW_SQE] = "a630_sqe.fw",
-+			[ADRENO_FW_GMU] = "a612_rgmu.bin",
-+		},
-+		.gmem = (SZ_128K + SZ_4K),
-+		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
-+		.init = a6xx_gpu_init,
-+		.a6xx = &(const struct a6xx_info) {
-+			.hwcg = a612_hwcg,
-+			.protect = &a630_protect,
-+			.gmu_cgc_mode = 0x00000022,
-+			.prim_fifo_threshold = 0x00080000,
-+		},
- 	}, {
- 		.chip_ids = ADRENO_CHIP_IDS(0x06010500),
- 		.family = ADRENO_6XX_GEN1,
-diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
-index 4e6dc16e4a4c..d9ffe9e93ad9 100644
---- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
-+++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
-@@ -350,12 +350,18 @@ static const struct a6xx_gmu_oob_bits a6xx_gmu_oob_bits[] = {
- /* Trigger a OOB (out of band) request to the GMU */
- int a6xx_gmu_set_oob(struct a6xx_gmu *gmu, enum a6xx_gmu_oob_state state)
- {
-+	struct a6xx_gpu *a6xx_gpu = container_of(gmu, struct a6xx_gpu, gmu);
-+	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
- 	int ret;
- 	u32 val;
- 	int request, ack;
+diff --git a/Documentation/devicetree/bindings/display/msm/gpu.yaml b/Documentation/devicetree/bindings/display/msm/gpu.yaml
+index 826aafdcc20b..a6bbc88e6a24 100644
+--- a/Documentation/devicetree/bindings/display/msm/gpu.yaml
++++ b/Documentation/devicetree/bindings/display/msm/gpu.yaml
+@@ -45,11 +45,11 @@ properties:
+           - const: amd,imageon
  
- 	WARN_ON_ONCE(!mutex_is_locked(&gmu->lock));
+   clocks:
+-    minItems: 2
++    minItems: 1
+     maxItems: 7
  
-+	/* Skip OOB calls since RGMU is not enabled */
-+	if (adreno_has_rgmu(adreno_gpu))
-+		return 0;
+   clock-names:
+-    minItems: 2
++    minItems: 1
+     maxItems: 7
+ 
+   reg:
+@@ -387,6 +387,34 @@ allOf:
+       required:
+         - clocks
+         - clock-names
 +
- 	if (state >= ARRAY_SIZE(a6xx_gmu_oob_bits))
- 		return -EINVAL;
- 
-@@ -395,10 +401,16 @@ int a6xx_gmu_set_oob(struct a6xx_gmu *gmu, enum a6xx_gmu_oob_state state)
- /* Clear a pending OOB state in the GMU */
- void a6xx_gmu_clear_oob(struct a6xx_gmu *gmu, enum a6xx_gmu_oob_state state)
- {
-+	struct a6xx_gpu *a6xx_gpu = container_of(gmu, struct a6xx_gpu, gmu);
-+	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
- 	int bit;
- 
- 	WARN_ON_ONCE(!mutex_is_locked(&gmu->lock));
- 
-+	/* Skip OOB calls since RGMU is not enabled */
-+	if (adreno_has_rgmu(adreno_gpu))
-+		return;
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: qcom,adreno-612.0
++    then:
++      properties:
++        clocks:
++          items:
++            - description: GPU Core clock
 +
- 	if (state >= ARRAY_SIZE(a6xx_gmu_oob_bits))
- 		return;
- 
-@@ -1900,7 +1912,8 @@ void a6xx_gmu_remove(struct a6xx_gpu *a6xx_gpu)
- 	gmu->mmio = NULL;
- 	gmu->rscc = NULL;
- 
--	if (!adreno_has_gmu_wrapper(adreno_gpu)) {
-+	if (!adreno_has_gmu_wrapper(adreno_gpu) &&
-+	    !adreno_has_rgmu(adreno_gpu)) {
- 		a6xx_gmu_memory_free(gmu);
- 
- 		free_irq(gmu->gmu_irq, gmu);
-@@ -1942,6 +1955,13 @@ int a6xx_gmu_wrapper_init(struct a6xx_gpu *a6xx_gpu, struct device_node *node)
- 	/* Mark legacy for manual SPTPRAC control */
- 	gmu->legacy = true;
- 
-+	/* RGMU requires clocks */
-+	ret = devm_clk_bulk_get_all(gmu->dev, &gmu->clocks);
-+	if (ret < 0)
-+		goto err_clk;
++        clock-names:
++          items:
++            - const: core
 +
-+	gmu->nr_clocks = ret;
++        reg:
++          items:
++            - description: GPU Reg memory
 +
- 	/* Map the GMU registers */
- 	gmu->mmio = a6xx_gmu_get_mmio(pdev, "gmu");
- 	if (IS_ERR(gmu->mmio)) {
-@@ -1981,6 +2001,7 @@ int a6xx_gmu_wrapper_init(struct a6xx_gpu *a6xx_gpu, struct device_node *node)
- err_mmio:
- 	iounmap(gmu->mmio);
- 
-+err_clk:
- 	/* Drop reference taken in of_find_device_by_node */
- 	put_device(gmu->dev);
- 
-diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-index b8f8ae940b55..779c1da7c46d 100644
---- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-@@ -612,15 +612,26 @@ static void a6xx_set_hwcg(struct msm_gpu *gpu, bool state)
- 
- 	if (adreno_is_a630(adreno_gpu))
- 		clock_cntl_on = 0x8aa8aa02;
--	else if (adreno_is_a610(adreno_gpu))
-+	else if (adreno_is_a610(adreno_gpu) || adreno_is_a612(adreno_gpu))
- 		clock_cntl_on = 0xaaa8aa82;
- 	else if (adreno_is_a702(adreno_gpu))
- 		clock_cntl_on = 0xaaaaaa82;
- 	else
- 		clock_cntl_on = 0x8aa8aa82;
- 
--	cgc_delay = adreno_is_a615_family(adreno_gpu) ? 0x111 : 0x10111;
--	cgc_hyst = adreno_is_a615_family(adreno_gpu) ? 0x555 : 0x5555;
-+	if (adreno_is_a612(adreno_gpu))
-+		cgc_delay = 0x11;
-+	else if (adreno_is_a615_family(adreno_gpu))
-+		cgc_delay = 0x111;
-+	else
-+		cgc_delay = 0x10111;
++        reg-names:
++          items:
++            - const: kgsl_3d0_reg_memory
 +
-+	if (adreno_is_a612(adreno_gpu))
-+		cgc_hyst = 0x55;
-+	else if (adreno_is_a615_family(adreno_gpu))
-+		cgc_hyst = 0x555;
-+	else
-+		cgc_hyst = 0x5555;
- 
- 	gmu_write(&a6xx_gpu->gmu, REG_A6XX_GPU_GMU_AO_GMU_CGC_MODE_CNTL,
- 			state ? adreno_gpu->info->a6xx->gmu_cgc_mode : 0);
-@@ -714,6 +725,9 @@ static int a6xx_calc_ubwc_config(struct adreno_gpu *gpu)
- 		cfg->ubwc_swizzle = 0x7;
- 	}
- 
-+	if (adreno_is_a612(gpu))
-+		cfg->highest_bank_bit = 14;
++      required:
++        - clocks
++        - clock-names
 +
- 	if (adreno_is_a618(gpu))
- 		cfg->highest_bank_bit = 14;
- 
-@@ -1288,7 +1302,7 @@ static int hw_init(struct msm_gpu *gpu)
- 		gpu_write(gpu, REG_A6XX_CP_LPAC_PROG_FIFO_SIZE, 0x00000020);
- 
- 	/* Setting the mem pool size */
--	if (adreno_is_a610(adreno_gpu)) {
-+	if (adreno_is_a610(adreno_gpu) || adreno_is_a612(adreno_gpu)) {
- 		gpu_write(gpu, REG_A6XX_CP_MEM_POOL_SIZE, 48);
- 		gpu_write(gpu, REG_A6XX_CP_MEM_POOL_DBG_ADDR, 47);
- 	} else if (adreno_is_a702(adreno_gpu)) {
-@@ -1321,7 +1335,8 @@ static int hw_init(struct msm_gpu *gpu)
- 	a6xx_set_ubwc_config(gpu);
- 
- 	/* Enable fault detection */
--	if (adreno_is_a730(adreno_gpu) ||
-+	if (adreno_is_a612(adreno_gpu) ||
-+	    adreno_is_a730(adreno_gpu) ||
- 	    adreno_is_a740_family(adreno_gpu))
- 		gpu_write(gpu, REG_A6XX_RBBM_INTERFACE_HANG_INT_CNTL, (1 << 30) | 0xcfffff);
- 	else if (adreno_is_a690(adreno_gpu))
-@@ -1576,7 +1591,7 @@ static void a6xx_recover(struct msm_gpu *gpu)
- 	 */
- 	gpu->active_submits = 0;
- 
--	if (adreno_has_gmu_wrapper(adreno_gpu)) {
-+	if (adreno_has_gmu_wrapper(adreno_gpu) || adreno_has_rgmu(adreno_gpu)) {
- 		/* Drain the outstanding traffic on memory buses */
- 		a6xx_bus_clear_pending_transactions(adreno_gpu, true);
- 
-@@ -2229,6 +2244,12 @@ static int a6xx_pm_resume(struct msm_gpu *gpu)
- 	if (ret)
- 		goto err_bulk_clk;
- 
-+	ret = clk_bulk_prepare_enable(gmu->nr_clocks, gmu->clocks);
-+	if (ret) {
-+		clk_bulk_disable_unprepare(gpu->nr_clocks, gpu->grp_clks);
-+		goto err_bulk_clk;
-+	}
-+
- 	if (adreno_is_a619_holi(adreno_gpu))
- 		a6xx_sptprac_enable(gmu);
- 
-@@ -2242,8 +2263,10 @@ static int a6xx_pm_resume(struct msm_gpu *gpu)
- err_set_opp:
- 	mutex_unlock(&a6xx_gpu->gmu.lock);
- 
--	if (!ret)
-+	if (!ret) {
- 		msm_devfreq_resume(gpu);
-+		a6xx_llc_activate(a6xx_gpu);
-+	}
- 
- 	return ret;
- }
-@@ -2284,6 +2307,8 @@ static int a6xx_pm_suspend(struct msm_gpu *gpu)
- 
- 	trace_msm_gpu_suspend(0);
- 
-+	a6xx_llc_deactivate(a6xx_gpu);
-+
- 	msm_devfreq_suspend(gpu);
- 
- 	mutex_lock(&a6xx_gpu->gmu.lock);
-@@ -2295,6 +2320,7 @@ static int a6xx_pm_suspend(struct msm_gpu *gpu)
- 		a6xx_sptprac_disable(gmu);
- 
- 	clk_bulk_disable_unprepare(gpu->nr_clocks, gpu->grp_clks);
-+	clk_bulk_disable_unprepare(gmu->nr_clocks, gmu->clocks);
- 
- 	pm_runtime_put_sync(gmu->gxpd);
- 	dev_pm_opp_set_opp(&gpu->pdev->dev, NULL);
-@@ -2673,7 +2699,8 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *dev)
- 		ret = adreno_gpu_init(dev, pdev, adreno_gpu, &funcs_a7xx, 4);
- 	else if (is_a7xx)
- 		ret = adreno_gpu_init(dev, pdev, adreno_gpu, &funcs_a7xx, 1);
--	else if (adreno_has_gmu_wrapper(adreno_gpu))
-+	else if (adreno_has_gmu_wrapper(adreno_gpu) ||
-+		 of_device_is_compatible(node, "qcom,adreno-rgmu"))
- 		ret = adreno_gpu_init(dev, pdev, adreno_gpu, &funcs_gmuwrapper, 1);
- 	else
- 		ret = adreno_gpu_init(dev, pdev, adreno_gpu, &funcs, 1);
-@@ -2689,7 +2716,7 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *dev)
- 	if (adreno_is_a618(adreno_gpu) || adreno_is_7c3(adreno_gpu))
- 		priv->gpu_clamp_to_idle = true;
- 
--	if (adreno_has_gmu_wrapper(adreno_gpu))
-+	if (adreno_has_gmu_wrapper(adreno_gpu) || adreno_has_rgmu(adreno_gpu))
- 		ret = a6xx_gmu_wrapper_init(a6xx_gpu, node);
- 	else
- 		ret = a6xx_gmu_init(a6xx_gpu, node);
-diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c
-index 4c7f3c642f6a..838150ff49ab 100644
---- a/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c
-+++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c
-@@ -1596,7 +1596,8 @@ struct msm_gpu_state *a6xx_gpu_state_get(struct msm_gpu *gpu)
- 	/* Get the generic state from the adreno core */
- 	adreno_gpu_state_get(gpu, &a6xx_state->base);
- 
--	if (!adreno_has_gmu_wrapper(adreno_gpu)) {
-+	if (!adreno_has_gmu_wrapper(adreno_gpu) &&
-+	    !adreno_has_rgmu(adreno_gpu)) {
- 		a6xx_get_gmu_registers(gpu, a6xx_state);
- 
- 		a6xx_state->gmu_log = a6xx_snapshot_gmu_bo(a6xx_state, &a6xx_gpu->gmu.log);
-diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.c b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-index 4b5a4edd0702..71400d8999c9 100644
---- a/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-@@ -1189,6 +1189,7 @@ int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
- 
- 	/* Only handle the core clock when GMU is not in use (or is absent). */
- 	if (adreno_has_gmu_wrapper(adreno_gpu) ||
-+	    adreno_has_rgmu(adreno_gpu) ||
- 	    adreno_gpu->info->family < ADRENO_6XX_GEN1) {
- 		/*
- 		 * This can only be done before devm_pm_opp_of_add_table(), or
-diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-index 390fa6720d9b..25ee6b277fe2 100644
---- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-+++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-@@ -392,6 +392,16 @@ static inline int adreno_is_a610(const struct adreno_gpu *gpu)
- 	return adreno_is_revn(gpu, 610);
- }
- 
-+static inline int adreno_is_a612(const struct adreno_gpu *gpu)
-+{
-+	return gpu->info->chip_ids[0] == 0x06010200;
-+}
-+
-+static inline bool adreno_has_rgmu(const struct adreno_gpu *gpu)
-+{
-+	return adreno_is_a612(gpu);
-+}
-+
- static inline int adreno_is_a618(const struct adreno_gpu *gpu)
- {
- 	return adreno_is_revn(gpu, 618);
-@@ -466,9 +476,9 @@ static inline int adreno_is_a610_family(const struct adreno_gpu *gpu)
- {
- 	if (WARN_ON_ONCE(!gpu->info))
- 		return false;
--
--	/* TODO: A612 */
--	return adreno_is_a610(gpu) || adreno_is_a702(gpu);
-+	return adreno_is_a610(gpu) ||
-+	       adreno_is_a612(gpu) ||
-+	       adreno_is_a702(gpu);
- }
- 
- /* TODO: 615/616 */
+     else:
+       if:
+         properties:
 
 -- 
 2.51.0
