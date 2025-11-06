@@ -1,52 +1,67 @@
-Return-Path: <devicetree+bounces-235760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87CDFC3CA8C
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 17:59:33 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B699C3CB24
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 18:05:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99EB3189EAA5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 16:59:47 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 97B094F5E22
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 17:01:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC91934AAF3;
-	Thu,  6 Nov 2025 16:59:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9D4E34CFDD;
+	Thu,  6 Nov 2025 17:01:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m/pF21hX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E9EEW1+M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8501B34A3A2;
-	Thu,  6 Nov 2025 16:59:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9087C2BEFFD;
+	Thu,  6 Nov 2025 17:01:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762448354; cv=none; b=MwWj+igy3wOG+qqKNU8K8sYDQ7aV4TLkMb+WSPnekYZMCUMd8SdgXxLCsOyzksIKhI350ekxbFb0Usq2ZPALkoAE3QvSOIL+x5Pe3ong9knpuKUkmjlVXwFlNIX8MPumLOv2MwbR4jgpiAnilgfAEuLdhBuPKR+uRTkWI2PbGkc=
+	t=1762448490; cv=none; b=aSWWphdOGEQAiXHsb+oB/uEbWOl8r0pPV7v0yVl8RCdgYQO6nTcfQHM0PlCmGAMdNJRLOgvUdyhSnbGcaziBlSUlxmS9TSJcSMkvaECHibdTvE8ues+OF1ss/5Oubr4g8EzmmPgQV8YYIUg0xzj7/WVsD8GHoIl8D2kLENgwkVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762448354; c=relaxed/simple;
-	bh=5zVxDLJDS4HgZvm0mUPMa4NXwy0uzOr1eXabb1arNpI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=mk35u6otX9xV47YOEKSDuWQvyIHDv/fDQ2g6CYOIvMqs70p1SCiix/uV/fXpjUpGzS1KD40MqedEj50Ny1PeDK6/mJwlkJjOJCNXlmKdRVPSft22WORJsYACfY7DfU/hJmAXlVzWwUxGAl2paV7QbBm0FBCg6CZbLjvOtIvkjLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m/pF21hX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E7582C4CEF7;
-	Thu,  6 Nov 2025 16:59:12 +0000 (UTC)
+	s=arc-20240116; t=1762448490; c=relaxed/simple;
+	bh=J7xO/f4kJLNRCPcotB9OeBJW6lh9aFBrk8x0FbgwUjs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=UOKpXSJSLPz+gZ0ATG+BnbfGtewWfmy5avSgPhLYp9elESST3U+qmnuOgXTvm2Qg2FNBKkR2p2z5uWWWF5j42gxY9pxkIHvMXNROev0D1UJjHbV68NkZx4GZiJbVTVJmMy2wIwaHiphHdZhLbac6py9cCv4Ve/Eqrt0VHHlcqZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E9EEW1+M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54163C116C6;
+	Thu,  6 Nov 2025 17:01:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762448353;
-	bh=5zVxDLJDS4HgZvm0mUPMa4NXwy0uzOr1eXabb1arNpI=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=m/pF21hXXdxtUQjEpD7ImAPfMVCmNCJ2tehEPz5uAKfbfWxrAQnoXZPNFBbgOe+A6
-	 VyU4Gr6tnm/VOVLcTJIsz8H2+IFUox0CEJF3M25ALvUjI6qwJ+M23+yi68cfIhFcg9
-	 Iokb74FJ1ZmUNMPv5qBKvvCpMQbccALrAlRtUB8dCFNz+k4yk+hyUm8ZIAk9m6qREs
-	 ZaA0G8RRFZCikQck59el+G/yILo0vRrVxw/9zzEnfmLM+1PGZ/ozslAgVoenTS1X64
-	 uobNY6wQ7vIDer2ViUmnr7nFcyCNtQzy4CjD60pQd3QwRygy+NKpxX7XZg6rDF+VCG
-	 Bh0ISPmF1I24g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D679ACCFA13;
-	Thu,  6 Nov 2025 16:59:12 +0000 (UTC)
-From: Kimi Chen via B4 Relay <devnull+kimi.zy.chen.fii-foxconn.com@kernel.org>
-Date: Fri, 07 Nov 2025 00:58:39 +0800
-Subject: [PATCH v2] ARM: dts: aspeed: clemente: add gpio line name to io
- expander
+	s=k20201202; t=1762448490;
+	bh=J7xO/f4kJLNRCPcotB9OeBJW6lh9aFBrk8x0FbgwUjs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=E9EEW1+M0I62A5N5SNnFRx5LP7H5lCHyXtKMkd4bao/9oqiX63Q+8rDhHCWb8NaFz
+	 fJwPtvNDqGCPxNhYg3IRTBdqPz4ucMFEkPqqdkbr9vhbAvBd19oVXP9lRY7lOuZT64
+	 vva7cLHfh/jw+NUvCo+OM4w0VNChD0G3AYuLQ5ikfvEgI46sff6iYYH+0ugbpopD9R
+	 FCCpms3e7ccYv3KTxGIbineLPvrPwGMC456/Wx+CRr5QpZkCGIENzp+/8SWqCW853r
+	 tj0wtC2gPPc9s0fKNv6B4A0YjygtUNm2gZS3aCFpgnBtEkyuoVwFDcH55g/ganIYvs
+	 QlYY0ZXqe3hAA==
+From: Lee Jones <lee@kernel.org>
+To: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ linux-pm@vger.kernel.org, Stanimir Varbanov <svarbanov@suse.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Lee Jones <lee@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+ Willow Cunningham <willow.e.cunningham@gmail.com>, 
+ Stefan Wahren <wahrenst@gmx.net>, Saenz Julienne <nsaenz@kernel.org>, 
+ Andrea della Porta <andrea.porta@suse.com>, 
+ Phil Elwell <phil@raspberrypi.com>, 
+ Jonathan Bell <jonathan@raspberrypi.com>, 
+ Dave Stevenson <dave.stevenson@raspberrypi.com>
+In-Reply-To: <20250917063233.1270-4-svarbanov@suse.de>
+References: <20250917063233.1270-4-svarbanov@suse.de>
+Subject: Re: (subset) [PATCH 3/4] mfd: bcm2835-pm: Add support for BCM2712
+Message-Id: <176244848608.1964097.10492891348357972327.b4-ty@kernel.org>
+Date: Thu, 06 Nov 2025 17:01:26 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,72 +69,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251107-dts-add-gpio-to-io-expander-v2-1-585d48845546@fii-foxconn.com>
-X-B4-Tracking: v=1; b=H4sIAL7TDGkC/42NQQ6CMBBFr2Jm7RhaAaMr72FYlOkUZmGHtIRgC
- He3cgI3P3l/8d4GmZNwhsdpg8SLZNFYwJ5PQKOLA6P4wmAr2xhTtejnjM57HCZRnBXL8jq56Dm
- hq+lqiULTOgfFMCUOsh72V1d4lDxr+hyxxfze/7yLQYN9fWsbqu6We34GEQy6ksZ4IX1Dt+/7F
- 3ryuuvMAAAA
-X-Change-ID: 20251106-dts-add-gpio-to-io-expander-a4c32ccf56aa
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- george.kw.lee@fii-foxconn.com, Kimi Chen <kimi.zy.chen@fii-foxconn.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1762448350; l=1406;
- i=kimi.zy.chen@fii-foxconn.com; s=20251105; h=from:subject:message-id;
- bh=q3Hjka33GAqrC98JfV2gHVz/SyvVpQc9OOGcXtH2A3s=;
- b=NrYZXH/6ZM0K5uh1E4Dpz9BEY/90j+EqlD+xpSNYCWBMgYSWb8gU3AUlhgA9eKPNOTBjBQ8xF
- hI/8nERMKFgDSBf2fbZg1SHASISyBZ14VLdDlX6u4mgFSYLGXe1XLtL
-X-Developer-Key: i=kimi.zy.chen@fii-foxconn.com; a=ed25519;
- pk=3zHetsW/3CYYIgQlYV9dqSS7aW7aZXLUaIvc+OKr3NM=
-X-Endpoint-Received: by B4 Relay for kimi.zy.chen@fii-foxconn.com/20251105
- with auth_id=559
-X-Original-From: Kimi Chen <kimi.zy.chen@fii-foxconn.com>
-Reply-To: kimi.zy.chen@fii-foxconn.com
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.15-dev-52d38
 
-From: Kimi Chen <kimi.zy.chen@fii-foxconn.com>
+On Wed, 17 Sep 2025 09:32:32 +0300, Stanimir Varbanov wrote:
+> The BCM2712 SoC has PM block but lacks the "asb" and "rpivid_asb"
+> register spaces, and doesn't need clock(s).  Add a compatible
+> string for bcm2712 to allow probe of bcm2835-wdt and
+> bcm2835-power drivers.
+> 
+> 
 
-The chassis power cycle process requires a forced shutdown before
-cutting off the standby power. Therefore, SCM CPLD adds a hard shutdown
-host function and triggers it via the IO expander in Clemente platform.
+Applied, thanks!
 
-Thus, a new GPIO line named "hard_shutdown_host" is added to the
-PCA9555 IO expander at line 10 to notify the CPLD to execute the hard
-shutdown host function.
+[3/4] mfd: bcm2835-pm: Add support for BCM2712
+      commit: 30ed024fb0768e9353f21d1d9e6960b7028acdfa
 
-Signed-off-by: Kimi Chen <kimi.zy.chen@fii-foxconn.com>
----
-Changes in v2:
-- Add "hard_shutdown_host" GPIO line name to PCA9555 IO expander for Clemente platform.
-- Link to v1: https://lore.kernel.org/r/20251106-dts-add-gpio-to-io-expander-v1-1-b4765c092ebe@fii-foxconn.com
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
-index 450446913e36..0eafd8ea04ac 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
-@@ -983,7 +983,7 @@ io_expander4: gpio@4f {
- 			"",
- 			"",
- 			"",
--			"",
-+			"hard_shutdown_host",
- 			"",
- 			"",
- 			"",
-
----
-base-commit: 6953afcd81a2cc73784e3dd23faa0a1aaf97441a
-change-id: 20251106-dts-add-gpio-to-io-expander-a4c32ccf56aa
-
-Best regards,
--- 
-Kimi Chen <kimi.zy.chen@fii-foxconn.com>
-
+--
+Lee Jones [李琼斯]
 
 
