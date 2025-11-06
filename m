@@ -1,374 +1,188 @@
-Return-Path: <devicetree+bounces-235438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61D31C38B6F
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 02:35:53 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DA91C38C32
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 02:57:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 355BD3B75E0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 01:35:46 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9680034506C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 01:57:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50C0F23185D;
-	Thu,  6 Nov 2025 01:35:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F4C522E3E9;
+	Thu,  6 Nov 2025 01:57:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="emeiMxGg"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="N+OsXPQe";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hKvy8f2M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013057.outbound.protection.outlook.com [52.101.83.57])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D248023183A;
-	Thu,  6 Nov 2025 01:35:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.57
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762392935; cv=fail; b=IHXHiSxiYqowLpmU4udXF9PpUrrxNlUh/YqVkhRNYgQ2QsKLXoCarvcpGxv02jNt+wdFLg3LSJW5HplTcRYDEHkhy1cX/pIWGMLbUDznpAlsUhKm6BQMu83Dgy2CxDCqt/JKzjM4K/GmB1WgockQzXHvIpLv3+QKL8XlfxqxfjU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762392935; c=relaxed/simple;
-	bh=+pkCV7YGexZLVqVzLJqLul1dGC/6T0dCVeCuuNKhP/0=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=gFw4UiEYxdQM6fusDbN6d6p4gDXhPGswNkIhH5JLpdYLkuaBFheh4seUnW9QMSdlT3rzyByBfRassZ4xEuTFp4Miy2v/yfTH1Ai6qHwSkcM9/PwjC7FhQ455FxqDLsRJV0x8vCEVYR3yvR9kFu/vH4srWeKnrI8zgqniyLyclHY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=emeiMxGg; arc=fail smtp.client-ip=52.101.83.57
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wOtxF2qNuAeuiUfwEFBDVtzOvB9mN8x+mIAnBsuehaB4CTmATo2A48RT7Lp7br3Pri7dOZfwHD8urzH1Yv6XLylgJWj0zGtDlC1sK5rd4iHTtUfzPwdKl9yBT6acE7X8BqkBtnl5GtX4hwJPmvyXEl7fu6HSKTCAS8o3o0zIqo+QsuQL2h9JwBqHpCvBApCLOpzKNjipjFu3J9mlri7efYA7VOiR1Thqv+Qy0XZa87b2dQ/zVeOOjrYQCOBRFB5QCfxWLTkmgSaNKR1FjUgmtQ+z7x7Ph/nM8gvZ4xFlq1CJ30hnCG4MKtG9bPrH9XX5zPWcHoSagpla5/0tsWui0w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vwDu+RrxtBllyQlp6iDC/DHypwN/98DxveNlu6YAmmk=;
- b=L2M2L7G8WeLAnYF3lw1jLuVqG00KJeGbdoltkYE9JDSt/JbwyUx7m3k7w2QLra+ZTw0myaUEcFrvubBPWD7PulwzXarg8od8Yxt8nAcXfczQBdpDIn1EM0+gvl8wKZqrA5uOnGcbeOr1tooNtVX1Tr3wWTxrW46dXL/Y+cNrbSygIwBFel0j53s/aDOWFZ8Ok2f19uLQ0BGrvN+wUCKT4NP5KNYDj+OYqXVzs0xTRFRWlHoA6xZZ3iTx/8a+B/l2KOIPJb2ijh6tWtwBv7f4HzbhVym6XSgMhPNgt98K1tWFVH6Udawzhc/KqidJQ0i1MXaZRtO3Rg9wjKkfif2SyQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vwDu+RrxtBllyQlp6iDC/DHypwN/98DxveNlu6YAmmk=;
- b=emeiMxGg8YaTRKOtoMj9Bvu7M9Dxrhv7LUpFBgUrcX3cREP7eLeotjtFst21Tv0Sj7mmOsZecHFGKmcs8QOqJLYV/jFY6z5vm9ApbvN0WlwQSQYxcA9176aJFtqqo/A1Ojjz8iVnu2y9L6hgHSn40RYN8AU5R41LT75Fc4k0diOqDkbxJz6rTnMytrOObRX+UHlsAHSmjkI8bNuuePZqVL+f+B9OcVlF5bnNV1la5LDRvdDcatnqdr6/UKltCZ+rDVNMYCzqIjj5wmoPV3pH9whBHz2QsWfABQsrUZywY6ZXAUuR7eAYT0/nbj1rSLN/wzYvVcxFhia6wLLQo59HiA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
- by DB9PR04MB11533.eurprd04.prod.outlook.com (2603:10a6:10:5e2::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.16; Thu, 6 Nov
- 2025 01:34:17 +0000
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9298.006; Thu, 6 Nov 2025
- 01:34:17 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Support Opensource <support.opensource@diasemi.com>,
-	Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Wensheng Wang <wenswang@yeah.net>,
-	Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>,
-	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	Grant Peltier <grantpeltier93@gmail.com>,
-	Vasileios Amoiridis <vassilisamir@gmail.com>,
-	Dixit Parmar <dixitparmar19@gmail.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH 1/1] dt-bindings: mfd: Convert dlg,da9052-i2c.txt to yaml format
-Date: Wed,  5 Nov 2025 20:33:56 -0500
-Message-Id: <20251106013358.421809-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0222.namprd03.prod.outlook.com
- (2603:10b6:a03:39f::17) To PAXSPRMB0053.eurprd04.prod.outlook.com
- (2603:10a6:102:23f::21)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22D33222584
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 01:57:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762394267; cv=none; b=cQUm7NHwn2CIDCGSxeqbQaJ90Xi2tZC9BDNe2SgmaO2kpBB5lAzeoI0Bg5gPHPhPm+f8YUFGjs/ZO2ymyobNRf91BigHnrMLqU3WRokMflCXp5xwM7TDY68tyF2eU7kDdFF78EpAmw1LqYhxei69Uf3gMLcFRvbLDiM7BifnCnI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762394267; c=relaxed/simple;
+	bh=t6ULjax0uh7L+bPG7+WgBNnKAukjdK5N+1IRTLoMutY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=OyWSSwG5W/wSAqrg+ErpJHWCi7QVrJ4TKCKbA3IWYigac5AkTXAwGaIiPk4gI1/1kQ714SVOn5vwAeTPHs0T4eJ0LdhDSnv4LXiOQiynJ8XT1oEbPchC7gssQ1+ZeRtKABiDUNJ8kY5uXZuyMbwjER9ytKuy/yU48r8HO+uPk6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=N+OsXPQe; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hKvy8f2M; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A5KFLa91657204
+	for <devicetree@vger.kernel.org>; Thu, 6 Nov 2025 01:57:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=8PC/2z6b1J/yxwlQIdPRi1
+	d3K7LRrs3VyP+EIQ+Duw0=; b=N+OsXPQeij5LSyEG0IL+zwYpp4dUVf/1j653Ya
+	kB8VOYeLVKq+/rGqwJbD5O7IidxvCnJYC1GyOWMTKzABLuRmvHv2H3eXATSfsLNg
+	4A3RyGm0WOfHJUW821Fcf7xzB7mTSw8ujPUxwwVc59n3IuH1HAeRP12cvNBipWxO
+	15pIgzW+nnCyLySeFb8F0ougNrOItxsTQ7uLDKGDiteZuvyCc2+pNVgvIfWz+utb
+	082Y+PWVGrBpG8/uyL8hAM0cGdfvHHVYE0KMRyMwsnz2oIKKy9zJeDkpHSQ/fAKd
+	0NxJ9WjkpBqRfrG8b9R9HI//+iM+E7S67enNbwIyAsU4crXA==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a88319yar-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 01:57:45 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-295093f614cso6746335ad.0
+        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 17:57:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1762394265; x=1762999065; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8PC/2z6b1J/yxwlQIdPRi1d3K7LRrs3VyP+EIQ+Duw0=;
+        b=hKvy8f2MGEuxG5Ay8SlTruoNz6VtGTxWVYkfGeP9yUS8Cu5MDuS5BuiM0vJxw1CnGP
+         BAsWQZ0PtP8aHZA0yC4rBPk+4mpdT57BmEYhA2IpkDkfjHiG05DkLvu9k/4fqwURQpQr
+         o53QjWJkB9HhEtQo6JJkCT8UN0bvfriN/ZM8V4HU9IGv/EDxLIlKolx9tvknzs7YWUoU
+         Ndw5TGIEhTX50haqXnG1Mnbsa9wdswZdtGHdghQAtp/ZoFCmomQRG7xGRryTAKxadlJq
+         sBacLgrxgo2xxz0+mj7pjxaVIGbMx6jsObj3QgjKb8l0Vw/E59wItZVXD3b9v1r+p0LS
+         hLjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762394265; x=1762999065;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8PC/2z6b1J/yxwlQIdPRi1d3K7LRrs3VyP+EIQ+Duw0=;
+        b=oFPQaREvUGNHoHso0J5RNTVflNFrP2FWv4GQU5EhGdgy3NpXqF2N02FuO1vEBbvyGx
+         xMqyHEkOwgySx5o4zKBvMVeg76jAmrkh9lFZoqoRtQCFj2kaFrqzB16bed2pa/Gkb7mH
+         XHYQe/w5pj5tN30zATzB5Tl2yn6WvNxyWm6oo/lh17UqtFLHPKod1uqBs8c1OGonpVVI
+         BhIUX48YX59iqdJKeOuwkK6V336pztBYYe+235AbhINGflDhHA/x0CoM45FD4MAmga5o
+         HL64Dq1IFhZRf5Z5u4Hs7sJgoA2WLCrFN2IfDrnNztOuJRwzTLJ84LKB92+MMnjzTwhV
+         D2SQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVySeQnZaKLsYZ9xD51F5gwPpWTPnrajWrgZH8M3tNXfMNibGWu8wLDKh2jn35/sXohvpxCpYbeXsJn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5rukbOyckPmlbEMhy3t7tOqueN1+NoxSMOLYfUYlOWG1FqbXH
+	kOHye0iZOzE/ueJ+cZ+tIa3VmqNBHD0Ih1caLIC87KLPhIvdGJxICqRu5OrNKIELCHSg3XwHz5d
+	kGQpsmBhbnt5RUwcT1iBn5OAdDfyi49g+SIV6t9sRVacr/dVdslQStnN8q2q+x+NG
+X-Gm-Gg: ASbGncsn8GTVQLb3FkJMIN+Wy2DCVaHBvCbCh1cZwvOcbGL3JE3TcNsjI2fiTbS9qkn
+	g9LI+F8rb1NCFiT2zKNjymRetUkFuf8fHHzHYF9UqMI8WXxwfJfU4dlCFe1XoeHQr0b7SlaUl/u
+	Vz3AMo3QvI0w8+Go4Y+Aehsu1nryuqNPhdtHjqsOZpSF6cKBJW8ZWFbS8Z6dDm5ikJ8IkZebHls
+	nR+DpfVmBbNwFBw3Qac6NogBG0ijlSIFEEQe+vJFodU79igmMvFAhnzStze5XbYbFUInDEgC9yg
+	g9g0QFfBmF604vHbnRWW+cOv7RwKWpEfLtwLvzcdD5GRCfnf0GNdqOJmmuBvUPd3KkHaljsxLOM
+	m7fw+d9Cu52dZ/VIbdyK1CSLX7iTe+EQTmgxWg9va9w8Z7/Wck5BCEz8X1Fjw+w==
+X-Received: by 2002:a17:902:d4cc:b0:295:6117:c597 with SMTP id d9443c01a7336-2965084026amr20185665ad.5.1762394264536;
+        Wed, 05 Nov 2025 17:57:44 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEmUGkZSvsUeTTnsilPJaPGGMkBkQb0ls+edvSO9i2m5uGuoNph4NlzwX5lLH6hyj7ACY4dBw==
+X-Received: by 2002:a17:902:d4cc:b0:295:6117:c597 with SMTP id d9443c01a7336-2965084026amr20185125ad.5.1762394263979;
+        Wed, 05 Nov 2025 17:57:43 -0800 (PST)
+Received: from jiegan-gv.ap.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29651c93e5dsm9115725ad.81.2025.11.05.17.57.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Nov 2025 17:57:43 -0800 (PST)
+From: Jie Gan <jie.gan@oss.qualcomm.com>
+Subject: [PATCH v2 0/2] Enable ETR and CTCU device for hamoa
+Date: Thu, 06 Nov 2025 09:57:24 +0800
+Message-Id: <20251106-enable-etr-and-ctcu-for-hamoa-v2-0-cdb3a18753aa@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|DB9PR04MB11533:EE_
-X-MS-Office365-Filtering-Correlation-Id: 61547566-9c97-4545-59c2-08de1cd499d0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|19092799006|7416014|52116014|376014|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?U6Zm1qcDYsq/CO65tZ/1myN5xSCid/lkU1yp6h3VKpQ2ugpXfptInjswaeja?=
- =?us-ascii?Q?NN7xfa6KRNxNN3BBnX6XvcF3xOt/ABZFeeYIt8SADZm8YsDlz3WxWthq4wSZ?=
- =?us-ascii?Q?2I/wQJVuaoR/aWWeXm1y9pBdZOGhOWAtDTOQAADwFYcqRKuf24DMHjTcB37b?=
- =?us-ascii?Q?NXBqQCxIAKM+quVT8WGgvluBDF8PCqqjQ2L8yEwEYL0/w4GblOq1O4FjipeM?=
- =?us-ascii?Q?oR1RZgtoVBvBsICrOajgpUCJaTi5vc4+XnpoBkcQgJcEfenUXXQLMzCviCbq?=
- =?us-ascii?Q?3gBikOxhlXrW41BZ3XaBuPz+z8sHLaM5RudYekXwIX0BAM6c2HRHAWHFryEr?=
- =?us-ascii?Q?J3oniQuo+jORiD7G/goxJ9b9ZFiyf/FjlczWpxWQAgi8AlzXSpDI1VrsN6QK?=
- =?us-ascii?Q?j+mb2Zlv4FOhNdBQC1Nq3HYVxZwT3RA2sNrz8nWPkioORt4d/x+MOITCr0Xh?=
- =?us-ascii?Q?cruf1feloB+dQIzERgvJSQ3B1B4FLLWMELuMBzaD52gXwPyJWVlFA84ZFVb8?=
- =?us-ascii?Q?TCOtrR4uryXbibUXQQXHjAshfWIH8gVmsoMmP1YvGmuTSkc4e7zJCnR+Z1i4?=
- =?us-ascii?Q?B9QoWQ48iPHfs4a1FbocxKvIn3RNfucXUNTe5NTg5BDilbF4UzQGm7pykDRC?=
- =?us-ascii?Q?j+hf2QCRk4HqKZ0kqyepjbZHdTOu8GKVKzUjSYPX8IMNU3v1P2LFhZVL4lGm?=
- =?us-ascii?Q?S1hWPKs/x8Beg+bVH1qR6+oFEudmowi3Bc1KlNQtUHJxmlCseZ1G/dgqNz6i?=
- =?us-ascii?Q?XF39Yow4zYl7wxmueGbz/FEwrSqGOPPcySjqR9oD7vRFLAcYEyDP+9HlkgLi?=
- =?us-ascii?Q?EX4eorHbs/dqOcx1cD+6oDUr7Ju4EbhZZ5pf/B2C1cp3EDX2WKiiAFKa9zSB?=
- =?us-ascii?Q?H4h1duWvRJqqqS+cfozKFxXZbyJ8MOExBEwIVeAfKlobUYrCMVfyLJ87h9Ys?=
- =?us-ascii?Q?N56bxKiYTaugK0AyIkFDEEcteDUdj2OwbVx+yjOzogqgfIojdAw1nmmIz7f5?=
- =?us-ascii?Q?vEbZ7T1NXqSvVvrs0YrVQ9DKzw4YUfvLpR+qSdahw6UFhUf9uM9/vENsGoT1?=
- =?us-ascii?Q?481tRVYCs/EjEuwrT3w78rqaeD0yBtqGepSfTf1vacEno64bHXGnGQ1QO51V?=
- =?us-ascii?Q?hvNfz+ARezHfcqDHlvVRtWU0ga5LI3oLBWDUA7C/oZb3W7cpfv7IP2jupNGv?=
- =?us-ascii?Q?1SyoGXQlFghj0ICc2vZrtfgtQ/KzsGpzJL45N+rrGcaNnfyLpeHssATdLWxn?=
- =?us-ascii?Q?SHZiLnE0XJDArwV1eE+UxigP13w6sgTVt+pQAkqZWm2Br9JyGsXNKcvSOrAu?=
- =?us-ascii?Q?oBWsmNdB101KPLwtgeeZ2hsHBOCUup7Y9cPZLfbDjR2K7WyOW3nrScOQzkZu?=
- =?us-ascii?Q?qMYNUl3xgZmL23RygNNuj4wbmp8W/IZTZVWDLs4kFc2VLr/l91HUW3b2XvhU?=
- =?us-ascii?Q?BZFyT3JZpGzPzvwAzBmYU4Xjrm/RjdqdCkGSQxiFe3tZ80Zs0N6yosQdVbiP?=
- =?us-ascii?Q?k3T44Zf4o40+vss=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(19092799006)(7416014)(52116014)(376014)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?DEFWlMpYWUiPGuLjcxmpXnSc/2zj4AMJnGSUyYroedbZVQ2LdoGA6OGFfbNE?=
- =?us-ascii?Q?fS6t0o7rk+vtIbKo5oyaBCnws/2/2tMaeI7WVce1zN8S2yvfE6FUR1uoWe6g?=
- =?us-ascii?Q?9bbv/lTeIpretdCm+zyIURXzyt6c/vRwo8RgjPnykTodNtus2QImbPuN0LwH?=
- =?us-ascii?Q?ETj5OFa0xI1RXD1fvTn/v9yQz1fFsfWiiqWZ0qjYVYfwOKdn/3k4KEAxs2EQ?=
- =?us-ascii?Q?FNtP+1HsiXe6LiGawpVEd4JAWRvwrEf/G/QeXwTkSlhrQGANwsFayB2TOr9p?=
- =?us-ascii?Q?gG6FkUygbdbPwiQBPIQqRjDICIVIBkSO4LgO5B0rEMbOcoS3s7q38ir4Jtl5?=
- =?us-ascii?Q?oRzSm6HPfz4UKQd8NDA+e6/h7Gcfr8VLtQZCFxMqjQTdN/toZmXcP9biqO0Z?=
- =?us-ascii?Q?jq9SuHJ9z5Pk2VgvY47hOs0z+j0bYvSkPrMVdqB518SFc5d7GDZhIRUG15+H?=
- =?us-ascii?Q?GYu+VUURWmN+DxEYytgBoT/IQDJM0eugbjJrvcR+S2YyJdt+uSuDUzb7iXx6?=
- =?us-ascii?Q?ysC7s7PIQlppHR3ipgXYIo/MAmix2q0oaTUMwMTm/9nH1Ab3MbuIfrhOqQFa?=
- =?us-ascii?Q?PF1adkThDlBkjkjsBFLh5QVfrEy+Q1uH1C25gyhTlYmWTl9UV8qKhXFSho+v?=
- =?us-ascii?Q?rXSN5V3+ncB+0gnhF2uNuFAR1sfUPBaV8WT4msIzF+FdnAtYaAOLlx9HVOYP?=
- =?us-ascii?Q?vjAmAkfMy96w/Y2kxG16xOidNjKoomRIVBmV7B19D0c1StIKuMHbqwn9fP3e?=
- =?us-ascii?Q?Kegm8NGjJ73sn4zB6oNXz/KjqOhvc4Wbw7oemLDYiKCAhxOBtm8LbftMlGw2?=
- =?us-ascii?Q?ahByInH3FZOoaTEfV+OY4HqvOemENH3maHYQVdUAdpHv3LtcIQgPbKywE6CH?=
- =?us-ascii?Q?W6O63reELidQuUURybf/kqGtgovj9fsULfWDpJ45qMdL6ge7dgqW8JXLePZr?=
- =?us-ascii?Q?pWEFvDqOhxFpQvsWOyW+ZLjd9ohQqCj7IZSSFnVOWnNdlK9+3kRqMI5MRHqC?=
- =?us-ascii?Q?JVAY2omHaLYD/FeHEM5VJdarxw/ScXxxjtztFw+30ZVIkOqOAg6h9bPNfUiR?=
- =?us-ascii?Q?1ZJARgf9ePj16acdhcOolmzARM2aZoLcUQIi6zigUETm/rg0c3/3NBTRIzNj?=
- =?us-ascii?Q?H7eOb0mcsr0JBMasWeRZjJ7GLEq7VIvkHO51cHZmFoYW6lkqD70FWwb/4+b+?=
- =?us-ascii?Q?w/4n1KiDQQmiruUFpYpVRLzNg7FxqiILDQrSMfSNFnvT8iRImxivmzl7DdQD?=
- =?us-ascii?Q?fx+qEyrcK5xCLSwAAVqNffJK19ubp2aDh/04DeNJfc9ZoTVEY1UrgO4goqMg?=
- =?us-ascii?Q?DheLBrl4wvmVwGiJSxdGe7/CCSeiQ6iHAqpsNPLg5jcEJrTdb/NM/OLfanki?=
- =?us-ascii?Q?JeyRblCNfFhJ9hKFJzDgDIE2CM+D+zecBpSg34g4lr/nBNpsEYtnri51z9NG?=
- =?us-ascii?Q?mlTkwmSL2aNAzDkvgBf9PCkzojZA/s/1DmHsJdLXiSlIcLyDu0c7AVrcmOzW?=
- =?us-ascii?Q?g2ejf9NAeomKNcUso9b886tkkMk+gwPh4WmAza+Z2Smhp1B5XZ0i29aIvWXd?=
- =?us-ascii?Q?JMH5Oypg+iU80z4mTbE=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 61547566-9c97-4545-59c2-08de1cd499d0
-X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2025 01:34:17.4556
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QZBEYM/wJsCZ5L/X5+wzlInhThCfA37Jtdz7jSdBtGDqcFgjbN9XYiO1+TSRxhjg8wB59XApYJlxiuUgMVW8Qg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB11533
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIYADGkC/42PQW7DIBBFr2KxLhEMpjZe9R5VFgMMNVJsErCtR
+ FHuXhKr7babkf5o9N+8OyuUIxU2NHeWaYslprkGeGuYG3H+Ih59zQwEaClFy2lGeyJOS+Y4e+4
+ Wt/KQMh9xSsi1d63RhlrVE6sd50whXl/9n8eax1iWlG8v3Caf2/82b5ILjkFrcMEaAe4jlXK4r
+ HhyaZoOdbDjYydmuqxVZNmxfx5Va2epH9YvY0ozusSFt6DB+yCkGLb2aWCx1LuKiMvQmB6UBGG
+ E6bp3ax3qHpXTmoIM0PnWQK+cDKq+8vgGEN1qAFsBAAA=
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+        Mao Jinlong <jinlong.mao@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jie Gan <jie.gan@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1762394259; l=1207;
+ i=jie.gan@oss.qualcomm.com; s=20250909; h=from:subject:message-id;
+ bh=t6ULjax0uh7L+bPG7+WgBNnKAukjdK5N+1IRTLoMutY=;
+ b=Np7STajOLOX3KQaJcttBtap2LpgDeSchLLIDNb6bsujzOUj82lg/iKtHRsnIm3rwBMT9KJjtq
+ Sv+i7n32bgqDpljDCfLrn/Q+P90o4FwEDxJyJOtwcGA7Tva6cA/iRHb
+X-Developer-Key: i=jie.gan@oss.qualcomm.com; a=ed25519;
+ pk=3LxxUZRPCNkvPDlWOvXfJNqNO4SfGdy3eghMb8puHuk=
+X-Proofpoint-ORIG-GUID: uC6c-H2oLLDXQlmAAc175V_YaPfydWZG
+X-Proofpoint-GUID: uC6c-H2oLLDXQlmAAc175V_YaPfydWZG
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA2MDAxNSBTYWx0ZWRfXxr0ow4RtP9p6
+ a9/JI67umr3mP/dzexD31apApgCx4zJtv66YhlNz7jrdErCFmZT64oyD6kuzicwamvWzwdN8WaV
+ QBLz0zFTKlFN27OcCt5l1XDpEySTt8SSzyiMyoofjdS1Px6xrEqicy2RaswJ25hRGxdSdXXHlpQ
+ KO6ZrYXwM7WdVZjDARifvZcQiLsoi/cV3O8T3wp8TayA6dr4D2OYadVYBzdizfnXleBsSMZm9MG
+ sdLkdV/iyGrGZHuyv2P3P4wvMTCiU61nytNtoaGH+DMrKZGnjsraQsohfpri+wNzDftohlTAx6Q
+ +rFE7YQUzJ+LQHtfTg+KTeLRFykANY5NKXQq4yMRLX7Rekj8LNikJeVIirs73+Q0lNMfxANgnDc
+ Db9p8uAWRvtnRftdK4d48ZbghN7cbg==
+X-Authority-Analysis: v=2.4 cv=Mdhhep/f c=1 sm=1 tr=0 ts=690c0099 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=6fBNxW2ai29DZFBfugQA:9 a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-05_09,2025-11-03_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 priorityscore=1501 impostorscore=0 bulkscore=0
+ suspectscore=0 spamscore=0 clxscore=1015 malwarescore=0 adultscore=0
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511060015
 
-Convert dlg,da9052-i2c.txt to yaml format.
-Additional changes:
-- compatible string fallback to dlg,da9052 to align existing dts files.
-- Add interrupts property.
-- Add ref to /schemas/spi/spi-peripheral-props.yaml#
+Enable support for ETR and CTCU devices on the Hamoa platform. The
+newly added CTCU compatible will fallback to qcom,sa8775p-ctcu for device
+probing.
 
-Remove dlg,da9053 from trivial-devices.yaml.
+Dependency of the binding patch:
+https://lore.kernel.org/all/20251103-enable-ctcu-for-monaco-v4-1-92ff83201584@oss.qualcomm.com/
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
+Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
 ---
- .../devicetree/bindings/mfd/da9052-i2c.txt    | 67 -------------
- .../devicetree/bindings/mfd/dlg,da9052.yaml   | 93 +++++++++++++++++++
- .../devicetree/bindings/trivial-devices.yaml  |  2 -
- 3 files changed, 93 insertions(+), 69 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mfd/da9052-i2c.txt
- create mode 100644 Documentation/devicetree/bindings/mfd/dlg,da9052.yaml
+Changes in v2:
+- fix space issue.
+- Link to v1: https://lore.kernel.org/r/20251104-enable-etr-and-ctcu-for-hamoa-v1-0-af552cfb902c@oss.qualcomm.com
 
-diff --git a/Documentation/devicetree/bindings/mfd/da9052-i2c.txt b/Documentation/devicetree/bindings/mfd/da9052-i2c.txt
-deleted file mode 100644
-index 07c69c0c6624c..0000000000000
---- a/Documentation/devicetree/bindings/mfd/da9052-i2c.txt
-+++ /dev/null
-@@ -1,67 +0,0 @@
--* Dialog DA9052/53 Power Management Integrated Circuit (PMIC)
--
--Required properties:
--- compatible : Should be "dlg,da9052", "dlg,da9053-aa",
--			 "dlg,da9053-ab", or "dlg,da9053-bb"
--
--Optional properties:
--- dlg,tsi-as-adc : Boolean, if set the X+, X-, Y+, Y- touchscreen
--                    input lines are used as general purpose analogue
--					input.
--- tsiref-supply: Phandle to the regulator, which provides the reference
--                 voltage for the TSIREF pin. Must be provided when the
--			     touchscreen pins are used for ADC purposes.
--
--Sub-nodes:
--- regulators : Contain the regulator nodes. The DA9052/53 regulators are
--  bound using their names as listed below:
--
--    buck1     : regulator BUCK CORE
--    buck2     : regulator BUCK PRO
--    buck3     : regulator BUCK MEM
--    buck4     : regulator BUCK PERI
--    ldo1      : regulator LDO1
--    ldo2      : regulator LDO2
--    ldo3      : regulator LDO3
--    ldo4      : regulator LDO4
--    ldo5      : regulator LDO5
--    ldo6      : regulator LDO6
--    ldo7      : regulator LDO7
--    ldo8      : regulator LDO8
--    ldo9      : regulator LDO9
--    ldo10     : regulator LDO10
--
--  The bindings details of individual regulator device can be found in:
--  Documentation/devicetree/bindings/regulator/regulator.txt
--
--Examples:
--
--i2c@63fc8000 { /* I2C1 */
--
--	pmic: dialog@48 {
--		compatible = "dlg,da9053-aa";
--		reg = <0x48>;
--
--		regulators {
--			buck1 {
--				regulator-min-microvolt = <500000>;
--				regulator-max-microvolt = <2075000>;
--			};
--
--			buck2 {
--				regulator-min-microvolt = <500000>;
--				regulator-max-microvolt = <2075000>;
--			};
--
--			buck3 {
--				regulator-min-microvolt = <925000>;
--				regulator-max-microvolt = <2500000>;
--			};
--
--			buck4 {
--				regulator-min-microvolt = <925000>;
--				regulator-max-microvolt = <2500000>;
--			};
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/mfd/dlg,da9052.yaml b/Documentation/devicetree/bindings/mfd/dlg,da9052.yaml
-new file mode 100644
-index 0000000000000..4ecd498864e4e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/dlg,da9052.yaml
-@@ -0,0 +1,93 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/dlg,da9052.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Dialog DA9052/53 Power Management Integrated Circuit (PMIC)
-+
-+maintainers:
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - dlg,da9053
-+              - dlg,da9053-aa
-+              - dlg,da9053-ab
-+              - dlg,da9053-bb
-+          - const: dlg,da9052
-+      - enum:
-+          - dlg,da9052
-+          - dlg,da9053-aa # Just for match existed old platform
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  dlg,tsi-as-adc:
-+    type: boolean
-+    description:
-+      if set the X+, X-, Y+, Y- touchscreen input lines are used as general
-+      purpose analogue input.
-+
-+  tsiref-supply:
-+    description: The reference voltage for the TSIREF pin.
-+
-+  regulators:
-+    type: object
-+    additionalProperties: false
-+
-+    patternProperties:
-+      "^(ldo([1-9]|10)|buck[1-4])$":
-+        type: object
-+        $ref: /schemas/regulator/regulator.yaml#
-+        unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - regulators
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pmic@48 {
-+            compatible = "dlg,da9053-aa";
-+            reg = <0x48>;
-+
-+            regulators {
-+                buck1 {
-+                    regulator-min-microvolt = <500000>;
-+                    regulator-max-microvolt = <2075000>;
-+                };
-+
-+                buck2 {
-+                    regulator-min-microvolt = <500000>;
-+                    regulator-max-microvolt = <2075000>;
-+                };
-+
-+                buck3 {
-+                    regulator-min-microvolt = <925000>;
-+                    regulator-max-microvolt = <2500000>;
-+                };
-+
-+                buck4 {
-+                    regulator-min-microvolt = <925000>;
-+                    regulator-max-microvolt = <2500000>;
-+                };
-+            };
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 2eff6f274302a..17b72a8028e08 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -103,8 +103,6 @@ properties:
-           - dfrobot,sen0322
-             # DH electronics GmbH on-board CPLD trivial SPI device
-           - dh,dhcom-board
--            # DA9053: flexible system level PMIC with multicore support
--          - dlg,da9053
-             # DMARD05: 3-axis I2C Accelerometer
-           - domintech,dmard05
-             # DMARD06: 3-axis I2C Accelerometer
+---
+Jie Gan (2):
+      dt-binding: arm: add CTCU device for hamoa
+      arm64: dts: qcom: hamoa: enable ETR and CTCU devices
+
+ .../bindings/arm/qcom,coresight-ctcu.yaml          |   1 +
+ arch/arm64/boot/dts/qcom/hamoa.dtsi                | 160 ++++++++++++++++++++-
+ 2 files changed, 160 insertions(+), 1 deletion(-)
+---
+base-commit: 9823120909776bbca58a3c55ef1f27d49283c1f3
+change-id: 20251104-enable-etr-and-ctcu-for-hamoa-5dc4959e438e
+prerequisite-change-id: 20251103-enable-ctcu-for-monaco-0db252ddf010:v4
+prerequisite-patch-id: 24741288526740f3ac246613ce8398433d5c61c9
+prerequisite-patch-id: b361d3a1a00bd5a94aef678c052e8728f7583339
+
+Best regards,
 -- 
-2.34.1
+Jie Gan <jie.gan@oss.qualcomm.com>
 
 
