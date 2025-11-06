@@ -1,108 +1,169 @@
-Return-Path: <devicetree+bounces-235554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A460FC39C8C
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 10:19:17 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0586C39D19
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 10:31:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ECCA6188D049
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 09:18:17 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4F1944E21A3
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 09:31:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CE212DA758;
-	Thu,  6 Nov 2025 09:17:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42A3224A066;
+	Thu,  6 Nov 2025 09:31:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aMwSiCQj"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WCLHVOIL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33DCF26B95B;
-	Thu,  6 Nov 2025 09:17:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7447935965;
+	Thu,  6 Nov 2025 09:31:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762420663; cv=none; b=ZQRkU2Z9QJUydZKDLCwHWQXJ4fwFLTXPMPRYpRYA4yzky/k9UDKBghyk6rB6hHFyQcwnVOBC75Gs1F3FsM3bs5eMQxW4YWHU7QLthsD6KI6hXoVXVeXonEmxHDFxE8bGJldRGYpuNyGdxNXLYbzA0Q6GQ46vRwsXtfDoMZyg5xg=
+	t=1762421479; cv=none; b=h3TemJJ04vUJsjJBW9rr2jzPJFNXsnHOjIiNZNk3ZXAttDbPh0yRHe7/jjEoHBZwLO/RcsDmVY27rtDh34m355TyrdOHkxzXCDS+rtTgeUAFwP5GBkxKHGfuAPwOPEYvu0fDGz+QTs98lYT2So/vtRrdTdDUEE9XdvNNmsqrndI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762420663; c=relaxed/simple;
-	bh=RfYL95h+aYzfWMnATGWmDxw7GT+VNOPhsZev5AOYUVE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O7tCk0xNP1WHo1ALWG//iuIUXTnMqaFxHORWVez5gGKnurnXBwWmFHzKlKgxNI68jviPS5BHmPVWKC6s+rr7O3OmCHs4CK+bs+H7Te+7B5+fOEZ77PexoR8dUB17o5LhKrDbX3b89veaMIl0wCXD2HGe5T1cm0L9ZC+guGTw054=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aMwSiCQj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48B3FC116B1;
-	Thu,  6 Nov 2025 09:17:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762420662;
-	bh=RfYL95h+aYzfWMnATGWmDxw7GT+VNOPhsZev5AOYUVE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aMwSiCQjTT62XRyFxtHRwNzYYPo1DpbjNKflPaNWy/D6aoEDRjOuoFG8oh5qDWZD3
-	 akZs0+AE70MS1xFuNRAzxpwZO8O0DCnfOaXV8bCftOZaE4cOADG/hphYqKuLnOa6/A
-	 6im35QBDqfr2ayndpFO8ixO902WUvCt+g105mYPdshATQrXtHjZ4FbwHvHFadWht/t
-	 9VORxgE0r+vEjV4ds9LpX5qNyLpOCA1AdWfFcTCAg+f2uzFwzq9MPbjQvpVGQ9G1k4
-	 WW1Da7+18S91ghoQJi/3IsI913pwJEufDQuGSaJ761/U6WgtYBwtHqgM6mEDMOh9tl
-	 74yFWbdeZMFPQ==
-Date: Thu, 6 Nov 2025 09:17:38 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Enlin Mu <enlin.mu@linux.dev>, robh@kernel.org, saravanak@google.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	enlin.mu@unisoc.com
-Subject: Re: [PATCH] of: print warning when cmdline overflows from bootargs
-Message-ID: <20251106-twister-circle-39dc8e85748b@spud>
-References: <20251105082717.4040-1-enlin.mu@linux.dev>
- <20251106-kiwi-of-total-valor-b27f5d@kuoka>
+	s=arc-20240116; t=1762421479; c=relaxed/simple;
+	bh=8tuXIJaRQj67Wuzt3GQJZZ9j955PqstWCmEb3K0qaJ8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=u3iv8DRqH4soJ0A2JumoCW1zWlrHn/lw9r1TR/CyO+pcOvrzy+WSmuKBxvVW/C/TPgu73swQBaG4vcIKuCHgRcHKs0iKe1XZqIaJTeWpidqqe25zKa740SZooxmZibV3DueBzoA7lmYWLdE74GSa6CQBoFnCzJwoVqQtjssaNUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WCLHVOIL; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A690r6q2797652;
+	Thu, 6 Nov 2025 09:31:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	E1ifgCrzhtp1+j9Pung6ohTcRTZrJt0ve1KAMLyjOMk=; b=WCLHVOILHMO6EOWz
+	K4oqoEaEdpNkA3DQqiwiXVQQkXZZuR0thIYFQHxfbK1wy9C+m2mZrccMOFD1pT+1
+	V5+2C2TiW/Ih7/84J7eTtGPfk72oaXvCCKpo7lizjbEj5urcb7woCax/sc20T5gZ
+	M+91LCFgY7G+0vNUKHLIVn6KDo4tYdikqzTe5PsGlbWpDebjkyLfiKy2MQ+t9Ila
+	wKmCZYsw3CcqvuH3ZFGiyObSrs/UgsIsYr2oTslwduN/ZYeZN4poo6a2xg0j7Ktt
+	SWHtCBHzf9q36hFEcdsJQ8TlXeZXEfQYHn+G2MKuOey6E3ZOpq4gfIhROX7C+66U
+	EPFY/A==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a8hyts7h3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 06 Nov 2025 09:31:14 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5A69VEqA020470
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 6 Nov 2025 09:31:14 GMT
+Received: from [10.204.78.32] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Thu, 6 Nov
+ 2025 01:31:10 -0800
+Message-ID: <c6ef0324-c932-4c80-8252-97dd3ee255d3@quicinc.com>
+Date: Thu, 6 Nov 2025 15:01:07 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="rpd4xM12kh0gtezg"
-Content-Disposition: inline
-In-Reply-To: <20251106-kiwi-of-total-valor-b27f5d@kuoka>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Use 'edp_hot' function
+ for hpd gpio
+To: Bjorn Andersson <andersson@kernel.org>
+CC: <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_riteshk@quicinc.com>, <quic_rajeevny@quicinc.com>,
+        <quic_vproddut@quicinc.com>
+References: <20251031085739.440153-1-quic_amitsi@quicinc.com>
+ <nzg7auudxocxnpnjsc2emot7sgh5azvucl72jqzgqsp4jhzint@hykb2xyx66uh>
+Content-Language: en-US
+From: Amit Singh <quic_amitsi@quicinc.com>
+In-Reply-To: <nzg7auudxocxnpnjsc2emot7sgh5azvucl72jqzgqsp4jhzint@hykb2xyx66uh>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: e0rMN5I_0VamN8TIDerrPR0BN_k2Hq8v
+X-Proofpoint-ORIG-GUID: e0rMN5I_0VamN8TIDerrPR0BN_k2Hq8v
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA2MDA3NiBTYWx0ZWRfX8Qz6ZiMVY6Zd
+ R+RKR3EgmKNmdheHITTOGKMjZFXvYhV/aFKvNwTfEMpJPDjSpaEox8nQP7puL6jT5qF7gyN/EtN
+ eZtdwoxMpHxc/resGTxcCrAzxu6Ek/YvfoQOM28wBl746XstcJ7PpKw/8BA7z3c6ckO0cHk4xTe
+ uFnEs8xGgVYDl9UUa4q5qo5eIm8B9A7qG3YSP6FBivdCoc0jZHjKGs2GNrHQO1JhjFOZ+pxalQm
+ eWW4YRQ7zJlNKba6R+x0LibxxDmx8MwFIVIQCQd5+Q0Bq0vu117PkFEu5t2x7bLQ0YmI46A59LZ
+ cQZjQ35xbNlK5ZKHEgTkdNLPd+OkL5+9zMtFLsPVNrnRatBc2uRwDJMfFJhME2PL2LYGjcMhUvX
+ I+FhGpkqkT3taIJZ5D38M3lBI+3PBQ==
+X-Authority-Analysis: v=2.4 cv=X+Rf6WTe c=1 sm=1 tr=0 ts=690c6ae2 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=X2bJkxrq0LOtwHL-icMA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-06_02,2025-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 spamscore=0 bulkscore=0 impostorscore=0 priorityscore=1501
+ clxscore=1015 malwarescore=0 adultscore=0 lowpriorityscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511060076
 
 
---rpd4xM12kh0gtezg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 06, 2025 at 09:55:17AM +0100, Krzysztof Kozlowski wrote:
-> On Wed, Nov 05, 2025 at 04:27:17PM +0800, Enlin Mu wrote:
-> > From: Enlin Mu <enlin.mu@uisoc.com>
-> >=20
-> > add debug info. sometimes cmdline in dts is too long,
->=20
-> I don't see debug info here.
->=20
-> Please use full sentences, starting with capital letter and ending with
-> full stop.
->=20
-> Please wrap commit message according to Linux coding style / submission
-> process (neither too early nor over the limit):
-> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/su=
-bmitting-patches.rst#L597
->=20
->=20
-> > developers are not aware of the length limit of the
-> > cmdline, resulting in some misjudgments.
-> >=20
-> > Signed-off-by: Enlin Mu <enlin.mu@uisoc.com>
+On 11/2/2025 12:29 AM, Bjorn Andersson wrote:
+> On Fri, Oct 31, 2025 at 02:27:39PM +0530, Amit Singh wrote:
+>> Currently, hpd gpio is configured as a general-purpose gpio, which does
+>> not support interrupt generation. This change removes the generic
+>> hpd-gpios property and assigns the edp_hot function to the pin,
+>> enabling proper irq support.
+>>
+> 
+> No, it replaces the use of display-connector for hotplug detect with the
+> DP-controller's internal HPD logic.
+> 
+> There might be good reasons to do so, but you need to describe them.
+> 
+> I'm guessing that there are still some issues in the DP driver's logic
+> for handling of external HPD? This should be addressed by fixing that
+> logic in the DP driver, to ensure that this (display-connector +
+> hpd-gpios) works, and then you should send this patch again explaining
+> why the internal HPD hardware does a better job.
+> 
+> Regards,
+> Bjorn
 
-Also, the email address here is wrong, there's previous submissions from
-Enlin Mu <enlin.mu@unisoc.com> which I expect is the same person...
+Thanks for the feedback and clarification.
 
---rpd4xM12kh0gtezg
-Content-Type: application/pgp-signature; name="signature.asc"
+We observed a specific use case where using the GPIO-based external HPD
+handling via display-connector leads to a functional issue.
+When the DisplayPort cable is already connected and the display is active,
+and we perform a system reboot, the display does not come up automatically
+after boot with the current configuration (using hpd-gpios).
+This happens because we do not receive a connect event post boot —
+the GPIO-based HPD path does not generate an interrupt in this scenario,
+as the line remains high and no edge event is triggered.
 
------BEGIN PGP SIGNATURE-----
+However, when we configure the pin with the edp_hot function and use the
+internal HPD logic of the DP controller, the controller correctly detects
+the HPD state after reboot. The internal HPD block generates the necessary
+interrupt, and the display comes up automatically without requiring a
+replug event.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQxnsgAKCRB4tDGHoIJi
-0snXAP961uID3hKt7MnqYlHQFFZh2OMo3vEi2QrfkqJQhOq3EgEAvCV1PHsyFjj2
-MXt4lIFiWX6cPi6Ya/kiQ2vdnDpPHwU=
-=5lkJ
------END PGP SIGNATURE-----
+This behavior aligns with other Qualcomm reference platforms where,
+if the controller’s internal HPD is available, it is preferred over
+the external GPIO path. Using the internal HPD provides more reliable
+detection and keeps the configuration consistent across platforms.
+So, this change ensures:
+1. The display recovers correctly after reboot when the cable
+remains connected.
+2. We leverage the controller’s native HPD interrupt capability for
+better reliability.
+3. We maintain consistency with other DP-enabled Qualcomm boards that
+use internal HPD.
+4. edp_hot follows the Source device behavior upon HPD pulse
+Detection [VESA DP standard v1.4 section 5.1.4].
 
---rpd4xM12kh0gtezg--
+I’ll add these details to the commit message in the next revision.
+
+Thanks,
+Amit
 
