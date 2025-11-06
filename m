@@ -1,184 +1,346 @@
-Return-Path: <devicetree+bounces-235718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5420C3BD5A
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 15:44:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9744C3BD6F
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 15:45:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 07E2A50494F
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 14:39:15 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DB6995050A8
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 14:39:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B276E34404C;
-	Thu,  6 Nov 2025 14:38:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CE9A345CBC;
+	Thu,  6 Nov 2025 14:38:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="PfG1B7mF";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="d4z6QpY6"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="rsr7hQgo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4572340D9D
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 14:38:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68EB73451A9
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 14:38:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762439892; cv=none; b=k7/r9pjgsSupDb1qavPgItOF3D2QOtTHSfrWHTFqKAwjKnzF3HAKw7YVBx25hlGkVm25mKv/+s9Sg//T0m9Rdqe0Lz6i8jrC17p3kH5ce0/K3wu93Y5nahGr2BhSJFTbdl8a3XtTjohzGyQITDN8pjTWkWrkaoeKJ1nW4dA8XsQ=
+	t=1762439919; cv=none; b=P5VsIbPF0LgOWPNzqShPPLBNr1ZFUA/rH5yMm4ExFJTR/xfsAvgnxRRAU+C3Xqk4vGXTT/QzYrPV4p07PalW9YdTTkrLPP+b9VeiEWq2/oooG84fTMLhiguHfAfrQMrVXn/T3z2sFe/TJFFBWADM46nGS5ayXIaw0n9AHhpbyO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762439892; c=relaxed/simple;
-	bh=mcaG189xlcIkE5tjhRnZe+YQe6MUH5qoWIjXSQ5hL30=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=q8DEFmq2qXEnzDzaDC7bJGmdZuQGrIuLGDRALic2L94p8ziIunpoOkcKnU/YLvWZ17iGHTRzdp7LH081PjczpXTMU2j8tAJqfTlHUD75Hw1TNLuS1W2tTcZgGLU40ZSCQo1g8e6acepY62NzPEEmBPAgeOHMXFKO41qO+qv30kU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=PfG1B7mF; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=d4z6QpY6; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1762439889;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=uQ0Mt1B/hGHxx4iD1iA3p/tTogAhoOqLETv0Eaxd5kg=;
-	b=PfG1B7mFQytreStdwsL83kYbNX8vOvGNp+GMkejrKu7c/kkOR2z45VKDEqCGIz+Pj+P/NL
-	NfVxA2uTnBFihsEIUEx/fCBzZ4IE5tHUDci02M1ivn0cX7WJckpjilkvjhja9R1feSLXFR
-	D97IiAjEhYr8Zn4eNNQ3hqFXpSKNvl8=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-650-XNKAh1yrNvyG3wZXWdOFqw-1; Thu, 06 Nov 2025 09:38:08 -0500
-X-MC-Unique: XNKAh1yrNvyG3wZXWdOFqw-1
-X-Mimecast-MFC-AGG-ID: XNKAh1yrNvyG3wZXWdOFqw_1762439887
-Received: by mail-wm1-f69.google.com with SMTP id 5b1f17b1804b1-477563a0c75so6721935e9.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 06:38:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1762439887; x=1763044687; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uQ0Mt1B/hGHxx4iD1iA3p/tTogAhoOqLETv0Eaxd5kg=;
-        b=d4z6QpY6o4+Y3iztxwO6oQ1UXuHaa3H/K1UBQopkqJpFObjPwE7+Z2BNAiff4oOK5F
-         FOISe1SqXgCKjfsQzQQ2bwd89ZwOe44tD2IZgoQmGYwmnQdn7oc/uSZRCKOVooRT7SUg
-         ewWPVcODme9WVoVIGdsMewsWPXCENFUz9Hr3FNehvmog1P9X3qFslAUuYXCl8EfmVAV+
-         zQiyGEXvN6QQKUR8/d/r/Yy7PNmQbwjkmL+ia+nbS9wjiuDvdhhI0NGIJDAdAvNdFphu
-         CQfA4QCvqknp1hKyRNBn8T6p2klJol4Ox/yElpBKWm6NZfAZg9paOMNeChT333gyu+0p
-         SFHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762439887; x=1763044687;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uQ0Mt1B/hGHxx4iD1iA3p/tTogAhoOqLETv0Eaxd5kg=;
-        b=I+rdidFP1sl2yx/IMoYYKcNRKH7szbf8FLDpD0wUNtg66iCCIOt/QVA4kcw9k7xJRx
-         AYc02/p0rxGLsdtTy5o+CNdmuC8vZ0OiEXQ4Qa4JCIbRzdar7OJgTrYNasJx5gUf/E4N
-         G6CqFODV/KqfJztxJzrLz65nJPH4r2xq4ds5oe9BahLYB0odkTSFa/NnxylOawY669Gj
-         IqgXEzuIDbXBCnJeMrNppLw/wzs9zgLKVr57C3QjY0u02NTq2GF89jxBpogySQbDskDS
-         elLdiyAS8p0BTouOXCoCGNwSN2SlUiyS4xBl8VvCAwhIIsIK1U8gJJ/VWOm08J4/K0Fz
-         +03g==
-X-Forwarded-Encrypted: i=1; AJvYcCV+OkRxqBgS2KMuxFzesLyv4eH6LHadjQp4cZ/XsqjaLXumvjTsglPpSlTyPHxoodiTVbPXpf2DmP8c@vger.kernel.org
-X-Gm-Message-State: AOJu0YyF1vuVU9O4WCMNnrBven7KfNhXNa9qltoBZ02X1SIwyzxvjzIY
-	3ZflMp24pp2IIqJMUzoVuGJdF+ernuaSYYOdDxsVb6IM1c2M4+DLXpU8QWEP9AK7Efio83CyHal
-	H4Sw02c5v60aIV8wWKpG1AaEi/rNLb9v6pr8R5ZOdnKZdtMdpVaM2yzMcMe1zElo=
-X-Gm-Gg: ASbGncuL/1TTqaUNda0MtFHbYdVcZrPuUBiZG4cPTBdGIMz99zfBftWtgZwDBrnfFIr
-	0IVc8ylk32L+vo2H1cGuK4pHzB9QYU0Zlg9s5jHgYMyXQBGV6RZnN7fS/0RXJsGOwp/3aqxoM20
-	1i+HroYmG8ywnf0e00taodLu6wKV2lHd96HAwp2ywltQsRUWrDylJfXNTboHGSGWMvJQFkwbB07
-	Ku9ErCcVU1Ws5ybhZYP7WV/K6+rChss4oNzxy5mTEWpfZBhXaM8XHybbiuBU5FJcZAFPb2tKZgk
-	RL2BX7OvW0nlrVUsxnk1PyHxAD4w5XriygulTpRV/eIGGBmBCD58VDRK90MSgOhAor1/gowF54+
-	K3A==
-X-Received: by 2002:a05:600c:1382:b0:46f:d682:3c3d with SMTP id 5b1f17b1804b1-4775cdc726dmr54634555e9.13.1762439887031;
-        Thu, 06 Nov 2025 06:38:07 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGwYGaPXsfyXghHHgV3EvN9aRSLllKOcPb1ZAnPIoyOIa32RSLzXlSwU+ogtbRh9YNXBdlyDw==
-X-Received: by 2002:a05:600c:1382:b0:46f:d682:3c3d with SMTP id 5b1f17b1804b1-4775cdc726dmr54634295e9.13.1762439886572;
-        Thu, 06 Nov 2025 06:38:06 -0800 (PST)
-Received: from [192.168.88.32] ([212.105.155.83])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4776363da40sm48483375e9.2.2025.11.06.06.38.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Nov 2025 06:38:06 -0800 (PST)
-Message-ID: <df47ae11-5f54-4870-bea8-8392a7fa47de@redhat.com>
-Date: Thu, 6 Nov 2025 15:38:04 +0100
+	s=arc-20240116; t=1762439919; c=relaxed/simple;
+	bh=q7204u9xGerR5T6o7MflCkRGjkrE/ExGBpFq/w0M0es=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=evNXzamHwC70HloW92qElWKvT6R6xq1JTWVenbxu3sGlKpKdfOJOZYIg2kihNm6+gf+iIq9m+pQZgTnurudvi0/O9wtu4tZ5ov1TrEjGfCbd+dpC4hCkWuedtW26nejYYrWsA/0lBXY+uTIbZzFNeDahqto/v0OLl2CpjjfVOyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=rsr7hQgo; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id D201F4E4154D;
+	Thu,  6 Nov 2025 14:38:35 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id A49B16068C;
+	Thu,  6 Nov 2025 14:38:35 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 00936118511BB;
+	Thu,  6 Nov 2025 15:38:30 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1762439914; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=fWgLP/+jNAEzz83WSqxCu50kV6UsAyj/lIJuwbQgNhI=;
+	b=rsr7hQgoy+QCd+/XjhxlrShMdRs9dl8f0dY/tePOA5BSF2b36azRV+t2mIFutGpkLSjROX
+	L1ImsXK4AADEEszy37m1joXPl5HbK3/8hj0XyK0WhV7tZ5vmis6YSXYFcOAb5/TKluPKzc
+	wnsMUFOE20y/Gu27C1h87Q6DiaWelNeaNSPvLMqNJaKv3hQ16UZmryKiM7k6CBUk65JSA3
+	UauTEnGWJCXM2TdXVIs9WLcs1w5C2ML+3VmHtiyydqFbFZP0Ro+DGtybbtFTzOyDE5Fg38
+	YmAKMEva+73/yZhOcqrAjw/CyKU3x5ITFmxdY/IxvKi49krNnJvEto/DuivEdQ==
+From: =?UTF-8?B?QmVub8OudA==?= Monin <benoit.monin@bootlin.com>
+To: Mika Westerberg <mika.westerberg@linux.intel.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Jan Dabros <jsd@semihalf.com>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Gregory CLEMENT <gregory.clement@bootlin.com>,
+ =?UTF-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ Dmitry Guzman <dmitry.guzman@mobileye.com>, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rt-devel@lists.linux.dev
+Subject: Re: [PATCH v2 4/5] i2c: designware: Implement I2C_M_STOP support
+Date: Thu, 06 Nov 2025 15:38:29 +0100
+Message-ID: <5791158.IbC2pHGDlb@benoit.monin>
+In-Reply-To: <20251103103908.GF2912318@black.igk.intel.com>
+References:
+ <20251031-i2c-dw-v2-0-90416874fcc0@bootlin.com>
+ <20251031-i2c-dw-v2-4-90416874fcc0@bootlin.com>
+ <20251103103908.GF2912318@black.igk.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v7 12/12] net: dsa: add driver for MaxLinear
- GSW1xx switch family
-To: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>,
- "daniel@makrotopia.org" <daniel@makrotopia.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Cc: "andrew@lunn.ch" <andrew@lunn.ch>, "olteanv@gmail.com"
- <olteanv@gmail.com>, "robh@kernel.org" <robh@kernel.org>,
- "lxu@maxlinear.com" <lxu@maxlinear.com>, "john@phrozen.org"
- <john@phrozen.org>, "davem@davemloft.net" <davem@davemloft.net>,
- "yweng@maxlinear.com" <yweng@maxlinear.com>,
- "bxu@maxlinear.com" <bxu@maxlinear.com>,
- "edumazet@google.com" <edumazet@google.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "fchan@maxlinear.com" <fchan@maxlinear.com>,
- "ajayaraman@maxlinear.com" <ajayaraman@maxlinear.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "hauke@hauke-m.de" <hauke@hauke-m.de>, "horms@kernel.org"
- <horms@kernel.org>, "kuba@kernel.org" <kuba@kernel.org>,
- "jpovazanec@maxlinear.com" <jpovazanec@maxlinear.com>,
- "linux@armlinux.org.uk" <linux@armlinux.org.uk>
-References: <cover.1762170107.git.daniel@makrotopia.org>
- <b567ec1b4beb08fd37abf18b280c56d5d8253c26.1762170107.git.daniel@makrotopia.org>
- <8f36e6218221bb9dad6aabe4989ee4fc279581ce.camel@siemens.com>
-Content-Language: en-US
-From: Paolo Abeni <pabeni@redhat.com>
-In-Reply-To: <8f36e6218221bb9dad6aabe4989ee4fc279581ce.camel@siemens.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 11/4/25 9:03 AM, Sverdlin, Alexander wrote:
-> On Mon, 2025-11-03 at 12:20 +0000, Daniel Golle wrote:
->> Add driver for the MaxLinear GSW1xx family of Ethernet switch ICs which
->> are based on the same IP as the Lantiq/Intel GSWIP found in the Lantiq VR9
->> and Intel GRX MIPS router SoCs. The main difference is that instead of
->> using memory-mapped I/O to communicate with the host CPU these ICs are
->> connected via MDIO (or SPI, which isn't supported by this driver).
->> Implement the regmap API to access the switch registers over MDIO to allow
->> reusing lantiq_gswip_common for all core functionality.
->>
->> The GSW1xx also comes with a SerDes port capable of 1000Base-X, SGMII and
->> 2500Base-X, which can either be used to connect an external PHY or SFP
->> cage, or as the CPU port. Support for the SerDes interface is implemented
->> in this driver using the phylink_pcs interface.
->>
->> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> 
-> thank you for the patch!
-> 
-> Finally I was able to run selftest/drivers/net/dsa/local_termination.sh
-> with only 2 unexpected failures on a GSW145 hardware (with TI AM62
-> host CPU and its CPSW (not in switchdev mode) as CPU interface).
-> 
-> The problems I had in the past were neither related to the GSW145 code,
-> nor to am65-cpsw-nuss, but to the test itself:
-> https://lore.kernel.org/all/20251104061723.483301-1-alexander.sverdlin@siemens.com/
-> 
-> The remaining failing test cases are:
-> TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to unknown MAC address   [FAIL]
->         reception succeeded, but should have failed
-> TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to unknown MAC address, allmulti   [FAIL]
->         reception succeeded, but should have failed
-> 
-> So far I didn't notice any problems with untagged read-word IP traffic over
-> GSW145 ports.
-> 
-> Do you have a suggestion what could I check further regarding the failing
-> test cases? As I understood, all of them pass on your side?
+Hi Mika,
 
-Could be that due to different revisions of the relevant H/W?
+On Monday, 3 November 2025 at 11:39:08 CET, Mika Westerberg wrote:
+> On Fri, Oct 31, 2025 at 03:35:42PM +0100, Beno=C3=AEt Monin wrote:
+> > Add the support of the I2C_M_STOP flag in i2c_msg by splitting
+> > i2c_dw_xfer() in two: __i2c_dw_xfer_unlocked() for the core transfer lo=
+gic
+> > and i2c_dw_xfer() for handling the high-level transaction management.
+> >=20
+> > In detail __i2c_dw_xfer_unlocked() starts a transaction and wait for its
+> > completion, either with a STOP on the bus or an error. i2c_dw_xfer()
+> > loops over the messages to search for the I2C_M_STOP flag and calls
+> > __i2c_dw_xfer_unlocked() for each part of the messages up to a STOP or
+> > the end of the messages array.
+> >=20
+> > i2c_dw_xfer() holds the device lock while calling __i2c_dw_xfer_unlocke=
+d(),
+> > this allows to group multiple accesses to device that support a STOP in
+> > a transaction when done via i2c_dev I2C_RDWR ioctl, in a single-master
+> > configuration.
+> >=20
+> > Also, now that we have a lookup of the messages in i2c_dw_xfer() prior
+> > to each transaction, we use it to make sure the messages are valid for
+> > the transaction. We check that the target address does not change before
+> > starting the transaction instead of aborting the transfer while it is
+> > happening, as it was done in i2c_dw_xfer_msg(). The target address can
+> > only be changed after an I2C_M_STOP flag, thus a STOP on the i2c bus.
+> >=20
+> > The I2C_FUNC_PROTOCOL_MANGLING flag is added to the list of
+> > functionalities supported by the adapter, except for the AMD NAVI i2c
+>=20
+> I2C controller
+>=20
+> > controller which uses its own xfer() function and is left untouched.
+> >=20
+> > Signed-off-by: Beno=C3=AEt Monin <benoit.monin@bootlin.com>
+> > ---
+> >  drivers/i2c/busses/i2c-designware-master.c | 103 ++++++++++++++++++++-=
+=2D-------
+> >  1 file changed, 70 insertions(+), 33 deletions(-)
+> >=20
+> > diff --git a/drivers/i2c/busses/i2c-designware-master.c b/drivers/i2c/b=
+usses/i2c-designware-master.c
+> > index ec4fc2708d03..da1963d25def 100644
+> > --- a/drivers/i2c/busses/i2c-designware-master.c
+> > +++ b/drivers/i2c/busses/i2c-designware-master.c
+> > @@ -431,7 +431,6 @@ i2c_dw_xfer_msg(struct dw_i2c_dev *dev)
+> >  	struct i2c_msg *msgs =3D dev->msgs;
+> >  	u32 intr_mask;
+> >  	int tx_limit, rx_limit;
+> > -	u32 addr =3D msgs[dev->msg_write_idx].addr;
+> >  	u32 buf_len =3D dev->tx_buf_len;
+> >  	u8 *buf =3D dev->tx_buf;
+> >  	bool need_restart =3D false;
+> > @@ -442,18 +441,6 @@ i2c_dw_xfer_msg(struct dw_i2c_dev *dev)
+> >  	for (; dev->msg_write_idx < dev->msgs_num; dev->msg_write_idx++) {
+> >  		u32 flags =3D msgs[dev->msg_write_idx].flags;
+> > =20
+> > -		/*
+> > -		 * If target address has changed, we need to
+> > -		 * reprogram the target address in the I2C
+> > -		 * adapter when we are done with this transfer.
+> > -		 */
+> > -		if (msgs[dev->msg_write_idx].addr !=3D addr) {
+> > -			dev_err(dev->dev,
+> > -				"%s: invalid target address\n", __func__);
+> > -			dev->msg_err =3D -EINVAL;
+> > -			break;
+> > -		}
+> > -
+> >  		if (!(dev->status & STATUS_WRITE_IN_PROGRESS)) {
+> >  			/* new i2c_msg */
+> >  			buf =3D msgs[dev->msg_write_idx].buf;
+> > @@ -801,26 +788,15 @@ static int i2c_dw_wait_transfer(struct dw_i2c_dev=
+ *dev)
+> >  }
+> > =20
+> >  /*
+> > - * Prepare controller for a transaction and call i2c_dw_xfer_msg.
+> > + * Prepare controller for a transaction, start the transfer of the msgs
+> > + * and wait for completion.
+> > + * Caller must hold the device lock.
+> >   */
+> >  static int
+> > -i2c_dw_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[], int num)
+> > +__i2c_dw_xfer_unlocked(struct dw_i2c_dev *dev, struct i2c_msg msgs[], =
+int num)
+> >  {
+> > -	struct dw_i2c_dev *dev =3D i2c_get_adapdata(adap);
+> >  	int ret;
+> > =20
+> > -	dev_dbg(dev->dev, "%s: msgs: %d\n", __func__, num);
+> > -
+> > -	pm_runtime_get_sync(dev->dev);
+> > -
+> > -	switch (dev->flags & MODEL_MASK) {
+> > -	case MODEL_AMD_NAVI_GPU:
+> > -		ret =3D amd_i2c_dw_xfer_quirk(adap, msgs, num);
+> > -		goto done_nolock;
+> > -	default:
+> > -		break;
+> > -	}
+> > -
+> >  	reinit_completion(&dev->cmd_complete);
+> >  	dev->msgs =3D msgs;
+> >  	dev->msgs_num =3D num;
+> > @@ -832,10 +808,6 @@ i2c_dw_xfer(struct i2c_adapter *adap, struct i2c_m=
+sg msgs[], int num)
+> >  	dev->abort_source =3D 0;
+> >  	dev->rx_outstanding =3D 0;
+> > =20
+> > -	ret =3D i2c_dw_acquire_lock(dev);
+> > -	if (ret)
+> > -		goto done_nolock;
+> > -
+> >  	ret =3D i2c_dw_wait_bus_not_busy(dev);
+> >  	if (ret < 0)
+> >  		goto done;
+> > @@ -896,13 +868,75 @@ i2c_dw_xfer(struct i2c_adapter *adap, struct i2c_=
+msg msgs[], int num)
+> > =20
+> >  	ret =3D -EIO;
+> > =20
+> > +done:
+> > +	return ret;
+> > +}
+> > +
+> > +static int
+> > +i2c_dw_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[], int num)
+>=20
+> Typically if you have
+>=20
+> i2c_dw_xfer()
+> i2c_dw_xfer_unlocked()
+>=20
+> The only difference is that the former call the latter with lock held.
+> However, this is not the case here which is confusing.
+>=20
+> I suggest move the lookup to be part of the _unlocked() variant.
+>=20
+> While there, can we use size_t with the num parameter.
+>=20
+Maybe __i2c_dw_xfer_unlocked() is the wrong name, as it is meant to be
+called potentially multiple times from i2c_dw_xfer(), depending on the
+number of messages flagged with I2C_M_STOP. So it is not an unlocked
+version of i2c_dw_xfer(). I'll try to find a better name.
 
-I tend to think we are better off merging the series as-is, and handle
-the above with follow-up, as needed. Any different opinions?
+> > +{
+> > +	struct dw_i2c_dev *dev =3D i2c_get_adapdata(adap);
+> > +	struct i2c_msg *msg;
+> > +	int ret, cnt;
+> > +
+> > +	dev_dbg(dev->dev, "%s: msgs: %d\n", __func__, num);
+> > +
+> > +	pm_runtime_get_sync(dev->dev);
+> > +
+> > +	switch (dev->flags & MODEL_MASK) {
+> > +	case MODEL_AMD_NAVI_GPU:
+> > +		ret =3D amd_i2c_dw_xfer_quirk(adap, msgs, num);
+> > +		goto done_nolock;
+>=20
+> Not really problem of this patch but I'm sure there is cleaner way to deal
+> with this. I mean first of all we don't wan't to differentiate here what
+> model this is. Instead we can look for a "quirks" based on dev->flags.
+>=20
+> Secondly goto inside switch is confusing too.
+>=20
+> This can be better written like:
+>=20
+> if ((dev->flags & MODEL_MASK) =3D=3D MODEL_AMD_NAVI_GPU) {
+> 	...
+> }
+>=20
+If we also add the ACQUIRE() for pm_runtime suggested by Andy to
+amd_i2c_dw_xfer_quirk(), we could then create a struct i2c_algorithm
+dedicated to this hardware and set it in i2c_dw_probe_master(). This way
+we can skip all this code, no need to check the model for every transfer.
 
-Thanks,
+> > +	default:
+> > +		break;
+> > +	}
+> > +
+> > +	ret =3D i2c_dw_acquire_lock(dev);
+> > +	if (ret)
+> > +		goto done_nolock;
+> > +
+> > +	/*
+> > +	 * If the I2C_M_STOP is present in some the messages,
+> > +	 * we do one transaction for each part up to the STOP.
+> > +	 */
+> > +	for (msg =3D msgs; msg < msgs + num; msg +=3D cnt) {
+> > +		u16 addr =3D msg->addr;
+> > +
+> > +		/*
+> > +		 * Count the messages in a transaction, up to a STOP
+> > +		 * or the end of the msgs.
+> > +		 */
+> > +		for (cnt =3D 1; ; cnt++) {
+> > +			/*
+> > +			 * We cannot change the target address during
+> > +			 * a transaction, so make sure the address stays
+> > +			 * the same.
+> > +			 */
+> > +			if (msg[cnt - 1].addr !=3D addr) {
+> > +				dev_err(dev->dev, "invalid target address\n");
+> > +				ret =3D -EINVAL;
+> > +				goto done;
+> > +			}
+> > +
+> > +			if ((msg[cnt - 1].flags & I2C_M_STOP) ||
+> > +			    (msg + cnt =3D=3D msgs + num))
+> > +				break;
+> > +		}
+> > +
+> > +		ret =3D __i2c_dw_xfer_unlocked(dev, msg, cnt);
+> > +		if (ret < 0)
+> > +			goto done;
+>=20
+> This can be
+>=20
+> 	break;
+>=20
+> > +	}
+> > +
+> >  done:
+> >  	i2c_dw_release_lock(dev);
+> > =20
+> >  done_nolock:
+> >  	pm_runtime_put_autosuspend(dev->dev);
+> > =20
+> > -	return ret;
+> > +	if (ret < 0)
+> > +		return ret;
+> > +	return num;
+> >  }
+> > =20
+> >  static const struct i2c_algorithm i2c_dw_algo =3D {
+> > @@ -920,6 +954,9 @@ void i2c_dw_configure_master(struct dw_i2c_dev *dev)
+> > =20
+> >  	dev->functionality =3D I2C_FUNC_10BIT_ADDR | DW_IC_DEFAULT_FUNCTIONAL=
+ITY;
+> > =20
+> > +	if ((dev->flags & MODEL_MASK) !=3D MODEL_AMD_NAVI_GPU)
+> > +		dev->functionality |=3D I2C_FUNC_PROTOCOL_MANGLING;
+> > +
+> >  	dev->master_cfg =3D DW_IC_CON_MASTER | DW_IC_CON_SLAVE_DISABLE |
+> >  			  DW_IC_CON_RESTART_EN;
+> > =20
+> >=20
+>=20
 
-Paolo
+
+Best regards,
+=2D-=20
+Beno=C3=AEt Monin, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+
 
 
