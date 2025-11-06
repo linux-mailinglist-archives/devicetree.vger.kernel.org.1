@@ -1,182 +1,167 @@
-Return-Path: <devicetree+bounces-235713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5DD8C3BC43
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 15:33:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5C3CC3BC8E
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 15:36:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E31F565D6B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 14:27:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF92E3B63FA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 14:29:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEC063321BF;
-	Thu,  6 Nov 2025 14:23:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="WlkdRfaT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 136FD31195A;
+	Thu,  6 Nov 2025 14:28:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFF4C16F0FE;
-	Thu,  6 Nov 2025 14:23:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33FD4331A48
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 14:28:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762439019; cv=none; b=FEbtFX+d987KBw+YUY9MAxEN2I4zUEAVTyWIOjSEe5FqCXiaZDBxEUsPHVdCwmrtbFxRPaKKPl1k2Iy0OiJf2wO1PblWLKttCppT4FbQs5k2RYE1ZQC7hu/UWQ1n6jEYLHUubsbP+uH+zrL+wdDZuCwUy1eQBGGIVzwC+ByFP94=
+	t=1762439326; cv=none; b=J44EwyxsWci3tNkHfg6VcOBcSIX+JUk6DRPzn5JyPNZ3eBdXnCneEm+7IFu4P5/VWZbIMQRdJToh/8TdGUOJ0R22G8ifg4wjjM3NX+OIELdOn3kPj3tjrxbTvDuvEss/wNLdp43FFvZjqftpO26OPYP/cwPBVmY69tPjYC/esYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762439019; c=relaxed/simple;
-	bh=lbvG7apBTU01DmFiJ5pQJMotoKQvfUuEd42+VAzjllY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=q6jJmr4eeycz6uELp0MIUO7TeRQx1IeYncJXRhCTvtRtk94yr7+uIpc3CFMJ55niXLJy266lLfc4aW0bbIVeNwrynHkqnSLct3kkOCpJHIsTwMPPnyGQzmoIFwQFlnzVsLqr1SRPo8RupXkJTdJuPt0jgCCSxo2Sux9N3Z3h4lI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=WlkdRfaT; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1762439016;
-	bh=lbvG7apBTU01DmFiJ5pQJMotoKQvfUuEd42+VAzjllY=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=WlkdRfaThTmQ5vALbmN2tsccBhZ5y++BNDlJ8tiQgzWN70PkaWxB+BxTDkBPN8/Le
-	 lRxbl2OjYq7/3Lfd6VX6vaTXdaz6DZrY91a0FAUvusHGaidzEFGNxbZ2dobccQThAJ
-	 XE2FU7DC/q8UY/Sg170ztacS4DCgUC+48vw2OJP+qHUapP9nsIeJq/Ke3gXdcJ7K0H
-	 T7wzR0MVrteYgTFNE/3e0m2BwbvpUhT2B2ISNRapbQI3C1jm01OQuifXqRllY1E8nA
-	 FSY+HIbbexDC635nLn46kyhP6Ae2jo1QOFPyVh20FAdHAeq0HaJWJvjmLMKm98bO65
-	 JB4siQxtnb19w==
-Received: from [IPv6:2606:6d00:11:ef24::c41] (unknown [IPv6:2606:6d00:11:ef24::c41])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id B69D317E0CA1;
-	Thu,  6 Nov 2025 15:23:33 +0100 (CET)
-Message-ID: <8408b589db4c31e32dafb6cf7c80a80c94b488c7.camel@collabora.com>
-Subject: Re: [PATCH v5 3/8] media: mediatek: vcodec: add profile and level
- supporting for MT8189
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Kyrie Wu <kyrie.wu@mediatek.com>, Tiffany Lin
- <tiffany.lin@mediatek.com>,  Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
- Yunfei Dong <yunfei.dong@mediatek.com>, Mauro Carvalho Chehab	
- <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger	
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
- <angelogioacchino.delregno@collabora.com>, Hans Verkuil
- <hverkuil@xs4all.nl>,  Nathan Hebert <nhebert@chromium.org>, Arnd Bergmann
- <arnd@arndb.de>, Irui Wang <irui.wang@mediatek.com>,  George Sun
- <george.sun@mediatek.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, 	linux-mediatek@lists.infradead.org,
- Yilong Zhou <yilong.zhou@mediatek.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz
-	 <andrzejtp2010@gmail.com>
-Date: Thu, 06 Nov 2025 09:23:32 -0500
-In-Reply-To: <20251106061323.2193-4-kyrie.wu@mediatek.com>
-References: <20251106061323.2193-1-kyrie.wu@mediatek.com>
-	 <20251106061323.2193-4-kyrie.wu@mediatek.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-oN0nrYRIFHsUPQUtneGT"
-User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
+	s=arc-20240116; t=1762439326; c=relaxed/simple;
+	bh=3lgjqrw9oTLBZNzeCWRnYqfLBcostxc+8B8DcxRaSTo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MmeCkUFrhSgi4wN9q08uC0a2xehPAJcvtgL3F72tOKxPDrSwb4akkcWh7hFY94UwSDV77d3zz7kwBXAb0Nn6gnD8Wbq0d1RlMJ9mEG4+RL1aqGy+U5y4DnoK67hJoVFdRuTDnScWn6RLdRqQuSt1T42JHqx4Fg+zqzaiTdrtVoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b710601e659so202115066b.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 06:28:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762439319; x=1763044119;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aFuhrM5Zx5faMXjiCvShw5ZF0br2pRJWjGUrf3CbngU=;
+        b=NXdJyXg/23aXE+UV8rR7f3iDTGnb8M0PuydUZ/zYZQZ33dyj8t9B+vA1S7SYSgmEOJ
+         sQQbkbN+bqr9+a95GQt4EyMVPznv97/hJsEUTyd+RSBIQQwGEB6tDKl6+KujJWIqO1xJ
+         ZmqiuJQWCdIOkuhuEaw8AFVvZBqKBrYhS3GKGxhAh7JK8nkzP5wZ/8zaItVv351q8oYq
+         +xweWzqDDfmJNW6qnrLuP5grRSk2Gaur3/22iExnkTNQW9CUCyyZ9TnCoSKQuQ5wa7Ut
+         dVjdiPbJqVyo7yOCNVEDwLbbPZcxGh6epy7cNfF4+5vHNbT6uN5cKtdeSV/LJlWLNywn
+         ciAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXz+Ee+oF26vHbKEJ5am+uDwjkEPekEv/IYtMQ7Mv+agh+Lt84JeHZC9pQXseaT3x5+rU9kZB7Z7kaO@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoyVG3lDC/ZTa6abSsfPOegqnsC9CjryD+pseiEPQ+6sBfZrwl
+	AixBbBpFKeDXszZtSMlFw0/vBs64UbyP8huW+yW9/sw4vVNCCVpaJvtsAgBkRXz77iQ=
+X-Gm-Gg: ASbGncv1Di4beeC7L5SVW5QkwTCSH9UNRNbRIWC1Nk15KIDfGq8ppNPHDxJxDUPd+z0
+	DEe3vJC9cxzGjmxIKN0MqZF3huF6JKLnt8x+zUDtZ/cyWgqxFwE+QnSoDcbdFQOgzIkWt5vMOVi
+	KpAbYzQO5a1eKNoeS2iwMemwOqHZX2Z1VNVWvcO685Gba6Hz0u7YWuQYu2WLDUDmehELB0Xd30I
+	lKWCpeiV005trkWeK6FkrFDVABWUS2Ji3EBDOUNs21/GNNPO1i26+VuTciz43XPnmm2OfdEZHTm
+	saTSXN6b7VZLgxAKu7p2memZxsmzeSf3fuZuFfkAJhXI8mDRc/+HkVR3P5cgCyO+HHEIYLkqkic
+	Unxxv0CB7SlMTfw+uS+5wry1FEf7KJH3fMDOz4yXxgevFoe3NvQvWPtMwe9H83bK0a2HP0dh6Xn
+	dxEbCI3qG0rWnBAEZ9Co6ALZgg2NOaPEsn5Z5lrQ==
+X-Google-Smtp-Source: AGHT+IFkzTOvg1StdoRevOwpjNzsRI/Q2X+BE9OauGRyzSuhYy6a54+mE6glMYApbRVFVfi4TY89VQ==
+X-Received: by 2002:a17:906:d554:b0:b72:7dbd:3bf with SMTP id a640c23a62f3a-b727dbd0f61mr555176166b.43.1762439319050;
+        Thu, 06 Nov 2025 06:28:39 -0800 (PST)
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com. [209.85.208.54])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7289331d34sm224696966b.4.2025.11.06.06.28.36
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Nov 2025 06:28:36 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-640f0f82da9so1803811a12.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 06:28:36 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVh0DvftihEEtZeQuoUwcdPqNoB4P508BwY9y2aymapjJmO4y0Hi6a32BZLXBF1xt8wWHXDXYrnTFNX@vger.kernel.org
+X-Received: by 2002:a05:6402:510a:b0:640:c918:e3b with SMTP id
+ 4fb4d7f45d1cf-64105a58158mr7216116a12.26.1762439315884; Thu, 06 Nov 2025
+ 06:28:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-
-
---=-oN0nrYRIFHsUPQUtneGT
+References: <20251105231815.1927239-1-niklas.soderlund+renesas@ragnatech.se> <20251105231815.1927239-2-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20251105231815.1927239-2-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 6 Nov 2025 15:28:21 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUZCakYhCCZGW5Z8-GrfNR5QYAGHSEZD1PvkBt+5SjbLg@mail.gmail.com>
+X-Gm-Features: AWmQ_bmsJvzm6kKqBB7MkT_bl8ohnK3R2hPjSvFu5w5eS7KUaBTh6zw_38RYicg
+Message-ID: <CAMuHMdUZCakYhCCZGW5Z8-GrfNR5QYAGHSEZD1PvkBt+5SjbLg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] clk: renesas: r8a779a0: Add ZG Core clock
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Niklas,
 
-Le jeudi 06 novembre 2025 =C3=A0 14:13 +0800, Kyrie Wu a =C3=A9crit=C2=A0:
-> add profile and level supporting for H264 and vp9 of MT8189
->=20
-> Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
-ora.com>
-> ---
-> =C2=A0.../mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 4 ++++
-> =C2=A01 file changed, 4 insertions(+)
->=20
-> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_de=
-c_stateless.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_d=
-ec_stateless.c
-> index c1cef78471a9..0a9bdc5316f9 100644
-> --- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_state=
-less.c
-> +++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_state=
-less.c
-> @@ -552,6 +552,7 @@ static void mtk_vcodec_dec_fill_h264_level(struct v4l=
-2_ctrl_config *cfg,
-> =C2=A0	switch (ctx->dev->chip_name) {
-> =C2=A0	case MTK_VDEC_MT8192:
-> =C2=A0	case MTK_VDEC_MT8188:
-> +	case MTK_VDEC_MT8189:
-> =C2=A0		cfg->max =3D V4L2_MPEG_VIDEO_H264_LEVEL_5_2;
+On Thu, 6 Nov 2025 at 00:18, Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Describe the ZG Core clock needed to operate the PowerVR GPU.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
 
-Please consider my suggestion in 2/8, you could then move all of this into =
-the
-static compatible data structure.
+Thanks for your patch!
 
-Nicolas
+> --- a/drivers/clk/renesas/r8a779a0-cpg-mssr.c
+> +++ b/drivers/clk/renesas/r8a779a0-cpg-mssr.c
 
-> =C2=A0		break;
-> =C2=A0	case MTK_VDEC_MT8195:
-> @@ -573,6 +574,7 @@ static void mtk_vcodec_dec_fill_h264_profile(struct v=
-4l2_ctrl_config *cfg,
-> =C2=A0{
-> =C2=A0	switch (ctx->dev->chip_name) {
-> =C2=A0	case MTK_VDEC_MT8188:
-> +	case MTK_VDEC_MT8189:
-> =C2=A0	case MTK_VDEC_MT8195:
-> =C2=A0	case MTK_VDEC_MT8196:
-> =C2=A0		cfg->max =3D V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_10;
-> @@ -623,6 +625,7 @@ static void mtk_vcodec_dec_fill_vp9_level(struct v4l2=
-_ctrl_config *cfg,
-> =C2=A0	case MTK_VDEC_MT8188:
-> =C2=A0		cfg->max =3D V4L2_MPEG_VIDEO_VP9_LEVEL_5_1;
-> =C2=A0		break;
-> +	case MTK_VDEC_MT8189:
-> =C2=A0	case MTK_VDEC_MT8195:
-> =C2=A0	case MTK_VDEC_MT8196:
-> =C2=A0		cfg->max =3D V4L2_MPEG_VIDEO_VP9_LEVEL_5_2;
-> @@ -641,6 +644,7 @@ static void mtk_vcodec_dec_fill_vp9_profile(struct v4=
-l2_ctrl_config *cfg,
-> =C2=A0{
-> =C2=A0	switch (ctx->dev->chip_name) {
-> =C2=A0	case MTK_VDEC_MT8188:
-> +	case MTK_VDEC_MT8189:
-> =C2=A0	case MTK_VDEC_MT8195:
-> =C2=A0	case MTK_VDEC_MT8196:
-> =C2=A0		cfg->max =3D V4L2_MPEG_VIDEO_VP9_PROFILE_2;
+> @@ -35,6 +35,7 @@ enum clk_ids {
+>         /* Internal Core Clocks */
+>         CLK_MAIN,
+>         CLK_PLL1,
+> +       CLK_PLL4,
 
---=-oN0nrYRIFHsUPQUtneGT
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+Please preserve sort order (see CLK_PLL5 below, out of context).
 
------BEGIN PGP SIGNATURE-----
+>         CLK_PLL20,
+>         CLK_PLL21,
+>         CLK_PLL30,
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaQyvZAAKCRDZQZRRKWBy
-9HgOAQCcOPqEipHaLaMrsEybD4wMnGsF5eIZwMZBS7s8CI99yQD/WfKVqeU7qjJN
-qGe3ad5qCAZQWikimukLeXwioptSOw8=
-=F5b3
------END PGP SIGNATURE-----
+> @@ -98,6 +103,7 @@ static const struct cpg_core_clk r8a779a0_core_clks[] =
+__initconst =3D {
+>         /* Core Clock Outputs */
+>         DEF_GEN4_Z("z0",        R8A779A0_CLK_Z0,        CLK_TYPE_GEN4_Z, =
+       CLK_PLL20,      2, 0),
+>         DEF_GEN4_Z("z1",        R8A779A0_CLK_Z1,        CLK_TYPE_GEN4_Z, =
+       CLK_PLL21,      2, 8),
+> +       DEF_FIXED("zg",         R8A779A0_CLK_ZG,        CLK_PLL4_DIV2,  2=
+, 1),
 
---=-oN0nrYRIFHsUPQUtneGT--
+ZG is not a fixed clock, but has a programmable divider through the
+FRQCRB.ZGFC register field.  Hence it should use CLK_TYPE_GEN4_Z.
+As currently drivers/clk/renesas/rcar-gen4-cpg.c:cpg_z_clk_register()
+supports only the FRQCRC(0) and FRQCRC1 registers, you will have to
+extend the offset-to-register mapping support for that, too.
+
+>         DEF_FIXED("zx",         R8A779A0_CLK_ZX,        CLK_PLL20_DIV2, 2=
+, 1),
+>         DEF_FIXED("s1d1",       R8A779A0_CLK_S1D1,      CLK_S1,         1=
+, 1),
+>         DEF_FIXED("s1d2",       R8A779A0_CLK_S1D2,      CLK_S1,         2=
+, 1),
+
+> --- a/include/dt-bindings/clock/r8a779a0-cpg-mssr.h
+> +++ b/include/dt-bindings/clock/r8a779a0-cpg-mssr.h
+> @@ -51,5 +51,6 @@
+>  #define R8A779A0_CLK_CBFUSA            40
+>  #define R8A779A0_CLK_R                 41
+>  #define R8A779A0_CLK_OSC               42
+> +#define R8A779A0_CLK_ZG                        43
+>
+>  #endif /* __DT_BINDINGS_CLOCK_R8A779A0_CPG_MSSR_H__ */
+
+This should be a separate patch, so I can queue it in a branch shared
+by clock driver and DT source files.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
