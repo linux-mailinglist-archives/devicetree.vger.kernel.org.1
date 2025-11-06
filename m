@@ -1,103 +1,106 @@
-Return-Path: <devicetree+bounces-235545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CB8FC39BD9
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 10:06:23 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC15AC39BF5
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 10:08:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE6DB1887967
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 09:06:30 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 125384F5A6D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 09:07:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04D0930ACF1;
-	Thu,  6 Nov 2025 09:06:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FAEA30ACF4;
+	Thu,  6 Nov 2025 09:07:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Z/7D3Ge/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T9aQVLpk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 204AD309F09;
-	Thu,  6 Nov 2025 09:05:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E56A42C11C9;
+	Thu,  6 Nov 2025 09:07:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762419960; cv=none; b=GgiXgoU218RWsgQoElrwYvHDMoUvyo4FcMGShzPqlhAPVdDteEuoMN35U+Wma1dS41RCFal/Hik3u/E1/Bh32RdJYcUdHif3R1Bu9x3jXBre6c31ioksk4z9TRYJ3XsuBA1fgrKubvp8r/y4IRi+iEx/8kCTTWeFDGBYq5g8ReM=
+	t=1762420038; cv=none; b=ZHcqkgYHltbQmMOHzZ9jZQng/mKHhS2oK17n8qAYhf+gIh0DBSZVPcYbqO6mBcNhgTuPqERfRdW3BJ6kOuVhRCguwv3CU+9feO20i1pJGP/nnJ/wnRVKtD77gDl0L4BiGXx5Usgi4n4ax8khXMt4eeYN7JU73aoC71nmlZCOmb8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762419960; c=relaxed/simple;
-	bh=eD0rL65tW8KTbO/83c/0IXmvaTMOrDt+ULFQsqK82B0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=fAQZCJeVPk+HH89ybCT+pZ2aVZQiW0DBzSW5GQkYEqHzSUfKhmR+XkvzA8PVOpWc+IRC/9b8q6+iq73qY5ez4KlHLFQlx2GvNs8WJeZGtYRqPdkXQ4ZDWSH2NtM+tmEwH7V/ez35IFde88q2EbyCL1oKz01/L2uj6Q6fDow45NU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Z/7D3Ge/; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1762419957;
-	bh=eD0rL65tW8KTbO/83c/0IXmvaTMOrDt+ULFQsqK82B0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Z/7D3Ge/ggB5syz3wmbUdcRsuAECjEbwHTdaGWylKj2ZdK23tZU2DB6vIiqSZqcAQ
-	 UsjphWouQUYKqrAjPmMCywqjWQkxSINNBgXd1dafQ9Mr7eLhIwulM0AVQkXUl8ZCUf
-	 6wkTsaVhy+BqsG+RtQRIXsCwoVCfGCzk1l6CfwBdq807RfSsODFjYh9p6Yq15lJeov
-	 W2ZW1JmI9Hr22qzLb9Qc+KMAY9HWq3m1/BYg8VEv6AfhbiAOtLoa3dWgKWjCGh65Ew
-	 iHWJ77co8exGRwGYfLc7t1IUot4WHv+uhayC8uKMYBqlamMU5QKlPYd3P/zKVeVGi7
-	 Tu/rEkrz8OSCQ==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id C2EB617E1396;
-	Thu,  6 Nov 2025 10:05:56 +0100 (CET)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- Frank Wunderlich <linux@fw-web.de>
-Cc: Frank Wunderlich <frank-w@public-files.de>, 
- Sean Wang <sean.wang@mediatek.com>, Daniel Golle <daniel@makrotopia.org>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org
-In-Reply-To: <20251105195007.199229-1-linux@fw-web.de>
-References: <20251105195007.199229-1-linux@fw-web.de>
-Subject: Re: (subset) [PATCH v2 0/5] Add Bananapi R4 Pro support
-Message-Id: <176241995673.33143.16010766516310474191.b4-ty@collabora.com>
-Date: Thu, 06 Nov 2025 10:05:56 +0100
+	s=arc-20240116; t=1762420038; c=relaxed/simple;
+	bh=MieKUKDPbSY+HzttPLXginlv3OHh6q6f7G1egoTKNI4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uq5ZoRf+vv1YIytQZ5BmEB/kHa6TEnE6m5e5UL7IQTj6lt7l1TSJssL+moEFaWPjr4NzLsBR0mlU5DY8YxY0qclGTulQCBSOTloofuwoxr8MIwW0iwOt7nmdsrd4FDs7k9eE6c1cb/UqEWRv7p9GfZ4kFMbuL4/MypHq3q6n9xk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T9aQVLpk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20083C4CEF7;
+	Thu,  6 Nov 2025 09:07:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762420037;
+	bh=MieKUKDPbSY+HzttPLXginlv3OHh6q6f7G1egoTKNI4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=T9aQVLpkFlu/1ll+IAGrhZ6ghN3FIqK2wGYl2AF0vkYenPel/E8im3tlXc9H0DjS2
+	 CXhoRbDPyJ/NXx08KR8rQtgc5M8gCDOJ/Tlp85TbVuvLnIBQyr3L6qyWWlvBaePJPb
+	 cBqiX6e3NLgavy0KbMwuyqTmq4iDyvTvu6hrcPSZq5HrmPMmBSARZGQXYp0UU3B6ww
+	 L1z6CZ3urqnNgrQWpPg+Kt4FDn5Nagf1auEfyL/QM9KklhwTEi/sCbjbAL3PHLL3At
+	 HIHrPPr3NAD122CcEYD3nbt1Ds6b5anvs0ScnP69r7N2qtYimDeTHUYNSJIvA9iD/+
+	 5rFTPfSyqWWAw==
+Date: Thu, 6 Nov 2025 14:36:58 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Hanjie Lin <hanjie.lin@amlogic.com>, 
+	Yue Wang <yue.wang@amlogic.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Andrew Murray <amurray@thegoodpenguin.co.uk>, Jingoo Han <jingoohan1@gmail.com>, 
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH RESEND 1/3] dt-bindings: PCI: amlogic: Fix the register
+ name of the DBI region
+Message-ID: <lsue7hlgybqpru3qfetlpee2mswnycvhxjffwyxtplmpqved2u@aohtwjtxesr4>
+References: <20251101-pci-meson-fix-v1-0-c50dcc56ed6a@oss.qualcomm.com>
+ <20251101-pci-meson-fix-v1-1-c50dcc56ed6a@oss.qualcomm.com>
+ <31271df3-73e1-4eea-9bba-9e5b3bf85409@linaro.org>
+ <rguwscxck7vel3hjdd2hlkypzdbwdvafdryxtz5benweduh4eg@sny4rr2nx5aq>
+ <20251106-positive-attractive-tiger-ec9c1c@kuoka>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251106-positive-attractive-tiger-ec9c1c@kuoka>
 
-On Wed, 05 Nov 2025 20:50:00 +0100, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+On Thu, Nov 06, 2025 at 09:30:15AM +0100, Krzysztof Kozlowski wrote:
+> On Mon, Nov 03, 2025 at 03:42:58PM +0530, Manivannan Sadhasivam wrote:
+> > On Mon, Nov 03, 2025 at 10:47:36AM +0100, Neil Armstrong wrote:
+> > > Hi Mani,
+> > > 
+> > > On 11/1/25 05:29, Manivannan Sadhasivam wrote:
+> > > > Binding incorrectly specifies the 'DBI' region as 'ELBI'. DBI is a must
+> > > > have region for DWC controllers as it has the Root Port and controller
+> > > > specific registers, while ELBI has optional registers.
+> > > > 
+> > > > Hence, fix the binding. Though this is an ABI break, this change is needed
+> > > > to accurately describe the PCI memory map.
+> > > 
+> > > Not fan of this ABI break, the current bindings should be marked as deprecated instead.
+> > > 
+> > 
+> > Fair enough. Will make it as deprecated.
 > 
-> BananaPi R4 Pro is a MT7988A based board which exists in 2 different
-> hardware versions:
-> 
-> - 4E: 4 GB RAM and using internal 2.5G Phy for WAN-Combo
-> - 8X: 8 GB RAM and 2x Aeonsemi AS21010P 10G phys
-> 
-> [...]
+> The true question is what value was being passed as that item (ELBI)?
+> Because if this was always DBI - device has DBI there - then what
+> deprecation would change?
 
-Applied to v6.18-next/dts64, thanks!
+Nothing, except not breaking old DTs with the binding check. That's why I
+decided to remove it in the first place.
 
-[2/5] arm64: dts: mediatek: mt7988: Disable 2.5G phy and enable at board layer
-      commit: 0e5d9e529383688deccce632c713692e53b31cf6
-[3/5] arm64: dts: mediatek: mt7988: Add devicetree for BananaPi R4 Pro
-      commit: f397471a6a8c2b621e1fd06430fc528ab3925422
-[4/5] arm64: dts: mediatek: mt7988a-bpi-r4-pro: Add PCIe overlays
-      commit: dec929e61a42ed5d6717d3ec2b6a7734c2ab825b
-[5/5] arm64: dts: mediatek: mt7988a-bpi-r4pro: Add mmc overlays
-      commit: a58c368067417f3d89b92ccc18fa0bb610b34349
+- Mani
 
-Cheers,
-Angelo
-
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
