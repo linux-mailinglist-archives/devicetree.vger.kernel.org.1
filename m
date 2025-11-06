@@ -1,73 +1,74 @@
-Return-Path: <devicetree+bounces-235494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 768B3C3970B
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 08:46:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6AD6C39750
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 08:50:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F041A34D9E2
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 07:46:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1BBE41A41B53
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 07:51:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C42562882D7;
-	Thu,  6 Nov 2025 07:46:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48B492BF006;
+	Thu,  6 Nov 2025 07:50:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="x/q1DzTt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Yx6awSaD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A329271476
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 07:46:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76E9727FD59
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 07:50:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762415205; cv=none; b=ZbR5KOUA7qS+LIOwzdHm+mac5I1ZbRoR7HX3QXHIUrR4FjKdzC29SVvy/Eb1FU9Tk9xREp6uUn25s/5H8alpGUncKQGt90v+RQ44tiNwCL3x4KjqO2G60OfUApyQSpkenHAHJdPfy6R7kDp1Uk9dnKCA8NsWQeZr0DzzNvPV+A0=
+	t=1762415453; cv=none; b=Y2yNHPs8Oy6k9jy301SfpZc/r7e+vgGFhu43JkV7D1lGnvz9IE9ndhXRWpySZAmW51NUCTTNgZJNMrhL58kw0zqVZ9WSUlV0udE7NAnVBWRBDxp6gKheojqOKAiXjkqW8ZSKLI8+A2qwvShabsSchro0OcEAesGMuiO8foVjWuo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762415205; c=relaxed/simple;
-	bh=wWDCB0EwVxgPHs1EZUnyq5hb+MHfv1itWf5YxF377ZM=;
+	s=arc-20240116; t=1762415453; c=relaxed/simple;
+	bh=p3t1Nu3/jaRiIeOqwFNK5UrO9I5BIOo4m9uqYA+ne9I=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=euwyO72Mt0t0gWF2bYbgeZ42BBKjD2HGwaU2ZVLgzucSJoNcuqnd7xu8PLzCXYAbZKRa1Cae8d7Cxxu0mzFVDpjYxW/aELpRYM+C7FEJmx6tW5oWsSNT/IG7F2sRDg3psHIdvyIq+HrHKdDB1MWQ8H/RntDKCeBvXsPoJSI5SPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=x/q1DzTt; arc=none smtp.client-ip=209.85.215.180
+	 To:Cc:Content-Type; b=l5LiDiNkwmbhCfisjpr9vKRSpuOdtIJmLY96j0d2OFuf3Sdn4Uz5E0B0h+uzZlEP/doH+VNVttuM9dcE46IdlJqJPDvwU8lXexO7WuYYKuLA1ou0WeOULxD7YpRQI3smshNlZ2OAdRI1YLwn5qrnVfR0fE3z+ElVU0TWwJ0BMVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Yx6awSaD; arc=none smtp.client-ip=209.85.218.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-b996c8db896so583675a12.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 23:46:43 -0800 (PST)
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b3e9d633b78so118556866b.1
+        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 23:50:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762415203; x=1763020003; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=0f5wmX+yoZg0wz1UxGaCZPnItqaKdkuDqolTF8KvNuo=;
-        b=x/q1DzTtMl7Dy5yQCCbK3r7ePMQbdXthtdlo3GmJbYbNK4r+qwHtweU2tKWEVNKeHH
-         8Cb+ZXiR5jWnBJQglxek3Z8coFpXxmzqznzt4Pd8mIKqAnaNcHYoi0VZhR2OsgQQBYQs
-         L6DkH8+VdcbjD9/ir/x5SEa/tCpnQjui5Qogkj5Zutk7UmQ8nrWZx26RfRtjtu3cDpem
-         1/GmiAUSP66Kd9y5FN0QixtXZl7+Bz/MKE2RZ24iKgNqIOdGctvNRusJu/2lMB1EAn56
-         9lJXfNi2kyjxgRFMgFKvymisiWX9M/Hk0y0Yl8VUs3N69T+33XyCBh5HgHdzS2tTMRHm
-         cS+A==
+        d=linaro.org; s=google; t=1762415450; x=1763020250; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4oSZTMv5D/sOGGLnpJ+IvuCz5xyHo5sq+jQga6CKtnM=;
+        b=Yx6awSaD7lS9u7PttF4PUpdeWss2Yn7T4chucVApGLMuE2r1Q9G+1luxSzXa1vAg9M
+         MU+heyTc4xfsXpCsUWqU+9oEZArL6hjBqOOGUopCctJTQeP4xhVgmsMdDgNE5bcqrvVA
+         YsMMhuLDt5no2Gcn9fFhXvlS9o7PrtuxmSKDw6LwgHeN8iUsvgrCBH0tqdNb4juFJxLr
+         tiToJvoUjcHVejsrUWswgtTcQOZ/BZJNS1ZFt/de73t4b9shCmhS8du99ZeuZY8DdmVk
+         oi5gHZ6bVcr8/V8pEP7w4XekiVS1NxYpGshEA053EPy3NbRQTfO8le9PNI9ZrSKGNiA3
+         lDZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762415203; x=1763020003;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0f5wmX+yoZg0wz1UxGaCZPnItqaKdkuDqolTF8KvNuo=;
-        b=Xi1+a6uF82nbl6DVlSDslfLjkgj7AVW3mElikopQmhH45Yz3CZQGQbiWKA7O2nwn/c
-         ObzgfgS2FlfmVftdbUi/sR7MknJhR42WYzCd2S69S4FbDs/3EmM9lO2aXEIsG5ldbuP2
-         XqmHfNTan181DiJzuwmntbMvCg1wPfSLA6o+wZuNIYu5lEayPo+FVRDxh+yJY/+ZLAWU
-         MNBBVQicxN9vatGExM8q/UPrDVVpIlqffoezsdJmni9mCpOA4OWVPQfQtoAVNYfA7ke0
-         Tr56IGgy3dh5zcmSPPt/jRWuTq0A6o5Y8X1KULWvHUMkwDUPippcKbffVi+AHeIA56Gw
-         WyLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWJYONAgSBl3Fe7FQiJJ3LqXs7e3Id7y0GWLUxm5Mc4/RonZvhGMYZCYeLjP9kc6PMUF5TojhiKC22q@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPhRTtYjPx4UeajHPCKrOwni5YS/z+Y9S/gh3mrH+uiMYR7le2
-	5y9cZRoKA4zKMmzNNNU5HArFJVo6AWN2eQA28C1G1vtqrEaQ69hlO6BFkteb5HjfQPZph7gMaWe
-	2xGQHhJPlpRVGIeVN9nTS6c/d/K2jxFdi97VW4CMx7A==
-X-Gm-Gg: ASbGncurMQfw/MJsgJWVf6xMyTspEbJkrMVQPXKeBuAz/wei5xMhP90qXADPHgeCc2j
-	qFDkkExYdEG2XDV7F3eoQ1NgU98eMMk72xZktcnZEBP5x/XlqnqErYGSSFptJ294tIDS9oUlsxa
-	cAZM+EldGYVTMBJO+1Q348ol483DBXCCR2FNjTWuRqVEFyiUiM/7vzbFfYnM2wsYbHZHDn1HNTP
-	mTR54iGWD1CgQqs3jIOyq32MaEI5qlhsqn10UxqTHBZdAstz03o4ldoafQiHQ==
-X-Google-Smtp-Source: AGHT+IFvj7BYATFPUUfyyTquYUZ+XG2ltlcW863lIimOI+3G3/lJLUOzbLQ43b0xX7YM+rdDM6ZeBwU/rpFRv4aSwps=
-X-Received: by 2002:a05:6a20:728f:b0:350:ee00:3c9f with SMTP id
- adf61e73a8af0-350ee004101mr3256044637.48.1762415203454; Wed, 05 Nov 2025
- 23:46:43 -0800 (PST)
+        d=1e100.net; s=20230601; t=1762415450; x=1763020250;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=4oSZTMv5D/sOGGLnpJ+IvuCz5xyHo5sq+jQga6CKtnM=;
+        b=fGlobg6905PCfR/0zJc/6RjrX8PPYdLzJI9WZvGoDXQC7sd+KdCkySima6pn2GiOLs
+         mpccBCAbcx3Ajtn2tFZaemQckyH7prfUBKh17gZQC0peVZVxwHA4p+/S7d+X5GjqK4s8
+         Xk4iU58wTvqj7NgRnybJb8knPil1eTYu9qOcGFE87uBH98zJRZL5CzHs/AFGkwxbbrLh
+         18xRyAXMHq/lfkRvLcUvUaekRBvvBbSZWBGGfhitOsEGmjWL95WMEZKKva5EI8mqidkq
+         Wnu+KFqBqWGxRn4D1xxwPlNIZWsuD7lXWFQ3Dn5TyCiSGOWdQnk+ncS31RceJdSpHld5
+         aq1g==
+X-Forwarded-Encrypted: i=1; AJvYcCUAsUh5xjCiQ3ghjgGZ6jT0+9uDme15Q9X8QokpS0cZQePW8zrLSd4nNlO6wS1MO8mpG2fAxPaFl0fa@vger.kernel.org
+X-Gm-Message-State: AOJu0YxlAUZNIxcZM/L/2EdJGBfJzmZjPRIsiwhd9LUSyrEkzCOLnpp4
+	mOLiBGuZzX+281PRrDUxFjo8RD6dr3EEc2aAFF3EIEINF+yBYHkLutd+tt6sM8b1vqIWHZAc5eb
+	m7bIE8hEz1HqWv2KoX0NbFZHN6J4xHYifsPHPOtstRg==
+X-Gm-Gg: ASbGncsIU4eqKruAnRze2HK2fJYDWhOO584IKeWJoapwUS76ZdLUQ9DbZd5B8klm89l
+	8On6H/S2i0PdzIkJcOxsOiFXWOympFCKXcsIsMSR+lscvtrjg9vWnQQmdoht1/PII5U43+Mq0Ci
+	GS3ppvfh1ZyEJdu9MOjmDJInPEtgH80KZIuxs/OnCy6P584x8jUylUqC4ANGuf0kEWBw2g2tKoe
+	S5B9+BOV68s67YYhlisrBRFsN9hxCgoaPtz3geoSi1db93lIcnrJpEDQX0f4Q==
+X-Google-Smtp-Source: AGHT+IGTqwA2P7XvjyYF/Izos2lVy+T5to2mL8X2E6WlWDzOEu9Bmz8GxKORg8EJlnHJ5cxaDH8TQQoU0UmnunUk7JI=
+X-Received: by 2002:a17:907:94d2:b0:b72:6d68:6663 with SMTP id
+ a640c23a62f3a-b728964dea0mr251219566b.31.1762415449844; Wed, 05 Nov 2025
+ 23:50:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,20 +76,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <CAKfTPtCtHquxtK=Zx2WSNm15MmqeUXO8XXi8FkS4EpuP80PP7g@mail.gmail.com>
- <20251106000531.GA1930429@bhelgaas>
-In-Reply-To: <20251106000531.GA1930429@bhelgaas>
+ <20251106000531.GA1930429@bhelgaas> <vrgjkulv22hzbx65olh3zpyqxq6dr7d5mepngjwgc3gudjoxwo@ll7xc2teya2s>
+In-Reply-To: <vrgjkulv22hzbx65olh3zpyqxq6dr7d5mepngjwgc3gudjoxwo@ll7xc2teya2s>
 From: Vincent Guittot <vincent.guittot@linaro.org>
-Date: Thu, 6 Nov 2025 08:46:27 +0100
-X-Gm-Features: AWmQ_bmqVCNR3dJpEZPSNIsk4oiASQ7wTNG-cdh5_x2RX44MkoIq9HcAbtR0V5w
-Message-ID: <CAKfTPtA+_VgQQB37Y8qCd6cc5U22kqUkagy2PFnB-5biWUhB9w@mail.gmail.com>
+Date: Thu, 6 Nov 2025 08:50:37 +0100
+X-Gm-Features: AWmQ_bkYpQyZF7OktEjeeIhdfj_KOUOxVV3OYB8DSDbc8qdV2MpPBlN_Lqu--DE
+Message-ID: <CAKfTPtB=oMPsfjRFcQrAKM1m97B1LL9RJYVix+ea9Vb0FqDk3A@mail.gmail.com>
 Subject: Re: [PATCH 3/4 v3] PCI: s32g: Add initial PCIe support (RC)
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: chester62515@gmail.com, mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com, 
-	s32@nxp.com, bhelgaas@google.com, jingoohan1@gmail.com, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com, 
-	Ghennadi.Procopciuc@nxp.com, ciprianmarian.costea@nxp.com, 
-	bogdan.hamciuc@nxp.com, Frank.li@nxp.com, 
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, chester62515@gmail.com, mbrugger@suse.com, 
+	ghennadi.procopciuc@oss.nxp.com, s32@nxp.com, bhelgaas@google.com, 
+	jingoohan1@gmail.com, lpieralisi@kernel.org, kwilczynski@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com, Ghennadi.Procopciuc@nxp.com, 
+	ciprianmarian.costea@nxp.com, bogdan.hamciuc@nxp.com, Frank.li@nxp.com, 
 	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
 	cassel@kernel.org, Richard Zhu <hongxing.zhu@nxp.com>, 
@@ -96,86 +97,106 @@ Cc: chester62515@gmail.com, mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com,
 	Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>, 
 	Christian Bruel <christian.bruel@foss.st.com>, linux-stm32@st-md-mailman.stormreply.com
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 6 Nov 2025 at 01:05, Bjorn Helgaas <helgaas@kernel.org> wrote:
+On Thu, 6 Nov 2025 at 07:24, Manivannan Sadhasivam <mani@kernel.org> wrote:
 >
-> [+cc imx6, layerscape, stm32 maintainers for possible suspend bug]
->
-> On Fri, Oct 24, 2025 at 08:50:46AM +0200, Vincent Guittot wrote:
-> > On Wed, 22 Oct 2025 at 21:04, Bjorn Helgaas <helgaas@kernel.org> wrote:
-> > > On Wed, Oct 22, 2025 at 07:43:08PM +0200, Vincent Guittot wrote:
-> > > > Add initial support of the PCIe controller for S32G Soc family. Only
-> > > > host mode is supported.
->
-> > > > +static void s32g_init_pcie_controller(struct s32g_pcie *s32g_pp)
-> > > > +{
-> > > > ...
-> > > > +     /*
-> > > > +      * Make sure we use the coherency defaults (just in case the settings
-> > > > +      * have been changed from their reset values)
-> > > > +      */
-> > > > +     s32g_pcie_reset_mstr_ace(pci, memblock_start_of_DRAM());
-> > >
-> > > This seems sketchy and no other driver uses memblock_start_of_DRAM().
-> > > Shouldn't a physical memory address like this come from devicetree
-> > > somehow?
+> On Wed, Nov 05, 2025 at 06:05:31PM -0600, Bjorn Helgaas wrote:
+> > [+cc imx6, layerscape, stm32 maintainers for possible suspend bug]
 > >
-> > I was using DT but has been asked to not use it and was proposed to
-> > use memblock_start_of_DRAM() instead
+> > On Fri, Oct 24, 2025 at 08:50:46AM +0200, Vincent Guittot wrote:
+> > > On Wed, 22 Oct 2025 at 21:04, Bjorn Helgaas <helgaas@kernel.org> wrot=
+e:
+> > > > On Wed, Oct 22, 2025 at 07:43:08PM +0200, Vincent Guittot wrote:
+> > > > > Add initial support of the PCIe controller for S32G Soc family. O=
+nly
+> > > > > host mode is supported.
+> >
+> > > > > +static void s32g_init_pcie_controller(struct s32g_pcie *s32g_pp)
+> > > > > +{
+> > > > > ...
+> > > > > +     /*
+> > > > > +      * Make sure we use the coherency defaults (just in case th=
+e settings
+> > > > > +      * have been changed from their reset values)
+> > > > > +      */
+> > > > > +     s32g_pcie_reset_mstr_ace(pci, memblock_start_of_DRAM());
+> > > >
+> > > > This seems sketchy and no other driver uses memblock_start_of_DRAM(=
+).
+> > > > Shouldn't a physical memory address like this come from devicetree
+> > > > somehow?
+> > >
+> > > I was using DT but has been asked to not use it and was proposed to
+> > > use memblock_start_of_DRAM() instead
+> >
+> > Can you point me to that conversation?
+> >
+> > > > > +     s32g_pp->ctrl_base =3D devm_platform_ioremap_resource_bynam=
+e(pdev, "ctrl");
+> > > > > +     if (IS_ERR(s32g_pp->ctrl_base))
+> > > > > +             return PTR_ERR(s32g_pp->ctrl_base);
+> > > >
+> > > > This looks like the first DWC driver that uses a "ctrl" resource.  =
+Is
+> > > > this something unique to s32g, or do other drivers have something
+> > > > similar but use a different name?
+> > >
+> > > AFAICT this seems to be s32g specific in the RM
+> >
+> > It does look like there's very little consistency in reg-names across
+> > drivers, so I guess it's fine.
+> >
+> > > > > +static int s32g_pcie_suspend_noirq(struct device *dev)
+> > > > > +{
+> > > > > +     struct s32g_pcie *s32g_pp =3D dev_get_drvdata(dev);
+> > > > > +     struct dw_pcie *pci =3D &s32g_pp->pci;
+> > > > > +
+> > > > > +     if (!dw_pcie_link_up(pci))
+> > > > > +             return 0;
+> > > >
+> > > > Does something bad happen if you omit the link up check and the lin=
+k
+> > > > is not up when we get here?  The check is racy (the link could go d=
+own
+> > > > between dw_pcie_link_up() and dw_pcie_suspend_noirq()), so it's not
+> > > > completely reliable.
+> > > >
+> > > > If you have to check, please add a comment about why this driver ne=
+eds
+> > > > it when no other driver does.
+> > >
+> > > dw_pcie_suspend_noirq returns an error and the suspend fails
+> >
+> > The implication is that *every* user of dw_pcie_suspend_noirq() would
+> > have to check for the link being up.  There are only three existing
+> > callers:
+> >
+> >   imx_pcie_suspend_noirq()
+> >   ls_pcie_suspend_noirq()
+> >   stm32_pcie_suspend_noirq()
+> >
+> > but none of them checks for the link being up.
+> >
 >
-> Can you point me to that conversation?
+> If no devices are attached to the bus, then there is no need to broadcast
+> PME_Turn_Off and wait for L2/L3. I've just sent out a series that fixes i=
+t [1].
+> Hopefully, this will allow Vincent to use dw_pcie_{suspend/resume}_noirq(=
+) APIs.
 
-https://lore.kernel.org/all/CAKfTPtDcvrAcgFcyFLnzaKnfuU3iB551qed4fnZH=b7Ntkpxpg@mail.gmail.com/
+I'm going to test it
+
+Thanks
 
 >
-> > > > +     s32g_pp->ctrl_base = devm_platform_ioremap_resource_byname(pdev, "ctrl");
-> > > > +     if (IS_ERR(s32g_pp->ctrl_base))
-> > > > +             return PTR_ERR(s32g_pp->ctrl_base);
-> > >
-> > > This looks like the first DWC driver that uses a "ctrl" resource.  Is
-> > > this something unique to s32g, or do other drivers have something
-> > > similar but use a different name?
-> >
-> > AFAICT this seems to be s32g specific in the RM
+> - Mani
 >
-> It does look like there's very little consistency in reg-names across
-> drivers, so I guess it's fine.
+> [1] https://lore.kernel.org/linux-pci/20251106061326.8241-1-manivannan.sa=
+dhasivam@oss.qualcomm.com/
 >
-> > > > +static int s32g_pcie_suspend_noirq(struct device *dev)
-> > > > +{
-> > > > +     struct s32g_pcie *s32g_pp = dev_get_drvdata(dev);
-> > > > +     struct dw_pcie *pci = &s32g_pp->pci;
-> > > > +
-> > > > +     if (!dw_pcie_link_up(pci))
-> > > > +             return 0;
-> > >
-> > > Does something bad happen if you omit the link up check and the link
-> > > is not up when we get here?  The check is racy (the link could go down
-> > > between dw_pcie_link_up() and dw_pcie_suspend_noirq()), so it's not
-> > > completely reliable.
-> > >
-> > > If you have to check, please add a comment about why this driver needs
-> > > it when no other driver does.
-> >
-> > dw_pcie_suspend_noirq returns an error and the suspend fails
->
-> The implication is that *every* user of dw_pcie_suspend_noirq() would
-> have to check for the link being up.  There are only three existing
-> callers:
->
->   imx_pcie_suspend_noirq()
->   ls_pcie_suspend_noirq()
->   stm32_pcie_suspend_noirq()
->
-> but none of them checks for the link being up.
->
-> > I will add a comment
-> > /*
-> >  * If the link is not up, there is nothing to suspend and resume
->
-> Sometimes true, but still racy as I mentioned, and doesn't explain why
-> s32g is different from imx, ls, and stm32.
->
-> > > > +     return dw_pcie_suspend_noirq(pci);
-> > > > +}
+> --
+> =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=
+=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=
+=E0=AF=8D
 
