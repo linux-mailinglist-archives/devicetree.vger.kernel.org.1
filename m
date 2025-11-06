@@ -1,81 +1,41 @@
-Return-Path: <devicetree+bounces-235543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B21F0C39BC1
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 10:05:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE2F5C39C70
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 10:16:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CC503BF2DB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 09:03:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7655F18C66FE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 09:16:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC406309EFD;
-	Thu,  6 Nov 2025 09:03:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23DED303CAB;
+	Thu,  6 Nov 2025 09:15:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L7FOAXT6"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="EVsVRcCF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m3286.qiye.163.com (mail-m3286.qiye.163.com [220.197.32.86])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BB66299A87
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 09:03:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C4C11E9906
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 09:15:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762419797; cv=none; b=ZifYvnXH1GYNibYoypGFyyI34InKr7MxvLCpvSr1BOS9dqdp+xUVQ6GaFBGeyyVzwr1dNaMvnOn5E/KKE4zGvYeQi4R/1ldjYIAagJaR8rIFK9o9Qg5+sk0Rfi8iTfCyQvmSJ6SQJYvsjtS9AhVs9PuSKljku8Gz5uV/nKmpM9s=
+	t=1762420554; cv=none; b=qbg4aW8xTaYVEIDlWinXusgOB9fwHP3ebmaGKvUPQ4mNmydZp8ly+TYKD3g1uUO567SI92y0ZNgWsC8+IFN/LKJUyPsbm21n4gvGLijOnBYGTiW4xLOVRQr7sRhKcUcATEu31hha6Wq56PSPAlpvF7TBcWLXw/Q2lkLWWd5PidQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762419797; c=relaxed/simple;
-	bh=ja81m7q8vyfKq6+3MFF18Vx1X1P27i/NWaLR67piGHc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qO6643pPrXbjLG8WyAxVhZbo7OksDjBgN65obTh/76nF2Ogcti2Q9OO5VWYLbd7y/RGrBhkYPN8w4GJHhX9C19JEz4HefWKYBMBiVQw0sRfKVmvm9xTAPFPVFd/KWVjXU9unToTStU0yQBjSuZxE1XsC4ulnS/kV+YrrxrEUU/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L7FOAXT6; arc=none smtp.client-ip=209.85.210.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-7aae5f2633dso783771b3a.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 01:03:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762419796; x=1763024596; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=iOsJQqZezQEXs0dR6uOOcyuQQaWOjfXrGp1DqpuI0JY=;
-        b=L7FOAXT6WxpfP/gMqxuTq9zzZr9u+hrwkT05tdm/uRt6cH0gdGiJSmYKh/vwrBmPX+
-         nBcGxKXAmEJG48c0lpZaYAZ6oZRt5mdgpt7Z/zJXvQawgp/3pqzvE+mhu05Z94DM2cL0
-         4q5lk+WRK5yaSeBcdH0B8LZbnbsnQyZM2cBz4H2Q6LciLsK2XblI2PFIEhfxQIeSsx/P
-         ecwngxBXPHawcqGLBs37ezlTUmWklDZtuHNqqFKMDbNs9mmb0s70UpNB/g0nXzwa4Wfy
-         AmsGP6hwh15MwS+yZi+GO9KsVSo/fv2qR8dhACn6Fe4m2VfIeyBt6Owc7FH4NrTwuSXE
-         DoOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762419796; x=1763024596;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iOsJQqZezQEXs0dR6uOOcyuQQaWOjfXrGp1DqpuI0JY=;
-        b=cVNDk84apAb42GGNBlp+ijq0uw4ofdUgwrDzaVo8s0DOHVNtcQJILswZJE020k6xad
-         hLDme9cdT6KmfyatCEQcK+C/HAhnMurdu4s3dY6v1jfPjDjwX6zrWb1xOnTR96BQRErV
-         E8njWUq0OxPC1IovN89CdPqSo1dKa9oJKLBwDzjEvdvlPIPFSoysGphHY4lZk1XmGdEB
-         +izI4FpqgpEnXi9H7dG9rP7yiuMgtP1X05VlT1EYpMKzktq7XHKq0NjYpdFn90104aA9
-         2SSwrIhG0KN9GezfdQmwTbGf8KLaspCTWomnCnISSLpIaT3Aq5rvADqhAxQgQbC43Bmr
-         t4Mg==
-X-Forwarded-Encrypted: i=1; AJvYcCXioQSR3Z5lrMsnndN0QQYS2Jx1SuHZXG8PA5qbC0S+LNfzC4ntquxhnc6DuRDkoCqrhuB/T8Q831rn@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGAbax0jhyZNvohxPHENvhFpGf0kKZ3G49jvZKES8/XV8Z5Bar
-	8KACtjD6YRmat5ANfit18N1I24Aep2i+N6Pue/5OV6CwWhERSHbyq2qQ
-X-Gm-Gg: ASbGnctCNv7wPmI9bDrwIUmG+I+r7YqFTW9PDnvN3RLdqpjmoeZORof8WbsXToB2hmc
-	qgKZoXBnUwlcKnT7XvxItKGfKOZMh7pC0FMa1UCRzj7MFI7yuPoSl7EQzMvzndwN5ozp2tBCWal
-	SEEFNxw6Y6Hm2Kap8pzTibJ5fHS2IDRDOY8oiePpZLoMsInB/4uP1esvu9ND5C7YTFJakZr+3rX
-	xBOsAACQq4sSc2oSSjrW0NlV+vYs+JVtbDkNeYbf2hFsAD0kwIi7pzWSUEKHuJ5U5vrwA23zu+E
-	R3ZTtJR6MMWsvA8zxGOMps+g0vyK2Ngnli2qQY8Cmwbvz4rET7r7vgVgeqn/etrdbd9tYSKpcx/
-	KxOVwcafibPrDMd8vZ6wcAweQyKn/ThClOUeYl/9hmBM9xUFb+j3IjzyTBJ07XoBdRktcym3KAS
-	7sfi6MhcbRJYukW7YRS5qbaxCouXXRayx4JA==
-X-Google-Smtp-Source: AGHT+IHIjWJT/zyHFnhWjCTLxPCrQKsHXCp6mnS25oro4Efn4jPDJwfI7GhdcHoHP/t0/INuNPFQJQ==
-X-Received: by 2002:a05:6a20:12c3:b0:2e5:655c:7f86 with SMTP id adf61e73a8af0-34f8580ae0amr7986896637.39.1762419795545;
-        Thu, 06 Nov 2025 01:03:15 -0800 (PST)
-Received: from [172.17.49.162] ([103.218.174.2])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7af7fd59f2asm2056124b3a.27.2025.11.06.01.03.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Nov 2025 01:03:15 -0800 (PST)
-Message-ID: <9d5de3b8-29d0-4202-a361-4bcbfa166755@gmail.com>
-Date: Thu, 6 Nov 2025 14:33:10 +0530
+	s=arc-20240116; t=1762420554; c=relaxed/simple;
+	bh=kyOMFE1ZHCODpRUj5CsPSdzYwQOlGcUcHAuzX0dephA=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=MfOrnnrPfoqAvbib7nSMaOJBn5Yg/JeFItzLHxsusRnMkrk/LLNfB/c/EPNn5wb+Pblrp2vGKpwBWhtyO/1oimkhydx+Fzhj4K89v3UyY4/rlckkcnoX3yyBwuSg/aPSGFsek6FJcl+5yHTrDekOyanIvq8Hw6VQa8CLZRbvUo4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=EVsVRcCF; arc=none smtp.client-ip=220.197.32.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.129] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 28a003a3a;
+	Thu, 6 Nov 2025 16:40:16 +0800 (GMT+08:00)
+Message-ID: <a624f36b-5a06-44f5-98b2-4a194ecebc6a@rock-chips.com>
+Date: Thu, 6 Nov 2025 16:40:14 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,64 +43,136 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/2] Add Qualcomm Technologies, Inc. Talos EVK SMARC
- support
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251104125126.1006400-1-tessolveupstream@gmail.com>
- <xq4jidiffovpg3armhlzrzxloug4irumlycyyvmfaugajbtq4t@cutuj5736ayo>
- <58afe57b-68e8-4de3-841a-df3dbf04ee64@gmail.com>
- <7tk2hd5qursarvomuwe7yt574vmjixh23zz3iw6nzpzm6x7jlj@7q2vlik3t2h6>
-Content-Language: en-US
-From: Tessolve Upstream <tessolveupstream@gmail.com>
-In-Reply-To: <7tk2hd5qursarvomuwe7yt574vmjixh23zz3iw6nzpzm6x7jlj@7q2vlik3t2h6>
-Content-Type: text/plain; charset=UTF-8
+Cc: shawn.lin@rock-chips.com, Jimmy Hon <honyuenkwun@gmail.com>,
+ heiko@sntech.de, joseph.kogut@gmail.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, jonas@kwiboo.se,
+ kever.yang@rock-chips.com, quentin.schulz@cherry.de, pbrobinson@gmail.com,
+ amadeus@jmu.edu.cn, jbx6244@gmail.com, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v6 3/3] arm64: dts: rockchip: Add Radxa CM5 IO Board
+To: Dragan Simic <dsimic@manjaro.org>, FUKAUMI Naoki <naoki@radxa.com>
+References: <20251105051335.17652-1-naoki@radxa.com>
+ <20251105051335.17652-4-naoki@radxa.com>
+ <CALWfF7KyTfpXSyjVQaFzqtn6KyDxuyZOBpPR8y-jf6sduNxq5A@mail.gmail.com>
+ <1EE1A1D9D7C100DA+1b365782-98c4-4ee0-ab96-920990841903@radxa.com>
+ <35ff8e6f-dd2b-d909-70c7-b19240e32ccf@manjaro.org>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <35ff8e6f-dd2b-d909-70c7-b19240e32ccf@manjaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9a5852db0d09cckunm90f65a2de6d1cc
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkhLQ1ZIGB1NGUJKHk0YSkNWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpKQk
+	1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=EVsVRcCFOxEHG6CpeE2rBf6lRWtMELUzVsvBVu3MpMIaWQUlwgStYkjv1e6OtoTrdMHiL/flxVyqrfgJsRKNgaXm8FVHIre6dAC41MvxSo8hRQ02piwkzKCtHo1D8sBZ4Jp6BYj9u7MT6FQzHS74/t8QZRGHPAa6YUDjf031OvU=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=OL4ei2eAwhIyMb6aBp01WxG7KhpGspUlQ42ju4Q0Mng=;
+	h=date:mime-version:subject:message-id:from;
 
-
-
-On 05/11/25 20:23, Dmitry Baryshkov wrote:
-> On Wed, Nov 05, 2025 at 06:27:42PM +0530, Tessolve Upstream wrote:
->>
->>
->> On 05/11/25 06:35, Dmitry Baryshkov wrote:
->>> On Tue, Nov 04, 2025 at 06:21:24PM +0530, Sudarshan Shetty wrote:
->>>> Hi all,
+在 2025/11/06 星期四 11:31, Dragan Simic 写道:
+> Hello Naoki,
+> 
+> On Thursday, November 06, 2025 00:38 CET, FUKAUMI Naoki <naoki@radxa.com> wrote:
+>> On 11/6/25 03:27, Jimmy Hon wrote:
+>>> On Tue, Nov 4, 2025 at 11:14 PM FUKAUMI Naoki <naoki@radxa.com> wrote:
 >>>>
->>>> This patch series adds device tree binding and board support for the
->>>> Qualcomm Technologies, Inc. Talos EVK SMARC platform based on the
->>>> QCS615 SoC.
+>>>> The Radxa CM5 IO Board is an application board for the Radxa CM5.
 >>>>
->>>> The first patch introduces the DT binding entry for the Talos EVK
->>>> SMARC board, and the second patch adds the corresponding DTS
->>>> files for the platform.
->>>>
->>>> Note:
->>>> USB(usb_1_dwc3) supports host-only mode based on the switch SW1 on
->>>> the SoM, which is purely a hardware controlled as USB-ID and USB-VBUS
->>>> is not connected the switching cannot be handled from SW.
->>>> Hence from SW Host-only mode is supported on Linux boot up.
->>>>
->>>> Changes in v5:
->>>>  - Updated commit message. (suggested by Krzysztof)
->>>>  - Introduced generic node name for can, dp, hdmi-bridge. (suggested by
->>>>    Krzysztof)
->>>>  - Introduced talos-evk-cb.dtsi, which has common carrier board
->>>>    interfaces.
+>>>> Specification:
 >>>
->>> Common between what?
+>>>> - 1x microSD card slot
+>>>
+>>> [ snip ]
+>>>
+>>>> +
+>>>> +&sdmmc {
+>>>> +       bus-width = <4>;
+>>>> +       cap-mmc-highspeed;
+>>>> +       cap-sd-highspeed;
+>>>> +       cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+>>>> +       disable-wp;
+>>>> +       no-sdio;
+>>>> +       pinctrl-names = "default";
+>>>> +       pinctrl-0 = <&sdmmc_bus4 &sdmmc_clk &sdmmc_cmd>;
+>>>> +       sd-uhs-sdr104;
+>>>> +       vmmc-supply = <&vcc_3v3_s3>;
+>>>> +       vqmmc-supply = <&vccio_sd_s0>;
+>>>> +       status = "okay";
+>>>> +};
+>>>
+>>> When used as a TF slot, shouldn't there be a "no-mmc" also?
 >>
->> Introduced talos-evk-cb.dtsi to define carrier board–specific interfaces
->> common to both HDMI and LVDS top-level DTS variants.
+>> We have "eMMC to uSD."
+>>    https://radxa.com/products/accessories/emmc-to-usd
+>>
+>> [  202.176757] mmc_host mmc1: Bus speed (slot 0) = 49500000Hz (slot req
+>> 52000000Hz, actual 49500000HZ div = 0)
+>> [  202.178477] mmc1: new high speed MMC card at address 0001
+>> [  202.179534] mmcblk1: mmc1:0001 SLD64G 57.6 GiB
+>> [  202.207336] mmcblk1boot0: mmc1:0001 SLD64G 4.00 MiB
+>> [  202.210374] mmcblk1boot1: mmc1:0001 SLD64G 4.00 MiB
+>> [  202.212967] mmcblk1rpmb: mmc1:0001 SLD64G 4.00 MiB, chardev (511:1)
+>>
+>> (I'm not sure why it says "Not work with the SD slot on the board." I
+>> will check.)
 > 
-> Are those two different carrier boards? Is it a single carrier board
-> with mezzanines? With extension boards? With a DIP switch?
+> Thanks for bringing this up, I've always wondered how are such
+> simple eMMC-to-microSD adapters supposed to work, so this was
+> a good opportunity to research that a bit further.
+> 
+> In a few words, they're not supposed to work in true microSD card
+> slots, and they seem to rely on USB card readers that support
+> multiple card interface standards, but not more than a single card
+> at once, by wiring their single interface lines in parallel to the
+> different types of card slots that they provide.
+> 
+> To explain it a bit further, an eMMC chip supports different data
+> bus widths and a backward-compatible MMC card mode, but they have
+> very little knowledge about the SD specification, despite being
+> somewhat similar; the exception is the simplified eMMC boot mode.
+> This is explained further in the JEDEC JESD84-B51 standard, which
+> is available freely from the JEDEC website after registration.
+> 
+> This is also confirmed by the kernel messages quoted above, which
+> show that the eMMC chip is detected as an MMC card this way.
+> 
+> With all that in mind, we should specify "no-mmc" here, because
+> we're describing a microSD slot, instead of describing some hybrid
+> MMC/microSD slot.  That also explains why the adapter sold by Radxa
+> is described as not to be used with microSD card slots on SBCs.  I'd
+> also like to hear is this adapter/eMMC chip combo recognized by the
+> kernel when "no-mmc" is specified; it should fail.
+> 
+> Actually, not specifying "no-mmc" here may result in some unforeseen
+> issues with some (or perhaps many?) microSD cards, because the MMC
+> drivers will treat them as MMC-capable devices and try to initialize
 
-It’s a single carrier board.
-HDMI and LVDS share the same DSI interface, and only one can be active at
-a time depending on a DIP switch.
+Just chime in: The reason why we introduced these, is for controllers
+not cards. AFAITC, before commit 6ae3e537eab9f5, we had done that way
+for a decade, but rarely saw problems in this field.
+
+> them as such, which may cause all kinds of issues.  In fact, I'm not
+> really sure that the MMC drivers are actually implemented in a way
+> that avoids all possible issues with the storage controllers that
+> are capable of both SD and MMC modes when neither of "no-sd" and
+> "no-mmc" is specified in their DT nodes.
 > 
+> Furthermore, it seems that specifying "cap-mmc-highspeed" together
+> with "no-emmc" is actually redundant, which would make sense, but
+> further research of the MMC drivers is needed.  I've added that to
+> my ever-growing TODO list. :)
+> 
+>>> That's how the Rock 5A, 5B, and 5C were defined.
+>>
+>> I have submitted a patch without "no-mmc" before. I intend to send one
+>> again when I have the chance.
+> 
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
 
