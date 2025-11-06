@@ -1,111 +1,176 @@
-Return-Path: <devicetree+bounces-235496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A95EDC39759
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 08:51:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B11B2C39774
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 08:54:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43ADD1A434ED
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 07:51:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF3EA3B8348
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 07:54:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E18C42DCF72;
-	Thu,  6 Nov 2025 07:51:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6874B2FB988;
+	Thu,  6 Nov 2025 07:54:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lcKsVyii"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Tf8iondg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 219FB287508
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 07:51:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44FC92F99B3;
+	Thu,  6 Nov 2025 07:54:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762415483; cv=none; b=QB5c3IMhOFKrRRBq5TK2AX9BCF6V/601/X5wGlsVQxEqzG9KiXmLgVLh7E/2K/sQEBOV+55Y1Jg2B0aa6rj/+TAx+2oLGcoa+VEsgXoizkJZDz8liJbokAyrY8hbfC03uvyqv8yD3o/do8M/Vgv5cVpJIhituW5t3sAIJgX6TyQ=
+	t=1762415655; cv=none; b=IRcBprdm1UVkIV05Y+OU+jVSeSAO/ZsRIIUWnBTJv/e0iFVnyFdjTXCgpbQF7pofbaMxRvvHzuO39KLG2ZKESDHyp4csC1A9BZQ0wnJvD6IO4kmjoABiZm6Li3pI4y5k6pr/vFzOLrBTK04uZyJqpIlwk0w2og822LFB51SC16k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762415483; c=relaxed/simple;
-	bh=V3okf9oIEIU43qw5xYW1BwiN1gJLrWq2sN3TplwqiZw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lTXxg8kULkM7wRIJb3rcCn4M8HwrbBYtX7vwQHwlf0REgNpZRvqdEG70HWmlVnFPRHz6xwwKenBRhocQRxLdtwuKVNxKIAkdMxOzp4bv+L3YeOGYPLXP2kr1f6xThuJ1BmDsSsJCB5nyzWOtrw8OSRnVA7k6WIRcRUySM+Cl570=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lcKsVyii; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-6406f3dcc66so1134464a12.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Nov 2025 23:51:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762415480; x=1763020280; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=v7QbmE1T84ff08D3+wx9jlBrqSs8DUW5Q3gCIAzKNPQ=;
-        b=lcKsVyiiD6AOqH2GqfPZQVE1DKIKKDtHcvOKJIU8xNp3Tj4x4yVLE+tj5VMQ1pch39
-         qJ7iJY3YMryBVwfMWQl5Se9i6ksKa75bCsQTXAB7niCDQmgFOzStXJAVEwxUz1rcClge
-         j4XV0U8DjZ2pgWL6lES0F+o+samexitYZUi73camA2v1LpX157rz7ctC2mR4iw9EA9zd
-         OklA/1WJMB3DvDUceh+Ocdrhgf4GfKUPKw4hQQJiXoZJtijkT4+WZOwkI/mj1d1GfAkb
-         A4ihScjaMVTSYEx5bEmoLYqqF8/TtdSaqkVJYQDHcViWBMCl0VmU9IsBjyCyNVeodi6H
-         K07w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762415480; x=1763020280;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=v7QbmE1T84ff08D3+wx9jlBrqSs8DUW5Q3gCIAzKNPQ=;
-        b=Imi1uVICbKYluAge4eJSUpi56hy6oAvx9b3Jdz0PMafzPUrQNfDJbAm07akpeAgepA
-         Zsx/bZ6BFAYyw6epoZGyIxqdeWzVx4idc8wa1sfN8yqTUMuqNzmhdDX9KZzyCgjTWRyG
-         X8nEuO7UK0oMDFR/ycOE/2HDCB25RptJBCFSdFJQedL6YhLUwX/G0Z8yo1OM7ETav1gk
-         P6ya7OY8xYLPvmlOuAzuyrz6eTA/eQri2gflj/b1NqyFkJvt/NHNDyQFIMfEkUGv3Fyy
-         az4Y/RjKv1cJ8YLbTUw81IDwsuCg8VwjoJKgvoSm7e+uR6N2kFm7m8NH3oKKFSG+mzgu
-         8/hA==
-X-Forwarded-Encrypted: i=1; AJvYcCXG5Y6prGHJnQfkkBb+FTSYJ0mWbZCqrAsr8dQtPan8ooN0aWFAnRKwsMDOPmcUTCFUOniph43NBLNF@vger.kernel.org
-X-Gm-Message-State: AOJu0YzX0dygG488bcr39PdgLKdUad9anqMNIi8tspVXWRpvyjrjipCj
-	H1KefgPcjXiyGSMhiCs0w2+jo/qa9Sq5rCss+5oiPFcuo2WfNJnGRIDbC9jqNctnlWc96tjjDj5
-	7fmr9I3Tq/xCX0EUddpGSBu8zkw5TVeqN8oWhlxQrNg==
-X-Gm-Gg: ASbGncsg8iGAAbKlXUcka+eH6T5zCReWpVbbmYbLjtC6XvAwg/esGb6//SB1+bugfBP
-	UBYTj+YfR3uyaWpPZfiyxkWdNg4rRn4NlhRpfCUT5Yf28JJSyhfnyMbp0NZIXdHSXZmopClmAI6
-	lrQMlbRk3hM65CGPdqbREBaKS9LDZXuLjsq66+XBOShsudTIXUEdnNlG2pP8DyK69dTtht4iaHu
-	KUbz/rjmyOSlBd/aeFGijMfKQ3Fv8suwvKhP0402ytnRWTLgg6W+GcCNd3JUg==
-X-Google-Smtp-Source: AGHT+IH5mMQNAbO3dsRPBZZKprrZKG8gWiaT6H027FsLcjDm/NMQYqk1ZtvdWqQy6Uf2hPguHqWdFrxhl0EoZUCxvTg=
-X-Received: by 2002:a05:6402:20d6:10b0:640:9db5:ba2f with SMTP id
- 4fb4d7f45d1cf-64105b8ef06mr4773837a12.30.1762415480479; Wed, 05 Nov 2025
- 23:51:20 -0800 (PST)
+	s=arc-20240116; t=1762415655; c=relaxed/simple;
+	bh=wLTcaw1m6btdqc59dnevnaF+89zVaFxE6n2I5MrHVDk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cr/cHYcfyr9d72SeL23eFkKEtSY0TrVOPZLUWv+PzlHsVzl+LO5/5oOk2F564P6x8sJdJ3BryLSCJHrkIUKjeRdPonelUa0iA324sbzSt8X4KWw6tvf5BHr5BMJua9aYPwiv4oxVD014+QsEJJqUI8JBdGToYB921i+l3taEx3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Tf8iondg; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762415654; x=1793951654;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wLTcaw1m6btdqc59dnevnaF+89zVaFxE6n2I5MrHVDk=;
+  b=Tf8iondgAGL6uBUxbG083gdF2TGHlLFdRinItuN16Fm7GJnP5UMSx9+m
+   9lOkQGYlmFKGugye5tegMRgj9DrgOQveBTIg/ZcWoTy6zpAUTCih27kYC
+   WEZf61bCfgfK4JTyHcX3rjTbnvdEeZHZLbRleGxmGbaOCyZVJ7O97Dx4Q
+   mRZmGt5YlnWPfY5mD2rhPai1RhdoT5q7sjekVuz1N47DOy1JnGQgxNf6+
+   F49sw8h7bQtsmMM9GXt41hq4vVuqH2b1rTZo8Vuwg0C9123W/0ratxNyD
+   fG30/EzCCOAKQlrEYkDyZCDlvLTd28ofY86XA/x6j2Y2Zdkb5FdaYWtRZ
+   g==;
+X-CSE-ConnectionGUID: xk84Q9lqT0GAbl7xNcPiCQ==
+X-CSE-MsgGUID: uikBgEkrTw6T8qBOO3dfLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="75661060"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; 
+   d="scan'208";a="75661060"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2025 23:54:12 -0800
+X-CSE-ConnectionGUID: 19OIuhVhTpuH4d+3goeaBA==
+X-CSE-MsgGUID: GzWa9EeyRnGyWnJMgq+T0w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; 
+   d="scan'208";a="187852599"
+Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
+  by orviesa008.jf.intel.com with ESMTP; 05 Nov 2025 23:54:08 -0800
+Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vGuon-000Td2-37;
+	Thu, 06 Nov 2025 07:54:05 +0000
+Date: Thu, 6 Nov 2025 15:53:18 +0800
+From: kernel test robot <lkp@intel.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, David Jander <david@protonic.nl>,
+	Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Subject: Re: [PATCH v1 2/2] iio: adc: Add TI ADS131M0x ADC driver
+Message-ID: <202511061504.VlK7FeXK-lkp@intel.com>
+References: <20251105143814.1807444-3-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251022174309.1180931-2-vincent.guittot@linaro.org> <20251106000053.GA1932421@bhelgaas>
-In-Reply-To: <20251106000053.GA1932421@bhelgaas>
-From: Vincent Guittot <vincent.guittot@linaro.org>
-Date: Thu, 6 Nov 2025 08:51:08 +0100
-X-Gm-Features: AWmQ_bki5HMad9R_EvGRCt6ZsgIelgkfzutK5gpeBF-eV1fPQRjJw2903OorBCc
-Message-ID: <CAKfTPtBWfuHP2h+7ExJ_mm6zt_DviQTa5KEUwECCzxsLk5=pBg@mail.gmail.com>
-Subject: Re: [PATCH 1/4 v3] dt-bindings: PCI: s32g: Add NXP PCIe controller
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: chester62515@gmail.com, mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com, 
-	s32@nxp.com, bhelgaas@google.com, jingoohan1@gmail.com, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com, 
-	Ghennadi.Procopciuc@nxp.com, ciprianmarian.costea@nxp.com, 
-	bogdan.hamciuc@nxp.com, Frank.li@nxp.com, 
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	cassel@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251105143814.1807444-3-o.rempel@pengutronix.de>
 
-On Thu, 6 Nov 2025 at 01:00, Bjorn Helgaas <helgaas@kernel.org> wrote:
->
-> On Wed, Oct 22, 2025 at 07:43:06PM +0200, Vincent Guittot wrote:
-> > Describe the PCIe host controller available on the S32G platforms.
->
-> > +            reg = <0x00 0x40400000 0x0 0x00001000>,   /* dbi registers */
-> > +                  <0x00 0x40420000 0x0 0x00001000>,   /* dbi2 registers */
-> > +                  <0x00 0x40460000 0x0 0x00001000>,   /* atu registers */
-> > +                  <0x00 0x40470000 0x0 0x00001000>,   /* dma registers */
-> > +                  <0x00 0x40481000 0x0 0x000000f8>,   /* ctrl registers */
-> > +                  <0x5f 0xffffe000 0x0 0x00002000>;  /* config space */
->
-> Fix comment alignment.
+Hi Oleksij,
 
-okay
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on jic23-iio/togreg]
+[also build test WARNING on linus/master v6.18-rc4 next-20251106]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Oleksij-Rempel/bindings-iio-adc-Add-bindings-for-TI-ADS131M0x-ADCs/20251105-224149
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20251105143814.1807444-3-o.rempel%40pengutronix.de
+patch subject: [PATCH v1 2/2] iio: adc: Add TI ADS131M0x ADC driver
+config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20251106/202511061504.VlK7FeXK-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251106/202511061504.VlK7FeXK-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511061504.VlK7FeXK-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/iio/adc/ti-ads131m0x.c: In function 'ads131m_tx_frame_unlocked':
+   drivers/iio/adc/ti-ads131m0x.c:174:9: error: implicit declaration of function 'put_unaligned_be24' [-Wimplicit-function-declaration]
+     174 |         put_unaligned_be24(command << 8, &priv->tx_buffer[0]);
+         |         ^~~~~~~~~~~~~~~~~~
+>> drivers/iio/adc/ti-ads131m0x.c:163:13: warning: unused variable 'ret' [-Wunused-variable]
+     163 |         int ret;
+         |             ^~~
+   drivers/iio/adc/ti-ads131m0x.c: In function 'ads131m_check_status_crc_err':
+   drivers/iio/adc/ti-ads131m0x.c:224:18: error: implicit declaration of function 'get_unaligned_be16' [-Wimplicit-function-declaration]
+     224 |         status = get_unaligned_be16(&priv->rx_buffer[0]);
+         |                  ^~~~~~~~~~~~~~~~~~
+   drivers/iio/adc/ti-ads131m0x.c: In function 'ads131m_adc_read':
+   drivers/iio/adc/ti-ads131m0x.c:523:30: error: implicit declaration of function 'get_unaligned_be24' [-Wimplicit-function-declaration]
+     523 |         *val = sign_extend32(get_unaligned_be24(buf), 23);
+         |                              ^~~~~~~~~~~~~~~~~~
+
+
+vim +/ret +163 drivers/iio/adc/ti-ads131m0x.c
+
+   149	
+   150	/**
+   151	 * ads131m_tx_frame_unlocked - Sends a command frame with Input CRC
+   152	 * @priv: Device private data structure.
+   153	 * @command: The 16-bit command to send (e.g., NULL, RREG, RESET).
+   154	 *
+   155	 * Assumes the mutex lock is held.
+   156	 * This function sends a command in Word 0, and its calculated 16-bit
+   157	 * CRC in Word 1, as required when Input CRC is enabled.
+   158	 *
+   159	 * Return: 0 on success, or a negative error code from spi_sync.
+   160	 */
+   161	static int ads131m_tx_frame_unlocked(struct ads131m_priv *priv, u32 command)
+   162	{
+ > 163		int ret;
+   164		u16 crc;
+   165	
+   166		/*
+   167		 * Zero the entire TX buffer to send a valid frame.
+   168		 */
+   169		memset(priv->tx_buffer, 0, ADS131M_FRAME_BSIZE(priv->num_channels));
+   170	
+   171		/*
+   172		 * Word 0: 16-bit command, MSB-aligned in 24-bit word.
+   173		 */
+   174		put_unaligned_be24(command << 8, &priv->tx_buffer[0]);
+   175	
+   176		/*
+   177		 * Word 1: Input CRC
+   178		 * Calculated over the 3 bytes of Word 0.
+   179		 */
+   180		crc = ads131m_crc_calculate(priv->tx_buffer, 3);
+   181		put_unaligned_be24(crc << 8, &priv->tx_buffer[3]);
+   182	
+   183		return spi_sync(priv->spi, &priv->msg);
+   184	}
+   185	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
