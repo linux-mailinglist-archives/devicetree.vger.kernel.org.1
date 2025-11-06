@@ -1,81 +1,271 @@
-Return-Path: <devicetree+bounces-235510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04E31C3985B
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 09:10:01 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2211DC3988E
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 09:12:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31A8F1889026
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 08:09:33 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 377FC4FFD96
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 08:09:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89C403002C5;
-	Thu,  6 Nov 2025 08:09:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2201E3009F7;
+	Thu,  6 Nov 2025 08:09:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PJKlKLns"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NvYySyMu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E1302253F2;
-	Thu,  6 Nov 2025 08:09:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 463692253F2
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 08:09:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762416544; cv=none; b=Ctb9HGq94KsOiL+KTWGkEg5NKvj6Y0b2UvS3Ko7tm3NUGjdk7eKpVtTyLtoRxkKNLceicbJ9YT8QZUbVJ3mgeWidmw36Q2ThbO4o6OvBOLFMuyYZNI+aKW8dTVgLOxthSkn3lXZC4koEmAkZHkHRRm16MRjDUpE2+YXbNTcM70I=
+	t=1762416557; cv=none; b=SlysvfujkTU5+TDFEexYQrs1M6EjhacoSoT2brCe2arNU6OIPg07u+2nGEENN7iUtqqktvopOuMJ77GveBDZVXkfYEeYiQOO/jAt3cjuxtKGSv//eRhn4ei+5Oy25px2Ou5NBld4Wfq46FDBtjUXWNSjq7YA66/TUwsfxB0Gc24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762416544; c=relaxed/simple;
-	bh=KeZxaBiMaFqGzHOEC/KGKPC7r+2lteiyS+bw4+ABWbI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pySmc/cYzAJx+TprbsYBQBlSAvxR2X4A/hEj9Ptr9bHgrkUv3KujiPsyzIRf7ZkmcmqfZiKtSQ8D04wqpcgHWbooBTHTVHAmKkpHQ8N6gKPfY+yniGgFkMxDXYwW/Tby54yoDApOQBEs4BxZfjHUb9gnNiBh0tDSUovI3vo3h+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PJKlKLns; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66B6EC4CEF7;
-	Thu,  6 Nov 2025 08:09:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762416544;
-	bh=KeZxaBiMaFqGzHOEC/KGKPC7r+2lteiyS+bw4+ABWbI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PJKlKLnsxkTwBMFSsdrjqV8bHU4W00dtKsM94WUleAqWJTjGRbkMSGjd4Umeyso3J
-	 HAhr1XW7rt6SuZv1OX333guxLueDsTxzy744Ufpy6BQmphlKI2wDTsh0GP7bumuksC
-	 lwbnwqLmB7XQtUdbm2fmeKoa30ZlwhwvReNH3HamDTMxa0VbxrfyWLEzrpYS1FVo8Y
-	 0somk8OW5ZQqGneyApgIljne1G7K95mdFCBWPU1vriagpDV6CiB+QheD125DxQpOmo
-	 xotZbuqWe1kv5qTyuo5bLwk773C4fo/hCGBspWcc1P6InXi5jTxeioXx3yqAyAxDyy
-	 v4ECozEt6g6QQ==
-Date: Thu, 6 Nov 2025 09:09:01 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Georg Gottleuber <ggo@tuxedocomputers.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Ettore Chimenti <ettore.chimenti@linaro.org>, Srinivas Kandagatla <srini@kernel.org>, 
-	stefan.schmidt@linaro.org, stephan.gerhold@linaro.org, wse@tuxedocomputers.com, 
-	cs@tuxedo.de
-Subject: Re: [PATCH v2 7/7] firmware: qcom: scm: Allow QSEECOM on Tuxedo
- Elite 14 Gen1
-Message-ID: <20251106-gay-brainy-flounder-ae76c7@kuoka>
-References: <20251105154107.148187-1-ggo@tuxedocomputers.com>
- <20251105154107.148187-8-ggo@tuxedocomputers.com>
+	s=arc-20240116; t=1762416557; c=relaxed/simple;
+	bh=lRfiaPilGCbrJdjqrBIGDPtcN225cI7Hh21G5/DO+Lw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lBdAigfUPi6vIEt/pHCT1beX8VLzKyKIQq1JV1Ooy3jLuMiVaYDBR0j2+vIcd+aR2zXz9KpRx3msXIYBxZqEIvlxxEdDAoTG/ftpLMjMLyWvjCsOE9d4pWMUBT158pCLDuXbDl0LtKOOCY/ffg1q+0qUTzTQeTOhhb6lYnlWE7E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NvYySyMu; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-640c6577120so1173553a12.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 00:09:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1762416553; x=1763021353; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DqG4Vhl3gJVR6ZhqmKUIStjnvxpVzC8nlU32UMscO8w=;
+        b=NvYySyMuRQQ2XjjjuqY+FhQl1fDeGxv2W9ykGPjf49sMdooflSZhikY/BsSyjgRyY2
+         B41A092sTC5rqpSzbbymPoEL9zfSMHZlun719XL8pjn6CEyb5m0r5FOgeg8gpy+0eb++
+         s79zrf0X59MWpaFxMNn2HD+xE6V0KA4K/gc2X/R7LwIJbnjZodvcs/MSQNATmrV1BOAL
+         FjcdDkmMSN52Ywfzsy5AWdl2jEAsaWkCTLAwT9rxtKR3/boQHlUtC/cEKF12DwQdtF7K
+         jveM3IVh8x3kfkknev0xxeGotnlrT9MAZDkgLdUmNgHTjLhLaAdUw1CXfhe1RaszMRmO
+         +I6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762416553; x=1763021353;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DqG4Vhl3gJVR6ZhqmKUIStjnvxpVzC8nlU32UMscO8w=;
+        b=HdxdurwwWFzc5cIpFerCuTTNyn0gaR/0Jy32NNodrMfzq4/Nx4yvBPhDSQsKW9Ba/G
+         TTD/9yH7FsbpViz7nrpVgBxWraztT7uXoijroVTVqvBvzKmXeHivtY7rld5c2eOdkUz4
+         5nmTBuEtbCJaU1hBVaV35TZzD1OrJdqlCguxXge523mqi3/8tOQk4KN/ys6McojBaq1b
+         vQOf8BDOqYgrb4onGLVj9AW9g7Ta/SfumSLQu4S2kb1P7ASFb66JuHKlErTP5h8inmhm
+         hJW3n6DnJF/pb4OI77MrYkfr8xkj54XO5MuK4qjed0tUDj77NWzZHX+QQFpTzm1aUxZc
+         akng==
+X-Forwarded-Encrypted: i=1; AJvYcCUKBSByt6e0Cc2sduvErmf/bq1dFtAoHNGLN01rfls8q0pFREQPAD3gPlFMZKqJkStcwUnwZKBhWbsH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz73UiGn4uuir8nsUn2WgGlVkyH9zZUO/68xbqZ9NTM5/ks0oUs
+	yIZWGbkQ9gPAMlnxsdEISze9c+1M6+y48jW8QGb+xgjeXTOm9jcw63Edtv4cZwAFCaT5U5CicTJ
+	7iP2n5ISBCXShLAeI11I/2IJ/Y2qsLB5X7jEurESMKw==
+X-Gm-Gg: ASbGnctm+R7z+JQWPP4xM1hCFw+upWuAhj9P72UW2VzpN10sjG0Z6t+N3E+bpOlaBVy
+	nHOypbTOJSOvmCoDaITPaH8ZIj9Qm66wb+1EIADmDGsYGS9PL8Spj6CKY2lclAilbPae8kZNmW9
+	31fNw6Y2UFJz+YbfIe4atudNodHgTESvFfhgsEnB+itPXtMxz0UU6W8iyPBGwBliThV4ecENII5
+	lc2cldpPHzcjmtdfK4HNrJ+L6v1sAtO7E+Yz+p8ubEExgEARHfRmVnSXnMqd2iwvIhYD/Nr
+X-Google-Smtp-Source: AGHT+IFpGXTLSElm/iJX28AkNKWJysbi+VSdMAhhXx+DpEVvXomYFy1/eZ4xIzIhBa3g0OBlHb0wiAGdwqeYIeUCjdY=
+X-Received: by 2002:a05:6402:3508:b0:640:c779:909 with SMTP id
+ 4fb4d7f45d1cf-64105a5c833mr5111127a12.27.1762416552602; Thu, 06 Nov 2025
+ 00:09:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251105154107.148187-8-ggo@tuxedocomputers.com>
+References: <20251022174309.1180931-1-vincent.guittot@linaro.org>
+ <20251022174309.1180931-2-vincent.guittot@linaro.org> <6k5zdhbhtqg2dghdm2bkbymr5rwzcowziaahfdvgw4dk22y43y@npsrperinzue>
+In-Reply-To: <6k5zdhbhtqg2dghdm2bkbymr5rwzcowziaahfdvgw4dk22y43y@npsrperinzue>
+From: Vincent Guittot <vincent.guittot@linaro.org>
+Date: Thu, 6 Nov 2025 09:09:01 +0100
+X-Gm-Features: AWmQ_blssT-7N0Jk7hsjbSupnpo_HEbqq26DIoOJgn8hufRZY427ml3fisK5oFk
+Message-ID: <CAKfTPtC87w7RVSDAXWXRX1sjgo4s=_Z_k62+mfTXrMZwmkEpFg@mail.gmail.com>
+Subject: Re: [PATCH 1/4 v3] dt-bindings: PCI: s32g: Add NXP PCIe controller
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: chester62515@gmail.com, mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com, 
+	s32@nxp.com, bhelgaas@google.com, jingoohan1@gmail.com, lpieralisi@kernel.org, 
+	kwilczynski@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com, 
+	Ghennadi.Procopciuc@nxp.com, ciprianmarian.costea@nxp.com, 
+	bogdan.hamciuc@nxp.com, Frank.li@nxp.com, 
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	cassel@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 05, 2025 at 04:41:07PM +0100, Georg Gottleuber wrote:
-> From: Ettore Chimenti <ettore.chimenti@linaro.org>
-> 
-> This is needed to access EFI variables from Linux.
-> 
-> Signed-off-by: Ettore Chimenti <ettore.chimenti@linaro.org>
+On Thu, 6 Nov 2025 at 08:12, Manivannan Sadhasivam <mani@kernel.org> wrote:
+>
+> On Wed, Oct 22, 2025 at 07:43:06PM +0200, Vincent Guittot wrote:
+> > Describe the PCIe host controller available on the S32G platforms.
+> >
+> > Co-developed-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
+> > Signed-off-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
+> > Co-developed-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+> > Signed-off-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+> > Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
+> > Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+> > Co-developed-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+> > Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+> > Co-developed-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
+> > Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
+> > Co-developed-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+> > Signed-off-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+> > Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
+> > ---
+> >  .../bindings/pci/nxp,s32g-pcie.yaml           | 102 ++++++++++++++++++
+> >  1 file changed, 102 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pci/nxp,s32g-pcie=
+.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml b=
+/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
+> > new file mode 100644
+> > index 000000000000..2d8f7ad67651
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
+> > @@ -0,0 +1,102 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pci/nxp,s32g-pcie.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NXP S32G2xxx/S32G3xxx PCIe Root Complex controller
+> > +
+> > +maintainers:
+> > +  - Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+> > +  - Ionut Vicovan <ionut.vicovan@nxp.com>
+> > +
+> > +description:
+> > +  This PCIe controller is based on the Synopsys DesignWare PCIe IP.
+> > +  The S32G SoC family has two PCIe controllers, which can be configure=
+d as
+> > +  either Root Complex or Endpoint.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/pci/snps,dw-pcie.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - enum:
+> > +          - nxp,s32g2-pcie
+> > +      - items:
+> > +          - const: nxp,s32g3-pcie
+> > +          - const: nxp,s32g2-pcie
+> > +
+> > +  reg:
+> > +    maxItems: 6
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: dbi
+> > +      - const: dbi2
+> > +      - const: atu
+> > +      - const: dma
+> > +      - const: ctrl
+> > +      - const: config
+> > +
+> > +  interrupts:
+> > +    maxItems: 2
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: dma
+> > +      - const: msi
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - interrupts
+> > +  - interrupt-names
+> > +  - ranges
+> > +  - phys
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/phy/phy.h>
+> > +
+> > +    bus {
+> > +        #address-cells =3D <2>;
+> > +        #size-cells =3D <2>;
+> > +
+> > +        pcie@40400000 {
+> > +            compatible =3D "nxp,s32g3-pcie",
+> > +                         "nxp,s32g2-pcie";
+> > +            reg =3D <0x00 0x40400000 0x0 0x00001000>,   /* dbi registe=
+rs */
+> > +                  <0x00 0x40420000 0x0 0x00001000>,   /* dbi2 register=
+s */
+> > +                  <0x00 0x40460000 0x0 0x00001000>,   /* atu registers=
+ */
+> > +                  <0x00 0x40470000 0x0 0x00001000>,   /* dma registers=
+ */
+> > +                  <0x00 0x40481000 0x0 0x000000f8>,   /* ctrl register=
+s */
+> > +                  <0x5f 0xffffe000 0x0 0x00002000>;  /* config space *=
+/
+> > +            reg-names =3D "dbi", "dbi2", "atu", "dma", "ctrl", "config=
+";
+> > +            dma-coherent;
+> > +            #address-cells =3D <3>;
+> > +            #size-cells =3D <2>;
+> > +            device_type =3D "pci";
+> > +            ranges =3D
+> > +                     <0x81000000 0x0 0x00000000 0x5f 0xfffe0000 0x0 0x=
+00010000>,
+> > +                     <0x82000000 0x0 0x00000000 0x58 0x00000000 0x0 0x=
+80000000>,
+> > +                     <0x82000000 0x1 0x00000000 0x59 0x00000000 0x6 0x=
+fffe0000>;
+> > +
+> > +            bus-range =3D <0x0 0xff>;
+> > +            interrupts =3D <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
+> > +                         <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
+> > +            interrupt-names =3D "dma", "msi";
+> > +            #interrupt-cells =3D <1>;
+> > +            interrupt-map-mask =3D <0 0 0 0x7>;
+> > +            interrupt-map =3D <0 0 0 1 &gic 0 0 GIC_SPI 128 IRQ_TYPE_L=
+EVEL_HIGH>,
+> > +                            <0 0 0 2 &gic 0 0 GIC_SPI 129 IRQ_TYPE_LEV=
+EL_HIGH>,
+> > +                            <0 0 0 3 &gic 0 0 GIC_SPI 130 IRQ_TYPE_LEV=
+EL_HIGH>,
+> > +                            <0 0 0 4 &gic 0 0 GIC_SPI 131 IRQ_TYPE_LEV=
+EL_HIGH>;
+> > +
+> > +            phys =3D <&serdes0 PHY_TYPE_PCIE 0 0>;
+>
+> PHY is a Root Port specific resource, not Root Complex. So it should be m=
+oved to
+> the Root Port node and the controller driver should parse the Root Port n=
+ode and
+> control PHY. Most of the existing platforms still specify PHY and other R=
+oot
+> Port properties in controller node, but they are wrong.
 
-Also incomplete DCO.
+Yeah, we had similar discussion on v1 and as designware core code
+doesn't support it, the goal was to follow other implementations until
+designware core is able to parse root port nodes.
+I can add a root port node for the phy and parse it in s32 probe
+function but then If I need to restrict the number of lane to 1
+instead of the default 2 with num-lanes then I have to put it the
+controller node otherwise designware core node will not get it.
 
-Best regards,
-Krzysztof
 
+
+>
+> - Mani
+>
+> --
+> =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=
+=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=
+=E0=AF=8D
 
