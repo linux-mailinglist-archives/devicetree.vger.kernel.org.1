@@ -1,68 +1,68 @@
-Return-Path: <devicetree+bounces-235747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA48BC3C406
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 17:07:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2195EC3C560
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 17:18:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A679D1B23E6A
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 16:07:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F3BE422D97
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 16:11:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D4E533C51A;
-	Thu,  6 Nov 2025 16:07:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 315C634A76F;
+	Thu,  6 Nov 2025 16:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ULtLdBXd"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gAPB+iyQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58B5C316918;
-	Thu,  6 Nov 2025 16:07:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6530934A3CD;
+	Thu,  6 Nov 2025 16:10:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762445247; cv=none; b=ZKBQYzdYTCPqSnK0LYhp5vqA9n4LLdZFwrO5Qy7McnrHAcsVFBryQLXILNKReQ14A4BOnS6wcrJwiZ2dZxIR5tb4vie1RIFb9BD+n21aLqVE4cFgfElDz0iuyAHVRBd8k/HEPhGVu3npPYVU546B0rZAqTvZFyPaHSJkDZS2jDk=
+	t=1762445427; cv=none; b=lioUJy9uz3u+hBfCAr+ECrNwF4+uzBIgJglEu3Mz93qI7u22S8ERjXqj4IaSOxmSmHKJ5hkxhM7tKprUWE/8xcWMs/PILlD61HwgdmJVR43OAltm4IDAqJcKYu6BjajZ2hZXo2i/O/pJYs+NkF/ZYu+SR8IQnGgxpjTwHFm/ups=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762445247; c=relaxed/simple;
-	bh=SbAz1dDS4lGDeM9FWy6nLhyTEHqSyFKNrQiQdkYRtqE=;
+	s=arc-20240116; t=1762445427; c=relaxed/simple;
+	bh=Llc47k9a9TnaZH+5o6GJeioVsarqczKfv1LsFk7gtBQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GUP2yG81d/zLQy9jqLodXMm90uWGV5pfPf8CiPxhKu+0Ku6IZN+zoWc1UDnLsrujxjx0IFcbLikxbzY5ORLYDck+MgnJrCoGJ9fxGEZgVEYxNnxdv3vQpeZ8nmfF8jaG+1jEfPaXGz2CAs2+p61kRCcmyZMV4Xqj9oSuOByHyvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ULtLdBXd; arc=none smtp.client-ip=198.175.65.19
+	 Content-Type:Content-Disposition:In-Reply-To; b=o2J2rg8AvWRp4RAd1EofZwqbvYLCcnypwmBHzTLozanUsiyaqosc5n0DDe8ErT6gxjLxVBwh8XNQLQeakFg6+oMsaN3lv/p4f6eHOAwMDMQV1mD55yZSEolTNoWb6lPZf+j78zWe8Qwe68X0RHbhlPFLcZbQ31OjKGT+25zshAU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gAPB+iyQ; arc=none smtp.client-ip=192.198.163.12
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762445245; x=1793981245;
+  t=1762445425; x=1793981425;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=SbAz1dDS4lGDeM9FWy6nLhyTEHqSyFKNrQiQdkYRtqE=;
-  b=ULtLdBXdJUgpKbjcSsLkbbmzSaiuP89PFBRX/pb7WCP69TbVvaMuzX1V
-   kA/Xq0M6KpAg0OzKEvXRQn1nSxYmQSI+CkySBs+CKOizHhDMtkDrV6MWt
-   k0JfUDkGnbSQogQrzn68mc+jBpeceFdJMSyAdo9uXxTWQ0reUZbwRFsRw
-   kpy87CjRowBJTKYpcJAbJbdShXpcMrEAK+DIPvOOCkHkPDnl+rqLZttmf
-   sntr4ERF2agrIW1dy0GPbIkQDFmGHwF2JoxGkI6PhqvNxi37Z/Mrztr3R
-   y8n27HxS5vKCjZgQT39WtQUmuPnTNGk3hqxAUN3j3ilOfXsW5RX/ITEAI
-   g==;
-X-CSE-ConnectionGUID: ivy8FE9RRXqDfGvzV9cAug==
-X-CSE-MsgGUID: sbtaZjGxTV20ZDb+FVBPpA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="64469941"
+  bh=Llc47k9a9TnaZH+5o6GJeioVsarqczKfv1LsFk7gtBQ=;
+  b=gAPB+iyQEtwqd044pOKIT+QJ8OVW7ob4GWX9B9fN7hEwc0hcfmBIXgNN
+   VYnjJrH+uN9l4y5GhpVeUO1k+9es6gfyUoajmXfadKsO0lnrSfQUNij4R
+   wBIgcmY7BkCtMINuUm3zelm04gO6bv9ji0+TQeLTpCfdbshYP3SD+V9Y7
+   DVSFGOstPfv1DqIFvg4Au8k2FTDQeAzIwU96SucUfpEA2vy5eQa9berMt
+   MUb4H5QTsxXwGP0+QwYVvGLEkjMux/I9+8rDkfhelUJrnsZcSUhdXf2O7
+   52w/GaW8JBFnMaaX50dJaCYdcrI3drtCFJyGIl/IdO6WmMP4PmXURbx3t
+   w==;
+X-CSE-ConnectionGUID: XjAcL7QJR7+3K7vO1qC4Rw==
+X-CSE-MsgGUID: AyPaW+eBT3qQsEfaEW23jA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="68446874"
 X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; 
-   d="scan'208";a="64469941"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2025 08:07:24 -0800
-X-CSE-ConnectionGUID: xyGQLGVLSAGvFCLnQ0FfRg==
-X-CSE-MsgGUID: QGNNY7BrSregxim4Q2AYIA==
+   d="scan'208";a="68446874"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2025 08:10:25 -0800
+X-CSE-ConnectionGUID: 18epo9g/S/+XH0+8iF5hZg==
+X-CSE-MsgGUID: Yw6PxLOjQLqAALwiKX9jYw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; 
-   d="scan'208";a="218545205"
+   d="scan'208";a="187637058"
 Received: from abityuts-desk.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.244.224])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2025 08:07:21 -0800
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2025 08:10:22 -0800
 Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
 	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1vH2W6-00000006BoP-1d52;
-	Thu, 06 Nov 2025 18:07:18 +0200
-Date: Thu, 6 Nov 2025 18:07:18 +0200
+	id 1vH2Z1-00000006Brb-0xHC;
+	Thu, 06 Nov 2025 18:10:19 +0200
+Date: Thu, 6 Nov 2025 18:10:18 +0200
 From: Andy Shevchenko <andriy.shevchenko@intel.com>
 To: Romain Gantois <romain.gantois@bootlin.com>
 Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
@@ -76,10 +76,11 @@ Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v3 2/5] iio: add processed write API
-Message-ID: <aQzHtqFEIA5E0ikO@smile.fi.intel.com>
+Subject: Re: [PATCH v3 3/5] iio: test: Add kunit tests for
+ iio_divide_by_value()
+Message-ID: <aQzIavXYD7fUbrqc@smile.fi.intel.com>
 References: <20251106-ltm8054-driver-v3-0-fd1feae0f65a@bootlin.com>
- <20251106-ltm8054-driver-v3-2-fd1feae0f65a@bootlin.com>
+ <20251106-ltm8054-driver-v3-3-fd1feae0f65a@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,175 +89,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251106-ltm8054-driver-v3-2-fd1feae0f65a@bootlin.com>
+In-Reply-To: <20251106-ltm8054-driver-v3-3-fd1feae0f65a@bootlin.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Thu, Nov 06, 2025 at 03:11:47PM +0100, Romain Gantois wrote:
-> Add a function to allow IIO consumers to write a processed value to a
-> channel.
+On Thu, Nov 06, 2025 at 03:11:48PM +0100, Romain Gantois wrote:
+> Add kunit tests for iio_divide_by_value(), these are similar to the
+> existing tests for iio_multiply_value(), but the operand values used differ
+> slightly.
 
-...
-
-> +int iio_divide_by_value(int *result, s64 numerator,
-> +			unsigned int type, int val, int val2)
-> +{
-> +	s64 tmp_num, tmp_den;
-> +
-> +	switch (type) {
-> +	case IIO_VAL_INT:
-> +		tmp_num = numerator;
-> +		tmp_den = val;
-> +		break;
-> +	case IIO_VAL_INT_PLUS_MICRO:
-> +	case IIO_VAL_INT_PLUS_NANO:
-> +		switch (type) {
-> +		case IIO_VAL_INT_PLUS_MICRO:
-> +			tmp_num = MICRO;
-> +			tmp_den = MICRO;
-> +			break;
-> +
-> +		case IIO_VAL_INT_PLUS_NANO:
-> +			tmp_num = NANO;
-> +			tmp_den = NANO;
-> +			break;
-> +		}
-
-> +		tmp_num *= numerator;
-> +		tmp_den = (s64)abs(val) * tmp_den + (s64)abs(val2);
-
-Here is a subtle bug. The problematic piece is abs(). See
-https://lore.kernel.org/r/20251106152051.2361551-1-andriy.shevchenko@linux.intel.com
-for the answer.
-
-> +		if (val < 0 || val2 < 0)
-> +			tmp_num *= -1;
-
-Drop that duplication of the switches above and split the calculations. Note,
-with the split done, the confusing assignments of tmp_den will gone as well.
-
-> +		break;
-> +	case IIO_VAL_FRACTIONAL:
-> +		tmp_num = (s64)numerator * (s64)val2;
-> +		tmp_den = val;
-> +		break;
-> +	case IIO_VAL_FRACTIONAL_LOG2:
-> +		tmp_num = (s64)numerator << val2;
-> +		tmp_den = val;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (!tmp_den)
-> +		return -ERANGE;
-> +
-> +	*result = div64_s64(tmp_num, tmp_den);
-> +
-> +	return IIO_VAL_INT;
-> +}
-
-...
-
-> +	offset_type = iio_channel_read(chan, &offset_val, &offset_val2,
-
-> +	if (offset_type >= 0) {
-
-Why?
-
-> +		switch (offset_type) {
-> +		case IIO_VAL_INT:
-> +		case IIO_VAL_INT_PLUS_MICRO:
-> +			half_step = MICRO / 2;
-> +			break;
-> +		case IIO_VAL_INT_PLUS_NANO:
-> +			half_step = NANO / 2;
-> +			break;
-> +		case IIO_VAL_FRACTIONAL:
-> +			offset_val = DIV_ROUND_CLOSEST(offset_val, offset_val2);
-> +			break;
-> +		case IIO_VAL_FRACTIONAL_LOG2:
-> +			offset_val >>= offset_val2;
-> +			break;
-
-> +		default:
-
-You probably wanted to check it here.
-
-> +			return -EINVAL;
-
-
-
-> +		}
-> +
-> +		/* Round fractional part to closest to reduce rounding bias. */
-> +		if (half_step) {
-> +			if (offset_val2 >= half_step)
-> +				*raw -= 1;
-> +			else if (offset_val2 <= -half_step)
-> +				*raw += 1;
-> +		}
-> +
-> +		*raw -= offset_val;
-> +	}
-
-...
-
-> +EXPORT_SYMBOL_GPL(iio_write_channel_processed_scale);
-
-Can we start using namespaced exports?
-
-...
-
-> +/**
-> + * iio_divide_by_value() - Divide by an IIO value
-> + * @result:	Destination pointer for the division result
-> + * @numerator:	Numerator.
-> + * @type:	One of the IIO_VAL_* constants. This decides how the @val
-> + *		and @val2 parameters are interpreted.
-> + * @val:	Denominator.
-> + * @val2:	Denominator. @val2 use depends on type.
-> + *
-> + * Divide an s64 number by an IIO value, storing the result as
-
-s64 number --> @numerator
-
-> + * IIO_VAL_INT. This is typically used for scaling.
-> + *
-> + * Returns:
-> + * IIO_VAL_INT on success or a negative error-number on failure.
-
-Use % for the constants. It will be rendered differently (font) when
-applicable. Same for other constants in all of the kernel-doc you add.
-
-> + */
-
-...
-
-> +/**
-> + * iio_write_channel_processed_scale() - scale and write processed value to a given channel
-> + * @chan:		The channel being queried.
-> + * @val:		Value to write.
-> + * @scale:		Processed value is divided by this scale factor during the conversion.
-> + *
-> + * This function writes a processed value to a channel. A processed value means
-> + * that this value will have the correct unit and not some device internal
-> + * representation. If the device does not support writing a processed value, the
-> + * function will query the channel's scale and offset and write an appropriately
-> + * transformed raw value.
-
-> + * Context: May sleep.
-
-The above kernel-doc doesn't have this!
-
-> + * Return: an error code or 0.
-
-Be consistent with the existing code, and even in your own change.
-
-("Return" section name, "Context" section presence, etc.)
-
-Use Perl (original) kernel-doc for now, the Python has a significant regression
-(the fix is pending to go to Linus' branch).
+When use abs() in the code, always add a check for the *_MIN.
+This will give you a few surprises.
 
 -- 
 With Best Regards,
