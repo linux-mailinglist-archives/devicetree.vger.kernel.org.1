@@ -1,220 +1,172 @@
-Return-Path: <devicetree+bounces-235687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B54CC3B86B
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 15:01:07 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C23DC3B84D
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 15:00:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9B1B62554B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 13:48:43 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B77BA4F633E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 13:53:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F27B2303A35;
-	Thu,  6 Nov 2025 13:47:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59EC73328FA;
+	Thu,  6 Nov 2025 13:53:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IESVYPaq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U/B2+Gtc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com (mail-westusazhn15010018.outbound.protection.outlook.com [52.102.128.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F314E3321B9;
-	Thu,  6 Nov 2025 13:47:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.102.128.18
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762436858; cv=fail; b=FTgorfYoooRcEkoEkJ9qqZQ0Uhfb/nAKOZjXhuS4ZA6uBU3rAeon5rBCWa11G3ttLrpI5u/HKKQSQoA7WQepVCDL2gmbgBVtPDi0bVYVgzpPiwuWvtsn+e/4pde4TIjT+9UO4hOSluzV9i8uOeKGOSe4SKDM5omzvAXPWLUUrqM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762436858; c=relaxed/simple;
-	bh=edyKTNo6LdBH8aX0gpXwILlM7nEA+lvqqMqlvAHp4P0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mV9lvvJjjvRlA8Nnt4WieR6ECvytAyyQjmaoLM4Y2+/QvFfP/P4V66eqCvJhvQEq6W6ytZ1zvrGaBGBu3a6zz/vObwWmC19BQiHl1pHuaMJKiNvV0JBiN5KxlRD4Dhlq3czF1CQqB0YSKPQCYddVMNMue5bfFye/eWZtAZNDSKk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IESVYPaq; arc=fail smtp.client-ip=52.102.128.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nI9/g68Lx3Pehq5q12DpzIa6gmpb5uQea9UQrmEEtDoNhcwYGnNA1xX+/K65OSRjaRn+fQCOh0oXkDGN2jPNxxvq51cYH9WVSzwfB3wkHjtdtziXDKwVeQKMhsXt/Ox0EOvOA8jFStUL51f5GvduYUgLtXV7GL+rbwNjL8asCGavO+Y4h2Aj4Wug9tM29APSXJAxOXh91Pg22KzdSewcT+DoHZrshlxYNkekhy9GOuZJotaXcp6zkfrC7m3jBuz8VP/VZswZ4JNSX6roZG9ZqRjR4rIY2pGkb0YPfsSzVo9hOlwR+RW4Chf4UjgUc0xelAMQk/nbx0Qy9AACC1Q1wQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wwlKsDXAyd4qlaamF8RAvN3x3zyji7/h09GYHZOJ980=;
- b=dP8RfvDPHIKIokSxXgKBZ16xvLHqMCYk/7iD33Pc54kItS0npAIMoUputdIiWNFLaQapD1OIaob0J3Tg92cv6N8tMaNYEjWs2vxwYpm5Eknqzz3uWisIkdZdRSaxWfC9Kiyd79I4FaEDAHiZ9ATOTxbg+EOzTDkul7smokJqEpVFi0QPhnFVl1xI+zomoONuEWBeCWvJfGEAOT6rvNG0cVKD+DAAstcQaO9rJ70waIljjBTm7+SF8UwyCx9JEQK0wuM1hbeKxh/19QV7SXKJcJLFB7VbI/d11OUoYp2Tb0uNnBZK2RxeMApjbYdSM0j595KyFZOHC3QOVrcSBBCN0A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wwlKsDXAyd4qlaamF8RAvN3x3zyji7/h09GYHZOJ980=;
- b=IESVYPaqNqHAju4ewz0ToE9lyQJhfjpw95AqHCBseYKWRBEchnqHWXaV0/oeIPzch0gF7odJHO+B0K9X0RxQbwE3lzuj3tf9paLy4N/JdagM5F70Df50B4Pakz8YKTNML5371xuFG38ukQtowmQRNZX07w5dJtuhkr0Jxyx6uN4=
-Received: from CH5P222CA0004.NAMP222.PROD.OUTLOOK.COM (2603:10b6:610:1ee::8)
- by DS0PR10MB6872.namprd10.prod.outlook.com (2603:10b6:8:131::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.7; Thu, 6 Nov
- 2025 13:47:34 +0000
-Received: from CH2PEPF0000009B.namprd02.prod.outlook.com
- (2603:10b6:610:1ee:cafe::60) by CH5P222CA0004.outlook.office365.com
- (2603:10b6:610:1ee::8) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9298.12 via Frontend Transport; Thu,
- 6 Nov 2025 13:47:30 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- CH2PEPF0000009B.mail.protection.outlook.com (10.167.244.23) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9275.10 via Frontend Transport; Thu, 6 Nov 2025 13:47:33 +0000
-Received: from DFLE215.ent.ti.com (10.64.6.73) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 6 Nov
- 2025 07:47:29 -0600
-Received: from DFLE208.ent.ti.com (10.64.6.66) by DFLE215.ent.ti.com
- (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 6 Nov
- 2025 07:47:29 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE208.ent.ti.com
- (10.64.6.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 6 Nov 2025 07:47:29 -0600
-Received: from a0512632.dhcp.ti.com (a0512632.dhcp.ti.com [172.24.233.20])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5A6DkqDc1301720;
-	Thu, 6 Nov 2025 07:47:23 -0600
-From: Swamil Jain <s-jain1@ti.com>
-To: <jyri.sarha@iki.fi>, <tomi.valkeinen@ideasonboard.com>,
-	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-	<tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>, <nm@ti.com>,
-	<vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <lee@kernel.org>,
-	<louis.chauvet@bootlin.com>, <aradhya.bhatia@linux.dev>
-CC: <devarsht@ti.com>, <praneeth@ti.com>, <h-shenoy@ti.com>,
-	<dri-devel@lists.freedesktop.org>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 5/5] drm/tidss: Fix sampling edge configuration
-Date: Thu, 6 Nov 2025 19:16:52 +0530
-Message-ID: <20251106134652.883148-6-s-jain1@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251106134652.883148-1-s-jain1@ti.com>
-References: <20251106134652.883148-1-s-jain1@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 195E03321BC;
+	Thu,  6 Nov 2025 13:53:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762437219; cv=none; b=DX8sIMTCucO0XtnO2MPKDKjac/J1VCPGWRMcymP4j8LUms0n9E4vYjDIs/EM36Ao0SZ5AqcVJOX+MS6zRfDZspiiXxxuVH9Hh0pzQN1y/aqXFu7VLQsSzYPbVO3wgOSpM7aHPKu+LSg05nJ/Q2NAnmPP+K+tyNRMk1Hu77LFSPw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762437219; c=relaxed/simple;
+	bh=qcQmnaysazEGwAaCAXfwCY+ui93J1l78Y+j7goEWMJc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uk10FsmCzS/9cH4lnTykbaErpSgDo476lwwJhTgDW8BJ1clAH/jgw4twUu/SP9EdSbrcoY+cWGnHazpG34YGPC0ZpCT+qwl7codpK2Sg3pYMdmxWW+MsHhvuPqyYJ3lnI/jSRKOCRbIGB98sDrcjYyOreFoqAZ1yebDbvvYcfg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U/B2+Gtc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75C72C4CEFB;
+	Thu,  6 Nov 2025 13:53:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762437218;
+	bh=qcQmnaysazEGwAaCAXfwCY+ui93J1l78Y+j7goEWMJc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=U/B2+GtcbfxHYrwm8y9iKwVHm3brmqcyvJtf4kiAdXrQDv1jwhYUcTEgaaUtro6s0
+	 o5VrpCW2Rju2WAsXureWRM+JhsrHxM+pBN4wLQVW2lonyMvfzgZJKiNHhifzSY7wt/
+	 PhIv8p4oNEq8+U8/zZ84jDmu5ataeLN4CvNqXhqpq/n0D95018PTYjFlsC8Tvt0iW6
+	 lFfWNyXVb8yhjgd0vYXnjOAHkfjdxK+aQkd1xrgZcclFjSbvvf3p8E5KrLg7FfboCg
+	 3dKl+jQSzofaYCalbwQFv8FKaevex9OtCiic+efn2dU9bPa8oJ3g+/IzfVFSU5/hmQ
+	 reEPNN+OZK3mQ==
+Date: Thu, 6 Nov 2025 13:53:31 +0000
+From: Lee Jones <lee@kernel.org>
+To: James Calligeros <jcalligeros99@gmail.com>
+Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Jonathan Corbet <corbet@lwn.net>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-doc@vger.kernel.org, Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH v4 08/11] input: macsmc-input: New driver to handle the
+ Apple Mac SMC buttons/lid
+Message-ID: <20251106135331.GN8064@google.com>
+References: <20251025-macsmc-subdevs-v4-0-374d5c9eba0e@gmail.com>
+ <20251025-macsmc-subdevs-v4-8-374d5c9eba0e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF0000009B:EE_|DS0PR10MB6872:EE_
-X-MS-Office365-Filtering-Correlation-Id: 81430622-eb84-4c26-0451-08de1d3b0979
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|36860700013|34020700016|1800799024|376014|82310400026|921020|12100799066;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?j/weblWjRoAT7rTtS8dkb1XYoK5qab4WjCYrXMfoefRvIZ0yEVs2k28XXGlb?=
- =?us-ascii?Q?yd4RsIwaYZYfq7LDm64r0TXwpznxjpYs9umyEYZm1gKOvMWaDr8HDuFAtZPS?=
- =?us-ascii?Q?xYdJHH1kL3a614Sy7fFoJfEQrv0NrEuzklVRX3HMtb7KGViQBWgGw2zx44Lz?=
- =?us-ascii?Q?jIUNLCvG77d8ExbJUtuWwEcF1W2YzAyKMZHYnexZt87XAUo7NPA956ptMWQ5?=
- =?us-ascii?Q?mVDpNR+6kOjnc1uYl+36FT2S+stwSNBXH9HPKYySgqDtTb2eac6OH4SgSpGu?=
- =?us-ascii?Q?i9AV2JcCsF3M/xUwJaO4bLFzCydNsYdVxkYtlKdNo0OQlBKhg8byTITF/Z1h?=
- =?us-ascii?Q?h0AMd5tDVIIAjELS0jm4BKB8SPEAEPvknODx2oeEDDq0CInYuzXfF4m6V9dW?=
- =?us-ascii?Q?va3TdQDIwfvetNv5OA9i+sLSMfLsc238enX4DiUlfCdJWqLS188Jla3tBGpL?=
- =?us-ascii?Q?DOEaXFdGosQrnA3biVY82uCPlixGY4rELzA9qnFz45PRSxjcpkopwrt18EDf?=
- =?us-ascii?Q?LPt0T9Q3fijBB6mhU1G3q0vSQ/UKlhubJNKUzYrY2qeXT3da1YbWyO1iha9c?=
- =?us-ascii?Q?6yzlSrtnxo5uOGUVeNY4ZlfwX4iFpZcqE8RwbhseqzsEC804l+Zk04MnQThT?=
- =?us-ascii?Q?3ew18Gb2rFcclsx1pNFv0HsobU3LFGyaRjTEMP6qiCSYJsp3bMlg95wSWjxP?=
- =?us-ascii?Q?1Qo86zSl9LfhL2h2B9FVSbiapjfJDIZzlkjSBYuwGUhZZxCXD2q7Yn/OfOP+?=
- =?us-ascii?Q?XnP2JqHxIwUR8I1q5tnK1D5Jrmhw5ops/JYI2fDhLVIiHfk70xjnS3RZCEeP?=
- =?us-ascii?Q?rMPGASEyBN+CvpG7dgoe3EFgiVNps8w+LxRr6cW0x9vjfdmmEtQwNHZMHTPo?=
- =?us-ascii?Q?a0Obh/7DCFb7tNMLsYXese4VDB3Q9UdCxDoUxPcJ9JLsbU+IgIy/Wk62dvFh?=
- =?us-ascii?Q?OfFQPul5XEf+dBj7euTSh/PuepQqlXB1B4G/xSzhxwskRFMsq+wFYuaEIcUi?=
- =?us-ascii?Q?/LpirS6fdw+eXM/j49vWHVKaFTXKJSNmynyxeWJQ0ugCk8WJqTd2vuAz81ZE?=
- =?us-ascii?Q?SGu3uzXOGbMrFJvp8ZgdbPeHzYi0Wd7WofuPIrpk9OdnFPC42GA0ZshsN8Qa?=
- =?us-ascii?Q?2berh9dBzRaXhDFeRP4HqTwOBpltFsbCo5jddalEChzKyRRZlh6OSgX3jQNB?=
- =?us-ascii?Q?agBIZXiAjRZkB77/j7Xh8GYG5Gi/ImcRc74HGGwurM7P7rrc9rYjYoW8MS2i?=
- =?us-ascii?Q?k15AmRWusB+xeO6fgH/fiHvQ6tANM0KCu3QYQ80FXFLOED3ZPIfhbnInip+y?=
- =?us-ascii?Q?wM5NsK2JBX4S/uSIx1LToY9NYLgf8s3+P/9ur29jz2lSalfjdERMcuBUCXHT?=
- =?us-ascii?Q?kVGZsKAchebmz1hsDTV8wuY8m+O8tgiVLYAUU3jNShsJP2mT5XfqPEbpxkgW?=
- =?us-ascii?Q?abaGJk51Vjr5bYl9cCK9GFNgX205ZN8dz0jIdHlIkhxmnLeexRXBlC6ZAyL9?=
- =?us-ascii?Q?FBg1TtFhvJnQH3GoZYcjElm1kdy02Pc7n0xKlQ782+Sm/HSPoNkbRPuvsj4f?=
- =?us-ascii?Q?MgUyg/paS0hYZzAdfFJ2OL7kmUHE9CL/mSn0/uBB?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(7416014)(36860700013)(34020700016)(1800799024)(376014)(82310400026)(921020)(12100799066);DIR:OUT;SFP:1501;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2025 13:47:33.1349
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 81430622-eb84-4c26-0451-08de1d3b0979
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CH2PEPF0000009B.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB6872
+In-Reply-To: <20251025-macsmc-subdevs-v4-8-374d5c9eba0e@gmail.com>
 
-From: Louis Chauvet <louis.chauvet@bootlin.com>
+On Sat, 25 Oct 2025, James Calligeros wrote:
 
-As stated in the AM62x Technical Reference Manual (SPRUIV7B)[1], the data
-sampling edge needs to be configured in two distinct registers: one in the
-TIDSS IP and another in the memory-mapped control register modules. Since
-the latter is not within the same address range, a phandle to a syscon
-device is used to access the regmap.
+> From: Hector Martin <marcan@marcan.st>
+> 
+> This driver implements power button and lid switch support for Apple Mac
+> devices using SMC controllers driven by the macsmc driver.
+> 
+> In addition to basic input support, this also responds to the final
+> shutdown warning (when the power button is held down long enough) by
+> doing an emergency kernel poweroff. This allows the NVMe controller to
+> be cleanly shut down, which prevents data loss for in-cache data.
+> 
+> Reviewed-by: Neal Gompa <neal@gompa.dev>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Co-developed-by: Sven Peter <sven@kernel.org>
+> Signed-off-by: Sven Peter <sven@kernel.org>
+> Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
+> ---
+>  MAINTAINERS                       |   1 +
+>  drivers/input/misc/Kconfig        |  11 ++
+>  drivers/input/misc/Makefile       |   1 +
+>  drivers/input/misc/macsmc-input.c | 208 +++++++++++++++++++++++++
+>  4 files changed, 221 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 79b9f40224a9..e8283f127f11 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2451,6 +2451,7 @@ F:	drivers/hwmon/macsmc-hwmon.c
+>  F:	drivers/pmdomain/apple/
+>  F:	drivers/i2c/busses/i2c-pasemi-core.c
+>  F:	drivers/i2c/busses/i2c-pasemi-platform.c
+> +F:	drivers/input/misc/macsmc-input.c
+>  F:	drivers/input/touchscreen/apple_z2.c
+>  F:	drivers/iommu/apple-dart.c
+>  F:	drivers/iommu/io-pgtable-dart.c
+> diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
+> index 0e6b49fb54bc..109660a1a5d2 100644
+> --- a/drivers/input/misc/Kconfig
+> +++ b/drivers/input/misc/Kconfig
+> @@ -981,4 +981,15 @@ config INPUT_STPMIC1_ONKEY
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called stpmic1_onkey.
+>  
+> +config INPUT_MACSMC
+> +	tristate "Apple Mac SMC lid/buttons"
+> +	depends on MFD_MACSMC
+> +	help
+> +	  Say Y here if you want to use the input events delivered via the
+> +	  SMC controller on Apple Mac machines using the macsmc driver.
+> +	  This includes lid open/close and the power button.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called macsmc-input.
+> +
+>  endif
+> diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
+> index ae857c24f48e..480a0d08d4ae 100644
+> --- a/drivers/input/misc/Makefile
+> +++ b/drivers/input/misc/Makefile
+> @@ -51,6 +51,7 @@ obj-$(CONFIG_INPUT_IQS7222)		+= iqs7222.o
+>  obj-$(CONFIG_INPUT_KEYSPAN_REMOTE)	+= keyspan_remote.o
+>  obj-$(CONFIG_INPUT_KXTJ9)		+= kxtj9.o
+>  obj-$(CONFIG_INPUT_M68K_BEEP)		+= m68kspkr.o
+> +obj-$(CONFIG_INPUT_MACSMC_INPUT)	+= macsmc-input.o
+>  obj-$(CONFIG_INPUT_MAX7360_ROTARY)	+= max7360-rotary.o
+>  obj-$(CONFIG_INPUT_MAX77650_ONKEY)	+= max77650-onkey.o
+>  obj-$(CONFIG_INPUT_MAX77693_HAPTIC)	+= max77693-haptic.o
+> diff --git a/drivers/input/misc/macsmc-input.c b/drivers/input/misc/macsmc-input.c
+> new file mode 100644
+> index 000000000000..d35322856526
+> --- /dev/null
+> +++ b/drivers/input/misc/macsmc-input.c
+> @@ -0,0 +1,208 @@
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> +/*
+> + * Apple SMC input event driver
+> + * Copyright The Asahi Linux Contributors
+> + *
+> + * This driver exposes certain events from the SMC as an input device.
+> + * This includes the lid open/close and power button notifications.
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/input.h>
+> +#include <linux/mfd/core.h>
 
-Configure the CTRL_MMR register, as mentioned in the Technical Reference
-Manual to fix sampling edge.
+This looks like it shouldn't be there.
 
-[1]: https://www.ti.com/lit/ug/spruiv7b/spruiv7b.pdf
+> +#include <linux/mfd/macsmc.h>
+> +#include <linux/module.h>
+> +#include <linux/reboot.h>
 
-Fixes: ad2ac9dc9426 ("drm/tidss: Add support for AM625 DSS")
-Fixes: 5cc5ea7b6d7b ("drm/tidss: Add support for AM62A7 DSS")
-Cc: stable@vger.kernel.org
-Signed-off-by: Louis Chauvet <louis.chauvet@bootlin.com>
-Signed-off-by: Swamil Jain <s-jain1@ti.com>
----
- drivers/gpu/drm/tidss/tidss_dispc.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
-index d8e1a1bcd660..d09eecb72dc0 100644
---- a/drivers/gpu/drm/tidss/tidss_dispc.c
-+++ b/drivers/gpu/drm/tidss/tidss_dispc.c
-@@ -500,6 +500,7 @@ struct dispc_device {
- 	const struct dispc_features *feat;
- 
- 	struct clk *fclk;
-+	struct regmap *clk_ctrl;
- 
- 	bool is_enabled;
- 
-@@ -1234,6 +1235,11 @@ void dispc_vp_prepare(struct dispc_device *dispc, u32 hw_videoport,
- 				  mode->crtc_hdisplay - 1) |
- 		       FIELD_PREP(DISPC_VP_SIZE_SCREEN_VDISPLAY_MASK,
- 				  mode->crtc_vdisplay - 1));
-+
-+	if (dispc->clk_ctrl) {
-+		regmap_update_bits(dispc->clk_ctrl, 0, 0x100, ipc ? 0x100 : 0x000);
-+		regmap_update_bits(dispc->clk_ctrl, 0, 0x200, rf ? 0x200 : 0x000);
-+	}
- }
- 
- void dispc_vp_enable(struct dispc_device *dispc, u32 hw_videoport)
-@@ -3003,6 +3009,14 @@ int dispc_init(struct tidss_device *tidss)
- 
- 	dispc_init_errata(dispc);
- 
-+	dispc->clk_ctrl = syscon_regmap_lookup_by_phandle_optional(tidss->dev->of_node,
-+								   "ti,clk-ctrl");
-+	if (IS_ERR(dispc->clk_ctrl)) {
-+		r = dev_err_probe(dispc->dev, PTR_ERR(dispc->clk_ctrl),
-+				  "DISPC: syscon_regmap_lookup_by_phandle failed.\n");
-+		return r;
-+	}
-+
- 	dispc->fourccs = devm_kcalloc(dev, ARRAY_SIZE(dispc_color_formats),
- 				      sizeof(*dispc->fourccs), GFP_KERNEL);
- 	if (!dispc->fourccs)
+-- 
+Lee Jones [李琼斯]
 
