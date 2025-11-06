@@ -1,128 +1,120 @@
-Return-Path: <devicetree+bounces-235863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98FA0C3D83B
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 22:37:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 719DAC3D8C8
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 23:11:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8C7818853D1
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 21:37:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11BE01887338
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 22:11:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18DD7301706;
-	Thu,  6 Nov 2025 21:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B9D530AADB;
+	Thu,  6 Nov 2025 22:11:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="ctZ10nOz"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LNWyeaod"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E1AD2E0934;
-	Thu,  6 Nov 2025 21:36:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3965D30ACF0;
+	Thu,  6 Nov 2025 22:10:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762465017; cv=none; b=qQddRZ36wHJXF01ovEQ0mk/nFGMQaPi3L5Cz2Rb+oFrs1XbCdUZjqHfZX5Us6oOPFGplHbTB02PY/xEHc/DtLXd52M4y/N70BvCImyQ9OLIXQynx7S/PO8LkQH1ODveUFqghhyhXBnIFdjvc+KbzHVdppjrWkgaDAL9dYbh48hs=
+	t=1762467061; cv=none; b=i0vm1nKojEcaVuylHBdts5ejX1LZZrPNT32DDRs9xZWe4HdjQZ91qyhMMMHFGJKbHDYoRvpnJj8BvNzbpXjcRxXqxOLXmtk5uLRAauXHkWGhDdK5AQ7J0zSXWvDlhYQHbmS4BU5va02fUDxf31RdLNBVgztZny52w0R2dM+0fMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762465017; c=relaxed/simple;
-	bh=oTCfznkhgyFQWLXV098ZqBUkWSDfOrq30RbAqrD6NSY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ca8GB5UVpii0ignj7AD46aAiTXfYgwWp/Tqbl/qgym13csl5DW21FjWD1osO1JI//WYGyyWCN/TiY9p4TK7dgPsPlcjiFyakQO4KzaYR6oSLLrz+/9F58lKy0DQN9oT6Q++oyNZMwkZ/2gdr7FshBiFazfupJyY4/6bjIpj/UF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=ctZ10nOz; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from [10.0.0.239] (c-73-83-157-215.hsd1.wa.comcast.net [73.83.157.215])
-	by linux.microsoft.com (Postfix) with ESMTPSA id BE5A62118967;
-	Thu,  6 Nov 2025 13:36:50 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com BE5A62118967
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1762465011;
-	bh=oTCfznkhgyFQWLXV098ZqBUkWSDfOrq30RbAqrD6NSY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ctZ10nOzij3Pz1jn48BwSqXS8+7RR9k70veKQD+Zvs3BW87cxZJ8x3gaVbNyPmAoh
-	 cawfFlR/VLqNS0hZj9KVAzNX9cqhWhaNptBeXH4l0xhwWB7GPHbCNrkvZ35ZwK9/MI
-	 3woeNOzcQsKHzvYKjVKckM333+AcLgn7dTN786nM=
-Message-ID: <0bda852b-baaa-4167-ad9d-12931e213e29@linux.microsoft.com>
-Date: Thu, 6 Nov 2025 13:36:50 -0800
+	s=arc-20240116; t=1762467061; c=relaxed/simple;
+	bh=HLoD4g3lh4r2aFWPC1V6XVbRCNdGy200d6QwXjEHzEg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O+1uoO0Qxa1WffSRfAUhuHtYUhxOyRto9IWJnWsEsr9/g8JY9hEpwOy/QSuotHvyQDo7DQ+wNsBxh/zbiZ2SLSZAYw3tbUU+BWGPgsRKwk7MOw/GAgjG2ZMFnXgQCw3FcmIN0PcGaWom82iPRG6hwxmXRx4NTMtvAwE9trpsVW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LNWyeaod; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 0EE5EC0FA93;
+	Thu,  6 Nov 2025 22:10:31 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id BC48D606EE;
+	Thu,  6 Nov 2025 22:10:51 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CF70C1185174E;
+	Thu,  6 Nov 2025 23:10:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1762467051; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=okGwbLaxnS8zbdut10ECdw0yQyNum6PGNoZZb6TW6os=;
+	b=LNWyeaodd4SCncG0c7HUkCFjEY3ShkHP92Yed/PJEFu+IMwo3GZnS4/MbLLPDRI1xRLvFH
+	u6J9aZXrhU+RYmafKfh4eJpUst3lAg+2t6xEwq2qbNf7++SODCIqndlvxbwizqnY7yVXgB
+	w8P8Vin1tu/Gb2war5hSPjE1N5yhyEzpK3zpHznDlX0BGLMxN4FmIYX475KgMFY4C6mhcw
+	gwz86O9fM2r1c3s2b9e4HKcoiQGO7DOo07mTsFXWf461JFWtSem9IowGIVaDJgyovBfh1S
+	o4mF7zd0AcTd4Wxg9kPWryNUxAotUJctduOrj/KqzdDa2UV90i0X+d8jckqJhw==
+Date: Thu, 6 Nov 2025 23:10:48 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: adrianhoyin.ng@altera.com
+Cc: Frank.Li@nxp.com, wsa+renesas@sang-engineering.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, dinguyen@kernel.org,
+	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/4] i3c: dw: Add support for Device NACK Retry count
+Message-ID: <20251106221048367d654a@mail.local>
+References: <cover.1762245890.git.adrianhoyin.ng@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: microsoft: Add vmbus
- message-connection-id property
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: apais@microsoft.com, cho@microsoft.com, conor+dt@kernel.org,
- decui@microsoft.com, devicetree@vger.kernel.org, haiyangz@microsoft.com,
- hargar@microsoft.com, krzk+dt@kernel.org, kys@microsoft.com,
- linux-hyperv@vger.kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org,
- ssengar@linux.microsoft.com, wei.liu@kernel.org
-References: <6d3b5d1e-de1b-4d3b-ba14-7029c51b8e05@kernel.org>
- <1753395133-26061-1-git-send-email-hargar@linux.microsoft.com>
- <94d3e709-8c8b-40cb-a829-92c2012b4e0a@kernel.org>
- <f6c01c55-8930-459a-baa5-1465c5047b3e@linux.microsoft.com>
- <69ed5b38-830d-46d7-a84b-86787c39df7d@kernel.org>
-Content-Language: en-US
-From: Hardik Garg <hargar@linux.microsoft.com>
-In-Reply-To: <69ed5b38-830d-46d7-a84b-86787c39df7d@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1762245890.git.adrianhoyin.ng@altera.com>
+X-Last-TLS-Session-Version: TLSv1.3
 
+On 04/11/2025 16:51:07+0800, adrianhoyin.ng@altera.com wrote:
+> From: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+> 
+> This series adds support for configuring the Device NACK Retry count
+> in the Synopsys DesignWare I3C master controller and enables the
+> corresponding property in the Altera Agilex5 device tree.
+> 
+> Some I3C slave devices may temporarily NACK transactions when they are
+> busy or not ready to respond. To enhance bus reliability, the DesignWare
+> I3C controller supports a programmable retry mechanism that automatically
+> reissues NACKed transactions. This series introduces the
+> snps,dev-nack-retry-cnt device tree property to configure this retry
+> count. The value is written into the Device Address Table (DAT) entry for
+> each I3C device, enabling fine-grained control of retry behavior.
+> 
 
-On 11/4/2025 10:55 PM, Krzysztof Kozlowski wrote:
-> On 05/11/2025 02:10, Hardik Garg wrote:
->> Each guest has a private hypervisor mailbox and cannot access any other
->> guest’s communication path. Using an incorrect connection ID does not
->> allow eavesdropping or cause interference — it only results in failed
->> VMBus initialization because the host drops messages sent to an
->> unexpected port. Thus, exposing the correct connection ID to the guest
->> is safe and necessary for correct initialization.
->>
->>> If different values are important for the host, then all guests should
->>> use whatever 0 which will map to different values on host by other means
->>> of your protocol.
->>>
->> Using a fixed value such as 0 for all guests would not work, because the
->> Hyper-V host differentiates between multiple control-plane contexts (for
->> example, VTL0 vs VTL2) using distinct connection IDs. The guest must use
->> the value assigned by the host, as there is no implicit mapping or
->> negotiation protocol to determine it otherwise.
-> Sorry, I am not going back to three months old discussion.
+As Frank explained, this needs to be a per device sysfs file because
+this is definitively policy and not HW related. This file should only be
+visible when the bus supports retrying.
 
-I understand your point and I apologize again for the delay in getting
-back to you. It took me some time to explore alternative approaches and
-verify whether the connection ID could be handled differently, but I’m
-now done with that investigation. I’ll make sure to respond in a timely
-manner going forward.
+Don't forget to add documentation in ABI/testing/sysfs-bus-i3c
 
->
-> Therefore I close this topic for me with: since the actual value does
-> not matter for the host - it will discard all messages which are not
-> intended to this guest - you can just use value 0 and your hypervisor
-> will map to proper port.
+> This series also fixes an issue where existing DAT entries could be
+> overwritten when the driver restores device addresses. Update
+> dw_i3c_master_restore_addrs to preserve existing bits in each
+> DAT entry when restoring addresses.
+> 
+> Adrian Ng Ho Yin (4):
+>   dt-bindings: i3c: Add snps,dev-nack-retry-cnt property to Synopsys I3C
+>     master
+>   arm64: dts: intel: agilex5: Add snps,dev-nack-retry-cnt property for
+>     I3C controllers
+>   i3c: dw: Add support for Device NACK Retry count
+>   i3c: dw: Preserve DAT entry bits when restoring addresses
+> 
+>  .../bindings/i3c/snps,dw-i3c-master.yaml      |  8 ++++
+>  .../arm64/boot/dts/intel/socfpga_agilex5.dtsi |  2 +
+>  drivers/i3c/master/dw-i3c-master.c            | 40 ++++++++++++++++++-
+>  drivers/i3c/master/dw-i3c-master.h            |  1 +
+>  4 files changed, 49 insertions(+), 2 deletions(-)
+> 
+> -- 
+> 2.49.GIT
+> 
 
-The connection ID is managed entirely by the hypervisor and varies
-depending on the VM’s configuration (for example, whether the control
-plane is in VTL0 or VTL2). There is no existing mapping logic on the
-guest side that could translate a constant value like 0 into the correct
-port assignment. The host assigns distinct IDs for each configuration,
-and the guest must use that specific value to establish the VMBus
-control channel correctly.
-
-Could you please confirm if I’m misunderstanding your suggestion about
-the mapping mechanism? Without receiving the correct ID from the
-hypervisor (via DT or another interface), the guest cannot infer the
-right port on its own.
-
-Also, since this thread is quite old, would you prefer that I start a new
-thread when I resend the updated patch?
-
-Thanks again for your feedback and patience.
-
-
-
-
-Thanks,
-Hardik
-
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
