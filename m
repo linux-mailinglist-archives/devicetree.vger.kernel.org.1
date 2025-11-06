@@ -1,144 +1,287 @@
-Return-Path: <devicetree+bounces-235731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83046C3C160
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 16:36:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 015E5C3C109
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 16:33:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 777273A6F43
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 15:30:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9ED31AA7BD7
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 15:31:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 089B5286426;
-	Thu,  6 Nov 2025 15:30:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82AF52727ED;
+	Thu,  6 Nov 2025 15:31:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d38jJJ65"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XSTpOU3h";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="OyeZ+Lyt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50904236454
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 15:30:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD7302236FD
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 15:31:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762443047; cv=none; b=GdkTso8ivwYmwqbiKtCisP227v4D0W9p8VFrZBU+Co9Ga5kAvWACXqWAP9AYe4EajyQM0llCiuMiirW460JY2d2ZOANVJp/8ihlfcaFpqyD4FfpNUN9J1pSZZAEGZWz2xPfNcdxPV9Y8qejQ5uQ5rE6prgsKnT677DoXqJf+gq0=
+	t=1762443074; cv=none; b=GkR4jNssraQois3jkRARJgivXs6MuOQ8s/3vd/netTTVlt2lu5cmrmDfL9HhEj2lcym91jJC5Hgqnqe8IX5H4MaeZ1iz+Wy28vc26HxC1/hsQN2+FC9Jm8TnXHNmKMZokYpOYdZe9HdmdnJPoYmbR68vlRBLocQ4ANEkbxG4aZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762443047; c=relaxed/simple;
-	bh=PO6dHZiI3iUO2Fk7I3+uF0XWuA9JROkT9V8qD1fjBlc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AF3qWotyhpm8UHFCRD7u7Jxe5DDzHRJ4+jS2TnBizKj6gkamWceY7iSnbE7oFIccSjQbxz6Rxe4pZ765nOoRLtbM2edPHAFQ3EMcAMjfh6dxIpijxdbt8NKtVQ5ldHJ/y3YcGiYb5tkG0368DZP07YxRPHa+AuDXS2NvRcsLxF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d38jJJ65; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-472cbd003feso871905e9.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 07:30:46 -0800 (PST)
+	s=arc-20240116; t=1762443074; c=relaxed/simple;
+	bh=d0f2bwoEjV6DeTx6fkmoJqsBnaW11PpPaYDMEC9kOpw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sil/N0g2TMUpIqhnRYjPzmhhyNC9s7ioY8tRxOfa6VGGXUSbwA8Vn5/4rDg3Mj4Cdu3hH1SBOe9fWS5PmLcQAWiCj/h6hPNkPFMk3Fvg7tzDONIAOzSsOjT70Htt+QIOoKlIRJDLkayFBrLTSpj+WF/HK4lB20n1ZidoTyM1DA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XSTpOU3h; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OyeZ+Lyt; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A6BinZ54018483
+	for <devicetree@vger.kernel.org>; Thu, 6 Nov 2025 15:31:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	EO+nd39qsWV2EUlkl0SmdHZLP9GsrFgkZZtOwLjvreA=; b=XSTpOU3hTSbP/MX0
+	R8F9gqG9GGfbRzTTCeEfKZ01iQJerygV9Wt96XVJOac5UE3CX1+98jpXWSNvMBJ8
+	nDfD9PXd1l8q4rnXLLSCbJrRI+si4dbIS9KpQM64hAHLr+6o1gOd6SJPwsipPV2K
+	pvtfWNGPQ4/2VhFmYY3LHB1j+yc5H/hQP6ToG5kWeqZtj40nd9icVceClumaI6c6
+	/BTg3/cagqXYk1K1XYImS0uPsBAG7GE4X9r3PLfvYIjd6OrHi1f6C+5/ZEwSPuWm
+	wL/dcCp5BsLnVWa2hPuPsLB8oqIc4KDFSixICzyT31veI4iL0TBrsG+y9yMKb2oG
+	b6RqQA==
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a8u2urnbp-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 15:31:11 +0000 (GMT)
+Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b55735710f0so752891a12.2
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 07:31:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762443045; x=1763047845; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ch2Eax89RB20s4DR1TXaJcyV6BYdXbU+N7gMw+0YTgc=;
-        b=d38jJJ65XfUZdbhYLC9GKBdE/9XFv5c35O4LHiRgQpEqNpYYqW4WdfJKraLdHKxNxs
-         pGVSVAS1cQng5aqa/tBEuM1lGIu5h4DWXW11sPsXwU4dVq7b7FIDK1Ur+DcKokjcxigl
-         y5cCHh9QtiW6dbIsAT4iWYSe6AUrTefSuqndyRQWu9Xbd+dGVRtR0XYHEB5J6+2tPbzx
-         Coypkc4Sab6SkkGufd1CXk8gUV0EOr1b5KUPFXDcAxteg/q76OPeqFBj1oFDkXDVKkdb
-         3Unkd0PI9DPl6FpPkLLACKdprY6BexEQUTFeque4etmBIYIDJ/nL2MYprFHy9t5bqJWY
-         4uEA==
+        d=oss.qualcomm.com; s=google; t=1762443071; x=1763047871; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EO+nd39qsWV2EUlkl0SmdHZLP9GsrFgkZZtOwLjvreA=;
+        b=OyeZ+Lyt2heOLcif2dIY+Rf1U1F5ihzI2OBZeSJtWYNCzwvnYLYfUSrO0tZBPlED3P
+         cy9sBvz5Nbky4z0Mo5rXdaFFWImGRt+cGrhBZmr2TqyCWpuNU9LzfXb/0DmZ9/xlUXwE
+         lu7G42xGyKxsqlZweWWCVtpWbKsJAHIFS1isxIcaCeNoMX77NvKSyTsC2NavGJsE57hK
+         iR06Zm6C/5jKC8QO93q/NPZ6NR9LPDnTpkekxowQcG51EcgGm7L1PJkZsyzE/Vxh1KdK
+         I4qYSW4QYbPmAu9EymZE3sARfFSk+mdzbSMAW+9P5kXF8i+OYTaNLTk+j10dxPWvawtE
+         TaWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762443045; x=1763047845;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ch2Eax89RB20s4DR1TXaJcyV6BYdXbU+N7gMw+0YTgc=;
-        b=WwrogYz1laY6nNhNvsm8+gzpikTnvkIiKC6E9zQVbezHYcjT47DJtcxjnJobMZl9oi
-         Meif0VioUa6uCFYDdtpX3HBIjccGVcP/Kl4315EOE/3n7NPISBX13wTZYEp/G9SBRxmT
-         az2R5y3+Z+jfPYKhAxyuq2XynkPGKpzbznegOGSPrj34jnwOBWMnsZ6m68sxK0y4x+yU
-         1M4dpxNRYep6wSpyUZZvj4y0eDeLHWnpOflaes8vlyOycL0xoVif5Z7aACmsYBSjabqv
-         iuvbYcuvsDE/3La9a71syxdc9PzG2xJ8e1x69sSJK2Sj9ToOzGkZ2VBdezaVkG3h1BKA
-         gtWA==
-X-Forwarded-Encrypted: i=1; AJvYcCWUWuTxQsfS2rtH3UwDFYuj4t/5jeRI6wAT92It7SggdkIQa61s83ENr/E/3s2QEb95bLk45ygAYeTt@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZAtaHw+RZ7AhuZaI+kvQLnwEg6jN6iad/zGtJ9ZHHnSRnwtSn
-	YkUopkWTOBLS5ajTMXPxWRM8K3fbMMlQEI+TFqe5VuIPE5aLSZsxAA/r
-X-Gm-Gg: ASbGncvWs2wuSXCtjQhj6Rz1s5CaYqnIa3eHV3sJynw7gw+3xTHJwl8SCgkzz+62/iG
-	spQUY8hJxKKNRd+PXveL7oKuBDDEpOa6o7AnJnXY0nF4aVk8bRbY+rgXUa/9ZyGhWDqsmMe0QZ9
-	QapW84jmK36IMD4tT4AnjYx1lSakpmHgNoe/o9EL0g+uOlH3gGp4TkFd1B/UjKIgoadJ+vvjF8r
-	/e8PXIolnLVFlY1KO9L4nQf07keFZ+hFXtzkovtcPM7iF9lezUCUxNO1jfy/qWwk+KdE3ECJxVP
-	5ZnJvZGRaua3HWrYOHBsEhPznTYV+M06HwmPs3KtDxv7SA8G180v1A94aqNKe/NdGSfpitOG70u
-	lvoX5VHE/mujzAnZk7MHnS/8lpjiuKijN14EYEFbTmqaQSZP/yl+NyS6F9tZq9paImgFo4A==
-X-Google-Smtp-Source: AGHT+IETjPi/syUrYuUHgX8SQG+xTr+eodzweo3dFQjAnqtz4bbr/W13GjAuzidsPI5Zi5wtliKfZg==
-X-Received: by 2002:a05:600c:3ba2:b0:477:5ca6:4d51 with SMTP id 5b1f17b1804b1-4775ce1e87fmr42655585e9.3.1762443044287;
-        Thu, 06 Nov 2025 07:30:44 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d406:ee00:dfee:13dd:e044:2156])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429eb4ad993sm5677289f8f.47.2025.11.06.07.30.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Nov 2025 07:30:43 -0800 (PST)
-Date: Thu, 6 Nov 2025 17:30:40 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Paolo Abeni <pabeni@redhat.com>
-Cc: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>,
-	"daniel@makrotopia.org" <daniel@makrotopia.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"andrew@lunn.ch" <andrew@lunn.ch>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"lxu@maxlinear.com" <lxu@maxlinear.com>,
-	"john@phrozen.org" <john@phrozen.org>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"yweng@maxlinear.com" <yweng@maxlinear.com>,
-	"bxu@maxlinear.com" <bxu@maxlinear.com>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"fchan@maxlinear.com" <fchan@maxlinear.com>,
-	"ajayaraman@maxlinear.com" <ajayaraman@maxlinear.com>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"hauke@hauke-m.de" <hauke@hauke-m.de>,
-	"horms@kernel.org" <horms@kernel.org>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"jpovazanec@maxlinear.com" <jpovazanec@maxlinear.com>,
-	"linux@armlinux.org.uk" <linux@armlinux.org.uk>
-Subject: Re: [PATCH net-next v7 12/12] net: dsa: add driver for MaxLinear
- GSW1xx switch family
-Message-ID: <20251106153040.k7wnctqb6rcpafgs@skbuf>
-References: <cover.1762170107.git.daniel@makrotopia.org>
- <b567ec1b4beb08fd37abf18b280c56d5d8253c26.1762170107.git.daniel@makrotopia.org>
- <8f36e6218221bb9dad6aabe4989ee4fc279581ce.camel@siemens.com>
- <df47ae11-5f54-4870-bea8-8392a7fa47de@redhat.com>
+        d=1e100.net; s=20230601; t=1762443071; x=1763047871;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EO+nd39qsWV2EUlkl0SmdHZLP9GsrFgkZZtOwLjvreA=;
+        b=bg15NKzK6WPG3hAQhpeeRdnZVnD0DLW9ghe4c+cmSU1vIByCkUy2GF5RhpMVsx3sw2
+         PagjfcVNbVd0N6U0YxnXRBqXPpzUWnDOV2LASXUmyJCQMXNMbaHvexT0UXTPmtL+MXrk
+         wBD2srUoBS3GnJJexVe68M8gC2X+81tYcbX5ZNK5Q7OgAZlcalI5XMnp9V6dWLeWntGe
+         TMJwUyxakVXjoO9WknK+95xT36VAFlWa+HB4S0rxhdxaQaFJr6Z/u7e3GOfyHJ2jzcLb
+         uO8NnNS2nwDv1v20tdBWT7vaiOxT/x+ZFNMDKzGz6VGw9cnl7rRfOQ00+sVhqrZE5Tjw
+         yakg==
+X-Forwarded-Encrypted: i=1; AJvYcCXc7uzaL6IU2Asu7pRM/EpixZ+t92tlWnB9fJM5NnUUH5593X3oGQ88E667MSncBSU3c4VNeigGlwDQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKmhWg/paFkIgQyPZLjtz3JRVG5bFDAohgU8gcQdMe9CIO1PFX
+	sQDMCzcNS1lIfgHyxurycqG+Kq6m23euks4JWTskThxXiKB+023cIuBiZaLRVyi8Y4rVdLmLq+O
+	TQ8urQJt7MS9lErJ/laxTsAYdectfMWnMwATvD5eWYMTLQiCbwlTV9FRLTHOYZVAB
+X-Gm-Gg: ASbGncsArJZyOYJJYkOFZRaWB4QF74eCDXXaoLhLvUWySWvk8bzl6PCqx6JYXLHXQjM
+	N+2VQ9t+ez2LsdGZhdnPPSNCAgc8OUEcq04YxrCAyaQ/Tmn9Z7GM2vj1fcA/iJcH13m56uSqgWl
+	aRixhdiujAEOjwhuM9e0DerzcOuD1zBOCvI3H1Hu0ruRxTfrgJcqvQAZds5xtb+DM9iMUgwOvbI
+	3HEdntPp28vwKppJLX4ARMP5ydXP4iRp08ebY+DrQuWx/8ZL6cAWwRbdc7i9dzFy1OYyn7tKjhi
+	8NTwEBBu/dzAZ9dIRHcjGP9gbEccgC+IgmNAaknU26DmRle1dW6LbN+m2hmtret15a94ntA4hdO
+	NQbwIviXiQU0fZyN+taLNRJuUHABayh6ngg==
+X-Received: by 2002:a05:6a21:3d84:b0:34f:bf12:8e27 with SMTP id adf61e73a8af0-34fbf128ea8mr8971373637.13.1762443071060;
+        Thu, 06 Nov 2025 07:31:11 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFOUzd1uTbvbHMqzgt2Y+kkpQNb+36amLdPBWT1pIua+eKBDxydfZowU9JJoXxPJtX6EG/QJQ==
+X-Received: by 2002:a05:6a21:3d84:b0:34f:bf12:8e27 with SMTP id adf61e73a8af0-34fbf128ea8mr8971308637.13.1762443070469;
+        Thu, 06 Nov 2025 07:31:10 -0800 (PST)
+Received: from [192.168.1.3] ([182.65.157.163])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7af82205b11sm3147569b3a.45.2025.11.06.07.31.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Nov 2025 07:31:10 -0800 (PST)
+Message-ID: <9bd003e0-4600-4b5f-97d7-efefe687f358@oss.qualcomm.com>
+Date: Thu, 6 Nov 2025 21:01:03 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <df47ae11-5f54-4870-bea8-8392a7fa47de@redhat.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/2] usb: typec: hd3ss3220: Enable VBUS based on ID pin
+ state
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20251102164819.2798754-1-krishna.kurapati@oss.qualcomm.com>
+ <20251102164819.2798754-3-krishna.kurapati@oss.qualcomm.com>
+ <aQxyfjYosVd_kPKC@kuha.fi.intel.com>
+Content-Language: en-US
+From: Krishna Kurapati PSSNV <krishna.kurapati@oss.qualcomm.com>
+In-Reply-To: <aQxyfjYosVd_kPKC@kuha.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=Wv4m8Nfv c=1 sm=1 tr=0 ts=690cbf3f cx=c_pps
+ a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=fO48qRZoIuIFQjWVjTpNpw==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=YkpnwElOSCd70Td7CIoA:9
+ a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA2MDEyMiBTYWx0ZWRfX/3vtVe0LrqMa
+ ltyxpcG1DSDJWp7MDf6/cKTNHEKWniePxDPyYOouF5JzTrkd0ym9IgcnqVu7D+cEYvxIMkA1VJC
+ 3tn5tjbiziVKKUbMAXplr1E4zlopBBzuL8oj1lj+oQVvtVDH0ebzNEgvDaTVnqChfHGjdg5U35F
+ aQIGC/RASxsfzn1SCN8Q3LR0SJyHN/Jx937wJU6ge2f6ItO8Veu0Jvmjazv1frsb3drd7d3bq82
+ 0Igcr8WTp6R/R8ZBzq6jruzOXFozszcLHfL1tTtQvAiKoSPueNJvnx16cHlMsG83W6qdouC4Zgf
+ y6aovnXgTGIfuQkM9svp13eAJ5JJkR5kR2+z8WwB9t3jHCVFE9tJ9xGbDgNQQXmbaxesWnNsKC0
+ QHawf36NZ1/866hxwYfnN+TtSbN8OQ==
+X-Proofpoint-GUID: ZpqwjyfVPKVNWPxGPogmaza9lIkwZnJ7
+X-Proofpoint-ORIG-GUID: ZpqwjyfVPKVNWPxGPogmaza9lIkwZnJ7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-06_03,2025-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 lowpriorityscore=0 suspectscore=0 priorityscore=1501
+ phishscore=0 spamscore=0 malwarescore=0 bulkscore=0 impostorscore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511060122
 
-On Thu, Nov 06, 2025 at 03:38:04PM +0100, Paolo Abeni wrote:
-> On 11/4/25 9:03 AM, Sverdlin, Alexander wrote:
-> > The problems I had in the past were neither related to the GSW145 code,
-> > nor to am65-cpsw-nuss, but to the test itself:
-> > https://lore.kernel.org/all/20251104061723.483301-1-alexander.sverdlin@siemens.com/
-> > 
-> > The remaining failing test cases are:
-> > TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to unknown MAC address   [FAIL]
-> >         reception succeeded, but should have failed
-> > TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to unknown MAC address, allmulti   [FAIL]
-> >         reception succeeded, but should have failed
-> > 
-> > So far I didn't notice any problems with untagged read-word IP traffic over
-> > GSW145 ports.
-> > 
-> > Do you have a suggestion what could I check further regarding the failing
-> > test cases? As I understood, all of them pass on your side?
+
+
+On 11/6/2025 3:35 PM, Heikki Krogerus wrote:
+> Hi Krishna,
 > 
-> Could be that due to different revisions of the relevant H/W?
+> Sun, Nov 02, 2025 at 10:18:19PM +0530, Krishna Kurapati kirjoitti:
+>> There is a ID pin present on HD3SS3220 controller that can be routed
+>> to SoC. As per the datasheet:
+>>
+>> "Upon detecting a UFP device, HD3SS3220 will keep ID pin high if VBUS is
+>> not at VSafe0V. Once VBUS is at VSafe0V, the HD3SS3220 will assert ID pin
+>> low. This is done to enforce Type-C requirement that VBUS must be at
+>> VSafe0V before re-enabling VBUS"
+>>
+>> Add support to read the ID pin state and enable VBUS accordingly.
+>>
+>> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+>> ---
+>>   drivers/usb/typec/hd3ss3220.c | 72 +++++++++++++++++++++++++++++++++++
+>>   1 file changed, 72 insertions(+)
+>>
+>> diff --git a/drivers/usb/typec/hd3ss3220.c b/drivers/usb/typec/hd3ss3220.c
+>> index 3ecc688dda82..75fbda42eaf4 100644
+>> --- a/drivers/usb/typec/hd3ss3220.c
+>> +++ b/drivers/usb/typec/hd3ss3220.c
+>> @@ -15,6 +15,9 @@
+>>   #include <linux/usb/typec.h>
+>>   #include <linux/delay.h>
+>>   #include <linux/workqueue.h>
+>> +#include <linux/gpio/consumer.h>
+>> +#include <linux/regulator/consumer.h>
+>> +#include <linux/of_graph.h>
+>>   
+>>   #define HD3SS3220_REG_CN_STAT		0x08
+>>   #define HD3SS3220_REG_CN_STAT_CTRL	0x09
+>> @@ -54,6 +57,11 @@ struct hd3ss3220 {
+>>   	struct delayed_work output_poll_work;
+>>   	enum usb_role role_state;
+>>   	bool poll;
+>> +
+>> +	struct gpio_desc *id_gpiod;
+>> +	int id_irq;
+>> +
+>> +	struct regulator *vbus;
+>>   };
+>>   
+>>   static int hd3ss3220_set_power_opmode(struct hd3ss3220 *hd3ss3220, int power_opmode)
+>> @@ -319,6 +327,44 @@ static const struct regmap_config config = {
+>>   	.max_register = 0x0A,
+>>   };
+>>   
+>> +static irqreturn_t hd3ss3220_id_isr(int irq, void *dev_id)
+>> +{
+>> +	struct hd3ss3220 *hd3ss3220 = dev_id;
+>> +	int ret;
+>> +	int id;
+>> +
+>> +	if (!hd3ss3220->vbus)
+>> +		return IRQ_HANDLED;
 > 
-> I tend to think we are better off merging the series as-is, and handle
-> the above with follow-up, as needed. Any different opinions?
+> If you don't need this routine unless there is a vbus regulator, then
+> don't register it at all if there is no vbus regulator.
+> 
 
-Yeah, it's a problem with the test.
+Will move vbus check before id retrieval in probe and ignore retrieval 
+of ID if vbus is absent.
 
-I too agree with merging as-is. I do have some nitpicks but they don't
-require resending the 12-patch series.
+>> +	id = hd3ss3220->id_gpiod ? gpiod_get_value_cansleep(hd3ss3220->id_gpiod) : 1;
+> 
+> You still don't need to check for hd3ss3220->id_gpiod - this function
+> will not get called unless it's there.
+> 
+>          if (gpiod_get_value_cansleep(hd3ss3220->id_gpiod))
+>                  ret = regulator_disable(hd3ss3220->vbus);
+>          else
+>                  ret = regulator_enable(hd3ss3220->vbus);
+> 
+
+ACK.
+
+> Note:
+> 
+> If you are concerned that the reference to the id_gpiod may be
+> released before this routine is unregistered, then that condition will
+> not help. The hd3ss3220->id_gpiod member is _not_ NULL after the
+> reference is released.
+> 
+> If you need a specific order in which the references are released,
+> then you can't use the resource management (devm_*) to automate things
+> for you.
+
+There is no specific order. So the id part I can keep it intact except 
+for checking presence of ID pin in interrupt handler.
+
+> 
+>> +	if (!id) {
+>> +		ret = regulator_enable(hd3ss3220->vbus);
+>> +		if (ret)
+>> +			dev_err(hd3ss3220->dev, "enable vbus regulator failed\n");
+>> +	} else {
+>> +		regulator_disable(hd3ss3220->vbus);
+>> +	}
+>> +
+>> +	return IRQ_HANDLED;
+>> +}
+>> +
+>> +static int hd3ss3220_get_vbus_supply(struct hd3ss3220 *hd3ss3220,
+>> +				     struct fwnode_handle *connector)
+>> +{
+>> +	int ret  = 0;
+>> +
+>> +	hd3ss3220->vbus = devm_of_regulator_get_optional(hd3ss3220->dev,
+>> +							 to_of_node(connector),
+>> +							 "vbus");
+>> +	if (PTR_ERR(hd3ss3220->vbus) == -ENODEV)
+>> +		hd3ss3220->vbus = NULL;
+>> +	else if (IS_ERR(hd3ss3220->vbus))
+>> +		ret = PTR_ERR(hd3ss3220->vbus);
+> 
+> So the regulator API's optional functions return -ENODEV instead of NULL :(
+> In any case, don't double assign the member. Use local variable.
+> 
+>          struct regulator *vbus;
+> 
+>          vbus = devm_of_regulator_get_optional(...
+>          if (IS_ERR(vbus) && vbus != ERR_PTR(-ENODEV))
+>                  return PTR_ERR(vbus);
+> 
+>          hd3ss3220->vbus = vbus;
+>          return 0;
+> 
+> I don't think you need this function - just do that in the probe function.
+> 
+
+ACK.
+
+Regards,
+Krishna,
 
