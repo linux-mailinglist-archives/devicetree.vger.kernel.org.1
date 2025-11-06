@@ -1,411 +1,272 @@
-Return-Path: <devicetree+bounces-235810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C97C2C3D132
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 19:32:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ED1FC3D1CB
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 19:49:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4493D189325D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 18:33:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1232A3BDBF5
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 18:49:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BAFD34DB51;
-	Thu,  6 Nov 2025 18:32:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0395B2D9789;
+	Thu,  6 Nov 2025 18:49:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ngl0Bhrg"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="KUNi74DC";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="WXiWl6hP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from fout-a4-smtp.messagingengine.com (fout-a4-smtp.messagingengine.com [103.168.172.147])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5544204F8B;
-	Thu,  6 Nov 2025 18:32:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8689E23817D;
+	Thu,  6 Nov 2025 18:49:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.147
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762453959; cv=none; b=GTXwDcBwWAhBhQNDZ2NLAT6SxJbBrrkomvXmIOIbYf7ppRK4bVkYROZ2cyTBKlRLUywOye2lVkqaewCGecBVozBPUVAiV3NXMygLKpg8xX7Ij9oGRY4JjaXdk4O5t8fSxs+p66IpI3Jv0tNU8NsJZ4+6L8BzPmJH5BvC5md+YDY=
+	t=1762454975; cv=none; b=g5HX+BR39cmgQclaQBrBFFdTPxTg1PDbWKI+k6d+fDsemtTA2MgykTEncb4QajTe4uVOqDtDitRUj/RIfHbdTrtYLFoM/aGVzl9f4lvTdn7Eqhi7+EWBe2vQwCLMhVs0eZR6YhWYnACIizd58iY8/O9DvXx3xP6ivXkHp7vrkCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762453959; c=relaxed/simple;
-	bh=fVzWW815nuMiOaUcKoR+xqB0xagzSP1lzJjAbneJHN8=;
+	s=arc-20240116; t=1762454975; c=relaxed/simple;
+	bh=P/v2puJTeFOS4Cx7G7AjYjc04y9VfRr4XRP9UV+JjN4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T7BYH96YgALT2AvJihH3XKfoh2HoN/PX3/NHHkJQDpmotIuk61QdlEg7CRcnhm9lXK6kaKF2m3MMOPNKxeVQZydCktuut684HmdyDAqDAhOWnXZvyya/N58ITgqCvs3b80w6cDX4aw3Jz75LlRy6w+FW3KCTEzLgY00UqW5bww4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ngl0Bhrg; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762453957; x=1793989957;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=fVzWW815nuMiOaUcKoR+xqB0xagzSP1lzJjAbneJHN8=;
-  b=Ngl0BhrgVDouM5+RkSGnggiKCFcCr+wLmb7bPwHf8J6WfyjOjmkBKgkS
-   dynCv8UMb0ZIinXlts/DKNrNMMZAnOnvBbP4DlBFAeRpbsQLAKkfhWbPL
-   bjdsIykZbRFcIMWPeuEDwVDBwDKsH/KW7WhlI6Ze78OBz8WPthjv9OksF
-   VD/H7+ANLQwM34mqpTd3bcl4rfY+Jxkhb6jMYlBeQpR7kHOLiPen+53/P
-   o5OlK3vSPZ2ti78zsQbuNCq/HqEPU+mMXnWHEl533iiRvQszphm53bMMp
-   hDrQGuHHHQa1DA7yUUkVwwrJPqIesTI/F6kSwD9dp6PEHwhymExMg+ROU
-   g==;
-X-CSE-ConnectionGUID: ZKJfZzdGRe62y+VZVf6rYQ==
-X-CSE-MsgGUID: ECjp0tMxQzKaPATDEVZMFw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="64518411"
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; 
-   d="scan'208";a="64518411"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2025 10:32:36 -0800
-X-CSE-ConnectionGUID: HOZfE0yCQ4CwxorGNlhNiA==
-X-CSE-MsgGUID: 4V8v9CszQQeuLWJ1yAmWXw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; 
-   d="scan'208";a="225078793"
-Received: from abityuts-desk.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.244.224])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2025 10:32:33 -0800
-Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1vH4mb-00000006Dlf-2XO2;
-	Thu, 06 Nov 2025 20:32:29 +0200
-Date: Thu, 6 Nov 2025 20:32:29 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=PnREMS3hRxHFano2SWGzlHc88KCDi5uelR46crnSuT9igoAkGzGikEn703x1nUariTNf8PQ918eWIXwFt/UAJS8ICay4TOsJymi1Yswk3G4oQ/B3sBaqd4kNlMmeeYPwBVHbGqHm/Ijvq2wPXaYfW4Wmt6ASJa2DIVJ2/lUlJsw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=KUNi74DC; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=WXiWl6hP; arc=none smtp.client-ip=103.168.172.147
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-03.internal (phl-compute-03.internal [10.202.2.43])
+	by mailfout.phl.internal (Postfix) with ESMTP id 7D484EC0294;
+	Thu,  6 Nov 2025 13:49:32 -0500 (EST)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-03.internal (MEProxy); Thu, 06 Nov 2025 13:49:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1762454972;
+	 x=1762541372; bh=3cDr0QtwUEUjzMnC5ZAIYokuX0/jaaVt0uuSfNP4Tkg=; b=
+	KUNi74DCyt5ngXutgWBeTfW15X5i50IQYpsd9Vrq56EphDF70ILKf+RlSPj4qqRc
+	IwKWBTFT4Qonn/GnvLM8VF7p6ge06mxqbNPDUD4QaYhZfbRFzjEdgvAffFFgLc0q
+	cwMPq1DqzesgroJNDaD6eFJs6+4wb38vMahle8KvxDMcT3aA0Vkbu5isTSkCIw0A
+	dY1sqRBV46F6bIQ4mhLQB/3VmEVdJpwI1ojmGUBZ4tJMUgm3hkLxqN933j+Mz0Gl
+	RISLSOcgeEP/zYS2ghJ8cXX2xnMROf1IP/AetXmE+G9vz1988cK+/wPIkAF3Awex
+	zuE1ZYZ4w1gMMtjpFVt13w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1762454972; x=
+	1762541372; bh=3cDr0QtwUEUjzMnC5ZAIYokuX0/jaaVt0uuSfNP4Tkg=; b=W
+	XiWl6hPKV9aGFEI4ji8aylfXPQ1RNkHZjenLyVZlIrHZ26++U4sEb0LA5HU+5Fh2
+	oJouFjsHWFUYs3fK2ArlS5/MmQvx6etI4cieqnaUv40YEHsC3bda5echfXNPmgZT
+	brCJFcr+qyAzHMZBbfZZS62AOretbi1jstSy9SdJERFhcjo8bmfoTTy9VMkjM2Tc
+	Wbj+5r7fBr1Jvh9sd9ausD7BzhC+Qb3ugnPSn4UX/o7Ue2VkbC+ciy4F8Fg1OG7o
+	P2PtVo1gM9QXLxvtxdwHInnL+PacU/X8FNneaxR6+X71FaFis491NHeHlBE0MGlW
+	hfUyLKf2bpac5FcoPbvmw==
+X-ME-Sender: <xms:u-0MafPWQsTP_zlHIul8NRS1GcD8FwLFsgaw8V3IRdNJr-8n0cu5Cg>
+    <xme:u-0MaStzwByYbrv69mDe4sLJZ8wzd9TeIIahxqdz4YgH4iyy_GXQ1aKYtLMWM3YbS
+    0rEye1sN31DdevVv0A8RLi8eBcX2FatzisaUxvBPn8bLFPgBDLBXg>
+X-ME-Received: <xmr:u-0Mac_KrOUCx1fpv1enSDegooE1cvgOzPQEIC_I-TwAMYrYdhSSUunLb_hxdYaqR5sd7aZpqsV_AK-WII4rokw_3cDvZgY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddukeejheegucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpefpihhklhgr
+    shcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvsh
+    grshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeffkefgudekgefh
+    hfejtedviedtgeetieekffeiudfhgeevteejvedtffdvkefftdenucffohhmrghinhepkh
+    gvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghi
+    lhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrghssehrrghgnh
+    grthgvtghhrdhsvgdpnhgspghrtghpthhtohepudekpdhmohguvgepshhmthhpohhuthdp
+    rhgtphhtthhopehmrghtthdrtghoshhtvghrsehimhhgthgvtgdrtghomhdprhgtphhtth
+    hopehmrghrvghkrdhvrghsuhhtodhrvghnvghsrghssehmrghilhgsohigrdhorhhgpdhr
+    tghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhlihguvghrrdgsvgdprhgtphhtth
+    hopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghirhhlihgv
+    ugesghhmrghilhdrtghomhdprhgtphhtthhopehfrhgrnhhkrdgsihhnnhhssehimhhgth
+    gvtgdrtghomhdprhgtphhtthhopegrlhgvshhsihhordgsvghllhgvsehimhhgthgvtgdr
+    tghomhdprhgtphhtthhopegrlhgvgigrnhgurhhurdgurgguuhesihhmghhtvggtrdgtoh
+    hmpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:u-0MaWHrtuPHdKc8pfye-AYKUnTIJ2Izh8K-LDrXpNb-m23a78X21Q>
+    <xmx:u-0MabQdfgNsXYZbF4yIc2Kb2ICly05SxfUSWn-vMpoukJDPhQIjsQ>
+    <xmx:u-0MaUsUSUm5DH8ssKhY7Bp-3gGOXjiZfsemKxKTojRC6b5W__9qEg>
+    <xmx:u-0MaYAPI7FmII9cboxsgHHTWRiTIhIsi8fLfcTon8zoxRCX_rBaiA>
+    <xmx:vO0MaV03Ogz1Hw4L_bCT90F8PIld3CeYI5KQiotOcy2i3JurT_isaXdo>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 6 Nov 2025 13:49:30 -0500 (EST)
+Date: Thu, 6 Nov 2025 19:49:28 +0100
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Matt Coster <Matt.Coster@imgtec.com>
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Hans de Goede <hansg@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v3 5/5] regulator: ltm8054: Support output current limit
- control
-Message-ID: <aQzpvR-030zgA82E@smile.fi.intel.com>
-References: <20251106-ltm8054-driver-v3-0-fd1feae0f65a@bootlin.com>
- <20251106-ltm8054-driver-v3-5-fd1feae0f65a@bootlin.com>
+	David Airlie <airlied@gmail.com>,
+	Frank Binns <Frank.Binns@imgtec.com>,
+	Alessio Belle <Alessio.Belle@imgtec.com>,
+	Alexandru Dadu <Alexandru.Dadu@imgtec.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a779a0: Add GE7800 GPU node
+Message-ID: <20251106184928.GF3684509@ragnatech.se>
+References: <20251105232737.1933437-1-niklas.soderlund+renesas@ragnatech.se>
+ <20251105232737.1933437-3-niklas.soderlund+renesas@ragnatech.se>
+ <c1c5a3ee-f5c9-46e4-8095-104d25d4621c@imgtec.com>
+ <20251106103904.GD3684509@ragnatech.se>
+ <e0373514-04ea-418c-a721-d694b816fa56@imgtec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251106-ltm8054-driver-v3-5-fd1feae0f65a@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e0373514-04ea-418c-a721-d694b816fa56@imgtec.com>
 
-On Thu, Nov 06, 2025 at 03:11:50PM +0100, Romain Gantois wrote:
-> The LTM8054 supports setting a fixed output current limit using a sense
-> resistor connected to a dedicated pin. This limit can then be lowered
-> dynamically by varying the voltage level of the CTL pin.
+Hi Matt,
+
+On 2025-11-06 13:04:19 +0000, Matt Coster wrote:
+> Hi Niklas,
 > 
-> Support controlling the LTM8054's output current limit.
+> On 06/11/2025 10:39, Niklas Söderlund wrote:
+> > Hi Matt,
+> > 
+> > Thanks for your feedback.
+> > 
+> > On 2025-11-06 10:19:13 +0000, Matt Coster wrote:
+> >> Hi Niklas,
+> >>
+> >> On 05/11/2025 23:27, Niklas Söderlund wrote:
+> >>> Describe Imagination Technologies PowerVR Rogue GE7800 BNVC 15.5.1.64
+> >>> present in Renesas R-Car R8A779A0 V3U SoC.
+> >>>
+> >>> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> >>> ---
+> >>>  arch/arm64/boot/dts/renesas/r8a779a0.dtsi | 17 +++++++++++++++++
+> >>>  1 file changed, 17 insertions(+)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> >>> index b08865841476..aa347b699340 100644
+> >>> --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> >>> +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> >>> @@ -338,6 +338,23 @@ cmt3: timer@e6148000 {
+> >>>  			status = "disabled";
+> >>>  		};
+> >>>  
+> >>> +		gsx: gsx@fd000000 {
+> >>
+> >> Why gsx? Marek's equivalent patch for r8a77965-gpu[1] used gpu (as we do
+> >> for every dt so far).
+> > 
+> > Wops, will fix.
+> > 
+> >>
+> >>> +			compatible = "renesas,r8a779a0-gpu",
+> >>> +				     "img,img-ge7800",
+> >>> +				     "img,img-rogue";
+> >>> +			reg = <0 0xfd000000 0 0x40000>;
+> >>> +			interrupts = <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
+> >>> +			clocks = <&cpg CPG_CORE R8A779A0_CLK_ZG>,
+> >>> +				 <&cpg CPG_CORE R8A779A0_CLK_S3D1>,
+> >>> +				 <&cpg CPG_MOD 0>;
+> >>
+> >> I don't have access to a TRM for V3U (it's too new apparently, despite
+> >> already being obsolete), but I believe the GPU integration should be
+> >> similar to the M3N in [1]. In that case, the TRM (v2.40, fig 23.3) shows
+> >> S2D1 and 112 in place of S3D1 and 0 – are these definitely correct? The
+> >> 0 especially feels wrong (see also 8A.2.1.2 MSTPSR1).
+> > 
+> > Yea the V3U doc I have is not the latest. The diagram in the GPU chapter 
+> > list the same as you say here (S2D1 and 112), however the diagram seems 
+> > to just be a copy-past of the Gen3 document. Looking elsewhere in the 
+> > document I see:
+> > 
+> > - In the clock chapter the GPU is list as MSTP0 and not MSTP112.  
+> >   Comparing with the Gen3 doc this looks correct so MSTP0 is good IMHO.
+> 
+> Sounds reasonable. Just to cross-reference that, does 3DGE appear in the
+> 0-bit row of the table under the register definition of MSTPSR0? I see
+> from renesas-cpg-mssr.c that these registers have moved for gen4 though,
+> so this could be a blind alley.
+
+It do appear on the 0-bit row of MSTPSR0. But on V3U the bit is called 
+RGX not 3DGE as in Gen3.
+
+> 
+> A similar thought – is a new entry in r8a779a0_mod_clks (defined in
+> r8a779a0-cpg-mssr.c) required? The equivalent table for r8a77965 has a
+> "3dge" entry at 112.
+
+Yes. Both for MSTP112 module clock and the ZG core clock. Patches 
+posted. Will try to do the v2 of that series at the same time as the 
+fixes for this one.
+
+https://lore.kernel.org/linux-renesas-soc/20251105231815.1927239-1-niklas.soderlund%2Brenesas@ragnatech.se/
+
+> 
+> > 
+> > - The V3U don't have a S2D1 clock... but the GPU chapter lists it in the 
+> >   (assumed) copy-pasted diagram...  What I did was track which clocks 
+> >   where S2D1 on Gen3 and compared that to what those IP where using on 
+> >   V3U. The overlap was the DU and that uses S3D1 on V3U so I just 
+> >   followed that.
+> 
+> There's a top-level clock diagram near the top of the CPG chapter in the
+> TRM I have (fig 8.1d for M3N) that annotates S2D1 as being an AXI-bus
+> clock.
+
+I see the M3-N S2D1 clock in the Gen3 doc.
+
+> Is there a similar annotation on S3D1 for V3U in your TRM? If
+> not, I'm happy to just follow your logic and ack this patch :)
+
+I do not see the S3D1 in the same diagram for V3U, only S3. I do however 
+see S3D1 a few pages below in the table below the diagram. In the Gen3 
+doc that would be the equivalent of table Table 8.2d.
+
+> 
+> Cheers,
+> Matt
+> 
+> > 
+> >>
+> >>> +			clock-names = "core", "mem", "sys";
+> >>> +			power-domains = <&sysc R8A779A0_PD_3DG_A>,
+> >>> +					<&sysc R8A779A0_PD_3DG_B>;
+> >>> +			power-domain-names = "a", "b";
+> >>> +			resets = <&cpg 0>;
+> >>
+> >> Same 0 concern as above.
+> >>
+> >> Cheers,
+> >> Matt
+> >>
+> >> [1]: https://lore.kernel.org/r/20251104135716.12497-3-marek.vasut+renesas@mailbox.org/ 
+> >>
+> >>> +			status = "disabled";
+> >>> +		};
+> >>> +
+> >>>  		cpg: clock-controller@e6150000 {
+> >>>  			compatible = "renesas,r8a779a0-cpg-mssr";
+> >>>  			reg = <0 0xe6150000 0 0x4000>;
+> >>
+> >> -- 
+> >> Matt Coster
+> >> E: matt.coster@imgtec.com
+> 
+> -- 
+> Matt Coster
+> E: matt.coster@imgtec.com
 
-...
 
->  #include <linux/array_size.h>
-> +#include <linux/completion.h>
->  #include <linux/device.h>
->  #include <linux/device/devres.h>
->  #include <linux/device/driver.h>
 
->  #include <linux/errno.h>
->  
->  #include <linux/gpio/consumer.h>
-> +#include <linux/iio/consumer.h>
-> +#include <linux/jiffies.h>
-> +#include <linux/lockdep.h>
->  #include <linux/math64.h>
-> +#include <linux/minmax.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/platform_device.h>
-
->  #include <linux/regulator/of_regulator.h>
->  #include <linux/types.h>
->  
-> +#include <linux/units.h>
-> +#include <linux/workqueue.h>
-
-This will be updated accordingly.
-
-...
-
-> +struct ltm8054_ctl_pin_work {
-> +	struct work_struct work;
-> +	unsigned int ctl_val;
-> +	bool write;
-> +	int ret;
-> +};
-
-Have you ran `pahole`? It might suggest a better layout to save a few bytes.
-
-...
-
-> +static void ltm8054_do_ctl_work(struct work_struct *work)
-> +{
-> +	struct ltm8054_ctl_pin_work *ctl_work = container_of_const(work,
-> +								   struct ltm8054_ctl_pin_work,
-> +								   work);
-> +	struct ltm8054_priv *priv = container_of_const(ctl_work,
-> +						       struct ltm8054_priv,
-> +						       ctl_work);
-
-These read better in slightly different split:
-
-	struct ltm8054_ctl_pin_work *ctl_work =
-		container_of_const(work, struct ltm8054_ctl_pin_work, work);
-	struct ltm8054_priv *priv =
-		container_of_const(ctl_work, struct ltm8054_priv, ctl_work);
-
-...
-
-> +	mutex_lock(&priv->ctl_work_lock);
-> +	val = ctl_work->ctl_val;
-> +	write = ctl_work->write;
-> +	mutex_unlock(&priv->ctl_work_lock);
-
-Why not scoped_guard() from cleanup,h?
-
-...
-
-> +	/* Standard IIO voltage unit is mV, scale accordingly. */
-> +	if (write)
-> +		ret = iio_write_channel_processed_scale(priv->ctl_dac,
-> +							val, 1000);
-
-One line. It just 82 characters.
-
-> +	else
-> +		ret = iio_read_channel_processed_scale(priv->ctl_dac,
-> +						       &val, 1000);
-
-Ditto.
-
-And perhaps use MILLI/KILO?
-
-...
-
-> +	pr_debug("LTM8054: %s CTL IO channel, val: %duV\n", write ? "wrote" : "reading", val);
-
-Besides str_write_read() from string_choices.h this should be dev_dbg().
-
-> +	mutex_lock(&priv->ctl_work_lock);
-> +	ctl_work->ret = ret;
-> +	ctl_work->ctl_val = val;
-> +	mutex_unlock(&priv->ctl_work_lock);
-
-scoped_guard()
-
-> +	complete(&priv->ctl_rw_done);
-> +}
-
-...
-
-> +static int ltm8054_ctl_pin_rw(struct ltm8054_priv *priv, bool write, unsigned int *ctl_val)
-> +{
-> +	struct ltm8054_ctl_pin_work *ctl_work = &priv->ctl_work;
-
-> +	int ret = 0;
-
-Redundant assignment.
-
-> +	lockdep_assert_not_held(&priv->ctl_work_lock);
-> +
-> +	/* The get/set_current_limit() callbacks have an active regulator core
-
-/*
- * The proper style of multi-line comment
- * is depicted in this example. Use it.
- */
-
-> +	 * reservation ID (obtained with ww_acquire_init()).
-> +	 *
-> +	 * Or, the IO channel driver may call something like
-> +	 * regulator_enable(), meaning this thread would acquire a new
-> +	 * regulator core reservation ID before the current one is dropped
-> +	 * (using ww_acquire_fini()). This is forbidden.
-> +	 *
-> +	 * Thus, perform the IO channel read/write in a different thread, and
-> +	 * wait for it to complete, with a timeout to avoid deadlocking.
-> +	 */
-> +
-> +	scoped_guard(mutex, &priv->ctl_work_lock) {
-> +		if (work_busy(&ctl_work->work))
-> +			return -EBUSY;
-> +
-> +		if (write) {
-> +			ctl_work->ctl_val = *ctl_val;
-> +			ctl_work->write = 1;
-> +		} else {
-> +			ctl_work->write = 0;
-> +		}
-> +
-> +		schedule_work(&ctl_work->work);
-> +	}
-> +
-> +	ret = wait_for_completion_timeout(&priv->ctl_rw_done, LTM8054_CTL_RW_TIMEOUT);
-> +	reinit_completion(&priv->ctl_rw_done);
-> +
-> +	if (unlikely(!ret))
-> +		return -ETIMEDOUT;
-> +
-> +	scoped_guard(mutex, &priv->ctl_work_lock) {
-> +		ret = ctl_work->ret;
-
-> +		if (!ret && !write)
-> +			*ctl_val = ctl_work->ctl_val;
-
-Return directly.
-
-		if (ret)
-			return ret;
-
-		if (!write)
-			...
-
-> +	}
-
-> +	return ret;
-
-	return 0;
-
-> +}
-
-...
-
-> +static struct iio_channel *ltm8054_init_ctl_dac(struct platform_device *pdev)
-> +{
-> +	struct iio_channel *ctl_dac;
-> +	enum iio_chan_type type;
-> +	int ret;
-> +
-> +	ctl_dac = devm_iio_channel_get(&pdev->dev, "ctl");
-> +	if (IS_ERR(ctl_dac)) {
-
-> +		if (PTR_ERR(ctl_dac) == -ENODEV)
-> +			return ERR_PTR(-EPROBE_DEFER);
-
-Hmm... Are you sure about this?
-
-> +
-> +		return ctl_dac;
-> +	}
-> +
-> +	ret = iio_get_channel_type(ctl_dac, &type);
-> +	if (ret)
-> +		return ERR_PTR(ret);
-> +
-> +	if (type != IIO_VOLTAGE)
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	return ctl_dac;
-> +}
-
-...
-
->  static int ltm8054_probe(struct platform_device *pdev)
->  {
->  	struct regulator_config config = { };
-> +	struct iio_channel *ctl_dac = NULL;
->  	struct device *dev = &pdev->dev;
->  	struct regulator_dev *rdev;
->  	struct ltm8054_priv *priv;
->  	int ret;
->  
-> +	/* Do this first, as it might defer. */
-> +	if (device_property_match_string(dev, "io-channel-names", "ctl") >= 0) {
-> +		ctl_dac = ltm8054_init_ctl_dac(pdev);
-> +		if (IS_ERR(ctl_dac))
-> +			return dev_err_probe(dev, PTR_ERR(ctl_dac),
-> +					     "failed to initialize CTL DAC\n");
-> +	}
-> +
->  	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
->  	if (!priv)
->  		return -ENOMEM;
-
-> +	platform_set_drvdata(pdev, priv);
-
-Do we need this? I think "no". See below how.
-
-> +	priv->dev = dev;
->  	priv->rdesc.name = "ltm8054-regulator";
-> -	priv->rdesc.ops = &ltm8054_regulator_ops;
-> +	priv->rdesc.ops = &ltm8054_no_ctl_ops;
->  	priv->rdesc.type = REGULATOR_VOLTAGE;
->  	priv->rdesc.owner = THIS_MODULE;
->  
-> +	if (ctl_dac) {
-> +		priv->ctl_dac = ctl_dac;
-
-> +		INIT_WORK(&priv->ctl_work.work, ltm8054_do_ctl_work);
-> +		init_completion(&priv->ctl_rw_done);
-
-Do devm-helpers.h APIs help with something here? Does
-devm_add_action_or_reset() help with not covered cases?
-
-> +		mutex_init(&priv->ctl_work_lock);
-
-Use devm_mutex_init() and don't forget the error check.
-
-> +		priv->rdesc.ops = &ltm8054_ctl_ops;
-> +	}
-> +
->  	config.dev = dev;
->  	config.driver_data = priv;
-
-
-From this...
-
->  	ret = ltm8054_of_parse(dev, priv, &config);
-> -	if (ret)
-> -		return dev_err_probe(dev, ret, "failed to parse device tree\n");
-> +	if (ret) {
-> +		ret = dev_err_probe(dev, ret, "failed to parse device tree\n");
-> +		goto out_err;
-> +	}
->  
->  	rdev = devm_regulator_register(dev, &priv->rdesc, &config);
-> -	if (IS_ERR(rdev))
-> -		return dev_err_probe(dev, PTR_ERR(rdev), "failed to register regulator\n");
-> +	if (IS_ERR(rdev)) {
-> +		ret = dev_err_probe(dev, PTR_ERR(rdev), "failed to register regulator\n");
-> +		goto out_err;
-> +	}
->  
->  	return 0;
-> +
-> +out_err:
-> +	if (ctl_dac) {
-> +		cancel_work_sync(&priv->ctl_work.work);
-> +		mutex_destroy(&priv->ctl_work_lock);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static void ltm8054_remove(struct platform_device *pdev)
-> +{
-> +	struct ltm8054_priv *priv = platform_get_drvdata(pdev);
-> +
-> +	if (priv->ctl_dac) {
-> +		cancel_work_sync(&priv->ctl_work.work);
-> +		mutex_destroy(&priv->ctl_work_lock);
-> +	}
->  }
-
-...to this no changes are needed.
-
-...
-
->  	.probe = ltm8054_probe,
-> +	.remove = ltm8054_remove,
-
-Neither is this.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Kind Regards,
+Niklas Söderlund
 
