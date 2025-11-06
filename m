@@ -1,178 +1,118 @@
-Return-Path: <devicetree+bounces-235553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE2F5C39C70
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 10:16:12 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73B6DC39BC7
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 10:05:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7655F18C66FE
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 09:16:31 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 787EE4F5FDF
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 09:04:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23DED303CAB;
-	Thu,  6 Nov 2025 09:15:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BCC83093A5;
+	Thu,  6 Nov 2025 09:04:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="EVsVRcCF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q5ukcegI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3286.qiye.163.com (mail-m3286.qiye.163.com [220.197.32.86])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C4C11E9906
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 09:15:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D64239E9E;
+	Thu,  6 Nov 2025 09:04:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762420554; cv=none; b=qbg4aW8xTaYVEIDlWinXusgOB9fwHP3ebmaGKvUPQ4mNmydZp8ly+TYKD3g1uUO567SI92y0ZNgWsC8+IFN/LKJUyPsbm21n4gvGLijOnBYGTiW4xLOVRQr7sRhKcUcATEu31hha6Wq56PSPAlpvF7TBcWLXw/Q2lkLWWd5PidQ=
+	t=1762419877; cv=none; b=OtmSdmATiGp9cNuvG2idRkWbrApKn9GF42xDySPIrMwnz0OYkkRqCtee96eCLoM7R7uI95PuIgqX6xc6usixvMHe+dRzrTEkztfeqe4i3LC6Le9Eh8j4cprS+mzet1MjjhdO92lk+C0+EaMCg+TgwH9K30hUDLgXIBvaIN9lkls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762420554; c=relaxed/simple;
-	bh=kyOMFE1ZHCODpRUj5CsPSdzYwQOlGcUcHAuzX0dephA=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=MfOrnnrPfoqAvbib7nSMaOJBn5Yg/JeFItzLHxsusRnMkrk/LLNfB/c/EPNn5wb+Pblrp2vGKpwBWhtyO/1oimkhydx+Fzhj4K89v3UyY4/rlckkcnoX3yyBwuSg/aPSGFsek6FJcl+5yHTrDekOyanIvq8Hw6VQa8CLZRbvUo4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=EVsVRcCF; arc=none smtp.client-ip=220.197.32.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.129] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 28a003a3a;
-	Thu, 6 Nov 2025 16:40:16 +0800 (GMT+08:00)
-Message-ID: <a624f36b-5a06-44f5-98b2-4a194ecebc6a@rock-chips.com>
-Date: Thu, 6 Nov 2025 16:40:14 +0800
+	s=arc-20240116; t=1762419877; c=relaxed/simple;
+	bh=rUwPmkH8kWk1exxLyZIry9wcfD3f8VL+DC2RWEsGmo4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ska1KyWYwKwtnyTTE7gJKHr8Af/scyUfBbHGbbgnYBH5rqYKTooy0ckSGmE4atBNnC6LN9FGRpyNqRQpyF8B2z1NRY4jU3v3Mi7b2xYak8GiVaJ8/Rt79V9ZGl5QButTU7WWo7WxatBAQRx4GyiaQF+6mFGltH8VrHfOgDCzRAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q5ukcegI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 980E6C4CEF7;
+	Thu,  6 Nov 2025 09:04:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762419877;
+	bh=rUwPmkH8kWk1exxLyZIry9wcfD3f8VL+DC2RWEsGmo4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=q5ukcegIHkGGfbGe3wBEjUx4e/bYvj7mlBFbcVuGTAfCQ/uPDpPBA0ziewrXbXAnr
+	 8vLXcDHOFfke7Be96lL3zrGcJ04I9IFB8XbsjUYgM7Ehn6b3CXMjAvZ/hr2K6XWRmF
+	 gJVasCBiyF4VXdQq3QmEOCfR7ZzGF153e6DmU5luVzN99O1j7QuGBTMNTptoFSrpnH
+	 RbQLnIfdMZcHxtRVlgbhXZA9XKO563UQcRBuBafYIn3vJfuukZOar/7BxuLzrsgeki
+	 Q6COZwX8m9sTpHv5SYm4C8hkWS0HZqsgsCOR1e9ExD+ZVRZc7tkCZm2P7RRKmKl4A9
+	 SNk9NZm7JArtA==
+Date: Thu, 6 Nov 2025 10:04:34 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Michael.Hennerich@analog.com, ramona.gradinariu@analog.com, 
+	antoniu.miclaus@analog.com, jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, 
+	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: iio: accel: adxl380: add new supported
+ parts
+Message-ID: <20251106-adorable-beluga-of-admiration-4dbd17@kuoka>
+References: <2b8fc2ea006d06660c83f1e9e1ccfc865803dafb.1762281527.git.Jonathan.Santos@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: shawn.lin@rock-chips.com, Jimmy Hon <honyuenkwun@gmail.com>,
- heiko@sntech.de, joseph.kogut@gmail.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, jonas@kwiboo.se,
- kever.yang@rock-chips.com, quentin.schulz@cherry.de, pbrobinson@gmail.com,
- amadeus@jmu.edu.cn, jbx6244@gmail.com, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v6 3/3] arm64: dts: rockchip: Add Radxa CM5 IO Board
-To: Dragan Simic <dsimic@manjaro.org>, FUKAUMI Naoki <naoki@radxa.com>
-References: <20251105051335.17652-1-naoki@radxa.com>
- <20251105051335.17652-4-naoki@radxa.com>
- <CALWfF7KyTfpXSyjVQaFzqtn6KyDxuyZOBpPR8y-jf6sduNxq5A@mail.gmail.com>
- <1EE1A1D9D7C100DA+1b365782-98c4-4ee0-ab96-920990841903@radxa.com>
- <35ff8e6f-dd2b-d909-70c7-b19240e32ccf@manjaro.org>
-From: Shawn Lin <shawn.lin@rock-chips.com>
-In-Reply-To: <35ff8e6f-dd2b-d909-70c7-b19240e32ccf@manjaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9a5852db0d09cckunm90f65a2de6d1cc
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkhLQ1ZIGB1NGUJKHk0YSkNWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpKQk
-	1VSktLVUpCWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=EVsVRcCFOxEHG6CpeE2rBf6lRWtMELUzVsvBVu3MpMIaWQUlwgStYkjv1e6OtoTrdMHiL/flxVyqrfgJsRKNgaXm8FVHIre6dAC41MvxSo8hRQ02piwkzKCtHo1D8sBZ4Jp6BYj9u7MT6FQzHS74/t8QZRGHPAa6YUDjf031OvU=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=OL4ei2eAwhIyMb6aBp01WxG7KhpGspUlQ42ju4Q0Mng=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <2b8fc2ea006d06660c83f1e9e1ccfc865803dafb.1762281527.git.Jonathan.Santos@analog.com>
 
-在 2025/11/06 星期四 11:31, Dragan Simic 写道:
-> Hello Naoki,
-> 
-> On Thursday, November 06, 2025 00:38 CET, FUKAUMI Naoki <naoki@radxa.com> wrote:
->> On 11/6/25 03:27, Jimmy Hon wrote:
->>> On Tue, Nov 4, 2025 at 11:14 PM FUKAUMI Naoki <naoki@radxa.com> wrote:
->>>>
->>>> The Radxa CM5 IO Board is an application board for the Radxa CM5.
->>>>
->>>> Specification:
->>>
->>>> - 1x microSD card slot
->>>
->>> [ snip ]
->>>
->>>> +
->>>> +&sdmmc {
->>>> +       bus-width = <4>;
->>>> +       cap-mmc-highspeed;
->>>> +       cap-sd-highspeed;
->>>> +       cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
->>>> +       disable-wp;
->>>> +       no-sdio;
->>>> +       pinctrl-names = "default";
->>>> +       pinctrl-0 = <&sdmmc_bus4 &sdmmc_clk &sdmmc_cmd>;
->>>> +       sd-uhs-sdr104;
->>>> +       vmmc-supply = <&vcc_3v3_s3>;
->>>> +       vqmmc-supply = <&vccio_sd_s0>;
->>>> +       status = "okay";
->>>> +};
->>>
->>> When used as a TF slot, shouldn't there be a "no-mmc" also?
->>
->> We have "eMMC to uSD."
->>    https://radxa.com/products/accessories/emmc-to-usd
->>
->> [  202.176757] mmc_host mmc1: Bus speed (slot 0) = 49500000Hz (slot req
->> 52000000Hz, actual 49500000HZ div = 0)
->> [  202.178477] mmc1: new high speed MMC card at address 0001
->> [  202.179534] mmcblk1: mmc1:0001 SLD64G 57.6 GiB
->> [  202.207336] mmcblk1boot0: mmc1:0001 SLD64G 4.00 MiB
->> [  202.210374] mmcblk1boot1: mmc1:0001 SLD64G 4.00 MiB
->> [  202.212967] mmcblk1rpmb: mmc1:0001 SLD64G 4.00 MiB, chardev (511:1)
->>
->> (I'm not sure why it says "Not work with the SD slot on the board." I
->> will check.)
-> 
-> Thanks for bringing this up, I've always wondered how are such
-> simple eMMC-to-microSD adapters supposed to work, so this was
-> a good opportunity to research that a bit further.
-> 
-> In a few words, they're not supposed to work in true microSD card
-> slots, and they seem to rely on USB card readers that support
-> multiple card interface standards, but not more than a single card
-> at once, by wiring their single interface lines in parallel to the
-> different types of card slots that they provide.
-> 
-> To explain it a bit further, an eMMC chip supports different data
-> bus widths and a backward-compatible MMC card mode, but they have
-> very little knowledge about the SD specification, despite being
-> somewhat similar; the exception is the simplified eMMC boot mode.
-> This is explained further in the JEDEC JESD84-B51 standard, which
-> is available freely from the JEDEC website after registration.
-> 
-> This is also confirmed by the kernel messages quoted above, which
-> show that the eMMC chip is detected as an MMC card this way.
-> 
-> With all that in mind, we should specify "no-mmc" here, because
-> we're describing a microSD slot, instead of describing some hybrid
-> MMC/microSD slot.  That also explains why the adapter sold by Radxa
-> is described as not to be used with microSD card slots on SBCs.  I'd
-> also like to hear is this adapter/eMMC chip combo recognized by the
-> kernel when "no-mmc" is specified; it should fail.
-> 
-> Actually, not specifying "no-mmc" here may result in some unforeseen
-> issues with some (or perhaps many?) microSD cards, because the MMC
-> drivers will treat them as MMC-capable devices and try to initialize
+On Wed, Nov 05, 2025 at 09:40:24AM -0300, Jonathan Santos wrote:
+> Include ADXL318 and ADXL319 accelerometers to the documentation.
+> The ADXL318 is based on the ADXL380, while the ADXL319 is based on the
+> ADXL382. However, the ADXL318/319 do not support some built-in features
+> like single tap, double tap and triple tap detection, and also activity
+> and inactivity detection.
+>=20
+> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> ---
+>  .../devicetree/bindings/iio/accel/adi,adxl380.yaml    | 11 +++++++----
+>  1 file changed, 7 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl380.yaml=
+ b/Documentation/devicetree/bindings/iio/accel/adi,adxl380.yaml
+> index f1ff5ff4f478..f38f384dd818 100644
+> --- a/Documentation/devicetree/bindings/iio/accel/adi,adxl380.yaml
+> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl380.yaml
+> @@ -11,18 +11,21 @@ maintainers:
+>    - Antoniu Miclaus <antoniu.miclaus@analog.com>
+> =20
+>  description: |
+> -  The ADXL380/ADXL382 is a low noise density, low power, 3-axis
+> -  accelerometer with selectable measurement ranges. The ADXL380
+> -  supports the =C2=B14 g, =C2=B18 g, and =C2=B116 g ranges, and the ADXL=
+382 supports
+> -  =C2=B115 g, =C2=B130 g, and =C2=B160 g ranges.
+> +  The ADXL380/ADXL382 and ADXL318/ADXL319 are low noise density,
+> +  low power, 3-axis accelerometers with selectable measurement ranges.
+> +  The ADXL380 and ADXL318 support the =C2=B14 g, =C2=B18 g, and =C2=B116=
+ g ranges,
+> +  while the ADXL382 and ADXL319 support =C2=B115 g, =C2=B130 g, and =C2=
+=B160 g ranges.
+> =20
+>    https://www.analog.com/en/products/adxl380.html
+> +  https://www.analog.com/en/products/adxl318.html
 
-Just chime in: The reason why we introduced these, is for controllers
-not cards. AFAITC, before commit 6ae3e537eab9f5, we had done that way
-for a decade, but rarely saw problems in this field.
+318 < 380
 
-> them as such, which may cause all kinds of issues.  In fact, I'm not
-> really sure that the MMC drivers are actually implemented in a way
-> that avoids all possible issues with the storage controllers that
-> are capable of both SD and MMC modes when neither of "no-sd" and
-> "no-mmc" is specified in their DT nodes.
-> 
-> Furthermore, it seems that specifying "cap-mmc-highspeed" together
-> with "no-emmc" is actually redundant, which would make sense, but
-> further research of the MMC drivers is needed.  I've added that to
-> my ever-growing TODO list. :)
-> 
->>> That's how the Rock 5A, 5B, and 5C were defined.
->>
->> I have submitted a patch without "no-mmc" before. I intend to send one
->> again when I have the chance.
-> 
-> 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> =20
+>  properties:
+>    compatible:
+>      enum:
+>        - adi,adxl380
+>        - adi,adxl382
+> +      - adi,adxl318
+> +      - adi,adxl319
+
+Same here. Please keep this sorted.
+
+Best regards,
+Krzysztof
 
 
