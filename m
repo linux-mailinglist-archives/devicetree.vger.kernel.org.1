@@ -1,82 +1,87 @@
-Return-Path: <devicetree+bounces-235549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F89EC39C28
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 10:11:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 234D7C39C34
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 10:12:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E7E71898185
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 09:11:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EE683AA55C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 09:12:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C028930BB9A;
-	Thu,  6 Nov 2025 09:10:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B64E30B519;
+	Thu,  6 Nov 2025 09:11:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gWGsPiEz"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="jDIcv7O+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 947BA309DCD;
-	Thu,  6 Nov 2025 09:10:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E5C125771;
+	Thu,  6 Nov 2025 09:11:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762420254; cv=none; b=NWIbP3CaA+JeoWoiQMbeKcf3rbjSUb0EXNpWfRoZeFyLXcAUGsmymM1SWfSRr1nTQRHuRGP5reyu1JqKXeNjx8txqi1hg8KT7L7n4TmTzgFmtjce5TEX+PB3ZV1pIzYAL0xjl5KMjl/NOy15Rjepn7YlyUowrPXQAWa/xLkiWp0=
+	t=1762420317; cv=none; b=Qv5QCC/b0n/8RSHxx2CVHrpo+Bsf1dHl4s9lnN2DiQRsFIxQcUFo6z3a5MBk0JQ9F4isxCQJYXnayUax72cJSja87Yoc6L/D6liID4X9gMUiVWZ5eI0ZAzBU23TSPStzD6L8ULjkNeoLAUy180jpXQ+PLgmNs4RjqE1lJmNRwYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762420254; c=relaxed/simple;
-	bh=Zr/M3urx6QmDn29/RLIk+hUCSB9dBqIdqWe9Jr4oLQE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h8XBsSSpU2/+aUibMNVFi30k9uw4Qp4d2DIcoABfht6HHExC50g8mEXWOhpgjZfZbhjEYw58bqyKcN5J3FsBvPk/MqQmF82kC4n566PVeyKxsJ3/cQcRlZ+v8iOUvktgHMMScjcjeSjWGDaJqlCN/hmXNMSkGAN65mFsHIvpbVs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gWGsPiEz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3FD7C4CEFB;
-	Thu,  6 Nov 2025 09:10:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762420254;
-	bh=Zr/M3urx6QmDn29/RLIk+hUCSB9dBqIdqWe9Jr4oLQE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gWGsPiEzv+CafFM4g0M2wjUU5bZFC93IW8NSL5kX4Gpn3NQwmBrF7d+aU6CVVUPK7
-	 j1C+aHKpIlEjm+umGM4m3cKayDeZJkMBgQgxvEuk2VNfuvF2TXKyzTMVWWTzIvtMk1
-	 oC9RnRdHyZWeGdF+e4mCHGsT27cnRhc/9q9Zsex1PGXdhLnE6GUPr3kGS7RF5Cm6EJ
-	 Uv2EfP10o6wXT+KCUJ8nwyxmiIEQx61Ebs3lFBtI4ZsMhFKddkrA3nl0/br3WRG46x
-	 0V4WxBBhOqibYfi+FaPE3w1D8TWSp3MxqaTkcBL5tEiI0ErSoR0qrGQOnFL75anrfo
-	 Fgnhvq2O9ELxw==
-Date: Thu, 6 Nov 2025 10:10:51 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/2] clk: renesas: r8a779a0: Add clocks needed for GPU
-Message-ID: <20251106-nocturnal-uptight-kagu-87bce8@kuoka>
-References: <20251105231815.1927239-1-niklas.soderlund+renesas@ragnatech.se>
+	s=arc-20240116; t=1762420317; c=relaxed/simple;
+	bh=7h2mue6lelhbKzY/Exibr7K7OP7aFWjdpWqi0pwxh1k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RpbL8ecOzPF6PMLVOUyoVTN58i9rMkd6DrknqHcrbkiPtLlXqfdMbnU6HrfhsEH33EEyjoKmshMkwK8d+1BtuwYTbbW2obCeH7MkHxft+AIZyIJEJhOVRr0vYgo151Fbk3ryKjPyMQkIYvBhPh0mYW1i21WSYt0XFgehbTCurEA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=jDIcv7O+; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1762420313;
+	bh=7h2mue6lelhbKzY/Exibr7K7OP7aFWjdpWqi0pwxh1k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jDIcv7O+7SeSWh+mJIAQfJ3iMNNZ2/dZY1WBxYrsjAWy80De0M1se78rYiKpT3J8e
+	 FT+RqIGmuz6mKfxiM8E60nOg8rmw1NPVQzPbWAatxlv525Y7eDTzPI3hHdq9HqUBdo
+	 N/1qqRxUfNsw5antV7F4wsa3FfmJvxuX5fBtCcdIQnEUPLu4lXIe2SvCdzKIduchwD
+	 YzPFo6Q6+fjlwIQCAYBqCLRVZ7j696Q5hqCryQW4Xt8vzVFReBz1pkBFF5KRM+7CER
+	 63nGlPVutJ0CMwmoC9nDuvEWS4Z5D5A4m4bhc4qduavsBn5qTZcoE3WJyPlGcxS5EX
+	 Kg/zi7uVbtjKw==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1BA4B17E1315;
+	Thu,  6 Nov 2025 10:11:53 +0100 (CET)
+Message-ID: <06516937-4403-4109-8049-77a1d8ca7249@collabora.com>
+Date: Thu, 6 Nov 2025 10:11:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20251105231815.1927239-1-niklas.soderlund+renesas@ragnatech.se>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: nvmem: mediatek: efuse: Add compatible for
+ MT8189 SoC
+To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+ Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+ Lala Lin <lala.lin@mediatek.com>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20251030-mt8189-dt-bindings-efuse-v1-1-1148e474a9f5@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20251030-mt8189-dt-bindings-efuse-v1-1-1148e474a9f5@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Nov 06, 2025 at 12:18:13AM +0100, Niklas S=C3=B6derlund wrote:
-> Hi Geert,
->=20
-> This small series adds the clocks needed to use the GPU on V3U. The=20
-> first is by far the most complex as the whole tree branch needed to be=20
-> described.
->=20
-> With this and soon to be posted DT patches the GPU on V3U.
+Il 30/10/25 11:26, Louis-Alexis Eyraud ha scritto:
+> Add compatible string for the eFuse layout on MT8189 SoC, that is
+> compatible with MT8186.
+> 
+> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 
-You have checkpatch warning which is important, because would block from
-merging DTS if it uses the binding header constant.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-DTS cannot depend or even be based on driver patches.
-
-Best regards,
-Krzysztof
 
 
