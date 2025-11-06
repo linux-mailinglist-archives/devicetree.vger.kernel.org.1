@@ -1,155 +1,172 @@
-Return-Path: <devicetree+bounces-235616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE552C3A6DE
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 12:01:46 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA085C3A6A4
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 11:59:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 44D64350C8B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 11:01:46 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EF3BE4FD3B3
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 10:53:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE3DE2ED844;
-	Thu,  6 Nov 2025 10:52:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0568B2EC095;
+	Thu,  6 Nov 2025 10:53:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="e33sWTkO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CTOQ3frv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com [157.90.84.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5A012EC080;
-	Thu,  6 Nov 2025 10:52:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=157.90.84.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB45F2EB5BD;
+	Thu,  6 Nov 2025 10:53:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762426354; cv=none; b=le+/SJTfd6g+V8riN5e40hhQoIjfAYc5AgCG2XCSVoO+qPXgrgvCi8UJ7oukURBv+Wc217HxmYxmZBuzqeJ89t8m+QPCcF75pfnT59WQ2XLnUkzCEUHVTX8x6t+c2bZYWLQ9QafyTLef/gd9oC95At6z+g/+bp/A+vF+H0cE8Ys=
+	t=1762426422; cv=none; b=XiwR+aHi9H0sKjmUNWWm/+zzNpBAecHwqpUn53hWxN6BXT0d3+l2L4+nlDJx1Q9GHiJ40+hxbeTKR+CAnm7Zq6x5uQgUIubaJtNy2gWKZvlfliqlt6U08Q2deSXEpI5ebveJwGeqCX2cX0kB8xl9lpvlX9sipN9aVxSos28H8lE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762426354; c=relaxed/simple;
-	bh=/qTmGtQoOJsPtCLSObwcslzhgZoXyqlKnaErTDUrd6w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ELwYZ93WOGTiMLF5SY84dyoy3noQ4YqcY8Voj8rvO8ZhNN4SqaR+R6A5nFk+1MqTg1c7Q2nxpGsXmdF5ac7ubg/daM83oyWQZMFzQDwt9nYsC3liqvQUrI6x7cAAJE/YQ8UjY6g4JAhE/mQ7lDf9Jjiwu4Kkx0iLVVwfisvv0yk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tuxedocomputers.com; spf=pass smtp.mailfrom=tuxedocomputers.com; dkim=pass (1024-bit key) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b=e33sWTkO; arc=none smtp.client-ip=157.90.84.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tuxedocomputers.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxedocomputers.com
-Received: from [192.168.178.76] (business-24-134-207-61.pool2.vodafone-ip.de [24.134.207.61])
-	(Authenticated sender: g.gottleuber@tuxedocomputers.com)
-	by mail.tuxedocomputers.com (Postfix) with ESMTPSA id 81D202FC0061;
-	Thu,  6 Nov 2025 11:52:28 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
-	s=default; t=1762426349;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=cRc+3UxP4O+uvOecIY1qnyp0YvjXunBFfwJsJPac+QM=;
-	b=e33sWTkOHjD0vQxxljsJCvYPYNveZxnOZt8Fm5Eg+LIgBh2w+SlkaghQR8rnmUwUpS1bZI
-	GO760aj9YLPD/9gdz8SPwQnWLEsbA378w4p9UpdGuk0dnL1ksmnpBI9zjk1pGtEwqzQdTr
-	TfjKExpI2lf+UgzgTO8cqcE46u9p7kw=
-Authentication-Results: mail.tuxedocomputers.com;
-	auth=pass smtp.auth=g.gottleuber@tuxedocomputers.com smtp.mailfrom=g.gottleuber@tuxedocomputers.com
-Message-ID: <2c282607-79a9-4081-b8df-c92b9b1520c5@tuxedocomputers.com>
-Date: Thu, 6 Nov 2025 11:52:28 +0100
+	s=arc-20240116; t=1762426422; c=relaxed/simple;
+	bh=Epp5YO2QE/d3UMrboGIdGCaW2vlY+8wmDJGCJi4/2V8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=aeg1Ny75Q9tZUgKahy+zEAcwGJRh6EHsAZD6WZCkihQB72CgSBDvRClcNpfiwu3waM8f54PJwCrI0BfNFGCGSDt31z6zPLSZewA6r+IT0XjeseJaRROF/QOxtyI/iZ8eNTz4D+NmRUkzm0FHTHMvbPmHkCEMZb874zjobcwffD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CTOQ3frv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6A290C113D0;
+	Thu,  6 Nov 2025 10:53:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762426422;
+	bh=Epp5YO2QE/d3UMrboGIdGCaW2vlY+8wmDJGCJi4/2V8=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=CTOQ3frvprYP22eUAb6vYVcbfZSWhBScQElSnxVOgQGlV4vEJ/t4j6NG/n84eB6uO
+	 0Gsuds4CTx14Z0PSz5FCo8prtDFTXAJgOP8KOftWaUZXJSUtMQ33tzBM2TlVYAxHB5
+	 A13owtU/tKk2zZHJOWFsEDv9D9At8IrGGzCT2nc9Dh24p2spxepRh9aT7HkxSfER7x
+	 TVWj710ZqRF0YTC4N+aQ+LddaHYbG+JQtYz/9aj9A+egOBHIiPqKSluwSN+QEyXZOY
+	 vzyPm7XbfPCsOkrn/NVMgDNdsxgEo7Exih3s+XGuTovllrN8zWJcTkZw+oz+nX6zMI
+	 sVvrmBgV0Walw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B334CCFA03;
+	Thu,  6 Nov 2025 10:53:42 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Date: Thu, 06 Nov 2025 11:53:40 +0100
+Subject: [PATCH v2] dt-bindings: panel: s6e3fc2x01: Sort and remove
+ unnecessary properties
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/7] dt-bindings: arm: qcom: Add TUXEDO Computers
- device
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Georg Gottleuber <ggo@tuxedocomputers.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Ettore Chimenti <ettore.chimenti@linaro.org>,
- Srinivas Kandagatla <srini@kernel.org>, stefan.schmidt@linaro.org,
- stephan.gerhold@linaro.org, wse@tuxedocomputers.com, cs@tuxedo.de
-References: <20251105154107.148187-1-ggo@tuxedocomputers.com>
- <20251105154107.148187-6-ggo@tuxedocomputers.com>
- <0e274f07-1eef-4f2b-9db1-480961eb7005@kernel.org>
-Content-Language: en-US
-From: Georg Gottleuber <g.gottleuber@tuxedocomputers.com>
-Autocrypt: addr=g.gottleuber@tuxedocomputers.com; keydata=
- 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
- bsxTTcOuRnk=
-In-Reply-To: <0e274f07-1eef-4f2b-9db1-480961eb7005@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20251106-dt-s6e3fc2x01-v2-1-deb87727152e@ixit.cz>
+X-B4-Tracking: v=1; b=H4sIADN+DGkC/3XMQQ6CMBCF4auQWTumUwSUlfcwLKCdymzAtKSpk
+ t7dyt7l/5L37RDYCwfoqx08RwmyLiX0qQIzj8uTUWxp0Eo3RKpFu2FouXZGJ0Vou7GzdcsTTQb
+ K5+XZSTq8x1B6lrCt/n3wkX7rPykSEqpLd3PaXqemdndJsp3NB4ac8xdv7k+jqAAAAA==
+X-Change-ID: 20251106-dt-s6e3fc2x01-d7a7d36eb1bc
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk@kernel.org>, David Heidelberg <david@ixit.cz>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2065; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=pgClw84QtPBlwZV86TtKjb3RNNcrtweHBH9CMqAbjKE=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpDH41wJI/LnkhayCRRmgDzx03QNQa6cdxF8slQ
+ dKBnyNcL7uJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaQx+NQAKCRBgAj/E00kg
+ ci3IEAC6oNsRTnliM3ysSAzlOLeGie3TdehlTDk9zxe8oXnRlWr3K1iggTxVxBtAS1nt3qnPVCp
+ HscEX8BlvYYfiazFqGECPsaIEJ4twkzjTwaE9o70IYj1psxeQV+pRe64oTrbIAt9UWBzdwMvkfK
+ 9kZCuX8QfPRCyLGNRd98IiALZhC7FCmc6f8v6esKbVPc+n3lQoQhcXUZC8voUpigfZGRkVo3xHH
+ 5E2UDfBfjXUBEQ5B5jOKMmmxajCc7yb6YOvjQaiHcQHuOqJjOQ0+HbxN3v5phSQe288HUGYPxFC
+ ggJv8ZrNcGbf7BjuimnoDDIMAbRgpAEQ8qbHcSyf+e5OCDblIE4ioLs654uD8dSV0RWpIJpxjVj
+ QOjYMxTiaLazF/W3F7AllbJiTpFzXf80w0bOmfN5iVGZ+cZ6qC+oEtPiO4fRVEVZS8a0IcIuTWO
+ xVHbGcd+C2MgJkEnKKwMIl2dJMlumNCQAimB7DGDV3x67WXroXBGWJg3JxrvaGLXA77+FQq5Bsd
+ IsiEzwfaFV1TXNZN5flIYkd8jt//XdENYG4+HcPRPHNHJmlrDmXvq9z2JXtlnF/boh0jQnOoTb8
+ /ajqXY9QfOmfcuDl6CdUA+Y8eYZ/UY+AtAC6QzBnfDF5BnoR+pSsGCK0EI5v8fsU39KRt+d7Syz
+ jUH+8WIQia5VODw==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
 
+From: David Heidelberg <david@ixit.cz>
 
+Properties are now sorted, reset-gpio and port property dropped because
+they are already accepted here as part of panel-common and usage of
+unevaluatedProperties.
 
-Am 06.11.25 um 09:32 schrieb Krzysztof Kozlowski:
-> On 05/11/2025 16:41, Georg Gottleuber wrote:
->> Document the X1E80100-based TUXEDO laptop
->>
->> Signed-off-by: Georg Gottleuber <ggo@tuxedocomputers.com>
->> ---
->>  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
->> index 18b5ed044f9f..6e5aa9d6e1a8 100644
->> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
->> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
->> @@ -1073,6 +1073,7 @@ properties:
->>                - microsoft,romulus15
->>                - qcom,x1e80100-crd
->>                - qcom,x1e80100-qcp
->> +              - tuxedo,elite14gen1
->>            - const: qcom,x1e80100
-> 
-> Cover letter says X1E78100, commit msg and bindings say X1E80100.
-> 
-> Something is for sure not saying right. Decide which one.
+Suggested-by: Krzysztof Kozlowski <krzk@kernel.org>
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+Changes in v2:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v1: https://lore.kernel.org/r/20251106-dt-s6e3fc2x01-v1-1-0479f2d8b53f@ixit.cz
+---
+ .../bindings/display/panel/samsung,s6e3fc2x01.yaml   | 20 ++++++++------------
+ 1 file changed, 8 insertions(+), 12 deletions(-)
 
-Oh, true. Thank you. It is a X1E78100. I got confused because the device
-tree is also called 'x1e80100-...'.
+diff --git a/Documentation/devicetree/bindings/display/panel/samsung,s6e3fc2x01.yaml b/Documentation/devicetree/bindings/display/panel/samsung,s6e3fc2x01.yaml
+index d48354fb52ea0..fd4388f5fb118 100644
+--- a/Documentation/devicetree/bindings/display/panel/samsung,s6e3fc2x01.yaml
++++ b/Documentation/devicetree/bindings/display/panel/samsung,s6e3fc2x01.yaml
+@@ -6,11 +6,11 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Samsung S6E3FC2X01 AMOLED DDIC
+ 
+-description: The S6E3FC2X01 is display driver IC with connected panel.
+-
+ maintainers:
+   - David Heidelberg <david@ixit.cz>
+ 
++description: The S6E3FC2X01 is display driver IC with connected panel.
++
+ allOf:
+   - $ref: panel-common.yaml#
+ 
+@@ -25,25 +25,21 @@ properties:
+   reg:
+     maxItems: 1
+ 
+-  reset-gpios: true
+-
+-  port: true
+-
+-  vddio-supply:
+-    description: VDD regulator
++  poc-supply:
++    description: POC regulator
+ 
+   vci-supply:
+     description: VCI regulator
+ 
+-  poc-supply:
+-    description: POC regulator
++  vddio-supply:
++    description: VDD regulator
+ 
+ required:
+   - compatible
+   - reset-gpios
+-  - vddio-supply
+-  - vci-supply
+   - poc-supply
++  - vci-supply
++  - vddio-supply
+ 
+ unevaluatedProperties: false
+ 
 
-> Best regards,
-> Krzysztof
+---
+base-commit: df5d79720b152e7ff058f11ed7e88d5b5c8d2a0c
+change-id: 20251106-dt-s6e3fc2x01-d7a7d36eb1bc
+
+Best regards,
+-- 
+David Heidelberg <david@ixit.cz>
+
 
 
