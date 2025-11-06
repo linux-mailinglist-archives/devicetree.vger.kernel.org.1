@@ -1,158 +1,241 @@
-Return-Path: <devicetree+bounces-235622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 883DCC3A81D
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 12:19:13 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FDD1C3A8EC
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 12:26:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE7DE420094
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 11:15:47 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CAB1D4FE977
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 11:22:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B36A02F39C5;
-	Thu,  6 Nov 2025 11:15:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 695B530DD20;
+	Thu,  6 Nov 2025 11:22:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="OCRfKnAx"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OeSnCLSe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com [157.90.84.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CF9A2F3C31;
-	Thu,  6 Nov 2025 11:15:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=157.90.84.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7442F2E6100;
+	Thu,  6 Nov 2025 11:22:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762427746; cv=none; b=rR7KB/t8oPCjrvbpSaVkC6UMFe+LjDf9g+CNXw8um6Ut0AasTRP62VCPwzrxDZkXe2nxBGFa/7/sNZanUzwDOYMIE04hIsoy/0Nht2b9dmbkyHl+jiTwpabXlVmP/A3QnM70UEUEtH+RRUvHlZyv6MJla9urwi7mCepvNWt6pYI=
+	t=1762428167; cv=none; b=lHZXM8/sqCGqVylAhreOslC8Yrh/7Q1rp3A/p7mC+Z4AYX831X4b6qOIKib/z4LdJqbzrLUfv5jg+aTcgs7IDoMFRzgn8/Rua38tHe6NDTBGSLUAVRn71Jau79sfh7HFCXEhQgHRwHQeaMwB4VPEdOkAbgDBM2r4M3PY06pLBCM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762427746; c=relaxed/simple;
-	bh=lYkIhJxU7rP5Y3NCddHpLryYMH2tAllNb5EKkOGzyUw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mSZGB5f8E7Hjt8UD/HgVDjW952fzV3GYOkdFBorvP1UnYyJP6+GzLHp+delPqSOaHL/g+PJDhXKBKIxXelkSNKL+PwJrzk9lXVvwRl29jJD0AoqifyIXlskRd0UDRqYMgBZWLdAUPZsh2dSGt9U+uRZK9tHo8detAJGm3LGhYns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tuxedocomputers.com; spf=pass smtp.mailfrom=tuxedocomputers.com; dkim=pass (1024-bit key) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b=OCRfKnAx; arc=none smtp.client-ip=157.90.84.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tuxedocomputers.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxedocomputers.com
-Received: from [192.168.178.76] (business-24-134-207-61.pool2.vodafone-ip.de [24.134.207.61])
-	(Authenticated sender: g.gottleuber@tuxedocomputers.com)
-	by mail.tuxedocomputers.com (Postfix) with ESMTPSA id B62932FC0061;
-	Thu,  6 Nov 2025 12:15:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
-	s=default; t=1762427740;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=9Z+E3QqXUCN1pdJ+BrbWF58Nf6AFtBf9cJZpSMo21G4=;
-	b=OCRfKnAxevmGQ7aquNnAJ3LAgfmyoIiA3cDbWblgePemEsbCZwOEeBc3RlEHhLl4zizm3R
-	Se0PQHntkkEvSQSiwOgWNxVIKuE8Zq1r6p4ZavnVZKncxmmm1LLBq9G0azPAGezGwv83Cs
-	+EgFvVfkHWZwYuHIbQRc6xJ7WYOQUYc=
-Authentication-Results: mail.tuxedocomputers.com;
-	auth=pass smtp.auth=g.gottleuber@tuxedocomputers.com smtp.mailfrom=g.gottleuber@tuxedocomputers.com
-Message-ID: <187d37c6-6197-4119-8fed-d187bed4a8d9@tuxedocomputers.com>
-Date: Thu, 6 Nov 2025 12:15:39 +0100
+	s=arc-20240116; t=1762428167; c=relaxed/simple;
+	bh=zkwHK3b5vMwLHOx0l0YkcW7ODlRQaOEWOWExDCsjsas=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ni/+UzOcg96svJ5IufhCuLTMPwKm10/LGY4hd8OzsBWg3sH+qXwd3C+cChtoXYBpqnaCeZCgojHuPdjEkjStibuOgccZEphFUsTVsF2g2BOxSM0BdOgXHi8q7t2anHmU2LLxg2fwpYncaJTTwfKLlJOh1iTkOc4eA0hiSsCE0lM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OeSnCLSe; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762428165; x=1793964165;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=zkwHK3b5vMwLHOx0l0YkcW7ODlRQaOEWOWExDCsjsas=;
+  b=OeSnCLSeZz+/o7gs3Ba4bVFjPAKr/+poyIK0Sshp+4qvPgSy0BmLVHnf
+   AuerIfiz8Fp/ecZb7SaonxSSGb8Mk9vlrgNT3Ca0IKZU2OysSf51I6L0j
+   qKIyHI6Ce9hKIbPB6PgAZgHtUNqIcPF9ZBamigT9C0/GYUWGWI7FNziuT
+   xzW0o2J3ZeQcUi4/v24V1zp0AFMTEghP82EAP0AF2ylispKQZ12mlMCmf
+   5ytV69aAQCWxOma3q5eM0ew96p2yyGk8c0pP9dXoCbDvb7riJbUnZuGU4
+   hiAwumDk0zMS8DWzQ0Deu3/dwrCgxODyfh8dEG5FA+e05zfhbDxhqHSg9
+   w==;
+X-CSE-ConnectionGUID: /cWk8qZCTKO4o3XzMfpVpQ==
+X-CSE-MsgGUID: lYA2zf3TRCymHNywxiR5Vg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="68211078"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; 
+   d="scan'208";a="68211078"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2025 03:22:45 -0800
+X-CSE-ConnectionGUID: 2jKHIrhtQOKyMIc9ItT3Cw==
+X-CSE-MsgGUID: ZsbU2kt0QZWbIj/4sSZBwg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; 
+   d="scan'208";a="187021979"
+Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
+  by orviesa010.jf.intel.com with ESMTP; 06 Nov 2025 03:22:41 -0800
+Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vGy4Y-000Tpe-0C;
+	Thu, 06 Nov 2025 11:22:35 +0000
+Date: Thu, 6 Nov 2025 19:21:44 +0800
+From: kernel test robot <lkp@intel.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	David Jander <david@protonic.nl>,
+	Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Subject: Re: [PATCH v1 2/2] iio: adc: Add TI ADS131M0x ADC driver
+Message-ID: <202511061850.kYeqflcU-lkp@intel.com>
+References: <20251105143814.1807444-3-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/7] dt-bindings: vendor-prefixes: Add ASL Xiamen
- Technology
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Georg Gottleuber <ggo@tuxedocomputers.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Ettore Chimenti <ettore.chimenti@linaro.org>,
- Srinivas Kandagatla <srini@kernel.org>, stefan.schmidt@linaro.org,
- stephan.gerhold@linaro.org, wse@tuxedocomputers.com, cs@tuxedo.de
-References: <20251105154107.148187-1-ggo@tuxedocomputers.com>
- <20251105154107.148187-2-ggo@tuxedocomputers.com>
- <20251106-lemon-kittiwake-of-freedom-dfcfdf@kuoka>
-Content-Language: en-US
-From: Georg Gottleuber <g.gottleuber@tuxedocomputers.com>
-Autocrypt: addr=g.gottleuber@tuxedocomputers.com; keydata=
- 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
- bsxTTcOuRnk=
-In-Reply-To: <20251106-lemon-kittiwake-of-freedom-dfcfdf@kuoka>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251105143814.1807444-3-o.rempel@pengutronix.de>
+
+Hi Oleksij,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on jic23-iio/togreg]
+[also build test ERROR on linus/master v6.18-rc4 next-20251106]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Oleksij-Rempel/bindings-iio-adc-Add-bindings-for-TI-ADS131M0x-ADCs/20251105-224149
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20251105143814.1807444-3-o.rempel%40pengutronix.de
+patch subject: [PATCH v1 2/2] iio: adc: Add TI ADS131M0x ADC driver
+config: loongarch-allmodconfig (https://download.01.org/0day-ci/archive/20251106/202511061850.kYeqflcU-lkp@intel.com/config)
+compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251106/202511061850.kYeqflcU-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511061850.kYeqflcU-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/iio/adc/ti-ads131m0x.c:174:2: error: call to undeclared function 'put_unaligned_be24'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     174 |         put_unaligned_be24(command << 8, &priv->tx_buffer[0]);
+         |         ^
+   drivers/iio/adc/ti-ads131m0x.c:163:6: warning: unused variable 'ret' [-Wunused-variable]
+     163 |         int ret;
+         |             ^~~
+>> drivers/iio/adc/ti-ads131m0x.c:224:11: error: call to undeclared function 'get_unaligned_be16'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     224 |         status = get_unaligned_be16(&priv->rx_buffer[0]);
+         |                  ^
+   drivers/iio/adc/ti-ads131m0x.c:271:2: error: call to undeclared function 'put_unaligned_be24'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     271 |         put_unaligned_be24(command << 8, &priv->tx_buffer[0]);
+         |         ^
+   drivers/iio/adc/ti-ads131m0x.c:304:13: error: call to undeclared function 'get_unaligned_be16'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     304 |         response = get_unaligned_be16(&priv->rx_buffer[0]);
+         |                    ^
+   drivers/iio/adc/ti-ads131m0x.c:376:9: error: call to undeclared function 'get_unaligned_be16'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     376 |         *val = get_unaligned_be16(&priv->rx_buffer[0]);
+         |                ^
+   drivers/iio/adc/ti-ads131m0x.c:461:17: error: call to undeclared function 'get_unaligned_be16'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     461 |         received_crc = get_unaligned_be16(&priv->rx_buffer[data_len]);
+         |                        ^
+   drivers/iio/adc/ti-ads131m0x.c:505:11: error: call to undeclared function 'get_unaligned_be16'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     505 |         status = get_unaligned_be16(&priv->rx_buffer[0]);
+         |                  ^
+>> drivers/iio/adc/ti-ads131m0x.c:523:23: error: call to undeclared function 'get_unaligned_be24'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     523 |         *val = sign_extend32(get_unaligned_be24(buf), 23);
+         |                              ^
+   drivers/iio/adc/ti-ads131m0x.c:706:13: error: call to undeclared function 'get_unaligned_be16'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     706 |         response = get_unaligned_be16(&priv->rx_buffer[0]);
+         |                    ^
+   1 warning and 9 errors generated.
 
 
+vim +/put_unaligned_be24 +174 drivers/iio/adc/ti-ads131m0x.c
 
-Am 06.11.25 um 09:05 schrieb Krzysztof Kozlowski:
-> On Wed, Nov 05, 2025 at 04:41:01PM +0100, Georg Gottleuber wrote:
->> From: Ettore Chimenti <ettore.chimenti@linaro.org>
->>
->> ASL Xiamen Technology Co. Ltd. is a Chinese high-speed interface and
->> display system chip design company. Adding it to the vendor prefixes.
->>
->> Link: https://www.asl-tek.com/
->>
->> Signed-off-by: Ettore Chimenti <ettore.chimenti@linaro.org>
->> ---
->>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> index f1d1882009ba..278cb879781f 100644
->> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> @@ -176,6 +176,8 @@ patternProperties:
->>      description: All Sensors Corporation
->>    "^asix,.*":
->>      description: ASIX Electronics Corporation
->> +  "^asl,.*":
-> 
-> So the prefix is asl-tek, like its domain.
+   149	
+   150	/**
+   151	 * ads131m_tx_frame_unlocked - Sends a command frame with Input CRC
+   152	 * @priv: Device private data structure.
+   153	 * @command: The 16-bit command to send (e.g., NULL, RREG, RESET).
+   154	 *
+   155	 * Assumes the mutex lock is held.
+   156	 * This function sends a command in Word 0, and its calculated 16-bit
+   157	 * CRC in Word 1, as required when Input CRC is enabled.
+   158	 *
+   159	 * Return: 0 on success, or a negative error code from spi_sync.
+   160	 */
+   161	static int ads131m_tx_frame_unlocked(struct ads131m_priv *priv, u32 command)
+   162	{
+   163		int ret;
+   164		u16 crc;
+   165	
+   166		/*
+   167		 * Zero the entire TX buffer to send a valid frame.
+   168		 */
+   169		memset(priv->tx_buffer, 0, ADS131M_FRAME_BSIZE(priv->num_channels));
+   170	
+   171		/*
+   172		 * Word 0: 16-bit command, MSB-aligned in 24-bit word.
+   173		 */
+ > 174		put_unaligned_be24(command << 8, &priv->tx_buffer[0]);
+   175	
+   176		/*
+   177		 * Word 1: Input CRC
+   178		 * Calculated over the 3 bytes of Word 0.
+   179		 */
+   180		crc = ads131m_crc_calculate(priv->tx_buffer, 3);
+   181		put_unaligned_be24(crc << 8, &priv->tx_buffer[3]);
+   182	
+   183		return spi_sync(priv->spi, &priv->msg);
+   184	}
+   185	
+   186	/**
+   187	 * ads131m_rx_frame_unlocked - Receives a full SPI data frame.
+   188	 * @priv: Device private data structure.
+   189	 *
+   190	 * This function sends a NULL command (with its CRC) to clock out a
+   191	 * full SPI frame from the device (e.g., response + channel data + CRC).
+   192	 *
+   193	 * Assumes the mutex lock is held.
+   194	 *
+   195	 * Return: 0 on success, or a negative error code from spi_sync.
+   196	 */
+   197	static int ads131m_rx_frame_unlocked(struct ads131m_priv *priv)
+   198	{
+   199		return ads131m_tx_frame_unlocked(priv, ADS131M_CMD_NULL);
+   200	}
+   201	
+   202	/**
+   203	 * ads131m_check_status_crc_err - Checks for an Input CRC error.
+   204	 * @priv: Device private data structure.
+   205	 *
+   206	 * Sends a NULL command to fetch the STATUS register and checks the
+   207	 * CRC_ERR bit. This is used to verify the integrity of the previous
+   208	 * command (like RREG or WREG).
+   209	 *
+   210	 * Context: This function assumes the mutex 'lock' is held.
+   211	 * Return: 0 on success, -EIO if CRC_ERR bit is set.
+   212	 */
+   213	static int ads131m_check_status_crc_err(struct ads131m_priv *priv)
+   214	{
+   215		int ret;
+   216		u16 status;
+   217	
+   218		ret = ads131m_rx_frame_unlocked(priv);
+   219		if (ret < 0) {
+   220			dev_err(&priv->spi->dev, "SPI error on STATUS read for CRC check\n");
+   221			return ret;
+   222		}
+   223	
+ > 224		status = get_unaligned_be16(&priv->rx_buffer[0]);
+   225		if (status & ADS131M_STATUS_CRC_ERR) {
+   226			dev_err(&priv->spi->dev, "Previous input CRC error, STATUS=0x%04x\n",
+   227				status);
+   228			return -EIO;
+   229		}
+   230	
+   231		return 0;
+   232	}
+   233	
 
-OK, I will include this in v3.
-> Best regards,
-> Krzysztof
-> 
-> 
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
