@@ -1,158 +1,125 @@
-Return-Path: <devicetree+bounces-235799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3371C3D06B
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 19:10:56 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23387C3D074
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 19:11:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4333A3ADC37
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 18:09:21 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BBB1C4E030C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 18:11:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89DA934F248;
-	Thu,  6 Nov 2025 18:09:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7343633FE07;
+	Thu,  6 Nov 2025 18:11:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QfNd2SQo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nO6Agab7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1F0A345739;
-	Thu,  6 Nov 2025 18:09:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECE1A1AA7BF
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 18:11:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762452556; cv=none; b=Nj7o7bTAk+8w5cRyyZI0opiT66ZmzplccPQY4jRQMkcNXaMew3wwBKmOD/7c9hNeVwscVsF+BkccEB0662UhMS9A5nOSri4N1RqPo4tGD+rL4Ij95qlUG7QDhZyj043xtiIKbZoA9B8mKBXuELf+qb3ZFCBlCFSbL2vqgsHsyXE=
+	t=1762452700; cv=none; b=X2TgkCZ1Mi7I5X4E+LDzp/95qeH2Xpik69CH9NOv4Xw4UOsdt1j9rRpxMZWFuYMkeD0dptnrTvcx/8sshOtr5LCC1SVULQsUTKGuZom7eMmlXirNE3FX6dy3Yg2+3KaQ0Wfe2ZoWncCWttU5pGdqck9pDCW50aUDFAHY3qCl3mA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762452556; c=relaxed/simple;
-	bh=hNzyfl0CnHrlr88t5Dg1HkyarJxi7c/5/NL1D8g3N7A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y1LBama2npCVHvozNIDcvmN4yYJGuI4UGFKBXG5+9iEN5OINOJlbWgAcmQVOzlA5m9uiGCt8qpExHhIAr3o2xrRuLfYJWkV5cvax2I3CsNUhTM5xGPg2UNRs50qFzh7f1I8o7vOIg6Si1ovL81ih7rtU7MuyIJRD6ro5YYntsvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QfNd2SQo; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1762452555; x=1793988555;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=hNzyfl0CnHrlr88t5Dg1HkyarJxi7c/5/NL1D8g3N7A=;
-  b=QfNd2SQos7uHJ5CW/IqG/1FXbrUAaDdmw73WKwavKki1h2Xj1v6TZ2ZA
-   hsl9wdnmONCpgOAn8D6Z65X04/8nLMF0eGCN3kZEnfXCfWTR4j4IMxy8a
-   4Y/CffO2v+TbKC09QY1MkGyzhEgH4C9ERcuwZUq+zeZ/86/QsZPpK+peF
-   XCGW1GWtT6ae0dDNEvIUx0XvZw4BF86lvsmMTa8AznG3skAVYvIYrVNo1
-   vuXaUazsJ2IegLprFaeo/oQERD+CdeGcapxB1RyxzLFhJR+zZhQaoBmdL
-   2Xa3tF98U3kayq0tVAoyqiSGO91m4wWbvHXeDvzC09n4bBSp7rxXsFA3m
-   w==;
-X-CSE-ConnectionGUID: kiaYowzSTH6xeCeuUm1sfw==
-X-CSE-MsgGUID: ym5gAyPPSDGu48yD2F+vrg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="75209272"
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; 
-   d="scan'208";a="75209272"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2025 10:09:03 -0800
-X-CSE-ConnectionGUID: FzAEk+tzRRa4MGEMkF8Utw==
-X-CSE-MsgGUID: 4yTwBhVVSeKvMVDN3eYg4Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; 
-   d="scan'208";a="187666481"
-Received: from abityuts-desk.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.244.224])
-  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2025 10:09:00 -0800
-Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1vH4Pp-00000006DTl-2F1u;
-	Thu, 06 Nov 2025 20:08:57 +0200
-Date: Thu, 6 Nov 2025 20:08:57 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Hans de Goede <hansg@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v3 4/5] regulator: Support the LTM8054 voltage regulator
-Message-ID: <aQzkOQM6j6Q0sCJE@smile.fi.intel.com>
-References: <20251106-ltm8054-driver-v3-0-fd1feae0f65a@bootlin.com>
- <20251106-ltm8054-driver-v3-4-fd1feae0f65a@bootlin.com>
+	s=arc-20240116; t=1762452700; c=relaxed/simple;
+	bh=ZLJLWuUCdyiq8fKrFIh0WiaGFVubIqn5oqtt06D342s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Uix1Dxy74tUV/udBlE8CvA2dBrMLCros5Tmtqk6hSMhHpajbJ1JsbTPdWChdzt4/mvxNudmAe9yuFts0YdZaOyle93fpM4unvM/HnVLKt5iDHmTd/LMIMBpBdFxkP4mupoM9kg+OLLpG99nAX44Ase6uZ0r17wo44LpqGRZjspM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nO6Agab7; arc=none smtp.client-ip=209.85.160.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-3e297b0452aso704738fac.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 10:11:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762452698; x=1763057498; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cpT0TLdGzfQfSoii4/bs36ZSx7naUbNo4dP7DJ25fa0=;
+        b=nO6Agab7W1jXL/1k7dgnK1xvh6pxVOuXHId1P4dsMQza9a3AqVgrfpj3ZyMGgVDOjm
+         2CY1u0BZ327p8fH53wtUeXXHLKNWhuraEQb9YD0zof4sbwgRI+HXaY9cX4Jd2ONvktD7
+         QoY/yeGRfUCBf30d3vd8Z/CvuYslCpxUpUu/gctLF3tgWcqx9+DklxqFTy1Iqp4iBUna
+         ew/MRjrapfQsJnQldLRSCxnGSxFtYPLnoQQdiQjH6OTVNWfFMYCPO1l5TLrKYQ8r0jr5
+         NJESC9ytUUevo4racAq0JmQ/nM5zgdy57d1TfhU7uPsJ6zSWsFEK6XNkQYEl5TkKgiqq
+         M11g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762452698; x=1763057498;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cpT0TLdGzfQfSoii4/bs36ZSx7naUbNo4dP7DJ25fa0=;
+        b=C07Klu+RcS1LxQcFJvXvmw4LjO7oD/VHfVoHD9pwLpUdjfWKLr2qMxEKXlaiETJwLV
+         iAn27RnxFBlMpbJp2TWtX/pbVN7dvqd/AguoftfwMfNzMssbhZNjZLCBO9iyCAttLmR4
+         x+tRhtgGePszQQAVCdLEwVx6YVLQ65mI22K2aN6fuN/9u115+R8dcAF1w1L5+FKcThfP
+         L6uYr8BOSDLQKP0Qw8zbK9USotYjnKshJA9dyOmdOMR1t/SxB0M35zyReqIiPtfsq60P
+         X2HyOAflDjxC4CQMrlgYs1mHZdFpq0spB4XKhq9Hkxe6UwyyTA9CZCOHPd9Pr8sA+0ad
+         Cw1A==
+X-Gm-Message-State: AOJu0YxDBMfoSS3ef5Yumdz8Orr92XwdB2No4DtefU5yIEPYbAKvPPLI
+	ZZLfaL6gvZP4JSjhDwfTDy+sQ9i8u0EODyccYtXXH0hOPIdA0qoUJHlv
+X-Gm-Gg: ASbGncuMjhnuivRr3/fhKIj1Q4/0feim6aMWEDELAyZC7kzXyJAKCXNvid+q1L7z0Le
+	OK7ib0Wiq4lcwW+vWlCXSYYqY15kumnmOU45aKFYVG/Ft0/OrVU3U+1T3e5SMLwxHv4qC6dtoZk
+	XaWwd3pDwxOYk3J5cPa0NVtgYR36RnGloEbq9KD71dxm3wElU1+c0cr0G9h2kJ8NIRU6j7K/XDo
+	wnwZqqCfFap50K8Ky44oCTK+NvNQvuOdl6EunXLmQL7FSr/RpGokVb4js00Qv8J786ABz2UZ1AP
+	eBICg08AdJHpCMKdRfuNandtxJKdKpZ2EYqoDaUtx9r9l+5l8pq1kIBRo87I9YaCg/lqlrujN/U
+	rgbGCSdCxZJmS5PCQQ+RfGA68XJnOyrHNhdfg1pu4dJmJDTruUxAZw0KU5cGs/y/9bL973PgX9Q
+	SVlKicTVGJTrRsFU3y5zA=
+X-Google-Smtp-Source: AGHT+IGAvjoXA76/UDaqXpOU4Fcz8E3D7Krbf8yR4RW+nCN1vEdGUmxv0HqWHlh+xaipNHgHQc4imw==
+X-Received: by 2002:a05:6871:5b1b:b0:3d2:5ad4:4e7 with SMTP id 586e51a60fabf-3e41e6afbb2mr348131fac.47.1762452697786;
+        Thu, 06 Nov 2025 10:11:37 -0800 (PST)
+Received: from localhost.localdomain ([2600:1700:fb0:1bc0:41f9:c9d3:db30:c36a])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3e41ed0aa06sm137739fac.8.2025.11.06.10.11.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Nov 2025 10:11:37 -0800 (PST)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-rockchip@lists.infradead.org
+Cc: devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	cristian.ciocaltea@collabora.com,
+	sebastian.reichel@collabora.com,
+	jernej.skrabec@gmail.com,
+	jonas@kwiboo.se,
+	Laurent.pinchart@ideasonboard.com,
+	rfoss@kernel.org,
+	neil.armstrong@linaro.org,
+	andrzej.hajda@intel.com,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	tzimmermann@suse.de,
+	mripard@kernel.org,
+	andy.yan@rock-chips.com,
+	heiko@sntech.de,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH 0/3] Add HDMI for Gameforce Ace
+Date: Thu,  6 Nov 2025 12:09:11 -0600
+Message-ID: <20251106180914.768502-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251106-ltm8054-driver-v3-4-fd1feae0f65a@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
 
-On Thu, Nov 06, 2025 at 03:11:49PM +0100, Romain Gantois wrote:
-> Add a stub driver for the  Linear Technology LTM8054 Buck-Boost voltage
-> regulator. This version only supports enabling/disabling the regulator via
-> a GPIO, and reporting the output voltage level from the resistor divider
-> values given in the device tree.
+From: Chris Morgan <macromorgan@hotmail.com>
 
-...
+Add support for the micro HDMI port for the Gameforce Ace. This port does
+not have a HPD pin so it requires making changes to the HDMI controller
+to support this configuration.
 
-The blank lines below are in strange places.
+Chris Morgan (3):
+  dt-bindings: display: rockchip: Add no-hpd for dw-hdmi-qp controller
+  drm/bridge: dw-hdmi-qp: Add support for missing HPD
+  arm64: dts: rockchip: Add HDMI to Gameforce Ace
 
-> +#include <linux/array_size.h>
-> +#include <linux/device.h>
-> +#include <linux/device/devres.h>
-> +#include <linux/device/driver.h>
-> +#include <linux/dev_printk.h>
-> +#include <linux/err.h>
-> +
-> +#include <linux/errno.h>
-> +
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/math64.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/regulator/driver.h>
-> +#include <linux/regulator/of_regulator.h>
-> +#include <linux/types.h>
-
-I expected to see
-
-#include <linux/array_size.h>
-#include <linux/device.h>
-#include <linux/device/devres.h>
-#include <linux/device/driver.h>
-#include <linux/dev_printk.h>
-#include <linux/err.h>
-#include <linux/errno.h>
-#include <linux/gpio/consumer.h>
-#include <linux/math64.h>
-#include <linux/module.h>
-#include <linux/of.h>
-#include <linux/platform_device.h>
-#include <linux/property.h>
-#include <linux/types.h>
-
-#include <linux/regulator/consumer.h>
-#include <linux/regulator/driver.h>
-#include <linux/regulator/of_regulator.h>
-
-...
-
-
-Other than above LGTM, FWIW,
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+ .../rockchip/rockchip,rk3588-dw-hdmi-qp.yaml  |  6 ++
+ .../dts/rockchip/rk3588s-gameforce-ace.dts    | 63 +++++++++++++++++++
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c  | 35 +++++++++--
+ 3 files changed, 100 insertions(+), 4 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.43.0
 
 
