@@ -1,251 +1,117 @@
-Return-Path: <devicetree+bounces-235777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67309C3CDD7
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 18:34:37 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4582BC3CE01
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 18:37:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1E453B9C54
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 17:30:26 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2728E4E1687
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 17:34:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 707E734F466;
-	Thu,  6 Nov 2025 17:30:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2DDB34887B;
+	Thu,  6 Nov 2025 17:34:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dy6PoF/i"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cT49hAf9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A74F34F469
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 17:30:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D275E2E11D7
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 17:34:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762450209; cv=none; b=hIATVM3OfGnjlU+LhsKc4kgaAyep7K2561J353MBgpdgmjgq3/iYHQJgXLzipGBeilC1mG+3x8isq71ktG/2ITUXiG6Fr7NXX2W+uEFdhocQEyfbJCGIp/2kwn7t6FERKtsF+KCLclkWikPAxV6gFCOYNxmIk0Xl7RRC7ebGo5s=
+	t=1762450453; cv=none; b=d0roLmWxmLiSq0H/LlUKdjGdAhtuDyewSFcngCcVfnuYK4lBBErYDdD2gyhffVilKA4ZWpEdvAq74PASVq1fpz8dmaMjE6B7Ny/yStBhTfPgyXIQP+mpBcc4ZoWaSrfPhaxivo9gsb/5mB3dYCuLqndSAvmWsh+I9NkR7CFOZ+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762450209; c=relaxed/simple;
-	bh=9l8jdWc2+di8QEeCjZcgrr1IaXx3eZ53YD00Bv2N2fU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FF/XmsRICElnU6HAZTljLCVdq8LXQzf8uDr/juTmyMpmvofZqu/0i1fQIG49uLHiCCQhvDu7wTPO978tWj4SOctQhQKZZiBEsnLvvClssMXytu3iSHGjb7f91DjzDd7AcAdoxnxVeTBre3rtovO7s2OLcFbCfednJAp8cCRew+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dy6PoF/i; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-477562905f4so2474345e9.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 09:30:04 -0800 (PST)
+	s=arc-20240116; t=1762450453; c=relaxed/simple;
+	bh=xC5jpduGSYvNExHOxUniHoKwme79jjzk7c0JLPQ4BHc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XhIg6t/69mhlphkDIC7P7JW774Cy/9KINkjYf+3H6oio1XkIB8ZMhuw39vxFyzhvsa4kYWwCfz5ANk+AVZTlrULVyIQVuTgL7jKUhjPUf3Yl/sPKK633WwmebK+1xKNXzGyxs5WwxqJ9Mgi8x1R+jQgH7r0bY3eSf+ALfKLTa/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cT49hAf9; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-6408f9cb1dcso2003862a12.3
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 09:34:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762450203; x=1763055003; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=TBCdySExHz0+QGg0B4QbJxDsZ2aRqVUsTNaaLsUeDoE=;
-        b=Dy6PoF/i2Js0mk9DqnBJ+gK1xY5LhJ/7BgIGPPU1nSjmHdpqmLy6rnhoDOtliwwcjv
-         qPJEbVB7R7cMB0i6RXDAHeZHVKw7sr/h3agwD8SrthWmA7HkPU96FETscdHWcXVLOOQy
-         3GgeRTQq+B40yV6+K6zL3G6SaVnTYgUcKseSsRNUMAOdgf722N8btFkj3g7vK9UrYjO0
-         XU6TC53IEygQrcYpkhXsxd79jq13BPnHa4jobBm6I1y1cKXVqiwEGaWe4cExOfoi0MGp
-         o6RKc8hUlAgrN530nAWZL0ViwNRaFa5QtyWxM1PB3Z3cF+Y+SAaHKrOv7x8P6TEjiTNt
-         yx8w==
+        d=linaro.org; s=google; t=1762450450; x=1763055250; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=UVFA7b5QNQKKgbY4Sgbk0fAZQJ8jQ8t0W8uUVANJyQ0=;
+        b=cT49hAf9OsKChazElePsEHJdxLafiAKnO3sIjrgG2uAZ6zG0QHHn2dceIli1N6jOxY
+         AhyqskzfAUTwWzLb6iEcjpvwCevjyaaGcVBEgTIyzVjDQCjOWYoKr5VsyUvf8TM7qPKk
+         9SzeRIzoFqqy9jh1VM9mOsVLtBT16iObKdEJdqClkcGPMhE71Y4Rpi8vvmZe6T78F1A5
+         Gwi21+LYrextTTugG+qIZkcfLlJQoNrUExdsDFOuF2HWiV6zeQn/tDZTDRcnTHFwfgLp
+         vSnHhpjLG02FgdJYnWYDuzhNyVL/b+/2SLf0INoX+exTOOR3ChpuNucRIzJ6UG/QS04j
+         tI7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762450203; x=1763055003;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TBCdySExHz0+QGg0B4QbJxDsZ2aRqVUsTNaaLsUeDoE=;
-        b=GZDxBrdXa7ZrgPQMk9xKV4vGo5F1k5EkarcQWJr4/Bfu4NpSJo9kPUvhidvn1Cl/UV
-         pqmNzHTd29kufeJPcNBOFZWzt9gLxg+hbnBIPSOh4RkOdWwGLReOaENEnjAdZngtUpo3
-         Lq8j6MFz65YMX+uLUZypx5VaU5MuSi4OcUnlLAlJl0TK+0YLfuuLCw5dV1JNTIZUIo+8
-         t5vzFzlBSk/fHbVKT/CDJn9GbwNQ6L3p5uh3QBbreN/nyKSHCOCbQmYJI7gwAz5FYeJN
-         QnbFGOVkOUY14uPaPQOGwYnmPb6cyKZnETEyqv8JleFkBLI3mrlJSF/jk3wGRVu9pD9K
-         vflQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVKZaATNi6mV93rIjE98589IqGb3yKbR5gluXfyzShvkjdl5+urlkSCg/cVay7pr9et12y9hAwKT5q+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3GNNHuMEVZvqHtI85Uvf2l+1XccHmHfvJys1/fnpOxLYCvHWQ
-	FnFsCflR0D1T7JEKiAmv7sT32oqorHj+w2MOS48JiDwsEo5zIgTMgYnv
-X-Gm-Gg: ASbGnctbQKrOPNM7I/0XQA6sl9hWqvYalqrFi+iCD/GpwQjB7CiRIbAi3noG04YgYpZ
-	hP2tve/drbVz7HxvMirKmu063HR+6l7CQHAkROoUui+LEeitF7Ym/EPBP9+TVovLsEDyxpPHQxg
-	+zIvJqGqI4yVZUuZX3ysdTUkHxgKRriIpIMhZy4ch+YnzCcFAQKq9L9I6Mjd+1hMlzzwGddFGzy
-	XAEwiDpgUet4ajPUZ+czBSsWR5dDGrJO7OIU4JmnRafCKt2Z8Wlyfb8pGCf/c4e7W8+cj4xn/x2
-	0HVIvfDSCzhggIjA+DRAM4B/eB+d6MIsyllKIYOVA028hMW3T+WoFIDiGt4Sg5To+IvZqOJJ3yP
-	xAOdUCpsrArPYrwkVSvXP7Wf9waT7x/3Y0AqlRa2HXdmkYVyBUfVDmkHD90CJazKiAqmZPg==
-X-Google-Smtp-Source: AGHT+IFQyPW3JBmw1Yb1YcqZu0uBjVjM7mMGFdYzwH0tonkhSSUCE7wfW/E3kdVIzDpcEeismJ2q4w==
-X-Received: by 2002:a05:600c:450d:b0:477:c77:5168 with SMTP id 5b1f17b1804b1-4776bcc9730mr631335e9.4.1762450202819;
-        Thu, 06 Nov 2025 09:30:02 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d406:ee00:dfee:13dd:e044:2156])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4776bcdd833sm932285e9.9.2025.11.06.09.30.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Nov 2025 09:30:01 -0800 (PST)
-Date: Thu, 6 Nov 2025 19:29:58 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>
-Cc: "andrew@lunn.ch" <andrew@lunn.ch>, "robh@kernel.org" <robh@kernel.org>,
-	"lxu@maxlinear.com" <lxu@maxlinear.com>,
-	"john@phrozen.org" <john@phrozen.org>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"yweng@maxlinear.com" <yweng@maxlinear.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"bxu@maxlinear.com" <bxu@maxlinear.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"ajayaraman@maxlinear.com" <ajayaraman@maxlinear.com>,
-	"fchan@maxlinear.com" <fchan@maxlinear.com>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"daniel@makrotopia.org" <daniel@makrotopia.org>,
-	"hauke@hauke-m.de" <hauke@hauke-m.de>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"horms@kernel.org" <horms@kernel.org>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"jpovazanec@maxlinear.com" <jpovazanec@maxlinear.com>,
-	"linux@armlinux.org.uk" <linux@armlinux.org.uk>
-Subject: Re: [PATCH net-next v7 12/12] net: dsa: add driver for MaxLinear
- GSW1xx switch family
-Message-ID: <20251106172958.jjfr3jbzlyexmidg@skbuf>
-References: <cover.1762170107.git.daniel@makrotopia.org>
- <b567ec1b4beb08fd37abf18b280c56d5d8253c26.1762170107.git.daniel@makrotopia.org>
- <8f36e6218221bb9dad6aabe4989ee4fc279581ce.camel@siemens.com>
- <20251106152738.gynuzxztm7by5krl@skbuf>
- <471b75b6971dc5fa19984b43042199dec41ca9f3.camel@siemens.com>
- <6c4144088bbf367f6b166b4f3eceef16afdc19c1.camel@siemens.com>
+        d=1e100.net; s=20230601; t=1762450450; x=1763055250;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UVFA7b5QNQKKgbY4Sgbk0fAZQJ8jQ8t0W8uUVANJyQ0=;
+        b=R0Bxe3q2PUgQ0pQKfq3u/SasQzFXjszrkWjOLuhbHpKDQm7TJ5E3jW4acmD3KUmQAp
+         VhDce24Rz3R5FGlkIerP59ff3y1++aCD++Tx61G5E2NiAgmzxxb8WH5+qT2tTup4aMXQ
+         OuudPhBxebGosUYGygO0gTmRprQNqZA+qdbgegVymS8Ah3TEI8hWo/nMZfqGZtgE3BiF
+         x8ZML7BI9w9rMFA0J+CgVdgOpLUAWnP2XkenGBjpTjzR7njgPZXAFHL6n1HG9OX7ZMYK
+         saKScLGeLDmDwqLf13v+EeiPBAojK4nRHko6Ksx67zT6Kzh5EvKudRtVEqQOqdJOyYm6
+         Yrhw==
+X-Forwarded-Encrypted: i=1; AJvYcCWwPexm8Bs/9DJkBjWpNcvjPO289NgsWuWiLJJpXOl7XshYDQ+mo+J3IjCJuTAHbx8Kw+rDESVaBcDd@vger.kernel.org
+X-Gm-Message-State: AOJu0YwpKq8sZ5KwvLlRIbv33jvdGK2Sf09VrA7A1aibke0tedeJeYAG
+	ZlZLk8gGE0pW5q/MXyPxT80UxLHpxibSUSMazo1/bVrT/gMD7Wf2QElKhzpNY+NYfH+7c6RpNgL
+	zjR3noUDH9DW33jbVStMcmRMi8b/ZHKp/8VPXG2hEPA==
+X-Gm-Gg: ASbGncsWqAKUvcm7bbrtyIkvYUvPj0GgiTmBG1DsNZ52UtGvDQD5V1db6+fNRme/BQf
+	WLj4i9n0n0PwQF9oQfiIEtItqBFCHwwdp7k91KkX4iqMlZtYBNDnfuZ/lh4BZB/7dzHqB5TwLyn
+	W8YGbvUaGj/iyfVzRxl4FYm87XvYqeccpF987niQuVAxQqSWP37187hg30QdjVRC3StkDUgi+b7
+	oBcVZTjV73DihLsaVZ8gB2hBEueQfhvGEgWvpJitVcQF6h1ArnG5DgndKob+A==
+X-Google-Smtp-Source: AGHT+IHa3dttDqTITgV3tGTkp6TSuSmsFY+1K88280Yqh8YjVvfMj6OJH0DKtk3h1bhQap8rFtBGhpjoLqExb/O6Ijo=
+X-Received: by 2002:a05:6402:35c3:b0:641:3090:cba3 with SMTP id
+ 4fb4d7f45d1cf-6413f094b4amr145941a12.37.1762450450078; Thu, 06 Nov 2025
+ 09:34:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6c4144088bbf367f6b166b4f3eceef16afdc19c1.camel@siemens.com>
+References: <20251022174309.1180931-4-vincent.guittot@linaro.org> <20251106172312.GA1931285@bhelgaas>
+In-Reply-To: <20251106172312.GA1931285@bhelgaas>
+From: Vincent Guittot <vincent.guittot@linaro.org>
+Date: Thu, 6 Nov 2025 18:33:58 +0100
+X-Gm-Features: AWmQ_bnxeRp9L3wzoigXubjMbIkUdPeZ-SXfzJV0HZAKsvwmODUh-S8pANI5ZcY
+Message-ID: <CAKfTPtDn8r-YfgspLscd=4oE0GukFg6tORpsUqd7fUs7DJqnLA@mail.gmail.com>
+Subject: Re: [PATCH 3/4 v3] PCI: s32g: Add initial PCIe support (RC)
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: chester62515@gmail.com, mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com, 
+	s32@nxp.com, bhelgaas@google.com, jingoohan1@gmail.com, lpieralisi@kernel.org, 
+	kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com, 
+	Ghennadi.Procopciuc@nxp.com, ciprianmarian.costea@nxp.com, 
+	bogdan.hamciuc@nxp.com, Frank.li@nxp.com, 
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	cassel@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Nov 06, 2025 at 04:36:55PM +0000, Sverdlin, Alexander wrote:
-> Hi Vladimir,
-> 
-> On Thu, 2025-11-06 at 17:26 +0100, Alexander Sverdlin wrote:
-> > > > The remaining failing test cases are:
-> > > > TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to unknown MAC address   [FAIL]
-> > > >          reception succeeded, but should have failed
-> > > > TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to unknown MAC address, allmulti   [FAIL]
-> > > >          reception succeeded, but should have failed
-> > > > 
-> > > > So far I didn't notice any problems with untagged read-word IP traffic over
-> > > > GSW145 ports.
-> > > > 
-> > > > Do you have a suggestion what could I check further regarding the failing
-> > > > test cases? As I understood, all of them pass on your side?
-> > > 
-> > > These failures mean that the test thinks the port implements IFF_UNICAST_FLT,
-> > > yet it doesn't drop unregistered traffic.
-> > > 
-> > >  	[ $no_unicast_flt = true ] && should_receive=true || should_receive=false
-> > >  	check_rcv $rcv_if_name "Unicast IPv4 to unknown MAC address" \
-> > >  		"$smac > $UNKNOWN_UC_ADDR1, ethertype IPv4 (0x0800)" \
-> > >  		$should_receive "$test_name"
-> > > 
-> > > But DSA doesn't report IFF_UNICAST_FLT for this switch, because it doesn't fulfill
-> > > the dsa_switch_supports_uc_filtering() requirements. So should_receive should have
-> > > been true, and the question becomes why does this code snippet set no_unicast_flt=false:
-> > > 
-> > > vlan_over_bridged_port()
-> > > {
-> > >  	local no_unicast_flt=true
-> > >  	local vlan_filtering=$1
-> > >  	local skip_ptp=false
-> > > 
-> > >  	# br_manage_promisc() will not force a single vlan_filtering port to
-> > >  	# promiscuous mode, so we should still expect unicast filtering to take
-> > >  	# place if the device can do it.
-> > >  	if [ $(has_unicast_flt $h2) = yes ] && [ $vlan_filtering = 1 ]; then
-> > >  		no_unicast_flt=false
-> > >  	fi
-> > > 
-> > > Because IFF_UNICAST_FLT is not a UAPI-visible property, has_unicast_flt() does
-> > > an indirect check: it creates a macvlan upper with a different MAC address than
-> > > the physical interface's, and this results in a dev_uc_add() in the kernel.
-> > > If the unicast address is non-empty but the device doesn't have IFF_UNICAST_FLT,
-> > > __dev_set_rx_mode() makes the interface promiscuous, which has_unicast_flt()
-> > > then tests.
-> > 
-> > here is the corresponding kernel log preceding the failing test cases, maybe it
-> > might help?
-> > 
-> > [  539.836062] mxl-gsw1xx 8000f00.mdio:00 lan1: left allmulticast mode
-> > [  539.845053] am65-cpsw-nuss 8000000.ethernet eth0: left allmulticast mode
-> > [  539.853401] br0: port 1(lan1) entered disabled state
-> > [  545.641001] am65-cpsw-nuss 8000000.ethernet: Removing vlan 1 from vlan filter
-> > [  546.075411] mxl-gsw1xx 8000f00.mdio:00 lan1: Link is Down
-> > [  546.666944] mxl-gsw1xx 8000f00.mdio:00 lan0: Link is Down
-> > [  547.779308] mxl-gsw1xx 8000f00.mdio:00 lan1: configuring for phy/internal link mode
-> > [  548.803903] mxl-gsw1xx 8000f00.mdio:00 lan0: configuring for phy/internal link mode
-> > [  549.561829] mxl-gsw1xx 8000f00.mdio:00 lan1: configuring for phy/internal link mode
-> > [  550.366300] mxl-gsw1xx 8000f00.mdio:00 lan1: configuring for phy/internal link mode
-> > [  550.395032] br0: port 1(lan1) entered blocking state
-> > [  550.401063] br0: port 1(lan1) entered disabled state
-> > [  550.406470] mxl-gsw1xx 8000f00.mdio:00 lan1: entered allmulticast mode
-> > [  550.413868] am65-cpsw-nuss 8000000.ethernet eth0: entered allmulticast mode
-> > [  550.440111] am65-cpsw-nuss 8000000.ethernet: Adding vlan 1 to vlan filter
-> > [  550.465479] am65-cpsw-nuss 8000000.ethernet: Adding vlan 100 to vlan filter
-> > [  552.519232] mxl-gsw1xx 8000f00.mdio:00 lan1: Link is Up - 100Mbps/Full - flow control rx/tx
-> > [  552.530513] br0: port 1(lan1) entered blocking state
-> > [  552.536463] br0: port 1(lan1) entered forwarding state
-> > [  552.999330] mxl-gsw1xx 8000f00.mdio:00 lan0: Link is Up - 100Mbps/Full - flow control rx/tx
-> > [  581.899262] lan1.100: entered promiscuous mode
-> > [  592.995574] lan1.100: left promiscuous mode
-> > [  596.665022] lan1.100: entered allmulticast mode
-> > [  607.789778] lan1.100: left allmulticast mode
-> > --
-> > TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to macvlan MAC address   [ OK ]
-> > TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to unknown MAC address   [FAIL]
-> >         reception succeeded, but should have failed
-> > TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to unknown MAC address, promisc   [ OK ]
-> > TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to unknown MAC address, allmulti   [FAIL]
-> >         reception succeeded, but should have failed
-> 
-> does the following help?
-> 
-> # dev=lan1
-> # ip link set $dev up
-> [ 2005.688205] mxl-gsw1xx 8000f00.mdio:00 lan1: configuring for phy/internal link mode
-> [ 2005.714288] 8021q: adding VLAN 0 to HW filter on device lan1
-> # ip link add link $dev name macvlan-tmp type macvlan mode private
-> # ip l show lan1
-> 4: lan1@eth0: <NO-CARRIER,BROADCAST,MULTICAST,PROMISC,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default qlen 1000
->     link/ether 00:a0:03:ea:fe:b7 brd ff:ff:ff:ff:ff:ff
-> # ip l 
-> 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
->     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-> 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1508 qdisc mq state UP mode DEFAULT group default qlen 1000
->     link/ether c0:d6:0a:e6:89:9e brd ff:ff:ff:ff:ff:ff
-> 3: lan0@eth0: <BROADCAST,MULTICAST> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default qlen 1000
->     link/ether 00:a0:03:ea:fe:b6 brd ff:ff:ff:ff:ff:ff
-> 4: lan1@eth0: <NO-CARRIER,BROADCAST,MULTICAST,PROMISC,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default qlen 1000
->     link/ether 00:a0:03:ea:fe:b7 brd ff:ff:ff:ff:ff:ff
-> 5: lan2@eth0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
->     link/ether 00:a0:03:ea:fe:b8 brd ff:ff:ff:ff:ff:ff
-> 6: lan3@eth0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
->     link/ether 00:a0:03:ea:fe:b9 brd ff:ff:ff:ff:ff:ff
-> 7: wlan0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
->     link/ether 00:a0:03:ea:fe:ba brd ff:ff:ff:ff:ff:ff
-> 8: usb0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
->     link/ether 96:f1:ca:89:bc:b0 brd ff:ff:ff:ff:ff:ff
-> 60: macvlan-tmp@lan1: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
->     link/ether 9e:07:e8:7c:9d:99 brd ff:ff:ff:ff:ff:ff
-> # ip link set macvlan-tmp address 00:a0:03:ea:fe:b8
-> # ip link set macvlan-tmp up
-> [ 2109.392322] 8021q: adding VLAN 0 to HW filter on device macvlan-tmp
-> # ip -j -d link show dev $dev | jq -r '.[].promiscuity'
-> 2
-> # ip -j -d link show dev $dev
-> [{"ifindex":4,"link":"eth0","ifname":"lan1","flags":["NO-CARRIER","BROADCAST","MULTICAST","PROMISC","UP"],"mtu":1500,"qdisc":"noqueue","operstate":"DOWN","linkmode":"DEFAULT","group":"defau]
-> # ip -d link show dev $dev
-> 4: lan1@eth0: <NO-CARRIER,BROADCAST,MULTICAST,PROMISC,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default qlen 1000
->     link/ether 00:a0:03:ea:fe:b7 brd ff:ff:ff:ff:ff:ff promiscuity 2 allmulti 0 minmtu 68 maxmtu 2378 
->     dsa conduit eth0 addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 gso_ipv4_max_size 65536 gro 
+On Thu, 6 Nov 2025 at 18:23, Bjorn Helgaas <helgaas@kernel.org> wrote:
+>
+> On Wed, Oct 22, 2025 at 07:43:08PM +0200, Vincent Guittot wrote:
+> > Add initial support of the PCIe controller for S32G Soc family. Only
+> > host mode is supported.
+>
+> > +config PCIE_NXP_S32G
+> > +     tristate "NXP S32G PCIe controller (host mode)"
+> > +     depends on ARCH_S32 || COMPILE_TEST
+> > +     select PCIE_DW_HOST
+> > +     help
+> > +       Enable support for the PCIe controller in NXP S32G based boards to
+> > +       work in Host mode. The controller is based on DesignWare IP and
+> > +       can work either as RC or EP. In order to enable host-specific
+> > +       features PCIE_S32G must be selected.
+>
+> Did you mean PCIE_NXP_S32G here?
+>
+> PCIE_S32G itself doesn't appear in this series.
 
-It partially does, yes. The promiscuity is 2, which suggests it was
-already 1 when has_unicast_flt() started to run. The function is not
-written to expect that to happen. Although I don't yet understand why
-lan1 originally entered promiscuous mode - that is not in your logs.
-
-This is a separate environment from the selftest with the commands ran
-manually, no? Because you can just run the selftest with "bash -x".
+Yes I failed to rename this one.
 
