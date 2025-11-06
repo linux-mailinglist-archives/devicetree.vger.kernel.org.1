@@ -1,82 +1,81 @@
-Return-Path: <devicetree+bounces-235825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 168A4C3D315
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 20:11:21 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55E7EC3D351
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 20:13:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8644E352680
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 19:11:20 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 24A484ECB37
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 19:11:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D50593590C7;
-	Thu,  6 Nov 2025 19:08:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F50F3596F1;
+	Thu,  6 Nov 2025 19:08:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iDLrhueV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TQMxyWVP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7A79358D1A
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 19:08:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C99A355042
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 19:08:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762456120; cv=none; b=LkIcqq+6urUlF9uY/BxIeOoKSzj4G8F9HppQkzzgpeKAV68JHrXLIScnw+223ljlRB4s0sBHw9bs0q73gwbnXt6VbY/RJbkqTZxpqNf3+2awSnuUQ2WpHLrK2K2dMf5fySrttBlhVMaLO6Lq2syWjvXXcFqFzzNWGEqaGvLDKZg=
+	t=1762456122; cv=none; b=O7g7JduBtnykIe1zUHfNphMfEktbcsk4VlWKlhsQuMszOFo+wEGKl7wB+8yBeBKFpePRGNsTIUyZSVBQuGxO5N3T7vYzA2n/eqAXDgUbzJZ7Ag1PNgwlJMNfJJZVUeXi/5//Zf4hQfYartcgeBMEbqFCF3zZBpHPzslYyzuAq3A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762456120; c=relaxed/simple;
-	bh=duU5u56PDy568nC9gTgD/sRRW1Kja+NAYhWyt8rAuUM=;
+	s=arc-20240116; t=1762456122; c=relaxed/simple;
+	bh=aS+78ja3p6OXPY5E9ndwnwq/bvuxECqbsbzsQlrHFPw=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=t6HygQW7JIwIhcSfzg20G/ZQkSwjvb4/dGd1xaCVIdpB5TlkT/rMUxURCpHDfMu6bRbPhRAwtIjrDTUgjeKa41wFmrypn6eKP51BAK9hg926I+LK3n61DOXW4Y9RskOPnvsj6g4gY/3ZZxg/Ir/5yg4NkGrzvd20OzDDddq0eYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iDLrhueV; arc=none smtp.client-ip=209.85.218.43
+	 In-Reply-To:To:Cc; b=at0ODwHPEX5kL2b5KeNLO1z8fqVSx19mVaHTD4vcnTpxaRKcrqsBv/YXYCZK+6sXDpXOm3wI30Jgc3LMvUbxi3SsnGCjvOo/spBaJP7PjZs5smQ2aV3HSdDng5YtW6Zv0e4drLSJDI0dfSDLrXQOG6HGE14T782rokqlQDYIw20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TQMxyWVP; arc=none smtp.client-ip=209.85.218.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b7128683174so19883166b.2
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 11:08:37 -0800 (PST)
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b729660f8c1so16280066b.2
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 11:08:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762456116; x=1763060916; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1762456118; x=1763060918; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=YCEpBcWqzOzxXS+spa/CGSDCftzF1chyjPQmDO6LlhQ=;
-        b=iDLrhueVLDgcz0P30hT8Hucm3xNNZnhXdG6A4k1joRn7iu0/I+jiHJ5VIZ/QWp2k8e
-         yPgCwF+1Qx+OnmZZce2NBtduUsOn8yNicMTGCWXAQ0JEnijIGu39UIGuGLM115kqzbKx
-         nHiNcy8QPAFZMTvFSMU7gk2HlUEVzO46BP7woaG7oH69hLYl+q6nKgMJ356485Bcrpin
-         0RMNrw7SxTeGGWPUThb3sSuDLfYL9yC2Afm9yYtz4VbBu5gBw8kQXSAEx/BpQjEIIvwg
-         lTM1ghMQWOohECkZW4A6DoCmbWlr4iD/pUC9ONPMIcHfHYzebUGD26yX7V/GaRZTLmmd
-         T9dQ==
+        bh=cEcJAtodzbUC3xZVWApwBo4tG7vpFkamgYaCQUU+adg=;
+        b=TQMxyWVP80OOCFTev9aaPVlZgN6ouu2fjFqRCxbnGAwR3ANJqjIVK304v9poJp9Qq/
+         aqO5mYV0Km5Y0HiR97LJ+N8xOyODYFh3CAqRkBDebWY9A1o6sC6q1vgpFzZ3ydNtYWt3
+         og6qPlrIU4sHTvaU4FpOTMYxvnQlPBHonhoz4B+W5zBEaf9Drqx8tQl3d/B9v1O5fs5a
+         gAxs++DkJb+dCh0EKkR8KKC6xV7mX4YJwz1DtbK3KolnqzJzBANkA8OIlc+iLn90/Oya
+         p0tcoYKrmcCvcf3g1KNvZJVBnv7BVytIehQpz0v+YW0gjonh6mewXdBxTJk5wdpiY/QK
+         RMmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762456116; x=1763060916;
+        d=1e100.net; s=20230601; t=1762456118; x=1763060918;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=YCEpBcWqzOzxXS+spa/CGSDCftzF1chyjPQmDO6LlhQ=;
-        b=Sp4A92dhZ9rPnBRIAWsoKzQZSWNb0600mjv/dNuFwsJQkRqEYloAuIeC1bDhS7QQov
-         lCkQqfS1530jHu6F3Isswt2jgzIV/LFya6Aaxx5MmXh+LsULQCmZ7dv7ttBUVhhtOUuc
-         NQHZxVNNbGijKXHtzf1SL7IrFupix/s8YysvC+6j5gIP37KQ9X5a0OmjimipxPfBgXdb
-         XPiU1vxzLPLPGjbEfLfO11Hfqu5601pLA8C4Unl6b0+9JP7i1xMKdjPF9Fk2+B3mD4NF
-         sssAHPKOY1XY0fizgAbJbSuhLyuj+b4SI4Sp1eGLoSCkgEcD3IbVMa75TinaoRbCESlg
-         oAYQ==
-X-Gm-Message-State: AOJu0YxLH0wmtRrG36kwWvE0Eb/Odrs6wsEDA9RQJbDQFqLBKApdgdLl
-	UqiUP4PHUdSXqlaWC4LNBXB/pLC59MCrWXmRqRE32NuTOLFj3QzlsdVJZlfu1ecHfhI=
-X-Gm-Gg: ASbGncsnTjoNRhdiGCxGWVsYb6XyCmwPoJeB6a6c52CAZ8oHdYse93wEGk6AZYpsdrp
-	bBZrmjFc9MQ6MRXyFWtGlivqIwq3NT9I2BFHC66xKb6hmjxu3ee6V7RylMdxQYGBYJ8m4dlUFTJ
-	p4IFiX5C8EyYP+Tc+dRuOrF90CS6Dgjzd0ne/CgiLzAY+3vhy5gs9UA+ANx9A3bt7cNB+0Kju1e
-	HLDSu4maV2ayqg2ETLCKdgwovUfZwWgP3GV3wohkRkVpE0dVSLK5NebwLAetsm/YUQRzCBV9F+X
-	xKcmjG+IedH8nJjdhHV+cEO82lnWWhBeC+pFE8Cc7u0hTWGspLXGUrwIQUczaSGPIrOdcYS24rt
-	We22Q5nIMnkDR7o+/EzpfLNN9dkpfyGXEAAp6hRftUUtl27jp7pSE8oBePrF2wqukAXa8Eh/OZf
-	f9+QinunZa+gBs5QvF
-X-Google-Smtp-Source: AGHT+IGtACsnNdaWz105iCINoWr5n9UXht5NcROgRS6+92tcuuFFCVXa8Xeak1w/fHe1KKxJJQTUmQ==
-X-Received: by 2002:a17:907:86a1:b0:b70:ab64:434f with SMTP id a640c23a62f3a-b72c0a8cb89mr17450666b.6.1762456116128;
-        Thu, 06 Nov 2025 11:08:36 -0800 (PST)
+        bh=cEcJAtodzbUC3xZVWApwBo4tG7vpFkamgYaCQUU+adg=;
+        b=q8YEV4EvdGJP7x7la0NaHQ6l+picyhhRPgiTa31zfip04PIsyPDtEzmpMyobz+1MHH
+         I8meq4zwXBxtWN3Z74F8GQCf428BU7f4iUqYbqf7u2XBylx0VPhRY20zCNOgnuUmPaEg
+         +Z+PKakHmjKicVRc/Z1mNS9VRcoA1pusGhYdbL92/SgOHY8mD6PhkaS4NT8q01PwWiKA
+         ZQ1gFumgQ7odq19SxaFan5WBNSeWOqTp6MnXpwAphEbdeGWt9RWhjDNuDiWVNUOPXIW2
+         xccR4gOnv6noZysGCb8ZXcZUmvoTu9dSSXGQ3OiV0DBeGEgMTq0dlt+038+SWKNrspHa
+         wErQ==
+X-Gm-Message-State: AOJu0YwflMERLTfHIAiDJPGyNtBky6FWVt3VvLzyd5I7BVrUhdcgPlfy
+	3nXSzWZC2fbOXyMnccn/S6q0lr2htiT7l9wkojp956KkC+BYoyAAkXPp6ItBmuMSFm8=
+X-Gm-Gg: ASbGncsW3ae9iKOMP8Lpo0KGBNFQHXdmw2CxIardH2A72vSe4zRkjf/GguWbLaP4T5X
+	mQeHYhuEffh67Lo2S/btUtIDRt+0jJtfaTQT0rlADeJbs5bz966T902EEfV7pF17OlTeeXrpetG
+	yluIJZA+WkbNxVTvtqmlQojhG5LGmvOML2XdHGcSm4+lCv49FWYk2uRxYXeYZGE/ZF/9gX5Uxom
+	xj19c6Yesh7OXWDWX7I/7mCw09vCMkb5vHRagNLtrY1KabI+Vv6UgSYXxSitgLvAtvnYfBli0x/
+	005YPoz06kJ/W3+U9o4hnIKJcmuat2su8U1R8YscpTQ+Yka4h+zbNT10m/5hUeqfJ/ntid69cOr
+	wPMnWiEvI2sXBYrdkcwMMMU650J3vC+Bx70dschfFAUhezU5SKB4PvOHbx3fPaT8BfWodFgwni+
+	SxY1wiEbRCQ3CcERTSSRJOWF8U//Q=
+X-Google-Smtp-Source: AGHT+IEG6JIHxsm0NSW77JVy6hqlVUyEbsXE+NHpA4hsr8vUkgMvS24h2IoWnZAH3XOZ5QWMzHmdwQ==
+X-Received: by 2002:a17:907:3f24:b0:b65:c8b8:144f with SMTP id a640c23a62f3a-b72c0996c95mr16220166b.6.1762456118427;
+        Thu, 06 Nov 2025 11:08:38 -0800 (PST)
 Received: from [127.0.1.1] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b72bfa2510esm26739566b.72.2025.11.06.11.08.33
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b72bfa2510esm26739566b.72.2025.11.06.11.08.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Nov 2025 11:08:35 -0800 (PST)
+        Thu, 06 Nov 2025 11:08:37 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Thu, 06 Nov 2025 20:07:19 +0100
-Subject: [PATCH 12/13] soc: qcom: ubwc: Simplify with
- of_machine_get_match_data()
+Date: Thu, 06 Nov 2025 20:07:20 +0100
+Subject: [PATCH 13/13] soc: tegra: Simplify with of_machine_device_match()
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251106-b4-of-match-matchine-data-v1-12-d780ea1780c2@linaro.org>
+Message-Id: <20251106-b4-of-match-matchine-data-v1-13-d780ea1780c2@linaro.org>
 References: <20251106-b4-of-match-matchine-data-v1-0-d780ea1780c2@linaro.org>
 In-Reply-To: <20251106-b4-of-match-matchine-data-v1-0-d780ea1780c2@linaro.org>
 To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
@@ -116,26 +115,26 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-tegra@vger.kernel.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1291;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1001;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=duU5u56PDy568nC9gTgD/sRRW1Kja+NAYhWyt8rAuUM=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpDPITu0xcd1Xu7SDbTfboqrqtm0O8I5f3k4GxJ
- sb3DuVcYy6JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaQzyEwAKCRDBN2bmhouD
- 13hVD/4nWu9gGWq6/LJwCrfVYOFlQ2hUn93EjQWiFRTwwmgC9sbS3NA9MR19W+gEIdKMVerKLcR
- qWz4RXbJ3AR8qwBVAgGhp5mP8v68fVp06zYEjKkmsDZd1zJYY6QRtlVK4l5h0J+my+9zwRl8O+Q
- YzKoXLBhxFNRiLPny1JxlIa1yaTC6CNYWDt04MnQmbnPJehWYg1NUbSWkF6HsEdtyFhqGcvc/+B
- 9uZA72RelClKR8PfknzlUexnJVx/QyUbApsMuxODlLZaZAV7oL9xM4Zqgxolw1524IZe2eDPBgD
- KS1EquOwIM6NUJIbkQ0MTBy48To3g3jW7ssf0ktGE7EI1tPR3YvdCgq4R9h6yWDw3KaquxNvqRM
- JBcv1EnddNFIiMxi05AfKZ5xkuWv4dxzdVQqw8kgF6p9YpgE8ib3h3WM5JtHXptC3QswTi8sspr
- HocdHYB2mNKGLOKFSZ+4N+xnPr/oO49a15Nl0B1bNbdKTUmPBLfIn5f2jGjRubu6zmW6mF9m132
- 6WsB6B1i6jZUXmWjgSvfn4pc092phlb0LULHZfbJSgzsN/y0xTkKM3TihUIYS0w34xthKyg8Zk3
- pRt3JEIKc/Qm4FALNBmlQN6hGotDxh4wfz1G2vFQhMROvMlxYyGvu+V0LTe0qSvGDwveKy11LUH
- 1LudEj4LNSbfXzw==
+ bh=aS+78ja3p6OXPY5E9ndwnwq/bvuxECqbsbzsQlrHFPw=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpDPIU/bsdy2ckqomcJnNEJaYMWYw9A/Yk7qSg4
+ /78uRfUhPeJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaQzyFAAKCRDBN2bmhouD
+ 1zSDD/0WA69UvlFQXYTOHuLcL+wvScWW8sP6X/fQsuharZFRRvPkmk5RKJ1H9q9haW5mFRgd8xZ
+ kO4ELHeCytALDZhxzR3QwE4LgpseKDZSllt6k9bKnAGouD7wl63kISGTR95uVIILdEmQtH/OMYg
+ 9dplSgp+4dVxPa0TMzVjb0WV9RzYn9ubwlhRES5DFD5bkw7kpUYQY33eE2cmJlfu8p8On3ipNJy
+ 6bYBh7HG3mjy9NDDwKd81Dw7cMYRGCAV+Ce7NsEl5k92yn1B5nfokau0GlcFCUxhnsSZaUv36WN
+ 4TRVXpnSBeMhkM8HYEDdG/YqQFrTVm9ohoQrwVhSVRcjOU6I5YHA+OqDxvBRsjpV5YMXTa0JXi9
+ GSoRXU2NxMxA8dXrc7ueXed+jGkJ2NNMBOTmQTjoOSU90vT6eQ0g+MQQl7/vUDIqba4kLTnLjsg
+ qnj7S5s5q4cMGiqprqCXnP1Qei5JXuJtNsQzMlmH1GBncgQGLvI/8rwSqD8JGKZHVXHFXovLa7K
+ O+juSa69kES3Y05oIwof7EKPSvvW+pOyi2uAXgt+v/ca2qUmbqicWLvSad49kbsc2SLlTGsBsxk
+ dD6AtoUoZv3MGI7XcFgRReuI8yTr1b7oU3zSAcyqwA2aCLVxhUyBZr31EQaMVpQ9xST2iFnLrna
+ O5LVFZW9cO0pqkw==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Replace open-coded getting root OF node, matching against it and getting
-the match data with new of_machine_get_match_data() helper.
+Replace open-coded getting root OF node and matching against it with
+new of_machine_device_match() helper.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
@@ -143,39 +142,32 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Depends on the first OF patch.
 ---
- drivers/soc/qcom/ubwc_config.c | 14 ++++----------
- 1 file changed, 4 insertions(+), 10 deletions(-)
+ drivers/soc/tegra/common.c | 12 +-----------
+ 1 file changed, 1 insertion(+), 11 deletions(-)
 
-diff --git a/drivers/soc/qcom/ubwc_config.c b/drivers/soc/qcom/ubwc_config.c
-index 1c09796163b0..1c25aaf55e52 100644
---- a/drivers/soc/qcom/ubwc_config.c
-+++ b/drivers/soc/qcom/ubwc_config.c
-@@ -301,21 +301,15 @@ static const struct of_device_id qcom_ubwc_configs[] __maybe_unused = {
+diff --git a/drivers/soc/tegra/common.c b/drivers/soc/tegra/common.c
+index dff6d5ef4e46..d82b7670abb7 100644
+--- a/drivers/soc/tegra/common.c
++++ b/drivers/soc/tegra/common.c
+@@ -27,17 +27,7 @@ static const struct of_device_id tegra_machine_match[] = {
  
- const struct qcom_ubwc_cfg_data *qcom_ubwc_config_get_data(void)
+ bool soc_is_tegra(void)
  {
 -	const struct of_device_id *match;
 -	struct device_node *root;
-+	const struct qcom_ubwc_cfg_data *data;
- 
+-
 -	root = of_find_node_by_path("/");
 -	if (!root)
--		return ERR_PTR(-ENODEV);
+-		return false;
 -
--	match = of_match_node(qcom_ubwc_configs, root);
+-	match = of_match_node(tegra_machine_match, root);
 -	of_node_put(root);
--	if (!match) {
-+	data = of_machine_get_match_data(qcom_ubwc_configs);
-+	if (!data) {
- 		pr_err("Couldn't find UBWC config data for this platform!\n");
- 		return ERR_PTR(-EINVAL);
- 	}
- 
--	return match->data;
-+	return data;
+-
+-	return match != NULL;
++	return of_machine_device_match(tegra_machine_match);
  }
- EXPORT_SYMBOL_GPL(qcom_ubwc_config_get_data);
  
+ static int tegra_core_dev_init_opp_state(struct device *dev)
 
 -- 
 2.48.1
