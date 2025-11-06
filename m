@@ -1,86 +1,91 @@
-Return-Path: <devicetree+bounces-235769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E407FC3CD6E
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 18:29:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44028C3CDA7
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 18:31:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B28453B97F0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 17:23:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E69D23BCBC3
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 17:26:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13FA234DB53;
-	Thu,  6 Nov 2025 17:23:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EDB034F262;
+	Thu,  6 Nov 2025 17:25:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DgBHopWb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EgU6LJL0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8BA52C0F96;
-	Thu,  6 Nov 2025 17:23:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5966A34F248;
+	Thu,  6 Nov 2025 17:25:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762449794; cv=none; b=iEfRlW4pTQA5+I30xaUjjQ2mJHnyrf3kNi5w+OFCIVymXoFlpiEawVHYPczUau2/y7J7yo9P9ugly60+9OM4lr4znQugx35Du1KZQsUETeS+18+EDMHFnHoxPaVYLEvtrfYQIHvyY/2I1BMawOhtWeMWQ0qa7TE9nyNWegp3Vrc=
+	t=1762449958; cv=none; b=dwUzK/zeksmiXvGYZyQZLg0J1rERKK5Gp9SS9Jy6SCdkhcaLv3/QXPGu6zypQduvQVdLoXToxQUsPgwZHxI7oqobfrM0RstLB8aQ1Rt7ioZyUBmDCBNlCuQsvtrvG8ElLr4k7kwbtnndtYgFAuITk8PaQh6slUL7qL5miSvvVC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762449794; c=relaxed/simple;
-	bh=Gw5TYH30f99oo5GV+N2fvATCCzkEDos8mvZjTzd6Z1o=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=Q0SrsTeoKCKDRmf+Cpko7nPzBEY+4J5/WoKt1ETKR7DbYxrMK00WkmcNYbVM9mFipCWKhHD5I6mMz+1CK2i8GpZY90Ypr4NiFsnOnTwD/ayqT/rZYVomHYC2BShaaQQEpFF+Af7vN3yw0isVkhVyqpyCjNPLJ1R+yXkLzuUGjFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DgBHopWb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A333C19421;
-	Thu,  6 Nov 2025 17:23:13 +0000 (UTC)
+	s=arc-20240116; t=1762449958; c=relaxed/simple;
+	bh=ScwVdgvdng90WoLSpbFsZHNRiDkbdTNyqhdv18rYXuI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KvxdYJaQsTeu2nUqTT79PLxmBdDD6MP7oBmjMTtXOu/3W7tuKh2ZXBsZuEC8f/AR3VqrtOMyM1Q/ps04c1BJiQwujTGxl85s2CgrwXEG2ufVTbV6LMilYdC6FhTvxxqj/cOuLFKCHoEcsU5vLBaI+Ezxr1CZr6Cf23vYpK/eSh8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EgU6LJL0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73FFDC4CEFB;
+	Thu,  6 Nov 2025 17:25:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762449793;
-	bh=Gw5TYH30f99oo5GV+N2fvATCCzkEDos8mvZjTzd6Z1o=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=DgBHopWbQvz5DFxCGmbgRetww5Af5HfRE44GSZZSbnwqAYR9vOj11uB+6AwWJXMeG
-	 pySaPgAmNDjwgKVDaDHOG8AxZ2At0nLbP/aD7jTCOSjwjAwat/fMCvmfhDbYewfmjF
-	 CYHeCJZasSERVwFyaClXKVeuuEQkYtvtrEgA4sUYDegmdJIVjFKXPgmGlCsmwk3Efh
-	 ke32e3NnzgTNhwqDbwgQoasz4m331sLSlOZaXQRFuDyNum99nwBoaZaCcOIcWMLUuW
-	 aTUKcd2MYaedHPbu3+M2tAOvOln/iQlp00SDs+zm+K94uG8PSgjSoySDjG+mfo0IjD
-	 ypY8P5nb9rewA==
-Date: Thu, 6 Nov 2025 11:23:12 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Vincent Guittot <vincent.guittot@linaro.org>
-Cc: chester62515@gmail.com, mbrugger@suse.com,
-	ghennadi.procopciuc@oss.nxp.com, s32@nxp.com, bhelgaas@google.com,
-	jingoohan1@gmail.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com,
-	Ghennadi.Procopciuc@nxp.com, ciprianmarian.costea@nxp.com,
-	bogdan.hamciuc@nxp.com, Frank.li@nxp.com,
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	s=k20201202; t=1762449957;
+	bh=ScwVdgvdng90WoLSpbFsZHNRiDkbdTNyqhdv18rYXuI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EgU6LJL0G2zSlzLPyZ3ReiCQaQvhcXD5AmFPX04imUz7VfL/5IC2ZJLmXHPAZdmp3
+	 gsVWUm8t28MMbb0QwKq1SXLEbM3MtLa/s4fLAnmJMWRjLYHXc+Hggp14crp49XD7uO
+	 nkYl6mSNF4IbhJhrB5XaqvYlCWK640HYgrP6F0GZcjU+gEqz82y95AYuxA8JT4qVjt
+	 kMTGYc2FST9p5Xtq3VRGUh+ZZeYV46Qp0unBEgPd76ByWsB3ofS6h6P6XO0z73MMKm
+	 MJnxU3gcg4I0HiJXe+oZ5KzGeugZvHQwjuiNxyTcT3xsayvVkRl79JZ9CQfaRvcBUr
+	 JnFu6RZaH3Wqw==
+Date: Thu, 6 Nov 2025 17:25:53 +0000
+From: Conor Dooley <conor@kernel.org>
+To: akemnade@kernel.org
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Tony Lindgren <tony@atomide.com>, Kevin Hilman <khilman@kernel.org>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, cassel@kernel.org
-Subject: Re: [PATCH 3/4 v3] PCI: s32g: Add initial PCIe support (RC)
-Message-ID: <20251106172312.GA1931285@bhelgaas>
+	linux-input@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: mfd: twl: enable power button also
+ for twl603x
+Message-ID: <20251106-smartly-backfield-e3aee602c162@spud>
+References: <20251106-twl6030-button-v4-0-fdf1aa6e1e9a@kernel.org>
+ <20251106-twl6030-button-v4-1-fdf1aa6e1e9a@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="uECYSKdxnXD7ywxL"
+Content-Disposition: inline
+In-Reply-To: <20251106-twl6030-button-v4-1-fdf1aa6e1e9a@kernel.org>
+
+
+--uECYSKdxnXD7ywxL
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251022174309.1180931-4-vincent.guittot@linaro.org>
 
-On Wed, Oct 22, 2025 at 07:43:08PM +0200, Vincent Guittot wrote:
-> Add initial support of the PCIe controller for S32G Soc family. Only
-> host mode is supported.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-> +config PCIE_NXP_S32G
-> +	tristate "NXP S32G PCIe controller (host mode)"
-> +	depends on ARCH_S32 || COMPILE_TEST
-> +	select PCIE_DW_HOST
-> +	help
-> +	  Enable support for the PCIe controller in NXP S32G based boards to
-> +	  work in Host mode. The controller is based on DesignWare IP and
-> +	  can work either as RC or EP. In order to enable host-specific
-> +	  features PCIE_S32G must be selected.
+--uECYSKdxnXD7ywxL
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Did you mean PCIE_NXP_S32G here?
+-----BEGIN PGP SIGNATURE-----
 
-PCIE_S32G itself doesn't appear in this series.
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQzaIAAKCRB4tDGHoIJi
+0svcAQC/DuPcwBfhvpbkg+X4cYMYLcgFbzJYFdDoPCPVQaAQSAD/U/66saScGfgZ
+DoU9xtpqPUf0AVp8I5ufIgeyWQDSjgs=
+=yrc1
+-----END PGP SIGNATURE-----
+
+--uECYSKdxnXD7ywxL--
 
