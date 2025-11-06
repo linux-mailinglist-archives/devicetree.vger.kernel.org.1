@@ -1,247 +1,177 @@
-Return-Path: <devicetree+bounces-235579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA880C3A029
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 11:04:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C877CC3A002
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 11:03:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 254AA426067
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 09:55:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33706426E6C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 09:55:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1759530F930;
-	Thu,  6 Nov 2025 09:53:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E73F130FF28;
+	Thu,  6 Nov 2025 09:53:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="yX+mw0YY"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="ntt1owRe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from server.couthit.com (server.couthit.com [162.240.164.96])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A29930F812
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 09:53:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAB6D308F32;
+	Thu,  6 Nov 2025 09:53:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762422802; cv=none; b=kah7gBsdL1PFF3RM2cvnxOuT5SA8aUcjtLot7gpQYoVoMzwuh/bi5zzhX5rsspUXLUTo5xfD/XzfdCWNjde1Lx3kgRr8MWjPgKRwsQq4xfA+jaG2Httd89nze/SJbPPijBjjY7L3/zQCnHPlCM2XCOzq3hoK2FEMv93uQ4HOQNs=
+	t=1762422809; cv=none; b=owxxGtCbHZWtFt9rWhmqWeXCpS/v1+q2kx+UiC8Dp/11G0IbnvnN3zQPfzipSUPpGkVfmYEqFNFjyFQ/XZaDDGDy6k5//2lhpiNavcusz5CjZAfVwxJS7Wx0XgP27u3CXhnrz3gyQG69XCmzIGhxfXHr1MO1EmEaLOnELljsnxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762422802; c=relaxed/simple;
-	bh=N4gdAIjGWxxVJdRrTQ/TDeMEBNndKgzj5Pz6LBK5c3U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Nn3etM+IglkWO+jX/UqQT/j717laXIJ18ecd1HfMsEuwd3gG45XCOYhAegLzqhlgf5wJpUcSYzsJcZoOUWcI0s7qWdslJKSu5v24rQltKqLxi2HEWo9TtLvD0aFFb1M42DXg/VZMYLtPOBoixrvWeCHOmxxQ61vVGIE9bAgqsX8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=yX+mw0YY; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-592ff1d80feso762614e87.2
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 01:53:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1762422797; x=1763027597; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I+8daSNDhd8lCt1K2wrPTUKlaXsPe2T2RLhKmIvnqVQ=;
-        b=yX+mw0YYFPOTgc8GfGwpdbFkSZYXsAYZlefjKKw0sscN6FDJryqCuFep07C4O06unQ
-         DXPMRtYbGnIGNrTveyvcY3AE3PDoe5ovfnrFZ5AvXBvo6iuwYvOBbqBhEZGvplm8RBPa
-         pGj8pOvSqCh3MkoLvvJMkgSDCrbNH4j4OUoXUiePWNjVzLO0YPQEftrRWL5g7K1L7OAP
-         uVrGSkr9mT/Rh1THyfiQQW+kpOWAVSLf8g7qTxb+g98VAD/Fd2Ij2Jp7KU+734GEzTYo
-         3IuIv+Pno1zwBvu0Fm3ozggoWhT4+Bzwz9wQG7Ch80iT/76NlKh0X1OL9ryhYQGHImqs
-         FdKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762422797; x=1763027597;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=I+8daSNDhd8lCt1K2wrPTUKlaXsPe2T2RLhKmIvnqVQ=;
-        b=rqt4GlhEtYGQCku2CfE6VSsZ84PdSlm0kiff0cirt/pLsldlK/dHRI2W/LfA5+Clkd
-         o0HME4QnlhJVxi59nwBXRe8GYhGcyaZcqSmsjo4lWwfhGfYnwpbenJDHX3P9Rrosgmhr
-         2j9a2ZvpHnTNqQ41EAnBQ6yn2G7Ffh17U6z4pAI984uuZoXhO59n0tdboG3IUIIY4VNB
-         baggTySmVL0pmuHNuKwSNcpZfb26hyedOtNtOhNIanTxW7mu9RGhi4prEVi/si26Q127
-         ppyGtv6ocrLPetjf0ABjo5OTwKNKq/UyVY2fgJjXmAB4DyxTBlwg7TOy6AZJhZ6B8B6L
-         kYaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXsh0mBR6Wk2yMz6PiDrIOVLyivfX1P669bL8k0QB1EyyAneCj/Kj2SXqbBiwx+dOk9VPxQxFBqfPuO@vger.kernel.org
-X-Gm-Message-State: AOJu0YwPFmT/yCcFN/W76qS0lNjtJTyped4a7U+MWriUX+LbuqnaJwsk
-	4j6dZtLJ0mp3SoJqCBaGO8gmySfSfaBP5XztlD+wZDrezg1q07lHuE2ewlpL11qIZ0NWiU9YFHQ
-	FP2k+SYx6iacf8KVUfsP+3/xswQijE+AqyZ/3xuxXHg==
-X-Gm-Gg: ASbGnctKAXsf6+bINSvSB3I9MmubFeyqG1vt4DeQFp5QqDRj9Q7QAgErxZzcv3MwRq8
-	h8TUcjuZcMJ0xAM9x+5VRVMvFP80sqY2Cg+gAhMciLJwgCoo9RL6tkPmUWoq7IYbK1DRYTv6Un5
-	3n2UCcjvaRdXlifznPzJpoAtjM5DWeuAvSSFhj+k1wiIIk6Ps2xfHslQ9u21884K2sPfTZUdxNM
-	paNGIQuZn9H9P9FrGo6efNX+F92Fk91aKKu5iXvc6LeM8QVw12JoxRb7HcNF65zDFWMSgqrIFxB
-	VhACkAUW225FcOLDSwyQX51gsw==
-X-Google-Smtp-Source: AGHT+IHz/5foCKSm3S9RfxluGx4ispy4/FNi/RkKhEaxDVuTO2V4C8WM/HWqTc8S86iGy7YIhRyz7B1MEYUoV8eOsQA=
-X-Received: by 2002:a05:6512:61b3:b0:55f:701f:933 with SMTP id
- 2adb3069b0e04-5943d7dd53emr1995534e87.41.1762422797277; Thu, 06 Nov 2025
- 01:53:17 -0800 (PST)
+	s=arc-20240116; t=1762422809; c=relaxed/simple;
+	bh=YWZ/f/Xm1TThWex2nsBM4B/s0uZIWCj3VSnqdGUIuPE=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=KPzvV7XB76TNfAhp2S1TnssylU3xbFqA6wLBasTXQzqKENrNVns5JU0Odp/+i9V/+SqF3+EpyOfsMl/PRbKJvj2bVQrDsBMgtuRLGFzO0TnnaWM+dmN98Epjij7KW0/RxHJgO/bsm8CGj40eaVdJ4qUXIQUlDnhN4ZncPZ7x1Kc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=ntt1owRe; arc=none smtp.client-ip=162.240.164.96
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
+	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
+	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=YoDsD4YThrjSbuELnltLiWQ+YOjpC6WcOh7YxtTv6HI=; b=ntt1owReZ0Id+/bbRkYL2hQKN/
+	GCkLpH3eoYe4hZkvVPXLouQ3qdp9fSNo3I6ARHXMZSmSJjAq2YAyhnfg3cYXeu+gfwhtA/V27C8Sl
+	hW70eO3R1KzDM+tbs1vFZuTS2r4AT+GhG/O9FF9WmQqOxmiAZgFxrOoPb5DvRgtUiU9mS6wwym0Gb
+	bsxOCiEy03/u4aw+c+AsU7736S4iJYXCg4/ahfBAczBCZomFDQABwCmM49ujyyMTc9psEYSNF391H
+	E0xeCYOFHWKwRbpkwXdIYwyLF+1P9Nz0v2wnShMY3HWassnIJQBCB5rnc/iKmPFKutB4Pxma4Wu9K
+	dW73DJSA==;
+Received: from [122.175.9.182] (port=23110 helo=zimbra.couthit.local)
+	by server.couthit.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.1)
+	(envelope-from <parvathi@couthit.com>)
+	id 1vGwgA-00000009M01-3hpK;
+	Thu, 06 Nov 2025 04:53:19 -0500
+Received: from zimbra.couthit.local (localhost [127.0.0.1])
+	by zimbra.couthit.local (Postfix) with ESMTPS id 021821781F3C;
+	Thu,  6 Nov 2025 15:23:15 +0530 (IST)
+Received: from localhost (localhost [127.0.0.1])
+	by zimbra.couthit.local (Postfix) with ESMTP id DB99B1784032;
+	Thu,  6 Nov 2025 15:23:14 +0530 (IST)
+Received: from zimbra.couthit.local ([127.0.0.1])
+	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id Q6H1Vmypm5ww; Thu,  6 Nov 2025 15:23:14 +0530 (IST)
+Received: from zimbra.couthit.local (zimbra [10.10.10.103])
+	by zimbra.couthit.local (Postfix) with ESMTP id 8EDF01781F3C;
+	Thu,  6 Nov 2025 15:23:14 +0530 (IST)
+Date: Thu, 6 Nov 2025 15:23:14 +0530 (IST)
+From: Parvathi Pudi <parvathi@couthit.com>
+To: afd <afd@ti.com>
+Cc: nm <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
+	tony <tony@atomide.com>, robh <robh@kernel.org>, 
+	krzk+dt <krzk+dt@kernel.org>, conor+dt <conor+dt@kernel.org>, 
+	richardcochran <richardcochran@gmail.com>, 
+	linux-omap <linux-omap@vger.kernel.org>, 
+	devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>, 
+	netdev <netdev@vger.kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+	danishanwar <danishanwar@ti.com>, pratheesh <pratheesh@ti.com>, 
+	j-rameshbabu <j-rameshbabu@ti.com>, praneeth <praneeth@ti.com>, 
+	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
+	krishna <krishna@couthit.com>, mohan <mohan@couthit.com>, 
+	pmohan <pmohan@couthit.com>, basharath <basharath@couthit.com>, 
+	m-karicheri2 <m-karicheri2@ti.com>, parvathi <parvathi@couthit.com>
+Message-ID: <444398864.187812.1762422794296.JavaMail.zimbra@couthit.local>
+In-Reply-To: <89858ed0-58fd-4056-b8af-065c92885a10@ti.com>
+References: <20251103124820.1679167-1-parvathi@couthit.com> <20251103124820.1679167-3-parvathi@couthit.com> <89858ed0-58fd-4056-b8af-065c92885a10@ti.com>
+Subject: Re: [PATCH v2 2/2] arm: dts: ti: Adds support for AM335x and AM437x
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251105-pci-m2-v1-0-84b5f1f1e5e8@oss.qualcomm.com>
- <20251105-pci-m2-v1-4-84b5f1f1e5e8@oss.qualcomm.com> <CAMRc=McB4Zk8WuSPL=7+7kX4RJbdFBNReWZyiFnH8vfVx3DxAg@mail.gmail.com>
- <tc2r2mme4wtre7vb7xj22vz55pks4fbdabyl62mgutyhcjxnlx@qn4jvx3jqhie>
-In-Reply-To: <tc2r2mme4wtre7vb7xj22vz55pks4fbdabyl62mgutyhcjxnlx@qn4jvx3jqhie>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Thu, 6 Nov 2025 10:53:05 +0100
-X-Gm-Features: AWmQ_blH3MiJVFlUuNcpfEa7K-SsRQSsEcKjg_SUhi3TbJQz3x1oYieu6QgbyHI
-Message-ID: <CAMRc=McDYL_B+hFtLekevtB2XpUkaMN1dsDNeefvR+ppj4whFg@mail.gmail.com>
-Subject: Re: [PATCH 4/4] power: sequencing: Add the Power Sequencing driver
- for the PCIe M.2 connectors
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - GC138 (Linux)/8.8.15_GA_3968)
+Thread-Topic: Adds support for AM335x and AM437x
+Thread-Index: 5iKEgrqd+6T7XN5cqv4nZpstY2kVHg==
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.couthit.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - couthit.com
+X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: smtp@couthit.com
+X-Authenticated-Sender: server.couthit.com: smtp@couthit.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On Wed, Nov 5, 2025 at 6:46=E2=80=AFPM Manivannan Sadhasivam <mani@kernel.o=
-rg> wrote:
->
-> On Wed, Nov 05, 2025 at 05:21:46PM +0100, Bartosz Golaszewski wrote:
-> > On Wed, Nov 5, 2025 at 10:17=E2=80=AFAM Manivannan Sadhasivam
-> > <manivannan.sadhasivam@oss.qualcomm.com> wrote:
-> > >
-> > > This driver is used to control the PCIe M.2 connectors of different
-> > > Mechanical Keys attached to the host machines and supporting differen=
-t
-> > > interfaces like PCIe/SATA, USB/UART etc...
-> > >
-> > > Currently, this driver supports only the Mechanical Key M connectors =
-with
-> > > PCIe interface. The driver also only supports driving the mandatory 3=
-.3v
-> > > and optional 1.8v power supplies. The optional signals of the Key M
-> > > connectors are not currently supported.
-> > >
-> >
-> > I'm assuming you followed some of the examples from the existing WCN
-> > power sequencing driver. Not all of them are good or matching this
-> > one, please see below.
-> >
-> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualc=
-omm.com>
-> > > ---
-> > >  MAINTAINERS                               |   7 ++
-> > >  drivers/power/sequencing/Kconfig          |   8 ++
-> > >  drivers/power/sequencing/Makefile         |   1 +
-> > >  drivers/power/sequencing/pwrseq-pcie-m2.c | 138 ++++++++++++++++++++=
-++++++++++
-> > >  4 files changed, 154 insertions(+)
-> > >
-> > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > index 46126ce2f968e4f9260263f1574ee29f5ff0de1c..9b3f689d1f50c62afa377=
-2a0c6802f99a98ac2de 100644
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -20474,6 +20474,13 @@ F:     Documentation/driver-api/pwrseq.rst
-> > >  F:     drivers/power/sequencing/
-> > >  F:     include/linux/pwrseq/
-> > >
-> > > +PCIE M.2 POWER SEQUENCING
-> > > +M:     Manivannan Sadhasivam <mani@kernel.org>
-> > > +L:     linux-pci@vger.kernel.org
-> > > +S:     Maintained
-> > > +F:     Documentation/devicetree/bindings/connector/pcie-m2-m-connect=
-or.yaml
-> > > +F:     drivers/power/sequencing/pwrseq-pcie-m2.c
-> > > +
-> > >  POWER STATE COORDINATION INTERFACE (PSCI)
-> > >  M:     Mark Rutland <mark.rutland@arm.com>
-> > >  M:     Lorenzo Pieralisi <lpieralisi@kernel.org>
-> > > diff --git a/drivers/power/sequencing/Kconfig b/drivers/power/sequenc=
-ing/Kconfig
-> > > index 280f92beb5d0ed524e67a28d1c5dd264bbd6c87e..f5fff84566ba463b55d3c=
-d0c07db34c82f9f1e31 100644
-> > > --- a/drivers/power/sequencing/Kconfig
-> > > +++ b/drivers/power/sequencing/Kconfig
-> > > @@ -35,4 +35,12 @@ config POWER_SEQUENCING_TH1520_GPU
-> > >           GPU. This driver handles the complex clock and reset sequen=
-ce
-> > >           required to power on the Imagination BXM GPU on this platfo=
-rm.
-> > >
-> > > +config POWER_SEQUENCING_PCIE_M2
-> > > +       tristate "PCIe M.2 connector power sequencing driver"
-> > > +       depends on OF || COMPILE_TEST
-> >
-> > The OF dependency in the WCN driver is there because we're doing some
-> > phandle parsing and inspecting the parent-child relationships of the
-> > associated nodes. It doesn't look like you need it here. On the other
-> > hand, if you add more logic to the match() callback, this may come
-> > into play.
-> >
->
-> For sure the driver will build fine for !CONFIG_OF, but it is not going t=
-o work.
-> And for the build coverage, COMPILE_TEST is already present. Maybe I was =
-wrong
-> to enforce functional dependency in Kconfig.
->
+Hi,
 
-Given what you said below for the regulator API, let's keep it as is.
+> On 11/3/25 6:47 AM, Parvathi Pudi wrote:
+>> From: Roger Quadros <rogerq@ti.com>
+>> 
+>> PRU-ICSS instance consists of two PRU cores along with various
+>> peripherals such as the Interrupt Controller (PRU_INTC), the Industrial
+>> Ethernet Peripheral(IEP), the Real Time Media Independent Interface
+>> controller (MII_RT), and the Enhanced Capture (eCAP) event module.
+>> 
+>> The TI Sitara AM335x ICE-V2 consists of single PRU-ICSS instance,
+>> This patch adds the new device tree source file in-order to use
+>> PRU-ICSS instance, along with makefile changes to add the new DTS
+>> file for PRUSS.
+>> 
+>> The TI Sitara AM437x series of devices consists of 2 PRU-ICSS instances
+>> (PRU-ICSS0 and PRU-ICSS1). This patch adds the device tree nodes for the
+>> PRU-ICSS1 instance to support DUAL-MAC mode of operation. Support for
+>> Ethernet over PRU is available only for ICSS1 instance.
+>> 
+>> am33xx-l4.dtsi, am4372.dtsi - Adds IEP and eCAP peripheral as child nodes
+>> of the PRUSS subsystem node.
+>> 
+>> am335x-icev2-prueth.dts, am437x-idk-evm.dts - Adds PRU-ICSS
+>> instance node along with PRU eth port information and corresponding
+>> port configuration. It includes interrupt mapping for packet reception,
+>> HW timestamp collection, and PRU Ethernet ports in MII mode,
+>> 
+>> GPIO configuration, boot strapping along with delay configuration for
+>> individual PRU Ethernet port and other required nodes.
+>> 
+>> Signed-off-by: Roger Quadros <rogerq@ti.com>
+>> Signed-off-by: Andrew F. Davis <afd@ti.com>
+>> Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
+>> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
+>> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
+>> ---
+>>   arch/arm/boot/dts/ti/omap/Makefile            |   1 +
+>>   .../boot/dts/ti/omap/am335x-icev2-prueth.dts  | 533 ++++++++++++++++++
+>>   arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi      |  11 +
+>>   arch/arm/boot/dts/ti/omap/am4372.dtsi         |  11 +
+>>   arch/arm/boot/dts/ti/omap/am437x-idk-evm.dts  | 137 ++++-
+>>   5 files changed, 692 insertions(+), 1 deletion(-)
+>>   create mode 100644 arch/arm/boot/dts/ti/omap/am335x-icev2-prueth.dts
+>> 
+>> diff --git a/arch/arm/boot/dts/ti/omap/Makefile
+>> b/arch/arm/boot/dts/ti/omap/Makefile
+>> index 1aef60eef671..d06dd31d0bb6 100644
+>> --- a/arch/arm/boot/dts/ti/omap/Makefile
+>> +++ b/arch/arm/boot/dts/ti/omap/Makefile
+>> @@ -100,6 +100,7 @@ dtb-$(CONFIG_SOC_AM33XX) += \
+>>   	am335x-evmsk.dtb \
+>>   	am335x-guardian.dtb \
+>>   	am335x-icev2.dtb \
+>> +	am335x-icev2-prueth.dtb \
+> 
+> This new DTB looks to be almost identical to the regular am335x-icev2.dtb, to
+> add an optional node to an existing board use DT overlay, do not clone the
+> whole board DT just to add a node. Maybe that is how we hacked around this
+> in our evil vendor tree back in 2018 but do not take our old hacks and push
+> them upstream as-is.
+> 
+> Andrew
+> 
 
-> > > +
-> > > +static int pwrseq_pcie_m2_match(struct pwrseq_device *pwrseq,
-> > > +                                struct device *dev)
-> > > +{
-> > > +       return PWRSEQ_MATCH_OK;
-> >
-> > Eek! That will match any device we check. I'm not sure this is what
-> > you want. Looking at the binding example, I assume struct device *
-> > here will be the endpoint? If so, you should resolve it and confirm
-> > it's the one referenced from the connector node.
-> >
->
-> I was expecting this question, so returned PWRSEQ_MATCH_OK on purpose. I =
-feel it
-> is redundant to have match callback that just does link resolution and ma=
-tches
-> the of_node of the caller. Can't we have a default match callback that do=
-es just
-> this?
->
+Understood. We will review this redundancy and revert back with an update.
 
-To be clear: the above is certainly wrong. Any power sequencing
-consumer would match against this device.
 
-To answer your question: sure, there is nothing wrong with having a
-default match callback but first: I'd like to see more than one user
-before we generalize it, and second: it still needs some logic. What
-is the relationship between the firmware nodes of dev and pwrseq here
-exactly?
-
-> > > +       if (!ctx->pdata)
-> > > +               return dev_err_probe(dev, -ENODEV,
-> > > +                                    "Failed to obtain platform data\=
-n");
-> > > +
-> > > +       ret =3D of_regulator_bulk_get_all(dev, dev_of_node(dev), &ctx=
-->regs);
-> >
-> > Same here, you already have the device, no need to get the regulators
-> > through the OF node. Just use devm_regulator_bulk_get()
-> >
->
-> I used it on purpose. This is the only regulator API that just gets all
-> regulators defined in the devicetree node without complaining. Here, 3.3v=
- is
-> mandatory and 1.8v is optional. There could be other supplies in the futu=
-re and
-> I do not want to hardcode the supply names in the driver. IMO, the driver=
- should
-> trust devicetree to supply enough supplies and it should just consume the=
-m
-> instead of doing validation. I proposed to add a devm_ variant for this, =
-but
-> Mark was against that idea.
->
-
-What was the reason for being against it? Anyway: in that case, would
-you mind adding a comment containing what you wrote here so that
-people don't mindlessly try convert it to the regular variant in the
-future?
-
-Bart
+Thanks and Regards,
+Parvathi.
 
