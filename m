@@ -1,61 +1,64 @@
-Return-Path: <devicetree+bounces-235792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB051C3CF25
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 18:49:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4823FC3CF4E
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 18:50:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B44484E15B4
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 17:47:48 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E464D4E2421
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 17:50:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A58CD34DCDE;
-	Thu,  6 Nov 2025 17:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33F293451BA;
+	Thu,  6 Nov 2025 17:50:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FbWiZrWj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hbP8H4uc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 788E9302CB9;
-	Thu,  6 Nov 2025 17:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09207280033;
+	Thu,  6 Nov 2025 17:50:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762451237; cv=none; b=drq8903pPRW/pgS6F5FAdFH276ZXLgCOlelRp69aX6GfI/yj1Wv8dMLd32I6IMROyTq+u/s6dhwNL2AIplukecIa1W++NxTo2TZTeATb4pNBen2p4aDrLrP7Xb3F674H51YARLE0O1M5k2B9lLYGpQ1iU/QextGRC2lQEgcHAi4=
+	t=1762451430; cv=none; b=DStcsTzKx52M1W7/3iofbAMmBpJuPAuoG4+vBus+5pL+MBwbYOhRwkaC12gOaAQLv5MUtzl+lxg8IJo+62P9wgMK0cHP8CyMypLwFYIknAnEXVUtX7lI3E9PhUITngYH4XkGX7rsofNSqwCiiBPRxhq9hGuJ8BeOTmeEbpIES0k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762451237; c=relaxed/simple;
-	bh=/LEeDzLJRYE2r2N+metFxjEYaagZ6NINjIeF5iQDh4E=;
+	s=arc-20240116; t=1762451430; c=relaxed/simple;
+	bh=WjWTvbzua2LgYAaRJe9lhFBkACy3GRXIKF3t5etpTx8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VmmkcpprDauzejmHiyBUEpWfFz/fCfmFqqJoJ31zCHOb0rbVUXTRFm6CHJ0Fh3idwYg0vQrer1S8PdTY4fafd0oAygf0iIiE70qzXzhxr0o1ZWKtRReJChUfcZIOz4eobY+7K5WMM4VAAWiIs2+q8c5fcL9rfvoEdacRNHML5zI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FbWiZrWj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5050C4CEFB;
-	Thu,  6 Nov 2025 17:47:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=P3pqnwx4/flSHk7TN3XApnMcrYPv2TKk0A9RCBUlNjHuLlJ3Sjx12j40zWwYOsB6KF/hT8DvifMnEqWg4SjbYSIJ5kSMj4xegZs52vCy4st0ju5ORdLj2xahJyALMozaHnWGZB+JlgBHU34UOzgOkOwtOj0LDUB0D4SRxn9u8ng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hbP8H4uc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FE47C4CEF7;
+	Thu,  6 Nov 2025 17:50:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762451237;
-	bh=/LEeDzLJRYE2r2N+metFxjEYaagZ6NINjIeF5iQDh4E=;
+	s=k20201202; t=1762451429;
+	bh=WjWTvbzua2LgYAaRJe9lhFBkACy3GRXIKF3t5etpTx8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FbWiZrWjAwQ6I/4uXUNy2SVW0oZBNutX4rTh4Sv/ER7EgCbYnMOjJTGKnfKtET44w
-	 lH+5mPM56eRoU65ukFWBa1WtJl7EvncewcNuIy0GgXNceDG9iIH9Equ0Vp2sVuBy0T
-	 HAKnJXchXg+unQaMsZn7hc+gFv18re2ZjOY7Hz4CCjTOwD+g1Vl6HPyrR6fFgxpeDU
-	 Jd4lHUJ1qkmTsyAkxVC5Gjv3jcunRGcelFKTpM+Iz8M/Dh4wSkiJw23eXlU+dShyYT
-	 eMqHzQUI9B+fXWOw+JMUu4UPgN+PzMKtCssl0gegsaiSf9hZgJmWa2dCFgfx4tuOEz
-	 n14czvuH4gMUw==
-Date: Thu, 6 Nov 2025 17:47:12 +0000
+	b=hbP8H4uc4//Q3JD9skD/NmChmp1R2f45h81QKbBzJv8eP5/t8LI5jfVTixIJFk9A1
+	 E9D9IKlGLveME0Myu4Sroc2KKth/rYvfaceRD165Zgm3N+MNJotluAJXyJNUgTwnMB
+	 3vek/s3C/u0rg3xd7NuwmAA2MMzirKLcV3RccjBahJMzmJQuMZ+cyS2SKpLPvMEHcE
+	 v5KGjPPOFAMOiiPuNVwNiO62+Jqq+leGtR69ZvVjtAR4DzdqNPLsfdQxBzakDCXW5k
+	 OneQzIti6WpF69yRelVNW+PJ0t/XbOwaJBFCYWNUrbIyUbKALQZMgI83GsYe9F2gIT
+	 ZVDuDx8UDODWQ==
+Date: Thu, 6 Nov 2025 17:50:25 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Jonas Jelonek <jelonek.jonas@gmail.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+To: Mark Brown <broonie@kernel.org>
+Cc: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Peter Rosin <peda@axentia.se>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Thomas Richard <thomas.richard@bootlin.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: gpio: add gpio-line-mux controller
-Message-ID: <20251106-handgrip-snoring-8e584fc97d3d@spud>
-References: <20251105163610.610793-1-jelonek.jonas@gmail.com>
- <20251105163610.610793-2-jelonek.jonas@gmail.com>
+	linux-riscv@lists.infradead.org, linux-spi@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Valentina Fernandez Alanis <valentina.fernandezalanis@microchip.com>,
+	Cyril Jean <cyril.jean@microchip.com>
+Subject: Re: [PATCH v2 3/3] spi: add support for microchip "soft" spi
+ controller
+Message-ID: <20251106-cable-generic-819b798c7068@spud>
+References: <20251105152823.730422-1-prajna.rajendrakumar@microchip.com>
+ <20251105152823.730422-4-prajna.rajendrakumar@microchip.com>
+ <aQt41uGfmbs7Qa7x@finisterre.sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,52 +66,46 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="DJbGYoscspRqwJeE"
+	protocol="application/pgp-signature"; boundary="wJgqZzsyNZ2n1zkq"
 Content-Disposition: inline
-In-Reply-To: <20251105163610.610793-2-jelonek.jonas@gmail.com>
+In-Reply-To: <aQt41uGfmbs7Qa7x@finisterre.sirena.org.uk>
 
 
---DJbGYoscspRqwJeE
+--wJgqZzsyNZ2n1zkq
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 05, 2025 at 04:36:09PM +0000, Jonas Jelonek wrote:
-> Add dt-schema for a gpio-line-mux controller which exposes virtual
-> GPIOs for a shared GPIO controlled by a multiplexer, e.g. a gpio-mux.
+On Wed, Nov 05, 2025 at 04:18:30PM +0000, Mark Brown wrote:
+> On Wed, Nov 05, 2025 at 03:28:23PM +0000, Prajna Rajendra Kumar wrote:
 >=20
-> The gpio-line-mux controller is a gpio-controller, thus has mostly the
-> same semantics. However, it requires a mux-control to be specified upon
-> which it will operate.
+> >  drivers/spi/Kconfig              |   9 +
+> >  drivers/spi/Makefile             |   1 +
+> >  drivers/spi/spi-microchip-core.c | 442 +++++++++++++++++++++++++++++++
+> >  3 files changed, 452 insertions(+)
 >=20
-> Signed-off-by: Jonas Jelonek <jelonek.jonas@gmail.com>
+> > +config SPI_MICROCHIP_CORE
+> > +	tristate "Microchip FPGA SPI controllers"
+> > +	depends on SPI_MASTER
+>=20
+> Reusing the same filename and config symbol is almost certainly going to
+> create issues and confusion for people upgrading their kernel or doing
+> backports.  Perhaps CoreSPI instead?
 
-> +  muxed-gpios:
+The qspi driver (which is shared between SoC and FPGA IP) uses
+SPI_MICROCHIP_CORE_QSPI, so probably SPI_MICROCHIP_CORE_SPI should be
+used here. Prajna?
 
-v5: - renamed "shared" to "muxed" to avoid confusion with Bartosz' work
-    - dropped Reviewed-by of Krzysztof due to binding change
-
-FWIW, I wouldn't bother dropping the tag for something this simple.
-
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
-
-> +    maxItems: 1
-> +    description:
-> +      GPIO which is the '1' in 1-to-many and is shared by the virtual GP=
-IOs
-> +      and controlled via the mux.
-
---DJbGYoscspRqwJeE
+--wJgqZzsyNZ2n1zkq
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQzfIAAKCRB4tDGHoIJi
-0q0LAP9I7LAPO3ZNVR4Unc/5FmdRcCuhCG/uXxOh4N0mkZ+x/gEAos+sUM9xMU8C
-THuRavzXcJBYcMPueVZ+FTgnvSJJDwE=
-=GLU/
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaQzf4QAKCRB4tDGHoIJi
+0qy2AP0U27WzBNDqaqh1XmP2VC+xajyfZyfQNxJNz2WHKaXRgwEA1kY/wCnEvIlC
+SYkV1jsJNg638yrXcon3wRQFmAch1Q0=
+=FvLK
 -----END PGP SIGNATURE-----
 
---DJbGYoscspRqwJeE--
+--wJgqZzsyNZ2n1zkq--
 
