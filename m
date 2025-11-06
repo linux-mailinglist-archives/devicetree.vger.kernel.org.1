@@ -1,122 +1,131 @@
-Return-Path: <devicetree+bounces-235890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D408CC3DE83
-	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 00:55:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3D53C3DEA5
+	for <lists+devicetree@lfdr.de>; Fri, 07 Nov 2025 00:57:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4BF2E4EA810
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 23:54:47 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E26814E1A26
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 23:57:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B225B355053;
-	Thu,  6 Nov 2025 23:54:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71F613563C8;
+	Thu,  6 Nov 2025 23:57:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e9Cy1ioi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VeIZVAh5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A39D305977;
-	Thu,  6 Nov 2025 23:54:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95D9235581B
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 23:57:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762473264; cv=none; b=bJo8QvBUdSvCepFUc3HhYpls/ibDDETfNp6TUvPLT7dlW2ID4dQP3K9SX2+jytTlsBH3rSGo/++G27ZfZnJtEFaqRo18wu/n0uyF2JCWFHsPvP9Mr0nG8Z9A13Nnha1uzwzknsDbOYmqcQZ6NXauTScC3zk8wVUAynMkCWMxh0c=
+	t=1762473444; cv=none; b=QqKN45IeSk4onvMP++SOAmIDcrp5Lew2jp9j3uWF25VueroY5oobtg6BBLPIwYW3KqrIVU6hNi68lSmMo8ExAC75vWTrLRPao5iyns7bM5JKIJypiLtwfg0M7jxNFmLjCK6YSQ24aFu9n7XpXOMVEz7rT2+eqsHMGLBezvlerPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762473264; c=relaxed/simple;
-	bh=nUgrKOEntcoxnLMXZVxWwUI9CbwzMYPoAkwMzotuOOE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=iRdd7MHNywu5tYh62XwNP5hAKSy8M4e63oYo7PvT4C3KqVNwH3OGvLEGcU8DH843V6uqrYaTKBsoGi1F/fePmwbb8xjZvVay1lFGqtDhgM2NAkvjIXOmoln0JXyeDtFt4KWGGxsQuFYwji+gwr4uxc/QLrUR7zz/E4N+9h98KWs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e9Cy1ioi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98E79C116C6;
-	Thu,  6 Nov 2025 23:54:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762473264;
-	bh=nUgrKOEntcoxnLMXZVxWwUI9CbwzMYPoAkwMzotuOOE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=e9Cy1ioiBgg2IZziJsSnPM2e3+VSkoYpu53IVyPpk/ZevsKAMfAKMy/vnAV7iMFvq
-	 zcJDzTr2Rrwb7/f7W5S4Tzgkil55/uSPYDuUtqONeK6kI+jvBl8LLq43BFFBVHdmLL
-	 s/F1uLxE6o0gWJigWC7O0BO8o+/BDngSKtp0WI+jCozdVMlK8cJJOtk5jhmTqwt4eh
-	 8JK5XpeQPd/aVEUtOGtxvU+j/PfpoZI6FtTgs2K/HUR+vVgKxz+ykI7KTJkpxa8H9a
-	 x4VKQs0EwF0Nx/j7jnIRHbLWq682w0lLFnMKLs9CZdZbVmy79Nv12n/X59uLkJNZMs
-	 Pgh+mvfTehB8w==
-From: Mark Brown <broonie@kernel.org>
-To: linux-mediatek@lists.infradead.org, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
- wenst@chromium.org, igor.belwon@mentallysanemainliners.org
-In-Reply-To: <20251027110527.21002-1-angelogioacchino.delregno@collabora.com>
-References: <20251027110527.21002-1-angelogioacchino.delregno@collabora.com>
-Subject: Re: (subset) [PATCH v11 0/9] Add support MT6316/6363/MT6373 PMICs
- regulators and MFD
-Message-Id: <176247325942.2483095.1363987867451171276.b4-ty@kernel.org>
-Date: Thu, 06 Nov 2025 23:54:19 +0000
+	s=arc-20240116; t=1762473444; c=relaxed/simple;
+	bh=kxhtXm1Zg30ysGEEDhfA5TG/xjp0CNhZzJEgLe168qw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Y+DX4oJYzfmMek7nNnCdkH4JOHnXO24YiafgOqGgBu0pq95Fh1cPy8HmIQ7tcQr54RpBq0nZWUU3CHuyy2uJ73AnsdYo1gM8IiUnIB66VKbX5hZPFaQkq03VZNPbICpZx/izuy0ZBGCXU4Bv8J+w+Kc03E+mq/en2CeqcUYqgX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VeIZVAh5; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4775e891b5eso713455e9.2
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 15:57:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762473439; x=1763078239; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tPLPPimuMG7kUU5D7ROePR6mzkYaE95eVKvbR5javJk=;
+        b=VeIZVAh5A7wAqLcDEmPTUqVBZnomrt1GDZfCPoZCNLjbiQLA1zuHb+D7OsxtUjl0w0
+         LqsaUe9xtnWxN/Pf+nViFATfL4Mpv1+0v6nDaAwS4QP+kujMu0RV8GlEJolQnGDDQdD8
+         yj4k+iBjA0Dmd/ukDhdlm55vzSlzEA47jWVSSvfxxZMZLVZ6qTfk2OdckKbGftEuoNMV
+         WcoA+Y0iq8L33TqGLtb9R5IcVSGS35wb/9i8QOvNXg1JAOaUu2UWE50ijovMBbd686Tc
+         r06qxdQPsPbZd2xpvTOTYfPdwQNpC5czw+mGyrveO8GYvyfJ2FKCIPqovLVeUHGZe3iY
+         upgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762473439; x=1763078239;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tPLPPimuMG7kUU5D7ROePR6mzkYaE95eVKvbR5javJk=;
+        b=WUYtR1iaR1GqwGbx3zQ6dk/FFN6+QPBaFPXPVUwZxhxsXI54+n4SIonIN84S+PwgEh
+         gGcvuMAJSC86M7lNQCPzLP6IZISLPwZQDd3OO0fvwybw/0ZunRFoZj08GPgTRWgT7d7m
+         oU0mS8mQbVOinyt6CGULY4vSFJA6fgpPKoaLMWVTQ9dn8LcW2Y12fd5JYw4YnoaN1u3P
+         iZ1wvsE/TFGB68jdGhCzfUMjpdJOh5jBHEt1DeQt11rMgpVXB2Kq3MevrjOVy0MHeWqd
+         7gOzzZhzXlpS8cJqZDZ++bc2jx7bBDnj/lMXEBDJ+R/5iEWnkqnhYMLhFmJpp5Bs9MoK
+         O28w==
+X-Forwarded-Encrypted: i=1; AJvYcCUZlw7X0G1AZB1ZjmRXZluDN/Y6DW3ZIlWJ0ta5/37xVx9bHEpWVBwHsgFvDX7bMVVh0PiOXv1zDPE0@vger.kernel.org
+X-Gm-Message-State: AOJu0YyxhsOfEYrx1cf6ToCSxkTmEwM/ibRwgfZyopUAzSYke4tTTu+C
+	TrxSweBSFulSQ7/OYmIoAHbPU677RpYfTmSnlCY2BeavhC3PFKbIsOp1
+X-Gm-Gg: ASbGncuVLbeyqNDGiNzgHl5h6gfHVlu8xgpcXdqd/LnOdqDtIuiwwKZFdNqN655/D+J
+	Yrha5+xob9tlstJ8mvSUwEr/lKe2b5n2A8NZpgGn1SFplHbXR06Gpcw6T7QnQSu1016jOIbiVmc
+	dNzRN9KQHLqTuM3MxjuSMCKAm2f/qkWh987uy3kfnUaKu3l6rnfo6yqmrBTlPGj0p69eLyKz6HC
+	AX5dmCs7t7v6xLscfVpq4E6rjN1TOK1rp+mN4fFoGQY0TL+QeX/KcQXmqNduUpy1zSc1LG5HEKa
+	qoHh3MgyTAbj7nXGBiYmcwy9Dc7ZkcGU2pACoH1BiB9o6aLt5B1xKwSnLIy7v5TJhdaxtlYzWSd
+	65mA86z8GleMprnjKgncSkFGAYBdPYgWsyBEwiLwpWek9w4/qaRm+4PF9/lnPpQMAkX0bDzoSJE
+	gUzkvhkReYoIfjLaf33s+o+p3Ask8N8w==
+X-Google-Smtp-Source: AGHT+IEkxef+2RXJnVv1MDtMP+PBPYplJlT6jEtLbLvDmINhz/OHYKIorQbjuGU7uu0HwrhH5KQd7w==
+X-Received: by 2002:a05:600c:1381:b0:475:dd9d:297b with SMTP id 5b1f17b1804b1-4776bcd2cd2mr7382915e9.33.1762473439445;
+        Thu, 06 Nov 2025 15:57:19 -0800 (PST)
+Received: from Ansuel-XPS24 (93-34-90-37.ip49.fastwebnet.it. [93.34.90.37])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4775cd45466sm129470525e9.0.2025.11.06.15.57.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Nov 2025 15:57:18 -0800 (PST)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Sean Wang <sean.wang@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: Christian Marangi <ansuelsmth@gmail.com>
+Subject: [PATCH v2 0/5] pinctrl: airoha: add Airoha AN7583 support
+Date: Fri,  7 Nov 2025 00:57:03 +0100
+Message-ID: <20251106235713.1794668-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-a6db3
+Content-Transfer-Encoding: 8bit
 
-On Mon, 27 Oct 2025 12:05:18 +0100, AngeloGioacchino Del Regno wrote:
-> Changes in v11:
->  - Removed unnecessary #address-cells in all mt6316 bindings
-> 
-> Changes in v10:
->  - Added "struct" prefix to structs kerneldoc
->  - Renamed struct mtk_spmi_pmic_pdata to mtk_spmi_pmic_variant
->  - Added "REG_" to MT6363/73 mfd register definitions to disambiguate
->  - Expanded MTK_SPMI_PMIC_IRQ_GROUP macro parameter names as suggested
->  - Some rewording of comments as suggested, addition of more comments
->  - Refactored IRQ domain handling due to deprecation of function
->    irq_domain_add_tree() to use the new irq_domain_create_tree()
->  - Fixed to use generic_handle_domain_irq_safe() to avoid races
->  - Added support for two interrupt cells in translation
->  - Removed .irq_lock() and .irq_unlock() in favor of lockdep classes
->  - Added support for handling PMICs without IRQ Group register for
->    upcoming MT6685 implementation
-> 
-> [...]
+This small series introduce support for Airoha AN7583 pinctrl
+support.
 
-Applied to
+Most of the changes are generalization and cleanup of the Airoha
+pinctrl driver. These are needed as all the array in the inner
+function were hardcoded to EN7581 and didn't reference stuff
+from the priv groups.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+Everything is changed to match_data and priv struct so
+adding AN7583 is just a matter of adding the structs.
 
-Thanks!
+Also the schema is generalized where needed to address
+for the small difference between AN7583 and EN7581.
 
-[1/9] dt-bindings: regulator: Document MediaTek MT6316 PMIC Regulators
-      commit: 40a7c5db9020079547358f486ef12d57c1a7aa1f
-[2/9] regulator: Add support for MediaTek MT6316 SPMI PMIC Regulators
-      commit: a87a7b3530728fb7477a74c27fc27e060bf5684f
-[3/9] dt-bindings: regulator: Document MediaTek MT6363 PMIC Regulators
-      commit: d0f9f5b7a3356b43f78b37b9cc3671ecc7469356
-[4/9] regulator: Add support for MediaTek MT6363 SPMI PMIC Regulators
-      commit: 3c36965df80801344850388592e95033eceea05b
+Christian Marangi (5):
+  pinctrl: airoha: generalize pins/group/function/confs handling
+  pinctrl: airoha: convert PHY LED GPIO to macro
+  pinctrl: airoha: convert PWM GPIO to macro
+  dt-bindings: pinctrl: airoha: Document AN7583 Pin Controller
+  pinctrl: airoha: add support for Airoha AN7583 PINs
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+ .../pinctrl/airoha,an7583-pinctrl.yaml        |  402 +++
+ drivers/pinctrl/mediatek/pinctrl-airoha.c     | 2523 +++++++++--------
+ 2 files changed, 1706 insertions(+), 1219 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/airoha,an7583-pinctrl.yaml
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-- 
+2.51.0
 
 
