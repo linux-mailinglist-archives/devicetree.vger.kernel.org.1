@@ -1,111 +1,208 @@
-Return-Path: <devicetree+bounces-235531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58128C39A91
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 09:51:50 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94FF4C39AB5
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 09:54:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E35774F8769
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 08:51:15 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1EFC034D15F
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 08:54:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFC0B3093C7;
-	Thu,  6 Nov 2025 08:50:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E45E3090D5;
+	Thu,  6 Nov 2025 08:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zpMBkhr7"
+	dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b="DitawZXX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from uho.ysoft.cz (uho.ysoft.cz [81.19.3.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 184FE3093C3
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 08:50:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CFC02FB616;
+	Thu,  6 Nov 2025 08:54:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=81.19.3.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762419056; cv=none; b=HBB3bEsfg0xd7aNXetcng2uJxlqwh8wj2TR2ELbrP8Kyy6jIpE8EJ+mKDdNu/3Q4Zaz/gCO1H9Ahv03HqsmN0AKOQ+Eb1JumoO5DXS4WHXPaQuqHQry6/pweAlpSsnx75BVkcuTsE7yzYzmkoUMuwrInv1FPeXxN5VOgY+kcPDc=
+	t=1762419281; cv=none; b=USOek0qfD6MrNBCNyqZ/o7ukM3jmT09wk5KunJkZMmpKGkvvuduAnoeGysqcPJMouVIKQJGMAVuzBDViyOwexwnnoPVW7H9Uim5T/X7HT8McW4OCANJMQmA+cpO3Z38cX9WjyOu8I6GBdc2UBhNSKX4lrQTbtWhTcJttvf4vFKs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762419056; c=relaxed/simple;
-	bh=y/dw8Yeek5uiSFfzrYLyDpk4KHGZ2Q+0lMj56HOwE3s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XhY9gr7gtncdtK3jK0YrHmvWpRepNMf3HSQK/8SLuvYXLTdBjvNL2uGgyoLUl5FRYJcTaWtH4HPH1PRM7ojdQS4/fM5oC8NHaIty4frP/PyvgBVSQiwihjLM38D4RFlOSxuLGpC2bXxuaobx1oDoc4nwmj4N8X7UUXGgY2tfqZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zpMBkhr7; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-429b9b6ce96so500033f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 00:50:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762419053; x=1763023853; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0O1+Bk0V1ecJIiIZPiuBQsoCpD34teqnebEkC3KejHk=;
-        b=zpMBkhr7lpfrb0BndEugyEG98HARsRAOlnqU7cCJ8s+vPR0tkymgHv9TIx2jWP9ht+
-         CHXG501wIUp3p/H+/5mDBgnSosnu/NlyX4MwkeNdLIXs7AewSDPD36a19QqB9lym0x8w
-         PVHatOGR4ILuSUKJSkWmycF5fI+h3e1P1R1nEk5pb6ASahhfEWjBIWHw1kOj0h9NDn+r
-         IdV2YPbWVovnaCMiXjwehpnKfH359rwrOHw0hkm5f1fYRzBQqtZpn5J90y4k46c9Dk4W
-         RsZjauAXkSj2AJYIyviETBTvEILJYhQ/O7/bM170HrI/H4AfF2R1cmj8U4b0NrL9aKiP
-         /Lxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762419053; x=1763023853;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0O1+Bk0V1ecJIiIZPiuBQsoCpD34teqnebEkC3KejHk=;
-        b=jfUvCuZOZ/2Ph16S2PKHifGaWnSSPBoNp5wlPKaJwFfBsUuzgCCSrHJDKZiCH/ObBa
-         knHYcwQRn04Zen1kDSLaIeRFZnV4poV6HuRlJGlvnq7V+/5B+MD2f4WJaqaHsScNfbf1
-         XKCdejzcg8VGO9JIqi3Ehpov01n11DMvnncIT5G6Ng4L65Am8k6hKDiXZNYDK4Tg0J0n
-         Z6EqdqrugrLswL1GVsRkvfzvpi53QHkqTwxhSz+E5Fp6swGP1RH1AbnN+Tc20bIPBwVN
-         qJ4YPRGKLuDjx2sb8coshAhss33BuuquIBx3EUEMjHir+T3RwXqLxf6MLbTEvN9m/Xg5
-         KvQA==
-X-Forwarded-Encrypted: i=1; AJvYcCVVUP3TAlU4SYjG4wpwhu34J0XjIu9qvHsU/pL9T/U0Qy3nqiBPCneehQdEfv10jtfI4uK6ui0L0B1m@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCmorHdWzBcRxalusfjoygNKleZyTGj2pfzAq6+AJuyV12uDbg
-	OkOeBB8u4uMTKohdFKng0XqyFVdffOu+rfvyNi5dV7arO+kToJUo5ac9auYDLeyz8Lw=
-X-Gm-Gg: ASbGnctj8Xs6ejHBsMhnnB8H/T9u+WscPkjR5HE6GWs+NmVXbwE9FzL/NokfXqnTPSO
-	dMiBz0ms8SBfUJlvSCepf38WwWwkQzu7Uev16INOcVvgt/7Wbvk9Ajpkoc368hbNWyEOH1nmmDP
-	s6HyIaEcvigvyO9uYcxuNGqbdUxOgOdo33yCIkddREG1VctxN5/ynTJirRiEdH64x8KPcgzfdYi
-	DmQ27zeyFuCv350IfKHUltiKLirFZKNzkHDnhEgwPrsT8YveOSkqtxOi2w5OKZC4ZFhT9OG6nPr
-	pTLcGixLa1WmcPCyCNc0LRlLHrojM6Sfo7vzeDBiaz6GmIzSA0HCgb1q6LYmweqtQ896bjAwxQl
-	uHTS7GBwu+hg43HscmJqoWjdVsQ8f5BtFDOE+9XNennd8tcsrkbKKuH4mN6UQt//F7BiWilge
-X-Google-Smtp-Source: AGHT+IEpNkwrjClS3MRT6aT/Q6UAaN6LRZvZHXmcxt93frsHr0y/6tOsqdtfdy9Fugmh28HWQ5XyVg==
-X-Received: by 2002:a05:6000:2a0c:b0:429:bb40:eecd with SMTP id ffacd0b85a97d-429e33120cfmr4859897f8f.52.1762419053386;
-        Thu, 06 Nov 2025 00:50:53 -0800 (PST)
-Received: from linaro.org ([86.121.7.169])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429eb49a079sm3648338f8f.32.2025.11.06.00.50.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Nov 2025 00:50:52 -0800 (PST)
-Date: Thu, 6 Nov 2025 10:50:49 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Ritesh Kumar <riteshk@qti.qualcomm.com>
-Cc: robin.clark@oss.qualcomm.com, lumag@kernel.org, 
-	abhinav.kumar@linux.dev, jessica.zhang@oss.qualcomm.com, sean@poorly.run, 
-	marijn.suijten@somainline.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, quic_mahap@quicinc.com, 
-	andersson@kernel.org, konradybcio@kernel.org, mani@kernel.org, 
-	James.Bottomley@hansenpartnership.com, martin.petersen@oracle.com, vkoul@kernel.org, kishon@kernel.org, 
-	cros-qcom-dts-watchers@chromium.org, Ritesh Kumar <quic_riteshk@quicinc.com>, 
-	linux-phy@lists.infradead.org, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-scsi@vger.kernel.org, quic_vproddut@quicinc.com
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: lemans: Add eDP ref clk for eDP
- PHYs
-Message-ID: <x7ej2ne3lwn66xwgavdom45hj5imncczd5h5owufvvx4e3cblu@rdhb2adstev6>
-References: <20251104114327.27842-1-riteshk@qti.qualcomm.com>
- <20251104114327.27842-3-riteshk@qti.qualcomm.com>
+	s=arc-20240116; t=1762419281; c=relaxed/simple;
+	bh=Lmb+20oT4tOY9BWFd3TwhRaWrkFxMoiMbPJb1QuUx2E=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gF1xn2571LYAAluSgWXj4qkuKdQ574ba5Dm7xpWT1zgX4jQEkBM/dqFivDa7XUzbayvvcjep8iP59gNHpp0fPt/2ZhZ2iHp78c459LinyF8TXXQu6Eep9Lxctyboi4FgjK1KfN02l1HyTNbl+HrpIInsFTYLtQdN45gl+5EpFwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com; spf=pass smtp.mailfrom=ysoft.com; dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b=DitawZXX; arc=none smtp.client-ip=81.19.3.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ysoft.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
+	s=20160406-ysoft-com; t=1762419277;
+	bh=FFBdt9C4gI7HHhth+9l6zVhImR8cz8//vGI97WJnQ4w=;
+	h=From:To:Cc:Subject:Date:From;
+	b=DitawZXXMH7KHrl2vz58RM8KK2y+K7Sf6x49hBCtUYd40lQcfTgUV/NGOAbLgM5hw
+	 xUGP++tc9XEZch5fJMJ+Dc1EE0krAP+Teu2y4rA+CvIwkdPSfygsqS84Cm9t+npdwG
+	 rgxLln3Ndgpyph70SzGlVZlRQvzJkcIrFuMaKjQE=
+Received: from vokac-nb.ysoft.local (unknown [10.1.8.111])
+	by uho.ysoft.cz (Postfix) with ESMTP id CF800A03F0;
+	Thu,  6 Nov 2025 09:54:37 +0100 (CET)
+From: =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
+To: Shawn Guo <shawnguo@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
+Subject: [PATCH v2 1/2] ARM: dts: imx6dl-yapp43: Enable pwm-beeper on boards with speaker
+Date: Thu,  6 Nov 2025 09:54:28 +0100
+Message-ID: <20251106085429.2067699-1-michal.vokac@ysoft.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251104114327.27842-3-riteshk@qti.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 25-11-04 17:13:27, Ritesh Kumar wrote:
-> From: Ritesh Kumar <quic_riteshk@quicinc.com>
-> 
-> Add eDP reference clock for eDP PHYs on lemans chipset.
+Lynx, Pegasus and Pegasus+ boards have a speaker connected to the PWM3.
+Enable a pwm-beeper on these boards so the system can produce simple
+sounds.
 
-I'd add more information in here as to why this is needed,
-specially since this is a fix.
+Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+---
+changes in v2: none
+
+ .../boot/dts/nxp/imx/imx6dl-yapp4-lynx.dts    |  8 ++++++++
+ .../dts/nxp/imx/imx6dl-yapp43-common.dtsi     | 19 +++++++++++++++++++
+ .../boot/dts/nxp/imx/imx6q-yapp4-pegasus.dts  |  8 ++++++++
+ .../dts/nxp/imx/imx6qp-yapp4-pegasus-plus.dts |  8 ++++++++
+ 4 files changed, 43 insertions(+)
+
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-lynx.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-lynx.dts
+index 5c2cd517589b..0a6b668428a3 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-lynx.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-lynx.dts
+@@ -21,6 +21,10 @@ &backlight {
+ 	status = "okay";
+ };
+ 
++&beeper {
++	status = "okay";
++};
++
+ &lcd_display {
+ 	status = "okay";
+ };
+@@ -37,6 +41,10 @@ &pwm1 {
+ 	status = "okay";
+ };
+ 
++&pwm3 {
++	status = "okay";
++};
++
+ &reg_usb_h1_vbus {
+ 	status = "okay";
+ };
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp43-common.dtsi b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp43-common.dtsi
+index 2f42c56c21f6..6f9bd163ffbe 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp43-common.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp43-common.dtsi
+@@ -26,6 +26,12 @@ backlight: backlight {
+ 		status = "disabled";
+ 	};
+ 
++	beeper: beeper {
++		compatible = "pwm-beeper";
++		pwms = <&pwm3 0 500000 0>;
++		status = "disabled";
++	};
++
+ 	gpio_keys: gpio-keys {
+ 		compatible = "gpio-keys";
+ 		pinctrl-names = "default";
+@@ -466,6 +472,13 @@ MX6QDL_PAD_GPIO_9__PWM1_OUT	0x8
+ 		>;
+ 	};
+ 
++	pinctrl_sound: soundgrp {
++		fsl,pins = <
++			MX6QDL_PAD_SD1_DAT0__GPIO1_IO16	0x1b0b0
++			MX6QDL_PAD_SD1_DAT1__PWM3_OUT	0x8
++		>;
++	};
++
+ 	pinctrl_touch: touchgrp {
+ 		fsl,pins = <
+ 			MX6QDL_PAD_GPIO_19__GPIO4_IO05	0x1b098
+@@ -551,6 +564,12 @@ &pwm1 {
+ 	status = "disabled";
+ };
+ 
++&pwm3 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_sound>;
++	status = "disabled";
++};
++
+ &uart1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_uart1>;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-yapp4-pegasus.dts b/arch/arm/boot/dts/nxp/imx/imx6q-yapp4-pegasus.dts
+index ec6651ba4ba2..7332f2718982 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-yapp4-pegasus.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-yapp4-pegasus.dts
+@@ -17,6 +17,10 @@ memory@10000000 {
+ 	};
+ };
+ 
++&beeper {
++	status = "okay";
++};
++
+ &gpio_oled {
+ 	status = "okay";
+ };
+@@ -37,6 +41,10 @@ &oled_1309 {
+ 	status = "okay";
+ };
+ 
++&pwm3 {
++	status = "okay";
++};
++
+ &reg_pu {
+ 	regulator-always-on;
+ };
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qp-yapp4-pegasus-plus.dts b/arch/arm/boot/dts/nxp/imx/imx6qp-yapp4-pegasus-plus.dts
+index 4a961a33bf2d..770a85e0561c 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qp-yapp4-pegasus-plus.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6qp-yapp4-pegasus-plus.dts
+@@ -17,6 +17,10 @@ memory@10000000 {
+ 	};
+ };
+ 
++&beeper {
++	status = "okay";
++};
++
+ &gpio_oled {
+ 	status = "okay";
+ };
+@@ -37,6 +41,10 @@ &oled_1309 {
+ 	status = "okay";
+ };
+ 
++&pwm3 {
++	status = "okay";
++};
++
+ &reg_pu {
+ 	regulator-always-on;
+ };
+-- 
+2.43.0
+
 
