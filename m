@@ -1,898 +1,225 @@
-Return-Path: <devicetree+bounces-235786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E056DC3CE5B
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 18:41:20 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 771F8C3CE61
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 18:41:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 166F2426CB1
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 17:38:13 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E8DE44E515D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 17:38:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1214A3546E3;
-	Thu,  6 Nov 2025 17:36:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B247351FC3;
+	Thu,  6 Nov 2025 17:36:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="ZCoZjNZ2"
+	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="wwbIo3/l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011009.outbound.protection.outlook.com [52.101.70.9])
+Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013070.outbound.protection.outlook.com [52.101.83.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37FB234F246;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 101CC340A74;
 	Thu,  6 Nov 2025 17:36:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.9
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.70
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762450612; cv=fail; b=OTxaP9rFGkonlhvzIVQOuPUUvRSoHVwOEDq3HfaV65Nxm9Jw11si+tn2a2BJSHVRcQVK1/DvGPkB7Nm9crelIe1diEn62qCkdxk3Tu0GwlibaJC/rWNe+3w0mbENtyOz96pr8e8iWYIzqI9jU/Frcsfogds3fBnEYdfqRh1K0xM=
+	t=1762450611; cv=fail; b=sloqskW8mdBqF1MZ23sjSO0ko//d6qeJkpMpNqly19cDuNGwPxNZXWEzjxpSqZfMG/4QR5h688yT/R4FqpQa73rJiEnUShNwzLNZxA7OJI7MdiLNi18wqQoswRWV8fZijyyQM73gMyfV6m5UMCjeokXbfmFa0pWKhsKkWuVgOhg=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762450612; c=relaxed/simple;
-	bh=anQimOeJzrXr5UYXGKdewIVHAKPren0hdLsICCRdcP4=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=LvNygcXIDMdkRok/bjB/ruFnm0cyPBuePTivRFIWV0fGInZS+rKCJAimxO6daQcwezcBLrfu6EMSqlkPSxUurb7SWNMwuNyEKNpzHvUzgDwMnaghuZgMAgVryzeE2lDlLyqlQuFlynH78HKvYEa3v+IYwv5of8Vjz+iQqvcgUuA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=ZCoZjNZ2; arc=fail smtp.client-ip=52.101.70.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	s=arc-20240116; t=1762450611; c=relaxed/simple;
+	bh=zdyYepPC0gVmLhgbO5LCYcI2bsp9j1LS+PL5BxxJzjw=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=W9w4n+3jjEsGNYSjQj2Z/xnl5pAOKNZfDuvL24L/ClXXN1LJNKENy+gBEV3pkrubqiiS8XzfDNrXuIghZTVcjkPuzzPaOcBsk0o0CyVo5kTYQjGOCoc89IxJ60uNkqA4+6aXqK4MJFUw0/kgyuAA2hcXvjTWPCFJjL+dW4dgwvY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b=wwbIo3/l; arc=fail smtp.client-ip=52.101.83.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FlhPwnixXdVcttfg1MuEePleGyPnb9buIjHhYIiZGRrgt/VwoBrI5yurA9nSEL7PPz1J+wZsNEF2eaTqYHTpwOlZ0FwPpQLXbykOJKSWzDEDRqTqOPtVhlKMauzreHTvsXZsylN1/dlQVUkhON+74HJjyMSlECx36Og7cND8gUz2oTmxmTJ3leApvdJV2rSn9Vbk1emVBMtnOG2laMjYcHLzY0GebuOP+IUOjC2o7HAs/vKL7wP+CxNO41SeZulmiCc8ojYaFjUJt1LlzWLiIHIU3XlZo40BbT95RJV6MlOemPdXah0aomm9uGvStn0N/AzmmNzeQJ6VHXaXF2Rqdg==
+ b=kPrB++HTupj03ZRFDBNrkr05aL553CGq79P6vWiRjrJmErsaRpnhnORsQ/2wXcHpOaP31dlk2BdzkJ97xNljuEcK3GvxYZ8bBl63fmjvjq3SxwIvkkvnqIxyZ4w0RWjlcKgXEGZ6UMtYYVFK4MFmAOoNmzJTwl2jlXS+0ufgNe920KkRUQgyYf2PBquxAA3AG4+sqbohrCYhKMR9SK4aFGNqEbJJYoA1r6332eo8NRbwoVw89+d0m6siH+1xD25V2r9MBmKvN8iwVGtleOLL5JglP3QumrBRLeyKsMS57Vd/ETCMkC1datQYDvT723GfVh5nQhviv0DIKmSF/q33Zg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4RsDXIj2lTjYkzcPoOY059aoGN8v3PdCa0e/mCxRvMk=;
- b=mbe7aUjySgZxeJ8qiMzzrj2Wa46gcbZzmIjycTtQ23A7GFicycqq6jXlCRovzKS6F/DfNvSEchXrp4lJlN0IuJ9UwexcWdQ//M+haWmvrUnXLeMR6qa5P7/tkFpjFqmmvCwhzsCYYWGn8zRdUrs2p3Z0dDLevyrYroViV3YkQMooLxKcd0sqMFBE1K4gBMPFzvj0FMHlMMrfGbm8mGN2sfEraXbCCEykJEWqu2H5gf8ynxSeg4tnAF83+R1hGuf9uAdcGd/luUG4acA594Yra+0ZNfUQ9OEkfu2MJlf68JE0sEOYwlfjD+29KqUtAk7en17J7A5uhK0fDAwA42CbRQ==
+ bh=zdyYepPC0gVmLhgbO5LCYcI2bsp9j1LS+PL5BxxJzjw=;
+ b=L4NtnMH+AUjTMftZzsGkvfVXvB2LHJrQofSBpphegXcAnZJmAZav4Z+YNLZ1M0rzV5Hd0XFt8XWb4y+m/Z4TArRsL20o+M90UdDsgt0TTwAld8LQ8UjFXGc6Z9gxPKcy8Mxoh6/ZtCXJFExIfXpqyP04hKSIoei7ZgDAbbEsAl0UROMJu5LCLDTykgtjUfV7qTXTxpOEN0lRop9GYs85irlan86kmhqkR9ilSUUoeWMMYjpIBxGUvJoQpSJlM0IX+Epgi9ujlZnaetV5/j354jdvkMFHOv4AgrFTmS01FtmX66c5OAfaztECY5FBplw9GlvOJQtEsPkVn8MPsLoWeQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
+ dkim=pass header.d=siemens.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4RsDXIj2lTjYkzcPoOY059aoGN8v3PdCa0e/mCxRvMk=;
- b=ZCoZjNZ243h2BcGNOhd8mWpeD1EaAwsJw7BDkPpwz57Z/KITqL+uvnGA07KnA+9tUiW9wW2eq2rwYEdu8Elkjs7r9GlTa6Yu1SCz6jSV26kn3EzZYnk/Kl9NfBnTaic0Dttaq4gHqypaqhgN2Z8BizjmHjIG+lhX8eNEkgjjv8/6Ym0JJwEaWIUqXItUSgsE1IH0O97FOshKh/O+Q86QG40X1b5Gr/gbL9eFN2f3yKsIOp7bnPUo6CUfCujXjnMFwakn+5FRfuglsCQEvbOhtXSF98c67ihwN0DKkwewYZY+I5pLd1M8AR0Osn3L8RlSRvUIxWx6GYAvoyr6lQ6s2Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
- by VI1PR04MB7200.eurprd04.prod.outlook.com (2603:10a6:800:12d::23) with
+ bh=zdyYepPC0gVmLhgbO5LCYcI2bsp9j1LS+PL5BxxJzjw=;
+ b=wwbIo3/lUwhFCiQ0oP+isGbpfZgSqGS2fC1ovYoWdTnTFO00reXYkaep0CZ547NveJDbMr3FOOxt91Zk//e0aNR33WDnJ+wSwnK25aB96ruVRhG3XrtAVumJck0ylWe1yBLBKrhtPs2SQafgyc23KIv+Mpp9sAcZZuoijlQBRDDdv9v5qCydROh2C8ff8FgD38sihoSZ4i8OAx6OTO95/1dIwXGj1gC7oTQUrFUDgq9rwXmpXq3Lii4wyee8sXBteBRQc+erUAERodZ0UY3PT5NrezNpEJUZoccuTfnoz0An8IzPN9Yog0bA8zSC2co5yUcQ64J6Ix7jpRQCurRRNQ==
+Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:5b6::22)
+ by AM0PR10MB3571.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:155::24) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.10; Thu, 6 Nov
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.12; Thu, 6 Nov
  2025 17:36:45 +0000
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9298.006; Thu, 6 Nov 2025
- 17:36:44 +0000
-From: Frank Li <Frank.Li@nxp.com>
-Date: Thu, 06 Nov 2025 12:36:05 -0500
-Subject: [PATCH v11 6/6] iio: magnetometer: Add mmc5633 sensor
+Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::9126:d21d:31c4:1b9f]) by AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::9126:d21d:31c4:1b9f%3]) with mapi id 15.20.9275.013; Thu, 6 Nov 2025
+ 17:36:45 +0000
+From: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>
+To: "olteanv@gmail.com" <olteanv@gmail.com>
+CC: "andrew@lunn.ch" <andrew@lunn.ch>, "robh@kernel.org" <robh@kernel.org>,
+	"lxu@maxlinear.com" <lxu@maxlinear.com>, "john@phrozen.org"
+	<john@phrozen.org>, "davem@davemloft.net" <davem@davemloft.net>,
+	"yweng@maxlinear.com" <yweng@maxlinear.com>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
+	"edumazet@google.com" <edumazet@google.com>, "bxu@maxlinear.com"
+	<bxu@maxlinear.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "ajayaraman@maxlinear.com"
+	<ajayaraman@maxlinear.com>, "fchan@maxlinear.com" <fchan@maxlinear.com>,
+	"daniel@makrotopia.org" <daniel@makrotopia.org>, "hauke@hauke-m.de"
+	<hauke@hauke-m.de>, "horms@kernel.org" <horms@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "kuba@kernel.org" <kuba@kernel.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>, "jpovazanec@maxlinear.com"
+	<jpovazanec@maxlinear.com>, "linux@armlinux.org.uk" <linux@armlinux.org.uk>
+Subject: Re: [PATCH net-next v7 12/12] net: dsa: add driver for MaxLinear
+ GSW1xx switch family
+Thread-Topic: [PATCH net-next v7 12/12] net: dsa: add driver for MaxLinear
+ GSW1xx switch family
+Thread-Index:
+ AQHcTLxDDivhhsZUI0Sg1sdKzKnvuLTiKW4AgAOg3QCAABBvgIAAAuwAgAAO0wCAAAHjgA==
+Date: Thu, 6 Nov 2025 17:36:45 +0000
+Message-ID: <c1b631eacec2f138eb44fbfa4c0ae056bafa4610.camel@siemens.com>
+References: <cover.1762170107.git.daniel@makrotopia.org>
+	 <b567ec1b4beb08fd37abf18b280c56d5d8253c26.1762170107.git.daniel@makrotopia.org>
+	 <8f36e6218221bb9dad6aabe4989ee4fc279581ce.camel@siemens.com>
+	 <20251106152738.gynuzxztm7by5krl@skbuf>
+	 <471b75b6971dc5fa19984b43042199dec41ca9f3.camel@siemens.com>
+	 <6c4144088bbf367f6b166b4f3eceef16afdc19c1.camel@siemens.com>
+	 <20251106172958.jjfr3jbzlyexmidg@skbuf>
+In-Reply-To: <20251106172958.jjfr3jbzlyexmidg@skbuf>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+user-agent: Evolution 3.54.3 (3.54.3-2.fc41) 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siemens.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS8PR10MB6867:EE_|AM0PR10MB3571:EE_
+x-ms-office365-filtering-correlation-id: efc2147e-6673-479f-5e7a-08de1d5b0e5b
+x-ms-exchange-atpmessageproperties: SA
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|376014|7416014|366016|38070700021;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?Ym40Nm5PcW8wbEd0NkU0RjFrZWtWOVNMZ0wyQ0g3eUQxTUw0cU5DVmVCckZO?=
+ =?utf-8?B?cjZMRTVNSlRVbmpRMFZWTkViMG91TnFRQnlobG0zdER2c28rdFk5bHl1MUZh?=
+ =?utf-8?B?WGpmb2wrNjJmM1dYRGJ0enc2L29wZ25xNE1JZkhXUmZPbUo2MnFQdVZLVG8x?=
+ =?utf-8?B?SjRBYUJmNm03d0h3dUkwd1dab0NhQXQ1NVBjdmhSQTdLRGNFZjNzUER1YlpS?=
+ =?utf-8?B?RGpXbE1vaGZNdzNLOUFFRlI2RENmVHhKbFVRVGRCVEk1YkZtaVVmRCtzVkVa?=
+ =?utf-8?B?UFBua3U3eGd2Q3BzMmQveFVhRGxuZXR4dVRYUTZweHR4MEU0UUg5NDJ3ZUlM?=
+ =?utf-8?B?QWVuOXFjVTE4bmRuNm5QWEs0RXZSODJNUmthWUIyREcxVUtKa05QZThnZWZp?=
+ =?utf-8?B?TzNkSU0zYldZVForWnJFL29CYlByc0NFTVhBRXVTOGF2aUQ0N1l5WjgwVHZQ?=
+ =?utf-8?B?blBGaW5zUFQwRmgxL3U2dE85b3ZYQjRSUSthTnVGWi9DblVETDREUEh4QzdC?=
+ =?utf-8?B?SitXNEphY0tITmdIRzkrakNJeFVwRVBYZ05IQlhuSjlMWDgzRzNJcHhFWTQ3?=
+ =?utf-8?B?Yy90SXhlQnIxR0hUYW8ybUcwMkI2QUJLS1FiNEZpZmFIc2laK01zRXQ5Rk0z?=
+ =?utf-8?B?TGd3a2FYbFFMK20xdXlobFVtbVlQWkRIcnlhN2t6Uzg1ek40Q0JidlJzK0pB?=
+ =?utf-8?B?Y29wZXhzaUN1QW9BbUVsU0hGUUxLb2YwcVVlalJDZmQvbHc3TForaVJtZlhh?=
+ =?utf-8?B?MDBLV2NtVnVYNFM3emtoOEdUR3ZlSm5zK1MrYXp6WnlzYTRYRHArRml4UGtU?=
+ =?utf-8?B?Z2w1dFNYZGdaalRHTGk2cXg3SWtmbFVkQUFhdEc3emhXc01NVjIxUjgraENx?=
+ =?utf-8?B?VnIwRTFqQVR1NDdudEFUQXg2ZTR4ZEFYZWdOOTJKOGg1ZGt1VXRlVTVwQ1BL?=
+ =?utf-8?B?QmRyMlZpNFUwaXlzN014NW0wWTM5R05kZkpJTzRqbU4wS0RHemM3dm9Vb0ha?=
+ =?utf-8?B?K2lkUStyTEk3MUVuNmdFTU81OXBKNmRBN0hsTTcyWlcrT0NycEVMM2p2dEgx?=
+ =?utf-8?B?TWpXSGpIK1F6SzJJZ1BEa0pXNFFQbXNuWERaR0FMWUZPcFhSQjRwSWRpVDlE?=
+ =?utf-8?B?Sk1LbkFZb3E4OWc4dW5JOHBmdUx1cVNveVRjamY5MXVVMGFRR2wrMENNY3pl?=
+ =?utf-8?B?Z2VnbVhCeFdMS0xFYnQ5NC9WdVVoTFhTUWhiU2ZMTjg2Mmp6a3owTlU1Ym84?=
+ =?utf-8?B?VHBRaEFQTWhjdmxqQTZNazU4UXZ2Qjc5WGtCay9xK0pueVlzMFJ4NDQwZG1I?=
+ =?utf-8?B?Q2syK1MwdDRLMFNXQm5XQTRXMUVJVTNZeWZUZW5reGIzZWp5N1Y2Z2VSUTE2?=
+ =?utf-8?B?anJlL0xRWUlVdkJpdjRORDlMTmhKV0tRRENuT2wvUlQ5eUxhMit5a1dKTytr?=
+ =?utf-8?B?SW1rQ1BhdUhyMW9hWEJ5bWJUQTJLWTVMUE44NmlzQ245aU5jV0paK24wZHRl?=
+ =?utf-8?B?NCtHVjBMNVhXSGNnT3JSaE0vNFc0T3lxVUxCeHdDbmdkNlF4WFU1V1BQclZz?=
+ =?utf-8?B?TE0xOFZja1oxTlQ4VUdCOXcwdUJlMFZCWXRjbmlCSGFNQ1gzNUFMMXJDSTVj?=
+ =?utf-8?B?b01uUkc1S0JtM3lGS1lQRTJ1VnE2aFQ4Qi8yTXd1OFJJOGdtYXV2OFhtOXBL?=
+ =?utf-8?B?b0JkTUJ3aGxRMEQ4dVBQOFRIZlFHT25FMkZpb29sR1RtdWVxU0lra0FoelM3?=
+ =?utf-8?B?WmFKUk9QSFNVbC91WU5LOWtFeXRuaVEzdFd6RWN4M05adEllYXlHZG1UaHk4?=
+ =?utf-8?B?WVpJZytYZUhOa285VWxwK3J3eHBDVDFUZWI5TkdIZmlTNGlzdzlhTy9IRVRi?=
+ =?utf-8?B?V3IzR0xSZXJMVmJ2b2M0VGlqT29RcDRML2hyRG5qOFUvTmoxYUdrZCs4dXpi?=
+ =?utf-8?B?clFiMk85Szh4eDdvY1BIMEZsbExBQVkzWmNGTnl4VGJJcDlUdDlpNVVwaDk3?=
+ =?utf-8?B?Z1pCa3NGVWV3PT0=?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?SjRnUm1wV1JzOTFCZmllSmZQOElwd0ZqdmFCc08xTUV6WTZ2dTlvN2Y3ajFh?=
+ =?utf-8?B?a280a2t5eE5GYXFxdFd6cWNUQ1ErODlqUEJySzBKeGZBNmxaazdmVGlUN1ZM?=
+ =?utf-8?B?ODMxc3NzeXUrOTZVQVJ5TVBaMEtkblQ4dWMwbFhWTVlmZXZMeFhPamhLRXBu?=
+ =?utf-8?B?YVFNUmFySTVSaTFsd0J1dmdWTzRKZ3o2QjNra09MdDd1Z2ZmbngrZXBUYWdy?=
+ =?utf-8?B?akpJNUlHRDlsOS9nT1Via1lIaEZMZzYwckNZL1NUUkYvM25WakpWWHRFK2Zk?=
+ =?utf-8?B?cFR0a1FIMlR2OGhBUi8rMThTc2p6RlRPa2tlVDdjWGJ0TlNITVBEQXdSS04y?=
+ =?utf-8?B?OFNwVVJTdXdBdnZmVVNuK3NMclQyUDNBQ0pSZnNBblNPYUxXSExiWUQ3cEpw?=
+ =?utf-8?B?K2RxWSs5amZZaktVL0JGR1dtOUxyMGR6elEvcWdnbkN1SG9PeXkwbU9wZmpm?=
+ =?utf-8?B?cW8yaWJ0V2pCL3ljUWpSWW9WdFo1VGp4TTEzSktweXMxUUNkS25tK3dPOUx1?=
+ =?utf-8?B?SHpOaG54Ym5PS1lNUXpyNFFOaThMUGRUcGhYTXhXTU9adXY1SnkvbHY4UVRr?=
+ =?utf-8?B?bEFma1h3b2E3TFRwd1VmNWVxbFlJS3lDSXNmaU9zd2c4OElpNjJTeDdWb3RF?=
+ =?utf-8?B?Y2JJakNHY1hlZmpXRVZHbnBxMk5qS3E4OW4yMlFhd0h4U0o1MldjRWMyWGFQ?=
+ =?utf-8?B?dUJsdTlEK215UWJYMXNFT2t3bHA5SXlPbElrWEtKN1hadFZYeGMrK2dIQytz?=
+ =?utf-8?B?ekFNZXlCem9XRnNqQ1JBZ0QzdVBHZkxWN3Y0SXJSMDVrZzdBWWVINXpoY0dM?=
+ =?utf-8?B?di8rbFlQRUhyMFpiUXBzMU0vMGY3TVY4QXhGdFZHWkk2NzJOOGtLTUpkOUdn?=
+ =?utf-8?B?OHVZTitjeUdXV0hYbGF2SVVPSFNoVHNScE4zVUtpQjFlellwZTJCWkRJVUs3?=
+ =?utf-8?B?eGtYdnNRK1R1ZDBOSWxRRGkxSGhrUHZYVFd6ckZCeUV0QVc3VmowKzRxaE1w?=
+ =?utf-8?B?ZThGZGxic3BrUVFnSU1aSGxWTmxvTWkwNkFXb05kZ1ZJWVFHMEJCQk5hTU1l?=
+ =?utf-8?B?elJZR1JmSTVHVTMzdk9VT3VJMlg0dmxsSHNSWW43VVJhSmJyUVh5dnpJQld3?=
+ =?utf-8?B?ZExNQy9ONktCeFBJYldRRlA2OWdQQ2tNbEJJcllabS81L0RsU0xLcFlFUmRY?=
+ =?utf-8?B?cVh0aUpkejJEbktWcUd5VUZ4NnpsVm53aXR0L1krS0xhMTFmU3F3WDZEVmtF?=
+ =?utf-8?B?WHRIL0lEY0RtbVN2OWNsT2dBRDJEVk1NelozSS9BcFNKZmpLM0IxQjZ1QXpZ?=
+ =?utf-8?B?ZDhIV2dkdnI2elFpb3h2QWI0Y3N6SHZ6Q3ZrblZ6WW5VMUlzQUN0MTNDQjJY?=
+ =?utf-8?B?NHU1S05za3dUTFpZN2ZscFFjQk14UmpQbkFxMS9MMk5mM1lSdTlGWVExdDlt?=
+ =?utf-8?B?OGxpUTNPUGxmRHYrdHVRYW9CK0lCU0V4bXU1WXZ2MGpiY05pQmhMZ2pqZzlK?=
+ =?utf-8?B?TEh2Lyt1L01mWTRJZVQyeEpUVis3VlRkNmlyVVpJNHBraVJtS0ZlSHEwSUxI?=
+ =?utf-8?B?cDE3Z1lJZlYyOS9XWVVPNnVyQjJoa091Nnc5ZllMTFY1bWU1N0RLNnpub3ZP?=
+ =?utf-8?B?MkhodnRoTytwNUNONnRBMm9tS2lma3lPRWh1U3JEVlJVMnNqZ1JZbVdLR3pH?=
+ =?utf-8?B?aDZXMWJ4Y2JtcFNCMndXTE9SdzkzaHNnd2tkNGltVkpqcHNVQXR4YW11V0Fh?=
+ =?utf-8?B?am5XNkpXZ2pFVjNIc29tYWg2ckM0am1ZK0daK1NTWW5POFozZzRaY1hnYTJE?=
+ =?utf-8?B?Z216dVNuKzhMMXdXRHRGaDVuRzVnWVVJQjlRTFo0SjVwM0xmVlM2WEJQUjR2?=
+ =?utf-8?B?VlpJTXZlb0d4WTlLNXlaQWZrTHpHVFN0eTNTZFNQRVN2SHBpamZBQVZsck5Q?=
+ =?utf-8?B?ZXRlV1VnTHRlUStnTjg0WS9UbWhsM3hoUjV1Q1pTeC9NN1M3TklyRWcvaVR5?=
+ =?utf-8?B?YktwbVMvWHhKMHBJYXlkMVhQa245UllaNFh1SmZpNHFTeW1DQ090VXdCYUYx?=
+ =?utf-8?B?Y0hvWGwyMHdBOGRxWlhFYnFlZEdEWjYrcWQ2eGcvYnlaR2hJNGc0MVN6VUxX?=
+ =?utf-8?B?RXkxd2d1Q0RHUmFWcDRoWmdNbUtBSXlwQUc5dUVOZTNlVWtxMzdlZ0lhb09N?=
+ =?utf-8?Q?Q51PE8lIKRYM5JGrPjqw+0I=3D?=
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251106-i3c_ddr-v11-6-33a6a66ed095@nxp.com>
-References: <20251106-i3c_ddr-v11-0-33a6a66ed095@nxp.com>
-In-Reply-To: <20251106-i3c_ddr-v11-0-33a6a66ed095@nxp.com>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Miquel Raynal <miquel.raynal@bootlin.com>, 
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-iio@vger.kernel.org, 
- joshua.yeong@starfivetech.com, devicetree@vger.kernel.org, 
- linux@roeck-us.net, Frank Li <Frank.Li@nxp.com>, 
- Carlos Song <carlos.song@nxp.com>, 
- Adrian Fluturel <fluturel.adrian@gmail.com>, 
- Andy Shevchenko <andriy.shevchenko@intel.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1762450581; l=19758;
- i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
- bh=anQimOeJzrXr5UYXGKdewIVHAKPren0hdLsICCRdcP4=;
- b=CMHYBqKDniIFo5DZSdYJIT7xOyERQzzWAbyV/rg4Fns17G6iAZ3fngCxjdns86tL3aBt+oRBr
- hmAjAUCOCPdCqridC/9mKDc6Ik8Uh/PoWf0abfi4JWMe1K2mLsEIFv6
-X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
- pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
-X-ClientProxiedBy: SA0PR11CA0111.namprd11.prod.outlook.com
- (2603:10b6:806:d1::26) To PAXSPRMB0053.eurprd04.prod.outlook.com
- (2603:10a6:102:23f::21)
+Content-ID: <71CFD465122A484ABF5181B6210F72F3@EURPRD10.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|VI1PR04MB7200:EE_
-X-MS-Office365-Filtering-Correlation-Id: ff0539b2-f5f1-45a7-c3da-08de1d5b0db3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|52116014|366016|1800799024|19092799006|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?cnRENEZtemxPT3lrT0R6RUljMkNBOW5ETDlQOEg4UDB1d3R2WFFDWldXVk10?=
- =?utf-8?B?aWlIZm9KMGovWDV2Um11VVRIUUtKQTVUS3JkVFVqbk0zUlZ2elo1cEhMWlRl?=
- =?utf-8?B?aThINFhWZnZtaEJrbTZSbkJ4eDQ1dTY2OWJ5UTgzWnE5U0xoVjBMOGlsZU9u?=
- =?utf-8?B?aDhqTW1sQUJxd0VoRS9SMTFleUdDSnpqRkV0WmtuOVkzRFhtSWIrcVlaU054?=
- =?utf-8?B?VUwvTFJYZUk2NkpGVmhHclVvYm5QNDU2a1psQk5JOFBGMUxQeGlIdEtrOUxj?=
- =?utf-8?B?RzVIem1aU29yVmMxbkQyN1FlWjlabnlqOWpLTitYWGFNZC9Cc0xvYVRpSHBS?=
- =?utf-8?B?aElaR0lSYXVRUGhCeEh6eTJrYTc5Uklia1YzZHlWVkVTQXV0TVJETmk0eE1P?=
- =?utf-8?B?SFY3dXcrenpyc3g1RllUKzNTaGNDZS8yTWh0ak56VEdOYzgyNVNlUFRxdlNF?=
- =?utf-8?B?aUhsVGF5YkNBbmgxMFpDMDkxVTZHK2pqSzdydjVIc0Y2blVkeVBxMWljUWsw?=
- =?utf-8?B?ZDRKaEczU3hwOHU3MDFmUVRnc0Y3YjkrdUdRODZxcTMvZ2ZaWWVwM0plYU4r?=
- =?utf-8?B?RWFQN3NlNExyc0pBUEQzS0NNcVJ2N0Y5SUgzNHVrc1dWaUczWDlDakZ3YldR?=
- =?utf-8?B?aXhmbUJ2ME1TR2dPTzg0MTFubHBNY3NXTGdKb3V2YnV0SWZaaTd5ZU45TTht?=
- =?utf-8?B?dXZFNlUxdlliQkN3S1JWVFlLeE5PMXVwQi9qRFV3V0UwbE13TEhQTU5OZGNt?=
- =?utf-8?B?MXNEMXR0MTVTT1owa3RrZ3QwWW1XSVc4azQ1L3Z3NlB0b29PakxtZDVzRGhB?=
- =?utf-8?B?TUpTK1ZkVkNyVmVPVWdISDNkZkMvUjVrQzFRYXlOM0YzU01XRm5veXltQ3Yr?=
- =?utf-8?B?dlpVVUhhN2Y1SlVmMHJzUXZsRXUvYUlCQUNZU25NQ2dVTFB0WktGaDhGT3Vw?=
- =?utf-8?B?VTJsT2E3d2FyVHRrdWQwNGtzZTBKaTA1K1hZRnZhZEhtTS82N2VuOVV4OGlT?=
- =?utf-8?B?VTBHOVp3ZFBLalhTaFpwMU5aVWVsMVc0bWt0d250MGFoeHBQVDRKaTlPTjZw?=
- =?utf-8?B?YjJ5OGc4Y252Q3E4aUFKNGNCckFpdlBxSFZYZlAyNTl3VnlSTDBPVmFWbzRT?=
- =?utf-8?B?RDEwMWw1YlBYT2xPZkJUMzV1ejV0RmZUaVpra0VQT1NaSFJodnc4TVJmVkp2?=
- =?utf-8?B?MlR4WHVyNkhreloyRjlicXVHM01hcVcrS1B1amVUN1pWQUtSckJFL1pmU0lU?=
- =?utf-8?B?TnJncm5qUHlJQkhYLzFqLy9zR0JwUVRrOWhnRnJYY1Y5RndlLzI0emFURTZ1?=
- =?utf-8?B?Mjc3aXBEMktvSy9ab3ZEMkQwTWdySWdNN3d4MUtselJGaEswSlhqRC80YW5t?=
- =?utf-8?B?RXRJRlFhZCtqdkluRVdMRzhmTE9mQWNEWnBja1J3UTl3NmdyUHhZSlUwNmVC?=
- =?utf-8?B?VUVaVnhncjVxVUV4RkN4TG55NDNmcFlFQWsvZW90dWlXOVZsdWdDcHo2TWhq?=
- =?utf-8?B?RXVMWWpybnNiNUxYV2pOYnJJazNTbkFobllsZEZiTVI2YzM2QkRhbWozWkxZ?=
- =?utf-8?B?eU9GZjBiN0tOODRHQyt4N0dKTjZZTTh0ZlJDTFBTbXk4Z0I5NkZZckFqemtp?=
- =?utf-8?B?Qk16MEhlMjczLyt4c0ZRK1hCdFBYZk5uY0FvQzQrVkVOQVlJTG5hZEFvTUFP?=
- =?utf-8?B?NTZ5eFdWNHFjeVQzc2syQkpTY25GQWtxQjdvVzYvQnBOMFJLbHRtRTJMeHFq?=
- =?utf-8?B?VG8zTXh3K1F5a2NDcFoydjg5dVpTT1hEOG56UXFlQVVzQ2dCcVlMOUVJVllN?=
- =?utf-8?B?MU5MVHo3YjZ0K0pWeWRXUXdvVkwxRzlqZ25yWkR0em1kOGFrTzBmTjZ6R2pk?=
- =?utf-8?B?T2E0Z1EvRHlWZEpkc1BtVS9IUEZkWm00UUt6NU43K0YvOUU4bWRUbWlkUVY5?=
- =?utf-8?B?azQ5aUhMQ0tZdXR4TEwxTnlFcllBbm9uMm04NnBmb1ZIZzJUcjhsT3RVaWs2?=
- =?utf-8?B?UzAxL2QvN3BQWlFpUW4zTGF6WjRkazBqL1I5c2dGMnNVcmY4andaS3YrN2p3?=
- =?utf-8?Q?c7/CU+?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(366016)(1800799024)(19092799006)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?QjNMS1N1Vy84L0txeUJuWE1NRjVHbWtJSnIzT2J5Tkx6cG40K3hZSmxaWVN3?=
- =?utf-8?B?dUhjRnM0K0pTQ0xTZnhoWmV6T2swNlRodVdQcEp3bk8rUUx3N1RLbzJ2WHlI?=
- =?utf-8?B?VkhTdXdwN2JOSmNWaDZvTmw4Z05jUFdudHN0dG9NU1pVRHdQMHhKVjJWR1Jj?=
- =?utf-8?B?eHBtMHdVQUEzT2xrQzJ5UHRNM1l3TG9rT056Z0ROMEtjK0hjM1J5ZG44a1V0?=
- =?utf-8?B?ZnhCTDBhVDdOanUrL3A0dXdNS2E0TGFWR3krL0g2aGpUUkxBYWtveGlMNlJr?=
- =?utf-8?B?Nkcza0U4Rm1HVEtpbGF5WGk0Wk5oVmpmK0FDb0ljM2NXK1E0QXU2VWM0dDYv?=
- =?utf-8?B?MWhMdUYvUGplOVFCNHJuVUJ3akV0eXhoVVg2ZzRuVktLWkJWS3dZdld0NDZC?=
- =?utf-8?B?dWRzd1REZUNtTEVWUjkyNFNUT0dINzAwZzc1eWJSMG9uSTc2T1BTejdhMEZa?=
- =?utf-8?B?SE4xNG5Lb3I4QTNHRjROTVhNWnRIWmFxMTYrZGh6akRienFjZWh4OUp6UU5t?=
- =?utf-8?B?THFCOXBraVhhMHd1bkEwQStPdW9qUXNxbDkrY0xUc3JwUDNWSThiQWwrMWlx?=
- =?utf-8?B?VW9ORzZ0UGo1WldQT1dIb2lqYURTa3JheDZvS2FsaTZ3bFh2S2NPNGtOWlg5?=
- =?utf-8?B?Z2pNOHpnaHg0VWRjZ2lCck0vM3NmcjloOU14Z3BMVStGUWNncDJYUklvUkk3?=
- =?utf-8?B?T0YwTGJ0ZThBQnpYVTJZZHQ4VWNzR2tLQ05iQU00MldUTmpJOVlwaGpwYzZM?=
- =?utf-8?B?NkdyZkQwL0ZqcEdKOXU2dUIzOHVoWXJseFB1amJTazlPSHhweWE4ajhieHY3?=
- =?utf-8?B?N24wMzRZL3E0NzVTNDVwbWZ5N0VCVEgyVWkwQlZaaGZ0V3o4SEQ1Uyt4YlI2?=
- =?utf-8?B?RXBLRkJjRDh0NUpGMlRwdWZmOS9VOHZiVnZsUkhCblEveGxxTTR6clRoVFMy?=
- =?utf-8?B?b2FkdmhWYXJQOG5weDh4RGdFa1R3cVJVT2hEUDFiRnQ1dWZYdFE1emJhVXAv?=
- =?utf-8?B?ZGVwbGRmU1pxcFRyOXdhdGJIVm9sNVRFR1hyVkZFaSt6Y3Fsb3d3UGlnMjN3?=
- =?utf-8?B?dElyQTlLVWN2WlpkZTJNMEtUWXBZZzZESUkvd1ZPZVR5YzFrT244MEpGLzNK?=
- =?utf-8?B?UEFFdEFPb0RrVXc1SlM2cGxoR3Z5NDFmS0NXRkNyNFVDWUswUDR6dXc2ZC9l?=
- =?utf-8?B?Y2V2dXlxSjJPMFNLQzVMUzJIQXZmVjhWY0FidHJIUGFCNFlHU2JxQTBrRUxX?=
- =?utf-8?B?Y3VsalhQMWptWDlJZUlLdGhIUW5oNE5LTkZCbHFDQzZrSUJhS2JkankrbG9k?=
- =?utf-8?B?N2YwQUQ0UFBKK1p2SDF1OGFzL0hkWUZsL014MzZsZ0JZWXRGdkNHSm5UQnFU?=
- =?utf-8?B?S0MrVWlja3NBWXBRYzRLTm50MDVQdWJOdjJPeVErZmk1Y1pPUXFEQWVxQWd6?=
- =?utf-8?B?MWNvQzFRb1ZlMlhmTVZraWtBdEM0RGJMaEhna2NRTm1oQ2FjSFhCRlhOcU12?=
- =?utf-8?B?L2VnTS9FblNRVmRmd0J3K2FOZUdoVUpqalYwLzRXRHRTckFFTjRtRVpQMVRt?=
- =?utf-8?B?VVlHNG9KTE9melE1SFZqUmZBcCtCVDZOYjEzVlg2ajlqQXZJdmI1V1hsN0xv?=
- =?utf-8?B?VlhvNklBR24ySUNubml0QXMzZmZmS3dpZFFLbFgxKzg1UDJFTFhFTEhXOWl2?=
- =?utf-8?B?WE5lNzlKc05LNzZ4VWx3Z3ZDdGRnRG83a2FjN2tLb1I3SHdYSDBnTnNxN2N4?=
- =?utf-8?B?eElWVWxzbitBOWVVOVNhNGFpa1lZYnhnNWp2RzgzUFByaWNKdGY4bWRUN2Rt?=
- =?utf-8?B?ODRsNG9hZXFWenZTTmNDbWMzVzZZQlZGcXF6SzNtNlU1djNvQUE1bHdCejZs?=
- =?utf-8?B?TjdXVnEyeTBnV3owZ2RJcHoyd1BYSUFrbkxwNzdlTlIrMmcvTm8venRXc2pj?=
- =?utf-8?B?bE5vNDZ1WDVzRWZTcDVvOTEyVlFKeXZOMlBzQXgrdE1hSDUzNzlaVDBMSUVD?=
- =?utf-8?B?cTVrK054TmdWNjdxQkcvMmIyYlRCcnVhYXJETGQ5REJZNGFDZk1TT0JHQ0ZH?=
- =?utf-8?B?NDVoUXRmWDRSWC8zbWU1bnpFV2czNXJGWkxxWWVocU1iNm9rRnFOb251NUtk?=
- =?utf-8?Q?yOODmob9Euh4b/HJR/A+a+S6o?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ff0539b2-f5f1-45a7-c3da-08de1d5b0db3
-X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
+X-OriginatorOrg: siemens.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2025 17:36:44.4042
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: efc2147e-6673-479f-5e7a-08de1d5b0e5b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Nov 2025 17:36:45.2573
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8JuC7nMEwvdr+bdI2zOiGM2NORzLoN2fYHfYBe5Lx0nGV+UFxbKiJSkvfUxKRkKKaltdAY8b9mQYyTw/MNrc1Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7200
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: f8wQadnzKV9a1ctyEcAMiFqTtVA9WHOgQM4hNTws8i2qjHStvkQAEInaVBpD1XmGI9aNnPq6lxyq+HnC4Qzl+shhBPvSlOuQ4yZCO4o48Gs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3571
 
-Add mmc5633 sensor basic support.
-- Support read 20 bits X/Y/Z magnetic.
-- Support I3C HDR mode to send start measurememt command.
-- Support I3C HDR mode to read all sensors data by one command.
-
-Co-developed-by: Carlos Song <carlos.song@nxp.com>
-Signed-off-by: Carlos Song <carlos.song@nxp.com>
-Co-developed-by: Adrian Fluturel <fluturel.adrian@gmail.com>
-Signed-off-by: Adrian Fluturel <fluturel.adrian@gmail.com>
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-change in v11
-- add andy shevchenak's reviewed by tag
-- use unsigned int for regmap
-- compact mmc5633_read_avail arg list to few lines
-- move check condition to one line for read_poll_timeout()
-- leave i3c_xfer as size 1 array to align existed code style in kernel
-tree, git grep -r i3c_priv_xfer drivers/, leave to jonathan to do decide.
-
-change in v10
-- align datasheet register name
-- remove reduntant regmap_attach_dev()
-- add missed \n at error message
-- move *regmap to first member.
-
-Changes in v9
-- add time.h
-- remove dev from mmc5633_data
-- remove struct {val, val2}
-- regmap return value check use if (ret) ...
-- 1 -> ARRAY_SIZE()
-- use guard() replace scoped_guard()
-- use regmap stored dev
-- i3c device use bus assigned name.
-- use devm_kasprintf() to combine friend name with device ID from i3c bus
-  and it will avoid build warning to discard const return from dev_name().
-
-Change in v7
-- add missed *.h file
-- remove reduntant empty line
-- add comments about delay 1us after SET
-- use USEC_PER_MSEC for timeout value
-
-Change in v6:
-- remove acpi part
-- return 0 for success path at mmc5633_write_raw
-
-Change in V4
-- use { 1, 2000 }
-- Add _US for timeout
-- Use GEN_MASK for MMC5633_CTRL1_BW_MASK
-- Use { } for terminator.
-- remove !!
-- fix mix tab and space
-- add mmc5603 (merge https://lore.kernel.org/all/20251003000731.22927-1-fluturel.adrian@gmail.com/)
-- add tempature measure support
-
-Change in v3
-- remove mmc5633_hw_set
-- make -> Make
-- change indention for mmc5633_samp_freq
-- use u8 arrary to handle dword data
-- get_unaligned_be16() to get raw data
-- add helper function to check if i3c support hdr
-- use read_avail() callback
-
-change in v2
-- new patch
----
- drivers/iio/magnetometer/Kconfig   |  12 +
- drivers/iio/magnetometer/Makefile  |   1 +
- drivers/iio/magnetometer/mmc5633.c | 585 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 598 insertions(+)
-
-diff --git a/drivers/iio/magnetometer/Kconfig b/drivers/iio/magnetometer/Kconfig
-index 81b812a29044e2b0b9ff84889c21aa3ebc20be35..cfb74a4a083630678a1db1132a14264de451a31a 100644
---- a/drivers/iio/magnetometer/Kconfig
-+++ b/drivers/iio/magnetometer/Kconfig
-@@ -139,6 +139,18 @@ config MMC35240
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called mmc35240.
- 
-+config MMC5633
-+	tristate "MEMSIC MMC5633 3-axis magnetic sensor"
-+	select REGMAP_I2C
-+	select REGMAP_I3C
-+	depends on I2C || I3C
-+	help
-+	  Say yes here to build support for the MEMSIC MMC5633 3-axis
-+	  magnetic sensor.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called mmc5633
-+
- config IIO_ST_MAGN_3AXIS
- 	tristate "STMicroelectronics magnetometers 3-Axis Driver"
- 	depends on (I2C || SPI_MASTER) && SYSFS
-diff --git a/drivers/iio/magnetometer/Makefile b/drivers/iio/magnetometer/Makefile
-index dfe970fcacb8664b293af84893f7d3e3e8d7bf7e..5bd227f8c1204bdd8b8a43da180833eedca1457b 100644
---- a/drivers/iio/magnetometer/Makefile
-+++ b/drivers/iio/magnetometer/Makefile
-@@ -15,6 +15,7 @@ obj-$(CONFIG_BMC150_MAGN_SPI) += bmc150_magn_spi.o
- obj-$(CONFIG_MAG3110)	+= mag3110.o
- obj-$(CONFIG_HID_SENSOR_MAGNETOMETER_3D) += hid-sensor-magn-3d.o
- obj-$(CONFIG_MMC35240)	+= mmc35240.o
-+obj-$(CONFIG_MMC5633)	+= mmc5633.o
- 
- obj-$(CONFIG_IIO_ST_MAGN_3AXIS) += st_magn.o
- st_magn-y := st_magn_core.o
-diff --git a/drivers/iio/magnetometer/mmc5633.c b/drivers/iio/magnetometer/mmc5633.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..7b20ff3b063b026ab2ae0170fd8c021973428dea
---- /dev/null
-+++ b/drivers/iio/magnetometer/mmc5633.c
-@@ -0,0 +1,585 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * MMC5633 - MEMSIC 3-axis Magnetic Sensor
-+ *
-+ * Copyright (c) 2015, Intel Corporation.
-+ * Copyright (c) 2025, NXP
-+ *
-+ * IIO driver for MMC5633, base on mmc35240.c
-+ */
-+
-+#include <linux/array_size.h>
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/cleanup.h>
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/dev_printk.h>
-+#include <linux/err.h>
-+#include <linux/errno.h>
-+#include <linux/i2c.h>
-+#include <linux/i3c/device.h>
-+#include <linux/iio/iio.h>
-+#include <linux/iio/sysfs.h>
-+#include <linux/init.h>
-+#include <linux/iopoll.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/mutex.h>
-+#include <linux/pm.h>
-+#include <linux/regmap.h>
-+#include <linux/time.h>
-+#include <linux/types.h>
-+#include <linux/unaligned.h>
-+
-+#define MMC5633_REG_XOUT0	0x00
-+#define MMC5633_REG_XOUT1	0x01
-+#define MMC5633_REG_YOUT0	0x02
-+#define MMC5633_REG_YOUT1	0x03
-+#define MMC5633_REG_ZOUT0	0x04
-+#define MMC5633_REG_ZOUT1	0x05
-+#define MMC5633_REG_XOUT2	0x06
-+#define MMC5633_REG_YOUT2	0x07
-+#define MMC5633_REG_ZOUT2	0x08
-+#define MMC5633_REG_TOUT	0x09
-+
-+#define MMC5633_REG_STATUS1	0x18
-+#define MMC5633_REG_STATUS0	0x19
-+#define MMC5633_REG_CTRL0	0x1b
-+#define MMC5633_REG_CTRL1	0x1c
-+#define MMC5633_REG_CTRL2	0x1d
-+
-+#define MMC5633_REG_ID		0x39
-+
-+#define MMC5633_STATUS1_MEAS_T_DONE_BIT	BIT(7)
-+#define MMC5633_STATUS1_MEAS_M_DONE_BIT	BIT(6)
-+
-+#define MMC5633_CTRL0_CMM_FREQ_EN	BIT(7)
-+#define MMC5633_CTRL0_AUTO_ST_EN	BIT(6)
-+#define MMC5633_CTRL0_AUTO_SR_EN	BIT(5)
-+#define MMC5633_CTRL0_RESET		BIT(4)
-+#define MMC5633_CTRL0_SET		BIT(3)
-+#define MMC5633_CTRL0_MEAS_T		BIT(1)
-+#define MMC5633_CTRL0_MEAS_M		BIT(0)
-+
-+#define MMC5633_CTRL1_BW_MASK		GENMASK(1, 0)
-+
-+#define MMC5633_WAIT_SET_RESET_US	(1 * USEC_PER_MSEC)
-+
-+#define MMC5633_HDR_CTRL0_MEAS_M	0x01
-+#define MMC5633_HDR_CTRL0_MEAS_T	0x03
-+#define MMC5633_HDR_CTRL0_SET		0x05
-+#define MMC5633_HDR_CTRL0_RESET		0x07
-+
-+enum mmc5633_axis {
-+	MMC5633_AXIS_X,
-+	MMC5633_AXIS_Y,
-+	MMC5633_AXIS_Z,
-+	MMC5633_TEMPERATURE,
-+};
-+
-+struct mmc5633_data {
-+	struct regmap *regmap;
-+	struct i3c_device *i3cdev;
-+	struct mutex mutex; /* protect to finish one whole measurement */
-+};
-+
-+int mmc5633_samp_freq[][2] = {
-+	{ 1, 200000 },
-+	{ 2, 0 },
-+	{ 3, 500000 },
-+	{ 6, 600000 },
-+};
-+
-+#define MMC5633_CHANNEL(_axis) { \
-+	.type = IIO_MAGN, \
-+	.modified = 1, \
-+	.channel2 = IIO_MOD_ ## _axis, \
-+	.address = MMC5633_AXIS_ ## _axis, \
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW), \
-+	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SAMP_FREQ) | \
-+				    BIT(IIO_CHAN_INFO_SCALE), \
-+}
-+
-+static const struct iio_chan_spec mmc5633_channels[] = {
-+	MMC5633_CHANNEL(X),
-+	MMC5633_CHANNEL(Y),
-+	MMC5633_CHANNEL(Z),
-+	{
-+		.type = IIO_TEMP,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_SCALE) |
-+				      BIT(IIO_CHAN_INFO_OFFSET),
-+		.address = MMC5633_TEMPERATURE,
-+	},
-+};
-+
-+static int mmc5633_get_samp_freq_index(struct mmc5633_data *data,
-+				       int val, int val2)
-+{
-+	unsigned int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(mmc5633_samp_freq); i++)
-+		if (mmc5633_samp_freq[i][0] == val &&
-+		    mmc5633_samp_freq[i][1] == val2)
-+			return i;
-+	return -EINVAL;
-+}
-+
-+static int mmc5633_init(struct mmc5633_data *data)
-+{
-+	unsigned int reg_id;
-+	int ret;
-+
-+	ret = regmap_read(data->regmap, MMC5633_REG_ID, &reg_id);
-+	if (ret)
-+		return dev_err_probe(regmap_get_device(data->regmap), ret,
-+				     "Error reading product id\n");
-+
-+	/*
-+	 * Make sure we restore sensor characteristics, by doing
-+	 * a SET/RESET sequence, the axis polarity being naturally
-+	 * aligned after RESET.
-+	 */
-+	ret = regmap_write(data->regmap, MMC5633_REG_CTRL0, MMC5633_CTRL0_SET);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Minimum time interval between SET or RESET to other operations is
-+	 * 1ms according to Operating Timing Diagram in datasheet.
-+	 */
-+	fsleep(MMC5633_WAIT_SET_RESET_US);
-+
-+	ret = regmap_write(data->regmap, MMC5633_REG_CTRL0, MMC5633_CTRL0_RESET);
-+	if (ret)
-+		return ret;
-+
-+	/* set default sampling frequency */
-+	return regmap_update_bits(data->regmap, MMC5633_REG_CTRL1,
-+				  MMC5633_CTRL1_BW_MASK,
-+				  FIELD_PREP(MMC5633_CTRL1_BW_MASK, 0));
-+}
-+
-+static int mmc5633_take_measurement(struct mmc5633_data *data, int address)
-+{
-+	unsigned int reg_status, val;
-+	int ret;
-+
-+	val = (address == MMC5633_TEMPERATURE) ? MMC5633_CTRL0_MEAS_T : MMC5633_CTRL0_MEAS_M;
-+	ret = regmap_write(data->regmap, MMC5633_REG_CTRL0, val);
-+	if (ret < 0)
-+		return ret;
-+
-+	val = (address == MMC5633_TEMPERATURE) ?
-+	      MMC5633_STATUS1_MEAS_T_DONE_BIT : MMC5633_STATUS1_MEAS_M_DONE_BIT;
-+	ret = regmap_read_poll_timeout(data->regmap, MMC5633_REG_STATUS1, reg_status,
-+				       reg_status & val,
-+				       10 * USEC_PER_MSEC,
-+				       100 * 10 * USEC_PER_MSEC);
-+	if (ret) {
-+		dev_err(regmap_get_device(data->regmap), "data not ready\n");
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static bool mmc5633_is_support_hdr(struct mmc5633_data *data)
-+{
-+	if (!data->i3cdev)
-+		return false;
-+
-+	return i3c_device_get_supported_xfer_mode(data->i3cdev) & BIT(I3C_HDR_DDR);
-+}
-+
-+static int mmc5633_read_measurement(struct mmc5633_data *data, int address, void *buf, size_t sz)
-+{
-+	struct device *dev = regmap_get_device(data->regmap);
-+	u8 data_cmd[2], status[2];
-+	unsigned int val, ready;
-+	int ret;
-+
-+	if (mmc5633_is_support_hdr(data)) {
-+		struct i3c_xfer xfers_wr_cmd[] = {
-+			{
-+				.cmd = 0x3b,
-+				.len = 2,
-+				.data.out = data_cmd,
-+			}
-+		};
-+		struct i3c_xfer xfers_rd_sta_cmd[] = {
-+			{
-+				.cmd = 0x23 | BIT(7), /* RDSTA CMD */
-+				.len = 2,
-+				.data.in = status,
-+			},
-+		};
-+		struct i3c_xfer xfers_rd_data_cmd[] = {
-+			{
-+				.cmd = 0x22 | BIT(7), /* RDLONG CMD */
-+				.len = sz,
-+				.data.in = buf,
-+			},
-+		};
-+
-+		data_cmd[0] = 0;
-+		data_cmd[1] = (address == MMC5633_TEMPERATURE) ?
-+			      MMC5633_HDR_CTRL0_MEAS_T : MMC5633_HDR_CTRL0_MEAS_M;
-+
-+		ret = i3c_device_do_xfers(data->i3cdev, xfers_wr_cmd,
-+					  ARRAY_SIZE(xfers_wr_cmd), I3C_HDR_DDR);
-+		if (ret < 0)
-+			return ret;
-+
-+		ready = (address == MMC5633_TEMPERATURE) ?
-+			MMC5633_STATUS1_MEAS_T_DONE_BIT : MMC5633_STATUS1_MEAS_M_DONE_BIT;
-+		ret = read_poll_timeout(i3c_device_do_xfers, val,
-+					val || (status[0] & ready),
-+					10 * USEC_PER_MSEC,
-+					100 * 10 * USEC_PER_MSEC, 0,
-+					data->i3cdev, xfers_rd_sta_cmd,
-+					ARRAY_SIZE(xfers_rd_sta_cmd), I3C_HDR_DDR);
-+		if (ret) {
-+			dev_err(dev, "data not ready\n");
-+			return ret;
-+		}
-+		if (val) {
-+			dev_err(dev, "i3c transfer error\n");
-+			return val;
-+		}
-+		return i3c_device_do_xfers(data->i3cdev, xfers_rd_data_cmd,
-+					   ARRAY_SIZE(xfers_rd_data_cmd), I3C_HDR_DDR);
-+	}
-+
-+	/* Fallback to use SDR/I2C mode */
-+	ret = mmc5633_take_measurement(data, address);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (address == MMC5633_TEMPERATURE)
-+		/*
-+		 * Put tempeature to last byte of buff to align HDR case.
-+		 * I3C will early terminate data read if previous data is not
-+		 * available.
-+		 */
-+		return regmap_bulk_read(data->regmap, MMC5633_REG_TOUT, buf + sz - 1, 1);
-+
-+	return regmap_bulk_read(data->regmap, MMC5633_REG_XOUT0, buf, sz);
-+}
-+
-+/* X,Y,Z 3 channels, each channel has 3 byte and TEMP */
-+#define MMC5633_ALL_SIZE (3 * 3 + 1)
-+
-+static int mmc5633_get_raw(struct mmc5633_data *data, int index, unsigned char *buf, int *val)
-+{
-+	if (index == MMC5633_TEMPERATURE) {
-+		*val = buf[MMC5633_ALL_SIZE - 1];
-+		return 0;
-+	}
-+	/*
-+	 * X[19..12] X[11..4] Y[19..12] Y[11..4] Z[19..12] Z[11..4] X[3..0] Y[3..0] Z[3..0]
-+	 */
-+	*val = get_unaligned_be16(buf + 2 * index) << 4;
-+	*val |= buf[index + 6] >> 4;
-+
-+	return 0;
-+}
-+
-+static int mmc5633_read_raw(struct iio_dev *indio_dev,
-+			    struct iio_chan_spec const *chan, int *val,
-+			    int *val2, long mask)
-+{
-+	struct mmc5633_data *data = iio_priv(indio_dev);
-+	char buf[MMC5633_ALL_SIZE];
-+	unsigned int reg, i;
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		scoped_guard(mutex, &data->mutex) {
-+			ret = mmc5633_read_measurement(data, chan->address, buf, MMC5633_ALL_SIZE);
-+			if (ret < 0)
-+				return ret;
-+		}
-+
-+		ret = mmc5633_get_raw(data, chan->address, buf, val);
-+		if (ret < 0)
-+			return ret;
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SCALE:
-+		if (chan->type == IIO_MAGN) {
-+			*val = 0;
-+			*val2 = 62500;
-+		} else {
-+			*val = 0;
-+			*val2 = 800000000; /* 0.8C */
-+		}
-+		return IIO_VAL_INT_PLUS_NANO;
-+	case IIO_CHAN_INFO_OFFSET:
-+		if (chan->type == IIO_TEMP) {
-+			*val = -75;
-+			return IIO_VAL_INT;
-+		}
-+		return -EINVAL;
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		scoped_guard(mutex, &data->mutex) {
-+			ret = regmap_read(data->regmap, MMC5633_REG_CTRL1, &reg);
-+			if (ret < 0)
-+				return ret;
-+		}
-+
-+		i = FIELD_GET(MMC5633_CTRL1_BW_MASK, reg);
-+		if (i >= ARRAY_SIZE(mmc5633_samp_freq))
-+			return -EINVAL;
-+
-+		*val = mmc5633_samp_freq[i][0];
-+		*val2 = mmc5633_samp_freq[i][1];
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int mmc5633_write_raw(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan, int val,
-+			     int val2, long mask)
-+{
-+	struct mmc5633_data *data = iio_priv(indio_dev);
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		ret = mmc5633_get_samp_freq_index(data, val, val2);
-+		if (ret < 0)
-+			return ret;
-+
-+		guard(mutex)(&data->mutex);
-+
-+		return regmap_update_bits(data->regmap, MMC5633_REG_CTRL1,
-+					  MMC5633_CTRL1_BW_MASK,
-+					  FIELD_PREP(MMC5633_CTRL1_BW_MASK, ret));
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int mmc5633_read_avail(struct iio_dev *indio_dev,
-+			      struct iio_chan_spec const *chan,
-+			      const int **vals, int *type, int *length,
-+			      long mask)
-+{
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		*vals = (const int *)mmc5633_samp_freq;
-+		*length = ARRAY_SIZE(mmc5633_samp_freq) * 2;
-+		*type = IIO_VAL_INT_PLUS_MICRO;
-+		return IIO_AVAIL_LIST;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info mmc5633_info = {
-+	.read_raw	= mmc5633_read_raw,
-+	.write_raw	= mmc5633_write_raw,
-+	.read_avail	= mmc5633_read_avail,
-+};
-+
-+static bool mmc5633_is_writeable_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case MMC5633_REG_CTRL0:
-+	case MMC5633_REG_CTRL1:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static bool mmc5633_is_readable_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case MMC5633_REG_XOUT0:
-+	case MMC5633_REG_XOUT1:
-+	case MMC5633_REG_YOUT0:
-+	case MMC5633_REG_YOUT1:
-+	case MMC5633_REG_ZOUT0:
-+	case MMC5633_REG_ZOUT1:
-+	case MMC5633_REG_XOUT2:
-+	case MMC5633_REG_YOUT2:
-+	case MMC5633_REG_ZOUT2:
-+	case MMC5633_REG_TOUT:
-+	case MMC5633_REG_STATUS1:
-+	case MMC5633_REG_ID:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static bool mmc5633_is_volatile_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case MMC5633_REG_CTRL0:
-+	case MMC5633_REG_CTRL1:
-+		return false;
-+	default:
-+		return true;
-+	}
-+}
-+
-+static const struct reg_default mmc5633_reg_defaults[] = {
-+	{ MMC5633_REG_CTRL0,  0x00 },
-+	{ MMC5633_REG_CTRL1,  0x00 },
-+};
-+
-+static const struct regmap_config mmc5633_regmap_config = {
-+	.name = "mmc5633_regmap",
-+
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+
-+	.max_register = MMC5633_REG_ID,
-+	.cache_type = REGCACHE_MAPLE,
-+
-+	.writeable_reg = mmc5633_is_writeable_reg,
-+	.readable_reg = mmc5633_is_readable_reg,
-+	.volatile_reg = mmc5633_is_volatile_reg,
-+
-+	.reg_defaults = mmc5633_reg_defaults,
-+	.num_reg_defaults = ARRAY_SIZE(mmc5633_reg_defaults),
-+};
-+
-+static int mmc5633_common_probe(struct regmap *regmap, char *name,
-+				struct i3c_device *i3cdev)
-+{
-+	struct device *dev = regmap_get_device(regmap);
-+	struct mmc5633_data *data;
-+	struct iio_dev *indio_dev;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	data = iio_priv(indio_dev);
-+
-+	data->regmap = regmap;
-+	data->i3cdev = i3cdev;
-+
-+	ret = devm_mutex_init(dev, &data->mutex);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->info = &mmc5633_info;
-+	indio_dev->name = name;
-+	indio_dev->channels = mmc5633_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(mmc5633_channels);
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+
-+	ret = mmc5633_init(data);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "mmc5633 chip init failed\n");
-+
-+	return devm_iio_device_register(dev, indio_dev);
-+}
-+
-+static int mmc5633_suspend(struct device *dev)
-+{
-+	struct regmap *regmap = dev_get_regmap(dev, NULL);
-+
-+	regcache_cache_only(regmap, true);
-+
-+	return 0;
-+}
-+
-+static int mmc5633_resume(struct device *dev)
-+{
-+	struct regmap *regmap = dev_get_regmap(dev, NULL);
-+	int ret;
-+
-+	regcache_mark_dirty(regmap);
-+	ret = regcache_sync_region(regmap, MMC5633_REG_CTRL0, MMC5633_REG_CTRL1);
-+	if (ret)
-+		dev_err(dev, "Failed to restore control registers\n");
-+
-+	regcache_cache_only(regmap, false);
-+
-+	return 0;
-+}
-+
-+static int mmc5633_i2c_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct regmap *regmap;
-+
-+	regmap = devm_regmap_init_i2c(client, &mmc5633_regmap_config);
-+	if (IS_ERR(regmap))
-+		return dev_err_probe(dev, PTR_ERR(regmap), "regmap init failed\n");
-+
-+	return mmc5633_common_probe(regmap, client->name, NULL);
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(mmc5633_pm_ops, mmc5633_suspend, mmc5633_resume);
-+
-+static const struct of_device_id mmc5633_of_match[] = {
-+	{ .compatible = "memsic,mmc5603" },
-+	{ .compatible = "memsic,mmc5633" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, mmc5633_of_match);
-+
-+static const struct i2c_device_id mmc5633_i2c_id[] = {
-+	{ "mmc5603" },
-+	{ "mmc5633" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, mmc5633_i2c_id);
-+
-+static struct i2c_driver mmc5633_i2c_driver = {
-+	.driver = {
-+		.name = "mmc5633_i2c",
-+		.of_match_table = mmc5633_of_match,
-+		.pm = pm_sleep_ptr(&mmc5633_pm_ops),
-+	},
-+	.probe = mmc5633_i2c_probe,
-+	.id_table =  mmc5633_i2c_id,
-+};
-+
-+static const struct i3c_device_id mmc5633_i3c_ids[] = {
-+	I3C_DEVICE(0x0251, 0x0000, NULL),
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i3c, mmc5633_i3c_ids);
-+
-+static int mmc5633_i3c_probe(struct i3c_device *i3cdev)
-+{
-+	struct device *dev = i3cdev_to_dev(i3cdev);
-+	struct regmap *regmap;
-+	char *name;
-+
-+	name = devm_kasprintf(dev, GFP_KERNEL, "mmc5633_%s", dev_name(dev));
-+	if (!name)
-+		return -ENOMEM;
-+
-+	regmap = devm_regmap_init_i3c(i3cdev, &mmc5633_regmap_config);
-+	if (IS_ERR(regmap))
-+		return dev_err_probe(dev, PTR_ERR(regmap),
-+				     "Failed to register i3c regmap\n");
-+
-+	return mmc5633_common_probe(regmap, name, i3cdev);
-+}
-+
-+static struct i3c_driver mmc5633_i3c_driver = {
-+	.driver = {
-+		.name = "mmc5633_i3c",
-+	},
-+	.probe = mmc5633_i3c_probe,
-+	.id_table = mmc5633_i3c_ids,
-+};
-+module_i3c_i2c_driver(mmc5633_i3c_driver, &mmc5633_i2c_driver)
-+
-+MODULE_AUTHOR("Frank Li <Frank.li@nxp.com>");
-+MODULE_DESCRIPTION("MEMSIC MMC5633 magnetic sensor driver");
-+MODULE_LICENSE("GPL");
-
--- 
-2.34.1
-
+SGkgVmxhZGltaXIsDQoNCk9uIFRodSwgMjAyNS0xMS0wNiBhdCAxOToyOSArMDIwMCwgVmxhZGlt
+aXIgT2x0ZWFuIHdyb3RlOg0KPiA+ICMgaXAgLWQgbGluayBzaG93IGRldiAkZGV2DQo+ID4gNDog
+bGFuMUBldGgwOiA8Tk8tQ0FSUklFUixCUk9BRENBU1QsTVVMVElDQVNULFBST01JU0MsVVA+IG10
+dSAxNTAwIHFkaXNjIG5vcXVldWUgc3RhdGUgRE9XTiBtb2RlIERFRkFVTFQgZ3JvdXAgZGVmYXVs
+dCBxbGVuIDEwMDANCj4gPiDCoMKgwqDCoCBsaW5rL2V0aGVyIDAwOmEwOjAzOmVhOmZlOmI3IGJy
+ZCBmZjpmZjpmZjpmZjpmZjpmZiBwcm9taXNjdWl0eSAyIGFsbG11bHRpIDAgbWlubXR1IDY4IG1h
+eG10dSAyMzc4IA0KPiA+IMKgwqDCoMKgIGRzYSBjb25kdWl0IGV0aDAgYWRkcmdlbm1vZGUgZXVp
+NjQgbnVtdHhxdWV1ZXMgMSBudW1yeHF1ZXVlcyAxIGdzb19tYXhfc2l6ZSA2NTUzNiBnc29fbWF4
+X3NlZ3MgNjU1MzUgdHNvX21heF9zaXplIDY1NTM2IHRzb19tYXhfc2VncyA2NTUzNSBncm9fbWF4
+X3NpemUgNjU1MzYgZ3NvX2lwdjRfbWF4X3NpemUgNjU1MzYgZ3JvIA0KPiANCj4gSXQgcGFydGlh
+bGx5IGRvZXMsIHllcy4gVGhlIHByb21pc2N1aXR5IGlzIDIsIHdoaWNoIHN1Z2dlc3RzIGl0IHdh
+cw0KPiBhbHJlYWR5IDEgd2hlbiBoYXNfdW5pY2FzdF9mbHQoKSBzdGFydGVkIHRvIHJ1bi4gVGhl
+IGZ1bmN0aW9uIGlzIG5vdA0KPiB3cml0dGVuIHRvIGV4cGVjdCB0aGF0IHRvIGhhcHBlbi4gQWx0
+aG91Z2ggSSBkb24ndCB5ZXQgdW5kZXJzdGFuZCB3aHkNCj4gbGFuMSBvcmlnaW5hbGx5IGVudGVy
+ZWQgcHJvbWlzY3VvdXMgbW9kZSAtIHRoYXQgaXMgbm90IGluIHlvdXIgbG9ncy4NCj4gDQo+IFRo
+aXMgaXMgYSBzZXBhcmF0ZSBlbnZpcm9ubWVudCBmcm9tIHRoZSBzZWxmdGVzdCB3aXRoIHRoZSBj
+b21tYW5kcyByYW4NCj4gbWFudWFsbHksIG5vPyBCZWNhdXNlIHlvdSBjYW4ganVzdCBydW4gdGhl
+IHNlbGZ0ZXN0IHdpdGggImJhc2ggLXgiLg0KDQpZZXMsIEkgdHJpZWQgdGhlIGFib3ZlIG1hbnVh
+bGx5Lg0KTGV0IG1lIHJlcGVhdCB0aGUgdGVzdCBhZnRlciBhIGNsZWFuIGJvb3QgYW5kIHdpdGgg
+ImJhc2ggLXgiLCBub3QgdGhhdA0Kd2UgYXJlIGRlYnVnZ2luZyBzb21ldGhpbmcgZGlmZmVyZW50
+IGZyb20gdGhlIHJlYWwgdGVzdC4uLg0KDQotLSANCkFsZXhhbmRlciBTdmVyZGxpbg0KU2llbWVu
+cyBBRw0Kd3d3LnNpZW1lbnMuY29tDQo=
 
