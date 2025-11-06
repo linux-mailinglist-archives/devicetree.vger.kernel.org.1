@@ -1,174 +1,153 @@
-Return-Path: <devicetree+bounces-235696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68ADDC3BA07
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 15:16:10 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42E8BC3B945
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 15:09:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B03C5564C07
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 14:07:51 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BE7B534D39A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 14:09:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 037F5336EF7;
-	Thu,  6 Nov 2025 14:07:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QQvZ+d5A";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="crdGjc9H"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F52A303A12;
+	Thu,  6 Nov 2025 14:09:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71DF6302CCA
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 14:07:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66D7222256F
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 14:09:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762438065; cv=none; b=IxC/4JE2AUobEq8ZQgWUvdOig3oB/xtIXs0jk163Rp4FGDw8K5Z0xbbi/w5POLpq0PhACgjYBPszbmO/j5dqEcbUS8dobGzPWrvvcwT96C6Fc8btZWwERdD+JkG8wJZ118Ve8/Uqc7rBRKmfaWnldeNtN4Iee+KQ39pSVMMfA2I=
+	t=1762438157; cv=none; b=YYcEbzfYH0wiulXsli6Deq/rUsSe93Eq09XCA9DML23VRl8nXXmiz25uVEnlbf00DsBVdE5JV6XOCQyUFKBgdDFzhF0pw0+U1Ou2qO8ZPcvGPFlDlsGc8kcnweUOHA2sHrSVto9B7G7rjqHSOuiVsvQs4eT+NqkjjAAW7d+veIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762438065; c=relaxed/simple;
-	bh=SOccKiy5Rdbr6pq6sB0mWtUflMzLr3rVH64LwrFeOVU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sy0Zj/zuvydXYwAwMjo34n9nFnvVjOeBI82Bb02rdxMp5PINHS1dDNBUyC8IxdrBBz6WY0KmPmNRskVDkIBeUWHHHIoCEh9foUHO/Dv7r+mNB/Hz4xpaKxyAmMRwqTj+3W9Nj47yGaB8uc0mSyP6ey/R5+MEqXStO2Pun7SSn7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QQvZ+d5A; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=crdGjc9H; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A665eiV1738749
-	for <devicetree@vger.kernel.org>; Thu, 6 Nov 2025 14:07:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zlBnzVB5nxzy+Z7vwR/dqDEVVZyIcEzuFRGM+j8huts=; b=QQvZ+d5AIl179X7G
-	oNgzd+fA/TENVGJ6bfTJwJZJ2yI0qR6nhARxOCIwxPl4eTZu/+OvD6EYlwjMt4mb
-	0lSfkkyv7HTPsm+GAcwHINSubnm0wC9DdsNRaHJ/b7buC1badIHer5IQo0THbteL
-	ZRup+VGq/Q5Uftg76iR8Ex583V3FIXh0UeKpkcF6YEKnHOAH2ZIcul8oMf9kej5E
-	v7yLps1O5kXDHyZphCBXtBc6Hrpf423CHqwjkh93na6EK1hyS06PldPIkOENV0Xh
-	RDA0BdingP6TbQwmPkGXi6sYApeIg7SxcqSpxDR0t0o8bloYfL18abGs39KWqXTZ
-	eTS6ew==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a8an3ua2v-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 14:07:43 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-3407734d98bso1507293a91.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 06:07:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1762438063; x=1763042863; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zlBnzVB5nxzy+Z7vwR/dqDEVVZyIcEzuFRGM+j8huts=;
-        b=crdGjc9HnTa+VhBHLl6fkq3p69JScJaWrIyXbqpGD3cikY9LhXxEeTU0RQ2iISBSxb
-         w9mo21SWpmFZva0uLXopf+1pMnDluY3+s4WaYiP5+LpMkjbZZapH/wSBhOWpsbRpE/kD
-         mO1Y9UYJRi1JIKYu/S9RbvoIibPxSSrnLBH7VnXXAHBZMHA/iYaxocs9xL2RUNN4g/BL
-         GC/iYbwHuOeQxRr2q1Lvstgo8fMfY5H9i+je+C7KkUIZBeHg7n83L7Ydw8StETtQjRfz
-         kZtP1CSbtMYUkroAlCkLvAe2lcCqLHq+af7E33ACMN779H1L5MSlKPgqHQg2t8yDQ9+S
-         GDxQ==
+	s=arc-20240116; t=1762438157; c=relaxed/simple;
+	bh=mHmb1VB9qB/vGEkXjmWNrkSJpxIgCAhoKTnr817fja0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=a3n2zl5Yb084e5h9zb9+ocrhVjTXc9Kr/TbzieRd22beJghjmahC2j0auQjDBi+gq3I/NPr8A5WBYYRyfpFYiUNvYXKaj1UbAdvIbwWlUysGi6yd+lmLQin4dcDzT8AVI/ZAaFAFep2MbacXwhtbyzak5W/5oo12uenBJBa3hJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-6407e617ad4so2096994a12.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 06:09:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762438063; x=1763042863;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zlBnzVB5nxzy+Z7vwR/dqDEVVZyIcEzuFRGM+j8huts=;
-        b=hVuC78f05Qo8ZyD+N8NGKfE9RYxZP5hTtS2Hqw83sPra/yz2KDdwVQSoCbQ65c492x
-         rb+Td2+KKR24aPW122Nu+IUWvfD+cqdRzOKyUdeKFfEiyL453pL4xKxUXvvQlmtAWVYl
-         H04Ubcbhq1EZLyhkWcgxYFDkX/W3G0tPpR8Y93oeUDj/dqbUI8NZHuQG4xfqZpI9oMby
-         EeKxw3P88aKdpp6L7aI0U1hb21UyBW0QqMibRz28S/zmlnKvwZMHqkks+lsDihg0a78n
-         nunld4QwNVr39s5IqEicXRmDRhpiZOLLzsq13z3RrCnSRnGNJeexpfB5wXWMNG20pMzv
-         Ycbw==
-X-Forwarded-Encrypted: i=1; AJvYcCVYYz3ZI9WhAxlFTLbViHAs5GiyFuoyGzRYtIzv0HB+SJ8uN1PXyFGZdB6dpE2dN54mV1sJ9nTBROYV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6ayRhsSZJsRK5d7ifJLuqsCzYIWLN5B371vfnByai5Kx/KYIv
-	bbe+ZZDzPNNRuYTUfhpfaXT+R3WV0Q3/4hFDALA0Vtv6pVyBe+Gjhsb3WDN+l8CkfzcLuazCoRM
-	eBw/wUpuRx5Q2CplcLxR+Bwpt7JvyPjDLHCLORvBdQokiC7i2etkpZK4DaS5FZi+J
-X-Gm-Gg: ASbGncvmc5Ygrgrf8mQRkV1L/3YT4se6uqoguS7yxe2DLkUtD18Bc4vSU4rShWQ97h0
-	h+yY8PMGJBZBH0pDh40FqbArJReVnsbOa05cyrnoBpwOErX6CMsjtG3Q+S35ok63f0wc6i2xy/w
-	wT1cYS9S3UJ8dPBOxUITyAzOxkpqK1zPayDKJcUnxx8MgUGAElz3m94ROEJXGO8tN1WnbbYGRLd
-	yHy2fgphuYrcsFBwv0fyU6eQTMy1wuiEIWwRJnFjM05dnYW4UGO597a2zxgLQcEGbT+RjPm/Mf2
-	XJbLMe+i3s5kinmEqMDaqJfmZu9IELpPUmYzv6CEdl364Me5oVPtkIIi7egXIW76ZFfw3Hy1aW8
-	LTakQh3+o6Rgo/0W59HNnAvhq5qG5/yWaMQ==
-X-Received: by 2002:a17:90b:4b83:b0:340:ff89:8b63 with SMTP id 98e67ed59e1d1-341a6dd839cmr7917832a91.22.1762438062743;
-        Thu, 06 Nov 2025 06:07:42 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFb5xADXggWF7dRNeF7sG95acRl1JztjRAlFJmaO2OvQU/vqH3pUikfwbJOHiUbUbKUov+t3Q==
-X-Received: by 2002:a17:90b:4b83:b0:340:ff89:8b63 with SMTP id 98e67ed59e1d1-341a6dd839cmr7917764a91.22.1762438062062;
-        Thu, 06 Nov 2025 06:07:42 -0800 (PST)
-Received: from [192.168.29.63] ([49.43.224.132])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-341d0daabd1sm1131993a91.8.2025.11.06.06.07.36
+        d=1e100.net; s=20230601; t=1762438146; x=1763042946;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lizrVusrsLOAQyowXz5s1Qp7I158lhdEAu4sLj0s0D8=;
+        b=Ipw90qMLuGHJdcFLG1COpd8Db7nS7YWen2BmGU6tDKYbgSMP/vGlqr+dsxzteo2Odg
+         fC7nnhkOmvG13GvTu4lz1Uoa4LGtlqDui6k3P6QSh5r0TzTfyh4njdm/xWas9gJeykLh
+         WSjhoBxCNflTauJGJV6kdSwwNkin3fbuk0lYNucQAHpJGXCdCDK6JYcDEn4zAwLaanfn
+         uvUxQbK/0DBOjydqEAtSakygsUnGVRobIsLJ+VpZu3nD4uP3bQb5FLqsBlJPdRUBJGy4
+         uFdLeqhCpWPhFcnn4HiSkeBBMXvjFqiOF2F685gYxNrDNK/F33AAGqlbL38NpDoANgXG
+         Ns0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVgYryK+o68SsfkexG6QBBhpCzz5wYVP6P0PjaFOWtGGMQsJrLQdXz1pGTCC/eA6vAFHTX1gzqgK47w@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOS1d7vJH5m1RrlaqQldFRwNf5iFOZ2AGjGIn516cgDFxcHa3X
+	qImROHYmiY/1nhjumk64RCrzYalym5hgezb0zqcO7GjjHFrkJytg8EdT35qSMsxAWNg=
+X-Gm-Gg: ASbGncsvSKO0nMJ3S1/hLhOt4t4yVJW0a7jNZO1MoQm7FTEy+aIyBRxriGr4q0qvEvj
+	Oxbt2lLQXI29TUqbmgkyrIPeYbnBadycEsmEvxdycCAFgStF2qF+suIpNOcYV3U7+PGKh4fZ6Ii
+	AbI/+ZqAYZ05hzsvENCmDviX2ZQoHlBdrKFPZ/YqVL3OStA41bB1oVm6uEOLN0xqIC2UTZ2hOr5
+	rTI0PMyYPWx4oze3TC9KTANZyYicw8C+upuZLN1TepOhtNgvjJae9CoBeckN3ZqxI0atbu8+Lbu
+	rcr/1L90LEggzcIFneJel0KyQkVQ6MjuQtkPp4x0Ol9dJE9wEPG+EtxHRsb8gR3Af5w6BQelJPB
+	apC98bMg7TvQJZg8Vlo+j9w4fBjlZOz8ITyPQAKn58Sz5N8J4pWAdx6mqbYSSFYy7T3N5Lnt5Zi
+	pcLJweFAiX5xzQ7QkvRu2noUlw+GPIGr1sg8uOw5ApeQLgjMrj
+X-Google-Smtp-Source: AGHT+IHn7JX2WQJH2AUIKtYiPYrteHNActwoM/z2+V1nXLppfgJGj4gU9sogdMBghGzq685t5M6SpQ==
+X-Received: by 2002:a05:6402:358a:b0:640:cf58:47f9 with SMTP id 4fb4d7f45d1cf-6411d19ee4cmr3070512a12.9.1762438145883;
+        Thu, 06 Nov 2025 06:09:05 -0800 (PST)
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com. [209.85.208.53])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6411f85785fsm1914501a12.17.2025.11.06.06.09.00
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Nov 2025 06:07:41 -0800 (PST)
-Message-ID: <96c49d08-10dd-4a82-a6ec-345701b771d6@oss.qualcomm.com>
-Date: Thu, 6 Nov 2025 19:37:32 +0530
+        Thu, 06 Nov 2025 06:09:03 -0800 (PST)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-6407e617ad4so2096487a12.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 06:09:00 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVKA1TGFIAO4N/+j82dPwk4/Lod87lL96+arXAnRPaiW2fEmMdaC9mv71tQ8nzNIr2rkfq+HXrbojo1@vger.kernel.org
+X-Received: by 2002:aa7:d343:0:b0:640:931e:ccac with SMTP id
+ 4fb4d7f45d1cf-6411d17972dmr2555913a12.7.1762438140350; Thu, 06 Nov 2025
+ 06:09:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] schemas: pci: Document PCIe T_POWER_ON
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: andersson@kernel.org, robh@kernel.org, manivannan.sadhasivam@linaro.org,
-        krzk@kernel.org, helgaas@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, lpieralisi@kernel.org, kw@linux.com,
-        conor+dt@kernel.org, linux-pci@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
-        quic_vbadigan@quicinc.com
-References: <20251106113951.844312-1-krishna.chundru@oss.qualcomm.com>
- <7v5bmbke37qy7e5qns7j7sjlcutdu53nbutgfo6tn47qkojxjy@phwcchh5gs5q>
-Content-Language: en-US
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-In-Reply-To: <7v5bmbke37qy7e5qns7j7sjlcutdu53nbutgfo6tn47qkojxjy@phwcchh5gs5q>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=W981lBWk c=1 sm=1 tr=0 ts=690cabaf cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=1uN4TIezCBQZsvcDmGHwSQ==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=0lSf4L86Ka8fYzTnLDIA:9 a=QEXdDO2ut3YA:10
- a=rl5im9kqc5Lf4LNbBjHf:22
-X-Proofpoint-GUID: bfsEN1fGjvPwILCZJZc8PEu3_j1BSIr2
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA2MDExMiBTYWx0ZWRfXxdiYxpzxu3LM
- dPLsmpZgCgjf4DkhOtZlkHeKcivGKDbd6dMX6HpXJUdUngl0FI1DV/YDSAilbRGGW7dwzzfY6JW
- EvEpifTLHqQIXXZyYgcELQbZZG+PovsUkH5K/KxhEjue6ucljIpQYm1Q7zZj6es+G1LoQt+Pk1g
- juKpaME01HaySpSVzZJFNR+HWcwu4cgmFysSnS1qBBLNpHyG9mNyp0SnykQ8xZI4B1mJT/QsVDf
- DHee0vqRST5acorZp9DjNouqOClbdUFVDWZ+0tkIQVI1cTRa+76ykJAw94NPJevd7dQncCHGxTk
- AvDoMBJlw9TbJPawA0yPJ03garAw/FVhdXZLwZFWbqwd65aKUbstIIpCltFQEWaPNYOCDr3Mbk3
- D6bqpUBNv3S4JuX8dOc8ukxaUEy2bQ==
-X-Proofpoint-ORIG-GUID: bfsEN1fGjvPwILCZJZc8PEu3_j1BSIr2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-06_03,2025-11-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 phishscore=0 adultscore=0 spamscore=0 impostorscore=0
- bulkscore=0 lowpriorityscore=0 priorityscore=1501 malwarescore=0
- clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511060112
+References: <20251105232737.1933437-1-niklas.soderlund+renesas@ragnatech.se> <20251105232737.1933437-3-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20251105232737.1933437-3-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 6 Nov 2025 15:08:45 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWGZa6E_Yu-hF9O6yi3rRemWnFdkUeKg3SucqmmLFUUAg@mail.gmail.com>
+X-Gm-Features: AWmQ_bmyVoqHrTmXlpr1ElP362H1OrWvK3sMuHRjQlEwD_rKvK_e3yJJeGhG1Kc
+Message-ID: <CAMuHMdWGZa6E_Yu-hF9O6yi3rRemWnFdkUeKg3SucqmmLFUUAg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a779a0: Add GE7800 GPU node
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>, Conor Dooley <conor+dt@kernel.org>, 
+	David Airlie <airlied@gmail.com>, Frank Binns <frank.binns@imgtec.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Magnus Damm <magnus.damm@gmail.com>, Matt Coster <matt.coster@imgtec.com>, 
+	Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Niklas,
 
-On 11/6/2025 6:08 PM, Manivannan Sadhasivam wrote:
-> On Thu, Nov 06, 2025 at 05:09:51PM +0530, Krishna Chaitanya Chundru wrote:
->>  From PCIe r6, sec 5.5.4 & sec 5.5.5 T POWER_ON is the minimum amount
-> T_POWER_ON
+On Thu, 6 Nov 2025 at 00:28, Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Describe Imagination Technologies PowerVR Rogue GE7800 BNVC 15.5.1.64
+> present in Renesas R-Car R8A779A0 V3U SoC.
 >
-> You should provide reference to the Table 5-11, where T_POWER_ON is described
-Actually 5.5.5 section has only table 5-11 which describes this, I will 
-add the Table 5-11
-reference also in next patch.
->> of time
-> "(in us)"
->
->> that each component must wait in L1.2.Exit after sampling CLKREQ#
->> asserted before actively driving the interface to ensure no device is ever
->> actively driving into an unpowered component and these values are based on
->> the components and AC coupling capacitors used in the connection linking
->> the two components.
->>
->> Certain controllers may need to program this before enumeration, such
->> controllers can use this property to program it.
->>
-> I'd remove this statement and just mention that this property should be used to
-> indicate the T_POWER_ON for each Root Port.
-ack.
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
 
-- Krishna Chaitanya.
-> - Mani
+Thanks for your patch!
+
+> --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> @@ -338,6 +338,23 @@ cmt3: timer@e6148000 {
+>                         status =3D "disabled";
+>                 };
 >
+> +               gsx: gsx@fd000000 {
+
+Please preserve sort order (by unit address).
+
+> +                       compatible =3D "renesas,r8a779a0-gpu",
+> +                                    "img,img-ge7800",
+> +                                    "img,img-rogue";
+> +                       reg =3D <0 0xfd000000 0 0x40000>;
+> +                       interrupts =3D <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks =3D <&cpg CPG_CORE R8A779A0_CLK_ZG>,
+> +                                <&cpg CPG_CORE R8A779A0_CLK_S3D1>,
+> +                                <&cpg CPG_MOD 0>;
+> +                       clock-names =3D "core", "mem", "sys";
+> +                       power-domains =3D <&sysc R8A779A0_PD_3DG_A>,
+> +                                       <&sysc R8A779A0_PD_3DG_B>;
+> +                       power-domain-names =3D "a", "b";
+> +                       resets =3D <&cpg 0>;
+> +                       status =3D "disabled";
+> +               };
+> +
+>                 cpg: clock-controller@e6150000 {
+>                         compatible =3D "renesas,r8a779a0-cpg-mssr";
+>                         reg =3D <0 0xe6150000 0 0x4000>;
+
+The rest LGTM, so with the node name and sort order fixed:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
