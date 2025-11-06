@@ -1,160 +1,411 @@
-Return-Path: <devicetree+bounces-235809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E6C5C3D123
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 19:27:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C97C2C3D132
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 19:32:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 04E504E1957
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 18:27:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4493D189325D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 18:33:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E7C034A774;
-	Thu,  6 Nov 2025 18:27:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BAFD34DB51;
+	Thu,  6 Nov 2025 18:32:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Sly5sNXL"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ngl0Bhrg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92BFF22A817
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 18:27:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5544204F8B;
+	Thu,  6 Nov 2025 18:32:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762453629; cv=none; b=WtI5BTOQHJXa2+A4QnP6sSgSjyN5xl2R9zkkFyWLrNDfCO2pgh5ytbndeOmtNctP71uy3AxYiraYB4+Jdie/qaeHE/Nhjp+UdBcHMV0gTlQr1jt02uQRT1psVxGLSLsNk6WYjSx7swRetvj/o4+4jPYaAgYSQRCjyrAMIHEQ3ng=
+	t=1762453959; cv=none; b=GTXwDcBwWAhBhQNDZ2NLAT6SxJbBrrkomvXmIOIbYf7ppRK4bVkYROZ2cyTBKlRLUywOye2lVkqaewCGecBVozBPUVAiV3NXMygLKpg8xX7Ij9oGRY4JjaXdk4O5t8fSxs+p66IpI3Jv0tNU8NsJZ4+6L8BzPmJH5BvC5md+YDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762453629; c=relaxed/simple;
-	bh=Byk6nH4i2Klbu/HaIOE+K5WP75xgRySgNc7xnKPQxZE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=I/CVVFM+eXT515tdfH/1w4MrvpD+ZUVTPTWay1sG6vLdwn8i7xR23tWUIEPpongoSXENsZvvVuH8OOyZQTdFsk4mRbsa/3jZxyPIu1uIZd0Ovu/fpKhyjexdCTkFu7RYbBUkyWcOoFtWZfy2o2oZ9wSQyZnqY4pxLCFX2rl643Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Sly5sNXL; arc=none smtp.client-ip=209.85.210.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-7c6d2ec149eso824958a34.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Nov 2025 10:27:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1762453623; x=1763058423; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=79lMv1S4sZVnamUdtp6ADko+gKgG2fiOZl977EobktU=;
-        b=Sly5sNXL4hR8HVKypGYCGMcco5Km5ggfIYQ0W5u4PI5ds9zNQ7vL8VDcbDr26heByF
-         iXq6dflXnkac/O4NJaWHN8E7O2rzkBtTqYQ7rSkZIY1syM70L4ofSLv1LC8QDhtPkRdW
-         wKEcc4yfO44awTFVDcHQvC7J9cUMjtW1c6T5Xt0bdfWP4viEold8ntvsBOrz8a8hY0qW
-         rv1/ZDRrmapGL0S4rODVtpIVVda2LMdkkk2GILFikzl1aan9tGv2qHONkiQDS/tO/GJt
-         JOCkolU+IBDh8KZBrYaIkbm+aWv0XNrAtitiSQEO56JDCrUNQEkqVyqXaJVf+Jts70iz
-         TEMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762453623; x=1763058423;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=79lMv1S4sZVnamUdtp6ADko+gKgG2fiOZl977EobktU=;
-        b=ulWdE0LHborR5tBjQmgo/eMNN02n4C6f7ld/C/ybH3l0VXkFGUNAR+rs2cAprYSVuG
-         Mt56TuIYttKdcVB7MW1GCP51Al7nJomOOBKunMD20TDySR3RuLw9jMLGIJW/O5da+Mip
-         P2TZvqPMJd+qxf2N3p7fdF1QTLLy6/DP5B1/gnmhxEdo82E/Joh6biLUA2apZzpJlROc
-         cutgmQCe9iPUX4iXg1SZxe/Tl/XfFHuGv2N0nqbRQiKjhKqAoyqGXfP8Q9P4OuA07I6D
-         8n8XK+309Heu+D9mxX83toJm9DKpnnMpJSgHGKyiKT2I0uEj1T+BZNbFOZMv5i8+U7lg
-         tWOA==
-X-Gm-Message-State: AOJu0YzVO6mSXeK8D9dmls9ofTnfsLvvY+TO1l0YE7cvjkUNF7PFzMO7
-	pzH74xJiI186JjMXe4ECE+DiMSqc0cewCaUoPU6tjCv/3N9aIc9j2OUP
-X-Gm-Gg: ASbGncuBor8j6NJCG6Sk8aPgRVcQn+4yjowVuF9NTNEP6o4MegHH3w5G+Nk2ZJtsD3U
-	XE3ddSef+jxm8DZj0izdy0eOD2hU2SiWf7ku8pVz3OzeiPMZFzUFjZD9xiU7w046n/6uUqi9Yta
-	ZOwyAADrcR/TVM+tkFN/LV+Iw9jT3aIwvHjYlcJqfyK3/Po23bM1I6TY0v7MZBwkCsQ41zN5xB8
-	4Yyhz4EdGK/stjEegh4bZxtGOEvtEiR9WM1Q+e0O+9BZmwR1O0/VDGl7OdXV1OtXP+YIWhgoMH7
-	7TDGW5QMlbi5CB9Z98vVTeHhR2B/IroSwPdIDRgt+X5YzAs4UDWNmPkPB/fW0F1DA56yatJN0ka
-	D7gmnkR1LmDPQZVdOGcSniYGIBaL0c5+6q4I8xga+rXR4zBzHm53qAwEOlKJD4EHaJOY2vnxxiE
-	6gLdss4Rv1OVwdcEb1Jo8=
-X-Google-Smtp-Source: AGHT+IFEr+p9Bie/+QNf8J1PkpnQpy41SStNdukAJZkuo0Gbd8U5ncUi91MA0dqv6sAvfIgC2NwmCQ==
-X-Received: by 2002:a05:6830:719e:b0:7c6:d062:aa95 with SMTP id 46e09a7af769-7c6f0036b9emr513418a34.16.1762453623552;
-        Thu, 06 Nov 2025 10:27:03 -0800 (PST)
-Received: from localhost.localdomain ([2600:1700:fb0:1bc0:41f9:c9d3:db30:c36a])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c6f0f5f635sm134559a34.14.2025.11.06.10.27.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Nov 2025 10:27:03 -0800 (PST)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-rockchip@lists.infradead.org
-Cc: devicetree@vger.kernel.org,
-	jbx6244@gmail.com,
-	sebastian.reichel@collabora.com,
-	heiko@sntech.de,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH] arm64: dts: rockchip: enable NPU on Gameforce Ace
-Date: Thu,  6 Nov 2025 12:24:36 -0600
-Message-ID: <20251106182436.771805-1-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1762453959; c=relaxed/simple;
+	bh=fVzWW815nuMiOaUcKoR+xqB0xagzSP1lzJjAbneJHN8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T7BYH96YgALT2AvJihH3XKfoh2HoN/PX3/NHHkJQDpmotIuk61QdlEg7CRcnhm9lXK6kaKF2m3MMOPNKxeVQZydCktuut684HmdyDAqDAhOWnXZvyya/N58ITgqCvs3b80w6cDX4aw3Jz75LlRy6w+FW3KCTEzLgY00UqW5bww4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ngl0Bhrg; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1762453957; x=1793989957;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fVzWW815nuMiOaUcKoR+xqB0xagzSP1lzJjAbneJHN8=;
+  b=Ngl0BhrgVDouM5+RkSGnggiKCFcCr+wLmb7bPwHf8J6WfyjOjmkBKgkS
+   dynCv8UMb0ZIinXlts/DKNrNMMZAnOnvBbP4DlBFAeRpbsQLAKkfhWbPL
+   bjdsIykZbRFcIMWPeuEDwVDBwDKsH/KW7WhlI6Ze78OBz8WPthjv9OksF
+   VD/H7+ANLQwM34mqpTd3bcl4rfY+Jxkhb6jMYlBeQpR7kHOLiPen+53/P
+   o5OlK3vSPZ2ti78zsQbuNCq/HqEPU+mMXnWHEl533iiRvQszphm53bMMp
+   hDrQGuHHHQa1DA7yUUkVwwrJPqIesTI/F6kSwD9dp6PEHwhymExMg+ROU
+   g==;
+X-CSE-ConnectionGUID: ZKJfZzdGRe62y+VZVf6rYQ==
+X-CSE-MsgGUID: ECjp0tMxQzKaPATDEVZMFw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11604"; a="64518411"
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; 
+   d="scan'208";a="64518411"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2025 10:32:36 -0800
+X-CSE-ConnectionGUID: HOZfE0yCQ4CwxorGNlhNiA==
+X-CSE-MsgGUID: 4V8v9CszQQeuLWJ1yAmWXw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,284,1754982000"; 
+   d="scan'208";a="225078793"
+Received: from abityuts-desk.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.244.224])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2025 10:32:33 -0800
+Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1vH4mb-00000006Dlf-2XO2;
+	Thu, 06 Nov 2025 20:32:29 +0200
+Date: Thu, 6 Nov 2025 20:32:29 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Hans de Goede <hansg@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org
+Subject: Re: [PATCH v3 5/5] regulator: ltm8054: Support output current limit
+ control
+Message-ID: <aQzpvR-030zgA82E@smile.fi.intel.com>
+References: <20251106-ltm8054-driver-v3-0-fd1feae0f65a@bootlin.com>
+ <20251106-ltm8054-driver-v3-5-fd1feae0f65a@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251106-ltm8054-driver-v3-5-fd1feae0f65a@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-From: Chris Morgan <macromorgan@hotmail.com>
+On Thu, Nov 06, 2025 at 03:11:50PM +0100, Romain Gantois wrote:
+> The LTM8054 supports setting a fixed output current limit using a sense
+> resistor connected to a dedicated pin. This limit can then be lowered
+> dynamically by varying the voltage level of the CTL pin.
+> 
+> Support controlling the LTM8054's output current limit.
 
-Enable the NPU on the Gameforce Ace.
+...
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- .../dts/rockchip/rk3588s-gameforce-ace.dts    | 34 +++++++++++++++++++
- 1 file changed, 34 insertions(+)
+>  #include <linux/array_size.h>
+> +#include <linux/completion.h>
+>  #include <linux/device.h>
+>  #include <linux/device/devres.h>
+>  #include <linux/device/driver.h>
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts b/arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts
-index b98e1a3369dc..e8ad525ba3f9 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts
-@@ -842,6 +842,10 @@ &pd_gpu {
- 	domain-supply = <&vdd_gpu_s0>;
- };
- 
-+&pd_npu {
-+	domain-supply = <&vdd_npu_s0>;
-+};
-+
- &pinctrl {
- 	audio-amplifier {
- 		headphone_amplifier_en: headphone-amplifier-en {
-@@ -1032,6 +1036,36 @@ &pwm13 {
- 	status = "okay";
- };
- 
-+&rknn_core_0 {
-+	npu-supply = <&vdd_npu_s0>;
-+	sram-supply = <&vdd_npu_s0>;
-+	status = "okay";
-+};
-+
-+&rknn_core_1 {
-+	npu-supply = <&vdd_npu_s0>;
-+	sram-supply = <&vdd_npu_s0>;
-+	status = "okay";
-+};
-+
-+&rknn_core_2 {
-+	npu-supply = <&vdd_npu_s0>;
-+	sram-supply = <&vdd_npu_s0>;
-+	status = "okay";
-+};
-+
-+&rknn_mmu_0 {
-+	status = "okay";
-+};
-+
-+&rknn_mmu_1 {
-+	status = "okay";
-+};
-+
-+&rknn_mmu_2 {
-+	status = "okay";
-+};
-+
- &saradc {
- 	vref-supply = <&vcc_1v8_s0>;
- 	status = "okay";
+>  #include <linux/errno.h>
+>  
+>  #include <linux/gpio/consumer.h>
+> +#include <linux/iio/consumer.h>
+> +#include <linux/jiffies.h>
+> +#include <linux/lockdep.h>
+>  #include <linux/math64.h>
+> +#include <linux/minmax.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+
+>  #include <linux/regulator/of_regulator.h>
+>  #include <linux/types.h>
+>  
+> +#include <linux/units.h>
+> +#include <linux/workqueue.h>
+
+This will be updated accordingly.
+
+...
+
+> +struct ltm8054_ctl_pin_work {
+> +	struct work_struct work;
+> +	unsigned int ctl_val;
+> +	bool write;
+> +	int ret;
+> +};
+
+Have you ran `pahole`? It might suggest a better layout to save a few bytes.
+
+...
+
+> +static void ltm8054_do_ctl_work(struct work_struct *work)
+> +{
+> +	struct ltm8054_ctl_pin_work *ctl_work = container_of_const(work,
+> +								   struct ltm8054_ctl_pin_work,
+> +								   work);
+> +	struct ltm8054_priv *priv = container_of_const(ctl_work,
+> +						       struct ltm8054_priv,
+> +						       ctl_work);
+
+These read better in slightly different split:
+
+	struct ltm8054_ctl_pin_work *ctl_work =
+		container_of_const(work, struct ltm8054_ctl_pin_work, work);
+	struct ltm8054_priv *priv =
+		container_of_const(ctl_work, struct ltm8054_priv, ctl_work);
+
+...
+
+> +	mutex_lock(&priv->ctl_work_lock);
+> +	val = ctl_work->ctl_val;
+> +	write = ctl_work->write;
+> +	mutex_unlock(&priv->ctl_work_lock);
+
+Why not scoped_guard() from cleanup,h?
+
+...
+
+> +	/* Standard IIO voltage unit is mV, scale accordingly. */
+> +	if (write)
+> +		ret = iio_write_channel_processed_scale(priv->ctl_dac,
+> +							val, 1000);
+
+One line. It just 82 characters.
+
+> +	else
+> +		ret = iio_read_channel_processed_scale(priv->ctl_dac,
+> +						       &val, 1000);
+
+Ditto.
+
+And perhaps use MILLI/KILO?
+
+...
+
+> +	pr_debug("LTM8054: %s CTL IO channel, val: %duV\n", write ? "wrote" : "reading", val);
+
+Besides str_write_read() from string_choices.h this should be dev_dbg().
+
+> +	mutex_lock(&priv->ctl_work_lock);
+> +	ctl_work->ret = ret;
+> +	ctl_work->ctl_val = val;
+> +	mutex_unlock(&priv->ctl_work_lock);
+
+scoped_guard()
+
+> +	complete(&priv->ctl_rw_done);
+> +}
+
+...
+
+> +static int ltm8054_ctl_pin_rw(struct ltm8054_priv *priv, bool write, unsigned int *ctl_val)
+> +{
+> +	struct ltm8054_ctl_pin_work *ctl_work = &priv->ctl_work;
+
+> +	int ret = 0;
+
+Redundant assignment.
+
+> +	lockdep_assert_not_held(&priv->ctl_work_lock);
+> +
+> +	/* The get/set_current_limit() callbacks have an active regulator core
+
+/*
+ * The proper style of multi-line comment
+ * is depicted in this example. Use it.
+ */
+
+> +	 * reservation ID (obtained with ww_acquire_init()).
+> +	 *
+> +	 * Or, the IO channel driver may call something like
+> +	 * regulator_enable(), meaning this thread would acquire a new
+> +	 * regulator core reservation ID before the current one is dropped
+> +	 * (using ww_acquire_fini()). This is forbidden.
+> +	 *
+> +	 * Thus, perform the IO channel read/write in a different thread, and
+> +	 * wait for it to complete, with a timeout to avoid deadlocking.
+> +	 */
+> +
+> +	scoped_guard(mutex, &priv->ctl_work_lock) {
+> +		if (work_busy(&ctl_work->work))
+> +			return -EBUSY;
+> +
+> +		if (write) {
+> +			ctl_work->ctl_val = *ctl_val;
+> +			ctl_work->write = 1;
+> +		} else {
+> +			ctl_work->write = 0;
+> +		}
+> +
+> +		schedule_work(&ctl_work->work);
+> +	}
+> +
+> +	ret = wait_for_completion_timeout(&priv->ctl_rw_done, LTM8054_CTL_RW_TIMEOUT);
+> +	reinit_completion(&priv->ctl_rw_done);
+> +
+> +	if (unlikely(!ret))
+> +		return -ETIMEDOUT;
+> +
+> +	scoped_guard(mutex, &priv->ctl_work_lock) {
+> +		ret = ctl_work->ret;
+
+> +		if (!ret && !write)
+> +			*ctl_val = ctl_work->ctl_val;
+
+Return directly.
+
+		if (ret)
+			return ret;
+
+		if (!write)
+			...
+
+> +	}
+
+> +	return ret;
+
+	return 0;
+
+> +}
+
+...
+
+> +static struct iio_channel *ltm8054_init_ctl_dac(struct platform_device *pdev)
+> +{
+> +	struct iio_channel *ctl_dac;
+> +	enum iio_chan_type type;
+> +	int ret;
+> +
+> +	ctl_dac = devm_iio_channel_get(&pdev->dev, "ctl");
+> +	if (IS_ERR(ctl_dac)) {
+
+> +		if (PTR_ERR(ctl_dac) == -ENODEV)
+> +			return ERR_PTR(-EPROBE_DEFER);
+
+Hmm... Are you sure about this?
+
+> +
+> +		return ctl_dac;
+> +	}
+> +
+> +	ret = iio_get_channel_type(ctl_dac, &type);
+> +	if (ret)
+> +		return ERR_PTR(ret);
+> +
+> +	if (type != IIO_VOLTAGE)
+> +		return ERR_PTR(-EINVAL);
+> +
+> +	return ctl_dac;
+> +}
+
+...
+
+>  static int ltm8054_probe(struct platform_device *pdev)
+>  {
+>  	struct regulator_config config = { };
+> +	struct iio_channel *ctl_dac = NULL;
+>  	struct device *dev = &pdev->dev;
+>  	struct regulator_dev *rdev;
+>  	struct ltm8054_priv *priv;
+>  	int ret;
+>  
+> +	/* Do this first, as it might defer. */
+> +	if (device_property_match_string(dev, "io-channel-names", "ctl") >= 0) {
+> +		ctl_dac = ltm8054_init_ctl_dac(pdev);
+> +		if (IS_ERR(ctl_dac))
+> +			return dev_err_probe(dev, PTR_ERR(ctl_dac),
+> +					     "failed to initialize CTL DAC\n");
+> +	}
+> +
+>  	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+>  	if (!priv)
+>  		return -ENOMEM;
+
+> +	platform_set_drvdata(pdev, priv);
+
+Do we need this? I think "no". See below how.
+
+> +	priv->dev = dev;
+>  	priv->rdesc.name = "ltm8054-regulator";
+> -	priv->rdesc.ops = &ltm8054_regulator_ops;
+> +	priv->rdesc.ops = &ltm8054_no_ctl_ops;
+>  	priv->rdesc.type = REGULATOR_VOLTAGE;
+>  	priv->rdesc.owner = THIS_MODULE;
+>  
+> +	if (ctl_dac) {
+> +		priv->ctl_dac = ctl_dac;
+
+> +		INIT_WORK(&priv->ctl_work.work, ltm8054_do_ctl_work);
+> +		init_completion(&priv->ctl_rw_done);
+
+Do devm-helpers.h APIs help with something here? Does
+devm_add_action_or_reset() help with not covered cases?
+
+> +		mutex_init(&priv->ctl_work_lock);
+
+Use devm_mutex_init() and don't forget the error check.
+
+> +		priv->rdesc.ops = &ltm8054_ctl_ops;
+> +	}
+> +
+>  	config.dev = dev;
+>  	config.driver_data = priv;
+
+
+From this...
+
+>  	ret = ltm8054_of_parse(dev, priv, &config);
+> -	if (ret)
+> -		return dev_err_probe(dev, ret, "failed to parse device tree\n");
+> +	if (ret) {
+> +		ret = dev_err_probe(dev, ret, "failed to parse device tree\n");
+> +		goto out_err;
+> +	}
+>  
+>  	rdev = devm_regulator_register(dev, &priv->rdesc, &config);
+> -	if (IS_ERR(rdev))
+> -		return dev_err_probe(dev, PTR_ERR(rdev), "failed to register regulator\n");
+> +	if (IS_ERR(rdev)) {
+> +		ret = dev_err_probe(dev, PTR_ERR(rdev), "failed to register regulator\n");
+> +		goto out_err;
+> +	}
+>  
+>  	return 0;
+> +
+> +out_err:
+> +	if (ctl_dac) {
+> +		cancel_work_sync(&priv->ctl_work.work);
+> +		mutex_destroy(&priv->ctl_work_lock);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static void ltm8054_remove(struct platform_device *pdev)
+> +{
+> +	struct ltm8054_priv *priv = platform_get_drvdata(pdev);
+> +
+> +	if (priv->ctl_dac) {
+> +		cancel_work_sync(&priv->ctl_work.work);
+> +		mutex_destroy(&priv->ctl_work_lock);
+> +	}
+>  }
+
+...to this no changes are needed.
+
+...
+
+>  	.probe = ltm8054_probe,
+> +	.remove = ltm8054_remove,
+
+Neither is this.
+
 -- 
-2.43.0
+With Best Regards,
+Andy Shevchenko
+
 
 
