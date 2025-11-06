@@ -1,102 +1,116 @@
-Return-Path: <devicetree+bounces-235535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08637C39AD0
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 09:55:29 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 512A8C39B33
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 10:00:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9D1E3BBF23
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 08:55:27 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A0CD44EB317
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 09:00:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 836403093AE;
-	Thu,  6 Nov 2025 08:55:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 423E527815D;
+	Thu,  6 Nov 2025 09:00:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SS40bEUp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VRmM3Hmh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BB983093A6;
-	Thu,  6 Nov 2025 08:55:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0300C2A1C7;
+	Thu,  6 Nov 2025 09:00:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762419320; cv=none; b=Dbt9CjCB9DtxSDv4NM/9Na/nmdOcw8yiBjNypOOaGWWYecyq1b0C4ItFQtd1EPQfdf2wEK17A27KvaPG2MIXh9mRzkBLBgyuD7aHJhR7werRckFWpZbUBc2k6mg/gsoxXNoB+qBw+1VBzX2D3tBzL3p8RCdeBdpKdSAo+6W6aY0=
+	t=1762419642; cv=none; b=jOxSO/9cW7aG7k3IvhxNYE6u2nRaXPEp8/OtEUa1W7p8SSZamKqBENNRcdEjPUjdS1HRw9J/XsvAUdgSpkKf3iJzLmibDdy3e5Gch761rqL6mLgPORg9UElGpEdV0R4kNEP4ytjtU2PYvLvKNkZJdIzihP6Ap0icFjU0Q6cdNfE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762419320; c=relaxed/simple;
-	bh=eTn5QPja5NrAhV8JqfC0hiE3iscC1h08zfLZuhblRmI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lSKLjvjS81Xero2JUngrkFSGR7CDLLbBRQbR+intCV8vPxf2jqC5Kc3JGL181hyj393zPe/CM1P/2s6aioFV4X6pNEdZ9SoDDhbvRlVc/uFdABz5G7lAF/u2wjNxMwzO39xoOl2Fu+xO+1zOBCpeedBZgIXmD0bk0V1IpHSjUs0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SS40bEUp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BC98C16AAE;
-	Thu,  6 Nov 2025 08:55:19 +0000 (UTC)
+	s=arc-20240116; t=1762419642; c=relaxed/simple;
+	bh=tVUjwWb1CfWgeIFxeXGVCyzPXpJMgM4oRKMCYqPVFbY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YXFfJFPcETnEyRSQeNcINF0L7iQFaOKe+D7Qv9TQSk0bUQXhwGVUajm9nQhvE3QzXAFoR4/CY6wSNzTdsH2vbH3WQznHbEgE+a9UdsS1U53kpFZDPJeBESwO7k/YPYOMy/c4GmucLS3PH+maDmRltAyuKYEanphoofC/J5owpWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VRmM3Hmh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F41A0C16AAE;
+	Thu,  6 Nov 2025 09:00:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762419319;
-	bh=eTn5QPja5NrAhV8JqfC0hiE3iscC1h08zfLZuhblRmI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SS40bEUpF/m+ZGjrRg7HIMgt34VuoX6zT/bTzevK+98TnoCw2xl36zwc4RCoTDjmx
-	 xkxRNY6oguADuY5pZFvseYqivGr49DXX5WBg9no057TxlxBPPYrvnhJd79C8Bss0k5
-	 fbwHMJj4useMfhIQdF13ZpRwyiXQC8iIxXV27T/hQKjs07VEH/Y4uul1P1GHF8IPUT
-	 pcqesW99qc9MTMsl4HfaptzBoRSpp4d5OpDUm6V8vbLQ2REWTA/EY2MmYpDjX2+Tv/
-	 yYzi3e97M1lNTvIeH+NaebLz6Q8RMry9D7BK5kB2MPyKkz7GzVG8qY7WIlVzwIqEMr
-	 Nwecj39toUxrw==
-Date: Thu, 6 Nov 2025 09:55:17 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Enlin Mu <enlin.mu@linux.dev>
-Cc: robh@kernel.org, saravanak@google.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, enlin.mu@unisoc.com
-Subject: Re: [PATCH] of: print warning when cmdline overflows from bootargs
-Message-ID: <20251106-kiwi-of-total-valor-b27f5d@kuoka>
-References: <20251105082717.4040-1-enlin.mu@linux.dev>
+	s=k20201202; t=1762419641;
+	bh=tVUjwWb1CfWgeIFxeXGVCyzPXpJMgM4oRKMCYqPVFbY=;
+	h=From:Subject:Date:To:Cc:From;
+	b=VRmM3HmhKTac01dyBAFzh10jmu3qUT/qNnzzwmY36iyIFGwMG4rJiaqvImFhgkeUi
+	 lr3AjCmqYu5g+SLprrcP0MF19A2K1QZYUVu1htQ675EIZMXyerJiItqeyK0Lk28iOC
+	 kCNB4z43SEwl0gNmqwqC7znVk48z8soyUFTPqIzBTMO6CqNWN64jCa6AzF1VN6RF5S
+	 lX6SD1BM1Re+pfvKZDJtKo7iF8C8ge2p/GzqkiTT1pe7URoSQmjFmkPy5CUzDPYnlI
+	 9ot5mFFN+7Bf0YaEVmLCmSoicYV1/tOnrT3Kp0rTmbMRexadJcDx5pDxjp7O+B2XNA
+	 UN3Unp/xUv/5Q==
+From: akemnade@kernel.org
+Subject: [PATCH v4 0/3] mfd: twl603x: add power button
+Date: Thu, 06 Nov 2025 10:00:24 +0100
+Message-Id: <20251106-twl6030-button-v4-0-fdf1aa6e1e9a@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251105082717.4040-1-enlin.mu@linux.dev>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKhjDGkC/3XNTQ6CMBCG4auQrq2Z/kJdeQ/jgsIIjYSaFlFDu
+ LuFjRri8pvkeWciEYPDSA7ZRAKOLjrfpyF3Ganasm+QujptwoErBhzo8Og0CKD2Pgy+p4Woc2U
+ saEBNEroFvLjnGjyd025dHHx4rf2RLde/qZFRoEag1FKWlcnl8Yqhx27vQ0OW1si/vNh6njwYr
+ UQNquSWbbz4eAZq48Xy34ocLbdgCvPj53l+Azwsb84tAQAA
+X-Change-ID: 20251020-twl6030-button-83d759b060e6
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andreas Kemnade <andreas@kemnade.info>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Tony Lindgren <tony@atomide.com>, Kevin Hilman <khilman@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-input@vger.kernel.org, linux-omap@vger.kernel.org, 
+ Andreas Kemnade <akemnade@kernel.org>
+X-Mailer: b4 0.15-dev-a6db3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1399; i=akemnade@kernel.org;
+ h=from:subject:message-id; bh=tVUjwWb1CfWgeIFxeXGVCyzPXpJMgM4oRKMCYqPVFbY=;
+ b=owGbwMvMwCUm/rzkS6lq2x3G02pJDJk8yevfr0tz7k/xWmUalsD2oHdqTW280alJl/Z+Pr5ba
+ tVx86nVHaUsDGJcDLJiiiy/rBXcPqk8yw2eGmEPM4eVCWQIAxenAEyE5zfDX7FrqtrWOWXVecz3
+ cr8F77p0KODwz+siS+akfZIwLdtgOJ2RoeVadI/eojXbv94W8LhyuKGmeyGj6bGq52b6LN589/3
+ PcAIA
+X-Developer-Key: i=akemnade@kernel.org; a=openpgp;
+ fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
 
-On Wed, Nov 05, 2025 at 04:27:17PM +0800, Enlin Mu wrote:
-> From: Enlin Mu <enlin.mu@uisoc.com>
-> 
-> add debug info. sometimes cmdline in dts is too long,
+Like the TWL4030, the TWL603x also has a power button feature,
+so extend the TWL4030 power button driver to support TWL603x.
 
-I don't see debug info here.
+Signed-off-by: Andreas Kemnade <akemnade@kernel.org>
+---
+Changes in v4:
+- reorder includes
+- use register numbers in struct initializers directly
+- Link to v3: https://patch.msgid.link/20251105-twl6030-button-v3-0-9b37eb2b0989@kernel.org
 
-Please use full sentences, starting with capital letter and ending with
-full stop.
+Changes in v3:
+- static definition of chipdata
+- stricter rules in common part of binding
+- Link to v2: https://lore.kernel.org/r/20251030-twl6030-button-v2-0-09653d05a2b1@kernel.org
 
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+Changes in v2:
+- integrate driver into existing TWL4030 driver
+- improve commit messages
+- Link to v1: https://lore.kernel.org/r/20251020-twl6030-button-v1-0-93e4644ac974@kernel.org
 
+---
+Andreas Kemnade (3):
+      dt-bindings: mfd: twl: enable power button also for twl603x
+      Input: twl4030 - add TWL603x power button
+      ARM: dts: ti/omap: omap4-epson-embt2ws: add powerbutton
 
-> developers are not aware of the length limit of the
-> cmdline, resulting in some misjudgments.
-> 
-> Signed-off-by: Enlin Mu <enlin.mu@uisoc.com>
-> ---
->  drivers/of/fdt.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index 0edd639898a6..077799b2f565 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -1085,6 +1085,8 @@ int __init early_init_dt_scan_chosen(char *cmdline)
->  	p = of_get_flat_dt_prop(node, "bootargs", &l);
->  	if (p != NULL && l > 0)
->  		strscpy(cmdline, p, min(l, COMMAND_LINE_SIZE));
-> +	if (l > COMMAND_LINE_SIZE)
-> +		pr_warn("cmdline overflows from bootargs\n");
-
-Why only OF early should have this warning and cmdline passed via ATAGS
-or in ACPI system should not?
+ Documentation/devicetree/bindings/mfd/ti,twl.yaml | 40 +++++++++++++---
+ arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts |  5 ++
+ drivers/input/misc/twl4030-pwrbutton.c            | 58 +++++++++++++++++++++--
+ 3 files changed, 93 insertions(+), 10 deletions(-)
+---
+base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
+change-id: 20251020-twl6030-button-83d759b060e6
 
 Best regards,
-Krzysztof
+--  
+Andreas Kemnade <akemnade@kernel.org>
 
 
