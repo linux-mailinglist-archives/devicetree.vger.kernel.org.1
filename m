@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-235869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9351C3DB0A
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 23:51:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FF2EC3DB37
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 23:55:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57A59188B253
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 22:52:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C1993A5DF3
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 22:54:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 831AB306B12;
-	Thu,  6 Nov 2025 22:51:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13CE12DA77E;
+	Thu,  6 Nov 2025 22:54:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="yIjWpIx5"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="HeLO/m2C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FC372F746F;
-	Thu,  6 Nov 2025 22:51:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B32C2F6919;
+	Thu,  6 Nov 2025 22:54:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762469512; cv=none; b=pdGcWP710wYzUrXEikHcxYJzOgp48ZpZItdVrl5hMlpP5zACyH9j9MidmcZM7TKVqkgpRg7eBz+7yFzEkyBBrXHsQGdbzpzhCD+gguOpySeCMTFgYAT+AbbN0cnMsNFpwBImBaCiC1esEMnzS5PnPUUizpT2XyEXc5JMCx2TRcw=
+	t=1762469696; cv=none; b=mh+ts4hMgDi8SoXmdj4uWkxLV72t5beKGbVelCjwBSK/EP9h5K4JE4gmTIFijHUwqZgOhRPR0j9Q2Xbw723pbwqD6bbN6wWu0zu2Nc53D2C1F+pXKpLYLFBouR0PD0a2jdjQUWDwYP5MIgzYxiUOuZPXT6P6hzvxzxdO8htU0d8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762469512; c=relaxed/simple;
-	bh=T5RnXfkphYkI1OmEJLaNXb5cQNY5bpX8r8geheayJp8=;
+	s=arc-20240116; t=1762469696; c=relaxed/simple;
+	bh=BrsqOuAdcrcQITO7mEucoO7PQVn5tFuaxhOKLXgrzmA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=K2dmf7KqXJnUHq8JtGDWTjtF+YQMJHv2ohKiZEBO7j5liRK8cGRei96Y9/oinEo3dqPBg3fC6pP9GswAwU/piNS5+hFl3p56rrfJT92KDKlfQBMTnikyBfRZuhkw7yxZEcAXfnqjgypVWQUmT2Zk4Mf1VW4CpepbUwOcNF6PWxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=yIjWpIx5; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=tFYVVvQVTlyZuSTOw7Q8Cq9k2+qfdXC3lWzUaAIiioCRHfEh9NzRygfJq/8Vfu6HsruVPlO4FbJI6rnyd5zo4/nP4UgNcqNsJ0cda/Tq2CWqESbK/tYalJHNrF0YQ2gnhAtSLDfHdHlJap5HKlAJVzpteKOUL6Y/d2cpXI0oFMo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=HeLO/m2C; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=Dvf/XQpzulji1wBhBHLC8XVhm9Xe3eYDeZQP7tzMob0=; b=yIjWpIx5joxDlkCEEOayYDdvkF
-	E4y4iX+xlBS0cYIF0dlv2X8MnTLPR2GT7/iGLLPbDiHL/ftjrbiNsce/KIu/r0bIzisALENVXwMNX
-	9Jq0M125bUHdah5OUvBLrV7HdTKu+oHCVuGcqlMNHGXXJCgHTOW5BfTA/OJfY1aANka9B2uu8v+yL
-	u3IiKF2KGD3SKucquTQRMVFZo830WdFRVQbu6aywuKLRXZKNIveDqB0l3UScL04mxSqoqs/FlxiDO
-	xs3G+PM9CsF+iFlk7eoKcXGbZCwn3ZuahwpDvR273xXHVqppQT5wNtojuAdl9Tgh1USDVzsdjmcDB
-	TX20EwoQ==;
+	bh=1X/CXcnKu0utomIoDVTa8ejjlinauV2USLh4t/RueAg=; b=HeLO/m2CPzKLXigoYGRXggshjT
+	mBlEYe3+mSRH4JhbWQahv5wTHPo02zAgAdwp4xkKdrnE8TNMhOMmP2JHeNxLP/IKB3ZfCGNw/1Q7K
+	7ZwBNet8eT7aFBxEUukH4xOIUQkjje2WPh8mLsLUNlz8mS/Ms95B2RhyBFzYe1KGZjghcWHirxTNk
+	qfpw/pO/dVpLqmnauHd7nV8BEdiLN4lc+dwhAp6E0Fc7l0iTO6PukVqK08aK+hZhPzUdhkNMIT99y
+	vc/jRiy4rs04C0TQP1Eifl+bfL7lv+p/YB9E6fsvid2+NaF+yABDumfWDZMGs3SHkNakc9mkKDMOG
+	UFr250Gg==;
 Received: from i53875bac.versanet.de ([83.135.91.172] helo=phil.localnet)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1vH8pR-0001my-97; Thu, 06 Nov 2025 23:51:41 +0100
+	id 1vH8sQ-0001oK-HK; Thu, 06 Nov 2025 23:54:46 +0100
 From: Heiko Stuebner <heiko@sntech.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, Dragan Simic <dsimic@manjaro.org>,
@@ -55,8 +55,8 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 Subject:
  Re: [PATCH v5 3/3] arm64: dts: rockchip: Add devicetree for the 9Tripod X3568
  v4
-Date: Thu, 06 Nov 2025 23:51:40 +0100
-Message-ID: <7930630.EvYhyI6sBW@phil>
+Date: Thu, 06 Nov 2025 23:54:45 +0100
+Message-ID: <3719039.iIbC2pHGDl@phil>
 In-Reply-To: <20251103171702.1518730-4-coiaprant@gmail.com>
 References:
  <20251103171702.1518730-1-coiaprant@gmail.com>
@@ -69,8 +69,6 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-
-Hi,
 
 Am Montag, 3. November 2025, 18:17:02 Mitteleurop=C3=A4ische Normalzeit sch=
 rieb Coia Prant:
@@ -89,161 +87,82 @@ rieb Coia Prant:
 >=20
 > The X3568 board has multiple hardware revisions, and we currently support=
  v4 (I/O board).
-
-[...]
-
+>=20
+> Specification:
+> - SoC: RockChip RK3568 ARM64 (4 cores)
+> - eMMC: 16-128 GB
+> - RAM: 2-16 GB
+> - Power: DC 12V 2A
+> - Ethernet: 2x YT8521SC RGMII (10/100/1000 Mbps)
+> - Wireless radio: 802.11b/g/n/ac/ax dual-band
+> - LED:
+>   Power: AlwaysOn
+>   User: GPIO
+> - Button:
+>   VOL+: SARADC/0 <35k =C2=B5V>
+>   VOL-: SARADC/0 <450k =C2=B5V>
+>   Power/Reset: PMIC RK809
+> - CAN
+>   CAN/1: 4-pin (PH 2.0)
+> - PWM
+>   PWM/4: Backlight DSI/0 DSI/1
+>   PWM/7: IR Receiver [may not install]
+> - UART:
+>   UART/2: Debug TTL - 1500000 8N1 (1.25mm)
+>   UART/3: TTL (PH 2.0)
+>   UART/4: TTL (PH 2.0)
+>   UART/8: AP6275S Bluetooth
+>   UART/9: TTL (PH 2.0)
+> - I2C:
+>   I2C/0: PMIC RK809
+>   I2C/1: Touchscreen DSI/0 DSI/1
+>   I2C/4: Camera
+>   I2C/5: RTC@51 PCF8563
+> - I2S:
+>   I2S/0: miniHDMI Sound
+>   I2S/1: RK809 Audio Codec
+>   I2S/3: AP6275S Bluetooth Sound
+> - SDMMC:
+>   SDMMC/0: microSD (TF) slot
+>   SDMMC/2: AP6275S SDIO WiFi card
+> - Camera: 1x CSI
+> - Video: miniHDMI / DSI0 (MIPI/LVDS) / DSI1 (MIPI/EDP)
+> - Audio: miniHDMI / MIC on-board / Speaker / SPDIF / 3.5mm Headphones / A=
+P6275S Bluetooth
+> - USB:
+>   USB 2.0 HOST x2
+>   USB 2.0 HOST x3 (4-pin)
+>   USB 2.0 OTG x1 (shared with USB 3.0 OTG/HOST) [slot may not install]
+>   USB 3.0 HOST x1
+>   USB 3.0 OTG/HOST x1
+> - SATA: 1x SATA 3.0 with Power/4-pin [slot may not install]
+> - PCIe: 1x PCIe 3.0 x2 (x4 connecter) [power/clock/slot may not install]
+>=20
+> Link:
+> - https://appletsapi.52solution.com/media/X3568V4%E5%BC%80%E5%8F%91%E6%9D=
+%BF%E7%A1%AC%E4%BB%B6%E6%89%8B%E5%86%8C.pdf
+> - https://blog.gov.cooking/archives/research-ninetripod-x3568-v4-and-flas=
+h.html
+>=20
 > Signed-off-by: Coia Prant <coiaprant@gmail.com>
 
-I've dropped the camera overlay for the time being, when applying the
-board, because there were a number of smallish issues with it.
-
-So please submit it separately again. Also, how can you use the camera
-yet, when the whole vicap work is still pending?
-
-Details below
-
-> ---
->  arch/arm64/boot/dts/rockchip/Makefile         |  11 +
->  .../rk3568-9tripod-x3568-v4-camera-demo.dtso  |  84 ++
->  .../rk3568-9tripod-x3568-v4-video-demo.dtso   | 154 +++
->  .../dts/rockchip/rk3568-9tripod-x3568-v4.dts  | 887 ++++++++++++++++++
->  4 files changed, 1136 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-9tripod-x3568-v4-=
-camera-demo.dtso
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-9tripod-x3568-v4-=
-video-demo.dtso
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-9tripod-x3568-v4.=
-dts
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/=
-rockchip/Makefile
-> index ad684e383..959a806a2 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -130,6 +130,9 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3566-lubancat-1.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3566-nanopi-r3s.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3566-bigtreetech-cb2-manta.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3566-bigtreetech-pi2.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-9tripod-x3568-v4.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-9tripod-x3568-v4-camera-demo.dtbo
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-9tripod-x3568-v4-video-demo.dtbo
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-bpi-r2-pro.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-evb1-v10.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-fastrhino-r66s.dtb
-> @@ -252,6 +255,14 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3576-armsom-sige5=
-=2Dv1.2-wifibt.dtb
->  rk3576-armsom-sige5-v1.2-wifibt-dtbs :=3D rk3576-armsom-sige5.dtb \
->  	rk3576-armsom-sige5-v1.2-wifibt.dtbo
-> =20
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-9tripod-x3568-v4-camera-demo.dtb
-> +rk3568-9tripod-x3568-v4-camera-demo-dtbs :=3D rk3568-9tripod-x3568-v4.dt=
-b \
-> +	rk3568-9tripod-x3568-v4-camera-demo.dtbo
-> +
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3568-9tripod-x3568-v4-video-demo.dtb
-> +rk3568-9tripod-x3568-v4-video-demo-dtbs :=3D rk3568-9tripod-x3568-v4.dtb=
- \
-> +	rk3568-9tripod-x3568-v4-video-demo.dtbo
-> +
-
-when adding overlays, please sort them correctly,
-rk3568-9tripod* should be above rk3568-wolfvision*
-
-
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-edgeble-neu6a-wifi.dtb
->  rk3588-edgeble-neu6a-wifi-dtbs :=3D rk3588-edgeble-neu6a-io.dtb \
->  	rk3588-edgeble-neu6a-wifi.dtbo
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-9tripod-x3568-v4-camera-=
-demo.dtso b/arch/arm64/boot/dts/rockchip/rk3568-9tripod-x3568-v4-camera-dem=
-o.dtso
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-9tripod-x3568-v4-video-d=
+emo.dtso b/arch/arm64/boot/dts/rockchip/rk3568-9tripod-x3568-v4-video-demo.=
+dtso
 > new file mode 100644
-> index 000000000..2b428ca71
+> index 000000000..e7fa1ca48
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-9tripod-x3568-v4-camera-demo.dt=
-so
-> @@ -0,0 +1,84 @@
-
-[...]
-
-> +&csi_dphy {
-> +	status =3D "okay";
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-9tripod-x3568-v4-video-demo.dtso
+> @@ -0,0 +1,154 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
 > +
-> +	ports {
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		port@0 {
+> +// This is a sample reference, due to lack of hardware can not be tested=
+, at your own risk
 
-=2E./arch/arm64/boot/dts/rockchip/rk3568-9tripod-x3568-v4-camera-demo.dtso:=
-41.8-56.4: Warning (graph_child_address): /fragment@2/__overlay__/ports: gr=
-aph node has single child node 'port@0', #address-cells/#size-cells are not=
- necessary
+and I've also dropped the 2nd overlay now.
+Please only ever submit patches for stuff you have actually tested.
 
-
-> +			reg =3D <0>;
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +
-> +			mipi_in_ucam: endpoint@2 {
-> +				reg =3D <2>;
-> +				remote-endpoint =3D <&ucam_out>;
-> +				data-lanes =3D <1 2 3 4>;
-> +			};
-> +		};
-> +	};
-
-/home/devel/hstuebner/00_git-repos/linux-rockchip/_build-arm64/arch/arm64/b=
-oot/dts/rockchip/rk3568-9tripod-x3568-v4-camera-demo.dtb: phy@fe870000 (roc=
-kchip,rk3568-csi-dphy): 'ports' does not match any of the regexes: '^pinctr=
-l-[0-9]+$'
-        from schema $id: http://devicetree.org/schemas/phy/rockchip-inno-cs=
-i-dphy.yaml#
-
-not sure what is up with that.
-
-> +};
-> +
-> +&i2c4 {
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <0>;
-> +	status =3D "okay";
-> +
-> +	camera@37 {
-> +		compatible =3D "ovti,ov5695";
-> +		reg =3D <0x37>;
-> +		clocks =3D <&cru CLK_CIF_OUT>;
-> +		clock-names =3D "xvclk";
-> +		avdd-supply =3D <&vcc_cam>;
-> +		dvdd-supply =3D <&vcc_cam>;
-> +		dovdd-supply =3D <&vcc_cam>;
-> +		pinctrl-names =3D "default";
-> +		pinctrl-0 =3D <&cif_clk>;
-> +		reset-gpios =3D <&gpio3 RK_PB6 GPIO_ACTIVE_LOW>;
-> +		pwdn-gpios =3D <&gpio4 RK_PB4 GPIO_ACTIVE_LOW>;
-> +
-> +		port {
-> +			ucam_out: endpoint {
-> +				remote-endpoint =3D <&mipi_in_ucam>;
-> +				data-lanes =3D <1 2 3 4>;
-> +			};
-> +		};
-
-/home/devel/hstuebner/00_git-repos/linux-rockchip/_build-arm64/arch/arm64/b=
-oot/dts/rockchip/rk3568-9tripod-x3568-v4-camera-demo.dtb: camera@37 (ovti,o=
-v5695): port:endpoint:data-lanes: [1, 2, 3, 4] is too long
-        from schema $id: http://devicetree.org/schemas/media/i2c/ovti,ov569=
-3.yaml#
-/home/devel/hstuebner/00_git-repos/linux-rockchip/_build-arm64/arch/arm64/b=
-oot/dts/rockchip/rk3568-9tripod-x3568-v4-camera-demo.dtb: camera@37 (ovti,o=
-v5695): Unevaluated properties are not allowed ('port', 'pwdn-gpios' were u=
-nexpected)
-        from schema $id: http://devicetree.org/schemas/media/i2c/ovti,ov569=
-3.yaml#
-
-
-> +	};
-> +};
-
+We don't really add stuff with "use at your own risk" caveats ;-)
 
 
 Heiko
