@@ -1,220 +1,215 @@
-Return-Path: <devicetree+bounces-235709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62131C3B9E5
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 15:15:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33BF7C3BB5B
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 15:25:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F6A41896286
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 14:15:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DFF9F1AA6AAD
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 14:24:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6939341663;
-	Thu,  6 Nov 2025 14:13:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6892F33F360;
+	Thu,  6 Nov 2025 14:18:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XcI4EWlD"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="pHS0e98b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com (mail-northcentralusazhn15012043.outbound.protection.outlook.com [52.102.146.43])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95B8B33DEE4;
-	Thu,  6 Nov 2025 14:13:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.102.146.43
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762438395; cv=fail; b=CHgq6WXn++kli7rGVAqXwcKVHpgSXPS9vL+81tXjHfjYcijUGfXMYqke4t6DhiafptO5sHabYr6bj1KJ8ltKYadmphuyKVO5C3qcBVT6EEaavQP/4cTCOM2CGfvAjUvWU3Fom0M50MM1Adk5G2EXOjwXKboN5ydL6uCS6y42C24=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762438395; c=relaxed/simple;
-	bh=edyKTNo6LdBH8aX0gpXwILlM7nEA+lvqqMqlvAHp4P0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=b8S6huPojJNkO9+SgE0WN8YltR3YpLV4/gSvEpM6wNE/Mc4F8c4SuvdapL0Rvqgv14zMJh6G9hs8SvvvqeLRhQ7n1/rZZ5+UOSDsoDYHUAFpPz0aqlB2WkZ7XlS5IwVCGkyyGWJq0D99Lbb/lNUAo03aQF3YKzzq2I7MW9NA3CM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XcI4EWlD; arc=fail smtp.client-ip=52.102.146.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VfqNU8FpgZfB4HGnIqvenCyi7aeeskmWt2lhIbXgUcWGyeEyHZBgreElriY8gehM5rI0q2rZeYRneOaX25tXjD+/cWObC4KbnSBDWrnqJCBOIXhVAPiB2K0xsHbDvodcswy+nOq5gCsQnX2sETwIle+L+wljDFaIZd28OJnsBaU9F3Zj3HthRzm6J5uIQCDVQgWHQfidjXxp0MTHV5WlEm+vk1m3VPdvRjcuUwbQVa4SF6RekDuh5PeOdBKPuC8+b83NhzNcyAjpQK2DDuvI3tPIoN5Z0pxhAO7uORHmwT5nivKWHIhZbocQJ68YOPHUpkNwFFypz+FGayP4HgVSNg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wwlKsDXAyd4qlaamF8RAvN3x3zyji7/h09GYHZOJ980=;
- b=taGh7VEHPUs18qRCPApLi6Zs+g2thncbSKErql9JK0Nti1CLzZl/0k20wsC+PDGBQNRafI4FokO+EHuAm1JFGeWDQ8PcG/a2bG0vHpvCrPrMqdyvnf0rqasujqhe1NhuEKGsDXqWdza0mPbj4u6NbG4RVkIJFrngqgdsgHaD6D9wPTVnOQsvfbf2E5PAJACSLZb3nyNl39Hi/SVhOvNcCOl6k3zT/gWAmyQiUbbtqokzdHFGxF2NHs/srMljkX0N3ZTbDIxpXb6okDHGtlyVuHxJGiKsz3/EqxzlXgr9gRy5zGoueDSGxNWkpmSMkSa3UUJL0Ls02oF2SOJ986/FwQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wwlKsDXAyd4qlaamF8RAvN3x3zyji7/h09GYHZOJ980=;
- b=XcI4EWlD2wdN1nPaEcMYssyX+Xy6IFX1Sx1SF9tWwNrYvslxfqEHluGeLB/8KvuZ9C7NmUox4PsYnRpghkpxZzoREVFOcw48IINfD9TWgP1NtpdZ5W3Rr56OnVpOy48aD/hhXug5JfdHmKQrW1iQKLUSfEnsa9h1VVKR4uiUzuc=
-Received: from PH5P220CA0008.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:34a::6)
- by SA1PR10MB7683.namprd10.prod.outlook.com (2603:10b6:806:386::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.7; Thu, 6 Nov
- 2025 14:13:08 +0000
-Received: from CY4PEPF0000EE3E.namprd03.prod.outlook.com
- (2603:10b6:510:34a:cafe::d2) by PH5P220CA0008.outlook.office365.com
- (2603:10b6:510:34a::6) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9298.12 via Frontend Transport; Thu,
- 6 Nov 2025 14:13:18 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- CY4PEPF0000EE3E.mail.protection.outlook.com (10.167.242.16) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9298.6 via Frontend Transport; Thu, 6 Nov 2025 14:13:08 +0000
-Received: from DLEE203.ent.ti.com (157.170.170.78) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 6 Nov
- 2025 08:13:04 -0600
-Received: from DLEE202.ent.ti.com (157.170.170.77) by DLEE203.ent.ti.com
- (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 6 Nov
- 2025 08:13:04 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE202.ent.ti.com
- (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 6 Nov 2025 08:13:04 -0600
-Received: from a0512632.dhcp.ti.com (a0512632.dhcp.ti.com [172.24.233.20])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5A6ECRES1335893;
-	Thu, 6 Nov 2025 08:12:58 -0600
-From: Swamil Jain <s-jain1@ti.com>
-To: <jyri.sarha@iki.fi>, <tomi.valkeinen@ideasonboard.com>,
-	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-	<tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>, <nm@ti.com>,
-	<vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <lee@kernel.org>,
-	<louis.chauvet@bootlin.com>, <aradhya.bhatia@linux.dev>
-CC: <devarsht@ti.com>, <praneeth@ti.com>, <h-shenoy@ti.com>,
-	<dri-devel@lists.freedesktop.org>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [RESEND PATCH v2 5/5] drm/tidss: Fix sampling edge configuration
-Date: Thu, 6 Nov 2025 19:42:27 +0530
-Message-ID: <20251106141227.899054-6-s-jain1@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251106141227.899054-1-s-jain1@ti.com>
-References: <20251106141227.899054-1-s-jain1@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4CE72E7F1C;
+	Thu,  6 Nov 2025 14:18:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762438701; cv=none; b=Vh1CwRVtrEF2VNYeVUf9COU86YGTibBHrsrQpy2n71z1J9LFM4CGxLcwfQdslNUvE3bMiBv5IKaM1ndphIko/C0JCAKAGq6DRwrya28/amskPRg+Nenx78c1KVNXORp7nchvJGJzA/alfukQNMqeRIKexWEMrEYat/WOEB9QfWc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762438701; c=relaxed/simple;
+	bh=D1YqLCZ+wLztmcGu4DKC3azE74VCT3buGcL50oC22eU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=qNTDgGWMF1OyerFPpvpNtONBxmYCvZxvd8xrPwHVRahcjit13iJgOpXw4YLuwqOONc268zm9ztrUVqOOekaktC8WrM6eAekPRnN650K7WlNqkLEaiy+KEPglIn56txRi6IUbD1Jk1oWWvg8MgqYw1ITWeHC9QS7qMTsfWBa1CxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=pHS0e98b; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1762438690;
+	bh=D1YqLCZ+wLztmcGu4DKC3azE74VCT3buGcL50oC22eU=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=pHS0e98bq+XlRk1N9o9qiu5PBFQRLoK8tS0F0eg6MyGsSEDmpq5aGzsBXdGA/LFla
+	 zOay8S0aKHGlPX5dPqGUIqBCToYQjXKFXU9r6OxDTHAAW6opc7D6jLbwvNiwsTa7U6
+	 veFCOG4PgaL77nH4Vbsy+4mjMCgaYgVqeD/paKL5CCyNFwKUFFXR+UNhveCb8m66RR
+	 2jtKQNsK+nCMJHZ1UNizKFYB3aX9MyJOv2CN/PWJkEPYVq+OMgqsWu8tDw3t3mTnQT
+	 pGRh4WA6JN4FjINHYkc5/rkhH3ZDix99BreqWFTYGCvw98WzVeWxGsErhBWpQKvqQ4
+	 yvUvpGLKg3YSg==
+Received: from [IPv6:2606:6d00:11:ef24::c41] (unknown [IPv6:2606:6d00:11:ef24::c41])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2A83117E0299;
+	Thu,  6 Nov 2025 15:18:08 +0100 (CET)
+Message-ID: <c49b979fd911f2587bbfed129b07065f1cd2a2db.camel@collabora.com>
+Subject: Re: [PATCH v5 0/8] Enable video decoder & encoder for MT8189
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Kyrie Wu <kyrie.wu@mediatek.com>, Tiffany Lin
+ <tiffany.lin@mediatek.com>,  Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+ Yunfei Dong <yunfei.dong@mediatek.com>, Mauro Carvalho Chehab	
+ <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger	
+ <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
+ <angelogioacchino.delregno@collabora.com>, Hans Verkuil
+ <hverkuil@xs4all.nl>,  Nathan Hebert <nhebert@chromium.org>, Arnd Bergmann
+ <arnd@arndb.de>, Irui Wang <irui.wang@mediatek.com>,  George Sun
+ <george.sun@mediatek.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, 	linux-mediatek@lists.infradead.org,
+ Yilong Zhou <yilong.zhou@mediatek.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz
+	 <andrzejtp2010@gmail.com>
+Date: Thu, 06 Nov 2025 09:18:06 -0500
+In-Reply-To: <20251106061323.2193-1-kyrie.wu@mediatek.com>
+References: <20251106061323.2193-1-kyrie.wu@mediatek.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-AX19oTKFu1+mQq19n1Qb"
+User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3E:EE_|SA1PR10MB7683:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5eb7caa7-a774-454c-96e1-08de1d3e9c9d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|376014|7416014|36860700013|34020700016|921020|12100799066;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?M0cGdcT3VbW6LcL+M5y1NsTkdTQ4w0M38hZG0gDHveWtOKT5V22EXme8q7/T?=
- =?us-ascii?Q?MgnhXdrLhoP8MlZ61v5iv+QKS5f/Swlt4Uw4WQdyqU1G5qgNNWoevjSWpUSd?=
- =?us-ascii?Q?jKds3yAsC3GOQwa4mg7ziUpnx0xIW5wkM1Y88QQWDQRVSMklpCtwSMR4qSpS?=
- =?us-ascii?Q?wZ+lqqhFI0+FK0inpP5HkgB8u53lk1qfbEwWPt8upFQeXfOk5/jheq6U6Afj?=
- =?us-ascii?Q?6HKZeRtM6neYN62/lMcpCF9Cenji9IkLDGcTspZi6ju/i/OVKNM6BljnJZfU?=
- =?us-ascii?Q?BRwBfaahU3FOnDP8805o8TmfMJVmx2aeBpineQRJzEeJ9B2Gf7/Z7kcj7gXt?=
- =?us-ascii?Q?7NjjqbLBQwE2sZg8GWGRdWrrDyheV0qvbh1/tFb7KJICJ6gH9TPuigBjW0NV?=
- =?us-ascii?Q?+vdJQJim1y11gE/XtcIv4Xc1yLOtlxi8dDdPOw6MVWcUVCalMx+60sA4qaCe?=
- =?us-ascii?Q?5PTRq4RTP6bVc3lrDlW6vqjOojsaPQEAImh0pDYozUFCAHHfK7PlZR1juQ3p?=
- =?us-ascii?Q?Fd7RmhxTF7hEUOcRVqJY9//gtZDNFhFXPsA/HLNgS9+VlLNeloisKogIfPge?=
- =?us-ascii?Q?twjZN3mwhPsFRxXLMxa7kDS6E6rrJ8iSlEe7oltGpScd5XSHQg/3cKWtuB/J?=
- =?us-ascii?Q?RmtGX02Fz0OUHqOtLg1HzGJqW3QC/vtMG2dGtZ9RTrgkdgG5T8sakpCDwzLv?=
- =?us-ascii?Q?YOiJmu7uZe0GlykPo9Lv2NUk+6HAojvlW0MljjLSo2Bd4hr9oYZG6MGERI+y?=
- =?us-ascii?Q?9cW3VB+DjFnzWMUEPTnSiOKDzmuJqASwPbVuvZ4bpaWIP6+Ox5J9pjFIKAkb?=
- =?us-ascii?Q?II5iKbxeEW2OukkDErzxnJO51BujpcWgE0YOhs+uf7P3/nUYg+lXE6r/P29i?=
- =?us-ascii?Q?i5JCnH2u8Hger3pHwHZd3t3WqGj5zUuIYTTD1RjQ+jpvO6MNbsOWYdNJYhCJ?=
- =?us-ascii?Q?nCCowy/x5JC44Yzz+m2X3uq1TektCwIXZdK7LTJNMbIxBZ5tOX4op2BBZ436?=
- =?us-ascii?Q?eYrKJzCUpOwR3uAOTmiF3L0PJ8v8L02VS9fDdQLyRraM+aD9g5A8UW0twUcH?=
- =?us-ascii?Q?I++LFtczji6ptETNqMYwkADocXOGLe5cGUrfSwWsbZTYIrO+Y92g+wd/fWZX?=
- =?us-ascii?Q?DKI11IYtxQqOF5uRgIFKwDvQzRxNnfXgLsLXjrPXOBD/R4AujFwxF/4r7RFc?=
- =?us-ascii?Q?mpWLcfB+ozx8jxvjZI/K1xk0Jmq0SBGUWxwzCTO/Q7wgV6u/6LvL+RQyDgXA?=
- =?us-ascii?Q?PE/8s6uPkJPFy+dgk52V+3WJzncd+0b6I71tnM1tShLS4SehZwvbtsnvsEkd?=
- =?us-ascii?Q?lA29ZZFNo/REFdr8HLi0a2aQYlJg1iaoZMmq6xUxNTykRTum3FInZYkCKFpx?=
- =?us-ascii?Q?7jtj4V0i4Fhhg6O41Wyp4ca/r8Mh+xEtJxCRZ1dugX33qQmHGhwLO1HJsRxU?=
- =?us-ascii?Q?kn9pJ49KA7wrUq0xyOYLObM/WxwbRfsYCKT5i7Hz/jn1Mee8ehrRCPAcEOVD?=
- =?us-ascii?Q?6D3/ITjm5uN8h0YezUyjFuz4y+g6XdKZGqozXfYFZNl4BdeNg4DIWomix/Oa?=
- =?us-ascii?Q?HqoIVwTa51hYjtPYnktGku05mfkCHDMRiMD8lO0/?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(7416014)(36860700013)(34020700016)(921020)(12100799066);DIR:OUT;SFP:1501;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2025 14:13:08.5509
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5eb7caa7-a774-454c-96e1-08de1d3e9c9d
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000EE3E.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR10MB7683
 
-From: Louis Chauvet <louis.chauvet@bootlin.com>
 
-As stated in the AM62x Technical Reference Manual (SPRUIV7B)[1], the data
-sampling edge needs to be configured in two distinct registers: one in the
-TIDSS IP and another in the memory-mapped control register modules. Since
-the latter is not within the same address range, a phandle to a syscon
-device is used to access the regmap.
+--=-AX19oTKFu1+mQq19n1Qb
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Configure the CTRL_MMR register, as mentioned in the Technical Reference
-Manual to fix sampling edge.
+Hi,
 
-[1]: https://www.ti.com/lit/ug/spruiv7b/spruiv7b.pdf
+Le jeudi 06 novembre 2025 =C3=A0 14:13 +0800, Kyrie Wu a =C3=A9crit=C2=A0:
+> This series have the follow changing:
+> Firstly add mt8189 video decoder compatible, profile and level to support
+> MT8189 kernel driver.
+> Secondly fix some bugs, including vp 4K profile2 and media device node
+> number bug.
+> Lastly, add mt8189 video encoder compatible.
+>=20
+> This series has been tested with MT8189 tast test.
+> Encoding and decoding worked for this chip.
+>=20
+> Patches 1-2 Add decoder compatible.
+> Patches 3 Add profile and level supporting.
+> Patches 4 Add core-only VP9 decoding supporting.
+> Patches 5-6 fix some bugs.
+> Patches 7-8 Adds encoder compatible.
+>=20
+> ---
+> H264 test results:
+> ./fluster.py run -d GStreamer-H.264-V4L2SL-Gst1.0 -j2 -t 90
+> =C2=A0=C2=A0=C2=A0 JVT-AVC_V1	Ran 96/135 tests successfully
+>=20
+> VP9 test results:
+> ./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0 -j2 -t 90
+> 	VP9-TEST-VECTORS	Ran 276/305 tests successfully
+>=20
+> v4l2-compliance test results:
+> Compliance test for mtk-vcodec-enc device /dev/video2:
+> Total for mtk-vcodec-enc device /dev/video2: 47, Succeeded: 46, Failed: 1=
+, Warnings: 0
 
-Fixes: ad2ac9dc9426 ("drm/tidss: Add support for AM625 DSS")
-Fixes: 5cc5ea7b6d7b ("drm/tidss: Add support for AM62A7 DSS")
-Cc: stable@vger.kernel.org
-Signed-off-by: Louis Chauvet <louis.chauvet@bootlin.com>
-Signed-off-by: Swamil Jain <s-jain1@ti.com>
+There is one fail, can you explain it ?
+
+Nicolas
+
+> Compliance test for mtk-vcodec-dec device /dev/video3:
+> Total for mtk-vcodec-dec device /dev/video3: 48, Succeeded: 48, Failed: 0=
+, Warnings: 0
+>=20
+> scp upstream link:
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20250811015922.=
+32680-1-huayu.zong@mediatek.com/
+> dtsi upstream link:
+> https://lore.kernel.org/linux-mediatek/20251030134541.784011-12-jh.hsu@me=
+diatek.com/T/#m847e35de0a5b18fac0ca0624a8559d84964ad5c7
+>=20
+> Changes compared with v4:
+> --update H264 & vp9 fluster test results
+> --update vp9 single core decoder prob size setting and commit messages
+>=20
+> Changes compared with v3:
+> --add reviewer to commit messages
+> --Rebased on top of the latest media tree
+>=20
+> Changes compared with v2:
+> --add H264 fluster test results
+> --reorder compatible string for dt-bindings
+>=20
+> Changes compared with v1:
+> --add v4l2-compliance test results
+> --add scp upstream link
+> --add HW difference discriptions for dt-bindings commit messages
+>=20
+> This series patches dependent on:
+> [1]
+> https://patchwork.linuxtv.org/project/linux-media/cover/20250510075357.11=
+761-1-yunfei.dong@mediatek.com/
+> [2]
+> https://patchwork.linuxtv.org/project/linux-media/cover/20250814085642.17=
+343-1-kyrie.wu@mediatek.com/
+>=20
+> Kyrie Wu (8):
+> =C2=A0 dt-bindings: media: mediatek: decoder: Add MT8189
+> =C2=A0=C2=A0=C2=A0 mediatek,vcodec-decoder
+> =C2=A0 media: mediatek: vcodec: add decoder compatible to support MT8189
+> =C2=A0 media: mediatek: vcodec: add profile and level supporting for MT81=
+89
+> =C2=A0 media: mediatek: vcodec: Add single core VP9 decoding support for
+> =C2=A0=C2=A0=C2=A0 MT8189
+> =C2=A0 media: mediatek: vcodec: fix vp9 4096x2176 fail for profile2
+> =C2=A0 media: mediatek: vcodec: fix media device node number
+> =C2=A0 dt-bindings: media: Add MT8189 mediatek,vcodec-encoder
+> =C2=A0 media: mediatek: encoder: Add MT8189 encoder compatible data
+>=20
+> =C2=A0.../media/mediatek,vcodec-encoder.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 2 +
+> =C2=A0.../media/mediatek,vcodec-subdev-decoder.yaml |=C2=A0 5 +-
+> =C2=A0.../vcodec/decoder/mtk_vcodec_dec_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0 9 +++-
+> =C2=A0.../vcodec/decoder/mtk_vcodec_dec_drv.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0 1 +
+> =C2=A0.../vcodec/decoder/mtk_vcodec_dec_stateless.c |=C2=A0 4 ++
+> =C2=A0.../vcodec/decoder/vdec/vdec_vp9_req_lat_if.c | 48 ++++++++++++++--=
 ---
- drivers/gpu/drm/tidss/tidss_dispc.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+> =C2=A0.../vcodec/encoder/mtk_vcodec_enc_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 | 14 ++++++
+> =C2=A07 files changed, 68 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
-index d8e1a1bcd660..d09eecb72dc0 100644
---- a/drivers/gpu/drm/tidss/tidss_dispc.c
-+++ b/drivers/gpu/drm/tidss/tidss_dispc.c
-@@ -500,6 +500,7 @@ struct dispc_device {
- 	const struct dispc_features *feat;
- 
- 	struct clk *fclk;
-+	struct regmap *clk_ctrl;
- 
- 	bool is_enabled;
- 
-@@ -1234,6 +1235,11 @@ void dispc_vp_prepare(struct dispc_device *dispc, u32 hw_videoport,
- 				  mode->crtc_hdisplay - 1) |
- 		       FIELD_PREP(DISPC_VP_SIZE_SCREEN_VDISPLAY_MASK,
- 				  mode->crtc_vdisplay - 1));
-+
-+	if (dispc->clk_ctrl) {
-+		regmap_update_bits(dispc->clk_ctrl, 0, 0x100, ipc ? 0x100 : 0x000);
-+		regmap_update_bits(dispc->clk_ctrl, 0, 0x200, rf ? 0x200 : 0x000);
-+	}
- }
- 
- void dispc_vp_enable(struct dispc_device *dispc, u32 hw_videoport)
-@@ -3003,6 +3009,14 @@ int dispc_init(struct tidss_device *tidss)
- 
- 	dispc_init_errata(dispc);
- 
-+	dispc->clk_ctrl = syscon_regmap_lookup_by_phandle_optional(tidss->dev->of_node,
-+								   "ti,clk-ctrl");
-+	if (IS_ERR(dispc->clk_ctrl)) {
-+		r = dev_err_probe(dispc->dev, PTR_ERR(dispc->clk_ctrl),
-+				  "DISPC: syscon_regmap_lookup_by_phandle failed.\n");
-+		return r;
-+	}
-+
- 	dispc->fourccs = devm_kcalloc(dev, ARRAY_SIZE(dispc_color_formats),
- 				      sizeof(*dispc->fourccs), GFP_KERNEL);
- 	if (!dispc->fourccs)
+--=-AX19oTKFu1+mQq19n1Qb
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaQyuHgAKCRDZQZRRKWBy
+9GzzAQC9JvEjAqGmbr6LW33oZiyGcWY0ryOA79ls2yujy1q7iwEA0bH9kaKtrf0m
+Qb5ZjB7rfho2ovN2pheFNN9ADJ88AQw=
+=8/5c
+-----END PGP SIGNATURE-----
+
+--=-AX19oTKFu1+mQq19n1Qb--
 
