@@ -1,178 +1,99 @@
-Return-Path: <devicetree+bounces-235522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1914AC39960
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 09:29:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2FF5C39972
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 09:30:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 08F464E4C57
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 08:29:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4243D1A204C8
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 08:30:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AADA830215F;
-	Thu,  6 Nov 2025 08:29:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66DE830506C;
+	Thu,  6 Nov 2025 08:30:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dR1kJ7Qs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YkrFpF8R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E168D302174;
-	Thu,  6 Nov 2025 08:29:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5A0330274E;
+	Thu,  6 Nov 2025 08:30:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762417754; cv=none; b=d+/i1H8RL4o4l2YJL30ojH5xbhj4fQnL2Y6kjuxwfX7HW56hSAqtR11Yd9xMVOqGmQYjE1l9vdP6Z0TWms5sRLQpHRACwSw4xafR0i/hDA38QF0Wda4xryV4iDv2QHCuucnv8BsQaOHSumOn8mfSiXeAonVlKjEz6uoFFAb8V4E=
+	t=1762417818; cv=none; b=FWkfhfBXzS8Q5Gx3ZpIuOLBDlcCPwKk0fdPHdhnJGeUxRClogVbNj3V+tLU3eJuTzj5l9cPkNB8m1fLQ7Z8SGhycPY/8WK4IGSE9g2E2Ed8TRCNqJoZzcOCmx1eQ25ta2pLahH+NYsdwRkKPV8iUxCYVXjKBhdg3Wws7IP6FfAc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762417754; c=relaxed/simple;
-	bh=wzbpmt9DYjDnOYsbKZsscaSDP3dQXL8FPtmzZlZYQ54=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=fggoKAJ6C7N2OlLQ6cUnRIS5g/xFhuKAMdqPHXG4KaMbazo/FNtLu0zw/4KQQL1WelWP4slY0yXDhUNpVc1OLI75N3TPGA2aCC3n58rNsg/GPEHNWEyyNkWg/ObKAWnO710U2xhb3kWiBppedCrlryTaPI/zst/v2TcDyRqvUMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dR1kJ7Qs; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A66RXmI1938890;
-	Thu, 6 Nov 2025 08:29:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ftdAUJ1zoIYS6ZwSplDb8Q4d/5w7ZpnVJCEZRLJ60xY=; b=dR1kJ7QskziBRs+j
-	vTxdNn8yHcE6FSGAWiD7GxvXRPol3+8SGy07W4mdFhY/jaJ68VWAXoJBxjOTDmhf
-	pgR/QwArMmExgK84pjJZ+Bgm79DDZLc+hg2M0z5FcrrHArGtV4aaamFFonN7rDeP
-	+BGrXn+oWeIpvglIPXAXqVfU+454s54YCtWWotlDhQ/fJxiq9filghCWKhMUpRHe
-	P2u7kHCmnH8ESsG1CkMNFkYAg/FjlwlV3aKvaDItflx4uhFt2jXhWOiPwf6LI6W+
-	DwsCiOl8y848EkF0ecZpiIf5XvAmqNFWyAzzjJ1yxhTgn/RPNhdWGmyty9sVrpNd
-	eX41WQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a8apgtbsu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 06 Nov 2025 08:29:09 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5A68T8mD022667
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 6 Nov 2025 08:29:08 GMT
-Received: from [10.204.78.32] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Thu, 6 Nov
- 2025 00:29:04 -0800
-Message-ID: <3ddb78d0-5afd-4ba7-a0a2-bfd5ae3696c4@quicinc.com>
-Date: Thu, 6 Nov 2025 13:59:01 +0530
+	s=arc-20240116; t=1762417818; c=relaxed/simple;
+	bh=Ftrv5VuX0KTJ6Y75vcl+0ke3OVFcYfWC+jWlBD5cdk0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Pzermgh2zEoKPtzgUrDbOcD1Sud2nN+eoewlR46tb52OXrX2/MCklP2fOs3M36zaHfjiwwB+DpJqh8Pk/mAsGl2nOKS4psaSIuvuDvopYJcm1pR/DtvEDR5dT1LhDDJq1uYiSaSnND83WWxUVByIuR+0zK/bxUUa9mMJkQ3c/jk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YkrFpF8R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83E05C4CEFB;
+	Thu,  6 Nov 2025 08:30:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762417818;
+	bh=Ftrv5VuX0KTJ6Y75vcl+0ke3OVFcYfWC+jWlBD5cdk0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YkrFpF8RzslCd2MrwxHGpTvWokWV3g8YYoCwZcjZgf0kS6PJhA+2eHZdbxcAPFJH/
+	 E/DZ0Icl49dYFQYzMEyEK+XdS/2IBasr2V+HWN3M6V15PU/+ljUwZ9r4ripGhRVPnW
+	 ysDXPiepUiHXtAMlNJ0uX3ubKVaeI/c2mPSPgVvdPMSZXEyQjqUNxSSZIXMOBnraQR
+	 OGX5zkycAUa1moTk5DdfuXxqfkKcHNCpMZ97Av2qQYfEbMi/yx0I4o3y4JtlvelqOQ
+	 rjzt5sYuuLN/+y7HP6FWK8GWZUt1ROoWu7KQPX9ghGqS6gNy19Bbg2ZUl0VJfLlVHO
+	 Y0YJGREKbvcYg==
+Date: Thu, 6 Nov 2025 09:30:15 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Hanjie Lin <hanjie.lin@amlogic.com>, 
+	Yue Wang <yue.wang@amlogic.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Andrew Murray <amurray@thegoodpenguin.co.uk>, Jingoo Han <jingoohan1@gmail.com>, 
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH RESEND 1/3] dt-bindings: PCI: amlogic: Fix the register
+ name of the DBI region
+Message-ID: <20251106-positive-attractive-tiger-ec9c1c@kuoka>
+References: <20251101-pci-meson-fix-v1-0-c50dcc56ed6a@oss.qualcomm.com>
+ <20251101-pci-meson-fix-v1-1-c50dcc56ed6a@oss.qualcomm.com>
+ <31271df3-73e1-4eea-9bba-9e5b3bf85409@linaro.org>
+ <rguwscxck7vel3hjdd2hlkypzdbwdvafdryxtz5benweduh4eg@sny4rr2nx5aq>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Use 'edp_hot' function
- for hpd gpio
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_riteshk@quicinc.com>,
-        <quic_rajeevny@quicinc.com>, <quic_vproddut@quicinc.com>
-References: <20251031085739.440153-1-quic_amitsi@quicinc.com>
- <a6fbpfulyhbnfoy2d6wf7hl6de3z34gxcu6f4lby7ncsyu3f2g@q6qcvdid7bko>
-Content-Language: en-US
-From: Amit Singh <quic_amitsi@quicinc.com>
-In-Reply-To: <a6fbpfulyhbnfoy2d6wf7hl6de3z34gxcu6f4lby7ncsyu3f2g@q6qcvdid7bko>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTA2MDA2OCBTYWx0ZWRfX/KnLMD9fo9j7
- 1MIVKhBPcGqPEBLQPbPBpQkx3+gyAq8vcSPjA/4d3QASVfAbwg9BBCjzccdh4N1ASXbf3NM2xR8
- Yd86MP41f3lTLOnWzH2gQ1oOwneHLSXrzVE1TrqmVloPvtt4/F+ixDdgmK+JfBGCsAEiy9r4BSH
- yNYgqjBF9bVU49MJZwiQZkkq6D4at9COUNTG0AP7Kzf1ifGMR9hMUR5H+NOVNJM2i4XLwBoIxeN
- gJMmpQu9WmWbpXHqf80ZrcWdoNU+PmScVBVkcqjIjVk0/a1H4ExbCdMj6c+5NRCSrnkEkW7fAUD
- BU2uc4DQSwVmlHSwWnNsunVjaiNellNciqN+2XHtQ3b0X1LjHkNdDEBKsNfo+CnfYVmK32/JAT7
- Rk5bksEfi+25/PUJNBhRzKlkzS7mIw==
-X-Authority-Analysis: v=2.4 cv=LoCfC3dc c=1 sm=1 tr=0 ts=690c5c55 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8 a=02aoYn3nmM_QT12xQSUA:9
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=cPQSjfK2_nFv0Q5t_7PE:22
-X-Proofpoint-GUID: xKLl7KWg8PVDPyz-YzkWZXtHBKZ5XPRE
-X-Proofpoint-ORIG-GUID: xKLl7KWg8PVDPyz-YzkWZXtHBKZ5XPRE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-06_01,2025-11-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 lowpriorityscore=0 clxscore=1015 malwarescore=0
- suspectscore=0 spamscore=0 phishscore=0 impostorscore=0 bulkscore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511060068
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <rguwscxck7vel3hjdd2hlkypzdbwdvafdryxtz5benweduh4eg@sny4rr2nx5aq>
 
-
-
-On 11/1/2025 2:48 PM, Dmitry Baryshkov wrote:
-> On Fri, Oct 31, 2025 at 02:27:39PM +0530, Amit Singh wrote:
->> Currently, hpd gpio is configured as a general-purpose gpio, which does
+On Mon, Nov 03, 2025 at 03:42:58PM +0530, Manivannan Sadhasivam wrote:
+> On Mon, Nov 03, 2025 at 10:47:36AM +0100, Neil Armstrong wrote:
+> > Hi Mani,
+> > 
+> > On 11/1/25 05:29, Manivannan Sadhasivam wrote:
+> > > Binding incorrectly specifies the 'DBI' region as 'ELBI'. DBI is a must
+> > > have region for DWC controllers as it has the Root Port and controller
+> > > specific registers, while ELBI has optional registers.
+> > > 
+> > > Hence, fix the binding. Though this is an ABI break, this change is needed
+> > > to accurately describe the PCI memory map.
+> > 
+> > Not fan of this ABI break, the current bindings should be marked as deprecated instead.
+> > 
 > 
-> HPD, GPIO
+> Fair enough. Will make it as deprecated.
 
-Sure, will update in next version.
+The true question is what value was being passed as that item (ELBI)?
+Because if this was always DBI - device has DBI there - then what
+deprecation would change?
 
-> 
->> not support interrupt generation.
-> 
-> This is not true. GPIOs support interrupt generation.
-
-Will update the commit message.
-
-> 
->> This change removes the generic
-> 
-> Documentation/process/submitting-patches.rst, see the paragraph around
-> "This patch" words.
-
-Sure, will follow the guidelines. 
-
-> 
->> hpd-gpios property and assigns the edp_hot function to the pin,
->> enabling proper irq support.
-> 
-> What for?
-
-I'll update more details in the commit message.
-
-> 
->>
->> Fixes: 756efb7cb7293 ("arm64: dts: qcom: qcs6490-rb3gen2: Add DP output")
->> Signed-off-by: Amit Singh <quic_amitsi@quicinc.com>
->> ---
->>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 3 ---
->>  1 file changed, 3 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> index c146161e4bb4..caa0b6784df3 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> @@ -49,8 +49,6 @@ dp-connector {
->>  		label = "DP";
->>  		type = "mini";
->>  
->> -		hpd-gpios = <&tlmm 60 GPIO_ACTIVE_HIGH>;
->> -
->>  		port {
->>  			dp_connector_in: endpoint {
->>  				remote-endpoint = <&mdss_edp_out>;
->> @@ -1420,7 +1418,6 @@ &wifi {
->>  /* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
->>  
->>  &edp_hot_plug_det {
->> -	function = "gpio";
->>  	bias-disable;
->>  };
->>  
->> -- 
->> 2.34.1
->>
-> 
+Best regards,
+Krzysztof
 
 
