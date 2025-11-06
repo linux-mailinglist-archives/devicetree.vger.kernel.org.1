@@ -1,98 +1,91 @@
-Return-Path: <devicetree+bounces-235871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 691E8C3DB3D
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 23:56:15 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B858C3DB4C
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 23:58:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 236173A341C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 22:56:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A5C174E2750
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 22:58:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36CD530597A;
-	Thu,  6 Nov 2025 22:56:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DDBF309F18;
+	Thu,  6 Nov 2025 22:58:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Dj7Gcqpm"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="0oIE+TDk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C0B83019A3
-	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 22:56:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0BF2330B2D
+	for <devicetree@vger.kernel.org>; Thu,  6 Nov 2025 22:58:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762469772; cv=none; b=rSmVbz/OaNOfpuKCOUfSb4ub5BE456by2dYr5MLV7ssOfEgyalQN72g7BxdBwlPNmimrCTY9Myz4pN8cy4xBMhfCfXzTHPnUHUK+G9q7lnoom1Hl76MO7F/XtHwLbRC/ZmD75SejnsHphhcDp6veU3vOmtZPlty31wWQHeHY5oo=
+	t=1762469921; cv=none; b=sKDTfFoeBXQfpviheqLfy5fKna+sV3jtDTkZ6ApLWT7eokL6UPDm3mhiHJJYgmWVQilJNEJUeaCkiBq6buMG2GJGsPdJTjsq9MzTU+aiKxXGrwonaL8xdI1TmCM8Z2ianJ1EMsqQM1J9+WTeQSmxSmXNzyorXFU2OP2FjoYRTQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762469772; c=relaxed/simple;
-	bh=yDW+6iF8Yzkae8WSUMTM3Nr0MGnEr6imOIRCSWbmD0w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KpAXrZvh+VGip6CnsyvY49spT/PMFD2UanQtInM5dESfJEGqWwiOF25T8H5zpFEf+bRewan0sEaW+00VEVpjajUGZWD/YhCo+5w9bbsGd1L4O/8FKe0LxbupqBevDgLicMOrqkwPOz+RT2Y3+7aXYl0cp8csckHyf5fUxiZR24Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Dj7Gcqpm; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 78C6B4E4157C;
-	Thu,  6 Nov 2025 22:56:08 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 2C61E606EE;
-	Thu,  6 Nov 2025 22:56:08 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 98F6211850912;
-	Thu,  6 Nov 2025 23:56:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1762469767; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=9okIbnnWMA5fCtNaXf3R/J2fcIUUcAk0NufM6vDgTSQ=;
-	b=Dj7GcqpmhnNmvdn6K1QHbb7+pFpotHX4MIc8+PJ+oyONcZ1zhYtigX8k6Cpx4UiQkixO4g
-	vIuFHWvbvLkdqs0ZfLnjO+HImF918P2X6Y9U/2n1TN+s5acjpRHKBc0mu0uNOn7mu809RS
-	ZpuHDVVmKRpklIQmlyVBS1+unkRwimukD97rBuuqv0Ce2S7Eo2nSZFa60qAl5/3U5Zl9XX
-	XcDufbpCmyUfZeInheYvcVwtd+rf3Zz0JzD68K/x+A73n4zLsX7EPIMjxjP+/L/fcagLaF
-	axYqyma8P8gkpCI3zCFmBtJOzqOtSCGThl1CneRDwrE/OnXqRfqzKscBLDtCNw==
-Date: Thu, 6 Nov 2025 23:56:04 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Shubhi Garg <shgarg@nvidia.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rtc@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: (subset) [PATCH v7 0/4] Add NVIDIA VRS RTC support
-Message-ID: <176246954836.40627.4534725186662447569.b4-ty@bootlin.com>
-References: <20251007135738.487694-1-shgarg@nvidia.com>
+	s=arc-20240116; t=1762469921; c=relaxed/simple;
+	bh=/k5pajOWno4WAO84wwtFL3pOVGas3cRNxM7b0eCqNUg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JfCgGzi3DtMslVvKfq8EZHYsGdFeVDFQeMcMc+o+buUF2Y1uhAtiY67NWCR/T1FkyDX9DihDlrpvES65cdiU3xdK4kTPCim9ziPWUsNAl2hr3LHqkG+E+bpc/60EY/thxbabDkTEC54AiVgs1eYJfF1wMKTt1U5ajt+WQnKqQXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=0oIE+TDk; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=yLGl7PzNPrdk/BRbrx08T1/GhgcZAys2R92RWoPbyHU=; b=0oIE+TDkUR5Xe9oW4u1KQvnBDI
+	mvNZlhFQ93tSoMj+tW+QRijfF+cVMrnkH4YLtQKQDX4dDbmpCD1Khn8vhsyOqddP0yYsQbOL9PFlS
+	z0yJTeUEqSvf7YuX7cMvrm6iR4GSWjeLFzq3IKLYXztiuj9oKUEUn2kXTFGGX0d2H95FlrCHAfRWZ
+	eIV/0h8Rv8TLknTZvJgmHnzi2hd4nDGdBqzrJfgFZaOhHzK0fLK3/hVf2q7mvF0a9DZugVtue6f8R
+	293OZgDEJUPy/mTr6/cfih+Z3jYNAruQJEwf3VqaSKm+wIZv3g47ggaS9MMeQ1JvtKOCzou20/+qD
+	86TFcWfw==;
+Received: from i53875bac.versanet.de ([83.135.91.172] helo=phil.fritz.box)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1vH8w9-0001pr-PN; Thu, 06 Nov 2025 23:58:37 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Andrey Leonchikov <andreil499@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix USB power enable pin for BTT CB2 and Pi2
+Date: Thu,  6 Nov 2025 23:58:31 +0100
+Message-ID: <176246989731.210200.17367570635141107915.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20251105210741.850031-1-andreil499@gmail.com>
+References: <20251105210741.850031-1-andreil499@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251007135738.487694-1-shgarg@nvidia.com>
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Tue, 07 Oct 2025 13:57:34 +0000, Shubhi Garg wrote:
-> This patch series adds support for NVIDIA's Voltage Regulator Specification
-> (VRS) RTC device. It provides following features:
-> - read/set system time
-> - 32kHz clock support with backup battery input to retain system time
->   across boot
-> - alarm functionality to wake system from suspend and shutdown state
+
+On Wed, 05 Nov 2025 22:07:33 +0100, Andrey Leonchikov wrote:
+>  Fix typo into regulator GPIO definition. With current
+>  definition - USB powered off. Valid definition can be found on "pinctrl"
+>  section:
+>  		vcc5v0_usb2t_en: vcc5v0-usb2t-en {
+>  				rockchip,pins = <3 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
+>  				 		};
 > 
 > [...]
 
 Applied, thanks!
 
-[1/4] dt-bindings: rtc: Document NVIDIA VRS RTC
-      https://git.kernel.org/abelloni/c/4c03653f19ae
-[3/4] rtc: nvvrs: add NVIDIA VRS RTC device driver
-      https://git.kernel.org/abelloni/c/9d6d6b06933c
+[1/1] arm64: dts: rockchip: Fix USB power enable pin for BTT CB2 and Pi2
+      commit: a59e927ff46a967f84ddf94e89cbb045810e8974
 
 Best regards,
-
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Heiko Stuebner <heiko@sntech.de>
 
