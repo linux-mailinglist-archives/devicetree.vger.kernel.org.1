@@ -1,225 +1,111 @@
-Return-Path: <devicetree+bounces-235785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-235787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 771F8C3CE61
-	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 18:41:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 795AAC3CE79
+	for <lists+devicetree@lfdr.de>; Thu, 06 Nov 2025 18:42:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E8DE44E515D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 17:38:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88AF03B270D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Nov 2025 17:39:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B247351FC3;
-	Thu,  6 Nov 2025 17:36:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67A483328EA;
+	Thu,  6 Nov 2025 17:38:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="wwbIo3/l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RKZnoXF2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013070.outbound.protection.outlook.com [52.101.83.70])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 101CC340A74;
-	Thu,  6 Nov 2025 17:36:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.70
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1762450611; cv=fail; b=sloqskW8mdBqF1MZ23sjSO0ko//d6qeJkpMpNqly19cDuNGwPxNZXWEzjxpSqZfMG/4QR5h688yT/R4FqpQa73rJiEnUShNwzLNZxA7OJI7MdiLNi18wqQoswRWV8fZijyyQM73gMyfV6m5UMCjeokXbfmFa0pWKhsKkWuVgOhg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1762450611; c=relaxed/simple;
-	bh=zdyYepPC0gVmLhgbO5LCYcI2bsp9j1LS+PL5BxxJzjw=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=W9w4n+3jjEsGNYSjQj2Z/xnl5pAOKNZfDuvL24L/ClXXN1LJNKENy+gBEV3pkrubqiiS8XzfDNrXuIghZTVcjkPuzzPaOcBsk0o0CyVo5kTYQjGOCoc89IxJ60uNkqA4+6aXqK4MJFUw0/kgyuAA2hcXvjTWPCFJjL+dW4dgwvY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b=wwbIo3/l; arc=fail smtp.client-ip=52.101.83.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kPrB++HTupj03ZRFDBNrkr05aL553CGq79P6vWiRjrJmErsaRpnhnORsQ/2wXcHpOaP31dlk2BdzkJ97xNljuEcK3GvxYZ8bBl63fmjvjq3SxwIvkkvnqIxyZ4w0RWjlcKgXEGZ6UMtYYVFK4MFmAOoNmzJTwl2jlXS+0ufgNe920KkRUQgyYf2PBquxAA3AG4+sqbohrCYhKMR9SK4aFGNqEbJJYoA1r6332eo8NRbwoVw89+d0m6siH+1xD25V2r9MBmKvN8iwVGtleOLL5JglP3QumrBRLeyKsMS57Vd/ETCMkC1datQYDvT723GfVh5nQhviv0DIKmSF/q33Zg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zdyYepPC0gVmLhgbO5LCYcI2bsp9j1LS+PL5BxxJzjw=;
- b=L4NtnMH+AUjTMftZzsGkvfVXvB2LHJrQofSBpphegXcAnZJmAZav4Z+YNLZ1M0rzV5Hd0XFt8XWb4y+m/Z4TArRsL20o+M90UdDsgt0TTwAld8LQ8UjFXGc6Z9gxPKcy8Mxoh6/ZtCXJFExIfXpqyP04hKSIoei7ZgDAbbEsAl0UROMJu5LCLDTykgtjUfV7qTXTxpOEN0lRop9GYs85irlan86kmhqkR9ilSUUoeWMMYjpIBxGUvJoQpSJlM0IX+Epgi9ujlZnaetV5/j354jdvkMFHOv4AgrFTmS01FtmX66c5OAfaztECY5FBplw9GlvOJQtEsPkVn8MPsLoWeQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
- dkim=pass header.d=siemens.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zdyYepPC0gVmLhgbO5LCYcI2bsp9j1LS+PL5BxxJzjw=;
- b=wwbIo3/lUwhFCiQ0oP+isGbpfZgSqGS2fC1ovYoWdTnTFO00reXYkaep0CZ547NveJDbMr3FOOxt91Zk//e0aNR33WDnJ+wSwnK25aB96ruVRhG3XrtAVumJck0ylWe1yBLBKrhtPs2SQafgyc23KIv+Mpp9sAcZZuoijlQBRDDdv9v5qCydROh2C8ff8FgD38sihoSZ4i8OAx6OTO95/1dIwXGj1gC7oTQUrFUDgq9rwXmpXq3Lii4wyee8sXBteBRQc+erUAERodZ0UY3PT5NrezNpEJUZoccuTfnoz0An8IzPN9Yog0bA8zSC2co5yUcQ64J6Ix7jpRQCurRRNQ==
-Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:5b6::22)
- by AM0PR10MB3571.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:155::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.12; Thu, 6 Nov
- 2025 17:36:45 +0000
-Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::9126:d21d:31c4:1b9f]) by AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::9126:d21d:31c4:1b9f%3]) with mapi id 15.20.9275.013; Thu, 6 Nov 2025
- 17:36:45 +0000
-From: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>
-To: "olteanv@gmail.com" <olteanv@gmail.com>
-CC: "andrew@lunn.ch" <andrew@lunn.ch>, "robh@kernel.org" <robh@kernel.org>,
-	"lxu@maxlinear.com" <lxu@maxlinear.com>, "john@phrozen.org"
-	<john@phrozen.org>, "davem@davemloft.net" <davem@davemloft.net>,
-	"yweng@maxlinear.com" <yweng@maxlinear.com>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
-	"edumazet@google.com" <edumazet@google.com>, "bxu@maxlinear.com"
-	<bxu@maxlinear.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "ajayaraman@maxlinear.com"
-	<ajayaraman@maxlinear.com>, "fchan@maxlinear.com" <fchan@maxlinear.com>,
-	"daniel@makrotopia.org" <daniel@makrotopia.org>, "hauke@hauke-m.de"
-	<hauke@hauke-m.de>, "horms@kernel.org" <horms@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "kuba@kernel.org" <kuba@kernel.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>, "jpovazanec@maxlinear.com"
-	<jpovazanec@maxlinear.com>, "linux@armlinux.org.uk" <linux@armlinux.org.uk>
-Subject: Re: [PATCH net-next v7 12/12] net: dsa: add driver for MaxLinear
- GSW1xx switch family
-Thread-Topic: [PATCH net-next v7 12/12] net: dsa: add driver for MaxLinear
- GSW1xx switch family
-Thread-Index:
- AQHcTLxDDivhhsZUI0Sg1sdKzKnvuLTiKW4AgAOg3QCAABBvgIAAAuwAgAAO0wCAAAHjgA==
-Date: Thu, 6 Nov 2025 17:36:45 +0000
-Message-ID: <c1b631eacec2f138eb44fbfa4c0ae056bafa4610.camel@siemens.com>
-References: <cover.1762170107.git.daniel@makrotopia.org>
-	 <b567ec1b4beb08fd37abf18b280c56d5d8253c26.1762170107.git.daniel@makrotopia.org>
-	 <8f36e6218221bb9dad6aabe4989ee4fc279581ce.camel@siemens.com>
-	 <20251106152738.gynuzxztm7by5krl@skbuf>
-	 <471b75b6971dc5fa19984b43042199dec41ca9f3.camel@siemens.com>
-	 <6c4144088bbf367f6b166b4f3eceef16afdc19c1.camel@siemens.com>
-	 <20251106172958.jjfr3jbzlyexmidg@skbuf>
-In-Reply-To: <20251106172958.jjfr3jbzlyexmidg@skbuf>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-user-agent: Evolution 3.54.3 (3.54.3-2.fc41) 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siemens.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS8PR10MB6867:EE_|AM0PR10MB3571:EE_
-x-ms-office365-filtering-correlation-id: efc2147e-6673-479f-5e7a-08de1d5b0e5b
-x-ms-exchange-atpmessageproperties: SA
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|376014|7416014|366016|38070700021;
-x-microsoft-antispam-message-info:
- =?utf-8?B?Ym40Nm5PcW8wbEd0NkU0RjFrZWtWOVNMZ0wyQ0g3eUQxTUw0cU5DVmVCckZO?=
- =?utf-8?B?cjZMRTVNSlRVbmpRMFZWTkViMG91TnFRQnlobG0zdER2c28rdFk5bHl1MUZh?=
- =?utf-8?B?WGpmb2wrNjJmM1dYRGJ0enc2L29wZ25xNE1JZkhXUmZPbUo2MnFQdVZLVG8x?=
- =?utf-8?B?SjRBYUJmNm03d0h3dUkwd1dab0NhQXQ1NVBjdmhSQTdLRGNFZjNzUER1YlpS?=
- =?utf-8?B?RGpXbE1vaGZNdzNLOUFFRlI2RENmVHhKbFVRVGRCVEk1YkZtaVVmRCtzVkVa?=
- =?utf-8?B?UFBua3U3eGd2Q3BzMmQveFVhRGxuZXR4dVRYUTZweHR4MEU0UUg5NDJ3ZUlM?=
- =?utf-8?B?QWVuOXFjVTE4bmRuNm5QWEs0RXZSODJNUmthWUIyREcxVUtKa05QZThnZWZp?=
- =?utf-8?B?TzNkSU0zYldZVForWnJFL29CYlByc0NFTVhBRXVTOGF2aUQ0N1l5WjgwVHZQ?=
- =?utf-8?B?blBGaW5zUFQwRmgxL3U2dE85b3ZYQjRSUSthTnVGWi9DblVETDREUEh4QzdC?=
- =?utf-8?B?SitXNEphY0tITmdIRzkrakNJeFVwRVBYZ05IQlhuSjlMWDgzRzNJcHhFWTQ3?=
- =?utf-8?B?Yy90SXhlQnIxR0hUYW8ybUcwMkI2QUJLS1FiNEZpZmFIc2laK01zRXQ5Rk0z?=
- =?utf-8?B?TGd3a2FYbFFMK20xdXlobFVtbVlQWkRIcnlhN2t6Uzg1ek40Q0JidlJzK0pB?=
- =?utf-8?B?Y29wZXhzaUN1QW9BbUVsU0hGUUxLb2YwcVVlalJDZmQvbHc3TForaVJtZlhh?=
- =?utf-8?B?MDBLV2NtVnVYNFM3emtoOEdUR3ZlSm5zK1MrYXp6WnlzYTRYRHArRml4UGtU?=
- =?utf-8?B?Z2w1dFNYZGdaalRHTGk2cXg3SWtmbFVkQUFhdEc3emhXc01NVjIxUjgraENx?=
- =?utf-8?B?VnIwRTFqQVR1NDdudEFUQXg2ZTR4ZEFYZWdOOTJKOGg1ZGt1VXRlVTVwQ1BL?=
- =?utf-8?B?QmRyMlZpNFUwaXlzN014NW0wWTM5R05kZkpJTzRqbU4wS0RHemM3dm9Vb0ha?=
- =?utf-8?B?K2lkUStyTEk3MUVuNmdFTU81OXBKNmRBN0hsTTcyWlcrT0NycEVMM2p2dEgx?=
- =?utf-8?B?TWpXSGpIK1F6SzJJZ1BEa0pXNFFQbXNuWERaR0FMWUZPcFhSQjRwSWRpVDlE?=
- =?utf-8?B?Sk1LbkFZb3E4OWc4dW5JOHBmdUx1cVNveVRjamY5MXVVMGFRR2wrMENNY3pl?=
- =?utf-8?B?Z2VnbVhCeFdMS0xFYnQ5NC9WdVVoTFhTUWhiU2ZMTjg2Mmp6a3owTlU1Ym84?=
- =?utf-8?B?VHBRaEFQTWhjdmxqQTZNazU4UXZ2Qjc5WGtCay9xK0pueVlzMFJ4NDQwZG1I?=
- =?utf-8?B?Q2syK1MwdDRLMFNXQm5XQTRXMUVJVTNZeWZUZW5reGIzZWp5N1Y2Z2VSUTE2?=
- =?utf-8?B?anJlL0xRWUlVdkJpdjRORDlMTmhKV0tRRENuT2wvUlQ5eUxhMit5a1dKTytr?=
- =?utf-8?B?SW1rQ1BhdUhyMW9hWEJ5bWJUQTJLWTVMUE44NmlzQ245aU5jV0paK24wZHRl?=
- =?utf-8?B?NCtHVjBMNVhXSGNnT3JSaE0vNFc0T3lxVUxCeHdDbmdkNlF4WFU1V1BQclZz?=
- =?utf-8?B?TE0xOFZja1oxTlQ4VUdCOXcwdUJlMFZCWXRjbmlCSGFNQ1gzNUFMMXJDSTVj?=
- =?utf-8?B?b01uUkc1S0JtM3lGS1lQRTJ1VnE2aFQ4Qi8yTXd1OFJJOGdtYXV2OFhtOXBL?=
- =?utf-8?B?b0JkTUJ3aGxRMEQ4dVBQOFRIZlFHT25FMkZpb29sR1RtdWVxU0lra0FoelM3?=
- =?utf-8?B?WmFKUk9QSFNVbC91WU5LOWtFeXRuaVEzdFd6RWN4M05adEllYXlHZG1UaHk4?=
- =?utf-8?B?WVpJZytYZUhOa285VWxwK3J3eHBDVDFUZWI5TkdIZmlTNGlzdzlhTy9IRVRi?=
- =?utf-8?B?V3IzR0xSZXJMVmJ2b2M0VGlqT29RcDRML2hyRG5qOFUvTmoxYUdrZCs4dXpi?=
- =?utf-8?B?clFiMk85Szh4eDdvY1BIMEZsbExBQVkzWmNGTnl4VGJJcDlUdDlpNVVwaDk3?=
- =?utf-8?B?Z1pCa3NGVWV3PT0=?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?SjRnUm1wV1JzOTFCZmllSmZQOElwd0ZqdmFCc08xTUV6WTZ2dTlvN2Y3ajFh?=
- =?utf-8?B?a280a2t5eE5GYXFxdFd6cWNUQ1ErODlqUEJySzBKeGZBNmxaazdmVGlUN1ZM?=
- =?utf-8?B?ODMxc3NzeXUrOTZVQVJ5TVBaMEtkblQ4dWMwbFhWTVlmZXZMeFhPamhLRXBu?=
- =?utf-8?B?YVFNUmFySTVSaTFsd0J1dmdWTzRKZ3o2QjNra09MdDd1Z2ZmbngrZXBUYWdy?=
- =?utf-8?B?akpJNUlHRDlsOS9nT1Via1lIaEZMZzYwckNZL1NUUkYvM25WakpWWHRFK2Zk?=
- =?utf-8?B?cFR0a1FIMlR2OGhBUi8rMThTc2p6RlRPa2tlVDdjWGJ0TlNITVBEQXdSS04y?=
- =?utf-8?B?OFNwVVJTdXdBdnZmVVNuK3NMclQyUDNBQ0pSZnNBblNPYUxXSExiWUQ3cEpw?=
- =?utf-8?B?K2RxWSs5amZZaktVL0JGR1dtOUxyMGR6elEvcWdnbkN1SG9PeXkwbU9wZmpm?=
- =?utf-8?B?cW8yaWJ0V2pCL3ljUWpSWW9WdFo1VGp4TTEzSktweXMxUUNkS25tK3dPOUx1?=
- =?utf-8?B?SHpOaG54Ym5PS1lNUXpyNFFOaThMUGRUcGhYTXhXTU9adXY1SnkvbHY4UVRr?=
- =?utf-8?B?bEFma1h3b2E3TFRwd1VmNWVxbFlJS3lDSXNmaU9zd2c4OElpNjJTeDdWb3RF?=
- =?utf-8?B?Y2JJakNHY1hlZmpXRVZHbnBxMk5qS3E4OW4yMlFhd0h4U0o1MldjRWMyWGFQ?=
- =?utf-8?B?dUJsdTlEK215UWJYMXNFT2t3bHA5SXlPbElrWEtKN1hadFZYeGMrK2dIQytz?=
- =?utf-8?B?ekFNZXlCem9XRnNqQ1JBZ0QzdVBHZkxWN3Y0SXJSMDVrZzdBWWVINXpoY0dM?=
- =?utf-8?B?di8rbFlQRUhyMFpiUXBzMU0vMGY3TVY4QXhGdFZHWkk2NzJOOGtLTUpkOUdn?=
- =?utf-8?B?OHVZTitjeUdXV0hYbGF2SVVPSFNoVHNScE4zVUtpQjFlellwZTJCWkRJVUs3?=
- =?utf-8?B?eGtYdnNRK1R1ZDBOSWxRRGkxSGhrUHZYVFd6ckZCeUV0QVc3VmowKzRxaE1w?=
- =?utf-8?B?ZThGZGxic3BrUVFnSU1aSGxWTmxvTWkwNkFXb05kZ1ZJWVFHMEJCQk5hTU1l?=
- =?utf-8?B?elJZR1JmSTVHVTMzdk9VT3VJMlg0dmxsSHNSWW43VVJhSmJyUVh5dnpJQld3?=
- =?utf-8?B?ZExNQy9ONktCeFBJYldRRlA2OWdQQ2tNbEJJcllabS81L0RsU0xLcFlFUmRY?=
- =?utf-8?B?cVh0aUpkejJEbktWcUd5VUZ4NnpsVm53aXR0L1krS0xhMTFmU3F3WDZEVmtF?=
- =?utf-8?B?WHRIL0lEY0RtbVN2OWNsT2dBRDJEVk1NelozSS9BcFNKZmpLM0IxQjZ1QXpZ?=
- =?utf-8?B?ZDhIV2dkdnI2elFpb3h2QWI0Y3N6SHZ6Q3ZrblZ6WW5VMUlzQUN0MTNDQjJY?=
- =?utf-8?B?NHU1S05za3dUTFpZN2ZscFFjQk14UmpQbkFxMS9MMk5mM1lSdTlGWVExdDlt?=
- =?utf-8?B?OGxpUTNPUGxmRHYrdHVRYW9CK0lCU0V4bXU1WXZ2MGpiY05pQmhMZ2pqZzlK?=
- =?utf-8?B?TEh2Lyt1L01mWTRJZVQyeEpUVis3VlRkNmlyVVpJNHBraVJtS0ZlSHEwSUxI?=
- =?utf-8?B?cDE3Z1lJZlYyOS9XWVVPNnVyQjJoa091Nnc5ZllMTFY1bWU1N0RLNnpub3ZP?=
- =?utf-8?B?MkhodnRoTytwNUNONnRBMm9tS2lma3lPRWh1U3JEVlJVMnNqZ1JZbVdLR3pH?=
- =?utf-8?B?aDZXMWJ4Y2JtcFNCMndXTE9SdzkzaHNnd2tkNGltVkpqcHNVQXR4YW11V0Fh?=
- =?utf-8?B?am5XNkpXZ2pFVjNIc29tYWg2ckM0am1ZK0daK1NTWW5POFozZzRaY1hnYTJE?=
- =?utf-8?B?Z216dVNuKzhMMXdXRHRGaDVuRzVnWVVJQjlRTFo0SjVwM0xmVlM2WEJQUjR2?=
- =?utf-8?B?VlpJTXZlb0d4WTlLNXlaQWZrTHpHVFN0eTNTZFNQRVN2SHBpamZBQVZsck5Q?=
- =?utf-8?B?ZXRlV1VnTHRlUStnTjg0WS9UbWhsM3hoUjV1Q1pTeC9NN1M3TklyRWcvaVR5?=
- =?utf-8?B?YktwbVMvWHhKMHBJYXlkMVhQa245UllaNFh1SmZpNHFTeW1DQ090VXdCYUYx?=
- =?utf-8?B?Y0hvWGwyMHdBOGRxWlhFYnFlZEdEWjYrcWQ2eGcvYnlaR2hJNGc0MVN6VUxX?=
- =?utf-8?B?RXkxd2d1Q0RHUmFWcDRoWmdNbUtBSXlwQUc5dUVOZTNlVWtxMzdlZ0lhb09N?=
- =?utf-8?Q?Q51PE8lIKRYM5JGrPjqw+0I=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <71CFD465122A484ABF5181B6210F72F3@EURPRD10.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2894F32C938;
+	Thu,  6 Nov 2025 17:38:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1762450735; cv=none; b=BIiOsYa2RgVt1ERYKSPqbEYJekVwknjsKsEe/qHhASvmBHRDGWFdGNIIuPFuh7BXA+82NQkaXEyVeJmD6NApAEF2vd1zeFc22Zpx0nEBdEevkJmZKzpctQnrrB5J9tUGWfsIVVAUUeEPczEJYp8r4WhmVHcji+TfeC0aCZUmYQE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1762450735; c=relaxed/simple;
+	bh=KT4NxU4wzZtWzjzdNyOaIb2J5xsI7ldg+J7TbPIxc2s=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=gxU/b0VnoJMqRnnuQw2/KTh+PA2965lLM9rUPm55VlFOk7Wnl+YhMjTzPmuLddHzoGYqy3hR/AJeyMIR2TeyzQxX9z+DZrkIseRtOIs5eZnLfM7Qf1JPCaZfbJxESQ6FWCTs9xKDediFuX7GO1IhhnsGhtie9Tm57/bzOE2+GgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RKZnoXF2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90CEEC16AAE;
+	Thu,  6 Nov 2025 17:38:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762450734;
+	bh=KT4NxU4wzZtWzjzdNyOaIb2J5xsI7ldg+J7TbPIxc2s=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=RKZnoXF2yCM0esJy0nNdLPHb5DCoMw2//OUPJtCchG/Cd8esCy4W7xNGUF9NZtym8
+	 HKyyWeEERf8/AN3v7TvGd/1muy/vbounHttD2Uc0onBdB+RQRKH1NUJ7jKOVP9HDn9
+	 Udy27sHloM66hl2xBTgbs2TbZwUcZ/Q/PVqMKc69O8gNSxB2HEzAvcW+p+ri7OXkGT
+	 iDCXL8yE6hySjYsZIRNmC+WnR8BqEOjSREVal8M5UEwfGbaZgVEj0BLT7kUkRl9utH
+	 HiSeM77VN+qtG1pvUMbvDqQqHVhWrp8g3W6VLu1wLV7rMErYylWqQWpoGbikP1WMgS
+	 8EdbtQuGnnPDg==
+Date: Thu, 6 Nov 2025 11:38:53 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Vincent Guittot <vincent.guittot@linaro.org>
+Cc: Manivannan Sadhasivam <mani@kernel.org>, chester62515@gmail.com,
+	mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com, s32@nxp.com,
+	bhelgaas@google.com, jingoohan1@gmail.com, lpieralisi@kernel.org,
+	kwilczynski@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com,
+	Ghennadi.Procopciuc@nxp.com, ciprianmarian.costea@nxp.com,
+	bogdan.hamciuc@nxp.com, Frank.li@nxp.com,
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, cassel@kernel.org,
+	Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+Subject: Re: [PATCH 1/4 v3] dt-bindings: PCI: s32g: Add NXP PCIe controller
+Message-ID: <20251106173853.GA1959661@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: efc2147e-6673-479f-5e7a-08de1d5b0e5b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Nov 2025 17:36:45.2573
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: f8wQadnzKV9a1ctyEcAMiFqTtVA9WHOgQM4hNTws8i2qjHStvkQAEInaVBpD1XmGI9aNnPq6lxyq+HnC4Qzl+shhBPvSlOuQ4yZCO4o48Gs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3571
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAKfTPtC87w7RVSDAXWXRX1sjgo4s=_Z_k62+mfTXrMZwmkEpFg@mail.gmail.com>
 
-SGkgVmxhZGltaXIsDQoNCk9uIFRodSwgMjAyNS0xMS0wNiBhdCAxOToyOSArMDIwMCwgVmxhZGlt
-aXIgT2x0ZWFuIHdyb3RlOg0KPiA+ICMgaXAgLWQgbGluayBzaG93IGRldiAkZGV2DQo+ID4gNDog
-bGFuMUBldGgwOiA8Tk8tQ0FSUklFUixCUk9BRENBU1QsTVVMVElDQVNULFBST01JU0MsVVA+IG10
-dSAxNTAwIHFkaXNjIG5vcXVldWUgc3RhdGUgRE9XTiBtb2RlIERFRkFVTFQgZ3JvdXAgZGVmYXVs
-dCBxbGVuIDEwMDANCj4gPiDCoMKgwqDCoCBsaW5rL2V0aGVyIDAwOmEwOjAzOmVhOmZlOmI3IGJy
-ZCBmZjpmZjpmZjpmZjpmZjpmZiBwcm9taXNjdWl0eSAyIGFsbG11bHRpIDAgbWlubXR1IDY4IG1h
-eG10dSAyMzc4IA0KPiA+IMKgwqDCoMKgIGRzYSBjb25kdWl0IGV0aDAgYWRkcmdlbm1vZGUgZXVp
-NjQgbnVtdHhxdWV1ZXMgMSBudW1yeHF1ZXVlcyAxIGdzb19tYXhfc2l6ZSA2NTUzNiBnc29fbWF4
-X3NlZ3MgNjU1MzUgdHNvX21heF9zaXplIDY1NTM2IHRzb19tYXhfc2VncyA2NTUzNSBncm9fbWF4
-X3NpemUgNjU1MzYgZ3NvX2lwdjRfbWF4X3NpemUgNjU1MzYgZ3JvIA0KPiANCj4gSXQgcGFydGlh
-bGx5IGRvZXMsIHllcy4gVGhlIHByb21pc2N1aXR5IGlzIDIsIHdoaWNoIHN1Z2dlc3RzIGl0IHdh
-cw0KPiBhbHJlYWR5IDEgd2hlbiBoYXNfdW5pY2FzdF9mbHQoKSBzdGFydGVkIHRvIHJ1bi4gVGhl
-IGZ1bmN0aW9uIGlzIG5vdA0KPiB3cml0dGVuIHRvIGV4cGVjdCB0aGF0IHRvIGhhcHBlbi4gQWx0
-aG91Z2ggSSBkb24ndCB5ZXQgdW5kZXJzdGFuZCB3aHkNCj4gbGFuMSBvcmlnaW5hbGx5IGVudGVy
-ZWQgcHJvbWlzY3VvdXMgbW9kZSAtIHRoYXQgaXMgbm90IGluIHlvdXIgbG9ncy4NCj4gDQo+IFRo
-aXMgaXMgYSBzZXBhcmF0ZSBlbnZpcm9ubWVudCBmcm9tIHRoZSBzZWxmdGVzdCB3aXRoIHRoZSBj
-b21tYW5kcyByYW4NCj4gbWFudWFsbHksIG5vPyBCZWNhdXNlIHlvdSBjYW4ganVzdCBydW4gdGhl
-IHNlbGZ0ZXN0IHdpdGggImJhc2ggLXgiLg0KDQpZZXMsIEkgdHJpZWQgdGhlIGFib3ZlIG1hbnVh
-bGx5Lg0KTGV0IG1lIHJlcGVhdCB0aGUgdGVzdCBhZnRlciBhIGNsZWFuIGJvb3QgYW5kIHdpdGgg
-ImJhc2ggLXgiLCBub3QgdGhhdA0Kd2UgYXJlIGRlYnVnZ2luZyBzb21ldGhpbmcgZGlmZmVyZW50
-IGZyb20gdGhlIHJlYWwgdGVzdC4uLg0KDQotLSANCkFsZXhhbmRlciBTdmVyZGxpbg0KU2llbWVu
-cyBBRw0Kd3d3LnNpZW1lbnMuY29tDQo=
+[+cc Senchuan]
+
+On Thu, Nov 06, 2025 at 09:09:01AM +0100, Vincent Guittot wrote:
+> On Thu, 6 Nov 2025 at 08:12, Manivannan Sadhasivam <mani@kernel.org> wrote:
+> > On Wed, Oct 22, 2025 at 07:43:06PM +0200, Vincent Guittot wrote:
+> > > Describe the PCIe host controller available on the S32G platforms.
+
+> > > +            phys = <&serdes0 PHY_TYPE_PCIE 0 0>;
+> >
+> > PHY is a Root Port specific resource, not Root Complex. So it
+> > should be moved to the Root Port node and the controller driver
+> > should parse the Root Port node and control PHY. Most of the
+> > existing platforms still specify PHY and other Root Port
+> > properties in controller node, but they are wrong.
+> 
+> Yeah, we had similar discussion on v1 and as designware core code
+> doesn't support it, the goal was to follow other implementations
+> until designware core is able to parse root port nodes.  I can add a
+> root port node for the phy and parse it in s32 probe function but
+> then If I need to restrict the number of lane to 1 instead of the
+> default 2 with num-lanes then I have to put it the controller node
+> otherwise designware core node will not get it.
+
+I think it's better to put the PHY info, including num-lanes, in Root
+Port DT nodes now even thought the DWC core doesn't explicitly support
+that yet because it's much easier to change the DWC core and the
+driver code than it is to change the DT structure.
+
+That will mean a little extra code in the s32g driver now, but we will
+be able to remove that eventually.  If we leave the PHY in the DT
+controller node, we may eventually end up having to support two s32g
+DT structures: the single RP style with PHY in the controller, and a
+multiple RP style with PHY in the RP.
+
+We'll likely have both structures for many existing drivers, but I
+think it will be simpler if new drivers can avoid the old one.
+
+The eic7700 driver is an example of num-lanes support in the driver:
+https://lore.kernel.org/linux-pci/20251030083143.1341-1-zhangsenchuan@eswincomputing.com/
+
+Bjorn
 
